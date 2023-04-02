@@ -1,0 +1,70 @@
+{
+    "root": true,
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@wordpress/eslint-plugin/recommended-with-formatting"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
+    "rules": {
+        "array-bracket-spacing": ["error", "never"],
+        "block-spacing": ["error", "always"],
+        "comma-dangle": ["error", {
+            "arrays": "only-multiline",
+            "objects": "only-multiline",
+            "imports": "never",
+            "exports": "never",
+            "functions": "never"
+        }],
+        "comma-spacing": [ "error",{
+            "before": false,
+            "after": true
+        }],
+        "eol-last": ["error", "always"],
+        "indent": ["error", 2],
+        "jsdoc/tag-lines": ["error", "always", {
+            "count": 0
+        }],
+        "jsx-quotes": ["error", "prefer-double"],
+        "linebreak-style": ["error", "unix"],
+        "no-alert": "error",
+        "no-console": "error",
+        "no-eval": "error",
+        "no-undef": 0,
+        "no-implied-eval":"error",
+        "no-template-curly-in-string": "error",
+        "no-useless-concat":"error",
+        "object-curly-spacing": ["error", "always"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
+        "space-in-parens": ["error", "never"],
+        "spaced-comment": ["error", "always"],
+        "template-curly-spacing": ["error", "never"]
+    },
+    "overrides": [{
+        "files": ["*.md"],
+        "parser": "eslint-plugin-markdownlint/parser",
+        "extends": ["plugin:markdownlint/recommended"],
+        "rules": {
+            "markdownlint/md013": "off"
+        }
+    }]
+}

@@ -1,0 +1,231 @@
+.shopsPage-header-container,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-accordion,
+.itemPurchaseView-action-itemCost.required .itemPurchaseView-action-itemCost-table-cell.owned,
+.itemPurchaseView-container.flaming_spice_crafting_item.kingsCartItem,
+.itemPurchaseView-container.dragonshard_sparkling_nest_convertible.kingsCartItem,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-description,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-title,
+.hasShop .itemPurchaseView-container.super_brie_cheese,
+.hasShop .itemPurchaseView-container.donation {
+  display: none !important;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table-cell.cost {
+  width: 0;
+  font-size: 0;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container {
+  display: block;
+  min-height: 90px;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table {
+  opacity: .75;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost.required {
+  position: absolute;
+  bottom: -11px;
+  right: -11px;
+  width: 202px;
+}
+
+.itemPurchaseView-container.kingsCartItem.expanded .itemPurchaseView-content-details,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details {
+  height: auto;
+  max-height: 75px;
+  overflow-y: auto;
+}
+
+.itemPurchaseView-action-form.clear-block {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+
+.itemPurchaseView-container.own_max {
+  opacity: .3;
+}
+
+.itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemViewStatBlock {
+  display: none;
+}
+
+.itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemPurchaseView-content-description {
+  height: 30px;
+  overflow-y: scroll;
+}
+
+.itemPurchaseView-container.own_max .itemPurchaseView-action-state {
+  max-height: 65px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.itemPurchaseView-container.own_max .itemPurchaseView-image {
+  height: 40px;
+}
+
+.itemPurchaseView-content-skin {
+  margin-top: -10px;
+  margin-bottom: 5px;
+}
+
+.itemPurchaseView-content-skin b {
+  display: none;
+}
+
+.itemPurchaseView-content-description {
+  margin-bottom: 6px;
+  color: #626262;
+  margin-top: 5px;
+}
+
+.itemPurchaseView-action-itemCost-title {
+  display: none;
+}
+
+.itemPurchaseView-action-itemCost-description {
+  display: none;
+}
+
+.itemPurchaseView-action-itemCost-table {
+  width: 252px;
+  margin-left: -11px;
+  margin-right: -11px;
+  padding: 0px 5px;
+  padding-bottom: 0;
+  background: #f9f9f9;
+}
+
+.itemPurchaseView-action-itemCost-table a {
+  mix-blend-mode: multiply;
+}
+
+.itemPurchaseView-action-itemCost-table-cell.cost {
+  padding-left: 10px;
+  background-size: contain;
+}
+
+.itemPurchaseView-action-itemCost-table-row.error {
+  background-color: #ffadad8c;
+}
+
+.itemPurchaseView-action-itemCost-table-row {
+  display: grid;
+  width: 100%;
+  padding: 5px;
+  margin: 0px -5px;
+  justify-items: stretch;
+  align-items: center;
+  grid-template-columns: 1fr 15fr 1fr;
+}
+
+.itemPurchaseView-action-goldGost {
+  font-size: 1.3em;
+  font-weight: normal;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+  padding: 5px;
+  text-align: left;
+  padding-left: 25px;
+}
+
+.itemPurchaseView-action-quantity {
+  width: auto;
+  margin: 0 5px 0 10px;
+}
+
+.itemPurchaseView-action-quantity span {
+  display: none;
+}
+
+.itemPurchaseView-action-quantity input {
+  margin: 0;
+  padding: 3px;
+  width: 100%;
+}
+
+a.itemPurchaseView-action-form-button.buy,
+a.itemPurchaseView-action-form-button.sell {
+  font-weight: 400;
+  height: 21px;
+  line-height: 21px;
+  margin-top: 0;
+  width: auto;
+}
+
+a.itemPurchaseView-action-form-button.buy {
+  background: #f4e830;
+  margin-left: 5px;
+  height: 21px;
+}
+
+a.itemPurchaseView-action-form-button.sell {
+  background: #b3edff;
+  margin-left: 5px;
+}
+
+.itemPurchaseView-container.cannot_sell .itemPurchaseView-action-form-button.sell,
+.itemPurchaseView-container.cannot_buy .itemPurchaseView-action-form-button.buy {
+  filter: grayscale(1) opacity(0.75);
+}
+
+.itemPurchaseView-action-purchaseHelper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.itemPurchaseView-container.no_gold_cost .itemPurchaseView-action-goldGost {
+  display: block;
+}
+
+.itemPurchaseView-action-purchaseHelper-maxPurchases-container {
+  display: none;
+}
+
+.itemPurchaseView-action-purchaseHelper-owned {
+  align-items: center;
+  background-color: #f9f9f9;
+  display: inline-flex;
+  height: 28px;
+  position: absolute;
+  right: 5px;
+  top: 11px;
+  font-style: italic;
+}
+
+span.itemPurchaseView-action-owned {
+  margin-left: 2px;
+}
+
+.itemPurchaseView-action-purchaseHelper-error {
+  height: auto;
+}
+
+.itemPurchaseView-container.own_max .itemPurchaseView-action-purchaseHelper-maxPurchasesLimitReached {
+  display: none;
+}
+
+.itemPurchaseView-container.own_max .itemPurchaseView-action-container {
+  width: 250px;
+  display: block;
+}
+
+.itemPurchaseView-action-kingsCreditCostContainer {
+  display: none;
+}
+
+.itemPurchaseView-action-container {
+  padding: 10px 0 0 0;
+}
+
+.itemPurchaseView-content-accordion {
+  display: none;
+}
