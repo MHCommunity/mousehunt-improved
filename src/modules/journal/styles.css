@@ -1,0 +1,150 @@
+.journal .entry .journalbody {
+  margin-left: 80px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.journal .entry {
+  border-bottom: 1px solid #6767677a;
+}
+
+/* Images */
+.journal .entry .journalimage {
+  margin: 15px 0 0 10px;
+}
+
+.journal .entry .journalimage img {
+  width: 55px;
+  mix-blend-mode: darken;
+}
+
+.journal .entry .journalimage a:hover {
+  overflow: visible;
+  padding: 1px;
+  margin: -1px;
+}
+
+.journal .entry .journalimage a {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.journal .entry a img {
+  width: 64px;
+  height: auto;
+  margin: -2px;
+  padding: 0;
+  mix-blend-mode: darken;
+}
+
+.journal .entry a:hover img {
+  outline: 1px solid #e70;
+  padding: 0px;
+  mix-blend-mode: normal;
+}
+
+/* Text */
+.journal .entry .journalbody .journaltext {
+  line-height: 16px;
+}
+
+.journal .entry .journaltext b {
+  font-weight: normal;
+}
+
+.journal .entry .journaltext p:first-of-type {
+  margin-top: 0;
+}
+
+.journal .entry .journaltext * {
+  line-height: 20px;
+}
+
+/* Hide lucky clover */
+.journal .entry .journaltext .lucky:after {
+  display: none;
+}
+
+/* Hide lucky clover on mouse image */
+.journal .entry.luckycatchsuccess .journalimage:after {
+  background: none;
+}
+
+/* Date */
+.journal .entry .journalbody .journaldate {
+  font-weight: 100;
+  color: #6a6a6a;
+  margin-bottom: 5px;
+  font-size: 9.5px;
+  border-bottom: 1px solid #aeaeae;
+  margin-right: -5px;
+  display: inline-block;
+  width: calc(100% + 5px);
+}
+
+/* hide the BONUS HUNT banner on bonus hunts */
+.journal .content .bonuscatchsuccess,
+.journal .content .bonuscatchfailure {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.journal .content .bonuscatchsuccess:after,
+.journal .content .bonuscatchfailure:after,
+.journal .content .bonuscatchsuccess:before,
+.journal .content .bonuscatchfailure:before {
+  background: none;
+  content: none;
+}
+
+
+.mouseView-image {
+  box-shadow: none;
+}
+
+/* Donations */
+.donationComplete .journalimage img {
+  mix-blend-mode: normal;
+}
+
+
+/* Frift sad droid image */
+.journal .entry.riftFuroma-energyLost .journalbody {
+  margin-left: 80px;
+}
+
+.journal .entry.riftFuroma-energyLost .journalbody:before {
+  content: '';
+  width: 75px;
+  height: 80px;
+  display: block;
+  position: absolute;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/rift_furoma/droid.png?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-position: 0px -100px;
+  background-size: 110%;
+  top: 0;
+  left: -15px;
+  filter: grayscale(1);
+  mix-blend-mode: luminosity;
+}
+
+.journal .entry.riftFuroma {
+  position: relative;
+}
+
+.journal .content .entry.catchfailuredamage,
+.journal .content .entry.catchfailure,
+.journal .content .entry.floatingIslands.defeatedVaultEnemy {
+  background-position: 10px center;
+}
+
+.journal .content .captchasolved,
+.journal .content .supplytransferitem,
+.journal .content .travel .journal .relicHunter_complete,
+.journal .relicHunter_start {
+  background-size: 55px;
+  background-position: 5px center;
+}

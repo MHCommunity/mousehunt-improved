@@ -1,6 +1,50 @@
 import styles from './styles.css';
 
 /**
+ * For each element matching the selector, find and replace strings.
+ *
+ * @param {string} selector Element selector.
+ * @param {Array}  strings  Array of strings to replace.
+ */
+const modifyText = (selector, strings) => {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach(element => {
+    strings.forEach(string => {
+      if (!Array.isArray(string) || string.length !== 2) {
+        console.error('Invalid string', string);
+        return;
+      }
+
+      const oldText = element.innerHTML;
+      const newText = oldText.replace(string[0], string[1]);
+      if (oldText !== newText) {
+        element.innerHTML = newText;
+      }
+    });
+  });
+}
+
+/**
+ * For each element matching the selector, add a period to the last sentence.
+ *
+ * @param {string} selector Element selector.
+ */
+const addPeriodToLastSentence = (selector) => {
+  const elements = document.querySelectorAll(selector);
+  elements.forEach(element => {
+    const oldText = element.innerHTML;
+    let newText = oldText.replace(/([^.?!])$/, '$1.')
+      .replace('</p>.', '.</p>')
+      .replace('<br>.', '.')
+      .replace('..', '.');
+
+    if (oldText !== newText) {
+      element.innerHTML = newText;
+    }
+  });
+}
+
+/**
  * Update text in journal entries.
  */
 const updateJournalText = () => {
@@ -73,8 +117,12 @@ const updateJournalText = () => {
 }
 
 export default function journal() {
-addStyles(styles);
+  addStyles(styles);
 
-main();
-onPageChange({ change: main });
+  updateJournalText();
+  onAjaxRequest(() => {
+    updateJournalText();
+    setTimeout(updateJournalText, 300);
+    setTimeout(updateJournalText, 900);
+  });
 }
