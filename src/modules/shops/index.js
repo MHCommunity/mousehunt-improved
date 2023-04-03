@@ -1,3 +1,4 @@
+import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
 const main = () => {
@@ -69,7 +70,7 @@ const main = () => {
 };
 
 export default function shopHelper() {
-  addStyles(styles);
+  addUIStyles(styles);
 
   main();
   onPageChange({ change: main });

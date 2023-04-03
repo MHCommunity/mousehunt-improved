@@ -5,17 +5,17 @@
 }
 
 .journal .entry {
-  border-bottom: 1px solid #6767677a;
+  border: 1px solid #8b8b8b;
+  border-bottom: none;
+}
+
+.journal .entry:last-child {
+  border-bottom: 1px solid #8b8b8b;
 }
 
 /* Images */
 .journal .entry .journalimage {
   margin: 15px 0 0 10px;
-}
-
-.journal .entry .journalimage img {
-  width: 55px;
-  mix-blend-mode: darken;
 }
 
 .journal .entry .journalimage a:hover {
@@ -99,7 +99,6 @@
   content: none;
 }
 
-
 .mouseView-image {
   box-shadow: none;
 }
@@ -108,7 +107,6 @@
 .donationComplete .journalimage img {
   mix-blend-mode: normal;
 }
-
 
 /* Frift sad droid image */
 .journal .entry.riftFuroma-energyLost .journalbody {
@@ -135,16 +133,50 @@
   position: relative;
 }
 
+.journal .content .captchasolved,
+.journal .content .supplytransferitem,
+.journal .content .travel .journal .relicHunter_complete,
+.journal .relicHunter_start,
 .journal .content .entry.catchfailuredamage,
 .journal .content .entry.catchfailure,
 .journal .content .entry.floatingIslands.defeatedVaultEnemy {
   background-position: 10px center;
 }
 
-.journal .content .captchasolved,
-.journal .content .supplytransferitem,
-.journal .content .travel .journal .relicHunter_complete,
-.journal .relicHunter_start {
-  background-size: 55px;
-  background-position: 5px center;
+.journal .content .ultimate_intact {
+  background: #22EAB4 url('https://i.imgur.com/1ET60Dw.png') no-repeat 10px center;
+}
+
+/* Progress log */
+.journal .entry.log_summary .journalbody {
+  margin-left: 10px;
+}
+
+.journal .entry.log_summary .journaltext b {
+  font-weight: 900;
+  padding-top: 1em;
+  display: block;
+}
+
+/* Progress log */
+.mh-ui-progress-log-link {
+  margin: 1em auto;
+  width: 90px;
+  display: block;
+}
+
+.log_summary tbody {margin: 0 30px;display: block;}
+
+.entry.short.log_summary {
+    background-color: #ffe5ff;
+}
+
+.reportTitle {
+    font-size: 1.5em;
+    padding-bottom: .5em;
+}
+
+.reportSubtitle {
+    padding-bottom: .75em;
+    font-size: 1.125em;
 }

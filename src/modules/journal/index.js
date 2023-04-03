@@ -1,3 +1,4 @@
+import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
 /**
@@ -56,6 +57,7 @@ const updateJournalText = () => {
     [/\d+? oz. /i, ''],
     [/\d+? lb. /i, ''],
     [/from (\d+?) x/i, 'from $1'],
+    [/purchased (\d+?) x/i, 'purchased $1'],
     [/ worth \d.+? points and \d.+? gold/i, ''],
     ['<br><b>The mouse also dropped the following loot:</b>', '==DROPREPLACE=='],
     ['.<br>==DROPREPLACE==<br>', ' that dropped '],
@@ -65,6 +67,7 @@ const updateJournalText = () => {
     ['found that I had caught a mouse! I', ''],
     ['found that I had caught a mouse! <p>I', ''],
     ['I checked my trap and caught', 'I checked my trap and found'],
+    ['I returned to check my trap, but it appeared', 'I checked my trap, but'],
 
     ['was successful in the hunt! I', ''],
     ['where I was successful in my hunt! I', 'and'],
@@ -72,7 +75,7 @@ const updateJournalText = () => {
     ['got <font', 'was <font'],
     ['trap.<br><br>Additionally, the fiend pillaged', 'trap, and stealing'],
     ['gold from me!', 'gold.'],
-    ['trap.<br><br>Additionally, the power of this mouse crippled my courage, setting me back', 'trap, and I lost'],
+    ['trap.<br><br>Additionally, the power of this mouse crippled my courage, setting me back', 'trap and I lost'],
 
     // Map entries
     ['I successfully completed ', 'Completing '],
@@ -106,7 +109,20 @@ const updateJournalText = () => {
   ]);
 
   const replacements = [];
-  const sehWords = ['chocoholic', 'gluttonous', 'ravenous', 'hungry', 'hyperactive', 'sugar-induced' ];
+
+  const sehWords = [
+    'chocoholic',
+    'chocolate-crazed',
+    'voracious',
+    'gluttonous',
+    'hypoglycemic',
+    'ravenous',
+    'greedy',
+    'hungry',
+    'hyperactive',
+    'sugar-induced',
+  ];
+
   sehWords.forEach(word => {
     replacements.push([`A ${word}`, 'I caught a bonus']);
   });
@@ -114,10 +130,23 @@ const updateJournalText = () => {
   modifyText('.journal .entry.custom .journalbody .journaltext', replacements);
 
   addPeriodToLastSentence('.journal .entry .journalbody .journaltext');
+
+  // Update log
+  const log = document.querySelector('.journal .content .log_summary');
+  if (log) {
+    const link = log.querySelector('td a');
+    if (link) {
+      link.classList.add('mh-ui-progress-log-link', 'mousehuntActionButton', 'tiny', 'lightBlue');
+      const span = document.createElement('span');
+      span.innerText = 'View Progress Log'
+      link.innerText = '';
+      link.appendChild(span);
+    }
+  }
 }
 
 export default function journal() {
-  addStyles(styles);
+  addUIStyles(styles);
 
   updateJournalText();
   onAjaxRequest(() => {
