@@ -9,5 +9,5 @@
 // @icon        https://i.mouse.rip/mouse.png
 // @run-at      document-end
 // @grant       none
-// @require     https://cdn.jsdelivr.net/npm/mousehunt-utils@1.4.1/mousehunt-utils.js
+// @require     https://cdn.jsdelivr.net/npm/mousehunt-utils@1.4.2/mousehunt-utils.js
 // ==/UserScript==

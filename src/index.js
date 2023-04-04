@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-import { makeSettingsTab, addSetting } from './utils';
 import imageUpscaling from './modules/image-upscaling';
 import inventory from './modules/inventory';
 import journal from './modules/journal';
@@ -100,11 +98,17 @@ const modules = [
   },
 ];
 
-makeSettingsTab('mh-ui-settings', 'UI Settings');
-makeSettingsTab();
+addSettingsTab('mh-ui-settings', 'UI Settings');
 
 modules.forEach((module) => {
-  addSetting(module.name, module.id, module.default, module.name + 'description', { id: 'mh-ui', name: 'MH UI Settings'}, 'mh-ui-settings');
+  addSetting(
+    module.name,
+    module.id,
+    module.default,
+    `${module.name} description goes here`,
+    { id: 'mh-ui', name: 'MH UI Settings' },
+    'mh-ui-settings'
+  );
 });
 
 modules.forEach((module) => {
