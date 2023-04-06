@@ -3,14 +3,14 @@ import styles from './styles.css';
 import mapping from './mapping.json';
 
 const getNewUrl = (src) => {
-  if (!src) {
+  if (! src) {
     return;
   }
 
   const searchUrl = src.replace('https://www.mousehuntgame.com/images/', '');
 
-  const newUrl = mapping[searchUrl];
-  if (!newUrl) {
+  const newUrl = mapping[ searchUrl ];
+  if (! newUrl) {
     return;
   }
 
@@ -23,18 +23,18 @@ const getNewUrl = (src) => {
 
 const upscaleImages = () => {
   const images = document.querySelectorAll('img');
-  if (!images) {
+  if (! images) {
     return;
   }
 
   images.forEach((image) => {
     const src = image.getAttribute('src');
-    if (!src) {
+    if (! src) {
       return;
     }
 
     const newSrc = getNewUrl(src);
-    if (!newSrc) {
+    if (! newSrc) {
       return;
     }
 
@@ -42,35 +42,35 @@ const upscaleImages = () => {
   });
 
   const backgrounds = document.querySelectorAll('[style*="background-image"]');
-  if (!backgrounds) {
+  if (! backgrounds) {
     return;
   }
 
   backgrounds.forEach((background) => {
     const style = background.getAttribute('style');
-    if (!style) {
+    if (! style) {
       return;
     }
 
     // Check if the style contains a background-image
-    if (!style.includes('background-image')) {
+    if (! style.includes('background-image')) {
       return;
     }
 
     // Get the URL of the background-image
     const urls = style.match(/url\((.*?)\)/);
-    if (!urls || !urls[1]) {
+    if (! urls || ! urls[ 1 ]) {
       return;
     }
 
-    const url = urls[1].replace(/['"]+/g, '');
+    const url = urls[ 1 ].replace(/['"]+/g, '');
     const newUrl = getNewUrl(url);
-    if (!newUrl || newUrl === url) {
+    if (! newUrl || newUrl === url) {
       return;
     }
 
-    background.setAttribute('style', style.replace(urls[1], newUrl));
-  })
+    background.setAttribute('style', style.replace(urls[ 1 ], newUrl));
+  });
 };
 
 export default () => {

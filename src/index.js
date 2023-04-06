@@ -1,15 +1,30 @@
-import imageUpscaling from './modules/image-upscaling';
+// Utilities
+import { addUIStyles } from './utils';
+
+// Global styles
+import globalStyles from './styles.css';
+
+// Core 'Better' modules
 import inventory from './modules/inventory';
 import journal from './modules/journal';
+import camp from './modules/camp';
+import shops from './modules/shops';
 import maps from './modules/maps';
+
+// Features
+import imageUpscaling from './modules/image-upscaling';
+import tallerWindows from './modules/taller-windows';
+import onlyOpenMultiple from './modules/only-open-multiple';
 import metric from './modules/metric';
-import misc from './modules/misc';
+
+// Removal of things.
+import noFooter from './modules/no-footer';
 import noShare from './modules/no-share';
 import noSidebar from './modules/no-sidebar';
-import onlyOpenMultiple from './modules/only-open-multiple';
-import shops from './modules/shops';
-import tallerWindows from './modules/taller-windows';
-import traps from './modules/traps';
+
+// Bundled misc fixes and things
+import misc from './modules/misc';
+import wiki from './modules/wiki';
 
 const modules = [
   {
@@ -41,11 +56,11 @@ const modules = [
     load: shops,
   },
   {
-    id: 'mh-ui-better-traps',
-    name: 'Better Traps/Camp',
+    id: 'mh-ui-better-camp',
+    name: 'Better Camp',
     default: true,
     description: '',
-    load: traps,
+    load: camp,
   },
   {
     id: 'mh-ui-inventory-only-open-multiple',
@@ -53,6 +68,13 @@ const modules = [
     default: false,
     description: '',
     load: onlyOpenMultiple,
+  },
+  {
+    id: 'mh-ui-no-footer',
+    name: 'Remove Footer',
+    default: true,
+    description: '',
+    load: noFooter,
   },
   {
     id: 'mh-ui-no-share',
@@ -77,14 +99,14 @@ const modules = [
   },
   {
     id: 'mh-ui-misc-image-upscaling',
-    name: 'Misc - Image Upscaling',
+    name: 'Image Upscaling',
     default: true,
     description: '',
     load: imageUpscaling,
   },
   {
     id: 'mh-ui-misc-fixes',
-    name: 'Misc - Minor Fixes',
+    name: 'Minor Fixes',
     default: true,
     description: '',
     load: misc,
@@ -112,9 +134,13 @@ modules.forEach((module) => {
 });
 
 modules.forEach((module) => {
-  // console.log(`Loading module ${module.name}`);
   const isEnabled = getSetting(module.id, module.default);
   if (isEnabled) {
     module.load();
   }
 });
+
+addUIStyles(globalStyles);
+
+// Load modules that we don't add options for.
+wiki();

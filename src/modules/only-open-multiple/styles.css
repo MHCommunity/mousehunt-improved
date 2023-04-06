@@ -1,6 +1,6 @@
 .inventoryPage-item.convertible .inventoryPage-item-content-action input:first-of-type:not(:only-of-type) {
-  filter: grayscale(0);
   pointer-events: all;
+  filter: grayscale(0);
 }
 
 .inventoryPage-item.convertible .inventoryPage-item-content-action input {

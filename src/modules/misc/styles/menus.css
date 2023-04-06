@@ -1,0 +1,4 @@
+/* Fix the team icon */
+.mousehuntHud-menu .friends .team .icon {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/team.png?asset_cache_version=2);
+}

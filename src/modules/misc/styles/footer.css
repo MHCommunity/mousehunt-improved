@@ -1,0 +1,39 @@
+/* Align the footer contents better */
+.pageFrameView-footer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageFrameView-footer-linksContainer {
+  position: absolute;
+  top: -38px;
+  left: 20px;
+  flex: 1;
+  font-weight: 900;
+}
+
+/* Breathing room for app upsells */
+.pageFrameView-footer a img {
+  margin: 0 50px;
+}
+
+/* center the footer ad */
+.adView {
+  width: 640px;
+}
+
+/*  Gide the report ad link */
+.pageFrameView-footer-ad .adView-reportLink {
+  display: none;
+}
+
+/* Hide the version number */
+.mousehuntFooter-image {
+  display: flex;
+  flex-direction: row-reverse;
+  color: transparent;
+}

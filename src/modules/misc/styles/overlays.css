@@ -1,0 +1,48 @@
+#overlayPopup .imgArray {
+  overflow: visible;
+}
+
+/* Better buttons to match the modern ones */
+#overlayPopup .button {
+  background-color: #fff600;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #fff inset, 1px 1px 1px #fff;
+  line-height: 24px;
+  padding: 0 15px;
+  text-shadow: 0 0 1px #fff;
+}
+
+#overlayPopup .button:hover {
+  background-color: #ffca00;
+  box-shadow: inset 0 0 16px 2px #fffaab;
+}
+
+/* mice effectivenes */
+.mouseView-weaknessContainer {
+  width: 450px;
+}
+
+.mouseView-categoryContent-subgroup-mouse-weaknesses-label {
+  border-color: rgb(51 51 51 / 34%)
+}
+
+/* mouse stats */
+.mouseView-descriptionContainer {
+    width: 260px;
+}
+
+.mouseView-statsContainer {
+    width: 180px;
+}
+
+.mouseView-statsContainer br,
+.mouseView-statsContainer b,
+.mouseView-difficulty,
+.mouseView-group {
+    display: none;
+}
+
+.mouseView-statsContainer abbr {
+    text-decoration: none;
+}

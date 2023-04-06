@@ -1,16 +1,16 @@
 .journal .entry .journalbody {
-  margin-left: 80px;
   margin-top: 1em;
   margin-bottom: 1em;
+  margin-left: 80px;
 }
 
 .journal .entry {
-  border: 1px solid #8b8b8b;
+  border: 1px solid #a4a4a4;
   border-bottom: none;
 }
 
 .journal .entry:last-child {
-  border-bottom: 1px solid #8b8b8b;
+  border-bottom: 1px solid #a4a4a4;
 }
 
 /* Images */
@@ -18,30 +18,33 @@
   margin: 15px 0 0 10px;
 }
 
-.journal .entry .journalimage a:hover {
-  overflow: visible;
+.journal .entry .journalimage a:hover,
+.journal .entry .journalimage a:focus {
   padding: 1px;
   margin: -1px;
+  overflow: visible;
 }
 
 .journal .entry .journalimage a {
+  display: inline-block;
   width: 60px;
   height: 60px;
-  display: inline-block;
   overflow: hidden;
 }
 
 .journal .entry a img {
   width: 64px;
   height: auto;
-  margin: -2px;
   padding: 0;
+  margin: -2px;
+  border: 1px solid #000;
   mix-blend-mode: darken;
 }
 
-.journal .entry a:hover img {
+.journal .entry a:hover img,
+.journal .entry a:focus img {
+  padding: 0;
   outline: 1px solid #e70;
-  padding: 0px;
   mix-blend-mode: normal;
 }
 
@@ -51,7 +54,7 @@
 }
 
 .journal .entry .journaltext b {
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .journal .entry .journaltext p:first-of-type {
@@ -63,40 +66,38 @@
 }
 
 /* Hide lucky clover */
-.journal .entry .journaltext .lucky:after {
+.journal .entry .journaltext .lucky::after {
   display: none;
 }
 
 /* Hide lucky clover on mouse image */
-.journal .entry.luckycatchsuccess .journalimage:after {
+.journal .entry.luckycatchsuccess .journalimage::after {
   background: none;
 }
 
 /* Date */
 .journal .entry .journalbody .journaldate {
-  font-weight: 100;
-  color: #6a6a6a;
-  margin-bottom: 5px;
-  font-size: 9.5px;
-  border-bottom: 1px solid #aeaeae;
-  margin-right: -5px;
   display: inline-block;
-  width: calc(100% + 5px);
+  width: calc(100% - 10px);
+  margin-bottom: 5px;
+  font-size: 10px;
+  font-weight: 100;
+  color: #626262;
+  border-bottom: 1px solid #626262;
 }
 
 /* hide the BONUS HUNT banner on bonus hunts */
 .journal .content .bonuscatchsuccess,
 .journal .content .bonuscatchfailure {
   box-shadow: none;
-  -webkit-box-shadow: none;
 }
 
-.journal .content .bonuscatchsuccess:after,
-.journal .content .bonuscatchfailure:after,
-.journal .content .bonuscatchsuccess:before,
-.journal .content .bonuscatchfailure:before {
-  background: none;
+.journal .content .bonuscatchsuccess::after,
+.journal .content .bonuscatchfailure::after,
+.journal .content .bonuscatchsuccess::before,
+.journal .content .bonuscatchfailure::before {
   content: none;
+  background: none;
 }
 
 .mouseView-image {
@@ -113,19 +114,19 @@
   margin-left: 80px;
 }
 
-.journal .entry.riftFuroma-energyLost .journalbody:before {
-  content: '';
-  width: 75px;
-  height: 80px;
-  display: block;
+.journal .entry.riftFuroma-energyLost .journalbody::before {
   position: absolute;
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/rift_furoma/droid.png?asset_cache_version=2);
-  background-repeat: no-repeat;
-  background-position: 0px -100px;
-  background-size: 110%;
   top: 0;
   left: -15px;
+  display: block;
+  width: 75px;
+  height: 80px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/rift_furoma/droid.png?asset_cache_version=2);
   filter: grayscale(1);
+  background-repeat: no-repeat;
+  background-position: 0 -100px;
+  background-size: 110%;
   mix-blend-mode: luminosity;
 }
 
@@ -137,14 +138,24 @@
 .journal .content .supplytransferitem,
 .journal .content .travel .journal .relicHunter_complete,
 .journal .relicHunter_start,
+.journal .relicHunter_complete,
+.journal .torch_charm_event,
 .journal .content .entry.catchfailuredamage,
 .journal .content .entry.catchfailure,
-.journal .content .entry.floatingIslands.defeatedVaultEnemy {
+.journal .content .entry.attractionfailurestale,
+.journal .content .entry.floatingIslands.defeatedVaultEnemy,
+.journal .content .entry.sunken_city.zone {
   background-position: 10px center;
 }
 
+.journal .minimalJournalImage.champions_fire_loot,
+.journal .minimalJournalImage.moved_forward {
+  background-position: 10px !important;
+  background-size: 50px;
+}
+
 .journal .content .ultimate_intact {
-  background: #22EAB4 url('https://i.imgur.com/1ET60Dw.png') no-repeat 10px center;
+  background: #22eab4 url(https://i.mouse.rip/uc-intact.png) no-repeat 10px center;
 }
 
 /* Progress log */
@@ -153,30 +164,59 @@
 }
 
 .journal .entry.log_summary .journaltext b {
-  font-weight: 900;
-  padding-top: 1em;
   display: block;
+  padding-top: 1em;
+  font-weight: 900;
 }
 
 /* Progress log */
 .mh-ui-progress-log-link {
-  margin: 1em auto;
-  width: 90px;
   display: block;
+  width: 90px;
+  margin: 1em auto;
 }
 
-.log_summary tbody {margin: 0 30px;display: block;}
+.log_summary tbody {
+  display: block;
+  margin: 0 30px;
+}
 
 .entry.short.log_summary {
-    background-color: #ffe5ff;
+  background-color: #ffe5ff;
 }
 
 .reportTitle {
-    font-size: 1.5em;
-    padding-bottom: .5em;
+  padding-bottom: 0.5em;
+  font-size: 1.5em;
 }
 
 .reportSubtitle {
-    padding-bottom: .75em;
-    font-size: 1.125em;
+  padding-bottom: 0.75em;
+  font-size: 1.125em;
+}
+
+
+/* Hide set journal link and center detailed journal link */
+.journal-detailLinkContainer a:first-child {
+  display: none;
+}
+
+.journal-detailLinkContainer {
+  text-align: center;
+}
+
+/* Make the detailed journal link less obnoxious */
+a.journal-detailLink.full {
+  background: none;
+  font-size: 11px;
+  text-transform: lowercase;
+}
+
+a.journal-detailLink.full:before {
+  content: "View ";
+  text-transform: capitalize;
+}
+
+a.journal-detailLink.full:after {
+  content: " →";
 }

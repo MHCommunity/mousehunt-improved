@@ -1,11 +1,38 @@
 .treasureMapView-goals-group-goal-image {
-  height: 60px;
-  width: 40px;
-  left: -4px;
   top: -2px;
+  left: -4px;
+  width: 40px;
+  height: 60px;
 }
 
 .treasureMapView-highlight-image {
-  height: 230px;
   width: auto;
+  height: 230px;
+}
+
+/* right side of map */
+.treasureMapView-singleEnvironment-image {
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #000 inset;
+}
+
+.treasureMapView-rightBlock .treasureMapView-block-title {
+  display: none;
+}
+
+.treasureMapView-rightBlock .treasureMapView-block .treasureMapView-singleEnvironment {
+border: none;
+}
+
+.treasureMapView-rightBlock .treasureMapView-singleEnvironment {
+  border: none;
+}
+
+.treasureMapView-rightBlock .treasureMapView-block {
+  border: none;
+}
+
+.treasureMapView-rightBlock .treasureMapView-block-content {
+  padding: 0;
 }

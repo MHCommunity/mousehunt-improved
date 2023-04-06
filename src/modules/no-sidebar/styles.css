@@ -20,6 +20,7 @@ body .pageFrameView {
 
 .mousehuntHeaderView .menuItem.sidebar .dropdownContent {
   width: 365px;
+
   /* 10px padding + 180px scoreboard + 5px gap + 180px scoreboard + 10px padding */
   padding: 10px;
 }
@@ -69,7 +70,6 @@ body .pageFrameView {
   display: inline-block;
   float: right;
   height: auto;
-  padding: 0;
   padding: 5px 0;
   font-size: inherit;
   font-variant: none;

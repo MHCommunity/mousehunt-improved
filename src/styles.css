@@ -1,0 +1,33 @@
+/* Variables */
+:root {
+  --main-bg-color: #bad4ed;
+  --body-bg-color: #cbc6bb;
+  --bg-color: #f6f3eb;
+  --border-color: #534022;
+  --border-light-color: #9d917f;
+  --text-color: #4e300b;
+  --shadow-color: #534022;
+  --tan: #e8e3db;
+  --color-green: #4caf50;
+  --color-green-dark: #117903;
+  --color-red: #ffbfbf;
+  --color-blue: #2a98ff;
+  --color-blue-dark: #2d76ba;
+  --color-gold: #ffe05c;
+  --color-yellow: #f6ff00;
+  --progress-bar-bg: #876c30;
+  --progress-bar-fill: #4e300b;
+
+  --crafting-tan: #e3d5b6;
+  --crafting-border: #b7a276;
+  --crafting-shadow: #ebe0d4;
+}
+
+/* Utility */
+.transparent-text {
+  color: transparent;
+}
+
+.text-black {
+  color: #000;
+}

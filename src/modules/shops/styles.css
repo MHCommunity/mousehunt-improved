@@ -21,13 +21,13 @@
 }
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table {
-  opacity: .75;
+  opacity: 0.75;
 }
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost.required {
   position: absolute;
-  bottom: -11px;
   right: -11px;
+  bottom: -11px;
   width: 202px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .itemPurchaseView-container.own_max {
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemViewStatBlock {
@@ -59,8 +59,8 @@
 
 .itemPurchaseView-container.own_max .itemPurchaseView-action-state {
   max-height: 65px;
-  overflow-y: scroll;
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .itemPurchaseView-container.own_max .itemPurchaseView-image {
@@ -77,9 +77,9 @@
 }
 
 .itemPurchaseView-content-description {
+  margin-top: 5px;
   margin-bottom: 6px;
   color: #626262;
-  margin-top: 5px;
 }
 
 .itemPurchaseView-action-itemCost-title {
@@ -92,10 +92,10 @@
 
 .itemPurchaseView-action-itemCost-table {
   width: 252px;
-  margin-left: -11px;
-  margin-right: -11px;
-  padding: 0px 5px;
+  padding: 0 5px;
   padding-bottom: 0;
+  margin-right: -11px;
+  margin-left: -11px;
   background: #f9f9f9;
 }
 
@@ -106,6 +106,7 @@
 .itemPurchaseView-action-itemCost-table-cell.cost {
   padding-left: 10px;
   background-size: contain;
+  width: 45px;
 }
 
 .itemPurchaseView-action-itemCost-table-row.error {
@@ -114,24 +115,24 @@
 
 .itemPurchaseView-action-itemCost-table-row {
   display: grid;
+  grid-template-columns: 1fr 15fr 1fr;
+  align-items: center;
+  justify-items: stretch;
   width: 100%;
   padding: 5px;
-  margin: 0px -5px;
-  justify-items: stretch;
-  align-items: center;
-  grid-template-columns: 1fr 15fr 1fr;
+  margin: 0 -5px;
 }
 
 .itemPurchaseView-action-goldGost {
+  padding: 5px;
+  padding-left: 25px;
   font-size: 1.3em;
-  font-weight: normal;
+  font-weight: 400;
+  text-align: left;
   background: #f9f9f9;
   border: 1px solid #ccc;
-  border-left: none;
   border-right: none;
-  padding: 5px;
-  text-align: left;
-  padding-left: 25px;
+  border-left: none;
 }
 
 .itemPurchaseView-action-quantity {
@@ -144,29 +145,29 @@
 }
 
 .itemPurchaseView-action-quantity input {
-  margin: 0;
-  padding: 3px;
   width: 100%;
+  padding: 3px;
+  margin: 0;
 }
 
 a.itemPurchaseView-action-form-button.buy,
 a.itemPurchaseView-action-form-button.sell {
-  font-weight: 400;
-  height: 21px;
-  line-height: 21px;
-  margin-top: 0;
   width: auto;
+  height: 21px;
+  margin-top: 0;
+  font-weight: 400;
+  line-height: 21px;
 }
 
 a.itemPurchaseView-action-form-button.buy {
-  background: #f4e830;
-  margin-left: 5px;
   height: 21px;
+  margin-left: 5px;
+  background: #f4e830;
 }
 
 a.itemPurchaseView-action-form-button.sell {
-  background: #b3edff;
   margin-left: 5px;
+  background: #b3edff;
 }
 
 .itemPurchaseView-container.cannot_sell .itemPurchaseView-action-form-button.sell,
@@ -191,14 +192,14 @@ a.itemPurchaseView-action-form-button.sell {
 }
 
 .itemPurchaseView-action-purchaseHelper-owned {
-  align-items: center;
-  background-color: #f9f9f9;
-  display: inline-flex;
-  height: 28px;
   position: absolute;
-  right: 5px;
   top: 11px;
+  right: 5px;
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
   font-style: italic;
+  background-color: #f9f9f9;
 }
 
 span.itemPurchaseView-action-owned {
@@ -214,8 +215,8 @@ span.itemPurchaseView-action-owned {
 }
 
 .itemPurchaseView-container.own_max .itemPurchaseView-action-container {
-  width: 250px;
   display: block;
+  width: 250px;
 }
 
 .itemPurchaseView-action-kingsCreditCostContainer {
@@ -223,9 +224,43 @@ span.itemPurchaseView-action-owned {
 }
 
 .itemPurchaseView-action-container {
-  padding: 10px 0 0 0;
+  padding: 10px 0 0;
 }
 
 .itemPurchaseView-content-accordion {
+  display: none;
+}
+
+/* Marketplace close button - make the normal X button */
+#overlayPopup .marketplaceView input.button:first-child {
+  position: absolute;
+  display: block;
+  text-align: center;
+  right: -10px;
+  top: -3px;
+  padding: 0;
+  height: 27px;
+  width: 28px;
+  border-left: 0;
+  border-bottom: 0;
+  text-indent: 34px;
+  overflow: hidden;
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png?asset_cache_version=2);
+  background-repeat: no-repeat;
+  border: none;
+  box-shadow: none;
+}
+
+#overlayPopup .marketplaceView input.button:first-child:hover {
+  background-color: transparent;
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png?asset_cache_version=2);
+  background-position: 0 -27px;
+  background-repeat: no-repeat;
+  border-left: none;
+  border-bottom: none;
+}
+
+/* Hide the marketplace footer */
+#overlayPopup.marketplaceViewPopup .suffix {
   display: none;
 }

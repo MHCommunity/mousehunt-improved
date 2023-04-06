@@ -9,41 +9,69 @@ import styles from './styles.css';
  */
 const modifyText = (selector, strings) => {
   const elements = document.querySelectorAll(selector);
-  elements.forEach(element => {
-    strings.forEach(string => {
-      if (!Array.isArray(string) || string.length !== 2) {
-        console.error('Invalid string', string);
+  elements.forEach((element) => {
+    strings.forEach((string) => {
+      if (! Array.isArray(string) || string.length !== 2) {
         return;
       }
 
       const oldText = element.innerHTML;
-      const newText = oldText.replace(string[0], string[1]);
+      const newText = oldText.replace(string[ 0 ], string[ 1 ]);
       if (oldText !== newText) {
         element.innerHTML = newText;
       }
     });
   });
-}
+};
 
 /**
  * For each element matching the selector, add a period to the last sentence.
- *
- * @param {string} selector Element selector.
  */
-const addPeriodToLastSentence = (selector) => {
-  const elements = document.querySelectorAll(selector);
-  elements.forEach(element => {
-    const oldText = element.innerHTML;
-    let newText = oldText.replace(/([^.?!])$/, '$1.')
-      .replace('</p>.', '.</p>')
-      .replace('<br>.', '.')
-      .replace('..', '.');
+const addPeriodToLastSentenceOfEntries = () => {
+  const elements = document.querySelectorAll('.journal .entry');
+  if (! elements) {
+    return;
+  }
 
-    if (oldText !== newText) {
-      element.innerHTML = newText;
+  elements.forEach((element) => {
+    if (element.getAttribute('data-period-added')) {
+      return;
+    }
+
+    element.setAttribute('data-period-added', true);
+
+    const journalText = element.querySelector('.journaltext');
+    if (! journalText) {
+      return;
+    }
+
+    // If there are multiple br tags together, remove the extra ones
+    journalText.innerHTML = journalText.innerHTML.replace(/(<br>)+/g, '<br>')
+      .replace(/<a[^>]*><\/a>/g, '')
+      .replace(/<br>$/, '')
+      .replace(/.<br>.$/, '.')
+      .replace(/<br> .$/, '.')
+      .replace('..', '.')
+      .trim();
+
+    // If the string ends with a <br> tag, remove it
+    const endsWithBr = journalText.innerHTML.trim().endsWith('<br>');
+    if (endsWithBr) {
+      journalText.innerHTML = journalText.innerHTML.slice(0, -4);
+    }
+
+    const lastChar = journalText.innerHTML.trim().slice(-1);
+    if (lastChar !== '.' && lastChar !== '!' && lastChar !== '?') {
+      const newText = journalText.innerHTML.replace(/([^.?!])$/, '$1.')
+        .replace('<p></p>', '')
+        .replace('</p>.', '.</p>');
+
+      if (newText !== journalText.innerHTML) {
+        journalText.innerHTML = newText;
+      }
     }
   });
-}
+};
 
 /**
  * Update text in journal entries.
@@ -51,7 +79,7 @@ const addPeriodToLastSentence = (selector) => {
 const updateJournalText = () => {
   modifyText('.journal .entry .journalbody .journaltext', [
     // Hunt entries
-    ["I sounded the Hunter's Horn and was successful in the hunt!", ''],
+    ['I sounded the Hunter\'s Horn and was successful in the hunt!', ''],
     ['where I was successful in my hunt! I', 'and'],
     ['I went on a hunt with', 'I hunted with'],
     [/\d+? oz. /i, ''],
@@ -81,7 +109,6 @@ const updateJournalText = () => {
     ['I successfully completed ', 'Completing '],
     ['! Everyone who helped has been rewarded with', ' gave me'],
     [' each!', ', I can '],
-    ['<br><br>I should', ''],
     ['claim my reward', 'claim the reward.'],
     ['now!', ''],
     [', ending the hunt!', '.'],
@@ -89,6 +116,8 @@ const updateJournalText = () => {
 
     // Other
     ['I should hunt and catch a Relic Hunter or visit a Cartographer to obtain a new Treasure Map!', ''],
+    ['hunt and catch a Relic Hunter or ', 'I can '],
+    ['Treasure Map!', 'Treasure Map.'],
     [', causing my trap to glimmer with a magnificent shine', ''],
     [', causing my trap to sparkle with a fiendish glow', ''],
     [', causing my trap to spark with lightning', ''],
@@ -98,14 +127,25 @@ const updateJournalText = () => {
     [':</b><br>', '</b> '],
     [/<a href="receipt.php.+?View Receipt<\/a>/i, ''],
     ['me:<br>', 'me '],
+    [/I should tell my friends to check .+? during the next .+? to catch one!/i, ''],
+    [/I can go to my .+? to open it/i, ''],
+    ['Luckily she was not interested in my cheese or charms!', ''],
+    ['while she was in my trap, but', 'and'],
+    [' while scampering off!', ''],
+    ['dropped a Relic Hunter Scroll Case', 'dropped a Relic Hunter Scroll Case.'],
+    ['The mouse stole', ' The mouse stole'],
+    ['Chest, I can', 'Chest, '],
+    ['<br>I should ', 'I can '],
+    ['<br>I can ', 'I can '],
+    [' I replaced my bait since it seemed to be stale.', ''],
+    ['*POP* Your Unstable Charm pops off your trap and has', 'Your Unstable Charm'],
+    ['You quickly add it to your inventory!', ''],
+    [' a elusive ', ' a '],
+    ['I moved forward a whopping', 'I moved forward'],
 
     // Event stuff
     // SEH
     [/was.+Chocolatonium.+trap!/i, ''],
-
-    ['<br><br>', '<br>'],
-    ['<br><br>', '<br>'],
-    ['<p></p>', ''],
   ]);
 
   const replacements = [];
@@ -123,13 +163,13 @@ const updateJournalText = () => {
     'sugar-induced',
   ];
 
-  sehWords.forEach(word => {
+  sehWords.forEach((word) => {
     replacements.push([`A ${word}`, 'I caught a bonus']);
   });
 
   modifyText('.journal .entry.custom .journalbody .journaltext', replacements);
 
-  addPeriodToLastSentence('.journal .entry .journalbody .journaltext');
+  addPeriodToLastSentenceOfEntries();
 
   // Update log
   const log = document.querySelector('.journal .content .log_summary');
@@ -138,12 +178,12 @@ const updateJournalText = () => {
     if (link) {
       link.classList.add('mh-ui-progress-log-link', 'mousehuntActionButton', 'tiny', 'lightBlue');
       const span = document.createElement('span');
-      span.innerText = 'View Progress Log'
+      span.innerText = 'View Progress Log';
       link.innerText = '';
       link.appendChild(span);
     }
   }
-}
+};
 
 export default function journal() {
   addUIStyles(styles);

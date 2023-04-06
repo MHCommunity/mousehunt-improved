@@ -1,0 +1,15 @@
+/* Make the 'mice can drop' one line */
+.floatingIslandsHUD-islandLoot-label {
+  color: transparent;
+}
+
+.floatingIslandsHUD-islandLoot-label:before {
+  content: "Mice can drop";
+  color: #e2d8b6;
+  font-variant: small-caps;
+  font-size: 12px;
+  position: absolute;
+  width: 100px;
+  right: 3px;
+  top: 3px;
+}

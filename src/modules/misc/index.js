@@ -1,10 +1,35 @@
 import { addUIStyles } from '../../utils';
+
+// Not-sorted / general styles.
 import styles from './styles.css';
-import betterLuckyCatchIcon from './better-lucky-catch-icon.css';
-import hudStyles from './hud.css';
-import trainStyles from './train.css';
+
+// Specific page styles.
+import corkboardStyles from './styles/corkboard.css';
+import footerStyles from './styles/footer.css';
+import menuStyles from './styles/menus.css';
+import overlayStyles from './styles/overlays.css';
+import sidebarStyles from './styles/sidebar.css';
+
+// Minor styles.
+import betterLuckyCatchIcon from './styles/better-lucky-catch-icon.css';
+
+// HUD styles
+import hudStyles from './hud/general.css';
+import fiStyles from './hud/fi.css';
+import trainStyles from './hud/train.css';
 
 export default () => {
-  const combined = [styles, betterLuckyCatchIcon, hudStyles, trainStyles].join('\n');
-  addUIStyles(styles);
+  const combined = [
+    styles,
+    corkboardStyles,
+    footerStyles,
+    menuStyles,
+    overlayStyles,
+    sidebarStyles,
+    betterLuckyCatchIcon,
+    hudStyles,
+    fiStyles,
+    trainStyles,
+  ].join('\n');
+  addUIStyles(combined);
 };

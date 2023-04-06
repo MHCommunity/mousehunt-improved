@@ -1,4 +1,4 @@
-<div class="inventoryPage-item full convertible " onclick="app.pages.InventoryPage.useItem(this); return false;"
+{ /* <div class="inventoryPage-item full convertible " onclick="app.pages.InventoryPage.useItem(this); return false;"
 	data-item-id="1267" data-item-type="passing_parcel_convertible" data-item-classification="convertible"
 	data-name="Passing Parcel" data-display-order="0" data-produced-item="" data-produced-quantity=""
 	data-is-processed="" data-power="">
@@ -28,4 +28,4 @@
 					onclick="app.pages.InventoryPage.useConvertible(this); return false;"></div>
 		</div>
 	</div>
-</div>
+</div> */ }

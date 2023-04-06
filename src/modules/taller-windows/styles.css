@@ -9,22 +9,21 @@
 .marketplaceView-browse-content,
 .adventureBookPopup-titleContent,
 .treasureMapView-block-content.halfHeight,
-.convertibleOpenView-itemContainer,
 #messengerUINotification .notificationHeader,
 #messengerUINotification .notificationMessageList,
 .convertibleOpenView-itemContainer {
-  max-height: 75vh;
   height: auto;
+  max-height: 75vh;
 }
 
 .giftSelectorView-inbox-giftContainer {
+  height: auto;
   min-height: 300px;
   max-height: 75vh;
-  height: auto;
 }
 
 .giftSelectorView-scroller {
+  height: auto;
   min-height: 320px;
   max-height: 55vh;
-  height: auto;
 }

@@ -1,92 +1,92 @@
 .journal .entry img,
-  .notificationMessageList .message img.item {
-    border: none !important;
-  }
+.notificationMessageList .message img.item {
+  border: none !important;
+}
 
-  .giftSelectorView-inbox-gift-thumb .itemImage,
-  .giftSelectorView-claimableGift-itemContainer .itemImage {
-    box-shadow: none;
-  }
+.giftSelectorView-inbox-gift-thumb .itemImage,
+.giftSelectorView-claimableGift-itemContainer .itemImage {
+  box-shadow: none;
+}
 
-  .mousehuntHud-userStat .icon {
-    border: none;
-    width: 27px;
-    height: 27px;
-    box-shadow: none;
-  }
+.mousehuntHud-userStat .icon {
+  width: 27px;
+  height: 27px;
+  border: none;
+  box-shadow: none;
+}
 
-  .campPage-trap-armedItem-empty {
-    background: none;
-    box-shadow: none;
-  }
+.campPage-trap-armedItem-empty {
+  background: none;
+  box-shadow: none;
+}
 
-  .campPage-trap-armedItem-image {
-    border: none;
-    left: 3px;
-    top: 3px;
-  }
+.campPage-trap-armedItem-image {
+  top: 3px;
+  left: 3px;
+  border: none;
+}
 
-  .mousehuntHud-userStat.bait .icon {
-    background-color: transparent;
-  }
+.mousehuntHud-userStat.bait .icon {
+  background-color: transparent;
+}
 
-  .adventureBookPopup-adventure-details-block-step-thumb {
-    box-shadow: none;
-  }
+.adventureBookPopup-adventure-details-block-step-thumb {
+  box-shadow: none;
+}
 
-  .itemView-thumbnail {
-    border: none;
-  }
+.itemView-thumbnail {
+  border: none;
+}
 
-  .inventoryPage-confirmPopup-itemRow-image .itemImage img {
-    width: 80px;
-    height: 80px;
-  }
+.inventoryPage-confirmPopup-itemRow-image .itemImage img {
+  width: 80px;
+  height: 80px;
+}
 
-  .treasureMapView-allyCell {
-    padding: 6px 3px;
-  }
+.treasureMapView-allyCell {
+  padding: 6px 3px;
+}
 
-  .treasureMapView-allyCell .treasureMapView-componentContainer {
-    background: none;
-    width: 160px;
-  }
+.treasureMapView-allyCell .treasureMapView-componentContainer {
+  width: 160px;
+  background: none;
+}
 
-  .treasureMapView-allyCell .treasureMapView-componentThumb {
-    width: 50px;
-    height: 50px;
-  }
+.treasureMapView-allyCell .treasureMapView-componentThumb {
+  width: 40px;
+  height: 40px;
+}
 
-  .treasureMapRootView-footer-item-thumb {
-    background-color: #fff;
-  }
+.treasureMapRootView-footer-item-thumb {
+  background-color: #fff;
+}
 
-  .mousehuntHud-userStat:hover .icon,
-  .mousehuntHud-userStat.active .icon {
-    box-shadow: none;
-    -webkit-filter: drop-shadow(0 0 3px #ffde00);
-            filter: drop-shadow(0 0 3px #ffde00);
-  }
+.mousehuntHud-userStat:hover .icon,
+.mousehuntHud-userStat:focus .icon,
+.mousehuntHud-userStat.active .icon {
+  filter: drop-shadow(0 0 3px #ffde00);
+  box-shadow: none;
+}
 
-  .marketplaceView-itemImage {
-    background-color: transparent;
-    border: none;
-  }
+.marketplaceView-itemImage {
+  background-color: transparent;
+  border: none;
+}
 
-  .marketplaceHome-block.featured .marketplaceView-itemImage {
-    border: 1px solid #a0a0a0;
-  }
+.marketplaceHome-block.featured .marketplaceView-itemImage {
+  border: 1px solid #a0a0a0;
+}
 
-  .MHCheckout-featuredItem-image.large {
-    background-size: 100px;
-  }
+.MHCheckout-featuredItem-image.large {
+  background-size: 100px;
+}
 
-  .MHCheckoutCartTableView-reward-image,
-  .MHCheckoutCartTableView .trapImageView {
-    box-shadow: none;
-  }
+.MHCheckoutCartTableView-reward-image,
+.MHCheckoutCartTableView .trapImageView {
+  box-shadow: none;
+}
 
-  .inventoryPage-item .itemImage img {
-    width: 80px;
-    height: 80px;
-  }
+.inventoryPage-item .itemImage img {
+  width: 80px;
+  height: 80px;
+}

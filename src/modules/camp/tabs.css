@@ -1,0 +1,172 @@
+/* Tabs */
+.campPage-tabs-tabContentContainer {
+  background-color: var(--tan);
+  border-color: var(--body-bg-color);
+}
+
+.campPage-tabs-tabRow:hover .campPage-tabs-tabHeader span,
+.campPage-tabs-tabHeader span {
+  border-color: var(--body-bg-color);
+  border-bottom: 1px solid var(--body-bg-color);
+}
+
+.campPage-tabs-tabHeader.active span,
+.campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span,
+.campPage-tabs-tabRow a.campPage-tabs-tabHeader:focus span {
+  background-color: var(--tan);
+  border: 1px solid var(--body-bg-color);
+  border-bottom: none;
+}
+
+/* tab content */
+.campPage-tabs-tabContent[data-tab="quests"],
+.campPage-tabs-tabContent[data-tab=journal] {
+  background: none;
+}
+
+
+/* Daily */
+a.campPage-daily-chest-info,
+.campPage-daily-chest-label,
+.campPage-daily-tomorrow-title,
+.campPage-daily-tomorrow-availableIn,
+.campPage-daily-today,
+.campPage-daily-progress.clear-block,
+.campPage-daily-draw-details,
+.shopsPage-kingsCalibratorPromo b {
+  display: none;
+}
+
+.campPage-daily-tomorrow {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+  background-position: center;
+  border: 1px solid #7d3a08;
+  box-shadow: -1px -1px 2px #d3cecb inset;
+}
+
+.campPage-daily-tomorrow-reward {
+  display: inline-block;
+  width: 100%;
+  padding: 5px 0;
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: 900;
+  color: #87430d;
+  text-shadow: 0 0 2px #ffcd6f;
+  background-color: #ffffff57;
+}
+
+div#dailyRewardTimer {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  display: block;
+  width: 100%;
+  padding: 3px 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: #904811;
+  text-align: center;
+  background-color: rgb(255 216 152 / 50%);
+  border-top: 10px;
+}
+
+.draw .campPage-daily-content {
+  height: 230px;
+  padding-top: 0;
+  background: url(https://www.mousehuntgame.com/images/ui/daily/next_day_bkg.png?asset_cache_version=2);
+  background-position-x: center;
+  background-position-y: 7px;
+  background-size: cover;
+  border: 1px solid #7d3a08;
+  box-shadow: -1px -1px 2px #d3cecb inset;
+}
+
+.campPage-daily-draw-title,
+.campPage-daily-draw-prize-name {
+  display: inline-block;
+  width: 100%;
+  padding: 5px 0;
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: 900;
+  color: #87430d;
+  text-shadow: 0 0 2px #ffcd6f;
+}
+
+.campPage-daily-draw-prize-name {
+  font-size: 12px;
+}
+
+img.campPage-daily-draw-prize-image {
+  padding: 0;
+  background: none;
+}
+
+.shopsPage-kingsCalibratorPromo::after {
+  top: 5px;
+  width: 45px;
+  height: 45px;
+  background-image: url(https://i.imgur.com/hxFvB35.png);
+  filter: drop-shadow(0 1px 1px #7d3a08);
+}
+
+div#dailyRewardTimer::before {
+  content: "Available in ";
+}
+
+.shopsPage-kingsCalibratorPromo {
+    border: 1px solid #7d3a08;
+    border-radius: 0;
+    height: 55px;
+    margin-top: 2px;
+    padding: 0 55px;
+    text-align: center;
+    background: #f6f3eb;
+    box-shadow: -1px -1px 2px #d3cecb inset;
+}
+
+.campPage-daily-container .shopsPage-kingsCalibratorPromo-button {
+  margin: 0;
+  background: var(--color-blue);
+  border-radius: 5px;
+  box-shadow: inset 0 -1px 1px 1px var(--color-blue-dark);
+}
+
+.campPage-daily-container .shopsPage-kingsCalibratorPromo-button:hover,
+.campPage-daily-container .shopsPage-kingsCalibratorPromo-button:active,
+.campPage-daily-container .shopsPage-kingsCalibratorPromo-button:focus {
+  background: var(--color-blue-dark);
+}
+
+/* Larry's Tips */
+.campPage-tabs-tabContent-larryTip-container {
+  line-height: 16px;
+  background-color: var(--bg-color);
+}
+
+.campPage-tabs-tabContent-larryTip-container a.campPage-tabs-tabContent-larryTip-byLine,
+img.campPage-larryTip-external-link-icon {
+  display: none;
+}
+
+.campPage-tabs-tabContent-larryTip-environment {
+  padding-bottom: 1em;
+}
+
+.campPage-tabs-tabContent-larryTip-container a {
+  display: block;
+  padding: 1em 0 0;
+  text-align: right;
+}
+
+.campPage-tabs-tabContent-larryTip-container a::after {
+  content: "→";
+}
+
+.campPage-quests-container {
+  background: #f6f3eb;
+
+}

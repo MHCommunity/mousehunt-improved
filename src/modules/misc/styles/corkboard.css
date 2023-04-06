@@ -1,0 +1,95 @@
+.messageBoardView-message-description {
+  line-height: 34px;
+  vertical-align: middle;
+  display: block;
+}
+
+a.messageBoardView-message-delete:after {
+  content: "✕";
+  font-family: monospace;
+  font-size: 26px;
+  line-height: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 15px;
+  width: 15px;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  color: #ffbdbd;
+}
+
+a.messageBoardView-message-delete {
+  color: transparent;
+  overflow: hidden;
+  width: 15px;
+  height: 15px;
+}
+
+a.messageBoardView-message-delete:hover:after {
+  text-decoration: none;
+  color: darkred;
+}
+input.messageBoardView-message-submit {
+  background-color: #fff600;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #fff inset, 1px 1px 1px #fff;
+  line-height: 24px;
+  padding: 0 20px;
+  text-shadow: 0 0 1px #fff;
+  margin-top: 7.5px;
+  font-size: 12px;
+}
+
+input.messageBoardView-message-submit:hover {
+  cursor: pointer;
+  background-color: #ffca00;
+  box-shadow: inset 0 0 16px 2px #fffaab;
+}
+
+.messageBoardView-message-description {
+  line-height: 34px;
+  vertical-align: middle;
+  display: block;
+}
+
+a.messageBoardView-message-delete:after {
+    content: "✕";
+    font-family: monospace;
+    font-size: 26px;
+    line-height: 15px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 15px;
+    width: 15px;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    color: #ffbdbd;
+}
+
+a.messageBoardView-message-delete {
+    color: transparent;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+}
+
+a.messageBoardView-message-delete:hover:after {
+    text-decoration: none;
+    color: #912d2d;
+}
+
+.messageBoardView-message-container-padding {
+  background: #eee;
+    border-bottom: 1px solid #7b789a;
+}
+
+.messageBoardView-message,
+.messageBoardView-message.new {
+    box-shadow: none;
+    border: 1px solid var(--border-light-color) !important;
+}
