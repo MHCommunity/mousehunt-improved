@@ -13,6 +13,7 @@ import shops from './modules/shops';
 import ui from './modules/ui';
 
 // Features
+import dashboard from './modules/dashboard';
 import imageUpscaling from './modules/image-upscaling';
 import tallerWindows from './modules/taller-windows';
 import onlyOpenMultiple from './modules/only-open-multiple';
@@ -69,6 +70,13 @@ const modules = [
     default: true,
     description: '',
     load: ui,
+  },
+  {
+    id: 'mh-ui-dashboard',
+    name: 'Dashboard',
+    default: true,
+    description: '',
+    load: dashboard
   },
   {
     id: 'mh-ui-inventory-only-open-multiple',

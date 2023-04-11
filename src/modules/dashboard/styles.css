@@ -1,0 +1,64 @@
+/* Free up space for dashboard */
+.mousehuntHeaderView-gameTabs .menuItem.chat,
+.mousehuntHeaderView-gameTabs .community {
+  display: none;
+}
+
+.mousehuntHeaderView .menuItem.dropdown.dashboard {
+  cursor: initial;
+}
+
+.dashboardContents {
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid #d7e2f1;
+  padding: 1em;
+}
+
+.dashboardRefresh {
+  display: block;
+  margin: 1em auto;
+}
+
+.regionName {
+  background-color: #d7e2f1;
+  font-size: 11px;
+  padding: 0.125em 0.5em;
+}
+
+.locationName {
+  font-size: 12px;
+}
+
+.locationWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  background-color: #fff;
+}
+
+.locationWrapper:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.mousehuntHeaderView .dropdownContent .locationWrapper a.travelLink {
+  font-size: 10px;
+  padding: 0;
+  height: auto;
+  color: #3b5998;
+  border: none;
+  margin-left: 1em;
+  position: absolute;
+  font-variant: unset;
+  display: none;
+}
+
+.mousehuntHeaderView .dropdownContent .locationWrapper:hover a.travelLink {
+  display: inline-block;
+}
+
+.mousehuntHeaderView .dropdownContent a:hover {
+  background-color: transparent;
+  text-decoration: underline;
+}
