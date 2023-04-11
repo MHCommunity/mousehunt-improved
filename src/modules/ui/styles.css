@@ -1,0 +1,76 @@
+/* General styles */
+
+#mousehuntContainer.PageCamp {
+  background: url(https://www.toptal.com/designers/subtlepatterns/uploads/retina_wood.png);
+  box-shadow: inset 0 0 8px 0 #755e40;
+}
+
+.mousehuntFooter-image {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-top: 13px;
+  color: transparent;
+  background-image: none;
+}
+
+.campPage-trap {
+  border: 1px solid #9d917f;
+}
+
+.campPage-trap-friendList.full {
+  background: #f6f3eb;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #755e40 inset;
+}
+
+.campPage-trap-itemStats {
+  background: #f6f3eb;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #755e40 inset;
+}
+
+a.campPage-trap-trapEffectiveness {
+  background: #f6f3eb;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #755e40 inset;
+}
+
+div#minluck-list {
+  margin-top: 10px;
+  background: #f6f3eb;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #755e40 inset;
+}
+
+.campPage-trap-armedItem,
+.campPage-trap-armedItem.bait,
+.campPage-trap-armedItem.skin {
+  background: #f6f3eb;
+  border-color: #d3cecb;
+  box-shadow: inset 0 0 1px #755e40;
+}
+
+.campPage-trap-armedItem.weapon .campPage-trap-armedItem-image,
+.campPage-trap-armedItem.base .campPage-trap-armedItem-image {
+  background-position: -1px -1px;
+  background-size: 72px;
+}
+
+span.campPage-trap-baitQuantity {
+  right: -1px;
+  bottom: -1px;
+  border-color: #d3cecb;
+  border-right: none;
+  border-bottom: none;
+}
+
+.campPage-trap-armedItem .quantity span {
+  right: -6px;
+  bottom: 3px;
+  border-color: #d3cecb;
+  border-right: none;
+  border-bottom: none;
+}

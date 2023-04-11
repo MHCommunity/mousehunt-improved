@@ -1,10 +1,12 @@
 /* Tabs */
 .campPage-tabs-tabContentContainer {
+  margin-bottom: 10px;
   background-color: var(--tan);
   border-color: var(--body-bg-color);
 }
 
 .campPage-tabs-tabRow:hover .campPage-tabs-tabHeader span,
+.campPage-tabs-tabHeader span, .campPage-tabs-tabRow:focus .campPage-tabs-tabHeader span,
 .campPage-tabs-tabHeader span {
   border-color: var(--body-bg-color);
   border-bottom: 1px solid var(--body-bg-color);
@@ -20,7 +22,7 @@
 
 /* tab content */
 .campPage-tabs-tabContent[data-tab="quests"],
-.campPage-tabs-tabContent[data-tab=journal] {
+.campPage-tabs-tabContent[data-tab="journal"] {
   background: none;
 }
 
@@ -118,13 +120,13 @@ div#dailyRewardTimer::before {
 }
 
 .shopsPage-kingsCalibratorPromo {
-    border: 1px solid #7d3a08;
-    border-radius: 0;
     height: 55px;
-    margin-top: 2px;
     padding: 0 55px;
+    margin-top: 2px;
     text-align: center;
     background: #f6f3eb;
+    border: 1px solid #7d3a08;
+    border-radius: 0;
     box-shadow: -1px -1px 2px #d3cecb inset;
 }
 
@@ -144,7 +146,9 @@ div#dailyRewardTimer::before {
 /* Larry's Tips */
 .campPage-tabs-tabContent-larryTip-container {
   line-height: 16px;
-  background-color: var(--bg-color);
+  background: #f6f3eb;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #755e40 inset;
 }
 
 .campPage-tabs-tabContent-larryTip-container a.campPage-tabs-tabContent-larryTip-byLine,
@@ -168,5 +172,6 @@ img.campPage-larryTip-external-link-icon {
 
 .campPage-quests-container {
   background: #f6f3eb;
-
+  border-radius: 3px;
+  box-shadow: 0 0 3px #755e40 inset;
 }

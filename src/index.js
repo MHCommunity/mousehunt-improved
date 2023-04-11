@@ -7,9 +7,9 @@ import globalStyles from './styles.css';
 // Core 'Better' modules
 import inventory from './modules/inventory';
 import journal from './modules/journal';
-import camp from './modules/camp';
-import shops from './modules/shops';
 import maps from './modules/maps';
+import shops from './modules/shops';
+import ui from './modules/ui';
 
 // Features
 import imageUpscaling from './modules/image-upscaling';
@@ -56,11 +56,11 @@ const modules = [
     load: shops,
   },
   {
-    id: 'mh-ui-better-camp',
-    name: 'Better Camp',
+    id: 'mh-ui-better-ui',
+    name: 'Better UI',
     default: true,
     description: '',
-    load: camp,
+    load: ui,
   },
   {
     id: 'mh-ui-inventory-only-open-multiple',
