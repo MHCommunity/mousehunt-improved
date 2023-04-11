@@ -48,7 +48,7 @@
   opacity: 0.3;
 }
 
-.itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemViewStatBlock {
+.shopCustomization .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemViewStatBlock {
   display: none;
 }
 
@@ -104,9 +104,9 @@
 }
 
 .itemPurchaseView-action-itemCost-table-cell.cost {
+  width: 45px;
   padding-left: 10px;
   background-size: contain;
-  width: 45px;
 }
 
 .itemPurchaseView-action-itemCost-table-row.error {
@@ -234,33 +234,165 @@ span.itemPurchaseView-action-owned {
 /* Marketplace close button - make the normal X button */
 #overlayPopup .marketplaceView input.button:first-child {
   position: absolute;
-  display: block;
-  text-align: center;
-  right: -10px;
   top: -3px;
-  padding: 0;
-  height: 27px;
+  right: -10px;
+  display: block;
   width: 28px;
-  border-left: 0;
-  border-bottom: 0;
-  text-indent: 34px;
+  height: 27px;
+  padding: 0;
   overflow: hidden;
+  text-align: center;
+  text-indent: 34px;
   background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png?asset_cache_version=2);
   background-repeat: no-repeat;
   border: none;
+  border-bottom: 0;
+  border-left: 0;
   box-shadow: none;
 }
 
-#overlayPopup .marketplaceView input.button:first-child:hover {
+#overlayPopup .marketplaceView input.button:first-child:hover, #overlayPopup .marketplaceView input.button:first-child:focus {
   background-color: transparent;
   background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png?asset_cache_version=2);
-  background-position: 0 -27px;
   background-repeat: no-repeat;
-  border-left: none;
+  background-position: 0 -27px;
   border-bottom: none;
+  border-left: none;
 }
 
 /* Hide the marketplace footer */
 #overlayPopup.marketplaceViewPopup .suffix {
   display: none;
+}
+
+/* Items that have retired items as cost */
+.kings_cart .hasShop .cannot_buy.super_dragonbane_trinket,
+.kings_cart .hasShop .cannot_buy.extrme_dragonbane_trinket,
+.kings_cart .hasShop .cannot_buy.extrme_dragonbane_trinket,
+.kings_cart .hasShop .cannot_buy.wild_tonic_remote_pumping_trinket,
+.kings_cart .hasShop .cannot_buy.hot_spice_crafting_item,
+.kings_cart .hasShop .cannot_buy.flaming_spice_crafting_item,
+.kings_cart .hasShop .cannot_buy.dragonshard_sparkling_nest_convertible,
+.itemPurchaseView-container.eggstra_trinket.cannot_buy.no_gold_cost,
+.itemPurchaseView-container.eggstra_charge_trinket.cannot_buy.no_gold_cost {
+  display: none !important;
+}
+
+/* Align stats that were moved to the description */
+.shopCustomization .itemViewStatBlock-padding {
+  display: flex;
+  align-items: center;
+}
+
+.shopCustomization .itemViewStatBlock,
+.shopCustomization .itemViewStatBlock-stat {
+  margin-top: 10px;
+  border: none;
+}
+
+.shopCustomization .itemViewStatBlock-stat-value {
+  background: none;
+}
+
+.shopCustomization .itemViewStatBlock-stat {
+  padding: 2px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.shopCustomization .itemViewStatBlock-stat-label {
+  margin-right: 0;
+  margin-left: -3px;
+  background: none;
+}
+
+.shopCustomization .itemViewStatBlock-stat-value {
+  max-width: unset;
+  margin-right: 5px;
+  border-radius: 0;
+}
+
+.shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect {
+  width: auto;
+  border-bottom: 1px solid #ccc;
+}
+
+.shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value {
+  width: auto;
+  max-width: 150px;
+}
+
+.item_set {
+  background-color: #eecf2a45;
+  border: none;
+}
+
+/* Trap stats in store */
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-padding {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+.shopCustomization .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.title,
+.shopCustomization .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect {
+  width: 60px;
+}
+
+.shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.title, .itemPurchaseView-container .itemViewStatBlock-stat.powerType {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: auto;
+  line-height: 14px;
+  border: 1px solid #ccc;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-label {
+  display: inline-block;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 3px;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
+  display: flex;
+  align-items: center;
+  min-width: 65px;
+  padding: 2px;
+  margin: 0;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value span {
+  display: inline-block;
+  padding: 0;
+}
+
+.shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value {
+  width: auto;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-label {
+  padding: 0;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value {
+  font-size: 9px;
+}
+
+.shopCustomization .itemViewStatBlock-stat.title {
+  margin-top: 0;
 }

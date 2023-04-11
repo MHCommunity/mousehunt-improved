@@ -9,15 +9,15 @@
 
 /* Hide the big wrong environment warning and just show it over the timer bar */
 .trainStationHUD .trainStationPhase .wrongEnvironment b {
-  background-color: #ffbdbd;
-  box-sizing: border-box;
-  font-weight: 400;
-  height: 32px;
-  line-height: 30px;
-  padding: 3px 10px;
   position: absolute;
   top: -41px;
+  box-sizing: border-box;
+  height: 32px;
+  padding: 3px 10px;
+  font-weight: 400;
+  line-height: 30px;
   vertical-align: middle;
+  background-color: #ffbdbd;
 }
 
 .mousehuntHud-marbleDrawer .tournamentStatusHud.hasError.train {

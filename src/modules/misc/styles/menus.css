@@ -2,3 +2,13 @@
 .mousehuntHud-menu .friends .team .icon {
   background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/team.png?asset_cache_version=2);
 }
+
+/* Top menu, fix dropdown arrow direction */
+.mousehuntHeaderView .menuItem.dropdown .arrow {
+  top: 10px;
+  transform: rotate(180deg);
+}
+
+.mousehuntHeaderView .menuItem.dropdown.expanded .arrow {
+  top: 5px;
+}

@@ -17,7 +17,6 @@
   --color-yellow: #f6ff00;
   --progress-bar-bg: #876c30;
   --progress-bar-fill: #4e300b;
-
   --crafting-tan: #e3d5b6;
   --crafting-border: #b7a276;
   --crafting-shadow: #ebe0d4;
@@ -30,4 +29,23 @@
 
 .text-black {
   color: #000;
+}
+
+
+
+
+
+/* add to better inventory */
+
+a.inventoryPage-item-larryLexicon {
+  display: none;
+}
+
+.inventoryPage-item-name abbr {
+  text-decoration: none;
+}
+
+.inventoryPage-item-content-description {
+  height: auto;
+  min-height: 55px;
 }

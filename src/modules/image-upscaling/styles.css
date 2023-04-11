@@ -90,3 +90,9 @@
   width: 80px;
   height: 80px;
 }
+
+
+/* SEH open window */
+.springHuntHUD-dialog-item-image {
+  border: none;
+}

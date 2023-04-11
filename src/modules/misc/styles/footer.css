@@ -2,8 +2,7 @@
 .pageFrameView-footer {
   position: relative;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
 }
@@ -26,7 +25,7 @@
   width: 640px;
 }
 
-/*  Gide the report ad link */
+/* Hide the report ad link */
 .pageFrameView-footer-ad .adView-reportLink {
   display: none;
 }

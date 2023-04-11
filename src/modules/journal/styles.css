@@ -38,7 +38,8 @@
   padding: 0;
   margin: -2px;
   border: 1px solid #000;
-  mix-blend-mode: darken;
+
+  /* mix-blend-mode: darken; */
 }
 
 .journal .entry a:hover img,
@@ -134,17 +135,33 @@
   position: relative;
 }
 
+.journal .cotent .entry.travel,
 .journal .content .captchasolved,
 .journal .content .supplytransferitem,
-.journal .content .travel .journal .relicHunter_complete,
-.journal .relicHunter_start,
-.journal .relicHunter_complete,
-.journal .torch_charm_event,
+.journal .content .entry.socialGift,
+.journal .content .entry.relicHunter_start,
+.journal .content .entry.relicHunter_complete,
+.journal .content .entry.torch_charm_event,
+.journal .content .entry.marketplace.marketplace_complete_listing,
 .journal .content .entry.catchfailuredamage,
 .journal .content .entry.catchfailure,
 .journal .content .entry.attractionfailurestale,
+.journal .content .entry.floatingIslands.discoveredMod,
+.journal .content .entry.floatingIslands.dirigibleTravel,
+.journal .content .entry.floatingIslands.defeatedEnemy,
 .journal .content .entry.floatingIslands.defeatedVaultEnemy,
-.journal .content .entry.sunken_city.zone {
+.journal .content .entry.floatingIslands.fullyExplored,
+.journal .content .entry.sunken_city.zone,
+.journal .content .entry.train_station.stoke_furnace,
+.journal .content .entry.mousoleum.damage_wall,
+.journal .content .entry.mousoleum.repair_wall,
+.journal .content .entry.iceberg_advance_prevented,
+.journal .content .entry.iceberg_advance,
+.journal .content .entry.iceberg_defeated,
+.journal .content .entry.iceberg_phase_change,
+.journal .content .entry.world_aspect_normal,
+.journal .content .entry.jetStreamAuraActivated,
+.journal .content .entry.birthday2018-rewind-charm {
   background-position: 10px center;
 }
 
@@ -178,7 +195,7 @@
 
 .log_summary tbody {
   display: block;
-  margin: 0 30px;
+  margin: 0 0 0 50px;
 }
 
 .entry.short.log_summary {
@@ -207,16 +224,16 @@
 
 /* Make the detailed journal link less obnoxious */
 a.journal-detailLink.full {
-  background: none;
   font-size: 11px;
   text-transform: lowercase;
+  background: none;
 }
 
-a.journal-detailLink.full:before {
-  content: "View ";
+a.journal-detailLink.full::before {
   text-transform: capitalize;
+  content: "View ";
 }
 
-a.journal-detailLink.full:after {
+a.journal-detailLink.full::after {
   content: " →";
 }

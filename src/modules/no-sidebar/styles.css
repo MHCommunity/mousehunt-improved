@@ -71,6 +71,7 @@ body .pageFrameView {
   float: right;
   height: auto;
   padding: 5px 0;
+  margin-right: 10px;
   font-size: inherit;
   font-variant: none;
   color: #3b5998;
