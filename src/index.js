@@ -8,6 +8,7 @@ import globalStyles from './styles.css';
 import inventory from './modules/inventory';
 import journal from './modules/journal';
 import maps from './modules/maps';
+import quests from './modules/quests';
 import shops from './modules/shops';
 import ui from './modules/ui';
 
@@ -47,6 +48,13 @@ const modules = [
     default: true,
     description: '',
     load: maps,
+  },
+  {
+    id: 'mh-ui-quests',
+    name: 'Better Quests',
+    default: false,
+    description: '',
+    load: quests,
   },
   {
     id: 'mh-ui-better-shops',
