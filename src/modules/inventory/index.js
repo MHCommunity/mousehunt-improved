@@ -11,7 +11,7 @@ const setOpenQuantityOnClick = () => {
       let maxNum = qtyArray[ qtyArray.length - 1 ];
       maxNum = maxNum.replace('Submit', '');
       maxNum = parseInt(maxNum);
-      console.log(maxNum);
+      // console.log(maxNum);
 
       const input = document.querySelector('.itemView-action-convert-quantity');
       input.value = maxNum;

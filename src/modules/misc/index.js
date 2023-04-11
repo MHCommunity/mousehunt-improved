@@ -4,7 +4,6 @@ import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
 // Specific page styles.
-import corkboardStyles from './styles/corkboard.css';
 import footerStyles from './styles/footer.css';
 import menuStyles from './styles/menus.css';
 import overlayStyles from './styles/overlays.css';
@@ -21,7 +20,6 @@ import trainStyles from './hud/train.css';
 export default () => {
   const combined = [
     styles,
-    corkboardStyles,
     footerStyles,
     menuStyles,
     overlayStyles,

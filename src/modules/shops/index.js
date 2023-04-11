@@ -2,6 +2,19 @@ import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
 const main = () => {
+  const body = document.querySelector('body');
+  if (! body) {
+    return;
+  }
+
+  if ('item' === getCurrentPage()) {
+    body.classList.remove('shopCustomization');
+    return;
+  }
+
+  body.classList.add('shopCustomization');
+
+  // Remove the 'Cost:' text.
   const golds = document.querySelectorAll('.itemPurchaseView-action-goldGost');
   if (golds) {
     golds.forEach((gold) => {
@@ -9,6 +22,7 @@ const main = () => {
     });
   }
 
+  // Fix the buy/sell buttons.
   const buyBtns = document.querySelectorAll('.itemPurchaseView-action-form-button.buy');
   if (buyBtns) {
     buyBtns.forEach((btn) => {
@@ -33,8 +47,8 @@ const main = () => {
       if (! qty) {
         return;
       }
-      let maxQty = qty.innerText;
 
+      let maxQty = qty.innerText;
       if (maxQty.includes('Inventory max')) {
         maxQty = 0;
       }
@@ -43,8 +57,10 @@ const main = () => {
       if (! input) {
         return;
       }
-      input.setAttribute('placeholder', `You can afford ${parseInt(maxQty)}`)
-      // input.setAttribute('placeholder', parseInt(maxQty));
+
+      // maxQty = parseInt(maxQty) ? parseInt(maxQty) + 1 : 0;
+
+      input.setAttribute('placeholder', `You can afford ${maxQty}`);
     });
   }
 
@@ -73,6 +89,32 @@ const main = () => {
   shopQty.forEach((qty) => {
     qty.setAttribute('maxlength', '100');
   });
+
+  const itemStats = document.querySelectorAll('.itemViewStatBlock');
+  if (itemStats) {
+    itemStats.forEach((stat) => {
+      if (stat.classList.contains('horizontal')) {
+        return;
+      }
+
+      const contentSection = stat.parentNode.parentNode.querySelector('.itemPurchaseView-content-container');
+      if (contentSection) {
+        contentSection.appendChild(stat);
+      }
+    });
+  }
+
+  const itemStatsTitle = document.querySelectorAll('.itemViewStatBlock.horizontal .itemViewStatBlock-stat');
+  if (itemStatsTitle) {
+    itemStatsTitle.forEach((title) => {
+      if (title.classList.contains('title') || title.classList.contains('powerType')) {
+        const imageContainer = title.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.itemPurchaseView-image-container');
+        if (imageContainer) {
+          imageContainer.appendChild(title);
+        }
+      }
+    });
+  }
 };
 
 export default function shopHelper() {

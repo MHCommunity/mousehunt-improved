@@ -52,6 +52,7 @@ const addPeriodToLastSentenceOfEntries = () => {
       .replace(/.<br>.$/, '.')
       .replace(/<br> .$/, '.')
       .replace('..', '.')
+      .replace('<p></p>', '')
       .trim();
 
     // If the string ends with a <br> tag, remove it
@@ -142,6 +143,10 @@ const updateJournalText = () => {
     ['You quickly add it to your inventory!', ''],
     [' a elusive ', ' a '],
     ['I moved forward a whopping', 'I moved forward'],
+    ['!I', '! I'],
+    ['in search of more loot', ''],
+    ['or I can return to the', 'or return to the'],
+    [' and begin a new expedition', ''],
 
     // Event stuff
     // SEH
@@ -168,6 +173,14 @@ const updateJournalText = () => {
   });
 
   modifyText('.journal .entry.custom .journalbody .journaltext', replacements);
+
+  const entries = document.querySelectorAll('.journal .entry .journaltext p');
+  entries.forEach((entry) => {
+    // if the innerhtml is empty, remove the p tag
+    if (entry.innerHTML.trim() === '') {
+      entry.remove();
+    }
+  });
 
   addPeriodToLastSentenceOfEntries();
 
