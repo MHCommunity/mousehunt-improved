@@ -19,6 +19,9 @@ import tallerWindows from './modules/taller-windows';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import metric from './modules/metric';
 
+// Location HUD improvements
+import iceberg from './modules/iceberg';
+
 // Removal of things.
 import noFooter from './modules/no-footer';
 import noShare from './modules/no-share';
@@ -134,6 +137,13 @@ const modules = [
     description: '',
     load: metric,
   },
+  {
+    id: 'mh-ui-iceberg',
+    name: 'Iceberg HUD Improvements',
+    default: true,
+    description: '',
+    load: iceberg,
+  }
 ];
 
 addSettingsTab('mh-ui-settings', 'UI Settings');
