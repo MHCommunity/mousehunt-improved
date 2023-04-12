@@ -143,12 +143,24 @@ const modules = [
     default: true,
     description: '',
     load: iceberg,
-  }
+  },
+  {
+    id: 'mh-ui-wiki',
+    name: 'In-Game Wiki',
+    default: true,
+    description: '',
+    load: wiki,
+    alwaysLoad: true,
+  },
 ];
 
 addSettingsTab('mh-ui-settings', 'UI Settings');
 
 modules.forEach((module) => {
+  if (module.alwaysLoad) {
+    return;
+  }
+
   addSetting(
     module.name,
     module.id,
@@ -160,13 +172,47 @@ modules.forEach((module) => {
 });
 
 modules.forEach((module) => {
-  const isEnabled = getSetting(module.id, module.default);
-  if (isEnabled) {
+  if (module.alwaysLoad) {
+    module.load();
+  } else if (getSetting(module.id, module.default)) {
     module.load();
   }
 });
 
 addUIStyles(globalStyles);
 
-// Load modules that we don't add options for.
-wiki();
+
+/** TODO: Add this to mousehunt-utils */
+addUIStyles(`.mh-ui-refresh-message {
+  position: fixed;
+  bottom: 0;
+  background-color: #ffffffb5;
+  padding: 1em;
+  left: 0;
+  border-top: 1px solid black;
+  right: 0;
+  text-align: center;
+  z-index: 5;
+  font-size: 1.5em;
+}`);
+
+const settingsToggles = document.querySelectorAll('.mousehuntSettingSlider');
+if (settingsToggles) {
+  settingsToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const refreshMessage = document.querySelector('.mh-ui-refresh-message');
+      if (refreshMessage) {
+        refreshMessage.classList.remove('hidden');
+      }
+    });
+  });
+}
+
+const refreshMessage = document.createElement('div');
+refreshMessage.classList.add('mh-ui-refresh-message');
+refreshMessage.classList.add('hidden');
+refreshMessage.innerHTML = 'Refresh the page to apply the changes.';
+const tab = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mh-ui-settings.active');
+if (tab) {
+  tab.appendChild(refreshMessage);
+}
