@@ -112,6 +112,13 @@ const addProgressToQuestData = (data) => {
     remaining.progress = depth + 1800;
   }
 
+  remaining.avg = data.progress / data.hunts;
+  if (data.isDeep) {
+    remaining.avg = (depth + 1800) / data.hunts;
+  }
+
+  remaining.stageHunts = Math.ceil(remaining.stage / remaining.avg);
+
   return Object.assign(data, remaining);
 };
 
@@ -126,9 +133,12 @@ const roundProgress = (progress) => {
 
   const percent = progress.toFixed(2);
 
-  // if the last two digits are 00, just return the whole number
   if (percent.slice(-2) === '00') {
-    return parseInt(percent, 10);
+    return percent.slice(0, -2);
+  }
+
+  if (percent.slice(-1) === '0') {
+    return percent.slice(0, -1);
   }
 
   return percent;
@@ -143,7 +153,7 @@ const getTooltipText = (quest) => {
 
   const averageHunts = document.createElement('div');
   averageHunts.classList.add('average-hunts');
-  averageHunts.innerText = `Avg. ${roundProgress(quest.progress / quest.hunts)} ft/hunt`;
+  averageHunts.innerText = `Avg. ${roundProgress(quest.avg)} ft/hunt`;
   progress.appendChild(averageHunts);
 
   if (! quest.isLair) {
@@ -293,12 +303,9 @@ const main = async () => {
     // Create the stage distance element.
     const remainingStageDistance = document.createElement('div');
     remainingStageDistance.classList.add('remaining-stage-distance');
+    const destination = quest.isDeep ? 'Deep' : 'next stage';
     if (quest.stage !== quest.total) {
-      if (quest.isDeep) {
-        remainingStageDistance.innerText = `${quest.stage} feet until Deep`;
-      } else {
-        remainingStageDistance.innerText = `${quest.stage} feet until next stage`;
-      }
+      remainingStageDistance.innerText = `${quest.stage} feet until ${destination} (~${quest.stageHunts} hunts)`;
     }
 
     // Append the stage distance element.
@@ -318,7 +325,7 @@ const main = async () => {
     const remainingDistance = document.createElement('div');
     remainingDistance.classList.add('remaining-distance');
     if (quest.total !== 0) {
-      remainingDistance.innerText = `${quest.total} feet until Icewing's Lair`;
+      remainingDistance.innerText = `${quest.total} feet until Icewing's Lair (~${quest.totalHunts} hunts)`;
     }
 
     // Append the distance element.
