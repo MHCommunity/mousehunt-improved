@@ -237,3 +237,11 @@ a.journal-detailLink.full::before {
 a.journal-detailLink.full::after {
   content: " →";
 }
+
+.pagerView-container {
+  background: transparent;
+}
+
+.pagerView-link {
+  border: none;
+}

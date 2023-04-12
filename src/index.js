@@ -124,8 +124,8 @@ const modules = [
     load: imageUpscaling,
   },
   {
-    id: 'mh-ui-misc-fixes',
-    name: 'Minor Fixes',
+    id: 'mh-ui-misc-styles',
+    name: 'Minor Style Changes',
     default: true,
     description: '',
     load: misc,

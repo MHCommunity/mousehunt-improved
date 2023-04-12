@@ -1,0 +1,13 @@
+/* add to better inventory */
+a.inventoryPage-item-larryLexicon {
+  display: none;
+}
+
+.inventoryPage-item-name abbr {
+  text-decoration: none;
+}
+
+.inventoryPage-item-content-description {
+  height: auto;
+  min-height: 55px;
+}
