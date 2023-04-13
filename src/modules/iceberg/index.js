@@ -1,10 +1,6 @@
 import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
-const getCurrentLocation = () => {
-  return user.environment_type || 'unknown';
-};
-
 const getSections = (quest) => {
   const sections = [
     {

@@ -1,4 +1,4 @@
-import { addUIStyles, getCurrentLocation } from '../../utils';
+import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
 const highlightDoors = () => {
@@ -29,9 +29,6 @@ const highlightDoors = () => {
 };
 
 const main = () => {
-  console.log('main')
-  console.log(getCurrentLocation());
-
   if ('labyrinth' !== getCurrentLocation()) {
     return;
   }
