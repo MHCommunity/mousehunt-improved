@@ -8,57 +8,98 @@
   cursor: initial;
 }
 
+.mousehuntHeaderView .dashboard .dropdownContent {
+  width: 400px;
+}
+
 .dashboardContents {
+  border: 1px solid #d7e2f1;
+  max-height: 60vh;
   overflow-x: hidden;
   overflow-y: auto;
-  border: 1px solid #d7e2f1;
-  padding: 1em;
+  padding: 10px;
+  box-shadow: 0px 5px 10px #8f8f8f;
 }
 
 .dashboardRefresh {
   display: block;
-  margin: 1em auto;
+  margin: 10px auto;
+}
+
+.refreshWrapper {
+  border-top: 1px solid #c7c7c7;
+  margin-top: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-top: 10px;
+}
+
+.regionWrapper {
+  border: 1px solid #c5c5c5;
+  margin-bottom: 10px;
 }
 
 .regionName {
-  background-color: #d7e2f1;
-  font-size: 11px;
-  padding: 0.125em 0.5em;
+  background-color: #f4f7fc;
+  font-size: 12px;
+  margin-top: 10px;
+  padding: 5px 5px 5px 10px;
+  border-bottom: 1px solid #c5c5c5;
+  font-weight: 900;
 }
 
-.locationName {
-  font-size: 12px;
+.regionName:first-child {
+  margin-top: 0;
 }
 
 .locationWrapper {
+  background-color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0.5em 1em;
-  background-color: #fff;
+  padding: 10px 5px;
+  align-items: stretch;
+  height: 25px;
 }
 
 .locationWrapper:nth-child(even) {
   background-color: #f1f1f1;
 }
 
-.mousehuntHeaderView .dropdownContent .locationWrapper a.travelLink {
-  font-size: 10px;
-  padding: 0;
-  height: auto;
-  color: #3b5998;
-  border: none;
-  margin-left: 1em;
+.locationImageWrapper {
+  flex: 0;
+}
+
+img.locationImage {
+  border-radius: 3px;
+  height: 28px;
+  outline: 1px solid #838282;
+  width: 28px;
+}
+
+.mousehuntHeaderView .dropdownContent .locationWrapper:hover .locationImage,
+.mousehuntHeaderView .dropdownContent .locationWrapper:focus .locationImage {
+  opacity: .25;
+}
+
+.locationName {
+  font-size: 12px;
+  flex-grow: 1;
+  margin-left: 10px;
+  position: relative;
+}
+
+.mousehuntHeaderView .dropdownContent .locationWrapper .travelLink {
+  font-size: 11px;
+  left: -42px;
+  padding: 5px 4px;
   position: absolute;
-  font-variant: unset;
-  display: none;
+  top: 1px;
+  opacity: 0;
+  transition: all .5s cubic-bezier(0.55, 0.06, 0.68, 0.19);
 }
 
-.mousehuntHeaderView .dropdownContent .locationWrapper:hover a.travelLink {
-  display: inline-block;
-}
-
-.mousehuntHeaderView .dropdownContent a:hover {
-  background-color: transparent;
-  text-decoration: underline;
+.mousehuntHeaderView .dropdownContent .locationWrapper:hover .travelLink,
+.mousehuntHeaderView .dropdownContent .locationWrapper:focus .travelLink {
+  opacity: 1;
 }

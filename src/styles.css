@@ -31,9 +31,10 @@
   color: #000;
 }
 
-
 /*
-  Fixes
+ *
+ * Fixes
+ *
 */
 
 /* Iceberg */
@@ -46,8 +47,16 @@
 }
 
 /* Align the friends checkbox on the scoreboard */
-.scoreboardTableView-friends {
+.scoreboardTableView-friends,
+.scoreboardTableView-weekly {
   vertical-align: middle;
+  margin-top: 1px;
+}
+
+/* Fix the scoreboard dropdown width */
+.scoreboardTableView-availableScoreboards {
+  width: auto;
+  min-width: 200px;
 }
 
 /* Fix the team icon */
@@ -72,4 +81,10 @@
     url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2) 731px 0 no-repeat,
     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuwAAAA3BAMAAAClaAIKAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAB5QTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtyhvagAAAAp0Uk5TJiUkACMcECEOC8BWQuoAAAFtSURBVHic7dm7SgNBAIXhnXjv3DxBkicQ1KhdQOwFxVoQsRUEwS7gCwgWvq6XXTUz0cyK2fyQc75mi93i8DvGJBZFpEyu9k/d6hK2mzxV9Nsdo+Nv2X3a56QOmcn+eXv2U9ZYqC+9mU91qtuZH441VpfMBa1+KULba2SE6q9kN5O9834/9FoeI6T8CJp99ei/PTHwa8zclIMi/w5l11rye/OTK3rbMhue/xj9nt61/G6mq2/SmxSMp7I/05MUHPmwI9LjvkIP0rCTZD+mB2nYS7Kf0YM07CfZ/ZZ9IYZJdnqPCmdHODvC2RHOjoirr9JzVIyi7Gv0HBWnUfZ1eo6Kyyj7HT1HxYE/pBKij6kb9BodtxPZt+gxOp4msj/SY3Qcflf3v5YWaOzDTvg67g/0Ei0v1fcCF/QONdcjfwfGcHaEsyOcHeHsCGdHODvC2RHOjnB2hLMjnB3h7AhnRzg7wtkRzo5wdoSzI5wd8QpdUG7hbOg+GQAAAABJRU5ErkJggg==) 6px 0 no-repeat,
     url(https://www.mousehuntgame.com/images/ui/backgrounds/hud_bg_blue_repeating.png?asset_cache_version=2) repeat-y bottom center;
+}
+
+/* Full width for the map link text box */
+input.treasureMapView-shareLinkInput {
+  width: 95%;
+  margin: 0 auto;
 }
