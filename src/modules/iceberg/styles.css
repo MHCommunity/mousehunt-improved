@@ -1,32 +1,32 @@
 .remaining-distance,
 .remaining-stage-distance {
-  margin: .25em 0;
+  margin: 0.25em 0;
 }
 
 .icebergStatusTooltip {
   bottom: -25px;
   left: calc(100% + 4px);
-  margin-left: 1em;
   width: 320px;
+  margin-left: 1em;
 }
 
 .icebergStatusTooltip .mousehuntTooltip-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
   gap: 10px;
+  align-items: center;
 }
 
 .icebergStatusTooltip .hunts-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   justify-content: space-evenly;
+  height: 100%;
 }
 
 .icebergStatusTooltip .hunts-wrapper .average-hunts {
-  font-size: 1.25em
+  font-size: 1.25em;
 }
 
 .icebergStatusTooltip .hunts-wrapper div {
@@ -42,76 +42,74 @@
 }
 
 .icebergStatusTooltip .iceberg-section {
-  align-items: center;
-  display: flex;
-  justify-items: start;
   position: relative;
-  overflow: visible;
-  width: 180px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+  justify-items: start;
+  width: 180px;
   margin-bottom: 0.25em;
+  overflow: visible;
 }
 
 .icebergStatusTooltip .iceberg-section-name {
-  min-width: 110px;
   width: auto;
+  min-width: 110px;
 }
 
 .icebergStatusTooltip .iceberg-section.complete {
   color: #989898;
 }
 
-.icebergStatusTooltip .iceberg-section.complete:after {
-  content: '';
+.icebergStatusTooltip .iceberg-section.complete::after {
   position: absolute;
-  right: -15px;
   top: -2px;
+  right: -15px;
   width: 12px;
   height: 12px;
+  content: '';
   background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=2) 0 0 no-repeat;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
   background-size: contain;
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .icebergStatusTooltip .iceberg-section.incomplete {
   color: #52969b;
 }
 
-.icebergStatusTooltip .iceberg-section.current:before {
-  color: #579ca2;
-  border-radius: 3px;
-  content: "•";
+.icebergStatusTooltip .iceberg-section.current::before {
   position: absolute;
   top: 0;
   left: -7px;
-  vertical-align: middle;
   font-size: 9px;
+  color: #579ca2;
+  vertical-align: middle;
+  content: "•";
+  border-radius: 3px;
 }
 
 .deep-warning {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 175px;
+  z-index: 3;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 300px;
+  padding: 1em;
+  color: #000;
+  text-align: center;
   background-color: #ffbfbf;
   border-radius: 10px;
-  bottom: 5px;
-  color: #000;
-  display: flex;
-  justify-content: center;
-  left: 175px;
-  opacity: .8;
-  padding: 1em;
-  position: absolute;
-  text-align: center;
-  top: 5px;
-  width: 300px;
-  z-index: 3;
+  opacity: 0.8;
 }
 
 .deep-warning-text {
   max-width: 250px;
-  line-height: 15px;
   font-size: 11px;
-  color: black;
+  line-height: 15px;
+  color: #000;
   text-align: left;
 }

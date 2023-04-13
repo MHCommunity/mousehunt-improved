@@ -81,32 +81,32 @@
 /* Profile page */
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-container,
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer {
-    border-width: 1px;
-    box-shadow: none;
+  border-width: 1px;
+  box-shadow: none;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-container {
-    margin-right: -9px;
-    margin-left: -9px;
-    border-bottom: 1px solid #ceb7a6;
-    box-shadow: none;
+  margin-right: -9px;
+  margin-left: -9px;
+  border-bottom: 1px solid #ceb7a6;
+  box-shadow: none;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer-stats {
-    padding-top: 30px;
-    margin-right: -9px;
-    margin-left: -9px;
-    box-shadow: none;
+  padding-top: 50px;
+  margin-right: -9px;
+  margin-left: -9px;
+  box-shadow: none;
 }
 
 .hunterInfoView-wrapper .trapImageView {
-    width: 368px;
-    height: 368px;
-    margin: 0 auto;
+  width: 368px;
+  height: 368px;
+  margin: 0 auto;
 }
 
 .hunterInfoView-wrapper a.trapImageView-zoomButton {
-    top: 80%;
+  top: 80%;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-title-container {
@@ -116,18 +116,14 @@
 }
 
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-items {
-    background: none;
-    border: none;
+  background: none;
+  border: none;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer {
   background: #f6f3eb;
   border-top: 0;
   box-shadow: none;
-}
-
-.hunterInfoView-wrapper .campPage-trap-itemStats {
-  padding-bottom: 0;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-trap-slot-quantity {
@@ -148,7 +144,7 @@
   margin: 0;
   background-position: -1px;
   background-size: 61px;
-  border: 1px solid black;
+  border: 1px solid #000;
   box-shadow: none;
 }
 
@@ -161,24 +157,18 @@
 
 .hunterInfoView-wrapper .campPage-trap-itemStats {
   display: flex;
+  padding-bottom: 0;
   margin: 0 5px;
-}
-
-.hunterInfoView-wrapper .hunterInfoView-trapBlock-footer-stats {
-  padding-top: 50px;
-}
-
-.hunterInfoView-wrapper .campPage-trap-trapStat .value {
-  background: transparent;
-  border: none;
 }
 
 .hunterInfoView-wrapper .campPage-trap-trapStat .value {
   max-width: 70px;
+  background: transparent;
+  border: none;
 }
 
 .trapImageView-trapAura {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .largerTrapView-popup-name {

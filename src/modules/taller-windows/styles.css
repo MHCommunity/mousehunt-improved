@@ -1,29 +1,42 @@
-#supplytransfer .drawer,
-#supplytransfer .drawer .tabContent,
-#supplytransfer .drawer .listContainer,
-.treasureMapView-blockWrapper.tall .treasureMapView-block-content,
-.treasureMapView-block-content.tall,
-.treasureMapView-block-content,
+.adventureBookPopup-titleContent,
+.convertibleOpenView-itemContainer,
+.marketplaceView-browse-content,
 .MHCheckoutAllRewardsPageView,
 .treasureMapListingsView-tableView,
-.marketplaceView-browse-content,
-.adventureBookPopup-titleContent,
+.treasureMapView-block-content,
 .treasureMapView-block-content.halfHeight,
+.treasureMapView-block-content.tall,
+.treasureMapView-blockWrapper.tall .treasureMapView-block-content,
 #messengerUINotification .notificationHeader,
 #messengerUINotification .notificationMessageList,
-.convertibleOpenView-itemContainer {
+#supplytransfer .drawer .listContainer,
+#supplytransfer .drawer .tabContent,
+#supplytransfer .drawer {
   height: auto;
   max-height: 75vh;
 }
 
-.giftSelectorView-inbox-giftContainer {
+.treasureMapDialogView.limitHeight .treasureMapDialogView-content {
+  max-height: 70vh;
+  overflow-y: visible;
+}
+
+.giftSelectorView-inbox-giftContainer,
+#overlayPopup .giftSelectorView-scroller {
   height: auto;
   min-height: 300px;
   max-height: 75vh;
 }
 
-.giftSelectorView-scroller {
-  height: auto;
-  min-height: 320px;
-  max-height: 55vh;
+#overlayPopup.giftSelectorViewPopup {
+  top: 50px !important;
+}
+
+.springHuntHUD-popup-regionContainer {
+  display: contents;
+}
+
+#overlayPopup .imgArray {
+  min-height: 105px; /* specifcally to fit scrambles at the least */
+  max-height: 500px;
 }

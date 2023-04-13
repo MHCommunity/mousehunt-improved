@@ -199,15 +199,15 @@
 }
 
 .entry.short.log_summary {
-  background-color: #ffffff;
+  background-color: #fff;
 }
 
 #overlayPopup.hunting_summary .label {
-  font-size: 13px;
   padding: 5px;
-  background-color: #eee;
-  border: 1px solid #cccccc;
   margin-bottom: 10px;
+  font-size: 13px;
+  background-color: #eee;
+  border: 1px solid #ccc;
 }
 
 
@@ -218,29 +218,29 @@
 
 
 #overlayPopup.hunting_summary .title {
-  text-align: center;
-  font-size: 19px;
   margin: 10px;
+  font-size: 19px;
+  text-align: center;
 }
 
 #overlayPopup.hunting_summary .baitContainer,
 #overlayPopup.hunting_summary .lootContainer {
-  border: 1px solid #cccccc;
   margin-bottom: 20px;
+  border: 1px solid #ccc;
 }
 
 #overlayPopup.hunting_summary .baitContainer .label,
 #overlayPopup.hunting_summary .lootContainer .label {
   border-top: none;
-  border-left: none;
   border-right: none;
+  border-left: none;
 }
 
 #overlayPopup.hunting_summary .lootContainer a .wrapper {
   padding: 0;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .reportTitle {

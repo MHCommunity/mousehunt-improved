@@ -49,8 +49,8 @@
 /* Align the friends checkbox on the scoreboard */
 .scoreboardTableView-friends,
 .scoreboardTableView-weekly {
-  vertical-align: middle;
   margin-top: 1px;
+  vertical-align: middle;
 }
 
 /* Fix the scoreboard dropdown width */

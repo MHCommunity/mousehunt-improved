@@ -12,7 +12,7 @@
 
 /* right side of map */
 .treasureMapView-singleEnvironment-image {
-  border: 1px solid black;
+  border: 1px solid #000;
   border-radius: 10px;
   box-shadow: 1px 1px 1px #000 inset;
 }
@@ -22,7 +22,7 @@
 }
 
 .treasureMapView-rightBlock .treasureMapView-block .treasureMapView-singleEnvironment {
-border: none;
+  border: none;
 }
 
 .treasureMapView-rightBlock .treasureMapView-singleEnvironment {

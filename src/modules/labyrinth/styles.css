@@ -1,17 +1,17 @@
 .mh-ui-labyrinth-step-counter {
+  padding-right: 5px;
   margin-left: 5px;
   font-weight: 900;
-  background-color: black;
-  padding-right: 5px;
+  background-color: #000;
 }
 
 /* Make the clue counter bigger */
 .labyrinthHUD-clueBar-totalContainer {
-  font-size: 12px;
-  width: auto;
   z-index: 10;
-  border-radius: 6px;
+  width: auto;
   padding-left: 4px;
+  font-size: 12px;
+  border-radius: 6px;
 }
 
 .labyrinthHUD-clue-name {
@@ -23,31 +23,31 @@
 .labyrinthHUD-scrambleDoors-quantity,
 .labyrinthHUD-scrambleClues-quantity,
 .labyrinthHUD-toggleLantern-quantity.quantity {
-  background-color: #000;
-  border-radius: 5px;
-  font-size: 11px;
-  padding: 0 5px;
   position: absolute;
   top: 6px;
+  padding: 0 5px;
+  font-size: 11px;
   text-align: center;
+  background-color: #000;
+  border-radius: 5px;
 }
 
 .labyrinthHUD-item-quantity.quantity {
-  margin: 0 !important;
-  width: 30px;
-  display: block;
   top: 6px;
   left: 5px;
+  display: block;
+  width: 30px;
+  margin: 0 !important;
 }
 
 .labyrinthHUD-scrambleDoors-quantity,
 .labyrinthHUD-scrambleClues-quantity,
 .labyrinthHUD-toggleLantern-quantity.quantity {
-  align-items: center;
   display: inline-flex;
+  align-items: center;
+  width: auto;
   height: 18px;
   margin-right: 11px;
-  width: auto;
 }
 
 .labyrinthHUD-scrambleClues-quantity.quantity {
@@ -60,28 +60,29 @@
 
 .labyrinthHUD-scrambleDoors-quantity.quantity {
   top: 0.5px;
+  right: -7px;
   height: 9.5px;
   padding: 4px;
-  right: -7px;
 }
 
 .labyrinthHUD-scrambleClues:hover .labyrinthHUD-scrambleClues-name,
+.labyrinthHUD-scrambleClues:focus .labyrinthHUD-scrambleClues-name,
 .labyrinthHUD-scrambleClues-name {
+  position: relative;
   color: transparent !important;
   text-shadow: none;
-  position: relative;
 }
 
-.labyrinthHUD-scrambleClues-name:after {
-  content: "Compass Magnet";
-  color: #eee;
-  text-shadow: 0 0 1px #000;
+.labyrinthHUD-scrambleClues-name::after {
   position: absolute;
   top: 0;
-  width: 50px;
-  display: block;
-  text-align: center;
   right: -30px;
+  display: block;
+  width: 50px;
+  color: #eee;
+  text-align: center;
+  text-shadow: 0 0 1px #000;
+  content: "Compass Magnet";
 }
 
 .labyrinthHUD-item:nth-child(1) .labyrinthHUD-item-name,
@@ -89,14 +90,13 @@
 .labyrinthHUD-item:nth-child(3) .labyrinthHUD-item-name,
 .labyrinthHUD-item:nth-child(4) .labyrinthHUD-item-name,
 .labyrinthHUD-item:nth-child(5) .labyrinthHUD-item-name {
+  width: 96px;
+  margin-left: 47px;
   font-size: 11px;
   font-weight: 900;
   text-align: center;
   text-shadow: 0 0 1px #000;
-  width: 96px;
-  margin-left: 47px;
-  background: rgb(112,112,112);
-  background: linear-gradient(180deg, rgba(112,112,112,0) 0%, rgba(168,168,168,1) 50%, rgba(112,112,112,0) 100%);
+  background: linear-gradient(180deg, rgb(112 112 112 / 0%) 0%, rgb(168 168 168 / 100%) 50%, rgb(112 112 112 / 0%) 100%);
   border-radius: 20px;
 }
 
@@ -104,33 +104,31 @@
   z-index: 6;
 }
 
-.labyrinthHUD-item:hover .labyrinthHUD-item-location {
+.labyrinthHUD-item:hover .labyrinthHUD-item-location,
+.labyrinthHUD-item:focus .labyrinthHUD-item-location {
+  position: absolute;
   top: unset;
   bottom: -25px;
-  position: absolute;
-  border: 2px solid #000;
-  font-size: 9px;
   padding: 3px;
+  font-size: 9px;
+  color: #000;
   text-align: center;
   background: #fff;
-  color: #000;
+  border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 2px 3px 4px #666;
 }
 
 /* hunts to go */
 .mh-ui-labyrinth-steps-to-go {
-  color: #fff;
-  font-size: 12px;
-  left: 0;
-  opacity: .8;
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  opacity: 0.8;
 }
 
 .labyrinthHUD-doorContainer {
@@ -139,7 +137,7 @@
 
 /* hunts to go - door background */
 .labyrinthHUD-door.disabled.mystery {
-  filter: brightness(.4);
+  filter: brightness(0.4);
 }
 
 /* Highlight the best door */
@@ -147,51 +145,53 @@
   filter: brightness(1.3);
 }
 
-.labyrinthHUD-door.mh-ui-labyrinth-highlight:after {
-  content: "best choice";
+.labyrinthHUD-door.mh-ui-labyrinth-highlight::after {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  margin: 0px 10px;
-  color: #010101;
-  opacity: 01;
   padding: 3px;
-  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png?asset_cache_version=2) 0 0 repeat;
-  box-shadow: 0 0 1px #000 inset, 0 0 20px #fff inset;
-  text-align: center;
+  margin: 0 10px;
   font-size: 10px;
+  color: #010101;
+  text-align: center;
+  content: "best choice";
+  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png?asset_cache_version=2) 0 0 repeat;
   border-radius: 10px;
+  box-shadow: 0 0 1px #000 inset, 0 0 20px #fff inset;
+  opacity: 01;
 }
 
 /* Popup summary */
 .labyrinthHUD-clueDrawer {
-  font-size: 11px;
   padding-bottom: 11px;
+  font-size: 11px;
 }
 
 .labyrinthHUD-clueDrawer-description {
-  padding: 5px 0 10px 0;
+  padding: 5px 0 10px;
   line-height: 17px;
   color: #fafafa;
-  text-shadow: 0px 1px 5px white;
+  text-shadow: 0 1px 5px #fff;
 }
 
 .labyrinthHUD-clueDrawer-clue {
   margin: 10px 0;
 }
 
-.labyrinthHUD-clueDrawer-clue.tier-1 .labyrinthHUD-clueDrawer-exit.tier-1:after, .labyrinthHUD-clueDrawer-clue.tier-2 .labyrinthHUD-clueDrawer-exit.tier-2:after, .labyrinthHUD-clueDrawer-clue.tier-3 .labyrinthHUD-clueDrawer-exit.tier-3:after {
+.labyrinthHUD-clueDrawer-clue.tier-1 .labyrinthHUD-clueDrawer-exit.tier-1::after,
+.labyrinthHUD-clueDrawer-clue.tier-2 .labyrinthHUD-clueDrawer-exit.tier-2::after,
+.labyrinthHUD-clueDrawer-clue.tier-3 .labyrinthHUD-clueDrawer-exit.tier-3::after {
   background: none;
 }
 
 .labyrinthHUD-clueDrawer-exit {
-  background: #8d8d8d;
-  border-radius: 0;
-  width: 1px;
   top: 0;
   bottom: 0;
+  width: 1px;
   height: 10px;
+  background: #8d8d8d;
+  border-radius: 0;
 }
 
 .labyrinthHUD-clueDrawer-bar {
@@ -199,9 +199,9 @@
 }
 
 .labyrinthHUD-clueDrawer-barFrame {
-  border-radius: 0;
-  border: 1px solid #585858;
   margin-right: 3px;
+  border: 1px solid #585858;
+  border-radius: 0;
 }
 
 .y .labyrinthHUD-clueDrawer-name,
@@ -230,11 +230,11 @@
 }
 
 .labyrinthHUD-clueDrawer-name {
-  margin-right: -3px;
   padding-left: 3px;
+  margin-right: -3px;
 }
 
 .labyrinthHUD-clueDrawer-quantity {
-  margin-left: -3px;
   padding-right: 3px;
+  margin-left: -3px;
 }
