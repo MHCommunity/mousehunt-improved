@@ -21,6 +21,7 @@ import metric from './modules/metric';
 
 // Location HUD improvements
 import iceberg from './modules/iceberg';
+import labyrinth from './modules/labyrinth';
 
 // Removal of things.
 import noFooter from './modules/no-footer';
@@ -143,6 +144,13 @@ const modules = [
     default: true,
     description: '',
     load: iceberg,
+  },
+  {
+    id: 'mh-ui-labyrinth',
+    name: 'Labyrinth HUD Improvements',
+    default: true,
+    description: '',
+    load: labyrinth,
   },
   {
     id: 'mh-ui-wiki',
