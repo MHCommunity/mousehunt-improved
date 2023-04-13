@@ -1,4 +1,4 @@
 export default (quests) => {
-    // salt level, is stampede
-    return '';
+  // salt level, is stampede
+  return '';
 };

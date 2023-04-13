@@ -279,7 +279,7 @@ const getDashboardContents = () => {
 
   const burroughs = document.createElement('div');
   makeLocationMarkup('mousoleum', 'Mousoleum', getMousoleumText, burroughs);
-  // makeLocationMarkup('pollution_outbreak', 'Toxic Spill', getToxicSpillText, burroughs);
+  makeLocationMarkup('pollution_outbreak', 'Toxic Spill', getToxicSpillText, burroughs);
   makeRegionMarkup('Burroughs', burroughs, contentsWrapper);
 
   const varmintValley = document.createElement('div');

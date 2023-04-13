@@ -1,4 +1,4 @@
 export default (quests) => {
-    // curses
-    return '';
+  // curses
+  return '';
 };
