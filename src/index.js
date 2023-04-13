@@ -189,7 +189,6 @@ modules.forEach((module) => {
 
 addUIStyles(globalStyles);
 
-
 /** TODO: Add this to mousehunt-utils */
 addUIStyles(`.mh-ui-refresh-message {
   position: fixed;
