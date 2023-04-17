@@ -1,4 +1,4 @@
-import { addUIStyles } from '../../utils';
+import { addUIStyles } from '../../../utils';
 import styles from './styles.css';
 
 const getSections = (quest) => {
@@ -359,3 +359,6 @@ export default () => {
   onPageChange({ change: main });
   onAjaxRequest(main, 'managers/ajax/turns/activeturn.php');
 };
+
+// deep warning potentially?
+{ /* <div class="valourRiftHUD-warningContainer  active active"><a href="#" class="valourRiftHUD-baitWarning active" onclick="hg.views.HeadsUpDisplayRiftValourView.showTrapSelector(this); return false;">Only standard String baits and Gauntlet String are effective.</a><a href="#" class="valourRiftHUD-powerTypeWarning active" onclick="hg.views.HeadsUpDisplayRiftValourView.showTrapSelector(this); return false;">Only Rift traps are effective.</a></div> */ }

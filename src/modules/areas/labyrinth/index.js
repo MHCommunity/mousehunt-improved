@@ -1,4 +1,4 @@
-import { addUIStyles } from '../../utils';
+import { addUIStyles } from '../../../utils';
 import styles from './styles.css';
 
 const highlightDoors = () => {
@@ -33,10 +33,6 @@ const main = () => {
     return;
   }
 
-  if (! user?.quests?.QuestLabyrinth?.hallway_length || ! user?.quests?.QuestLabyrinth?.tiles) {
-    return;
-  }
-
   const appendTo = document.querySelector('.labyrinthHUD-hallwayDescription');
   if (! appendTo) {
     return;
@@ -57,19 +53,18 @@ const main = () => {
     return;
   }
 
-  const hallwayLength = user.quests.QuestLabyrinth.hallway_length;
-  const completed = user.quests.QuestLabyrinth.tiles.filter((tile) => tile.status.includes('complete'));
+  const hallwayLength = user.quests.QuestLabyrinth.hallway_length || 0;
+  const tiles = user.quests.QuestLabyrinth.tiles || [];
+  const completed = tiles.filter((tile) => tile.status.includes('complete'));
 
   makeElement('span', 'mh-ui-labyrinth-step-counter', `${completed.length}/${hallwayLength} steps completed.`, appendTo);
   const stepsToGo = hallwayLength - completed.length;
 
-  if (stepsToGo === 0) {
-    return;
-  }
-
-  const intersectionDoors = document.querySelector('.labyrinthHUD-doorContainer');
-  if (intersectionDoors) {
-    makeElement('div', 'mh-ui-labyrinth-steps-to-go', `${stepsToGo} hunt${(stepsToGo) > 1 ? 's' : ''} left in the hallway`, intersectionDoors);
+  if (stepsToGo !== 0) {
+    const intersectionDoors = document.querySelector('.labyrinthHUD-doorContainer');
+    if (intersectionDoors) {
+      makeElement('div', 'mh-ui-labyrinth-steps-to-go', `${stepsToGo} hunt${(stepsToGo) > 1 ? 's' : ''} left in the hallway`, intersectionDoors);
+    }
   }
 };
 
@@ -77,8 +72,10 @@ export default () => {
   addUIStyles(styles);
 
   main();
-  onPageChange({ change: main });
-  onAjaxRequest(main, 'managers/ajax/turns/activeturn.php');
+  onPageChange({ camp: { show: main } });
+  onAjaxRequest(() => {
+    setTimeout(main, 1000);
+  }, 'managers/ajax/turns/activeturn.php');
 };
 
 // fealty = y

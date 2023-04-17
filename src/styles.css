@@ -88,3 +88,22 @@ input.treasureMapView-shareLinkInput {
   width: 95%;
   margin: 0 auto;
 }
+
+/* Gift window spacing */
+.giftSelectorView-content-subtitle {
+  padding: 10px 0;
+}
+
+/* Gift of the day width */
+.giftSelectorView-giftContainer .giftSelectorView-gift.gift_of_the_day {
+  width: 20%;
+}
+
+/* SEH Choco shop item background */
+.springHuntHUD-dialog-item-image .itemImage.large {
+  background-color: transparent;
+}
+
+.springHuntHUD-dialog-item-image .floatingIslandsAirship {
+  background-color: transparent;
+}
