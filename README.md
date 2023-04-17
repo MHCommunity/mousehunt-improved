@@ -1,4 +1,6 @@
-# mh-improved
+# better-mousehunt
+
+Coming soon
 
 ## Development
 
@@ -13,8 +15,9 @@ $ npm run build
 $ npm run lint
 ```
 
+## Todo:
 
-image upscaling
+- image upscaling
   - chrome charm
   - tarnished charm
   - storm cell
@@ -25,6 +28,6 @@ image upscaling
   - Super Power Charm
   - Iced Curd
   - Fire Salt
-Ancient Relic
-Ancient Charm
-Super Power Charm
+  - Ancient Relic
+  - Ancient Charm
+  - Super Power Charm
