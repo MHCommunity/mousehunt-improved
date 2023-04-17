@@ -2,7 +2,7 @@ import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
 const main = () => {
-  console.log('Do something here.');
+  // do stuff
 };
 
 export default function moduleTemplate() {

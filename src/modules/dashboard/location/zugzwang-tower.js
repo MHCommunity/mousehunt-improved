@@ -1,4 +1,4 @@
 export default (quests) => {
   // amp %, chess status
-  return '';
+  return quests ? '' : '';
 };

@@ -1,4 +1,4 @@
 export default (quests) => {
   // zone, progress
-  return '';
+  return quests ? '' : '';
 };

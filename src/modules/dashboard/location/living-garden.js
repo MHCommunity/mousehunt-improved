@@ -1,4 +1,4 @@
 export default (quests) => {
   // twisted, droplets
-  return '';
+  return quests ? '' : '';
 };

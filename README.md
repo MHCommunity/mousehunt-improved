@@ -15,7 +15,7 @@ $ npm run build
 $ npm run lint
 ```
 
-## Todo:
+## Todo
 
 - image upscaling
   - chrome charm

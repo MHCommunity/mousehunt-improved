@@ -1,4 +1,4 @@
 export default (quests) => {
   // battery
-  return '';
+  return quests ? '' : '';
 };

@@ -18,7 +18,7 @@ const main = () => {
       text: 'Go to Floating Islands instead.',
       button: 'Travel',
       action: () => {
-        console.log('This is an action');
+        //
       },
     });
   });
