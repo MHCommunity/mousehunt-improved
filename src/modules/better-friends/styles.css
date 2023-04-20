@@ -11,6 +11,7 @@
   right: -25px;
   width: 390px;
   border: 1px solid #9a8872;
+  z-index: 999999;
 }
 
 #friend-data-wrapper .friendsPage-friendRow {
@@ -112,4 +113,14 @@
 #friend-data-wrapper .friendsPage-friendRow-stat-label,
 #friend-data-wrapper .friendsPage-friendRow-stat.team {
   display: none !important;
+}
+
+#friend-data-wrapper .quickSendWrapper {
+  left: -65px;
+  top: -100px;
+  right: 20px;
+}
+
+.notificationMessageList #friend-data-wrapper {
+  left: -50px;
 }

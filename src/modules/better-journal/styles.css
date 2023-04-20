@@ -204,12 +204,50 @@
 
 #overlayPopup.hunting_summary .label {
   padding: 5px;
-  margin-bottom: 10px;
   font-size: 13px;
   background-color: #eee;
   border: 1px solid #ccc;
 }
 
+.journal .content .log_summary table td.value {
+  padding-right: 10px;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.log_summary tbody {
+  margin: 0;
+}
+
+
+.journal .content .log_summary table {
+  width: 330px;
+  display: flex;
+  justify-content: center;
+}
+
+.journal .content .log_summary table td.field {
+  padding-left: 10px;
+}
+
+.journal .content .log_summary table td.field.mice, .journal .content .log_summary table td.field.points, .journal .content .log_summary table td.field.gold, .journal .content .log_summary table td.field.loot {
+  text-align: center;
+  padding: 0;
+  font-size: 12px;
+  padding: 0 0 4px 0;
+}
+
+.journal .content .log_summary table tr:nth-child(7) {
+  outline: none;
+}
+
+.journal .content .log_summary table td.spacer {
+  display: none;
+}
+
+.journal .content .log_summary table th {
+  border-color: #c6c6c6;
+}
 
 #overlayPopup.hunting_summary .leftColumn,
 #overlayPopup.hunting_summary .rightColumn {
@@ -237,10 +275,61 @@
 }
 
 #overlayPopup.hunting_summary .lootContainer a .wrapper {
-  padding: 0;
+  padding: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+#overlayPopup.hunting_summary .miceContainer a {
+    padding: 6px 0;
+    font-size: 10px;
+    display: grid;
+    grid-template-columns: 0 50px auto;
+    line-height: 14px;
+    align-items: start;
+}
+
+#overlayPopup.hunting_summary .miceContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: stretch;
+    align-items: start;
+}
+
+#overlayPopup.hunting_summary .miceContainer .catches {
+    font-size: 11px;
+    float: none;
+}
+
+#overlayPopup.hunting_summary .miceContainer a img {
+    margin: 0 3px;
+}
+
+#overlayPopup.hunting_summary .baitContainer .label {
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+#overlayPopup.hunting_summary .baitContainer a {
+    float: none;
+    display: inline-block;
+}
+
+#overlayPopup.hunting_summary .baitContainer a .wrapper {
+    font-size: 10px;
+}
+
+
+#overlayPopup.hunting_summary .baitContainer a img {
+    width: 35px;
+    height: auto;
+    margin-top: 6px;
+}
+
+#overlayPopup.hunting_summary .baitContainer a b {
+    padding-bottom: 6px;
+    display: inline-block;
 }
 
 .reportTitle {
@@ -285,4 +374,9 @@ a.journal-detailLink.full::after {
 
 .pagerView-link {
   border: none;
+}
+
+/* Hide the period */
+.entry.short.log_summary.stats .fullstop {
+  display: none;
 }

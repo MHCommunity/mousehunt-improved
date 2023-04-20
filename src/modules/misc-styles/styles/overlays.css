@@ -18,31 +18,6 @@
   box-shadow: inset 0 0 16px 2px #fffaab;
 }
 
-/* mice effectivenes */
-.mouseView-weaknessContainer {
-  width: 450px;
-}
-
 .mouseView-categoryContent-subgroup-mouse-weaknesses-label {
   border-color: rgb(51 51 51 / 34%);
-}
-
-/* mouse stats */
-.mouseView-descriptionContainer {
-    width: 260px;
-}
-
-.mouseView-statsContainer {
-    width: 180px;
-}
-
-.mouseView-statsContainer br,
-.mouseView-statsContainer b,
-.mouseView-difficulty,
-.mouseView-group {
-    display: none;
-}
-
-.mouseView-statsContainer abbr {
-    text-decoration: none;
 }

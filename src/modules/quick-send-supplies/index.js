@@ -141,6 +141,26 @@ const main = () => {
     btn.addEventListener('mouseover', () => {
       quickSendLinkWrapper.style.display = 'block';
 
+      // make sure the popup isn't off the screen
+      const rect = quickSendLinkWrapper.getBoundingClientRect();
+      const left = rect.left;
+      const right = rect.right;
+      const top = rect.top;
+
+      const windowWidth = window.innerWidth;
+
+      if (left < 0) {
+        quickSendLinkWrapper.style.left = '0px';
+      }
+
+      if (right > windowWidth) {
+        quickSendLinkWrapper.style.left = `${windowWidth - right}px`;
+      }
+
+      if (top < 0) {
+        quickSendLinkWrapper.style.top = '5px';
+      }
+
       btn.addEventListener('mouseout', () => {
         const mouseLeaveTarget = addEventListener('mousemove', (e) => {
           // get the dimensions of the popup
@@ -150,10 +170,10 @@ const main = () => {
           const x = e.clientX;
           const y = e.clientY;
 
-          const bottom = rect.bottom + 25;
-          const top = rect.top - 25;
-          const left = rect.left - 25;
-          const right = rect.right + 25;
+          const bottom = rect.bottom + 10;
+          const top = rect.top - 10;
+          const left = rect.left - 10;
+          const right = rect.right + 10;
 
           // if the mouse is outside the popup, remove it
           if (y < top || y > bottom || x < left || x > right) {
@@ -172,4 +192,5 @@ export default function quickSendSupplies() {
   main();
   onPageChange(main);
   onAjaxRequest(main);
+  onEvent('profile_hover', main);
 }

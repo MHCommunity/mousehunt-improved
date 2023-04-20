@@ -25,56 +25,6 @@ const modifyText = (selector, strings) => {
 };
 
 /**
- * For each element matching the selector, add a period to the last sentence.
- */
-const addPeriodToLastSentenceOfEntries = () => {
-  const elements = document.querySelectorAll('.journal .entry');
-  if (! elements) {
-    return;
-  }
-
-  elements.forEach((element) => {
-    if (element.getAttribute('data-period-added')) {
-      return;
-    }
-
-    element.setAttribute('data-period-added', true);
-
-    const journalText = element.querySelector('.journaltext');
-    if (! journalText) {
-      return;
-    }
-
-    // If there are multiple br tags together, remove the extra ones
-    journalText.innerHTML = journalText.innerHTML.replace(/(<br>)+/g, '<br>')
-      .replace(/<a[^>]*><\/a>/g, '')
-      .replace(/<br>$/, '')
-      .replace(/.<br>.$/, '.')
-      .replace(/<br> .$/, '.')
-      .replace('..', '.')
-      .replace('<p></p>', '')
-      .trim();
-
-    // If the string ends with a <br> tag, remove it
-    const endsWithBr = journalText.innerHTML.trim().endsWith('<br>');
-    if (endsWithBr) {
-      journalText.innerHTML = journalText.innerHTML.slice(0, -4);
-    }
-
-    const lastChar = journalText.innerHTML.trim().slice(-1);
-    if (lastChar !== '.' && lastChar !== '!' && lastChar !== '?') {
-      const newText = journalText.innerHTML.replace(/([^.?!])$/, '$1.')
-        .replace('<p></p>', '')
-        .replace('</p>.', '.</p>');
-
-      if (newText !== journalText.innerHTML) {
-        journalText.innerHTML = newText;
-      }
-    }
-  });
-};
-
-/**
  * Update text in journal entries.
  */
 const updateJournalText = () => {
@@ -181,8 +131,6 @@ const updateJournalText = () => {
       entry.remove();
     }
   });
-
-  addPeriodToLastSentenceOfEntries();
 
   // Update log
   const log = document.querySelector('.journal .content .log_summary');

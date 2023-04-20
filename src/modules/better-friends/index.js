@@ -1,7 +1,7 @@
 import { addUIStyles } from '../utils';
 import styles from './styles.css';
 
-const getFriendId = (target) => {
+const getFriendId = async (target) => {
   // if there is a data-snuid attribute, use that
   if (target.getAttribute('data-snuid')) {
     return target.getAttribute('data-snuid');
@@ -14,6 +14,19 @@ const getFriendId = (target) => {
       .replace('https://www.mousehuntgame.com/profile.php?snuid=', '')
     if (urlMatch && urlMatch !== target.href) {
       return urlMatch;
+    }
+
+    const pMatch = target.href.replace('https://www.mousehuntgame.com/p.php?id=', '');
+    if (pMatch && pMatch !== target.href) {
+      const snuid = await doRequest('managers/ajax/pages/friends.php', {
+        action: 'community_search_by_id',
+        user_id: pMatch,
+      });
+
+      console.log(snuid.friend.sn_user_id);
+      if (snuid.friend.sn_user_id) {
+        return snuid.friend.sn_user_id;
+      }
     }
   }
 
@@ -44,20 +57,42 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
   friendDataWrapper.id = 'friend-data-wrapper';
   friendDataWrapper.innerHTML = content;
 
-  // Get the parent parent element of the friend link
   const friendLinkParent = e.target.parentElement;
   friendLinkParent.appendChild(friendDataWrapper);
+
+  // make sure it's not off the screen
+  const rect = friendDataWrapper.getBoundingClientRect();
+  const left = rect.left;
+  const right = rect.right;
+  const top = rect.top;
+
+  const windowWidth = window.innerWidth;
+
+  if (left < 0) {
+    friendDataWrapper.style.left = '0px';
+  }
+
+  if (right > windowWidth) {
+    friendDataWrapper.style.left = `${windowWidth - right}px`;
+  }
+
+  if (top < 0) {
+    friendDataWrapper.style.top = '5px';
+  }
+
+  eventRegistry.doEvent('profile_hover');
 };
 
-const onFriendLinkHover = (e) => {
-  const friendId = getFriendId(e.target);
+const onFriendLinkHover = async (e) => {
+  const friendId = await getFriendId(e.target);
   if (! friendId || friendId == user.sn_user_id) { // eslint-disable-line eqeqeq
     return;
   }
 
-  if ('friends' === getCurrentPage()) {
-    return;
-  }
+  // TODO: only ignore the list of friends, not the inbox.
+  // if ('friends' === getCurrentPage()) {
+  //   return;
+  // }
 
   const existing = document.getElementById('friend-data-wrapper');
   if (existing) {
@@ -106,7 +141,6 @@ const addFriendLinkEventListener = (selector) => {
           // if the mouse is outside the popup, remove it
           if (y < top || y > bottom || x < left || x > right) {
             existing.remove();
-
             removeEventListener('mousemove', mouseLeaveTarget);
           }
         }
@@ -115,10 +149,54 @@ const addFriendLinkEventListener = (selector) => {
   });
 };
 
+const onTabChangeCallback = (callback, attempts = 0) => {
+  const tabs = document.querySelectorAll('.notificationHeader .tabs a');
+  if (! tabs || tabs.length === 0) {
+    if (attempts > 2) {
+      return;
+    }
+
+    setTimeout(() => {
+      onTabChangeCallback(callback, attempts + 1);
+    }, 250);
+    return;
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      callback();
+    });
+  });
+};
+
+const onTabChange = (callback) => {
+  onEvent('ajax_response', () => {
+    onTabChangeCallback(callback);
+  });
+};
+
+const onInboxOpen = (callback) => {
+  const inboxBtn = document.querySelector('#hgbar_messages');
+  if (! inboxBtn) {
+    return;
+  }
+
+  inboxBtn.addEventListener('click', () => {
+    onTabChange(callback);
+  });
+};
+
 const main = () => {
-  addFriendLinkEventListener('a[href*="https://www.mousehuntgame.com/hunterprofile.php"]');
-  addFriendLinkEventListener('a[href*="https://www.mousehuntgame.com/profile.php"]');
-  addFriendLinkEventListener('.entry.socialGift .journaltext a');
+  const selectors = [
+    'a[href*="https://www.mousehuntgame.com/hunterprofile.php"]',
+    'a[href*="https://www.mousehuntgame.com/profile.php"]',
+    '.entry.socialGift .journaltext a',
+    '.notificationMessageList .messageText a[href*="https://www.mousehuntgame.com/p"]',
+  ];
+
+  selectors.forEach((selector) => {
+    addFriendLinkEventListener(selector);
+  });
 };
 
 export default function betterFriends() {
@@ -135,4 +213,5 @@ export default function betterFriends() {
   });
 
   onEvent('journal_replacements_finished', main);
+  onInboxOpen(main);
 }

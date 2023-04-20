@@ -1,0 +1,172 @@
+.mouseView-titleContainer {
+  height: 26px;
+}
+
+.mouseView-values {
+  float: none;
+  padding: 5px 0 10px;
+  padding-bottom: 8px;
+  font-size: 11px;
+  line-height: unset;
+}
+
+.mouseView-title {
+  font-size: 1.2em;
+  line-height: 24px;
+}
+
+.mh-mouse-links {
+  display: inline-block;
+  float: right;
+  margin-right: 15px;
+}
+
+.mh-mouse-links-map {
+  padding-bottom: 5px;
+}
+
+.mh-mouse-links a {
+  margin-right: 10px;
+}
+
+.mh-mouse-links-map a {
+  margin: 10px 10px 10px 0;
+}
+
+.mouseview-title-group {
+  font-size: 11px;
+  padding-bottom: 8px;
+}
+
+.mh-mouse-links-map .mousehuntActionButton.tiny {
+  margin: 3px;
+}
+
+.mouseView-movedContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.mouseview-has-mhct .mouseView-weaknessContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160px;
+}
+
+.mouseview-has-mhct .mouseView-categoryContent-subgroup-mouse-weaknesses {
+  width: 100%;
+}
+
+.mouseview-has-mhct .mouseView-socialContainer {
+  display: none;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.mouseview-has-mhct .mouseView-descriptionContainer {
+  width: 100%;
+}
+
+.mouseview-has-mhct .mouseView-difficulty {
+  display: none;
+}
+
+.mouseview-has-mhct .mouse-ar-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr 1fr;
+  padding: 5px;
+  justify-items: stretch;
+  align-items: center;
+  font-size: 12px;
+  margin: 5px 0px;
+}
+
+.mouseview-has-mhct .mice-ar-wrapper {
+  margin-right: 10px;
+}
+
+.mouseview-has-mhct .ar-header {
+  font-size: 12px;
+  font-weight: 900;
+  padding-bottom: 2px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  height: 26px;
+  margin-top: 10px;
+}
+
+.mouseview-has-mhct .rate {
+  text-align: right;
+}
+
+.mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+  background-color: #e7e7e7;
+}
+
+.mouseview-has-mhct .mouseView-description {
+  line-height: 19px;
+  font-weight: 500;
+}
+
+.mh-mouse-links-map-name {
+  color: #3b5998;
+  cursor: pointer;
+}
+
+.treasureMapView-highlight-name {
+  padding: 5px 0 10px 0px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.mh-mouse-links-map-name:hover {
+  text-decoration: underline;
+}
+
+.mh-mouse-links-map .treasureMapView-highlight-group {
+  text-align: center;
+}
+
+.treasureMapView-highlight-catcher {
+  height: auto;
+  background: none;
+  border: none;
+  display: inline-block;
+}
+
+.treasureMapView-highlight-group,
+.treasureMapView-highlight-environments {
+  text-align: center;
+}
+
+.treasureMapView-highlight-catcher-title {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -20px;
+  margin-left: 12px;
+}
+
+.treasureMapView-highlight-weakness-title {
+  font-size: 8.4px;
+}
+
+.treasureMapView-highlight.goal {
+  width: 30%;
+}
+
+.mh-mouse-links-map {
+  display: flex;
+  justify-content: center;
+}
+
+.treasureMapView-highlight-weaknessContainer {
+  display: flex;
+  align-items: baseline;
+  margin: 0 1px;
+}

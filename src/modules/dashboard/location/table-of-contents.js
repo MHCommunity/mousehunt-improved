@@ -1,4 +1,4 @@
 export default (quests) => {
   // current writing status
-  return quests ? '' : '';
+  return quests ? '' : false;
 };

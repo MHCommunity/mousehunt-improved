@@ -1,4 +1,4 @@
 export default (quests) => {
   // refining stats, spill level
-  return quests ? '' : '';
+  return quests ? '' : false;
 };

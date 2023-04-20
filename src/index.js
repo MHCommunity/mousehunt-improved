@@ -18,19 +18,23 @@ import dashboard from './modules/dashboard';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import imageUpscaling from './modules/image-upscaling';
 import misc from './modules/misc-styles';
+import mouseLinks from './modules/mouse-links';
 import quickSendSupplies from './modules/quick-send-supplies';
 import wiki from './modules/wiki';
 
 // Copies of standalone userscripts.
-import noFooter from './modules/no-footer';
-import noShare from './modules/no-share';
-import noSidebar from './modules/no-sidebar';
-import tallerWindows from './modules/taller-windows';
+import itemLinks from './modules/external/item-links';
+import noFooter from './modules/external/no-footer';
+import noShare from './modules/external/no-share';
+import noSidebar from './modules/external/no-sidebar';
+import tallerWindows from './modules/external/taller-windows';
 
 // Location HUD improvements.
 import iceberg from './modules/location-hud/iceberg';
 import labyrinth from './modules/location-hud/labyrinth';
 import vrift from './modules/location-hud/vrift';
+
+import testing from './modules/testing';
 
 // Core 'Better' modules.
 const modules = [
@@ -45,7 +49,7 @@ const modules = [
       { id: 'better-mh-quests', name: 'Better Quests', default: false, description: '', load: betterQuests },
       { id: 'better-mh-better-shops', name: 'Better Shops', default: true, description: '', load: betterShops },
       { id: 'better-mh-better-ui', name: 'Better UI', default: true, description: '', load: betterUi },
-      { id: 'mh-misc-styles', name: 'Minor Style Changes', default: true, description: '', load: misc },
+      { id: 'better-mh-misc-styles', name: 'Minor Style Changes', default: true, description: '', load: misc },
     ]
   },
   {
@@ -54,9 +58,11 @@ const modules = [
     description: 'Additional features',
     modules: [
       { id: 'better-mh-dashboard', name: 'Location Dashboard', default: true, description: 'Show a location information dashboard in the top dropdown menu.', load: dashboard },
-      { id: 'better-mh-inventory-only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
-      { id: 'better-mh-taller-windows', name: 'Taller Windows', default: true, description: '', load: tallerWindows },
       { id: 'better-mh-image-upscaling', name: 'Image Upscaling', default: true, description: '', load: imageUpscaling },
+      { id: 'better-mh-inventory-only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
+      { id: 'better-mh-item-links', name: 'Item Links', default: true, description: 'Add links to MHCT, MHWiki, mhdb in item popups..', load: itemLinks },
+      { id: 'better-mh-mouse-links', name: 'Mouse Links', default: true, description: 'Add links to MHCT, MHWiki, mhdb in mouse popups.', load: mouseLinks },
+      { id: 'better-mh-taller-windows', name: 'Taller Windows', default: true, description: '', load: tallerWindows },
     ]
   },
   {
@@ -85,6 +91,7 @@ const modules = [
       { id: 'wiki', load: wiki, alwaysLoad: true },
       { id: 'copy-id', load: copyId, alwaysLoad: true },
       { id: 'quick-send-supplies', load: quickSendSupplies, alwaysLoad: true },
+      { id: 'testing', load: testing, alwaysLoad: true },
     ],
   }
 ];

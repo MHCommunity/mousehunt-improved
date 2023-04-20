@@ -227,6 +227,12 @@ const makeDashboardTab = () => {
 };
 
 const makeRegionMarkup = (name, childContent, appendTo) => {
+  // find the child of the first div
+  const firstChild = childContent.firstChild;
+  if (! firstChild) {
+    return;
+  }
+
   // Make wrapper.
   const regionWrapper = makeElement('div', 'regionWrapper');
 
@@ -240,13 +246,19 @@ const makeRegionMarkup = (name, childContent, appendTo) => {
 };
 
 const makeLocationMarkup = (id, name, progress, appendTo) => {
+  const markup = progress(quests);
+
+  if (! markup) {
+    return;
+  }
+
   const locationWrapper = makeElement('div', 'locationWrapper');
 
   // Name & travel links
   const locationImageWrapper = makeElement('div', 'locationImageWrapper');
-  if (locationImages[ id ]) {
+  if (locationImages[id]) {
     const locationImage = makeElement('img', 'locationImage');
-    locationImage.setAttribute('src', locationImages[ id ]);
+    locationImage.setAttribute('src', locationImages[id]);
 
     locationImageWrapper.appendChild(locationImage);
   }
@@ -268,7 +280,7 @@ const makeLocationMarkup = (id, name, progress, appendTo) => {
 
   locationWrapper.appendChild(locationName);
 
-  makeElement('div', 'locationProgress', progress(quests), locationWrapper);
+  makeElement('div', 'locationProgress', markup, locationWrapper);
 
   appendTo.appendChild(locationWrapper);
 };

@@ -1,4 +1,4 @@
 export default (quests) => {
   // clue count
-  return quests ? '' : '';
+  return quests ? '' : false;
 };

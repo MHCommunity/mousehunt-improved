@@ -1,4 +1,4 @@
 export default (quests) => {
   // curses
-  return quests ? '' : '';
+  return quests ? '' : false;
 };

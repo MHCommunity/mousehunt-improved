@@ -1,4 +1,4 @@
 export default (quests) => {
   // current storm level
-  return quests ? '' : '';
+  return quests ? '' : false;
 };

@@ -1,4 +1,4 @@
 export default (quests) => {
   // Amp %
-  return quests ? '' : '';
+  return quests ? '' : false;
 };

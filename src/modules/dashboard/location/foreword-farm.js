@@ -1,4 +1,4 @@
 export default (quests) => {
   // plants
-  return quests ? '' : '';
+  return quests ? '' : false;
 };
