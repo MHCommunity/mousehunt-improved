@@ -133,10 +133,10 @@ const addFriendLinkEventListener = (selector) => {
           const x = e.clientX;
           const y = e.clientY;
 
-          const bottom = rect.bottom + 25;
-          const top = rect.top - 25;
-          const left = rect.left - 25;
-          const right = rect.right + 25;
+          const bottom = rect.bottom + 100;
+          const top = rect.top - 100;
+          const left = rect.left - 100
+          const right = rect.right + 100
 
           // if the mouse is outside the popup, remove it
           if (y < top || y > bottom || x < left || x > right) {

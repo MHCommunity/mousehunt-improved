@@ -54,6 +54,12 @@ const main = () => {
 
     btn.setAttribute('data-quick-send', 'true');
 
+    btn.classList.remove('mousehuntTooltipParent');
+    const tooltip = btn.querySelector('.mousehuntTooltip');
+    if (tooltip) {
+      tooltip.remove();
+    }
+
     const quickSendLinkWrapper = document.createElement('form');
     quickSendLinkWrapper.classList.add('quickSendWrapper');
     quickSendLinkWrapper.style.display = 'none';

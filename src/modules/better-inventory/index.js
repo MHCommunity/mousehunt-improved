@@ -1,3 +1,6 @@
+import { addUIStyles } from '../utils';
+import styles from './styles.css';
+
 const setOpenQuantityOnClick = () => {
   const qty = document.querySelector('.itemView-action-convertForm');
   if (! qty) {
@@ -20,6 +23,8 @@ const setOpenQuantityOnClick = () => {
 };
 
 const main = () => {
+  addUIStyles(styles);
+
   setOpenQuantityOnClick();
 };
 
