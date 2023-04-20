@@ -35,12 +35,12 @@
 }
 
 .regionWrapper {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border: 1px solid #c5c5c5;
 }
 
 .regionName {
-  padding: 5px 5px 5px 10px;
+  padding: 3px 0 2px 5px;
   margin-top: 10px;
   font-size: 12px;
   font-weight: 900;

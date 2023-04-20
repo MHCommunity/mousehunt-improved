@@ -33,6 +33,7 @@
           "before": false,
           "after": true
       }],
+      "computed-property-spacing": ["error", "never"],
       "eol-last": ["error", "always"],
       "indent": ["error", 2],
       "jsdoc/tag-lines": ["error", "always", {

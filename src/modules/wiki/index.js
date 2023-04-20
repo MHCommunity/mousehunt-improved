@@ -1,4 +1,4 @@
-import { addUIStyles } from '../../utils';
+import { addUIStyles } from '../utils';
 import styles from './styles.css';
 
 export default () => {

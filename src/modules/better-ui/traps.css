@@ -1,0 +1,176 @@
+.campPage-trap-baitLabel {
+  display: none;
+}
+
+.campPage-trap-armedItem.bait {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.campPage-trap-baitDetails {
+  color: transparent;
+  text-shadow: none;
+}
+
+.campPage-trap-baitName,
+.campPage-trap-baitQuantity {
+  color: #926944;
+  text-shadow: 0 0 1px #ae9b6d, 1px 1px #fff;
+}
+
+.campPage-trap-baitQuantity {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 11px;
+  text-align: right;
+  background-color: hsl(0deg 0% 100% / 70%);
+  border: 1px solid #9d917f;
+  border-right: none;
+  border-bottom: none;
+  border-bottom-right-radius: 3px;
+  box-shadow: -1px -1px 1px #d3cecb inset;
+}
+
+.campPage-trap-armedItem .quantity span {
+  position: absolute;
+  right: -5px;
+  bottom: 4px;
+  padding: 3px;
+  text-align: right;
+  background-color: hsl(0deg 0% 100% / 80%);
+  border: 1px solid #9d917f;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  border-bottom-right-radius: 5px;
+  box-shadow: -1px -1px 1px #d3cecb inset;
+}
+
+.campPage-trap-statsContainer {
+  background: transparent;
+  box-shadow: none;
+}
+
+.campPage-trap-itemStats {
+  background: #f6f3eb;
+  border: 1px solid #534022;
+  box-shadow: -1px -1px 2px #d3cecb inset;
+}
+
+.campPage-trap .trapImageView {
+  width: 352px;
+  height: 352px;
+  margin-top: 0;
+  margin-left: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ceb7a6;
+  border-radius: 0;
+}
+
+.campPage-trap {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Profile page */
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-header-container,
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-footer {
+  border-width: 1px;
+  box-shadow: none;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-container {
+  margin-right: -9px;
+  margin-left: -9px;
+  border-bottom: 1px solid #ceb7a6;
+  box-shadow: none;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-footer-stats {
+  padding-top: 50px;
+  margin-right: -9px;
+  margin-left: -9px;
+  box-shadow: none;
+}
+
+.hunterInfoView-wrapper .trapImageView {
+  width: 368px;
+  height: 368px;
+  margin: 0 auto;
+}
+
+.hunterInfoView-wrapper a.trapImageView-zoomButton {
+  top: 80%;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-header-title-container {
+  left: 1px;
+  border-width: 1px;
+  border-bottom: none;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-items {
+  background: none;
+  border: none;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-footer {
+  background: #f6f3eb;
+  border-top: 0;
+  box-shadow: none;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-trap-slot-quantity {
+  bottom: 0;
+  width: 100%;
+  background-color: #ffffffe8;
+  border-color: #d3cecb;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  border-radius: 0;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-trap-slot,
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-trap-slot.middle {
+  width: 60px;
+  height: 60px;
+  margin: 0;
+  background-position: -1px;
+  background-size: 61px;
+  border: 1px solid #000;
+  box-shadow: none;
+}
+
+.hunterInfoView-wrapper .campPage-trap-trapStat {
+  display: flex;
+  background: #fff;
+  border: 1px solid #e2d3c8;
+  border-radius: 3px;
+}
+
+.hunterInfoView-wrapper .campPage-trap-itemStats {
+  display: flex;
+  padding-bottom: 0;
+  margin: 0 5px;
+}
+
+.hunterInfoView-wrapper .campPage-trap-trapStat .value {
+  max-width: 70px;
+  background: transparent;
+  border: none;
+}
+
+.trapImageView-trapAura {
+  opacity: 0.7;
+}
+
+.largerTrapView-popup-name {
+  display: none;
+}

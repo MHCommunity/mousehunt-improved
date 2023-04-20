@@ -1,9 +1,9 @@
 export function getFieryWarpathText(quests) {
   const quest = {
-    wave: quests.QuestFieryWarpath.wave || 0,
-    streak: quests.QuestFieryWarpath.streak || 0,
-    remaining: quests.QuestFieryWarpath.remaining || 0,
-    percent: quests.QuestFieryWarpath.percent || 0,
+    wave: quests?.QuestFieryWarpath?.wave || 0,
+    streak: quests?.QuestFieryWarpath?.streak || 0,
+    remaining: quests?.QuestFieryWarpath?.remaining || 0,
+    percent: quests?.QuestFieryWarpath?.percent || 0,
   };
 
   if (quest.streak !== 0) {

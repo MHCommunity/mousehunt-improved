@@ -1,0 +1,84 @@
+.userInteractionButtonsView-buttonGroup {
+  position: relative;
+}
+
+.quickSendWrapper {
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 2px 3px 4px #666;
+  color: #000;
+  font-size: 10px;
+  left: -60%;
+  padding: 10px 15px;
+  position: absolute;
+  right: -60%;
+  text-align: center;
+  top: -75px;
+  z-index: 10;
+  min-width: 150px;
+}
+
+.quickSendInput {
+  width: 75px;
+  padding: 1px;
+}
+
+.quickSendButton {
+  cursor: pointer;
+}
+
+.quickSendWrapper img {
+  width: 35px;
+  height: auto;
+}
+
+.quickSendGoWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.itemsWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.quickSendItemRadio {
+  display: none;
+}
+
+
+.quickSendItem {
+  cursor: pointer;
+  margin: 0 5px;
+  opacity: 0.5;
+}
+
+.quickSendItem.selected {
+  outline: 1px solid #76d063;
+  border-radius: 10px;
+  opacity: 1;
+}
+
+.quickSendItem:hover,
+.quickSendItem:focus {
+  opacity: .9;
+}
+
+
+.quickSendmessage {
+  position: absolute;
+  bottom: 50px;
+  background-color: #ffffaa;
+  padding: 10px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px 0px black;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}

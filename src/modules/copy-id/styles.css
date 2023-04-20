@@ -1,0 +1,24 @@
+.mousehuntHud-userStatBar .profileImage {
+  position: relative;
+}
+
+.mh-copy-id-button {
+  position: absolute;
+  top: 30px;
+  left: 3px;
+  z-index: 10;
+  display: none;
+  cursor: pointer;
+}
+
+.mh-copy-id-success-message {
+  position: absolute;
+  top: 32px;
+  left: 60px;
+  z-index: 10;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 1px 1px 1px black;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
