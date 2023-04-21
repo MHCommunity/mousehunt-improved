@@ -58,7 +58,7 @@
 
 .campPage-trap-itemStats {
   background: #f6f3eb;
-  border: 1px solid #534022;
+  border: 1px solid #d3cecb;
   box-shadow: -1px -1px 2px #d3cecb inset;
 }
 
@@ -171,6 +171,71 @@
   opacity: 0.7;
 }
 
-.largerTrapView-popup-name {
+.largerTrapView-popup-name,
+span.campPage-trap-armedItem-skin-description-content.has_skin b,
+span.campPage-trap-armedItem-skin-description-content.has_skin br {
   display: none;
+}
+
+/* tem meter */
+.campPage-trap-trapEffectivenessBar {
+  box-shadow: 0 0 0 1px #f1ede4, 0 0 0 2px #e4ded3, 0 0 0 3px #cac0b2;
+  background: #9d917f;
+}
+
+.campPage-trap-trapEffectivenessBar.easy:after,
+.campPage-trap-trapEffectivenessBar.effortless:after,
+.campPage-trap-trapEffectivenessBar.strong:after,
+.campPage-trap-trapEffectivenessBar.excellent:after {
+  background: #138f13;
+}
+
+.campPage-trap-trapEffectivenessBar.near_impossible:after,
+.campPage-trap-trapEffectivenessBar.very_poor:after,
+.campPage-trap-trapEffectivenessBar.overpowering:after {
+  background: #bb4646;
+}
+
+.campPage-trap-trapEffectivenessBar.difficult:after,
+.campPage-trap-trapEffectivenessBar.challenging:after,
+.campPage-trap-trapEffectivenessBar.mild:after,
+.campPage-trap-trapEffectivenessBar.moderate:after,
+.campPage-trap-trapEffectivenessBar.medium:after {
+  background: #faff8b;
+}
+
+.campPage-trap-trapEffectivenessBar.impossible:after {
+  background: #a83030;
+  width: 100%;
+}
+
+/* tem popup */
+/* hide subheader */
+.campPage-trap-trapEffectiveness-header {
+  color: transparent;
+}
+
+.campPage-trap-trapEffectiveness-header b {
+  color: #926944;
+}
+
+.campPage-trap-trapEffectiveness-content {
+  top: 50px;
+}
+
+.campPage-trap-trapEffectiveness-difficultyGroup {
+  background: #f6f3eb;
+  border-radius: 3px;
+  box-shadow: inset 0 0 1px #755e40;
+}
+
+.campPage-trap-trapEffectiveness-difficultyGroup-label {
+  border: none;
+  font-weight: normal;
+  text-align: center;
+}
+
+.campPage-trap-trapEffectiveness-mouse {
+  border: none;
+  margin: 10px 0px;
 }

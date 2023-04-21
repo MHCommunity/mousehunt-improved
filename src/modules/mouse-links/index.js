@@ -198,10 +198,8 @@ const updateMouseView = async () => {
 
     makeElement('div', 'location', mouseAr.location, mouseArWrapper);
 
-    if (mouseAr.stage) {
-      makeElement('div', 'stage', mouseAr.stage, mouseArWrapper);
-    }
-
+    const stage = mouseAr.stage || '';
+    makeElement('div', 'stage', stage, mouseArWrapper);
     makeElement('div', 'cheese', mouseAr.cheese, mouseArWrapper);
     makeElement('div', 'rate', `${(mouseAr.rate / 100).toFixed(2)}%`, mouseArWrapper);
 

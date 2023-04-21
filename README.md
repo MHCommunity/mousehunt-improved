@@ -31,3 +31,23 @@ $ npm run lint
   - Ancient Relic
   - Ancient Charm
   - Super Power Charm
+
+
+
+
+
+
+
+# Features
+
+## Location HUDS
+
+### Labyrinth
+
+- Better UI for resources
+- Hover hallway to see clue count
+- Lantern reminder when it's not lit in a superiour hallways
+- Shows step counter for hallway
+- Shows step remaining for hallway
+- Shows total clue count on progress bar
+- Highlights suggested door in intersection

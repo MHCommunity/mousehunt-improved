@@ -145,6 +145,8 @@ const main = () => {
     btn.parentNode.insertBefore(quickSendLinkWrapper, btn.nextSibling);
 
     btn.addEventListener('mouseover', () => {
+      btn.removeEventListener('mouseout', () => {});
+
       quickSendLinkWrapper.style.display = 'block';
 
       // make sure the popup isn't off the screen
@@ -170,16 +172,16 @@ const main = () => {
       btn.addEventListener('mouseout', () => {
         const mouseLeaveTarget = addEventListener('mousemove', (e) => {
           // get the dimensions of the popup
-          const rect = quickSendLinkWrapper.getBoundingClientRect();
+          const rrect = quickSendLinkWrapper.getBoundingClientRect();
 
           // get the mouse position
           const x = e.clientX;
           const y = e.clientY;
 
-          const bottom = rect.bottom + 10;
-          const top = rect.top - 10;
-          const left = rect.left - 10;
-          const right = rect.right + 10;
+          const bottom = rrect.bottom + 10;
+          const top = rrect.top - 10;
+          const left = rrect.left - 10;
+          const right = rrect.right + 10;
 
           // if the mouse is outside the popup, remove it
           if (y < top || y > bottom || x < left || x > right) {

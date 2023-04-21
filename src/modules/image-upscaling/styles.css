@@ -48,7 +48,7 @@
 }
 
 .treasureMapView-allyCell .treasureMapView-componentContainer {
-  width: 160px;
+  width: 170px;
   background: none;
 }
 
@@ -84,11 +84,6 @@
 .MHCheckoutCartTableView-reward-image,
 .MHCheckoutCartTableView .trapImageView {
   box-shadow: none;
-}
-
-.inventoryPage-item .itemImage img {
-  width: 80px;
-  height: 80px;
 }
 
 .giftSelectorView-friendRow-returnImage {

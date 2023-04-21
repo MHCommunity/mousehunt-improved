@@ -119,6 +119,10 @@ const addFriendLinkEventListener = (selector) => {
   }
 
   friendLinks.forEach((friendLink) => {
+    if (friendLink.classList.contains('friendsPage-friendRow-image')) {
+      return;
+    }
+
     friendLink.addEventListener('mouseenter', onFriendLinkHover);
 
     // remove the popup when the mouse leaves the link or the popup

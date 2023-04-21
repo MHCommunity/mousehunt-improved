@@ -14,9 +14,56 @@
   border-radius: 6px;
 }
 
-.labyrinthHUD-clue-name {
-  font-size: 12px;
+.labyrinthHUD-clue {
+  align-items: center;
+  display: flex;
+  font-size: 10px;
+  justify-content: flex-start;
 }
+
+.labyrinthHUD-clue-name {
+  overflow: visible;
+  text-overflow: unset;
+}
+
+.mh-ui-labyrinth-clue-count {
+  color: #050505;
+  padding: 4px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.y .labyrinthHUD-clue-name,
+.y .mh-ui-labyrinth-clue-count {
+  background-color: rgb(216 81 255 / 40%);
+}
+
+.h .labyrinthHUD-clue-name,
+.h .mh-ui-labyrinth-clue-count {
+  background-color: rgb(33 226 255 / 40%);
+}
+
+.s .labyrinthHUD-clue-name,
+.s .mh-ui-labyrinth-clue-count {
+  background-color: rgb(233 99 0 / 40%);
+}
+
+.t .labyrinthHUD-clue-name,
+.t .mh-ui-labyrinth-clue-count {
+  background-color: rgb(255 228 0 / 40%);
+}
+
+.f .labyrinthHUD-clue-name,
+.f .mh-ui-labyrinth-clue-count {
+  background-color: rgb(17 244 0 / 40%);
+}
+
+.m .labyrinthHUD-clue-name,
+.m .mh-ui-labyrinth-clue-count {
+  background-color: rgb(106 106 106 / 40%);
+  color: #d3c5c5;
+}
+
 
 /* Make the quantity counters bigger */
 .labyrinthHUD-item-quantity.quantity,
@@ -120,15 +167,21 @@
 }
 
 /* hunts to go */
-.mh-ui-labyrinth-steps-to-go {
+.mh-ui-labyrinth-door-text {
   position: absolute;
   inset: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 11px;
   color: #fff;
   opacity: 0.8;
+  flex-direction: column;
+}
+
+.mh-ui-laby-steps {
+  margin-bottom: 3px;
+  font-size: 13px;
 }
 
 .labyrinthHUD-doorContainer {
@@ -146,20 +199,18 @@
 }
 
 .labyrinthHUD-door.mh-ui-labyrinth-highlight::after {
+  content: "";
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  padding: 3px;
-  margin: 0 10px;
-  font-size: 10px;
-  color: #010101;
-  text-align: center;
-  content: "best choice";
-  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png?asset_cache_version=2) 0 0 repeat;
-  border-radius: 10px;
-  box-shadow: 0 0 1px #000 inset, 0 0 20px #fff inset;
-  opacity: 01;
+  right: 5px;
+  bottom: 5px;
+  background: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png?asset_cache_version=2) no-repeat 95% 90%;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+
+.labyrinthHUD-confirm-padding .labyrinthHUD-door.mh-ui-labyrinth-highlight:after {
+  background: none;
 }
 
 /* Popup summary */
@@ -169,10 +220,10 @@
 }
 
 .labyrinthHUD-clueDrawer-description {
-  padding: 5px 0 10px;
-  line-height: 17px;
   color: #fafafa;
-  text-shadow: 0 1px 5px #fff;
+  line-height: 17px;
+  padding: 5px 0 10px;
+  text-align: center;
 }
 
 .labyrinthHUD-clueDrawer-clue {
@@ -237,4 +288,104 @@
 .labyrinthHUD-clueDrawer-quantity {
   padding-right: 3px;
   margin-left: -3px;
+}
+
+/* retreat button */
+.hudLocationContent a.labyrinthHUD-retreatButton {
+  background-color: rgb(0 0 0 / 50%);
+  color: #707070 !important;
+}
+
+.hudLocationContent a.labyrinthHUD-retreatButton:hover {
+  color: #eee !important;
+}
+
+/* clue count on hover */
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete:after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.bad:after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_1:after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_2:after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_3:after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_4:after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_5:after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_6:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    text-shadow: 0px 0px 4px #c7ffad;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete:after {
+    content: "0";
+    color: #0e0e0e;
+    text-shadow: none;
+}
+
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.bad:after {
+    content: "1";
+    color: #c69898;
+    text-shadow: none;
+}
+
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_1:after {
+    content: "1";
+}
+
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_2:after {
+    content: "2";
+}
+
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_3:after {
+    content: "3";
+}
+
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_4:after {
+    content: "4";
+}
+
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_5:after {
+    content: "5";
+}
+
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_6:after {
+    content: "6";
+}
+
+.mh-ui-labyrinth-lantern-reminder {
+  background: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png?cv=2) 0 0 no-repeat;
+  background-size: contain;
+  bottom: 0;
+  filter: drop-shadow(1px 0 8px #f6eac3);
+  height: 75px;
+  left: -8px;
+  position: absolute;
+  width: 75px;
+  transform-origin: bottom;
+  animation: mh-ui-sway-side-to-side .75s;
+  animation-iteration-count: 3;
+}
+
+@keyframes mh-ui-sway-side-to-side {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }

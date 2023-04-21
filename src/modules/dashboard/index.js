@@ -108,6 +108,12 @@ const cacheLocationData = async () => {
     // Combine the cached quests with the current quests.
     const questsCombined = Object.assign({}, questsCached, user.quests);
 
+    if (user.environment_type === 'labyrinth') {
+      questsCombined.QuestAncientCity = {};
+    } else if (user.environment_type === 'ancient_city') {
+      questsCombined.QuestLabyrinth = {};
+    }
+
     // Save the combined data to localStorage.
     localStorage.setItem('mh-quests-cache', JSON.stringify(questsCombined));
 
@@ -267,16 +273,6 @@ const makeLocationMarkup = (id, name, progress, appendTo) => {
 
   const locationName = makeElement('div', 'locationName');
   makeElement('span', '', name, locationName);
-
-  const travelLink = makeElement('button', 'travelLink');
-  travelLink.classList.add('mousehuntActionButton', 'tiny');
-  makeElement('span', '', 'Travel', travelLink);
-  travelLink.setAttribute('environtment_type', id);
-  travelLink.addEventListener('click', () => {
-    app.pages.TravelPage.travel(id);
-  });
-
-  locationName.appendChild(travelLink);
 
   locationWrapper.appendChild(locationName);
 

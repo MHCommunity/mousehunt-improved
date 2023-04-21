@@ -17,7 +17,6 @@ import copyId from './modules/copy-id';
 import dashboard from './modules/dashboard';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import imageUpscaling from './modules/image-upscaling';
-import misc from './modules/misc-styles';
 import mouseLinks from './modules/mouse-links';
 import quickSendSupplies from './modules/quick-send-supplies';
 import wiki from './modules/wiki';
@@ -43,13 +42,12 @@ const modules = [
     name: 'Core Modules',
     description: 'Interface and functionality improvements',
     modules: [
+      { id: 'better-mh-better-ui', name: 'Better UI', default: true, description: '', load: betterUi },
       { id: 'better-mh-better-friends', name: 'Better Friends', default: true, description: '', load: betterFriends },
       { id: 'better-mh-better-inventory', name: 'Better Inventory', default: true, description: '', load: betterInventory },
       { id: 'better-mh-better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
       { id: 'better-mh-quests', name: 'Better Quests', default: false, description: '', load: betterQuests },
       { id: 'better-mh-better-shops', name: 'Better Shops', default: true, description: '', load: betterShops },
-      { id: 'better-mh-better-ui', name: 'Better UI', default: true, description: '', load: betterUi },
-      { id: 'better-mh-misc-styles', name: 'Minor Style Changes', default: true, description: '', load: misc },
     ]
   },
   {
