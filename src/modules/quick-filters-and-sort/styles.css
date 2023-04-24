@@ -1,7 +1,7 @@
 /* full width search bar */
 .campPage-trap-itemBrowser-filter input[data-filter="search"] {
-  padding: 10px;
   width: 322px;
+  padding: 10px;
 }
 
 .campPage-trap-itemBrowser-filter:first-child {
@@ -12,8 +12,8 @@
 .campPage-trap-itemBrowser-filterContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .campPage-trap-itemBrowser-favorites {
@@ -30,11 +30,11 @@
 
 /* filters */
 .campPage-trap-itemBrowser-quickLinks {
+  z-index: 1;
   display: flex;
   justify-content: space-evenly;
   padding: 5px 10px;
   background-color: #f6f3eb;
-  z-index: 1;
 }
 
 .campPage-trap-itemBrowser-quickLinks-power {
@@ -44,16 +44,16 @@
 .campPage-trap-itemBrowser-quickLinks-header {
   position: absolute;
   left: 0;
-  margin-top: 10px;
   padding: 5px;
-  transform: rotate(-90deg);
-  text-align: center;
+  margin-top: 10px;
   color: #96704b;
+  text-align: center;
+  transform: rotate(-90deg);
 }
 
 .campPage-trap-itemBrowser-quickLinks-header.filter-header {
-  margin-top: 5px;
   left: -2px;
+  margin-top: 5px;
 }
 
 .campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image {
@@ -68,22 +68,24 @@
 }
 
 .campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item-image {
+  width: 31px;
+  height: 30px;
   background-position: 50%;
   background-size: 25px;
-  height: 30px;
-  width: 31px;
 }
 
 .campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item-image-frame {
-  height: 29px;
   width: 29px;
+  height: 29px;
 }
 
-.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover {
+.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover,
+.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:focus {
   background-color: #cac0b2;
 }
 
-.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover .campPage-trap-itemBrowser-favorite-item-image-frame {
+.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover .campPage-trap-itemBrowser-favorite-item-image-frame,
+.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:focus .campPage-trap-itemBrowser-favorite-item-image-frame {
   box-shadow: none;
 }
 
@@ -104,8 +106,8 @@
 }
 
 .quicklinks-filter-sortBy-name .campPage-trap-itemBrowser-favorite-item-image {
-  background-size: 30px;
   background-position: center;
+  background-size: 30px;
 }
 
 /* Lower the items to fit the filters and searchbar change */
@@ -121,8 +123,6 @@
 .campPage-trap-itemBrowser-items {
   top: 200px;
 }
-
-
 
 .campPage-wrapper[data-blueprint-type="weapon"] .campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents,
 .campPage-wrapper[data-blueprint-type="base"] .campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents {

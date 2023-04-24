@@ -6,14 +6,14 @@
 #overlayPopup.mh-vrift-popup .title {
   padding: 10px;
   font-size: 18px;
-  color: #ffffff;
+  color: #fff;
 }
 
 .mh-vrift-sim-results {
   display: grid;
   grid-template-columns: 2fr repeat(1, 1fr);
   margin: 0 1em;
-  color: #ffffff;
+  color: #fff;
 }
 
 .mh-vrift-sim-results .stats {
@@ -25,62 +25,62 @@
 
 .mh-vrift-sim-results .result {
   display: flex;
-  justify-content: space-between;
   align-content: center;
+  justify-content: space-between;
 }
 
 .mh-vrift-sim-results .label {
-  color: #eaeaea;
-  vertical-align: middle;
-  line-height: 30px;
-  background-color: rgb(195 195 195 / 10%);
   width: 100%;
   padding-left: 10px;
-  border-radius: 5px;
   font-size: 13px;
+  line-height: 30px;
+  color: #eaeaea;
+  vertical-align: middle;
+  background-color: rgb(195 195 195 / 10%);
+  border-radius: 5px;
 }
 
 .mh-vrift-sim-results .value {
-  background: linear-gradient(#07041d, #4d3bac);
-  border: 1px solid #6d86de;
-  text-align: center;
-  width: 35px;
-  line-height: 30px;
-  color: #eaeaea;
-  font-weight: 700;
-  border-radius: 5px;
   position: relative;
   left: -25px;
+  width: 35px;
+  font-weight: 700;
+  line-height: 30px;
+  color: #eaeaea;
+  text-align: center;
+  background: linear-gradient(#07041d, #4d3bac);
+  border: 1px solid #6d86de;
+  border-radius: 5px;
 }
 
 .mh-vrift-sim-results .eclipses {
-  background-color: rgb(195 195 195 / 10%);
   padding: 10px;
-  border-radius: 5px;
   margin-bottom: 2em;
+  background-color: rgb(195 195 195 / 10%);
+  border-radius: 5px;
 }
 
 .mh-vrift-sim-results .eclipses h3 {
-  color: white;
-  font-size: 16px;
   padding-bottom: 11px;
+  font-size: 16px;
+  color: #fff;
 }
 
 .mh-vrift-sim-results .eclipses .header {
-  color: rgb(175 175 175 / 85%);
-  font-size: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid rgb(175 175 175 / 85%);
   padding-bottom: 3px;
+  margin-bottom: 10px;
+  font-size: 10px;
   line-height: unset;
+  color: rgb(175 175 175 / 85%);
+  border-bottom: 1px solid rgb(175 175 175 / 85%);
 }
 
 .mh-vrift-sim-results .eclipses li {
-  align-content: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  line-height: 20px;
+  align-content: center;
   justify-items: stretch;
+  line-height: 20px;
   text-align: right;
 }
 
@@ -93,12 +93,12 @@
 }
 
 .valourRiftHUD-dialog-inventory-item-quantity.quantity {
-  line-height: 20px;
   font-size: 14px;
   font-weight: 900;
+  line-height: 20px;
   text-shadow: none;
-  box-shadow: none;
   background-color: #282659;
+  box-shadow: none;
 }
 
 .valourRiftHUD-dialog-inventory-item-name {
@@ -110,22 +110,22 @@
 }
 
 span.valourRiftHUD-towerUpgrade-currentValue {
-  background-color: #282659;
-  color: #fff;
+  font-size: 13px;
   font-weight: 900;
   line-height: 20px;
-  font-size: 13px;
+  color: #fff;
+  background-color: #282659;
 }
 
 .valourRiftHUD-towerUpgrade-currentValueContainer {
-  vertical-align: middle;
   display: block;
   line-height: 20px;
+  vertical-align: middle;
 }
 
 .valourRiftHUD-towerUpgrade-header-title {
-  font-size: 15px;
   padding: 10px;
+  font-size: 15px;
 }
 
 .valourRiftHUD-towerUpgrade-header {
@@ -141,19 +141,19 @@ span.valourRiftHUD-towerUpgrade-currentValue {
 
 .valourRiftHUD-powerUp-currentLevel {
   font-size: 13px;
-  color: white;
+  color: #fff;
 }
 
-.valourRiftHUD-powerUp.canUpgrade:after {
-  left: 13px;
+.valourRiftHUD-powerUp.canUpgrade::after {
   top: 6px;
-  box-shadow: 0 0 6px 3px #2d9ba2;
+  left: 13px;
   filter: drop-shadow(1px 4px 6px #40f5ff) hue-rotate(73deg);
+  box-shadow: 0 0 6px 3px #2d9ba2;
 }
 
 .valourRiftHUD-powerUp-level span {
-  border-radius: 0;
-  margin-left: -1px
+  margin-left: -1px;
+  border-radius: 0
 }
 
 .valourRiftHUD-powerUp-level:first-child span {
@@ -167,9 +167,9 @@ span.valourRiftHUD-towerUpgrade-currentValue {
 }
 
 .valourRiftHUD-gauntletBait-quantity.quantity {
+  margin-top: 1px;
   font-size: 12px;
   font-weight: 900;
-  margin-top: 1px;
 }
 
 .valourRiftHUD-towerLoot-quantity.quantity {
@@ -178,30 +178,30 @@ span.valourRiftHUD-towerUpgrade-currentValue {
 }
 
 .valourRiftHUD-previewTower {
-  opacity: .4;
   top: 45px;
   filter: grayscale(1);
+  opacity: .4;
 }
 
 span.valourRiftHUD-huntsRemaining-value {
-  font-size: 13px;
-  line-height: 14px;
-  font-weight: 900;
   margin-right: 5px;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 14px;
 }
 
 span.valourRiftHUD-stepsTaken-value {
-  color: #2d2964;
-  font-weight: 900;
   font-size: 12px;
+  font-weight: 900;
+  color: #2d2964;
 }
 
 .valourRiftHUD-fuelContainer-quantity.quantity {
-  font-size: 14px;
-  background-color: #281c55;
   padding: 1px 2px;
   margin-top: -7px;
-  border: 1px solid #7db4dc;
   margin-right: -3px;
+  font-size: 14px;
+  background-color: #281c55;
+  border: 1px solid #7db4dc;
   box-shadow: 0 0 0 1px #7eaacd;
 }

@@ -19,5 +19,5 @@ export default (quests) => {
     stage_five: 'First Light'
   };
 
-  return `${phases[ quest.stage ]} - ${quest.hp}/${quest.max_hp} HP`;
+  return `${phases[quest.stage]} - ${quest.hp}/${quest.max_hp} HP`;
 };

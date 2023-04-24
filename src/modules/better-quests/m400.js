@@ -67,24 +67,24 @@ const parseObjective = (objective) => {
 
   let objectiveClean = objective.split('M400 Intel');
   if (objectiveClean.length > 1) {
-    objective = objectiveClean[ 1 ].trim();
+    objective = objectiveClean[1].trim();
   } else {
     objectiveClean = objective.split('intel');
     if (objectiveClean.length > 1) {
-      objective = objectiveClean[ 1 ].trim();
+      objective = objectiveClean[1].trim();
     }
   }
 
   const split = objective.split(' in ');
   if (split.length > 1) {
-    location = split[ 1 ].replace('the ', '').trim();
+    location = split[1].replace('the ', '').trim();
 
     locationKey = Object.keys(locations).find((key) => {
-      return locations[ key ].includes(location);
+      return locations[key].includes(location);
     });
   }
 
-  let mouseName = split[ 0 ].trim();
+  let mouseName = split[0].trim();
   mouseName = mouseName.replace('from ', '');
   mouseName = mouseName.replace(' Mice', '');
 

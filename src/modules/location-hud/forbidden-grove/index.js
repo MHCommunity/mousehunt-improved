@@ -2,14 +2,21 @@ import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
 const updateClosingTime = () => {
-  const closingPercent = user?.quests?.QuestForbiddenGrove?.grove?.progress || 0;
-  const timeLeft = 16 * (closingPercent / 100);
+  let timeLeftText = '';
 
-  // convert the decimal hours to hours and minutes
-  const hours = Math.floor(timeLeft);
-  const minutes = Math.round((timeLeft - hours) * 60);
+  // Props Warden Slayer & Timers+ for the math and logic.
+  const today = new Date();
+  const rotationLength = 20;
+  const rotationsExact = (((today.getTime() / 1000.0) - 1285704000) / 3600) / 20;
+  const rotationsInteger = Math.floor(rotationsExact);
+  const partialrotation = (rotationsExact - rotationsInteger) * rotationLength;
+  if (partialrotation < 16) {
+    const closes = (16 - partialrotation).toFixed(3);
+    const hours = Math.floor(closes);
+    const minutes = Math.ceil((closes - Math.floor(closes)) * 60);
 
-  const timeLeftText = `Approx. ${hours}h ${minutes}m remaining`;
+    timeLeftText = `${hours}h ${minutes}m remaining`;
+  }
 
   const timeLeftEl = document.createElement('div');
   timeLeftEl.classList.add('forbiddenGroveHUD-grovebar-timeLeft');

@@ -15,10 +15,10 @@
 }
 
 .labyrinthHUD-clue {
-  align-items: center;
   display: flex;
-  font-size: 10px;
+  align-items: center;
   justify-content: flex-start;
+  font-size: 10px;
 }
 
 .labyrinthHUD-clue-name {
@@ -27,8 +27,8 @@
 }
 
 .mh-ui-labyrinth-clue-count {
-  color: #050505;
   padding: 4px;
+  color: #050505;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -60,8 +60,8 @@
 
 .m .labyrinthHUD-clue-name,
 .m .mh-ui-labyrinth-clue-count {
-  background-color: rgb(106 106 106 / 40%);
   color: #d3c5c5;
+  background-color: rgb(106 106 106 / 40%);
 }
 
 
@@ -171,12 +171,12 @@
   position: absolute;
   inset: 0;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: 11px;
   color: #fff;
   opacity: 0.8;
-  flex-direction: column;
 }
 
 .mh-ui-laby-steps {
@@ -199,17 +199,17 @@
 }
 
 .labyrinthHUD-door.mh-ui-labyrinth-highlight::after {
-  content: "";
   position: absolute;
   right: 5px;
   bottom: 5px;
-  background: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png?asset_cache_version=2) no-repeat 95% 90%;
   width: 30px;
   height: 30px;
   overflow: hidden;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png?asset_cache_version=2) no-repeat 95% 90%;
 }
 
-.labyrinthHUD-confirm-padding .labyrinthHUD-door.mh-ui-labyrinth-highlight:after {
+.labyrinthHUD-confirm-padding .labyrinthHUD-door.mh-ui-labyrinth-highlight::after {
   background: none;
 }
 
@@ -220,9 +220,9 @@
 }
 
 .labyrinthHUD-clueDrawer-description {
-  color: #fafafa;
-  line-height: 17px;
   padding: 5px 0 10px;
+  line-height: 17px;
+  color: #fafafa;
   text-align: center;
 }
 
@@ -292,8 +292,8 @@
 
 /* retreat button */
 .hudLocationContent a.labyrinthHUD-retreatButton {
-  background-color: rgb(0 0 0 / 50%);
   color: #707070 !important;
+  background-color: rgb(0 0 0 / 50%);
 }
 
 .hudLocationContent a.labyrinthHUD-retreatButton:hover {
@@ -301,75 +301,75 @@
 }
 
 /* clue count on hover */
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete:after,
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.bad:after,
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_1:after,
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_2:after,
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_3:after,
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_4:after,
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_5:after,
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_6:after {
-    content: "";
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete::after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.bad::after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_1::after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_2::after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_3::after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_4::after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_5::after,
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_6::after {
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    text-align: center;
-    height: 100%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #000000;
-    text-shadow: 0px 0px 4px #c7ffad;
+    height: 100%;
     font-size: 15px;
     font-weight: 900;
+    color: #000;
+    text-align: center;
+    text-shadow: 0 0 4px #c7ffad;
+    content: "";
 }
 
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete:after {
-    content: "0";
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete::after {
     color: #0e0e0e;
     text-shadow: none;
+    content: "0";
 }
 
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.bad:after {
-    content: "1";
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.bad::after {
     color: #c69898;
     text-shadow: none;
-}
-
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_1:after {
     content: "1";
 }
 
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_2:after {
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_1::after {
+    content: "1";
+}
+
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_2::after {
     content: "2";
 }
 
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_3:after {
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_3::after {
     content: "3";
 }
 
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_4:after {
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_4::after {
     content: "4";
 }
 
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_5:after {
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_5::after {
     content: "5";
 }
 
-.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_6:after {
+.labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_6::after {
     content: "6";
 }
 
 .mh-ui-labyrinth-lantern-reminder {
-  background: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png?cv=2) 0 0 no-repeat;
-  background-size: contain;
-  bottom: 0;
-  filter: drop-shadow(1px 0 8px #f6eac3);
-  height: 75px;
-  left: -8px;
   position: absolute;
+  bottom: 0;
+  left: -8px;
   width: 75px;
+  height: 75px;
+  background: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png?cv=2) 0 0 no-repeat;
+  filter: drop-shadow(1px 0 8px #f6eac3);
+  background-size: contain;
   transform-origin: bottom;
   animation: mh-ui-sway-side-to-side .75s;
   animation-iteration-count: 3;
@@ -379,12 +379,15 @@
   0% {
     transform: rotate(0deg);
   }
+
   25% {
     transform: rotate(-5deg);
   }
+
   75% {
     transform: rotate(5deg);
   }
+
   100% {
     transform: rotate(0deg);
   }

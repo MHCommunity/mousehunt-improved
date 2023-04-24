@@ -11,7 +11,7 @@ const getFriendId = async (target) => {
     // if the href is a profile link, use that
     const urlMatch = target.href
       .replace('https://www.mousehuntgame.com/hunterprofile.php?snuid=', '')
-      .replace('https://www.mousehuntgame.com/profile.php?snuid=', '')
+      .replace('https://www.mousehuntgame.com/profile.php?snuid=', '');
     if (urlMatch && urlMatch !== target.href) {
       return urlMatch;
     }
@@ -23,7 +23,6 @@ const getFriendId = async (target) => {
         user_id: pMatch,
       });
 
-      console.log(snuid.friend.sn_user_id);
       if (snuid.friend.sn_user_id) {
         return snuid.friend.sn_user_id;
       }
@@ -139,8 +138,8 @@ const addFriendLinkEventListener = (selector) => {
 
           const bottom = rect.bottom + 100;
           const top = rect.top - 100;
-          const left = rect.left - 100
-          const right = rect.right + 100
+          const left = rect.left - 100;
+          const right = rect.right + 100;
 
           // if the mouse is outside the popup, remove it
           if (y < top || y > bottom || x < left || x > right) {

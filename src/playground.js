@@ -112,7 +112,7 @@ const createAirship = (options) => {
 };
 
 createAirship({
-  hull: hulls[ Math.floor(Math.random() * hulls.length) ],
-  sail: sails[ Math.floor(Math.random() * sails.length) ],
-  balloon: balloons[ Math.floor(Math.random() * balloons.length) ],
+  hull: hulls[Math.floor(Math.random() * hulls.length)],
+  sail: sails[Math.floor(Math.random() * sails.length)],
+  balloon: balloons[Math.floor(Math.random() * balloons.length)],
 });

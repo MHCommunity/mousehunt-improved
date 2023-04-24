@@ -16,7 +16,7 @@ const modifyText = (selector, strings) => {
       }
 
       const oldText = element.innerHTML;
-      const newText = oldText.replace(string[ 0 ], string[ 1 ]);
+      const newText = oldText.replace(string[0], string[1]);
       if (oldText !== newText) {
         element.innerHTML = newText;
       }

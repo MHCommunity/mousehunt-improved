@@ -112,7 +112,7 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
 
     const crownIcon = document.createElement('img');
     crownIcon.classList.add('mh-ui-tem-crown-icon');
-    crownIcon.src = `https://www.mousehuntgame.com/images/ui/crowns/crown_${crownType}.png`
+    crownIcon.src = `https://www.mousehuntgame.com/images/ui/crowns/crown_${crownType}.png`;
     crown.appendChild(crownIcon);
 
     makeElement('span', 'mh-ui-tem-crown-text', catches, crown);
@@ -120,20 +120,14 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
     crownWrapper.appendChild(crown);
     name.appendChild(crownWrapper);
   });
-
 };
 
 const addArToTEM = () => {
-  console.log('show');
   const miceAR = document.querySelectorAll('.campPage-trap-trapEffectiveness-mouse-chance');
   if (! miceAR) {
     setTimeout(addArToTEM, 250);
-    return;
   }
-
-  console.log('miceAR', miceAR);
-
-}
+};
 
 export default () => {
   addUIStyles(getStyles());

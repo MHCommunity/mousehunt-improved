@@ -1,12 +1,12 @@
 .forbiddenGroveHUD-grovebar-timeLeft {
   position: absolute;
-  left: 171px;
   top: 6px;
-  background-color: #e1d1b7;
+  left: 171px;
+  padding: 1px 11px;
   font-size: 12px;
-  color: #5f463d;
   font-weight: 900;
-  padding: 1px 11px 1px 11px;
-  box-shadow: 0 -0.5px 1px 1px #e1d1b7;
+  color: #5f463d;
+  background-color: #e1d1b7;
   border-top-right-radius: 10px;
+  box-shadow: 0 -0.5px 1px 1px #e1d1b7;
 }

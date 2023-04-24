@@ -1,6 +1,6 @@
 .inventoryPage-item.component .inventoryPage-item-imageContainer .itemImage {
-  border: none;
   margin: 0 auto;
+  border: none;
   border-radius: 0;
 }
 
@@ -9,8 +9,8 @@
 }
 
 .inventoryPage-item-content-action {
-  margin-left: 15px;
   margin-top: 15px;
+  margin-left: 15px;
 }
 
 .inventoryPage-item-content-description {
@@ -36,8 +36,8 @@
 }
 
 .inventoryPage-item-name {
-  font-size: 1.3em;
   padding: 10px;
+  font-size: 1.3em;
   background-color: transparent;
   border: none;
 }
@@ -51,9 +51,9 @@
 }
 
 .inventoryPage-tagContent-tagTitle {
-  font-size: 1.4em;
   padding: 10px 0;
   margin: 0;
+  font-size: 1.4em;
   border: none;
 }
 
@@ -68,9 +68,9 @@ a.inventoryPage-item-larryLexicon {
 }
 
 .inventoryPage-item-content-description-text {
+  padding: 5px;
   font-size: 10px;
   line-height: 16px;
-  padding: 5px;
 }
 
 .inventoryPage-item.full.weapon .quantity,
@@ -87,19 +87,10 @@ a.inventoryPage-item-larryLexicon {
   height: 75px;
 }
 
-.inventoryPage-item-margin {
-  padding-bottom: 10px;
-}
-
-.inventoryPage-item-content-action {
-  margin-left: 15px;
-  margin-top: 15px;
-}
-
 .inventoryPage-item-recipeOptions li {
   margin-left: 5px;
-  border-style: solid;
   background-color: #fffcdb;
+  border-style: solid;
 }
 
 /* search bar */
@@ -109,8 +100,8 @@ input.inventoryPage-tagDirectory-searchBar-input {
 
 .inventoryPage-tagDirectory-searchBar {
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
+  justify-content: space-evenly;
   padding-right: 0;
   margin-right: -10px;
 }
@@ -121,9 +112,9 @@ input.inventoryPage-tagDirectory-searchBar-input {
 }
 
 .inventoryPage-item.torn_page .itemImage img {
-  height: 40px;
   width: 40px;
   min-width: unset;
+  height: 40px;
   min-height: unset;
 }
 
@@ -133,8 +124,8 @@ input.inventoryPage-tagDirectory-searchBar-input {
 }
 
 .inventoryPage-item.torn_page .inventoryPage-item-name {
-  font-size: 1em;
   padding-right: 0;
+  font-size: 1em;
 }
 
 .inventoryPage-item.torn_page .itemImage {
@@ -156,9 +147,10 @@ input.inventoryPage-tagDirectory-searchBar-input {
   display: none;
 }
 
-.inventoryPage-item.torn_page input.viewFront, .inventoryPage-item.torn_page input.viewBack {
-  box-shadow: 1px 1px 4px #fff2aa inset;
-  border-radius: 3px;
+.inventoryPage-item.torn_page input.viewFront,
+.inventoryPage-item.torn_page input.viewBack {
   display: inline-block;
   padding: 3px 5px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 4px #fff2aa inset;
 }

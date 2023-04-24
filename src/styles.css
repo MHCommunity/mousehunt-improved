@@ -35,8 +35,8 @@
  * Styles for Utils
 */
 .mh-ui-cheese-selector-frame {
-  background: none;
   height: 10px;
+  background: none;
 }
 
 .mh-ui-cheese-selector .townOfGnawniaHUD-bait {
@@ -120,10 +120,10 @@ input.treasureMapView-shareLinkInput {
   background-color: transparent;
 }
 
-.mousehuntTooltip.left .mousehuntTooltip-arrow:after {
+.mousehuntTooltip.left .mousehuntTooltip-arrow::after {
   right: -6px;
 }
 
-.mousehuntTooltip.right .mousehuntTooltip-arrow:after {
+.mousehuntTooltip.right .mousehuntTooltip-arrow::after {
   left: -6px;
 }

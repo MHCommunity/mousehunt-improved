@@ -356,8 +356,8 @@ span.itemPurchaseView-action-owned {
 .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value {
   display: inline-flex;
   align-items: center;
-  margin-right: 3px;
   justify-content: center;
+  margin-right: 3px;
 }
 
 .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {

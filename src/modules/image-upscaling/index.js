@@ -9,7 +9,7 @@ const getNewUrl = (src) => {
 
   const searchUrl = src.replace('https://www.mousehuntgame.com/images/', '');
 
-  const newUrl = mapping[ searchUrl ];
+  const newUrl = mapping[searchUrl];
   if (! newUrl) {
     return;
   }
@@ -59,17 +59,17 @@ const upscaleImages = () => {
 
     // Get the URL of the background-image
     const urls = style.match(/url\((.*?)\)/);
-    if (! urls || ! urls[ 1 ]) {
+    if (! urls || ! urls[1]) {
       return;
     }
 
-    const url = urls[ 1 ].replace(/['"]+/g, '');
+    const url = urls[1].replace(/['"]+/g, '');
     const newUrl = getNewUrl(url);
     if (! newUrl || newUrl === url) {
       return;
     }
 
-    background.setAttribute('style', style.replace(urls[ 1 ], newUrl));
+    background.setAttribute('style', style.replace(urls[1], newUrl));
   });
 };
 

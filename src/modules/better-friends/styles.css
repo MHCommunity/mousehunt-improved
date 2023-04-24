@@ -4,14 +4,14 @@
 }
 
 #friend-data-wrapper {
-  box-shadow: 0px 1px 5px -1px #5e5e5e;
-  border-radius: 10px;
-  top: -140px;
   position: absolute;
+  top: -140px;
   right: -25px;
+  z-index: 999999;
   width: 390px;
   border: 1px solid #9a8872;
-  z-index: 999999;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px -1px #5e5e5e;
 }
 
 #friend-data-wrapper .friendsPage-friendRow {
@@ -19,11 +19,11 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-imageContainer {
-  margin-left: 5px;
   position: relative;
+  display: inline-block;
   width: 100px;
   height: 100px;
-  display: inline-block;
+  margin-left: 5px;
   vertical-align: top;
 }
 
@@ -33,14 +33,13 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar-icon {
-  height: 45px;
-  left: 0px;
   top: -7px;
+  left: 0;
+  height: 45px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar-name {
   font-size: 14px;
-
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar {
@@ -52,8 +51,8 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-icon {
-  margin-left: -10px;
   margin-right: 7px;
+  margin-left: -10px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-name {
@@ -62,27 +61,22 @@
 
 #friend-data-wrapper .friendsPage-friendRow .friendsPage-friendRow-actions {
   position: absolute;
-  right: 3px;
   top: 38px;
+  right: 3px;
 }
 
 #friend-data-wrapper .userInteractionButtonsView-button {
-  background-size: 35px;
-  height: 35px;
-  width: 35px;
-}
-#friend-data-wrapper .userInteractionButtonsView-button {
-  background-size: 40px;
-  height: 40px;
   width: 40px;
+  height: 40px;
+  background-size: 40px;
 }
 
 #friend-data-wrapper .mousehuntTooltip {
-  background: white;
   position: absolute;
   left: -20px;
-  height: auto;
   width: auto;
+  height: auto;
+  background: #fff;
 }
 
 #friend-data-wrapper .mousehuntTooltip .userInteractionButtonsView-button-label {
@@ -92,22 +86,22 @@
 #friend-data-wrapper .friendsPage-friendRow-statsContainer {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding-left: 15px;
   overflow: hidden;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat {
-  font-size: 9px;
-  width: auto;
   display: flex !important;
   align-items: center;
+  width: auto;
+  font-size: 9px;
 }
 
 .hunterInfoView-wrapper #friend-data-wrapper .friendsPage-friendRow-statsContainer .friendsPage-friendRow-stat-value {
   font-size: 9px;
-  font-weight: normal;
+  font-weight: 400;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat-label,
@@ -116,9 +110,9 @@
 }
 
 #friend-data-wrapper .quickSendWrapper {
-  left: -65px;
   top: -100px;
   right: 20px;
+  left: -65px;
 }
 
 .notificationMessageList #friend-data-wrapper {

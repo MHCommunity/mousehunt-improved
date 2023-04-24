@@ -78,14 +78,14 @@ span.campPage-trap-baitQuantity {
 /* recipe page */
 .mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent {
   background: none;
-  box-shadow: none;
   border: none;
+  box-shadow: none;
 }
 
 .mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent-margin {
+  padding: 0;
   border: none;
   box-shadow: none;
-  padding: 0;
 }
 
 /* subtabs */
@@ -94,7 +94,6 @@ span.campPage-trap-baitQuantity {
   border-radius: 10px;
 }
 
-
 .active.mousehuntHud-page-subTabContent-prefix-filter-option:first-child {
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
@@ -111,56 +110,22 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
   border-bottom: none;
 }
 
-.mousehuntHud-page-subTabContent-prefix-filter-option:first-child, .mousehuntHud-page-subTabContent-prefix-filter-option:last-child {
+.mousehuntHud-page-subTabContent-prefix-filter-option:first-child,
+.mousehuntHud-page-subTabContent-prefix-filter-option:last-child {
   border: none;
 }
 
-.mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent {
-  background: none;
-  box-shadow: none;
-  border: none;
-}
-
-.mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent-margin {
-  border: none;
-  box-shadow: none;
-  padding: 0;
-}
-
-.mousehuntHud-page-subTabContent-prefix-filter-options {
-  border: 1px solid #8595b0;
-  border-radius: 10px;
-}
-
-.active.mousehuntHud-page-subTabContent-prefix-filter-option:first-child {
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
-}
-
-.active.mousehuntHud-page-subTabContent-prefix-filter-option:last-child {
-  border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
-}
-
-a.mousehuntHud-page-subTabContent-prefix-filter-option {
-  border: 1px solid #8595b0;
-  border-top: none;
-  border-bottom: none;
-}
-
-.mousehuntHud-page-subTabContent-prefix-filter-option:first-child, .mousehuntHud-page-subTabContent-prefix-filter-option:last-child {
-  border: none;
-}
-
-.mousehuntHud-page-subTabHeader.active span, .mousehuntHud-page-subTabHeader:hover span {
+.mousehuntHud-page-subTabHeader.active span,
+.mousehuntHud-page-subTabHeader:hover span,
+.mousehuntHud-page-subTabHeader:focus span {
+  color: #fff;
   background-color: #8595b0;
-  color: white;
   box-shadow: none;
 }
 
 .mousehuntHud-page-subTabHeader span {
-  background: none;
   color: #3b5998;
+  background: none;
   border-color: #3b5998;
 }
 
@@ -184,8 +149,8 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
 }
 
 .mh-ui-tem-crown-wrapper {
-  vertical-align: middle;
   margin-top: 7px;
+  vertical-align: middle;
 }
 
 .mh-ui-tem-crown.mousebox {
@@ -194,16 +159,16 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
 }
 
 .mh-ui-tem-crown .mh-ui-tem-crown-icon {
+  width: 23px;
   height: 23px;
+  margin-top: -4px;
   margin-right: 3px;
   vertical-align: middle;
-  width: 23px;
-  margin-top: -4px;
 }
 
 span.mh-ui-tem-crown-text {
-  color: #926944;
   font-weight: 900;
+  color: #926944;
 }
 
 /* hunters profile */

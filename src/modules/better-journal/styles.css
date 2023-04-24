@@ -195,7 +195,7 @@
 
 .log_summary tbody {
   display: block;
-  margin: 0 0 0 50px;
+  margin: 0;
 }
 
 .entry.short.log_summary {
@@ -215,26 +215,23 @@
   line-height: 24px;
 }
 
-.log_summary tbody {
-  margin: 0;
-}
-
-
 .journal .content .log_summary table {
-  width: 330px;
   display: flex;
   justify-content: center;
+  width: 330px;
 }
 
 .journal .content .log_summary table td.field {
   padding-left: 10px;
 }
 
-.journal .content .log_summary table td.field.mice, .journal .content .log_summary table td.field.points, .journal .content .log_summary table td.field.gold, .journal .content .log_summary table td.field.loot {
-  text-align: center;
-  padding: 0;
+.journal .content .log_summary table td.field.mice,
+.journal .content .log_summary table td.field.points,
+.journal .content .log_summary table td.field.gold,
+.journal .content .log_summary table td.field.loot {
+  padding: 0 0 4px;
   font-size: 12px;
-  padding: 0 0 4px 0;
+  text-align: center;
 }
 
 .journal .content .log_summary table tr:nth-child(7) {
@@ -253,7 +250,6 @@
 #overlayPopup.hunting_summary .rightColumn {
   margin-bottom: 20px;
 }
-
 
 #overlayPopup.hunting_summary .title {
   margin: 10px;
@@ -282,54 +278,52 @@
 }
 
 #overlayPopup.hunting_summary .miceContainer a {
-    padding: 6px 0;
-    font-size: 10px;
-    display: grid;
-    grid-template-columns: 0 50px auto;
-    line-height: 14px;
-    align-items: start;
+  display: grid;
+  grid-template-columns: 0 50px auto;
+  align-items: start;
+  padding: 6px 0;
+  font-size: 10px;
+  line-height: 14px;
 }
 
 #overlayPopup.hunting_summary .miceContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: stretch;
-    align-items: start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  justify-items: stretch;
 }
 
 #overlayPopup.hunting_summary .miceContainer .catches {
-    font-size: 11px;
-    float: none;
+  float: none;
+  font-size: 11px;
 }
 
 #overlayPopup.hunting_summary .miceContainer a img {
-    margin: 0 3px;
+  margin: 0 3px;
 }
 
 #overlayPopup.hunting_summary .baitContainer .label {
-    grid-column-start: 1;
-    grid-column-end: 5;
+  grid-column: 1 5;
 }
 
 #overlayPopup.hunting_summary .baitContainer a {
-    float: none;
-    display: inline-block;
+  display: inline-block;
+  float: none;
 }
 
 #overlayPopup.hunting_summary .baitContainer a .wrapper {
-    font-size: 10px;
+  font-size: 10px;
 }
 
-
 #overlayPopup.hunting_summary .baitContainer a img {
-    width: 35px;
-    height: auto;
-    margin-top: 6px;
+  width: 35px;
+  height: auto;
+  margin-top: 6px;
 }
 
 #overlayPopup.hunting_summary .baitContainer a b {
-    padding-bottom: 6px;
-    display: inline-block;
+  display: inline-block;
+  padding-bottom: 6px;
 }
 
 .reportTitle {
@@ -341,7 +335,6 @@
   padding-bottom: 0.75em;
   font-size: 1.125em;
 }
-
 
 /* Hide set journal link and center detailed journal link */
 .journal-detailLinkContainer a:first-child {

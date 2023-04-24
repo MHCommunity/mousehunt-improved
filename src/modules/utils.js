@@ -18,7 +18,7 @@ const addUIStyles = (styles) => {
  *
  * @param {string}  text         Text to use for link.
  * @param {string}  href         URL to link to.
- * @param {array}   extraClasses Extra classes to add to the link.
+ * @param {Array}   extraClasses Extra classes to add to the link.
  * @param {boolean} tiny         Use the tiny button style.
  *
  * @return {string} HTML for link.
@@ -122,5 +122,5 @@ const makeCheeseSelector = async (id, location, cheesesToUse) => {
 export {
   addUIStyles,
   makeButton,
-  makeCheeseSelector,
-}
+  makeCheeseSelector
+};

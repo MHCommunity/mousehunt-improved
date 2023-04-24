@@ -22,6 +22,8 @@
 }
 
 .mh-mouse-links-map {
+  display: flex;
+  justify-content: center;
   padding-bottom: 5px;
 }
 
@@ -34,8 +36,8 @@
 }
 
 .mouseview-title-group {
-  font-size: 11px;
   padding-bottom: 8px;
+  font-size: 11px;
 }
 
 .mh-mouse-links-map .mousehuntActionButton.tiny {
@@ -65,8 +67,8 @@
 
 .mouseview-has-mhct .mouseView-statsContainer {
   display: flex;
-  width: 100%;
   align-items: center;
+  width: 100%;
 }
 
 .mouseview-has-mhct .mouseView-descriptionContainer {
@@ -80,11 +82,11 @@
 .mouseview-has-mhct .mouse-ar-wrapper {
   display: grid;
   grid-template-columns: 2fr 3fr 2fr 1fr;
-  padding: 5px;
-  justify-items: stretch;
   align-items: center;
+  justify-items: stretch;
+  padding: 5px;
+  margin: 5px 0;
   font-size: 12px;
-  margin: 5px 0px;
 }
 
 .mouseview-has-mhct .mice-ar-wrapper {
@@ -92,13 +94,13 @@
 }
 
 .mouseview-has-mhct .ar-header {
+  height: 26px;
+  padding-bottom: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 12px;
   font-weight: 900;
-  padding-bottom: 2px;
-  margin-bottom: 10px;
   border-bottom: 1px solid #ccc;
-  height: 26px;
-  margin-top: 10px;
 }
 
 .mouseview-has-mhct .rate {
@@ -110,8 +112,8 @@
 }
 
 .mouseview-has-mhct .mouseView-description {
-  line-height: 19px;
   font-weight: 500;
+  line-height: 19px;
 }
 
 .mh-mouse-links-map-name {
@@ -120,8 +122,8 @@
 }
 
 .treasureMapView-highlight-name {
-  padding: 5px 0 10px 0px;
-  font-weight: normal;
+  padding: 5px 0 10px;
+  font-weight: 400;
   text-align: center;
 }
 
@@ -134,10 +136,10 @@
 }
 
 .treasureMapView-highlight-catcher {
+  display: inline-block;
   height: auto;
   background: none;
   border: none;
-  display: inline-block;
 }
 
 .treasureMapView-highlight-group,
@@ -147,9 +149,9 @@
 
 .treasureMapView-highlight-catcher-title {
   display: inline-block;
-  vertical-align: middle;
   margin-top: -20px;
   margin-left: 12px;
+  vertical-align: middle;
 }
 
 .treasureMapView-highlight-weakness-title {
@@ -158,11 +160,6 @@
 
 .treasureMapView-highlight.goal {
   width: 30%;
-}
-
-.mh-mouse-links-map {
-  display: flex;
-  justify-content: center;
 }
 
 .treasureMapView-highlight-weaknessContainer {

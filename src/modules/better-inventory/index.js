@@ -11,7 +11,7 @@ const setOpenQuantityOnClick = () => {
     if (e.target.tagName === 'DIV') {
       const textQty = e.target.innerText;
       const qtyArray = textQty.split(' ');
-      let maxNum = qtyArray[ qtyArray.length - 1 ];
+      let maxNum = qtyArray[qtyArray.length - 1];
       maxNum = maxNum.replace('Submit', '');
       maxNum = parseInt(maxNum);
       // console.log(maxNum);

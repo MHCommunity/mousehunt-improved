@@ -13,7 +13,8 @@
   box-shadow: 0 0 5px #fff inset, 1px 1px 1px #fff;
 }
 
-#overlayPopup .button:hover, #overlayPopup .button:focus {
+#overlayPopup .button:hover,
+#overlayPopup .button:focus {
   background-color: #ffca00;
   box-shadow: inset 0 0 16px 2px #fffaab;
 }

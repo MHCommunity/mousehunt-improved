@@ -21,6 +21,6 @@
 }
 
 .mousehuntHud-marbleDrawer .tournamentStatusHud.hasError.train {
-    height: 32px;
-    overflow: hidden;
+  height: 32px;
+  overflow: hidden;
 }

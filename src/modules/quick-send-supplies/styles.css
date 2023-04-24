@@ -3,20 +3,20 @@
 }
 
 .quickSendWrapper {
+  position: absolute;
+  top: -75px;
+  right: -60%;
+  left: -60%;
+  z-index: 10;
+  min-width: 150px;
+  padding: 10px 15px;
+  font-size: 10px;
+  color: #000;
+  text-align: center;
   background: #fff;
   border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 2px 3px 4px #666;
-  color: #000;
-  font-size: 10px;
-  left: -60%;
-  padding: 10px 15px;
-  position: absolute;
-  right: -60%;
-  text-align: center;
-  top: -75px;
-  z-index: 10;
-  min-width: 150px;
 }
 
 .quickSendInput {
@@ -34,8 +34,8 @@
 }
 
 .quickSendGoWrapper {
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
 }
 
@@ -50,34 +50,33 @@
   display: none;
 }
 
-
 .quickSendItem {
-  cursor: pointer;
   margin: 0 5px;
+  cursor: pointer;
   opacity: 0.5;
 }
 
 .quickSendItem.selected {
-  outline: 1px solid #76d063;
   border-radius: 10px;
+  outline: 1px solid #76d063;
   opacity: 1;
 }
 
 .quickSendItem:hover,
 .quickSendItem:focus {
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .quickSendmessage {
   position: absolute;
   bottom: 50px;
-  background-color: #ffffaa;
-  padding: 10px;
   display: inline-flex;
   align-items: center;
+  padding: 10px;
+  pointer-events: none;
+  background-color: #ffa;
   border-radius: 3px;
-  box-shadow: 1px 1px 3px 0px black;
+  box-shadow: 1px 1px 3px 0 #000;
   opacity: 0;
   transition: opacity 0.5s;
-  pointer-events: none;
 }

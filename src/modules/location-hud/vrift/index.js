@@ -203,14 +203,16 @@ const mouseStats = [[3300, 1],
 
 function getCacheLoot(floor) {
   let idx = floor > 1 ? (floor - 1) : 0;
-  if (idx >= cacheLoot.length) { idx = cacheLoot.length - 1; }
-  const loot = cacheLoot[ idx ];
+  if (idx >= cacheLoot.length) {
+    idx = cacheLoot.length - 1;
+  }
+  const loot = cacheLoot[idx];
   return loot;
 }
 
 function convertToCR(power, luck, stats) {
-  const mPower = stats[ 0 ];
-  const mEff = stats[ 1 ];
+  const mPower = stats[0];
+  const mEff = stats[1];
   return Math.min(1, (power * mEff + 2 * Math.pow(luck * Math.min(mEff, 1.4), 2)) / (mPower + power * mEff));
 }
 
@@ -237,24 +239,27 @@ function simulate(shouldDisplay = true) {
   let luck = (window.user.trinket_name == 'Ultimate Charm') ? 100000 : window.user.trap_luck;
 
   try {
-    const altpower = Number(document.getElementsByClassName('campPage-trap-trapStat power')[ 0 ].children[ 1 ].innerText.match(/[0-9]/g).join(''));
-    const altluck = Number(document.getElementsByClassName('campPage-trap-trapStat luck')[ 0 ].children[ 1 ].innerText);
+    const altpower = Number(document.getElementsByClassName('campPage-trap-trapStat power')[0].children[1].innerText.match(/[0-9]/g).join(''));
+    const altluck = Number(document.getElementsByClassName('campPage-trap-trapStat luck')[0].children[1].innerText);
     power = Number.isNaN(altpower) ? power : Math.max(power, altpower);
     luck = Number.isNaN(altluck) ? luck : Math.max(luck, altluck);
+  } catch (err) {
+    console.log(err);
   }
-  catch (err) { console.log(err); }
 
-  const mouseCR = mouseStats.map(function (stats) { return convertToCR(power, luck, stats); });
+  const mouseCR = mouseStats.map(function (stats) {
+    return convertToCR(power, luck, stats);
+  });
   if (useUConEclipse) {
-    mouseCR[ 9 ] = 1;
-    mouseCR[ 17 ] = 1;
+    mouseCR[9] = 1;
+    mouseCR[17] = 1;
   }
 
   const mouseAR = umbra ? umbraAR : normalAR;
-  const eclipseCR = umbra ? mouseCR[ 17 ] : mouseCR[ 9 ];
-  const eclipseSG = umbra ? mouseDrops[ 17 ][ 0 ] : mouseDrops[ 9 ][ 0 ];
-  const eclipseSC = umbra ? mouseDrops[ 17 ][ 2 ] : mouseDrops[ 9 ][ 2 ];
-  const eclipseGold = umbra ? mouseDrops[ 17 ][ 4 ] : mouseDrops[ 9 ][ 4 ];
+  const eclipseCR = umbra ? mouseCR[17] : mouseCR[9];
+  const eclipseSG = umbra ? mouseDrops[17][0] : mouseDrops[9][0];
+  const eclipseSC = umbra ? mouseDrops[17][2] : mouseDrops[9][2];
+  const eclipseGold = umbra ? mouseDrops[17][4] : mouseDrops[9][4];
   const catchProfile = {
     push: [eclipseCR],
     ta: [0],
@@ -270,25 +275,25 @@ function simulate(shouldDisplay = true) {
   };
 
   for (var j = 1; j <= 4; j++) {
-    catchProfile.ta[ j ] = mouseCR[ 24 ] * mouseAR[ 24 ][ j - 1 ];
-    catchProfile.bkb[ j ] = (1 - mouseCR[ 25 ]) * mouseAR[ 25 ][ j - 1 ];
-    catchProfile.fta[ j ] = 0;
-    catchProfile.sg[ j ] = 0;
-    catchProfile.sgi[ j ] = 0;
-    catchProfile.sc[ j ] = 0;
-    catchProfile.sci[ j ] = 0;
-    catchProfile.gold[ j ] = 0;
-    catchProfile.cf[ j ] = 0;
-    catchProfile.push[ j ] = -catchProfile.ta[ j ];
+    catchProfile.ta[j] = mouseCR[24] * mouseAR[24][j - 1];
+    catchProfile.bkb[j] = (1 - mouseCR[25]) * mouseAR[25][j - 1];
+    catchProfile.fta[j] = 0;
+    catchProfile.sg[j] = 0;
+    catchProfile.sgi[j] = 0;
+    catchProfile.sc[j] = 0;
+    catchProfile.sci[j] = 0;
+    catchProfile.gold[j] = 0;
+    catchProfile.cf[j] = 0;
+    catchProfile.push[j] = -catchProfile.ta[j];
     mouseCR.map(function (cr, index) {
-      catchProfile.push[ j ] += cr * mouseAR[ index ][ j - 1 ];
-      catchProfile.sg[ j ] += cr * mouseAR[ index ][ j - 1 ] * mouseDrops[ index ][ 0 ];
-      catchProfile.sgi[ j ] += cr * mouseAR[ index ][ j - 1 ] * mouseDrops[ index ][ 1 ];
-      catchProfile.sc[ j ] += cr * mouseAR[ index ][ j - 1 ] * mouseDrops[ index ][ 2 ];
-      catchProfile.sci[ j ] += cr * mouseAR[ index ][ j - 1 ] * mouseDrops[ index ][ 3 ];
-      catchProfile.gold[ j ] += cr * mouseAR[ index ][ j - 1 ] * mouseDrops[ index ][ 4 ];
+      catchProfile.push[j] += cr * mouseAR[index][j - 1];
+      catchProfile.sg[j] += cr * mouseAR[index][j - 1] * mouseDrops[index][0];
+      catchProfile.sgi[j] += cr * mouseAR[index][j - 1] * mouseDrops[index][1];
+      catchProfile.sc[j] += cr * mouseAR[index][j - 1] * mouseDrops[index][2];
+      catchProfile.sci[j] += cr * mouseAR[index][j - 1] * mouseDrops[index][3];
+      catchProfile.gold[j] += cr * mouseAR[index][j - 1] * mouseDrops[index][4];
     });
-    catchProfile.kb[ j ] = 1 - catchProfile.ta[ j ] - catchProfile.bkb[ j ] - catchProfile.push[ j ];
+    catchProfile.kb[j] = 1 - catchProfile.ta[j] - catchProfile.bkb[j] - catchProfile.push[j];
   }
   console.log(catchProfile);
 
@@ -305,17 +310,17 @@ function simulate(shouldDisplay = true) {
   let catches = 0;
 
   function addRate(step, hunts, change) {
-    if (runValues[ step ] == null) {
-      runValues[ step ] = [];
+    if (runValues[step] == null) {
+      runValues[step] = [];
     }
-    if (runValues[ step ][ hunts ] == null) {
-      runValues[ step ][ hunts ] = 0;
+    if (runValues[step][hunts] == null) {
+      runValues[step][hunts] = 0;
     }
-    runValues[ step ][ hunts ] += change;
+    runValues[step][hunts] += change;
   }
 
   function stepBuild(step) {
-    stepDetails[ step ] = {};
+    stepDetails[step] = {};
     let lap = Math.floor(Math.pow(step / 35 + 2809 / 1225, 0.5) - 53 / 35) + 1;
     const checkLap = Math.floor(Math.pow((step + 1) / 35 + 2809 / 1225, 0.5) - 53 / 35) + 1;
     const toEC = checkLap * (106 + 35 * (checkLap)) - 1;
@@ -323,29 +328,31 @@ function simulate(shouldDisplay = true) {
     const onEC = lap * (106 + 35 * (lap)) - 1;
     const flFromEC = Math.ceil((onEC - step) / floorLength);
     const floorStart = onEC - flFromEC * floorLength;
-    stepDetails[ step ].floor = lap * 8 - flFromEC;
-    stepDetails[ step ].sync = siphon * (lap - 1) - syncSpent;
-    stepDetails[ step ].toPush = (flFromEC == 0) ? Math.min(step + speed - torchState + torchEclipse, toEC) : Math.min(step + speed, toEC);
-    stepDetails[ step ].toTA = strStep ? Math.min(step + 4 * speed, toEC) : Math.min(step + 2 * speed, toEC); // normal TA
-    stepDetails[ step ].toKB = umbra === true ? Math.max(step - 5, floorStart) : Math.max(step, floorStart); // normal run FTC
-    stepDetails[ step ].toBKB = Math.max(step - 10, floorStart); // bulwarked
+    stepDetails[step].floor = lap * 8 - flFromEC;
+    stepDetails[step].sync = siphon * (lap - 1) - syncSpent;
+    stepDetails[step].toPush = (flFromEC == 0) ? Math.min(step + speed - torchState + torchEclipse, toEC) : Math.min(step + speed, toEC);
+    stepDetails[step].toTA = strStep ? Math.min(step + 4 * speed, toEC) : Math.min(step + 2 * speed, toEC); // normal TA
+    stepDetails[step].toKB = umbra === true ? Math.max(step - 5, floorStart) : Math.max(step, floorStart); // normal run FTC
+    stepDetails[step].toBKB = Math.max(step - 10, floorStart); // bulwarked
     lap = (flFromEC == 0) ? 0 : Math.min(lap, 4);
-    stepDetails[ step ].cPush = catchProfile.push[ lap ];
-    stepDetails[ step ].cTA = catchProfile.ta[ lap ];
-    stepDetails[ step ].cKB = catchProfile.kb[ lap ];
-    stepDetails[ step ].cBKB = catchProfile.bkb[ lap ];
-    stepDetails[ step ].cFTA = catchProfile.fta[ lap ];
-    stepDetails[ step ].sg = catchProfile.sg[ lap ];
-    stepDetails[ step ].sgi = catchProfile.sgi[ lap ];
-    stepDetails[ step ].sc = catchProfile.sc[ lap ];
-    stepDetails[ step ].sci = catchProfile.sci[ lap ];
-    stepDetails[ step ].gold = catchProfile.gold[ lap ];
-    stepDetails[ step ].cf = catchProfile.cf[ lap ];
+    stepDetails[step].cPush = catchProfile.push[lap];
+    stepDetails[step].cTA = catchProfile.ta[lap];
+    stepDetails[step].cKB = catchProfile.kb[lap];
+    stepDetails[step].cBKB = catchProfile.bkb[lap];
+    stepDetails[step].cFTA = catchProfile.fta[lap];
+    stepDetails[step].sg = catchProfile.sg[lap];
+    stepDetails[step].sgi = catchProfile.sgi[lap];
+    stepDetails[step].sc = catchProfile.sc[lap];
+    stepDetails[step].sci = catchProfile.sci[lap];
+    stepDetails[step].gold = catchProfile.gold[lap];
+    stepDetails[step].cf = catchProfile.cf[lap];
   }
 
   var syncSpent = 0;
   const valuesDistribution = Array(500);
-  for (var i = 0; i < 500; i++) { valuesDistribution[ i ] = []; }
+  for (var i = 0; i < 500; i++) {
+    valuesDistribution[i] = [];
+  }
   var stepDetails = [];
   let loopActive = 1;
   let startActive = steps;
@@ -353,17 +360,17 @@ function simulate(shouldDisplay = true) {
   let loopEnd;
 
   for (let k = 0; k < valuesDistribution.length; k++) {
-    valuesDistribution[ k ][ 0 ] = 0;
+    valuesDistribution[k][0] = 0;
   }
   var runValues = [];
   for (var step = 0; step < steps; step++) {
-    runValues[ step ] = [];
-    runValues[ step ][ 0 ] = 0;
+    runValues[step] = [];
+    runValues[step][0] = 0;
   }
-  runValues[ steps ] = [1];
+  runValues[steps] = [1];
 
   stepBuild(steps);
-  syncSpent = stepDetails[ steps ].sync - sync;
+  syncSpent = stepDetails[steps].sync - sync;
   stepBuild(steps);
 
   // runDetails[step][detail] = value
@@ -374,37 +381,35 @@ function simulate(shouldDisplay = true) {
     loopActive = 0;
     loopEnd = endActive;
     for (step = startActive; step <= loopEnd; step++) {
-      if (runValues[ step ] == null) {
-        runValues[ step ] = [];
-      }
-      else {
-        const rate = runValues[ step ][ hunts - 1 ];
+      if (runValues[step] == null) {
+        runValues[step] = [];
+      } else {
+        const rate = runValues[step][hunts - 1];
         if (rate != null && rate > 1e-8) {
-          if (stepDetails[ step ] == null) {
+          if (stepDetails[step] == null) {
             stepBuild(step);
           }
-          gold += rate * stepDetails[ step ].gold;
-          cfDrops += rate * stepDetails[ step ].cf;
-          sigils += rate * stepDetails[ step ].sg;
-          secrets += rate * stepDetails[ step ].sc;
-          if ((torchState && (stepDetails[ step ].floor % 8 != 0)) || (torchEclipse && (stepDetails[ step ].floor % 8 == 0))) {
-            sigils += rate * stepDetails[ step ].sgi;
-            secrets += rate * stepDetails[ step ].sci;
+          gold += rate * stepDetails[step].gold;
+          cfDrops += rate * stepDetails[step].cf;
+          sigils += rate * stepDetails[step].sg;
+          secrets += rate * stepDetails[step].sc;
+          if ((torchState && (stepDetails[step].floor % 8 != 0)) || (torchEclipse && (stepDetails[step].floor % 8 == 0))) {
+            sigils += rate * stepDetails[step].sgi;
+            secrets += rate * stepDetails[step].sci;
           }
-          if (hunts <= stepDetails[ step ].sync && rate != 0 && stepDetails[ step ].floor < bail) {
+          if (hunts <= stepDetails[step].sync && rate != 0 && stepDetails[step].floor < bail) {
             loopActive = 1;
-            startActive = Math.min(startActive, stepDetails[ step ].toBKB);
-            endActive = Math.max(endActive, stepDetails[ step ].toTA);
-            addRate(stepDetails[ step ].toPush, hunts, rate * stepDetails[ step ].cPush);
-            addRate(stepDetails[ step ].toTA, hunts, rate * stepDetails[ step ].cTA);
-            addRate(stepDetails[ step ].toKB, hunts, rate * stepDetails[ step ].cKB);
-            addRate(stepDetails[ step ].toBKB, hunts, rate * stepDetails[ step ].cBKB);
-            addRate(step, hunts, rate * stepDetails[ step ].cFTA); // FTA
-            catches += rate * (stepDetails[ step ].cPush + stepDetails[ step ].cTA);
-          }
-          else if (hunts - 1 == stepDetails[ step ].sync || stepDetails[ step ].floor >= bail) {
+            startActive = Math.min(startActive, stepDetails[step].toBKB);
+            endActive = Math.max(endActive, stepDetails[step].toTA);
+            addRate(stepDetails[step].toPush, hunts, rate * stepDetails[step].cPush);
+            addRate(stepDetails[step].toTA, hunts, rate * stepDetails[step].cTA);
+            addRate(stepDetails[step].toKB, hunts, rate * stepDetails[step].cKB);
+            addRate(stepDetails[step].toBKB, hunts, rate * stepDetails[step].cBKB);
+            addRate(step, hunts, rate * stepDetails[step].cFTA); // FTA
+            catches += rate * (stepDetails[step].cPush + stepDetails[step].cTA);
+          } else if (hunts - 1 == stepDetails[step].sync || stepDetails[step].floor >= bail) {
             totalHunts += (hunts - 1) * rate;
-            valuesDistribution[ stepDetails[ step ].floor - 1 ][ 0 ] += rate;
+            valuesDistribution[stepDetails[step].floor - 1][0] += rate;
           }
         }
       }
@@ -414,7 +419,9 @@ function simulate(shouldDisplay = true) {
   // Results Display ------------------------------------------------------------------------
 
   let averageFloor = 0;
-  valuesDistribution.map(function (a, b) { averageFloor += a * (b + 1); });
+  valuesDistribution.map(function (a, b) {
+    averageFloor += a * (b + 1);
+  });
 
   const loopDistribution = Array(25).fill(0).map(
     function (a, index) {
@@ -434,13 +441,15 @@ function simulate(shouldDisplay = true) {
     runningProbability -= a;
     return result;
   });
-  const loopCopy = loopDistribution.slice(0).filter(function (a) { return a > 0.001; });
+  const loopCopy = loopDistribution.slice(0).filter(function (a) {
+    return a > 0.001;
+  });
 
   const avgFloor = Math.round(averageFloor);
   const curCache = getCacheLoot(curFloor);
   const avgCache = getCacheLoot(avgFloor);
   const mult = [sh ? 1.5 : 1.0, sr ? 1.5 : 1.0];
-  const deltaCache = [Math.ceil(avgCache[ 0 ] * mult[ 0 ]) - Math.ceil(curCache[ 0 ] * mult[ 0 ]), Math.ceil(avgCache[ 1 ] * mult[ 1 ]) - Math.ceil(curCache[ 1 ] * mult[ 1 ])];
+  const deltaCache = [Math.ceil(avgCache[0] * mult[0]) - Math.ceil(curCache[0] * mult[0]), Math.ceil(avgCache[1] * mult[1]) - Math.ceil(curCache[1] * mult[1])];
 
   const display = [
     'VRift Sim: ' + lvSpeed + '/' + lvSync + '/' + lvSiphon + (torchState ? ' CF' : '') + (superSiphon ? ' SS' : '') + (umbra ? ' UU' : '') + (strStep ? ' SSt' : '') + (useUConEclipse ? ' (UC Eclipse)' : ''),
@@ -448,7 +457,7 @@ function simulate(shouldDisplay = true) {
     'Power: ' + power + '    Luck: ' + luck,
     'Average Highest Floor: ' + avgFloor + ',    Average Hunts: ' + Math.round(totalHunts),
     '| Loot:  Sigils: +' + Math.round(sigils) + ',    Secrets: +' + Math.round(secrets),
-    '| Cache: Sigils: +' + deltaCache[ 0 ] + ',    Secrets: +' + deltaCache[ 1 ],
+    '| Cache: Sigils: +' + deltaCache[0] + ',    Secrets: +' + deltaCache[1],
     ''
   ];
 
@@ -473,24 +482,22 @@ function simulate(shouldDisplay = true) {
   const eclipses = [];
 
   for (i = 0; i < loopCopy.length; i++) {
-    const loopIndex = loopDistribution.indexOf(loopCopy[ i ]);
+    const loopIndex = loopDistribution.indexOf(loopCopy[i]);
 
-    const eEntry = (loopCopy[ i ] * 100).toFixed(1);
-    const cEntry = (loopCumulative[ loopIndex ] * 100).toFixed(1);
+    const eEntry = (loopCopy[i] * 100).toFixed(1);
+    const cEntry = (loopCumulative[loopIndex] * 100).toFixed(1);
     let entry = 'Eclipse #' + loopIndex.toString() + ': ';
     const fullEntry = entry + eEntry + '% (' + cEntry + '% cumulative)';
     if (exactDisplay && cumulativeDisplay) {
       entry = fullEntry;
-    }
-    else if (cumulativeDisplay) {
+    } else if (cumulativeDisplay) {
       entry += cEntry + '%';
-    }
-    else {
+    } else {
       entry += eEntry + '%';
     }
 
-    display[ startDisplay + i ] = entry;
-    fullDisplay[ startFullDisplay + i ] = fullEntry;
+    display[startDisplay + i] = entry;
+    fullDisplay[startFullDisplay + i] = fullEntry;
 
     // add entry to eclipses array
     eclipses.push({
@@ -521,12 +528,12 @@ function simulate(shouldDisplay = true) {
       avgHunts: Math.round(totalHunts),
       lootSigils: Math.round(sigils),
       lootSecrets: Math.round(secrets),
-      cacheSigils: deltaCache[ 0 ],
-      cacheSecrets: deltaCache[ 0 ],
+      cacheSigils: deltaCache[0],
+      cacheSecrets: deltaCache[0],
       eclipses,
     };
   }
-};
+}
 
 const displayResults = (results) => {
   console.log(results);
@@ -534,9 +541,9 @@ const displayResults = (results) => {
   let eclipseText = '';
   results.eclipses.forEach((eclipse) => {
     eclipseText += `<li>
-    <span class="number">Eclipse ${ eclipse.number }</span>
-    <span class="percent ${ eclipse.percent === '100.0' ? 'guaranteed' : '' }">${ eclipse.percent }%</span>
-    <span class="cumulative ${ eclipse.cumulative === '100.0' ? 'guaranteed' : '' }">${ eclipse.cumulative }%</span>
+    <span class="number">Eclipse ${eclipse.number}</span>
+    <span class="percent ${eclipse.percent === '100.0' ? 'guaranteed' : ''}">${eclipse.percent}%</span>
+    <span class="cumulative ${eclipse.cumulative === '100.0' ? 'guaranteed' : ''}">${eclipse.cumulative}%</span>
     </li>`;
   });
 
@@ -544,35 +551,35 @@ const displayResults = (results) => {
     <div class="stats">
       <div class="result">
         <div class="label">Speed</div>
-        <div class="value">${ results.speed }</div>
+        <div class="value">${results.speed}</div>
       </div>
       <div class="result">
         <div class="label">Sync</div>
-        <div class="value">${ results.sync }</div>
+        <div class="value">${results.sync}</div>
       </div>
       <div class="result">
         <div class="label">Avg. Highest Floor</div>
-        <div class="value">${ results.avgFloor }</div>
+        <div class="value">${results.avgFloor}</div>
       </div>
       <div class="result">
         <div class="label">Avg. Hunts</div>
-        <div class="value">${ results.avgHunts }</div>
+        <div class="value">${results.avgHunts}</div>
       </div>
       <div class="result">
         <div class="label">Sigils (Loot)</div>
-        <div class="value">${ results.lootSigils }</div>
+        <div class="value">${results.lootSigils}</div>
       </div>
       <div class="result">
         <div class="label">Secrets (Loot)</div>
-        <div class="value">${ results.lootSecrets }</div>
+        <div class="value">${results.lootSecrets}</div>
       </div>
       <div class="result">
         <div class="label">Sigils (Cache)</div>
-        <div class="value">${ results.cacheSigils }</div>
+        <div class="value">${results.cacheSigils}</div>
       </div>
       <div class="result">
         <div class="label">Secrets (Cache)</div>
-        <div class="value">${ results.cacheSecrets }</div>
+        <div class="value">${results.cacheSecrets}</div>
       </div>
     </div>
 
@@ -583,7 +590,7 @@ const displayResults = (results) => {
           <span class="percent">Chance</span>
           <span class="cumulative">Total</span>
         </li>
-        ${ eclipseText }
+        ${eclipseText}
       </ol>
     </div>
   </div>`;

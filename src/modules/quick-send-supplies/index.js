@@ -178,13 +178,13 @@ const main = () => {
           const x = e.clientX;
           const y = e.clientY;
 
-          const bottom = rrect.bottom + 10;
-          const top = rrect.top - 10;
-          const left = rrect.left - 10;
-          const right = rrect.right + 10;
+          const leavebottom = rrect.bottom + 10;
+          const leavetop = rrect.top - 10;
+          const leaveleft = rrect.left - 10;
+          const leaveright = rrect.right + 10;
 
           // if the mouse is outside the popup, remove it
-          if (y < top || y > bottom || x < left || x > right) {
+          if (y < leavetop || y > leavebottom || x < leaveleft || x > leaveright) {
             quickSendLinkWrapper.style.display = 'none';
             removeEventListener('mousemove', mouseLeaveTarget);
           }

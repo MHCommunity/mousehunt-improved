@@ -208,7 +208,7 @@ const updateMouseView = async () => {
 
   arWrapper.appendChild(miceArWrapper);
   container.appendChild(arWrapper);
-}
+};
 
 const main = () => {
   onOverlayChange({ mouse: { show: updateMouseView } });
