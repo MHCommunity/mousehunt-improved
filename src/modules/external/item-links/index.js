@@ -2,6 +2,19 @@ import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
 /**
+ * Return an anchor element with the given text and href.
+ *
+ * @param {string} text Text to use for link.
+ * @param {string} href URL to link to.
+ *
+ * @return {string} HTML for link.
+ */
+const makeLink = (text, href) => {
+  href = href.replace(/\s/g, '_');
+  return `<a href="${href}" class="mousehuntActionButton tiny mh-item-links"><span>${text}</span></a>`;
+};
+
+/**
  * Return a node with links after grabbing the item ID and name from the page.
  *
  * @param {Object} args       Arguments to use for the links.

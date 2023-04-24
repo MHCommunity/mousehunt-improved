@@ -94,12 +94,16 @@ const locationImages = {
 const cacheLocationData = async () => {
   return new Promise((resolve) => {
     if (! user.environment_type || ! user.quests) {
+      resolve();
       return;
     }
 
     // For some environments, we need to build the data from the quests.
     if (user.environment_type === 'desert_warpath') {
-      user.quests.QuestFieryWarpath = setFieryWarpathData();
+      const fwQuestData = setFieryWarpathData();
+      if (fwQuestData) {
+        user.quests.QuestFieryWarpath = fwQuestData;
+      }
     }
 
     // Get the current cached quests.
@@ -122,11 +126,13 @@ const cacheLocationData = async () => {
 };
 
 const travel = async (location) => {
+  console.log(`Traveling to ${location}...`);
+
   // return a promise that resolves when the travel is complete.
   return new Promise((resolve) => {
-    app.pages.TravelPage.travel(location);
-
+    // app.pages.TravelPage.travel(location);    // wait a second between travel and refresh.
     cacheLocationData(app.data).then(() => {
+      console.log(`Travel complete to ${location}.`);
       resolve();
     });
   });
@@ -172,9 +178,10 @@ const refreshData = async () => {
     'rift_valour',
   ];
 
-  locations.forEach(async (location) => {
-    await travel(location);
-  });
+  // Travel to each location, waiting 1 second between each.
+  for (let i = 0; i < locations.length; i++) {
+    await travel(locations[i]);
+  }
 
   // Return to the original location and remove the overlay.
   app.pages.TravelPage.travel(currentLocation);

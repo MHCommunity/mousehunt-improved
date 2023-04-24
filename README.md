@@ -51,3 +51,17 @@ $ npm run lint
 - Shows step remaining for hallway
 - Shows total clue count on progress bar
 - Highlights suggested door in intersection
+
+
+
+
+
+
+
+
+
+
+
+
+weapon vhooser by powert type
+<a href="#" class="moussuPicchuHUD-powerType rain shdw mousehuntTooltipParent" onclick="hg.views.HeadsUpDisplayMoussuPicchuView.showTrapSelector(this); return false;"></a>
