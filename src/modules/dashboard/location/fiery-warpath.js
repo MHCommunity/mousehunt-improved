@@ -1,4 +1,8 @@
 export function getFieryWarpathText(quests) {
+  if (! quests.QuestFieryWarpath) {
+    return '';
+  }
+
   const quest = {
     wave: quests?.QuestFieryWarpath?.wave || 0,
     streak: quests?.QuestFieryWarpath?.streak || 0,
@@ -14,6 +18,10 @@ export function getFieryWarpathText(quests) {
 }
 
 export function setFieryWarpathData() {
+  if ('desert_warpath' !== getCurrentLocation()) {
+    return false;
+  }
+
   let wave = 0;
   let streak = 'No Streak';
   let remaining = 0;

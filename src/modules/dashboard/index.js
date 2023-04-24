@@ -332,6 +332,21 @@ const getDashboardContents = () => {
   makeLocationMarkup('rift_valour', 'Valour Rift', getValourRiftText, rift);
   makeRegionMarkup('Rift', rift, contentsWrapper);
 
+  if (
+    burroughs.children.length === 0 &&
+    varmintValley.children.length === 0 &&
+    sandtailDesert.children.length === 0 &&
+    rodentia.children.length === 0 &&
+    quesoCanyon.children.length === 0 &&
+    hollowHeights.children.length === 0 &&
+    folkloreForest.children.length === 0 &&
+    rift.children.length === 0
+  ) {
+    const noLocation = makeElement('div', 'noLocationDataWrapper');
+    makeElement('div', 'noLocationData', 'No location data found. Refresh data to populate the dashboard.', noLocation);
+    contentsWrapper.appendChild(noLocation);
+  }
+
   return contentsWrapper;
 };
 

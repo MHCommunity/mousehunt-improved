@@ -1,3 +1,11 @@
 export default (quests) => {
-  return `Mist: ${quests.QuestRiftBurroughs.mist_released} / 20`;
+  if (! quests.QuestRiftBurroughs) {
+    return '';
+  }
+
+  const quest = {
+    mist_released: quests?.QuestRiftBurroughs?.mist_released || null,
+  };
+
+  return `Mist: ${quest.mist_released} / 20`;
 };

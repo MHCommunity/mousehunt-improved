@@ -1,3 +1,13 @@
 export default (quests) => {
-  return `Rage: ${quests.QuestRiftWhiskerWoods.zones.clearing.level} / ${quests.QuestRiftWhiskerWoods.zones.lagoon.level} / ${quests.QuestRiftWhiskerWoods.zones.tree.level}`;
+  if (! (quests.QuestRiftWhiskerWoods && quests.QuestRiftWhiskerWoods.zones)) {
+    return '';
+  }
+
+  const quest = {
+    clearing: quests?.QuestRiftWhiskerWoods?.zones?.clearing?.level || 0,
+    level: quests?.QuestRiftWhiskerWoods?.zones?.level?.level || 0,
+    tree: quests?.QuestRiftWhiskerWoods?.zones?.tree?.level || 0,
+  };
+
+  return `Rage: ${quest.clearing} / ${quest.lagoon} / ${quest.tree}`;
 };

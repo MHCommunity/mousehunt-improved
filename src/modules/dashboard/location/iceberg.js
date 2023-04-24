@@ -1,4 +1,8 @@
 export default (quests) => {
+  if (! quests.QuestIceberg) {
+    return '';
+  }
+
   const quest = {
     phase: quests.QuestIceberg.current_phase || 'Iceberg',
     progress: quests.QuestIceberg.user_progress || 0,

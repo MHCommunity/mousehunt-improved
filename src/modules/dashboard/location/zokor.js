@@ -1,11 +1,14 @@
 export default (quests) => {
-  if (! quests.QuestAncientCity.district_name || ! quests.QuestAncientCity.remaining) {
-    return false;
+  if (! quests.QuestAncientCity) {
+    return '';
   }
 
   const quest = {
-    name: quests.QuestAncientCity.district_name.replace('The ', '') || '',
-    stealth: quests.QuestAncientCity.remaining || 0,
-  };
-  return `${quest.name}, ${quest.stealth} stealth`;
+    district_name: quests?.QuestAncientCity?.district_name || null,
+    remaining: quests?.QuestAncientCity?.remaining || null,
+    remaining: quests?.QuestAncientCity?.remaining || null,
+  }
+
+  const name = quest.district_name.replace('The ', '');
+  return `${name}, ${quest.remaining} stealth`;
 };
