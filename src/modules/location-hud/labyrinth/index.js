@@ -38,6 +38,9 @@ const main = () => {
     return;
   }
 
+  // Always allow gems to be scrambled.
+  scrambleGems();
+
   const appendTo = document.querySelector('.labyrinthHUD-hallwayDescription');
   if (! appendTo) {
     return;
@@ -144,16 +147,13 @@ const scrambleGems = () => {
 export default () => {
   addUIStyles(styles);
 
-  // Always allow gems to be scrambled.
-  scrambleGems();
-
   main();
 
+  onAjaxRequest(main);
   onPageChange({ camp: { show: main } });
   onAjaxRequest(() => {
     setTimeout(main, 500);
   }, 'managers/ajax/turns/activeturn.php', true);
-  onAjaxRequest(main);
 };
 
 // fealty = y

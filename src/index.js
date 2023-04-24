@@ -30,7 +30,9 @@ import noSidebar from './modules/external/no-sidebar';
 import tallerWindows from './modules/external/taller-windows';
 
 // Location HUD improvements.
+import forbiddenGrove from './modules/location-hud/forbidden-grove';
 import iceberg from './modules/location-hud/iceberg';
+import ssh4 from './modules/location-hud/ssh4';
 import labyrinth from './modules/location-hud/labyrinth';
 import vrift from './modules/location-hud/vrift';
 
@@ -78,8 +80,10 @@ const modules = [
     name: 'Location HUD improvements',
     description: 'Add additional information to the HUD for each location.',
     modules: [
+      { id: 'better-mh-forbidden-grove', name: 'Forbidden Grove HUD Improvements', default: true, description: '', load: forbiddenGrove },
       { id: 'better-mh-iceberg', name: 'Iceberg HUD Improvements', default: true, description: '', load: iceberg },
       { id: 'better-mh-labyrinth', name: 'Labyrinth HUD Improvements', default: true, description: '', load: labyrinth },
+      { id: 'better-mh-sshiv', name: 'S.S. Huntington IV HUD Improvements', default: true, description: '', load: ssh4 },
       { id: 'better-mh-vrift', name: 'Valour Rift HUD Improvements', default: true, description: '', load: vrift },
     ],
   },
