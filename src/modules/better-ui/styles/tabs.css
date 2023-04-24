@@ -58,6 +58,10 @@ a.campPage-daily-chest-info,
   background-color: #ffffff57;
 }
 
+.campPage-daily-draw-prize-description {
+  margin: 10px 20px;
+}
+
 div#dailyRewardTimer {
   position: absolute;
   right: 0;

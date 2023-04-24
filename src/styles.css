@@ -32,6 +32,18 @@
 }
 
 /*
+ * Styles for Utils
+*/
+.mh-ui-cheese-selector-frame {
+  background: none;
+  height: 10px;
+}
+
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait {
+  width: 145px;
+}
+
+/*
  *
  * Fixes
  *
@@ -106,4 +118,12 @@ input.treasureMapView-shareLinkInput {
 
 .springHuntHUD-dialog-item-image .floatingIslandsAirship {
   background-color: transparent;
+}
+
+.mousehuntTooltip.left .mousehuntTooltip-arrow:after {
+  right: -6px;
+}
+
+.mousehuntTooltip.right .mousehuntTooltip-arrow:after {
+  left: -6px;
 }

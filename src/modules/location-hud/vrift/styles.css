@@ -91,3 +91,117 @@
 .mh-vrift-sim-results .number {
   text-align: left;
 }
+
+.valourRiftHUD-dialog-inventory-item-quantity.quantity {
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 900;
+  text-shadow: none;
+  box-shadow: none;
+  background-color: #282659;
+}
+
+.valourRiftHUD-dialog-inventory-item-name {
+  text-align: center;
+}
+
+.valourRiftHUD-towerUpgradeLevel-costTotal {
+  font-size: 14px;
+}
+
+span.valourRiftHUD-towerUpgrade-currentValue {
+  background-color: #282659;
+  color: #fff;
+  font-weight: 900;
+  line-height: 20px;
+  font-size: 13px;
+}
+
+.valourRiftHUD-towerUpgrade-currentValueContainer {
+  vertical-align: middle;
+  display: block;
+  line-height: 20px;
+}
+
+.valourRiftHUD-towerUpgrade-header-title {
+  font-size: 15px;
+  padding: 10px;
+}
+
+.valourRiftHUD-towerUpgrade-header {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  align-items: center;
+  justify-items: stretch;
+}
+
+.valourRiftHUD-towerUpgrade-content {
+  padding: 10px;
+}
+
+.valourRiftHUD-powerUp-currentLevel {
+  font-size: 13px;
+  color: white;
+}
+
+.valourRiftHUD-powerUp.canUpgrade:after {
+  left: 13px;
+  top: 6px;
+  box-shadow: 0 0 6px 3px #2d9ba2;
+  filter: drop-shadow(1px 4px 6px #40f5ff) hue-rotate(73deg);
+}
+
+.valourRiftHUD-powerUp-level span {
+  border-radius: 0;
+  margin-left: -1px
+}
+
+.valourRiftHUD-powerUp-level:first-child span {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.valourRiftHUD-powerUp-level:last-child span {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.valourRiftHUD-gauntletBait-quantity.quantity {
+  font-size: 12px;
+  font-weight: 900;
+  margin-top: 1px;
+}
+
+.valourRiftHUD-towerLoot-quantity.quantity {
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.valourRiftHUD-previewTower {
+  opacity: .4;
+  top: 45px;
+  filter: grayscale(1);
+}
+
+span.valourRiftHUD-huntsRemaining-value {
+  font-size: 13px;
+  line-height: 14px;
+  font-weight: 900;
+  margin-right: 5px;
+}
+
+span.valourRiftHUD-stepsTaken-value {
+  color: #2d2964;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.valourRiftHUD-fuelContainer-quantity.quantity {
+  font-size: 14px;
+  background-color: #281c55;
+  padding: 1px 2px;
+  margin-top: -7px;
+  border: 1px solid #7db4dc;
+  margin-right: -3px;
+  box-shadow: 0 0 0 1px #7eaacd;
+}

@@ -83,3 +83,8 @@ img.locationImage {
   margin-left: 10px;
   font-size: 12px;
 }
+
+.noLocationData {
+  font-size: 12px;
+  text-align: center;
+}

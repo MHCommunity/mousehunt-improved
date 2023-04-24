@@ -25,7 +25,7 @@
   bottom: 0;
   box-sizing: border-box;
   padding: 5px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 11px;
   text-align: right;
   background-color: hsl(0deg 0% 100% / 70%);
@@ -172,8 +172,8 @@
 }
 
 .largerTrapView-popup-name,
-span.campPage-trap-armedItem-skin-description-content.has_skin b,
-span.campPage-trap-armedItem-skin-description-content.has_skin br {
+span.campPage-trap-armedItem-skin-description-content b,
+span.campPage-trap-armedItem-skin-description-content br {
   display: none;
 }
 
@@ -227,6 +227,7 @@ span.campPage-trap-armedItem-skin-description-content.has_skin br {
   background: #f6f3eb;
   border-radius: 3px;
   box-shadow: inset 0 0 1px #755e40;
+  border-color: #e3dbd5;
 }
 
 .campPage-trap-trapEffectiveness-difficultyGroup-label {
@@ -238,4 +239,13 @@ span.campPage-trap-armedItem-skin-description-content.has_skin br {
 .campPage-trap-trapEffectiveness-mouse {
   border: none;
   margin: 10px 0px;
+}
+
+.campPage-trap-armedItem.skin .campPage-trap-armedItem-skin-description-content span {
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.campPage-trap-blueprintContainer .campPage-trap-trapEffectivenessBar {
+  display: none;
 }
