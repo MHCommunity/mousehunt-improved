@@ -18,6 +18,7 @@ import dashboard from './modules/dashboard';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import imageUpscaling from './modules/image-upscaling';
 import mouseLinks from './modules/mouse-links';
+import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
 import wiki from './modules/wiki';
 

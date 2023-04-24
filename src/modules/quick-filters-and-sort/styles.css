@@ -1,0 +1,146 @@
+/* full width search bar */
+.campPage-trap-itemBrowser-filter input[data-filter="search"] {
+  padding: 10px;
+  width: 322px;
+}
+
+.campPage-trap-itemBrowser-filter:first-child {
+  flex: 0 0 100%;
+  margin-bottom: 5px;
+}
+
+.campPage-trap-itemBrowser-filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.campPage-trap-itemBrowser-favorites {
+  margin-top: 10px;
+}
+
+.campPage-trap-itemBrowser .campPage-trap-itemBrowser-filter select {
+  width: 100px;
+}
+
+.campPage-trap-itemBrowser.weapon .campPage-trap-itemBrowser-filter select {
+  width: 75px;
+}
+
+/* filters */
+.campPage-trap-itemBrowser-quickLinks {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 10px;
+  background-color: #f6f3eb;
+  z-index: 1;
+}
+
+.campPage-trap-itemBrowser-quickLinks-power {
+  padding: 10px 15px;
+}
+
+.campPage-trap-itemBrowser-quickLinks-header {
+  position: absolute;
+  left: 0;
+  margin-top: 10px;
+  padding: 5px;
+  transform: rotate(-90deg);
+  text-align: center;
+  color: #96704b;
+}
+
+.campPage-trap-itemBrowser-quickLinks-header.filter-header {
+  margin-top: 5px;
+  left: -2px;
+}
+
+.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image {
+  width: 41px;
+  height: 41px;
+  background-position: center;
+}
+
+.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image-frame {
+  width: 40px;
+  height: 40px;
+}
+
+.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item-image {
+  background-position: 50%;
+  background-size: 25px;
+  height: 30px;
+  width: 31px;
+}
+
+.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item-image-frame {
+  height: 29px;
+  width: 29px;
+}
+
+.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover {
+  background-color: #cac0b2;
+}
+
+.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover .campPage-trap-itemBrowser-favorite-item-image-frame {
+  box-shadow: none;
+}
+
+.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item {
+  width: auto;
+}
+
+.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item {
+  margin: 0 2px;
+}
+
+.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item:first-child {
+  margin-left: 0;
+}
+
+.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item:last-child {
+  margin-right: 0;
+}
+
+.quicklinks-filter-sortBy-name .campPage-trap-itemBrowser-favorite-item-image {
+  background-size: 30px;
+  background-position: center;
+}
+
+/* Lower the items to fit the filters and searchbar change */
+.skin .campPage-trap-itemBrowser-items {
+  top: 50px;
+}
+
+.weapon .campPage-trap-itemBrowser-items,
+.base .campPage-trap-itemBrowser-items {
+  top: 250px;
+}
+
+.campPage-trap-itemBrowser-items {
+  top: 200px;
+}
+
+
+
+.campPage-wrapper[data-blueprint-type="weapon"] .campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents,
+.campPage-wrapper[data-blueprint-type="base"] .campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents {
+  margin-top: 170px;
+}
+
+.campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents {
+  margin-top: 125px;
+}
+
+.skin .campPage-trap-itemBrowser-item-image {
+  display: none;
+}
+
+.skin .campPage-trap-itemBrowser-item-description.shortDescription {
+  display: none;
+}
+
+.skin .campPage-trap-itemBrowser-item-content .campPage-trap-itemBrowser-item-name {
+  margin-top: 11px;
+}
