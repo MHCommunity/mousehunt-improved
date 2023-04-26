@@ -127,3 +127,34 @@ input.treasureMapView-shareLinkInput {
 .mousehuntTooltip.right .mousehuntTooltip-arrow::after {
   left: -6px;
 }
+
+
+/* maintenance mouse */
+@keyframes rotate40 {
+  0% { transform: rotate(0deg); } /* eslint-disable-line */
+  50% { transform: rotate(40deg); }  /* eslint-disable-line */
+  100% { transform: rotate(0deg); }  /* eslint-disable-line */
+}
+
+.PageMaintenance .maintenanceBody {
+  background-image: url(https://i.mouse.rip/maintenance-mouse.png);
+  background-size: 240px 240px;
+}
+
+.PageMaintenance .maintenanceBody:before {
+  content: "";
+  position: absolute;
+  height: 40px;
+  width: 30px;
+  z-index: 1;
+  background: transparent url(https://i.mouse.rip/maintenance-mouse-wrench.png) no-repeat left center;
+  transform-origin: bottom left;
+  background-size: 30px;
+  top: 75px;
+  left: 118px;
+  animation: rotate40 .5s linear infinite;
+}
+
+.PageMaintenance .maintenanceBody {
+  position: relative;
+}

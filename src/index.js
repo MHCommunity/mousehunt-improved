@@ -5,7 +5,6 @@ import { addUIStyles } from './modules/utils';
 import globalStyles from './styles.css';
 
 // Core 'Better' modules
-import betterFriends from './modules/better-friends';
 import betterInventory from './modules/better-inventory';
 import betterJournal from './modules/better-journal';
 import betterQuests from './modules/better-quests';
@@ -15,9 +14,10 @@ import betterUi from './modules/better-ui';
 // Feature modules.
 import copyId from './modules/copy-id';
 import dashboard from './modules/dashboard';
-import onlyOpenMultiple from './modules/only-open-multiple';
+import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import mouseLinks from './modules/mouse-links';
+import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
 import wiki from './modules/wiki';
@@ -46,7 +46,6 @@ const modules = [
     description: 'Interface and functionality improvements',
     modules: [
       { id: 'better-mh-better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
-      { id: 'better-mh-better-friends', name: 'Better Friends', default: true, description: 'Hover on a name anywhere and get a quick popup of the friend interface. View details, send supplies in a click, etc.', load: betterFriends },
       { id: 'better-mh-better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and appearance and adds a variety of small features.', load: betterInventory },
       { id: 'better-mh-better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
       { id: 'better-mh-quests', name: 'Better Quests', default: false, description: '', load: betterQuests },
@@ -59,6 +58,7 @@ const modules = [
     description: 'Additional features',
     modules: [
       { id: 'better-mh-dashboard', name: 'Location Dashboard', default: true, description: 'Show a location information dashboard in the top dropdown menu.', load: dashboard },
+      { id: 'better-mh-hover-profiles', name: 'Hover Profiles', default: true, description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.', load: hoverProfiles },
       { id: 'better-mh-image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backagrounds across the entire MH interface.', load: imageUpscaling },
       { id: 'better-mh-inventory-only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
       { id: 'better-mh-item-links', name: 'Item Links', default: true, description: 'Add links to MHCT, MHWiki, mhdb in item popups.', load: itemLinks },

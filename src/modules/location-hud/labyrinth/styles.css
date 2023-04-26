@@ -64,9 +64,8 @@
   background-color: rgb(106 106 106 / 40%);
 }
 
-
 /* Make the quantity counters bigger */
-.labyrinthHUD-item-quantity.quantity,
+.labyrinthHUD-item-quantity,
 .labyrinthHUD-scrambleDoors-quantity,
 .labyrinthHUD-scrambleClues-quantity,
 .labyrinthHUD-toggleLantern-quantity.quantity {
@@ -113,6 +112,7 @@
 }
 
 .labyrinthHUD-scrambleClues:hover .labyrinthHUD-scrambleClues-name,
+.labyrinthHUD-scrambleClues.disabled .labyrinthHUD-scrambleClues-name,
 .labyrinthHUD-scrambleClues:focus .labyrinthHUD-scrambleClues-name,
 .labyrinthHUD-scrambleClues-name {
   position: relative;

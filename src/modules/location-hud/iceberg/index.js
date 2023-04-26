@@ -301,7 +301,10 @@ const main = async () => {
     remainingStageDistance.classList.add('remaining-stage-distance');
     const destination = quest.isDeep ? 'Deep' : 'next stage';
     if (quest.stage !== quest.total) {
-      remainingStageDistance.innerText = `${quest.stage} feet until ${destination} (~${quest.stageHunts} hunts)`;
+      remainingStageDistance.innerText = `${quest.stage} feet until ${destination}`;
+      if (quest.stageHunts > 0) {
+        remainingStageDistance.innerText += ` (~${quest.stageHunts} hunts)`;
+      }
     }
 
     // Append the stage distance element.
@@ -321,7 +324,10 @@ const main = async () => {
     const remainingDistance = document.createElement('div');
     remainingDistance.classList.add('remaining-distance');
     if (quest.total !== 0) {
-      remainingDistance.innerText = `${quest.total} feet until Icewing's Lair (~${quest.totalHunts} hunts)`;
+      remainingDistance.innerText = `${quest.total} feet until Icewing's Lair`;
+      if (quest.totalHunts > 0) {
+        remainingDistance.innerText += `(~${quest.totalHunts} hunts)`;
+      }
     }
 
     // Append the distance element.

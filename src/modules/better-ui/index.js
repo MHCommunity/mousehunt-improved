@@ -6,9 +6,11 @@ import styles from './styles.css';
 import betterLuckyCatchIcon from './styles/better-lucky-catch-icon.css';
 import footer from './styles/footer.css';
 import overlays from './styles/overlays.css';
+import select2 from './styles/select2.css';
 import sidebar from './styles/sidebar.css';
 import tabs from './styles/tabs.css';
 import traps from './styles/traps.css';
+import maps from './styles/maps.css';
 
 // HUD styles
 import fiStyles from './location-styles/fi.css';
@@ -19,10 +21,12 @@ const getStyles = () => {
     betterLuckyCatchIcon,
     footer,
     overlays,
+    select2,
     sidebar,
     styles,
     tabs,
     traps,
+    maps,
     fiStyles,
     trainStyles,
   ].join('\n');

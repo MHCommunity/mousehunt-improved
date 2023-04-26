@@ -117,3 +117,8 @@
 .floatingIslandsWorkshop-part.active .floatingIslandsWorkshop-part-border::after {
   border: none;
 }
+
+/* select 2 */
+.select2-results {
+    max-height: 50vh;
+}

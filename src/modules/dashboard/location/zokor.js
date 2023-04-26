@@ -8,5 +8,9 @@ export default (quests) => {
     remaining: quests?.QuestAncientCity?.remaining || null,
   };
 
+  if (! quest.district_name || ! quest.remaining) {
+    return '';
+  }
+
   return `${quest.district_name.replace('The ', '')}, ${quest.remaining} stealth`;
 };

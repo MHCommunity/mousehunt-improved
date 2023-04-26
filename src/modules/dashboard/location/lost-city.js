@@ -1,4 +1,14 @@
 export default (quests) => {
-  // curses
-  return quests ? '' : false;
+  if (! quests.QuestLostCity) {
+    return '';
+  }
+
+  if (! quests.QuestLostCity?.minigame?.is_cursed) {
+    return 'Not cursed';
+  }
+
+  const curses = quests.QuestLostCity?.minigame?.curses;
+  const cursesText = curses.map((curse) => curse.name).join(', ').replace(/,([^,]*)$/, '$1');
+
+  return `Cursed with ${cursesText}`;
 };

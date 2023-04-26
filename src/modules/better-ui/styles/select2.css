@@ -1,0 +1,48 @@
+.select2-result-sub .select2-result-label {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  justify-items: start;
+  align-items: center;
+}
+
+.select2-results li.select2-result-with-children>.select2-result-label {
+  padding: 10px;
+  font-size: 12px;
+}
+
+.friendsPage-filter-environment-quantity {
+  text-align: center;
+  min-width: 25px;
+  vertical-align: middle;
+}
+
+/* first dropdown on the friends page - this is the search by friend name */
+.PageAdversaries #select2-drop li,
+.PageFriends #select2-drop li {
+  padding: 5px;
+  font-size: 12px;
+}
+
+.PageAdversaries #select2-drop li:nth-child(even) {
+  background-color: #eae9e9;
+}
+
+.PageAdversaries #select2-drop li:nth-child(even).select2-highlighted {
+  background-color: #3875d7;
+}
+
+.select2-search input {
+  font-size: 15px;
+  vertical-align: middle;
+  padding: 6px 0 6px 5px;
+  background: url(https://www.mousehuntgame.com/images/select2/select2.png?asset_cache_version=2) no-repeat 100% -26px,linear-gradient(to bottom,#fff 85%,#eee 99%) 0 0;
+  background-size: 70px;
+}
+
+.friendsPage-list-filter-select .select2-drop ul.select2-results li:first-of-type {
+  display: none;
+}
+
+.friendsPage-list-filter-select .select2-drop ul.select2-result-sub li:first-of-type {
+  display: grid;
+}

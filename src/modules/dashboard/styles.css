@@ -88,3 +88,81 @@ img.locationImage {
   font-size: 12px;
   text-align: center;
 }
+
+.dashboard-fi-tiles span {
+  display: inline-block;
+  width: 18px;
+  height: 24px;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/floating_islands/mods.png?v=1&asset_cache_version=2);
+  background-position-x: 354px;
+  background-size: 354px;
+  color: transparent;
+}
+
+.dashboard-fi-tiles .inactive {
+  background-position-y: 51px;
+}
+
+.dashboard-fi-tiles .glass {
+  background-position-x: 354px;
+}
+
+.dashboard-fi-tiles .ore {
+  background-position-x: 330px;
+}
+
+.dashboard-fi-tiles .curd {
+  background-position-x: 308px;
+}
+
+.dashboard-fi-tiles .pirate {
+  background-position-x: 286px;
+}
+
+.dashboard-fi-tiles .key {
+  background-position-x: 263px;
+}
+
+.dashboard-fi-tiles .warden-wind {
+  background-position-x: 240px;
+}
+
+.dashboard-fi-tiles .warden-rain {
+  background-position-x: 217px;
+}
+
+.dashboard-fi-tiles .warden-frost {
+  background-position-x: 196px;
+}
+
+.dashboard-fi-tiles .warden-fog {
+  background-position-x: 173px;
+}
+
+.dashboard-fi-tiles .sprocket {
+  background-position-x: 151px;
+}
+
+.dashboard-fi-tiles .bangle {
+  background-position-x: 129px;
+}
+
+.dashboard-fi-tiles .wing {
+  background-position-x: 106px;
+}
+
+.dashboard-fi-tiles .silk {
+  background-position-x: 84px;
+}
+
+.dashboard-fi-tiles .glore {
+  background-position-x: 65px;
+}
+
+.dashboard-fi-tiles .seal {
+  background-position-x: 43px;
+}
+
+.dashboard-fi-tiles .jade {
+  background-position-x: 20px;
+}

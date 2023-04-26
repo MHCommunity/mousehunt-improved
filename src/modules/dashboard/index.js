@@ -362,6 +362,7 @@ const quests = JSON.parse(localStorage.getItem('mh-quests-cache')) || {};
 export default () => {
   // Cache the quest data for our current location.
   cacheLocationData();
+  onTravel(null, { callback: cacheLocationData });
   onAjaxRequest(cacheLocationData, 'managers/ajax/turns/activeturn.php');
 
   makeDashboardTab();

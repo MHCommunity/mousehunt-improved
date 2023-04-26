@@ -81,7 +81,7 @@
 
 .mouseview-has-mhct .mouse-ar-wrapper {
   display: grid;
-  grid-template-columns: 2fr 3fr 2fr 1fr;
+  grid-template-columns: 150px auto 50px;
   align-items: center;
   justify-items: stretch;
   padding: 5px;
@@ -89,8 +89,24 @@
   font-size: 12px;
 }
 
+.mouseview-has-mhct .has-stages .mouse-ar-wrapper {
+  grid-template-columns: 110px 140px auto 50px;
+}
+
+.mouseview-has-mhct .mouse-ar-wrapper div {
+  padding: 0 2px;
+}
+
 .mouseview-has-mhct .mice-ar-wrapper {
   margin-right: 10px;
+}
+
+.mouse-ar-wrapper .stage {
+  font-size: 10px;
+}
+
+.mouse-ar-wrapper .cheese {
+  font-size: 11px;
 }
 
 .mouseview-has-mhct .ar-header {

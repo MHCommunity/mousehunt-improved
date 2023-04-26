@@ -193,13 +193,22 @@ const updateMouseView = async () => {
   makeElement('div', 'ar-header', 'Attraction Rates', arWrapper);
   const miceArWrapper = makeElement('div', 'mice-ar-wrapper');
 
+  // check if there are stages in any of the mice
+  const hasStages = mhctjson.some((mouseAr) => mouseAr.stage);
+
+  if (hasStages) {
+    miceArWrapper.classList.add('has-stages');
+  }
+
   mhctjson.forEach((mouseAr) => {
     const mouseArWrapper = makeElement('div', 'mouse-ar-wrapper');
 
     makeElement('div', 'location', mouseAr.location, mouseArWrapper);
 
-    const stage = mouseAr.stage || '';
-    makeElement('div', 'stage', stage, mouseArWrapper);
+    if (hasStages) {
+      makeElement('div', 'stage', mouseAr.stage, mouseArWrapper);
+    }
+
     makeElement('div', 'cheese', mouseAr.cheese, mouseArWrapper);
     makeElement('div', 'rate', `${(mouseAr.rate / 100).toFixed(2)}%`, mouseArWrapper);
 
