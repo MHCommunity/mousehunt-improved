@@ -41,68 +41,67 @@ import testing from './modules/testing';
 // Core 'Better' modules.
 const modules = [
   {
-    id: 'better-mh-core-modules',
-    name: 'Core Modules',
+    id: 'ui-modules',
+    name: 'UI',
     description: 'Interface and functionality improvements',
     modules: [
-      { id: 'better-mh-better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
-      { id: 'better-mh-better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and appearance and adds a variety of small features.', load: betterInventory },
-      { id: 'better-mh-better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
-      { id: 'better-mh-quests', name: 'Better Quests', default: false, description: '', load: betterQuests },
-      { id: 'better-mh-better-shops', name: 'Better Shops', default: true, description: 'Updates the Shop layout and appearance, minimizes limit 1 items that are owned, and more.', load: betterShops },
+      { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
+      { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and appearance and adds a variety of small features.', load: betterInventory },
+      { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
+      { id: 'better-mouse-view', name: 'Better Mouse View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing attraction rates.', load: betterMouseView },
+      { id: 'better-shops', name: 'Better Shops', default: true, description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.', load: betterShops },
+      { id: 'quests', name: 'Better Quests', default: true, description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.', load: betterQuests },
     ]
   },
   {
-    id: 'better-mh-feature-modules',
-    name: 'Feature Modules',
+    id: 'feature-modules',
+    name: 'Features',
     description: 'Additional features',
     modules: [
-      { id: 'better-mh-dashboard', name: 'Location Dashboard', default: true, description: 'Show a location information dashboard in the top dropdown menu.', load: dashboard },
-      { id: 'better-mh-hover-profiles', name: 'Hover Profiles', default: true, description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.', load: hoverProfiles },
-      { id: 'better-mh-image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backagrounds across the entire MH interface.', load: imageUpscaling },
-      { id: 'better-mh-inventory-only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
-      { id: 'better-mh-item-links', name: 'Item Links', default: true, description: 'Add links to MHCT, MHWiki, mhdb in item popups.', load: itemLinks },
-      { id: 'better-mh-mouse-links', name: 'Mouse Links', default: true, description: 'Add links to MHCT, MHWiki, mhdb in mouse popups.', load: mouseLinks },
-      { id: 'better-mh-taller-windows', name: 'Taller Windows', default: true, description: 'Makes popup windows taller.', load: tallerWindows },
+      { id: 'copy-id', name: 'Copy ID Button', default: true, description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.', load: copyId },
+      { id: 'dashboard', name: 'Location Dashboard', default: true, description: 'See location HUD information in a dashboard available in the top dropdown menu.', load: dashboard },
+      { id: 'hover-profiles', name: 'Hover Profiles', default: true, description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.', load: hoverProfiles },
+      { id: 'image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backagrounds across the entire MH interface.', load: imageUpscaling },
+      { id: 'inline-wiki', name: 'Inline Wiki', default: true, description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.', load: inlineWiki },
+      { id: 'inventory-only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
+      { id: 'item-links', name: 'Item Links', default: true, description: 'Add links to MHCT, MHWiki, mhdb in item popups.', load: itemLinks },
+      { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
+      { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button to easily send any quantity of SUPER|brie+ or another item..', load: quickSendSupplies },
+      { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Makes popup windows taller.', load: tallerWindows },
     ]
   },
   {
-    id: 'better-mh-remove-elements',
+    id: 'remove-elements',
     name: 'Hide Page Elements',
     modules: [
-      { id: 'better-mh-no-footer', name: 'Remove Footer', default: true, description: 'Hides the footer.', load: noFooter },
-      { id: 'better-mh-no-share', name: 'Remove Share Buttons', default: true, description: 'Hides the share buttons.', load: noShare },
-      { id: 'better-mh-no-sidebar', name: 'Remove Sidebar', default: false, description: 'Hides the sidebar.', load: noSidebar },
+      { id: 'no-footer', name: 'Remove Footer', default: true, description: 'Hides the footer.', load: noFooter },
+      { id: 'no-share', name: 'Remove Share Buttons', default: true, description: 'Hides the share buttons.', load: noShare },
+      { id: 'no-sidebar', name: 'Remove Sidebar', default: false, description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.', load: noSidebar },
     ],
   },
   {
-    id: 'better-mh-location-hud',
+    id: 'location-hud',
     name: 'Location HUD improvements',
     description: 'Add additional information to the HUD for each location.',
     modules: [
-      { id: 'better-mh-forbidden-grove', name: 'Forbidden Grove HUD Improvements', default: true, description: '', load: forbiddenGrove },
-      { id: 'better-mh-iceberg', name: 'Iceberg HUD Improvements', default: true, description: '', load: iceberg },
-      { id: 'better-mh-labyrinth', name: 'Labyrinth HUD Improvements', default: true, description: '', load: labyrinth },
-      { id: 'better-mh-sshiv', name: 'S.S. Huntington IV HUD Improvements', default: true, description: '', load: ssh4 },
-      { id: 'better-mh-vrift', name: 'Valour Rift HUD Improvements', default: true, description: '', load: vrift },
+      { id: 'forbidden-grove', name: 'Forbidden Grove HUD Improvements', default: true, description: '', load: forbiddenGrove },
+      { id: 'iceberg', name: 'Iceberg HUD Improvements', default: true, description: '', load: iceberg },
+      { id: 'labyrinth', name: 'Labyrinth HUD Improvements', default: true, description: '', load: labyrinth },
+      { id: 'sshiv', name: 'S.S. Huntington IV HUD Improvements', default: true, description: '', load: ssh4 },
+      { id: 'vrift', name: 'Valour Rift HUD Improvements', default: true, description: '', load: vrift },
     ],
   },
   {
     // Always loaded modules.
-    id: 'better-mh-always-loaded',
+    id: 'always-loaded',
     modules: [
-      { id: 'wiki', load: wiki, alwaysLoad: true },
-
       // move to toggleable modules
-      { id: 'copy-id', load: copyId, alwaysLoad: true },
-      { id: 'quick-send-supplies', load: quickSendSupplies, alwaysLoad: true },
       { id: 'testing', load: testing, alwaysLoad: true },
-      { id: 'quick-filters-and-sort', load: quickFiltersAndSort, alwaysLoad: true },
     ],
   }
 ];
 
-addSettingsTab('better-mh-settings', 'UI Settings');
+addSettingsTab('better-mh-settings', 'Better MH');
 // enableDebugMode();
 
 debug('Starting MH UI');
