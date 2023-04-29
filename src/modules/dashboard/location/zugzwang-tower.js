@@ -27,7 +27,7 @@ export function getZugzwangTowerText(quests) {
     return;
   }
 
-  let returnText = `${quests.QuestZugzwangTower.amp || 0}%`;
+  const returnText = `${quests.QuestZugzwangTower.amp || 0}%`;
 
   const techProgress = quests.QuestZugzwangTower.tech_progress || 0;
   const mythProgress = quests.QuestZugzwangTower.myth_progress || 0;

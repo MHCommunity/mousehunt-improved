@@ -9,7 +9,7 @@ import getLivingGardenText from './location/living-garden';
 import getLostCityText from './location/lost-city';
 import getSandDunesText from './location/sand-dunes';
 import getSeasonalGardenText from './location/seasonal-garden';
-import getZugzwangTowerText from './location/zugzwang-tower';
+import { getZugzwangTowerText, setZugzwangTowerData } from './location/zugzwang-tower';
 import getIcebergText from './location/iceberg';
 import getSunkenCityText from './location/sunken-city';
 import getQuesoGeyserText from './location/queso-geyser';
@@ -104,6 +104,11 @@ const cacheLocationData = async () => {
       if (fwQuestData) {
         user.quests.QuestFieryWarpath = fwQuestData;
       }
+    } else if (user.environment_type === 'zugzwang_tower') {
+      const ztQuestData = setZugzwangTowerData();
+      if (ztQuestData) {
+        user.quests.QuestZugzwangTower = ztQuestData;
+      }
     }
 
     // Get the current cached quests.
@@ -116,6 +121,10 @@ const cacheLocationData = async () => {
       questsCombined.QuestAncientCity = {};
     } else if (user.environment_type === 'ancient_city') {
       questsCombined.QuestLabyrinth = {};
+    } else if (user.environment_type === 'zugzwang_tower') {
+      questsCombined.QuestSeasonalGarden = {};
+    } else if (user.environment_type === 'seasonal_garden') {
+      questsCombined.QuestZugzwangTower = {};
     }
 
     // Save the combined data to localStorage.
@@ -203,22 +212,26 @@ const makeDashboardTab = () => {
   // Register click event listener.
   menuTab.addEventListener('click', () => {
     menuTab.classList.toggle('expanded');
+
+    const existing = document.querySelector('.dashboardContents');
+    if (existing) {
+      const existingParent = existing && existing.parentNode;
+      const refreshedContents = getDashboardContents();
+      existingParent.replaceChild(refreshedContents, existing);
+    }
   });
 
   makeElement('span', '', 'Dashboard', menuTab);
   makeElement('div', 'arrow', '', menuTab);
 
-  const dropdownContent = document.createElement('div');
-  dropdownContent.classList.add('dropdownContent');
-
-  const contents = getDashboardContents();
+  const dropdownContent = makeElement('div', 'dropdownContent');
+  const dashboardWrapper = makeElement('div', 'dashboardWrapper');
+  makeElement('div', 'dashboardContents', '', dashboardWrapper);
 
   // Refresh button.
-  const refreshWrapper = document.createElement('div');
-  refreshWrapper.classList.add('refreshWrapper');
+  const refreshWrapper = makeElement('div', 'refreshWrapper');
 
-  const refreshButton = document.createElement('button');
-  refreshButton.classList.add('mousehuntActionButton', 'dashboardRefresh');
+  const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh']);
   refreshButton.addEventListener('click', refreshData);
 
   const refreshText = document.createElement('span');
@@ -226,13 +239,8 @@ const makeDashboardTab = () => {
 
   refreshButton.appendChild(refreshText);
   refreshWrapper.appendChild(refreshButton);
-
-  // Append refresh button to dropdown.
-  contents.appendChild(refreshWrapper);
-
-  dropdownContent.appendChild(contents);
-
-  // Append menu tab dropdown to menu tab.
+  dashboardWrapper.appendChild(refreshWrapper);
+  dropdownContent.appendChild(dashboardWrapper);
   menuTab.appendChild(dropdownContent);
 
   // Append as the second to last tab.

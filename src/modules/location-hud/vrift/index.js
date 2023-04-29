@@ -650,9 +650,8 @@ const addUIComponents = () => {
 
   const stepsRemaining = tooltip.querySelector('.valourRiftHUD-stepsRemaining');
   if (! stepsRemaining) {
-    return;
-  }
 
+  }
 };
 
 export default function moduleTemplate() {

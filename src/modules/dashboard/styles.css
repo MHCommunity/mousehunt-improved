@@ -12,7 +12,7 @@
   width: 400px;
 }
 
-.dashboardContents {
+.dashboardWrapper {
   max-height: 60vh;
   padding: 10px;
   overflow-x: hidden;
@@ -24,14 +24,6 @@
 .dashboardRefresh {
   display: block;
   margin: 10px auto;
-}
-
-.refreshWrapper {
-  padding-top: 10px;
-  margin-top: 10px;
-  margin-right: -10px;
-  margin-left: -10px;
-  border-top: 1px solid #c7c7c7;
 }
 
 .regionWrapper {

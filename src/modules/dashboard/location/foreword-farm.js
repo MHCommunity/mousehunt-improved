@@ -35,5 +35,5 @@ export default (quests) => {
   // remove trailing comma
   returnText = returnText.slice(0, -2);
 
-  return `Growing ${returnText}`
+  return `Growing ${returnText}`;
 };
