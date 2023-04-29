@@ -1,67 +1,89 @@
-# better-mousehunt
+# 🐭️ Better MouseHunt
 
-Coming soon
-
-## Development
-
-``` sh
-# Compile and watch
-$ npm run dev
-
-# Build script
-$ npm run build
-
-# Lint
-$ npm run lint
-```
-
-## Todo
-
-- image upscaling
-  - chrome charm
-  - tarnished charm
-  - storm cell
-  - extreme luck charm
-  - ultimate luck charm
-  - simple orb
-  - pinch of annoyance
-  - Super Power Charm
-  - Iced Curd
-  - Fire Salt
-  - Ancient Relic
-  - Ancient Charm
-  - Super Power Charm
+Better MouseHunt is a collection of user scripts aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [Better MH](https://www.mousehuntgame.com/preferences.php?tab=better-mh-settings) tab of the settings screen.
 
 
+## Included Modules
+
+### UI Improvements
+
+- Better UI
+  - Updates the MH interface with a variety of UI and style changes.
+- Better Inventory
+  - Updates the inventory layout and appearance and adds a variety of small features.
+- Better Journal
+  - Modify the journal text, layout, and styling.
+- Better Mouse View
+  - Add links to MHCT & MHWiki in mouse popups as well as showing attraction rates.
+- Better Shops
+  - Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.
+- Better Quests
+  - Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.
 
 
+### Features
 
+- Copy ID Button
+  - Hover over your profile picture in the HUD for a quick 'Copy ID to clipboard' button.
+- Location Dashboard
+  - See location HUD information in a dashboard available in the top dropdown menu.
+- Hover Profiles
+  - Hover over a friend's name in your journal, inbox, or elsewhere and get a mini-profile popup.
+- Image Upscaling
+  - Uses high-res images with transparent backagrounds across the entire MH interface.
+- Inline Wiki
+  - Clicking 'Wiki' in the menu will load it right in the page, rather than opening a new tab.
+- Inventory - Only open multiple
+  - Lock opening things in your inventory unless you have multiple of them, great for collectors!
+- Item Links
+  - Add links to MHCT, MHWiki, mhdb in item popups.
+- Quick Filters and Sort
+  - Add quick filters and sorting to the trap, base, charm, and cheese selectors.
+- Quick Send Supplies
+  - Hover over the send supplies button to easily send any quantity of SUPER|brie+ or another item.
+- Taller Windows
+  - Makes popup windows taller.
 
+### Element Hiding
 
-# Features
+- Remove Footer
+  - Hides the footer.
+- Remove Share Buttons
+  - Hides the share buttons.
+- Remove Sidebar
+  - Hides the sidebar and adds a 'Sidebar' dropdown in the top menu.
 
-## Location HUDS
+### Location HUDS
 
-### Labyrinth
+- Forbidden Grove
+  - Shows a countdown to the closing time, rather than just a progress bar.
+- Iceberg
+  - Shows feet and number of hunts to the next zone
+  - Hover over the zone information to see:
+    - Average feet per hunt
+    - Progress to the next zone
+    - Progress to Icewing
+    - Quick view of each zone with their length
+    - Warning if you're encountering Icewing and don't have a base equipped that would take you to the hidden Depths
+- Labyrinth
+  - Show step counter for hallway
+  - Shows steps remaining in the hallway
+  - Shows average steps per hunt
+  - Hover over the hallway to see the number of clues for each hunt as an actual number
+  - Shows counts for each clue on the progress bar
+  - Improves the clue count view when hovering on the progress bar
+  - Suggests the best door to choose in intersections
+  - Reminds you to light your lantern if you're in a superiour hallway and it's not lit
+  - Slightly larger text for resources in the HUD
+- S.S. Huntington IV
+  - Adds a cheese selector to the HUD
+- Valour Rift
+    -
 
-- Better UI for resources
-- Hover hallway to see clue count
-- Lantern reminder when it's not lit in a superiour hallways
-- Shows step counter for hallway
-- Shows step remaining for hallway
-- Shows total clue count on progress bar
-- Highlights suggested door in intersection
+### Fixes
 
-
-
-
-
-
-
-
-
-
-
-
-weapon vhooser by powert type
-<a href="#" class="moussuPicchuHUD-powerType rain shdw mousehuntTooltipParent" onclick="hg.views.HeadsUpDisplayMoussuPicchuView.showTrapSelector(this); return false;"></a>
+- Fixes the team icon in the main menu
+- Fixes dropdown arrow direction in the top menu
+- Fixes HUD shadow leftover from old HUD
+- Fixes Tooltip arrows incorrectly showing side border
+- Fixes the vertical spacing for the Weekly & Friends checkboxes on scoreboards
