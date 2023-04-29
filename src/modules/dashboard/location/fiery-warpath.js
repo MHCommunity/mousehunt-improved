@@ -7,14 +7,15 @@ export function getFieryWarpathText(quests) {
     wave: quests?.QuestFieryWarpath?.wave || 0,
     streak: quests?.QuestFieryWarpath?.streak || 0,
     remaining: quests?.QuestFieryWarpath?.remaining || 0,
-    percent: quests?.QuestFieryWarpath?.percent || 0,
+    percent: quests?.QuestFieryWarpath?.percent || 100,
   };
 
+  let streakText = '';
   if (quest.streak !== 0) {
-    quest.streak = `Streak of ${quest.streak}`;
+    streakText = `, ${quest.streak} streak`;
   }
 
-  return `Wave ${quest.wave} (${quest.percent}% remaining) - ${quest.streak} `;
+  return `Wave ${quest.wave}: ${quest.percent}% remaining${streakText} `;
 }
 
 export function setFieryWarpathData() {
@@ -25,7 +26,7 @@ export function setFieryWarpathData() {
   let wave = 0;
   let streak = 'No Streak';
   let remaining = 0;
-  let percent = 0;
+  let percent = 100;
 
   const waveEl = document.querySelector('.warpathHUD.showPortal');
   if (waveEl) {

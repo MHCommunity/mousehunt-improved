@@ -1,5 +1,5 @@
 export default (quests) => {
-  if (!quests.QuestSunkenCity) {
+  if (! quests.QuestSunkenCity) {
     return;
   }
 
@@ -14,6 +14,4 @@ export default (quests) => {
   const depth = quests.QuestSunkenCity.distance;
 
   return `${zone}, ${depth}m, ${oxygen} O₂`;
-
-  return quests ? '' : false;
 };
