@@ -1,6 +1,8 @@
 import { addUIStyles } from '../../utils';
 import styles from './styles.css';
 
+// This is all borrowed from the original sim script while it's being rewritten.
+/* eslint-disable */
 // Sets the display for the percentages
 // Set to true or false depending on which display you want
 const cumulativeDisplay = true;
@@ -619,6 +621,7 @@ const main = () => {
     });
   }
 };
+/* eslint-enable */
 
 const addUIComponents = () => {
   const existing = document.querySelector('#mh-vrift-floor-name');
@@ -627,30 +630,27 @@ const addUIComponents = () => {
   }
 
   const floor = document.querySelector('.valourRiftHUD-currentFloor');
-  if (! floor) {
-    return;
+  if (floor) {
+    const floorName = makeElement('div', 'valourRiftHUD-floorName', user?.quests?.QuestRiftValour?.floor_name);
+    floorName.id = 'mh-vrift-floor-name';
+    floor.appendChild(floorName);
   }
-
-  const floorName = makeElement('div', 'valourRiftHUD-floorName', user?.quests?.QuestRiftValour?.floor_name);
-  floorName.id = 'mh-vrift-floor-name';
-  floor.appendChild(floorName);
 
   const floorTooltipParent = document.querySelector('.valourRiftHUD-floorProgress.mousehuntTooltipParent');
-  if (! floorTooltipParent) {
-    return;
+  if (floorTooltipParent) {
+    const tooltip = floorTooltipParent.querySelector('.mousehuntTooltip');
+    if (tooltip) {
+      tooltip.classList.add('bottom', 'mh-vrift-floor-tooltip');
+      tooltip.classList.remove('top');
+    }
   }
-
-  const tooltip = floorTooltipParent.querySelector('.mousehuntTooltip');
-  if (! tooltip) {
-    return;
-  }
-
-  tooltip.classList.add('bottom', 'mh-vrift-floor-tooltip');
-  tooltip.classList.remove('top');
 
   const stepsRemaining = tooltip.querySelector('.valourRiftHUD-stepsRemaining');
-  if (! stepsRemaining) {
-
+  if (stepsRemaining) {
+    const floorBar = document.querySelector('.valourRiftHUD-floorProgress-barContainer');
+    if (floorBar) {
+      makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
+    }
   }
 };
 

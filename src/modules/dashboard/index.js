@@ -135,13 +135,13 @@ const cacheLocationData = async () => {
 };
 
 const travel = async (location) => {
-  console.log(`Traveling to ${location}...`);
+  console.log(`Traveling to ${location}...`); /* eslint-disable-line no-console */
 
   // return a promise that resolves when the travel is complete.
   return new Promise((resolve) => {
     // app.pages.TravelPage.travel(location);    // wait a second between travel and refresh.
     cacheLocationData(app.data).then(() => {
-      console.log(`Travel complete to ${location}.`);
+      console.log(`Travel complete to ${location}.`); /* eslint-disable-line no-console */
       resolve();
     });
   });

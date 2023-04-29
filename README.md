@@ -2,7 +2,6 @@
 
 Better MouseHunt is a collection of user scripts aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [Better MH](https://www.mousehuntgame.com/preferences.php?tab=better-mh-settings) tab of the settings screen.
 
-
 ## Included Modules
 
 ### UI Improvements
@@ -19,7 +18,6 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
   - Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.
 - Better Quests
   - Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.
-
 
 ### Features
 
@@ -77,8 +75,10 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
   - Slightly larger text for resources in the HUD
 - S.S. Huntington IV
   - Adds a cheese selector to the HUD
+
 - Valour Rift
-    -
+
+  -
 
 ### Fixes
 

@@ -85,10 +85,10 @@ img.locationImage {
   display: inline-block;
   width: 18px;
   height: 24px;
+  color: transparent;
   background-image: url(https://www.mousehuntgame.com/images/ui/hud/floating_islands/mods.png?v=1&asset_cache_version=2);
   background-position-x: 354px;
   background-size: 354px;
-  color: transparent;
 }
 
 .dashboard-fi-tiles .inactive {

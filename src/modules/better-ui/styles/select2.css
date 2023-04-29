@@ -1,8 +1,8 @@
 .select2-result-sub .select2-result-label {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  justify-items: start;
   align-items: center;
+  justify-items: start;
 }
 
 .select2-results li.select2-result-with-children>.select2-result-label {
@@ -11,8 +11,8 @@
 }
 
 .friendsPage-filter-environment-quantity {
-  text-align: center;
   min-width: 25px;
+  text-align: center;
   vertical-align: middle;
 }
 
@@ -32,9 +32,9 @@
 }
 
 .select2-search input {
+  padding: 6px 0 6px 5px;
   font-size: 15px;
   vertical-align: middle;
-  padding: 6px 0 6px 5px;
   background: url(https://www.mousehuntgame.com/images/select2/select2.png?asset_cache_version=2) no-repeat 100% -26px,linear-gradient(to bottom,#fff 85%,#eee 99%) 0 0;
   background-size: 70px;
 }
