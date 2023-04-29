@@ -7,6 +7,7 @@ import globalStyles from './styles.css';
 // Core 'Better' modules
 import betterInventory from './modules/better-inventory';
 import betterJournal from './modules/better-journal';
+import betterMouseView from './modules/better-mouse-view';
 import betterQuests from './modules/better-quests';
 import betterShops from './modules/better-shops';
 import betterUi from './modules/better-ui';
@@ -16,11 +17,10 @@ import copyId from './modules/copy-id';
 import dashboard from './modules/dashboard';
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
-import mouseLinks from './modules/mouse-links';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
-import wiki from './modules/wiki';
+import inlineWiki from './modules/inline-wiki';
 
 // Copies of standalone userscripts.
 import itemLinks from './modules/external/item-links';
