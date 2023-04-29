@@ -175,3 +175,23 @@ span.mh-ui-tem-crown-text {
 .mouseCrownsView-group-mice.favourites > .empty ~ .empty {
   display: none;
 }
+
+.scoreboardTableView-availableScoreboards {
+  width: 180px;
+}
+
+/* Full width for the map link text box */
+input.treasureMapView-shareLinkInput {
+  width: 95%;
+  margin: 0 auto;
+}
+
+/* Gift window spacing */
+.giftSelectorView-content-subtitle {
+  padding: 10px 0;
+}
+
+/* Gift of the day width */
+.giftSelectorView-giftContainer .giftSelectorView-gift.gift_of_the_day {
+  width: 20%;
+}

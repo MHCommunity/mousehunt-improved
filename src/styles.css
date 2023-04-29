@@ -49,26 +49,11 @@
  *
 */
 
-/* Iceberg */
-.icebergHud.bonus .bonus_timeline .turnsLeft {
-  top: 0;
-  display: inline-flex;
-  align-items: center;
-  border-color: #666;
-  border-radius: 0;
-}
-
 /* Align the friends checkbox on the scoreboard */
 .scoreboardTableView-friends,
 .scoreboardTableView-weekly {
   margin-top: 1px;
   vertical-align: middle;
-}
-
-/* Fix the scoreboard dropdown width */
-.scoreboardTableView-availableScoreboards {
-  width: auto;
-  min-width: 200px;
 }
 
 /* Fix the team icon */
@@ -95,31 +80,7 @@
     url(https://www.mousehuntgame.com/images/ui/backgrounds/hud_bg_blue_repeating.png?asset_cache_version=2) repeat-y bottom center;
 }
 
-/* Full width for the map link text box */
-input.treasureMapView-shareLinkInput {
-  width: 95%;
-  margin: 0 auto;
-}
-
-/* Gift window spacing */
-.giftSelectorView-content-subtitle {
-  padding: 10px 0;
-}
-
-/* Gift of the day width */
-.giftSelectorView-giftContainer .giftSelectorView-gift.gift_of_the_day {
-  width: 20%;
-}
-
-/* SEH Choco shop item background */
-.springHuntHUD-dialog-item-image .itemImage.large {
-  background-color: transparent;
-}
-
-.springHuntHUD-dialog-item-image .floatingIslandsAirship {
-  background-color: transparent;
-}
-
+/* Fix arrow outline showing */
 .mousehuntTooltip.left .mousehuntTooltip-arrow::after {
   right: -6px;
 }
@@ -128,8 +89,7 @@ input.treasureMapView-shareLinkInput {
   left: -6px;
 }
 
-
-/* maintenance mouse */
+/* maintenance mouse animation */
 @keyframes rotate40 {
   0% { transform: rotate(0deg); } /* eslint-disable-line */
   50% { transform: rotate(40deg); }  /* eslint-disable-line */
