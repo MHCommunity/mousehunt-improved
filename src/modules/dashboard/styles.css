@@ -9,12 +9,12 @@
 }
 
 .mousehuntHeaderView .dashboard .dropdownContent {
-  width: 400px;
+  width: 420px;
 }
 
 .dashboardWrapper {
   max-height: 60vh;
-  padding: 10px;
+  padding: 5px;
   overflow-x: hidden;
   overflow-y: auto;
   border: 1px solid #d7e2f1;
@@ -44,14 +44,23 @@
   margin-top: 0;
 }
 
+.locationProgress .stats {
+  margin-top: -10px;
+  text-align: center;
+}
+
 .locationWrapper {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-between;
   height: 25px;
-  padding: 10px 5px;
+  padding: 7px 5px;
   background-color: #fff;
+}
+
+.locationWrapper.locationWrapper-rift_valour {
+  height: 35px;
 }
 
 .locationWrapper:nth-child(even) {
@@ -60,6 +69,7 @@
 
 .locationImageWrapper {
   flex: 0;
+  display: inline-flex;
 }
 
 img.locationImage {
@@ -70,10 +80,11 @@ img.locationImage {
 }
 
 .locationName {
-  position: relative;
   flex-grow: 1;
-  margin-left: 10px;
   font-size: 12px;
+  margin-left: 10px;
+  position: relative;
+  min-width: 100px;
 }
 
 .noLocationData {

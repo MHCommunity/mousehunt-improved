@@ -231,14 +231,21 @@ const makeDashboardTab = () => {
   // Refresh button.
   const refreshWrapper = makeElement('div', 'refreshWrapper');
 
-  const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh']);
-  refreshButton.addEventListener('click', refreshData);
+  // TODO: remove disabled class when we have a way to refresh.
+  const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh', 'disabled']);
+  // refreshButton.addEventListener('click', refreshData);
 
   const refreshText = document.createElement('span');
   refreshText.innerText = 'Refresh';
 
   refreshButton.appendChild(refreshText);
   refreshWrapper.appendChild(refreshButton);
+
+  const refreshDescription = document.createElement('div');
+  refreshDescription.innerText = ' (coming soon, for now just travel to each location)';
+
+  refreshWrapper.appendChild(refreshDescription);
+
   dashboardWrapper.appendChild(refreshWrapper);
   dropdownContent.appendChild(dashboardWrapper);
   menuTab.appendChild(dropdownContent);
@@ -274,6 +281,8 @@ const makeLocationMarkup = (id, name, progress, appendTo) => {
   }
 
   const locationWrapper = makeElement('div', 'locationWrapper');
+  locationWrapper.setAttribute('data-location', id);
+  locationWrapper.classList.add(`locationWrapper-${id}`);
 
   // Name & travel links
   const locationImageWrapper = makeElement('div', 'locationImageWrapper');
@@ -286,11 +295,7 @@ const makeLocationMarkup = (id, name, progress, appendTo) => {
 
   locationWrapper.appendChild(locationImageWrapper);
 
-  const locationName = makeElement('div', 'locationName');
-  makeElement('span', '', name, locationName);
-
-  locationWrapper.appendChild(locationName);
-
+  makeElement('div', 'locationName', name, locationWrapper);
   makeElement('div', 'locationProgress', markup, locationWrapper);
 
   appendTo.appendChild(locationWrapper);
@@ -302,7 +307,7 @@ const getDashboardContents = () => {
 
   const burroughs = document.createElement('div');
   makeLocationMarkup('mousoleum', 'Mousoleum', getMousoleumText, burroughs);
-  makeLocationMarkup('pollution_outbreak', 'Toxic Spill', getToxicSpillText, burroughs);
+  // makeLocationMarkup('pollution_outbreak', 'Toxic Spill', getToxicSpillText, burroughs);
   makeRegionMarkup('Burroughs', burroughs, contentsWrapper);
 
   const varmintValley = document.createElement('div');
@@ -317,7 +322,7 @@ const getDashboardContents = () => {
   makeRegionMarkup('Sandtail Desert', sandtailDesert, contentsWrapper);
 
   const rodentia = document.createElement('div');
-  makeLocationMarkup('seasonal_garden', 'Seasonal Garden', getSeasonalGardenText, rodentia);
+  // makeLocationMarkup('seasonal_garden', 'Seasonal Garden', getSeasonalGardenText, rodentia);
   makeLocationMarkup('zugzwang_tower', 'Zugzwang\'s Tower', getZugzwangTowerText, rodentia);
   makeLocationMarkup('iceberg', 'Iceberg', getIcebergText, rodentia);
   makeLocationMarkup('sunken_city', 'Sunken City', getSunkenCityText, rodentia);
@@ -336,7 +341,7 @@ const getDashboardContents = () => {
 
   const folkloreForest = document.createElement('div');
   makeLocationMarkup('foreword_farm', 'Foreword Farm', getForewordFarmText, folkloreForest);
-  makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest);
+  // makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest);
   makeRegionMarkup('Folklore Forest', folkloreForest, contentsWrapper);
 
   const rift = document.createElement('div');

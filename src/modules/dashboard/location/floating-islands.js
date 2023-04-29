@@ -23,14 +23,14 @@ export default (quests) => {
     isSp: quests?.QuestFloatingIslands?.hunting_site_atts?.is_vault_island || false,
     isLai: false,
     hunts_remaining: quests?.QuestFloatingIslands?.hunting_site_atts?.hunts_remaining || null,
-    wardens_caught: quests?.QuestFloatingIslands?.hunting_site_atts?.wardens_caught || 0,
+    wardens_caught: quests?.QuestFloatingIslands?.hunting_site_atts?.sky_wardens_caught || 0,
   };
 
   quest.isLai = ! quest.isHai && ! quest.isSp;
 
   const isLaunchPad = quest.island_power_type === 'launch_pad_island';
   if (isLaunchPad) {
-    return `Launch Pad, ${quests.wardens_caught} wardens caught`;
+    return `Launch Pad, ${quest.wardens_caught} wardens caught`;
   }
 
   let type = 'LAI';
