@@ -53,6 +53,8 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
 
 ### Location HUDS
 
+- Balack's Cove
+  - Shows a countdown to the next low, mid, and high tides.
 - Forbidden Grove
   - Shows a countdown to the closing time, rather than just a progress bar.
 - Iceberg
@@ -73,12 +75,35 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
   - Suggests the best door to choose in intersections
   - Reminds you to light your lantern if you're in a superiour hallway and it's not lit
   - Slightly larger text for resources in the HUD
-- S.S. Huntington IV
-  - Adds a cheese selector to the HUD
 
 - Valour Rift
+  - TODO: fill this out.
 
-  -
+- Adds Cheese selectors to all locations that don't have a HUD.
+  - Meadow
+  - King's Arms
+  - Tournament Hall
+  - King's Gauntlet
+  - Calm Clearing
+  - Great Gnarled Tree
+  - Lagoon
+  - Bazaar
+  - Town Of Digby
+  - Training Grounds
+  - Dojo
+  - Meditation Room
+  - Pinnacle Chamber
+  - Catacombs
+  - Forbidden Grove
+  - Cape Clawed
+  - Elub Shore
+  - Nerg Plains
+  - Derr Dunes
+  - Jungle Of Dread
+  - Dracano
+  - Balack's Cove
+  - S.S. Huntington IV
+  - Slushy Shoreline
 
 ### Fixes
 

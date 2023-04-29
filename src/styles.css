@@ -32,18 +32,6 @@
 }
 
 /*
- * Styles for Utils
-*/
-.mh-ui-cheese-selector-frame {
-  height: 10px;
-  background: none;
-}
-
-.mh-ui-cheese-selector .townOfGnawniaHUD-bait {
-  width: 145px;
-}
-
-/*
  *
  * Fixes
  *
@@ -88,6 +76,21 @@
 .mousehuntTooltip.right .mousehuntTooltip-arrow::after {
   left: -6px;
 }
+
+/* Overflow location names */
+.mh-location-ss_huntington_ii .mousehuntHud-environmentName,
+.mh-location-pinnacle_chamber .mousehuntHud-environmentName,
+.mh-location-great_gnarled_tree .mousehuntHud-environmentName,
+.mh-location-something .mousehuntHud-environmentName {
+  padding-top: 31px;
+  overflow: visible;
+  font-size: 11px;
+}
+
+
+
+
+
 
 /* maintenance mouse animation */
 @keyframes rotate40 {

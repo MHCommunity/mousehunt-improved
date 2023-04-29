@@ -30,9 +30,10 @@ import noSidebar from './modules/external/no-sidebar';
 import tallerWindows from './modules/external/taller-windows';
 
 // Location HUD improvements.
+import cheeseSelectors from './modules/location-hud/cheese-selectors';
+import balacksCove from './modules/location-hud/balacks-cove';
 import forbiddenGrove from './modules/location-hud/forbidden-grove';
 import iceberg from './modules/location-hud/iceberg';
-import ssh4 from './modules/location-hud/ssh4';
 import labyrinth from './modules/location-hud/labyrinth';
 import vrift from './modules/location-hud/vrift';
 
@@ -74,7 +75,7 @@ const modules = [
     id: 'remove-elements',
     name: 'Hide Page Elements',
     modules: [
-      { id: 'no-footer', name: 'Remove Footer', default: true, description: 'Hides the footer.', load: noFooter },
+      { id: 'no-footer', name: 'Remove Footer', default: false, description: 'Hides the footer.', load: noFooter },
       { id: 'no-share', name: 'Remove Share Buttons', default: true, description: 'Hides the share buttons.', load: noShare },
       { id: 'no-sidebar', name: 'Remove Sidebar', default: false, description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.', load: noSidebar },
     ],
@@ -84,10 +85,11 @@ const modules = [
     name: 'Location HUD improvements',
     description: 'Add additional information to the HUD for each location.',
     modules: [
+      { id: 'cheese-selectors', name: 'Cheese Selectors', default: true, description: 'Adds a quick cheese selector to locations that don\'t have a specific HUD.', load: cheeseSelectors },
+      { id: 'balacks-cove', name: 'Balack\'s Cove HUD Improvements', default: true, description: '', load: balacksCove },
       { id: 'forbidden-grove', name: 'Forbidden Grove HUD Improvements', default: true, description: '', load: forbiddenGrove },
       { id: 'iceberg', name: 'Iceberg HUD Improvements', default: true, description: '', load: iceberg },
       { id: 'labyrinth', name: 'Labyrinth HUD Improvements', default: true, description: '', load: labyrinth },
-      { id: 'sshiv', name: 'S.S. Huntington IV HUD Improvements', default: true, description: '', load: ssh4 },
       { id: 'vrift', name: 'Valour Rift HUD Improvements', default: true, description: '', load: vrift },
     ],
   },

@@ -637,21 +637,34 @@ const addUIComponents = () => {
   }
 
   const floorTooltipParent = document.querySelector('.valourRiftHUD-floorProgress.mousehuntTooltipParent');
-  if (floorTooltipParent) {
-    const tooltip = floorTooltipParent.querySelector('.mousehuntTooltip');
-    if (tooltip) {
-      tooltip.classList.add('bottom', 'mh-vrift-floor-tooltip');
-      tooltip.classList.remove('top');
-    }
+  if (! floorTooltipParent) {
+    return;
   }
 
-  const stepsRemaining = tooltip.querySelector('.valourRiftHUD-stepsRemaining');
-  if (stepsRemaining) {
-    const floorBar = document.querySelector('.valourRiftHUD-floorProgress-barContainer');
-    if (floorBar) {
-      makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
-    }
+  const tooltip = floorTooltipParent.querySelector('.mousehuntTooltip');
+  if (! tooltip) {
+    return;
   }
+
+  tooltip.classList.add('bottom', 'mh-vrift-floor-tooltip');
+  tooltip.classList.remove('top');
+
+  const stepsRemaining = tooltip.querySelector('.valourRiftHUD-stepsRemaining');
+  if (! stepsRemaining) {
+    return;
+  }
+
+  const floorBar = document.querySelector('.valourRiftHUD-floorProgress-barContainer');
+  if (! floorBar) {
+    return;
+  }
+
+  const stepsExisting = document.querySelector('.mh-vrift-steps-remaining');
+  if (stepsExisting) {
+    stepsExisting.remove();
+  }
+
+  makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
 };
 
 export default function moduleTemplate() {

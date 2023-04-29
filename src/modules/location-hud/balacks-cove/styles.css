@@ -1,12 +1,13 @@
-.forbiddenGroveHUD-grovebar-timeLeft {
-  position: absolute;
-  top: 6px;
-  left: 171px;
-  padding: 1px 11px;
-  font-size: 12px;
-  font-weight: 900;
+.balacksCoveHUD-tideContainer-timeLeft {
+  background-color: #8ad3d5;
+  border-radius: 23%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0 -0.5px 1px 1px #d6f1f2;
   color: #5f463d;
-  background-color: #e1d1b7;
-  border-top-right-radius: 10px;
-  box-shadow: 0 -0.5px 1px 1px #e1d1b7;
+  font-size: 12px;
+  padding: 3px 10px;
+  position: absolute;
+  right: 55px;
+  top: 9px;
 }
