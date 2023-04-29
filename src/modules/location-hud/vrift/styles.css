@@ -11,7 +11,7 @@
 
 .mh-vrift-sim-results {
   display: grid;
-  grid-template-columns: 2fr repeat(1, 1fr);
+  grid-template-columns: 70% 30%;
   margin: 0 1em;
   color: #fff;
 }
@@ -44,8 +44,8 @@
   position: relative;
   left: -25px;
   width: 35px;
-  font-weight: 700;
   line-height: 30px;
+  font-size: 14px;
   color: #eaeaea;
   text-align: center;
   background: linear-gradient(#07041d, #4d3bac);
@@ -58,6 +58,7 @@
   margin-bottom: 2em;
   background-color: rgb(195 195 195 / 10%);
   border-radius: 5px;
+  font-size: 13px;
 }
 
 .mh-vrift-sim-results .eclipses h3 {
@@ -69,18 +70,16 @@
 .mh-vrift-sim-results .eclipses .header {
   padding-bottom: 3px;
   margin-bottom: 10px;
-  font-size: 10px;
+  font-size: 12px;
   line-height: unset;
   color: rgb(175 175 175 / 85%);
   border-bottom: 1px solid rgb(175 175 175 / 85%);
 }
 
 .mh-vrift-sim-results .eclipses li {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-content: center;
-  justify-items: stretch;
-  line-height: 20px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 24px;
   text-align: right;
 }
 
@@ -166,15 +165,47 @@ span.valourRiftHUD-towerUpgrade-currentValue {
   border-bottom-right-radius: 5px;
 }
 
+.valourRiftHUD-powerUp-currentLevel {
+  padding: 2px 1px;
+  top: 6px;
+  right: 10px;
+}
+
 .valourRiftHUD-gauntletBait-quantity.quantity {
-  margin-top: 1px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 900;
+  top: 45px;
 }
 
 .valourRiftHUD-towerLoot-quantity.quantity {
   font-size: 12px;
   font-weight: 900;
+}
+
+.valourRiftHUD-bait-quantity.quantity {
+  line-height: 18px;
+  font-size: 13px;
+  width: 60px;
+}
+
+.valourRiftHUD-crafting-quantity.quantity {
+  width: 42px;
+  font-size: 12px;
+}
+
+.valourRiftHUD-fuelContainer-quantity.quantity {
+  padding: 1px 2px;
+  margin-top: -7px;
+  margin-right: -3px;
+  font-size: 14px;
+  background-color: #281c55;
+  border: 1px solid #7db4dc;
+  box-shadow: 0 0 0 1px #7eaacd;
+}
+
+.valourRiftHUD-fuelContainer-buyButton {
+  top: -4px;
+  left: 98px;
 }
 
 .valourRiftHUD-previewTower {
@@ -196,12 +227,41 @@ span.valourRiftHUD-stepsTaken-value {
   color: #2d2964;
 }
 
-.valourRiftHUD-fuelContainer-quantity.quantity {
-  padding: 1px 2px;
-  margin-top: -7px;
-  margin-right: -3px;
-  font-size: 14px;
-  background-color: #281c55;
-  border: 1px solid #7db4dc;
-  box-shadow: 0 0 0 1px #7eaacd;
+#mh-vrift-floor-name {
+  display: none;
+}
+
+.valourRiftHUD-currentFloor:hover #mh-vrift-floor-name {
+  background-color: #231857f2;
+  border: 1px solid #9bcfff;
+  border-radius: 5px;
+  display: block;
+  position: absolute;
+  left: 25px;
+  right: 25px;
+  z-index: 1;
+  top: 20px;
+  font-size: 10px;
+  line-height: 18px;
+}
+
+.bottom.mh-vrift-floor-tooltip {
+  bottom: -60px;
+  right: -50px;
+  left: -60px;
+  font-size: 11px;
+}
+
+.valourRiftHUD-stepsTaken .mousehuntTooltip {
+  min-width: 170px;
+  width: auto;
+  top: -5px;
+  left: 107%;
+}
+
+.valourRiftHUD-huntsRemaining .mousehuntTooltip {
+  min-width: 335px;
+  width: auto;
+  top: 5px;
+  left: 105%;
 }

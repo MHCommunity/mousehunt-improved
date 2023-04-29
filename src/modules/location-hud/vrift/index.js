@@ -601,13 +601,15 @@ const main = () => {
     return;
   }
 
+  addUIComponents();
+
   const simPopup = document.querySelector('.valourRiftHUD-floorProgress-barContainer');
   if (simPopup) {
     simPopup.addEventListener('click', () => {
       const data = simulate(false);
       console.log(data);
       const popup = createPopup({
-        title: 'VRift Run Simulation',
+        title: 'Valour Rift Run Simulation',
         content: displayResults(data),
         show: false,
       });
@@ -618,8 +620,43 @@ const main = () => {
   }
 };
 
+const addUIComponents = () => {
+  const existing = document.querySelector('#mh-vrift-floor-name');
+  if (existing) {
+    existing.remove();
+  }
+
+  const floor = document.querySelector('.valourRiftHUD-currentFloor');
+  if (! floor) {
+    return;
+  }
+
+  const floorName = makeElement('div', 'valourRiftHUD-floorName', user?.quests?.QuestRiftValour?.floor_name);
+  floorName.id = 'mh-vrift-floor-name';
+  floor.appendChild(floorName);
+
+  const floorTooltipParent = document.querySelector('.valourRiftHUD-floorProgress.mousehuntTooltipParent');
+  if (! floorTooltipParent) {
+    return;
+  }
+
+  const tooltip = floorTooltipParent.querySelector('.mousehuntTooltip');
+  if (! tooltip) {
+    return;
+  }
+
+  tooltip.classList.add('bottom', 'mh-vrift-floor-tooltip');
+  tooltip.classList.remove('top');
+
+  const stepsRemaining = tooltip.querySelector('.valourRiftHUD-stepsRemaining');
+  if (! stepsRemaining) {
+    return;
+  }
+
+};
+
 export default function moduleTemplate() {
   addUIStyles(styles);
 
-  main();
+  run(main);
 }
