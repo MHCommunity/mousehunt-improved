@@ -24,6 +24,30 @@ const modifyText = (selector, strings) => {
   });
 };
 
+const addFullStopToJournalEntries = () => {
+  let journalEntries = [];
+  const huntEntries = document.querySelectorAll('.journal .entry .journaltext p:last-child');
+  if (huntEntries.length > 0) {
+    // add all the nodes to the array
+    journalEntries = journalEntries.concat(Array.from(huntEntries));
+  }
+
+  const trapCheckEntries = document.querySelectorAll('.journal .entry.passive .journaltext');
+  if (trapCheckEntries.length > 0) {
+    // add all these nodes to the array as well
+    journalEntries = journalEntries.concat(Array.from(trapCheckEntries));
+  }
+
+  journalEntries.forEach((entry) => {
+    const text = entry.innerHTML;
+    if (! text.endsWith('.') || text.endsWith('!')) {
+      entry.innerHTML = `${text}.`;
+    } else if (text.endsWith('</p>')) {
+      entry.innerHTML = `${text.slice(0, -4)}.<p>`;
+    }
+  });
+};
+
 /**
  * Update text in journal entries.
  */
@@ -144,6 +168,8 @@ const updateJournalText = () => {
       link.appendChild(span);
     }
   }
+
+  addFullStopToJournalEntries();
 
   eventRegistry.doEvent('journal_replacements_finished');
 };

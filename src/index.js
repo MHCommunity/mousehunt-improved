@@ -1,5 +1,5 @@
 // Utilities
-import { addUIStyles } from './modules/utils';
+import { addBodyClasses, addUIStyles } from './modules/utils';
 
 // Global styles
 import globalStyles from './styles.css';
@@ -38,6 +38,9 @@ import labyrinth from './modules/location-hud/labyrinth';
 import vrift from './modules/location-hud/vrift';
 
 import testing from './modules/testing';
+
+addBodyClasses();
+addUIStyles(globalStyles);
 
 // Core 'Better' modules.
 const modules = [
@@ -135,5 +138,3 @@ modules.forEach((module) => {
     }
   });
 });
-
-addUIStyles(globalStyles);

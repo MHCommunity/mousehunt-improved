@@ -9,7 +9,7 @@
 }
 
 .campPage-trap-baitDetails {
-  color: transparent;
+  color: transparent !important;
   text-shadow: none;
 }
 
@@ -17,6 +17,12 @@
 .campPage-trap-baitQuantity {
   color: #926944;
   text-shadow: 0 0 1px #ae9b6d, 1px 1px #fff;
+}
+
+.mh-dark-mode .campPage-trap-baitName,
+.mh-dark-mode .campPage-trap-baitQuantity {
+  color: #ffe6d0;
+  text-shadow: 0 0 1px #ae9b6d, 1px 1px #000;
 }
 
 .campPage-trap-baitQuantity {
@@ -34,6 +40,10 @@
   border-bottom: none;
   border-bottom-right-radius: 3px;
   box-shadow: -1px -1px 1px #d3cecb inset;
+}
+
+.mh-dark-mode .campPage-trap-baitQuantity {
+  background-color: hsl(0deg 0% 37.11% / 70%);
 }
 
 .campPage-trap-armedItem .quantity span {
@@ -168,7 +178,7 @@
 }
 
 .trapImageView-trapAura {
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 .largerTrapView-popup-name,
@@ -180,20 +190,25 @@ span.campPage-trap-armedItem-skin-description-content br {
 /* tem meter */
 .campPage-trap-trapEffectivenessBar {
   background: #9d917f;
-  box-shadow: 0 0 0 1px #f1ede4, 0 0 0 2px #e4ded3, 0 0 0 3px #cac0b2;
+  height: 12px;
+  margin-top: -1px;
+}
+
+.campPage-trap-trapEffectivenessBar::after {
+  filter: saturate(0.5);
 }
 
 .campPage-trap-trapEffectivenessBar.easy::after,
 .campPage-trap-trapEffectivenessBar.effortless::after,
 .campPage-trap-trapEffectivenessBar.strong::after,
 .campPage-trap-trapEffectivenessBar.excellent::after {
-  background: #138f13;
+  background: #0cdf10;
 }
 
 .campPage-trap-trapEffectivenessBar.near_impossible::after,
 .campPage-trap-trapEffectivenessBar.very_poor::after,
 .campPage-trap-trapEffectivenessBar.overpowering::after {
-  background: #bb4646;
+  background: #ff8383;
 }
 
 .campPage-trap-trapEffectivenessBar.difficult::after,
@@ -201,7 +216,7 @@ span.campPage-trap-armedItem-skin-description-content br {
 .campPage-trap-trapEffectivenessBar.mild::after,
 .campPage-trap-trapEffectivenessBar.moderate::after,
 .campPage-trap-trapEffectivenessBar.medium::after {
-  background: #faff8b;
+  background: #cfd37d;
 }
 
 .campPage-trap-trapEffectivenessBar.impossible::after {

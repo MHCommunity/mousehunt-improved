@@ -80,11 +80,12 @@
 .journal .entry .journalbody .journaldate {
   display: inline-block;
   width: calc(100% - 10px);
-  margin-bottom: 5px;
-  font-size: 10px;
+  padding-bottom: 3px;
+  margin-bottom: 10px;
+  font-size: 11px;
   font-weight: 100;
   color: #626262;
-  border-bottom: 1px solid #626262;
+  border-bottom: 1px solid #b2b2b2;
 }
 
 /* hide the BONUS HUNT banner on bonus hunts */

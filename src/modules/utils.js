@@ -28,7 +28,37 @@ const makeButton = (text, href, extraClasses = [], tiny = true) => {
   return `<a href="${href}" class="mousehuntActionButton ${tiny ? 'tiny' : ''} ${extraClasses.join(' ')}"><span>${text}</span></a>`;
 };
 
+/**
+ * Adds classes to the body to enable styling based on the location or if dark mode is enabled.
+ */
+const addLocationBodyClass = () => {
+  const addClass = () => {
+    const location = getCurrentLocation();
+    document.body.classList.add(`mh-location-${location}`);
+  };
+
+  addClass();
+  onTravel(null, { callback: addClass });
+};
+
+const addDarkModeBodyClass = () => {
+  if (getComputedStyle(document.documentElement).getPropertyValue('--mhdm-black')) {
+    document.body.classList.add('mh-dark-mode');
+  }
+};
+
+const addBodyClassesCallback = () => {
+  addLocationBodyClass();
+  addDarkModeBodyClass();
+};
+
+const addBodyClasses = () => {
+  window.addEventListener('load', addBodyClassesCallback);
+  eventRegistry.addEventListener(hg.utils.PageUtil.EventSetPage, addBodyClassesCallback);
+};
+
 export {
   addUIStyles,
-  makeButton
+  makeButton,
+  addBodyClasses,
 };

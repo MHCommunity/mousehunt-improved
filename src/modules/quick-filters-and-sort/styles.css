@@ -34,7 +34,7 @@
   display: flex;
   justify-content: space-evenly;
   padding: 5px 10px;
-  background-color: #f6f3eb;
+  background-color: var(--mhdm-secondaryDark, #f6f3eb); /* stylelint-disable-line */
 }
 
 .campPage-trap-itemBrowser-quickLinks-power {
@@ -46,7 +46,7 @@
   left: 0;
   padding: 5px;
   margin-top: 10px;
-  color: #96704b;
+  color: var(--mhdm-brown, #96704b);
   text-align: center;
   transform: rotate(-90deg);
 }
