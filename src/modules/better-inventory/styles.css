@@ -57,6 +57,96 @@
   border: none;
 }
 
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-tagGroup {
+  padding: 8px 0 8px 8px;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-tagGroup:nth-child(even) {
+  background-color: #f6f6f6;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-tagTitle {
+  padding: 0 0 10px 0;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-listing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.mousehuntHud-page-subTabContent.hammer .mousehuntHud-page-subTabContent.hammer .inventoryPage-item {
+  background-color: #fff;
+  width: 68px;
+  margin: 0;
+  border-radius: 10px;
+  margin-right: 3px;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item:nth-child(7n) {
+  margin-right: 0;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item {
+  height: auto;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  font-size: 9px;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item-margin.clear-block {
+  border: none;
+  border-radius: 0;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .inventoryPage-item-margin {
+  box-shadow: none;
+  outline: 1px solid #888888;
+  background-color: #e3e3e3;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item .tooltip,
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item .newTooltip {
+  display: none;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip {
+  align-items: center;
+  display: flex;
+  width: auto;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .tooltip .inventoryPage-item-margin {
+  background-color: transparent;
+  outline: none;
+  text-align: center;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item.small .tooltip.newTooltip .itemImage {
+  float: none;
+  width: 60px;
+  height: 60px;
+  overflow: visible;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item.small .tooltip.newTooltip .itemImage img {
+  width: 55px;
+  height: 55px;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip .inventoryPage-item-content-nameContainer,
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip .inventoryPage-item-content-name {
+  height: auto;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip .inventoryPage-item-content-name span {
+  min-width: 60px;
+}
+
 a.inventoryPage-item-larryLexicon {
   display: none;
 }

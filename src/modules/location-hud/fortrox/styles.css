@@ -1,0 +1,58 @@
+.fortRoxHUD-timeline {
+  width: 693px;
+  box-shadow: 0 0 2px 7px #5c3330;
+}
+
+.fortRoxHUD-huntsRemaining.mousehuntTooltipParent {
+  right: 13px;
+  left: unset;
+  background-color: #e2e2e2;
+  box-shadow: inset 0 0 3px #c0b6b3;
+  top: 45px;
+}
+
+a.fortRoxHUD-retreat {
+  top: 70px;
+}
+
+.fortRoxHUD-timeline-phase-name, .fortRoxHUD-timeline-phase-marker.active .fortRoxHUD-timeline-phase-name {
+  font-size: 13px;
+  text-shadow: 0 0 3px #131313;
+  filter: drop-shadow(0 1px 1px 131313);
+  font-variant: normal;
+}
+
+.fortRoxHUD-timeline-phase-marker.past .fortRoxHUD-timeline-phase-name {
+  text-shadow: 0 0 3px #7b7a7a;
+  filter: drop-shadow(0 1px 1px #7b7a7a);
+}
+
+.fortRoxHUD-timeline-phase-time-tooltip {
+  margin-top: 20px;
+}
+
+.fortRoxHUD-fort-upgrade-boundingBox:hover .fortRoxHUD-fort-upgrade-boundingBox-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fortRoxHUD-timeline-phase-time-tooltip {
+  min-width: 75px;
+  margin-left: -20px;
+}
+
+.fortRoxHUD-timeline-phase-time-tooltip .mousehuntTooltip-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fortRoxHUD-timeline-phase-time-tooltip .mousehuntTooltip-content .tooltip-power {
+  margin-top: 5px;
+}
+
+.fortRoxHUD-huntsRemaining .mousehuntTooltip {
+  top: 35px;
+}

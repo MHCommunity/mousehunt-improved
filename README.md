@@ -9,15 +9,25 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
 - Better UI
   - Updates the MH interface with a variety of UI and style changes.
 - Better Inventory
-  - Updates the inventory layout and appearance and adds a variety of small features.
+  - Updates the inventory UI
+  - Set max quantity for opening items when clicking on the quantity
+  - Fixes the Passing Parcel collectible display
 - Better Journal
-  - Modify the journal text, layout, and styling.
+  - Updates the journal UI
+  - Rewrites the journal to use simpler entries
 - Better Mouse View
-  - Add links to MHCT & MHWiki in mouse popups as well as showing attraction rates.
+  - Updates the mouse view UI slightly
+  - Adds MHCT attraction rates inline
+  - Adds buttons to MHCT, MHWiki, and mhdb
 - Better Shops
-  - Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.
+  - Updates the Shop layout and UI
+  - Makes items stats more readable
+  - Minimizes owned items that have an inventory limit of 1
+  - Hides items that use legacy costs in the King's Cart
 - Better Quests
-  - Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.
+  - Fixes the smash assignment button to go to the correct page
+  - Adds M400 helper to quickly see attraction rates and jump to the next location
+  - When not on an assignment, you can open the assignments popup from anywhere
 
 ### Features
 

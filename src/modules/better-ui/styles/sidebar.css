@@ -1,24 +1,3 @@
-/* Shrinks the sidebar borders a bit */
-.pageFrameView-column.right,
-.pageFrameView-column.left {
-  border-width: 10px;
-}
-
-/* Better sidebar by the user sections */
-.pageSidebarView-user br {
-  display: none;
-}
-
-.pageSidebarView-user a:last-child {
-  position: absolute;
-  right: 0;
-  display: inline-block;
-}
-
-.pageSidebarView-block {
-  position: relative;
-}
-
 .pageSidebarView-user {
   border-bottom: none;
 }

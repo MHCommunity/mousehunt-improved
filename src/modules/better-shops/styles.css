@@ -234,8 +234,8 @@ span.itemPurchaseView-action-owned {
 /* Marketplace close button - make the normal X button */
 #overlayPopup .marketplaceView input.button:first-child {
   position: absolute;
-  top: -3px;
-  right: -10px;
+  top: -3px !important;
+  right: -10px !important;
   display: block;
   width: 28px;
   height: 27px;

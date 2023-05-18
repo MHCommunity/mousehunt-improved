@@ -195,6 +195,7 @@ const main = () => {
     'a[href*="https://www.mousehuntgame.com/profile.php"]',
     '.entry.socialGift .journaltext a',
     '.notificationMessageList .messageText a[href*="https://www.mousehuntgame.com/p"]',
+    'tr.teamPage-memberRow-identity a[href*="https://www.mousehuntgame.com/profile.php"]',
   ];
 
   selectors.forEach((selector) => {

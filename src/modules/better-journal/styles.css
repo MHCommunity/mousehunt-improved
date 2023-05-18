@@ -1,6 +1,6 @@
 .journal .entry .journalbody {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 3px;
+  margin-bottom: 3px;
   margin-left: 80px;
 }
 
@@ -15,6 +15,10 @@
 
 /* Images */
 .journal .entry .journalimage {
+  margin: 0 0 0 10px;
+}
+
+.shop_purchase .journal .entry .journalimage {
   margin: 15px 0 0 10px;
 }
 
@@ -85,7 +89,7 @@
   font-size: 11px;
   font-weight: 100;
   color: #626262;
-  border-bottom: 1px solid #b2b2b2;
+  border-bottom: 1px solid #717171;
 }
 
 /* hide the BONUS HUNT banner on bonus hunts */
@@ -373,4 +377,11 @@ a.journal-detailLink.full::after {
 /* Hide the period */
 .entry.short.log_summary.stats .fullstop {
   display: none;
+}
+
+.socialGift.socialGift-send .journaltext {
+  max-height: 50px;
+  overflow-y: scroll;
+  box-shadow: inset -5px -4px 7px -4px #9d9d9d;
+  overflow-x: hidden;
 }

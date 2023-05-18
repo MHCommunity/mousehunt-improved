@@ -61,7 +61,17 @@ const moveSidebar = () => {
   tabsContainer.insertBefore(menuTab, tabsContainer.lastChild);
 };
 
+const addBodyClass = () => {
+  const body = document.querySelector('body');
+  if (! body) {
+    return;
+  }
+
+  body.classList.add('no-sidebar');
+};
+
 export default () => {
   addUIStyles(styles);
+  addBodyClass();
   moveSidebar();
 };

@@ -118,3 +118,62 @@
   transform-origin: bottom left;
   animation: rotate40 0.5s linear infinite;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a[onclick="hg.utils.PageUtil.setPage('JoinDiscord'); return false;"],
+.pageSidebarView-block.ad,
+.communityGroupView-ad,
+.pageSidebarView-mobileApps,
+.pageSidebarView-title,
+.pageSidebarView-block-description {
+  display: none;
+}
+
+.scoreboardRelativeRankingTableView table {
+  border-bottom: none;
+  border: 1px solid #ddedff;
+}
+
+.scoreboardRelativeRankingTableView th {
+  background-color: #dbecff;
+  border-bottom: 1px solid #b7c4d2;
+  display: flex;
+  grid-column-end: 6;
+  grid-column-start: 1;
+  justify-content: space-around;
+  font-weight: normal;
+  align-items: center;
+  font-size: 10px;
+}
+
+.scoreboardRelativeRankingTableView td:nth-of-type(3) {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.scoreboardRelativeRankingTableView tr {
+  display: grid;
+  grid-template-columns: 25px 20px auto 68px;
+  overflow: hidden;
+}

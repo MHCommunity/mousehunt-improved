@@ -122,7 +122,7 @@ const main = () => {
       const intersectionText = makeElement('div', 'mh-ui-labyrinth-door-text');
 
       makeElement('div', 'mh-ui-laby-steps', `${stepsToGo} hunt${(stepsToGo) > 1 ? 's' : ''} left in the hallway`, intersectionText);
-      if (cluesPerTile > 0) {
+      if (cluesPerTile !== 'NaN') {
         makeElement('div', 'mh-ui-laby-cpt', `Avg. ${cluesPerTile} clues per hunt`, intersectionText);
       }
 

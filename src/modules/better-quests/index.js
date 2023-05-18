@@ -11,7 +11,8 @@ const updateObjectiveFooterDisplay = () => {
     return;
   }
 
-  footerText.setAttribute('href', footerText.getAttribute('href').replace('subtab', 'sub_tab'));
+  const newHref = footerText.getAttribute('href').replace('subtab', 'sub_tab')
+  footerText.setAttribute('href', `${newHref}#smashQuest`);
   footerText.innerHTML = footerText.innerHTML.replace('Don\'t like an assignment? Cancel it by smashing the assignment ', 'Cancel this assignment by smashing it ');
 };
 
@@ -130,17 +131,214 @@ const addResearchSmashWarning = () => {
   confirm.insertBefore(warningText, confirm.firstChild);
 };
 
+const moveErrorText = () => {
+  const errorTextEl = document.querySelectorAll('.questLink .requirements .error');
+  if (! errorTextEl) {
+    return;
+  }
+
+  let errorText = '';
+  errorTextEl.forEach((el) => {
+    if (el.innerText) {
+      errorText = el.innerText;
+    }
+
+    el.classList.add('hidden');
+  });
+
+  if (! errorText) {
+    return;
+  }
+
+  errorText = errorText.replace(/ \d\d seconds/, '').replace(' before taking', ' for');
+
+  const titleBar = document.querySelector('#jsDialogAjaxPrefix h2');
+  if (! titleBar) {
+    return;
+  }
+
+  const titleError = makeElement('h3', 'errorText', errorText);
+  titleBar.parentNode.insertBefore(titleError, titleBar.nextSibling);
+};
+
+const removeSmashText = () => {
+  const smashText = document.querySelector('.smashQuest');
+  if (smashText) {
+    smashText.classList.add('hidden');
+  }
+};
+
+const assignments = [
+  {
+    id: 'library_intro_research_assignment_convertible',
+    name: 'Catalog Library Mice',
+    cost: 0,
+    reward: 20,
+    rank: false,
+  },
+  {
+    id: '',
+    name: 'Library Research',
+    cost: 20,
+    reward: 30,
+    rank: false,
+  },
+  {
+    id: 'zugzwang_research_assignment_convertible',
+    name: 'Zugzwang Research',
+    cost: 50,
+    reward: 80,
+    rank: false,
+  },
+  {
+    id: 'furoma_research_assignment_convertible',
+    name: 'Furoma Research',
+    cost: 130,
+    reward: 90,
+    rank: false,
+  },
+  {
+    id: 'adv_zugzwang_research_assignment_convertible',
+    name: 'Advanced Zugzwang Research',
+    cost: 150,
+    reward: 150,
+    rank: false,
+  },
+  {
+    id: 'zurreal_trap_research_convertible',
+    name: 'Zurreal Trap Research',
+    cost: 900,
+    reward: 400,
+    rank: false,
+  },
+  {
+    id: 'library_m400_bait_assignment_convertible',
+    name: 'M400 Bait Research Assignment',
+    cost: 1250,
+    reward: 200,
+    rank: true,
+  },
+  {
+    id: 'library_m400_assignment_convertible',
+    name: 'M400 Hunting Research Assignment',
+    cost: 1900,
+    reward: 300,
+    rank: true,
+  }
+];
+
+const getAssignmentMeta = (assignment) => {
+  const wikiLink = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replace(/ /g, '_')}`;
+  return `<a href="${wikiLink}" target="_blank">Wiki</a> | Requires: ${assignment.cost} | Reward: ${assignment.reward}`;
+};
+
+const updateAssignmentList = () => {
+  const assignmentList = document.querySelectorAll('#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink');
+  if (! assignmentList) {
+    return;
+  }
+
+  assignmentList.forEach((outerEl) => {
+    const el = outerEl.querySelector('.content b');
+    if (! el) {
+      return;
+    }
+
+    // Get the assignment name.
+    const assignmentName = el.innerText;
+
+    // get the assignment from the list.
+    const assignment = assignments.find((a) => a.name === assignmentName);
+    if (! assignment) {
+      return;
+    }
+
+    const requirements = el.parentNode.parentNode.querySelector('.requirements');
+    if (! requirements) {
+      return;
+    }
+
+    const metaWrapper = makeElement('div', 'mh-ui-assignment-meta-wrapper');
+    makeElement('div', 'mh-ui-assignment-meta', getAssignmentMeta(assignment), metaWrapper);
+
+    requirements.parentNode.insertBefore(metaWrapper, requirements.nextSibling);
+    // remove the requirements.
+    requirements.remove();
+
+    if ('M400 Hunting Research Assignment' === assignmentName) {
+      const m400Wrapper = makeElement('div', ['content', 'mh-ui-m400-wrapper']);
+      makeElement('b', 'mh-ui-m400-title', assignmentName, m400Wrapper); // b tag just to match.
+      makeElement('span', 'mh-ui-m400-content', 'This envelope contains a Research Assignment that will have you looking for the elusive M400 prototype.', m400Wrapper);
+
+      // replace the .content with our new content.
+      el.parentNode.parentNode.querySelector('.content').replaceWith(m400Wrapper);
+    }
+
+    // remove the onclick.
+    outerEl.removeAttribute('onclick');
+
+    const button = outerEl.querySelector('.actions .mousehuntActionButton');
+    if (! button) {
+      return;
+    }
+
+    button.addEventListener('click', () => {
+      hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm(assignment.id); // eslint-disable-line no-undef
+    });
+  });
+};
+
+const modifyAvailableQuestsPopup = () => {
+  if (! document.querySelector('#overlayPopup.zugzwangsLibraryQuestShopPopup')) {
+    return;
+  }
+
+  updateAssignmentList();
+
+  const isError = document.querySelector('.questLink .requirements .error');
+  if (isError) {
+    moveErrorText();
+    removeSmashText();
+  }
+};
+
+const checkForQuestSmash = () => {
+  if (! window.location.hash || '#smashQuest' !== window.location.hash) {
+    return;
+  }
+
+  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubTab()) { // eslint-disable-line no-undef
+    return;
+  }
+
+  const assignment = document.querySelector('.inventoryPage-item.quest[data-produced-item="nothing_stat_item"]');
+  if (! assignment) {
+    return;
+  }
+
+  app.pages.InventoryPage.useItem(assignment); // eslint-disable-line no-undef
+};
+
 const main = () => {
   const activate = () => {
     addQuestTabEventListener();
     addQuestsTab();
+    checkForQuestSmash();
   };
 
   // Add our event listener and add the quests tab.
   activate();
 
-  onPageChange({ camp: { show: activate } });
-  onOverlayChange({ show: addResearchSmashWarning });
+  onPageChange({
+    camp: { show: activate },
+    inventory: { show: checkForQuestSmash }
+  });
+  onOverlayChange({
+    show: () => {
+      addResearchSmashWarning();
+      modifyAvailableQuestsPopup();
+    }
+  });
 };
 
 export default () => {

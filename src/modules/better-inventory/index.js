@@ -67,14 +67,163 @@ const fixPassingParcel = () => {
   });
 };
 
-const main = () => {
-  addUIStyles(styles);
+const addOpenAlltoConvertible = () => {
+  const form = document.querySelector('.convertible .itemView-action-convertForm');
+  if (! form) {
+    return;
+  }
 
+  if (form.getAttribute('data-open-all-added')) {
+    return;
+  }
+
+  form.setAttribute('data-open-all-added', true);
+
+  // get the innerHTML and split it on the input tag. then wrap the second match in a span so we can target it
+  const formHTML = form.innerHTML;
+  const formHTMLArray = formHTML.split(' /');
+  // if we dont have a second match, just return
+  if (! formHTMLArray[1]) {
+    return;
+  }
+
+  const formHTMLArray2 = formHTMLArray[1].split('<a');
+  if (! formHTMLArray2[1]) {
+    return;
+  }
+
+  const quantity = formHTMLArray2[0].trim();
+
+  const newFormHTML = `${formHTMLArray[0]}/ <span class="open-all">${quantity}</span><a${formHTMLArray2[1]}`;
+  form.innerHTML = newFormHTML;
+
+  const openAll = document.querySelector('.open-all');
+  openAll.addEventListener('click', () => {
+    const input = form.querySelector('.itemView-action-convert-quantity');
+    if (! input) {
+      return;
+    }
+
+    input.value = quantity;
+  });
+};
+
+const addOpenAlltoConvertiblePage = () => {
+  if ('item' !== getCurrentPage()) {
+    return;
+  }
+
+  addOpenAlltoConvertible();
+};
+
+const modifySmashableTooltip = async () => {
+  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubTab()) { // eslint-disable-line no-undef
+    return;
+  }
+
+  const items = document.querySelectorAll('.inventoryPage-item');
+  if (! items) {
+    return;
+  }
+
+  items.forEach(async (item) => {
+    const tooltip = item.querySelector('.tooltip');
+    console.log(tooltip);
+    if (! tooltip) {
+      return;
+    }
+
+    // get the data for the data-produced-item attribute
+    let producedItem = item.getAttribute('data-produced-item');
+    if (! producedItem) {
+      return;
+    }
+
+    item.addEventListener('mouseenter', async () => {
+      if (item.getAttribute('data-new-tooltip') === 'newTooltip') {
+        return;
+      }
+
+      item.setAttribute('data-new-tooltip', 'newTooltip');
+
+      if (producedItem.includes(',')) {
+        producedItem = producedItem.split(',');
+      } else {
+        producedItem = [producedItem];
+      }
+
+      const itemType = item.getAttribute('data-item-type');
+      producedItem.push(itemType);
+
+      const itemData = await getUserItems(producedItem); // eslint-disable-line no-undef
+      if (! itemData || ! itemData[0]) {
+        return;
+      }
+
+      // get the formatted_parts attribute from the itemData array where the type matches the itemType
+      const formattedParts = itemData.find((itemDataItem) => itemDataItem.type === itemType).formatted_parts;
+      if (! formattedParts) {
+        return;
+      }
+
+      const tooltipWrapper = makeElement('div', ['newTooltip', 'tooltip']);
+
+      itemData.forEach((itemDataItem) => {
+        // get the data in formattedParts where the type matches the itemDataItem.type
+        const formattedPart = formattedParts.find((formattedPartItem) => formattedPartItem.type === itemDataItem.type);
+        if (! formattedPart) {
+          return;
+        }
+
+        const name = formattedPart.name;
+        const thumb = formattedPart.thumbnail_transparent || itemDataItem.thumbnail;
+        let quantity = formattedPart.quantity;
+
+        if ('gold_stat_item' === itemDataItem.type) {
+          // convert to k or m
+          const quantityInt = parseInt(quantity);
+          if (quantityInt >= 1000000) {
+            quantity = `${Math.floor(quantityInt / 100000) / 10}m`;
+          } else if (quantityInt >= 1000) {
+            quantity = `${Math.floor(quantityInt / 100) / 10}k`;
+          }
+        }
+
+        // const itemTooltip = makeElement('div', 'new-tooltip-item');
+        makeElement('div', ['new-tooltip-item', 'inventoryPage-item'], `
+        <div class="inventoryPage-item-margin clear-block">
+          <div class="inventoryPage-item-imageContainer">
+            <div class="itemImage"><img src="${thumb}">
+              <div class="quantity">${quantity}</div>
+            </div>
+          </div>
+          <div class="inventoryPage-item-content-nameContainer">
+            <div class="inventoryPage-item-content-name">
+              <span>${name}</span>
+            </div>
+          </div>
+        </div>`, tooltipWrapper);
+        // makeElement('div', 'tooltip-title', `<b>${name}</b>`, itemTooltip);
+        // makeElement('div', 'tooltip-image', `<img src="${thumb}">`, itemTooltip);
+        // tooltipWrapper.appendChild(itemTooltip);
+      });
+
+      tooltip.parentNode.insertBefore(tooltipWrapper, tooltip.nextSibling);
+    });
+  });
+};
+
+const main = () => {
   setOpenQuantityOnClick();
   fixPassingParcel();
+  addOpenAlltoConvertiblePage();
+  modifySmashableTooltip();
 };
 
 export default function inventoryHelper() {
+  addUIStyles(styles);
+
   main();
   onPageChange({ change: main });
+  onEvent('js_dialog_show', addOpenAlltoConvertible, true);
 }

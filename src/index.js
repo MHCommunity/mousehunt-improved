@@ -17,10 +17,11 @@ import copyId from './modules/copy-id';
 import dashboard from './modules/dashboard';
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
+import inlineWiki from './modules/inline-wiki';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
-import inlineWiki from './modules/inline-wiki';
+import temCrowns from './modules/tem-crowns';
 
 // Copies of standalone userscripts.
 import itemLinks from './modules/external/item-links';
@@ -33,13 +34,12 @@ import tallerWindows from './modules/external/taller-windows';
 import cheeseSelectors from './modules/location-hud/cheese-selectors';
 import balacksCove from './modules/location-hud/balacks-cove';
 import forbiddenGrove from './modules/location-hud/forbidden-grove';
+import fortRox from './modules/location-hud/fortrox';
 import iceberg from './modules/location-hud/iceberg';
 import labyrinth from './modules/location-hud/labyrinth';
 import vrift from './modules/location-hud/vrift';
 
 import testing from './modules/testing';
-
-addBodyClasses();
 addUIStyles(globalStyles);
 
 // Core 'Better' modules.
@@ -72,6 +72,7 @@ const modules = [
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
       { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button to easily send any quantity of SUPER|brie+ or another item..', load: quickSendSupplies },
       { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Makes popup windows taller.', load: tallerWindows },
+      { id: 'tem-crowns', name: 'TEM Crowns', default: true, description: 'Adds crowns and catches to the the Trap Effectiveness Meter.', load: temCrowns },
     ]
   },
   {
@@ -91,6 +92,7 @@ const modules = [
       { id: 'cheese-selectors', name: 'Cheese Selectors', default: true, description: 'Adds a quick cheese selector to locations that don\'t have a specific HUD.', load: cheeseSelectors },
       { id: 'balacks-cove', name: 'Balack\'s Cove HUD Improvements', default: true, description: '', load: balacksCove },
       { id: 'forbidden-grove', name: 'Forbidden Grove HUD Improvements', default: true, description: '', load: forbiddenGrove },
+      { id: 'fortrox', name: 'Fort Rox HUD Improvements', default: true, description: '', load: fortRox },
       { id: 'iceberg', name: 'Iceberg HUD Improvements', default: true, description: '', load: iceberg },
       { id: 'labyrinth', name: 'Labyrinth HUD Improvements', default: true, description: '', load: labyrinth },
       { id: 'vrift', name: 'Valour Rift HUD Improvements', default: true, description: '', load: vrift },
@@ -106,35 +108,57 @@ const modules = [
   }
 ];
 
-addSettingsTab('better-mh-settings', 'Better MH');
 // enableDebugMode();
 
-debug('Starting MH UI');
-// Add the settings for each module.
-modules.forEach((module) => {
-  module.modules.forEach((subModule) => {
-    if (subModule.alwaysLoad) {
-      return;
-    }
+const addSettings = () => {
+  debug('Starting MH UI');
 
-    addSetting(
-      subModule.name,
-      subModule.id,
-      subModule.default,
-      subModule.description,
-      { id: module.id, name: module.name, description: module.description },
-      'better-mh-settings'
-    );
-  });
-});
+  addSettingsTab('better-mh-settings', 'Better MH');
 
-// Load the modules.
-modules.forEach((module) => {
-  module.modules.forEach((subModule) => {
-    if (subModule.alwaysLoad) {
-      subModule.load();
-    } else if (getSetting(subModule.id, subModule.default)) {
-      subModule.load();
-    }
+  // Add the settings for each module.
+  modules.forEach((module) => {
+    module.modules.forEach((subModule) => {
+      if (subModule.alwaysLoad) {
+        return;
+      }
+
+      addSetting(
+        subModule.name,
+        subModule.id,
+        subModule.default,
+        subModule.description,
+        { id: module.id, name: module.name, description: module.description },
+        'better-mh-settings'
+      );
+    });
   });
-});
+
+  // Load the modules.
+  modules.forEach((module) => {
+    module.modules.forEach((subModule) => {
+      if (subModule.alwaysLoad) {
+        subModule.load();
+      } else if (getSetting(subModule.id, subModule.default)) {
+        subModule.load();
+      }
+    });
+  });
+};
+
+const main = () => {
+  addBodyClasses();
+  addSettings();
+};
+
+// Start it up.
+main();
+
+
+
+
+
+
+
+
+
+// hg.views.MouseCrownsView.toggleFavouriteHandler(event); return false;

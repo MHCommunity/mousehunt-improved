@@ -1,0 +1,46 @@
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.rain_shrine:first-child {
+  box-shadow: 0 0 13px 3px #ffd700 inset;
+  border-radius: 3px;
+  background-position-y: 0;
+}
+
+
+
+.floatingIslandsHUD-modPanel.rain_shrine:hover:before {
+  content: "Rain";
+  position: absolute;
+  bottom: 6px;
+  left: 7px;
+  right: 7px;
+  color: #0c3e0e;
+  z-index: 1;
+  font-size: 16px;
+  background-color: #d1e19d;
+  display: block;
+  height: auto;
+  padding: 1px;
+  text-shadow: none;
+  white-space: nowrap;
+  font-variant: small-caps;
+  display: flex;
+  justify-content: center;
+
+
+
+
+
+
+  .floatingIslandsHUD-retreatButton.disabled {
+    .floatingIslandsHUD-retreatButton {
+      background-color: #ae5d18;
+      color: #b0a06c!important;
+      border-radius: 0;
+      border: none;
+      background-color: transparent;
+      margin-top: -1px;
+  }
+
+  .floatingIslandsHUD-retreatButton.disabled:hover {
+    background: none;
+    color: #fce698!important;
+}
