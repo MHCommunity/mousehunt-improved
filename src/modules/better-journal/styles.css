@@ -384,4 +384,27 @@ a.journal-detailLink.full::after {
   overflow-y: scroll;
   box-shadow: inset -5px -4px 7px -4px #9d9d9d;
   overflow-x: hidden;
+  padding-bottom: 6px;
+}
+
+.journal .entry.socialGift-send {
+  padding-bottom: 0;
+}
+
+.journal .entry .journalbody .journaltext .loot:last-child::after,
+.journal .entry .journalbody .journaltext .luck:last-child::after {
+  content: ".";
+}
+
+.journal .entry .journaltext br {
+  content: "";
+}
+
+.journal .entry .journaltext br:after {
+  content: " ";
+}
+
+/* nicer shade of green for prize mice */
+.journal .content .catchsuccessprize {
+  background-color: #7dea7d;
 }

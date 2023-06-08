@@ -1,17 +1,15 @@
 import { addUIStyles } from '../utils';
 import styles from './styles.css';
 
-const makeItem = (name, type, image) => {
-  const item = document.createElement('div');
-  item.classList.add('quickSendItem');
+const makeItem = (name, type, image, appendTo) => {
+  const item = makeElement('div', 'quickSendItem');
   item.title = name;
 
   const itemImage = document.createElement('img');
   itemImage.setAttribute('src', image);
   itemImage.setAttribute('alt', name);
 
-  const selected = document.createElement('input');
-  selected.classList.add('quickSendItemRadio');
+  const selected = makeElement('input', 'quickSendItemRadio');
   selected.setAttribute('type', 'radio');
   selected.setAttribute('name', 'item');
   selected.setAttribute('value', type);
@@ -31,7 +29,7 @@ const makeItem = (name, type, image) => {
   item.appendChild(selected);
   item.appendChild(itemImage);
 
-  return item;
+  appendTo.appendChild(item);
 };
 
 const main = () => {
@@ -60,46 +58,30 @@ const main = () => {
       tooltip.remove();
     }
 
-    const quickSendLinkWrapper = document.createElement('form');
-    quickSendLinkWrapper.classList.add('quickSendWrapper');
-    quickSendLinkWrapper.style.display = 'none';
+    const quickSendLinkWrapper = makeElement('form', ['quickSendWrapper', 'hidden']);
+    const itemsWrapper = makeElement('div', 'itemsWrapper');
 
-    const itemsWrapper = document.createElement('div');
-    itemsWrapper.classList.add('itemsWrapper');
-
-    const sb = makeItem('SUPER|brie+', 'super_brie_cheese', 'https://www.mousehuntgame.com/images/items/bait/transparent_thumb/3a23203e08a847b23f7786b322b36f7a.png?cv=2');
-    itemsWrapper.appendChild(sb);
-
-    const rmd = makeItem('Rare Map Dust', 'rare_map_dust_stat_item', 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/458789350947048fd501508b8bdc88b1.png?cv=2');
-    itemsWrapper.appendChild(rmd);
-
-    const aej = makeItem('Adorned Empyrean Jewel', 'floating_trap_upgrade_stat_item', 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/2f116b49f7aebb66942a4785c86ec984.png?cv=2');
-    itemsWrapper.appendChild(aej);
-
-    const bw = makeItem('Rift-torn Roots', 'rift_torn_roots_crafting_item', 'https://www.mousehuntgame.com/images/items/crafting_items/transparent_thumb/bffc5e77073c0f99e3c2b5f16ee845a5.png?cv=2');
-    itemsWrapper.appendChild(bw);
+    makeItem('SUPER|brie+', 'super_brie_cheese', 'https://www.mousehuntgame.com/images/items/bait/transparent_thumb/3a23203e08a847b23f7786b322b36f7a.png?cv=2', itemsWrapper);
+    makeItem('Rare Map Dust', 'rare_map_dust_stat_item', 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/458789350947048fd501508b8bdc88b1.png?cv=2', itemsWrapper);
+    makeItem('Adorned Empyrean Jewel', 'floating_trap_upgrade_stat_item', 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/2f116b49f7aebb66942a4785c86ec984.png?cv=2', itemsWrapper);
+    makeItem('Rift-torn Roots', 'rift_torn_roots_crafting_item', 'https://www.mousehuntgame.com/images/items/crafting_items/transparent_thumb/bffc5e77073c0f99e3c2b5f16ee845a5.png?cv=2', itemsWrapper);
 
     quickSendLinkWrapper.appendChild(itemsWrapper);
 
-    const quickSendGoWrapper = document.createElement('div');
-    quickSendGoWrapper.classList.add('quickSendGoWrapper');
+    const quickSendGoWrapper = makeElement('div', 'quickSendGoWrapper');
 
-    const quickSendInput = document.createElement('input');
-    quickSendInput.classList.add('quickSendInput');
+    const quickSendInput = makeElement('input', 'quickSendInput');
     quickSendInput.setAttribute('type', 'number');
     quickSendInput.setAttribute('placeholder', 'Quantity');
 
     const quickSendButton = makeElement('div', ['quickSendButton', 'mousehuntActionButton', 'tiny'], '<span>Send</span>');
-
-    const message = makeElement('div', 'quickSendmessage', 'Sent!');
-    quickSendGoWrapper.appendChild(message);
+    const message = makeElement('div', 'quickSendmessage', 'Sent!', quickSendGoWrapper);
 
     quickSendButton.addEventListener('click', () => {
       const qty = quickSendInput.value;
       if (! qty) {
         message.innerHTML = 'Please enter a quantity';
-        message.style.opacity = 1;
-        message.classList.add('error');
+        message.classList.add('full-opacity', 'error');
         return;
       }
 
@@ -107,8 +89,7 @@ const main = () => {
       const item = selected.querySelector('.quickSendItemRadio');
       if (! item) {
         message.innerHTML = 'Please select an item';
-        message.style.opacity = 1;
-        message.classList.add('error');
+        message.classList.add('full-opacity', 'error');
         return;
       }
 
@@ -139,58 +120,8 @@ const main = () => {
 
     quickSendGoWrapper.appendChild(quickSendInput);
     quickSendGoWrapper.appendChild(quickSendButton);
-
     quickSendLinkWrapper.appendChild(quickSendGoWrapper);
-
     btn.parentNode.insertBefore(quickSendLinkWrapper, btn.nextSibling);
-
-    btn.addEventListener('mouseover', () => {
-      btn.removeEventListener('mouseout', () => {});
-
-      quickSendLinkWrapper.style.display = 'block';
-
-      // make sure the popup isn't off the screen
-      const rect = quickSendLinkWrapper.getBoundingClientRect();
-      const left = rect.left;
-      const right = rect.right;
-      const top = rect.top;
-
-      const windowWidth = window.innerWidth;
-
-      if (left < 0) {
-        quickSendLinkWrapper.style.left = '0px';
-      }
-
-      if (right > windowWidth) {
-        quickSendLinkWrapper.style.left = `${windowWidth - right}px`;
-      }
-
-      if (top < 0) {
-        quickSendLinkWrapper.style.top = '5px';
-      }
-
-      btn.addEventListener('mouseout', () => {
-        const mouseLeaveTarget = addEventListener('mousemove', (e) => {
-          // get the dimensions of the popup
-          const rrect = quickSendLinkWrapper.getBoundingClientRect();
-
-          // get the mouse position
-          const x = e.clientX;
-          const y = e.clientY;
-
-          const leavebottom = rrect.bottom + 10;
-          const leavetop = rrect.top - 10;
-          const leaveleft = rrect.left - 10;
-          const leaveright = rrect.right + 10;
-
-          // if the mouse is outside the popup, remove it
-          if (y < leavetop || y > leavebottom || x < leaveleft || x > leaveright) {
-            quickSendLinkWrapper.style.display = 'none';
-            removeEventListener('mousemove', mouseLeaveTarget);
-          }
-        });
-      });
-    });
   });
 };
 

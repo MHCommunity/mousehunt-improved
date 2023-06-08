@@ -167,3 +167,13 @@ input.treasureMapView-shareLinkInput {
 .giftSelectorView-giftContainer .giftSelectorView-gift.gift_of_the_day {
   width: 20%;
 }
+
+/* Marketplace search */
+.marketplaceView-header-searchContainer {
+  right: 30px !important;
+}
+
+/* Team member */
+.teamPage-memberRow-identity .teamPage-member-nameContainer {
+  width: auto;
+}

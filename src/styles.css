@@ -31,6 +31,18 @@
   color: #000;
 }
 
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.full-opacity {
+  opacity: 1;
+}
+
 /*
  *
  * Fixes
@@ -88,58 +100,7 @@
 }
 
 
-
-
-
-
-/* maintenance mouse animation */
-@keyframes rotate40 {
-  0% { transform: rotate(0deg); } /* eslint-disable-line */
-  50% { transform: rotate(40deg); }  /* eslint-disable-line */
-  100% { transform: rotate(0deg); }  /* eslint-disable-line */
-}
-
-.PageMaintenance .maintenanceBody {
-  position: relative;
-  background-image: url(https://i.mouse.rip/maintenance-mouse.png);
-  background-size: 240px 240px;
-}
-
-.PageMaintenance .maintenanceBody::before {
-  position: absolute;
-  top: 75px;
-  left: 118px;
-  z-index: 1;
-  width: 30px;
-  height: 40px;
-  content: "";
-  background: transparent url(https://i.mouse.rip/maintenance-mouse-wrench.png) no-repeat left center;
-  background-size: 30px;
-  transform-origin: bottom left;
-  animation: rotate40 0.5s linear infinite;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* adblock */
 a[onclick="hg.utils.PageUtil.setPage('JoinDiscord'); return false;"],
 .pageSidebarView-block.ad,
 .communityGroupView-ad,
@@ -147,33 +108,4 @@ a[onclick="hg.utils.PageUtil.setPage('JoinDiscord'); return false;"],
 .pageSidebarView-title,
 .pageSidebarView-block-description {
   display: none;
-}
-
-.scoreboardRelativeRankingTableView table {
-  border-bottom: none;
-  border: 1px solid #ddedff;
-}
-
-.scoreboardRelativeRankingTableView th {
-  background-color: #dbecff;
-  border-bottom: 1px solid #b7c4d2;
-  display: flex;
-  grid-column-end: 6;
-  grid-column-start: 1;
-  justify-content: space-around;
-  font-weight: normal;
-  align-items: center;
-  font-size: 10px;
-}
-
-.scoreboardRelativeRankingTableView td:nth-of-type(3) {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.scoreboardRelativeRankingTableView tr {
-  display: grid;
-  grid-template-columns: 25px 20px auto 68px;
-  overflow: hidden;
 }

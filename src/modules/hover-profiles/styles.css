@@ -4,38 +4,211 @@
 }
 
 #friend-data-wrapper {
-  position: absolute;
-  top: -140px;
-  right: -25px;
-  z-index: 999999;
-  width: 390px;
   border: 1px solid #9a8872;
   border-radius: 10px;
   box-shadow: 0 1px 5px -1px #5e5e5e;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  top: -105px;
+  width: 325px;
+  z-index: 999999;
+}
+
+*:hover #friend-data-wrapper {
+  display: block;
 }
 
 #friend-data-wrapper .friendsPage-friendRow {
-  margin-bottom: 0;
+  border: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding-top: 3px;
+  position: relative;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-imageContainer {
-  position: relative;
   display: inline-block;
-  width: 100px;
-  height: 100px;
+  height: 65px;
   margin-left: 5px;
+  position: relative;
   vertical-align: top;
+  width: 65px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-content {
-  width: 268px;
+  box-sizing: border-box;
+  width: 245px;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-titleBar {
+  box-sizing: border-box;
+  line-height: 20px;
+  margin-bottom: 5px;
+  margin-left: -15px;
+  margin-right: -8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-titleBar-titleDetail {
+  display: none;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-titleBar-icon {
+  width: 35px;
+  height: 35px;
+  left: 0;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-titleBar-name {
+  vertical-align: middle;
+  font-size: 14px;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-left: 20px;
+  white-space: nowrap;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-environment {
+  display: flex;
+  width: 145px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  display: flex;
+  width: 145px;
+  padding-right: 10px;
+  height: 40px;
+  box-sizing: border-box;
+  align-items: center;
+  margin-left: -10px
+}
+
+#friend-data-wrapper .friendsPage-friendRow-environment-icon {
+  height: 26px;
+  margin-right: 5px;
+  width: 26px;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-environment-name {
+  font-size: 11px;
+  line-height: 14px;
+  width: 100px;
+}
+
+#friend-data-wrapper .friendsPage-friendRow .friendsPage-friendRow-actions {
+  position: absolute;
+  right: 2px;
+  top: 35px;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-actionsContainer {
+  top: 0;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-actions-interactionButtons {
+  padding-right: 0;
+}
+
+#friend-data-wrapper .userInteractionButtonsView-button {
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+}
+
+#friend-data-wrapper .userInteractionButtonsView-button.sendTicket,
+#friend-data-wrapper .userInteractionButtonsView-button.sendTournamentInvite {
+  display: none;
+}
+
+#friend-data-wrapper .mousehuntTooltip {
+  position: absolute;
+  left: -20px;
+  width: auto;
+  height: auto;
+  background: #fff;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-environment {
+  display: flex;
+  width: 145px;
+  padding-right: 10px;
+  height: 40px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+
+#friend-data-wrapper .friendsPage-friendRow-statsContainer {
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 100%;
+  margin: 5px 0 0 0;
+  padding: 0 5px;
+  align-content: stretch;
+  justify-items: center;
+  align-items: center;
+  grid-row-gap: 2px;
+  box-sizing: border-box;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat {
+  font-size: 10px;
+  display: flex !important;
+  margin: 0;
+  width: auto;
+  grid-column: span 2;
+  align-items: center;
+}
+
+
+#friend-data-wrapper .friendsPage-friendRow-stat-icon {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat-value {
+  font-weight: 400;
+  font-size: 10px;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat-label {
+  display: none;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat.map {
+  grid-column: span 5;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat.map .friendsPage-friendRow-stat-value span {
+  width: auto;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat.team {
+  grid-column: span 1;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat.online span {
+  width: auto;
+}
+
+
+
+/*
+
+#friend-data-wrapper .friendsPage-friendRow-content {
   min-height: 75px;
+  padding-left: 15px;
+  width: 263px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar-icon {
   top: -7px;
   left: 0;
-  height: 45px;
+  height: 35px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar-name {
@@ -43,26 +216,38 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar {
-  padding-left: 50px;
+  padding-left: 40px;
+  margin-bottom: 18px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar-titleDetail {
-  left: 50px;
+  left: 34px;
+  top: 22px;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-environment {
+  margin-left: 0;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-icon {
-  margin-right: 7px;
-  margin-left: -10px;
+  margin-right: 4px;
+  width: 24px;
+  height: 24px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-name {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow .friendsPage-friendRow-actions {
   position: absolute;
-  top: 38px;
-  right: 3px;
+  right: 5px;
+  top: 40px;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-actions-interactionButtons {
+  padding-right: 0;
+  margin-right: -2px;
 }
 
 #friend-data-wrapper .userInteractionButtonsView-button {
@@ -109,12 +294,22 @@
   display: none !important;
 }
 
-#friend-data-wrapper .quickSendWrapper {
-  top: -100px;
-  right: 20px;
-  left: -65px;
+
+
+
+
+
+/*
+div#friend-data-wrapper {
+  box-sizing: border-box;
 }
 
-.notificationMessageList #friend-data-wrapper {
-  left: -50px;
+#friend-data-wrapper .friendsPage-friendRow {
+  box-sizing: border-box;
 }
+
+#friend-data-wrapper .friendsPage-friendRow-content {
+  padding-left: 5px;
+  box-sizing: border-box;
+}
+ */

@@ -1,0 +1,22 @@
+.teamPage-container .userInteractionButtonsView.small_buttons .userInteractionButtonsView-button {
+  width: 33px !important;
+  height: 33px !important;
+  background-size: cover !important;
+}
+
+.teamPage-container .teamPage-memberRow-actions .mousehuntTooltip {
+  left: -40px;
+  right: -40px;
+}
+
+.teamPage-container .userInteractionButtonsView-unfriendLink {
+  display: none;
+}
+
+.teamPage-profile-header-controls br {
+  content: "";
+}
+
+.teamPage-profile-header-controls br:after {
+  content: " ";
+}

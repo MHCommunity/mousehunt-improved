@@ -1,0 +1,101 @@
+.teamPage-memberRow-identity .teamPage-member-nameContainer {
+  width: auto;
+}
+
+.tournamentPage-tournamentContainer-customPrizes {
+  position: absolute;
+  left: -57px;
+  width: 0px;
+  overflow: hidden;
+  border: none;
+  top: -6px;
+  margin: 0;
+  color: transparent;
+  padding: 20px;
+  filter: drop-shadow(1px 1px 7px #fff);
+}
+
+.tournamentPage-tournamentContainer-customPrizes:after {
+  top: 2px;
+  left: 5px;
+}
+
+.tournamentPage-tournamentContainer-customPrizes:hover {
+  color: #4b6e95;
+  width: auto;
+  padding: 10px;
+  background-color: white;
+  padding: 13px 5px 10px 35px;
+  border-radius: 30px;
+  outline: 1px solid red;
+}
+
+.tournamentPage-tournamentContainer-customPrizes:hover .tournamentPage-tournamentContainer-customPrizes:after {
+  left: 10px;
+}
+
+
+.tournamentPage-tournamentContainer-name {
+/*     white-space: nowrap; */
+  font-size: 12px;
+}
+
+.tournamentPage-tournamentContainer-description {
+  padding-top: 2px;
+}
+
+.train .tournamentPage-tournamentContainer-description {
+  font-size: 9px;
+  max-height: 35px;
+  line-height: 10px;
+  padding-right: 10px;
+}
+
+a.tournamentPage-tournament-column.name {
+  width: 33.5%;
+}
+
+.tournamentPage-tournament-column.value:first-child {
+  outline: 1px solid red;
+}
+
+.tournamentPage-tournamentRow div:nth-child(3) {
+  outline: 1px solid red;
+  width: 18%;
+}
+
+.tournamentPage-tournament-column.label.nameIcon {
+  width: 40%;
+  text-align: left;
+  outline: 1px solid red;
+}
+
+.tournamentPage-tournamentContainer-labels .tournamentPage-tournament-column:nth-child(2) {
+  width: 18%;
+  text-align: center;
+}
+
+.tournamentPage-tournamentContainer-labels .tournamentPage-tournament-column:nth-child(6) {
+  display: none;
+}
+
+.tournamentPage-tournament-column.label {
+  text-align: center;
+}
+
+.tournamentPage-tournament-column.label {
+  width: auto;
+}
+
+.tournamentPage-tournamentRow.train .tournamentPage-tournamentContainer-icon, .tournamentPage-tournamentContainer-icon {
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-position: unset;
+  margin: 0;
+}

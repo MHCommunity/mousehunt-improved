@@ -524,7 +524,7 @@ const getLocationAndStage = () => {
   */
   function addToxicSpillStage(message, user, user_post, hunt) {
     const titles = user.quests.QuestPollutionOutbreak.titles;
-    const final_titles = user_post.quests.QuestPollutionOutbreak.titles;
+    const final_titles = user.quests.QuestPollutionOutbreak.titles;
     const formatted_titles = {
       hero: 'Hero',
       knight: 'Knight',

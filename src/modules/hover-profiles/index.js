@@ -59,25 +59,25 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
   const friendLinkParent = e.target.parentElement;
   friendLinkParent.appendChild(friendDataWrapper);
 
-  // make sure it's not off the screen
-  const rect = friendDataWrapper.getBoundingClientRect();
-  const left = rect.left;
-  const right = rect.right;
-  const top = rect.top;
+  // // make sure it's not off the screen
+  // const rect = friendDataWrapper.getBoundingClientRect();
+  // const left = rect.left;
+  // const right = rect.right;
+  // const top = rect.top;
 
-  const windowWidth = window.innerWidth;
+  // const windowWidth = window.innerWidth;
 
-  if (left < 0) {
-    friendDataWrapper.style.left = '0px';
-  }
+  // if (left < 0) {
+  //   friendDataWrapper.style.left = '0px';
+  // }
 
-  if (right > windowWidth) {
-    friendDataWrapper.style.left = `${windowWidth - right}px`;
-  }
+  // if (right > windowWidth) {
+  //   friendDataWrapper.style.left = `${windowWidth - right}px`;
+  // }
 
-  if (top < 0) {
-    friendDataWrapper.style.top = '5px';
-  }
+  // if (top < 0) {
+  //   friendDataWrapper.style.top = '5px';
+  // }
 
   eventRegistry.doEvent('profile_hover');
 };
@@ -87,6 +87,8 @@ const onFriendLinkHover = async (e) => {
   if (! friendId || friendId == user.sn_user_id) { // eslint-disable-line eqeqeq
     return;
   }
+
+  console.log('friendId', friendId);
 
   // TODO: only ignore the list of friends, not the inbox.
   // if ('friends' === getCurrentPage()) {
@@ -124,30 +126,31 @@ const addFriendLinkEventListener = (selector) => {
 
     friendLink.addEventListener('mouseenter', onFriendLinkHover);
 
-    // remove the popup when the mouse leaves the link or the popup
+  //   // remove the popup when the mouse leaves the link or the popup
     friendLink.addEventListener('mouseleave', () => {
-      const mouseLeaveTarget = addEventListener('mousemove', (e) => {
+  //     const mouseLeaveTarget = addEventListener('mousemove', (e) => {
         const existing = document.getElementById('friend-data-wrapper');
         if (existing) {
-          // get the dimensions of the popup
-          const rect = existing.getBoundingClientRect();
+  //         // get the dimensions of the popup
+  //         const rect = existing.getBoundingClientRect();
 
-          // get the mouse position
-          const x = e.clientX;
-          const y = e.clientY;
+  //         // get the mouse position
+  //         const x = e.clientX;
+  //         const y = e.clientY;
 
-          const bottom = rect.bottom + 100;
-          const top = rect.top - 100;
-          const left = rect.left - 100;
-          const right = rect.right + 100;
+  //         const bottom = rect.bottom + 100;
+  //         const top = rect.top - 100;
+  //         const left = rect.left - 100;
+  //         const right = rect.right + 100;
 
-          // if the mouse is outside the popup, remove it
-          if (y < top || y > bottom || x < left || x > right) {
-            existing.remove();
-            removeEventListener('mousemove', mouseLeaveTarget);
+  //         // if the mouse is outside the popup, remove it
+  //         if (y < top || y > bottom || x < left || x > right) {
+            // existing.remove();
+            console.log('removing');
+  //           removeEventListener('mousemove', mouseLeaveTarget);
           }
-        }
-      });
+  //       }
+  //     });
     });
   });
 };
