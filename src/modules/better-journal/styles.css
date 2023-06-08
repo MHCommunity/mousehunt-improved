@@ -14,8 +14,20 @@
 }
 
 /* Images */
+.journal .entry {
+  position: relative;
+}
+
 .journal .entry .journalimage {
-  margin: 0 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 10px;
+  height: auto;
+  width: 65px;
+  justify-content: center;
+  align-items: center;
 }
 
 .shop_purchase .journal .entry .journalimage {
@@ -48,8 +60,8 @@
 
 .journal .entry a:hover img,
 .journal .entry a:focus img {
-  padding: 0;
-  outline: 1px solid #e70;
+  outline: 2px solid #e70;
+  border: none;
   mix-blend-mode: normal;
 }
 
@@ -72,7 +84,7 @@
 
 /* Hide lucky clover */
 .journal .entry .journaltext .lucky::after {
-  display: none;
+  /* display: none; */
 }
 
 /* Hide lucky clover on mouse image */
@@ -140,14 +152,17 @@
   position: relative;
 }
 
-.journal .cotent .entry.travel,
-.journal .content .captchasolved,
+.journal .content .entry.travel,
+.journal .content .entry.captchasolved,
 .journal .content .supplytransferitem,
 .journal .content .entry.socialGift,
 .journal .content .entry.relicHunter_start,
 .journal .content .entry.relicHunter_complete,
 .journal .content .entry.torch_charm_event,
 .journal .content .entry.marketplace.marketplace_complete_listing,
+.journal .content .entry.marketplace.marketplace_create_listing,
+.journal .content .entry.marketplace.marketplace_cancel_listing,
+.journal .content .entry.marketplace.marketplace_claim_listing,
 .journal .content .entry.catchfailuredamage,
 .journal .content .entry.catchfailure,
 .journal .content .entry.attractionfailurestale,
@@ -166,8 +181,24 @@
 .journal .content .entry.iceberg_phase_change,
 .journal .content .entry.world_aspect_normal,
 .journal .content .entry.jetStreamAuraActivated,
-.journal .content .entry.birthday2018-rewind-charm {
+.journal .content .entry.birthday2018-rewind-charm  {
   background-position: 10px center;
+}
+
+/* bigger ftc image */
+.journal .content .entry.catchfailure {
+  background-size: 75px;
+  background-position: 0;
+}
+
+/* potion drops */
+.journal .content .entry.alchemists_cookbook_base_bonus {
+  background-position: 10px;
+  background-size: 55px!important;
+}
+
+.journal .content .entry.alchemists_cookbook_base_bonus .journalbody {
+  margin-left: 80px;
 }
 
 .journal .minimalJournalImage.champions_fire_loot,
@@ -176,8 +207,21 @@
   background-size: 50px;
 }
 
-.journal .content .ultimate_intact {
-  background: #22eab4 url(https://i.mouse.rip/uc-intact.png) no-repeat 10px center;
+/* UC */
+.journal .content .ultimate_intact,
+.journal .content .ultimate_pop {
+  background-position: 10px;
+}
+
+.journal .content .ultimate_intact:after,
+.journal .content .ultimate_pop:after {
+  content: "";
+  width: 48px;
+  height: 48px;
+  outline: 1px solid #22eab4;
+  position: absolute;
+  top: 17px;
+  left: 11px;
 }
 
 /* Progress log */
@@ -385,6 +429,7 @@ a.journal-detailLink.full::after {
   box-shadow: inset -5px -4px 7px -4px #9d9d9d;
   overflow-x: hidden;
   padding-bottom: 6px;
+  margin-bottom: -3px;
 }
 
 .journal .entry.socialGift-send {
@@ -392,8 +437,16 @@ a.journal-detailLink.full::after {
 }
 
 .journal .entry .journalbody .journaltext .loot:last-child::after,
+.journal .entry .journalbody .journaltext .lucky::after,
 .journal .entry .journalbody .journaltext .luck:last-child::after {
   content: ".";
+}
+
+.journal .entry .journalbody .journaltext .lucky::after {
+  background: unset;
+  position: relative;
+  display: inline;
+  top: unset;
 }
 
 .journal .entry .journaltext br {
@@ -407,4 +460,175 @@ a.journal-detailLink.full::after {
 /* nicer shade of green for prize mice */
 .journal .content .catchsuccessprize {
   background-color: #7dea7d;
+}
+
+/* hiding date for entries that come with a hunt */
+.entry.short.tournamentpointswithloot .journaldate,
+.entry.short.tournamentpoints .journaldate,
+.entry.short.unstable_charm_trigger .journaldate {
+    display: none;
+}
+
+/* tournament points */
+.entry.short.tournamentpointswithloot,
+.entry.short.tournamentpoints {
+    background: #dbd1b4;
+    padding: 0;
+}
+
+.entry.short.tournamentpointswithloot .journalbody,
+.entry.short.tournamentpoints .journalbody {
+    margin: 5px 5px 5px 10px;
+    white-space: normal;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* nicer shade of gray and better image for brift */
+.journal .entry.burroughs_rift.danger_zone {
+  background-color: #ccdfe2;
+  background-position: 10px center;
+  background-size: 59px;
+}
+
+/* unstable charm results */
+.entry.short.misc.custom.unstable_charm_trigger {
+  background-color: #e1f9ff;
+  font-style: italic;
+  font-size: 10px;
+  line-height: 15px;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 5px;
+}
+
+.entry.short.misc.custom.unstable_charm_trigger .journalimage {
+  width: 40px;
+}
+
+.entry.short.misc.custom.unstable_charm_trigger .journalimage img {
+  mix-blend-mode: multiply;
+  width: 40px;
+  height: 40px;
+}
+
+.entry.short.misc.custom.unstable_charm_trigger .journalbody {
+  margin-left: 58px;
+}
+
+
+/* adventure book status */
+.adventureBookBanner-container {
+  overflow: hidden;
+  background-color: #fbf8f6;
+  border: 1px solid #d3cecb;
+  border-radius: 3px;
+  box-shadow: inset -1px 1px 3px 0 #d3cecb;
+  line-height: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
+.adventureBookBanner-adventureName {
+  background: transparent;
+  border-radius: 0;
+  font-size: 13px;
+  line-height: 15px;
+  padding: 15px 5px 0 5px;
+  margin-left: 75px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 15px;
+  color: #373737;
+}
+
+.adventureBookBanner-adventureName span {
+  display: none;
+}
+
+.adventureBookBanner-moreInfo {
+  width: auto;
+  font-size: 9px;
+  height: auto;
+  padding: 1px;
+}
+
+.adventureBookBanner-goalContainer {
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  box-shadow: none;
+  background: none;
+}
+
+.adventureBookBanner-adventureImage {
+  background-image: none !important;
+}
+
+.adventureBookBanner-goalPadding {
+  margin-left: 75px;
+}
+
+.adventureBookBanner-goalImage {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  left: 10px;
+  top: -25px;
+}
+
+.adventureBookBanner-goalName {
+  width: auto;
+  height: auto;
+}
+
+.adventureBookBanner-goalEnvironment {
+  display: inline;
+}
+
+.adventureBookBanner-goalName-padding .adventureBookBanner-goalEnvironment:before {
+  content: ". ";
+}
+
+.adventureBookBanner-moreInfo {
+  right: 0;
+  position: absolute;
+  bottom: 0;
+  display: inline-block;
+}
+
+.adventureBookBanner-goalName-padding {
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+.adventureBookBanner-goalName-padding span {
+  display: block;
+}
+
+.adventureBookBanner-moreInfo {
+  background: none;
+  box-shadow: none;
+  color: #3b5998;
+  bottom: -6px;
+  right: 5px;
+  padding-left: 10px;
+}
+
+.adventureBookBanner-moreInfo:after {
+  content: " →";
+}
+
+.adventureBookBanner-container:hover .adventureBookBanner-moreInfo {
+  box-shadow: none;
+  background: none;
+  text-decoration: underline;
+  color: #3b5998;
+  text-shadow: none;
 }

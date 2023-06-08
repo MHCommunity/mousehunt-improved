@@ -1,5 +1,4 @@
 /* General styles */
-
 #mousehuntContainer.PageCamp {
   background: url(https://i.mouse.rip/bg-wood.png);
   box-shadow: inset 0 0 8px 0 #755e40;
@@ -17,40 +16,24 @@
   border: 1px solid #9d917f;
 }
 
-.campPage-trap-friendList.full {
-  background: #f6f3eb;
+.campPage-trap-friendList.full,
+.campPage-trap-itemStats,
+.campPage-trap-trapEffectiveness,
+.campPage-trap-armedItem,
+.campPage-trap-armedItem.bait,
+.campPage-trap-armedItem.skin,
+div#minluck-list {
+  border: 1px solid #d3cecb;
+  box-shadow: -1px 1px 3px 0px #d3cecb inset;
   border-radius: 3px;
-  box-shadow: 0 0 3px #755e40 inset;
-}
-
-.campPage-trap-itemStats {
-  background: #f6f3eb;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 0 3px #755e40 inset;
-}
-
-a.campPage-trap-trapEffectiveness {
-  background: #f6f3eb;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 0 3px #755e40 inset;
 }
 
 div#minluck-list {
   margin-top: 10px;
-  background: #f6f3eb;
-  border: none;
-  border-radius: 3px;
-  box-shadow: 0 0 3px #755e40 inset;
 }
 
-.campPage-trap-armedItem,
-.campPage-trap-armedItem.bait,
-.campPage-trap-armedItem.skin {
-  background: #f6f3eb;
-  border-color: #d3cecb;
-  box-shadow: inset 0 0 1px #755e40;
+.campPage-trap-friendList.full {
+  background-color: #fbf8f6;
 }
 
 .campPage-trap-armedItem.weapon .campPage-trap-armedItem-image,

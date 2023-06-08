@@ -1,6 +1,3 @@
-import { addUIStyles } from '../../utils';
-import styles from './styles.css';
-
 const updateClosingTime = () => {
   let timeLeftText = '';
 
@@ -51,8 +48,4 @@ const main = () => {
   });
 };
 
-export default function forbiddenGrove() {
-  addUIStyles(styles);
-
-  run(main);
-}
+export default main;

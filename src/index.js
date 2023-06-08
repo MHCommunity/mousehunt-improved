@@ -1,9 +1,6 @@
 // Utilities
 import { addBodyClasses, addUIStyles } from './modules/utils';
 
-// Global styles
-import globalStyles from './styles.css';
-
 // Core 'Better' modules
 import betterInventory from './modules/better-inventory';
 import betterJournal from './modules/better-journal';
@@ -22,6 +19,7 @@ import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
 import temCrowns from './modules/tem-crowns';
+import locationHud from './modules/location-hud';
 
 // Copies of standalone userscripts.
 import itemLinks from './modules/external/item-links';
@@ -30,17 +28,14 @@ import noShare from './modules/external/no-share';
 import noSidebar from './modules/external/no-sidebar';
 import tallerWindows from './modules/external/taller-windows';
 
-// Location HUD improvements.
-import cheeseSelectors from './modules/location-hud/cheese-selectors';
-import balacksCove from './modules/location-hud/balacks-cove';
-import forbiddenGrove from './modules/location-hud/forbidden-grove';
-import fortRox from './modules/location-hud/fortrox';
-import iceberg from './modules/location-hud/iceberg';
-import labyrinth from './modules/location-hud/labyrinth';
-import vrift from './modules/location-hud/vrift';
-
 import testing from './modules/testing';
+
+// Global styles
+import globalStyles from './styles.css';
+import fixes from './modules/fixes/styles.css';
+
 addUIStyles(globalStyles);
+addUIStyles(fixes);
 
 // Core 'Better' modules.
 const modules = [
@@ -73,6 +68,7 @@ const modules = [
       { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button to easily send any quantity of SUPER|brie+ or another item..', load: quickSendSupplies },
       { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Makes popup windows taller.', load: tallerWindows },
       { id: 'tem-crowns', name: 'TEM Crowns', default: true, description: 'Adds crowns and catches to the the Trap Effectiveness Meter.', load: temCrowns },
+      { id: 'location-huds', name: 'Location HUD Improvements', default: true, description: 'Add additional information to the HUD for each location.', load: locationHud },
     ]
   },
   {
@@ -82,20 +78,6 @@ const modules = [
       { id: 'no-footer', name: 'Remove Footer', default: false, description: 'Hides the footer.', load: noFooter },
       { id: 'no-share', name: 'Remove Share Buttons', default: true, description: 'Hides the share buttons.', load: noShare },
       { id: 'no-sidebar', name: 'Remove Sidebar', default: false, description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.', load: noSidebar },
-    ],
-  },
-  {
-    id: 'location-hud',
-    name: 'Location HUD improvements',
-    description: 'Add additional information to the HUD for each location.',
-    modules: [
-      { id: 'cheese-selectors', name: 'Cheese Selectors', default: true, description: 'Adds a quick cheese selector to locations that don\'t have a specific HUD.', load: cheeseSelectors },
-      { id: 'balacks-cove', name: 'Balack\'s Cove HUD Improvements', default: true, description: '', load: balacksCove },
-      { id: 'forbidden-grove', name: 'Forbidden Grove HUD Improvements', default: true, description: '', load: forbiddenGrove },
-      { id: 'fortrox', name: 'Fort Rox HUD Improvements', default: true, description: '', load: fortRox },
-      { id: 'iceberg', name: 'Iceberg HUD Improvements', default: true, description: '', load: iceberg },
-      { id: 'labyrinth', name: 'Labyrinth HUD Improvements', default: true, description: '', load: labyrinth },
-      { id: 'vrift', name: 'Valour Rift HUD Improvements', default: true, description: '', load: vrift },
     ],
   },
   {

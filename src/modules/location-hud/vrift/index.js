@@ -1,6 +1,3 @@
-import { addUIStyles } from '../../utils';
-import styles from './styles.css';
-
 // This is all borrowed from the original sim script while it's being rewritten.
 /* eslint-disable */
 // Sets the display for the percentages
@@ -599,10 +596,6 @@ const displayResults = (results) => {
 };
 
 const main = () => {
-  if ('rift_valour' !== getCurrentLocation()) {
-    return;
-  }
-
   addUIComponents();
 
   const simPopup = document.querySelector('.valourRiftHUD-floorProgress-barContainer');
@@ -667,8 +660,4 @@ const addUIComponents = () => {
   makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
 };
 
-export default function moduleTemplate() {
-  addUIStyles(styles);
-
-  run(main);
-}
+export default main;

@@ -24,13 +24,12 @@
   font-variant: small-caps;
   display: flex;
   justify-content: center;
+}
 
 
 
 
-
-
-  .floatingIslandsHUD-retreatButton.disabled {
+  /* .floatingIslandsHUD-retreatButton.disabled {
     .floatingIslandsHUD-retreatButton {
       background-color: #ae5d18;
       color: #b0a06c!important;
@@ -43,4 +42,4 @@
   .floatingIslandsHUD-retreatButton.disabled:hover {
     background: none;
     color: #fce698!important;
-}
+} */

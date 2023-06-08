@@ -1,0 +1,32 @@
+/* .mistGauge {
+    filter: opacity(6);
+}
+
+.riftBurroughsHud .mistQuantity {
+    top: 0;
+    left: 50px;
+    font-size: 20px;
+    background-color: #746f6dde;
+    padding: 10px;
+    bottom: 0;
+    width: 75px;
+    border-radius: 20px;
+}
+
+.riftBurroughsHud .mistMeter .mistWrapper span {
+  width: 110%;
+}
+
+.riftBurroughsHud .mistMeter .mistStatus {
+  left: 83px;
+  top: 37px;
+  height: 26px;
+  width: 26px;
+  z-index: 1;
+  filter: drop-shadow(1px 1px 6px #a2b1b0);
+  color: #a2b1b0;
+}
+
+.riftBurroughsHud .baitContainer .baitOption .baitQuantity {
+    font-size: 12px;
+} */

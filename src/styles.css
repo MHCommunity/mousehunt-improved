@@ -1,7 +1,6 @@
 /* Variables */
 :root {
   --main-bg-color: #bad4ed;
-  --body-bg-color: #cbc6bb;
   --bg-color: #f6f3eb;
   --border-color: #534022;
   --border-light-color: #9d917f;
@@ -42,63 +41,6 @@
 .full-opacity {
   opacity: 1;
 }
-
-/*
- *
- * Fixes
- *
-*/
-
-/* Align the friends checkbox on the scoreboard */
-.scoreboardTableView-friends,
-.scoreboardTableView-weekly {
-  margin-top: 1px;
-  vertical-align: middle;
-}
-
-/* Fix the team icon */
-.mousehuntHud-menu .friends .team .icon {
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/team.png?asset_cache_version=2);
-}
-
-/* Top menu, fix dropdown arrow direction */
-.mousehuntHeaderView .menuItem.dropdown .arrow {
-  top: 10px;
-  transform: rotate(180deg);
-}
-
-.mousehuntHeaderView .menuItem.dropdown.expanded .arrow {
-  top: 5px;
-}
-
-/* Fix HUD shadow */
-.mousehuntHud-marbleDrawer {
-  background:
-    url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2) -46px 0 no-repeat,
-    url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2) 731px 0 no-repeat,
-    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuwAAAA3BAMAAAClaAIKAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAB5QTFRFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtyhvagAAAAp0Uk5TJiUkACMcECEOC8BWQuoAAAFtSURBVHic7dm7SgNBAIXhnXjv3DxBkicQ1KhdQOwFxVoQsRUEwS7gCwgWvq6XXTUz0cyK2fyQc75mi93i8DvGJBZFpEyu9k/d6hK2mzxV9Nsdo+Nv2X3a56QOmcn+eXv2U9ZYqC+9mU91qtuZH441VpfMBa1+KULba2SE6q9kN5O9834/9FoeI6T8CJp99ei/PTHwa8zclIMi/w5l11rye/OTK3rbMhue/xj9nt61/G6mq2/SmxSMp7I/05MUHPmwI9LjvkIP0rCTZD+mB2nYS7Kf0YM07CfZ/ZZ9IYZJdnqPCmdHODvC2RHOjoirr9JzVIyi7Gv0HBWnUfZ1eo6Kyyj7HT1HxYE/pBKij6kb9BodtxPZt+gxOp4msj/SY3Qcflf3v5YWaOzDTvg67g/0Ei0v1fcCF/QONdcjfwfGcHaEsyOcHeHsCGdHODvC2RHOjnB2hLMjnB3h7AhnRzg7wtkRzo5wdoSzI5wd8QpdUG7hbOg+GQAAAABJRU5ErkJggg==) 6px 0 no-repeat,
-    url(https://www.mousehuntgame.com/images/ui/backgrounds/hud_bg_blue_repeating.png?asset_cache_version=2) repeat-y bottom center;
-}
-
-/* Fix arrow outline showing */
-.mousehuntTooltip.left .mousehuntTooltip-arrow::after {
-  right: -6px;
-}
-
-.mousehuntTooltip.right .mousehuntTooltip-arrow::after {
-  left: -6px;
-}
-
-/* Overflow location names */
-.mh-location-ss_huntington_ii .mousehuntHud-environmentName,
-.mh-location-pinnacle_chamber .mousehuntHud-environmentName,
-.mh-location-great_gnarled_tree .mousehuntHud-environmentName,
-.mh-location-something .mousehuntHud-environmentName {
-  padding-top: 31px;
-  overflow: visible;
-  font-size: 11px;
-}
-
 
 /* adblock */
 a[onclick="hg.utils.PageUtil.setPage('JoinDiscord'); return false;"],

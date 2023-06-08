@@ -11,7 +11,7 @@ const updateObjectiveFooterDisplay = () => {
     return;
   }
 
-  const newHref = footerText.getAttribute('href').replace('subtab', 'sub_tab')
+  const newHref = footerText.getAttribute('href').replace('subtab', 'sub_tab');
   footerText.setAttribute('href', `${newHref}#smashQuest`);
   footerText.innerHTML = footerText.innerHTML.replace('Don\'t like an assignment? Cancel it by smashing the assignment ', 'Cancel this assignment by smashing it ');
 };

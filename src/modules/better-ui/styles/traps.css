@@ -66,12 +66,6 @@
   box-shadow: none;
 }
 
-.campPage-trap-itemStats {
-  background: #f6f3eb;
-  border: 1px solid #d3cecb;
-  box-shadow: -1px -1px 2px #d3cecb inset;
-}
-
 .campPage-trap .trapImageView {
   width: 352px;
   height: 352px;
@@ -84,8 +78,8 @@
 }
 
 .campPage-trap {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 /* Profile page */

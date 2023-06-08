@@ -1,6 +1,3 @@
-import { addUIStyles } from '../../utils';
-import styles from './styles.css';
-
 const phaseLengths = {
   stage_one: {
     hunts: 35,
@@ -104,29 +101,12 @@ const updateUpgradeTooltips = () => {
 
     const name = tooltip.querySelector(`.fortRoxHUD-fort-upgrade-boundingBox-level.level_${completedUpgrades}`);
     makeElement('div', 'fortRoxHUD-fort-upgrade-level-info', `(Level ${completedUpgrades}/${upgradeKeys.length})`, name);
-
-
   });
 };
 
-
 const main = () => {
-  if ('fort_rox' !== getCurrentLocation()) {
-    return;
-  }
-
   updateNightBar();
   updateUpgradeTooltips();
 };
 
-export default () => {
-  addUIStyles(styles);
-
-  main();
-
-  onAjaxRequest(main);
-  onPageChange({ camp: { show: main } });
-  onAjaxRequest(() => {
-    setTimeout(main, 500);
-  }, 'managers/ajax/turns/activeturn.php', true);
-};
+export default main;

@@ -1,6 +1,3 @@
-import { addUIStyles } from '../../utils';
-import styles from './styles.css';
-
 /**
  * Adds a cheese selector a a location that usually doesn't have a HUD.
  *
@@ -206,9 +203,4 @@ const main = async () => {
   await makeCheeseSelector(location, cheesesToUse);
 };
 
-export default function ssh4() {
-  addUIStyles(styles);
-
-  main();
-  onTravel(null, { callback: main });
-}
+export default main;

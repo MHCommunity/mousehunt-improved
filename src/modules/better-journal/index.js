@@ -142,13 +142,33 @@ const updateJournalText = () => {
   eventRegistry.doEvent('journal_replacements_finished');
 };
 
+const updateMouseImageLinks = () => {
+  const mouseEntries = document.querySelectorAll('.journal .entry[data-mouse-type]');
+  mouseEntries.forEach((entry) => {
+    const mouseType = entry.getAttribute('data-mouse-type');
+    const mouseImageLink = entry.querySelector('.journalimage a[onclick]');
+
+    if (! (mouseType && mouseImageLink)) {
+      return;
+    }
+
+    mouseImageLink.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
+  });
+}
+
+const main = () => {
+  updateJournalText();
+  updateMouseImageLinks();
+};
+
 export default function journal() {
   addUIStyles(styles);
 
-  updateJournalText();
+  main();
+
   onAjaxRequest(() => {
-    updateJournalText();
-    setTimeout(updateJournalText, 300);
-    setTimeout(updateJournalText, 900);
+    main();
+    setTimeout(main, 300);
+    setTimeout(main, 900);
   });
 }

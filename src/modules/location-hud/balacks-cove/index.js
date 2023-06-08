@@ -1,6 +1,3 @@
-import { addUIStyles } from '../../utils';
-import styles from './styles.css';
-
 const getClosingText = (closes, stage, nextStageOffset, nextStageText) => {
   const hours = Math.floor(closes);
   const minutes = Math.ceil((closes - Math.floor(closes)) * 60);
@@ -46,10 +43,6 @@ const updateClosingTime = () => {
 };
 
 const main = () => {
-  if ('balacks_cove' !== getCurrentLocation()) {
-    return;
-  }
-
   const hudBar = document.querySelector('.balacksCoveHUD-tideContainer');
   if (! hudBar) {
     return;
@@ -71,9 +64,4 @@ const main = () => {
   });
 };
 
-export default function balacksCove() {
-  addUIStyles(styles);
-
-  onTravel('balacks_cove', { callback: main });
-  run(main);
-}
+export default main;

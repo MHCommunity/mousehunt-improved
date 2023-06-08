@@ -1,21 +1,22 @@
 /* Tabs */
 .campPage-tabs-tabContentContainer {
   margin-bottom: 10px;
-  background-color: var(--tan);
-  border-color: var(--body-bg-color);
+  border: 1px solid #cbc6bb;
+  box-shadow: -1px -1px 1px #d3cecb inset;
+  background-color: #f6f3eb;
+  border-radius: 5px;
 }
 
+.campPage-tabs-tabRow:hover .campPage-tabs-tabHeader span,
 .campPage-tabs-tabRow:focus .campPage-tabs-tabHeader span,
 .campPage-tabs-tabHeader span {
-  border-color: var(--body-bg-color);
-  border-bottom: 1px solid var(--body-bg-color);
+  border-bottom: 1px solid #cbc6bb;
 }
 
 .campPage-tabs-tabHeader.active span,
 .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span,
 .campPage-tabs-tabRow a.campPage-tabs-tabHeader:focus span {
-  background-color: var(--tan);
-  border: 1px solid var(--body-bg-color);
+  border: 1px solid #cbc6bb;
   border-bottom: none;
 }
 
@@ -88,19 +89,18 @@ div#dailyRewardTimer {
   padding: 15px;
   margin: 0;
   background: none;
-  border: 1px solid #aea7a7;
-  border-bottom: none;
+  border: none;
   box-shadow: none;
 }
 
 .campPage-daily-container.draw {
   background: none;
-  border: 1px solid #aea7a7;
-  border-top: none;
+  border: none;
   box-shadow: none;
+  margin-top: -15px;
 }
 
-.draw .campPage-daily-content {
+.campPage-daily-container.draw .campPage-daily-content {
   height: 230px;
   padding-top: 0;
   background: url(https://www.mousehuntgame.com/images/ui/daily/next_day_bkg.png?asset_cache_version=2);
@@ -109,6 +109,7 @@ div#dailyRewardTimer {
   background-size: cover;
   border: 1px solid #7d3a08;
   box-shadow: -1px -1px 2px #d3cecb inset;
+  border-radius: 0;
 }
 
 .campPage-daily-draw-title,
@@ -149,10 +150,12 @@ div#dailyRewardTimer::before {
   padding: 0 55px;
   margin-top: 2px;
   text-align: center;
-  background: #ffeec2;
-  border: 1px solid rgb(125 58 8 / 37%);
   border-radius: 0;
+  border: 1px solid #7d3a08;
   box-shadow: inset -1px -1px 2px #d3cecb;
+  background: #ffe8aa;
+  line-height: 13px;
+  color: #412814;
 }
 
 .campPage-daily-container .shopsPage-kingsCalibratorPromo-button {
@@ -168,12 +171,18 @@ div#dailyRewardTimer::before {
   background: var(--color-blue-dark);
 }
 
-/* Larry's Tips */
-.campPage-tabs-tabContent-larryTip-container {
+.campPage-tabs-tabContent.active[data-tab=daily],
+.campPage-tabs-tabContent-larryTip-container,
+.campPage-quests-container {
   line-height: 16px;
-  background: #f6f3eb;
+  border: 1px solid #d3cecb;
+  box-shadow: -1px 1px 3px 0px #d3cecb inset;
   border-radius: 3px;
-  box-shadow: 0 0 3px #755e40 inset;
+  background-color: #fbf8f6;
+}
+
+.campPage-daily-container.daily .campPage-daily-content{
+  margin-top: 15px;
 }
 
 .campPage-tabs-tabContent-larryTip-container a.campPage-tabs-tabContent-larryTip-byLine,
@@ -193,10 +202,4 @@ img.campPage-larryTip-external-link-icon {
 
 .campPage-tabs-tabContent-larryTip-container a::after {
   content: "→";
-}
-
-.campPage-quests-container {
-  background: #f6f3eb;
-  border-radius: 3px;
-  box-shadow: 0 0 3px #755e40 inset;
 }

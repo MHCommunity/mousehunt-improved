@@ -1,6 +1,3 @@
-import { addUIStyles } from '../../utils';
-import styles from './styles.css';
-
 const highlightDoors = () => {
   if ('intersection' !== user?.quests?.QuestLabyrinth?.status) {
     return;
@@ -146,17 +143,7 @@ const scrambleGems = () => {
   });
 };
 
-export default () => {
-  addUIStyles(styles);
-
-  main();
-
-  onAjaxRequest(main);
-  onPageChange({ camp: { show: main } });
-  onAjaxRequest(() => {
-    setTimeout(main, 500);
-  }, 'managers/ajax/turns/activeturn.php', true);
-};
+export default main;
 
 // fealty = y
 // tech = h

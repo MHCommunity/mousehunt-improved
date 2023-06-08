@@ -10,12 +10,17 @@
   box-sizing: border-box;
   display: block;
   position: absolute;
-  top: -105px;
+  top: -125px;
   width: 325px;
   z-index: 999999;
+  height: 125px;
+  display: none;
 }
 
-*:hover #friend-data-wrapper {
+[data-friend-hover]:hover #friend-data-wrapper,
+[data-friend-hover]:focus #friend-data-wrapper,
+#friend-data-wrapper:hover,
+#friend-data-wrapper:focus {
   display: block;
 }
 
@@ -25,6 +30,7 @@
   margin: 0;
   padding-top: 3px;
   position: relative;
+  height: 100%;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-imageContainer {
@@ -86,9 +92,9 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-icon {
-  height: 26px;
-  margin-right: 5px;
-  width: 26px;
+  height: 25px;
+  margin-right: 3px;
+  width: 25px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-name {
@@ -112,9 +118,9 @@
 }
 
 #friend-data-wrapper .userInteractionButtonsView-button {
-  width: 40px;
-  height: 40px;
-  background-size: 40px;
+  width: 38px;
+  height: 38px;
+  background-size: 38px;
 }
 
 #friend-data-wrapper .userInteractionButtonsView-button.sendTicket,
@@ -141,17 +147,18 @@
 
 
 #friend-data-wrapper .friendsPage-friendRow-statsContainer {
-  height: auto;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  width: 100%;
-  margin: 5px 0 0 0;
-  padding: 0 5px;
-  align-content: stretch;
-  justify-items: center;
-  align-items: center;
   grid-row-gap: 2px;
+  align-content: stretch;
+  align-items: center;
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: auto;
+  justify-items: center;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 2px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat {
@@ -159,15 +166,18 @@
   display: flex !important;
   margin: 0;
   width: auto;
-  grid-column: span 2;
   align-items: center;
 }
-
 
 #friend-data-wrapper .friendsPage-friendRow-stat-icon {
   width: 15px;
   height: 15px;
-  margin: 0;
+  margin-left: 5px;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat.map .friendsPage-friendRow-stat-icon,
+#friend-data-wrapper .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-icon {
+  margin-right: 3px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat-value {
@@ -180,21 +190,28 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat.map {
-  grid-column: span 5;
+  grid-column: span 2;
 }
 
-#friend-data-wrapper .friendsPage-friendRow-stat.map .friendsPage-friendRow-stat-value span {
-  width: auto;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-stat.team {
-  grid-column: span 1;
-}
-
+#friend-data-wrapper .friendsPage-friendRow-stat.map .friendsPage-friendRow-stat-value span,
 #friend-data-wrapper .friendsPage-friendRow-stat.online span {
   width: auto;
+  max-width: 190px;
 }
 
+#friend-data-wrapper .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-value a {
+  width: auto;
+  max-width: 70px;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat:hover .friendsPage-friendRow-stat-fullValue {
+  display: none;
+}
+
+#friend-data-wrapper .friendsPage-friendRow-stat.hasHover:hover {
+  background: unset;
+  text-decoration: underline;
+}
 
 
 /*
