@@ -1,3 +1,5 @@
+import { addUIStyles } from '../utils';
+import styles from './styles.css';
 
 const removeItemsFromSearch = () => {
   const options = document.querySelectorAll('.marketplaceView-header-search option');
@@ -371,9 +373,12 @@ const modifySearch = () => {
   });
 };
 
-modifySearch();
+const main = () => {
+  modifySearch();
+};
 
-// styles:
+export default function marketplace() {
+  addUIStyles(styles);
 
-// making the options value look like this:
-// "SUPER|brie+<span class=\"hidden\">SB+ Super Brie superbrie</span>"
+  main();
+}

@@ -4,6 +4,7 @@ import { addBodyClasses, addUIStyles } from './modules/utils';
 // Core 'Better' modules
 import betterInventory from './modules/better-inventory';
 import betterJournal from './modules/better-journal';
+import betterMarketplace from './modules/better-marketplace';
 import betterMouseView from './modules/better-mouse-view';
 import betterQuests from './modules/better-quests';
 import betterShops from './modules/better-shops';
@@ -47,6 +48,7 @@ const modules = [
       { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
       { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and appearance and adds a variety of small features.', load: betterInventory },
       { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
+      { id: 'better-marketplace', name: 'Better Marketplace', default: true, description: 'Updates the marketplace layout and appearance and adds a variety of small features.', load: betterMarketplace },
       { id: 'better-mouse-view', name: 'Better Mouse View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing attraction rates.', load: betterMouseView },
       { id: 'better-shops', name: 'Better Shops', default: true, description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.', load: betterShops },
       { id: 'quests', name: 'Better Quests', default: true, description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.', load: betterQuests },
@@ -134,5 +136,3 @@ const main = () => {
 
 // Start it up.
 main();
-
-// hg.views.MouseCrownsView.toggleFavouriteHandler(event); return false;
