@@ -198,10 +198,6 @@ a.tournamentPage-tournament-column.name,
   font-size: 14px;
 }
 
-.tournamentPage-profile-action a:last-of-type {
-  display: none;
-}
-
 .tournamentPage-profile-prizeWaiting {
   font-size: 18px;
   font-weight: 400;
@@ -261,8 +257,6 @@ img.tournamentPage-profile-details-rules-icon {
   list-style: disc;
 }
 
-.tournamentPage-profile-details-generalRules ul li {}
-
 .tournamentPage-profile-details-generalRules-title {
   display: none;
 }
@@ -316,7 +310,7 @@ img.tournamentPage-profile-details-rules-icon {
   display: none;
 }
 
-.tournamentPage-profile-details-rewardContainer>div:last-child {
+.tournamentPage-profile-details-rewardContainer > div:last-child {
   display: none;
 }
 
@@ -424,4 +418,119 @@ h2.tournamentPage-profile-details-mouseGroup-name {
 
 .tournamentPage-profile-details-mouseGroup-mouse {
   width: 100%;
+}
+
+.tournamentStatusHud .score,
+.tournamentStatusHud .rank {
+  padding: 15px;
+  margin: -15px;
+}
+
+.rank:hover .scoreHover {
+  display: block;
+}
+
+.score:hover .pointsHover {
+  display: grid;
+}
+
+.scoreHover,
+.pointsHover {
+  display: none;
+  position: absolute;
+  left: -50%;
+  background-color: white;
+  width: 275px;
+  top: 90%;
+  background-color: #f6f3eb;
+  border: 1px solid #cbc6bb;
+  border-radius: 5px;
+  box-shadow: inset -1px -1px 1px #d3cecb, 1px 3px 3px 0px #939393;
+  color: #4e300b;
+  z-index: 11;
+}
+
+.pointsHover {
+  grid-template-columns: 1fr 1fr 1fr;
+  width: auto;
+  left: -130%;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.scoreRow {
+  display: grid;
+  grid-template-columns: 25px 1fr 25px;
+  justify-items: start;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.scoreRow:nth-child(even) {
+  background-color: #e5e0de;
+}
+
+.scoreIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-right: 5px;
+  position: relative;
+}
+
+.scoreIcon div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.teamWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.scorePoints {
+  justify-self: end;
+}
+
+.pointsRow {
+  border: 1px solid #cbc6bb;
+  width: 150px;
+}
+
+img.pointsMouseIcon {
+  width: 15px;
+  height: 15px;
+  margin-right: 4px;
+  margin-bottom: 3px;
+}
+
+.pointsMouseWrapper {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  justify-content: flex-start;
+}
+
+.pointsMouseName {
+  font-weight: normal;
+  font-size: 11px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pointsMice {
+  padding: 5px;
+}
+
+.pointsTitle {
+  text-align: center;
+  font-size: 12px;
+  padding: 5px 0;
 }

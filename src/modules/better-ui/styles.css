@@ -21,6 +21,7 @@
 .campPage-trap-trapEffectiveness,
 .campPage-trap-armedItem,
 .campPage-trap-armedItem.bait,
+.campPage-trap-armedItem.bait.inactive,
 .campPage-trap-armedItem.skin,
 div#minluck-list {
   border: 1px solid #d3cecb;

@@ -11,7 +11,7 @@ import select2 from './styles/select2.css';
 import sidebar from './styles/sidebar.css';
 import tabs from './styles/tabs.css';
 import team from './styles/team.css';
-import tournaments from './styles/tournaments.css';
+import tournamentStyles from './styles/tournaments.css';
 import traps from './styles/traps.css';
 import maps from './styles/maps.css';
 
@@ -19,6 +19,8 @@ import maps from './styles/maps.css';
 import floatingIslands from './location-styles/fi.css';
 import toxicSpill from './location-styles/toxic-spill.css';
 import train from './location-styles/train.css';
+
+import tournaments from './tournaments';
 
 const getStyles = () => {
   return [
@@ -31,7 +33,7 @@ const getStyles = () => {
     styles,
     tabs,
     team,
-    tournaments,
+    tournamentStyles,
     traps,
     maps,
     floatingIslands,
@@ -51,4 +53,6 @@ export default () => {
   addUIStyles(getStyles());
 
   onAjaxRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
+
+  tournaments();
 };

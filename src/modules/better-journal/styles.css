@@ -181,8 +181,14 @@
 .journal .content .entry.iceberg_phase_change,
 .journal .content .entry.world_aspect_normal,
 .journal .content .entry.jetStreamAuraActivated,
-.journal .content .entry.birthday2018-rewind-charm  {
+.journal .content .entry.birthday2018-rewind-charm,
+.journal .content .entry.relicHunter_slayer_aura_relic_bonus {
   background-position: 10px center;
+}
+
+.journal .content .entry.minimalJournalImage {
+  background-position: 15px center !important;
+  background-size: 40px;
 }
 
 /* bigger ftc image */
