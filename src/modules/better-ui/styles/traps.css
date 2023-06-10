@@ -183,9 +183,9 @@ span.campPage-trap-armedItem-skin-description-content br {
 
 /* tem meter */
 .campPage-trap-trapEffectivenessBar {
-  background: #9d917f;
   height: 12px;
   margin-top: -1px;
+  background: #9d917f;
 }
 
 .campPage-trap-trapEffectivenessBar::after {

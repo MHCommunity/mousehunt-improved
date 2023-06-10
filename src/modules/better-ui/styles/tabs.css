@@ -1,10 +1,10 @@
 /* Tabs */
 .campPage-tabs-tabContentContainer {
   margin-bottom: 10px;
-  border: 1px solid #cbc6bb;
-  box-shadow: -1px -1px 1px #d3cecb inset;
   background-color: #f6f3eb;
+  border: 1px solid #cbc6bb;
   border-radius: 5px;
+  box-shadow: -1px -1px 1px #d3cecb inset;
 }
 
 .campPage-tabs-tabRow:hover .campPage-tabs-tabHeader span,
@@ -94,10 +94,10 @@ div#dailyRewardTimer {
 }
 
 .campPage-daily-container.draw {
+  margin-top: -15px;
   background: none;
   border: none;
   box-shadow: none;
-  margin-top: -15px;
 }
 
 .campPage-daily-container.draw .campPage-daily-content {
@@ -108,8 +108,8 @@ div#dailyRewardTimer {
   background-position-y: 7px;
   background-size: cover;
   border: 1px solid #7d3a08;
-  box-shadow: -1px -1px 2px #d3cecb inset;
   border-radius: 0;
+  box-shadow: -1px -1px 2px #d3cecb inset;
 }
 
 .campPage-daily-draw-title,
@@ -149,13 +149,13 @@ div#dailyRewardTimer::before {
   height: 55px;
   padding: 0 55px;
   margin-top: 2px;
-  text-align: center;
-  border-radius: 0;
-  border: 1px solid #7d3a08;
-  box-shadow: inset -1px -1px 2px #d3cecb;
-  background: #ffe8aa;
   line-height: 13px;
   color: #412814;
+  text-align: center;
+  background: #ffe8aa;
+  border: 1px solid #7d3a08;
+  border-radius: 0;
+  box-shadow: inset -1px -1px 2px #d3cecb;
 }
 
 .campPage-daily-container .shopsPage-kingsCalibratorPromo-button {
@@ -171,14 +171,14 @@ div#dailyRewardTimer::before {
   background: var(--color-blue-dark);
 }
 
-.campPage-tabs-tabContent.active[data-tab=daily],
+.campPage-tabs-tabContent.active[data-tab="daily"],
 .campPage-tabs-tabContent-larryTip-container,
 .campPage-quests-container {
   line-height: 16px;
-  border: 1px solid #d3cecb;
-  box-shadow: -1px 1px 3px 0px #d3cecb inset;
-  border-radius: 3px;
   background-color: #fbf8f6;
+  border: 1px solid #d3cecb;
+  border-radius: 3px;
+  box-shadow: -1px 1px 3px 0 #d3cecb inset;
 }
 
 .campPage-daily-container.daily .campPage-daily-content{

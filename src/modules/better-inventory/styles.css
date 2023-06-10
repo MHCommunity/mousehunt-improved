@@ -66,25 +66,25 @@
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-tagTitle {
-  padding: 0 0 10px 0;
-  font-weight: 400;
+  padding: 0 0 10px;
   font-size: 14px;
+  font-weight: 400;
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-listing {
   display: flex;
   flex-wrap: wrap;
+  align-content: center;
   align-items: stretch;
   justify-content: flex-start;
-  align-content: center;
 }
 
 .mousehuntHud-page-subTabContent.hammer .mousehuntHud-page-subTabContent.hammer .inventoryPage-item {
-  background-color: #fff;
   width: 68px;
   margin: 0;
-  border-radius: 10px;
   margin-right: 3px;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:nth-child(7n) {
@@ -104,9 +104,9 @@
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .inventoryPage-item-margin {
-  box-shadow: none;
-  outline: 1px solid #888888;
   background-color: #e3e3e3;
+  outline: 1px solid #888;
+  box-shadow: none;
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item .tooltip,
@@ -115,15 +115,15 @@
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip {
-  align-items: center;
   display: flex;
+  align-items: center;
   width: auto;
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .tooltip .inventoryPage-item-margin {
+  text-align: center;
   background-color: transparent;
   outline: none;
-  text-align: center;
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item.small .tooltip.newTooltip .itemImage {

@@ -4,17 +4,16 @@
 }
 
 #friend-data-wrapper {
+  position: absolute;
+  top: -125px;
+  z-index: 999999;
+  box-sizing: border-box;
+  display: none;
+  width: 325px;
+  height: 125px;
   border: 1px solid #9a8872;
   border-radius: 10px;
   box-shadow: 0 1px 5px -1px #5e5e5e;
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  top: -125px;
-  width: 325px;
-  z-index: 999999;
-  height: 125px;
-  display: none;
 }
 
 [data-friend-hover]:hover #friend-data-wrapper,
@@ -25,21 +24,21 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow {
-  border: none;
-  box-sizing: border-box;
-  margin: 0;
-  padding-top: 3px;
   position: relative;
+  box-sizing: border-box;
   height: 100%;
+  padding-top: 3px;
+  margin: 0;
+  border: none;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-imageContainer {
+  position: relative;
   display: inline-block;
+  width: 65px;
   height: 65px;
   margin-left: 5px;
-  position: relative;
   vertical-align: top;
-  width: 65px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-content {
@@ -48,13 +47,13 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar {
+  position: relative;
   box-sizing: border-box;
-  line-height: 20px;
+  padding-left: 20px;
+  margin-right: -8px;
   margin-bottom: 5px;
   margin-left: -15px;
-  margin-right: -8px;
-  padding-left: 20px;
-  position: relative;
+  line-height: 20px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar-titleDetail {
@@ -62,51 +61,37 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar-icon {
+  left: 0;
   width: 35px;
   height: 35px;
-  left: 0;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-titleBar-name {
-  vertical-align: middle;
-  font-size: 14px;
   display: block;
-  text-overflow: ellipsis;
-  overflow: hidden;
   margin-left: 20px;
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-environment {
-  display: flex;
-  width: 145px;
-  padding-right: 10px;
-  box-sizing: border-box;
-  display: flex;
-  width: 145px;
-  padding-right: 10px;
-  height: 40px;
-  box-sizing: border-box;
-  align-items: center;
-  margin-left: -10px
+  vertical-align: middle;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-icon {
+  width: 25px;
   height: 25px;
   margin-right: 3px;
-  width: 25px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-name {
+  width: 100px;
   font-size: 11px;
   line-height: 14px;
-  width: 100px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow .friendsPage-friendRow-actions {
   position: absolute;
-  right: 2px;
   top: 35px;
+  right: 2px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-actionsContainer {
@@ -137,36 +122,37 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment {
-  display: flex;
-  width: 145px;
-  padding-right: 10px;
-  height: 40px;
   box-sizing: border-box;
+  display: flex;
   align-items: center;
+  width: 145px;
+  height: 40px;
+  padding-right: 10px;
+  margin-left: -10px
 }
 
 
 #friend-data-wrapper .friendsPage-friendRow-statsContainer {
-  grid-row-gap: 2px;
-  align-content: stretch;
-  align-items: center;
+  position: relative;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: auto;
+  grid-row-gap: 2px;
+  align-content: stretch;
+  align-items: center;
   justify-items: center;
   width: 100%;
-  position: relative;
-  margin: 0;
+  height: auto;
   padding: 2px;
+  margin: 0;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat {
-  font-size: 10px;
   display: flex !important;
-  margin: 0;
-  width: auto;
   align-items: center;
+  width: auto;
+  margin: 0;
+  font-size: 10px;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat-icon {
@@ -181,8 +167,8 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat-value {
-  font-weight: 400;
   font-size: 10px;
+  font-weight: 400;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat-label {
@@ -209,124 +195,6 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-stat.hasHover:hover {
-  background: unset;
   text-decoration: underline;
+  background: unset;
 }
-
-
-/*
-
-#friend-data-wrapper .friendsPage-friendRow-content {
-  min-height: 75px;
-  padding-left: 15px;
-  width: 263px;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-titleBar-icon {
-  top: -7px;
-  left: 0;
-  height: 35px;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-titleBar-name {
-  font-size: 14px;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-titleBar {
-  padding-left: 40px;
-  margin-bottom: 18px;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-titleBar-titleDetail {
-  left: 34px;
-  top: 22px;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-environment {
-  margin-left: 0;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-environment-icon {
-  margin-right: 4px;
-  width: 24px;
-  height: 24px;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-environment-name {
-  font-size: 10px;
-}
-
-#friend-data-wrapper .friendsPage-friendRow .friendsPage-friendRow-actions {
-  position: absolute;
-  right: 5px;
-  top: 40px;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-actions-interactionButtons {
-  padding-right: 0;
-  margin-right: -2px;
-}
-
-#friend-data-wrapper .userInteractionButtonsView-button {
-  width: 40px;
-  height: 40px;
-  background-size: 40px;
-}
-
-#friend-data-wrapper .mousehuntTooltip {
-  position: absolute;
-  left: -20px;
-  width: auto;
-  height: auto;
-  background: #fff;
-}
-
-#friend-data-wrapper .mousehuntTooltip .userInteractionButtonsView-button-label {
-  line-height: normal !important;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-statsContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding-left: 15px;
-  overflow: hidden;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-stat {
-  display: flex !important;
-  align-items: center;
-  width: auto;
-  font-size: 9px;
-}
-
-.hunterInfoView-wrapper #friend-data-wrapper .friendsPage-friendRow-statsContainer .friendsPage-friendRow-stat-value {
-  font-size: 9px;
-  font-weight: 400;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-stat-label,
-#friend-data-wrapper .friendsPage-friendRow-stat.team {
-  display: none !important;
-}
-
-
-
-
-
-
-/*
-div#friend-data-wrapper {
-  box-sizing: border-box;
-}
-
-#friend-data-wrapper .friendsPage-friendRow {
-  box-sizing: border-box;
-}
-
-#friend-data-wrapper .friendsPage-friendRow-content {
-  padding-left: 5px;
-  box-sizing: border-box;
-}
- */

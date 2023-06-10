@@ -68,8 +68,8 @@
 }
 
 .locationImageWrapper {
-  flex: 0;
   display: inline-flex;
+  flex: 0;
 }
 
 img.locationImage {
@@ -80,11 +80,11 @@ img.locationImage {
 }
 
 .locationName {
-  flex-grow: 1;
-  font-size: 12px;
-  margin-left: 10px;
   position: relative;
+  flex-grow: 1;
   min-width: 100px;
+  margin-left: 10px;
+  font-size: 12px;
 }
 
 .noLocationData {

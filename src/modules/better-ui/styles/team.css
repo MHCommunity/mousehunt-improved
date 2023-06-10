@@ -5,8 +5,8 @@
 }
 
 .teamPage-container .teamPage-memberRow-actions .mousehuntTooltip {
-  left: -40px;
   right: -40px;
+  left: -40px;
 }
 
 .teamPage-container .userInteractionButtonsView-unfriendLink {
@@ -17,6 +17,6 @@
   content: "";
 }
 
-.teamPage-profile-header-controls br:after {
+.teamPage-profile-header-controls br::after {
   content: " ";
 }

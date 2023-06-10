@@ -1,13 +1,13 @@
 .balacksCoveHUD-tideContainer-timeLeft {
+  position: absolute;
+  top: 9px;
+  right: 55px;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: #5f463d;
   background-color: #8ad3d5;
   border-radius: 23%;
-  border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
   box-shadow: 0 -0.5px 1px 1px #d6f1f2;
-  color: #5f463d;
-  font-size: 12px;
-  padding: 3px 10px;
-  position: absolute;
-  right: 55px;
-  top: 9px;
 }

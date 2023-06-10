@@ -1,24 +1,23 @@
 .scoreboardRelativeRankingTableView table {
-  border-bottom: none;
   border: 1px solid #ddedff;
+  border-bottom: none;
 }
 
 .scoreboardRelativeRankingTableView th {
+  display: flex;
+  grid-column: 1 / 6;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 10px;
+  font-weight: 400;
   background-color: #dbecff;
   border-bottom: 1px solid #b7c4d2;
-  display: flex;
-  grid-column-end: 6;
-  grid-column-start: 1;
-  justify-content: space-around;
-  font-weight: normal;
-  align-items: center;
-  font-size: 10px;
 }
 
 .scoreboardRelativeRankingTableView td:nth-of-type(3) {
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 .scoreboardRelativeRankingTableView tr {

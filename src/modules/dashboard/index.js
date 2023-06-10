@@ -2,13 +2,13 @@ import { addUIStyles } from '../utils';
 import styles from './styles.css';
 
 import getMousoleumText from './location/mousoleum';
-import getToxicSpillText from './location/toxic-spill';
+// import getToxicSpillText from './location/toxic-spill';
 import getFortRoxText from './location/fort-rox';
 import { getFieryWarpathText, setFieryWarpathData } from './location/fiery-warpath';
 import getLivingGardenText from './location/living-garden';
 import getLostCityText from './location/lost-city';
 import getSandDunesText from './location/sand-dunes';
-import getSeasonalGardenText from './location/seasonal-garden';
+// import getSeasonalGardenText from './location/seasonal-garden';
 import { getZugzwangTowerText, setZugzwangTowerData } from './location/zugzwang-tower';
 import getIcebergText from './location/iceberg';
 import getSunkenCityText from './location/sunken-city';
@@ -18,7 +18,7 @@ import getZokorText from './location/zokor';
 import getMoussuPicchuText from './location/moussu-picchu';
 import getFloatingIslandsText from './location/floating-islands';
 import getForewordFarmText from './location/foreword-farm';
-import getTableOfContentsText from './location/table-of-contents';
+// import getTableOfContentsText from './location/table-of-contents';
 import getBurroughsRiftText from './location/burroughs-rift';
 import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
 import getFuromaRiftText from './location/furoma-rift';
@@ -134,68 +134,68 @@ const cacheLocationData = async () => {
   });
 };
 
-const travel = async (location) => {
-  console.log(`Traveling to ${location}...`); /* eslint-disable-line no-console */
+// const travel = async (location) => {
+//   console.log(`Traveling to ${location}...`); /* eslint-disable-line no-console */
 
-  // return a promise that resolves when the travel is complete.
-  return new Promise((resolve) => {
-    // app.pages.TravelPage.travel(location);    // wait a second between travel and refresh.
-    cacheLocationData(app.data).then(() => {
-      console.log(`Travel complete to ${location}.`); /* eslint-disable-line no-console */
-      resolve();
-    });
-  });
-};
+//   // return a promise that resolves when the travel is complete.
+//   return new Promise((resolve) => {
+//     // app.pages.TravelPage.travel(location);    // wait a second between travel and refresh.
+//     cacheLocationData(app.data).then(() => {
+//       console.log(`Travel complete to ${location}.`); /* eslint-disable-line no-console */
+//       resolve();
+//     });
+//   });
+// };
 
-const refreshData = async () => {
-  // Add the overlay while we're traveling.
-  const overlay = document.querySelector('#overlayBg');
-  if (overlay) {
-    overlay.classList.add('active');
-  }
+// const refreshData = async () => {
+//   // Add the overlay while we're traveling.
+//   const overlay = document.querySelector('#overlayBg');
+//   if (overlay) {
+//     overlay.classList.add('active');
+//   }
 
-  // Save the current location so we can return to it.
-  if (! user.environment_type) {
-    return;
-  }
+//   // Save the current location so we can return to it.
+//   if (! user.environment_type) {
+//     return;
+//   }
 
-  const currentLocation = user.environment_type;
+//   const currentLocation = user.environment_type;
 
-  const locations = [
-    'mousoleum',
-    'pollution_outbreak',
-    'fort_rox',
-    'desert_warpath',
-    'desert_oasis',
-    'lost_city',
-    'sand_dunes',
-    'seasonal_garden',
-    'zugzwang_tower',
-    'iceberg',
-    'sunken_city',
-    'queso_geyser',
-    'labyrinth',
-    'ancient_city',
-    'moussu_picchu',
-    'floating_islands',
-    'foreword_farm',
-    'table_of_contents',
-    'rift_burroughs',
-    'rift_whisker_woods',
-    'rift_furoma',
-    'rift_bristle_woods',
-    'rift_valour',
-  ];
+//   const locations = [
+//     'mousoleum',
+//     'pollution_outbreak',
+//     'fort_rox',
+//     'desert_warpath',
+//     'desert_oasis',
+//     'lost_city',
+//     'sand_dunes',
+//     'seasonal_garden',
+//     'zugzwang_tower',
+//     'iceberg',
+//     'sunken_city',
+//     'queso_geyser',
+//     'labyrinth',
+//     'ancient_city',
+//     'moussu_picchu',
+//     'floating_islands',
+//     'foreword_farm',
+//     'table_of_contents',
+//     'rift_burroughs',
+//     'rift_whisker_woods',
+//     'rift_furoma',
+//     'rift_bristle_woods',
+//     'rift_valour',
+//   ];
 
-  // Travel to each location, waiting 1 second between each.
-  for (let i = 0; i < locations.length; i++) {
-    await travel(locations[i]);
-  }
+//   // Travel to each location, waiting 1 second between each.
+//   for (let i = 0; i < locations.length; i++) {
+//     await travel(locations[i]);
+//   }
 
-  // Return to the original location and remove the overlay.
-  app.pages.TravelPage.travel(currentLocation);
-  overlay.classList.remove('active');
-};
+//   // Return to the original location and remove the overlay.
+//   app.pages.TravelPage.travel(currentLocation);
+//   overlay.classList.remove('active');
+// };
 
 const makeDashboardTab = () => {
   const tabsContainer = document.querySelector('.mousehuntHeaderView-dropdownContainer');

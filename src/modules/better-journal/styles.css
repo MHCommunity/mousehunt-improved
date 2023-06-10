@@ -5,6 +5,7 @@
 }
 
 .journal .entry {
+  position: relative;
   border: 1px solid #a4a4a4;
   border-bottom: none;
 }
@@ -14,20 +15,16 @@
 }
 
 /* Images */
-.journal .entry {
-  position: relative;
-}
-
 .journal .entry .journalimage {
-  display: flex;
-  flex-direction: column;
   position: absolute;
   top: 0;
   bottom: 10px;
-  height: auto;
-  width: 65px;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: auto;
 }
 
 .shop_purchase .journal .entry .journalimage {
@@ -60,8 +57,8 @@
 
 .journal .entry a:hover img,
 .journal .entry a:focus img {
-  outline: 2px solid #e70;
   border: none;
+  outline: 2px solid #e70;
   mix-blend-mode: normal;
 }
 
@@ -193,14 +190,14 @@
 
 /* bigger ftc image */
 .journal .content .entry.catchfailure {
-  background-size: 75px;
   background-position: 0;
+  background-size: 75px;
 }
 
 /* potion drops */
 .journal .content .entry.alchemists_cookbook_base_bonus {
   background-position: 10px;
-  background-size: 55px!important;
+  background-size: 55px !important;
 }
 
 .journal .content .entry.alchemists_cookbook_base_bonus .journalbody {
@@ -219,15 +216,15 @@
   background-position: 10px;
 }
 
-.journal .content .ultimate_intact:after,
-.journal .content .ultimate_pop:after {
-  content: "";
-  width: 48px;
-  height: 48px;
-  outline: 1px solid #22eab4;
+.journal .content .ultimate_intact::after,
+.journal .content .ultimate_pop::after {
   position: absolute;
   top: 17px;
   left: 11px;
+  width: 48px;
+  height: 48px;
+  content: "";
+  outline: 1px solid #22eab4;
 }
 
 /* Progress log */
@@ -431,11 +428,11 @@ a.journal-detailLink.full::after {
 
 .socialGift.socialGift-send .journaltext {
   max-height: 50px;
-  overflow-y: scroll;
-  box-shadow: inset -5px -4px 7px -4px #9d9d9d;
-  overflow-x: hidden;
   padding-bottom: 6px;
   margin-bottom: -3px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  box-shadow: inset -5px -4px 7px -4px #9d9d9d;
 }
 
 .journal .entry.socialGift-send {
@@ -449,17 +446,17 @@ a.journal-detailLink.full::after {
 }
 
 .journal .entry .journalbody .journaltext .lucky::after {
-  background: unset;
   position: relative;
-  display: inline;
   top: unset;
+  display: inline;
+  background: unset;
 }
 
 .journal .entry .journaltext br {
   content: "";
 }
 
-.journal .entry .journaltext br:after {
+.journal .entry .journaltext br::after {
   content: " ";
 }
 
@@ -472,23 +469,23 @@ a.journal-detailLink.full::after {
 .entry.short.tournamentpointswithloot .journaldate,
 .entry.short.tournamentpoints .journaldate,
 .entry.short.unstable_charm_trigger .journaldate {
-    display: none;
+  display: none;
 }
 
 /* tournament points */
 .entry.short.tournamentpointswithloot,
 .entry.short.tournamentpoints {
-    background: #dbd1b4;
-    padding: 0;
+  padding: 0;
+  background: #dbd1b4;
 }
 
 .entry.short.tournamentpointswithloot .journalbody,
 .entry.short.tournamentpoints .journalbody {
-    margin: 5px 5px 5px 10px;
-    white-space: normal;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 5px 5px 5px 10px;
+  white-space: normal;
 }
 
 /* nicer shade of gray and better image for brift */
@@ -500,15 +497,15 @@ a.journal-detailLink.full::after {
 
 /* unstable charm results */
 .entry.short.misc.custom.unstable_charm_trigger {
-  background-color: #e1f9ff;
-  font-style: italic;
-  font-size: 10px;
-  line-height: 15px;
-  min-height: 35px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  min-height: 35px;
   padding-left: 5px;
+  font-size: 10px;
+  font-style: italic;
+  line-height: 15px;
+  background-color: #e1f9ff;
 }
 
 .entry.short.misc.custom.unstable_charm_trigger .journalimage {
@@ -516,9 +513,9 @@ a.journal-detailLink.full::after {
 }
 
 .entry.short.misc.custom.unstable_charm_trigger .journalimage img {
-  mix-blend-mode: multiply;
   width: 40px;
   height: 40px;
+  mix-blend-mode: multiply;
 }
 
 .entry.short.misc.custom.unstable_charm_trigger .journalbody {
@@ -528,48 +525,41 @@ a.journal-detailLink.full::after {
 
 /* adventure book status */
 .adventureBookBanner-container {
+  padding-bottom: 5px;
+  margin-bottom: 20px;
   overflow: hidden;
+  line-height: 16px;
   background-color: #fbf8f6;
   border: 1px solid #d3cecb;
   border-radius: 3px;
   box-shadow: inset -1px 1px 3px 0 #d3cecb;
-  line-height: 16px;
-  margin-bottom: 20px;
-  padding-bottom: 5px;
 }
 
 .adventureBookBanner-adventureName {
-  background: transparent;
-  border-radius: 0;
-  font-size: 13px;
-  line-height: 15px;
-  padding: 15px 5px 0 5px;
+  padding: 15px 5px 0;
   margin-left: 75px;
+  font-size: 15px;
   font-style: italic;
   font-weight: 400;
-  font-size: 15px;
+  line-height: 15px;
   color: #373737;
+  background: transparent;
+  border-radius: 0;
 }
 
 .adventureBookBanner-adventureName span {
   display: none;
 }
 
-.adventureBookBanner-moreInfo {
-  width: auto;
-  font-size: 9px;
-  height: auto;
-  padding: 1px;
-}
 
 .adventureBookBanner-goalContainer {
-  left: 0;
   right: 0;
+  left: 0;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  box-shadow: none;
   background: none;
+  box-shadow: none;
 }
 
 .adventureBookBanner-adventureImage {
@@ -581,11 +571,11 @@ a.journal-detailLink.full::after {
 }
 
 .adventureBookBanner-goalImage {
+  position: absolute;
+  top: -25px;
+  left: 10px;
   width: 60px;
   height: 60px;
-  position: absolute;
-  left: 10px;
-  top: -25px;
 }
 
 .adventureBookBanner-goalName {
@@ -597,15 +587,23 @@ a.journal-detailLink.full::after {
   display: inline;
 }
 
-.adventureBookBanner-goalName-padding .adventureBookBanner-goalEnvironment:before {
+.adventureBookBanner-goalName-padding .adventureBookBanner-goalEnvironment::before {
   content: ". ";
 }
 
 .adventureBookBanner-moreInfo {
-  right: 0;
   position: absolute;
-  bottom: 0;
+  right: 5px;
+  bottom: -6px;
   display: inline-block;
+  width: auto;
+  height: auto;
+  padding: 1px;
+  padding-left: 10px;
+  font-size: 9px;
+  color: #3b5998;
+  background: none;
+  box-shadow: none;
 }
 
 .adventureBookBanner-goalName-padding {
@@ -618,23 +616,14 @@ a.journal-detailLink.full::after {
   display: block;
 }
 
-.adventureBookBanner-moreInfo {
-  background: none;
-  box-shadow: none;
-  color: #3b5998;
-  bottom: -6px;
-  right: 5px;
-  padding-left: 10px;
-}
-
-.adventureBookBanner-moreInfo:after {
+.adventureBookBanner-moreInfo::after {
   content: " →";
 }
 
 .adventureBookBanner-container:hover .adventureBookBanner-moreInfo {
-  box-shadow: none;
-  background: none;
-  text-decoration: underline;
   color: #3b5998;
+  text-decoration: underline;
   text-shadow: none;
+  background: none;
+  box-shadow: none;
 }

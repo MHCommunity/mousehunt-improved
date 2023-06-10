@@ -128,7 +128,6 @@ const modifySmashableTooltip = async () => {
 
   items.forEach(async (item) => {
     const tooltip = item.querySelector('.tooltip');
-    console.log(tooltip);
     if (! tooltip) {
       return;
     }

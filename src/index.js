@@ -135,12 +135,4 @@ const main = () => {
 // Start it up.
 main();
 
-
-
-
-
-
-
-
-
 // hg.views.MouseCrownsView.toggleFavouriteHandler(event); return false;

@@ -4,32 +4,32 @@
 
 .tournamentPage-tournamentContainer-customPrizes {
   position: absolute;
-  left: -57px;
-  width: 0px;
-  overflow: hidden;
-  border: none;
   top: -6px;
-  margin: 0;
-  color: transparent;
+  left: -57px;
+  width: 0;
   padding: 20px;
+  margin: 0;
+  overflow: hidden;
+  color: transparent;
   filter: drop-shadow(1px 1px 7px #fff);
+  border: none;
 }
 
-.tournamentPage-tournamentContainer-customPrizes:after {
+.tournamentPage-tournamentContainer-customPrizes::after {
   top: 2px;
   left: 5px;
 }
 
-.tournamentPage-tournamentContainer-customPrizes:hover {
-  color: #4b6e95;
+.tournamentPage-tournamentContainer-customPrizes:hover,
+.tournamentPage-tournamentContainer-customPrizes:focus {
   width: auto;
-  padding: 10px;
-  background-color: white;
   padding: 13px 5px 10px 35px;
+  color: #4b6e95;
+  background-color: #fff;
   border-radius: 30px;
 }
 
-.tournamentPage-tournamentContainer-customPrizes:hover .tournamentPage-tournamentContainer-customPrizes:after {
+.tournamentPage-tournamentContainer-customPrizes:hover .tournamentPage-tournamentContainer-customPrizes::after {
   left: 10px;
 }
 
@@ -43,14 +43,10 @@
 }
 
 .train .tournamentPage-tournamentContainer-description {
-  font-size: 9px;
   max-height: 35px;
-  line-height: 10px;
   padding-right: 10px;
-}
-
-.tournamentPage-tournamentContainer-labels {
-  margin-left: 15px;
+  font-size: 9px;
+  line-height: 10px;
 }
 
 .tournamentPage-tournamentRow .tournamentPage-tournamentContainer-icon {
@@ -66,66 +62,61 @@
 }
 
 .tournamentPage-tournament-column.members_5 .tournamentPage-tournament-teamMember {
-  height: 19.6px;
-  width: 19.6px;
   display: block;
+  width: 19.6px;
+  height: 19.6px;
 }
 
 .tournamentPage-tournament-column.value.teamMembers.members_5 {
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
 }
 
-.tournamentPage-tournament-column.members_5 .tournamentPage-tournament-teamMember.empty:after {
+.tournamentPage-tournament-column.members_5 .tournamentPage-tournament-teamMember.empty::after {
   margin-top: 4px;
   margin-left: -5px;
-}
-
-.tournamentPage-tournament-column.label.teamMembers {
-  text-align: center;
 }
 
 .tournamentPage-tournamentContainer-labels {
   display: grid;
   grid-template-columns: 325px 100px 80px 55px;
   justify-items: stretch;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .tournamentPage-tournament-column .tournamentPage-tournament-teamMember:is(.empty) {
   color: transparent;
 }
 
-.tournamentPage-tournament-column .tournamentPage-tournament-teamMember.empty:before {
-  counter-increment: team;
+.tournamentPage-tournament-column .tournamentPage-tournament-teamMember.empty::before {
   content: counter(team);
+  counter-increment: team;
 }
 
 .tournamentPage-tournament-column.value.teamMembers {
   counter-reset: team;
 }
 
-.tournamentPage-tournament-column .tournamentPage-tournament-teamMember.empty:last-child:before {
-  color: #474747;
-  display: inline-block;
-  font-size: 18px;
+.tournamentPage-tournament-column .tournamentPage-tournament-teamMember.empty:last-child::before {
   position: absolute;
-  right: -1px;
   top: 4px;
-  background-color: #e5e5e5;
-  border-radius: 50%;
+  right: -1px;
+  display: inline-block;
   width: 22px;
   height: 22px;
+  font-size: 18px;
   line-height: 22px;
-  box-shadow: 1px 1px 1px 0px #c7c7c7;
+  color: #474747;
+  background-color: #e5e5e5;
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px 0 #c7c7c7;
 }
 
 
-.tournamentPage-tournament-column.members_5 .tournamentPage-tournament-teamMember.empty:last-child:before {
-  right: -4px;
+.tournamentPage-tournament-column.members_5 .tournamentPage-tournament-teamMember.empty:last-child::before {
   top: -2px;
+  right: -4px;
   width: 21px;
   height: 21px;
   font-size: 17px;
@@ -144,69 +135,59 @@ a.tournamentPage-tournament-column.name,
   display: grid;
   grid-template-columns: 0 300px 1fr 1fr 20px 100px 70px;
   gap: 10px;
-  justify-items: stretch;
   align-items: center;
+  justify-items: stretch;
 }
 
 .tournamentPage-tournament-column.label.teamMembers {
   display: none;
+  text-align: center;
 }
 
 .tournamentPage-tournamentRow.train .tournamentPage-tournamentContainer-icon,
 .tournamentPage-tournamentContainer-icon {
-  height: 30px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  margin: 0;
   width: 30px;
   height: 30px;
-  background-size: contain;
-  background-position: unset;
   margin: 0;
+  background-repeat: no-repeat;
+  background-position: unset;
+  background-size: contain;
 }
 
 .tournamentPage-profile-summaryContainer {
   min-height: 100px;
-  background-size: contain;
-  margin-left: 20px;
   padding-left: 130px;
   margin-right: 20px;
+  margin-left: 20px;
+  background-size: contain;
 }
 
 .tournamentPage-profile-description {
-  align-items: center;
   display: grid;
   grid-template-columns: 1fr 125px;
+  align-items: center;
   justify-items: end;
-  font-size: 13px;
   min-height: 50px;
+  font-size: 13px;
   line-height: 20px;
-}
-
-.tournamentPage-profile-summary {
-  border: 1px solid #af9969;
-  box-shadow: inset 1px 1px 1px #e2d6b5;
-  min-height: 135px;
-  height: auto;
 }
 
 .tournamentPage-profile-action {
   display: block;
-  float: none;
   order: 2;
+  float: none;
   font-size: 14px;
 }
 
 .tournamentPage-profile-prizeWaiting {
-  font-size: 18px;
-  font-weight: 400;
-  margin: 20px 0;
   display: grid;
   grid-template-columns: 1fr 100px;
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .tournamentPage-tournamentHeader {
@@ -229,27 +210,14 @@ img.tournamentPage-profile-details-rules-icon {
   display: none;
 }
 
-.tournamentPage-profile-details-rules {
-  font-size: 12px;
-}
-
-.tournamentPage-profile-details-rules h2 {
-  padding-bottom: 11px;
-}
-
-.tournamentPage-profile-details-rules br:first-of-type:after,
-.tournamentPage-profile-details-rules br:first-of-type:before {
+.tournamentPage-profile-details-rules br:first-of-type::after,
+.tournamentPage-profile-details-rules br:first-of-type::before {
   display: block;
 }
 
 .tournamentPage-profile-details-generalRules ul li:nth-of-type(2),
 .tournamentPage-profile-details-generalRules ul li:nth-of-type(3) {
   display: none;
-}
-
-.tournamentPage-profile-details-generalRules {
-  width: 270px;
-  font-size: 11px;
 }
 
 .tournamentPage-profile-details-generalRules ul {
@@ -262,13 +230,8 @@ img.tournamentPage-profile-details-rules-icon {
 }
 
 .tournamentPage-profile-summary {
-  background-color: #f6f3eb;
-  border: 1px solid #cbc6bb;
-  border-radius: 5px;
-  box-shadow: inset -1px -1px 1px #d3cecb;
-}
-
-.tournamentPage-tournamentHeader {
+  height: auto;
+  min-height: 135px;
   background-color: #f6f3eb;
   border: 1px solid #cbc6bb;
   border-radius: 5px;
@@ -284,20 +247,21 @@ img.tournamentPage-profile-details-rules-icon {
 }
 
 .tournamentPage-viewState .mousehuntTabHeader span {
+  margin-bottom: 1px;
   background: #f6f3eb;
   border: 1px solid #cbc6bb;
   box-shadow: none;
-  margin-bottom: 1px;
 }
 
 .tournamentPage-viewState .mousehuntTabHeader.active span,
-.tournamentPage-viewState .mousehuntTabHeader span:hover {
+.tournamentPage-viewState .mousehuntTabHeader span:hover,
+.tournamentPage-viewState .mousehuntTabHeader span:focus {
   border-bottom: none;
 }
 
-.tournamentPage-viewState .mousehuntTabHeader:before {
-  box-shadow: none;
+.tournamentPage-viewState .mousehuntTabHeader::before {
   background: none;
+  box-shadow: none;
 }
 
 .tournamentPage-viewState .mousehuntTabHeader.active span,
@@ -319,26 +283,26 @@ img.tournamentPage-profile-details-rules-icon {
 }
 
 .tournamentPage-profile-details-padding {
-  background-color: #f6f3eb;
   position: relative;
+  background-color: #f6f3eb;
 }
 
 .tournamentPage-profile-details-reward-name {
   padding-bottom: 20px;
-  font-weight: 400;
   margin-left: 30px;
+  font-weight: 400;
 }
 
 .tournamentPage-profile-details-padding div:nth-child(2),
 .tournamentPage-profile-details-reward:nth-child(4) .tournamentPage-profile-details-padding div:nth-child(3) {
   position: absolute;
   top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  margin-left: 0;
   color: transparent;
   background-size: contain;
-  height: 30px;
-  width: 30px;
-  left: 5px;
-  margin-left: 0;
 }
 
 .tournamentPage-profile-details-reward-item {
@@ -349,27 +313,28 @@ img.tournamentPage-profile-details-rules-icon {
 .tournamentPage-profile-details-environmentContainer {
   position: absolute;
   right: 0;
+  bottom: -10px;
   display: flex;
+  flex-flow: row wrap;
+  align-content: center;
   align-items: stretch;
   justify-content: center;
   width: 290px;
-  /* outline: 1px solid red; */
-  align-content: center;
-  flex-wrap: wrap;
-  flex-direction: row;
-  bottom: -10px;
+  padding-top: 10px;
   background-color: #f6f3eb;
   border: 1px solid #cbc6bb;
   border-radius: 5px;
   box-shadow: inset -1px -1px 1px #d3cecb;
-  padding-top: 10px;
 }
 
 .tournamentPage-profile-details-rules h2 {
   display: none;
+  padding-bottom: 11px;
 }
 
 .tournamentPage-profile-details-generalRules {
+  width: 270px;
+  font-size: 11px;
   background-color: #f6f3eb;
   border: 1px solid #cbc6bb;
   border-radius: 5px;
@@ -384,36 +349,40 @@ img.tournamentPage-profile-details-rules-icon {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  font-size: 12px;
 }
 
 .tournamentPage-profile-details-mouseGroup {
+  width: auto;
+  padding: 10px;
+  margin: 0;
   background-color: #f6f3eb;
   border: 1px solid #cbc6bb;
   border-radius: 5px;
   box-shadow: inset -1px -1px 1px #d3cecb;
-  padding: 10px;
-  width: auto;
-  margin: 0;
 }
 
 h2.tournamentPage-profile-details-mouseGroup-name {
+  padding-left: 32px;
+  margin-bottom: 10px;
   font-size: 14px;
   font-weight: 900;
-  margin-bottom: 10px;
-  padding-left: 32px;
 }
 
 .tournamentPage-profile-details-mouseGroup-miceContainer {
   display: flex;
+  flex-flow: column wrap;
   margin: 0;
-  flex-direction: column;
-  flex-wrap: wrap;
 }
 
 .tournamentPage-profile-details-mice {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
+}
+
+.tournamentHelp.clear-block img {
+  display: none;
 }
 
 .tournamentPage-profile-details-mouseGroup-mouse {
@@ -436,35 +405,34 @@ h2.tournamentPage-profile-details-mouseGroup-name {
 
 .scoreHover,
 .pointsHover {
-  display: none;
   position: absolute;
-  left: -50%;
-  background-color: white;
-  width: 275px;
   top: 90%;
+  left: -50%;
+  z-index: 11;
+  display: none;
+  width: 275px;
+  color: #4e300b;
   background-color: #f6f3eb;
   border: 1px solid #cbc6bb;
   border-radius: 5px;
-  box-shadow: inset -1px -1px 1px #d3cecb, 1px 3px 3px 0px #939393;
-  color: #4e300b;
-  z-index: 11;
+  box-shadow: inset -1px -1px 1px #d3cecb, 1px 3px 3px 0 #939393;
 }
 
 .pointsHover {
-  grid-template-columns: 1fr 1fr 1fr;
-  width: auto;
   left: -130%;
-  justify-items: stretch;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: stretch;
+  justify-items: stretch;
+  width: auto;
 }
 
 .scoreRow {
   display: grid;
   grid-template-columns: 25px 1fr 25px;
-  justify-items: start;
   align-items: center;
-  margin-bottom: 5px;
+  justify-items: start;
   padding: 5px;
+  margin-bottom: 5px;
 }
 
 .scoreRow:nth-child(even) {
@@ -472,12 +440,12 @@ h2.tournamentPage-profile-details-mouseGroup-name {
 }
 
 .scoreIcon {
+  position: relative;
   width: 20px;
   height: 20px;
-  border-radius: 7px;
-  overflow: hidden;
   margin-right: 5px;
-  position: relative;
+  overflow: hidden;
+  border-radius: 7px;
 }
 
 .scoreIcon div {
@@ -500,8 +468,8 @@ h2.tournamentPage-profile-details-mouseGroup-name {
 }
 
 .pointsRow {
-  border: 1px solid #cbc6bb;
   width: 150px;
+  border: 1px solid #cbc6bb;
 }
 
 img.pointsMouseIcon {
@@ -514,15 +482,15 @@ img.pointsMouseIcon {
 .pointsMouseWrapper {
   display: flex;
   align-items: center;
-  overflow: hidden;
   justify-content: flex-start;
+  overflow: hidden;
 }
 
 .pointsMouseName {
-  font-weight: normal;
   font-size: 11px;
-  white-space: nowrap;
+  font-weight: 400;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .pointsMice {
@@ -530,7 +498,7 @@ img.pointsMouseIcon {
 }
 
 .pointsTitle {
-  text-align: center;
-  font-size: 12px;
   padding: 5px 0;
+  font-size: 12px;
+  text-align: center;
 }

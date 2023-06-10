@@ -78,8 +78,6 @@ const onFriendLinkHover = async (e) => {
 
   parent.setAttribute('data-friend-hover', true);
 
-  console.log('friendId', friendId);
-
   // TODO: only ignore the list of friends, not the inbox.
   // if ('friends' === getCurrentPage()) {
   //   return;

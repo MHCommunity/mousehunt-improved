@@ -1,5 +1,5 @@
 const main = () => {
-  console.log('Hello floating islands!');
+  // console.log('Hello floating islands!');
 };
 
 export default main;

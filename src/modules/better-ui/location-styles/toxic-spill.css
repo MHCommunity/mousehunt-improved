@@ -1,7 +1,7 @@
 .pollutionOutbreakHUD-item-image {
-  background-size: cover;
-  background-position: center;
   padding-top: 1px;
   margin-top: 0;
   margin-bottom: 2px;
+  background-position: center;
+  background-size: cover;
 }

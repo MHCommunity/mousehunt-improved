@@ -154,7 +154,7 @@ const updateMouseImageLinks = () => {
 
     mouseImageLink.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
   });
-}
+};
 
 const main = () => {
   updateJournalText();

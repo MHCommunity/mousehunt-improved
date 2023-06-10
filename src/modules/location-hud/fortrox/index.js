@@ -29,7 +29,6 @@ const makeTooltip = (text, direction = 'top', customClass = []) => {
   return tooltip;
 };
 
-
 const updateNightBar = () => {
   const bar = document.querySelector('.fortRoxHUD-timeline-phases');
   if (! bar) {
@@ -79,12 +78,12 @@ const updateUpgradeTooltips = () => {
 
   upgradeTooltips.forEach((tooltip) => {
     // get the class that starts with 'level_'
-    const levelClass = Array.from(tooltip.classList).find((className) => {
-      return className.startsWith('level_');
-    });
+    // const levelClass = Array.from(tooltip.classList).find((className) => {
+    //   return className.startsWith('level_');
+    // });
 
     // get the type from the onclick attribute
-    const type = tooltip.getAttribute('onclick').replace("app.views.HeadsUpDisplayView.hud.fortRoxShowConfirm('upgradeFort', ", '').replace('); return false;', '').replace(/'/g, '');
+    const type = tooltip.getAttribute('onclick').replace('app.views.HeadsUpDisplayView.hud.fortRoxShowConfirm(\'upgradeFort\', ', '').replace('); return false;', '').replace(/'/g, '');
     const upgradeProgress = user?.quests?.QuestFortRox?.upgrades[type];
 
     // cycle through the keys in the upgradeProgress object and count how many have a value of 'complete'
@@ -97,7 +96,7 @@ const updateUpgradeTooltips = () => {
       return count;
     }, 0);
 
-    console.log(type, completedUpgrades);
+    // console.log(type, completedUpgrades);
 
     const name = tooltip.querySelector(`.fortRoxHUD-fort-upgrade-boundingBox-level.level_${completedUpgrades}`);
     makeElement('div', 'fortRoxHUD-fort-upgrade-level-info', `(Level ${completedUpgrades}/${upgradeKeys.length})`, name);

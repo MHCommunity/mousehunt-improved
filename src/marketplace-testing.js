@@ -332,7 +332,7 @@ const removeItemsFromSearch = () => {
   ];
 
   // remove options
-  const opts = document.querySelectorAll(`.marketplaceView-header-search option`);
+  const opts = document.querySelectorAll('.marketplaceView-header-search option');
   for (const opt of opts) {
     if (! opt.value || optsToRemove.includes(parseInt(opt.value))) {
       opt.remove();
@@ -348,7 +348,6 @@ const removeItemsFromSearch = () => {
   blankOpt.hidden = true;
   $('.marketplaceView-header-search').prepend(blankOpt);
 };
-
 
 const modifySearch = () => {
   let searchInputDOM = $('.marketplaceView-header-search');
@@ -372,10 +371,9 @@ const modifySearch = () => {
   });
 };
 
-modifySearch()
+modifySearch();
 
 // styles:
-
 
 // making the options value look like this:
 // "SUPER|brie+<span class=\"hidden\">SB+ Super Brie superbrie</span>"
