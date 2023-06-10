@@ -74,6 +74,6 @@ export default () => {
   addUIStyles(styles);
   addBodyClass();
   onPageChange({ camp: { show: addBodyClass } });
-  onTravel(false, { callback: setTimeout(addBodyClass, 500) });
+  onTravel(null, { callback: () => { setTimeout(addBodyClass, 500) } });
   moveSidebar();
 };

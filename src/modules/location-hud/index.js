@@ -94,7 +94,7 @@ export default function locationHuds() {
   main();
   onAjaxRequest(main);
   onPageChange({ camp: { show: main } });
-  onTravel(false, { callback: main });
+  onTravel(null, { callback: main });
   onAjaxRequest(() => {
     setTimeout(main, 500);
   }, 'managers/ajax/turns/activeturn.php', true);

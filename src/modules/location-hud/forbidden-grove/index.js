@@ -43,9 +43,9 @@ const main = () => {
 
   // add a timer to update the time left
   const timer = setInterval(updateClosingTime, 60 * 1000);
-  onTravel(null, () => {
+  onTravel(null, { callback: () => {
     clearInterval(timer);
-  });
+  } });
 };
 
 export default main;
