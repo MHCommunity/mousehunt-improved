@@ -1,5 +1,5 @@
 import { addUIStyles, getArText } from '../utils';
-import getLocationAndStage from '../../mhct-get-stage';
+import getLocationAndStage from '../mhct-get-stage';
 import styles from './styles.css';
 
 const getCrownType = (catches) => {
