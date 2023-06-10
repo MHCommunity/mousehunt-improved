@@ -1,32 +1,124 @@
-/* .mistGauge {
-    filter: opacity(6);
+.brift-ui .riftBurroughsHud .baitContainer .baitOption .baitQuantity {
+  font-size: 13px;
+  background-color: #464646;
+  border-radius: 7px;
 }
 
-.riftBurroughsHud .mistQuantity {
-    top: 0;
-    left: 50px;
-    font-size: 20px;
-    background-color: #746f6dde;
-    padding: 10px;
-    bottom: 0;
-    width: 75px;
-    border-radius: 20px;
+.brift-ui .mist-display {
+  position: absolute;
+  top: 15px;
+  bottom: 10px;
+  left: 260px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 900;
+  background-color: #ecf4f5;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 3px #cbdde0, inset 0 0 4px 4px #8d9392, 0 2px 6px 0 #5b5d5d;
 }
 
-.riftBurroughsHud .mistMeter .mistWrapper span {
-  width: 110%;
+.brift-ui .mist-display.state-yellow {
+  background: radial-gradient(circle, #fff4a9 10%, #ffea5d 50%);
 }
 
-.riftBurroughsHud .mistMeter .mistStatus {
-  left: 83px;
-  top: 37px;
-  height: 26px;
-  width: 26px;
-  z-index: 1;
-  filter: drop-shadow(1px 1px 6px #a2b1b0);
-  color: #a2b1b0;
+.brift-ui .mist-display.state-green {
+  background: radial-gradient(circle, #abe846 10%, #82d953 50%);
 }
 
-.riftBurroughsHud .baitContainer .baitOption .baitQuantity {
-    font-size: 12px;
-} */
+.brift-ui .mist-display.state-red {
+  background: radial-gradient(circle, #ff9a9a 10%, #ff5e5e 50%);
+}
+
+.brift-ui .mouse-list {
+  position: absolute;
+  top: 9px;
+  right: 20px;
+  bottom: 2px;
+  display: flex;
+}
+
+.brift-ui .mouse-type {
+  display: flex;
+  flex-direction: column;
+  max-width: 100px;
+  padding: 4px;
+  margin: 0 5px;
+  background-color: #bfced0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 3px #cbdde0, inset 0 0 4px 4px #8d9392, 0 2px 6px 0 #5b5d5d;
+}
+
+.brift-ui .mouse-type-title {
+  min-width: 95px;
+  padding: 3px 0;
+  margin: -1px;
+  font-size: 12px;
+  color: #d0f0f3;
+  text-align: center;
+  background-color: #828282;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 8px;
+}
+
+.brift-ui .mouse-type-mice {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  margin: 3px 0;
+  font-size: 6px;
+}
+
+.brift-ui .mouse-type-mouse {
+  display: block;
+  width: 25px;
+  height: 25px;
+}
+
+.brift-ui img.mouse-type-mouse-image {
+  width: 25px;
+  height: 25px;
+}
+
+.brift-ui .mouse-type-mouse:nth-child(5) .mouse-type-mouse-image {
+  border-bottom-left-radius: 4px;
+}
+
+.brift-ui .mouse-type-mouse:nth-child(8) .mouse-type-mouse-image {
+  border-bottom-right-radius: 4px;
+}
+
+.brift-ui .mouse-type-mouse-link {
+  position: relative;
+}
+
+.brift-ui .mouse-type-mouse-name {
+  position: absolute;
+  bottom: 25px;
+  left: -25px;
+  z-index: 2;
+  display: none;
+  padding: 6px;
+  font-size: 10px;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+}
+
+.brift-ui .mouse-type-mouse-link:hover .mouse-type-mouse-name,
+.brift-ui .mouse-type-mouse-link:focus .mouse-type-mouse-name {
+  display: block;
+
+}
+
+.brift-ui .mouse-type.active {
+  box-shadow: inset 0 0 0 2px #a7fc32, inset 0 0 4px 4px #8d9392, 0 2px 6px 0 #5b5d5d;
+}
+
+.brift-ui .mouse-type.active .mouse-type-title {
+  color: #b1ed71;
+}
