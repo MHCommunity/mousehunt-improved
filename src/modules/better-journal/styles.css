@@ -480,12 +480,11 @@ a.journal-detailLink.full::after {
 }
 
 .journal .entry.short.custom.super_rift_vacuum_trigger {
-  background-size: 50px;
   background-position: 10px 5px;
+  background-size: 50px;
 }
 
-/* tournament points */
-/* acolyte sand stolen */
+/* tournament points, acolyte sand stolen, etc */
 .entry.short.tournamentpointswithloot,
 .entry.short.tournamentpoints,
 .entry.short.rift-bristlewoods-acolyteSandStolen {
