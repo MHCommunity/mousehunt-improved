@@ -18,6 +18,8 @@ const updateTournamentHud = async () => {
     }
   );
 
+  console.log(tourneyData);
+
   if (! tourneyData?.page) {
     return;
   }

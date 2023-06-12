@@ -13,6 +13,7 @@ import vrift from './vrift';
 
 import balacksCoveStyles from './balacks-cove/styles.css';
 import briftStyles from './brift/styles.css';
+import bwriftStyles from './bwrift/styles.css';
 import cheeseSelectorsStyles from './cheese-selectors/styles.css';
 import floatingIslandsStyles from './floating-islands/styles.css';
 import forbiddenGroveStyles from './forbidden-grove/styles.css';
@@ -80,6 +81,7 @@ const getStyles = () => {
   return [
     balacksCoveStyles,
     briftStyles,
+    bwriftStyles,
     cheeseSelectorsStyles,
     floatingIslandsStyles,
     forbiddenGroveStyles,

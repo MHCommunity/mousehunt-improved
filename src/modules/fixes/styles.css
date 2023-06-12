@@ -42,8 +42,13 @@
 .mh-location-ss_huntington_ii .mousehuntHud-environmentName,
 .mh-location-pinnacle_chamber .mousehuntHud-environmentName,
 .mh-location-great_gnarled_tree .mousehuntHud-environmentName,
-.mh-location-something .mousehuntHud-environmentName {
-  padding-top: 31px;
+.mh-location-rift_bristle_woods .mousehuntHud-environmentName {
+  position: absolute;
+  bottom: -5px;
+  left: 45px;
+  padding: 2px 13px 2px 0;
   overflow: visible;
-  font-size: 11px;
+  background: linear-gradient(1deg,#d8c8a0 1%,#ddcfaa 61%,#efe3ce);
+  border-top-right-radius: 25px;
+  box-shadow: 1px -3px 2px -1px #f6f2da;
 }

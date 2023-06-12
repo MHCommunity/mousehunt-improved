@@ -30,7 +30,7 @@ export default (quests) => {
 
   const isLaunchPad = quest.island_power_type === 'launch_pad_island';
   if (isLaunchPad) {
-    return `Launch Pad, ${quest.wardens_caught} wardens caught`;
+    return `Launch Pad, <p>${quest.wardens_caught} wardens caught`;
   }
 
   let type = 'LAI';
@@ -54,9 +54,11 @@ export default (quests) => {
 
   const powerType = powerTypes[quest.island_power_type];
 
-  let returnText = `${powerType} ${type} <span class='dashboard-fi-tiles'>${tileText}</span> ${quest.hunts_remaining} hunts left`;
+  let returnText = `<span class='dashboard-fi-tiles'>${tileText}</span> ${powerType} ${type}`;
   if (quest.isLai) {
-    returnText += ` (${quest.wardens_caught} wardens caught)`;
+    returnText += `<div class="stats">${quest.hunts_remaining} hunts left, ${quest.wardens_caught} wardens caught</div>`;
+  } else {
+    return returnText += `, ${quest.hunts_remaining} hunts left`;
   }
 
   return returnText;

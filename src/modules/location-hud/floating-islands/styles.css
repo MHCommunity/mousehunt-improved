@@ -1,10 +1,24 @@
+/* Make the 'mice can drop' one line */
+.floatingIslandsHUD-islandLoot-label {
+  color: transparent;
+}
+
+.floatingIslandsHUD-islandLoot-label::before {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 100px;
+  font-size: 12px;
+  font-variant: small-caps;
+  color: #e2d8b6;
+  content: "Mice can drop";
+}
+
 .floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.rain_shrine:first-child {
   background-position-y: 0;
   border-radius: 3px;
   box-shadow: 0 0 13px 3px #ffd700 inset;
 }
-
-
 
 .floatingIslandsHUD-modPanel.rain_shrine:hover::before {
   position: absolute;

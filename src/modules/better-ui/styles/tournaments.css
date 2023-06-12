@@ -502,3 +502,29 @@ img.pointsMouseIcon {
   font-size: 12px;
   text-align: center;
 }
+
+.tournamentStatusHud .rank span,
+.tournamentStatusHud .score span {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 12px;
+}
+
+.tournamentStatusHud a.name,
+.tournamentStatusHud a.name:visited,
+.tournamentStatusHud a.name:hover,
+.tournamentStatusHud a.name:focus {
+  left: 33px;
+  font-size: 12px;
+}
+
+.tournamentStatusHud .timer {
+  top: 3px;
+  left: 240px;
+  font-size: 11px;
+}
+
+.tournamentStatusHud .title {
+  left: 160px;
+  font-size: 10px;
+}

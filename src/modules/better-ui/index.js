@@ -16,7 +16,6 @@ import traps from './styles/traps.css';
 import maps from './styles/maps.css';
 
 // HUD styles
-import floatingIslands from './location-styles/fi.css';
 import toxicSpill from './location-styles/toxic-spill.css';
 import train from './location-styles/train.css';
 
@@ -36,7 +35,6 @@ const getStyles = () => {
     tournamentStyles,
     traps,
     maps,
-    floatingIslands,
     toxicSpill,
     train,
   ].join('\n');

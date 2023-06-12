@@ -97,6 +97,8 @@ const updateJournalText = () => {
     ['in search of more loot', ''],
     ['or I can return to the', 'or return to the'],
     [' and begin a new expedition', ''],
+    [' ate a piece of cheese without setting off my trap.', ' stole my cheese.'],
+    ['slowly collapsed into itself with a powerful force, compressing mist in the air into an ', 'compressed mist in the air into an '],
 
     // Event stuff
     // SEH

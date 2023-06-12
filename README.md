@@ -63,10 +63,18 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
 
 ### Location HUDS
 
+- Brift
+  - TODO: fill this out.
+- Bwrift
+  - TODO: fill this out.
 - Balack's Cove
   - Shows a countdown to the next low, mid, and high tides.
+- Floating Islands
+  - TODO: fill this out.
 - Forbidden Grove
   - Shows a countdown to the closing time, rather than just a progress bar.
+- Fort Rox
+  - TODO: fill this out.
 - Iceberg
   - Shows feet and number of hunts to the next zone
   - Hover over the zone information to see:
@@ -122,3 +130,44 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
 - Fixes HUD shadow leftover from old HUD
 - Fixes Tooltip arrows incorrectly showing side border
 - Fixes the vertical spacing for the Weekly & Friends checkboxes on scoreboards
+
+
+
+
+
+
+better-inventory
+better-journal
+better-marketplace
+better-mouse-view
+better-quests
+better-shops
+better-ui
+copy-id
+dashboard
+external
+	item-links
+	no-footer
+	no-share
+	no-sidebar
+	taller-windows
+fixes
+hover-profiles
+image-upscaling
+inline-wiki
+location-hud
+	balacks-cove
+	brift
+	bwrift
+	cheese-selectors
+	floating-islands
+	forbidden-grove
+	fortrox
+	iceberg
+	index.js
+	labyrinth
+	vrift
+only-open-multiple
+quick-filters-and-sort
+quick-send-supplies
+tem-crowns

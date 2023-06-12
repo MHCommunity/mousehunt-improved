@@ -8,5 +8,5 @@ export default (quests) => {
     hunts_remaining: quests?.QuestQuesoGeyser?.hunts_remaining || 0,
   };
 
-  return `${quest.state_name}, ${quest.hunts_remaining} hunts remaining`;
+  return `${quest.state_name}: ${quest.hunts_remaining} hunts remaining`;
 };

@@ -92,6 +92,7 @@ const locationImages = {
 };
 
 const cacheLocationData = async () => {
+  console.log('Caching location data...');
   return new Promise((resolve) => {
     if (! user.environment_type || ! user.quests) {
       resolve();

@@ -18,12 +18,12 @@ export default (quests) => {
     });
 
     if (clueTexts.length > 0) {
-      clueText = `- ${clueTexts.join(', ')}`;
+      clueText = `: ${clueTexts.join(', ')} clues`;
     }
   }
 
   const hallwayName = quest.hallway_name.replace(' Hallway', '');
   const currentLocation = (quest.status === 'intersection') ? 'Intersection' : hallwayName;
 
-  return `${currentLocation} ${clueText}`;
+  return `${currentLocation}${clueText}`;
 };

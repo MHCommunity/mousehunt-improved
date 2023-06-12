@@ -468,23 +468,43 @@ a.journal-detailLink.full::after {
 /* hiding date for entries that come with a hunt */
 .entry.short.tournamentpointswithloot .journaldate,
 .entry.short.tournamentpoints .journaldate,
-.entry.short.unstable_charm_trigger .journaldate {
+.entry.short.unstable_charm_trigger .journaldate,
+.entry.short.rift-bristlewoods-acolyteSandStolen .journaldate,
+.entry.short.rift-bristlewoods-lootBooster .journaldate,
+.entry.short.super_rift_vacuum_trigger .journaldate {
   display: none;
 }
 
+.journal .entry.short.super_rift_vacuum_trigger {
+  box-shadow: 0 0 20px 0 #c997de inset;
+}
+
+.journal .entry.short.custom.super_rift_vacuum_trigger {
+  background-size: 50px;
+  background-position: 10px 5px;
+}
+
 /* tournament points */
+/* acolyte sand stolen */
 .entry.short.tournamentpointswithloot,
-.entry.short.tournamentpoints {
-  padding: 0;
+.entry.short.tournamentpoints,
+.entry.short.rift-bristlewoods-acolyteSandStolen {
+  padding: 2px;
   background: #dbd1b4;
 }
 
+.entry.short.rift-bristlewoods-acolyteSandStolen {
+  background: #ffc16e;
+}
+
 .entry.short.tournamentpointswithloot .journalbody,
-.entry.short.tournamentpoints .journalbody {
+.entry.short.tournamentpoints .journalbody,
+.entry.short.rift-bristlewoods-acolyteSandStolen .journalbody {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   margin: 5px 5px 5px 10px;
+  font-style: italic;
   white-space: normal;
 }
 
@@ -522,7 +542,6 @@ a.journal-detailLink.full::after {
   margin-left: 58px;
 }
 
-
 /* adventure book status */
 .adventureBookBanner-container {
   padding-bottom: 5px;
@@ -550,7 +569,6 @@ a.journal-detailLink.full::after {
 .adventureBookBanner-adventureName span {
   display: none;
 }
-
 
 .adventureBookBanner-goalContainer {
   right: 0;

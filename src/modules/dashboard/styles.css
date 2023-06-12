@@ -44,11 +44,6 @@
   margin-top: 0;
 }
 
-.locationProgress .stats {
-  margin-top: -10px;
-  text-align: center;
-}
-
 .locationWrapper {
   display: flex;
   flex-direction: row;
@@ -85,6 +80,21 @@ img.locationImage {
   min-width: 100px;
   margin-left: 10px;
   font-size: 12px;
+}
+
+.locationProgress p {
+  margin: 0;
+  line-height: 1;
+  text-align: right;
+}
+
+.locationProgress {
+  text-align: right;
+}
+
+.locationProgress .stats {
+  margin-top: -10px;
+  text-align: right;
 }
 
 .noLocationData {
