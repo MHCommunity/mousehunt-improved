@@ -158,9 +158,21 @@ const updateMouseImageLinks = () => {
   });
 };
 
+const kingsPromoTextChange = () => {
+  const kingsPromo = document.querySelector('.shopsPage-kingsCalibratorPromo');
+  if (kingsPromo) {
+    kingsPromo.innerHTML = kingsPromo.innerHTML.replace('and even', 'and');
+  }
+};
+
+const updateKingsPromoText = () => {
+  onAjaxRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
+};
+
 const main = () => {
   updateJournalText();
   updateMouseImageLinks();
+  updateKingsPromoText();
 };
 
 export default function journal() {

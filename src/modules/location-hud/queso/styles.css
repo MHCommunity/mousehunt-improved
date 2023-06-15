@@ -1,0 +1,61 @@
+.quesoHUD-wildTonic-quantity.quantity {
+  top: 4px;
+  left: 42px;
+  padding: 1px;
+  font-size: 13px;
+  line-height: initial;
+  text-shadow: 1px 1px 1px #825842;
+}
+
+.quesoHUD-bait-group-baitQuantity.quantity {
+  z-index: 1;
+  text-shadow: 1px 1px 1px #715c4e;
+  border-radius: 4px;
+}
+
+.ember_root_crafting_item .quesoHUD-bait-group-craftingQuantity.quantity, .ember_stone_crafting_item .quesoHUD-bait-group-craftingQuantity.quantity {
+  position: absolute;
+  top: 5px;
+  right: -20px;
+  z-index: 1;
+  display: block;
+  text-shadow: 1px 1px 1px #715c4e;
+  background-color: #715c4eab;
+  border-radius: 4px;
+}
+
+.quesoGeyserHUD .quesoHUD-bait-group .mousehuntItem-image {
+  background-color: #e8c4ab;
+}
+
+.quesoGeyserHUD .disabled .mousehuntItem-image {
+  top: 1px;
+  left: -1px;
+  box-shadow: 0 0 20px 0 #333 inset;
+}
+
+.quesoGeyserHUD .quesoHUD-bait-group-spiceImage .mousehuntItem-image {
+  top: 1px;
+  left: -1px;
+  width: 21px;
+  height: 21px;
+  background-color: #755541;
+  background-size: 100%;
+}
+
+.quesoGeyserHUD .quesoHUD-bait-group.bland_queso_cheese .mousehuntItem-image {
+  top: -2px;
+}
+
+.quesoGeyserHUD-nestBlock:hover .quesoGeyserHUD-nestBlock-image-transition {
+  opacity: 1;
+  transition:  opacity 0.3s ease-in-out;
+}
+
+.quesoHUD-bait-group:hover .quesoHUD-bait-group-tooltip {
+  padding: 4px 3px;
+  font-size: 12px;
+  background-color: #505050;
+  border: none;
+  border-radius: 10px;
+}

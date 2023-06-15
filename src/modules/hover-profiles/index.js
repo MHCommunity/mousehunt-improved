@@ -8,16 +8,24 @@ const getFriendId = async (target) => {
   }
 
   if (target.href) {
+    let href = target.href;
+
+    // remove everything after the & in the href
+    const hrefMatch = target.href.match(/(.+?)&/);
+    if (hrefMatch && hrefMatch.length) {
+      href = hrefMatch[1];
+    }
+
     // if the href is a profile link, use that
-    const urlMatch = target.href
+    const urlMatch = href
       .replace('https://www.mousehuntgame.com/hunterprofile.php?snuid=', '')
       .replace('https://www.mousehuntgame.com/profile.php?snuid=', '');
-    if (urlMatch && urlMatch !== target.href) {
+    if (urlMatch && urlMatch !== href) {
       return urlMatch;
     }
 
-    const pMatch = target.href.replace('https://www.mousehuntgame.com/p.php?id=', '');
-    if (pMatch && pMatch !== target.href) {
+    const pMatch = href.replace('https://www.mousehuntgame.com/p.php?id=', '');
+    if (pMatch && pMatch !== href) {
       const snuid = await doRequest('managers/ajax/pages/friends.php', {
         action: 'community_search_by_id',
         user_id: pMatch,

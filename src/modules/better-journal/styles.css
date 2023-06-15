@@ -115,10 +115,6 @@
   background: none;
 }
 
-.mouseView-image {
-  box-shadow: none;
-}
-
 /* Donations */
 .donationComplete .journalimage img {
   mix-blend-mode: normal;
@@ -471,7 +467,8 @@ a.journal-detailLink.full::after {
 .entry.short.unstable_charm_trigger .journaldate,
 .entry.short.rift-bristlewoods-acolyteSandStolen .journaldate,
 .entry.short.rift-bristlewoods-lootBooster .journaldate,
-.entry.short.super_rift_vacuum_trigger .journaldate {
+.entry.short.super_rift_vacuum_trigger .journaldate,
+.entry.short.queso_canyon_queso_pumped .journaldate {
   display: none;
 }
 
@@ -498,12 +495,12 @@ a.journal-detailLink.full::after {
 
 .entry.short.tournamentpointswithloot .journalbody,
 .entry.short.tournamentpoints .journalbody,
-.entry.short.rift-bristlewoods-acolyteSandStolen .journalbody {
+.entry.short.rift-bristlewoods-acolyteSandStolen .journalbody,
+.entry.short.queso_canyon_queso_pumped .journalbody {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   margin: 5px 5px 5px 10px;
-  font-style: italic;
   white-space: normal;
 }
 
@@ -522,7 +519,6 @@ a.journal-detailLink.full::after {
   min-height: 35px;
   padding-left: 5px;
   font-size: 10px;
-  font-style: italic;
   line-height: 15px;
   background-color: #e1f9ff;
 }
@@ -535,6 +531,17 @@ a.journal-detailLink.full::after {
   width: 40px;
   height: 40px;
   mix-blend-mode: multiply;
+}
+
+.journal .entry.queso_canyon_queso_pumped {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/transparent_thumb/06c81c66b0f21f2a8b6a2b989f40bd8d.png?cv=2);
+  background-repeat: no-repeat;
+  background-position: 9px;
+  background-size: contain;
+}
+
+.journal .entry.queso_canyon_queso_pumped .journalbody {
+  margin-left: 63px;
 }
 
 .entry.short.misc.custom.unstable_charm_trigger .journalbody {
@@ -643,4 +650,14 @@ a.journal-detailLink.full::after {
   text-shadow: none;
   background: none;
   box-shadow: none;
+}
+
+.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"],
+.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"] {
+  color: #1e831e;
+}
+
+.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"]:after,
+.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:after {
+  content: ".";
 }

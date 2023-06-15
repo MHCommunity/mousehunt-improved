@@ -20,6 +20,7 @@ import forbiddenGroveStyles from './forbidden-grove/styles.css';
 import fortRoxStyles from './fortrox/styles.css';
 import icebergStyles from './iceberg/styles.css';
 import labyrinthStyles from './labyrinth/styles.css';
+import quesoStyles from './queso/styles.css';
 import vriftStyles from './vrift/styles.css';
 
 const main = () => {
@@ -88,6 +89,7 @@ const getStyles = () => {
     fortRoxStyles,
     icebergStyles,
     labyrinthStyles,
+    quesoStyles,
     vriftStyles,
   ].join('\n');
 };

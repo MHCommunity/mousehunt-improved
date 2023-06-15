@@ -183,3 +183,25 @@
   align-items: baseline;
   margin: 0 1px;
 }
+
+.mouseView-image {
+  box-shadow: none;
+}
+
+.mouseView-image:hover {
+  box-shadow: 1px 1px 2px 0 #e70;
+}
+
+.mouseView a.custom-favorite-button,
+.mouseView a.custom-favorite-button-small {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+}
+
+#custom-submenu-item-king-s-crowns .icon {
+  filter: sepia(1) brightness(0.5);
+}

@@ -38,6 +38,18 @@
   left: -6px;
 }
 
+/* remove "craft 12 items" from the ranks that already have it. */
+.hunterTitle .titles .title:nth-child(17) .description ul li:last-child,
+.hunterTitle .titles .title:nth-child(18) .description ul li:last-child,
+.hunterTitle .titles .title:nth-child(19) .description ul li:last-child {
+  display: none;
+}
+
+/* fix the bad border color for current rank */
+.hunterTitle .titles .userLevel .description {
+  border-color: #957432;
+}
+
 /* Overflow location names */
 .mh-location-ss_huntington_ii .mousehuntHud-environmentName,
 .mh-location-pinnacle_chamber .mousehuntHud-environmentName,

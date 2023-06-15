@@ -1,0 +1,24 @@
+.sendMapInvite .userInteractionButtonsView-button-buttonOptionContainer .userInteractionButtonsView-button-buttonOption-name {
+  padding: 3px 3px 8px;
+  margin: -3px;
+  font-size: 10px;
+  line-height: 11px;
+}
+
+.sendMapInvite .userInteractionButtonsView-button-buttonOptionContainer .userInteractionButtonsView-button-buttonOption-image {
+    padding-top: 2px;
+    margin-top: 2px;
+}
+
+.sendMapInvite .mousehuntTooltip.top.tight.hasBuffer {
+  font-size: 11px;
+}
+
+.sendMapInvite .userInteractionButtonsView-button-buttonOptionContainer .userInteractionButtonsView-button-buttonOption:before {
+  background: none;
+}
+
+.sendMapInvite .userInteractionButtonsView-button-buttonOptionContainer:hover .userInteractionButtonsView-button-buttonOption:hover .userInteractionButtonsView-button-buttonOption-image,
+.sendMapInvite .userInteractionButtonsView-button-buttonOptionContainer:hover .userInteractionButtonsView-button-buttonOption:hover .userInteractionButtonsView-button-buttonOption-name {
+  background-color: #eaf6ea;
+}

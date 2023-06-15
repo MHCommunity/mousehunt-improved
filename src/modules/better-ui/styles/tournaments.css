@@ -3,34 +3,7 @@
 }
 
 .tournamentPage-tournamentContainer-customPrizes {
-  position: absolute;
-  top: -6px;
-  left: -57px;
-  width: 0;
-  padding: 20px;
-  margin: 0;
-  overflow: hidden;
-  color: transparent;
-  filter: drop-shadow(1px 1px 7px #fff);
-  border: none;
-}
-
-.tournamentPage-tournamentContainer-customPrizes::after {
-  top: 2px;
-  left: 5px;
-}
-
-.tournamentPage-tournamentContainer-customPrizes:hover,
-.tournamentPage-tournamentContainer-customPrizes:focus {
-  width: auto;
-  padding: 13px 5px 10px 35px;
-  color: #4b6e95;
-  background-color: #fff;
-  border-radius: 30px;
-}
-
-.tournamentPage-tournamentContainer-customPrizes:hover .tournamentPage-tournamentContainer-customPrizes::after {
-  left: 10px;
+  display: none;
 }
 
 .tournamentPage-tournamentContainer-name {

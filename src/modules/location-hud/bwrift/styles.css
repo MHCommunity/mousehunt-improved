@@ -111,26 +111,10 @@
 }
 
 .riftBristleWoodsHUD-acolyteChamber-obeliskPercent {
-  top: 120px;
-  height: 21px;
-  margin-left: 1px;
-  overflow: hidden;
-  font-size: 15px;
-  font-weight: 400;
-  text-align: left;
   background-color: #6e460b;
-}
-
-.riftBristleWoodsHUD-acolyteChamber-obeliskPercent span {
-  display: block;
-}
-
-.riftBristleWoodsHUD-acolyteChamber-obeliskPercent::after {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  font-size: 12px;
-  content: "%";
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: -2px;
 }
 
 .riftBristleWoodsHUD-acolyteStats.active.mousehuntTooltipParent .mousehuntTooltip {

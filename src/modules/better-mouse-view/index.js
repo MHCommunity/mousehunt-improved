@@ -63,6 +63,44 @@ const addLinks = () => {
   }
 };
 
+const isFavorite = async (mouseId) => {
+  const favorites = await doRequest('managers/ajax/pages/page.php', {
+    page_class: 'HunterProfile',
+    'page_arguments[tab]': 'kings_crowns',
+    'page_arguments[sub_tab]': false,
+    'page_arguments[snuid]': window.user.sn_user_id,
+  });
+
+  if (! favorites.page?.tabs?.kings_crowns?.subtabs[0]?.mouse_crowns?.favourite_mice.length) {
+    return false;
+  }
+
+  // check if the mouseId matches the id property of any of the favorite mice
+  return favorites.page.tabs.kings_crowns.subtabs[0].mouse_crowns.favourite_mice.some((mouse) => {
+    return mouse.id && mouse.id === parseInt(mouseId, 10);
+  });
+};
+
+const addFavoriteButton = async (mouseId, mouseView) => {
+  const state = await isFavorite(mouseId);
+
+  const fave = await createFavoriteButton({
+    target: mouseView,
+    size: 'large',
+    isSetting: false,
+    state,
+    onChange: () => {
+      doRequest('managers/ajax/mice/mouse_crowns.php', {
+        action: 'toggle_favourite',
+        user_id: window.user.user_id,
+        mouse_id: mouseId,
+      });
+    },
+  });
+
+  mouseView.appendChild(fave);
+};
+
 const updateMouseView = async () => {
   const mouseView = document.querySelector('#overlayPopup .mouseView');
   if (! mouseView) {
@@ -75,6 +113,7 @@ const updateMouseView = async () => {
   }
 
   addLinks();
+  addFavoriteButton(mouseId, mouseView);
 
   const mhctjson = await getArForMouse(mouseId);
 
@@ -148,6 +187,13 @@ const updateMouseView = async () => {
 
 const main = () => {
   onOverlayChange({ mouse: { show: updateMouseView } });
+
+  addSubmenuItem({
+    menu: 'mice',
+    label: 'King\'s Crowns',
+    icon: 'https://www.mousehuntgame.com/images/ui/crowns/crown_silver.png?asset_cache_version=2',
+    href: `https://www.mousehuntgame.com/profile.php?snuid=${window.user.sn_user_id}&tab=kings_crowns`,
+  });
 };
 
 export default function mouseLinks() {

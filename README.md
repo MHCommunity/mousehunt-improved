@@ -130,3 +130,43 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
 - Fixes HUD shadow leftover from old HUD
 - Fixes Tooltip arrows incorrectly showing side border
 - Fixes the vertical spacing for the Weekly & Friends checkboxes on scoreboards
+
+
+
+
+
+better-inventory
+better-journal
+better-marketplace
+better-mouse-view
+better-quests
+better-shops
+better-ui
+copy-id
+dashboard
+external
+	item-links
+	no-footer
+	no-share
+	no-sidebar
+	taller-windows
+fixes
+hover-profiles
+image-upscaling
+inline-wiki
+location-hud
+	balacks-cove
+	brift
+	bwrift
+	cheese-selectors
+	floating-islands
+	forbidden-grove
+	fortrox
+	iceberg
+	index.js
+	labyrinth
+	vrift
+only-open-multiple
+quick-filters-and-sort
+quick-send-supplies
+tem-crowns

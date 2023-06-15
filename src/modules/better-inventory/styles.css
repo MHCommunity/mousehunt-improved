@@ -51,7 +51,7 @@
 }
 
 .inventoryPage-tagContent-tagTitle {
-  padding: 10px 0;
+  padding: 0 5px 10px;
   margin: 0;
   font-size: 1.4em;
   border: none;
@@ -158,9 +158,11 @@ a.inventoryPage-item-larryLexicon {
 }
 
 .inventoryPage-item-content-description-text {
-  padding: 5px;
+  max-height: 75px;
+  padding: 0;
   font-size: 10px;
   line-height: 16px;
+  color: #6e6e6e;
 }
 
 .inventoryPage-item.full.weapon .quantity,
@@ -183,9 +185,45 @@ a.inventoryPage-item-larryLexicon {
   border-style: solid;
 }
 
+
+.inventoryPage-item.small .itemImage .quantity {
+	overflow: visible;
+}
+
+.mousehuntHud-page-subTabContent.recipe .inventoryPage-item .itemImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+.mousehuntHud-page-subTabContent.recipe .inventoryPage-item .itemImage img {
+  width: 50px;
+  height: 50px;
+}
+
+.inventoryPage-item.full.recipe.disabled .mousehuntActionButton.disabled {
+  display: none !important;
+}
+
+.inventoryPage-item-content-description-consumedItem.error {
+  background-color: rgb(245 221 221 / 82%);
+  border-radius: 7px;
+}
+
+
 /* search bar */
 input.inventoryPage-tagDirectory-searchBar-input {
   min-width: 50%;
+  margin-right: 10px;
+  margin-left: -10px;
+}
+
+.mousehuntHud-page-subTabContent-prefix.clear-block {
+  height: 25px;
+  margin-top: -20px;
+  overflow: hidden;
+  color: #fff;
 }
 
 .inventoryPage-tagDirectory-searchBar {
@@ -193,7 +231,7 @@ input.inventoryPage-tagDirectory-searchBar-input {
   align-items: center;
   justify-content: space-evenly;
   padding-right: 0;
-  margin-right: -10px;
+  color: #fff;
 }
 
 /* plankrun pages */
@@ -243,4 +281,43 @@ input.inventoryPage-tagDirectory-searchBar-input {
   padding: 3px 5px;
   border-radius: 3px;
   box-shadow: 1px 1px 4px #fff2aa inset;
+}
+
+.inventoryPage-craftingTable-title {
+  display: none;
+}
+
+.mousehuntHud-page-subTabContent.crafting_table .inventoryPage-craftingTable {
+  background: #f6f3eb;
+  border: 1px solid #d3cecb;
+  border-radius: 3px;
+  box-shadow: inset -1px 1px 3px 0 #d3cecb;
+}
+
+.inventoryPage-craftingTable-slot-item.itemImage {
+  margin-bottom: 10px;
+}
+
+.inventoryPage-craftingTable-slot-item.empty .inventoryPage-craftingTable-slot-item-controls {
+  visibility: visible;
+  opacity: .8;
+}
+
+.inventoryPage-craftingTable-slot-item-controls {
+  outline: 1px solid #ccc;
+}
+
+.inventoryPage-craftingTable-slot-item-controls input {
+  height: 24px;
+  margin-top: -1px;
+}
+
+.inventoryPage-craftingTable-action {
+  margin: 10px;
+  background: none;
+  border: none;
+}
+
+.inventoryPage-craftingTable-slot-item[data-owned="1"] .inventoryPage-craftingTable-slot-item-controls-increment {
+  opacity: .2;
 }
