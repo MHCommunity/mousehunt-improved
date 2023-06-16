@@ -1090,20 +1090,20 @@ const getLocationAndStage = () => {
    * @param {Object <string, any>} hunt      The journal entry corresponding to the active hunt.
    */
   function calcWhiskerWoodsRiftHuntDetails(message, user, user_post, hunt) {
-    if (message.cheese.id === 1646) {
-      const zones = user.quests.QuestRiftWhiskerWoods.zones;
-      const rage = {
-        clearing: parseInt(zones.clearing.level, 10),
-        tree: parseInt(zones.tree.level, 10),
-        lagoon: parseInt(zones.lagoon.level, 10),
-      };
-      const total_rage = rage.clearing + rage.tree + rage.lagoon;
-      if (total_rage < 150 && total_rage >= 75) {
-        if (rage.clearing > 24 && rage.tree > 24 && rage.lagoon > 24) {
-          return Object.assign(rage, { total_rage });
-        }
-      }
-    }
+    // if (message.cheese.id === 1646) {
+    //   const zones = user.quests.QuestRiftWhiskerWoods.zones;
+    //   const rage = {
+    //     clearing: parseInt(zones.clearing.level, 10),
+    //     tree: parseInt(zones.tree.level, 10),
+    //     lagoon: parseInt(zones.lagoon.level, 10),
+    //   };
+    //   const total_rage = rage.clearing + rage.tree + rage.lagoon;
+    //   if (total_rage < 150 && total_rage >= 75) {
+    //     if (rage.clearing > 24 && rage.tree > 24 && rage.lagoon > 24) {
+    //       return Object.assign(rage, { total_rage });
+    //     }
+    //   }
+    // }
   }
 
   /**

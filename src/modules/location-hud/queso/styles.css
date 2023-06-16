@@ -59,3 +59,10 @@
   border: none;
   border-radius: 10px;
 }
+
+.quesoCanyonHUD-pump-nachore-padding span.quantity {
+  padding: 3px;
+  background: #4d8d4a;
+  border-radius: 10px;
+  font-size: 12px;
+}

@@ -1,1 +1,20 @@
-/* Module Template */
+div#select2-drop.marketplaceView-header-search-dropdown {
+  top: 105px !important;
+  left: 470px !important;
+  width: 258px !important;
+  padding-top: 5px;
+  border-top-left-radius: 2px;
+  box-shadow: inset -182px 0 0 #fff, inset 0 1px 0 #5897fb;
+}
+
+div#select2-drop.marketplaceView-header-search-dropdown .select2-result-label {
+  white-space: nowrap;
+}
+
+div#select2-drop.marketplaceView-header-search-dropdown .select2-result-sub .select2-result-label {
+  display: grid;
+  grid-template-columns: 25px 4fr 1fr;
+  align-items: center;
+  justify-items: start;
+  padding-left: 10px;
+}

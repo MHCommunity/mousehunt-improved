@@ -1,0 +1,89 @@
+.itemView-titleContainer {
+  height: 26px;
+}
+
+.itemView-header-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mh-item-links {
+  display: inline-block;
+  float: right;
+  margin-right: 15px;
+}
+
+.mh-item-links a {
+  margin-right: 10px;
+}
+
+.itemView-header-name .mh-item-links span {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.itemView-has-mhct .mouse-ar-wrapper {
+  display: grid;
+  grid-template-columns: 150px auto 50px;
+  align-items: center;
+  justify-items: stretch;
+  padding: 5px;
+  margin: 5px 0;
+  font-size: 12px;
+}
+
+.itemView-has-mhct .has-stages .mouse-ar-wrapper {
+  grid-template-columns: 110px 140px auto 50px;
+}
+
+.itemView-has-mhct .mouse-ar-wrapper div {
+  padding: 0 2px;
+}
+
+.itemView-has-mhct .mice-ar-wrapper {
+  margin-right: 10px;
+}
+
+.mouse-ar-wrapper .stage {
+  font-size: 10px;
+}
+
+.mouse-ar-wrapper .cheese {
+  font-size: 11px;
+}
+
+.itemView-has-mhct .ar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 26px;
+  padding-bottom: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 900;
+  border-bottom: 1px solid #ccc;
+}
+
+.itemView-has-mhct .ar-link {
+  font-size: 9px;
+}
+
+.itemView-has-mhct .rate {
+  text-align: right;
+}
+
+.itemView-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+  background-color: #e7e7e7;
+}
+
+.itemView-has-mhct .itemView-description {
+  font-weight: 500;
+  line-height: 19px;
+}
+
+.itemView-action.crafting_item b {
+  font-weight: 400;
+}

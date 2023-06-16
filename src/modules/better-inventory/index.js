@@ -1,9 +1,16 @@
 import { addUIStyles } from '../utils';
 import styles from './styles.css';
 
-const setOpenQuantityOnClick = () => {
+const setOpenQuantityOnClick = (attempts = 0) => {
   const qty = document.querySelector('.itemView-action-convertForm');
   if (! qty) {
+    if (attempts > 10) {
+      return;
+    }
+
+    setTimeout(() => {
+      setOpenQuantityOnClick(attempts + 1);
+    }, 200);
     return;
   }
 
@@ -14,7 +21,6 @@ const setOpenQuantityOnClick = () => {
       let maxNum = qtyArray[qtyArray.length - 1];
       maxNum = maxNum.replace('Submit', '');
       maxNum = parseInt(maxNum);
-      // console.log(maxNum);
 
       const input = document.querySelector('.itemView-action-convert-quantity');
       input.value = maxNum;
@@ -213,7 +219,11 @@ const modifySmashableTooltip = async () => {
 };
 
 const main = () => {
-  setOpenQuantityOnClick();
+  onOverlayChange({ item: { show: setOpenQuantityOnClick } });
+  if ('item' === getCurrentPage()) {
+    setOpenQuantityOnClick();
+  }
+
   fixPassingParcel();
   addOpenAlltoConvertiblePage();
   modifySmashableTooltip();

@@ -1,7 +1,47 @@
 import { addUIStyles } from './utils';
 
 const testing = () => {
-
+  window.mhutils = {
+    addStyles,
+    onAjaxRequest,
+    onOverlayChange,
+    onPageChange,
+    onTrapChange,
+    onEvent,
+    onTravel,
+    getCurrentPage,
+    getCurrentTab,
+    getCurrentSubTab,
+    isOverlayVisible,
+    getCurrentOverlay,
+    getCurrentLocation,
+    isLoggedIn,
+    getSetting,
+    saveSetting,
+    addSettingsTab,
+    addSetting,
+    doRequest,
+    isLegacyHUD,
+    userHasItem,
+    getUserItems,
+    getUserSetupDetails,
+    addSubmenuItem,
+    addItemToGameInfoBar,
+    createPopup,
+    createImagePopup,
+    createMapPopup,
+    createWelcomePopup,
+    createLarryPopup,
+    createPaperPopup,
+    showHornMessage,
+    makeElementDraggable,
+    makeElement,
+    createChoicePopup,
+    createFavoriteButton,
+    wait,
+    clog,
+    debug,
+  };
 };
 
 export default testing;

@@ -57,18 +57,23 @@ const addBodyClasses = () => {
   eventRegistry.addEventListener(hg.utils.PageUtil.EventSetPage, addBodyClassesCallback);
 };
 
-const getArForMouse = async (mouseId) => {
+const getArForMouse = async (mouseId, type = 'mouse') => {
   let mhctjson = [];
 
   // check if the attraction rates are cached
-  const cachedAr = sessionStorage.getItem(`mhct-ar-${mouseId}`);
+  const cachedAr = sessionStorage.getItem(`mhct-ar-${mouseId}-${type}`);
   if (cachedAr) {
     mhctjson = JSON.parse(cachedAr);
     if (! mhctjson || mhctjson.length === 0) {
       return;
     }
   } else {
-    const mhctdata = await fetch(`https://api.mouse.rip/mhct/${mouseId}`);
+    let mhctPath = 'mhct';
+    if ('item' === type) {
+      mhctPath = 'mhct-item';
+    }
+
+    const mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouseId}`);
     mhctjson = await mhctdata.json();
 
     if (! mhctjson || mhctjson.length === 0) {

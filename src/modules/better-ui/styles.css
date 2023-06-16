@@ -136,12 +136,6 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
   width: 180px;
 }
 
-/* Full width for the map link text box */
-input.treasureMapView-shareLinkInput {
-  width: 95%;
-  margin: 0 auto;
-}
-
 /* Gift window spacing */
 .giftSelectorView-content-subtitle {
   padding: 10px 0;

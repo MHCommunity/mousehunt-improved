@@ -115,7 +115,7 @@ const updateMouseView = async () => {
   addLinks();
   addFavoriteButton(mouseId, mouseView);
 
-  const mhctjson = await getArForMouse(mouseId);
+  const mhctjson = await getArForMouse(mouseId, 'mouse');
 
   mouseView.classList.add('mouseview-has-mhct');
 
@@ -156,7 +156,15 @@ const updateMouseView = async () => {
   }
 
   const arWrapper = makeElement('div', 'ar-wrapper');
-  makeElement('div', 'ar-header', 'Attraction Rates', arWrapper);
+  const title = makeElement('div', 'ar-header');
+  makeElement('div', 'ar-title', 'Attraction Rates', title);
+
+  const link = makeElement('a', 'ar-link', 'View on MHCT →');
+  link.href = `https://www.mhct.win/attractions.php?mouse$name=${name}`;
+  title.appendChild(link);
+
+  arWrapper.appendChild(title);
+
   const miceArWrapper = makeElement('div', 'mice-ar-wrapper');
 
   // check if there are stages in any of the mice

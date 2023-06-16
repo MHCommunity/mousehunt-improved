@@ -4,7 +4,20 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
     wrapper.classList.add('active');
   }
 
-  makeElement('div', 'mouse-type-title', title, wrapper);
+  const mtitle = makeElement('div', 'mouse-type-title', title);
+  mtitle.addEventListener('click', () => {
+    let id = 1426; // magical string.
+    if ('terra' === type) {
+      id = 1551;
+    } else if ('polluted' === type) {
+      id = 1550;
+    }
+
+    hg.utils.TrapControl.setBait(id);
+    hg.utils.TrapControl.go();
+  });
+
+  wrapper.appendChild(mtitle);
 
   const miceWrapper = makeElement('div', 'mouse-type-mice');
 
@@ -29,6 +42,8 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
 
   wrapper.appendChild(miceWrapper);
   appendTo.appendChild(wrapper);
+
+  return wrapper;
 };
 
 const miceData = {

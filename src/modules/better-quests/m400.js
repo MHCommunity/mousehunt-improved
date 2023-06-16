@@ -194,6 +194,7 @@ const makeTravelButton = () => {
       // If it is m400, then let's also equip the fusion fondue.
       if (ism400) {
         hg.utils.TrapControl.setBait(1386); // eslint-disable-line no-undef
+        hg.utils.TrapControl.go(); // eslint-disable-line no-undef
       }
 
       // Travel to the location.

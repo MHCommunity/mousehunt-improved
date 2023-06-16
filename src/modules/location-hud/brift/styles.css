@@ -70,6 +70,12 @@
   font-size: 6px;
 }
 
+.brift-ui .mouse-type-title:hover,
+.brift-ui .mouse-type-title:focus {
+  color: #b1ed71;
+  cursor: pointer;
+}
+
 .brift-ui .mouse-type-mouse {
   display: block;
   width: 25px;
@@ -112,7 +118,6 @@
 .brift-ui .mouse-type-mouse-link:hover .mouse-type-mouse-name,
 .brift-ui .mouse-type-mouse-link:focus .mouse-type-mouse-name {
   display: block;
-
 }
 
 .brift-ui .mouse-type.active {
