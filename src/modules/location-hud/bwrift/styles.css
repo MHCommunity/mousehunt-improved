@@ -111,10 +111,10 @@
 }
 
 .riftBristleWoodsHUD-acolyteChamber-obeliskPercent {
-  background-color: #6e460b;
+  margin-left: -2px;
   font-size: 14px;
   font-weight: 400;
-  margin-left: -2px;
+  background-color: #6e460b;
 }
 
 .riftBristleWoodsHUD-acolyteStats.active.mousehuntTooltipParent .mousehuntTooltip {

@@ -392,7 +392,7 @@ const autocloseClaim = (resp) => {
     return;
   }
 
-  if ( journalEntry.includes('marketplace_claim_listing') || journalEntry.includes('marketplace_complete_listing') ) {
+  if (journalEntry.includes('marketplace_claim_listing') || journalEntry.includes('marketplace_complete_listing')) {
     setTimeout(() => hg.views.MarketplaceView.hideDialog(), 250);
   }
 };
