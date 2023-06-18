@@ -661,3 +661,7 @@ a.journal-detailLink.full::after {
 .journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:after {
   content: ".";
 }
+
+.journal .entry.craft.item {
+  min-height: 70px;
+}

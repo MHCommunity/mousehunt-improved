@@ -18,3 +18,13 @@ div#select2-drop.marketplaceView-header-search-dropdown .select2-result-sub .sel
   justify-items: start;
   padding-left: 10px;
 }
+
+.marketplaceView-item-quickListings .marketplaceView-table-listing-quantity:hover,
+.marketplaceView-item-quickListings .marketplaceView-table-listing-quantity:focus {
+  text-decoration: underline;
+}
+
+a.marketplaceView-goldValue.marketplaceView-quantityNotGold:after {
+  display: none;
+  background-image: none;
+}

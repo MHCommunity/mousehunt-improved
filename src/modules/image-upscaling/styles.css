@@ -113,3 +113,7 @@
 .springHuntHUD-dialog-item-image .floatingIslandsAirship {
   background-color: transparent;
 }
+
+.convertibleOpenView-item-image {
+  background-size: cover;
+}

@@ -91,9 +91,11 @@ const onFriendLinkHover = async (e) => {
   //   return;
   // }
 
-  const existing = document.getElementById('friend-data-wrapper');
-  if (existing) {
-    existing.remove();
+  const existing = document.querySelectorAll('#friend-data-wrapper');
+  if (existing && existing.length) {
+    existing.forEach((el) => {
+      el.remove();
+    });
   }
 
   // See if there is a cached value in sessionStorage

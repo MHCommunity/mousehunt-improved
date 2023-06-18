@@ -397,8 +397,134 @@ const autocloseClaim = (resp) => {
   }
 };
 
+const addBuySellToggle = () => {
+  const actionType = document.querySelector('.marketplaceView-listingType');
+  console.log('actionType', actionType);
+  if (! actionType) {
+    return;
+  }
+
+  const item = document.querySelector('.marketplaceView-item[data-item-id]');
+  console.log('item', item);
+  if (! item) {
+    return;
+  }
+
+  const itemId = item.getAttribute('data-item-id');
+  console.log('itemId', itemId);
+  if (! itemId) {
+    return;
+  }
+
+  const oppositeAction = actionType.classList.contains('buy') ? 'sell' : 'buy';
+
+  actionType.addEventListener('click', () => {
+    hg.views.MarketplaceView.showItem(itemId, oppositeAction);
+    addBuySellToggle();
+  });
+};
+
+const fillQuantity = () => {
+  const quantity = document.querySelectorAll('.marketplaceView-table-numeric.marketplaceView-table-listing-quantity');
+  console.log('quantity', quantity);
+  if (! quantity || quantity.length === 0) {
+    return;
+  }
+
+  const quantityInput = document.querySelector('.marketplaceView-item-quantity');
+  console.log('quantityInput', quantityInput);
+  if (! quantityInput) {
+    return;
+  }
+
+  quantity.forEach((q) => {
+    // keep track of the original text by setting it as a data attribute
+    const qText = q.textContent.replace(/,/g, '');
+    console.log('qText', qText);
+    q.setAttribute('data-original-text', qText);
+
+    q.addEventListener('click', () => {
+      quantityInput.value = q.getAttribute('data-original-text');
+      // also set a data attribute on the input so we can refill it if the setorderprice gets called
+      quantityInput.setAttribute('data-filled-text', quantityInput.value);
+    });
+
+    const qTextWrapper = document.createElement('a');
+    qTextWrapper.classList.add('marketplaceView-goldValue', 'marketplaceView-quantityNotGold');
+    qTextWrapper.textContent = q.textContent;
+    q.textContent = '';
+    q.appendChild(qTextWrapper);
+  });
+
+  const goldValues = document.querySelectorAll('a.marketplaceView-goldValue');
+  if (! goldValues || goldValues.length === 0) {
+    return;
+  }
+
+  goldValues.forEach((g) => {
+    g.addEventListener('click', () => {
+      // check if teh quantity input has a data attribute for the filled text
+      const filledText = quantityInput.getAttribute('data-filled-text');
+      if (filledText && filledText !== '') {
+        setTimeout(() => {
+          quantityInput.value = filledText;
+          quantityInput.dispatchEvent(new Event('change'));
+        }, 300);
+      }
+    });
+  });
+};
+
+const onItemView = () => {
+  console.log('onItemView');
+  const actions = document.querySelector('.marketplaceView-item-viewActions');
+  console.log('actions', actions);
+  if (actions) {
+    actions.addEventListener('click', () => {
+      console.log('actions click');
+      addBuySellToggle();
+      fillQuantity();
+      eventRegistry.addEventListener('ajax_response', () => { setTimeout(fillQuantity, 400); }, null, true); // eslint-disable-line
+    });
+  }
+};
+
+const addListeners = () => {
+  const items = document.querySelectorAll('a[onclick*="hg.views.MarketplaceView.showItem"]');
+  if (! items || items.length === 0) {
+    return;
+  }
+
+  items.forEach((item) => {
+    item.addEventListener('click', onItemView);
+  });
+};
+
+const toggleAction = () => {
+  const popup = document.querySelector('.marketplaceView');
+  if (! popup) {
+    return;
+  }
+
+  eventRegistry.addEventListener('ajax_response', () => { setTimeout(addListeners, 400); }, null, true); // eslint-disable-line
+
+  // for each tab, add a listner that will add listeners to the items.
+  const tabs = document.querySelectorAll('.marketplaceView-header-tabHeader');
+  if (! tabs || tabs.length === 0) {
+    return;
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => { setTimeout(addListeners, 300 ) } ); // eslint-disable-line
+  });
+};
+
 export default function marketplace() {
   addUIStyles(styles);
-  onOverlayChange({ marketplace: { show: waitForSearchReady } });
+  onOverlayChange({ marketplace: { show: () => {
+    waitForSearchReady();
+    toggleAction();
+  } } });
+
   onAjaxRequest(autocloseClaim, 'managers/ajax/users/marketplace.php');
 }

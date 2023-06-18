@@ -85,5 +85,9 @@
 }
 
 .itemView-action.crafting_item b {
-  font-weight: 400;
+  display: none
+}
+
+.itemView-action.crafting_item::before {
+  content: "This can be used to craft other items!";
 }

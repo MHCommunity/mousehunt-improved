@@ -16,6 +16,10 @@
   max-height: 75vh;
 }
 
+.adventureBookPopup-titleContent {
+  max-height: unset;
+}
+
 .treasureMapDialogView.limitHeight .treasureMapView-block-content,
 .treasureMapDialogView.limitHeight .treasureMapDialogView-content {
   max-height: 75vh;
