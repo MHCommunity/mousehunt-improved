@@ -24,7 +24,7 @@ div#select2-drop.marketplaceView-header-search-dropdown .select2-result-sub .sel
   text-decoration: underline;
 }
 
-a.marketplaceView-goldValue.marketplaceView-quantityNotGold:after {
+a.marketplaceView-goldValue.marketplaceView-quantityNotGold::after {
   display: none;
   background-image: none;
 }

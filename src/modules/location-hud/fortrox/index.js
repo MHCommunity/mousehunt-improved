@@ -22,7 +22,14 @@ const phaseLengths = {
 };
 
 const makeTooltip = (text, direction = 'top', customClass = []) => {
-  const tooltip = makeElement('div', ['mousehuntTooltip', 'tight', direction, ...customClass]);
+  const existing = document.querySelectorAll('.added-frox-tooltip');
+  if (existing.length) {
+    existing.forEach((tooltip) => {
+      tooltip.remove();
+    });
+  }
+
+  const tooltip = makeElement('div', ['added-frox-tooltip', 'mousehuntTooltip', 'tight', direction, ...customClass]);
   makeElement('div', 'mousehuntTooltip-content', text, tooltip);
   makeElement('div', 'mousehuntTooltip-arrow', '', tooltip);
 
@@ -76,6 +83,13 @@ const updateUpgradeTooltips = () => {
     return false;
   }
 
+  const upgradeInfo = document.querySelectorAll('.fortRoxHUD-fort-upgrade-level-info');
+  if (upgradeInfo.length) {
+    upgradeInfo.forEach((info) => {
+      info.remove();
+    });
+  }
+
   upgradeTooltips.forEach((tooltip) => {
     // get the class that starts with 'level_'
     // const levelClass = Array.from(tooltip.classList).find((className) => {
@@ -99,13 +113,66 @@ const updateUpgradeTooltips = () => {
     // console.log(type, completedUpgrades);
 
     const name = tooltip.querySelector(`.fortRoxHUD-fort-upgrade-boundingBox-level.level_${completedUpgrades}`);
-    makeElement('div', 'fortRoxHUD-fort-upgrade-level-info', `(Level ${completedUpgrades}/${upgradeKeys.length})`, name);
+    let upgradeText = `(Level ${completedUpgrades}/${upgradeKeys.length - 1})`;
+
+    if (completedUpgrades === upgradeKeys.length - 1) {
+      upgradeText = '(Max Level)';
+    }
+
+    const upgrade = makeElement('div', 'fortRoxHUD-fort-upgrade-level-info', upgradeText, name);
+    upgrade.classList.add('frox-upgrade-level-info');
   });
+};
+
+const updateWallHP = () => {
+  const exists = document.querySelector('.mh-frox-wall-hp');
+  if (exists) {
+    exists.remove();
+  }
+
+  const hpBox = document.querySelector('.fortRoxHUD-hp');
+  if (! hpBox) {
+    return false;
+  }
+
+  const wrapper = makeElement('div', 'mh-frox-wall-hp');
+  makeElement('div', 'mh-frox-wall-hp-text', `${user.quests.QuestFortRox.hp_percent}%`, wrapper);
+
+  hpBox.appendChild(wrapper);
+
+  hpBox.classList.remove('frox-wall-very-low', 'frox-wall-low', 'frox-wall-medium', 'frox-wall-high', 'frox-wall-perfect');
+  const hp = parseInt(user.quests.QuestFortRox.hp_percent, 10);
+
+  if (hp === 100) {
+    hpBox.classList.add('frox-wall-perfect');
+  } else if (hp >= 75) {
+    hpBox.classList.add('frox-wall-high');
+  } else if (hp >= 50) {
+    hpBox.classList.add('frox-wall-medium');
+  } else if (hp >= 25) {
+    hpBox.classList.add('frox-wall-low');
+  } else {
+    hpBox.classList.add('frox-wall-very-low');
+  }
+};
+
+const addPortalClass = () => {
+  const portal = document.querySelector('.fortRoxHUD.dawn .fortRoxHUD-enterLairButton');
+  if (! portal) {
+    return false;
+  }
+
+  portal.classList.remove('frox-no-portal', 'frox-has-portal');
+  const hasPortal = parseInt(user?.quests?.QuestFortRox?.items?.fort_rox_lair_key_stat_item?.quantity, 10);
+
+  portal.classList.add(hasPortal ? 'frox-has-portal' : 'frox-no-portal');
 };
 
 const main = () => {
   updateNightBar();
   updateUpgradeTooltips();
+  updateWallHP();
+  addPortalClass();
 };
 
 export default main;

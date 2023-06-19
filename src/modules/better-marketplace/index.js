@@ -399,19 +399,16 @@ const autocloseClaim = (resp) => {
 
 const addBuySellToggle = () => {
   const actionType = document.querySelector('.marketplaceView-listingType');
-  console.log('actionType', actionType);
   if (! actionType) {
     return;
   }
 
   const item = document.querySelector('.marketplaceView-item[data-item-id]');
-  console.log('item', item);
   if (! item) {
     return;
   }
 
   const itemId = item.getAttribute('data-item-id');
-  console.log('itemId', itemId);
   if (! itemId) {
     return;
   }
@@ -426,13 +423,11 @@ const addBuySellToggle = () => {
 
 const fillQuantity = () => {
   const quantity = document.querySelectorAll('.marketplaceView-table-numeric.marketplaceView-table-listing-quantity');
-  console.log('quantity', quantity);
   if (! quantity || quantity.length === 0) {
     return;
   }
 
   const quantityInput = document.querySelector('.marketplaceView-item-quantity');
-  console.log('quantityInput', quantityInput);
   if (! quantityInput) {
     return;
   }
@@ -440,7 +435,6 @@ const fillQuantity = () => {
   quantity.forEach((q) => {
     // keep track of the original text by setting it as a data attribute
     const qText = q.textContent.replace(/,/g, '');
-    console.log('qText', qText);
     q.setAttribute('data-original-text', qText);
 
     q.addEventListener('click', () => {
@@ -476,12 +470,9 @@ const fillQuantity = () => {
 };
 
 const onItemView = () => {
-  console.log('onItemView');
   const actions = document.querySelector('.marketplaceView-item-viewActions');
-  console.log('actions', actions);
   if (actions) {
     actions.addEventListener('click', () => {
-      console.log('actions click');
       addBuySellToggle();
       fillQuantity();
       eventRegistry.addEventListener('ajax_response', () => { setTimeout(fillQuantity, 400); }, null, true); // eslint-disable-line

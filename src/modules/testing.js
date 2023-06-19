@@ -61,10 +61,12 @@ const trackEvents = () => {
   ];
 
   events.forEach((event) => {
-    eventRegistry.addEventListener(event, (e) => {
-      console.log(event, e);
+    eventRegistry.addEventListener(event, () => {
+      // console.log(event, e);
     });
   });
+
+  testing();
 };
 
 export default trackEvents;

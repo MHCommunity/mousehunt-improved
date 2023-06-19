@@ -114,8 +114,6 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
 - Bristle Woods Rift
   - Modifies the size of the quantity and Time Sand displays to be a bit bigger.
   - Adds an indicator for each status effect so you don't need to hover over the mouse to see what it is.
-- Fort Rox
-  - TODO: fill this out.
 - Forbidden Grove
   - Shows a countdown to the closing time, rather than just a progress bar.
 - Fort Rox

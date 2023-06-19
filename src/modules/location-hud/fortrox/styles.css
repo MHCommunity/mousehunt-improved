@@ -27,11 +27,18 @@ a.fortRoxHUD-retreat {
   filter: drop-shadow(0 1px 1px #7b7a7a);
 }
 
+.fortRoxHUD-fort-upgrade-boundingBox-name {
+  z-index: 1;
+  background-color: #c0c0ba;
+}
+
 .fortRoxHUD-fort-upgrade-boundingBox:hover .fortRoxHUD-fort-upgrade-boundingBox-name {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-width: 80px;
+  font-size: 11px;
 }
 
 .fortRoxHUD-timeline-phase-time-tooltip {
@@ -52,4 +59,167 @@ a.fortRoxHUD-retreat {
 
 .fortRoxHUD-huntsRemaining .mousehuntTooltip {
   top: 35px;
+}
+
+.fortRoxHUD-timeline-phase-marker::before {
+  position: absolute;
+  top: -6px;
+  left: -10px;
+  z-index: 5;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/powertypes/shadow.png?asset_cache_version=2);
+  filter: drop-shadow(0 0 1px #fff);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.fortRoxHUD-timeline-phase-marker {
+ position: relative
+}
+
+.fortRoxHUD-timeline-phase-marker.stage_three::before {
+  background-image: none;
+}
+
+.fortRoxHUD-timeline-phase-marker.stage_four::before,
+.fortRoxHUD-timeline-phase-marker.stage_five::before {
+  background-image: url(https://www.mousehuntgame.com/images/powertypes/arcane.png?asset_cache_version=2);
+}
+
+.fortRoxHUD .quantity {
+  padding: 2px;
+  font-size: 12px;
+}
+
+.fortRoxHUD-dialog-craftingItem-quantity {
+  top: 5px;
+}
+
+.complete .fortRoxHUD-dialog-upgrade-costContainer {
+  opacity: .6;
+}
+
+.fortRoxHUD-bossWarning-hasMultiplier.active b {
+  font-size: 12px;
+}
+
+.fortRoxHUD-bossWarning {
+  width: auto;
+  padding: 5px 30px 5px 40px;
+  font-size: 11px;
+}
+
+.fortRoxHUD-bossWarning::after {
+  top: 3px;
+  left: 3px;
+}
+
+.frox-has-portal {
+  filter: drop-shadow(0 0 5px #ffde2f) drop-shadow(0 0 15px #ffde2f);
+}
+
+.frox-no-portal {
+  filter: grayscale(1);
+  opacity: .8;
+}
+
+.frox-no-portal:hover,
+.frox-no-portal:focus {
+  filter: grayscale(.2);
+  opacity: 1;
+}
+
+.fortRoxHUD-spellContainer {
+  top: 169px;
+  left: 25px;
+}
+
+a.fortRoxHUD-upgradeButton.disabled {
+  opacity: .4;
+}
+
+a.fortRoxHUD-upgradeButton.disabled:hover,
+a.fortRoxHUD-upgradeButton.disabled:focus {
+  opacity: 1;
+}
+
+a.fortRoxHUD-spellTowerButton {
+  margin-left: 80px;
+}
+
+a.fortRoxHUD-spellTowerButton.normal.inactive {
+  filter: hue-rotate(238deg);
+}
+
+.mh-frox-wall-hp {
+  padding: 3px;
+}
+
+.fortRoxHUD-hp {
+  top: 84px;
+  left: 390px;
+  padding-top: 2px;
+}
+
+.frox-wall-perfect {
+  background-color: #7aff53;
+}
+
+.frox-wall-high {
+  background-color: #ffec53;
+}
+
+.frox-wall-medium {
+  background-color: #ffb453;
+}
+
+.frox-wall-low {
+  background-color: #ff5353;
+}
+
+.frox-wall-very-low {
+  background-color: #;
+}
+
+.fortRoxHUD-dialog-upgrade-name {
+  padding: 5px 0;
+}
+
+.fortRoxHUD-dialog-upgrade-description {
+  font-size: 10px;
+  font-style: italic;
+}
+
+.fortRoxHUD-dialog-upgrade-costContainer-title {
+  display: none;
+}
+
+.fortRoxHUD-dialog-category-description {
+  padding: 10px 0;
+}
+
+.fortRoxHUD-dialog-upgrade-costContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.fortRoxHUD-dialog-upgrade-status.complete .mousehuntActionButton {
+  opacity: 0;
+}
+
+.fortRoxHUD-dialog-upgrade.cannotUpgrade .fortRoxHUD-dialog-upgrade-status.cannotUpgrade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.complete .fortRoxHUD-dialog-upgrade-costContainer .mousehuntTooltipParent .mousehuntTooltip {
+  display: none;
 }
