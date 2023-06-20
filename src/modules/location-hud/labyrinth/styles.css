@@ -361,20 +361,6 @@
     content: "6";
 }
 
-.mh-ui-labyrinth-lantern-reminder {
-  position: absolute;
-  bottom: 0;
-  left: -8px;
-  width: 75px;
-  height: 75px;
-  background: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png?cv=2) 0 0 no-repeat;
-  filter: drop-shadow(1px 0 8px #f6eac3);
-  background-size: contain;
-  transform-origin: bottom;
-  animation: mh-ui-sway-side-to-side .75s;
-  animation-iteration-count: 3;
-}
-
 @keyframes mh-ui-sway-side-to-side {
   0% {
     transform: rotate(0deg);
@@ -391,4 +377,18 @@
   100% {
     transform: rotate(0deg);
   }
+}
+
+.mh-ui-labyrinth-lantern-reminder {
+  position: absolute;
+  bottom: 0;
+  left: -8px;
+  width: 75px;
+  height: 75px;
+  background: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png?cv=2) 0 0 no-repeat;
+  filter: drop-shadow(1px 0 8px #f6eac3);
+  background-size: contain;
+  transform-origin: bottom;
+  animation: mh-ui-sway-side-to-side .75s;
+  animation-iteration-count: 3;
 }

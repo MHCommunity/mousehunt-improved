@@ -9,6 +9,7 @@
 
 .quesoHUD-bait-group-baitQuantity.quantity {
   z-index: 1;
+  font-size: 12px;
   text-shadow: 1px 1px 1px #715c4e;
   border-radius: 4px;
 }
@@ -65,4 +66,68 @@
   font-size: 12px;
   background: #4d8d4a;
   border-radius: 10px;
+}
+
+.quesoGeyserHUD-block-title.quesoGeyserHUD-stateName {
+  margin: 2px 8px 1px;
+  font-size: 13px;
+  background-color: #723b14;
+  box-shadow: 0 0 5px -1px inset #90542a;
+}
+
+@keyframes mh-ui-sway-side-to-side {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(15deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+#hudLocationContent .quesoGeyserHUD:hover .quesoHUD-wildTonic-button.selected::after {
+  transform-origin: center;
+  animation: mh-ui-sway-side-to-side .45s;
+  animation-iteration-count: 2;
+}
+
+.quesoGeyserHUD-block-huntsRemaining {
+  padding-top: 4px;
+  padding-bottom: 2px;
+  font-size: 38px;
+}
+
+.quesoGeyserHUD-block-huntsRemaining-label.eruption.claim {
+  font-size: 10px;
+  color: #d7d7d7;
+  text-transform: lowercase;
+}
+
+.quesoGeyserHUD-craftingItem-quantity.quantity {
+  font-size: 13px;
+  background-color: #815942;
+  border-radius: 3px;
+  box-shadow: 0 0 5px -1px inset #90542a;
+}
+
+.quesoHUD-bait-group-spiceQuantity.quantity {
+  top: 29px;
+  font-size: 12px;
+}
+
+.quesoGeyserHUD .quesoHUD-bait-group.bland_queso_cheese .quesoHUD-bait-group-baitQuantity {
+  top: 18px;
+  padding-left: 3px;
+  background-color: #723b14;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  box-shadow: 0 0 5px -1px inset #90542a;
 }

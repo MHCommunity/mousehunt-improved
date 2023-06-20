@@ -160,7 +160,7 @@ a.fortRoxHUD-spellTowerButton.normal.inactive {
 }
 
 .fortRoxHUD-hp {
-  top: 84px;
+  top: 99px;
   left: 390px;
   padding-top: 2px;
 }
@@ -170,19 +170,19 @@ a.fortRoxHUD-spellTowerButton.normal.inactive {
 }
 
 .frox-wall-high {
-  background-color: #ffec53;
+  background-color: #a9ff53;
 }
 
 .frox-wall-medium {
-  background-color: #ffb453;
+  background-color: #fff253;
 }
 
 .frox-wall-low {
-  background-color: #ff5353;
+  background-color: #ff9b53;
 }
 
 .frox-wall-very-low {
-  background-color: #;
+  background-color: #ff5353;
 }
 
 .fortRoxHUD-dialog-upgrade-name {

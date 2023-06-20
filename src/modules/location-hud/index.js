@@ -15,6 +15,7 @@ import balacksCoveStyles from './balacks-cove/styles.css';
 import briftStyles from './brift/styles.css';
 import bwriftStyles from './bwrift/styles.css';
 import cheeseSelectorsStyles from './cheese-selectors/styles.css';
+import fieryWarpathStyles from './fiery-warpath/styles.css';
 import floatingIslandsStyles from './floating-islands/styles.css';
 import forbiddenGroveStyles from './forbidden-grove/styles.css';
 import fortRoxStyles from './fortrox/styles.css';
@@ -84,6 +85,7 @@ const getStyles = () => {
     briftStyles,
     bwriftStyles,
     cheeseSelectorsStyles,
+    fieryWarpathStyles,
     floatingIslandsStyles,
     forbiddenGroveStyles,
     fortRoxStyles,

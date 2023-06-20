@@ -665,3 +665,7 @@ a.journal-detailLink.full::after {
 .journal .entry.craft.item {
   min-height: 70px;
 }
+
+.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"] {
+ color: #a012a0;
+}

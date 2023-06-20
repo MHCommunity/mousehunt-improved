@@ -70,3 +70,7 @@ input.treasureMapView-shareLinkInput {
   width: 95%;
   margin: 0 auto;
 }
+
+a.treasureMapView-copyShareLinkButton.mousehuntActionButton {
+  margin-top: 5px;
+}
