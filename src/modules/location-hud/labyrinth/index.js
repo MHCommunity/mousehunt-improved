@@ -78,17 +78,19 @@ const main = () => {
   }
 
   if ('inactive' === user?.quests?.QuestLabyrinth?.lantern_status && user?.quests?.QuestLabyrinth?.hallway_tier >= 2) {
-    const existingLanternReminder = document.querySelector('.mh-ui-labyrinth-lantern-reminder');
-    if (existingLanternReminder) {
-      existingLanternReminder.classList.remove('hidden');
-    }
+    setTimeout(() => {
+      const existingLanternReminder = document.querySelector('.mh-ui-labyrinth-lantern-reminder');
+      if (existingLanternReminder) {
+        existingLanternReminder.classList.remove('hidden');
+      }
 
-    const labyHud = document.querySelector('.labyrinthHUD-intersection');
-    if (labyHud) {
-      const lanternReminer = document.createElement('div');
-      lanternReminer.classList.add('mh-ui-labyrinth-lantern-reminder');
-      labyHud.appendChild(lanternReminer);
-    }
+      const labyHud = document.querySelector('.labyrinthHUD-intersection');
+      if (labyHud) {
+        const lanternReminer = document.createElement('div');
+        lanternReminer.classList.add('mh-ui-labyrinth-lantern-reminder');
+        labyHud.appendChild(lanternReminer);
+      }
+    }, 500);
   }
 
   if ('intersection' === user?.quests?.QuestLabyrinth?.status) {

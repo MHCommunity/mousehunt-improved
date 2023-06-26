@@ -155,3 +155,55 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
 .teamPage-memberRow-identity .teamPage-member-nameContainer {
   width: auto;
 }
+
+/* make armed cheese button more visible */
+a.mousehuntArmNowButton.active {
+  filter: hue-rotate(104deg);
+}
+
+a.mousehuntArmNowButton.active:hover {
+  filter: hue-rotate(104deg) brightness(1.2);
+}
+
+a.mousehuntArmNowButton {
+  filter: brightness(.7);
+}
+
+a.mousehuntArmNowButton:hover {
+  filter: brightness(1);
+}
+
+/* make menu sb bold */
+.mousehuntHeaderView a.superBrie .quantity {
+  font-weight: 600;
+}
+
+/* speed up horn transition and make it bigger and stuff */
+a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready:hover {
+  transition: all .2s .15s;
+}
+
+a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready .huntersHornView__hornBannerImage {
+  transition: all .6s;
+}
+
+a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready:hover .huntersHornView__hornBannerImage {
+   filter: saturate(1.8);
+}
+
+/* golded shield fun */
+a.mousehuntHud-shield.golden {
+  transition: all .6s;
+}
+
+a.mousehuntHud-shield.golden:hover {
+  filter: opacity(.85);
+}
+
+/* bigger menu icons */
+.mousehuntHud-menu ul li ul li a .icon {
+  top: 5px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+}

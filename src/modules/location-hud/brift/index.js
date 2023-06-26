@@ -313,7 +313,13 @@ const main = () => {
 
   const wrapper = makeElement('div', ['brift-ui']);
 
-  makeElement('div', ['mist-display', `state-${color}`], `${mistLevel} / 20 `, wrapper);
+  const mist = makeElement('div', ['mist-display', `state-${color}`], `${mistLevel} / 20 `);
+
+  mist.addEventListener('click', (e) => {
+    hg.views.HeadsUpDisplayRiftBurroughsView.toggleMist(e.target);
+  });
+
+  wrapper.appendChild(mist);
 
   const availableMice = mouseList[mistTier];
 

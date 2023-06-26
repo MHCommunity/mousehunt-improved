@@ -1,0 +1,60 @@
+
+.fungalCavernHUD-craftingItem-quantity.quantity {
+  position: absolute;
+  top: 1px;
+  left: -7px;
+  width: 52px;
+  height: 15px;
+  font-size: 11px;
+  font-weight: 400;
+  background-color: #d7d5d4;
+  border: 1px solid #424140;
+  border-radius: 4px;
+  box-shadow: 1px 0 3px 1px #424140;
+}
+
+.fungalCavernHUD-craftingItemContainer {
+  top: -6px;
+  bottom: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: auto;
+}
+
+.fungalCavernHUD-craftingItem.on .fungalCavernHUD-craftingItem-status {
+  display: none;
+}
+
+.on .fungalCavernHUD-craftingItem-quantity.quantity {
+  background-color: #97df7b;
+}
+
+.fungalCavernHUD-bait-quantity.quantity {
+  width: 34px;
+  margin-top: -1px;
+  margin-left: -4px;
+  font-size: 11px;
+  font-weight: 400;
+  background-color: #d7d5d4;
+  border: 1px solid #424140;
+  border-radius: 3px;
+  box-shadow: 1px 0 3px 1px #424140;
+}
+
+span.fungalCavernHUD-background-title-zone {
+  padding: 2px;
+  font-size: 16px;
+  color: #d7d5d4;
+  vertical-align: middle;
+  background-color: #78645a;
+  border: 1px solid #9a887e;
+}
+
+.fungalCavernHUD-craftingItem.rare .fungalCavernHUD-craftingItem-status {
+  display: none;
+}
+
+.rare .fungalCavernHUD-craftingItem-quantity.quantity {
+  background-color: #d3ffc1;
+}

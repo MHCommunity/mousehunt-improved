@@ -116,8 +116,11 @@
 .labyrinthHUD-scrambleClues:focus .labyrinthHUD-scrambleClues-name,
 .labyrinthHUD-scrambleClues-name {
   position: relative;
+  left: 75px;
+  width: 0;
   color: transparent !important;
   text-shadow: none;
+  pointer-events: none;
 }
 
 .labyrinthHUD-scrambleClues-name::after {

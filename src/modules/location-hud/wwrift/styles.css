@@ -1,0 +1,41 @@
+.riftWhiskerWoodsHUD-zone-title {
+  right: 20%;
+  left: 20%;
+  font-size: 12px;
+}
+
+span.riftWhiskerWoodsHUD-zone-rageLevel {
+  padding-top: 0;
+  margin-top: -3px;
+  font-size: 16px;
+}
+
+span.riftWhiskerWoodsHUD-zone-rageMax {
+  position: unset;
+  display: block;
+  font-size: 10px;
+}
+
+.riftWhiskerWoodsHUD-zone-rageContainer {
+  top: -9px;
+  left: -4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #5b3b1a;
+  border-radius: 10px;
+  box-shadow: 0 0 1px 2px inset #b78c5c, 0 0 3px 3px inset #292928;
+}
+
+.riftWhiskerWoodsHUD-baitWarning {
+  right: 20%;
+  left: 20%;
+  padding: 10px 60px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #ffa5a8;
+  border-color: #992023;
+}

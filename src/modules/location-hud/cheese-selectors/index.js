@@ -17,7 +17,7 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
 
   hud.classList.add('mh-ui-cheese-selector', `mh-ui-cheese-selector-${location}`);
 
-  const existingCheeseSelector = hud.querySelector('.mh-ui-cheese-selector-wrapper');
+  let existingCheeseSelector = hud.querySelector('.mh-ui-cheese-selector-wrapper');
   if (existingCheeseSelector) {
     existingCheeseSelector.remove();
   }
@@ -63,6 +63,12 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
 
     cheesesContainer.appendChild(cheeseContainer);
   });
+
+  // recheck for existingCheeseSelector because it might have been added already.
+  existingCheeseSelector = hud.querySelector('.mh-ui-cheese-selector-wrapper');
+  if (existingCheeseSelector) {
+    existingCheeseSelector.remove();
+  }
 
   wrapper.appendChild(cheesesContainer);
   hud.appendChild(wrapper);

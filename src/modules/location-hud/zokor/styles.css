@@ -1,0 +1,85 @@
+.ancientCityHUD-total.mousehuntTooltipParent {
+  top: 35px;
+  left: 567px;
+  padding: 11px 5px;
+  text-shadow: 1px 1px 2px #171717;
+  background: linear-gradient(180deg, rgb(120 92 60) 0%, rgb(66 43 20) 100%);
+  border-radius: 10px;
+}
+
+.ancientCityHUD-countDown {
+  top: 0;
+  right: 10px;
+  font-size: 36px;
+  text-shadow: 2px 2px 2px #171717;
+}
+
+.ancientCityHUD-bossLabel {
+  text-shadow: 2px 2px 2px #171717;
+}
+
+.ancientCityHUD-tier-number {
+  text-shadow: 1px 1px 2px #171717;
+}
+
+.ancientCityHUD-progress {
+  background: #cfc634;
+}
+
+span.ancientCityHUD-alertLevel {
+  position: absolute;
+  bottom: 1px;
+  left: 4px;
+  text-shadow: 1px 1px 2px #171717;
+}
+
+.ancientCityHUD-districtName {
+  font-size: 13px;
+  color: #c5c5c5;
+}
+
+.ancientCityHUD-item-quantity {
+  position: absolute;
+  top: 1px;
+  padding: 0 4px;
+  margin-left: 3px !important;
+  font-size: 11px;
+  line-height: unset;
+  text-align: center;
+  background-color: #000;
+  border-radius: 5px;
+}
+
+.ancientCityHUD-item:nth-child(1) .ancientCityHUD-item-name,
+.ancientCityHUD-item:nth-child(2) .ancientCityHUD-item-name,
+.ancientCityHUD-item:nth-child(3) .ancientCityHUD-item-name,
+.ancientCityHUD-item:nth-child(4) .ancientCityHUD-item-name,
+.ancientCityHUD-item:nth-child(5) .ancientCityHUD-item-name {
+  width: 96px;
+  margin-left: 47px;
+  font-size: 11px;
+  font-weight: 900;
+  text-align: center;
+  text-shadow: 0 0 1px #000;
+  background: linear-gradient(180deg, rgb(112 112 112 / 0%) 0%, rgb(168 168 168 / 100%) 50%, rgb(112 112 112 / 0%) 100%);
+  border-radius: 20px;
+}
+
+.ancientCityHUD-item:hover .ancientCityHUD-item-location,
+.ancientCityHUD-item:focus .ancientCityHUD-item-location {
+  position: absolute;
+  top: unset;
+  bottom: -25px;
+  padding: 3px;
+  font-size: 9px;
+  color: #000;
+  text-align: center;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 2px 3px 4px #666;
+}
+
+.ancientCityHUD-item {
+  top: 5px;
+}

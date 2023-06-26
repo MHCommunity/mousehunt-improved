@@ -28,6 +28,7 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
   - Reformats the tournament listing page and single tournament view to be less cluttered and more readable.
   - Updates the trap/base/charm/cheese selectors and display to look nicer.
   - Updates the crafting, recipe, and other pages with tabs or subtabs to look nicer.
+  = makes armed cheese button more visible TODO: clean this up
 - Better Inventory
   - Updates the inventory UI to look more modern.
   - Set max quantity for opening items when clicking on the owned quantity.
@@ -111,14 +112,22 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
 - Burroughs Rift
   - Adds a larger mist meter to the HUD.
   - For each of the three cheeses (Magical String, Terra Ricotta, Polluted Parmesan), the current available mice pool will be shown in the HUD, along with the ability to quickly change cheese.
+  - TODO: update this
+    - click on cheese titles to change, click on mist display to toggle
 - Bristle Woods Rift
   - Modifies the size of the quantity and Time Sand displays to be a bit bigger.
   - Adds an indicator for each status effect so you don't need to hover over the mouse to see what it is.
+- Claw Shot City
+  - TODO: fill this out.
+  more fitting colors and larger font size for gangs caught and fools gold
+- Fiery Warpath
+  - TODO: fill this out.
+  more clear wave number, better highlighting on current target, cleaner tooltips, smoother streak guage, larger power type icons, and larger artillery strike quantity font size
+- Floating Islands
+  - TODO: fill this out.
 - Forbidden Grove
   - Shows a countdown to the closing time, rather than just a progress bar.
 - Fort Rox
-  - TODO: fill this out.
-- Floating Islands
   - TODO: fill this out.
 - Iceberg
   - Shows feet and number of hunts to the next zone.
@@ -142,6 +151,9 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
   - TODO: fill this out.
 - Valour Rift
   - TODO: fill this out.
+- Whisker Woods Rift
+  - TODO: fill this out.
+  more visible warning, bigger titles, bigger rage meter numbers
 - Adds Cheese selectors to all locations that don't have a HUD.
   - Meadow
   - King's Arms
@@ -181,3 +193,4 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
 - Fixes the item classification link when viewing an item page.
 - Fixes the width of the map link text box.
 - Fixes the 'Classification' link on the item page.
+- Fixes Whisker Woods Rift rage meter font sizes.

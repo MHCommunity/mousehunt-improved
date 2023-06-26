@@ -53,7 +53,7 @@
 
 .tournamentPage-tournamentContainer-labels {
   display: grid;
-  grid-template-columns: 325px 100px 80px 55px;
+  grid-template-columns: 305px 100px 80px 55px;
   justify-items: stretch;
   margin-left: 15px;
 }
@@ -492,9 +492,15 @@ img.pointsMouseIcon {
 }
 
 .tournamentStatusHud .timer {
-  top: 3px;
-  left: 240px;
+  top: 0;
+  left: 241px;
+  width: auto;
+  padding-top: 3px;
+  padding-right: 10px;
   font-size: 11px;
+  background: linear-gradient(166deg, #b4d3da 0%, #acc3ca 50%, #b4d3da 96%);
+  background-color: #acc3ca;
+  border-top-right-radius: 15px;
 }
 
 .tournamentStatusHud .title {

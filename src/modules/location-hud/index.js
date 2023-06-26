@@ -6,7 +6,7 @@ import brift from './brift';
 import cheeseSelectors from './cheese-selectors';
 import floatingIslands from './floating-islands';
 import forbiddenGrove from './forbidden-grove';
-import fortRox from './fortrox';
+import fortRox from './fort-rox';
 import iceberg from './iceberg';
 import labyrinth from './labyrinth';
 import vrift from './vrift';
@@ -15,14 +15,18 @@ import balacksCoveStyles from './balacks-cove/styles.css';
 import briftStyles from './brift/styles.css';
 import bwriftStyles from './bwrift/styles.css';
 import cheeseSelectorsStyles from './cheese-selectors/styles.css';
+import clawShotCityStyles from './claw-shot-city/styles.css';
 import fieryWarpathStyles from './fiery-warpath/styles.css';
 import floatingIslandsStyles from './floating-islands/styles.css';
 import forbiddenGroveStyles from './forbidden-grove/styles.css';
-import fortRoxStyles from './fortrox/styles.css';
+import fortRoxStyles from './fort-rox/styles.css';
+import fungalCavernStyles from './fungal-cavern/styles.css';
 import icebergStyles from './iceberg/styles.css';
 import labyrinthStyles from './labyrinth/styles.css';
+import muridaeMarketStyles from './muridae-market/styles.css';
 import quesoStyles from './queso/styles.css';
 import vriftStyles from './vrift/styles.css';
+import wwriftStyles from './wwrift/styles.css';
 
 const main = () => {
   switch (getCurrentLocation()) {
@@ -85,14 +89,18 @@ const getStyles = () => {
     briftStyles,
     bwriftStyles,
     cheeseSelectorsStyles,
+    clawShotCityStyles,
     fieryWarpathStyles,
     floatingIslandsStyles,
     forbiddenGroveStyles,
     fortRoxStyles,
+    fungalCavernStyles,
     icebergStyles,
     labyrinthStyles,
+    muridaeMarketStyles,
     quesoStyles,
     vriftStyles,
+    wwriftStyles,
   ].join('\n');
 };
 

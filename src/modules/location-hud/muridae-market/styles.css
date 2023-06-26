@@ -1,0 +1,36 @@
+.muridaeMarketHud .quantity {
+  display: flex;
+  align-items: center;
+  height: 16px;
+  margin-top: 1px;
+  font-size: 14px;
+  color: #e3d0b2;
+  text-shadow: 1px 1px 2px #533a20;
+}
+
+.muridaeMarketHud .shop:hover .visit::after {
+  position: absolute;
+  right: 3px;
+  left: 4px;
+  display: block;
+  width: unset;
+  height: 15px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #efdfc4;
+  text-align: center;
+  text-shadow: 1px 1px 4px #52381f;
+  text-transform: uppercase;
+  content: "Visit";
+  background-color: rgb(170 133 92 / 60%);
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 8px;
+}
+
+.muridaeMarketHud .shop:hover {
+  filter: drop-shadow(0 1px 2px #e7d6ba);
+}
+
+.muridaeMarketHud .shop {
+  cursor: pointer;
+}

@@ -74,3 +74,8 @@ input.treasureMapView-shareLinkInput {
 a.treasureMapView-copyShareLinkButton.mousehuntActionButton {
   margin-top: 5px;
 }
+
+/* Original wwrift rage font size */
+.riftWhiskerWoodsHUD-zone-rageLevel {
+  font-size: 14px;
+}

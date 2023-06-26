@@ -8,13 +8,20 @@
   top: 3px;
   right: 3px;
   width: 100px;
-  font-size: 12px;
+  font-size: 13px;
   font-variant: small-caps;
   color: #e2d8b6;
   content: "Mice can drop";
 }
 
-.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.rain_shrine:first-child {
+a.floatingIslandsHUD-islandLoot {
+  font-size: 14px;
+}
+
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.fog_shrine:first-child,
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.frost_shrine:first-child,
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.rain_shrine:first-child,
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.wind_shrine:first-child {
   background-position-y: 0;
   border-radius: 3px;
   box-shadow: 0 0 13px 3px #ffd700 inset;
@@ -39,8 +46,49 @@
   background-color: #d1e19d;
 }
 
+span.floatingIslandsHUD-huntsRemaining {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 2px 4px;
+  font-size: 16px;
+}
 
+.floatingIslandsHUD-huntsRemainingContainer {
+  top: -1px;
+}
 
+.floatingIslandsHUD-islandTitle {
+  font-size: 18px;
+  text-shadow: none;
+}
+
+.floatingIslandsHUD-bait-quantity,
+.floatingIslandsHUD-bait-craftingItem-quantity {
+  padding-right: 4px;
+  font-size: 12px;
+}
+
+.floatingIslandsHUD-statItem-quantity.quantity {
+  font-size: 12px;
+}
+
+.floatingIslandsHUD-craftingItem-quantity.quantity {
+  font-size: 13px;
+}
+
+.floatingIslandsHUD.island .floatingIslandsHUD-airshipContainer {
+  top: 70px;
+  left: 524px;
+  z-index: 3;
+  filter: drop-shadow(0 0 6px #fbe7a4);
+  transform: scale(2);
+}
+
+.floatingIslandsWorkshop-part-name {
+  font-size: 11px;
+  text-shadow: none;
+}
 
   /* .floatingIslandsHUD-retreatButton.disabled {
     .floatingIslandsHUD-retreatButton {

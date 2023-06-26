@@ -58,7 +58,7 @@
 }
 
 .warpathHUD-wave-mouse-population {
-  font-size: 15px;
+  font-size: 13px;
   line-height: 22px;
 }
 
@@ -100,4 +100,13 @@
 .warpathHUD-streakContainer::before {
   background: linear-gradient(0deg, #2ffd2d 50%, #f7f718 75%, #c32222 100%);
   filter: brightness(0.8);
+}
+
+.warpathHUD-streak-image-empty {
+  font-weight: 900;
+  box-shadow: inset 0 0 10px 5px #2f1816;
+}
+
+.warpathHUD-wave-mouse.laser_targetted .warpathHUD-wave-mouse-image {
+  box-shadow: inset 0 0 10px 6px #ff824c;
 }
