@@ -4,8 +4,8 @@ export default (quests) => {
   }
 
   const quest = {
-    clues: quests?.QuestLabyrinth?.clues || null,
-    hallway_name: quests?.QuestLabyrinth?.hallway_name || null,
+    clues: quests?.QuestLabyrinth?.clues || 0,
+    hallway_name: quests?.QuestLabyrinth?.hallway_name || '',
     status: quests?.QuestLabyrinth?.status || null,
   };
 
