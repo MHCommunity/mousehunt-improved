@@ -131,3 +131,7 @@
   border-bottom-left-radius: 5px;
   box-shadow: 0 0 5px -1px inset #90542a;
 }
+
+.quesoCanyonHUD.showBossCheese .quesoHUD-bait-group.super_brie_cheese .quesoHUD-bait-group-baitQuantity {
+  right: 26px;
+}
