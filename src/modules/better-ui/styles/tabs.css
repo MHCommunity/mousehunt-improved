@@ -160,15 +160,15 @@ div#dailyRewardTimer::before {
 
 .campPage-daily-container .shopsPage-kingsCalibratorPromo-button {
   margin: 0;
-  background: var(--color-blue);
+  background: #2a98ff;
   border-radius: 5px;
-  box-shadow: inset 0 -1px 1px 1px var(--color-blue-dark);
+  box-shadow: inset 0 -1px 1px 1px #2d76ba;
 }
 
 .campPage-daily-container .shopsPage-kingsCalibratorPromo-button:hover,
 .campPage-daily-container .shopsPage-kingsCalibratorPromo-button:active,
 .campPage-daily-container .shopsPage-kingsCalibratorPromo-button:focus {
-  background: var(--color-blue-dark);
+  background: #2d76ba;
 }
 
 .campPage-tabs-tabContent.active[data-tab="daily"],

@@ -15,30 +15,12 @@
   font-size: 0;
 }
 
-.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container {
-  display: block;
-  min-height: 90px;
-}
-
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table {
   opacity: 0.75;
 }
 
-.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost.required {
-  position: absolute;
-  right: -11px;
-  bottom: -11px;
-  width: 202px;
-}
-
-.itemPurchaseView-container.kingsCartItem.expanded .itemPurchaseView-content-details,
-.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details {
-  height: auto;
-  max-height: 75px;
-  overflow-y: auto;
-}
-
-.itemPurchaseView-action-form.clear-block {
+.itemPurchaseView-action-form.clear-block,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-form {
   display: flex;
   justify-content: center;
   margin: 1em 0;
@@ -48,10 +30,6 @@
   opacity: 0.3;
 }
 
-.shopCustomization .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemViewStatBlock {
-  display: none;
-}
-
 .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemPurchaseView-content-description {
   height: 30px;
   overflow-y: scroll;
@@ -59,12 +37,22 @@
 
 .itemPurchaseView-container.own_max .itemPurchaseView-action-state {
   max-height: 65px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: visible;
 }
 
-.itemPurchaseView-container.own_max .itemPurchaseView-image {
-  height: 40px;
+.itemPurchaseView-action-quantity span,
+.itemPurchaseView-action-purchaseHelper-maxPurchases-container,
+.itemPurchaseView-content-accordion,
+.itemPurchaseView-action-kingsCreditCostContainer,
+.itemPurchaseView-container.own_max .itemPurchaseView-action-purchaseHelper-maxPurchasesLimitReached,
+.shopCustomization .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemViewStatBlock,
+.shopCustomization .itemPurchaseView-container.own_max .itemViewStatBlock-stat.title,
+.shopCustomization .itemPurchaseView-container.own_max .itemViewStatBlock-stat.powerType,
+.itemPurchaseView-content-skin b,
+a.itemPurchaseView-image-trapPreview-link,
+.itemPurchaseView-action-itemCost-title,
+.itemPurchaseView-action-itemCost-description {
+  display: none;
 }
 
 .itemPurchaseView-content-skin {
@@ -72,22 +60,12 @@
   margin-bottom: 5px;
 }
 
-.itemPurchaseView-content-skin b {
-  display: none;
-}
-
 .itemPurchaseView-content-description {
-  margin-top: 5px;
-  margin-bottom: 6px;
+  max-height: 100px;
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow-y: scroll;
   color: #626262;
-}
-
-.itemPurchaseView-action-itemCost-title {
-  display: none;
-}
-
-.itemPurchaseView-action-itemCost-description {
-  display: none;
 }
 
 .itemPurchaseView-action-itemCost-table {
@@ -140,10 +118,6 @@
   margin: 0 5px 0 10px;
 }
 
-.itemPurchaseView-action-quantity span {
-  display: none;
-}
-
 .itemPurchaseView-action-quantity input {
   width: 100%;
   padding: 3px;
@@ -161,12 +135,12 @@ a.itemPurchaseView-action-form-button.sell {
 
 a.itemPurchaseView-action-form-button.buy {
   height: 21px;
-  margin-left: 5px;
+  margin-left: 7px;
   background: #f4e830;
 }
 
 a.itemPurchaseView-action-form-button.sell {
-  margin-left: 5px;
+  margin-left: 7px;
   background: #b3edff;
 }
 
@@ -185,10 +159,6 @@ a.itemPurchaseView-action-form-button.sell {
 
 .itemPurchaseView-container.no_gold_cost .itemPurchaseView-action-goldGost {
   display: block;
-}
-
-.itemPurchaseView-action-purchaseHelper-maxPurchases-container {
-  display: none;
 }
 
 .itemPurchaseView-action-purchaseHelper-owned {
@@ -210,25 +180,13 @@ span.itemPurchaseView-action-owned {
   height: auto;
 }
 
-.itemPurchaseView-container.own_max .itemPurchaseView-action-purchaseHelper-maxPurchasesLimitReached {
-  display: none;
-}
-
 .itemPurchaseView-container.own_max .itemPurchaseView-action-container {
   display: block;
   width: 250px;
 }
 
-.itemPurchaseView-action-kingsCreditCostContainer {
-  display: none;
-}
-
 .itemPurchaseView-action-container {
   padding: 10px 0 0;
-}
-
-.itemPurchaseView-content-accordion {
-  display: none;
 }
 
 /* Marketplace close button - make the normal X button */
@@ -259,6 +217,11 @@ span.itemPurchaseView-action-owned {
   background-position: 0 -27px;
   border-bottom: none;
   border-left: none;
+}
+
+a.itemPurchaseView-content-skin-link {
+  padding-left: 26px;
+  background-size: 23px;
 }
 
 /* Hide the marketplace footer */
@@ -382,4 +345,119 @@ span.itemPurchaseView-action-owned {
 
 .shopCustomization .itemViewStatBlock-stat.title {
   margin-top: 0;
+}
+
+/* kings cart */
+.itemPurchaseView-container.kingsCartItem {
+  cursor: initial;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container {
+  display: table-cell;
+  width: 250px;
+  min-height: unset;
+  color: #000;
+  background: #eee;
+  box-shadow: none;
+}
+
+.itemPurchaseView-container .itemPurchaseView-content-details {
+  height: 100%;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-state.view {
+  padding-top: unset;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost.consumed,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-goldGost,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-marketplace,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-refund-container {
+  display: block !important;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity {
+  display: block;
+  width: auto;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity input {
+  width: 100%;
+  margin-top: 0;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details::after {
+  display: none;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-button-row a,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-complete-title {
+  color: #3b5998;
+}
+
+span.itemPurchaseView-action-confirm-refund.noRefund {
+  position: relative;
+  display: block;
+  color: transparent;
+}
+
+span.itemPurchaseView-action-confirm-refund.noRefund::after {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  left: 0;
+  height: 10px;
+  color: #000;
+  content: "Cannot be refunded.";
+}
+
+.itemPurchaseView-container.has_refund_value .itemPurchaseView-action-confirm-refund.hasRefund {
+  margin-top: 20px;
+}
+
+.itemPurchaseView-action-confirm-title {
+  margin-bottom: 10px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-complete-title,
+.itemPurchaseView-container .itemPurchaseView-action-complete-title,
+.itemPurchaseView-action-complete-title,
+.itemPurchaseView-action-armed-title {
+  margin: 10px;
+  font-weight: 400;
+  color: #000;
+}
+
+.itemPurchaseView-container .itemPurchaseView-action-state.complete a.itemPurchaseView-action-complete-return {
+  position: relative;
+  display: block;
+  float: none;
+  margin: 0;
+  color: transparent;
+}
+
+.itemPurchaseView-container .itemPurchaseView-action-state.complete a.itemPurchaseView-action-complete-return::after {
+  position: absolute;
+  top: 10px;
+  right: 78px;
+  left: 78px;
+  padding: 10px 15px;
+  line-height: 10px;
+  color: #000;
+  text-shadow: 0 0 1px #fff;
+  content: "Continue";
+  background-color: #fff600;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px #fff, 1px 1px 1px #fff;
+}
+
+/* limit one items */
+
+.itemPurchaseView-container.marketplace_buy_regal_stool_collectible.kingsCartItem.cannot_sell.own_max,
+.itemPurchaseView-container.marketplace_sell_regal_display_case_collectible.kingsCartItem.cannot_sell.own_max,
+.itemPurchaseView-container.kings_calibrator_message_item.kingsCartItem.cannot_sell.own_max {
+  display: none !important;
 }

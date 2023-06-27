@@ -137,6 +137,8 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
     - Progress to Icewing.
     - Quick view of each zone with their length.
     - Warning if you're encountering Icewing and don't have a base equipped that would take you to the hidden Depths.
+- Living Garden
+  - TODO: fill this out.
 - Labyrinth
   - Show step counter for hallway.
   - Shows steps remaining in the hallway.

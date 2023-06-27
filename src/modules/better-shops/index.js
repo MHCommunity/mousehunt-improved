@@ -1,6 +1,32 @@
 import { addUIStyles } from '../utils';
 import styles from './styles.css';
 
+const updatePlaceholderText = () => {
+  const purchaseBlocks = document.querySelectorAll('.itemPurchaseView-action-state.view');
+  if (purchaseBlocks) {
+    purchaseBlocks.forEach((block) => {
+      const qty = block.querySelector('.itemPurchaseView-action-maxPurchases');
+      if (! qty) {
+        return;
+      }
+
+      let maxQty = qty.innerText;
+      if (maxQty.includes('Inventory max')) {
+        maxQty = 0;
+      }
+
+      const input = block.querySelector('input');
+      if (! input) {
+        return;
+      }
+
+      // maxQty = parseInt(maxQty) ? parseInt(maxQty) + 1 : 0;
+
+      input.setAttribute('placeholder', `You can afford ${maxQty}`);
+    });
+  }
+};
+
 const main = () => {
   const body = document.querySelector('body');
   if (! body) {
@@ -40,29 +66,7 @@ const main = () => {
     });
   }
 
-  const purchaseBlocks = document.querySelectorAll('.itemPurchaseView-action-state.view');
-  if (purchaseBlocks) {
-    purchaseBlocks.forEach((block) => {
-      const qty = block.querySelector('.itemPurchaseView-action-maxPurchases');
-      if (! qty) {
-        return;
-      }
-
-      let maxQty = qty.innerText;
-      if (maxQty.includes('Inventory max')) {
-        maxQty = 0;
-      }
-
-      const input = block.querySelector('input');
-      if (! input) {
-        return;
-      }
-
-      // maxQty = parseInt(maxQty) ? parseInt(maxQty) + 1 : 0;
-
-      input.setAttribute('placeholder', `You can afford ${maxQty}`);
-    });
-  }
+  updatePlaceholderText();
 
   const owned = document.querySelectorAll('.itemPurchaseView-action-purchaseHelper-owned');
   if (owned) {
@@ -77,7 +81,8 @@ const main = () => {
   const kingsCart = document.querySelectorAll('.itemPurchaseView-container.kingsCartItem');
   if (kingsCart) {
     kingsCart.forEach((cart) => {
-      cart.classList.remove('kingsCartItem');
+      // cart.classList.remove('kingsCartItem');
+      cart.querySelector('input').value = '';
     });
   }
 
@@ -122,4 +127,5 @@ export default function shopHelper() {
 
   main();
   onPageChange({ change: main });
+  onAjaxRequest(updatePlaceholderText, 'managers/ajax/purchases/itempurchase.php');
 }

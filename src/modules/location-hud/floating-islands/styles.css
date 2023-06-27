@@ -90,17 +90,106 @@ span.floatingIslandsHUD-huntsRemaining {
   text-shadow: none;
 }
 
-  /* .floatingIslandsHUD-retreatButton.disabled {
-    .floatingIslandsHUD-retreatButton {
-      background-color: #ae5d18;
-      color: #b0a06c!important;
-      border-radius: 0;
-      border: none;
-      background-color: transparent;
-      margin-top: -1px;
-  }
+.floatingIslandsHUD-fuel-quantity.quantity {
+  top: 31px;
+  right: 0;
+  left: 0;
+  width: auto;
+  padding: 4px;
+  margin-right: 8px;
+  margin-left: 7px;
+  font-size: 14px;
+  background: linear-gradient(218deg, #0e8eeb 0%, #28eeff 100%);
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px #09577f inset, 0 2px 7px 1px #37feff;
+}
 
-  .floatingIslandsHUD-retreatButton.disabled:hover {
-    background: none;
-    color: #fce698!important;
-} */
+.floatingIslandsHUD-fuel-quantity.quantity.active {
+  background: linear-gradient(218deg,#7baabd,#568295);
+  box-shadow: inset 0 0 2px 2px #09577f, 0 2px 8px 1px #78aabd;
+}
+
+.floatingIslandsHUD-retreatButton,
+.floatingIslandsHUD-retreatButton.disabled,
+.floatingIslandsHUD.enemyActive .floatingIslandsHUD-retreatButton {
+  margin-top: -1px;
+  color: #b0a06c !important;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.floatingIslandsHUD-retreatButton:hover,
+.floatingIslandsHUD-retreatButton.disabled:hover,
+.floatingIslandsHUD.enemyActive .floatingIslandsHUD-retreatButton:hover,
+.floatingIslandsHUD-retreatButton:focus,
+.floatingIslandsHUD-retreatButton.disabled:focus,
+.floatingIslandsHUD.enemyActive .floatingIslandsHUD-retreatButton:focus {
+  color: #fce698 !important;
+  background: none;
+}
+
+.floatingIslandsHUD-craftingItem-quantity.quantity,
+.floatingIslandsHUD-islandLoot,
+.floatingIslandsHUD-modPanel-effect {
+    text-shadow: 1px 1px 1px #242424;
+}
+
+.floatingIslandsHUD-modPanel.active .floatingIslandsHUD-modPanel-effect,
+.floatingIslandsHUD-modPanel.complete .floatingIslandsHUD-modPanel-effect {
+    text-shadow: 1px 1px 1px #9ab59a;
+}
+
+/* Fancy countdown */
+.mh-ui-fi-enemy-countdown {
+  position: absolute;
+  top: 3px;
+  bottom: -4px;
+  left: -1px;
+  width: 78px;
+  padding-left: 5px;
+  background-color: #51250a;
+  border-radius: 8px;
+  border-bottom-left-radius: 0;
+  box-shadow: 1px 0 0 1px #7d5430, inset 1px 0 0 1px #9a6f43;
+}
+
+.floatingIslandsHUD-goalContainer .floatingIslandsHUD-enemy-state.enemyApproaching {
+  color: transparent;
+}
+
+span.mh-ui-fi-enemy-countdown-hunts {
+  font-size: 14px;
+  color: #fbe296;
+  text-shadow: 1px 1px 1px #000;
+  vertical-align: top;
+}
+
+.mh-ui-fi-enemy-name {
+  position: absolute;
+  top: 31px;
+  right: 24px;
+  left: 26px;
+  height: 12px;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 8px;
+  text-align: center;
+  background: linear-gradient(90deg, #ecc37d 0%, #fde89a 18%, #fde89a 64%, #f2cf86 100%);
+  border: 1px solid #b15d18;
+  border-top: none;
+  border-radius: 19px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0 1px 1px 0 #d78c34;
+}
+
+.floatingIslandsHUD.enemyActive .floatingIslandsHUD-enemyContainer.hasEnemy .floatingIslandsHUD-enemy-thumb {
+  box-shadow: 0 0 4px 3px #fb7660;
+}
+
+.floatingIslandsHUD.enemyActive .floatingIslandsHUD-goalContainer .floatingIslandsHUD-enemy-state.enemyActive {
+  color: #fb7660;
+}

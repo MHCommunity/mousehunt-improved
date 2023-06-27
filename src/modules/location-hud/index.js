@@ -22,6 +22,7 @@ import forbiddenGroveStyles from './forbidden-grove/styles.css';
 import fortRoxStyles from './fort-rox/styles.css';
 import fungalCavernStyles from './fungal-cavern/styles.css';
 import icebergStyles from './iceberg/styles.css';
+import livingGardenStyles from './living-garden/styles.css';
 import labyrinthStyles from './labyrinth/styles.css';
 import muridaeMarketStyles from './muridae-market/styles.css';
 import quesoStyles from './queso/styles.css';
@@ -96,6 +97,7 @@ const getStyles = () => {
     fortRoxStyles,
     fungalCavernStyles,
     icebergStyles,
+    livingGardenStyles,
     labyrinthStyles,
     muridaeMarketStyles,
     quesoStyles,
@@ -105,13 +107,15 @@ const getStyles = () => {
 };
 
 export default function locationHuds() {
-  main();
-  onAjaxRequest(main);
-  onPageChange({ camp: { show: main } });
-  onTravel(null, { callback: main });
-  onAjaxRequest(() => {
-    setTimeout(main, 500);
-  }, 'managers/ajax/turns/activeturn.php', true);
-
   addUIStyles(getStyles());
+
+  setTimeout(() => {
+    main();
+    onAjaxRequest(main);
+    onPageChange({ camp: { show: main } });
+    onTravel(null, { callback: main });
+    onAjaxRequest(() => {
+      setTimeout(main, 500);
+    }, 'managers/ajax/turns/activeturn.php', true);
+  }, 150);
 }
