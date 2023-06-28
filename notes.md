@@ -20,7 +20,6 @@
   position: relative;
   cursor: pointer;
 }
-
 .fancy-button-image {
   display: inline-block;
   width: 35px;

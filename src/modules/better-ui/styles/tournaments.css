@@ -86,7 +86,6 @@
   box-shadow: 1px 1px 1px 0 #c7c7c7;
 }
 
-
 .tournamentPage-tournament-column.members_5 .tournamentPage-tournament-teamMember.empty:last-child::before {
   top: -2px;
   right: -4px;

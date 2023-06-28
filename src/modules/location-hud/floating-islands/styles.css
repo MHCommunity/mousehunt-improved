@@ -11,6 +11,7 @@
   font-size: 13px;
   font-variant: small-caps;
   color: #e2d8b6;
+  text-shadow: 1px 1px #43311c;
   content: "Mice can drop";
 }
 
@@ -76,6 +77,10 @@ span.floatingIslandsHUD-huntsRemaining {
 
 .floatingIslandsHUD-craftingItem-quantity.quantity {
   font-size: 13px;
+}
+
+.floatingIslandsHUD-craftingItem.show-progress .floatingIslandsHUD-craftingItem-quantity.quantity {
+  font-size: 11px;
 }
 
 .floatingIslandsHUD.island .floatingIslandsHUD-airshipContainer {
@@ -202,4 +207,22 @@ span.mh-ui-fi-enemy-countdown-hunts {
 
 .floatingIslandsHUD-fuelContainer:hover {
   filter: brightness(1.2);
+}
+
+/* make tooltips wait before showing */
+.mousehuntTooltip {
+  transition-delay: 0.5s;
+}
+
+.floatingIslandsHUD-craftingItem.show-progress {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 3px;
+}
+
+.mh-ui-fi-glore-progress {
+  margin-left: 2px;
+  font-size: 9px;
+  text-shadow: 1px 1px 1px #242424;
 }
