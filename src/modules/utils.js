@@ -129,7 +129,7 @@ const addArDataToMap = () => {
 
   const mouseIcon = document.querySelectorAll('.treasureMapView-goals-group-goal');
   if (! mouseIcon || mouseIcon.length === 0) {
-    setTimeout(addArData, 500);
+    setTimeout(addArDataToMap, 500);
     return;
   }
 

@@ -17,10 +17,22 @@ const toggleFuel = () => {
     return;
   }
 
+  const enabled = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.is_fuel_enabled || false;
+  if (enabled && ! fuel.classList.contains('active')) {
+    toggleFuelClass(fuel, fuelCount);
+  }
+
+  fuelCount.addEventListener('click', () => {
+    hg.views.HeadsUpDisplayFloatingIslandsView.toggleFuel(fuel);
+    setTimeout(() => {
+      toggleFuelClass(fuel, fuelCount);
+    }, 250);
+  });
+
   fuel.addEventListener('click', () => {
     setTimeout(() => {
       toggleFuelClass(fuel, fuelCount);
-    }, 300);
+    }, 250);
   });
 };
 

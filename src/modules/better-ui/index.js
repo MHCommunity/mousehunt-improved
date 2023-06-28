@@ -17,10 +17,6 @@ import tournamentStyles from './styles/tournaments.css';
 import traps from './styles/traps.css';
 import maps from './styles/maps.css';
 
-// HUD styles
-import toxicSpill from './location-styles/toxic-spill.css';
-import train from './location-styles/train.css';
-
 // scripts
 import updateFriends from './friends';
 import updateTournaments from './tournaments';
@@ -41,8 +37,6 @@ export default () => {
     tournamentStyles,
     traps,
     maps,
-    toxicSpill,
-    train,
   ].join('\n'));
 
   updateFriends();

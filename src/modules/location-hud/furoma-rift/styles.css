@@ -1,20 +1,20 @@
 .riftFuromaHUD-battery-energyRemaining {
-    text-shadow: 1px 1px 1px #000000, 1px 1px 2px #000000;
-    font-size: 13px;
-    color: white;
-    background-color: #7a8b8a;
-    border-radius: 1px;
-    width: auto;
-    font-style: normal;
-    border: 1px solid #535757;
-    right: 0px;
+    right: 0;
     left: -1px;
+    width: auto;
+    font-size: 13px;
+    font-style: normal;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000, 1px 1px 2px #000;
+    background-color: #7a8b8a;
+    border: 1px solid #535757;
+    border-radius: 1px;
 }
 
 .riftFuromaHUD-itemGroup-activeItem .quantity {
+    padding: 1px 2px;
     font-size: 12px;
     font-weight: 400;
-    padding: 1px 2px;
     background-color: #dadada;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .riftFuromaHUD-droid-details .riftFuromaHUD-chargeLevel-stat-value {
-        text-shadow: 1px 1px 1px #000000, 0px 0px 2px #000000;
+        text-shadow: 1px 1px 1px #000, 0 0 2px #000;
 }
 
 .riftFuromaHUD-droid-image {
@@ -54,29 +54,29 @@
 }
 
 .riftFuromaHUD-chargeLevel-stat.luck, .riftFuromaHUD-chargeLevel-stat.power {
-    width: unset;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: unset;
 }
 
 .riftFuromaHUD-chargeLevel-stat.power_usage {
-    width: unset;
     grid-column: span 2;
+    width: unset;
 }
 
 .riftFuromaHUD-chargeLevel-statContainer .riftFuromaHUD-chargeLevel-stat-value {
-    font-size: 17px;
     padding-top: 3px;
+    font-size: 17px;
 }
 
 .riftFuromaHUD-chargeLevel-stat.power_usage .riftFuromaHUD-chargeLevel-stat-value {
-    font-size: 13px;
-    margin-top: -2px;
     padding-top: 0;
+    margin-top: -2px;
+    font-size: 13px;
 }
 
 .riftFuromaHUD-chargeLevel-stat.luck .riftFuromaHUD-chargeLevel-stat-label, .riftFuromaHUD-chargeLevel-stat.power .riftFuromaHUD-chargeLevel-stat-label {
-    font-weight: 900;
     font-size: 10px;
+    font-weight: 900;
 }

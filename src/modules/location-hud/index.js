@@ -21,11 +21,14 @@ import floatingIslandsStyles from './floating-islands/styles.css';
 import forbiddenGroveStyles from './forbidden-grove/styles.css';
 import fortRoxStyles from './fort-rox/styles.css';
 import fungalCavernStyles from './fungal-cavern/styles.css';
+import furomaRiftStyles from './furoma-rift/styles.css';
+import gnawniaExpressStationStyles from './gnawnia-express-station/styles.css';
 import icebergStyles from './iceberg/styles.css';
 import livingGardenStyles from './living-garden/styles.css';
 import labyrinthStyles from './labyrinth/styles.css';
 import muridaeMarketStyles from './muridae-market/styles.css';
 import quesoStyles from './queso/styles.css';
+import toxicSpillStyles from './toxic-spill/styles.css';
 import vriftStyles from './vrift/styles.css';
 import wwriftStyles from './wwrift/styles.css';
 
@@ -96,11 +99,14 @@ const getStyles = () => {
     forbiddenGroveStyles,
     fortRoxStyles,
     fungalCavernStyles,
+    furomaRiftStyles,
+    gnawniaExpressStationStyles,
     icebergStyles,
     livingGardenStyles,
     labyrinthStyles,
     muridaeMarketStyles,
     quesoStyles,
+    toxicSpillStyles,
     vriftStyles,
     wwriftStyles,
   ].join('\n');

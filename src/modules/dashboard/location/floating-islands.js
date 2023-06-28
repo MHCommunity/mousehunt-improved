@@ -19,7 +19,7 @@ export default (quests) => {
     activated_island_mod_types: quests?.QuestFloatingIslands?.hunting_site_atts?.activated_island_mod_types || null,
     island_mod_panels: quests?.QuestFloatingIslands?.hunting_site_atts?.island_mod_panels || null,
     island_power_type: quests?.QuestFloatingIslands?.hunting_site_atts?.island_power_type || null,
-    isHai: quests?.QuestFloatingIslands?.hunting_site_atts?.is_high_altitude || false,
+    isHai: quests?.QuestFloatingIslands?.hunting_site_atts?.is_high_tier_island || false,
     isSp: quests?.QuestFloatingIslands?.hunting_site_atts?.is_vault_island || false,
     isLai: false,
     hunts_remaining: quests?.QuestFloatingIslands?.hunting_site_atts?.hunts_remaining || null,

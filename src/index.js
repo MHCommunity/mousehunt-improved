@@ -37,7 +37,6 @@ import testing from './modules/testing';
 // Global styles
 import globalStyles from './styles.css';
 
-
 testing();
 
 addUIStyles(globalStyles);

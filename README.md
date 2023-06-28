@@ -129,6 +129,8 @@ Better MouseHunt is a collection of user scripts aimed at improving the MouseHun
   - Shows a countdown to the closing time, rather than just a progress bar.
 - Fort Rox
   - TODO: fill this out.
+- Furoma Rift
+  - TODO: fill this out.
 - Iceberg
   - Shows feet and number of hunts to the next zone.
   - Hover over the zone information to see:

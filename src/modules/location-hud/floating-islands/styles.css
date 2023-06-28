@@ -59,7 +59,8 @@ span.floatingIslandsHUD-huntsRemaining {
 }
 
 .floatingIslandsHUD-islandTitle {
-  font-size: 18px;
+  top: -3px;
+  font-size: 15px;
   text-shadow: none;
 }
 
@@ -102,6 +103,11 @@ span.floatingIslandsHUD-huntsRemaining {
   background: linear-gradient(218deg, #0e8eeb 0%, #28eeff 100%);
   border-radius: 3px;
   box-shadow: 0 0 2px 2px #09577f inset, 0 2px 7px 1px #37feff;
+}
+
+.floatingIslandsHUD-fuel-quantity.quantity:hover,
+.floatingIslandsHUD-fuel-quantity.quantity:focus {
+  cursor: pointer;
 }
 
 .floatingIslandsHUD-fuel-quantity.quantity.active {
@@ -167,7 +173,7 @@ span.mh-ui-fi-enemy-countdown-hunts {
 
 .mh-ui-fi-enemy-name {
   position: absolute;
-  top: 31px;
+  top: 33px;
   right: 24px;
   left: 26px;
   height: 12px;
@@ -175,7 +181,7 @@ span.mh-ui-fi-enemy-countdown-hunts {
   margin: 0;
   font-size: 13px;
   font-weight: 500;
-  line-height: 8px;
+  line-height: 4px;
   text-align: center;
   background: linear-gradient(90deg, #ecc37d 0%, #fde89a 18%, #fde89a 64%, #f2cf86 100%);
   border: 1px solid #b15d18;
@@ -192,4 +198,8 @@ span.mh-ui-fi-enemy-countdown-hunts {
 
 .floatingIslandsHUD.enemyActive .floatingIslandsHUD-goalContainer .floatingIslandsHUD-enemy-state.enemyActive {
   color: #fb7660;
+}
+
+.floatingIslandsHUD-fuelContainer:hover {
+  filter: brightness(1.2);
 }
