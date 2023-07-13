@@ -91,3 +91,28 @@
 .itemView-action.crafting_item::before {
   content: "This can be used to craft other items!";
 }
+
+.itemViewContainer.map_piece .itemView-action-text.map_piece,
+.itemViewContainer.base .itemView-action-text.base,
+.itemViewContainer.weapon .itemView-actio-textn.weapon,
+.itemViewContainer.bait .itemView-action-text.bait,
+.itemViewContainer.trinket .itemView-action-text.trinket,
+.itemViewContainer.potion .itemView-action-text.potion,
+.itemViewContainer.readiness_item .itemView-action-text.readiness_item,
+.itemViewContainer.convertible .itemView-action-text.convertible,
+.itemViewContainer.torn_page .itemView-action-text.torn_page,
+.itemViewContainer.crafting_item .itemView-action-text.crafting_item,
+.itemViewContainer.collectible .itemView-action-text.collectible,
+.itemViewContainer.message_item .itemView-action-text.message_item,
+.itemViewContainer.bonus_loot .itemView-action-text.bonus_loot,
+.itemViewContainer.stat .itemView-action-text.stat,
+.itemViewContainer.quest .itemView-action-text.quest,
+.itemViewContainer.skin .itemView-action-text.skin {
+  display: none !important;
+}
+
+.itemViewContainer .shopCustomization .itemViewStatBlock-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

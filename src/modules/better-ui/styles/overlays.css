@@ -6,6 +6,7 @@
 #overlayPopup .button {
   padding: 0 15px;
   line-height: 24px;
+  color: #000;
   text-shadow: 0 0 1px #fff;
   background-color: #fff600;
   border: 1px solid #000;

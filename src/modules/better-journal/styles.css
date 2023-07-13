@@ -127,8 +127,10 @@
 
 .journal .entry.riftFuroma-energyLost .journalbody::before {
   position: absolute;
-  top: 0;
-  left: -15px;
+  /* top: 0; */
+  /* left: -15px; */
+  top: -12px;
+  left: -96px;
   display: block;
   width: 75px;
   height: 80px;
@@ -139,6 +141,7 @@
   background-position: 0 -100px;
   background-size: 110%;
   mix-blend-mode: luminosity;
+
 }
 
 .journal .entry.riftFuroma {
@@ -307,15 +310,30 @@
 
 #overlayPopup.hunting_summary .baitContainer,
 #overlayPopup.hunting_summary .lootContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin-bottom: 20px;
   border: 1px solid #ccc;
 }
+
+#overlayPopup.hunting_summary .lootContainer {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 
 #overlayPopup.hunting_summary .baitContainer .label,
 #overlayPopup.hunting_summary .lootContainer .label {
   border-top: none;
   border-right: none;
   border-left: none;
+}
+
+#overlayPopup.hunting_summary .baitContainer .label {
+  grid-column: span 2;
+}
+
+#overlayPopup.hunting_summary .lootContainer .label {
+  grid-column: span 4;
 }
 
 #overlayPopup.hunting_summary .lootContainer a .wrapper {
@@ -328,7 +346,7 @@
 #overlayPopup.hunting_summary .miceContainer a {
   display: grid;
   grid-template-columns: 0 50px auto;
-  align-items: start;
+  align-items: center;
   padding: 6px 0;
   font-size: 10px;
   line-height: 14px;
@@ -350,13 +368,14 @@
   margin: 0 3px;
 }
 
-#overlayPopup.hunting_summary .baitContainer .label {
-  grid-column: 1 5;
-}
-
 #overlayPopup.hunting_summary .baitContainer a {
   display: inline-block;
   float: none;
+  width: auto;
+}
+
+#overlayPopup.hunting_summary .lootContainer a {
+    width: auto;
 }
 
 #overlayPopup.hunting_summary .baitContainer a .wrapper {
@@ -435,9 +454,8 @@ a.journal-detailLink.full::after {
   padding-bottom: 0;
 }
 
-.journal .entry .journalbody .journaltext .loot:last-child::after,
-.journal .entry .journalbody .journaltext .lucky::after,
-.journal .entry .journalbody .journaltext .luck:last-child::after {
+.journal .entry .journalbody .journaltext .lucky:last-of-type::after,
+.journal .entry .journalbody .journaltext .loot:last-of-type::after {
   content: ".";
 }
 
@@ -454,6 +472,10 @@ a.journal-detailLink.full::after {
 
 .journal .entry .journaltext br::after {
   content: " ";
+}
+
+.journal .entry.relicHunter_catch .journaltext br::after {
+  content: "";
 }
 
 /* nicer shade of green for prize mice */
@@ -666,6 +688,7 @@ a.journal-detailLink.full::after {
   min-height: 70px;
 }
 
-.journal .entry a.loot[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"] {
+.journal .entry a.loot[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"],
+.journal .entry a.lucky[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"] {
  color: #a012a0;
 }

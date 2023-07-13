@@ -16,6 +16,11 @@
   box-shadow: 0 1px 5px -1px #5e5e5e;
 }
 
+/* weird bug with the tooltip not showing up on the second hover */
+.treasureMapTooltipView #friend-data-wrapper {
+  display: none;
+}
+
 [data-friend-hover]:hover #friend-data-wrapper,
 [data-friend-hover]:focus #friend-data-wrapper,
 #friend-data-wrapper:hover,

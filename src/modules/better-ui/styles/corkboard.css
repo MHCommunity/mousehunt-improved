@@ -1,0 +1,113 @@
+
+
+.treasureMapRootView .messageBoardView .messageBoardView-message-container-padding,
+.PageHunterProfile .messageBoardView-message-container-padding {
+  background: none;
+}
+
+.treasureMapRootView .messageBoardView div.messageBoardView-message-container,
+.hunterInfoView-wrapper div.messageBoardView-message-container {
+  margin: 0;
+  background: #e9e1c6;
+  border: 1px solid #985f42;
+  border-radius: 10px;
+  box-shadow: -1px 2px 1px #a59f8e;
+}
+
+.treasureMapRootView .messageBoardView div.messageBoardView-message-container {
+  background: #eee;
+  border-color: #ccc;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.treasureMapRootView .messageBoardView .messageBoardView-message,
+.hunterInfoView-corkBoardBlock .messageBoardView-message {
+  background: #fff;
+  border: 1px solid #bea87b;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.hunterInfoView-corkBoardBlock div.messageBoardView-message.new {
+  border: 1px solid #bea87b !important;
+}
+
+.treasureMapRootView .messageBoardView div.messageBoardView-message.new {
+  border: 1px solid #ccc !important
+}
+
+
+.treasureMapRootView .messageBoardView input.messageBoardView-message-submit,
+.hunterInfoView-corkBoardBlock input.messageBoardView-message-submit {
+  margin: 6px 0;
+}
+
+.treasureMapRootView .messageBoardView .messageBoardView-message-description,
+.hunterInfoView-corkBoardBlock .messageBoardView-message-description {
+  padding-top: 12px;
+}
+
+.treasureMapRootView .messageBoardView a.messageBoardView-message-image,
+.hunterInfoView-corkBoardBlock a.messageBoardView-message-image {
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+
+.treasureMapRootView .messageBoardView a.messageBoardView-message-name,
+.hunterInfoView-corkBoardBlock a.messageBoardView-message-name {
+  display: block;
+  padding-bottom: 5px;
+}
+
+.treasureMapRootView .messageBoardView .messageBoardView-message-submitted,
+.hunterInfoView-corkBoardBlock .messageBoardView-message-submitted {
+  color: #767676;
+}
+
+.treasureMapRootView .messageBoardView .messageBoardView-message-body,
+.hunterInfoView-corkBoardBlock .messageBoardView-message-body {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #454545;
+}
+
+.treasureMapRootView .messageBoardView .messageBoardView-message::after,
+.hunterInfoView-corkBoardBlock .messageBoardView-message::after {
+  display: none;
+}
+
+.treasureMapRootView .messageBoardView .pagerView-section.previous .pagerView-link,
+.hunterInfoView-corkBoardBlock .pagerView-section.previous .pagerView-link {
+  color: #525252;
+}
+
+a.messageBoardView-message-image {
+  background-position: center;
+  background-size: cover;
+}
+
+a.messageBoardView-message-delete {
+  color: transparent;
+}
+
+a.messageBoardView-message-delete::after {
+  font-size: 16px;
+  color: #b72929;
+  content: "✕";
+}
+
+a.messageBoardView-message-delete:hover::after,
+a.messageBoardView-message-delete:focus::after {
+  color: #f55;
+}
+
+a.friendsProfileView-randomFriend {
+  float: right;
+  margin-top: -25px;
+}
+
+.friendsProfileView-selfStats {
+  padding-top: 15px;
+}

@@ -208,7 +208,19 @@ a.mousehuntHud-shield.golden:hover {
   height: 22px;
 }
 
-/* profile */
-.campPage-trap-trapStat.power .icon {
+/* maps */
+.treasureMapRootView-subTab-label {
   display: none;
+}
+
+.treasureMapView-block-search {
+  bottom: 0;
+}
+
+/* events */
+
+/* ronza */
+.MiniEventRonzaChromeBitCampHUD-completeQuantity.MiniEventRonzaChromeBitCampHUD-chromeBitQuantity {
+  padding: 2px 3px;
+  font-size: 13px;
 }

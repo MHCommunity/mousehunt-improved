@@ -35,11 +35,6 @@
   overflow-y: scroll;
 }
 
-.itemPurchaseView-container.own_max .itemPurchaseView-action-state {
-  max-height: 65px;
-  overflow: visible;
-}
-
 .itemPurchaseView-action-quantity span,
 .itemPurchaseView-action-purchaseHelper-maxPurchases-container,
 .itemPurchaseView-content-accordion,
@@ -262,13 +257,11 @@ a.itemPurchaseView-content-skin-link {
 
 .shopCustomization .itemViewStatBlock-stat-label {
   margin-right: 0;
-  margin-left: -3px;
   background: none;
 }
 
 .shopCustomization .itemViewStatBlock-stat-value {
   max-width: unset;
-  margin-right: 5px;
   background: none;
   border-radius: 0;
 }

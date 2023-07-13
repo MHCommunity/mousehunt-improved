@@ -88,7 +88,15 @@ const updateItemView = async () => {
 
   addLinks(itemId);
 
+  // dont show drop rates for mina gifts
+  if (2473 === parseInt(itemId, 10)) {
+    return;
+  }
+
   let mhctjson = await getArForMouse(itemId, 'item');
+  if (! mhctjson || typeof mhctjson === 'undefined') {
+    return;
+  }
 
   itemView.classList.add('mouseview-has-mhct');
 

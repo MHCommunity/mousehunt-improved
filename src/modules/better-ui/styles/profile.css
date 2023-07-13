@@ -1,0 +1,313 @@
+.PageHunterProfile .campPage-trap-trapStat.power .icon {
+  display: none;
+}
+
+.PageHunterProfile .campPage-trap-trapStat.cheese_effect .value span {
+  width: 10px;
+  font-size: 9px;
+}
+
+
+.hunterInfoView-wrapper .messageBoardView-title {
+  height: 30px;
+  margin-bottom: -1px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 30px;
+  color: #772b0a;
+  text-align: center;
+  background: linear-gradient(#FFF9DC 45%,#F1DC8A 55%);
+  border: 1px solid #985f42;
+  border-bottom: 1px solid #e9be6c;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: -1px 2px 1px #a59f8e;
+}
+
+.hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader {
+  height: 33px;
+  margin-top: 1px;
+  margin-bottom: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 30px;
+  color: #ab755d;
+  text-align: center;
+  background: linear-gradient(#f6f3e2 45%,#fdf3cb 55%);
+  border: 1px solid #985f42;
+  border-bottom: none;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: -1px 1px 1px #a59f8e;
+}
+
+.hunterInfoView-wrapper div.messageBoardView-message-container {
+  border-bottom: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader span {
+  margin: 0;
+  line-height: 23px;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader::before {
+  background: none;
+  box-shadow: none;
+}
+
+.hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:first-child {
+  margin-right: 5px;
+  margin-left: -10px;
+}
+
+.hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:last-child {
+  margin-right: -10px;
+  margin-left: 5px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabContentContainer {
+  background: #e9e1c6;
+  border: 1px solid #985f42;
+  border-top-color: #e9be6c;
+  border-radius: 0 0 10px 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: -1px 2px 1px #a59f8e;
+}
+
+.hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader.active {
+  color: #772b0a;
+  background: linear-gradient(#FFF9DC 45%,#F1DC8A 55%);
+}
+
+.hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:hover,
+.hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:focus {
+      color: #772b0a;
+      background: linear-gradient(#FFF9DC 45%,#F1DC8A 55%);
+}
+
+.hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader:hover span {
+  background: none;
+}
+
+.hunterInfoView-achievementsBlock .mousehuntTabContentContainer-padding {
+    background: #e9e1c6;
+    border: none;
+    box-shadow: none;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-treasureMaps-left-currentMap-image {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-width: 1px;
+}
+
+.hunterInfoView-treasureMaps-left {
+    vertical-align: middle;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-treasureMaps-left-currentMap-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound-ranking {
+    width: 120px;
+    margin-top: 10px;
+    margin-bottom: -5px;
+    font-size: 11px;
+    color: #772b0a;
+}
+
+.hunterInfoView-treasureMaps-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -10px;
+    margin-right: -5px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound {
+    font-size: 17px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound-label {
+    font-size: 11px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-achievementsBlock .itemImage {
+  width: 45px;
+  height: 45px;
+  box-shadow: none;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-achievementsBlock .itemImage-container {
+  display: block;
+  padding: 3px;
+  background-color: #fff;
+  border: 1px solid #625d43;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-achievementsBlock .hunterInfoView-teamTab-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 338px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-achievementsBlock .hunterInfoView-teamTab-content .quantity {
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-favoritesBlock .hunterInfoView-favoritesBlock-body {
+  background: #e9e1c6;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseImage.empty {
+  background-color: #e9e1c6;
+  border: 1px solid #a0a0a0;
+  box-shadow: none;
+  opacity: .75;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseImage {
+  border-width: 2px;
+}
+
+.mouseCrownsView-group-mouse-catches {
+  padding: 2px 6px;
+  margin-top: -5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.mouseCrownsView-group-mouse-name {
+  font-size: 11px;
+}
+
+.mouseCrownsView-group-mouse.empty.highlight {
+  display: none;
+}
+
+.mouseCrownsView-group-mouse.highlight .mouseCrownsView-group-mouse-image {
+  width: 132px;
+  height: 200px;
+}
+
+.mouseCrownsView-group-mouse.highlight .mouseCrownsView-group-mouse-image .mouseCrownsView-crown {
+  top: 0;
+}
+
+.highlight a.mouseCrownsView-group-mouse-favouriteButton.active {
+  top: 0;
+  right: 0;
+}
+
+.mouseCrownsView-group-mouse-padding {
+  padding: 0;
+}
+
+.mouseCrownsView-group-mice {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+}
+
+.mouseCrownsView-group-mouse {
+  width: 108px;
+}
+
+.mouseCrownsView-group-mouse-image {
+  width: 100%;
+  height: 150px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.bronze .mouseCrownsView-group-mouse {
+  width: 95px;
+}
+
+.bronze .mouseCrownsView-group-mouse-image {
+  height: 130px;
+}
+
+.none .mouseCrownsView-group-mouse-catches {
+  font-size: 12px;
+}
+
+.none .mouseCrownsView-group-mouse {
+  width: 76px;
+}
+
+.none .mouseCrownsView-group-mouse-image {
+  height: 102px;
+}
+
+.mouseCrownsView-group {
+  padding: 10px;
+  margin: 10px -10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px #a7a7a7;
+}
+
+.mouseCrownsView-group.platinum {
+  background-color: #d6d6fb;
+  box-shadow: 0 0 1px 1px #7e6af9;
+}
+
+.mouseCrownsView-group.gold {
+  background-color: #fbf5ce;
+  box-shadow: 0 0 1px 1px #cfc791;
+}
+
+.mouseCrownsView-group.silver {
+  background-color: #d2e7fe;
+  box-shadow: 0 0 1px 1px #8fb9e6;
+}
+
+.mouseCrownsView-group.bronze {
+  background-color: #ffe6d4;
+  box-shadow: 0 0 1px 1px #d8af91;
+}
+
+.mouseCrownsView-group-header {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  border-bottom: none;
+}
+
+.mouseCrownsView-group .mouseCrownsView-group-mouse-padding {
+background-color: #fff;
+}
+
+.mouseCrownsView-group-mouse.highlight.favourite {
+  width: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.mouseCrownsView-group.favourite .mouseCrownsView-group-header .mouseCrownsView-crown,
+.mouseCrownsView-group.favourite .mouseCrownsView-group-header-name {
+  display: none;
+}
+
+.favourite .mouseCrownsView-group-header {
+  padding: 0;
+  margin: 0;
+}

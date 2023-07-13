@@ -79,3 +79,9 @@ a.treasureMapView-copyShareLinkButton.mousehuntActionButton {
 .riftWhiskerWoodsHUD-zone-rageLevel {
   font-size: 14px;
 }
+
+/* ronzas window */
+span.chromeBitImage,
+span.voucherImage {
+    vertical-align: middle;
+}

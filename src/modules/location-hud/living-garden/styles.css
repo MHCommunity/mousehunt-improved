@@ -1,5 +1,5 @@
 .livingGardenHud .essenceContainer .item {
-    padding-top: 28px;
+    padding-top: 26px;
     padding-bottom: 5px;
     font-size: 14px;
     text-shadow: 0 0 4px #5e5e5e;
@@ -39,4 +39,3 @@
     margin-left: 22px;
     text-align: left;
 }
-

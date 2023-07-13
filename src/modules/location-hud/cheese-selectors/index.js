@@ -56,10 +56,8 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
 
     cheeseContainer.setAttribute('data-item-type', cheese.type);
     cheeseContainer.setAttribute('data-item-classification', 'bait');
-    cheeseContainer.addEventListener('click', (e) => {
-      e.preventDefault();
-      hg.utils.TrapControl.toggleItem(e.target);
-    });
+    // add onclick attribute to the cheeseContainer
+    cheeseContainer.setAttribute('onclick', 'hg.utils.TrapControl.toggleItem(this); return false;');
 
     cheesesContainer.appendChild(cheeseContainer);
   });

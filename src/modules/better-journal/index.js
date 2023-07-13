@@ -83,7 +83,6 @@ const updateJournalText = () => {
     ['Luckily she was not interested in my cheese or charms!', ''],
     ['while she was in my trap, but', 'and'],
     [' while scampering off!', ''],
-    ['dropped a Relic Hunter Scroll Case', 'dropped a Relic Hunter Scroll Case.'],
     ['The mouse stole', ' The mouse stole'],
     ['Chest, I can', 'Chest, '],
     ['<br>I should ', 'I can '],

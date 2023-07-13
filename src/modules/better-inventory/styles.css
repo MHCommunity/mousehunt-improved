@@ -222,7 +222,6 @@ input.inventoryPage-tagDirectory-searchBar-input {
 .mousehuntHud-page-subTabContent-prefix.clear-block {
   height: 25px;
   margin-top: -20px;
-  overflow: hidden;
   color: #fff;
 }
 

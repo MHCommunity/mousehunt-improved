@@ -265,8 +265,7 @@ img.tournamentPage-profile-details-rules-icon {
   font-weight: 400;
 }
 
-.tournamentPage-profile-details-padding div:nth-child(2),
-.tournamentPage-profile-details-reward:nth-child(4) .tournamentPage-profile-details-padding div:nth-child(3) {
+.tournamentPage-profile-details-padding div:nth-child(2) {
   position: absolute;
   top: 5px;
   left: 5px;
@@ -490,13 +489,15 @@ img.pointsMouseIcon {
   font-size: 12px;
 }
 
-.tournamentStatusHud .timer {
+.tournamentStatusHud .timer, .tournamentStatusHud.pending .timer {
   top: 0;
   left: 241px;
   width: auto;
   padding-top: 3px;
   padding-right: 10px;
   font-size: 11px;
+  line-height: initial;
+  color: #000;
   background: linear-gradient(166deg, #b4d3da 0%, #acc3ca 50%, #b4d3da 96%);
   background-color: #acc3ca;
   border-top-right-radius: 15px;

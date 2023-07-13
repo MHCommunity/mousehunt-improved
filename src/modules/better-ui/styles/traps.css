@@ -97,7 +97,7 @@
 }
 
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer-stats {
-  padding-top: 50px;
+  padding-top: 35px;
   margin-right: -9px;
   margin-left: -9px;
   box-shadow: none;
@@ -253,4 +253,8 @@ span.campPage-trap-armedItem-skin-description-content br {
 
 .campPage-trap-blueprintContainer .campPage-trap-trapEffectivenessBar {
   display: none;
+}
+
+.campPage-trap-armedItem.inactive {
+  background: #f6f3eb;
 }

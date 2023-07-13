@@ -25,6 +25,11 @@
   display: block;
 }
 
+.treasureMapView-hunter-wrapper:hover .quickSendWrapper {
+  top: 30px;
+  display: block;
+}
+
 .quickSendInput {
   width: 65px;
   padding: 1px;
