@@ -127,8 +127,6 @@
 
 .journal .entry.riftFuroma-energyLost .journalbody::before {
   position: absolute;
-  /* top: 0; */
-  /* left: -15px; */
   top: -12px;
   left: -96px;
   display: block;
