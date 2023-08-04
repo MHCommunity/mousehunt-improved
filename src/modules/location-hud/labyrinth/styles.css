@@ -395,3 +395,12 @@
   animation: mh-ui-sway-side-to-side .75s;
   animation-iteration-count: 3;
 }
+
+.labyrinthHUD-clueDrawer-barPadding {
+    padding: 1px 4px 0 1px;
+}
+
+.labyrinthHUD-clueDrawer-bar {
+    border-radius: 0;
+    opacity: .9;
+}
