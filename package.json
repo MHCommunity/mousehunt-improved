@@ -9,7 +9,6 @@
     "node": ">=16"
   },
   "scripts": {
-    "prepare": "husky install",
     "dev": "rollup -wc rollup.conf.js",
     "clean": "del-cli dist",
     "build:js": "rollup -c rollup.conf.js",
@@ -40,7 +39,6 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-markdownlint": "^0.4.1",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "rollup-plugin-userscript": "^0.1.1",
     "stylelint": "^15.4.0",
