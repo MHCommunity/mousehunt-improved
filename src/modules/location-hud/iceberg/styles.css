@@ -126,8 +126,8 @@
 .icebergHud .timeline .resetIceberg {
     top: 10px;
     right: 25px;
-    cursor: pointer;
     z-index: 4;
+    cursor: pointer;
 }
 
 .icebergHud .timeline .resetIceberg:hover,

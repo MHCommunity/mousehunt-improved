@@ -250,6 +250,8 @@
 
 .labyrinthHUD-clueDrawer-bar {
   height: 10px;
+  border-radius: 0;
+  opacity: .9;
 }
 
 .labyrinthHUD-clueDrawer-barFrame {
@@ -398,9 +400,4 @@
 
 .labyrinthHUD-clueDrawer-barPadding {
     padding: 1px 4px 0 1px;
-}
-
-.labyrinthHUD-clueDrawer-bar {
-    border-radius: 0;
-    opacity: .9;
 }
