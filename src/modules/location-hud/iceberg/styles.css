@@ -122,3 +122,16 @@
   color: #000;
   text-align: left;
 }
+
+.icebergHud .timeline .resetIceberg {
+    top: 10px;
+    right: 25px;
+    cursor: pointer;
+    z-index: 4;
+}
+
+.icebergHud .timeline .resetIceberg:hover,
+.icebergHud .timeline .resetIceberg:focus {
+    color: #a5cedf;
+    opacity: 1;
+}
