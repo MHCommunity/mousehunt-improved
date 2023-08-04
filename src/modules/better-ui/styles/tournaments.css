@@ -379,7 +379,7 @@ h2.tournamentPage-profile-details-mouseGroup-name {
   position: absolute;
   top: 90%;
   left: -50%;
-  z-index: 11;
+  z-index: 31;
   display: none;
   width: 275px;
   color: #4e300b;
