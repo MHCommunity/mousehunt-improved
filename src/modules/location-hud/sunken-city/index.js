@@ -15,7 +15,6 @@ const updateHudImages = () => {
       .replace('?v=1', '')
       .replace('?v=2', '');
 
-
     if (upscaleMapping[normalizedImage]) {
       image.src = `https://www.mousehuntgame.com/images/items/${upscaleMapping[normalizedImage]}?cv=2`;
     }
