@@ -85,3 +85,14 @@ span.chromeBitImage,
 span.voucherImage {
     vertical-align: middle;
 }
+
+/* Don't show the clue circle for the blank profile of empty map slots */
+.treasureMapView-hunter.empty .treasureMapView-hunter-miceCaught {
+  display: none;
+}
+
+/* Make facebook images correct size even when facebook is blocked */
+img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
+  width: 44px;
+  height: 44px;
+}
