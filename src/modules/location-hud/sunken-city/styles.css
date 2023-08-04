@@ -1,0 +1,173 @@
+.sunkenCityHud .craftingItems a .item.quantity {
+  display: inline-block;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.sunkenCityHud .leftSidebar .craftingItems a img {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+}
+
+.sunkenCityHud .leftSidebar .craftingItems a:first-child {
+  margin-top: -3px;
+}
+
+.sunkenCityHud .leftSidebar .craftingItems {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  margin-top: -1px;
+  border: 1px solid #7e7e7e;
+  border-radius: 0 5px 5px 0;
+}
+
+.sunkenCityHud .leftSidebar {
+  border: 1px solid #333;
+}
+
+.sunkenCityHud .leftSidebar .craftingItems a {
+  line-height: initial;
+  border-bottom: 1px solid #7e7e7e;
+  border-radius: 0;
+}
+
+.sunkenCityHud .leftSidebar .craftingItems a:last-child {
+  border-bottom: none;
+}
+
+.sunkenCityHud .sunkenCharms a .itemImage {
+  float: none;
+  width: unset;
+  height: unset;
+}
+
+.sunkenCityHud .sunkenCharms a .clear-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sunkenCityHud .sunkenCharms a .quantity {
+  margin-left: 5px;
+  font-size: 14px;
+  line-height: initial;
+}
+
+.sunkenCityHud .sunkenCharms a .itemImage img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+
+.sunkenCityHud .sunkenCharms a .armNow,
+.sunkenCityHud .sunkenCharms a.disabled .armNow {
+  position: absolute;
+  top: 9px;
+  left: 25px;
+  display: none;
+}
+
+.sunkenCityHud .sunkenCharms a:hover .armNow,
+.sunkenCityHud .sunkenCharms a:focus .armNow,
+.sunkenCityHud .sunkenCharms a.disabled:hover .armNow,
+.sunkenCityHud .sunkenCharms a.disabled:focus .armNow {
+  display: block;
+}
+
+.sunkenCityHud .sunkenCharms {
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-around;
+  height: unset;
+  background: #333;
+  border: 1px solid #7e7e7e;
+  border-radius: 5px 0 0 5px;
+}
+
+.sunkenCityHud .sunkenCharms a {
+  margin: 0;
+  background: none;
+  border-bottom: 1px solid #7e7e7e;
+  border-radius: 0;
+}
+
+.sunkenCityHud .sunkenCharms a:last-child {
+  border-bottom: none;
+}
+
+.sunkenCityHud .sidebar .oxygen .item,
+.sunkenCityHud .sidebar .oxygen .item.long {
+  margin-left: 3px;
+  font-size: 13px;
+}
+
+.sunkenCityHud .sidebar .oxygen {
+  color: transparent;
+}
+
+.sunkenCityHud .sidebar .oxygen .item::after {
+  position: absolute;
+  width: 25px;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #000;
+  text-align: left;
+  content: "O₂";
+}
+
+.sunkenCityHud .sidebarTitle {
+  font-size: 16px;
+  background-color: #474747;
+  border: none;
+}
+
+.sunkenCityHud .sidebarContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 39px;
+  border: none;
+}
+
+.sunkenCityHud .sidebarContent .zoneName {
+  padding-top: 0;
+}
+
+.sunkenCityHud .diveControls {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #8b93a9;
+  box-shadow: 0 0 20px #fff inset, 0 -6px 7px #4b587d inset;
+}
+
+.sunkenCityHud .sidebar {
+  height: 98px;
+  border: 1px solid #7e7e7e;
+  border-bottom-right-radius: 3px;
+}
+
+.sunkenCityHud .sidebar .diveButton {
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.sunkenCityHud .baitWarning {
+  bottom: 30%;
+  left: 154px;
+  display: block;
+  width: 330px;
+  font-size: 12px;
+  line-height: 15px;
+  color: #000;
+  background-color: #ffbfbf;
+  border-radius: 10px;
+  box-shadow: none;
+}

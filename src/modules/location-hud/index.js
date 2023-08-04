@@ -9,6 +9,7 @@ import forbiddenGrove from './forbidden-grove';
 import fortRox from './fort-rox';
 import iceberg from './iceberg';
 import labyrinth from './labyrinth';
+import sunkenCity from './sunken-city';
 import vrift from './vrift';
 
 import balacksCoveStyles from './balacks-cove/styles.css';
@@ -28,6 +29,7 @@ import livingGardenStyles from './living-garden/styles.css';
 import labyrinthStyles from './labyrinth/styles.css';
 import muridaeMarketStyles from './muridae-market/styles.css';
 import quesoStyles from './queso/styles.css';
+import sunkenCityStyles from './sunken-city/styles.css';
 import toxicSpillStyles from './toxic-spill/styles.css';
 import vriftStyles from './vrift/styles.css';
 import wwriftStyles from './wwrift/styles.css';
@@ -59,6 +61,9 @@ const main = () => {
     break;
   case 'rift_valour':
     vrift();
+    break;
+  case 'sunken_city':
+    sunkenCity();
     break;
   case 'meadow':
   case 'kings_arms':
@@ -106,6 +111,7 @@ const getStyles = () => {
     labyrinthStyles,
     muridaeMarketStyles,
     quesoStyles,
+    sunkenCityStyles,
     toxicSpillStyles,
     vriftStyles,
     wwriftStyles,
