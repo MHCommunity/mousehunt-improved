@@ -4,7 +4,7 @@ const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) =>
 
   let timeLeftText = `${hours}h ${minutes}m until ${stage}`;
 
-  if (nextStageOffset && nextStageText) {
+  if (nextStageOffsetMinutes && nextStageText) {
     const totTimeMinutes = (hours * 60) + minutes + nextStageOffsetMinutes;
     timeLeftText += `, <span class="offset">${Math.floor(totTimeMinutes / 60) }h ${totTimeMinutes % 60}m until ${nextStageText}</span>`;
   }
