@@ -1,11 +1,12 @@
-const getClosingText = (closes, stage, nextStageOffset, nextStageText) => {
+const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) => {
   const hours = Math.floor(closes);
   const minutes = Math.ceil((closes - Math.floor(closes)) * 60);
 
   let timeLeftText = `${hours}h ${minutes}m until ${stage}`;
 
   if (nextStageOffset && nextStageText) {
-    timeLeftText += `, <span class="offset">${hours + nextStageOffset}h ${minutes}m until ${nextStageText}</span>`;
+    const totTimeMinutes = (hours * 60) + minutes + nextStageOffsetMinutes;
+    timeLeftText += `, <span class="offset">${Math.floor(totTimeMinutes / 60) }h ${totTimeMinutes % 60}m until ${nextStageText}</span>`;
   }
 
   return timeLeftText;
@@ -24,15 +25,15 @@ const updateClosingTime = () => {
   if (partialrotation < 16) {
     // currently low, whcih means its (16 hours - current time) until mid flooding, then one more hour after than until high tide
     const closes = 16 - partialrotation;
-    timeLeftText = getClosingText(closes, 'Mid Tide', 1, 'High Tide');
+    timeLeftText = getClosingText(closes, 'Mid Tide', 60, 'High Tide');
   } else if (partialrotation >= 16 && partialrotation < 17) {
     // currently mid, which means its (1hr - current time) until high tide, then 40 minutes after that until low mid time again
     const closes = 1 - (partialrotation - 16);
-    timeLeftText = getClosingText(closes, 'High Tide', 0.66666, 'Low Tide');
+    timeLeftText = getClosingText(closes, 'High Tide', 40, 'Low Tide');
   } else if (partialrotation >= 17 && partialrotation < 17.66666) {
     // currently high, which means its (40 minutes - current time) until mid tide again, then 1 hour after that until low tide
     const closes = 0.66666 - (partialrotation - 17);
-    timeLeftText = getClosingText(closes, 'Low Tide', 1, 'Mid Tide');
+    timeLeftText = getClosingtimeLeftTextText(closes, 'Low Tide', 60, 'Mid Tide');
   }
 
   const timeLeftEl = document.createElement('div');
