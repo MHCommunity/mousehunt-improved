@@ -33,11 +33,6 @@ const updateJournalText = () => {
     return;
   }
 
-  const isJournalEntryVisible = document.querySelector('.journal .entry');
-  if (! isJournalEntryVisible) {
-    return;
-  }
-
   modifyText('.journal .entry .journalbody .journaltext', [
     // Hunt entries
     ['I sounded the Hunter\'s Horn and was successful in the hunt!', ''],
