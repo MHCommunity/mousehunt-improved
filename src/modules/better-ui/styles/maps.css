@@ -3,3 +3,7 @@
   padding: 10px;
   background: #edfff2;
 }
+
+.treasureMapView-hunter.empty img.treasureMapView-hunter-image {
+  opacity: .4;
+}

@@ -224,3 +224,25 @@ a.mousehuntHud-shield.golden:hover {
   padding: 2px 3px;
   font-size: 13px;
 }
+
+
+/* cleaner trap image on camp page, hide auras a LE until hovered */
+.trapImageView-layer.limitedEdition {
+  top: unset;
+  bottom: -270px;
+  left: -135px;
+  background-size: 200px;
+}
+
+.trapImageView-layer.limitedEdition,
+.trapImageView-trapAura.active,
+.trapImageView-zoomButton {
+  opacity: 0;
+  transition: all .6s ease-in-out;
+}
+
+.trapImageView:hover .trapImageView-layer.limitedEdition,
+.trapImageView:hover .trapImageView-trapAura.active,
+.trapImageView:hover .trapImageView-zoomButton {
+  opacity: 1;
+}
