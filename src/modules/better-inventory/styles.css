@@ -4,10 +4,6 @@
   border-radius: 0;
 }
 
-.inventoryPage-item-margin {
-  padding-bottom: 10px;
-}
-
 .inventoryPage-item-content-action {
   margin-top: 15px;
   margin-left: 15px;
@@ -194,7 +190,7 @@ a.inventoryPage-item-larryLexicon {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  height: 55px;
 }
 
 .mousehuntHud-page-subTabContent.recipe .inventoryPage-item .itemImage img {
@@ -207,6 +203,7 @@ a.inventoryPage-item-larryLexicon {
 }
 
 .inventoryPage-item-content-description-consumedItem.error {
+  gap: 2px;
   background-color: rgb(245 221 221 / 82%);
   border-radius: 7px;
 }

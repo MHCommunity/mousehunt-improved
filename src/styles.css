@@ -19,6 +19,10 @@
   opacity: 1;
 }
 
+.outline {
+  outline: 1px solid #f00;
+}
+
 /* adblock */
 a[onclick="hg.utils.PageUtil.setPage('JoinDiscord'); return false;"],
 .pageSidebarView-block.ad,
