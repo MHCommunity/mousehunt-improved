@@ -238,11 +238,15 @@ a.mousehuntHud-shield.golden:hover {
 .trapImageView-trapAura.active,
 .trapImageView-zoomButton {
   opacity: 0;
-  transition: all .6s ease-in-out;
 }
 
 .trapImageView:hover .trapImageView-layer.limitedEdition,
 .trapImageView:hover .trapImageView-trapAura.active,
 .trapImageView:hover .trapImageView-zoomButton {
   opacity: 1;
+}
+
+/* fix zoom button position */
+a.trapImageView-zoomButton {
+  top: 85%;
 }
