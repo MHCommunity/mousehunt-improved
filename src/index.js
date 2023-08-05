@@ -1,5 +1,5 @@
 // Utilities
-import { addBodyClasses, addUIStyles } from './modules/utils';
+import { addUIStyles } from './modules/utils';
 
 // Core 'Better' modules
 import betterInventory from './modules/better-inventory';
@@ -99,7 +99,7 @@ const modules = [
 
 // enableDebugMode();
 
-const addSettings = () => {
+const main = () => {
   debug('Starting MH UI');
 
   addSettingsTab('better-mh-settings', 'Better MH');
@@ -141,11 +141,6 @@ const addSettings = () => {
   });
 
   eventRegistry.doEvent('better-mh-after-load');
-};
-
-const main = () => {
-  addBodyClasses();
-  addSettings();
 };
 
 // Start it up.

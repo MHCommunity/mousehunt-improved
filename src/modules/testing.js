@@ -1,17 +1,22 @@
 // import { addUIStyles } from './utils';
 
 const testing = () => {
-  window.mhutils = {
+  const functions = {
     addStyles,
     onAjaxRequest,
     onOverlayChange,
+    onOverlayClose,
+    getDialogMapping,
+    onDialogShow,
+    onDialogHide,
     onPageChange,
     onTrapChange,
     onEvent,
     onTravel,
+    onNavigation,
     getCurrentPage,
     getCurrentTab,
-    getCurrentSubTab,
+    getCurrentSubtab,
     isOverlayVisible,
     getCurrentOverlay,
     getCurrentLocation,
@@ -26,6 +31,7 @@ const testing = () => {
     getUserItems,
     getUserSetupDetails,
     addSubmenuItem,
+    addMouseripLink,
     addItemToGameInfoBar,
     createPopup,
     createImagePopup,
@@ -34,14 +40,25 @@ const testing = () => {
     createLarryPopup,
     createPaperPopup,
     showHornMessage,
+    toggleHornDom,
+    showHuntersHornMessage,
+    dismissHuntersHornMessage,
     makeElementDraggable,
     makeElement,
+    makeButton,
     createChoicePopup,
     createFavoriteButton,
     wait,
     clog,
     debug,
+    enableDebugMode,
+    run,
+    isDarkMode,
+    matchesCurrentPage,
   };
+
+  // create the window.mhutils object if it doesnt exist, otherwise merge the functions into it
+  window.mhutils = window.mhutils ? { ...window.mhutils, ...functions } : functions;
 };
 
 const trackEvents = () => {

@@ -307,7 +307,7 @@ const checkForQuestSmash = () => {
     return;
   }
 
-  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubTab()) { // eslint-disable-line no-undef
+  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) { // eslint-disable-line no-undef
     return;
   }
 
