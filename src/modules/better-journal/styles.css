@@ -309,7 +309,6 @@
 #overlayPopup.hunting_summary .baitContainer,
 #overlayPopup.hunting_summary .lootContainer {
   display: grid;
-  grid-template-columns: repeat(4, 161px);
   margin-bottom: 20px;
   border: 1px solid #ccc;
 }
@@ -373,7 +372,7 @@
 }
 
 #overlayPopup.hunting_summary .lootContainer a {
-    width: auto;
+    width: 160px;
 }
 
 #overlayPopup.hunting_summary .baitContainer a .wrapper {
