@@ -28,6 +28,16 @@ const modifyText = (selector, strings) => {
  * Update text in journal entries.
  */
 const updateJournalText = () => {
+  const isJournalHidden = document.querySelector('.journalContainer[style*="display: none"]');
+  if (isJournalHidden) {
+    return;
+  }
+
+  const isJournalEntryVisible = document.querySelector('.journal .entry');
+  if (! isJournalEntryVisible) {
+    return;
+  }
+
   modifyText('.journal .entry .journalbody .journaltext', [
     // Hunt entries
     ['I sounded the Hunter\'s Horn and was successful in the hunt!', ''],
