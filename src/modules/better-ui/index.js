@@ -9,6 +9,7 @@ import friends from './styles/friends.css';
 import footer from './styles/footer.css';
 import overlays from './styles/overlays.css';
 import profile from './styles/profile.css';
+import recipes from './styles/recipes.css';
 import scoreboards from './styles/scoreboards.css';
 import select2 from './styles/select2.css';
 import sendSupplies from './styles/send-supplies.css';
@@ -22,6 +23,7 @@ import maps from './styles/maps.css';
 // scripts
 import updateFriends from './friends';
 import updateTournaments from './tournaments';
+import updateRecipes from './recipes';
 
 export default () => {
   addUIStyles([
@@ -31,6 +33,7 @@ export default () => {
     footer,
     overlays,
     profile,
+    recipes,
     scoreboards,
     select2,
     sendSupplies,
@@ -45,4 +48,5 @@ export default () => {
 
   updateFriends();
   updateTournaments();
+  updateRecipes();
 };
