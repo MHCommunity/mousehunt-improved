@@ -28,11 +28,6 @@ const modifyText = (selector, strings) => {
  * Update text in journal entries.
  */
 const updateJournalText = () => {
-  const isJournalHidden = document.querySelector('.journalContainer[style*="display: none"]');
-  if (isJournalHidden) {
-    return;
-  }
-
   modifyText('.journal .entry .journalbody .journaltext', [
     // Hunt entries
     ['I sounded the Hunter\'s Horn and was successful in the hunt!', ''],
@@ -144,8 +139,6 @@ const updateJournalText = () => {
       link.appendChild(span);
     }
   }
-
-  eventRegistry.doEvent('journal_replacements_finished');
 };
 
 const updateMouseImageLinks = () => {

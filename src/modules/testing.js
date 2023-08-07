@@ -86,7 +86,6 @@ const trackEvents = () => {
 
 const main = async () => {
   trackEvents();
-  testing();
 };
 
 export default main;
