@@ -294,13 +294,13 @@ input.inventoryPage-tagDirectory-searchBar-input {
   margin-bottom: 10px;
 }
 
-.inventoryPage-craftingTable-slot-item.empty .inventoryPage-craftingTable-slot-item-controls {
-  visibility: visible;
-  opacity: .8;
-}
-
 .inventoryPage-craftingTable-slot-item-controls {
-  outline: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 17px;
+  margin: 0;
+  background: transparent;
 }
 
 .inventoryPage-craftingTable-slot-item-controls input {
@@ -316,4 +316,71 @@ input.inventoryPage-tagDirectory-searchBar-input {
 
 .inventoryPage-craftingTable-slot-item[data-owned="1"] .inventoryPage-craftingTable-slot-item-controls-increment {
   opacity: .2;
+}
+
+
+
+
+
+
+.inventoryPage-craftingTable-slot {
+    width: 160px;
+    padding: 5px;
+    margin: 5px;
+    background: #f6f3eb;
+    border: 1px solid #d3cecb;
+    border-radius: 3px;
+    box-shadow: inset -1px 1px 3px 0 #d3cecb;
+}
+
+.inventoryPage-craftingTable-slotContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    background-color: #f6f3eb;
+}
+
+.inventoryPage-craftingTable-slot-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.inventoryPage-craftingTable-slot-item.empty .inventoryPage-craftingTable-slot-item-controls {
+    display: none;
+}
+
+.inventoryPage-craftingTable-slot-item.empty  .inventoryPage-craftingTable-slot-item-nameContainer {
+    display: none;
+}
+
+.inventoryPage-craftingTable-slot-item.empty .inventoryPage-craftingTable-slot-item-name {
+    color: transparent;
+}
+
+.inventoryPage-craftingTable-slot-item-quantity {
+    display: none;
+}
+
+.inventoryPage-craftingTable-slot-item-name {
+    font-size: 11px;
+    font-weight: 100;
+}
+
+.inventoryPage-craftingTable-slot-item-nameContainer {
+    width: 100%;
+    height: auto;
+    margin: 5px;
+}
+
+.inventoryPage-craftingTable-slot-item .itemImage {
+    width: 55px;
+    height: 55px;
+}
+
+.inventoryPage-craftingTable-slot-item img {
+    width: 55px;
+    height: 55px;
 }
