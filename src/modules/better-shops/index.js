@@ -22,7 +22,7 @@ const updatePlaceholderText = () => {
 
       // maxQty = parseInt(maxQty) ? parseInt(maxQty) + 1 : 0;
 
-      input.setAttribute('placeholder', `You can afford ${maxQty}`);
+      input.setAttribute('placeholder', maxQty);
     });
   }
 };
