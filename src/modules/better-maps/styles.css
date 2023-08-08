@@ -1,0 +1,92 @@
+.treasureMapView-block.treasureMapView-scavengerHunt {
+  min-height: auto;
+  padding: 10px;
+  background: #edfff2;
+}
+
+.treasureMapView-hunter.empty img.treasureMapView-hunter-image {
+  opacity: .4;
+}
+
+.treasureMapDialogView-userSelector .userSelectorView-content {
+  height: 550px;
+}
+
+.treasureMapDialogView .userSelector-cell.name {
+  font-size: 12px;
+}
+
+td.userSelector-cell.map_num_clues_found.number {
+  font-size: 8px;
+}
+
+th.userSelector-column.is_favourite {
+  color: transparent;
+}
+
+.userSelector-table th.userSelectorView-sortByLink {
+  text-align: center;
+}
+
+.userSelector-table th.userSelectorView-sortByLink::after {
+  margin-right: 10px;
+  margin-left: 1px;
+}
+
+.userSelectorView-filterContainer {
+  font-size: 12px;
+}
+
+label.userSelectorView-filter-label {
+  color: transparent;
+}
+
+.treasureMapUserSelectorView-toggleFavouritesContainer.treasureMapView-block-title label {
+  font-weight: 400;
+}
+
+.treasureMapDialogView .userSelector-cell abbr {
+  text-decoration: none;
+}
+
+.treasureMapDialogView-userSelector-selectedUserList-content {
+  counter-reset: sent left;
+}
+
+.treasureMapDialogView-userSelector-selectedUser {
+  position: relative;
+  counter-increment: sent;
+}
+
+.treasureMapDialogView-userSelector-selectedUser.empty {
+   counter-increment: left;
+}
+
+
+.treasureMapUserSelectorView-actions:hover .treasureMapDialogView-userSelector-selectedUser::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  text-shadow: -1px 0 1px #000, 1px 0 1px #000, 0 0 0 #000, 0 -1px 1px #000, 0 1px 1px #000, 0 0 0 #000;
+  content: counter(sent);
+}
+
+.treasureMapUserSelectorView-actions:hover .treasureMapDialogView-userSelector-selectedUser.empty::after {
+  content: counter(left);
+}
+
+.userSelector-table .userSelector-groupHeading td {
+  padding: 5px 0 2px 5px;
+  border-right: none;
+  border-left: none;
+}
+
+.userSelector-table .userSelector-groupHeading td:first-child {
+  border-top: none;
+}

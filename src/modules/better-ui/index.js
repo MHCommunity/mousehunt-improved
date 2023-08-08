@@ -18,7 +18,6 @@ import tabs from './styles/tabs.css';
 import team from './styles/team.css';
 import tournamentStyles from './styles/tournaments.css';
 import traps from './styles/traps.css';
-import maps from './styles/maps.css';
 
 // scripts
 import updateFriends from './friends';
@@ -43,7 +42,6 @@ export default () => {
     team,
     tournamentStyles,
     traps,
-    maps,
   ].join('\n'));
 
   updateFriends();
