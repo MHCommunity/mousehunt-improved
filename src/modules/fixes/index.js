@@ -45,6 +45,15 @@ const main = () => {
   if ('item' === getCurrentPage()) {
     updateItemClassificationLinks();
   }
+
+  // if twttr is undefined, then set a dummy function to prevent errors
+  if (typeof twttr === 'undefined') {
+    window.twttr = {
+      widgets: {
+        load: () => {},
+      },
+    };
+  }
 };
 
 export default function itemLinks() {
