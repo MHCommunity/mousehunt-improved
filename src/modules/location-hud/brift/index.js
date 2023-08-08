@@ -301,7 +301,7 @@ const main = () => {
   let color = 'yellow';
   if (mistLevel >= 7) {
     color = 'green';
-  } else if (mistLevel >= 19) {
+  } if (mistLevel >= 19) {
     color = 'red';
   }
 
