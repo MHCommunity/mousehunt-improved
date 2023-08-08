@@ -136,3 +136,7 @@
     color: #a5cedf;
     opacity: 1;
 }
+
+#icebergDrill {
+  z-index: 2;
+}
