@@ -130,7 +130,7 @@
 
 .brift-ui .mouse-type-mouse-name {
   position: absolute;
-  bottom: 25px;
+  bottom: -30px;
   left: -25px;
   z-index: 2;
   display: none;

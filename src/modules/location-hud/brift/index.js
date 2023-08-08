@@ -4,7 +4,7 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
     wrapper.classList.add('active');
   }
 
-  const mtitle = makeElement('div', 'mouse-type-title', title);
+  const mtitle = makeElement('a', 'mouse-type-title', title);
   mtitle.addEventListener('click', () => {
     let id = 1426; // magical string.
     if ('terra' === type) {
@@ -24,7 +24,6 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
   mice.forEach((mouse) => {
     const mouseWrapper = makeElement('div', 'mouse-type-mouse');
     const mouseLink = makeElement('a', 'mouse-type-mouse-link');
-    mouseLink.href = '#';
     mouseLink.addEventListener('click', (e) => {
       hg.views.MouseView.show(mouse);
       e.preventDefault();
