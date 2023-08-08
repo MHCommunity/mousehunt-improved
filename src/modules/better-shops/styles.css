@@ -36,7 +36,6 @@
 }
 
 .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemPurchaseView-content-description {
-  height: 30px;
   overflow-y: scroll;
 }
 
