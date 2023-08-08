@@ -12,7 +12,6 @@ import profile from './styles/profile.css';
 import recipes from './styles/recipes.css';
 import scoreboards from './styles/scoreboards.css';
 import select2 from './styles/select2.css';
-import sendSupplies from './styles/send-supplies.css';
 import sidebar from './styles/sidebar.css';
 import tabs from './styles/tabs.css';
 import team from './styles/team.css';
@@ -36,7 +35,6 @@ export default () => {
     recipes,
     scoreboards,
     select2,
-    sendSupplies,
     sidebar,
     styles,
     tabs,

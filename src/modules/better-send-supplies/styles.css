@@ -67,3 +67,73 @@
   padding-bottom: 40px;
   margin-bottom: 10px;
 }
+
+.mhui-supply-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 5px;
+  margin-left: 0;
+  line-height: 20px;
+}
+
+input.mhui-supply-search-input {
+  padding: 9px;
+  margin-right: 10px;
+}
+
+form.mhui-supply-search-form {
+  display: flex;
+  align-items: center;
+}
+
+#supplytransfer .drawer .tabContent h2 {
+  display: inline-block;
+  width: 165px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-left: 80px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: unset;
+  border-color: #ccc;
+}
+
+#tsitu-supply-search {
+  display: none !important;
+}
+
+
+#supplytransfer .listContainer a.element.item.hidden {
+  display: none;
+}
+
+.mhui-supply-sort-wrapper a,
+.mhui-supply-sort-wrapper img {
+  width: 35px;
+  height: 20px;
+}
+
+.mhui-supply-sort-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 30%;
+}
+
+.mhui-supply-sort-wrapper a {
+  margin: 0 4px;
+  line-height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 2px 2px 3px #cdc9c6 inset;
+  text-align: center;
+  text-decoration: none;
+}
+
+.mhui-supply-sort-wrapper a:hover,
+.mhui-supply-sort-wrapper a.focus {
+  background-color: #cac0b2;
+}

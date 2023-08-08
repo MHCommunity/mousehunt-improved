@@ -16,6 +16,10 @@
   max-height: 75vh;
 }
 
+#supplytransfer .drawer {
+  padding-bottom: 75px;
+}
+
 .adventureBookPopup-titleContent {
   max-height: unset;
 }
