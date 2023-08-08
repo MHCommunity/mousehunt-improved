@@ -116,3 +116,16 @@
   flex-direction: column;
   align-items: center;
 }
+
+.itemViewContainer .itemViewStatBlock-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 46px;
+}
+
+.itemViewContainer .itemViewStatBlock-stat.cheeseEffect {
+  font-size: 9px;
+  text-align: center;
+}
