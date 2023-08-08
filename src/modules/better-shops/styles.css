@@ -30,6 +30,11 @@
   opacity: 0.3;
 }
 
+.itemPurchaseView-container.own_max:hover,
+.itemPurchaseView-container.own_max:focus {
+  opacity: 1;
+}
+
 .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemPurchaseView-content-description {
   height: 30px;
   overflow-y: scroll;
