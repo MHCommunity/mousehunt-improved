@@ -140,3 +140,25 @@
 #icebergDrill {
   z-index: 2;
 }
+
+.icebergHud .cutaway .wax .quantity, .icebergHud .cutaway .sticky .quantity {
+  width: 38px;
+  padding: 0;
+  margin-left: 3px;
+  font-size: 12px;
+  font-weight: 400;
+  border-color: #89989e;
+  border-radius: 3px 3px 4px 4px;
+}
+
+.icebergHud .cutaway .sticky .quantity {
+  margin-top: 25px;
+}
+
+.icebergHud .cutaway .drill .quantity {
+  top: 26px;
+  left: 108px;
+  font-size: 14px;
+  text-align: left;
+  text-shadow: 1px 1px #000;
+}
