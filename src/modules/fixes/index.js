@@ -51,6 +51,7 @@ const main = () => {
     window.twttr = {
       widgets: {
         load: () => {},
+        createShareButton: () => {},
       },
     };
   }
