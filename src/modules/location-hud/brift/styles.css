@@ -176,3 +176,20 @@
   border-radius: 10px;
   box-shadow: 0 0 10px 3px #4d4a4a;
 }
+
+.is_misting .mist-display::after {
+  top: 6px;
+  bottom: unset;
+  content: "↑";
+}
+
+.mist-display::after {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  left: 0;
+  font-weight: 900;
+  color: #2f3b1c;
+  text-align: center;
+  content: "↓";
+}
