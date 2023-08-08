@@ -1,9 +1,14 @@
 div#select2-drop.marketplaceView-header-search-dropdown {
   top: 105px !important;
-  left: 470px !important;
-  width: 258px !important;
-  padding-top: 5px;
+  left: 583px !important;
+  width: 260px !important;
+  padding-top: 5px !important;
   border-top-left-radius: 2px;
+  box-shadow: inset -198px 0 0 #fff, inset 0 1px 0 #5897fb;
+}
+
+.no-sidebar div#select2-drop.marketplaceView-header-search-dropdown {
+  left: 501px !important;
   box-shadow: inset -182px 0 0 #fff, inset 0 1px 0 #5897fb;
 }
 
