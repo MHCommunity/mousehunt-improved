@@ -3,27 +3,37 @@ const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-const addPagerListeners = () => {
-  const pagers = document.querySelectorAll('.pagerView-container.PageFriends_view_friends .pagerView-previousPageLink.pagerView-link');
-  if (pagers && pagers.length) {
-    pagers.forEach((pager) => {
-      pager.addEventListener('click', () => {
-        setTimeout(() => {
-          scrollToTop();
-        }, 250);
-      });
-    });
+const friendsPageChange = (event) => {
+  // if there is a 'pagerView-firstPageLink' in the calss, then go to the first page
+  if (event.target.classList.contains('pagerView-firstPageLink')) {
+    app.pages.FriendsPage.tab_view_friends.pager.showFirstPage(event);
+  } else if (event.target.classList.contains('pagerView-previousPageLink')) {
+    app.pages.FriendsPage.tab_view_friends.pager.showPreviousPage(event);
+  } else if (event.target.classList.contains('pagerView-nextPageLink')) {
+    app.pages.FriendsPage.tab_view_friends.pager.showNextPage(event);
+  } else if (event.target.classList.contains('pagerView-lastPageLink')) {
+    app.pages.FriendsPage.tab_view_friends.pager.showLastPage(event);
+  } else {
+    return;
   }
+  scrollToTop();
 };
 
-const scrollToTopOnFriendsPageChange = () => {
-  onAjaxRequest((req) => {
-    if (req && req.friends && req.friends.length) {
-      scrollToTop();
-    }
-  }, 'managers/ajax/pages/friends.php');
 
-  onPageChange({ friends: { show: addPagerListeners } });
+const scrollToTopOnFriendsPageChange = () => {
+  onNavigation(scrollToTop, {
+    page: 'friends',
+  });
+
+  const pagerLinks = document.querySelectorAll('.pagerView-container.PageFriends_view_friends .pagerView-section a');
+
+  // remove all the onclick attributes
+  pagerLinks.forEach((link) => {
+    link.removeAttribute('onclick');
+    link.addEventListener('click', (e) => {
+      friendsPageChange(e);
+    });
+  });
 };
 
 const goToFriendsPageOnSearchSelect = () => {
@@ -38,4 +48,5 @@ const goToFriendsPageOnSearchSelect = () => {
 export default () => {
   scrollToTopOnFriendsPageChange();
   goToFriendsPageOnSearchSelect();
+
 };
