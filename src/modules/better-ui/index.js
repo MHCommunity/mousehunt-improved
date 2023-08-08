@@ -5,8 +5,8 @@ import styles from './styles.css';
 
 import betterLuckyCatchIcon from './styles/better-lucky-catch-icon.css';
 import corkboard from './styles/corkboard.css';
-import friends from './styles/friends.css';
 import footer from './styles/footer.css';
+import friends from './styles/friends.css';
 import overlays from './styles/overlays.css';
 import profile from './styles/profile.css';
 import recipes from './styles/recipes.css';
@@ -28,8 +28,8 @@ export default () => {
   addUIStyles([
     betterLuckyCatchIcon,
     corkboard,
-    friends,
     footer,
+    friends,
     overlays,
     profile,
     recipes,

@@ -19,7 +19,6 @@ const friendsPageChange = (event) => {
   scrollToTop();
 };
 
-
 const scrollToTopOnFriendsPageChange = () => {
   onNavigation(scrollToTop, {
     page: 'friends',
@@ -48,5 +47,4 @@ const goToFriendsPageOnSearchSelect = () => {
 export default () => {
   scrollToTopOnFriendsPageChange();
   goToFriendsPageOnSearchSelect();
-
 };
