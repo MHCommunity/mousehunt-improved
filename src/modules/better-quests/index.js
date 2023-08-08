@@ -1,6 +1,5 @@
 import { addUIStyles } from '../utils';
 import styles from './styles.css';
-import m400 from './m400';
 
 /**
  * Update the text (and fix the link) for the 'smash this assignment' text.
@@ -64,8 +63,6 @@ const addQuestTabEventListener = () => {
   // Add an observer to the quest tab content.
   const observer = new MutationObserver(() => {
     updateObjectiveFooterDisplay();
-
-    m400();
   });
 
   observer.observe(questTabContent, { childList: true });
