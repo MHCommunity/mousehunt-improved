@@ -96,7 +96,16 @@ const resortItems = (sortType = 'alpha') => {
     return 0;
   });
 
+  pinnedItems.forEach((item) => {
+    container.insertBefore(item, container.firstChild);
+  });
+
   sorted.forEach((item) => {
+    // if it has a class of pinned, make sure it's the first item
+    if (item.classList.contains('pinned')) {
+      return;
+    }
+
     container.appendChild(item);
   });
 
@@ -141,11 +150,39 @@ const addSortButtons = () => {
   container.insertBefore(sortWrapper, container.childNodes[1]);
 };
 
+const getPinnedItems = () => {
+  const itemsToPin = [
+    getSetting('send-supplies-pinned-items-0', 'SUPER|brie+'),
+    getSetting('send-supplies-pinned-items-1', 'Empowered SUPER|b...'),
+    getSetting('send-supplies-pinned-items-2', 'Rift Cherries'),
+    getSetting('send-supplies-pinned-items-3', 'Rift-torn Roots'),
+    getSetting('send-supplies-pinned-items-4', 'Sap-filled Thorns'),
+  ];
+
+  items.forEach((item) => {
+    // if the details text content is in the array, then pin it
+    const details = item.querySelector('.details');
+    if (itemsToPin.includes(details.textContent)) {
+      // clone it and add the pinned class
+      const pinned = item.cloneNode(true);
+      pinned.classList.add('pinned');
+      pinnedItems.push(pinned);
+
+      item.parentNode.insertBefore(pinned, item.parentNode.firstChild);
+    }
+  });
+
+  items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
+};
+
 let items = [];
+const pinnedItems = [];
 let currentSort = null;
 
 const main = () => {
   items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
+  getPinnedItems();
+
   addSearch();
 
   resortItems('alpha'); // default to alpha sort

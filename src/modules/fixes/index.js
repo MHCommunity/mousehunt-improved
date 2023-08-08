@@ -39,7 +39,7 @@ const updateItemClassificationLinks = () => {
     link.removeAttribute('onclick');
     link.setAttribute('href', url);
   });
-}
+};
 
 const main = () => {
   if ('item' === getCurrentPage()) {

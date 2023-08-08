@@ -1,5 +1,6 @@
 import { addUIStyles } from '../utils';
 import styles from './styles.css';
+import getTradableItems from '../../tradable-items';
 
 const makeItem = (name, type, image, appendTo) => {
   const item = makeElement('div', 'quickSendItem');
@@ -48,10 +49,21 @@ const makeSendSuppliesButton = (btn, snuid) => {
   const quickSendLinkWrapper = makeElement('form', ['quickSendWrapper', 'hidden']);
   const itemsWrapper = makeElement('div', 'itemsWrapper');
 
-  makeItem('SUPER|brie+', 'super_brie_cheese', 'https://www.mousehuntgame.com/images/items/bait/transparent_thumb/3a23203e08a847b23f7786b322b36f7a.png?cv=2', itemsWrapper);
-  makeItem('Rare Map Dust', 'rare_map_dust_stat_item', 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/458789350947048fd501508b8bdc88b1.png?cv=2', itemsWrapper);
-  makeItem('Adorned Empyrean Jewel', 'floating_trap_upgrade_stat_item', 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/2f116b49f7aebb66942a4785c86ec984.png?cv=2', itemsWrapper);
-  makeItem('Rift-torn Roots', 'rift_torn_roots_crafting_item', 'https://www.mousehuntgame.com/images/items/crafting_items/transparent_thumb/bffc5e77073c0f99e3c2b5f16ee845a5.png?cv=2', itemsWrapper);
+  const itemOptions = [
+    getSetting('quick-send-supplies-items-0', 'super_brie_cheese'),
+    getSetting('quick-send-supplies-items-1', 'rare_map_dust_stat_item'),
+    getSetting('quick-send-supplies-items-2', 'floating_trap_upgrade_stat_item'),
+    getSetting('quick-send-supplies-items-3', 'rift_torn_roots_crafting_item'),
+  ];
+
+  const allTradableItems = getTradableItems('all');
+  itemOptions.forEach((item) => {
+    const tradableItem = allTradableItems.find((i) => i.type === item);
+    if (tradableItem) {
+      let image = tradableItem.thumbnail_transparent.length ? tradableItem.thumbnail_transparent : tradableItem.thumbnail;
+      makeItem(tradableItem.name, tradableItem.type, image, itemsWrapper);
+    }
+  });
 
   quickSendLinkWrapper.appendChild(itemsWrapper);
 

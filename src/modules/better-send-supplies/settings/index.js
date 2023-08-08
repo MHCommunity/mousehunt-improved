@@ -2,24 +2,28 @@ import getTradableItems from '../../../tradable-items';
 
 export default function (subModule, module) {
   addSetting(
-    'Quick Send Supplies Items',
-    'quick-send-supplies-items',
+    'Send Supplies Pinned Items',
+    'send-supplies-pinned-items',
     [
       {
         name: 'SUPER|brie+',
-        value: 'super_brie_cheese'
+        value: 'SUPER|brie+',
       },
       {
-        name: 'Rare Map Dust',
-        value: 'rare_map_dust_stat_item'
+        name: 'Empowered SUPER|brie+',
+        value: 'Empowered SUPER|b...',
       },
       {
-        name: 'Adorned Empyrean Jewel',
-        value: 'floating_trap_upgrade_stat_item'
+        name: 'Rift Cherries',
+        value: 'Rift Cherries',
       },
       {
         name: 'Rift-torn Roots',
-        value: 'rift_torn_roots_crafting_item'
+        value: 'Rift-torn Roots',
+      },
+      {
+        name: 'Sap-filled Thorns',
+        value: 'Sap-filled Thorns',
       },
     ],
     'Items to make available in the Quick Send Supplies popup.',
@@ -31,8 +35,8 @@ export default function (subModule, module) {
     'better-mh-settings',
     {
       type: 'multi-select',
-      number: 4,
-      options: getTradableItems('type'),
+      number: 5,
+      options: getTradableItems('truncated_name'),
     }
   );
 }
