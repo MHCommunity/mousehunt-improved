@@ -26,7 +26,7 @@ export default function (subModule, module) {
         value: 'Sap-filled Thorns',
       },
     ],
-    'Items to make available in the Quick Send Supplies popup.',
+    'Items to pin at the top of the send supplies page.',
     {
       id: module.id,
       name: module.name,

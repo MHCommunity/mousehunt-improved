@@ -88,16 +88,22 @@ form.mhui-supply-search-form {
   align-items: center;
 }
 
+#supplytransfer .drawer .tabContent .searchContainer {
+  position: absolute;
+  top: -5px;
+  right: 26px;
+}
+
 #supplytransfer .drawer .tabContent h2 {
   display: inline-block;
-  width: 165px;
+  min-width: 230px;
   padding-bottom: 0;
   margin-bottom: 0;
-  margin-left: 80px;
+  margin-left: 8px;
   font-size: 15px;
   font-weight: 400;
   line-height: unset;
-  border-color: #ccc;
+  border: none;
 }
 
 #tsitu-supply-search {
