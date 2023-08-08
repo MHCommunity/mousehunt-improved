@@ -21,7 +21,7 @@
 
 .icebergStatusTooltip .mousehuntTooltip-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 10px;
   align-items: center;
 }
@@ -44,6 +44,7 @@
 
 .icebergStatusTooltip .hunts-wrapper div:first-child {
   margin-top: 0;
+  text-align: center;
 }
 
 .icebergStatusTooltip .iceberg-sections {
