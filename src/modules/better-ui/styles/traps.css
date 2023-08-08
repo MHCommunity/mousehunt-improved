@@ -186,24 +186,21 @@ span.campPage-trap-armedItem-skin-description-content br {
 .campPage-trap-trapEffectivenessBar {
   height: 12px;
   margin-top: -1px;
-  background: #9d917f;
-}
-
-.campPage-trap-trapEffectivenessBar::after {
-  filter: saturate(0.5);
+  background: #c6bea8;
+  border: 1px solid #9c938e;
 }
 
 .campPage-trap-trapEffectivenessBar.easy::after,
 .campPage-trap-trapEffectivenessBar.effortless::after,
 .campPage-trap-trapEffectivenessBar.strong::after,
 .campPage-trap-trapEffectivenessBar.excellent::after {
-  background: #0cdf10;
+  background: #5ccd5e;
 }
 
 .campPage-trap-trapEffectivenessBar.near_impossible::after,
 .campPage-trap-trapEffectivenessBar.very_poor::after,
 .campPage-trap-trapEffectivenessBar.overpowering::after {
-  background: #ff8383;
+  background: #dc7878;
 }
 
 .campPage-trap-trapEffectivenessBar.difficult::after,
@@ -211,7 +208,7 @@ span.campPage-trap-armedItem-skin-description-content br {
 .campPage-trap-trapEffectivenessBar.mild::after,
 .campPage-trap-trapEffectivenessBar.moderate::after,
 .campPage-trap-trapEffectivenessBar.medium::after {
-  background: #cfd37d;
+  background: #e6cd66;
 }
 
 .campPage-trap-trapEffectivenessBar.impossible::after {
