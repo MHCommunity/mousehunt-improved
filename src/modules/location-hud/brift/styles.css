@@ -161,3 +161,18 @@
   font-size: 14px;
   background-color: rgb(255 255 255 / 75%);
 }
+
+.riftBurroughsHud .baitWarning {
+  top: 36px;
+  left: 275px;
+  z-index: 20;
+  width: 280px;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 15px;
+  color: #000;
+  background-color: #ffbfbf;
+  border: 1px solid #b60000;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 3px #4d4a4a;
+}
