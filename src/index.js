@@ -31,6 +31,7 @@ import temCrowns from './modules/tem-crowns';
 // Copies of standalone userscripts.
 import catchStats from './modules/external/catch-stats';
 import fancyKingsReward from './modules/external/fancy-kings-reward';
+import giftButtons from './modules/external/gift-buttons';
 import noFooter from './modules/external/no-footer';
 import noShare from './modules/external/no-share';
 import noSidebar from './modules/external/no-sidebar';
@@ -73,6 +74,7 @@ const modules = [
       { id: 'copy-id', name: 'Copy ID Button', default: true, description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.', load: copyId },
       { id: 'dashboard', name: 'Location Dashboard', default: true, description: 'See location HUD information in a dashboard available in the top dropdown menu.', load: dashboard },
       { id: 'fancy-kings-reward', name: 'Fancy King\'s Reward', default: true, description: 'Automatically clicks the \'Continue\' button after solving a King\'s Reward.', load: fancyKingsReward },
+      { id: 'gift-buttons', name: 'Gift Buttons', default: true, description: 'Quickly accept and return all your gifts', load: quickSendSupplies },
       { id: 'hover-profiles', name: 'Hover Profiles', default: true, description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.', load: hoverProfiles },
       { id: 'image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backagrounds across the entire MH interface.', load: imageUpscaling },
       { id: 'inline-wiki', name: 'Inline Wiki', default: true, description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.', load: inlineWiki },
