@@ -520,7 +520,6 @@ function simulate(shouldDisplay = true) {
       strStep,
       ucEclipse: useUConEclipse,
       steps,
-      sync,
       power,
       luck,
       avgFloor,
