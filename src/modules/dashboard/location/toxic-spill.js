@@ -1,4 +1,9 @@
 export default (quests) => {
-  // refining stats, spill level
-  return quests ? 'refining stats and stuff' : false;
+  if (! quests.QuestPollutionOutbreak) {
+    return '';
+  }
+
+  const q = quests.QuestPollutionOutbreak;
+  console.log(q);
+  return `${q.items.crude_pollutinum_stat_item.quantity}/${q.max_pollutinum} Pollutinum, ${q.refined_pollutinum} refined`;
 };

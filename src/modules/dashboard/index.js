@@ -2,7 +2,7 @@ import { addUIStyles } from '../utils';
 import styles from './styles.css';
 
 import getMousoleumText from './location/mousoleum';
-// import getToxicSpillText from './location/toxic-spill';
+import getToxicSpillText from './location/toxic-spill';
 import getFortRoxText from './location/fort-rox';
 import { getFieryWarpathText, setFieryWarpathData } from './location/fiery-warpath';
 import getLivingGardenText from './location/living-garden';
@@ -307,7 +307,7 @@ const getDashboardContents = () => {
 
   const burroughs = document.createElement('div');
   makeLocationMarkup('mousoleum', 'Mousoleum', getMousoleumText, burroughs);
-  // makeLocationMarkup('pollution_outbreak', 'Toxic Spill', getToxicSpillText, burroughs);
+  makeLocationMarkup('pollution_outbreak', 'Toxic Spill', getToxicSpillText, burroughs);
   makeRegionMarkup('Burroughs', burroughs, contentsWrapper);
 
   const varmintValley = document.createElement('div');
