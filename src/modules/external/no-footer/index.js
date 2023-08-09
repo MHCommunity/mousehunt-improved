@@ -1,6 +1,5 @@
-import { addUIStyles } from '../../utils';
-import styles from './styles.css';
-
 export default () => {
-  addUIStyles(styles);
+  const addStyles = document.createElement('style');
+  addStyles.innerHTML = '.pageFrameView-footer, .mousehuntFooter { display: none; }';
+  document.head.appendChild(addStyles);
 };
