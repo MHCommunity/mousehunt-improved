@@ -17,17 +17,26 @@ externalScripts.forEach((script) => {
 
       // Remove the lines before 'use strict'.
       splitLines.splice(0, useStrictIndex);
+      // Remove the 'use strict' line.
+      splitLines.splice(0, 1);
 
-      // Make sure we're removing the trailing blank line and the line before it.
-      if (splitLines[splitLines.length - 1] === '') {
+      // Remove any blank lines at the start.
+      while (splitLines[0] === '') {
+        splitLines.shift();
+      }
+
+      // Remove any blank lines at the end.
+      while (splitLines[splitLines.length - 1] === '') {
         splitLines.pop();
       }
 
+      // Remove the last line, which is the '})();' line.
       splitLines.pop();
+
       return `export default () => {\n${splitLines.join('\n')}\n};\n`;
     });
 
-  const targetPath = path.join(__dirname, '..', 'src', 'modules', 'external', script.target, 'index.js');
+  const targetPath = path.join(__dirname, '..', 'src', script.target, 'index.js');
 
   // create the directory if it doesn't exist
   if (!fs.existsSync(path.dirname(targetPath))) {
