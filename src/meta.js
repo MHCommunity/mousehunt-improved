@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name        🐭️ Better MouseHunt
-// @version     process.env.VERSION
 // @description Improve your MouseHunt experience.
+// @version     process.env.VERSION
 // @license     MIT
-// @author      brap
+// @author      bradp
 // @namespace   bradp
 // @match       https://www.mousehuntgame.com/*
 // @icon        https://i.mouse.rip/mouse.png
