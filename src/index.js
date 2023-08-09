@@ -37,6 +37,7 @@ import minluckAndCre from './modules/external/minluck-and-cre';
 import noFooter from './modules/external/no-footer';
 import noShare from './modules/external/no-share';
 import noSidebar from './modules/external/no-sidebar';
+import shields from './modules/external/shields';
 import tallerWindows from './modules/external/taller-windows';
 import travelTweaks from './modules/external/travel-tweaks';
 import ultimateCheckmark from './modules/external/ultimate-checkmark';
@@ -76,6 +77,7 @@ const modules = [
       { id: 'better-item-view', name: 'Better Item View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing drop rates.', load: betterItemView },
       { id: 'better-mouse-view', name: 'Better Mouse View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing attraction rates.', load: betterMouseView },
       { id: 'copy-id', name: 'Copy ID Button', default: true, description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.', load: copyId },
+      { id: 'custom-shields', name: 'Custom Shield', default: false, description: 'Change your shield in the HUD to a variety of different options.', load: shields },
       { id: 'dashboard', name: 'Location Dashboard', default: true, description: 'See location HUD information in a dashboard available in the top dropdown menu.', load: dashboard },
       { id: 'fancy-kings-reward', name: 'Fancy King\'s Reward', default: true, description: 'Automatically clicks the \'Continue\' button after solving a King\'s Reward.', load: fancyKingsReward },
       { id: 'gift-buttons', name: 'Gift Buttons', default: true, description: 'Quickly accept and return all your gifts', load: quickSendSupplies },
