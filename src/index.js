@@ -1,5 +1,3 @@
-// Utilities
-import { addUIStyles } from './modules/utils';
 
 // Core 'Better' modules
 import betterInventory from './modules/better-inventory';
