@@ -157,20 +157,20 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
 }
 
 /* make armed cheese button more visible */
-a.mousehuntArmNowButton.active {
+.mousehuntArmNowButton.active {
   filter: hue-rotate(104deg);
 }
 
-a.mousehuntArmNowButton.active:hover {
+.mousehuntArmNowButton.active:hover {
   filter: hue-rotate(104deg) brightness(1.2);
 }
 
-a.mousehuntArmNowButton {
-  filter: brightness(.7);
+.mousehuntArmNowButton {
+  filter: brightness(1);
 }
 
-a.mousehuntArmNowButton:hover {
-  filter: brightness(1);
+.mousehuntArmNowButton:hover {
+  filter: brightness(1.2);
 }
 
 /* make menu sb bold */
