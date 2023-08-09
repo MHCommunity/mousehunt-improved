@@ -37,6 +37,7 @@ import noFooter from './modules/external/no-footer';
 import noShare from './modules/external/no-share';
 import noSidebar from './modules/external/no-sidebar';
 import tallerWindows from './modules/external/taller-windows';
+import travelTweaks from './modules/external/travel-tweaks';
 import ultimateCheckmark from './modules/external/ultimate-checkmark';
 
 import testing from './modules/testing';
@@ -88,6 +89,7 @@ const modules = [
       { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Makes popup windows taller.', load: tallerWindows },
       { id: 'tem-crowns', name: 'TEM Crowns', default: true, description: 'Adds crowns and catches to the the Trap Effectiveness Meter.', load: temCrowns },
       { id: 'location-huds', name: 'Location HUD Improvements', default: true, description: 'Add additional information to the HUD for each location.', load: locationHud },
+      { id: 'travel-tweaks', name: 'Travel Tweaks', default: true, description: 'Add a variety of features to the travel page.', load: travelTweaks },
       { id: 'ultimate-checkmark', name: 'Ultimate Checkmark', default: false, description: 'Adds more things collect on the items view of your Hunter profile.', load: ultimateCheckmark },
     ]
   },
