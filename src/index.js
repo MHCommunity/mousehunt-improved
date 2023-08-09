@@ -29,6 +29,7 @@ import quickSendSuppliesSettings from './modules/quick-send-supplies/settings';
 import temCrowns from './modules/tem-crowns';
 
 // Copies of standalone userscripts.
+import catchStats from './modules/external/catch-stats';
 import fancyKingsReward from './modules/external/fancy-kings-reward';
 import noFooter from './modules/external/no-footer';
 import noShare from './modules/external/no-share';
