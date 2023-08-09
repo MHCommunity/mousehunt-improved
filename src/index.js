@@ -1,4 +1,3 @@
-
 // Core 'Better' modules
 import betterInventory from './modules/better-inventory';
 import betterJournal from './modules/better-journal';
