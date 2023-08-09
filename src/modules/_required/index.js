@@ -1,5 +1,6 @@
 import { addUIStyles } from '../utils';
-import styles from './styles.css';
+import globalStyles from './global-styles.css';
+import fixesStyles from './fixes.css';
 
 const updateItemClassificationLinks = () => {
   const itemClassificationLink = document.querySelectorAll('.itemView-header-classification-link a');
@@ -58,7 +59,8 @@ const main = () => {
 };
 
 export default function fixes() {
-  addUIStyles(styles);
+  addUIStyles(globalStyles);
+  addUIStyles(fixesStyles);
 
   main();
 }

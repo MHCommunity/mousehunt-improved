@@ -14,7 +14,6 @@ import betterItemView from './modules/better-item-view';
 import betterMouseView from './modules/better-mouse-view';
 import copyId from './modules/copy-id';
 import dashboard from './modules/dashboard';
-import fixes from './modules/fixes/';
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
@@ -39,6 +38,8 @@ import tallerWindows from './modules/external/taller-windows';
 import travelTweaks from './modules/external/travel-tweaks';
 import ultimateCheckmark from './modules/external/ultimate-checkmark';
 
+// Global styles and fixes.
+import required from './modules/_required';
 import testing from './modules/testing';
 
 // Core 'Better' modules.
@@ -99,8 +100,7 @@ const modules = [
     // Always loaded modules.
     id: 'always-loaded',
     modules: [
-      { id: 'fixes', load: fixes, alwaysLoad: true },
-      { id: 'global-sytles', load: globalStyles, alwaysLoad: true },
+      { id: 'required', load: required, alwaysLoad: true },
       { id: 'testing', load: testing, alwaysLoad: true },
     ],
   }
