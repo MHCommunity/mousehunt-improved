@@ -57,7 +57,7 @@ const main = () => {
   }
 };
 
-export default function itemLinks() {
+export default function fixes() {
   addUIStyles(styles);
 
   main();
