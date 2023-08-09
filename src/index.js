@@ -44,14 +44,6 @@ import ultimateCheckmark from './modules/external/ultimate-checkmark';
 
 import testing from './modules/testing';
 
-// Global styles
-import globalStyles from './modules/styles.css';
-
-testing();
-
-addUIStyles(globalStyles);
-addUIStyles(fixes);
-
 // Core 'Better' modules.
 const modules = [
   {
@@ -80,13 +72,13 @@ const modules = [
       { id: 'custom-shields', name: 'Custom Shield', default: false, description: 'Change your shield in the HUD to a variety of different options.', load: shields },
       { id: 'dashboard', name: 'Location Dashboard', default: true, description: 'See location HUD information in a dashboard available in the top dropdown menu.', load: dashboard },
       { id: 'fancy-kings-reward', name: 'Fancy King\'s Reward', default: true, description: 'Automatically clicks the \'Continue\' button after solving a King\'s Reward.', load: fancyKingsReward },
-      { id: 'gift-buttons', name: 'Gift Buttons', default: true, description: 'Quickly accept and return all your gifts', load: quickSendSupplies },
+      { id: 'gift-buttons', name: 'Gift Buttons', default: true, description: 'Quickly accept and return all your gifts', load: giftButtons },
       { id: 'hover-profiles', name: 'Hover Profiles', default: true, description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.', load: hoverProfiles },
       { id: 'image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backagrounds across the entire MH interface.', load: imageUpscaling },
       { id: 'inline-wiki', name: 'Inline Wiki', default: true, description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.', load: inlineWiki },
       { id: 'inventory-only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
       { id: 'journal-privacy', name: 'Journal Privacy', default: false, description: 'Hides player names in the journal.', load: journalPrivacy },
-      { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: locationHud },
+      { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: catchStats },
       { id: 'location-huds', name: 'Location HUD Improvements', default: true, description: 'Add additional information to the HUD for each location.', load: locationHud },
       { id: 'minluck-and-cre', name: ' Minluck & Catch Rate Estimate', default: true, description: 'Shows you the minluck and your estimated catch rate right on the camp page.', load: minluckAndCre },
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
@@ -111,6 +103,7 @@ const modules = [
     id: 'always-loaded',
     modules: [
       { id: 'fixes', load: fixes, alwaysLoad: true },
+      { id: 'global-sytles', load: globalStyles, alwaysLoad: true },
       { id: 'testing', load: testing, alwaysLoad: true },
     ],
   }
