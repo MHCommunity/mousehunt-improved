@@ -33,6 +33,7 @@ import catchStats from './modules/external/catch-stats';
 import fancyKingsReward from './modules/external/fancy-kings-reward';
 import giftButtons from './modules/external/gift-buttons';
 import journalPrivacy from './modules/external/journal-privacy';
+import minluckAndCre from './modules/external/minluck-and-cre';
 import noFooter from './modules/external/no-footer';
 import noShare from './modules/external/no-share';
 import noSidebar from './modules/external/no-sidebar';
@@ -84,6 +85,7 @@ const modules = [
       { id: 'inventory-only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
       { id: 'journal-privacy', name: 'Journal Privacy', default: false, description: 'Hides player names in the journal.', load: journalPrivacy },
       { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: locationHud },
+      { id: 'minluck-and-cre', name: ' Minluck & Catch Rate Estimate', default: true, description: 'Shows you the minluck and your estimated catch rate right on the camp page.', load: minluckAndCre },
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
       { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button to easily send any quantity of SUPER|brie+ or another item..', load: quickSendSupplies, settings: quickSendSuppliesSettings },
       { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Makes popup windows taller.', load: tallerWindows },
