@@ -38,7 +38,7 @@ import tallerWindows from './modules/external/taller-windows';
 import testing from './modules/testing';
 
 // Global styles
-import globalStyles from './styles.css';
+import globalStyles from './modules/styles.css';
 
 testing();
 

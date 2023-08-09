@@ -1,4 +1,4 @@
-import getTradableItems from '../../../tradable-items';
+import getTradableItems from '../../../data/tradable-items';
 
 export default function (subModule, module) {
   addSetting(

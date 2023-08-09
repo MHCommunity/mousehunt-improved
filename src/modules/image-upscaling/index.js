@@ -1,6 +1,6 @@
 import { addUIStyles } from '../utils';
 import styles from './styles.css';
-import mapping from './mapping.json';
+import mapping from '../../data/upscaled-image-mapping.json';
 
 const getNewUrl = (src) => {
   if (! src) {
