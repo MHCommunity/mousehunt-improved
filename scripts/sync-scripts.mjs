@@ -36,7 +36,7 @@ externalScripts.forEach((script) => {
       return `export default () => {\n${splitLines.join('\n')}\n};\n`;
     });
 
-  const targetPath = path.join(process.cwd(), 'src', `${script.target}.js`);
+  const targetPath = path.join(process.cwd(), 'src', script.target, 'index.js');
 
   // Create the directory if it doesn't exist.
   if (!fs.existsSync(path.dirname(targetPath))) {
