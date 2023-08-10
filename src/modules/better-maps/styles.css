@@ -62,7 +62,6 @@ label.userSelectorView-filter-label {
    counter-increment: left;
 }
 
-
 .treasureMapUserSelectorView-actions:hover .treasureMapDialogView-userSelector-selectedUser::after {
   position: absolute;
   inset: 0;
@@ -89,6 +88,11 @@ label.userSelectorView-filter-label {
 
 .userSelector-table .userSelector-groupHeading td:first-child {
   border-top: none;
+}
+
+.treasureMapView-environment-hunters .treasureMapView-hunter.captain .treasureMapView-hunter-image {
+  width: 20px;
+  height: 20px;
 }
 /* consolation prizes */
 .mh-mapper-consolation-prizes {
