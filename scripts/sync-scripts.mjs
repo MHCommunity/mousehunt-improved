@@ -1,11 +1,11 @@
-const fetch = require('node-fetch');
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import fetch from 'node-fetch';
 
-const externalScripts = require('../external-scripts.json');
+console.log('Syncing external scripts ...\n');
 
+const externalScripts = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'external-scripts.json')));
 externalScripts.forEach((script) => {
-  console.log(`Syncing ${script.target} from ${script.url}`);
   const contents = fetch(script.url)
     .then((res) => res.text())
     .then((text) => {
@@ -36,23 +36,22 @@ externalScripts.forEach((script) => {
       return `export default () => {\n${splitLines.join('\n')}\n};\n`;
     });
 
-  const targetPath = path.join(__dirname, '..', 'src', script.target, 'index.js');
+  const targetPath = path.join(process.cwd(), 'src', `${script.target}.js`);
 
-  // create the directory if it doesn't exist
+  // Create the directory if it doesn't exist.
   if (!fs.existsSync(path.dirname(targetPath))) {
     fs.mkdirSync(path.dirname(targetPath));
   }
 
-  // write the file
+  // Write the file.
   contents.then((contents) => {
     fs.writeFile(targetPath, contents, (err) => {
       if (err) {
         console.error(`Failed syncing ${script.target}`);
         console.error(err);
       } else {
-        console.log(`Synced ${script.target}`);
+        console.log(` ✅️ ${script.target}`);
       }
     });
   });
-
 });

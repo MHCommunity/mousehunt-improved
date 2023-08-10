@@ -1,5 +1,9 @@
 [
   {
+    "target": "mh-utils.js",
+    "url": "https://github.com/mouseplace/mh-utils/raw/main/mousehunt-utils.js"
+  },
+  {
     "target": "modules/external/catch-stats",
     "url": "https://github.com/mouseplace/mh-catch-stats/raw/main/mh-catch-stats.user.js"
   },
@@ -14,10 +18,6 @@
   {
     "target": "modules/external/journal-privacy",
     "url": "https://github.com/mouseplace/mh-journal-privacy/raw/main/mh-journal-privacy.user.js"
-  },
-  {
-    "target": "modules/external/minluck-and-cre",
-    "url": "https://github.com/mouseplace/mh-minluck-and-cre/raw/main/mh-minluck-and-cre.user.js"
   },
   {
     "target": "modules/external/no-footer",
