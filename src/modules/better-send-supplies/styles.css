@@ -132,11 +132,11 @@ form.mhui-supply-search-form {
 .mhui-supply-sort-wrapper a {
   margin: 0 4px;
   line-height: 20px;
+  text-align: center;
+  text-decoration: none;
   border: 1px solid #ccc;
   border-radius: 3px;
   box-shadow: 2px 2px 3px #cdc9c6 inset;
-  text-align: center;
-  text-decoration: none;
 }
 
 .mhui-supply-sort-wrapper a:hover,

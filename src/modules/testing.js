@@ -1,16 +1,3 @@
-// makeHornMessage({
-//   title: 'This is a title',
-//   text: 'This is a message',
-//   button: 'OK',
-//   action: () => {
-//     console.log('This is an action');
-//   },
-// });
-
-// .mh-airship-popup .content .floatingIslandsAirship {
-//   margin: 0 auto;
-// }
-
 const hulls = [
   'airship_hull_astral_stat_item',
   'airship_hull_factory_stat_item',
@@ -130,7 +117,7 @@ const trackEvents = () => {
   events.forEach((event) => {
     eventRegistry.addEventListener(event, (e) => {
       if (window.showEvents) {
-        console.log(`${event} was fired`, e);
+        console.log(`${event} was fired`, e); // eslint-disable-line no-console
       }
     });
   });
