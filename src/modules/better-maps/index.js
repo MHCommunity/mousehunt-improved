@@ -33,7 +33,7 @@ const main = () => {
   // TODO: import mapper script directly into here.
   onEvent('mapper_loaded', () => {
     addConsolationPrizes();
-  }
+  });
 };
 
 export default function betterMaps() {
