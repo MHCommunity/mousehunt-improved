@@ -9,7 +9,9 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "run-s build:userscript",
+    "build:extension": "node scripts/build-extension.mjs",
+    "build:userscript": "node scripts/build-userscript.mjs",
     "ci": "run-s lint",
     "clean": "del-cli dist",
     "dev": "rollup -wc rollup.conf.js",
