@@ -1,24 +1,32 @@
 {
   "manifest_version": 3,
-  "name": "better-mh",
-  "version": "process.env.VERSION",
+  "name": "Better MouseHunt",
+  "version": "EXT_VERSION",
   "author": "bradp <brad@bradparbs.com>",
   "description": "Improve your MouseHunt experience",
   "homepage_url": "https://mouse.rip",
   "icons": {
-    "16": "images/icon-16.png",
-    "32": "images/icon-32.png",
-    "48": "images/icon-48.png",
-    "128": "images/icon-128.png"
+    "16": "icon-16.png",
+    "32": "icon-32.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "omnibox": { "keyword" : "mh" },
+  "host_permissions": [ "https://*.mousehuntgame.com/*" ],
+  "background": {
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "js": [
-        "scripts/content.js"
-      ],
-      "matches": [
-        "https://*.mousehuntgame.com/*"
-      ]
+      "js": ["content.js"],
+      "matches": ["https://*.mousehuntgame.com/*"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["main.js", "main.css"],
+      "matches": ["https://*.mousehuntgame.com/*"]
     }
   ],
   "action": {
