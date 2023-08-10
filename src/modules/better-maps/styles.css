@@ -90,3 +90,28 @@ label.userSelectorView-filter-label {
 .userSelector-table .userSelector-groupHeading td:first-child {
   border-top: none;
 }
+/* consolation prizes */
+.mh-mapper-consolation-prizes {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px;
+}
+
+h2.mh-mapper-consolation-prizes-title {
+  font-size: 12px;
+  padding: 5px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.mh-mapper-consolation-prize {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+img.mh-mapper-consolation-prize {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
