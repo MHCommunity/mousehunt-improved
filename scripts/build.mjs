@@ -12,7 +12,7 @@ let result = await esbuild.buildSync({
   format: 'iife',
   globalName: 'mhui',
   loader: {
-    '.css': 'text', // TODO: this doesn't work, it should though.
+    '.css': 'text',
   },
   metafile: true,
   sourcemap: true,
