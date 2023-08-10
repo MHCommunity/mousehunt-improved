@@ -13,6 +13,7 @@
   top: 2px;
   bottom: unset;
   left: 17px;
+  z-index: 29;
   padding: 2px 5px;
   font-size: 14px;
   background-color: rgb(255 255 255 / 35%);
@@ -20,12 +21,15 @@
   border-radius: 5px 0 10px;
 }
 
+.pollutionOutbreakHUD-totalPollution-direction-status {
+  max-width: 375px;
+}
 
 /* move the 'hunters cleaning' to the top right */
 .pollutionOutbreakHUD-hunters {
   right: 144px;
   left: unset;
-  font-size: 10px;
+  font-size: 12px;
   border-right: none;
   border-left: 1px solid #999;
   border-radius: 0 5px 0 10px;
