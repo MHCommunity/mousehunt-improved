@@ -256,3 +256,7 @@ span.campPage-trap-armedItem-skin-description-content br {
 .campPage-trap-armedItem.inactive {
   background: #f6f3eb;
 }
+
+.campPage-trap-trapStat.power .value b {
+  line-height: 15px;
+}
