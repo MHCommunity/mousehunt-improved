@@ -1,4 +1,5 @@
 .riftBurroughsHud .baitContainer .baitOption .baitQuantity {
+  width: 31px;
   font-size: 13px;
   background-color: #464646;
   border-radius: 7px;
