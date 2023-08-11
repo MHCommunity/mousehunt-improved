@@ -30,7 +30,7 @@ const makeLink = (text, href, encodeAsSpace) => {
  * @return {string} The markup for the mouse links.
  */
 const getLinkMarkup = (name) => {
-  return makeLink('MHCT AR', `https://www.mhct.win/attractions.php?mouse$name=${name}`, true) +
+  return makeLink('MHCT AR', `https://www.mhct.win/attractions.php?mouse_name=${name}`, true) +
     makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}_Mouse`) +
     makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${name}_Mouse`);
 };
