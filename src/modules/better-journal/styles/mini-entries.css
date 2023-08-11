@@ -1,0 +1,88 @@
+/* Smaller image */
+.journal .content .entry.minimalJournalImage {
+  background-position: 15px center !important;
+  background-size: 40px;
+}
+
+.journal .content .entry.travel,
+.journal .content .entry.captchasolved,
+.journal .content .supplytransferitem,
+.journal .content .entry.socialGift,
+.journal .content .entry.relicHunter_start,
+.journal .content .entry.relicHunter_complete,
+.journal .content .entry.torch_charm_event,
+.journal .content .entry.marketplace.marketplace_complete_listing,
+.journal .content .entry.marketplace.marketplace_create_listing,
+.journal .content .entry.marketplace.marketplace_cancel_listing,
+.journal .content .entry.marketplace.marketplace_claim_listing,
+.journal .content .entry.attractionfailurestale,
+.journal .content .entry.floatingIslands.discoveredMod,
+.journal .content .entry.floatingIslands.dirigibleTravel,
+.journal .content .entry.floatingIslands.defeatedEnemy,
+.journal .content .entry.floatingIslands.defeatedVaultEnemy,
+.journal .content .entry.floatingIslands.fullyExplored,
+.journal .content .entry.sunken_city.zone,
+.journal .content .entry.train_station.stoke_furnace,
+.journal .content .entry.mousoleum.damage_wall,
+.journal .content .entry.mousoleum.repair_wall,
+.journal .content .entry.iceberg_advance_prevented,
+.journal .content .entry.iceberg_advance,
+.journal .content .entry.iceberg_defeated,
+.journal .content .entry.iceberg_phase_change,
+.journal .content .entry.world_aspect_normal,
+.journal .content .entry.jetStreamAuraActivated,
+.journal .content .entry.birthday2018-rewind-charm,
+.journal .content .entry.relicHunter_slayer_aura_relic_bonus {
+  background-position: 10px center;
+}
+
+/* hiding date for entries that come with a hunt */
+.entry.short.refine_pollutinum .journaldate,
+.entry.short.torch_charm_event .journaldate,
+.entry.short.unstable_charm_trigger .journaldate,
+.entry.short.tournamentpointswithloot .journaldate,
+.entry.short.tournamentpoints .journaldate,
+.entry.short.rift-bristlewoods-acolyteSandStolen .journaldate,
+.entry.short.rift-bristlewoods-lootBooster .journaldate,
+.entry.short.super_rift_vacuum_trigger .journaldate,
+.entry.short.queso_canyon_queso_pumped .journaldate,
+.entry.short.custom.chesla_trap_trigger .journaldate {
+  display: none;
+}
+
+/* Shrink the text down a bit and make look smaller */
+.entry.short.misc.custom.chesla_trap_trigger,
+.entry.short.misc.custom.refine_pollutinum,
+.entry.short.misc.custom.torch_charm_event,
+.entry.short.misc.custom.unstable_charm_trigger {
+  display: flex;
+  align-items: center;
+  min-height: 35px;
+  padding-left: 5px;
+  font-size: 10px;
+  line-height: 15px;
+  background-color: #e1f9ff;
+}
+
+.entry.short.misc.custom.refine_pollutinum {
+  background-color: #8fff8f;
+  background-position: 20px;
+  background-size: 25px;
+}
+
+.entry.short.misc.custom.chesla_trap_trigger {
+  background-color: #edd1f3;
+}
+
+.entry.short.misc.custom.torch_charm_event .refine_pollutinum,
+.entry.short.misc.custom.torch_charm_event .journalimage,
+.entry.short.misc.custom.unstable_charm_trigger .journalimage {
+  width: 55px;
+}
+
+.entry.short.misc.custom.torch_charm_event .journalimage img,
+.entry.short.misc.custom.unstable_charm_trigger .journalimage img {
+  width: 45px;
+  height: 45px;
+  mix-blend-mode: multiply;
+}

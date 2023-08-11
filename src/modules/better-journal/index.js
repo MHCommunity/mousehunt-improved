@@ -1,5 +1,8 @@
 import { addUIStyles } from '../utils';
-import styles from './styles.css';
+import styles from './styles/styles.css';
+import adventure from './styles/adventure.css';
+import miniEntries from './styles/mini-entries.css';
+import progressLog from './styles/progress-log.css';
 
 /**
  * For each element matching the selector, find and replace strings.
@@ -88,8 +91,10 @@ const updateJournalText = () => {
     ['<br>I should ', 'I can '],
     ['<br>I can ', 'I can '],
     [' I replaced my bait since it seemed to be stale.', ''],
-    ['*POP* Your Unstable Charm pops off your trap and has', 'Your Unstable Charm'],
+    ['*POP* Your Unstable Charm pops off your trap and has', 'My Unstable Charm'],
     ['You quickly add it to your inventory!', ''],
+    ['I quickly added it to my inventory!', ''],
+    [' burned out and left behind ', ' turned into '],
     [' a elusive ', ' a '],
     ['I moved forward a whopping', 'I moved forward'],
     ['!I', '! I'],
@@ -98,6 +103,8 @@ const updateJournalText = () => {
     [' and begin a new expedition', ''],
     [' ate a piece of cheese without setting off my trap.', ' stole my cheese.'],
     ['slowly collapsed into itself with a powerful force, compressing mist in the air into an ', 'compressed mist in the air into an '],
+    ['Your S.U.P.E.R. Scum Scrubber scrubbed the mouse clean and found ', 'My trap found an extra '],
+    ['You scrubba-lubba-dub-dubbed your barrel and refined ', 'I refined '],
 
     // Event stuff
     // SEH
@@ -174,6 +181,9 @@ const main = () => {
 
 export default function journal() {
   addUIStyles(styles);
+  addUIStyles(adventure);
+  addUIStyles(miniEntries);
+  addUIStyles(progressLog);
 
   main();
 

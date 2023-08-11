@@ -1,0 +1,113 @@
+/* Donations */
+.donationComplete .journalimage img {
+  mix-blend-mode: normal;
+}
+
+/* Frift droid */
+.journal .entry.riftFuroma {
+  position: relative;
+}
+
+.journal .entry.riftFuroma-energyLost .journalbody {
+  margin-left: 80px;
+}
+
+.journal .entry.riftFuroma-energyLost .journalbody::before {
+  position: absolute;
+  top: -12px;
+  left: -96px;
+  display: block;
+  width: 75px;
+  height: 80px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/rift_furoma/droid.png?asset_cache_version=2);
+  filter: grayscale(1);
+  background-repeat: no-repeat;
+  background-position: 0 -100px;
+  background-size: 110%;
+  mix-blend-mode: luminosity;
+}
+
+/* UC */
+.journal .content .ultimate_intact,
+.journal .content .ultimate_pop {
+  background-position: 10px;
+}
+
+.journal .content .ultimate_intact::after,
+.journal .content .ultimate_pop::after {
+  position: absolute;
+  top: 17px;
+  left: 11px;
+  width: 48px;
+  height: 48px;
+  content: "";
+  outline: 1px solid #22eab4;
+}
+
+/* Alchemy base */
+.journal .content .entry.alchemists_cookbook_base_bonus {
+  background-position: 10px;
+  background-size: 55px !important;
+}
+
+.journal .content .entry.alchemists_cookbook_base_bonus .journalbody {
+  margin-left: 80px;
+}
+
+/* Vrift */
+.journal .minimalJournalImage.champions_fire_loot,
+.journal .minimalJournalImage.moved_forward {
+  background-position: 10px !important;
+  background-size: 50px;
+}
+
+.journal .entry.short.super_rift_vacuum_trigger {
+  box-shadow: 0 0 20px 0 #c997de inset;
+}
+
+.journal .entry.short.custom.super_rift_vacuum_trigger {
+  background-position: 10px 5px;
+  background-size: 50px;
+}
+
+/* tournament points, acolyte sand stolen, etc */
+.entry.short.tournamentpointswithloot,
+.entry.short.tournamentpoints,
+.entry.short.rift-bristlewoods-acolyteSandStolen {
+  padding: 2px;
+  background: #dbd1b4;
+}
+
+.entry.short.rift-bristlewoods-acolyteSandStolen {
+  background: #ffc16e;
+}
+
+.entry.short.tournamentpointswithloot .journalbody,
+.entry.short.tournamentpoints .journalbody,
+.entry.short.rift-bristlewoods-acolyteSandStolen .journalbody,
+.entry.short.queso_canyon_queso_pumped .journalbody {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 5px 5px 5px 10px;
+  white-space: normal;
+}
+
+/* nicer shade of gray and better image for brift */
+.journal .entry.burroughs_rift.danger_zone {
+  background-color: #ccdfe2;
+  background-position: 10px center;
+  background-size: 59px;
+}
+
+.journal .entry.queso_canyon_queso_pumped {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/transparent_thumb/06c81c66b0f21f2a8b6a2b989f40bd8d.png?cv=2);
+  background-repeat: no-repeat;
+  background-position: 9px;
+  background-size: contain;
+}
+
+.journal .entry.queso_canyon_queso_pumped .journalbody {
+  margin-left: 63px;
+}

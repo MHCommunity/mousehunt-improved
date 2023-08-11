@@ -1,0 +1,28 @@
+/* Hide the period */
+.entry.short.log_summary.stats .fullstop {
+  display: none;
+}
+
+.journal .entry .journalbody .journaltext .lucky:last-of-type::after,
+.journal .entry .journalbody .journaltext .loot:last-of-type::after {
+  content: ".";
+}
+
+.journal .entry .journalbody .journaltext .lucky::after {
+  position: relative;
+  top: unset;
+  display: inline;
+  background: unset;
+}
+
+.journal .entry .journaltext br {
+  content: "";
+}
+
+.journal .entry .journaltext br::after {
+  content: " ";
+}
+
+.journal .entry.relicHunter_catch .journaltext br::after {
+  content: "";
+}

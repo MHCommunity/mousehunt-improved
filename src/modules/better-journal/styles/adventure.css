@@ -1,0 +1,103 @@
+/* adventure book status */
+.adventureBookBanner-container {
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  line-height: 16px;
+  background-color: #fbf8f6;
+  border: 1px solid #d3cecb;
+  border-radius: 3px;
+  box-shadow: inset -1px 1px 3px 0 #d3cecb;
+}
+
+.adventureBookBanner-adventureName {
+  padding: 15px 5px 0;
+  margin-left: 75px;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 15px;
+  color: #373737;
+  background: transparent;
+  border-radius: 0;
+}
+
+.adventureBookBanner-adventureName span {
+  display: none;
+}
+
+.adventureBookBanner-goalContainer {
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: none;
+  box-shadow: none;
+}
+
+.adventureBookBanner-adventureImage {
+  background-image: none !important;
+}
+
+.adventureBookBanner-goalPadding {
+  margin-left: 75px;
+}
+
+.adventureBookBanner-goalImage {
+  position: absolute;
+  top: -25px;
+  left: 10px;
+  width: 60px;
+  height: 60px;
+}
+
+.adventureBookBanner-goalName {
+  width: auto;
+  height: auto;
+}
+
+.adventureBookBanner-goalEnvironment {
+  display: inline;
+}
+
+.adventureBookBanner-goalName-padding .adventureBookBanner-goalEnvironment::before {
+  content: ". ";
+}
+
+.adventureBookBanner-moreInfo {
+  position: absolute;
+  right: 5px;
+  bottom: -6px;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  padding: 1px;
+  padding-left: 10px;
+  font-size: 9px;
+  color: #3b5998;
+  background: none;
+  box-shadow: none;
+}
+
+.adventureBookBanner-goalName-padding {
+  display: block;
+  width: auto;
+  height: auto;
+}
+
+.adventureBookBanner-goalName-padding span {
+  display: block;
+}
+
+.adventureBookBanner-moreInfo::after {
+  content: " →";
+}
+
+.adventureBookBanner-container:hover .adventureBookBanner-moreInfo {
+  color: #3b5998;
+  text-decoration: underline;
+  text-shadow: none;
+  background: none;
+  box-shadow: none;
+}
