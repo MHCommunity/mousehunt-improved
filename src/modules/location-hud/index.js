@@ -33,6 +33,7 @@ import sunkenCityStyles from './sunken-city/styles.css';
 import toxicSpillStyles from './toxic-spill/styles.css';
 import vriftStyles from './vrift/styles.css';
 import wwriftStyles from './wwrift/styles.css';
+import zokorStyles from './zokor/styles.css';
 
 const main = () => {
   switch (getCurrentLocation()) {
@@ -115,6 +116,7 @@ const getStyles = () => {
     toxicSpillStyles,
     vriftStyles,
     wwriftStyles,
+    zokorStyles,
   ].join('\n');
 };
 
