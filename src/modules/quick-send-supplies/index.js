@@ -131,6 +131,10 @@ const main = () => {
   }
 
   sendSupplies.forEach((btn) => {
+    if (btn.classList.contains('disabled')) {
+      return;
+    }
+
     const existing = btn.getAttribute('data-quick-send');
     if (existing) {
       return;
