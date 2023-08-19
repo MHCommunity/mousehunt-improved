@@ -28,13 +28,6 @@ const build = async () => {
     console.log(` ${logSymbols.success} Copied ${file}`);
   })
 
-  // Copy mousehunt-utils.js from node_modules to dist/extension.
-  fs.copyFileSync(
-    path.join(process.cwd(), 'node_modules/mousehunt-utils/mousehunt-utils.js'),
-    path.join(process.cwd(), 'dist/extension/mousehunt-utils.js')
-  )
-  console.log(` ${logSymbols.success} Copied mousehunt-utils.js`);
-
   const mhUtils = fs.readFileSync(path.join(process.cwd(), 'node_modules/mousehunt-utils/mousehunt-utils.js'), 'utf8')
   console.log(` ${logSymbols.success} Copied mousehunt-utils.js`);
 
