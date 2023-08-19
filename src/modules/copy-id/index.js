@@ -12,6 +12,7 @@ const main = () => {
   profilePic.parentNode.insertBefore(copyIdButton, profilePic.nextSibling);
 
   const successMessage = makeElement('div', 'mh-copy-id-success-message', 'Copied!');
+  successMessage.style.opacity = 0;
   copyIdButton.parentNode.insertBefore(successMessage, copyIdButton.nextSibling);
 
   copyIdButton.addEventListener('click', () => {
