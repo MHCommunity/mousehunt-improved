@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        🐭️ Better MouseHunt
+// @name        🐭️ MouseHunt Improved
 // @description Improve your MouseHunt experience.
 // @version     process.env.VERSION
 // @license     MIT

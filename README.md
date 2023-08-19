@@ -1,6 +1,6 @@
-# 🐭️ Better MouseHunt
+# 🐭️ MouseHunt Improved
 
-Better MouseHunt is a collection of user scripts aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [Better MH](https://www.mousehuntgame.com/preferences.php?tab=better-mh-settings) tab of the settings screen.
+MouseHunt Improved is a collection of user scripts aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [Better MH](https://www.mousehuntgame.com/preferences.php?tab=better-mh-settings) tab of the settings screen.
 
 **Over 100 features and improvements!**
 

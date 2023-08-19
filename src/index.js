@@ -109,7 +109,7 @@ const modules = [
 const main = () => {
   debug('Starting MH UI');
 
-  addSettingsTab('better-mh-settings', 'Better MH');
+  addSettingsTab('better-mh-settings', 'MH Improved');
 
   // Add the settings for each module.
   modules.forEach((module) => {
