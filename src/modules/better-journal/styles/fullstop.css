@@ -3,11 +3,6 @@
   display: none;
 }
 
-.journal .entry .journalbody .journaltext .lucky:last-of-type::after,
-.journal .entry .journalbody .journaltext .loot:last-of-type::after {
-  content: ".";
-}
-
 .journal .entry .journalbody .journaltext .lucky::after {
   position: relative;
   top: unset;
@@ -15,14 +10,27 @@
   background: unset;
 }
 
-.journal .entry .journaltext br {
-  content: "";
-}
-
 .journal .entry .journaltext br::after {
   content: " ";
 }
 
+.journal .entry .journaltext br,
 .journal .entry.relicHunter_catch .journaltext br::after {
   content: "";
+}
+
+.journal .entry .journalbody .journaltext .lucky:last-of-type::after,
+.journal .entry .journalbody .journaltext .loot:last-of-type::after,
+.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"]:after,
+.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:after,
+.journal .entry a:last-child::after {
+  content: ".";
+}
+
+.journal .entry a.lucky::after {
+  top: 0;
+  left: 0;
+  width: unset;
+  height: unset;
+  background: none;
 }

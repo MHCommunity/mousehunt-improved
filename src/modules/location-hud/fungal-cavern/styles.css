@@ -58,3 +58,7 @@ span.fungalCavernHUD-background-title-zone {
 .rare .fungalCavernHUD-craftingItem-quantity.quantity {
   background-color: #d3ffc1;
 }
+
+.fungalCavernHUD .armNow.active {
+    filter: hue-rotate(131deg);
+}

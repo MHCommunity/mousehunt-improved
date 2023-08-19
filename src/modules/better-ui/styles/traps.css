@@ -32,7 +32,7 @@
   box-sizing: border-box;
   padding: 5px;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 11px;
   text-align: right;
   background-color: hsl(0deg 0% 100% / 70%);
@@ -43,14 +43,18 @@
   box-shadow: -1px -1px 1px #d3cecb inset;
 }
 
+.campPage-trap-armedItem.bait .campPage-trap-armedItem-image {
+  background-size: 100%;
+}
+
 .mh-dark-mode .campPage-trap-baitQuantity {
   background-color: hsl(0deg 0% 37.11% / 70%);
 }
 
 .campPage-trap-armedItem .quantity span {
   position: absolute;
-  right: -5px;
-  bottom: 4px;
+  right: -6px;
+  bottom: 3px;
   padding: 3px;
   text-align: right;
   background-color: hsl(0deg 0% 100% / 80%);
@@ -259,4 +263,12 @@ span.campPage-trap-armedItem-skin-description-content br {
 
 .campPage-trap-trapStat.power .value b {
   line-height: 15px;
+}
+
+.itembrowser-skin-image-wrapper {
+  background-image: url(https://www.mousehuntgame.com/images/items/bases/trap_small/a44d6a59ca9c0d11224bb36fd4e16378.png?cv=2);
+}
+
+a.campPage-trap-itemBrowser-item-disarmButton {
+  margin-top: 10px;
 }

@@ -22,3 +22,44 @@
 .sendMapInvite .userInteractionButtonsView-button-buttonOptionContainer:hover .userInteractionButtonsView-button-buttonOption:hover .userInteractionButtonsView-button-buttonOption-name {
   background-color: #eaf6ea;
 }
+
+.friendsPage-community-channel.friends-page-id-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #a1a1a1;
+  box-shadow: 0px 1px 2px -1px #b5b5b5;
+  background-color: #e0f9ff;
+}
+
+.friends-page-id-search .friendsPage-community-channel-text {
+  display: none;
+}
+
+.friends-page-id-search .friendsPage-community-channel-action {
+  position: relative;
+  right: 0;
+  margin: 0;
+}
+
+.friends-page-id-search input.friendsPage-community-hunterIdForm-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.friends-page-id-search .friendsPage-community-channel-hunterId {
+  display: none;
+}
+
+.friends-page-id-search label {
+  padding: 0;
+  margin-right: 30px;
+}
+
+.friends-page-id-search form.friendsPage-community-hunterIdForm {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+}

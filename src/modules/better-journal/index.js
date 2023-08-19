@@ -1,6 +1,8 @@
 import { addUIStyles } from '../utils';
 import styles from './styles/styles.css';
 import adventure from './styles/adventure.css';
+import customEntries from './styles/custom-entries.css';
+import fullstop from './styles/fullstop.css';
 import miniEntries from './styles/mini-entries.css';
 import progressLog from './styles/progress-log.css';
 
@@ -105,6 +107,10 @@ const updateJournalText = () => {
     ['slowly collapsed into itself with a powerful force, compressing mist in the air into an ', 'compressed mist in the air into an '],
     ['Your S.U.P.E.R. Scum Scrubber scrubbed the mouse clean and found ', 'My trap found an extra '],
     ['You scrubba-lubba-dub-dubbed your barrel and refined ', 'I refined '],
+    ['an additional 1 ', 'an additional '],
+    ['>!', '>'],
+    ['>.', '>'],
+    [', and ', ' and '],
 
     // Event stuff
     // SEH
@@ -182,6 +188,8 @@ const main = () => {
 export default function journal() {
   addUIStyles(styles);
   addUIStyles(adventure);
+  addUIStyles(customEntries);
+  addUIStyles(fullstop);
   addUIStyles(miniEntries);
   addUIStyles(progressLog);
 

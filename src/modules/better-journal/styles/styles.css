@@ -178,10 +178,6 @@ a.journal-detailLink.full::after {
   background-color: #7dea7d;
 }
 
-.journaltext .lucky::after {
-  display: none;
-}
-
 .journal .entry.craft.item {
   min-height: 70px;
 }
@@ -189,11 +185,6 @@ a.journal-detailLink.full::after {
 .journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"],
 .journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"] {
   color: #1e831e;
-}
-
-.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"]:after,
-.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:after {
-  content: ".";
 }
 
 .journal .entry a.loot[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"],

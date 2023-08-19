@@ -51,14 +51,6 @@ span.campPage-trap-baitQuantity {
   border-bottom: none;
 }
 
-.campPage-trap-armedItem .quantity span {
-  right: -6px;
-  bottom: 3px;
-  border-color: #d3cecb;
-  border-right: none;
-  border-bottom: none;
-}
-
 /* recipe page */
 .mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent {
   padding: none;
@@ -250,3 +242,13 @@ a.mousehuntHud-shield.golden:hover {
 a.trapImageView-zoomButton {
   top: 85%;
 }
+
+
+
+
+
+
+
+
+
+

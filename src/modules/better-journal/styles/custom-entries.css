@@ -55,6 +55,10 @@
   margin-left: 80px;
 }
 
+.journal .entry.alchemists_cookbook_base_bonus {
+    background-position: 5px;
+}
+
 /* Vrift */
 .journal .minimalJournalImage.champions_fire_loot,
 .journal .minimalJournalImage.moved_forward {
