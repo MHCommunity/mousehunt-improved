@@ -448,11 +448,13 @@ a.labyrinthHUD-door.labyrinthHUD-door-category-s::after {
 }
 
 a.labyrinthHUD-door.labyrinthHUD-door-category-t::after {
+  font-size: 11px;
   content: "Treasury";
   background-color: rgb(255 228 0 / 60%);
 }
 
 a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
+  font-size: 12px;
   content: "Farming";
   background-color: rgb(17 244 0 / 60%);
 }
@@ -460,4 +462,9 @@ a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
 /* Fit the labels */
 .labyrinthHUD-door-name-padding span {
   margin-top: -25px;
+}
+
+.labyrinthHUD-door-image::after {
+  filter: drop-shadow(0 1px 1px #222);
+  transform: scale(1.5);
 }

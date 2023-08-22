@@ -19,6 +19,11 @@ const highlightDoors = () => {
       }
       return false;
     });
+
+    if (! matchingDoors.length) {
+      return;
+    }
+
     const bestDoor = matchingDoors.reduce((a, b) => a.choice.length > b.choice.length ? a : b);
 
     if (bestDoor) {
@@ -93,11 +98,6 @@ const main = () => {
     }, 500);
   }
 
-  if ('intersection' === user?.quests?.QuestLabyrinth?.status) {
-    highlightDoors();
-    return;
-  }
-
   const hallwayLength = user.quests.QuestLabyrinth.hallway_length || 0;
   const tiles = user.quests.QuestLabyrinth.tiles || [];
   const completed = tiles.filter((tile) => tile.status.includes('complete'));
@@ -127,6 +127,25 @@ const main = () => {
 
       intersectionDoors.appendChild(intersectionText);
     }
+  } else {
+    const existingIntersectionText = document.querySelector('.mh-ui-labyrinth-door-text');
+    if (existingIntersectionText) {
+      existingIntersectionText.remove();
+    }
+
+    const stepsExisting = document.querySelector('.mh-ui-laby-steps');
+    if (stepsExisting) {
+      stepsExisting.remove();
+    }
+
+    const cptExisting = document.querySelector('.mh-ui-laby-cpt');
+    if (cptExisting) {
+      cptExisting.remove();
+    }
+  }
+
+  if ('intersection' === user?.quests?.QuestLabyrinth?.status) {
+    highlightDoors();
   }
 };
 
