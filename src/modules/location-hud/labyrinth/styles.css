@@ -401,3 +401,63 @@
 .labyrinthHUD-clueDrawer-barPadding {
     padding: 1px 4px 0 1px;
 }
+
+.labyrinthHUD-confirmDescription.chooseDoor b {
+  font-size: 13px;
+}
+
+
+.labyrinthHUD-scrambleClues.disabled .labyrinthHUD-scrambleClues-name,
+.labyrinthHUD-scrambleClues.disabled:hover .labyrinthHUD-scrambleClues-name {
+  color: transparent !important
+}
+
+
+/* Door labels */
+a.labyrinthHUD-door.labyrinthHUD-door-category-y::after,
+a.labyrinthHUD-door.labyrinthHUD-door-category-h::after,
+a.labyrinthHUD-door.labyrinthHUD-door-category-s::after,
+a.labyrinthHUD-door.labyrinthHUD-door-category-t::after,
+a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
+  position: absolute;
+  right: 18px;
+  bottom: 4px;
+  left: 19px;
+  padding: 1px 2px 0;
+  font-size: 13px;
+  text-align: center;
+  text-shadow: 0 0 #1a1611;
+  content: "";
+  background-color: #50306a;
+  border-radius: 1px;
+}
+
+a.labyrinthHUD-door.labyrinthHUD-door-category-y::after {
+  content: "Fealty";
+  background-color: rgb(216 81 255 / 60%);
+}
+
+a.labyrinthHUD-door.labyrinthHUD-door-category-h::after {
+  content: "Tech";
+  background-color: rgb(33 226 255 / 60%);
+}
+
+a.labyrinthHUD-door.labyrinthHUD-door-category-s::after {
+  content: "Scholar";
+  background-color: rgb(233 99 0 / 60%);
+}
+
+a.labyrinthHUD-door.labyrinthHUD-door-category-t::after {
+  content: "Treasury";
+  background-color: rgb(255 228 0 / 60%);
+}
+
+a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
+  content: "Farming";
+  background-color: rgb(17 244 0 / 60%);
+}
+
+/* Fit the labels */
+.labyrinthHUD-door-name-padding span {
+  margin-top: -25px;
+}
