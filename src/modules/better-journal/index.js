@@ -108,9 +108,11 @@ const updateJournalText = () => {
     ['Your S.U.P.E.R. Scum Scrubber scrubbed the mouse clean and found ', 'My trap found an extra '],
     ['You scrubba-lubba-dub-dubbed your barrel and refined ', 'I refined '],
     ['an additional 1 ', 'an additional '],
-    ['>!', '>'],
     ['>.', '>'],
     [', and ', ' and '],
+    ['!.,', '!'],
+    ['My tower\'s ', 'My '],
+    ['Energy Cannon', 'cannon'],
 
     // Event stuff
     // SEH
