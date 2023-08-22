@@ -20,6 +20,7 @@ import traps from './styles/traps.css';
 import tsituSendSupplies from './styles/tsitu-send-supplies.css';
 
 // scripts
+import hud from './hud';
 import updateFriends from './friends';
 import updateTournaments from './tournaments';
 import updateRecipes from './recipes';
@@ -44,6 +45,7 @@ export default () => {
     tsituSendSupplies,
   ].join('\n'));
 
+  hud();
   updateFriends();
   updateTournaments();
   updateRecipes();
