@@ -201,10 +201,10 @@
   filter: brightness(1.3);
 }
 
-.labyrinthHUD-door.mh-ui-labyrinth-highlight::after {
+.labyrinthHUD-door.mh-ui-labyrinth-highlight::before {
   position: absolute;
   right: 5px;
-  bottom: 5px;
+  bottom: 20px;
   width: 30px;
   height: 30px;
   overflow: hidden;
