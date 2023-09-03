@@ -83,3 +83,8 @@ span.ancientCityHUD-alertLevel {
 .ancientCityHUD-item {
   top: 5px;
 }
+
+.ancientCityHUD-bossSecretLabel {
+  font-size: 13px;
+  text-shadow: 0px 1px 1px #3d3d3d;
+}

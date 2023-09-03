@@ -287,7 +287,8 @@ a.itemPurchaseView-content-skin-link {
 /* Trap stats in store */
 .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-padding {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
+  row-gap: 5px;
   align-items: center;
   justify-content: flex-start;
 }
