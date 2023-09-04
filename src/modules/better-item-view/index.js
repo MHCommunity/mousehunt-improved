@@ -88,8 +88,12 @@ const updateItemView = async () => {
 
   addLinks(itemId);
 
-  // dont show drop rates for mina gifts
-  if (2473 === parseInt(itemId, 10)) {
+  // dont show drop rates for items that arent consistent.
+  const id = parseInt(itemId, 10);
+  if (
+    2473 === id || // mina's gift
+    823 === id // party charm
+  ) {
     return;
   }
 
