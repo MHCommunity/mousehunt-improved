@@ -129,3 +129,11 @@
   font-size: 9px;
   text-align: center;
 }
+
+#overlayPopup.itemViewPopup #jsDialogClose {
+  z-index: 1;
+}
+
+#overlayPopup.itemViewPopup .itemView-header-classification {
+  right: 30px;
+}
