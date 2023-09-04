@@ -160,7 +160,7 @@ const updateMouseView = async () => {
   makeElement('div', 'ar-title', 'Attraction Rates', title);
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
-  link.href = `https://www.mhct.win/attractions.php?mouse$name=${name}`;
+  link.href = `https://www.mhct.win/attractions.php?mouse=${name}`;
   title.appendChild(link);
 
   arWrapper.appendChild(title);
