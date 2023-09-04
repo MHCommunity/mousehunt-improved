@@ -105,7 +105,7 @@ MouseHunt Improved is a collection of user scripts aimed at improving the MouseH
 - Remove Sidebar
   - Hides the sidebar and adds a 'Sidebar' dropdown in the top menu.
 
-### Location HUDS
+### Location HUDs
 
 - Balack's Cove
   - Shows a countdown to the next low, mid, and high tides.
