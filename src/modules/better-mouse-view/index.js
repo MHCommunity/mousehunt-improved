@@ -10,14 +10,12 @@ import styles from './styles.css';
  *
  * @return {string} HTML for link.
  */
-const makeLink = (text, href, encodeAsSpace) => {
+const makeLink = (text, href, encodeAsSpace = false) => {
   if (encodeAsSpace) {
     href = href.replace(/_/g, '%20');
-  } else {
-    href = href.replace(/\s/g, '_');
   }
 
-  href = href.replace(/\$/g, '_');
+  // href = href.replace(/\$/g, '_');
 
   return `<a href="${href}" target="_mouse" class="mousehuntActionButton tiny"><span>${text}</span></a>`;
 };
@@ -30,9 +28,9 @@ const makeLink = (text, href, encodeAsSpace) => {
  * @return {string} The markup for the mouse links.
  */
 const getLinkMarkup = (name) => {
-  return makeLink('MHCT AR', `https://www.mhct.win/attractions.php?mouse_name=${name}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}_Mouse`) +
-    makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${name}_Mouse`);
+  return makeLink('MHCT AR', `https://www.mhct.win/attractions.php?mouse_name=${name}`) +
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`) +
+    makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${name}`);
 };
 
 /**
@@ -159,8 +157,10 @@ const updateMouseView = async () => {
   const title = makeElement('div', 'ar-header');
   makeElement('div', 'ar-title', 'Attraction Rates', title);
 
+  const name = mouseView.querySelector('.mouseView-title');
+
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
-  link.href = `https://www.mhct.win/attractions.php?mouse=${name}`;
+  link.href = `https://www.mhct.win/attractions.php?mouse_name=${name.innerText}`;
   title.appendChild(link);
 
   arWrapper.appendChild(title);
