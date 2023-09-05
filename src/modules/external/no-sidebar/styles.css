@@ -1,7 +1,7 @@
 /* Reflow grid for no sidebar */
 body.no-sidebar .pageFrameView {
-  -ms-grid-columns: [first] auto [content-start] 760px [content-end] auto [last];
-  grid-template-columns: [first] auto [content-start] 760px [content-end] auto [last];
+  -ms-grid-columns: [first] auto [content-start] 760px [sidebar] 0 [content-end] auto [last];
+  grid-template-columns: [first] auto [content-start] 760px [sidebar] 0 [content-end] auto [last];
 }
 
 /* Sidebar moved into tab */

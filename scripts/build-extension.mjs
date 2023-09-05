@@ -79,20 +79,6 @@ const buildExtension = async (platform) => {
     zlib: { level: 9 }
   });
 
-  output.on('close', () => {
-    console.log(` ${logSymbols.success} Zipped extension`);
-  });
-
-  archive.on('warning', function(err) {
-    if (err.code === 'ENOENT') {
-      // log warning
-    } else {
-      // throw error
-      throw err;
-    }
-  });
-
-  // good practice to catch this error explicitly
   archive.on('error', function(err) {
     throw err;
   });
