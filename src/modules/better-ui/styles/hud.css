@@ -1,0 +1,22 @@
+/* Show the full title of charms, bait, maps when hovering over the icons */
+.mousehuntHud-userStat.bait:hover .label,
+.mousehuntHud-userStat.trinket:hover .label,
+.mousehuntHud-userStat.treasureMap:hover .label {
+  position: absolute;
+  top: 7px;
+  z-index: 11;
+  width: auto;
+  padding: 3px 10px 2px 0;
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/hud_bg_blue_repeating.png?asset_cache_version=2);
+  border-radius: 5px;
+}
+
+.mousehuntHud-userStat.treasureMap:hover .label {
+  padding-right: 3px;
+}
+
+.mousehuntHud-userStat.bait:hover .value,
+.mousehuntHud-userStat.trinket:hover .value,
+.mousehuntHud-userStat.treasureMap:hover .value {
+  margin-top: 14px;
+}

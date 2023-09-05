@@ -7,6 +7,7 @@ import betterLuckyCatchIcon from './styles/better-lucky-catch-icon.css';
 import corkboard from './styles/corkboard.css';
 import footer from './styles/footer.css';
 import friends from './styles/friends.css';
+import hudStyles from './styles/hud.css';
 import overlays from './styles/overlays.css';
 import profile from './styles/profile.css';
 import recipes from './styles/recipes.css';
@@ -31,6 +32,7 @@ export default () => {
     corkboard,
     footer,
     friends,
+    hudStyles,
     overlays,
     profile,
     recipes,
