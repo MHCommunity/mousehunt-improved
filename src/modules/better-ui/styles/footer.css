@@ -5,7 +5,7 @@
   flex-flow: row wrap;
   align-items: center;
   justify-content: flex-start;
-  margin: -40px 55px 0px 70px;
+  margin: -40px 55px 0 70px;
   line-height: 17px;
 }
 
@@ -45,11 +45,20 @@
 }
 
 .mousehuntFooter {
+  position: relative;
   margin-top: 0;
+  border-top: none;
 }
 
 .mousehuntFooter-toggleMobile {
   display: none;
+}
+
+
+.pageFrameView-content {
+    overflow: hidden;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 /* Hide the version number */
@@ -57,4 +66,20 @@
   display: flex;
   flex-direction: row-reverse;
   color: transparent;
+  background: url(https://i.mouse.rip/footer.png?1) no-repeat top center;
+  border: 1px solid #c3ad8d;
+  border-top: none;
+  border-bottom: none;
+  border-radius: 5px;
+}
+
+.mousehuntFooter-image::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  content: "";
+  box-shadow: inset 0 -4px 7px -6px #755e40;
 }
