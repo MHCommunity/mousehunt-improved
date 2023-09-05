@@ -62,7 +62,7 @@ const main = () => {
 export default function fixes() {
   addUIStyles(globalStyles);
   addUIStyles(fixesStyles);
-  addUIStyles(adblock);
+  // addUIStyles(adblock);
 
   main();
 }

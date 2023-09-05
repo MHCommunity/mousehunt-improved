@@ -2,23 +2,19 @@
 .canShare .larryTip,
 .canShare,
 .communityGroupView-ad,
+.journalactions a.actionportfolio,
 .journalactions a[data-share-type="journal"],
 .journalactions a[data-type="journal"],
 .mousehuntHeaderView-gameBanner,
+.mousehuntHeaderView-newsTicker,
 .pageSidebarView .fb-page,
+.socialBallots,
 .socialLink,
-.socialLink,
+.travelShortcut.QuestSuperBrieFactory,
 *[src="https://www.mousehuntgame.com//images/ui/buttons/share_green.gif"],
 *[src="https://www.mousehuntgame.com/images/promo/fbf_live.jpg"],
 *[src="https://www.mousehuntgame.com/images/promo/fbf_soon.jpg"],
-#jsDialog-publishToOwnWall,
-.actionportfolio,
-.mousehuntHeaderView-newsTicker,
-#jsDialog-publishToOwnWall,
-.socialBallots,
-.travelShortcut.QuestSuperBrieFactory,
-body .pageFrameView-footer,
-.journalactions a.actionportfolio {
+#jsDialog-publishToOwnWall {
   display: none;
 }
 
