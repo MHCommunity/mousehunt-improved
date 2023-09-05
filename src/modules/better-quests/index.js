@@ -1,4 +1,5 @@
 import { addUIStyles } from '../utils';
+import m400 from './m400';
 import styles from './styles.css';
 
 /**
@@ -63,6 +64,7 @@ const addQuestTabEventListener = () => {
   // Add an observer to the quest tab content.
   const observer = new MutationObserver(() => {
     updateObjectiveFooterDisplay();
+    m400();
   });
 
   observer.observe(questTabContent, { childList: true });
@@ -321,6 +323,8 @@ const main = () => {
     addQuestTabEventListener();
     addQuestsTab();
     checkForQuestSmash();
+
+    m400();
   };
 
   // Add our event listener and add the quests tab.
@@ -330,6 +334,7 @@ const main = () => {
     camp: { show: activate },
     inventory: { show: checkForQuestSmash }
   });
+
   onOverlayChange({
     show: () => {
       addResearchSmashWarning();
