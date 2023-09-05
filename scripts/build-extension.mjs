@@ -47,10 +47,10 @@ const buildExtension = async (platform) => {
 
   // Build the content script.
   await esbuild.build({
-    entryPoints: ['src/extension/content.js'],
+    entryPoints: ['src/index.js'],
     bundle: true,
     minify: true,
-    outfile: `dist/extension/${platform}/content.js`,
+    outfile: `dist/extension/${platform}/main.js`,
     platform: 'browser',
     metafile: true,
     sourcemap: true,
