@@ -96,3 +96,20 @@ img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
   width: 44px;
   height: 44px;
 }
+
+/* Fix the tutorial overlay shadow */
+#overlayBg.larryOffice {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+#overlayBg.larryOffice::after {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  content: "";
+  background-color: rgb(80 80 80 / 90%);
+}
