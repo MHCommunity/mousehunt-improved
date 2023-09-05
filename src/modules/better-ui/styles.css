@@ -4,14 +4,6 @@
   box-shadow: inset 0 0 8px 0 #755e40;
 }
 
-.mousehuntFooter-image {
-  display: flex;
-  flex-direction: row-reverse;
-  padding-top: 13px;
-  color: transparent;
-  background-image: none;
-}
-
 .campPage-trap {
   border: 1px solid #9d917f;
 }

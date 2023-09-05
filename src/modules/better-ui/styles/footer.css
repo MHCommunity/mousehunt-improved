@@ -5,28 +5,50 @@
   flex-flow: row wrap;
   align-items: center;
   justify-content: flex-start;
+  margin: -40px 55px 0px 70px;
+  line-height: 17px;
+}
+
+.pageFrameView-footer a img {
+  width: auto;
+  max-height: 25px;
+  margin: 5px 10px 0 0;
+  opacity: .2;
+  transition: .2s;
+}
+
+.pageFrameView-footer a:nth-child(4) {
+  margin-right: auto;
+}
+
+.pageFrameView-footer a:nth-child(4) img {
+  filter: sepia(1);
+  opacity: .7;
+}
+
+.pageFrameView-footer:hover a img,
+.pageFrameView-footer:hover a:nth-child(4) img {
+  filter: none;
+  opacity: 1;
 }
 
 .pageFrameView-footer-linksContainer {
-  position: absolute;
-  top: -38px;
-  left: 20px;
-  flex: 1;
+  display: block;
+  width: auto;
+  margin-right: auto;
   font-weight: 900;
 }
 
-/* Breathing room for app upsells */
-.pageFrameView-footer a img {
-  margin: 0 50px;
+.pageFrameView-footer br,
+.pageFrameView-footer-ad {
+  display: none;
 }
 
-/* center the footer ad */
-.adView {
-  width: 640px;
+.mousehuntFooter {
+  margin-top: 0;
 }
 
-/* Hide the report ad link */
-.pageFrameView-footer-ad .adView-reportLink {
+.mousehuntFooter-toggleMobile {
   display: none;
 }
 
