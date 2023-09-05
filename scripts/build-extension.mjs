@@ -5,8 +5,6 @@ import logSymbols from 'log-symbols';
 import archiver from 'archiver';
 
 const buildExtension = async (platform) => {
-  console.log(`> Building extension for ${platform} version ${process.env.npm_package_version}`);
-
   // Remove the extension folder if it exists.
   if (fs.existsSync(path.join(process.cwd(), `dist/extension/${platform}`))) {
     fs.rmSync(path.join(process.cwd(), `dist/extension/${platform}`), { recursive: true });
@@ -21,8 +19,6 @@ const buildExtension = async (platform) => {
     path.join(process.cwd(), `dist/extension/${platform}/manifest.json`),
     JSON.stringify(manifest, null, 2)
   );
-
-  console.log(` ${logSymbols.success} Copied manifest-${platform}.json to ${platform}/manifest.json`);
 
   // Copy all our files.
   const files = fs.readdirSync(path.join(process.cwd(), 'src/extension'));
@@ -45,31 +41,24 @@ const buildExtension = async (platform) => {
       path.join(process.cwd(), 'src/extension', file),
       path.join(process.cwd(), `dist/extension/${platform}`, file)
     );
-    console.log(` ${logSymbols.success} Copied ${file}`);
   });
 
-  const mhUtils = fs.readFileSync(path.join(process.cwd(), 'node_modules/mousehunt-utils/mousehunt-utils.js'), 'utf8');
-  console.log(` ${logSymbols.success} Copied mousehunt-utils.js`);
+  const mhutils = fs.readFileSync(path.join(process.cwd(), 'node_modules/mousehunt-utils/mousehunt-utils.js'), 'utf8');
 
-  // minifiy mhutils
-  // const { code } = await esbuild.transform(mhUtils, {
-  //   minify: false,
-  //   target: 'es2015',
-  // });
-
+  // Build the content script.
   await esbuild.build({
-    entryPoints: ['src/index.js'],
+    entryPoints: ['src/extension/content.js'],
     bundle: true,
-    minify: false,
-    banner: {
-      js: mhUtils,
-    },
-    outfile: `dist/extension/${platform}/main.js`,
+    minify: true,
+    outfile: `dist/extension/${platform}/content.js`,
     platform: 'browser',
     metafile: true,
     sourcemap: true,
     define: {
       EXT_VERSION: JSON.stringify(process.env.npm_package_version),
+    },
+    banner: {
+      js: mhutils,
     }
   });
 
@@ -89,15 +78,12 @@ const buildExtension = async (platform) => {
 
   await archive.finalize();
 
-  console.log(`\n ${logSymbols.success} Built extension for ${platform} version ${process.env.npm_package_version}\n`);
+  console.log(`${logSymbols.success} Built extension for ${platform}`);
 };
 
-// need to make an output folder that will have manifest.json, the content script, and our popup.html page, and then build src/index.js to content.js
 const build = async () => {
-  await buildExtension('firefox');
-  await buildExtension('chrome');
-
-  console.log(` ${logSymbols.success} Build complete!`);
+  console.log(`> Building extensions for version ${process.env.npm_package_version}`);
+  await Promise.all(['firefox', 'chrome'].map(buildExtension));
 };
 
 build();
