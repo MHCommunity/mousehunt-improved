@@ -1,7 +1,7 @@
 import { addUIStyles } from '../utils';
 import globalStyles from './global-styles.css';
 import fixesStyles from './fixes.css';
-// import adblock from './adblock.css';
+import adblock from './adblock.css';
 
 const updateItemClassificationLinks = () => {
   const itemClassificationLink = document.querySelectorAll('.itemView-header-classification-link a');
@@ -62,7 +62,7 @@ const main = () => {
 export default function fixes() {
   addUIStyles(globalStyles);
   addUIStyles(fixesStyles);
-  // addUIStyles(adblock);
+  addUIStyles(adblock);
 
   main();
 }
