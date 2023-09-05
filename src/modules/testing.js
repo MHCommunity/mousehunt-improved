@@ -123,7 +123,7 @@ const trackEvents = () => {
   });
 };
 
-const main = () => {
+const makeRandomAirships = () => {
   const trigger = document.querySelector('.mousehuntHud-gameInfo');
   trigger.addEventListener('click', () => {
     createAirship({
@@ -132,8 +132,49 @@ const main = () => {
       balloon: balloons[Math.floor(Math.random() * balloons.length)],
     });
   });
+};
 
+const trollem = () => {
+  const hasBeenTrolled = localStorage.getItem('lol-got-trolled-by-larry');
+  if (hasBeenTrolled) {
+    return;
+  }
+
+  const domQuery = '#journallatestentry';
+  const lastCatch = document.querySelector(domQuery);
+  const isFtcOrFta = lastCatch && (lastCatch.classList.contains('attractionfailure') || lastCatch.classList.contains('catchfailuredamage'));
+
+  if (isFtcOrFta) {
+    hg.views.MessengerView.addMessage({
+      content: {
+        body: app.views.OnboardingTutorialView.tutorial.wrapInfoArrow(`wow you really are an amazing mousehunter ${user.username}`, 'lol'),
+      },
+      highlight_dom: domQuery,
+      highlight_padding: {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 1,
+      },
+      css_class: 'larryCircle',
+      on_show_callback: () => {
+        app.views.OnboardingTutorialView.tutorial.showBouncyArrow(domQuery, 'topRight');
+      },
+      on_close_callback: () => {
+        app.views.OnboardingTutorialView.tutorial.hideBouncyArrow();
+        localStorage.setItem('lol-got-trolled-by-larry', true);
+      },
+      show_overlay: true,
+    });
+    hg.views.MessengerView.go();
+  }
+};
+
+const main = () => {
+  makeRandomAirships();
   trackEvents();
+
+  setTimeout(trollem, 500);
 };
 
 export default main;
