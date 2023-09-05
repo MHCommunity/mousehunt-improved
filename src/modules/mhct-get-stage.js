@@ -292,8 +292,8 @@ const getLocationAndStage = () => {
    * @param {Object <string, any>} hunt      The journal entry corresponding to the active hunt.
    */
   function addSeasonalGardenStage(message, user, user_post, hunt) {
-    const season = user.viewing_atts.season;
-    const final_season = user_post.viewing_atts.season;
+    const season = user?.viewing_atts?.season;
+    const final_season = user.viewing_atts.season;
     if (season && final_season && season === final_season) {
       switch (season) {
       case 'sr':

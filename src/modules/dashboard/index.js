@@ -8,7 +8,7 @@ import { getFieryWarpathText, setFieryWarpathData } from './location/fiery-warpa
 import getLivingGardenText from './location/living-garden';
 import getLostCityText from './location/lost-city';
 import getSandDunesText from './location/sand-dunes';
-// import getSeasonalGardenText from './location/seasonal-garden';
+import { getSeasonalGardenText, setSeasonalGardenData } from './location/seasonal-garden';
 import { getZugzwangTowerText, setZugzwangTowerData } from './location/zugzwang-tower';
 import getIcebergText from './location/iceberg';
 import getSunkenCityText from './location/sunken-city';
@@ -108,6 +108,11 @@ const cacheLocationData = async () => {
       const ztQuestData = setZugzwangTowerData();
       if (ztQuestData) {
         user.quests.QuestZugzwangTower = ztQuestData;
+      }
+    } else if (user.environment_type === 'seasonal_garden') {
+      const sgQuestData = setSeasonalGardenData();
+      if (sgQuestData) {
+        user.quests.QuestSeasonalGarden = sgQuestData;
       }
     }
 
@@ -322,7 +327,7 @@ const getDashboardContents = () => {
   makeRegionMarkup('Sandtail Desert', sandtailDesert, contentsWrapper);
 
   const rodentia = document.createElement('div');
-  // makeLocationMarkup('seasonal_garden', 'Seasonal Garden', getSeasonalGardenText, rodentia);
+  makeLocationMarkup('seasonal_garden', 'Seasonal Garden', getSeasonalGardenText, rodentia);
   makeLocationMarkup('zugzwang_tower', 'Zugzwang\'s Tower', getZugzwangTowerText, rodentia);
   makeLocationMarkup('iceberg', 'Iceberg', getIcebergText, rodentia);
   makeLocationMarkup('sunken_city', 'Sunken City', getSunkenCityText, rodentia);
