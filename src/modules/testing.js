@@ -1,3 +1,5 @@
+import { addUIStyles } from "./utils";
+
 const hulls = [
   'airship_hull_astral_stat_item',
   'airship_hull_factory_stat_item',
@@ -134,15 +136,16 @@ const makeRandomAirships = () => {
   });
 };
 
-const trollem = () => {
+const trollEm = () => {
   const hasBeenTrolled = localStorage.getItem('lol-got-trolled-by-larry');
-  if (hasBeenTrolled) {
+  if (hasBeenTrolled && Math.random() < 0.75) {
     return;
   }
 
   const domQuery = '#journallatestentry';
   const lastCatch = document.querySelector(domQuery);
-  const isFtcOrFta = lastCatch && (lastCatch.classList.contains('attractionfailure') || lastCatch.classList.contains('catchfailuredamage'));
+  const status = ['attractionfailure', 'catchfailure', 'catchfailuredamage'];
+  const isFtcOrFta = lastCatch && status.some((s) => lastCatch.classList.contains(s));
 
   if (isFtcOrFta) {
     hg.views.MessengerView.addMessage({
@@ -158,7 +161,7 @@ const trollem = () => {
       },
       css_class: 'larryCircle',
       on_show_callback: () => {
-        app.views.OnboardingTutorialView.tutorial.showBouncyArrow(domQuery, 'topRight');
+        app.views.OnboardingTutorialView.tutorial.showBouncyArrow(domQuery, 'top');
       },
       on_close_callback: () => {
         app.views.OnboardingTutorialView.tutorial.hideBouncyArrow();
@@ -170,11 +173,109 @@ const trollem = () => {
   }
 };
 
+const trollem2 = () => {
+  const banner = document.querySelector('.campPage-banner');
+  if (! banner) {
+    return;
+  }
+
+  const bannerLink = document.createElement('a');
+  const newbieImg = document.createElement('img');
+  newbieImg.src = 'https://www.mousehuntgame.com/images/promo/campbanners/groups/newbie.png';
+
+  bannerLink.appendChild(newbieImg);
+
+  const styleslol = () => {
+    addUIStyles(`* + * {
+      transition: .3s;
+    }
+
+    * + * + * {
+      filter: hue-rotate(90deg);
+      transform: rotate(0.5deg);
+    }
+
+    * + * + * + * {
+      transform: rotate(-0.6deg);
+    }
+
+    * + * > * {
+      transform: rotate(-0.1deg);
+    }
+
+    * + * + * > * {
+      transform: rotate(0.2deg);
+    }
+
+    div + div + div {
+      filter: hue-rotate(90deg);
+    }
+
+    * > * > * > * > * > * > * > * > * > * > * {
+      transition: .9s;
+    }
+
+    * > * > * > * > * > * > * > * > * > *:hover  * > {
+      transform:rotateX(20deg);
+    }
+
+    * > * > * > * > * > * > * > * > * > * > *:hover {
+      transform:rotateX(-20deg);
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .lolspin {
+      animation: spin 1s linear infinite;
+    }
+    `);
+  };
+
+  const secondClick = () => {
+    banner.classList.add('lolspin');
+    setTimeout(() => {
+      banner.classList.remove('lolspin');
+    }, 1000);
+
+    const elements = document.querySelectorAll('*');
+    const randomElement = elements[Math.floor(Math.random() * elements.length)];
+    randomElement.classList.add('lolspin');
+
+    setInterval(() => {
+      const randomElement2 = elements[Math.floor(Math.random() * elements.length)];
+      randomElement2.classList.add('lolspin');
+    }, 500);
+  };
+
+  const firstClick = () => {
+    styleslol();
+    bannerLink.removeEventListener('click', firstClick);
+    bannerLink.addEventListener('click', secondClick);
+  };
+
+  bannerLink.addEventListener('click', firstClick);
+
+  banner.appendChild(bannerLink);
+  banner.classList.remove('hidden');
+};
+
 const main = () => {
   makeRandomAirships();
   trackEvents();
 
-  setTimeout(trollem, 500);
+  trollEm();
+
+  // randomly decide to troll
+  if (Math.random() < 0.1) {
+    trollem2();
+  }
 };
 
 export default main;
