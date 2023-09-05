@@ -178,7 +178,7 @@ const kingsPromoTextChange = () => {
 };
 
 const updateKingsPromoText = () => {
-  onAjaxRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
+  onRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
 };
 
 const main = () => {
@@ -197,7 +197,7 @@ export default function journal() {
 
   main();
 
-  onAjaxRequest(() => {
+  onRequest(() => {
     main();
     setTimeout(main, 300);
     setTimeout(main, 900);

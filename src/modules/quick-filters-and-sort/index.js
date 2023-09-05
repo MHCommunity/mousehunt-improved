@@ -182,7 +182,7 @@ const main = () => {
 export default function quickFiltersAndSort() {
   addUIStyles(styles);
 
-  onAjaxRequest(main, 'ajax/users/gettrapcomponents.php');
+  onRequest(main, 'ajax/users/gettrapcomponents.php');
   onEvent('camp_page_toggle_blueprint', main);
-  onAjaxRequest(addSkinImages, 'managers/ajax/users/changetrap.php', true);
+  onRequest(addSkinImages, 'managers/ajax/users/changetrap.php', true);
 }

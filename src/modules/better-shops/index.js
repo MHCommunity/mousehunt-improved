@@ -127,5 +127,5 @@ export default function shopHelper() {
 
   main();
   onPageChange({ change: main });
-  onAjaxRequest(updatePlaceholderText, 'managers/ajax/purchases/itempurchase.php');
+  onRequest(updatePlaceholderText, 'managers/ajax/purchases/itempurchase.php');
 }

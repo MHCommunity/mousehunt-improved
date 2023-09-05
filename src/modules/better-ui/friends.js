@@ -89,7 +89,7 @@ export default () => {
   scrollToTopOnFriendsPageChange();
   goToFriendsPageOnSearchSelect();
 
-  onAjaxRequest(goToFriendPageOnSearchID, 'managers/ajax/pages/friends.php');
+  onRequest(goToFriendPageOnSearchID, 'managers/ajax/pages/friends.php');
 
   onNavigation(reorderBlocks, { page: 'friends' });
 };

@@ -189,7 +189,7 @@ export default function quickSendSupplies() {
 
   main();
   onPageChange(main);
-  onAjaxRequest(main);
+  onRequest(main);
   onEvent('profile_hover', main);
 
   onDialogShow(addToMapUsers, 'map');

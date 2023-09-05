@@ -517,5 +517,5 @@ export default function marketplace() {
     toggleAction();
   } } });
 
-  onAjaxRequest(autocloseClaim, 'managers/ajax/users/marketplace.php');
+  onRequest(autocloseClaim, 'managers/ajax/users/marketplace.php');
 }

@@ -381,7 +381,7 @@ export default () => {
   // Cache the quest data for our current location.
   cacheLocationData();
   onTravel(null, { callback: cacheLocationData });
-  onAjaxRequest(cacheLocationData, 'managers/ajax/turns/activeturn.php');
+  onRequest(cacheLocationData, 'managers/ajax/turns/activeturn.php');
 
   makeDashboardTab();
 
