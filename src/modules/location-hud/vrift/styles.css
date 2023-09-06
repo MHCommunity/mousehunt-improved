@@ -163,9 +163,13 @@ span.valourRiftHUD-towerUpgrade-currentValue {
 .valourRiftHUD-powerUp-currentLevel {
   top: 6px;
   right: 10px;
-  padding: 2px 1px;
+  padding: 2px;
   font-size: 13px;
   color: #fff;
+}
+
+.valourRiftHUD-powerUp.hunt_limit .valourRiftHUD-powerUp-currentLevel {
+  font-size: 11px;
 }
 
 .valourRiftHUD-gauntletBait-quantity.quantity {
@@ -225,22 +229,24 @@ span.valourRiftHUD-stepsTaken-value {
 }
 
 #mh-vrift-floor-name {
-  display: none;
-}
-
-.valourRiftHUD-currentFloor:hover #mh-vrift-floor-name,
-.valourRiftHUD-currentFloor:focus #mh-vrift-floor-name {
   position: absolute;
-  top: 20px;
+  top: 0;
   right: 25px;
   left: 25px;
   z-index: 1;
-  display: block;
-  font-size: 10px;
-  line-height: 18px;
-  background-color: #231857f2;
-  border: 1px solid #9bcfff;
-  border-radius: 5px;
+  height: 20px;
+  font-size: 13px;
+  line-height: 17px;
+  background-color: #231857;
+  opacity: 0;
+  transition: opacity .2s ease-in-out;
+}
+
+.valourRiftHUD-currentFloor:hover #mh-vrift-floor-name,
+.valourRiftHUD-state.tower:hover #mh-vrift-floor-name,
+.valourRiftHUD-currentFloor:focus #mh-vrift-floor-name,
+.valourRiftHUD-state.tower:focus #mh-vrift-floor-name {
+  opacity: 1;
 }
 
 .bottom.mh-vrift-floor-tooltip {
@@ -348,4 +354,94 @@ span.valourRiftHUD-stepsTaken-value {
 
 .valourRiftPopupClaim-lootLogTitle {
   color: #462605;
+}
+
+.valourRiftPopupClaim-newFloorRecord {
+  grid-column: span 3;
+  margin-left: -50px;
+}
+
+.valourRiftPopupIllustrated-inventoryCostContainer {
+  right: 0;
+  left: 80px;
+  width: 352px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  text-align: center;
+}
+
+.valourRiftPopupIllustrated.enterTower .valourRiftHUD-highestFloor {
+  font-size: 12px;
+  font-weight: 900;
+  color: #f2bc7d;
+}
+
+.valourRiftPopupIllustrated.enterTower .valourRiftHUD-highestFloorReachedContainer {
+  top: 72px;
+  right: 69px;
+  display: flex;
+  padding: 3px 6 px;
+  background-color: #3f354d;
+  border: 1px solid #2f283a;
+  border-radius: 4px;
+}
+
+.valourRiftPopupIllustrated.enterTower .valourRiftHUD-augmentation-description {
+  display: flex;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 13px;
+}
+
+.valourRiftPopupIllustrated.enterTower .valourRiftHUD-augmentation-cost-quantity {
+  margin-top: 3px;
+  margin-left: -14px;
+  font-size: 14px;
+  box-shadow: 1px -4px 2px 0 #310f3c inset, 0 0 3px 3px #b06fd3 inset;
+}
+
+.valourRiftPopupIllustrated.enterTower .valourRiftHUD-augmentation-cost-image {
+  background-color: #c7c8c6;
+  background-position: -1px -1px;
+}
+
+.valourRiftPopupIllustrated.enterTower .valourRiftHUD-augmentation-cost.error .valourRiftHUD-augmentation-cost-quantity {
+  color: #ccc;
+  background-color: #744444;
+}
+
+.valourRiftPopupIllustrated.enterTower .valourRiftHUD-augmentation-cost.error .valourRiftHUD-augmentation-cost-image {
+  filter: grayscale(1);
+  box-shadow: 0 0 2px 2px #744444;
+}
+
+.valourRiftPopupIllustrated.enterTower a[data-type="tu"] .valourRiftHUD-augmentation-description {
+  font-size: 10px;
+  line-height: 10px;
+}
+
+.valourRiftPopupIllustrated.enterTower a.valourRiftHUD-augmentation.locked {
+  filter: grayscale(.8) opacity(0.6);
+}
+
+.valourRiftPopupIllustrated.enterTower .valourRiftHUD-dialog-inventory-item-name {
+  padding-right: 6px;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.valourRiftHUD-tower .valourRiftHUD-tower-sprite-name,
+.valourRiftHUD-tower .valourRiftHUD-tower-sprite.step .valourRiftHUD-tower-sprite-image,
+.valourRiftHUD-tower .valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image,
+.valourRiftHUD-tower .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image:before {
+  opacity: 1;
+  transition: opacity .4s ease-in-out;
+}
+
+.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite-name,
+.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.step .valourRiftHUD-tower-sprite-image,
+.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image,
+.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image:before {
+  opacity: .4;
 }
