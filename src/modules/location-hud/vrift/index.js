@@ -63,10 +63,12 @@ const main = () => {
   addUIComponents();
 
   const simPopup = document.querySelector('.valourRiftHUD-floorProgress-barContainer');
+  // const simPopup = document.querySelector('.valourRiftHUD-floorProgress-boss');
+
   if (simPopup) {
     simPopup.addEventListener('click', () => {
       const data = simulate(false);
-      console.log(data);
+      console.log(data); // eslint-disable-line no-console
       const popup = createPopup({
         title: 'Valour Rift Run Simulation',
         content: displayResults(data),
