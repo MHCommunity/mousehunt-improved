@@ -358,7 +358,8 @@ a.itemPurchaseView-content-skin-link {
   box-shadow: none;
 }
 
-.itemPurchaseView-container .itemPurchaseView-content-details {
+.itemPurchaseView-container .itemPurchaseView-content-details,
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details {
   height: 100%;
 }
 
