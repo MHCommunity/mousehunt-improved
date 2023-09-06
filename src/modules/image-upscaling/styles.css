@@ -122,3 +122,7 @@
 .valourRiftPopupClaim-cacheLoot-image {
     box-shadow: none;
 }
+
+.marketplaceView-itemImage img {
+  border-radius: 0;
+}
