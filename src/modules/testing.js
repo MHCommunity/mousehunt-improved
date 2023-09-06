@@ -1,4 +1,4 @@
-import { addUIStyles } from "./utils";
+import { addUIStyles } from './utils';
 
 const hulls = [
   'airship_hull_astral_stat_item',
