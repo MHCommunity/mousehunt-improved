@@ -117,3 +117,8 @@
 .convertibleOpenView-item-image {
   background-size: cover;
 }
+
+.valourRiftPopupClaim-lootLog .itemImage,
+.valourRiftPopupClaim-cacheLoot-image {
+    box-shadow: none;
+}
