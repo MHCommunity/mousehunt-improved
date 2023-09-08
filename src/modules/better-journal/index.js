@@ -42,7 +42,7 @@ const updateJournalText = () => {
     [/\d+? lb. /i, ''],
     [/from (\d+?) x/i, 'from $1'],
     [/purchased (\d+?) x/i, 'purchased $1'],
-    [/ worth \d.+? points and \d.+? gold/i, ''],
+    // [/ worth \d.+? points and \d.+? gold/i, ''],
     ['<br><b>The mouse also dropped the following loot:</b>', '==DROPREPLACE=='],
     ['.<br>==DROPREPLACE==<br>', ' that dropped '],
     ['<br>==DROPREPLACE==<br>', ' that dropped '],
