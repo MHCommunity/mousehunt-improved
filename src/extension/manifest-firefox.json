@@ -30,7 +30,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "mousehunt-improved@mouse.rip",
+      "id": "mh-improved@mouse.rip",
       "strict_min_version": "109.0"
     }
   }
