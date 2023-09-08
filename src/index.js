@@ -40,7 +40,7 @@ import ultimateCheckmark from './modules/external/ultimate-checkmark';
 
 // Global styles and fixes.
 import required from './modules/_required';
-import testing from './modules/testing';
+// import testing from './modules/testing';
 
 // Core 'Better' modules.
 const modules = [
@@ -101,14 +101,12 @@ const modules = [
     id: 'always-loaded',
     modules: [
       { id: 'required', load: required, alwaysLoad: true },
-      { id: 'testing', load: testing, alwaysLoad: true },
+      // { id: 'testing', load: testing, alwaysLoad: true },
     ],
   }
 ];
 
 const main = () => {
-  debug('Starting MH UI');
-
   addSettingsTab('better-mh-settings', 'MH Improved');
 
   // Add the settings for each module.
@@ -117,8 +115,6 @@ const main = () => {
       if (subModule.alwaysLoad) {
         return;
       }
-
-      debug(`Adding settings for ${subModule.name}`);
 
       addSetting(
         subModule.name,
@@ -129,10 +125,7 @@ const main = () => {
         'better-mh-settings'
       );
 
-      debug(`Added settings for ${subModule.name}`);
-
       if (subModule.settings && (subModule.alwaysLoad || getSetting(subModule.id, subModule.default))) {
-        debug(`Adding settings for ${subModule.name}`);
         subModule.settings(subModule, module);
       }
     });
@@ -141,14 +134,10 @@ const main = () => {
   eventRegistry.doEvent('better-mh-before-load');
   // Load the modules.
   modules.forEach((module) => {
-    debug(`Loading module ${module.name}`);
     module.modules.forEach((subModule) => {
-      debug(`Loading sub-module ${subModule.name}`);
       if (subModule.alwaysLoad) {
-        debug(`Loading always-load sub-module ${subModule.name}`);
         subModule.load();
       } else if (getSetting(subModule.id, subModule.default)) {
-        debug(`Loading enabled sub-module ${subModule.name}`);
         subModule.load();
       }
     });
