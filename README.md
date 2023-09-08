@@ -2,9 +2,7 @@
 
 MouseHunt Improved is aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [Better MH](https://www.mousehuntgame.com/preferences.php?tab=better-mh-settings) tab of the settings screen.
 
-**Over 100 features and improvements!**
-
-## Included Modules
+**Over 150 features and improvements!**
 
 ### UI Improvements
 
@@ -28,7 +26,6 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
   - Reformats the tournament listing page and single tournament view to be less cluttered and more readable.
   - Updates the trap/base/charm/cheese selectors and display to look nicer.
   - Updates the crafting, recipe, and other pages with tabs or subtabs to look nicer.
-  = makes armed cheese button more visible TODO: clean this up
 - Better Inventory
   - Updates the inventory UI to look more modern.
   - Set max quantity for opening items when clicking on the owned quantity.
@@ -58,7 +55,8 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
 - Better Quests
   - If you don't have a Library Assignment, you can open the quest popup from anywhere and start one.
   - Fixes the smash assignment button to go to the correct page.
-  - Adds M400 helper to quickly see attraction rates and jump to the next location. (Temporary, will be migrated to WardenSlayer's m400 helper script.)
+- Better Send Supplies
+  - Adds a search a filter to the Send Supplies interface. Allows favoriting items to show them at the top of the list.
 - Better Shops
   - Updates the Shop layout and UI.
   - Makes items stats more readable.
@@ -73,7 +71,29 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
   - After solving the King's Reward, the 'continue' button will automatically be clicked for you.
 - Location Dashboard
   - See location HUD information in a dashboard available in the top dropdown menu.
-  - Currently supports Mousoleum, Fort Rox, Fiery Warpath, Living Garden, Lost City, Sand Dunes, Zugzwang's Tower, Iceberg, Sunken City, Queso Geyser, Labyrinth, Zokor, Moussu Picchu, Floating Islands, Foreword Farm, Burroughs Rift, Whisker Woods Rift, Furoma Rift, Bristle Woods Rift, and Valour Rift.
+  - Currently supports:
+    - Bristle Woods Rift (Current room, loot progress, and total sand)
+    - Burroughs Rift (Current mist level.)
+    - Fiery Warpath (Current wave, streak, and mice remaining)
+    - Floating Islands (Current island and hunts remaining)
+    - Foreword Farm (Current plants growing)
+    - Fort Rox (Wall health)
+    - Furoma Rift (Location, battery charge, and energy)
+    - Iceberg (Current zone, progress in feet, and hunt number)
+    - Labyrinth (Hallway type, current clues)
+    - Living Garden (Pouring or not, number of hunts remaining in pour)
+    - Lost City (Curses)
+    - Mousoleum (Wall health)
+    - Moussu Picchu (Storm level, wind and rain percent)
+    - Queso Geyser (Eruption type and hunts remaining)
+    - Sand Dunes (Stampeding or not)
+    - Seasonal Garden (Amplifier percent)
+    - Sunken City (Zone, depth, and oxygen)
+    - Toxic Spill (Polluntium amount and total refined)
+    - Valour Rift (Floor, floor type, hunts remaining, upgrade levels)
+    - Whisker Woods Rift (Rage)
+    - Zokor (District and stealth remaining)
+    - Zugzwang's Tower (Amplifier remaining and progess)
 - Hover Profiles
   - Hover over a friend's name in your journal, inbox, or elsewhere and get a mini-profile popup with all their stats, interaction buttons, and everything you'd expect.
 - Image Upscaling
@@ -112,25 +132,38 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
 - Burroughs Rift
   - Adds a larger mist meter to the HUD.
   - For each of the three cheeses (Magical String, Terra Ricotta, Polluted Parmesan), the current available mice pool will be shown in the HUD, along with the ability to quickly change cheese.
-  - TODO: update this
-    - click on cheese titles to change, click on mist display to toggle
+    - Click on titles to change change, click on mist display to toggle mist.
 - Bristle Woods Rift
   - Modifies the size of the quantity and Time Sand displays to be a bit bigger.
   - Adds an indicator for each status effect so you don't need to hover over the mouse to see what it is.
 - Claw Shot City
-  - TODO: fill this out.
-  more fitting colors and larger font size for gangs caught and fools gold
+  - Updates font sizes and colors to be more readable for Gangs Caught and Fool's Gold amount.
 - Fiery Warpath
-  - TODO: fill this out.
-  more clear wave number, better highlighting on current target, cleaner tooltips, smoother streak guage, larger power type icons, and larger artillery strike quantity font size
+  - Makes the wave number more clear.
+  - Better highlighting of current target.
+  - Cleaner tooltips.
+  - Smoother streak guage.
+  - Larger power type icons.
+  - Larger artillery strike quantity font size.
 - Floating Islands
-  - TODO: fill this out.
+  - Adds countdown to the boss.
+  - Adds glore progress to next upgrade.
+  - Improves Bottled Wind selector.
+  - Updates the font sizes and HUD alignment to be a bit more readable.
+  - Makes your airship bigger.
+  - Island name now matches the UI more closely.
+  - Enemy names, countdown, hunts, and progress are all modified to be more readable.
+  - Shrine in the first time gets highlighted.
 - Forbidden Grove
   - Shows a countdown to the closing time, rather than just a progress bar.
 - Fort Rox
-  - TODO: fill this out.
+  - Updates the night progress bar to be more clear.
+  - Updates the tooltips to have more information.
+  - Updates the wall HP display.
+  - Font sizes and colors cleaned up.
+  - Power types for each night phase are shown.
 - Furoma Rift
-  - TODO: fill this out.
+  - Battery, droid, stats, and energy displays are all modified.
 - Iceberg
   - Shows feet and number of hunts to the next zone.
   - Hover over the zone information to see:
@@ -140,7 +173,8 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
     - Quick view of each zone with their length.
     - Warning if you're encountering Icewing and don't have a base equipped that would take you to the hidden Depths.
 - Living Garden
-  - TODO: fill this out.
+  - Essence quantities are bigger.
+  - Item quantities are bigger.
 - Labyrinth
   - Show step counter for hallway.
   - Shows steps remaining in the hallway.
@@ -151,13 +185,27 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
   - Suggests the best door to choose in intersections.
   - Reminds you to light your lantern if you're in a superiour hallway and it's not lit.
   - Slightly larger text for resources in the HUD.
+- Muridea Market
+  - Larget font sizes and cleaner colors.
 - Queso Canyon
-  - TODO: fill this out.
+  - Larget font sizes and cleaner colors.
+  - Wild Tonic will animate subtly to remind you to enable it if you don't have it on.
+- Sunken City
+  - Updates HUD font sizes and colors.
+- Toxic Spill
+  - Rearranges HUD elements to be more readable, increases sizes of text and other elements.
 - Valour Rift
-  - TODO: fill this out.
+  - Show the current floor type when you hover over the floor number
+  - Shows steps remaining.
+  - Updates the HUD to be more readable.
+  - Adds a simulator when clicking on the image of The Total Eclipse.
 - Whisker Woods Rift
-  - TODO: fill this out.
-  more visible warning, bigger titles, bigger rage meter numbers
+  - More visible warning when wrong setup equipped
+  - Bigger faction titles
+  - Larget rage meter numbers
+- Zokor
+  - Improves item quantity display.
+  - Boss name, stealth countdown, and progress are all modified to be more readable.
 - Adds Cheese selectors to all locations that don't have a HUD.
   - Meadow
   - King's Arms
@@ -198,3 +246,4 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
 - Fixes the width of the map link text box.
 - Fixes the 'Classification' link on the item page.
 - Fixes Whisker Woods Rift rage meter font sizes.
+- Fixes the tutorial overlay shadow

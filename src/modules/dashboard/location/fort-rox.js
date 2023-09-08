@@ -11,7 +11,7 @@ export default (quests) => {
   };
 
   const phases = {
-    stage_none: 'Unknown',
+    stage_none: 'Day',
     stage_one: 'Twilight',
     stage_two: 'Midnight',
     stage_three: 'Pitch',

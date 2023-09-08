@@ -28,7 +28,10 @@ a.floatingIslandsHUD-islandLoot {
   box-shadow: 0 0 13px 3px #ffd700 inset;
 }
 
-.floatingIslandsHUD-modPanel.rain_shrine:hover::before {
+.floatingIslandsHUD-modPanel.fog_shrine:hover::before,
+.floatingIslandsHUD-modPanel.frost_shrine:hover::before,
+.floatingIslandsHUD-modPanel.rain_shrine:hover::before,
+.floatingIslandsHUD-modPanel.wind_shrine:hover::before {
   position: absolute;
   right: 7px;
   bottom: 6px;
@@ -43,8 +46,24 @@ a.floatingIslandsHUD-islandLoot {
   color: #0c3e0e;
   text-shadow: none;
   white-space: nowrap;
-  content: "Rain";
+  content: "";
   background-color: #d1e19d;
+}
+
+.floatingIslandsHUD-modPanel.fog_shrine:hover::before {
+  content: "Fog"
+}
+
+.floatingIslandsHUD-modPanel.frost_shrine:hover::before {
+  content: "Frost";
+}
+
+.floatingIslandsHUD-modPanel.rain_shrine:hover::before {
+  content: "Rain";
+}
+
+.floatingIslandsHUD-modPanel.wind_shrine:hover::before {
+  content: "Wind";
 }
 
 span.floatingIslandsHUD-huntsRemaining {

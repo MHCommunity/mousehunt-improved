@@ -16,8 +16,11 @@ export default (quests) => {
     windLevel: quests?.QuestMoussuPicchu?.elements?.wind?.level || null,
   };
 
+  let level = quest.stormLevel;
+  level = level.charAt(0).toUpperCase() + level.slice(1);
+
   if ('none' !== quest.stormLevel) {
-    return `${quest.stormLevel} storm`;
+    return `${level} Storm`;
   }
 
   return `${uppercaseFirst(quest.windLevel)} Wind (${quest.windPercent}%), ${uppercaseFirst(quest.rainLevel)} Rain (${quest.rainPercent}%)`;
