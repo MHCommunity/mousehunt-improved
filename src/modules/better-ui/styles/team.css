@@ -20,3 +20,50 @@
 .teamPage-profile-header-controls br::after {
   content: " ";
 }
+
+.teamPageConfirm-dialog input.userSelectorView-filter-input {
+  width: 600px;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.teamPageConfirm-dialog .userSelectorView-filterContainer {
+  width: 100%;
+  padding: 0 0 10px;
+}
+
+.teamPageConfirm-dialog a.userSelectorView-filter-clear.active {
+  top: 15px;
+  right: 15px;
+  font-size: 14px;
+  color: transparent;
+}
+
+.teamPageConfirm-dialog a.userSelectorView-filter-clear.active:hover::after {
+  color: #f55;
+}
+
+.teamPageConfirm-dialog a.userSelectorView-filter-clear.active::after {
+  font-size: 16px;
+  color: #b72929;
+  content: "\2715";
+}
+
+.teamPage-memberJournal-empty {
+  line-height: 30px;
+  color: #575757;
+}
+
+.teamPage-memberJournal-list {
+  height: unset;
+  min-height: 30px;
+}
+
+.teamPage-memberJournals {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.teamPage-memberJournalContainer {
+  width: auto;
+}
