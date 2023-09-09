@@ -34,13 +34,3 @@
 .outline {
   outline: 1px solid #f00;
 }
-
-/* adblock */
-a[onclick="hg.utils.PageUtil.setPage('JoinDiscord'); return false;"],
-.pageSidebarView-block.ad,
-.communityGroupView-ad,
-.pageSidebarView-mobileApps,
-.pageSidebarView-title,
-.pageSidebarView-block-description {
-  display: none;
-}
