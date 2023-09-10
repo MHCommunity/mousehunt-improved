@@ -24,6 +24,7 @@ import fortRoxStyles from './fort-rox/styles.css';
 import fungalCavernStyles from './fungal-cavern/styles.css';
 import furomaRiftStyles from './furoma-rift/styles.css';
 import gnawniaExpressStationStyles from './gnawnia-express-station/styles.css';
+import griftStyles from './grift/styles.css';
 import icebergStyles from './iceberg/styles.css';
 import livingGardenStyles from './living-garden/styles.css';
 import labyrinthStyles from './labyrinth/styles.css';
@@ -107,6 +108,7 @@ const getStyles = () => {
     fungalCavernStyles,
     furomaRiftStyles,
     gnawniaExpressStationStyles,
+    griftStyles,
     icebergStyles,
     livingGardenStyles,
     labyrinthStyles,
