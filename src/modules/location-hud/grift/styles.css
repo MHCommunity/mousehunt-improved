@@ -1,0 +1,22 @@
+.riftGnawniaHud:hover .riftGnawniaHud-targetsBackground {
+  filter: hue-rotate(-40deg);
+}
+
+.riftGnawniaHud-targetsBackground {
+  transition: .5s;
+}
+
+.riftGnawniaHud-targets .mousehuntTooltip {
+  inset: 0 34px 0 -5px;
+  display: block;
+  width: auto;
+  font-size: 11px;
+  text-align: center;
+  background-color: #d6e8e4;
+  border: 1px solid #29c7cb;
+  opacity: .9;
+}
+
+.riftGnawniaHud-targets .mousehuntTooltip .mousehuntTooltip-arrow {
+  display: none;
+}
