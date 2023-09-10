@@ -22,6 +22,7 @@ import tsituSendSupplies from './styles/tsitu-send-supplies.css';
 
 // scripts
 import hud from './hud';
+import mousepage from './mousepage';
 import updateFriends from './friends';
 import updateTournaments from './tournaments';
 import updateRecipes from './recipes';
@@ -48,6 +49,7 @@ export default () => {
   ].join('\n'));
 
   hud();
+  mousepage();
   updateFriends();
   updateTournaments();
   updateRecipes();
