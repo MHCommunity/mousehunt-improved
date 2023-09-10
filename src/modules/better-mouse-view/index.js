@@ -198,9 +198,30 @@ const main = () => {
 
   addSubmenuItem({
     menu: 'mice',
+    label: 'Groups',
+    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/mice.png?asset_cache_version=2',
+    href: 'https://www.mousehuntgame.com/adversaries.php?tab=groups',
+  });
+
+  addSubmenuItem({
+    menu: 'mice',
+    label: 'Regions',
+    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/travel.png?asset_cache_version=2',
+    href: 'https://www.mousehuntgame.com/adversaries.php?tab=regions',
+  });
+
+  addSubmenuItem({
+    menu: 'mice',
+    label: 'Your Stats',
+    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/special.png?asset_cache_version=2',
+    href: 'https://www.mousehuntgame.com/adversaries.php?tab=your_stats',
+  });
+
+  addSubmenuItem({
+    menu: 'mice',
     label: 'King\'s Crowns',
     icon: 'https://www.mousehuntgame.com/images/ui/crowns/crown_silver.png?asset_cache_version=2',
-    href: `https://www.mousehuntgame.com/profile.php?snuid=${window.user.sn_user_id}&tab=kings_crowns`,
+    href: 'https://www.mousehuntgame.com/adversaries.php?tab=kings_crowns',
   });
 };
 
