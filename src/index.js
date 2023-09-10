@@ -41,7 +41,7 @@ import ultimateCheckmark from './modules/external/ultimate-checkmark';
 
 // Global styles and fixes.
 import required from './modules/_required';
-// import testing from './modules/testing';
+import testing from './modules/testing';
 
 // Core 'Better' modules.
 const modules = [
@@ -103,7 +103,7 @@ const modules = [
     id: 'always-loaded',
     modules: [
       { id: 'required', load: required, alwaysLoad: true },
-      // { id: 'testing', load: testing, alwaysLoad: true },
+      { id: 'testing', load: testing, alwaysLoad: true },
     ],
   }
 ];
