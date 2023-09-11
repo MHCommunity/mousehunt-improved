@@ -124,6 +124,25 @@ const refreshOnFriendPageChange = () => {
   });
 };
 
+const listenForIDPaste = () => {
+  // listen for the user hitting the paste shortcut
+  window.addEventListener('keydown', (e) => {
+    // listen for command + v as well as ctrl + v
+    if ((e.metaKey || e.ctrlKey) && 86 === e.keyCode) {
+        navigator.clipboard.readText().then((text) => {
+          // if it is a number, then go to the hunter profile page
+          if (! /^\d+$/.test(text)) {
+            return;
+          }
+
+          hg.utils.PageUtil.setPage('HunterProfile', {
+            id: text,
+          });
+        });
+    }
+  });
+}
+
 export default () => {
   onRequest(goToFriendPageOnSearchID, 'managers/ajax/pages/friends.php');
 
@@ -151,4 +170,6 @@ export default () => {
     subtab: 'location',
     onLoad: false,
   });
+
+  listenForIDPaste();
 };
