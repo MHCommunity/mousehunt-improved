@@ -34,3 +34,29 @@
 .outline {
   outline: 1px solid #f00;
 }
+
+.sort-button {
+  top: 7px;
+  bottom: 10px;
+  left: 7px;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  cursor: pointer;
+  content: '';
+  border-top: 9px solid #777;
+  border-right: 6px solid transparent;
+  border-left: 6px solid transparent;
+}
+
+.sort-button.reverse {
+  border-top: 0;
+  border-right: 6px solid transparent;
+  border-bottom: 9px solid #777;
+  border-left: 6px solid transparent;
+}
+
+.sort-button.unsorted {
+  opacity: 0.5;
+}

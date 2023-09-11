@@ -248,3 +248,19 @@ a.trapImageView-zoomButton {
   height: 0;
   border: 1px solid #8a6d3e;
 }
+
+
+/* mousepage styles */
+.header .mouseListView-categoryContent-subgroup-mouse-stats.catches,
+.header .mouseListView-categoryContent-subgroup-mouse-stats.misses {
+    width: 13%;
+}
+
+.header .mouseListView-categoryContent-subgroup-mouse-stats.name {
+    width: 34%;
+}
+
+.header .mouseListView-categoryContent-subgroup-mouse-stats.average_weight,
+.header .mouseListView-categoryContent-subgroup-mouse-stats.heaviest_catch {
+    width: 20%;
+}

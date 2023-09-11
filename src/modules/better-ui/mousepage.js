@@ -165,6 +165,175 @@ const addKingsCrownsToMicePage = async () => {
   makeKingsCrownsTabContent();
 };
 
+const getSetRowValue = (row, type) => {
+  let value = 0;
+  value = row.getAttribute(`data-sort-value-${type}`);
+  if (value) {
+    return parseInt(value);
+  }
+
+  const valueText = row.querySelector(`.mouseListView-categoryContent-subgroup-mouse-stats.${type}`);
+
+  // for weight, we need to parse the text to get the number
+  if (type === 'average_weight' || type === 'heaviest_catch') {
+    const lbsSplit = valueText.innerText.split('lb.');
+    const lbs = lbsSplit.length > 1 ? lbsSplit[0] : 0;
+
+    const ozSplit = valueText.innerText.split('oz.');
+    const oz = ozSplit.length > 1 ? ozSplit[0] : 0;
+
+   value = (parseInt(lbs) * 16) + parseInt(oz);
+  } else {
+    value = valueText.innerText.replace(/,/g, '');
+  }
+
+  row.setAttribute(`data-sort-value-${type}`, value);
+
+  return parseInt(value);
+};
+
+const sortStats = (type, reverse = false) => {
+  reverse = ! reverse;
+
+  let rows = document.querySelectorAll(`.active  .mouseListView-categoryContent-subgroup-mouse:not(:first-child)`);
+  if (! rows.length) {
+    return;
+  }
+
+  const headerRow = document.querySelector(`.active  .mouseListView-categoryContent-subgroup-mouse:first-child`);
+  if (! headerRow) {
+    return;
+  }
+
+  // loop through the rows and add the data-attribute values to each row if they dont already exist
+  rows.forEach((row) => {
+    getSetRowValue(row, type);
+  });
+
+  // sort the rows
+  rows = Array.from(rows).sort((a, b) => {
+    const aVal = getSetRowValue(a, type);
+    const bVal = getSetRowValue(b, type);
+
+    // sort by value. If the values are the same, then sort by name
+    if (aVal === bVal) {
+      const aName = a.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name').innerText;
+      const bName = b.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name').innerText;
+
+      if (aName === bName) {
+        return 0;
+      }
+
+      return aName > bName ? 1 : -1;
+    }
+
+    return aVal > bVal ? 1 : -1;
+  });
+
+  // if we are sorting in reverse, then we need to reverse the array
+  if (reverse) {
+    rows = rows.reverse();
+  }
+
+  // reorder the rows
+  rows.forEach((row) => {
+    row.parentNode.appendChild(row);
+  });
+}
+
+const addSortButton = (elements, type) => {
+  elements.forEach((el) => {
+    const sortButton = makeElement('div', ['sort-button', 'unsorted'], '');
+    sortButton.addEventListener('click', () => {
+      // make sure all other sort buttons are unsorted
+      const otherSortButtons = el.parentNode.querySelectorAll('.sort-button');
+      otherSortButtons.forEach((button) => {
+        if (button !== sortButton) {
+          button.classList.remove('reverse');
+          button.classList.add('unsorted');
+        }
+      });
+
+      // if the is-reverse data attribute is set, then we sort low to high otherwise we sort high to low. We dont want to add the reverse class if the unsorted class is already set, we just want to remove the unsorted class
+      if (sortButton.classList.contains('unsorted')) {
+        sortButton.classList.remove('unsorted');
+        sortStats(type);
+        return;
+      }
+
+      if (sortButton.classList.contains('reverse')) {
+        sortButton.classList.remove('reverse');
+        sortStats(type);
+        return;
+      }
+
+      sortButton.classList.add('reverse');
+      sortStats(type, true);
+    });
+
+    el.appendChild(sortButton);
+  });
+};
+
+const addSortingToCat = (cat) => {
+  const cats = [
+    'catches',
+    'misses',
+    'average_weight',
+    'heaviest_catch',
+  ];
+
+  const category = document.querySelector(`.mouseListView-categoryContent-category[data-category="${cat}"]`);
+  if (! category) {
+    return;
+  }
+
+  // if the category has the loading class, then we wait for the content to load
+  if (category.classList.contains('loading')) {
+    setTimeout(() => addSortingToCat(cat), 250);
+    return;
+  }
+
+  if (category.getAttribute('data-added-sorting')) {
+    return;
+  }
+
+  cats.forEach((cat) => {
+    const els = category.querySelectorAll(`.mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${cat}`);
+    if (els.length) {
+      addSortButton(els, cat);
+    }
+  });
+
+  category.setAttribute('data-added-sorting', true);
+};
+
+const addSortingTabClickListeners = () => {
+  const tabs = document.querySelectorAll('.active .mouseListView-categoryContainer .mouseListView-category');
+  if (! tabs.length) {
+    return;
+  }
+
+  // foreach tab, add an onlick listener that will add the sorting buttons and also keep track of the event listeners so that we can remove them later
+  tabs.forEach((tab) => {
+    const category = tab.getAttribute('data-category');
+    const onclick = tab.getAttribute('onclick');
+    tab.setAttribute('onclick', `${onclick.replace('return false;', '')}; window.mhui.addSortingToMousePageCategory('${category}'); return false;`);
+  });
+};
+
+const addSortingToStatsPage = () => {
+  const activeCatEl = document.querySelector('.mouseListView-categoryContainer.active .mouseListView-category');
+  if (activeCatEl && activeCatEl.getAttribute('data-category')) {
+    addSortingToCat(activeCatEl.getAttribute('data-category'));
+  } else {
+    addSortingToCat('common');
+  }
+
+  addSortingTabClickListeners();
+};
+
+
 export default () => {
   if (getCurrentTab() === 'kings_crowns') {
     addKingsCrownsToMicePage();
@@ -176,4 +345,21 @@ export default () => {
   onNavigation(addKingsCrownsToMicePage, {
     page: 'adversaries',
   });
+
+  onNavigation(addSortingToStatsPage, {
+    page: 'adversaries',
+    tab: 'your_stats',
+  });
+
+  onNavigation(addSortingToStatsPage, {
+    page: 'hunterprofile',
+    tab: 'mice',
+  });
+
+  // merge addSortingToMousePageCategory to window.mhui so that we can call it from the onclick attribute
+  const newMhuiWindow = {
+    addSortingToMousePageCategory: function(cat) { addSortingToCat(cat); },
+  }
+
+  window.mhui = { ...window.mhui, ...newMhuiWindow };
 };
