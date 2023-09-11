@@ -106,6 +106,24 @@ const autofocusIdSearch = () => {
   input.focus();
 }
 
+const refreshOnFriendPageChange = () => {
+  if ('hunterprofile' !== getCurrentPage() || 'location' !== getCurrentSubtab()) {
+    return;
+  }
+
+ const subtabContents = document.querySelectorAll('.mousehuntHud-page-subTabContent');
+ if (! subtabContents) {
+   return;
+ }
+
+ // loop through subtab contents and if any of them are different than our hunter id, then refresh the page
+  subtabContents.forEach((content) => {
+    if (content.getAttribute('data-user-id') != user.user_id) { // eslint-disable-line eqeqeq
+      window.location.reload();
+    }
+  });
+};
+
 export default () => {
   onRequest(goToFriendPageOnSearchID, 'managers/ajax/pages/friends.php');
 
@@ -125,5 +143,12 @@ export default () => {
     page: 'friends',
     tab: 'requests',
     subtab: 'community',
+  });
+
+  onNavigation(refreshOnFriendPageChange, {
+    page: 'hunterprofile',
+    tab: 'mice',
+    subtab: 'location',
+    onLoad: false,
   });
 };
