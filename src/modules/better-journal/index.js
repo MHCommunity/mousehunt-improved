@@ -6,6 +6,8 @@ import fullstop from './styles/fullstop.css';
 import miniEntries from './styles/mini-entries.css';
 import progressLog from './styles/progress-log.css';
 
+const metricSuffix = require('metric-suffix');
+
 /**
  * For each element matching the selector, find and replace strings.
  *
@@ -29,10 +31,81 @@ const modifyText = (selector, strings) => {
   });
 };
 
+const getGoldOrPointsAmount = (type, journalText) => {
+  // regex to match the type from the journal text, including commas
+  const regex = new RegExp(`\\d{1,3}(,\\d{3})*( ${type})`, 'i');
+  const matches = journalText.innerHTML.match(regex);
+  if (! matches) {
+    return;
+  }
+
+  let amount = parseInt(matches[0].replace(` ${type}`, '').replace(',', '').trim());
+
+  amount = metricSuffix(amount);
+
+  return amount;
+};
+
+const moveGoldAndPoints = () => {
+  const entries = document.querySelectorAll('.journal .entry');
+  if (! entries.length) {
+    return;
+  }
+
+  entries.forEach((entry) => {
+    const added = entry.getAttribute('data-gold-added');
+    if (added) {
+      return;
+    }
+
+    const journalText = entry.querySelector('.journaltext');
+    if (! journalText) {
+      return;
+    }
+
+    const journalDate = entry.querySelector('.journaldate');
+    if (! journalDate) {
+      return;
+    }
+
+    const goldAmount = getGoldOrPointsAmount('gold', journalText);
+    const pointsAmount = getGoldOrPointsAmount('points', journalText);
+
+    if (! (goldAmount && pointsAmount)) {
+      return;
+    }
+
+    // create a new element to hold the gold and points
+    const goldAndPoints = makeElement('div', 'gold-and-points');
+    makeElement('div', 'gold', goldAmount, goldAndPoints);
+    makeElement('div', 'points', pointsAmount, goldAndPoints);
+
+    const newJournalDateEl = makeElement('div', 'journaldatetext', journalDate.innerHTML);
+    journalDate.innerHTML = '';
+    journalDate.appendChild(newJournalDateEl);
+
+    journalDate.appendChild(goldAndPoints);
+
+    const journalGoldAndPointsText = new RegExp(` worth \\d{1,3}(,\\d{3})* points and \\d{1,3}(,\\d{3})* gold`, 'i');
+    const matches = journalText.innerHTML.match(journalGoldAndPointsText);
+    // wrap the gold and points in a span so we can hide it
+    if (matches) {
+      const goldAndPointsText = matches[0];
+      const goldAndPointsTextEl = makeElement('span', 'hidden', goldAndPointsText);
+      journalText.innerHTML = journalText.innerHTML.replace(goldAndPointsText, '');
+      journalText.appendChild(goldAndPointsTextEl);
+    }
+
+    entry.setAttribute('data-gold-added', true);
+  });
+};
+
 /**
  * Update text in journal entries.
  */
 const updateJournalText = () => {
+  moveGoldAndPoints();
+
   modifyText('.journal .entry .journalbody .journaltext', [
     // Hunt entries
     ['I sounded the Hunter\'s Horn and was successful in the hunt!', ''],
@@ -42,7 +115,6 @@ const updateJournalText = () => {
     [/\d+? lb. /i, ''],
     [/from (\d+?) x/i, 'from $1'],
     [/purchased (\d+?) x/i, 'purchased $1'],
-    // [/ worth \d.+? points and \d.+? gold/i, ''],
     ['<br><b>The mouse also dropped the following loot:</b>', '==DROPREPLACE=='],
     ['.<br>==DROPREPLACE==<br>', ' that dropped '],
     ['<br>==DROPREPLACE==<br>', ' that dropped '],

@@ -190,3 +190,62 @@ a.journal-detailLink.full::after {
 .journal .entry a.lucky[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"] {
  color: #a012a0;
 }
+
+.journal .entry .journalbody .journaldate {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gold-and-points {
+  display: flex;
+  justify-content: space-between;
+  width: 75px;
+}
+
+.journaldate {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.journal .entry .journalbody .journaldate {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gold-and-points {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+  font-size: 12px;
+}
+
+
+.gold-and-points .gold,
+.gold-and-points .points {
+  position: relative;
+}
+
+.gold-and-points .gold:after,
+.gold-and-points .points:after {
+  position: absolute;
+  top: -4px;
+  left: -22px;
+  bottom: 0;
+  right: 0;
+  background-image: url("https://www.mousehuntgame.com/images/items/stats/transparent_thumb/dccbaeebbdfa745340ff9363749f35ba.png?cv=2");
+  width: 20px;
+  height: 20px;
+  content: "";
+  background-position: center;
+  background-size: contain;
+}
+
+.gold-and-points .points:after {
+      background-image: url("https://www.mousehuntgame.com/images/items/stats/transparent_thumb/eeebc1c32b4242b95f75041be7275980.png?cv=2");
+}
