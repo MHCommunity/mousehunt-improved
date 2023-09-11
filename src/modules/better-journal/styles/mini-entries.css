@@ -84,7 +84,6 @@
 .entry.short.misc.custom.unstable_charm_trigger .journalimage img {
   width: 45px;
   height: 45px;
-  mix-blend-mode: multiply;
 }
 
 .journal .entry.rift_valour.minimalJournalImage.enter_tower .journaltext,
