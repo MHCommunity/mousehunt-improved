@@ -4,7 +4,7 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
 
 **Over 150 features and improvements!**
 
-### UI Improvements
+## UI Improvements
 
 - Better UI
   - Updates the MH interface with a variety of UI and style changes.
@@ -63,7 +63,7 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
   - Minimizes owned items that have an inventory limit of 1.
   - Hides items that use legacy costs in the King's Cart.
 
-### Features
+## Features
 
 - Copy ID Button
   - Hover over your profile picture in the HUD for a quick 'Copy ID to clipboard' button.
@@ -116,7 +116,7 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
 - Taller Windows
   - Makes popup windows taller.
 
-### Element Hiding
+## Element Hiding
 
 - Remove Footer
   - Hides the footer.
@@ -125,7 +125,7 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
 - Remove Sidebar
   - Hides the sidebar and adds a 'Sidebar' dropdown in the top menu.
 
-### Location HUDs
+## Location HUDs
 
 - Balack's Cove
   - Shows a countdown to the next low, mid, and high tides.
@@ -232,7 +232,7 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
   - S.S. Huntington IV
   - Slushy Shoreline
 
-### Fixes
+## Fixes
 
 - Fixes the vertical spacing for the Weekly & Friends checkboxes on scoreboards.
 - Fixes the team icon in the main menu.
