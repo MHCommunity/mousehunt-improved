@@ -2,7 +2,7 @@
 const makeKingsCrownsTab = () => {
   // Add king's crowns tab;
   const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
-  if (!tabContainer) {
+  if (! tabContainer) {
     return;
   }
 
@@ -25,7 +25,7 @@ const makeKingsCrownsTab = () => {
 
 const makeKingsCrownsTabContentContent = () => {
   const tabContentContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
-  if (!tabContentContainer) {
+  if (! tabContentContainer) {
     return;
   }
 
@@ -69,7 +69,7 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
 
   const list = makeElement('div', 'mouseCrownsView-group-mice');
   mice.forEach((mouse) => {
-    if (!mouse.id) {
+    if (! mouse.id) {
       return;
     }
 
@@ -147,7 +147,7 @@ const makeKingsCrownsTabContent = async () => {
   }
 
   const tabInnerContent = document.querySelector('.mousehuntHud-page-tabContent.kings_crowns');
-  if (!tabInnerContent) {
+  if (! tabInnerContent) {
     return;
   }
 
@@ -182,7 +182,7 @@ const getSetRowValue = (row, type) => {
     const ozSplit = valueText.innerText.split('oz.');
     const oz = ozSplit.length > 1 ? ozSplit[0] : 0;
 
-   value = (parseInt(lbs) * 16) + parseInt(oz);
+    value = (parseInt(lbs) * 16) + parseInt(oz);
   } else {
     value = valueText.innerText.replace(/,/g, '');
   }
@@ -195,12 +195,12 @@ const getSetRowValue = (row, type) => {
 const sortStats = (type, reverse = false) => {
   reverse = ! reverse;
 
-  let rows = document.querySelectorAll(`.active  .mouseListView-categoryContent-subgroup-mouse:not(:first-child)`);
+  let rows = document.querySelectorAll('.active  .mouseListView-categoryContent-subgroup-mouse:not(:first-child)');
   if (! rows.length) {
     return;
   }
 
-  const headerRow = document.querySelector(`.active  .mouseListView-categoryContent-subgroup-mouse:first-child`);
+  const headerRow = document.querySelector('.active  .mouseListView-categoryContent-subgroup-mouse:first-child');
   if (! headerRow) {
     return;
   }
@@ -239,7 +239,7 @@ const sortStats = (type, reverse = false) => {
   rows.forEach((row) => {
     row.parentNode.appendChild(row);
   });
-}
+};
 
 const addSortButton = (elements, type) => {
   elements.forEach((el) => {
@@ -333,7 +333,6 @@ const addSortingToStatsPage = () => {
   addSortingTabClickListeners();
 };
 
-
 export default () => {
   if (getCurrentTab() === 'kings_crowns') {
     addKingsCrownsToMicePage();
@@ -358,8 +357,10 @@ export default () => {
 
   // merge addSortingToMousePageCategory to window.mhui so that we can call it from the onclick attribute
   const newMhuiWindow = {
-    addSortingToMousePageCategory: function(cat) { addSortingToCat(cat); },
-  }
+    addSortingToMousePageCategory(cat) {
+      addSortingToCat(cat);
+    },
+  };
 
   window.mhui = { ...window.mhui, ...newMhuiWindow };
 };

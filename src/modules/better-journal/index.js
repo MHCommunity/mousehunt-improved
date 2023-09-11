@@ -86,7 +86,7 @@ const moveGoldAndPoints = () => {
 
     journalDate.appendChild(goldAndPoints);
 
-    const journalGoldAndPointsText = new RegExp(` worth \\d{1,3}(,\\d{3})* points and \\d{1,3}(,\\d{3})* gold`, 'i');
+    const journalGoldAndPointsText = new RegExp(' worth \\d{1,3}(,\\d{3})* points and \\d{1,3}(,\\d{3})* gold', 'i');
     const matches = journalText.innerHTML.match(journalGoldAndPointsText);
     // wrap the gold and points in a span so we can hide it
     if (matches) {

@@ -41,7 +41,7 @@ const scrollToTopOnFriendsPageChange = () => {
 
 const goToFriendsPageOnSearchSelect = () => {
   const friends = document.querySelector('.friendsPage-list-search');
-  if (!friends) {
+  if (! friends) {
     return;
   }
 
@@ -58,7 +58,7 @@ const goToFriendPageOnSearchID = (req) => {
     return;
   }
 
-  if (!req.friend.sn_user_id) {
+  if (! req.friend.sn_user_id) {
     return;
   }
 
@@ -71,12 +71,12 @@ const reorderBlocks = () => {
   }
 
   const reordered = document.querySelector('.mousehuntHud-page-subTabContent.community');
-  if (!reordered || reordered.getAttribute('data-reordered')) {
+  if (! reordered || reordered.getAttribute('data-reordered')) {
     return;
   }
 
   const blocks = document.querySelectorAll('.friendsPage-community-channel');
-  if (!blocks || blocks.length < 3) {
+  if (! blocks || blocks.length < 3) {
     return;
   }
 
@@ -99,12 +99,12 @@ const reorderBlocks = () => {
 const autofocusIdSearch = () => {
   console.log('autofocusIdSearch');
   const input = document.querySelector('.friendsPage-community-hunterIdForm-input');
-  if (!input) {
+  if (! input) {
     return;
   }
 
   input.focus();
-}
+};
 
 const refreshOnFriendPageChange = () => {
   if ('hunterprofile' !== getCurrentPage() || 'location' !== getCurrentSubtab()) {
@@ -112,7 +112,7 @@ const refreshOnFriendPageChange = () => {
   }
 
   const subtabContents = document.querySelectorAll('.mousehuntHud-page-subTabContent');
-  if (!subtabContents) {
+  if (! subtabContents) {
     return;
   }
 
@@ -141,7 +141,7 @@ const listenForIDPaste = () => {
       });
     }
   });
-}
+};
 
 export default () => {
   onRequest(goToFriendPageOnSearchID, 'managers/ajax/pages/friends.php');
