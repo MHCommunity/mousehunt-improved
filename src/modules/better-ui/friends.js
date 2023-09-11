@@ -41,7 +41,7 @@ const scrollToTopOnFriendsPageChange = () => {
 
 const goToFriendsPageOnSearchSelect = () => {
   const friends = document.querySelector('.friendsPage-list-search');
-  if (! friends) {
+  if (!friends) {
     return;
   }
 
@@ -58,7 +58,7 @@ const goToFriendPageOnSearchID = (req) => {
     return;
   }
 
-  if (! req.friend.sn_user_id) {
+  if (!req.friend.sn_user_id) {
     return;
   }
 
@@ -71,12 +71,12 @@ const reorderBlocks = () => {
   }
 
   const reordered = document.querySelector('.mousehuntHud-page-subTabContent.community');
-  if (! reordered || reordered.getAttribute('data-reordered')) {
+  if (!reordered || reordered.getAttribute('data-reordered')) {
     return;
   }
 
   const blocks = document.querySelectorAll('.friendsPage-community-channel');
-  if (! blocks || blocks.length < 3) {
+  if (!blocks || blocks.length < 3) {
     return;
   }
 
@@ -99,7 +99,7 @@ const reorderBlocks = () => {
 const autofocusIdSearch = () => {
   console.log('autofocusIdSearch');
   const input = document.querySelector('.friendsPage-community-hunterIdForm-input');
-  if (! input) {
+  if (!input) {
     return;
   }
 
@@ -111,12 +111,12 @@ const refreshOnFriendPageChange = () => {
     return;
   }
 
- const subtabContents = document.querySelectorAll('.mousehuntHud-page-subTabContent');
- if (! subtabContents) {
-   return;
- }
+  const subtabContents = document.querySelectorAll('.mousehuntHud-page-subTabContent');
+  if (!subtabContents) {
+    return;
+  }
 
- // loop through subtab contents and if any of them are different than our hunter id, then refresh the page
+  // loop through subtab contents and if any of them are different than our hunter id, then refresh the page
   subtabContents.forEach((content) => {
     if (content.getAttribute('data-user-id') != user.user_id) { // eslint-disable-line eqeqeq
       window.location.reload();
@@ -129,16 +129,16 @@ const listenForIDPaste = () => {
   window.addEventListener('keydown', (e) => {
     // listen for command + v as well as ctrl + v
     if ((e.metaKey || e.ctrlKey) && 86 === e.keyCode) {
-        navigator.clipboard.readText().then((text) => {
-          // if it is a number, then go to the hunter profile page
-          if (! /^\d+$/.test(text)) {
-            return;
-          }
+      navigator.clipboard.readText().then((text) => {
+        // if it is a number, then go to the hunter profile page
+        if (! /^\d+$/.test(text)) {
+          return;
+        }
 
-          hg.utils.PageUtil.setPage('HunterProfile', {
-            id: text,
-          });
+        hg.utils.PageUtil.setPage('HunterProfile', {
+          id: text,
         });
+      });
     }
   });
 }
