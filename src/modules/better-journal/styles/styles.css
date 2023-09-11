@@ -218,14 +218,6 @@ a.journal-detailLink.full::after {
   align-items: center;
 }
 
-.gold-and-points {
-  display: flex;
-  justify-content: space-between;
-  width: 80px;
-  font-size: 12px;
-}
-
-
 .gold-and-points .gold,
 .gold-and-points .points {
   position: relative;
