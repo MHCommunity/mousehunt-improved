@@ -4,7 +4,7 @@ import path from 'path';
 
 await esbuild.buildSync({
   entryPoints: ['src/index.js'],
-  outfile: 'dist/better-mh.user.js',
+  outfile: 'dist/mousehunt-improved.user.js',
   banner: {
     js: fs.readFileSync(
       path.join(process.cwd(), 'src/userscript-header.js'), 'utf8')
