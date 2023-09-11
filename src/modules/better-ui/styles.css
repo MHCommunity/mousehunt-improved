@@ -249,18 +249,28 @@ a.trapImageView-zoomButton {
   border: 1px solid #8a6d3e;
 }
 
-
 /* mousepage styles */
-.header .mouseListView-categoryContent-subgroup-mouse-stats.catches,
-.header .mouseListView-categoryContent-subgroup-mouse-stats.misses {
+.mousehuntHud-page-subTabContent.group .header .mouseListView-categoryContent-subgroup-mouse-stats.catches,
+.mousehuntHud-page-subTabContent.group .header .mouseListView-categoryContent-subgroup-mouse-stats.misses {
+  width: 12%;
+}
+
+.mousehuntHud-page-subTabContent.group .header .mouseListView-categoryContent-subgroup-mouse-stats.name {
+  width: 40%;
+}
+
+.mousehuntHud-page-subTabContent.group .header .mouseListView-categoryContent-subgroup-mouse-stats.average_weight,
+.mousehuntHud-page-subTabContent.group .header .mouseListView-categoryContent-subgroup-mouse-stats.heaviest_catch {
+    width: 20%;
+}
+
+.mousehuntHud-page-subTabContent.location .header .mouseListView-categoryContent-subgroup-mouse-stats.catches,
+.mousehuntHud-page-subTabContent.location .header .mouseListView-categoryContent-subgroup-mouse-stats.misses {
     width: 13%;
 }
 
-.header .mouseListView-categoryContent-subgroup-mouse-stats.name {
-    width: 34%;
-}
-
-.header .mouseListView-categoryContent-subgroup-mouse-stats.average_weight,
-.header .mouseListView-categoryContent-subgroup-mouse-stats.heaviest_catch {
-    width: 20%;
+.mousehuntHud-page-subTabContent.location .header .mouseListView-categoryContent-subgroup-mouse-stats.average_weight,
+.mousehuntHud-page-subTabContent.location .header .mouseListView-categoryContent-subgroup-mouse-stats.heaviest_catch {
+  width: 15%;
+  text-align: center;
 }

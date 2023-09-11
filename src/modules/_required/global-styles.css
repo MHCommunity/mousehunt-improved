@@ -36,13 +36,10 @@
 }
 
 .sort-button {
-  top: 7px;
-  bottom: 10px;
-  left: 7px;
   display: inline-block;
   width: 0;
   height: 0;
-  margin-left: 5px;
+  margin-left: 1px;
   cursor: pointer;
   content: '';
   border-top: 9px solid #777;
