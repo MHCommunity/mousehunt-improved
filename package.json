@@ -38,6 +38,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-markdownlint": "^0.4.1",
     "eslint-plugin-prettier": "^5.0.0",
+    "eslint": "^8.49.0",
     "log-symbols": "^5.1.0",
     "metric-suffix": "^0.0.3",
     "node-fetch": "^3.3.2",
