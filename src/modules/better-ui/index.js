@@ -36,7 +36,7 @@ export default () => {
     hudStyles,
     overlays,
     profile,
-    recipes,
+    recipeStyles,
     scoreboards,
     select2,
     sidebar,

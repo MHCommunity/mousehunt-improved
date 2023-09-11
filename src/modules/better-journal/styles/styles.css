@@ -202,6 +202,7 @@ a.journal-detailLink.full::after {
   display: flex;
   justify-content: space-between;
   width: 75px;
+  font-size: 12px;
 }
 
 .journaldate {

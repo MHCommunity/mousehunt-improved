@@ -272,3 +272,50 @@ span.campPage-trap-armedItem-skin-description-content br {
 a.campPage-trap-itemBrowser-item-disarmButton {
   margin-top: 10px;
 }
+
+.campPage-trap-trapStat-mathRow {
+  font-size: 13px;
+  line-height: 23px;
+}
+
+.campPage-trap-trapStat-mathRow.label {
+  font-size: 17px;
+}
+
+.campPage-trap-trapStat .math {
+  bottom: 90px;
+  left: -10px;
+  width: 321px;
+}
+
+.campPage-trap-trapStat .math .arrow {
+  display: none;
+}
+
+.campPage-trap-trapStat .value span {
+  font-size: 16px;
+}
+
+.campPage-trap-trapEffectiveness span {
+    font-size: 14px;
+    vertical-align: bottom;
+}
+
+.campPage-trap-trapEffectiveness-difficultyGroup.clear-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.campPage-trap-trapEffectiveness-difficultyGroup-label {
+  grid-column: span 2;
+}
+
+.campPage-trap-trapEffectiveness-mouse {
+  margin: 10px 0;
+  overflow: visible;
+  border: none;
+  width: 90%;
+}
