@@ -10,22 +10,23 @@ import friendsStyles from './styles/friends.css';
 import hudStyles from './styles/hud.css';
 import overlays from './styles/overlays.css';
 import profile from './styles/profile.css';
-import recipes from './styles/recipes.css';
+import recipeStyles from './styles/recipes.css';
 import scoreboards from './styles/scoreboards.css';
 import select2 from './styles/select2.css';
 import sidebar from './styles/sidebar.css';
 import tabs from './styles/tabs.css';
 import team from './styles/team.css';
 import tournamentStyles from './styles/tournaments.css';
-import traps from './styles/traps.css';
+import trapStyles from './styles/traps.css';
 import tsituSendSupplies from './styles/tsitu-send-supplies.css';
 
 // scripts
 import friends from './friends';
 import hud from './hud';
 import mousepage from './mousepage';
-import updateTournaments from './tournaments';
-import updateRecipes from './recipes';
+import recipes from './recipes';
+import tournaments from './tournaments';
+import traps from './traps';
 
 export default () => {
   addUIStyles([
@@ -44,13 +45,14 @@ export default () => {
     tabs,
     team,
     tournamentStyles,
-    traps,
+    trapStyles,
     tsituSendSupplies,
   ].join('\n'));
 
   friends();
   hud();
   mousepage();
-  updateTournaments();
-  updateRecipes();
+  recipes();
+  tournaments();
+  traps();
 };
