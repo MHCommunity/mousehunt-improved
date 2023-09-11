@@ -16,7 +16,7 @@ const trackEvents = () => {
 
   events.forEach((event) => {
     eventRegistry.addEventListener(event, (e) => {
-      if (window.showEvents) {
+      if (window.mhui.showEvents) {
         console.log(`${event} was fired`, e); // eslint-disable-line no-console
       }
     });
