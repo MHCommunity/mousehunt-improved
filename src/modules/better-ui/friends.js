@@ -1,9 +1,12 @@
-
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 const friendsPageChange = (event) => {
+  if ('hunterprofile' === getCurrentPage()) {
+    return;
+  }
+
   // if there is a 'pagerView-firstPageLink' in the calss, then go to the first page
   if (event.target.classList.contains('pagerView-firstPageLink')) {
     app.pages.FriendsPage.tab_view_friends.pager.showFirstPage(event);
@@ -16,13 +19,14 @@ const friendsPageChange = (event) => {
   } else {
     return;
   }
+
   scrollToTop();
 };
 
 const scrollToTopOnFriendsPageChange = () => {
-  onNavigation(scrollToTop, {
-    page: 'friends',
-  });
+  if ('hunterprofile' === getCurrentPage()) {
+    return;
+  }
 
   const pagerLinks = document.querySelectorAll('.pagerView-container.PageFriends_view_friends .pagerView-section a');
 
@@ -66,6 +70,11 @@ const reorderBlocks = () => {
     return;
   }
 
+  const reordered = document.querySelector('.mousehuntHud-page-subTabContent.community');
+  if (! reordered || reordered.getAttribute('data-reordered')) {
+    return;
+  }
+
   const blocks = document.querySelectorAll('.friendsPage-community-channel');
   if (! blocks || blocks.length < 3) {
     return;
@@ -83,13 +92,38 @@ const reorderBlocks = () => {
     // disable the 1password icon
     input.setAttribute('data-1p-ignore', 'true');
   }
+
+  reordered.setAttribute('data-reordered', 'true');
 };
 
-export default () => {
-  scrollToTopOnFriendsPageChange();
-  goToFriendsPageOnSearchSelect();
+const autofocusIdSearch = () => {
+  console.log('autofocusIdSearch');
+  const input = document.querySelector('.friendsPage-community-hunterIdForm-input');
+  if (! input) {
+    return;
+  }
 
+  input.focus();
+}
+
+export default () => {
   onRequest(goToFriendPageOnSearchID, 'managers/ajax/pages/friends.php');
 
-  onNavigation(reorderBlocks, { page: 'friends' });
+  onNavigation(() => {
+    scrollToTopOnFriendsPageChange();
+    goToFriendsPageOnSearchSelect();
+    reorderBlocks();
+  }, {
+    page: 'friends'
+  });
+
+  onNavigation(reorderBlocks, {
+    page: 'friends'
+  });
+
+  onNavigation(autofocusIdSearch, {
+    page: 'friends',
+    tab: 'requests',
+    subtab: 'community',
+  });
 };
