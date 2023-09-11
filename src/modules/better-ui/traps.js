@@ -85,45 +85,57 @@ const modifyPB = (retry = false) => {
 const savePbStats = () => {
   // if we have pb equipped, then save the stats for it
   const setup = getUserSetupDetails();
-  if (setup.base.id === 2904) {
-    const trapMath = document.querySelectorAll('.campPage-trap-trapStat-mathRow');
-    if (! trapMath.length) {
+  if (setup.base.id !== 2904) {
+    return;
+  }
+
+  const trapMath = document.querySelectorAll('.campPage-trap-trapStat-mathRow');
+  if (! trapMath.length) {
+    return;
+  }
+
+  const stats = {};
+
+  trapMath.forEach((row) => {
+    // get the name of the stat
+    const stat = row.querySelector('.campPage-trap-trapStat-mathRow-name');
+    if (! stat) {
       return;
     }
 
-    const stats = {};
+    // if the name doesn't contain Prestige Base, then skip it
+    if (! stat.innerText.includes('Prestige Base')) {
+      return;
+    }
 
-    trapMath.forEach((row) => {
-      // get the name of the stat
-      const stat = row.querySelector('.campPage-trap-trapStat-mathRow-name');
-      if (! stat) {
-        return;
-      }
+    // get the value of the stat
+    const value = row.querySelector('.campPage-trap-trapStat-mathRow-value');
+    if (! value) {
+      return;
+    }
 
-      // if the name doesn't contain Prestige Base, then skip it
-      if (! stat.innerText.includes('Prestige Base')) {
-        return;
-      }
+    // parse the value, remove commas and convert to a number
+    let parsedValue = parseInt(value.innerText.replace(/,/g, ''), 10);
 
-      // get the value of the stat
-      const value = row.querySelector('.campPage-trap-trapStat-mathRow-value');
-      if (! value) {
-        return;
-      }
+    // get the type of stat it is by looking at the great grandparent
+    const type = row.parentElement.parentElement;
+    // remove 'campPage-trap-trapStat' from the class list
+    const typeClass = type.className.replace('campPage-trap-trapStat', '').trim();
 
-      // parse the value, remove commas and convert to a number
-      const parsedValue = parseInt(value.innerText.replace(/,/g, ''), 10);
+    if (typeClass === 'power') {
+      parsedValue = parsedValue + 490;
+    } else if (typeClass === 'luck') {
+      parsedValue = parsedValue + 5;
+    }
 
-      // get the type of stat it is by looking at the great grandparent
-      const type = row.parentElement.parentElement;
-      // remove 'campPage-trap-trapStat' from the class list
-      const typeClass = type.className.replace('campPage-trap-trapStat', '').trim();
+    stats[typeClass] = parsedValue;
+  });
 
-      stats[typeClass] = parsedValue;
-    });
-
-    localStorage.setItem('mh-ui-pb-stats', JSON.stringify(stats));
+  if (! stats.power || ! stats.luck) {
+    return;
   }
+
+  localStorage.setItem('mh-ui-pb-stats', JSON.stringify(stats));
 };
 
 export default () => {
@@ -133,10 +145,12 @@ export default () => {
   } } });
 
   onRequest(() => {
+    savePbStats();
     setPrestigeStats();
   }, 'managers/ajax/users/changetrap.php');
 
   onRequest(() => {
     savePbStats();
+    setPrestigeStats();
   }, 'managers/ajax/users/gettrapcomponents.php');
 };
