@@ -92,7 +92,8 @@ const updateItemView = async () => {
   const id = parseInt(itemId, 10);
   if (
     2473 === id || // mina's gift
-    823 === id // party charm
+    823 === id || // party charm
+    803 === id // chrome charm
   ) {
     return;
   }
