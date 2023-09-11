@@ -298,10 +298,10 @@ const addSortingToCat = (cat) => {
     return;
   }
 
-  cats.forEach((cat) => {
+  cats.forEach((mcat) => {
     const els = category.querySelectorAll(`.mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${cat}`);
     if (els.length) {
-      addSortButton(els, cat);
+      addSortButton(els, mcat);
     }
   });
 
@@ -357,8 +357,8 @@ export default () => {
 
   // merge addSortingToMousePageCategory to window.mhui so that we can call it from the onclick attribute
   const newMhuiWindow = {
-    addSortingToMousePageCategory(cat) {
-      addSortingToCat(cat);
+    addSortingToMousePageCategory(category) {
+      addSortingToCat(category);
     },
   };
 

@@ -24,7 +24,6 @@ import tsituSendSupplies from './styles/tsitu-send-supplies.css';
 import friends from './friends';
 import hud from './hud';
 import mousepage from './mousepage';
-import updateFriends from './friends';
 import updateTournaments from './tournaments';
 import updateRecipes from './recipes';
 
@@ -52,7 +51,6 @@ export default () => {
   friends();
   hud();
   mousepage();
-  updateFriends();
   updateTournaments();
   updateRecipes();
 };

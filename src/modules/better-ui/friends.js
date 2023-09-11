@@ -97,7 +97,6 @@ const reorderBlocks = () => {
 };
 
 const autofocusIdSearch = () => {
-  console.log('autofocusIdSearch');
   const input = document.querySelector('.friendsPage-community-hunterIdForm-input');
   if (! input) {
     return;
