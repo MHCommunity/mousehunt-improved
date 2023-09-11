@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 
 console.log('Syncing external scripts ...\n');
 
-const externalScripts = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'external-scripts.json')));
+const externalScripts = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/data/external-scripts.json')));
 externalScripts.forEach((script) => {
   const contents = fetch(script.url)
     .then((res) => res.text())
