@@ -93,7 +93,7 @@ const moveGoldAndPoints = () => {
       const goldAndPointsText = matches[0];
       const goldAndPointsTextEl = makeElement('span', 'hidden', goldAndPointsText);
       journalText.innerHTML = journalText.innerHTML.replace(goldAndPointsText, '');
-      journalText.appendChild(goldAndPointsTextEl);
+      journalText.insertBefore(goldAndPointsTextEl, journalText.firstChild);
     }
 
     entry.setAttribute('data-gold-added', true);
@@ -185,6 +185,8 @@ const updateJournalText = () => {
     ['!.,', '!'],
     ['My tower\'s ', 'My '],
     ['Energy Cannon', 'cannon'],
+    ['before it could even touch my cheese!', ''],
+    ['The mouse dropped the following prize', 'that dropped'],
 
     // Event stuff
     // SEH
