@@ -1,3 +1,6 @@
+import { addUIStyles } from '../utils';
+import styles from './styles.css';
+
 const updateTournamentHud = async () => {
   const activeTourney = document.querySelector('#tournamentStatusHud > a.name');
   if (! activeTourney) {
@@ -130,6 +133,7 @@ const updateTournamentHud = async () => {
 };
 
 const main = async () => {
+  addUIStyles(styles);
   updateTournamentHud();
 
   onEvent('tournament_status_change', updateTournamentHud);
