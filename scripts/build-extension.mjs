@@ -37,6 +37,11 @@ const buildExtension = async (platform) => {
       return;
     }
 
+    // if its a directory, don't copy it
+    if (fs.lstatSync(path.join(process.cwd(), 'src/extension', file)).isDirectory()) {
+      return;
+    }
+
     fs.copyFileSync(
       path.join(process.cwd(), 'src/extension', file),
       path.join(process.cwd(), `dist/extension/${platform}`, file)
