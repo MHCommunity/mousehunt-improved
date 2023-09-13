@@ -97,6 +97,11 @@ img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
   height: 44px;
 }
 
+.treasureMapView-environment-hunters img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
+  width: 20px;
+  height: 20px;
+}
+
 /* Fix the tutorial overlay shadow */
 #overlayBg.larryOffice {
   width: 100%;

@@ -243,6 +243,10 @@ a.trapImageView-zoomButton {
   margin-top: -9px;
 }
 
+.mousehuntHud-environmentName {
+  margin-left: 55px;
+}
+
 .mousehuntHud-environmentIconWrapper {
   width: 50px;
   height: 0;
