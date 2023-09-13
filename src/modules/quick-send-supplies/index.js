@@ -77,6 +77,10 @@ const makeSendSuppliesButton = (btn, snuid) => {
   const message = makeElement('div', 'quickSendmessage', 'Sent!', quickSendGoWrapper);
 
   quickSendButton.addEventListener('click', () => {
+    if (quickSendButton.classList.contains('disabled')) {
+      return;
+    }
+
     const qty = quickSendInput.value;
     if (! qty) {
       message.innerHTML = 'Please enter a quantity';
