@@ -63,6 +63,7 @@
 
 /* Text */
 .journal .entry .journalbody .journaltext {
+  margin-right: 5px;
   line-height: 20px;
 }
 
