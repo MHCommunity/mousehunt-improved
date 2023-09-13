@@ -129,4 +129,10 @@ const updateTournamentHud = async () => {
   }
 };
 
-export default updateTournamentHud;
+const main = async () => {
+  updateTournamentHud();
+
+  onEvent('tournament_status_change', updateTournamentHud);
+};
+
+export default main;
