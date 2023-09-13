@@ -1,0 +1,212 @@
+#sorted-mice-container {
+  margin: 20px 5px;
+}
+
+#sorted-mice-container .mouse-category-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  align-items: stretch;
+  justify-items: stretch;
+  margin-bottom: 25px;
+}
+
+#sorted-mice-container .mouse-category-wrapper {
+  position: relative;
+  color: #000;
+  background-color: #e6e6e6;
+  border: 1px solid rgb(5 5 5 / 50%);
+  border-radius: 0;
+  box-shadow: 0 2px 1px -1px #909090;
+}
+
+#sorted-mice-container .mouse-category-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 6px 10px;
+  margin-bottom: 3px;
+  color: #000;
+  background-color: rgb(255 255 255 / 65%);
+  border-bottom: 1px solid rgb(5 5 5);
+}
+
+#sorted-mice-container .mouse-category-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+#sorted-mice-container .mouse-category-icon-title-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+#sorted-mice-container .mouse-category-title {
+  font-size: 14px;
+}
+
+#sorted-mice-container .mouse-category-subtitle {
+  margin-top: 2px;
+  font-size: 11px;
+  font-style: italic;
+}
+
+#sorted-mice-container .mouse-category-mice {
+  padding-left: 5px;
+}
+
+#sorted-mice-container .mouse-container {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+#sorted-mice-container .mouse-data {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#sorted-mice-container .mouse-extra-info {
+  display: none;
+}
+
+#sorted-mice-container .mouse-container-selected,
+#sorted-mice-container .mouse-container:hover,
+#sorted-mice-container .mouse-container:focus {
+  position: relative;
+  background: #eaeaea;
+  outline: 1px solid #000;
+}
+
+#sorted-mice-container .mouse-container-selected .mouse-extra-info {
+  position: absolute;
+  right: -1px;
+  left: -1px;
+  z-index: 10;
+  display: block;
+  padding: 10px;
+  background-color: #eaeaea;
+  border: 1px solid #000;
+  border-top: 1px solid #dedede;
+  box-shadow: 0 1px 2px -1px #000;
+}
+
+#sorted-mice-container .mouse-image {
+  width: auto;
+  height: 30px;
+  margin: 2px 5px 2px 2px;
+  border: 1px solid rgb(0 0 0 / 25%);
+}
+
+#sorted-mice-container .mouse-subcategory-mice .mouse-image {
+  margin: 2px 4px 2px 2px;
+}
+
+#sorted-mice-container .mouse-category-wrapper-hidden {
+  display: none;
+}
+
+#sorted-mice-container .mouse-subcategory-wrapper {
+  margin: 0 5px 10px;
+  background-color: rgb(255 255 255 / 60%);
+  border: 1px solid rgb(0 0 0 / 60%);
+  box-shadow: inset 1px 1px 2px -1px rgb(0 0 0 / 60%);
+}
+
+#sorted-mice-container .mouse-subcategory-header {
+  position: relative;
+  padding: 8px;
+  margin-bottom: 3px;
+  font-size: 11px;
+  border-bottom: 1px solid #9b9b9b;
+}
+
+#sorted-mice-container .mouse-subcategory-mice {
+  padding: 0 5px;
+}
+
+#sorted-mice-container .mouse-locations {
+  display: flex;
+  flex-direction: column;
+}
+
+#sorted-mice-container .mouse-location {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+#sorted-mice-container .mhct {
+  margin-top: 15px;
+}
+
+#sorted-mice-container .weakness-type {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+#sorted-mice-container .power-types img {
+  width: 15px;
+  height: 15px;
+  margin: 1px;
+}
+
+#sorted-mice-container .weakness-name {
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+#sorted-mice-container .mouse-locations-wrapper {
+  display: flex;
+}
+
+#sorted-mice-container .location-text {
+  margin-right: 3px;
+}
+
+.mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::after,
+.mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header::after {
+  position: absolute;
+  top: -7px;
+  right: 2px;
+  z-index: 1;
+  width: 25px;
+  height: 25px;
+  margin: 0;
+  content: "";
+  background-color: #fff;
+  background-image: url(https://www.mousehuntgame.com//images/ui/friends/anonymous_user.png);
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header::after {
+  top: 5px;
+  border: 1px solid #9f9f9f;
+}
+
+.mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::before {
+  position: absolute;
+  top: -12px;
+  right: -4px;
+  width: 37px;
+  height: 48px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/player.png?asset_cache_version=2);
+  filter: hue-rotate(275deg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: 0;
+  background-size: 100%;
+}
+
+
+#sorted-mice-container .mouse-subcategory-wrapper .mouse-subcategory-header {
+  margin-bottom: 3px;
+  border-bottom: 1px solid #070707;
+}

@@ -1,0 +1,34 @@
+.treasureMapView-goals-group-goal[data-mh-ui-ar="true"] .treasureMapView-goals-group-goal-name {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.mh-ui-ar {
+  padding: 2px 3px;
+  font-size: 9px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.mh-ui-ar-guaranteed {
+  background-color: #8ffaab;
+}
+
+.mh-ui-ar-hard {
+  background-color: #ffb9ba;
+}
+
+.mh-ui-ar-medium {
+  background-color: #ffc440;
+}
+
+.mh-ui-ar-easy {
+  background-color: #b9fff8;
+}
+
+.complete .mh-ui-ar {
+  background-color: #e5e5e5;
+}

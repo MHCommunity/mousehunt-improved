@@ -1,0 +1,51 @@
+.mh-mapper-sidebar {
+  border: 1px solid #ddedff;
+  margin: 10px 0 20px 0;
+  padding: 0;
+}
+
+.mh-mapper-sidebar .mh-mapper-sidebar-name {
+  background-color: #ddedff;
+  width: auto;
+  padding: 5px;
+}
+
+.mh-mapper-sidebar-mouse:hover {
+  filter: none;
+}
+
+.mh-mice-sidebar {
+  background-color: #ddedff;
+}
+
+.mh-mapper-sidebar .mousehuntHud-userStat.treasureMap {
+  width: 100%;
+  text-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mh-mapper-sidebar .mousehuntHud-userStat.treasureMap .label {
+  text-shadow: none;
+  color: #181818;
+  width: auto;
+  padding: 0;
+}
+
+.mh-mapper-sidebar .mousehuntHud-userStat.treasureMap .icon {
+  margin-right: 10px;
+}
+
+.mh-mapper-sidebar-mouse {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1px 5px;
+  gap: 5px;
+}
+
+.mh-mapper-sidebar .mouse-image {
+  height: 25px;
+  width: 25px;
+}

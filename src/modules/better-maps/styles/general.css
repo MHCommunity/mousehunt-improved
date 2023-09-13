@@ -1,0 +1,448 @@
+/* Sidebar */
+.treasureMapView-singleEnvironment-label {
+  padding-bottom: 8px;
+}
+
+.treasureMapView-block.treasureMapView-singleEnvironment {
+  border-radius: 2px;
+}
+
+.treasureMapView-block-content.halfHeight {
+  padding: 0;
+  border-radius: 0;
+}
+
+.treasureMapView-environment {
+  border: none;
+  border-radius: 3px;
+}
+
+.treasureMapView-block {
+  border-radius: 3px;
+}
+
+.treasureMapView-mapMenu-group.rewards .treasureMapView-mapMenu-group-title {
+  display: none;
+}
+
+.treasureMapView-ally-ownerLabel {
+  display: none;
+}
+
+input.treasureMapView-shareLinkInput {
+  display: inline-block;
+  width: 87px;
+  padding: 3px;
+  margin-right: 2px;
+}
+
+.treasureMapView-ownerRequestActions {
+  display: block;
+  width: 61px;
+  margin: 0 auto;
+}
+
+.treasureMapView-mapMenu-group.rewards {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: -10px;
+  margin-right: -5px;
+}
+
+.rewards .treasureMapView-mapMenu-rewardName {
+  max-width: unset;
+  margin-right: 3px;
+  font-size: 12px;
+}
+
+.rewards .treasureMapView-mapMenu-subgroup.chest.mousehuntTooltipParent {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.rewards .treasureMapView-mapMenu-group-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 450px;
+}
+
+.rewards .treasureMapView-mapMenu-auraIcon {
+  width: 33px;
+  height: 33px;
+  margin-top: -10px;
+}
+
+.rewards .treasureMapView-mapMenu-auraIconContainer {
+  margin: 0;
+}
+
+.rewards .treasureMapView-mapMenu-group-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.rewards .treasureMapView-mapMenu-group-actions .mousehuntActionButton {
+  margin-right: 4px;
+  margin-bottom: 0 !important;
+}
+
+.treasureMapView-allyCell.name {
+  padding-left: 10px;
+}
+
+.treasureMapView-ally-name {
+  padding-bottom: 5px;
+}
+
+.treasureMapView-mapMenu-mapIcon {
+  width: 40px;
+}
+
+img.treasureMapView-reward-chestIcon {
+  width: 120px;
+}
+
+.treasureMapInvitesView .treasureMapView-leftBlock:first-child .treasureMapView-block-title:first-child {
+  display: none;
+}
+
+.treasureMapView-block-content.noMinHeight.noPadding.treasureMapInvitesView-scoreboards .treasureMapView-block-title:nth-child(3),
+.treasureMapView-block-content.noMinHeight.noPadding.treasureMapInvitesView-scoreboards .treasureMapView-scoreboard:nth-child(4) {
+  display: none;
+}
+
+.treasureMapInventoryView-scrollCase-aura {
+  overflow: hidden;
+  font-size: 9px;
+  line-height: 15px;
+}
+
+.treasureMapInventoryView-scrollCase-aura br::after {
+  content: " ";
+}
+
+.treasureMapInventoryView-scrollCase-aura br {
+  content: "";
+}
+
+.treasureMapInventoryView-scrollCase-aura b:first-of-type {
+  display: block;
+  font-size: 10px;
+}
+
+.treasureMapShopsView .treasureMapView-leftBlock {
+  width: 99%;
+}
+
+.treasureMapShopsView .treasureMapView-rightBlock {
+  display: none;
+}
+
+.treasureMapPopup-shop {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fbfbfb;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.treasureMapPopup-shop-environment.active::before {
+  box-shadow: none;
+}
+
+.treasureMapView-block-content-heading {
+  border: none;
+}
+
+.treasureMapInventoryView-scrollCase {
+  align-items: center;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  background-color: #fbfbfb;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+span.treasureMapView-block-content-heading-count {
+  display: none;
+}
+
+.treasureMapView-block-content-heading-image {
+  margin-right: 10px;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_valour"] {
+  background-color: #e5daed;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_bristle_woods"] {
+  background-color: #bda39e;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_furoma"] {
+  background-color: #ffdca4;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_whisker_woods"] {
+  background-color: #cfe07e;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_burroughs"] {
+  background-color: #c8c8c8;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_gnawnia"] {
+  background-color: #ffdaf4;
+}
+
+.treasureMapPopup-shop[data-environment-type="table_of_contents"] {
+  background-color: #dfffd4;
+}
+
+.treasureMapPopup-shop[data-environment-type="prologue_pond"] {
+  background-color: #d3ffff;
+}
+
+.treasureMapPopup-shop[data-environment-type="foreword_farm"] {
+  background-color: #faedcd;
+}
+
+.treasureMapPopup-shop[data-environment-type="floating_islands"] {
+  background-color: #fce0d7;
+}
+
+.treasureMapPopup-shop[data-environment-type="moussu_picchu"] {
+  background-color: #fed3ff;
+}
+
+.treasureMapPopup-shop[data-environment-type="ancient_city"] {
+  background-color: #cbcbcb;
+}
+
+.treasureMapPopup-shop[data-environment-type="fungal_cavern"] {
+  background-color: #c3f3de;
+}
+
+.treasureMapPopup-shop[data-environment-type="sunken_city"] {
+  background-color: #c8f9ff;
+}
+
+.treasureMapPopup-shop[data-environment-type="queso_geyser"] {
+  background-color: #f8f3ae;
+}
+
+.treasureMapPopup-shop[data-environment-type="queso_quarry"] {
+  background-color: #f8f3ae;
+}
+
+.treasureMapPopup-shop[data-environment-type="queso_plains"] {
+  background-color: #f8f3ae;
+}
+
+.treasureMapPopup-shop[data-environment-type="queso_river"] {
+  background-color: #f8f3ae;
+}
+
+.treasureMapPopup-shop[data-environment-type="fort_rox"] {
+  background-color: #f2d5c9;
+}
+
+.treasureMapPopup-shop[data-environment-type="desert_oasis"] {
+  background-color: #d1e7bf;
+}
+
+.treasureMapPopup-shop[data-environment-type="desert_city"] {
+  background-color: #e48f89;
+}
+
+.treasureMapPopup-shop[data-environment-type="desert_warpath"] {
+  background-color: #ffb280;
+}
+
+.treasureMapPopup-shop[data-environment-type="slushy_shoreline"] {
+  background-color: #a0d3ee;
+}
+
+.treasureMapPopup-shop[data-environment-type="seasonal_garden"] {
+  background-color: #e8e8e9;
+}
+
+.treasureMapPopup-shop[data-environment-type="pollution_outbreak"] {
+  background-color: #cde691;
+}
+
+.treasureMapPopup-shop[data-environment-type="kings_gauntlet"] {
+  background-color: #cfcfcf;
+}
+
+.treasureMapPopup-shop[data-environment-type="cape_clawed"] {
+  background-color: #b8d3dc;
+}
+
+.treasureMapPopup-shop[data-environment-type="catacombs"] {
+  background-color: #a88ca4;
+}
+
+.treasureMapPopup-shop[data-environment-type="great_gnarled_tree"] {
+  background-color: #abd59b;
+}
+
+.treasureMapPopup-shop[data-environment-type="town_of_digby"] {
+  background-color: #e5e6d8;
+}
+
+.treasureMapPopup-shop[data-environment-type="mousoleum"] {
+  background-color: #d6c7a5;
+}
+
+.treasureMapPopup-shop[data-environment-type="harbour"] {
+  background-color: #fffcb6;
+}
+
+.treasureMapPopup-shop-item-description-costContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 5px;
+  margin-top: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.treasureMapInventoryView-scrollCase-name {
+  padding-bottom: 5px;
+}
+
+.mapper-self img {
+  border-radius: 50%;
+  outline: 2px solid #73ddff;
+}
+
+.treasureMapView-block.treasureMapView-scavengerHunt {
+  min-height: auto;
+  padding: 10px;
+  background: #edfff2;
+}
+
+.treasureMapView-hunter.empty img.treasureMapView-hunter-image {
+  opacity: .4;
+}
+
+.treasureMapDialogView-userSelector .userSelectorView-content {
+  height: 550px;
+}
+
+.treasureMapDialogView .userSelector-cell.name {
+  font-size: 12px;
+}
+
+td.userSelector-cell.map_num_clues_found.number {
+  font-size: 8px;
+}
+
+th.userSelector-column.is_favourite {
+  color: transparent;
+}
+
+.userSelector-table th.userSelectorView-sortByLink {
+  text-align: center;
+}
+
+.userSelector-table th.userSelectorView-sortByLink::after {
+  margin-right: 10px;
+  margin-left: 1px;
+}
+
+.userSelectorView-filterContainer {
+  font-size: 12px;
+}
+
+label.userSelectorView-filter-label {
+  color: transparent;
+}
+
+.treasureMapUserSelectorView-toggleFavouritesContainer.treasureMapView-block-title label {
+  font-weight: 400;
+}
+
+.treasureMapDialogView .userSelector-cell abbr {
+  text-decoration: none;
+}
+
+.treasureMapDialogView-userSelector-selectedUserList-content {
+  counter-reset: sent left;
+}
+
+.treasureMapDialogView-userSelector-selectedUser {
+  position: relative;
+  counter-increment: sent;
+}
+
+.treasureMapDialogView-userSelector-selectedUser.empty {
+   counter-increment: left;
+}
+
+.treasureMapUserSelectorView-actions:hover .treasureMapDialogView-userSelector-selectedUser::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  text-shadow: -1px 0 1px #000, 1px 0 1px #000, 0 0 0 #000, 0 -1px 1px #000, 0 1px 1px #000, 0 0 0 #000;
+  content: counter(sent);
+}
+
+.treasureMapUserSelectorView-actions:hover .treasureMapDialogView-userSelector-selectedUser.empty::after {
+  content: counter(left);
+}
+
+.userSelector-table .userSelector-groupHeading td {
+  padding: 5px 0 2px 5px;
+  border-right: none;
+  border-left: none;
+}
+
+.userSelector-table .userSelector-groupHeading td:first-child {
+  border-top: none;
+}
+
+.treasureMapView-environment-hunters .treasureMapView-hunter.captain .treasureMapView-hunter-image {
+  width: 20px;
+  height: 20px;
+}
+/* consolation prizes */
+.mh-mapper-consolation-prizes {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px;
+}
+
+h2.mh-mapper-consolation-prizes-title {
+  font-size: 12px;
+  padding: 5px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.mh-mapper-consolation-prize {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+img.mh-mapper-consolation-prize {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}

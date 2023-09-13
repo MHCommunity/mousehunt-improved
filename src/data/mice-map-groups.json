@@ -1,0 +1,733 @@
+{
+  "sky_palace": {
+    "categories": [
+      {
+        "name": "Arcane",
+        "id": "esp-arcane",
+        "icon": "/powertypes/arcane.png",
+        "color": "#b4ffff",
+        "mice": [
+          "sky_dancer",
+          "sky_glass_glazier",
+          "sky_glass_sorcerer",
+          {
+            "mouse": "arcane_paragon",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "sky_highborne",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "empyrean_arcane_mouse",
+            "subcategory": "sp"
+          }
+        ]
+      },
+      {
+        "name": "Draconic",
+        "id": "esp-draconic",
+        "icon": "/powertypes/draconic.png",
+        "color": "#cf9e64",
+        "mice": [
+          "dragon_breather",
+          "dragon_lancer",
+          "tiny_dragonfly",
+          {
+            "mouse": "draconic_paragon",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "regal_spearman",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "empyrean_draconic_mouse",
+            "subcategory": "sp"
+          }
+        ]
+      },
+      {
+        "name": "Forgotten",
+        "id": "esp-forgotten",
+        "icon": "/powertypes/forgotten.png",
+        "color": "#c37aa1",
+        "mice": [
+          "cumulost",
+          "spry_sky_explorer",
+          "spry_sky_seer",
+          {
+            "mouse": "forgotten_paragon",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "spheric_diviner",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "empyrean_forgotten_mouse",
+            "subcategory": "sp"
+          }
+        ]
+      },
+      {
+        "name": "Hydro",
+        "id": "esp-hydro",
+        "icon": "/powertypes/hydro.png",
+        "color": "#a0dcff",
+        "mice": [
+          "cute_cloud_conjurer",
+          "nimbomancer",
+          "sky_surfer",
+          {
+            "mouse": "hydro_paragon",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "mist_maker",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "empyrean_hydro_mouse",
+            "subcategory": "sp"
+          }
+        ]
+      },
+      {
+        "name": "Law",
+        "id": "esp-law",
+        "icon": "/powertypes/law.png",
+        "color": "#efcf86",
+        "mice": [
+          "devious_gentleman",
+          "lawbender",
+          "stack_of_thieves",
+          {
+            "mouse": "law_paragon",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "agent_m",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "empyrean_law_mouse",
+            "subcategory": "sp"
+          }
+        ]
+      },
+      {
+        "name": "Physical",
+        "id": "esp-physical",
+        "icon": "/powertypes/physical.png",
+        "color": "#d98181",
+        "mice": [
+          "ground_gavaleer",
+          "heracles",
+          "sky_swordsman",
+          {
+            "mouse": "physical_paragon",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "sky_squire",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "empyrean_physical_mouse",
+            "subcategory": "sp"
+          }
+        ]
+      },
+      {
+        "name": "Shadow",
+        "id": "esp-shadow",
+        "icon": "/powertypes/shadow.png",
+        "color": "#a4c0c1",
+        "mice": [
+          "astrological_astronomer",
+          "overcaster",
+          "stratocaster",
+          {
+            "mouse": "shadow_paragon",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "shadow_sage",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "empyrean_shadow_mouse",
+            "subcategory": "sp"
+          }
+        ]
+      },
+      {
+        "name": "Tactical",
+        "id": "esp-tactical",
+        "icon": "/powertypes/tactical.png",
+        "color": "#cc8282",
+        "mice": [
+          "gyrologer",
+          "seasoned_islandographer",
+          "worried_wayfinder",
+          {
+            "mouse": "tactical_paragon",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "captain_cloudkicker",
+            "subcategory": "hai"
+          },
+          {
+            "mouse": "empyrean_tactical_mouse",
+            "subcategory": "sp"
+          }
+        ]
+      },
+      {
+        "name": "Sky Palace",
+        "id": "esp-sky_palace",
+        "icon": "/items/stats/large/dd362c178b67d5e45fda7b2da273e7d6.png",
+        "color": "#a3fec4",
+        "mice": [
+          "empyrean_charm_hoarder",
+          "empyrean_oreglass_miner",
+          "empyrean_cloudstone_miner",
+          "empyrean_treasure_guardian"
+        ]
+      },
+      {
+        "name": "Pirates",
+        "id": "esp-pirates",
+        "icon": "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png",
+        "color": "#f173bf",
+        "mice": [
+          "admiral_cloudbeard",
+          "cutthroat_cannoneer",
+          "cutthroat_pirate",
+          "mairitime_pirate",
+          "empyrean_pirate",
+          "scarlet_revenger",
+          "suave_pirate"
+        ]
+      },
+      {
+        "name": "Other",
+        "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
+        "color": "#",
+        "mice": [
+          "daydreamer",
+          "kite_flyer",
+          "richard_rich",
+          "empyrean_loot_cache_guardian"
+        ]
+      },
+      {
+        "name": "Wardens",
+        "id": "esp-wardens",
+        "icon": "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png",
+        "color": "#d3bdd3",
+        "mice": [
+          "fog_warden",
+          "frost_warden",
+          "rain_warden",
+          "wind_warden"
+        ]
+      },
+      {
+        "name": "Launchpad",
+        "id": "esp-launchpad",
+        "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
+        "color": "#c2c2c2",
+         "mice": [
+          "cloud_miner",
+          "launchpad_labourer",
+          "sky_greaser",
+          "skydiver"
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "hai",
+        "name": "High Altitude Island"
+      },
+      {
+        "id": "sp",
+        "name": "Sky Palace"
+      }
+    ]
+  },
+  "folklore_forest_prelude": {
+    "categories": [
+      {
+        "name": "Farm",
+        "id": "fofo-farm",
+        "icon": "/folklore_forest_upgrades/farm_plot_2_thumb.png",
+        "color": "#d7b18b",
+        "mice": [
+          "angry_aphid",
+          "grit_grifter",
+          "crazed_cultivator",
+          "mighty_mite",
+          "wily_weevil",
+          {
+            "mouse": "crazed_cultivator",
+            "subcategory": "sb"
+          },
+          {
+            "mouse": "land_loafer",
+            "subcategory": "zero-plants"
+          },
+          {
+            "mouse": "loathsome_locust",
+            "subcategory": "three-papyrus"
+          }
+        ]
+      },
+      {
+        "name": "Prologue Pond",
+        "id": "fofo-pond",
+        "icon": "/folklore_forest_upgrades/tackle_box_thumb.png",
+        "color": "#c3def5",
+        "mice": [
+          "beachcomber",
+          "sand_sifter",
+          "tackle_tracker",
+          {
+            "mouse": "covetous_coastguard",
+            "subcategory": "sb"
+          }
+        ]
+      },
+      {
+        "name": "Prologue Pond",
+        "subtitle": "Grubben",
+        "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
+        "color": "#fbc3fa",
+        "mice": [
+          "pompous_perch",
+          "careless_catfish",
+          "melodramatic_minnow"
+        ]
+      },
+      {
+        "name": "Prologue Pond",
+        "subtitle": "Clamebert",
+        "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
+        "color": "#f3e0ff",
+        "mice": [
+          "nefarious_nautilus",
+          "vicious_vampire_squid",
+          "sinister_squid"
+        ]
+      },
+      {
+        "name": "Table of Contents",
+        "subtitle": "Not Writing",
+        "id": "fofo-toc-not-writing",
+        "icon": "/folklore_forest_upgrades/silver_quill_thumb.png",
+        "mice": [
+          "brothers_grimmaus",
+          "hans_cheesetian_squeakersen",
+          "madame_dormouse",
+          {
+            "mouse": "matriarch_gander",
+            "subcategory": "sb"
+          }
+        ]
+      },
+      {
+        "name": "Table of Contents",
+        "subtitle": "Writing",
+        "id": "fofo-toc-writing",
+        "icon": "/folklore_forest_upgrades/golden_quill_thumb.png",
+        "color": "#e9c390",
+        "mice": [
+          "humphrey_dumphrey",
+          "little_bo_squeak",
+          "little_miss_fluffet"
+        ]
+      },
+      {
+        "name": "Table of Contents",
+        "subtitle": "Writing - First Draft",
+        "id": "fofo-toc-first-draft",
+        "icon": "/items/bait/large/9782ba50ed4c64f8f8412563cf2ce709.png",
+        "mice": [
+          "fibbocchio",
+          "pinkielina",
+          "princess_and_the_olive"
+        ]
+      },
+      {
+        "name": "Table of Contents",
+        "subtitle": "Writing - Second Draft",
+        "id": "fofo-toc-second-draft",
+        "icon": "/items/bait/large/e0cb22771eba37bf047a801edbf7f91e.png",
+        "mice": [
+          "flamboyant_flautist",
+          "greenbeard",
+          "ice_regent"
+        ]
+      },
+      {
+        "name": "Bosses",
+        "id": "fofo-bosses",
+        "icon": "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png",
+        "color": "#fde671",
+        "mice": [
+          "bitter_grammarian",
+          "mythweaver",
+          "monstrous_midge",
+          "architeuthulhu_of_the_abyss"
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "sb",
+        "name": "SUPER|brie+"
+      },
+      {
+        "id": "zero-plants",
+        "name": "Zero Plants"
+      },
+      {
+        "id": "three-papyrus",
+        "name": "Three Papyrus Plants"
+      }
+    ]
+  },
+  "valour_rift": {
+    "categories": [
+      {
+        "name": "Puppetry",
+        "subtitle": "Floors 1, 9, 17, 25",
+        "id": "vrift-1",
+        "color": "#EAF2D3",
+        "mice": [
+          "rift_gaunt_puppet",
+          "rift_gaunt_puppet_champ"
+        ]
+      },
+      {
+        "name": "Thievery",
+        "subtitle": "Floors 2, 10, 18, 26",
+        "id": "vrift-2",
+        "color": "#acf28d",
+        "mice": [
+          "rift_gaunt_thief",
+          "rift_gaunt_thief_champ"
+        ]
+      },
+      {
+        "name": "Melee",
+        "subtitle": "Floors 3, 11, 19, 27",
+        "id": "vrift-3",
+        "color":  "#FCE5CD",
+        "mice": [
+          "rift_gaunt_melee",
+          "rift_gaunt_melee_champ"
+        ]
+      },
+      {
+        "name": "Bard",
+        "subtitle": "Floors 4, 12, 20, 28",
+        "id": "vrift-4",
+        "color":  "#F6B26B",
+        "mice": [
+          "rift_gaunt_bard",
+          "rift_gaunt_bard_champ"
+        ]
+      },
+      {
+        "name": "Magic",
+        "subtitle": "Floors 5, 13, 21, 29",
+        "id": "vrift-5",
+        "color": "#F9CB9C",
+        "mice": [
+          "rift_gaunt_magic",
+          "rift_gaunt_magic_champ"
+        ]
+      },
+      {
+        "name": "Noble",
+        "subtitle": "Floors 6, 14, 22, 30",
+        "id": "vrift-6",
+        "color": "#F4CCCC",
+        "mice": [
+          "rift_gaunt_noble",
+          "rift_gaunt_noble_champ"
+        ]
+      },
+      {
+        "name": "Dusty",
+        "subtitle": "Floors 7, 15, 23, 31",
+        "id": "vrift-7",
+        "color": "#E06666",
+        "mice": [
+          "rift_gaunt_dust",
+          "rift_gaunt_dust_champ"
+        ]
+      },
+      {
+        "name": "Non-UU",
+        "id": "vrift-eclipse",
+        "color": "#EA9999",
+        "mice": [
+          "rift_gaunt_eclipse"
+        ]
+      },
+      {
+        "name": "Ultimate Umbra",
+        "id": "vrift-eclipse-uu",
+        "color": "#ff8181",
+        "mice": [
+          "rift_gaunt_monster",
+          "rift_gaunt_final_eclipse"
+        ]
+      },
+      {
+        "name": "Other",
+        "id": "vrift-other",
+        "color": "#B6D7A8",
+        "mice": [
+          "rift_gaunt_generic_one",
+          "rift_gaunt_generic_three",
+          "rift_gaunt_generic_two",
+          "rift_gaunt_prestige_low",
+          "rift_gaunt_prestige_med",
+          "rift_gaunt_prestige_high",
+          "rift_gaunt_rare"
+        ]
+      },
+      {
+        "name": "Outside",
+        "id": "vrift-outside",
+        "icon": "",
+        "color":  "#d0def7",
+        "mice": [
+          "rift_gaunt_elixir_one",
+          "rift_gaunt_elixir_two"
+        ]
+      }
+    ],
+    "subcategories": []
+  },
+  "rift_stalkers": {
+    "categories": [
+      {
+        "name": "Gnawnia Rift",
+        "color": "#f7e8f9",
+        "mice": [
+          "rift_white",
+          "rift_dwarf",
+          "rift_diamond",
+          "rift_gold"
+        ]
+      },
+      {
+        "name": "Furoma Rift",
+        "subtitle": "Training Grounds",
+        "color": "#e5a571",
+        "mice": [
+          "rift_samurai",
+          "rift_kung_fu",
+          "rift_worker",
+          "rift_ninja",
+          "rift_dumpling_chef",
+          "rift_archer"
+        ]
+      },
+      {
+        "name": "Furoma Rift",
+        "subtitle": "Pagoda",
+        "color": "#cb7136",
+        "mice": [
+          "rift_assassin",
+          "rift_monk",
+          "rift_fang_student",
+          "rift_belt_student",
+          "rift_claw_student",
+          "rift_dojo_sensei",
+          "rift_fang_master",
+          "rift_claw_master",
+          "rift_belt_master",
+          "rift_dojo_master"
+        ]
+      },
+      {
+        "name": "Bristle Woods Rift",
+        "mice": [
+          "rift_acolyte",
+          "rift_chrono",
+          "rift_gargoyle",
+          "rift_golem",
+          "rift_gorgon",
+          "rift_keeper",
+          "rift_keepers_assistant",
+          "rift_lich",
+          "rift_ooze",
+          "rift_reaper",
+          "rift_scavenger",
+          "rift_skeleton",
+          "rift_sorcerer",
+          "rift_spectre",
+          "rift_spider",
+          "rift_terror_knight",
+          "rift_wight"
+        ]
+      }
+    ]
+  },
+  "rift_walkers": {
+    "categories": [
+      {
+        "name": "Gnawnia Rift",
+        "color": "#f7e8f9",
+        "mice": [
+          "rift_field",
+          "rift_bionic",
+          "rift_granite",
+          "rift_steel",
+          "rift_white",
+          "rift_grey",
+          "rift_brown",
+          "rift_lightning",
+          "rift_dwarf",
+          "rift_tiny",
+          "rift_cowardly",
+          "rift_spotted",
+          "rift_flying",
+          "rift_mole",
+          "rift_diamond",
+          "rift_gold"
+        ]
+      }
+    ]
+  },
+  "queso_canyon_grand_tour": {
+
+  },
+  "fort_rox": {
+    "categories": [
+      {
+        "name": "Night",
+        "id": "night",
+        "color": "#d0d0d0",
+        "icon": "",
+        "mice": [
+          "were_alpha",
+          "moonstone_slinger",
+          "mischievous_wereminer",
+          "wealthy_werewarrior"
+        ]
+      },
+      {
+        "name": "First Light / Utter Darkness",
+        "id": "first-light-utter-darkness",
+        "color": "#dc8ec7",
+        "icon": "/powertypes/arcane.png",
+        "mice": [
+          "arcane_summoner",
+          "cursed_taskmaster",
+          "moonstone_golem",
+          "moonstone_mystic",
+          "night_watcher",
+          "nightfire_wallbreak"
+        ]
+      },
+      {
+        "name": "Twilight, Midnight, Pitch",
+        "id": "twilight-midnight-pitch",
+        "color": "#84c3ff",
+        "icon": "/powertypes/shadow.png",
+        "mice": [
+          "good_supply_night",
+          "nightmancer",
+          "reveling_lycanthrope",
+          "werehauler",
+          "wereminer"
+        ]
+      },
+      {
+        "name": "Dawn",
+        "id": "dawn",
+        "color": "#f9d65a",
+        "icon": "/powertypes/arcane.png",
+        "mice": [
+          "dawn_guardian",
+          "monster_of_the_meteor"
+        ]
+      },
+      {
+        "name": "Day",
+        "id": "day",
+        "color": "#ffdb9c",
+        "icon": "/powertypes/law.png",
+        "mice": [
+          "hardworking_hauler",
+          "moonstone_snacker",
+          "moonstone_miner",
+          "good_supply_day",
+          "mischievous_moonstone_miner"
+        ]
+      }
+    ]
+  },
+  "warpath": {
+    "categories": [
+      {
+        "name": "Wave 1",
+        "color": "#f1d16f",
+        "mice": [
+          "desert_scout_weak",
+          "desert_warrior_weak",
+          "desert_archer_weak"
+        ]
+      },
+      {
+        "name": "Wave 2",
+        "color": "#ea947b",
+        "mice": [
+          "desert_mage",
+          "desert_archer",
+          "desert_warrior",
+          "desert_scout",
+          "desert_cavalry"
+        ]
+      },
+      {
+        "name": "Wave 3",
+        "color": "#ff7249",
+        "mice": [
+          "desert_artillery",
+          "desert_mage_strong",
+          "desert_scout_epic",
+          "desert_archer_epic",
+          "desert_cavalry_strong",
+          "desert_warrior_epic"
+        ]
+      },
+      {
+        "name": "Wave 4",
+        "color": "#ffad49",
+        "mice": [
+          "desert_elite_gaurd",
+          "desert_boss"
+        ]
+      },
+      {
+        "name": "Any wave",
+        "color": "#fffcb2",
+        "mice": [
+          "desert_beast",
+          "desert_supply",
+          "desert_general"
+        ]
+      }
+    ]
+  }
+}

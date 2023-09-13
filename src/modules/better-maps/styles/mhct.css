@@ -1,0 +1,56 @@
+#sorted-mice-container .mhct-data {
+  position: absolute;
+  right: -1px;
+  left: -1px;
+  display: none;
+  background-color: #eaeaea;
+  border: 1px solid #000;
+  border-top-color: #dedede;
+  box-shadow: 0 1px 2px -1px #000;
+}
+
+#sorted-mice-container .mouse-container-selected .mhct-data {
+  display: block;
+}
+
+#sorted-mice-container .mhct-title {
+  display: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  border-bottom: 1px solid #dedede;
+}
+
+#sorted-mice-container .mhct-row {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  align-items: center;
+  justify-items: stretch;
+  padding: 8px 5px 8px 10px;
+  font-size: 11px;
+}
+
+#sorted-mice-container .mhct-row:hover,
+#sorted-mice-container .mhct-row:nth-child(odd):hover,
+#sorted-mice-container .mhct-row:nth-child(even):focus {
+  background-color: #d2d2d2;
+}
+
+#sorted-mice-container .mhct-row:nth-child(odd) {
+  background-color: #e2e2e2;
+}
+
+#sorted-mice-container .mhct-location {
+  display: flex;
+  flex-direction: column;
+}
+
+#sorted-mice-container .mhct-stage {
+  color: #676767;
+}
+
+#sorted-mice-container .mhct-rate {
+  font-family: monospace;
+  font-size: 15px;
+  text-align: right;
+}
