@@ -17,7 +17,6 @@ import select2 from './styles/select2.css';
 import sidebar from './styles/sidebar.css';
 import tabs from './styles/tabs.css';
 import team from './styles/team.css';
-import tournamentStyles from './styles/tournaments.css';
 import trapStyles from './styles/traps.css';
 import tsituSendSupplies from './styles/tsitu-send-supplies.css';
 
@@ -26,7 +25,6 @@ import friends from './friends';
 import hud from './hud';
 import mousepage from './mousepage';
 import recipes from './recipes';
-import tournaments from './tournaments';
 import traps from './traps';
 
 export default () => {
@@ -46,7 +44,6 @@ export default () => {
     styles,
     tabs,
     team,
-    tournamentStyles,
     trapStyles,
     tsituSendSupplies,
   ].join('\n'));
@@ -55,6 +52,5 @@ export default () => {
   hud();
   mousepage();
   recipes();
-  tournaments();
   traps();
 };

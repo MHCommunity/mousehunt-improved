@@ -129,6 +129,4 @@ const updateTournamentHud = async () => {
   }
 };
 
-export default () => {
-  updateTournamentHud();
-};
+export default updateTournamentHud;

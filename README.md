@@ -12,7 +12,6 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
   - Scrolls to the top of the page when changing pages on the Friends page.
   - Automatically goes to the person's profile when you select a friend in the search.
   - Adds a quick rank and mouse points view to the tournament HUD when you hover over your points or rank.
-  - Updates the tournament HUD to increase the size of the timer and always show the full name of the tournament.
   - Aligns the contents in the footer of pages to a bit better.
   - Improves the map invite popup when you're owner of multiple maps to look a bit better.
   - Updates the Scavenger Hunt map description to be correctly aligned and readable.
@@ -62,6 +61,8 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
   - Makes items stats more readable.
   - Minimizes owned items that have an inventory limit of 1.
   - Hides items that use legacy costs in the King's Cart.
+- Better Tournaments
+  - Updates the Tournaments UI to show information on hover and a variety of small interface tweaks.
 
 ## Features
 

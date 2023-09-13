@@ -7,6 +7,7 @@ import betterQuests from './modules/better-quests';
 import betterSendSupplies from './modules/better-send-supplies';
 import betterSendSuppliesSettings from './modules/better-send-supplies/settings';
 import betterShops from './modules/better-shops';
+import betterTournaments from './modules/better-tournaments';
 import betterUi from './modules/better-ui';
 
 // Feature modules.
@@ -50,16 +51,17 @@ const modules = [
     name: 'UI',
     description: 'Interface and functionality improvements',
     modules: [
+      { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
       { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and appearance and adds a variety of small features.', load: betterInventory },
       { id: 'better-item-view', name: 'Better Item View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing drop rates.', load: betterItemView },
       { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
       { id: 'better-maps', name: 'Better Maps', default: true, description: 'Updates the map layout and appearance and adds a variety of small features.', load: betterMaps },
       { id: 'better-marketplace', name: 'Better Marketplace', default: true, description: 'Updates the marketplace layout and appearance and adds a variety of small features.', load: betterMarketplace },
       { id: 'better-mouse-view', name: 'Better Mouse View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing attraction rates.', load: betterMouseView },
+      { id: 'better-quests', name: 'Better Quests', default: true, description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.', load: betterQuests },
       { id: 'better-send-supplies', name: 'Better Send Supplies', default: true, description: 'Adds a variety of features to the Send Supplies page.', load: betterSendSupplies, settings: betterSendSuppliesSettings },
       { id: 'better-shops', name: 'Better Shops', default: true, description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.', load: betterShops },
-      { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
-      { id: 'quests', name: 'Better Quests', default: true, description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.', load: betterQuests },
+      { id: 'better-tournaments', name: 'Better Tournaments', default: true, description: 'Updates the Tournaments UI to show information on hover and a variety of small interface tweaks.', load: betterTournaments },
     ]
   },
   {
