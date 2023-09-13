@@ -1,7 +1,7 @@
 .journal .entry .journalbody {
   margin-top: 3px;
   margin-bottom: 3px;
-  margin-left: 80px;
+  margin-left: 85px;
 }
 
 .journal .entry {
@@ -63,7 +63,7 @@
 
 /* Text */
 .journal .entry .journalbody .journaltext {
-  line-height: 16px;
+  line-height: 20px;
 }
 
 .journal .entry .journaltext b {
@@ -75,13 +75,14 @@
 }
 
 .journal .entry .journaltext * {
-  line-height: 20px;
+  line-height: 24px;
 }
 
 /* Date */
 .journal .entry .journalbody .journaldate {
   display: inline-block;
   width: calc(100% - 10px);
+  padding-top: 5px;
   padding-bottom: 3px;
   margin-bottom: 10px;
   font-size: 11px;
@@ -188,42 +189,20 @@ a.journal-detailLink.full::after {
 
 .journal .entry a.loot[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"],
 .journal .entry a.lucky[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"] {
- color: #a012a0;
+  color: #a012a0;
 }
 
-.journal .entry .journalbody .journaldate {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.gold-and-points {
-  display: flex;
-  justify-content: space-between;
-  width: 75px;
-  font-size: 11px;
-}
-
-.journaldate {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.gold-and-points .gold,
-.gold-and-points .points {
+.mh-ui-gold,
+.mh-ui-points {
   position: relative;
+  margin-left: 22px;
 }
 
-.gold-and-points .gold::after,
-.gold-and-points .points::after {
+
+.mh-ui-gold::after,
+.mh-ui-points::after {
   position: absolute;
-  top: -4px;
-  right: 0;
-  bottom: 0;
-  left: -22px;
+  inset: -4px 0 0 -22px;
   width: 20px;
   height: 20px;
   content: "";
@@ -232,6 +211,6 @@ a.journal-detailLink.full::after {
   background-size: contain;
 }
 
-.gold-and-points .points:after {
-      background-image: url("https://www.mousehuntgame.com/images/items/stats/transparent_thumb/eeebc1c32b4242b95f75041be7275980.png?cv=2");
+.mh-ui-points::after {
+  background-image: url("https://www.mousehuntgame.com/images/items/stats/transparent_thumb/eeebc1c32b4242b95f75041be7275980.png?cv=2");
 }

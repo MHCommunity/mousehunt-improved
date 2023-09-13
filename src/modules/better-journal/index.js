@@ -31,72 +31,32 @@ const modifyText = (selector, strings) => {
   });
 };
 
-const getGoldOrPointsAmount = (type, journalText) => {
-  // regex to match the type from the journal text, including commas
-  const regex = new RegExp(`\\d{1,3}(,\\d{3})*( ${type})`, 'i');
-  const matches = journalText.innerHTML.match(regex);
-  if (! matches) {
-    return;
-  }
-
-  let amount = parseInt(matches[0].replace(` ${type}`, '').replace(',', '').trim());
-
-  amount = metricSuffix(amount);
-
-  return amount;
-};
-
-const moveGoldAndPoints = () => {
+const wrapGoldAndPoints = () => {
   const entries = document.querySelectorAll('.journal .entry');
   if (! entries.length) {
     return;
   }
 
   entries.forEach((entry) => {
-    const added = entry.getAttribute('data-gold-added');
-    if (added) {
+    // if it has the pointsGold attribute, it's already been wrapped
+    if (entry.getAttribute('data-modified-points-gold')) {
       return;
     }
 
-    const journalText = entry.querySelector('.journaltext');
-    if (! journalText) {
-      return;
+    entry.setAttribute('data-modified-points-gold', true);
+
+    // Find the amount of points via a regex and wrap it in a span
+    const points = entry.innerHTML.match(/worth (.+?) points/i);
+    // also match the 'and X,XXX gold' part
+    const gold = entry.innerHTML.match(/points and (.+?) gold/i);
+
+    if (points) {
+      entry.innerHTML = entry.innerHTML.replace(points[0], `worth <span class="mh-ui-points">${points[1]}</span> points`);
     }
 
-    const journalDate = entry.querySelector('.journaldate');
-    if (! journalDate) {
-      return;
+    if (gold) {
+      entry.innerHTML = entry.innerHTML.replace(gold[0], `points and <span class="mh-ui-gold">${gold[1]}</span> gold`);
     }
-
-    const goldAmount = getGoldOrPointsAmount('gold', journalText);
-    const pointsAmount = getGoldOrPointsAmount('points', journalText);
-
-    if (! (goldAmount && pointsAmount)) {
-      return;
-    }
-
-    // create a new element to hold the gold and points
-    const goldAndPoints = makeElement('div', 'gold-and-points');
-    makeElement('div', 'gold', goldAmount, goldAndPoints);
-    makeElement('div', 'points', pointsAmount, goldAndPoints);
-
-    const newJournalDateEl = makeElement('div', 'journaldatetext', journalDate.innerHTML);
-    journalDate.innerHTML = '';
-    journalDate.appendChild(newJournalDateEl);
-
-    journalDate.appendChild(goldAndPoints);
-
-    const journalGoldAndPointsText = new RegExp(' worth \\d{1,3}(,\\d{3})* points and \\d{1,3}(,\\d{3})* gold', 'i');
-    const matches = journalText.innerHTML.match(journalGoldAndPointsText);
-    // wrap the gold and points in a span so we can hide it
-    if (matches) {
-      const goldAndPointsText = matches[0];
-      const goldAndPointsTextEl = makeElement('span', 'hidden', goldAndPointsText);
-      journalText.innerHTML = journalText.innerHTML.replace(goldAndPointsText, '');
-      journalText.insertBefore(goldAndPointsTextEl, journalText.firstChild);
-    }
-
-    entry.setAttribute('data-gold-added', true);
   });
 };
 
@@ -104,7 +64,7 @@ const moveGoldAndPoints = () => {
  * Update text in journal entries.
  */
 const updateJournalText = () => {
-  moveGoldAndPoints();
+  wrapGoldAndPoints();
 
   modifyText('.journal .entry .journalbody .journaltext', [
     // Hunt entries
