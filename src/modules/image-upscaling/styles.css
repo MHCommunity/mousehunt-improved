@@ -82,12 +82,15 @@
   background-size: 100px;
 }
 
+.valourRiftPopupClaim-lootLog .itemImage,
+.valourRiftPopupClaim-cacheLoot-image,
 .MHCheckoutCartTableView-reward-image,
 .MHCheckoutCartTableView .trapImageView {
   box-shadow: none;
 }
 
-.giftSelectorView-friendRow-returnImage {
+.giftSelectorView-friendRow-returnImage,
+.MiniEventGiveawayCampHUD-dialog-item .itemImage {
   border: none;
 }
 
@@ -106,21 +109,13 @@
 }
 
 /* SEH Choco shop item background */
-.springHuntHUD-dialog-item-image .itemImage.large {
-  background-color: transparent;
-}
-
+.springHuntHUD-dialog-item-image .itemImage.large,
 .springHuntHUD-dialog-item-image .floatingIslandsAirship {
   background-color: transparent;
 }
 
 .convertibleOpenView-item-image {
   background-size: cover;
-}
-
-.valourRiftPopupClaim-lootLog .itemImage,
-.valourRiftPopupClaim-cacheLoot-image {
-    box-shadow: none;
 }
 
 .marketplaceView-itemImage img {

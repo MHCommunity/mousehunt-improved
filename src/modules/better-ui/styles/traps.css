@@ -296,6 +296,10 @@ a.campPage-trap-itemBrowser-item-disarmButton {
   font-size: 16px;
 }
 
+.campPage-trap-trapStat.cheese_effect .value span {
+  font-size: 13px;
+}
+
 .campPage-trap-trapEffectiveness span {
     font-size: 14px;
     vertical-align: bottom;
@@ -304,8 +308,8 @@ a.campPage-trap-itemBrowser-item-disarmButton {
 .campPage-trap-trapEffectiveness-difficultyGroup.clear-block {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-items: stretch;
   align-items: center;
+  justify-items: stretch;
   padding-left: 10px;
 }
 
@@ -314,8 +318,8 @@ a.campPage-trap-itemBrowser-item-disarmButton {
 }
 
 .campPage-trap-trapEffectiveness-mouse {
+  width: 90%;
   margin: 10px 0;
   overflow: visible;
   border: none;
-  width: 90%;
 }
