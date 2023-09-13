@@ -1,10 +1,12 @@
 .campPage-trap-trapEffectiveness-mouse-name {
-  height: 40px;
   display: inline-flex;
   flex-direction: column;
   flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
   justify-content: space-around;
-  width: unset;
+  width: 95px;
+  padding-left: 5px;
 }
 
 .campPage-trap-trapEffectiveness-mouse:hover {
@@ -26,7 +28,7 @@
 img.mh-ui-tem-crown-icon {
   position: absolute;
   right: -6px;
-  bottom: 0px;
+  bottom: -1px;
   z-index: 2;
   width: 21px;
   height: 21px;
@@ -38,22 +40,23 @@ img.mh-ui-tem-crown-icon {
 
 span.mh-ui-tem-crown-text {
   position: absolute;
+  top: -1px;
   left: 1px;
   z-index: 1;
   display: inline-block;
   width: auto;
+  height: 15px;
   padding: 4px 10px 2px 15px;
   font-size: 12px;
   font-weight: 900;
   color: #926944;
   background-color: #f4f4f4;
   border: 1px solid #8d8282;
-  top: -1px;
-  height: 15px;
 }
 
 .mh-ui-tem-crown-wrapper {
-    margin-left: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .campPage-trap-trapEffectiveness-mouse-chance {

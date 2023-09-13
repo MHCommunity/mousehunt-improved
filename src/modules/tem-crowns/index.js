@@ -85,6 +85,8 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
     makeElement('span', 'mh-ui-tem-crown-text', catches, crown);
 
     crownWrapper.appendChild(crown);
+
+    // append the crown to the name
     name.appendChild(crownWrapper);
 
     const arEl = mouse.querySelector('.campPage-trap-trapEffectiveness-mouse-chance');
