@@ -19,11 +19,8 @@
   content: "";
 }
 
-.journal .entry .journalbody .journaltext .lucky:last-of-type::after,
-.journal .entry .journalbody .journaltext .loot:last-of-type::after,
-.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"]:after,
-.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:after,
-.journal .entry a:last-child::after {
+.journaltext > *:last-child::after {
+  display: inline;
   content: ".";
 }
 
