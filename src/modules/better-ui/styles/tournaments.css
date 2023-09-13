@@ -366,6 +366,7 @@ h2.tournamentPage-profile-details-mouseGroup-name {
   margin: -15px;
 }
 
+.teamMembers:hover .memberHover,
 .rank:hover .scoreHover {
   display: block;
 }
@@ -374,6 +375,7 @@ h2.tournamentPage-profile-details-mouseGroup-name {
   display: grid;
 }
 
+.memberHover,
 .scoreHover,
 .pointsHover {
   position: absolute;
@@ -404,6 +406,28 @@ h2.tournamentPage-profile-details-mouseGroup-name {
   justify-items: start;
   padding: 5px;
   margin-bottom: 5px;
+}
+
+img.memberImage {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+}
+
+.memberRow {
+  display: flex;
+  padding: 2px;
+}
+
+.memberHover {
+  left: 0;
+  width: auto;
+  min-width: 120px;
+  padding: 5px;
+}
+
+.memberRow:nth-child(even) {
+  background-color: #e8e4d6;
 }
 
 .scoreRow:nth-child(even) {
@@ -504,6 +528,5 @@ img.pointsMouseIcon {
 }
 
 .tournamentStatusHud .title {
-  left: 160px;
-  font-size: 10px;
+  display: none;
 }
