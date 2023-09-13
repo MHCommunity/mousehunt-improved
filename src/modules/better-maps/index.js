@@ -65,6 +65,9 @@ const initMapper = (map) => {
   // Depending on if it's the active map or not, process the hunters tab events.
   hunters();
 
+  // maybe process consolation prizes.
+  addConsolationPrizes();
+
   // if the map type is not in the groups, we're done.
   if (! mouseGroups[map.map_type]) {
     // do generic stuff here.
@@ -153,12 +156,7 @@ const main = () => {
 
   eventRegistry.doEvent('mapper_loaded');
 
-  addSetting('MH Mapper Debug', 'mh-mapper-debug', false);
-
-  // TODO: import mapper script directly into here.
-  onEvent('mapper_loaded', () => {
-    addConsolationPrizes();
-  });
+  eventRegistry.addEventListener('map_goals_tab_click', addConsolationPrizes);
 };
 
 export default function betterMaps() {

@@ -1,5 +1,5 @@
 import mouseGroups from '../../../data/mice-map-groups.json';
-import { getLinkMarkup, getMapData } from '../utils';
+import { getHighestArForMouse, getArText, getHighestArText, getArEl, getLinkMarkup, getMapData } from '../utils';
 import addAreaHighlighting from './highlighting';
 
 const getMouseDataForMap = (currentMapData, type = 'mouse') => {
@@ -25,9 +25,7 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
     });
   }
 
-  // Sort the mice by AR.
-
-
+  // Get the categories.
   let categories = [];
   if (mouseGroups[currentMapData.map_type] && mouseGroups[currentMapData.map_type].categories) {
     categories = mouseGroups[currentMapData.map_type].categories;
@@ -75,35 +73,7 @@ const addArDataToMap = async (mapData) => {
       return;
     }
 
-    let ar = await getArText(mouse.unique_id);
-    let arType = 'location';
-    if (! ar) {
-      ar = await getHighestArText(mouse.unique_id);
-      arType = 'highest';
-    }
-
-    let arDifficulty = 'easy';
-    if (ar === 100) {
-      arDifficulty = 'guaranteed';
-    } else if (ar <= 15) {
-      arDifficulty = 'hard';
-    } else if (ar <= 40) {
-      arDifficulty = 'medium';
-    } else if (ar <= 75) {
-      arDifficulty = 'easy';
-    }
-
-    if (ar.toString().slice(-3) === '.00') {
-      ar = ar.toString().slice(0, -3);
-    }
-
-    const arEl = document.createElement('div');
-    arEl.classList.add('mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`);
-    // if (!  mouseEl.classList.contains('complete')) {
-    //   arEl.textContent = arType === 'location' ? `✓ ${ar}%` : `✕ ${ar}%`;
-    // } else {
-    arEl.textContent = `${ar}%`;
-    // }
+    const arEl = await getArEl(mouse.unique_id);
 
     name.appendChild(arEl);
 
@@ -264,7 +234,7 @@ const showTravelConfirmation = (environment, mapModel) => {
   hg.controllers.TreasureMapController.showDialog(dialog);
 };
 
-const makeMouseDiv = (mouse) => {
+const makeMouseDiv = async (mouse) => {
   // Wrapper.
   const mouseDiv = makeElement('div', 'mouse-container');
 
@@ -281,6 +251,9 @@ const makeMouseDiv = (mouse) => {
   mouseData.appendChild(mouseImage);
 
   makeElement('div', 'mouse-name', mouse.name, mouseData);
+
+  const mouseAr = await getArEl(mouse.unique_id);
+  mouseData.appendChild(mouseAr);
 
   // Mouse header close.
   mouseDiv.appendChild(mouseData);
@@ -505,7 +478,7 @@ const makeSortedMiceList = () => {
       return 1;
     });
 
-    category.mice.forEach((mouse) => {
+    category.mice.forEach(async (mouse) => {
       // if the mouse is a string, then it's just a name, otherwise it's an object with a name and a subcategory
       let hasSubCat = false;
       let mouseType = mouse;
@@ -524,7 +497,7 @@ const makeSortedMiceList = () => {
         return;
       }
 
-      const mouseDiv = makeMouseDiv(unsortedMice[mouseIndex]);
+      const mouseDiv = await makeMouseDiv(unsortedMice[mouseIndex]);
 
       if (hasSubCat) {
         if (! addToSubCat[hasSubCat]) {
@@ -599,8 +572,9 @@ const makeSortedMiceList = () => {
 
     // Mice
     const unsortedMiceDiv = makeElement('div', 'mouse-category-mice');
-    unsortedMice.forEach((mouse) => {
-      unsortedMiceDiv.appendChild(makeMouseDiv(mouse));
+    unsortedMice.forEach(async (mouse) => {
+      const div = await makeMouseDiv(mouse);
+      unsortedMiceDiv.appendChild(div);
     });
 
     // Mice close
@@ -618,7 +592,7 @@ const makeSortedMiceList = () => {
   return miceDiv;
 };
 
-const makeGenericSortedPage = () => {
+const makeGenericSortedPage = async () => {
   const sortedPage = makeElement('div', 'sorted-page');
   makeElement('div', 'generic-sorted-page-content');
 
@@ -633,17 +607,26 @@ const makeGenericSortedPage = () => {
 
   const miceDiv = makeElement('div', 'mice-container');
 
-  unsortedMice.sort((a, b) => {
-    if (a.name < b.name) {
+  // Sort from highest to lowest AR via the async getHighestArForMouse function.
+  const sortedUnsorted = await Promise.all(unsortedMice.map(async (mouse) => {
+    const ar = await getHighestArForMouse(mouse.unique_id);
+    return {
+      ...mouse,
+      ar
+    };
+  }));
+
+  sortedUnsorted.sort((a, b) => {
+    if (a.ar > b.ar) {
       return -1;
     }
     return 1;
   });
 
-  unsortedMice.forEach((mouse) => {
+  sortedUnsorted.forEach(async (mouse) => {
     let mousediv = null;
     if ('mouse' === type) {
-      mousediv = makeMouseDiv(mouse);
+      mousediv = await makeMouseDiv(mouse);
     } else {
       mousediv = makeItemDiv(mouse);
     }
@@ -685,7 +668,7 @@ const moveTabToBody = () => {
   body.appendChild(sortedMiceContainer);
 };
 
-const showSortedTab = () => {
+const showSortedTab = async () => {
   const currentlyActive = document.querySelector('.treasureMapRootView-subTab.sorted-map-tab.active');
   if (currentlyActive) {
     return;
@@ -746,9 +729,9 @@ const showSortedTab = () => {
 
   let sortedMiceList = null;
   if (mouseGroups[currentMapData.map_type]) {
-    sortedMiceList = makeSortedMiceList();
+    sortedMiceList = await makeSortedMiceList();
   } else {
-    sortedMiceList = makeGenericSortedPage();
+    sortedMiceList = await makeGenericSortedPage();
   }
 
   sortedMiceContainer.appendChild(sortedMiceList);

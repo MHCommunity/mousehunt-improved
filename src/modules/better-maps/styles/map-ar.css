@@ -8,25 +8,27 @@
 
 .mh-ui-ar {
   padding: 2px 3px;
+  margin-left: 5px;
   font-size: 9px;
   background-color: #fff;
+  border: 1px solid #d9d9d9;
   border-radius: 4px;
-}
-
-.mh-ui-ar-guaranteed {
-  background-color: #8ffaab;
 }
 
 .mh-ui-ar-hard {
   background-color: #ffb9ba;
+  border-color: #c58182;
 }
 
 .mh-ui-ar-medium {
   background-color: #ffc440;
+  border-color: #c59c40;
 }
 
+.mh-ui-ar-guaranteed,
 .mh-ui-ar-easy {
-  background-color: #b9fff8;
+  background-color: #8ffaab;
+  border-color: #73b484;
 }
 
 .complete .mh-ui-ar {

@@ -72,6 +72,23 @@ const getArForMouse = async (mouseId) => {
   return mhctjson;
 };
 
+const getHighestArForMouse = async (mouseId) => {
+  const rates = await getArForMouse(mouseId);
+  if (! rates) {
+    return false;
+  }
+
+  // sort by rate descending
+  rates.sort((a, b) => b.rate - a.rate);
+
+  const rate = rates[0];
+  if (! rate) {
+    return false;
+  }
+
+  return (rate.rate / 100);
+};
+
 const getArText = async (type) => {
   const rates = await getArForMouse(type);
   if (! rates) {
@@ -88,21 +105,43 @@ const getArText = async (type) => {
 };
 
 const getHighestArText = async (type) => {
-  const rates = await getArForMouse(type);
-  if (! rates) {
-    return false;
-  }
-
-  // sort by rate descending
-  rates.sort((a, b) => b.rate - a.rate);
-
-  const rate = rates[0];
-  if (! rate) {
-    return false;
-  }
-
-  return (rate.rate / 100).toFixed(2);
+  const highest = await getHighestArForMouse(type);
+  return highest ? highest.toFixed(2) : false;
 };
+
+const getArEl = async (id) => {
+  let ar = await getArText(id);
+    let arType = 'location';
+    if (! ar) {
+      ar = await getHighestArText(id);
+      arType = 'highest';
+    }
+
+    let arDifficulty = 'easy';
+    if (ar === 100) {
+      arDifficulty = 'guaranteed';
+    } else if (ar <= 15) {
+      arDifficulty = 'hard';
+    } else if (ar <= 40) {
+      arDifficulty = 'medium';
+    } else if (ar <= 75) {
+      arDifficulty = 'easy';
+    }
+
+    if (ar.toString().slice(-3) === '.00') {
+      ar = ar.toString().slice(0, -3);
+    }
+
+    const arEl = document.createElement('div');
+    arEl.classList.add('mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`);
+    // if (!  mouseEl.classList.contains('complete')) {
+    //   arEl.textContent = arType === 'location' ? `✓ ${ar}%` : `✕ ${ar}%`;
+    // } else {
+    arEl.textContent = `${ar}%`;
+    // }
+
+    return arEl;
+}
 
 const makeLink = (text, href, encodeAsSpace) => {
   if (encodeAsSpace) {
@@ -128,7 +167,9 @@ export {
   setMapData,
   getLastMap,
   getArForMouse,
+  getHighestArForMouse,
   getArText,
   getHighestArText,
+  getArEl,
   getLinkMarkup
 };
