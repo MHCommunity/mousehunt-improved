@@ -397,3 +397,9 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
   border: 1px solid #bebebe;
   border-radius: 50%;
 }
+
+.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible {
+  position: absolute;
+  top: -10px;
+  right: 0;
+}
