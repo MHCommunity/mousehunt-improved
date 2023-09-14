@@ -126,31 +126,29 @@ const addSortButtons = () => {
   const sortWrapper = makeElement('div', 'mhui-supply-sort-wrapper');
   makeElement('span', 'mhui-supply-sort-label', 'Sort by:', sortWrapper);
 
-  const sortAlpha = makeElement('a', 'mhui-supply-sort-alphabetic');
-  makeElement('div', 'mhui-supply-sort-alpha-text', 'Name', sortAlpha);
-
-  sortAlpha.addEventListener('click', () => {
+  const alphaSortButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-alphabetic']);
+  makeElement('span', 'mousehuntActionButton-text', 'Name', alphaSortButton);
+  alphaSortButton.addEventListener('click', () => {
     const newSort = currentSort === 'alpha' ? 'alpha-reverse' : 'alpha';
     resortItems(newSort);
   });
 
-  sortWrapper.appendChild(sortAlpha);
+  sortWrapper.appendChild(alphaSortButton);
 
-  const sortQty = makeElement('a', 'mhui-supply-sort-quantity');
-  makeElement('div', 'mhui-supply-sort-qty-text', 'Qty', sortQty);
-
-  sortQty.addEventListener('click', () => {
+  const sortQtyButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-quantity']);
+  makeElement('span', 'mousehuntActionButton-text', 'Quantity', sortQtyButton);
+  sortQtyButton.addEventListener('click', () => {
     const newSort = currentSort === 'qty' ? 'qty-reverse' : 'qty';
     resortItems(newSort);
   });
 
-  sortWrapper.appendChild(sortQty);
+  sortWrapper.appendChild(sortQtyButton);
 
   // append as the 2nd child so it's after the title
   container.insertBefore(sortWrapper, container.childNodes[1]);
 };
 
-const getPinnedItems = () => {
+const highlightFavoritedItems = () => {
   const itemsToPin = [
     getSetting('send-supplies-pinned-items-0', 'SUPER|brie+'),
     getSetting('send-supplies-pinned-items-1', 'Empowered SUPER|b...'),
@@ -163,30 +161,129 @@ const getPinnedItems = () => {
     // if the details text content is in the array, then pin it
     const details = item.querySelector('.details');
     if (itemsToPin.includes(details.textContent)) {
-      // clone it and add the pinned class
-      const pinned = item.cloneNode(true);
-      pinned.classList.add('pinned');
-      pinnedItems.push(pinned);
-
-      item.parentNode.insertBefore(pinned, item.parentNode.firstChild);
+      item.classList.add('pinned');
     }
   });
+};
 
-  items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
+const autofocusFields = () => {
+  const search = document.querySelector('.searchContainer input');
+  if (search) {
+    search.focus();
+  }
+
+  const inputVal = document.querySelector('#supplytransfer-confirm-text input');
+  if (inputVal) {
+    inputVal.focus();
+  }
+};
+
+const addQuickQuantityButtons = () => {
+  const inputVal = document.querySelector('#supplytransfer-confirm-text input');
+  if (! inputVal) {
+    return;
+  }
+
+  const maxquantity = document.querySelector('#supplytransfer-confirm-text .userQuantity');
+  if (! maxquantity) {
+    return;
+  }
+
+  // parse out the max quantity by getting the text between 'you can send up to: ' and the first space after the number
+  const maxAmount = parseInt(maxquantity.textContent.split('You can send up to: ')[1].split(' ')[0].replace(',', ''));
+
+  const wrapper = makeElement('div', 'mhui-supply-quick-quantity-wrapper');
+
+  const buttons = [
+    1,
+    10,
+    100,
+  ];
+
+  buttons.forEach((button) => {
+    const btn = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-quick-quantity']);
+    makeElement('span', '', `+${button}`, btn);
+    btn.addEventListener('click', () => {
+      const value = parseInt(inputVal.value || 0);
+      inputVal.value = value + button;
+
+      // fire a keyup event so the quantity updates
+      const event = new Event('keyup');
+      inputVal.dispatchEvent(event);
+    });
+
+    wrapper.appendChild(btn);
+  });
+
+  const max = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-quick-quantity']);
+  makeElement('span', '', 'All', max);
+
+  max.addEventListener('click', () => {
+    inputVal.value = maxAmount;
+
+    // fire a keyup event so the quantity updates
+    const event = new Event('keyup');
+    inputVal.dispatchEvent(event);
+  });
+
+  wrapper.appendChild(max);
+
+  // append the wrapper after the input
+  inputVal.parentNode.insertBefore(wrapper, inputVal.nextSibling);
 };
 
 let items = [];
 const pinnedItems = [];
 let currentSort = null;
 
+const upgradeSendSupplies = () => {
+  const sendTo = document.querySelector('#supplytransfer .drawer .tabContent.recipient');
+  const isChoosingUser = sendTo && sendTo.style.display !== 'none';
+
+  const sending = document.querySelector('#supplytransfer .drawer .tabContent.item');
+  const isChoosingItem = sending && sending.style.display !== 'none';
+
+  if (isChoosingUser) {
+    autofocusFields();
+
+    const users = document.querySelectorAll('#supplytransfer .friendList .element.recipient');
+    users.forEach((user) => {
+      // add an event listener to the click so we can apply the item changes
+      user.addEventListener('click', () => {
+        upgradeSendSupplies();
+      }, { once: true });
+    });
+  } else if (isChoosingItem) {
+    items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
+
+    // const categoryChanges = document.querySelectorAll('#supplytransfer .tabContent.item .categoryMenu a');
+    // categoryChanges.forEach((category) => {
+    //   // add an event listener to the click so we can apply the item changes
+    //   category.addEventListener('click', () => {
+    //     upgradeSendSupplies();
+    //   }, { once: true });
+    // });
+
+    highlightFavoritedItems();
+
+    resortItems('alpha'); // default to alpha sort
+    addSortButtons();
+  } else {
+    autofocusFields();
+    addQuickQuantityButtons();
+  }
+
+  sendTo.addEventListener('click', () => {
+    upgradeSendSupplies();
+  }, { once: true });
+
+  sending.addEventListener('click', () => {
+    upgradeSendSupplies();
+  }, { once: true });
+};
 const main = () => {
-  items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
-  getPinnedItems();
-
   addSearch();
-
-  resortItems('alpha'); // default to alpha sort
-  addSortButtons();
+  upgradeSendSupplies();
 };
 
 export default function betterSendSupplies() {

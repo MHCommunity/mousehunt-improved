@@ -124,9 +124,11 @@ form.mhui-supply-search-form {
 .mhui-supply-sort-wrapper {
   display: flex;
   flex-direction: row;
+  gap: 5px;
   align-items: center;
   justify-content: flex-end;
   width: 30%;
+  margin-right: 5px;
 }
 
 .mhui-supply-sort-wrapper a {
@@ -142,4 +144,16 @@ form.mhui-supply-search-form {
 .mhui-supply-sort-wrapper a:hover,
 .mhui-supply-sort-wrapper a.focus {
   background-color: #cac0b2;
+}
+
+#supplytransfer .listContainer a.element.item.pinned {
+  background-color: #aef5f7;
+}
+
+.mhui-supply-quick-quantity-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 150px;
+  margin: 10px auto;
 }
