@@ -218,6 +218,82 @@ const modifySmashableTooltip = async () => {
   });
 };
 
+const showCraftWarning = (text) => {
+  const confirm = document.querySelector('.mousehuntActionButton.inventoryPage-confirmPopup-suffix-button.confirm');
+  if (! confirm) {
+    return;
+  }
+
+  const existing = document.querySelector('.mhui-craft-warning-tooltip');
+  if (existing) {
+    existing.remove();
+  }
+
+  const tooltip = makeElement('div', 'mhui-craft-warning-tooltip', text);
+  confirm.parentNode.appendChild(tooltip);
+};
+
+const warnOnBadCrafts = () => {
+  const confirm = document.querySelector('.mousehuntActionButton.inventoryPage-confirmPopup-suffix-button.confirm');
+  if (! confirm) {
+    setTimeout(warnOnBadCrafts, 100);
+    return;
+  }
+
+  const type = confirm.getAttribute('data-confirm-type');
+  if (! type || 'recipe' !== type) {
+    return;
+  }
+
+  const popup = document.querySelector('.inventoryPage-confirmPopup');
+  if (! popup) {
+    return;
+  }
+
+  const recipe = popup.getAttribute('data-item-type');
+  if (! recipe) {
+    return;
+  }
+
+  // No me.
+  // 1D
+  // CCC
+  // Cherry
+  // Gnarled
+  // RBC
+  // TI Cheese
+  // UE/USE
+  // Vanilla
+
+  // Maybe ME, check prices.
+  // ASC
+  // DewThief
+  // Duskhade
+  // GSC
+  // T2-T4
+  // Wicked Gnarly
+
+  // No ME.
+  const no = [
+    'abominable_asiago_cheese_magic',
+    'ancient_cheese_6_pieces',
+    'limelight_cheese_6',
+    'runic_cheese_2_pieces',
+  ];
+
+  const maybe = [
+    'crimson_cheese_magic_essence_recipe',
+    'glowing_gruyere_cheese_5_pieces',
+    'vengeful_vanilla_stilton_magic_essence',
+  ];
+
+  if (no.includes(recipe)) {
+    showCraftWarning('This is not worth crafting using Magic Essence');
+  } else if (maybe.includes(recipe)) {
+    showCraftWarning('Check the price of SUPER|brie+ before using Magic Essence');
+  }
+};
+
 const main = () => {
   onOverlayChange({ item: { show: setOpenQuantityOnClick } });
   if ('item' === getCurrentPage()) {
@@ -234,5 +310,6 @@ export default function inventoryHelper() {
 
   main();
   onPageChange({ change: main });
-  onEvent('js_dialog_show', addOpenAlltoConvertible, true);
+  onEvent('js_dialog_show', addOpenAlltoConvertible);
+  onEvent('js_dialog_show', warnOnBadCrafts);
 }

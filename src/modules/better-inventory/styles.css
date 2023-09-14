@@ -406,12 +406,29 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
 
 /* Mark items that have an action with a little dot */
 .inventoryPage-item.small.message_item::after {
-  content: "";
   position: absolute;
-  bottom: 5px;
   right: 3px;
-  background-color: #8bf4ed;
+  bottom: 5px;
   width: 10px;
   height: 10px;
+  content: "";
+  background-color: #8bf4ed;
   border-radius: 50%;
+}
+
+.mhui-craft-warning-tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  padding: 10px;
+  font-size: 10px;
+  font-weight: 900;
+  background: #f5c7c7;
+  border: 1px solid #e07878;
+  border-radius: 5px;
+}
+
+#jsDialogAjaxSuffix {
+  position: relative;
 }
