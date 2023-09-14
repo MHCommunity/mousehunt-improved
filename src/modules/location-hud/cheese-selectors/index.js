@@ -34,6 +34,13 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
     const cheeseContainer = document.createElement('div');
     cheeseContainer.classList.add('townOfGnawniaHUD-bait', `mh-ui-cheese-selector-${cheese.type}`);
 
+    // if this is the currently selected cheese, add the selected class.
+    if (user.bait_item_id === cheese.item_id) {
+      cheeseContainer.classList.add('active');
+    } else {
+      cheeseContainer.classList.remove('active');
+    }
+
     const cheeseImage = document.createElement('div');
     cheeseImage.classList.add('townOfGnawniaHUD-bait-image');
     const thumbnail = cheese.thumbnail_transparent || cheese.thumbnail;
