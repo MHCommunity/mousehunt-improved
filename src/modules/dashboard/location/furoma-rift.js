@@ -18,13 +18,26 @@ export default (quests) => {
     ten: 10,
   };
 
-  if (q.view_state.includes('pagoda')) {
+  const location = q.view_state.includes('pagoda') ? 'inside' : 'outside';
+
+  if ('inside' === location) {
     const droidLevel = map[q.droid.charge_level.split('_')[2]];
     const batteryPercent = Math.floor(q.batteries[q.droid.charge_level].percent);
 
-    return `Pagoda, Battery ${droidLevel} (${batteryPercent}%), ${q.droid.remaining_energy} energy`;
+    return `Pagoda · Battery ${droidLevel} (${batteryPercent}%) · ${q.droid.remaining_energy} energy`;
   }
 
+  // find the highest battery that has unlocked in its status
+  const unlockedBatteries = Object.keys(q.batteries).filter((battery) => {
+    return q.batteries[battery].status.includes('unlocked');
+  });
+
+  // Get the highest battery.
+  const highestBattery = unlockedBatteries.reduce((highest, battery) => {
+    const batteryLevel = map[battery.split('_')[2]];
+    return batteryLevel > highest ? batteryLevel : highest;
+  }, 0);
+
   // Outside.
-  return 'Outside';
+  return `Outside · Battery ${highestBattery} · ${q.items.combat_energy_stat_item.quantity} Enerchi`;
 };
