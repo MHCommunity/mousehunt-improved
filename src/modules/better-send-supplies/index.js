@@ -166,18 +166,6 @@ const highlightFavoritedItems = () => {
   });
 };
 
-const autofocusFields = () => {
-  const search = document.querySelector('.searchContainer input');
-  if (search) {
-    search.focus();
-  }
-
-  const inputVal = document.querySelector('#supplytransfer-confirm-text input');
-  if (inputVal) {
-    inputVal.focus();
-  }
-};
-
 const addQuickQuantityButtons = () => {
   const inputVal = document.querySelector('#supplytransfer-confirm-text input');
   if (! inputVal) {
@@ -187,6 +175,11 @@ const addQuickQuantityButtons = () => {
   const maxquantity = document.querySelector('#supplytransfer-confirm-text .userQuantity');
   if (! maxquantity) {
     return;
+  }
+
+  const existing = document.querySelector('.mhui-supply-quick-quantity-wrapper');
+  if (existing) {
+    existing.remove();
   }
 
   // parse out the max quantity by getting the text between 'you can send up to: ' and the first space after the number
@@ -244,33 +237,36 @@ const upgradeSendSupplies = () => {
   const isChoosingItem = sending && sending.style.display !== 'none';
 
   if (isChoosingUser) {
-    autofocusFields();
-
     const users = document.querySelectorAll('#supplytransfer .friendList .element.recipient');
     users.forEach((user) => {
       // add an event listener to the click so we can apply the item changes
       user.addEventListener('click', () => {
         upgradeSendSupplies();
       }, { once: true });
+
+      const search = document.querySelector('.searchContainer input');
+      if (search) {
+        search.focus();
+      }
     });
   } else if (isChoosingItem) {
     items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
-
-    // const categoryChanges = document.querySelectorAll('#supplytransfer .tabContent.item .categoryMenu a');
-    // categoryChanges.forEach((category) => {
-    //   // add an event listener to the click so we can apply the item changes
-    //   category.addEventListener('click', () => {
-    //     upgradeSendSupplies();
-    //   }, { once: true });
-    // });
-
     highlightFavoritedItems();
 
     resortItems('alpha'); // default to alpha sort
     addSortButtons();
+
+    const itemSearch = document.querySelector('.mhui-supply-search-input');
+    if (itemSearch) {
+      itemSearch.focus();
+    }
   } else {
-    autofocusFields();
     addQuickQuantityButtons();
+
+    const inputVal = document.querySelector('#supplytransfer-confirm-text input');
+    if (inputVal) {
+      inputVal.focus();
+    }
   }
 
   sendTo.addEventListener('click', () => {
