@@ -15,8 +15,8 @@ export default (quests) => {
   };
 
   if ('acolyte_chamber' === quest.chamber_type) {
-    return `Acolyte chamber: ${quest.obelisk_percent}% charged, <div class="stats">${quest.aco_sand} Aco sand, ${quest.time_sand} sand</div>`;
+    return `Acolyte chamber: ${quest.obelisk_percent}% charged · <div class="stats">${quest.aco_sand} Acolyte sand · ${quest.time_sand} time sand</div>`;
   }
 
-  return `${quest.chamber_name}, ${quest.progress_goal - quest.progress_remaining} / ${quest.progress_goal} loot`;
+  return `${quest.chamber_name} · ${quest.progress_goal - quest.progress_remaining} / ${quest.progress_goal} loot`;
 };
