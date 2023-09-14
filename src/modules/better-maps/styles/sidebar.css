@@ -1,13 +1,13 @@
 .mh-mapper-sidebar {
-  border: 1px solid #ddedff;
-  margin: 10px 0 20px 0;
   padding: 0;
+  margin: 10px 0 20px;
+  border: 1px solid #ddedff;
 }
 
 .mh-mapper-sidebar .mh-mapper-sidebar-name {
-  background-color: #ddedff;
   width: auto;
   padding: 5px;
+  background-color: #ddedff;
 }
 
 .mh-mapper-sidebar-mouse:hover {
@@ -19,18 +19,18 @@
 }
 
 .mh-mapper-sidebar .mousehuntHud-userStat.treasureMap {
-  width: 100%;
-  text-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  text-shadow: none;
 }
 
 .mh-mapper-sidebar .mousehuntHud-userStat.treasureMap .label {
-  text-shadow: none;
-  color: #181818;
   width: auto;
   padding: 0;
+  color: #181818;
+  text-shadow: none;
 }
 
 .mh-mapper-sidebar .mousehuntHud-userStat.treasureMap .icon {
@@ -39,13 +39,13 @@
 
 .mh-mapper-sidebar-mouse {
   display: flex;
+  gap: 5px;
   align-items: center;
   justify-content: flex-start;
   padding: 1px 5px;
-  gap: 5px;
 }
 
 .mh-mapper-sidebar .mouse-image {
-  height: 25px;
   width: 25px;
+  height: 25px;
 }

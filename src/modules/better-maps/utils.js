@@ -111,37 +111,37 @@ const getHighestArText = async (type) => {
 
 const getArEl = async (id) => {
   let ar = await getArText(id);
-    let arType = 'location';
-    if (! ar) {
-      ar = await getHighestArText(id);
-      arType = 'highest';
-    }
+  let arType = 'location';
+  if (! ar) {
+    ar = await getHighestArText(id);
+    arType = 'highest';
+  }
 
-    let arDifficulty = 'easy';
-    if (ar === 100) {
-      arDifficulty = 'guaranteed';
-    } else if (ar <= 15) {
-      arDifficulty = 'hard';
-    } else if (ar <= 40) {
-      arDifficulty = 'medium';
-    } else if (ar <= 75) {
-      arDifficulty = 'easy';
-    }
+  let arDifficulty = 'easy';
+  if (ar === 100) {
+    arDifficulty = 'guaranteed';
+  } else if (ar <= 15) {
+    arDifficulty = 'hard';
+  } else if (ar <= 40) {
+    arDifficulty = 'medium';
+  } else if (ar <= 75) {
+    arDifficulty = 'easy';
+  }
 
-    if (ar.toString().slice(-3) === '.00') {
-      ar = ar.toString().slice(0, -3);
-    }
+  if (ar.toString().slice(-3) === '.00') {
+    ar = ar.toString().slice(0, -3);
+  }
 
-    const arEl = document.createElement('div');
-    arEl.classList.add('mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`);
-    // if (!  mouseEl.classList.contains('complete')) {
-    //   arEl.textContent = arType === 'location' ? `✓ ${ar}%` : `✕ ${ar}%`;
-    // } else {
-    arEl.textContent = `${ar}%`;
-    // }
+  const arEl = document.createElement('div');
+  arEl.classList.add('mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`);
+  // if (!  mouseEl.classList.contains('complete')) {
+  //   arEl.textContent = arType === 'location' ? `✓ ${ar}%` : `✕ ${ar}%`;
+  // } else {
+  arEl.textContent = `${ar}%`;
+  // }
 
-    return arEl;
-}
+  return arEl;
+};
 
 const makeLink = (text, href, encodeAsSpace) => {
   if (encodeAsSpace) {

@@ -421,6 +421,7 @@ label.userSelectorView-filter-label {
   width: 20px;
   height: 20px;
 }
+
 /* consolation prizes */
 .mh-mapper-consolation-prizes {
   display: flex;
@@ -429,10 +430,10 @@ label.userSelectorView-filter-label {
 }
 
 h2.mh-mapper-consolation-prizes-title {
-  font-size: 12px;
   padding: 5px;
-  font-weight: 700;
   margin-top: 10px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .mh-mapper-consolation-prize {

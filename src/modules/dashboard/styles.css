@@ -77,7 +77,7 @@ img.locationImage {
 .locationName {
   position: relative;
   flex-grow: 1;
-  min-width: 100px;
+  min-width: 105px;
   margin-left: 10px;
   font-size: 12px;
 }
@@ -120,7 +120,8 @@ img.locationImage {
   background-position-x: 354px;
 }
 
-.dashboard-fi-tiles .ore {
+.dashboard-fi-tiles .ore,
+.dashboard-fi-tiles .ore_bonus {
   background-position-x: 330px;
 }
 
@@ -128,7 +129,8 @@ img.locationImage {
   background-position-x: 308px;
 }
 
-.dashboard-fi-tiles .pirate {
+.dashboard-fi-tiles .pirate,
+.dashboard-fi-tiles .sky_pirate {
   background-position-x: 286px;
 }
 
@@ -136,19 +138,23 @@ img.locationImage {
   background-position-x: 263px;
 }
 
-.dashboard-fi-tiles .warden-wind {
+.dashboard-fi-tiles .warden-wind,
+.dashboard-fi-tiles .wind_shrine {
   background-position-x: 240px;
 }
 
-.dashboard-fi-tiles .warden-rain {
+.dashboard-fi-tiles .warden-rain,
+.dashboard-fi-tiles .rain_shrine {
   background-position-x: 217px;
 }
 
-.dashboard-fi-tiles .warden-frost {
+.dashboard-fi-tiles .warden-frost,
+.dashboard-fi-tiles .frost_shrine {
   background-position-x: 196px;
 }
 
-.dashboard-fi-tiles .warden-fog {
+.dashboard-fi-tiles .warden-fog,
+.dashboard-fi-tiles .fog_shrine {
   background-position-x: 173px;
 }
 

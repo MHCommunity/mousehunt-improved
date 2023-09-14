@@ -1,4 +1,4 @@
-import { addMapperStyles, getMapData } from '../utils.js';
+import { getMapData } from '../utils.js';
 
 const makeMiceBlock = (mice, type = 'map') => {
   const miceWrapper = makeElement('div', ['pageSidebarView-block', 'mh-mapper-sidebar-mice']);

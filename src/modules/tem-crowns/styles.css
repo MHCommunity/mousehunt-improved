@@ -1,7 +1,6 @@
 .campPage-trap-trapEffectiveness-mouse-name {
   display: inline-flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   align-content: flex-start;
   align-items: flex-start;
   justify-content: space-around;

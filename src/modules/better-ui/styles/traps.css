@@ -243,6 +243,7 @@ span.campPage-trap-armedItem-skin-description-content br {
 }
 
 .campPage-trap-trapEffectiveness-difficultyGroup-label {
+  grid-column: span 2;
   font-weight: 400;
   text-align: center;
   border: none;
@@ -311,10 +312,6 @@ a.campPage-trap-itemBrowser-item-disarmButton {
   align-items: center;
   justify-items: stretch;
   padding-left: 10px;
-}
-
-.campPage-trap-trapEffectiveness-difficultyGroup-label {
-  grid-column: span 2;
 }
 
 .campPage-trap-trapEffectiveness-mouse {

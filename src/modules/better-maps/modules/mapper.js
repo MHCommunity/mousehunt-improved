@@ -1,5 +1,5 @@
 import mouseGroups from '../../../data/mice-map-groups.json';
-import { getHighestArForMouse, getArText, getHighestArText, getArEl, getLinkMarkup, getMapData } from '../utils';
+import { getHighestArForMouse, getArEl, getLinkMarkup, getMapData } from '../utils';
 import addAreaHighlighting from './highlighting';
 
 const getMouseDataForMap = (currentMapData, type = 'mouse') => {

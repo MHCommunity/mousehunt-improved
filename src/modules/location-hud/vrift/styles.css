@@ -435,7 +435,7 @@ span.valourRiftHUD-stepsTaken-value {
 .valourRiftHUD-tower .valourRiftHUD-tower-sprite-name,
 .valourRiftHUD-tower .valourRiftHUD-tower-sprite.step .valourRiftHUD-tower-sprite-image,
 .valourRiftHUD-tower .valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image,
-.valourRiftHUD-tower .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image:before {
+.valourRiftHUD-tower .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image::before {
   opacity: 1;
   transition: opacity .4s ease-in-out;
 }
@@ -443,7 +443,7 @@ span.valourRiftHUD-stepsTaken-value {
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite-name,
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.step .valourRiftHUD-tower-sprite-image,
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image,
-.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image:before {
+.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image::before {
   opacity: .4;
 }
 

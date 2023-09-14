@@ -101,6 +101,6 @@ const initScavenger = (map = null) => {
 
   const remainingItems = getRemaining(map.goals.item, map.hunters);
   addItemsToSidebar(remainingItems);
-}
+};
 
 export default initScavenger;

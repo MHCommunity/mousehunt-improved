@@ -340,7 +340,7 @@ const main = () => {
   }
 
   addRegionToTravelDropdown();
-  onTravel(null, { callback: addRegionToTravelDropdown});
+  onTravel(null, { callback: addRegionToTravelDropdown });
 };
 
 export default main;

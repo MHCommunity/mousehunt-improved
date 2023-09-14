@@ -6,8 +6,6 @@ import fullstop from './styles/fullstop.css';
 import miniEntries from './styles/mini-entries.css';
 import progressLog from './styles/progress-log.css';
 
-const metricSuffix = require('metric-suffix');
-
 /**
  * For each element matching the selector, find and replace strings.
  *
