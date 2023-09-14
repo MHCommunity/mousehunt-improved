@@ -75,69 +75,6 @@ const cacheLocationData = async () => {
   });
 };
 
-// const travel = async (location) => {
-//   console.log(`Traveling to ${location}...`); /* eslint-disable-line no-console */
-
-//   // return a promise that resolves when the travel is complete.
-//   return new Promise((resolve) => {
-//     // app.pages.TravelPage.travel(location);    // wait a second between travel and refresh.
-//     cacheLocationData(app.data).then(() => {
-//       console.log(`Travel complete to ${location}.`); /* eslint-disable-line no-console */
-//       resolve();
-//     });
-//   });
-// };
-
-// const refreshData = async () => {
-//   // Add the overlay while we're traveling.
-//   const overlay = document.querySelector('#overlayBg');
-//   if (overlay) {
-//     overlay.classList.add('active');
-//   }
-
-//   // Save the current location so we can return to it.
-//   if (! user.environment_type) {
-//     return;
-//   }
-
-//   const currentLocation = user.environment_type;
-
-//   const locations = [
-//     'mousoleum',
-//     'pollution_outbreak',
-//     'fort_rox',
-//     'desert_warpath',
-//     'desert_oasis',
-//     'lost_city',
-//     'sand_dunes',
-//     'seasonal_garden',
-//     'zugzwang_tower',
-//     'iceberg',
-//     'sunken_city',
-//     'queso_geyser',
-//     'labyrinth',
-//     'ancient_city',
-//     'moussu_picchu',
-//     'floating_islands',
-//     'foreword_farm',
-//     'table_of_contents',
-//     'rift_burroughs',
-//     'rift_whisker_woods',
-//     'rift_furoma',
-//     'rift_bristle_woods',
-//     'rift_valour',
-//   ];
-
-//   // Travel to each location, waiting 1 second between each.
-//   for (let i = 0; i < locations.length; i++) {
-//     await travel(locations[i]);
-//   }
-
-//   // Return to the original location and remove the overlay.
-//   app.pages.TravelPage.travel(currentLocation);
-//   overlay.classList.remove('active');
-// };
-
 const makeDashboardTab = () => {
   const tabsContainer = document.querySelector('.mousehuntHeaderView-dropdownContainer');
   if (! tabsContainer) {
