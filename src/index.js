@@ -8,6 +8,7 @@ import betterSendSupplies from './modules/better-send-supplies';
 import betterSendSuppliesSettings from './modules/better-send-supplies/settings';
 import betterShops from './modules/better-shops';
 import betterTournaments from './modules/better-tournaments';
+import betterTravel from './modules/better-travel';
 import betterUi from './modules/better-ui';
 
 // Feature modules.
@@ -37,7 +38,6 @@ import noShare from './modules/external/no-share';
 import noSidebar from './modules/external/no-sidebar';
 import shields from './modules/external/shields';
 import tallerWindows from './modules/external/taller-windows';
-import travelTweaks from './modules/external/travel-tweaks';
 import ultimateCheckmark from './modules/external/ultimate-checkmark';
 
 // Global styles and fixes.
@@ -62,6 +62,7 @@ const modules = [
       { id: 'better-send-supplies', name: 'Better Send Supplies', default: true, description: 'Adds a variety of features to the Send Supplies page.', load: betterSendSupplies, settings: betterSendSuppliesSettings },
       { id: 'better-shops', name: 'Better Shops', default: true, description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.', load: betterShops },
       { id: 'better-tournaments', name: 'Better Tournaments', default: true, description: 'Updates the Tournaments UI to show information on hover and a variety of small interface tweaks.', load: betterTournaments },
+      { id: 'better-travel', name: 'Better Travel', default: true, description: 'TODO:', load: betterTravel },
     ]
   },
   {
@@ -86,7 +87,6 @@ const modules = [
       { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button to easily send any quantity of SUPER|brie+ or another item..', load: quickSendSupplies, settings: quickSendSuppliesSettings },
       { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Makes popup windows taller.', load: tallerWindows },
       { id: 'tem-crowns', name: 'TEM Crowns', default: true, description: 'Adds crowns and catches to the the Trap Effectiveness Meter.', load: temCrowns },
-      { id: 'travel-tweaks', name: 'Travel Tweaks', default: true, description: 'Add a variety of features to the travel page.', load: travelTweaks },
       { id: 'ultimate-checkmark', name: 'Ultimate Checkmark', default: false, description: 'Adds more things collect on the items view of your Hunter profile.', load: ultimateCheckmark },
     ]
   },
