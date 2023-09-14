@@ -22,5 +22,5 @@ export default (quests) => {
     text = `Floor ${quest.floor} (${quest.floor_name}) ${quest.hunts_remaining} hunts remaining`;
   }
 
-  return `${text} <div class="stats">Speed ${quest.speed}, Sync ${quest.sync}, Siphon ${quest.siphon}</div>`;
+  return `${text} <div class="stats">Speed ${quest.speed} · Sync ${quest.sync} · Siphon ${quest.siphon}</div>`;
 };
