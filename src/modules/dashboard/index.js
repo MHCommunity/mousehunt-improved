@@ -20,7 +20,7 @@ import getZokorText from './location/zokor';
 import getMoussuPicchuText from './location/moussu-picchu';
 import getFloatingIslandsText from './location/floating-islands';
 import getForewordFarmText from './location/foreword-farm';
-// import getTableOfContentsText from './location/table-of-contents';
+import getTableOfContentsText from './location/table-of-contents';
 import getBurroughsRiftText from './location/burroughs-rift';
 import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
 import getFuromaRiftText from './location/furoma-rift';
@@ -285,8 +285,8 @@ const getDashboardContents = () => {
   makeRegionMarkup('Hollow Heights', hollowHeights, contentsWrapper);
 
   const folkloreForest = document.createElement('div');
-  // makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest);
   makeLocationMarkup('foreword_farm', 'Foreword Farm', getForewordFarmText, folkloreForest, quests);
+  makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest, quests);
   makeRegionMarkup('Folklore Forest', folkloreForest, contentsWrapper);
 
   const rift = document.createElement('div');
