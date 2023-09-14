@@ -384,3 +384,16 @@ input.inventoryPage-tagDirectory-searchBar-input {
     width: 55px;
     height: 55px;
 }
+
+a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
+  top: 5px;  right: 5px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px !important;
+  padding: 2px;
+  font-size: 15px;
+  border: 1px solid #bebebe;
+  border-radius: 50%;
+}
