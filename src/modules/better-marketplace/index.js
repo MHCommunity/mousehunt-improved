@@ -324,18 +324,11 @@ const optsToRemove = [
   416, // Fluffy DeathBot Blueprint
   418, // Ninja Ambush Blueprint
   474, // Tiki Base Blueprints
+
+  3616, // Super Regal Gift Basket
 ];
 
-const modifySearch = (opts) => {
-  let searchInputDOM = $('.marketplaceView-header-search');
-  searchInputDOM.select2('destroy');
-
-  for (const opt of opts) {
-    if (! opt.value || opt.value === '' || optsToRemove.includes(parseInt(opt.value))) {
-      opt.remove();
-    }
-  }
-
+const initSearch = (searchInputDOM) => {
   // add one blank one to the start
   const blankOpt = document.createElement('option');
   blankOpt.value = '';
@@ -361,6 +354,69 @@ const modifySearch = (opts) => {
   });
 };
 
+const modifySearch = (opts) => {
+  const searchContainer = document.querySelector('.marketplaceView-header-searchContainer');
+  if (! searchContainer) {
+    return;
+  }
+
+  let searchInputDOM = $('.marketplaceView-header-search'); // only place we use jquery because select2 is weird.
+  searchInputDOM.select2('destroy');
+
+  if (originalSelect === null) {
+    // save the original options
+    const originalSelectNode = document.querySelector('.marketplaceView-header-search');
+    originalSelect = originalSelectNode.cloneNode(true);
+    originalSelect.classList.remove('marketplaceView-header-search');
+  }
+
+  opts.forEach((opt) => {
+    if (! opt.value || opt.value === '' || optsToRemove.includes(parseInt(opt.value))) {
+      opt.remove();
+    }
+  });
+
+  initSearch(searchInputDOM);
+
+  newSelect = document.querySelector('select.marketplaceView-header-search');
+
+  // make a checkbox to toggle the search
+  const toggleSearch = makeElement('input', 'mhui-marketplace-search-toggle');
+  toggleSearch.setAttribute('type', 'checkbox');
+
+  const label = makeElement('label', 'mhui-marketplace-search-toggle');
+  label.setAttribute('for', 'mhui-marketplace-search-toggle');
+
+  label.appendChild(toggleSearch);
+  label.appendChild(document.createTextNode('Search all items'));
+
+  // toggle the checkbox when the label is clicked
+  label.addEventListener('click', () => {
+    toggleSearch.checked = ! toggleSearch.checked;
+    toggleSearch.dispatchEvent(new Event('change'));
+  });
+
+  toggleSearch.addEventListener('change', () => {
+    // destroy the select2, then add the original options back
+    searchInputDOM = $('.marketplaceView-header-search'); // only place we use jquery because select2 is weird.
+    searchInputDOM.select2('destroy');
+
+    const currentOpts = document.querySelector('.marketplaceView-header-search');
+
+    if (toggleSearch.checked) {
+      currentOpts.innerHTML = originalSelect.innerHTML;
+      currentOpts.value = originalSelect.value;
+    } else {
+      currentOpts.innerHTML = newSelect.innerHTML;
+      currentOpts.value = newSelect.value;
+    }
+
+    initSearch(searchInputDOM);
+  });
+
+  searchContainer.appendChild(label);
+};
+
 const waitForSearchReady = (attempts = 0) => {
   const opts = document.querySelectorAll('.marketplaceView-header-search option');
   let timeoutPending = false;
@@ -379,7 +435,9 @@ const waitForSearchReady = (attempts = 0) => {
   }
 
   // wait another 300ms to make sure it's ready
-  setTimeout(() => modifySearch(opts), 300);
+  setTimeout(() => {
+    modifySearch(opts);
+  }, 300);
 };
 
 const autocloseClaim = (resp) => {
@@ -397,124 +455,32 @@ const autocloseClaim = (resp) => {
   }
 };
 
-const addBuySellToggle = () => {
-  const actionType = document.querySelector('.marketplaceView-listingType');
-  if (! actionType) {
-    return;
-  }
+const overloadShowItem = () => {
+  const originalShowItem = hg.views.MarketplaceView.showItem;
+  hg.views.MarketplaceView.showItem = (itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force) => {
+    // allow toggling of buy/sell
+    const actionButton = document.querySelector('.marketplaceView-item-actionType .marketplaceView-listingType');
+    if (actionButton) {
+      actionButton.addEventListener('click', () => {
+        const actionType = actionButton.classList.contains('buy') ? 'sell' : 'buy';
+        originalShowItem(itemId, actionType, defaultQuantity, defaultUnitPriceWithTariff, force);
+        return;
+      });
+    }
 
-  const item = document.querySelector('.marketplaceView-item[data-item-id]');
-  if (! item) {
-    return;
-  }
-
-  const itemId = item.getAttribute('data-item-id');
-  if (! itemId) {
-    return;
-  }
-
-  const oppositeAction = actionType.classList.contains('buy') ? 'sell' : 'buy';
-
-  actionType.addEventListener('click', () => {
-    hg.views.MarketplaceView.showItem(itemId, oppositeAction);
-    addBuySellToggle();
-  });
+    originalShowItem(itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force);
+  };
 };
 
-const fillQuantity = () => {
-  const quantity = document.querySelectorAll('.marketplaceView-table-numeric.marketplaceView-table-listing-quantity');
-  if (! quantity || quantity.length === 0) {
-    return;
-  }
-
-  const quantityInput = document.querySelector('.marketplaceView-item-quantity');
-  if (! quantityInput) {
-    return;
-  }
-
-  quantity.forEach((q) => {
-    // keep track of the original text by setting it as a data attribute
-    const qText = q.textContent.replace(/,/g, '');
-    q.setAttribute('data-original-text', qText);
-
-    q.addEventListener('click', () => {
-      quantityInput.value = q.getAttribute('data-original-text');
-      // also set a data attribute on the input so we can refill it if the setorderprice gets called
-      quantityInput.setAttribute('data-filled-text', quantityInput.value);
-    });
-
-    const qTextWrapper = document.createElement('a');
-    qTextWrapper.classList.add('marketplaceView-goldValue', 'marketplaceView-quantityNotGold');
-    qTextWrapper.textContent = q.textContent;
-    q.textContent = '';
-    q.appendChild(qTextWrapper);
-  });
-
-  const goldValues = document.querySelectorAll('a.marketplaceView-goldValue');
-  if (! goldValues || goldValues.length === 0) {
-    return;
-  }
-
-  goldValues.forEach((g) => {
-    g.addEventListener('click', () => {
-      // check if teh quantity input has a data attribute for the filled text
-      const filledText = quantityInput.getAttribute('data-filled-text');
-      if (filledText && filledText !== '') {
-        setTimeout(() => {
-          quantityInput.value = filledText;
-          quantityInput.dispatchEvent(new Event('change'));
-        }, 300);
-      }
-    });
-  });
-};
-
-const onItemView = () => {
-  const actions = document.querySelector('.marketplaceView-item-viewActions');
-  if (actions) {
-    actions.addEventListener('click', () => {
-      addBuySellToggle();
-      fillQuantity();
-      eventRegistry.addEventListener('ajax_response', () => { setTimeout(fillQuantity, 400); }, null, true); // eslint-disable-line
-    });
-  }
-};
-
-const addListeners = () => {
-  const items = document.querySelectorAll('a[onclick*="hg.views.MarketplaceView.showItem"]');
-  if (! items || items.length === 0) {
-    return;
-  }
-
-  items.forEach((item) => {
-    item.addEventListener('click', onItemView);
-  });
-};
-
-const toggleAction = () => {
-  const popup = document.querySelector('.marketplaceView');
-  if (! popup) {
-    return;
-  }
-
-  eventRegistry.addEventListener('ajax_response', () => { setTimeout(addListeners, 400); }, null, true); // eslint-disable-line
-
-  // for each tab, add a listner that will add listeners to the items.
-  const tabs = document.querySelectorAll('.marketplaceView-header-tabHeader');
-  if (! tabs || tabs.length === 0) {
-    return;
-  }
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => { setTimeout(addListeners, 300 ) } ); // eslint-disable-line
-  });
-};
+let originalSelect = null;
+let newSelect = null;
 
 export default function marketplace() {
   addUIStyles(styles);
   onOverlayChange({ marketplace: { show: () => {
     waitForSearchReady();
-    toggleAction();
+
+    overloadShowItem();
   } } });
 
   onRequest(autocloseClaim, 'managers/ajax/users/marketplace.php');

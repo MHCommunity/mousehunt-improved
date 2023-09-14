@@ -19,3 +19,21 @@ a.marketplaceView-goldValue.marketplaceView-quantityNotGold::after {
   display: none;
   background-image: none;
 }
+
+label.mhui-marketplace-search-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.marketplaceView-header-searchContainer {
+  top: 5px;
+  height: 70px;
+}
+
+.marketplaceView-header-search-title {
+  margin-bottom: 2px;
+}
