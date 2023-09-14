@@ -87,6 +87,11 @@ const listenForIDPaste = () => {
   window.addEventListener('keydown', (e) => {
     // listen for command + v as well as ctrl + v
     if ((e.metaKey || e.ctrlKey) && 86 === e.keyCode) {
+      // if we're currently focused in an input, then don't do anything
+      if (document.activeElement instanceof HTMLInputElement) {
+        return;
+      }
+
       navigator.clipboard.readText().then((text) => {
         // if it is a number, then go to the hunter profile page
         if (! /^\d+$/.test(text)) {
