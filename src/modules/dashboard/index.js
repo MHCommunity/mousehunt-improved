@@ -214,7 +214,7 @@ const makeRegionMarkup = (name, childContent, appendTo) => {
   appendTo.appendChild(regionWrapper);
 };
 
-const makeLocationMarkup = (id, name, progress, appendTo) => {
+const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
   const markup = progress(quests);
 
   if (! markup) {
@@ -245,54 +245,56 @@ const makeLocationMarkup = (id, name, progress, appendTo) => {
 };
 
 const getDashboardContents = () => {
+  const quests = JSON.parse(localStorage.getItem('mh-quests-cache')) || {};
+
   const contentsWrapper = document.createElement('div');
   contentsWrapper.classList.add('dashboardContents');
 
   const burroughs = document.createElement('div');
-  makeLocationMarkup('mousoleum', 'Mousoleum', getMousoleumText, burroughs);
-  makeLocationMarkup('pollution_outbreak', 'Toxic Spill', getToxicSpillText, burroughs);
+  makeLocationMarkup('mousoleum', 'Mousoleum', getMousoleumText, burroughs, quests);
+  makeLocationMarkup('pollution_outbreak', 'Toxic Spill', getToxicSpillText, burroughs, quests);
   makeRegionMarkup('Burroughs', burroughs, contentsWrapper);
 
   const varmintValley = document.createElement('div');
-  makeLocationMarkup('fort_rox', 'Fort Rox', getFortRoxText, varmintValley);
+  makeLocationMarkup('fort_rox', 'Fort Rox', getFortRoxText, varmintValley, quests);
   makeRegionMarkup('Varmint Valley', varmintValley, contentsWrapper);
 
   const sandtailDesert = document.createElement('div');
-  makeLocationMarkup('desert_warpath', 'Fiery Warpath', getFieryWarpathText, sandtailDesert);
-  makeLocationMarkup('desert_oasis', 'Living Garden', getLivingGardenText, sandtailDesert);
-  makeLocationMarkup('lost_city', 'Lost City', getLostCityText, sandtailDesert);
-  makeLocationMarkup('sand_dunes', 'Sand Dunes', getSandDunesText, sandtailDesert);
+  makeLocationMarkup('desert_warpath', 'Fiery Warpath', getFieryWarpathText, sandtailDesert, quests);
+  makeLocationMarkup('desert_oasis', 'Living Garden', getLivingGardenText, sandtailDesert, quests);
+  makeLocationMarkup('lost_city', 'Lost City', getLostCityText, sandtailDesert, quests);
+  makeLocationMarkup('sand_dunes', 'Sand Dunes', getSandDunesText, sandtailDesert, quests);
   makeRegionMarkup('Sandtail Desert', sandtailDesert, contentsWrapper);
 
   const rodentia = document.createElement('div');
-  makeLocationMarkup('seasonal_garden', 'Seasonal Garden', getSeasonalGardenText, rodentia);
-  makeLocationMarkup('zugzwang_tower', 'Zugzwang\'s Tower', getZugzwangTowerText, rodentia);
-  makeLocationMarkup('iceberg', 'Iceberg', getIcebergText, rodentia);
-  makeLocationMarkup('sunken_city', 'Sunken City', getSunkenCityText, rodentia);
+  makeLocationMarkup('seasonal_garden', 'Seasonal Garden', getSeasonalGardenText, rodentia, quests);
+  makeLocationMarkup('zugzwang_tower', 'Zugzwang\'s Tower', getZugzwangTowerText, rodentia, quests);
+  makeLocationMarkup('iceberg', 'Iceberg', getIcebergText, rodentia, quests);
+  makeLocationMarkup('sunken_city', 'Sunken City', getSunkenCityText, rodentia, quests);
   makeRegionMarkup('Rodentia', rodentia, contentsWrapper);
 
   const quesoCanyon = document.createElement('div');
-  makeLocationMarkup('queso_geyser', 'Queso Geyser', getQuesoGeyserText, quesoCanyon);
+  makeLocationMarkup('queso_geyser', 'Queso Geyser', getQuesoGeyserText, quesoCanyon, quests);
   makeRegionMarkup('Queso Canyon', quesoCanyon, contentsWrapper);
 
   const hollowHeights = document.createElement('div');
-  makeLocationMarkup('labyrinth', 'Labyrinth', getLabyrinthText, hollowHeights);
-  makeLocationMarkup('ancient_city', 'Zokor', getZokorText, hollowHeights);
-  makeLocationMarkup('moussu_picchu', 'Moussu Picchu', getMoussuPicchuText, hollowHeights);
-  makeLocationMarkup('floating_islands', 'Floating Islands', getFloatingIslandsText, hollowHeights);
+  makeLocationMarkup('labyrinth', 'Labyrinth', getLabyrinthText, hollowHeights, quests);
+  makeLocationMarkup('ancient_city', 'Zokor', getZokorText, hollowHeights, quests);
+  makeLocationMarkup('moussu_picchu', 'Moussu Picchu', getMoussuPicchuText, hollowHeights, quests);
+  makeLocationMarkup('floating_islands', 'Floating Islands', getFloatingIslandsText, hollowHeights, quests);
   makeRegionMarkup('Hollow Heights', hollowHeights, contentsWrapper);
 
   const folkloreForest = document.createElement('div');
-  makeLocationMarkup('foreword_farm', 'Foreword Farm', getForewordFarmText, folkloreForest);
   // makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest);
+  makeLocationMarkup('foreword_farm', 'Foreword Farm', getForewordFarmText, folkloreForest, quests);
   makeRegionMarkup('Folklore Forest', folkloreForest, contentsWrapper);
 
   const rift = document.createElement('div');
-  makeLocationMarkup('rift_burroughs', 'Burroughs Rift', getBurroughsRiftText, rift);
-  makeLocationMarkup('rift_whisker_woods', 'Whisker Woods Rift', getWhiskerWoodsRiftText, rift);
-  makeLocationMarkup('rift_furoma', 'Furoma Rift', getFuromaRiftText, rift);
-  makeLocationMarkup('rift_bristle_woods', 'Bristle Woods Rift', getBristleWoodsRiftText, rift);
-  makeLocationMarkup('rift_valour', 'Valour Rift', getValourRiftText, rift);
+  makeLocationMarkup('rift_burroughs', 'Burroughs Rift', getBurroughsRiftText, rift, quests);
+  makeLocationMarkup('rift_whisker_woods', 'Whisker Woods Rift', getWhiskerWoodsRiftText, rift, quests);
+  makeLocationMarkup('rift_furoma', 'Furoma Rift', getFuromaRiftText, rift, quests);
+  makeLocationMarkup('rift_bristle_woods', 'Bristle Woods Rift', getBristleWoodsRiftText, rift, quests);
+  makeLocationMarkup('rift_valour', 'Valour Rift', getValourRiftText, rift, quests);
   makeRegionMarkup('Rift', rift, contentsWrapper);
 
   if (
@@ -312,8 +314,6 @@ const getDashboardContents = () => {
 
   return contentsWrapper;
 };
-
-const quests = JSON.parse(localStorage.getItem('mh-quests-cache')) || {};
 
 export default () => {
   // Cache the quest data for our current location.
