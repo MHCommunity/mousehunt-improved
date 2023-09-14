@@ -110,8 +110,6 @@ const updateUpgradeTooltips = () => {
       return count;
     }, 0);
 
-    // console.log(type, completedUpgrades);
-
     const name = tooltip.querySelector(`.fortRoxHUD-fort-upgrade-boundingBox-level.level_${completedUpgrades}`);
     let upgradeText = `(Level ${completedUpgrades}/${upgradeKeys.length - 1})`;
 

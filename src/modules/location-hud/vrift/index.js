@@ -68,7 +68,6 @@ const main = () => {
   if (simPopup) {
     simPopup.addEventListener('click', () => {
       const data = simulate(false);
-      console.log(data); // eslint-disable-line no-console
       const popup = createPopup({
         title: 'Valour Rift Run Simulation',
         content: displayResults(data),

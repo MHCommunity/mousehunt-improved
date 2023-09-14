@@ -75,7 +75,6 @@ const initMapper = (map) => {
       scavenger(map);
     }
   } else {
-    // console.log('map type', map.map_type);
     // do generic stuff here.
   }
 

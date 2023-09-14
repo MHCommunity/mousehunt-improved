@@ -123,8 +123,6 @@ export default () => {
       return locations[key].includes(location);
     });
 
-    console.log('locationKey', locationKey);
-
     if (! locationKey) {
       return;
     }

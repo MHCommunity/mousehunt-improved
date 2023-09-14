@@ -327,9 +327,6 @@ const makeMouseDiv = async (mouse) => {
       return;
     }
 
-    // On click, show the mouse extra info.
-    console.log(mouse); // eslint-disable-line no-console
-
     // Append MHCT data.
     addMHCTData(mouse, mouseExtraInfo);
 
@@ -385,9 +382,6 @@ const makeItemDiv = (item) => {
       itemDiv.classList.remove('mouse-container-selected');
       return;
     }
-
-    // On click, show the mouse extra info.
-    console.log(item); // eslint-disable-line no-console
 
     // Append MHCT data.
     addMHCTData(item, itemExtraInfo, 'item');
@@ -648,7 +642,6 @@ const addGoalsTabListener = () => {
 
 const processGoalsTabClick = () => {
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id; // eslint-disable-line no-undef
-  console.log('processGoalsTabClick', mapId); // eslint-disable-line no-console
   if (mapId) {
     eventRegistry.doEvent('map_goals_tab_click', mapId);
   }
