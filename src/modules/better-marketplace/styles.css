@@ -37,3 +37,7 @@ label.mhui-marketplace-search-toggle {
 .marketplaceView-header-search-title {
   margin-bottom: 2px;
 }
+
+.marketplaceView-item-leftBlock {
+  margin-top: 20px;
+}

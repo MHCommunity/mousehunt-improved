@@ -457,6 +457,7 @@ const autocloseClaim = (resp) => {
 
 const overloadShowItem = () => {
   const originalShowItem = hg.views.MarketplaceView.showItem;
+
   hg.views.MarketplaceView.showItem = (itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force) => {
     // allow toggling of buy/sell
     const actionButton = document.querySelector('.marketplaceView-item-actionType .marketplaceView-listingType');
@@ -464,7 +465,6 @@ const overloadShowItem = () => {
       actionButton.addEventListener('click', () => {
         const actionType = actionButton.classList.contains('buy') ? 'sell' : 'buy';
         originalShowItem(itemId, actionType, defaultQuantity, defaultUnitPriceWithTariff, force);
-        return;
       });
     }
 
