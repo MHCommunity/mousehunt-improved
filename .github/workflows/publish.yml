@@ -38,7 +38,7 @@ jobs:
           app-id: ${{ secrets.CHROME_WEBSTORE_ADDON_ID }}
           publish: true
       - name: Upload to Firefox Addons
-        uses: maoserr/firefox_extension_publish
+        uses: maoserr/firefox_extension_publish@v1.0.4
         with:
           firefox_extension_id: "mh-improved@mouse.rip"
           file: "./dist/extension/firefox.zip"
