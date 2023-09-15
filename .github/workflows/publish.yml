@@ -43,7 +43,7 @@ jobs:
       - name: Upload to Firefox Addons
         uses: browser-actions/release-firefox-addon@latest
         with:
-          addon-id: "mousehunt-improved"
+          addon-id: "mh-improved@mouse.rip"
           addon-path: "./dist/firefox.zip"
           auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
           auth-api-secret: ${{ secrets.AUTH_API_SECRET }}
