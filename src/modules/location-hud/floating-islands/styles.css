@@ -249,3 +249,20 @@ span.mh-ui-fi-enemy-countdown-hunts {
 .floatingIslandPaperDoll-mod {
   pointer-events: none;
 }
+
+.floatingIslandsAdventureBoardSkyMap-rerollQuantity.quantity {
+  font-size: 13px;
+}
+
+.floatingIslandsAdventureBoardSkyPalace-wheel-face.loot_cache.real.active {
+  margin-left: 1px;
+  border-radius: 5px;
+  box-shadow: 0 0 13px 2px #ffd700 inset;
+}
+
+.floatingIslandsAdventureBoardSkyMap-fuel-quantity {
+  padding: 2px;
+  margin-top: -2px;
+  font-size: 13px;
+  background-color: #302636;
+}

@@ -101,8 +101,8 @@ const addEnemyClass = () => {
     return;
   }
 
-  const name = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy.name || false;
-  const type = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy.type || false;
+  const name = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy?.name || false;
+  const type = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy?.type || false;
 
   if (! name || ! type) {
     return;
