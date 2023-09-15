@@ -17,7 +17,7 @@ await esbuild.buildSync({
     '.css': 'text',
   },
   metafile: true,
-  sourcemap: true,
+  sourcemap: false,
   splitting: false,
   define: {
     EXT_VERSION: JSON.stringify(process.env.npm_package_version),

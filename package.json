@@ -10,7 +10,10 @@
   },
   "scripts": {
     "build": "run-s build:userscript build:extension",
-    "build:extension": "node scripts/build-extension.mjs",
+    "build:archive": "git archive --format zip --output dist/archive.zip HEAD",
+    "build:extension": "run-s build:extension:chrome build:extension:firefox",
+    "build:extension:chrome": "node scripts/build-extension.mjs chrome",
+    "build:extension:firefox": "node scripts/build-extension.mjs firefox",
     "build:userscript": "node scripts/build-userscript.mjs",
     "ci": "run-s lint",
     "clean": "del-cli dist",

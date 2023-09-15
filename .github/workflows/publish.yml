@@ -1,0 +1,49 @@
+# Whenever a new version is tagged, then create a release with the same tag, using the git log as
+# a changelog. Run the npm run build to generate the artifacts and publish them to the release.
+# Then, push that version to the firefox and chrome stores as well as greasyfork.
+name: "Publish Extension"
+on:
+  push:
+    tags:
+      - "v*"
+jobs:
+  publish:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: bun install
+      - name: Build files
+        run: bun run build
+      - name: Build archive
+        run: bun run build:archive
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: MouseHunt Improved ${{ github.ref }}
+          generate_release_notes: true
+          files: |
+            ./dist/chrome.zip
+            ./dist/firefox.zip
+            ./dist/mousehunt-improved.user.js
+      - name: Upload to Chrome Web Store
+        uses: Klemensas/chrome-extension-upload-action@1df3cdf4047a4789bc61a64a125994d8caf23572
+        with:
+          refresh-token: ${{ secrets.CHROME_WEBSTORE_REFRESH_TOKEN }}
+          client-id: ${{ secrets.CHROME_WEBSTORE_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_WEBSTORE_CLIENT_SECRET }}
+          file-name: ./dist/chrome.zip
+          app-id: ${{ secrets.CHROME_WEBSTORE_ADDON_ID }}
+          publish: true
+      - name: Upload to Firefox Addons
+        uses: browser-actions/release-firefox-addon@latest
+        with:
+          addon-id: "mousehunt-improved"
+          addon-path: "./dist/firefox.zip"
+          auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
+          auth-api-secret: ${{ secrets.AUTH_API_SECRET }}

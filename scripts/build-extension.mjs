@@ -91,9 +91,7 @@ const buildExtension = async (platform) => {
   console.log(`${logSymbols.success} Built extension for ${platform}`);
 };
 
-const build = async () => {
-  console.log(`> Building extensions for version ${process.env.npm_package_version}`);
-  await Promise.all(['firefox', 'chrome'].map(buildExtension));
-};
 
-build();
+const platform = process.argv[2];
+console.log(`> Building ${platform} extension for version ${process.env.npm_package_version}`);
+buildExtension(platform);
