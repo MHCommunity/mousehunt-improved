@@ -446,7 +446,6 @@ const warnOnBadCrafts = () => {
     // make sure sb is one of the consumed items
     let hasSB = false;
     consumed.forEach((item) => {
-      console.log(item.getAttribute('data-item-type'));
       if (item.getAttribute('data-item-type') === 'super_brie_cheese') {
         hasSB = true;
       }
