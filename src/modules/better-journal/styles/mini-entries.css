@@ -93,3 +93,8 @@
 .journal .entry.rift_valour.minimalJournalImage.upgrade_siphon .journaltext {
   padding-top: 0;
 }
+
+.entry.short.misc.custom.denture_base_decay_trigger {
+  background-position: 10px;
+  background-size: 50px;
+}
