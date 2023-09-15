@@ -291,6 +291,11 @@ const addRegionToTravelDropdown = () => {
     return environment.region === currentRegion.region;
   });
 
+  // remove the current location from the list
+  otherRegions.splice(otherRegions.findIndex((environment) => {
+    return environment.id === currentLocation;
+  }), 1);
+
   // remove any existing custom submenu items that we've added
   const existingCustomSubmenuItems = document.querySelectorAll('.mhui-region-travel-item');
   if (existingCustomSubmenuItems) {
