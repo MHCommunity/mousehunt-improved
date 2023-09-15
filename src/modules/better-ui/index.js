@@ -24,7 +24,6 @@ import tsituSendSupplies from './styles/tsitu-send-supplies.css';
 import friends from './friends';
 import hud from './hud';
 import mousepage from './mousepage';
-import recipes from './recipes';
 import traps from './traps';
 
 export default () => {
@@ -51,6 +50,5 @@ export default () => {
   friends();
   hud();
   mousepage();
-  recipes();
   traps();
 };
