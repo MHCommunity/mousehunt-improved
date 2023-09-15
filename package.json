@@ -39,7 +39,7 @@
     "del-cli": "^5.1.0",
     "esbuild": "^0.19.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-markdownlint": "^0.4.1",
+    "eslint-plugin-markdownlint": "^0.5.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint": "^8.49.0",
     "log-symbols": "^5.1.0",
