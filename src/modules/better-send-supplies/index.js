@@ -96,10 +96,6 @@ const resortItems = (sortType = 'alpha') => {
     return 0;
   });
 
-  pinnedItems.forEach((item) => {
-    container.insertBefore(item, container.firstChild);
-  });
-
   sorted.forEach((item) => {
     // if it has a class of pinned, make sure it's the first item
     if (item.classList.contains('pinned')) {
@@ -126,20 +122,19 @@ const addSortButtons = () => {
   const sortWrapper = makeElement('div', 'mhui-supply-sort-wrapper');
   makeElement('span', 'mhui-supply-sort-label', 'Sort by:', sortWrapper);
 
-  const alphaSortButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-alphabetic']);
+  const alphaSortButton = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-alphabetic']);
   makeElement('span', 'mousehuntActionButton-text', 'Name', alphaSortButton);
+
   alphaSortButton.addEventListener('click', () => {
-    const newSort = currentSort === 'alpha' ? 'alpha-reverse' : 'alpha';
-    resortItems(newSort);
+    resortItems(currentSort === 'alpha' ? 'alpha-reverse' : 'alpha');
   });
 
   sortWrapper.appendChild(alphaSortButton);
 
-  const sortQtyButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-quantity']);
+  const sortQtyButton = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-quantity']);
   makeElement('span', 'mousehuntActionButton-text', 'Quantity', sortQtyButton);
   sortQtyButton.addEventListener('click', () => {
-    const newSort = currentSort === 'qty' ? 'qty-reverse' : 'qty';
-    resortItems(newSort);
+    resortItems(currentSort === 'qty' ? 'qty-reverse' : 'qty');
   });
 
   sortWrapper.appendChild(sortQtyButton);
@@ -226,10 +221,9 @@ const addQuickQuantityButtons = () => {
 };
 
 let items = [];
-const pinnedItems = [];
 let currentSort = null;
 
-const upgradeSendSupplies = () => {
+const upgradeSendSupplies = (initial = false) => {
   const sendTo = document.querySelector('#supplytransfer .drawer .tabContent.recipient');
   const isChoosingUser = sendTo && sendTo.style.display !== 'none';
 
@@ -253,7 +247,10 @@ const upgradeSendSupplies = () => {
     items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
     highlightFavoritedItems();
 
-    resortItems('alpha'); // default to alpha sort
+    if (initial || ! hasSorted) {
+      hasSorted = true;
+      resortItems('alpha'); // default to alpha sort
+    }
     addSortButtons();
 
     const itemSearch = document.querySelector('.mhui-supply-search-input');
@@ -277,9 +274,11 @@ const upgradeSendSupplies = () => {
     upgradeSendSupplies();
   }, { once: true });
 };
+
+let hasSorted = false;
 const main = () => {
   addSearch();
-  upgradeSendSupplies();
+  upgradeSendSupplies(true);
 };
 
 export default function betterSendSupplies() {
