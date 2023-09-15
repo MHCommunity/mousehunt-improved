@@ -42,7 +42,6 @@ import ultimateCheckmark from './modules/external/ultimate-checkmark';
 
 // Global styles and fixes.
 import required from './modules/_required';
-import testing from './modules/testing';
 
 // Core 'Better' modules.
 const modules = [
