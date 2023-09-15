@@ -57,6 +57,11 @@ const buildExtension = async (platform) => {
     minify: true,
     outfile: `dist/extension/${platform}/main.js`,
     platform: 'browser',
+    format: 'iife',
+    globalName: 'mhui',
+    loader: {
+      '.css': 'text',
+    },
     metafile: true,
     sourcemap: true,
     define: {
