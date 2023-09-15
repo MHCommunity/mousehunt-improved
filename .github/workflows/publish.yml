@@ -28,8 +28,8 @@ jobs:
           name: MouseHunt Improved ${{ github.ref_name }}
           generate_release_notes: true
           files: |
-            ./dist/chrome.zip
-            ./dist/firefox.zip
+            ./dist/extension/chrome.zip
+            ./dist/extension/firefox.zip
             ./dist/mousehunt-improved.user.js
       - name: Upload to Chrome Web Store
         uses: Klemensas/chrome-extension-upload-action@1df3cdf4047a4789bc61a64a125994d8caf23572
@@ -44,6 +44,6 @@ jobs:
         uses: browser-actions/release-firefox-addon@latest
         with:
           addon-id: "mh-improved@mouse.rip"
-          addon-path: "./dist/firefox.zip"
+          addon-path: "./dist/extension/firefox.zip"
           auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
           auth-api-secret: ${{ secrets.AUTH_API_SECRET }}
