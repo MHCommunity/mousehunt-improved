@@ -7,7 +7,6 @@
   font-size: 9px;
 }
 
-
 .hunterInfoView-wrapper .messageBoardView-title {
   height: 30px;
   margin-bottom: -1px;
@@ -224,6 +223,8 @@
   display: flex;
   flex-flow: row wrap;
   align-items: stretch;
+  justify-content: space-evenly;
+  gap: 4px;
 }
 
 .mouseCrownsView-group-mouse {
@@ -235,6 +236,7 @@
   height: 150px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  border: none !important; /* profile+ */
 }
 
 .bronze .mouseCrownsView-group-mouse {
@@ -289,7 +291,8 @@
   display: flex;
   align-items: center;
   padding-left: 5px;
-  border-bottom: none;
+  border: none !important; /* profile+ */
+
 }
 
 .mouseCrownsView-group .mouseCrownsView-group-mouse-padding {
@@ -300,6 +303,7 @@ background-color: #fff;
   width: auto;
   background-color: #fff;
   border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .mouseCrownsView-group.favourite .mouseCrownsView-group-header .mouseCrownsView-crown,
@@ -310,4 +314,101 @@ background-color: #fff;
 .favourite .mouseCrownsView-group-header {
   padding: 0;
   margin: 0;
+}
+
+/* profile+ stuff */
+.mouseCrownsView .toolBar {
+  position: absolute;
+  right: 0;
+  bottom: -28px;
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: flex-end;
+  float: none !important;
+  padding: 1px;
+  background-color: #eaeaea;
+  border: 1px solid #a7a7a7;
+  border-radius: 5px;
+}
+
+.mouseCrownsView .pt.event {
+  border-radius: 50%;
+}
+
+.mouseCrownsView #copyCrownsButton {
+  width: 16px !important;
+  height: 16px !important;
+  border: none;
+}
+
+.mouseCrownsView .pt {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  padding: 2px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+.mouseCrownsView button.ptbtn {
+  font-size: 13px !important;
+  background-color: #9fcad8 !important;
+  border: 1px solid #008cba;
+}
+
+.mouseCrownsView button.ptbtn img {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+.mouseCrownsView #powerTypeBtns {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.mouseCrownsView-crown.powerCrown {
+  background-size: contain !important;
+}
+
+.hideLeContainer {
+  position: absolute;
+  top: -7px;
+  right: 35px;
+  display: flex;
+  align-items: center;
+  width: auto !important;
+}
+
+.hideLeContainer #hideLeCb {
+  width: auto !important;
+}
+
+.hideLeContainer label {
+  font-size: 10px !important;
+}
+
+a.friendsProfileView-randomFriend {
+  width: 120px;
+  margin-top: -30px !important;
+  text-align: center;
+  background-color: #e9e1c6;
+  border: 1px solid #a0a0a0;
+}
+
+.friendsProfileView-randomFriend:hover {
+  background-color: #c7bfa3;
+}
+
+.eggMasterIcon {
+  position: absolute;
+  top: 0;
+  right: -10px;
+  float: none !important;
+  width: 40px !important;
+  height: 40px !important;
+  filter: drop-shadow(2px 2px 2px #eae1c6);
+  background-size: cover !important;
 }
