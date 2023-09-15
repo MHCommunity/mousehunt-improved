@@ -41,9 +41,10 @@ jobs:
           app-id: ${{ secrets.CHROME_WEBSTORE_ADDON_ID }}
           publish: true
       - name: Upload to Firefox Addons
-        uses: browser-actions/release-firefox-addon@latest
+        uses: maoserr/firefox_extension_publish
         with:
-          addon-id: "mh-improved@mouse.rip"
-          addon-path: "./dist/extension/firefox.zip"
-          auth-api-issuer: ${{ secrets.AUTH_API_ISSUER }}
-          auth-api-secret: ${{ secrets.AUTH_API_SECRET }}
+          firefox_extension_id: "mh-improved@mouse.rip"
+          file: "./dist/extension/firefox.zip"
+          api_key: ${{ secrets.AUTH_API_ISSUER }}
+          api_secret: ${{ secrets.AUTH_API_SECRET }}
+          src_file: "./dist/archive.zip"
