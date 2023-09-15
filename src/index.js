@@ -104,7 +104,6 @@ const modules = [
     id: 'always-loaded',
     modules: [
       { id: 'required', load: required, alwaysLoad: true },
-      { id: 'testing', load: testing, alwaysLoad: true },
     ],
   }
 ];
