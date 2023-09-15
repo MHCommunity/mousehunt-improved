@@ -30,7 +30,7 @@
     "sync-scripts": "node scripts/sync-scripts.mjs"
   },
   "dependencies": {
-    "@babel/runtime": "^7.18.9",
+    "@babel/runtime": "^7.22.15",
     "mousehunt-utils": "^1.8.2"
   },
   "devDependencies": {
