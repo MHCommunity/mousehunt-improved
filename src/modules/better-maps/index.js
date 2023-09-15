@@ -8,7 +8,6 @@ import addConsolationPrizes from './modules/consolation-prizes';
 import hunters from './modules/hunters';
 import mapper from './modules/mapper';
 import scavenger from './modules/scavenger';
-import sidebar from './modules/sidebar';
 
 const addStatBarListener = () => {
   const statMapBar = document.querySelector('.mousehuntHud-userStat.treasureMap');
