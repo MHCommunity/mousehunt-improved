@@ -245,3 +245,7 @@ span.mh-ui-fi-enemy-countdown-hunts {
   font-size: 9px;
   text-shadow: 1px 1px 1px #242424;
 }
+
+.floatingIslandPaperDoll-mod {
+  pointer-events: none;
+}
