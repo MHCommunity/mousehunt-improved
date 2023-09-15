@@ -172,6 +172,23 @@ const showGloreProgress = async () => {
   ore.classList.add('show-progress');
 };
 
+const onSkyMapShow = () => {
+  const roll = document.querySelector('.floatingIslandsAdventureBoardSkyMap-rerollButton');
+  if (! roll) {
+    return;
+  }
+
+  roll.addEventListener('click', () => {
+    // set as disabled for half a second to prevent double clicking
+    roll.classList.add('disabled');
+    roll.classList.add('no-click');
+    setTimeout(() => {
+      roll.classList.remove('disabled');
+      roll.classList.remove('no-click');
+    }, 300);
+  });
+};
+
 const main = () => {
   toggleFuel();
   addBossCountdown();
@@ -183,6 +200,8 @@ const main = () => {
   setTimeout(addEnemyClass, 500);
 
   showGloreProgress();
+
+  onDialogShow(onSkyMapShow, 'floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace');
 };
 
 export default main;

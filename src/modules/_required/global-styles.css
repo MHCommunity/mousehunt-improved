@@ -57,3 +57,7 @@
 .sort-button.unsorted {
   opacity: 0.5;
 }
+
+.no-click {
+  pointer-events: none;
+}
