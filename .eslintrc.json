@@ -36,9 +36,6 @@
       "computed-property-spacing": ["error", "never"],
       "eol-last": ["error", "always"],
       "indent": ["error", 2],
-      "jsdoc/tag-lines": ["error", "always", {
-          "count": 0
-      }],
       "jsx-quotes": ["error", "prefer-double"],
       "linebreak-style": ["error", "unix"],
       "no-alert": "error",
