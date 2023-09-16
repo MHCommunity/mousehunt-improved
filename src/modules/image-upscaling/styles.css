@@ -120,3 +120,7 @@
 .marketplaceView-itemImage img {
   border-radius: 0;
 }
+
+.itemView-thumbnail {
+  background-color: transparent;
+}
