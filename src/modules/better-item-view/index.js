@@ -95,6 +95,7 @@ const updateItemView = async () => {
     823, // party charm
     803, // chrome charm
     420, // king's credits
+    1980, // king's keys
   ];
 
   if (ignored.includes(id)) {
