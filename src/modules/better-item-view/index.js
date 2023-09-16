@@ -90,11 +90,14 @@ const updateItemView = async () => {
 
   // dont show drop rates for items that arent consistent.
   const id = parseInt(itemId, 10);
-  if (
-    2473 === id || // mina's gift
-    823 === id || // party charm
-    803 === id // chrome charm
-  ) {
+  const ignored = [
+    2473, // mina's gift
+    823, // party charm
+    803, // chrome charm
+    420, // king's credits
+  ];
+
+  if (ignored.includes(id)) {
     return;
   }
 
