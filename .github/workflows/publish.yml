@@ -19,10 +19,16 @@ jobs:
         run: bun run build
       - name: Build archive
         run: bun run build:archive
+      - name: Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         with:
           name: MouseHunt Improved ${{ github.ref_name }}
+          body: ${{steps.github_release.outputs.changelog}}
           generate_release_notes: true
           files: |
             ./dist/extension/chrome.zip
