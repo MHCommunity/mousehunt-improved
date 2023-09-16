@@ -194,12 +194,12 @@ img.campPage-larryTip-external-link-icon {
   padding-bottom: 1em;
 }
 
-.campPage-tabs-tabContent-larryTip-container a {
+.campPage-tabs-tabContent-larryTip-container p:last-of-type a {
   display: block;
   padding: 1em 0 0;
   text-align: right;
 }
 
-.campPage-tabs-tabContent-larryTip-container a::after {
+.campPage-tabs-tabContent-larryTip-container p:last-of-type a::after {
   content: "→";
 }
