@@ -1,14 +1,12 @@
 const goToFriendsPageOnSearchSelect = () => {
-  const friends = document.querySelector('.friendsPage-list-search');
-  if (! friends) {
-    return;
-  }
+  onRequest((req) => {
+    // if we don't have the friends key and its not an array with one value, bail.
+    if (! req.friends || ! Array.isArray(req.friends) || 1 !== req.friends.length) {
+      return;
+    }
 
-  friends.addEventListener('change', (e) => {
-    setTimeout(() => {
-      hg.utils.PageUtil.showHunterProfile(e.val);
-    }, 250);
-  });
+    hg.utils.PageUtil.showHunterProfile(req.friends[0].sn_user_id);
+  }, 'managers/ajax/pages/friends.php');
 };
 
 const goToFriendPageOnSearchID = (req) => {
