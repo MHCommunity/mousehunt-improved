@@ -87,11 +87,13 @@
     cursor: unset;
   }
 
-  #mh-simple-travel-page .travelPage-map-prefix {
+  #mh-simple-travel-page .travelPage-map-prefix,
+  #mh-simple-travel-alpha-sort .travelPage-map-prefix {
     display: block;
   }
 
-  #mh-simple-travel-page .travelPage-regionMenu {
+  #mh-simple-travel-page .travelPage-regionMenu,
+  #mh-simple-travel-alpha-sort .travelPage-regionMenu {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     width: 100%;
@@ -100,7 +102,8 @@
     background-color: transparent;
   }
 
-  #mh-simple-travel-page .travelPage-regionMenu-item {
+  #mh-simple-travel-page .travelPage-regionMenu-item,
+  #mh-simple-travel-alpha-sort .travelPage-regionMenu-item {
     margin: 1px;
     background-color: #e2e2e2;
     outline: 1px solid #4c71b4;
@@ -118,21 +121,29 @@
     min-height: 250px;
   }
 
-  #mh-simple-travel-page .travelPage-regionMenu-environments {
-    width: 150px;
+  #mh-simple-travel-page .travelPage-regionMenu-environments,
+  #mh-simple-travel-alpha-sort .travelPage-regionMenu-environments {
     box-shadow: none;
   }
 
-  #mh-simple-travel-page .travelPage-regionMenu-item-contents {
+  #mh-simple-travel-page .travelPage-regionMenu-environments {
+    width: 145px;
+  }
+
+  #mh-simple-travel-page .travelPage-regionMenu-item-contents,
+  #mh-simple-travel-alpha-sort .travelPage-regionMenu-item-contents {
     overflow: visible !important;
   }
 
-  #mh-simple-travel-page .travelPage-regionMenu-environmentLink.active {
+  #mh-simple-travel-page .travelPage-regionMenu-environmentLink.active,
+  #mh-simple-travel-alpha-sort .travelPage-regionMenu-environmentLink.active {
     color: #4e6081;
   }
 
   #mh-simple-travel-page .travelPage-regionMenu-environmentLink:hover,
-  #mh-simple-travel-page .travelPage-regionMenu-environmentLink:focus {
+  #mh-simple-travel-alpha-sort .travelPage-regionMenu-environmentLink:hover,
+  #mh-simple-travel-page .travelPage-regionMenu-environmentLink:focus,
+  #mh-simple-travel-alpha-sort .travelPage-regionMenu-environmentLink:focus {
     color: #fff;
     background-color: #6383bf;
   }
@@ -140,3 +151,15 @@
   .huntersHornView__messageContent strong {
     font-weight: 900;
   }
+
+  #mh-simple-travel-alpha-sort .travelPage-alpha-wrapper .travelPage-regionMenu {
+    display: block;
+    width: 100%;
+}
+
+#mh-simple-travel-alpha-sort .travelPage-alpha-wrapper .travelPage-regionMenu-environments {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    justify-items: stretch;
+}

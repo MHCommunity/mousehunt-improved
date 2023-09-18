@@ -57,69 +57,7 @@ const expandTravelRegions = () => {
   }
 };
 
-/**
- * Add the tab for Simple Travel.
- */
-const addSimpleTravelTab = () => {
-  if ('travel' !== getCurrentPage()) {
-    return;
-  }
-
-  const exists = document.getElementById('mh-simple-travel-tab');
-  if (exists) {
-    return;
-  }
-
-  const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
-  if (! tabContainer) {
-    return;
-  }
-
-  const tab = document.createElement('a');
-  tab.id = 'mh-simple-travel-tab';
-  tab.classList.add('mousehuntHud-page-tabHeader');
-  tab.setAttribute('data-tab', 'simple-travel');
-  tab.setAttribute('onclick', 'hg.utils.PageUtil.onclickPageTabHandler(this); return false;');
-
-  const tabText = document.createElement('span');
-  tabText.textContent = 'Simple Travel';
-  tab.appendChild(tabText);
-
-  tabContainer.appendChild(tab);
-};
-
-/**
- * Add the page for Simple Travel.
- */
-const addSimpleTravelPage = () => {
-  if ('travel' !== getCurrentPage()) {
-    return;
-  }
-
-  const exists = document.getElementById('mh-simple-travel-page');
-  if (exists) {
-    return;
-  }
-
-  const pageContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
-  if (! pageContainer) {
-    return;
-  }
-
-  const page = document.createElement('div');
-  page.id = 'mh-simple-travel-page';
-  page.classList.add('mousehuntHud-page-tabContent');
-  page.classList.add('simple-travel');
-  page.setAttribute('data-tab', 'simple-travel');
-
-  if ('not-set' === getSetting('simple-travel', 'not-set')) {
-    const settingTip = document.createElement('div');
-    settingTip.classList.add('travelPage-map-prefix');
-    settingTip.classList.add('simple-travel-tip');
-    settingTip.innerHTML = 'You can set this as the default travel tab in your <a href="https://www.mousehuntgame.com/preferences.php?tab=userscript-settings"> Game Settings</a>.';
-    page.appendChild(settingTip);
-  }
-
+const cloneRegionMenu = () => {
   const regionMenu = document.querySelector('.travelPage-regionMenu');
   if (! regionMenu) {
     return;
@@ -127,6 +65,7 @@ const addSimpleTravelPage = () => {
 
   const regionMenuClone = regionMenu.cloneNode(true);
   const travelLinks = regionMenuClone.querySelectorAll('.travelPage-regionMenu-environmentLink');
+
 
   if (travelLinks && travelLinks.length > 0) {
     travelLinks.forEach((link) => {
@@ -145,9 +84,131 @@ const addSimpleTravelPage = () => {
     });
   }
 
-  page.appendChild(regionMenuClone);
+  return regionMenuClone;
+};
+
+const addTab = (id, label) => {
+  if ('travel' !== getCurrentPage()) {
+    return;
+  }
+
+  const exists = document.getElementById(`mh-${id}-tab`);
+  if (exists) {
+    return;
+  }
+
+  const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
+  if (! tabContainer) {
+    return;
+  }
+
+  const tab = makeElement('a', 'mousehuntHud-page-tabHeader');
+  tab.id = `mh-${id}-tab`;
+  tab.setAttribute('data-tab', id);
+  tab.setAttribute('onclick', 'hg.utils.PageUtil.onclickPageTabHandler(this); return false;');
+
+  makeElement('span', '', label, tab);
+
+  tabContainer.appendChild(tab);
+};
+
+const addPage = (id, content) => {
+  if ('travel' !== getCurrentPage()) {
+    return;
+  }
+
+  const exists = document.getElementById(`mh-${id}-page`);
+  if (exists) {
+    return;
+  }
+
+  const pageContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
+  if (! pageContainer) {
+    return;
+  }
+
+  const page = makeElement('div', ['mousehuntHud-page-tabContent', id]);
+  page.id = `mh-${id}-page`;
+  page.setAttribute('data-tab', id);
+
+  if (! content) {
+    const blank = makeElement('div');
+    page.appendChild(blank);
+  } else {
+    page.appendChild(content);
+  }
 
   pageContainer.appendChild(page);
+};
+
+const addSimpleTravelPage = () => {
+  const regionMenu = cloneRegionMenu();
+
+  if ('not-set' === getSetting('simple-travel', 'not-set')) {
+    const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in your <a href="https://www.mousehuntgame.com/preferences.php?tab=userscript-settings"> Game Settings</a>.');
+    regionMenu.insertBefore(settingTip, regionMenu.firstChild);
+  }
+
+  if (getSetting('simple-travel-alpha-sort', false)) {
+    // do alpha sort here
+  }
+
+  addPage('simple-travel', regionMenu);
+};
+
+const addAlphaSortPage = () => {
+  const wrapper = makeElement('div', 'travelPage-wrapper');
+  wrapper.id = 'mh-simple-travel-alpha-sort';
+
+  const alphaWrapper = makeElement('div', 'travelPage-alpha-wrapper');
+  const regionMenu = cloneRegionMenu();
+
+  const alphaContent = makeElement('div', 'travelPage-regionMenu');
+  const alphaHeader = makeElement('div', ['travelPage-regionMenu-item', 'active']);
+
+  const alphaList = makeElement('div', 'travelPage-regionMenu-item-contents');
+  const alphaListContent = makeElement('div', 'travelPage-regionMenu-environments');
+
+  const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink');
+
+  // sort the links alphabetically
+  const sortedLinks = Array.from(links).sort((a, b) => {
+    const aText = a.innerText.toLowerCase();
+    const bText = b.innerText.toLowerCase();
+
+    if (aText < bText) {
+      return -1;
+    }
+
+    if (aText > bText) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  // remove the existing links
+  links.forEach((link) => {
+    link.remove();
+  });
+
+  // add the sorted links
+  sortedLinks.forEach((link) => {
+    alphaListContent.appendChild(link);
+  });
+
+  alphaList.appendChild(alphaListContent);
+
+  alphaHeader.appendChild(alphaList);
+  alphaContent.appendChild(alphaHeader);
+
+  alphaWrapper.appendChild(alphaContent);
+  wrapper.appendChild(alphaWrapper);
+
+  const simpleTravel = cloneRegionMenu();
+  wrapper.appendChild(simpleTravel);
+
+  addPage('alpha-sort', wrapper);
 };
 
 /**
@@ -265,9 +326,17 @@ const addReminders = () => {
  * Add the tab & page for Simple Travel.
  */
 const addSimpleTravel = () => {
-  addSimpleTravelTab();
+  if ('travel' !== getCurrentPage()) {
+    return;
+  }
+
+  addTab('simple-travel', 'Simple Travel');
   addSimpleTravelPage();
   maybeSwitchToSimpleTravel();
+
+  addTab('alpha-sort', 'Alpha Sort');
+  addAlphaSortPage();
+
 };
 
 /**
