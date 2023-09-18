@@ -133,8 +133,9 @@ const updateWallHP = () => {
     return false;
   }
 
+  const wallPercent = user.quests.QuestFortRox.hp_percent.toFixed(0);
   const wrapper = makeElement('div', 'mh-frox-wall-hp');
-  makeElement('div', 'mh-frox-wall-hp-text', `${user.quests.QuestFortRox.hp_percent}%`, wrapper);
+  makeElement('div', 'mh-frox-wall-hp-text', `${wallPercent}%`, wrapper);
 
   hpBox.appendChild(wrapper);
 
