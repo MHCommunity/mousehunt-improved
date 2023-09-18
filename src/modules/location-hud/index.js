@@ -35,6 +35,7 @@ import toxicSpillStyles from './toxic-spill/styles.css';
 import vriftStyles from './vrift/styles.css';
 import wwriftStyles from './wwrift/styles.css';
 import zokorStyles from './zokor/styles.css';
+import zugwangTowerStyles from './zugwang-tower/styles.css';
 
 const main = () => {
   switch (getCurrentLocation()) {
@@ -119,6 +120,7 @@ const getStyles = () => {
     vriftStyles,
     wwriftStyles,
     zokorStyles,
+    zugwangTowerStyles,
   ].join('\n');
 };
 

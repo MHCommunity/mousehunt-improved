@@ -1,0 +1,58 @@
+.zuzwangsTowerHUD-progress {
+  overflow: visible;
+  counter-reset: chess -1;
+}
+
+.zuzwangsTowerHUD-progress img {
+  position: relative;
+  display: inline-block;
+  counter-increment: chess 1;
+}
+
+.zuzwangsTowerHUD:hover .zuzwangsTowerHUD-progress::after {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  display: block;
+  padding: 2px;
+  margin-right: -40px;
+  font-size: 10px;
+  color: #000;
+  content: counter(chess) '/15';
+  background-color: #dcccb3;
+  border-radius: 10px;
+}
+
+.zuzwangsTowerHUD-amplifierBoundingBox .mousehuntTooltip {
+  left: 86px;
+}
+
+.zuzwangsTowerHUD-amplifierBoundingBox .mousehuntTooltip .mousehuntTooltip-arrow {
+  display: none;
+}
+
+.zuzwangsTowerHUD-currentAmplifier {
+  top: 19px;
+  font-size: 16px;
+  text-shadow: 1px 1px 0 #ded3c1;
+}
+
+.zuzwangsTowerHUD::before {
+  position: absolute;
+  top: 4px;
+  left: 125px;
+  padding: 0px 20px;
+  font-size: 12px;
+  font-weight: 900;
+  color: #765e4c;
+  content: "Tower Amplifier";
+  background: radial-gradient(circle, #dac8ab 14%, #efe2cd 76%, transparent 100%);
+}
+
+a.zugzwangsTowerHUD-retreatButton.mousehuntTooltipParent {
+  top: 95px;
+}
+
+.zugzwangsTowerHUD-retreatButton:hover {
+  background-color: #7d2b2b;
+}
