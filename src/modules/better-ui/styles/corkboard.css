@@ -1,11 +1,11 @@
-
-
 .treasureMapRootView .messageBoardView .messageBoardView-message-container-padding,
+.teamPage-messageBoard-corkboard .messageBoardView-message-container-padding,
 .PageHunterProfile .messageBoardView-message-container-padding {
   background: none;
 }
 
 .treasureMapRootView .messageBoardView div.messageBoardView-message-container,
+.teamPage-messageBoard-corkboard div.messageBoardView-message-container,
 .hunterInfoView-wrapper div.messageBoardView-message-container {
   margin: 0;
   background: #e9e1c6;
@@ -14,7 +14,14 @@
   box-shadow: -1px 2px 1px #a59f8e;
 }
 
-.treasureMapRootView .messageBoardView div.messageBoardView-message-container {
+.teamPage-messageBoard-corkboard div.messageBoardView-message-container {
+  background: #e2d6b5;
+  border-color: #af9969;
+  box-shadow: 1px 1px 1px #e2d6b5 inset;
+}
+
+.treasureMapRootView .messageBoardView div.messageBoardView-message-container,
+.teamPage-messageBoard-corkboard .messageBoardView-message-container {
   background: #eee;
   border-color: #ccc;
   border-radius: 0;
@@ -22,6 +29,7 @@
 }
 
 .treasureMapRootView .messageBoardView .messageBoardView-message,
+.teamPage-messageBoard-corkboard .messageBoardView-message,
 .hunterInfoView-corkBoardBlock .messageBoardView-message {
   background: #fff;
   border: 1px solid #bea87b;
@@ -29,6 +37,7 @@
   box-shadow: none;
 }
 
+.teamPage-messageBoard-corkboard .messageBoardView-message.new,
 .hunterInfoView-corkBoardBlock div.messageBoardView-message.new {
   border: 1px solid #bea87b !important;
 }
@@ -37,35 +46,40 @@
   border: 1px solid #ccc !important
 }
 
-
 .treasureMapRootView .messageBoardView input.messageBoardView-message-submit,
+.teamPage-messageBoard-corkboard input.messageBoardView-message-submit,
 .hunterInfoView-corkBoardBlock input.messageBoardView-message-submit {
   margin: 6px 0;
 }
 
 .treasureMapRootView .messageBoardView .messageBoardView-message-description,
+.teamPage-messageBoard-corkboard .messageBoardView-message-description,
 .hunterInfoView-corkBoardBlock .messageBoardView-message-description {
   padding-top: 12px;
 }
 
 .treasureMapRootView .messageBoardView a.messageBoardView-message-image,
+.teamPage-messageBoard-corkboard a.messageBoardView-message-image,
 .hunterInfoView-corkBoardBlock a.messageBoardView-message-image {
   border: 1px solid #ccc;
   box-shadow: none;
 }
 
 .treasureMapRootView .messageBoardView a.messageBoardView-message-name,
+.teamPage-messageBoard-corkboard a.messageBoardView-message-name,
 .hunterInfoView-corkBoardBlock a.messageBoardView-message-name {
   display: block;
   padding-bottom: 5px;
 }
 
 .treasureMapRootView .messageBoardView .messageBoardView-message-submitted,
+.teamPage-messageBoard-corkboard .messageBoardView-message-submitted,
 .hunterInfoView-corkBoardBlock .messageBoardView-message-submitted {
   color: #767676;
 }
 
 .treasureMapRootView .messageBoardView .messageBoardView-message-body,
+.teamPage-messageBoard-corkboard .messageBoardView-message-body,
 .hunterInfoView-corkBoardBlock .messageBoardView-message-body {
   font-size: 11px;
   font-weight: 400;
@@ -74,11 +88,13 @@
 }
 
 .treasureMapRootView .messageBoardView .messageBoardView-message::after,
+.teamPage-messageBoard-corkboard .messageBoardView-message::after,
 .hunterInfoView-corkBoardBlock .messageBoardView-message::after {
   display: none;
 }
 
 .treasureMapRootView .messageBoardView .pagerView-section.previous .pagerView-link,
+.teamPage-messageBoard-corkboard .pagerView-section.previous .pagerView-link,
 .hunterInfoView-corkBoardBlock .pagerView-section.previous .pagerView-link {
   color: #525252;
 }
