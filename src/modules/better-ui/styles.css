@@ -283,3 +283,7 @@ a.trapImageView-zoomButton {
   min-width: 80px;
   text-align: center;
 }
+
+.journalThemeSelectorView-preview {
+  min-height: 785px;
+}
