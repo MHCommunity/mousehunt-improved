@@ -67,3 +67,25 @@
 .teamPage-memberJournalContainer {
   width: auto;
 }
+
+/* Only show the 'these awards are from all the ppl' message on hover'
+.teamPage-profile-awardContainer-awardList {
+  position: relative;
+}
+
+.teamPage-profile-awardContainerInfo {
+  position: absolute;
+  top: -32px;
+  right: 0;
+  display: block;
+  width: 250px;
+  font-size: 10px;
+  color: #451e00;
+  text-shadow: 1px 1px 1px #eee;
+  opacity: 0;
+  transition: .2s;
+}
+
+.teamPage-profile-awardContainer-awardList:hover .teamPage-profile-awardContainerInfo {
+  opacity: 1;
+}
