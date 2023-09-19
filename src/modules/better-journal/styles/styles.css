@@ -1,3 +1,7 @@
+.journalEntries {
+  padding-top: 5px;
+}
+
 .journal .entry .journalbody {
   margin-top: 3px;
   margin-bottom: 3px;
@@ -163,6 +167,10 @@ a.journal-detailLink.full::after {
   margin-left: -80px;
   overflow-y: scroll;
   box-shadow: inset 0 -20px 15px -16px #9d9d9d;
+}
+
+.journal .entry.socialGift.socialGift-send .journalbody .journaltext {
+  margin-right: -2px;
 }
 
 /* hide the friends popup for gifts as it nests and breaks the layout */
