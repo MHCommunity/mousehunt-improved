@@ -89,6 +89,18 @@
   line-height: 17px;
 }
 
+.teamPage-memberJournal-identity a.teamPage-member-image.online::before {
+  position: absolute;
+  top: 0;
+  right: -180px;
+  width: 10px;
+  height: 10px;
+  content: "";
+  background-color: #8ff309;
+  border: 1px solid #355c1d;
+  border-radius: 50%;
+}
+
 /* Only show the 'these awards are from all the ppl' message on hover' */
 .teamPage-profile-awardContainer-awardList {
   position: relative;
