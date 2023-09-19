@@ -13,6 +13,13 @@
   display: none;
 }
 
+.teamPage-profile-header-controls {
+  display: flex;
+  bottom: 0;
+  top: 0;
+  align-items: center;
+}
+
 .teamPage-profile-header-controls br {
   content: "";
 }
@@ -68,7 +75,7 @@
   width: auto;
 }
 
-/* Only show the 'these awards are from all the ppl' message on hover'
+/* Only show the 'these awards are from all the ppl' message on hover' */
 .teamPage-profile-awardContainer-awardList {
   position: relative;
 }
