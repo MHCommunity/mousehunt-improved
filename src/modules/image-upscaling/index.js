@@ -1,5 +1,6 @@
 import { addUIStyles } from '../utils';
 import styles from './styles.css';
+import journalThemeStyles from './journal-themes.css';
 import mapping from '../../data/upscaled-image-mapping.json';
 
 const getNewUrl = (src) => {
@@ -75,6 +76,7 @@ const upscaleImages = () => {
 
 export default () => {
   addUIStyles(styles);
+  addUIStyles(journalThemeStyles);
 
   upscaleImages();
 
