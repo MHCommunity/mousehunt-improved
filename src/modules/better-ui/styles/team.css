@@ -75,6 +75,10 @@
   width: auto;
 }
 
+.tournamentPage-tournamentContainer-prizeInfo {
+  display: none;
+}
+
 /* Only show the 'these awards are from all the ppl' message on hover' */
 .teamPage-profile-awardContainer-awardList {
   position: relative;
