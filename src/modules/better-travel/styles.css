@@ -1,165 +1,162 @@
 .travelPage-map-spacer,
-  .travelPage-map-simpleToggle,
-  .mousehuntHud-page-tabContent.map.full .travelPage-map-simpleToggle.full,
-  .mousehuntHud-page-tabContent.map.full .travelPage-map-prefix.full {
-    display: none;
-  }
-
-  .travelPage-regionMenu {
-    width: 22%;
-    overflow: scroll;
-  }
-
-  .travelPage-map-environment-detailContainer {
-    left: 22%;
-    width: 78%;
-  }
-
-  .travelPage-regionMenu-environmentLink.active {
-    color: #000;
-    background: #a4cafc;
-  }
-
-  .travelPage-regionMenu-stats {
-    color: #4d4d4d;
-    background-color: #d8d8d8;
-  }
-
-  .travelPage-regionMenu-numFriends {
-    padding: 0;
-    background: none;
-  }
-
-  .travelPage-mapContainer.full {
-    height: auto;
-    min-height: 800px;
-    max-height: 900px;
-    border: none;
-  }
-
-  .travelPage-map-imageContainer {
-    width: 78%;
-  }
-
-  .travelPage-map-zoomContainer {
-    bottom: 300px;
-    transform: scale(1.5);
-  }
-
-  .travelPage-map-image-environment-name {
-    top: 70px;
-    z-index: 15;
-    font-size: 22px;
-    font-variant: none;
-    text-shadow: 1px 1px #000, 0 0 10px #000, 8px 12px 9px #000;
-  }
-
-  .travelPage-map-image-environment.locked .travelPage-map-image-environment-status {
-    z-index: 1;
-    opacity: 0.5;
-  }
-
-  .travelPage-map-image-environment-star {
-    z-index: 10;
-  }
-
-  .travelPage-map-image-environment-button {
-    top: 100px;
-    transform: scale(1.2);
-  }
-
-  .travelPage-regionMenu-environmentLink.mystery {
-    display: inline-block;
-    color: #9e9e9e;
-    pointer-events: none;
-  }
-
-  .travelPage-regionMenu-item[data-region="riftopia"] {
-    display: block !important;
-  }
-
-  .travelPage-regionMenu-item[data-region="riftopia"] .travelPage-regionMenu-item-contents {
-    display: block !important;
-  }
-
-  .travelPage-regionMenu-regionLink:hover,
-  .travelPage-regionMenu-regionLink:focus {
-    cursor: unset;
-  }
-
-  #mh-simple-travel-page .travelPage-map-prefix,
-  #mh-simple-travel-alpha-sort .travelPage-map-prefix {
-    display: block;
-  }
-
-  #mh-simple-travel-page .travelPage-regionMenu,
-  #mh-simple-travel-alpha-sort .travelPage-regionMenu {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    width: 100%;
-    margin-bottom: 50px;
-    overflow: visible;
-    background-color: transparent;
-  }
-
-  #mh-simple-travel-page .travelPage-regionMenu-item,
-  #mh-simple-travel-alpha-sort .travelPage-regionMenu-item {
-    margin: 1px;
-    background-color: #e2e2e2;
-    outline: 1px solid #4c71b4;
-  }
-
-  #mh-simple-travel-page .travelPage-regionMenu-item[data-region="gnawnia"],
-  #mh-simple-travel-page .travelPage-regionMenu-item[data-region="valour"],
-  #mh-simple-travel-page .travelPage-regionMenu-item[data-region="whisker_woods"],
-  #mh-simple-travel-page .travelPage-regionMenu-item[data-region="burroughs"],
-  #mh-simple-travel-page .travelPage-regionMenu-item[data-region="furoma"] {
-    min-height: 215px;
-  }
-
-  #mh-simple-travel-page .travelPage-regionMenu-item[data-region="riftopia"] {
-    min-height: 250px;
-  }
-
-  #mh-simple-travel-page .travelPage-regionMenu-environments,
-  #mh-simple-travel-alpha-sort .travelPage-regionMenu-environments {
-    box-shadow: none;
-  }
-
-  #mh-simple-travel-page .travelPage-regionMenu-environments {
-    width: 145px;
-  }
-
-  #mh-simple-travel-page .travelPage-regionMenu-item-contents,
-  #mh-simple-travel-alpha-sort .travelPage-regionMenu-item-contents {
-    overflow: visible !important;
-  }
-
-  #mh-simple-travel-page .travelPage-regionMenu-environmentLink.active,
-  #mh-simple-travel-alpha-sort .travelPage-regionMenu-environmentLink.active {
-    color: #4e6081;
-  }
-
-  #mh-simple-travel-page .travelPage-regionMenu-environmentLink:hover,
-  #mh-simple-travel-alpha-sort .travelPage-regionMenu-environmentLink:hover,
-  #mh-simple-travel-page .travelPage-regionMenu-environmentLink:focus,
-  #mh-simple-travel-alpha-sort .travelPage-regionMenu-environmentLink:focus {
-    color: #fff;
-    background-color: #6383bf;
-  }
-
-  .huntersHornView__messageContent strong {
-    font-weight: 900;
-  }
-
-  #mh-simple-travel-alpha-sort .travelPage-alpha-wrapper .travelPage-regionMenu {
-    display: block;
-    width: 100%;
+.travelPage-map-simpleToggle,
+.mousehuntHud-page-tabContent.map.full .travelPage-map-simpleToggle.full,
+.mousehuntHud-page-tabContent.map.full .travelPage-map-prefix.full {
+  display: none;
 }
 
-#mh-simple-travel-alpha-sort .travelPage-alpha-wrapper .travelPage-regionMenu-environments {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    align-items: center;
-    justify-items: stretch;
+.travelPage-regionMenu {
+  width: 22%;
+  overflow: scroll;
+}
+
+.travelPage-map-environment-detailContainer {
+  left: 22%;
+  width: 78%;
+}
+
+.travelPage-regionMenu-environmentLink.active {
+  color: #000;
+  background: #a4cafc;
+}
+
+.travelPage-regionMenu-stats {
+  color: #4d4d4d;
+  background-color: #d8d8d8;
+}
+
+.travelPage-regionMenu-numFriends {
+  padding: 0;
+  background: none;
+}
+
+.travelPage-mapContainer.full {
+  height: auto;
+  min-height: 800px;
+  max-height: 900px;
+  border: none;
+}
+
+.travelPage-map-imageContainer {
+  width: 78%;
+}
+
+.travelPage-map-zoomContainer {
+  bottom: 300px;
+  transform: scale(1.5);
+}
+
+.travelPage-map-image-environment-name {
+  top: 70px;
+  z-index: 15;
+  font-size: 22px;
+  font-variant: none;
+  text-shadow: 1px 1px #000, 0 0 10px #000, 8px 12px 9px #000;
+}
+
+.travelPage-map-image-environment.locked .travelPage-map-image-environment-status {
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.travelPage-map-image-environment-star {
+  z-index: 10;
+}
+
+.travelPage-map-image-environment-button {
+  top: 100px;
+  transform: scale(1.2);
+}
+
+.travelPage-regionMenu-environmentLink.mystery {
+  display: inline-block;
+  color: #9e9e9e;
+  pointer-events: none;
+}
+
+.travelPage-regionMenu-item[data-region="riftopia"] {
+  display: block !important;
+}
+
+.travelPage-regionMenu-item[data-region="riftopia"] .travelPage-regionMenu-item-contents {
+  display: block !important;
+}
+
+.travelPage-regionMenu-regionLink:hover,
+.travelPage-regionMenu-regionLink:focus {
+  cursor: unset;
+}
+
+#mh-simple-travel-page .travelPage-map-prefix {
+  display: block;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  margin-bottom: 10px;
+  overflow: visible;
+  background-color: transparent;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu-item {
+  margin: 1px;
+  background-color: #e2e2e2;
+  outline: 1px solid #4c71b4;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu-item[data-region="gnawnia"],
+#mh-simple-travel-page .travelPage-regionMenu-item[data-region="valour"],
+#mh-simple-travel-page .travelPage-regionMenu-item[data-region="whisker_woods"],
+#mh-simple-travel-page .travelPage-regionMenu-item[data-region="burroughs"],
+#mh-simple-travel-page .travelPage-regionMenu-item[data-region="furoma"] {
+  min-height: 215px;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu-item[data-region="riftopia"] {
+  min-height: 250px;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu-environments {
+  box-shadow: none;
+  width: 145px;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu-item-contents {
+  overflow: visible !important;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu-environmentLink.active {
+  color: #4e6081;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu-environmentLink:hover,
+#mh-simple-travel-page .travelPage-regionMenu-environmentLink:focus {
+  color: #fff;
+  background-color: #6383bf;
+}
+
+.huntersHornView__messageContent strong {
+  font-weight: 900;
+}
+
+#mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu {
+  display: block;
+  width: 100%;
+}
+
+#mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environments {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  height: 380px;
+}
+
+#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink {
+  max-width: 145px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

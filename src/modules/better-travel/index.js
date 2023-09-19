@@ -142,74 +142,63 @@ const addPage = (id, content) => {
 };
 
 const addSimpleTravelPage = () => {
-  const regionMenu = cloneRegionMenu();
+  const wrapper = makeElement('div', 'travelPage-wrapper');
 
   if ('not-set' === getSetting('simple-travel', 'not-set')) {
     const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in your <a href="https://www.mousehuntgame.com/preferences.php?tab=userscript-settings"> Game Settings</a>.');
-    regionMenu.insertBefore(settingTip, regionMenu.firstChild);
+    wrapper.appendChild(settingTip);
   }
 
-  if (getSetting('simple-travel-alpha-sort', false)) {
-    // do alpha sort here
-  }
-
-  addPage('simple-travel', regionMenu);
-};
-
-const addAlphaSortPage = () => {
-  const wrapper = makeElement('div', 'travelPage-wrapper');
-  wrapper.id = 'mh-simple-travel-alpha-sort';
-
-  const alphaWrapper = makeElement('div', 'travelPage-alpha-wrapper');
   const regionMenu = cloneRegionMenu();
 
-  const alphaContent = makeElement('div', 'travelPage-regionMenu');
-  const alphaHeader = makeElement('div', ['travelPage-regionMenu-item', 'active']);
+  if (getSetting('simple-travel-alpha-sort', false)) {
+    const alphaWrapper = makeElement('div', 'travelPage-alpha-wrapper');
 
-  const alphaList = makeElement('div', 'travelPage-regionMenu-item-contents');
-  const alphaListContent = makeElement('div', 'travelPage-regionMenu-environments');
+    const alphaContent = makeElement('div', 'travelPage-regionMenu');
+    const alphaHeader = makeElement('div', ['travelPage-regionMenu-item', 'active']);
 
-  const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink');
+    const alphaList = makeElement('div', 'travelPage-regionMenu-item-contents');
+    const alphaListContent = makeElement('div', 'travelPage-regionMenu-environments');
 
-  // sort the links alphabetically
-  const sortedLinks = Array.from(links).sort((a, b) => {
-    const aText = a.innerText.toLowerCase();
-    const bText = b.innerText.toLowerCase();
+    const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink');
 
-    if (aText < bText) {
-      return -1;
-    }
+    // Clone the links, sort them by name, and add them to the alpha list.
+    const sortedLinks = Array.from(links).sort((a, b) => {
+      const aName = a.innerText;
+      const bName = b.innerText;
 
-    if (aText > bText) {
-      return 1;
-    }
+      if (aName < bName) {
+        return -1;
+      }
 
-    return 0;
-  });
+      if (aName > bName) {
+        return 1;
+      }
 
-  // remove the existing links
-  links.forEach((link) => {
-    link.remove();
-  });
+      return 0;
+    });
 
-  // add the sorted links
-  sortedLinks.forEach((link) => {
-    alphaListContent.appendChild(link);
-  });
+    sortedLinks.forEach((link) => {
+      // make a copy of the link
+      const linkClone = link.cloneNode(true);
+      alphaListContent.appendChild(linkClone);
+    });
 
-  alphaList.appendChild(alphaListContent);
+    alphaList.appendChild(alphaListContent);
 
-  alphaHeader.appendChild(alphaList);
-  alphaContent.appendChild(alphaHeader);
+    alphaHeader.appendChild(alphaList);
+    alphaContent.appendChild(alphaHeader);
 
-  alphaWrapper.appendChild(alphaContent);
-  wrapper.appendChild(alphaWrapper);
+    alphaWrapper.appendChild(alphaContent);
 
-  const simpleTravel = cloneRegionMenu();
-  wrapper.appendChild(simpleTravel);
+    wrapper.appendChild(alphaWrapper);
+  }
 
-  addPage('alpha-sort', wrapper);
+  wrapper.appendChild(regionMenu);
+
+  addPage('simple-travel', wrapper);
 };
+
 
 /**
  * Check the setting and maybe default to Simple Travel.
@@ -333,10 +322,6 @@ const addSimpleTravel = () => {
   addTab('simple-travel', 'Simple Travel');
   addSimpleTravelPage();
   maybeSwitchToSimpleTravel();
-
-  addTab('alpha-sort', 'Alpha Sort');
-  addAlphaSortPage();
-
 };
 
 /**
@@ -344,6 +329,7 @@ const addSimpleTravel = () => {
  */
 const addSimpleTravelSetting = () => {
   addSetting('Travel Tweaks - Default to simple travel', 'simple-travel', false, 'Use the simple travel page by default.', {}, addSettingsTab());
+  addSetting('Travel Tweaks - Add alphabetica sorting', 'simple-travel-alpha-sort', false, 'Sort the travel locations alphabetically.', {}, addSettingsTab());
   addSetting('Travel Tweaks - Show travel reminders', 'travel-reminders', true, 'Show reminders about active resources.', {}, addSettingsTab());
 };
 
