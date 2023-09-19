@@ -79,6 +79,16 @@
   display: none;
 }
 
+.teamPage-memberJournal-trapSetup b {
+  display: none;
+}
+
+.teamPage-memberJournal-trapSetup i {
+  margin-left: 9px;
+  font-size: 12px;
+  line-height: 17px;
+}
+
 /* Only show the 'these awards are from all the ppl' message on hover' */
 .teamPage-profile-awardContainer-awardList {
   position: relative;
