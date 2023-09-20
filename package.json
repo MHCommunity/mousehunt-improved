@@ -9,7 +9,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "run-s build:userscript build:extension",
+    "build": "run-s build:userscript build:extension build:archive",
     "build:archive": "git archive --format zip --output dist/archive.zip HEAD",
     "build:extension": "run-s build:extension:chrome build:extension:firefox",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
