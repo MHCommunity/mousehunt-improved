@@ -1,5 +1,5 @@
 const addUIStyles = (styles) => {
-  const identifier = 'mh-ui-styles';
+  const identifier = 'mh-improved-styles';
 
   const existingStyles = document.getElementById(identifier);
   if (existingStyles) {
