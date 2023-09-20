@@ -184,6 +184,7 @@ const addQuickQuantityButtons = () => {
 
   const buttons = [
     1,
+    5,
     10,
     100,
   ];
