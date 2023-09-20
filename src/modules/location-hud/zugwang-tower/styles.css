@@ -11,7 +11,7 @@
 
 .zuzwangsTowerHUD:hover .zuzwangsTowerHUD-progress::after {
   position: absolute;
-  top: 0px;
+  top: 0;
   right: 0;
   display: block;
   padding: 2px;
@@ -41,7 +41,7 @@
   position: absolute;
   top: 4px;
   left: 125px;
-  padding: 0px 20px;
+  padding: 0 20px;
   font-size: 12px;
   font-weight: 900;
   color: #765e4c;
