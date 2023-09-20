@@ -66,7 +66,6 @@ const cloneRegionMenu = () => {
   const regionMenuClone = regionMenu.cloneNode(true);
   const travelLinks = regionMenuClone.querySelectorAll('.travelPage-regionMenu-environmentLink');
 
-
   if (travelLinks && travelLinks.length > 0) {
     travelLinks.forEach((link) => {
       link.setAttribute('onclick', 'return false;');
@@ -198,7 +197,6 @@ const addSimpleTravelPage = () => {
 
   addPage('simple-travel', wrapper);
 };
-
 
 /**
  * Check the setting and maybe default to Simple Travel.
