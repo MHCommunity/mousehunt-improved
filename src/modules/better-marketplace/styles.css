@@ -29,8 +29,10 @@ label.mhui-marketplace-search-toggle {
   border-radius: 10px;
 }
 
+/* Marketplace search */
 .marketplaceView-header-searchContainer {
   top: 5px;
+  right: 30px !important;
   height: 70px;
 }
 

@@ -106,11 +106,6 @@ form.mhui-supply-search-form {
   border: none;
 }
 
-#tsitu-supply-search {
-  display: none !important;
-}
-
-
 #supplytransfer .listContainer a.element.item.hidden {
   display: none;
 }

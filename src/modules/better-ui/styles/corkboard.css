@@ -119,11 +119,6 @@ a.messageBoardView-message-delete:focus::after {
   color: #f55;
 }
 
-a.friendsProfileView-randomFriend {
-  float: right;
-  margin-top: -25px;
-}
-
 .friendsProfileView-selfStats {
   padding-top: 15px;
 }

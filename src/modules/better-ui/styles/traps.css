@@ -82,7 +82,9 @@
   border-radius: 0;
 }
 
+
 .campPage-trap {
+  border: 1px solid #9d917f;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }

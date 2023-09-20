@@ -76,24 +76,6 @@
   box-shadow: 0 0 5px -1px inset #90542a;
 }
 
-@keyframes mh-ui-sway-side-to-side {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(-10deg);
-  }
-
-  75% {
-    transform: rotate(15deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 #hudLocationContent .quesoGeyserHUD:hover .quesoHUD-wildTonic-button.selected::after {
   transform-origin: center;
   animation: mh-ui-sway-side-to-side .45s;
