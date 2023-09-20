@@ -327,7 +327,7 @@ const addSimpleTravel = () => {
  */
 const addSimpleTravelSetting = () => {
   addSetting('Travel Tweaks - Default to simple travel', 'simple-travel', false, 'Use the simple travel page by default.', {}, addSettingsTab());
-  addSetting('Travel Tweaks - Add alphabetica sorting', 'simple-travel-alpha-sort', false, 'Sort the travel locations alphabetically.', {}, addSettingsTab());
+  addSetting('Travel Tweaks - Add alphabetical sorting', 'simple-travel-alpha-sort', false, 'Shows a list of travel locations alphabetically above the normal locations on the simple travel page.', {}, addSettingsTab());
   addSetting('Travel Tweaks - Show travel reminders', 'travel-reminders', true, 'Show reminders about active resources.', {}, addSettingsTab());
 };
 
