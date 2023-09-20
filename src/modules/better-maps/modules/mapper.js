@@ -430,16 +430,25 @@ const makeItemDiv = (item) => {
   return itemDiv;
 };
 
+const makeSortedPageWrapper = () => {
+  const sortedPage = makeElement('div', 'sorted-page');
+  makeElement('div', ['sorted-loading', 'mousehuntPage-loading', 'active'], '', sortedPage);
+  makeElement('div', 'sorted-page-content', '', sortedPage);
+
+  return sortedPage;
+};
+
 const makeSortedMiceList = () => {
   // Get the current map data.
   const currentMapData = getMapData(window.mhmapper.mapData.map_id);
   const { unsortedMice, categories, subcategories } = getMouseDataForMap(currentMapData);
 
-  const sortedPage = document.createElement('div');
-  sortedPage.className = 'sorted-page';
+  const target = document.querySelector('.sorted-page-content');
+  if (! target) {
+    return;
+  }
 
-  const categoriesWrapper = document.createElement('div');
-  categoriesWrapper.className = 'mouse-category-container';
+  const categoriesWrapper = makeElement('div', 'mouse-category-container');
 
   // Foreach category, create a category wrapper
   categories.forEach((category) => {
@@ -602,17 +611,14 @@ const makeSortedMiceList = () => {
     categoriesWrapper.appendChild(unsortedWrapper);
   }
 
-  sortedPage.appendChild(categoriesWrapper);
-
-  const miceDiv = makeElement('div', 'mice-container');
-  miceDiv.appendChild(sortedPage);
-
-  return miceDiv;
+  target.appendChild(categoriesWrapper);
 };
 
 const makeGenericSortedPage = async () => {
-  const sortedPage = makeElement('div', 'sorted-page');
-  makeElement('div', 'generic-sorted-page-content');
+  const target = document.querySelector('.sorted-page-content');
+  if (! target) {
+    return;
+  }
 
   const currentMapData = getMapData(window.mhmapper.mapData.map_id);
 
@@ -622,8 +628,6 @@ const makeGenericSortedPage = async () => {
   }
 
   const { unsortedMice } = getMouseDataForMap(currentMapData, type);
-
-  const miceDiv = makeElement('div', 'mice-container');
 
   // Sort from highest to lowest AR via the async getHighestArForMouse function.
   const sortedUnsorted = await Promise.all(unsortedMice.map(async (mouse) => {
@@ -649,12 +653,8 @@ const makeGenericSortedPage = async () => {
       mousediv = makeItemDiv(mouse);
     }
 
-    miceDiv.appendChild(mousediv);
+    target.appendChild(mousediv);
   });
-
-  miceDiv.appendChild(sortedPage);
-
-  return miceDiv;
 };
 
 const addGoalsTabListener = () => {
@@ -744,15 +744,22 @@ const showSortedTab = async () => {
   const sortedMiceContainer = document.createElement('div');
   sortedMiceContainer.id = 'sorted-mice-container';
 
-  let sortedMiceList = null;
+  // First, make the sorted page with the loading icon, and then add the mice to it.
+  const sortedPage = makeSortedPageWrapper();
+  sortedMiceContainer.appendChild(sortedPage);
+  mapContainer.appendChild(sortedMiceContainer);
+
   if (mouseGroups[currentMapData.map_type]) {
-    sortedMiceList = await makeSortedMiceList();
+    await makeSortedMiceList();
   } else {
-    sortedMiceList = await makeGenericSortedPage();
+    await makeGenericSortedPage();
   }
 
-  sortedMiceContainer.appendChild(sortedMiceList);
-  mapContainer.appendChild(sortedMiceContainer);
+  // Remove the loading icon.
+  const loading = document.querySelector('.sorted-loading');
+  if (loading) {
+    loading.remove();
+  }
 
   addAreaHighlighting();
 };
