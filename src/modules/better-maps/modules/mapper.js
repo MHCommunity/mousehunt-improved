@@ -296,7 +296,7 @@ const makeMouseDiv = async (mouse) => {
     });
 
     if (environment) {
-      const location = makeElement('a', 'mouse-location', environment.name, locationLocations);
+      const location = makeElement('a', 'mouse-location', environment.name);
 
       location.title = `Travel to ${environment.name}`;
       location.setAttribute('data-environment-id', environment.id);
@@ -304,6 +304,8 @@ const makeMouseDiv = async (mouse) => {
       location.addEventListener('click', () => {
         showTravelConfirmation(environment, window.mhmapper.mapModel);
       });
+
+      locationLocations.appendChild(location);
     }
   });
 
