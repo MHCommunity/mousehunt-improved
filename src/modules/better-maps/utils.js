@@ -134,11 +134,7 @@ const getArEl = async (id) => {
 
   const arEl = document.createElement('div');
   arEl.classList.add('mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`);
-  // if (!  mouseEl.classList.contains('complete')) {
-  //   arEl.textContent = arType === 'location' ? `✓ ${ar}%` : `✕ ${ar}%`;
-  // } else {
   arEl.textContent = `${ar}%`;
-  // }
 
   return arEl;
 };
