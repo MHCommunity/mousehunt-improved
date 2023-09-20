@@ -9,28 +9,58 @@
 .mh-ui-ar {
   padding: 2px 3px;
   margin-left: 5px;
-  font-size: 9px;
+  font-size: 10px;
   background-color: #fff;
   border: 1px solid #d9d9d9;
   border-radius: 4px;
 }
 
-.mh-ui-ar-hard {
-  background-color: #ffb9ba;
-  border-color: #c58182;
-}
-
-.mh-ui-ar-medium {
-  background-color: #ffc440;
-  border-color: #c59c40;
-}
-
-.mh-ui-ar-guaranteed,
-.mh-ui-ar-easy {
-  background-color: #8ffaab;
-  border-color: #73b484;
+.mh-ui-ar-hidden .mh-ui-ar {
+  display: none;
 }
 
 .complete .mh-ui-ar {
   background-color: #e5e5e5;
+}
+
+.mh-ui-ar-guaranteed {
+  background-color: #0ef;
+  border-color: #8fb1b3;
+}
+
+.mh-ui-ar-super-easy {
+  background-color: #8ffaab;
+  border-color: #73b484;
+}
+
+.mh-ui-ar-easy {
+  background-color: #b9ff9e;
+  border-color: #8fb17a;
+}
+
+.mh-ui-ar-medium {
+  background-color: #ffdab9;
+  border-color: #c5a381;
+}
+
+.mh-ui-ar-hard {
+  background-color: #ffc440;
+  border-color: #c59c40;
+}
+
+.mh-ui-ar-super-hard {
+  background-color: #ff9e9e;
+  border-color: #c55a5a;
+}
+
+.mh-ui-ar-extreme {
+  background-color: #ff9e9e;
+  border-color: #c55a5a;
+}
+
+.mh-ui-ar-impossible {
+  color: #000;
+  background-color: #f77;
+  border-color: #a64a4a;
+}
 }

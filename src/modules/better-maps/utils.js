@@ -118,14 +118,22 @@ const getArEl = async (id) => {
   }
 
   let arDifficulty = 'easy';
-  if (ar === 100) {
+  if (ar >= 99) {
     arDifficulty = 'guaranteed';
-  } else if (ar <= 15) {
-    arDifficulty = 'hard';
-  } else if (ar <= 40) {
-    arDifficulty = 'medium';
-  } else if (ar <= 75) {
+  } else if (ar >= 80) {
+    arDifficulty = 'super-easy';
+  } else if (ar >= 50) {
     arDifficulty = 'easy';
+  } else if (ar >= 40) {
+    arDifficulty = 'medium';
+  } else if (ar >= 20) {
+    arDifficulty = 'hard';
+  } else if (ar >= 10) {
+    arDifficulty = 'super-hard';
+  } else if (ar >= 5) {
+    arDifficulty = 'extreme';
+  } else {
+    arDifficulty = 'impossible';
   }
 
   if (ar.toString().slice(-3) === '.00') {
