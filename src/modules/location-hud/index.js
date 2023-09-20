@@ -90,6 +90,7 @@ const main = () => {
   case 'dracano':
   case 'ss_huntington_ii':
   case 'slushy_shoreline':
+  case 'acolyte_realm':
     cheeseSelectors();
     break;
   }

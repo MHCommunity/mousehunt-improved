@@ -157,7 +157,12 @@ const main = async () => {
       'moon_cheese',
       'crescent_cheese',
     ],
-    // TODO: Acolyte Realm
+    acolyte_realm: [
+      'ancient_cheese',
+      'runic_cheese',
+      'radioactive_blue_cheese',
+      'magical_radioactive_blue_cheese',
+    ],
     // Tribal Isles
     cape_clawed: [
       'shell_cheese',
