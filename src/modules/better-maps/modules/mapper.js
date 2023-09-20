@@ -51,6 +51,23 @@ const addArDataToMap = async (mapData) => {
     return;
   }
 
+  // Remove the hidden class if we've already added the AR data.
+  const goals = document.querySelectorAll('.treasureMapView-goals-groups');
+  if (goals && goals.length > 0) {
+    let hasAdded = false;
+
+    goals.forEach((goal) => {
+      if (goal.classList.contains('mh-ui-ar-hidden')) {
+        goal.classList.remove('mh-ui-ar-hidden');
+        hasAdded = true;
+      }
+    });
+
+    if (hasAdded) {
+      return;
+    }
+  }
+
   mice.forEach(async (mouse) => {
     const mouseEl = document.querySelector(`.treasureMapView-goals-group-goal[data-unique-id="${mouse.unique_id}"]`);
     if (! mouseEl) {
@@ -78,6 +95,13 @@ const addArDataToMap = async (mapData) => {
     name.appendChild(arEl);
 
     mouseEl.setAttribute('data-mh-ui-ar', true);
+  });
+};
+
+const removeArDataFromMap = () => {
+  const goals = document.querySelectorAll('.treasureMapView-goals-groups');
+  goals.forEach((goal) => {
+    goal.classList.add('mh-ui-ar-hidden');
   });
 };
 
@@ -767,8 +791,43 @@ const highlightSelf = () => {
   }
 };
 
+const addArToggle = () => {
+  const wrapper = document.querySelector('.treasureMapView-mapMenu-group-actions');
+  if (! wrapper) {
+    return;
+  }
+
+  const exists = document.querySelector('.mh-ui-toggle-ar-button');
+  if (exists) {
+    return;
+  }
+
+  const toggle = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-ui-toggle-ar-button']);
+  makeElement('span', 'toggle-ar-text', 'Show AR', toggle);
+
+  toggle.addEventListener('click', async () => {
+    toggle.classList.add('disabled');
+
+    const showing = toggle.getAttribute('data-showing');
+    if (showing === 'true') {
+      toggle.setAttribute('data-showing', false);
+      toggle.querySelector('.toggle-ar-text').innerText = 'Show AR';
+      removeArDataFromMap(window.mhmapper.mapData);
+    } else {
+      toggle.setAttribute('data-showing', true);
+      toggle.querySelector('.toggle-ar-text').innerText = 'Hide AR';
+      await addArDataToMap(window.mhmapper.mapData);
+    }
+
+    toggle.classList.remove('disabled');
+  });
+
+  // append as first child
+  wrapper.insertBefore(toggle, wrapper.firstChild);
+};
+
 const main = () => {
-  // addArDataToMap(window.mhmapper.mapData); // eslint-disable-line no-undef
+  addArToggle();
   addMouseLinksToMap();
   highlightSelf();
   return addSortedMapTab();
