@@ -44,3 +44,51 @@
   white-space: nowrap;
   vertical-align: middle;
 }
+
+.treasureMapView-mapMenu-group-invite.mh-ui-invite-wrapper {
+  display: flex;
+  gap: 5px;
+}
+
+.treasureMapView-mapMenu-group-invite .mousehuntActionButton.mh-ui-invite-button {
+  margin-bottom: 0 !important;
+}
+
+.treasureMapView-numInvitesSent,
+.mh-ui-find-hunters-title,
+.mh-ui-map-settings-title,
+.mh-ui-share-title {
+    display: none;
+}
+
+.mh-ui-find-hunters-block {
+  margin-top: 18px;
+}
+
+.mh-ui-map-settings-block .treasureMapView-block-content {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.treasureMapView-block.mh-ui-share-block .treasureMapView-block-content {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
+a.mousehuntActionButton.lightBlue.treasureMapView-inviteModeButton {
+    margin-top: 0;
+}
+
+.mh-ui-find-hunters-block .treasureMapView-mapMenu-group-invite {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.treasureMapView-mapMenu-group-invite .mousehuntActionButton {
+  margin-bottom: 0 !important;
+}

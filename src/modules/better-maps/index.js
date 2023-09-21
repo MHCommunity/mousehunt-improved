@@ -1,59 +1,29 @@
-import mouseGroups from '../../data/mice-map-groups.json';
+import addStyles from './styles';
+import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
+import { showHuntersTab } from './modules/tab-hunters';
+import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
+import { addBlockClasses, getMapData, setMapData } from './map-utils';
 
-import styles from './styles';
-
-import { getMapData, setMapData } from './utils';
-
-import addConsolationPrizes from './modules/consolation-prizes';
-import hunters from './modules/hunters';
-import mapper from './modules/mapper';
-import scavenger from './modules/scavenger';
-
-const addStatBarListener = () => {
-  const statMapBar = document.querySelector('.mousehuntHud-userStat.treasureMap');
-  if (statMapBar) {
-    statMapBar.removeEventListener('click', processStatsBarClick);
-    statMapBar.addEventListener('click', processStatsBarClick);
+const interceptMapRequest = (mapId) => {
+  // If we don't have data, we're done.
+  if (! mapId) {
+    return;
   }
-};
 
-const processStatsBarClick = () => {
-  const mapId = user?.quests?.QuestRelicHunter?.default_map_id; // eslint-disable-line no-undef
-  if (mapId) {
-    interceptMapRequest(mapId);
+  const init = (data) => {
+    window.mhmapper = {
+      mapData: data,
+      mapModel: new hg.models.TreasureMapModel(data),
+    };
+
+    eventRegistry.doEvent('mapper_loaded', data);
+    return data;
+  };
+
+  const data = getMapData(mapId, true);
+  if (data) {
+    return init(data);
   }
-};
-
-const addProfileListener = () => {
-  if ('HunterProfile' === getCurrentPage()) { // eslint-disable-line
-    const profileLink = document.querySelector('.hunterInfoView-treasureMaps-left-currentMap-image');
-    if (profileLink) {
-      profileLink.removeEventListener('click', processProfileClick);
-      profileLink.addEventListener('click', processProfileClick);
-    }
-  }
-};
-
-const processProfileClick = (e) => {
-  const parseOnclickTarget = e.target.getAttribute('onclick');
-  if (parseOnclickTarget) {
-    // Parse the map ID out of the onclick attribute.
-    const parsedId = parseOnclickTarget.match(/show\((\d+)\)/);
-    if (parsedId && parsedId.length > 1) {
-      interceptMapRequest(parsedId[1]);
-    }
-  }
-};
-
-const addActiveTabListener = () => {
-  const activeTab = document.querySelector('.treasureMapRootView-header-navigation-item.tasks');
-  if (activeTab) {
-    activeTab.addEventListener('click', processActiveTabClick);
-  }
-};
-
-const processActiveTabClick = () => {
-  interceptMapRequest(user?.quests?.QuestRelicHunter?.default_map_id);
 };
 
 const initMapper = (map) => {
@@ -61,103 +31,82 @@ const initMapper = (map) => {
     return;
   }
 
-  // Depending on if it's the active map or not, process the hunters tab events.
-  hunters();
+  // get the treasureMapRootView-content element, and if it has a loading class, wait for the class to be removed by watching the element for chagnes. once its loaded, proceed with our code
+  const content = document.querySelector('.treasureMapRootView-content');
+  if (content.classList.contains('loading')) {
+    const observer = new MutationObserver((mutations, mobserver) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'class' &&
+          ! mutation.target.classList.contains('loading')
+        ) {
+          mobserver.disconnect();
+          // call the init function again to proceed with our code
+          initMapper(map);
+        }
+      });
+    });
 
-  // maybe process consolation prizes.
-  addConsolationPrizes();
-
-  // if the map type is not in the groups, we're done.
-  if (! mouseGroups[map.map_type]) {
-    // do generic stuff here.
-    if (map.is_scavenger_hunt) {
-      scavenger(map);
-    }
-  } else {
-    // do generic stuff here.
+    const rootOfChanges = document.querySelector('.treasureMapRootView');
+    observer.observe(rootOfChanges, {
+      attributes: true,
+      childList: true,
+      subtree: true
+    });
   }
 
-  let addedSorted = mapper();
-  // If the tab wasn't added, retry until it is with a 1 second delay and a max of 10 tries.
-  if (! addedSorted) {
-    let tries = 0;
-    const interval = setInterval(() => {
-      addedSorted = mapper();
-      if (addedSorted || tries >= 10) {
-        clearInterval(interval);
-      }
-      tries++;
-    }, 500);
-  }
+  // Add the sorted tab.
+  addSortedMapTab();
+
+  // Add the tab click events.
+  const tabs = document.querySelectorAll('.treasureMapRootView-subTab');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      addBlockClasses();
+
+      eventRegistry.doEvent('map_tab_click', map);
+      eventRegistry.doEvent(`map_${tab.getAttribute('data-type')}_tab_click`, map);
+    });
+  });
+
+  // Fire the goals click because we default to that tab.
+  eventRegistry.doEvent('map_show_goals_tab_click', map);
+
+  // Add the block classes.
+  addBlockClasses();
 };
 
-const interceptMapRequest = (data) => {
-  // If we don't have data, we're done.
-  if (! data) {
-    return;
-  }
-
-  let mapData = false;
-  // If we get an object, we're processing the ajax request.
-  if (typeof data === 'object' && data !== null) {
-    // We have the ajax data, so we want to store the data in local storage
-    // and actually call the mapper.
-    if (! data.treasure_map || ! data.treasure_map.map_id) {
-      return;
-    }
-
-    mapData = data.treasure_map;
-
-    // Store the map data in local storage.
-    setMapData(mapData.map_id, mapData);
-  } else {
-    // We're processing a click event, so we get the map ID, pull the data
-    // from local storage, and call the mapper.
-    if (! data) {
-      return;
-    }
-
-    mapData = getMapData(data); // Actually map-id.
-  }
-
-  window.mhmapper = {
-    mapData,
-    mapModel: new hg.models.TreasureMapModel(mapData),
+const intercept = () => {
+  const parentShowMap = hg.controllers.TreasureMapController.showMap;
+  hg.controllers.TreasureMapController.showMap = (id = false) => {
+    parentShowMap(id);
+    interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
   };
 
-  // Finally, call the mapper.
-  initMapper(mapData);
-  eventRegistry.doEvent('map_data_loaded', mapData);
-};
-
-const addListeners = () => {
-  // Watch for the profile map click.
-  addProfileListener();
-  onPageChange(addProfileListener); // eslint-disable-line no-undef
-
-  // Watch for the stat bar click.
-  addStatBarListener();
-
-  // Watch for the active tab click.
-  addActiveTabListener();
-
-  // Watch for map data.
-  onAjaxRequest(interceptMapRequest, 'managers/ajax/users/treasuremap.php', true); // eslint-disable-line no-undef
+  onAjaxRequest((data) => {
+    if (data.treasure_map && data.treasure_map.map_id) {
+      setMapData(data.treasure_map.map_id, data.treasure_map);
+    }
+  }, 'managers/ajax/users/treasuremap.php', true); // eslint-disable-line no-undef
 };
 
 const main = () => {
-  eventRegistry.doEvent('mapper_start');
+  addStyles();
 
-  addListeners();
-  // sidebar();
-  // scavenger();
+  // Initialize the mapper.
+  eventRegistry.addEventListener('mapper_loaded', initMapper);
 
-  eventRegistry.doEvent('mapper_loaded');
+  // Fire the different tab clicks.
+  eventRegistry.addEventListener('map_sorted_tab_click', showSortedTab);
+  eventRegistry.addEventListener('map_show_goals_tab_click', showGoalsTab);
+  eventRegistry.addEventListener('map_manage_allies_tab_click', showHuntersTab);
+  eventRegistry.addEventListener('map_tab_click', (map) => {
+    hideGoalsTab(map);
+    hideSortedTab(map);
+  });
 
-  eventRegistry.addEventListener('map_goals_tab_click', addConsolationPrizes);
+  intercept();
 };
 
-export default function betterMaps() {
-  styles();
-  main();
-}
+export default main;

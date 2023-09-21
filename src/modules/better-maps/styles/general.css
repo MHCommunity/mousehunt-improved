@@ -170,10 +170,6 @@ img.treasureMapView-reward-chestIcon {
   border-radius: 4px;
 }
 
-span.treasureMapView-block-content-heading-count {
-  display: none;
-}
-
 .treasureMapView-block-content-heading-image {
   margin-right: 10px;
 }
@@ -446,4 +442,17 @@ img.mh-mapper-consolation-prize {
   width: 25px;
   height: 25px;
   margin-right: 5px;
+}
+
+.treasureMapView-block-title.mh-ui-consolation-prizes-title {
+  display: none;
+}
+
+.treasureMapView-block-title.mh-ui-goalssearch-title {
+  margin: -5px;
+  color: transparent;
+}
+
+input.treasureMapView-block-search-text {
+  border: 1px solid #767676;
 }

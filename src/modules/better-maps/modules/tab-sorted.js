@@ -1,6 +1,8 @@
 import mouseGroups from '../../../data/mice-map-groups.json';
-import { getHighestArForMouse, getArEl, getLinkMarkup, getMapData } from '../utils';
-import addAreaHighlighting from './highlighting';
+import environments from '../../../data/environments.json';
+import { getArEl, getArForMouse, getHighestArForMouse } from '../../utils';
+import { getMapData } from '../map-utils';
+import doHighlighting from './highlighting';
 
 const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   // Get the unsorted mice.
@@ -44,194 +46,59 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   };
 };
 
-// eslint-disable-next-line no-unused-vars
-const addArDataToMap = async (mapData) => {
-  const mice = mapData?.goals?.mouse || [];
-  if (mice.length === 0) {
-    return;
-  }
-
-  // Remove the hidden class if we've already added the AR data.
-  const goals = document.querySelectorAll('.treasureMapView-goals-groups');
-  if (goals && goals.length > 0) {
-    let hasAdded = false;
-
-    goals.forEach((goal) => {
-      if (goal.classList.contains('mh-ui-ar-hidden')) {
-        goal.classList.remove('mh-ui-ar-hidden');
-        hasAdded = true;
-      }
-    });
-
-    if (hasAdded) {
-      return;
-    }
-  }
-
-  mice.forEach(async (mouse) => {
-    const mouseEl = document.querySelector(`.treasureMapView-goals-group-goal[data-unique-id="${mouse.unique_id}"]`);
-    if (! mouseEl) {
-      return;
-    }
-
-    if (mouseEl.classList.contains('complete')) {
-      return;
-    }
-
-    if (mouseEl.getAttribute('data-mh-ui-ar')) {
-      const existing = mouseEl.querySelector('.mh-ui-ar');
-      if (existing) {
-        existing.remove();
-      }
-    }
-
-    const name = mouseEl.querySelector('.treasureMapView-goals-group-goal-name');
-    if (! name) {
-      return;
-    }
-
-    const arEl = await getArEl(mouse.unique_id);
-
-    name.appendChild(arEl);
-
-    mouseEl.setAttribute('data-mh-ui-ar', true);
-  });
-};
-
-const removeArDataFromMap = () => {
-  const goals = document.querySelectorAll('.treasureMapView-goals-groups');
-  goals.forEach((goal) => {
-    goal.classList.add('mh-ui-ar-hidden');
-  });
-};
-
-/**
- * Add links to the mouse details on the map.
- */
-const addMouseLinksToMap = () => {
-  const overlayClasses = document.getElementById('overlayPopup').classList;
-  if (! overlayClasses.contains('treasureMapPopup')) {
-    return;
-  }
-
-  const mouseIcon = document.querySelectorAll('.treasureMapView-goals-group-goal');
-  if (! mouseIcon || mouseIcon.length === 0) {
-    return;
-  }
-
-  const mapViewClasses = document.querySelector('.treasureMapView.treasure');
-  if (! mapViewClasses) {
-    return;
-  }
-
-  if (mapViewClasses.classList.value.indexOf('scavenger_hunt') !== -1) {
-    return;
-  }
-
-  mouseIcon.forEach((mouse) => {
-    const mouseType = mouse.classList.value
-      .replace('treasureMapView-goals-group-goal ', '')
-      .replace(' mouse', '')
-      .replace('landscape', '')
-      .replaceAll(' ', '')
-      .trim();
-
-    mouse.addEventListener('click', () => {
-      const title = document.querySelector('.treasureMapView-highlight-name');
-      if (! title) {
-        return;
-      }
-
-      title.classList.add('mh-mouse-links-map-name');
-
-      title.addEventListener('click', () => {
-        hg.views.MouseView.show(mouseType);
-      });
-
-      title.setAttribute('data-mouse-id', mouseType);
-
-      const existing = document.querySelector(`#mh-mouse-links-map-${mouseType}`);
-      if (existing) {
-        return;
-      }
-
-      const div = document.createElement('div');
-      div.classList.add('mh-mouse-links-map');
-      div.id = `mh-mouse-links-map-${mouseType}`;
-      div.innerHTML = getLinkMarkup(title.innerText);
-
-      const envs = document.querySelector('.treasureMapView-highlight-environments');
-      if (envs) {
-        envs.parentNode.insertBefore(div, envs.nextSibling);
-      }
-    });
-  });
-};
-
 const addMHCTData = async (mouse, mouseExtraInfo, type = 'mouse') => {
   const existingMhct = mouseExtraInfo.querySelector(`#mhct-${mouse.unique_id}`);
   if (existingMhct) {
     return;
   }
 
-  let mhctPath = 'mhct';
-  if ('item' === type) {
-    mhctPath = 'mhct-item';
-  }
+  const mhctjson = await getArForMouse(mouse.unique_id, type);
 
-  const mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouse.unique_id}`);
-  const mhctjson = await mhctdata.json();
-
-  const mhctDiv = document.createElement('div');
-  mhctDiv.classList.add('mhct-data');
+  const mhctDiv = makeElement('div', 'mhct-data');
   mhctDiv.id = `mhct-${mouse.unique_id}`;
 
-  const mhctTitle = document.createElement('div');
-  mhctTitle.classList.add('mhct-title');
-  if ('item' === type) {
-    mhctTitle.innerText = 'Drop Rates';
-  } else {
-    mhctTitle.innerText = 'Attraction Rates';
-  }
+  makeElement('div', 'mhct-title', 'item' === type ? 'Drop Rates' : 'Attraction Rates', mhctDiv);
 
-  mhctDiv.appendChild(mhctTitle);
+  const amountOfLocationsToShow = 5; // TODO: maybe modify this for some mice or make it an option?
+  mhctjson.slice(0, amountOfLocationsToShow).forEach((mhct) => {
+    const mhctRow = makeElement('div', 'mhct-row');
+    const location = makeElement('div', 'mhct-location');
 
-  mhctjson.slice(0, 5).forEach((mhct) => {
-    const mhctRow = document.createElement('div');
-    mhctRow.classList.add('mhct-row');
-
-    const location = document.createElement('div');
-    location.classList.add('mhct-location');
-
-    const locationTextSpan = document.createElement('span');
-    locationTextSpan.classList.add('mhct-location-text');
-    locationTextSpan.innerText = mhct.location;
-    location.appendChild(locationTextSpan);
+    makeElement('span', 'mhct-location-text', mhct.location, location);
 
     if (mhct.stage) {
-      const stageText = document.createElement('span');
-      stageText.classList.add('mhct-stage');
-      stageText.innerText = ` ${mhct.stage}`;
+      makeElement('span', 'mhct-stage', mhct.stage, location);
+    }
 
-      location.appendChild(stageText);
+    const environment = environments.find((env) => {
+      return env.name === mhct.location;
+    });
+
+    if (! environment) {
+      mhctRow.classList.add('mhct-row-no-env');
     }
 
     mhctRow.appendChild(location);
 
-    const bait = document.createElement('div');
-    bait.classList.add('mhct-bait');
-    bait.innerText = mhct.cheese;
+    makeElement('div', 'mhct-bait', mhct.cheese, mhctRow);
 
-    mhctRow.appendChild(bait);
+    const mhctRate = parseInt('item' === type ? mhct.drop_pct : mhct.rate / 100, 10).toFixed(1);
+    makeElement('div', 'mhct-rate', `${mhctRate}%`, mhctRow);
 
-    const rate = document.createElement('div');
-    rate.classList.add('mhct-rate');
+    mhctRow.addEventListener('click', () => {
+      // if we're in the right location, then equip the right cheese, otherwise show the travel dialog)
+      if (environment.id === getCurrentLocation()) {
+        app.pages.CampPage.toggleItemBrowser('bait');
+        jsDialog().hide();
+        return;
+      }
 
-    const mhctRate = 'item' === type ? mhct.drop_pct : mhct.rate / 100;
+      const travelEnvironment = window.mhmapper.mapData.environments.find((env) => {
+        return env.type === environment.id;
+      });
 
-    rate.innerText = `${parseInt(mhctRate, 10).toFixed(1)}%`;
-
-    mhctRow.appendChild(rate);
+      showTravelConfirmation(travelEnvironment, window.mhmapper.mapModel);
+    });
 
     mhctDiv.appendChild(mhctRow);
   });
@@ -253,6 +120,10 @@ const showTravelConfirmation = (environment, mapModel) => {
   dialog.setCssClass('confirm');
   dialog.setContinueAction('Travel', () => {
     app.pages.TravelPage.travel(environment.type);
+    dialog.hide();
+    setTimeout(() => {
+      jsDialog().hide();
+    }, 250);
   });
 
   hg.controllers.TreasureMapController.showDialog(dialog);
@@ -374,62 +245,6 @@ const makeMouseDiv = async (mouse) => {
   });
 
   return mouseDiv;
-};
-
-const makeItemDiv = (item) => {
-  // Wrapper.
-  const itemDiv = makeElement('div', 'mouse-container');
-
-  // Wrapper IDs.
-  itemDiv.setAttribute('data-mouse-id', item.unique_id);
-  itemDiv.setAttribute('data-mouse-type', item.type);
-
-  // item header.
-  const itemData = makeElement('div', 'mouse-data');
-
-  const itemImage = makeElement('img', 'mouse-image');
-  itemImage.src = item.thumb;
-  itemImage.alt = item.name;
-  itemData.appendChild(itemImage);
-
-  makeElement('div', 'mouse-name', item.name, itemData);
-
-  // item header close.
-  itemDiv.appendChild(itemData);
-
-  // item extra info.
-  const itemExtraInfo = makeElement('div', 'mouse-extra-info');
-
-  itemDiv.appendChild(itemExtraInfo);
-
-  itemDiv.addEventListener('click', async () => {
-    const isSelected = itemDiv.classList.contains('mouse-container-selected');
-    if (isSelected) {
-      itemDiv.classList.remove('mouse-container-selected');
-      return;
-    }
-
-    // Append MHCT data.
-    addMHCTData(item, itemExtraInfo, 'item');
-
-    // Only allow one mouse to be selected at a time.
-    const addClass = ! itemDiv.classList.contains('mouse-container-selected');
-
-    // Clear all selected.
-    const allSelected = document.querySelectorAll('.mouse-container-selected');
-    if (allSelected) {
-      allSelected.forEach((selected) => {
-        selected.classList.remove('mouse-container-selected');
-      });
-    }
-
-    // Except this one if it's not selected.
-    if (addClass) {
-      itemDiv.classList.add('mouse-container-selected');
-    }
-  });
-
-  return itemDiv;
 };
 
 const makeSortedPageWrapper = () => {
@@ -647,29 +462,10 @@ const makeGenericSortedPage = async () => {
     return 1;
   });
 
-  sortedUnsorted.forEach(async (mouse) => {
-    let mousediv = null;
-    if ('mouse' === type) {
-      mousediv = await makeMouseDiv(mouse);
-    } else {
-      mousediv = makeItemDiv(mouse);
-    }
-
-    target.appendChild(mousediv);
-  });
-};
-
-const addGoalsTabListener = () => {
-  const tabs = document.querySelector('.treasureMapRootView-subTab[data-type="show_goals"]');
-  if (tabs) {
-    tabs.addEventListener('click', processGoalsTabClick);
-  }
-};
-
-const processGoalsTabClick = () => {
-  const mapId = user?.quests?.QuestRelicHunter?.default_map_id; // eslint-disable-line no-undef
-  if (mapId) {
-    eventRegistry.doEvent('map_goals_tab_click', mapId);
+  // call makeMouseDiv for each mouse but in the sorted order and not asynchonously
+  for (const mouse of sortedUnsorted) {
+    const mouseDiv = await makeMouseDiv(mouse);
+    target.appendChild(mouseDiv);
   }
 };
 
@@ -687,7 +483,7 @@ const moveTabToBody = () => {
   body.appendChild(sortedMiceContainer);
 };
 
-const showSortedTab = async () => {
+const processSortedTabClick = async () => {
   const currentlyActive = document.querySelector('.treasureMapRootView-subTab.sorted-map-tab.active');
   if (currentlyActive) {
     return;
@@ -701,8 +497,6 @@ const showSortedTab = async () => {
       tab.addEventListener('click', moveTabToBody);
     });
   }
-
-  addGoalsTabListener();
 
   // Get the current map data.
   const currentMapData = window.mhmapper.mapData;
@@ -763,7 +557,7 @@ const showSortedTab = async () => {
     loading.remove();
   }
 
-  addAreaHighlighting();
+  doHighlighting();
 };
 
 const addSortedMapTab = () => {
@@ -781,7 +575,7 @@ const addSortedMapTab = () => {
   sortedTab.setAttribute('data-type', 'sorted');
   sortedTab.innerText = 'Sorted';
 
-  sortedTab.addEventListener('click', showSortedTab);
+  sortedTab.addEventListener('click', processSortedTabClick);
 
   const divider = document.createElement('div');
   divider.className = 'treasureMapRootView-subTab-spacer';
@@ -793,53 +587,14 @@ const addSortedMapTab = () => {
   return true;
 };
 
-const highlightSelf = () => {
-  const self = document.querySelector(`.treasureMapView-hunter-wrapper[data-snuid="${user.sn_user_id}"] .treasureMapView-hunter-image-wrapper`);
-  if (self) {
-    self.classList.add('mapper-self');
-  }
+const showSortedTab = () => {
 };
 
-const addArToggle = () => {
-  const wrapper = document.querySelector('.treasureMapView-mapMenu-group-actions');
-  if (! wrapper) {
-    return;
-  }
-
-  const exists = document.querySelector('.mh-ui-toggle-ar-button');
-  if (exists) {
-    return;
-  }
-
-  const toggle = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-ui-toggle-ar-button']);
-  makeElement('span', 'toggle-ar-text', 'Show AR', toggle);
-
-  toggle.addEventListener('click', async () => {
-    toggle.classList.add('disabled');
-
-    const showing = toggle.getAttribute('data-showing');
-    if (showing === 'true') {
-      toggle.setAttribute('data-showing', false);
-      toggle.querySelector('.toggle-ar-text').innerText = 'Show AR';
-      removeArDataFromMap(window.mhmapper.mapData);
-    } else {
-      toggle.setAttribute('data-showing', true);
-      toggle.querySelector('.toggle-ar-text').innerText = 'Hide AR';
-      await addArDataToMap(window.mhmapper.mapData);
-    }
-
-    toggle.classList.remove('disabled');
-  });
-
-  // append as first child
-  wrapper.insertBefore(toggle, wrapper.firstChild);
+const hideSortedTab = () => {
 };
 
-const main = () => {
-  addArToggle();
-  addMouseLinksToMap();
-  highlightSelf();
-  return addSortedMapTab();
+export {
+  addSortedMapTab,
+  hideSortedTab,
+  showSortedTab
 };
-
-export default main;

@@ -1,26 +1,5 @@
-import { addUIStyles, getArForMouse } from '../utils';
+import { addUIStyles, getArForMouse, makeLink } from '../utils';
 import styles from './styles.css';
-
-/**
- * Return an anchor element with the given text and href.
- *
- * @param {string}  text          Text to use for link.
- * @param {string}  href          URL to link to.
- * @param {boolean} encodeAsSpace Encode spaces as %20.
- *
- * @return {string} HTML for link.
- */
-const makeLink = (text, href, encodeAsSpace) => {
-  if (encodeAsSpace) {
-    href = href.replace(/_/g, '%20');
-  } else {
-    href = href.replace(/\s/g, '_');
-  }
-
-  href = href.replace(/\$/g, '_');
-
-  return `<a href="${href}" target="_mouse" class="mousehuntActionButton tiny"><span>${text}</span></a>`;
-};
 
 /**
  * Get the markup for the mouse links.

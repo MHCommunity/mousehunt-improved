@@ -41,7 +41,6 @@ const areaHighlightingFrox = () => {
       mapArea = 'dawn';
     } else if ('night' === phase) {
       const stage = user.quests.QuestFortRox.current_stage || '';
-      console.log(stage); // eslint-disable-line no-console
       // this is where we return
       // first-light-utter-darkness, twilight-midnight-pitch, or night
       mapArea = 'night';
@@ -134,7 +133,7 @@ const addProfilePicToCurrentFloor = async () => {
   document.body.appendChild(styleElement);
 };
 
-const addAreaHighlighting = () => {
+const doHighlighting = () => {
   const mapType = window.mhmapper.mapData.map_type;
 
   const existing = document.querySelector('.mouse-category-current-floor');
@@ -160,6 +159,15 @@ const addAreaHighlighting = () => {
   if (added) {
     addProfilePicToCurrentFloor();
   }
+
+  highlightSelf();
 };
 
-export default addAreaHighlighting;
+const highlightSelf = () => {
+  const self = document.querySelector(`.treasureMapView-hunter-wrapper[data-snuid="${user.sn_user_id}"] .treasureMapView-hunter-image-wrapper`);
+  if (self) {
+    self.classList.add('mapper-self');
+  }
+};
+
+export default doHighlighting;

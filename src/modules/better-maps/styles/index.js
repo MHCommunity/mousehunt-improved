@@ -1,7 +1,7 @@
 import { addUIStyles } from '../../utils';
 
 import general from './general.css';
-import hunter from './hunter.css';
+import hunters from './hunters.css';
 import mapArea from './map-ar.css';
 import mhct from './mhct.css';
 import sidebar from './sidebar.css';
@@ -10,7 +10,7 @@ import sorted from './sorted.css';
 const main = () => {
   addUIStyles([
     general,
-    hunter,
+    hunters,
     mapArea,
     mhct,
     sidebar,

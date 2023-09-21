@@ -19,32 +19,34 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
   // check if the attraction rates are cached
   const cachedAr = sessionStorage.getItem(`mhct-ar-${mouseId}-${type}`);
   if (cachedAr) {
-    mhctjson = JSON.parse(cachedAr);
-    if (! mhctjson || mhctjson.length === 0) {
-      return;
-    }
-  } else {
-    let mhctPath = 'mhct';
-    if ('item' === type) {
-      mhctPath = 'mhct-item';
-    }
-
-    const mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouseId}`);
-    mhctjson = await mhctdata.json();
-
-    if (! mhctjson || mhctjson.length === 0) {
-      return;
-    }
-
-    sessionStorage.setItem(`mhct-ar-${mouseId}`, JSON.stringify(mhctjson));
+    return JSON.parse(cachedAr);
   }
+
+  const isItem = 'item' === type;
+  const mhctPath = isItem ? 'mhct-item' : 'mhct';
+
+  if (! isItem) {
+    // todo: move to api - temporary thing
+    if (mouseId == 1143) { // eslint-disable-line eqeqeq
+      mouseId = '1652';
+    }
+  }
+
+  const mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouseId}`);
+  mhctjson = await mhctdata.json();
+
+  if (! mhctjson || mhctjson.length === 0) {
+    return {};
+  }
+
+  sessionStorage.setItem(`mhct-ar-${mouseId}-${type}`, JSON.stringify(mhctjson));
 
   return mhctjson;
 };
 
 const getArText = async (type) => {
   const rates = await getArForMouse(type);
-  if (! rates) {
+  if (! rates || rates.length === 0) {
     return false;
   }
 
@@ -57,10 +59,10 @@ const getArText = async (type) => {
   return (rate.rate / 100).toFixed(2);
 };
 
-const getHighestArText = async (type) => {
-  const rates = await getArForMouse(type);
-  if (! rates) {
-    return false;
+const getHighestArForMouse = async (mouseId) => {
+  const rates = await getArForMouse(mouseId);
+  if (! rates || rates.length === 0) {
+    return 0;
   }
 
   // sort by rate descending
@@ -68,10 +70,53 @@ const getHighestArText = async (type) => {
 
   const rate = rates[0];
   if (! rate) {
-    return false;
+    return 0;
   }
 
-  return (rate.rate / 100).toFixed(2);
+  return (rate.rate / 100);
+};
+
+const getHighestArText = async (type) => {
+  const highest = await getHighestArForMouse(type);
+  return highest ? highest : false;
+};
+
+const getArEl = async (id) => {
+  let ar = await getArText(id);
+  let arType = 'location';
+  if (! ar) {
+    ar = await getHighestArText(id);
+    arType = 'highest';
+  }
+
+  let arDifficulty = 'easy';
+  if (ar >= 99) {
+    arDifficulty = 'guaranteed';
+  } else if (ar >= 80) {
+    arDifficulty = 'super-easy';
+  } else if (ar >= 50) {
+    arDifficulty = 'easy';
+  } else if (ar >= 40) {
+    arDifficulty = 'medium';
+  } else if (ar >= 20) {
+    arDifficulty = 'hard';
+  } else if (ar >= 10) {
+    arDifficulty = 'super-hard';
+  } else if (ar >= 5) {
+    arDifficulty = 'extreme';
+  } else {
+    arDifficulty = 'impossible';
+  }
+
+  if (ar.toString().slice(-3) === '.00') {
+    ar = ar.toString().slice(0, -3);
+  }
+
+  const arEl = document.createElement('div');
+  arEl.classList.add('mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`);
+  arEl.textContent = `${ar}%`;
+
+  return arEl;
 };
 
 /**
@@ -130,10 +175,30 @@ const addArDataToMap = () => {
   });
 };
 
+/**
+ * Return an anchor element with the given text and href.
+ *
+ * @param {string}  text          Text to use for link.
+ * @param {string}  href          URL to link to.
+ * @param {boolean} encodeAsSpace Encode spaces as %20.
+ *
+ * @return {string} HTML for link.
+ */
+const makeLink = (text, href, encodeAsSpace = false) => {
+  if (encodeAsSpace) {
+    href = href.replace(/_/g, '%20');
+  }
+
+  return `<a href="${href}" target="_mouse" class="mousehuntActionButton tiny"><span>${text}</span></a>`;
+};
+
 export {
   addUIStyles,
   getArForMouse,
   getArText,
+  getHighestArForMouse,
   getHighestArText,
-  addArDataToMap
+  getArEl,
+  addArDataToMap,
+  makeLink
 };

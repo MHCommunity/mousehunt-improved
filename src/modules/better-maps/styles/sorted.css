@@ -205,8 +205,11 @@
   background-size: 100%;
 }
 
-
 #sorted-mice-container .mouse-subcategory-wrapper .mouse-subcategory-header {
   margin-bottom: 3px;
   border-bottom: 1px solid #070707;
+}
+
+.mhct-row.mhct-row-no-env {
+  cursor: not-allowed;
 }

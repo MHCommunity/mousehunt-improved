@@ -15,7 +15,7 @@ const makeUserTableLoading = (id, title, appendTo) => {
   appendTo.appendChild(loading);
 };
 
-const makeUserTable = (hunters, id, title, appendTo) => {
+const makeUserTable = async (hunters, id, title, appendTo) => {
   const loadingTitle = document.getElementById(`hunters-loading-${id}-title`);
   const loadingBlock = document.getElementById(`hunters-loading-${id}-block`);
   if (loadingTitle) {
@@ -26,7 +26,7 @@ const makeUserTable = (hunters, id, title, appendTo) => {
     loadingBlock.remove();
   }
 
-  const wrapper = makeElement('div', 'treasureMapView-block-title', title);
+  const wrapper = makeElement('div', 'treasureMapView-block-title', title.replace('#count#', hunters.length));
   wrapper.id = `hunters-${id}`;
   appendTo.appendChild(wrapper);
 
@@ -131,7 +131,7 @@ const getUserData = async (userId) => {
   });
 };
 
-const showHuntersTab = async () => {
+const removeEmptyHunterSlotsFromList = async () => {
   const emptySlots = document.querySelectorAll('.treasureMapView-allyCell.name');
   if (emptySlots.length) {
     let shouldRemove = false;
@@ -146,56 +146,78 @@ const showHuntersTab = async () => {
       }
     });
   }
+};
+
+const getLeftHunters = (mapData) => {
+  const huntersLeft = [];
+  mapData.hunters.forEach((hunter) => {
+    if (! hunter.is_active) {
+      huntersLeft.push(hunter);
+    }
+  });
+
+  return huntersLeft;
+};
+
+const modifyButtons = () => {
+  const buttons = [
+    {
+      selector: '.mh-ui-find-hunters-block .treasureMapAlliesView-showInviteButton',
+      text: 'Invite Friends',
+    },
+    {
+      selector: '.mh-ui-find-hunters-block .treasureMapAlliesView-showInviteTeamButton',
+      text: 'Invite Team',
+    },
+    {
+      selector: '.mh-ui-map-settings-block .treasureMapView-inviteModeButton',
+      text: 'Change Settings',
+    },
+    {
+      selector: '.mh-ui-share-block .treasureMapView-copyShareLinkButton',
+      text: 'Copy',
+    },
+  ];
+
+  buttons.forEach((button) => {
+    const el = document.querySelector(button.selector);
+    if (el) {
+      el.classList.add('tiny');
+      const text = el.querySelector('span');
+      if (text) {
+        text.textContent = button.text;
+      }
+    }
+  });
+};
+
+const showHuntersTab = async (mapData) => {
+  modifyButtons();
+  removeEmptyHunterSlotsFromList();
 
   const leftBlock = document.querySelector('.treasureMapView-leftBlock');
   if (! leftBlock) {
     return;
   }
 
-  const huntersLeft = [];
-  mhmapper.mapData.hunters.forEach((hunter) => {
-    if (! hunter.is_active) {
-      huntersLeft.push(hunter);
-    }
-  });
-
+  const huntersLeft = getLeftHunters(mapData);
   if (huntersLeft.length) {
-    makeUserTable(huntersLeft, 'left', `Hunters that have left map (${huntersLeft.length})`, leftBlock);
+    makeUserTable(huntersLeft, 'left', `Hunters that have left map (${huntersLeft.length || 0})`, leftBlock);
   }
 
-  if (mhmapper.mapData.invited_hunters.length) {
-    makeUserTableLoading('invited', `Invited hunters (${mhmapper.mapData.invited_hunters.length})`, leftBlock);
-    const invitedHunters = await getInvitedHunterData(mhmapper.mapData.invited_hunters, leftBlock);
-    makeUserTable(invitedHunters, 'invited', `Invited hunters (${invitedHunters.length})`, leftBlock);
+  if (mapData.invited_hunters.length) {
+    makeUserTableLoading('invited', `Invited hunters (${mapData.invited_hunters.length || 0})`, leftBlock);
+    const invitedData = await getInvitedHunterData(mapData.invited_hunters);
+    makeUserTable(invitedData, 'invited', 'Invited hunters (#count#)', leftBlock);
   }
 
-  if (mhmapper.mapData.invite_requests.length) {
-    makeUserTableLoading('requests', `Hunters requesting invite (${mhmapper.mapData.invite_requests.length})`, leftBlock);
-    const invitedHunters = await getInvitedHunterData(mhmapper.mapData.invite_requests, leftBlock);
-    makeUserTable(invitedHunters, 'requests', `Hunters requesting invite (${invitedHunters.length})`, leftBlock);
+  if (mapData.invite_requests?.length > 0) {
+    makeUserTableLoading('requests', `Invite Requests (${mapData.invite_requests.length || 0})`, leftBlock);
+    const requestData = await getInvitedHunterData(mapData.invite_requests);
+    makeUserTable(requestData, 'requests', 'Invite Requests (#count)', leftBlock);
   }
 };
 
-const maybeProcessHuntersTab = () => {
-  // Only do the hunters tab changes if its an active map.
-  // const isActiveMap = window.user.quests.QuestRelicHunter.maps.find((m) => m.map_id === map.map_id);
-  // if (! isActiveMap) {
-  //   return;
-  // }
-
-  const huntersTab = document.querySelector('.treasureMapRootView-subTab[data-type="manage_allies"]');
-  if (! huntersTab) {
-    return;
-  }
-
-  huntersTab.addEventListener('click', showHuntersTab);
+export {
+  showHuntersTab
 };
-
-const main = () => {
-  maybeProcessHuntersTab();
-  eventRegistry.addEventListener('map_data_loaded', (mapData) => {
-    maybeProcessHuntersTab(mapData);
-  });
-};
-
-export default main;

@@ -1,24 +1,5 @@
-import { addUIStyles, getArForMouse } from '../utils';
+import { addUIStyles, getArForMouse, makeLink } from '../utils';
 import styles from './styles.css';
-
-/**
- * Return an anchor element with the given text and href.
- *
- * @param {string}  text          Text to use for link.
- * @param {string}  href          URL to link to.
- * @param {boolean} encodeAsSpace Encode spaces as %20.
- *
- * @return {string} HTML for link.
- */
-const makeLink = (text, href, encodeAsSpace = false) => {
-  if (encodeAsSpace) {
-    href = href.replace(/_/g, '%20');
-  }
-
-  // href = href.replace(/\$/g, '_');
-
-  return `<a href="${href}" target="_mouse" class="mousehuntActionButton tiny"><span>${text}</span></a>`;
-};
 
 /**
  * Get the markup for the mouse links.
@@ -113,8 +94,6 @@ const updateMouseView = async () => {
   addLinks();
   addFavoriteButton(mouseId, mouseView);
 
-  const mhctjson = await getArForMouse(mouseId, 'mouse');
-
   mouseView.classList.add('mouseview-has-mhct');
 
   const group = document.querySelector('.mouseView-group');
@@ -165,16 +144,18 @@ const updateMouseView = async () => {
 
   arWrapper.appendChild(title);
 
+  const mhctjson = await getArForMouse(mouseId, 'mouse');
+  if (! mhctjson || typeof mhctjson === 'undefined' || mhctjson.length === 0 || 'error' in mhctjson) {
+    return;
+  }
+
   const miceArWrapper = makeElement('div', 'mice-ar-wrapper');
-
-  // check if there are stages in any of the mice
   const hasStages = mhctjson.some((mouseAr) => mouseAr.stage);
-
   if (hasStages) {
     miceArWrapper.classList.add('has-stages');
   }
 
-  mhctjson.forEach((mouseAr) => {
+  mhctjson.slice(0, 15).forEach((mouseAr) => {
     const mouseArWrapper = makeElement('div', 'mouse-ar-wrapper');
 
     makeElement('div', 'location', mouseAr.location, mouseArWrapper);
