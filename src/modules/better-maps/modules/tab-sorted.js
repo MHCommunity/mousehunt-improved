@@ -255,7 +255,7 @@ const makeSortedPageWrapper = () => {
   return sortedPage;
 };
 
-const makeSortedMiceList = () => {
+const makeSortedMiceList = async () => {
   // Get the current map data.
   const currentMapData = getMapData(window.mhmapper.mapData.map_id);
   const { unsortedMice, categories, subcategories } = getMouseDataForMap(currentMapData);
@@ -268,7 +268,7 @@ const makeSortedMiceList = () => {
   const categoriesWrapper = makeElement('div', 'mouse-category-container');
 
   // Foreach category, create a category wrapper
-  categories.forEach((category) => {
+  for (const category of categories) {
     const categoryID = category.id;
 
     // Create the category wrapper.
@@ -322,7 +322,7 @@ const makeSortedMiceList = () => {
       return 1;
     });
 
-    category.mice.forEach(async (mouse) => {
+    for (const mouse of category.mice) {
       // if the mouse is a string, then it's just a name, otherwise it's an object with a name and a subcategory
       let hasSubCat = false;
       let mouseType = mouse;
@@ -338,7 +338,7 @@ const makeSortedMiceList = () => {
       });
 
       if (mouseIndex === -1) {
-        return;
+        continue;
       }
 
       const mouseDiv = await makeMouseDiv(unsortedMice[mouseIndex]);
@@ -359,11 +359,10 @@ const makeSortedMiceList = () => {
       unsortedMice.splice(mouseIndex, 1);
 
       categoryWrapper.classList.remove('mouse-category-wrapper-hidden');
-    });
+    }
 
     // loop through the subcategories and add them to the category
-    // foreach key
-    subcategories.forEach((subcategory) => {
+    for (const subcategory of subcategories) {
       // if there are items in addToSubCat for this subcategory, then add them
       if (addToSubCat[subcategory.id] && addToSubCat[subcategory.id].length > 0) {
         // make a subcategory wrapper
@@ -393,10 +392,10 @@ const makeSortedMiceList = () => {
         subcategoryWrapper.appendChild(subcategoryMice);
         categoryWrapper.appendChild(subcategoryWrapper);
       }
-    });
+    }
 
     categoriesWrapper.appendChild(categoryWrapper);
-  });
+  }
 
   // make a category for the unsorted mice
   if (unsortedMice.length > 0) {
@@ -416,10 +415,10 @@ const makeSortedMiceList = () => {
 
     // Mice
     const unsortedMiceDiv = makeElement('div', 'mouse-category-mice');
-    unsortedMice.forEach(async (mouse) => {
-      const div = await makeMouseDiv(mouse);
-      unsortedMiceDiv.appendChild(div);
-    });
+    for (const mouse of unsortedMice) {
+      const mouseDiv = await makeMouseDiv(mouse);
+      unsortedMiceDiv.appendChild(mouseDiv);
+    }
 
     // Mice close
     unsortedWrapper.appendChild(unsortedMiceDiv);
