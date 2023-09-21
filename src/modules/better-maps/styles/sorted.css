@@ -67,7 +67,10 @@
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+}
+
+#sorted-mice-container .mouse-name {
+  flex: 1;
 }
 
 #sorted-mice-container .mouse-extra-info {
