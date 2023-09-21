@@ -145,6 +145,8 @@ const main = () => {
     });
   });
 
+  addMouseripLink();
+
   eventRegistry.doEvent('better-mh-after-load');
 };
 
