@@ -79,7 +79,7 @@
   margin-top: 0;
 }
 
-.journal .entry .journaltext * {
+.journal .entry .journaltext > * {
   line-height: 24px;
 }
 

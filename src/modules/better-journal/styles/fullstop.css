@@ -19,7 +19,8 @@
   content: "";
 }
 
-.journaltext > *:last-child::after {
+.journaltext .loot:last-of-type::after,
+.journaltext .lucky:last-of-type::after {
   display: inline;
   content: ".";
 }
