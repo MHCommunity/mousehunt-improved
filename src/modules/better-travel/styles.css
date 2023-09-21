@@ -160,3 +160,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.mhui-region-travel-item .icon {
+  border-radius: 5px;
+}
