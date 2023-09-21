@@ -58,7 +58,6 @@ const areaHighlightingFrox = () => {
 };
 
 const areaHighlightingFloatingIslands = () => {
-  console.log('areaHighlightingFloatingIslands'); // eslint-disable-line no-console
   if ('floating_islands' !== getCurrentLocation()) {
     return false;
   }
