@@ -30,6 +30,8 @@
   display: block;
 }
 
+.journal .entry .journaltext input.quickSendInput,
+.mousehuntPage-content input.quickSendInput,
 .quickSendInput {
   width: 65px;
   padding: 1px;
@@ -40,9 +42,11 @@
   cursor: pointer;
 }
 
+.journal .entry a .quickSendWrapper img,
 .quickSendWrapper img {
   width: 25px;
   height: auto;
+  border: none;
 }
 
 .quickSendGoWrapper {

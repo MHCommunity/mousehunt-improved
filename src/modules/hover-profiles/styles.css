@@ -142,7 +142,6 @@
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 2px;
   align-content: stretch;
   align-items: center;
   justify-items: center;
