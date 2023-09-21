@@ -10,11 +10,6 @@
   display: none !important;
 }
 
-.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table-cell.cost {
-  width: 0;
-  font-size: 0;
-}
-
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table {
   opacity: 0.75;
 }
@@ -372,6 +367,10 @@ a.itemPurchaseView-content-skin-link {
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-marketplace,
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-refund-container {
   display: block !important;
+}
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-goldGost {
+  opacity: .4;
 }
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity {
