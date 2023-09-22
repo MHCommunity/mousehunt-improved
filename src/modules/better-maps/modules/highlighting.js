@@ -40,7 +40,7 @@ const areaHighlightingFrox = () => {
     } else if ('dawn' === phase) {
       mapArea = 'dawn';
     } else if ('night' === phase) {
-      const stage = user.quests.QuestFortRox.current_stage || '';
+      // const stage = user.quests.QuestFortRox.current_stage || '';
       // this is where we return
       // first-light-utter-darkness, twilight-midnight-pitch, or night
       mapArea = 'night';

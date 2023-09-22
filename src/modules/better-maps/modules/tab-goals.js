@@ -116,7 +116,7 @@ const addClassesToGroups = (mapData) => {
       const url = image.getAttribute('style')
         .replace('background-image:url(', '')
         .replace('background-image: url(', '')
-        .replace(');', '')
+        .replace(');', '');
 
       hunter = mapData.hunters.find((h) => h.profile_pic === url);
     }
