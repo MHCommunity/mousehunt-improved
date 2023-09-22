@@ -61,7 +61,7 @@ const modules = [
       { id: 'better-send-supplies', name: 'Better Send Supplies', default: true, description: 'Adds a variety of features to the Send Supplies page.', load: betterSendSupplies, settings: betterSendSuppliesSettings },
       { id: 'better-shops', name: 'Better Shops', default: true, description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.', load: betterShops },
       { id: 'better-tournaments', name: 'Better Tournaments', default: true, description: 'Updates the Tournaments UI to show information on hover and a variety of small interface tweaks.', load: betterTournaments },
-      { id: 'better-travel', name: 'Better Travel', default: true, description: 'TODO:', load: betterTravel },
+      { id: 'better-travel', name: 'Better Travel', default: true, description: 'Updates the travel page.', load: betterTravel },
     ]
   },
   {
