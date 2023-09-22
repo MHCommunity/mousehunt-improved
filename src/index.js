@@ -93,7 +93,7 @@ const modules = [
     id: 'remove-elements',
     name: 'Hide Page Elements',
     modules: [
-      { id: 'adblock', name: 'Adblock', default: false, description: 'Hides ads on the MH website.', load: adblock },
+      { id: 'adblock', name: 'Adblock', default: false, description: 'Hides advertisments for Feedback friday, mobile apps, news ticker, etc.', load: adblock },
       { id: 'no-footer', name: 'Remove Footer', default: false, description: 'Hides the footer.', load: noFooter },
       { id: 'no-share', name: 'Remove Share Buttons', default: true, description: 'Hides the share buttons.', load: noShare },
       { id: 'no-sidebar', name: 'Remove Sidebar', default: false, description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.', load: noSidebar },
