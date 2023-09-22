@@ -270,3 +270,12 @@ span.mh-ui-fi-enemy-countdown-hunts {
 .floatingIslandsAdventureBoard-paragonItem.mousehuntTooltipParent {
   font-size: 14px;
 }
+
+a.floatingIslandsHUD-flightLogButton.mousehuntTooltipParent {
+  top: 2px;
+  left: 490px;
+  background-image: url(https://i.mouse.rip/upscaled/flight_log_button.png?1);
+  background-size: cover;
+  transform: scale(1.2);
+  transform-origin: left;
+}
