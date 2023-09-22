@@ -1,66 +1,6 @@
-import { getArEl, makeLink } from '../../utils';
+import { makeLink } from '../../utils';
+import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';
-
-// eslint-disable-next-line no-unused-vars
-const addArDataToMap = async (mapData) => {
-  const mice = mapData?.goals?.mouse || [];
-  if (mice.length === 0) {
-    return;
-  }
-
-  // Remove the hidden class if we've already added the AR data.
-  const goals = document.querySelectorAll('.treasureMapView-goals-groups');
-  if (goals && goals.length > 0) {
-    let hasAdded = false;
-
-    goals.forEach((goal) => {
-      if (goal.classList.contains('mh-ui-ar-hidden')) {
-        goal.classList.remove('mh-ui-ar-hidden');
-        hasAdded = true;
-      }
-    });
-
-    if (hasAdded) {
-      return;
-    }
-  }
-
-  mice.forEach(async (mouse) => {
-    const mouseEl = document.querySelector(`.treasureMapView-goals-group-goal[data-unique-id="${mouse.unique_id}"]`);
-    if (! mouseEl) {
-      return;
-    }
-
-    if (mouseEl.classList.contains('complete')) {
-      return;
-    }
-
-    if (mouseEl.getAttribute('data-mh-ui-ar')) {
-      const existing = mouseEl.querySelector('.mh-ui-ar');
-      if (existing) {
-        existing.remove();
-      }
-    }
-
-    const name = mouseEl.querySelector('.treasureMapView-goals-group-goal-name');
-    if (! name) {
-      return;
-    }
-
-    const arEl = await getArEl(mouse.unique_id);
-
-    name.appendChild(arEl);
-
-    mouseEl.setAttribute('data-mh-ui-ar', true);
-  });
-};
-
-const removeArDataFromMap = () => {
-  const goals = document.querySelectorAll('.treasureMapView-goals-groups');
-  goals.forEach((goal) => {
-    goal.classList.add('mh-ui-ar-hidden');
-  });
-};
 
 const getLinkMarkup = (name) => {
   return makeLink('MHCT AR', `https://www.mhct.win/attractions.php?mouse=${name}`, true) +
@@ -131,47 +71,6 @@ const addMouseLinksToMap = () => {
   });
 };
 
-const addArToggle = () => {
-  const wrapper = document.querySelector('.treasureMapRootView-subTabRow');
-  if (! wrapper) {
-    return;
-  }
-
-  const exists = document.querySelector('.mh-ui-toggle-ar-button');
-  if (exists) {
-    return;
-  }
-
-  const toggle = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-ui-toggle-ar-button']);
-  makeElement('span', 'toggle-ar-text', 'Show AR', toggle);
-
-  toggle.addEventListener('click', async () => {
-    toggle.classList.add('disabled');
-
-    const showing = toggle.getAttribute('data-showing');
-    if (showing === 'true') {
-      toggle.setAttribute('data-showing', false);
-      toggle.querySelector('.toggle-ar-text').innerText = 'Show AR';
-      removeArDataFromMap(window.mhmapper.mapData);
-    } else {
-      toggle.setAttribute('data-showing', true);
-      toggle.querySelector('.toggle-ar-text').innerText = 'Hide AR';
-      await addArDataToMap(window.mhmapper.mapData);
-    }
-
-    toggle.classList.remove('disabled');
-  });
-
-  wrapper.appendChild(toggle);
-};
-
-const removeArToggle = () => {
-  const toggle = document.querySelector('.mh-ui-toggle-ar-button');
-  if (toggle) {
-    toggle.remove();
-  }
-};
-
 const addClassesToGroups = (mapData) => {
   const groups = document.querySelectorAll('.treasureMapView-goals-groups');
   groups.forEach((group) => {
@@ -184,7 +83,7 @@ const addClassesToGroups = (mapData) => {
       return;
     }
 
-    const completed = title.innerText.indexOf(' found these mice:') !== -1;
+    const completed = title.innerText.indexOf(' found these mice:') !== -1 || title.innerText.indexOf(' found this mouse:') !== -1;
     group.classList.add('mh-ui-goals-group', completed ? 'completed' : 'incomplete');
 
     let countText = '';
@@ -198,20 +97,42 @@ const addClassesToGroups = (mapData) => {
       return;
     }
     // get the hunter name by removing the count and the 'found these mice' text
-    const hunterName = title.innerText.replace(countText, '').replace(' found these mice:', '').trim();
+    const hunterName = title.innerText
+      .replace(countText, '')
+      .replace(' found these mice:', '')
+      .replace(' found this mouse:', '')
+      .trim();
 
     // find the hunter in the list of hunters but looking at mapData.hunters and finding the matching name
     let hunter = mapData.hunters.find((h) => h.name.trim() === hunterName);
     if (! hunter) {
-      // see if it's our own name
+      // match the hunter using the image url
+      const image = group.querySelector('.treasureMapView-block-content-heading-image');
+      if (! image) {
+        return;
+      }
+
+      // get the style property of the image and get the url from it
+      const url = image.getAttribute('style')
+        .replace('background-image:url(', '')
+        .replace('background-image: url(', '')
+        .replace(');', '')
+
+      hunter = mapData.hunters.find((h) => h.profile_pic === url);
+    }
+
+    // Finally, fallback to trying to match the hunter name to the user's name in case of weirdness idk.
+    if (! hunter) {
       if (hunterName === `${user.firstname} ${user.lastname}` || hunterName === `${user.firstname}${user.lastname}`) {
         hunter = {
           name: `${user.firstname} ${user.lastname}`,
           sn_user_id: user.sn_user_id,
         };
-      } else {
-        return;
       }
+    }
+
+    if (! hunter) {
+      return;
     }
 
     const image = group.querySelector('.treasureMapView-block-content-heading-image');

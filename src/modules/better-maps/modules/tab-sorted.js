@@ -2,6 +2,7 @@ import mouseGroups from '../../../data/mice-map-groups.json';
 import environments from '../../../data/environments.json';
 import { getArEl, getArForMouse, getHighestArForMouse } from '../../utils';
 import { getMapData } from '../map-utils';
+import { addArToggle, removeArToggle } from './toggle-ar';
 import doHighlighting from './highlighting';
 
 const getMouseDataForMap = (currentMapData, type = 'mouse') => {
@@ -574,8 +575,6 @@ const addSortedMapTab = () => {
   sortedTab.setAttribute('data-type', 'sorted');
   sortedTab.innerText = 'Sorted';
 
-  sortedTab.addEventListener('click', processSortedTabClick);
-
   const divider = document.createElement('div');
   divider.className = 'treasureMapRootView-subTab-spacer';
 
@@ -587,9 +586,12 @@ const addSortedMapTab = () => {
 };
 
 const showSortedTab = () => {
+  processSortedTabClick();
+  addArToggle();
 };
 
 const hideSortedTab = () => {
+  removeArToggle();
 };
 
 export {

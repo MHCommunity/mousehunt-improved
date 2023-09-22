@@ -58,7 +58,7 @@
 }
 
 #sorted-mice-container .mouse-container {
-  margin-right: 5px;
+  padding-right: 5px;
   margin-bottom: 5px;
   cursor: pointer;
 }

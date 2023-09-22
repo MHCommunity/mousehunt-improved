@@ -444,11 +444,13 @@ img.mh-mapper-consolation-prize {
   margin-right: 5px;
 }
 
+.treasureMapView-block-title.mh-ui-environments-title,
+.treasureMapView-block-title.mh-ui-map-location-title,
 .treasureMapView-block-title.mh-ui-consolation-prizes-title {
   display: none;
 }
 
-.treasureMapView-block-title.mh-ui-goalssearch-title {
+.treasureMapView-block-title.mh-ui-goals-title {
   margin: -5px;
   color: transparent;
 }
