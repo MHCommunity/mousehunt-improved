@@ -38,8 +38,6 @@
 
 .journal .entry .journalimage a:hover,
 .journal .entry .journalimage a:focus {
-  padding: 1px;
-  margin: -1px;
   overflow: visible;
 }
 
@@ -60,9 +58,7 @@
 
 .journal .entry a:hover img,
 .journal .entry a:focus img {
-  border: none;
   outline: 2px solid #e70;
-  mix-blend-mode: normal;
 }
 
 /* Text */
