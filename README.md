@@ -4,6 +4,14 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
 
 **Over 150 features and improvements!**
 
+## Installation
+
+Firefox: [Install from Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/)
+
+Chrome: [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm)
+
+Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-mousehunt-improved) _(only recommended for use on mobile browsers or other cases where the extension isn't available)_
+
 ## UI Improvements
 
 - Better UI
