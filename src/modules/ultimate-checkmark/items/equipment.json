@@ -1,0 +1,164 @@
+[
+  {
+    "item_id": 2334,
+    "type": "rift_hourglass_stat_item",
+    "name": "Ancient Hourglass",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/86006a5a583e0b510c2d956ceb2aa9ba.png?cv=2"
+  },
+  {
+    "item_id": 3418,
+    "type": "chrome_codex_stat_item",
+    "name": "Chrome Codex",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/9e93cfb618d3bfd87661d8ff8f099052.png?cv=2"
+  },
+  {
+    "item_id": 2888,
+    "type": "codex_of_valor_bard_page_stat_item",
+    "name": "Codex of Valour: Bard Page",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/3c483f6680a30026e7107df802d1f4ce.png?cv=2"
+  },
+  {
+    "item_id": 2889,
+    "type": "codex_of_valor_dust_page_stat_item",
+    "name": "Codex of Valour: Dusty Page",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/c983a0437e2409b0a2296cb5f9809ef3.png?cv=2"
+  },
+  {
+    "item_id": 2890,
+    "type": "codex_of_valor_eclipse_page_stat_item",
+    "name": "Codex of Valour: Eclipse Page",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5dde79954a905480572d954a3bff3208.png?cv=2"
+  },
+  {
+    "item_id": 2891,
+    "type": "codex_of_valor_magic_page_stat_item",
+    "name": "Codex of Valour: Magic Page",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/79f69339aa1bca5c678ea754424052fe.png?cv=2"
+  },
+  {
+    "item_id": 2892,
+    "type": "codex_of_valor_melee_page_stat_item",
+    "name": "Codex of Valour: Melee Page",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/648da7cd68ec4cdebaa4244df0716c7f.png?cv=2"
+  },
+  {
+    "item_id": 2893,
+    "type": "codex_of_valor_nobility_page_stat_item",
+    "name": "Codex of Valour: Noble Page",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/8d0b3fe7261c8d121c302992ebe8ebae.png?cv=2"
+  },
+  {
+    "item_id": 2894,
+    "type": "codex_of_valor_puppetry_page_stat_item",
+    "name": "Codex of Valour: Puppetry Page",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/cff33d01270826ccd4e619b6e969184e.png?cv=2"
+  },
+  {
+    "item_id": 2895,
+    "type": "codex_of_valor_thievery_page_stat_item",
+    "name": "Codex of Valour: Thievery Page",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5acc2cc5a1594204bf91fda1b2e416cb.png?cv=2"
+  },
+  {
+    "item_id": 2426,
+    "type": "moussu_picchu_fealty_stat_item",
+    "name": "Climbing Boots of Fealty",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/95fb3ea7e1ed68bea4393b968279ea4b.png?cv=2"
+  },
+  {
+    "item_id": 2428,
+    "type": "moussu_picchu_tech_stat_item",
+    "name": "Climbing Grapnel of Tech",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/01db012fdbc68b151f913c29133d77ca.png?cv=2"
+  },
+  {
+    "item_id": 2427,
+    "type": "moussu_picchu_scholar_stat_item",
+    "name": "Climbing Vine of Scholars",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/a708b8b126f67a55f509dba142aef998.png?cv=2"
+  },
+  {
+    "item_id": 889,
+    "type": "iceberg_drill_level_four_stat_item",
+    "name": "Diamond Ice Drill",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/7ae345b6f2bde9a47e662b6a750d627c.gif?cv=2"
+  },
+  {
+    "item_id": 3271,
+    "type": "empyrean_codex_stat_item",
+    "name": "Empyrean Codex",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5392f862aaed731800d8bee0c8094395.png?cv=2"
+  },
+  {
+    "item_id": 3255,
+    "type": "high_altitude_license_stat_item",
+    "name": "High Altitude Flight License",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/a672ac78ebc5db9c51a0aa356fc6b3c0.png?cv=2"
+  },
+  {
+    "item_id": 890,
+    "type": "iceberg_drill_level_one_stat_item",
+    "name": "Ice Drill Mk. I",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/61e2718c5a6f5e092c89bb9620d1c6e9.gif?cv=2"
+  },
+  {
+    "item_id": 892,
+    "type": "iceberg_drill_level_two_stat_item",
+    "name": "Ice Drill Mk. II",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/e703b61f46f71e7823c11d883aa2b887.gif?cv=2"
+  },
+  {
+    "item_id": 891,
+    "type": "iceberg_drill_level_three_stat_item",
+    "name": "Ice Drill Mk. III",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/01ef6c31b2cd160f1bf49868cae51d02.gif?cv=2"
+  },
+  {
+    "item_id": 1912,
+    "type": "labyrinth_lantern",
+    "name": "Labyrinth Lantern",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png?cv=2"
+  },
+  {
+    "item_id": 1334,
+    "type": "large_waste_barrel_stat_item",
+    "name": "Large Refining Barrel",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/fc76ba2c71538601379542e747e2e581.png?cv=2"
+  },
+  {
+    "item_id": 1546,
+    "type": "null_gauntlet_stat_item",
+    "name": "Null Gauntlet",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/31165dbf6b6db915f6973f44b251f866.png?cv=2"
+  },
+  {
+    "item_id": 1525,
+    "type": "marketplace_sell_regal_display_case_collectible",
+    "name": "Regal Marketplace Display Case",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/collectibles/762c3b06c27fc0469728e200a66a4ecf.jpg?cv=2"
+  },
+  {
+    "item_id": 1524,
+    "type": "marketplace_buy_regal_stool_collectible",
+    "name": "Regal Marketplace Stool",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/collectibles/c85a2f3dee19e25eb27e1cbba052e256.jpg?cv=2"
+  },
+  {
+    "item_id": 2880,
+    "type": "rift_chronometer_stat_item",
+    "name": "Rift Chronometer",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/210796b9e766d0c2e3f5133446b3f874.png?cv=2"
+  },
+  {
+    "item_id": 2335,
+    "type": "rift_luck_codex_stat_item",
+    "name": "Riftstalker Codex",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5aac08c099e23916f710c99f7817c89a.png?cv=2"
+  },
+  {
+    "item_id": 528,
+    "type": "desert_warpath_victory_stat_item",
+    "name": "Warpath Victory",
+    "thumbnail": "https://www.mousehuntgame.com/images/items/stats/85fdfa73d10ab54dd0ff5262502a0ebc.gif?cv=2"
+  }
+]

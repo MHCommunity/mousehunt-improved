@@ -38,9 +38,5 @@
   {
     "target": "modules/external/taller-windows",
     "url": "https://github.com/mouseplace/mh-taller-windows/raw/main/mh-taller-windows.user.js"
-  },
-  {
-    "target": "modules/external/ultimate-checkmark",
-    "url": "https://github.com/mouseplace/mh-ultimate-checkmark/raw/main/mh-ultimate-checkmark.user.js"
   }
 ]

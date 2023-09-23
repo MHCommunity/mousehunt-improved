@@ -26,6 +26,7 @@ import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
 import quickSendSuppliesSettings from './modules/quick-send-supplies/settings';
 import temCrowns from './modules/tem-crowns';
+import ultimateCheckmark from './modules/ultimate-checkmark';
 
 // Copies of standalone userscripts.
 import catchStats from './modules/external/catch-stats';
@@ -38,7 +39,6 @@ import noShare from './modules/external/no-share';
 import noSidebar from './modules/external/no-sidebar';
 import shields from './modules/external/shields';
 import tallerWindows from './modules/external/taller-windows';
-import ultimateCheckmark from './modules/external/ultimate-checkmark';
 
 // Global styles and fixes.
 import required from './modules/_required';

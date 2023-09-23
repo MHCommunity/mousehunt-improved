@@ -1,0 +1,11 @@
+.hunterProfileItemsView-categoryContent[data-category="chest"] .hunterProfileItemsView-categoryContent-item.uncollected,
+.hunterProfileItemsView-categoryContent[data-category="airships"] .hunterProfileItemsView-categoryContent-item.uncollected,
+.hunterProfileItemsView-categoryContent[data-category="currency"] .hunterProfileItemsView-categoryContent-item.uncollected,
+.hunterProfileItemsView-categoryContent[data-category="equipment"] .hunterProfileItemsView-categoryContent-item.uncollected,
+.hunterProfileItemsView-categoryContent[data-category="plankrun"] .hunterProfileItemsView-categoryContent-item.uncollected {
+  filter: grayscale(100%);
+}
+
+.hunterProfileItemsView-categoryContent[data-category="chest"] .hunterProfileItemsView-categoryContent-item-padding .itemImage {
+  background-size: contain;
+}
