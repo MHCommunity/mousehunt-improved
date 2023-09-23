@@ -458,3 +458,7 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
 .itemPurchaseView-container.kings_calibrator_message_item.kingsCartItem.cannot_sell.own_max {
   display: none !important;
 }
+
+.itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.cost {
+  color: #a21010;
+}

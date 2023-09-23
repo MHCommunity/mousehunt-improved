@@ -10,7 +10,8 @@
   box-shadow: inset -1px 1px 3px 0 #d3cecb;
 }
 
-.adventureBookBanner-adventureName {
+.adventureBookBanner-adventureName,
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .adventureBookBanner-adventureName {
   padding: 15px 5px 0;
   margin-left: 75px;
   font-size: 15px;
@@ -20,6 +21,14 @@
   color: #373737;
   background: transparent;
   border-radius: 0;
+}
+
+.mh-dark-mode .adventureBookBanner-container {
+  color: #000;
+  background-color: #9b9b9b;
+  border: 1px solid #d3cecb;
+  border-radius: 3px;
+  box-shadow: inset -1px 1px 3px 0 #888;
 }
 
 .adventureBookBanner-adventureName span {

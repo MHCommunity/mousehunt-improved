@@ -219,7 +219,7 @@ input.inventoryPage-tagDirectory-searchBar-input {
 .mousehuntHud-page-subTabContent-prefix.clear-block {
   height: 25px;
   margin-top: -20px;
-  color: #fff;
+  color: transparent;
 }
 
 .inventoryPage-tagDirectory-searchBar {
@@ -227,7 +227,7 @@ input.inventoryPage-tagDirectory-searchBar-input {
   align-items: center;
   justify-content: space-evenly;
   padding-right: 0;
-  color: #fff;
+  color: transparent;
 }
 
 /* plankrun pages */

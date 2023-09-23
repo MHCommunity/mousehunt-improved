@@ -253,3 +253,13 @@ a.trapImageView-zoomButton {
 .journalThemeSelectorView-preview {
   min-height: 785px;
 }
+
+a.inventoryPage-tagDirectory-tag {
+  border: 1px solid #ccc;
+  border-right: none;
+}
+
+.inventoryPage-tagDirectory-tag:hover {
+  background-color: #dfdcdc;
+  box-shadow: 0 0 1px 0 #354661;
+}

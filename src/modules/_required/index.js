@@ -1,6 +1,7 @@
 import { addUIStyles } from '../utils';
 import globalStyles from './global-styles.css';
 import fixesStyles from './fixes.css';
+import darkmodeStyles from './darkmode.css';
 
 const updateItemClassificationLinks = () => {
   const itemClassificationLink = document.querySelectorAll('.itemView-header-classification-link a');
@@ -77,17 +78,49 @@ const addHelpLinks = () => {
   });
 };
 
+const checkForDarkModeAndAddBodyClass = () => {
+  // check for the --mhdm-mainDark css variable
+  const mainDark = getComputedStyle(document.documentElement).getPropertyValue('--mhdm-mainDark');
+  if (! mainDark) {
+    return false;
+  }
+
+  // add the dark mode class to the body
+  document.body.classList.add('mh-dark-mode');
+  return true;
+};
+
+const addDarkModeBodyClass = () => {
+  let added = checkForDarkModeAndAddBodyClass();
+  // add a delay to make sure the body class is added before the styles are applied.
+  if (! added) {
+    setTimeout(() => {
+      added = checkForDarkModeAndAddBodyClass();
+      if (! added) {
+        setTimeout(() => {
+          checkForDarkModeAndAddBodyClass();
+        }, 1000);
+      }
+    }, 500);
+  }
+};
+
 const main = () => {
   if ('item' === getCurrentPage()) {
     updateItemClassificationLinks();
   }
 
   addHelpLinks();
+  addDarkModeBodyClass();
+
+  onPageChange(addDarkModeBodyClass);
+  onRequest(addDarkModeBodyClass);
 };
 
 export default function fixes() {
   addUIStyles(globalStyles);
   addUIStyles(fixesStyles);
+  addUIStyles(darkmodeStyles);
 
   main();
 }

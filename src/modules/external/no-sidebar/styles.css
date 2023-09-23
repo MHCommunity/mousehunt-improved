@@ -103,3 +103,7 @@ body.no-sidebar .mousehuntHeaderView .menuItem.sidebar .dropdownContent .scorebo
 body.no-sidebar .mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a:focus {
   text-decoration: underline;
 }
+
+.dropdownContent .pageSidebarView-user {
+  color: #000;
+}
