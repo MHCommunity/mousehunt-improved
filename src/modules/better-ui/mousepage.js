@@ -216,7 +216,7 @@ const sortStats = (type, reverse = false) => {
     const bVal = getSetRowValue(b, type);
 
     // sort by value. If the values are the same, then sort by name
-    if (aVal === bVal) {
+    if (aVal === bVal || type === 'name') {
       const aName = a.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name').innerText;
       const bName = b.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name').innerText;
 
@@ -277,17 +277,14 @@ const addSortButton = (elements, type) => {
 
 const addSortingToCat = (cat) => {
   const cats = [
+    'name',
     'catches',
     'misses',
     'average_weight',
     'heaviest_catch',
   ];
 
-  const category = document.querySelector(`.mouseListView-categoryContent-category[data-category="${cat}"]`);
-  if (! category) {
-    return;
-  }
-
+  const category = document.querySelector(`.mousehuntHud-page-subTabContent.active .mouseListView-categoryContent-category[data-category="${cat}"]`);
   // if the category has the loading class, then we wait for the content to load
   if (category.classList.contains('loading')) {
     setTimeout(() => addSortingToCat(cat), 250);
@@ -299,7 +296,7 @@ const addSortingToCat = (cat) => {
   }
 
   cats.forEach((mcat) => {
-    const els = category.querySelectorAll(`.mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${cat}`);
+    const els = category.querySelectorAll(`.mouseListView-categoryContent-category.all.active .mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${mcat}`);
     if (els.length) {
       addSortButton(els, mcat);
     }
@@ -309,23 +306,18 @@ const addSortingToCat = (cat) => {
 };
 
 const addSortingTabClickListeners = () => {
-  const tabs = document.querySelectorAll('.active .mouseListView-categoryContainer .mouseListView-category');
-  if (! tabs.length) {
-    return;
-  }
-
-  // foreach tab, add an onlick listener that will add the sorting buttons and also keep track of the event listeners so that we can remove them later
-  tabs.forEach((tab) => {
-    const category = tab.getAttribute('data-category');
-    const onclick = tab.getAttribute('onclick');
-    tab.setAttribute('onclick', `${onclick.replace('return false;', '')}; window.mhui.addSortingToMousePageCategory('${category}'); return false;`);
-  });
+  const _categoryClickHandler = hg.views.MouseListView.categoryClickHandler;
+  hg.views.MouseListView.categoryClickHandler = (el) => {
+    _categoryClickHandler(el);
+    addSortingToCat(el.getAttribute('data-category'));
+  };
 };
 
 const addSortingToStatsPage = () => {
   const activeCatEl = document.querySelector('.mouseListView-categoryContainer.active .mouseListView-category');
-  if (activeCatEl && activeCatEl.getAttribute('data-category')) {
-    addSortingToCat(activeCatEl.getAttribute('data-category'));
+  const category = activeCatEl.getAttribute('data-category');
+  if (activeCatEl && category) {
+    addSortingToCat(category);
   } else {
     addSortingToCat('common');
   }
