@@ -21,6 +21,7 @@
 
 .journaltext .loot:last-of-type::after,
 .journaltext .lucky:last-of-type::after,
+.journaltext .item:last-of-type::after,
 .entry.short.supplytransferitem .journaltext a::after {
   display: inline;
   content: ".";
