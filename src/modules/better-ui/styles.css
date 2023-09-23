@@ -183,15 +183,6 @@ a.mousehuntHud-shield.golden:hover {
   height: 22px;
 }
 
-/* maps */
-.treasureMapRootView-subTab-label {
-  display: none;
-}
-
-.treasureMapView-block-search {
-  bottom: 0;
-}
-
 /* events */
 
 /* ronza */

@@ -455,6 +455,19 @@ img.mh-mapper-consolation-prize {
   color: transparent;
 }
 
+.treasureMapRootView-subTab-label {
+  display: none;
+}
+
+.treasureMapView-block-search {
+  right: 6px;
+  bottom: 20px;
+}
+
 input.treasureMapView-block-search-text {
   border: 1px solid #767676;
+}
+
+.treasureMapRootView-subTabRow {
+  align-items: center;
 }
