@@ -46,6 +46,9 @@ const addArDataToMap = async (mapData) => {
     }
 
     const arEl = await getArEl(mouse.unique_id);
+    if (! arEl) {
+      return;
+    }
 
     name.appendChild(arEl);
 

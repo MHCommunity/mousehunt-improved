@@ -50,6 +50,37 @@ const getArText = async (type) => {
     return false;
   }
 
+  // Check to see if its an empty object.
+  if (Object.keys(rates).length === 0 && rates.constructor === Object) {
+    const arButton = document.querySelector('.mh-ui-toggle-ar-button');
+    if (! arButton) {
+      return false;
+    }
+
+    const existingFailedMessage = document.querySelector('.mh-ui-ar-failed');
+    if (existingFailedMessage) {
+      return false;
+    }
+
+    const failedMessage = makeElement('div', ['mh-ui-ar-failed', 'mh-ui-fade'], 'Failed to load AR data.');
+    arButton.parentNode.insertBefore(failedMessage, arButton.nextSibling);
+    setTimeout(() => {
+      failedMessage.classList.add('mh-ui-fade-in');
+    }, 10);
+    setTimeout(() => {
+      failedMessage.classList.add('mh-ui-fade-out');
+    }, 2000);
+    setTimeout(() => {
+      failedMessage.remove();
+    }, 2500);
+
+    if (arButton.innerText === 'Hide AR') {
+      arButton.click();
+    }
+
+    return false;
+  }
+
   // find the rate that matches window.mhctLocation.stage and window.mhctLocation.location and has the highest rate
   const rate = rates.find((r) => r.stage === window.mhctLocation.stage && r.location === window.mhctLocation.location);
   if (! rate) {
@@ -62,6 +93,11 @@ const getArText = async (type) => {
 const getHighestArForMouse = async (mouseId) => {
   const rates = await getArForMouse(mouseId);
   if (! rates || rates.length === 0) {
+    return 0;
+  }
+
+  // make sure the rates aren't an empty object
+  if (Object.keys(rates).length === 0 && rates.constructor === Object) {
     return 0;
   }
 
@@ -86,6 +122,10 @@ const getArEl = async (id) => {
   let arType = 'location';
   if (! ar) {
     ar = await getHighestArText(id);
+    if (! ar) {
+      return false;
+    }
+
     arType = 'highest';
   }
 

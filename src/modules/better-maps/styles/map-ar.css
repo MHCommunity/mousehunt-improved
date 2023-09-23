@@ -66,3 +66,16 @@
 .mh-ui-toggle-ar-button {
   margin-left: 10px;
 }
+
+.mh-ui-ar-failed {
+  z-index: 21;
+  padding: 1px 3px;
+  margin-left: 10px;
+  font-size: 10px;
+  color: #160404;
+  background-color: #ea8585;
+  border: 1px solid #803e3e;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #5e5e5e;
+  opacity: 1;
+}

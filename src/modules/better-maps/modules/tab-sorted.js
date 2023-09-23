@@ -149,7 +149,9 @@ const makeMouseDiv = async (mouse) => {
   makeElement('div', 'mouse-name', mouse.name, mouseData);
 
   const mouseAr = await getArEl(mouse.unique_id);
-  mouseData.appendChild(mouseAr);
+  if (mouseAr) {
+    mouseData.appendChild(mouseAr);
+  }
 
   // Mouse header close.
   mouseDiv.appendChild(mouseData);
