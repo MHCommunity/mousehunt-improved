@@ -114,3 +114,7 @@ img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
   content: "";
   background-color: rgb(80 80 80 / 90%);
 }
+
+.dropdownContent {
+  color: #000;
+}
