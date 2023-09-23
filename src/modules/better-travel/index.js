@@ -57,6 +57,16 @@ const expandTravelRegions = () => {
   }
 };
 
+const travelClickHandler = (event) => {
+  const environment = event.target.getAttribute('data-environment');
+
+  // eslint-disable-next-line no-undef
+  app.pages.TravelPage.travel(environment);
+
+  // eslint-disable-next-line no-undef
+  hg.utils.PageUtil.setPage('Camp');
+};
+
 const cloneRegionMenu = () => {
   const regionMenu = document.querySelector('.travelPage-regionMenu');
   if (! regionMenu) {
@@ -69,17 +79,7 @@ const cloneRegionMenu = () => {
   if (travelLinks && travelLinks.length > 0) {
     travelLinks.forEach((link) => {
       link.setAttribute('onclick', 'return false;');
-      link.addEventListener('click', (event) => {
-        const environment = event.target.getAttribute('data-environment');
-
-        // eslint-disable-next-line no-undef
-        app.pages.TravelPage.travel(environment);
-
-        // eslint-disable-next-line no-undef
-        hg.utils.PageUtil.setPage('Camp');
-
-        return false;
-      });
+      link.addEventListener('click', travelClickHandler);
     });
   }
 
@@ -181,6 +181,7 @@ const addSimpleTravelPage = () => {
       // make a copy of the link
       const linkClone = link.cloneNode(true);
       alphaListContent.appendChild(linkClone);
+      linkClone.addEventListener('click', travelClickHandler);
     });
 
     alphaList.appendChild(alphaListContent);
