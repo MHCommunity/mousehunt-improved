@@ -286,7 +286,7 @@ const addSortingToCat = (cat) => {
 
   const category = document.querySelector(`.mousehuntHud-page-subTabContent.active .mouseListView-categoryContent-category[data-category="${cat}"]`);
   // if the category has the loading class, then we wait for the content to load
-  if (category.classList.contains('loading')) {
+  if (! category || (category && category.classList.contains('loading'))) {
     setTimeout(() => addSortingToCat(cat), 250);
     return;
   }
@@ -313,16 +313,20 @@ const addSortingTabClickListeners = () => {
   };
 };
 
-const addSortingToStatsPage = () => {
-  const activeCatEl = document.querySelector('.mouseListView-categoryContainer.active .mouseListView-category');
-  const category = activeCatEl.getAttribute('data-category');
-  if (activeCatEl && category) {
-    addSortingToCat(category);
-  } else {
-    addSortingToCat('common');
+const clickCurrentTab = () => {
+  const activeTab = document.querySelector('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabContent.active .mouseListView-categoryContainer.active a');
+  if (! activeTab) {
+    setTimeout(clickCurrentTab, 100);
+    return;
   }
 
+  addSortingToCat(activeTab.getAttribute('data-category'));
+  hg.views.MouseListView.categoryClickHandler(activeTab);
+};
+
+const addSortingToStatsPage = () => {
   addSortingTabClickListeners();
+  clickCurrentTab();
 };
 
 export default () => {
