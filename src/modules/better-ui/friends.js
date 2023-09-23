@@ -1,14 +1,3 @@
-const goToFriendsPageOnSearchSelect = () => {
-  onRequest((req) => {
-    // if we don't have the friends key and its not an array with one value, bail.
-    if (! req.friends || ! Array.isArray(req.friends) || 1 !== req.friends.length) {
-      return;
-    }
-
-    hg.utils.PageUtil.showHunterProfile(req.friends[0].sn_user_id);
-  }, 'managers/ajax/pages/friends.php');
-};
-
 const reorderBlocks = () => {
   if ('friends' !== getCurrentPage()) {
     return;
@@ -75,7 +64,6 @@ const listenForIDPaste = () => {
 
 export default () => {
   onNavigation(() => {
-    goToFriendsPageOnSearchSelect();
     reorderBlocks();
   }, {
     page: 'friends'
