@@ -123,6 +123,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds a crown image to each mouse, hovering over the mouse will show your total caught for that mouse.
 - Taller Windows
   - Makes popup windows taller.
+
+#### Element Hiding
+
 - Remove Footer
   - Hides the footer.
 - Remove Share Buttons
