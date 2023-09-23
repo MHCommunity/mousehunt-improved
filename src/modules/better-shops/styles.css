@@ -71,10 +71,6 @@ a.itemPurchaseView-image-trapPreview-link,
   background: #f9f9f9;
 }
 
-.itemPurchaseView-action-itemCost-table a {
-  mix-blend-mode: multiply;
-}
-
 .itemPurchaseView-action-itemCost-table-cell.cost {
   width: 45px;
   padding-left: 10px;
@@ -353,6 +349,11 @@ a.itemPurchaseView-content-skin-link {
   box-shadow: none;
 }
 
+.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container {
+  color: #fff;
+  background-color: #242424;
+}
+
 .itemPurchaseView-container .itemPurchaseView-content-details,
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details {
   height: 100%;
@@ -461,4 +462,17 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
 
 .itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.cost {
   color: #a21010;
+}
+
+.mh-dark-mode .itemPurchaseView-action-goldGost {
+  background-color: #0e0e0e;
+  border-color: #242424;
+}
+
+.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table {
+  opacity: 1;
+}
+
+.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table a {
+  color: #fffcfc;
 }

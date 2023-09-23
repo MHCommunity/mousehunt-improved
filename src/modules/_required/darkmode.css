@@ -1,0 +1,53 @@
+.mh-dark-mode  .pageFrameView #mousehuntContainer.PageCamp .adventureBookBanner-goalPadding {
+  background-color: transparent;
+}
+
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .adventureBookBanner-adventureName {
+  color: #000;
+}
+
+.mh-dark-mode .mousehuntActionButton {
+  box-shadow: 1px 1px 1px #535151;
+}
+
+.journal .relicHunter_complete, .journal .relicHunter_start,
+.mh-dark-mode .journal .content .catchsuccessloot {
+  color: #fff !important;
+  background-color: #2e2e2e;
+}
+
+.mh-dark-mode .journal a {
+  color: #009adf;
+}
+
+.entry.short.supplytransferitem {
+  background: url(https://i.mouse.rip/upscaled/item-add.png) no-repeat 10px center;
+  background-color: var(--mhdm-dark7);
+}
+
+.entry.short.supplytransferitem a {
+  color: #0c5271;
+}
+
+.mh-dark-mode .item_set,
+.mh-dark-mode .itemPurchaseView-action-goldGost {
+  background-color: (--mhdm-black);
+}
+
+.itemPurchaseView-action-goldGost {
+  background-color: #0e0e0e;
+  border-color: #242424;
+}
+
+.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container {
+  color: #fff;
+  background-color: #242424;
+}
+
+.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table {
+  opacity: 1;
+}
+
+.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table a {
+  color: #fffcfc;
+}
