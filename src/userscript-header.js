@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        🐭️ MouseHunt Improved
-// @description Improve your MouseHunt experience.
+// @description Improve your MouseHunt experience. Please only use this when the extension is not available, like on mobile.
 // @version     process.env.VERSION
 // @license     MIT
 // @author      bradp

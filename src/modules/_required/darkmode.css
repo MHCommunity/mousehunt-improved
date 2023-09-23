@@ -10,7 +10,7 @@
   box-shadow: 1px 1px 1px #535151;
 }
 
-.journal .relicHunter_complete, .journal .relicHunter_start,
+.mh-dark-mode .journal .relicHunter_complete, .journal .relicHunter_start,
 .mh-dark-mode .journal .content .catchsuccessloot {
   color: #fff !important;
   background-color: #2e2e2e;
@@ -29,12 +29,11 @@
   color: #0c5271;
 }
 
-.mh-dark-mode .item_set,
-.mh-dark-mode .itemPurchaseView-action-goldGost {
+.mh-dark-mode .item_set {
   background-color: (--mhdm-black);
 }
 
-.itemPurchaseView-action-goldGost {
+.mh-dark-mode .itemPurchaseView-action-goldGost {
   background-color: #0e0e0e;
   border-color: #242424;
 }
