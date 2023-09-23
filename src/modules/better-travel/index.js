@@ -323,14 +323,6 @@ const addSimpleTravel = () => {
   maybeSwitchToSimpleTravel();
 };
 
-/**
- * Add the settings for Simple Travel.
- */
-const addSimpleTravelSetting = () => {
-  addSetting('Travel Tweaks - Default to simple travel', 'simple-travel', false, 'Use the simple travel page by default.', {}, addSettingsTab());
-  addSetting('Travel Tweaks - Add alphabetical sorting', 'simple-travel-alpha-sort', false, 'Shows a list of travel locations alphabetically above the normal locations on the simple travel page.', {}, addSettingsTab());
-  addSetting('Travel Tweaks - Show travel reminders', 'travel-reminders', true, 'Show reminders about active resources.', {}, addSettingsTab());
-};
 
 const addRegionToTravelDropdown = () => {
   const currentLocation = getCurrentLocation();
@@ -381,9 +373,6 @@ const main = () => {
 
   onPageChange({ change: addSimpleTravel });
   addSimpleTravel();
-
-  onPageChange({ change: addSimpleTravelSetting });
-  addSimpleTravelSetting();
 
   if (window.location.search.includes('tab=simple-travel')) {
     // eslint-disable-next-line no-undef

@@ -2,6 +2,7 @@ import { addUIStyles } from '../utils';
 import globalStyles from './global-styles.css';
 import fixesStyles from './fixes.css';
 import darkmodeStyles from './darkmode.css';
+import settingsStyles from './settings.css';
 
 const updateItemClassificationLinks = () => {
   const itemClassificationLink = document.querySelectorAll('.itemView-header-classification-link a');
@@ -105,7 +106,23 @@ const addDarkModeBodyClass = () => {
   }
 };
 
+const continueOnKingsReward = (req) => {
+  if (req.success && req.puzzle_reward) {
+    const resume = document.querySelector('.puzzleView__resumeButton');
+    if (resume) {
+      resume.click();
+    }
+  }
+};
+
 const main = () => {
+  addUIStyles([
+    globalStyles,
+    fixesStyles,
+    darkmodeStyles,
+    settingsStyles,
+  ].join('\n'));
+
   if ('item' === getCurrentPage()) {
     updateItemClassificationLinks();
   }
@@ -115,12 +132,8 @@ const main = () => {
 
   onPageChange(addDarkModeBodyClass);
   onRequest(addDarkModeBodyClass);
+
+  onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
 };
 
-export default function fixes() {
-  addUIStyles(globalStyles);
-  addUIStyles(fixesStyles);
-  addUIStyles(darkmodeStyles);
-
-  main();
-}
+export default main;

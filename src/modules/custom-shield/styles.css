@@ -1,0 +1,97 @@
+#mh-shields .defaultSettingText {
+  display: none;
+}
+
+#mh-shields .settingRowTable {
+  display: inline-block;
+  width: 300px;
+}
+
+#mh-shields .settingRowTable:nth-child(even) {
+  margin-right: 50px;
+}
+
+#mh-shields .settingRow {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mousehuntHud-shield.larrys_football_challenge.golden {
+  background-image: url(https://www.mousehuntgame.com/images/ui/elements/header_world_cup_golden_shield.png?asset_cache_version=2);
+}
+
+.mousehuntHud-shield.scrambles.golden {
+  background-image: url(https://i.mouse.rip/shield-scrambles-bawk.png), url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
+}
+
+.mousehuntHud-shield.scrambles {
+  background-image: url(https://i.mouse.rip/shield-scrambles-bawk.png);
+}
+
+.mousehuntHud-shield.jerry.golden {
+  background-image: url(https://i.mouse.rip/shield-jerry.png), url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
+}
+
+.mousehuntHud-shield.jerry {
+  background-image: url(https://i.mouse.rip/shield-jerry.png);
+}
+
+.mousehuntHud-shield.capt-america.golden {
+  background-image: url(https://i.mouse.rip/shield-capt-america.png), url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
+}
+
+.mousehuntHud-shield.capt-america {
+  background-image: url(https://i.mouse.rip/shield-capt-america.png);
+}
+
+.mousehuntHud-shield.hylian::after {
+  position: absolute;
+  top: -8px;
+  left: 7px;
+  width: 145px;
+  height: 145px;
+  content: "";
+  background-image: url(https://i.mouse.rip/shield-hylian.png?2);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.mousehuntHud-shield.romeno::after {
+  position: absolute;
+  bottom: -8px;
+  left: -30px;
+  z-index: 1;
+  width: 140px;
+  height: 140px;
+  content: "";
+  background-image: url(https://i.mouse.rip/shield-romeno.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.mousehuntHud-shield.title::after {
+  position: absolute;
+  top: 3px;
+  left: 8px;
+  width: 120px;
+  height: 120px;
+  content: "";
+  filter: drop-shadow(0 0 10px #ff970a);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.mousehuntHud-shield.fabled::after {
+  position: absolute;
+  top: 3px;
+  left: 8px;
+  width: 120px;
+  height: 120px;
+  content: "";
+  background-image: url(https://i.mouse.rip/shield-fabled.png);
+  filter: drop-shadow(0 0 10px #ff970a);
+  background-repeat: no-repeat;
+  background-size: contain;
+}

@@ -8,14 +8,6 @@
     "url": "https://github.com/mouseplace/mh-catch-stats/raw/main/mh-catch-stats.user.js"
   },
   {
-    "target": "modules/external/fancy-kings-reward",
-    "url": "https://github.com/mouseplace/mh-fancy-kings-reward/raw/main/mh-fancy-kings-reward.user.js"
-  },
-  {
-    "target": "modules/external/gift-buttons",
-    "url": "https://github.com/mouseplace/mh-gift-buttons/raw/main/mh-gift-buttons.user.js"
-  },
-  {
     "target": "modules/external/journal-privacy",
     "url": "https://github.com/mouseplace/mh-journal-privacy/raw/main/mh-journal-privacy.user.js"
   },
@@ -30,10 +22,6 @@
   {
     "target": "modules/external/no-sidebar",
     "url": "https://github.com/mouseplace/mh-no-sidebar/raw/main/mh-no-sidebar.user.js"
-  },
-  {
-    "target": "modules/external/shields",
-    "url": "https://github.com/mouseplace/mh-shields/raw/main/mh-shields.user.js"
   },
   {
     "target": "modules/external/taller-windows",

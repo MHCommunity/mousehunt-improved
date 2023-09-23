@@ -1,0 +1,84 @@
+/* hack to make the settings page look better until some of this gets moved to mh-utils and settings move to the browser */
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .settingRow .settingRow-action-inputContainer.select.busy::before,
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .settingRow .settingRow-action-inputContainer.select.completed::before {
+  top: 30px;
+  right: -25px;
+  left: unset;
+}
+
+#mh-utils-settings-mousehunt-improved-better-travel-default-tab,
+#mh-utils-settings-mousehunt-improved-send-supplies-pinned-items,
+#mh-utils-settings-feature-modules-quick-send-supplies-items,
+#mh-utils-settings-feature-modules-gift-buttons-send-order,
+#mh-utils-settings-mousehunt-improved-better-travel-reminders {
+  margin-left: 30px;
+  max-width: 670px;
+}
+
+#mh-utils-settings-location-hud .settingRowTable .name,
+#mh-utils-settings-mousehunt-improved-better-travel-default-tab .name,
+#mh-utils-settings-mousehunt-improved-send-supplies-pinned-items .name,
+#mh-utils-settings-feature-modules-quick-send-supplies-items .name,
+#mh-utils-settings-feature-modules-gift-buttons-send-order .name,
+#mh-utils-settings-mousehunt-improved-better-travel-reminders .name {
+  font-size: 12px;
+}
+
+.inputBoxContainer.multiSelect {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+}
+
+.inputBox.multiSelect {
+  max-width: 130px;
+}
+
+#mh-utils-settings-ui-modules-better-travel-default-tab .inputBox.multiSelect,
+#mh-utils-settings-feature-modules-gift-buttons-send-order .inputBox.multiSelect {
+  max-width: unset;
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .settingRow-label {
+  padding: 10px 0;
+}
+
+/* Location HUD */
+
+#mh-utils-settings-location-hud .settingRowTable .settingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  border-bottom: none;
+}
+
+#mh-utils-settings-location-hud .settingRowTable .settingRow .settingRow-label,
+#mh-utils-settings-location-hud .settingRowTable .settingRow .settingRow-action {
+  display: inline-block;
+  padding: 0;
+  vertical-align: middle;
+}
+
+#mh-utils-settings-location-hud {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 40px;
+  justify-items: stretch;
+  margin: 0;
+}
+
+#mh-utils-settings-location-hud .settings-subheader,
+#mh-utils-settings-location-hud .separator {
+  grid-column: span 3;
+}
+
+#mh-utils-settings-location-hud .settingRowTable .settingRow .settingRow-action-inputContainer,
+#mh-utils-settings-location-hud .settingRowTable .settingRow .description {
+  padding: 0;
+  vertical-align: middle;
+}
+
+#mh-utils-settings-location-hud .settingRowTable .defaultSettingText {
+  display: none;
+}

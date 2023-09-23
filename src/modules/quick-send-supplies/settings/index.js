@@ -28,7 +28,7 @@ export default function (subModule, module) {
       name: module.name,
       description: module.description
     },
-    'better-mh-settings',
+    'mousehunt-improved-settings',
     {
       type: 'multi-select',
       number: 4,

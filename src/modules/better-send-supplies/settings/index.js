@@ -2,7 +2,7 @@ import getTradableItems from '../../../data/tradable-items';
 
 export default function (subModule, module) {
   addSetting(
-    'Send Supplies Pinned Items',
+    'Better Send Supplies Pinned Items',
     'send-supplies-pinned-items',
     [
       {
@@ -32,7 +32,7 @@ export default function (subModule, module) {
       name: module.name,
       description: module.description
     },
-    'better-mh-settings',
+    'mousehunt-improved-settings',
     {
       type: 'multi-select',
       number: 5,

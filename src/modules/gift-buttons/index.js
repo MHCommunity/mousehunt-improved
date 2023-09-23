@@ -264,15 +264,4 @@ export default () => {
       makeButtons();
     });
   }
-
-  const tab = addSettingsTab();
-
-  addSetting(
-    'Gift Buttons - Reverse Order',
-    'gift-buttons-reverse',
-    false,
-    'Accept and send gifts from oldest to newest instead of newest to oldest.',
-    {},
-    tab
-  );
 };

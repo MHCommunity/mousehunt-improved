@@ -1,6 +1,6 @@
 # 🐭️ MouseHunt Improved
 
-MouseHunt Improved is aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [Better MH](https://www.mousehuntgame.com/preferences.php?tab=better-mh-settings) tab of the settings screen.
+MouseHunt Improved is aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [Better MH](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings) tab of the settings screen.
 
 **Over 150 features and improvements!**
 
