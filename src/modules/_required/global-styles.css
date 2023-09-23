@@ -75,6 +75,23 @@
   opacity: 0;
 }
 
+.mh-ui-error-message,
+.mh-ui-success-message {
+  z-index: 21;
+  padding: 1px 3px;
+  font-size: 10px;
+  color: #160404;
+  background-color: #f5b9b9;
+  border: 1px solid #803e3e;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #5e5e5e;
+}
+
+.mh-ui-success-message {
+  background-color: #a3ea85;
+  border: 1px solid #3e803e;
+}
+
 @keyframes mh-ui-sway-side-to-side {
   0% {
     transform: rotate(0deg);

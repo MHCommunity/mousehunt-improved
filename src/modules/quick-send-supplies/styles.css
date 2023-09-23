@@ -112,3 +112,9 @@
   max-width: 30px !important;
   margin: 0;
 }
+
+.mh-ui-quick-send-error,
+.mh-ui-quick-send-success {
+  position: absolute;
+  bottom: -12px;
+}

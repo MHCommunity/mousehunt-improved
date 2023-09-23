@@ -62,17 +62,7 @@ const getArText = async (type) => {
       return false;
     }
 
-    const failedMessage = makeElement('div', ['mh-ui-ar-failed', 'mh-ui-fade'], 'Failed to load AR data.');
-    arButton.parentNode.insertBefore(failedMessage, arButton.nextSibling);
-    setTimeout(() => {
-      failedMessage.classList.add('mh-ui-fade-in');
-    }, 10);
-    setTimeout(() => {
-      failedMessage.classList.add('mh-ui-fade-out');
-    }, 2000);
-    setTimeout(() => {
-      failedMessage.remove();
-    }, 2500);
+    showErrorMessage('Failed to load AR data.', ['mh-ui-ar-failed'], arButton);
 
     if (arButton.innerText === 'Hide AR') {
       arButton.click();
@@ -232,6 +222,34 @@ const makeLink = (text, href, encodeAsSpace = false) => {
   return `<a href="${href}" target="_mouse" class="mousehuntActionButton tiny"><span>${text}</span></a>`;
 };
 
+const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
+  const typeClass = `mh-ui-${type}-message`;
+  const existing = document.querySelector(`.${typeClass}`);
+  if (existing) {
+    existing.remove();
+  }
+
+  const error = makeElement('div', [`mh-ui-${type}-message`, 'mh-ui-fade', classes], message);
+  appendTo.appendChild(error);
+
+  setTimeout(() => {
+    error.classList.add('mh-ui-fade-in');
+  }, 10);
+
+  setTimeout(() => {
+    error.classList.remove('mh-ui-fade-in');
+    // error.classList.add('mh-ui-fade-out');
+  }, 2000);
+
+  setTimeout(() => {
+    // error.remove();
+  }, 2500);
+};
+
+const showSuccessMessage = (message, appendTo, classes = []) => {
+  showErrorMessage(message, appendTo, classes, 'success');
+};
+
 export {
   addUIStyles,
   getArForMouse,
@@ -240,5 +258,7 @@ export {
   getHighestArText,
   getArEl,
   addArDataToMap,
-  makeLink
+  makeLink,
+  showErrorMessage,
+  showSuccessMessage
 };

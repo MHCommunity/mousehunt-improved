@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, showErrorMessage, showSuccessMessage } from '../utils';
 import styles from './styles.css';
 import getTradableItems from '../../data/tradable-items';
 
@@ -74,7 +74,6 @@ const makeSendSuppliesButton = (btn, snuid) => {
   quickSendInput.setAttribute('placeholder', 'Quantity');
 
   const quickSendButton = makeElement('div', ['quickSendButton', 'mousehuntActionButton', 'tiny'], '<span>Send</span>');
-  const message = makeElement('div', 'quickSendmessage', 'Sent!', quickSendGoWrapper);
 
   quickSendButton.addEventListener('click', () => {
     if (quickSendButton.classList.contains('disabled')) {
@@ -83,16 +82,19 @@ const makeSendSuppliesButton = (btn, snuid) => {
 
     const qty = quickSendInput.value;
     if (! qty) {
-      message.innerHTML = 'Please enter a quantity';
-      message.classList.add('full-opacity', 'error');
+      showErrorMessage('Please enter a quantity', quickSendGoWrapper, 'mh-ui-quick-send-error');
       return;
     }
 
     const selected = document.querySelector('.quickSendItem.selected');
+    if (! selected) {
+      showErrorMessage('Please select an item', quickSendGoWrapper, 'mh-ui-quick-send-error');
+      return;
+    }
+
     const item = selected.querySelector('.quickSendItemRadio');
     if (! item) {
-      message.innerHTML = 'Please select an item';
-      message.classList.add('full-opacity', 'error');
+      showErrorMessage('Please select an item', quickSendGoWrapper, 'mh-ui-quick-send-error');
       return;
     }
 
@@ -110,13 +112,7 @@ const makeSendSuppliesButton = (btn, snuid) => {
 
         quickSendButton.classList.remove('disabled');
 
-        message.innerHTML = `Sent ${qty} ${itemName}!`;
-        message.classList.remove('error');
-
-        message.style.opacity = 1;
-        setTimeout(() => {
-          message.style.opacity = 0;
-        }, 2000);
+        showSuccessMessage(`Sent ${qty} ${itemName}!`, quickSendGoWrapper, 'mh-ui-quick-send-success');
       }
     });
   });
