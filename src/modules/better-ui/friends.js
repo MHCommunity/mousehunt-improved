@@ -9,19 +9,6 @@ const goToFriendsPageOnSearchSelect = () => {
   }, 'managers/ajax/pages/friends.php');
 };
 
-const goToFriendPageOnSearchID = (req) => {
-  // Make sure we're on the search page.
-  if ('community' !== getCurrentSubtab()) {
-    return;
-  }
-
-  if (! req.friend.sn_user_id) {
-    return;
-  }
-
-  hg.utils.PageUtil.showHunterProfile(req.friend.sn_user_id);
-};
-
 const reorderBlocks = () => {
   if ('friends' !== getCurrentPage()) {
     return;
@@ -87,8 +74,6 @@ const listenForIDPaste = () => {
 };
 
 export default () => {
-  onRequest(goToFriendPageOnSearchID, 'managers/ajax/pages/friends.php');
-
   onNavigation(() => {
     goToFriendsPageOnSearchSelect();
     reorderBlocks();
