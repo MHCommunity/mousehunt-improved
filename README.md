@@ -12,7 +12,9 @@ Chrome: [Install from Chrome Web Store](https://chrome.google.com/webstore/detai
 
 Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-mousehunt-improved) _(only recommended for use on mobile browsers or other cases where the extension isn't available)_
 
-## UI Improvements
+## Features
+
+### Feature Modules
 
 - Better UI
   - Updates the MH interface with a variety of UI and style changes.
@@ -71,9 +73,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Hides items that use legacy costs in the King's Cart.
 - Better Tournaments
   - Updates the Tournaments UI to show information on hover and a variety of small interface tweaks.
-
-## Features
-
 - Copy ID Button
   - Hover over your profile picture in the HUD for a quick 'Copy ID to clipboard' button.
 - Fancy King's Reward
@@ -124,9 +123,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds a crown image to each mouse, hovering over the mouse will show your total caught for that mouse.
 - Taller Windows
   - Makes popup windows taller.
-
-## Element Hiding
-
 - Remove Footer
   - Hides the footer.
 - Remove Share Buttons
@@ -134,7 +130,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Remove Sidebar
   - Hides the sidebar and adds a 'Sidebar' dropdown in the top menu.
 
-## Location HUDs
+#### Location HUDs
 
 - Balack's Cove
   - Shows a countdown to the next low, mid, and high tides.
@@ -241,7 +237,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - S.S. Huntington IV
   - Slushy Shoreline
 
-## Fixes
+### Fixes
 
 - Fixes the vertical spacing for the Weekly & Friends checkboxes on scoreboards.
 - Fixes the team icon in the main menu.
