@@ -1,3 +1,6 @@
+import { addHudStyles } from "../../utils";
+import styles from "./styles.css";
+
 const getSections = (quest) => {
   const sections = [
     {
@@ -265,7 +268,7 @@ const addDeepWarning = async () => {
   appendTo.appendChild(warning);
 };
 
-const main = async () => {
+const hud = async () => {
   if ('iceberg' !== getCurrentLocation()) {
     return;
   }
@@ -355,7 +358,9 @@ const main = async () => {
   }
 };
 
-export default main;
+const main = () => {
+  addHudStyles('iceberg', styles);
+  hud();
+};
 
-// deep warning potentially?
-{ /* <div class="valourRiftHUD-warningContainer  active active"><a href="#" class="valourRiftHUD-baitWarning active" onclick="hg.views.HeadsUpDisplayRiftValourView.showTrapSelector(this); return false;">Only standard String baits and Gauntlet String are effective.</a><a href="#" class="valourRiftHUD-powerTypeWarning active" onclick="hg.views.HeadsUpDisplayRiftValourView.showTrapSelector(this); return false;">Only Rift traps are effective.</a></div> */ }
+export default main;

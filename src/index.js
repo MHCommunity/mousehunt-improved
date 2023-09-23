@@ -92,6 +92,14 @@ const modules = [
     ]
   },
   {
+    id: 'location-hud',
+    name: 'Location HUDs',
+    description: 'Location-specific HUD improvements',
+    modules: [
+      { id: 'location-huds', name: 'Location HUD Improvements', default: true, description: '', load: locationHud, alwaysLoad: true, settings: locationHudSettings },
+    ],
+  },
+  {
     id: 'remove-elements',
     name: 'Hide Page Elements',
     modules: [

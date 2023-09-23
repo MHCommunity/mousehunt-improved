@@ -13,6 +13,28 @@ const addUIStyles = (styles) => {
   document.head.appendChild(style);
 };
 
+const addHudStyles = (id, styles) => {
+  const key = `mh-improved-styles-location-hud-${id}`;
+
+  const existingStyles = document.getElementById(key);
+  if (existingStyles) {
+    return;
+  }
+
+  const style = document.createElement('style');
+  style.classList.add('mh-improved-styles-location-hud');
+  style.id = key;
+  style.innerHTML = styles;
+  document.head.appendChild(style);
+};
+
+const removeHudStyles = () => {
+  const styles = document.querySelectorAll('.mh-improved-styles-location-hud');
+  styles.forEach((style) => {
+    style.remove();
+  });
+};
+
 const getArForMouse = async (mouseId, type = 'mouse') => {
   let mhctjson = [];
 
@@ -252,6 +274,8 @@ const showSuccessMessage = (message, appendTo, classes = []) => {
 
 export {
   addUIStyles,
+  addHudStyles,
+  removeHudStyles,
   getArForMouse,
   getArText,
   getHighestArForMouse,

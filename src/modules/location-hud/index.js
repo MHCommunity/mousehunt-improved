@@ -1,140 +1,164 @@
 // Location HUD improvements.
-import { addUIStyles } from '../utils';
+import { addUIStyles, removeHudStyles } from '../utils';
+import cheeseSelectorStyles from './cheese-selectors.css';
 
-import balacksCove from './balacks-cove';
-import brift from './brift';
-import cheeseSelectors from './cheese-selectors';
-import floatingIslands from './floating-islands';
-import forbiddenGrove from './forbidden-grove';
-import fortRox from './fort-rox';
+// Locations
+/* eslint-disable camelcase */
+import acolyte_realm from './acolyte-realm';
+import ancient_city from './ancient-city';
+import balacks_cove from './balacks-cove';
+import bazaar from './bazaar';
+import bountiful_beanstalk from './bountiful-beanstalk';
+import calm_clearing from './calm-clearing';
+import cape_clawed from './cape-clawed';
+import catacombs from './catacombs';
+import clawshot_city from './claw-shot-city';
+import derr_dunes from './derr-dunes';
+import desert_city from './desert-city'; // Muridae Market.
+import desert_warpath from './desert-warpath'; // Fiery Warpath.
+import dojo from './dojo';
+import dracano from './dracano';
+import elub_shore from './elub-shore';
+import floating_islands from './floating-islands';
+import forbidden_grove from './forbidden-grove';
+import fort_rox from './fort-rox';
+import fungal_cavern from './fungal-cavern';
+import great_gnarled_tree from './great-gnarled-tree';
 import iceberg from './iceberg';
+import jungle_of_dread from './jungle-of-dread';
+import kings_arms from './kings-arms';
+import kings_gauntlet from './kings-gauntlet';
 import labyrinth from './labyrinth';
-import sunkenCity from './sunken-city';
-import vrift from './vrift';
+import lagoon from './lagoon';
+import meditation_room from './meditation-room';
+import nerg_plains from './nerg-plains';
+import pinnacle_chamber from './pinnacle-chamber';
+import pollution_outbreak from './pollution-outbreak'; // Toxic Spill.
+import rift_bristle_woods from './rift-bristle-woods';
+import rift_burroughs from './rift-burroughs';
+import rift_furoma from './rift-furoma';
+import rift_gnawnia from './rift-gnawnia';
+import rift_valour from './rift-valour';
+import rift_whisker_woods from './rift-whisker-woods';
+import slushy_shoreline from './slushy-shoreline';
+import ss_huntington_ii from './ss-huntington-ii';
+import sunken_city from './sunken-city';
+import table_of_contents from './table-of-contents';
+import tournament_hall from './tournament-hall';
+import town_of_digby from './town-of-digby';
+import train_station from './train-station';
+import zugzwang_tower from './zugzwang-tower';
+/* eslint-enable camelcase */
 
-import balacksCoveStyles from './balacks-cove/styles.css';
-import briftStyles from './brift/styles.css';
-import bwriftStyles from './bwrift/styles.css';
-import cheeseSelectorsStyles from './cheese-selectors/styles.css';
-import clawShotCityStyles from './claw-shot-city/styles.css';
-import fieryWarpathStyles from './fiery-warpath/styles.css';
-import floatingIslandsStyles from './floating-islands/styles.css';
-import forbiddenGroveStyles from './forbidden-grove/styles.css';
-import fortRoxStyles from './fort-rox/styles.css';
-import fungalCavernStyles from './fungal-cavern/styles.css';
-import furomaRiftStyles from './furoma-rift/styles.css';
-import gnawniaExpressStationStyles from './gnawnia-express-station/styles.css';
-import griftStyles from './grift/styles.css';
-import icebergStyles from './iceberg/styles.css';
-import livingGardenStyles from './living-garden/styles.css';
-import labyrinthStyles from './labyrinth/styles.css';
-import muridaeMarketStyles from './muridae-market/styles.css';
-import quesoStyles from './queso/styles.css';
-import sunkenCityStyles from './sunken-city/styles.css';
-import toxicSpillStyles from './toxic-spill/styles.css';
-import vriftStyles from './vrift/styles.css';
-import wwriftStyles from './wwrift/styles.css';
-import zokorStyles from './zokor/styles.css';
-import zugwangTowerStyles from './zugwang-tower/styles.css';
+// Regions
+import regionLivingGarden from './region-living-garden';
+import regionQueso from './region-queso';
+
+const normalizeCurrentLocation = (location) => {
+  const livingGardenRegions = [
+    'desert_oasis',
+    'lost_city',
+    'sand_dunes',
+  ];
+
+  if (livingGardenRegions.includes(location)) {
+    return 'region-living-garden';
+  }
+
+  const quesoRegions = [
+    'queso_geyser',
+    'queso_plains',
+    'queso_quarry',
+    'queso_river',
+  ];
+
+  if (quesoRegions.includes(location)) {
+    return 'region-queso';
+  }
+
+  return location;
+};
 
 const main = () => {
-  switch (getCurrentLocation()) {
-  case 'balacks_cove':
-    cheeseSelectors();
-    balacksCove();
-    break;
-  case 'rift_burroughs':
-    brift();
-    break;
-  case 'floating_islands':
-    floatingIslands();
-    break;
-  case 'forbidden_grove':
-    cheeseSelectors();
-    forbiddenGrove();
-    break;
-  case 'fort_rox':
-    fortRox();
-    break;
-  case 'iceberg':
-    iceberg();
-    break;
-  case 'labyrinth':
-    labyrinth();
-    break;
-  case 'rift_valour':
-    vrift();
-    break;
-  case 'sunken_city':
-    sunkenCity();
-    break;
-  case 'meadow':
-  case 'kings_arms':
-  case 'tournament_hall':
-  case 'kings_gauntlet':
-  case 'calm_clearing':
-  case 'great_gnarled_tree':
-  case 'lagoon':
-  case 'bazaar':
-  case 'town_of_digby':
-  case 'training_grounds':
-  case 'dojo':
-  case 'meditation_room':
-  case 'pinnacle_chamber':
-  case 'catacombs':
-  case 'cape_clawed':
-  case 'elub_shore':
-  case 'nerg_plains':
-  case 'derr_dunes':
-  case 'jungle_of_dread':
-  case 'dracano':
-  case 'ss_huntington_ii':
-  case 'slushy_shoreline':
-  case 'acolyte_realm':
-    cheeseSelectors();
-    break;
+  const currentLocation = getCurrentLocation();
+  const location = normalizeCurrentLocation(currentLocation);
+  if (! getSetting(location, true)) {
+    return;
+  }
+
+  /* eslint-disable camelcase */
+  const locationHandlers = {
+    acolyte_realm,
+    ancient_city,
+    balacks_cove,
+    bazaar,
+    bountiful_beanstalk,
+    calm_clearing,
+    cape_clawed,
+    catacombs,
+    clawshot_city,
+    derr_dunes,
+    desert_city,
+    desert_warpath,
+    dojo,
+    dracano,
+    elub_shore,
+    floating_islands,
+    forbidden_grove,
+    fort_rox,
+    fungal_cavern,
+    great_gnarled_tree,
+    iceberg,
+    jungle_of_dread,
+    kings_arms,
+    kings_gauntlet,
+    labyrinth,
+    lagoon,
+    meditation_room,
+    nerg_plains,
+    pinnacle_chamber,
+    pollution_outbreak,
+    rift_bristle_woods,
+    rift_burroughs,
+    rift_furoma,
+    rift_gnawnia,
+    rift_valour,
+    rift_whisker_woods,
+    slushy_shoreline,
+    ss_huntington_ii,
+    sunken_city,
+    table_of_contents,
+    tournament_hall,
+    town_of_digby,
+    train_station,
+    zugzwang_tower,
+    'region-living-garden': regionLivingGarden,
+    'region-queso': regionQueso,
+  };
+  /* eslint-enable camelcase */
+
+  if (locationHandlers[location]) {
+    locationHandlers[location]();
   }
 };
 
-const getStyles = () => {
-  return [
-    balacksCoveStyles,
-    briftStyles,
-    bwriftStyles,
-    cheeseSelectorsStyles,
-    clawShotCityStyles,
-    fieryWarpathStyles,
-    floatingIslandsStyles,
-    forbiddenGroveStyles,
-    fortRoxStyles,
-    fungalCavernStyles,
-    furomaRiftStyles,
-    gnawniaExpressStationStyles,
-    griftStyles,
-    icebergStyles,
-    livingGardenStyles,
-    labyrinthStyles,
-    muridaeMarketStyles,
-    quesoStyles,
-    sunkenCityStyles,
-    toxicSpillStyles,
-    vriftStyles,
-    wwriftStyles,
-    zokorStyles,
-    zugwangTowerStyles,
-  ].join('\n');
+const load = () => {
+  // We want to run this basically all the time.
+  onNavigation(main);
+  onTravel(main);
+
+  // Do it for every ajax request just in case, but specifically for the activeturn request.
+  onRequest(main);
+  onRequest(() => {
+    setTimeout(main, 500);
+  }, 'managers/ajax/turns/activeturn.php', true);
 };
 
-export default function locationHuds() {
-  addUIStyles(getStyles());
+const init = () => {
+  addUIStyles(cheeseSelectorStyles);
 
-  setTimeout(() => {
-    main();
-    onRequest(main);
-    onPageChange({ camp: { show: main } });
-    onTravel(null, { callback: main });
-    onRequest(() => {
-      setTimeout(main, 500);
-    }, 'managers/ajax/turns/activeturn.php', true);
-  }, 150);
-}
+  load();
+  setTimeout(load, 500);
+};
+
+export default init;

@@ -1,3 +1,6 @@
+import { addHudStyles } from "../../utils";
+import styles from "./styles.css";
+
 const updateHudImages = () => {
   const upscaleMapping = {
     '/crafting_items/thumbnails/1a7897042ba8f3fa31fa6805404456d6.gif': '/crafting_items/transparent_thumb/9197ccdec26278bfb07ab7846b1a2648.png', // damaged coral.
@@ -36,8 +39,13 @@ const updateHudImages = () => {
   });
 };
 
-const main = () => {
+const hud = () => {
   updateHudImages();
+};
+
+const main = () => {
+  addHudStyles('sunken-city', styles);
+  hud();
 };
 
 export default main;

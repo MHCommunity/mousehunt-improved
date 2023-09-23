@@ -1,3 +1,6 @@
+import { addHudStyles } from "../../utils";
+import styles from "./styles.css";
+
 const toggleFuelClass = (fuel, fuelCount) => {
   if (fuel.classList.contains('active')) {
     fuelCount.classList.add('active');
@@ -189,7 +192,7 @@ const onSkyMapShow = () => {
   });
 };
 
-const main = () => {
+const hud = () => {
   toggleFuel();
   addBossCountdown();
   setTimeout(addBossCountdown, 300);
@@ -202,6 +205,11 @@ const main = () => {
   showGloreProgress();
 
   onDialogShow(onSkyMapShow, 'floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace');
+};
+
+const main = () => {
+  addHudStyles('floating-islands', styles);
+  hud();
 };
 
 export default main;

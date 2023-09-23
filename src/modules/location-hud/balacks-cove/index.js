@@ -1,3 +1,8 @@
+import { addHudStyles } from '../../utils';
+import styles from './styles.css';
+
+import addCheeseSelector from '../cheese-selectors';
+
 const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) => {
   const hours = Math.floor(closes);
   const minutes = Math.ceil((closes - Math.floor(closes)) * 60);
@@ -43,7 +48,7 @@ const updateClosingTime = () => {
   return timeLeftEl;
 };
 
-const main = () => {
+const hud = () => {
   const hudBar = document.querySelector('.balacksCoveHUD-tideContainer');
   if (! hudBar) {
     return;
@@ -63,6 +68,17 @@ const main = () => {
   onTravel(null, { callback: () => {
     clearInterval(timer);
   } });
+};
+
+const main = () => {
+  addHudStyles('balacks-cove', styles);
+
+  addCheeseSelector('balacks-cove', [
+    'vanilla_stilton_cheese',
+    'vengeful_vanilla_stilton_cheese',
+  ]);
+
+  hud();
 };
 
 export default main;

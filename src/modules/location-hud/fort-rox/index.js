@@ -1,3 +1,6 @@
+import { addHudStyles } from "../../utils";
+import styles from "./styles.css";
+
 const phaseLengths = {
   stage_one: {
     hunts: 35,
@@ -167,11 +170,16 @@ const addPortalClass = () => {
   portal.classList.add(hasPortal ? 'frox-has-portal' : 'frox-no-portal');
 };
 
-const main = () => {
+const hud = () => {
   updateNightBar();
   updateUpgradeTooltips();
   updateWallHP();
   addPortalClass();
+};
+
+const main = () => {
+  addHudStyles('fort-rox', styles);
+  hud();
 };
 
 export default main;

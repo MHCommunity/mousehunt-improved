@@ -1,3 +1,6 @@
+import { addHudStyles } from "../../utils";
+import styles from "./styles.css";
+
 const highlightDoors = () => {
   if ('intersection' !== user?.quests?.QuestLabyrinth?.status) {
     return;
@@ -35,7 +38,22 @@ const highlightDoors = () => {
   }
 };
 
-const main = () => {
+const scrambleGems = () => {
+  const gems = document.querySelectorAll('.labyrinthHUD-scrambleGem');
+  if (! gems) {
+    return;
+  }
+
+  // remove the onclick attribute
+  gems.forEach((gem) => {
+    gem.removeAttribute('onclick');
+    gem.addEventListener('click', () => {
+      hg.views.HeadsUpDisplayLabyrinthView.labyrinthScrambleGem(gem, 2);
+    });
+  });
+};
+
+const hud = () => {
   if ('labyrinth' !== getCurrentLocation()) {
     return;
   }
@@ -149,19 +167,9 @@ const main = () => {
   }
 };
 
-const scrambleGems = () => {
-  const gems = document.querySelectorAll('.labyrinthHUD-scrambleGem');
-  if (! gems) {
-    return;
-  }
-
-  // remove the onclick attribute
-  gems.forEach((gem) => {
-    gem.removeAttribute('onclick');
-    gem.addEventListener('click', () => {
-      hg.views.HeadsUpDisplayLabyrinthView.labyrinthScrambleGem(gem, 2);
-    });
-  });
+const main = () => {
+  addHudStyles('labyrinth', styles);
+  hud();
 };
 
 export default main;

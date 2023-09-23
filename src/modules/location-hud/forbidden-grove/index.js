@@ -1,3 +1,8 @@
+import { addHudStyles } from "../../utils";
+import styles from "./styles.css";
+
+import addCheeseSelector from '../cheese-selectors';
+
 const updateClosingTime = () => {
   let timeLeftText = '';
 
@@ -22,7 +27,7 @@ const updateClosingTime = () => {
   return timeLeftEl;
 };
 
-const main = () => {
+const hud = () => {
   if ('forbidden_grove' !== getCurrentLocation()) {
     return;
   }
@@ -46,6 +51,18 @@ const main = () => {
   onTravel(null, { callback: () => {
     clearInterval(timer);
   } });
+};
+
+const main = () => {
+  addHudStyles('forbidden-grove', styles);
+  addCheeseSelector('forbidden-grove', [
+    'ancient_cheese',
+    'radioactive_blue_cheese',
+    'magical_radioactive_blue_cheese',
+    'moon_cheese',
+    'crescent_cheese',
+  ]);
+  hud();
 };
 
 export default main;
