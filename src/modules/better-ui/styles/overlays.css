@@ -3,23 +3,58 @@
 }
 
 /* Better buttons to match the modern ones */
-#overlayPopup .button {
-  padding: 0 15px;
-  line-height: 24px;
+#overlayPopup .button,
+.notificationMessageList .message .actions input[type="button"] {
+  padding: 2px 15px;
+  line-height: 18px;
   color: #000;
   text-shadow: 0 0 1px #fff;
-  background-color: #fff600;
+  background-color: #f4e830;
   border: 1px solid #000;
-  border-radius: 5px;
-  box-shadow: 0 0 5px #fff inset, 1px 1px 1px #fff;
+  border-radius: 4px;
+  box-shadow: 0 -5px 8px -2px #ffae00 inset, 1px 1px 1px #eee;
 }
 
 #overlayPopup .button:hover,
-#overlayPopup .button:focus {
-  background-color: #ffca00;
+#overlayPopup .button:focus,
+.notificationMessageList .message .actions input[type="button"]:hover,
+.notificationMessageList .message .actions input[type="button"]:focus {
+  background-color: #fff600;
   box-shadow: inset 0 0 16px 2px #fffaab;
+}
+
+.notificationMessageList .message .actions input[type="button"] {
+  padding: 1px 10px;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.notificationMessageList .message .actions input[type="button"].ignoreRequest {
+  background-color: #ffa5a5;
+  box-shadow: 0 -5px 8px -2px #f27b6a inset, 1px 1px 1px #eee;
+}
+
+.notificationMessageList .message .actions input[type="button"].ignoreRequest:hover,
+.notificationMessageList .message .actions input[type="button"].ignoreRequest:focus {
+  background-color: #f48686;
 }
 
 .mouseView-categoryContent-subgroup-mouse-weaknesses-label {
   border-color: rgb(51 51 51 / 34%);
+}
+
+.message.daily_draw.ballot .date {
+  margin-top: -15px;
+  margin-left: 50px;
+}
+
+
+.notificationMessageList .message {
+  position: relative;
+}
+
+.notificationMessageList .message .actions {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
