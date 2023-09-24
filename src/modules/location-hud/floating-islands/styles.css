@@ -124,9 +124,10 @@ span.floatingIslandsHUD-huntsRemaining {
   margin-right: 8px;
   margin-left: 7px;
   font-size: 14px;
-  background: linear-gradient(218deg, #0e8eeb 0%, #28eeff 100%);
+  pointer-events: none;
+  background: linear-gradient(218deg, #7baabd, #568295);
   border-radius: 3px;
-  box-shadow: 0 0 2px 2px #09577f inset, 0 2px 7px 1px #37feff;
+  box-shadow: inset 0 0 2px 2px #09577f, 0 2px 8px 1px #78aabd;
 }
 
 .floatingIslandsHUD-fuel-quantity.quantity:hover,
@@ -135,8 +136,8 @@ span.floatingIslandsHUD-huntsRemaining {
 }
 
 .floatingIslandsHUD-fuel-quantity.quantity.active {
-  background: linear-gradient(218deg,#7baabd,#568295);
-  box-shadow: inset 0 0 2px 2px #09577f, 0 2px 8px 1px #78aabd;
+  background: linear-gradient(218deg, #0e8eeb 0%, #28eeff 100%);
+  box-shadow: 0 0 2px 2px #09577f inset, 0 2px 7px 1px #37feff;
 }
 
 .floatingIslandsHUD-retreatButton,

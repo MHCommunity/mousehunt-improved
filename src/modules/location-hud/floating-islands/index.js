@@ -1,8 +1,8 @@
 import { addHudStyles } from '../../utils';
 import styles from './styles.css';
 
-const toggleFuelClass = (fuel, fuelCount) => {
-  if (fuel.classList.contains('active')) {
+const toggleFuelClass = (fuelCount, isActive) => {
+  if (! isActive) {
     fuelCount.classList.add('active');
   } else {
     fuelCount.classList.remove('active');
@@ -17,27 +17,19 @@ const toggleFuel = () => {
     return;
   }
 
-  const fuelCount = document.querySelector('.floatingIslandsHUD-fuel-quantity.quantity');
+  const fuelCount = document.querySelector('.floatingIslandsHUD-fuel-quantity');
   if (! fuelCount) {
     return;
   }
 
   const enabled = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.is_fuel_enabled || false;
-  if (enabled && ! fuel.classList.contains('active')) {
-    toggleFuelClass(fuel, fuelCount);
+  if (enabled) {
+    fuelCount.classList.add('active');
   }
 
-  fuelCount.addEventListener('click', () => {
+  fuel.addEventListener('click', (e) => {
+    toggleFuelClass(fuelCount, e.target.classList.contains('active'));
     hg.views.HeadsUpDisplayFloatingIslandsView.toggleFuel(fuel);
-    setTimeout(() => {
-      toggleFuelClass(fuel, fuelCount);
-    }, 250);
-  });
-
-  fuel.addEventListener('click', () => {
-    setTimeout(() => {
-      toggleFuelClass(fuel, fuelCount);
-    }, 250);
   });
 };
 
@@ -194,6 +186,7 @@ const onSkyMapShow = () => {
 
 const hud = () => {
   toggleFuel();
+
   addBossCountdown();
   setTimeout(addBossCountdown, 300);
   setTimeout(addBossCountdown, 500);
