@@ -23,13 +23,13 @@ const addLinks = () => {
     return;
   }
 
-  const currentLinks = document.querySelector('.mh-mouse-links');
+  const currentLinks = document.querySelector('.mh-ui-mouse-links');
   if (currentLinks) {
     currentLinks.remove();
   }
 
   const div = document.createElement('div');
-  div.classList.add('mh-mouse-links');
+  div.classList.add('mh-ui-mouse-links');
   div.innerHTML = getLinkMarkup(title.innerText);
   title.parentNode.insertBefore(div, title);
 

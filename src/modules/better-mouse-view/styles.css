@@ -15,23 +15,23 @@
   line-height: 24px;
 }
 
-.mh-mouse-links {
+.mh-ui-mouse-links {
   display: inline-block;
   float: right;
   margin-right: 15px;
 }
 
-.mh-mouse-links-map {
+.mh-ui-mouse-links-map {
   display: flex;
   justify-content: center;
   padding-bottom: 5px;
 }
 
-.mh-mouse-links a {
+.mh-ui-mouse-links a {
   margin-right: 10px;
 }
 
-.mh-mouse-links-map a {
+.mh-ui-mouse-links-map a {
   margin: 10px 10px 10px 0;
 }
 
@@ -40,7 +40,7 @@
   font-size: 11px;
 }
 
-.mh-mouse-links-map .mousehuntActionButton.tiny {
+.mh-ui-mouse-links-map .mousehuntActionButton.tiny {
   margin: 3px;
 }
 
@@ -138,7 +138,7 @@
   line-height: 19px;
 }
 
-.mh-mouse-links-map-name {
+.mh-ui-mouse-links-map-name {
   color: #3b5998;
   cursor: pointer;
 }
@@ -149,11 +149,11 @@
   text-align: center;
 }
 
-.mh-mouse-links-map-name:hover {
+.mh-ui-mouse-links-map-name:hover {
   text-decoration: underline;
 }
 
-.mh-mouse-links-map .treasureMapView-highlight-group {
+.mh-ui-mouse-links-map .treasureMapView-highlight-group {
   text-align: center;
 }
 

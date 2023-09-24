@@ -45,7 +45,7 @@ const addMouseLinksToMap = () => {
         return;
       }
 
-      title.classList.add('mh-mouse-links-map-name');
+      title.classList.add('mh-ui-mouse-links-map-name');
 
       title.addEventListener('click', () => {
         hg.views.MouseView.show(mouseType);
@@ -53,14 +53,13 @@ const addMouseLinksToMap = () => {
 
       title.setAttribute('data-mouse-id', mouseType);
 
-      const existing = document.querySelector(`#mh-mouse-links-map-${mouseType}`);
+      const existing = document.querySelector(`#mh-ui-mouse-links-map-${mouseType}`);
       if (existing) {
         return;
       }
 
-      const div = document.createElement('div');
-      div.classList.add('mh-mouse-links-map');
-      div.id = `mh-mouse-links-map-${mouseType}`;
+      const div = makeElement('div', 'mh-ui-mouse-links-map');
+      div.id = `mh-ui-mouse-links-map-${mouseType}`;
       div.innerHTML = getLinkMarkup(title.innerText);
 
       const envs = document.querySelector('.treasureMapView-highlight-environments');

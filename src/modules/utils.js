@@ -174,7 +174,7 @@ const addArDataToMap = () => {
         return;
       }
 
-      title.classList.add('mh-mouse-links-map-name');
+      title.classList.add('mh-ui-mouse-links-map-name');
 
       title.addEventListener('click', () => {
         hg.views.MouseView.show(mouseType);
@@ -183,7 +183,7 @@ const addArDataToMap = () => {
       title.setAttribute('data-mouse-id', mouseType);
 
       const div = document.createElement('div');
-      div.classList.add('mh-mouse-links-map');
+      div.classList.add('mh-ui-mouse-links-map');
       div.innerHTML = getLinkMarkup(title.innerText);
 
       const envs = document.querySelector('.treasureMapView-highlight-environments');
