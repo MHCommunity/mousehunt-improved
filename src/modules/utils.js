@@ -47,13 +47,6 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
   const isItem = 'item' === type;
   const mhctPath = isItem ? 'mhct-item' : 'mhct';
 
-  if (! isItem) {
-    // todo: move to api - temporary thing
-    if (mouseId == 1143) { // eslint-disable-line eqeqeq
-      mouseId = '1652';
-    }
-  }
-
   const mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouseId}`);
   mhctjson = await mhctdata.json();
 
