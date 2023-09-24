@@ -39,8 +39,90 @@ const updateHudImages = () => {
   });
 };
 
+const makeCharmElement = (charm, appendTo) => {
+  const wrapper = makeElement('a', ['charm', 'mhui-sunken-charm']);
+  if (user.trinket_item_id == charm.item_id) { // eslint-disable-line eqeqeq
+    wrapper.classList.add('active');
+  }
+
+  wrapper.setAttribute('href', '#');
+  wrapper.setAttribute('data-item-type', charm.type);
+  wrapper.setAttribute('data-item-classification', 'trinket');
+  wrapper.setAttribute('title', charm.name);
+  wrapper.setAttribute('onclick', 'app.views.HeadsUpDisplayView.hud.sunkenCityArmItem(this);return false;');
+
+  const clearBlock = makeElement('div', 'clear-block');
+
+  const itemImage = makeElement('div', 'itemImage');
+  const image = makeElement('img');
+  image.setAttribute('src', charm.thumbnail_transparent);
+  itemImage.appendChild(image);
+  clearBlock.appendChild(itemImage);
+
+  const quantity = makeElement('div', 'item quantity', charm.quantity);
+  quantity.setAttribute('data-item-type', charm.type);
+  clearBlock.appendChild(quantity);
+
+  wrapper.appendChild(clearBlock);
+
+  if ('smart_water_jet_trinket' == charm.type) { // eslint-disable-line eqeqeq
+    charm.description = 'Overcharge your engine for a 500m boost with an automatic unequip after the hunt.';
+  } else if ('brilliant_water_jet_trinket' == charm.type) { // eslint-disable-line eqeqeq
+    charm.description = 'Supercharge your engine for a boost to the end of the current zone!';
+  } else if ('spiked_anchor_trinket' == charm.type) { // eslint-disable-line eqeqeq
+    charm.description = 'Slow down your sub while also boosting your power!';
+  } else if ('golden_anchor_trinket' == charm.type) { // eslint-disable-line eqeqeq
+    charm.description = 'Set your sub to super-slow and also find additional sand dollars!';
+  }
+
+  const toolTip = makeElement('div', 'toolTip');
+  toolTip.innerHTML = `<b>${charm.name}s</b><br>${charm.description}`;
+  wrapper.appendChild(toolTip);
+
+  appendTo.appendChild(wrapper);
+};
+
+const addMoreCharms = async () => {
+  const charmsWrapper = document.querySelector('.sunkenCityHud .sunkenCharms');
+  if (! charmsWrapper) {
+    return;
+  }
+
+  // remove any existing ones we've added.
+  const existingCharms = charmsWrapper.querySelectorAll('.mhui-sunken-charm');
+  existingCharms.forEach((charm) => {
+    charm.remove();
+  });
+
+  const itemsData = await getUserItems([
+    'spiked_anchor_trinket',
+    'smart_water_jet_trinket',
+    'golden_anchor_trinket',
+    'brilliant_water_jet_trinket',
+  ]);
+
+  if (user.trinket_item_id == 1517) { // eslint-disable-line eqeqeq
+    const waterJetCharm = document.querySelector('.sunkenCityHud .sunkenCharms a[data-item-type="water_jet_trinket"]');
+    if (waterJetCharm) {
+      waterJetCharm.classList.add('active');
+    }
+  }
+
+  if (user.trinket_item_id == 423) { // eslint-disable-line eqeqeq
+    const anchorCharm = document.querySelector('.sunkenCityHud .sunkenCharms a[data-item-type="anchor_trinket"]');
+    if (anchorCharm) {
+      anchorCharm.classList.add('active');
+    }
+  }
+
+  itemsData.forEach((item) => {
+    makeCharmElement(item, charmsWrapper);
+  });
+};
+
 const hud = () => {
   updateHudImages();
+  addMoreCharms();
 };
 
 const main = () => {
