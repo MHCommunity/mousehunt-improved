@@ -1,4 +1,4 @@
-import environments from '../../data/environments';
+import environments from '../../data/environments.json';
 
 export default function (subModule, module) {
   const locationsToUnset = [
