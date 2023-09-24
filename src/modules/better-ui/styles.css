@@ -263,3 +263,18 @@ a.inventoryPage-tagDirectory-tag {
   background-color: #dfdcdc;
   box-shadow: 0 0 1px 0 #354661;
 }
+
+/* mousepage stuff */
+.mouseListView-categoryContent-subgroup-name {
+  font-size: 13px;
+  border-radius: 10px;
+}
+
+.mouseListView-categoryContent-subgroup-mouse .mouseListView-categoryContent-subgroup-mouse-margin {
+  transition: .2s;
+}
+
+.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
+  background-size: 100%;
+}
+
