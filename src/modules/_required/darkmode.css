@@ -10,7 +10,8 @@
   box-shadow: 1px 1px 1px #535151;
 }
 
-.mh-dark-mode .journal .relicHunter_complete, .journal .relicHunter_start,
+.mh-dark-mode .journal .relicHunter_complete,
+.mh-dark-mode .journal .relicHunter_start,
 .mh-dark-mode .journal .content .catchsuccessloot {
   color: #fff !important;
   background-color: #2e2e2e;
