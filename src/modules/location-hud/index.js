@@ -31,6 +31,7 @@ import kings_gauntlet from './kings-gauntlet';
 import labyrinth from './labyrinth';
 import lagoon from './lagoon';
 import meditation_room from './meditation-room';
+import moussu_picchu from './moussu-picchu';
 import nerg_plains from './nerg-plains';
 import pinnacle_chamber from './pinnacle-chamber';
 import pollution_outbreak from './pollution-outbreak'; // Toxic Spill.
@@ -115,6 +116,7 @@ const main = () => {
     labyrinth,
     lagoon,
     meditation_room,
+    moussu_picchu,
     nerg_plains,
     pinnacle_chamber,
     pollution_outbreak,
