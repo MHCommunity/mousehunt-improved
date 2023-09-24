@@ -98,9 +98,6 @@ const intercept = () => {
 const main = () => {
   addStyles();
 
-  // Initialize the mapper.
-  eventRegistry.addEventListener('mapper_loaded', initMapper);
-
   // Fire the different tab clicks.
   eventRegistry.addEventListener('map_sorted_tab_click', showSortedTab);
   eventRegistry.addEventListener('map_show_goals_tab_click', showGoalsTab);
@@ -109,6 +106,9 @@ const main = () => {
     hideGoalsTab(map);
     hideSortedTab(map);
   });
+
+  // Initialize the mapper.
+  eventRegistry.addEventListener('mapper_loaded', initMapper);
 
   intercept();
 };
