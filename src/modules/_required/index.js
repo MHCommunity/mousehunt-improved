@@ -80,9 +80,7 @@ const addHelpLinks = () => {
 };
 
 const checkForDarkModeAndAddBodyClass = () => {
-  // check for the --mhdm-mainDark css variable
-  const mainDark = getComputedStyle(document.documentElement).getPropertyValue('--mhdm-mainDark');
-  if (! mainDark) {
+  if (! isDarkMode()) {
     return false;
   }
 
