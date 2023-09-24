@@ -88,14 +88,6 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
 
     // append the crown to the name
     name.appendChild(crownWrapper);
-
-    const arEl = mouse.querySelector('.campPage-trap-trapEffectiveness-mouse-chance');
-    if (arEl) {
-      const text = await getArText(mouseStats.type);
-      if (text) {
-        arEl.textContent = `${text}%`;
-      }
-    }
   });
 };
 
