@@ -39,9 +39,15 @@
   font-weight: 900;
 }
 
-.pageFrameView-footer br,
-.pageFrameView-footer-ad {
+.pageFrameView-footer br {
   display: none;
+}
+
+.pageFrameView-footer-ad {
+  position: absolute;
+  right: -40px;
+  bottom: -160px;
+  left: -60px;
 }
 
 .mousehuntFooter {
