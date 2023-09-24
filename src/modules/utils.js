@@ -274,11 +274,11 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
 
   setTimeout(() => {
     error.classList.remove('mh-ui-fade-in');
-    // error.classList.add('mh-ui-fade-out');
+    error.classList.add('mh-ui-fade-out');
   }, 2000);
 
   setTimeout(() => {
-    // error.remove();
+    error.remove();
   }, 2500);
 };
 
