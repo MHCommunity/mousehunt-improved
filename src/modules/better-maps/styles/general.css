@@ -471,3 +471,20 @@ input.treasureMapView-block-search-text {
 .treasureMapRootView-subTabRow {
   align-items: center;
 }
+
+.treasureMapView-highlight {
+  padding: 3px;
+  box-shadow: none;
+}
+
+.treasureMapView-highlight-content {
+  padding: 6px 0;
+}
+
+.treasureMapView-highlight.goal.active.sticky.mouse.has-mhct-ars {
+  width: 40%;
+}
+
+.treasureMapView-highlight-weakness-types img {
+  width: 17px;
+}

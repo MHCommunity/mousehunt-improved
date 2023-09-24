@@ -1,4 +1,4 @@
-#sorted-mice-container .mhct-data {
+.mhct-data {
   position: absolute;
   right: -1px;
   left: -1px;
@@ -9,11 +9,16 @@
   box-shadow: 0 1px 2px -1px #000;
 }
 
-#sorted-mice-container .mouse-container-selected .mhct-data {
+.mouse-container-selected .mhct-data {
   display: block;
 }
 
-#sorted-mice-container .mhct-title {
+.treasureMapView-highlight.goal.sticky .mh-ui-mouse-links-map-ars .mhct-data {
+  display: block;
+  padding-top: 10px;
+}
+
+.mhct-title {
   display: none;
   padding: 10px;
   margin-bottom: 10px;
@@ -21,7 +26,7 @@
   border-bottom: 1px solid #dedede;
 }
 
-#sorted-mice-container .mhct-row {
+.mhct-row {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
   align-items: center;
@@ -30,27 +35,61 @@
   font-size: 11px;
 }
 
-#sorted-mice-container .mhct-row:hover,
-#sorted-mice-container .mhct-row:nth-child(odd):hover,
-#sorted-mice-container .mhct-row:nth-child(even):focus {
+.mhct-row:hover,
+.mhct-row:nth-child(odd):hover,
+.mhct-row:nth-child(even):focus {
   background-color: #d2d2d2;
 }
 
-#sorted-mice-container .mhct-row:nth-child(odd) {
+.mhct-row:nth-child(odd) {
   background-color: #e2e2e2;
 }
 
-#sorted-mice-container .mhct-location {
+.mhct-location {
   display: flex;
   flex-direction: column;
 }
 
-#sorted-mice-container .mhct-stage {
+.mhct-stage {
   color: #676767;
 }
 
-#sorted-mice-container .mhct-rate {
+.mhct-rate {
   font-family: monospace;
   font-size: 15px;
   text-align: right;
+}
+
+.mh-ui-mouse-links-map-ars .mhct-data {
+  position: relative;
+  background-color: #fff;
+  color: #000;
+  border-top: none;
+  margin-top: -9px;
+  left: -1px;
+  right: -1px;
+  width: 100%;
+}
+
+.mh-ui-mouse-links-map-ars .mhct-row:nth-child(odd) {
+  background-color: #f2f2f2;
+  color: #000;
+}
+
+.mh-ui-mouse-links-map-ars .mhct-rate {
+  font-size: 14px;
+}
+
+.mh-ui-mouse-links-map-ars .mhct-row {
+  justify-items: stretch;
+  align-items: start;
+}
+
+.mh-ui-mouse-links-map-ars  .mhct-title {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 0;
+  padding: 3px 9px;
+  border-top: 1px solid #dedede;
+  background-color: #f4f4f4;
 }

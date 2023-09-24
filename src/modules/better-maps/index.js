@@ -10,24 +10,31 @@ const interceptMapRequest = (mapId) => {
     return;
   }
 
-  const init = (data) => {
+  const init = (mapData) => {
     // / append the map data to the window.mhui object, keeping the other properties
     window.mhui = {
       ...window.mhui,
       mapper: {
-        mapData: data,
-        mapModel: new hg.models.TreasureMapModel(data),
+        mapData,
+        mapModel: new hg.models.TreasureMapModel(mapData),
       }
     };
 
-    eventRegistry.doEvent('mapper_loaded', data);
+    eventRegistry.doEvent('mapper_loaded', mapData);
     return data;
   };
 
-  const data = getMapData(mapId, true);
+  let data = getMapData(mapId, true);
   if (data) {
     return init(data);
   }
+
+  setTimeout(() => {
+    data = getMapData(mapId, true);
+    if (data) {
+      return init(data);
+    }
+  }, 500);
 };
 
 const initMapper = (map) => {
@@ -37,7 +44,7 @@ const initMapper = (map) => {
 
   // get the treasureMapRootView-content element, and if it has a loading class, wait for the class to be removed by watching the element for chagnes. once its loaded, proceed with our code
   const content = document.querySelector('.treasureMapRootView-content');
-  if (content.classList.contains('loading')) {
+  if (content && content.classList.contains('loading')) {
     const observer = new MutationObserver((mutations, mobserver) => {
       mutations.forEach((mutation) => {
         if (
@@ -86,6 +93,9 @@ const intercept = () => {
   hg.controllers.TreasureMapController.showMap = (id = false) => {
     parentShowMap(id);
     interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
+    setTimeout(() => {
+      interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
+    }, 1000);
   };
 
   onAjaxRequest((data) => {
@@ -93,6 +103,21 @@ const intercept = () => {
       setMapData(data.treasure_map.map_id, data.treasure_map);
     }
   }, 'managers/ajax/users/treasuremap.php', true); // eslint-disable-line no-undef
+};
+
+const clearStickyMouse = () => {
+  const sticky = document.querySelector('.treasureMapView-highlight');
+  if (sticky) {
+    sticky.classList.remove('sticky');
+    sticky.classList.remove('active');
+  }
+
+  const mapGroupGoal = document.querySelectorAll('.treasureMapView-goals-group-goal');
+  if (mapGroupGoal) {
+    mapGroupGoal.forEach((goal) => {
+      goal.classList.remove('sticky');
+    });
+  }
 };
 
 const main = () => {
@@ -105,6 +130,7 @@ const main = () => {
   eventRegistry.addEventListener('map_tab_click', (map) => {
     hideGoalsTab(map);
     hideSortedTab(map);
+    clearStickyMouse();
   });
 
   // Initialize the mapper.

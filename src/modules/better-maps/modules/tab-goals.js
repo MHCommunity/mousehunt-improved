@@ -1,4 +1,5 @@
 import { makeLink } from '../../utils';
+import { addMHCTData } from '../map-utils';
 import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';
 
@@ -11,7 +12,7 @@ const getLinkMarkup = (name) => {
 /**
  * Add links to the mouse details on the map.
  */
-const addMouseLinksToMap = () => {
+const addMouseLinksToMap = async () => {
   const overlay = document.getElementById('overlayPopup');
   if (! (overlay && overlay.classList.contains('treasureMapPopup'))) {
     return;
@@ -39,7 +40,7 @@ const addMouseLinksToMap = () => {
       .replaceAll(' ', '')
       .trim();
 
-    mouse.addEventListener('click', () => {
+    mouse.addEventListener('click', async () => {
       const title = document.querySelector('.treasureMapView-highlight-name');
       if (! title) {
         return;
@@ -66,6 +67,34 @@ const addMouseLinksToMap = () => {
       if (envs) {
         envs.parentNode.insertBefore(div, envs.nextSibling);
       }
+
+      let appendMHCTto = document.querySelector('.treasureMapView-highlight-weaknessContainer');
+      if (! appendMHCTto) {
+        appendMHCTto = document.querySelector('.mh-ui-mouse-links-map');
+      }
+
+      const existingArs = document.querySelectorAll('.mh-ui-mouse-links-map-ars');
+      if (existingArs && existingArs.length > 0) {
+        existingArs.forEach((ar) => ar.remove());
+      }
+
+      const container = document.querySelector('.treasureMapView-highlight.goal.active');
+      if (! container) {
+        return;
+      }
+
+      const arsEl = makeElement('div', 'mh-ui-mouse-links-map-ars');
+      arsEl.id = `mh-ui-mouse-links-map-ars-${mouseType}`;
+      await addMHCTData({ unique_id: mouseType }, arsEl, 'mouse');
+
+      // if there wasn't a change to theArsEl div, then don't add it.
+      if (arsEl.innerHTML === '') {
+        return;
+      }
+
+      container.classList.add('has-mhct-ars');
+
+      container.appendChild(arsEl);
     });
   });
 };
@@ -144,8 +173,7 @@ const addClassesToGroups = (mapData) => {
       });
     }
 
-    const replacementTitle = document.createElement('div', 'mh-ui-mapper-goals-group-completed-title');
-    replacementTitle.classList.add('treasureMapView-block-content-heading');
+    const replacementTitle = makeElement('div', 'treasureMapView-block-content-heading');
 
     if (image) {
       replacementTitle.appendChild(image);
