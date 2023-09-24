@@ -81,6 +81,8 @@ const normalizeCurrentLocation = (location) => {
 };
 
 const main = () => {
+  removeHudStyles();
+
   const currentLocation = getCurrentLocation();
   const location = normalizeCurrentLocation(currentLocation);
   if (! getSetting(location, true)) {
