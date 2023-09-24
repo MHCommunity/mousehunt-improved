@@ -106,7 +106,7 @@ const getArEl = async (id) => {
   if (! ar) {
     ar = await getHighestArText(id);
     if (! ar || ar.length === 0) {
-      return makeElement('div', 'mh-ui-no-ar');
+      return makeElement('div', ['mh-ui-ar', 'mh-ui-no-ar'], '?');
     }
 
     arType = 'highest';
