@@ -41,13 +41,13 @@
 
 .sunkenCityHud .sunkenCharms {
   top: 0;
-  bottom: 0;
   right: 131px;
-  padding-right: 3px;
+  bottom: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-items: stretch;
+  padding-right: 3px;
   background: #333;
   border: 1px solid #7e7e7e;
   border-radius: 5px 0 0 5px;
@@ -55,11 +55,11 @@
 
 .sunkenCityHud .sunkenCharms a {
   position: initial;
-  border: none;
   padding: 0 1px;
   margin-left: 2px;
-  border-radius: 9px;
   background-color: #646465;
+  border: none;
+  border-radius: 9px;
 }
 
 .sunkenCityHud .sunkenCharms a.active {
@@ -68,9 +68,9 @@
 }
 
 .sunkenCityHud .sunkenCharms a .toolTip {
+  top: 10px;
   right: 130px;
   left: unset;
-  top: 10px;
   font-size: 10px;
 }
 
@@ -146,19 +146,19 @@
 .sunkenCityHud .sidebar .diveButton {
   width: 35px;
   height: 20px;
-  line-height: 22px;
-  font-size: 9px;
   padding: 2px;
-  text-align: center;
   margin-right: 3px;
+  font-size: 9px;
+  line-height: 22px;
+  text-align: center;
   box-shadow: 3px 3px 3px #ee9d47 inset, -5px -5px 50px #c66c0c inset;
 }
 
 .sunkenCityHud .sidebarTitle {
   font-size: 14px;
+  letter-spacing: 3px;
   background-color: #474747;
   border: none;
-  letter-spacing: 3px;
 }
 
 .sunkenCityHud .sidebarContent {
