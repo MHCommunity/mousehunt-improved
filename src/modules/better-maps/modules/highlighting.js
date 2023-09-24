@@ -86,8 +86,6 @@ const areaHighlightingFloatingIslands = () => {
 
   const islandPowerType = powerTypeMappings[fiAtts.island_power_type] || '';
 
-  console.log(islandType, islandPowerType); // eslint-disable-line no-console
-
   const floorCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-esp-${islandPowerType}`);
   if (! floorCategory) {
     return false;
@@ -111,7 +109,6 @@ const getProfilePic = async () => {
     'snuids[]': user.sn_user_id,
   });
 
-  console.log(userData.friends[0].profile_pic); // eslint-disable-line no-console
   return userData?.friends?.[0]?.profile_pic || 'https://www.mousehuntgame.com//images/ui/friends/anonymous_user.png';
 };
 
