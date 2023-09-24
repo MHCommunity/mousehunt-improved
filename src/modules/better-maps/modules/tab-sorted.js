@@ -165,7 +165,7 @@ const makeMouseDiv = async (mouse) => {
 
   const locationLocations = makeElement('div', 'mouse-locations');
   mouse.environment_ids.forEach((environmentID) => {
-    const environment = window.mhui.mapData.environments.find((env) => {
+    const environment = window.mhui.mapper?.mapData?.environments.find((env) => {
       return env.id === environmentID;
     });
 
