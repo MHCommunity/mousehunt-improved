@@ -58,7 +58,7 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
   mhctjson = await mhctdata.json();
 
   if (! mhctjson || mhctjson.length === 0) {
-    return {};
+    return [];
   }
 
   sessionStorage.setItem(`mhct-ar-${mouseId}-${type}`, JSON.stringify(mhctjson));
@@ -94,7 +94,7 @@ const getArText = async (type) => {
   }
 
   // find the rate that matches window.mhctLocation.stage and window.mhctLocation.location and has the highest rate
-  const rate = rates.find((r) => r.stage === window.mhctLocation.stage && r.location === window.mhctLocation.location);
+  const rate = rates[0];
   if (! rate) {
     return false;
   }
@@ -134,8 +134,8 @@ const getArEl = async (id) => {
   let arType = 'location';
   if (! ar) {
     ar = await getHighestArText(id);
-    if (! ar) {
-      return false;
+    if (! ar || ar.length === 0) {
+      return makeElement('div', 'mh-ui-no-ar');
     }
 
     arType = 'highest';
@@ -245,6 +245,10 @@ const makeLink = (text, href, encodeAsSpace = false) => {
 };
 
 const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
+  if (! appendTo) {
+    appendTo = document.querySelector('.treasureMapRootView-subTabRow.treasureMapRootView-padding');
+  }
+
   const typeClass = `mh-ui-${type}-message`;
   const existing = document.querySelector(`.${typeClass}`);
   if (existing) {
@@ -252,7 +256,17 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
   }
 
   const error = makeElement('div', [`mh-ui-${type}-message`, 'mh-ui-fade', classes], message);
-  appendTo.appendChild(error);
+  // try catch appending the error to the appendTo element
+  let success = true;
+  try {
+    appendTo.appendChild(error);
+  } catch (e) {
+    success = false;
+  }
+
+  if (! success) {
+    return;
+  }
 
   setTimeout(() => {
     error.classList.add('mh-ui-fade-in');
@@ -268,7 +282,7 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
   }, 2500);
 };
 
-const showSuccessMessage = (message, appendTo, classes = []) => {
+const showSuccessMessage = (message, appendTo, classes = '') => {
   showErrorMessage(message, appendTo, classes, 'success');
 };
 
