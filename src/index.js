@@ -46,6 +46,7 @@ import noSidebar from './modules/external/no-sidebar';
 
 // Global styles and fixes.
 import required from './modules/_required';
+import dev from './modules/dev';
 
 // Core 'Better' modules.
 const modules = [
@@ -154,6 +155,7 @@ const main = () => {
   });
 
   addMouseripLink();
+  dev();
 
   eventRegistry.doEvent('mousehunt-improved-settings-after-load');
 };
