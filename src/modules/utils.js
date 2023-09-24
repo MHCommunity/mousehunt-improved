@@ -72,28 +72,6 @@ const getArText = async (type) => {
     return false;
   }
 
-  // Check to see if its an empty object.
-  if (Object.keys(rates).length === 0 && rates.constructor === Object) {
-    const arButton = document.querySelector('.mh-ui-toggle-ar-button');
-    if (! arButton) {
-      return false;
-    }
-
-    const existingFailedMessage = document.querySelector('.mh-ui-ar-failed');
-    if (existingFailedMessage) {
-      return false;
-    }
-
-    showErrorMessage('Failed to load AR data.', ['mh-ui-ar-failed'], arButton);
-
-    if (arButton.innerText === 'Hide AR') {
-      arButton.click();
-    }
-
-    return false;
-  }
-
-  // find the rate that matches window.mhctLocation.stage and window.mhctLocation.location and has the highest rate
   const rate = rates[0];
   if (! rate) {
     return false;
