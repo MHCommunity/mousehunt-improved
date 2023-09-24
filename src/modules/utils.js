@@ -164,11 +164,7 @@ const getArEl = async (id) => {
     ar = ar.toString().slice(0, -3);
   }
 
-  const arEl = document.createElement('div');
-  arEl.classList.add('mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`);
-  arEl.textContent = `${ar}%`;
-
-  return arEl;
+  return makeElement('div', ['mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`], `${ar}%`);
 };
 
 /**
