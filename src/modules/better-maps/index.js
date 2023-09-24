@@ -11,9 +11,13 @@ const interceptMapRequest = (mapId) => {
   }
 
   const init = (data) => {
-    window.mhmapper = {
-      mapData: data,
-      mapModel: new hg.models.TreasureMapModel(data),
+    // / append the map data to the window.mhui object, keeping the other properties
+    window.mhui = {
+      ...window.mhui,
+      mapper: {
+        mapData: data,
+        mapModel: new hg.models.TreasureMapModel(data),
+      }
     };
 
     eventRegistry.doEvent('mapper_loaded', data);

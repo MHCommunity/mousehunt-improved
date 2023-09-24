@@ -28,7 +28,7 @@ const getLastMap = () => {
   if (lastMap) {
     interceptMapRequest(lastMap);
   } else {
-    window.mhmapper = {
+    window.mhui = {
       mapData: false,
       mapModel: false,
       stage: false,

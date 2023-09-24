@@ -133,7 +133,7 @@ const addProfilePicToCurrentFloor = async () => {
 };
 
 const doHighlighting = () => {
-  const mapType = window.mhmapper.mapData.map_type;
+  const mapType = window.mhui.mapper?.mapData.map_type;
 
   const existing = document.querySelector('.mouse-category-current-floor');
   if (existing) {

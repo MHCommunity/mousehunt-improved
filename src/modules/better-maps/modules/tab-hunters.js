@@ -88,9 +88,9 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
         const snuid = parseInt(button.dataset.snuid, 10);
 
         if (button.classList.contains('accept-invite-request')) {
-          hg.utils.TreasureMapUtil.acceptInviteRequests(window.mhmapper.mapData.map_id, [snuid], () => {}, () => {});
+          hg.utils.TreasureMapUtil.acceptInviteRequests(window.mhui.mapper?.mapData.map_id, [snuid], () => {}, () => {});
         } else {
-          hg.utils.TreasureMapUtil.declineInviteRequests(window.mhmapper.mapData.map_id, [snuid], () => {}, () => {});
+          hg.utils.TreasureMapUtil.declineInviteRequests(window.mhui.mapper?.mapData.map_id, [snuid], () => {}, () => {});
         }
       });
     });

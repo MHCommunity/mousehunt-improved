@@ -1,8 +1,8 @@
 const addConsolationPrizes = () => {
   const consolationButton = document.querySelector('.treasureMapView-consolationPrize-message');
   if (! consolationButton ||
-    ! window.mhmapper?.mapData?.has_consolation_prizes ||
-    ! window.mhmapper?.mapData?.consolation_prizes
+    ! window.mhui?.mapData?.has_consolation_prizes ||
+    ! window.mhui?.mapData?.consolation_prizes
   ) {
     return;
   }
@@ -13,7 +13,8 @@ const addConsolationPrizes = () => {
   }
 
   const prizeWrapper = makeElement('div', 'mh-mapper-consolation-prizes');
-  for (const prize of window.mhmapper.mapData.consolation_prizes) {
+  const prizes = window.mhui.mapper?.mapData?.consolation_prizes || [];
+  for (const prize of prizes) {
     const prizeDiv = makeElement('div', 'mh-mapper-consolation-prize');
     const prizeImg = makeElement('img', 'mh-mapper-consolation-prize');
     prizeImg.src = prize.thumb;

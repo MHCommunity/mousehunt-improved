@@ -94,11 +94,11 @@ const addMHCTData = async (mouse, mouseExtraInfo, type = 'mouse') => {
         return;
       }
 
-      const travelEnvironment = window.mhmapper.mapData.environments.find((env) => {
+      const travelEnvironment = window.mhui.mapper?.mapData.environments.find((env) => {
         return env.type === environment.id;
       });
 
-      showTravelConfirmation(travelEnvironment, window.mhmapper.mapModel);
+      showTravelConfirmation(travelEnvironment, window.mhui.mapper?.mapModel);
     });
 
     mhctDiv.appendChild(mhctRow);
@@ -165,7 +165,7 @@ const makeMouseDiv = async (mouse) => {
 
   const locationLocations = makeElement('div', 'mouse-locations');
   mouse.environment_ids.forEach((environmentID) => {
-    const environment = window.mhmapper.mapData.environments.find((env) => {
+    const environment = window.mhui.mapData.environments.find((env) => {
       return env.id === environmentID;
     });
 
@@ -176,7 +176,7 @@ const makeMouseDiv = async (mouse) => {
       location.setAttribute('data-environment-id', environment.id);
 
       location.addEventListener('click', () => {
-        showTravelConfirmation(environment, window.mhmapper.mapModel);
+        showTravelConfirmation(environment, window.mhui.mapper?.mapModel);
       });
 
       locationLocations.appendChild(location);
@@ -260,7 +260,7 @@ const makeSortedPageWrapper = () => {
 
 const makeSortedMiceList = async () => {
   // Get the current map data.
-  const currentMapData = getMapData(window.mhmapper.mapData.map_id);
+  const currentMapData = getMapData(window.mhui.mapper?.mapData.map_id);
   const { unsortedMice, categories, subcategories } = getMouseDataForMap(currentMapData);
 
   const target = document.querySelector('.sorted-page-content');
@@ -439,7 +439,7 @@ const makeGenericSortedPage = async () => {
     return;
   }
 
-  const currentMapData = getMapData(window.mhmapper.mapData.map_id);
+  const currentMapData = getMapData(window.mhui.mapper?.mapData.map_id);
 
   let type = 'mouse';
   if (currentMapData.map_type.includes('scavenger')) {
@@ -501,7 +501,7 @@ const processSortedTabClick = async () => {
   }
 
   // Get the current map data.
-  const currentMapData = window.mhmapper.mapData;
+  const currentMapData = window.mhui.mapper?.mapData;
 
   if (! currentMapData || ! currentMapData.goals) {
     return;

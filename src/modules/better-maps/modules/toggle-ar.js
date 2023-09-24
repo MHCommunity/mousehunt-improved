@@ -84,7 +84,7 @@ const toggleAr = async () => {
     mapView.classList.add('mh-ui-ar-showing');
     mapView.classList.remove('mh-ui-ar-hidden');
     text.innerText = '···';
-    await addArDataToMap(window.mhmapper.mapData);
+    await addArDataToMap(window.mhui.mapper?.mapData);
     text.innerText = 'Hide AR';
   }
 
@@ -123,7 +123,7 @@ const addArToggle = (tab = 'goals') => {
     // if mapView has the showing class and we're on the goals tab, then
     // we need to also add the AR data to the map.
     if ('goals' === tab && mapView.classList.contains('mh-ui-ar-showing')) {
-      addArDataToMap(window.mhmapper.mapData);
+      addArDataToMap(window.mhui.mapper?.mapData);
     }
 
     return;
