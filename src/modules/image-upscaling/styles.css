@@ -3,7 +3,12 @@
 }
 
 .giftSelectorView-inbox-gift-thumb .itemImage,
-.giftSelectorView-claimableGift-itemContainer .itemImage {
+.giftSelectorView-claimableGift-itemContainer .itemImage,
+.adventureBookPopup-adventure-details-block-step-thumb,
+.valourRiftPopupClaim-lootLog .itemImage,
+.valourRiftPopupClaim-cacheLoot-image,
+.MHCheckoutCartTableView-reward-image,
+.MHCheckoutCartTableView .trapImageView {
   box-shadow: none;
 }
 
@@ -28,10 +33,6 @@
 
 .mousehuntHud-userStat.bait .icon {
   background-color: transparent;
-}
-
-.adventureBookPopup-adventure-details-block-step-thumb {
-  box-shadow: none;
 }
 
 .itemView-thumbnail {
@@ -82,13 +83,7 @@
   background-size: 100px;
 }
 
-.valourRiftPopupClaim-lootLog .itemImage,
-.valourRiftPopupClaim-cacheLoot-image,
-.MHCheckoutCartTableView-reward-image,
-.MHCheckoutCartTableView .trapImageView {
-  box-shadow: none;
-}
-
+.journal .entry.convertible_open img,
 .giftSelectorView-friendRow-returnImage,
 .MiniEventGiveawayCampHUD-dialog-item .itemImage {
   border: none;
