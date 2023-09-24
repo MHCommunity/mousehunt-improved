@@ -296,8 +296,8 @@ const hud = () => {
   const mistLevel = quest?.mist_released || 0;
   const mistTier = quest?.mist_tier || 'tier_0';
 
-  const hud = document.querySelector('#hudLocationContent .riftBurroughsHud');
-  if (! hud) {
+  const hudEl = document.querySelector('#hudLocationContent .riftBurroughsHud');
+  if (! hudEl) {
     return;
   }
 
@@ -348,13 +348,11 @@ const hud = () => {
 
   wrapper.appendChild(mouseWrapper);
 
-  // hg.views.MouseView.show
-
-  hud.appendChild(wrapper);
+  hudEl.appendChild(wrapper);
 };
 
 const main = () => {
-  addHubStyles('rift-burroughs', styles);
+  addHudStyles('rift-burroughs', styles);
   hud();
 };
 

@@ -323,7 +323,6 @@ const addSimpleTravel = () => {
   maybeSwitchToSimpleTravel();
 };
 
-
 const addRegionToTravelDropdown = () => {
   const currentLocation = getCurrentLocation();
 

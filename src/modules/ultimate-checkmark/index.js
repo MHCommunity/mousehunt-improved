@@ -1,5 +1,5 @@
-import { addUIStyles } from "../utils";
-import styles from "./styles.css";
+import { addUIStyles } from '../utils';
+import styles from './styles.css';
 
 import airships from './items/airships.json';
 import currency from './items/currency.json';

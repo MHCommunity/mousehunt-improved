@@ -76,15 +76,15 @@ export default () => {
           return;
         }
 
-        if (! acceptedGifts[ giftId ] || ! acceptedGifts[ giftId ].includes(friendId)) {
+        if (! acceptedGifts[giftId] || ! acceptedGifts[giftId].includes(friendId)) {
           returnButton.click();
 
           // save the gift as accepted.
-          if (! newAcceptedGifts[ giftId ]) {
-            newAcceptedGifts[ giftId ] = [];
+          if (! newAcceptedGifts[giftId]) {
+            newAcceptedGifts[giftId] = [];
           }
 
-          newAcceptedGifts[ giftId ].push(friendId);
+          newAcceptedGifts[giftId].push(friendId);
         } else {
           acceptButton.click();
         }

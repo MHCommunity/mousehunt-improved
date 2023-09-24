@@ -1,5 +1,5 @@
-import { addHudStyles } from "../../utils";
-import styles from "./styles.css";
+import { addHudStyles } from '../../utils';
+import styles from './styles.css';
 
 const toggleFuelClass = (fuel, fuelCount) => {
   if (fuel.classList.contains('active')) {
