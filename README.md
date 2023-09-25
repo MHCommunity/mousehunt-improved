@@ -4,7 +4,7 @@ MouseHunt Improved is aimed at improving the MouseHunt experience. Each module c
 
 **Over 150 features and improvements!**
 
-# Important Note
+## Important Note
 
 This is currently in beta. Expect there to be bugs, potentially broken features, and other issues. The list of features below is **not** up to date either, but it's a good idea of what's available.
 
