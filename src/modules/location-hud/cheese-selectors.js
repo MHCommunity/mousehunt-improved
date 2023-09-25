@@ -51,7 +51,7 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
 
     const cheeseQuantity = document.createElement('div');
     cheeseQuantity.classList.add('townOfGnawniaHUD-bait-quantity', 'quantity');
-    cheeseQuantity.innerText = cheese.quantity;
+    cheeseQuantity.innerText = numberFormat(cheese.quantity);
 
     const tooltipArrow = document.createElement('div');
     tooltipArrow.classList.add('mousehuntTooltip-arrow');
