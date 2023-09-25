@@ -216,3 +216,15 @@
 .mhct-row.mhct-row-no-env {
   cursor: not-allowed;
 }
+
+.sorted-page-content.generic-sorted-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 40px;
+}
+
+.poster .sorted-page-content .mh-ui-ar {
+  position: relative;
+  bottom: unset;
+  right: unset;
+}

@@ -378,6 +378,8 @@ const makeGenericSortedPage = async () => {
     return;
   }
 
+  target.classList.add('generic-sorted-page');
+
   const currentMapData = getMapData(window.mhui.mapper?.mapData.map_id);
 
   let type = 'mouse';
