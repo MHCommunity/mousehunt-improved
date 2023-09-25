@@ -1,8 +1,8 @@
 const addConsolationPrizes = () => {
   const consolationButton = document.querySelector('.treasureMapView-consolationPrize-message');
   if (! consolationButton ||
-    ! window.mhui?.mapData?.has_consolation_prizes ||
-    ! window.mhui?.mapData?.consolation_prizes
+    ! window.mhui.mapper?.mapData?.has_consolation_prizes ||
+    ! window.mhui.mapper?.mapData?.consolation_prizes
   ) {
     return;
   }
