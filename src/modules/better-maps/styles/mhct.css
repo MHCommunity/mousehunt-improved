@@ -62,18 +62,18 @@
 
 .mh-ui-mouse-links-map-ars .mhct-data {
   position: relative;
-  background-color: #fff;
-  color: #000;
-  border-top: none;
-  margin-top: -9px;
-  left: -1px;
   right: -1px;
+  left: -1px;
   width: 100%;
+  margin-top: -9px;
+  color: #000;
+  background-color: #fff;
+  border-top: none;
 }
 
 .mh-ui-mouse-links-map-ars .mhct-row:nth-child(odd) {
-  background-color: #f2f2f2;
   color: #000;
+  background-color: #f2f2f2;
 }
 
 .mh-ui-mouse-links-map-ars .mhct-rate {
@@ -81,15 +81,15 @@
 }
 
 .mh-ui-mouse-links-map-ars .mhct-row {
-  justify-items: stretch;
   align-items: start;
+  justify-items: stretch;
 }
 
 .mh-ui-mouse-links-map-ars  .mhct-title {
   display: block;
-  font-size: 13px;
-  margin-bottom: 0;
   padding: 3px 9px;
-  border-top: 1px solid #dedede;
+  margin-bottom: 0;
+  font-size: 13px;
   background-color: #f4f4f4;
+  border-top: 1px solid #dedede;
 }

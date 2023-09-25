@@ -1,4 +1,4 @@
-import { addUIStyles, getArText } from '../utils';
+import { addUIStyles } from '../utils';
 import getLocationAndStage from '../mhct-get-stage';
 import styles from './styles.css';
 
