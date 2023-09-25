@@ -29,11 +29,19 @@
   line-height: 14px;
 }
 
+.notificationMessageList .message .actions input[type="button"].delete {
+  position: absolute;
+  left: -60px;
+}
+
+.notificationMessageList .message .actions input[type="button"].delete,
 .notificationMessageList .message .actions input[type="button"].ignoreRequest {
   background-color: #ffa5a5;
   box-shadow: 0 -5px 8px -2px #f27b6a inset, 1px 1px 1px #eee;
 }
 
+.notificationMessageList .message .actions input[type="button"].delete:hover,
+.notificationMessageList .message .actions input[type="button"].delete:focus,
 .notificationMessageList .message .actions input[type="button"].ignoreRequest:hover,
 .notificationMessageList .message .actions input[type="button"].ignoreRequest:focus {
   background-color: #f48686;
