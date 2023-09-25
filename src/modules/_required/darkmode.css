@@ -43,11 +43,3 @@
   color: #fff;
   background-color: #242424;
 }
-
-.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table {
-  opacity: 1;
-}
-
-.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-table a {
-  color: #fffcfc;
-}
