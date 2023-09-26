@@ -31,9 +31,6 @@ export default () => {
   #journalContainer .journal__hunter-name,
   .mh-journal-privacy-name {
     display: inline-block;
-    width: 50px;
-    height: 12px;
-    overflow: hidden;
     color: transparent;
   }
 
