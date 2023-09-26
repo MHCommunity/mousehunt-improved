@@ -30,6 +30,6 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Better MouseHunt"
+    "default_title": "MouseHunt Improved"
   }
 }
