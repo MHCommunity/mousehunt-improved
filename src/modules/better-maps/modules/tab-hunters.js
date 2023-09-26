@@ -26,7 +26,12 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
     loadingBlock.remove();
   }
 
-  const wrapper = makeElement('div', 'treasureMapView-block-title', title.replace('#count#', hunters.length));
+  const existing = document.getElementById(`hunters-${id}`);
+  if (existing) {
+    return;
+  }
+
+  const wrapper = makeElement('div', ['mh-ui-custom-map-block', 'treasureMapView-block-title'], title.replace('#count#', hunters.length));
   wrapper.id = `hunters-${id}`;
   appendTo.appendChild(wrapper);
 
