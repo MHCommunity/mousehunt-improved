@@ -170,8 +170,18 @@ img.treasureMapView-reward-chestIcon {
   border-radius: 4px;
 }
 
+.mh-dark-mode .treasureMapInventoryView-scrollCase {
+  background-color: #333;
+  border-color: #424242;
+}
+
 .treasureMapView-block-content-heading-image {
   margin-right: 10px;
+}
+
+.mh-dark-mode .treasureMapShopsView-shopItems .treasureMapView-block-content-heading,
+.mh-dark-mode .treasureMapShopsView-shopItems .treasureMapView-block-content-heading-count {
+    color: #000;
 }
 
 .treasureMapPopup-shop[data-environment-type="rift_valour"] {
