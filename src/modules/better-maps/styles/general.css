@@ -498,3 +498,7 @@ input.treasureMapView-block-search-text {
 .treasureMapView-highlight-weakness-types img {
   width: 17px;
 }
+
+.mh-ui-goals-block .treasureMapView-block-content {
+  max-height: unset;
+}
