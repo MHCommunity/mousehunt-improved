@@ -9,5 +9,5 @@
 // @icon        https://i.mouse.rip/mouse.png
 // @run-at      document-end
 // @grant       none
-// @require https://greasyfork.org/scripts/460027-mousehunt-utils/code/%F0%9F%90%AD%EF%B8%8F%20MouseHunt%20Utils.js?version=1245500
+// @require     https://cdn.jsdelivr.net/npm/mousehunt-utils@1.8.5/mousehunt-utils.js
 // ==/UserScript==

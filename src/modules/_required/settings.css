@@ -1,6 +1,6 @@
 /* hack to make the settings page look better until some of this gets moved to mh-utils and settings move to the browser */
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .settingRow .settingRow-action-inputContainer.select.busy::before,
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .settingRow .settingRow-action-inputContainer.select.completed::before {
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer.select.busy::before,
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer.select.completed::before {
   top: 30px;
   right: -25px;
   left: unset;
@@ -15,7 +15,7 @@
   margin-left: 30px;
 }
 
-#mh-utils-settings-location-hud .settingRowTable .name,
+#mh-utils-settings-location-hud .PagePreferences__settingsList .name,
 #mh-utils-settings-mousehunt-improved-better-travel-default-tab .name,
 #mh-utils-settings-mousehunt-improved-send-supplies-pinned-items .name,
 #mh-utils-settings-feature-modules-quick-send-supplies-items .name,
@@ -45,7 +45,7 @@
 
 /* Location HUD */
 
-#mh-utils-settings-location-hud .settingRowTable .settingRow {
+#mh-utils-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -53,8 +53,8 @@
   border-bottom: none;
 }
 
-#mh-utils-settings-location-hud .settingRowTable .settingRow .settingRow-label,
-#mh-utils-settings-location-hud .settingRowTable .settingRow .settingRow-action {
+#mh-utils-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting .PagePreferences__settingLabel,
+#mh-utils-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting .PagePreferences__settingAction {
   display: inline-block;
   padding: 0;
   vertical-align: middle;
@@ -69,16 +69,16 @@
 }
 
 #mh-utils-settings-location-hud .settings-subheader,
-#mh-utils-settings-location-hud .separator {
+#mh-utils-settings-location-hud .PagePreferences__separator {
   grid-column: span 3;
 }
 
-#mh-utils-settings-location-hud .settingRowTable .settingRow .settingRow-action-inputContainer,
-#mh-utils-settings-location-hud .settingRowTable .settingRow .description {
+#mh-utils-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting .settingRow-action-inputContainer,
+#mh-utils-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting .description {
   padding: 0;
   vertical-align: middle;
 }
 
-#mh-utils-settings-location-hud .settingRowTable .defaultSettingText {
+#mh-utils-settings-location-hud .PagePreferences__settingsList .PagePreferences__settingDefault {
   display: none;
 }
