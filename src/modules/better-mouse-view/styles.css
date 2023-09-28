@@ -211,3 +211,7 @@
 #custom-submenu-item-king-s-crowns .icon {
   filter: sepia(1) brightness(0.5);
 }
+
+.mouseView-statsContainer-block-padding abbr {
+  text-decoration: none;
+}

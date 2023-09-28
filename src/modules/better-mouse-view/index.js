@@ -91,6 +91,18 @@ const updateMouseView = async () => {
     return;
   }
 
+  const catchesEl = document.querySelectorAll('.mouseView-statsContainer-block-padding td abbr');
+  if (catchesEl) {
+    // remove the ' catches' from the title and use it as the text
+    const catchesNumber = catchesEl.title
+      .replace(' Catches', '')
+      .replace(' catches', '')
+      .replace(' Misses', '')
+      .replace(' misses', '')
+      .trim();
+    catchesEl.innerText = catchesNumber;
+  }
+
   addLinks();
   addFavoriteButton(mouseId, mouseView);
 
