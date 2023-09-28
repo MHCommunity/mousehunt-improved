@@ -162,3 +162,7 @@
   text-align: left;
   text-shadow: 1px 1px #000;
 }
+
+.iceberg-section.current {
+  font-weight: 900;
+}
