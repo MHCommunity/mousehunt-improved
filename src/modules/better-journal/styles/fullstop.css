@@ -19,6 +19,7 @@
   content: "";
 }
 
+.unstable_charm_trigger .journaltext a:last-of-type::after,
 .journaltext .loot:last-of-type::after,
 .journaltext .lucky:last-of-type::after,
 .journaltext .item:last-of-type::after,
