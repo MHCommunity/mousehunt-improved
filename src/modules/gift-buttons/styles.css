@@ -1,0 +1,76 @@
+#bulk-gifting-gift-buttons {
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#bulk-gifting-gift-buttons button {
+  display: block;
+  padding: 10px;
+  font-size: 12px;
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  background-color: #eee;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #eee;
+}
+
+#bulk-gifting-gift-buttons .mh-gift-buttons-accept {
+  margin-right: 10px;
+}
+
+#bulk-gifting-gift-buttons .mh-gift-buttons-paid-gifts {
+  margin-right: 10px;
+}
+
+#bulk-gifting-gift-buttons button:hover,
+#bulk-gifting-gift-buttons button:focus,
+#bulk-gifting-gift-buttons .mh-gift-buttons-return:hover,
+#bulk-gifting-gift-buttons .mh-gift-buttons-return:focus,
+#bulk-gifting-gift-buttons .mh-gift-buttons-accept-reverse:hover,
+#bulk-gifting-gift-buttons .mh-gift-buttons-accept-reverse:focus {
+  background-color: #ffae00;
+  box-shadow: 0 0 5px #fff inset, 1px 1px 1px #fff;
+}
+
+#bulk-gifting-gift-buttons button.disabled:hover,
+#bulk-gifting-gift-buttons button.disabled:focus {
+  background-color: #eee;
+  cursor: default;
+  box-shadow: 0 0 3px #f00;
+}
+
+#bulk-gifting-gift-buttons .mh-gift-buttons-return {
+  background-color: #fff600;
+}
+
+.giftSelectorView-inbox-giftContainer {
+  height: auto;
+  min-height: 300px;
+  max-height: 75vh;
+}
+
+.giftSelectorView-inbox-giftRow.complete {
+  height: 25px;
+  padding-top: 5px;
+  padding-left: 15px;
+  border: none;
+  box-shadow: none;
+}
+
+.giftSelectorView-inbox-giftRow.complete .giftSelectorView-inbox-gift-thumb {
+  display: inline;
+}
+
+.giftSelectorView-inbox-giftRow.complete .itemImage {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+}
+
+.giftSelectorView-inbox-giftRow.complete .giftSelectorView-inbox-gift-details {
+  width: 90%;
+}
