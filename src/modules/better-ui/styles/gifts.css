@@ -1,0 +1,19 @@
+.giftSelectorView-friendRow-returnImage {
+  width: 40px;
+  height: 40px;
+  margin-top: -10px;
+  margin-right: 10px;
+  background-color: transparent;
+  background-size: cover;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.giftSelectorView-content-title {
+  padding-bottom: 10px;
+}
+
+.giftSelectorView-claimWarning {
+  padding: 10px;
+}

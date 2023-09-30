@@ -8,6 +8,7 @@ import corkboard from './styles/corkboard.css';
 import eventStyles from './styles/events.css';
 import footer from './styles/footer.css';
 import friendsStyles from './styles/friends.css';
+import giftsStyles from './styles/gifts.css';
 import hudStyles from './styles/hud.css';
 import overlays from './styles/overlays.css';
 import profile from './styles/profile.css';
@@ -33,6 +34,7 @@ export default () => {
     footer,
     eventStyles,
     friendsStyles,
+    giftsStyles,
     hudStyles,
     overlays,
     profile,
