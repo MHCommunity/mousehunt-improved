@@ -30,7 +30,7 @@ import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
 import quickSendSuppliesSettings from './modules/quick-send-supplies/settings';
-import tallerWindows from './modules/external/taller-windows';
+import tallerWindows from './modules/taller-windows';
 import temCrowns from './modules/tem-crowns';
 import ultimateCheckmark from './modules/ultimate-checkmark';
 

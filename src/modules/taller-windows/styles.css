@@ -134,3 +134,7 @@
 .treasureMapDialogView.limitHeight .treasureMapDialogView-content {
   max-height: unset;
 }
+
+.giftSelectorView-scroller {
+  height: auto;
+}
