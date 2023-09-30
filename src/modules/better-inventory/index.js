@@ -516,12 +516,7 @@ const main = () => {
   fixPassingParcel();
   addOpenAlltoConvertiblePage();
   modifySmashableTooltip();
-};
 
-export default function inventoryHelper() {
-  addUIStyles(styles);
-
-  main();
   onPageChange({ change: main });
   onEvent('js_dialog_show', addOpenAlltoConvertible);
   onEvent('js_dialog_show', warnOnBadCrafts);
@@ -533,4 +528,9 @@ export default function inventoryHelper() {
       subtab: 'recipe',
     }
   );
-}
+};
+
+export default () => {
+  addUIStyles(styles);
+  main();
+};

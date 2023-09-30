@@ -179,10 +179,10 @@ const main = () => {
   addQuickLinksToTrap();
 };
 
-export default function quickFiltersAndSort() {
+export default () => {
   addUIStyles(styles);
 
   onRequest(main, 'ajax/users/gettrapcomponents.php');
   onEvent('camp_page_toggle_blueprint', main);
   onRequest(addSkinImages, 'managers/ajax/users/changetrap.php', true);
-}
+};

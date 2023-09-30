@@ -177,7 +177,7 @@ const main = () => {
   });
 };
 
-export default function betterFriends() {
+export default () => {
   addUIStyles(styles);
 
   setTimeout(() => {

@@ -113,7 +113,7 @@ const continueOnKingsReward = (req) => {
   }
 };
 
-const main = () => {
+export default () => {
   addUIStyles([
     globalStyles,
     fixesStyles,
@@ -133,5 +133,3 @@ const main = () => {
 
   onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
 };
-
-export default main;

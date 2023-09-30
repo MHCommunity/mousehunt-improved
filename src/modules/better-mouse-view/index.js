@@ -222,8 +222,7 @@ const main = () => {
   });
 };
 
-export default function mouseLinks() {
+export default () => {
   addUIStyles(styles);
-
   main();
-}
+};

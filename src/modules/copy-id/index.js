@@ -43,8 +43,7 @@ const main = () => {
   });
 };
 
-export default function CopyId() {
+export default () => {
   addUIStyles(styles);
-
   main();
-}
+};

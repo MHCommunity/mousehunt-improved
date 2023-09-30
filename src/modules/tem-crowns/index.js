@@ -1,5 +1,4 @@
 import { addUIStyles } from '../utils';
-import getLocationAndStage from '../mhct-get-stage';
 import styles from './styles.css';
 
 const getCrownType = (catches) => {
@@ -91,9 +90,8 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
   });
 };
 
-export default function temCrowns() {
+export default () => {
   addUIStyles(styles);
 
   onPageChange({ tem: { show: addCrownsToTEM } });
-  window.mhctLocation = getLocationAndStage();
-}
+};

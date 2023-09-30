@@ -5,8 +5,7 @@ const main = () => {
   // do stuff
 };
 
-export default function moduleTemplate() {
+export default () => {
   addUIStyles(styles);
-
   main();
-}
+};

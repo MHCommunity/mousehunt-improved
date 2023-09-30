@@ -120,7 +120,7 @@ const clearStickyMouse = () => {
   }
 };
 
-const main = () => {
+export default () => {
   addStyles();
 
   // Fire the different tab clicks.
@@ -138,5 +138,3 @@ const main = () => {
 
   intercept();
 };
-
-export default main;

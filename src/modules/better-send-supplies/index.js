@@ -282,8 +282,7 @@ const main = () => {
   upgradeSendSupplies(true);
 };
 
-export default function betterSendSupplies() {
+export default () => {
   addUIStyles(styles);
-
   onNavigation(main, { page: 'supplytransfer' });
-}
+};

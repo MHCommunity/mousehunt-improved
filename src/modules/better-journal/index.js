@@ -219,7 +219,7 @@ const main = () => {
   updateKingsPromoText();
 };
 
-export default function journal() {
+export default () => {
   addUIStyles(styles);
   addUIStyles(adventure);
   addUIStyles(customEntries);
@@ -234,4 +234,4 @@ export default function journal() {
     setTimeout(main, 300);
     setTimeout(main, 900);
   });
-}
+};

@@ -68,11 +68,9 @@ const titleBadge = () => {
   return titleImages[title];
 };
 
-const main = () => {
+export default () => {
   addUIStyles(styles);
 
   onPageChange({ change: changeShield });
   changeShield();
 };
-
-export default main;

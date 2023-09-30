@@ -390,4 +390,7 @@ const main = () => {
   onTravel(null, { callback: addRegionToTravelDropdown });
 };
 
-export default main;
+export default () => {
+  addUIStyles(styles);
+  main();
+};

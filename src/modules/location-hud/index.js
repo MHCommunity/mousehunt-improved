@@ -160,11 +160,9 @@ const load = () => {
   }, 'managers/ajax/turns/activeturn.php', true);
 };
 
-const init = () => {
+export default () => {
   addUIStyles(cheeseSelectorStyles);
 
   load();
   setTimeout(load, 500);
 };
-
-export default init;

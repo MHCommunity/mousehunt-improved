@@ -132,11 +132,9 @@ const updateTournamentHud = async () => {
   }
 };
 
-const main = async () => {
+export default async () => {
   addUIStyles(styles);
   updateTournamentHud();
 
   onEvent('tournament_status_change', updateTournamentHud);
 };
-
-export default main;

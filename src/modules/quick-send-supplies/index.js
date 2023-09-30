@@ -184,7 +184,7 @@ const addToMapUsers = (attempts = 0) => {
   });
 };
 
-export default function quickSendSupplies() {
+export default () => {
   addUIStyles(styles);
 
   main();
@@ -193,4 +193,4 @@ export default function quickSendSupplies() {
   onEvent('profile_hover', main);
 
   onDialogShow(addToMapUsers, 'map');
-}
+};

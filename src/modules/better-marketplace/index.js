@@ -475,7 +475,7 @@ const overloadShowItem = () => {
 let originalSelect = null;
 let newSelect = null;
 
-export default function marketplace() {
+export default () => {
   addUIStyles(styles);
   onOverlayChange({ marketplace: { show: () => {
     waitForSearchReady();
@@ -484,4 +484,4 @@ export default function marketplace() {
   } } });
 
   onRequest(autocloseClaim, 'managers/ajax/users/marketplace.php');
-}
+};

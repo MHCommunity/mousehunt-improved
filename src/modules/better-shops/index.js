@@ -122,10 +122,10 @@ const main = () => {
   }
 };
 
-export default function shopHelper() {
+export default () => {
   addUIStyles(styles);
 
   main();
   onPageChange({ change: main });
   onRequest(updatePlaceholderText, 'managers/ajax/purchases/itempurchase.php');
-}
+};

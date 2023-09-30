@@ -294,7 +294,7 @@ const run = async () => {
   }
 };
 
-const main = () => {
+export default () => {
   addUIStyles(styles);
 
   onNavigation(run, {
@@ -302,5 +302,3 @@ const main = () => {
     tab: 'items'
   });
 };
-
-export default main;

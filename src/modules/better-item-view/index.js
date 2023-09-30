@@ -146,8 +146,7 @@ const main = () => {
   }
 };
 
-export default function itemLinks() {
+export default () => {
   addUIStyles(styles);
-
   main();
-}
+};

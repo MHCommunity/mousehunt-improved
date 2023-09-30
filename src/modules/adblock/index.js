@@ -1,6 +1,6 @@
 import { addUIStyles } from '../utils';
 import styles from './styles.css';
 
-export default function adblock() {
+export default () => {
   addUIStyles(styles);
-}
+};
