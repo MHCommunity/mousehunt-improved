@@ -54,7 +54,7 @@ a.itemPurchaseView-image-trapPreview-link,
   max-height: 100px;
   margin-top: 0;
   margin-bottom: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   color: #626262;
 }
 
