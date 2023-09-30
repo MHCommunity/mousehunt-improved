@@ -503,3 +503,7 @@ input.treasureMapView-block-search-text {
   height: auto;
   max-height: unset;
 }
+
+.treasureMapView-goals-groups.incomplete {
+  padding-bottom: 15px;
+}
