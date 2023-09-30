@@ -323,9 +323,9 @@ const main = () => {
     addQuestTabEventListener();
     addQuestsTab();
     checkForQuestSmash();
-
-    m400();
   };
+
+  m400();
 
   // Add our event listener and add the quests tab.
   activate();
