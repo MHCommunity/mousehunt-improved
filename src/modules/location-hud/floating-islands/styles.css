@@ -177,8 +177,11 @@ span.floatingIslandsHUD-huntsRemaining {
   top: 3px;
   bottom: -4px;
   left: -1px;
-  width: 90px;
+  z-index: 4;
+  width: auto;
+  min-width: 70px;
   padding-left: 5px;
+  white-space: nowrap;
   background-color: #51250a;
   border-radius: 8px;
   border-bottom-left-radius: 0;
@@ -279,4 +282,15 @@ a.floatingIslandsHUD-flightLogButton.mousehuntTooltipParent {
   background-size: cover;
   transform: scale(1.2);
   transform-origin: left;
+}
+
+.floatingIslandsHUD.island .floatingIslandsHUD-bait.sky_cheese.skyCheeseWarning::after {
+  top: -10px;
+  left: -9px;
+  width: 30px;
+  height: 30px;
+}
+
+.floatingIslandsHUD.island .floatingIslandsHUD-bait.skyCheeseWarning .floatingIslandsHUD-bait-image.sky_cheese {
+    box-shadow: inset 0 0 10px 3px #ff1b00;
 }
