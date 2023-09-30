@@ -69,3 +69,30 @@ span.mh-ui-tem-crown-text {
   bottom: -10px;
   background-size: 70%;
 }
+
+.campPage-trap-trapEffectiveness span {
+  font-size: 14px;
+  vertical-align: bottom;
+}
+
+.campPage-trap-trapEffectiveness-difficultyGroup.clear-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: stretch;
+  padding-left: 10px;
+}
+
+.campPage-trap-trapEffectiveness-mouse {
+  width: unset;
+  margin: 10px 0;
+  overflow: visible;
+  border: none;
+}
+
+.campPage-trap-trapEffectiveness-difficultyGroup-label {
+  grid-column: span 2;
+  font-weight: 400;
+  text-align: center;
+  border: none;
+}

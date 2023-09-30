@@ -307,23 +307,3 @@ a.campPage-trap-itemBrowser-item-disarmButton {
 .campPage-trap-trapStat.cheese_effect .value span {
   font-size: 12px;
 }
-
-.campPage-trap-trapEffectiveness span {
-    font-size: 14px;
-    vertical-align: bottom;
-}
-
-.campPage-trap-trapEffectiveness-difficultyGroup.clear-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-items: stretch;
-  padding-left: 10px;
-}
-
-.campPage-trap-trapEffectiveness-mouse {
-  width: 90%;
-  margin: 10px 0;
-  overflow: visible;
-  border: none;
-}
