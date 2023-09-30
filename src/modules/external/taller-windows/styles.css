@@ -130,3 +130,7 @@
 .select2-results {
     max-height: 50vh;
 }
+
+.treasureMapDialogView.limitHeight .treasureMapDialogView-content {
+  max-height: unset;
+}

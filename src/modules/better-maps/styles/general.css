@@ -500,5 +500,6 @@ input.treasureMapView-block-search-text {
 }
 
 .mh-ui-goals-block .treasureMapView-block-content {
+  height: auto;
   max-height: unset;
 }
