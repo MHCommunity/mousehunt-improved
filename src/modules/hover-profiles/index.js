@@ -192,4 +192,4 @@ export default () => {
 
   onEvent('journal_replacements_finished', main);
   onInboxOpen(main);
-}
+};
