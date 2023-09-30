@@ -32,6 +32,7 @@
   justify-content: center;
   padding: 4px;
   font-size: 9.75px;
+  text-decoration: underline;
   border-radius: 3px;
   box-shadow: none;
 }
