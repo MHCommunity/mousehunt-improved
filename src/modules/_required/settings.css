@@ -82,3 +82,16 @@
 #mh-utils-settings-location-hud .PagePreferences__settingsList .PagePreferences__settingDefault {
   display: none;
 }
+
+#mh-utils-settings-location-hud .PagePreferences__settingName {
+  font-size: 12px;
+}
+
+#mh-utils-settings-location-hud .PagePreferences__setting {
+  padding: 0;
+}
+
+#mh-utils-settings-location-hud .PagePreferences__settingAction {
+  padding: 0;
+  margin: 0;
+}

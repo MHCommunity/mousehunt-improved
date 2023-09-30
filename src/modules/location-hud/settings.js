@@ -9,6 +9,18 @@ export default function (subModule, module) {
     'queso_plains',
     'queso_quarry',
     'queso_river',
+    // Don't have HUD changes for these.
+    'meadow',
+    'harbour',
+    'mountain',
+    'laboratory',
+    'mousoleum',
+    'training_grounds',
+    'foreword_farm',
+    'prologue_pond',
+    'seasonal_garden',
+    'zugzwang_library',
+    'zugzwang_tower',
   ];
 
   const locationsToAdd = [
