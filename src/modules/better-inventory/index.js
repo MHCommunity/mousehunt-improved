@@ -528,6 +528,13 @@ const main = () => {
       subtab: 'recipe',
     }
   );
+
+  onNavigation(fixPassingParcel,
+    {
+      page: 'inventory',
+      tab: 'special',
+    }
+  );
 };
 
 export default () => {
