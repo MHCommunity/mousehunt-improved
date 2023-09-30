@@ -34,6 +34,10 @@ export default () => {
     color: transparent;
   }
 
+  #journalContainer .entry:not(.badge) #friend-data-wrapper a[href*="profile.php"] {
+    color: #000;
+  }
+
   #journalContainer .entry:not(.badge) a[href*="profile.php"]:hover,
   #journalContainer .entry:not(.badge) a[href*="profile.php"]:focus,
   #journalContainer .entry.socialGift .journaltext a:hover,
