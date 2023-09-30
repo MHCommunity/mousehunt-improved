@@ -405,10 +405,10 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
 }
 
 /* Mark items that have an action with a little dot */
-.inventoryPage-item.small.message_item::after {
+.inventoryPage-item.small.message_item .inventoryPage-item-content-name::after {
   position: absolute;
-  right: 3px;
-  bottom: 5px;
+  top: 5px;
+  right: 2px;
   width: 10px;
   height: 10px;
   content: "";
