@@ -184,6 +184,21 @@ const onSkyMapShow = () => {
   });
 };
 
+const showBWReminder = () => {
+  const isStart = user.enviroment_atts?.hunting_site_atts?.hunts_remaining === 75 && user.enviroment_atts?.on_island;
+  const bwOff = ! user.enviroment_atts?.hunting_site_atts?.is_fuel_enabled;
+  const hasBw = parseInt(user.enviroment_atts?.items?.bottled_wind_stat_item?.quantity.replace(',', '')) > 50;
+
+  if (isStart && bwOff && hasBw) {
+    showHornMessage({
+      title: 'Bottled Wind Reminder',
+      text: 'Don\'t forget to activate your Bottled Wind!',
+      button: 'Dismiss',
+      dismiss: 4000,
+    });
+  }
+};
+
 const hud = () => {
   toggleFuel();
 
@@ -198,6 +213,9 @@ const hud = () => {
   showGloreProgress();
 
   onDialogShow(onSkyMapShow, 'floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace');
+
+  showBWReminder();
+  onRequest(showBWReminder);
 };
 
 const main = () => {
