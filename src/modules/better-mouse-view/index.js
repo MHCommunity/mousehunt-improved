@@ -92,15 +92,19 @@ const updateMouseView = async () => {
   }
 
   const catchesEl = document.querySelectorAll('.mouseView-statsContainer-block-padding td abbr');
-  if (catchesEl) {
-    // remove the ' catches' from the title and use it as the text
-    const catchesNumber = catchesEl.title
-      .replace(' Catches', '')
-      .replace(' catches', '')
-      .replace(' Misses', '')
-      .replace(' misses', '')
-      .trim();
-    catchesEl.innerText = catchesNumber;
+  if (catchesEl && catchesEl.length > 0) {
+    catchesEl.forEach((el) => {
+      // remove the ' catches' from the title and use it as the text
+      const catchesNumber = el.getAttribute('title')
+        .replace(' Catches', '')
+        .replace(' catches', '')
+        .replace(' Misses', '')
+        .replace(' misses', '')
+        .trim();
+      if (catchesNumber) {
+        el.innerText = catchesNumber;
+      }
+    });
   }
 
   addLinks();
