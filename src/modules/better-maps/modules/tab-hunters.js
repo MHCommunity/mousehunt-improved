@@ -196,9 +196,18 @@ const modifyButtons = () => {
   });
 };
 
+const fixPluralInvites = () => {
+  const invitesEl = document.querySelector('.treasureMapView-numInvitesSent');
+  console.log(invitesEl);
+  if (invitesEl && invitesEl.textContent === '1 invites sent.') {
+    invitesEl.innerHTML = invitesEl.innerHTML.replace('invites', 'invite');
+  }
+};
+
 const showHuntersTab = async (mapData) => {
   modifyButtons();
   removeEmptyHunterSlotsFromList();
+  fixPluralInvites();
 
   const leftBlock = document.querySelector('.treasureMapView-leftBlock');
   if (! leftBlock) {
