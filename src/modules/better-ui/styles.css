@@ -307,3 +307,15 @@ a[href="https://www.mousehuntgame.com/item.php?item_type=mystery_satchel_of_gold
   align-items: center;
   border: none;
 }
+
+.giftSelectorView-friendRow-returnImage {
+  width: 40px;
+  height: 40px;
+  margin-top: -10px;
+  margin-right: 10px;
+  background-color: transparent;
+  background-size: cover;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
