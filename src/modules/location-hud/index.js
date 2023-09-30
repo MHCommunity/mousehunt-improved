@@ -48,6 +48,7 @@ import table_of_contents from './table-of-contents';
 import tournament_hall from './tournament-hall';
 import town_of_digby from './town-of-digby';
 import train_station from './train-station';
+import windmill from './windmill';
 import zugzwang_tower from './zugzwang-tower';
 /* eslint-enable camelcase */
 
@@ -135,6 +136,7 @@ const main = () => {
     tournament_hall,
     town_of_digby,
     train_station,
+    windmill,
     zugzwang_tower,
     'region-living-garden': regionLivingGarden,
     'region-queso': regionQueso,
