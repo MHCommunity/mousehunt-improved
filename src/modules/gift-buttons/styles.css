@@ -1,8 +1,8 @@
 #bulk-gifting-gift-buttons {
-  margin-bottom: 10px;
   position: relative;
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 10px;
 }
 
 #bulk-gifting-gift-buttons button {
@@ -38,8 +38,8 @@
 
 #bulk-gifting-gift-buttons button.disabled:hover,
 #bulk-gifting-gift-buttons button.disabled:focus {
-  background-color: #eee;
   cursor: default;
+  background-color: #eee;
   box-shadow: 0 0 3px #f00;
 }
 
