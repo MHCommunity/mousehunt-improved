@@ -499,11 +499,6 @@ input.treasureMapView-block-search-text {
   width: 17px;
 }
 
-.mh-ui-goals-block .treasureMapView-block-content {
-  height: auto;
-  max-height: unset;
-}
-
 .treasureMapView-goals-groups.incomplete {
   padding-bottom: 15px;
 }
