@@ -37,7 +37,7 @@
     "@wordpress/eslint-plugin": "^16.0.0",
     "archiver": "^6.0.1",
     "del-cli": "^5.1.0",
-    "esbuild": "^0.19.3",
+    "esbuild": "^0.19.4",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-markdownlint": "^0.5.0",
     "eslint-plugin-prettier": "^5.0.0",
