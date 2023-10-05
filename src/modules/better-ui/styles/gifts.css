@@ -10,6 +10,10 @@
   box-shadow: none;
 }
 
+.giftSelectorView-friendRow-action.disabled .giftSelectorView-friendRow-returnImage {
+  box-shadow: none;
+}
+
 .giftSelectorView-content-title {
   padding-bottom: 10px;
 }
