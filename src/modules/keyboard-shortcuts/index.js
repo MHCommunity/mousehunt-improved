@@ -10,7 +10,11 @@ const clickMinLuck = () => {
 const listenForKeypresses = () => {
   // Listen for the keypress and call the callback when it happens.
   document.addEventListener('keydown', (event) => {
-    if (document.activeElement instanceof HTMLInputElement) { // eslint-disable-line @wordpress/no-global-active-element
+    if (
+      document.activeElement instanceof HTMLInputElement || // eslint-disable-line @wordpress/no-global-active-element
+      document.activeElement instanceof HTMLTextAreaElement || // eslint-disable-line @wordpress/no-global-active-element
+      document.activeElement instanceof HTMLSelectElement // eslint-disable-line @wordpress/no-global-active-element
+    ) {
       return;
     }
 

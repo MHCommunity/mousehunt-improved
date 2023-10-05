@@ -44,7 +44,11 @@ const listenForIDPaste = () => {
     // listen for command + v as well as ctrl + v
     if ((e.metaKey || e.ctrlKey) && 86 === e.keyCode) {
       // if we're currently focused in an input, then don't do anything
-      if (document.activeElement instanceof HTMLInputElement) { // eslint-disable-line @wordpress/no-global-active-element
+      if (
+        document.activeElement instanceof HTMLInputElement || // eslint-disable-line @wordpress/no-global-active-element
+        document.activeElement instanceof HTMLTextAreaElement || // eslint-disable-line @wordpress/no-global-active-element
+        document.activeElement instanceof HTMLSelectElement // eslint-disable-line @wordpress/no-global-active-element
+      ) {
         return;
       }
 
