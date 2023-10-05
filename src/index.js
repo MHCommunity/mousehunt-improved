@@ -25,6 +25,7 @@ import giftButtonsSettings from './modules/gift-buttons/settings';
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
+import keyboardShortcuts from './modules/keyboard-shortcuts';
 import journalPrivacy from './modules/external/journal-privacy';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
@@ -81,10 +82,10 @@ const modules = [
       { id: 'hover-profiles', name: 'Hover Profiles', default: true, description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.', load: hoverProfiles },
       { id: 'image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backagrounds across the entire MH interface.', load: imageUpscaling },
       { id: 'inline-wiki', name: 'Inline Wiki', default: true, description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.', load: inlineWiki },
-      { id: 'inventory-only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
+      { id: 'keyboard-shortcuts', name: 'Keyboard Shortcuts', default: true, description: 'Press \'?\' to see a list of keyboard shortcuts.', load: keyboardShortcuts },
       { id: 'journal-privacy', name: 'Hide player names in journal entries', default: false, description: 'Hides player names in the journal.', load: journalPrivacy },
       { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: catchStats },
-      // { id: 'minluck-and-cre', name: ' Minluck & Catch Rate Estimate', default: true, description: 'Shows you the minluck and your estimated catch rate right on the camp page.', load: minluckAndCre },
+      { id: 'only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
       { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button to easily send any quantity of SUPER|brie+ or another item..', load: quickSendSupplies, settings: quickSendSuppliesSettings },
       { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Makes popup windows taller.', load: tallerWindows },
