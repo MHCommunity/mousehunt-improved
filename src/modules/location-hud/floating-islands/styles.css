@@ -28,6 +28,15 @@ a.floatingIslandsHUD-islandLoot {
   box-shadow: 0 0 13px 3px #ffd700 inset;
 }
 
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.paragon_cache_a:first-child,
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.paragon_cache_b:first-child,
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.paragon_cache_c:first-child,
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.paragon_cache_d:first-child {
+  background-position-y: 0;
+  border-radius: 3px;
+  box-shadow: 0 0 13px 3px #ffd700 inset;
+}
+
 .floatingIslandsHUD-modPanel.fog_shrine:hover::before,
 .floatingIslandsHUD-modPanel.frost_shrine:hover::before,
 .floatingIslandsHUD-modPanel.rain_shrine:hover::before,
