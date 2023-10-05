@@ -502,3 +502,17 @@ input.treasureMapView-block-search-text {
 .treasureMapView-goals-groups.incomplete {
   padding-bottom: 15px;
 }
+
+.treasureMapView-highlight.environment .treasureMapView-highlight-content {
+  padding: 10px;
+}
+
+.mh-ui-environments-block .treasureMapView-block-content.halfHeight {
+  max-height: unset;
+}
+
+.treasureMapView-highlight.mouse.environment {
+  position: fixed;
+  top: 225px;
+  left: 35px;
+}
