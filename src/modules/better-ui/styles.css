@@ -10,15 +10,10 @@
 .campPage-trap-armedItem,
 .campPage-trap-armedItem.bait,
 .campPage-trap-armedItem.bait.inactive,
-.campPage-trap-armedItem.skin,
-div#minluck-list {
+.campPage-trap-armedItem.skin {
   border: 1px solid #d3cecb;
   border-radius: 3px;
   box-shadow: -1px 1px 3px 0 #d3cecb inset;
-}
-
-div#minluck-list {
-  margin-top: 10px;
 }
 
 .campPage-trap-friendList.full {
