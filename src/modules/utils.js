@@ -54,13 +54,22 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
     return [];
   }
 
+  if (isItem) {
+    // change the 'drop_ct' to 'rate'
+    mhctjson.forEach((rate) => {
+      // convert from a '13.53' to 1353
+      rate.rate = parseInt(rate.drop_pct * 100);
+      delete rate.drop_ct;
+    });
+  }
+
   sessionStorage.setItem(`mhct-ar-${mouseId}-${type}`, JSON.stringify(mhctjson));
 
   return mhctjson;
 };
 
-const getArText = async (type) => {
-  const rates = await getArForMouse(type);
+const getArText = async (id, type = 'mouse') => {
+  const rates = await getArForMouse(id, type);
   if (! rates || rates.length === 0) {
     return false;
   }
@@ -73,8 +82,8 @@ const getArText = async (type) => {
   return (rate.rate / 100).toFixed(2);
 };
 
-const getHighestArForMouse = async (mouseId) => {
-  const rates = await getArForMouse(mouseId);
+const getHighestArForMouse = async (mouseId, type = 'mouse') => {
+  const rates = await getArForMouse(mouseId, type);
   if (! rates || rates.length === 0) {
     return 0;
   }
@@ -95,16 +104,16 @@ const getHighestArForMouse = async (mouseId) => {
   return (rate.rate / 100);
 };
 
-const getHighestArText = async (type) => {
-  const highest = await getHighestArForMouse(type);
+const getHighestArText = async (id, type = 'mouse') => {
+  const highest = await getHighestArForMouse(id, type);
   return highest ? highest : false;
 };
 
-const getArEl = async (id) => {
-  let ar = await getArText(id);
+const getArEl = async (id, type = 'mouse') => {
+  let ar = await getArText(id, type);
   let arType = 'location';
   if (! ar) {
-    ar = await getHighestArText(id);
+    ar = await getHighestArText(id, type);
     if (! ar || ar.length === 0) {
       return makeElement('div', ['mh-ui-ar', 'mh-ui-no-ar'], '?');
     }

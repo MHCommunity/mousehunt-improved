@@ -73,9 +73,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   const mhctjson = await getArForMouse(mouse.unique_id, type);
 
   const mhctDiv = makeElement('div', 'mhct-data');
-  mhctDiv.id = `mhct-${mouse.unique_id}`;
-
-  makeElement('div', 'mhct-title', 'item' === type ? 'Drop Rates' : 'Attraction Rates', mhctDiv);
+  mhctDiv.id = `mhct-${mouse.unique_id}-${type}`;
 
   const amountOfLocationsToShow = 5; // TODO: maybe modify this for some mice or make it an option?
   mhctjson.slice(0, amountOfLocationsToShow).forEach((mhct) => {

@@ -69,25 +69,26 @@ const showTravelConfirmation = (environment, mapModel) => {
   hg.controllers.TreasureMapController.showDialog(dialog);
 };
 
-const makeMouseDiv = async (mouse) => {
+const makeMouseDiv = async (mouse, type = 'mouse') => {
   // Wrapper.
   const mouseDiv = makeElement('div', 'mouse-container');
 
   // Wrapper IDs.
   mouseDiv.setAttribute('data-mouse-id', mouse.unique_id);
   mouseDiv.setAttribute('data-mouse-type', mouse.type);
+  mouseDiv.setAttribute('data-type', type);
 
   // Mouse header.
   const mouseData = makeElement('div', 'mouse-data');
 
   const mouseImage = makeElement('img', 'mouse-image');
-  mouseImage.src = mouse.small;
+  mouseImage.src = 'mouse' === type ? mouse.small : mouse.thumb;
   mouseImage.alt = mouse.name;
   mouseData.appendChild(mouseImage);
 
   makeElement('div', 'mouse-name', mouse.name, mouseData);
 
-  const mouseAr = await getArEl(mouse.unique_id);
+  const mouseAr = await getArEl(mouse.unique_id, type);
   if (mouseAr) {
     mouseData.appendChild(mouseAr);
   }
@@ -103,28 +104,31 @@ const makeMouseDiv = async (mouse) => {
   makeElement('div', 'location-text', 'Found in:', locations);
 
   const locationLocations = makeElement('div', 'mouse-locations');
-  mouse.environment_ids.forEach((environmentID) => {
-    const environment = window.mhui.mapper?.mapData?.environments.find((env) => {
-      return env.id === environmentID;
-    });
 
-    if (environment) {
-      const location = makeElement('a', 'mouse-location', environment.name);
-
-      location.title = `Travel to ${environment.name}`;
-      location.setAttribute('data-environment-id', environment.id);
-
-      location.addEventListener('click', () => {
-        showTravelConfirmation(environment, window.mhui.mapper?.mapModel);
+  if (Array.isArray(mouse.environment_ids)) {
+    mouse.environment_ids.forEach((environmentID) => {
+      const environment = window.mhui.mapper?.mapData?.environments.find((env) => {
+        return env.id === environmentID;
       });
 
-      locationLocations.appendChild(location);
-    }
-  });
+      if (environment) {
+        const location = makeElement('a', 'mouse-location', environment.name);
 
-  // Mouse locations close.
-  locations.appendChild(locationLocations);
-  mouseExtraInfo.appendChild(locations);
+        location.title = `Travel to ${environment.name}`;
+        location.setAttribute('data-environment-id', environment.id);
+
+        location.addEventListener('click', () => {
+          showTravelConfirmation(environment, window.mhui.mapper?.mapModel);
+        });
+
+        locationLocations.appendChild(location);
+      }
+    });
+
+    // Mouse locations close.
+    locations.appendChild(locationLocations);
+    mouseExtraInfo.appendChild(locations);
+  }
 
   // Mouse weakness.
   if (mouse.weaknesses) {
@@ -140,9 +144,9 @@ const makeMouseDiv = async (mouse) => {
       makeElement('div', 'weakness-name', weaknessType.name, weaknessTypeDiv);
 
       const powerTypes = makeElement('div', 'power-types');
-      weaknessType.power_types.forEach((type) => {
+      weaknessType.power_types.forEach((ptype) => {
         const powerType = document.createElement('img');
-        powerType.src = `https://www.mousehuntgame.com/images/powertypes/${type.name}.png`;
+        powerType.src = `https://www.mousehuntgame.com/images/powertypes/${ptype.name}.png`;
         powerTypes.appendChild(powerType);
       });
 
@@ -167,7 +171,7 @@ const makeMouseDiv = async (mouse) => {
     }
 
     // Append MHCT data.
-    addMHCTData(mouse, mouseExtraInfo);
+    addMHCTData(mouse, mouseExtraInfo, type);
 
     // Only allow one mouse to be selected at a time.
     const addClass = ! mouseDiv.classList.contains('mouse-container-selected');
@@ -372,6 +376,18 @@ const makeSortedMiceList = async () => {
   target.appendChild(categoriesWrapper);
 };
 
+const makeScavengerSortedPage = async () => {
+  const target = document.querySelector('.sorted-page-content');
+  if (! target) {
+    return;
+  }
+
+  target.classList.add('scavenger-sorted-page');
+
+  const currentMapData = getMapData(window.mhui.mapper?.mapData.map_id);
+  console.log(currentMapData); // eslint-disable-line no-console
+};
+
 const makeGenericSortedPage = async () => {
   const target = document.querySelector('.sorted-page-content');
   if (! target) {
@@ -391,7 +407,7 @@ const makeGenericSortedPage = async () => {
 
   // Sort from highest to lowest AR via the async getHighestArForMouse function.
   const sortedUnsorted = await Promise.all(unsortedMice.map(async (mouse) => {
-    const ar = await getHighestArForMouse(mouse.unique_id);
+    const ar = await getHighestArForMouse(mouse.unique_id, type);
     return {
       ...mouse,
       ar
@@ -407,7 +423,7 @@ const makeGenericSortedPage = async () => {
 
   // call makeMouseDiv for each mouse but in the sorted order and not asynchonously
   for (const mouse of sortedUnsorted) {
-    const mouseDiv = await makeMouseDiv(mouse);
+    const mouseDiv = await makeMouseDiv(mouse, type);
     target.appendChild(mouseDiv);
   }
 };
@@ -490,6 +506,9 @@ const processSortedTabClick = async () => {
 
   if (mouseGroups[currentMapData.map_type]) {
     await makeSortedMiceList();
+  } else if (currentMapData.is_scavenger_hunt) {
+    await makeScavengerSortedPage();
+    await makeGenericSortedPage();
   } else {
     await makeGenericSortedPage();
   }
