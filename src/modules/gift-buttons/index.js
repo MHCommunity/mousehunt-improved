@@ -83,7 +83,6 @@ const sendGifts = (buttonClass, limit = 15, reverse = false) => {
     // send the gifts.
     let sent = 0;
     giftButtons.forEach((button) => {
-      button.style.outline = '1px solid red';
       if (sent >= limit) {
         return;
       }
