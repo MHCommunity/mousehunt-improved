@@ -23,8 +23,8 @@ const listenForKeypresses = () => {
       // T for travel.
       hg.utils.PageUtil.setPage('Travel');
       break;
-    case 'c':
-      // C for camp.
+    case 'j':
+      // J for Journal/camp.
       hg.utils.PageUtil.setPage('Camp');
       break;
     case 'm':
@@ -43,8 +43,8 @@ const listenForKeypresses = () => {
       // B for base.
       app.pages.CampPage.toggleItemBrowser('base');
       break;
-    case 'h':
-      // H for cHarm.
+    case 'C':
+      // c for Charm.
       app.pages.CampPage.toggleItemBrowser('trinket');
       break;
     case 'a':
