@@ -38,31 +38,29 @@ const autofocusIdSearch = () => {
   input.focus();
 };
 
+const maybeRedirectToHunterProfile = (text) => {
+  if (! /^\d+$/.test(text)) {
+    return;
+  }
+
+  hg.utils.PageUtil.setPage('HunterProfile', {
+    id: text,
+  });
+};
+
 const listenForIDPaste = () => {
-  // listen for the user hitting the paste shortcut
-  window.addEventListener('keydown', (e) => {
-    // listen for command + v as well as ctrl + v
-    if ((e.metaKey || e.ctrlKey) && 86 === e.keyCode) {
-      // if we're currently focused in an input, then don't do anything
-      if (
-        document.activeElement instanceof HTMLInputElement || // eslint-disable-line @wordpress/no-global-active-element
-        document.activeElement instanceof HTMLTextAreaElement || // eslint-disable-line @wordpress/no-global-active-element
-        document.activeElement instanceof HTMLSelectElement // eslint-disable-line @wordpress/no-global-active-element
-      ) {
-        return;
-      }
-
-      navigator.clipboard.readText().then((text) => {
-        // if it is a number, then go to the hunter profile page
-        if (! /^\d+$/.test(text)) {
-          return;
-        }
-
-        hg.utils.PageUtil.setPage('HunterProfile', {
-          id: text,
-        });
-      });
+  // listen for the user hitting the paste shortcut.
+  window.addEventListener('paste', (e) => {
+    // if we're currently focused in an input, then don't do anything
+    if (
+      document.activeElement instanceof HTMLInputElement || // eslint-disable-line @wordpress/no-global-active-element
+      document.activeElement instanceof HTMLTextAreaElement || // eslint-disable-line @wordpress/no-global-active-element
+      document.activeElement instanceof HTMLSelectElement // eslint-disable-line @wordpress/no-global-active-element
+    ) {
+      return;
     }
+
+    maybeRedirectToHunterProfile(e.clipboardData.getData('text'));
   });
 };
 
