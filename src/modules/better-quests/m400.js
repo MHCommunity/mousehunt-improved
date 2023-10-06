@@ -188,6 +188,8 @@ const renderButton = (location) => {
   }
 
   const button = makeElement('div', ['mousehuntActionButton', 'tiny', 'mh-m400-travel', `mh-m400-travel-${location}`]);
+  button.id = 'mh-improved-m400-travel';
+
   makeElement('span', 'mousehuntActionButton-text', 'Travel to next step', button);
   button.setAttribute('data-location', location);
 
