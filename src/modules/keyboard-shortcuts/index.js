@@ -43,12 +43,12 @@ const listenForKeypresses = () => {
       // B for base.
       app.pages.CampPage.toggleItemBrowser('base');
       break;
-    case 'C':
-      // c for Charm.
+    case 'R':
+      // r for chaRm.
       app.pages.CampPage.toggleItemBrowser('trinket');
       break;
-    case 'a':
-      // A for bAit.
+    case 'c':
+      // C for Cheese /bait.
       app.pages.CampPage.toggleItemBrowser('bait');
       break;
     case 'e':
