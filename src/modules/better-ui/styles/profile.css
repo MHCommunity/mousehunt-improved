@@ -220,11 +220,12 @@
 }
 
 .mouseCrownsView-group-mice {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 4px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+  gap: 2px;
   align-items: stretch;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  justify-items: center;
 }
 
 .mouseCrownsView-group-mouse {
