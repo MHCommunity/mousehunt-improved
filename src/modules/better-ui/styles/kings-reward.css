@@ -1,0 +1,25 @@
+.puzzleView__imageContainer {
+  background-color: transparent;
+  border-color: #73332a;
+  border-width: 1px;
+}
+
+.puzzleView__image img {
+  filter: hue-rotate(333deg);
+  transform: scale(1.3);
+  transform-origin: left;
+}
+
+.puzzleView__requestNewPuzzleButton {
+  background-color: #a35721;
+}
+
+.puzzleView__requestNewPuzzleButtonIcon {
+  filter: invert(1);
+  opacity: .8;
+}
+
+input.puzzleView__code {
+  font-size: 32px;
+  letter-spacing: 8px;
+}
