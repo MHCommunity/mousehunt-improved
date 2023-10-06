@@ -213,6 +213,7 @@
 
 #sorted-mice-container .mouse-subcategory-wrapper .mouse-subcategory-header {
   margin-bottom: 3px;
+  background-color: rgb(255 255 255 / 75%);
   border-bottom: 1px solid #070707;
 }
 
