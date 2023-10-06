@@ -10,10 +10,30 @@
 .campPage-trap-armedItem,
 .campPage-trap-armedItem.bait,
 .campPage-trap-armedItem.bait.inactive,
-.campPage-trap-armedItem.skin {
+.campPage-trap-armedItem.skin,
+.campPage-trap-armedItem.mh-favorite-setups-button {
   border: 1px solid #d3cecb;
   border-radius: 3px;
   box-shadow: -1px 1px 3px 0 #d3cecb inset;
+}
+
+.campPage-trap-armedItem:hover,
+.campPage-trap-armedItem:focus,
+.campPage-trap-armedItem.inactive:hover,
+.campPage-trap-armedItem.inactive:focus,
+.campPage-trap-armedItem.active:hover,
+.campPage-trap-armedItem.active:focus {
+  background-color: #e9e6df;
+}
+
+.campPage-trap-armedItem.active,
+.campPage-trap-armedItem.skin.active {
+  top: 0;
+}
+
+.mh-favorite-setups-button.campPage-trap-armedItem.active,
+.campPage-trap-armedItem.active {
+  background-color: #e9e6df;
 }
 
 .campPage-trap-friendList.full {
