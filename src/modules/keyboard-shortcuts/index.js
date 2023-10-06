@@ -1,3 +1,6 @@
+import { addUIStyles } from '../utils';
+import styles from './styles.css';
+
 const clickMinLuck = () => {
   const minluckButton = document.querySelector('.min-luck-button');
   if (minluckButton) {
@@ -5,6 +8,41 @@ const clickMinLuck = () => {
   } else {
     app.pages.CampPage.toggleTrapEffectiveness(true);
   }
+};
+
+const showHelpPopup = () => {
+  createPopup({
+    title: 'MouseHunt Improved Keyboard Shortcuts',
+    content: `<div class="mh-ui-keyboard-shortcuts-popup-content">
+      <ul class="mh-ui-keyboard-shortcuts-popup-content-list">
+        <li class="mh-ui-keyboard-shortcuts-popup-content-section">
+          <h2>Navigation</h2>
+          <ul class="mh-ui-keyboard-shortcuts-list">
+            <li><strong>T</strong>Travel</li>
+            <li><strong>J</strong>Journal/Camp</li>
+            <li><strong>F</strong>Friends</li>
+            <li><strong>P</strong>Go to your Profile</li>
+            <li><strong>M</strong>Open your Map</li>
+            <li><strong>I</strong>Open your Map Invites</li>
+          </ul>
+        </li>
+        <li class="mh-ui-keyboard-shortcuts-popup-content-section">
+          <h2>Change your Setup</h2>
+          <ul class="mh-ui-keyboard-shortcuts-list">
+            <li><strong>W</strong>Change your Weapon</li>
+            <li><strong>B</strong>Change your Base</li>
+            <li><strong>R</strong>Change your Charm</li>
+            <li><strong>C</strong>Change your Cheese</li>
+            <li><strong>E</strong>Show the TEM</li>
+            <li><strong>L</strong><span>Show the CRE popup</span><em>(If you have the userscript installed)</em></li>
+          </ul>
+        </li>
+      </ul>
+    </div>`,
+    hasCloseButton: true,
+    show: true,
+    className: 'mh-ui-keyboard-shortcuts-popup'
+  });
 };
 
 const listenForKeypresses = () => {
@@ -19,50 +57,24 @@ const listenForKeypresses = () => {
     }
 
     switch (event.key) {
-    case 't':
-      // T for travel.
-      hg.utils.PageUtil.setPage('Travel');
-      break;
-    case 'j':
-      // J for Journal/camp.
-      hg.utils.PageUtil.setPage('Camp');
-      break;
-    case 'm':
-      // M for map.
-      hg.controllers.TreasureMapController.show();
-      break;
-    case 'i':
-      // I for map Invites.
-      hg.controllers.TreasureMapController.showCommunity();
-      break;
-    case 'w':
-      // W for Weapon.
-      app.pages.CampPage.toggleItemBrowser('weapon');
-      break;
-    case 'b':
-      // B for base.
-      app.pages.CampPage.toggleItemBrowser('base');
-      break;
-    case 'R':
-      // r for chaRm.
-      app.pages.CampPage.toggleItemBrowser('trinket');
-      break;
-    case 'c':
-      // C for Cheese /bait.
-      app.pages.CampPage.toggleItemBrowser('bait');
-      break;
-    case 'e':
-      // E for Effectiveness.
-      app.pages.CampPage.toggleTrapEffectiveness(true);
-      break;
-    case 'l':
-      // L for Luck.
-      clickMinLuck();
-      break;
+    case '?': showHelpPopup(); break; // ? for help.
+    case 'b': app.pages.CampPage.toggleItemBrowser('base'); break; // B for base.
+    case 'c': app.pages.CampPage.toggleItemBrowser('bait'); break; // C for Cheese.
+    case 'e': app.pages.CampPage.toggleTrapEffectiveness(true); break; // E for Effectiveness.
+    case 'f': hg.utils.PageUtil.setPage('Friends'); break; // F for friends.
+    case 'i': hg.controllers.TreasureMapController.showCommunity(); break; // I for map Invites.
+    case 'j': hg.utils.PageUtil.setPage('Camp'); break; // J for Journal/camp.
+    case 'l': clickMinLuck(); break; // L for Luck.
+    case 'm': hg.controllers.TreasureMapController.show(); break; // M for map.
+    case 'R': app.pages.CampPage.toggleItemBrowser('trinket'); break; // r for chaRm.
+    case 't': hg.utils.PageUtil.setPage('Travel'); break; // T for travel.
+    case 'w': app.pages.CampPage.toggleItemBrowser('weapon'); break; // W for Weapon.
+    case 'p': hg.utils.PageUtil.setPage('HunterProfile'); break; // P for Profile.
     }
   });
 };
 
 export default () => {
+  addUIStyles(styles);
   listenForKeypresses();
 };

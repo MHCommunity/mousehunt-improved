@@ -1,0 +1,42 @@
+.mh-ui-keyboard-shortcuts-popup-content {
+  padding: 10px;
+}
+
+.mh-ui-keyboard-shortcuts-popup-content-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mh-ui-keyboard-shortcuts-popup-content-section h2 {
+  padding-bottom: 10px;
+  padding-left: 4px;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.mh-ui-keyboard-shortcuts-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3px;
+  margin-top: 5px;
+  font-size: 13px;
+  background-color: #eee;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+}
+
+.mh-ui-keyboard-shortcuts-popup li strong {
+  padding: 0 10px;
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.mh-ui-keyboard-shortcuts-popup li em {
+  margin-left: 30px;
+  font-size: 10px;
+  font-style: italic;
+}
