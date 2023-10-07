@@ -1,5 +1,6 @@
 import { onNavigationPatched } from '../utils';
 import styles from './styles';
+import userHighlighting from '../../data/user-highlighting.json';
 
 const updateItemClassificationLinks = () => {
   const itemClassificationLink = document.querySelectorAll('.itemView-header-classification-link a');
@@ -201,6 +202,44 @@ const addRankupForecasterButtons = () => {
   });
 };
 
+const getUserHighlightingShield = (type) => {
+  let text = 'MouseHunt Improved Supporter';
+  if ('developer' === type) {
+    text = 'MouseHunt Improved Developer';
+  }
+
+  const wrapper = makeElement('div', 'blackTooltip');
+  makeElement('div', 'hunterInfoView-verifiedUserImage', null, wrapper);
+  makeElement('span', 'blackTooltiptext hunterInfoView-verifiedUser', text, wrapper);
+
+  return wrapper;
+};
+
+const highlightUsers = () => {
+  const id = document.querySelector('.hunterInfoView-hunterId-idText span');
+  if (! id) {
+    return;
+  }
+
+  const profilePage = document.querySelector('#mousehuntContainer.PageHunterProfile');
+  if (! profilePage) {
+    return;
+  }
+
+  const idHeader = document.querySelector('.hunterInfoView-idCardBlock-secondaryHeader');
+  if (! idHeader) {
+    return;
+  }
+
+  // for each key in userHiglighting, check if the user id is in the array and add the key as a class
+  Object.keys(userHighlighting).forEach((key) => {
+    if (userHighlighting[key].includes(parseInt(id.innerText, 10))) {
+      profilePage.classList.add('mh-improved-highlight-user', `mh-improved-${key}`);
+      idHeader.appendChild(getUserHighlightingShield(key));
+    }
+  });
+};
+
 export default () => {
   styles();
 
@@ -217,4 +256,8 @@ export default () => {
   onRequest(addDarkModeBodyClass);
 
   onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
+
+  onNavigationPatched(highlightUsers, {
+    page: 'hunterprofile'
+  });
 };

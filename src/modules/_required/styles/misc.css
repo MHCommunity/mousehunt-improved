@@ -3,3 +3,15 @@
   justify-content: space-around;
   margin-top: 5px;
 }
+
+.mh-improved-developer .hunterInfoView-verifiedUserImage,
+.mh-improved-contributor .hunterInfoView-verifiedUserImage {
+  width: 14px;
+  height: 17px;
+  background: url(https://i.mouse.rip/mh-improved/mouse-badge.png) no-repeat;
+  background-size: contain;
+}
+
+.mh-improved-contributor .hunterInfoView-verifiedUserImage {
+  background-image: url(https://i.mouse.rip/mh-improved/star-badge.png);
+}
