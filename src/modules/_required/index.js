@@ -1,9 +1,4 @@
-import { addUIStyles } from '../utils';
-import globalStyles from './global-styles.css';
-import fixesStyles from './fixes.css';
-import darkmodeStyles from './darkmode.css';
-import settingsStyles from './settings.css';
-import moveToModuleStyles from './move-to-module.css';
+import styles from './styles';
 
 const updateItemClassificationLinks = () => {
   const itemClassificationLink = document.querySelectorAll('.itemView-header-classification-link a');
@@ -206,13 +201,7 @@ const addRankupForecasterButtons = () => {
 };
 
 export default () => {
-  addUIStyles([
-    globalStyles,
-    fixesStyles,
-    darkmodeStyles,
-    settingsStyles,
-    moveToModuleStyles,
-  ].join('\n'));
+  styles();
 
   if ('item' === getCurrentPage()) {
     updateItemClassificationLinks();
@@ -223,7 +212,7 @@ export default () => {
   addDarkModeBodyClass();
   addRankupForecasterButtons();
 
-  onPageChange(addDarkModeBodyClass);
+  onNavigation(addDarkModeBodyClass);
   onRequest(addDarkModeBodyClass);
 
   onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
