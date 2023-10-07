@@ -177,7 +177,7 @@
 .mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::after,
 .mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header::after {
   position: absolute;
-  top: -7px;
+  top: -4px;
   right: 2px;
   z-index: 1;
   width: 25px;
@@ -197,7 +197,7 @@
 
 .mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::before {
   position: absolute;
-  top: -12px;
+  top: -8px;
   right: -4px;
   width: 37px;
   height: 48px;
