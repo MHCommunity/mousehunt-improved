@@ -155,7 +155,6 @@ const main = () => {
     });
   });
 
-  addMouseripLink();
   dev();
 
   eventRegistry.doEvent('mousehunt-improved-settings-after-load');

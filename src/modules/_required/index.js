@@ -214,6 +214,7 @@ export default () => {
   }
 
   addHelpLinks();
+  addMouseripLink();
   addDarkModeBodyClass();
 
   onPageChange(addDarkModeBodyClass);
