@@ -48,6 +48,13 @@ const showHelpPopup = () => {
 const listenForKeypresses = () => {
   // Listen for the keypress and call the callback when it happens.
   document.addEventListener('keydown', (event) => {
+    // if the user sent a keypress 250ms or sooner after the last one, ignore it
+    if (Date.now() - window.mhui?.lastKeypress < 250) {
+      return;
+    }
+
+    window.mhui.lastKeypress = Date.now();
+
     if (
       document.activeElement instanceof HTMLInputElement || // eslint-disable-line @wordpress/no-global-active-element
       document.activeElement instanceof HTMLTextAreaElement || // eslint-disable-line @wordpress/no-global-active-element
