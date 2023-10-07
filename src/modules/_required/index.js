@@ -240,6 +240,26 @@ const highlightUsers = () => {
   });
 };
 
+const addExportSettings = () => {
+  const wrapper = document.querySelector('.mousehuntHud-page-tabContent.mousehunt-improved-settings');
+  if (! wrapper) {
+    return;
+  }
+
+  const exportSettings = makeElement('div', ['mousehunt-improved-export-settings', 'mousehuntActionButton', 'tiny']);
+  makeElement('span', '', 'Export Settings', exportSettings);
+
+  exportSettings.addEventListener('click', () => {
+    const settings = JSON.stringify(JSON.parse(localStorage.getItem('mousehunt-improved-settings')), null, 2);
+    const link = document.createElement('a');
+    link.download = 'mousehunt-improved-settings.json';
+    link.href = `data:application/json;base64,${btoa(settings)}`;
+    link.click();
+  });
+
+  wrapper.appendChild(exportSettings);
+};
+
 export default () => {
   styles();
 
@@ -259,5 +279,10 @@ export default () => {
 
   onNavigationPatched(highlightUsers, {
     page: 'hunterprofile'
+  });
+
+  onNavigationPatched(addExportSettings, {
+    page: 'preferences',
+    tab: 'mousehunt-improved-settings',
   });
 };
