@@ -99,6 +99,7 @@ const updateItemView = async () => {
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://www.mhct.win/loot.php?item=${itemId}`;
+  link.target = '_mhct';
   title.appendChild(link);
 
   arWrapper.appendChild(title);

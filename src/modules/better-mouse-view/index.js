@@ -156,6 +156,7 @@ const updateMouseView = async () => {
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://www.mhct.win/attractions.php?mouse_name=${name.innerText}`;
+  link.target = '_mhct';
   title.appendChild(link);
 
   arWrapper.appendChild(title);
