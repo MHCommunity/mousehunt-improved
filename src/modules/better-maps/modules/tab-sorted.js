@@ -1,5 +1,5 @@
 import mouseGroups from '../../../data/mice-map-groups.json';
-import { getArEl, getHighestArForMouse } from '../../utils';
+import { getArEl, getHighestArForMouse, getMhuiSetting } from '../../utils';
 import { getMapData, addMHCTData } from '../map-utils';
 import { addArToggle, removeArToggle } from './toggle-ar';
 import doHighlighting from './highlighting';
