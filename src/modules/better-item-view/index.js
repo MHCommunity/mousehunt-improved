@@ -133,8 +133,10 @@ const updateItemView = async () => {
     }
   });
 
-  arWrapper.appendChild(itemsArWrapper);
-  container.appendChild(arWrapper);
+  if (mhctjson.length > 0) {
+    arWrapper.appendChild(itemsArWrapper);
+    container.appendChild(arWrapper);
+  }
 };
 
 const main = () => {
