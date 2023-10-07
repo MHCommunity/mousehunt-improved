@@ -182,6 +182,14 @@ const makeReturnButton = (buttonContainer) => {
   buttonContainer.appendChild(returnWrapper);
 };
 
+const fixTypo = () => {
+  const template = hg.utils.TemplateUtil.getTemplate('ViewGiftSelector')
+    .replace('You can send 1 free gifts', 'You can send 1 free gift')
+    .replace('<b>1</b> free gifts', '<b>1</b> free gift');
+
+  hg.utils.TemplateUtil.addTemplate('ViewGiftSelector', template);
+};
+
 /**
  * Make the buttons and add them to the page.
  */
@@ -300,6 +308,8 @@ const main = () => {
   }
 
   addRandomSendButton();
+
+  fixTypo();
 };
 
 export default () => {
