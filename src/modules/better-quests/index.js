@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, onNavigationPatched } from '../utils';
 import m400 from './m400';
 import styles from './styles.css';
 
@@ -330,11 +330,11 @@ const main = () => {
   // Add our event listener and add the quests tab.
   activate();
 
-  onNavigation(activate, {
+  onNavigationPatched(activate, {
     page: 'camp'
   });
 
-  onNavigation(checkForQuestSmash, {
+  onNavigationPatched(checkForQuestSmash, {
     page: 'inventory',
     tab: 'crafting',
     subtab: 'hammer',

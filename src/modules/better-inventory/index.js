@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, onNavigationPatched } from '../utils';
 import styles from './styles.css';
 
 const setOpenQuantityOnClick = (attempts = 0) => {
@@ -522,14 +522,14 @@ const main = () => {
   addOpenAlltoConvertiblePage();
   modifySmashableTooltip();
 
-  onNavigation(addOpenAlltoConvertiblePage, {
+  onNavigationPatched(addOpenAlltoConvertiblePage, {
     page: 'inventory',
   });
 
   onEvent('js_dialog_show', addOpenAlltoConvertible);
   onEvent('js_dialog_show', warnOnBadCrafts);
 
-  onNavigation(cleanUpRecipeBook,
+  onNavigationPatched(cleanUpRecipeBook,
     {
       page: 'inventory',
       tab: 'crafting',
@@ -537,7 +537,7 @@ const main = () => {
     }
   );
 
-  onNavigation(fixPassingParcel,
+  onNavigationPatched(fixPassingParcel,
     {
       page: 'inventory',
       tab: 'special',

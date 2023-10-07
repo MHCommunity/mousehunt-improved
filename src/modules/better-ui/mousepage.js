@@ -1,3 +1,4 @@
+import { onNavigationPatched } from '../utils';
 
 const makeKingsCrownsTab = () => {
   // Add king's crowns tab;
@@ -337,16 +338,16 @@ export default () => {
     hg.utils.PageUtil.onclickPageTabHandler(tab);
   }
 
-  onNavigation(addKingsCrownsToMicePage, {
+  onNavigationPatched(addKingsCrownsToMicePage, {
     page: 'adversaries',
   });
 
-  onNavigation(addSortingToStatsPage, {
+  onNavigationPatched(addSortingToStatsPage, {
     page: 'adversaries',
     tab: 'your_stats',
   });
 
-  onNavigation(addSortingToStatsPage, {
+  onNavigationPatched(addSortingToStatsPage, {
     page: 'hunterprofile',
     tab: 'mice',
   });

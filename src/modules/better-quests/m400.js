@@ -1,3 +1,5 @@
+import { onNavigationPatched } from '../utils';
+
 const locations = {
   /* eslint-disable */
   balacks_cove      : ["Balack's Cove", 'Derr Lich', 'Elub Lich', 'Nerg Lich'],
@@ -290,7 +292,7 @@ export default () => {
 
   m400();
 
-  onNavigation(m400, {
+  onNavigationPatched(m400, {
     page: 'camp',
   });
 }

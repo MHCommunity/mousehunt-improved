@@ -309,6 +309,15 @@ const getMhuiSetting = (key, defaultValue = false) => {
   return getSetting(key, defaultValue, 'mousehunt-improved-settings');
 };
 
+const onNavigationPatched = (callback, options = {}) => {
+  if (options.onLoad !== null) {
+    onNavigation(callback, options);
+  } else {
+    options.onLoad = false;
+    onNavigation(callback, options);
+  }
+};
+
 export {
   addUIStyles,
   addHudStyles,
@@ -323,5 +332,6 @@ export {
   showErrorMessage,
   showSuccessMessage,
   saveMhuiSetting,
-  getMhuiSetting
+  getMhuiSetting,
+  onNavigationPatched
 };

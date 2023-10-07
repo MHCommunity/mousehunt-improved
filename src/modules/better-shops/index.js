@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, onNavigationPatched } from '../utils';
 import styles from './styles.css';
 
 const updatePlaceholderText = () => {
@@ -133,7 +133,7 @@ const main = () => {
 export default () => {
   addUIStyles(styles);
 
-  onNavigation(main, {
+  onNavigationPatched(main, {
     page: 'shops'
   });
 

@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, onNavigationPatched } from '../utils';
 import styles from './styles.css';
 
 import airships from './items/airships.json';
@@ -297,7 +297,7 @@ const run = async () => {
 export default () => {
   addUIStyles(styles);
 
-  onNavigation(run, {
+  onNavigationPatched(run, {
     page: 'hunterprofile',
     tab: 'items'
   });
