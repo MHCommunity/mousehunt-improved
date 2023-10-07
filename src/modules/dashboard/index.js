@@ -69,7 +69,7 @@ const cacheLocationData = async () => {
     }
 
     // Save the combined data to localStorage.
-    localStorage.setItem('mh-improved-quests-cache', JSON.stringify(questsCombined));
+    localStorage.setItem('mh-improved-cache-quests', JSON.stringify(questsCombined));
 
     resolve();
   });
