@@ -122,7 +122,7 @@
 }
 
 .mouseview-has-mhct .ar-link {
-  font-size: 9px;
+  font-weight: 400;
 }
 
 .mouseview-has-mhct .rate {
@@ -214,4 +214,8 @@
 
 .mouseView-statsContainer-block-padding abbr {
   text-decoration: none;
+}
+
+.mouseView-statsContainer-block-padding {
+  padding: 5px;
 }
