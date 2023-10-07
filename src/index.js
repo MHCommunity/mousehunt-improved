@@ -118,6 +118,8 @@ const modules = [
 ];
 
 const main = () => {
+  dev();
+
   addSettingsTab('mousehunt-improved-settings', 'MH Improved');
 
   // Add the settings for each module.
@@ -151,8 +153,6 @@ const main = () => {
       }
     });
   });
-
-  dev();
 
   eventRegistry.doEvent('mousehunt-improved-settings-after-load');
 };
