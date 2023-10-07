@@ -1,3 +1,4 @@
+import { onNavigationPatched } from '../utils';
 import styles from './styles';
 
 const updateItemClassificationLinks = () => {
@@ -212,7 +213,7 @@ export default () => {
   addDarkModeBodyClass();
   addRankupForecasterButtons();
 
-  onNavigation(addDarkModeBodyClass);
+  onNavigationPatched(addDarkModeBodyClass);
   onRequest(addDarkModeBodyClass);
 
   onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
