@@ -7,7 +7,7 @@ import { addBlockClasses, getMapData, setMapData } from './map-utils';
 const interceptMapRequest = (mapId) => {
   // If we don't have data, we're done.
   if (! mapId) {
-    return;
+    return false;
   }
 
   const init = (mapData) => {
@@ -29,12 +29,7 @@ const interceptMapRequest = (mapId) => {
     return init(data);
   }
 
-  setTimeout(() => {
-    data = getMapData(mapId, true);
-    if (data) {
-      return init(data);
-    }
-  }, 500);
+  return false;
 };
 
 const initMapper = (map) => {
@@ -92,9 +87,11 @@ const intercept = () => {
   const parentShowMap = hg.controllers.TreasureMapController.showMap;
   hg.controllers.TreasureMapController.showMap = (id = false) => {
     parentShowMap(id);
-    interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
+    const intercepted = interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
     setTimeout(() => {
-      interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
+      if (! intercepted) {
+        interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
+      }
     }, 1000);
   };
 

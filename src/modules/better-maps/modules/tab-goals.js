@@ -12,7 +12,7 @@ const getLinkMarkup = (name) => {
 /**
  * Add links to the mouse details on the map.
  */
-const addMouseLinksToMap = async () => {
+const addMouseLinksToMap = async (mapData) => {
   const overlay = document.getElementById('overlayPopup');
   if (! (overlay && overlay.classList.contains('treasureMapPopup'))) {
     return;
@@ -28,17 +28,20 @@ const addMouseLinksToMap = async () => {
     return;
   }
 
-  if (mapViewClasses.classList.value.indexOf('scavenger_hunt') !== -1) {
-    return;
-  }
+  const type = mapViewClasses.classList.value.indexOf('scavenger_hunt') !== -1 ? 'item' : 'mouse';
 
   mouseIcon.forEach((mouse) => {
-    const mouseType = mouse.classList.value
+    let mouseType = mouse.classList.value
       .replace('treasureMapView-goals-group-goal ', '')
       .replace(' mouse', '')
+      .replace(' item', '')
       .replace('landscape', '')
       .replaceAll(' ', '')
       .trim();
+
+    if ('item' === type ) {
+      mouseType = mouse.getAttribute('data-unique-id');
+    }
 
     mouse.addEventListener('click', async () => {
       const title = document.querySelector('.treasureMapView-highlight-name');
@@ -49,18 +52,22 @@ const addMouseLinksToMap = async () => {
       title.classList.add('mh-ui-mouse-links-map-name');
 
       title.addEventListener('click', () => {
-        hg.views.MouseView.show(mouseType);
+        if (type === 'item') {
+          hg.views.ItemView.show(mouseType);
+        } else if (type === 'mouse') {
+          hg.views.MouseView.show(mouseType);
+        }
       });
 
       title.setAttribute('data-mouse-id', mouseType);
 
-      const existing = document.querySelector(`#mh-ui-mouse-links-map-${mouseType}`);
+      const existing = document.querySelector(`#mh-ui-mouse-links-map-${mouseType}-${type}`);
       if (existing) {
         return;
       }
 
       const div = makeElement('div', 'mh-ui-mouse-links-map');
-      div.id = `mh-ui-mouse-links-map-${mouseType}`;
+      div.id = `mh-ui-mouse-links-map-${mouseType}-${type}`;
       div.innerHTML = getLinkMarkup(title.innerText);
 
       const envs = document.querySelector('.treasureMapView-highlight-environments');
@@ -84,8 +91,8 @@ const addMouseLinksToMap = async () => {
       }
 
       const arsEl = makeElement('div', 'mh-ui-mouse-links-map-ars');
-      arsEl.id = `mh-ui-mouse-links-map-ars-${mouseType}`;
-      await addMHCTData({ unique_id: mouseType }, arsEl, 'mouse');
+      arsEl.id = `mh-ui-mouse-links-map-ars-${mouseType}-${type}`;
+      await addMHCTData({ unique_id: mouseType }, arsEl, type);
 
       // if there wasn't a change to theArsEl div, then don't add it.
       if (arsEl.innerHTML === '') {
@@ -198,7 +205,7 @@ const addClassesToGroups = (mapData) => {
 
 const showGoalsTab = (mapData) => {
   addArToggle();
-  addMouseLinksToMap();
+  addMouseLinksToMap(mapData);
 
   addConsolationPrizes();
 

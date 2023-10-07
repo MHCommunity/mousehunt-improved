@@ -35,13 +35,42 @@ const removeHudStyles = () => {
   });
 };
 
+const getCachedValue = (key) => {
+  const localStorageContainer = localStorage.getItem('mh-improved-ar');
+  if (! localStorageContainer) {
+    return false;
+  }
+
+  const container = JSON.parse(localStorageContainer);
+  if (! container[key]) {
+    return false;
+  }
+
+  return container[key];
+};
+
+const setCachedValue = (key, value) => {
+  const localStorageContainer = localStorage.getItem('mh-improved-ar');
+  let container = {};
+  if (localStorageContainer) {
+    container = JSON.parse(localStorageContainer);
+  }
+
+  // set the value
+  container[key] = value;
+
+  localStorage.setItem('mh-improved-ar', JSON.stringify(container));
+
+  return true;
+};
+
 const getArForMouse = async (mouseId, type = 'mouse') => {
   let mhctjson = [];
 
   // check if the attraction rates are cached
-  const cachedAr = sessionStorage.getItem(`mhct-ar-${mouseId}-${type}`);
+  const cachedAr = getCachedValue(`mhct-ar-${mouseId}-${type}`);
   if (cachedAr) {
-    return JSON.parse(cachedAr);
+    return cachedAr;
   }
 
   const isItem = 'item' === type;
@@ -63,7 +92,7 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
     });
   }
 
-  sessionStorage.setItem(`mhct-ar-${mouseId}-${type}`, JSON.stringify(mhctjson));
+  setCachedValue(`mhct-ar-${mouseId}-${type}`, mhctjson);
 
   return mhctjson;
 };

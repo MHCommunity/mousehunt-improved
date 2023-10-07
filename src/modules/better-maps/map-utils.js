@@ -65,7 +65,7 @@ const addBlockClasses = () => {
 };
 
 const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
-  const existingMhct = appendTo.querySelector(`#mhct-${mouse.unique_id}`);
+  const existingMhct = appendTo.querySelector(`#mhct-${mouse.unique_id}-${type}`);
   if (existingMhct) {
     return;
   }
