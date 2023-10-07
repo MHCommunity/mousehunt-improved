@@ -23,19 +23,24 @@ const addMouseLinksToMap = async () => {
     return;
   }
 
-  const mapViewClasses = document.querySelector('.treasureMapView.treasure');
+  const mapViewClasses = document.querySelector('.treasureMapView');
   if (! mapViewClasses) {
     return;
   }
 
-  const type = mapViewClasses.classList.value.indexOf('scavenger_hunt') !== -1 ? 'item' : 'mouse';
+  let type = 'mouse';
+  if (mapViewClasses.classList.value.indexOf('scavenger_hunt') !== -1) {
+    type = 'item';
+  }
 
   mouseIcon.forEach((mouse) => {
     let mouseType = mouse.classList.value
-      .replace('treasureMapView-goals-group-goal ', '')
+      .replace('treasureMapView-goals-group-goal', '')
       .replace(' mouse', '')
       .replace(' item', '')
+      .replace(' complete', '')
       .replace('landscape', '')
+      .replace('notAvailable', '')
       .replaceAll(' ', '')
       .trim();
 
@@ -228,7 +233,7 @@ const moveLeaveButton = () => {
 
 const showGoalsTab = (mapData) => {
   addArToggle();
-  addMouseLinksToMap(mapData);
+  addMouseLinksToMap();
 
   addConsolationPrizes();
 

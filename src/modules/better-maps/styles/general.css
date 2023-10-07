@@ -511,3 +511,42 @@ input.treasureMapView-block-search-text {
 .mh-ui-environments-block .treasureMapView-block-content.halfHeight {
   max-height: unset;
 }
+
+.treasureMapView-goals-group-goal.notAvailable {
+  opacity: .5;
+}
+
+.treasureMapView-goals-group-goal.notAvailable:hover,
+.treasureMapView-goals-group-goal.notAvailable.sticky {
+  opacity: 1;
+}
+
+.treasureMapView-goals-group-goal.complete .treasureMapView-goals-group-goal-image {
+  width: 23px;
+  height: 35px;
+  filter: none;
+}
+
+.complete .treasureMapView-goals-group-goal-name,
+.complete .treasureMapView-goals-group-goal-padding {
+  height: 35px;
+}
+
+.treasureMapView-goals-group-goal.complete::after {
+  width: 21px;
+  height: 21px;
+}
+
+.mousehuntActionButton.mh-ui-leave-map-button {
+  background-color: #ffa5a5;
+}
+
+.mousehuntActionButton.mh-ui-leave-map-button::before {
+  background-color: #f27b6a;
+  box-shadow: 0 0 10px #ffa5a5 inset;
+}
+
+.mousehuntActionButton.mh-ui-leave-map-button:hover::before,
+.mousehuntActionButton.mh-ui-leave-map-button:focus::before {
+  background-color: #ffa5a5;
+}

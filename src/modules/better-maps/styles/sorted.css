@@ -91,6 +91,7 @@
   left: -1px;
   z-index: 10;
   display: block;
+  padding: 5px;
   background-color: #eaeaea;
   border: 1px solid #000;
   border-top: 1px solid #dedede;
@@ -164,6 +165,7 @@
 #sorted-mice-container .weakness-name {
   margin-right: 2px;
   margin-bottom: 2px;
+  font-size: 10px;
 }
 
 #sorted-mice-container .mouse-locations-wrapper {
