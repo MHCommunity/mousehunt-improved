@@ -123,8 +123,8 @@ const makeKingsCrownsTabContent = async () => {
   makeKingsCrownsTabContentContent();
 
   let crowns = [];
-  const cachedCrowns = localStorage.getItem('kingsCrowns');
-  const cachedCrownsTime = localStorage.getItem('kingsCrownsTime');
+  const cachedCrowns = localStorage.getItem('mh-improved-cache-kings-crowns');
+  const cachedCrownsTime = localStorage.getItem('mh-improved-cache-kings-crowns-time');
   if (
     cachedCrowns &&
     cachedCrownsTime &&

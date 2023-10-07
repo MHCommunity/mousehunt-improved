@@ -4,7 +4,7 @@ import { getArForMouse } from '../utils';
 
 const getMapData = (mapId = false, strict = false) => {
   if (mapId !== false) {
-    const sessionMap = JSON.parse(sessionStorage.getItem(`mapper-map-${mapId}`));
+    const sessionMap = JSON.parse(sessionStorage.getItem(`mh-improved-map-cache-${mapId}`));
     if (sessionMap) {
       return sessionMap;
     }
@@ -14,7 +14,7 @@ const getMapData = (mapId = false, strict = false) => {
     return false;
   }
 
-  const localStorageMap = JSON.parse(sessionStorage.getItem('mapper-latest'));
+  const localStorageMap = JSON.parse(sessionStorage.getItem('mh-improved-map-cache-last-map'));
   if (localStorageMap) {
     return localStorageMap;
   }
@@ -23,8 +23,8 @@ const getMapData = (mapId = false, strict = false) => {
 };
 
 const setMapData = (mapId, mapData) => {
-  sessionStorage.setItem(`mapper-map-${mapId}`, JSON.stringify(mapData));
-  sessionStorage.setItem('mapper-latest', JSON.stringify(mapData));
+  sessionStorage.setItem(`mh-improved-map-cache-${mapId}`, JSON.stringify(mapData));
+  sessionStorage.setItem('mh-improved-map-cache-last-map', JSON.stringify(mapData));
 };
 
 const getLastMap = () => {

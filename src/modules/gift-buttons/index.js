@@ -110,7 +110,7 @@ const makePaidGiftsButton = (buttonContainer) => {
     hg.views.GiftSelectorView.show(); // eslint-disable-line no-undef
     hg.views?.GiftSelectorView.showTab('claim_paid_gifts', 'selectClaimableGift');
 
-    let acceptedGifts = JSON.parse(localStorage.getItem('mh-gift-buttons-accepted-paid-gifts'));
+    let acceptedGifts = JSON.parse(sessionStorage.getItem('mh-gift-buttons-accepted-paid-gifts'));
     if (! acceptedGifts) {
       acceptedGifts = {};
     }
@@ -144,7 +144,7 @@ const makePaidGiftsButton = (buttonContainer) => {
     });
 
     if (newAcceptedGifts !== acceptedGifts) {
-      localStorage.setItem('mh-gift-buttons-accepted-paid-gifts', JSON.stringify(newAcceptedGifts));
+      sessionStorage.setItem('mh-gift-buttons-accepted-paid-gifts', JSON.stringify(newAcceptedGifts));
     }
   });
 

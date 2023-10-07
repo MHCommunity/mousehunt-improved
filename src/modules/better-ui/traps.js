@@ -5,7 +5,7 @@ const setPrestigeStats = () => {
   }
 
   // update the stats display
-  const savedStats = JSON.parse(localStorage.getItem('mh-ui-pb-stats')) || false;
+  const savedStats = JSON.parse(localStorage.getItem('mh-improved-cache-pb-stats')) || false;
   if (! savedStats) {
     return;
   }
@@ -135,7 +135,7 @@ const savePbStats = () => {
     return;
   }
 
-  localStorage.setItem('mh-ui-pb-stats', JSON.stringify(stats));
+  localStorage.setItem('mh-improved-cache-pb-stats', JSON.stringify(stats));
 };
 
 export default () => {

@@ -53,7 +53,7 @@ const cacheLocationData = async () => {
     }
 
     // Get the current cached quests.
-    const questsCached = JSON.parse(localStorage.getItem('mh-quests-cache')) || {};
+    const questsCached = JSON.parse(localStorage.getItem('mh-improved-cache-quests')) || {};
 
     // Combine the cached quests with the current quests.
     const questsCombined = Object.assign({}, questsCached, user.quests);
@@ -69,7 +69,7 @@ const cacheLocationData = async () => {
     }
 
     // Save the combined data to localStorage.
-    localStorage.setItem('mh-quests-cache', JSON.stringify(questsCombined));
+    localStorage.setItem('mh-improved-quests-cache', JSON.stringify(questsCombined));
 
     resolve();
   });
@@ -182,7 +182,7 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
 };
 
 const getDashboardContents = () => {
-  const quests = JSON.parse(localStorage.getItem('mh-quests-cache')) || {};
+  const quests = JSON.parse(localStorage.getItem('mh-improved-cache-quests')) || {};
 
   const contentsWrapper = document.createElement('div');
   contentsWrapper.classList.add('dashboardContents');

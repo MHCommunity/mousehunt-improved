@@ -42,7 +42,7 @@ const getCachedValue = (key) => {
     return JSON.parse(isInSession);
   }
 
-  const localStorageContainer = localStorage.getItem('mh-improved-ar');
+  const localStorageContainer = localStorage.getItem('mh-improved-cache-ar');
   if (! localStorageContainer) {
     return false;
   }
@@ -61,7 +61,7 @@ const setCachedValue = (key, value, saveToSession = false) => {
     return;
   }
 
-  const localStorageContainer = localStorage.getItem('mh-improved-ar');
+  const localStorageContainer = localStorage.getItem('mh-improved-cache-ar');
   let container = {};
   if (localStorageContainer) {
     container = JSON.parse(localStorageContainer);
@@ -70,7 +70,7 @@ const setCachedValue = (key, value, saveToSession = false) => {
   // set the value
   container[key] = value;
 
-  localStorage.setItem('mh-improved-ar', JSON.stringify(container));
+  localStorage.setItem('mh-improved-cache-ar', JSON.stringify(container));
 };
 
 const getArForMouse = async (mouseId, type = 'mouse') => {
