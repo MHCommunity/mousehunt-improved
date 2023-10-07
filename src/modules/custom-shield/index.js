@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, getMhuiSetting } from '../utils';
 import styles from './styles.css';
 
 const addClass = (el, shieldClass) => {
@@ -10,7 +10,7 @@ const addClass = (el, shieldClass) => {
 };
 
 const changeShield = () => {
-  const shield = getSetting('custom-shield-0', 'default');
+  const shield = getMhuiSetting('custom-shield-0', 'default');
   if ('default' === shield) {
     return;
   }

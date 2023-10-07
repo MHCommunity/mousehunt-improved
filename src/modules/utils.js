@@ -301,6 +301,14 @@ const showSuccessMessage = (message, appendTo, classes = '') => {
   showErrorMessage(message, appendTo, classes, 'success');
 };
 
+const saveMhuiSetting = (key, value) => {
+  return saveSetting(key, value, 'mousehunt-improved-settings');
+};
+
+const getMhuiSetting = (key, defaultValue = false) => {
+  return getSetting(key, defaultValue, 'mousehunt-improved-settings');
+};
+
 export {
   addUIStyles,
   addHudStyles,
@@ -313,5 +321,7 @@ export {
   addArDataToMap,
   makeLink,
   showErrorMessage,
-  showSuccessMessage
+  showSuccessMessage,
+  saveMhuiSetting,
+  getMhuiSetting
 };

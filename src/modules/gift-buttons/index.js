@@ -1,8 +1,8 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, getMhuiSetting } from '../utils';
 import styles from './styles.css';
 
 const getIgnoredGifts = () => {
-  const ignored = getSetting('gift-buttons-ignore-bad-gifts-0', 'skip');
+  const ignored = getMhuiSetting('gift-buttons-ignore-bad-gifts-0', 'skip');
 
   const skipOptions = {
     skip: [

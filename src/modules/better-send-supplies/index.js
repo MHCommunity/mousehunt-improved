@@ -145,11 +145,11 @@ const addSortButtons = () => {
 
 const highlightFavoritedItems = () => {
   const itemsToPin = [
-    getSetting('send-supplies-pinned-items-0', 'SUPER|brie+'),
-    getSetting('send-supplies-pinned-items-1', 'Empowered SUPER|b...'),
-    getSetting('send-supplies-pinned-items-2', 'Rift Cherries'),
-    getSetting('send-supplies-pinned-items-3', 'Rift-torn Roots'),
-    getSetting('send-supplies-pinned-items-4', 'Sap-filled Thorns'),
+    getMhuiSetting('send-supplies-pinned-items-0', 'SUPER|brie+'),
+    getMhuiSetting('send-supplies-pinned-items-1', 'Empowered SUPER|b...'),
+    getMhuiSetting('send-supplies-pinned-items-2', 'Rift Cherries'),
+    getMhuiSetting('send-supplies-pinned-items-3', 'Rift-torn Roots'),
+    getMhuiSetting('send-supplies-pinned-items-4', 'Sap-filled Thorns'),
   ];
 
   items.forEach((item) => {

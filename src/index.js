@@ -137,7 +137,7 @@ const main = () => {
         );
       }
 
-      if (subModule.settings && (subModule.alwaysLoad || getSetting(subModule.id, subModule.default))) {
+      if (subModule.settings && (subModule.alwaysLoad || getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings'))) {
         subModule.settings(subModule, module);
       }
     });
@@ -149,7 +149,7 @@ const main = () => {
     module.modules.forEach((subModule) => {
       if (subModule.alwaysLoad) {
         subModule.load();
-      } else if (getSetting(subModule.id, subModule.default)) {
+      } else if (getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')) {
         subModule.load();
       }
     });

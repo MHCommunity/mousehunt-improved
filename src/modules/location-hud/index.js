@@ -1,5 +1,5 @@
 // Location HUD improvements.
-import { addUIStyles, removeHudStyles } from '../utils';
+import { addUIStyles, removeHudStyles, getMhuiSetting } from '../utils';
 import cheeseSelectorStyles from './cheese-selectors.css';
 
 // Locations
@@ -86,7 +86,7 @@ const main = () => {
 
   const currentLocation = getCurrentLocation();
   const location = normalizeCurrentLocation(currentLocation);
-  if (! getSetting(location, true)) {
+  if (! getMhuiSetting(location, true)) {
     return;
   }
 

@@ -19,7 +19,7 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   });
 
   // Remove the caught mice from the unsorted mice.
-  if (getSetting('mh-mapper-debug', false)) {
+  if (getMhuiSetting('mh-mapper-debug', false)) {
     console.log('keeping caught mice', caughtMice); // eslint-disable-line no-console
   } else {
     unsortedMice = unsortedMice.filter((mouse) => {
