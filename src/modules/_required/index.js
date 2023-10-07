@@ -203,9 +203,17 @@ const addRankupForecasterButtons = () => {
 };
 
 const getUserHighlightingShield = (type) => {
-  let text = 'MouseHunt Improved Supporter';
-  if ('developer' === type) {
+  let text = '';
+  switch (type) {
+  case 'developer':
     text = 'MouseHunt Improved Developer';
+    break;
+  case 'contributor':
+    text = 'MouseHunt Improved Contributor';
+    break;
+  case 'supporter':
+    text = 'MouseHunt Improved Supporter';
+    break;
   }
 
   const wrapper = makeElement('div', 'blackTooltip');
