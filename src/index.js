@@ -54,7 +54,6 @@ const modules = [
   {
     id: 'mousehunt-improved',
     name: 'MouseHunt Improved',
-    description: 'Interface and functionality improvements',
     modules: [
       { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
       { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and appearance and adds a variety of small features.', load: betterInventory },
@@ -73,7 +72,6 @@ const modules = [
   {
     id: 'feature-modules',
     name: 'Features',
-    description: 'Additional features',
     modules: [
       { id: 'copy-id', name: 'Copy ID Button', default: true, description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.', load: copyId },
       { id: 'custom-shield', name: 'Custom Shield', default: false, description: 'Change your shield in the HUD to a variety of different options.', load: customShield, alwaysLoad: true, settings: customShieldSettings }, // set to always load so that rather than enable/disable, you can just change the shield back to default.
@@ -96,7 +94,6 @@ const modules = [
   {
     id: 'location-hud',
     name: 'Location HUDs',
-    description: 'Location-specific HUD improvements',
     modules: [
       { id: 'location-huds', name: 'Location HUD Improvements', default: true, description: '', load: locationHud, alwaysLoad: true, settings: locationHudSettings },
     ],
