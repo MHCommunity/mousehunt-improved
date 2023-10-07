@@ -203,6 +203,29 @@ const addClassesToGroups = (mapData) => {
   });
 };
 
+const moveLeaveButton = () => {
+  const leaveButton = document.querySelector('.treasureMapView-mapLeaveContainer .treasureMapView-leaveMapButton');
+  if (! leaveButton) {
+    return;
+  }
+
+  const actions = document.querySelector('.treasureMapView-mapMenu-group-actions');
+  if (! actions) {
+    return;
+  }
+
+  const clone = leaveButton.cloneNode(true);
+  clone.classList.add('mh-ui-leave-map-button');
+  clone.classList.remove('lightBlue');
+
+  clone.addEventListener('click', () => {
+    // click the original button.
+    leaveButton.click();
+  });
+
+  actions.insertBefore(clone, actions.firstChild);
+};
+
 const showGoalsTab = (mapData) => {
   addArToggle();
   addMouseLinksToMap(mapData);
@@ -210,6 +233,8 @@ const showGoalsTab = (mapData) => {
   addConsolationPrizes();
 
   addClassesToGroups(mapData);
+
+  moveLeaveButton();
 };
 
 const hideGoalsTab = () => {
