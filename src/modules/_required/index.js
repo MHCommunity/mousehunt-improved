@@ -185,6 +185,11 @@ const addRankupForecasterButtons = () => {
         return;
       }
 
+      const existing = document.querySelector('.mh-ui-forecaster-buttons');
+      if (existing) {
+        return;
+      }
+
       const wrapper = makeElement('div', 'mh-ui-forecaster-buttons');
 
       const exportButton = makeElement('button', 'mh-ui-export-forecaster-data', 'Export Data');
