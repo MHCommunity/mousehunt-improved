@@ -221,11 +221,10 @@ export default () => {
   addHelpLinks();
   addMouseripLink();
   addDarkModeBodyClass();
+  addRankupForecasterButtons();
 
   onPageChange(addDarkModeBodyClass);
   onRequest(addDarkModeBodyClass);
 
   onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
-
-  addRankupForecasterButtons();
 };
