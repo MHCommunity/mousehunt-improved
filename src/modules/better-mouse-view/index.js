@@ -187,8 +187,10 @@ const updateMouseView = async () => {
     miceArWrapper.appendChild(mouseArWrapper);
   });
 
-  arWrapper.appendChild(miceArWrapper);
-  container.appendChild(arWrapper);
+  if (mhctjson.length > 0) {
+    arWrapper.appendChild(miceArWrapper);
+    container.appendChild(arWrapper);
+  }
 };
 
 const main = () => {
