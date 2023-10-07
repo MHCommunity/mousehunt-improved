@@ -24,7 +24,7 @@ const interceptMapRequest = (mapId) => {
     return data;
   };
 
-  let data = getMapData(mapId, true);
+  const data = getMapData(mapId, true);
   if (data) {
     return init(data);
   }

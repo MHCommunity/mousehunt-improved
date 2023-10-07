@@ -12,7 +12,7 @@ const getLinkMarkup = (name) => {
 /**
  * Add links to the mouse details on the map.
  */
-const addMouseLinksToMap = async (mapData) => {
+const addMouseLinksToMap = async () => {
   const overlay = document.getElementById('overlayPopup');
   if (! (overlay && overlay.classList.contains('treasureMapPopup'))) {
     return;
@@ -39,7 +39,7 @@ const addMouseLinksToMap = async (mapData) => {
       .replaceAll(' ', '')
       .trim();
 
-    if ('item' === type ) {
+    if ('item' === type) {
       mouseType = mouse.getAttribute('data-unique-id');
     }
 
