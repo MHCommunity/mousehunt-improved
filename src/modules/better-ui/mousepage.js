@@ -331,7 +331,7 @@ const addSortingToStatsPage = () => {
 };
 
 export default () => {
-  if (getCurrentTab() === 'kings_crowns') {
+  if ('adversaries' === getCurrentPage() && getCurrentTab() === 'kings_crowns') {
     addKingsCrownsToMicePage();
 
     const tab = document.querySelector('.mousehuntHud-page-tabHeader.kings-crowns-tab');
