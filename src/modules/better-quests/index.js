@@ -330,9 +330,14 @@ const main = () => {
   // Add our event listener and add the quests tab.
   activate();
 
-  onPageChange({
-    camp: { show: activate },
-    inventory: { show: checkForQuestSmash }
+  onNavigation(activate, {
+    page: 'camp'
+  });
+
+  onNavigation(checkForQuestSmash, {
+    page: 'inventory',
+    tab: 'crafting',
+    subtab: 'hammer',
   });
 
   onOverlayChange({

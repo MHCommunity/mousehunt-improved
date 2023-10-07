@@ -71,6 +71,5 @@ const titleBadge = () => {
 export default () => {
   addUIStyles(styles);
 
-  onPageChange({ change: changeShield });
   changeShield();
 };

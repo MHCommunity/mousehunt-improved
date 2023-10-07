@@ -125,7 +125,9 @@ const main = () => {
 export default () => {
   addUIStyles(styles);
 
-  main();
-  onPageChange({ change: main });
+  onNavigation(main, {
+    page: 'shops'
+  });
+
   onRequest(updatePlaceholderText, 'managers/ajax/purchases/itempurchase.php');
 };

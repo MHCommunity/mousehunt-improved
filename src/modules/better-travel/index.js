@@ -367,11 +367,12 @@ const addRegionToTravelDropdown = () => {
 const main = () => {
   addUIStyles(styles);
 
-  onPageChange({ change: expandTravelRegions });
-  expandTravelRegions();
-
-  onPageChange({ change: addSimpleTravel });
-  addSimpleTravel();
+  onNavigation(() => {
+    expandTravelRegions();
+    addSimpleTravel();
+  }, {
+    page: 'travel',
+  });
 
   if (window.location.search.includes('tab=simple-travel')) {
     // eslint-disable-next-line no-undef

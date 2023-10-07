@@ -291,7 +291,7 @@ export default () => {
 
   m400();
 
-  onPageChange({
-    camp: { show: m400 },
+  onNavigation(m400, {
+    page: 'camp',
   });
 }

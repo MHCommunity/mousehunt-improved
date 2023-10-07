@@ -522,7 +522,10 @@ const main = () => {
   addOpenAlltoConvertiblePage();
   modifySmashableTooltip();
 
-  onPageChange({ change: main });
+  onNavigation(addOpenAlltoConvertiblePage, {
+    page: 'inventory',
+  });
+
   onEvent('js_dialog_show', addOpenAlltoConvertible);
   onEvent('js_dialog_show', warnOnBadCrafts);
 
