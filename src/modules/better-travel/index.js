@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, getMhuiSetting } from '../utils';
 import styles from './styles.css';
 import environments from '../../data/environments.json';
 
@@ -143,14 +143,14 @@ const addPage = (id, content) => {
 const addSimpleTravelPage = () => {
   const wrapper = makeElement('div', 'travelPage-wrapper');
 
-  if ('not-set' === getSetting('simple-travel', 'not-set')) {
-    const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in your <a href="https://www.mousehuntgame.com/preferences.php?tab=userscript-settings"> Game Settings</a>.');
+  if ('not-set' === getMhuiSetting('better-travel-default-to-simple-travel', 'not-set')) {
+    const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings"> Game Settings</a>.');
     wrapper.appendChild(settingTip);
   }
 
   const regionMenu = cloneRegionMenu();
 
-  if (getSetting('simple-travel-alpha-sort', false)) {
+  if (getMhuiSetting('better-travel-show-alphabetized-list', false)) {
     const alphaWrapper = makeElement('div', 'travelPage-alpha-wrapper');
 
     const alphaContent = makeElement('div', 'travelPage-regionMenu');
@@ -197,48 +197,6 @@ const addSimpleTravelPage = () => {
   wrapper.appendChild(regionMenu);
 
   addPage('simple-travel', wrapper);
-};
-
-/**
- * Check the setting and maybe default to Simple Travel.
- */
-const maybeSwitchToSimpleTravel = () => {
-  if ('travel' !== getCurrentPage()) {
-    return;
-  }
-
-  const defaultTravel = getSetting('simple-travel');
-  if (! defaultTravel) {
-    return;
-  }
-
-  // eslint-disable-next-line no-undef
-  hg.utils.PageUtil.setPageTab('simple-travel');
-
-  const mapTab = document.querySelector('.mousehuntHud-page-tabHeader.map');
-  if (mapTab) {
-    mapTab.addEventListener('click', () => {
-      setTimeout(() => {
-        // eslint-disable-next-line no-undef
-        app.pages.TravelPage.zoomIn();
-
-        // eslint-disable-next-line no-undef
-        app.pages.TravelPage.zoomIn();
-
-        // eslint-disable-next-line no-undef
-        app.pages.TravelPage.zoomIn();
-
-        // eslint-disable-next-line no-undef
-        app.pages.TravelPage.zoomIn();
-
-        // eslint-disable-next-line no-undef
-        app.pages.TravelPage.zoomOut();
-
-        // eslint-disable-next-line no-undef
-        app.pages.TravelPage.zoomOut();
-      }, 100);
-    });
-  }
 };
 
 const addReminders = () => {
@@ -320,7 +278,6 @@ const addSimpleTravel = () => {
 
   addTab('simple-travel', 'Simple Travel');
   addSimpleTravelPage();
-  maybeSwitchToSimpleTravel();
 };
 
 const addRegionToTravelDropdown = () => {
@@ -364,9 +321,45 @@ const addRegionToTravelDropdown = () => {
   });
 };
 
-const main = () => {
-  addUIStyles(styles);
+const maybeShowTravelReminders = () => {
+  if (! getMhuiSetting('better-travel-show-reminders', true)) {
+    return;
+  }
 
+  onEvent('travel_complete', () => {
+    setTimeout(() => {
+      addReminders();
+    }, 250);
+  });
+};
+
+const maybeSetTab = () => {
+  if ('travel' !== getCurrentPage()) {
+    return;
+  }
+
+  if ('simple-travel' === getCurrentTab()) {
+    const isActive = document.querySelector('.mousehuntHud-page-tabContent.simple-travel');
+    if (! isActive || (isActive && isActive.classList.contains('active'))) {
+      return;
+    }
+
+    hg.utils.PageUtil.setPageTab('simple-travel')
+    return;
+  }
+
+  if ('map' !== getCurrentTab()) {
+    return;
+  }
+
+  if (! getMhuiSetting('better-travel-default-to-simple-travel', false)) {
+    return;
+  }
+
+  hg.utils.PageUtil.setPageTab('simple-travel'); // eslint-disable-line no-undef
+};
+
+const main = () => {
   onNavigation(() => {
     expandTravelRegions();
     addSimpleTravel();
@@ -374,18 +367,8 @@ const main = () => {
     page: 'travel',
   });
 
-  if (window.location.search.includes('tab=simple-travel')) {
-    // eslint-disable-next-line no-undef
-    hg.utils.PageUtil.setPageTab('simple-travel');
-  }
-
-  if (getSetting('travel-reminders', true)) {
-    onEvent('travel_complete', () => {
-      setTimeout(() => {
-        addReminders();
-      }, 250);
-    });
-  }
+  maybeSetTab();
+  maybeShowTravelReminders();
 
   addRegionToTravelDropdown();
   onTravel(null, { callback: addRegionToTravelDropdown });
