@@ -221,11 +221,9 @@
 
 .mouseCrownsView-group-mice {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-  gap: 2px;
+  grid-template-columns: repeat(7, 1fr);
   align-items: stretch;
-  justify-content: space-between;
-  justify-items: center;
+  justify-content: start;
 }
 
 .mouseCrownsView-group-mouse {
