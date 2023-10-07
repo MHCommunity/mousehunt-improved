@@ -219,6 +219,11 @@ const moveLeaveButton = () => {
     return;
   }
 
+  const existing = document.querySelector('.mh-ui-leave-map-button');
+  if (existing) {
+    return;
+  }
+
   const clone = leaveButton.cloneNode(true);
   clone.classList.add('mh-ui-leave-map-button');
   clone.classList.remove('lightBlue');
