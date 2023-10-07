@@ -332,11 +332,7 @@ const maybeShowTravelReminders = () => {
   });
 };
 
-const maybeSetTab = () => {
-  if ('travel' !== getCurrentPage()) {
-    return;
-  }
-
+const initSimpleTab = () => {
   if ('simple-travel' === getCurrentTab()) {
     const isActive = document.querySelector('.mousehuntHud-page-tabContent.simple-travel');
     if (! isActive || (isActive && isActive.classList.contains('active'))) {
@@ -344,8 +340,15 @@ const maybeSetTab = () => {
     }
 
     hg.utils.PageUtil.setPageTab('simple-travel');
+  }
+};
+
+const maybeSetTab = () => {
+  if ('travel' !== getCurrentPage()) {
     return;
   }
+
+  initSimpleTab();
 
   if ('map' !== getCurrentTab()) {
     return;
@@ -366,7 +369,12 @@ const main = () => {
     page: 'travel',
   });
 
-  maybeSetTab();
+  onPageChange({
+    travel: { show: maybeSetTab }
+  });
+
+  initSimpleTab();
+
   maybeShowTravelReminders();
 
   addRegionToTravelDropdown();
