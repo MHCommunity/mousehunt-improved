@@ -66,7 +66,7 @@ const listenForKeypresses = () => {
     case 'j': hg.utils.PageUtil.setPage('Camp'); break; // J for Journal/camp.
     case 'l': clickMinLuck(); break; // L for Luck.
     case 'm': hg.controllers.TreasureMapController.show(); break; // M for map.
-    case 'R': app.pages.CampPage.toggleItemBrowser('trinket'); break; // r for chaRm.
+    case 'r': app.pages.CampPage.toggleItemBrowser('trinket'); break; // r for chaRm.
     case 't': hg.utils.PageUtil.setPage('Travel'); break; // T for travel.
     case 'w': app.pages.CampPage.toggleItemBrowser('weapon'); break; // W for Weapon.
     case 'p': hg.utils.PageUtil.setPage('HunterProfile'); break; // P for Profile.
