@@ -26,11 +26,11 @@
 
 img.mh-ui-tem-crown-icon {
   position: absolute;
-  right: -6px;
-  bottom: -1px;
+  top: -1px;
+  right: -3px;
   z-index: 2;
-  width: 21px;
-  height: 21px;
+  width: 22px;
+  height: 22px;
   vertical-align: middle;
   background-color: #fdfdfa;
   border: 1px solid #929292;
@@ -42,9 +42,10 @@ span.mh-ui-tem-crown-text {
   top: -1px;
   left: 1px;
   z-index: 1;
+  box-sizing: border-box;
   display: inline-block;
   width: auto;
-  height: 15px;
+  height: 24px;
   padding: 4px 10px 2px 15px;
   font-size: 12px;
   font-weight: 900;
@@ -54,7 +55,7 @@ span.mh-ui-tem-crown-text {
 }
 
 .mh-ui-tem-crown-wrapper {
-  margin-top: 10px;
+  margin-top: 5px;
   margin-left: 10px;
 }
 
