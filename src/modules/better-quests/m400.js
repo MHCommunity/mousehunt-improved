@@ -87,9 +87,8 @@ const main = () => {
     objective.setAttribute('m400-helper-modified', true);
     objective.setAttribute('original-text', objective.innerText);
 
-    // replace 'm400 intel' with 'intel'
-    const newText = objective.innerText.replace('1 Piece of M400 Intel', 'intel');
-    objective.innerText = `${newText}. View on MHCT.`; // TODO
+    objective.innerText = objective.innerText.replace('1 Piece of M400 Intel', 'intel');
+
 
     const progress = step.querySelector('.campPage-quests-objective-progress');
     if (progress) {
