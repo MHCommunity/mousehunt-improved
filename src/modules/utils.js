@@ -36,6 +36,12 @@ const removeHudStyles = () => {
 };
 
 const getCachedValue = (key) => {
+  // check to see if it's in session storage first
+  const isInSession = sessionStorage.getItem(key);
+  if (isInSession !== null) {
+    return JSON.parse(isInSession);
+  }
+
   const localStorageContainer = localStorage.getItem('mh-improved-ar');
   if (! localStorageContainer) {
     return false;
@@ -49,7 +55,12 @@ const getCachedValue = (key) => {
   return container[key];
 };
 
-const setCachedValue = (key, value) => {
+const setCachedValue = (key, value, saveToSession = false) => {
+  if (saveToSession) {
+    sessionStorage.setItem(key, JSON.stringify(value));
+    return;
+  }
+
   const localStorageContainer = localStorage.getItem('mh-improved-ar');
   let container = {};
   if (localStorageContainer) {
@@ -60,8 +71,6 @@ const setCachedValue = (key, value) => {
   container[key] = value;
 
   localStorage.setItem('mh-improved-ar', JSON.stringify(container));
-
-  return true;
 };
 
 const getArForMouse = async (mouseId, type = 'mouse') => {
@@ -80,6 +89,7 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
   mhctjson = await mhctdata.json();
 
   if (! mhctjson || mhctjson.length === 0) {
+    setCachedValue(`mhct-ar-${mouseId}-${type}`, [], true);
     return [];
   }
 
