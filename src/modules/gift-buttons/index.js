@@ -230,6 +230,64 @@ const checkForSuccessfulGiftSend = (request) => {
   }, 2000);
 };
 
+const addRandomSendButton = () => {
+  const _selectGift = hg.views.GiftSelectorView.selectGift; // eslint-disable-line no-undef
+  hg.views.GiftSelectorView.selectGift = (gift) => { // eslint-disable-line no-undef
+    _selectGift(gift);
+
+    const title = document.querySelector('.giftSelectorView-tabContent.active .selectFriends .giftSelectorView-content-title');
+    if (! title) {
+      return false;
+    }
+
+    const existing = document.querySelector('.mh-gift-buttons-send-random');
+    if (existing) {
+      existing.remove();
+    }
+
+    const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons-send-random']);
+    makeElement('span', 'mousehuntActionButton-text', 'Pick Random Friends', sendButton);
+
+    const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
+    const limit = limitEl ? parseInt(limitEl.innerText, 10) : 0;
+
+    if (limit < 1) {
+      sendButton.classList.add('disabled');
+    }
+
+    sendButton.addEventListener('click', () => {
+      const friends = document.querySelectorAll('.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled)');
+      if (! friends.length) {
+        return;
+      }
+
+      const selected = [];
+      let sent = 1;
+
+      // fake the first "random" selection to be in the first 35 friends so that
+      // you can see that it's working.
+      const firstRandom = Math.floor(Math.random() * 35);
+      selected.push(firstRandom);
+
+      while (sent < limit) {
+        const random = Math.floor(Math.random() * friends.length);
+        if (selected.includes(random)) {
+          continue;
+        }
+
+        selected.push(random);
+        sent++;
+      }
+
+      selected.forEach((index) => {
+        friends[index].click();
+      });
+    });
+
+    title.appendChild(sendButton);
+  };
+};
+
 const main = () => {
   onAjaxRequest(makeButtons, '/managers/ajax/users/socialGift.php');
   onAjaxRequest(checkForSuccessfulGiftSend, '/managers/ajax/users/socialGift.php');
@@ -240,6 +298,8 @@ const main = () => {
       makeButtons();
     });
   }
+
+  addRandomSendButton();
 };
 
 export default () => {
