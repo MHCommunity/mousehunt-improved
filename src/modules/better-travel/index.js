@@ -316,7 +316,6 @@ const addRegionToTravelDropdown = () => {
         app.pages.TravelPage.travel(region.id);
       },
       class: 'mhui-region-travel-item',
-
     });
   });
 };
@@ -344,7 +343,7 @@ const maybeSetTab = () => {
       return;
     }
 
-    hg.utils.PageUtil.setPageTab('simple-travel')
+    hg.utils.PageUtil.setPageTab('simple-travel');
     return;
   }
 
