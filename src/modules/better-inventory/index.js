@@ -414,10 +414,15 @@ const showCraftWarning = (text) => {
   confirm.parentNode.appendChild(tooltip);
 };
 
-const warnOnBadCrafts = () => {
+const warnOnBadCrafts = (limit = 0) => {
   const confirm = document.querySelector('.mousehuntActionButton.inventoryPage-confirmPopup-suffix-button.confirm');
   if (! confirm) {
-    setTimeout(warnOnBadCrafts, 100);
+    if (limit <= 3) {
+      setTimeout(() => {
+        warnOnBadCrafts(limit + 1);
+      }, 250);
+    }
+
     return;
   }
 
