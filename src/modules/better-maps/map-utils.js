@@ -75,6 +75,25 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   const mhctDiv = makeElement('div', 'mhct-data');
   mhctDiv.id = `mhct-${mouse.unique_id}-${type}`;
 
+  const header = makeElement('div', 'mhct-title');
+  makeElement('span', 'mhct-title-text', 'item' === type ? 'Drop Rates' : 'Attraction Rates', header);
+  const mhctLink = makeElement('a', 'mhct-link', 'View on MHCT →');
+  mhctLink.target = '_mhct';
+
+  if (! mouse.name) {
+    const nameEl = document.querySelector('.treasureMapView-highlight-name');
+    mouse.name = nameEl ? nameEl.innerText : mouse.unique_id;
+  }
+
+  if ('item' === type) {
+    mhctLink.href = `https://www.mhct.win/loot.php?item=${mouse.unique_id}`;
+  } else {
+    mhctLink.href = `https://www.mhct.win/attractions.php?mouse_name=${mouse.name}`;
+  }
+
+  header.appendChild(mhctLink);
+  mhctDiv.appendChild(header);
+
   const amountOfLocationsToShow = 5; // TODO: maybe modify this for some mice or make it an option?
   mhctjson.slice(0, amountOfLocationsToShow).forEach((mhct) => {
     const mhctRow = makeElement('div', 'mhct-row');
@@ -118,6 +137,13 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
 
     mhctDiv.appendChild(mhctRow);
   });
+
+  // if the rows were empty, then add a message
+  if (0 === mhctjson.length) {
+    const mhctRow = makeElement('div', 'mhct-row');
+    makeElement('div', 'mhct-no-data', 'No data available', mhctRow);
+    mhctDiv.appendChild(mhctRow);
+  }
 
   appendTo.appendChild(mhctDiv);
 };
