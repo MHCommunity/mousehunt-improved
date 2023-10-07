@@ -161,8 +161,4 @@ const main = () => {
 };
 
 // Start it up.
-try {
-  main();
-} catch (e) {
-  console.error('Error loading MouseHunt Improved', e);
-}
+main();
