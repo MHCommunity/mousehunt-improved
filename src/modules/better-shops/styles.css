@@ -51,7 +51,8 @@ a.itemPurchaseView-image-trapPreview-link,
 }
 
 .itemPurchaseView-content-description {
-  max-height: 100px;
+  max-height: 173px;
+  padding-bottom: 10px;
   margin-top: 0;
   margin-bottom: 0;
   overflow-y: auto;
@@ -65,6 +66,8 @@ a.itemPurchaseView-image-trapPreview-link,
   margin-right: -11px;
   margin-left: -11px;
   background: #f9f9f9;
+  border-left: none;
+
 }
 
 .itemPurchaseView-action-itemCost-table-cell.cost {
@@ -97,6 +100,16 @@ a.itemPurchaseView-image-trapPreview-link,
   border: 1px solid #ccc;
   border-right: none;
   border-left: none;
+}
+
+.itemPurchaseView-content-container {
+  padding: 0;
+  border-right: 1px solid #ccc;
+}
+
+.itemPurchaseView-image-container,
+.itemPurchaseView-content-container {
+  background-color: #fff;;
 }
 
 .itemPurchaseView-action-quantity {
@@ -147,18 +160,21 @@ a.itemPurchaseView-action-form-button.sell {
   display: block;
 }
 
-.itemPurchaseView-action-purchaseHelper-owned {
-  position: absolute;
-  top: 11px;
-  right: 5px;
-  display: inline-flex;
+.itemPurchaseView-content-name {
+  display: flex;
   align-items: center;
-  height: 28px;
-  font-style: italic;
+  justify-content: space-between;
+  margin-top: 6px;
+  margin-bottom: 4px;
 }
 
-span.itemPurchaseView-action-owned {
-  margin-left: 2px;
+.itemPurchaseView-action-purchaseHelper-owned {
+  padding: 4px;
+  margin-right: 10px;
+  font-size: 11px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .itemPurchaseView-action-purchaseHelper-error {
@@ -172,6 +188,7 @@ span.itemPurchaseView-action-owned {
 
 .itemPurchaseView-action-container {
   padding: 10px 0 0;
+  border: none;
 }
 
 /* Marketplace close button - make the normal X button */
@@ -240,9 +257,17 @@ a.itemPurchaseView-content-skin-link {
 
 .shopCustomization .itemViewStatBlock-stat {
   padding: 2px;
+  padding-right: 4px;
+  margin-top: 3px;
   margin-right: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.shopCustomization .itemViewStatBlock-stat-helper {
+  right: unset;
+  left: unset;
+  white-space: nowrap;
 }
 
 .shopCustomization .itemViewStatBlock-stat-label {

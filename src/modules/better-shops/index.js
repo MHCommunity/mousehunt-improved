@@ -71,10 +71,18 @@ const main = () => {
   const owned = document.querySelectorAll('.itemPurchaseView-action-purchaseHelper-owned');
   if (owned) {
     owned.forEach((ownedItem) => {
-      let ownText = ownedItem.innerHTML.replace('You own:', 'Own: ');
-      ownText = ownText.replace('( (', '( ');
-      ownText = ownText.replace(') )', ' )');
-      ownedItem.innerHTML = `(${ownText} )`;
+      if (ownedItem.getAttribute('moved-to-title')) {
+        return;
+      }
+
+      // oops that's not pretty.
+      const container = ownedItem.parentNode.parentNode.parentNode.parentNode.parentNode;
+      const nameEl = container.querySelector('.itemPurchaseView-content-name');
+
+      // ownedItem.innerHTML = ownedItem.innerHTML.replace('You own:', 'You have');
+      ownedItem.setAttribute('moved-to-title', 'true');
+
+      nameEl.appendChild(ownedItem);
     });
   }
 
