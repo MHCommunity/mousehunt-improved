@@ -1,7 +1,7 @@
 export default function (subModule, module) {
   const options = [
     {
-      name: 'Default Map & Region list',
+      name: 'Default Tab',
       value: 'default',
     },
     {
