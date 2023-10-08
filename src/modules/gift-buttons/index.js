@@ -218,6 +218,11 @@ const makeButtons = () => {
  * @param {Object} request The request.
  */
 const checkForSuccessfulGiftSend = (request) => {
+  const enabled = getMhuiSetting('gift-buttons-close-on-send', true);
+  if (! enabled) {
+    return;
+  }
+
   if (! request || 'undefined' === request.friends_sent_gifts || ! request.friends_sent_gifts.length > 1) {
     return;
   }

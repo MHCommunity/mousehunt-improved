@@ -58,7 +58,8 @@
 #mousehunt-improved-settings-mousehunt-improved-send-supplies-pinned-items,
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items,
 #mousehunt-improved-settings-feature-modules-gift-buttons-send-order,
-#mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts {
+#mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts,
+#mousehunt-improved-settings-feature-modules-gift-buttons-close-on-send {
   padding-left: 30px;
 }
 
@@ -68,7 +69,8 @@
 #mousehunt-improved-settings-mousehunt-improved-send-supplies-pinned-items .PagePreferences__settingName,
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items .PagePreferences__settingName,
 #mousehunt-improved-settings-feature-modules-gift-buttons-send-order .PagePreferences__settingName,
-#mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts .PagePreferences__settingName {
+#mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts .PagePreferences__settingName,
+#mousehunt-improved-settings-feature-modules-gift-buttons-close-on-send .PagePreferences__settingName {
   font-size: 13px;
 }
 

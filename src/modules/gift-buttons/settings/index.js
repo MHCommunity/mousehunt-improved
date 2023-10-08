@@ -80,4 +80,17 @@ export default function (subModule, module) {
       options: skipBadGiftOptions,
     }
   );
+
+  addSetting(
+    'Close popup after sending',
+    'gift-buttons-close-on-send',
+    true,
+    'Automatically close the Gift popup after sending gifts',
+    {
+      id: module.id,
+      name: module.name,
+      description: module.description
+    },
+    'mousehunt-improved-settings'
+  );
 }
