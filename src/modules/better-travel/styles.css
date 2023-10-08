@@ -103,7 +103,7 @@
 #mh-simple-travel-page .travelPage-regionMenu-item {
   margin: 1px;
   background-color: #e2e2e2;
-  outline: 1px solid #4c71b4;
+  border: 1px solid #4c71b4;
 }
 
 #mh-simple-travel-page .travelPage-regionMenu-item[data-region="gnawnia"],
@@ -151,11 +151,12 @@
   flex-flow: column wrap;
   align-items: stretch;
   justify-content: flex-start;
+  width: 100%;
   height: 380px;
 }
 
 #mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink {
-  max-width: 145px;
+  max-width: 129px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
