@@ -206,17 +206,17 @@ const getUserHighlightingShield = (type) => {
   let text = '';
   switch (type) {
   case 'developer':
-    text = '🎉️ MH Improved Developer';
+    text = 'MH Improved Developer';
     break;
   case 'contributor':
-    text = '⭐️ MH Improved Contributor';
+    text = 'MH Improved Contributor';
     break;
   case 'supporter':
-    text = '❤️ MH Improved Supporter';
+    text = 'MH Improved Supporter';
     break;
   }
 
-  const wrapper = makeElement('div', 'blackTooltip');
+  const wrapper = makeElement('div', ['blackTooltip', 'mh-improved-user-shield']);
   makeElement('div', 'hunterInfoView-verifiedUserImage', null, wrapper);
   makeElement('span', 'blackTooltiptext hunterInfoView-verifiedUser', text, wrapper);
 
@@ -224,6 +224,13 @@ const getUserHighlightingShield = (type) => {
 };
 
 const highlightUsers = () => {
+  const existing = document.querySelectorAll('.mh-improved-user-shield');
+  if (existing) {
+    existing.forEach((el) => {
+      el.remove();
+    });
+  }
+
   const id = document.querySelector('.hunterInfoView-hunterId-idText span');
   if (! id) {
     return;
@@ -241,7 +248,8 @@ const highlightUsers = () => {
 
   // for each key in userHiglighting, check if the user id is in the array and add the key as a class
   Object.keys(userHighlighting).forEach((key) => {
-    if (userHighlighting[key].includes(parseInt(id.innerText, 10))) {
+    const userId = parseInt(id.innerText, 10);
+    if (userHighlighting[key].includes(userId)) {
       profilePage.classList.add('mh-improved-highlight-user', `mh-improved-${key}`);
       idHeader.appendChild(getUserHighlightingShield(key));
     }
@@ -286,7 +294,8 @@ export default () => {
   onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
 
   onNavigationPatched(highlightUsers, {
-    page: 'hunterprofile'
+    page: 'hunterprofile',
+    onLoad: true,
   });
 
   onNavigationPatched(addExportSettings, {
