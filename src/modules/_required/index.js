@@ -206,13 +206,13 @@ const getUserHighlightingShield = (type) => {
   let text = '';
   switch (type) {
   case 'developer':
-    text = 'MouseHunt Improved Developer';
+    text = '🎉️ MH Improved Developer';
     break;
   case 'contributor':
-    text = 'MouseHunt Improved Contributor';
+    text = '⭐️ MH Improved Contributor';
     break;
   case 'supporter':
-    text = 'MouseHunt Improved Supporter';
+    text = '❤️ MH Improved Supporter';
     break;
   }
 
