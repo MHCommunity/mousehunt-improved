@@ -68,8 +68,19 @@ const titleBadge = () => {
   return titleImages[title];
 };
 
+const changeShieldColor = () => {
+  const color = localStorage.getItem('custom-shield-color');
+  if (! color) {
+    return;
+  }
+
+  addUIStyles(`a.mousehuntHud-shield.golden { filter: hue-rotate(${color}deg); }`);
+};
+
 export default () => {
   addUIStyles(styles);
 
   changeShield();
+
+  changeShieldColor();
 };
