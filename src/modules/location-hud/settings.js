@@ -20,7 +20,6 @@ export default function (subModule, module) {
     'prologue_pond',
     'seasonal_garden',
     'zugzwang_library',
-    'zugzwang_tower',
   ];
 
   const locationsToAdd = [
