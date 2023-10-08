@@ -155,15 +155,6 @@ const doHighlighting = () => {
   if (added) {
     addProfilePicToCurrentFloor();
   }
-
-  highlightSelf();
-};
-
-const highlightSelf = () => {
-  const self = document.querySelector(`.treasureMapView-hunter-wrapper[data-snuid="${user.sn_user_id}"] .treasureMapView-hunter-image-wrapper`);
-  if (self) {
-    self.classList.add('mapper-self');
-  }
 };
 
 export default doHighlighting;
