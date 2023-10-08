@@ -6,8 +6,16 @@
 }
 
 /* Fix the team icon */
-.mousehuntHud-menu .friends .team .icon {
+body .mousehuntHud-menu .friends .team .icon {
   background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/team.png?asset_cache_version=2);
+}
+
+body .mousehuntHud-menu .scoreboards .icon {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/scoreboard.png?asset_cache_version=2);
+}
+
+body .mousehuntHud-menu .forum .icon {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/forum.png?asset_cache_version=2);
 }
 
 /* Top menu, fix dropdown arrow direction */
