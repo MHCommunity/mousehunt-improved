@@ -42,6 +42,18 @@ export default function (subModule, module) {
     }
   });
 
+  options.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+
+    if (a.name > b.name) {
+      return 1;
+    }
+
+    return 0;
+  });
+
   // merge the locations to add with the locations to show as options
   locationsToAdd.forEach((location) => {
     options.push(location);
