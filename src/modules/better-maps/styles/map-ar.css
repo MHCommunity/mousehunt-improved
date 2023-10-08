@@ -81,3 +81,7 @@
 .mh-ui-ar-failed {
   margin-left: 10px;
 }
+
+.treasure .treasureMapView-goals-group-goal[data-mh-ui-ar="true"].item .treasureMapView-goals-group-goal-name {
+  align-items: center;
+}

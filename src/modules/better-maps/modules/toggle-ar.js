@@ -1,10 +1,12 @@
 import { getArEl } from '../../utils';
 
 const addArDataToMap = async (mapData) => {
-  const mice = mapData?.goals?.mouse || [];
-  if (mice.length === 0) {
-    return;
+  let type = 'mouse';
+  if (mapData?.goals?.mouse.length === 0) {
+    type = 'item';
   }
+
+  const mice = mapData?.goals?.[type];
 
   // Remove the hidden class if we've already added the AR data.
   const goals = document.querySelectorAll('.treasureMapView-goals-groups');
@@ -45,7 +47,7 @@ const addArDataToMap = async (mapData) => {
       return;
     }
 
-    const arEl = await getArEl(mouse.unique_id);
+    const arEl = await getArEl(mouse.unique_id, type);
     if (! arEl) {
       return;
     }
