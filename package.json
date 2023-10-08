@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.1",
-    "mousehunt-utils": "^1.10.2"
+    "mousehunt-utils": "^1.10.4"
   },
   "devDependencies": {
     "@wordpress/eslint-plugin": "^16.0.0",
