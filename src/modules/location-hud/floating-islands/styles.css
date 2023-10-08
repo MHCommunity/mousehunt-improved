@@ -310,3 +310,8 @@ a.floatingIslandsHUD-flightLogButton.mousehuntTooltipParent {
   text-align: center;
   background-position: 10px 20px;
 }
+
+a.floatingIslandsHUD-islandLoot:hover,
+a.floatingIslandsHUD-islandLoot:focus {
+  z-index: 5;
+}
