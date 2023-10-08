@@ -316,6 +316,11 @@ img.treasureMapView-reward-chestIcon {
   background-color: #fffcb6;
 }
 
+.treasureMapPopup-shop[data-environment-type="queso_quarry"],
+.treasureMapPopup-shop[data-environment-type="queso_plains"] {
+    display: none;
+}
+
 .treasureMapPopup-shop-item-description-costContainer {
   display: flex;
   flex-direction: row;
