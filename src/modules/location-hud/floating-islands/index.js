@@ -195,10 +195,12 @@ const showBWReminder = () => {
       text: 'Don\'t forget to activate your Bottled Wind!',
       button: 'Activate',
       action: () => {
-        const button = document.querySelector('.floatingIslandsHUD-fuel-button');
-        if (button) {
-          button.click();
-        }
+        setTimeout(() => {
+          const button = document.querySelector('.floatingIslandsHUD-fuel-button');
+          if (button) {
+            button.click();
+          }
+        }, 750);
       },
       dismiss: 4000,
       image: 'https://www.mousehuntgame.com/images/ui/hud/floating_islands/items/bottled_wind_stat_item.png?asset_cache_version=2',
