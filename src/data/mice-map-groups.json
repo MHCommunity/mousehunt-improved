@@ -216,36 +216,21 @@
         "name": "Other",
         "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
         "color": "#",
-        "mice": [
-          "daydreamer",
-          "kite_flyer",
-          "richard_rich",
-          "empyrean_loot_cache_guardian"
-        ]
+        "mice": ["daydreamer", "kite_flyer", "richard_rich", "empyrean_loot_cache_guardian"]
       },
       {
         "name": "Wardens",
         "id": "esp-wardens",
         "icon": "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png",
         "color": "#d3bdd3",
-        "mice": [
-          "fog_warden",
-          "frost_warden",
-          "rain_warden",
-          "wind_warden"
-        ]
+        "mice": ["fog_warden", "frost_warden", "rain_warden", "wind_warden"]
       },
       {
         "name": "Launchpad",
         "id": "esp-launchpad",
         "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
         "color": "#c2c2c2",
-         "mice": [
-          "cloud_miner",
-          "launchpad_labourer",
-          "sky_greaser",
-          "skydiver"
-        ]
+        "mice": ["cloud_miner", "launchpad_labourer", "sky_greaser", "skydiver"]
       }
     ],
     "subcategories": [
@@ -306,22 +291,14 @@
         "subtitle": "Grubben",
         "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
         "color": "#fbc3fa",
-        "mice": [
-          "pompous_perch",
-          "careless_catfish",
-          "melodramatic_minnow"
-        ]
+        "mice": ["pompous_perch", "careless_catfish", "melodramatic_minnow"]
       },
       {
         "name": "Prologue Pond",
         "subtitle": "Clamebert",
         "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
         "color": "#f3e0ff",
-        "mice": [
-          "nefarious_nautilus",
-          "vicious_vampire_squid",
-          "sinister_squid"
-        ]
+        "mice": ["nefarious_nautilus", "vicious_vampire_squid", "sinister_squid"]
       },
       {
         "name": "Table of Contents",
@@ -344,45 +321,28 @@
         "id": "fofo-toc-writing",
         "icon": "/folklore_forest_upgrades/golden_quill_thumb.png",
         "color": "#e9c390",
-        "mice": [
-          "humphrey_dumphrey",
-          "little_bo_squeak",
-          "little_miss_fluffet"
-        ]
+        "mice": ["humphrey_dumphrey", "little_bo_squeak", "little_miss_fluffet"]
       },
       {
         "name": "Table of Contents",
         "subtitle": "Writing - First Draft",
         "id": "fofo-toc-first-draft",
         "icon": "/items/bait/large/9782ba50ed4c64f8f8412563cf2ce709.png",
-        "mice": [
-          "fibbocchio",
-          "pinkielina",
-          "princess_and_the_olive"
-        ]
+        "mice": ["fibbocchio", "pinkielina", "princess_and_the_olive"]
       },
       {
         "name": "Table of Contents",
         "subtitle": "Writing - Second Draft",
         "id": "fofo-toc-second-draft",
         "icon": "/items/bait/large/e0cb22771eba37bf047a801edbf7f91e.png",
-        "mice": [
-          "flamboyant_flautist",
-          "greenbeard",
-          "ice_regent"
-        ]
+        "mice": ["flamboyant_flautist", "greenbeard", "ice_regent"]
       },
       {
         "name": "Bosses",
         "id": "fofo-bosses",
         "icon": "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png",
         "color": "#fde671",
-        "mice": [
-          "bitter_grammarian",
-          "mythweaver",
-          "monstrous_midge",
-          "architeuthulhu_of_the_abyss"
-        ]
+        "mice": ["bitter_grammarian", "mythweaver", "monstrous_midge", "architeuthulhu_of_the_abyss"]
       }
     ],
     "subcategories": [
@@ -407,87 +367,61 @@
         "subtitle": "Floors 1, 9, 17, 25",
         "id": "vrift-1",
         "color": "#EAF2D3",
-        "mice": [
-          "rift_gaunt_puppet",
-          "rift_gaunt_puppet_champ"
-        ]
+        "mice": ["rift_gaunt_puppet", "rift_gaunt_puppet_champ"]
       },
       {
         "name": "Thievery",
         "subtitle": "Floors 2, 10, 18, 26",
         "id": "vrift-2",
         "color": "#acf28d",
-        "mice": [
-          "rift_gaunt_thief",
-          "rift_gaunt_thief_champ"
-        ]
+        "mice": ["rift_gaunt_thief", "rift_gaunt_thief_champ"]
       },
       {
         "name": "Melee",
         "subtitle": "Floors 3, 11, 19, 27",
         "id": "vrift-3",
-        "color":  "#FCE5CD",
-        "mice": [
-          "rift_gaunt_melee",
-          "rift_gaunt_melee_champ"
-        ]
+        "color": "#FCE5CD",
+        "mice": ["rift_gaunt_melee", "rift_gaunt_melee_champ"]
       },
       {
         "name": "Bard",
         "subtitle": "Floors 4, 12, 20, 28",
         "id": "vrift-4",
-        "color":  "#F6B26B",
-        "mice": [
-          "rift_gaunt_bard",
-          "rift_gaunt_bard_champ"
-        ]
+        "color": "#F6B26B",
+        "mice": ["rift_gaunt_bard", "rift_gaunt_bard_champ"]
       },
       {
         "name": "Magic",
         "subtitle": "Floors 5, 13, 21, 29",
         "id": "vrift-5",
         "color": "#F9CB9C",
-        "mice": [
-          "rift_gaunt_magic",
-          "rift_gaunt_magic_champ"
-        ]
+        "mice": ["rift_gaunt_magic", "rift_gaunt_magic_champ"]
       },
       {
         "name": "Noble",
         "subtitle": "Floors 6, 14, 22, 30",
         "id": "vrift-6",
         "color": "#F4CCCC",
-        "mice": [
-          "rift_gaunt_noble",
-          "rift_gaunt_noble_champ"
-        ]
+        "mice": ["rift_gaunt_noble", "rift_gaunt_noble_champ"]
       },
       {
         "name": "Dusty",
         "subtitle": "Floors 7, 15, 23, 31",
         "id": "vrift-7",
         "color": "#E06666",
-        "mice": [
-          "rift_gaunt_dust",
-          "rift_gaunt_dust_champ"
-        ]
+        "mice": ["rift_gaunt_dust", "rift_gaunt_dust_champ"]
       },
       {
         "name": "Non-UU",
         "id": "vrift-eclipse",
         "color": "#EA9999",
-        "mice": [
-          "rift_gaunt_eclipse"
-        ]
+        "mice": ["rift_gaunt_eclipse"]
       },
       {
         "name": "Ultimate Umbra",
         "id": "vrift-eclipse-uu",
         "color": "#ff8181",
-        "mice": [
-          "rift_gaunt_monster",
-          "rift_gaunt_final_eclipse"
-        ]
+        "mice": ["rift_gaunt_monster", "rift_gaunt_final_eclipse"]
       },
       {
         "name": "Other",
@@ -507,11 +441,8 @@
         "name": "Outside",
         "id": "vrift-outside",
         "icon": "",
-        "color":  "#d0def7",
-        "mice": [
-          "rift_gaunt_elixir_one",
-          "rift_gaunt_elixir_two"
-        ]
+        "color": "#d0def7",
+        "mice": ["rift_gaunt_elixir_one", "rift_gaunt_elixir_two"]
       }
     ],
     "subcategories": []
@@ -521,25 +452,13 @@
       {
         "name": "Gnawnia Rift",
         "color": "#f7e8f9",
-        "mice": [
-          "rift_white",
-          "rift_dwarf",
-          "rift_diamond",
-          "rift_gold"
-        ]
+        "mice": ["rift_white", "rift_dwarf", "rift_diamond", "rift_gold"]
       },
       {
         "name": "Furoma Rift",
         "subtitle": "Training Grounds",
         "color": "#e5a571",
-        "mice": [
-          "rift_samurai",
-          "rift_kung_fu",
-          "rift_worker",
-          "rift_ninja",
-          "rift_dumpling_chef",
-          "rift_archer"
-        ]
+        "mice": ["rift_samurai", "rift_kung_fu", "rift_worker", "rift_ninja", "rift_dumpling_chef", "rift_archer"]
       },
       {
         "name": "Furoma Rift",
@@ -796,12 +715,7 @@
         "id": "night",
         "color": "#d0d0d0",
         "icon": "",
-        "mice": [
-          "were_alpha",
-          "moonstone_slinger",
-          "mischievous_wereminer",
-          "wealthy_werewarrior"
-        ]
+        "mice": ["were_alpha", "moonstone_slinger", "mischievous_wereminer", "wealthy_werewarrior"]
       },
       {
         "name": "First Light / Utter Darkness",
@@ -822,23 +736,14 @@
         "id": "twilight-midnight-pitch",
         "color": "#84c3ff",
         "icon": "/powertypes/shadow.png",
-        "mice": [
-          "good_supply_night",
-          "nightmancer",
-          "reveling_lycanthrope",
-          "werehauler",
-          "wereminer"
-        ]
+        "mice": ["good_supply_night", "nightmancer", "reveling_lycanthrope", "werehauler", "wereminer"]
       },
       {
         "name": "Dawn",
         "id": "dawn",
         "color": "#f9d65a",
         "icon": "/powertypes/arcane.png",
-        "mice": [
-          "dawn_guardian",
-          "monster_of_the_meteor"
-        ]
+        "mice": ["dawn_guardian", "monster_of_the_meteor"]
       },
       {
         "name": "Day",
@@ -860,22 +765,12 @@
       {
         "name": "Wave 1",
         "color": "#f1d16f",
-        "mice": [
-          "desert_scout_weak",
-          "desert_warrior_weak",
-          "desert_archer_weak"
-        ]
+        "mice": ["desert_scout_weak", "desert_warrior_weak", "desert_archer_weak"]
       },
       {
         "name": "Wave 2",
         "color": "#ea947b",
-        "mice": [
-          "desert_mage",
-          "desert_archer",
-          "desert_warrior",
-          "desert_scout",
-          "desert_cavalry"
-        ]
+        "mice": ["desert_mage", "desert_archer", "desert_warrior", "desert_scout", "desert_cavalry"]
       },
       {
         "name": "Wave 3",
@@ -892,19 +787,12 @@
       {
         "name": "Wave 4",
         "color": "#ffad49",
-        "mice": [
-          "desert_elite_gaurd",
-          "desert_boss"
-        ]
+        "mice": ["desert_elite_gaurd", "desert_boss"]
       },
       {
         "name": "Any wave",
         "color": "#fffcb2",
-        "mice": [
-          "desert_beast",
-          "desert_supply",
-          "desert_general"
-        ]
+        "mice": ["desert_beast", "desert_supply", "desert_general"]
       }
     ]
   }
