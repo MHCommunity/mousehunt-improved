@@ -18,6 +18,7 @@
       "matches": ["https://*.mousehuntgame.com/*"]
     }
   ],
+  "host_permissions": ["https://*.mousehuntgame.com/*"],
   "web_accessible_resources": [
     {
       "resources": ["main.js", "main.css"],
