@@ -34,8 +34,7 @@
   padding: 5px;
 }
 
-.mousehunt-improved-settings .PagePreferences__setting,
-.userscript-settings .PagePreferences__setting {
+.PagePreferences .mousehunt-improved-settings .PagePreferences__setting {
   gap: 5px;
   padding-bottom: 5px;
   margin-top: 5px;
@@ -44,6 +43,10 @@
 #mousehunt-improved-settings .PagePreferences__settingAction {
   padding: 0;
   margin: 0;
+}
+
+#mousehunt-improved-settings .PagePreferences__settingDescription {
+  font-size: 12px;
 }
 
 .mousehunt-improved-settings  .PagePreferences__title {
