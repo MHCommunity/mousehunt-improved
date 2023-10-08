@@ -303,3 +303,10 @@ a.floatingIslandsHUD-flightLogButton.mousehuntTooltipParent {
 .floatingIslandsHUD.island .floatingIslandsHUD-bait.skyCheeseWarning .floatingIslandsHUD-bait-image.sky_cheese {
     box-shadow: inset 0 0 10px 3px #ff1b00;
 }
+
+.floatingIslandsHUD-enemy-tooltip .floatingIslandsHUD-wardenShrine-status {
+  padding-left: 3px;
+  font-size: 13px;
+  text-align: center;
+  background-position: 10px 20px;
+}
