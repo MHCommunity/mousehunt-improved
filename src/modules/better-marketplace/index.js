@@ -3,11 +3,6 @@ import styles from './styles.css';
 
 const optsToRemove = [
   // Events Stuff
-  3306, // Bonefort Cheese
-  2733, // Glazed Pecan Pecorino Cheese
-  3188, // Speedy Coggy Colby
-  397, // Candy Corn Cheese
-  398, // Ghoulgonzola Cheese
   2526, // Let It Snow Charm
   2780, // Factory Repair Charm
   1590, // Winter Builder Charm
@@ -316,14 +311,6 @@ const optsToRemove = [
   3036, // Floating Large Supply Kit
   1971, // Jumbo Regal Gift Basket
   1761, // Jumbo Treasure Hunting Kit
-  1474, // Airship Charm
-
-  // Things you probably don't
-  440, // Clockapult of Winter Past Blueprint
-  417, // Grungy DeathBot Blueprint
-  416, // Fluffy DeathBot Blueprint
-  418, // Ninja Ambush Blueprint
-  474, // Tiki Base Blueprints
 
   3616, // Super Regal Gift Basket
 ];
