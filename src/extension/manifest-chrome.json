@@ -12,10 +12,6 @@
     "64": "icon-64.png",
     "128": "icon-128.png"
   },
-  "omnibox": { "keyword" : "mh" },
-  "background": {
-    "service_worker": "background.js"
-  },
   "content_scripts": [
     {
       "js": ["content.js"],
