@@ -73,7 +73,7 @@ const buildExtension = async (platform) => {
   });
 
   // Zip up the extension folder.
-  const output = fs.createWriteStream(path.join(process.cwd(), `dist/extension/${platform}.zip`));
+  const output = fs.createWriteStream(path.join(process.cwd(), `dist/${platform}.zip`));
   const archive = archiver('zip', {
     zlib: { level: 9 }
   });
