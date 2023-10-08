@@ -219,6 +219,11 @@ const hud = () => {
   addEnemyClass();
   setTimeout(addEnemyClass, 500);
 
+  onRequest(() => {
+    addBossCountdown();
+    addEnemyClass();
+  }, 'managers/ajax/environment/floating_islands.php');
+
   showGloreProgress();
 
   onDialogShow(onSkyMapShow, 'floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace');
