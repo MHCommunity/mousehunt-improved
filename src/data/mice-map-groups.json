@@ -609,7 +609,185 @@
     ]
   },
   "queso_canyon_grand_tour": {
-
+    "categories": [
+      {
+        "name": "KSS",
+        "id": "kss",
+        "color": "#96b9dc",
+        "icon": "/powertypes/draconic.png",
+        "mice": [
+          "geyser_eruption_dragon_wildfire",
+          "geyser_eruption_dragon_epic"
+        ]
+      },
+      {
+        "name": "Cinder-Brut",
+        "id": "cinder-brut",
+        "color": "#7fff66",
+        "icon": "/powertypes/draconic.png",
+        "mice": [
+          "geyser_eruption_dragon_large",
+          "geyser_eruption_dragon_flaming"
+        ]
+      },
+      {
+        "name": "BE Trio",
+        "id": "be-trio",
+        "color": "#ffb1b1",
+        "icon": "/powertypes/draconic.png",
+        "mice": [
+          "geyser_eruption_dragon_hot",
+          "geyser_eruption_dragon_medium",
+          "geyser_eruption_dragon_medium_spice"
+        ]
+      },
+      {
+        "name": "Sizzle Mild",
+        "id": "sizzle-mild",
+        "color": "#ffc816",
+        "icon": "/powertypes/draconic.png",
+        "mice": [
+          "geyser_eruption_dragon_small",
+          "geyser_eruption_dragon_mild"
+        ]
+      },
+      {
+        "name": "Pressure Set",
+        "id": "pressure-set",
+        "color": "#dcb8ff",
+        "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png?cv=2",
+        "mice": [
+          "geyser_pressure_builder_hot",
+          "geyser_pressure_builder_medium",
+          "geyser_pressure_builder_mild",
+          "geyser_pressure_builder_flaming"
+        ]
+      },
+      {
+        "name": "Corky & Friends",
+        "id": "corky-friends",
+        "color": "#f4c47e",
+        "icon": "/items/crafting_items/transparent_thumb/17907f705fe8e7fa8f7b94f058e11ae5.png?cv=2",
+        "mice": [
+          "geyser_cork_dropper_bland",
+          "geyser_cork_dropper_medium",
+          "geyser_cork_dropper_mild",
+          "geyser_cork_dropper_hot",
+          "geyser_cork_dropper_rare",
+          "geyser_cork_dropper_flaming"
+        ]
+      },
+      {
+        "name": "Queso River",
+        "id": "queso-river",
+        "color": "#89e8a9",
+        "icon": "/powertypes/law.png",
+        "mice": [
+          "croquet_crusher",
+          "pump_raider",
+          "sleepy_merchant",
+          "tiny_saboteur"
+        ]
+      },
+      {
+        "name": "Prickly Plains",
+        "id": "prickly-plains",
+        "color": "#cddb75",
+        "icon": "/powertypes/arcane.png",
+        "mice": [
+          {
+            "mouse": "spice_grower",
+            "subcategory": "mild"
+          },
+          {
+            "mouse": "spice_collector",
+            "subcategory": "bland"
+          },
+          {
+            "mouse": "spice_farmer",
+            "subcategory": "mild"
+          },
+          {
+            "mouse": "spice_finder",
+            "subcategory": "medium"
+          },
+          {
+            "mouse": "spice_raider",
+            "subcategory": "hot"
+          },
+          {
+            "mouse": "spice_reaper",
+            "subcategory": "hot"
+          },
+          {
+            "mouse": "spice_seer",
+            "subcategory": "bland"
+          },
+          {
+            "mouse": "spice_sovereign",
+            "subcategory": "medium"
+          }
+        ]
+      },
+      {
+        "name": "Cantera Quarry",
+        "id": "cantera-quarry",
+        "color": "#e9b2db",
+        "icon": "/powertypes/shadow.png",
+        "mice": [
+          {
+            "mouse": "chip_chiseler",
+            "subcategory": "bland"
+          },
+          {
+            "mouse": "fiery_crusher",
+            "subcategory": "hot"
+          },
+          {
+            "mouse": "grampa_golem",
+            "subcategory": "hot"
+          },
+          {
+            "mouse": "nachore_golem",
+            "subcategory": "medium"
+          },
+          {
+            "mouse": "ore_chipper",
+            "subcategory": "mild"
+          },
+          {
+            "mouse": "rubble_rouser",
+            "subcategory": "medium"
+          },
+          {
+            "mouse": "rubble_rummager",
+            "subcategory": "mild"
+          },
+          {
+            "mouse": "tiny_toppler",
+            "subcategory": "bland"
+          }
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "bland",
+        "name": "Bland Queso"
+      },
+      {
+        "id": "medium",
+        "name": "Medium Queso"
+      },
+      {
+        "id": "mild",
+        "name": "Mild Queso"
+      },
+      {
+        "id": "hot",
+        "name": "Hot Queso"
+      }
+    ]
   },
   "fort_rox": {
     "categories": [
