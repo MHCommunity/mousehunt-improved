@@ -193,8 +193,15 @@ const showBWReminder = () => {
     showHornMessage({
       title: 'Bottled Wind Reminder',
       text: 'Don\'t forget to activate your Bottled Wind!',
-      button: 'Dismiss',
+      button: 'Activate',
+      action: () => {
+        const button = document.querySelector('.floatingIslandsHUD-fuel-button');
+        if (button) {
+          button.click();
+        }
+      },
       dismiss: 4000,
+      image: 'https://www.mousehuntgame.com/images/ui/hud/floating_islands/items/bottled_wind_stat_item.png?asset_cache_version=2',
     });
   }
 };
