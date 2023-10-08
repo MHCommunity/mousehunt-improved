@@ -28,6 +28,12 @@
   box-shadow: none;
 }
 
+.mh-dark-mode .treasureMapRootView .messageBoardView div.messageBoardView-message-container,
+.mh-dark-mode .teamPage-messageBoard-corkboard .messageBoardView-message-container {
+  background: #333;
+  border-color: #0c0c0c;
+}
+
 .treasureMapRootView .messageBoardView .messageBoardView-message,
 .teamPage-messageBoard-corkboard .messageBoardView-message,
 .hunterInfoView-corkBoardBlock .messageBoardView-message {
@@ -43,7 +49,11 @@
 }
 
 .treasureMapRootView .messageBoardView div.messageBoardView-message.new {
-  border: 1px solid #ccc !important
+  border: 1px solid #ccc !important;
+}
+
+.mh-dark-mode .treasureMapRootView .messageBoardView div.messageBoardView-message.new {
+  border-color: #2e2e2e !important;
 }
 
 .treasureMapRootView .messageBoardView input.messageBoardView-message-submit,
@@ -121,4 +131,18 @@ a.messageBoardView-message-delete:focus::after {
 
 .friendsProfileView-selfStats {
   padding-top: 15px;
+}
+
+.mh-dark-mode .pageFrameView .hunterInfoView-wrapper .hunterInfoView-left a.friendsProfileView-randomFriend {
+  color: #242424;
+}
+
+.mh-dark-mode .pageFrameView .hunterInfoView-wrapper .messageBoardView-title {
+  color: #242424;
+}
+
+.mh-dark-mode .treasureMapRootView .messageBoardView .messageBoardView-message-body,
+.mh-dark-mode .teamPage-messageBoard-corkboard .messageBoardView-message-body,
+.mh-dark-mode .hunterInfoView-corkBoardBlock .messageBoardView-message-body {
+  color: #fff;
 }

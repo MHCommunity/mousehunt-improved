@@ -184,6 +184,10 @@ img.treasureMapView-reward-chestIcon {
     color: #000;
 }
 
+.mh-dark-mode .pageFrameView .treasureMapPopup-shop-environment.active::before {
+  background-color: transparent;
+}
+
 .treasureMapPopup-shop[data-environment-type="rift_valour"] {
   background-color: #e5daed;
 }
@@ -549,4 +553,14 @@ input.treasureMapView-block-search-text {
 .mousehuntActionButton.mh-ui-leave-map-button:hover::before,
 .mousehuntActionButton.mh-ui-leave-map-button:focus::before {
   background-color: #ffa5a5;
+}
+
+.treasureMapView-block-content.treasureMapInvitesView-scoreboards {
+  padding: 2px;
+  overflow-x: hidden;
+}
+
+.mh-dark-mode .pageFrameView #overlayPopup.treasureMapPopup .treasureMapRootView-content a.treasureMapView-block-row.active {
+  color: #000;
+  background: #f2eb6f;
 }

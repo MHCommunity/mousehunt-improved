@@ -260,7 +260,7 @@
 
 .mouseCrownsView-group {
   padding: 10px;
-  margin: 10px -10px;
+  margin: 10px;
   background-color: #f5f5f5;
   border-radius: 5px;
   box-shadow: 0 0 1px 1px #a7a7a7;
@@ -291,7 +291,6 @@
   align-items: center;
   padding-left: 5px;
   border: none !important; /* profile+ */
-
 }
 
 .mouseCrownsView-group .mouseCrownsView-group-mouse-padding {
@@ -411,4 +410,10 @@ a.friendsProfileView-randomFriend {
   height: 40px !important;
   filter: drop-shadow(2px 2px 2px #eae1c6);
   background-size: cover !important;
+}
+
+.mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group-mouse.highlight .mouseCrownsView-group-mouse-name,
+.mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group-mouse:not(.favourite) .mouseCrownsView-group-mouse-name,
+.mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group {
+  color: #333;
 }

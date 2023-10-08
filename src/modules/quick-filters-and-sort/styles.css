@@ -144,3 +144,8 @@
 .skin .campPage-trap-itemBrowser-item-content .campPage-trap-itemBrowser-item-name {
   margin-top: 11px;
 }
+
+.mh-dark-mode .quicklinks-filter-sortBy-name a,
+.mh-dark-mode .quicklinks-filter-sortBy-quantity a {
+  filter: invert(1) contrast(0.5);
+}
