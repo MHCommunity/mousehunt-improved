@@ -10,9 +10,9 @@ This is currently in beta. Expect there to be bugs, potentially broken features,
 
 ## Installation
 
-Firefox: [Install from Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/)
-
 Chrome: [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm)
+
+Firefox: [Install from Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/)
 
 Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-mousehunt-improved) _(only recommended for use on mobile browsers or other cases where the extension isn't available)_
 
@@ -197,7 +197,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Suggests the best door to choose in intersections.
   - Reminds you to light your lantern if you're in a superiour hallway and it's not lit.
   - Slightly larger text for resources in the HUD.
-- Muridea Market
+- Muridae Market
   - Larget font sizes and cleaner colors.
 - Queso Canyon
   - Larget font sizes and cleaner colors.
@@ -247,7 +247,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 ### Fixes
 
 - Fixes the vertical spacing for the Weekly & Friends checkboxes on scoreboards.
-- Fixes the team icon in the main menu.
+- Updates the team, scoreboard, and forum icons in the main navigation to be the intended ones.
 - Fixes dropdown arrow direction in the top menu.
 - Fixes HUD shadow leftover from old HUD.
 - Fixes Tooltip arrows incorrectly showing side border.
