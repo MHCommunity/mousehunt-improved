@@ -21,6 +21,7 @@ const showHelpPopup = () => {
             <li><strong>T</strong>Travel</li>
             <li><strong>J</strong>Journal/Camp</li>
             <li><strong>F</strong>Friends</li>
+            <li><strong>S</strong>Shops</li>
             <li><strong>P</strong>Go to your Profile</li>
             <li><strong>M</strong>Open your Map</li>
             <li><strong>I</strong>Open your Map Invites</li>
@@ -74,6 +75,7 @@ const listenForKeypresses = () => {
     case 'l': clickMinLuck(); break; // L for Luck.
     case 'm': hg.controllers.TreasureMapController.show(); break; // M for map.
     case 'r': app.pages.CampPage.toggleItemBrowser('trinket'); break; // r for chaRm.
+    case 's': hg.utils.PageUtil.setPage('Shops'); break; // S for shop.
     case 't': hg.utils.PageUtil.setPage('Travel'); break; // T for travel.
     case 'w': app.pages.CampPage.toggleItemBrowser('weapon'); break; // W for Weapon.
     case 'p': hg.utils.PageUtil.setPage('HunterProfile'); break; // P for Profile.
