@@ -109,8 +109,8 @@
 #mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(48),
 #mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(49),
 #mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(50) {
-    background-color: #eee;
-    border-radius: 4px;
+  background-color: #eee;
+  border-radius: 4px;
 }
 
 #mousehunt-improved-settings-location-hud .PagePreferences__settingsList .PagePreferences__settingName {
