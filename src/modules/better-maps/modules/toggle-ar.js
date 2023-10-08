@@ -77,17 +77,27 @@ const toggleAr = async () => {
     return;
   }
 
+  let arText = 'AR';
+  let arTitle = 'Attraction Rates';
+  const mapClass = mapView.classList.toString();
+  if (mapClass.includes('scavenger')) {
+    arText = 'DR';
+    arTitle = 'Drop Rates';
+  }
+
   const showing = mapView.classList.contains('mh-ui-ar-showing');
   if (showing) {
     mapView.classList.remove('mh-ui-ar-showing');
     mapView.classList.add('mh-ui-ar-hidden');
-    text.innerText = 'Show AR';
+    text.innerText = `Show ${arText}`;
+    toggle.title = `Show ${arTitle}`;
   } else {
     mapView.classList.add('mh-ui-ar-showing');
     mapView.classList.remove('mh-ui-ar-hidden');
     text.innerText = '···';
     await addArDataToMap(window.mhui.mapper?.mapData);
-    text.innerText = 'Hide AR';
+    text.innerText = `Hide ${arText}`;
+    toggle.title = `Hide ${arTitle}`;
   }
 
   toggle.classList.remove('disabled');
@@ -105,10 +115,10 @@ const maybeClickArToggle = () => {
   }
 
   const showing = mapView.classList.contains('mh-ui-ar-showing');
-  const currentButtonState = toggle.querySelector('.toggle-ar-text').innerText;
-  if (showing && currentButtonState !== 'Hide AR') {
+  const currentButtonState = toggle.querySelector('.toggle-ar-text').innerText.replace('AR', '').replace('DR', '').trim();
+  if (showing && currentButtonState !== 'Hide') {
     toggle.click();
-  } else if (! showing && currentButtonState !== 'Show AR') {
+  } else if (! showing && currentButtonState !== 'Show') {
     toggle.click();
   }
 };
@@ -137,7 +147,16 @@ const addArToggle = (tab = 'goals') => {
   }
 
   const toggle = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-ui-toggle-ar-button']);
-  makeElement('span', 'toggle-ar-text', 'Show AR', toggle);
+
+  let arText = 'AR';
+  let arTitle = 'Attraction Rates';
+  if (window.mhui.mapper?.mapData?.is_scavenger_hunt) {
+    arText = 'DR';
+    arTitle = 'Drop Rates';
+  }
+
+  makeElement('span', 'toggle-ar-text', `Show ${arText}`, toggle);
+  toggle.title = `Show ${arTitle}`;
 
   toggle.addEventListener('click', toggleAr);
 
