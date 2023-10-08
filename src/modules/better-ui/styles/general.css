@@ -181,15 +181,6 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
    filter: saturate(1.8);
 }
 
-/* golded shield fun */
-a.mousehuntHud-shield.golden {
-  transition: all .6s;
-}
-
-a.mousehuntHud-shield.golden:hover {
-  filter: opacity(.85);
-}
-
 /* bigger menu icons */
 .mousehuntHud-menu ul li ul li a .icon {
   top: 5px;

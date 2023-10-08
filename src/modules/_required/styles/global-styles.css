@@ -116,5 +116,10 @@ a.mousehuntHud-shield.golden {
   left: 12px;
   background-image: url(https://www.mousehuntgame.com/images/mousehunt_gold_logo.png?asset_cache_version=2);
   background-size: contain;
-  transition: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+a.mousehuntHud-shield.golden:hover,
+a.mousehuntHud-shield.golden:focus {
+  opacity: 0.9;
 }
