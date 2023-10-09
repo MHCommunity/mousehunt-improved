@@ -74,7 +74,16 @@ const changeShieldColor = () => {
     return;
   }
 
-  addUIStyles(`a.mousehuntHud-shield.golden { filter: hue-rotate(${color}deg); }`);
+  const classes = [
+    'a.mousehuntHud-shield.golden'
+  ];
+
+  const matchTimer = localStorage.getItem('custom-shield-timer');
+  if (matchTimer) {
+    classes.push('.huntersHornView__timer--default');
+  }
+
+  addUIStyles(` ${classes.join(', ')}{ filter: hue-rotate(${color}deg); }`);
 };
 
 export default () => {
