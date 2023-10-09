@@ -388,12 +388,10 @@
   font-size: 13px;
 }
 
-
 .labyrinthHUD-scrambleClues.disabled .labyrinthHUD-scrambleClues-name,
 .labyrinthHUD-scrambleClues.disabled:hover .labyrinthHUD-scrambleClues-name {
   color: transparent !important
 }
-
 
 /* Door labels */
 a.labyrinthHUD-door.labyrinthHUD-door-category-y::after,
