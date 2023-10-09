@@ -126,3 +126,24 @@ img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
 .dropdownContent {
   color: #000;
 }
+
+.accountVerificationRewardsView__step.claimed {
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/checkmark.png?asset_cache_version=2);
+  background-size: 30px;
+}
+
+.accountVerificationRewardsView__step.can_claim {
+  background-image: none;
+}
+
+.PreferencesPage__dialogForm .PreferencesPage__formLabel {
+  flex: 1;
+}
+
+.PreferencesPage__dialogForm .PreferencesPage__formInput {
+  flex: 1.8;
+}
+
+.PreferencesPage__dialogForm form {
+  padding-left: 18px;
+}
