@@ -315,3 +315,20 @@ a.floatingIslandsHUD-islandLoot:hover,
 a.floatingIslandsHUD-islandLoot:focus {
   z-index: 5;
 }
+
+.floatingIslandsAirship.highlight .floatingIslandsAirship-part {
+  transform: scale(1.1) rotate(2deg);
+}
+
+.floatingIslandsHUD-enemyContainer:hover .floatingIslandsHUD-enemy-thumb {
+  transform: scale(1.2) rotate(3deg) translateX(-5px);
+}
+
+.floatingIslandsHUD-enemy-thumbContainer {
+  overflow: hidden;
+}
+
+.floatingIslandsHUD-enemyContainer .floatingIslandsHUD-enemy-thumb {
+  transition: .3s;
+  transform-origin: left;
+}
