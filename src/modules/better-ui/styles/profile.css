@@ -217,13 +217,23 @@
 
 .mouseCrownsView-group-mouse-padding {
   padding: 0;
+  overflow: hidden;
 }
 
 .mouseCrownsView-group-mice {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   align-items: stretch;
   justify-content: start;
+  max-width: 720px;
+}
+
+.mouseCrownsView-group-header b {
+  font-size: 13px;
+}
+
+.mouseCrownsView-group-header-subtitle {
+  margin-left: 10px;
 }
 
 .mouseCrownsView-group-mouse {
@@ -236,6 +246,11 @@
   border: none !important; /* profile+ */
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
+  transition: .2s;
+}
+
+.mouseCrownsView-group-mouse-image:hover {
+  transform: scale(1.2);
 }
 
 .bronze .mouseCrownsView-group-mouse {
