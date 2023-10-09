@@ -1,9 +1,5 @@
 [
   {
-    "target": "mh-utils.js",
-    "url": "https://github.com/mouseplace/mh-utils/raw/main/mousehunt-utils.js"
-  },
-  {
     "target": "modules/external/catch-stats",
     "url": "https://github.com/mouseplace/mh-catch-stats/raw/main/mh-catch-stats.user.js"
   },
@@ -22,9 +18,5 @@
   {
     "target": "modules/external/no-sidebar",
     "url": "https://github.com/mouseplace/mh-no-sidebar/raw/main/mh-no-sidebar.user.js"
-  },
-  {
-    "target": "modules/external/taller-windows",
-    "url": "https://github.com/mouseplace/mh-taller-windows/raw/main/mh-taller-windows.user.js"
   }
 ]
