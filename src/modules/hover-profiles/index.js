@@ -65,7 +65,11 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
   friendDataWrapper.innerHTML = content;
 
   const friendLinkParent = e.target.parentElement;
-  friendLinkParent.appendChild(friendDataWrapper);
+  if (friendLinkParent) {
+    friendLinkParent.appendChild(friendDataWrapper);
+  } else {
+    e.target.appendChild(friendDataWrapper);
+  }
 
   eventRegistry.doEvent('profile_hover');
 };
@@ -180,16 +184,10 @@ const main = () => {
 export default () => {
   addUIStyles(styles);
 
-  setTimeout(() => {
-    main();
-  }, 250);
-
-  onEvent('ajax_response', () => {
-    setTimeout(() => {
-      main();
-    }, 250);
+  setTimeout(main, 500);
+  onRequest(() => {
+    setTimeout(main, 1000);
   });
 
-  onEvent('journal_replacements_finished', main);
   onInboxOpen(main);
 };
