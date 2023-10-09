@@ -54,14 +54,14 @@ const addHelpLinks = () => {
       class: 'rules',
       title: 'MOUSE.RIP', // caps to look better
       href: 'https://mouse.rip',
-      text: 'MH guides, tools, and more',
+      text: 'MH guides, tools, and more.',
     },
     {
       id: 'mhui',
       class: 'fanPage',
       title: 'MH Improved',
       href: 'https://github.com/MHCommunity/mousehunt-improved',
-      text: 'Bug reports and feature requests',
+      text: 'Bug reports and feature requests.',
     }
   ];
 
