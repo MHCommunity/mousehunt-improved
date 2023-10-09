@@ -259,3 +259,4 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Fixes the 'Classification' link on the item page.
 - Fixes Whisker Woods Rift rage meter font sizes.
 - Fixes the tutorial overlay shadow
+- Fixes the price being set incorrectly on the first click of the Best price in the Marketplace.

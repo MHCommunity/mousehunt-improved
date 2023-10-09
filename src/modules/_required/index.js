@@ -276,6 +276,16 @@ const addExportSettings = () => {
   wrapper.appendChild(exportSettings);
 };
 
+const fixMpBuyButton = () => {
+  hg.views.MarketplaceView.setOrderPrice = (price) => {
+    const input = document.querySelector('.marketplaceView-item-unitPriceWithTariff');
+    if (input) {
+      input.value = price;
+      hg.views.MarketplaceView.blurInput(input);
+    }
+  };
+};
+
 export default () => {
   styles();
 
@@ -287,6 +297,7 @@ export default () => {
   addMouseripLink();
   addDarkModeBodyClass();
   addRankupForecasterButtons();
+  fixMpBuyButton();
 
   onNavigationPatched(addDarkModeBodyClass);
   onRequest(addDarkModeBodyClass);
