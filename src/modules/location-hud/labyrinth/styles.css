@@ -198,7 +198,7 @@
 
 /* Highlight the best door */
 .labyrinthHUD-door.mh-ui-labyrinth-highlight {
-  filter: brightness(1.3);
+  filter: brightness(1.1);
 }
 
 .labyrinthHUD-door.mh-ui-labyrinth-highlight::before {
