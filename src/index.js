@@ -50,7 +50,7 @@ import required from './modules/_required';
 import dev from './modules/dev';
 
 // Feature modules that are locked behind a flag.
-import locked from './modules/locked';
+import locked from './modules/feature-flags';
 
 import { getFlag } from './modules/utils';
 
