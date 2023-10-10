@@ -233,3 +233,8 @@
   right: unset;
   bottom: unset;
 }
+
+.sorted-page-content .mhct-stage {
+  max-width: 60px;
+  overflow: hidden;
+}

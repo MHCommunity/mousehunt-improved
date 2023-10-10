@@ -84,10 +84,11 @@ input.treasureMapView-shareLinkInput {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  width: 100%;
+  width: auto;
 }
 
 .rewards .treasureMapView-mapMenu-group-actions .mousehuntActionButton {
+  margin-top: 5px;
   margin-right: 4px;
   margin-bottom: 0 !important;
 }
@@ -568,6 +569,10 @@ input.treasureMapView-block-search-text {
 .mh-dark-mode .pageFrameView #overlayPopup.treasureMapPopup .treasureMapRootView-content a.treasureMapView-block-row.active {
   color: #000;
   background: #f2eb6f;
+}
+
+.treasureMapView-hunter.captain .treasureMapView-hunter-image {
+  box-shadow: 0 0 2px 2px #eae7e7;
 }
 
 .mh-dark-mode .pageFrameView .treasureMapView-rightBlock {

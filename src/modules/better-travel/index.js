@@ -383,6 +383,7 @@ const main = () => {
     addSimpleTravel();
   }, {
     page: 'travel',
+    onLoad: true,
   });
 
   onPageChange({
