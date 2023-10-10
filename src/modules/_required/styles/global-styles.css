@@ -109,18 +109,3 @@
     transform: rotate(0deg);
   }
 }
-
-/* Lets make that shield look great */
-a.mousehuntHud-shield.golden {
-  top: 3px;
-  left: 12px;
-  z-index: 1;
-  background-image: url(https://www.mousehuntgame.com/images/mousehunt_gold_logo.png?asset_cache_version=2);
-  background-size: contain;
-  transition: opacity 0.3s ease-in-out;
-}
-
-a.mousehuntHud-shield.golden:hover,
-a.mousehuntHud-shield.golden:focus {
-  opacity: 0.9;
-}

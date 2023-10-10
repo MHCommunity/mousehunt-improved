@@ -78,7 +78,8 @@
 }
 
 #mousehunt-improved-settings-feature-modules-gift-buttons-send-order .inputBox.multiSelect,
-#mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts .inputBox.multiSelect {
+#mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts .inputBox.multiSelect,
+#mousehunt-improved-settings-feature-modules-custom-shield .inputBox.multiSelect {
   max-width: unset;
 }
 
