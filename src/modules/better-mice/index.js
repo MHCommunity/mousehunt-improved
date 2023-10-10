@@ -1,6 +1,6 @@
 import { addUIStyles, getArForMouse, makeLink } from '../utils';
 import styles from './styles.css';
-
+import mousepage from './mousepage';
 /**
  * Get the markup for the mouse links.
  *
@@ -228,4 +228,5 @@ const main = () => {
 export default () => {
   addUIStyles(styles);
   main();
+  mousepage();
 };

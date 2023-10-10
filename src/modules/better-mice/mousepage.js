@@ -1,5 +1,3 @@
-import { onNavigationPatched } from '../utils';
-
 const makeKingsCrownsTab = () => {
   // Add king's crowns tab;
   const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
@@ -218,9 +216,18 @@ const sortStats = (type, reverse = false) => {
 
     // sort by value. If the values are the same, then sort by name
     if (aVal === bVal || type === 'name') {
-      const aName = a.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name').innerText;
-      const bName = b.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name').innerText;
+      const aNameEl = a.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name');
+      if (! aNameEl) {
+        return 0;
+      }
 
+      const bNameEl = b.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.name');
+      if (! bNameEl) {
+        return 0;
+      }
+
+      const aName = aNameEl.innerText;
+      const bName = bNameEl.innerText;
       if (aName === bName) {
         return 0;
       }
@@ -338,16 +345,16 @@ export default () => {
     hg.utils.PageUtil.onclickPageTabHandler(tab);
   }
 
-  onNavigationPatched(addKingsCrownsToMicePage, {
+  onNavigation(addKingsCrownsToMicePage, {
     page: 'adversaries',
   });
 
-  onNavigationPatched(addSortingToStatsPage, {
+  onNavigation(addSortingToStatsPage, {
     page: 'adversaries',
     tab: 'your_stats',
   });
 
-  onNavigationPatched(addSortingToStatsPage, {
+  onNavigation(addSortingToStatsPage, {
     page: 'hunterprofile',
     tab: 'mice',
   });

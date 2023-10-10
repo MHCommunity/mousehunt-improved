@@ -171,7 +171,7 @@ const updateAssignmentList = () => {
     }
 
     const metaWrapper = makeElement('div', 'mh-ui-assignment-meta-wrapper');
-    const wikiLink = makeElement('a', 'mh-ui-assignment-wiki', `View on MHWiki →`, metaWrapper);
+    const wikiLink = makeElement('a', 'mh-ui-assignment-wiki', 'View on MHWiki →', metaWrapper);
     wikiLink.href = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replace(/ /g, '_')}`;
     makeElement('div', 'mh-ui-assignment-cost', `Requires: ${assignment.cost} library points`, metaWrapper);
     makeElement('div', 'mh-ui-assignment-reward', `Reward: ${assignment.reward} library points`, metaWrapper);

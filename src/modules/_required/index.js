@@ -102,7 +102,6 @@ const addDarkModeBodyClass = () => {
   }
 };
 
-
 const exportRankupForecasterData = () => {
   const allArea = localStorage.getItem('Chro-forecaster-all-area');
   const currentArea = localStorage.getItem('Chro-forecaster-current-area');

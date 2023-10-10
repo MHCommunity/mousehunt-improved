@@ -5,7 +5,7 @@ import betterItemView from './modules/better-item-view';
 import betterJournal from './modules/better-journal';
 import betterMaps from './modules/better-maps';
 import betterMarketplace from './modules/better-marketplace';
-// import betterMouseView from './modules/better-mouse-view';
+import betterMice from './modules/better-mice';
 import betterQuests from './modules/better-quests';
 import betterSendSupplies from './modules/better-send-supplies';
 import betterSendSuppliesSettings from './modules/better-send-supplies/settings';
@@ -28,7 +28,6 @@ import inlineWiki from './modules/inline-wiki';
 import journalPrivacy from './modules/external/journal-privacy';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
 import kingsReward from './modules/kings-reward';
-// import mousePageSorting from './modules/mouse-page-sorting';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
@@ -77,7 +76,7 @@ const modules = [
       { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
       { id: 'better-maps', name: 'Better Maps', default: true, description: 'Adds a variety of features to maps. ', load: betterMaps },
       { id: 'better-marketplace', name: 'Better Marketplace', default: true, description: 'Updates the marketplace layout and appearance and adds a variety of small features.', load: betterMarketplace },
-      // { id: 'better-mouse-view', name: 'Better Mouse View', default: true, description: 'Add a link to MHWiki, a link to MHCT, and AR stats on mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.', load: betterMouseView },
+      { id: 'better-mice', name: 'Better Mice', default: true, description: 'Adds links to MHWiki and MHCT, as well as AR stats to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.', load: betterMice },
       { id: 'better-quests', name: 'Better Quests', default: true, description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.', load: betterQuests },
       { id: 'better-send-supplies', name: 'Better Send Supplies', default: true, description: 'Adds a variety of features to the Send Supplies page.', load: betterSendSupplies, settings: betterSendSuppliesSettings },
       { id: 'better-shops', name: 'Better Shops', default: true, description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.', load: betterShops },
@@ -100,7 +99,6 @@ const modules = [
       { id: 'keyboard-shortcuts', name: 'Keyboard Shortcuts', default: true, description: 'Press \'?\' to see a list of keyboard shortcuts.', load: keyboardShortcuts },
       { id: 'kings-reward', name: 'King\'s Reward', default: true, description: 'Updates the style of the King\'s Reward slightly, automatically closes the succes message', load: kingsReward },
       { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: catchStats },
-      // { id: 'mouse-page-sorting', name: 'Mouse Page Sorting', default: true, description: 'Adds sorting to the mouse pages.', load: mousePageSorting },
       { id: 'only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
       { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button on someone\'s profile or hover-profile to easily send any quantity of SUPER|brie+ or another item.', load: quickSendSupplies, settings: quickSendSuppliesSettings },
