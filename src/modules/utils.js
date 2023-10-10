@@ -318,6 +318,15 @@ const onNavigationPatched = (callback, options = {}) => {
   }
 };
 
+const getFlag = (flag) => {
+  const flags = JSON.parse(getMhuiSetting('override-flags'));
+  if (! flags) {
+    return false;
+  }
+
+  return flags[flag];
+};
+
 export {
   addUIStyles,
   addHudStyles,
@@ -333,5 +342,6 @@ export {
   showSuccessMessage,
   saveMhuiSetting,
   getMhuiSetting,
-  onNavigationPatched
+  onNavigationPatched,
+  getFlag
 };

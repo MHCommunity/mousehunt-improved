@@ -49,6 +49,8 @@ import noSidebar from './modules/external/no-sidebar';
 import required from './modules/_required';
 import dev from './modules/dev';
 
+import { getFlag } from './modules/utils';
+
 // Core 'Better' modules.
 const modules = [
   {
@@ -146,6 +148,11 @@ const main = () => {
   // Load the modules.
   modules.forEach((module) => {
     module.modules.forEach((subModule) => {
+      const overrideStopLoading = getFlag(`no-${subModule.id}`);
+      if (overrideStopLoading) {
+        return;
+      }
+
       if (subModule.alwaysLoad) {
         subModule.load();
       } else if (getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')) {
@@ -154,6 +161,34 @@ const main = () => {
     });
   });
 
+  // Add the advanced override settings.
+  const advancedTab = { id: 'mousehunt-improved-settings-overrides', name: 'Overrides (Experimental)', description: 'Modify MouseHunt Improved.' };
+  addSetting(
+    'Custom Styles',
+    'override-styles',
+    '',
+    'Add custom CSS to the page.',
+    advancedTab,
+    'mousehunt-improved-settings',
+    {
+      type: 'textarea',
+      rows: 10,
+    }
+  );
+
+  addSetting(
+    'Custom Flags',
+    'override-flags',
+    '',
+    'Apply custom flags to modify MouseHunt Improved\'s behavior.',
+    advancedTab,
+    'mousehunt-improved-settings',
+    {
+      type: 'input',
+    }
+  );
+
+  window.mhui.loaded = true;
   eventRegistry.doEvent('mousehunt-improved-settings-after-load');
 };
 

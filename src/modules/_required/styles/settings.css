@@ -182,3 +182,12 @@
   top: 13px;
   right: 10px;
 }
+
+#mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-styles textarea,
+#mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-flags input {
+  font-family: monospace;
+}
+
+#mousehunt-improved-settings-feature-modules-quick-send-supplies-items .multiSelect {
+  width: 375px;
+}

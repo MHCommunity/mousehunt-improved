@@ -1,4 +1,4 @@
-import { onNavigationPatched } from '../utils';
+import { onNavigationPatched, getMhuiSetting } from '../utils';
 import styles from './styles';
 import userHighlighting from '../../data/user-highlighting.json';
 
@@ -286,6 +286,18 @@ const fixMpBuyButton = () => {
   };
 };
 
+const loadStyleOverrides = () => {
+  const customStyles = getMhuiSetting('override-styles');
+  if (! customStyles) {
+    return;
+  }
+
+  const style = document.createElement('style');
+  style.id = 'mhui-override-styles';
+  style.innerHTML = customStyles;
+  document.head.appendChild(style);
+};
+
 export default () => {
   styles();
 
@@ -296,6 +308,9 @@ export default () => {
   addHelpLinks();
   addMouseripLink();
   addDarkModeBodyClass();
+
+  loadStyleOverrides();
+
   addRankupForecasterButtons();
   fixMpBuyButton();
 
@@ -312,5 +327,6 @@ export default () => {
   onNavigationPatched(addExportSettings, {
     page: 'preferences',
     tab: 'mousehunt-improved-settings',
+    onLoad: true,
   });
 };
