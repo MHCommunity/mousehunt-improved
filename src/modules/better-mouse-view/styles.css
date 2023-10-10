@@ -143,6 +143,10 @@
   cursor: pointer;
 }
 
+.mh-dark-mode .mh-ui-mouse-links-map-name {
+  color: #009adf;
+}
+
 .treasureMapView-highlight-name {
   padding: 5px 0 10px;
   font-weight: 400;
@@ -157,23 +161,15 @@
   text-align: center;
 }
 
-.treasureMapView-highlight-catcher {
-  display: inline-block;
-  height: auto;
-  background: none;
-  border: none;
+.treasureMapView-highlight-catcher,
+.treasureMapView-highlight-catcher-name,
+.treasureMapView-highlight-catcher-title {
+  display: none;
 }
 
 .treasureMapView-highlight-group,
 .treasureMapView-highlight-environments {
   text-align: center;
-}
-
-.treasureMapView-highlight-catcher-title {
-  display: inline-block;
-  margin-top: -20px;
-  margin-left: 12px;
-  vertical-align: middle;
 }
 
 .treasureMapView-highlight-weakness-title {

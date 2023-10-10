@@ -43,3 +43,53 @@
   color: #fff;
   background-color: #242424;
 }
+
+.mh-dark-mode .inventoryPage-item-recipeOptions li {
+  color: #000;
+}
+
+.mh-dark-mode .mouse-ar-wrapper:nth-child(odd) {
+  background-color: #323232;
+}
+
+.mh-dark-mode .inventoryPage-item-recipeOptions li {
+  color: #2c2c2c;
+}
+
+.mh-dark-mode .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+  background-color: #323232;
+}
+
+.mh-dark-mode .treasureMapView-environment.active .treasureMapView-environment-title {
+  background-color: #38727b;
+}
+
+.mh-dark-mode #overlayPopup.treasureMapPopup .treasureMapView-environment.active .treasureMapView-environment-title a, .mh-dark-mode #overlayPopup.treasureMapPopup .treasureMapView-environment.wrong .treasureMapView-environment-title a, .mh-dark-mode .treasureMapView-environment-progress {
+  color: #fff;
+}
+
+.mh-dark-mode .treasureMapView-environment.wrong .treasureMapView-environment-title {
+  background-color: #862f2f;
+}
+
+.mh-dark-mode #sorted-mice-container .mouse-container-selected, .mh-dark-mode  #sorted-mice-container .mouse-container:hover, .mh-dark-mode #sorted-mice-container .mouse-container:focus {
+  background-color: #2c2c2c;
+}
+
+.mh-dark-mode #sorted-mice-container .mouse-container-selected .mouse-extra-info {
+  background-color: #2c2c2c;
+  border-top-color: #000;
+}
+
+.mh-dark-mode .mhct-data {
+  background-color: #2c2c2c;
+  border-top-color: #000;
+}
+
+.mh-dark-mode .mhct-row:nth-child(odd) {
+  background-color: #191919;
+}
+
+.mh-dark-mode .pageFrameView #overlayPopup.treasureMapPopup .treasureMapRootView-content a.messageBoardView-message-delete {
+  color: transparent;
+}

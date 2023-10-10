@@ -569,3 +569,8 @@ input.treasureMapView-block-search-text {
   color: #000;
   background: #f2eb6f;
 }
+
+.mh-dark-mode .pageFrameView .treasureMapView-rightBlock {
+  padding: 0;
+  background-color: transparent;
+}
