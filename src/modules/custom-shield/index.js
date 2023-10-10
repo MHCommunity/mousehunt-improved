@@ -78,28 +78,10 @@ const getTitle = () => {
   return title;
 };
 
-const changeShieldColor = () => {
-  const color = localStorage.getItem('custom-shield-color');
-  if (! color) {
-    return;
-  }
-
-  let classes = 'a.mousehuntHud-shield.golden';
-
-  const matchTimer = localStorage.getItem('custom-shield-timer');
-  if (matchTimer) {
-    classes += ' .huntersHornView__timer--default';
-  }
-
-  addUIStyles(` ${classes}{ filter: hue-rotate(${color}deg); }`);
-};
-
 export default () => {
   addUIStyles(styles);
 
   changeShield();
-
-  changeShieldColor();
 
   onNavigation(() => {
     const input = document.querySelector('#mousehunt-improved-settings-feature-modules-custom-shield select');
