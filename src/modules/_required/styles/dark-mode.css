@@ -44,10 +44,6 @@
   background-color: #242424;
 }
 
-.mh-dark-mode .inventoryPage-item-recipeOptions li {
-  color: #000;
-}
-
 .mh-dark-mode .mouse-ar-wrapper:nth-child(odd) {
   background-color: #323232;
 }
