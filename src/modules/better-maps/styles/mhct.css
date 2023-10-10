@@ -67,13 +67,13 @@
   color: #000;
   background-color: #fff;
   border-top: none;
-  border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .mh-dark-mode .mh-ui-mouse-links-map-ars .mhct-data {
-  border-color: #2c2c2c;
   color: #fff;
+  border-color: #2c2c2c;
 }
 
 .mh-ui-mouse-links-map-ars .mhct-row:nth-child(odd) {
@@ -82,8 +82,8 @@
 }
 
 .mh-dark-mode .mh-ui-mouse-links-map-ars .mhct-row:nth-child(odd) {
-  background-color: #2c2c2c;
   color: #fff;
+  background-color: #2c2c2c;
 }
 
 .mh-ui-mouse-links-map-ars .mhct-rate {
@@ -106,13 +106,13 @@
 }
 
 .mh-dark-mode .mh-ui-mouse-links-map-ars .mhct-title {
+  color: #fff;
   background-color: #000;
   border-color: #2c2c2c;
-  color: #fff;
 }
 
 .mh-ui-mouse-links-map-ars  .mhct-stage {
   max-width: 80px;
-  text-overflow: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
