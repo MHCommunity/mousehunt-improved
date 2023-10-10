@@ -1,5 +1,5 @@
 // Location HUD improvements.
-import { addUIStyles, removeHudStyles, getMhuiSetting, onNavigationPatched } from '../utils';
+import { addUIStyles, removeHudStyles, getMhuiSetting } from '../utils';
 import cheeseSelectorStyles from './cheese-selectors.css';
 
 // Locations
@@ -150,7 +150,7 @@ const main = () => {
 
 const load = () => {
   // We want to run this basically all the time.
-  onNavigationPatched(main);
+  onNavigation(main);
   onTravel(main);
 
   // Do it for every ajax request just in case, but specifically for the activeturn request.

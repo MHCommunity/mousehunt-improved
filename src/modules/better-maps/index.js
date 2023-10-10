@@ -3,6 +3,7 @@ import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sor
 import { showHuntersTab } from './modules/tab-hunters';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { addBlockClasses, getMapData, setMapData } from './map-utils';
+import { addToGlobal } from '../utils';
 
 const interceptMapRequest = (mapId) => {
   // If we don't have data, we're done.
@@ -12,13 +13,10 @@ const interceptMapRequest = (mapId) => {
 
   const init = (mapData) => {
     // / append the map data to the window.mhui object, keeping the other properties
-    window.mhui = {
-      ...window.mhui,
-      mapper: {
-        mapData,
-        mapModel: new hg.models.TreasureMapModel(mapData),
-      }
-    };
+    addToGlobal({ mapper: {
+      mapData,
+      mapModel: new hg.models.TreasureMapModel(mapData),
+    } });
 
     eventRegistry.doEvent('mapper_loaded', mapData);
     return data;

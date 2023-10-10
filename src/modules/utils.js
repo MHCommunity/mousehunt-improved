@@ -309,15 +309,6 @@ const getMhuiSetting = (key, defaultValue = false) => {
   return getSetting(key, defaultValue, 'mousehunt-improved-settings');
 };
 
-const onNavigationPatched = (callback, options = {}) => {
-  if (options.onLoad !== null) {
-    onNavigation(callback, options);
-  } else {
-    options.onLoad = false;
-    onNavigation(callback, options);
-  }
-};
-
 const getFlag = (flag) => {
   const flags = getMhuiSetting('override-flags');
   if (! flags) {
@@ -326,6 +317,10 @@ const getFlag = (flag) => {
 
   // split the flags into an array and check if the flag is in the array
   return flags.replaceAll(' ', '').split(',').includes(flag);
+};
+
+const addToGlobal = (obj) => {
+  window.mhui = { ...window.mhui, ...obj };
 };
 
 export {
@@ -343,6 +338,6 @@ export {
   showSuccessMessage,
   saveMhuiSetting,
   getMhuiSetting,
-  onNavigationPatched,
-  getFlag
+  getFlag,
+  addToGlobal
 };

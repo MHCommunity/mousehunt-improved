@@ -1,7 +1,6 @@
 import styles from './styles';
 import friends from './friends';
 import hud from './hud';
-import mousepage from './mousepage';
 import traps from './traps';
 
 export default () => {
@@ -9,6 +8,5 @@ export default () => {
 
   friends();
   hud();
-  mousepage();
   traps();
 };

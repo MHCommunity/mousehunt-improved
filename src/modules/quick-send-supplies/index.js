@@ -1,4 +1,4 @@
-import { addUIStyles, showErrorMessage, showSuccessMessage, getMhuiSetting, onNavigationPatched } from '../utils';
+import { addUIStyles, showErrorMessage, showSuccessMessage, getMhuiSetting } from '../utils';
 import styles from './styles.css';
 import getTradableItems from '../../data/tradable-items';
 
@@ -188,7 +188,7 @@ export default () => {
   addUIStyles(styles);
 
   main();
-  onNavigationPatched(main);
+  onNavigation(main);
   onRequest(main);
   onEvent('profile_hover', main);
 

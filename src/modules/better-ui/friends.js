@@ -1,4 +1,3 @@
-import { onNavigationPatched } from '../utils';
 const reorderBlocks = () => {
   if ('friends' !== getCurrentPage()) {
     return;
@@ -66,11 +65,11 @@ const listenForIDPaste = () => {
 };
 
 export default () => {
-  onNavigationPatched(reorderBlocks, {
+  onNavigation(reorderBlocks, {
     page: 'friends'
   });
 
-  onNavigationPatched(autofocusIdSearch, {
+  onNavigation(autofocusIdSearch, {
     page: 'friends',
     tab: 'requests',
     subtab: 'community',

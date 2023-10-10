@@ -5,7 +5,7 @@ import betterItemView from './modules/better-item-view';
 import betterJournal from './modules/better-journal';
 import betterMaps from './modules/better-maps';
 import betterMarketplace from './modules/better-marketplace';
-import betterMouseView from './modules/better-mouse-view';
+// import betterMouseView from './modules/better-mouse-view';
 import betterQuests from './modules/better-quests';
 import betterSendSupplies from './modules/better-send-supplies';
 import betterSendSuppliesSettings from './modules/better-send-supplies/settings';
@@ -25,8 +25,10 @@ import giftButtonsSettings from './modules/gift-buttons/settings';
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
-import keyboardShortcuts from './modules/keyboard-shortcuts';
 import journalPrivacy from './modules/external/journal-privacy';
+import keyboardShortcuts from './modules/keyboard-shortcuts';
+import kingsReward from './modules/kings-reward';
+// import mousePageSorting from './modules/mouse-page-sorting';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
@@ -52,21 +54,30 @@ import dev from './modules/dev';
 // Feature modules that are locked behind a flag.
 import locked from './modules/feature-flags';
 
-import { getFlag } from './modules/utils';
+import { addToGlobal, getFlag } from './modules/utils';
 
 // Core 'Better' modules.
 const modules = [
+  {
+    // Always loaded modules.
+    id: 'always-loaded',
+    modules: [
+      { id: 'required', load: required, alwaysLoad: true },
+      { id: 'dev', load: dev, alwaysLoad: true },
+      { id: 'locked', load: locked, alwaysLoad: true },
+    ],
+  },
   {
     id: 'mousehunt-improved',
     name: 'MouseHunt Improved',
     modules: [
       { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
-      { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and appearance and adds a variety of small features.', load: betterInventory },
+      { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and styling. ', load: betterInventory },
       { id: 'better-item-view', name: 'Better Item View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing drop rates.', load: betterItemView },
       { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
-      { id: 'better-maps', name: 'Better Maps', default: true, description: 'Updates the map layout and appearance and adds a variety of small features.', load: betterMaps },
+      { id: 'better-maps', name: 'Better Maps', default: true, description: 'Adds a variety of features to maps. ', load: betterMaps },
       { id: 'better-marketplace', name: 'Better Marketplace', default: true, description: 'Updates the marketplace layout and appearance and adds a variety of small features.', load: betterMarketplace },
-      { id: 'better-mouse-view', name: 'Better Mouse View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing attraction rates.', load: betterMouseView },
+      // { id: 'better-mouse-view', name: 'Better Mouse View', default: true, description: 'Add a link to MHWiki, a link to MHCT, and AR stats on mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.', load: betterMouseView },
       { id: 'better-quests', name: 'Better Quests', default: true, description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.', load: betterQuests },
       { id: 'better-send-supplies', name: 'Better Send Supplies', default: true, description: 'Adds a variety of features to the Send Supplies page.', load: betterSendSupplies, settings: betterSendSuppliesSettings },
       { id: 'better-shops', name: 'Better Shops', default: true, description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.', load: betterShops },
@@ -81,19 +92,21 @@ const modules = [
       { id: 'copy-id', name: 'Copy ID Button', default: true, description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.', load: copyId },
       { id: 'custom-shield', name: 'Custom Shield', default: false, description: 'Change your shield in the HUD to a variety of different options.', load: customShield, alwaysLoad: true, settings: customShieldSettings }, // set to always load so that rather than enable/disable, you can just change the shield back to default.
       { id: 'dashboard', name: 'Location Dashboard', default: true, description: 'See location HUD information in a dashboard available in the top dropdown menu.', load: dashboard },
-      { id: 'gift-buttons', name: 'Gift Buttons', default: true, description: 'Quickly accept and return all your gifts', load: giftButtons, settings: giftButtonsSettings },
+      { id: 'gift-buttons', name: 'Gift Buttons', default: true, description: 'Quickly accept and return all your gifts as well as picking random friends to send to.', load: giftButtons, settings: giftButtonsSettings },
       { id: 'hover-profiles', name: 'Hover Profiles', default: true, description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.', load: hoverProfiles },
-      { id: 'image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backagrounds across the entire MH interface.', load: imageUpscaling },
+      { id: 'image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backgrounds across the entire MH interface.', load: imageUpscaling },
       { id: 'inline-wiki', name: 'Inline Wiki', default: true, description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.', load: inlineWiki },
+      { id: 'journal-privacy', name: 'Hide player names in journal entries', default: false, description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.', load: journalPrivacy },
       { id: 'keyboard-shortcuts', name: 'Keyboard Shortcuts', default: true, description: 'Press \'?\' to see a list of keyboard shortcuts.', load: keyboardShortcuts },
-      { id: 'journal-privacy', name: 'Hide player names in journal entries', default: false, description: 'Hides player names in the journal.', load: journalPrivacy },
+      { id: 'kings-reward', name: 'King\'s Reward', default: true, description: 'Updates the style of the King\'s Reward slightly, automatically closes the succes message', load: kingsReward },
       { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: catchStats },
+      // { id: 'mouse-page-sorting', name: 'Mouse Page Sorting', default: true, description: 'Adds sorting to the mouse pages.', load: mousePageSorting },
       { id: 'only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
-      { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button to easily send any quantity of SUPER|brie+ or another item..', load: quickSendSupplies, settings: quickSendSuppliesSettings },
-      { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Makes popup windows taller.', load: tallerWindows },
+      { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button on someone\'s profile or hover-profile to easily send any quantity of SUPER|brie+ or another item.', load: quickSendSupplies, settings: quickSendSuppliesSettings },
+      { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Make popup and dialog windows taller.', load: tallerWindows },
       { id: 'tem-crowns', name: 'TEM Crowns', default: true, description: 'Adds crowns and catches to the the Trap Effectiveness Meter.', load: temCrowns },
-      { id: 'ultimate-checkmark', name: 'Ultimate Checkmark', default: false, description: 'Adds more things collect on the items view of your Hunter profile.', load: ultimateCheckmark },
+      { id: 'ultimate-checkmark', name: 'Ultimate Checkmark', default: true, description: 'Adds more things collect on the items view of your Hunter profile.', load: ultimateCheckmark },
     ]
   },
   {
@@ -113,15 +126,6 @@ const modules = [
       { id: 'no-sidebar', name: 'Remove Sidebar', default: false, description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.', load: noSidebar },
     ],
   },
-  {
-    // Always loaded modules.
-    id: 'always-loaded',
-    modules: [
-      { id: 'required', load: required, alwaysLoad: true },
-      { id: 'dev', load: dev, alwaysLoad: true },
-      { id: 'locked', load: locked, alwaysLoad: true },
-    ],
-  }
 ];
 
 const main = () => {
@@ -153,6 +157,7 @@ const main = () => {
 
   eventRegistry.doEvent('mousehunt-improved-settings-before-load');
   // Load the modules.
+  const loadedModules = [];
   modules.forEach((module) => {
     module.modules.forEach((subModule) => {
       const overrideStopLoading = getFlag(`no-${subModule.id}`);
@@ -160,16 +165,18 @@ const main = () => {
         return;
       }
 
-      if (subModule.alwaysLoad) {
+      if (subModule.alwaysLoad || getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')) {
         subModule.load();
-      } else if (getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')) {
-        subModule.load();
+        loadedModules.push(subModule.id);
       }
     });
   });
 
+  // Add the loaded modules to the global object.
+  addToGlobal({ modules: loadedModules });
+
   // Add the advanced override settings.
-  const advancedTab = { id: 'mousehunt-improved-settings-overrides', name: 'Overrides (Experimental)', description: 'Modify MouseHunt Improved.' };
+  const advancedTab = { id: 'mousehunt-improved-settings-overrides', name: 'Overrides (Experimental)', default: true, description: 'Modify MouseHunt Improved.' };
   addSetting(
     'Custom Styles',
     'override-styles',

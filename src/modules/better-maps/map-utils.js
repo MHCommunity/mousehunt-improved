@@ -1,6 +1,6 @@
 import environments from '../../data/environments.json';
 
-import { getArForMouse } from '../utils';
+import { addToGlobal, getArForMouse } from '../utils';
 
 const getMapData = (mapId = false, strict = false) => {
   if (mapId !== false) {
@@ -32,12 +32,12 @@ const getLastMap = () => {
   if (lastMap) {
     interceptMapRequest(lastMap);
   } else {
-    window.mhui = {
+    addToGlobal({
       mapData: false,
       mapModel: false,
       stage: false,
       location: false,
-    };
+    });
   }
 };
 

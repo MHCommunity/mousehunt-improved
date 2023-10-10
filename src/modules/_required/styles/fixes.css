@@ -136,6 +136,7 @@ img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
   background-image: none;
 }
 
+/* Fix the account settings forms unnecessarily wrapping text */
 .PreferencesPage__dialogForm .PreferencesPage__formLabel {
   flex: 1;
 }
@@ -146,4 +147,14 @@ img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
 
 .PreferencesPage__dialogForm form {
   padding-left: 18px;
+}
+
+/* Vertical align the quantity input and open button on convertible dialogs */
+.itemView-action-convertForm {
+  display: flex;
+  align-items: center;
+}
+
+.itemView-action-convert-quantity {
+  top: 0;
 }

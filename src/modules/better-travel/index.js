@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting, onNavigationPatched } from '../utils';
+import { addUIStyles, getMhuiSetting } from '../utils';
 import styles from './styles.css';
 import environments from '../../data/environments.json';
 
@@ -378,12 +378,11 @@ const maybeSetTab = () => {
 };
 
 const main = () => {
-  onNavigationPatched(() => {
+  onNavigation(() => {
     expandTravelRegions();
     addSimpleTravel();
   }, {
     page: 'travel',
-    onLoad: true,
   });
 
   onPageChange({

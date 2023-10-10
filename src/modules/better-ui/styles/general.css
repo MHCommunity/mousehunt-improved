@@ -264,20 +264,6 @@ a.inventoryPage-tagDirectory-tag {
   box-shadow: 0 0 1px 0 #354661;
 }
 
-/* mousepage stuff */
-.mouseListView-categoryContent-subgroup-name {
-  font-size: 13px;
-  border-radius: 10px;
-}
-
-.mouseListView-categoryContent-subgroup-mouse .mouseListView-categoryContent-subgroup-mouse-margin {
-  transition: .2s;
-}
-
-.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
-  background-size: 100%;
-}
-
 /* leppy wow */
 a[href="https://www.mousehuntgame.com/item.php?item_type=mystery_satchel_of_gold_convertible"] {
   color: #fff;
