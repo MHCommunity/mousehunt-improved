@@ -8,5 +8,4 @@ injectedStyle.setAttribute('rel', 'stylesheet');
 injectedStyle.setAttribute('type', 'text/css');
 injectedStyle.setAttribute('href', chrome.runtime.getURL('main.css'));
 
-// inject as the last element in the head to override any existing styles
 document.head.appendChild(injectedStyle);
