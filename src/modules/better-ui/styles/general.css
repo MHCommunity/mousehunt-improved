@@ -136,11 +136,6 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
   padding: 10px 0;
 }
 
-/* Gift of the day width */
-.giftSelectorView-giftContainer .giftSelectorView-gift.gift_of_the_day {
-  width: 20%;
-}
-
 /* Team member */
 .teamPage-memberRow-identity .teamPage-member-nameContainer {
   width: auto;
@@ -196,7 +191,6 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
   padding: 2px 3px;
   font-size: 13px;
 }
-
 
 /* cleaner trap image on camp page, hide auras a LE until hovered */
 .trapImageView-layer.limitedEdition {
@@ -289,27 +283,4 @@ a[href="https://www.mousehuntgame.com/item.php?item_type=mystery_satchel_of_gold
   color: #fff;
   text-shadow: 0 0 #ffdc23;
   filter: drop-shadow(0 0 1px #ffdc23);
-}
-
-/* other scripts */
-#tsitu-hunter-id-nav-ui input {
-  flex: none !important;
-  width: 75px !important;
-  margin: 3px;
-  border: 1px solid #000 !important;
-  border-radius: 2px;
-}
-
-#tsitu-hunter-id-nav-ui button {
-  padding: 2px !important;
-  margin: 3px 1px !important;
-  background-color: #d8e3f1;
-  border: 1px solid #000 !important;
-  border-radius: 3px !important;
-}
-
-#tsitu-hunter-id-nav-ui {
-  display: inline-flex !important;
-  align-items: center;
-  border: none;
 }

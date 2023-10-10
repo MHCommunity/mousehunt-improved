@@ -8,7 +8,6 @@ import friends from './friends.css';
 import general from './general.css';
 import gifts from './gifts.css';
 import hud from './hud.css';
-import kingsReward from './kings-reward.css';
 import overlays from './overlays.css';
 import profile from './profile.css';
 import recipes from './recipes.css';
@@ -18,7 +17,7 @@ import sidebar from './sidebar.css';
 import tabs from './tabs.css';
 import team from './team.css';
 import traps from './traps.css';
-import tsituSendSupplies from './tsitu-send-supplies.css';
+import userscripts from './userscripts.css';
 
 const main = () => {
   addUIStyles([
@@ -30,7 +29,6 @@ const main = () => {
     friends,
     gifts,
     hud,
-    kingsReward,
     overlays,
     profile,
     recipes,
@@ -40,7 +38,7 @@ const main = () => {
     tabs,
     team,
     traps,
-    tsituSendSupplies,
+    userscripts,
   ].join('\n'));
 };
 

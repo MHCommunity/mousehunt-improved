@@ -29,3 +29,25 @@
   margin-right: 2px;
   font-size: 12px !important;
 }
+
+#tsitu-hunter-id-nav-ui input {
+  flex: none !important;
+  width: 75px !important;
+  margin: 3px;
+  border: 1px solid #000 !important;
+  border-radius: 2px;
+}
+
+#tsitu-hunter-id-nav-ui button {
+  padding: 2px !important;
+  margin: 3px 1px !important;
+  background-color: #d8e3f1;
+  border: 1px solid #000 !important;
+  border-radius: 3px !important;
+}
+
+#tsitu-hunter-id-nav-ui {
+  display: inline-flex !important;
+  align-items: center;
+  border: none;
+}

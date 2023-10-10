@@ -1,4 +1,4 @@
-import { onNavigationPatched, getMhuiSetting } from '../utils';
+import { getMhuiSetting } from '../utils';
 import styles from './styles';
 import userHighlighting from '../../data/user-highlighting.json';
 
@@ -102,14 +102,6 @@ const addDarkModeBodyClass = () => {
   }
 };
 
-const continueOnKingsReward = (req) => {
-  if (req.success && req.puzzle_reward) {
-    const resume = document.querySelector('.puzzleView__resumeButton');
-    if (resume) {
-      resume.click();
-    }
-  }
-};
 
 const exportRankupForecasterData = () => {
   const allArea = localStorage.getItem('Chro-forecaster-all-area');
@@ -314,19 +306,15 @@ export default () => {
   addRankupForecasterButtons();
   fixMpBuyButton();
 
-  onNavigationPatched(addDarkModeBodyClass);
+  onNavigation(addDarkModeBodyClass);
   onRequest(addDarkModeBodyClass);
 
-  onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
-
-  onNavigationPatched(highlightUsers, {
+  onNavigation(highlightUsers, {
     page: 'hunterprofile',
-    onLoad: true,
   });
 
-  onNavigationPatched(addExportSettings, {
+  onNavigation(addExportSettings, {
     page: 'preferences',
     tab: 'mousehunt-improved-settings',
-    onLoad: true,
   });
 };
