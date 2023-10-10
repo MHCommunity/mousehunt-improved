@@ -173,11 +173,6 @@ a.mousehuntHud-shield.golden.title {
     background-image: url(https://www.mousehuntgame.com/images/titles/5daba92a8d609834aa8b789f37544e08.png?cv=2);
 }
 
-
-                              #mousehunt-improved-settings-mousehunt-improved {
-                                display: none;
-                              }
-
 .huntersHornView__timer--default.color-blue,
 a.mousehuntHud-shield.golden.color-blue {
   filter: hue-rotate(158deg) drop-shadow(0 0 5px #e8dbb8);
