@@ -100,3 +100,13 @@
 #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:hover {
   cursor: default;
 }
+
+.mh-m400-travel {
+  margin-top: -2px;
+  margin-left: 10px;
+}
+
+.mh-m400-quest .campPage-quests-objective-progress,
+.mh-m400-quest .campPage-quests-objective-progressBar {
+  display: none;
+}
