@@ -1,5 +1,6 @@
 const main = () => {
   window.mhui = {
+    ...window.mhui,
     mhutils: {
       addStyles,
       onRequest,

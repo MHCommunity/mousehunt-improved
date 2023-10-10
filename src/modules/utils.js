@@ -319,12 +319,13 @@ const onNavigationPatched = (callback, options = {}) => {
 };
 
 const getFlag = (flag) => {
-  const flags = JSON.parse(getMhuiSetting('override-flags'));
+  const flags = getMhuiSetting('override-flags');
   if (! flags) {
     return false;
   }
 
-  return flags[flag];
+  // split the flags into an array and check if the flag is in the array
+  return flags.replaceAll(' ', '').split(',').includes(flag);
 };
 
 export {

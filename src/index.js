@@ -49,6 +49,9 @@ import noSidebar from './modules/external/no-sidebar';
 import required from './modules/_required';
 import dev from './modules/dev';
 
+// Feature modules that are locked behind a flag.
+import locked from './modules/locked';
+
 import { getFlag } from './modules/utils';
 
 // Core 'Better' modules.
@@ -115,12 +118,16 @@ const modules = [
     id: 'always-loaded',
     modules: [
       { id: 'required', load: required, alwaysLoad: true },
+      { id: 'dev', load: dev, alwaysLoad: true },
+      { id: 'locked', load: locked, alwaysLoad: true },
     ],
   }
 ];
 
 const main = () => {
-  dev();
+  if (window.mhui?.loaded) {
+    return;
+  }
 
   addSettingsTab('mousehunt-improved-settings', 'MH Improved');
 
@@ -170,10 +177,7 @@ const main = () => {
     'Add custom CSS to the page.',
     advancedTab,
     'mousehunt-improved-settings',
-    {
-      type: 'textarea',
-      rows: 10,
-    }
+    { type: 'textarea' }
   );
 
   addSetting(
@@ -183,9 +187,7 @@ const main = () => {
     'Apply custom flags to modify MouseHunt Improved\'s behavior.',
     advancedTab,
     'mousehunt-improved-settings',
-    {
-      type: 'input',
-    }
+    { type: 'input' }
   );
 
   window.mhui.loaded = true;
