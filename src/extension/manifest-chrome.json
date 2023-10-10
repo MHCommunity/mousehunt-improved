@@ -18,13 +18,10 @@
       "matches": ["https://*.mousehuntgame.com/*"]
     }
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "host_permissions": ["https://*.mousehuntgame.com/*"],
   "web_accessible_resources": [
     {
-      "resources": ["main.js", "main.css"],
+      "resources": ["main.js"],
       "matches": ["https://*.mousehuntgame.com/*"]
     }
   ],

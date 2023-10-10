@@ -43,7 +43,7 @@
 }
 
 .friends-page-id-search input.friendsPage-community-hunterIdForm-input {
-  width: 100%;
+  width: 175px;
   padding: 10px;
   font-size: 15px;
 }
@@ -54,7 +54,6 @@
 
 .friends-page-id-search label {
   padding: 0;
-  margin-right: 30px;
 }
 
 .friends-page-id-search form.friendsPage-community-hunterIdForm {

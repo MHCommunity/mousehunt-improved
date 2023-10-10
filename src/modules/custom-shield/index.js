@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import { addUIStyles, getMhuiSetting, getFlag } from '../utils';
 import styles from './styles.css';
 
 const addClass = (el, shieldClass) => {
@@ -64,6 +64,31 @@ const changeShield = () => {
 
   shieldEl.classList.add('mhui-custom-shield');
   addClass(shieldEl, shield);
+
+  if (getFlag('background-has-shield-color')) {
+    const colors = {
+      'color-blue': 0,
+      'color-cyan': 312,
+      'color-green': 266,
+      'color-pink': 80,
+      'color-purple': 51,
+      'color-red': 146,
+    };
+
+    const leftColumn = document.querySelector('.pageFrameView-column.left');
+    const rightColumn = document.querySelector('.pageFrameView-column.right');
+    if (! leftColumn || ! rightColumn) {
+      return;
+    }
+
+    leftColumn.style.filter = `hue-rotate(${colors[shield]}deg)`;
+    rightColumn.style.filter = `hue-rotate(${colors[shield]}deg)`;
+
+    if ('color-faded' === shield) {
+      leftColumn.style.filter = 'sepia(1)';
+      rightColumn.style.filter = 'sepia(1)';
+    }
+  }
 };
 
 const getTitle = () => {

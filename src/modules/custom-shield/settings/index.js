@@ -12,13 +12,13 @@ export default function (subModule, module) {
       { name: 'Great Winter Hunter', value: 'winter_hunt' },
       { name: 'Halloween', value: 'halloween' },
       { name: 'Larry\'s Football Challenge', value: 'larrys_football_challenge' },
-      { name: 'Pride', value: 'pride' },
+      { name: 'Pride [LGS Required]', value: 'pride' },
       { name: 'Remembrance Day', value: 'remembrance_day' },
-      { name: 'Spring Egg Hunt', value: 'spring-egg-hunt' },
-      { name: 'Spring Egg Hunt (Alternate)', value: 'spring-egg-hunt-alt' },
+      { name: 'Spring Egg Hunt [LGS Required]', value: 'spring-egg-hunt' },
+      { name: 'Spring Egg Hunt Alt [LGS Required]', value: 'spring-egg-hunt-alt' },
       { name: 'Valentine\'s', value: 'valentines' },
     ] },
-    { name: 'Color', value: 'group', options: [
+    { name: 'Color [LGS required]', value: 'group', options: [
       { name: 'Blue', value: 'color-blue' },
       { name: 'Blue with matching timer', value: 'color-blue-timer' },
       { name: 'Cyan', value: 'color-cyan' },

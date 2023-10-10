@@ -158,3 +158,9 @@ img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
 .itemView-action-convert-quantity {
   top: 0;
 }
+
+/* Fix the weird footer width */
+.pageFrameView-column.left,
+.pageFrameView-column.right {
+  margin-bottom: -140px;
+}

@@ -76,7 +76,7 @@ const modules = [
       { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
       { id: 'better-maps', name: 'Better Maps', default: true, description: 'Adds a variety of features to maps. ', load: betterMaps },
       { id: 'better-marketplace', name: 'Better Marketplace', default: true, description: 'Updates the marketplace layout and appearance and adds a variety of small features.', load: betterMarketplace },
-      { id: 'better-mice', name: 'Better Mice', default: true, description: 'Adds links to MHWiki and MHCT, as well as AR stats to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.', load: betterMice },
+      { id: 'better-mice', name: 'Better Mice', default: true, description: 'Adds attraction rate stats and links to MHWiki and MHCT to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.', load: betterMice },
       { id: 'better-quests', name: 'Better Quests', default: true, description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.', load: betterQuests },
       { id: 'better-send-supplies', name: 'Better Send Supplies', default: true, description: 'Adds a variety of features to the Send Supplies page.', load: betterSendSupplies, settings: betterSendSuppliesSettings },
       { id: 'better-shops', name: 'Better Shops', default: true, description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.', load: betterShops },
@@ -174,7 +174,7 @@ const main = () => {
   addToGlobal({ modules: loadedModules });
 
   // Add the advanced override settings.
-  const advancedTab = { id: 'mousehunt-improved-settings-overrides', name: 'Overrides (Experimental)', default: true, description: 'Modify MouseHunt Improved.' };
+  const advancedTab = { id: 'mousehunt-improved-settings-overrides', name: 'Overrides', default: true, description: 'Modify MouseHunt Improved.' };
   addSetting(
     'Custom Styles',
     'override-styles',

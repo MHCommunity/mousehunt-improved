@@ -6,6 +6,33 @@
   left: unset;
 }
 
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__settingDefault {
+  display: none;
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__titleText {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  position: relative;
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .toggle.toggled {
+  transform: rotate(270deg);
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .toggle {
+  transform-origin: center;
+}
+
+#mousehunt-improved-settings-location-hud .PagePreferences__titleText {
+  grid-column: span 3;
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__settingDescription {
+  max-width: 500px;
+}
+
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .settingRow-label {
   padding: 10px 0;
 }
@@ -186,8 +213,51 @@
 #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-styles textarea,
 #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-flags input {
   font-family: monospace;
+  max-width: 350px;
+  width: 350px;
+  margin-left: -25px;
+  min-width: 250px;
+  background-color: gainsboro;
+  color: black;
+  border: 1px solid #cccccc;
 }
 
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items .multiSelect {
   width: 375px;
+}
+
+.mousehunt-improved-settings-export-popup-content {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    gap: 30px;
+}
+.mousehunt-improved-settings-export-popup-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.mousehunt-improved-settings-export-popup-content textarea {
+  width: 100%;
+  font-family: monospace;
+  height: auto;
+  font-size: 12px;
+  min-height: 350px;
+}
+
+.mousehunt-improved-settings-export-popup .suffix {
+  display: none;
+}
+
+.settingRow-action-inputContainer.textarea {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.PagePreferences__title.toggled .PagePreferences__settingsList,
+.PagePreferences__title.toggled .PagePreferences__separator {
+  display: none;
 }
