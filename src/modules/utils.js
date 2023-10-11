@@ -85,7 +85,16 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
   const isItem = 'item' === type;
   const mhctPath = isItem ? 'mhct-item' : 'mhct';
 
-  const mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouseId}`);
+  let mhctdata = [];
+
+  // Temp hack for halloween.
+  const mapType = window.mhui.mapper?.mapData?.map_type || '';
+  if (mapType.toLowerCase().indexOf('halloween') !== -1) {
+    mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouseId}-hlw_22`);
+  } else {
+    mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouseId}`);
+  }
+
   mhctjson = await mhctdata.json();
 
   if (! mhctjson || mhctjson.length === 0) {

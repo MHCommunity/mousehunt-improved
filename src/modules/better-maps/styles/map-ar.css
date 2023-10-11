@@ -1,4 +1,5 @@
-.treasure .treasureMapView-goals-group-goal[data-mh-ui-ar="true"] .treasureMapView-goals-group-goal-name {
+.treasure .treasureMapView-goals-group-goal[data-mh-ui-ar="true"] .treasureMapView-goals-group-goal-name,
+.event .treasureMapView-goals-group-goal[data-mh-ui-ar="true"] .treasureMapView-goals-group-goal-name {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -82,6 +83,7 @@
   margin-left: 10px;
 }
 
-.treasure .treasureMapView-goals-group-goal[data-mh-ui-ar="true"].item .treasureMapView-goals-group-goal-name {
+.treasure .treasureMapView-goals-group-goal[data-mh-ui-ar="true"].item .treasureMapView-goals-group-goal-name,
+.event .treasureMapView-goals-group-goal[data-mh-ui-ar="true"].item .treasureMapView-goals-group-goal-name {
   align-items: center;
 }

@@ -795,5 +795,89 @@
         "mice": ["desert_beast", "desert_supply", "desert_general"]
       }
     ]
+  },
+  "halloween_treat_2021": {
+    "categories": [
+      {
+        "name:": "Standard",
+        "id": "standard",
+        "icon": "https://www.mousehuntgame.com/images/items/bait/large/bb0fe6fa6f55e5ccb1f98dea058409e0.png?cv=2",
+        "color": "#fefa76",
+        "mice": [
+          "grey_recluse",
+          "hween_cobweb",
+          "vampira",
+          "zombot_unipire",
+          "candy_cat",
+          "candy_goblin",
+          "shortcut",
+          "tricky_witch",
+          "sweet_tooth"
+        ]
+      },
+      {
+        "name": "Monterey Jack-O-Lantern",
+        "id": "monterey-Jack",
+        "icon": "https://www.mousehuntgame.com/images/items/bait/large/65fd19bf5b16dcaa6b3cfebd2f55348c.png?cv=2",
+        "color": "#f9a645",
+        "mice": [
+          "sprit_light",
+          "gordborg",
+          "pumpkin_hoarder",
+          "trick",
+          "treat",
+          "chainsaw",
+          "maize_harvester"
+        ]
+      }
+    ]
+  },
+  "halloween_trick_2021": {
+    "categories": [
+      {
+        "name": "Bonefort",
+        "id": "bonefort",
+        "icon": "https://www.mousehuntgame.com/images/items/bait/large/e6ac92f19a6ac930aad02e317cf8e6e8.png?cv=2",
+        "color": "#bfbfbf",
+        "mice": [
+          "creepy_marionette",
+          "dire_lycan",
+          "grave_digger",
+          "hollowhead",
+          "hween_2014_boss",
+          "hween_2016_boss",
+          "hween_2013_boss",
+          "rift_grave_digger"
+        ]
+      },
+      {
+        "name": "Polter-Geitost",
+        "id": "polter-geitost",
+        "icon": "https://www.mousehuntgame.com/images/items/bait/large/04d69ccc7a5b1578cdf90b9651fb2315.png?cv=2",
+        "color": "#84bde6",
+        "mice": [
+          "hween_2018_boss",
+          "hween_2017_boss",
+          "rift_ghost_pirate",
+          "gourd_ghoul",
+          "scorned_pirate",
+          "spectral_butler",
+          "spectral_swashbuckler"
+        ]
+      },
+      {
+        "name": "Scream",
+        "id": "scream",
+        "icon": "https://www.mousehuntgame.com/images/items/bait/large/fe9d538d1a811bdb787b78aa1526ee50.png?cv=2",
+        "color": "#86dd6c",
+        "mice": [
+          "hween_2021_boss",
+          "hween_2015_boss",
+          "hollowed_demon",
+          "hollowed_minion",
+          "hween_2012_boss"
+        ]
+      }
+    ]
   }
 }
