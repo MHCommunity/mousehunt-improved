@@ -231,6 +231,7 @@
     grid-template-columns: 1fr 100px;
     gap: 30px;
 }
+
 .mousehunt-improved-settings-export-popup-buttons {
   display: flex;
   flex-direction: column;
