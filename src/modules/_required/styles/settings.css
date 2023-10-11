@@ -11,10 +11,10 @@
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__titleText {
-  display: flex;
-  justify-content: flex-start;
-  gap: 10px;
   position: relative;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .toggle.toggled {
@@ -212,13 +212,13 @@
 
 #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-styles textarea,
 #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-flags input {
-  font-family: monospace;
-  max-width: 350px;
   width: 350px;
-  margin-left: -25px;
   min-width: 250px;
+  max-width: 350px;
+  margin-left: -25px;
+  font-family: monospace;
+  color: #000;
   background-color: gainsboro;
-  color: black;
   border: 1px solid #cccccc;
 }
 
@@ -234,17 +234,17 @@
 .mousehunt-improved-settings-export-popup-buttons {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   gap: 10px;
   align-items: stretch;
+  justify-content: flex-end;
 }
 
 .mousehunt-improved-settings-export-popup-content textarea {
   width: 100%;
-  font-family: monospace;
   height: auto;
-  font-size: 12px;
   min-height: 350px;
+  font-family: monospace;
+  font-size: 12px;
 }
 
 .mousehunt-improved-settings-export-popup .suffix {
@@ -253,8 +253,8 @@
 
 .settingRow-action-inputContainer.textarea {
   display: flex;
-  align-items: center;
   gap: 5px;
+  align-items: center;
 }
 
 .PagePreferences__title.toggled .PagePreferences__settingsList,

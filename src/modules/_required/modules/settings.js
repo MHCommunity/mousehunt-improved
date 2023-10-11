@@ -3,7 +3,6 @@ import styles from '../styles/settings.css';
 
 const addExportSettings = () => {
   const wrapper = document.querySelector('#mousehunt-improved-settings-mousehunt-improved-settings-overrides .PagePreferences__titleText');
-  console.log(wrapper);
   if (! wrapper) {
     return;
   }
@@ -20,12 +19,14 @@ const addExportSettings = () => {
   <div class="mousehuntActionButton cancel"><span>Cancel</span></div>`;
 
   exportSettings.addEventListener('click', () => {
+    /* eslint-disable @wordpress/no-unused-vars-before-return */
     const popup = createPopup({
       title: 'MouseHunt Improved Settings',
       content,
       className: 'mousehunt-improved-settings-export-popup',
       show: true
     });
+    /* eslint-enable @wordpress/no-unused-vars-before-return */
 
     const popupEl = document.querySelector('.mousehunt-improved-settings-export-popup');
     if (! popupEl) {
