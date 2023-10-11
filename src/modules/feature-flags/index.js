@@ -1,4 +1,4 @@
-import { getFlag } from '../utils';
+import { addUIStyles, getFlag } from '../utils';
 import trollMode from './modules/troll-mode';
 
 const fillTwttrObject = () => {

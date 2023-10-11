@@ -73,6 +73,7 @@ a.mousehuntHud-shield.golden.title {
   transition: background-image .5s;
 }
 
+
 .mousehuntHud-shield.title.novice::after,
 .mousehuntHud-shield.golden.title.novice::after {
     background-image: url(https://www.mousehuntgame.com/images/titles/84bc1109b5cd7aa8c24d195bc8207c38.png?cv=2);
@@ -225,4 +226,29 @@ a.mousehuntHud-shield.golden.color-faded {
 a.mousehuntHud-shield.golden.color-rainbow,
 a.mousehuntHud-shield.golden.color-rainbow2 {
   animation: shield-hue-rotate 30s infinite;
+}
+
+.pageFrameView-column.left.color-cyan,
+.pageFrameView-column.right.color-cyan {
+  filter: hue-rotate(312deg);
+}
+
+.pageFrameView-column.left.color-green,
+.pageFrameView-column.right.color-green {
+  filter: hue-rotate(266deg);
+}
+
+.pageFrameView-column.left.color-pink,
+.pageFrameView-column.right.color-pink {
+  filter: hue-rotate(80deg);
+}
+
+.pageFrameView-column.left.color-purple,
+.pageFrameView-column.right.color-purple {
+  filter: hue-rotate(51deg);
+}
+
+.pageFrameView-column.left.color-red,
+.pageFrameView-column.right.color-red {
+  filter: hue-rotate(146deg);
 }

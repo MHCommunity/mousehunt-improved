@@ -32,6 +32,26 @@ const changeShield = () => {
     });
   }
 
+  const backgroundLeft = document.querySelector('.pageFrameView-column.left');
+  if (backgroundLeft) {
+    // remove all the classes that start with 'color-' from the timer.
+    backgroundLeft.classList.forEach((className) => {
+      if (className.startsWith('color-')) {
+        backgroundLeft.classList.remove(className);
+      }
+    });
+  }
+
+  const backgroundRight = document.querySelector('.pageFrameView-column.right');
+  if (backgroundRight) {
+    // remove all the classes that start with 'color-' from the timer.
+    backgroundRight.classList.forEach((className) => {
+      if (className.startsWith('color-')) {
+        backgroundRight.classList.remove(className);
+      }
+    });
+  }
+
   let shield = getMhuiSetting('custom-shield-0', 'default');
   if ('default' === shield) {
     shieldEl.classList.add('default');
@@ -40,12 +60,45 @@ const changeShield = () => {
 
   if (shield.startsWith('color-')) {
     shieldEl.classList.add('default');
-  }
 
-  if (shield.endsWith('-timer')) {
-    shield = shield.replace('-timer', '');
-    if (timer) {
+    if (shield === 'color-cotton-candy') {
+      addUIStyles(`.huntersHornView__backdrop {
+        filter: hue-rotate(180deg);
+        opacity: 1;
+        transition: none;
+      }
+
+      .mousehuntHud-menu.default {
+        filter: hue-rotate(265deg);
+      }
+
+      .hunterHorView__horn {
+        filter: hue-rotate(265deg);
+      }`);
+
+      shield = 'color-pink-timer-background';
+    }
+
+    if (shield.endsWith('-timer-background')) {
+      shield = shield.replace('-timer-background', '');
+      backgroundLeft.classList.add(shield);
+      backgroundRight.classList.add(shield);
+      shieldEl.classList.add(shield);
       timer.classList.add(shield);
+    }
+
+    if (shield.endsWith('-background')) {
+      shield = shield.replace('-background', '');
+      backgroundLeft.classList.add(shield);
+      backgroundRight.classList.add(shield);
+      shieldEl.classList.add(shield);
+    }
+
+    if (shield.endsWith('-timer')) {
+      shield = shield.replace('-timer', '');
+      if (timer) {
+        timer.classList.add(shield);
+      }
     }
   }
 
@@ -64,31 +117,6 @@ const changeShield = () => {
 
   shieldEl.classList.add('mhui-custom-shield');
   addClass(shieldEl, shield);
-
-  if (getFlag('background-has-shield-color')) {
-    const colors = {
-      'color-blue': 0,
-      'color-cyan': 312,
-      'color-green': 266,
-      'color-pink': 80,
-      'color-purple': 51,
-      'color-red': 146,
-    };
-
-    const leftColumn = document.querySelector('.pageFrameView-column.left');
-    const rightColumn = document.querySelector('.pageFrameView-column.right');
-    if (! leftColumn || ! rightColumn) {
-      return;
-    }
-
-    leftColumn.style.filter = `hue-rotate(${colors[shield]}deg)`;
-    rightColumn.style.filter = `hue-rotate(${colors[shield]}deg)`;
-
-    if ('color-faded' === shield) {
-      leftColumn.style.filter = 'sepia(1)';
-      rightColumn.style.filter = 'sepia(1)';
-    }
-  }
 };
 
 const getTitle = () => {
