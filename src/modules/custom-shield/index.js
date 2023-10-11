@@ -73,7 +73,8 @@ const changeShield = () => {
         backdrop-filter: hue-rotate(199deg);
       }
 
-      .mousehuntHud-menu ul li.active .mousehuntHud-menu-item.root {
+      .mousehuntHud-menu ul li.active .mousehuntHud-menu-item.root,
+      .mousehuntHud-menu ul li:hover .mousehuntHud-menu-item.root {
         background: url(https://www.mousehuntgame.com/images/ui/hud/menu/menu_seperator.png?asset_cache_version=2) 100% 0 no-repeat;
         filter: hue-rotate(328deg);
         backdrop-filter: hue-rotate(292deg);
