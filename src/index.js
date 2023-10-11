@@ -45,6 +45,7 @@ import adblock from './modules/adblock';
 import noFooter from './modules/external/no-footer';
 import noShare from './modules/external/no-share';
 import noSidebar from './modules/external/no-sidebar';
+import noDailyReward from './modules/no-daily-reward';
 
 // Global styles and fixes.
 import required from './modules/_required';
@@ -119,6 +120,7 @@ const modules = [
     name: 'Hide Page Elements',
     modules: [
       { id: 'adblock', name: 'Adblock', default: false, description: 'Hides advertisements for Feedback Friday, mobile apps, news ticker, etc.', load: adblock },
+      { id: 'no-daily-reward', name: 'Hide Daily Reward Popup', default: false, description: 'Automatically close the daily reward popup when it shows.', load: noDailyReward },
       { id: 'no-footer', name: 'Remove Footer', default: false, description: 'Hides the footer.', load: noFooter },
       { id: 'no-share', name: 'Remove Share Buttons', default: true, description: 'Hides the share buttons.', load: noShare },
       { id: 'no-sidebar', name: 'Remove Sidebar', default: false, description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.', load: noSidebar },
