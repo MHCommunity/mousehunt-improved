@@ -306,6 +306,10 @@ const addRegionToTravelDropdown = () => {
 
   // get the other locations in the same region
   const otherRegions = environments.filter((environment) => {
+    if (! environment?.region || ! currentRegion?.region) {
+      return false;
+    }
+
     return environment.region === currentRegion.region;
   });
 

@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting, getFlag } from '../utils';
+import { addUIStyles, getMhuiSetting } from '../utils';
 import styles from './styles.css';
 
 const addClass = (el, shieldClass) => {
@@ -78,10 +78,6 @@ const changeShield = () => {
         background: url(https://www.mousehuntgame.com/images/ui/hud/menu/menu_seperator.png?asset_cache_version=2) 100% 0 no-repeat;
         filter: hue-rotate(328deg);
         backdrop-filter: hue-rotate(292deg);
-      }
-
-      .huntersHornView__horn {
-        filter: hue-rotate(283deg);
       }`);
 
       shield = 'color-pink-timer-background';
