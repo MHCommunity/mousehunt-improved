@@ -218,8 +218,8 @@
   margin-left: -25px;
   font-family: monospace;
   color: #000;
-  background-color: gainsboro;
-  border: 1px solid #cccccc;
+  background-color: #dcdcdc;
+  border: 1px solid #ccc;
 }
 
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items .multiSelect {
