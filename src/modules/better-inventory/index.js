@@ -29,57 +29,72 @@ const setOpenQuantityOnClick = (attempts = 0) => {
   });
 };
 
-const addOpenAllButtons = async () => {
-  const items = document.querySelectorAll('.inventoryPage-item.convertible') || [];
-  items.forEach((item) => {
-    const quantity = parseInt(item.querySelector('.quantity') || 0);
-    if (quantity <= 2) {
+const addOpenAlltoConvertible = () => {
+  const form = document.querySelector('.convertible .itemView-action-convertForm');
+  if (! form) {
+    return;
+  }
+
+  if (form.getAttribute('data-open-all-added')) {
+    return;
+  }
+
+  form.setAttribute('data-open-all-added', true);
+
+  // get the innerHTML and split it on the input tag. then wrap the second match in a span so we can target it
+  const formHTML = form.innerHTML;
+  const formHTMLArray = formHTML.split(' /');
+  // if we dont have a second match, just return
+  if (! formHTMLArray[1]) {
+    return;
+  }
+
+  const formHTMLArray2 = formHTMLArray[1].split('<a');
+  if (! formHTMLArray2[1]) {
+    return;
+  }
+
+  const quantity = formHTMLArray2[0].trim();
+
+  const newFormHTML = `${formHTMLArray[0]}/ <span class="open-all">${quantity}</span><a${formHTMLArray2[1]}`;
+  form.innerHTML = newFormHTML;
+
+  const openAll = document.querySelector('.open-all');
+  openAll.addEventListener('click', () => {
+    const input = form.querySelector('.itemView-action-convert-quantity');
+    if (! input) {
       return;
     }
 
-    const buttons = item.querySelector('.inventoryPage-item-content-action');
-
-    const openAllButOneButton = makeElement('input', 'inventoryPage-item-button button', 'Open All But One');
-    openAllButOneButton.addEventListener('click', () => {
-      // On click we want to open the dialog and then set the quantity to the quantity - 1 and then submit the form.
-      app.pages.InventoryPage.useItem(item); // eslint-disable-line no-undef
-      // wait for the dialog to open
-      onDialogShow(() => {
-        console.log('dialog shown');
-      }, 'itemViewContainer.convertible');
-    });
+    input.value = quantity;
   });
 };
 
-const addOpenAllToConvertibleDialog = () => {
-  const action = document.querySelector('.itemView-action convertible .mouseHunActionButton');
-  if (! action) {
-
-  }
-};
-
 const addOpenAlltoConvertiblePage = () => {
-  console.log('addOpenAlltoConvertiblePage');
+  if ('item' !== getCurrentPage()) {
+    return;
+  }
+
   addOpenAlltoConvertible();
 };
 
 const main = () => {
-  // onOverlayChange({ item: { show: setOpenQuantityOnClick } });
-  // if ('item' === getCurrentPage()) {
-  //   setOpenQuantityOnClick();
-  // }
+  onOverlayChange({ item: { show: setOpenQuantityOnClick } });
+  if ('item' === getCurrentPage()) {
+    setOpenQuantityOnClick();
+  }
 
-  // addOpenAlltoConvertiblePage();
+  addOpenAlltoConvertiblePage();
 
-  // onNavigation(addOpenAlltoConvertiblePage, {
-  //   page: 'inventory',
-  //   subpage: 'item'
-  // });
+  onNavigation(addOpenAlltoConvertiblePage, {
+    page: 'inventory',
+  });
 
-  onEvent('js_dialog_show', addOpenAllToConvertibleDialog);
+  onEvent('js_dialog_show', addOpenAlltoConvertible);
 };
 
 export default () => {
   addUIStyles(styles);
+  main();
   recipes();
 };

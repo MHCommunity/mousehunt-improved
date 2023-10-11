@@ -1,7 +1,6 @@
 import { addUIStyles } from '../utils';
-// import m400 from './m400';
+import m400 from './m400';
 import styles from './styles.css';
-import libraryAssignments from '../../data/library-assignments.json';
 
 /**
  * Update the text (and fix the link) for the 'smash this assignment' text.
@@ -95,7 +94,31 @@ const addResearchSmashWarning = () => {
     return;
   }
 
-  if (! libraryAssignments.all.includes(type)) {
+  const assignments = [
+    'double_run_advanced_research_quest',
+    'seasonalgardenresearch_quest_item',
+    'library_adv_hween2013_research_quest_item',
+    'mystickingresearch_quest_item',
+    'extra_spooky_hween2014_assignment_quest_item',
+    'library_m400_research_quest_item',
+    'charming_study_hween2014_assignment_quest_item',
+    'zurreal_trap_research_quest_item',
+    'library_hween2013_research_quest_item',
+    'pagoda_research_quest_item',
+    'techkingresearch_quest_item',
+    'library_power_type_research_quest_item',
+    'library_m400_bait_research_quest_item',
+    'pagoda_advanced_research_quest_item',
+    'furoma_research_quest_item',
+    'library_mice_research_quest_item',
+    'hg_letter_research_quest_item',
+    'library_catalog_quest_item',
+    'mystic_advanced_research_quest_item',
+    'tech_advanced_research_quest_item',
+    'lab_monster_1_quest_item',
+  ];
+
+  if (! assignments.includes(type)) {
     return;
   }
 
@@ -144,6 +167,70 @@ const removeSmashText = () => {
   }
 };
 
+const assignments = [
+  {
+    id: 'library_intro_research_assignment_convertible',
+    name: 'Catalog Library Mice',
+    cost: 0,
+    reward: 20,
+    rank: false,
+  },
+  {
+    id: '',
+    name: 'Library Research',
+    cost: 20,
+    reward: 30,
+    rank: false,
+  },
+  {
+    id: 'zugzwang_research_assignment_convertible',
+    name: 'Zugzwang Research',
+    cost: 50,
+    reward: 80,
+    rank: false,
+  },
+  {
+    id: 'furoma_research_assignment_convertible',
+    name: 'Furoma Research',
+    cost: 130,
+    reward: 90,
+    rank: false,
+  },
+  {
+    id: 'adv_zugzwang_research_assignment_convertible',
+    name: 'Advanced Zugzwang Research',
+    cost: 150,
+    reward: 150,
+    rank: false,
+  },
+  {
+    id: 'zurreal_trap_research_convertible',
+    name: 'Zurreal Trap Research',
+    cost: 900,
+    reward: 400,
+    rank: false,
+  },
+  {
+    id: 'library_m400_bait_assignment_convertible',
+    name: 'M400 Bait Research Assignment',
+    cost: 1250,
+    reward: 200,
+    rank: true,
+  },
+  {
+    id: 'library_m400_assignment_convertible',
+    name: 'M400 Hunting Research Assignment',
+    cost: 1900,
+    reward: 300,
+    rank: true,
+  }
+];
+
+const getAssignmentMeta = (assignment) => {
+  const wikiLink = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replace(/ /g, '_')}`;
+  return `<a href="${wikiLink}" target="_blank">Wiki</a> | Requires: ${assignment.cost} | Reward: ${assignment.reward}`;
+};
+
 const updateAssignmentList = () => {
   const assignmentList = document.querySelectorAll('#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink');
   if (! assignmentList) {
@@ -160,7 +247,7 @@ const updateAssignmentList = () => {
     const assignmentName = el.innerText;
 
     // get the assignment from the list.
-    const assignment = libraryAssignments.data.find((a) => a.name === assignmentName);
+    const assignment = assignments.find((a) => a.name === assignmentName);
     if (! assignment) {
       return;
     }
@@ -171,10 +258,7 @@ const updateAssignmentList = () => {
     }
 
     const metaWrapper = makeElement('div', 'mh-ui-assignment-meta-wrapper');
-    const wikiLink = makeElement('a', 'mh-ui-assignment-wiki', 'View on MHWiki →', metaWrapper);
-    wikiLink.href = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replace(/ /g, '_')}`;
-    makeElement('div', 'mh-ui-assignment-cost', `Requires: ${assignment.cost} library points`, metaWrapper);
-    makeElement('div', 'mh-ui-assignment-reward', `Reward: ${assignment.reward} library points`, metaWrapper);
+    makeElement('div', 'mh-ui-assignment-meta', getAssignmentMeta(assignment), metaWrapper);
 
     requirements.parentNode.insertBefore(metaWrapper, requirements.nextSibling);
     // remove the requirements.
@@ -241,7 +325,7 @@ const main = () => {
     checkForQuestSmash();
   };
 
-  // m400();
+  m400();
 
   // Add our event listener and add the quests tab.
   activate();
