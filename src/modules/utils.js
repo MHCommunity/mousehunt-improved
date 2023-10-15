@@ -42,7 +42,7 @@ const getCachedValue = (key) => {
     return JSON.parse(isInSession);
   }
 
-  const localStorageContainer = localStorage.getItem('mh-improved-cache-ar');
+  const localStorageContainer = localStorage.getItem(getCacheKey());
   if (! localStorageContainer) {
     return false;
   }
@@ -55,13 +55,21 @@ const getCachedValue = (key) => {
   return container[key];
 };
 
+const getCacheKey = () => {
+  return 'mh-improved-cached-ar-v0.21.0';
+};
+
+const getMouseCachedKey = () => {
+  return 'mhct-ar-value-v0.21.0';
+};
+
 const setCachedValue = (key, value, saveToSession = false) => {
   if (saveToSession) {
     sessionStorage.setItem(key, JSON.stringify(value));
     return;
   }
 
-  const localStorageContainer = localStorage.getItem('mh-improved-cache-ar');
+  const localStorageContainer = localStorage.getItem(getCacheKey());
   let container = {};
   if (localStorageContainer) {
     container = JSON.parse(localStorageContainer);
@@ -70,14 +78,14 @@ const setCachedValue = (key, value, saveToSession = false) => {
   // set the value
   container[key] = value;
 
-  localStorage.setItem('mh-improved-cache-ar', JSON.stringify(container));
+  localStorage.setItem(getCacheKey(), JSON.stringify(container));
 };
 
 const getArForMouse = async (mouseId, type = 'mouse') => {
   let mhctjson = [];
 
   // check if the attraction rates are cached
-  const cachedAr = getCachedValue(`mhct-ar-${mouseId}-${type}`);
+  const cachedAr = getCachedValue(`${getMouseCachedKey()}-${mouseId}-${type}`);
   if (cachedAr) {
     return cachedAr;
   }
@@ -89,16 +97,17 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
 
   // Temp hack for halloween.
   const mapType = window.mhui.mapper?.mapData?.map_type || '';
+  let url = `https://api.mouse.rip/${mhctPath}/${mouseId}`;
   if (mapType.toLowerCase().indexOf('halloween') !== -1) {
-    mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouseId}-hlw_22`);
-  } else {
-    mhctdata = await fetch(`https://api.mouse.rip/${mhctPath}/${mouseId}`);
+    url = `https://api.mouse.rip/${mhctPath}/${mouseId}-hlw_22`;
   }
+
+  mhctdata = await fetch(url);
 
   mhctjson = await mhctdata.json();
 
   if (! mhctjson || mhctjson.length === 0) {
-    setCachedValue(`mhct-ar-${mouseId}-${type}`, [], true);
+    setCachedValue(`${getMouseCachedKey()}-${mouseId}-${type}`, [], true);
     return [];
   }
 
@@ -111,7 +120,7 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
     });
   }
 
-  setCachedValue(`mhct-ar-${mouseId}-${type}`, mhctjson);
+  setCachedValue(`${getMouseCachedKey()}-${mouseId}-${type}`, mhctjson);
 
   return mhctjson;
 };
@@ -138,6 +147,11 @@ const getHighestArForMouse = async (mouseId, type = 'mouse') => {
 
   // make sure the rates aren't an empty object
   if (Object.keys(rates).length === 0 && rates.constructor === Object) {
+    return 0;
+  }
+
+  // make sure we can sort the rates
+  if (! rates.sort) {
     return 0;
   }
 
