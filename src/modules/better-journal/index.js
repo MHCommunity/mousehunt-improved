@@ -150,6 +150,10 @@ const updateJournalText = () => {
     // SEH
     [/was.+Chocolatonium.+trap!/i, ''],
 
+    // Halloween
+    [/an additional:<br>/i, 'an additional '],
+    [/([1234567890]) x /i, ' $1 '],
+
     ['<p></p>', ''],
   ]);
 

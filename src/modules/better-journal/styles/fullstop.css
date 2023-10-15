@@ -23,9 +23,14 @@
 .journaltext .loot:last-of-type::after,
 .journaltext .lucky:last-of-type::after,
 .journaltext .item:last-of-type::after,
-.entry.short.supplytransferitem .journaltext a::after {
+.entry.short.supplytransferitem .journaltext a::after,
+.entry.gloomyGreenwood-incense .journaltext::after {
   display: inline;
   content: ".";
+}
+
+.entry.alchemists_cookbook_base_bonus .journaltext .loot:last-of-type::after {
+  content: "";
 }
 
 .journal .entry a.lucky::after {
