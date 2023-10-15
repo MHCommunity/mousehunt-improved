@@ -5,6 +5,7 @@ const fillTwttrObject = () => {
   window.twttr = {
     widgets: {
       load: () => {},
+      createShareButton: () => {},
     },
   };
 };
