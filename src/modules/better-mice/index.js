@@ -172,6 +172,11 @@ const updateMouseView = async () => {
     miceArWrapper.classList.add('has-stages');
   }
 
+  // if mhctjson is not able to be sliced, then it is an error
+  if (! mhctjson.slice) {
+    return;
+  }
+
   mhctjson.slice(0, 15).forEach((mouseAr) => {
     const mouseArWrapper = makeElement('div', 'mouse-ar-wrapper');
 

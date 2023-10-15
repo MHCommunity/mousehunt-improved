@@ -94,6 +94,10 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   header.appendChild(mhctLink);
   mhctDiv.appendChild(header);
 
+  if (! mhctjson.slice) {
+    return;
+  }
+
   const amountOfLocationsToShow = 5; // TODO: maybe modify this for some mice or make it an option?
   mhctjson.slice(0, amountOfLocationsToShow).forEach((mhct) => {
     const mhctRow = makeElement('div', 'mhct-row');
