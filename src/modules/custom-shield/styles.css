@@ -59,7 +59,7 @@ a.mousehuntHud-shield.golden.mhui-custom-shield.pride {
 
 a.mousehuntHud-shield.title,
 a.mousehuntHud-shield.golden.title {
-  background: url(https://i.mouse.rip/shield-blank.png?) 2px 1px/contain no-repeat;
+  background: url(https://i.mouse.rip/shield-blank.png?1) 0 0/contain no-repeat;
 }
 
 .mousehuntHud-shield.title::after {
@@ -68,7 +68,7 @@ a.mousehuntHud-shield.golden.title {
   content: "";
   filter: drop-shadow(0 0 10px #e8dbb8);
   background-repeat: no-repeat;
-  background-position: 0 15px;
+  background-position: 15px 15px;
   background-size: 105px;
   transition: background-image .5s;
 }
