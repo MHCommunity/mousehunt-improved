@@ -201,14 +201,18 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 }
 
 .trapImageView-layer.limitedEdition,
+.trapImageView-trapAura,
 .trapImageView-trapAura.active,
+.trapImageView-trapAura.inactive,
 .trapImageView-zoomButton {
   opacity: 0;
   transition: opacity .2s ease-in-out;
 }
 
 .trapImageView:hover .trapImageView-layer.limitedEdition,
+.trapImageView:hover .trapImageView-trapAura,
 .trapImageView:hover .trapImageView-trapAura.active,
+.trapImageView:hover .trapImageView-trapAura.inactive,
 .trapImageView:hover .trapImageView-zoomButton {
   opacity: 1;
 }
