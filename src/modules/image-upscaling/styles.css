@@ -115,3 +115,7 @@
 .marketplaceView-itemImage img {
   border-radius: 0;
 }
+
+.halloweenBoilingCauldronRecipeView-thumb {
+  box-shadow: none;
+}
