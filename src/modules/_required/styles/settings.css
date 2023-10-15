@@ -17,11 +17,11 @@
   justify-content: flex-start;
 }
 
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .toggle.toggled {
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle.toggled {
   transform: rotate(270deg);
 }
 
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .toggle {
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle {
   transform-origin: center;
 }
 

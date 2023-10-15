@@ -4,7 +4,9 @@
 
 /* Better buttons to match the modern ones */
 #overlayPopup .button,
-.notificationMessageList .message .actions input[type="button"] {
+.notificationMessageList .message .actions input[type="button"],
+.notificationMessageList .message .actions input[value="View Profile"],
+.notificationMessageList .message .actions input[value="View Profile"].ignoreRequest {
   padding: 2px 15px;
   line-height: 18px;
   color: #000;
@@ -18,7 +20,11 @@
 #overlayPopup .button:hover,
 #overlayPopup .button:focus,
 .notificationMessageList .message .actions input[type="button"]:hover,
-.notificationMessageList .message .actions input[type="button"]:focus {
+.notificationMessageList .message .actions input[type="button"]:focus,
+.notificationMessageList .message .actions input[value="View Profile"]:hover,
+.notificationMessageList .message .actions input[value="View Profile"]:focus,
+.notificationMessageList .message .actions input[value="View Profile"].ignoreRequest:hover,
+.notificationMessageList .message .actions input[value="View Profile"].ignoreRequest:focus {
   background-color: #fff600;
   box-shadow: inset 0 0 16px 2px #fffaab;
 }
