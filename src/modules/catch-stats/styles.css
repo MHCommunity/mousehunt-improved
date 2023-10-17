@@ -1,0 +1,113 @@
+#mh-catch-stats {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 50;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .mh-catch-stats-wrapper {
+    transition: none;
+  }
+}
+
+.mh-catch-stats-wrapper {
+  width: 275px;
+  background: #f6f3eb;
+  border: 1px solid #534022;
+  box-shadow: 1px 1px 1px 0 #9d917f, 1px 3px 5px 0 #6c6c6c;
+  transition: box-shadow .25s;
+}
+
+.mh-is-dragging .mh-catch-stats-wrapper {
+  box-shadow: 1px 1px 1px 0 #9d917f, 0 7px 9px 2px #6c6c6c;
+}
+
+.mh-catch-stats-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  color: #f6f3eb;
+  cursor: grab;
+  background-color: #926944;
+  border-bottom: 1px solid #ceb7a6;
+}
+
+.mh-catch-stats-header h1 {
+  color: #f6f3eb;
+}
+
+.mh-catch-stats-close {
+  cursor: pointer;
+}
+
+.mh-catch-stats-close:hover, .mh-catch-stats-close:focus {
+  color: #926944;
+  background-color: #eee;
+  border-radius: 50%;
+  outline: 1px solid #ccc;
+}
+
+.mh-catch-stats-body {
+  max-height: 90vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd) {
+  background-color: #e8e3d7;
+}
+
+.mh-catch-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  color: #000;
+}
+
+.mh-catch-stats:hover,
+.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):hover, .mh-catch-stats:focus,
+.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):focus {
+  color: #665f5f;
+  text-decoration: none;
+  background-color: #eee;
+  outline: 1px solid #ccc;
+}
+
+.mh-catch-stats-image {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #999;
+}
+
+.mh-catch-stats-crown {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 80%;
+  border: 1px solid #333;
+  border-radius: 50%;
+}
+
+.mh-catch-stats-name {
+  display: inline-block;
+  padding-left: 10px;
+  vertical-align: middle;
+}
+
+.mh-catch-stats-catches {
+  padding-right: 5px;
+}

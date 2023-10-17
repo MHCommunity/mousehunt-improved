@@ -1,7 +1,7 @@
 /* Reflow grid for no sidebar */
 body.no-sidebar .pageFrameView {
-  -ms-grid-columns: [first] auto [content-start] 760px [sidebar] 0 [content-end] auto [last];
-  grid-template-columns: [first] auto [content-start] 760px [sidebar] 0 [content-end] auto [last];
+  -ms-grid-columns: [first] auto [content-start] 760px [content-end] auto [last];
+  grid-template-columns: [first] auto [content-start] 760px [content-end] auto [last];
 }
 
 /* Sidebar moved into tab */
@@ -102,8 +102,4 @@ body.no-sidebar .mousehuntHeaderView .menuItem.sidebar .dropdownContent .scorebo
 body.no-sidebar .mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a:hover,
 body.no-sidebar .mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a:focus {
   text-decoration: underline;
-}
-
-.dropdownContent .pageSidebarView-user {
-  color: #000;
 }
