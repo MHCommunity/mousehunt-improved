@@ -145,6 +145,7 @@ const updateJournalText = () => {
     ['Energy Cannon', 'cannon'],
     ['before it could even touch my cheese!', ''],
     ['The mouse dropped the following prize', 'that dropped'],
+    ['My Unstable Charm turned into', 'My Unstable Charm became'],
 
     // Event stuff
     // SEH
