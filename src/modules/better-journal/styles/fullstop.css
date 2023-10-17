@@ -15,7 +15,8 @@
 }
 
 .journal .entry .journaltext br,
-.journal .entry.relicHunter_catch .journaltext br::after {
+.journal .entry.relicHunter_catch .journaltext br::after,
+.journal .entry.relicHunter_complete .journaltext br::after {
   content: "";
 }
 
@@ -24,7 +25,10 @@
 .journaltext .lucky:last-of-type::after,
 .journaltext .item:last-of-type::after,
 .entry.short.supplytransferitem .journaltext a::after,
-.entry.gloomyGreenwood-incense .journaltext::after {
+.entry.gloomyGreenwood-incense .journaltext::after,
+.entry.relicHunter_complete .journaltext::after,
+.entry.halloween_boiling_cauldron.brew_finished a:last-of-type::after,
+.entry.badge .journaltext a::after {
   display: inline;
   content: ".";
 }
