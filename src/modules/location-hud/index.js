@@ -24,6 +24,7 @@ import forbidden_grove from './forbidden-grove';
 import fort_rox from './fort-rox';
 import fungal_cavern from './fungal-cavern';
 import great_gnarled_tree from './great-gnarled-tree';
+import halloween_event_location from './halloween-event-location';
 import iceberg from './iceberg';
 import jungle_of_dread from './jungle-of-dread';
 import kings_arms from './kings-arms';
@@ -112,6 +113,7 @@ const main = () => {
     fort_rox,
     fungal_cavern,
     great_gnarled_tree,
+    halloween_event_location,
     iceberg,
     jungle_of_dread,
     kings_arms,
