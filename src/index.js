@@ -15,7 +15,7 @@ import betterTravel from './modules/better-travel';
 import betterTravelSettings from './modules/better-travel/settings';
 
 // Feature modules.
-import catchStats from './modules/external/catch-stats';
+import catchStats from './modules/catch-stats';
 import copyId from './modules/copy-id';
 import customShield from './modules/custom-shield';
 import customShieldSettings from './modules/custom-shield/settings';
@@ -25,7 +25,7 @@ import giftButtonsSettings from './modules/gift-buttons/settings';
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
-import journalPrivacy from './modules/external/journal-privacy';
+import journalPrivacy from './modules/journal-privacy';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
 import kingsReward from './modules/kings-reward';
 import onlyOpenMultiple from './modules/only-open-multiple';
@@ -42,9 +42,9 @@ import locationHudSettings from './modules/location-hud/settings.js';
 
 // Element hiding modules.
 import adblock from './modules/adblock';
-import noFooter from './modules/external/no-footer';
-import noShare from './modules/external/no-share';
-import noSidebar from './modules/external/no-sidebar';
+import noFooter from './modules/no-footer';
+import noShare from './modules/no-share';
+import noSidebar from './modules/no-sidebar';
 import noDailyReward from './modules/no-daily-reward';
 
 // Global styles and fixes.
