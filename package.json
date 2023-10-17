@@ -9,11 +9,14 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "run-s build:userscript build:extension build:archive",
+    "build": "run-s build:userscript build:extension:zip build:archive",
     "build:archive": "git archive --format zip --output dist/archive.zip HEAD",
     "build:extension": "run-s build:extension:chrome build:extension:firefox",
+    "build:extension:zip": "run-s build:extension:chrome:zip build:extension:firefox:zip",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
+    "build:extension:chrome:zip": "node scripts/build-extension.mjs chrome zip",
     "build:extension:firefox": "node scripts/build-extension.mjs firefox",
+    "build:extension:firefox:zip": "node scripts/build-extension.mjs firefox zip",
     "build:userscript": "node scripts/build-userscript.mjs",
     "ci": "run-s lint",
     "clean": "del-cli dist",
@@ -26,8 +29,7 @@
     "lint:md:fix": "eslint --ext .md . --fix -c .eslintrc.json",
     "lint:md": "eslint --ext .md . -c .eslintrc.json",
     "lint": "run-s lint:js lint:css lint:md",
-    "prebuild": "run-s ci clean",
-    "sync-scripts": "node scripts/sync-scripts.mjs"
+    "prebuild": "run-s ci clean"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.2",

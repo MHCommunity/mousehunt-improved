@@ -70,11 +70,6 @@ The project is structured as follows:
 
 3. Add your module to the settings and loading code in the relevant category, including a description and whether it should be enabled by default.
 
-## Adding an existing userscript as a bundled module
-
-- Edit `src/data/external-scripts.json` with the target folder and a URL of the userscript file.
-- The automatic conversion to a module is not perfect, it just grabs the code between `use strict` and the last line, so if your script doesn't have `use strict` at the top, it won't work.
-
 ## Testing
 
 You can build a userscript, Chrome extension, or Firefox extension to test your changes.
