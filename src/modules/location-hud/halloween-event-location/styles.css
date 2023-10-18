@@ -41,13 +41,40 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
   background-image: none;
 }
 
-.halloweenBoilingCauldronHUD-cauldron-tooltip.active {
+.halloweenBoilingCauldronHUD-cauldron-tooltip {
   top: 0;
+  height: 50px;
   font-size: 13px;
   line-height: 1.3;
   background-color: #292827;
+  transition: .3s ease-in-out;
+}
+
+.halloweenBoilingCauldronHUD-cauldron-tooltip i {
+  font-size: 15px;
+  color: #f8e7b0;
+}
+
+.halloweenBoilingCauldronHUD-cauldron-tooltip b {
+  font-weight: 400;
+  color: #ccc;
 }
 
 .halloweenBoilingCauldronHUD-bait-cauldronButton {
   box-shadow: none;
+}
+
+.halloweenBoilingCauldronHUD-cauldron.active:hover .halloweenBoilingCauldronHUD-cauldron-instantFinishButton {
+  opacity: 1;
+}
+
+.halloweenBoilingCauldronHUD-cauldron-instantFinishButton {
+  display: block;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.halloweenBoilingCauldronHUD-shutdownButton {
+  left: 271px;
+  width: 198px;
 }
