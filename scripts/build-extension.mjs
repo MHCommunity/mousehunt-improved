@@ -1,22 +1,21 @@
 import * as esbuild from 'esbuild';
 import fs from 'fs';
 import path from 'path';
-import logSymbols from 'log-symbols';
 import archiver from 'archiver';
 
 const buildExtension = async (platform) => {
-  // Remove the extension folder if it exists.
-  if (fs.existsSync(path.join(process.cwd(), `dist/extension/${platform}`))) {
-    fs.rmSync(path.join(process.cwd(), `dist/extension/${platform}`), { recursive: true });
+  // Remove the files inside the dist/<platform> folder.
+  if (fs.existsSync(path.join(process.cwd(), `dist/${platform}`))) {
+    fs.rmSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });
   }
 
-  fs.mkdirSync(path.join(process.cwd(), `dist/extension/${platform}`), { recursive: true });
+  fs.mkdirSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });
 
   // Copy manifest.json and inject the version number.
   const manifest = JSON.parse(fs.readFileSync(path.join(process.cwd(), `src/extension/manifest-${platform}.json`), 'utf8'));
   manifest.version = process.env.npm_package_version;
   fs.writeFileSync(
-    path.join(process.cwd(), `dist/extension/${platform}/manifest.json`),
+    path.join(process.cwd(), `dist/${platform}/manifest.json`),
     JSON.stringify(manifest, null, 2)
   );
 
@@ -44,18 +43,27 @@ const buildExtension = async (platform) => {
 
     fs.copyFileSync(
       path.join(process.cwd(), 'src/extension', file),
-      path.join(process.cwd(), `dist/extension/${platform}`, file)
+      path.join(process.cwd(), `dist/${platform}`, file)
     );
   });
 
-  const mhutils = fs.readFileSync(path.join(process.cwd(), 'node_modules/mousehunt-utils/mousehunt-utils.js'), 'utf8');
+  const mhutils = await esbuild.build({
+    entryPoints: ['node_modules/mousehunt-utils/mousehunt-utils.js'],
+    minify: true,
+    platform: 'browser',
+    keepNames: true,
+    define: {
+      EXT_VERSION: JSON.stringify(process.env.npm_package_version),
+    },
+    write: false
+  });
 
   // Build the content script.
-  await esbuild.build({
+await esbuild.build({
     entryPoints: ['src/index.js'],
     bundle: true,
     minify: true,
-    outfile: `dist/extension/${platform}/main.js`,
+    outfile: `dist/${platform}/main.js`,
     platform: 'browser',
     format: 'iife',
     globalName: 'mhui',
@@ -68,9 +76,12 @@ const buildExtension = async (platform) => {
       EXT_VERSION: JSON.stringify(process.env.npm_package_version),
     },
     banner: {
-      js: mhutils,
-    }
+      js: mhutils.outputFiles[0].text,
+    },
   });
+
+  console.log(`Built extension for ${platform}`);
+
 
   // Zip up the extension folder.
   const output = fs.createWriteStream(path.join(process.cwd(), `dist/${platform}.zip`));
@@ -84,14 +95,14 @@ const buildExtension = async (platform) => {
 
   archive.pipe(output);
 
-  archive.directory(path.join(process.cwd(), `dist/extension/${platform}`), false);
+  archive.directory(path.join(process.cwd(), `dist/${platform}`), false);
 
   await archive.finalize();
 
-  console.log(`${logSymbols.success} Built extension for ${platform}`);
+  console.log(`Zipped extension for ${platform}`);
 };
 
-
 const platform = process.argv[2];
-console.log(`> Building ${platform} extension for version ${process.env.npm_package_version}`);
+console.log(`Building ${platform} extension for version ${process.env.npm_package_version}`);
+
 buildExtension(platform);

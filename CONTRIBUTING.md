@@ -66,7 +66,7 @@ The project is structured as follows:
 1. Copy `src/modules/module-template` to `src/modules/your-module-name`.
 2. In `src/index.js` add the following line to the top of the file:
 
-   > `import moduleName from './modules/your-module-name';`
+   > `import moduleName from 'modules/your-module-name';`
 
 3. Add your module to the settings and loading code in the relevant category, including a description and whether it should be enabled by default.
 
@@ -90,4 +90,4 @@ After building, you will find the following files in the `dist/` folder.
 
 _For Chrome or Firefox, after making changes, you can reload the extension by clicking the reload button on the extension card._
 
-- `dist/chrome.zip` and `dist/firefox.zip` are the zip files for the Chrome and Firefox extensions respectively. These can be uploaded to the Chrome Web Store and Firefox Add-ons site to publish the extension, so you probably don't need to worry about these.
+- `dist/chrome.zip` and `dist/firefox.zip` are the zip files for the Chrome and Firefox extensions respectively. These can be uploaded to the Chrome Web Store and Firefox Add-ons site to publish the extension, so you probably don't need to worry about these. `dist/archive.zip` contains the non-minified code for uploading to the Firefox Add-ons site.

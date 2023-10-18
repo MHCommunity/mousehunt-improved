@@ -9,27 +9,22 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "run-s build:userscript build:extension:zip build:archive",
-    "build:archive": "git archive --format zip --output dist/archive.zip HEAD",
-    "build:extension": "run-s build:extension:chrome build:extension:firefox",
-    "build:extension:zip": "run-s build:extension:chrome:zip build:extension:firefox:zip",
+    "build": "concurrently \"bun:build:*\"",
+    "build:archive": "mkdir dist && git archive --format zip --output dist/archive.zip HEAD",
+    "build:extension": "concurrently \"bun:build:extension:*\"",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
-    "build:extension:chrome:zip": "node scripts/build-extension.mjs chrome zip",
     "build:extension:firefox": "node scripts/build-extension.mjs firefox",
-    "build:extension:firefox:zip": "node scripts/build-extension.mjs firefox zip",
     "build:userscript": "node scripts/build-userscript.mjs",
-    "ci": "run-s lint",
     "clean": "del-cli dist",
-    "dev": "rollup -wc rollup.conf.js",
     "lint:css:fix": "stylelint **/*.css --fix",
     "lint:css": "stylelint **/*.css",
-    "lint:fix": "run-s lint:js:fix lint:css:fix lint:md:fix",
+    "lint:fix": "concurrently \"bun:lint:*:fix\"",
     "lint:js:fix": "eslint --ext .js . --fix -c .eslintrc.json",
     "lint:js": "eslint --ext .js . -c .eslintrc.json",
     "lint:md:fix": "eslint --ext .md . --fix -c .eslintrc.json",
     "lint:md": "eslint --ext .md . -c .eslintrc.json",
-    "lint": "run-s lint:js lint:css lint:md",
-    "prebuild": "run-s ci clean"
+    "lint": "concurrently \"bun:lint:*(!fix)\"",
+    "prebuild": "del-cli dist"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.2",
@@ -38,20 +33,18 @@
   "devDependencies": {
     "@wordpress/eslint-plugin": "^17.1.0",
     "archiver": "^6.0.1",
+    "concurrently": "^8.2.1",
     "del-cli": "^5.1.0",
     "esbuild": "^0.19.5",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-markdownlint": "^0.5.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint": "^8.52.0",
-    "log-symbols": "^6.0.0",
     "node-fetch": "^3.3.2",
-    "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
-    "run-s": "^0.0.0",
+    "stylelint": "^15.10.3",
     "stylelint-config-recess-order": "^4.3.0",
     "stylelint-config-standard": "^34.0.0",
-    "stylelint-order": "^6.0.3",
-    "stylelint": "^15.10.3"
+    "stylelint-order": "^6.0.3"
   }
 }

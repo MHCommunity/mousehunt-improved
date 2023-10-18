@@ -2,6 +2,8 @@ import * as esbuild from 'esbuild';
 import fs from 'fs';
 import path from 'path';
 
+console.log(`Building userscript for version ${process.env.npm_package_version}`);
+
 await esbuild.build({
   entryPoints: ['src/index.js'],
   outfile: 'dist/mousehunt-improved.user.js',
@@ -17,10 +19,11 @@ await esbuild.build({
     '.css': 'text',
   },
   metafile: true,
-  sourcemap: true,
+  sourcemap: 'external',
   splitting: false,
-  logLevel: 'info',
   define: {
     EXT_VERSION: JSON.stringify(process.env.npm_package_version),
   }
 });
+
+console.log('Built userscript');
