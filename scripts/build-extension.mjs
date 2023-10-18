@@ -59,7 +59,7 @@ const buildExtension = async (platform) => {
   });
 
   // Build the content script.
-await esbuild.build({
+  await esbuild.build({
     entryPoints: ['src/index.js'],
     bundle: true,
     minify: true,
@@ -81,7 +81,6 @@ await esbuild.build({
   });
 
   console.log(`Built extension for ${platform}`);
-
 
   // Zip up the extension folder.
   const output = fs.createWriteStream(path.join(process.cwd(), `dist/${platform}.zip`));
