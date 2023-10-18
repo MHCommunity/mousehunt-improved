@@ -126,8 +126,7 @@
 #overlayPopup.hunting_summary .miceContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: start;
-  justify-items: stretch;
+  place-items: start stretch;
 }
 
 #overlayPopup.hunting_summary .miceContainer .catches {

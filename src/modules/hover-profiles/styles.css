@@ -141,9 +141,8 @@
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  place-items: center center;
   align-content: stretch;
-  align-items: center;
-  justify-items: center;
   width: 100%;
   height: auto;
   padding: 2px;

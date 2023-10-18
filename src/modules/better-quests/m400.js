@@ -1,3 +1,6 @@
+import { addUIStyles } from '../utils';
+import styles from './styles.css';
+
 const locations = {
   /* eslint-disable */
   balacks_cove      : ["Balack's Cove", 'Derr Lich', 'Elub Lich', 'Nerg Lich'],
@@ -278,15 +281,7 @@ const m400 = () => {
 }
 
 export default () => {
-  addStyles(`.mh-m400-travel {
-    margin-left: 10px;
-    margin-top: -2px;
-  }
-
-  .mh-m400-quest .campPage-quests-objective-progress,
-  .mh-m400-quest .campPage-quests-objective-progressBar {
-    display: none;
-  }`);
+  addUIStyles(styles);
 
   m400();
 

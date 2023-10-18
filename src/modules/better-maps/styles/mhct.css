@@ -29,8 +29,7 @@
 .mhct-row {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
-  align-items: center;
-  justify-items: stretch;
+  place-items: center stretch;
   padding: 8px 5px 8px 10px;
   font-size: 11px;
 }
@@ -91,8 +90,7 @@
 }
 
 .mh-ui-mouse-links-map-ars .mhct-row {
-  align-items: start;
-  justify-items: stretch;
+  place-items: start stretch;
 }
 
 .mh-ui-mouse-links-map-ars  .mhct-title {

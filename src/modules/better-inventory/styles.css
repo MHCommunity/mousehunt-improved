@@ -69,9 +69,8 @@
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-listing {
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  place-content: center flex-start;
   align-items: stretch;
-  justify-content: flex-start;
 }
 
 .mousehuntHud-page-subTabContent.hammer .mousehuntHud-page-subTabContent.hammer .inventoryPage-item {

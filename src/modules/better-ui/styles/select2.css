@@ -1,8 +1,7 @@
 .select2-result-sub .select2-result-label {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  align-items: center;
-  justify-items: start;
+  place-items: center start;
 }
 
 .select2-results li.select2-result-with-children>.select2-result-label {

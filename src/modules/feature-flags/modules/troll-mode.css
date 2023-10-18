@@ -27,7 +27,7 @@ div + div + div {
   transition: .9s;
 }
 
-* > * > * > * > * > * > * > * > * > *:hover  * > {
+* > * > * > * > * > * > * > * > * > *:hover * {
   transform:rotateX(20deg);
 }
 

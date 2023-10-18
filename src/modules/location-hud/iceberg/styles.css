@@ -54,9 +54,8 @@
 .icebergStatusTooltip .iceberg-section {
   position: relative;
   display: flex;
-  align-items: center;
+  place-items: center start;
   justify-content: space-between;
-  justify-items: start;
   width: 180px;
   margin-bottom: 0.25em;
   overflow: visible;

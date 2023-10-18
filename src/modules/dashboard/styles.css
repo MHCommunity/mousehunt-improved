@@ -15,8 +15,7 @@
 .dashboardWrapper {
   max-height: 60vh;
   padding: 5px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   border: 1px solid #d7e2f1;
   box-shadow: 0 5px 10px #8f8f8f;
 }

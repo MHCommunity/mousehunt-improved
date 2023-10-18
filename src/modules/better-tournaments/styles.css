@@ -107,8 +107,7 @@ a.tournamentPage-tournament-column.name,
   display: grid;
   grid-template-columns: 0 300px 1fr 1fr 20px 100px 70px;
   gap: 10px;
-  align-items: center;
-  justify-items: stretch;
+  place-items: center stretch;
 }
 
 .tournamentPage-tournament-column.label.teamMembers {
@@ -137,8 +136,7 @@ a.tournamentPage-tournament-column.name,
 .tournamentPage-profile-description {
   display: grid;
   grid-template-columns: 1fr 125px;
-  align-items: center;
-  justify-items: end;
+  place-items: center end;
   min-height: 50px;
   font-size: 13px;
   line-height: 20px;
@@ -287,9 +285,8 @@ img.tournamentPage-profile-details-rules-icon {
   bottom: -10px;
   display: flex;
   flex-flow: row wrap;
-  align-content: center;
+  place-content: center center;
   align-items: stretch;
-  justify-content: center;
   width: 290px;
   padding-top: 10px;
   background-color: #f6f3eb;
@@ -394,16 +391,14 @@ h2.tournamentPage-profile-details-mouseGroup-name {
 .pointsHover {
   left: -130%;
   grid-template-columns: 1fr 1fr 1fr;
-  align-items: stretch;
-  justify-items: stretch;
+  place-items: stretch stretch;
   width: auto;
 }
 
 .scoreRow {
   display: grid;
   grid-template-columns: 25px 1fr 25px;
-  align-items: center;
-  justify-items: start;
+  place-items: center start;
   padding: 5px;
   margin-bottom: 5px;
 }

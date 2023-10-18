@@ -27,9 +27,8 @@
 .campPage-quests-footer-smash {
   display: flex;
   flex-direction: row;
-  align-content: center;
+  place-content: center center;
   align-items: center;
-  justify-content: center;
   padding: 4px;
   font-size: 9.75px;
   text-decoration: underline;

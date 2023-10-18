@@ -25,8 +25,7 @@
 
 .mh-vrift-sim-results .result {
   display: flex;
-  align-content: center;
-  justify-content: space-between;
+  place-content: center space-between;
 }
 
 .mh-vrift-sim-results .label {
@@ -130,8 +129,7 @@ span.valourRiftHUD-towerUpgrade-currentValue {
 .valourRiftHUD-towerUpgrade-header {
   display: grid;
   grid-template-columns: 150px 1fr;
-  align-items: center;
-  justify-items: stretch;
+  place-items: center stretch;
 }
 
 .valourRiftHUD-towerUpgrade-content {
@@ -282,8 +280,7 @@ span.valourRiftHUD-stepsTaken-value {
 .valourRiftPopupClaim-stats-content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  justify-items: center;
+  place-items: center center;
   padding: 5px 0 5px 15px;
   margin: 20px;
   text-align: unset;

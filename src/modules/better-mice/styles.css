@@ -82,8 +82,7 @@
 .mouseview-has-mhct .mouse-ar-wrapper {
   display: grid;
   grid-template-columns: 150px auto 50px;
-  align-items: center;
-  justify-items: stretch;
+  place-items: center stretch;
   padding: 5px;
   margin: 5px 0;
   font-size: 12px;

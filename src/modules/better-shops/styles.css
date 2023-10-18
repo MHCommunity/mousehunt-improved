@@ -83,8 +83,7 @@ a.itemPurchaseView-image-trapPreview-link,
 .itemPurchaseView-action-itemCost-table-row {
   display: grid;
   grid-template-columns: 1fr 15fr 1fr;
-  align-items: center;
-  justify-items: stretch;
+  place-items: center stretch;
   width: 100%;
   padding: 5px;
   margin: 0 -5px;
