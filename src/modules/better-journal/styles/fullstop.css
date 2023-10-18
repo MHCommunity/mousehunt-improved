@@ -28,6 +28,7 @@
 .entry.gloomyGreenwood-incense .journaltext::after,
 .entry.relicHunter_complete .journaltext::after,
 .entry.halloween_boiling_cauldron.brew_finished a:last-of-type::after,
+.entry.halloween_boiling_cauldron.brew_removed a:last-of-type::after,
 .entry.badge .journaltext a::after {
   display: inline;
   content: ".";
