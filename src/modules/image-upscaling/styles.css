@@ -116,6 +116,11 @@
   border-radius: 0;
 }
 
+/* Halloween */
 .halloweenBoilingCauldronRecipeView-thumb {
   box-shadow: none;
+}
+
+.itemPurchaseView-container.apothecary .itemPurchaseView-image {
+  border: none;
 }
