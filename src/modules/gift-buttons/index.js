@@ -223,7 +223,7 @@ const checkForSuccessfulGiftSend = (request) => {
     return;
   }
 
-  if (! request || 'undefined' === request.friends_sent_gifts || ! request.friends_sent_gifts.length > 1) {
+  if (! (request && 'undefined' !== request.friends_sent_gifts && request.friends_sent_gifts.length > 1)) {
     return;
   }
 
