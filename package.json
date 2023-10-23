@@ -34,7 +34,7 @@
     "mousehunt-utils": "^1.11.0"
   },
   "devDependencies": {
-    "@wordpress/eslint-plugin": "^17.0.0",
+    "@wordpress/eslint-plugin": "^17.1.0",
     "archiver": "^6.0.1",
     "del-cli": "^5.1.0",
     "esbuild": "^0.19.4",
