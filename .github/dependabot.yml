@@ -7,3 +7,7 @@ updates:
     reviewers:
       - "bradp"
     versioning-strategy: increase
+    groups:
+      dev-dependencies:
+        patterns:
+          - "*"
