@@ -85,7 +85,8 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Better Mice
   - Adds links to [MHCT](https://mhct-win), [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php), and [mhdb](https://dbgames.info/mousehunt) to the mouse view popup.
   - Adds attraction rates from MHCT directly to the mouse view popup.
-  - Adds sorting by name, catches, misses, and weight to the lists on the mice page.
+  - Adds sorting by name, catches, misses, and weight to the lists on the stats page.
+  - Adds crown icons to the stats page.
   - Adds a favorite button to the mouse view to toggle the mouse as a favorite.
   - Adds King's Crowns as a tab on the mice page.
   - Adds Groups, Regions, Your Stats, and King's Crowns to the mice menu dropdown.
