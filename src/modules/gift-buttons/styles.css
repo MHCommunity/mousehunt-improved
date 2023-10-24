@@ -80,7 +80,8 @@
   width: 90%;
 }
 
-.mh-gift-buttons-send-random {
+.mh-gift-buttons-send-random,
+.mh-gift-buttons-send-faves {
   margin-top: -2px;
   margin-left: 10px;
 }
@@ -89,14 +90,25 @@
   flex: 1;
 }
 
+.giftSelectorView-gift .giftSelectorView-gift-padding {
+  min-width: 75px;
+  border: 1px solid #dcdcdc;
+  box-shadow: none;
+}
+
 .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding {
   background-color: #a5e3ff;
 }
 
 .giftSelectorView-scroller.giftSelectorView-giftContainer {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .giftSelectorView-gift.gift_of_the_day:hover .giftSelectorView-gift-padding {
   background-color: #0090ff;
+}
+
+body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
+  min-height: unset;
 }

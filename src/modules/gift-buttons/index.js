@@ -243,6 +243,30 @@ const checkForSuccessfulGiftSend = (request) => {
   }, 2000);
 };
 
+const pickFriends = (friends, limit) => {
+  const selected = [];
+  let sent = 1;
+
+  // fake the first "random" selection to be in the first 35 friends so that
+  // you can see that it's working.
+  const firstRandom = Math.floor(Math.random() * 35);
+  selected.push(firstRandom);
+
+  while (sent < limit) {
+    const random = Math.floor(Math.random() * friends.length);
+    if (selected.includes(random)) {
+      continue;
+    }
+
+    selected.push(random);
+    sent++;
+  }
+
+  selected.forEach((index) => {
+    friends[index].click();
+  });
+};
+
 const addRandomSendButton = () => {
   const _selectGift = hg.views.GiftSelectorView.selectGift; // eslint-disable-line no-undef
   hg.views.GiftSelectorView.selectGift = (gift) => { // eslint-disable-line no-undef
@@ -259,13 +283,17 @@ const addRandomSendButton = () => {
     }
 
     const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons-send-random']);
-    makeElement('span', 'mousehuntActionButton-text', 'Pick Random Friends', sendButton);
+    makeElement('span', 'mousehuntActionButton-text', 'Select Random Friends', sendButton);
+
+    const sendToFaves = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons-send-faves']);
+    makeElement('span', 'mousehuntActionButton-text', 'Select Frequent Gifters', sendToFaves);
 
     const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
     const limit = limitEl ? parseInt(limitEl.innerText, 10) : 0;
 
     if (limit < 1) {
       sendButton.classList.add('disabled');
+      sendToFaves.classList.add('disabled');
     }
 
     sendButton.addEventListener('click', () => {
@@ -274,30 +302,20 @@ const addRandomSendButton = () => {
         return;
       }
 
-      const selected = [];
-      let sent = 1;
+      pickFriends(friends, limit);
+    });
 
-      // fake the first "random" selection to be in the first 35 friends so that
-      // you can see that it's working.
-      const firstRandom = Math.floor(Math.random() * 35);
-      selected.push(firstRandom);
-
-      while (sent < limit) {
-        const random = Math.floor(Math.random() * friends.length);
-        if (selected.includes(random)) {
-          continue;
-        }
-
-        selected.push(random);
-        sent++;
+    sendToFaves.addEventListener('click', () => {
+      const faves = document.querySelectorAll('.giftSelectorView-tabContent.active .giftSelectorView-friend.favorite:not(.disabled)');
+      if (! faves.length) {
+        return;
       }
 
-      selected.forEach((index) => {
-        friends[index].click();
-      });
+      pickFriends(faves, limit);
     });
 
     title.appendChild(sendButton);
+    title.appendChild(sendToFaves);
   };
 };
 
