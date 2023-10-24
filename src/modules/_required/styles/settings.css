@@ -91,7 +91,8 @@
 #mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts,
 #mousehunt-improved-settings-feature-modules-gift-buttons-close-on-send,
 #mousehunt-improved-settings-mousehunt-improved-better-inventory-open-all-but-one,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all {
+#mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all,
+#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id {
   padding-left: 30px;
 }
 
@@ -104,7 +105,8 @@
 #mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts .PagePreferences__settingName,
 #mousehunt-improved-settings-feature-modules-gift-buttons-close-on-send .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-better-inventory-open-all-but-one .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all .PagePreferences__settingName {
+#mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all .PagePreferences__settingName,
+#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id .PagePreferences__settingName {
   font-size: 13px;
 }
 

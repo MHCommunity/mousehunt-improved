@@ -1,5 +1,6 @@
 // Core 'Better' modules.
 import betterUi from './modules/better-ui';
+import betterUiSettings from './modules/better-ui/settings';
 import betterInventory from './modules/better-inventory';
 import betterInventorySettings from './modules/better-inventory/settings';
 import betterItemView from './modules/better-item-view';
@@ -71,7 +72,7 @@ const modules = [
     id: 'mousehunt-improved',
     name: 'MouseHunt Improved',
     modules: [
-      { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
+      { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi, settings: betterUiSettings },
       { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and styling. ', load: betterInventory, settings: betterInventorySettings },
       { id: 'better-item-view', name: 'Better Item View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing drop rates.', load: betterItemView },
       { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
