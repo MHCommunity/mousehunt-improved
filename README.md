@@ -52,7 +52,8 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Reorders the recipe list to move one-off recipes to the bottom and minimize their display.
   - Adds an indicator on any collectibles that have a special action.
   - Resizes the crafting table to be easier to read and use.
-  TODO: add the only open multiple and open all but one stuff here
+  - Adds an 'Open all but one' button to convertibles.
+  - Adds an optional to lock opening convertibles unless you have multiple of them.
 
 - Better Item View
   - Adds links to [MHCT](https://mhct-win), [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php), and [mhdb](https://dbgames.info/mousehunt) to the popup.
@@ -129,25 +130,23 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Hover over your profile picture in the HUD for a quick 'Copy ID to clipboard' button.
 
 - Custom Shield
-  - Change your shield in the HUD to a variety of different options
-  TODO:
-  TODO: everything from here on down
-  TODO:
+  - Change your shield in the HUD to a variety of different options including past events, color tints (with optional timer color) or some fun meme shields.
 
 - Gift Buttons
-  - Quickly accept and return all your gifts as well as picking random friends to send to
+  - Adds 'Accept All' and 'Accept and Return All' buttons to the gift selector.
+  - Adds 'Select random friends' and 'Select frequent gifters' to the send gifts page.
 
 - Hover Profiles
   - Hover over a friend's name in your journal, inbox, or elsewhere and get a mini-profile popup with all their stats, interaction buttons, and everything you'd expect.
 
 - Image Upscaling
-  - Uses high-res images with transparent backagrounds across the entire MH interface.
+  - Uses high-res images with transparent backgrounds across the entire MH interface.
 
 - Inline Wiki
   - Clicking 'Wiki' in the menu will load it right in the page, rather than opening a new tab.
 
 - Keyboard Shortcuts
-  - Press '?' to see a list of keyboard shortcuts
+  - Press '?' to see a list of keyboard shortcuts.
 
 - Location Dashboard
   - See location HUD information in a dashboard available in the top dropdown menu.
@@ -176,7 +175,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
     - Zugzwang's Tower (Amplifier remaining and progess)
 
 - Location Catch Stats
-  - Adds an item under the "Mouse" menu to see your catch stats for the current location
+  - Adds an item under the "Mouse" menu to see your catch stats for the current location.
 
 - Quick Filters and Sort
   - Adds one-click filters to the Trap and Base selectors to show only specific power types.
@@ -196,7 +195,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds a crown image to each mouse, hovering over the mouse will show your total caught for that mouse.
 
 - Ultimate Checkmark
-  - Adds more things collect on the items view of your Hunter profile
+  - Adds more things collect on the items view of your Hunter profile.
 
 ### Element Hiding
 
@@ -212,6 +211,8 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Hides player names in the journal. Good for screenshots where you don't want to share their name.
 
 ### Location HUDs
+
+TODO: update
 
 - Balack's Cove
   - Shows a countdown to the next low, mid, and high tides.
