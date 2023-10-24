@@ -24,7 +24,6 @@
   "crafting_item": {
     "geyser_draconic_chassis_recipe": "draconic_geyser_chassis_crafting_item",
     "geyser_draconic_chassis_i_recipe": "draconic_geyser_chassis_i_crafting_item",
-    "masters_seal": "masters_seal_craft_item",
     "christened_ship": "huntington_map_piece",
     "s_s__huntington_ii": "huntington_map_piece"
   },

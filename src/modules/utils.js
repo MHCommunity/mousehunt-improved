@@ -96,7 +96,7 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
   let mhctdata = [];
 
   // Temp hack for halloween.
-  const mapType = window.mhui.mapper?.mapData?.map_type || '';
+  const mapType = window.mhui?.mapper?.mapData?.map_type || '';
   let url = `https://api.mouse.rip/${mhctPath}/${mouseId}`;
   if (mapType.toLowerCase().indexOf('halloween') !== -1) {
     url = `https://api.mouse.rip/${mhctPath}/${mouseId}-hlw_22`;
