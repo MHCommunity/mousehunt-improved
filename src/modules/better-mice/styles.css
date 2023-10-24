@@ -223,3 +223,16 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
 .crown.platinum .mouseListView-categoryContent-subgroup-mouse-thumb:after {
   background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_platinum.png);
 }
+
+.mouseListView-categoryContent-subgroup-mouse-thumb,
+.mouseListView-categoryContent-subgroup-mouse .mouseListView-categoryContent-subgroup-mouse-margin {
+    transition: .2s;
+}
+
+.mouseListView-categoryContent-subgroup-mouse-thumb:hover {
+    transform: scale(1.2);
+}
+
+a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
+    background-size: contain;
+}
