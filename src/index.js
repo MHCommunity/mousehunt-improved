@@ -3,6 +3,7 @@ import betterUi from './modules/better-ui';
 import betterInventory from './modules/better-inventory';
 import betterItemView from './modules/better-item-view';
 import betterJournal from './modules/better-journal';
+import betterKingsReward from './modules/better-kings-reward';
 import betterMaps from './modules/better-maps';
 import betterMarketplace from './modules/better-marketplace';
 import betterMice from './modules/better-mice';
@@ -27,7 +28,6 @@ import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
 import journalPrivacy from './modules/journal-privacy';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
-import kingsReward from './modules/kings-reward';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
@@ -75,6 +75,7 @@ const modules = [
       { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and styling. ', load: betterInventory },
       { id: 'better-item-view', name: 'Better Item View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing drop rates.', load: betterItemView },
       { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
+      { id: 'better-kings-reward', name: 'Better King\'s Reward', default: true, description: 'Updates the style of the King\'s Reward slightly, automatically closes the success message', load: betterKingsReward },
       { id: 'better-maps', name: 'Better Maps', default: true, description: 'Adds a variety of features to maps. ', load: betterMaps },
       { id: 'better-marketplace', name: 'Better Marketplace', default: true, description: 'Updates the marketplace layout and appearance and adds a variety of small features.', load: betterMarketplace },
       { id: 'better-mice', name: 'Better Mice', default: true, description: 'Adds attraction rate stats and links to MHWiki and MHCT to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.', load: betterMice },
@@ -98,7 +99,6 @@ const modules = [
       { id: 'inline-wiki', name: 'Inline Wiki', default: true, description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.', load: inlineWiki },
       { id: 'journal-privacy', name: 'Hide player names in journal entries', default: false, description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.', load: journalPrivacy },
       { id: 'keyboard-shortcuts', name: 'Keyboard Shortcuts', default: true, description: 'Press \'?\' to see a list of keyboard shortcuts.', load: keyboardShortcuts },
-      { id: 'kings-reward', name: 'King\'s Reward', default: true, description: 'Updates the style of the King\'s Reward slightly, automatically closes the succes message', load: kingsReward },
       { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: catchStats },
       { id: 'only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
