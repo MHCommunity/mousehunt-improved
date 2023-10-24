@@ -73,7 +73,7 @@ const addBodyClass = () => {
 export default () => {
   addUIStyles(styles);
   addBodyClass();
-  onPageChange({ camp: { show: addBodyClass } });
+  onNavigation(addBodyClass);
   onTravel(null, { callback: () => {
     setTimeout(addBodyClass, 500);
   } });
