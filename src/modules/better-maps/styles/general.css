@@ -67,7 +67,7 @@ input.treasureMapView-shareLinkInput {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  max-width: 400px;
+  max-width: 335px;
 }
 
 .rewards .treasureMapView-mapMenu-auraIcon {
