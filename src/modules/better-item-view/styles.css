@@ -145,3 +145,7 @@
 .itemView-header-classification {
   color: transparent;
 }
+
+.itemView-action {
+  border-top: none;
+}
