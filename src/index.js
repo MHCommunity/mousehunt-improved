@@ -16,7 +16,7 @@ import betterTravel from './modules/better-travel';
 import betterTravelSettings from './modules/better-travel/settings';
 
 // Feature modules.
-import catchStats from './modules/catch-stats';
+import locationCatchStats from './modules/location-catch-stats';
 import copyId from './modules/copy-id';
 import customShield from './modules/custom-shield';
 import customShieldSettings from './modules/custom-shield/settings';
@@ -101,6 +101,7 @@ const modules = [
       { id: 'keyboard-shortcuts', name: 'Keyboard Shortcuts', default: true, description: 'Press \'?\' to see a list of keyboard shortcuts.', load: keyboardShortcuts },
       { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: catchStats },
       { id: 'only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
+      { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: locationCatchStats },
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
       { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button on someone\'s profile or hover-profile to easily send any quantity of SUPER|brie+ or another item.', load: quickSendSupplies, settings: quickSendSuppliesSettings },
       { id: 'taller-windows', name: 'Taller Windows', default: true, description: 'Make popup and dialog windows taller.', load: tallerWindows },
