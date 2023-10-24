@@ -311,6 +311,34 @@ const addSortingToCat = (cat) => {
   });
 
   category.setAttribute('data-added-sorting', true);
+
+  // Get all the rows and add the crown classes to them.
+  const rows = category.querySelectorAll('.mouseListView-categoryContent-subgroup-mouse:not(:first-child)');
+  if (! rows.length) {
+    return;
+  }
+
+  rows.forEach((row) => {
+    const catches = row.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.catches');
+    if (! catches) {
+      return;
+    }
+
+    const value = parseInt(catches.innerText.replace(/,/g, ''));
+
+    // set a crown class on the row.
+    if (value >= 2500) {
+      row.classList.add('crown', 'diamond');
+    } else if (value >= 1000) {
+      row.classList.add('crown', 'platinum');
+    } else if (value >= 500) {
+      row.classList.add('crown', 'gold');
+    } else if (value >= 100) {
+      row.classList.add('crown', 'silver');
+    } else if (value >= 10) {
+      row.classList.add('crown', 'bronze');
+    }
+  });
 };
 
 const addSortingTabClickListeners = () => {

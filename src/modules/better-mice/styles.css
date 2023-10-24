@@ -185,3 +185,41 @@
 .mouseView-statsContainer-block-padding {
   padding: 5px;
 }
+
+a.mouseListView-categoryContent-subgroup-mouse-thumb {
+  position: relative;
+}
+
+.crown .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+  position: absolute;
+  top: -4px;
+  left: -8px;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  content: '';
+  background-color: #fdfdfa;
+  background-size: contain;
+  border: 1px solid #929292;
+  border-radius: 50%;
+}
+
+.crown.bronze .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_bronze.png);
+}
+
+.crown.silver .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_silver.png);
+}
+
+.crown.gold .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_gold.png);
+}
+
+.crown.diamond .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_diamond.png);
+}
+
+.crown.platinum .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_platinum.png);
+}
