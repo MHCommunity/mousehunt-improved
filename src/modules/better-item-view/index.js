@@ -143,10 +143,6 @@ const main = () => {
   onOverlayChange({ item: { show: updateItemView } });
 
   onPageChange({ item: { show: updateItemView } });
-
-  if ('item' === getCurrentPage()) {
-    updateItemView();
-  }
 };
 
 export default () => {

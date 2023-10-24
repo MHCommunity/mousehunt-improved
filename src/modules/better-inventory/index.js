@@ -125,6 +125,48 @@ const inventoryPage = () => {
   addOpenAlltoConvertible();
 };
 
+const addItemViewPopupToCollectibles = () => {
+  const collectibles = document.querySelectorAll('.inventoryPage-item.small');
+  if (! collectibles.length) {
+    return;
+  }
+
+  collectibles.forEach((collectible) => {
+    const type = collectible.getAttribute('data-item-type');
+    if (! type) {
+      return;
+    }
+
+    const messageItem = collectible.querySelector('.tooltipContent .button');
+
+    collectible.setAttribute('onclick', '');
+    collectible.addEventListener('click', (e) => {
+      e.preventDefault();
+      hg.views.ItemView.show(type);
+
+      const getDesc = (messageItemCopy) => {
+        const popup = document.querySelector('.itemViewPopup .itemViewContainer.message_item .itemView-actionContainer');
+        if (! popup) {
+          return false;
+        }
+
+        popup.appendChild(messageItemCopy);
+        return true;
+      };
+
+      if (messageItem) {
+        const messageItemCopy = messageItem.cloneNode(true);
+
+        eventRegistry.addEventListener('js_dialog_show', () => {
+          setTimeout(() => {
+            getDesc(messageItemCopy);
+          }, 250);
+        }, null, true);
+      }
+    });
+  });
+};
+
 const main = () => {
   onOverlayChange({ item: { show: setOpenQuantityOnClick } });
   if ('item' === getCurrentPage()) {
@@ -132,8 +174,12 @@ const main = () => {
   }
 
   inventoryPage();
+  addItemViewPopupToCollectibles();
 
-  onNavigation(inventoryPage, {
+  onNavigation(() => {
+    inventoryPage();
+    addItemViewPopupToCollectibles();
+  }, {
     page: 'inventory',
   });
 

@@ -4,8 +4,6 @@
 
 .mouseView-values {
   float: none;
-  padding: 5px 0 10px;
-  padding-bottom: 8px;
   font-size: 11px;
   line-height: unset;
 }
@@ -235,4 +233,28 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
 
 a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
     background-size: contain;
+}
+
+.mouseViewPopup .mouseView-image:hover {
+  box-shadow: none;
+  transform: scale(.95);
+}
+
+.mouseViewPopup .mouseView-image {
+    transition: .2s;
+}
+
+.mouseViewPopup .mouseView-descriptionContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+}
+
+.mouseViewPopup .mouseView-description {
+  grid-column: span 2;
+  padding-top: 5px;
+}
+
+.mouseViewPopup .mouseView-group.mouseview-title-group {
+  text-align: right;
 }

@@ -9,13 +9,13 @@
 }
 
 .mh-item-links {
-  display: inline-block;
-  float: right;
-  margin-right: 15px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: -10px;
 }
 
 .mh-item-links a {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .itemView-header-name .mh-item-links span {
@@ -134,5 +134,14 @@
 }
 
 #overlayPopup.itemViewPopup .itemView-header-classification {
-  right: 30px;
+  right: 25px;
+  color: transparent;
+}
+
+.itemView-actionContainer {
+  display: flex;
+}
+
+.itemView-header-classification {
+  color: transparent;
 }

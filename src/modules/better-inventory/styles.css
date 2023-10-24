@@ -166,6 +166,7 @@ a.inventoryPage-item-larryLexicon {
 
 .inventoryPage-item .itemImage {
   margin-bottom: 10px;
+  overflow: visible;
 }
 
 .inventoryPage-item .itemImage img {
@@ -202,12 +203,11 @@ a.inventoryPage-item-larryLexicon {
   border-radius: 7px;
 }
 
-
 /* search bar */
 input.inventoryPage-tagDirectory-searchBar-input {
+  width: auto;
   min-width: 50%;
   margin-right: 10px;
-  margin-left: -10px;
 }
 
 .mousehuntHud-page-subTabContent-prefix.clear-block {
@@ -420,4 +420,14 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
 
 #jsDialogAjaxSuffix {
   position: relative;
+}
+
+.inventoryPage-item .itemImage .limitedEdition {
+  top: -1px;
+  left: -5px;
+  z-index: 1;
+}
+
+#overlayPopup.itemViewPopup .itemViewContainer.message_item .button {
+  margin: 10px 0 0;
 }
