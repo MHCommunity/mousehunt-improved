@@ -1,6 +1,7 @@
 // Core 'Better' modules.
 import betterUi from './modules/better-ui';
 import betterInventory from './modules/better-inventory';
+import betterInventorySettings from './modules/better-inventory/settings';
 import betterItemView from './modules/better-item-view';
 import betterJournal from './modules/better-journal';
 import betterKingsReward from './modules/better-kings-reward';
@@ -28,7 +29,6 @@ import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
 import journalPrivacy from './modules/journal-privacy';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
-import onlyOpenMultiple from './modules/only-open-multiple';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
 import quickSendSuppliesSettings from './modules/quick-send-supplies/settings';
@@ -72,7 +72,7 @@ const modules = [
     name: 'MouseHunt Improved',
     modules: [
       { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi },
-      { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and styling. ', load: betterInventory },
+      { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and styling. ', load: betterInventory, settings: betterInventorySettings },
       { id: 'better-item-view', name: 'Better Item View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing drop rates.', load: betterItemView },
       { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
       { id: 'better-kings-reward', name: 'Better King\'s Reward', default: true, description: 'Updates the style of the King\'s Reward slightly, automatically closes the success message', load: betterKingsReward },
@@ -99,7 +99,6 @@ const modules = [
       { id: 'inline-wiki', name: 'Inline Wiki', default: true, description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.', load: inlineWiki },
       { id: 'journal-privacy', name: 'Hide player names in journal entries', default: false, description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.', load: journalPrivacy },
       { id: 'keyboard-shortcuts', name: 'Keyboard Shortcuts', default: true, description: 'Press \'?\' to see a list of keyboard shortcuts.', load: keyboardShortcuts },
-      { id: 'only-open-multiple', name: 'Inventory - Only open multiple', default: false, description: 'Lock opening things in your inventory unless you have multiple of them.', load: onlyOpenMultiple },
       { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: locationCatchStats },
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
       { id: 'quick-send-supplies', name: 'Quick Send Supplies', default: true, description: 'Hover over the send supplies button on someone\'s profile or hover-profile to easily send any quantity of SUPER|brie+ or another item.', load: quickSendSupplies, settings: quickSendSuppliesSettings },

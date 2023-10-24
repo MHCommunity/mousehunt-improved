@@ -1,9 +1,0 @@
-.inventoryPage-item.convertible .inventoryPage-item-content-action input:first-of-type:not(:only-of-type) {
-  pointer-events: all;
-  filter: grayscale(0);
-}
-
-.inventoryPage-item.convertible .inventoryPage-item-content-action input {
-  pointer-events: none;
-  filter: grayscale(1);
-}

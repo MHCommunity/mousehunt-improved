@@ -1,0 +1,14 @@
+.inventoryPage-item.convertible .inventoryPage-item-content-action input:first-of-type:not(:only-of-type) {
+  pointer-events: all;
+  filter: grayscale(0);
+}
+
+.inventoryPage-item.convertible .inventoryPage-item-content-action input[data-item-action="all"] {
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+.inventoryPage-item.convertible .inventoryPage-item-content-action input.allButOne {
+  pointer-events: all;
+  filter: none;
+}

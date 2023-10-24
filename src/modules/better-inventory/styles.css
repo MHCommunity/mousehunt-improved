@@ -196,10 +196,6 @@ a.inventoryPage-item-larryLexicon {
   height: 50px;
 }
 
-.inventoryPage-item.full.recipe.disabled .mousehuntActionButton.disabled {
-  display: none !important;
-}
-
 .inventoryPage-item-content-description-consumedItem.error {
   gap: 2px;
   background-color: rgb(245 221 221 / 82%);
@@ -315,11 +311,6 @@ input.inventoryPage-tagDirectory-searchBar-input {
 .inventoryPage-craftingTable-slot-item[data-owned="1"] .inventoryPage-craftingTable-slot-item-controls-increment {
   opacity: .2;
 }
-
-
-
-
-
 
 .inventoryPage-craftingTable-slot {
     width: 160px;

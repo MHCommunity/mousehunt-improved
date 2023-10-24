@@ -1,5 +1,6 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, getMhuiSetting } from '../utils';
 import styles from './styles.css';
+import onlyOpenMultiple from './only-open-multiple.css';
 import recipes from './recipes';
 
 const setOpenQuantityOnClick = (attempts = 0) => {
@@ -70,7 +71,53 @@ const addOpenAlltoConvertible = () => {
   });
 };
 
-const addOpenAlltoConvertiblePage = () => {
+const addOpenAllButOneButton = () => {
+  const convertibleItems = document.querySelectorAll('.inventoryPage-item.convertible[data-item-classification="convertible"]');
+  if (! convertibleItems.length) {
+    return;
+  }
+
+  // Remove the existing open all but one buttons.
+  const existingButtons = document.querySelectorAll('.open-all-but-one');
+  existingButtons.forEach((button) => {
+    button.parentNode.removeChild(button);
+  });
+
+  convertibleItems.forEach((item) => {
+    const button = item.querySelector('.inventoryPage-item-button[data-item-action="all"]');
+    if (! button) {
+      return;
+    }
+
+    const newButton = button.cloneNode(true);
+    newButton.classList.add('open-all-but-one');
+    newButton.textContent = 'All but One';
+    newButton.value = 'All but One';
+    newButton.setAttribute('data-item-action', 'single');
+    button.parentNode.insertBefore(newButton, button.nextSibling);
+    // remove the onclick attribute from this button
+    button.onclick = null;
+    button.addEventListener('click', (e) => {
+      const quantity = item.querySelector('.inventoryPage-item-imageContainer .quantity');
+      if (! quantity) {
+        return;
+      }
+
+      quantity.textContent = parseInt(quantity.textContent, 10) - 1;
+      app.pages.InventoryPage.useConvertible(e.target);
+    });
+  });
+};
+
+const inventoryPage = () => {
+  if (getMhuiSetting('better-inventory-open-all-but-one', true)) {
+    addOpenAllButOneButton();
+  }
+
+  if (getMhuiSetting('better-inventory-lock-open-all', false)) {
+    addUIStyles(onlyOpenMultiple);
+  }
+
   if ('item' !== getCurrentPage()) {
     return;
   }
@@ -84,9 +131,9 @@ const main = () => {
     setOpenQuantityOnClick();
   }
 
-  addOpenAlltoConvertiblePage();
+  inventoryPage();
 
-  onNavigation(addOpenAlltoConvertiblePage, {
+  onNavigation(inventoryPage, {
     page: 'inventory',
   });
 
