@@ -337,6 +337,7 @@ TODO: update
 - Fixes the tutorial overlay shadow.
 - Fixes the price being set incorrectly on the first click of the Best price in the Marketplace.
   - Fixes the smash assignment button to go to the correct page.
+  - Removes the text clipping from the 'Collectibles' tab text.
 
 ## UserScripts
 

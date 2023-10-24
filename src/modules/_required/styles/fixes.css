@@ -164,3 +164,12 @@ img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {
 .pageFrameView-column.right {
   margin-bottom: -140px;
 }
+
+/* Make the collectibles tab show the full text */
+a.mousehuntHud-page-tabHeader.collectibles span {
+  padding-top: 6px;
+  overflow: visible !important;
+  font-size: 13px;
+  text-overflow: unset !important;
+  white-space: normal !important;
+}
