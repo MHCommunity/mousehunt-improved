@@ -16,7 +16,6 @@ export default function (subModule, module) {
     'laboratory',
     'mousoleum',
     'training_grounds',
-    'foreword_farm',
     'prologue_pond',
     'seasonal_garden',
     'zugzwang_library',
@@ -31,6 +30,10 @@ export default function (subModule, module) {
       name: 'Region: Queso Canyon',
       id: 'region-queso',
     },
+    {
+      name: 'Event Locations',
+      id: 'event-locations',
+    }
   ];
 
   const options = [];

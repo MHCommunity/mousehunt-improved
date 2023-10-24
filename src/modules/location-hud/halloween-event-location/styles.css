@@ -274,3 +274,21 @@ a.halloweenBoilingCauldronRecipeView-cauldron-queueSlot-cancelButton {
 .halloweenBoilingCauldronHUD.fuelReveal .halloweenBoilingCauldronHUD-candle {
   animation-delay: .5s;
 }
+
+.halloweenBoilingCauldronHUD-yield-huntsRemaining {
+  right: 30px;
+  left: 30px;
+  height: 6px;
+  border-width: 1px;
+  border-radius: 0;
+}
+
+.halloweenBoilingCauldronHUD-yield-huntsRemaining-progress-bar {
+  height: 5px;
+  background-color: #03cd4a;
+  box-shadow: inset 0 0 2px 0 #037e2d;
+}
+
+.halloweenBoilingCauldronHUD-dialog-state.item .halloweenBoilingCauldronHUD-dialog-title{
+  margin-right: 20px;
+}

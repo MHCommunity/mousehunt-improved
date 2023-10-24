@@ -21,6 +21,7 @@ import dracano from './dracano';
 import elub_shore from './elub-shore';
 import floating_islands from './floating-islands';
 import forbidden_grove from './forbidden-grove';
+import foreword_farm from './foreword-farm';
 import fort_rox from './fort-rox';
 import fungal_cavern from './fungal-cavern';
 import great_gnarled_tree from './great-gnarled-tree';
@@ -79,6 +80,14 @@ const normalizeCurrentLocation = (location) => {
     return 'region-queso';
   }
 
+  const eventLocations = [
+    'halloween_event_location',
+  ];
+
+  if (eventLocations.includes(location)) {
+    return 'event-locations';
+  }
+
   return location;
 };
 
@@ -110,6 +119,7 @@ const main = () => {
     elub_shore,
     floating_islands,
     forbidden_grove,
+    foreword_farm,
     fort_rox,
     fungal_cavern,
     great_gnarled_tree,
@@ -142,6 +152,7 @@ const main = () => {
     zugzwang_tower,
     'region-living-garden': regionLivingGarden,
     'region-queso': regionQueso,
+    'event-locations': halloween_event_location, // TODO: move this to a 'event-locations' folder with other events.
   };
   /* eslint-enable camelcase */
 
