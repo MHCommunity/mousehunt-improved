@@ -98,3 +98,12 @@
   background-position: 10px;
   background-size: 50px;
 }
+
+/* force unstable charm entries to always be one line */
+.entry.short.misc.custom.unstable_charm_trigger .journaltext {
+  max-width: 265px;
+  margin-left: -10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

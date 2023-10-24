@@ -1,6 +1,5 @@
 import { addUIStyles } from '../utils';
 import styles from './styles/styles.css';
-import adventure from './styles/adventure.css';
 import customEntries from './styles/custom-entries.css';
 import fullstop from './styles/fullstop.css';
 import miniEntries from './styles/mini-entries.css';
@@ -226,7 +225,6 @@ const main = () => {
 
 export default () => {
   addUIStyles(styles);
-  addUIStyles(adventure);
   addUIStyles(customEntries);
   addUIStyles(fullstop);
   addUIStyles(miniEntries);

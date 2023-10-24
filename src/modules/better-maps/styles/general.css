@@ -579,3 +579,36 @@ input.treasureMapView-block-search-text {
   padding: 0;
   background-color: transparent;
 }
+
+.treasureMapView-highlight-catcher {
+  display: inline-block;
+  height: auto;
+  background: none;
+  border: none;
+}
+
+.treasureMapView-highlight-group,
+.treasureMapView-highlight-environments {
+  text-align: center;
+}
+
+.treasureMapView-highlight-catcher-title {
+  display: inline-block;
+  margin-top: -20px;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+
+.treasureMapView-highlight-weakness-title {
+  font-size: 8.4px;
+}
+
+.treasureMapView-highlight.goal {
+  width: 30%;
+}
+
+.treasureMapView-highlight-weaknessContainer {
+  display: flex;
+  align-items: baseline;
+  margin: 0 1px;
+}

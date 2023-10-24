@@ -1,5 +1,6 @@
 import { addUIStyles } from '../../utils';
 
+import adventure from './adventure.css';
 import betterLuckyCatchIcon from './better-lucky-catch-icon.css';
 import corkboard from './corkboard.css';
 import events from './events.css';
@@ -21,6 +22,7 @@ import userscripts from './userscripts.css';
 
 const main = () => {
   addUIStyles([
+    adventure,
     general,
     betterLuckyCatchIcon,
     corkboard,

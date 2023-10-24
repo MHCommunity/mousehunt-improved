@@ -432,3 +432,12 @@ a.friendsProfileView-randomFriend {
 .mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group {
   color: #333;
 }
+
+.hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-trap-slot-noBait {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-shadow: none;
+}
