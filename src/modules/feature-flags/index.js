@@ -1,5 +1,6 @@
 import { getFlag } from '../utils';
 import trollMode from './modules/troll-mode';
+import rankupForecaster from './modules/rank-up-forecaster';
 
 const fillTwttrObject = () => {
   window.twttr = {
@@ -31,5 +32,9 @@ export default () => {
 
   if (getFlag('twitter')) {
     fillTwttrObject();
+  }
+
+  if (! getFlag('rankup-forecaster')) {
+    rankupForecaster();
   }
 };
