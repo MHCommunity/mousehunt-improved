@@ -223,3 +223,7 @@ a.journal-detailLink.full::after {
 .journal .entry.gloomyGreenwood-incense {
   background-color: #ffc277;
 }
+
+.jsingle .journalEntries {
+  padding-top: 1px;
+}
