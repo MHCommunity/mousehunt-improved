@@ -188,7 +188,7 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
   position: relative;
 }
 
-.crown .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+.crown .mouseListView-categoryContent-subgroup-mouse-thumb::after {
   position: absolute;
   top: -4px;
   left: -8px;
@@ -202,23 +202,23 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
   border-radius: 50%;
 }
 
-.crown.bronze .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+.crown.bronze .mouseListView-categoryContent-subgroup-mouse-thumb::after {
   background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_bronze.png);
 }
 
-.crown.silver .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+.crown.silver .mouseListView-categoryContent-subgroup-mouse-thumb::after {
   background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_silver.png);
 }
 
-.crown.gold .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+.crown.gold .mouseListView-categoryContent-subgroup-mouse-thumb::after {
   background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_gold.png);
 }
 
-.crown.diamond .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+.crown.diamond .mouseListView-categoryContent-subgroup-mouse-thumb::after {
   background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_diamond.png);
 }
 
-.crown.platinum .mouseListView-categoryContent-subgroup-mouse-thumb:after {
+.crown.platinum .mouseListView-categoryContent-subgroup-mouse-thumb::after {
   background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_platinum.png);
 }
 
