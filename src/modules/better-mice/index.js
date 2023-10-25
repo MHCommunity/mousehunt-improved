@@ -10,8 +10,7 @@ import mousepage from './mousepage';
  */
 const getLinkMarkup = (name) => {
   return makeLink('MHCT AR', `https://www.mhct.win/attractions.php?mouse_name=${name}`) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`) +
-    makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${name}`);
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
 };
 
 /**

@@ -56,7 +56,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds an optional to lock opening convertibles unless you have multiple of them.
 
 - Better Item View
-  - Adds links to [MHCT](https://mhct-win), [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php), and [mhdb](https://dbgames.info/mousehunt) to the popup.
+  - Adds links to [MHCT](https://mhct-win) and [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php) to the popup.
   - Adds drop rates from MHCT directly to the item view.
 
 - Better Journal
@@ -84,7 +84,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - When on the buy or sell screen, clicking on 'Buying' or 'Selling' will toggle to the other.
 
 - Better Mice
-  - Adds links to [MHCT](https://mhct-win), [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php), and [mhdb](https://dbgames.info/mousehunt) to the mouse view popup.
+  - Adds links to [MHCT](https://mhct-win) and [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php) to the mouse view popup.
   - Adds attraction rates from MHCT directly to the mouse view popup.
   - Adds sorting by name, catches, misses, and weight to the lists on the stats page.
   - Adds crown icons to the stats page.

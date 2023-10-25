@@ -11,8 +11,7 @@ import styles from './styles.css';
  */
 const getLinkMarkup = (name, id) => {
   return makeLink('MHCT', `https://www.mhct.win/loot.php?item=${id}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`) +
-    makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${name}`);
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
 };
 
 /**
