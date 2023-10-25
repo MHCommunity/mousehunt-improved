@@ -54,7 +54,7 @@ const listenForKeypresses = () => {
       document.activeElement instanceof HTMLTextAreaElement || // eslint-disable-line @wordpress/no-global-active-element
       document.activeElement instanceof HTMLSelectElement || // eslint-disable-line @wordpress/no-global-active-element
       event.metaKey || // if the meta key is pressed, we don't want to do anything.
-      event.ctrlKey || // if the ctrl key is pressed, we don't want to do anything.
+      event.ctrlKey // if the ctrl key is pressed, we don't want to do anything.
     ) {
       return;
     }
