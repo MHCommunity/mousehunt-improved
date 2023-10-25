@@ -91,3 +91,8 @@ a.mousehuntActionButton.lightBlue.treasureMapView-inviteModeButton {
 .treasureMapView-mapMenu-group-invite .mousehuntActionButton {
   margin-bottom: 0 !important;
 }
+
+.treasureMapView-header .treasureMapView-hunter-image {
+  min-width: 44px;
+  min-height: 44px;
+}
