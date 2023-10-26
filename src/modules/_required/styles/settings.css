@@ -87,13 +87,14 @@
 #mousehunt-improved-settings-mousehunt-improved-better-travel-show-reminders,
 #mousehunt-improved-settings-mousehunt-improved-send-supplies-pinned-items,
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items,
-#mousehunt-improved-settings-feature-modules-gift-buttons-send-order,
-#mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts,
-#mousehunt-improved-settings-feature-modules-gift-buttons-close-on-send,
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order,
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts,
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send,
 #mousehunt-improved-settings-mousehunt-improved-better-inventory-open-all-but-one,
 #mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all,
 #mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id {
-  padding-left: 30px;
+  padding-left: 10px;
+  margin-left: 20px;
 }
 
 #mousehunt-improved-settings-mousehunt-improved-better-travel-default-to-simple-travel .PagePreferences__settingName,
@@ -101,17 +102,17 @@
 #mousehunt-improved-settings-mousehunt-improved-better-travel-show-reminders .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-send-supplies-pinned-items .PagePreferences__settingName,
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items .PagePreferences__settingName,
-#mousehunt-improved-settings-feature-modules-gift-buttons-send-order .PagePreferences__settingName,
-#mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts .PagePreferences__settingName,
-#mousehunt-improved-settings-feature-modules-gift-buttons-close-on-send .PagePreferences__settingName,
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order .PagePreferences__settingName,
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts .PagePreferences__settingName,
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-better-inventory-open-all-but-one .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id .PagePreferences__settingName {
   font-size: 13px;
 }
 
-#mousehunt-improved-settings-feature-modules-gift-buttons-send-order .inputBox.multiSelect,
-#mousehunt-improved-settings-feature-modules-gift-buttons-ignore-bad-gifts .inputBox.multiSelect,
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order .inputBox.multiSelect,
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts .inputBox.multiSelect,
 #mousehunt-improved-settings-feature-modules-custom-shield .inputBox.multiSelect {
   max-width: unset;
 }

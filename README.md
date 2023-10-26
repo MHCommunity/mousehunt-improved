@@ -44,6 +44,12 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
     - Hunter Profile blocks and corkboard
     - Team member listing and team page
 
+- Better Gifts
+  - Adds 'Accept All' and 'Accept and Return All' buttons to the gift selector.
+  - Adds 'Select random friends' and 'Select frequent gifters' to the send gifts page.
+  - Adds all gifts to the select friends page to quickly switch between them.
+  - Improves the styling of the gift popup slightly.
+
 - Better Inventory
   - Updates the inventory UI to look more modern.
   - Clicking on the quantity of a convertible in the popup will set the quantity to max.
@@ -131,10 +137,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 
 - Custom Shield
   - Change your shield in the HUD to a variety of different options including past events, color tints (with optional timer color) or some fun meme shields.
-
-- Gift Buttons
-  - Adds 'Accept All' and 'Accept and Return All' buttons to the gift selector.
-  - Adds 'Select random friends' and 'Select frequent gifters' to the send gifts page.
 
 - Hover Profiles
   - Hover over a friend's name in your journal, inbox, or elsewhere and get a mini-profile popup with all their stats, interaction buttons, and everything you'd expect.
