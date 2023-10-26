@@ -47,8 +47,10 @@
   transition: .2s;
 }
 
-.dailyRewardPopup .todaysRewards .reward:hover {
-  transform: scale(1.3);
+#overlayPopup.dailyRewardPopup .todaysRewards .reward:hover {
+  margin-top: -15px;
+  margin-bottom: 15px;
+  transform: scale(1.2);
 }
 
 .dailyRewardPopup .progress .chest:hover .image {
