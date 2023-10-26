@@ -339,6 +339,7 @@ TODO: update
   - Fixes the smash assignment button to go to the correct page.
   - Removes the text clipping from the 'Collectibles' tab text.
   - Fixes issues when directly loading an item page.
+  - Fixes the Larry's Gift quantity background color.
 
 ## UserScripts
 

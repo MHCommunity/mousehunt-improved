@@ -173,3 +173,8 @@ a.mousehuntHud-page-tabHeader.collectibles span {
   text-overflow: unset !important;
   white-space: normal !important;
 }
+
+.claimGiftPage__giftQuantity {
+  background: #fff777;
+  border: 1px solid #b5814e;
+}
