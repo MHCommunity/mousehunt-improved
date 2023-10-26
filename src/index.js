@@ -2,6 +2,8 @@
 import betterUi from './modules/better-ui';
 import betterUiSettings from './modules/better-ui/settings';
 import betterInventory from './modules/better-inventory';
+import betterGifts from './modules/better-gifts';
+import betterGiftsSettings from './modules/better-gifts/settings';
 import betterInventorySettings from './modules/better-inventory/settings';
 import betterItemView from './modules/better-item-view';
 import betterJournal from './modules/better-journal';
@@ -23,8 +25,7 @@ import copyId from './modules/copy-id';
 import customShield from './modules/custom-shield';
 import customShieldSettings from './modules/custom-shield/settings';
 import dashboard from './modules/dashboard';
-import giftButtons from './modules/gift-buttons';
-import giftButtonsSettings from './modules/gift-buttons/settings';
+
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
@@ -73,6 +74,7 @@ const modules = [
     name: 'MouseHunt Improved',
     modules: [
       { id: 'better-ui', name: 'Better UI', default: true, description: 'Updates the MH interface with a variety of UI and style changes.', load: betterUi, settings: betterUiSettings },
+      { id: 'better-gifts', name: 'Better Gifts', default: true, description: 'Quickly accept and return all your gifts as well as picking random friends to send to.', load: betterGifts, settings: betterGiftsSettings },
       { id: 'better-inventory', name: 'Better Inventory', default: true, description: 'Updates the inventory layout and styling. ', load: betterInventory, settings: betterInventorySettings },
       { id: 'better-item-view', name: 'Better Item View', default: true, description: 'Add links to MHCT & MHWiki in mouse popups as well as showing drop rates.', load: betterItemView },
       { id: 'better-journal', name: 'Better Journal', default: true, description: 'Modify the journal text, layout, and styling.', load: betterJournal },
@@ -94,7 +96,6 @@ const modules = [
       { id: 'copy-id', name: 'Copy ID Button', default: true, description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.', load: copyId },
       { id: 'custom-shield', name: 'Custom Shield', default: false, description: 'Change your shield in the HUD to a variety of different options.', load: customShield, alwaysLoad: true, settings: customShieldSettings }, // set to always load so that rather than enable/disable, you can just change the shield back to default.
       { id: 'dashboard', name: 'Location Dashboard', default: true, description: 'See location HUD information in a dashboard available in the top dropdown menu.', load: dashboard },
-      { id: 'gift-buttons', name: 'Gift Buttons', default: true, description: 'Quickly accept and return all your gifts as well as picking random friends to send to.', load: giftButtons, settings: giftButtonsSettings },
       { id: 'hover-profiles', name: 'Hover Profiles', default: true, description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.', load: hoverProfiles },
       { id: 'image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backgrounds across the entire MH interface.', load: imageUpscaling },
       { id: 'inline-wiki', name: 'Inline Wiki', default: true, description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.', load: inlineWiki },

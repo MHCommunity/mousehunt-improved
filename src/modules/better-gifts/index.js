@@ -277,9 +277,14 @@ const addRandomSendButton = () => {
       return false;
     }
 
-    const existing = document.querySelector('.mh-gift-buttons-send-random');
-    if (existing) {
-      existing.remove();
+    const existingRandom = document.querySelector('.mh-gift-buttons-send-random');
+    if (existingRandom) {
+      existingRandom.remove();
+    }
+
+    const existingFavorites = document.querySelector('.mh-gift-buttons-send-faves');
+    if (existingFavorites) {
+      existingFavorites.remove();
     }
 
     const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons-send-random']);
@@ -319,6 +324,56 @@ const addRandomSendButton = () => {
   };
 };
 
+const addGiftSwitcher = () => {
+  const _showTab = hg.views.GiftSelectorView.showTab; // eslint-disable-line no-undef
+  const _selectGift = hg.views.GiftSelectorView.selectGift; // eslint-disable-line no-undef
+  hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
+    _showTab(tabType, viewState, preserveVariables, preserveActions);
+
+    const gifts = document.querySelectorAll('.selectGift .giftSelectorView-scroller.giftSelectorView-giftContainer .giftSelectorView-gift.sendable');
+    if (! gifts.length) {
+      return;
+    }
+
+    // We need to clone the nodes and wait until the selectGift function is called and then
+    // we append the cloned nodes to the gift container.
+
+    hg.views.GiftSelectorView.selectGift = (gift) => { // eslint-disable-line no-undef
+      _selectGift(gift)
+      const giftContainer = document.querySelector('.giftSelectorView-tabContent.active.selectFriends .giftSelectorView-content-leftBar');
+      if (! giftContainer) {
+        return false;
+      }
+
+      const existing = document.querySelector('.mh-gift-buttons-clone-wrapper');
+      if (existing) {
+        existing.remove();
+      }
+
+      const cloneWrapper = makeElement('div', 'mh-gift-buttons-clone-wrapper');
+
+      gifts.forEach((toClone) => {
+        const clone = toClone.cloneNode(true);
+        const giftWrap = makeElement('div', 'giftSelectorView-content-leftBar-highlightBlock');
+        giftWrap.appendChild(clone);
+
+        giftWrap.addEventListener('click', () => {
+          const prevSelected = document.querySelectorAll('.mh-gift-buttons-clone-selected');
+          prevSelected.forEach((el) => {
+            el.classList.remove('mh-gift-buttons-clone-selected');
+          });
+
+          giftWrap.classList.add('mh-gift-buttons-clone-selected');
+        });
+
+        cloneWrapper.appendChild(giftWrap);
+      });
+
+      giftContainer.appendChild(cloneWrapper);
+    };
+  };
+};
+
 const main = () => {
   onAjaxRequest(makeButtons, '/managers/ajax/users/socialGift.php');
   onAjaxRequest(checkForSuccessfulGiftSend, '/managers/ajax/users/socialGift.php');
@@ -331,7 +386,7 @@ const main = () => {
   }
 
   addRandomSendButton();
-
+  addGiftSwitcher();
   fixTypo();
 };
 

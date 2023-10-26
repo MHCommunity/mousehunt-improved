@@ -103,6 +103,7 @@
 .giftSelectorView-scroller.giftSelectorView-giftContainer {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .giftSelectorView-gift.gift_of_the_day:hover .giftSelectorView-gift-padding {
@@ -111,4 +112,91 @@
 
 body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   min-height: unset;
+}
+
+.giftSelectorView-friend.complete .giftSelectorView-friend-padding::before {
+  bottom: 9px;
+  left: 10px;
+  z-index: 1;
+  filter: drop-shadow(0 0 3px #b9ff5d) drop-shadow(1px 1px 4px #b9ff5d) drop-shadow(-1px -1px 3px #b9ff5d);
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-content-leftBar-highlightBlock {
+  margin-top: 5px;
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift-padding {
+  min-width: unset;
+  padding: 0 2px;
+  margin: 0;
+  border: none;
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift-description {
+  alignment-baseline: b;
+  display: flex;
+  align-items: center;
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift-name {
+  height: unset;
+}
+
+.mh-gift-buttons-clone-wrapper  .giftSelectorView-content-leftBar-highlightBlock {
+  background-color: transparent;
+  padding: 5px;
+  margin: 0 5px 0px 10px;
+  margin-top: 0;
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding:after {
+  display: none;
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding {
+  background-color: white;
+  color: black;
+}
+
+
+.giftSelectorView-gift.gift_of_the_day:hover .giftSelectorView-gift-padding {
+  background-color: #0090ff;
+}
+
+.paidgift  input.giftSelectorView-friendRow-returnQuantity {
+  margin-right: 15px;
+ }
+
+ .paidgift .giftSelectorView-friendRow-returnCost {
+     right: 50px;
+ }
+
+ .paidgift a.giftSelectorView-friendRow-action.return {
+     text-indent: -80px;
+ }
+
+ .giftSelectorView-friend-name {
+  display: flex;
+  align-items: center;
+  margin-left: 33px;
+  line-height: 1.1;
+}
+
+.giftSelectorView-friend-name span {
+  max-height: 24px;
+  display: inline-block;
+}
+
+.giftSelectorView-friend-padding,
+ .giftSelectorView-confirmPopup-block-actionItem .giftSelectorView-friend:hover .giftSelectorView-friend-padding {
+  border-radius: 0;
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift .itemImage {
+  padding-left: 10px;
+}
+
+.giftSelectorView-gift .itemImage {
+  width: 100%;
+  height: 80px;
 }
