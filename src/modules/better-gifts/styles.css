@@ -121,10 +121,6 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   filter: drop-shadow(0 0 3px #b9ff5d) drop-shadow(1px 1px 4px #b9ff5d) drop-shadow(-1px -1px 3px #b9ff5d);
 }
 
-.mh-gift-buttons-clone-wrapper .giftSelectorView-content-leftBar-highlightBlock {
-  margin-top: 5px;
-}
-
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift-padding {
   min-width: unset;
   padding: 0 2px;
@@ -133,9 +129,9 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 }
 
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift-description {
-  alignment-baseline: b;
   display: flex;
   align-items: center;
+  alignment-baseline: b;
 }
 
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift-name {
@@ -143,24 +139,19 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 }
 
 .mh-gift-buttons-clone-wrapper  .giftSelectorView-content-leftBar-highlightBlock {
-  background-color: transparent;
   padding: 5px;
-  margin: 0 5px 0px 10px;
+  margin: 0 5px 0 10px;
   margin-top: 0;
+  background-color: transparent;
 }
 
-.mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding:after {
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding::after {
   display: none;
 }
 
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding {
-  background-color: white;
-  color: black;
-}
-
-
-.giftSelectorView-gift.gift_of_the_day:hover .giftSelectorView-gift-padding {
-  background-color: #0090ff;
+  color: #000;
+  background-color: #fff;
 }
 
 .paidgift  input.giftSelectorView-friendRow-returnQuantity {
@@ -183,8 +174,8 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 }
 
 .giftSelectorView-friend-name span {
-  max-height: 24px;
   display: inline-block;
+  max-height: 24px;
 }
 
 .giftSelectorView-friend-padding,

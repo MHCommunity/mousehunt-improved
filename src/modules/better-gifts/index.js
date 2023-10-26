@@ -339,7 +339,7 @@ const addGiftSwitcher = () => {
     // we append the cloned nodes to the gift container.
 
     hg.views.GiftSelectorView.selectGift = (gift) => { // eslint-disable-line no-undef
-      _selectGift(gift)
+      _selectGift(gift);
       const giftContainer = document.querySelector('.giftSelectorView-tabContent.active.selectFriends .giftSelectorView-content-leftBar');
       if (! giftContainer) {
         return false;
