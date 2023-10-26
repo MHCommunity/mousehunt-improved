@@ -297,7 +297,7 @@ const addRandomSendButton = () => {
     }
 
     sendButton.addEventListener('click', () => {
-      const friends = document.querySelectorAll('.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled)');
+      const friends = document.querySelectorAll('.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)');
       if (! friends.length) {
         return;
       }
@@ -306,7 +306,7 @@ const addRandomSendButton = () => {
     });
 
     sendToFaves.addEventListener('click', () => {
-      const faves = document.querySelectorAll('.giftSelectorView-tabContent.active .giftSelectorView-friend.favorite:not(.disabled)');
+      const faves = document.querySelectorAll('.giftSelectorView-tabContent.active .giftSelectorView-friend.favorite:not(.disabled, .selected)');
       if (! faves.length) {
         return;
       }
