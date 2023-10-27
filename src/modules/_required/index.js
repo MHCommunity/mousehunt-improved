@@ -3,6 +3,7 @@ import globalStyles from './styles/global-styles.css';
 
 import fixes from './modules/fixes';
 import highlightUsers from './modules/highlight-users';
+import links from './modules/links';
 import settings from './modules/settings';
 
 const loadStyleOverrides = () => {
@@ -17,6 +18,7 @@ export default () => {
 
   fixes();
   highlightUsers();
+  links();
   settings();
 
   loadStyleOverrides();
