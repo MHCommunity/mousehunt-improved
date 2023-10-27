@@ -183,7 +183,7 @@ const getSetRowValue = (row, type) => {
 
     value = (parseInt(lbs) * 16) + parseInt(oz);
   } else {
-    value = valueText.innerText.replace(/,/g, '');
+    value = valueText.innerText ? valueText.innerText.replace(/,/g, '') || 0 : 0;
   }
 
   row.setAttribute(`data-sort-value-${type}`, value);
@@ -324,7 +324,7 @@ const addSortingToCat = (cat) => {
       return;
     }
 
-    const value = parseInt(catches.innerText.replace(/,/g, ''));
+    const value = catches.innerText ? catches.innerText.replace(/,/g, '') || 0 : 0;
 
     // set a crown class on the row.
     if (value >= 2500) {
