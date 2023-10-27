@@ -473,3 +473,15 @@ a.friendsProfileView-randomFriend {
 .hunterProfileItemsView-categoryContent-item.uncollected .hunterProfileItemsView-categoryContent-item-padding {
   background-color: #ededed;
 }
+
+.hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamName {
+  width: 89px;
+  margin-left: -3px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamName span {
+  top: 0;
+  right: 0;
+  left: 0;
+  transform: none;
+}
