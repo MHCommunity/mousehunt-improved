@@ -166,18 +166,6 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
      text-indent: -80px;
  }
 
- .giftSelectorView-friend-name {
-  display: flex;
-  align-items: center;
-  margin-left: 33px;
-  line-height: 1.1;
-}
-
-.giftSelectorView-friend-name span {
-  display: inline-block;
-  max-height: 24px;
-}
-
 .giftSelectorView-friend-padding,
  .giftSelectorView-confirmPopup-block-actionItem .giftSelectorView-friend:hover .giftSelectorView-friend-padding {
   border-radius: 0;
@@ -190,4 +178,19 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 .giftSelectorView-gift .itemImage {
   width: 100%;
   height: 80px;
+}
+
+.giftSelectorView-friend-name {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: unset;
+  height: unset;
+  padding: 0 3px;
+  line-height: 1.1;
+}
+
+.giftSelectorView-friend-name span {
+  display: block;
 }
