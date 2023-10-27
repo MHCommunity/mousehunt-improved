@@ -1,5 +1,5 @@
-import { addUIStyles } from '../../utils';
-import styles from '../styles/dark-mode.css';
+import { addUIStyles } from '../utils';
+import styles from './styles/dark-mode.css';
 
 const checkForDarkModeAndAddBodyClass = () => {
   if (! isDarkMode()) {

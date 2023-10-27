@@ -1,7 +1,6 @@
 import { addUIStyles, getMhuiSetting } from '../utils';
 import globalStyles from './styles/global-styles.css';
 
-import darkMode from './modules/dark-mode';
 import fixes from './modules/fixes';
 import highlightUsers from './modules/highlight-users';
 import settings from './modules/settings';
@@ -16,7 +15,6 @@ const loadStyleOverrides = () => {
 export default () => {
   addUIStyles(globalStyles);
 
-  darkMode();
   fixes();
   highlightUsers();
   settings();
