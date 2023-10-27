@@ -441,3 +441,35 @@ a.friendsProfileView-randomFriend {
   border: none;
   box-shadow: none;
 }
+
+.hunterProfileItemsView-categoryContent-item-padding {
+  height: auto;
+  padding: 0;
+}
+
+.hunterProfileItemsView-categoryContent-item-name {
+  padding: 0 1px 3px;
+}
+
+.hunterProfileItemsView-categoryContent-item .itemImage {
+  width: 110px;
+  height: 110px;
+  margin-top: -1px;
+  background-repeat: no-repeat;
+  background-position: -1px -1px;
+  background-size: 102%;
+}
+
+.hunterProfileItemsView-categoryContent[data-category="map_piece"] .hunterProfileItemsView-categoryContent-item .itemImage,
+.hunterProfileItemsView-categoryContent[data-category="collectible"] .hunterProfileItemsView-categoryContent-item .itemImage {
+  padding-top: 10px;
+  background-position-y: 5px;
+}
+
+.hunterProfileItemsView-categoryContent-item.uncollected  .itemImage {
+  opacity: .3;
+}
+
+.hunterProfileItemsView-categoryContent-item.uncollected .hunterProfileItemsView-categoryContent-item-padding {
+  background-color: #ededed;
+}
