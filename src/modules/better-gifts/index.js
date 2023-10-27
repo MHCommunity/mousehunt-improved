@@ -249,7 +249,8 @@ const pickFriends = (friends, limit) => {
 
   // fake the first "random" selection to be in the first 35 friends so that
   // you can see that it's working.
-  const firstRandom = Math.floor(Math.random() * 35);
+  const bound = friends.length > 35 ? 35 : friends.length;
+  const firstRandom = Math.floor(Math.random() * bound);
   selected.push(firstRandom);
 
   while (sent < limit) {
@@ -258,13 +259,35 @@ const pickFriends = (friends, limit) => {
       continue;
     }
 
-    selected.push(random);
+    friends[random].click();
+
     sent++;
   }
+};
 
-  selected.forEach((index) => {
-    friends[index].click();
+const addSendButton = (className, text, limit, selector, buttonContainer) => {
+  const existing = document.querySelector(`.mh-gift-buttons-send-${className}`);
+  if (existing) {
+    existing.remove();
+  }
+
+  const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', `mh-gift-buttons-send-${className}`]);
+  makeElement('span', 'mousehuntActionButton-text', text, sendButton);
+
+  if (limit && limit < 1) {
+    sendButton.classList.add('disabled');
+  }
+
+  sendButton.addEventListener('click', () => {
+    const friends = document.querySelectorAll(selector);
+    if (! friends.length) {
+      return;
+    }
+
+    pickFriends(friends, limit);
   });
+
+  buttonContainer.appendChild(sendButton);
 };
 
 const addRandomSendButton = () => {
@@ -277,50 +300,20 @@ const addRandomSendButton = () => {
       return false;
     }
 
-    const existingRandom = document.querySelector('.mh-gift-buttons-send-random');
-    if (existingRandom) {
-      existingRandom.remove();
+    let limit = 0;
+
+    const getLimit = hg?.views?.GiftSelectorView?.getNumClaimableActionsRemaining;
+    // make sure we have the getNumClaimableActionsRemaining function.
+    if (getLimit) {
+      limit = getLimit();
+    } else {
+      // Fallback to getting the limit from the DOM.
+      const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
+      limit = limitEl ? parseInt(limitEl.innerText, 10) : 0;
     }
 
-    const existingFavorites = document.querySelector('.mh-gift-buttons-send-faves');
-    if (existingFavorites) {
-      existingFavorites.remove();
-    }
-
-    const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons-send-random']);
-    makeElement('span', 'mousehuntActionButton-text', 'Select Random Friends', sendButton);
-
-    const sendToFaves = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons-send-faves']);
-    makeElement('span', 'mousehuntActionButton-text', 'Select Frequent Gifters', sendToFaves);
-
-    const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
-    const limit = limitEl ? parseInt(limitEl.innerText, 10) : 0;
-
-    if (limit < 1) {
-      sendButton.classList.add('disabled');
-      sendToFaves.classList.add('disabled');
-    }
-
-    sendButton.addEventListener('click', () => {
-      const friends = document.querySelectorAll('.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)');
-      if (! friends.length) {
-        return;
-      }
-
-      pickFriends(friends, limit);
-    });
-
-    sendToFaves.addEventListener('click', () => {
-      const faves = document.querySelectorAll('.giftSelectorView-tabContent.active .giftSelectorView-friend.favorite:not(.disabled, .selected)');
-      if (! faves.length) {
-        return;
-      }
-
-      pickFriends(faves, limit);
-    });
-
-    title.appendChild(sendButton);
-    title.appendChild(sendToFaves);
+    addSendButton('random', 'Select Random Friends', limit, '.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)', title);
+    addSendButton('faves', 'Select Frequent Gifters', limit, '.giftSelectorView-tabContent.active .giftSelectorView-friend.favorite:not(.disabled, .selected)', title);
   };
 };
 
