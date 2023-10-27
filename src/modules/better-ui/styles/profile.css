@@ -504,3 +504,8 @@ a.friendsProfileView-randomFriend {
 .loyaltyBadgeView.badgeLevel15 .loyaltyBadgeView-years-text {
   top: 14px;
 }
+
+.hunterInfoView-verifiedUserImage {
+  width: 14.5px;
+  height: 17.5px;
+}

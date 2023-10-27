@@ -1,14 +1,14 @@
 .mh-improved-developer .hunterInfoView-verifiedUserImage,
-.mh-improved-contributor .hunterInfoView-verifiedUserImage {
-  width: 15px;
-  height: 17px;
+.mh-improved-contributor .hunterInfoView-verifiedUserImage,
+.mh-improved-supporter .hunterInfoView-verifiedUserImage {
+  width: 14.5px;
+  height: 17.5px;
   background: url(https://i.mouse.rip/mh-improved/tada-badge.png) no-repeat;
   background-size: contain;
 }
 
 .mh-improved-supporter .hunterInfoView-verifiedUserImage {
-  width: 17px;
-  height: 19px;
   background: url(https://i.mouse.rip/mh-improved/star-badge.png) no-repeat;
+  background-position-y: -1px;
   background-size: contain;
 }
