@@ -56,7 +56,7 @@ import dev from './modules/dev';
 // Feature modules that are locked behind a flag.
 import locked from './modules/feature-flags';
 
-import { addToGlobal, getFlag } from './modules/utils';
+import { addToGlobal, getGlobal, getFlag } from './modules/utils';
 
 // Core 'Better' modules.
 const modules = [
@@ -130,7 +130,7 @@ const modules = [
 ];
 
 const main = () => {
-  if (window.mhui?.loaded) {
+  if (getGlobal('loaded')) {
     return;
   }
 
@@ -173,9 +173,6 @@ const main = () => {
     });
   });
 
-  // Add the loaded modules to the global object.
-  addToGlobal({ modules: loadedModules });
-
   // Add the advanced override settings.
   const advancedTab = { id: 'mousehunt-improved-settings-overrides', name: 'Overrides', default: true, description: 'Modify MouseHunt Improved.' };
   addSetting(
@@ -198,9 +195,15 @@ const main = () => {
     { type: 'input' }
   );
 
-  window.mhui.loaded = true;
+  addToGlobal('modules', loadedModules);
   eventRegistry.doEvent('mousehunt-improved-settings-after-load');
 };
 
 // Start it up.
 main();
+
+// add our dev stuff.
+dev();
+
+// We're done!
+addToGlobal('loaded', true);

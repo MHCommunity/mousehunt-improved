@@ -1,5 +1,5 @@
 import mouseGroups from '../../../data/mice-map-groups.json';
-import { getArEl, getHighestArForMouse, getMhuiSetting } from '../../utils';
+import { getArEl, getHighestArForMouse, getMhuiSetting, mapData } from '../../utils';
 import { getMapData, addMHCTData } from '../map-utils';
 import { addArToggle, removeArToggle } from './toggle-ar';
 import doHighlighting from './highlighting';
@@ -107,7 +107,7 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
 
   if (Array.isArray(mouse.environment_ids)) {
     mouse.environment_ids.forEach((environmentID) => {
-      const environment = window.mhui.mapper?.mapData?.environments.find((env) => {
+      const environment = mapData().environments.find((env) => {
         return env.id === environmentID;
       });
 
@@ -118,7 +118,7 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
         location.setAttribute('data-environment-id', environment.id);
 
         location.addEventListener('click', () => {
-          showTravelConfirmation(environment, window.mhui.mapper?.mapModel);
+          showTravelConfirmation(environment, mapModel());
         });
 
         locationLocations.appendChild(location);
@@ -203,7 +203,7 @@ const makeSortedPageWrapper = () => {
 
 const makeSortedMiceList = async () => {
   // Get the current map data.
-  const currentMapData = getMapData(window.mhui.mapper?.mapData.map_id);
+  const currentMapData = getMapData(mapData().map_id);
   const { unsortedMice, categories, subcategories } = getMouseDataForMap(currentMapData);
 
   const target = document.querySelector('.sorted-page-content');
@@ -384,7 +384,7 @@ const makeScavengerSortedPage = async () => {
 
   target.classList.add('scavenger-sorted-page');
 
-  const currentMapData = getMapData(window.mhui.mapper?.mapData.map_id);
+  const currentMapData = getMapData(mapData().map_id);
   console.log(currentMapData); // eslint-disable-line no-console
 };
 
@@ -396,7 +396,7 @@ const makeGenericSortedPage = async () => {
 
   target.classList.add('generic-sorted-page');
 
-  const currentMapData = getMapData(window.mhui.mapper?.mapData.map_id);
+  const currentMapData = getMapData(mapData().map_id);
 
   let type = 'mouse';
   if (currentMapData.map_type.includes('scavenger')) {
@@ -458,7 +458,7 @@ const processSortedTabClick = async () => {
   }
 
   // Get the current map data.
-  const currentMapData = window.mhui.mapper?.mapData;
+  const currentMapData = mapData();
 
   if (! currentMapData || ! currentMapData.goals) {
     return;

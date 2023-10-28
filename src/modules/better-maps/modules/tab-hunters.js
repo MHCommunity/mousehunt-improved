@@ -1,3 +1,5 @@
+import { mapper } from '../../utils';
+
 const makeUserTableLoading = (id, title, appendTo) => {
   const wrapper = makeElement('div', 'treasureMapView-block-title', title);
   wrapper.id = `hunters-loading-${id}-title`;
@@ -93,9 +95,9 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
         const snuid = parseInt(button.dataset.snuid, 10);
 
         if (button.classList.contains('accept-invite-request')) {
-          hg.utils.TreasureMapUtil.acceptInviteRequests(window.mhui.mapper?.mapData.map_id, [snuid], () => {}, () => {});
+          hg.utils.TreasureMapUtil.acceptInviteRequests(mapper('mapData').map_id, [snuid], () => {}, () => {});
         } else {
-          hg.utils.TreasureMapUtil.declineInviteRequests(window.mhui.mapper?.mapData.map_id, [snuid], () => {}, () => {});
+          hg.utils.TreasureMapUtil.declineInviteRequests(mapper('mapData').map_id, [snuid], () => {}, () => {});
         }
       });
     });

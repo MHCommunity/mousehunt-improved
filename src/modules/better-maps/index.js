@@ -12,11 +12,10 @@ const interceptMapRequest = (mapId) => {
   }
 
   const init = (mapData) => {
-    // / append the map data to the window.mhui object, keeping the other properties
-    addToGlobal({ mapper: {
+    addToGlobal('mapper', {
       mapData,
       mapModel: new hg.models.TreasureMapModel(mapData),
-    } });
+    });
 
     eventRegistry.doEvent('mapper_loaded', mapData);
     return data;

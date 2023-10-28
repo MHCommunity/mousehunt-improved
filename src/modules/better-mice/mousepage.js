@@ -386,13 +386,4 @@ export default () => {
     page: 'hunterprofile',
     tab: 'mice',
   });
-
-  // merge addSortingToMousePageCategory to window.mhui so that we can call it from the onclick attribute
-  const newMhuiWindow = {
-    addSortingToMousePageCategory(category) {
-      addSortingToCat(category);
-    },
-  };
-
-  window.mhui = { ...window.mhui, ...newMhuiWindow };
 };

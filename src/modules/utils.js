@@ -96,7 +96,7 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
   let mhctdata = [];
 
   // Temp hack for halloween.
-  const mapType = window.mhui?.mapper?.mapData?.map_type || '';
+  const mapType = mapData().map_type || '';
   let url = `https://api.mouse.rip/${mhctPath}/${mouseId}`;
   if (mapType.toLowerCase().indexOf('halloween') !== -1) {
     url = `https://api.mouse.rip/${mhctPath}/${mouseId}-hlw_22`;
@@ -342,8 +342,39 @@ const getFlag = (flag) => {
   return flags.replaceAll(' ', '').split(',').includes(flag);
 };
 
-const addToGlobal = (obj) => {
-  window.mhui = { ...window.mhui, ...obj };
+const addToGlobal = (key, value) => {
+  // if we don't have a global object, create it
+  if (! window.mhui) {
+    window.mhui = {};
+  }
+
+  // add the key and value to the global object
+  window.mhui[key] = value;
+  app.mhui = mhui;
+};
+
+const getGlobal = (key) => {
+  if (! window.mhui) {
+    return false;
+  }
+
+  return mhui[key];
+};
+
+const mapper = (key = false) => {
+  if (key) {
+    return getGlobal('mapper')[key];
+  }
+
+  return getGlobal('mapper');
+};
+
+const mapData = () => {
+  return getGlobal('mapper').mapData;
+};
+
+const mapModel = () => {
+  return getGlobal('mapper').mapModel;
 };
 
 export {
@@ -362,5 +393,9 @@ export {
   saveMhuiSetting,
   getMhuiSetting,
   getFlag,
-  addToGlobal
+  addToGlobal,
+  getGlobal,
+  mapper,
+  mapData,
+  mapModel
 };

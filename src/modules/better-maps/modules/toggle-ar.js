@@ -1,4 +1,4 @@
-import { getArEl } from '../../utils';
+import { getArEl, mapper } from '../../utils';
 
 const addArDataToMap = async (mapData) => {
   let type = 'mouse';
@@ -95,7 +95,7 @@ const toggleAr = async () => {
     mapView.classList.add('mh-ui-ar-showing');
     mapView.classList.remove('mh-ui-ar-hidden');
     text.innerText = '···';
-    await addArDataToMap(window.mhui.mapper?.mapData);
+    await addArDataToMap(mapper('mapData'));
     text.innerText = `Hide ${arText}`;
     toggle.title = `Hide ${arTitle}`;
   }
@@ -135,7 +135,7 @@ const addArToggle = (tab = 'goals') => {
     // if mapView has the showing class and we're on the goals tab, then
     // we need to also add the AR data to the map.
     if ('goals' === tab && mapView.classList.contains('mh-ui-ar-showing')) {
-      addArDataToMap(window.mhui.mapper?.mapData);
+      addArDataToMap(mapper('mapData'));
     }
 
     return;
@@ -150,7 +150,7 @@ const addArToggle = (tab = 'goals') => {
 
   let arText = 'AR';
   let arTitle = 'Attraction Rates';
-  if (window.mhui.mapper?.mapData?.is_scavenger_hunt) {
+  if (mapper('mapData').is_scavenger_hunt) {
     arText = 'DR';
     arTitle = 'Drop Rates';
   }

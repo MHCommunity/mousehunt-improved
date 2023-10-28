@@ -1,7 +1,7 @@
 import { addToGlobal } from './utils';
 
 const main = () => {
-  addToGlobal({ mhutils: {
+  addToGlobal('mhutils', {
     addStyles,
     onRequest,
     onOverlayChange,
@@ -53,7 +53,7 @@ const main = () => {
     enableDebugMode,
     run,
     isDarkMode,
-  } });
+  });
 };
 
 export default main;

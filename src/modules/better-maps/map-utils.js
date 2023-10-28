@@ -1,6 +1,6 @@
 import environments from '../../data/environments.json';
 
-import { addToGlobal, getArForMouse } from '../utils';
+import { addToGlobal, getArForMouse, mapper } from '../utils';
 
 const getMapData = (mapId = false, strict = false) => {
   if (mapId !== false) {
@@ -132,11 +132,11 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
         return;
       }
 
-      const travelEnvironment = window.mhui.mapper?.mapData.environments.find((env) => {
+      const travelEnvironment = mapper('mapData').environments.find((env) => {
         return env.type === environment.id;
       });
 
-      showTravelConfirmation(travelEnvironment, window.mhui.mapper?.mapModel);
+      showTravelConfirmation(travelEnvironment, mapModel());
     });
 
     mhctDiv.appendChild(mhctRow);

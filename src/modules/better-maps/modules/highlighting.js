@@ -1,3 +1,5 @@
+import { mapData } from '../../utils';
+
 const areaHighlightingVrift = () => {
   if ('rift_valour' !== getCurrentLocation()) {
     return false;
@@ -130,7 +132,7 @@ const addProfilePicToCurrentFloor = async () => {
 };
 
 const doHighlighting = () => {
-  const mapType = window.mhui.mapper?.mapData.map_type;
+  const mapType = mapData().map_type;
 
   const existing = document.querySelector('.mouse-category-current-floor');
   if (existing) {
