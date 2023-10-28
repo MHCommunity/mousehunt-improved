@@ -171,6 +171,10 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   border-radius: 0;
 }
 
+.giftSelectorView-friend.favorite .giftSelectorView-friend-padding {
+  height: 30px;
+}
+
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift .itemImage {
   padding-left: 10px;
 }
