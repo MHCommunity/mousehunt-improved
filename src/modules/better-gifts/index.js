@@ -259,10 +259,13 @@ const pickFriends = (friends, limit) => {
       continue;
     }
 
-    friends[random].click();
-
+    selected.push(random);
     sent++;
   }
+
+  selected.forEach((index) => {
+    friends[index].click();
+  });
 };
 
 const addSendButton = (className, text, limit, selector, buttonContainer) => {
