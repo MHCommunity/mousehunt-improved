@@ -30,7 +30,7 @@
 }
 
 .treasureMapDialogView.wide.limitHeight {
-  top: 350px;
+  transform: translate(-50%, -100px);
 }
 
 .giftSelectorView-inbox-giftContainer,
