@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import { addUIStyles, getMhuiSetting, getFlag } from '../utils';
 import globalStyles from './styles/global-styles.css';
 
 import fixes from './modules/fixes';
@@ -16,10 +16,18 @@ const loadStyleOverrides = () => {
 export default () => {
   addUIStyles(globalStyles);
 
-  fixes();
-  highlightUsers();
-  links();
-  settings();
+  if (! getFlag('no-fixes')) {
+    fixes();
+  }
 
+  if (! getFlag('no-highlight-users')) {
+    highlightUsers();
+  }
+
+  if (! getFlag('no-links')) {
+    links();
+  }
+
+  settings();
   loadStyleOverrides();
 };
