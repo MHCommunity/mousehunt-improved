@@ -17,9 +17,28 @@ const initiateKingsReward = () => {
   }
 };
 
+const startKingsReward = () => {
+  if (! user.has_puzzle) {
+    return;
+  }
+
+  const claim = document.querySelector('.huntersHornMessageView__action');
+  if (claim) {
+    claim.click();
+  }
+
+  const puzzle = document.querySelector('.puzzleView__code');
+  if (puzzle) {
+    puzzle.focus();
+  }
+};
+
 export default () => {
   addUIStyles(styles);
 
   onRequest(initiateKingsReward, 'managers/ajax/turns/activeturn.php', true);
   onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
+
+  onRequest(startKingsReward);
+  startKingsReward();
 };
