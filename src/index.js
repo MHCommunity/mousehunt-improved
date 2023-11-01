@@ -56,7 +56,7 @@ import dev from './modules/dev';
 // Feature modules that are locked behind a flag.
 import locked from './modules/feature-flags';
 
-import { addToGlobal, getGlobal, getFlag } from './modules/utils';
+import { addToGlobal, getGlobal, getFlag, isiFrame } from './modules/utils';
 
 // Core 'Better' modules.
 const modules = [
@@ -199,11 +199,16 @@ const main = () => {
   eventRegistry.doEvent('mousehunt-improved-settings-after-load');
 };
 
-// Start it up.
-main();
+if (isiFrame()) {
+  // If we're in an iframe, we're done.
+  addToGlobal('loaded', true);
+} else {
+  // Start it up.
+  main();
 
-// add our dev stuff.
-dev();
+  // add our dev stuff.
+  dev();
 
-// We're done!
-addToGlobal('loaded', true);
+  // We're done!
+  addToGlobal('loaded', true);
+}

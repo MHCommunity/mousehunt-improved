@@ -377,6 +377,10 @@ const mapModel = () => {
   return getGlobal('mapper').mapModel;
 };
 
+const isiFrame = () => {
+  return window.self !== window.top;
+};
+
 export {
   addUIStyles,
   addHudStyles,
@@ -397,5 +401,6 @@ export {
   getGlobal,
   mapper,
   mapData,
-  mapModel
+  mapModel,
+  isiFrame
 };
