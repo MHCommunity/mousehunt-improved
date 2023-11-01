@@ -131,11 +131,14 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift-description {
   display: flex;
   align-items: center;
-  alignment-baseline: b;
 }
 
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift-name {
   height: unset;
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift-name span {
+  padding: 5px;
 }
 
 .mh-gift-buttons-clone-wrapper  .giftSelectorView-content-leftBar-highlightBlock {
@@ -171,7 +174,7 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   border-radius: 0;
 }
 
-.giftSelectorView-friend.favorite .giftSelectorView-friend-padding {
+.giftSelectorView-friend .giftSelectorView-friend-padding {
   height: 30px;
 }
 

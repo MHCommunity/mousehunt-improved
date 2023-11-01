@@ -146,9 +146,19 @@ a.inventoryPage-item-larryLexicon {
 }
 
 .itemViewStatBlock.trinket {
-  margin-top: -5px;
+  float: right;
+  width: 100px;
+  margin-top: 10px;
+  margin-right: 5px;
   margin-left: 5px;
   font-size: 13px;
+}
+
+.itemViewStatBlock.trinket .itemViewStatBlock-padding {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100px;
 }
 
 .inventoryPage-item-content-description-text {
@@ -430,4 +440,17 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
 
 #overlayPopup.itemViewPopup .itemViewContainer.message_item .button {
   margin: 10px 0 0;
+}
+
+.itemViewStatBlock.horizontal.base,
+.itemViewStatBlock.horizontal.weapon {
+  float: right;
+  width: 350px;
+  margin-left: 10px;
+}
+
+.inventoryPage-item.base .inventoryPage-item-content-description-text,
+.inventoryPage-item.weapon .inventoryPage-item-content-description-text {
+  max-height: 115px;
+  overflow: visible;
 }

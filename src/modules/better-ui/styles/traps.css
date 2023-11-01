@@ -175,9 +175,12 @@
 }
 
 .hunterInfoView-wrapper .campPage-trap-trapStat .value {
-  max-width: 70px;
   background: transparent;
   border: none;
+}
+
+.campPage-trap-trapStat .icon {
+  margin-left: 5px;
 }
 
 .trapImageView-trapAura {

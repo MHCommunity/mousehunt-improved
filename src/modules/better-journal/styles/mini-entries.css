@@ -32,7 +32,8 @@
 .journal .content .entry.world_aspect_normal,
 .journal .content .entry.jetStreamAuraActivated,
 .journal .content .entry.birthday2018-rewind-charm,
-.journal .content .entry.relicHunter_slayer_aura_relic_bonus {
+.journal .content .entry.relicHunter_slayer_aura_relic_bonus,
+.journal .entry.halloween_boiling_cauldron.brew_finished {
   background-position: 10px center;
 }
 
