@@ -243,40 +243,69 @@ const checkForSuccessfulGiftSend = (request) => {
   }, 2000);
 };
 
-const pickFriends = (friends, limit) => {
+const getLimit = () => {
+  const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
+  limit = limitEl ? parseInt(limitEl.innerText, 10) : 0;
+
+  return limit;
+};
+
+const pickFriends = (friends, useRandom = true) => {
   const selected = [];
-  let sent = 1;
+  let sent = 0;
 
   // fake the first "random" selection to be in the first 35 friends so that
   // you can see that it's working.
-  const bound = friends.length > 35 ? 35 : friends.length;
-  const firstRandom = Math.floor(Math.random() * bound);
-  selected.push(firstRandom);
+  if (useRandom) {
+    const bound = friends.length > 35 ? 35 : friends.length;
+    const firstRandom = Math.floor(Math.random() * bound);
+    selected.push(firstRandom);
+    sent++;
+  }
 
+  let limit = getLimit();
   while (sent < limit) {
-    const random = Math.floor(Math.random() * friends.length);
-    if (selected.includes(random)) {
-      continue;
+    if (selected.length >= friends.length) {
+      break;
     }
 
-    selected.push(random);
+    if (useRandom) {
+      const random = Math.floor(Math.random() * friends.length);
+      if (selected.includes(random)) {
+        continue;
+      }
+
+      selected.push(random);
+    } else {
+      selected.push(sent);
+    }
+
     sent++;
+    limit = getLimit();
   }
 
   selected.forEach((index) => {
     friends[index].click();
   });
+
+  if (getLimit() < 1) {
+    const buttons = document.querySelectorAll('.mh-gift-buttons');
+    buttons.forEach((button) => {
+      button.classList.add('disabled');
+    });
+  }
 };
 
-const addSendButton = (className, text, limit, selector, buttonContainer) => {
+const addSendButton = (className, text, selector, buttonContainer) => {
   const existing = document.querySelector(`.mh-gift-buttons-send-${className}`);
   if (existing) {
     existing.remove();
   }
 
-  const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', `mh-gift-buttons-send-${className}`]);
+  const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons', `mh-gift-buttons-send-${className}`]);
   makeElement('span', 'mousehuntActionButton-text', text, sendButton);
 
+  const limit = getLimit();
   if (limit && limit < 1) {
     sendButton.classList.add('disabled');
   }
@@ -287,7 +316,11 @@ const addSendButton = (className, text, limit, selector, buttonContainer) => {
       return;
     }
 
-    pickFriends(friends, limit);
+    if ('faves' === className) {
+      pickFriends(friends, false);
+    } else {
+      pickFriends(friends);
+    }
   });
 
   buttonContainer.appendChild(sendButton);
@@ -303,20 +336,8 @@ const addRandomSendButton = () => {
       return false;
     }
 
-    let limit = 0;
-
-    const getLimit = hg?.views?.GiftSelectorView?.getNumClaimableActionsRemaining;
-    // make sure we have the getNumClaimableActionsRemaining function.
-    if (getLimit) {
-      limit = getLimit();
-    } else {
-      // Fallback to getting the limit from the DOM.
-      const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
-      limit = limitEl ? parseInt(limitEl.innerText, 10) : 0;
-    }
-
-    addSendButton('random', 'Select Random Friends', limit, '.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)', title);
-    addSendButton('faves', 'Select Frequent Gifters', limit, '.giftSelectorView-tabContent.active .giftSelectorView-friend.favorite:not(.disabled, .selected)', title);
+    addSendButton('random', 'Select Random Friends', '.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)', title);
+    addSendButton('faves', 'Select Frequent Gifters', '.giftSelectorView-tabContent.active .giftSelectorView-friend-group.favorite .giftSelectorView-friend:not(.disabled, .selected)', title);
   };
 };
 
