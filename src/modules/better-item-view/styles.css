@@ -140,6 +140,7 @@
 
 .itemView-actionContainer {
   display: flex;
+  gap: 10px;
 }
 
 .itemView-header-classification {
@@ -148,4 +149,30 @@
 
 .itemView-action {
   border-top: none;
+}
+
+.itemViewContainer.potion .inventoryPage-item-recipeOptions li {
+  width: 365px;
+}
+
+/* wider item view */
+.itemView-character-image {
+  width: auto;
+  height: 84px;
+  margin-top: -15px;
+  margin-left: -9px;
+}
+
+.itemView-character-name {
+  left: -11px;
+  width: 75px;
+  font-size: 15px;
+}
+
+.itemView-padding {
+  margin-left: 70px;
+}
+
+.itemView-thumbnail.large {
+  margin-left: -15px;
 }
