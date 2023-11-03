@@ -190,6 +190,20 @@ const fixTypo = () => {
   hg.utils.TemplateUtil.addTemplate('ViewGiftSelector', template);
 };
 
+const getButtons = (className = false) => {
+  const buttonContainer = document.createElement('div');
+  buttonContainer.id = 'bulk-gifting-gift-buttons';
+  if (className) {
+    buttonContainer.classList.add(className);
+  }
+
+  makePaidGiftsButton(buttonContainer);
+  makeAcceptButton(buttonContainer);
+  makeReturnButton(buttonContainer);
+
+  return buttonContainer;
+};
+
 /**
  * Make the buttons and add them to the page.
  */
@@ -391,16 +405,40 @@ const addGiftSwitcher = () => {
   };
 };
 
+const addButtonsToDropdown = () => {
+  const buttonLink = document.querySelector('#hgbar_freegifts');
+  if (! buttonLink) {
+    return;
+  }
+
+  buttonLink.addEventListener('click', function () {
+    makeButtons();
+  });
+};
+
+const addButtonsToPopup = () => {
+  const actionRow = document.querySelector('.giftSelectorView-tabContentContainer .giftSelectorView-tabContent.active .giftSelectorView-actionContainer');
+  console.log(actionRow);
+  if (! actionRow) {
+    return;
+  }
+
+  const existing = document.querySelector('.mh-gift-buttons-send-popup');
+  console.log(existing);
+  if (existing) {
+    existing.remove();
+  }
+
+  const buttons = getButtons('mh-gift-buttons-send-popup');
+  actionRow.insertBefore(buttons, actionRow.firstChild);
+};
+
 const main = () => {
   onAjaxRequest(makeButtons, '/managers/ajax/users/socialGift.php');
   onAjaxRequest(checkForSuccessfulGiftSend, '/managers/ajax/users/socialGift.php');
 
-  const buttonLink = document.querySelector('#hgbar_freegifts');
-  if (buttonLink) {
-    buttonLink.addEventListener('click', function () {
-      makeButtons();
-    });
-  }
+  addButtonsToDropdown();
+  onDialogShow(addButtonsToPopup, 'giftSelectorViewPopup.');
 
   addRandomSendButton();
   addGiftSwitcher();
