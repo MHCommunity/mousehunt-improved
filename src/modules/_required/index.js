@@ -5,6 +5,7 @@ import fixes from './modules/fixes';
 import highlightUsers from './modules/highlight-users';
 import links from './modules/links';
 import settings from './modules/settings';
+import updateNotifications from './modules/update-notifications';
 
 const loadStyleOverrides = () => {
   const customStyles = getMhuiSetting('override-styles');
@@ -26,6 +27,10 @@ export default () => {
 
   if (! getFlag('no-links')) {
     links();
+  }
+
+  if (! getFlag('no-update-notifications')) {
+    updateNotifications();
   }
 
   settings();
