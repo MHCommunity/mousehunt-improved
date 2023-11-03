@@ -9,6 +9,7 @@ import friends from './friends.css';
 import general from './general.css';
 import gifts from './gifts.css';
 import hud from './hud.css';
+import inbox from './inbox.css';
 import overlays from './overlays.css';
 import profile from './profile.css';
 import recipes from './recipes.css';
@@ -31,6 +32,7 @@ const main = () => {
     friends,
     gifts,
     hud,
+    inbox,
     overlays,
     profile,
     recipes,

@@ -1,0 +1,61 @@
+.notificationMessageList .message {
+  padding: 5px 10px;
+}
+
+.notificationMessageList .message .clear-block {
+  padding-top: 5px;
+}
+
+.notificationMessageList .message .date {
+  margin-top: 5px;
+  margin-left: 0;
+}
+
+.notificationMessageList .tab[data-tab="general"] .message .date {
+  margin-top: -10px;
+  margin-left: 50px;
+}
+
+/* daily draw */
+.notificationMessageList .message.ballot .clear-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  order: 5;
+}
+
+.notificationMessageList .message.ballot img.item {
+  height: 25px;
+  margin: -5px 5px -10px -5px;
+}
+
+.notificationMessageList .message.ballot .date {
+  flex-grow: 1;
+  order: 2;
+  font-size: 9px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* friend requests */
+.notificationMessageList .message.friend_invite_pending .clear-block {
+  display: flex;
+  align-items: center;
+}
+
+.notificationMessageList .message .messageText {
+  padding: 5px 0;
+}
+
+.message.notification.ballot,
+.message.notification.ballot.new {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 10px 20px;
+}
+
+.message.notification .actions.ballot {
+    float: none;
+}
