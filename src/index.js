@@ -56,6 +56,7 @@ import dev from './modules/dev';
 import featureFlags from './modules/feature-flags';
 
 import { addToGlobal, getGlobal, getFlag, isiFrame } from './modules/utils';
+import { addAdvancedSettings, addSettingForModule, showLoadingError } from './modules/settings';
 
 // Core 'Better' modules.
 const modules = [
@@ -340,7 +341,7 @@ const modules = [
   },
 ];
 
-const main = () => {
+const loadModules = () => {
   if (getGlobal('loaded')) {
     return;
   }
@@ -349,25 +350,9 @@ const main = () => {
 
   // Add the settings for each module.
   modules.forEach((module) => {
-    module.modules.forEach((subModule) => {
-      if (! subModule.alwaysLoad) {
-        addSetting(
-          subModule.name,
-          subModule.id,
-          subModule.default,
-          subModule.description,
-          { id: module.id, name: module.name, description: module.description },
-          'mousehunt-improved-settings'
-        );
-      }
-
-      if (subModule.settings && (subModule.alwaysLoad || getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings'))) {
-        subModule.settings(subModule, module);
-      }
-    });
+    addSettingForModule(module);
   });
 
-  eventRegistry.doEvent('mousehunt-improved-settings-before-load');
   // Load the modules.
   const loadedModules = [];
   modules.forEach((module) => {
@@ -384,42 +369,33 @@ const main = () => {
     });
   });
 
-  // Add the advanced override settings.
-  const advancedTab = { id: 'mousehunt-improved-settings-overrides', name: 'Overrides', default: true, description: 'Modify MouseHunt Improved.' };
-  addSetting(
-    'Custom Styles',
-    'override-styles',
-    '',
-    'Add custom CSS to the page.',
-    advancedTab,
-    'mousehunt-improved-settings',
-    { type: 'textarea' }
-  );
-
-  addSetting(
-    'Custom Flags',
-    'override-flags',
-    '',
-    'Apply custom flags to modify MouseHunt Improved\'s behavior.',
-    advancedTab,
-    'mousehunt-improved-settings',
-    { type: 'input' }
-  );
+  addAdvancedSettings();
 
   addToGlobal('modules', loadedModules);
-  eventRegistry.doEvent('mousehunt-improved-settings-after-load');
 };
 
-if (isiFrame()) {
-  // If we're in an iframe, we're done.
-  addToGlobal('loaded', true);
-} else {
-  // Start it up.
-  main();
+const init = () => {
+  if (isiFrame()) {
+    return;
+  }
 
-  // add our dev stuff.
-  dev();
+  // Blank the page so that there isn't a flash of the sidebar and footer and all the UI we change.
+  // Set a timeout so that if something goes wrong, we don't just have a blank page.
+  document.body.style.display = 'none';
+  setTimeout(() => {
+    document.body.style.display = 'block';
+  }, 1000);
 
-  // We're done!
-  addToGlobal('loaded', true);
-}
+  try {
+    // Start it up.
+    loadModules();
+  } catch (error) {
+    showLoadingError(error);
+  } finally {
+    addToGlobal('loaded', true);
+    // Unblank the page.
+    document.body.style.display = 'block';
+  }
+};
+
+init();
