@@ -1,4 +1,6 @@
-export default function (subModule, module) {
+import { addMhuiSetting } from '../../utils';
+
+export default function (module) {
   let options = [
     { name: 'Default', value: 'default' },
     { name: 'Events', value: 'group', options: [
@@ -88,17 +90,12 @@ export default function (subModule, module) {
     });
   }
 
-  addSetting(
-    'Custom Shield',
+  addMhuiSetting(
     'custom-shield',
+    'Custom Shield',
     [options[0]],
     'Replace the default shield with a custom one.',
-    {
-      id: module.id,
-      name: module.name,
-      description: module.description
-    },
-    'mousehunt-improved-settings',
+    module,
     {
       type: 'multi-select',
       number: 1,

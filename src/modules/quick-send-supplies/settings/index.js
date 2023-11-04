@@ -1,9 +1,10 @@
+import { addMhuiSetting } from '../../utils';
 import getTradableItems from '../../../data/tradable-items';
 
-export default function (subModule, module) {
-  addSetting(
-    'Quick Send Supplies Items',
+export default function (module) {
+  addMhuiSetting(
     'quick-send-supplies-items',
+    'Quick Send Supplies Items',
     [
       {
         name: 'SUPER|brie+',
@@ -23,12 +24,7 @@ export default function (subModule, module) {
       },
     ],
     'Items to make available in the Quick Send Supplies popup.',
-    {
-      id: module.id,
-      name: module.name,
-      description: module.description
-    },
-    'mousehunt-improved-settings',
+    module,
     {
       type: 'multi-select',
       number: 4,

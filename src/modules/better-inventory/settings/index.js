@@ -1,27 +1,19 @@
-export default function (subModule, module) {
-  addSetting(
-    'Add \'Open All but One\' Buttons',
+import { addMhuiSetting } from '../../utils';
+
+export default function (module) {
+  addMhuiSetting(
     'better-inventory-open-all-but-one',
+    'Add \'Open All but One\' Buttons',
     true,
     'Add \'Open All but One\' buttons to convertible items in the inventory.',
-    {
-      id: module.id,
-      name: module.name,
-      description: module.description
-    },
-    'mousehunt-improved-settings'
+    module
   );
 
-  addSetting(
-    'Only Open Multiple',
+  addMhuiSetting(
     'better-inventory-lock-open-all',
+    'Only Open Multiple',
     false,
     'Lock opening things in your inventory unless you have more than one',
-    {
-      id: module.id,
-      name: module.name,
-      description: module.description
-    },
-    'mousehunt-improved-settings'
+    module
   );
 }
