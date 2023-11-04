@@ -1,5 +1,5 @@
 import { addUIStyles } from '../utils';
-import styles from './styles.css';
+import styles from './styles/journal-privacy.css';
 
 const applyClassToNames = () => {
   const entries = document.querySelectorAll('#journalContainer .entry.relicHunter_start .journaltext');
@@ -29,7 +29,7 @@ const applyClassToNames = () => {
 export default () => {
   addUIStyles(styles);
 
-  onAjaxRequest(() => {
+  onRequest(() => {
     applyClassToNames();
   }, 'managers/ajax/pages/journal.php');
 };

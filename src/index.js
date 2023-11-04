@@ -99,7 +99,6 @@ const modules = [
       { id: 'hover-profiles', name: 'Hover Profiles', default: true, description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.', load: hoverProfiles },
       { id: 'image-upscaling', name: 'Image Upscaling', default: true, description: 'Uses high-res images with transparent backgrounds across the entire MH interface.', load: imageUpscaling },
       { id: 'inline-wiki', name: 'Inline Wiki', default: true, description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.', load: inlineWiki },
-      { id: 'journal-privacy', name: 'Hide player names in journal entries', default: false, description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.', load: journalPrivacy },
       { id: 'keyboard-shortcuts', name: 'Keyboard Shortcuts', default: true, description: 'Press \'?\' to see a list of keyboard shortcuts.', load: keyboardShortcuts },
       { id: 'location-catch-stats', name: 'Location Catch Stats', default: true, description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.', load: locationCatchStats },
       { id: 'quick-filters-and-sort', name: 'Quick Filters and Sort', default: true, description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.', load: quickFiltersAndSort },
