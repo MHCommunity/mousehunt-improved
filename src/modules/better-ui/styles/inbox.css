@@ -37,6 +37,10 @@
   white-space: nowrap;
 }
 
+.notificationMessageList .message.ballot.new .date {
+  font-size: 8px;
+}
+
 /* friend requests */
 .notificationMessageList .message.friend_invite_pending .clear-block {
   display: flex;
