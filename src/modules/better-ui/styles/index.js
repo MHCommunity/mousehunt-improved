@@ -2,6 +2,7 @@ import { addUIStyles } from '../../utils';
 
 import adventure from './adventure.css';
 import betterLuckyCatchIcon from './better-lucky-catch-icon.css';
+import copyId from './copy-id.css';
 import corkboard from './corkboard.css';
 import events from './events.css';
 import footer from './footer.css';
@@ -26,6 +27,7 @@ const main = () => {
     adventure,
     general,
     betterLuckyCatchIcon,
+    copyId,
     corkboard,
     events,
     footer,

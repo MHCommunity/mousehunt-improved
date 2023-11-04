@@ -1,7 +1,4 @@
-import { addUIStyles } from '../utils';
-import styles from './styles.css';
-
-const main = () => {
+export default () => {
   const profilePic = document.querySelector('.mousehuntHud-userStatBar .mousehuntHud-profilePic');
   if (! profilePic) {
     return;
@@ -41,9 +38,4 @@ const main = () => {
   copyIdButton.addEventListener('mouseleave', () => {
     copyIdButton.style.display = 'none';
   });
-};
-
-export default () => {
-  addUIStyles(styles);
-  main();
 };
