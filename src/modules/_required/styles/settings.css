@@ -68,6 +68,7 @@
 
 .mousehunt-improved-settings .PagePreferences__settingsList {
   padding: 5px;
+  padding-left: 10px;
 }
 
 .PagePreferences .mousehunt-improved-settings .PagePreferences__setting {
@@ -109,7 +110,8 @@
 #mousehunt-improved-settings-mousehunt-improved-better-ui-copy-id,
 #mousehunt-improved-settings-mousehunt-improved-better-ui-dark-mode,
 #mousehunt-improved-settings-mousehunt-improved-better-ui-prestige-base,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id {
+#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id,
+#mousehunt-improved-settings-mousehunt-improved-better-journal-privacy {
   padding-left: 10px;
   margin-left: 20px;
 }
@@ -127,7 +129,8 @@
 #mousehunt-improved-settings-mousehunt-improved-better-ui-copy-id .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-better-ui-dark-mode .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-better-ui-prestige-base .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id .PagePreferences__settingName {
+#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id .PagePreferences__settingName,
+#mousehunt-improved-settings-mousehunt-improved-better-journal-privacy .PagePreferences__settingName {
   font-size: 13px;
 }
 
