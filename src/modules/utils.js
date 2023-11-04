@@ -324,6 +324,22 @@ const showSuccessMessage = (message, appendTo, classes = '') => {
   showErrorMessage(message, appendTo, classes, 'success');
 };
 
+const addMhuiSetting = (id, title, defaultVal, description, module, options = null) => {
+  addSetting(
+    title,
+    id,
+    defaultVal,
+    description,
+    {
+      id: module.id,
+      name: module.name,
+      description: module.description
+    },
+    'mousehunt-improved-settings',
+    options
+  );
+};
+
 const saveMhuiSetting = (key, value) => {
   return saveSetting(key, value, 'mousehunt-improved-settings');
 };
@@ -394,8 +410,9 @@ export {
   makeLink,
   showErrorMessage,
   showSuccessMessage,
-  saveMhuiSetting,
+  addMhuiSetting,
   getMhuiSetting,
+  saveMhuiSetting,
   getFlag,
   addToGlobal,
   getGlobal,
