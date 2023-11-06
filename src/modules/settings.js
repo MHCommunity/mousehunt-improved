@@ -1,3 +1,5 @@
+import globalStyles from './_required/styles/global-styles.css';
+
 const addAdvancedSettings = () => {
   // Add the advanced override settings.
   const advancedTab = {
@@ -51,8 +53,6 @@ const addSettingForModule = (module) => {
 const showLoadingError = (e) => {
   console.error('Error loading MouseHunt Improved:', e); // eslint-disable-line no-console
 
-  // Doing all this in-line so that we don't need to worry about loading anything else.
-
   // Add the error to the page.
   const errorElement = document.createElement('div');
   errorElement.classList.add('mousehunt-improved-error');
@@ -63,35 +63,7 @@ const showLoadingError = (e) => {
   document.body.appendChild(errorElement);
 
   const errorStyles = document.createElement('style');
-  errorStyles.innerHTML = `.mousehunt-improved-error {
-    position: fixed;
-    top: 85px;
-    right: 35%;
-    left: 25%;
-    z-index: 20;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-    align-items: stretch;
-    padding: 10px 20px;
-    background-color: #febebe;
-    border: 1px solid #4e2727;
-    border-radius: 6px;
-    box-shadow: 0 0 10px 1px #bc7b7b;
-  }
-
-  .mousehunt-improved-error h1 {
-    margin: 0;
-    font-size: 1.3em;
-    font-weight: 900;
-    color: #9f2323;
-  }
-
-  .mousehunt-improved-error p {
-    margin: 0;
-    font-size: 1.2em;
-    line-height: 2;
-  }`;
+  errorStyles.innerHTML = globalStyles;
   document.head.appendChild(errorStyles);
 };
 

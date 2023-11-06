@@ -92,6 +92,36 @@
   border: 1px solid #3e803e;
 }
 
+.mousehunt-improved-error {
+  position: fixed;
+  right: 25%;
+  bottom: 15%;
+  left: 25%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  align-items: stretch;
+  padding: 10px 20px;
+  background-color: #febebe;
+  border: 1px solid #4e2727;
+  border-radius: 6px;
+  box-shadow: 0 0 10px 1px #bc7b7b;
+}
+
+.mousehunt-improved-error h1 {
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: 900;
+  color: #9f2323;
+}
+
+.mousehunt-improved-error p {
+  margin: 0;
+  font-size: 1.2em;
+  line-height: 2;
+}
+
 @keyframes mh-ui-sway-side-to-side {
   0% {
     transform: rotate(0deg);
