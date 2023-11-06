@@ -397,6 +397,22 @@ const isiFrame = () => {
   return window.self !== window.top;
 };
 
+const addBodyClass = (className) => {
+  document.body.classList.add(className);
+};
+
+const persistBodyClass = (className) => {
+  const addClass = () => {
+    addBodyClass(className);
+  };
+
+  addClass();
+  onNavigation(addClass);
+  onTravel(null, { callback: () => {
+    setTimeout(addClass, 500);
+  } });
+};
+
 export {
   addUIStyles,
   addHudStyles,
@@ -419,5 +435,7 @@ export {
   mapper,
   mapData,
   mapModel,
-  isiFrame
+  isiFrame,
+  addBodyClass,
+  persistBodyClass
 };
