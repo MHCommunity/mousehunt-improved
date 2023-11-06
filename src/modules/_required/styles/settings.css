@@ -236,7 +236,7 @@
 /* Export Settings */
 .mousehunt-improved-export-settings {
   position: absolute;
-  top: 13px;
+  top: 2px;
   right: 10px;
 }
 
@@ -290,5 +290,10 @@
 
 .PagePreferences__title.toggled .PagePreferences__settingsList,
 .PagePreferences__title.toggled .PagePreferences__separator {
+  display: none;
+}
+
+/* todo: fix this in mhutils */
+.mh-utils-settings-refresh-message-hidden {
   display: none;
 }

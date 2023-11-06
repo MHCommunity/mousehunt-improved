@@ -6,14 +6,14 @@ const addAdvancedSettings = () => {
     id: 'mousehunt-improved-settings-overrides',
     name: 'Overrides',
     default: true,
-    description: 'Modify MouseHunt Improved.'
+    description: '',
   };
 
   addSetting(
     'Custom Styles',
     'override-styles',
     '',
-    'Add custom CSS to the page.',
+    'Custom CSS to apply to MouseHunt.',
     advancedTab,
     'mousehunt-improved-settings',
     { type: 'textarea' }
@@ -23,7 +23,7 @@ const addAdvancedSettings = () => {
     'Custom Flags',
     'override-flags',
     '',
-    'Apply custom flags to modify MouseHunt Improved\'s behavior.',
+    'Comma seperated list of feature flags to enable.',
     advancedTab,
     'mousehunt-improved-settings',
     { type: 'input' }
