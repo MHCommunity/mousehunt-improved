@@ -2,6 +2,7 @@ import { addUIStyles, getArForMouse, makeLink } from '../utils';
 import styles from './styles.css';
 import mousepage from './mousepage';
 import minlucks from '../../data/minlucks.json';
+import wisdoms from '../../data/wisdom.json';
 
 /**
  * Get the markup for the mouse links.
@@ -123,6 +124,26 @@ const addMinluck = async (mouseName, mouseView) => {
   appendTo.appendChild(minluckContainer);
 };
 
+const addWisdom = async (mouseName, mouseView) => {
+  let wisdom = false;
+  if (wisdom[mouseName.innerText]) {
+    wisdom = wisdoms[mouseName.innerText];
+  } else if (wisdoms[mouseName.innerText.replace(' Mouse', '')]) {
+    wisdom = wisdoms[mouseName.innerText.replace(' Mouse', '')];
+  } else {
+    return;
+  }
+
+  const values = mouseView.querySelector('.mouseView-values');
+  if (! values) {
+    return;
+  }
+
+  // comma separate the wisdom number
+  wisdom = wisdom.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  makeElement('span', 'wisdom-container', ` / ${wisdom} Wisdom`, values);
+};
+
 const updateMouseView = async () => {
   const mouseView = document.querySelector('#overlayPopup .mouseView');
   if (! mouseView) {
@@ -155,6 +176,7 @@ const updateMouseView = async () => {
   const name = mouseView.querySelector('.mouseView-title');
 
   addMinluck(name, mouseView);
+  addWisdom(name, mouseView);
 
   mouseView.classList.add('mouseview-has-mhct');
 

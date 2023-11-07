@@ -1,0 +1,19 @@
+#! /usr/bin/env bash
+
+# Get the wisdom.
+curl -s 'https://docs.google.com/spreadsheets/d/1nzD6iiHauMMwD2eHBuAyRziYJtCVnNwSYzCKbBnrRgc/gviz/tq?tqx=out:csv&gid=701898940' > wisdom.csv
+
+# Convert the csv to json and replace the escaped quotes.
+jq -cR 'split("\",\"")' wisdom.csv > wisdom2.csv
+sed -i '' 's/\\"//g' wisdom2.csv
+jq -csf scripts/csv2json.jq wisdom2.csv | jq > wisdom.json
+
+# # Reformat the json to be an array of objects in the format {"<mouse>": {"power": <power>, "wisdom": [<wisdom>]}}
+jq -s '.[0][] | {(.mouse): .wisdom'} wisdom.json > wisdom2.json
+jq -s 'add' wisdom2.json > wisdom.json
+
+mv wisdom.json src/data/wisdom.json
+
+rm wisdom.csv
+rm wisdom2.csv
+rm wisdom2.json
