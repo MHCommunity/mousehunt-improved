@@ -85,7 +85,8 @@
 }
 
 .journal .entry.convertible_open img,
-.MiniEventGiveawayCampHUD-dialog-item .itemImage {
+.MiniEventGiveawayCampHUD-dialog-item .itemImage,
+.journal .entry.craft.item img {
   border: none;
 }
 
