@@ -418,13 +418,11 @@ const addButtonsToDropdown = () => {
 
 const addButtonsToPopup = () => {
   const actionRow = document.querySelector('.giftSelectorView-tabContentContainer .giftSelectorView-tabContent.active .giftSelectorView-actionContainer');
-  console.log(actionRow);
   if (! actionRow) {
     return;
   }
 
   const existing = document.querySelector('.mh-gift-buttons-send-popup');
-  console.log(existing);
   if (existing) {
     existing.remove();
   }
