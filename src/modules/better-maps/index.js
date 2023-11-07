@@ -30,7 +30,7 @@ const interceptMapRequest = (mapId) => {
 };
 
 const initMapper = (map) => {
-  if (! (map && map.map_id && map.map_type)) {
+  if (! map || ! map.map_id || ! map.map_type) {
     return;
   }
 

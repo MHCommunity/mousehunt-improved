@@ -132,7 +132,12 @@ const addProfilePicToCurrentFloor = async () => {
 };
 
 const doHighlighting = () => {
-  const mapType = mapData().map_type;
+  const data = mapData();
+  if (! data) {
+    return;
+  }
+
+  const mapType = data.map_type;
 
   const existing = document.querySelector('.mouse-category-current-floor');
   if (existing) {
