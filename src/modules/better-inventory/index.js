@@ -126,7 +126,7 @@ const inventoryPage = () => {
 };
 
 const addItemViewPopupToCollectibles = () => {
-  const collectibles = document.querySelectorAll('.inventoryPage-item.small');
+  const collectibles = document.querySelectorAll('.mousehuntHud-page-subTabContent.collectible .inventoryPage-item.small');
   if (! collectibles.length) {
     return;
   }
