@@ -189,6 +189,14 @@ const updateMouseView = async () => {
     const weaknessContainer = mouseView.querySelector('.mouseView-weaknessContainer');
     if (weaknessContainer) {
       movedContainer.appendChild(weaknessContainer);
+      const weaknesses = weaknessContainer.querySelectorAll('.mouseView-categoryContent-subgroup-mouse-weaknesses-padding');
+      weaknesses.forEach((w) => {
+        const weakness = w.querySelector('.mouseView-weakness');
+        if (! weakness) {
+          w.classList.add('mouseview-weakness-empty');
+          w.classList.add('hidden');
+        }
+      });
     }
 
     imageContainer.appendChild(movedContainer);
