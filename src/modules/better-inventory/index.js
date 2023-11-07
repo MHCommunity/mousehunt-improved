@@ -184,10 +184,11 @@ const main = () => {
   });
 
   onEvent('js_dialog_show', addOpenAlltoConvertible);
+
+  recipes();
 };
 
 export default () => {
   addUIStyles(styles);
   main();
-  recipes();
 };
