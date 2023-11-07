@@ -258,3 +258,38 @@ a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryCont
 .mouseViewPopup .mouseView-group.mouseview-title-group {
   text-align: right;
 }
+
+img.minluck-power-type-img {
+  width: 20px;
+}
+
+li.minluck-item {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+  width: auto;
+  padding: 2px;
+  margin: 2px;
+  font-size: 12px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+ul.minluck-list {
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center flex-start;
+  width: auto;
+  margin-right: -5px;
+}
+
+.minluck-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2px;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 900;
+}

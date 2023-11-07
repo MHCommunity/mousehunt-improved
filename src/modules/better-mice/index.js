@@ -1,6 +1,8 @@
 import { addUIStyles, getArForMouse, makeLink } from '../utils';
 import styles from './styles.css';
 import mousepage from './mousepage';
+import minlucks from '../../data/minlucks.json';
+
 /**
  * Get the markup for the mouse links.
  *
@@ -79,6 +81,48 @@ const addFavoriteButton = async (mouseId, mouseView) => {
   mouseView.appendChild(fave);
 };
 
+const addMinluck = async (mouseName, mouseView) => {
+  let minluck = false;
+  if (minlucks[mouseName.innerText]) {
+    minluck = minlucks[mouseName.innerText];
+  } else if (minlucks[mouseName.innerText.replace(' Mouse', '')]) {
+    minluck = minlucks[mouseName.innerText.replace(' Mouse', '')];
+  } else {
+    return;
+  }
+
+  // get the description container
+  const appendTo = mouseView.querySelector('.mouseView-contentContainer');
+  if (! appendTo) {
+    return;
+  }
+
+  const minluckContainer = makeElement('div', 'minluck-container');
+  makeElement('div', 'minluck-title', 'Minlucks', minluckContainer);
+
+  // foreach minluck, output the power type and the minluck
+  const minluckList = makeElement('ul', 'minluck-list');
+  Object.keys(minluck).forEach((powerType) => {
+    if (! minluck[powerType] || '∞' === minluck[powerType]) {
+      return;
+    }
+
+    const minluckItem = makeElement('li', 'minluck-item');
+
+    const powerTypeImg = makeElement('img', 'minluck-power-type-img');
+    powerTypeImg.src = `https://www.mousehuntgame.com/images/powertypes/${powerType.toLowerCase()}.png`;
+    minluckItem.appendChild(powerTypeImg);
+
+    makeElement('div', 'minluck-power-type-minluck', minluck[powerType], minluckItem);
+
+    minluckList.appendChild(minluckItem);
+  });
+
+  minluckContainer.appendChild(minluckList);
+
+  appendTo.appendChild(minluckContainer);
+};
+
 const updateMouseView = async () => {
   const mouseView = document.querySelector('#overlayPopup .mouseView');
   if (! mouseView) {
@@ -108,6 +152,9 @@ const updateMouseView = async () => {
 
   addLinks();
   addFavoriteButton(mouseId, mouseView);
+  const name = mouseView.querySelector('.mouseView-title');
+
+  addMinluck(name, mouseView);
 
   mouseView.classList.add('mouseview-has-mhct');
 
@@ -150,8 +197,6 @@ const updateMouseView = async () => {
   const arWrapper = makeElement('div', 'ar-wrapper');
   const title = makeElement('div', 'ar-header');
   makeElement('div', 'ar-title', 'Attraction Rates', title);
-
-  const name = mouseView.querySelector('.mouseView-title');
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://www.mhct.win/attractions.php?mouse_name=${name.innerText}`;
