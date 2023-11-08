@@ -1,5 +1,5 @@
-import { addUIStyles } from '../../utils';
-import styles from '../styles/fixes.css';
+import { addUIStyles } from '../utils';
+import styles from './styles.css';
 
 const fixPassingParcel = () => {
   const passingParcel = document.querySelector('.inventoryPage-item[data-item-type="passing_parcel_message_item"]');

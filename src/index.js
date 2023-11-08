@@ -48,12 +48,14 @@ import noShare from './modules/no-share';
 import noSidebar from './modules/no-sidebar';
 import noDailyReward from './modules/no-daily-reward';
 
-// Global styles and fixes.
+// All the always loaded modules.
 import required from './modules/_required';
 import dev from './modules/dev';
-
-// Feature modules that are locked behind a flag.
 import featureFlags from './modules/feature-flags';
+import fixes from './modules/fixes';
+import highlightUsers from './modules/highlight-users';
+import links from './modules/links';
+import updateNotifications from './modules/update-notifications';
 
 import { addToGlobal, getGlobal, getFlag, isiFrame } from './modules/utils';
 import { addAdvancedSettings, addSettingForModule, showLoadingError } from './modules/settings';
@@ -67,18 +69,38 @@ const modules = [
       {
         id: 'required',
         load: required,
-        alwaysLoad: true
+        alwaysLoad: true,
       },
       {
         id: 'dev',
         load: dev,
-        alwaysLoad: true
+        alwaysLoad: true,
       },
       {
         id: 'feature-flags',
         load: featureFlags,
-        alwaysLoad: true
+        alwaysLoad: true,
       },
+      {
+        id: 'fixes',
+        load: fixes,
+        alwaysLoad: true,
+      },
+      {
+        id: 'highlight-users',
+        load: highlightUsers,
+        alwaysLoad: true,
+      },
+      {
+        id: 'links',
+        load: links,
+        alwaysLoad: true,
+      },
+      {
+        id: 'update-notifications',
+        load: updateNotifications,
+        alwaysLoad: true,
+      }
     ],
   },
   {
