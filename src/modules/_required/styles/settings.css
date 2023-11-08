@@ -104,14 +104,7 @@
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-open-all-but-one,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-copy-id,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-dark-mode,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-prestige-base,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id,
-#mousehunt-improved-settings-mousehunt-improved-better-journal-privacy {
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send {
   padding-left: 10px;
   margin-left: 20px;
 }
@@ -123,14 +116,7 @@
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-open-all-but-one .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-copy-id .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-dark-mode .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-prestige-base .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-journal-privacy .PagePreferences__settingName {
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send .PagePreferences__settingName {
   font-size: 13px;
 }
 

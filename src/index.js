@@ -1,10 +1,8 @@
 // Core 'Better' modules.
 import betterUi from './modules/better-ui';
-import betterUiSettings from './modules/better-ui/settings';
 import betterInventory from './modules/better-inventory';
 import betterGifts from './modules/better-gifts';
 import betterGiftsSettings from './modules/better-gifts/settings';
-import betterInventorySettings from './modules/better-inventory/settings';
 import betterItemView from './modules/better-item-view';
 import betterJournal from './modules/better-journal';
 import betterKingsReward from './modules/better-kings-reward';
@@ -20,16 +18,21 @@ import betterTravel from './modules/better-travel';
 import betterTravelSettings from './modules/better-travel/settings';
 
 // Feature modules.
-import locationCatchStats from './modules/location-catch-stats';
+import copyId from './modules/copy-id';
 import customShield from './modules/custom-shield';
 import customShieldSettings from './modules/custom-shield/settings';
+import darkMode from './modules/dark-mode';
 import dashboard from './modules/dashboard';
-
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
 import journalPrivacy from './modules/journal-privacy';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
+import locationCatchStats from './modules/location-catch-stats';
+import onlyOpenMultiple from './modules/only-open-multiple';
+import openAllButOne from './modules/open-all-but-one';
+import pasteHunterId from './modules/paste-hunter-id';
+import prestigeBaseStats from './modules/prestige-base-stats';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
 import quickSendSuppliesSettings from './modules/quick-send-supplies/settings';
@@ -113,7 +116,6 @@ const modules = [
         default: true,
         description: 'Updates the MH interface with a variety of UI and style changes.',
         load: betterUi,
-        settings: betterUiSettings
       },
       {
         id: 'better-gifts',
@@ -129,7 +131,6 @@ const modules = [
         default: true,
         description: 'Updates the inventory layout and styling. ',
         load: betterInventory,
-        settings: betterInventorySettings
       },
       {
         id: 'better-item-view',
@@ -217,6 +218,13 @@ const modules = [
     name: 'Features',
     modules: [
       {
+        id: 'copy-id',
+        name: 'Copy ID',
+        default: true,
+        description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.',
+        load: copyId,
+      },
+      {
         id: 'custom-shield',
         name: 'Custom Shield',
         default: false,
@@ -224,6 +232,13 @@ const modules = [
         load: customShield,
         alwaysLoad: true, // set to always load so that rather than enable/disable, you can just change the shield back to default.
         settings: customShieldSettings
+      },
+      {
+        id: 'dark-mode',
+        name: 'Dark Mode Improvements & Tweaks',
+        default: true,
+        description: 'Improves and tweaks dark mode, either the standalone extension or the MHCT version.',
+        load: darkMode,
       },
       {
         id: 'dashboard',
@@ -273,6 +288,34 @@ const modules = [
         default: true,
         description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.',
         load: locationCatchStats
+      },
+      {
+        id: 'only-open-multiple',
+        name: 'Inventory - Only open multiple',
+        default: false,
+        description: 'Lock opening things in your inventory unless you have multiple of them.',
+        load: onlyOpenMultiple,
+      },
+      {
+        id: 'open-all-but-one',
+        name: 'Inventory - Open all but one buttons',
+        default: true,
+        description: 'Adds \'Open All but One\' buttons to convertible items in your inventory.',
+        load: openAllButOne,
+      },
+      {
+        id: 'paste-hunter-id',
+        name: 'Paste Hunter ID',
+        default: true,
+        description: 'Copy a Hunter ID to your clipboard then press Ctrl/Cmd+v anywhere to go directly to that hunter\'s profile.',
+        load: pasteHunterId,
+      },
+      {
+        id: 'prestige-base-stats',
+        name: 'Prestige Base Stats',
+        default: true,
+        description: 'Shows the correct stats for the Prestige Base in the base selector.',
+        load: prestigeBaseStats,
       },
       {
         id: 'quick-filters-and-sort',
