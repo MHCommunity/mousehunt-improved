@@ -341,7 +341,7 @@ const modules = [
   },
 ];
 
-const loadModules = () => {
+const loadModules = async () => {
   if (getGlobal('loaded')) {
     return;
   }
@@ -374,7 +374,7 @@ const loadModules = () => {
   addToGlobal('modules', loadedModules);
 };
 
-const init = () => {
+const init = async () => {
   if (isiFrame()) {
     return;
   }
