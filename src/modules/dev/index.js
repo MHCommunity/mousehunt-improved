@@ -1,4 +1,4 @@
-import { addToGlobal } from './utils';
+import { addToGlobal } from '../utils';
 
 const main = () => {
   addToGlobal('mhutils', {
