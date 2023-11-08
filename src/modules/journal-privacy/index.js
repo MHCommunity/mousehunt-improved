@@ -1,5 +1,5 @@
 import { addUIStyles } from '../utils';
-import styles from './styles/journal-privacy.css';
+import styles from './styles.css';
 
 const applyClassToNames = () => {
   const entries = document.querySelectorAll('#journalContainer .entry.relicHunter_start .journaltext');

@@ -5,8 +5,6 @@ import fullstop from './styles/fullstop.css';
 import miniEntries from './styles/mini-entries.css';
 import progressLog from './styles/progress-log.css';
 
-import journalPrivacy from './journal-privacy';
-
 /**
  * For each element matching the selector, find and replace strings.
  *

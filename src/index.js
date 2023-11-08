@@ -7,7 +7,6 @@ import betterGiftsSettings from './modules/better-gifts/settings';
 import betterInventorySettings from './modules/better-inventory/settings';
 import betterItemView from './modules/better-item-view';
 import betterJournal from './modules/better-journal';
-import betterJournalSettings from './modules/better-journal/settings';
 import betterKingsReward from './modules/better-kings-reward';
 import betterMaps from './modules/better-maps';
 import betterMarketplace from './modules/better-marketplace';
@@ -29,6 +28,7 @@ import dashboard from './modules/dashboard';
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
+import journalPrivacy from './modules/journal-privacy';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
 import quickFiltersAndSort from './modules/quick-filters-and-sort';
 import quickSendSupplies from './modules/quick-send-supplies';
@@ -122,7 +122,6 @@ const modules = [
         default: true,
         description: 'Modify the journal text, layout, and styling.',
         load: betterJournal,
-        settings: betterJournalSettings
       },
       {
         id: 'better-kings-reward',
@@ -231,6 +230,13 @@ const modules = [
         default: true,
         description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.',
         load: inlineWiki
+      },
+      {
+        id: 'journal-privacy',
+        name: 'Hide player names in journal entries',
+        default: false,
+        description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.',
+        load: journalPrivacy,
       },
       {
         id: 'keyboard-shortcuts',
