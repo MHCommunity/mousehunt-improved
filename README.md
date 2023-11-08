@@ -18,6 +18,8 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 
 ## Features
 
+**Each feature can be enabled or disabled individually, allowing you to customize your experience.**
+
 ### 'Better' Feature Modules
 
 - Better UI
@@ -25,7 +27,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Updates the Prestige Base to have the correct stats.
   - Autofocuses the Hunter ID search box on the Find Friends page.
   - Modifies the Hunter ID search box to be a bit bigger and moves it to the top.
-  - With a Hunter ID in your clipboard, simply hit Ctrl/Cmd+V to paste it anywhere in MH to go directly to that hunter's profile.
   - Shows your exact rank percentage immediately when you hover over the value.
   - Upscales the lucky catch icon to be higher resolution.
   - Updates the footer display to look much nicer and align the links better.
@@ -58,8 +59,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Reorders the recipe list to move one-off recipes to the bottom and minimize their display.
   - Adds an indicator on any collectibles that have a special action.
   - Resizes the crafting table to be easier to read and use.
-  - Adds an 'Open all but one' button to convertibles.
-  - Adds an optional to lock opening convertibles unless you have multiple of them.
 
 - Better Item View
   - Adds links to [MHCT](https://mhct-win) and [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php) to the popup.
@@ -138,6 +137,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Custom Shield
   - Change your shield in the HUD to a variety of different options including past events, color tints (with optional timer color) or some fun meme shields.
 
+- Dark Mode Improvements & Tweaks
+  - Minor changes to the Dark Mode extension (either standalone or the MHCT built-in).
+
 - Hover Profiles
   - Hover over a friend's name in your journal, inbox, or elsewhere and get a mini-profile popup with all their stats, interaction buttons, and everything you'd expect.
 
@@ -179,6 +181,18 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Location Catch Stats
   - Adds an item under the "Mouse" menu to see your catch stats for the current location.
 
+- Only Open Multiple
+  - Lock opening items in your inventory unless you have multiple of them. Great for collectors.
+
+- Open All But One buttons
+  - Adds 'Open All But One' buttons to convertibles in your inventory.
+
+- Paste Hunter ID
+  - Copy a Hunter ID to your clipboard and then press 'Ctrl/Cmd+v' anywhere to go directly to that hunter's profile.
+
+- Prestige Base Stats
+  - Shows the correct stats for the Prestige Base in the base selector.
+
 - Quick Filters and Sort
   - Adds one-click filters to the Trap and Base selectors to show only specific power types.
   - Adds one-click sorting to the Trap, Base, Charm, and Cheese selectors to sort by Power, Power Bonus, Luck, Attraction Bonus, name, or quantity owned (for cheese and charms).
@@ -201,6 +215,8 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 
 ### Element Hiding
 
+- Adblock
+  - Hides advertisements for Feedback Friday, mobile apps, news ticker, etc.
 - Remove Footer
   - Hides the footer.
 - Remove Share Buttons

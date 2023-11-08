@@ -22,13 +22,12 @@ import copyId from './modules/copy-id';
 import customShield from './modules/custom-shield';
 import customShieldSettings from './modules/custom-shield/settings';
 import darkMode from './modules/dark-mode';
-import dashboard from './modules/dashboard';
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
-import journalPrivacy from './modules/journal-privacy';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
 import locationCatchStats from './modules/location-catch-stats';
+import locationDashboard from './modules/dashboard';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import openAllButOne from './modules/open-all-but-one';
 import pasteHunterId from './modules/paste-hunter-id';
@@ -50,6 +49,7 @@ import noFooter from './modules/no-footer';
 import noShare from './modules/no-share';
 import noSidebar from './modules/no-sidebar';
 import noDailyReward from './modules/no-daily-reward';
+import journalPrivacy from './modules/journal-privacy';
 
 // All the always loaded modules.
 import required from './modules/_required';
@@ -241,13 +241,6 @@ const modules = [
         load: darkMode,
       },
       {
-        id: 'dashboard',
-        name: 'Location Dashboard',
-        default: true,
-        description: 'See location HUD information in a dashboard available in the top dropdown menu.',
-        load: dashboard,
-      },
-      {
         id: 'hover-profiles',
         name: 'Hover Profiles',
         default: true,
@@ -269,18 +262,18 @@ const modules = [
         load: inlineWiki,
       },
       {
-        id: 'journal-privacy',
-        name: 'Hide player names in journal entries',
-        default: false,
-        description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.',
-        load: journalPrivacy,
-      },
-      {
         id: 'keyboard-shortcuts',
         name: 'Keyboard Shortcuts',
         default: true,
         description: 'Press \'?\' to see a list of keyboard shortcuts.',
         load: keyboardShortcuts,
+      },
+      {
+        id: 'location-dashboard',
+        name: 'Location Dashboard',
+        default: true,
+        description: 'See location HUD information in a dashboard available in the top dropdown menu.',
+        load: locationDashboard,
       },
       {
         id: 'location-catch-stats',
@@ -298,16 +291,16 @@ const modules = [
       },
       {
         id: 'open-all-but-one',
-        name: 'Inventory - Open all but one buttons',
+        name: 'Inventory - Open all But One buttons',
         default: true,
-        description: 'Adds \'Open All but One\' buttons to convertible items in your inventory.',
+        description: 'Adds \'Open All But One\' buttons to convertible items in your inventory.',
         load: openAllButOne,
       },
       {
         id: 'paste-hunter-id',
         name: 'Paste Hunter ID',
         default: true,
-        description: 'Copy a Hunter ID to your clipboard then press Ctrl/Cmd+v anywhere to go directly to that hunter\'s profile.',
+        description: 'Copy a Hunter ID to your clipboard and then press Ctrl/Cmd+v anywhere to go directly to that hunter\'s profile.',
         load: pasteHunterId,
       },
       {
@@ -367,11 +360,18 @@ const modules = [
         load: adblock,
       },
       {
-        id: 'no-daily-reward',
+        id: 'hide-daily-reward',
         name: 'Hide Daily Reward Popup',
         default: false,
         description: 'Automatically close the daily reward popup when it shows.',
         load: noDailyReward,
+      },
+      {
+        id: 'journal-privacy',
+        name: 'Hide player names in journal entries',
+        default: false,
+        description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.',
+        load: journalPrivacy,
       },
       {
         id: 'no-footer',
