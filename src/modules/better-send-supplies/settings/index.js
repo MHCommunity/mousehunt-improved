@@ -4,7 +4,7 @@ import getTradableItems from '../../../data/tradable-items';
 export default function (module) {
   addMhuiSetting(
     'send-supplies-pinned-items',
-    'Better Send Supplies Pinned Items',
+    'Pinned Items',
     [
       {
         name: 'SUPER|brie+',
