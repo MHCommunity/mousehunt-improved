@@ -123,7 +123,7 @@ const modules = [
         default: true,
         description: 'Quickly accept and return all your gifts as well as picking random friends to send to.',
         load: betterGifts,
-        settings: betterGiftsSettings
+        settings: betterGiftsSettings,
       },
       {
         id: 'better-inventory',
@@ -151,7 +151,7 @@ const modules = [
         name: 'Better King\'s Reward',
         default: true,
         description: 'Updates the style of the King\'s Reward slightly, automatically closes the success message',
-        load: betterKingsReward
+        load: betterKingsReward,
       },
       {
         id: 'better-maps',
@@ -165,21 +165,21 @@ const modules = [
         name: 'Better Marketplace',
         default: true,
         description: 'Updates the marketplace layout and appearance and adds a variety of small features.',
-        load: betterMarketplace
+        load: betterMarketplace,
       },
       {
         id: 'better-mice',
         name: 'Better Mice',
         default: true,
         description: 'Adds attraction rate stats and links to MHWiki and MHCT to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.',
-        load: betterMice
+        load: betterMice,
       },
       {
         id: 'better-quests',
         name: 'Better Quests',
         default: true,
         description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and bundles the M400 helper.',
-        load: betterQuests
+        load: betterQuests,
       },
       {
         id: 'better-send-supplies',
@@ -187,7 +187,7 @@ const modules = [
         default: true,
         description: 'Adds a variety of features to the Send Supplies page.',
         load: betterSendSupplies,
-        settings: betterSendSuppliesSettings
+        settings: betterSendSuppliesSettings,
       },
       {
         id: 'better-shops',
@@ -201,7 +201,7 @@ const modules = [
         name: 'Better Tournaments',
         default: true,
         description: 'Updates the Tournaments UI to show information on hover and a variety of small interface tweaks.',
-        load: betterTournaments
+        load: betterTournaments,
       },
       {
         id: 'better-travel',
@@ -209,7 +209,7 @@ const modules = [
         default: true,
         description: 'Updates the travel page.',
         load: betterTravel,
-        settings: betterTravelSettings
+        settings: betterTravelSettings,
       },
     ]
   },
@@ -231,7 +231,7 @@ const modules = [
         description: 'Change your shield in the HUD to a variety of different options.',
         load: customShield,
         alwaysLoad: true, // set to always load so that rather than enable/disable, you can just change the shield back to default.
-        settings: customShieldSettings
+        settings: customShieldSettings,
       },
       {
         id: 'dark-mode',
@@ -245,28 +245,28 @@ const modules = [
         name: 'Location Dashboard',
         default: true,
         description: 'See location HUD information in a dashboard available in the top dropdown menu.',
-        load: dashboard
+        load: dashboard,
       },
       {
         id: 'hover-profiles',
         name: 'Hover Profiles',
         default: true,
         description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.',
-        load: hoverProfiles
+        load: hoverProfiles,
       },
       {
         id: 'image-upscaling',
         name: 'Image Upscaling',
         default: true,
         description: 'Uses high-res images with transparent backgrounds across the entire MH interface.',
-        load: imageUpscaling
+        load: imageUpscaling,
       },
       {
         id: 'inline-wiki',
         name: 'Inline Wiki',
         default: true,
         description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.',
-        load: inlineWiki
+        load: inlineWiki,
       },
       {
         id: 'journal-privacy',
@@ -280,14 +280,14 @@ const modules = [
         name: 'Keyboard Shortcuts',
         default: true,
         description: 'Press \'?\' to see a list of keyboard shortcuts.',
-        load: keyboardShortcuts
+        load: keyboardShortcuts,
       },
       {
         id: 'location-catch-stats',
         name: 'Location Catch Stats',
         default: true,
         description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.',
-        load: locationCatchStats
+        load: locationCatchStats,
       },
       {
         id: 'only-open-multiple',
@@ -322,7 +322,7 @@ const modules = [
         name: 'Quick Filters and Sort',
         default: true,
         description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.',
-        load: quickFiltersAndSort
+        load: quickFiltersAndSort,
       },
       {
         id: 'quick-send-supplies',
@@ -330,30 +330,71 @@ const modules = [
         default: true,
         description: 'Hover over the send supplies button on someone\'s profile or hover-profile to easily send any quantity of SUPER|brie+ or another item.',
         load: quickSendSupplies,
-        settings: quickSendSuppliesSettings
+        settings: quickSendSuppliesSettings,
       },
       {
         id: 'taller-windows',
         name: 'Taller Windows',
         default: true,
         description: 'Make popup and dialog windows taller.',
-        load: tallerWindows
+        load: tallerWindows,
       },
       {
         id: 'tem-crowns',
         name: 'TEM Crowns',
         default: true,
         description: 'Adds crowns and catches to the the Trap Effectiveness Meter.',
-        load: temCrowns
+        load: temCrowns,
       },
       {
         id: 'ultimate-checkmark',
         name: 'Ultimate Checkmark',
         default: true,
         description: 'Adds more things collect on the items view of your Hunter profile.',
-        load: ultimateCheckmark
+        load: ultimateCheckmark,
       },
     ]
+  },
+  {
+    id: 'remove-elements',
+    name: 'Hide Page Elements',
+    modules: [
+      {
+        id: 'adblock',
+        name: 'Adblock',
+        default: false,
+        description: 'Hides advertisements for Feedback Friday, mobile apps, news ticker, etc.',
+        load: adblock,
+      },
+      {
+        id: 'no-daily-reward',
+        name: 'Hide Daily Reward Popup',
+        default: false,
+        description: 'Automatically close the daily reward popup when it shows.',
+        load: noDailyReward,
+      },
+      {
+        id: 'no-footer',
+        name: 'Remove Footer',
+        default: false,
+        description: 'Hides the footer.',
+        load: noFooter,
+      },
+      {
+        id: 'no-share',
+        name: 'Remove Share Buttons',
+        default: true,
+        description: 'Hides the share buttons.',
+        load: noShare,
+      },
+      {
+        id: 'no-sidebar',
+        name: 'Remove Sidebar',
+        default: false,
+        description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.',
+        load: noSidebar,
+      },
+    ],
   },
   {
     id: 'location-hud',
@@ -365,48 +406,7 @@ const modules = [
         default: true,
         description: '',
         load: locationHud, alwaysLoad: true,
-        settings: locationHudSettings
-      },
-    ],
-  },
-  {
-    id: 'remove-elements',
-    name: 'Hide Page Elements',
-    modules: [
-      {
-        id: 'adblock',
-        name: 'Adblock',
-        default: false,
-        description: 'Hides advertisements for Feedback Friday, mobile apps, news ticker, etc.',
-        load: adblock
-      },
-      {
-        id: 'no-daily-reward',
-        name: 'Hide Daily Reward Popup',
-        default: false,
-        description: 'Automatically close the daily reward popup when it shows.',
-        load: noDailyReward
-      },
-      {
-        id: 'no-footer',
-        name: 'Remove Footer',
-        default: false,
-        description: 'Hides the footer.',
-        load: noFooter
-      },
-      {
-        id: 'no-share',
-        name: 'Remove Share Buttons',
-        default: true,
-        description: 'Hides the share buttons.',
-        load: noShare
-      },
-      {
-        id: 'no-sidebar',
-        name: 'Remove Sidebar',
-        default: false,
-        description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.',
-        load: noSidebar
+        settings: locationHudSettings,
       },
     ],
   },
