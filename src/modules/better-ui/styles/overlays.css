@@ -40,9 +40,14 @@
   left: -60px;
 }
 
-.notificationMessageList .message .actions input[type="button"].delete,
+.notificationMessageList .message input[type="button"].delete,
 .notificationMessageList .message .actions input[type="button"].ignoreRequest {
+  padding: 1px 10px;
+  color: #000;
+  text-shadow: 0 0 1px #fff;
   background-color: #ffa5a5;
+  border: 1px solid #000;
+  border-radius: 4px;
   box-shadow: 0 -5px 8px -2px #f27b6a inset, 1px 1px 1px #eee;
 }
 
@@ -57,18 +62,7 @@
   border-color: rgb(51 51 51 / 34%);
 }
 
-.message.daily_draw.ballot .date {
-  margin-top: -15px;
-  margin-left: 50px;
-}
-
-
-.notificationMessageList .message {
-  position: relative;
-}
-
-.notificationMessageList .message .actions {
-  position: absolute;
-  top: 15px;
-  right: 15px;
+#messengerUINotification .notificationMessageList .tab {
+  max-height: 75vh;
+  overflow: auto;
 }

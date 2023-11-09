@@ -3,6 +3,7 @@
 }
 
 .giftSelectorView-inbox-gift-thumb .itemImage,
+.giftSelectorView-inbox-giftRow.paidgift .giftSelectorView-inbox-gift-thumb .itemImage,
 .giftSelectorView-claimableGift-itemContainer .itemImage,
 .adventureBookPopup-adventure-details-block-step-thumb,
 .valourRiftPopupClaim-lootLog .itemImage,
@@ -84,7 +85,8 @@
 }
 
 .journal .entry.convertible_open img,
-.MiniEventGiveawayCampHUD-dialog-item .itemImage {
+.MiniEventGiveawayCampHUD-dialog-item .itemImage,
+.journal .entry.craft.item img {
   border: none;
 }
 

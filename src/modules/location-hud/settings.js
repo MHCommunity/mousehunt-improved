@@ -1,6 +1,8 @@
+import { addMhuiSetting } from '../utils';
+
 import environments from '../../data/environments.json';
 
-export default function (subModule, module) {
+export default function (module) {
   const locationsToUnset = [
     'desert_oasis',
     'lost_city',
@@ -62,17 +64,12 @@ export default function (subModule, module) {
   });
 
   options.forEach((location) => {
-    addSetting(
-      location.name,
+    addMhuiSetting(
       location.id,
+      location.name,
       true,
       location.description,
-      {
-        id: module.id,
-        name: module.name,
-        description: module.description
-      },
-      'mousehunt-improved-settings'
+      module
     );
   });
 }

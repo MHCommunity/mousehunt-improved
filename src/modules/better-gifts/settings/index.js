@@ -1,4 +1,6 @@
-export default function (subModule, module) {
+import { addMhuiSetting } from '../../utils';
+
+export default function (module) {
   const orderOptions = [
     {
       name: 'Newest to Oldest',
@@ -10,17 +12,12 @@ export default function (subModule, module) {
     },
   ];
 
-  addSetting(
-    'Order to send',
+  addMhuiSetting(
     'gift-buttons-send-order',
+    'Order to send',
     [orderOptions[0]],
     'Whether to send gifts from newest received to oldest received or the other way around.',
-    {
-      id: module.id,
-      name: module.name,
-      description: module.description
-    },
-    'mousehunt-improved-settings',
+    module,
     {
       type: 'multi-select',
       number: 1,
@@ -63,17 +60,12 @@ export default function (subModule, module) {
     },
   ];
 
-  addSetting(
-    'Ignore gifts that aren\'t the Gift of the Day',
+  addMhuiSetting(
     'gift-buttons-ignore-bad-gifts',
+    'Ignore gifts that aren\'t the Gift of the Day',
     [skipBadGiftOptions[0]],
     'Skip sending over Mozzarella Cheese, Stale Cheese, and Radioactive Sludge.',
-    {
-      id: module.id,
-      name: module.name,
-      description: module.description
-    },
-    'mousehunt-improved-settings',
+    module,
     {
       type: 'multi-select',
       number: 1,
@@ -81,16 +73,11 @@ export default function (subModule, module) {
     }
   );
 
-  addSetting(
-    'Close popup after sending',
+  addMhuiSetting(
     'gift-buttons-close-on-send',
+    'Close popup after sending',
     true,
     'Automatically close the Gift popup after sending gifts',
-    {
-      id: module.id,
-      name: module.name,
-      description: module.description
-    },
-    'mousehunt-improved-settings'
+    module
   );
 }

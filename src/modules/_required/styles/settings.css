@@ -31,6 +31,15 @@
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__settingDescription {
   max-width: 500px;
+  padding-top: 5px;
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings #mousehunt-improved-settings-location-hud .PagePreferences__setting {
+  display: flex;
+  align-items: stretch;
+  height: 25px;
+  padding: 0;
+  margin: 0;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .settingRow-label {
@@ -59,12 +68,18 @@
 
 .mousehunt-improved-settings .PagePreferences__settingsList {
   padding: 5px;
+  padding-left: 10px;
 }
 
 .PagePreferences .mousehunt-improved-settings .PagePreferences__setting {
   gap: 5px;
+  align-items: center;
   padding-bottom: 5px;
   margin-top: 5px;
+}
+
+.PagePreferences .mousehunt-improved-settings .PagePreferences__setting .PagePreferences__settingAction {
+  margin-bottom: 0;
 }
 
 #mousehunt-improved-settings .PagePreferences__settingAction {
@@ -89,10 +104,7 @@
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-open-all-but-one,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id {
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send {
   padding-left: 10px;
   margin-left: 20px;
 }
@@ -104,10 +116,7 @@
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-open-all-but-one .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-inventory-lock-open-all .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-ui-friends-paste-id .PagePreferences__settingName {
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send .PagePreferences__settingName {
   font-size: 13px;
 }
 
@@ -213,7 +222,7 @@
 /* Export Settings */
 .mousehunt-improved-export-settings {
   position: absolute;
-  top: 13px;
+  top: 2px;
   right: 10px;
 }
 
@@ -267,5 +276,10 @@
 
 .PagePreferences__title.toggled .PagePreferences__settingsList,
 .PagePreferences__title.toggled .PagePreferences__separator {
+  display: none;
+}
+
+/* todo: fix this in mhutils */
+.mh-utils-settings-refresh-message-hidden {
   display: none;
 }

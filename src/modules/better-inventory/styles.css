@@ -454,3 +454,21 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
   max-height: 115px;
   overflow: visible;
 }
+
+.inventoryPage-confirmPopup-itemTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.inventoryPage-confirmPopup-itemRow-description-name {
+  margin-bottom: 5px;
+}
+
+.inventoryPage-confirmPopup-itemRow-description-owned {
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+
+.inventoryPage-confirmPopup-itemRow-quantity {
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+}

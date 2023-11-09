@@ -96,7 +96,8 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
   let mhctdata = [];
 
   // Temp hack for halloween.
-  const mapType = mapData().map_type || '';
+  const data = mapData() || {};
+  const mapType = data?.map_type || '';
   let url = `https://api.mouse.rip/${mhctPath}/${mouseId}`;
   if (mapType.toLowerCase().indexOf('halloween') !== -1) {
     url = `https://api.mouse.rip/${mhctPath}/${mouseId}-hlw_22`;
@@ -324,6 +325,22 @@ const showSuccessMessage = (message, appendTo, classes = '') => {
   showErrorMessage(message, appendTo, classes, 'success');
 };
 
+const addMhuiSetting = (id, title, defaultVal, description, module, options = null) => {
+  addSetting(
+    title,
+    id,
+    defaultVal,
+    description,
+    {
+      id: module.id,
+      name: module.name,
+      description: module.description
+    },
+    'mousehunt-improved-settings',
+    options
+  );
+};
+
 const saveMhuiSetting = (key, value) => {
   return saveSetting(key, value, 'mousehunt-improved-settings');
 };
@@ -381,6 +398,22 @@ const isiFrame = () => {
   return window.self !== window.top;
 };
 
+const addBodyClass = (className) => {
+  document.body.classList.add(className);
+};
+
+const persistBodyClass = (className) => {
+  const addClass = () => {
+    addBodyClass(className);
+  };
+
+  addClass();
+  onNavigation(addClass);
+  onTravel(null, { callback: () => {
+    setTimeout(addClass, 500);
+  } });
+};
+
 export {
   addUIStyles,
   addHudStyles,
@@ -394,13 +427,16 @@ export {
   makeLink,
   showErrorMessage,
   showSuccessMessage,
-  saveMhuiSetting,
+  addMhuiSetting,
   getMhuiSetting,
+  saveMhuiSetting,
   getFlag,
   addToGlobal,
   getGlobal,
   mapper,
   mapData,
   mapModel,
-  isiFrame
+  isiFrame,
+  addBodyClass,
+  persistBodyClass
 };

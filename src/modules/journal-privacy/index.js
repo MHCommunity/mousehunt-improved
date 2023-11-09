@@ -29,7 +29,7 @@ const applyClassToNames = () => {
 export default () => {
   addUIStyles(styles);
 
-  onAjaxRequest(() => {
+  onRequest(() => {
     applyClassToNames();
   }, 'managers/ajax/pages/journal.php');
 };

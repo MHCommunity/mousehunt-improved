@@ -2,3 +2,9 @@
 .mousehuntFooter {
   display: none;
 }
+
+/* Fix the weird footer width */
+.no-footer .pageFrameView-column.left,
+.no-footer .pageFrameView-column.right {
+  margin-bottom: 0;
+}

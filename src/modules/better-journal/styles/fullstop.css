@@ -45,3 +45,7 @@
   height: unset;
   background: none;
 }
+
+.entry.short.supplytransferitem .journaltext #friend-data-wrapper a::after {
+  content: "";
+}

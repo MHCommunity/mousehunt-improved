@@ -1,7 +1,6 @@
-import { addUIStyles } from '../../utils';
-import styles from '../styles/highlight-users.css';
-
-import userHighlighting from '../../../data/user-highlighting.json';
+import { addUIStyles } from '../utils';
+import styles from './styles.css';
+import userHighlighting from '../../data/user-highlighting.json';
 
 const getUserHighlightingShield = (type) => {
   let text = '';

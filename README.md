@@ -1,12 +1,10 @@
 # 🐭️ MouseHunt Improved
 
-MouseHunt Improved is aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [MH Improved](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings) tab of the settings screen.
+MouseHunt Improved is a browser extension aimed at improving the MouseHunt experience.
 
-**Over 150 features and improvements!**
+There are numerous features, each of which can be toggled on or off on the [MH Improved](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings) tab of the settings screen to customize your experience.
 
-## Important Note
-
-This is currently in beta. Expect there to be bugs, potentially broken features, and other issues. The list of features below is **not** up to date either, but it's a good idea of what's available.
+⭐️ **Over 150 features and improvements!** ⭐️
 
 ## Installation
 
@@ -18,6 +16,8 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 
 ## Features
 
+**Each feature can be enabled or disabled individually, allowing you to customize your experience.**
+
 ### 'Better' Feature Modules
 
 - Better UI
@@ -25,7 +25,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Updates the Prestige Base to have the correct stats.
   - Autofocuses the Hunter ID search box on the Find Friends page.
   - Modifies the Hunter ID search box to be a bit bigger and moves it to the top.
-  - With a Hunter ID in your clipboard, simply hit Ctrl/Cmd+V to paste it anywhere in MH to go directly to that hunter's profile.
   - Shows your exact rank percentage immediately when you hover over the value.
   - Upscales the lucky catch icon to be higher resolution.
   - Updates the footer display to look much nicer and align the links better.
@@ -58,8 +57,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Reorders the recipe list to move one-off recipes to the bottom and minimize their display.
   - Adds an indicator on any collectibles that have a special action.
   - Resizes the crafting table to be easier to read and use.
-  - Adds an 'Open all but one' button to convertibles.
-  - Adds an optional to lock opening convertibles unless you have multiple of them.
 
 - Better Item View
   - Adds links to [MHCT](https://mhct-win) and [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php) to the popup.
@@ -77,7 +74,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Better King's Reward
   - Updates the style of the King's Reward image to match the background.
   - Makes the input box for the King's Reward larger.
-  - Automatically closes the succes message.
+  - Automatically closes the success message.
 
 - Better Maps
   - Adds a variety of features to maps.
@@ -110,11 +107,11 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds a search bar to filter items.
   - Adds buttons to sort by name or quantity.
   - Adds +1, +5, +10, +100, and All buttons to the quantity input page to easily set the quantity.
-  - Allows favoriting items to highlight and show them at the top of the list.
+  - Allows favoriting items to be highlighted and show them at the top of the list.
 
 - Better Shops
   - Updates the Shop layout and UI to be more modern and readable.
-  - Updates the items stats more readable.
+  - Updates the item stats more readable.
   - Minimizes owned items that have an inventory limit of 1.
   - Hides items that use legacy costs in the King's Cart.
 
@@ -126,9 +123,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Better Travel
   - Automatically zooms the map out slightly to show more of the map.
   - Adds a 'Simple Travel' tab that shows a listing of all locations without the map to make it easier to travel and can be set as the default tab.
-  - Adds an optional alpabetical list of locations to the 'Simple Travel' tab.
+  - Adds an optional alphabetical list of locations to the 'Simple Travel' tab.
   - Adds a list of other locations in the same region to the Travel dropdown menu to quickly travel to them.
-  - When traveling to Valour Rift, Floating Islands, Queso Canyon, or Folklore Forest, shows a small reminder message to warn or remind about active Champion's Fire, Wild Tonic, Bottled Wind, and Condensed Creatity.
+  - When traveling to Valour Rift, Floating Islands, Queso Canyon, or Folklore Forest, show a small reminder message to warn or remind about active Champion's Fire, Wild Tonic, Bottled Wind, and Condensed Creativity.
 
 ### Feature Modules
 
@@ -136,7 +133,10 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Hover over your profile picture in the HUD for a quick 'Copy ID to clipboard' button.
 
 - Custom Shield
-  - Change your shield in the HUD to a variety of different options including past events, color tints (with optional timer color) or some fun meme shields.
+  - Change your shield in the HUD to a variety of different options including past events, color tints (with optional timer color), or some fun meme shields.
+
+- Dark Mode Improvements & Tweaks
+  - Minor changes to the Dark Mode extension (either standalone or the MHCT built-in).
 
 - Hover Profiles
   - Hover over a friend's name in your journal, inbox, or elsewhere and get a mini-profile popup with all their stats, interaction buttons, and everything you'd expect.
@@ -145,7 +145,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Uses high-res images with transparent backgrounds across the entire MH interface.
 
 - Inline Wiki
-  - Clicking 'Wiki' in the menu will load it right in the page, rather than opening a new tab.
+  - Clicking 'Wiki' in the menu will load it right on the page, rather than opening a new tab.
 
 - Keyboard Shortcuts
   - Press '?' to see a list of keyboard shortcuts.
@@ -174,15 +174,27 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
     - Valour Rift (Floor, floor type, hunts remaining, upgrade levels)
     - Whisker Woods Rift (Rage)
     - Zokor (District and stealth remaining)
-    - Zugzwang's Tower (Amplifier remaining and progess)
+    - Zugzwang's Tower (Amplifier remaining and progress)
 
 - Location Catch Stats
   - Adds an item under the "Mouse" menu to see your catch stats for the current location.
 
+- Only Open Multiple
+  - Lock opening items in your inventory unless you have multiple of them. Great for collectors.
+
+- Open All But One buttons
+  - Adds 'Open All But One' buttons to convertibles in your inventory.
+
+- Paste Hunter ID
+  - Copy a Hunter ID to your clipboard and then press 'Ctrl/Cmd+v' anywhere to go directly to that hunter's profile.
+
+- Prestige Base Stats
+  - Shows the correct stats for the Prestige Base in the base selector.
+
 - Quick Filters and Sort
   - Adds one-click filters to the Trap and Base selectors to show only specific power types.
   - Adds one-click sorting to the Trap, Base, Charm, and Cheese selectors to sort by Power, Power Bonus, Luck, Attraction Bonus, name, or quantity owned (for cheese and charms).
-  - Modifies the Skins selector to show full size skin images.
+  - Modifies the Skins selector to show full-size skin images.
 
 - Quick Send Supplies
   - Hovering over the Send Supplies button (including the ones on the Hover Profiles feature) will let you quickly pick an item, enter a quantity, and send it to the person.
@@ -197,10 +209,12 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds a crown image to each mouse, hovering over the mouse will show your total caught for that mouse.
 
 - Ultimate Checkmark
-  - Adds more things collect on the items view of your Hunter profile.
+  - Adds more things to be collected on the items view of your Hunter profile.
 
 ### Element Hiding
 
+- Adblock
+  - Hides advertisements for Feedback Friday, mobile apps, news ticker, etc.
 - Remove Footer
   - Hides the footer.
 - Remove Share Buttons
@@ -214,14 +228,14 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 
 ### Location HUDs
 
-TODO: update
+> Most location HUDs have had their font sizes increased, colors cleaned up, and other minor tweaks to make them more readable. Below are some of the more individual changes. _Reminder_: You can toggle each of these on or off individually in the settings.
 
 - Balack's Cove
   - Shows a countdown to the next low, mid, and high tides.
 - Burroughs Rift
   - Adds a larger mist meter to the HUD.
   - For each of the three cheeses (Magical String, Terra Ricotta, Polluted Parmesan), the current available mice pool will be shown in the HUD, along with the ability to quickly change cheese.
-    - Click on titles to change change, click on mist display to toggle mist.
+    - Click on titles to change cheese, and click on mist display to toggle mist.
 - Bristle Woods Rift
   - Modifies the size of the quantity and Time Sand displays to be a bit bigger.
   - Adds an indicator for each status effect so you don't need to hover over the mouse to see what it is.
@@ -229,20 +243,20 @@ TODO: update
   - Updates font sizes and colors to be more readable for Gangs Caught and Fool's Gold amount.
 - Fiery Warpath
   - Makes the wave number more clear.
-  - Better highlighting of current target.
+  - Better highlighting of the current target.
   - Cleaner tooltips.
   - Smoother streak guage.
-  - Larger power type icons.
+  - Larger power-type icons.
   - Larger artillery strike quantity font size.
 - Floating Islands
   - Adds countdown to the boss.
-  - Adds glore progress to next upgrade.
+  - Adds glore progress to the next upgrade.
   - Improves Bottled Wind selector.
   - Updates the font sizes and HUD alignment to be a bit more readable.
   - Makes your airship bigger.
   - Island name now matches the UI more closely.
   - Enemy names, countdown, hunts, and progress are all modified to be more readable.
-  - Shrine in the first time gets highlighted.
+  - Highlights shrines on the sky map.
 - Forbidden Grove
   - Shows a countdown to the closing time, rather than just a progress bar.
 - Fort Rox
@@ -272,7 +286,7 @@ TODO: update
   - Shows counts for each clue on the progress bar.
   - Improves the clue count view when hovering on the progress bar.
   - Suggests the best door to choose in intersections.
-  - Reminds you to light your lantern if you're in a superiour hallway and it's not lit.
+  - Reminds you to light your lantern if you're in a superior hallway and it's not lit.
   - Slightly larger text for resources in the HUD.
 - Muridae Market
   - Larget font sizes and cleaner colors.
@@ -281,54 +295,55 @@ TODO: update
   - Wild Tonic will animate subtly to remind you to enable it if you don't have it on.
 - Sunken City
   - Updates HUD font sizes and colors.
+  - Adds more charms to the list in the HUD.
 - Toxic Spill
-  - Rearranges HUD elements to be more readable, increases sizes of text and other elements.
+  - Rearranges HUD elements to be more readable, and increase the sizes of text and other elements.
 - Valour Rift
-  - Show the current floor type when you hover over the floor number
+  - Show the current floor type when you hover over the floor number.
   - Shows steps remaining.
   - Updates the HUD to be more readable.
   - Adds a simulator when clicking on the image of The Total Eclipse.
 - Whisker Woods Rift
-  - More visible warning when wrong setup equipped
-  - Bigger faction titles
-  - Larget rage meter numbers
+  - More visible warning when a wrong setup is equipped.
+  - Bigger faction titles.
+  - Larget rage meter numbers.
 - Zokor
   - Improves item quantity display.
   - Boss name, stealth countdown, and progress are all modified to be more readable.
-- Adds Cheese selectors to all locations that don't have a HUD.
-  - Meadow
-  - King's Arms
-  - Tournament Hall
-  - King's Gauntlet
-  - Calm Clearing
-  - Great Gnarled Tree
-  - Lagoon
+- Adds Cheese selectors to the following locations to quickly switch between the common cheeses:
+  - Acolyte Realm
+  - Balack's Cove
   - Bazaar
+  - Calm Clearing
+  - Cape Clawed
+  - Catacombs
+  - Derr Dunes
+  - Dojo
+  - Dracano
+  - Elub Shore
+  - Forbidden Grove
+  - Great Gnarled Tree
+  - Jungle Of Dread
+  - King's Arms
+  - King's Gauntlet
+  - Lagoon
+  - Meditation Room
+  - Nerg Plains
+  - Pinnacle Chamber
+  - Slushy Shoreline
+  - S.S. Huntington IV
+  - Tournament Hall
   - Town Of Digby
   - Training Grounds
-  - Dojo
-  - Meditation Room
-  - Pinnacle Chamber
-  - Catacombs
-  - Forbidden Grove
-  - Cape Clawed
-  - Elub Shore
-  - Nerg Plains
-  - Derr Dunes
-  - Jungle Of Dread
-  - Dracano
-  - Balack's Cove
-  - S.S. Huntington IV
-  - Slushy Shoreline
 
 ### Fixes
 
 - Fixes the Passing Parcel collectible display to match the other collectibles.
 - Fixes the vertical spacing for the Weekly & Friends checkboxes on scoreboards.
 - Updates the team, scoreboard, and forum icons in the main navigation to be the intended ones.
-- Fixes dropdown arrow direction in the top menu.
+- Fixes the dropdown arrow direction in the top menu.
 - Fixes HUD shadow leftover from old HUD.
-- Fixes Tooltip arrows incorrectly showing side border.
+- Fixes Tooltip arrows incorrectly showing the side border.
 - Removes 'Combine 12 items while crafting' on the ranks page from the ranks that already have it.
 - Fixes the rank underline color for the current rank.
 - Fixes environment names being truncated in the HUD.
@@ -338,16 +353,43 @@ TODO: update
 - Fixes Whisker Woods Rift rage meter font sizes.
 - Fixes the tutorial overlay shadow.
 - Fixes the price being set incorrectly on the first click of the Best price in the Marketplace.
-  - Fixes the smash assignment button to go to the correct page.
-  - Removes the text clipping from the 'Collectibles' tab text.
-  - Fixes issues when directly loading an item page.
-  - Fixes the Larry's Gift quantity background color.
+- Fixes the smash assignment button to go to the correct page.
+- Removes the text clipping from the 'Collectibles' tab text.
+- Fixes issues when directly loading an item page.
+- Fixes the Larry's Gift quantity background color.
 
 ## UserScripts
 
-If you have any of these userscripts installed, you should uninstall them and use MouseHunt Improved instead, as the features are all included in the extension.
+If you have any of these userscripts installed, you can uninstall them, as the features are all included in MouseHunt Improved.
 
-- TODO: list scripts here
+- [🐭️ MouseHunt - Better Lucky Catch Icon](https://greasyfork.org/en/scripts/449493-mousehunt-better-lucky-catch-icon)
+- [🐭️ Mousehunt - Fancy King's Reward](https://greasyfork.org/en/scripts/459629-mousehunt-fancy-king-s-reward)
+- [🐭️ MouseHunt - Gift Buttons](https://greasyfork.org/en/scripts/449489-mousehunt-gift-buttons)
+- [🐭️ MouseHunt - Item Links](https://greasyfork.org/en/scripts/445920-mousehunt-item-links)
+- [🐭️ MouseHunt - Item Quantity Fix](https://greasyfork.org/en/scripts/445926-mousehunt-item-quantity-fix)
+- [🐭️ Mousehunt - Journal Privacy](https://greasyfork.org/en/scripts/453301-mousehunt-journal-privacy)
+- [🐭️ MouseHunt - Labyrinth HUD Enhancer](https://greasyfork.org/en/scripts/465603-mousehunt-labyrinth-hud-enhancer)
+- [🐭️ Mousehunt - Location Catches](https://greasyfork.org/en/scripts/463018-mousehunt-location-catches)
+- [🐭️ MouseHunt - Mouse Links](https://greasyfork.org/en/scripts/449332-mousehunt-mouse-links)
+- [🐭️ MouseHunt - No Share Buttons](https://greasyfork.org/en/scripts/452434-mousehunt-no-share-buttons)
+- [🐭️ MouseHunt - No Sidebar](https://greasyfork.org/en/scripts/449491-mousehunt-no-sidebar)
+- [🐭️ Mousehunt - Shields](https://greasyfork.org/en/scripts/454147-mousehunt-shields)
+- [🐭️ MouseHunt - Taller Windows](https://greasyfork.org/en/scripts/452235-mousehunt-taller-windows)
+- [🐭️ Mousehunt - Travel Tweaks](https://greasyfork.org/en/scripts/452232-mousehunt-travel-tweaks)
+- [🐭️ MouseHunt - Ultimate Checkmark](https://greasyfork.org/en/scripts/461469-mousehunt-ultimate-checkmark)
+- [MH - Consolidated Map Colour Coder](https://greasyfork.org/en/scripts/428959-mh-consolidated-map-colour-coder)
+- [MH - Iceberg Progress Info](https://greasyfork.org/en/scripts/399553-mh-iceberg-progress-info)
+- [MH Maps Tweaker](https://greasyfork.org/en/scripts/5352-mh-maps-tweaker)
+- [MH Region Quick Travel](https://greasyfork.org/en/scripts/439343-mh-region-quick-travel)
+- [MH: Floating Islands HUD Enhancer](https://greasyfork.org/en/scripts/419909-mh-floating-islands-hud-enhancer)
+- [MH: M400 Hunting Helper](https://greasyfork.org/en/scripts/429044-mh-m400-hunting-helper)
+- [MouseHunt - Gifting Buttons](https://greasyfork.org/en/scripts/376572-mousehunt-gifting-buttons)
+- [MouseHunt - Mapping Helper](https://greasyfork.org/en/scripts/384275-mousehunt-mapping-helper)
+- [MouseHunt - Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)
+- [MouseHunt - Sort charms by quantity](https://greasyfork.org/en/scripts/389861-mousehunt-sort-charms-by-quantity)
+- [MouseHunt - TEM Catch Stats](https://greasyfork.org/en/scripts/376770-mousehunt-tem-catch-stats)
+- [MouseHunt Location HUD Preview](https://greasyfork.org/en/scripts/454413-mousehunt-location-hud-preview)
+- Most map color coders
 
 ## Contributing
 

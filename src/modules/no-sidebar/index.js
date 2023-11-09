@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, persistBodyClass } from '../utils';
 import styles from './styles.css';
 
 // Move sidebar into menu tab.
@@ -61,21 +61,8 @@ const moveSidebar = () => {
   tabsContainer.insertBefore(menuTab, tabsContainer.lastChild);
 };
 
-const addBodyClass = () => {
-  const body = document.querySelector('body');
-  if (! body) {
-    return;
-  }
-
-  body.classList.add('no-sidebar');
-};
-
 export default () => {
   addUIStyles(styles);
-  addBodyClass();
-  onNavigation(addBodyClass);
-  onTravel(null, { callback: () => {
-    setTimeout(addBodyClass, 500);
-  } });
+  persistBodyClass('no-sidebar');
   moveSidebar();
 };

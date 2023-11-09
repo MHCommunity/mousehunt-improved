@@ -92,6 +92,36 @@
   border: 1px solid #3e803e;
 }
 
+.mousehunt-improved-error {
+  position: fixed;
+  right: 25%;
+  bottom: 15%;
+  left: 25%;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  align-items: stretch;
+  padding: 10px 20px;
+  background-color: #febebe;
+  border: 1px solid #4e2727;
+  border-radius: 6px;
+  box-shadow: 0 0 10px 1px #bc7b7b;
+}
+
+.mousehunt-improved-error h1 {
+  margin: 0;
+  font-size: 1.3em;
+  font-weight: 900;
+  color: #9f2323;
+}
+
+.mousehunt-improved-error p {
+  margin: 0;
+  font-size: 1.2em;
+  line-height: 2;
+}
+
 @keyframes mh-ui-sway-side-to-side {
   0% {
     transform: rotate(0deg);
@@ -108,4 +138,57 @@
   100% {
     transform: rotate(0deg);
   }
+}
+
+/* always want to apply this, as it also applies to the error page */
+.pageFrameView-column {
+  min-height: 100vh;
+}
+
+/* Error page */
+.PageLockError .pageFrameView-content {
+  min-height: calc(100vh - 130px);
+}
+
+.PageLockError .pageFrameView-column {
+  min-height: 100vh;
+}
+
+.PageLockError .pageFrameView-footer {
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.PageLockError .pageFrameView-footer-linksContainer {
+  flex: 0 0 100%;
+}
+
+.PageLockError .pageFrameView-footer a img {
+  opacity: .4;
+  transition: .3s;
+  transform: scale(.8);
+}
+
+.PageLockError .pageFrameView-footer-links.terms {
+  text-align: center;
+}
+
+.PageLockError .pageFrameView-content > div:first-of-type {
+  border: none !important;
+}
+
+.PageLockError .pageFrameView-content > div:first-of-type > div:nth-of-type(2) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-height: 200px;
+  padding: 0 10px;
+}
+
+.PageLockError .pageFrameView-footer a:hover img {
+  opacity: 1;
+  transform: scale(1);
 }

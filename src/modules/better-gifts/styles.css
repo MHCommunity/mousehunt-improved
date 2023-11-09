@@ -121,16 +121,16 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   filter: drop-shadow(0 0 3px #b9ff5d) drop-shadow(1px 1px 4px #b9ff5d) drop-shadow(-1px -1px 3px #b9ff5d);
 }
 
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift-description {
+  display: flex;
+  align-items: stretch;
+}
+
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift-padding {
   min-width: unset;
   padding: 0 2px;
   margin: 0;
   border: none;
-}
-
-.mh-gift-buttons-clone-wrapper .giftSelectorView-gift-description {
-  display: flex;
-  align-items: center;
 }
 
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift-name {
@@ -148,6 +148,7 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   background-color: transparent;
 }
 
+.giftSelectorView-friend.complete .giftSelectorView-friend-padding::after,
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding::after {
   display: none;
 }
@@ -155,6 +156,15 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding {
   color: #000;
   background-color: #fff;
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day:hover .giftSelectorView-gift-padding {
+  background-color: #a5e3ff;
+}
+
+.giftSelectorView-friend-group-title {
+  padding: 3px;
+  font-size: 11px;
 }
 
 .paidgift  input.giftSelectorView-friendRow-returnQuantity {
@@ -179,7 +189,8 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 }
 
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift .itemImage {
-  padding-left: 10px;
+  width: 50px;
+  height: 50px;
 }
 
 .giftSelectorView-gift .itemImage {
@@ -200,4 +211,101 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 
 .giftSelectorView-friend-name span {
   display: block;
+}
+
+#bulk-gifting-gift-buttons.mh-gift-buttons-send-popup {
+  margin-bottom: 0;
+}
+
+.giftSelectorView-tabContentContainer .giftSelectorView-tabContent.active .giftSelectorView-actionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#bulk-gifting-gift-buttons.mh-gift-buttons-send-popup button {
+  padding: 6px;
+  font-size: 12px;
+}
+
+a.mousehuntActionButton.giftSelectorView-action-confirm span {
+  display: block;
+  width: auto;
+  min-width: 80px;
+}
+
+.giftSelectorView-friendRow-returnImage:hover {
+  margin-top: -10px;
+  margin-right: 10px;
+  margin-left: 0;
+  border: none;
+}
+
+.giftSelectorView-claimableGift {
+  min-height: 100px;
+}
+
+.giftSelectorView-claimableGift.accordion_disabled::after,
+.giftSelectorView-claimableGift.expanded::after {
+    box-shadow: none;
+}
+
+.giftSelectorView-claimableGift.accordion_disabled,
+.giftSelectorView-claimableGift.expanded {
+  padding: 5px;
+  margin-bottom: 11px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.giftSelectorView-claimableGift-title-itemName {
+    font-size: 13px;
+}
+
+.giftSelectorView-content-subtitle {
+  border-bottom: none;
+}
+
+.giftSelectorView-inboxGiftOfTheDay {
+  padding: 5px 0;
+}
+
+.giftSelectorView-inbox-giftRow.paidgift {
+  background-color: #fff08c;
+  border: none;
+}
+
+.giftSelectorView-inbox-gift-details .giftSelectorView-inbox-gift-sent {
+  padding-top: 3px;
+}
+
+.giftSelectorView-inbox-giftRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+}
+
+.giftSelectorView-inbox-gift-details {
+  flex: 1;
+  width: auto;
+  margin: 0;
+  margin-left: 10px;
+}
+
+.giftSelectorView-inbox-giftRow.paidgift .giftSelectorView-inbox-gift-actions {
+  padding-bottom: 0;
+}
+
+.giftSelectorView-inboxGiftOfTheDay-label {
+  margin-right: 5px;
+}
+
+.giftSelectorView-inboxGiftOfTheDay-gift {
+  font-size: 12px;
+}
+
+.giftSelectorView-inboxGiftOfTheDay-gift abbr {
+  text-decoration: none;
+  vertical-align: middle;
 }

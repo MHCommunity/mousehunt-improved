@@ -1,9 +1,10 @@
+import { addMhuiSetting } from '../../utils';
 import getTradableItems from '../../../data/tradable-items';
 
-export default function (subModule, module) {
-  addSetting(
-    'Better Send Supplies Pinned Items',
+export default function (module) {
+  addMhuiSetting(
     'send-supplies-pinned-items',
+    'Pinned Items',
     [
       {
         name: 'SUPER|brie+',
@@ -27,12 +28,7 @@ export default function (subModule, module) {
       },
     ],
     'Items to pin at the top of the send supplies page.',
-    {
-      id: module.id,
-      name: module.name,
-      description: module.description
-    },
-    'mousehunt-improved-settings',
+    module,
     {
       type: 'multi-select',
       number: 5,

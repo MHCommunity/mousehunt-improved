@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, getMhuiSetting } from '../utils';
 import styles from './styles/styles.css';
 import customEntries from './styles/custom-entries.css';
 import fullstop from './styles/fullstop.css';
@@ -237,4 +237,8 @@ export default () => {
     setTimeout(main, 300);
     setTimeout(main, 900);
   });
+
+  if (getMhuiSetting('better-journal-privacy')) {
+    journalPrivacy();
+  }
 };
