@@ -1,12 +1,10 @@
 # 🐭️ MouseHunt Improved
 
-MouseHunt Improved is aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [MH Improved](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings) tab of the settings screen.
+MouseHunt Improved is a browser extension aimed at improving the MouseHunt experience.
+
+There are numerous features, each of which can be toggled on or off on the [MH Improved](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings) tab of the settings screen to customize your experience.
 
 ⭐️ **Over 150 features and improvements!** ⭐️
-
-## Important Note
-
-This is currently in beta. Expect there to be bugs, potentially broken features, and other issues. The list of features below is **not** up to date either, but it's a good idea of what's available.
 
 ## Installation
 
