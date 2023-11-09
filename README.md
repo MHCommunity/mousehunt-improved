@@ -391,7 +391,6 @@ If you have any of these userscripts installed, you can uninstall them, as the f
 - [MouseHunt Location HUD Preview](https://greasyfork.org/en/scripts/454413-mousehunt-location-hud-preview)
 - Most map color coders
 
-
 ## Contributing
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) for information on how to contribute to this project.
