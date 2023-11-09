@@ -31,7 +31,7 @@
     "mousehunt-utils": "^1.11.0"
   },
   "devDependencies": {
-    "@wordpress/eslint-plugin": "^17.1.0",
+    "@wordpress/eslint-plugin": "^17.2.0",
     "archiver": "^6.0.1",
     "concurrently": "^8.2.2",
     "del-cli": "^5.1.0",
@@ -39,7 +39,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-markdownlint": "^0.5.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "eslint": "^8.52.0",
+    "eslint": "^8.53.0",
     "node-fetch": "^3.3.2",
     "prettier": "^3.0.3",
     "stylelint": "^15.11.0",
