@@ -4,11 +4,14 @@ Thank you for your interest in contributing to MouseHunt Improved! We welcome co
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
-- [Code Style](#code-style)
-- [Project Structure](#project-structure)
-- [How to add a new module](#how-to-add-a-new-module)
-- [Testing](#testing)
+- [Contributing to MouseHunt Improved](#contributing-to-mousehunt-improved)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [Code Style](#code-style)
+  - [Project Structure](#project-structure)
+  - [How to add a new module](#how-to-add-a-new-module)
+  - [Testing](#testing)
+  - [Updating mice Minlucks or Wisdom](#updating-mice-minlucks-or-wisdom)
 
 ## Getting Started
 
@@ -91,3 +94,7 @@ After building, you will find the following files in the `dist/` folder.
 _For Chrome or Firefox, after making changes, you can reload the extension by clicking the reload button on the extension card._
 
 - `dist/chrome.zip` and `dist/firefox.zip` are the zip files for the Chrome and Firefox extensions respectively. These can be uploaded to the Chrome Web Store and Firefox Add-ons site to publish the extension, so you probably don't need to worry about these. `dist/archive.zip` contains the non-minified code for uploading to the Firefox Add-ons site.
+
+## Updating mice Minlucks or Wisdom
+
+To update the minlucks or wisdom JSON files, you can run `./scripts/generate-minlucks` or `./scripts/generate-wisdom` in the root of the project. This will generate the JSON files in `src/data/`.
