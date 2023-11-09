@@ -2,7 +2,7 @@
 
 MouseHunt Improved is aimed at improving the MouseHunt experience. Each module can be toggled on or off on the [MH Improved](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings) tab of the settings screen.
 
-**Over 150 features and improvements!**
+⭐️ **Over 150 features and improvements!** ⭐️
 
 ## Important Note
 
@@ -76,7 +76,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Better King's Reward
   - Updates the style of the King's Reward image to match the background.
   - Makes the input box for the King's Reward larger.
-  - Automatically closes the succes message.
+  - Automatically closes the success message.
 
 - Better Maps
   - Adds a variety of features to maps.
@@ -109,11 +109,11 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds a search bar to filter items.
   - Adds buttons to sort by name or quantity.
   - Adds +1, +5, +10, +100, and All buttons to the quantity input page to easily set the quantity.
-  - Allows favoriting items to highlight and show them at the top of the list.
+  - Allows favoriting items to be highlighted and show them at the top of the list.
 
 - Better Shops
   - Updates the Shop layout and UI to be more modern and readable.
-  - Updates the items stats more readable.
+  - Updates the item stats more readable.
   - Minimizes owned items that have an inventory limit of 1.
   - Hides items that use legacy costs in the King's Cart.
 
@@ -125,9 +125,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Better Travel
   - Automatically zooms the map out slightly to show more of the map.
   - Adds a 'Simple Travel' tab that shows a listing of all locations without the map to make it easier to travel and can be set as the default tab.
-  - Adds an optional alpabetical list of locations to the 'Simple Travel' tab.
+  - Adds an optional alphabetical list of locations to the 'Simple Travel' tab.
   - Adds a list of other locations in the same region to the Travel dropdown menu to quickly travel to them.
-  - When traveling to Valour Rift, Floating Islands, Queso Canyon, or Folklore Forest, shows a small reminder message to warn or remind about active Champion's Fire, Wild Tonic, Bottled Wind, and Condensed Creatity.
+  - When traveling to Valour Rift, Floating Islands, Queso Canyon, or Folklore Forest, show a small reminder message to warn or remind about active Champion's Fire, Wild Tonic, Bottled Wind, and Condensed Creativity.
 
 ### Feature Modules
 
@@ -135,7 +135,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Hover over your profile picture in the HUD for a quick 'Copy ID to clipboard' button.
 
 - Custom Shield
-  - Change your shield in the HUD to a variety of different options including past events, color tints (with optional timer color) or some fun meme shields.
+  - Change your shield in the HUD to a variety of different options including past events, color tints (with optional timer color), or some fun meme shields.
 
 - Dark Mode Improvements & Tweaks
   - Minor changes to the Dark Mode extension (either standalone or the MHCT built-in).
@@ -147,7 +147,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Uses high-res images with transparent backgrounds across the entire MH interface.
 
 - Inline Wiki
-  - Clicking 'Wiki' in the menu will load it right in the page, rather than opening a new tab.
+  - Clicking 'Wiki' in the menu will load it right on the page, rather than opening a new tab.
 
 - Keyboard Shortcuts
   - Press '?' to see a list of keyboard shortcuts.
@@ -176,7 +176,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
     - Valour Rift (Floor, floor type, hunts remaining, upgrade levels)
     - Whisker Woods Rift (Rage)
     - Zokor (District and stealth remaining)
-    - Zugzwang's Tower (Amplifier remaining and progess)
+    - Zugzwang's Tower (Amplifier remaining and progress)
 
 - Location Catch Stats
   - Adds an item under the "Mouse" menu to see your catch stats for the current location.
@@ -196,7 +196,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Quick Filters and Sort
   - Adds one-click filters to the Trap and Base selectors to show only specific power types.
   - Adds one-click sorting to the Trap, Base, Charm, and Cheese selectors to sort by Power, Power Bonus, Luck, Attraction Bonus, name, or quantity owned (for cheese and charms).
-  - Modifies the Skins selector to show full size skin images.
+  - Modifies the Skins selector to show full-size skin images.
 
 - Quick Send Supplies
   - Hovering over the Send Supplies button (including the ones on the Hover Profiles feature) will let you quickly pick an item, enter a quantity, and send it to the person.
@@ -211,7 +211,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds a crown image to each mouse, hovering over the mouse will show your total caught for that mouse.
 
 - Ultimate Checkmark
-  - Adds more things collect on the items view of your Hunter profile.
+  - Adds more things to be collected on the items view of your Hunter profile.
 
 ### Element Hiding
 
@@ -237,7 +237,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Burroughs Rift
   - Adds a larger mist meter to the HUD.
   - For each of the three cheeses (Magical String, Terra Ricotta, Polluted Parmesan), the current available mice pool will be shown in the HUD, along with the ability to quickly change cheese.
-    - Click on titles to change cheese, click on mist display to toggle mist.
+    - Click on titles to change cheese, and click on mist display to toggle mist.
 - Bristle Woods Rift
   - Modifies the size of the quantity and Time Sand displays to be a bit bigger.
   - Adds an indicator for each status effect so you don't need to hover over the mouse to see what it is.
@@ -245,14 +245,14 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Updates font sizes and colors to be more readable for Gangs Caught and Fool's Gold amount.
 - Fiery Warpath
   - Makes the wave number more clear.
-  - Better highlighting of current target.
+  - Better highlighting of the current target.
   - Cleaner tooltips.
   - Smoother streak guage.
-  - Larger power type icons.
+  - Larger power-type icons.
   - Larger artillery strike quantity font size.
 - Floating Islands
   - Adds countdown to the boss.
-  - Adds glore progress to next upgrade.
+  - Adds glore progress to the next upgrade.
   - Improves Bottled Wind selector.
   - Updates the font sizes and HUD alignment to be a bit more readable.
   - Makes your airship bigger.
@@ -288,7 +288,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Shows counts for each clue on the progress bar.
   - Improves the clue count view when hovering on the progress bar.
   - Suggests the best door to choose in intersections.
-  - Reminds you to light your lantern if you're in a superiour hallway and it's not lit.
+  - Reminds you to light your lantern if you're in a superior hallway and it's not lit.
   - Slightly larger text for resources in the HUD.
 - Muridae Market
   - Larget font sizes and cleaner colors.
@@ -299,14 +299,14 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Updates HUD font sizes and colors.
   - Adds more charms to the list in the HUD.
 - Toxic Spill
-  - Rearranges HUD elements to be more readable, increases sizes of text and other elements.
+  - Rearranges HUD elements to be more readable, and increase the sizes of text and other elements.
 - Valour Rift
   - Show the current floor type when you hover over the floor number.
   - Shows steps remaining.
   - Updates the HUD to be more readable.
   - Adds a simulator when clicking on the image of The Total Eclipse.
 - Whisker Woods Rift
-  - More visible warning when wrong setup equipped.
+  - More visible warning when a wrong setup is equipped.
   - Bigger faction titles.
   - Larget rage meter numbers.
 - Zokor
@@ -343,9 +343,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Fixes the Passing Parcel collectible display to match the other collectibles.
 - Fixes the vertical spacing for the Weekly & Friends checkboxes on scoreboards.
 - Updates the team, scoreboard, and forum icons in the main navigation to be the intended ones.
-- Fixes dropdown arrow direction in the top menu.
+- Fixes the dropdown arrow direction in the top menu.
 - Fixes HUD shadow leftover from old HUD.
-- Fixes Tooltip arrows incorrectly showing side border.
+- Fixes Tooltip arrows incorrectly showing the side border.
 - Removes 'Combine 12 items while crafting' on the ranks page from the ranks that already have it.
 - Fixes the rank underline color for the current rank.
 - Fixes environment names being truncated in the HUD.
