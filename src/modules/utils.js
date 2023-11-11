@@ -1,3 +1,8 @@
+/**
+ * Add custom styles to the page.
+ *
+ * @param {string} styles CSS to add to the page.
+ */
 const addUIStyles = (styles) => {
   const identifier = 'mh-improved-styles';
 
@@ -13,6 +18,12 @@ const addUIStyles = (styles) => {
   document.head.appendChild(style);
 };
 
+/**
+ * Add custom styles specific for a location hud.
+ *
+ * @param {string} id     ID of the location hud.
+ * @param {string} styles CSS to add to the page.
+ */
 const addHudStyles = (id, styles) => {
   const key = `mh-improved-styles-location-hud-${id}`;
 
@@ -28,6 +39,9 @@ const addHudStyles = (id, styles) => {
   document.head.appendChild(style);
 };
 
+/**
+ * Remove all location hud styles.
+ */
 const removeHudStyles = () => {
   const styles = document.querySelectorAll('.mh-improved-styles-location-hud');
   styles.forEach((style) => {
@@ -35,6 +49,13 @@ const removeHudStyles = () => {
   });
 };
 
+/**
+ * Get the cached value for the given key.
+ *
+ * @param {string} key Key to get the cached value for.
+ *
+ * @return {any|boolean} Cached value or false if not found.
+ */
 const getCachedValue = (key) => {
   // check to see if it's in session storage first
   const isInSession = sessionStorage.getItem(key);
@@ -55,14 +76,34 @@ const getCachedValue = (key) => {
   return container[key];
 };
 
+/**
+ * Get the cache key for the current version of MH Improved, only needs to
+ * be bumped when the cache needs to be cleared or the cache structure changes.
+ *
+ * @return {string} Cache key.
+ */
 const getCacheKey = () => {
   return 'mh-improved-cached-ar-v0.21.0';
 };
 
+/**
+ * Get the cache key for mouse AR values.
+ *
+ * @see getCacheKey
+ *
+ * @return {string} Cache key.
+ */
 const getMouseCachedKey = () => {
   return 'mhct-ar-value-v0.21.0';
 };
 
+/**
+ * Set the cached value for the given key.
+ *
+ * @param {string}  key           Key to set the cached value for.
+ * @param {any}     value         Value to cache.
+ * @param {boolean} saveToSession Whether to only save to session storage, not local storage.
+ */
 const setCachedValue = (key, value, saveToSession = false) => {
   if (saveToSession) {
     sessionStorage.setItem(key, JSON.stringify(value));
@@ -81,11 +122,19 @@ const setCachedValue = (key, value, saveToSession = false) => {
   localStorage.setItem(getCacheKey(), JSON.stringify(container));
 };
 
-const getArForMouse = async (mouseId, type = 'mouse') => {
+/**
+ * Get the attraction rate for the given mouse or item.
+ *
+ * @param {string} id   ID to get the attraction rate for, either mouse or item ID.
+ * @param {string} type Type of attraction rate to get, either 'mouse' or 'item'.
+ *
+ * @return {Array|boolean} Array of attraction rates or false if not found.
+ */
+const getArForMouse = async (id, type = 'mouse') => {
   let mhctjson = [];
 
   // check if the attraction rates are cached
-  const cachedAr = getCachedValue(`${getMouseCachedKey()}-${mouseId}-${type}`);
+  const cachedAr = getCachedValue(`${getMouseCachedKey()}-${id}-${type}`);
   if (cachedAr) {
     return cachedAr;
   }
@@ -126,6 +175,14 @@ const getArForMouse = async (mouseId, type = 'mouse') => {
   return mhctjson;
 };
 
+/**
+ * Get the attraction rate text for the given mouse or item.
+ *
+ * @param {string} id   ID to get the attraction rate for, either mouse or item ID.
+ * @param {string} type Type of attraction rate to get, either 'mouse' or 'item'.
+ *
+ * @return {string|boolean} Attraction rate text or false if not found.
+ */
 const getArText = async (id, type = 'mouse') => {
   const rates = await getArForMouse(id, type);
   if (! rates || rates.length === 0) {
@@ -140,8 +197,16 @@ const getArText = async (id, type = 'mouse') => {
   return (rate.rate / 100).toFixed(2);
 };
 
-const getHighestArForMouse = async (mouseId, type = 'mouse') => {
-  const rates = await getArForMouse(mouseId, type);
+/**
+ * Get the highest attraction rate for the given mouse or item.
+ *
+ * @param {string} id   ID to get the attraction rate for, either mouse or item ID.
+ * @param {string} type Type of attraction rate to get, either 'mouse' or 'item'.
+ *
+ * @return {string|boolean} Attraction rate text or false if not found.
+ */
+const getHighestArForMouse = async (id, type = 'mouse') => {
+  const rates = await getArForMouse(id, type);
   if (! rates || rates.length === 0) {
     return 0;
   }
@@ -167,11 +232,27 @@ const getHighestArForMouse = async (mouseId, type = 'mouse') => {
   return (rate.rate / 100);
 };
 
+/**
+ * Get the highest attraction rate text for the given mouse or item.
+ *
+ * @param {string} id   ID to get the attraction rate for, either mouse or item ID.
+ * @param {string} type Type of attraction rate to get, either 'mouse' or 'item'.
+ *
+ * @return {string|boolean} Attraction rate text or false if not found.
+ */
 const getHighestArText = async (id, type = 'mouse') => {
   const highest = await getHighestArForMouse(id, type);
   return highest ? highest : false;
 };
 
+/**
+ * Get the attraction rate element for the given mouse or item.
+ *
+ * @param {string} id   ID to get the attraction rate for, either mouse or item ID.
+ * @param {string} type Type of attraction rate to get, either 'mouse' or 'item'.
+ *
+ * @return {HTMLElement} Attraction rate element.
+ */
 const getArEl = async (id, type = 'mouse') => {
   let ar = await getArText(id, type);
   let arType = 'location';
@@ -283,6 +364,14 @@ const makeLink = (text, href, encodeAsSpace = false) => {
   return `<a href="${href}" target="_mouse" class="mousehuntActionButton tiny"><span>${text}</span></a>`;
 };
 
+/**
+ * Show an error message appended to the given element.
+ *
+ * @param {string}      message  Message to show.
+ * @param {HTMLElement} appendTo Element to append the error to.
+ * @param {string}      classes  Classes to add to the error element.
+ * @param {string}      type     Type of error to show, either 'error' or 'success'.
+ */
 const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
   if (! appendTo) {
     appendTo = document.querySelector('.treasureMapRootView-subTabRow.treasureMapRootView-padding');
@@ -321,10 +410,29 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
   }, 2500);
 };
 
+/**
+ * Show a success message appended to the given element.
+ *
+ * @see showErrorMessage
+ *
+ * @param {string}      message  Message to show.
+ * @param {HTMLElement} appendTo Element to append the message to.
+ * @param {string}      classes  Classes to add to the message element.
+ */
 const showSuccessMessage = (message, appendTo, classes = '') => {
   showErrorMessage(message, appendTo, classes, 'success');
 };
 
+/**
+ * Wrapper for adding a setting to the settings page.
+ *
+ * @param {string}  id          ID of the setting.
+ * @param {string}  title       Title of the setting.
+ * @param {boolean} defaultVal  Default value of the setting.
+ * @param {string}  description Description of the setting.
+ * @param {object}  module      Module the setting belongs to.
+ * @param {object}  options     Additional ptions for the setting.
+ */
 const addMhuiSetting = (id, title, defaultVal, description, module, options = null) => {
   addSetting(
     title,
@@ -345,10 +453,25 @@ const saveMhuiSetting = (key, value) => {
   return saveSetting(key, value, 'mousehunt-improved-settings');
 };
 
+/**
+ * Wrapper for getting a setting from the settings page.
+ *
+ * @param {string}  key          Key of the setting.
+ * @param {boolean} defaultValue Default value of the setting.
+ *
+ * @return {boolean} Value of the setting.
+ */
 const getMhuiSetting = (key, defaultValue = false) => {
   return getSetting(key, defaultValue, 'mousehunt-improved-settings');
 };
 
+/**
+ * Check if the given flag is enabled.
+ *
+ * @param {string} flag Flag to check.
+ *
+ * @return {boolean} Whether the flag is enabled.
+ */
 const getFlag = (flag) => {
   const flags = getMhuiSetting('override-flags');
   if (! flags) {
@@ -359,6 +482,12 @@ const getFlag = (flag) => {
   return flags.replaceAll(' ', '').split(',').includes(flag);
 };
 
+/**
+ * Helper function to add a key and value to the global object.
+ *
+ * @param {string} key   Key to add.
+ * @param {any}    value Value to add.
+ */
 const addToGlobal = (key, value) => {
   // if we don't have a global object, create it
   if (! window.mhui) {
@@ -370,6 +499,13 @@ const addToGlobal = (key, value) => {
   app.mhui = mhui;
 };
 
+/**
+ * Helper function to get a key from the global object.
+ *
+ * @param {string} key Key to get.
+ *
+ * @return {any|boolean} Value of the key or false if not found.
+ */
 const getGlobal = (key) => {
   if (! window.mhui) {
     return false;
@@ -378,6 +514,13 @@ const getGlobal = (key) => {
   return mhui[key];
 };
 
+/**
+ * Helper function to get the mapper object from the global object.
+ *
+ * @param {string} key Key to get.
+ *
+ * @return {object} Mapper object.
+ */
 const mapper = (key = false) => {
   if (key) {
     return getGlobal('mapper')[key];
@@ -386,6 +529,11 @@ const mapper = (key = false) => {
   return getGlobal('mapper');
 };
 
+/**
+ * Helper function to get the mapdata from the global object.
+ *
+ * @return {object} Map data.
+ */
 const mapData = () => {
   return getGlobal('mapper').mapData;
 };
