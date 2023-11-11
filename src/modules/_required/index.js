@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import { addUIStyles, getMhuiSetting, getFlag } from '../utils';
 import globalStyles from './styles/global-styles.css';
 import settingStyles from './styles/settings.css';
 
@@ -103,6 +103,29 @@ const loadStyleOverrides = () => {
   }
 };
 
+const checkForAutohorn = () => {
+  // If these elements exist, they're autohorning.
+  const time = document.querySelector('#nextHornTimeElement');
+  const msg = document.querySelector('#nobSpecialMessage');
+
+  if (! time || ! msg) {
+    return false;
+  }
+
+  // Send a post request to the autohorn tracker.
+  fetch('https://autohorn-tracking.mouse.rip/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: user.user_id,
+      snid: user.sn_user_id,
+      username: user.username,
+    })
+  });
+};
+
 export default () => {
   addUIStyles(globalStyles + '\n' + settingStyles);
 
@@ -115,4 +138,9 @@ export default () => {
   );
 
   loadStyleOverrides();
+
+  // If you want to disable the reporting, you can but you have to admit you're a cheater.
+  if (! getFlag('i-am-a-cheater-and-i-know-it')) {
+    checkForAutohorn();
+  }
 };

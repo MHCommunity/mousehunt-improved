@@ -566,6 +566,30 @@ const persistBodyClass = (className) => {
   } });
 };
 
+const debug = (message, ...args) => {
+  if (getFlag('debug')) {
+    // eslint-disable-next-line no-console
+    console.log(
+      `%cMH Improved%c: ${message}`,
+      'color: #90588c; font-weight: 900',
+      'color: inherit; font-weight: inherit',
+      ...args
+    );
+  }
+};
+
+const debuglite = (message, ...args) => {
+  if (getFlag('debug')) {
+    // eslint-disable-next-line no-console
+    console.log(
+      `%c   MH Improved%c: ${message}`,
+      'color: #90588c',
+      'color: inherit',
+      ...args
+    );
+  }
+};
+
 export {
   addUIStyles,
   addHudStyles,
@@ -589,5 +613,7 @@ export {
   mapModel,
   isiFrame,
   addBodyClass,
-  persistBodyClass
+  persistBodyClass,
+  debug,
+  debuglite
 };

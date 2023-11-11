@@ -60,8 +60,20 @@ import highlightUsers from './modules/highlight-users';
 import links from './modules/links';
 import updateNotifications from './modules/update-notifications';
 
-import { addToGlobal, getGlobal, getFlag, isiFrame } from './modules/utils';
-import { addAdvancedSettings, addSettingForModule, showLoadingError } from './modules/settings';
+import {
+  addToGlobal,
+  debug,
+  debuglite,
+  getFlag,
+  getGlobal,
+  isiFrame
+} from './modules/utils';
+
+import {
+  addAdvancedSettings,
+  addSettingForModule,
+  showLoadingError
+} from './modules/settings';
 
 // Core 'Better' modules.
 const modules = [
@@ -414,6 +426,7 @@ const modules = [
 
 const loadModules = async () => {
   if (getGlobal('loaded')) {
+    debug('Already loaded.');
     return;
   }
 
@@ -430,12 +443,16 @@ const loadModules = async () => {
     module.modules.forEach((subModule) => {
       const overrideStopLoading = getFlag(`no-${subModule.id}`);
       if (overrideStopLoading) {
+        debuglite(`Skipping ${subModule.name} due to override flag.`);
         return;
       }
 
       if (subModule.alwaysLoad || getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')) {
         subModule.load();
+        debuglite(`Loaded "${subModule.id}"`);
         loadedModules.push(subModule.id);
+      } else {
+        debuglite(`Skipping "${subModule.id}" (disabled).`);
       }
     });
   });
@@ -446,7 +463,10 @@ const loadModules = async () => {
 };
 
 const init = async () => {
+  debug('Initializing...');
+
   if (isiFrame()) {
+    debug('In iFrame, not loading.');
     return;
   }
 
@@ -458,15 +478,21 @@ const init = async () => {
   }, 1000);
 
   try {
+    debug('Loading modules...');
+
     // Start it up.
     loadModules();
   } catch (error) {
+    debug('Error loading modules', error);
+
     showLoadingError(error);
   } finally {
     addToGlobal('loaded', true);
     // Unblank the page.
     document.body.style.display = 'block';
   }
+
+  debug('Loading complete.');
 };
 
 init();

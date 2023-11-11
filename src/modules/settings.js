@@ -1,3 +1,4 @@
+import { debug } from './utils';
 import globalStyles from './_required/styles/global-styles.css';
 
 const addAdvancedSettings = () => {
@@ -38,20 +39,28 @@ const addSettingForModule = (module) => {
         subModule.id,
         subModule.default,
         subModule.description,
-        { id: module.id, name: module.name,
-          description: module.description },
+        {
+          id: module.id,
+          name: module.name,
+          description: module.description,
+        },
         'mousehunt-improved-settings'
       );
     }
 
-    if (subModule.settings && (subModule.alwaysLoad || getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings'))) {
+    if (
+      subModule.settings && (
+        subModule.alwaysLoad ||
+        getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')
+      )
+    ) {
       subModule.settings(module);
     }
   });
 };
 
 const showLoadingError = (e) => {
-  console.error('Error loading MouseHunt Improved:', e); // eslint-disable-line no-console
+  debug('Error loading MouseHunt Improved:', e); // eslint-disable-line no-console
 
   // Add the error to the page.
   const errorElement = document.createElement('div');
