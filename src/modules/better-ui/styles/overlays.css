@@ -6,7 +6,7 @@
 #overlayPopup .button,
 .notificationMessageList .message .actions input[type="button"],
 .notificationMessageList .message .actions input[value="View Profile"],
-.notificationMessageList .message .actions input[value="View Profile"].ignoreRequest {
+.notificationMessageList .message .actions input[value="View Profile"].ignoreRequest.ignoreRequest {
   padding: 2px 15px;
   line-height: 18px;
   color: #000;

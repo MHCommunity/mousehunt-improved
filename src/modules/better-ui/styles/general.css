@@ -283,3 +283,30 @@ a[href="https://www.mousehuntgame.com/item.php?item_type=mystery_satchel_of_gold
   width: 30px;
   height: 30px;
 }
+
+/* you caught your 100th mouse popup */
+#OnboardArrow.onboardPopup.celebrationPopup .firstCatch .introPopupImage img {
+  margin-top: 0;
+}
+
+#OnboardArrow.onboardPopup.celebrationPopup .firstCatch .content {
+  padding-top: 30px;
+}
+
+#OnboardArrow.onboardPopup.celebrationPopup .firstCatch .introPopupContent h2 {
+  padding-bottom: 30px;
+}
+
+#OnboardArrow.onboardPopup.celebrationPopup .firstCatch .introPopupContent {
+  font-size: 14px;
+}
+
+#OnboardArrow.onboardPopup.celebrationPopup  .introPopupContent .clear-block img {
+  float: none;
+  margin-top: -10px;
+  margin-left: -10px;
+}
+
+#OnboardArrow.onboardPopup.celebrationPopup .closeButton {
+  background: url(https://www.mousehuntgame.com/images/ui/buttons/continue.png?asset_cache_version=2) 0 0 no-repeat;
+}
