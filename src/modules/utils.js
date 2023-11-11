@@ -147,9 +147,9 @@ const getArForMouse = async (id, type = 'mouse') => {
   // Temp hack for halloween.
   const data = mapData() || {};
   const mapType = data?.map_type || '';
-  let url = `https://api.mouse.rip/${mhctPath}/${mouseId}`;
+  let url = `https://api.mouse.rip/${mhctPath}/${id}`;
   if (mapType.toLowerCase().indexOf('halloween') !== -1) {
-    url = `https://api.mouse.rip/${mhctPath}/${mouseId}-hlw_22`;
+    url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
   }
 
   mhctdata = await fetch(url);
@@ -157,7 +157,7 @@ const getArForMouse = async (id, type = 'mouse') => {
   mhctjson = await mhctdata.json();
 
   if (! mhctjson || mhctjson.length === 0) {
-    setCachedValue(`${getMouseCachedKey()}-${mouseId}-${type}`, [], true);
+    setCachedValue(`${getMouseCachedKey()}-${id}-${type}`, [], true);
     return [];
   }
 
@@ -170,7 +170,7 @@ const getArForMouse = async (id, type = 'mouse') => {
     });
   }
 
-  setCachedValue(`${getMouseCachedKey()}-${mouseId}-${type}`, mhctjson);
+  setCachedValue(`${getMouseCachedKey()}-${id}-${type}`, mhctjson);
 
   return mhctjson;
 };
@@ -449,10 +449,6 @@ const addMhuiSetting = (id, title, defaultVal, description, module, options = nu
   );
 };
 
-const saveMhuiSetting = (key, value) => {
-  return saveSetting(key, value, 'mousehunt-improved-settings');
-};
-
 /**
  * Wrapper for getting a setting from the settings page.
  *
@@ -523,7 +519,12 @@ const getGlobal = (key) => {
  */
 const mapper = (key = false) => {
   if (key) {
-    return getGlobal('mapper')[key];
+    const mapperData = getGlobal('mapper');
+    if (! mapperData || ! mapperData[key]) {
+      return false;
+    }
+
+    return mapperData[key];
   }
 
   return getGlobal('mapper');
@@ -535,7 +536,10 @@ const mapper = (key = false) => {
  * @return {object} Map data.
  */
 const mapData = () => {
-  return getGlobal('mapper').mapData;
+  const mapper = mapper();
+  if (! mapper) {
+    return false;
+  }
 };
 
 const mapModel = () => {
@@ -577,7 +581,6 @@ export {
   showSuccessMessage,
   addMhuiSetting,
   getMhuiSetting,
-  saveMhuiSetting,
   getFlag,
   addToGlobal,
   getGlobal,
