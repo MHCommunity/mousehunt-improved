@@ -24,10 +24,8 @@ const addOpenAllButOneButton = () => {
     newButton.textContent = 'All but One';
     newButton.value = 'All but One';
     newButton.setAttribute('data-item-action', 'single');
-    button.parentNode.insertBefore(newButton, button.nextSibling);
-    // remove the onclick attribute from this button
-    button.onclick = null;
-    button.addEventListener('click', (e) => {
+    newButtonon.onclick = null;
+    newButton.addEventListener('click', (e) => {
       const quantity = item.querySelector('.inventoryPage-item-imageContainer .quantity');
       if (! quantity) {
         return;
@@ -36,6 +34,8 @@ const addOpenAllButOneButton = () => {
       quantity.textContent = parseInt(quantity.textContent, 10) - 1;
       app.pages.InventoryPage.useConvertible(e.target);
     });
+
+    button.parentNode.insertBefore(newButton, button.nextSibling);
   });
 };
 
