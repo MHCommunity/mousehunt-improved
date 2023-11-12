@@ -430,8 +430,8 @@ const showSuccessMessage = (message, appendTo, classes = '') => {
  * @param {string}  title       Title of the setting.
  * @param {boolean} defaultVal  Default value of the setting.
  * @param {string}  description Description of the setting.
- * @param {object}  module      Module the setting belongs to.
- * @param {object}  options     Additional ptions for the setting.
+ * @param {Object}  module      Module the setting belongs to.
+ * @param {Object}  options     Additional ptions for the setting.
  */
 const addMhuiSetting = (id, title, defaultVal, description, module, options = null) => {
   addSetting(
@@ -515,7 +515,7 @@ const getGlobal = (key) => {
  *
  * @param {string} key Key to get.
  *
- * @return {object} Mapper object.
+ * @return {Object} Mapper object.
  */
 const mapper = (key = false) => {
   if (key) {
@@ -533,27 +533,54 @@ const mapper = (key = false) => {
 /**
  * Helper function to get the mapdata from the global object.
  *
- * @return {object} Map data.
+ * @return {Object} Map data.
  */
 const mapData = () => {
-  const mapper = mapper();
-  if (! mapper) {
-    return false;
+  const m = mapper();
+  if (! m) {
+    return {};
   }
+
+  return m.mapData;
 };
 
+/**
+ * Helper function to get the mapmodel from the global object.
+ *
+ * @return {Object} Map model.
+ */
 const mapModel = () => {
-  return getGlobal('mapper').mapModel;
+  const m = mapper();
+  if (! m) {
+    return {};
+  }
+
+  return m.mapModel;
 };
 
+/**
+ * Check if we're in an iframe.
+ *
+ * @return {boolean} Whether we're in an iframe.
+ */
 const isiFrame = () => {
   return window.self !== window.top;
 };
 
+/**
+ * Add a class to the body.
+ *
+ * @param {string} className Class to add.
+ */
 const addBodyClass = (className) => {
   document.body.classList.add(className);
 };
 
+/**
+ * Add a body class that persists across navigation.
+ *
+ * @param {string} className Class to add.
+ */
 const persistBodyClass = (className) => {
   const addClass = () => {
     addBodyClass(className);
@@ -566,6 +593,12 @@ const persistBodyClass = (className) => {
   } });
 };
 
+/**
+ * Helper function to log a debug message.
+ *
+ * @param {string} message Message to log.
+ * @param {any}    args    Additional arguments to log.
+ */
 const debug = (message, ...args) => {
   if (getFlag('debug')) {
     // eslint-disable-next-line no-console
@@ -578,6 +611,12 @@ const debug = (message, ...args) => {
   }
 };
 
+/**
+ * Helper function to log a debug message.
+ *
+ * @param {string} message Message to log.
+ * @param {any}    args    Additional arguments to log.
+ */
 const debuglite = (message, ...args) => {
   if (getFlag('debug')) {
     // eslint-disable-next-line no-console
