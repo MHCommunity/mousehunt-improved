@@ -76,7 +76,7 @@ const buildExtension = async (platform) => {
       EXT_VERSION: JSON.stringify(process.env.npm_package_version),
     },
     banner: {
-      js: mhutils.outputFiles[0].text,
+      js: `${mhutils.outputFiles[0].text}\nconst mhImprovedVersion = '${process.env.npm_package_version}';\n`,
     },
   });
 

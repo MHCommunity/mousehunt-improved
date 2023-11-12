@@ -10,7 +10,8 @@ await esbuild.build({
   banner: {
     js: fs.readFileSync(
       path.join(process.cwd(), 'src/userscript-header.js'), 'utf8')
-      .replace('process.env.VERSION', process.env.npm_package_version)
+      .replace('process.env.VERSION', process.env.npm_package_version) +
+      `const mhImprovedVersion = '${process.env.npm_package_version}';`,
   },
   bundle: true,
   format: 'iife',
