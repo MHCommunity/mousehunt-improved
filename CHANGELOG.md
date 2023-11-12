@@ -2,6 +2,46 @@
 
 ## Version 0.24.0
 
+- Fixes open all but one buttons
+- Adds wisdom to mouse views, closes #165
+- Removes empty weakness containers on mice views
+- Fixes item view popup showing on all items, closes #171
+- Adds minlucks to mouse page
+- Removes crafted image border
+- Loads modules async
+- Resplits better ui and better inventory options into standalone modules
+- Splits required module into seperate modules, set to alwaysLoad
+- Moves journal privacy back to standalone module
+- Moves dev to module folder
+- Reorders location dashboard setting
+- Adds changelog.md
+- Adds debug functionality with a flag
+- Removes sample migtated userscript
+- Updates styles
+- Add docblocks
+- Fixes spelling and grammar a bit
+- Removes console logs
+- Fixes undef error
+- Adds minluck generation and data
+- Updates mouse image hovers in journal
+- Cleans up advanced settings
+- Adds error page styling
+- Loads error styles from general styles file, improve layout
+- Fixes footer height weirdness when no footer is enabled
+- Adds body class helpers to utils, add to no footer
+- Fixes journal setting styles
+- Makes the m400 travel button cursor a pointer
+- Cleans up main loading file, add error message if failed to load, blank page while laoding
+- Adds setting styles
+- Fixes size of raffle inbox new message
+- Moves copy ID button to better UI setting
+- Adds addMhuiSetting helper
+- Adds update notifications
+- Adds more styling for item views
+- Adds inbox styling
+- Adds gift buttons to main gift view, improve styling
+- Don't show fullstop after team name in hover profile
+
 ## Version 0.23.0
 
 - Re-enable halloween cheese arm buttons
