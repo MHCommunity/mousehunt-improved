@@ -568,6 +568,18 @@ const isiFrame = () => {
 };
 
 /**
+ * Check to make sure we have the required global functions we need.
+ *
+ * @return {boolean} Whether we have the required functions.
+ */
+const isApp = () => {
+  return typeof app !== 'undefined' &&
+    typeof user !== 'undefined' &&
+    typeof hg !== 'undefined' &&
+    typeof eventRegistry !== 'undefined';
+};
+
+/**
  * Add a class to the body.
  *
  * @param {string} className Class to add.
@@ -684,5 +696,6 @@ export {
   persistBodyClass,
   debug,
   debuglite,
-  getRelicHunterLocation
+  getRelicHunterLocation,
+  isApp
 };
