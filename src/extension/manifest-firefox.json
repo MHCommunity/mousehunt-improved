@@ -32,11 +32,11 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "mh-improved@mouse.rip",
-      "strict_min_version": "109.0"
+      "strict_min_version": "113.0"
     },
     "gecko_android": {
       "id": "mh-improved@mouse.rip",
-      "strict_min_version": "109.0"
+      "strict_min_version": "113.0"
     }
   }
 }
