@@ -19,13 +19,17 @@ const humanizer = humanizeDuration.humanizer({
   }
 });
 
+const isExact = () => {
+  return getFlag('lgs-reminder-exact');
+};
+
 const getShieldTime = () => {
   return user.shield_seconds * 1000;
 };
 
 const getShieldTimeFormattted = (time) => {
   const units = ['y', 'mo', 'w', 'd', 'h', 'm'];
-  if (exact) {
+  if (isExact()) {
     units.push('s');
   }
 
@@ -58,10 +62,6 @@ const updateLgsReminder = (el) => {
   }
 
   el.innerText = timeFmt;
-};
-
-const isExact = () => {
-  return getFlag('lgs-reminder-exact');
 };
 
 const main = () => {
