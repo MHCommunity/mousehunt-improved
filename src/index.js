@@ -27,6 +27,7 @@ import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
+import lgsReminder from './modules/lgs-reminder';
 import locationCatchStats from './modules/location-catch-stats';
 import locationDashboard from './modules/location-dashboard';
 import metric from './modules/metric';
@@ -290,6 +291,13 @@ const modules = [
         default: true,
         description: 'Press \'?\' to see a list of keyboard shortcuts.',
         load: keyboardShortcuts,
+      },
+      {
+        id: 'lgs-reminder',
+        name: 'Lucky Golden Shield Duration & Reminder',
+        default: false,
+        description: 'Show your LGS duration in the HUD and warn you when it\'s about to expire.',
+        load: lgsReminder,
       },
       {
         id: 'location-dashboard',

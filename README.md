@@ -150,6 +150,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Keyboard Shortcuts
   - Press '?' to see a list of keyboard shortcuts.
 
+- Lucky Golden Shield Duration & Reminder
+  - Shows the time remaining on your Lucky Golden Shield in the HUD.
+
 - Location Dashboard
   - See location HUD information in a dashboard available in the top dropdown menu.
   - Currently supports:
@@ -394,6 +397,8 @@ If you have any of these userscripts installed, you can uninstall them, as the f
 - [MouseHunt - TEM Catch Stats](https://greasyfork.org/en/scripts/376770-mousehunt-tem-catch-stats)
 - [MouseHunt - Tournament Time Helper](https://greasyfork.org/en/scripts/37146-mousehunt-tournament-time-helper)
 - [MouseHunt Location HUD Preview](https://greasyfork.org/en/scripts/454413-mousehunt-location-hud-preview)
+- [Mousehunt – Lucky Golden Shield Duration Indicator & Warning](https://greasyfork.org/en/scripts/410966-mousehunt-lucky-golden-shield-duration-indicator-warning)
+
 - Most map color coders
 
 ## Contributing

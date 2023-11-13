@@ -1,1 +1,48 @@
-/* Module Template */
+.mousehunt-improved-lgs-reminder {
+  position: absolute;
+  right: 2px;
+  bottom: 1px;
+  left: 2px;
+  font-size: 12px;
+  color: #83543f;
+  text-align: center;
+  background-color: rgb(221 205 162 / 79%);
+  border: 1px solid #9d9a91;
+  border-radius: 11px;
+}
+
+.mousehunt-improved-lgs-reminder.exact {
+  right: 5px;
+  left: -15px;
+}
+
+.mhui-custom-shield .mousehunt-improved-lgs-reminder {
+  right: 14px;
+  left: -7px;
+}
+
+.mhui-custom-shield .mousehunt-improved-lgs-reminder.exact {
+  right: 5px;
+  left: -12px;
+}
+
+.mousehunt-improved-lgs-reminder.lgs-warning {
+  font-weight: 900;
+  background-color: #ffbfbf;
+}
+
+.mousehunt-improved-lgs-reminder.lgs-danger {
+  font-weight: 900;
+  color: #f1d7d7;
+  background-color: #b32d26;
+  border-color: #af8080;
+  transition: 1.75s;
+  animation: mh-improved-slight-fade 1.75s infinite;
+}
+
+/* if they have prefers reduced motion enabled, don't animate */
+@media (prefers-reduced-motion: reduce) {
+  .mousehunt-improved-lgs-reminder.lgs-danger {
+    animation: none;
+  }
+}

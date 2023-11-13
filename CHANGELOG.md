@@ -2,6 +2,7 @@
 
 ## Version 0.24.0
 
+- Adds LGS Duration & Reminder feature
 - Adds Metric units feature
 - Adds a travel button to the Relic Hunter hint on the map view
 - Adds Relic Hunter indicators to the map and simple travel page

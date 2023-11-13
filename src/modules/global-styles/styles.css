@@ -148,6 +148,20 @@
   }
 }
 
+@keyframes mh-improved-slight-fade {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: .75;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 /* always want to apply this, as it also applies to the error page */
 .pageFrameView-column {
   min-height: 100vh;
