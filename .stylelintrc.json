@@ -19,6 +19,7 @@
     "font-family-no-duplicate-names": true,
     "font-weight-notation": ["numeric", { "ignore": ["relative"] }],
     "function-url-quotes": "never",
+    "media-feature-range-notation": null,
     "no-descending-specificity": null,
     "no-invalid-double-slash-comments": true,
     "no-irregular-whitespace": true,
