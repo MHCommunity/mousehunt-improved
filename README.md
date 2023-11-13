@@ -126,6 +126,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds an optional alphabetical list of locations to the 'Simple Travel' tab.
   - Adds a list of other locations in the same region to the Travel dropdown menu to quickly travel to them.
   - When traveling to Valour Rift, Floating Islands, Queso Canyon, or Folklore Forest, show a small reminder message to warn or remind about active Champion's Fire, Wild Tonic, Bottled Wind, and Condensed Creativity.
+  - Highlights the location of the Relic Hunter on the map and Simple Travel page.
 
 ### Feature Modules
 

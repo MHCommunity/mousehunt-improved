@@ -130,7 +130,7 @@
   content: "> ";
 }
 
-@keyframes mh-ui-sway-side-to-side {
+@keyframes mh-improved-sway-side-to-side {
   0% {
     transform: rotate(0deg);
   }
@@ -218,7 +218,7 @@
 /* 404 page because why not? and it'll be a nice surprise for anyone who sees it. and yes, this super weird selector is necessary because nothing has classes. */
 div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] img {
   transform-origin: bottom;
-  animation-name: mh-ui-sway-side-to-side;
+  animation-name: mh-improved-sway-side-to-side;
   animation-duration: 7s;
   animation-iteration-count: infinite;
 }

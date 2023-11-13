@@ -376,7 +376,7 @@
   filter: drop-shadow(1px 0 8px #f6eac3);
   background-size: contain;
   transform-origin: bottom;
-  animation: mh-ui-sway-side-to-side .75s;
+  animation: mh-improved-sway-side-to-side .75s;
   animation-iteration-count: 3;
 }
 
