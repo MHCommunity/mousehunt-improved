@@ -29,6 +29,7 @@ import inlineWiki from './modules/inline-wiki';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
 import locationCatchStats from './modules/location-catch-stats';
 import locationDashboard from './modules/dashboard';
+import metric from './modules/metric';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import openAllButOne from './modules/open-all-but-one';
 import pasteHunterId from './modules/paste-hunter-id';
@@ -302,6 +303,13 @@ const modules = [
         default: true,
         description: 'Adds an item under the "Mouse" menu to see your catch stats for the current location.',
         load: locationCatchStats,
+      },
+      {
+        id: 'metric',
+        name: 'Metric Units',
+        default: false,
+        description: 'Use metric, rather than imperial, units.',
+        load: metric,
       },
       {
         id: 'only-open-multiple',

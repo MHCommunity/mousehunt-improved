@@ -164,6 +164,17 @@ const addKingsCrownsToMicePage = async () => {
   makeKingsCrownsTabContent();
 };
 
+const parseImperialWeight = (weightText) => {
+  // Imperial.
+  const lbsSplit = weightText.innerText.split('lb.');
+  const lbs = lbsSplit.length > 1 ? lbsSplit[0] : 0;
+
+  const ozSplit = weightText.innerText.split('oz.');
+  const oz = ozSplit.length > 1 ? ozSplit[0] : 0;
+
+  return (parseInt(lbs) * 16) + parseInt(oz);
+};
+
 const getSetRowValue = (row, type) => {
   let value = 0;
   value = row.getAttribute(`data-sort-value-${type}`);
@@ -175,13 +186,15 @@ const getSetRowValue = (row, type) => {
 
   // for weight, we need to parse the text to get the number
   if (type === 'average_weight' || type === 'heaviest_catch') {
-    const lbsSplit = valueText.innerText.split('lb.');
-    const lbs = lbsSplit.length > 1 ? lbsSplit[0] : 0;
-
-    const ozSplit = valueText.innerText.split('oz.');
-    const oz = ozSplit.length > 1 ? ozSplit[0] : 0;
-
-    value = (parseInt(lbs) * 16) + parseInt(oz);
+    // Check if it contains 'lb' or 'oz', then we can parse it as imperial. if it contains 'kg', then we can parse it as metric.
+    if (valueText.innerText.includes('lb') || valueText.innerText.includes('oz')) {
+      value = parseImperialWeight(valueText);
+    } else if (valueText.innerText.includes('kg')) {
+      // If we have kilograms, then we can just remove the kg and parse it as a number.
+      value = valueText.innerText.replace('kg.', '');
+    } else {
+      value = 0;
+    }
   } else {
     value = valueText.innerText ? valueText.innerText.replace(/,/g, '') || 0 : 0;
   }

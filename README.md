@@ -179,6 +179,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Location Catch Stats
   - Adds an item under the "Mouse" menu to see your catch stats for the current location.
 
+- Metric Units
+  - Converts all units to metric.
+
 - Only Open Multiple
   - Lock opening items in your inventory unless you have multiple of them. Great for collectors.
 
@@ -370,6 +373,7 @@ If you have any of these userscripts installed, you can uninstall them, as the f
 - [🐭️ Mousehunt - Journal Privacy](https://greasyfork.org/en/scripts/453301-mousehunt-journal-privacy)
 - [🐭️ MouseHunt - Labyrinth HUD Enhancer](https://greasyfork.org/en/scripts/465603-mousehunt-labyrinth-hud-enhancer)
 - [🐭️ Mousehunt - Location Catches](https://greasyfork.org/en/scripts/463018-mousehunt-location-catches)
+- [🐭️ MouseHunt - Metric](https://greasyfork.org/en/scripts/449840-mousehunt-metric)
 - [🐭️ MouseHunt - Mouse Links](https://greasyfork.org/en/scripts/449332-mousehunt-mouse-links)
 - [🐭️ MouseHunt - No Share Buttons](https://greasyfork.org/en/scripts/452434-mousehunt-no-share-buttons)
 - [🐭️ MouseHunt - No Sidebar](https://greasyfork.org/en/scripts/449491-mousehunt-no-sidebar)
