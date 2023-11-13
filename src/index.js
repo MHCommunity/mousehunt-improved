@@ -69,8 +69,8 @@ import {
   debuglite,
   getFlag,
   getGlobal,
-  isiFrame,
   isApp,
+  isiFrame,
   isInImage
 } from './modules/utils';
 
