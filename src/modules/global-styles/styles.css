@@ -100,7 +100,6 @@
   z-index: 20;
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
   align-items: stretch;
   padding: 10px 20px;
   background-color: #febebe;
@@ -110,16 +109,25 @@
 }
 
 .mousehunt-improved-error h1 {
-  margin: 0;
+  margin: 0 0 .75em;
   font-size: 1.3em;
   font-weight: 900;
   color: #9f2323;
 }
 
 .mousehunt-improved-error p {
-  margin: 0;
-  font-size: 1.2em;
-  line-height: 2;
+  margin: .5em 0;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.mousehunt-improved-error pre {
+  margin: 0 .5em;
+  color: #8b0101;
+}
+
+.mousehunt-improved-error pre::before {
+  content: "> ";
 }
 
 @keyframes mh-ui-sway-side-to-side {
@@ -191,4 +199,21 @@
 .PageLockError .pageFrameView-footer a:hover img {
   opacity: 1;
   transform: scale(1);
+}
+
+/* 404 page because why not? and it'll be a nice surprise for anyone who sees it. and yes, this super weird selector is necessary because nothing has classes. */
+div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] img {
+  transform-origin: bottom;
+  animation-name: mh-ui-sway-side-to-side;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+}
+
+div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] a:hover {
+  text-decoration: underline;
+}
+
+div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] a {
+  color: #00901c;
+  text-decoration: none;
 }

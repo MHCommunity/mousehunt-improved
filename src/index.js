@@ -53,12 +53,13 @@ import noDailyReward from './modules/no-daily-reward';
 import journalPrivacy from './modules/journal-privacy';
 
 // All the always loaded modules.
-import required from './modules/_required';
 import dev from './modules/dev';
 import featureFlags from './modules/feature-flags';
 import fixes from './modules/fixes';
+import globalStyles from './modules/global-styles';
 import highlightUsers from './modules/highlight-users';
 import links from './modules/links';
+import required from './modules/required';
 import updateNotifications from './modules/update-notifications';
 
 import {
@@ -82,6 +83,11 @@ const modules = [
     // Always loaded modules.
     id: 'always-loaded',
     modules: [
+      {
+        id: 'global-styles',
+        load: globalStyles,
+        alwaysLoad: true,
+      },
       {
         id: 'required',
         load: required,

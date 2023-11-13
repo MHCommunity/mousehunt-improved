@@ -1,6 +1,5 @@
 import { addUIStyles, getMhuiSetting, getFlag } from '../utils';
-import globalStyles from './styles/global-styles.css';
-import settingStyles from './styles/settings.css';
+import settingStyles from './styles.css';
 
 const addExportSettings = () => {
   const wrapper = document.querySelector('#mousehunt-improved-settings-mousehunt-improved-settings-overrides .PagePreferences__titleText');
@@ -127,7 +126,7 @@ const checkForAutohorn = () => {
 };
 
 export default () => {
-  addUIStyles(globalStyles + '\n' + settingStyles);
+  addUIStyles(settingStyles);
 
   onNavigation(modifySettingsPage,
     {
