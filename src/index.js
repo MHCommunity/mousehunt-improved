@@ -68,7 +68,8 @@ import {
   debuglite,
   getFlag,
   getGlobal,
-  isiFrame
+  isiFrame,
+  isApp
 } from './modules/utils';
 
 import {
@@ -456,9 +457,13 @@ const loadModules = async () => {
       }
 
       if (subModule.alwaysLoad || getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')) {
-        subModule.load();
-        debuglite(`Loaded "${subModule.id}"`);
-        loadedModules.push(subModule.id);
+        try {
+          subModule.load();
+          debuglite(`Loaded "${subModule.id}"`);
+          loadedModules.push(subModule.id);
+        } catch (error) {
+          debug(`Error loading "${subModule.id}"`, error);
+        }
       } else {
         debuglite(`Skipping "${subModule.id}" (disabled).`);
       }
@@ -474,7 +479,12 @@ const init = async () => {
   debug('Initializing...');
 
   if (isiFrame()) {
-    debug('In iFrame, not loading.');
+    showLoadingError({ message: 'Loading inside an iframe is not supported.' });
+    return;
+  }
+
+  if (! isApp()) {
+    showLoadingError({ message: 'Global MouseHunt functions not found.' });
     return;
   }
 
