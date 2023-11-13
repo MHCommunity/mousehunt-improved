@@ -65,10 +65,11 @@ const showLoadingError = (e) => {
   // Add the error to the page.
   const errorElement = document.createElement('div');
   errorElement.classList.add('mousehunt-improved-error');
-  errorElement.innerHTML = `
-    <h1>Error loading MouseHunt Improved</h1>
-    <p>There was an error loading MouseHunt Improved. Try refreshing the page. If the error persists, please add an issue to the <a href="https://github.com/MHCommunity/mousehunt-improved">GitHub repo</a>.</p>
-  `;
+  errorElement.innerHTML = `<h1>Error loading MouseHunt Improved</h1>`;
+  if (e.message) {
+    errorElement.innerHTML += `<pre>${e.message}</pre>`;
+  }
+  errorElement.innerHTML += '<p>There was an error loading MouseHunt Improved. Try refreshing the page. If the error persists, please add an issue to the <a href="https://github.com/MHCommunity/mousehunt-improved">GitHub repo</a>.</p>';
   document.body.appendChild(errorElement);
 
   const errorStyles = document.createElement('style');
