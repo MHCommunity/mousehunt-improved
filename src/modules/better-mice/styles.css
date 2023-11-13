@@ -65,12 +65,27 @@
 
 .mouseview-has-mhct .mouseView-statsContainer {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer-block-padding {
+  padding: 10px;
+}
+
+.mouseview-has-mhct .mouseView-statsContainer-block-padding b {
+  display: inline-block;
+  padding-bottom: 8px;
 }
 
 .mouseview-has-mhct .mouseView-descriptionContainer {
   width: 100%;
+}
+
+.mouseView-categoryContent-subgroup-mouse-weaknesses-label {
+  font-size: 12px;
+  font-weight: 400;
+  font-variant: none;
 }
 
 .mouseview-has-mhct .mouseView-difficulty {
@@ -246,7 +261,7 @@ a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryCont
 
 .mouseViewPopup .mouseView-descriptionContainer {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 175px;
   justify-items: stretch;
 }
 
