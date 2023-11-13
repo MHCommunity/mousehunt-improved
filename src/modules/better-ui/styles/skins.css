@@ -1,0 +1,17 @@
+/* Lower the items to fit the filters and searchbar change */
+.skin .campPage-trap-itemBrowser-items {
+  top: 50px;
+}
+
+
+.skin .campPage-trap-itemBrowser-item-image {
+  display: none;
+}
+
+.skin .campPage-trap-itemBrowser-item-description.shortDescription {
+  display: none;
+}
+
+.skin .campPage-trap-itemBrowser-item-content .campPage-trap-itemBrowser-item-name {
+  margin-top: 11px;
+}
