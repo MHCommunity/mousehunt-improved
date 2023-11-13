@@ -104,7 +104,8 @@
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send {
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send,
+#mousehunt-improved-settings-mousehunt-improved-better-tournaments-tournament-time-display-inline {
   padding-left: 10px;
   margin-left: 20px;
 }
@@ -116,7 +117,8 @@
 #mousehunt-improved-settings-feature-modules-quick-send-supplies-items .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order .PagePreferences__settingName,
 #mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send .PagePreferences__settingName {
+#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send .PagePreferences__settingName,
+#mousehunt-improved-settings-mousehunt-improved-better-tournaments-tournament-time-display-inline .PagePreferences__settingName {
   font-size: 13px;
 }
 
