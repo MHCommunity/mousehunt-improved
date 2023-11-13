@@ -63,3 +63,8 @@
 .message.notification .actions.ballot {
     float: none;
 }
+
+.notificationMessageList .message .actions.friendRequest,
+.notificationMessageList .message .actions.friendRequestAccepted {
+  margin-top: 10px;
+}

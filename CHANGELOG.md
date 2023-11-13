@@ -44,6 +44,7 @@
 - Adds inbox styling
 - Adds gift buttons to main gift view, improve styling
 - Don't show fullstop after team name in hover profile
+- Fixes alignment of friend request and accepted buttons in the inbox
 
 ## Version 0.23.0
 
