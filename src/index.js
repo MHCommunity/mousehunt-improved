@@ -28,7 +28,7 @@ import imageUpscaling from './modules/image-upscaling';
 import inlineWiki from './modules/inline-wiki';
 import keyboardShortcuts from './modules/keyboard-shortcuts';
 import locationCatchStats from './modules/location-catch-stats';
-import locationDashboard from './modules/dashboard';
+import locationDashboard from './modules/location-dashboard';
 import metric from './modules/metric';
 import onlyOpenMultiple from './modules/only-open-multiple';
 import openAllButOne from './modules/open-all-but-one';
