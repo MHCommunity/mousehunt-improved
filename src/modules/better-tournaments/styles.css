@@ -7,6 +7,7 @@
 }
 
 .tournamentPage-tournamentContainer-name {
+  margin-bottom: 5px;
   font-size: 12px;
 }
 
@@ -24,6 +25,10 @@
 
 .tournamentPage-tournamentRow .tournamentPage-tournamentContainer-icon {
   display: none;
+}
+
+.tournamentPage-tournament-column.label {
+  text-align: center;
 }
 
 .tournamentPage-tournament-column.label.nameIcon {
@@ -108,6 +113,9 @@ a.tournamentPage-tournament-column.name,
   grid-template-columns: 0 300px 1fr 1fr 20px 100px 70px;
   gap: 10px;
   place-items: center stretch;
+  padding: 5px 10px 5px 0;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
 }
 
 .tournamentPage-tournament-column.label.teamMembers {
@@ -523,4 +531,31 @@ img.pointsMouseIcon {
 
 .tournamentStatusHud .title {
   display: none;
+}
+
+.tournament-normal-time.tournament-time-display-hover {
+  position: absolute;
+  inset: 0 -30px;
+  z-index: 6;
+  display: none;
+  padding: 5px;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #f1f1f1;
+  border: 1px solid #3c3c3c;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px 0 #191919, 0 0 5px 5px white;
+}
+
+.tournamentPage-tournament-column.value:hover .tournament-time-display-hover {
+  display: block;
+}
+
+.tournamentPage-tournamentRow.tournamentPage-tournamentData .tournamentPage-tournament-column.value:nth-child(3), .tournamentPage-tournamentRow.tournamentPage-tournamentData .tournamentPage-tournament-column.value:nth-child(4) {
+  height: auto;
+  min-height: 25px;
+}
+
+.tournament-normal-time.tournament-time-display-inline {
+  margin-top: 4px;
 }

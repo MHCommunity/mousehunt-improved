@@ -388,6 +388,7 @@ If you have any of these userscripts installed, you can uninstall them, as the f
 - [MouseHunt - Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)
 - [MouseHunt - Sort charms by quantity](https://greasyfork.org/en/scripts/389861-mousehunt-sort-charms-by-quantity)
 - [MouseHunt - TEM Catch Stats](https://greasyfork.org/en/scripts/376770-mousehunt-tem-catch-stats)
+- [MouseHunt - Tournament Time Helper](https://greasyfork.org/en/scripts/37146-mousehunt-tournament-time-helper)
 - [MouseHunt Location HUD Preview](https://greasyfork.org/en/scripts/454413-mousehunt-location-hud-preview)
 - Most map color coders
 

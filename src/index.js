@@ -14,6 +14,7 @@ import betterSendSupplies from './modules/better-send-supplies';
 import betterSendSuppliesSettings from './modules/better-send-supplies/settings';
 import betterShops from './modules/better-shops';
 import betterTournaments from './modules/better-tournaments';
+import betterTournamentsSettings from './modules/better-tournaments/settings';
 import betterTravel from './modules/better-travel';
 import betterTravelSettings from './modules/better-travel/settings';
 
@@ -214,6 +215,7 @@ const modules = [
         default: true,
         description: 'Updates the Tournaments UI to show information on hover and a variety of small interface tweaks.',
         load: betterTournaments,
+        settings: betterTournamentsSettings,
       },
       {
         id: 'better-travel',

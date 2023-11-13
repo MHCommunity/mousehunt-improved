@@ -1,4 +1,4 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, getMhuiSetting } from '../utils';
 import styles from './styles.css';
 
 const updateTournamentHud = async () => {
@@ -132,9 +132,82 @@ const updateTournamentHud = async () => {
   }
 };
 
+const updateTournamentList = async () => {
+  const beginsRows = document.querySelectorAll('.tournamentPage-tournamentRow.tournamentPage-tournamentData .tournamentPage-tournament-column.value:nth-child(3)');
+  if (! beginsRows.length) {
+    return;
+  }
+
+  const durationRows = document.querySelectorAll('.tournamentPage-tournamentRow.tournamentPage-tournamentData .tournamentPage-tournament-column.value:nth-child(4)');
+  if (! durationRows.length) {
+    return;
+  }
+
+  // For each beginsRow, we want to grab the innerText, convert it from '1 hour 54 minutes' to a number of minutes, then add that to the current date and output it as the date in a child element,
+  // and then take the durationRow and add it to the matching beginsRow's date and output it as the date in a child element.
+
+  const now = new Date();
+  const nowTime = now.getTime();
+
+  const dateOptions = {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  };
+
+  beginsRows.forEach((beginsRow, i) => {
+    const beginsText = beginsRow.innerText;
+    const beginsParts = beginsText.split(' ');
+    const beginsMinutes = beginsParts.reduce((acc, part) => {
+      if (part === 'minutes' || part === 'minute') {
+        return acc + parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10);
+      }
+
+      if (part === 'hours' || part === 'hour') {
+        return acc + (parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10) * 60);
+      }
+
+      return acc;
+    }, 0);
+
+    const inlineOrHover = getMhuiSetting('better-tournaments-tournament-time-display-inline') ? 'tournament-time-display-inline' : 'tournament-time-display-hover';
+
+    const beginsDate = new Date(nowTime + (beginsMinutes * 60000));
+    const beginsDateString = beginsDate.toLocaleString('en-US', dateOptions);
+
+    const beginsDateEl = makeElement('div', ['tournament-normal-time', 'tournament-begins-date', inlineOrHover], beginsDateString);
+    beginsRow.appendChild(beginsDateEl);
+
+    const durationText = durationRows[i].innerText;
+    const durationParts = durationText.split(' ');
+    const durationMinutes = durationParts.reduce((acc, part) => {
+      if (part === 'minutes' || part === 'minute') {
+        return acc + parseInt(durationParts[durationParts.indexOf(part) - 1], 10);
+      }
+
+      if (part === 'hours' || part === 'hour') {
+        return acc + (parseInt(durationParts[durationParts.indexOf(part) - 1], 10) * 60);
+      }
+
+      return acc;
+    }, 0);
+
+    const durationDate = new Date(beginsDate.getTime() + (durationMinutes * 60000));
+    const durationDateString = durationDate.toLocaleString('en-US', dateOptions);
+
+    const durationDateEl = makeElement('div', ['tournament-normal-time', 'tournament-end-date', inlineOrHover], durationDateString);
+    durationRows[i].appendChild(durationDateEl);
+  });
+};
+
 export default async () => {
   addUIStyles(styles);
   updateTournamentHud();
 
   onEvent('tournament_status_change', updateTournamentHud);
+  onNavigation(updateTournamentList, {
+    page: 'tournament',
+  });
 };

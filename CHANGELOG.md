@@ -2,6 +2,7 @@
 
 ## Version 0.24.0
 
+- Adds localized tournament times
 - Fixes open all but one buttons
 - Adds wisdom to mouse views, closes #165
 - Removes empty weakness containers on mice views
