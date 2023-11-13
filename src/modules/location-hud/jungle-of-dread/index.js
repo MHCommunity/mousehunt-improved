@@ -1,6 +1,6 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('jungle-of-dread', [
     'vanilla_stilton_cheese',
     'vengeful_vanilla_stilton_cheese',
@@ -12,5 +12,3 @@ const main = () => {
     'sweet_havarti_cheese',
   ]);
 };
-
-export default main;

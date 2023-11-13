@@ -177,9 +177,7 @@ const hud = () => {
   addPortalClass();
 };
 
-const main = () => {
+export default () => {
   addHudStyles('fort-rox', styles);
   hud();
 };
-
-export default main;

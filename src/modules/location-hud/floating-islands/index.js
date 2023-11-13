@@ -232,9 +232,7 @@ const hud = () => {
   onRequest(showBWReminder);
 };
 
-const main = () => {
+export default () => {
   addHudStyles('floating-islands', styles);
   hud();
 };
-
-export default main;

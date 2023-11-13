@@ -1,10 +1,8 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('lagoon', [
     'gnarled_cheese',
     'wicked_gnarly_cheese',
   ]);
 };
-
-export default main;

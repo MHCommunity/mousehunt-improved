@@ -17,10 +17,8 @@ const undisableCheese = () => {
   });
 };
 
-const main = () => {
+export default () => {
   addHudStyles('halloween-event-location', styles);
   undisableCheese();
   onRequest(undisableCheese);
 };
-
-export default main;

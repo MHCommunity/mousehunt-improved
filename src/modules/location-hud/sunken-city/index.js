@@ -125,9 +125,7 @@ const hud = () => {
   addMoreCharms();
 };
 
-const main = () => {
+export default () => {
   addHudStyles('sunken-city', styles);
   hud();
 };
-
-export default main;

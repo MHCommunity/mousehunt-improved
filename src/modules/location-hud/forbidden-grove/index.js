@@ -53,7 +53,7 @@ const hud = () => {
   } });
 };
 
-const main = () => {
+export default () => {
   addHudStyles('forbidden-grove', styles);
   addCheeseSelector('forbidden-grove', [
     'ancient_cheese',
@@ -64,5 +64,3 @@ const main = () => {
   ]);
   hud();
 };
-
-export default main;

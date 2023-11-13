@@ -1,9 +1,7 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('great-gnarled-tree', [
     'gnarled_cheese',
   ]);
 };
-
-export default main;

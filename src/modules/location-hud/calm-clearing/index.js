@@ -1,9 +1,7 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('calm-clearing', [
     'cherry_cheese',
   ]);
 };
-
-export default main;

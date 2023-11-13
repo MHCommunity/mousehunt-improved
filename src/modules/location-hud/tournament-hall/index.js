@@ -1,9 +1,7 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('tournament-hall', [
     'runny_cheese',
   ]);
 };
-
-export default main;

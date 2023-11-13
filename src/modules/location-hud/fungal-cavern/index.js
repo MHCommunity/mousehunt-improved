@@ -1,8 +1,6 @@
 import { addHudStyles } from '../../utils';
 import styles from './styles.css';
 
-const main = () => {
+export default () => {
   addHudStyles('fungal-cavern', styles);
 };
-
-export default main;
