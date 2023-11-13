@@ -1,5 +1,5 @@
 import { debug } from './utils';
-import globalStyles from './_required/styles/global-styles.css';
+import globalStyles from './global-styles/styles.css';
 
 const addAdvancedSettings = () => {
   // Add the advanced override settings.
