@@ -16,6 +16,7 @@ import recipes from './recipes.css';
 import scoreboards from './scoreboards.css';
 import select2 from './select2.css';
 import sidebar from './sidebar.css';
+import skins from './skins.css';
 import tabs from './tabs.css';
 import team from './team.css';
 import traps from './traps.css';
@@ -39,6 +40,7 @@ const main = () => {
     scoreboards,
     select2,
     sidebar,
+    skins,
     tabs,
     team,
     traps,
