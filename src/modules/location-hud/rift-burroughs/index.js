@@ -351,9 +351,7 @@ const hud = () => {
   hudEl.appendChild(wrapper);
 };
 
-const main = () => {
+export default () => {
   addHudStyles('rift-burroughs', styles);
   hud();
 };
-
-export default main;

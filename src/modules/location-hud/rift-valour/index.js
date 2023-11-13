@@ -127,9 +127,7 @@ const addUIComponents = () => {
   makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
 };
 
-const main = () => {
+export default () => {
   addHudStyles('rift-valour', styles);
   hud();
 };
-
-export default main;

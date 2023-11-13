@@ -1,5 +1,1 @@
-const main = () => {
-  getCurrentLocation();
-};
-
-export default main;
+export default () => {};

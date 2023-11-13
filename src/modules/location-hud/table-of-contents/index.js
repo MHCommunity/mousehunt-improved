@@ -1,3 +1,1 @@
-const main = () => {};
-
-export default main;
+export default () => {};

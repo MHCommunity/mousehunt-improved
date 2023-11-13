@@ -167,12 +167,10 @@ const hud = () => {
   }
 };
 
-const main = () => {
+export default () => {
   addHudStyles('labyrinth', styles);
   hud();
 };
-
-export default main;
 
 // fealty = y
 // tech = h

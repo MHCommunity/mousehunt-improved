@@ -95,8 +95,6 @@ const getCheeses = (cheeses) => {
   return cheeses;
 };
 
-const addCheeseSelector = async (location, cheeses) => {
+export default async (location, cheeses) => {
   await makeCheeseSelector(location, getCheeses(cheeses));
 };
-
-export default addCheeseSelector;

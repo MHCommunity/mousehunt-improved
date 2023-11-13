@@ -1,6 +1,6 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('acolyte-realm', [
     'ancient_cheese',
     'runic_cheese',
@@ -8,5 +8,3 @@ const main = () => {
     'magical_radioactive_blue_cheese',
   ]);
 };
-
-export default main;

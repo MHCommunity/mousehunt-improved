@@ -1,8 +1,6 @@
 import { addHudStyles } from '../../utils';
 import styles from './styles.css';
 
-const main = () => {
+export default () => {
   addHudStyles('region-queso', styles);
 };
-
-export default main;

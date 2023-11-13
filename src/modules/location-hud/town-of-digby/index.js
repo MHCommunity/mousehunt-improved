@@ -1,9 +1,7 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('town-of-digby', [
     'limelight_cheese',
   ]);
 };
-
-export default main;

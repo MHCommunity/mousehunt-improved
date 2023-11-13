@@ -78,7 +78,7 @@
 
 #hudLocationContent .quesoGeyserHUD:hover .quesoHUD-wildTonic-button.selected::after {
   transform-origin: center;
-  animation: mh-ui-sway-side-to-side .45s;
+  animation: mh-improved-sway-side-to-side .45s;
   animation-iteration-count: 2;
 }
 

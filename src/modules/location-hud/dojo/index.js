@@ -1,9 +1,7 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('dojo', [
     'maki_cheese',
   ]);
 };
-
-export default main;

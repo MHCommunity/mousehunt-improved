@@ -1,6 +1,6 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('kings-gauntlet', [
     'super_brie_cheese',
     'gauntlet_cheese_2',
@@ -12,5 +12,3 @@ const main = () => {
     'gauntlet_cheese_8',
   ]);
 };
-
-export default main;

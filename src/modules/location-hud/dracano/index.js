@@ -1,9 +1,7 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('dracano', [
     'inferno_havarti_cheese',
   ]);
 };
-
-export default main;

@@ -1,9 +1,7 @@
 import addCheeseSelector from '../cheese-selectors';
 
-const main = () => {
+export default () => {
   addCheeseSelector('slushy-shoreline', [
     'toxic_super_brie_cheese',
   ]);
 };
-
-export default main;
