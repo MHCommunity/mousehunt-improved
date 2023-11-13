@@ -544,7 +544,7 @@ img.pointsMouseIcon {
   background-color: #f1f1f1;
   border: 1px solid #3c3c3c;
   border-radius: 5px;
-  box-shadow: 1px 1px 3px 0 #191919, 0 0 5px 5px white;
+  box-shadow: 1px 1px 3px 0 #191919, 0 0 5px 5px #fff;
 }
 
 .tournamentPage-tournament-column.value:hover .tournament-time-display-hover {
