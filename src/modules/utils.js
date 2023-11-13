@@ -629,6 +629,35 @@ const debuglite = (message, ...args) => {
   }
 };
 
+/**
+ * Ping https://rh-api.mouse.rip/ to get the current location of the Relic Hunter.
+ *
+ * @return {Object} Relic Hunter location data.
+ */
+const getRelicHunterLocation = () => {
+  // Cache it in session storage for 5 minutes.
+  const cacheExpiry = 5 * 60 * 1000;
+  const cacheKey = 'mh-improved-relic-hunter-location';
+  let cached = sessionStorage.getItem(cacheKey);
+  if (cached) {
+    cached = JSON.parse(cached);
+  }
+
+  // If we have a cached value and it's not expired, return it.
+  if (cached && cached.expiry > new Date().getTime()) {
+    return cached.data;
+  }
+
+  // Otherwise, fetch the data and cache it.
+  return fetch('https://rh-api.mouse.rip/')
+    .then((response) => response.json())
+    .then((data) => {
+      const expiry = new Date().getTime() + cacheExpiry;
+      sessionStorage.setItem(cacheKey, JSON.stringify({ expiry, data }));
+      return data;
+    });
+};
+
 export {
   addUIStyles,
   addHudStyles,
@@ -654,5 +683,6 @@ export {
   addBodyClass,
   persistBodyClass,
   debug,
-  debuglite
+  debuglite,
+  getRelicHunterLocation
 };

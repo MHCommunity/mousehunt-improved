@@ -5,6 +5,9 @@ import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { addBlockClasses, getMapData, setMapData } from './map-utils';
 import { addToGlobal } from '../utils';
 
+import environments from '../../data/environments.json';
+import relicHunterHints from '../../data/relic-hunter-hints.json';
+
 const interceptMapRequest = (mapId) => {
   // If we don't have data, we're done.
   if (! mapId) {
@@ -114,6 +117,75 @@ const clearStickyMouse = () => {
   }
 };
 
+const updateRelicHunterHint = () => {
+  const relicHunter = document.querySelector('.treasureMapInventoryView-relicHunter-hint');
+  if (! relicHunter) {
+    return false;
+  }
+
+  if (relicHunter.getAttribute('data-travel-button-added')) {
+    return true;
+  }
+
+  relicHunter.setAttribute('data-travel-button-added', true);
+
+  const hint = relicHunter.innerText.trim();
+
+  // relicHunterHints is an object with each key having an array of hints.
+  // Find the key that has the hint we're looking for.
+  let key = false;
+  Object.keys(relicHunterHints).forEach((k) => {
+    if (relicHunterHints[k].includes(hint)) {
+      key = k;
+    }
+  });
+
+  // Returning true to make sure we don't keep trying to update the hint.
+  if (! key) {
+    return true;
+  }
+
+  // Find the environment that matches the key.
+  const environment = environments.find((e) => e.id === key);
+  if (! environment) {
+    return true;
+  }
+
+  let hintWrapper = document.querySelector('.treasureMapInventoryView-relicHunter');
+  if (! hintWrapper) {
+    hintWrapper = relicHunter;
+  }
+
+  makeElement('div', 'treasureMapInventoryView-relicHunter-hintSuffix', `... in ${environment.name}.`, hintWrapper);
+
+  const travelButton = makeElement('div', ['mousehuntActionButton', 'small']);
+  makeElement('span', '', 'Travel', travelButton);
+
+  travelButton.addEventListener('click', () => {
+    hg.utils.User.travel(environment.id);
+  });
+
+  hintWrapper.appendChild(travelButton);
+
+  return true;
+};
+
+const relicHunterUpdate = () => {
+  const _showInventory = hg.controllers.TreasureMapController.showInventory;
+  hg.controllers.TreasureMapController.showInventory = () => {
+    _showInventory();
+
+    // Call updateRelicHunterHint, but if it fails, try again in 250ms, but stop after 5 tries.
+    let tries = 0;
+    const interval = setInterval(() => {
+      tries++;
+      if (updateRelicHunterHint() || tries > 5) {
+        clearInterval(interval);
+      }
+    }, 250);
+  };
+};
+
 export default () => {
   addStyles();
 
@@ -131,4 +203,6 @@ export default () => {
   eventRegistry.addEventListener('mapper_loaded', initMapper);
 
   intercept();
+
+  relicHunterUpdate();
 };

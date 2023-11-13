@@ -612,3 +612,59 @@ input.treasureMapView-block-search-text {
   align-items: baseline;
   margin: 0 1px;
 }
+
+.treasureMapInventoryView-relicHunter-hintSuffix {
+  margin-bottom: 10px;
+  font-size: 10px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Make the relic hunter image bigger */
+.treasureMapInventoryView-relicHunter {
+  padding-top: 120px;
+}
+
+.treasureMapInventoryView-relicHunter::before {
+  height: 110px;
+  border-bottom: 1px solid #ccc;
+}
+
+.treasureMapPopup-season-reward-name {
+  padding: 2px;
+  font-size: 11px;
+}
+
+.treasureMapPopup-seasonContainer.mousehuntTooltipParent {
+  font-size: 11px;
+}
+
+.treasureMapInventoryView .treasureMapView-block-search {
+  right: 0;
+  bottom: 3px;
+}
+
+.treasureMapRootView-footer .treasureMapRootView-footer-item {
+  font-size: 11px;
+}
+
+.treasureMapRootView-footer .treasureMapRootView-footer-item:nth-child(3) .treasureMapRootView-footer-item-thumb,
+.treasureMapRootView-footer .treasureMapRootView-footer-item:nth-child(4) .treasureMapRootView-footer-item-thumb {
+    height: 21px;
+    padding-left: 3px;
+    margin-right: -10px;
+    background-color: #7b789a;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.treasureMapRootView-footer .treasureMapRootView-footer-item:nth-child(3) .treasureMapRootView-footer-item-quantity,
+.treasureMapRootView-footer .treasureMapRootView-footer-item:nth-child(4) .treasureMapRootView-footer-item-quantity {
+    height: 13px;
+    padding: 4px;
+    margin-left: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

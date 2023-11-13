@@ -2,11 +2,13 @@
 
 ## Version 0.24.0
 
+- Adds a travel button to the Relic Hunter hint on the map view
+- Adds Relic Hunter indicators to the map and simple travel page
 - Adds localized tournament times
 - Fixes open all but one buttons
-- Adds wisdom to mouse views, closes #165
+- Adds wisdom to mouse views
 - Removes empty weakness containers on mice views
-- Fixes item view popup showing on all items, closes #171
+- Fixes item view popup showing on all items
 - Adds minlucks to mouse page
 - Removes crafted image border
 - Loads modules async

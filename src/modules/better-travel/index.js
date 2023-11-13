@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import { addUIStyles, getMhuiSetting, getRelicHunterLocation } from '../utils';
 import styles from './styles.css';
 import environments from '../../data/environments.json';
 
@@ -19,12 +19,6 @@ const expandTravelRegions = () => {
       map.style.height = `calc(100vh - ${hudHeight}px)`;
     }
   }
-
-  // eslint-disable-next-line no-undef
-  app.pages.TravelPage.zoomOut();
-
-  // eslint-disable-next-line no-undef
-  app.pages.TravelPage.zoomOut();
 
   const regionHeaders = document.querySelectorAll('.travelPage-regionMenu-regionLink');
   if (regionHeaders) {
@@ -55,6 +49,10 @@ const expandTravelRegions = () => {
       });
     });
   }
+
+  setTimeout(() => {
+    app.pages.TravelPage.zoomOut();
+  }, 500);
 };
 
 const travelClickHandler = (event) => {
@@ -141,6 +139,7 @@ const addPage = (id, content) => {
 };
 
 const addSimpleTravelPage = () => {
+  expandTravelRegions();
   const wrapper = makeElement('div', 'travelPage-wrapper');
 
   if ('not-set' === getMhuiSetting('better-travel-default-to-simple-travel', 'not-set')) {
@@ -381,10 +380,65 @@ const maybeSetTab = () => {
   hg.utils.PageUtil.setPageTab('simple-travel'); // eslint-disable-line no-undef
 };
 
+const addRhToSimpleTravel = async () => {
+  const location = await getRelicHunterLocation();
+  if (! location) {
+    return;
+  }
+
+  const travelLink = document.querySelectorAll(`.travelPage-regionMenu-environmentLink[data-environment="${location.id}"]`);
+  if (! travelLink.length) {
+    return;
+  }
+
+  // Add the RH class to the travel link so we can style it.
+  travelLink.forEach((link) => {
+    link.classList.add('relic-hunter-is-here');
+  });
+};
+
+const addRhToMap = async () => {
+  const location = await getRelicHunterLocation();
+  if (! location) {
+    return;
+  }
+
+  const mapLocation = document.querySelector(`.travelPage-map-image-environment[data-environment-type="${location.id}"]`);
+  if (! mapLocation) {
+    return;
+  }
+
+  const rh = makeElement('div', 'map-relic-hunter-is-here');
+  makeElement('div', 'map-relic-hunter-is-here-image', '', rh);
+  mapLocation.appendChild(rh);
+};
+
+const maybeDoMapView = () => {
+  if ('travel' !== getCurrentPage()) {
+    return;
+  }
+
+  if ('map' !== getCurrentTab()) {
+    return;
+  }
+
+  expandTravelRegions();
+  addRhToMap();
+};
+
+const listenTabChange = () => {
+  _tabHandler = hg.utils.PageUtil.onclickPageTabHandler;
+  hg.utils.PageUtil.onclickPageTabHandler = (tab) => {
+    _tabHandler(tab);
+
+    maybeDoMapView();
+  };
+};
+
 const main = () => {
   onNavigation(() => {
-    expandTravelRegions();
     addSimpleTravel();
+    addRhToSimpleTravel();
   }, {
     page: 'travel',
   });
@@ -393,8 +447,11 @@ const main = () => {
     travel: { show: maybeSetTab }
   });
 
+  listenTabChange();
+
   initSimpleTab();
 
+  maybeDoMapView();
   maybeShowTravelReminders();
 
   addRegionToTravelDropdown();
