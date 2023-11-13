@@ -380,6 +380,12 @@
   animation-iteration-count: 3;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .mh-ui-labyrinth-lantern-reminder {
+    animation: none;
+  }
+}
+
 .labyrinthHUD-clueDrawer-barPadding {
     padding: 1px 4px 0 1px;
 }

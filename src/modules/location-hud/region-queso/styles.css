@@ -82,6 +82,12 @@
   animation-iteration-count: 2;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  #hudLocationContent .quesoGeyserHUD:hover .quesoHUD-wildTonic-button.selected::after {
+    animation: none;
+  }
+}
+
 .quesoGeyserHUD-block-huntsRemaining {
   padding-top: 4px;
   padding-bottom: 2px;

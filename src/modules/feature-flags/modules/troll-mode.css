@@ -48,3 +48,9 @@ div + div + div {
 .lolspin {
   animation: spin 1s linear infinite;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .lolspin {
+    animation: none;
+  }
+}
