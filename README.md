@@ -1,6 +1,6 @@
 # 🐭️ MouseHunt Improved
 
-MouseHunt Improved enhances and improves <a href="https://mousehuntgame.com">MouseHunt</a> with a variety of enhancements and features.
+MouseHunt Improved enhances and improves [MouseHunt](https://mousehuntgame.com) with a variety of enhancements and features.
 
 There are numerous features, each of which can be toggled on or off on the [MH Improved](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings) tab of the settings screen to customize your experience.
 
