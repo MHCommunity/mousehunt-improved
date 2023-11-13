@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.24.1
+
+- Fixes update notification changelog link
+- Bumps AR cache keys to refresh values
+
 ## Version 0.24.0
 
 - Adds LGS Duration & Reminder feature

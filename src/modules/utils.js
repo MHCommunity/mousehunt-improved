@@ -83,7 +83,7 @@ const getCachedValue = (key) => {
  * @return {string} Cache key.
  */
 const getCacheKey = () => {
-  return 'mh-improved-cached-ar-v0.21.0';
+  return 'mh-improved-cached-ar-v0.24.1';
 };
 
 /**
@@ -94,7 +94,7 @@ const getCacheKey = () => {
  * @return {string} Cache key.
  */
 const getMouseCachedKey = () => {
-  return 'mhct-ar-value-v0.21.0';
+  return 'mhct-ar-value-v0.24.1';
 };
 
 /**

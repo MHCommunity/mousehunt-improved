@@ -16,7 +16,7 @@ const getReadUpdateNotificationTime = (version) => {
 };
 
 export default () => {
-  const link = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/${mhImprovedVersion}`;
+  const link = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}`;
 
   const { date, hasRead } = getReadUpdateNotificationTime(mhImprovedVersion);
 
