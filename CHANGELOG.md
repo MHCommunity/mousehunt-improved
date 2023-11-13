@@ -47,6 +47,7 @@
 - Fixes alignment of friend request and accepted buttons in the inbox
 - Makes it so the background of the page will always be the same color, rather than switching to white on narrow screens
 - Adds better error displays & debugging information
+- Updates mouse image hover styles in journal
 
 ## Version 0.23.0
 

@@ -228,17 +228,8 @@ a.journal-detailLink.full::after {
   padding-top: 1px;
 }
 
-.journal .entry .journalimage a img {
-  transition: transform .3s;
-}
-
-.journal .entry .journalimage a:hover img {
-  width: 66px;
-  border: none;
-  transform: scale(1.2);
-}
-
-.journal .entry .journalimage a:hover {
-  overflow: hidden;
-  outline: 1px solid #bdbdbd;
+.journal .entry a:hover img {
+  border: 1px solid #6db8ca;
+  outline: 1px solid #90d3e4;
+  box-shadow: 0 0 6px -2px #e3e31f;
 }
