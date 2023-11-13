@@ -41,7 +41,7 @@
 - Adds body class helpers to utils, add to no footer
 - Fixes journal setting styles
 - Makes the m400 travel button cursor a pointer
-- Cleans up main loading file, add error message if failed to load, blank page while laoding
+- Cleans up main loading file, adds error message if failed to load, blank page while loading
 - Adds setting styles
 - Fixes size of raffle inbox new message
 - Moves copy ID button to better UI setting
