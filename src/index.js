@@ -70,7 +70,8 @@ import {
   getFlag,
   getGlobal,
   isiFrame,
-  isApp
+  isApp,
+  isInImage
 } from './modules/utils';
 
 import {
@@ -485,6 +486,12 @@ const loadModules = async () => {
 
 const init = async () => {
   debug('Initializing...');
+
+  // Check if the url is an image and if so, don't load.
+  if (isInImage()) {
+    debug('Skipping image.');
+    return;
+  }
 
   if (isiFrame()) {
     showLoadingError({ message: 'Loading inside an iframe is not supported.' });

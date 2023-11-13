@@ -568,6 +568,15 @@ const isiFrame = () => {
 };
 
 /**
+ * Check if the current page is an image.
+ *
+ * @return {boolean} Whether we're in an image.
+ */
+const isInImage = () => {
+  return window.location.pathname.match(/\.(jpeg|jpg|gif|png|svg)$/);
+};
+
+/**
  * Check to make sure we have the required global functions we need.
  *
  * @return {boolean} Whether we have the required functions.
@@ -692,6 +701,7 @@ export {
   mapData,
   mapModel,
   isiFrame,
+  isInImage,
   addBodyClass,
   persistBodyClass,
   debug,
