@@ -1,16 +1,24 @@
 const getReadUpdateNotificationTime = (version) => {
   let date = getSetting(version, false, 'mh-improved-update-notifications');
-  console.log(date);
+  let hasRead = true;
+
   if (! date) {
+    hasRead = false;
+
     date = new Date().toISOString().slice(0, 19).replace('T', ' ');
     saveSetting(version, date, 'mh-improved-update-notifications');
   }
 
-  return date;
+  return {
+    date,
+    hasRead,
+  };
 };
 
 export default () => {
   const link = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/${mhImprovedVersion}`;
+
+  const { date, hasRead } = getReadUpdateNotificationTime(mhImprovedVersion);
 
   const m = new MessengerUINotification();
   m.addMessage({
@@ -21,7 +29,7 @@ export default () => {
       href: link,
       cssClass: 'mhui-notification',
     },
-    messageDate: getReadUpdateNotificationTime(mhImprovedVersion),
-    isNew: true
+    messageDate: date,
+    isNew: ! hasRead,
   });
 };
