@@ -45,6 +45,7 @@
 - Adds gift buttons to main gift view, improve styling
 - Don't show fullstop after team name in hover profile
 - Fixes alignment of friend request and accepted buttons in the inbox
+- Makes it so the background of the page will always be the same color, rather than switching to white on narrow screens
 
 ## Version 0.23.0
 
