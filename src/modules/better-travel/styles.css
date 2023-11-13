@@ -244,11 +244,6 @@
     transform: rotate(70deg);
 }
 
-
-.travelPage-regionMenu-environmentLink.relic-hunter-is-here {
-  outline: none;
-}
-
 .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here,
 .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
   padding-left: 30px;
@@ -261,7 +256,7 @@
   border-radius: 5px;
 }
 
-.travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
+.travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here { /* stylelint-disable-line */
   padding-left: 35px;
   margin: 0;
   border: none;
@@ -273,17 +268,4 @@
 
 .travelPage-alpha-wrapper .relic-hunter-is-here .travelPage-regionMenu-environmentLink-image {
   margin-left: 0;
-}
-
-.travelPage-regionMenu-environmentLink.relic-hunter-is-here::after {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 20px;
-  height: 20px;
-  content: "";
-  background-image: url(https://www.mousehuntgame.com/images/mice/thumb/d6980f1b00ff8ec688804706cba9370c.gif?cv=2);
-  background-repeat: no-repeat;
-  background-size: contain;
-  border-radius: 5px;
 }
