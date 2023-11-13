@@ -14,17 +14,17 @@ const addAdvancedSettings = () => {
     'Custom Styles',
     'override-styles',
     '',
-    'Custom CSS to apply to MouseHunt.',
+    '<a href="https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS" target="_blank">Custom CSS</a> to apply to MouseHunt.',
     advancedTab,
     'mousehunt-improved-settings',
     { type: 'textarea' }
   );
 
   addSetting(
-    'Custom Flags',
+    'Feature Flags',
     'override-flags',
     '',
-    'Comma seperated list of feature flags to enable.',
+    'Comma seperated list of <a href="https://github.com/MHCommunity/mousehunt-improved/wiki/List-of-Feature-Flags" target="_blank">feature flags</a> to enable.',
     advancedTab,
     'mousehunt-improved-settings',
     { type: 'input' }
