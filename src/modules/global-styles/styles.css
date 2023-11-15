@@ -78,7 +78,7 @@
 .mh-ui-error-message,
 .mh-ui-success-message {
   z-index: 21;
-  padding: 1px 3px;
+  padding: 10px;
   font-size: 10px;
   color: #160404;
   background-color: #f5b9b9;
