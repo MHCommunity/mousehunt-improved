@@ -146,6 +146,7 @@ const updateJournalText = () => {
     ['The mouse dropped the following prize', 'that dropped'],
     ['My Unstable Charm turned into', 'My Unstable Charm became'],
     ['•&nbsp;', ' '],
+    ['My Condensed Creativity created additional loot:', 'My Condensed Creativity created an additional '],
 
     // Event stuff
     // SEH

@@ -116,6 +116,11 @@
 .journal .entry.queso_canyon_queso_pumped .journalbody {
   margin-left: 63px;
 }
+
+.journal .entry.relicHunter_complete .journaltext b {
+  font-weight: 700;
+}
+
 .journal .entry.folkloreForest.folkloreForest-lootFuelBoost {
   background-color: #b6f1d1;
 }

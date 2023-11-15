@@ -85,7 +85,7 @@
   width: calc(100% - 10px);
   padding-top: 5px;
   padding-bottom: 3px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 11px;
   font-weight: 100;
   border-bottom: 1px solid #717171;
@@ -232,4 +232,8 @@ a.journal-detailLink.full::after {
   border: 1px solid #6db8ca;
   outline: 1px solid #90d3e4;
   box-shadow: 0 0 6px -2px #e3e31f;
+}
+
+.journal .entry .journaltext p:last-of-type {
+  margin-bottom: 0;
 }
