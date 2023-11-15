@@ -1,0 +1,214 @@
+.forewordFarmPlotView-plot-progress-label {
+  font-size: 13px;
+  line-height: 18px;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 1px #000);
+  -webkit-text-stroke: 1px #ffffff82;
+}
+
+.folkloreForestRegionView-environmentInventory-block-quantity {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+span.forewordFarmPlotView-plot-progress-catchText {
+  font-size: 11px;
+  vertical-align: bottom;
+}
+
+.folkloreForestRegionView-basicBait-quantity.quantity {
+  top: 13px;
+  font-size: 12px;
+}
+
+.forewordFarmView-growthRate-value span {
+  margin-right: 2px;
+}
+
+.forewordFarmView-growthRate-value {
+  font-size: 14px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px 0 #000 inset;
+}
+
+.forewordFarmView-growthRate-label {
+  margin-left: 2px;
+  font-size: 11px;
+  font-variant: all-small-caps;
+}
+
+.forewordFarmView-harvestBin-quantity {
+  top: -12px;
+  padding: 2px;
+  font-size: 23px;
+}
+
+.forewordFarmView-harvestBin-claimButton-label {
+  margin-left: 64px;
+  font-size: 12px;
+  color: #2c4e26!important;
+  text-shadow: 1px 1px 1px #d1d1d1;
+}
+
+.forewordFarmPlotView-plot-queue-item-spacer {
+  height: 15px;
+  background-color: #ccc;
+}
+
+
+.forewordFarmPlotView-plot-queue-name.active {
+  -webkit-line-clamp: 3;
+}
+
+a.forewordFarmPlotView-plot-queue-cancelButton {
+  top: -12px;
+  right: -4px;
+  padding: 2px;
+  background-color: #febeb8;
+  box-shadow: 0 0 3px -1px #000 inset;
+}
+
+.forewordFarmPlotView-plot-progressContainer .mousehuntTooltip {
+  border-width: 1px;
+}
+
+.forewordFarmPlotView-plot-queue-item:hover .forewordFarmPlotView-plot-queue-cancelButton:hover {
+  z-index: 1;
+  color: #000! important;
+  background-color: #eb7c73;
+}
+
+
+.forewordFarmPlotView.showQueues .forewordFarmPlotView-plot-queue-item {
+  width: 50%;
+}
+
+.forewordFarmPlotView-plot-queue-list:hover {
+  background: none;
+}
+
+.forewordFarmPlotView-plot-queue-item:hover a.forewordFarmPlotView-plot-queue-cancelButton {
+  background-color: #febeb8;
+}
+
+.folkloreForestRegionView-fuel-quantity.quantity {
+  font-size: 13px;
+}
+
+
+.forewordFarmPlantDialogView-plant-yieldContainer table {
+  margin-top: 5px;
+}
+
+.forewordFarmPlantDialogView-plant-yieldContainer {
+  width: 45%;
+  padding-top: 5px;
+}
+
+.forewordFarmPlantDialogView-plant-costContainer.num_items_3 {
+  display: flex;
+  flex-flow: row wrap;
+  width: 50%;
+}
+
+.forewordFarmPlantDialogView .folkloreForestRegionView-dialog-block-item {
+  margin: 0;
+}
+
+.forewordFarmPlantDialogView-plant-name {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+}
+
+.forewordFarmPlantDialogView-plant .folkloreForestRegionView-button.big {
+  width: 95px;
+  font-size: 12px;
+}
+
+#overlayPopup.fabledForestDialog .jsDialog.background {
+  padding: 18px 5px 10px;
+}
+
+.folkloreForestRegionView-dialog-block.highlight , .folkloreForestRegionView-dialog-block {
+  border-top: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.forewordFarmPlantDialogView-row {
+  border: 1px solid #897225;
+  border-radius: 0;
+}
+
+.forewordFarmPlantDialogView-plant {
+  border: none;
+}
+
+.forewordFarmPlantDialogView-plant-header {
+  border-bottom: 1px solid #897225;
+  box-shadow: 0 0 6px 0 #134220 inset;
+}
+
+.folkloreForestRegionView-dialog-block-icon {
+  top: -1px;
+  left: -1px;
+}
+
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant:nth-child(2) .forewordFarmPlantDialogView-plant-content {
+  margin-left: -1px;
+
+  /* outline: 1px solid red; */
+  border-left: 1px solid #897225;
+}
+
+/** TODO: maybe remove the arrow as a whole?? **/
+.folkloreForestRegionView-dialog-block.highlight .folkloreForestRegionView-dialog-block-icon::after {
+  right: 0;
+  bottom: 1px;
+  width: 16px;
+  height: 21px;
+  background-image: url(https://www.mousehuntgame.com/images/ui/onboarding/tutorial_arrow.png);
+  filter: hue-rotate(45deg) brightness(1.1);
+  background-repeat: no-repeat;
+}
+
+.folkloreForestRegionView-dialog-block-item-image {
+  margin: 4px auto;
+  background-color: transparent;
+  border: none;
+}
+
+.forewordFarmPlotView-plot-progress-bar {
+  top: -2px;
+  bottom: -1px;
+  border-right: none;
+  border-left: none;
+  box-shadow: 0 1px 0 0 #999, 0 -1px 0 0 #999;
+}
+
+.forewordFarmPlotView-plot-progress-plantIcon.current {
+  top: -5px;
+  left: -24px;
+}
+
+.forewordFarmPlotView.showQueues .forewordFarmPlotView-plot-progressContainer {
+  width: 80px;
+  height: 20px;
+  margin-top: 114px;
+}
+
+.forewordFarmPlotView-plot-progress-plantIcon.queued {
+  top: -1px;
+  right: -17px;
+  width: 22px;
+  height: 22px;
+}
+
+.forewordFarmPlotView.showPlantIconHighlight .forewordFarmPlotView-plot.highlight .forewordFarmPlotView-plot-progress-plantIcon.highlight {
+  box-shadow: 0 0 1px 2px #6adf4fd4;
+}
+
+.forewordFarmHarvestBin-itemImage .quantity {
+  font-size: 16px;
+}
