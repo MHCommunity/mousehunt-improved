@@ -106,7 +106,14 @@ input.treasureMapView-shareLinkInput {
 }
 
 img.treasureMapView-reward-chestIcon {
-  width: 120px;
+  box-sizing: border-box;
+  width: 160px;
+  height: 160px;
+  padding:  0;
+  margin: 20px auto;
+  background: transparent;
+  border: 1px solid #16851b;
+  box-shadow: 0 0 10px 0 #1daf24;
 }
 
 .treasureMapInvitesView .treasureMapView-leftBlock:first-child .treasureMapView-block-title:first-child {
@@ -471,7 +478,7 @@ img.mh-mapper-consolation-prize {
 }
 
 .treasureMapView-block-title.mh-ui-goals-title {
-  margin: -5px;
+  margin: -7px;
   color: transparent;
 }
 
@@ -667,4 +674,22 @@ input.treasureMapView-block-search-text {
     margin-left: 5px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+
+.treasureMapView-mapMenu.treasureMapRootView-padding {
+  margin-bottom: 30px;
+}
+
+.mh-ui-we-did-it-title {
+  display: none;
+}
+
+.mh-ui-we-did-it-block {
+  margin-top: 3px;
+}
+
+.treasureMapView-block.treasureMapView-reward.mh-ui-we-did-it-block {
+  margin-top: 3px;
+  background-color: #95ef9b;
+  border-color: #14851b;
 }
