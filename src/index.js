@@ -8,6 +8,7 @@ import betterJournal from './modules/better-journal';
 import betterKingsReward from './modules/better-kings-reward';
 import betterMaps from './modules/better-maps';
 import betterMarketplace from './modules/better-marketplace';
+import betterMarketplaceSettings from './modules/better-marketplace/settings';
 import betterMice from './modules/better-mice';
 import betterQuests from './modules/better-quests';
 import betterSendSupplies from './modules/better-send-supplies';
@@ -189,6 +190,7 @@ const modules = [
         default: true,
         description: 'Updates the marketplace layout and appearance and adds a variety of small features.',
         load: betterMarketplace,
+        settings: betterMarketplaceSettings,
       },
       {
         id: 'better-mice',
