@@ -25,6 +25,12 @@ const showFullTitlePercent = () => {
   });
 };
 
+const replaceInboxClose = () => {
+  const template = hg.utils.TemplateUtil.getTemplate('ViewMousehuntHeader_inbox')
+    .replace('<a class="messengerUINotificationClose" href="#">X', '<a class="messengerUINotificationClose" href="#">✕');
+  hg.utils.TemplateUtil.addTemplate('ViewMousehuntHeader_inbox', template);
+};
 export default () => {
   showFullTitlePercent();
+  replaceInboxClose();
 };
