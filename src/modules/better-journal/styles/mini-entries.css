@@ -33,7 +33,10 @@
 .journal .content .entry.jetStreamAuraActivated,
 .journal .content .entry.birthday2018-rewind-charm,
 .journal .content .entry.relicHunter_slayer_aura_relic_bonus,
-.journal .entry.halloween_boiling_cauldron.brew_finished {
+.journal .entry.halloween_boiling_cauldron.brew_finished,
+.journal .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted,
+.journal .entry.folkloreForest.folkloreForest-lootFuelBoost,
+.journal .entry.folkloreForest-farmToTable {
   background-position: 10px center;
 }
 
@@ -47,7 +50,8 @@
 .entry.short.rift-bristlewoods-lootBooster .journaldate,
 .entry.short.super_rift_vacuum_trigger .journaldate,
 .entry.short.queso_canyon_queso_pumped .journaldate,
-.entry.short.custom.chesla_trap_trigger .journaldate {
+.entry.short.custom.chesla_trap_trigger .journaldate,
+.entry.short.folkloreForest.folkloreForest-lootFuelBoost .journaldate {
   display: none;
 }
 
@@ -107,4 +111,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.entry.short.misc.custom.minimal.folkloreForest.folkloreForest-lootFuelBoost {
+  min-height: unset;
 }
