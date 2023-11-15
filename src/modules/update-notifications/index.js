@@ -20,6 +20,14 @@ export default () => {
 
   const { date, hasRead } = getReadUpdateNotificationTime(mhImprovedVersion);
 
+  // Check to see if the date is older than 1 week and if so, don't show the notification.
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+  if (new Date(date) < oneWeekAgo) {
+    return;
+  }
+
   const m = new MessengerUINotification();
   m.addMessage({
     messageId: `mhui-update-notification-${mhImprovedVersion}`,
