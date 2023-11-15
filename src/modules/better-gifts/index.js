@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import { addUIStyles, getMhuiSetting, replaceInTemplate } from '../utils';
 import styles from './styles.css';
 
 const getIgnoredGifts = () => {
@@ -183,11 +183,29 @@ const makeReturnButton = (buttonContainer) => {
 };
 
 const fixTypo = () => {
-  const template = hg.utils.TemplateUtil.getTemplate('ViewGiftSelector')
-    .replace('You can send 1 free gifts', 'You can send 1 free gift')
-    .replace('<b>1</b> free gifts', '<b>1</b> free gift');
+  replaceInTemplate('ViewGiftSelector', [
+    [
+      'You can send 1 free gifts',
+      'You can send 1 free gift'
+    ],
+    [
+      '<b>1</b> free gifts',
+      '<b>1</b> free gift'
+    ],
+  ]);
+};
 
-  hg.utils.TemplateUtil.addTemplate('ViewGiftSelector', template);
+const lineBreakGiftFooter = () => {
+  replaceInTemplate('GiftSelectorView', [
+    [
+      'more free gifts today. You can',
+      'more free gifts today. <p class="mh-ui-footer-gifts-second-line">You can'
+    ],
+    [
+      'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">Close</a>',
+      'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">✕</a>'
+    ],
+  ]);
 };
 
 const getButtons = (className = false) => {
@@ -441,6 +459,7 @@ const main = () => {
   addRandomSendButton();
   addGiftSwitcher();
   fixTypo();
+  lineBreakGiftFooter();
 };
 
 export default () => {
