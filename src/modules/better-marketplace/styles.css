@@ -4,9 +4,16 @@ div#select2-drop.marketplaceView-header-search-dropdown .select2-result-label {
 
 div#select2-drop.marketplaceView-header-search-dropdown .select2-result-sub .select2-result-label {
   display: grid;
-  grid-template-columns: 25px 4fr 1fr;
+  grid-template-columns: 30px 4fr 1fr;
   place-items: center start;
   padding-left: 10px;
+}
+
+div#select2-drop.marketplaceView-header-search-dropdown .friendsPage-filter-environment-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .marketplaceView-item-quickListings .marketplaceView-table-listing-quantity:hover,
