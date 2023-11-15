@@ -152,7 +152,7 @@ const updateJournalText = () => {
 
     // Halloween
     [/an additional:<br>/i, 'an additional '],
-    [/([1234567890]) x /i, ' $1 '],
+    [/([1234567890]+?) x /i, ' $1 '],
 
     ['<p></p>', ''],
   ]);
