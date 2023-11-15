@@ -126,3 +126,8 @@
 .itemPurchaseView-container.apothecary .itemPurchaseView-image {
   border: none;
 }
+
+.forewordFarmHarvestBin-itemImage.itemImage {
+  background-color: transparent;
+  box-shadow: none;
+}
