@@ -4,3 +4,42 @@
   justify-content: flex-end;
   font-size: 12px;
 }
+
+.headsUpDisplayBountifulBeanstalk__inventoryBlockQuantity.quantity {
+  padding: 2px;
+  margin-top: -4px;
+  font-size: 13px;
+}
+
+.bountifulBeanstalkCastleView__noiseLevel,
+.bountifulBeanstalkCastleView__maxNoiseLevel {
+  padding: 0 2px;
+  font-size: 17px;
+  vertical-align: middle;
+}
+
+.bountifulBeanstalkCastleView__noiseMeterLabel {
+  vertical-align: middle;
+}
+
+.headsUpDisplayBountifulBeanstalkView__baitImage {
+  top: 0;
+  left: 3px;
+  width: 35px;
+  height: 35px;
+}
+
+.headsUpDisplayBountifulBeanstalkView__baitIngredientImage {
+  top: 24px;
+  left: 28px;
+  width: 20px;
+  height: 20px;
+}
+
+.bountifulBeanstalkCastleView__plinthLootImage .headsUpDisplayBountifulBeanstalkView__loot {
+  top: 47px;
+  right: 242px;
+  width: 45px;
+  height: 45px;
+  filter: drop-shadow(0 0 5px #f0e1a4);
+}

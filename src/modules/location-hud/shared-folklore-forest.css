@@ -1,0 +1,39 @@
+
+.folkloreForestRegionView-dialog-help .folkloreForestRegionView-dialog-tabContentContainer {
+  max-width: 560px;
+  padding: 10px;
+  margin: 0 auto;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.folkloreForestRegionView-dialog-help h3 {
+  font-size: 17px;
+  color: #fff5cb;
+}
+
+
+.folkloreForestRegionView-dialog-tabHeaderContainer::before, .folkloreForestRegionView-dialog-tabHeaderContainer::after {
+  background: transparent;
+}
+
+.folkloreForestRegionView-dialog-tabHeaderContainer {
+  padding: 0 40px;
+  margin-right: -20px;
+  margin-left: -20px;
+  border-bottom-color: #416f2a;
+}
+
+a.folkloreForestRegionView-dialog-tabHeader {
+  background-color: #4d3d00;
+
+  /* border-radius: 5px; */
+
+  /* box-shadow: 0 0 3px 1px #143706 inset; */
+  border: 1px solid #416f2a;
+  border-bottom: none;
+}
+
+#overlayPopup.fabledForestDialog .title {
+    margin-top: -19px;
+}
