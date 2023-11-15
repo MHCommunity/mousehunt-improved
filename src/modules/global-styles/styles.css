@@ -231,3 +231,12 @@ div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] a
   color: #00901c;
   text-decoration: none;
 }
+
+a.mousehuntActionButton.success::before {
+  background-color: #00ff59;
+  box-shadow: 0 0 10px #beff99 inset;
+}
+
+a.mousehuntActionButton.success {
+  background-color: #97f990;
+}
