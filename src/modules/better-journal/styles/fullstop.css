@@ -31,8 +31,8 @@
 .entry.halloween_boiling_cauldron.brew_removed a:last-of-type::after,
 .entry.badge .journaltext a::after,
 .entry.folkloreForest.folkloreForest-lootFuelBoost .journaltext::after,
-.entry.folkloreForest-farmToTable::after,
-.entry.folkloreForest-forewordFarm.folkloreForest-plantStarted::after {
+.entry.folkloreForest-farmToTable .journaltext a::after,
+.entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after {
   display: inline;
   content: ".";
 }
