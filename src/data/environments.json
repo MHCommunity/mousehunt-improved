@@ -29,7 +29,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/dee680c95caf9f8d4f4c8f62d9559c55.jpg?cv=2",
     "region": "gnawnia"
   },
-
   {
     "id": "kings_arms",
     "name": "King's Arms",
@@ -48,7 +47,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/c6b49b20bb646760bf6c0ed3068f1295.jpg?cv=2",
     "region": "valour"
   },
-
   {
     "id": "calm_clearing",
     "name": "Calm Clearing",
@@ -67,7 +65,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/cfbb19c90443073ff9d14b282c157c90.jpg?cv=2",
     "region": "whisker_woods"
   },
-
   {
     "id": "laboratory",
     "name": "Laboratory",
@@ -98,7 +95,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/6e8c017845d0fac63689aaa807775ab2.jpg?cv=2",
     "region": "burroughs"
   },
-
   {
     "id": "training_grounds",
     "name": "Training Grounds",
@@ -123,7 +119,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/87926031d29e6aefe3fb7ed6c9b26634.jpg?cv=2",
     "region": "furoma"
   },
-
   {
     "id": "catacombs",
     "name": "Catacombs",
@@ -142,7 +137,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/a72f9c94f446eef321d92f25c8617c62.jpg?cv=2",
     "region": "bristle_woods"
   },
-
   {
     "id": "cape_clawed",
     "name": "Cape Clawed",
@@ -185,7 +179,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/13f8a9edffc65a052d84dd08d1a0a32b.jpg?cv=2",
     "region": "tribal_isles"
   },
-
   {
     "id": "claw_shot_city",
     "name": "Claw Shot City",
@@ -204,7 +197,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/f8fa3cfb0ba47234604e790c0edc51aa.jpg?cv=2",
     "region": "varmint_valley"
   },
-
   {
     "id": "desert_warpath",
     "name": "Fiery Warpath",
@@ -235,7 +227,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/4e8967692df16dfbb489e9acf672ec4a.jpg?cv=2",
     "region": "desert"
   },
-
   {
     "id": "ss_huntington_ii",
     "name": "S.S. Huntington IV",
@@ -278,7 +269,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/76c845e1cb95684581b12f3c3b1c1c8e.jpg?cv=2",
     "region": "rodentia"
   },
-
   {
     "id": "queso_river",
     "name": "Queso River",
@@ -303,7 +293,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/d0046f985528496b0d638c04f35270bc.jpg?cv=2",
     "region": "queso_canyon"
   },
-
   {
     "id": "fungal_cavern",
     "name": "Fungal Cavern",
@@ -334,7 +323,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/0fb181c7f216be2d5bde0475ab46f8c5.jpg?cv=2",
     "region": "zokor_zone"
   },
-
   {
     "id": "foreword_farm",
     "name": "Foreword Farm",
@@ -359,7 +347,6 @@
     "image": "https://www.mousehuntgame.com/images/environments/b87a3294559cfa57506b4fbda5f66917.jpg?cv=2",
     "region": "folklore_forest"
   },
-
   {
     "id": "rift_gnawnia",
     "name": "Gnawnia Rift",
