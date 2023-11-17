@@ -244,6 +244,86 @@
       }
     ]
   },
+  "farming_and_fishing": {
+    "categories": [
+      {
+        "name": "Farm",
+        "id": "fofo-farm",
+        "icon": "/folklore_forest_upgrades/farm_plot_2_thumb.png",
+        "color": "#d7b18b",
+        "mice": [
+          "angry_aphid",
+          "crazed_cultivator",
+          "grit_grifter",
+          "mighty_mite",
+          "root_rummager",
+          "wily_weevil",
+          {
+            "mouse": "crazed_cultivator",
+            "subcategory": "sb"
+          },
+          {
+            "mouse": "land_loafer",
+            "subcategory": "zero-plants"
+          },
+          {
+            "mouse": "loathsome_locust",
+            "subcategory": "three-papyrus"
+          }
+        ]
+      },
+      {
+        "name": "Prologue Pond",
+        "id": "fofo-pond",
+        "icon": "/folklore_forest_upgrades/tackle_box_thumb.png",
+        "color": "#c3def5",
+        "mice": [
+          "beachcomber",
+          "sand_sifter",
+          "tackle_tracker",
+          {
+            "mouse": "covetous_coastguard",
+            "subcategory": "sb"
+          }
+        ]
+      },
+      {
+        "name": "Prologue Pond",
+        "subtitle": "Grubben",
+        "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
+        "color": "#fbc3fa",
+        "mice": ["pompous_perch", "careless_catfish", "melodramatic_minnow"]
+      },
+      {
+        "name": "Prologue Pond",
+        "subtitle": "Clamebert",
+        "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
+        "color": "#f3e0ff",
+        "mice": ["nefarious_nautilus", "vicious_vampire_squid", "sinister_squid"]
+      },
+      {
+        "name": "Bosses",
+        "id": "fofo-bosses",
+        "icon": "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png",
+        "color": "#fde671",
+        "mice": ["monstrous_midge", "architeuthulhu_of_the_abyss"]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "sb",
+        "name": "SUPER|brie+"
+      },
+      {
+        "id": "zero-plants",
+        "name": "Zero Plants"
+      },
+      {
+        "id": "three-papyrus",
+        "name": "Three Papyrus Plants"
+      }
+    ]
+  },
   "folklore_forest_prelude": {
     "categories": [
       {
