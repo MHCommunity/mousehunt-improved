@@ -1,4 +1,5 @@
 import { addUIStyles } from '../utils';
+
 import styles from './styles.css';
 
 const main = () => {
