@@ -26,7 +26,7 @@
 
 .notificationMessageList .message.ballot img.item {
   height: 25px;
-  margin: -5px 5px -10px -5px;
+  margin: -5px 5px 0 -5px;
 }
 
 .notificationMessageList .message.ballot .date {
@@ -96,7 +96,7 @@
 }
 
 #messengerUINotification .notificationMessageList .tab {
-  min-height: 45vh;
+  min-height: 55vh;
   background-color: #f7f7f7;
 }
 
@@ -196,7 +196,6 @@ div#messengerUINotification {
   box-shadow: inset 0 0 3px -1px #d1d0cf;
 }
 
-
 .journal.jsingle .close a {
   display: block;
   width: 0;
@@ -210,4 +209,9 @@ div#messengerUINotification {
 .journal.jsingle .close a:focus::after {
   color: #fff;
   background-color: #e13d3d;
+}
+
+.giftSelectorView-inbox-footer-label {
+  margin-top: -30px;
+  text-align: left;
 }
