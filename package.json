@@ -9,30 +9,31 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "concurrently \"bun:build:*\"",
-    "build:archive": "mkdir dist && git archive --format zip --output dist/archive.zip HEAD",
+    "build": "concurrently \"bun:build:extension\" \"bun:build:userscript\" \"bun:build:archive\"",
+    "build:archive": "mkdir -p dist && git archive --format zip --output dist/archive.zip HEAD",
     "build:extension": "concurrently \"bun:build:extension:*\"",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
     "build:extension:firefox": "node scripts/build-extension.mjs firefox",
     "build:userscript": "node scripts/build-userscript.mjs",
     "clean": "del-cli dist",
-    "lint:css:fix": "stylelint **/*.css --fix",
-    "lint:css": "stylelint **/*.css",
+    "lint:css:fix": "stylelint **/**/*.css --fix",
+    "lint:css": "stylelint **/**/*.css",
     "lint:fix": "concurrently \"bun:lint:*:fix\"",
     "lint:js:fix": "eslint --ext .js . --fix -c .eslintrc.json",
     "lint:js": "eslint --ext .js . -c .eslintrc.json",
     "lint:md:fix": "eslint --ext .md . --fix -c .eslintrc.json",
     "lint:md": "eslint --ext .md . -c .eslintrc.json",
-    "lint": "concurrently \"bun:lint:*(!fix)\"",
-    "prebuild": "del-cli dist"
+    "lint": "concurrently \"bun:lint:*(!fix)\""
   },
   "dependencies": {
     "@babel/runtime": "^7.23.2",
+    "eslint-plugin-import": "^2.29.0",
     "humanize-duration": "^3.31.0",
     "mousehunt-utils": "^1.11.0",
     "pretty-ms": "^8.0.0"
   },
   "devDependencies": {
+    "@sprout2000/esbuild-copy-plugin": "^1.1.12",
     "@wordpress/eslint-plugin": "^17.2.0",
     "archiver": "^6.0.1",
     "concurrently": "^8.2.2",
