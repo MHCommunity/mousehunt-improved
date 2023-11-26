@@ -252,3 +252,12 @@ a.mousehuntHud-shield.golden.color-rainbow2 {
 .pageFrameView-column.right.color-red {
   filter: hue-rotate(146deg);
 }
+
+/* TODO: add options to also change horn color */
+
+/* a.huntersHornView__horn.huntersHornView__horn--ready */
+
+/* TODO: maybe add to horn message too? */
+
+/* .huntersHornMessageView.huntersHornMessageView--recent_linked_turn,
+.huntersHornMessageView.huntersHornMessageView--recent_turn { */

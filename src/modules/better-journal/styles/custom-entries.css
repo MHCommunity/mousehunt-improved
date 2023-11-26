@@ -124,3 +124,7 @@
 .journal .entry.folkloreForest.folkloreForest-lootFuelBoost {
   background-color: #b6f1d1;
 }
+
+.entry.folkloreForest-farmToTable .journaltext a:nth-last-of-type(2)::after {
+  content: " and ";
+}

@@ -22,16 +22,10 @@
   padding: 10px;
 }
 
-.dailyRewardPopup .todaysRewards .reward {
+#overlayPopup.dailyRewardPopup .todaysRewards .reward {
   width: 100px;
-  font-size: 14px;
-  font-weight: 900;
+  font-size: 13px;
   transition: all .25s ease-in-out;
-}
-
-.dailyRewardPopup .todaysRewards .reward .itemImage {
-  width: 100px;
-  height: 100px;
 }
 
 .dailyRewardPopup .todaysRewards .reward img {

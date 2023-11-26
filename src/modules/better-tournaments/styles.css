@@ -410,6 +410,10 @@ h2.tournamentPage-profile-details-mouseGroup-name {
   margin-bottom: 5px;
 }
 
+.pointsTotal {
+  text-align: center;
+}
+
 img.memberImage {
   width: 20px;
   height: 20px;
@@ -558,4 +562,25 @@ img.pointsMouseIcon {
 
 .tournament-normal-time.tournament-time-display-inline {
   margin-top: 4px;
+}
+
+.tournamentPage-tournamentRow:hover::before {
+  box-shadow: none;
+}
+
+.tournamentPage-tournamentRow:hover {
+  background-color: #ececec;
+}
+
+.tournamentPage-tournamentRow.signed_up::before {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.tournamentPage-tournamentRow.tournamentPage-tournamentData.signed_up {
+  background-color: #feff8d;
+}
+
+.tournamentPage-tournamentRow.tournamentPage-tournamentData.signed_up:hover {
+  background-color: #ffda2f;
 }
