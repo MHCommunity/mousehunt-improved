@@ -31,20 +31,6 @@ const setMapData = (mapId, mapData) => {
   sessionStorage.setItem('mh-improved-map-cache-last-map', JSON.stringify(mapData));
 };
 
-const getLastMap = () => {
-  const lastMap = getMapData();
-  if (lastMap) {
-    interceptMapRequest(lastMap);
-  } else {
-    addToGlobal({
-      mapData: false,
-      mapModel: false,
-      stage: false,
-      location: false,
-    });
-  }
-};
-
 const addBlockClasses = () => {
   const rightBlocks = document.querySelectorAll('.treasureMapView-rightBlock > div');
   const leftBlocks = document.querySelectorAll('.treasureMapView-leftBlock > div');
@@ -160,6 +146,5 @@ export {
   addBlockClasses,
   getMapData,
   setMapData,
-  getLastMap,
   addMHCTData
 };
