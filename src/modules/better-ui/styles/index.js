@@ -45,7 +45,7 @@ const main = () => {
     team,
     traps,
     userscripts,
-  ].join('\n'));
+  ]);
 };
 
 export default main;

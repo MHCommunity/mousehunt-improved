@@ -17,7 +17,7 @@ const main = () => {
     sidebar,
     sorted,
     sortedMap,
-  ].join('\n'));
+  ]);
 };
 
 export default main;

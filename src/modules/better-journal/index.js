@@ -159,7 +159,8 @@ const updateJournalText = () => {
 
     // Halloween
     [/an additional:<br>/i, 'an additional '],
-    [/([1234567890]+?) x /i, ' $1 '],
+
+    [/([1234567890]+?) x /gi, ' $1 '],
 
     ['<p></p>', ''],
   ]);
@@ -231,11 +232,13 @@ const main = () => {
 };
 
 export default () => {
-  addUIStyles(styles);
-  addUIStyles(customEntries);
-  addUIStyles(fullstop);
-  addUIStyles(miniEntries);
-  addUIStyles(progressLog);
+  addUIStyles([
+    styles,
+    customEntries,
+    fullstop,
+    miniEntries,
+    progressLog,
+  ]);
 
   main();
 

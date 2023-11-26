@@ -77,8 +77,7 @@ const upscaleImages = () => {
 };
 
 export default () => {
-  addUIStyles(styles);
-  addUIStyles(journalThemeStyles);
+  addUIStyles([styles, journalThemeStyles]);
 
   upscaleImages();
 
