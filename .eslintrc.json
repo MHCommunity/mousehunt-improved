@@ -6,7 +6,8 @@
   },
   "extends": [
       "eslint:recommended",
-      "plugin:@wordpress/eslint-plugin/recommended-with-formatting"
+      "plugin:@wordpress/eslint-plugin/recommended-with-formatting",
+      "plugin:import/recommended"
   ],
   "parserOptions": {
       "ecmaVersion": 12,
@@ -48,6 +49,22 @@
       "object-curly-spacing": ["error", "always"],
       "quotes": ["error", "single"],
       "semi": ["error", "always"],
+      "import/no-named-as-default": "error",
+      "import/no-absolute-path": "error",
+      "import/no-useless-path-segments": "error",
+      "import/no-cycle": "error",
+      "import/exports-last": "error",
+      "import/first": "error",
+      "import/group-exports": "error",
+      "import/no-unused-modules": ["error", {
+        "unusedExports": true,
+        "ignoreExports": ["src/modules/module-template/**/*"]
+      }],
+      "import/no-unassigned-import": "error",
+      "sort-imports": ["error", {
+        "allowSeparatedGroups": true,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+      }],
       "space-before-function-paren": ["error", {
           "anonymous": "always",
           "named": "never",
