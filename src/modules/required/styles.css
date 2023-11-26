@@ -247,9 +247,10 @@
 }
 
 .mousehunt-improved-settings-export-popup-content {
-    display: grid;
-    grid-template-columns: 1fr 100px;
-    gap: 30px;
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: 30px;
+  min-height: 400px;
 }
 
 .mousehunt-improved-settings-export-popup-buttons {
@@ -261,15 +262,19 @@
 }
 
 .mousehunt-improved-settings-export-popup-content textarea {
-  width: 100%;
-  height: auto;
-  min-height: 350px;
+  padding: 10px;
   font-family: monospace;
   font-size: 12px;
+  background-color: #f6f6f6;
+  border: 1px solid #b3b3b3;
 }
 
 .mousehunt-improved-settings-export-popup .suffix {
   display: none;
+}
+
+.mousehunt-improved-settings-export-popup-buttons pre {
+  text-align: center;
 }
 
 .settingRow-action-inputContainer.textarea {
