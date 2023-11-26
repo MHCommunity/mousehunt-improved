@@ -52,7 +52,6 @@ import adblock from './modules/adblock';
 import noFooter from './modules/no-footer';
 import noShare from './modules/no-share';
 import noSidebar from './modules/no-sidebar';
-import noDailyReward from './modules/no-daily-reward';
 import journalPrivacy from './modules/journal-privacy';
 
 // All the always loaded modules.
@@ -398,13 +397,6 @@ const modules = [
         default: false,
         description: 'Hides advertisements for Feedback Friday, mobile apps, news ticker, etc.',
         load: adblock,
-      },
-      {
-        id: 'hide-daily-reward',
-        name: 'Hide Daily Reward Popup',
-        default: false,
-        description: 'Automatically close the daily reward popup when it shows.',
-        load: noDailyReward,
       },
       {
         id: 'journal-privacy',
