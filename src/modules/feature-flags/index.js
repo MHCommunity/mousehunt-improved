@@ -3,6 +3,8 @@ import { addUIStyles, getFlag } from '../utils';
 import rankupForecaster from './modules/rank-up-forecaster';
 import trollMode from './modules/troll-mode';
 
+import delayTooltipStyles from './modules/delayed-tooltips.css';
+
 const fillTwttrObject = () => {
   window.twttr = {
     widgets: {
@@ -37,5 +39,9 @@ export default () => {
 
   if (! getFlag('rankup-forecaster')) {
     rankupForecaster();
+  }
+
+  if (getFlag('delayed-tooltips')) {
+    addUIStyles(delayTooltipStyles);
   }
 };
