@@ -5,7 +5,7 @@ import {
 
 import styles from './styles.css';
 
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
 const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) => {
   const hours = Math.floor(closes);

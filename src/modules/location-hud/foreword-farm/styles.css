@@ -6,11 +6,6 @@
   -webkit-text-stroke: 1px #ffffff82;
 }
 
-.folkloreForestRegionView-environmentInventory-block-quantity {
-  font-size: 12px;
-  font-weight: 400;
-}
-
 span.forewordFarmPlotView-plot-progress-catchText {
   font-size: 11px;
   vertical-align: bottom;
@@ -150,33 +145,12 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
   box-shadow: 0 0 6px 0 #134220 inset;
 }
 
-.folkloreForestRegionView-dialog-block-icon {
-  top: -1px;
-  left: -1px;
-}
 
 .forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant:nth-child(2) .forewordFarmPlantDialogView-plant-content {
   margin-left: -1px;
 
   /* outline: 1px solid red; */
   border-left: 1px solid #897225;
-}
-
-/** TODO: maybe remove the arrow as a whole?? **/
-.folkloreForestRegionView-dialog-block.highlight .folkloreForestRegionView-dialog-block-icon::after {
-  right: 0;
-  bottom: 1px;
-  width: 16px;
-  height: 21px;
-  background-image: url(https://www.mousehuntgame.com/images/ui/onboarding/tutorial_arrow.png);
-  filter: hue-rotate(45deg) brightness(1.1);
-  background-repeat: no-repeat;
-}
-
-.folkloreForestRegionView-dialog-block-item-image {
-  margin: 4px auto;
-  background-color: transparent;
-  border: none;
 }
 
 .forewordFarmPlotView-plot-progress-bar {
@@ -212,3 +186,25 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 .forewordFarmHarvestBin-itemImage .quantity {
   font-size: 16px;
 }
+
+/* makes the plant queue top to bottom rather than left and right */
+
+/* .forewordFarmPlotView-plot-queue-list {
+  flex-direction: column;
+  padding: 5px;
+  margin-left: -11px;
+  margin-right: -10px;
+}
+
+.forewordFarmPlotView-plot-queue-item {
+  width: 100%;
+}
+
+.forewordFarmPlotView-plot-queue-item-spacer {
+  display: none;
+}
+
+a.forewordFarmPlotView-plot-queue-cancelButton {
+  top: -12px;
+  right: -11px;
+} */

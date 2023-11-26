@@ -30,7 +30,6 @@ import foreword_farm from './foreword-farm';
 import fort_rox from './fort-rox';
 import fungal_cavern from './fungal-cavern';
 import great_gnarled_tree from './great-gnarled-tree';
-import halloween_event_location from './halloween-event-location';
 import iceberg from './iceberg';
 import jungle_of_dread from './jungle-of-dread';
 import kings_arms from './kings-arms';
@@ -42,6 +41,7 @@ import moussu_picchu from './moussu-picchu';
 import nerg_plains from './nerg-plains';
 import pinnacle_chamber from './pinnacle-chamber';
 import pollution_outbreak from './pollution-outbreak'; // Toxic Spill.
+import prologue_pond from './prologue-pond';
 import rift_bristle_woods from './rift-bristle-woods';
 import rift_burroughs from './rift-burroughs';
 import rift_furoma from './rift-furoma';
@@ -60,37 +60,40 @@ import zugzwang_tower from './zugzwang-tower';
 /* eslint-enable camelcase */
 
 // Regions
+import regionEvents from './region-events';
 import regionLivingGarden from './region-living-garden';
 import regionQueso from './region-queso';
 
+const regionMapping = [
+  {
+    region: 'region-living-garden',
+    locations: [
+      'desert_oasis',
+      'lost_city',
+      'sand_dunes',
+    ],
+  },
+  {
+    region: 'region-queso',
+    locations: [
+      'queso_geyser',
+      'queso_plains',
+      'queso_quarry',
+      'queso_river',
+    ],
+  },
+  {
+    region: 'region-event',
+    locations: [
+      'halloween_event_location',
+    ],
+  },
+];
+
 const normalizeCurrentLocation = (location) => {
-  const livingGardenRegions = [
-    'desert_oasis',
-    'lost_city',
-    'sand_dunes',
-  ];
-
-  if (livingGardenRegions.includes(location)) {
-    return 'region-living-garden';
-  }
-
-  const quesoRegions = [
-    'queso_geyser',
-    'queso_plains',
-    'queso_quarry',
-    'queso_river',
-  ];
-
-  if (quesoRegions.includes(location)) {
-    return 'region-queso';
-  }
-
-  const eventLocations = [
-    'halloween_event_location',
-  ];
-
-  if (eventLocations.includes(location)) {
-    return 'event-locations';
+  const region = regionMapping.find((regionMap) => regionMap.locations.includes(location));
+  if (region) {
+    return region.region;
   }
 
   return location;
@@ -128,7 +131,6 @@ const main = () => {
     fort_rox,
     fungal_cavern,
     great_gnarled_tree,
-    halloween_event_location,
     iceberg,
     jungle_of_dread,
     kings_arms,
@@ -140,6 +142,7 @@ const main = () => {
     nerg_plains,
     pinnacle_chamber,
     pollution_outbreak,
+    prologue_pond,
     rift_bristle_woods,
     rift_burroughs,
     rift_furoma,
@@ -155,9 +158,9 @@ const main = () => {
     train_station,
     windmill,
     zugzwang_tower,
+    'region-event': regionEvents, // 'halloween_event_location
     'region-living-garden': regionLivingGarden,
     'region-queso': regionQueso,
-    'event-locations': halloween_event_location, // TODO: move this to a 'event-locations' folder with other events.
   };
   /* eslint-enable camelcase */
 
@@ -166,21 +169,8 @@ const main = () => {
   }
 };
 
-const load = () => {
-  // We want to run this basically all the time.
+export default () => {
+  main();
   onNavigation(main);
   onTravel(main);
-
-  // Do it for every ajax request just in case, but specifically for the activeturn request.
-  onRequest(main);
-  onRequest(() => {
-    setTimeout(main, 500);
-  }, 'managers/ajax/turns/activeturn.php', true);
-};
-
-export default () => {
-  addUIStyles(cheeseSelectorStyles);
-
-  load();
-  setTimeout(load, 500);
 };

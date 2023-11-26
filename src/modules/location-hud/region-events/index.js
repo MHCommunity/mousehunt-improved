@@ -1,5 +1,9 @@
-import { addHudStyles } from '../../utils';
-import styles from './styles.css';
+import {
+  addHudStyles,
+  onRequest
+} from '../../utils';
+
+import halloweenStyles from './halloween/styles.css';
 
 const undisableCheese = () => {
   const armButtons = document.querySelectorAll('.halloweenBoilingCauldronHUD-bait');
@@ -18,7 +22,9 @@ const undisableCheese = () => {
 };
 
 export default () => {
-  addHudStyles('halloween-event-location', styles);
-  undisableCheese();
-  onRequest(undisableCheese);
+  if ('halloween_event_location' === getCurrentLocation()) {
+    addHudStyles(halloweenStyles);
+    undisableCheese();
+    onRequest(undisableCheese);
+  }
 };
