@@ -1,4 +1,4 @@
-export function getSeasonalGardenText(quests) {
+const getSeasonalGardenText = (quests) => {
   if (! quests.QuestSeasonalGarden) {
     return '';
   }
@@ -9,9 +9,9 @@ export function getSeasonalGardenText(quests) {
   };
 
   return `Amp: ${quest.amp}% / ${quest.max}%`;
-}
+};
 
-export function setSeasonalGardenData() {
+const setSeasonalGardenData = () => {
   const quest = {
     amp: 0,
     max: 0
@@ -28,4 +28,9 @@ export function setSeasonalGardenData() {
   }
 
   return quest;
-}
+};
+
+export {
+  getSeasonalGardenText,
+  setSeasonalGardenData
+};
