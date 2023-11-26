@@ -1,4 +1,4 @@
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
 export default () => {
   addCheeseSelector('ss-huntington-ii', [

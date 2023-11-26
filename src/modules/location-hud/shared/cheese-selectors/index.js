@@ -1,3 +1,10 @@
+import {
+  addUIStyles,
+  getUserItems
+} from '../../../utils';
+
+import styles from './styles.css';
+
 /**
  * Adds a cheese selector a a location that usually doesn't have a HUD.
  *
@@ -96,5 +103,6 @@ const getCheeses = (cheeses) => {
 };
 
 export default async (location, cheeses) => {
+  addUIStyles(styles, 'mh-improved-cheese-selectors', true);
   await makeCheeseSelector(location, getCheeses(cheeses));
 };

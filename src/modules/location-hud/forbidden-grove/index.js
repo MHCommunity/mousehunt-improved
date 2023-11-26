@@ -6,7 +6,7 @@ import {
 
 import styles from './styles.css';
 
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
 const updateClosingTime = () => {
   let timeLeftText = '';
@@ -59,7 +59,7 @@ const hud = () => {
 };
 
 export default () => {
-  addHudStyles('forbidden-grove', styles);
+  addHudStyles(styles);
   addCheeseSelector('forbidden-grove', [
     'ancient_cheese',
     'radioactive_blue_cheese',
