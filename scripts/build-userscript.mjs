@@ -1,30 +1,24 @@
 import * as esbuild from 'esbuild';
 import fs from 'fs';
 import path from 'path';
+import { CSSMinifyTextPlugin, sharedBuildOptions } from './shared.mjs';
 
-console.log(`Building userscript for version ${process.env.npm_package_version}`);
+
+const header = fs.readFileSync(
+  path.join(process.cwd(), 'src/userscript-header.js'), 'utf8')
+  .replace('process.env.VERSION', process.env.npm_package_version);
 
 await esbuild.build({
-  entryPoints: ['src/index.js'],
-  outfile: 'dist/mousehunt-improved.user.js',
+  ...sharedBuildOptions,
+  plugins: [CSSMinifyTextPlugin],
+  outfile: `dist/mousehunt-improved.user.js`,
+  minify: false,
+  sourcemap: false,
   banner: {
-    js: fs.readFileSync(
-      path.join(process.cwd(), 'src/userscript-header.js'), 'utf8')
-      .replace('process.env.VERSION', process.env.npm_package_version) +
+    js: [
+      header,
       `const mhImprovedVersion = '${process.env.npm_package_version}';`,
+      `const mhImprovedPlatform = 'userscript';`,
+    ].join('\n'),
   },
-  bundle: true,
-  format: 'iife',
-  globalName: 'mhui',
-  loader: {
-    '.css': 'text',
-  },
-  metafile: true,
-  sourcemap: 'external',
-  splitting: false,
-  define: {
-    EXT_VERSION: JSON.stringify(process.env.npm_package_version),
-  }
 });
-
-console.log('Built userscript');
