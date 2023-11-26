@@ -1,14 +1,24 @@
+import * as Mhutils from './mh-utils';
+
 /**
  * Add custom styles to the page.
  *
- * @param {string} styles CSS to add to the page.
+ * @param {string|Array} styles     CSS to add to the page.
+ * @param {string}       identifier Identifier to use for the styles.
+ * @param {boolean}      replace    Whether to replace the existing styles.
  */
-const addUIStyles = (styles) => {
-  const identifier = 'mh-improved-styles';
-
+const addUIStyles = (styles, identifier = 'mh-improved-styles', replace = false) => {
   const existingStyles = document.getElementById(identifier);
+
+  styles = Array.isArray(styles) ? styles.join('\n') : styles;
+
   if (existingStyles) {
-    existingStyles.innerHTML += styles;
+    if (replace) {
+      existingStyles.innerHTML = styles;
+    } else {
+      existingStyles.innerHTML += styles;
+    }
+
     return;
   }
 
@@ -247,7 +257,7 @@ const getArEl = async (id, type = 'mouse') => {
   if (! ar) {
     ar = await getHighestArText(id, type);
     if (! ar || ar.length === 0) {
-      return makeElement('div', ['mh-ui-ar', 'mh-ui-no-ar'], '?');
+      return Mhutils.makeElement('div', ['mh-ui-ar', 'mh-ui-no-ar'], '?');
     }
 
     arType = 'highest';
@@ -276,7 +286,7 @@ const getArEl = async (id, type = 'mouse') => {
     ar = ar.toString().slice(0, -3);
   }
 
-  return makeElement('div', ['mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`], `${ar}%`);
+  return Mhutils.makeElement('div', ['mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`], `${ar}%`);
 };
 
 /**
@@ -371,7 +381,7 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
     existing.remove();
   }
 
-  const error = makeElement('div', [`mh-ui-${type}-message`, 'mh-ui-fade', classes], message);
+  const error = Mhutils.makeElement('div', [`mh-ui-${type}-message`, 'mh-ui-fade', classes], message);
   // try catch appending the error to the appendTo element
   let success = true;
   try {
@@ -422,7 +432,7 @@ const showSuccessMessage = (message, appendTo, classes = '') => {
  * @param {Object}  options     Additional ptions for the setting.
  */
 const addMhuiSetting = (id, title, defaultVal, description, module, options = null) => {
-  addSetting(
+  Mhutils.addSetting(
     title,
     id,
     defaultVal,
@@ -446,7 +456,7 @@ const addMhuiSetting = (id, title, defaultVal, description, module, options = nu
  * @return {boolean} Value of the setting.
  */
 const getMhuiSetting = (key, defaultValue = false) => {
-  return getSetting(key, defaultValue, 'mousehunt-improved-settings');
+  return Mhutils.getSetting(key, defaultValue, 'mousehunt-improved-settings');
 };
 
 /**
@@ -596,8 +606,8 @@ const persistBodyClass = (className) => {
   };
 
   addClass();
-  onNavigation(addClass);
-  onTravel(null, { callback: () => {
+  Mhutils.onNavigation(addClass);
+  Mhutils.onTravel(null, { callback: () => {
     setTimeout(addClass, 500);
   } });
 };
@@ -683,6 +693,8 @@ const replaceInTemplate = (templateId, replacements) => {
   hg.utils.TemplateUtil.addTemplate(templateId, templateContent);
 };
 
+export * from './mh-utils';
+
 export {
   addArDataToMap,
   addBodyClass,
@@ -694,23 +706,21 @@ export {
   debuglite,
   getArEl,
   getArForMouse,
-  getArText,
-  getFlag,
+  getArText, getCacheKey, getCachedValue, getFlag,
   getGlobal,
   getHighestArForMouse,
   getHighestArText,
   getMhuiSetting,
+  getMouseCachedKey,
   getRelicHunterLocation,
-  isApp,
-  isiFrame,
-  isInImage,
-  makeLink,
+  isApp, isInImage, isiFrame, makeLink,
   mapData,
   mapModel,
   mapper,
   persistBodyClass,
   removeHudStyles,
+  replaceInTemplate,
+  setCachedValue,
   showErrorMessage,
-  showSuccessMessage,
-  replaceInTemplate
+  showSuccessMessage
 };

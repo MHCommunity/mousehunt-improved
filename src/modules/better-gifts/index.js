@@ -84,7 +84,7 @@ const sendGifts = (buttonClass, limit = 15, reverse = false) => {
     giftButtons = Array.prototype.slice.call(giftButtons);
 
     // if we're doing it in reverse order, reverse the array.
-    if (getSetting('gift-buttons-send-order-0', 'reverse') || reverse) {
+    if (getMhuiSetting('gift-buttons-send-order-0', 'reverse') || reverse) {
       giftButtons.reverse();
     }
 
