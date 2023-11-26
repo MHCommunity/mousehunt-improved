@@ -182,6 +182,6 @@ const hud = () => {
 };
 
 export default () => {
-  addHudStyles('fort-rox', styles);
+  addHudStyles(styles);
   hud();
 };

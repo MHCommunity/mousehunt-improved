@@ -365,6 +365,6 @@ const hud = async () => {
 };
 
 export default () => {
-  addHudStyles('iceberg', styles);
+  addHudStyles(styles);
   hud();
 };

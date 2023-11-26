@@ -75,8 +75,7 @@ const hud = () => {
 };
 
 export default () => {
-  addHudStyles('balacks-cove', styles);
-
+  addHudStyles(styles);
   addCheeseSelector('balacks-cove', [
     'vanilla_stilton_cheese',
     'vengeful_vanilla_stilton_cheese',

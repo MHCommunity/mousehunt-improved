@@ -133,6 +133,6 @@ const addUIComponents = () => {
 };
 
 export default () => {
-  addHudStyles('rift-valour', styles);
+  addHudStyles(styles);
   hud();
 };
