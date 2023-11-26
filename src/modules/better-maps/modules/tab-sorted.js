@@ -106,37 +106,37 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
   mouseDiv.appendChild(mouseData);
 
   // Mouse extra info.
+  const mouseExtraInfoWrapper = makeElement('div', 'mouse-mhct-extra-info-wrapper');
   const mouseExtraInfo = makeElement('div', 'mouse-extra-info');
 
-  // Mouse locations.
-  const locations = makeElement('div', 'mouse-locations-wrapper');
-  makeElement('div', 'location-text', 'Found in:', locations);
-
-  const locationLocations = makeElement('div', 'mouse-locations');
-
   if (Array.isArray(mouse.environment_ids)) {
-    mouse.environment_ids.forEach((environmentID) => {
-      const environment = mapData().environments.find((env) => {
-        return env.id === environmentID;
-      });
+    // Mouse locations.
+    const locationText = makeElement('div', 'location-text-wrapper');
+    makeElement('span', 'location-text', 'Found in ', locationText);
+
+    mouse.environment_ids.forEach((environmentID, index) => {
+      const environment = mapData().environments.find((env) => env.id === environmentID);
 
       if (environment) {
-        const location = makeElement('a', 'mouse-location', environment.name);
+        const locationLink = makeElement('a', 'mouse-location-link', environment.name);
 
-        location.title = `Travel to ${environment.name}`;
-        location.setAttribute('data-environment-id', environment.id);
+        locationLink.title = `Travel to ${environment.name}`;
+        locationLink.setAttribute('data-environment-id', environment.id);
 
-        location.addEventListener('click', () => {
+        locationLink.addEventListener('click', () => {
           showTravelConfirmation(environment, mapModel());
         });
 
-        locationLocations.appendChild(location);
+        // If it's not the first item, append a comma before it
+        if (index !== 0) {
+          locationText.appendChild(document.createTextNode(', '));
+        }
+
+        locationText.appendChild(locationLink);
       }
     });
 
-    // Mouse locations close.
-    locations.appendChild(locationLocations);
-    mouseExtraInfo.appendChild(locations);
+    mouseExtraInfo.appendChild(locationText);
   }
 
   // Mouse weakness.
@@ -169,7 +169,8 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
   }
 
   // Mouse extra info close.
-  mouseDiv.appendChild(mouseExtraInfo);
+  mouseExtraInfoWrapper.appendChild(mouseExtraInfo);
+  mouseDiv.appendChild(mouseExtraInfoWrapper);
 
   // Click handler.
   mouseDiv.addEventListener('click', async () => {

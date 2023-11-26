@@ -127,7 +127,7 @@ const maybeClickArToggle = () => {
   }
 };
 
-const addArToggle = (tab = 'goals') => {
+const addArToggle = async (tab = 'goals') => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
     return;
@@ -165,6 +165,8 @@ const addArToggle = (tab = 'goals') => {
   toggle.addEventListener('click', toggleAr);
 
   wrapper.appendChild(toggle);
+
+  await toggleAr();
 
   maybeClickArToggle();
 };
