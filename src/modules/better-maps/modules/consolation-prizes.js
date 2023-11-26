@@ -1,4 +1,7 @@
-import { mapData } from '../../utils';
+import {
+  makeElement,
+  mapData
+} from '../../utils';
 
 const addConsolationPrizes = () => {
   const consolationButton = document.querySelector('.treasureMapView-consolationPrize-message');

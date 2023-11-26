@@ -1,4 +1,12 @@
-import { addUIStyles, getArForMouse, makeLink } from '../utils';
+import {
+  addUIStyles,
+  getArForMouse,
+  makeElement,
+  makeLink,
+  onOverlayChange,
+  onPageChange
+} from '../utils';
+
 import styles from './styles.css';
 
 /**

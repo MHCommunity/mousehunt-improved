@@ -1,4 +1,10 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  getCurrentPage,
+  onNavigation,
+  onRequest
+} from '../utils';
+
 import styles from './styles.css';
 
 const updatePlaceholderText = () => {

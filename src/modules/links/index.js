@@ -1,3 +1,8 @@
+import {
+  addMouseripLink,
+  makeElement
+} from '../utils';
+
 const addHelpLinks = () => {
   const supportDropdown = document.querySelector('.menuItem.dropdown.support .dropdownContent');
   if (! supportDropdown) {

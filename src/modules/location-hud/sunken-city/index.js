@@ -1,4 +1,9 @@
-import { addHudStyles } from '../../utils';
+import {
+  addHudStyles,
+  getUserItems,
+  makeElement
+} from '../../utils';
+
 import styles from './styles.css';
 
 const updateHudImages = () => {

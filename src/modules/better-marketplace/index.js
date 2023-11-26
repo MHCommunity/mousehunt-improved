@@ -1,4 +1,11 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import {
+  addUIStyles,
+  getMhuiSetting,
+  makeElement,
+  onOverlayChange,
+  onRequest
+} from '../utils';
+
 import styles from './styles.css';
 
 import itemsToRemove from '../../data/marketplace-items-to-remove.json';

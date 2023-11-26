@@ -1,4 +1,10 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import {
+  addUIStyles,
+  getMhuiSetting,
+  makeElement,
+  onNavigation
+} from '../utils';
+
 import styles from './styles.css';
 
 const processSearch = () => {

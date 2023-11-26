@@ -1,3 +1,9 @@
+import {
+  getUserSetupDetails,
+  onPageChange,
+  onRequest
+} from '../utils';
+
 const setPrestigeStats = () => {
   const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
   if (! prestige) {

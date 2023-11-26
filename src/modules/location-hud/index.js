@@ -1,6 +1,11 @@
 // Location HUD improvements.
-import { addUIStyles, removeHudStyles, getMhuiSetting } from '../utils';
-import cheeseSelectorStyles from './cheese-selectors.css';
+import {
+  getCurrentLocation,
+  getMhuiSetting,
+  onNavigation,
+  onTravel,
+  removeHudStyles
+} from '../utils';
 
 // Locations
 /* eslint-disable camelcase */

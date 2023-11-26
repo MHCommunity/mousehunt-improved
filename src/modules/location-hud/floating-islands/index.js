@@ -1,4 +1,12 @@
-import { addHudStyles } from '../../utils';
+import {
+  addHudStyles,
+  getUserItems,
+  makeElement,
+  onDialogShow,
+  onRequest,
+  showHornMessage
+} from '../../utils';
+
 import styles from './styles.css';
 
 const toggleFuelClass = (fuelCount, isActive) => {

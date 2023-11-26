@@ -1,3 +1,11 @@
+import {
+  doRequest,
+  getCurrentPage,
+  getCurrentTab,
+  makeElement,
+  onNavigation
+} from '../utils';
+
 const makeKingsCrownsTab = () => {
   // Add king's crowns tab;
   const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');

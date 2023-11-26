@@ -1,4 +1,10 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  doRequest,
+  onEvent,
+  onRequest
+} from '../utils';
+
 import styles from './styles.css';
 
 const getFriendId = async (target) => {
@@ -89,11 +95,6 @@ const onFriendLinkHover = async (e) => {
   }
 
   parent.setAttribute('data-friend-hover', true);
-
-  // TODO: only ignore the list of friends, not the inbox.
-  // if ('friends' === getCurrentPage()) {
-  //   return;
-  // }
 
   const existing = document.querySelectorAll('#friend-data-wrapper');
   if (existing && existing.length) {

@@ -1,6 +1,14 @@
-import { addUIStyles } from '../utils';
-import styles from './styles.css';
+import {
+  addUIStyles,
+  getCurrentPage,
+  onEvent,
+  onNavigation,
+  onOverlayChange
+} from '../utils';
+
 import recipes from './recipes';
+
+import styles from './styles.css';
 
 const setOpenQuantityOnClick = (attempts = 0) => {
   const qty = document.querySelector('.itemView-action-convertForm');

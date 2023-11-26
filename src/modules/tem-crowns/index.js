@@ -1,4 +1,10 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  doRequest,
+  makeElement,
+  onPageChange
+} from '../utils';
+
 import styles from './styles.css';
 
 const getCrownType = (catches) => {

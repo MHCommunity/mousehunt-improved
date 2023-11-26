@@ -1,6 +1,22 @@
-import { addUIStyles, getMhuiSetting, getRelicHunterLocation } from '../utils';
-import styles from './styles.css';
+import {
+  addSubmenuItem,
+  addUIStyles,
+  getCurrentLocation,
+  getCurrentPage,
+  getCurrentTab,
+  getMhuiSetting,
+  getRelicHunterLocation,
+  makeElement,
+  onEvent,
+  onNavigation,
+  onPageChange,
+  onTravel,
+  showHornMessage
+} from '../utils';
+
 import environments from '../../data/environments.json';
+
+import styles from './styles.css';
 
 /**
  * Expand the travel regions and zoom the map.

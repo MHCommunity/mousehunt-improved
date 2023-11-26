@@ -1,4 +1,8 @@
-import { addHudStyles } from '../../utils';
+import {
+  addHudStyles,
+  onTravel
+} from '../../utils';
+
 import styles from './styles.css';
 
 import addCheeseSelector from '../cheese-selectors';

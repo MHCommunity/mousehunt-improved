@@ -1,4 +1,9 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  makeElement,
+  onNavigation
+} from '../utils';
+
 import styles from './styles.css';
 import userHighlighting from '../../data/user-highlighting.json';
 

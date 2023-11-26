@@ -1,7 +1,9 @@
 import { addUIStyles } from '../utils';
-import styles from './styles.css';
-import journalThemeStyles from './journal-themes.css';
+
 import mapping from '../../data/upscaled-image-mapping.json';
+
+import journalThemeStyles from './journal-themes.css';
+import styles from './styles.css';
 
 const getNewUrl = (src) => {
   if (! src) {

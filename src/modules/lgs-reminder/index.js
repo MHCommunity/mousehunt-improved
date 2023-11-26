@@ -1,6 +1,11 @@
 import humanizeDuration from 'humanize-duration';
 
-import { addUIStyles, getFlag } from '../utils';
+import {
+  addUIStyles,
+  getFlag,
+  makeElement
+} from '../utils';
+
 import styles from './styles.css';
 
 const humanizer = humanizeDuration.humanizer({
