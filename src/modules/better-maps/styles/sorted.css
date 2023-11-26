@@ -53,13 +53,14 @@
 }
 
 #sorted-mice-container .mouse-category-mice {
-  padding-left: 5px;
+  padding: 4px;
 }
 
 #sorted-mice-container .mouse-container {
   padding-right: 5px;
   margin-bottom: 5px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 #sorted-mice-container .mouse-data {
@@ -80,35 +81,43 @@
 #sorted-mice-container .mouse-container:hover,
 #sorted-mice-container .mouse-container:focus {
   position: relative;
-  background: #eaeaea;
-  outline: 1px solid #000;
+  background: rgb(255 255 255 / 50%);
+  outline: 1px solid #6d6d6d;
+}
+
+#sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper {
+  position: absolute;
+  right: -10px;
+  left: -10px;
+  z-index: 10;
+  display: block;
+  padding: 10px 5px;
+  margin-top: -5px;
+  background-color: #eaeaea;
+  border: 1px solid #000;
+  border-radius: 3px;
+  box-shadow: 0 10px 15px 0 rgb(0 0 0 / 53%);
+}
+
+#sorted-mice-container .mouse-subcategory-mice .mouse-container-selected .mouse-mhct-extra-info-wrapper {
+  right: -15px;
+  left: -15px;
 }
 
 #sorted-mice-container .mouse-container-selected .mouse-extra-info {
-  position: absolute;
-  right: -1px;
-  left: -1px;
-  z-index: 10;
   display: block;
-  padding: 5px;
-  background-color: #eaeaea;
-  border: 1px solid #000;
-  border-top: 1px solid #dedede;
-  box-shadow: 0 1px 2px -1px #000;
 }
 
 #sorted-mice-container .mouse-image {
   width: auto;
-  height: 30px;
-  margin: 2px 5px 2px 2px;
+  height: 35px;
+  margin: 5px;
+  border-radius: 3px;
+  outline: 1px solid #989898;
 }
 
 .mh-dark-mode #sorted-mice-container .mouse-image {
   border-radius: 3px;
-}
-
-#sorted-mice-container .mouse-subcategory-mice .mouse-image {
-  margin: 2px 4px 2px 2px;
 }
 
 #sorted-mice-container .mouse-category-wrapper-hidden {
@@ -116,7 +125,7 @@
 }
 
 #sorted-mice-container .mouse-subcategory-wrapper {
-  margin: 0 5px 10px;
+  margin: 0 3px;
   background-color: rgb(255 255 255 / 60%);
   border: 1px solid rgb(0 0 0 / 60%);
   box-shadow: inset 1px 1px 2px -1px rgb(0 0 0 / 60%);
@@ -148,11 +157,21 @@
   margin-top: 15px;
 }
 
-#sorted-mice-container .weakness-type {
+#sorted-mice-container .location-text-wrapper {
+  text-align: center;
+}
+
+#sorted-mice-container .mouse-weakness {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   margin-top: 10px;
+}
+
+#sorted-mice-container .weakness-type {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 #sorted-mice-container .power-types img {
@@ -162,17 +181,15 @@
 }
 
 #sorted-mice-container .weakness-name {
+  flex: 0 0 100%;
   margin-right: 2px;
   margin-bottom: 2px;
   font-size: 10px;
+  text-align: center;
 }
 
 #sorted-mice-container .mouse-locations-wrapper {
   display: flex;
-}
-
-#sorted-mice-container .location-text {
-  margin-right: 3px;
 }
 
 .mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::after,
