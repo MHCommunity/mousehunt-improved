@@ -14,13 +14,13 @@ export default function (module) {
       { name: 'Great Winter Hunter', value: 'winter_hunt' },
       { name: 'Halloween', value: 'halloween' },
       { name: 'Larry\'s Football Challenge', value: 'larrys_football_challenge' },
-      { name: 'Pride [LGS Required]', value: 'pride' },
+      { name: 'Pride (LGS Required)', value: 'pride' },
       { name: 'Remembrance Day', value: 'remembrance_day' },
-      { name: 'Spring Egg Hunt [LGS Required]', value: 'spring-egg-hunt' },
-      { name: 'Spring Egg Hunt Alt [LGS Required]', value: 'spring-egg-hunt-alt' },
+      { name: 'Spring Egg Hunt (LGS Required)', value: 'spring-egg-hunt' },
+      { name: 'Spring Egg Hunt Alt (LGS Required)', value: 'spring-egg-hunt-alt' },
       { name: 'Valentine\'s', value: 'valentines' },
     ] },
-    { name: 'Color [LGS required]', value: 'group', options: [
+    { name: 'Color (LGS required)', value: 'group', options: [
       { name: 'Blue', value: 'color-blue' },
       { name: 'Blue with matching timer', value: 'color-blue-timer' },
       { name: 'Cyan', value: 'color-cyan' },
@@ -78,15 +78,33 @@ export default function (module) {
 
   if (! user.has_shield) {
     // If the user doesn't have LGS, they can't do the pride or SEH shields.
-    const toRemove = [
+    const toDisable = [
       'pride',
       'spring-egg-hunt',
       'spring-egg-hunt-alt',
-
+      'Color (LGS required)',
     ];
 
-    options = options.filter((option) => {
-      return ! toRemove.includes(option.value);
+    // Set all the options the user can't select as disabled, including all of the "Color (LGS required)" options.
+    options = options.map((option) => {
+      // Check if the name, value, or the parent group name is in the toDisable array.
+      if ('group' === option.value) {
+        // If the option is a group, check if the name or value is in the toDisable array.
+        const disabledParent = toDisable.includes(option.name) || toDisable.includes(option.value);
+        if (disabledParent) {
+          option.disabled = true;
+        }
+
+        option.options = option.options.map((groupOption) => {
+          // If the option is in the toDisable array, disable it.
+          if (toDisable.includes(groupOption.value) || disabledParent) {
+            groupOption.disabled = true;
+          }
+
+          return groupOption;
+        });
+      }
+      return option;
     });
   }
 
