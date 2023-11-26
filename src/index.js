@@ -1,8 +1,7 @@
 // Core 'Better' modules.
-import betterUi from './modules/better-ui';
-import betterInventory from './modules/better-inventory';
 import betterGifts from './modules/better-gifts';
 import betterGiftsSettings from './modules/better-gifts/settings';
+import betterInventory from './modules/better-inventory';
 import betterItemView from './modules/better-item-view';
 import betterJournal from './modules/better-journal';
 import betterKingsReward from './modules/better-kings-reward';
@@ -18,6 +17,7 @@ import betterTournaments from './modules/better-tournaments';
 import betterTournamentsSettings from './modules/better-tournaments/settings';
 import betterTravel from './modules/better-travel';
 import betterTravelSettings from './modules/better-travel/settings';
+import betterUi from './modules/better-ui';
 
 // Feature modules.
 import copyId from './modules/copy-id';
@@ -49,10 +49,10 @@ import locationHudSettings from './modules/location-hud/settings.js';
 
 // Element hiding modules.
 import adblock from './modules/adblock';
+import journalPrivacy from './modules/journal-privacy';
 import noFooter from './modules/no-footer';
 import noShare from './modules/no-share';
 import noSidebar from './modules/no-sidebar';
-import journalPrivacy from './modules/journal-privacy';
 
 // All the always loaded modules.
 import dev from './modules/dev';
