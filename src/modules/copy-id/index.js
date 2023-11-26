@@ -1,4 +1,8 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  makeElement
+} from '../utils';
+
 import styles from './styles.css';
 
 const main = () => {

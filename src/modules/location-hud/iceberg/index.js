@@ -1,4 +1,10 @@
-import { addHudStyles } from '../../utils';
+import {
+  addHudStyles,
+  getCurrentLocation,
+  getUserItems,
+  makeElement
+} from '../../utils';
+
 import styles from './styles.css';
 
 const getSections = (quest) => {

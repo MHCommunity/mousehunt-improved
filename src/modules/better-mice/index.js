@@ -1,8 +1,20 @@
-import { addUIStyles, getArForMouse, makeLink } from '../utils';
-import styles from './styles.css';
+import {
+  addSubmenuItem,
+  addUIStyles,
+  createFavoriteButton,
+  doRequest,
+  getArForMouse,
+  makeElement,
+  makeLink,
+  onOverlayChange
+} from '../utils';
+
 import mousepage from './mousepage';
+
 import minlucks from '../../data/minlucks.json';
 import wisdoms from '../../data/wisdom.json';
+
+import styles from './styles.css';
 
 /**
  * Get the markup for the mouse links.

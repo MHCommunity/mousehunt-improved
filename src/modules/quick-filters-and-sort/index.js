@@ -1,4 +1,10 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  makeElement,
+  onEvent,
+  onRequest
+} from '../utils';
+
 import styles from './styles.css';
 
 const addItemToQuickLinks = (link, appendTo, filter, sortDropdown) => {

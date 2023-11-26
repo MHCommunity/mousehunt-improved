@@ -1,4 +1,8 @@
-import { getArEl, mapper } from '../../utils';
+import {
+  getArEl,
+  makeElement,
+  mapper
+} from '../../utils';
 
 const addArDataToMap = async (mapData) => {
   let type = 'mouse';

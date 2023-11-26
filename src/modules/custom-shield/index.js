@@ -1,4 +1,9 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import {
+  addUIStyles,
+  getMhuiSetting,
+  onNavigation
+} from '../utils';
+
 import styles from './styles.css';
 
 const addClass = (el, shieldClass) => {

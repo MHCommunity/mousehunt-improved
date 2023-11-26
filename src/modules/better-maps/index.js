@@ -1,12 +1,18 @@
-import addStyles from './styles';
-import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
-import { showHuntersTab } from './modules/tab-hunters';
-import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
+import {
+  addToGlobal,
+  makeElement,
+  onAjaxRequest
+} from '../utils';
+
 import { addBlockClasses, getMapData, setMapData } from './map-utils';
-import { addToGlobal } from '../utils';
+import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
+import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
+import { showHuntersTab } from './modules/tab-hunters';
 
 import environments from '../../data/environments.json';
 import relicHunterHints from '../../data/relic-hunter-hints.json';
+
+import addMapStyles from './styles';
 
 const interceptMapRequest = (mapId) => {
   // If we don't have data, we're done.
@@ -187,7 +193,7 @@ const relicHunterUpdate = () => {
 };
 
 export default () => {
-  addStyles();
+  addMapStyles();
 
   // Fire the different tab clicks.
   eventRegistry.addEventListener('map_sorted_tab_click', showSortedTab);

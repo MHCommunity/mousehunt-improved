@@ -1,4 +1,9 @@
-import { addHudStyles } from '../../utils';
+import {
+  addHudStyles,
+  getCurrentLocation,
+  makeElement
+} from '../../utils';
+
 import styles from './styles.css';
 
 const highlightDoors = () => {
@@ -171,10 +176,3 @@ export default () => {
   addHudStyles('labyrinth', styles);
   hud();
 };
-
-// fealty = y
-// tech = h
-// scholar = s
-// treasury = t
-// farming = f
-// dead end = m

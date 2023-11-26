@@ -1,6 +1,7 @@
-import { getFlag } from '../utils';
-import trollMode from './modules/troll-mode';
+import { addUIStyles, getFlag } from '../utils';
+
 import rankupForecaster from './modules/rank-up-forecaster';
+import trollMode from './modules/troll-mode';
 
 const fillTwttrObject = () => {
   window.twttr = {

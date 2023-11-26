@@ -1,6 +1,10 @@
 import environments from '../../data/environments.json';
 
-import { addToGlobal, getArForMouse, mapper } from '../utils';
+import {
+  getArForMouse,
+  makeElement,
+  mapper
+} from '../utils';
 
 const getMapData = (mapId = false, strict = false) => {
   if (mapId !== false) {

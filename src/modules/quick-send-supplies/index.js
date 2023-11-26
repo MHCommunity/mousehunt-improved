@@ -1,5 +1,17 @@
-import { addUIStyles, showErrorMessage, showSuccessMessage, getMhuiSetting } from '../utils';
+import {
+  addUIStyles,
+  getMhuiSetting,
+  makeElement,
+  onDialogShow,
+  onEvent,
+  onNavigation,
+  onRequest,
+  showErrorMessage,
+  showSuccessMessage
+} from '../utils';
+
 import styles from './styles.css';
+
 import getTradableItems from '../../data/tradable-items';
 
 const makeItem = (name, type, image, appendTo) => {

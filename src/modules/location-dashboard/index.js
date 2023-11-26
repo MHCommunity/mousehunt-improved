@@ -1,4 +1,10 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  makeElement,
+  onRequest,
+  onTravel
+} from '../utils';
+
 import styles from './styles.css';
 
 import environments from '../../data/environments.json';

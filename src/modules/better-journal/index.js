@@ -1,9 +1,14 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
-import styles from './styles/styles.css';
+import {
+  addUIStyles,
+  getMhuiSetting,
+  onRequest
+} from '../utils';
+
 import customEntries from './styles/custom-entries.css';
 import fullstop from './styles/fullstop.css';
 import miniEntries from './styles/mini-entries.css';
 import progressLog from './styles/progress-log.css';
+import styles from './styles/styles.css';
 
 /**
  * For each element matching the selector, find and replace strings.

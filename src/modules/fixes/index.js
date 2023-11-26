@@ -1,4 +1,9 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  getCurrentPage,
+  onNavigation
+} from '../utils';
+
 import styles from './styles.css';
 
 const fixPassingParcel = () => {

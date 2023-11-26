@@ -1,4 +1,12 @@
-import { addUIStyles, getMhuiSetting, replaceInTemplate } from '../utils';
+import {
+  addUIStyles,
+  getMhuiSetting,
+  makeElement,
+  onAjaxRequest,
+  onDialogShow,
+  replaceInTemplate
+} from '../utils';
+
 import styles from './styles.css';
 
 const getIgnoredGifts = () => {

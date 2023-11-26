@@ -1,4 +1,8 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  onNavigation
+} from '../utils';
+
 import styles from './styles.css';
 
 const addOpenAllButOneButton = () => {

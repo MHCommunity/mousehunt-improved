@@ -1,4 +1,12 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import {
+  addUIStyles,
+  doRequest,
+  getMhuiSetting,
+  makeElement,
+  onEvent,
+  onNavigation
+} from '../utils';
+
 import styles from './styles.css';
 
 const updateTournamentHud = async () => {
