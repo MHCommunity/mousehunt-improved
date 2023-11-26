@@ -1,4 +1,12 @@
-import { addUIStyles, getMhuiSetting, getFlag } from '../utils';
+import {
+  addUIStyles,
+  createPopup,
+  getFlag,
+  getMhuiSetting,
+  makeElement,
+  onNavigation
+} from '../utils';
+
 import settingStyles from './styles.css';
 
 const addExportSettings = () => {
@@ -14,6 +22,7 @@ const addExportSettings = () => {
   const content = `<div class="mousehunt-improved-settings-export-popup-content">
   <textarea>${settings}</textarea>
   <div class="mousehunt-improved-settings-export-popup-buttons">
+  <pre>${mhImprovedPlatform} v${mhImprovedVersion}</pre>
   <div class="mousehuntActionButton save"><span>Save</span></div>
   <div class="mousehuntActionButton lightBlue download"><span>Download</span></div>
   <div class="mousehuntActionButton cancel"><span>Cancel</span></div>`;
@@ -98,7 +107,7 @@ const modifySettingsPage = () => {
 const loadStyleOverrides = () => {
   const customStyles = getMhuiSetting('override-styles');
   if (customStyles) {
-    addStyles(customStyles, 'mousehunt-improved-override-styles');
+    addUIStyles(customStyles, 'mousehunt-improved-override-styles');
   }
 };
 

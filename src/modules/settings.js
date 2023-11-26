@@ -56,7 +56,7 @@ const addSettingForModule = (module) => {
     if (
       subModule.settings && (
         subModule.alwaysLoad ||
-        getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')
+        getMhuiSetting(subModule.id, subModule.default)
       )
     ) {
       subModule.settings(module);
