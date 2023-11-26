@@ -228,8 +228,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Hides the share buttons.
 - Remove Sidebar
   - Hides the sidebar and adds a 'Sidebar' dropdown in the top menu.
-- Hide Daily Reward Popup
-  - Automatically close the daily reward popup when it shows
 - Hide player names in journal entries
   - Hides player names in the journal. Good for screenshots where you don't want to share their name.
 
