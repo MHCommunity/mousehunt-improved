@@ -9,29 +9,30 @@ import styles from './styles.css';
 
 import environments from '../../data/environments.json';
 
-import getMousoleumText from './location/mousoleum';
-import getToxicSpillText from './location/toxic-spill';
-import getFortRoxText from './location/fort-rox';
 import { getFieryWarpathText, setFieryWarpathData } from './location/fiery-warpath';
-import getLivingGardenText from './location/living-garden';
-import getLostCityText from './location/lost-city';
-import getSandDunesText from './location/sand-dunes';
 import { getSeasonalGardenText, setSeasonalGardenData } from './location/seasonal-garden';
 import { getZugzwangTowerText, setZugzwangTowerData } from './location/zugzwang-tower';
-import getIcebergText from './location/iceberg';
-import getSunkenCityText from './location/sunken-city';
-import getQuesoGeyserText from './location/queso-geyser';
-import getLabyrinthText from './location/labyrinth';
-import getZokorText from './location/zokor';
-import getMoussuPicchuText from './location/moussu-picchu';
+import getBristleWoodsRiftText from './location/bristle-woods-rift';
+import getBurroughsRiftText from './location/burroughs-rift';
 import getFloatingIslandsText from './location/floating-islands';
 import getForewordFarmText from './location/foreword-farm';
-import getTableOfContentsText from './location/table-of-contents';
-import getBurroughsRiftText from './location/burroughs-rift';
-import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
+import getFortRoxText from './location/fort-rox';
 import getFuromaRiftText from './location/furoma-rift';
-import getBristleWoodsRiftText from './location/bristle-woods-rift';
+import getIcebergText from './location/iceberg';
+import getLabyrinthText from './location/labyrinth';
+import getLivingGardenText from './location/living-garden';
+import getLostCityText from './location/lost-city';
+import getMousoleumText from './location/mousoleum';
+import getMoussuPicchuText from './location/moussu-picchu';
+import getQuesoGeyserText from './location/queso-geyser';
+import getSandDunesText from './location/sand-dunes';
+import getSunkenCityText from './location/sunken-city';
+import getTableOfContentsText from './location/table-of-contents';
+import getToxicSpillText from './location/toxic-spill';
 import getValourRiftText from './location/valour-rift';
+import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
+import getZokorText from './location/zokor';
+/* eslint-enable sort-imports */
 
 const cacheLocationData = async () => {
   return new Promise((resolve) => {

@@ -1,4 +1,8 @@
-export function getFieryWarpathText(quests) {
+import {
+  getCurrentLocation
+} from '../../utils';
+
+const getFieryWarpathText = (quests) => {
   if (! quests.QuestFieryWarpath) {
     return '';
   }
@@ -16,9 +20,9 @@ export function getFieryWarpathText(quests) {
   }
 
   return `Wave ${quest.wave}: ${quest.percent}% remaining${streakText} `;
-}
+};
 
-export function setFieryWarpathData() {
+const setFieryWarpathData = () => {
   if ('desert_warpath' !== getCurrentLocation()) {
     return false;
   }
@@ -69,4 +73,9 @@ export function setFieryWarpathData() {
     remaining,
     percent,
   };
-}
+};
+
+export {
+  getFieryWarpathText,
+  setFieryWarpathData
+};
