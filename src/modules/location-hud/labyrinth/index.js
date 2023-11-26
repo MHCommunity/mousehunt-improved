@@ -173,6 +173,6 @@ const hud = () => {
 };
 
 export default () => {
-  addHudStyles('labyrinth', styles);
+  addHudStyles(styles);
   hud();
 };

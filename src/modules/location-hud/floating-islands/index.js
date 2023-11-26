@@ -241,6 +241,6 @@ const hud = () => {
 };
 
 export default () => {
-  addHudStyles('floating-islands', styles);
+  addHudStyles(styles);
   hud();
 };

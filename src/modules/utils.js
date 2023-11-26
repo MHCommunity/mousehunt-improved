@@ -21,22 +21,10 @@ const addUIStyles = (styles) => {
 /**
  * Add custom styles specific for a location hud.
  *
- * @param {string} id     ID of the location hud.
- * @param {string} styles CSS to add to the page.
+ * @param {string|Array} styles CSS to add to the page.
  */
-const addHudStyles = (id, styles) => {
-  const key = `mh-improved-styles-location-hud-${id}`;
-
-  const existingStyles = document.getElementById(key);
-  if (existingStyles) {
-    return;
-  }
-
-  const style = document.createElement('style');
-  style.classList.add('mh-improved-styles-location-hud');
-  style.id = key;
-  style.innerHTML = styles;
-  document.head.appendChild(style);
+const addHudStyles = (styles) => {
+  addUIStyles(styles, 'mh-improved-styles-location-hud', true);
 };
 
 /**

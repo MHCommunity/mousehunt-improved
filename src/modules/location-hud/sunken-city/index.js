@@ -131,6 +131,6 @@ const hud = () => {
 };
 
 export default () => {
-  addHudStyles('sunken-city', styles);
+  addHudStyles(styles);
   hud();
 };

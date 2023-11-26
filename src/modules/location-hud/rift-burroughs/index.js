@@ -356,6 +356,6 @@ const hud = () => {
 };
 
 export default () => {
-  addHudStyles('rift-burroughs', styles);
+  addHudStyles(styles);
   hud();
 };
