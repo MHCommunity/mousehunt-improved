@@ -27,19 +27,19 @@
     "prebuild": "del-cli dist"
   },
   "dependencies": {
-    "@babel/runtime": "^7.23.4",
+    "@babel/runtime": "^7.23.5",
     "humanize-duration": "^3.31.0",
     "mousehunt-utils": "^1.11.0",
     "pretty-ms": "^8.0.0"
   },
   "devDependencies": {
-    "@wordpress/eslint-plugin": "^17.3.0",
+    "@wordpress/eslint-plugin": "^17.4.0",
     "archiver": "^6.0.1",
     "concurrently": "^8.2.2",
     "del-cli": "^5.1.0",
     "esbuild": "^0.19.8",
-    "eslint": "^8.54.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-markdownlint": "^0.5.0",
     "eslint-plugin-prettier": "^5.0.1",
     "node-fetch": "^3.3.2",
