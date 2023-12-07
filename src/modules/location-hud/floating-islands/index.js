@@ -90,7 +90,7 @@ const addBossCountdown = () => {
   makeElement('span', 'mh-ui-fi-enemy-countdown-in', ' in ', bossCountdown);
   makeElement('span', 'mh-ui-fi-enemy-countdown-hunts', huntsRemaining, bossCountdown);
 
-  enemyContainer.appendChild(bossCountdown);
+  enemyContainer.appenappenddChild(bossCountdown);
 };
 
 const addEnemyClass = () => {

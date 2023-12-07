@@ -52,7 +52,7 @@ const highlightUsers = () => {
     const userId = parseInt(id.innerText, 10);
     if (userHighlighting[key].includes(userId)) {
       profilePage.classList.add('mh-improved-highlight-user', `mh-improved-${key}`);
-      idHeader.appendChild(getUserHighlightingShield(key));
+      idHeader.append(getUserHighlightingShield(key));
     }
   });
 };

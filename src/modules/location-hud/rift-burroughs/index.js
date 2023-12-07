@@ -21,7 +21,7 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
     hg.utils.TrapControl.go();
   });
 
-  wrapper.appendChild(mtitle);
+  wrapper.append(mtitle);
 
   const miceWrapper = makeElement('div', 'mouse-type-mice');
 
@@ -35,16 +35,16 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
 
     const mouseImage = makeElement('img', 'mouse-type-mouse-image');
     mouseImage.src = miceData[mouse].image;
-    mouseLink.appendChild(mouseImage);
+    mouseLink.append(mouseImage);
 
     makeElement('div', 'mouse-type-mouse-name', miceData[mouse].name, mouseLink);
 
-    mouseWrapper.appendChild(mouseLink);
-    miceWrapper.appendChild(mouseWrapper);
+    mouseWrapper.append(mouseLink);
+    miceWrapper.append(mouseWrapper);
   });
 
-  wrapper.appendChild(miceWrapper);
-  appendTo.appendChild(wrapper);
+  wrapper.append(miceWrapper);
+  appendTo.append(wrapper);
 
   return wrapper;
 };
@@ -322,7 +322,7 @@ const hud = () => {
     hg.views.HeadsUpDisplayRiftBurroughsView.toggleMist(e.target);
   });
 
-  wrapper.appendChild(mist);
+  wrapper.append(mist);
 
   const availableMice = mouseList[mistTier];
 
@@ -347,9 +347,9 @@ const hud = () => {
   makeMiceList('terra', 'Terra Ricotta', availableMice.terra, currentType, mouseWrapper);
   makeMiceList('polluted', 'Polluted Parm.', availableMice.polluted, currentType, mouseWrapper);
 
-  wrapper.appendChild(mouseWrapper);
+  wrapper.append(mouseWrapper);
 
-  hudEl.appendChild(wrapper);
+  hudEl.append(wrapper);
 };
 
 export default () => {

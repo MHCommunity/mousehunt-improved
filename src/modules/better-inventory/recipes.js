@@ -53,7 +53,7 @@ const showCraftWarning = (text) => {
   }
 
   const tooltip = makeElement('div', 'mhui-craft-warning-tooltip', text);
-  confirm.parentNode.appendChild(tooltip);
+  confirm.parentNode.append(tooltip);
 };
 
 const warnOnBadCrafts = (limit = 0) => {
@@ -211,7 +211,7 @@ const moveRecipe = (type, recipesContainer) => {
   if (recipeEl) {
     // move it to the bottom of the list
     recipeEl.classList.add('reordered');
-    recipesContainer.appendChild(recipeEl);
+    recipesContainer.append(recipeEl);
   }
 };
 

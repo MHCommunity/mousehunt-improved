@@ -57,14 +57,14 @@ const makeCharmElement = (charm, appendTo) => {
   const itemImage = makeElement('div', 'itemImage');
   const image = makeElement('img');
   image.setAttribute('src', charm.thumbnail_transparent);
-  itemImage.appendChild(image);
-  clearBlock.appendChild(itemImage);
+  itemImage.append(image);
+  clearBlock.append(itemImage);
 
   const quantity = makeElement('div', 'item quantity', charm.quantity);
   quantity.setAttribute('data-item-type', charm.type);
-  clearBlock.appendChild(quantity);
+  clearBlock.append(quantity);
 
-  wrapper.appendChild(clearBlock);
+  wrapper.append(clearBlock);
 
   if ('smart_water_jet_trinket' == charm.type) { // eslint-disable-line eqeqeq
     charm.description = 'Overcharge your engine for a 500m boost with an automatic unequip after the hunt.';
@@ -78,9 +78,9 @@ const makeCharmElement = (charm, appendTo) => {
 
   const toolTip = makeElement('div', 'toolTip');
   toolTip.innerHTML = `<b>${charm.name}s</b><br>${charm.description}`;
-  wrapper.appendChild(toolTip);
+  wrapper.append(toolTip);
 
-  appendTo.appendChild(wrapper);
+  appendTo.append(wrapper);
 };
 
 const addMoreCharms = async () => {

@@ -43,7 +43,7 @@ const trollem2 = () => {
   const newbieImg = document.createElement('img');
   newbieImg.src = 'https://www.mousehuntgame.com/images/promo/campbanners/groups/newbie.png';
 
-  bannerLink.appendChild(newbieImg);
+  bannerLink.append(newbieImg);
 
   bannerLink.addEventListener('click', () => {
     addUIStyles(styles);
@@ -62,7 +62,7 @@ const trollem2 = () => {
     }, 500);
   });
 
-  banner.appendChild(bannerLink);
+  banner.append(bannerLink);
   banner.classList.remove('hidden');
 };
 

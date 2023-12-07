@@ -83,7 +83,7 @@ const main = () => {
       // ownedItem.innerHTML = ownedItem.innerHTML.replace('You own:', 'You have');
       ownedItem.setAttribute('moved-to-title', 'true');
 
-      nameEl.appendChild(ownedItem);
+      nameEl.append(ownedItem);
     });
   }
 
@@ -113,7 +113,7 @@ const main = () => {
 
       const contentSection = stat.parentNode.parentNode.querySelector('.itemPurchaseView-content-container');
       if (contentSection) {
-        contentSection.appendChild(stat);
+        contentSection.append(stat);
       }
     });
   }
@@ -124,7 +124,7 @@ const main = () => {
       if (title.classList.contains('title') || title.classList.contains('powerType')) {
         const imageContainer = title.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.itemPurchaseView-image-container');
         if (imageContainer) {
-          imageContainer.appendChild(title);
+          imageContainer.append(title);
         }
       }
     });

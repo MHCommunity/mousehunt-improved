@@ -31,7 +31,7 @@ const addHelpLinks = () => {
     link.setAttribute('href', helpLink.href);
     link.setAttribute('target', '_blank');
 
-    supportDropdown.appendChild(link);
+    supportDropdown.append(link);
   });
 };
 

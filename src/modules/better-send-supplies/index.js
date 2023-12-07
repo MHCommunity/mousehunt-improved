@@ -38,7 +38,7 @@ const addSearch = () => {
   label.setAttribute('for', 'mhui-supply-search-input');
   makeElement('span', '', 'Search for an item', label);
 
-  form.appendChild(label);
+  form.append(label);
 
   const input = makeElement('input', 'mhui-supply-search-input');
   input.setAttribute('type', 'text');
@@ -48,15 +48,15 @@ const addSearch = () => {
 
   input.addEventListener('keyup', processSearch);
 
-  form.appendChild(input);
+  form.append(input);
 
   // Convert the title into a wrapper that has the title and our form
   const titleWrapper = makeElement('div', 'mhui-supply-search');
   const title = container.querySelector('h2');
   title.textContent = 'Send Supplies';
-  titleWrapper.appendChild(title);
+  titleWrapper.append(title);
 
-  titleWrapper.appendChild(form);
+  titleWrapper.append(form);
 
   container.insertBefore(titleWrapper, container.firstChild);
 
@@ -103,7 +103,7 @@ const resortItems = (sortType = 'alpha') => {
       return;
     }
 
-    container.appendChild(item);
+    container.append(item);
   });
 
   currentSort = sortType;
@@ -130,7 +130,7 @@ const addSortButtons = () => {
     resortItems(currentSort === 'alpha' ? 'alpha-reverse' : 'alpha');
   });
 
-  sortWrapper.appendChild(alphaSortButton);
+  sortWrapper.append(alphaSortButton);
 
   const sortQtyButton = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-quantity']);
   makeElement('span', 'mousehuntActionButton-text', 'Quantity', sortQtyButton);
@@ -138,7 +138,7 @@ const addSortButtons = () => {
     resortItems(currentSort === 'qty' ? 'qty-reverse' : 'qty');
   });
 
-  sortWrapper.appendChild(sortQtyButton);
+  sortWrapper.append(sortQtyButton);
 
   // append as the 2nd child so it's after the title
   container.insertBefore(sortWrapper, container.childNodes[1]);
@@ -202,7 +202,7 @@ const addQuickQuantityButtons = () => {
       inputVal.dispatchEvent(event);
     });
 
-    wrapper.appendChild(btn);
+    wrapper.append(btn);
   });
 
   const max = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-quick-quantity']);
@@ -216,7 +216,7 @@ const addQuickQuantityButtons = () => {
     inputVal.dispatchEvent(event);
   });
 
-  wrapper.appendChild(max);
+  wrapper.append(max);
 
   // append the wrapper after the input
   inputVal.parentNode.insertBefore(wrapper, inputVal.nextSibling);

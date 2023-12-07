@@ -45,7 +45,7 @@ const hud = () => {
 
   const timeLeftEl = updateClosingTime();
 
-  hudBar.appendChild(timeLeftEl);
+  hudBar.append(timeLeftEl);
 
   // add a timer to update the time left
   const timer = setInterval(updateClosingTime, 60 * 1000);

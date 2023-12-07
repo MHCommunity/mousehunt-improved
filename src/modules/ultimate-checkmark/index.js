@@ -142,9 +142,9 @@ const makeCategory = (category, name, progress) => {
   makeElement('div', 'hunterProfileItemsView-category-progress', makeProgressString(progress), catSidebarCategoryMargin);
   makeElement('div', 'hunterProfileItemsView-category-status', '', catSidebarCategoryMargin);
 
-  catSidebarCategory.appendChild(catSidebarCategoryMargin);
+  catSidebarCategory.append(catSidebarCategoryMargin);
 
-  sidebar.appendChild(catSidebarCategory);
+  sidebar.append(catSidebarCategory);
 };
 
 const makeItem = (item) => {
@@ -183,10 +183,10 @@ const makeItem = (item) => {
   const itemName = makeElement('div', 'hunterProfileItemsView-categoryContent-item-name');
   makeElement('span', '', name, itemName);
 
-  itemPadding.appendChild(itemImage);
-  itemPadding.appendChild(itemName);
+  itemPadding.append(itemImage);
+  itemPadding.append(itemName);
 
-  itemDiv.appendChild(itemPadding);
+  itemDiv.append(itemPadding);
 
   return itemDiv;
 };
@@ -222,13 +222,13 @@ const makeContent = (id, name, items, completed) => {
   });
 
   items.forEach((item) => {
-    itemsDiv.appendChild(makeItem(item));
+    itemsDiv.append(makeItem(item));
   });
 
-  categoryDiv.appendChild(nameDiv);
-  categoryDiv.appendChild(itemsDiv);
+  categoryDiv.append(nameDiv);
+  categoryDiv.append(itemsDiv);
 
-  content.appendChild(categoryDiv);
+  content.append(categoryDiv);
 };
 
 const addCategoryAndItems = async (required, type, subtype, key, name) => {

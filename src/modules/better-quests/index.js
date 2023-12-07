@@ -54,7 +54,7 @@ const addQuestsTab = () => {
   const newQuestsButtonText = document.createElement('span');
   newQuestsButtonText.innerText = 'Quests';
 
-  newQuestsButton.appendChild(newQuestsButtonText);
+  newQuestsButton.append(newQuestsButtonText);
 
   tabs.insertBefore(newQuestsButton, tabs.lastChild);
 };

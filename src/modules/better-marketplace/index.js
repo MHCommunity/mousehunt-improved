@@ -69,8 +69,8 @@ const modifySearch = (opts) => {
   const label = makeElement('label', 'mhui-marketplace-search-toggle');
   label.setAttribute('for', 'mhui-marketplace-search-toggle');
 
-  label.appendChild(toggleSearch);
-  label.appendChild(document.createTextNode('Search all items'));
+  label.append(toggleSearch);
+  label.append(document.createTextNode('Search all items'));
 
   const defaultToAll = getMhuiSetting('better-marketplace-search-all');
   toggleSearch.checked = defaultToAll;
@@ -105,7 +105,7 @@ const modifySearch = (opts) => {
     initSearch(searchInputDOM);
   });
 
-  searchContainer.appendChild(label);
+  searchContainer.append(label);
 };
 
 const waitForSearchReady = (attempts = 0) => {

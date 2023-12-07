@@ -39,10 +39,10 @@ const makeItem = (name, type, image, appendTo) => {
     item.classList.add('selected');
   });
 
-  item.appendChild(selected);
-  item.appendChild(itemImage);
+  item.append(selected);
+  item.append(itemImage);
 
-  appendTo.appendChild(item);
+  appendTo.append(item);
 };
 
 const makeSendSuppliesButton = (btn, snuid) => {
@@ -77,7 +77,7 @@ const makeSendSuppliesButton = (btn, snuid) => {
     }
   });
 
-  quickSendLinkWrapper.appendChild(itemsWrapper);
+  quickSendLinkWrapper.append(itemsWrapper);
 
   const quickSendGoWrapper = makeElement('div', 'quickSendGoWrapper');
 
@@ -129,9 +129,9 @@ const makeSendSuppliesButton = (btn, snuid) => {
     });
   });
 
-  quickSendGoWrapper.appendChild(quickSendInput);
-  quickSendGoWrapper.appendChild(quickSendButton);
-  quickSendLinkWrapper.appendChild(quickSendGoWrapper);
+  quickSendGoWrapper.append(quickSendInput);
+  quickSendGoWrapper.append(quickSendButton);
+  quickSendLinkWrapper.append(quickSendGoWrapper);
 
   return quickSendLinkWrapper;
 };
@@ -191,7 +191,7 @@ const addToMapUsers = (attempts = 0) => {
 
     const quickSendLinkWrapper = makeSendSuppliesButton(btn, snuid);
     if (quickSendLinkWrapper) {
-      btn.appendChild(quickSendLinkWrapper);
+      btn.append(quickSendLinkWrapper);
     }
   });
 };

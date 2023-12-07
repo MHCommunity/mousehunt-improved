@@ -191,7 +191,7 @@ const updateJournalText = () => {
       const span = document.createElement('span');
       span.innerText = 'View Progress Log';
       link.innerText = '';
-      link.appendChild(span);
+      link.append(span);
     }
   }
 };

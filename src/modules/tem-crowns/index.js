@@ -80,14 +80,14 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
     const crownIcon = document.createElement('img');
     crownIcon.classList.add('mh-ui-tem-crown-icon');
     crownIcon.src = `https://www.mousehuntgame.com/images/ui/crowns/crown_${crownType}.png`;
-    crown.appendChild(crownIcon);
+    crown.append(crownIcon);
 
     makeElement('span', 'mh-ui-tem-crown-text', catches, crown);
 
-    crownWrapper.appendChild(crown);
+    crownWrapper.append(crown);
 
     // append the crown to the name
-    name.appendChild(crownWrapper);
+    name.append(crownWrapper);
   });
 };
 

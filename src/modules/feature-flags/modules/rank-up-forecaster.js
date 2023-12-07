@@ -80,13 +80,13 @@ const addRankupForecasterButtons = () => {
 
       const exportButton = makeElement('button', 'mh-ui-export-forecaster-data', 'Export Data');
       exportButton.addEventListener('click', exportRankupForecasterData);
-      wrapper.appendChild(exportButton);
+      wrapper.append(exportButton);
 
       const importButton = makeElement('button', 'mh-ui-import-forecaster-data', 'Import Data');
       importButton.addEventListener('click', importRankupForecassterData);
-      wrapper.appendChild(importButton);
+      wrapper.append(importButton);
 
-      rankup.appendChild(wrapper);
+      rankup.append(wrapper);
     }, 250);
   });
 };

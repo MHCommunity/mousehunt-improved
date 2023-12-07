@@ -30,7 +30,7 @@ const moveSidebar = () => {
   // Grab sidebar content.
   const sidebarUser = document.querySelector('.pageSidebarView-user');
   if (sidebarUser) {
-    dropdownContent.appendChild(sidebarUser);
+    dropdownContent.append(sidebarUser);
   }
 
   const scoreBoardRankings = document.querySelectorAll('.scoreboardRelativeRankingTableView-table');
@@ -40,18 +40,18 @@ const moveSidebar = () => {
 
     // for each scoreBoardRanking in scoreBoardRankings, append
     scoreBoardRankings.forEach((scoreBoardRanking) => {
-      scoreBoardRankingWrapper.appendChild(scoreBoardRanking);
+      scoreBoardRankingWrapper.append(scoreBoardRanking);
     });
 
-    dropdownContent.appendChild(scoreBoardRankingWrapper);
+    dropdownContent.append(scoreBoardRankingWrapper);
   }
 
   // Append menu tab title and arrow to menu tab.
-  menuTab.appendChild(menuTabTitle);
-  menuTab.appendChild(menuTabArrow);
+  menuTab.append(menuTabTitle);
+  menuTab.append(menuTabArrow);
 
   // Append menu tab dropdown to menu tab.
-  menuTab.appendChild(dropdownContent);
+  menuTab.append(dropdownContent);
 
   const tabsContainer = document.querySelector('.mousehuntHeaderView-dropdownContainer');
   if (! tabsContainer) {

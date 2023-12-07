@@ -94,7 +94,7 @@ const addUIComponents = () => {
   if (floor) {
     const floorName = makeElement('div', 'valourRiftHUD-floorName', user?.quests?.QuestRiftValour?.floor_name);
     floorName.id = 'mh-vrift-floor-name';
-    floor.appendChild(floorName);
+    floor.append(floorName);
   }
 
   const floorTooltipParent = document.querySelector('.valourRiftHUD-floorProgress.mousehuntTooltipParent');

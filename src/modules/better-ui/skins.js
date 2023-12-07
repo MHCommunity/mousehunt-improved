@@ -44,7 +44,7 @@ const addSkinImages = () => {
       app.pages.CampPage.armItem(e.target);
     });
 
-    imageWrapper.appendChild(image);
+    imageWrapper.append(image);
 
     // Append as first child
     item.insertBefore(imageWrapper, item.firstChild);

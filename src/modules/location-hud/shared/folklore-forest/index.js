@@ -80,8 +80,8 @@ const addUpgradeVisibilityToggles = () => {
 
     const toggle = makeElement('div', ['mhui-folklore-forest-upgrade-toggle', 'mousehuntActionButton', 'tiny', 'lightBlue']);
     const toggleText = makeElement('span', 'upgrade-toggle-text', isBlockToggled ? 'Show' : 'Hide');
-    toggle.appendChild(toggleText);
     upgradeBlock.appendChild(toggle);
+    toggle.append(toggleText);
 
     toggle.addEventListener('click', () => {
       isBlockToggled = ! isBlockToggled;

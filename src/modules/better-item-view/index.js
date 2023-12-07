@@ -41,7 +41,7 @@ const addLinks = (itemId) => {
   const div = document.createElement('div');
   div.classList.add('mh-item-links');
   div.innerHTML = getLinkMarkup(title.innerText, itemId);
-  title.appendChild(div);
+  title.append(div);
 
   // Move the values into the main text.
   const values = document.querySelector('.mouseView-values');
@@ -68,7 +68,7 @@ const updateItemView = async () => {
     const crafting = document.querySelector('.itemView-action.crafting_item');
     if (crafting) {
       // move the crafting item to the sidebar
-      sidebar.appendChild(crafting);
+      sidebar.append(crafting);
     }
   }
 
@@ -107,9 +107,9 @@ const updateItemView = async () => {
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://www.mhct.win/loot.php?item=${itemId}`;
   link.target = '_mhct';
-  title.appendChild(link);
+  title.append(link);
 
-  arWrapper.appendChild(title);
+  arWrapper.append(title);
   const itemsArWrapper = makeElement('div', 'item-ar-wrapper');
 
   // check if there are stages in any of the item
@@ -136,13 +136,13 @@ const updateItemView = async () => {
       makeElement('div', 'cheese', itemAr.cheese, itemArWrapper);
 
       makeElement('div', 'rate', `${dropPercent}%`, itemArWrapper);
-      itemsArWrapper.appendChild(itemArWrapper);
+      itemsArWrapper.append(itemArWrapper);
     }
   });
 
   if (mhctjson.length > 0) {
-    arWrapper.appendChild(itemsArWrapper);
-    container.appendChild(arWrapper);
+    arWrapper.append(itemsArWrapper);
+    container.append(arWrapper);
   }
 };
 

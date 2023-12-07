@@ -67,9 +67,9 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
 
   const friendLinkParent = e.target.parentElement;
   if (friendLinkParent) {
-    friendLinkParent.appendChild(friendDataWrapper);
+    friendLinkParent.append(friendDataWrapper);
   } else {
-    e.target.appendChild(friendDataWrapper);
+    e.target.append(friendDataWrapper);
   }
 
   eventRegistry.doEvent('profile_hover');
