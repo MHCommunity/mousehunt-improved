@@ -83,7 +83,7 @@ const regionMapping = [
     ],
   },
   {
-    region: 'region-event',
+    region: 'event-locations',
     locations: [
       'halloween_event_location',
     ],
@@ -104,6 +104,11 @@ const main = () => {
 
   const currentLocation = getCurrentLocation();
   const location = normalizeCurrentLocation(currentLocation);
+
+  if (getMhuiSetting('event-locations', true)) {
+    regionEvents(currentLocation);
+  }
+
   if (! getMhuiSetting(location, true)) {
     return;
   }
@@ -158,7 +163,6 @@ const main = () => {
     train_station,
     windmill,
     zugzwang_tower,
-    'region-event': regionEvents, // 'halloween_event_location
     'region-living-garden': regionLivingGarden,
     'region-queso': regionQueso,
   };
