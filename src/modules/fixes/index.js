@@ -1,8 +1,4 @@
-import {
-  addUIStyles,
-  getCurrentPage,
-  onNavigation
-} from '../utils';
+import { addUIStyles, getCurrentPage, onNavigation } from '@/utils';
 
 import styles from './styles.css';
 

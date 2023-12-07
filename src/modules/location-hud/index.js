@@ -5,7 +5,7 @@ import {
   onNavigation,
   onTravel,
   removeHudStyles
-} from '../utils';
+} from '@/utils';
 
 // Locations
 /* eslint-disable camelcase */

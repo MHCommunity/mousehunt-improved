@@ -1,4 +1,4 @@
-import { addUIStyles, getFlag } from '../utils';
+import { addUIStyles, getFlag } from '@/utils';
 
 import rankupForecaster from './modules/rank-up-forecaster';
 import trollMode from './modules/troll-mode';

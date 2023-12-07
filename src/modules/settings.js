@@ -1,8 +1,4 @@
-import {
-  addSetting,
-  debug,
-  getMhuiSetting
-} from './utils';
+import { addSetting, debug, getMhuiSetting } from '@/utils';
 
 import globalStyles from './global-styles/styles.css';
 

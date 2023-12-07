@@ -1,7 +1,4 @@
-import {
-  addUIStyles,
-  makeElement
-} from '../../utils';
+import { addUIStyles, makeElement } from '@/utils';
 
 const exportRankupForecasterData = () => {
   const allArea = localStorage.getItem('Chro-forecaster-all-area');

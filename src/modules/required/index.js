@@ -5,7 +5,7 @@ import {
   getMhuiSetting,
   makeElement,
   onNavigation
-} from '../utils';
+} from '@/utils';
 
 import settingStyles from './styles.css';
 

@@ -1,8 +1,4 @@
-import {
-  addHudStyles,
-  getCurrentLocation,
-  makeElement
-} from '../../utils';
+import { addHudStyles, getCurrentLocation, makeElement } from '@/utils';
 
 import styles from './styles.css';
 

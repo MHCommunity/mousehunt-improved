@@ -3,8 +3,9 @@ import {
   makeElement,
   onDialogHide,
   onDialogShow,
+  onRequest,
   saveSetting
-} from '../../../utils';
+} from '@/utils';
 
 const saveHidden = (upgradeId, isHidden) => {
   saveSetting(upgradeId, isHidden, 'mh-improved-visibility-toggles');

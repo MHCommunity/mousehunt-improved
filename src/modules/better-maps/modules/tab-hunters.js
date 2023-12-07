@@ -1,7 +1,4 @@
-import {
-  makeElement,
-  mapper
-} from '../../utils';
+import { makeElement, mapper } from '@/utils';
 
 const makeUserTableLoading = (id, title, appendTo) => {
   const wrapper = makeElement('div', 'treasureMapView-block-title', title);

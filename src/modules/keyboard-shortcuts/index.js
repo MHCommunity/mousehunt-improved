@@ -1,7 +1,4 @@
-import {
-  addUIStyles,
-  createPopup
-} from '../utils';
+import { addUIStyles, createPopup } from '@/utils';
 
 import styles from './styles.css';
 

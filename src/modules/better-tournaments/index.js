@@ -5,7 +5,7 @@ import {
   makeElement,
   onEvent,
   onNavigation
-} from '../utils';
+} from '@/utils';
 
 import styles from './styles.css';
 

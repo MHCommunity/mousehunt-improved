@@ -1,4 +1,4 @@
-import { addUIStyles, persistBodyClass } from '../utils';
+import { addUIStyles, persistBodyClass } from '@/utils';
 
 import styles from './styles.css';
 

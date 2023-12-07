@@ -12,9 +12,9 @@ import {
   onPageChange,
   onTravel,
   showHornMessage
-} from '../utils';
+} from '@/utils';
 
-import environments from '../../data/environments.json';
+import environments from '@data/environments.json';
 
 import styles from './styles.css';
 

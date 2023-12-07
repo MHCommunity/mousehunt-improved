@@ -1,9 +1,4 @@
-import {
-  addUIStyles,
-  doRequest,
-  makeElement,
-  onPageChange
-} from '../utils';
+import { addUIStyles, doRequest, makeElement, onPageChange } from '@/utils';
 
 import styles from './styles.css';
 

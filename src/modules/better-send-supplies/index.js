@@ -1,9 +1,4 @@
-import {
-  addUIStyles,
-  getMhuiSetting,
-  makeElement,
-  onNavigation
-} from '../utils';
+import { addUIStyles, getMhuiSetting, makeElement, onNavigation } from '@/utils';
 
 import styles from './styles.css';
 

@@ -1,7 +1,4 @@
-import {
-  getSetting,
-  saveSetting
-} from '../utils';
+import { getSetting, saveSetting } from '@/utils';
 
 const getReadUpdateNotificationTime = (version) => {
   let date = getSetting(version, false, 'mh-improved-update-notifications');

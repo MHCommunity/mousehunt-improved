@@ -5,7 +5,7 @@ import {
   onDialogShow,
   onRequest,
   showHornMessage
-} from '../../utils';
+} from '@/utils';
 
 import styles from './styles.css';
 

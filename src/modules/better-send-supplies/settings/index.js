@@ -1,5 +1,5 @@
-import { addMhuiSetting } from '../../utils';
-import getTradableItems from '../../../data/tradable-items';
+import { addMhuiSetting } from '@/utils';
+import getTradableItems from '@data/tradable-items';
 
 export default function (module) {
   addMhuiSetting(
