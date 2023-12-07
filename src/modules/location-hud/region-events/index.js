@@ -1,30 +1,26 @@
-import {
-  addHudStyles,
-  onRequest
-} from '../../utils';
+import { addUIStyles, makeElement, onDialogShow } from '@/utils';
 
-import halloweenStyles from './halloween/styles.css';
+import styles from './styles.css';
 
-const undisableCheese = () => {
-  const armButtons = document.querySelectorAll('.halloweenBoilingCauldronHUD-bait');
-  armButtons.forEach((armButton) => {
-    armButton.classList.remove('disabled');
-    const link = armButton.querySelector('a.disabled');
-    if (link) {
-      link.classList.remove('disabled');
-    }
+import gwh from './great-winter-hunt';
+import halloween from './halloween';
 
-    const tooltipLink = armButton.querySelector('.halloweenBoilingCauldronHUD-bait-tooltipContent a.disabled');
-    if (tooltipLink) {
-      tooltipLink.classList.remove('disabled');
-    }
-  });
-};
 
-export default () => {
-  if ('halloween_event_location' === getCurrentLocation()) {
-    addHudStyles(halloweenStyles);
-    undisableCheese();
-    onRequest(undisableCheese);
+export default (location) => {
+  switch (location) {
+  case 'halloween_event_location':
+    halloween();
+    break;
+  case 'winter_hunt_grove':
+  case 'winter_hunt_workshop':
+  case 'winter_hunt_fortress':
+    gwh();
+    break;
+  default:
+    break;
   }
+
+  // Need to fire it always because the showdown styles are always loaded
+  addUIStyles(styles);
+
 };
