@@ -5,7 +5,7 @@ import {
   makeLink,
   onOverlayChange,
   onPageChange
-} from '../utils';
+} from '@/utils';
 
 import styles from './styles.css';
 

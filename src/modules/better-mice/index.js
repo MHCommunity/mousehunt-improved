@@ -7,12 +7,12 @@ import {
   makeElement,
   makeLink,
   onOverlayChange
-} from '../utils';
+} from '@/utils';
 
 import mousepage from './mousepage';
 
-import minlucks from '../../data/minlucks.json';
-import wisdoms from '../../data/wisdom.json';
+import minlucks from '@data/minlucks.json';
+import wisdoms from '@data/wisdom.json';
 
 import styles from './styles.css';
 

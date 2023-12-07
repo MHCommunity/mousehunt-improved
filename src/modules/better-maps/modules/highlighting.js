@@ -1,8 +1,4 @@
-import {
-  doRequest,
-  getCurrentLocation,
-  mapData
-} from '../../utils';
+import { doRequest, getCurrentLocation, mapData } from '@/utils';
 
 const areaHighlightingVrift = () => {
   if ('rift_valour' !== getCurrentLocation()) {

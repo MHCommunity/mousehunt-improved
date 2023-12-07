@@ -5,7 +5,7 @@ import {
   makeElement,
   onNavigation,
   onOverlayChange
-} from '../utils';
+} from '@/utils';
 
 import m400 from './m400';
 import styles from './styles.css';

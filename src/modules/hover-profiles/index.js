@@ -1,9 +1,4 @@
-import {
-  addUIStyles,
-  doRequest,
-  onEvent,
-  onRequest
-} from '../utils';
+import { addUIStyles, doRequest, onEvent, onRequest } from '@/utils';
 
 import styles from './styles.css';
 

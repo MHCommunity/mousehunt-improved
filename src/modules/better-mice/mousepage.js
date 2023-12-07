@@ -4,7 +4,7 @@ import {
   getCurrentTab,
   makeElement,
   onNavigation
-} from '../utils';
+} from '@/utils';
 
 const makeKingsCrownsTab = () => {
   // Add king's crowns tab;

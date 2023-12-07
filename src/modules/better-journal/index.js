@@ -1,8 +1,4 @@
-import {
-  addUIStyles,
-  getMhuiSetting,
-  onRequest
-} from '../utils';
+import { addUIStyles, getMhuiSetting, onRequest } from '@/utils';
 
 import customEntries from './styles/custom-entries.css';
 import fullstop from './styles/fullstop.css';

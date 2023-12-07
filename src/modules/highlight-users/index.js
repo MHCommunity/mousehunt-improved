@@ -1,11 +1,7 @@
-import {
-  addUIStyles,
-  makeElement,
-  onNavigation
-} from '../utils';
+import { addUIStyles, makeElement, onNavigation } from '@/utils';
 
 import styles from './styles.css';
-import userHighlighting from '../../data/user-highlighting.json';
+import userHighlighting from '@data/user-highlighting.json';
 
 const getUserHighlightingShield = (type) => {
   let text = '';

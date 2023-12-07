@@ -1,7 +1,4 @@
-import {
-  addUIStyles,
-  getUserItems
-} from '../../../utils';
+import { addUIStyles, getUserItems } from '@/utils';
 
 import styles from './styles.css';
 

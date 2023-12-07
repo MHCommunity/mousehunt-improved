@@ -1,7 +1,4 @@
-import {
-  addHudStyles,
-  makeElement
-} from '../../utils';
+import { addHudStyles, makeElement } from '@/utils';
 
 import styles from './styles.css';
 

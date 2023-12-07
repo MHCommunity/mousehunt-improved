@@ -1,4 +1,4 @@
-import * as Utils from '../utils';
+import * as Utils from '@/utils';
 
 const main = () => {
   // Ad all the stuff from Utils to be accessible in the console as 'app.mhutils'

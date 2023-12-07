@@ -1,8 +1,4 @@
-import {
-  getUserItems,
-  onEvent,
-  onRequest
-} from '../utils';
+import { getUserItems, onEvent, onRequest } from '@/utils';
 
 const addSkinImages = () => {
   const items = document.querySelectorAll('.skin .campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item');

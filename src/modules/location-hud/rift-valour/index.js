@@ -1,8 +1,4 @@
-import {
-  addHudStyles,
-  createPopup,
-  makeElement
-} from '../../utils';
+import { addHudStyles, createPopup, makeElement } from '@/utils';
 
 import styles from './styles.css';
 

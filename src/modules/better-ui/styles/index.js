@@ -1,4 +1,4 @@
-import { addUIStyles } from '../../utils';
+import { addUIStyles } from '@/utils';
 
 import adventure from './adventure.css';
 import betterLuckyCatchIcon from './better-lucky-catch-icon.css';

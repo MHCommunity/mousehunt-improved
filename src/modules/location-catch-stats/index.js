@@ -1,9 +1,4 @@
-import {
-  addSubmenuItem,
-  addUIStyles,
-  doRequest,
-  makeElementDraggable
-} from '../utils';
+import { addSubmenuItem, addUIStyles, doRequest, makeElementDraggable } from '@/utils';
 
 import styles from './styles.css';
 

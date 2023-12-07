@@ -4,11 +4,11 @@ import {
   makeElement,
   onOverlayChange,
   onRequest
-} from '../utils';
+} from '@/utils';
 
 import styles from './styles.css';
 
-import itemsToRemove from '../../data/marketplace-items-to-remove.json';
+import itemsToRemove from '@data/marketplace-items-to-remove.json';
 
 const initSearch = (searchInputDOM) => {
   // add one blank one to the start

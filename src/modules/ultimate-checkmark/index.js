@@ -5,7 +5,7 @@ import {
   getCurrentTab,
   makeElement,
   onNavigation
-} from '../utils';
+} from '@/utils';
 
 import styles from './styles.css';
 

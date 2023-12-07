@@ -5,7 +5,7 @@ import {
   onAjaxRequest,
   onDialogShow,
   replaceInTemplate
-} from '../utils';
+} from '@/utils';
 
 import styles from './styles.css';
 

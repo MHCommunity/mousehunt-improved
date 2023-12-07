@@ -4,14 +4,14 @@ import {
   getMhuiSetting,
   makeElement,
   mapData
-} from '../../utils';
+} from '@/utils';
 
 import { addMHCTData, getMapData } from '../map-utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import doHighlighting from './highlighting';
 
-import mouseGroups from '../../../data/mice-map-groups.json';
+import mouseGroups from '@data/mice-map-groups.json';
 
 const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   // Get the unsorted mice.

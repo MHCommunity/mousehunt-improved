@@ -5,10 +5,10 @@ import {
   makeElement,
   onEvent,
   onNavigation
-} from '../utils';
+} from '@/utils';
 
-import recipesMeConversion from '../../data/recipes-me-conversion.json';
-import recipesToReorder from '../../data/recipes-to-reorder.json';
+import recipesMeConversion from '@data/recipes-me-conversion.json';
+import recipesToReorder from '@data/recipes-to-reorder.json';
 
 const cleanUpRecipeBook = () => {
   // Re-add the 'All' tab.

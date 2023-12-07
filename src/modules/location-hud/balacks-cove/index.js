@@ -1,7 +1,4 @@
-import {
-  addHudStyles,
-  onTravel
-} from '../../utils';
+import { addHudStyles, onTravel } from '@/utils';
 
 import styles from './styles.css';
 

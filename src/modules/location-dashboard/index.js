@@ -1,13 +1,8 @@
-import {
-  addUIStyles,
-  makeElement,
-  onRequest,
-  onTravel
-} from '../utils';
+import { addUIStyles, makeElement, onRequest, onTravel } from '@/utils';
 
 import styles from './styles.css';
 
-import environments from '../../data/environments.json';
+import environments from '@data/environments.json';
 
 import { getFieryWarpathText, setFieryWarpathData } from './location/fiery-warpath';
 import { getSeasonalGardenText, setSeasonalGardenData } from './location/seasonal-garden';

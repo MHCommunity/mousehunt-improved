@@ -1,6 +1,6 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, onRequest } from '@/utils';
 
-import mapping from '../../data/upscaled-image-mapping.json';
+import mapping from '@data/upscaled-image-mapping.json';
 
 import journalThemeStyles from './journal-themes.css';
 import styles from './styles.css';

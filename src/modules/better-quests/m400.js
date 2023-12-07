@@ -1,8 +1,4 @@
-import {
-  addUIStyles,
-  makeElement,
-  onNavigation
-} from '../utils';
+import { addUIStyles, makeElement, onNavigation } from '@/utils';
 
 import styles from './styles.css';
 

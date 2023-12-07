@@ -1,7 +1,4 @@
-import {
-  addUIStyles,
-  makeElement
-} from '../utils';
+import { addUIStyles, makeElement } from '@/utils';
 
 import styles from './styles.css';
 

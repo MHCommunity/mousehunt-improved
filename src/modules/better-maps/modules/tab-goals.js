@@ -1,7 +1,4 @@
-import {
-  makeElement,
-  makeLink
-} from '../../utils';
+import { makeElement, makeLink } from '@/utils';
 
 import { addMHCTData } from '../map-utils';
 

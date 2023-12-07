@@ -1,7 +1,4 @@
-import {
-  getCurrentPage,
-  onNavigation
-} from '../utils';
+import { getCurrentPage, onNavigation } from '@/utils';
 
 const reorderBlocks = () => {
   if ('friends' !== getCurrentPage()) {

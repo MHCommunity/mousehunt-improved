@@ -1,6 +1,6 @@
-import { addMhuiSetting } from '../utils';
+import { addMhuiSetting } from '@/utils';
 
-import environments from '../../data/environments.json';
+import environments from '@data/environments.json';
 
 export default function (module) {
   const locationsToUnset = [

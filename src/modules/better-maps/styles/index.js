@@ -1,4 +1,4 @@
-import { addUIStyles } from '../../utils';
+import { addUIStyles } from '@/utils';
 
 import general from './general.css';
 import hunters from './hunters.css';

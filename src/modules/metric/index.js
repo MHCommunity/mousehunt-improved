@@ -1,7 +1,4 @@
-import {
-  onDialogShow,
-  onRequest
-} from '../utils';
+import { onDialogShow, onRequest } from '@/utils';
 
 const imperialToMetric = (text) => {
   const lb = text.match(/(\d+? )lb./i);
