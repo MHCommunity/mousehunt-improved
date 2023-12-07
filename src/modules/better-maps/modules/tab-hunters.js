@@ -3,7 +3,7 @@ import { makeElement, mapper } from '@/utils';
 const makeUserTableLoading = (id, title, appendTo) => {
   const wrapper = makeElement('div', 'treasureMapView-block-title', title);
   wrapper.id = `hunters-loading-${id}-title`;
-  appendTo.appendChild(wrapper);
+  appendTo.append(wrapper);
 
   const loading = makeElement('div', 'treasureMapView-block');
   loading.id = `hunters-loading-${id}-block`;
@@ -11,10 +11,10 @@ const makeUserTableLoading = (id, title, appendTo) => {
   const loadingWwrapper = makeElement('div', 'treasureMapView-allyTable', '');
   const row = makeElement('div', 'treasureMapView-allyRow', '');
   makeElement('div', ['mousehuntPage-loading', 'active'], '', row);
-  loadingWwrapper.appendChild(row);
+  loadingWwrapper.append(row);
 
-  loading.appendChild(loadingWwrapper);
-  appendTo.appendChild(loading);
+  loading.append(loadingWwrapper);
+  appendTo.append(loading);
 };
 
 const makeUserTable = async (hunters, id, title, appendTo) => {
@@ -35,7 +35,7 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
 
   const wrapper = makeElement('div', ['mh-ui-custom-map-block', 'treasureMapView-block-title'], title.replace('#count#', hunters.length));
   wrapper.id = `hunters-${id}`;
-  appendTo.appendChild(wrapper);
+  appendTo.append(wrapper);
 
   const block = makeElement('div', 'treasureMapView-block');
   block.id = `hunters-${id}-block`;
@@ -84,9 +84,9 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
     makeElement('div', 'treasureMapView-allyRow', markup, table);
   });
 
-  block.appendChild(table);
-  blockContent.appendChild(block);
-  appendTo.appendChild(block);
+  block.append(table);
+  blockContent.append(block);
+  appendTo.append(block);
 
   if ('requests' === id) {
     const actionButtons = document.querySelectorAll('.mh-mapper-invite-request-action');

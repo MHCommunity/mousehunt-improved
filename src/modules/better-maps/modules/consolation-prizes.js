@@ -17,13 +17,13 @@ const addConsolationPrizes = () => {
     const prizeDiv = makeElement('div', 'mh-mapper-consolation-prize');
     const prizeImg = makeElement('img', 'mh-mapper-consolation-prize');
     prizeImg.src = prize.thumb;
-    prizeDiv.appendChild(prizeImg);
+    prizeDiv.append(prizeImg);
     makeElement('div', 'mh-mapper-consolation-prize-text', `${prize.quantity} ${prize.name}`, prizeDiv);
 
-    prizeWrapper.appendChild(prizeDiv);
+    prizeWrapper.append(prizeDiv);
   }
 
-  consolationButton.parentElement.appendChild(prizeWrapper);
+  consolationButton.parentElement.append(prizeWrapper);
 };
 
 export default addConsolationPrizes;

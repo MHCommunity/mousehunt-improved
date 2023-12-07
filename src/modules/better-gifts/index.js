@@ -156,7 +156,7 @@ const makePaidGiftsButton = (buttonContainer) => {
     }
   });
 
-  buttonContainer.appendChild(paidGiftsButton);
+  buttonContainer.append(paidGiftsButton);
 };
 
 const makeAcceptButton = (buttonContainer) => {
@@ -170,7 +170,7 @@ const makeAcceptButton = (buttonContainer) => {
     });
   }
 
-  buttonContainer.appendChild(acceptButton);
+  buttonContainer.append(acceptButton);
 };
 
 const makeReturnButton = (buttonContainer) => {
@@ -186,8 +186,8 @@ const makeReturnButton = (buttonContainer) => {
     });
   }
 
-  returnWrapper.appendChild(returnButton);
-  buttonContainer.appendChild(returnWrapper);
+  returnWrapper.append(returnButton);
+  buttonContainer.append(returnWrapper);
 };
 
 const fixTypo = () => {
@@ -363,7 +363,7 @@ const addSendButton = (className, text, selector, buttonContainer) => {
     }
   });
 
-  buttonContainer.appendChild(sendButton);
+  buttonContainer.append(sendButton);
 };
 
 const addRandomSendButton = () => {
@@ -412,7 +412,7 @@ const addGiftSwitcher = () => {
       gifts.forEach((toClone) => {
         const clone = toClone.cloneNode(true);
         const giftWrap = makeElement('div', 'giftSelectorView-content-leftBar-highlightBlock');
-        giftWrap.appendChild(clone);
+        giftWrap.append(clone);
 
         giftWrap.addEventListener('click', () => {
           const prevSelected = document.querySelectorAll('.mh-gift-buttons-clone-selected');
@@ -423,10 +423,10 @@ const addGiftSwitcher = () => {
           giftWrap.classList.add('mh-gift-buttons-clone-selected');
         });
 
-        cloneWrapper.appendChild(giftWrap);
+        cloneWrapper.append(giftWrap);
       });
 
-      giftContainer.appendChild(cloneWrapper);
+      giftContainer.append(cloneWrapper);
     };
   };
 };

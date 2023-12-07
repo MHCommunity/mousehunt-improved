@@ -75,7 +75,7 @@ const updateNightBar = () => {
     }
 
     const tooltip = makeTooltip(tooltipText.join(' '), 'bottom', 'fortRoxHUD-timeline-phase-time-tooltip');
-    phaseBar.appendChild(tooltip);
+    phaseBar.append(tooltip);
 
     phaseBar.classList.add('mousehuntTooltipParent');
   });
@@ -141,7 +141,7 @@ const updateWallHP = () => {
   const wrapper = makeElement('div', 'mh-frox-wall-hp');
   makeElement('div', 'mh-frox-wall-hp-text', `${wallPercent}%`, wrapper);
 
-  hpBox.appendChild(wrapper);
+  hpBox.append(wrapper);
 
   hpBox.classList.remove('frox-wall-very-low', 'frox-wall-low', 'frox-wall-medium', 'frox-wall-high', 'frox-wall-perfect');
   const hp = parseInt(user.quests.QuestFortRox.hp_percent, 10);

@@ -52,7 +52,7 @@ const addArDataToMap = async (mapData) => {
       return;
     }
 
-    name.appendChild(arEl);
+    name.append(arEl);
 
     mouseEl.setAttribute('data-mh-ui-ar', true);
   });
@@ -160,7 +160,7 @@ const addArToggle = async (tab = 'goals') => {
 
   toggle.addEventListener('click', toggleAr);
 
-  wrapper.appendChild(toggle);
+  wrapper.append(toggle);
 
   await toggleAr();
 

@@ -108,7 +108,7 @@ const addMouseLinksToMap = async () => {
 
       container.classList.add('has-mhct-ars');
 
-      container.appendChild(arsEl);
+      container.append(arsEl);
     });
   });
 };
@@ -190,7 +190,7 @@ const addClassesToGroups = (mapData) => {
     const replacementTitle = makeElement('div', 'treasureMapView-block-content-heading');
 
     if (image) {
-      replacementTitle.appendChild(image);
+      replacementTitle.append(image);
     }
 
     const nameLink = makeElement('a', 'mh-ui-goals-group-completed-title', hunter.name);
@@ -199,11 +199,11 @@ const addClassesToGroups = (mapData) => {
       e.preventDefault();
       hg.utils.PageUtil.showHunterProfile(hunter.sn_user_id);
     });
-    replacementTitle.appendChild(nameLink);
+    replacementTitle.append(nameLink);
 
     makeElement('span', 'mh-ui-goals-group-completed-text', ' found these mice:', replacementTitle);
     if (count) {
-      replacementTitle.appendChild(count);
+      replacementTitle.append(count);
     }
 
     title.replaceWith(replacementTitle);

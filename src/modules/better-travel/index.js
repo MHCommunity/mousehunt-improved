@@ -122,7 +122,7 @@ const addTab = (id, label) => {
 
   makeElement('span', '', label, tab);
 
-  tabContainer.appendChild(tab);
+  tabContainer.append(tab);
 };
 
 const addPage = (id, content) => {
@@ -146,12 +146,12 @@ const addPage = (id, content) => {
 
   if (! content) {
     const blank = makeElement('div');
-    page.appendChild(blank);
+    page.append(blank);
   } else {
-    page.appendChild(content);
+    page.append(content);
   }
 
-  pageContainer.appendChild(page);
+  pageContainer.append(page);
 };
 
 const addSimpleTravelPage = () => {
@@ -160,7 +160,7 @@ const addSimpleTravelPage = () => {
 
   if ('not-set' === getMhuiSetting('better-travel-default-to-simple-travel', 'not-set')) {
     const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings"> Game Settings</a>.');
-    wrapper.appendChild(settingTip);
+    wrapper.append(settingTip);
   }
 
   const regionMenu = cloneRegionMenu();
@@ -195,21 +195,21 @@ const addSimpleTravelPage = () => {
     sortedLinks.forEach((link) => {
       // make a copy of the link
       const linkClone = link.cloneNode(true);
-      alphaListContent.appendChild(linkClone);
+      alphaListContent.append(linkClone);
       linkClone.addEventListener('click', travelClickHandler);
     });
 
-    alphaList.appendChild(alphaListContent);
+    alphaList.append(alphaListContent);
 
-    alphaHeader.appendChild(alphaList);
-    alphaContent.appendChild(alphaHeader);
+    alphaHeader.append(alphaList);
+    alphaContent.append(alphaHeader);
 
-    alphaWrapper.appendChild(alphaContent);
+    alphaWrapper.append(alphaContent);
 
-    wrapper.appendChild(alphaWrapper);
+    wrapper.append(alphaWrapper);
   }
 
-  wrapper.appendChild(regionMenu);
+  wrapper.append(regionMenu);
 
   addPage('simple-travel', wrapper);
 };
@@ -426,7 +426,7 @@ const addRhToMap = async () => {
 
   const rh = makeElement('div', 'map-relic-hunter-is-here');
   makeElement('div', 'map-relic-hunter-is-here-image', '', rh);
-  mapLocation.appendChild(rh);
+  mapLocation.append(rh);
 };
 
 const maybeDoMapView = () => {

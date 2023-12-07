@@ -96,7 +96,7 @@ const hud = () => {
       if (clue) {
         progress.setAttribute('title', `${clue.quantity} found`);
         const text = makeElement('span', 'mh-ui-labyrinth-clue-count', `${clue.quantity}`);
-        progress.appendChild(text);
+        progress.append(text);
       }
     });
   }
@@ -112,7 +112,7 @@ const hud = () => {
       if (labyHud) {
         const lanternReminer = document.createElement('div');
         lanternReminer.classList.add('mh-ui-labyrinth-lantern-reminder');
-        labyHud.appendChild(lanternReminer);
+        labyHud.append(lanternReminer);
       }
     }, 500);
   }
@@ -144,7 +144,7 @@ const hud = () => {
         makeElement('div', 'mh-ui-laby-cpt', `Avg. ${cluesPerTile} clues per hunt`, intersectionText);
       }
 
-      intersectionDoors.appendChild(intersectionText);
+      intersectionDoors.append(intersectionText);
     }
   } else {
     const existingIntersectionText = document.querySelector('.mh-ui-labyrinth-door-text');

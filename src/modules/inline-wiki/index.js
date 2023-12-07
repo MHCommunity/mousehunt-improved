@@ -10,7 +10,7 @@ export default () => {
       iframe.id = 'wiki-iframe';
       iframe.src = 'https://mhwiki.hitgrab.com/wiki/index.php/MouseHunt_Wiki';
 
-      wikiPage.appendChild(iframe);
+      wikiPage.append(iframe);
 
       // modify the <title> of the page to match the wiki page
       const title = document.querySelector('title');

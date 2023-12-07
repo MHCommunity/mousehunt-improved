@@ -77,8 +77,8 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     mhctLink.href = `https://www.mhct.win/attractions.php?mouse_name=${mouse.name}`;
   }
 
-  header.appendChild(mhctLink);
-  mhctDiv.appendChild(header);
+  header.append(mhctLink);
+  mhctDiv.append(header);
 
   if (! mhctjson.slice) {
     return;
@@ -103,7 +103,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
       mhctRow.classList.add('mhct-row-no-env');
     }
 
-    mhctRow.appendChild(location);
+    mhctRow.append(location);
 
     makeElement('div', 'mhct-bait', mhct.cheese, mhctRow);
 
@@ -125,17 +125,17 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
       showTravelConfirmation(travelEnvironment, mapModel());
     });
 
-    mhctDiv.appendChild(mhctRow);
+    mhctDiv.append(mhctRow);
   });
 
   // if the rows were empty, then add a message
   if (0 === mhctjson.length) {
     const mhctRow = makeElement('div', 'mhct-row');
     makeElement('div', 'mhct-no-data', 'No data available', mhctRow);
-    mhctDiv.appendChild(mhctRow);
+    mhctDiv.append(mhctRow);
   }
 
-  appendTo.appendChild(mhctDiv);
+  appendTo.append(mhctDiv);
 };
 
 export {

@@ -25,7 +25,7 @@ const makeKingsCrownsTab = () => {
   kingsCrownsTab.setAttribute('data-legacy-mode', '');
   kingsCrownsTab.setAttribute('onclick', 'hg.utils.PageUtil.onclickPageTabHandler(this); return false;');
 
-  tabContainer.appendChild(kingsCrownsTab);
+  tabContainer.append(kingsCrownsTab);
 
   return kingsCrownsTab;
 };
@@ -50,9 +50,9 @@ const makeKingsCrownsTabContentContent = () => {
 
   makeElement('div', 'mouseCrownsView', '', subTabContent);
 
-  tabContent.appendChild(subTabContent);
+  tabContent.append(subTabContent);
 
-  tabContentContainer.appendChild(tabContent);
+  tabContentContainer.append(tabContent);
 };
 
 const makeMouseCrownSection = (type, mice, header = false, subheader = false) => {
@@ -69,9 +69,9 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
       makeElement('div', 'mouseCrownsView-group-header-subtitle', subheader, name);
     }
 
-    headerDiv.appendChild(name);
+    headerDiv.append(name);
 
-    wrapper.appendChild(headerDiv);
+    wrapper.append(headerDiv);
   }
 
   const list = makeElement('div', 'mouseCrownsView-group-mice');
@@ -96,16 +96,16 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
     image.setAttribute('data-loader', 'mouse');
     image.setAttribute('style', `background-image: url("${mouse.image}");`);
 
-    innerWrapper.appendChild(image);
+    innerWrapper.append(image);
 
     makeElement('div', 'mouseCrownsView-group-mouse-catches', mouse.num_catches, innerWrapper);
 
     const label = makeElement('div', 'mouseCrownsView-group-mouse-label');
     const nameWrapper = makeElement('span', false, '');
     makeElement('div', 'mouseCrownsView-group-mouse-name', mouse.name, nameWrapper);
-    label.appendChild(nameWrapper);
+    label.append(nameWrapper);
 
-    innerWrapper.appendChild(label);
+    innerWrapper.append(label);
 
     const favoriteButton = makeElement('div', 'mouseCrownsView-group-mouse-favouriteButton');
     if (mouse.is_favourite) {
@@ -114,14 +114,14 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
     favoriteButton.setAttribute('data-mouse-id', mouse.id);
     favoriteButton.setAttribute('onclick', 'hg.views.MouseCrownsView.toggleFavouriteHandler(event); return false;');
 
-    innerWrapper.appendChild(favoriteButton);
+    innerWrapper.append(favoriteButton);
 
-    mouseWrapper.appendChild(innerWrapper);
+    mouseWrapper.append(innerWrapper);
 
-    list.appendChild(mouseWrapper);
+    list.append(mouseWrapper);
   });
 
-  wrapper.appendChild(list);
+  wrapper.append(list);
 
   return wrapper;
 };
@@ -159,11 +159,11 @@ const makeKingsCrownsTabContent = async () => {
   }
 
   const favorites = makeMouseCrownSection('favorites', crowns.favourite_mice);
-  tabInnerContent.appendChild(favorites);
+  tabInnerContent.append(favorites);
 
   crowns.badge_groups.forEach((group) => {
     const section = makeMouseCrownSection(group.type, group.mice, `${group.name} Crowns (${group.count})`, `Earned at ${group.catches} catches`);
-    tabInnerContent.appendChild(section);
+    tabInnerContent.append(section);
   });
 };
 
@@ -266,7 +266,7 @@ const sortStats = (type, reverse = false) => {
 
   // reorder the rows
   rows.forEach((row) => {
-    row.parentNode.appendChild(row);
+    row.parentNode.append(row);
   });
 };
 
@@ -300,7 +300,7 @@ const addSortButton = (elements, type) => {
       sortStats(type, true);
     });
 
-    el.appendChild(sortButton);
+    el.append(sortButton);
   });
 };
 

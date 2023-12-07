@@ -103,7 +103,7 @@ const addItemViewPopupToCollectibles = () => {
           return false;
         }
 
-        popup.appendChild(messageItemCopy);
+        popup.append(messageItemCopy);
         return true;
       };
 

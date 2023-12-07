@@ -56,28 +56,28 @@ const updateTournamentHud = async () => {
 
         const iconLayer1 = makeElement('div', 'scoreIconLayer1');
         iconLayer1.style.backgroundImage = `url(${scoreboard.emblem.layers[0].image})`;
-        icon.appendChild(iconLayer1);
+        icon.append(iconLayer1);
 
         const iconLayer2 = makeElement('div', 'scoreIconLayer2');
         iconLayer2.style.backgroundImage = `url(${scoreboard.emblem.layers[1].image})`;
-        icon.appendChild(iconLayer2);
+        icon.append(iconLayer2);
 
         const iconLayer3 = makeElement('div', 'scoreIconLayer3');
         iconLayer3.style.backgroundImage = `url(${scoreboard.emblem.layers[2].image})`;
-        icon.appendChild(iconLayer3);
+        icon.append(iconLayer3);
 
-        teamWrapper.appendChild(icon);
+        teamWrapper.append(icon);
 
         makeElement('div', 'scoreName', scoreboard.name, teamWrapper);
 
-        scoreRow.appendChild(teamWrapper);
+        scoreRow.append(teamWrapper);
 
         makeElement('div', 'scorePoints', scoreboard.points, scoreRow);
 
-        scoreHover.appendChild(scoreRow);
+        scoreHover.append(scoreRow);
       });
 
-      rank.appendChild(scoreHover);
+      rank.append(scoreHover);
     }
 
     const points = document.querySelector('.tournamentStatusHud .score');
@@ -100,18 +100,18 @@ const updateTournamentHud = async () => {
           const mouseIcon = makeElement('img', 'pointsMouseIcon');
           mouseIcon.src = mouse.thumb;
 
-          mouseWrapper.appendChild(mouseIcon);
+          mouseWrapper.append(mouseIcon);
 
           makeElement('div', 'pointsMouseName', mouse.name, mouseWrapper);
 
-          groupMice.appendChild(mouseWrapper);
+          groupMice.append(mouseWrapper);
         });
 
-        pointsRow.appendChild(groupMice);
-        pointsHover.appendChild(pointsRow);
+        pointsRow.append(groupMice);
+        pointsHover.append(pointsRow);
       });
 
-      points.appendChild(pointsHover);
+      points.append(pointsHover);
     }
   } else {
     const members = document.querySelector('.tournamentStatusHud a.teamMembers');
@@ -127,15 +127,15 @@ const updateTournamentHud = async () => {
         } else {
           const image = makeElement('img', 'memberImage');
           image.src = member.profile_pic ? member.profile_pic : 'https://www.mousehuntgame.com//images/ui/friends/anonymous_user.png';
-          memberRow.appendChild(image);
+          memberRow.append(image);
 
           makeElement('div', 'memberName', member.name ? member.name : '', memberRow);
         }
 
-        memberHover.appendChild(memberRow);
+        memberHover.append(memberRow);
       });
 
-      members.appendChild(memberHover);
+      members.append(memberHover);
     }
   }
 };
@@ -186,7 +186,7 @@ const updateTournamentList = async () => {
     const beginsDateString = beginsDate.toLocaleString('en-US', dateOptions);
 
     const beginsDateEl = makeElement('div', ['tournament-normal-time', 'tournament-begins-date', inlineOrHover], beginsDateString);
-    beginsRow.appendChild(beginsDateEl);
+    beginsRow.append(beginsDateEl);
 
     const durationText = durationRows[i].innerText;
     const durationParts = durationText.split(' ');
@@ -206,7 +206,7 @@ const updateTournamentList = async () => {
     const durationDateString = durationDate.toLocaleString('en-US', dateOptions);
 
     const durationDateEl = makeElement('div', ['tournament-normal-time', 'tournament-end-date', inlineOrHover], durationDateString);
-    durationRows[i].appendChild(durationDateEl);
+    durationRows[i].append(durationDateEl);
   });
 };
 

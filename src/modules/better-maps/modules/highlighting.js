@@ -128,7 +128,7 @@ const addProfilePicToCurrentFloor = async () => {
   .mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header::after {
     background-image: url(${profPic});
   }`;
-  document.body.appendChild(styleElement);
+  document.body.append(styleElement);
 };
 
 const doHighlighting = () => {

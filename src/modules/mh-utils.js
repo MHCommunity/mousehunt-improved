@@ -60,7 +60,7 @@ const addStyles = (styles, identifier = 'mh-utils-custom-styles', once = false) 
   const style = document.createElement('style');
   style.id = identifier;
   style.innerHTML = styles;
-  document.head.appendChild(style);
+  document.head.append(style);
 
   return style;
 };
@@ -910,14 +910,14 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
   const settingsTabText = document.createElement('span');
   settingsTabText.innerText = name;
 
-  settingsTab.appendChild(settingsTabText);
-  tabsContainer.appendChild(settingsTab);
+  settingsTab.append(settingsTabText);
+  tabsContainer.append(settingsTab);
 
   const settingsTabContent = document.createElement('div');
   settingsTabContent.classList.add('mousehuntHud-page-tabContent', 'game_settings', identifier);
   settingsTabContent.setAttribute('data-tab', identifier);
 
-  tabsContentContainer.appendChild(settingsTabContent);
+  tabsContentContainer.append(settingsTabContent);
 
   if (identifier === getCurrentTab()) {
     const tab = document.getElementById(identifier);
@@ -990,17 +990,17 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     titleText.textContent = section.name;
 
     // Append the title.
-    title.appendChild(titleText);
+    title.append(titleText);
 
     // Add a separator.
     const seperator = document.createElement('div');
     seperator.classList.add('PagePreferences__separator');
 
     // Append the separator.
-    title.appendChild(seperator);
+    title.append(seperator);
 
     // Append it.
-    container.appendChild(title);
+    container.append(title);
 
     sectionExists = document.querySelector(`#${section.id}`);
 
@@ -1076,9 +1076,9 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   const settingDescription = makeElement('div', 'PagePreferences__settingDescription');
   settingDescription.innerHTML = description;
 
-  settingRowLabel.appendChild(settingName);
-  settingRowLabel.appendChild(defaultSettingText);
-  settingRowLabel.appendChild(settingDescription);
+  settingRowLabel.append(settingName);
+  settingRowLabel.append(defaultSettingText);
+  settingRowLabel.append(settingDescription);
 
   const settingRowAction = makeElement('div', 'PagePreferences__settingAction');
   const settingRowInput = makeElement('div', 'settingRow-action-inputContainer');
@@ -1136,18 +1136,18 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
           option.options.forEach((optgroupOption) => {
             const result = makeOption(optgroupOption, foundSelected, currentSetting, defaultValue, i);
             foundSelected = result.foundSelected;
-            settingRowInputDropdownSelectOptgroup.appendChild(result.settingRowInputDropdownSelectOption);
+            settingRowInputDropdownSelectOptgroup.append(result.settingRowInputDropdownSelectOption);
           });
 
-          settingRowInputDropdownSelect.appendChild(settingRowInputDropdownSelectOptgroup);
+          settingRowInputDropdownSelect.append(settingRowInputDropdownSelectOptgroup);
         } else {
           const result = makeOption(option, foundSelected, currentSetting, defaultValue, i);
           foundSelected = result.foundSelected;
-          settingRowInputDropdownSelect.appendChild(result.settingRowInputDropdownSelectOption);
+          settingRowInputDropdownSelect.append(result.settingRowInputDropdownSelectOption);
         }
       });
 
-      settingRowInputDropdown.appendChild(settingRowInputDropdownSelect);
+      settingRowInputDropdown.append(settingRowInputDropdownSelect);
 
       // Event listener for when the setting is clicked.
       settingRowInputDropdownSelect.onchange = (event) => {
@@ -1165,8 +1165,8 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
         }, 1000);
       };
 
-      settingRowInput.appendChild(settingRowInputDropdown);
-      settingRowAction.appendChild(settingRowInput);
+      settingRowInput.append(settingRowInputDropdown);
+      settingRowAction.append(settingRowInput);
     }
   } else if (settingSettings && settingSettings.type === 'input') {
     addStyles(`.settingRow-action-inputContainer.inputText {
@@ -1199,9 +1199,9 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
     settingRowInput.classList.add('inputText');
 
-    settingRowInput.appendChild(settingRowInputText);
-    settingRowInput.appendChild(inputSaveButton);
-    settingRowAction.appendChild(settingRowInput);
+    settingRowInput.append(settingRowInputText);
+    settingRowInput.append(inputSaveButton);
+    settingRowAction.append(settingRowInput);
   } else if (settingSettings && settingSettings.type === 'textarea') {
     addStyles(`.settingRow-action-inputContainer.textarea {
       display: flex;
@@ -1249,9 +1249,9 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
     settingRowInput.classList.add('textarea');
 
-    settingRowInput.appendChild(settingRowInputText);
-    settingRowInput.appendChild(inputSaveButton);
-    settingRowAction.appendChild(settingRowInput);
+    settingRowInput.append(settingRowInputText);
+    settingRowInput.append(inputSaveButton);
+    settingRowAction.append(settingRowInput);
   } else {
     const settingRowInputCheckbox = document.createElement('div');
     settingRowInputCheckbox.classList.add('mousehuntSettingSlider');
@@ -1273,17 +1273,17 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     };
 
     // Add the input to the settings row.
-    settingRowInput.appendChild(settingRowInputCheckbox);
-    settingRowAction.appendChild(settingRowInput);
+    settingRowInput.append(settingRowInputCheckbox);
+    settingRowAction.append(settingRowInput);
   }
 
   // Add the label and action to the settings row.
-  settingRow.appendChild(settingRowLabel);
-  settingRow.appendChild(settingRowAction);
+  settingRow.append(settingRowLabel);
+  settingRow.append(settingRowAction);
 
   // Add the settings row to the settings container.
-  settings.appendChild(settingRow);
-  sectionExists.appendChild(settings);
+  settings.append(settingRow);
+  sectionExists.append(settings);
 };
 
 /**
@@ -1730,14 +1730,14 @@ const addSubmenuItem = (options) => {
   name.innerText = settings.label;
 
   // Add the icon and label to the link.
-  link.appendChild(icon);
-  link.appendChild(name);
+  link.append(icon);
+  link.append(name);
 
   // If it's an external link, also add the icon for it.
   if (settings.external) {
     const externalLinkIcon = document.createElement('div');
     externalLinkIcon.classList.add('external_icon');
-    link.appendChild(externalLinkIcon);
+    link.append(externalLinkIcon);
 
     // Set the target to _blank so it opens in a new tab.
     link.target = '_blank';
@@ -1745,13 +1745,13 @@ const addSubmenuItem = (options) => {
   }
 
   // Add the link to the item.
-  item.appendChild(link);
+  item.append(link);
 
   // Add the item to the submenu.
-  submenu.appendChild(item);
+  submenu.append(item);
 
   if (! hasSubmenu) {
-    menuTarget.appendChild(submenu);
+    menuTarget.append(submenu);
   }
 };
 
@@ -1827,7 +1827,7 @@ const addItemToGameInfoBar = (options) => {
     name.innerText = settings.label;
   }
 
-  item.appendChild(name);
+  item.append(name);
 
   if (settings.class) {
     item.classList.add(settings.class);
@@ -1848,8 +1848,8 @@ const addItemToGameInfoBar = (options) => {
     const externalLinkIcon = document.createElement('div');
     externalLinkIcon.classList.add('external_icon');
 
-    externalLinkIconWrapper.appendChild(externalLinkIcon);
-    item.appendChild(externalLinkIconWrapper);
+    externalLinkIconWrapper.append(externalLinkIcon);
+    item.append(externalLinkIconWrapper);
   }
 
   menu.insertBefore(item, menu.firstChild);
@@ -2483,8 +2483,8 @@ const showHornMessage = (options) => {
 
     img.style.backgroundImage = `url(${settings.image})`;
 
-    imgWrapper.appendChild(img);
-    content.appendChild(imgWrapper);
+    imgWrapper.append(img);
+    content.append(imgWrapper);
   }
   makeElement('div', 'huntersHornMessageView__text', settings.text, content);
   const buttonSpacer = makeElement('div', 'huntersHornMessageView__buttonSpacer');
@@ -2492,7 +2492,7 @@ const showHornMessage = (options) => {
   const buttonLabel = makeElement('div', 'huntersHornMessageView__actionLabel');
   makeElement('span', 'huntersHornMessageView__actionText', settings.button, buttonLabel);
 
-  button.appendChild(buttonLabel);
+  button.append(buttonLabel);
 
   button.addEventListener('click', () => {
     if (settings.action) {
@@ -2504,10 +2504,10 @@ const showHornMessage = (options) => {
     gameInfo.classList.remove('blur');
   });
 
-  buttonSpacer.appendChild(button);
-  content.appendChild(buttonSpacer);
+  buttonSpacer.append(button);
+  content.append(buttonSpacer);
 
-  message.appendChild(content);
+  message.append(content);
 
   if (settings.dismiss) {
     const countdown = makeElement('button', ['huntersHornMessageView__countdown']);
@@ -2518,10 +2518,10 @@ const showHornMessage = (options) => {
         <circle r="46%" cx="50%" cy="50%" class="huntersHornMessageView__countdownCircle" style="animation-duration: ${settings.dismiss}ms;"></circle>
     </svg>`;
     countdown.innerHTML += svgMarkup;
-    message.appendChild(countdown);
+    message.append(countdown);
   }
 
-  messageWrapper.appendChild(message);
+  messageWrapper.append(message);
 
   // remove any existing messages
   const existingMessages = huntersHornView.querySelector('.huntersHornView__message');
@@ -2529,7 +2529,7 @@ const showHornMessage = (options) => {
     existingMessages.remove();
   }
 
-  huntersHornView.appendChild(messageWrapper);
+  huntersHornView.append(messageWrapper);
 
   if (settings.dismiss) {
     setTimeout(() => {
@@ -2619,7 +2619,7 @@ const showHuntersHornMessage = (message) => {
   const messageDom = toggleHornDom('add');
   const messageView = new hg.views.HuntersHornMessageView(message);
   messageDom.innerHTML = '';
-  messageDom.appendChild(messageView.render()[0]);
+  messageDom.append(messageView.render()[0]);
 };
 
 /**
@@ -2816,7 +2816,7 @@ const makeDraggableModal = (opts) => {
   // Create the path.
   const closePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   closePath.setAttribute('d', 'M18 6L6 18M6 6l12 12');
-  closeIcon.appendChild(closePath);
+  closeIcon.append(closePath);
 
   // Close the modal when the icon is clicked.
   closeIcon.addEventListener('click', () => {
@@ -2824,23 +2824,23 @@ const makeDraggableModal = (opts) => {
   });
 
   // Append the button.
-  header.appendChild(closeIcon);
+  header.append(closeIcon);
 
   // Add the header to the modal.
-  modal.appendChild(header);
+  modal.append(header);
 
   // Make the mouse stats table.
   const mouseBody =
    document.createElement('div');
   mouseBody.classList.add('mh-utils-modal-body');
 
-  modal.appendChild(content);
+  modal.append(content);
 
   // Add the modal to the wrapper.
-  modalWrapper.appendChild(modal);
+  modalWrapper.append(modal);
 
   // Add the wrapper to the body.
-  document.body.appendChild(modalWrapper);
+  document.body.append(modalWrapper);
 
   // Make the modal draggable.
   makeElementDraggable(
@@ -2876,7 +2876,7 @@ const makeElement = (tag, classes = '', text = '', appendTo = null) => {
   element.innerHTML = text;
 
   if (appendTo) {
-    appendTo.appendChild(element);
+    appendTo.append(element);
     return appendTo;
   }
 
@@ -3132,7 +3132,7 @@ const createFavoriteButton = async (options) => {
   });
 
   if (target) {
-    target.appendChild(star);
+    target.append(star);
   }
 
   return star;

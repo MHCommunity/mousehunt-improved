@@ -25,7 +25,7 @@ const addUIStyles = (styles, identifier = 'mh-improved-styles', replace = false)
   const style = document.createElement('style');
   style.id = identifier;
   style.innerHTML = styles;
-  document.head.appendChild(style);
+  document.head.append(style);
 };
 
 /**
@@ -385,7 +385,7 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
   // try catch appending the error to the appendTo element
   let success = true;
   try {
-    appendTo.appendChild(error);
+    appendTo.append(error);
   } catch (e) {
     success = false;
   }

@@ -91,7 +91,7 @@ const addFavoriteButton = async (mouseId, mouseView) => {
     },
   });
 
-  mouseView.appendChild(fave);
+  mouseView.append(fave);
 };
 
 const addMinluck = async (mouseName, mouseView) => {
@@ -124,16 +124,16 @@ const addMinluck = async (mouseName, mouseView) => {
 
     const powerTypeImg = makeElement('img', 'minluck-power-type-img');
     powerTypeImg.src = `https://www.mousehuntgame.com/images/powertypes/${powerType.toLowerCase()}.png`;
-    minluckItem.appendChild(powerTypeImg);
+    minluckItem.append(powerTypeImg);
 
     makeElement('div', 'minluck-power-type-minluck', minluck[powerType], minluckItem);
 
-    minluckList.appendChild(minluckItem);
+    minluckList.append(minluckItem);
   });
 
-  minluckContainer.appendChild(minluckList);
+  minluckContainer.append(minluckList);
 
-  appendTo.appendChild(minluckContainer);
+  appendTo.append(minluckContainer);
 };
 
 const addWisdom = async (mouseName, mouseView) => {
@@ -201,7 +201,7 @@ const updateMouseView = async () => {
       if (descContainer.childNodes.length > 1) {
         descContainer.insertBefore(group, descContainer.childNodes[1]);
       } else {
-        descContainer.appendChild(group);
+        descContainer.append(group);
       }
     }
   }
@@ -217,12 +217,12 @@ const updateMouseView = async () => {
 
     const statsContainer = mouseView.querySelector('.mouseView-statsContainer');
     if (statsContainer) {
-      movedContainer.appendChild(statsContainer);
+      movedContainer.append(statsContainer);
     }
 
     const weaknessContainer = mouseView.querySelector('.mouseView-weaknessContainer');
     if (weaknessContainer) {
-      movedContainer.appendChild(weaknessContainer);
+      movedContainer.append(weaknessContainer);
       const weaknesses = weaknessContainer.querySelectorAll('.mouseView-categoryContent-subgroup-mouse-weaknesses-padding');
       weaknesses.forEach((w) => {
         const weakness = w.querySelector('.mouseView-weakness');
@@ -233,7 +233,7 @@ const updateMouseView = async () => {
       });
     }
 
-    imageContainer.appendChild(movedContainer);
+    imageContainer.append(movedContainer);
   }
 
   const arWrapper = makeElement('div', 'ar-wrapper');
@@ -243,9 +243,9 @@ const updateMouseView = async () => {
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://www.mhct.win/attractions.php?mouse_name=${name.innerText}`;
   link.target = '_mhct';
-  title.appendChild(link);
+  title.append(link);
 
-  arWrapper.appendChild(title);
+  arWrapper.append(title);
 
   const mhctjson = await getArForMouse(mouseId, 'mouse');
   if (! mhctjson || typeof mhctjson === 'undefined' || mhctjson.length === 0 || 'error' in mhctjson) {
@@ -275,12 +275,12 @@ const updateMouseView = async () => {
     makeElement('div', 'cheese', mouseAr.cheese, mouseArWrapper);
     makeElement('div', 'rate', `${(mouseAr.rate / 100).toFixed(2)}%`, mouseArWrapper);
 
-    miceArWrapper.appendChild(mouseArWrapper);
+    miceArWrapper.append(mouseArWrapper);
   });
 
   if (mhctjson.length > 0) {
-    arWrapper.appendChild(miceArWrapper);
-    container.appendChild(arWrapper);
+    arWrapper.append(miceArWrapper);
+    container.append(arWrapper);
   }
 };
 

@@ -155,7 +155,7 @@ const main = () => {
     travelButtonText.classList.add('mousehuntActionButton-text');
     travelButtonText.innerText = 'Travel to next step';
 
-    travelButton.appendChild(travelButtonText);
+    travelButton.append(travelButtonText);
 
     // Add a click listener to the button.
     travelButton.addEventListener('click', (e) => {
@@ -175,7 +175,7 @@ const main = () => {
     });
 
     // Add the button to the quest.
-    questTitle.appendChild(travelButton);
+    questTitle.append(travelButton);
   }
 };
 
@@ -211,7 +211,7 @@ const renderButton = (location) => {
     app.pages.TravelPage.travel(location); // eslint-disable-line no-undef
   });
 
-  title.appendChild(button);
+  title.append(button);
 };
 
 const m400 = () => {

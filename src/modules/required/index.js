@@ -64,7 +64,7 @@ const addExportSettings = () => {
     });
   });
 
-  wrapper.appendChild(exportSettings);
+  wrapper.append(exportSettings);
 };
 
 const modifySettingsPage = () => {
@@ -86,7 +86,7 @@ const modifySettingsPage = () => {
     </svg>`;
 
     const titleText = setting.querySelector('.PagePreferences__titleText');
-    titleText.appendChild(toggle);
+    titleText.append(toggle);
 
     // add the event listener to toggle the class
     toggle.addEventListener('click', () => {

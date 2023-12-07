@@ -118,17 +118,17 @@ const makeDashboardTab = () => {
   const refreshText = document.createElement('span');
   refreshText.innerText = 'Refresh';
 
-  refreshButton.appendChild(refreshText);
-  refreshWrapper.appendChild(refreshButton);
+  refreshButton.append(refreshText);
+  refreshWrapper.append(refreshButton);
 
   const refreshDescription = document.createElement('div');
   refreshDescription.innerText = ' (coming soon, for now just travel to each location)';
 
-  refreshWrapper.appendChild(refreshDescription);
+  refreshWrapper.append(refreshDescription);
 
-  dashboardWrapper.appendChild(refreshWrapper);
-  dropdownContent.appendChild(dashboardWrapper);
-  menuTab.appendChild(dropdownContent);
+  dashboardWrapper.append(refreshWrapper);
+  dropdownContent.append(dashboardWrapper);
+  menuTab.append(dropdownContent);
 
   // Append as the second to last tab.
   tabsContainer.insertBefore(menuTab, tabsContainer.lastChild);
@@ -148,9 +148,9 @@ const makeRegionMarkup = (name, childContent, appendTo) => {
   makeElement('div', 'regionName', name, regionWrapper);
 
   // Child content.
-  regionWrapper.appendChild(childContent);
+  regionWrapper.append(childContent);
 
-  appendTo.appendChild(regionWrapper);
+  appendTo.append(regionWrapper);
 };
 
 const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
@@ -172,15 +172,15 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
     const locationImage = makeElement('img', 'locationImage');
     locationImage.setAttribute('src', image.image);
 
-    locationImageWrapper.appendChild(locationImage);
+    locationImageWrapper.append(locationImage);
   }
 
-  locationWrapper.appendChild(locationImageWrapper);
+  locationWrapper.append(locationImageWrapper);
 
   makeElement('div', 'locationName', name, locationWrapper);
   makeElement('div', 'locationProgress', markup, locationWrapper);
 
-  appendTo.appendChild(locationWrapper);
+  appendTo.append(locationWrapper);
 };
 
 const getDashboardContents = () => {
@@ -248,7 +248,7 @@ const getDashboardContents = () => {
   ) {
     const noLocation = makeElement('div', 'noLocationDataWrapper');
     makeElement('div', 'noLocationData', 'No location data found. Refresh data to populate the dashboard.', noLocation);
-    contentsWrapper.appendChild(noLocation);
+    contentsWrapper.append(noLocation);
   }
 
   return contentsWrapper;

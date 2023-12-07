@@ -68,7 +68,7 @@ const buildMouseMarkup = (mouseData) => {
     const crown = document.createElement('div');
     crown.classList.add('mh-catch-stats-crown');
     crown.style.backgroundImage = `url('https://www.mousehuntgame.com/images/ui/crowns/crown_${mouse.crown}.png')`;
-    image.appendChild(crown);
+    image.append(crown);
   }
 
   // Create the name element.
@@ -78,16 +78,16 @@ const buildMouseMarkup = (mouseData) => {
 
   // Create a wrapper for the name and image.
   const imageNameContainer = document.createElement('div');
-  imageNameContainer.appendChild(image);
-  imageNameContainer.appendChild(name);
+  imageNameContainer.append(image);
+  imageNameContainer.append(name);
 
   // Create the catches element.
   const catches = document.createElement('div');
   catches.classList.add('mh-catch-stats-catches');
   catches.innerText = mouse.num_catches;
 
-  mouseEl.appendChild(imageNameContainer);
-  mouseEl.appendChild(catches);
+  mouseEl.append(imageNameContainer);
+  mouseEl.append(catches);
 
   return mouseEl;
 };
@@ -117,7 +117,7 @@ const showModal = async () => {
   // Add the title;
   const title = document.createElement('h1');
   title.innerText = 'Mouse Catch Stats';
-  header.appendChild(title);
+  header.append(title);
 
   // Create a close button icon.
   const closeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -132,7 +132,7 @@ const showModal = async () => {
   // Create the path.
   const closePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   closePath.setAttribute('d', 'M18 6L6 18M6 6l12 12');
-  closeIcon.appendChild(closePath);
+  closeIcon.append(closePath);
 
   // Close the modal when the icon is clicked.
   closeIcon.addEventListener('click', () => {
@@ -140,10 +140,10 @@ const showModal = async () => {
   });
 
   // Append the button.
-  header.appendChild(closeIcon);
+  header.append(closeIcon);
 
   // Add the header to the modal.
-  modal.appendChild(header);
+  modal.append(header);
 
   // Make the mouse stats table.
   const mouseBody = document.createElement('div');
@@ -154,17 +154,17 @@ const showModal = async () => {
 
   // Loop through the stats and add them to the modal.
   mouseStats.forEach((mouseData) => {
-    mouseBody.appendChild(buildMouseMarkup(mouseData, mouseBody));
+    mouseBody.append(buildMouseMarkup(mouseData, mouseBody));
   });
 
   // Add the mouse stats to the modal.
-  modal.appendChild(mouseBody);
+  modal.append(mouseBody);
 
   // Add the modal to the wrapper.
-  modalWrapper.appendChild(modal);
+  modalWrapper.append(modal);
 
   // Add the wrapper to the body.
-  document.body.appendChild(modalWrapper);
+  document.body.append(modalWrapper);
 
   // Make the modal draggable.
   makeElementDraggable('#mh-catch-stats', '.mh-catch-stats-header', 25, 25, 'mh-catch-stats-position');

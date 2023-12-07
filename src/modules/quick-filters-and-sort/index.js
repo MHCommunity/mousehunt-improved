@@ -15,14 +15,14 @@ const addItemToQuickLinks = (link, appendTo, filter, sortDropdown) => {
   const frame = document.createElement('div');
   frame.classList.add('campPage-trap-itemBrowser-favorite-item-image-frame');
 
-  itemAnchor.appendChild(frame);
+  itemAnchor.append(frame);
 
   const hiddenInput = document.createElement('input');
   hiddenInput.setAttribute('type', 'hidden');
   hiddenInput.setAttribute('data-filter', filter);
   hiddenInput.setAttribute('value', link.id);
-  item.appendChild(itemAnchor);
-  item.appendChild(hiddenInput);
+  item.append(itemAnchor);
+  item.append(hiddenInput);
 
   item.addEventListener('click', (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const addItemToQuickLinks = (link, appendTo, filter, sortDropdown) => {
     }
   });
 
-  appendTo.appendChild(item);
+  appendTo.append(item);
 };
 
 const addQuickLinksToTrap = () => {

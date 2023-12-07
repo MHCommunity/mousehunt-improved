@@ -151,23 +151,23 @@ const getTooltipText = (quest) => {
   const averageHunts = document.createElement('div');
   averageHunts.classList.add('average-hunts');
   averageHunts.innerText = `Avg. ${roundProgress(quest.avg)} ft/hunt`;
-  progress.appendChild(averageHunts);
+  progress.append(averageHunts);
 
   if (! quest.isLair) {
     const stageProgressPercent = document.createElement('div');
     stageProgressPercent.classList.add('stage-progress-percent');
     stageProgressPercent.innerText = `Stage Progress: ${roundProgress(quest.stagePercent)}%`;
-    progress.appendChild(stageProgressPercent);
+    progress.append(stageProgressPercent);
 
     if (! quest.isDeep) {
       const totalProgressPercent = document.createElement('div');
       totalProgressPercent.classList.add('total-progress-percent');
       totalProgressPercent.innerText = `Total Progress: ${roundProgress(quest.totalPercent)}%`;
-      progress.appendChild(totalProgressPercent);
+      progress.append(totalProgressPercent);
     }
   }
 
-  wrapper.appendChild(progress);
+  wrapper.append(progress);
 
   const sectionsWrapper = document.createElement('div');
   sectionsWrapper.classList.add('iceberg-sections');
@@ -191,18 +191,18 @@ const getTooltipText = (quest) => {
     sectionName.classList.add('iceberg-section-name');
     sectionName.innerText = sectionData.name;
 
-    section.appendChild(sectionName);
+    section.append(sectionName);
 
     const sectionLength = document.createElement('div');
     sectionLength.classList.add('iceberg-section-length');
     sectionLength.innerText = sectionData.where;
 
-    section.appendChild(sectionLength);
+    section.append(sectionLength);
 
-    sectionsWrapper.appendChild(section);
+    sectionsWrapper.append(section);
   });
 
-  wrapper.appendChild(sectionsWrapper);
+  wrapper.append(sectionsWrapper);
 
   return wrapper;
 };
@@ -263,10 +263,10 @@ const addDeepWarning = async () => {
   warningIcon.classList.add('deep-warning-icon');
   warningIcon.src = 'https://www.mousehuntgame.com/images/ui/journal/pillage.gif?asset_cache_version=2';
 
-  warning.appendChild(warningIcon);
-  warning.appendChild(warningText);
+  warning.append(warningIcon);
+  warning.append(warningText);
 
-  appendTo.appendChild(warning);
+  appendTo.append(warning);
 };
 
 const hud = async () => {
@@ -348,11 +348,11 @@ const hud = async () => {
   tooltip.classList.add('mousehuntTooltip', 'right', 'noEvents');
 
   const tooltipContent = getTooltipText(quest);
-  tooltip.appendChild(tooltipContent);
+  tooltip.append(tooltipContent);
 
   makeElement('div', 'mousehuntTooltip-arrow', '', tooltip);
 
-  huntInfo.appendChild(tooltip);
+  huntInfo.append(tooltip);
 
   if (quest.isLair) {
     addDeepWarning();

@@ -60,16 +60,16 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
     const tooltipArrow = document.createElement('div');
     tooltipArrow.classList.add('mousehuntTooltip-arrow');
 
-    cheeseContainer.appendChild(cheeseImage);
-    cheeseContainer.appendChild(cheeseName);
-    cheeseContainer.appendChild(cheeseQuantity);
+    cheeseContainer.append(cheeseImage);
+    cheeseContainer.append(cheeseName);
+    cheeseContainer.append(cheeseQuantity);
 
     cheeseContainer.setAttribute('data-item-type', cheese.type);
     cheeseContainer.setAttribute('data-item-classification', 'bait');
     // add onclick attribute to the cheeseContainer
     cheeseContainer.setAttribute('onclick', 'hg.utils.TrapControl.toggleItem(this); return false;');
 
-    cheesesContainer.appendChild(cheeseContainer);
+    cheesesContainer.append(cheeseContainer);
   });
 
   // recheck for existingCheeseSelector because it might have been added already.
@@ -78,8 +78,8 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
     existingCheeseSelector.remove();
   }
 
-  wrapper.appendChild(cheesesContainer);
-  hud.appendChild(wrapper);
+  wrapper.append(cheesesContainer);
+  hud.append(wrapper);
 };
 
 const getCheeses = (cheeses) => {

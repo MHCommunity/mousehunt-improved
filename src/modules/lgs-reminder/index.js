@@ -78,7 +78,7 @@ const main = () => {
     reminder.classList.add('exact');
   }
 
-  shieldEl.appendChild(reminder);
+  shieldEl.append(reminder);
 
   updateLgsReminder(reminder);
 

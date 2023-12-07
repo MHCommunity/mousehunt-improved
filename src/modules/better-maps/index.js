@@ -171,7 +171,7 @@ const updateRelicHunterHint = () => {
     hg.utils.User.travel(environment.id);
   });
 
-  hintWrapper.appendChild(travelButton);
+  hintWrapper.append(travelButton);
 
   return true;
 };
