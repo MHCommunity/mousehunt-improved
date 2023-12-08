@@ -1,5 +1,28 @@
 # Changelog
 
+## Version 0.25.0
+
+- Moves larger skin images to Better UI
+- Bumps min firefox version to 113
+- Adds Bountiful Beanstalk HUD styles
+- Adds Foreword Farm HUD styles
+- Adds an option to Better Marketplace to default to searching all items
+- Updates Update Notifications to not be added to inbox if the update was over a week old
+- Adds new Hunter Facebook group advert to Adblock
+- Fixes additional CC loot journal entry in Folklore Forest
+- Fixes extra display of "•" in journal entries
+- Updates a number of Folklore Forest journal entry styles
+- Updates a number of miscellanous journal entry styles
+- Fixes spacing of success message for Quick Send Supplies
+- Updates marketplace search dropdown to not have borders on the images
+- Updates gift inbox footer "You can send/recieve X gifts today" to be two lines
+- Updates the inbox styling and order of menu
+- Makes close buttons more consistent across the site
+- Updates completed map reward styles
+- Updates Image Upscaling mapping, around 1800 images are now in higher resolution
+- Adds styling for the MHCT success message to make it less distracting
+- Fixes the arrow color in the inbox when hovering over odd rows
+
 ## Version 0.24.1
 
 - Fixes update notification changelog link
