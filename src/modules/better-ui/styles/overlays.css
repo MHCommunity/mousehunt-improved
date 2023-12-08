@@ -70,3 +70,144 @@
   max-height: 75vh;
   overflow: auto;
 }
+
+#overlayPopup .jsDialogContainer a.shopsPage-kingsCalibratorPromo-button {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+#overlayPopup .jsDialogContainer .content .itemImage[style="background-image:url(https://www.mousehuntgame.com/images/items/message_items/c6fa46d329c1c7436acad084773c05c6.jpg);"] {
+  margin-right: 10px;
+}
+
+.kingsGiveawayCalibratorPopup-upgradeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 6px;
+  box-shadow: none;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade.unlocked {
+  background-color: #c8d2f2;
+}
+
+.kingsGiveawayCalibratorPopup-tabHeaderContainer {
+  margin: 0 1px;
+}
+
+.kingsGiveawayCalibratorPopup-tabHeader span {
+  box-shadow: none;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade-day-name {
+  padding-bottom: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade-day-itemContainer::after {
+  box-shadow: none;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade-day-item .itemImage {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade-day-item-name {
+  width: 100%;
+  margin-top: 7px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.kingsGiveawayCalibratorPopup-numCreditsContainer {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  float: none;
+  margin-right: -10px;
+  margin-left: 10px;
+  visibility: visible;
+}
+
+.kingsGiveawayCalibratorPopup-numCredits {
+  padding: 7px;
+}
+
+.kingsGiveawayCalibratorPopup-header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline;
+  visibility: hidden;
+}
+
+span.kingsGiveawayCalibratorPopup-upgrade-action-cost {
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade-action-kingsCredits {
+  width: 21px;
+  height: 21px;
+  margin: 0 4px;
+  background-color: #fff;
+  background-position: center;
+  background-size: 18px;
+  box-shadow: none;
+  opacity: 0.9;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade.locked .kingsGiveawayCalibratorPopup-upgrade-action.locked {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade.active {
+  background-color: #a6d392;
+  border: 1px solid #55913b;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade.active .kingsGiveawayCalibratorPopup-upgrade-actionContainer {
+  border-top: 1px solid #55913b;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade-image {
+  height: 85px;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade.locked .kingsGiveawayCalibratorPopup-upgrade-image {
+  filter: saturate(0.3);
+  opacity: 0.6;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade:hover .kingsGiveawayCalibratorPopup-upgrade-image {
+  filter: none;
+  opacity: 1;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade-name {
+  display: block;
+  width: auto;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.kingsGiveawayCalibratorPopup-upgrade-name span {
+  display: inline-block;
+  font-size: 12px;
+}
+
+.upgrade_gifts .kingsGiveawayCalibratorPopup-upgrade-description {
+  font-size: 14px;
+}
