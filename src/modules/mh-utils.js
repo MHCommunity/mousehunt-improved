@@ -303,8 +303,8 @@ const onDialogShow = (callback, overlay = null, once = false) => {
       ! tokens['{*content*}'] ||
       ! tokens['{*content*}'].value ||
       tokens['{*content*}'].value === '' ||
-      tokens['{*content*}'].value.indexOf('data-item-type=""') > -1 || // Item view.
-      tokens['{*content*}'].value.indexOf('data-mouse-id=""') > -1 // Mouse view.
+      tokens['{*content*}'].value.includes('data-item-type=""') || // Item view.
+      tokens['{*content*}'].value.includes('data-mouse-id=""') // Mouse view.
     ) {
       return;
     }
