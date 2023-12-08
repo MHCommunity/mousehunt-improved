@@ -80,7 +80,6 @@ const addUpgradeVisibilityToggles = () => {
 
     const toggle = makeElement('div', ['mhui-folklore-forest-upgrade-toggle', 'mousehuntActionButton', 'tiny', 'lightBlue']);
     const toggleText = makeElement('span', 'upgrade-toggle-text', isBlockToggled ? 'Show' : 'Hide');
-    upgradeBlock.appendChild(toggle);
     toggle.append(toggleText);
 
     toggle.addEventListener('click', () => {
@@ -89,13 +88,28 @@ const addUpgradeVisibilityToggles = () => {
       toggleText.innerText = isBlockToggled ? 'Show' : 'Hide';
 
       hideOrShowBlock(blockId, isBlockToggled);
+
+      upgradeBlock.classList.toggle('toggle-is-hidden', isBlockToggled);
     });
 
+    const action = upgradeBlock.querySelector('.folkloreForestRegionView-dialog-block-action');
+    if (action) {
+      action.append(toggle);
+    } else {
+      upgradeBlock.append(toggle);
+    }
+
     upgradeBlock.classList.add('toggle-added');
+    upgradeBlock.classList.add(isBlockToggled ? 'toggle-is-hidden' : 'toggle-is-visible');
   };
 
-  pondUpgrades.forEach(addToggle);
-  bookUpgrades.forEach(addToggle);
+  for (const upgrade of pondUpgrades) {
+    addToggle(upgrade);
+  }
+
+  for (const upgrade of bookUpgrades) {
+    addToggle(upgrade);
+  }
 };
 
 let hasAddedUpgradeVisibilityToggles = false;
@@ -104,4 +118,5 @@ export default () => {
   onDialogHide(() => hasAddedUpgradeVisibilityToggles = false);
 
   toggleAllVisibility();
+  onRequest(toggleAllVisibility);
 };
