@@ -699,3 +699,11 @@ input.treasureMapView-block-search-text {
   background-color: #95ef9b;
   border-color: #14851b;
 }
+
+.treasureMapPopup-mapInvite .treasureMapView-hunter-wrapper.mousehuntTooltipParent {
+  font-size: 10px;
+}
+
+.treasureMapPopup-mapInvite .treasureMapView-hunter {
+  margin: 3px 0;
+}
