@@ -98,7 +98,7 @@ const onRequest = (callback, url = null, skipSuccess = false) => {
         let response = {};
         try {
           response = JSON.parse(this.responseText);
-        } catch (e) {
+        } catch {
           return;
         }
 
