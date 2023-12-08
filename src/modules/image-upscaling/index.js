@@ -1,86 +1,195 @@
 import { addUIStyles, onRequest } from '@/utils';
 
 import mapping from '@data/upscaled-image-mapping.json';
+import pathsToSkip from '@data/upscaled-image-paths-to-skip.json';
 
 import journalThemeStyles from './journal-themes.css';
 import styles from './styles.css';
 
-const getNewUrl = (src) => {
-  if (! src) {
-    return;
-  }
-
-  const searchUrl = src.replace('https://www.mousehuntgame.com/images/', '');
-
-  const newUrl = mapping[searchUrl];
-  if (! newUrl) {
-    return;
-  }
-
-  if (newUrl.includes('https://')) {
-    return newUrl;
-  }
-
-  return `https://www.mousehuntgame.com/images/${newUrl}`;
+const stripUrl = (url) => {
+  return url.replaceAll('//images', '/images').replace('https://www.mousehuntgame.com/images/', '').replace('cv=1', 'cv=2');
 };
 
-const upscaleImages = () => {
+const getMappedUrl = (strippedUrl) => {
+  if (! strippedUrl) {
+    return;
+  }
+
+  const mappedUrl = mapping[strippedUrl];
+  if (! mappedUrl) {
+    return;
+  }
+
+  if (mappedUrl.includes('https://')) {
+    return mappedUrl;
+  }
+
+  if (mappedUrl) {
+    upscaledImages.push(mappedUrl);
+  }
+
+  return `https://www.mousehuntgame.com/images/${mappedUrl}`;
+};
+
+const shouldSkipUpdate = (type, attribute, items) => {
+  // hash the backgrounds to check if they are the same as the last check.
+  // if they are the same, skip the check.
+  const itemHash = [...items].map((item) => {
+    const itemAttribute = item.getAttribute(attribute);
+    if (! itemAttribute) {
+      return '';
+    }
+
+    return itemAttribute;
+  }).join(',');
+
+
+  if (lastCheck[type] && lastCheck[type] === itemHash) {
+    return true;
+  }
+
+  lastCheck[type] = itemHash;
+
+  return false;
+};
+
+const shouldSkipUrl = (url) => {
+  if (
+    unupscaledImages.includes(url) || // Don't re-upscale images that have already been upscaled.
+    upscaledImages.includes(url) ||
+    url.startsWith('https://www.gravatar.com') || // Skip some external images.
+    url.startsWith('https://graph.facebook.com') ||
+    url.startsWith('https://i.mouse.rip')
+  ) {
+    return true;
+  }
+
+  // Check if the image is in the list of images to skip.
+  // if the list has a path with a wildcard, check if the image path starts with the path.
+  // if the list has a path without a wildcard, check if the image path is equal to the path.
+  const skip = pathsToSkip.some((path) => {
+    if (path.includes('*')) {
+      return url.startsWith(path.replace('*', ''));
+    }
+
+    return url === path;
+  });
+
+  return skip;
+};
+
+const upscaleImageElements = async () => {
   const images = document.querySelectorAll('img');
   if (! images) {
     return;
   }
 
+  if (shouldSkipUpdate('images', 'src', images)) {
+    return;
+  }
+
   images.forEach((image) => {
-    const src = image.getAttribute('src');
-    if (! src) {
+    const source = image.getAttribute('src');
+    if (! source) {
       return;
     }
 
-    const newSrc = getNewUrl(src);
-    if (! newSrc) {
+    const url = stripUrl(source);
+
+    if (shouldSkipUrl(url)) {
       return;
     }
 
-    image.setAttribute('src', newSrc);
+    const mappedUrl = getMappedUrl(url);
+    if (mappedUrl && mappedUrl !== url) {
+      image.setAttribute('src', mappedUrl);
+    } else {
+      unupscaledImages.push(url);
+    }
   });
+};
 
+const upscaleBackgroundImages = async () => {
   const backgrounds = document.querySelectorAll('[style*="background-image"]');
   if (! backgrounds) {
     return;
   }
 
+  if (shouldSkipUpdate('backgrounds', 'style', backgrounds)) {
+    return;
+  }
+
   backgrounds.forEach((background) => {
     const style = background.getAttribute('style');
-    if (! style) {
+    if (! style || ! style.includes('background-image')) {
       return;
     }
 
-    // Check if the style contains a background-image
-    if (! style.includes('background-image')) {
-      return;
-    }
-
-    // Get the URL of the background-image
     const urls = style.match(/url\((.*?)\)/);
     if (! urls || ! urls[1]) {
       return;
     }
 
-    const url = urls[1].replace(/['"]+/g, '');
-    const newUrl = getNewUrl(url);
-    if (! newUrl || newUrl === url) {
+    const url = stripUrl(urls[1].replaceAll(/["']+/g, ''));
+
+    if (shouldSkipUrl(url)) {
       return;
     }
 
-    background.setAttribute('style', style.replace(urls[1], newUrl));
+    const mappedUrl = getMappedUrl(url);
+    if (mappedUrl && mappedUrl !== url) {
+      background.setAttribute('style', style.replace(urls[1], mappedUrl));
+    } else {
+      unupscaledImages.push(url);
+    }
   });
 };
 
-export default () => {
+const upscaleImages = async () => {
+  // return a promise that resolves when all the images have been upscaled.
+  return Promise.all([
+    upscaleImageElements(),
+    upscaleBackgroundImages(),
+  ]);
+};
+
+const unupscaledImages = [];
+const upscaledImages = [];
+const lastCheck = { backgrounds: '', images: '' };
+
+export default async () => {
   addUIStyles([styles, journalThemeStyles]);
 
-  upscaleImages();
-
   // Observe the document for changes and upscale images when they are added.
-  new MutationObserver(upscaleImages).observe(document, { childList: true, subtree: true });
+  // ignore anything that is in the huntersHornView__timer div.
+  const options = {
+    attributes: true,
+    attributeFilter: ['style'],
+    childList: true,
+    subtree: true,
+  };
+
+  const observer = new MutationObserver(async (mutations) => {
+    for (const mutation of mutations) {
+      // Don't run when it's the horn counting down.
+      if (mutation.type === 'childList' && mutation.target.classList.contains('huntersHornView__timerState')) {
+        continue;
+      }
+
+      // Don't run on the news ticker.
+      if (mutation.type === 'attributes' && mutation.target.classList.contains('ticker')) {
+        continue;
+      }
+
+      // Pause the observer while we are making changes.
+      observer.disconnect();
+
+      await upscaleImages();
+
+      // Resume observing.
+      observer.observe(document, options);
+    }
+  });
+
+  observer.observe(document, options);
 };
