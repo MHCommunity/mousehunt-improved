@@ -4,7 +4,7 @@ import {
   onEvent,
   onNavigation,
   onOverlayChange
-} from '../utils';
+} from '@/utils';
 
 import recipes from './recipes';
 

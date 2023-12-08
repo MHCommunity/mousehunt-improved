@@ -1,16 +1,12 @@
-import {
-  addToGlobal,
-  makeElement,
-  onAjaxRequest
-} from '../utils';
+import { addToGlobal, makeElement, onAjaxRequest } from '@/utils';
 
 import { addBlockClasses, getMapData, setMapData } from './map-utils';
 import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
 
-import environments from '../../data/environments.json';
-import relicHunterHints from '../../data/relic-hunter-hints.json';
+import environments from '@data/environments.json';
+import relicHunterHints from '@data/relic-hunter-hints.json';
 
 import addMapStyles from './styles';
 
