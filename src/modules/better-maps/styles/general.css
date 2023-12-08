@@ -544,12 +544,6 @@ input.treasureMapView-block-search-text {
   opacity: 1;
 }
 
-.treasureMapView-goals-group-goal.complete .treasureMapView-goals-group-goal-image {
-  width: 23px;
-  height: 35px;
-  filter: none;
-}
-
 .complete .treasureMapView-goals-group-goal-name,
 .complete .treasureMapView-goals-group-goal-padding {
   height: 35px;
