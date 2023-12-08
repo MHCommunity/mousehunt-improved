@@ -10,10 +10,10 @@ import {
 import styles from './styles.css';
 
 const toggleFuelClass = (fuelCount, isActive) => {
-  if (! isActive) {
-    fuelCount.classList.add('active');
-  } else {
+  if (isActive) {
     fuelCount.classList.remove('active');
+  } else {
+    fuelCount.classList.add('active');
   }
 
   setTimeout(addBossCountdown, 200);
