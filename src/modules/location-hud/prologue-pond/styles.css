@@ -118,6 +118,16 @@
   animation-iteration-count: infinite;
 }
 
+@media screen and (prefers-reduced-motion: reduce) {
+  .prologuePondView-fishingBoat-paperDoll {
+    animation: none;
+  }
+
+  .prologuePondView-chumDoober {
+    animation: none;
+  }
+}
+
 /* stagger the animation so they don't all bob at the same time */
 .prologuePondView-chumDooberContainer .prologuePondView-chumDoober:nth-child(1) {
   animation-delay: 9s;
