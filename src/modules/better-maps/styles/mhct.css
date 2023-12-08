@@ -25,6 +25,7 @@
 .mhct-row {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
+  column-gap: 5px;
   place-items: center stretch;
   padding: 5px 0;
   font-size: 11px;
