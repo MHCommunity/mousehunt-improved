@@ -204,7 +204,7 @@ const getSetRowValue = (row, type) => {
       value = 0;
     }
   } else {
-    value = valueText.innerText ? valueText.innerText.replace(/,/g, '') || 0 : 0;
+    value = valueText.innerText ? valueText.innerText.replaceAll(',', '') || 0 : 0;
   }
 
   row.setAttribute(`data-sort-value-${type}`, value);
@@ -345,7 +345,7 @@ const addSortingToCat = (cat) => {
       return;
     }
 
-    const value = catches.innerText ? catches.innerText.replace(/,/g, '') || 0 : 0;
+    const value = catches.innerText ? catches.innerText.replaceAll(',', '') || 0 : 0;
 
     // set a crown class on the row.
     if (value >= 2500) {

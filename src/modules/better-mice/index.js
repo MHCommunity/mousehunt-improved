@@ -152,7 +152,7 @@ const addWisdom = async (mouseName, mouseView) => {
   }
 
   // comma separate the wisdom number
-  wisdom = wisdom.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  wisdom = wisdom.toString().replaceAll(/\B(?=(\d{3})+(?!\d))/g, ',');
   makeElement('span', 'wisdom-container', ` / ${wisdom} Wisdom`, values);
 };
 

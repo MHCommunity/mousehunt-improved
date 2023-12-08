@@ -39,7 +39,7 @@ const addBlockClasses = () => {
         .trim()
         .toLowerCase()
         .replaceAll(' ', '-')
-        .replace(/[^a-z-]/g, '')
+        .replaceAll(/[^a-z-]/g, '')
         .replace('--', '-')
         .replace('goalssearch', 'goals');
       block.classList.add(`mh-ui-${blockType}-title`);

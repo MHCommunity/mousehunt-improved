@@ -896,7 +896,7 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
   }
 
   // make sure the identifier is unique and safe to use as a class.
-  identifier = identifier.replace(/[^a-z0-9-_]/gi, '');
+  identifier = identifier.replaceAll(/[^\w-]/gi, '');
 
   const settingsTab = document.createElement('a');
   settingsTab.id = identifier;
@@ -972,7 +972,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     tabId = tab;
   }
 
-  section.id = `${tabId}-${section.id.replace(/[^a-z0-9-_]/gi, '')}`;
+  section.id = `${tabId}-${section.id.replaceAll(/[^\w-]/gi, '')}`;
 
   // If we don't have our custom settings section, then create it.
   let sectionExists = document.querySelector(`#${section.id}`);
@@ -1694,7 +1694,7 @@ const addSubmenuItem = (options) => {
   // Create the item.
   const item = document.createElement('li');
   item.classList.add('custom-submenu-item');
-  const cleanLabel = settings.label.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  const cleanLabel = settings.label.toLowerCase().replaceAll(/[^\da-z]/g, '-');
 
   const exists = document.querySelector(`#custom-submenu-item-${cleanLabel}`);
   if (exists) {
@@ -1787,7 +1787,7 @@ const addItemToGameInfoBar = (options) => {
     external: false,
   }, options);
 
-  const safeLabel = settings.label.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+  const safeLabel = settings.label.replaceAll(/[^\da-z]/gi, '_').toLowerCase();
   const exists = document.querySelector(`#mh-custom-topmenu-${safeLabel}`);
   if (exists) {
     return;
@@ -2893,15 +2893,11 @@ const makeElement = (tag, classes = '', text = '', appendTo = null) => {
  * @return {string} HTML for link.
  */
 const makeButton = (text, href, tiny = true, extraClasses = [], encodeAsSpace = false) => {
-  href = href.replace(/\s/g, '_');
+  href = href.replaceAll(/\s/g, '_');
 
-  if (encodeAsSpace) {
-    href = href.replace(/_/g, '%20');
-  } else {
-    href = href.replace(/\s/g, '_');
-  }
+  href = encodeAsSpace ? href.replaceAll('_', '%20') : href.replaceAll(/\s/g, '_');
 
-  href = href.replace(/\$/g, '_');
+  href = href.replaceAll('$', '_');
 
   return `<a href="${href}" class="mousehuntActionButton ${tiny ? 'tiny' : ''} ${extraClasses.join(' ')}"><span>${text}</span></a>`;
 };
