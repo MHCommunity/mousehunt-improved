@@ -13,12 +13,7 @@
     "plugin:promise/recommended",
     "plugin:unicorn/recommended"
   ],
-  "plugins": [
-    "import-newlines",
-    "jsdoc",
-    "json",
-    "unicorn"
-  ],
+  "plugins": ["import-newlines", "jsdoc", "json", "unicorn"],
   "parserOptions": {
     "sourceType": "module"
   },
@@ -42,7 +37,13 @@
         "functions": "never"
       }
     ],
-    "comma-spacing": ["error", { "before": false, "after": true }],
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
     "computed-property-spacing": ["error", "never"],
     "eol-last": ["error", "always"],
     "import-newlines/enforce": "error",
@@ -53,7 +54,12 @@
     "import/no-cycle": "error",
     "import/no-named-as-default": "error",
     "import/no-unassigned-import": "error",
-    "import/no-unresolved": ["error", { "ignore": ["^@/"] }],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["^@/", "@data"]
+      }
+    ],
     "import/no-useless-path-segments": "error",
     "indent": ["error", 2],
     "jsdoc/check-alignment": "warn",
@@ -91,9 +97,19 @@
     "semi": ["error", "always"],
     "sort-imports": [
       "error",
-      { "allowSeparatedGroups": true, "memberSyntaxSortOrder": ["none", "all", "multiple", "single"] }
+      {
+        "allowSeparatedGroups": true,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+      }
     ],
-    "space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
     "space-in-parens": ["error", "never"],
     "spaced-comment": ["error", "always"],
     "template-curly-spacing": ["error", "never"],
@@ -109,8 +125,18 @@
     "unicorn/prevent-abbreviations": "off",
     "unicorn/switch-case-braces": ["warn", "avoid"],
     "unicorn/numeric-separators-style": "off",
-    "valid-jsdoc": ["warn", { "requireReturn": false }],
-    "no-warning-comments": ["warn", { "location": "anywhere" }]
+    "valid-jsdoc": [
+      "warn",
+      {
+        "requireReturn": false
+      }
+    ],
+    "no-warning-comments": [
+      "warn",
+      {
+        "location": "anywhere"
+      }
+    ]
   },
   "overrides": [
     {
