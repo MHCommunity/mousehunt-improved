@@ -54,6 +54,7 @@ import sunken_city from './sunken-city';
 import table_of_contents from './table-of-contents';
 import tournament_hall from './tournament-hall';
 import town_of_digby from './town-of-digby';
+import town_of_gnawnia from './town-of-gnawnia';
 import train_station from './train-station';
 import windmill from './windmill';
 import zugzwang_tower from './zugzwang-tower';
@@ -160,6 +161,7 @@ const main = () => {
     table_of_contents,
     tournament_hall,
     town_of_digby,
+    town_of_gnawnia,
     train_station,
     windmill,
     zugzwang_tower,
