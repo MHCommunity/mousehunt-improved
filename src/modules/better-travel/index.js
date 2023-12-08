@@ -15,6 +15,7 @@ import {
 } from '@/utils';
 
 import environments from '@data/environments.json';
+import eventEnvironments from '@data/environments-events.json';
 
 import styles from './styles.css';
 
@@ -341,10 +342,24 @@ const addSimpleTravel = () => {
 const addRegionToTravelDropdown = () => {
   const currentLocation = getCurrentLocation();
 
+  // merge the event environments into the environments array
+  environments.push(...eventEnvironments);
+
   // get the object that matches the current location
-  const currentRegion = environments.find((environment) => {
+  let currentRegion = environments.find((environment) => {
     return environment.id === currentLocation;
   });
+
+  if (! currentRegion) {
+    // See if it's an event location.
+    currentRegion = eventEnvironments.find((environment) => {
+      return environment.id === currentLocation;
+    });
+
+    if (! currentRegion) {
+      return;
+    }
+  }
 
   // get the other locations in the same region
   const otherRegions = environments.filter((environment) => {
