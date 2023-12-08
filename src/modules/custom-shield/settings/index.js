@@ -78,26 +78,26 @@ export default function (module) {
 
   if (! user.has_shield) {
     // If the user doesn't have LGS, they can't do the pride or SEH shields.
-    const toDisable = [
+    const toDisable = new Set([
       'pride',
       'spring-egg-hunt',
       'spring-egg-hunt-alt',
       'Color (LGS required)',
-    ];
+    ]);
 
     // Set all the options the user can't select as disabled, including all of the "Color (LGS required)" options.
     options = options.map((option) => {
       // Check if the name, value, or the parent group name is in the toDisable array.
       if ('group' === option.value) {
         // If the option is a group, check if the name or value is in the toDisable array.
-        const disabledParent = toDisable.includes(option.name) || toDisable.includes(option.value);
+        const disabledParent = toDisable.has(option.name) || toDisable.has(option.value);
         if (disabledParent) {
           option.disabled = true;
         }
 
         option.options = option.options.map((groupOption) => {
           // If the option is in the toDisable array, disable it.
-          if (toDisable.includes(groupOption.value) || disabledParent) {
+          if (toDisable.has(groupOption.value) || disabledParent) {
             groupOption.disabled = true;
           }
 

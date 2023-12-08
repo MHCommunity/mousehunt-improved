@@ -3,7 +3,7 @@ import { addMhuiSetting } from '@/utils';
 import environments from '@data/environments.json';
 
 export default function (module) {
-  const locationsToUnset = [
+  const locationsToUnset = new Set([
     'desert_oasis',
     'lost_city',
     'sand_dunes',
@@ -18,10 +18,9 @@ export default function (module) {
     'laboratory',
     'mousoleum',
     'training_grounds',
-    'prologue_pond',
     'seasonal_garden',
     'zugzwang_library',
-  ];
+  ]);
 
   const locationsToAdd = [
     {
@@ -41,7 +40,7 @@ export default function (module) {
   const options = [];
 
   environments.forEach((environment) => {
-    if (! locationsToUnset.includes(environment.id)) {
+    if (! locationsToUnset.has(environment.id)) {
       options.push(environment);
     }
   });
