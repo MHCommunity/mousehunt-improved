@@ -107,16 +107,6 @@ const addItemViewPopupToCollectibles = () => {
       e.preventDefault();
       hg.views.ItemView.show(type);
 
-      const getDesc = (messageItemCopy) => {
-        const popup = document.querySelector('.itemViewPopup .itemViewContainer.message_item .itemView-actionContainer');
-        if (! popup) {
-          return false;
-        }
-
-        popup.append(messageItemCopy);
-        return true;
-      };
-
       if (messageItem) {
         const messageItemCopy = messageItem.cloneNode(true);
 
