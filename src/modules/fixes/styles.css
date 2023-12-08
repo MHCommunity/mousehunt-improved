@@ -180,3 +180,8 @@ a.mousehuntHud-page-tabHeader.collectibles span {
   background: #fff777;
   border: 1px solid #b5814e;
 }
+
+/* Make the inbox arrow color match on hover */
+#messengerUINotification .tabs a:hover .arrow {
+  border-color: transparent transparent transparent #eee;
+}
