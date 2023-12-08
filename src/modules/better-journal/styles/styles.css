@@ -8,6 +8,10 @@
   margin-left: 85px;
 }
 
+.journal .entry.minimalJournal .journalbody {
+  margin-left: 10px;
+}
+
 .journal .entry {
   position: relative;
   padding-right: 3px;
