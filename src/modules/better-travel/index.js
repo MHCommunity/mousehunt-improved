@@ -154,6 +154,73 @@ const addPage = (id, content) => {
   pageContainer.append(page);
 };
 
+const addAlphabetizedList = (regionMenu) => {
+  const alphaWrapper = makeElement('div', 'travelPage-alpha-wrapper');
+
+  const alphaContent = makeElement('div', 'travelPage-regionMenu');
+  const alphaHeader = makeElement('div', ['travelPage-regionMenu-item', 'active']);
+
+  const alphaList = makeElement('div', 'travelPage-regionMenu-item-contents');
+  const alphaListContent = makeElement('div', 'travelPage-regionMenu-environments');
+
+  const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink');
+
+  // Clone the links, sort them by name, and add them to the alpha list.
+  const sortedLinks = [...links].sort((a, b) => {
+    const aName = a.innerText;
+    const bName = b.innerText;
+
+    if (aName < bName) {
+      return -1;
+    }
+
+    if (aName > bName) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  // While sorting, add a class to the first occurrence of each letter.
+  let lastLetter = '';
+
+  sortedLinks.forEach((link) => {
+    // make a copy of the link
+    const linkClone = link.cloneNode(true);
+    alphaListContent.append(linkClone);
+    linkClone.addEventListener('click', travelClickHandler);
+
+    // get the first letter of the link
+    const firstLetter = linkClone.innerText.charAt(0).toLowerCase();
+
+    // if the first letter is different than the last letter, add a class
+    if (firstLetter !== lastLetter) {
+      linkClone.classList.add('first-letter');
+    }
+
+    // set the last letter to the current letter
+    lastLetter = firstLetter;
+
+    // Check if the link is in the list of environments, if it's not, then it's an event location.
+    const environment = environments.find((env) => {
+      return env.id === link.getAttribute('data-environment');
+    });
+
+    if (! environment) {
+      linkClone.classList.add('event-location');
+    }
+  });
+
+  alphaList.append(alphaListContent);
+
+  alphaHeader.append(alphaList);
+  alphaContent.append(alphaHeader);
+
+  alphaWrapper.append(alphaContent);
+
+  return alphaWrapper;
+};
+
 const addSimpleTravelPage = () => {
   expandTravelRegions();
   const wrapper = makeElement('div', 'travelPage-wrapper');
@@ -166,47 +233,7 @@ const addSimpleTravelPage = () => {
   const regionMenu = cloneRegionMenu();
 
   if (getMhuiSetting('better-travel-show-alphabetized-list', false)) {
-    const alphaWrapper = makeElement('div', 'travelPage-alpha-wrapper');
-
-    const alphaContent = makeElement('div', 'travelPage-regionMenu');
-    const alphaHeader = makeElement('div', ['travelPage-regionMenu-item', 'active']);
-
-    const alphaList = makeElement('div', 'travelPage-regionMenu-item-contents');
-    const alphaListContent = makeElement('div', 'travelPage-regionMenu-environments');
-
-    const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink');
-
-    // Clone the links, sort them by name, and add them to the alpha list.
-    const sortedLinks = Array.from(links).sort((a, b) => {
-      const aName = a.innerText;
-      const bName = b.innerText;
-
-      if (aName < bName) {
-        return -1;
-      }
-
-      if (aName > bName) {
-        return 1;
-      }
-
-      return 0;
-    });
-
-    sortedLinks.forEach((link) => {
-      // make a copy of the link
-      const linkClone = link.cloneNode(true);
-      alphaListContent.append(linkClone);
-      linkClone.addEventListener('click', travelClickHandler);
-    });
-
-    alphaList.append(alphaListContent);
-
-    alphaHeader.append(alphaList);
-    alphaContent.append(alphaHeader);
-
-    alphaWrapper.append(alphaContent);
-
-    wrapper.append(alphaWrapper);
+    wrapper.append(addAlphabetizedList(regionMenu));
   }
 
   wrapper.append(regionMenu);

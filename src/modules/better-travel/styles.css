@@ -152,7 +152,7 @@
   align-items: stretch;
   justify-content: flex-start;
   width: 754px;
-  height: 390px;
+  height: 410px;
   padding: 4px 1px;
 }
 
@@ -183,12 +183,14 @@
 #mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.active.highlight {
   margin-right: 0;
   border-right: none;
+  border-radius: 3px;
 }
 
 .travelPage-regionMenu-environmentLink.relic-hunter-is-here::after {
   position: absolute;
   top: 5px;
   right: 5px;
+  display: none;
   width: 20px;
   height: 20px;
   content: "";
@@ -198,16 +200,23 @@
   border-radius: 5px;
 }
 
+.travelPage-regionMenu-environments:hover .travelPage-regionMenu-environmentLink.relic-hunter-is-here::after,
+.travelPage-regionMenu-environments:focus .travelPage-regionMenu-environmentLink.relic-hunter-is-here::after,
+.travelPage-regionMenu-environmentLink.relic-hunter-is-here:hover::after,
+.travelPage-regionMenu-environmentLink.relic-hunter-is-here:focus::after {
+  display: block;
+}
+
 .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
   background-color: #ffe67a;
   border-radius: 6px;
-  outline: 1px solid #acacac;
+  outline: 1px solid #ccc;
 }
 
 .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
   margin-right: -3px;
   background-color: #ffe67a;
-  outline: 1px solid #4c71b4;
+  outline: 1px solid #ccc;
 }
 
 .travelPage-map-image-environment .map-relic-hunter-is-here {
@@ -250,8 +259,7 @@
   padding-left: 30px;
   margin-right: 5px;
   margin-left: 5px;
-  background-color: #d1ecc0;
-  border: 1px solid #acacac;
+  background-color: #e0f2d5;
   border-top: none;
   border-bottom: none;
   border-radius: 5px;
@@ -272,50 +280,31 @@
 }
 
 /* Bold the first letter of each of the first occurrences of the letters in the alphabet */
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(2)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(7)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(14)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(17)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(18)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(25)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(28)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(29)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(30)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(31)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(33)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(36)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(42)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(43)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(46)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(48)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(53)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(60)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(61)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink:nth-child(63)::first-letter {
+#mh-simple-travel-page .first-letter::first-letter {
   font-size: 12px;
   font-weight: 900;
 }
 
 /* on hover, underline the letters to make it easier to see which letters are bolded */
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(2)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(7)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(14)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(17)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(18)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(25)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(28)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(29)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(30)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(31)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(33)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(36)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(42)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(43)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(46)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(48)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(53)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(60)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(61)::first-letter,
-#mh-simple-travel-page .travelPage-alpha-wrapper:hover a.travelPage-regionMenu-environmentLink:nth-child(63)::first-letter {
+#mh-simple-travel-page .travelPage-alpha-wrapper:hover .first-letter::first-letter {
   border-bottom: 1px solid #4e6081;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location,
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location {
+  color: #c01dff;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location:after,
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location:after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png?asset_cache_version=2);
+  width: 15px;
+  height: 15px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0px 0px 1px #fff);
 }
