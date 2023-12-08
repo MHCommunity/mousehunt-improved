@@ -1,18 +1,3 @@
-// TODO: merge this with upstream.
-// ==UserScript==
-// @name         🐭️ MouseHunt Utils
-// @author       bradp
-// @version      1.11.0
-// @description  MouseHunt Utils is a library of functions that can be used to make other MouseHunt userscripts easily.
-// @license      MIT
-// @namespace    bradp
-// @match        https://www.mousehuntgame.com/*
-// @icon         https://i.mouse.rip/mouse.png
-// @grant        none
-// ==/UserScript==
-
-/* eslint-disable no-unused-vars */
-
 /**
  * Add styles to the page.
  *
@@ -92,6 +77,9 @@ const addStyles = (styles, identifier = 'mh-utils-custom-styles', once = false) 
  */
 const onRequest = (callback, url = null, skipSuccess = false) => {
   const req = XMLHttpRequest.prototype.open;
+  /**
+   * @ignore
+   */
   XMLHttpRequest.prototype.open = function () {
     this.addEventListener('load', function () {
       if (this.responseText) {
@@ -163,7 +151,7 @@ const runCallbacks = (settings, parentNode, callbacks) => {
 /**
  * Do something when the overlay is shown or hidden.
  *
- * @param {Object}   callbacks
+ * @param {Object}   callbacks        Callbacks object.
  * @param {Function} callbacks.show   The callback to call when the overlay is shown.
  * @param {Function} callbacks.hide   The callback to call when the overlay is hidden.
  * @param {Function} callbacks.change The callback to call when the overlay is changed.
@@ -252,16 +240,18 @@ const onOverlayChange = (callbacks) => {
 };
 
 /**
- * TODO: update this docblock.
+ * Do something when any overlays are closed.
  *
- * @param {*} callback
+ * @param {Function} callback The callback to run.
  */
 const onOverlayClose = (callback) => {
   eventRegistry.addEventListener('js_dialog_hide', callback);
 };
 
 /**
- * TODO: update this docblock.
+ * Get the dialog mapping.
+ *
+ * @return {Object} The dialog mapping.
  */
 const getDialogMapping = () => {
   return {
@@ -279,11 +269,11 @@ const getDialogMapping = () => {
 };
 
 /**
- * TODO: update this docblock.
+ * When the dialog is shown, run the callback.
  *
- * @param {*} callback
- * @param {*} overlay
- * @param {*} once
+ * @param {Function} callback The callback to run.
+ * @param {string}   overlay  The overlay to check for.
+ * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
 const onDialogShow = (callback, overlay = null, once = false) => {
   eventRegistry.addEventListener('js_dialog_show', () => {
@@ -344,11 +334,11 @@ const onDialogShow = (callback, overlay = null, once = false) => {
 };
 
 /**
- * TODO: update this docblock.
+ * When the dialog is hidden, run the callback.
  *
- * @param {*} callback
- * @param {*} overlay
- * @param {*} once
+ * @param {Function} callback The callback to run.
+ * @param {string}   overlay  The overlay to check for.
+ * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
 const onDialogHide = (callback, overlay = null, once = false) => {
   eventRegistry.addEventListener('js_dialog_hide', () => {
@@ -371,7 +361,7 @@ const onDialogHide = (callback, overlay = null, once = false) => {
 /**
  * Do something when the page or tab changes.
  *
- * @param {Object}   callbacks
+ * @param {Object}   callbacks        Callbacks object.
  * @param {Function} callbacks.show   The callback to call when the page is navigated to.
  * @param {Function} callbacks.hide   The callback to call when the page is navigated away from.
  * @param {Function} callbacks.change The callback to call when the page is changed.
@@ -426,7 +416,10 @@ const onPageChange = (callbacks) => {
 /**
  * Do something when the trap tab is changed.
  *
- * @param {Object} callbacks
+ * @param {Object}   callbacks        Callbacks object.
+ * @param {Function} callbacks.show   The callback to call when the page is navigated to.
+ * @param {Function} callbacks.hide   The callback to call when the page is navigated away from.
+ * @param {Function} callbacks.change The callback to call when the page is changed.
  */
 const onTrapChange = (callbacks) => {
   // Track our trap states.
@@ -513,7 +506,7 @@ const onEvent = (event, callback, remove = false) => {
  * Do something when the user travels to a location.
  *
  * @param {string} location                  The location traveled to.
- * @param {Object} options                   The options
+ * @param {Object} options                   The options.
  * @param {string} options.shouldAddReminder Whether or not to add a reminder.
  * @param {string} options.title             The title of the reminder.
  * @param {string} options.text              The text of the reminder.
@@ -530,7 +523,7 @@ const onTravel = (location, options) => {
  * This is a callback for the onTravel function.
  *
  * @param {string} location                  The location traveled to.
- * @param {Object} options                   The options
+ * @param {Object} options                   The options.
  * @param {string} options.shouldAddReminder Whether or not to add a reminder.
  * @param {string} options.title             The title of the reminder.
  * @param {string} options.text              The text of the reminder.
@@ -558,7 +551,7 @@ const onTravelCallback = (location, options) => {
 };
 
 /**
- * TODO: update this docblock.
+ * Check if the page matches the target page, optionally checking the tab and subtab.
  *
  * @param {string} targetPage         The target page.
  * @param {string} targetTab          The target tab.
@@ -566,6 +559,8 @@ const onTravelCallback = (location, options) => {
  * @param {string} forceCurrentPage   The current page.
  * @param {string} forceCurrentTab    The current tab.
  * @param {string} forceCurrentSubtab The current subtab.
+ *
+ * @return {boolean} True if the page matches, false otherwise.
  */
 const matchesCurrentPage = (targetPage = null, targetTab = null, targetSubtab = null, forceCurrentPage = null, forceCurrentTab = null, forceCurrentSubtab = null) => {
   if (! targetPage) {
@@ -593,35 +588,30 @@ const matchesCurrentPage = (targetPage = null, targetTab = null, targetSubtab = 
   return currentPage === targetPage && currentTab === targetTab && currentSubtab === targetSubtab;
 };
 
-/*
-  onNavigation(() => console.log('mouse stats by location'),
-    {
-      page: 'adversaries',
-      tab: 'your_stats',
-      subtab: 'location'
-    }
-  );
-
-  onNavigation(() => console.log('friend request page'),
-    {
-      page:'friends',
-      tab: 'requests'
-    }
-  );
-
-  onNavigation(() => console.log('hunter profile, but not when refreshing the page'),
-    {
-      page: 'hunterprofile',
-      onLoad: true
-    }
-  );
-  */
-
 /**
- * TODO: update this docblock
+ * Do something when the user navigates to a page, optionally checking the tab and subtab.
+ *
+ * @example
+ * ```
+ * onNavigation(() => console.log('mouse stats by location'), {
+ *   page: 'adversaries',
+ *   tab: 'your_stats',
+ *   subtab: 'location'
+ * });
+ *
+ * onNavigation(() => console.log('friend request page'), {
+ *   page: 'friends',
+ *   tab: 'requests'
+ * });
+ *
+ * onNavigation(() => console.log('hunter profile, but not when refreshing the page'), {
+ *   page: 'hunterprofile',
+ *   onLoad: true
+ * });
+ *```
  *
  * @param {Function} callback       The callback to run when the user navigates to the page.
- * @param {Object}   options        The options
+ * @param {Object}   options        The options.
  * @param {string}   options.page   The page to watch for.
  * @param {string}   options.tab    The tab to watch for.
  * @param {string}   options.subtab The subtab to watch for.
@@ -829,11 +819,10 @@ const saveSetting = (key, value, identifier = 'mh-utils-settings') => {
 /**
  * Save a setting and toggle the class in the settings UI.
  *
- * @ignore
- *
- * @param {Node}    node  The setting node to animate.
- * @param {string}  key   The setting key.
- * @param {boolean} value The setting value.
+ * @param {Node}    node       The setting node to animate.
+ * @param {string}  key        The setting key.
+ * @param {boolean} value      The setting value.
+ * @param {string}  identifier The identifier for the settings.
  */
 const saveSettingAndToggleClass = (node, key, value, identifier = 'mh-utils-settings') => {
   node.parentNode.parentNode.classList.add('busy');
@@ -859,6 +848,8 @@ const saveSettingAndToggleClass = (node, key, value, identifier = 'mh-utils-sett
  *
  * @param {string} identifier The identifier for the settings.
  * @param {string} name       The name of the settings tab.
+ *
+ * @return {string} The identifier.
  */
 const addSettingsTab = (identifier = 'userscript-settings', name = 'Userscript Settings') => {
   addSettingsTabOnce(identifier, name);
@@ -1093,6 +1084,17 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
     const amount = settingSettings.type === 'multi-select' ? settingSettings.number : 1;
 
+    /**
+     * Make an option for the dropdown.
+     *
+     * @param {Object}  option         The option to make.
+     * @param {boolean} foundSelected  Whether or not the option is selected.
+     * @param {string}  currentSetting The current setting.
+     * @param {Object}  dValue         The default value.
+     * @param {number}  i              The index of the option.
+     *
+     * @return {Object} The option and whether or not it's selected.
+     */
     const makeOption = (option, foundSelected, currentSetting, dValue, i) => {
       const settingRowInputDropdownSelectOption = document.createElement('option');
       settingRowInputDropdownSelectOption.value = option.value;
@@ -1147,7 +1149,11 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
       settingRowInputDropdown.append(settingRowInputDropdownSelect);
 
-      // Event listener for when the setting is clicked.
+      /**
+       * Event listener for when the setting is clicked.
+       *
+       * @param {Event} event The event.
+       */
       settingRowInputDropdownSelect.onchange = (event) => {
         const parent = settingRowInputDropdownSelect.parentNode.parentNode.parentNode;
         parent.classList.add('inputDropdownWrapper');
@@ -1265,7 +1271,11 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
       isActive = true;
     }
 
-    // Event listener for when the setting is clicked.
+    /**
+     * Event listener for when the setting is clicked.
+     *
+     * @param {Event} event The event.
+     */
     settingRowInputCheckbox.onclick = (event) => {
       saveSettingAndToggleClass(event.target, key, ! isActive, tab);
     };
@@ -1374,8 +1384,8 @@ const doRequest = async (url, formData = {}) => {
   const form = new FormData();
   form.append('sn', 'Hitgrab');
   form.append('hg_is_ajax', 1);
-  form.append('last_read_journal_entry_id', lastReadJournalEntryId ? lastReadJournalEntryId : 0); // eslint-disable-line no-undef
-  form.append('uh', user.unique_hash ? user.unique_hash : ''); // eslint-disable-line no-undef
+  form.append('last_read_journal_entry_id', lastReadJournalEntryId ?? 0); // eslint-disable-line no-undef
+  form.append('uh', user.unique_hash ?? ''); // eslint-disable-line no-undef
 
   // Add in the passed in form data.
   for (const key in formData) {
@@ -1616,13 +1626,13 @@ const getUserSetupDetails = () => {
         auraType = auraType.toLowerCase();
         auraType = auraType.replaceAll(' ', '_');
         // remove any non alphanumeric characters
-        auraType = auraType.replace(/[^a-z0-9_]/gi, '');
+        auraType = auraType.replaceAll(/\W/gi, '');
         auraType = auraType.replace('golden_luck_boost', 'lgs');
         auraType = auraType.replace('2023_lucky_codex', 'luckycodex');
         auraType = auraType.replace('_set_bonus_2_pieces', '');
         auraType = auraType.replace('_set_bonus_3_pieces', '');
 
-        if (! setup.aura[auraType]) {
+        if (! setup.aura[auraType]) { // eslint-disable-line unicorn/no-negated-condition
           setup.aura[auraType] = {
             active: true,
             type: auraType,
@@ -1650,7 +1660,7 @@ const getUserSetupDetails = () => {
 };
 
 /**
- *  Add a submenu item to a menu.
+ * Add a submenu item to a menu.
  *
  * @param {Object}   options          The options for the submenu item.
  * @param {string}   options.menu     The menu to add the submenu item to.
@@ -1856,16 +1866,20 @@ const addItemToGameInfoBar = (options) => {
 /**
  * Build a popup.
  *
- * Templates:
- *   ajax: no close button in lower right, 'prefix' instead of title. 'suffix' for close button area.
- *   default: {*title*} {*content*}
- *   error: in red, with error icon{*title*} {*content*}
- *   largerImage: full width image {*title*} {*image*}
- *   largerImageWithClass: smaller than larger image, with caption {*title*} {*image*} {*imageCaption*} {*imageClass*} (goes on the img tag)
- *   loading: Just says loading
- *   multipleItems: {*title*} {*content*} {*items*}
- *   singleItemLeft: {*title*} {*content*} {*items*}
- *   singleItemRight: {*title*} {*content*} {*items*}
+ * @example
+ * ```
+ *
+ * Template options:
+ * ajax: no close button in lower right, 'prefix' instead of title. 'suffix' for close button area.
+ * default: {*title*} {*content*}
+ * error: in red, with error icon{*title*} {*content*}
+ * largerImage: full width image {*title*} {*image*}
+ * largerImageWithClass: smaller than larger image, with caption {*title*} {*image*} {*imageCaption*} {*imageClass*} (goes on the img tag)
+ * loading: Just says loading
+ * multipleItems: {*title*} {*content*} {*items*}
+ * singleItemLeft: {*title*} {*content*} {*items*}
+ * singleItemRight: {*title*} {*content*} {*items*}
+ * ```
  *
  * @param {Object}  options                The popup options.
  * @param {string}  options.title          The title of the popup.
@@ -1874,11 +1888,13 @@ const addItemToGameInfoBar = (options) => {
  * @param {string}  options.template       The template to use for the popup.
  * @param {boolean} options.show           Whether or not to show the popup.
  * @param {string}  options.className      The class name to add to the popup.
+ *
+ * @return {boolean|Object} The popup object or false if we can't create it.
  */
 const createPopup = (options) => {
   // If we don't have jsDialog, bail.
   if ('undefined' === typeof jsDialog || ! jsDialog) { // eslint-disable-line no-undef
-    return;
+    return false;
   }
 
   // Default to sensible values.
@@ -1919,6 +1935,8 @@ const createPopup = (options) => {
  * @param {string}  options.title The title of the popup.
  * @param {string}  options.image The image to show in the popup.
  * @param {boolean} options.show  Whether or not to show the popup.
+ *
+ * @return {Object} The popup object.
  */
 const createImagePopup = (options) => {
   // Default to sensible values.
@@ -1955,11 +1973,13 @@ const createImagePopup = (options) => {
  * @param {string}  options.closeClass The class to add to the close button.
  * @param {string}  options.closeText  The text to add to the close button.
  * @param {boolean} options.show       Whether or not to show the popup.
+ *
+ * @return {boolean|Object} The popup object or false if we can't create it.
  */
 const createMapPopup = (options) => {
   // Check to make sure we can call the hg views.
   if (! (hg && hg.views && hg.views.TreasureMapDialogView)) { // eslint-disable-line no-undef
-    return;
+    return false;
   }
 
   // Default to sensible values.
@@ -2214,6 +2234,8 @@ const createLarryPopup = (content, classes = []) => {
 /**
  * Add a popup similar to the larry's gift popup.
  *
+ * @example
+ * ```
  * createPaperPopup({
  *   title: 'Whoa! A popup!',
  *   content: {
@@ -2227,6 +2249,7 @@ const createLarryPopup = (content, classes = []) => {
  *   },
  *   show: true,
  * });
+ * ```
  *
  * @param {Object}  options               The popup options.
  * @param {string}  options.title         The title of the popup.
@@ -2238,11 +2261,13 @@ const createLarryPopup = (content, classes = []) => {
  * @param {string}  options.button.text   The text of the button.
  * @param {string}  options.button.href   The url of the button.
  * @param {boolean} options.show          Whether to show the popup or not.
+ *
+ * @return {boolean|Object} The popup object or false if we can't create it.
  */
 const createPaperPopup = (options) => {
   // If we don't have jsDialog, bail.
   if ('undefined' === typeof jsDialog || ! jsDialog) { // eslint-disable-line no-undef
-    return;
+    return false;
   }
 
   // Add the styles for our popup.
@@ -2542,6 +2567,13 @@ const showHornMessage = (options) => {
   }
 };
 
+/**
+ * Toggle the hunters horn.
+ *
+ * @param {string} verb The verb to use. Defaults to 'remove'.
+ *
+ * @return {HTMLElement} The hunters horn message element.
+ */
 const toggleHornDom = (verb = 'remove') => {
   const els = [
     {
@@ -2590,9 +2622,12 @@ const toggleHornDom = (verb = 'remove') => {
 };
 
 /**
- * TODO: document this
+ * Show a message in the hunters horn.
  *
- * @param {*} message
+ * @param {Object}   message            The message to show.
+ * @param {Function} message.callback   The callback to run when the message is dismissed.
+ * @param {number}   message.countdown  The time in ms to dismiss the message.
+ * @param {string}   message.actionText The text for the action button.
  */
 const showHuntersHornMessage = (message) => {
   const defaultValues = {
@@ -2606,6 +2641,9 @@ const showHuntersHornMessage = (message) => {
   // if the callback was passed in, we need to wrap it in a function that will dismiss the message
   if (message.callback) {
     const originalCallback = message.callback;
+    /**
+     * Dismiss the hunters horn message and run the original callback.
+     */
     message.callback = () => {
       originalCallback();
       dismissHuntersHornMessage();
@@ -2621,7 +2659,7 @@ const showHuntersHornMessage = (message) => {
 };
 
 /**
- * TODO: document this
+ * Dismiss the hunters horn message.
  */
 const dismissHuntersHornMessage = () => {
   toggleHornDom('remove');
@@ -2765,6 +2803,18 @@ const makeElementDraggable = (dragTarget, dragHandle, defaultX = null, defaultY 
   handle.onmousedown = onMouseDown;
 };
 
+/**
+ * Make a modal draggable.
+ *
+ * @param {Object}  opts              The options for the modal.
+ * @param {string}  opts.id           The ID of the modal.
+ * @param {string}  opts.title        The title of the modal.
+ * @param {string}  opts.content      The content of the modal.
+ * @param {number}  opts.defaultX     The default X position.
+ * @param {number}  opts.defaultY     The default Y position.
+ * @param {string}  opts.storageKey   The key to use for local storage.
+ * @param {boolean} opts.savePosition Whether or not to save the position to local storage.
+ */
 const makeDraggableModal = (opts) => {
   const {
     id,
@@ -2905,6 +2955,8 @@ const makeButton = (text, href, tiny = true, extraClasses = [], encodeAsSpace = 
 /**
  * Creates a popup with two choices.
  *
+ * @example
+ * ```
  * createChoicePopup({
  *   title: 'Choose your first trap',
  *   choices: [
@@ -2932,6 +2984,7 @@ const makeButton = (text, href, tiny = true, extraClasses = [], encodeAsSpace = 
  *     },
  *   ],
  * });
+ *```
  *
  * @param {Object} options                  The options for the popup.
  * @param {string} options.title            The title of the popup.

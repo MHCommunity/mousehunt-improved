@@ -2,6 +2,9 @@ import { addSetting, debug, getMhuiSetting } from '@/utils';
 
 import globalStyles from './global-styles/styles.css';
 
+/**
+ * Add the advanced settings tab.
+ */
 const addAdvancedSettings = () => {
   // Add the advanced override settings.
   const advancedTab = {
@@ -32,6 +35,11 @@ const addAdvancedSettings = () => {
   );
 };
 
+/**
+ * Add the settings for a module.
+ *
+ * @param {Object} module The module to add settings for.
+ */
 const addSettingForModule = (module) => {
   module.modules.forEach((subModule) => {
     if (! subModule.alwaysLoad) {
@@ -60,6 +68,11 @@ const addSettingForModule = (module) => {
   });
 };
 
+/**
+ * Show an error message when the script fails to load.
+ *
+ * @param {Error} e The error that was thrown.
+ */
 const showLoadingError = (e) => {
   debug('Error loading MouseHunt Improved:', e); // eslint-disable-line no-console
 

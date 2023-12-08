@@ -431,6 +431,9 @@ const modules = [
   },
 ];
 
+/**
+ * Load all the modules.
+ */
 const loadModules = async () => {
   if (Utils.getGlobal('loaded')) {
     Utils.debug('Already loaded.');
@@ -473,6 +476,9 @@ const loadModules = async () => {
   Utils.addToGlobal('modules', loadedModules);
 };
 
+/**
+ * Initialize the script.
+ */
 const init = async () => {
   Utils.debug('Initializing...');
 

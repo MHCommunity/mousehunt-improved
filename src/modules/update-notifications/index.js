@@ -1,5 +1,12 @@
 import { getSetting, saveSetting } from '@/utils';
 
+/**
+ * Get the last time the user read the update notification.
+ *
+ * @param {string} version The version of MH Improved.
+ *
+ * @return {Object} The date and if the user has read the notification.
+ */
 const getReadUpdateNotificationTime = (version) => {
   let date = getSetting(version, false, 'mh-improved-update-notifications');
   let hasRead = true;
@@ -17,6 +24,9 @@ const getReadUpdateNotificationTime = (version) => {
   };
 };
 
+/**
+ * Show a notification to the user that MH Improved has been updated.
+ */
 export default () => {
   const link = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}`;
 
