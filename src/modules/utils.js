@@ -591,15 +591,23 @@ const addBodyClass = (className) => {
  * @param {string} className Class to add.
  */
 const persistBodyClass = (className) => {
+  /**
+   * Helper function to add the class to the body.
+   */
   const addClass = () => {
     addBodyClass(className);
   };
 
   addClass();
   Mhutils.onNavigation(addClass);
-  Mhutils.onTravel(null, { callback: () => {
-    setTimeout(addClass, 500);
-  } });
+  Mhutils.onTravel(null, {
+    /**
+     * Callback to add the class after travel.
+     */
+    callback: () => {
+      setTimeout(addClass, 500);
+    }
+  });
 };
 
 /**

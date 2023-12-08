@@ -170,11 +170,7 @@ const makeItem = (item) => {
   });
 
   const itemImage = makeElement('div', 'itemImage');
-  if (quantity > 0 && thumbnail_gray) { /* eslint-disable-line camelcase */
-    itemImage.style.backgroundImage = `url(${thumbnail_gray})`; /* eslint-disable-line camelcase */
-  } else {
-    itemImage.style.backgroundImage = `url(${thumbnail})`;
-  }
+  itemImage.style.backgroundImage = (quantity > 0 && thumbnail_gray) ? `url(${thumbnail_gray})` : `url(${thumbnail})`; // eslint-disable-line camelcase
 
   if (quantity > 0) {
     makeElement('div', 'quantity', quantity_formatted, itemImage);

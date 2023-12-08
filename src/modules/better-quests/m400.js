@@ -22,18 +22,18 @@ const renderButton = (location) => {
   button.setAttribute('data-location', location);
 
   button.addEventListener('click', (e) => {
-    let location = e.target.getAttribute('data-location');
-    if (! location) {
+    let clickedLocation = e.target.getAttribute('data-location');
+    if (! clickedLocation) {
       // get the parent element.
       const parent = e.target.parentElement;
       if (! parent) {
         return;
       }
 
-      location = parent.getAttribute('data-location');
+      clickedLocation = parent.getAttribute('data-location');
     }
 
-    app.pages.TravelPage.travel(location); // eslint-disable-line no-undef
+    app.pages.TravelPage.travel(clickedLocation); // eslint-disable-line no-undef
   });
 
   title.append(button);

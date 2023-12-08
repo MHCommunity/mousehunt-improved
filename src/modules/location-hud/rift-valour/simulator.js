@@ -1,5 +1,4 @@
 // This is all borrowed from the original sim script while it's being rewritten.
-/* eslint-disable */
 // Sets the display for the percentages
 // Set to true or false depending on which display you want
 const cumulativeDisplay = true;

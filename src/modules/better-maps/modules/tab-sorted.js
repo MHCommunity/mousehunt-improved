@@ -24,7 +24,7 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   let caughtMice = [];
   // get the ids from currentMapData.hunters.completed_goal_ids.mouse
   currentMapData.hunters.forEach((hunter) => {
-    caughtMice = caughtMice.concat(hunter.completed_goal_ids[type]);
+    caughtMice = [...caughtMice, ...hunter.completed_goal_ids[type]];
   });
 
   // Remove the caught mice from the unsorted mice.

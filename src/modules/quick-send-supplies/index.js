@@ -72,7 +72,7 @@ const makeSendSuppliesButton = (btn, snuid) => {
   itemOptions.forEach((item) => {
     const tradableItem = allTradableItems.find((i) => i.type === item);
     if (tradableItem) {
-      const image = tradableItem.thumbnail_transparent ? tradableItem.thumbnail_transparent : tradableItem.thumbnail;
+      const image = tradableItem.thumbnail_transparent ?? tradableItem.thumbnail;
       makeItem(tradableItem.name, tradableItem.type, image, itemsWrapper);
     }
   });

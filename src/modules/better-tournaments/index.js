@@ -126,10 +126,10 @@ const updateTournamentHud = async () => {
           memberRow.classList.add('empty');
         } else {
           const image = makeElement('img', 'memberImage');
-          image.src = member.profile_pic ? member.profile_pic : 'https://www.mousehuntgame.com//images/ui/friends/anonymous_user.png';
+          image.src = member.profile_pic ?? 'https://www.mousehuntgame.com//images/ui/friends/anonymous_user.png';
           memberRow.append(image);
 
-          makeElement('div', 'memberName', member.name ? member.name : '', memberRow);
+          makeElement('div', 'memberName', member.name ?? '', memberRow);
         }
 
         memberHover.append(memberRow);

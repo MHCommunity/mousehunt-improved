@@ -28,7 +28,7 @@ const getMouseStats = async () => {
   });
 
   // Return the data.
-  return mouseData ? mouseData : [];
+  return mouseData ?? [];
 };
 
 /**

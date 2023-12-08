@@ -20,16 +20,12 @@ const updateWordLootQuantity = () => {
 };
 
 const updateNextWordCount = () => {
-  const update = () => {
-    const wordsRequired = document.querySelector('.tableOfContentsProgressView-nextBook-wordsRequired');
-    if (! wordsRequired) {
-      return;
-    }
+  const wordsRequired = document.querySelector('.tableOfContentsProgressView-nextBook-wordsRequired');
+  if (! wordsRequired) {
+    return;
+  }
 
-    wordsRequired.innerText = wordsRequired.getAttribute('title').replace(' words', '');
-  };
-
-  update();
+  wordsRequired.innerText = wordsRequired.getAttribute('title').replace(' words', '');
 };
 
 export default () => {

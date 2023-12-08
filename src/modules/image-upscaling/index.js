@@ -1,4 +1,4 @@
-import { addUIStyles, onRequest } from '@/utils';
+import { addUIStyles } from '@/utils';
 
 import mapping from '@data/upscaled-image-mapping.json';
 import pathsToSkip from '@data/upscaled-image-paths-to-skip.json';

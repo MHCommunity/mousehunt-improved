@@ -89,10 +89,10 @@ const intercept = () => {
   const parentShowMap = hg.controllers.TreasureMapController.showMap;
   hg.controllers.TreasureMapController.showMap = (id = false) => {
     parentShowMap(id);
-    const intercepted = interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
+    const intercepted = interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
     setTimeout(() => {
       if (! intercepted) {
-        interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
+        interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
       }
     }, 1000);
   };

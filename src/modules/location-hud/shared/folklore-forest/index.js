@@ -55,6 +55,40 @@ const hideOrShowBlock = (blockId, isBlockToggled) => {
   element.classList.toggle('active', ! isBlockToggled);
 };
 
+const addToggle = (upgradeBlock) => {
+  if (upgradeBlock.classList.contains('toggle-added')) {
+    return;
+  }
+
+  const classList = upgradeBlock.classList.value;
+  const blockId = classList.replace('folkloreForestRegionView-dialog-block', '').replace('active', '').replace('prologue_pond', '').replace('table_of_contents', '').trim();
+  let isBlockToggled = isHidden(blockId);
+
+  const toggle = makeElement('div', ['mhui-folklore-forest-upgrade-toggle', 'mousehuntActionButton', 'tiny', 'lightBlue']);
+  const toggleText = makeElement('span', 'upgrade-toggle-text', isBlockToggled ? 'Show' : 'Hide');
+  toggle.append(toggleText);
+
+  toggle.addEventListener('click', () => {
+    isBlockToggled = ! isBlockToggled;
+    saveHidden(blockId, isBlockToggled);
+    toggleText.innerText = isBlockToggled ? 'Show' : 'Hide';
+
+    hideOrShowBlock(blockId, isBlockToggled);
+
+    upgradeBlock.classList.toggle('toggle-is-hidden', isBlockToggled);
+  });
+
+  const action = upgradeBlock.querySelector('.folkloreForestRegionView-dialog-block-action');
+  if (action) {
+    action.append(toggle);
+  } else {
+    upgradeBlock.append(toggle);
+  }
+
+  upgradeBlock.classList.add('toggle-added');
+  upgradeBlock.classList.add(isBlockToggled ? 'toggle-is-hidden' : 'toggle-is-visible');
+};
+
 const addUpgradeVisibilityToggles = () => {
   if (hasAddedUpgradeVisibilityToggles) {
     return;
@@ -68,40 +102,6 @@ const addUpgradeVisibilityToggles = () => {
   if (! pondUpgrades || ! bookUpgrades) {
     return;
   }
-
-  const addToggle = (upgradeBlock) => {
-    if (upgradeBlock.classList.contains('toggle-added')) {
-      return;
-    }
-
-    const classList = upgradeBlock.classList.value;
-    const blockId = classList.replace('folkloreForestRegionView-dialog-block', '').replace('active', '').replace('prologue_pond', '').replace('table_of_contents', '').trim();
-    let isBlockToggled = isHidden(blockId);
-
-    const toggle = makeElement('div', ['mhui-folklore-forest-upgrade-toggle', 'mousehuntActionButton', 'tiny', 'lightBlue']);
-    const toggleText = makeElement('span', 'upgrade-toggle-text', isBlockToggled ? 'Show' : 'Hide');
-    toggle.append(toggleText);
-
-    toggle.addEventListener('click', () => {
-      isBlockToggled = ! isBlockToggled;
-      saveHidden(blockId, isBlockToggled);
-      toggleText.innerText = isBlockToggled ? 'Show' : 'Hide';
-
-      hideOrShowBlock(blockId, isBlockToggled);
-
-      upgradeBlock.classList.toggle('toggle-is-hidden', isBlockToggled);
-    });
-
-    const action = upgradeBlock.querySelector('.folkloreForestRegionView-dialog-block-action');
-    if (action) {
-      action.append(toggle);
-    } else {
-      upgradeBlock.append(toggle);
-    }
-
-    upgradeBlock.classList.add('toggle-added');
-    upgradeBlock.classList.add(isBlockToggled ? 'toggle-is-hidden' : 'toggle-is-visible');
-  };
 
   for (const upgrade of pondUpgrades) {
     addToggle(upgrade);

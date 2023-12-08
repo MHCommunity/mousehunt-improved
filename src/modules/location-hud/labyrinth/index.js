@@ -124,7 +124,7 @@ const hud = () => {
   makeElement('span', 'mh-ui-labyrinth-step-counter', `${completed.length}/${hallwayLength} steps completed.`, appendTo);
   const stepsToGo = hallwayLength - completed.length;
 
-  if (stepsToGo !== 0) {
+  if (stepsToGo !== 0) { // eslint-disable-line unicorn/no-negated-condition
     const intersectionDoors = document.querySelector('.labyrinthHUD-doorContainer');
     if (intersectionDoors) {
       const tilesWithClues = tiles.filter((tile) => tile.status.includes('good'));
