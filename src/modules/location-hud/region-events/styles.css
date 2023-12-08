@@ -1,0 +1,68 @@
+.campHudSnowballShowdownView__disabled {
+  top: 45px;
+}
+
+.advent-calendar-spoilers .adventCalendarView-gift .adventCalendarView-gift-label,
+.advent-calendar-spoilers .adventCalendarView-gift .adventCalendarView-gift-image {
+  display: none;
+}
+
+.mousehuntActionButton.tiny.toggle-advent-calendar-spoilers {
+  position: absolute;
+  left: 20px;
+  font-size: 12px;
+}
+
+.adventCalendarView-subtitle {
+  padding: 10px;
+  font-size: 12px;
+  line-height: 19px;
+  background-color: #d3ddfe;
+}
+
+.adventCalendarView-gift.canClaim {
+  filter: brightness(1.75);
+}
+
+.adventCalendarView-gift-rewardContainer {
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background-color: rgb(211 221 254);
+  border-radius: 0;
+}
+
+.adventCalendarView-gift-reward-close {
+  padding: 2px 4px 5px 6px;
+  font-size: 13px;
+  font-weight: 900;
+  color: #e03a3a;
+  background-color: #b1bfed;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+}
+
+.adventCalendarView-gift-reward-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.adventCalendarView-gift-item,
+.adventCalendarView-gift-item img {
+  width: 55px;
+  height: 55px;
+}
+
+.adventCalendarView-title {
+  background-color: #d3ddfe;
+  border-width: 1px;
+}
+
+.adventCalendarView-header {
+  background-color: #e2ebee;
+}
