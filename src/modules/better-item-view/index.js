@@ -75,7 +75,7 @@ const updateItemView = async () => {
   addLinks(itemId);
 
   // dont show drop rates for items that arent consistent.
-  const id = parseInt(itemId, 10);
+  const id = Number.parseInt(itemId, 10);
   const ignored = [
     2473, // mina's gift
     823, // party charm
@@ -120,10 +120,10 @@ const updateItemView = async () => {
   }
 
   // shrink the mhctjson array to only include items with non-zero drop rates and a maxiumum of 15 items
-  mhctjson = mhctjson.filter((itemAr) => parseInt(itemAr.drop_pct, 10) > 0).slice(0, 15);
+  mhctjson = mhctjson.filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0).slice(0, 15);
 
   mhctjson.forEach((itemAr) => {
-    const dropPercent = parseInt(itemAr.drop_pct, 10).toFixed(2);
+    const dropPercent = Number.parseInt(itemAr.drop_pct, 10).toFixed(2);
     if (dropPercent !== '0.00') {
       const itemArWrapper = makeElement('div', 'mouse-ar-wrapper');
 

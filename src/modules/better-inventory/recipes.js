@@ -174,7 +174,7 @@ const modifySmashableTooltip = async () => {
 
         if ('gold_stat_item' === itemDataItem.type) {
           // convert to k or m
-          const quantityInt = parseInt(quantity);
+          const quantityInt = Number.parseInt(quantity);
           if (quantityInt >= 1000000) {
             quantity = `${Math.floor(quantityInt / 100000) / 10}m`;
           } else if (quantityInt >= 1000) {

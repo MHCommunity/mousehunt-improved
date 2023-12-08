@@ -120,7 +120,7 @@ const addEnemyClass = () => {
 };
 
 const getNextOcUpgradeCost = (ocLevel) => {
-  switch (parseInt(ocLevel, 10)) {
+  switch (Number.parseInt(ocLevel, 10)) {
   case 1:
     return '35';
   case 2:
@@ -194,7 +194,7 @@ const onSkyMapShow = () => {
 const showBWReminder = () => {
   const isStart = user.enviroment_atts?.hunting_site_atts?.hunts_remaining === 75 && user.enviroment_atts?.on_island;
   const bwOff = ! user.enviroment_atts?.hunting_site_atts?.is_fuel_enabled;
-  const hasBw = parseInt(user.enviroment_atts?.items?.bottled_wind_stat_item?.quantity.replace(',', '')) > 50;
+  const hasBw = Number.parseInt(user.enviroment_atts?.items?.bottled_wind_stat_item?.quantity.replace(',', '')) > 50;
 
   if (isStart && bwOff && hasBw) {
     showHornMessage({

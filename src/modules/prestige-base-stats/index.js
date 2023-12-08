@@ -117,7 +117,7 @@ const savePbStats = () => {
     }
 
     // parse the value, remove commas and convert to a number
-    let parsedValue = parseInt(value.innerText.replace(/,/g, ''), 10);
+    let parsedValue = Number.parseInt(value.innerText.replaceAll(',', ''), 10);
 
     // get the type of stat it is by looking at the great grandparent
     const type = row.parentElement.parentElement;

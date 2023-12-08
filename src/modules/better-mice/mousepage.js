@@ -180,14 +180,14 @@ const parseImperialWeight = (weightText) => {
   const ozSplit = weightText.innerText.split('oz.');
   const oz = ozSplit.length > 1 ? ozSplit[0] : 0;
 
-  return (parseInt(lbs) * 16) + parseInt(oz);
+  return (Number.parseInt(lbs) * 16) + Number.parseInt(oz);
 };
 
 const getSetRowValue = (row, type) => {
   let value = 0;
   value = row.getAttribute(`data-sort-value-${type}`);
   if (value) {
-    return parseInt(value);
+    return Number.parseInt(value);
   }
 
   const valueText = row.querySelector(`.mouseListView-categoryContent-subgroup-mouse-stats.${type}`);
@@ -209,7 +209,7 @@ const getSetRowValue = (row, type) => {
 
   row.setAttribute(`data-sort-value-${type}`, value);
 
-  return parseInt(value);
+  return Number.parseInt(value);
 };
 
 const sortStats = (type, reverse = false) => {

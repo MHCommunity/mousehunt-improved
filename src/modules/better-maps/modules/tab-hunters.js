@@ -92,7 +92,7 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
     const actionButtons = document.querySelectorAll('.mh-mapper-invite-request-action');
     actionButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        const snuid = parseInt(button.dataset.snuid, 10);
+        const snuid = Number.parseInt(button.dataset.snuid, 10);
 
         if (button.classList.contains('accept-invite-request')) {
           hg.utils.TreasureMapUtil.acceptInviteRequests(mapper('mapData').map_id, [snuid], () => {}, () => {});

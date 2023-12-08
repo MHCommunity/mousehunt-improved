@@ -166,7 +166,7 @@ const makeAcceptButton = (buttonContainer) => {
     acceptButton.classList.add('disabled');
   } else {
     acceptButton.addEventListener('click', () => {
-      sendGifts('claim', acceptLimit ? parseInt(acceptLimit.innerText, 10) : 15);
+      sendGifts('claim', acceptLimit ? Number.parseInt(acceptLimit.innerText, 10) : 15);
     });
   }
 
@@ -182,7 +182,7 @@ const makeReturnButton = (buttonContainer) => {
     returnButton.classList.add('disabled');
   } else {
     returnButton.addEventListener('click', () => {
-      sendGifts('return', returnLimit ? parseInt(returnLimit.innerText, 10) : 25);
+      sendGifts('return', returnLimit ? Number.parseInt(returnLimit.innerText, 10) : 25);
     });
   }
 
@@ -285,7 +285,7 @@ const checkForSuccessfulGiftSend = (request) => {
 
 const getLimit = () => {
   const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
-  limit = limitEl ? parseInt(limitEl.innerText, 10) : 0;
+  limit = limitEl ? Number.parseInt(limitEl.innerText, 10) : 0;
 
   return limit;
 };

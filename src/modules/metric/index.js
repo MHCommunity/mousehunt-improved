@@ -10,7 +10,7 @@ const imperialToMetric = (text) => {
   // Convert the lb. and oz. values to metric.
   const lbValue = lb ? lb[1] : 0;
   const ozValue = oz ? oz[1] : 0;
-  const totalWeight = parseInt(lbValue) + (parseInt(ozValue) / 16);
+  const totalWeight = Number.parseInt(lbValue) + (Number.parseInt(ozValue) / 16);
   const totalWeightMetric = (Math.round((totalWeight * 0.45359237) * 100) / 100).toString();
 
   // Replace the lb. and oz. values with the metric values.

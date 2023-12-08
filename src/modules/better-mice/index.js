@@ -70,7 +70,7 @@ const isFavorite = async (mouseId) => {
 
   // check if the mouseId matches the id property of any of the favorite mice
   return favorites.page.tabs.kings_crowns.subtabs[0].mouse_crowns.favourite_mice.some((mouse) => {
-    return mouse.id && mouse.id === parseInt(mouseId, 10);
+    return mouse.id && mouse.id === Number.parseInt(mouseId, 10);
   });
 };
 
