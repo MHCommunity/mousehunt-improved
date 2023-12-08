@@ -126,6 +126,10 @@ const makeSendSuppliesButton = (btn, snuid) => {
 
         showSuccessMessage(`Sent ${qty} ${itemName}!`, quickSendGoWrapper, 'mh-ui-quick-send-success');
       }
+    }).catch(() => {
+      quickSendButton.classList.remove('disabled');
+
+      showErrorMessage('There was an error sending supplies', quickSendGoWrapper, 'mh-ui-quick-send-error');
     });
   });
 
