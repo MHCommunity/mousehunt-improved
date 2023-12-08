@@ -1,0 +1,81 @@
+#overlayPopup.chooseTrap .weapon .trapDamageType {
+  display: none;
+}
+
+#overlayPopup.chooseTrap .weapon .trapDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Don't overlap the text */
+#OnboardArrow.larryCircle .whiteboard .action {
+  bottom: -25px;
+}
+
+/* Making the OK button be "Okay Larry! because it's fun */
+#OnboardArrow.larryCircle .whiteboard .action::after {
+  font-size: 12px;
+  content: ", Larry!";
+}
+
+/* Make the bait highlight scaling match our new designs */
+@keyframes bait-scale-new {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(2.7);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.campPage-trap-baitQuantity.highlight {
+  transform-origin: bottom right;
+  animation: bait-scale-new 0.6s ease-in-out;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .campPage-trap-baitQuantity {
+    animation: none;
+  }
+}
+
+#OnboardArrow.larryCircle .whiteboard {
+  line-height: 20px;
+}
+
+/* buying bait onboard arrow, but it's actually targetting all top left ones */
+.guideArrowView.animated.show.topLeft {
+  margin-top: -30px;
+  margin-left: -100px;
+}
+
+/* Make the greyed out premium stuff not stand out as much */
+.onboarding .mousehuntHud-marketPlace.disabled,
+.onboarding .mousehuntHud-marketPlace.disabled:hover,
+.onboarding .mousehuntHud-premiumShop.premium_items {
+  opacity: 0.6;
+}
+
+.onboarding .mousehuntHud-shield {
+  display: block;
+}
+
+.onboarding.hide_favorites .campPage-trap-itemBrowser-items {
+  top: 60px;
+}
+
+a.mousehuntHud-userStat.trap.base.hidden,
+a.mousehuntHud-userStat.trap.weapon.hidden {
+  display: inline-block;
+  visibility: visible;
+}
+
+.onboarding.hide_favorites .campPage-trap-itemBrowser-quickLinks.campPage-trap-itemBrowser-quickLinks-power {
+  display: none;
+}

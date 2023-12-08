@@ -1,0 +1,20 @@
+.loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .backButton {
+  position: absolute;
+  top: 145px;
+  left: 30px;
+  filter: hue-rotate(321deg);
+}
+
+.PageLogin .loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer {
+  position: relative;
+}
+
+.PageLogin .pageFrameView-column.left,
+.PageLogin .pageFrameView-column.right {
+  margin-bottom: 0;
+}
+
+.loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .fb-login-button div {
+  margin-top: 10px;
+  margin-left: 50px;
+}
