@@ -80,7 +80,8 @@
           "ArrowFunctionExpression": true,
           "FunctionExpression": true
         },
-        "enableFixer": false
+        "enableFixer": false,
+        "minLineCount": 3
       }
     ],
     "jsx-quotes": ["error", "prefer-double"],
@@ -93,6 +94,7 @@
     "no-undef": 0,
     "no-useless-concat": "error",
     "object-curly-spacing": ["error", "always"],
+    "promise/always-return": ["error", { "ignoreLastCallback": true }],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "sort-imports": [
@@ -120,8 +122,10 @@
     "unicorn/no-null": "off",
     "unicorn/no-unused-properties": "off",
     "unicorn/prefer-add-event-listener": "off", // todo: disabled to not auto-fix
+    "unicorn/prefer-blob-reading-methods": "off",
     "unicorn/prefer-dom-node-dataset": "off",
     "unicorn/prefer-dom-node-text-content": "off",
+    "unicorn/prefer-switch": "off",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/switch-case-braces": ["warn", "avoid"],
     "unicorn/numeric-separators-style": "off",
@@ -134,6 +138,7 @@
     "no-warning-comments": [
       "warn",
       {
+        "terms": ["todo", "fixme"],
         "location": "anywhere"
       }
     ]
