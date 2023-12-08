@@ -1,0 +1,188 @@
+.headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  margin-top: -2px;
+  margin-right: 1px;
+  margin-left: 0;
+  font-size: 12px;
+  background-color: #4484a2;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #154b6f;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemPart:nth-child(3) .headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  margin-right: -2px;
+  margin-left: 2px;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemPart:nth-child(2) .headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  margin-right: -1px;
+  margin-left: 1px;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemPart:nth-child(4) .headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  padding-top: 0;
+  padding-bottom: 2px;
+  margin-top: 4px;
+  margin-right: 0;
+  margin-left: 0;
+  color: #133850;
+  background: linear-gradient(90deg, #0c5168 1%, #95c2d3 10%, #a8d3e0 16%, #a8d3e0 84%, #6ba1bb 92%, #0c5168 96%);
+  border-radius: 0 0 3px 3px;
+  box-shadow: inset 1px -2px 2px -1px #0b3f55;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemPart:nth-child(5) .headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-top: -2px;
+  margin-right: -1px;
+  margin-left: 1px;
+  color: #133850;
+  background-color: #a8d3e0;
+  box-shadow: inset 0 0 1px 1px #5f9bb4;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemBuffQuantity.quantity {
+  font-size: 11px;
+  color: #133850;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemUpgradeCost {
+  position: absolute;
+  top: 5px;
+  right: 22px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  padding: 2px;
+  margin-left: -1px;
+  font-size: 12px;
+  color: hsl(198deg 64% 71% / 100%);
+  text-align: center;
+  background-color: #18536d;
+  border: 1px solid #915211;
+  border-radius: 3px 10px 10px 3px;
+  box-shadow:
+    inset 0 0 2px 1px #113346,
+    1px -2px 1px -1px #e9c320,
+    -8px 6px 0 -6px #6c5528;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemUpgradeCost::after {
+  display: none;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemLevel {
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.headsUpDisplayWinterHuntRegionView__environmentItemQuantity.quantity {
+  font-size: 13px;
+}
+
+.headsUpDisplayWinterHuntRegionView__cinnamon {
+  margin-bottom: 9px;
+}
+
+.headsUpDisplayWinterHuntRegionView__fuelQuantity.quantity {
+  font-size: 13px;
+}
+
+.campHudSnowballShowdownView__imageContainer {
+  height: 35px;
+  margin-top: -5px;
+  background: rgb(218 188 155 / 60%);
+  border-radius: 13px;
+}
+
+.campHudSnowballShowdownView__image {
+  height: 35px;
+  background-position: bottom center;
+}
+
+.campHudSnowballShowdownView__snowball .campHudSnowballShowdownView__image {
+  background-position: center 5px;
+}
+
+.campHudSnowballShowdownView__quantity {
+  padding: 1px;
+  font-size: 13px;
+  color: #133850;
+  text-align: center;
+  background-color: #a8d3e0;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 1px #2174ab;
+}
+
+button.campHudSnowballShowdownView__buyButton {
+  display: none;
+}
+
+.campHudSnowballShowdownView__item:hover button.campHudSnowballShowdownView__buyButton {
+  position: absolute;
+  right: -1px;
+  bottom: -2px;
+  display: block;
+  width: 17px;
+  height: 17px;
+  background-size: cover;
+}
+
+.headsUpDisplayWinterHuntRegionView__baitImageButton {
+  filter: drop-shadow(0 0 3px #a8d3e0);
+  background-position: -1px -4px;
+  background-size: 41px;
+  border-radius: 50%;
+}
+
+.headsUpDisplayWinterHuntRegionView__basicBaitContainer.super_brie_cheese .headsUpDisplayWinterHuntRegionView__baitImageButton {
+  background-position: -3px -4px;
+  border-radius: 50%;
+}
+
+.greatWinterHuntGolemManagerLaunchTabView__toggleButton {
+  background: linear-gradient(to bottom, #fff9f9 50%, #71a4eb 100%);
+  border: none;
+}
+
+.greatWinterHuntGolemManagerLaunchTabView__toggleButton--disabled {
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.greatWinterHuntGolemManagerLaunchTabView__toggleItemQuantity {
+  padding: 4px;
+  font-size: 13px;
+}
+
+.greatWinterHuntGolemManagerLaunchTabView__toggleItemImage {
+  top: -10px;
+  left: -11px;
+  width: 40px;
+  height: 40px;
+}
+
+.greatWinterHuntDialogView__footerItemQuantity.quantity {
+  padding: 3px;
+  font-size: 13px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 1px 1px #a8d3e0;
+}
+
+button.headsUpDisplayWinterHuntRegionView__plusButton {
+  position: absolute;
+  right: -16px;
+  display: none;
+  width: 15px;
+  height: 15px;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: 0 0 1px 1px #527e8f;
+}
+
+.greatWinterHuntDialogView__inventoryFooter:hover button.headsUpDisplayWinterHuntRegionView__plusButton {
+  display: block;
+}
