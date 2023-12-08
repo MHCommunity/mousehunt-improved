@@ -295,16 +295,16 @@
   color: #c01dff;
 }
 
-#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location:after,
-#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location:after {
-  content: "";
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location::after,
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location::after {
   position: absolute;
-  left: 4px;
   top: 1px;
-  background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png?asset_cache_version=2);
+  left: 4px;
   width: 15px;
   height: 15px;
-  background-size: contain;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png?asset_cache_version=2);
+  filter: drop-shadow(0 0 1px #fff);
   background-repeat: no-repeat;
-  filter: drop-shadow(0px 0px 1px #fff);
+  background-size: contain;
 }
