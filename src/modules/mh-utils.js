@@ -44,7 +44,7 @@ const addStyles = (styles, identifier = 'mh-utils-custom-styles', once = false) 
   identifier = `mh-utils-${identifier}`;
 
   // Check to see if the existing element exists.
-  const existingStyles = document.getElementById(identifier);
+  const existingStyles = document.querySelector(`#${identifier}`);
 
   // If so, append our new styles to the existing element.
   if (existingStyles) {
@@ -220,13 +220,13 @@ const onOverlayChange = (callbacks) => {
     }
 
     // Grab the overlayPopup element and make sure it has classes on it.
-    const overlayType = document.getElementById('overlayPopup');
+    const overlayType = document.querySelector('#overlayPopup');
     if (overlayType && overlayType.classList.length <= 0) {
       return;
     }
 
     // Grab the overlayBg and check if it is visible or not.
-    const overlayBg = document.getElementById('overlayBg');
+    const overlayBg = document.querySelector('#overlayBg');
     if (overlayBg && overlayBg.classList.length > 0) {
       // If there's a show callback, run it.
       if (callbacks.show) {
@@ -242,7 +242,7 @@ const onOverlayChange = (callbacks) => {
   });
 
   // Observe the overlayPopup element for changes.
-  const observeTarget = document.getElementById('overlayPopup');
+  const observeTarget = document.querySelector('#overlayPopup');
   if (observeTarget) {
     observer.observe(observeTarget, {
       attributes: true,
@@ -406,7 +406,7 @@ const onPageChange = (callbacks) => {
     }
 
     // Grab the container element and make sure it has classes on it.
-    const mhContainer = document.getElementById('mousehuntContainer');
+    const mhContainer = document.querySelector('#mousehuntContainer');
     if (mhContainer && mhContainer.classList.length > 0) {
       // Run the callbacks.
       tabData = runCallbacks(tabData, mhContainer, callbacks);
@@ -414,7 +414,7 @@ const onPageChange = (callbacks) => {
   });
 
   // Observe the mousehuntContainer element for changes.
-  const observeTarget = document.getElementById('mousehuntContainer');
+  const observeTarget = document.querySelector('#mousehuntContainer');
   if (observeTarget) {
     observer.observe(observeTarget, {
       attributes: true,
@@ -461,7 +461,7 @@ const onTrapChange = (callbacks) => {
     }
 
     // If we're not viewing a blueprint tab, bail.
-    const mhContainer = document.getElementById('mousehuntContainer');
+    const mhContainer = document.querySelector('#mousehuntContainer');
     if (mhContainer.classList.length <= 0 || ! mhContainer.classList.contains('showBlueprint')) {
       return;
     }
@@ -741,7 +741,7 @@ const isOverlayVisible = () => {
  * @return {string} The current overlay.
  */
 const getCurrentOverlay = () => {
-  const overlay = document.getElementById('overlayPopup');
+  const overlay = document.querySelector('#overlayPopup');
   if (overlay && overlay.classList.length <= 0) {
     return null;
   }
@@ -920,7 +920,7 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
   tabsContentContainer.append(settingsTabContent);
 
   if (identifier === getCurrentTab()) {
-    const tab = document.getElementById(identifier);
+    const tab = document.querySelector(`#${identifier}`);
     if (tab) {
       tab.click();
     }
@@ -1018,7 +1018,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   }
 
   // If we already have a setting visible for our key, bail.
-  const settingExists = document.getElementById(`${section.id}-${key}`);
+  const settingExists = document.querySelector(`#${section.id}-${key}`);
   if (settingExists) {
     return;
   }
@@ -2188,7 +2188,7 @@ const createWelcomePopup = (options = {}) => {
   welcomePopup.show();
 
   // Add the event listener to the continue button.
-  const continueButton = document.getElementById(`mh-welcome-${options.id}-continue`);
+  const continueButton = document.querySelector(`#mh-welcome-${options.id}-continue`);
   continueButton.addEventListener('click', () => {
     saveSetting('has-seen-welcome', true, options.id);
     welcomePopup.hide();
@@ -2790,7 +2790,7 @@ const makeDraggableModal = (opts) => {
   }, opts);
 
   // Remove the existing modal.
-  const existing = document.getElementById(`mh-utils-modal-${id}`);
+  const existing = document.querySelector(`#mh-utils-modal-${id}`);
   if (existing) {
     existing.remove();
   }

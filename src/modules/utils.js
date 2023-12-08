@@ -8,7 +8,7 @@ import * as Mhutils from './mh-utils';
  * @param {boolean}      replace    Whether to replace the existing styles.
  */
 const addUIStyles = (styles, identifier = 'mh-improved-styles', replace = false) => {
-  const existingStyles = document.getElementById(identifier);
+  const existingStyles = document.querySelector(`#${identifier}`);
 
   styles = Array.isArray(styles) ? styles.join('\n') : styles;
 
@@ -293,7 +293,7 @@ const getArEl = async (id, type = 'mouse') => {
  * Add links to the mouse details on the map.
  */
 const addArDataToMap = () => {
-  const overlayClasses = document.getElementById('overlayPopup').classList;
+  const overlayClasses = document.querySelector('#overlayPopup').classList;
   if (! overlayClasses.contains('treasureMapPopup')) {
     return;
   }

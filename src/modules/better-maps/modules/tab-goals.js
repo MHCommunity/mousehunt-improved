@@ -15,7 +15,7 @@ const getLinkMarkup = (name) => {
  * Add links to the mouse details on the map.
  */
 const addMouseLinksToMap = async () => {
-  const overlay = document.getElementById('overlayPopup');
+  const overlay = document.querySelector('#overlayPopup');
   if (! (overlay && overlay.classList.contains('treasureMapPopup'))) {
     return;
   }

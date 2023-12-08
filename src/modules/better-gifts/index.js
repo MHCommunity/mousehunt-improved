@@ -234,7 +234,7 @@ const getButtons = (className = false) => {
  * Make the buttons and add them to the page.
  */
 const makeButtons = () => {
-  if (document.getElementById('bulk-gifting-gift-buttons')) {
+  if (document.querySelector('#bulk-gifting-gift-buttons')) {
     return;
   }
 

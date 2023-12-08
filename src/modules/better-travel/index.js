@@ -26,7 +26,7 @@ const expandTravelRegions = () => {
     return;
   }
 
-  const hud = document.getElementById('mousehuntHud');
+  const hud = document.querySelector('#mousehuntHud');
   if (hud) {
     const hudHeight = hud.offsetHeight + 30;
 
@@ -105,7 +105,7 @@ const addTab = (id, label) => {
     return;
   }
 
-  const exists = document.getElementById(`mh-${id}-tab`);
+  const exists = document.querySelector(`#mh-${id}-tab`);
   if (exists) {
     return;
   }
@@ -130,7 +130,7 @@ const addPage = (id, content) => {
     return;
   }
 
-  const exists = document.getElementById(`mh-${id}-page`);
+  const exists = document.querySelector(`#mh-${id}-page`);
   if (exists) {
     return;
   }
