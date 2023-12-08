@@ -489,3 +489,45 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
   background-color: #0e0e0e;
   border-color: #242424;
 }
+
+.itemPurchaseView-content-details {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-bottom: 10px;
+}
+
+.itemPurchaseView-content-container .itemViewStatBlock.horizontal.base,
+.itemPurchaseView-content-container .itemViewStatBlock.horizontal.weapon {
+  width: auto;
+  margin-bottom: 10px;
+  margin-left: 0;
+}
+
+.title .itemViewStatBlock-stat-value span a {
+  max-width: 60px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: unset;
+}
+
+a.itemPurchaseView-image {
+  width: 100px;
+  height: 100px;
+}
+
+a.shopsPage-kingsCalibratorPromo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 12px;
+}
+
+.shopsPage-kingsCalibratorPromo-button {
+  top: unset;
+}
+
+.shopsPage-kingsCalibratorPromo br {
+  display: none;
+}

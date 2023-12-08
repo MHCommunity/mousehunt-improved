@@ -204,6 +204,11 @@ a.folkloreForestRegionView__estimate-button:hover {
   bottom: 13px;
 }
 
+.folkloreForestRegionView-dialog-block.toggle-is-hidden {
+  filter: grayscale(0.6);
+  opacity: 0.8;
+}
+
 .folkloreForestRegionView-environmentInventory-blockContainer {
   width: 125px;
 }

@@ -132,6 +132,7 @@
 .tableOfContentsProgressView-nextBookContainer {
   position: absolute;
   bottom: -30px;
+  padding: 3px;
   font-size: 11px;
   background-color: #fdebab;
   box-shadow: 0 1px 1px 1px #f1b960;
@@ -152,4 +153,21 @@
 
 .tableOfContentsProgressView-book-wordCount {
   margin: 10px 0 5px;
+}
+
+a.tableOfContentsProgressView-claimButton.reveal {
+  filter: hue-rotate(80deg) brightness(1.2);
+}
+
+.tableOfContentsClaimDialogView-miceLoot .itemImage .quantity {
+  font-size: 13px;
+  background-color: rgb(255 255 255 / 60%);
+}
+
+.folkloreForestRegionView-boost {
+  display: none;
+}
+
+.tableOfContentsView-initialFuel-checkboxContainer {
+  background-color: transparent;
 }

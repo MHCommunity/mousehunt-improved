@@ -203,3 +203,8 @@ img.campPage-larryTip-external-link-icon {
 .campPage-tabs-tabContent-larryTip-container p:last-of-type a::after {
   content: "→";
 }
+
+.campPage-daily-container .shopsPage-kingsCalibratorPromo {
+  display: flex;
+  align-items: center;
+}

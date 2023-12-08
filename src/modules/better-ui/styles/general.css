@@ -8,13 +8,17 @@
 .campPage-trap-itemStats,
 .campPage-trap-trapEffectiveness,
 .campPage-trap-armedItem,
+.campPage-trap-armedItem.bait.active,
 .campPage-trap-armedItem.bait,
-.campPage-trap-armedItem.bait.inactive,
 .campPage-trap-armedItem.skin,
 .campPage-trap-armedItem.mh-favorite-setups-button {
   border: 1px solid #d3cecb;
   border-radius: 3px;
   box-shadow: -1px 1px 3px 0 #d3cecb inset;
+}
+
+.campPage-trap-armedItem.bait.active {
+  box-shadow: -1px -1px 1px #d3cecb inset;
 }
 
 .campPage-trap-armedItem:hover,
@@ -316,4 +320,28 @@ a[href="https://www.mousehuntgame.com/item.php?item_type=mystery_satchel_of_gold
   body.hasSidebar .pageFrameView-column {
     background-color: #bad4ed !important;
   }
+}
+
+.campPage-trap-blueprintContainer {
+  border-color: #315871;
+  border-width: 1px;
+  box-shadow: none;
+}
+
+.campPage-trap-itemBrowser-item-description.shortDescription {
+  margin-top: 5px;
+}
+
+.campPage-trap-itemBrowser-item-image::after {
+  border-color: #ccc;
+  box-shadow: 2px 2px 3px -1px #cdc9c6 inset;
+}
+
+.itemView-action-convertForm {
+  font-size: 13px;
+}
+
+input.itemView-action-convert-quantity {
+  padding: 2px 5px;
+  text-align: left;
 }
