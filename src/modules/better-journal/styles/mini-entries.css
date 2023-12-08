@@ -39,12 +39,18 @@
 .journal .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted,
 .journal .entry.folkloreForest.folkloreForest-lootFuelBoost,
 .journal .entry.folkloreForest-farmToTable,
-.journal .entry.folkloreForest-tableOfContents.folkloreForest-bookFinished {
+.journal .entry.folkloreForest-tableOfContents.folkloreForest-bookFinished{
   background-position: 10px center;
 }
 
 .journal .entry.folkloreForest-bookClaimed {
   background-position: 10px 30px;
+}
+
+/* gotta love !important */
+.entry.short.misc.custom.winterTaiga.festiveSpiritLootBoost.minimalJournalImage {
+  background-position: 10px center !important;
+  background-size: 50px !important;
 }
 
 /* hiding date for entries that come with a hunt */
