@@ -94,9 +94,8 @@ const makeDashboardTab = () => {
 
     const existing = document.querySelector('.dashboardContents');
     if (existing) {
-      const existingParent = existing && existing.parentNode;
       const refreshedContents = getDashboardContents();
-      existingParent.replaceChild(refreshedContents, existing);
+      existing.replaceWith(refreshedContents);
     }
   });
 
@@ -112,17 +111,10 @@ const makeDashboardTab = () => {
 
   // TODO: remove disabled class when we have a way to refresh.
   const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh', 'disabled']);
+  makeElement('span', '', 'Refresh', refreshButton);
 
-  const refreshText = document.createElement('span');
-  refreshText.innerText = 'Refresh';
-
-  refreshButton.append(refreshText);
   refreshWrapper.append(refreshButton);
-
-  const refreshDescription = document.createElement('div');
-  refreshDescription.innerText = ' (coming soon, for now just travel to each location)';
-
-  refreshWrapper.append(refreshDescription);
+  makeElement('div', '', ' (coming soon, for now just travel to each location)', refreshWrapper);
 
   dashboardWrapper.append(refreshWrapper);
   dropdownContent.append(dashboardWrapper);

@@ -542,13 +542,10 @@ const addSortedMapTab = () => {
     return false;
   }
 
-  const sortedTab = document.createElement('a');
-  sortedTab.className = 'treasureMapRootView-subTab sorted-map-tab';
+  const sortedTab = makeElement('a', 'treasureMapRootView-subTab sorted-map-tab', 'Sorted');
   sortedTab.setAttribute('data-type', 'sorted');
-  sortedTab.innerText = 'Sorted';
 
-  const divider = document.createElement('div');
-  divider.className = 'treasureMapRootView-subTab-spacer';
+  const divider = makeElement('div', 'treasureMapRootView-subTab-spacer');
 
   // Add as the first tab.
   mapTabs.insertBefore(divider, mapTabs.children[0]);

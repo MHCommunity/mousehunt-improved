@@ -122,8 +122,8 @@ const getInvitedHunterData = async (invited) => {
   }
 
   const hunters = [];
-  for (let i = 0; i < batches.length; i += 1) {
-    const batch = await getUserData(batches[i]);
+  for (const batch_ of batches) {
+    const batch = await getUserData(batch_);
     hunters.push(...batch);
   }
 

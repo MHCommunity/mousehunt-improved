@@ -164,13 +164,11 @@ const addClassesToGroups = (mapData) => {
     }
 
     // Finally, fallback to trying to match the hunter name to the user's name in case of weirdness idk.
-    if (! hunter) {
-      if (hunterName === `${user.firstname} ${user.lastname}` || hunterName === `${user.firstname}${user.lastname}`) {
-        hunter = {
-          name: `${user.firstname} ${user.lastname}`,
-          sn_user_id: user.sn_user_id,
-        };
-      }
+    if (! hunter && (hunterName === `${user.firstname} ${user.lastname}` || hunterName === `${user.firstname}${user.lastname}`)) {
+      hunter = {
+        name: `${user.firstname} ${user.lastname}`,
+        sn_user_id: user.sn_user_id,
+      };
     }
 
     if (! hunter) {
