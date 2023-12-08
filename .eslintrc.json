@@ -14,7 +14,6 @@
     "plugin:unicorn/recommended"
   ],
   "plugins": [
-    "file-progress",
     "import-newlines",
     "jsdoc",
     "json",
@@ -46,7 +45,6 @@
     "comma-spacing": ["error", { "before": false, "after": true }],
     "computed-property-spacing": ["error", "never"],
     "eol-last": ["error", "always"],
-    "file-progress/activate": "error",
     "import-newlines/enforce": "error",
     "import/exports-last": "error",
     "import/first": "error",
@@ -121,7 +119,8 @@
       "extends": ["plugin:markdownlint/recommended"],
       "rules": {
         "markdownlint/md013": "off",
-        "markdownlint/md029": "off"
+        "markdownlint/md029": "off",
+        "unicorn/filename-case": "off"
       }
     }
   ]
