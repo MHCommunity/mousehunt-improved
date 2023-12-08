@@ -5,7 +5,6 @@
   margin: 10px 0 10px 10px;
 }
 
-
 .folkloreForestRegionView-libraryStats.bestBook {
   padding: 10px 15px;
   margin: 10px 0;
@@ -26,10 +25,9 @@
   font-weight: 400;
 }
 
-.folkloreForestRegionView-libraryStats.bestBook .folkloreForestRegionView-libraryStats-value{
+.folkloreForestRegionView-libraryStats.bestBook .folkloreForestRegionView-libraryStats-value {
   gap: 10px;
 }
-
 
 .folkloreForestRegionView-libraryBestBook-name {
   min-width: 100px;
@@ -37,7 +35,6 @@
   font-size: 13px;
   line-height: 15px;
 }
-
 
 .folkloreForestRegionView-libraryStats.bestBook .folkloreForestRegionView-libraryStats-label {
   position: absolute;
@@ -98,13 +95,21 @@
 .folkloreForestRegionView-libraryBook-quantity {
   font-size: 30px;
   color: #81eb00;
-  text-shadow: 1px 1px 1px #143706, 0 1px 1px #143706, 1px 0 1px #143706, 0 0 1px #143706;
+  text-shadow:
+    1px 1px 1px #143706,
+    0 1px 1px #143706,
+    1px 0 1px #143706,
+    0 0 1px #143706;
   filter: drop-shadow(0 0 2px #000);
 }
 
 .folkloreForestRegionView-libraryStats-value.bigText {
   color: #81eb00;
-  text-shadow: 1px 1px 1px #143706, 0 1px 1px #143706, 1px 0 1px #143706, 0 0 1px #143706;
+  text-shadow:
+    1px 1px 1px #143706,
+    0 1px 1px #143706,
+    1px 0 1px #143706,
+    0 0 1px #143706;
 }
 
 .folkloreForestRegionView-libraryStats.totalWords {

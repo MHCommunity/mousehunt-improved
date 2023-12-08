@@ -46,7 +46,7 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
   font-size: 13px;
   line-height: 1.3;
   background-color: #292827;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .halloweenBoilingCauldronHUD-cauldron-tooltip i {
@@ -125,7 +125,7 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
 }
 
 .itemPurchaseView-container.apothecary .itemPurchaseView-action-quantity input {
-  width: 90px
+  width: 90px;
 }
 
 .itemPurchaseView-container.apothecary .itemPurchaseView-action-container {
@@ -217,7 +217,6 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
   font-size: 11px;
 }
 
-
 .halloweenBoilingCauldronRecipeView-recipe-mice-list.num_5 .halloweenBoilingCauldronRecipeView-recipe-mouse {
   width: 33%;
 }
@@ -254,7 +253,7 @@ a.halloweenBoilingCauldronRecipeView-cauldron-queueSlot-cancelButton {
 }
 
 .campHudSpookyShuffleView__quantity {
-  font-size: 12px;;
+  font-size: 12px;
 }
 
 .halloweenBoilingCauldronHUD-cauldron-imageContainer,
@@ -272,7 +271,7 @@ a.halloweenBoilingCauldronRecipeView-cauldron-queueSlot-cancelButton {
 }
 
 .halloweenBoilingCauldronHUD.fuelReveal .halloweenBoilingCauldronHUD-candle {
-  animation-delay: .5s;
+  animation-delay: 0.5s;
 }
 
 .halloweenBoilingCauldronHUD-yield-huntsRemaining {
@@ -289,6 +288,6 @@ a.halloweenBoilingCauldronRecipeView-cauldron-queueSlot-cancelButton {
   box-shadow: inset 0 0 2px 0 #037e2d;
 }
 
-.halloweenBoilingCauldronHUD-dialog-state.item .halloweenBoilingCauldronHUD-dialog-title{
+.halloweenBoilingCauldronHUD-dialog-state.item .halloweenBoilingCauldronHUD-dialog-title {
   margin-right: 20px;
 }

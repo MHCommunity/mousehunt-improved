@@ -57,7 +57,7 @@
 .mh-ui-find-hunters-title,
 .mh-ui-map-settings-title,
 .mh-ui-share-title {
-    display: none;
+  display: none;
 }
 
 .mh-ui-find-hunters-block {
@@ -65,21 +65,21 @@
 }
 
 .mh-ui-map-settings-block .treasureMapView-block-content {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
 }
 
 .treasureMapView-block.mh-ui-share-block .treasureMapView-block-content {
-    display: flex;
-    gap: 3px;
-    align-items: center;
+  display: flex;
+  gap: 3px;
+  align-items: center;
 }
 
 a.mousehuntActionButton.lightBlue.treasureMapView-inviteModeButton {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .mh-ui-find-hunters-block .treasureMapView-mapMenu-group-invite {

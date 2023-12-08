@@ -70,7 +70,9 @@ input.messageBoardView-message-submit {
   background-color: #f4e830;
   border: 1px solid #000;
   border-radius: 4px;
-  box-shadow: 0 -5px 8px -2px #ffae00 inset, 1px 1px 1px #eee;
+  box-shadow:
+    0 -5px 8px -2px #ffae00 inset,
+    1px 1px 1px #eee;
 }
 
 .treasureMapRootView .messageBoardView .messageBoardView-message-description,

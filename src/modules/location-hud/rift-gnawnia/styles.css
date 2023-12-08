@@ -3,7 +3,7 @@
 }
 
 .riftGnawniaHud-targetsBackground {
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .riftGnawniaHud-targets .mousehuntTooltip {
@@ -14,7 +14,7 @@
   text-align: center;
   background-color: #d6e8e4;
   border: 1px solid #29c7cb;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .riftGnawniaHud-targets .mousehuntTooltip .mousehuntTooltip-arrow {

@@ -16,7 +16,7 @@
 
 .puzzleView__requestNewPuzzleButtonIcon {
   filter: invert(1);
-  opacity: .8;
+  opacity: 0.8;
 }
 
 input.puzzleView__code {

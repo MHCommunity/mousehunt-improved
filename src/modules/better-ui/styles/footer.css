@@ -13,8 +13,8 @@
   width: auto;
   max-height: 25px;
   margin: 5px 10px 0 0;
-  opacity: .2;
-  transition: .2s;
+  opacity: 0.2;
+  transition: 0.2s;
 }
 
 .pageFrameView-footer a:nth-child(4) {
@@ -23,7 +23,7 @@
 
 .pageFrameView-footer a:nth-child(4) img {
   filter: sepia(1);
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .pageFrameView-footer:hover a img,
@@ -57,8 +57,8 @@
 }
 
 .pageFrameView-content {
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 /* Hide the version number */
@@ -90,8 +90,8 @@
   width: 0;
   height: 0;
   color: transparent;
-  opacity: .4;
-  transition: .3s;
+  opacity: 0.4;
+  transition: 0.3s;
   transform-origin: center;
 }
 
@@ -112,7 +112,7 @@
   line-height: 10px;
   color: #000;
   text-align: center;
-  content: '';
+  content: "";
   background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/camp.png?asset_cache_version=2);
   filter: grayscale(1);
   background-repeat: no-repeat;

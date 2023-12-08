@@ -21,7 +21,9 @@
   background-color: #fff600;
   border: 1px solid #000;
   border-radius: 5px;
-  box-shadow: inset 0 0 5px #fff,1px 1px 1px #fff;
+  box-shadow:
+    inset 0 0 5px #fff,
+    1px 1px 1px #fff;
 }
 
 #tsitu-supply-search input {
@@ -59,7 +61,10 @@ span.shieldDurationText[data-near-expiry="true"] {
   z-index: 1;
   font-size: 15px;
   font-weight: 900;
-  text-shadow: 0 0 1px #000, 0 0 2px #000, 0 0 3px #000;
+  text-shadow:
+    0 0 1px #000,
+    0 0 2px #000,
+    0 0 3px #000;
 }
 
 span.shieldDurationText[data-near-expiry="true"] {

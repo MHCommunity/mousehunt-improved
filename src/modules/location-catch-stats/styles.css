@@ -15,12 +15,16 @@
   width: 275px;
   background: #f6f3eb;
   border: 1px solid #534022;
-  box-shadow: 1px 1px 1px 0 #9d917f, 1px 3px 5px 0 #6c6c6c;
-  transition: box-shadow .25s;
+  box-shadow:
+    1px 1px 1px 0 #9d917f,
+    1px 3px 5px 0 #6c6c6c;
+  transition: box-shadow 0.25s;
 }
 
 .mh-is-dragging .mh-catch-stats-wrapper {
-  box-shadow: 1px 1px 1px 0 #9d917f, 0 7px 9px 2px #6c6c6c;
+  box-shadow:
+    1px 1px 1px 0 #9d917f,
+    0 7px 9px 2px #6c6c6c;
 }
 
 .mh-catch-stats-header {
@@ -42,7 +46,8 @@
   cursor: pointer;
 }
 
-.mh-catch-stats-close:hover, .mh-catch-stats-close:focus {
+.mh-catch-stats-close:hover,
+.mh-catch-stats-close:focus {
   color: #926944;
   background-color: #eee;
   border-radius: 50%;
@@ -67,7 +72,8 @@
 }
 
 .mh-catch-stats:hover,
-.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):hover, .mh-catch-stats:focus,
+.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):hover,
+.mh-catch-stats:focus,
 .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):focus {
   color: #665f5f;
   text-decoration: none;

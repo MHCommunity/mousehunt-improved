@@ -24,7 +24,9 @@ a.mousehuntHud-shield.golden.mhui-custom-shield.pride {
 }
 
 .mousehuntHud-shield.golden.scrambles {
-  background-image: url(https://i.mouse.rip/shield-scrambles-bawk.png), url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
+  background-image:
+    url(https://i.mouse.rip/shield-scrambles-bawk.png),
+    url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
 }
 
 .mousehuntHud-shield.jerry {
@@ -32,7 +34,9 @@ a.mousehuntHud-shield.golden.mhui-custom-shield.pride {
 }
 
 .mousehuntHud-shield.golden.jerry {
-  background-image: url(https://i.mouse.rip/shield-jerry.png), url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
+  background-image:
+    url(https://i.mouse.rip/shield-jerry.png),
+    url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
 }
 
 .mousehuntHud-shield.golden.spring-egg-hunt {
@@ -59,7 +63,7 @@ a.mousehuntHud-shield.golden.mhui-custom-shield.pride {
 
 a.mousehuntHud-shield.title,
 a.mousehuntHud-shield.golden.title {
-  background: url(https://i.mouse.rip/shield-blank.png?1) 0 0/contain no-repeat;
+  background: url(https://i.mouse.rip/shield-blank.png?1) 0 0 / contain no-repeat;
 }
 
 .mousehuntHud-shield.title::after {
@@ -70,108 +74,107 @@ a.mousehuntHud-shield.golden.title {
   background-repeat: no-repeat;
   background-position: 15px 15px;
   background-size: 105px;
-  transition: background-image .5s;
+  transition: background-image 0.5s;
 }
-
 
 .mousehuntHud-shield.title.novice::after,
 .mousehuntHud-shield.golden.title.novice::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/84bc1109b5cd7aa8c24d195bc8207c38.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/84bc1109b5cd7aa8c24d195bc8207c38.png?cv=2);
 }
 
 .mousehuntHud-shield.title.recruit::after,
 .mousehuntHud-shield.golden.title.recruit::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/3f1e44bbaa7138da4c326819e9f3f0a8.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/3f1e44bbaa7138da4c326819e9f3f0a8.png?cv=2);
 }
 
 .mousehuntHud-shield.title.apprentice::after,
 .mousehuntHud-shield.golden.title.apprentice::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/6f4673dd2d9d1e98b4569667d702a775.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/6f4673dd2d9d1e98b4569667d702a775.png?cv=2);
 }
 
 .mousehuntHud-shield.title.initiate::after,
 .mousehuntHud-shield.golden.title.initiate::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/e96387f7261b95c0eeab9291e4e594e1.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/e96387f7261b95c0eeab9291e4e594e1.png?cv=2);
 }
 
 .mousehuntHud-shield.title.journeyman::after,
 .mousehuntHud-shield.golden.title.journeyman::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/ad6875955f541159133c6d3798519f81.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/ad6875955f541159133c6d3798519f81.png?cv=2);
 }
 
 .mousehuntHud-shield.title.master::after,
 .mousehuntHud-shield.golden.title.master::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/35ee6056a09037fb13a9195881875045.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/35ee6056a09037fb13a9195881875045.png?cv=2);
 }
 
 .mousehuntHud-shield.title.grandmaster::after,
 .mousehuntHud-shield.golden.title.grandmaster::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/0da3761747914f497c16dc2051ba132d.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/0da3761747914f497c16dc2051ba132d.png?cv=2);
 }
 
 .mousehuntHud-shield.title.legendary::after,
 .mousehuntHud-shield.golden.title.legendary::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/fca35751046f4bcc972716ca484b6d61.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/fca35751046f4bcc972716ca484b6d61.png?cv=2);
 }
 
 .mousehuntHud-shield.title.hero::after,
 .mousehuntHud-shield.golden.title.hero::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/0567284d6e12aaaed35ca5912007e070.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/0567284d6e12aaaed35ca5912007e070.png?cv=2);
 }
 
 .mousehuntHud-shield.title.knight::after,
 .mousehuntHud-shield.golden.title.knight::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/398dca9a8c7703de969769491622ca32.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/398dca9a8c7703de969769491622ca32.png?cv=2);
 }
 
 .mousehuntHud-shield.title.lord::after,
 .mousehuntHud-shield.golden.title.lord::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/9a6acd429a9a3a4849ed13901288b0b8.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/9a6acd429a9a3a4849ed13901288b0b8.png?cv=2);
 }
 
 .mousehuntHud-shield.title.baron::after,
 .mousehuntHud-shield.golden.title.baron::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/ea9c0ec2e6d3d81c14e61f5ce924d0e1.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/ea9c0ec2e6d3d81c14e61f5ce924d0e1.png?cv=2);
 }
 
 .mousehuntHud-shield.title.count::after,
 .mousehuntHud-shield.golden.title.count::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/dd11711a25b80db90e0306193f2e8d78.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/dd11711a25b80db90e0306193f2e8d78.png?cv=2);
 }
 
 .mousehuntHud-shield.title.duke::after,
 .mousehuntHud-shield.golden.title.duke::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/eb46ac1e8197b13299ab860f07d963db.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/eb46ac1e8197b13299ab860f07d963db.png?cv=2);
 }
 
 .mousehuntHud-shield.title.grandduke::after,
 .mousehuntHud-shield.golden.title.grandduke::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/87937fa96bbb3b2dd3225df883002642.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/87937fa96bbb3b2dd3225df883002642.png?cv=2);
 }
 
 .mousehuntHud-shield.title.archduke::after,
 .mousehuntHud-shield.golden.title.archduke::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/043efe31de4f0f2e0ddca590fe829032.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/043efe31de4f0f2e0ddca590fe829032.png?cv=2);
 }
 
 .mousehuntHud-shield.title.viceroy::after,
 .mousehuntHud-shield.golden.title.viceroy::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/e2e79f6f9201a4d4e7a89684fbb5356f.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/e2e79f6f9201a4d4e7a89684fbb5356f.png?cv=2);
 }
 
 .mousehuntHud-shield.title.elder::after,
 .mousehuntHud-shield.golden.title.elder::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/0f3cf224bf98457f6b5bad91ab1c7bd2.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/0f3cf224bf98457f6b5bad91ab1c7bd2.png?cv=2);
 }
 
 .mousehuntHud-shield.title.sage::after,
 .mousehuntHud-shield.golden.title.sage::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/cb49e43c5e4460da7c09fe28ca4f44ce.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/cb49e43c5e4460da7c09fe28ca4f44ce.png?cv=2);
 }
 
 .mousehuntHud-shield.title.fabled::after,
 .mousehuntHud-shield.golden.title.fabled::after {
-    background-image: url(https://www.mousehuntgame.com/images/titles/5daba92a8d609834aa8b789f37544e08.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/titles/5daba92a8d609834aa8b789f37544e08.png?cv=2);
 }
 
 .huntersHornView__timer--default.color-blue,

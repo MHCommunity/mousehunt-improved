@@ -15,7 +15,7 @@
   line-height: 30px;
   color: #772b0a;
   text-align: center;
-  background: linear-gradient(#FFF9DC 45%,#F1DC8A 55%);
+  background: linear-gradient(#fff9dc 45%, #f1dc8a 55%);
   border: 1px solid #985f42;
   border-bottom: 1px solid #e9be6c;
   border-radius: 10px;
@@ -33,7 +33,7 @@
   line-height: 30px;
   color: #ab755d;
   text-align: center;
-  background: linear-gradient(#f6f3e2 45%,#fdf3cb 55%);
+  background: linear-gradient(#f6f3e2 45%, #fdf3cb 55%);
   border: 1px solid #985f42;
   border-bottom: none;
   border-radius: 10px;
@@ -83,13 +83,13 @@
 
 .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader.active {
   color: #772b0a;
-  background: linear-gradient(#FFF9DC 45%,#F1DC8A 55%);
+  background: linear-gradient(#fff9dc 45%, #f1dc8a 55%);
 }
 
 .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:hover,
 .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:focus {
-      color: #772b0a;
-      background: linear-gradient(#FFF9DC 45%,#F1DC8A 55%);
+  color: #772b0a;
+  background: linear-gradient(#fff9dc 45%, #f1dc8a 55%);
 }
 
 .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader:hover span {
@@ -97,51 +97,51 @@
 }
 
 .hunterInfoView-achievementsBlock .mousehuntTabContentContainer-padding {
-    background: #e9e1c6;
-    border: none;
-    box-shadow: none;
+  background: #e9e1c6;
+  border: none;
+  box-shadow: none;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-treasureMaps-left-currentMap-image {
-    width: 50px;
-    height: 50px;
-    background-color: #fff;
-    border-width: 1px;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-width: 1px;
 }
 
 .hunterInfoView-treasureMaps-left {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-treasureMaps-left-currentMap-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound-ranking {
-    width: 110px;
-    margin-top: 10px;
-    margin-bottom: -5px;
-    font-size: 11px;
-    color: #772b0a;
+  width: 110px;
+  margin-top: 10px;
+  margin-bottom: -5px;
+  font-size: 11px;
+  color: #772b0a;
 }
 
 .hunterInfoView-treasureMaps-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -10px;
-    margin-right: -5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -10px;
+  margin-right: -5px;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound {
-    font-size: 17px;
+  font-size: 17px;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound-label {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .itemImage {
@@ -179,7 +179,7 @@
   background-color: #e9e1c6;
   border: 1px solid #a0a0a0;
   box-shadow: none;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseImage {
@@ -246,7 +246,7 @@
   border: none !important; /* profile+ */
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .mouseCrownsView-group-mouse-image:hover {
@@ -309,7 +309,7 @@
 }
 
 .mouseCrownsView-group .mouseCrownsView-group-mouse-padding {
-background-color: #fff;
+  background-color: #fff;
 }
 
 .mouseCrownsView-group-mouse.highlight.favourite {
@@ -470,8 +470,8 @@ a.friendsProfileView-randomFriend {
   background-position-y: 5px;
 }
 
-.hunterProfileItemsView-categoryContent-item.uncollected  .itemImage {
-  opacity: .3;
+.hunterProfileItemsView-categoryContent-item.uncollected .itemImage {
+  opacity: 0.3;
 }
 
 .hunterProfileItemsView-categoryContent-item.uncollected .hunterProfileItemsView-categoryContent-item-padding {

@@ -11,7 +11,8 @@
   color: #fff5cb;
 }
 
-.folkloreForestRegionView-dialog-tabHeaderContainer::before, .folkloreForestRegionView-dialog-tabHeaderContainer::after {
+.folkloreForestRegionView-dialog-tabHeaderContainer::before,
+.folkloreForestRegionView-dialog-tabHeaderContainer::after {
   background: transparent;
 }
 
@@ -29,7 +30,7 @@ a.folkloreForestRegionView-dialog-tabHeader {
 }
 
 #overlayPopup.fabledForestDialog .title {
-    margin-top: -19px;
+  margin-top: -19px;
 }
 
 .folkloreForestRegionView-environmentInventory-block-quantity {
@@ -72,7 +73,9 @@ a.folkloreForestRegionView-upgradeButton {
   width: 25px;
   height: 25px;
   margin-right: 3px;
-  box-shadow: 0 0 17px #54290a inset, 0 0 2px 1px #999;
+  box-shadow:
+    0 0 17px #54290a inset,
+    0 0 2px 1px #999;
 }
 
 .folkloreForestRegionView-upgradeContainer {
@@ -98,7 +101,7 @@ a.folkloreForestRegionView-upgradeButton {
 }
 
 .folkloreForestRegionView-trapWarningContainer a {
-  color: #870808
+  color: #870808;
 }
 
 .folkloreForestRegionView-warning {
@@ -176,7 +179,7 @@ a.folkloreForestRegionView__estimate-button:hover {
   font-size: 15px;
   line-height: 25px;
   background-color: #e94e4e;
-  box-shadow:1px 1px 4px -1px #000;
+  box-shadow: 1px 1px 4px -1px #000;
 }
 
 /* make the CC hover less sensitive */
@@ -196,9 +199,9 @@ a.folkloreForestRegionView__estimate-button:hover {
 }
 
 .mhui-folklore-forest-upgrade-toggle {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
+  position: absolute;
+  right: 25px;
+  bottom: 13px;
 }
 
 .folkloreForestRegionView-environmentInventory-blockContainer {
@@ -206,11 +209,11 @@ a.folkloreForestRegionView__estimate-button:hover {
 }
 
 .upgrades .folkloreForestRegionView-dialog-block .folkloreForestRegionView-dialog-block-icon::after {
-    display: none;
+  display: none;
 }
 
 .upgrades .highlight .folkloreForestRegionView-dialog-block-name {
-    background-color: #a2723b;
+  background-color: #a2723b;
 }
 
 .folkloreForestRegionView-dialog-block-cost.error .folkloreForestRegionView-dialog-block-cost-image {

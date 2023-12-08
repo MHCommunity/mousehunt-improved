@@ -84,7 +84,7 @@
 }
 
 .itemView-action.crafting_item b {
-  display: none
+  display: none;
 }
 
 .itemView-action.crafting_item::before {

@@ -183,7 +183,6 @@
   border-right: none;
 }
 
-
 .travelPage-regionMenu-environmentLink.relic-hunter-is-here::after {
   position: absolute;
   top: 5px;
@@ -197,7 +196,7 @@
   border-radius: 5px;
 }
 
-.travelPage-alpha-wrapper  .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
+.travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
   background-color: #ffe67a;
   border-radius: 6px;
   outline: 1px solid #acacac;
@@ -209,7 +208,7 @@
   outline: 1px solid #4c71b4;
 }
 
-.travelPage-map-image-environment  .map-relic-hunter-is-here {
+.travelPage-map-image-environment .map-relic-hunter-is-here {
   position: absolute;
   top: -40px;
   left: 46px;
@@ -237,11 +236,11 @@
 }
 
 .map-relic-hunter-is-here.travelPage-map-image-environment-pointer {
-    top: 41px;
-    left: 86px;
-    z-index: 9;
-    filter: hue-rotate(326deg);
-    transform: rotate(70deg);
+  top: 41px;
+  left: 86px;
+  z-index: 9;
+  filter: hue-rotate(326deg);
+  transform: rotate(70deg);
 }
 
 .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here,

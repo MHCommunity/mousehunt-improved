@@ -6,16 +6,6 @@
   padding-top: 5px;
 }
 
-.notificationMessageList .message .date {
-  margin-top: 5px;
-  margin-left: 0;
-}
-
-.notificationMessageList .tab[data-tab="general"] .message .date {
-  margin-top: -10px;
-  margin-left: 50px;
-}
-
 /* daily draw */
 .notificationMessageList .message.ballot .clear-block {
   display: flex;
@@ -61,7 +51,7 @@
 }
 
 .message.notification .actions.ballot {
-    float: none;
+  float: none;
 }
 
 .notificationMessageList .message .actions.friendRequest,
@@ -80,7 +70,7 @@
 }
 
 #messengerUINotification .tabs a[data-tab="daily_draw"] {
-  order: -400
+  order: -400;
 }
 
 #messengerUINotification .tabs a[data-tab="friend_requests"] {
@@ -169,7 +159,6 @@ div#messengerUINotification {
   border-color: #d1d0cf;
   border-radius: 20px;
 }
-
 
 .giftSelectorView-inboxHeader-closeButton {
   position: absolute;

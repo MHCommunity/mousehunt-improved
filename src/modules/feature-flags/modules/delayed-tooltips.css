@@ -5,5 +5,5 @@
 .mousehuntTooltip {
   display: block;
   opacity: 0;
-  transition: opacity  0s linear .4s;
+  transition: opacity 0s linear 0.4s;
 }

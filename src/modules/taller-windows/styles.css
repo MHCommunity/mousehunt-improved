@@ -62,7 +62,13 @@
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   outline: 10px solid #fbf3ae;
-  box-shadow: 0 2px 1px 11px #b9570e, 0 3px 2px 12px #985316, 0 4px 1px 13px #84420f, 0 5px 1px 14px #c47728, 0 6px 1px 15px #cd7f2c, 0 7px 1px 16px #e19439;
+  box-shadow:
+    0 2px 1px 11px #b9570e,
+    0 3px 2px 12px #985316,
+    0 4px 1px 13px #84420f,
+    0 5px 1px 14px #c47728,
+    0 6px 1px 15px #cd7f2c,
+    0 7px 1px 16px #e19439;
 }
 
 .floatingIslandsWorkshop-stabilizer {
@@ -128,7 +134,7 @@
 
 /* select 2 */
 .select2-results {
-    max-height: 50vh;
+  max-height: 50vh;
 }
 
 .treasureMapDialogView.limitHeight .treasureMapDialogView-content {

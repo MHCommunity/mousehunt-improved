@@ -16,13 +16,17 @@
 .campPage-trap-baitName,
 .campPage-trap-baitQuantity {
   color: #926944;
-  text-shadow: 0 0 1px #ae9b6d, 1px 1px #fff;
+  text-shadow:
+    0 0 1px #ae9b6d,
+    1px 1px #fff;
 }
 
 .mh-dark-mode .campPage-trap-baitName,
 .mh-dark-mode .campPage-trap-baitQuantity {
   color: #ffe6d0;
-  text-shadow: 0 0 1px #ae9b6d, 1px 1px #000;
+  text-shadow:
+    0 0 1px #ae9b6d,
+    1px 1px #000;
 }
 
 .campPage-trap-baitQuantity {
@@ -83,7 +87,6 @@
   border-bottom: 1px solid #ceb7a6;
   border-radius: 0;
 }
-
 
 .campPage-trap {
   border: 1px solid #9d917f;
