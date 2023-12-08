@@ -117,7 +117,7 @@
 }
 
 .folkloreForestRegionView-libraryBook.disabled .tableOfContentsView-bookCover {
-  filter: opacity(.8) grayscale(1);
+  filter: opacity(0.8) grayscale(1);
 }
 
 .folkloreForestRegionView-libraryBook.disabled .folkloreForestRegionView-libraryBook-name {
