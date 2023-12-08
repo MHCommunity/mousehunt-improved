@@ -1459,16 +1459,16 @@ const getUserSetupDetails = () => {
       cheeseEfect: userObj.trap_cheese_effect,
     },
     bait: {
-      id: parseInt(userObj.bait_item_id),
+      id: Number.parseInt(userObj.bait_item_id),
       name: userObj.bait_name,
-      quantity: parseInt(userObj.bait_quantity),
+      quantity: Number.parseInt(userObj.bait_quantity),
       power: 0,
       powerBonus: 0,
       luck: 0,
       attractionBonus: 0,
     },
     base: {
-      id: parseInt(userObj.base_item_id),
+      id: Number.parseInt(userObj.base_item_id),
       name: userObj.base_name,
       power: 0,
       powerBonus: 0,
@@ -1476,16 +1476,16 @@ const getUserSetupDetails = () => {
       attractionBonus: 0,
     },
     charm: {
-      id: parseInt(userObj.trinket_item_id),
+      id: Number.parseInt(userObj.trinket_item_id),
       name: userObj.trinket_name,
-      quantity: parseInt(userObj.trinket_quantity),
+      quantity: Number.parseInt(userObj.trinket_quantity),
       power: 0,
       powerBonus: 0,
       luck: 0,
       attractionBonus: 0,
     },
     weapon: {
-      id: parseInt(userObj.weapon_item_id),
+      id: Number.parseInt(userObj.weapon_item_id),
       name: userObj.weapon_name,
       power: 0,
       powerBonus: 0,
@@ -1590,7 +1590,7 @@ const getUserSetupDetails = () => {
 
       value = value.replace('%', '');
       value = value.replace(',', '');
-      value = parseInt(value * 100) / 100;
+      value = Number.parseInt(value * 100) / 100;
 
       if (tempType === 'attractionBonus') {
         value = value / 100;
@@ -1635,7 +1635,7 @@ const getUserSetupDetails = () => {
           setup.aura[auraType].type = auraType;
         }
 
-        value = parseInt(value);
+        value = Number.parseInt(value);
 
         if (isBonus) {
           value = value / 100;

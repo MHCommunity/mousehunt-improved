@@ -32,7 +32,7 @@ const addOpenAllButOneButton = () => {
         return;
       }
 
-      quantity.textContent = parseInt(quantity.textContent, 10) - 1;
+      quantity.textContent = Number.parseInt(quantity.textContent, 10) - 1;
       app.pages.InventoryPage.useConvertible(e.target);
     });
 

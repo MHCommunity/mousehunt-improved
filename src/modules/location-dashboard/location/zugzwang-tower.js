@@ -41,7 +41,7 @@ const getZugzwangTowerText = (quests) => {
 
 const setZugzwangTowerData = () => {
   const ampEl = document.querySelector('.zuzwangsTowerHUD-currentAmplifier span');
-  const amp = ampEl ? parseInt(ampEl.innerText, 10) : 0;
+  const amp = ampEl ? Number.parseInt(ampEl.innerText, 10) : 0;
 
   const techProgressEl = document.querySelectorAll('.zuzwangsTowerHUD-progress.tech img');
   const techProgress = techProgressEl ? techProgressEl.length : 0;

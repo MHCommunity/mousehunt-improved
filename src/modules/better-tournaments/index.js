@@ -170,11 +170,11 @@ const updateTournamentList = async () => {
     const beginsParts = beginsText.split(' ');
     const beginsMinutes = beginsParts.reduce((acc, part) => {
       if (part === 'minutes' || part === 'minute') {
-        return acc + parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10);
+        return acc + Number.parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10);
       }
 
       if (part === 'hours' || part === 'hour') {
-        return acc + (parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10) * 60);
+        return acc + (Number.parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10) * 60);
       }
 
       return acc;
@@ -192,11 +192,11 @@ const updateTournamentList = async () => {
     const durationParts = durationText.split(' ');
     const durationMinutes = durationParts.reduce((acc, part) => {
       if (part === 'minutes' || part === 'minute') {
-        return acc + parseInt(durationParts[durationParts.indexOf(part) - 1], 10);
+        return acc + Number.parseInt(durationParts[durationParts.indexOf(part) - 1], 10);
       }
 
       if (part === 'hours' || part === 'hour') {
-        return acc + (parseInt(durationParts[durationParts.indexOf(part) - 1], 10) * 60);
+        return acc + (Number.parseInt(durationParts[durationParts.indexOf(part) - 1], 10) * 60);
       }
 
       return acc;

@@ -107,7 +107,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
 
     makeElement('div', 'mhct-bait', mhct.cheese, mhctRow);
 
-    const mhctRate = parseInt('item' === type ? mhct.drop_pct : mhct.rate / 100, 10).toFixed(1);
+    const mhctRate = Number.parseInt('item' === type ? mhct.drop_pct : mhct.rate / 100, 10).toFixed(1);
     makeElement('div', 'mhct-rate', `${mhctRate}%`, mhctRow);
 
     mhctRow.addEventListener('click', () => {

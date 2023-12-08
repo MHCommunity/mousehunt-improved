@@ -208,7 +208,7 @@ const getTooltipText = (quest) => {
 };
 
 const addDeepWarning = async () => {
-  const equippedBase = parseInt(user.base_item_id) || 0;
+  const equippedBase = Number.parseInt(user.base_item_id) || 0;
 
   if (
     equippedBase === 899 || // Deep Freeze Base

@@ -19,12 +19,12 @@ const setSeasonalGardenData = () => {
 
   const amp = document.querySelector('.seasonalGardenHUD-currentAmplifier-value');
   if (amp) {
-    quest.amp = parseInt(amp.textContent, 10);
+    quest.amp = Number.parseInt(amp.textContent, 10);
   }
 
   const max = document.querySelector('.seasonalGardenHUD-maxAmplifier-value');
   if (max) {
-    quest.max = parseInt(max.textContent, 10);
+    quest.max = Number.parseInt(max.textContent, 10);
   }
 
   return quest;

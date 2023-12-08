@@ -49,7 +49,7 @@ const highlightUsers = () => {
 
   // for each key in userHiglighting, check if the user id is in the array and add the key as a class
   Object.keys(userHighlighting).forEach((key) => {
-    const userId = parseInt(id.innerText, 10);
+    const userId = Number.parseInt(id.innerText, 10);
     if (userHighlighting[key].includes(userId)) {
       profilePage.classList.add('mh-improved-highlight-user', `mh-improved-${key}`);
       idHeader.append(getUserHighlightingShield(key));
