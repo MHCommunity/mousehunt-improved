@@ -111,10 +111,10 @@ const updateJournalText = () => {
     ['(Local Time)', ''],
     ['and your item(s) have been', ''],
     [':</b><br>', '</b> '],
-    [/<a href="receipt.php.+?View Receipt<\/a>/i, ''],
+    [/<a href="receipt.php.+?view receipt<\/a>/i, ''],
     ['me:<br>', 'me '],
-    [/I should tell my friends to check .+? during the next .+? to catch one!/i, ''],
-    [/I can go to my .+? to open it/i, ''],
+    [/i should tell my friends to check .+? during the next .+? to catch one!/i, ''],
+    [/i can go to my .+? to open it/i, ''],
     ['Luckily she was not interested in my cheese or charms!', ''],
     ['while she was in my trap, but', 'and'],
     [' while scampering off!', ''],
@@ -152,12 +152,12 @@ const updateJournalText = () => {
 
     // Event stuff
     // SEH
-    [/was.+Chocolatonium.+trap!/i, ''],
+    [/was.+chocolatonium.+trap!/i, ''],
 
     // Halloween
     [/an additional:<br>/i, 'an additional '],
 
-    [/([1234567890]+?) x /gi, ' $1 '],
+    [/(\d+?) x /gi, ' $1 '],
 
     ['<p></p>', ''],
   ]);
