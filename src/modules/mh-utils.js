@@ -114,7 +114,7 @@ const onRequest = (callback, url = null, skipSuccess = false) => {
         }
       }
     });
-    req.apply(this, arguments);
+    Reflect.apply(req, this, arguments);
   };
 };
 
