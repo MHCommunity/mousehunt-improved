@@ -25,7 +25,7 @@ const addOpenAllButOneButton = () => {
     newButton.textContent = 'All but One';
     newButton.value = 'All but One';
     newButton.setAttribute('data-item-action', 'single');
-    newButtonon.onclick = null;
+    newButton.onclick = null;
     newButton.addEventListener('click', (e) => {
       const quantity = item.querySelector('.inventoryPage-item-imageContainer .quantity');
       if (! quantity) {
