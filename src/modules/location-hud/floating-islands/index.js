@@ -137,7 +137,6 @@ const getNextOcUpgradeCost = (ocLevel) => {
     return '8k';
   case 8:
     return '10k';
-  case 9:
   default:
     return false;
   }

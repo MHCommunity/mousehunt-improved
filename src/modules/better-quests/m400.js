@@ -279,7 +279,7 @@ const m400 = () => {
   }
 
   renderButton(locationKey);
-}
+};
 
 export default () => {
   addUIStyles(styles);
@@ -289,4 +289,4 @@ export default () => {
   onNavigation(m400, {
     page: 'camp',
   });
-}
+};

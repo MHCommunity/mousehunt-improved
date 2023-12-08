@@ -248,7 +248,7 @@ const updateMouseView = async () => {
   arWrapper.append(title);
 
   const mhctjson = await getArForMouse(mouseId, 'mouse');
-  if (! mhctjson || typeof mhctjson === 'undefined' || mhctjson.length === 0 || 'error' in mhctjson) {
+  if (! mhctjson || mhctjson === undefined || mhctjson.length === 0 || 'error' in mhctjson) {
     return;
   }
 

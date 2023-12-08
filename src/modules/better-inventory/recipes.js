@@ -196,9 +196,6 @@ const modifySmashableTooltip = async () => {
             </div>
           </div>
         </div>`, tooltipWrapper);
-        // makeElement('div', 'tooltip-title', `<b>${name}</b>`, itemTooltip);
-        // makeElement('div', 'tooltip-image', `<img src="${thumb}">`, itemTooltip);
-        // tooltipWrapper.appendChild(itemTooltip);
       });
 
       tooltip.parentNode.insertBefore(tooltipWrapper, tooltip.nextSibling);
@@ -234,15 +231,13 @@ const updateRecipesOnPage = async (type) => {
   });
 
   // if there are no recipes to modify, then we can stop here.
-  if (recipesModifying.length < 1) {
+  if (recipesModifying.length === 0) {
     return;
   }
 
   const itemTypes = recipesModifying.map((recipe) => {
     return recipesToReorder[type][recipe];
-  }).filter((itemType) => {
-    return itemType;
-  });
+  }).filter(Boolean);
 
   // if we're on the crafting items tab, then also check for dragon slayer cannon and then we can remove all the dragon slayer cannon recipes.
   if (type === 'crafting_item') {
