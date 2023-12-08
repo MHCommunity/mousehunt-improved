@@ -362,6 +362,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Removes the text clipping from the 'Collectibles' tab text.
 - Fixes issues when directly loading an item page.
 - Fixes the Larry's Gift quantity background color.
+- Fixes the arrow color in the inbox when hovering over odd rows
 
 ## UserScripts
 
