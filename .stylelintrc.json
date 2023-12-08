@@ -1,7 +1,9 @@
 {
   "extends": [
     "stylelint-config-standard",
-    "stylelint-config-recess-order"
+    "stylelint-config-recess-order",
+    "stylelint-stylistic/config",
+    "stylelint-prettier/recommended"
   ],
   "ignoreFiles": ["dist/**/*"],
   "rules": {
@@ -35,5 +37,6 @@
     "shorthand-property-no-redundant-values": true,
     "unit-no-unknown": true,
     "value-keyword-case": "lower"
-  }
+  },
+  "cache": true
 }

@@ -1,80 +1,121 @@
 {
   "root": true,
   "env": {
-      "browser": true,
-      "es2021": true
+    "browser": true,
+    "es2021": true
   },
   "extends": [
-      "eslint:recommended",
-      "plugin:@wordpress/eslint-plugin/recommended-with-formatting",
-      "plugin:import/recommended"
+    "eslint:recommended",
+    "plugin:@wordpress/eslint-plugin/recommended-with-formatting",
+    "plugin:import/recommended",
+    "plugin:json/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:promise/recommended",
+    "plugin:unicorn/recommended"
+  ],
+  "plugins": [
+    "file-progress",
+    "import-newlines",
+    "jsdoc",
+    "json",
+    "unicorn"
   ],
   "parserOptions": {
-      "ecmaVersion": 12,
-      "sourceType": "module"
+    "sourceType": "module"
   },
   "settings": {
-      "import/resolver": {
-          "node": {
-              "extensions": [".js", ".jsx", ".ts", ".tsx"]
-          }
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
+    }
   },
   "rules": {
-      "array-bracket-spacing": ["error", "never"],
-      "block-spacing": ["error", "always"],
-      "comma-dangle": ["error", {
-          "arrays": "only-multiline",
-          "objects": "only-multiline",
-          "imports": "never",
-          "exports": "never",
-          "functions": "never"
-      }],
-      "comma-spacing": [ "error",{
-          "before": false,
-          "after": true
-      }],
-      "computed-property-spacing": ["error", "never"],
-      "eol-last": ["error", "always"],
-      "indent": ["error", 2],
-      "jsx-quotes": ["error", "prefer-double"],
-      "linebreak-style": ["error", "unix"],
-      "no-alert": "error",
-      "no-console": "error",
-      "no-eval": "error",
-      "no-undef": 0,
-      "no-implied-eval":"error",
-      "no-template-curly-in-string": "error",
-      "no-useless-concat":"error",
-      "object-curly-spacing": ["error", "always"],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
-      "import/no-named-as-default": "error",
-      "import/no-absolute-path": "error",
-      "import/no-useless-path-segments": "error",
-      "import/no-cycle": "error",
-      "import/exports-last": "error",
-      "import/first": "error",
-      "import/group-exports": "error",
-      "import/no-unused-modules": ["error", {
-        "unusedExports": true,
-        "ignoreExports": ["src/modules/module-template/**/*"]
-      }],
-      "import/no-unassigned-import": "error",
-      "sort-imports": ["error", {
-        "allowSeparatedGroups": true,
-        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
-      }],
-      "space-before-function-paren": ["error", {
-          "anonymous": "always",
-          "named": "never",
-          "asyncArrow": "always"
-      }],
-      "space-in-parens": ["error", "never"],
-      "spaced-comment": ["error", "always"],
-      "template-curly-spacing": ["error", "never"]
+    "array-bracket-spacing": ["error", "never"],
+    "block-spacing": ["error", "always"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "only-multiline",
+        "objects": "only-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "computed-property-spacing": ["error", "never"],
+    "eol-last": ["error", "always"],
+    "file-progress/activate": "error",
+    "import-newlines/enforce": "error",
+    "import/exports-last": "error",
+    "import/first": "error",
+    "import/group-exports": "error",
+    "import/no-absolute-path": "error",
+    "import/no-cycle": "error",
+    "import/no-named-as-default": "error",
+    "import/no-unassigned-import": "error",
+    "import/no-unresolved": ["error", { "ignore": ["^@/"] }],
+    "import/no-useless-path-segments": "error",
+    "indent": ["error", 2],
+    "jsdoc/check-alignment": "warn",
+    "jsdoc/check-indentation": "warn",
+    "jsdoc/no-bad-blocks": "warn",
+    "jsdoc/no-blank-block-descriptions": "warn",
+    "jsdoc/no-blank-blocks": "warn",
+    "jsdoc/no-undefined-types": "warn",
+    "jsdoc/require-description-complete-sentence": "warn",
+    "jsdoc/require-description": "warn",
+    "jsdoc/require-jsdoc": [
+      "warn",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true,
+          "ArrowFunctionExpression": true,
+          "FunctionExpression": true
+        },
+        "enableFixer": false
+      }
+    ],
+    "jsx-quotes": ["error", "prefer-double"],
+    "linebreak-style": ["error", "unix"],
+    "no-alert": "error",
+    "no-console": "error",
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-template-curly-in-string": "error",
+    "no-undef": 0,
+    "no-useless-concat": "error",
+    "object-curly-spacing": ["error", "always"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "sort-imports": [
+      "error",
+      { "allowSeparatedGroups": true, "memberSyntaxSortOrder": ["none", "all", "multiple", "single"] }
+    ],
+    "space-before-function-paren": ["error", { "anonymous": "always", "named": "never", "asyncArrow": "always" }],
+    "space-in-parens": ["error", "never"],
+    "spaced-comment": ["error", "always"],
+    "template-curly-spacing": ["error", "never"],
+    "unicorn/explicit-length-check": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/no-array-reduce": "off",
+    "unicorn/no-keyword-prefix": "off",
+    "unicorn/no-null": "off",
+    "unicorn/no-unused-properties": "off",
+    "unicorn/prefer-add-event-listener": "off", // todo: disabled to not auto-fix
+    "unicorn/prefer-dom-node-dataset": "off",
+    "unicorn/prefer-dom-node-text-content": "off",
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/switch-case-braces": ["warn", "avoid"],
+    "unicorn/numeric-separators-style": "off",
+    "valid-jsdoc": ["warn", { "requireReturn": false }],
+    "no-warning-comments": ["warn", { "location": "anywhere" }]
   },
-  "overrides": [{
+  "overrides": [
+    {
       "files": ["*.md"],
       "parser": "eslint-plugin-markdownlint/parser",
       "extends": ["plugin:markdownlint/recommended"],
@@ -82,5 +123,6 @@
         "markdownlint/md013": "off",
         "markdownlint/md029": "off"
       }
-  }]
+    }
+  ]
 }

@@ -1,5 +1,7 @@
 /*
 !/src
 !/test
-/src/modules/external
 !README.md
+!package.json
+
+/src/userscript-header.js
