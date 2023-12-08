@@ -108,7 +108,7 @@ const onRequest = (callback, url = null, skipSuccess = false) => {
             return;
           }
 
-          if (this.responseURL.indexOf(url) !== -1) {
+          if (this.responseURL.includes(url)) {
             callback(response);
           }
         }
@@ -1004,7 +1004,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
     if (section.description) {
       const settingSubHeader = makeElement('h4', ['settings-subheader', 'mh-utils-settings-subheader'], section.description);
-      sectionExists.insertBefore(settingSubHeader, seperator);
+      seperator.before(settingSubHeader);
 
       addStyles(`.mh-utils-settings-subheader {
         padding-top: 10px;
@@ -2423,7 +2423,7 @@ const createPaperPopup = (options) => {
 /**
  * Show a message in the horn dialog.
  *
- * Type can be one of these: bait_empty unknown_error bait_disarmed recent_turn recent_linked_turn puzzle
+ * Type can be one of these: bait_empty unknown_error bait_disarmed recent_turn recent_linked_turn puzzle.
  *
  * @param {Object}   options           Options for the message.
  * @param {string}   options.title     Title of the message. Keep it under 50 characters.
@@ -3086,11 +3086,7 @@ const createFavoriteButton = async (options) => {
   star.style.display = 'inline-block';
 
   let currentSetting = false;
-  if (isSetting) {
-    currentSetting = getSetting(id, defaultState);
-  } else {
-    currentSetting = state;
-  }
+  currentSetting = isSetting ? getSetting(id, defaultState) : state;
 
   if (currentSetting) {
     star.classList.add('active');

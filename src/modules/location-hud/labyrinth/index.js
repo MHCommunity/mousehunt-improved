@@ -129,7 +129,7 @@ const hud = () => {
     if (intersectionDoors) {
       const tilesWithClues = tiles.filter((tile) => tile.status.includes('good'));
       // remove the string 'complete_good_' from each tile and sum the remaining numbers
-      const cluesFound = tilesWithClues.reduce((a, b) => a + parseInt(b.status.replace('complete', '').replace('good_', '').trim()), 0);
+      const cluesFound = tilesWithClues.reduce((a, b) => a + Number.parseInt(b.status.replace('complete', '').replace('good_', '').trim()), 0);
       const cluesPerTile = (cluesFound / completed.length).toFixed(1).replace('.0', '');
 
       const existingIntersectionText = document.querySelector('.mh-ui-labyrinth-door-text');

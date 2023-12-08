@@ -144,11 +144,11 @@ const addPage = (id, content) => {
   page.id = `mh-${id}-page`;
   page.setAttribute('data-tab', id);
 
-  if (! content) {
+  if (content) {
+    page.append(content);
+  } else {
     const blank = makeElement('div');
     page.append(blank);
-  } else {
-    page.append(content);
   }
 
   pageContainer.append(page);

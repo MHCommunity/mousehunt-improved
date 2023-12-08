@@ -53,7 +53,7 @@ const updateNightBar = () => {
 
   phaseBars.forEach((phaseBar) => {
     // get the class that starts with 'stage_'
-    const phaseClass = Array.from(phaseBar.classList).find((className) => {
+    const phaseClass = [...phaseBar.classList].find((className) => {
       return className.startsWith('stage_');
     });
 
@@ -68,10 +68,10 @@ const updateNightBar = () => {
     const tooltipText = [];
     if (phaseBar.classList.contains('past')) {
       tooltipText.push('Phase complete.');
-    } else if (phaseClass !== user?.quests?.QuestFortRox?.current_stage) {
-      tooltipText.push(`${phaseLength.hunts} hunts. <div class='tooltip-power'>Use ${phaseLength.powerType} power type.</div>`);
-    } else {
+    } else if (phaseClass === user?.quests?.QuestFortRox?.current_stage) {
       tooltipText.push(`${user?.quests?.QuestFortRox?.hunts_until_next_phase} / ${phaseLength.hunts} hunts remaining. <div class='tooltip-power'>Use ${phaseLength.powerType} power type.</div>`);
+    } else {
+      tooltipText.push(`${phaseLength.hunts} hunts. <div class='tooltip-power'>Use ${phaseLength.powerType} power type.</div>`);
     }
 
     const tooltip = makeTooltip(tooltipText.join(' '), 'bottom', 'fortRoxHUD-timeline-phase-time-tooltip');
@@ -96,13 +96,13 @@ const updateUpgradeTooltips = () => {
 
   upgradeTooltips.forEach((tooltip) => {
     // get the type from the onclick attribute
-    const type = tooltip.getAttribute('onclick').replace('app.views.HeadsUpDisplayView.hud.fortRoxShowConfirm(\'upgradeFort\', ', '').replace('); return false;', '').replace(/'/g, '');
+    const type = tooltip.getAttribute('onclick').replace('app.views.HeadsUpDisplayView.hud.fortRoxShowConfirm(\'upgradeFort\', ', '').replace('); return false;', '').replaceAll('\'', '');
     const upgradeProgress = user?.quests?.QuestFortRox?.upgrades[type];
 
     // cycle through the keys in the upgradeProgress object and count how many have a value of 'complete'
     const upgradeKeys = Object.keys(upgradeProgress);
     const completedUpgrades = upgradeKeys.reduce((count, key) => {
-      if (upgradeProgress[key].indexOf('complete') > -1) {
+      if (upgradeProgress[key].includes('complete')) {
         count++;
       }
 
@@ -139,7 +139,7 @@ const updateWallHP = () => {
   hpBox.append(wrapper);
 
   hpBox.classList.remove('frox-wall-very-low', 'frox-wall-low', 'frox-wall-medium', 'frox-wall-high', 'frox-wall-perfect');
-  const hp = parseInt(user.quests.QuestFortRox.hp_percent, 10);
+  const hp = Number.parseInt(user.quests.QuestFortRox.hp_percent, 10);
 
   if (hp === 100) {
     hpBox.classList.add('frox-wall-perfect');
@@ -161,7 +161,7 @@ const addPortalClass = () => {
   }
 
   portal.classList.remove('frox-no-portal', 'frox-has-portal');
-  const hasPortal = parseInt(user?.quests?.QuestFortRox?.items?.fort_rox_lair_key_stat_item?.quantity, 10);
+  const hasPortal = Number.parseInt(user?.quests?.QuestFortRox?.items?.fort_rox_lair_key_stat_item?.quantity, 10);
 
   portal.classList.add(hasPortal ? 'frox-has-portal' : 'frox-no-portal');
 };

@@ -79,7 +79,7 @@ const modifyPB = (retry = false) => {
     return;
   }
 
-  header.insertAdjacentElement('afterend', prestige);
+  header.after(prestige);
 
   setPrestigeStats();
 };

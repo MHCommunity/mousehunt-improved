@@ -43,7 +43,6 @@ const shouldSkipUpdate = (type, attribute, items) => {
     return itemAttribute;
   }).join(',');
 
-
   if (lastCheck[type] && lastCheck[type] === itemHash) {
     return true;
   }

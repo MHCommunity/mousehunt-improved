@@ -5,7 +5,6 @@ import styles from './styles.css';
 import gwh from './great-winter-hunt';
 import halloween from './halloween';
 
-
 const adventCalendarPopup = () => {
   const suffix = document.querySelector('#overlayPopup .suffix');
   if (! suffix) {

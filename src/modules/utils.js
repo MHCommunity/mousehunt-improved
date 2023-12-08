@@ -146,7 +146,7 @@ const getArForMouse = async (id, type = 'mouse') => {
   const data = mapData() || {};
   const mapType = data?.map_type || '';
   let url = `https://api.mouse.rip/${mhctPath}/${id}`;
-  if (mapType.toLowerCase().indexOf('halloween') !== -1) {
+  if (mapType.toLowerCase().includes('halloween')) {
     url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
   }
 
@@ -653,7 +653,7 @@ const getRelicHunterLocation = () => {
   }
 
   // If we have a cached value and it's not expired, return it.
-  if (cached && cached.expiry > new Date().getTime()) {
+  if (cached && cached.expiry > Date.now()) {
     return cached.data;
   }
 
@@ -661,7 +661,7 @@ const getRelicHunterLocation = () => {
   return fetch('https://rh-api.mouse.rip/')
     .then((response) => response.json())
     .then((data) => {
-      const expiry = new Date().getTime() + cacheExpiry;
+      const expiry = Date.now() + cacheExpiry;
       sessionStorage.setItem(cacheKey, JSON.stringify({ expiry, data }));
       return data;
     });

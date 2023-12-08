@@ -231,7 +231,7 @@ const sortStats = (type, reverse = false) => {
   });
 
   // sort the rows
-  rows = Array.from(rows).sort((a, b) => {
+  rows = [...rows].sort((a, b) => {
     const aVal = getSetRowValue(a, type);
     const bVal = getSetRowValue(b, type);
 
