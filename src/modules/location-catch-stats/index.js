@@ -97,7 +97,7 @@ const buildMouseMarkup = (mouseData) => {
  */
 const showModal = async () => {
   // Remove the existing modal.
-  const existing = document.getElementById('mh-catch-stats');
+  const existing = document.querySelector('#mh-catch-stats');
   if (existing) {
     existing.remove();
   }

@@ -18,8 +18,8 @@ const makeUserTableLoading = (id, title, appendTo) => {
 };
 
 const makeUserTable = async (hunters, id, title, appendTo) => {
-  const loadingTitle = document.getElementById(`hunters-loading-${id}-title`);
-  const loadingBlock = document.getElementById(`hunters-loading-${id}-block`);
+  const loadingTitle = document.querySelector(`#hunters-loading-${id}-title`);
+  const loadingBlock = document.querySelector(`#hunters-loading-${id}-block`);
   if (loadingTitle) {
     loadingTitle.remove();
   }
@@ -28,7 +28,7 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
     loadingBlock.remove();
   }
 
-  const existing = document.getElementById(`hunters-${id}`);
+  const existing = document.querySelector(`#hunters-${id}`);
   if (existing) {
     return;
   }

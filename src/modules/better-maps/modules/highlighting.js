@@ -115,7 +115,7 @@ const getProfilePic = async () => {
 };
 
 const addProfilePicToCurrentFloor = async () => {
-  const existing = document.getElementById('mh-mapper-current-floor-profile-pic');
+  const existing = document.querySelector('#mh-mapper-current-floor-profile-pic');
   if (existing) {
     return;
   }
