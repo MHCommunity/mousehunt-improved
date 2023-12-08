@@ -61,9 +61,11 @@ import zugzwang_tower from './zugzwang-tower';
 /* eslint-enable camelcase */
 
 // Regions
-import regionEvents from './region-events';
 import regionLivingGarden from './region-living-garden';
 import regionQueso from './region-queso';
+
+// Events
+import eventLocations from './event-locations';
 
 const regionMapping = [
   {
@@ -87,6 +89,9 @@ const regionMapping = [
     region: 'event-locations',
     locations: [
       'halloween_event_location',
+      'winter_hunt_workshop',
+      'winter_hunt_fortress',
+      'great_winter_taiga',
     ],
   },
 ];
@@ -107,7 +112,7 @@ const main = () => {
   const location = normalizeCurrentLocation(currentLocation);
 
   if (getMhuiSetting('event-locations', true)) {
-    regionEvents(currentLocation);
+    eventLocations(currentLocation);
   }
 
   if (! getMhuiSetting(location, true)) {
