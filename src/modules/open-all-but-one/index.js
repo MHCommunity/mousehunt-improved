@@ -11,7 +11,7 @@ const addOpenAllButOneButton = () => {
   // Remove the existing open all but one buttons.
   const existingButtons = document.querySelectorAll('.open-all-but-one');
   existingButtons.forEach((button) => {
-    button.parentNode.removeChild(button);
+    button.remove();
   });
 
   convertibleItems.forEach((item) => {

@@ -31,7 +31,7 @@ const addMouseLinksToMap = async () => {
   }
 
   let type = 'mouse';
-  if (mapViewClasses.classList.value.indexOf('scavenger_hunt') !== -1) {
+  if (mapViewClasses.classList.value.includes('scavenger_hunt')) {
     type = 'item';
   }
 
@@ -125,7 +125,7 @@ const addClassesToGroups = (mapData) => {
       return;
     }
 
-    const completed = title.innerText.indexOf(' found these mice:') !== -1 || title.innerText.indexOf(' found this mouse:') !== -1;
+    const completed = title.innerText.includes(' found these mice:') || title.innerText.includes(' found this mouse:');
     group.classList.add('mh-ui-goals-group', completed ? 'completed' : 'incomplete');
 
     let countText = '';

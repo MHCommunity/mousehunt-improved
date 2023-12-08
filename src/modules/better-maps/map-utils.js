@@ -71,11 +71,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     mouse.name = nameEl ? nameEl.innerText : mouse.unique_id;
   }
 
-  if ('item' === type) {
-    mhctLink.href = `https://www.mhct.win/loot.php?item=${mouse.unique_id}`;
-  } else {
-    mhctLink.href = `https://www.mhct.win/attractions.php?mouse_name=${mouse.name}`;
-  }
+  mhctLink.href = 'item' === type ? `https://www.mhct.win/loot.php?item=${mouse.unique_id}` : `https://www.mhct.win/attractions.php?mouse_name=${mouse.name}`;
 
   header.append(mhctLink);
   mhctDiv.append(header);

@@ -85,18 +85,18 @@ const resortItems = (sortType = 'alpha') => {
     const bText = b.querySelector(sortSelector).textContent;
 
     switch (sortType) {
-    case 'alpha': {
+    case 'alpha':
       return aText.localeCompare(bText);
-    }
-    case 'alpha-reverse': {
+
+    case 'alpha-reverse':
       return bText.localeCompare(aText);
-    }
-    case 'qty': {
+
+    case 'qty':
       return asNum(bText) - asNum(aText);
-    }
-    case 'qty-reverse': {
+
+    case 'qty-reverse':
       return asNum(aText) - asNum(bText);
-    }
+
     // No default
     }
 

@@ -33,21 +33,21 @@ const setFieryWarpathData = () => {
   const waveEl = document.querySelector('.warpathHUD.showPortal');
   if (waveEl) {
     // get the classlist and find the one that starts with 'wave'
-    const waveClass = Array.from(waveEl.classList).find((className) => className.startsWith('wave'));
-    wave = parseInt(waveClass.replace('wave', '').replace('_', ''));
+    const waveClass = [...waveEl.classList].find((className) => className.startsWith('wave'));
+    wave = Number.parseInt(waveClass.replace('wave', '').replace('_', ''));
   }
 
   const streakEl = document.querySelector('.warpathHUD-streakBoundingBox');
   if (streakEl) {
-    streak = parseInt(streakEl.innerText.replaceAll('\n', ' ').replace(' 0', '').trim());
+    streak = Number.parseInt(streakEl.innerText.replaceAll('\n', ' ').replace(' 0', '').trim());
   }
 
   const remaininEl = document.querySelectorAll('.warpathHUD-wave-mouse-population');
   if (remaininEl.length) {
     // sum all the values that have an innerText
-    remaining = Array.from(remaininEl).reduce((sum, el) => {
+    remaining = [...remaininEl].reduce((sum, el) => {
       if (el.innerText) {
-        sum += parseInt(el.innerText);
+        sum += Number.parseInt(el.innerText);
       }
       return sum;
     }, 0);
@@ -61,7 +61,7 @@ const setFieryWarpathData = () => {
     // get the style attribute and parse the width value.
     const style = percentEl.getAttribute('style');
     if (style) {
-      percent = parseInt(style.replace('width:', '').replace('%;', ''));
+      percent = Number.parseInt(style.replace('width:', '').replace('%;', ''));
     }
   }
 

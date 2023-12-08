@@ -32,7 +32,7 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
     console.log('keeping caught mice', caughtMice); // eslint-disable-line no-console
   } else {
     unsortedMice = unsortedMice.filter((mouse) => {
-      return caughtMice.indexOf(mouse.unique_id) === -1;
+      return ! caughtMice.includes(mouse.unique_id);
     });
   }
 

@@ -139,11 +139,7 @@ const modifySmashableTooltip = async () => {
 
       item.setAttribute('data-new-tooltip', 'newTooltip');
 
-      if (producedItem.includes(',')) {
-        producedItem = producedItem.split(',');
-      } else {
-        producedItem = [producedItem];
-      }
+      producedItem = producedItem.includes(',') ? producedItem.split(',') : [producedItem];
 
       const itemType = item.getAttribute('data-item-type');
       producedItem.push(itemType);

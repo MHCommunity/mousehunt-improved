@@ -17,7 +17,7 @@ const showFullTitlePercent = () => {
   const originalText = target.innerText;
 
   title.addEventListener('mouseover', () => {
-    target.innerText = percent.indexOf('%') > -1 ? percent.split('%')[0] : percent;
+    target.innerText = percent.includes('%') ? percent.split('%')[0] : percent;
   });
 
   title.addEventListener('mouseout', () => {
