@@ -37,20 +37,20 @@ const addExportSettings = () => {
     });
     /* eslint-enable @wordpress/no-unused-vars-before-return */
 
-    const popupEl = document.querySelector('.mousehunt-improved-settings-export-popup');
-    if (! popupEl) {
+    const popupElement = document.querySelector('.mousehunt-improved-settings-export-popup');
+    if (! popupElement) {
       return;
     }
 
-    const saveButton = popupEl.querySelector('.mousehuntActionButton.save');
+    const saveButton = popupElement.querySelector('.mousehuntActionButton.save');
     saveButton.addEventListener('click', () => {
-      const textarea = popupEl.querySelector('textarea');
+      const textarea = popupElement.querySelector('textarea');
       const newSettings = textarea.value;
       localStorage.setItem('mousehunt-improved-settings', newSettings);
       window.location.reload();
     });
 
-    const downloadButton = popupEl.querySelector('.mousehuntActionButton.download');
+    const downloadButton = popupElement.querySelector('.mousehuntActionButton.download');
     downloadButton.addEventListener('click', () => {
       const link = document.createElement('a');
       link.download = 'mousehunt-improved-settings.json';
@@ -58,7 +58,7 @@ const addExportSettings = () => {
       link.click();
     });
 
-    const cancelButton = popupEl.querySelector('.mousehuntActionButton.cancel');
+    const cancelButton = popupElement.querySelector('.mousehuntActionButton.cancel');
     cancelButton.addEventListener('click', () => {
       popup.hide();
     });
