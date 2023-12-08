@@ -91,7 +91,6 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-
 #overlayPopup.hunting_summary .baitContainer .label,
 #overlayPopup.hunting_summary .lootContainer .label {
   border-top: none;
@@ -145,7 +144,7 @@
 }
 
 #overlayPopup.hunting_summary .lootContainer a {
-    width: 160px;
+  width: 160px;
 }
 
 #overlayPopup.hunting_summary .baitContainer a .wrapper {

@@ -67,7 +67,6 @@ a.itemPurchaseView-image-trapPreview-link,
   margin-left: -11px;
   background: #f9f9f9;
   border-left: none;
-
 }
 
 .itemPurchaseView-action-itemCost-table-cell.cost {
@@ -108,7 +107,7 @@ a.itemPurchaseView-image-trapPreview-link,
 
 .itemPurchaseView-image-container,
 .itemPurchaseView-content-container {
-  background-color: #fff;;
+  background-color: #fff;
 }
 
 .itemPurchaseView-action-quantity {
@@ -391,7 +390,7 @@ a.itemPurchaseView-content-skin-link {
 }
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-goldGost {
-  opacity: .4;
+  opacity: 0.4;
 }
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity {
@@ -469,7 +468,9 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
   background-color: #fff600;
   border: 1px solid #000;
   border-radius: 5px;
-  box-shadow: inset 0 0 5px #fff, 1px 1px 1px #fff;
+  box-shadow:
+    inset 0 0 5px #fff,
+    1px 1px 1px #fff;
 }
 
 /* limit one items */

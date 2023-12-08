@@ -210,7 +210,7 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
   z-index: 2;
   width: 20px;
   height: 20px;
-  content: '';
+  content: "";
   background-color: #fdfdfa;
   background-size: contain;
   border: 1px solid #929292;
@@ -239,24 +239,24 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
 
 .mouseListView-categoryContent-subgroup-mouse-thumb,
 .mouseListView-categoryContent-subgroup-mouse .mouseListView-categoryContent-subgroup-mouse-margin {
-    transition: .2s;
+  transition: 0.2s;
 }
 
 .mouseListView-categoryContent-subgroup-mouse-thumb:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
-    background-size: contain;
+  background-size: contain;
 }
 
 .mouseViewPopup .mouseView-image:hover {
   box-shadow: none;
-  transform: scale(.95);
+  transform: scale(0.95);
 }
 
 .mouseViewPopup .mouseView-image {
-    transition: .2s;
+  transition: 0.2s;
 }
 
 .mouseViewPopup .mouseView-descriptionContainer {

@@ -150,7 +150,9 @@
   font-size: 9px;
   line-height: 22px;
   text-align: center;
-  box-shadow: 3px 3px 3px #ee9d47 inset, -5px -5px 50px #c66c0c inset;
+  box-shadow:
+    3px 3px 3px #ee9d47 inset,
+    -5px -5px 50px #c66c0c inset;
 }
 
 .sunkenCityHud .sidebarTitle {
@@ -176,7 +178,9 @@
   display: flex;
   align-items: center;
   border-top: 1px solid #8b93a9;
-  box-shadow: 0 0 20px #fff inset, 0 -6px 7px #4b587d inset;
+  box-shadow:
+    0 0 20px #fff inset,
+    0 -6px 7px #4b587d inset;
 }
 
 .sunkenCityHud .baitWarning {

@@ -25,7 +25,7 @@
 #overlayPopup.dailyRewardPopup .todaysRewards .reward {
   width: 100px;
   font-size: 13px;
-  transition: all .25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 .dailyRewardPopup .todaysRewards .reward img {
@@ -38,7 +38,7 @@
 }
 
 .dailyRewardPopup .progress .chest .image {
-  transition: .2s;
+  transition: 0.2s;
 }
 
 #overlayPopup.dailyRewardPopup .todaysRewards .reward:hover {
@@ -62,17 +62,17 @@
 }
 
 #overlayPopup.dailyRewardPopup .todaysRewards.day_1 {
-    padding-left: 190px;
-    background-image: url(https://i.mouse.rip/popup_todays_reward_day1_chest.png);
+  padding-left: 190px;
+  background-image: url(https://i.mouse.rip/popup_todays_reward_day1_chest.png);
 }
 
 #overlayPopup.dailyRewardPopup .todaysRewards.day_2 {
-    background-image: url(https://i.mouse.rip/popup_todays_reward_day2_chest.png);
+  background-image: url(https://i.mouse.rip/popup_todays_reward_day2_chest.png);
 }
 
 #overlayPopup.dailyRewardPopup .todaysRewards.day_5 {
-    background-image: url(https://i.mouse.rip/popup_todays_reward_day5_chest.png);
-    background-size: 222px 221px;
+  background-image: url(https://i.mouse.rip/popup_todays_reward_day5_chest.png);
+  background-size: 222px 221px;
 }
 
 #overlayPopup.dailyRewardPopup .progress .chest_1.open .image {
@@ -87,5 +87,5 @@
 }
 
 #overlayPopup.dailyRewardPopup .closed .status {
-    filter: opacity(0.5);
+  filter: opacity(0.5);
 }

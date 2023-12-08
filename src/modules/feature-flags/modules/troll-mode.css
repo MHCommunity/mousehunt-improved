@@ -1,5 +1,5 @@
 * + * {
-  transition: .3s;
+  transition: 0.3s;
 }
 
 * + * + * {
@@ -24,15 +24,15 @@ div + div + div {
 }
 
 * > * > * > * > * > * > * > * > * > * > * {
-  transition: .9s;
+  transition: 0.9s;
 }
 
 * > * > * > * > * > * > * > * > * > *:hover * {
-  transform:rotateX(20deg);
+  transform: rotateX(20deg);
 }
 
 * > * > * > * > * > * > * > * > * > * > *:hover {
-  transform:rotateX(-20deg);
+  transform: rotateX(-20deg);
 }
 
 @keyframes spin {

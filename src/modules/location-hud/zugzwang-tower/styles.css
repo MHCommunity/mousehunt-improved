@@ -18,7 +18,7 @@
   margin-right: -40px;
   font-size: 10px;
   color: #000;
-  content: counter(chess) '/15';
+  content: counter(chess) "/15";
   background-color: #dcccb3;
   border-radius: 10px;
 }

@@ -39,7 +39,7 @@
 
 .riftBristleWoodsHUD-portal.closed.disabled {
   filter: grayscale(1);
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .riftBristleWoodsHUD-statusEffect .riftBristleWoodsHUD-statusEffect-iconContainer .riftBristleWoodsHUD-statusEffect-icon.ac.active::after,
@@ -94,7 +94,8 @@
   content: "Pursued";
 }
 
-.riftBristleWoodsHUD-acolyteChamber-sandDetails, .riftBristleWoodsHUD-acolyteChamber-acolyteChargeDetails {
+.riftBristleWoodsHUD-acolyteChamber-sandDetails,
+.riftBristleWoodsHUD-acolyteChamber-acolyteChargeDetails {
   top: 66px;
   left: 404px;
   display: flex;
@@ -176,7 +177,7 @@ a.riftBristleWoodsHUD-acolyteChamber-retreat.mousehuntActionButton.tiny.cancel {
   margin-left: 51px;
   font-size: 9px;
   box-shadow: none;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 a.riftBristleWoodsHUD-acolyteChamber-retreat.mousehuntActionButton.tiny.cancel:hover {

@@ -60,7 +60,7 @@ a.floatingIslandsHUD-islandLoot {
 }
 
 .floatingIslandsHUD-modPanel.fog_shrine:hover::before {
-  content: "Fog"
+  content: "Fog";
 }
 
 .floatingIslandsHUD-modPanel.frost_shrine:hover::before {
@@ -136,7 +136,9 @@ span.floatingIslandsHUD-huntsRemaining {
   pointer-events: none;
   background: linear-gradient(218deg, #7baabd, #568295);
   border-radius: 3px;
-  box-shadow: inset 0 0 2px 2px #09577f, 0 2px 8px 1px #78aabd;
+  box-shadow:
+    inset 0 0 2px 2px #09577f,
+    0 2px 8px 1px #78aabd;
 }
 
 .floatingIslandsHUD-fuel-quantity.quantity:hover,
@@ -146,7 +148,9 @@ span.floatingIslandsHUD-huntsRemaining {
 
 .floatingIslandsHUD-fuel-quantity.quantity.active {
   background: linear-gradient(218deg, #0e8eeb 0%, #28eeff 100%);
-  box-shadow: 0 0 2px 2px #09577f inset, 0 2px 7px 1px #37feff;
+  box-shadow:
+    0 0 2px 2px #09577f inset,
+    0 2px 7px 1px #37feff;
 }
 
 .floatingIslandsHUD-retreatButton,
@@ -172,12 +176,12 @@ span.floatingIslandsHUD-huntsRemaining {
 .floatingIslandsHUD-craftingItem-quantity.quantity,
 .floatingIslandsHUD-islandLoot,
 .floatingIslandsHUD-modPanel-effect {
-    text-shadow: 1px 1px 1px #242424;
+  text-shadow: 1px 1px 1px #242424;
 }
 
 .floatingIslandsHUD-modPanel.active .floatingIslandsHUD-modPanel-effect,
 .floatingIslandsHUD-modPanel.complete .floatingIslandsHUD-modPanel-effect {
-    text-shadow: 1px 1px 1px #9ab59a;
+  text-shadow: 1px 1px 1px #9ab59a;
 }
 
 /* Fancy countdown */
@@ -194,7 +198,9 @@ span.floatingIslandsHUD-huntsRemaining {
   background-color: #51250a;
   border-radius: 8px;
   border-bottom-left-radius: 0;
-  box-shadow: 1px 0 0 1px #7d5430, inset 1px 0 0 1px #9a6f43;
+  box-shadow:
+    1px 0 0 1px #7d5430,
+    inset 1px 0 0 1px #9a6f43;
 }
 
 .floatingIslandsHUD-goalContainer .floatingIslandsHUD-enemy-state.enemyApproaching {
@@ -301,7 +307,7 @@ a.floatingIslandsHUD-flightLogButton.mousehuntTooltipParent {
 }
 
 .floatingIslandsHUD.island .floatingIslandsHUD-bait.skyCheeseWarning .floatingIslandsHUD-bait-image.sky_cheese {
-    box-shadow: inset 0 0 10px 3px #ff1b00;
+  box-shadow: inset 0 0 10px 3px #ff1b00;
 }
 
 .floatingIslandsHUD-enemy-tooltip .floatingIslandsHUD-wardenShrine-status {
@@ -329,6 +335,6 @@ a.floatingIslandsHUD-islandLoot:focus {
 }
 
 .floatingIslandsHUD-enemyContainer .floatingIslandsHUD-enemy-thumb {
-  transition: .3s;
+  transition: 0.3s;
   transform-origin: left;
 }

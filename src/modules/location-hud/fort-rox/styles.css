@@ -15,7 +15,8 @@ a.fortRoxHUD-retreat {
   top: 70px;
 }
 
-.fortRoxHUD-timeline-phase-name, .fortRoxHUD-timeline-phase-marker.active .fortRoxHUD-timeline-phase-name {
+.fortRoxHUD-timeline-phase-name,
+.fortRoxHUD-timeline-phase-marker.active .fortRoxHUD-timeline-phase-name {
   font-size: 13px;
   font-variant: normal;
   text-shadow: 0 0 3px #131313;
@@ -78,7 +79,7 @@ a.fortRoxHUD-retreat {
 }
 
 .fortRoxHUD-timeline-phase-marker {
- position: relative
+  position: relative;
 }
 
 .fortRoxHUD-timeline-phase-marker.stage_three::before {
@@ -100,7 +101,7 @@ a.fortRoxHUD-retreat {
 }
 
 .complete .fortRoxHUD-dialog-upgrade-costContainer {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .fortRoxHUD-bossWarning-hasMultiplier.active b {
@@ -124,12 +125,12 @@ a.fortRoxHUD-retreat {
 
 .frox-no-portal {
   filter: grayscale(1);
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .frox-no-portal:hover,
 .frox-no-portal:focus {
-  filter: grayscale(.2);
+  filter: grayscale(0.2);
   opacity: 1;
 }
 
@@ -139,7 +140,7 @@ a.fortRoxHUD-retreat {
 }
 
 a.fortRoxHUD-upgradeButton.disabled {
-  opacity: .4;
+  opacity: 0.4;
 }
 
 a.fortRoxHUD-upgradeButton.disabled:hover,

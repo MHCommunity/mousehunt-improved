@@ -313,7 +313,7 @@ span.valourRiftHUD-stepsTaken-value {
 }
 
 .valourRiftPopupClaim-lootLog .itemImage {
- box-shadow: none;
+  box-shadow: none;
 }
 
 .valourRiftPopupClaim-footer {
@@ -347,7 +347,7 @@ span.valourRiftHUD-stepsTaken-value {
   bottom: 0;
   width: 30px;
   height: 30px;
-  content: '';
+  content: "";
 }
 
 .valourRiftPopupClaim-lootLogTitle {
@@ -396,7 +396,9 @@ span.valourRiftHUD-stepsTaken-value {
   margin-top: 3px;
   margin-left: -14px;
   font-size: 14px;
-  box-shadow: 1px -4px 2px 0 #310f3c inset, 0 0 3px 3px #b06fd3 inset;
+  box-shadow:
+    1px -4px 2px 0 #310f3c inset,
+    0 0 3px 3px #b06fd3 inset;
 }
 
 .valourRiftPopupIllustrated.enterTower .valourRiftHUD-augmentation-cost-image {
@@ -420,7 +422,7 @@ span.valourRiftHUD-stepsTaken-value {
 }
 
 .valourRiftPopupIllustrated.enterTower a.valourRiftHUD-augmentation.locked {
-  filter: grayscale(.8) opacity(0.6);
+  filter: grayscale(0.8) opacity(0.6);
 }
 
 .valourRiftPopupIllustrated.enterTower .valourRiftHUD-dialog-inventory-item-name {
@@ -434,14 +436,14 @@ span.valourRiftHUD-stepsTaken-value {
 .valourRiftHUD-tower .valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image,
 .valourRiftHUD-tower .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image::before {
   opacity: 1;
-  transition: opacity .4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
 }
 
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite-name,
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.step .valourRiftHUD-tower-sprite-image,
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image,
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image::before {
-  opacity: .4;
+  opacity: 0.4;
 }
 
 .valourRiftHUD.tower .valourRiftHUD-state.tower {

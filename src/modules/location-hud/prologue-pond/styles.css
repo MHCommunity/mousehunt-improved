@@ -12,7 +12,7 @@
 
 .prologuePondView-fishingBoat {
   top: 30px;
-  transition: .4s;
+  transition: 0.4s;
   transform: scale(1.2);
 }
 
@@ -22,13 +22,13 @@
 
 .prologuePondView-background-layer.water {
   top: 19px;
-  filter: brightness(.7);
-  opacity: .6;
+  filter: brightness(0.7);
+  opacity: 0.6;
 }
 
 .prologuePondView-background-layer.shore {
   top: 25px;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .prologuePondView-currentLoot-value {
@@ -59,7 +59,7 @@
 .prologuePondView-fishingBoat-paperDoll-layer.fish_net.active,
 .prologuePondView-fishingBoat-paperDoll-layer.fishing_rod.active {
   opacity: 1;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .disarmed .prologuePondView-fishingBoat-paperDoll-layer.fish_net.active,
@@ -84,7 +84,7 @@
   }
 
   100% {
-    transform: translate(0, -0)
+    transform: translate(0, -0);
   }
 }
 

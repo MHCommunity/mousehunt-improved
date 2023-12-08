@@ -14,7 +14,8 @@
   border-radius: 4px;
 }
 
-.ember_root_crafting_item .quesoHUD-bait-group-craftingQuantity.quantity, .ember_stone_crafting_item .quesoHUD-bait-group-craftingQuantity.quantity {
+.ember_root_crafting_item .quesoHUD-bait-group-craftingQuantity.quantity,
+.ember_stone_crafting_item .quesoHUD-bait-group-craftingQuantity.quantity {
   position: absolute;
   top: 5px;
   right: -20px;
@@ -51,7 +52,7 @@
 
 .quesoGeyserHUD-nestBlock:hover .quesoGeyserHUD-nestBlock-image-transition {
   opacity: 1;
-  transition:  opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .quesoHUD-bait-group:hover .quesoHUD-bait-group-tooltip {
@@ -78,7 +79,7 @@
 
 #hudLocationContent .quesoGeyserHUD:hover .quesoHUD-wildTonic-button.selected::after {
   transform-origin: center;
-  animation: mh-improved-sway-side-to-side .45s;
+  animation: mh-improved-sway-side-to-side 0.45s;
   animation-iteration-count: 2;
 }
 

@@ -242,7 +242,6 @@ a.pollutionOutbreakHUD-refineButton:hover {
   background: none;
 }
 
-
 .pollutionOutbreakHUD-pollution-title-block .mousehuntTooltip b.pollutionOutbreakHUD-pollution-title-block-gender {
   display: none !important;
 }
@@ -298,7 +297,6 @@ a.pollutionOutbreakHUD-refineButton:hover {
 
 .pollutionOutbreakHUD-item-padding {
   margin: 0 2px;
-  ;
   border: 1px solid #000;
   border-radius: 6px;
 }
@@ -332,44 +330,44 @@ a.pollutionOutbreakHUD-refineButton:hover {
 
 .pollutionOutbreakHUD-pollution-title-block.hero::after {
   width: 44px;
-  content: '30 hrs';
+  content: "30 hrs";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.knight::after {
   width: 44px;
-  content: '16 hrs';
+  content: "16 hrs";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.lord_lady::after {
   width: 44px;
-  content: '18 hrs';
+  content: "18 hrs";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.baron_baroness::after {
   width: 44px;
-  content: '18 hrs';
+  content: "18 hrs";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.count_countess::after {
   width: 59px;
-  content: '1 day';
+  content: "1 day";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.duke_dutchess::after {
   width: 59px;
-  content: '1 day';
+  content: "1 day";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.grand_duke::after {
   right: 1px;
   width: 69px;
-  content: '1 day';
+  content: "1 day";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.archduke_archduchess::after {
   right: 0;
   width: 65px;
-  content: '1 day';
+  content: "1 day";
 }
 
 .pollutionOutbreakHUD-pollution-title-block:hover::after {
@@ -395,10 +393,14 @@ a.pollutionOutbreakHUD-refineButton:hover {
   text-align: center;
   text-shadow: 1px 1px 1px #000;
   vertical-align: middle;
-  content: '';
+  content: "";
   background: linear-gradient(180deg, #1d1d1d 0%, #232323 100%);
   border-radius: 10px 10px 0 0;
-  box-shadow: 0 1px 0 0 #9b9d9d, 0 2px 0 0 #6a6969, 0 0 0 2px #9b9d9d, 0 1px 1px 0 #6a6969 inset;
+  box-shadow:
+    0 1px 0 0 #9b9d9d,
+    0 2px 0 0 #6a6969,
+    0 0 0 2px #9b9d9d,
+    0 1px 1px 0 #6a6969 inset;
 }
 
 .complete .pollutionOutbreakHUD-pollution-title-block-progressBar {
@@ -407,7 +409,11 @@ a.pollutionOutbreakHUD-refineButton:hover {
 
 .pollutionOutbreakHUD-pollution-title-block.complete::after,
 .pollutionOutbreakHUD-pollution-title-block.active::after {
-  box-shadow: 0 1px 0 0 #9b9d9d, 0 2px 0 0 #6a6969, 0 0 0 2px #9b9d9d, 0 1px 1px 0 #6a6969 inset;
+  box-shadow:
+    0 1px 0 0 #9b9d9d,
+    0 2px 0 0 #6a6969,
+    0 0 0 2px #9b9d9d,
+    0 1px 1px 0 #6a6969 inset;
 }
 
 .pollutionOutbreakHUD-pollution-title-block.complete::after {

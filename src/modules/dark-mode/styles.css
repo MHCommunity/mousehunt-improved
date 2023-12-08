@@ -1,4 +1,4 @@
-.mh-dark-mode  .pageFrameView #mousehuntContainer.PageCamp .adventureBookBanner-goalPadding {
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .adventureBookBanner-goalPadding {
   background-color: transparent;
 }
 
@@ -60,7 +60,9 @@
   background-color: #38727b;
 }
 
-.mh-dark-mode #overlayPopup.treasureMapPopup .treasureMapView-environment.active .treasureMapView-environment-title a, .mh-dark-mode #overlayPopup.treasureMapPopup .treasureMapView-environment.wrong .treasureMapView-environment-title a, .mh-dark-mode .treasureMapView-environment-progress {
+.mh-dark-mode #overlayPopup.treasureMapPopup .treasureMapView-environment.active .treasureMapView-environment-title a,
+.mh-dark-mode #overlayPopup.treasureMapPopup .treasureMapView-environment.wrong .treasureMapView-environment-title a,
+.mh-dark-mode .treasureMapView-environment-progress {
   color: #fff;
 }
 
@@ -68,7 +70,9 @@
   background-color: #862f2f;
 }
 
-.mh-dark-mode #sorted-mice-container .mouse-container-selected, .mh-dark-mode  #sorted-mice-container .mouse-container:hover, .mh-dark-mode #sorted-mice-container .mouse-container:focus {
+.mh-dark-mode #sorted-mice-container .mouse-container-selected,
+.mh-dark-mode #sorted-mice-container .mouse-container:hover,
+.mh-dark-mode #sorted-mice-container .mouse-container:focus {
   background-color: #2c2c2c;
 }
 

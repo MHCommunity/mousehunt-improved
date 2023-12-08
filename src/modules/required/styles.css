@@ -1,4 +1,4 @@
-/* hack to make the settings page look better until some of this gets moved to mousehunt-improved and settings move to the browser */
+/* hack to make the settings page look better until the settings stuff gets sub-settings */
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer.select.busy::before,
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer.select.completed::before {
   top: 30px;
@@ -91,7 +91,7 @@
   font-size: 12px;
 }
 
-.mousehunt-improved-settings  .PagePreferences__title {
+.mousehunt-improved-settings .PagePreferences__title {
   padding: 10px;
   border: 1px solid #e0cfb4;
 }
