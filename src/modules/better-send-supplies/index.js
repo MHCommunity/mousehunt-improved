@@ -80,7 +80,7 @@ const resortItems = (sortType = 'alpha') => {
     sortSelector = '.details';
   }
 
-  const sorted = Array.from(items).sort((a, b) => {
+  const sorted = [...items].sort((a, b) => {
     const aText = a.querySelector(sortSelector).textContent;
     const bText = b.querySelector(sortSelector).textContent;
 
@@ -145,21 +145,21 @@ const addSortButtons = () => {
 };
 
 const highlightFavoritedItems = () => {
-  const itemsToPin = [
+  const itemsToPin = new Set([
     getMhuiSetting('send-supplies-pinned-items-0', 'SUPER|brie+'),
     getMhuiSetting('send-supplies-pinned-items-1', 'Empowered SUPER|b...'),
     getMhuiSetting('send-supplies-pinned-items-2', 'Rift Cherries'),
     getMhuiSetting('send-supplies-pinned-items-3', 'Rift-torn Roots'),
     getMhuiSetting('send-supplies-pinned-items-4', 'Sap-filled Thorns'),
-  ];
+  ]);
 
-  items.forEach((item) => {
+  for (const item of items) {
     // if the details text content is in the array, then pin it
     const details = item.querySelector('.details');
-    if (itemsToPin.includes(details.textContent)) {
+    if (itemsToPin.has(details.textContent)) {
       item.classList.add('pinned');
     }
-  });
+  }
 };
 
 const addQuickQuantityButtons = () => {
