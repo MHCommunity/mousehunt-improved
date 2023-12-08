@@ -95,11 +95,6 @@ const updateUpgradeTooltips = () => {
   }
 
   upgradeTooltips.forEach((tooltip) => {
-    // get the class that starts with 'level_'
-    // const levelClass = Array.from(tooltip.classList).find((className) => {
-    //   return className.startsWith('level_');
-    // });
-
     // get the type from the onclick attribute
     const type = tooltip.getAttribute('onclick').replace('app.views.HeadsUpDisplayView.hud.fortRoxShowConfirm(\'upgradeFort\', ', '').replace('); return false;', '').replace(/'/g, '');
     const upgradeProgress = user?.quests?.QuestFortRox?.upgrades[type];

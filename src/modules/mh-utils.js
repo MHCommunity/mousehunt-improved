@@ -2446,7 +2446,7 @@ const showHornMessage = (options) => {
     title: options.title || 'Hunters Horn',
     text: options.text || 'This is a message from the Hunters Horn',
     button: options.button || 'OK',
-    action: options.action || (() => { }),
+    action: options.action || (() => {}),
     dismiss: options.dismiss || null,
     type: options.type || 'recent_linked_turn',
     classname: options.classname || '',

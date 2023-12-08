@@ -89,7 +89,7 @@ const updateItemView = async () => {
   }
 
   let mhctjson = await getArForMouse(itemId, 'item');
-  if (! mhctjson || typeof mhctjson === 'undefined') {
+  if (! mhctjson || mhctjson === undefined) {
     return;
   }
 

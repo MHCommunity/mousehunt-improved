@@ -27,7 +27,6 @@ import getToxicSpillText from './location/toxic-spill';
 import getValourRiftText from './location/valour-rift';
 import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
 import getZokorText from './location/zokor';
-/* eslint-enable sort-imports */
 
 const cacheLocationData = async () => {
   return new Promise((resolve) => {
@@ -113,7 +112,6 @@ const makeDashboardTab = () => {
 
   // TODO: remove disabled class when we have a way to refresh.
   const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh', 'disabled']);
-  // refreshButton.addEventListener('click', refreshData);
 
   const refreshText = document.createElement('span');
   refreshText.innerText = 'Refresh';
