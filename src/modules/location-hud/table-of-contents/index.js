@@ -44,5 +44,6 @@ export default () => {
   onRequest(() => {
     updateNextWordCount();
     setTimeout(updateNextWordCount, 500);
+    setTimeout(updateNextWordCount, 1000);
   }, 'managers/ajax/turns/activeturn.php');
 };
