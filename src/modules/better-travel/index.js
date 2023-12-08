@@ -159,7 +159,7 @@ const addSimpleTravelPage = () => {
   const wrapper = makeElement('div', 'travelPage-wrapper');
 
   if ('not-set' === getMhuiSetting('better-travel-default-to-simple-travel', 'not-set')) {
-    const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings"> Game Settings</a>.');
+    const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings">MouseHunt Improved settings</a>.');
     wrapper.append(settingTip);
   }
 

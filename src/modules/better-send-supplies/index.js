@@ -84,27 +84,33 @@ const resortItems = (sortType = 'alpha') => {
     const aText = a.querySelector(sortSelector).textContent;
     const bText = b.querySelector(sortSelector).textContent;
 
-    if (sortType === 'alpha') {
+    switch (sortType) {
+    case 'alpha': {
       return aText.localeCompare(bText);
-    } else if (sortType === 'alpha-reverse') {
+    }
+    case 'alpha-reverse': {
       return bText.localeCompare(aText);
-    } else if (sortType === 'qty') {
+    }
+    case 'qty': {
       return asNum(bText) - asNum(aText);
-    } else if (sortType === 'qty-reverse') {
+    }
+    case 'qty-reverse': {
       return asNum(aText) - asNum(bText);
+    }
+    // No default
     }
 
     return 0;
   });
 
-  sorted.forEach((item) => {
+  for (const item of sorted) {
     // if it has a class of pinned, make sure it's the first item
     if (item.classList.contains('pinned')) {
-      return;
+      continue;
     }
 
     container.append(item);
-  });
+  }
 
   currentSort = sortType;
 };
@@ -179,7 +185,7 @@ const addQuickQuantityButtons = () => {
   }
 
   // parse out the max quantity by getting the text between 'you can send up to: ' and the first space after the number
-  const maxAmount = parseInt(maxquantity.textContent.split('You can send up to: ')[1].split(' ')[0].replace(',', ''));
+  const maxAmount = Number.parseInt(maxquantity.textContent.split('You can send up to: ')[1].split(' ')[0].replace(',', ''));
 
   const wrapper = makeElement('div', 'mhui-supply-quick-quantity-wrapper');
 
@@ -190,11 +196,11 @@ const addQuickQuantityButtons = () => {
     100,
   ];
 
-  buttons.forEach((button) => {
+  for (const button of buttons) {
     const btn = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-quick-quantity']);
     makeElement('span', '', `+${button}`, btn);
     btn.addEventListener('click', () => {
-      const value = parseInt(inputVal.value || 0);
+      const value = Number.parseInt(inputVal.value || 0);
       inputVal.value = value + button;
 
       // fire a keyup event so the quantity updates
@@ -203,7 +209,7 @@ const addQuickQuantityButtons = () => {
     });
 
     wrapper.append(btn);
-  });
+  }
 
   const max = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-quick-quantity']);
   makeElement('span', '', 'All', max);
@@ -234,7 +240,7 @@ const upgradeSendSupplies = (initial = false) => {
 
   if (isChoosingUser) {
     const users = document.querySelectorAll('#supplytransfer .friendList .element.recipient');
-    users.forEach((user) => {
+    for (const user of users) {
       // add an event listener to the click so we can apply the item changes
       user.addEventListener('click', () => {
         upgradeSendSupplies();
@@ -244,7 +250,7 @@ const upgradeSendSupplies = (initial = false) => {
       if (search) {
         search.focus();
       }
-    });
+    }
   } else if (isChoosingItem) {
     items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
     highlightFavoritedItems();

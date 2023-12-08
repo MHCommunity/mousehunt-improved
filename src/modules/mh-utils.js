@@ -645,10 +645,8 @@ const onNavigation = (callback, options = {}) => {
   }
 
   // We do this once on load in case we are starting on the page we want to watch for.
-  if (onLoad) {
-    if (bypassMatch || matchesCurrentPage(page, tab, subtab)) {
-      callback();
-    }
+  if (onLoad && (bypassMatch || matchesCurrentPage(page, tab, subtab))) {
+    callback();
   }
 
   eventRegistry.addEventListener('set_page', (e) => {

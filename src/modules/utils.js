@@ -163,7 +163,7 @@ const getArForMouse = async (id, type = 'mouse') => {
     // change the 'drop_ct' to 'rate'
     mhctjson.forEach((rate) => {
       // convert from a '13.53' to 1353
-      rate.rate = parseInt(rate.drop_pct * 100);
+      rate.rate = Number.parseInt(rate.drop_pct * 100);
       delete rate.drop_ct;
     });
   }
@@ -240,7 +240,7 @@ const getHighestArForMouse = async (id, type = 'mouse') => {
  */
 const getHighestArText = async (id, type = 'mouse') => {
   const highest = await getHighestArForMouse(id, type);
-  return highest ? highest : false;
+  return highest ?? false;
 };
 
 /**
@@ -309,11 +309,11 @@ const addArDataToMap = () => {
     return;
   }
 
-  if (mapViewClasses.classList.value.indexOf('scavenger_hunt') !== -1) {
+  if (mapViewClasses.classList.value.includes('scavenger_hunt')) {
     return;
   }
 
-  mouseIcon.forEach((mouse) => {
+  for (const mouse of mouseIcon) {
     const mouseType = mouse.classList.value
       .replace('treasureMapView-goals-group-goal ', '')
       .replace(' mouse', '')
@@ -342,7 +342,7 @@ const addArDataToMap = () => {
         envs.parentNode.insertBefore(div, envs.nextSibling);
       }
     });
-  });
+  }
 };
 
 /**
@@ -356,7 +356,7 @@ const addArDataToMap = () => {
  */
 const makeLink = (text, href, encodeAsSpace = false) => {
   if (encodeAsSpace) {
-    href = href.replace(/_/g, '%20');
+    href = href.replaceAll('_', '%20');
   }
 
   return `<a href="${href}" target="_mouse" class="mousehuntActionButton tiny"><span>${text}</span></a>`;
@@ -382,17 +382,7 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
   }
 
   const error = Mhutils.makeElement('div', [`mh-ui-${type}-message`, 'mh-ui-fade', classes], message);
-  // try catch appending the error to the appendTo element
-  let success = true;
-  try {
-    appendTo.append(error);
-  } catch (e) {
-    success = false;
-  }
-
-  if (! success) {
-    return;
-  }
+  appendTo.append(error);
 
   setTimeout(() => {
     error.classList.add('mh-ui-fade-in');
