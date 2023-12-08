@@ -67,7 +67,7 @@ const addSearch = () => {
 
 const asNum = (number) => {
   // remove any commas, parse as int
-  return parseInt(number.replace(',', ''));
+  return Number.parseInt(number.replace(',', ''));
 };
 
 const resortItems = (sortType = 'alpha') => {
