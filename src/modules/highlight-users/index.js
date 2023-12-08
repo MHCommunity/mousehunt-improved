@@ -57,6 +57,9 @@ const highlightUsers = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

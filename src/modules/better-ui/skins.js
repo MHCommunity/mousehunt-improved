@@ -67,6 +67,9 @@ const addQuickLinksToTrap = () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onRequest(addQuickLinksToTrap, 'ajax/users/gettrapcomponents.php');
   onEvent('camp_page_toggle_blueprint', addQuickLinksToTrap);

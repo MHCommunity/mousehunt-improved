@@ -40,6 +40,9 @@ const autofocusIdSearch = () => {
   input.focus();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onNavigation(reorderBlocks, {
     page: 'friends'

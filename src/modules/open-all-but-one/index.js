@@ -40,6 +40,9 @@ const addOpenAllButOneButton = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

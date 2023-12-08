@@ -177,6 +177,9 @@ addSubmenuItem({
   callback: showModal
 });
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

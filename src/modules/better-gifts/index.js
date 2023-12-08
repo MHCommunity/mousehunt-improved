@@ -470,6 +470,9 @@ const main = () => {
   lineBreakGiftFooter();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
   main();

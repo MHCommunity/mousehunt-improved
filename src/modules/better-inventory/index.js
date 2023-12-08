@@ -141,6 +141,9 @@ const main = () => {
   recipes();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
   main();

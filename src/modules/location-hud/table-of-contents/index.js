@@ -28,6 +28,9 @@ const updateNextWordCount = () => {
   wordsRequired.innerText = wordsRequired.getAttribute('title').replace(' words', '');
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHudStyles([regionStyles, styles]);
 

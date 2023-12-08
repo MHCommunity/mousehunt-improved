@@ -28,6 +28,9 @@ const fillTwttrObject = () => {
   hg.classes.SocialLink = SocialLink;
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   if (getFlag('lol-gottem')) {
     trollMode();

@@ -94,6 +94,9 @@ const main = () => {
   }, 750);
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   // Only load if the user has LGS.
   if (user.has_shield) {

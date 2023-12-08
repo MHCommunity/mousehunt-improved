@@ -128,6 +128,9 @@ const addUIComponents = () => {
   makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHudStyles(styles);
   hud();

@@ -120,6 +120,9 @@ const fixItemPageReciever = () => {
   hg.views.ItemView.show(itemId[1]);
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

@@ -289,6 +289,9 @@ const main = () => {
   upgradeSendSupplies(true);
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
   onNavigation(main, {

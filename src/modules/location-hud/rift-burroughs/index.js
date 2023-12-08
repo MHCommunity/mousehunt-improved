@@ -352,6 +352,9 @@ const hud = () => {
   hudEl.append(wrapper);
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHudStyles(styles);
   hud();

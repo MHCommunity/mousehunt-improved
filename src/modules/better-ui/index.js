@@ -4,6 +4,9 @@ import inputs from './inputs';
 import skins from './skins';
 import styles from './styles';
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   styles();
   friends();

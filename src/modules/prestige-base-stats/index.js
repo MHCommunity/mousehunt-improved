@@ -140,6 +140,9 @@ const savePbStats = () => {
   localStorage.setItem('mh-improved-cache-pb-stats', JSON.stringify(stats));
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onPageChange({ blueprint: { show: () => {
     savePbStats();

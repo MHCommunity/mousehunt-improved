@@ -359,6 +359,9 @@ const hud = async () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHudStyles(styles);
   hud();

@@ -31,6 +31,9 @@ const main = () => {
   setTimeout(updateInputs, 2000);
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onNavigation(main);
   onDialogShow(main);

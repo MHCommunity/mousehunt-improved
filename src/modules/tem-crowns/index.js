@@ -91,6 +91,9 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

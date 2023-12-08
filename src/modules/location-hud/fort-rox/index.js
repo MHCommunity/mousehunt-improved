@@ -173,6 +173,9 @@ const hud = () => {
   addPortalClass();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHudStyles(styles);
   hud();

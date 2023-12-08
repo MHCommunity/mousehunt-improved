@@ -113,6 +113,9 @@ const addUpgradeVisibilityToggles = () => {
 };
 
 let hasAddedUpgradeVisibilityToggles = false;
+/**
+ * Initialize the module.
+ */
 export default () => {
   onDialogShow(addUpgradeVisibilityToggles, 'fabledForestDialog');
   onDialogHide(() => hasAddedUpgradeVisibilityToggles = false);

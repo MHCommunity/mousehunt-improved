@@ -91,6 +91,9 @@ const addRankupForecasterButtons = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(`.mh-ui-forecaster-buttons {
     display: flex;

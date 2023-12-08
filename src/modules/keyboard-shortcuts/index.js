@@ -79,6 +79,9 @@ const listenForKeypresses = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
   listenForKeypresses();

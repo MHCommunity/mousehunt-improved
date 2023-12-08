@@ -131,7 +131,7 @@ const addProfilePicToCurrentFloor = async () => {
   document.body.append(styleElement);
 };
 
-const doHighlighting = () => {
+export default () => {
   const data = mapData();
   if (! data) {
     return;
@@ -163,5 +163,3 @@ const doHighlighting = () => {
     addProfilePicToCurrentFloor();
   }
 };
-
-export default doHighlighting;

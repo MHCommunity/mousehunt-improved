@@ -27,6 +27,9 @@ const applyClassToNames = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

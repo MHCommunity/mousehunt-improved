@@ -66,6 +66,9 @@ const trollem2 = () => {
   banner.classList.remove('hidden');
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   trollEm();
   trollem2();

@@ -228,6 +228,9 @@ const main = () => {
   updateKingsPromoText();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles([
     styles,

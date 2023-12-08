@@ -188,6 +188,9 @@ const relicHunterUpdate = () => {
   };
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addMapStyles();
 

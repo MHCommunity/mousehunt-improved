@@ -71,6 +71,9 @@ const convertOnPage = () => {
   replaceInJournal();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onDialogShow(convertInDialog);
 

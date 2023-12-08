@@ -124,6 +124,9 @@ const main = () => {
   addQuickLinksToTrap();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

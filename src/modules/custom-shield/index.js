@@ -136,6 +136,9 @@ const getTitle = () => {
   return title;
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

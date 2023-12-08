@@ -24,6 +24,9 @@ const listenForIDPaste = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   listenForIDPaste();
 };

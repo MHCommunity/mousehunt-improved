@@ -34,6 +34,9 @@ const startKingsReward = () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

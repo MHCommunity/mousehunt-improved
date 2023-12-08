@@ -134,6 +134,9 @@ const checkForAutohorn = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(settingStyles);
 

@@ -62,6 +62,9 @@ const moveSidebar = () => {
   tabsContainer.insertBefore(menuTab, tabsContainer.lastChild);
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
   persistBodyClass('no-sidebar');

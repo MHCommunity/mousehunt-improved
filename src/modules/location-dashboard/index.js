@@ -244,6 +244,9 @@ const getDashboardContents = () => {
   return contentsWrapper;
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   // Cache the quest data for our current location.
   cacheLocationData();

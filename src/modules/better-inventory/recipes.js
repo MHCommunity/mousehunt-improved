@@ -256,6 +256,9 @@ const updateRecipesOnPage = async (type) => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onNavigation(cleanUpRecipeBook,
     {

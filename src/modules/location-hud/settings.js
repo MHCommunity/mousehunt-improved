@@ -2,6 +2,11 @@ import { addMhuiSetting } from '@/utils';
 
 import environments from '@data/environments.json';
 
+/**
+ * Add settings for the module.
+ *
+ * @param {Object} module The module to add settings for.
+ */
 export default function (module) {
   const locationsToUnset = new Set([
     'desert_oasis',

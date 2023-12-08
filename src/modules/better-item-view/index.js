@@ -152,6 +152,9 @@ const main = () => {
   onPageChange({ item: { show: updateItemView } });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
   main();

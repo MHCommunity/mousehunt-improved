@@ -35,6 +35,9 @@ const addHelpLinks = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHelpLinks();
   addMouseripLink();

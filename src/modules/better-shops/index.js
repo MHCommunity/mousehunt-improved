@@ -131,6 +131,9 @@ const main = () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

@@ -179,6 +179,9 @@ const overloadShowItem = () => {
 let originalSelect = null;
 let newSelect = null;
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
   onOverlayChange({ marketplace: { show: () => {

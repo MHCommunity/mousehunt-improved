@@ -39,6 +39,9 @@ const updatePondLootQuantity = () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHudStyles([regionStyles, styles]);
 

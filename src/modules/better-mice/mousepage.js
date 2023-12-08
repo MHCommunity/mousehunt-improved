@@ -386,6 +386,9 @@ const addSortingToStatsPage = () => {
   clickCurrentTab();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   if ('adversaries' === getCurrentPage() && getCurrentTab() === 'kings_crowns') {
     addKingsCrownsToMicePage();

@@ -71,6 +71,9 @@ const hud = () => {
   } });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHudStyles(styles);
   addCheeseSelector('balacks-cove', [

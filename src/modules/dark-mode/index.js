@@ -27,6 +27,9 @@ const addDarkModeBodyClass = () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

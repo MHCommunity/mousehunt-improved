@@ -27,6 +27,9 @@ const getReadUpdateNotificationTime = (version) => {
 /**
  * Show a notification to the user that MH Improved has been updated.
  */
+/**
+ * Initialize the module.
+ */
 export default () => {
   const link = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}`;
 

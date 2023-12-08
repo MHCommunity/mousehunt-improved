@@ -106,6 +106,9 @@ const m400 = () => {
   renderButton(locationKey);
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

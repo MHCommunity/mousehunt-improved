@@ -298,6 +298,9 @@ const run = async () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
 

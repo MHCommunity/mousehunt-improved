@@ -501,6 +501,9 @@ const main = () => {
   onTravel(null, { callback: addRegionToTravelDropdown });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addUIStyles(styles);
   main();

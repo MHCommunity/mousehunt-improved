@@ -1,6 +1,6 @@
 import { makeElement, mapData } from '@/utils';
 
-const addConsolationPrizes = () => {
+export default () => {
   const consolationButton = document.querySelector('.treasureMapView-consolationPrize-message');
   if (! consolationButton || ! mapData().has_consolation_prizes || ! mapData().consolation_prizes) {
     return;
@@ -25,5 +25,3 @@ const addConsolationPrizes = () => {
 
   consolationButton.parentElement.append(prizeWrapper);
 };
-
-export default addConsolationPrizes;

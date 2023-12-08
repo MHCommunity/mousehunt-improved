@@ -2,6 +2,9 @@ import { addUIStyles } from '@/utils';
 
 import styles from './styles.css';
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   const injectIframe = async () => {
     const wikiPage = document.querySelector('#wiki-page');

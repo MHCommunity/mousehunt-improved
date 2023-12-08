@@ -30,6 +30,9 @@ const replaceInboxClose = () => {
     .replace('<a class="messengerUINotificationClose" href="#">X', '<a class="messengerUINotificationClose" href="#">✕');
   hg.utils.TemplateUtil.addTemplate('ViewMousehuntHeader_inbox', template);
 };
+/**
+ * Initialize the module.
+ */
 export default () => {
   showFullTitlePercent();
   replaceInboxClose();

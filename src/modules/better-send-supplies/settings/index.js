@@ -1,6 +1,11 @@
 import { addMhuiSetting } from '@/utils';
 import getTradableItems from '@data/tradable-items';
 
+/**
+ * Add settings for the module.
+ *
+ * @param {Object} module The module to add settings for.
+ */
 export default function (module) {
   addMhuiSetting(
     'send-supplies-pinned-items',

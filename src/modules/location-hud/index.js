@@ -175,6 +175,9 @@ const main = () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   main();
   onNavigation(main);

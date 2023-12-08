@@ -18,6 +18,9 @@ const undisableCheese = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHudStyles(styles);
   undisableCheese();

@@ -239,6 +239,9 @@ const hud = () => {
   onRequest(showBWReminder);
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addHudStyles(styles);
   hud();
