@@ -29,10 +29,14 @@
 }
 
 .mh-ui-keyboard-shortcuts-popup li strong {
-  padding: 0 10px;
+  padding: 0 5px;
+  margin-right: 10px;
   font-family: monospace;
   font-size: 20px;
   font-weight: 900;
+  background-color: #fff;
+  border: 1px solid #8c8c8c;
+  border-radius: 5px;
 }
 
 .mh-ui-keyboard-shortcuts-popup li em {

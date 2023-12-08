@@ -49,3 +49,7 @@ label.mhui-marketplace-search-toggle {
 .marketplaceView-item-leftBlock {
   margin-top: 20px;
 }
+
+.marketplaceView-itemImage .limitedEdition {
+  display: none;
+}

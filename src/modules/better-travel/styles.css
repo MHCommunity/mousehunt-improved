@@ -151,12 +151,14 @@
   flex-flow: column wrap;
   align-items: stretch;
   justify-content: flex-start;
-  width: 100%;
-  height: 380px;
+  width: 754px;
+  height: 390px;
+  padding: 4px 1px;
 }
 
 #mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink {
-  max-width: 129px;
+  width: 112px;
+  margin-left: 1px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
