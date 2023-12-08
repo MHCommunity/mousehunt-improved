@@ -25,7 +25,7 @@ const updateClosingTime = () => {
   const today = new Date();
 
   const rotationLength = 18.66666;
-  const rotationsExact = (((today.getTime() / 1000.0) - 1294680060) / 3600) / rotationLength;
+  const rotationsExact = (((today.getTime() / 1000) - 1294680060) / 3600) / rotationLength;
   const rotationsInteger = Math.floor(rotationsExact);
   const partialrotation = (rotationsExact - rotationsInteger) * rotationLength;
   if (partialrotation < 16) {

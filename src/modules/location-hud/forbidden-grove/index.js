@@ -10,7 +10,7 @@ const updateClosingTime = () => {
   // Props Warden Slayer & Timers+ for the math and logic.
   const today = new Date();
   const rotationLength = 20;
-  const rotationsExact = (((today.getTime() / 1000.0) - 1285704000) / 3600) / rotationLength;
+  const rotationsExact = (((today.getTime() / 1000) - 1285704000) / 3600) / rotationLength;
   const rotationsInteger = Math.floor(rotationsExact);
   const partialrotation = (rotationsExact - rotationsInteger) * rotationLength;
   if (partialrotation < 16) {
