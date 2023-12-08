@@ -517,4 +517,4 @@ const init = async () => {
   Utils.debug('Loading complete.');
 };
 
-init();
+init(); // eslint-disable-line unicorn/prefer-top-level-await
