@@ -160,6 +160,19 @@ const overloadShowItem = () => {
     }
 
     originalShowItem(itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force);
+
+    // Set the quantity input to a number input
+    const unitPriceInput = document.querySelectorAll('.marketplaceView-item-inputWrapper input');
+    if (unitPriceInput) {
+      unitPriceInput.forEach((input) => {
+        input.setAttribute('type', 'number');
+      });
+    }
+
+    const quantityInput = document.querySelector('.marketplaceView-item-input.quantity input');
+    if (quantityInput) {
+      quantityInput.setAttribute('type', 'number');
+    }
   };
 };
 
