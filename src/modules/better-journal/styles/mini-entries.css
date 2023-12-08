@@ -38,8 +38,13 @@
 .journal .entry.halloween_boiling_cauldron.brew_finished,
 .journal .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted,
 .journal .entry.folkloreForest.folkloreForest-lootFuelBoost,
-.journal .entry.folkloreForest-farmToTable {
+.journal .entry.folkloreForest-farmToTable,
+.journal .entry.folkloreForest-tableOfContents.folkloreForest-bookFinished {
   background-position: 10px center;
+}
+
+.journal .entry.folkloreForest-bookClaimed {
+  background-position: 10px 30px;
 }
 
 /* hiding date for entries that come with a hunt */
@@ -53,6 +58,7 @@
 .entry.short.super_rift_vacuum_trigger .journaldate,
 .entry.short.queso_canyon_queso_pumped .journaldate,
 .entry.short.custom.chesla_trap_trigger .journaldate,
+.entry.short.wordCount.minimalJournal .journaldate,
 .entry.short.folkloreForest.folkloreForest-lootFuelBoost .journaldate {
   display: none;
 }
@@ -79,6 +85,10 @@
 
 .entry.short.misc.custom.chesla_trap_trigger {
   background-color: #edd1f3;
+}
+
+.journal .entry.folkloreForest-tableOfContents.wordCount {
+  background-color: #f7d9a2;
 }
 
 .entry.short.misc.custom.torch_charm_event .refine_pollutinum,
