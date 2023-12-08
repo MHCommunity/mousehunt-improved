@@ -66,11 +66,7 @@ import updateNotifications from './modules/update-notifications';
 
 import * as Utils from './modules/utils';
 
-import {
-  addAdvancedSettings,
-  addSettingForModule,
-  showLoadingError
-} from './modules/settings';
+import { addAdvancedSettings, addSettingForModule, showLoadingError } from './modules/settings';
 
 // Core 'Better' modules.
 const modules = [
