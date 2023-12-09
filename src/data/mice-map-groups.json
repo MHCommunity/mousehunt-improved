@@ -1082,5 +1082,535 @@
         ]
       }
     ]
+  },
+  "naughty_f_list": {
+    "categories": [
+      {
+        "name": "Anywhere",
+        "id": "anywhere",
+        "icon": "https://www.mousehuntgame.com/images/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png?cv=2",
+        "color": "#3f8bae",
+        "mice": [
+          "Hoarder",
+          {
+            "mouse": "winter_hunt_toy_strong",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "stuck_snowball",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "glazed",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "joy",
+            "subcategory": "gpp"
+          }
+        ]
+      },
+      {
+        "name": "Cinnamon Hill",
+        "id": "cinnamon_hill",
+        "icon": "https://www.mousehuntgame.com/images/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg?cv=2",
+        "color": "#c76e39",
+        "mice": [
+          "candy_cane",
+          "Nice Knitting",
+          "Shorts-All-Year",
+          "snow_scavenger",
+          "Toboggan Technician",
+          "Young Prodigy Racer",
+          {
+            "mouse": "triple_lutz",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "black_diamond_racer",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "Double black_diamond_racer",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "free_skiing",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2020",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "nitro_racer",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2021",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2015",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_general_one",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "golem_jockey",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_hoarder",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "sporty_ski_instructor",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "wreath_thief",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "new_year_flight",
+            "subcategory": "gpp"
+          }
+        ]
+      },
+      {
+        "name": "Golem Workshop",
+        "id": "golem_workshop",
+        "icon": "https://www.mousehuntgame.com/images/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg?cv=2",
+        "color": "#9ab1b4",
+        "mice": [
+          "Gingerbread",
+          "greedy_al",
+          "winter_future",
+          "winter_past",
+          "winter_present",
+          {
+            "mouse": "scrooge",
+            "subcategory": "sb"
+          },
+          {
+            "mouse": "ribbon",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "christmas_tree",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_hunt_toy",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "elf",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "mad_elf",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "nutcracker",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "ornament",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "present",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "ridiculous_sweater",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowman_architect",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "stocking",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "toy",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "toy_builder",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "disco_ball_head",
+            "subcategory": "gpp"
+          }
+        ]
+      },
+      {
+        "name": "Ice Fortress",
+        "id": "ice_fortress",
+        "icon": "https://www.mousehuntgame.com/images/environments/15d8d9d837b22b31707d06f412b78e0d.jpg?cv=2",
+        "color": "#cc85fe",
+        "mice": [
+          "confused_courier",
+          "Frigid Foreman",
+          "Miser",
+          "Missile Toe",
+          "Snowblower",
+          "Snowglobe",
+          "builder",
+          {
+            "mouse": "builder",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "winter_boss_2014",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "glacia_ice_fist",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2016",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2018",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2017",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_general_two",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_bully",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "slay",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snow_fort",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_general_three",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "squeaker_claws",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "tundra_huntress",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "new_years",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2022",
+            "subcategory": "boss"
+          }
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "pp",
+        "name": "Pecan Pepperino"
+      },
+      {
+        "id": "gpp",
+        "name": "Glazed Pecan Pepperino"
+      },
+      {
+        "id": "sb",
+        "name": "SUPER|brie+"
+      },
+      {
+        "id": "boss",
+        "name": "Boss"
+      }
+    ]
+  },
+  "nice_f_list": {
+    "categories": [
+      {
+        "name": "Anywhere",
+        "id": "anywhere",
+        "icon": "https://www.mousehuntgame.com/images/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png?cv=2",
+        "color": "#3f8bae",
+        "mice": [
+          "Hoarder",
+          {
+            "mouse": "winter_hunt_toy_strong",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "stuck_snowball",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "glazed",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "joy",
+            "subcategory": "gpp"
+          }
+        ]
+      },
+      {
+        "name": "Cinnamon Hill",
+        "id": "cinnamon_hill",
+        "icon": "https://www.mousehuntgame.com/images/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg?cv=2",
+        "color": "#c76e39",
+        "mice": [
+          "candy_cane",
+          "Nice Knitting",
+          "Shorts-All-Year",
+          "snow_scavenger",
+          "Toboggan Technician",
+          "Young Prodigy Racer",
+          {
+            "mouse": "triple_lutz",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "black_diamond_racer",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "Double black_diamond_racer",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "free_skiing",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2020",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "nitro_racer",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2021",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2015",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_general_one",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "golem_jockey",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_hoarder",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "sporty_ski_instructor",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "wreath_thief",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "new_year_flight",
+            "subcategory": "gpp"
+          }
+        ]
+      },
+      {
+        "name": "Golem Workshop",
+        "id": "golem_workshop",
+        "icon": "https://www.mousehuntgame.com/images/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg?cv=2",
+        "color": "#9ab1b4",
+        "mice": [
+          "Gingerbread",
+          "greedy_al",
+          "winter_future",
+          "winter_past",
+          "winter_present",
+          {
+            "mouse": "scrooge",
+            "subcategory": "sb"
+          },
+          {
+            "mouse": "ribbon",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "christmas_tree",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_hunt_toy",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "elf",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "mad_elf",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "nutcracker",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "ornament",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "present",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "ridiculous_sweater",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowman_architect",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "stocking",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "toy",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "toy_builder",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "disco_ball_head",
+            "subcategory": "gpp"
+          }
+        ]
+      },
+      {
+        "name": "Ice Fortress",
+        "id": "ice_fortress",
+        "icon": "https://www.mousehuntgame.com/images/environments/15d8d9d837b22b31707d06f412b78e0d.jpg?cv=2",
+        "color": "#cc85fe",
+        "mice": [
+          "confused_courier",
+          "Frigid Foreman",
+          "Miser",
+          "Missile Toe",
+          "Snowblower",
+          "Snowglobe",
+          "builder",
+          {
+            "mouse": "builder",
+            "subcategory": "pp"
+          },
+          {
+            "mouse": "winter_boss_2014",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "glacia_ice_fist",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2016",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2018",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2017",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_general_two",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_bully",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "slay",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snow_fort",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "snowball_general_three",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "squeaker_claws",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "tundra_huntress",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "new_years",
+            "subcategory": "gpp"
+          },
+          {
+            "mouse": "winter_boss_2022",
+            "subcategory": "boss"
+          }
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "pp",
+        "name": "Pecan Pepperino"
+      },
+      {
+        "id": "gpp",
+        "name": "Glazed Pecan Pepperino"
+      },
+      {
+        "id": "sb",
+        "name": "SUPER|brie+"
+      },
+      {
+        "id": "boss",
+        "name": "Boss"
+      }
+    ]
   }
 }
