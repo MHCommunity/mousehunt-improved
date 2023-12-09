@@ -156,6 +156,10 @@
   margin-bottom: 10px;
 }
 
+.travelPage-map-environment-detail-title img {
+  max-width: 25px;
+}
+
 /* GWH gifts */
 .gift-padding img {
   width: 75px;
