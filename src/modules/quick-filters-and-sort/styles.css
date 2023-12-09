@@ -34,7 +34,11 @@
   display: flex;
   justify-content: space-evenly;
   padding: 5px 10px;
-  background-color: var(--mhdm-secondaryDark, #f6f3eb); /* stylelint-disable-line */
+  background-color: #f6f3eb;
+}
+
+.mh-dark-mode .campPage-trap-itemBrowser-quickLinks {
+  background-color: #242424;
 }
 
 .campPage-trap-itemBrowser-quickLinks-power {
