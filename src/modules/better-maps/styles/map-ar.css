@@ -1,5 +1,5 @@
-.treasure .treasureMapView-goals-group-goal[data-mh-ui-ar="true"] .treasureMapView-goals-group-goal-name,
-.event .treasureMapView-goals-group-goal[data-mh-ui-ar="true"] .treasureMapView-goals-group-goal-name {
+.treasureMapView.treasure .treasureMapView-goals-group-goal[data-mh-ui-ar="true"] .treasureMapView-goals-group-goal-name,
+.treasureMapView.event .treasureMapView-goals-group-goal[data-mh-ui-ar="true"] .treasureMapView-goals-group-goal-name {
   position: relative;
   display: flex;
   flex-direction: column;
