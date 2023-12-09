@@ -1091,7 +1091,7 @@
         "icon": "https://www.mousehuntgame.com/images/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png?cv=2",
         "color": "#3f8bae",
         "mice": [
-          "Hoarder",
+          "hoarder",
           {
             "mouse": "winter_hunt_toy_strong",
             "subcategory": "pp"
@@ -1117,11 +1117,11 @@
         "color": "#c76e39",
         "mice": [
           "candy_cane",
-          "Nice Knitting",
-          "Shorts-All-Year",
+          "nice_knitting",
+          "winter_boss_2019",
           "snow_scavenger",
-          "Toboggan Technician",
-          "Young Prodigy Racer",
+          "toboggan_technician",
+          "green_circle_boss",
           {
             "mouse": "triple_lutz",
             "subcategory": "pp"
@@ -1186,7 +1186,7 @@
         "icon": "https://www.mousehuntgame.com/images/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg?cv=2",
         "color": "#9ab1b4",
         "mice": [
-          "Gingerbread",
+          "gingerbread",
           "greedy_al",
           "winter_future",
           "winter_past",
@@ -1260,11 +1260,11 @@
         "color": "#cc85fe",
         "mice": [
           "confused_courier",
-          "Frigid Foreman",
-          "Miser",
-          "Missile Toe",
-          "Snowblower",
-          "Snowglobe",
+          "frigid_foreman",
+          "miser",
+          "missle_toe",
+          "snowblower",
+          "snowglobe",
           "builder",
           {
             "mouse": "builder",
@@ -1356,7 +1356,7 @@
         "icon": "https://www.mousehuntgame.com/images/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png?cv=2",
         "color": "#3f8bae",
         "mice": [
-          "Hoarder",
+          "hoarder",
           {
             "mouse": "winter_hunt_toy_strong",
             "subcategory": "pp"
@@ -1382,11 +1382,11 @@
         "color": "#c76e39",
         "mice": [
           "candy_cane",
-          "Nice Knitting",
-          "Shorts-All-Year",
+          "nice_knitting",
+          "winter_boss_2019",
           "snow_scavenger",
-          "Toboggan Technician",
-          "Young Prodigy Racer",
+          "toboggan_technician",
+          "green_circle_boss",
           {
             "mouse": "triple_lutz",
             "subcategory": "pp"
@@ -1451,7 +1451,7 @@
         "icon": "https://www.mousehuntgame.com/images/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg?cv=2",
         "color": "#9ab1b4",
         "mice": [
-          "Gingerbread",
+          "gingerbread",
           "greedy_al",
           "winter_future",
           "winter_past",
@@ -1525,11 +1525,11 @@
         "color": "#cc85fe",
         "mice": [
           "confused_courier",
-          "Frigid Foreman",
-          "Miser",
-          "Missile Toe",
-          "Snowblower",
-          "Snowglobe",
+          "frigid_foreman",
+          "miser",
+          "missle_toe",
+          "snowblower",
+          "snowglobe",
           "builder",
           {
             "mouse": "builder",
