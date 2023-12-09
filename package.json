@@ -27,7 +27,8 @@
     "lint:md": "eslint --ext .md .",
     "lint": "concurrently \"bun:lint:*(!fix)\"",
     "generate-minlucks": "bash scripts/generate-minlucks",
-    "generate-wisdom": "bash scripts/generate-wisdom"
+    "generate-wisdom": "bash scripts/generate-wisdom",
+    "fix-map-groups": "bash scripts/fix-map-groups"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.5",
