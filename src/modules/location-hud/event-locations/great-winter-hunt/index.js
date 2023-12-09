@@ -4,7 +4,6 @@ import styles from './styles.css';
 
 const updateGolemFooter = () => {
   const footer = document.querySelector('.greatWinterHuntDialogView__inventoryFooter');
-  console.log(footer);
   if (! footer) {
     return;
   }

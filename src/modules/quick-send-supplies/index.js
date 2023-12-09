@@ -1,14 +1,14 @@
 import {
   addUIStyles,
   getMhuiSetting,
+  getTradableItems,
   makeElement,
   onDialogShow,
   onEvent,
   onNavigation,
   onRequest,
   showErrorMessage,
-  showSuccessMessage,
-  getTradableItems
+  showSuccessMessage
 } from '@/utils';
 
 import styles from './styles.css';
