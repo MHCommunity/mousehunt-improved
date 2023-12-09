@@ -145,22 +145,6 @@ a.inventoryPage-item-larryLexicon {
   display: none;
 }
 
-.itemViewStatBlock.trinket {
-  float: right;
-  width: 100px;
-  margin-top: 10px;
-  margin-right: 5px;
-  margin-left: 5px;
-  font-size: 13px;
-}
-
-.itemViewStatBlock.trinket .itemViewStatBlock-padding {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100px;
-}
-
 .inventoryPage-item-content-description-text {
   max-height: 75px;
   padding: 0;
