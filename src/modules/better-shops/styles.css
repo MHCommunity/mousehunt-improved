@@ -337,6 +337,7 @@ a.itemPurchaseView-content-skin-link {
   padding: 2px;
   margin: 0;
   margin-right: 5px;
+  background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -530,4 +531,24 @@ a.shopsPage-kingsCalibratorPromo {
 
 .shopsPage-kingsCalibratorPromo br {
   display: none;
+}
+
+.shopsPage-compareEquipment-stats {
+  width: auto;
+}
+
+.shopsPage-compareEquipment-stats .itemViewStatBlock.horizontal.weapon {
+  float: none;
+  width: auto;
+  margin-left: 0;
+}
+
+.shopsPage-compareEquipment-stats .itemPurchaseView-content-name {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start;
+}
+
+.shopsPage-compareEquipment {
+  background-color: #dbe9ff;
 }
