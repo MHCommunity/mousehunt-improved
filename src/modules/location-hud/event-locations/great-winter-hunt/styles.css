@@ -172,14 +172,14 @@ button.campHudSnowballShowdownView__buyButton {
   box-shadow: inset 0 0 1px 1px #a8d3e0;
 }
 
-.greatWinterHuntDialogView__inventoryFooter.headsUpDisplayWinterHuntRegionView__plusButton {
+.greatWinterHuntDialogView__inventoryFooter .headsUpDisplayWinterHuntRegionView__plusButton {
   position: absolute;
-  right: -16px;
+  right: -15px;
   display: none;
-  width: 15px;
-  height: 15px;
+  width: 19px;
+  height: 19px;
   background-size: cover;
-  border-radius: 50%;
+  border-radius: 2px;
   box-shadow: 0 0 1px 1px #527e8f;
 }
 
@@ -418,7 +418,6 @@ button.campHudSnowballShowdownView__buyButton {
 
 .greatWinterHuntDialogView__bigButtonInlineCostQuantity {
   margin-top: 12px;
-  margin-left: 31px;
   font-size: 19px;
   box-shadow: 0 0 20px 4px #074762 inset;
 }
@@ -452,10 +451,15 @@ button.campHudSnowballShowdownView__buyButton {
 
 .greatWinterHuntRecycleDialogView__itemQuantity.quantity {
   top: 185px;
-  right: 20px;
-  left: 20px;
+  right: unset;
+  left: unset;
+  min-width: 40px;
   font-size: 18px;
   background-color: rgb(255 255 255 / 75%);
+}
+
+.greatWinterHuntRecycleDialogView__item {
+  align-items: center;
 }
 
 .greatWinterHuntRecycleDialogView__action {
@@ -496,4 +500,33 @@ button.campHudSnowballShowdownView__buyButton {
 
 .greatWinterHuntRecycleDialogView__item:nth-child(1) .greatWinterHuntRecycleDialogView__itemQuantity.quantity {
   top: 175px;
+}
+
+.possibleGolems .greatWinterHuntDialogView__footerItemQuantity.quantity {
+  background-color: #51516e;
+  box-shadow: inset 0 0 1px 1px #6ea0d1;
+}
+
+.greatWinterHuntDialogView__footerItemSeperator {
+  width: 50px;
+}
+
+.headsUpDisplayWinterHuntIceFortressView__shieldLabel.headsUpDisplayWinterHuntIceFortressView__shieldLabel--active {
+  top: 6px;
+  font-size: 11px;
+  background-color: #273852;
+  border-radius: 13px;
+}
+
+.headsUpDisplayWinterHuntRegionView__hailstones .headsUpDisplayWinterHuntRegionView__resourceCost {
+  top: 39px;
+  font-size: 14px;
+  background-color: #8de3e4;
+}
+
+.greatWinterHuntRecycleDialogView__itemQuantity.quantity[data-item-type="golem_part_limb_stat_item"] {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-evenly;
 }
