@@ -1,50 +1,24 @@
 import { addUIStyles, getFlag } from '@/utils';
 
+import delayTooltipStyles from './modules/delayed-tooltips.css';
 import rankupForecaster from './modules/rank-up-forecaster';
 import trollMode from './modules/troll-mode';
-
-import delayTooltipStyles from './modules/delayed-tooltips.css';
-
-const fillTwttrObject = () => {
-  window.twttr = {
-    widgets: {
-      load: () => {},
-      createShareButton: () => {},
-    },
-  };
-
-  class SocialLink {
-    constructor(url) {
-      this.url = url;
-    }
-    appendTo() {}
-    setFacebookLikeUrl() {}
-    setFacebookShareUrl() {}
-    setImage() {}
-    setTitle() {}
-    setTwitterUrl() {}
-  }
-
-  hg.classes.SocialLink = SocialLink;
-};
+import twitter from './modules/twitter';
 
 /**
  * Initialize the module.
  */
 export default () => {
-  if (getFlag('lol-gottem')) {
-    trollMode();
-  }
+  const features = [
+    { id: 'lol-gottem', load: trollMode },
+    { id: 'twitter', load: twitter },
+    { id: 'rankup-forecaster', load: rankupForecaster },
+    { id: 'delayed-tooltips', load: () => addUIStyles(delayTooltipStyles) },
+  ];
 
-  if (getFlag('twitter')) {
-    fillTwttrObject();
-  }
-
-  if (! getFlag('rankup-forecaster')) {
-    rankupForecaster();
-  }
-
-  if (getFlag('delayed-tooltips')) {
-    addUIStyles(delayTooltipStyles);
+  for (const feature of features) {
+    if (getFlag(feature.id)) {
+      feature.load();
+    }
   }
 };

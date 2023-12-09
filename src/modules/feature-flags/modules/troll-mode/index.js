@@ -1,6 +1,6 @@
 import { addUIStyles } from '@/utils';
 
-import styles from './troll-mode.css';
+import styles from './styles.css';
 
 const trollEm = () => {
   const domQuery = '#journallatestentry';
