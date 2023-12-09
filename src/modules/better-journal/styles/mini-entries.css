@@ -48,7 +48,8 @@
 }
 
 /* gotta love !important */
-.entry.short.misc.custom.winterTaiga.festiveSpiritLootBoost.minimalJournalImage {
+.entry.short.misc.custom.winterTaiga.festiveSpiritLootBoost.minimalJournalImage,
+.entry.short.misc.custom.winterTaiga.workshopPartProduced.minimalJournalImage {
   background-position: 10px center !important;
   background-size: 50px !important;
 }
