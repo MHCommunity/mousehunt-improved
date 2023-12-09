@@ -32,7 +32,8 @@
 .entry.badge .journaltext a::after,
 .entry.folkloreForest.folkloreForest-lootFuelBoost .journaltext::after,
 .entry.folkloreForest-farmToTable .journaltext a:last-of-type::after,
-.entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after {
+.entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
+.entry.golemUpgraded .journaltext a::after {
   display: inline;
   content: ".";
 }
