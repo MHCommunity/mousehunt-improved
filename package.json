@@ -25,7 +25,9 @@
     "lint:json": "eslint --ext .json .",
     "lint:md:fix": "eslint --ext .md . --fix",
     "lint:md": "eslint --ext .md .",
-    "lint": "concurrently \"bun:lint:*(!fix)\""
+    "lint": "concurrently \"bun:lint:*(!fix)\"",
+    "generate-minlucks": "bash scripts/generate-minlucks",
+    "generate-wisdom": "bash scripts/generate-wisdom"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.5",
