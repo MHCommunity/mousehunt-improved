@@ -7,12 +7,11 @@ import {
   onNavigation,
   onRequest,
   showErrorMessage,
-  showSuccessMessage
+  showSuccessMessage,
+  getTradableItems
 } from '@/utils';
 
 import styles from './styles.css';
-
-import getTradableItems from '@data/tradable-items';
 
 const makeItem = (name, type, image, appendTo) => {
   const item = makeElement('div', 'quickSendItem');

@@ -1,7 +1,7 @@
 import { addUIStyles } from '@/utils';
 
-import mapping from '@data/upscaled-image-mapping.json';
-import pathsToSkip from '@data/upscaled-image-paths-to-skip.json';
+import mapping from '@data/upscaled-images.json';
+import pathsToSkip from '@data/upscaled-images-to-skip.json';
 
 import journalThemeStyles from './journal-themes.css';
 import styles from './styles.css';

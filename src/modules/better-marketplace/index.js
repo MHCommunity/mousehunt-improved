@@ -8,7 +8,7 @@ import {
 
 import styles from './styles.css';
 
-import itemsToRemove from '@data/marketplace-items-to-remove.json';
+import itemsToRemove from '@data/items-marketplace-hidden.json';
 
 const initSearch = (searchInputDOM) => {
   // add one blank one to the start

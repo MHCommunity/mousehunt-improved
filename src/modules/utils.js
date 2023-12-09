@@ -1,4 +1,5 @@
 import * as Mhutils from './mh-utils';
+import tradeableItems from '@data/items-tradeable.json';
 
 /**
  * Add custom styles to the page.
@@ -691,6 +692,29 @@ const replaceInTemplate = (templateId, replacements) => {
   hg.utils.TemplateUtil.addTemplate(templateId, templateContent);
 };
 
+/**
+ * Get the tradeable items.
+ *
+ * @param {string} valueKey Which key to use for the value. 'all' will return the entire object.
+ *
+ * @return {Array} Array of tradeable items.
+ */
+const getTradableItems = (valueKey = 'all') => {
+  if ('all' === valueKey) {
+    return tradeableItems;
+  }
+
+  const returnItems = [];
+  tradeableItems.forEach((item) => {
+    returnItems.push({
+      name: item.name,
+      value: item[valueKey],
+    });
+  });
+
+  return returnItems;
+};
+
 export * from './mh-utils';
 
 export {
@@ -720,5 +744,6 @@ export {
   replaceInTemplate,
   setCachedValue,
   showErrorMessage,
-  showSuccessMessage
+  showSuccessMessage,
+  getTradableItems
 };

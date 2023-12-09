@@ -11,8 +11,8 @@ import {
 
 import mousepage from './mousepage';
 
-import minlucks from '@data/minlucks.json';
-import wisdoms from '@data/wisdom.json';
+import minlucks from '@data/mice-minlucks.json';
+import wisdoms from '@data/mice-wisdom.json';
 
 import styles from './styles.css';
 
