@@ -207,6 +207,7 @@ button.campHudSnowballShowdownView__buyButton {
 }
 
 .headsUpDisplayWinterHuntRegionView__golemChatMessage span {
+  display: flex;
   padding-bottom: 2px;
   font-size: 10px;
   line-height: 10px;
