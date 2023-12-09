@@ -18,7 +18,8 @@ a[href="https://www.facebook.com/groups/103701656374148/"],
 .pageSidebarView-mobileApps,
 .pageSidebarView-title,
 .pageSidebarView-block-description
-#jsDialog-publishToOwnWall {
+#jsDialog-publishToOwnWall,
+.travelShortcut.QuestHailstoneGolems {
   display: none;
 }
 
