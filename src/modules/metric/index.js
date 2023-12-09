@@ -41,9 +41,9 @@ const replaceInJournal = () => {
   }
 
   entries.forEach((entry) => {
-    const converted = imperialToMetric(entry.innerText);
+    const converted = imperialToMetric(entry.innerHTML);
     if (converted) {
-      entry.innerText = converted;
+      entry.innerHTML = converted;
     }
   });
 };
