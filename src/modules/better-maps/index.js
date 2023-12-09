@@ -101,7 +101,7 @@ const intercept = () => {
     if (data.treasure_map && data.treasure_map.map_id) {
       setMapData(data.treasure_map.map_id, data.treasure_map);
     }
-  }, 'managers/ajax/users/treasuremap.php', true); // eslint-disable-line no-undef
+  }, 'managers/ajax/users/treasuremap.php', true);
 };
 
 const clearStickyMouse = () => {

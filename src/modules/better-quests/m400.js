@@ -33,7 +33,7 @@ const renderButton = (location) => {
       clickedLocation = parent.getAttribute('data-location');
     }
 
-    app.pages.TravelPage.travel(clickedLocation); // eslint-disable-line no-undef
+    app.pages.TravelPage.travel(clickedLocation);
   });
 
   title.append(button);

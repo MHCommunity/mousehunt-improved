@@ -53,12 +53,12 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
     const requiredItem = required.find((i) => i.type === item.type);
 
     return {
-      item_id: item.item_id, /* eslint-disable-line camelcase */
+      item_id: item.item_id, // eslint-disable-line camelcase
       type: item.type,
       name: item.name,
-      thumbnail: item.thumbnail_gray || item.thumbnail, /* eslint-disable-line camelcase */
+      thumbnail: item.thumbnail_gray || item.thumbnail, // eslint-disable-line camelcase
       quantity: item.quantity || 0,
-      quantity_formatted: item.quantity_formatted || '0', /* eslint-disable-line camelcase */
+      quantity_formatted: item.quantity_formatted || '0', // eslint-disable-line camelcase
       le: ! requiredItem,
     };
   });
@@ -148,7 +148,7 @@ const makeCategory = (category, name, progress) => {
 };
 
 const makeItem = (item) => {
-  const { item_id, type, name, thumbnail, thumbnail_gray, quantity, quantity_formatted, le } = item; /* eslint-disable-line camelcase */
+  const { item_id, type, name, thumbnail, thumbnail_gray, quantity, quantity_formatted, le } = item; // eslint-disable-line camelcase
 
   const itemDiv = makeElement('div', 'hunterProfileItemsView-categoryContent-item');
   if (quantity > 0) {

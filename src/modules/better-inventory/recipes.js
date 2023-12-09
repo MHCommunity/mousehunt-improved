@@ -111,7 +111,7 @@ const warnOnBadCrafts = (limit = 0) => {
 };
 
 const modifySmashableTooltip = async () => {
-  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) { // eslint-disable-line no-undef
+  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) {
     return;
   }
 
@@ -144,7 +144,7 @@ const modifySmashableTooltip = async () => {
       const itemType = item.getAttribute('data-item-type');
       producedItem.push(itemType);
 
-      const itemData = await getUserItems(producedItem); // eslint-disable-line no-undef
+      const itemData = await getUserItems(producedItem);
       if (! itemData || ! itemData[0]) {
         return;
       }

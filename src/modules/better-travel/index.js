@@ -73,12 +73,7 @@ const expandTravelRegions = () => {
 };
 
 const travelClickHandler = (event) => {
-  const environment = event.target.getAttribute('data-environment');
-
-  // eslint-disable-next-line no-undef
-  app.pages.TravelPage.travel(environment);
-
-  // eslint-disable-next-line no-undef
+  app.pages.TravelPage.travel(event.target.getAttribute('data-environment'));
   hg.utils.PageUtil.setPage('Camp');
 };
 
@@ -435,7 +430,7 @@ const maybeSetTab = () => {
     return;
   }
 
-  hg.utils.PageUtil.setPageTab('simple-travel'); // eslint-disable-line no-undef
+  hg.utils.PageUtil.setPageTab('simple-travel');
 };
 
 const addRhToSimpleTravel = async () => {

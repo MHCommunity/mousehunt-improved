@@ -1,10 +1,4 @@
-import {
-  getArEl,
-  getHighestArForMouse,
-  getMhuiSetting,
-  makeElement,
-  mapData
-} from '@/utils';
+import { getArEl, getHighestArForMouse, makeElement, mapData } from '@/utils';
 
 import { addMHCTData, getMapData } from '../map-utils';
 
@@ -28,13 +22,9 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   });
 
   // Remove the caught mice from the unsorted mice.
-  if (getMhuiSetting('mh-mapper-debug', false)) {
-    console.log('keeping caught mice', caughtMice); // eslint-disable-line no-console
-  } else {
-    unsortedMice = unsortedMice.filter((mouse) => {
-      return ! caughtMice.includes(mouse.unique_id);
-    });
-  }
+  unsortedMice = unsortedMice.filter((mouse) => {
+    return ! caughtMice.includes(mouse.unique_id);
+  });
 
   // Get the categories.
   let categories = [];

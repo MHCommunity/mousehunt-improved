@@ -13,9 +13,11 @@ const listenForIDPaste = () => {
   window.addEventListener('paste', (e) => {
     // if we're currently focused in an input, then don't do anything
     if (
-      document.activeElement instanceof HTMLInputElement || // eslint-disable-line @wordpress/no-global-active-element
-      document.activeElement instanceof HTMLTextAreaElement || // eslint-disable-line @wordpress/no-global-active-element
-      document.activeElement instanceof HTMLSelectElement // eslint-disable-line @wordpress/no-global-active-element
+      /* eslint-disable @wordpress/no-global-active-element */
+      document.activeElement instanceof HTMLInputElement ||
+      document.activeElement instanceof HTMLTextAreaElement ||
+      document.activeElement instanceof HTMLSelectElement
+      /* eslint-enable @wordpress/no-global-active-element */
     ) {
       return;
     }

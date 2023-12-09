@@ -66,15 +66,17 @@ const makeCharmElement = (charm, appendTo) => {
 
   wrapper.append(clearBlock);
 
-  if ('smart_water_jet_trinket' == charm.type) { // eslint-disable-line eqeqeq
+  /* eslint-disable eqeqeq */
+  if ('smart_water_jet_trinket' == charm.type) {
     charm.description = 'Overcharge your engine for a 500m boost with an automatic unequip after the hunt.';
-  } else if ('brilliant_water_jet_trinket' == charm.type) { // eslint-disable-line eqeqeq
+  } else if ('brilliant_water_jet_trinket' == charm.type) {
     charm.description = 'Supercharge your engine for a boost to the end of the current zone!';
-  } else if ('spiked_anchor_trinket' == charm.type) { // eslint-disable-line eqeqeq
+  } else if ('spiked_anchor_trinket' == charm.type) {
     charm.description = 'Slow down your sub while also boosting your power!';
-  } else if ('golden_anchor_trinket' == charm.type) { // eslint-disable-line eqeqeq
+  } else if ('golden_anchor_trinket' == charm.type) {
     charm.description = 'Set your sub to super-slow and also find additional sand dollars!';
   }
+  /* eslint-enable eqeqeq */
 
   const toolTip = makeElement('div', 'toolTip');
   toolTip.innerHTML = `<b>${charm.name}s</b><br>${charm.description}`;

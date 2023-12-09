@@ -680,7 +680,7 @@ const onNavigate = onNavigation;
  * @return {string} The page slug.
  */
 const getCurrentPage = () => {
-  return hg.utils.PageUtil.getCurrentPage().toLowerCase(); // eslint-disable-line no-undef
+  return hg.utils.PageUtil.getCurrentPage().toLowerCase();
 };
 
 /**
@@ -689,7 +689,7 @@ const getCurrentPage = () => {
  * @return {string} The page tab.
  */
 const getCurrentTab = () => {
-  const tab = hg.utils.PageUtil.getCurrentPageTab().toLowerCase(); // eslint-disable-line no-undef
+  const tab = hg.utils.PageUtil.getCurrentPageTab().toLowerCase();
   if (tab.length <= 0) {
     return getCurrentPage();
   }
@@ -1376,7 +1376,7 @@ const doRequest = async (url, formData = {}) => {
   }
 
   // If our needed params are empty, bail.
-  if (! lastReadJournalEntryId || ! user || ! user.unique_hash) { // eslint-disable-line no-undef
+  if (! lastReadJournalEntryId || ! user || ! user.unique_hash) {
     return;
   }
 
@@ -1384,8 +1384,8 @@ const doRequest = async (url, formData = {}) => {
   const form = new FormData();
   form.append('sn', 'Hitgrab');
   form.append('hg_is_ajax', 1);
-  form.append('last_read_journal_entry_id', lastReadJournalEntryId ?? 0); // eslint-disable-line no-undef
-  form.append('uh', user.unique_hash ?? ''); // eslint-disable-line no-undef
+  form.append('last_read_journal_entry_id', lastReadJournalEntryId ?? 0);
+  form.append('uh', user.unique_hash ?? '');
 
   // Add in the passed in form data.
   for (const key in formData) {
@@ -1397,7 +1397,7 @@ const doRequest = async (url, formData = {}) => {
 
   // Send the request.
   const response = await fetch(
-    callbackurl ? callbackurl + url : 'https://www.mousehuntgame.com/' + url, // eslint-disable-line no-undef
+    callbackurl ? callbackurl + url : 'https://www.mousehuntgame.com/' + url,
     {
       method: 'POST',
       body: requestBody,
@@ -1458,7 +1458,7 @@ const getUserItems = async (items) => {
  * @return {Object} The user's setup details.
  */
 const getUserSetupDetails = () => {
-  const userObj = user; // eslint-disable-line no-undef
+  const userObj = user;
   const setup = {
     type: userObj.trap_power_type_name,
     stats: {
@@ -1893,7 +1893,7 @@ const addItemToGameInfoBar = (options) => {
  */
 const createPopup = (options) => {
   // If we don't have jsDialog, bail.
-  if ('undefined' === typeof jsDialog || ! jsDialog) { // eslint-disable-line no-undef
+  if ('undefined' === typeof jsDialog || ! jsDialog) {
     return false;
   }
 
@@ -1908,7 +1908,7 @@ const createPopup = (options) => {
   }, options);
 
   // Initiate the popup.
-  const popup = new jsDialog(); // eslint-disable-line no-undef
+  const popup = new jsDialog();
   popup.setIsModal(! settings.hasCloseButton);
 
   // Set the template & add in the content.
@@ -1978,7 +1978,7 @@ const createImagePopup = (options) => {
  */
 const createMapPopup = (options) => {
   // Check to make sure we can call the hg views.
-  if (! (hg && hg.views && hg.views.TreasureMapDialogView)) { // eslint-disable-line no-undef
+  if (! (hg && hg.views && hg.views.TreasureMapDialogView)) {
     return false;
   }
 
@@ -1992,7 +1992,7 @@ const createMapPopup = (options) => {
   }, options);
 
   // Initiate the popup.
-  const dialog = new hg.views.TreasureMapDialogView(); // eslint-disable-line no-undef
+  const dialog = new hg.views.TreasureMapDialogView();
 
   // Set all the content and options.
   dialog.setTitle(options.title);
@@ -2001,9 +2001,9 @@ const createMapPopup = (options) => {
   dialog.setContinueAction(options.closeText);
 
   // If we want to show & we can show, show it.
-  if (settings.show && hg.controllers && hg.controllers.TreasureMapDialogController) { // eslint-disable-line no-undef
-    hg.controllers.TreasureMapController.show(); // eslint-disable-line no-undef
-    hg.controllers.TreasureMapController.showDialog(dialog); // eslint-disable-line no-undef
+  if (settings.show && hg.controllers && hg.controllers.TreasureMapDialogController) {
+    hg.controllers.TreasureMapController.show();
+    hg.controllers.TreasureMapController.showDialog(dialog);
   }
 
   return dialog;
@@ -2266,7 +2266,7 @@ const createLarryPopup = (content, classes = []) => {
  */
 const createPaperPopup = (options) => {
   // If we don't have jsDialog, bail.
-  if ('undefined' === typeof jsDialog || ! jsDialog) { // eslint-disable-line no-undef
+  if ('undefined' === typeof jsDialog || ! jsDialog) {
     return false;
   }
 

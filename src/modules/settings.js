@@ -74,7 +74,7 @@ const addSettingForModule = (module) => {
  * @param {Error} e The error that was thrown.
  */
 const showLoadingError = (e) => {
-  debug('Error loading MouseHunt Improved:', e); // eslint-disable-line no-console
+  debug('Error loading MouseHunt Improved:', e);
 
   // Add the error to the page.
   const errorElement = document.createElement('div');

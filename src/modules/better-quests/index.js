@@ -48,7 +48,7 @@ const addQuestsTab = () => {
 
   // Fire the popup when the tab is clicked.
   newQuestsButton.addEventListener('click', () => {
-    hg.views.HeadsUpDisplayZugswangLibraryView.showPopup(); // eslint-disable-line no-undef
+    hg.views.HeadsUpDisplayZugswangLibraryView.showPopup();
   });
 
   const newQuestsButtonText = document.createElement('span');
@@ -290,7 +290,7 @@ const updateAssignmentList = () => {
     }
 
     button.addEventListener('click', () => {
-      hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm(assignment.id); // eslint-disable-line no-undef
+      hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm(assignment.id);
     });
   });
 };
@@ -314,7 +314,7 @@ const checkForQuestSmash = () => {
     return;
   }
 
-  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) { // eslint-disable-line no-undef
+  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) {
     return;
   }
 
@@ -323,7 +323,7 @@ const checkForQuestSmash = () => {
     return;
   }
 
-  app.pages.InventoryPage.useItem(assignment); // eslint-disable-line no-undef
+  app.pages.InventoryPage.useItem(assignment);
 };
 
 const main = () => {

@@ -12,8 +12,8 @@ const getMouseStats = async () => {
     'managers/ajax/mice/mouse_list.php',
     {
       action: 'get_environment',
-      category: user.environment_type, // eslint-disable-line no-undef
-      user_id: user.user_id, // eslint-disable-line no-undef
+      category: user.environment_type,
+      user_id: user.user_id,
       display_mode: 'stats',
       view: 'ViewMouseListEnvironments',
     }
@@ -53,8 +53,8 @@ const buildMouseMarkup = (mouseData) => {
 
   mouseEl.title = mouse.name;
   mouseEl.addEventListener('click', () => {
-    if ('undefined' !== hg?.views?.MouseView?.show) { // eslint-disable-line no-undef
-      hg.views.MouseView.show(mouse.type); // eslint-disable-line no-undef
+    if ('undefined' !== hg?.views?.MouseView?.show) {
+      hg.views.MouseView.show(mouse.type);
     }
   });
 

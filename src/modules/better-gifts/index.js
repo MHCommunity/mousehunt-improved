@@ -53,8 +53,8 @@ const getIgnoredGifts = () => {
  * @param {boolean} reverse     Whether to reverse the order of the clicks.
  */
 const sendGifts = (buttonClass, limit = 15, reverse = false) => {
-  if (hg && hg.views?.GiftSelectorView?.show) { // eslint-disable-line no-undef
-    hg.views.GiftSelectorView.show(); // eslint-disable-line no-undef
+  if (hg && hg.views?.GiftSelectorView?.show) {
+    hg.views.GiftSelectorView.show();
   }
 
   // get all the gift blocks.
@@ -115,7 +115,7 @@ const makePaidGiftsButton = (buttonContainer) => {
 
   const paidGiftsButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-paid-gifts'], 'Accept & Return Paid Gifts');
   paidGiftsButton.addEventListener('click', () => {
-    hg.views.GiftSelectorView.show(); // eslint-disable-line no-undef
+    hg.views.GiftSelectorView.show();
     hg.views?.GiftSelectorView.showTab('claim_paid_gifts', 'selectClaimableGift');
 
     let acceptedGifts = JSON.parse(sessionStorage.getItem('mh-gift-buttons-accepted-paid-gifts'));
@@ -275,11 +275,11 @@ const checkForSuccessfulGiftSend = (request) => {
   setTimeout(() => {
     okayBtn.click();
 
-    if ('undefined' === typeof activejsDialog || ! activejsDialog || ! activejsDialog.hide) { // eslint-disable-line no-undef
+    if ('undefined' === typeof activejsDialog || ! activejsDialog || ! activejsDialog.hide) {
       return;
     }
 
-    activejsDialog.hide(); // eslint-disable-line no-undef
+    activejsDialog.hide();
   }, 2000);
 };
 
@@ -367,8 +367,8 @@ const addSendButton = (className, text, selector, buttonContainer) => {
 };
 
 const addRandomSendButton = () => {
-  const _selectGift = hg.views.GiftSelectorView.selectGift; // eslint-disable-line no-undef
-  hg.views.GiftSelectorView.selectGift = (gift) => { // eslint-disable-line no-undef
+  const _selectGift = hg.views.GiftSelectorView.selectGift;
+  hg.views.GiftSelectorView.selectGift = (gift) => {
     _selectGift(gift);
 
     const title = document.querySelector('.giftSelectorView-tabContent.active .selectFriends .giftSelectorView-content-title');
@@ -382,8 +382,8 @@ const addRandomSendButton = () => {
 };
 
 const addGiftSwitcher = () => {
-  const _showTab = hg.views.GiftSelectorView.showTab; // eslint-disable-line no-undef
-  const _selectGift = hg.views.GiftSelectorView.selectGift; // eslint-disable-line no-undef
+  const _showTab = hg.views.GiftSelectorView.showTab;
+  const _selectGift = hg.views.GiftSelectorView.selectGift;
   hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
     _showTab(tabType, viewState, preserveVariables, preserveActions);
 
@@ -395,7 +395,7 @@ const addGiftSwitcher = () => {
     // We need to clone the nodes and wait until the selectGift function is called and then
     // we append the cloned nodes to the gift container.
 
-    hg.views.GiftSelectorView.selectGift = (gift) => { // eslint-disable-line no-undef
+    hg.views.GiftSelectorView.selectGift = (gift) => {
       _selectGift(gift);
       const giftContainer = document.querySelector('.giftSelectorView-tabContent.active.selectFriends .giftSelectorView-content-leftBar');
       if (! giftContainer) {
