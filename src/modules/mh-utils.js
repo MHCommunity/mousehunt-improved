@@ -276,6 +276,8 @@ const getDialogMapping = () => {
  * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
 const onDialogShow = (callback, overlay = null, once = false) => {
+  // make a unique identifier for the event listener based on the callback.
+  const identifier = callback.toString().replaceAll(/[^\w-]/gi, '');
   eventRegistry.addEventListener('js_dialog_show', () => {
     if (! activejsDialog) {
       return;
@@ -301,7 +303,7 @@ const onDialogShow = (callback, overlay = null, once = false) => {
 
     // Grab the attributes of the dialog to determine the type.
     const atts = activejsDialog.getAttributes();
-    const dialogType = atts.className
+    let dialogType = atts.className
       .replace('jsDialogFixed', '')
       .replace('wide', '')
       .replace('default', '')
@@ -309,17 +311,10 @@ const onDialogShow = (callback, overlay = null, once = false) => {
       .replaceAll(' ', '.')
       .trim();
 
-    // Make sure this only ran once within the last 100ms for the same overlay.
-    if (window.mhutils?.lastDialog?.overlay === dialogType && (Date.now() - window.mhutils.lastDialog.timestamp) < 250) {
-      return;
+    // if theres a trailing period, remove it.
+    if (dialogType.endsWith('.')) {
+      dialogType = dialogType.slice(0, -1);
     }
-
-    const lastDialog = {
-      overlay: dialogType,
-      timestamp: Date.now(),
-    };
-
-    window.mhutils = window.mhutils ? { ...window.mhutils, ...lastDialog } : lastDialog;
 
     if (! overlay && 'function' === typeof callback) {
       return callback();
@@ -330,7 +325,7 @@ const onDialogShow = (callback, overlay = null, once = false) => {
     if ('function' === typeof callback && (overlay === dialogType || overlay === dialogMapping[dialogType])) {
       return callback();
     }
-  }, null, once);
+  }, null, once, 0, identifier);
 };
 
 /**
