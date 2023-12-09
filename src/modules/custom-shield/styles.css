@@ -24,9 +24,7 @@ a.mousehuntHud-shield.golden.mhui-custom-shield.pride {
 }
 
 .mousehuntHud-shield.golden.scrambles {
-  background-image:
-    url(https://i.mouse.rip/shield-scrambles-bawk.png),
-    url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
+  background-image: url(https://i.mouse.rip/shield-scrambles-bawk.png), url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?cv=2);
 }
 
 .mousehuntHud-shield.jerry {
@@ -34,9 +32,7 @@ a.mousehuntHud-shield.golden.mhui-custom-shield.pride {
 }
 
 .mousehuntHud-shield.golden.jerry {
-  background-image:
-    url(https://i.mouse.rip/shield-jerry.png),
-    url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
+  background-image: url(https://i.mouse.rip/shield-jerry.png), url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?cv=2);
 }
 
 .mousehuntHud-shield.golden.spring-egg-hunt {

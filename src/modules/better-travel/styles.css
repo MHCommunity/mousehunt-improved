@@ -51,7 +51,10 @@
   z-index: 15;
   font-size: 22px;
   font-variant: none;
-  text-shadow: 1px 1px #000, 0 0 10px #000, 8px 12px 9px #000;
+  text-shadow:
+    1px 1px #000,
+    0 0 10px #000,
+    8px 12px 9px #000;
 }
 
 .travelPage-map-image-environment.locked .travelPage-map-image-environment-status {
@@ -208,7 +211,10 @@
 }
 
 .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
+  padding-left: 35px;
+  margin: 0;
   background-color: #ffe67a;
+  border: none;
   border-radius: 6px;
   outline: 1px solid #ccc;
 }
@@ -263,12 +269,6 @@
   border-top: none;
   border-bottom: none;
   border-radius: 5px;
-}
-
-.travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here { /* stylelint-disable-line */
-  padding-left: 35px;
-  margin: 0;
-  border: none;
 }
 
 .relic-hunter-is-here .travelPage-regionMenu-environmentLink-image {

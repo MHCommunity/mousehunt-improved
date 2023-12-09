@@ -3,9 +3,7 @@
 }
 
 .townOfGnawniaHUD-bountyRewardContainer {
-  background:
-    #e5c9a8 url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png)
-    5px 0 no-repeat;
+  background: #e5c9a8 url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png) 5px 0 no-repeat;
   background-size: contain;
 }
 

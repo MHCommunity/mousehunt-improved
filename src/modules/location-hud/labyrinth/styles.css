@@ -146,13 +146,7 @@
   font-weight: 900;
   text-align: center;
   text-shadow: 0 0 1px #000;
-  background:
-    linear-gradient(
-      180deg,
-      rgb(112 112 112 / 0%) 0%,
-      rgb(168 168 168 / 100%) 50%,
-      rgb(112 112 112 / 0%) 100%
-    );
+  background: linear-gradient(180deg, rgb(112 112 112 / 0%) 0%, rgb(168 168 168 / 100%) 50%, rgb(112 112 112 / 0%) 100%);
   border-radius: 20px;
 }
 
@@ -215,9 +209,7 @@
   height: 30px;
   overflow: hidden;
   content: "";
-  background:
-    url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png?asset_cache_version=2)
-    no-repeat 95% 90%;
+  background: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png?asset_cache_version=2) no-repeat 95% 90%;
 }
 
 .labyrinthHUD-confirm-padding .labyrinthHUD-door.mh-ui-labyrinth-highlight::after {
@@ -380,9 +372,7 @@
   left: -8px;
   width: 75px;
   height: 75px;
-  background:
-    url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png?cv=2)
-    0 0 no-repeat;
+  background: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png?cv=2) 0 0 no-repeat;
   filter: drop-shadow(1px 0 8px #f6eac3);
   background-size: contain;
   transform-origin: bottom;

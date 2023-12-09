@@ -1,5 +1,5 @@
 /* hack to make the settings page look better until the settings stuff gets sub-settings */
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer.select.busy::before,
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer.select.busy::before, /* stylelint-disable-line prettier/prettier */
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer.select.completed::before {
   top: 30px;
   right: -25px;

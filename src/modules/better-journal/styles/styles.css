@@ -192,12 +192,12 @@ a.journal-detailLink.full::after {
 }
 
 .journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"],
-.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"] {
+.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"] {  /* stylelint-disable-line prettier/prettier */
   color: #1e831e;
 }
 
 .journal .entry a.loot[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"],
-.journal .entry a.lucky[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"] {
+.journal .entry a.lucky[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"] { /* stylelint-disable-line prettier/prettier */
   color: #a012a0;
 }
 
