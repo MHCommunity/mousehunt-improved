@@ -1002,7 +1002,7 @@
   "halloween_treat_2021": {
     "categories": [
       {
-        "name:": "Standard",
+        "name": "Standard",
         "id": "standard",
         "icon": "https://www.mousehuntgame.com/images/items/bait/large/bb0fe6fa6f55e5ccb1f98dea058409e0.png?cv=2",
         "color": "#fefa76",
