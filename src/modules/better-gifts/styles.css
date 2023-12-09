@@ -169,18 +169,6 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   font-size: 11px;
 }
 
-.paidgift input.giftSelectorView-friendRow-returnQuantity {
-  margin-right: 15px;
-}
-
-.paidgift .giftSelectorView-friendRow-returnCost {
-  right: 50px;
-}
-
-.paidgift a.giftSelectorView-friendRow-action.return {
-  text-indent: -80px;
-}
-
 .giftSelectorView-friend-padding,
 .giftSelectorView-confirmPopup-block-actionItem .giftSelectorView-friend:hover .giftSelectorView-friend-padding {
   border-radius: 0;
@@ -310,4 +298,13 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 .giftSelectorView-inboxGiftOfTheDay-gift abbr {
   text-decoration: none;
   vertical-align: middle;
+}
+
+.mh-gift-buttons-clone-wrapper {
+  max-height: 567px;
+  overflow: scroll;
+}
+
+.paidgift a.giftSelectorView-friendRow-action.return {
+  text-indent: -70px;
 }
