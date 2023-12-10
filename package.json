@@ -26,9 +26,11 @@
     "lint:md:fix": "eslint --ext .md . --fix",
     "lint:md": "eslint --ext .md .",
     "lint": "concurrently \"bun:lint:*(!fix)\"",
+    "lint:scripts": "eslint --ext .mjs scripts",
+    "lint:scripts:fix": "eslint --ext .mjs scripts --fix",
     "generate-minlucks": "bash scripts/generate-minlucks",
     "generate-wisdom": "bash scripts/generate-wisdom",
-    "fix-map-groups": "bash scripts/fix-map-groups"
+    "fix-map-groups": "node scripts/fix-map-groups.mjs"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.5",

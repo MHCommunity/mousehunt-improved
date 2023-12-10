@@ -1,23 +1,24 @@
 import * as esbuild from 'esbuild';
-import { readFile } from "fs/promises"
+import { readFile } from 'node:fs/promises';
 
-export const CSSMinifyTextPlugin = {
-  name: "CSSMinifyTextPlugin",
-  setup(build) {
+const CSSMinifyTextPlugin = {
+  name: 'CSSMinifyTextPlugin',
+  setup(build) { // eslint-disable-line jsdoc/require-jsdoc
     build.onLoad({ filter: /\.css$/ }, async (args) => {
-      const f = await readFile(args.path)
+      const f = await readFile(args.path);
       const css = await esbuild.transform(f, {
         loader: 'css',
         minify: true,
-      })
+      });
       return {
         loader: 'text',
         contents: css.code,
-      }
-    })
+      };
+    });
   }
 };
-export const sharedBuildOptions = {
+
+const sharedBuildOptions = {
   entryPoints: ['src/index.js'],
   platform: 'browser',
   format: 'iife',
@@ -31,4 +32,9 @@ export const sharedBuildOptions = {
     'chrome58',
     'firefox57'
   ],
+};
+
+export {
+  CSSMinifyTextPlugin,
+  sharedBuildOptions
 };

@@ -1,11 +1,16 @@
-import * as esbuild from 'esbuild';
-import fs from 'fs';
-import path from 'path';
-import archiver from 'archiver';
-import esBuildCopyPlugin from "@sprout2000/esbuild-copy-plugin";
 import { CSSMinifyTextPlugin, sharedBuildOptions } from './shared.mjs';
 
+import * as esbuild from 'esbuild';
+import archiver from 'archiver';
+import { copyPlugin } from '@sprout2000/esbuild-copy-plugin';
+import fs from 'node:fs';
+import path from 'node:path';
 
+/**
+ * Main build function.
+ *
+ * @param {string} platform The platform to build for.
+ */
 const buildExtension = async (platform) => {
   fs.mkdirSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });
 
@@ -27,10 +32,10 @@ const buildExtension = async (platform) => {
     outfile: `dist/${platform}/main.js`,
     plugins: [
       CSSMinifyTextPlugin,
-      esBuildCopyPlugin.copyPlugin({
+      copyPlugin.copyPlugin({
         src: 'src/extension',
         dest: `dist/${platform}`,
-        filter: (file) => {
+        filter: (file) => { // eslint-disable-line jsdoc/require-jsdoc
           // Don't copy the screenshots dir or any dotfiles. We don't copy the manifest
           // because we're copying a modified version of it above.
           return (
@@ -55,7 +60,7 @@ const buildExtension = async (platform) => {
     zlib: { level: 9 }
   });
 
-  archive.on('error', function(err) {
+  archive.on('error', function (err) {
     throw err;
   });
 
@@ -66,4 +71,4 @@ const buildExtension = async (platform) => {
   await archive.finalize();
 };
 
-buildExtension(process.argv[2]);
+await buildExtension(process.argv[2]);
