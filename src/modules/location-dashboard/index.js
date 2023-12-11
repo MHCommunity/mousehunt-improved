@@ -1,31 +1,32 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, makeElement, onRequest, onTravel } from '@/utils';
+
 import styles from './styles.css';
 
-import environments from '../../data/environments.json';
+import environments from '@data/environments.json';
 
-import getMousoleumText from './location/mousoleum';
-import getToxicSpillText from './location/toxic-spill';
-import getFortRoxText from './location/fort-rox';
 import { getFieryWarpathText, setFieryWarpathData } from './location/fiery-warpath';
-import getLivingGardenText from './location/living-garden';
-import getLostCityText from './location/lost-city';
-import getSandDunesText from './location/sand-dunes';
 import { getSeasonalGardenText, setSeasonalGardenData } from './location/seasonal-garden';
 import { getZugzwangTowerText, setZugzwangTowerData } from './location/zugzwang-tower';
-import getIcebergText from './location/iceberg';
-import getSunkenCityText from './location/sunken-city';
-import getQuesoGeyserText from './location/queso-geyser';
-import getLabyrinthText from './location/labyrinth';
-import getZokorText from './location/zokor';
-import getMoussuPicchuText from './location/moussu-picchu';
+import getBristleWoodsRiftText from './location/bristle-woods-rift';
+import getBurroughsRiftText from './location/burroughs-rift';
 import getFloatingIslandsText from './location/floating-islands';
 import getForewordFarmText from './location/foreword-farm';
-import getTableOfContentsText from './location/table-of-contents';
-import getBurroughsRiftText from './location/burroughs-rift';
-import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
+import getFortRoxText from './location/fort-rox';
 import getFuromaRiftText from './location/furoma-rift';
-import getBristleWoodsRiftText from './location/bristle-woods-rift';
+import getIcebergText from './location/iceberg';
+import getLabyrinthText from './location/labyrinth';
+import getLivingGardenText from './location/living-garden';
+import getLostCityText from './location/lost-city';
+import getMousoleumText from './location/mousoleum';
+import getMoussuPicchuText from './location/moussu-picchu';
+import getQuesoGeyserText from './location/queso-geyser';
+import getSandDunesText from './location/sand-dunes';
+import getSunkenCityText from './location/sunken-city';
+import getTableOfContentsText from './location/table-of-contents';
+import getToxicSpillText from './location/toxic-spill';
 import getValourRiftText from './location/valour-rift';
+import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
+import getZokorText from './location/zokor';
 
 const cacheLocationData = async () => {
   return new Promise((resolve) => {
@@ -93,9 +94,8 @@ const makeDashboardTab = () => {
 
     const existing = document.querySelector('.dashboardContents');
     if (existing) {
-      const existingParent = existing && existing.parentNode;
       const refreshedContents = getDashboardContents();
-      existingParent.replaceChild(refreshedContents, existing);
+      existing.replaceWith(refreshedContents);
     }
   });
 
@@ -111,22 +111,14 @@ const makeDashboardTab = () => {
 
   // TODO: remove disabled class when we have a way to refresh.
   const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh', 'disabled']);
-  // refreshButton.addEventListener('click', refreshData);
+  makeElement('span', '', 'Refresh', refreshButton);
 
-  const refreshText = document.createElement('span');
-  refreshText.innerText = 'Refresh';
+  refreshWrapper.append(refreshButton);
+  makeElement('div', '', ' (coming soon, for now just travel to each location)', refreshWrapper);
 
-  refreshButton.appendChild(refreshText);
-  refreshWrapper.appendChild(refreshButton);
-
-  const refreshDescription = document.createElement('div');
-  refreshDescription.innerText = ' (coming soon, for now just travel to each location)';
-
-  refreshWrapper.appendChild(refreshDescription);
-
-  dashboardWrapper.appendChild(refreshWrapper);
-  dropdownContent.appendChild(dashboardWrapper);
-  menuTab.appendChild(dropdownContent);
+  dashboardWrapper.append(refreshWrapper);
+  dropdownContent.append(dashboardWrapper);
+  menuTab.append(dropdownContent);
 
   // Append as the second to last tab.
   tabsContainer.insertBefore(menuTab, tabsContainer.lastChild);
@@ -146,9 +138,9 @@ const makeRegionMarkup = (name, childContent, appendTo) => {
   makeElement('div', 'regionName', name, regionWrapper);
 
   // Child content.
-  regionWrapper.appendChild(childContent);
+  regionWrapper.append(childContent);
 
-  appendTo.appendChild(regionWrapper);
+  appendTo.append(regionWrapper);
 };
 
 const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
@@ -170,15 +162,15 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
     const locationImage = makeElement('img', 'locationImage');
     locationImage.setAttribute('src', image.image);
 
-    locationImageWrapper.appendChild(locationImage);
+    locationImageWrapper.append(locationImage);
   }
 
-  locationWrapper.appendChild(locationImageWrapper);
+  locationWrapper.append(locationImageWrapper);
 
   makeElement('div', 'locationName', name, locationWrapper);
   makeElement('div', 'locationProgress', markup, locationWrapper);
 
-  appendTo.appendChild(locationWrapper);
+  appendTo.append(locationWrapper);
 };
 
 const getDashboardContents = () => {
@@ -246,13 +238,16 @@ const getDashboardContents = () => {
   ) {
     const noLocation = makeElement('div', 'noLocationDataWrapper');
     makeElement('div', 'noLocationData', 'No location data found. Refresh data to populate the dashboard.', noLocation);
-    contentsWrapper.appendChild(noLocation);
+    contentsWrapper.append(noLocation);
   }
 
   return contentsWrapper;
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   // Cache the quest data for our current location.
   cacheLocationData();
   onTravel(null, { callback: cacheLocationData });
@@ -261,4 +256,13 @@ export default () => {
   makeDashboardTab();
 
   addUIStyles(styles);
+};
+
+export default {
+  id: 'location-dashboard',
+  name: 'Location Dashboard',
+  type: 'feature',
+  default: true,
+  description: 'See location HUD information in a dashboard available in the top dropdown menu.',
+  load: init,
 };

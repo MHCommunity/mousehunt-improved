@@ -1,82 +1,88 @@
 .riftFuromaHUD-battery-energyRemaining {
-    right: 0;
-    left: -1px;
-    width: auto;
-    font-size: 13px;
-    font-style: normal;
-    color: #fff;
-    text-shadow: 1px 1px 1px #000, 1px 1px 2px #000;
-    background-color: #7a8b8a;
-    border: 1px solid #535757;
-    border-radius: 1px;
+  right: 0;
+  left: -1px;
+  width: auto;
+  font-size: 13px;
+  font-style: normal;
+  color: #fff;
+  text-shadow:
+    1px 1px 1px #000,
+    1px 1px 2px #000;
+  background-color: #7a8b8a;
+  border: 1px solid #535757;
+  border-radius: 1px;
 }
 
 .riftFuromaHUD-itemGroup-activeItem .quantity {
-    padding: 1px 2px;
-    font-size: 12px;
-    font-weight: 400;
-    background-color: #dadada;
+  padding: 1px 2px;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: #dadada;
 }
 
 .riftFuromaHUD-battery-energyTotal {
-    font-size: 10px;
-    color: #e0e0e0;
+  font-size: 10px;
+  color: #e0e0e0;
 }
 
 .riftFuromaHUD-droid-details .riftFuromaHUD-chargeLevel-stat-value {
-        text-shadow: 1px 1px 1px #000, 0 0 2px #000;
+  text-shadow:
+    1px 1px 1px #000,
+    0 0 2px #000;
 }
 
 .riftFuromaHUD-droid-image {
-    transition: all .5s;
+  transition: all 0.5s;
 }
 
 .riftFuromaHUD-droid-image:hover {
-    filter: brightness(1.3);
+  filter: brightness(1.3);
 }
 
 .riftFuromaHUD-battery-image:hover {
-    filter: brightness(1.2);
+  filter: brightness(1.2);
 }
 
 .riftFuromaHUD-itemGroup.can_craft .riftFuromaHUD-itemGroup-craftButton:hover {
-    filter: brightness(1.2);
+  filter: brightness(1.2);
 }
 
 .riftFuromaHUD.pagoda .riftFuromaHUD-chargeLevel-statContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
 }
 
 .riftFuromaHUD-chargeLevel-stat.power {
-    width: unset;
+  width: unset;
 }
 
-.riftFuromaHUD-chargeLevel-stat.luck, .riftFuromaHUD-chargeLevel-stat.power {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: unset;
+.riftFuromaHUD-chargeLevel-stat.luck,
+.riftFuromaHUD-chargeLevel-stat.power {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: unset;
 }
 
 .riftFuromaHUD-chargeLevel-stat.power_usage {
-    grid-column: span 2;
-    width: unset;
+  grid-column: span 2;
+  width: unset;
 }
 
 .riftFuromaHUD-chargeLevel-statContainer .riftFuromaHUD-chargeLevel-stat-value {
-    padding-top: 3px;
-    font-size: 17px;
+  padding-top: 3px;
+  font-size: 17px;
 }
 
 .riftFuromaHUD-chargeLevel-stat.power_usage .riftFuromaHUD-chargeLevel-stat-value {
-    padding-top: 0;
-    margin-top: -2px;
-    font-size: 13px;
+  padding-top: 0;
+  margin-top: -2px;
+  font-size: 13px;
 }
 
-.riftFuromaHUD-chargeLevel-stat.luck .riftFuromaHUD-chargeLevel-stat-label, .riftFuromaHUD-chargeLevel-stat.power .riftFuromaHUD-chargeLevel-stat-label {
-    font-size: 10px;
-    font-weight: 900;
+.riftFuromaHUD-chargeLevel-stat.luck .riftFuromaHUD-chargeLevel-stat-label,
+.riftFuromaHUD-chargeLevel-stat.power .riftFuromaHUD-chargeLevel-stat-label {
+  font-size: 10px;
+  font-weight: 900;
 }

@@ -1,8 +1,20 @@
-import { addUIStyles, getArForMouse, makeLink } from '../utils';
-import styles from './styles.css';
+import {
+  addSubmenuItem,
+  addUIStyles,
+  createFavoriteButton,
+  doRequest,
+  getArForMouse,
+  makeElement,
+  makeLink,
+  onOverlayChange
+} from '@/utils';
+
 import mousepage from './mousepage';
-import minlucks from '../../data/minlucks.json';
-import wisdoms from '../../data/wisdom.json';
+
+import minlucks from '@data/mice-minlucks.json';
+import wisdoms from '@data/mice-wisdom.json';
+
+import styles from './styles.css';
 
 /**
  * Get the markup for the mouse links.
@@ -58,7 +70,7 @@ const isFavorite = async (mouseId) => {
 
   // check if the mouseId matches the id property of any of the favorite mice
   return favorites.page.tabs.kings_crowns.subtabs[0].mouse_crowns.favourite_mice.some((mouse) => {
-    return mouse.id && mouse.id === parseInt(mouseId, 10);
+    return mouse.id && mouse.id === Number.parseInt(mouseId, 10);
   });
 };
 
@@ -79,7 +91,7 @@ const addFavoriteButton = async (mouseId, mouseView) => {
     },
   });
 
-  mouseView.appendChild(fave);
+  mouseView.append(fave);
 };
 
 const addMinluck = async (mouseName, mouseView) => {
@@ -112,16 +124,16 @@ const addMinluck = async (mouseName, mouseView) => {
 
     const powerTypeImg = makeElement('img', 'minluck-power-type-img');
     powerTypeImg.src = `https://www.mousehuntgame.com/images/powertypes/${powerType.toLowerCase()}.png`;
-    minluckItem.appendChild(powerTypeImg);
+    minluckItem.append(powerTypeImg);
 
     makeElement('div', 'minluck-power-type-minluck', minluck[powerType], minluckItem);
 
-    minluckList.appendChild(minluckItem);
+    minluckList.append(minluckItem);
   });
 
-  minluckContainer.appendChild(minluckList);
+  minluckContainer.append(minluckList);
 
-  appendTo.appendChild(minluckContainer);
+  appendTo.append(minluckContainer);
 };
 
 const addWisdom = async (mouseName, mouseView) => {
@@ -140,7 +152,7 @@ const addWisdom = async (mouseName, mouseView) => {
   }
 
   // comma separate the wisdom number
-  wisdom = wisdom.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  wisdom = wisdom.toString().replaceAll(/\B(?=(\d{3})+(?!\d))/g, ',');
   makeElement('span', 'wisdom-container', ` / ${wisdom} Wisdom`, values);
 };
 
@@ -189,7 +201,7 @@ const updateMouseView = async () => {
       if (descContainer.childNodes.length > 1) {
         descContainer.insertBefore(group, descContainer.childNodes[1]);
       } else {
-        descContainer.appendChild(group);
+        descContainer.append(group);
       }
     }
   }
@@ -205,12 +217,12 @@ const updateMouseView = async () => {
 
     const statsContainer = mouseView.querySelector('.mouseView-statsContainer');
     if (statsContainer) {
-      movedContainer.appendChild(statsContainer);
+      movedContainer.append(statsContainer);
     }
 
     const weaknessContainer = mouseView.querySelector('.mouseView-weaknessContainer');
     if (weaknessContainer) {
-      movedContainer.appendChild(weaknessContainer);
+      movedContainer.append(weaknessContainer);
       const weaknesses = weaknessContainer.querySelectorAll('.mouseView-categoryContent-subgroup-mouse-weaknesses-padding');
       weaknesses.forEach((w) => {
         const weakness = w.querySelector('.mouseView-weakness');
@@ -221,7 +233,7 @@ const updateMouseView = async () => {
       });
     }
 
-    imageContainer.appendChild(movedContainer);
+    imageContainer.append(movedContainer);
   }
 
   const arWrapper = makeElement('div', 'ar-wrapper');
@@ -231,12 +243,12 @@ const updateMouseView = async () => {
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://www.mhct.win/attractions.php?mouse_name=${name.innerText}`;
   link.target = '_mhct';
-  title.appendChild(link);
+  title.append(link);
 
-  arWrapper.appendChild(title);
+  arWrapper.append(title);
 
   const mhctjson = await getArForMouse(mouseId, 'mouse');
-  if (! mhctjson || typeof mhctjson === 'undefined' || mhctjson.length === 0 || 'error' in mhctjson) {
+  if (! mhctjson || mhctjson === undefined || mhctjson.length === 0 || 'error' in mhctjson) {
     return;
   }
 
@@ -263,12 +275,12 @@ const updateMouseView = async () => {
     makeElement('div', 'cheese', mouseAr.cheese, mouseArWrapper);
     makeElement('div', 'rate', `${(mouseAr.rate / 100).toFixed(2)}%`, mouseArWrapper);
 
-    miceArWrapper.appendChild(mouseArWrapper);
+    miceArWrapper.append(mouseArWrapper);
   });
 
   if (mhctjson.length > 0) {
-    arWrapper.appendChild(miceArWrapper);
-    container.appendChild(arWrapper);
+    arWrapper.append(miceArWrapper);
+    container.append(arWrapper);
   }
 };
 
@@ -304,8 +316,20 @@ const main = () => {
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   main();
   mousepage();
+};
+
+export default {
+  id: 'better-mice',
+  name: 'Better Mice',
+  type: 'better',
+  default: true,
+  description: 'Adds attraction rate stats and links to MHWiki and MHCT to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.',
+  load: init
 };

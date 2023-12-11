@@ -137,7 +137,7 @@ img.campPage-daily-draw-prize-image {
   top: 5px;
   width: 45px;
   height: 45px;
-  background-image: url(https://i.imgur.com/hxFvB35.png);
+  background-image: url(https://i.mouse.rip/mh-improved/kings-calibrator.png);
   filter: drop-shadow(0 1px 1px #7d3a08);
 }
 
@@ -181,7 +181,7 @@ div#dailyRewardTimer::before {
   box-shadow: -1px 1px 3px 0 #d3cecb inset;
 }
 
-.campPage-daily-container.daily .campPage-daily-content{
+.campPage-daily-container.daily .campPage-daily-content {
   margin-top: 15px;
 }
 
@@ -202,4 +202,9 @@ img.campPage-larryTip-external-link-icon {
 
 .campPage-tabs-tabContent-larryTip-container p:last-of-type a::after {
   content: "→";
+}
+
+.campPage-daily-container .shopsPage-kingsCalibratorPromo {
+  display: flex;
+  align-items: center;
 }

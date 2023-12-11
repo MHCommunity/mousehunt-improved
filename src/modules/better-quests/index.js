@@ -1,4 +1,12 @@
-import { addUIStyles } from '../utils';
+import {
+  addUIStyles,
+  getCurrentSubtab,
+  getCurrentTab,
+  makeElement,
+  onNavigation,
+  onOverlayChange
+} from '@/utils';
+
 import m400 from './m400';
 import styles from './styles.css';
 
@@ -40,13 +48,13 @@ const addQuestsTab = () => {
 
   // Fire the popup when the tab is clicked.
   newQuestsButton.addEventListener('click', () => {
-    hg.views.HeadsUpDisplayZugswangLibraryView.showPopup(); // eslint-disable-line no-undef
+    hg.views.HeadsUpDisplayZugswangLibraryView.showPopup();
   });
 
   const newQuestsButtonText = document.createElement('span');
   newQuestsButtonText.innerText = 'Quests';
 
-  newQuestsButton.appendChild(newQuestsButtonText);
+  newQuestsButton.append(newQuestsButtonText);
 
   tabs.insertBefore(newQuestsButton, tabs.lastChild);
 };
@@ -227,7 +235,7 @@ const assignments = [
 ];
 
 const getAssignmentMeta = (assignment) => {
-  const wikiLink = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replace(/ /g, '_')}`;
+  const wikiLink = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replaceAll(' ', '_')}`;
   return `<a href="${wikiLink}" target="_blank">Wiki</a> | Requires: ${assignment.cost} | Reward: ${assignment.reward}`;
 };
 
@@ -282,7 +290,7 @@ const updateAssignmentList = () => {
     }
 
     button.addEventListener('click', () => {
-      hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm(assignment.id); // eslint-disable-line no-undef
+      hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm(assignment.id);
     });
   });
 };
@@ -306,7 +314,7 @@ const checkForQuestSmash = () => {
     return;
   }
 
-  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) { // eslint-disable-line no-undef
+  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) {
     return;
   }
 
@@ -315,7 +323,7 @@ const checkForQuestSmash = () => {
     return;
   }
 
-  app.pages.InventoryPage.useItem(assignment); // eslint-disable-line no-undef
+  app.pages.InventoryPage.useItem(assignment);
 };
 
 const main = () => {
@@ -348,7 +356,19 @@ const main = () => {
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'better-quests',
+  name: 'Better Quests',
+  type: 'better',
+  default: true,
+  description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and adds a helper for the M400 assignments.',
+  load: init
 };

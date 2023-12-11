@@ -1,3 +1,11 @@
+import {
+  doRequest,
+  getCurrentPage,
+  getCurrentTab,
+  makeElement,
+  onNavigation
+} from '@/utils';
+
 const makeKingsCrownsTab = () => {
   // Add king's crowns tab;
   const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
@@ -17,7 +25,7 @@ const makeKingsCrownsTab = () => {
   kingsCrownsTab.setAttribute('data-legacy-mode', '');
   kingsCrownsTab.setAttribute('onclick', 'hg.utils.PageUtil.onclickPageTabHandler(this); return false;');
 
-  tabContainer.appendChild(kingsCrownsTab);
+  tabContainer.append(kingsCrownsTab);
 
   return kingsCrownsTab;
 };
@@ -42,9 +50,9 @@ const makeKingsCrownsTabContentContent = () => {
 
   makeElement('div', 'mouseCrownsView', '', subTabContent);
 
-  tabContent.appendChild(subTabContent);
+  tabContent.append(subTabContent);
 
-  tabContentContainer.appendChild(tabContent);
+  tabContentContainer.append(tabContent);
 };
 
 const makeMouseCrownSection = (type, mice, header = false, subheader = false) => {
@@ -61,9 +69,9 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
       makeElement('div', 'mouseCrownsView-group-header-subtitle', subheader, name);
     }
 
-    headerDiv.appendChild(name);
+    headerDiv.append(name);
 
-    wrapper.appendChild(headerDiv);
+    wrapper.append(headerDiv);
   }
 
   const list = makeElement('div', 'mouseCrownsView-group-mice');
@@ -88,16 +96,16 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
     image.setAttribute('data-loader', 'mouse');
     image.setAttribute('style', `background-image: url("${mouse.image}");`);
 
-    innerWrapper.appendChild(image);
+    innerWrapper.append(image);
 
     makeElement('div', 'mouseCrownsView-group-mouse-catches', mouse.num_catches, innerWrapper);
 
     const label = makeElement('div', 'mouseCrownsView-group-mouse-label');
     const nameWrapper = makeElement('span', false, '');
     makeElement('div', 'mouseCrownsView-group-mouse-name', mouse.name, nameWrapper);
-    label.appendChild(nameWrapper);
+    label.append(nameWrapper);
 
-    innerWrapper.appendChild(label);
+    innerWrapper.append(label);
 
     const favoriteButton = makeElement('div', 'mouseCrownsView-group-mouse-favouriteButton');
     if (mouse.is_favourite) {
@@ -106,14 +114,14 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
     favoriteButton.setAttribute('data-mouse-id', mouse.id);
     favoriteButton.setAttribute('onclick', 'hg.views.MouseCrownsView.toggleFavouriteHandler(event); return false;');
 
-    innerWrapper.appendChild(favoriteButton);
+    innerWrapper.append(favoriteButton);
 
-    mouseWrapper.appendChild(innerWrapper);
+    mouseWrapper.append(innerWrapper);
 
-    list.appendChild(mouseWrapper);
+    list.append(mouseWrapper);
   });
 
-  wrapper.appendChild(list);
+  wrapper.append(list);
 
   return wrapper;
 };
@@ -151,11 +159,11 @@ const makeKingsCrownsTabContent = async () => {
   }
 
   const favorites = makeMouseCrownSection('favorites', crowns.favourite_mice);
-  tabInnerContent.appendChild(favorites);
+  tabInnerContent.append(favorites);
 
   crowns.badge_groups.forEach((group) => {
     const section = makeMouseCrownSection(group.type, group.mice, `${group.name} Crowns (${group.count})`, `Earned at ${group.catches} catches`);
-    tabInnerContent.appendChild(section);
+    tabInnerContent.append(section);
   });
 };
 
@@ -172,14 +180,14 @@ const parseImperialWeight = (weightText) => {
   const ozSplit = weightText.innerText.split('oz.');
   const oz = ozSplit.length > 1 ? ozSplit[0] : 0;
 
-  return (parseInt(lbs) * 16) + parseInt(oz);
+  return (Number.parseInt(lbs) * 16) + Number.parseInt(oz);
 };
 
 const getSetRowValue = (row, type) => {
   let value = 0;
   value = row.getAttribute(`data-sort-value-${type}`);
   if (value) {
-    return parseInt(value);
+    return Number.parseInt(value);
   }
 
   const valueText = row.querySelector(`.mouseListView-categoryContent-subgroup-mouse-stats.${type}`);
@@ -196,12 +204,12 @@ const getSetRowValue = (row, type) => {
       value = 0;
     }
   } else {
-    value = valueText.innerText ? valueText.innerText.replace(/,/g, '') || 0 : 0;
+    value = valueText.innerText ? valueText.innerText.replaceAll(',', '') || 0 : 0;
   }
 
   row.setAttribute(`data-sort-value-${type}`, value);
 
-  return parseInt(value);
+  return Number.parseInt(value);
 };
 
 const sortStats = (type, reverse = false) => {
@@ -223,7 +231,7 @@ const sortStats = (type, reverse = false) => {
   });
 
   // sort the rows
-  rows = Array.from(rows).sort((a, b) => {
+  rows = [...rows].sort((a, b) => {
     const aVal = getSetRowValue(a, type);
     const bVal = getSetRowValue(b, type);
 
@@ -258,7 +266,7 @@ const sortStats = (type, reverse = false) => {
 
   // reorder the rows
   rows.forEach((row) => {
-    row.parentNode.appendChild(row);
+    row.parentNode.append(row);
   });
 };
 
@@ -292,7 +300,7 @@ const addSortButton = (elements, type) => {
       sortStats(type, true);
     });
 
-    el.appendChild(sortButton);
+    el.append(sortButton);
   });
 };
 
@@ -337,7 +345,7 @@ const addSortingToCat = (cat) => {
       return;
     }
 
-    const value = catches.innerText ? catches.innerText.replace(/,/g, '') || 0 : 0;
+    const value = catches.innerText ? catches.innerText.replaceAll(',', '') || 0 : 0;
 
     // set a crown class on the row.
     if (value >= 2500) {
@@ -378,6 +386,9 @@ const addSortingToStatsPage = () => {
   clickCurrentTab();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   if ('adversaries' === getCurrentPage() && getCurrentTab() === 'kings_crowns') {
     addKingsCrownsToMicePage();

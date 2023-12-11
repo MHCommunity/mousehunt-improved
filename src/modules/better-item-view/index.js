@@ -1,4 +1,12 @@
-import { addUIStyles, getArForMouse, makeLink } from '../utils';
+import {
+  addUIStyles,
+  getArForMouse,
+  makeElement,
+  makeLink,
+  onOverlayChange,
+  onPageChange
+} from '@/utils';
+
 import styles from './styles.css';
 
 /**
@@ -33,7 +41,7 @@ const addLinks = (itemId) => {
   const div = document.createElement('div');
   div.classList.add('mh-item-links');
   div.innerHTML = getLinkMarkup(title.innerText, itemId);
-  title.appendChild(div);
+  title.append(div);
 
   // Move the values into the main text.
   const values = document.querySelector('.mouseView-values');
@@ -60,14 +68,14 @@ const updateItemView = async () => {
     const crafting = document.querySelector('.itemView-action.crafting_item');
     if (crafting) {
       // move the crafting item to the sidebar
-      sidebar.appendChild(crafting);
+      sidebar.append(crafting);
     }
   }
 
   addLinks(itemId);
 
   // dont show drop rates for items that arent consistent.
-  const id = parseInt(itemId, 10);
+  const id = Number.parseInt(itemId, 10);
   const ignored = [
     2473, // mina's gift
     823, // party charm
@@ -81,7 +89,7 @@ const updateItemView = async () => {
   }
 
   let mhctjson = await getArForMouse(itemId, 'item');
-  if (! mhctjson || typeof mhctjson === 'undefined') {
+  if (! mhctjson || mhctjson === undefined) {
     return;
   }
 
@@ -99,9 +107,9 @@ const updateItemView = async () => {
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://www.mhct.win/loot.php?item=${itemId}`;
   link.target = '_mhct';
-  title.appendChild(link);
+  title.append(link);
 
-  arWrapper.appendChild(title);
+  arWrapper.append(title);
   const itemsArWrapper = makeElement('div', 'item-ar-wrapper');
 
   // check if there are stages in any of the item
@@ -112,10 +120,10 @@ const updateItemView = async () => {
   }
 
   // shrink the mhctjson array to only include items with non-zero drop rates and a maxiumum of 15 items
-  mhctjson = mhctjson.filter((itemAr) => parseInt(itemAr.drop_pct, 10) > 0).slice(0, 15);
+  mhctjson = mhctjson.filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0).slice(0, 15);
 
   mhctjson.forEach((itemAr) => {
-    const dropPercent = parseInt(itemAr.drop_pct, 10).toFixed(2);
+    const dropPercent = Number.parseInt(itemAr.drop_pct, 10).toFixed(2);
     if (dropPercent !== '0.00') {
       const itemArWrapper = makeElement('div', 'mouse-ar-wrapper');
 
@@ -128,13 +136,13 @@ const updateItemView = async () => {
       makeElement('div', 'cheese', itemAr.cheese, itemArWrapper);
 
       makeElement('div', 'rate', `${dropPercent}%`, itemArWrapper);
-      itemsArWrapper.appendChild(itemArWrapper);
+      itemsArWrapper.append(itemArWrapper);
     }
   });
 
   if (mhctjson.length > 0) {
-    arWrapper.appendChild(itemsArWrapper);
-    container.appendChild(arWrapper);
+    arWrapper.append(itemsArWrapper);
+    container.append(arWrapper);
   }
 };
 
@@ -144,7 +152,19 @@ const main = () => {
   onPageChange({ item: { show: updateItemView } });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'better-item-view',
+  name: 'Better Item View',
+  type: 'better',
+  default: true,
+  description: 'Shows drop rates, links to MHCT and the wiki, and updates the look of the item view popup.',
+  load: init,
 };

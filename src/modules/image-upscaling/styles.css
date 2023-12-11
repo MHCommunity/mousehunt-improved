@@ -126,3 +126,41 @@
 .itemPurchaseView-container.apothecary .itemPurchaseView-image {
   border: none;
 }
+
+.forewordFarmHarvestBin-itemImage.itemImage {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.travelPage-map-pieces-detail-image img {
+  box-shadow: none;
+}
+
+/* Map pieces titles */
+.travelPage-map-pieces-detail-environment-title img {
+  width: auto;
+  height: 20px;
+}
+
+.travelPage-map-pieces-detail-environment-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.travelPage-map-pieces-detail-environment-title-name {
+  margin-left: 5px;
+}
+
+.travelPage-map-pieces-detail-environments-label {
+  margin-bottom: 10px;
+}
+
+.travelPage-map-environment-detail-title img {
+  max-width: 25px;
+}
+
+/* GWH gifts */
+.gift-padding img {
+  width: 75px;
+}

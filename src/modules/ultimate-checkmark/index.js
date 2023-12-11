@@ -1,11 +1,17 @@
-import { addUIStyles } from '../utils';
-import styles from './styles.css';
+import {
+  addUIStyles,
+  doRequest,
+  getCurrentPage,
+  getCurrentTab,
+  getMhuiSetting,
+  makeElement,
+  onNavigation
+} from '@/utils';
 
-import airships from './items/airships.json';
-import currency from './items/currency.json';
-import equipment from './items/equipment.json';
-import plankrunPages from './items/plankrun-pages.json';
-import treasureChests from './items/treasure-chests.json';
+import categories from '@data/ultimate-checkmark.json';
+
+import settings from './settings';
+import styles from './styles.css';
 
 const getItems = async (required, queryTab, queryTag, allItems = []) => {
   if (! allItems.length) {
@@ -45,12 +51,12 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
     const requiredItem = required.find((i) => i.type === item.type);
 
     return {
-      item_id: item.item_id, /* eslint-disable-line camelcase */
+      item_id: item.item_id, // eslint-disable-line camelcase
       type: item.type,
       name: item.name,
-      thumbnail: item.thumbnail_gray || item.thumbnail, /* eslint-disable-line camelcase */
+      thumbnail: item.thumbnail_gray || item.thumbnail, // eslint-disable-line camelcase
       quantity: item.quantity || 0,
-      quantity_formatted: item.quantity_formatted || '0', /* eslint-disable-line camelcase */
+      quantity_formatted: item.quantity_formatted || '0', // eslint-disable-line camelcase
       le: ! requiredItem,
     };
   });
@@ -134,13 +140,13 @@ const makeCategory = (category, name, progress) => {
   makeElement('div', 'hunterProfileItemsView-category-progress', makeProgressString(progress), catSidebarCategoryMargin);
   makeElement('div', 'hunterProfileItemsView-category-status', '', catSidebarCategoryMargin);
 
-  catSidebarCategory.appendChild(catSidebarCategoryMargin);
+  catSidebarCategory.append(catSidebarCategoryMargin);
 
-  sidebar.appendChild(catSidebarCategory);
+  sidebar.append(catSidebarCategory);
 };
 
 const makeItem = (item) => {
-  const { item_id, type, name, thumbnail, thumbnail_gray, quantity, quantity_formatted, le } = item; /* eslint-disable-line camelcase */
+  const { item_id, type, name, thumbnail, thumbnail_gray, quantity, quantity_formatted, le } = item; // eslint-disable-line camelcase
 
   const itemDiv = makeElement('div', 'hunterProfileItemsView-categoryContent-item');
   if (quantity > 0) {
@@ -162,11 +168,7 @@ const makeItem = (item) => {
   });
 
   const itemImage = makeElement('div', 'itemImage');
-  if (quantity > 0 && thumbnail_gray) { /* eslint-disable-line camelcase */
-    itemImage.style.backgroundImage = `url(${thumbnail_gray})`; /* eslint-disable-line camelcase */
-  } else {
-    itemImage.style.backgroundImage = `url(${thumbnail})`;
-  }
+  itemImage.style.backgroundImage = (quantity > 0 && thumbnail_gray) ? `url(${thumbnail_gray})` : `url(${thumbnail})`; // eslint-disable-line camelcase
 
   if (quantity > 0) {
     makeElement('div', 'quantity', quantity_formatted, itemImage);
@@ -175,10 +177,10 @@ const makeItem = (item) => {
   const itemName = makeElement('div', 'hunterProfileItemsView-categoryContent-item-name');
   makeElement('span', '', name, itemName);
 
-  itemPadding.appendChild(itemImage);
-  itemPadding.appendChild(itemName);
+  itemPadding.append(itemImage);
+  itemPadding.append(itemName);
 
-  itemDiv.appendChild(itemPadding);
+  itemDiv.append(itemPadding);
 
   return itemDiv;
 };
@@ -214,13 +216,13 @@ const makeContent = (id, name, items, completed) => {
   });
 
   items.forEach((item) => {
-    itemsDiv.appendChild(makeItem(item));
+    itemsDiv.append(makeItem(item));
   });
 
-  categoryDiv.appendChild(nameDiv);
-  categoryDiv.appendChild(itemsDiv);
+  categoryDiv.append(nameDiv);
+  categoryDiv.append(itemsDiv);
 
-  content.appendChild(categoryDiv);
+  content.append(categoryDiv);
 };
 
 const addCategoryAndItems = async (required, type, subtype, key, name) => {
@@ -246,47 +248,13 @@ const run = async () => {
     return;
   }
 
-  const categories = [
-    {
-      name: 'Treasure Chests',
-      items: treasureChests,
-      type: 'special',
-      subtype: 'treasure_chests',
-      key: 'chests',
-    },
-    {
-      name: 'Airships',
-      items: airships,
-      type: 'special',
-      subtype: 'cosmetics',
-      key: 'airships',
-    },
-    {
-      name: 'Equipment',
-      items: equipment,
-      type: 'special',
-      subtype: 'equipment',
-      key: 'equipment',
-    },
-    {
-      name: 'Currency',
-      items: currency,
-      type: 'special',
-      subtype: 'currency',
-      key: 'currency',
-    },
-    {
-      name: 'Plankrun Pages',
-      items: plankrunPages,
-      type: 'plankrun',
-      subtype: 'general',
-      key: 'plankrun',
-    },
-  ];
-
   // wait for each category to load + an extra 250ms before loading the next
   let delay = 0;
   for (const category of categories) {
+    if (! getMhuiSetting(`ultimate-checkmark-categories-${category.id}`, true)) {
+      continue;
+    }
+
     setTimeout(() => {
       addCategoryAndItems(category.items, category.type, category.subtype, category.key, category.name);
     }, delay);
@@ -294,11 +262,25 @@ const run = async () => {
   }
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   onNavigation(run, {
     page: 'hunterprofile',
     tab: 'items'
   });
+};
+
+export default {
+  id: 'ultimate-checkmark',
+  name: 'Ultimate Checkmark',
+  type: 'feature',
+  default: true,
+  description: 'Adds more things collect on the items view of your Hunter profile.',
+  load: init,
+  alwaysLoad: true,
+  settings,
 };

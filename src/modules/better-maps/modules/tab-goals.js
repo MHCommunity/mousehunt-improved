@@ -1,5 +1,7 @@
-import { makeLink } from '../../utils';
+import { makeElement, makeLink } from '@/utils';
+
 import { addMHCTData } from '../map-utils';
+
 import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';
 
@@ -13,7 +15,7 @@ const getLinkMarkup = (name) => {
  * Add links to the mouse details on the map.
  */
 const addMouseLinksToMap = async () => {
-  const overlay = document.getElementById('overlayPopup');
+  const overlay = document.querySelector('#overlayPopup');
   if (! (overlay && overlay.classList.contains('treasureMapPopup'))) {
     return;
   }
@@ -29,7 +31,7 @@ const addMouseLinksToMap = async () => {
   }
 
   let type = 'mouse';
-  if (mapViewClasses.classList.value.indexOf('scavenger_hunt') !== -1) {
+  if (mapViewClasses.classList.value.includes('scavenger_hunt')) {
     type = 'item';
   }
 
@@ -106,7 +108,7 @@ const addMouseLinksToMap = async () => {
 
       container.classList.add('has-mhct-ars');
 
-      container.appendChild(arsEl);
+      container.append(arsEl);
     });
   });
 };
@@ -123,7 +125,7 @@ const addClassesToGroups = (mapData) => {
       return;
     }
 
-    const completed = title.innerText.indexOf(' found these mice:') !== -1 || title.innerText.indexOf(' found this mouse:') !== -1;
+    const completed = title.innerText.includes(' found these mice:') || title.innerText.includes(' found this mouse:');
     group.classList.add('mh-ui-goals-group', completed ? 'completed' : 'incomplete');
 
     let countText = '';
@@ -162,13 +164,11 @@ const addClassesToGroups = (mapData) => {
     }
 
     // Finally, fallback to trying to match the hunter name to the user's name in case of weirdness idk.
-    if (! hunter) {
-      if (hunterName === `${user.firstname} ${user.lastname}` || hunterName === `${user.firstname}${user.lastname}`) {
-        hunter = {
-          name: `${user.firstname} ${user.lastname}`,
-          sn_user_id: user.sn_user_id,
-        };
-      }
+    if (! hunter && (hunterName === `${user.firstname} ${user.lastname}` || hunterName === `${user.firstname}${user.lastname}`)) {
+      hunter = {
+        name: `${user.firstname} ${user.lastname}`,
+        sn_user_id: user.sn_user_id,
+      };
     }
 
     if (! hunter) {
@@ -188,7 +188,7 @@ const addClassesToGroups = (mapData) => {
     const replacementTitle = makeElement('div', 'treasureMapView-block-content-heading');
 
     if (image) {
-      replacementTitle.appendChild(image);
+      replacementTitle.append(image);
     }
 
     const nameLink = makeElement('a', 'mh-ui-goals-group-completed-title', hunter.name);
@@ -197,11 +197,11 @@ const addClassesToGroups = (mapData) => {
       e.preventDefault();
       hg.utils.PageUtil.showHunterProfile(hunter.sn_user_id);
     });
-    replacementTitle.appendChild(nameLink);
+    replacementTitle.append(nameLink);
 
     makeElement('span', 'mh-ui-goals-group-completed-text', ' found these mice:', replacementTitle);
     if (count) {
-      replacementTitle.appendChild(count);
+      replacementTitle.append(count);
     }
 
     title.replaceWith(replacementTitle);

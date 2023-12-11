@@ -1,10 +1,11 @@
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
-const main = () => {
+/**
+ * Initialize the module.
+ */
+export default () => {
   addCheeseSelector('pinnacle-chamber', [
     'maki_cheese',
     'onyx_gorgonzola_cheese',
   ]);
 };
-
-export default main;

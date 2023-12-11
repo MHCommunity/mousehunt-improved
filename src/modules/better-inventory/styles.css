@@ -145,22 +145,6 @@ a.inventoryPage-item-larryLexicon {
   display: none;
 }
 
-.itemViewStatBlock.trinket {
-  float: right;
-  width: 100px;
-  margin-top: 10px;
-  margin-right: 5px;
-  margin-left: 5px;
-  font-size: 13px;
-}
-
-.itemViewStatBlock.trinket .itemViewStatBlock-padding {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100px;
-}
-
 .inventoryPage-item-content-description-text {
   max-height: 75px;
   padding: 0;
@@ -190,9 +174,8 @@ a.inventoryPage-item-larryLexicon {
   border-style: solid;
 }
 
-
 .inventoryPage-item.small .itemImage .quantity {
-	overflow: visible;
+  overflow: visible;
 }
 
 .mousehuntHud-page-subTabContent.recipe .inventoryPage-item .itemImage {
@@ -319,73 +302,74 @@ input.inventoryPage-tagDirectory-searchBar-input {
 }
 
 .inventoryPage-craftingTable-slot-item[data-owned="1"] .inventoryPage-craftingTable-slot-item-controls-increment {
-  opacity: .2;
+  opacity: 0.2;
 }
 
 .inventoryPage-craftingTable-slot {
-    width: 160px;
-    padding: 5px;
-    margin: 5px;
-    background: #f6f3eb;
-    border: 1px solid #d3cecb;
-    border-radius: 3px;
-    box-shadow: inset -1px 1px 3px 0 #d3cecb;
+  width: 160px;
+  padding: 5px;
+  margin: 5px;
+  background: #f6f3eb;
+  border: 1px solid #d3cecb;
+  border-radius: 3px;
+  box-shadow: inset -1px 1px 3px 0 #d3cecb;
 }
 
 .inventoryPage-craftingTable-slotContainer {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-items: center;
-    background-color: #f6f3eb;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-items: center;
+  background-color: #f6f3eb;
 }
 
 .inventoryPage-craftingTable-slot-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .inventoryPage-craftingTable-slot-item.empty .inventoryPage-craftingTable-slot-item-controls {
-    display: none;
+  display: none;
 }
 
-.inventoryPage-craftingTable-slot-item.empty  .inventoryPage-craftingTable-slot-item-nameContainer {
-    display: none;
+.inventoryPage-craftingTable-slot-item.empty .inventoryPage-craftingTable-slot-item-nameContainer {
+  display: none;
 }
 
 .inventoryPage-craftingTable-slot-item.empty .inventoryPage-craftingTable-slot-item-name {
-    color: transparent;
+  color: transparent;
 }
 
 .inventoryPage-craftingTable-slot-item-quantity {
-    display: none;
+  display: none;
 }
 
 .inventoryPage-craftingTable-slot-item-name {
-    font-size: 11px;
-    font-weight: 100;
+  font-size: 11px;
+  font-weight: 100;
 }
 
 .inventoryPage-craftingTable-slot-item-nameContainer {
-    width: 100%;
-    height: auto;
-    margin: 5px;
+  width: 100%;
+  height: auto;
+  margin: 5px;
 }
 
 .inventoryPage-craftingTable-slot-item .itemImage {
-    width: 55px;
-    height: 55px;
+  width: 55px;
+  height: 55px;
 }
 
 .inventoryPage-craftingTable-slot-item img {
-    width: 55px;
-    height: 55px;
+  width: 55px;
+  height: 55px;
 }
 
 a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
-  top: 5px;  right: 5px !important;
+  top: 5px;
+  right: 5px !important;
   display: flex;
   align-items: center;
   justify-content: center;

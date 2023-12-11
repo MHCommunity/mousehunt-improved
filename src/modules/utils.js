@@ -1,42 +1,41 @@
+import * as Mhutils from './mh-utils';
+import tradeableItems from '@data/items-tradeable.json';
+
 /**
  * Add custom styles to the page.
  *
- * @param {string} styles CSS to add to the page.
+ * @param {string|Array} styles     CSS to add to the page.
+ * @param {string}       identifier Identifier to use for the styles.
+ * @param {boolean}      replace    Whether to replace the existing styles.
  */
-const addUIStyles = (styles) => {
-  const identifier = 'mh-improved-styles';
+const addUIStyles = (styles, identifier = 'mh-improved-styles', replace = false) => {
+  const existingStyles = document.querySelector(`#${identifier}`);
 
-  const existingStyles = document.getElementById(identifier);
+  styles = Array.isArray(styles) ? styles.join('\n') : styles;
+
   if (existingStyles) {
-    existingStyles.innerHTML += styles;
+    if (replace) {
+      existingStyles.innerHTML = styles;
+    } else {
+      existingStyles.innerHTML += styles;
+    }
+
     return;
   }
 
   const style = document.createElement('style');
   style.id = identifier;
   style.innerHTML = styles;
-  document.head.appendChild(style);
+  document.head.append(style);
 };
 
 /**
  * Add custom styles specific for a location hud.
  *
- * @param {string} id     ID of the location hud.
- * @param {string} styles CSS to add to the page.
+ * @param {string|Array} styles CSS to add to the page.
  */
-const addHudStyles = (id, styles) => {
-  const key = `mh-improved-styles-location-hud-${id}`;
-
-  const existingStyles = document.getElementById(key);
-  if (existingStyles) {
-    return;
-  }
-
-  const style = document.createElement('style');
-  style.classList.add('mh-improved-styles-location-hud');
-  style.id = key;
-  style.innerHTML = styles;
-  document.head.appendChild(style);
+const addHudStyles = (styles) => {
+  addUIStyles(styles, 'mh-improved-styles-location-hud', true);
 };
 
 /**
@@ -148,7 +147,7 @@ const getArForMouse = async (id, type = 'mouse') => {
   const data = mapData() || {};
   const mapType = data?.map_type || '';
   let url = `https://api.mouse.rip/${mhctPath}/${id}`;
-  if (mapType.toLowerCase().indexOf('halloween') !== -1) {
+  if (mapType.toLowerCase().includes('halloween')) {
     url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
   }
 
@@ -165,7 +164,7 @@ const getArForMouse = async (id, type = 'mouse') => {
     // change the 'drop_ct' to 'rate'
     mhctjson.forEach((rate) => {
       // convert from a '13.53' to 1353
-      rate.rate = parseInt(rate.drop_pct * 100);
+      rate.rate = Number.parseInt(rate.drop_pct * 100);
       delete rate.drop_ct;
     });
   }
@@ -242,7 +241,7 @@ const getHighestArForMouse = async (id, type = 'mouse') => {
  */
 const getHighestArText = async (id, type = 'mouse') => {
   const highest = await getHighestArForMouse(id, type);
-  return highest ? highest : false;
+  return highest ?? false;
 };
 
 /**
@@ -259,7 +258,7 @@ const getArEl = async (id, type = 'mouse') => {
   if (! ar) {
     ar = await getHighestArText(id, type);
     if (! ar || ar.length === 0) {
-      return makeElement('div', ['mh-ui-ar', 'mh-ui-no-ar'], '?');
+      return Mhutils.makeElement('div', ['mh-ui-ar', 'mh-ui-no-ar'], '?');
     }
 
     arType = 'highest';
@@ -288,14 +287,14 @@ const getArEl = async (id, type = 'mouse') => {
     ar = ar.toString().slice(0, -3);
   }
 
-  return makeElement('div', ['mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`], `${ar}%`);
+  return Mhutils.makeElement('div', ['mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`], `${ar}%`);
 };
 
 /**
  * Add links to the mouse details on the map.
  */
 const addArDataToMap = () => {
-  const overlayClasses = document.getElementById('overlayPopup').classList;
+  const overlayClasses = document.querySelector('#overlayPopup').classList;
   if (! overlayClasses.contains('treasureMapPopup')) {
     return;
   }
@@ -311,11 +310,11 @@ const addArDataToMap = () => {
     return;
   }
 
-  if (mapViewClasses.classList.value.indexOf('scavenger_hunt') !== -1) {
+  if (mapViewClasses.classList.value.includes('scavenger_hunt')) {
     return;
   }
 
-  mouseIcon.forEach((mouse) => {
+  for (const mouse of mouseIcon) {
     const mouseType = mouse.classList.value
       .replace('treasureMapView-goals-group-goal ', '')
       .replace(' mouse', '')
@@ -344,7 +343,7 @@ const addArDataToMap = () => {
         envs.parentNode.insertBefore(div, envs.nextSibling);
       }
     });
-  });
+  }
 };
 
 /**
@@ -358,7 +357,7 @@ const addArDataToMap = () => {
  */
 const makeLink = (text, href, encodeAsSpace = false) => {
   if (encodeAsSpace) {
-    href = href.replace(/_/g, '%20');
+    href = href.replaceAll('_', '%20');
   }
 
   return `<a href="${href}" target="_mouse" class="mousehuntActionButton tiny"><span>${text}</span></a>`;
@@ -383,18 +382,8 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
     existing.remove();
   }
 
-  const error = makeElement('div', [`mh-ui-${type}-message`, 'mh-ui-fade', classes], message);
-  // try catch appending the error to the appendTo element
-  let success = true;
-  try {
-    appendTo.appendChild(error);
-  } catch (e) {
-    success = false;
-  }
-
-  if (! success) {
-    return;
-  }
+  const error = Mhutils.makeElement('div', [`mh-ui-${type}-message`, 'mh-ui-fade', classes], message);
+  appendTo.append(error);
 
   setTimeout(() => {
     error.classList.add('mh-ui-fade-in');
@@ -434,7 +423,7 @@ const showSuccessMessage = (message, appendTo, classes = '') => {
  * @param {Object}  options     Additional ptions for the setting.
  */
 const addMhuiSetting = (id, title, defaultVal, description, module, options = null) => {
-  addSetting(
+  Mhutils.addSetting(
     title,
     id,
     defaultVal,
@@ -442,7 +431,8 @@ const addMhuiSetting = (id, title, defaultVal, description, module, options = nu
     {
       id: module.id,
       name: module.name,
-      description: module.description
+      description: module.description,
+      subSetting: module.subSetting ?? false,
     },
     'mousehunt-improved-settings',
     options
@@ -458,7 +448,7 @@ const addMhuiSetting = (id, title, defaultVal, description, module, options = nu
  * @return {boolean} Value of the setting.
  */
 const getMhuiSetting = (key, defaultValue = false) => {
-  return getSetting(key, defaultValue, 'mousehunt-improved-settings');
+  return Mhutils.getSetting(key, defaultValue, 'mousehunt-improved-settings');
 };
 
 /**
@@ -603,15 +593,23 @@ const addBodyClass = (className) => {
  * @param {string} className Class to add.
  */
 const persistBodyClass = (className) => {
+  /**
+   * Helper function to add the class to the body.
+   */
   const addClass = () => {
     addBodyClass(className);
   };
 
   addClass();
-  onNavigation(addClass);
-  onTravel(null, { callback: () => {
-    setTimeout(addClass, 500);
-  } });
+  Mhutils.onNavigation(addClass);
+  Mhutils.onTravel(null, {
+    /**
+     * Callback to add the class after travel.
+     */
+    callback: () => {
+      setTimeout(addClass, 500);
+    }
+  });
 };
 
 /**
@@ -665,7 +663,7 @@ const getRelicHunterLocation = () => {
   }
 
   // If we have a cached value and it's not expired, return it.
-  if (cached && cached.expiry > new Date().getTime()) {
+  if (cached && cached.expiry > Date.now()) {
     return cached.data;
   }
 
@@ -673,11 +671,52 @@ const getRelicHunterLocation = () => {
   return fetch('https://rh-api.mouse.rip/')
     .then((response) => response.json())
     .then((data) => {
-      const expiry = new Date().getTime() + cacheExpiry;
+      const expiry = Date.now() + cacheExpiry;
       sessionStorage.setItem(cacheKey, JSON.stringify({ expiry, data }));
       return data;
     });
 };
+
+/**
+ * Find and replace strings in a template file.
+ *
+ * @param {string} templateId   ID of the template to replace in.
+ * @param {Array}  replacements Array of replacements to make.
+ */
+const replaceInTemplate = (templateId, replacements) => {
+  let templateContent = hg.utils.TemplateUtil.getTemplate(templateId);
+
+  replacements.forEach((replacement) => {
+    templateContent = templateContent.replace(replacement[0], replacement[1]);
+  });
+
+  hg.utils.TemplateUtil.addTemplate(templateId, templateContent);
+};
+
+/**
+ * Get the tradeable items.
+ *
+ * @param {string} valueKey Which key to use for the value. 'all' will return the entire object.
+ *
+ * @return {Array} Array of tradeable items.
+ */
+const getTradableItems = (valueKey = 'all') => {
+  if ('all' === valueKey) {
+    return tradeableItems;
+  }
+
+  const returnItems = [];
+  tradeableItems.forEach((item) => {
+    returnItems.push({
+      name: item.name,
+      value: item[valueKey],
+    });
+  });
+
+  return returnItems;
+};
+
+export * from './mh-utils';
 
 export {
   addArDataToMap,
@@ -690,22 +729,22 @@ export {
   debuglite,
   getArEl,
   getArForMouse,
-  getArText,
-  getFlag,
+  getArText, getCacheKey, getCachedValue, getFlag,
   getGlobal,
   getHighestArForMouse,
   getHighestArText,
   getMhuiSetting,
+  getMouseCachedKey,
   getRelicHunterLocation,
-  isApp,
-  isiFrame,
-  isInImage,
-  makeLink,
+  isApp, isInImage, isiFrame, makeLink,
   mapData,
   mapModel,
   mapper,
   persistBodyClass,
   removeHudStyles,
+  replaceInTemplate,
+  setCachedValue,
   showErrorMessage,
-  showSuccessMessage
+  showSuccessMessage,
+  getTradableItems
 };

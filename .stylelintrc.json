@@ -1,7 +1,9 @@
 {
   "extends": [
     "stylelint-config-standard",
-    "stylelint-config-recess-order"
+    "stylelint-config-recess-order",
+    "stylelint-stylistic/config",
+    "stylelint-prettier/recommended"
   ],
   "ignoreFiles": ["dist/**/*"],
   "rules": {
@@ -34,6 +36,13 @@
     "selector-type-no-unknown": true,
     "shorthand-property-no-redundant-values": true,
     "unit-no-unknown": true,
-    "value-keyword-case": "lower"
-  }
+    "value-keyword-case": "lower",
+    "stylistic/max-line-length": [120, { "ignore": ["non-comments"] }],
+    "stylistic/number-leading-zero": null,
+    "prettier/prettier": [true, {
+      "singleQuote": false,
+      "printWidth": 160
+    }]
+  },
+  "cache": true
 }

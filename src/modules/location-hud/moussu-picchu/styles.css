@@ -23,7 +23,7 @@
 a.moussuPicchuHUD-footer-item-action.mousehuntArmNowButton {
   top: 8px;
   right: -1px;
-  transform: scale(.8);
+  transform: scale(0.8);
 }
 
 .moussuPicchuHUD-footer-item-name {
@@ -37,7 +37,7 @@ a.moussuPicchuHUD-footer-item-action.mousehuntArmNowButton {
 
 .moussuPicchuHUD-footer-item.gouda_cheese,
 .moussuPicchuHUD-footer-item.super_brie_cheese {
-  width: 26%
+  width: 26%;
 }
 
 .moussuPicchuHUD-footer-item.glowing_gruyere_cheese {
@@ -64,7 +64,6 @@ a.moussuPicchuHUD-footer-item-action.mousehuntArmNowButton {
 .moussuPicchuHUD-footer-item-tooltip-baitRow .mousehuntArmNowButton[data-item-type="brie_cheese"] {
   display: block;
 }
-
 
 .moussuPicchuHUD-footer-item.dragon_scale_crafting_item .mousehuntTooltip {
   text-align: center;

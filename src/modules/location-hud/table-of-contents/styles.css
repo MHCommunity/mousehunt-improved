@@ -1,0 +1,173 @@
+.folkloreForestRegionView-libraryStatsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  margin: 10px 0 10px 10px;
+}
+
+.folkloreForestRegionView-libraryStats.bestBook {
+  padding: 10px 15px;
+  margin: 10px 0;
+  border: 1px solid #2e602b;
+  border-top: none;
+  border-radius: 30px;
+}
+
+.folkloreForestRegionView-libraryStats.bestBook::after {
+  display: none;
+}
+
+.folkloreForestRegionView-libraryStats-label {
+  max-width: 130px;
+  height: unset;
+  padding: 5px;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.folkloreForestRegionView-libraryStats.bestBook .folkloreForestRegionView-libraryStats-value {
+  gap: 10px;
+}
+
+.folkloreForestRegionView-libraryBestBook-name {
+  min-width: 100px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.folkloreForestRegionView-libraryStats.bestBook .folkloreForestRegionView-libraryStats-label {
+  position: absolute;
+  top: -16px;
+  left: -10px;
+  max-width: unset;
+  padding: 5px 10px;
+  background-color: #6a9e43;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px 0 #070707;
+  rotate: -10deg;
+}
+
+.folkloreForestRegionView-libraryStats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 210px;
+}
+
+.folkloreForestRegionView-libraryStats-value {
+  height: unset;
+}
+
+.folkloreForestRegionView-libraryStats-value.longestWritingSession {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  align-items: baseline;
+  justify-content: center;
+  margin-left: 30px;
+}
+
+.folkloreForestRegionView-libraryBooksContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.folkloreForestRegionView-libraryBook {
+  width: auto;
+  min-width: 150px;
+}
+
+.folkloreForestRegionView-libraryBook-words {
+  font-size: 12px;
+  color: #b4c2ab;
+}
+
+.folkloreForestRegionView-libraryBook-name {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.folkloreForestRegionView-libraryBook-quantity {
+  font-size: 30px;
+  color: #81eb00;
+  text-shadow:
+    1px 1px 1px #143706,
+    0 1px 1px #143706,
+    1px 0 1px #143706,
+    0 0 1px #143706;
+  filter: drop-shadow(0 0 2px #000);
+}
+
+.folkloreForestRegionView-libraryStats-value.bigText {
+  color: #81eb00;
+  text-shadow:
+    1px 1px 1px #143706,
+    0 1px 1px #143706,
+    1px 0 1px #143706,
+    0 0 1px #143706;
+}
+
+.folkloreForestRegionView-libraryStats.totalWords {
+  flex: 1;
+}
+
+.folkloreForestRegionView-libraryBook.disabled .tableOfContentsView-bookCover {
+  filter: opacity(0.8) grayscale(1);
+}
+
+.folkloreForestRegionView-libraryBook.disabled .folkloreForestRegionView-libraryBook-name {
+  color: #979797;
+}
+
+#overlayPopup.fabledForestDialog .title {
+  font-size: 19px;
+  letter-spacing: 1px;
+}
+
+.tableOfContentsProgressView-nextBookContainer {
+  position: absolute;
+  bottom: -30px;
+  padding: 3px;
+  font-size: 11px;
+  background-color: #fdebab;
+  box-shadow: 0 1px 1px 1px #f1b960;
+  transform: translate(-50%);
+}
+
+.tableOfContentsView-wordMeter-value {
+  font-size: 13px;
+}
+
+.tableOfContentsProgressView-nextBook-wordsRequired {
+  text-decoration: none;
+}
+
+.tableOfContentsProgressView-book-huntsRemaining span {
+  font-size: 13px;
+}
+
+.tableOfContentsProgressView-book-wordCount {
+  margin: 10px 0 5px;
+}
+
+a.tableOfContentsProgressView-claimButton.reveal {
+  filter: hue-rotate(80deg) brightness(1.2);
+}
+
+.tableOfContentsClaimDialogView-miceLoot .itemImage .quantity {
+  font-size: 13px;
+  background-color: rgb(255 255 255 / 60%);
+}
+
+.folkloreForestRegionView-boost {
+  display: none;
+}
+
+.tableOfContentsView-initialFuel-checkboxContainer {
+  background-color: transparent;
+}

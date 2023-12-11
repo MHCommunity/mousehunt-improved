@@ -1,6 +1,16 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles } from '@/utils';
+
 import styles from './styles.css';
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
+};
+
+export default {
+  id: 'global-styles',
+  type: 'required',
+  load: init,
 };

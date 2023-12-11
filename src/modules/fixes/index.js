@@ -1,4 +1,5 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, getCurrentPage, onNavigation } from '@/utils';
+
 import styles from './styles.css';
 
 const fixPassingParcel = () => {
@@ -119,7 +120,10 @@ const fixItemPageReciever = () => {
   hg.views.ItemView.show(itemId[1]);
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   if ('item' === getCurrentPage()) {
@@ -142,4 +146,10 @@ export default () => {
       onLoad: true,
     }
   );
+};
+
+export default {
+  id: 'fixes',
+  type: 'required',
+  load: init,
 };

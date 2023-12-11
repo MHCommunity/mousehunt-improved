@@ -12,7 +12,7 @@ jq -csf scripts/csv2json.jq wisdom2.csv | jq > wisdom.json
 jq -s '.[0][] | {(.mouse): .wisdom'} wisdom.json > wisdom2.json
 jq -s 'add' wisdom2.json > wisdom.json
 
-mv wisdom.json src/data/wisdom.json
+mv wisdom.json src/data/mice-wisdom.json
 
 rm wisdom.csv
 rm wisdom2.csv

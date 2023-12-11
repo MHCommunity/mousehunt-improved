@@ -76,7 +76,7 @@
   right: -15px;
   width: 12px;
   height: 12px;
-  content: '';
+  content: "";
   background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=2) 0 0 no-repeat;
   background-size: contain;
   opacity: 0.6;
@@ -124,23 +124,24 @@
 }
 
 .icebergHud .timeline .resetIceberg {
-    top: 10px;
-    right: 25px;
-    z-index: 4;
-    cursor: pointer;
+  top: 10px;
+  right: 25px;
+  z-index: 4;
+  cursor: pointer;
 }
 
 .icebergHud .timeline .resetIceberg:hover,
 .icebergHud .timeline .resetIceberg:focus {
-    color: #a5cedf;
-    opacity: 1;
+  color: #a5cedf;
+  opacity: 1;
 }
 
 #icebergDrill {
   z-index: 2;
 }
 
-.icebergHud .cutaway .wax .quantity, .icebergHud .cutaway .sticky .quantity {
+.icebergHud .cutaway .wax .quantity,
+.icebergHud .cutaway .sticky .quantity {
   width: 38px;
   padding: 0;
   margin-left: 3px;

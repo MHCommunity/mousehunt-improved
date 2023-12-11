@@ -1,0 +1,48 @@
+.townOfGnawniaHUD-intro {
+  line-height: 17px;
+}
+
+.townOfGnawniaHUD-bountyRewardContainer {
+  background: #e5c9a8 url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png) 5px 0 no-repeat;
+  background-size: contain;
+}
+
+.townOfGnawniaHUD-mouse-bait-thumb {
+  background-color: #c19d74;
+  outline: 2px solid #886843;
+}
+
+.townOfGnawniaHUD-mouse-bait-name {
+  font-size: 13px;
+}
+
+.townOfGnawniaHUD-mouse-image.reveal {
+  animation-name: town-of-gnawnia-mouse-reveal-new;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .townOfGnawniaHUD-mouse-image {
+    animation: none;
+  }
+}
+
+@keyframes town-of-gnawnia-mouse-reveal-new {
+  0% {
+    opacity: 0;
+    transform: scale(0.1) rotate(30deg);
+    transform-origin: center bottom;
+  }
+
+  50% {
+    transform: rotate(-10deg);
+  }
+
+  70% {
+    transform: rotate(3deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

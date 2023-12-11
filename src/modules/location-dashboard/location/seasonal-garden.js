@@ -1,4 +1,4 @@
-export function getSeasonalGardenText(quests) {
+const getSeasonalGardenText = (quests) => {
   if (! quests.QuestSeasonalGarden) {
     return '';
   }
@@ -9,9 +9,9 @@ export function getSeasonalGardenText(quests) {
   };
 
   return `Amp: ${quest.amp}% / ${quest.max}%`;
-}
+};
 
-export function setSeasonalGardenData() {
+const setSeasonalGardenData = () => {
   const quest = {
     amp: 0,
     max: 0
@@ -19,13 +19,18 @@ export function setSeasonalGardenData() {
 
   const amp = document.querySelector('.seasonalGardenHUD-currentAmplifier-value');
   if (amp) {
-    quest.amp = parseInt(amp.textContent, 10);
+    quest.amp = Number.parseInt(amp.textContent, 10);
   }
 
   const max = document.querySelector('.seasonalGardenHUD-maxAmplifier-value');
   if (max) {
-    quest.max = parseInt(max.textContent, 10);
+    quest.max = Number.parseInt(max.textContent, 10);
   }
 
   return quest;
-}
+};
+
+export {
+  getSeasonalGardenText,
+  setSeasonalGardenData
+};

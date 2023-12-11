@@ -1,11 +1,12 @@
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
-const main = () => {
+/**
+ * Initialize the module.
+ */
+export default () => {
   addCheeseSelector('meditation-room', [
     'combat_cheese',
     'glutter_cheese',
     'susheese_cheese',
   ]);
 };
-
-export default main;

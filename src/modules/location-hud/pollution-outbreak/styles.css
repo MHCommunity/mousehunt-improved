@@ -35,6 +35,8 @@
   border-radius: 0 5px 0 10px;
 }
 
+/* stylelint-disable prettier/prettier */
+
 /* Upscale the shield icons */
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/50f10ec5c7bc01cb99af2003b30d400d.png"] {
   background-image: url(https://www.mousehuntgame.com/images/titles/0567284d6e12aaaed35ca5912007e070.png?cv=2) !important;
@@ -67,6 +69,8 @@
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/e258cd2f5606d678cc0bba000b930500.png"] {
   background-image: url(https://www.mousehuntgame.com/images/titles/043efe31de4f0f2e0ddca590fe829032.png?cv=2) !important;
 }
+
+/* stylelint-enable prettier/prettier */
 
 /* remove the color backgrounds from the shield icons */
 .pollutionOutbreakHUD-pollution-title-block.active .pollutionOutbreakHUD-pollution-title-block-icon,
@@ -242,7 +246,6 @@ a.pollutionOutbreakHUD-refineButton:hover {
   background: none;
 }
 
-
 .pollutionOutbreakHUD-pollution-title-block .mousehuntTooltip b.pollutionOutbreakHUD-pollution-title-block-gender {
   display: none !important;
 }
@@ -298,7 +301,6 @@ a.pollutionOutbreakHUD-refineButton:hover {
 
 .pollutionOutbreakHUD-item-padding {
   margin: 0 2px;
-  ;
   border: 1px solid #000;
   border-radius: 6px;
 }
@@ -332,44 +334,44 @@ a.pollutionOutbreakHUD-refineButton:hover {
 
 .pollutionOutbreakHUD-pollution-title-block.hero::after {
   width: 44px;
-  content: '30 hrs';
+  content: "30 hrs";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.knight::after {
   width: 44px;
-  content: '16 hrs';
+  content: "16 hrs";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.lord_lady::after {
   width: 44px;
-  content: '18 hrs';
+  content: "18 hrs";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.baron_baroness::after {
   width: 44px;
-  content: '18 hrs';
+  content: "18 hrs";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.count_countess::after {
   width: 59px;
-  content: '1 day';
+  content: "1 day";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.duke_dutchess::after {
   width: 59px;
-  content: '1 day';
+  content: "1 day";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.grand_duke::after {
   right: 1px;
   width: 69px;
-  content: '1 day';
+  content: "1 day";
 }
 
 .pollutionOutbreakHUD-pollution-title-block.archduke_archduchess::after {
   right: 0;
   width: 65px;
-  content: '1 day';
+  content: "1 day";
 }
 
 .pollutionOutbreakHUD-pollution-title-block:hover::after {
@@ -395,10 +397,14 @@ a.pollutionOutbreakHUD-refineButton:hover {
   text-align: center;
   text-shadow: 1px 1px 1px #000;
   vertical-align: middle;
-  content: '';
+  content: "";
   background: linear-gradient(180deg, #1d1d1d 0%, #232323 100%);
   border-radius: 10px 10px 0 0;
-  box-shadow: 0 1px 0 0 #9b9d9d, 0 2px 0 0 #6a6969, 0 0 0 2px #9b9d9d, 0 1px 1px 0 #6a6969 inset;
+  box-shadow:
+    0 1px 0 0 #9b9d9d,
+    0 2px 0 0 #6a6969,
+    0 0 0 2px #9b9d9d,
+    0 1px 1px 0 #6a6969 inset;
 }
 
 .complete .pollutionOutbreakHUD-pollution-title-block-progressBar {
@@ -407,7 +413,11 @@ a.pollutionOutbreakHUD-refineButton:hover {
 
 .pollutionOutbreakHUD-pollution-title-block.complete::after,
 .pollutionOutbreakHUD-pollution-title-block.active::after {
-  box-shadow: 0 1px 0 0 #9b9d9d, 0 2px 0 0 #6a6969, 0 0 0 2px #9b9d9d, 0 1px 1px 0 #6a6969 inset;
+  box-shadow:
+    0 1px 0 0 #9b9d9d,
+    0 2px 0 0 #6a6969,
+    0 0 0 2px #9b9d9d,
+    0 1px 1px 0 #6a6969 inset;
 }
 
 .pollutionOutbreakHUD-pollution-title-block.complete::after {

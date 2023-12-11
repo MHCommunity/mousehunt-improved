@@ -1,7 +1,8 @@
-import { addHudStyles } from '../../utils';
+import { addHudStyles, getCurrentLocation, onTravel } from '@/utils';
+
 import styles from './styles.css';
 
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
 const updateClosingTime = () => {
   let timeLeftText = '';
@@ -9,7 +10,7 @@ const updateClosingTime = () => {
   // Props Warden Slayer & Timers+ for the math and logic.
   const today = new Date();
   const rotationLength = 20;
-  const rotationsExact = (((today.getTime() / 1000.0) - 1285704000) / 3600) / rotationLength;
+  const rotationsExact = (((today.getTime() / 1000) - 1285704000) / 3600) / rotationLength;
   const rotationsInteger = Math.floor(rotationsExact);
   const partialrotation = (rotationsExact - rotationsInteger) * rotationLength;
   if (partialrotation < 16) {
@@ -44,7 +45,7 @@ const hud = () => {
 
   const timeLeftEl = updateClosingTime();
 
-  hudBar.appendChild(timeLeftEl);
+  hudBar.append(timeLeftEl);
 
   // add a timer to update the time left
   const timer = setInterval(updateClosingTime, 60 * 1000);
@@ -53,8 +54,11 @@ const hud = () => {
   } });
 };
 
-const main = () => {
-  addHudStyles('forbidden-grove', styles);
+/**
+ * Initialize the module.
+ */
+export default () => {
+  addHudStyles(styles);
   addCheeseSelector('forbidden-grove', [
     'ancient_cheese',
     'radioactive_blue_cheese',
@@ -64,5 +68,3 @@ const main = () => {
   ]);
   hud();
 };
-
-export default main;

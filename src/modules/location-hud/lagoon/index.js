@@ -1,10 +1,11 @@
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
-const main = () => {
+/**
+ * Initialize the module.
+ */
+export default () => {
   addCheeseSelector('lagoon', [
     'gnarled_cheese',
     'wicked_gnarly_cheese',
   ]);
 };
-
-export default main;

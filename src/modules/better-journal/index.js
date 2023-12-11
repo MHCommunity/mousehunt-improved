@@ -1,9 +1,10 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
-import styles from './styles/styles.css';
+import { addUIStyles, getMhuiSetting, onRequest } from '@/utils';
+
 import customEntries from './styles/custom-entries.css';
 import fullstop from './styles/fullstop.css';
 import miniEntries from './styles/mini-entries.css';
 import progressLog from './styles/progress-log.css';
+import styles from './styles/styles.css';
 
 /**
  * For each element matching the selector, find and replace strings.
@@ -110,10 +111,10 @@ const updateJournalText = () => {
     ['(Local Time)', ''],
     ['and your item(s) have been', ''],
     [':</b><br>', '</b> '],
-    [/<a href="receipt.php.+?View Receipt<\/a>/i, ''],
+    [/<a href="receipt.php.+?view receipt<\/a>/i, ''],
     ['me:<br>', 'me '],
-    [/I should tell my friends to check .+? during the next .+? to catch one!/i, ''],
-    [/I can go to my .+? to open it/i, ''],
+    [/i should tell my friends to check .+? during the next .+? to catch one!/i, ''],
+    [/i can go to my .+? to open it/i, ''],
     ['Luckily she was not interested in my cheese or charms!', ''],
     ['while she was in my trap, but', 'and'],
     [' while scampering off!', ''],
@@ -145,14 +146,19 @@ const updateJournalText = () => {
     ['before it could even touch my cheese!', ''],
     ['The mouse dropped the following prize', 'that dropped'],
     ['My Unstable Charm turned into', 'My Unstable Charm became'],
+    ['•&nbsp;', ' '],
+    ['My Condensed Creativity created additional loot:', 'My Condensed Creativity created an additional '],
+    ['The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case', 'The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case!'],
+    ['*BLING*', '<span class="decoration">✨️</span>'],
 
     // Event stuff
     // SEH
-    [/was.+Chocolatonium.+trap!/i, ''],
+    [/was.+chocolatonium.+trap!/i, ''],
 
     // Halloween
     [/an additional:<br>/i, 'an additional '],
-    [/([1234567890]) x /i, ' $1 '],
+
+    [/(\d+?) x /gi, ' $1 '],
 
     ['<p></p>', ''],
   ]);
@@ -187,7 +193,7 @@ const updateJournalText = () => {
       const span = document.createElement('span');
       span.innerText = 'View Progress Log';
       link.innerText = '';
-      link.appendChild(span);
+      link.append(span);
     }
   }
 };
@@ -223,12 +229,17 @@ const main = () => {
   updateKingsPromoText();
 };
 
-export default () => {
-  addUIStyles(styles);
-  addUIStyles(customEntries);
-  addUIStyles(fullstop);
-  addUIStyles(miniEntries);
-  addUIStyles(progressLog);
+/**
+ * Initialize the module.
+ */
+const init = () => {
+  addUIStyles([
+    styles,
+    customEntries,
+    fullstop,
+    miniEntries,
+    progressLog,
+  ]);
 
   main();
 
@@ -241,4 +252,13 @@ export default () => {
   if (getMhuiSetting('better-journal-privacy')) {
     journalPrivacy();
   }
+};
+
+export default {
+  id: 'better-journal',
+  name: 'Better Journal',
+  type: 'better',
+  default: true,
+  description: 'Modify the journal text, layout, and styling.',
+  load: init,
 };

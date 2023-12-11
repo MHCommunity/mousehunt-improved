@@ -1,6 +1,18 @@
-import { addUIStyles, showErrorMessage, showSuccessMessage, getMhuiSetting } from '../utils';
+import {
+  addUIStyles,
+  getMhuiSetting,
+  getTradableItems,
+  makeElement,
+  onDialogShow,
+  onEvent,
+  onNavigation,
+  onRequest,
+  showErrorMessage,
+  showSuccessMessage
+} from '@/utils';
+
+import settings from './settings';
 import styles from './styles.css';
-import getTradableItems from '../../data/tradable-items';
 
 const makeItem = (name, type, image, appendTo) => {
   const item = makeElement('div', 'quickSendItem');
@@ -27,10 +39,10 @@ const makeItem = (name, type, image, appendTo) => {
     item.classList.add('selected');
   });
 
-  item.appendChild(selected);
-  item.appendChild(itemImage);
+  item.append(selected);
+  item.append(itemImage);
 
-  appendTo.appendChild(item);
+  appendTo.append(item);
 };
 
 const makeSendSuppliesButton = (btn, snuid) => {
@@ -60,12 +72,12 @@ const makeSendSuppliesButton = (btn, snuid) => {
   itemOptions.forEach((item) => {
     const tradableItem = allTradableItems.find((i) => i.type === item);
     if (tradableItem) {
-      const image = tradableItem.thumbnail_transparent ? tradableItem.thumbnail_transparent : tradableItem.thumbnail;
+      const image = tradableItem.thumbnail_transparent ?? tradableItem.thumbnail;
       makeItem(tradableItem.name, tradableItem.type, image, itemsWrapper);
     }
   });
 
-  quickSendLinkWrapper.appendChild(itemsWrapper);
+  quickSendLinkWrapper.append(itemsWrapper);
 
   const quickSendGoWrapper = makeElement('div', 'quickSendGoWrapper');
 
@@ -114,12 +126,16 @@ const makeSendSuppliesButton = (btn, snuid) => {
 
         showSuccessMessage(`Sent ${qty} ${itemName}!`, quickSendGoWrapper, 'mh-ui-quick-send-success');
       }
+    }).catch(() => {
+      quickSendButton.classList.remove('disabled');
+
+      showErrorMessage('There was an error sending supplies', quickSendGoWrapper, 'mh-ui-quick-send-error');
     });
   });
 
-  quickSendGoWrapper.appendChild(quickSendInput);
-  quickSendGoWrapper.appendChild(quickSendButton);
-  quickSendLinkWrapper.appendChild(quickSendGoWrapper);
+  quickSendGoWrapper.append(quickSendInput);
+  quickSendGoWrapper.append(quickSendButton);
+  quickSendLinkWrapper.append(quickSendGoWrapper);
 
   return quickSendLinkWrapper;
 };
@@ -179,12 +195,15 @@ const addToMapUsers = (attempts = 0) => {
 
     const quickSendLinkWrapper = makeSendSuppliesButton(btn, snuid);
     if (quickSendLinkWrapper) {
-      btn.appendChild(quickSendLinkWrapper);
+      btn.append(quickSendLinkWrapper);
     }
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   main();
@@ -193,4 +212,14 @@ export default () => {
   onEvent('profile_hover', main);
 
   onDialogShow(addToMapUsers, 'map');
+};
+
+export default {
+  id: 'quick-send-supplies',
+  name: 'Quick Send Supplies',
+  type: 'feature',
+  default: true,
+  description: 'Hover over the send supplies button on someone\'s profile or hover-profile to easily send any quantity of SUPER|brie+ or another item.',
+  load: init,
+  settings,
 };

@@ -1,0 +1,160 @@
+.prologuePondView-chum-image {
+  width: 35px;
+  height: 35px;
+  margin-top: -2px;
+  filter: drop-shadow(0 0 2px #f378ff);
+}
+
+.prologuePondView-chum-quantity.quantity {
+  padding: 2px;
+  font-size: 14px;
+}
+
+.prologuePondView-fishingBoat {
+  top: 30px;
+  transition: 0.4s;
+  transform: scale(1.2);
+}
+
+.prologuePondView-fishingBoat:hover {
+  filter: brightness(1.2);
+}
+
+.prologuePondView-background-layer.water {
+  top: 19px;
+  filter: brightness(0.7);
+  opacity: 0.6;
+}
+
+.prologuePondView-background-layer.shore {
+  top: 25px;
+  opacity: 0.7;
+}
+
+.prologuePondView-currentLoot-value {
+  font-size: 12px;
+  border-radius: 4px;
+  box-shadow: 0 0 20px 0 #000 inset;
+}
+
+.prologuePondView-currentLoot-label {
+  margin-bottom: 3px;
+}
+
+.prologuePondView-currentLoot {
+  border: none;
+}
+
+.prologuePondView-fishingBoat.forward .prologuePondView-fishingBoat-paperDoll {
+  transform-origin: 50% 40%;
+  animation-duration: 1.3s;
+  animation-timing-function: ease-in-out;
+}
+
+/* put away the fishing rod while you're disarmed */
+.disarmed .prologuePondView-fishingBoat-paperDoll {
+  background-image: url(https://i.mouse.rip/mh-improved/boat-no-rod.png);
+}
+
+.prologuePondView-fishingBoat-paperDoll-layer.fish_net.active,
+.prologuePondView-fishingBoat-paperDoll-layer.fishing_rod.active {
+  opacity: 1;
+  transition: 0.4s;
+}
+
+.disarmed .prologuePondView-fishingBoat-paperDoll-layer.fish_net.active,
+.disarmed .prologuePondView-fishingBoat-paperDoll-layer.fishing_rod.active,
+.disarmed .prologuePondView-fishingBoat-paperDoll-layer.steam_reel.active,
+.disarmed .prologuePondView-fishingBoat-paperDoll-layer.fishing_line.active {
+  opacity: 0;
+}
+
+/* don't overlap the fishing rod */
+.prologuePondView-chumDoober[style="top: 62px;"] {
+  left: -96px;
+}
+
+@keyframes mh-improved-boat-floating {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, 3px);
+  }
+
+  100% {
+    transform: translate(0, -0);
+  }
+}
+
+@keyframes mh-improved-chum-floating {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, -5px);
+  }
+
+  100% {
+    transform: translate(0, -0);
+  }
+}
+
+/* add bobbing animation so it looks like they're floating */
+.prologuePondView-chumDoober {
+  filter: drop-shadow(-1px -1px 3px #526ba1) drop-shadow(-1px -1px 3px #526ba1) hue-rotate(94deg);
+  animation-name: mh-improved-chum-floating;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.prologuePondView-fishingBoat-paperDoll {
+  animation-name: mh-improved-boat-floating;
+  animation-duration: 6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .prologuePondView-fishingBoat-paperDoll {
+    animation: none;
+  }
+
+  .prologuePondView-chumDoober {
+    animation: none;
+  }
+}
+
+/* stagger the animation so they don't all bob at the same time */
+.prologuePondView-chumDooberContainer .prologuePondView-chumDoober:nth-child(1) {
+  animation-delay: 9s;
+}
+
+.prologuePondView-chumDooberContainer .prologuePondView-chumDoober:nth-child(2) {
+  animation-delay: 6s;
+}
+
+.prologuePondView-chumDooberContainer .prologuePondView-chumDoober:nth-child(3) {
+  animation-delay: 2s;
+}
+
+.prologuePondView-chumDooberContainer .prologuePondView-chumDoober:nth-child(4) {
+  animation-delay: 4s;
+}
+
+.folkloreForestRegionView.stormy_water .prologuePondView-fishingBoat {
+  left: 220px;
+}
+
+.folkloreForestRegionView.stormy_water .prologuePondView-background-layer.sky::after {
+  top: 30px;
+  transform: scaleY(1.2);
+  transform-origin: bottom;
+}
+
+.prologuePondView-chumButton.active::after {
+  background-image: url(https://i.mouse.rip/mh-improved/chum-lightning.png);
+}

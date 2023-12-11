@@ -12,7 +12,7 @@ jq -csf scripts/csv2json.jq minlucks2.csv | jq > minlucks.json
 jq -s '.[0][] | {(.Mouse):{ arcane: .Arcane, draconic: .Draconic, forgotten: .Forgotten, hydro: .Hydro, physical: .Physical, shadow: .Shadow, tactical: .Tactical, law: .Law, rift: .Rift}}' minlucks.json > minlucks2.json
 jq -s 'add' minlucks2.json > minlucks.json
 
-mv minlucks.json src/data/minlucks.json
+mv minlucks.json src/data/mice-minlucks.json
 
 rm minlucks.csv
 rm minlucks2.csv

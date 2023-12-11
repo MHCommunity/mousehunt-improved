@@ -22,7 +22,7 @@ const getChessProgress = (pieces) => {
   return 'King';
 };
 
-export function getZugzwangTowerText(quests) {
+const getZugzwangTowerText = (quests) => {
   if (! quests.QuestZugzwangTower) {
     return;
   }
@@ -37,11 +37,11 @@ export function getZugzwangTowerText(quests) {
   }
 
   return `${returnText} Amp, Technic: ${getChessProgress(techProgress)}, Mystic: ${getChessProgress(mythProgress)}`;
-}
+};
 
-export function setZugzwangTowerData() {
+const setZugzwangTowerData = () => {
   const ampEl = document.querySelector('.zuzwangsTowerHUD-currentAmplifier span');
-  const amp = ampEl ? parseInt(ampEl.innerText, 10) : 0;
+  const amp = ampEl ? Number.parseInt(ampEl.innerText, 10) : 0;
 
   const techProgressEl = document.querySelectorAll('.zuzwangsTowerHUD-progress.tech img');
   const techProgress = techProgressEl ? techProgressEl.length : 0;
@@ -54,4 +54,9 @@ export function setZugzwangTowerData() {
     techProgress,
     mythProgress,
   };
-}
+};
+
+export {
+  getZugzwangTowerText,
+  setZugzwangTowerData
+};

@@ -1,4 +1,5 @@
-import { addUIStyles } from '../utils';
+import { addSubmenuItem, addUIStyles, doRequest, makeElementDraggable } from '@/utils';
+
 import styles from './styles.css';
 
 /**
@@ -11,8 +12,8 @@ const getMouseStats = async () => {
     'managers/ajax/mice/mouse_list.php',
     {
       action: 'get_environment',
-      category: user.environment_type, // eslint-disable-line no-undef
-      user_id: user.user_id, // eslint-disable-line no-undef
+      category: user.environment_type,
+      user_id: user.user_id,
       display_mode: 'stats',
       view: 'ViewMouseListEnvironments',
     }
@@ -27,7 +28,7 @@ const getMouseStats = async () => {
   });
 
   // Return the data.
-  return mouseData ? mouseData : [];
+  return mouseData ?? [];
 };
 
 /**
@@ -52,8 +53,8 @@ const buildMouseMarkup = (mouseData) => {
 
   mouseEl.title = mouse.name;
   mouseEl.addEventListener('click', () => {
-    if ('undefined' !== hg?.views?.MouseView?.show) { // eslint-disable-line no-undef
-      hg.views.MouseView.show(mouse.type); // eslint-disable-line no-undef
+    if ('undefined' !== hg?.views?.MouseView?.show) {
+      hg.views.MouseView.show(mouse.type);
     }
   });
 
@@ -67,7 +68,7 @@ const buildMouseMarkup = (mouseData) => {
     const crown = document.createElement('div');
     crown.classList.add('mh-catch-stats-crown');
     crown.style.backgroundImage = `url('https://www.mousehuntgame.com/images/ui/crowns/crown_${mouse.crown}.png')`;
-    image.appendChild(crown);
+    image.append(crown);
   }
 
   // Create the name element.
@@ -77,16 +78,16 @@ const buildMouseMarkup = (mouseData) => {
 
   // Create a wrapper for the name and image.
   const imageNameContainer = document.createElement('div');
-  imageNameContainer.appendChild(image);
-  imageNameContainer.appendChild(name);
+  imageNameContainer.append(image);
+  imageNameContainer.append(name);
 
   // Create the catches element.
   const catches = document.createElement('div');
   catches.classList.add('mh-catch-stats-catches');
   catches.innerText = mouse.num_catches;
 
-  mouseEl.appendChild(imageNameContainer);
-  mouseEl.appendChild(catches);
+  mouseEl.append(imageNameContainer);
+  mouseEl.append(catches);
 
   return mouseEl;
 };
@@ -96,7 +97,7 @@ const buildMouseMarkup = (mouseData) => {
  */
 const showModal = async () => {
   // Remove the existing modal.
-  const existing = document.getElementById('mh-catch-stats');
+  const existing = document.querySelector('#mh-catch-stats');
   if (existing) {
     existing.remove();
   }
@@ -116,7 +117,7 @@ const showModal = async () => {
   // Add the title;
   const title = document.createElement('h1');
   title.innerText = 'Mouse Catch Stats';
-  header.appendChild(title);
+  header.append(title);
 
   // Create a close button icon.
   const closeIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -131,7 +132,7 @@ const showModal = async () => {
   // Create the path.
   const closePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   closePath.setAttribute('d', 'M18 6L6 18M6 6l12 12');
-  closeIcon.appendChild(closePath);
+  closeIcon.append(closePath);
 
   // Close the modal when the icon is clicked.
   closeIcon.addEventListener('click', () => {
@@ -139,10 +140,10 @@ const showModal = async () => {
   });
 
   // Append the button.
-  header.appendChild(closeIcon);
+  header.append(closeIcon);
 
   // Add the header to the modal.
-  modal.appendChild(header);
+  modal.append(header);
 
   // Make the mouse stats table.
   const mouseBody = document.createElement('div');
@@ -153,17 +154,17 @@ const showModal = async () => {
 
   // Loop through the stats and add them to the modal.
   mouseStats.forEach((mouseData) => {
-    mouseBody.appendChild(buildMouseMarkup(mouseData, mouseBody));
+    mouseBody.append(buildMouseMarkup(mouseData, mouseBody));
   });
 
   // Add the mouse stats to the modal.
-  modal.appendChild(mouseBody);
+  modal.append(mouseBody);
 
   // Add the modal to the wrapper.
-  modalWrapper.appendChild(modal);
+  modalWrapper.append(modal);
 
   // Add the wrapper to the body.
-  document.body.appendChild(modalWrapper);
+  document.body.append(modalWrapper);
 
   // Make the modal draggable.
   makeElementDraggable('#mh-catch-stats', '.mh-catch-stats-header', 25, 25, 'mh-catch-stats-position');
@@ -176,7 +177,10 @@ addSubmenuItem({
   callback: showModal
 });
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   addSubmenuItem({
@@ -185,4 +189,13 @@ export default () => {
     icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/prize_shoppe.png?',
     callback: showModal
   });
+};
+
+export default {
+  id: 'location-catch-stats',
+  name: 'Location Catch Stats',
+  type: 'feature',
+  default: true,
+  description: 'Adds a "Loaction Catch Stats" to the Mouse dropdown menu to see your catch stats for the current location.',
+  load: init,
 };

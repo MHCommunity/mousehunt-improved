@@ -17,7 +17,7 @@ const showFullTitlePercent = () => {
   const originalText = target.innerText;
 
   title.addEventListener('mouseover', () => {
-    target.innerText = percent.indexOf('%') > -1 ? percent.split('%')[0] : percent;
+    target.innerText = percent.includes('%') ? percent.split('%')[0] : percent;
   });
 
   title.addEventListener('mouseout', () => {
@@ -25,6 +25,15 @@ const showFullTitlePercent = () => {
   });
 };
 
+const replaceInboxClose = () => {
+  const template = hg.utils.TemplateUtil.getTemplate('ViewMousehuntHeader_inbox')
+    .replace('<a class="messengerUINotificationClose" href="#">X', '<a class="messengerUINotificationClose" href="#">✕');
+  hg.utils.TemplateUtil.addTemplate('ViewMousehuntHeader_inbox', template);
+};
+/**
+ * Initialize the module.
+ */
 export default () => {
   showFullTitlePercent();
+  replaceInboxClose();
 };

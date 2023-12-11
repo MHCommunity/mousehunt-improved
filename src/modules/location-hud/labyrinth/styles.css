@@ -251,7 +251,7 @@
 .labyrinthHUD-clueDrawer-bar {
   height: 10px;
   border-radius: 0;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .labyrinthHUD-clueDrawer-barFrame {
@@ -314,56 +314,56 @@
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_4::after,
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_5::after,
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_6::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    font-size: 15px;
-    font-weight: 900;
-    color: #000;
-    text-align: center;
-    text-shadow: 0 0 4px #c7ffad;
-    content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 15px;
+  font-weight: 900;
+  color: #000;
+  text-align: center;
+  text-shadow: 0 0 4px #c7ffad;
+  content: "";
 }
 
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete::after {
-    color: #0e0e0e;
-    text-shadow: none;
-    content: "0";
+  color: #0e0e0e;
+  text-shadow: none;
+  content: "0";
 }
 
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.bad::after {
-    color: #c69898;
-    text-shadow: none;
-    content: "1";
+  color: #c69898;
+  text-shadow: none;
+  content: "1";
 }
 
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_1::after {
-    content: "1";
+  content: "1";
 }
 
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_2::after {
-    content: "2";
+  content: "2";
 }
 
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_3::after {
-    content: "3";
+  content: "3";
 }
 
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_4::after {
-    content: "4";
+  content: "4";
 }
 
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_5::after {
-    content: "5";
+  content: "5";
 }
 
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete.good_6::after {
-    content: "6";
+  content: "6";
 }
 
 .mh-ui-labyrinth-lantern-reminder {
@@ -376,7 +376,7 @@
   filter: drop-shadow(1px 0 8px #f6eac3);
   background-size: contain;
   transform-origin: bottom;
-  animation: mh-improved-sway-side-to-side .75s;
+  animation: mh-improved-sway-side-to-side 0.75s;
   animation-iteration-count: 3;
 }
 
@@ -387,7 +387,7 @@
 }
 
 .labyrinthHUD-clueDrawer-barPadding {
-    padding: 1px 4px 0 1px;
+  padding: 1px 4px 0 1px;
 }
 
 .labyrinthHUD-confirmDescription.chooseDoor b {
@@ -396,7 +396,7 @@
 
 .labyrinthHUD-scrambleClues.disabled .labyrinthHUD-scrambleClues-name,
 .labyrinthHUD-scrambleClues.disabled:hover .labyrinthHUD-scrambleClues-name {
-  color: transparent !important
+  color: transparent !important;
 }
 
 /* Door labels */

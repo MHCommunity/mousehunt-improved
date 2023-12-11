@@ -1,6 +1,9 @@
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
-const main = () => {
+/**
+ * Initialize the module.
+ */
+export default () => {
   addCheeseSelector('acolyte-realm', [
     'ancient_cheese',
     'runic_cheese',
@@ -8,5 +11,3 @@ const main = () => {
     'magical_radioactive_blue_cheese',
   ]);
 };
-
-export default main;

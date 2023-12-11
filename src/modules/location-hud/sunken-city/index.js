@@ -1,4 +1,5 @@
-import { addHudStyles } from '../../utils';
+import { addHudStyles, getUserItems, makeElement } from '@/utils';
+
 import styles from './styles.css';
 
 const updateHudImages = () => {
@@ -56,30 +57,32 @@ const makeCharmElement = (charm, appendTo) => {
   const itemImage = makeElement('div', 'itemImage');
   const image = makeElement('img');
   image.setAttribute('src', charm.thumbnail_transparent);
-  itemImage.appendChild(image);
-  clearBlock.appendChild(itemImage);
+  itemImage.append(image);
+  clearBlock.append(itemImage);
 
   const quantity = makeElement('div', 'item quantity', charm.quantity);
   quantity.setAttribute('data-item-type', charm.type);
-  clearBlock.appendChild(quantity);
+  clearBlock.append(quantity);
 
-  wrapper.appendChild(clearBlock);
+  wrapper.append(clearBlock);
 
-  if ('smart_water_jet_trinket' == charm.type) { // eslint-disable-line eqeqeq
+  /* eslint-disable eqeqeq */
+  if ('smart_water_jet_trinket' == charm.type) {
     charm.description = 'Overcharge your engine for a 500m boost with an automatic unequip after the hunt.';
-  } else if ('brilliant_water_jet_trinket' == charm.type) { // eslint-disable-line eqeqeq
+  } else if ('brilliant_water_jet_trinket' == charm.type) {
     charm.description = 'Supercharge your engine for a boost to the end of the current zone!';
-  } else if ('spiked_anchor_trinket' == charm.type) { // eslint-disable-line eqeqeq
+  } else if ('spiked_anchor_trinket' == charm.type) {
     charm.description = 'Slow down your sub while also boosting your power!';
-  } else if ('golden_anchor_trinket' == charm.type) { // eslint-disable-line eqeqeq
+  } else if ('golden_anchor_trinket' == charm.type) {
     charm.description = 'Set your sub to super-slow and also find additional sand dollars!';
   }
+  /* eslint-enable eqeqeq */
 
   const toolTip = makeElement('div', 'toolTip');
   toolTip.innerHTML = `<b>${charm.name}s</b><br>${charm.description}`;
-  wrapper.appendChild(toolTip);
+  wrapper.append(toolTip);
 
-  appendTo.appendChild(wrapper);
+  appendTo.append(wrapper);
 };
 
 const addMoreCharms = async () => {
@@ -125,9 +128,10 @@ const hud = () => {
   addMoreCharms();
 };
 
-const main = () => {
-  addHudStyles('sunken-city', styles);
+/**
+ * Initialize the module.
+ */
+export default () => {
+  addHudStyles(styles);
   hud();
 };
-
-export default main;

@@ -1,3 +1,5 @@
+import { getUserSetupDetails, onPageChange, onRequest } from '@/utils';
+
 const setPrestigeStats = () => {
   const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
   if (! prestige) {
@@ -77,7 +79,7 @@ const modifyPB = (retry = false) => {
     return;
   }
 
-  header.insertAdjacentElement('afterend', prestige);
+  header.after(prestige);
 
   setPrestigeStats();
 };
@@ -115,7 +117,7 @@ const savePbStats = () => {
     }
 
     // parse the value, remove commas and convert to a number
-    let parsedValue = parseInt(value.innerText.replace(/,/g, ''), 10);
+    let parsedValue = Number.parseInt(value.innerText.replaceAll(',', ''), 10);
 
     // get the type of stat it is by looking at the great grandparent
     const type = row.parentElement.parentElement;
@@ -138,7 +140,10 @@ const savePbStats = () => {
   localStorage.setItem('mh-improved-cache-pb-stats', JSON.stringify(stats));
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   onPageChange({ blueprint: { show: () => {
     savePbStats();
     setTimeout(modifyPB, 500);
@@ -153,4 +158,13 @@ export default () => {
     savePbStats();
     setPrestigeStats();
   }, 'managers/ajax/users/gettrapcomponents.php');
+};
+
+export default {
+  id: 'prestige-base-stats',
+  name: 'Prestige Base Stats',
+  type: 'feature',
+  default: true,
+  description: 'Shows the correct stats for the Prestige Base in the base selector.',
+  load: init,
 };

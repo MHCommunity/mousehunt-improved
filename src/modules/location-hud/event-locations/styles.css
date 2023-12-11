@@ -1,0 +1,173 @@
+.campHudSnowballShowdownView__disabled {
+  top: 45px;
+}
+
+.advent-calendar-spoilers .adventCalendarView-gift .adventCalendarView-gift-label,
+.advent-calendar-spoilers .adventCalendarView-gift .adventCalendarView-gift-image {
+  display: none;
+}
+
+.mousehuntActionButton.tiny.toggle-advent-calendar-spoilers {
+  position: absolute;
+  left: 20px;
+  font-size: 12px;
+}
+
+.adventCalendarView-subtitle {
+  padding: 10px;
+  font-size: 12px;
+  line-height: 19px;
+  background-color: #d3ddfe;
+}
+
+.adventCalendarView-gift.canClaim {
+  filter: brightness(1.75);
+}
+
+.adventCalendarView-gift-rewardContainer {
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  background-color: rgb(211 221 254);
+  border-radius: 0;
+}
+
+.adventCalendarView-gift-reward-close {
+  padding: 2px 4px 5px 6px;
+  font-size: 13px;
+  font-weight: 900;
+  color: #e03a3a;
+  background-color: #b1bfed;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+}
+
+.adventCalendarView-gift-reward-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.adventCalendarView-gift-item,
+.adventCalendarView-gift-item img {
+  width: 55px;
+  height: 55px;
+}
+
+.adventCalendarView-title {
+  background-color: #d3ddfe;
+  border-width: 1px;
+}
+
+.adventCalendarView-header {
+  background-color: #e2ebee;
+}
+
+.snowballShowdownView-reward-subtitle,
+.snowballShowdownView-rewardsTitle {
+  display: none;
+}
+
+.snowballShowdownView-rewardsContainer {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.snowballShowdownView-reward-image {
+  height: 120px;
+}
+
+.snowballShowdownView-reward-item {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.snowballShowdownView-reward-item-name span {
+  display: inline;
+}
+
+.snowballShowdownView-reward-item-name {
+  display: inline-block;
+  height: unset;
+  text-align: center;
+}
+
+.snowballShowdownView-reward-item .itemImage {
+  float: none;
+  width: unset;
+  height: unset;
+}
+
+.snowballShowdownView-reward-item .itemImage img {
+  width: 45px;
+  height: auto;
+}
+
+.snowballShowdownView-item-quantity {
+  padding: 1px 5px;
+  font-size: 12px;
+}
+
+.snowballShowdownView-item-name {
+  margin: 0 4px;
+  font-size: 11px;
+}
+
+.snowballShowdownView-item {
+  box-shadow:
+    0 -7px 8px #ccc inset,
+    0 0 0 3px #3e71be;
+}
+
+.snowballShowdownView-message {
+  display: inline-block;
+  width: auto;
+  padding: 8px;
+  font-size: 10px;
+  background: #3e71be;
+  border-radius: 4px;
+  box-shadow: 0 0 1px #103060 inset;
+}
+
+.snowballShowdownView-messageContainer {
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.snowballShowdownView-item::after {
+  filter: drop-shadow(-2px 2px 0 #3e71be) drop-shadow(1px -2px 0 #3e71be);
+}
+
+.snowballShowdownView-board-row-cell.available:hover,
+.snowballShowdownView-board-row-cell.available:focus {
+  cursor: pointer;
+  box-shadow: inset 0 0 1px 3px #3e71be;
+}
+
+.snowballShowdownView-board-row-cell.hit {
+  box-shadow: inset 0 0 0 3px #b8ffe3;
+}
+
+.snowballShowdownView-board-row-cell.available:hover::after,
+.snowballShowdownView-board-row-cell.available:focus::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: #6171a0;
+  content: "'✕'";
+  opacity: 0.5;
+}
+
+.winter_hunt_profile_tree_possible_gifts .gift {
+  width: 20%;
+}

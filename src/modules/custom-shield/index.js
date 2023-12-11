@@ -1,4 +1,6 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import { addUIStyles, getMhuiSetting, onNavigation } from '@/utils';
+
+import settings from './settings';
 import styles from './styles.css';
 
 const addClass = (el, shieldClass) => {
@@ -135,13 +137,16 @@ const getTitle = () => {
   return title;
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   changeShield();
 
   onNavigation(() => {
-    const input = document.querySelector('#mousehunt-improved-settings-feature-modules-custom-shield select');
+    const input = document.querySelector('#mousehunt-improved-settings-feature-custom-shield select');
     if (! input) {
       return;
     }
@@ -153,4 +158,15 @@ export default () => {
     page: 'preferences',
     onLoad: true,
   });
+};
+
+export default {
+  id: 'custom-shield',
+  name: 'Custom Shield',
+  type: 'feature',
+  default: false,
+  description: 'Change your shield in the HUD to a variety of different options.',
+  load: init,
+  alwaysLoad: true,
+  settings,
 };

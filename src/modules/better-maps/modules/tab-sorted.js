@@ -1,8 +1,11 @@
-import mouseGroups from '../../../data/mice-map-groups.json';
-import { getArEl, getHighestArForMouse, getMhuiSetting, mapData } from '../../utils';
-import { getMapData, addMHCTData } from '../map-utils';
+import { getArEl, getHighestArForMouse, makeElement, mapData } from '@/utils';
+
+import { addMHCTData, getMapData } from '../map-utils';
+
 import { addArToggle, removeArToggle } from './toggle-ar';
 import doHighlighting from './highlighting';
+
+import mouseGroups from '@data/map-groups.json';
 
 const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   // Get the unsorted mice.
@@ -15,17 +18,13 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   let caughtMice = [];
   // get the ids from currentMapData.hunters.completed_goal_ids.mouse
   currentMapData.hunters.forEach((hunter) => {
-    caughtMice = caughtMice.concat(hunter.completed_goal_ids[type]);
+    caughtMice = [...caughtMice, ...hunter.completed_goal_ids[type]];
   });
 
   // Remove the caught mice from the unsorted mice.
-  if (getMhuiSetting('mh-mapper-debug', false)) {
-    console.log('keeping caught mice', caughtMice); // eslint-disable-line no-console
-  } else {
-    unsortedMice = unsortedMice.filter((mouse) => {
-      return caughtMice.indexOf(mouse.unique_id) === -1;
-    });
-  }
+  unsortedMice = unsortedMice.filter((mouse) => {
+    return ! caughtMice.includes(mouse.unique_id);
+  });
 
   // Get the categories.
   let categories = [];
@@ -84,50 +83,50 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
   const mouseImage = makeElement('img', 'mouse-image');
   mouseImage.src = 'mouse' === type ? mouse.small : mouse.thumb;
   mouseImage.alt = mouse.name;
-  mouseData.appendChild(mouseImage);
+  mouseData.append(mouseImage);
 
   makeElement('div', 'mouse-name', mouse.name, mouseData);
 
   const mouseAr = await getArEl(mouse.unique_id, type);
   if (mouseAr) {
-    mouseData.appendChild(mouseAr);
+    mouseData.append(mouseAr);
   }
 
   // Mouse header close.
-  mouseDiv.appendChild(mouseData);
+  mouseDiv.append(mouseData);
 
   // Mouse extra info.
+  const mouseExtraInfoWrapper = makeElement('div', 'mouse-mhct-extra-info-wrapper');
   const mouseExtraInfo = makeElement('div', 'mouse-extra-info');
 
-  // Mouse locations.
-  const locations = makeElement('div', 'mouse-locations-wrapper');
-  makeElement('div', 'location-text', 'Found in:', locations);
-
-  const locationLocations = makeElement('div', 'mouse-locations');
-
   if (Array.isArray(mouse.environment_ids)) {
-    mouse.environment_ids.forEach((environmentID) => {
-      const environment = mapData().environments.find((env) => {
-        return env.id === environmentID;
-      });
+    // Mouse locations.
+    const locationText = makeElement('div', 'location-text-wrapper');
+    makeElement('span', 'location-text', 'Found in ', locationText);
+
+    mouse.environment_ids.forEach((environmentID, index) => {
+      const environment = mapData().environments.find((env) => env.id === environmentID);
 
       if (environment) {
-        const location = makeElement('a', 'mouse-location', environment.name);
+        const locationLink = makeElement('a', 'mouse-location-link', environment.name);
 
-        location.title = `Travel to ${environment.name}`;
-        location.setAttribute('data-environment-id', environment.id);
+        locationLink.title = `Travel to ${environment.name}`;
+        locationLink.setAttribute('data-environment-id', environment.id);
 
-        location.addEventListener('click', () => {
+        locationLink.addEventListener('click', () => {
           showTravelConfirmation(environment, mapModel());
         });
 
-        locationLocations.appendChild(location);
+        // If it's not the first item, append a comma before it
+        if (index !== 0) {
+          locationText.append(document.createTextNode(', '));
+        }
+
+        locationText.append(locationLink);
       }
     });
 
-    // Mouse locations close.
-    locations.appendChild(locationLocations);
-    mouseExtraInfo.appendChild(locations);
+    mouseExtraInfo.append(locationText);
   }
 
   // Mouse weakness.
@@ -147,20 +146,21 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
       weaknessType.power_types.forEach((ptype) => {
         const powerType = document.createElement('img');
         powerType.src = `https://www.mousehuntgame.com/images/powertypes/${ptype.name}.png`;
-        powerTypes.appendChild(powerType);
+        powerTypes.append(powerType);
       });
 
       // Weakness wrapper close.
-      weaknessTypeDiv.appendChild(powerTypes);
-      weakness.appendChild(weaknessTypeDiv);
+      weaknessTypeDiv.append(powerTypes);
+      weakness.append(weaknessTypeDiv);
     });
 
     // Mouse weakness close.
-    mouseExtraInfo.appendChild(weakness);
+    mouseExtraInfo.append(weakness);
   }
 
   // Mouse extra info close.
-  mouseDiv.appendChild(mouseExtraInfo);
+  mouseExtraInfoWrapper.append(mouseExtraInfo);
+  mouseDiv.append(mouseExtraInfoWrapper);
 
   // Click handler.
   mouseDiv.addEventListener('click', async () => {
@@ -237,7 +237,7 @@ const makeSortedMiceList = async () => {
       // if the string starts with a /, then it's a relative path, otherwise it's a full path
       categoryIcon.src = (category.icon.indexOf('/') === 0) ? `https://www.mousehuntgame.com/images${category.icon}` : category.icon;
 
-      iconTitleWrapper.appendChild(categoryIcon);
+      iconTitleWrapper.append(categoryIcon);
     }
 
     // Title, icon, and subtitle wrapper.
@@ -247,13 +247,13 @@ const makeSortedMiceList = async () => {
     makeElement('div', 'mouse-category-subtitle', category.subtitle, iconTitleTitleWrapper);
 
     // Title, icon, and subtitle wrapper close.
-    iconTitleWrapper.appendChild(iconTitleTitleWrapper);
+    iconTitleWrapper.append(iconTitleTitleWrapper);
 
     // Category header close.
-    categoryHeader.appendChild(iconTitleWrapper);
+    categoryHeader.append(iconTitleWrapper);
 
     // Category wrapper close.
-    categoryWrapper.appendChild(categoryHeader);
+    categoryWrapper.append(categoryHeader);
 
     // Mice in category.
     const categoryMice = makeElement('div', 'mouse-category-mice');
@@ -296,10 +296,10 @@ const makeSortedMiceList = async () => {
 
         addToSubCat[hasSubCat].push(mouseDiv);
       } else {
-        categoryMice.appendChild(mouseDiv);
+        categoryMice.append(mouseDiv);
       }
 
-      categoryWrapper.appendChild(categoryMice);
+      categoryWrapper.append(categoryMice);
 
       // remove the mouse from the unsorted list
       unsortedMice.splice(mouseIndex, 1);
@@ -327,20 +327,20 @@ const makeSortedMiceList = async () => {
         // Subcategory header.
         const subcategoryHeader = makeElement('div', 'mouse-subcategory-header');
         makeElement('div', 'mouse-subcategory-title', currentSubCat.name, subcategoryHeader);
-        subcategoryWrapper.appendChild(subcategoryHeader);
+        subcategoryWrapper.append(subcategoryHeader);
 
         // Mice in subcategory.
         const subcategoryMice = makeElement('div', 'mouse-subcategory-mice');
         addToSubCat[subcategory.id].forEach((mouseDiv) => {
-          subcategoryMice.appendChild(mouseDiv);
+          subcategoryMice.append(mouseDiv);
         });
 
-        subcategoryWrapper.appendChild(subcategoryMice);
-        categoryWrapper.appendChild(subcategoryWrapper);
+        subcategoryWrapper.append(subcategoryMice);
+        categoryWrapper.append(subcategoryWrapper);
       }
     }
 
-    categoriesWrapper.appendChild(categoryWrapper);
+    categoriesWrapper.append(categoryWrapper);
   }
 
   // make a category for the unsorted mice
@@ -354,26 +354,26 @@ const makeSortedMiceList = async () => {
 
     // Title
     const unsortedTitle = makeElement('div', 'mouse-category-title', 'Unsorted');
-    unsortedHeader.appendChild(unsortedTitle);
+    unsortedHeader.append(unsortedTitle);
 
     // Header close
-    unsortedWrapper.appendChild(unsortedHeader);
+    unsortedWrapper.append(unsortedHeader);
 
     // Mice
     const unsortedMiceDiv = makeElement('div', 'mouse-category-mice');
     for (const mouse of unsortedMice) {
       const mouseDiv = await makeMouseDiv(mouse);
-      unsortedMiceDiv.appendChild(mouseDiv);
+      unsortedMiceDiv.append(mouseDiv);
     }
 
     // Mice close
-    unsortedWrapper.appendChild(unsortedMiceDiv);
+    unsortedWrapper.append(unsortedMiceDiv);
 
     // Wrapper close
-    categoriesWrapper.appendChild(unsortedWrapper);
+    categoriesWrapper.append(unsortedWrapper);
   }
 
-  target.appendChild(categoriesWrapper);
+  target.append(categoriesWrapper);
 };
 
 const makeScavengerSortedPage = async () => {
@@ -424,7 +424,7 @@ const makeGenericSortedPage = async () => {
   // call makeMouseDiv for each mouse but in the sorted order and not asynchonously
   for (const mouse of sortedUnsorted) {
     const mouseDiv = await makeMouseDiv(mouse, type);
-    target.appendChild(mouseDiv);
+    target.append(mouseDiv);
   }
 };
 
@@ -439,7 +439,7 @@ const moveTabToBody = () => {
     return;
   }
 
-  body.appendChild(sortedMiceContainer);
+  body.append(sortedMiceContainer);
 };
 
 const processSortedTabClick = async () => {
@@ -501,8 +501,8 @@ const processSortedTabClick = async () => {
 
   // First, make the sorted page with the loading icon, and then add the mice to it.
   const sortedPage = makeSortedPageWrapper();
-  sortedMiceContainer.appendChild(sortedPage);
-  mapContainer.appendChild(sortedMiceContainer);
+  sortedMiceContainer.append(sortedPage);
+  mapContainer.append(sortedMiceContainer);
 
   if (mouseGroups[currentMapData.map_type]) {
     await makeSortedMiceList();
@@ -532,13 +532,10 @@ const addSortedMapTab = () => {
     return false;
   }
 
-  const sortedTab = document.createElement('a');
-  sortedTab.className = 'treasureMapRootView-subTab sorted-map-tab';
+  const sortedTab = makeElement('a', 'treasureMapRootView-subTab sorted-map-tab', 'Sorted');
   sortedTab.setAttribute('data-type', 'sorted');
-  sortedTab.innerText = 'Sorted';
 
-  const divider = document.createElement('div');
-  divider.className = 'treasureMapRootView-subTab-spacer';
+  const divider = makeElement('div', 'treasureMapRootView-subTab-spacer');
 
   // Add as the first tab.
   mapTabs.insertBefore(divider, mapTabs.children[0]);

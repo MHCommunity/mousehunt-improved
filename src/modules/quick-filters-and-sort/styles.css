@@ -34,7 +34,11 @@
   display: flex;
   justify-content: space-evenly;
   padding: 5px 10px;
-  background-color: var(--mhdm-secondaryDark, #f6f3eb); /* stylelint-disable-line */
+  background-color: #f6f3eb;
+}
+
+.mh-dark-mode .campPage-trap-itemBrowser-quickLinks {
+  background-color: #242424;
 }
 
 .campPage-trap-itemBrowser-quickLinks-power {
@@ -110,11 +114,6 @@
   background-size: 30px;
 }
 
-/* Lower the items to fit the filters and searchbar change */
-.skin .campPage-trap-itemBrowser-items {
-  top: 50px;
-}
-
 .weapon .campPage-trap-itemBrowser-items,
 .base .campPage-trap-itemBrowser-items {
   top: 250px;
@@ -131,18 +130,6 @@
 
 .campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents {
   margin-top: 125px;
-}
-
-.skin .campPage-trap-itemBrowser-item-image {
-  display: none;
-}
-
-.skin .campPage-trap-itemBrowser-item-description.shortDescription {
-  display: none;
-}
-
-.skin .campPage-trap-itemBrowser-item-content .campPage-trap-itemBrowser-item-name {
-  margin-top: 11px;
 }
 
 .mh-dark-mode .quicklinks-filter-sortBy-name a,

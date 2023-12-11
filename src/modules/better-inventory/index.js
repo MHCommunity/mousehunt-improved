@@ -1,6 +1,14 @@
-import { addUIStyles } from '../utils';
-import styles from './styles.css';
+import {
+  addUIStyles,
+  getCurrentPage,
+  onEvent,
+  onNavigation,
+  onOverlayChange
+} from '@/utils';
+
 import recipes from './recipes';
+
+import styles from './styles.css';
 
 const setOpenQuantityOnClick = (attempts = 0) => {
   const qty = document.querySelector('.itemView-action-convertForm');
@@ -19,9 +27,9 @@ const setOpenQuantityOnClick = (attempts = 0) => {
     if (e.target.tagName === 'DIV') {
       const textQty = e.target.innerText;
       const qtyArray = textQty.split(' ');
-      let maxNum = qtyArray[qtyArray.length - 1];
+      let maxNum = qtyArray.at(-1);
       maxNum = maxNum.replace('Submit', '');
-      maxNum = parseInt(maxNum);
+      maxNum = Number.parseInt(maxNum);
 
       const input = document.querySelector('.itemView-action-convert-quantity');
       input.value = maxNum;
@@ -70,6 +78,16 @@ const addOpenAlltoConvertible = () => {
   });
 };
 
+const getDesc = (messageItemCopy) => {
+  const popup = document.querySelector('.itemViewPopup .itemViewContainer.message_item .itemView-actionContainer');
+  if (! popup) {
+    return false;
+  }
+
+  popup.append(messageItemCopy);
+  return true;
+};
+
 const addItemViewPopupToCollectibles = () => {
   const collectibles = document.querySelectorAll('.mousehuntHud-page-subTabContent.collectible .inventoryPage-item.small');
   if (! collectibles.length) {
@@ -88,16 +106,6 @@ const addItemViewPopupToCollectibles = () => {
     collectible.addEventListener('click', (e) => {
       e.preventDefault();
       hg.views.ItemView.show(type);
-
-      const getDesc = (messageItemCopy) => {
-        const popup = document.querySelector('.itemViewPopup .itemViewContainer.message_item .itemView-actionContainer');
-        if (! popup) {
-          return false;
-        }
-
-        popup.appendChild(messageItemCopy);
-        return true;
-      };
 
       if (messageItem) {
         const messageItemCopy = messageItem.cloneNode(true);
@@ -133,7 +141,19 @@ const main = () => {
   recipes();
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'better-inventory',
+  name: 'Better Inventory',
+  type: 'better',
+  default: true,
+  description: 'Updates the inventory layout and styling. ',
+  load: init,
 };

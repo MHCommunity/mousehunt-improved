@@ -51,7 +51,10 @@
   z-index: 15;
   font-size: 22px;
   font-variant: none;
-  text-shadow: 1px 1px #000, 0 0 10px #000, 8px 12px 9px #000;
+  text-shadow:
+    1px 1px #000,
+    0 0 10px #000,
+    8px 12px 9px #000;
 }
 
 .travelPage-map-image-environment.locked .travelPage-map-image-environment-status {
@@ -151,12 +154,14 @@
   flex-flow: column wrap;
   align-items: stretch;
   justify-content: flex-start;
-  width: 100%;
-  height: 380px;
+  width: 754px;
+  height: 425px;
+  padding: 4px 1px;
 }
 
 #mh-simple-travel-page .travelPage-alpha-wrapper a.travelPage-regionMenu-environmentLink {
-  max-width: 129px;
+  width: 112px;
+  margin-left: 1px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -181,13 +186,14 @@
 #mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.active.highlight {
   margin-right: 0;
   border-right: none;
+  border-radius: 3px;
 }
-
 
 .travelPage-regionMenu-environmentLink.relic-hunter-is-here::after {
   position: absolute;
   top: 5px;
   right: 5px;
+  display: none;
   width: 20px;
   height: 20px;
   content: "";
@@ -197,19 +203,29 @@
   border-radius: 5px;
 }
 
-.travelPage-alpha-wrapper  .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
+.travelPage-regionMenu-environments:hover .travelPage-regionMenu-environmentLink.relic-hunter-is-here::after,
+.travelPage-regionMenu-environments:focus .travelPage-regionMenu-environmentLink.relic-hunter-is-here::after,
+.travelPage-regionMenu-environmentLink.relic-hunter-is-here:hover::after,
+.travelPage-regionMenu-environmentLink.relic-hunter-is-here:focus::after {
+  display: block;
+}
+
+.travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
+  padding-left: 35px;
+  margin: 0;
   background-color: #ffe67a;
+  border: none;
   border-radius: 6px;
-  outline: 1px solid #acacac;
+  outline: 1px solid #ccc;
 }
 
 .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
   margin-right: -3px;
   background-color: #ffe67a;
-  outline: 1px solid #4c71b4;
+  outline: 1px solid #ccc;
 }
 
-.travelPage-map-image-environment  .map-relic-hunter-is-here {
+.travelPage-map-image-environment .map-relic-hunter-is-here {
   position: absolute;
   top: -40px;
   left: 46px;
@@ -237,11 +253,11 @@
 }
 
 .map-relic-hunter-is-here.travelPage-map-image-environment-pointer {
-    top: 41px;
-    left: 86px;
-    z-index: 9;
-    filter: hue-rotate(326deg);
-    transform: rotate(70deg);
+  top: 41px;
+  left: 86px;
+  z-index: 9;
+  filter: hue-rotate(326deg);
+  transform: rotate(70deg);
 }
 
 .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here,
@@ -249,17 +265,10 @@
   padding-left: 30px;
   margin-right: 5px;
   margin-left: 5px;
-  background-color: #d1ecc0;
-  border: 1px solid #acacac;
+  background-color: #e0f2d5;
   border-top: none;
   border-bottom: none;
   border-radius: 5px;
-}
-
-.travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.relic-hunter-is-here { /* stylelint-disable-line */
-  padding-left: 35px;
-  margin: 0;
-  border: none;
 }
 
 .relic-hunter-is-here .travelPage-regionMenu-environmentLink-image {
@@ -268,4 +277,34 @@
 
 .travelPage-alpha-wrapper .relic-hunter-is-here .travelPage-regionMenu-environmentLink-image {
   margin-left: 0;
+}
+
+/* Bold the first letter of each of the first occurrences of the letters in the alphabet */
+#mh-simple-travel-page .first-letter::first-letter {
+  font-size: 12px;
+  font-weight: 900;
+}
+
+/* on hover, underline the letters to make it easier to see which letters are bolded */
+#mh-simple-travel-page .travelPage-alpha-wrapper:hover .first-letter::first-letter {
+  border-bottom: 1px solid #4e6081;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location,
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location {
+  color: #c01dff;
+}
+
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location::after,
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location::after {
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 15px;
+  height: 15px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png?asset_cache_version=2);
+  filter: drop-shadow(0 0 1px #fff);
+  background-repeat: no-repeat;
+  background-size: contain;
 }

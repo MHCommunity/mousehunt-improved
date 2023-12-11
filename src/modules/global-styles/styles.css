@@ -41,7 +41,7 @@
   height: 0;
   margin-left: 1px;
   cursor: pointer;
-  content: '';
+  content: "";
   border-top: 9px solid #777;
   border-right: 6px solid transparent;
   border-left: 6px solid transparent;
@@ -78,7 +78,7 @@
 .mh-ui-error-message,
 .mh-ui-success-message {
   z-index: 21;
-  padding: 1px 3px;
+  padding: 10px;
   font-size: 10px;
   color: #160404;
   background-color: #f5b9b9;
@@ -109,20 +109,20 @@
 }
 
 .mousehunt-improved-error h1 {
-  margin: 0 0 .75em;
+  margin: 0 0 0.75em;
   font-size: 1.3em;
   font-weight: 900;
   color: #9f2323;
 }
 
 .mousehunt-improved-error p {
-  margin: .5em 0;
+  margin: 0.5em 0;
   font-size: 1em;
   line-height: 1.5;
 }
 
 .mousehunt-improved-error pre {
-  margin: 0 .5em;
+  margin: 0 0.5em;
   color: #8b0101;
 }
 
@@ -154,7 +154,7 @@
   }
 
   50% {
-    opacity: .75;
+    opacity: 0.75;
   }
 
   100% {
@@ -189,9 +189,9 @@
 }
 
 .PageLockError .pageFrameView-footer a img {
-  opacity: .4;
-  transition: .3s;
-  transform: scale(.8);
+  opacity: 0.4;
+  transition: 0.3s;
+  transform: scale(0.8);
 }
 
 .PageLockError .pageFrameView-footer-links.terms {
@@ -215,7 +215,8 @@
   transform: scale(1);
 }
 
-/* 404 page because why not? and it'll be a nice surprise for anyone who sees it. and yes, this super weird selector is necessary because nothing has classes. */
+/* 404 page because why not? and it'll be a nice surprise for anyone who sees it.
+and yes, this super weird selector is necessary because nothing has classes. */
 div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] img {
   transform-origin: bottom;
   animation-name: mh-improved-sway-side-to-side;
@@ -230,4 +231,13 @@ div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] a
 div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] a {
   color: #00901c;
   text-decoration: none;
+}
+
+a.mousehuntActionButton.success::before {
+  background-color: #00ff59;
+  box-shadow: 0 0 10px #beff99 inset;
+}
+
+a.mousehuntActionButton.success {
+  background-color: #97f990;
 }

@@ -1,3 +1,5 @@
+import { onDialogShow, onRequest } from '@/utils';
+
 const imperialToMetric = (text) => {
   const lb = text.match(/(\d+? )lb./i);
   const oz = text.match(/(\d+? )oz./i);
@@ -8,7 +10,7 @@ const imperialToMetric = (text) => {
   // Convert the lb. and oz. values to metric.
   const lbValue = lb ? lb[1] : 0;
   const ozValue = oz ? oz[1] : 0;
-  const totalWeight = parseInt(lbValue) + (parseInt(ozValue) / 16);
+  const totalWeight = Number.parseInt(lbValue) + (Number.parseInt(ozValue) / 16);
   const totalWeightMetric = (Math.round((totalWeight * 0.45359237) * 100) / 100).toString();
 
   // Replace the lb. and oz. values with the metric values.
@@ -39,9 +41,9 @@ const replaceInJournal = () => {
   }
 
   entries.forEach((entry) => {
-    const converted = imperialToMetric(entry.innerText);
+    const converted = imperialToMetric(entry.innerHTML);
     if (converted) {
-      entry.innerText = converted;
+      entry.innerHTML = converted;
     }
   });
 };
@@ -69,9 +71,21 @@ const convertOnPage = () => {
   replaceInJournal();
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   onDialogShow(convertInDialog);
 
   onRequest(convertOnPage);
   convertOnPage();
+};
+
+export default {
+  id: 'metric',
+  name: 'Metric Units',
+  type: 'feature',
+  default: false,
+  description: 'Use metric units instead of imperial units.',
+  load: init
 };

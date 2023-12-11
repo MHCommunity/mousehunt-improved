@@ -1,4 +1,5 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, doRequest, onEvent, onRequest } from '@/utils';
+
 import styles from './styles.css';
 
 const getFriendId = async (target) => {
@@ -66,9 +67,9 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
 
   const friendLinkParent = e.target.parentElement;
   if (friendLinkParent) {
-    friendLinkParent.appendChild(friendDataWrapper);
+    friendLinkParent.append(friendDataWrapper);
   } else {
-    e.target.appendChild(friendDataWrapper);
+    e.target.append(friendDataWrapper);
   }
 
   eventRegistry.doEvent('profile_hover');
@@ -89,11 +90,6 @@ const onFriendLinkHover = async (e) => {
   }
 
   parent.setAttribute('data-friend-hover', true);
-
-  // TODO: only ignore the list of friends, not the inbox.
-  // if ('friends' === getCurrentPage()) {
-  //   return;
-  // }
 
   const existing = document.querySelectorAll('#friend-data-wrapper');
   if (existing && existing.length) {
@@ -181,7 +177,10 @@ const main = () => {
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   setTimeout(main, 500);
@@ -190,4 +189,13 @@ export default () => {
   });
 
   onInboxOpen(main);
+};
+
+export default {
+  id: 'hover-profiles',
+  name: 'Hover Profiles',
+  type: 'feature',
+  default: true,
+  description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.',
+  load: init,
 };

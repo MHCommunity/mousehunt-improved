@@ -1,4 +1,5 @@
-import { addHudStyles } from '../../utils';
+import { addHudStyles, createPopup, makeElement } from '@/utils';
+
 import styles from './styles.css';
 
 import simulate from './simulator';
@@ -93,7 +94,7 @@ const addUIComponents = () => {
   if (floor) {
     const floorName = makeElement('div', 'valourRiftHUD-floorName', user?.quests?.QuestRiftValour?.floor_name);
     floorName.id = 'mh-vrift-floor-name';
-    floor.appendChild(floorName);
+    floor.append(floorName);
   }
 
   const floorTooltipParent = document.querySelector('.valourRiftHUD-floorProgress.mousehuntTooltipParent');
@@ -127,9 +128,10 @@ const addUIComponents = () => {
   makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
 };
 
-const main = () => {
-  addHudStyles('rift-valour', styles);
+/**
+ * Initialize the module.
+ */
+export default () => {
+  addHudStyles(styles);
   hud();
 };
-
-export default main;

@@ -1,4 +1,5 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, onRequest } from '@/utils';
+
 import styles from './styles.css';
 
 const applyClassToNames = () => {
@@ -26,10 +27,22 @@ const applyClassToNames = () => {
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   onRequest(() => {
     applyClassToNames();
   }, 'managers/ajax/pages/journal.php');
+};
+
+export default {
+  id: 'journal-privacy',
+  name: 'Journal Privacy',
+  type: 'element-hiding',
+  default: false,
+  description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.',
+  load: init,
 };

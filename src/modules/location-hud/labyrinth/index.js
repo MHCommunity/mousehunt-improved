@@ -1,4 +1,5 @@
-import { addHudStyles } from '../../utils';
+import { addHudStyles, getCurrentLocation, makeElement } from '@/utils';
+
 import styles from './styles.css';
 
 const highlightDoors = () => {
@@ -95,7 +96,7 @@ const hud = () => {
       if (clue) {
         progress.setAttribute('title', `${clue.quantity} found`);
         const text = makeElement('span', 'mh-ui-labyrinth-clue-count', `${clue.quantity}`);
-        progress.appendChild(text);
+        progress.append(text);
       }
     });
   }
@@ -111,7 +112,7 @@ const hud = () => {
       if (labyHud) {
         const lanternReminer = document.createElement('div');
         lanternReminer.classList.add('mh-ui-labyrinth-lantern-reminder');
-        labyHud.appendChild(lanternReminer);
+        labyHud.append(lanternReminer);
       }
     }, 500);
   }
@@ -123,12 +124,12 @@ const hud = () => {
   makeElement('span', 'mh-ui-labyrinth-step-counter', `${completed.length}/${hallwayLength} steps completed.`, appendTo);
   const stepsToGo = hallwayLength - completed.length;
 
-  if (stepsToGo !== 0) {
+  if (stepsToGo !== 0) { // eslint-disable-line unicorn/no-negated-condition
     const intersectionDoors = document.querySelector('.labyrinthHUD-doorContainer');
     if (intersectionDoors) {
       const tilesWithClues = tiles.filter((tile) => tile.status.includes('good'));
       // remove the string 'complete_good_' from each tile and sum the remaining numbers
-      const cluesFound = tilesWithClues.reduce((a, b) => a + parseInt(b.status.replace('complete', '').replace('good_', '').trim()), 0);
+      const cluesFound = tilesWithClues.reduce((a, b) => a + Number.parseInt(b.status.replace('complete', '').replace('good_', '').trim()), 0);
       const cluesPerTile = (cluesFound / completed.length).toFixed(1).replace('.0', '');
 
       const existingIntersectionText = document.querySelector('.mh-ui-labyrinth-door-text');
@@ -143,7 +144,7 @@ const hud = () => {
         makeElement('div', 'mh-ui-laby-cpt', `Avg. ${cluesPerTile} clues per hunt`, intersectionText);
       }
 
-      intersectionDoors.appendChild(intersectionText);
+      intersectionDoors.append(intersectionText);
     }
   } else {
     const existingIntersectionText = document.querySelector('.mh-ui-labyrinth-door-text');
@@ -167,16 +168,10 @@ const hud = () => {
   }
 };
 
-const main = () => {
-  addHudStyles('labyrinth', styles);
+/**
+ * Initialize the module.
+ */
+export default () => {
+  addHudStyles(styles);
   hud();
 };
-
-export default main;
-
-// fealty = y
-// tech = h
-// scholar = s
-// treasury = t
-// farming = f
-// dead end = m

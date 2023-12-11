@@ -1,12 +1,8 @@
 .mhct-data {
-  position: absolute;
-  right: -1px;
-  left: -1px;
   display: none;
-  background-color: #eaeaea;
-  border: 1px solid #000;
-  border-top-color: #dedede;
-  box-shadow: 0 1px 2px -1px #000;
+  padding-top: 5px;
+  margin-top: 5px;
+  border-top: 1px solid #a8a8a8;
 }
 
 .mouse-container-selected .mhct-data {
@@ -29,8 +25,9 @@
 .mhct-row {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
+  column-gap: 5px;
   place-items: center stretch;
-  padding: 8px 5px 8px 10px;
+  padding: 5px 0;
   font-size: 11px;
 }
 
@@ -53,21 +50,19 @@
 
 .mhct-rate {
   font-family: monospace;
-  font-size: 15px;
+  font-size: 13px;
   text-align: right;
 }
 
 .mh-ui-mouse-links-map-ars .mhct-data {
   position: relative;
-  right: -1px;
-  left: -1px;
-  width: 100%;
-  margin-top: -9px;
+  display: flex;
+  padding: 4px;
+  margin: 0;
   color: #000;
   background-color: #fff;
   border-top: none;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-radius: 6px;
 }
 
 .mh-dark-mode .mh-ui-mouse-links-map-ars .mhct-data {
@@ -93,14 +88,19 @@
   place-items: start stretch;
 }
 
-.mh-ui-mouse-links-map-ars  .mhct-title {
+.mh-ui-mouse-links-map-ars .mhct-title {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 3px 9px;
-  margin-bottom: 0;
-  font-size: 13px;
-  background-color: #f4f4f4;
+  padding: 5px;
+  margin: -4px;
+  margin-bottom: 2px;
+  font-size: 11px;
+  background-color: #d6d6d6;
   border-top: 1px solid #dedede;
+  border-bottom: 1px solid #2c415a;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .mh-dark-mode .mh-ui-mouse-links-map-ars .mhct-title {
@@ -109,7 +109,7 @@
   border-color: #2c2c2c;
 }
 
-.mh-ui-mouse-links-map-ars  .mhct-stage {
+.mh-ui-mouse-links-map-ars .mhct-stage {
   max-width: 80px;
   overflow: hidden;
   text-overflow: ellipsis;

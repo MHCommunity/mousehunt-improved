@@ -1,11 +1,19 @@
-import { addHudStyles } from '../../utils';
+import {
+  addHudStyles,
+  getUserItems,
+  makeElement,
+  onDialogShow,
+  onRequest,
+  showHornMessage
+} from '@/utils';
+
 import styles from './styles.css';
 
 const toggleFuelClass = (fuelCount, isActive) => {
-  if (! isActive) {
-    fuelCount.classList.add('active');
-  } else {
+  if (isActive) {
     fuelCount.classList.remove('active');
+  } else {
+    fuelCount.classList.add('active');
   }
 
   setTimeout(addBossCountdown, 200);
@@ -82,7 +90,7 @@ const addBossCountdown = () => {
   makeElement('span', 'mh-ui-fi-enemy-countdown-in', ' in ', bossCountdown);
   makeElement('span', 'mh-ui-fi-enemy-countdown-hunts', huntsRemaining, bossCountdown);
 
-  enemyContainer.appendChild(bossCountdown);
+  enemyContainer.appenappenddChild(bossCountdown);
 };
 
 const addEnemyClass = () => {
@@ -112,7 +120,7 @@ const addEnemyClass = () => {
 };
 
 const getNextOcUpgradeCost = (ocLevel) => {
-  switch (parseInt(ocLevel, 10)) {
+  switch (Number.parseInt(ocLevel, 10)) {
   case 1:
     return '35';
   case 2:
@@ -129,7 +137,6 @@ const getNextOcUpgradeCost = (ocLevel) => {
     return '8k';
   case 8:
     return '10k';
-  case 9:
   default:
     return false;
   }
@@ -187,7 +194,7 @@ const onSkyMapShow = () => {
 const showBWReminder = () => {
   const isStart = user.enviroment_atts?.hunting_site_atts?.hunts_remaining === 75 && user.enviroment_atts?.on_island;
   const bwOff = ! user.enviroment_atts?.hunting_site_atts?.is_fuel_enabled;
-  const hasBw = parseInt(user.enviroment_atts?.items?.bottled_wind_stat_item?.quantity.replace(',', '')) > 50;
+  const hasBw = Number.parseInt(user.enviroment_atts?.items?.bottled_wind_stat_item?.quantity.replace(',', '')) > 50;
 
   if (isStart && bwOff && hasBw) {
     showHornMessage({
@@ -232,9 +239,10 @@ const hud = () => {
   onRequest(showBWReminder);
 };
 
-const main = () => {
-  addHudStyles('floating-islands', styles);
+/**
+ * Initialize the module.
+ */
+export default () => {
+  addHudStyles(styles);
   hud();
 };
-
-export default main;

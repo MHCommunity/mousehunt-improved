@@ -1,6 +1,7 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, makeElement, onNavigation } from '@/utils';
+
 import styles from './styles.css';
-import userHighlighting from '../../data/user-highlighting.json';
+import userHighlighting from '@data/user-highlighting.json';
 
 const getUserHighlightingShield = (type) => {
   let text = '';
@@ -48,18 +49,27 @@ const highlightUsers = () => {
 
   // for each key in userHiglighting, check if the user id is in the array and add the key as a class
   Object.keys(userHighlighting).forEach((key) => {
-    const userId = parseInt(id.innerText, 10);
+    const userId = Number.parseInt(id.innerText, 10);
     if (userHighlighting[key].includes(userId)) {
       profilePage.classList.add('mh-improved-highlight-user', `mh-improved-${key}`);
-      idHeader.appendChild(getUserHighlightingShield(key));
+      idHeader.append(getUserHighlightingShield(key));
     }
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   onNavigation(highlightUsers, {
     page: 'hunterprofile',
   });
+};
+
+export default {
+  id: 'highlight-users',
+  type: 'required',
+  load: init,
 };

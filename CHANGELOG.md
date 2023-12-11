@@ -1,5 +1,46 @@
 # Changelog
 
+## Version 0.25.0
+
+- Updates Image Upscaling to use a new algorithm with better performance and memory usage.
+- Updates Better Gifts to not cause errors or miss sending/accepting the total number of gifts.
+- Adds Great Winter Hunt styles.
+- Adds feature flag for event horns.
+- Adds Naughty and Nice maps to the sorted tab.
+- Adds event locations to the Better Travel quick travel dropdown.
+- Adds a 'Delayed Tooltips' feature to delay the display of tooltips.
+- Adds a 'Show Spoiler' button to the Advent Calendar.
+- Adds Bountiful Beanstalk HUD styles.
+- Adds Foreward Farm HUD styles.
+- Adds Table of Contents HUD styles.
+- Adds Prologue Pond HUD styles, including animations for the boat and scattered chum.
+- Adds options to hide/show boat upgrades in Prologue Pond.
+- Adds new styles for the King's Calibrator
+- Increases size of the input field in convertible item views.
+- Updates Adblock to include a few more ads.
+- Updates Gilded Charm journal entry styles.
+- Updates Folklore Forest journal entry styles.
+- Updates the Inbox styles.
+- Fixes Metric Units breaking links in journal entries.
+- Updates the equipped weapon display in shops.
+- Fixes AR and Mouse display issues on Wanted Posters.
+- Fixes weapon and base stats in shops and item views.
+- Updates the Relic Hunter text in journal entries.
+- Moves larger skin images to Better UI.
+- Adds an option to Better Marketplace to default to searching all items
+- Updates Update Notifications to not be added to inbox if the update was over a week old.
+- Fixes additional CC loot journal entry in Folklore Forest.
+- Fixes extra display of "•" in journal entries.
+- Updates a number of miscellaneous journal entry styles.
+- Fixes spacing of success message for Quick Send Supplies.
+- Updates marketplace search dropdown to not have borders on the images.
+- Updates gift inbox footer "You can send/recieve X gifts today" to be two lines.
+- Updates the inbox styling and order of menu.
+- Makes close buttons more consistent across the site.
+- Updates completed map reward styles.
+- Adds styling for the MHCT success message to make it less distracting.
+- Fixes the arrow color in the inbox when hovering over odd rows.
+
 ## Version 0.24.1
 
 - Fixes update notification changelog link

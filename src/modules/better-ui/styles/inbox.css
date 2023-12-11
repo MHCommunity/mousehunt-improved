@@ -6,16 +6,6 @@
   padding-top: 5px;
 }
 
-.notificationMessageList .message .date {
-  margin-top: 5px;
-  margin-left: 0;
-}
-
-.notificationMessageList .tab[data-tab="general"] .message .date {
-  margin-top: -10px;
-  margin-left: 50px;
-}
-
 /* daily draw */
 .notificationMessageList .message.ballot .clear-block {
   display: flex;
@@ -26,7 +16,7 @@
 
 .notificationMessageList .message.ballot img.item {
   height: 25px;
-  margin: -5px 5px -10px -5px;
+  margin: -5px 5px 0 -5px;
 }
 
 .notificationMessageList .message.ballot .date {
@@ -61,10 +51,156 @@
 }
 
 .message.notification .actions.ballot {
-    float: none;
+  float: none;
 }
 
 .notificationMessageList .message .actions.friendRequest,
 .notificationMessageList .message .actions.friendRequestAccepted {
   margin-top: 10px;
+}
+
+/* keep the inbox tabs in the same order always */
+#messengerUINotification .tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+#messengerUINotification .tabs a[data-tab="general"] {
+  order: -500;
+}
+
+#messengerUINotification .tabs a[data-tab="daily_draw"] {
+  order: -400;
+}
+
+#messengerUINotification .tabs a[data-tab="friend_requests"] {
+  order: -300;
+}
+
+#messengerUINotification .tabs a[data-tab="marketplace"] {
+  order: -200;
+}
+
+#messengerUINotification .tabs a[data-tab="news"] {
+  order: -100;
+}
+
+#messengerUINotification .notificationMessageList .tab {
+  min-height: 55vh;
+  background-color: #f7f7f7;
+}
+
+div#messengerUINotification {
+  background-color: #f7f7f7 !important;
+}
+
+#messengerUINotification .tabs a:hover {
+  background-color: #eee;
+}
+
+#messengerUINotification .tabs a .counter {
+  background-color: #e33f3f;
+  box-shadow: inset 0 0 5px 1px #a90000;
+}
+
+#messengerUINotification .messengerUINotificationClose {
+  top: -15px;
+  right: -15px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  font-size: 14px;
+  line-height: unset;
+  color: #e03a3a;
+  text-align: center;
+  border-color: #d1d0cf;
+}
+
+#messengerUINotification .messengerUINotificationClose:hover {
+  color: #fff;
+  background-color: #e13d3d;
+}
+
+/* mini journal close */
+.journal.jsingle .close {
+  float: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+
+  /* height: 0; */
+}
+
+.journal.jsingle .close a::after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 15;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: unset;
+  color: #e03a3a;
+  text-align: center;
+  content: "✕";
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: #d1d0cf;
+  border-radius: 20px;
+}
+
+.giftSelectorView-inboxHeader-closeButton {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  z-index: 15;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: unset;
+  color: #e03a3a;
+  text-align: center;
+  content: "✕";
+  background: #fff;
+  border: 1px solid #d1d0cf;
+  border-color: #d1d0cf;
+  border-radius: 20px;
+  box-shadow: inset 0 0 3px -1px #d1d0cf;
+}
+
+.journal.jsingle .close a {
+  display: block;
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.giftSelectorView-inboxHeader-closeButton:hover,
+.giftSelectorView-inboxHeader-closeButton:focus,
+.journal.jsingle .close a:hover::after,
+.journal.jsingle .close a:focus::after {
+  color: #fff;
+  background-color: #e13d3d;
+}
+
+.giftSelectorView-inbox-footer-label {
+  margin-top: -30px;
+  text-align: left;
 }

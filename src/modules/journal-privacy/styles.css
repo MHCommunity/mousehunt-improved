@@ -1,7 +1,7 @@
 #journalContainer .entry:not(.badge) a[href*="profile.php"],
 #journalContainer .entry.socialGift .journaltext a,
-#journalContainer .relicHunter_complete>.journalbody>.journaltext>b:nth-child(6),
-#journalContainer .wanted_poster-complete>.journalbody>.journaltext>b:nth-child(8),
+#journalContainer .relicHunter_complete > .journalbody > .journaltext > b:nth-child(6),
+#journalContainer .wanted_poster-complete > .journalbody > .journaltext > b:nth-child(8),
 #journalContainer .journal__hunter-name,
 .mh-journal-privacy-name {
   display: inline-block;
@@ -16,10 +16,10 @@
 #journalContainer .entry:not(.badge) a[href*="profile.php"]:focus,
 #journalContainer .entry.socialGift .journaltext a:hover,
 #journalContainer .entry.socialGift .journaltext a:focus,
-#journalContainer .relicHunter_complete>.journalbody>.journaltext>b:nth-child(6):hover,
-#journalContainer .relicHunter_complete>.journalbody>.journaltext>b:nth-child(6):focus,
-#journalContainer .wanted_poster-complete>.journalbody>.journaltext>b:nth-child(8):hover,
-#journalContainer .wanted_poster-complete>.journalbody>.journaltext>b:nth-child(8):focus #journalContainer .journal__hunter-name:hover,
+#journalContainer .relicHunter_complete > .journalbody > .journaltext > b:nth-child(6):hover,
+#journalContainer .relicHunter_complete > .journalbody > .journaltext > b:nth-child(6):focus,
+#journalContainer .wanted_poster-complete > .journalbody > .journaltext > b:nth-child(8):hover,
+#journalContainer .wanted_poster-complete > .journalbody > .journaltext > b:nth-child(8):focus #journalContainer .journal__hunter-name:hover,
 #journalContainer .journal__hunter-name:focus,
 .mh-journal-privacy-name:hover,
 .mh-journal-privacy-name:focus {

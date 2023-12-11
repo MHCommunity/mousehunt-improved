@@ -1,4 +1,5 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, getCurrentPage, onNavigation, onRequest } from '@/utils';
+
 import styles from './styles.css';
 
 const updatePlaceholderText = () => {
@@ -82,7 +83,7 @@ const main = () => {
       // ownedItem.innerHTML = ownedItem.innerHTML.replace('You own:', 'You have');
       ownedItem.setAttribute('moved-to-title', 'true');
 
-      nameEl.appendChild(ownedItem);
+      nameEl.append(ownedItem);
     });
   }
 
@@ -112,7 +113,7 @@ const main = () => {
 
       const contentSection = stat.parentNode.parentNode.querySelector('.itemPurchaseView-content-container');
       if (contentSection) {
-        contentSection.appendChild(stat);
+        contentSection.append(stat);
       }
     });
   }
@@ -123,14 +124,17 @@ const main = () => {
       if (title.classList.contains('title') || title.classList.contains('powerType')) {
         const imageContainer = title.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.itemPurchaseView-image-container');
         if (imageContainer) {
-          imageContainer.appendChild(title);
+          imageContainer.append(title);
         }
       }
     });
   }
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   onNavigation(main, {
@@ -138,4 +142,13 @@ export default () => {
   });
 
   onRequest(updatePlaceholderText, 'managers/ajax/purchases/itempurchase.php');
+};
+
+export default {
+  id: 'better-shops',
+  name: 'Better Shops',
+  type: 'better',
+  default: true,
+  description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.',
+  load: init,
 };

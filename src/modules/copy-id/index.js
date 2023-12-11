@@ -1,4 +1,5 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, makeElement } from '@/utils';
+
 import styles from './styles.css';
 
 const main = () => {
@@ -43,7 +44,19 @@ const main = () => {
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'copy-id',
+  name: 'Copy ID',
+  type: 'feature',
+  default: true,
+  description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.',
+  load: init,
 };

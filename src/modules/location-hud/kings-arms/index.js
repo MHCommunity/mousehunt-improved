@@ -1,9 +1,10 @@
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
-const main = () => {
+/**
+ * Initialize the module.
+ */
+export default () => {
   addCheeseSelector('kings-arms', [
     'gilded_cheese',
   ]);
 };
-
-export default main;

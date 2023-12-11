@@ -1,4 +1,5 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, createPopup } from '@/utils';
+
 import styles from './styles.css';
 
 const clickMinLuck = () => {
@@ -50,9 +51,11 @@ const listenForKeypresses = () => {
   // Listen for the keypress and call the callback when it happens.
   document.addEventListener('keydown', (event) => {
     if (
-      document.activeElement instanceof HTMLInputElement || // eslint-disable-line @wordpress/no-global-active-element
-      document.activeElement instanceof HTMLTextAreaElement || // eslint-disable-line @wordpress/no-global-active-element
-      document.activeElement instanceof HTMLSelectElement || // eslint-disable-line @wordpress/no-global-active-element
+      /* eslint-disable @wordpress/no-global-active-element */
+      document.activeElement instanceof HTMLInputElement ||
+      document.activeElement instanceof HTMLTextAreaElement ||
+      document.activeElement instanceof HTMLSelectElement ||
+      /* eslint-enable @wordpress/no-global-active-element */
       event.metaKey || // if the meta key is pressed, we don't want to do anything.
       event.ctrlKey // if the ctrl key is pressed, we don't want to do anything.
     ) {
@@ -78,7 +81,19 @@ const listenForKeypresses = () => {
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   listenForKeypresses();
+};
+
+export default {
+  id: 'keyboard-shortcuts',
+  name: 'Keyboard Shortcuts',
+  type: 'feature',
+  default: true,
+  description: 'Press \'?\' to see a list of keyboard shortcuts.',
+  load: init,
 };

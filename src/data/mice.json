@@ -1,0 +1,4626 @@
+[
+  {
+    "name": "Abominable Snow Mouse",
+    "type": "abominable_snow"
+  },
+  {
+    "name": "Acolyte Mouse",
+    "type": "acolyte"
+  },
+  {
+    "name": "Aged Mouse",
+    "type": "aged"
+  },
+  {
+    "name": "Alchemist Mouse",
+    "type": "alchemist"
+  },
+  {
+    "name": "Alnilam Mouse",
+    "type": "alnilam"
+  },
+  {
+    "name": "Alnitak Mouse",
+    "type": "alnitak"
+  },
+  {
+    "name": "Aquos Mouse",
+    "type": "aquos"
+  },
+  {
+    "name": "Archer Mouse",
+    "type": "archer"
+  },
+  {
+    "name": "Assassin Mouse",
+    "type": "assassin"
+  },
+  {
+    "name": "Balack the Banished",
+    "type": "balack_the_banished"
+  },
+  {
+    "name": "Bandit Mouse",
+    "type": "bandit"
+  },
+  {
+    "name": "Bat Mouse",
+    "type": "bat"
+  },
+  {
+    "name": "Bear Mouse",
+    "type": "bear"
+  },
+  {
+    "name": "Beast Tamer Mouse",
+    "type": "beast_tamer"
+  },
+  {
+    "name": "Berserker Mouse",
+    "type": "berserker"
+  },
+  {
+    "name": "Big Bad Burroughs Mouse",
+    "type": "big_bad_burroughs"
+  },
+  {
+    "name": "Bionic Mouse",
+    "type": "bionic"
+  },
+  {
+    "name": "Birthday Mouse",
+    "type": "birthday"
+  },
+  {
+    "name": "Black Mage Mouse",
+    "type": "black_mage"
+  },
+  {
+    "name": "Black Widow Mouse",
+    "type": "black_widow"
+  },
+  {
+    "name": "Bottled Mouse",
+    "type": "bottled"
+  },
+  {
+    "name": "Briegull Mouse",
+    "type": "briegull"
+  },
+  {
+    "name": "Brimstone Mouse",
+    "type": "brimstone"
+  },
+  {
+    "name": "Brown Mouse",
+    "type": "brown"
+  },
+  {
+    "name": "Buccaneer Mouse",
+    "type": "buccaneer"
+  },
+  {
+    "name": "Burglar Mouse",
+    "type": "burglar"
+  },
+  {
+    "name": "Candy Cane Mouse",
+    "type": "candy_cane"
+  },
+  {
+    "name": "Captain Mouse",
+    "type": "captain"
+  },
+  {
+    "name": "Caretaker Mouse",
+    "type": "caretaker"
+  },
+  {
+    "name": "Hapless Marionette",
+    "type": "carved_hapless_puppet"
+  },
+  {
+    "name": "Cavalier Mouse",
+    "type": "cavalier"
+  },
+  {
+    "name": "Centaur Mouse",
+    "type": "centaur"
+  },
+  {
+    "name": "Chameleon Mouse",
+    "type": "chameleon"
+  },
+  {
+    "name": "Champion Mouse",
+    "type": "champion"
+  },
+  {
+    "name": "Chitinous Mouse",
+    "type": "chitinous"
+  },
+  {
+    "name": "Christmas Tree Mouse",
+    "type": "christmas_tree"
+  },
+  {
+    "name": "Clockwork Samurai Mouse",
+    "type": "clockwork_samurai"
+  },
+  {
+    "name": "Conjurer Mouse",
+    "type": "conjurer"
+  },
+  {
+    "name": "Conqueror Mouse",
+    "type": "conqueror"
+  },
+  {
+    "name": "Cook Mouse",
+    "type": "cook"
+  },
+  {
+    "name": "Core Sample Mouse",
+    "type": "core_sample"
+  },
+  {
+    "name": "Costumed Tiger Mouse",
+    "type": "costumed_tiger"
+  },
+  {
+    "name": "Cowbell Mouse",
+    "type": "cowbell"
+  },
+  {
+    "name": "Cupid Mouse",
+    "type": "cupid"
+  },
+  {
+    "name": "Curious Chemist Mouse",
+    "type": "curious_chemist"
+  },
+  {
+    "name": "Cyclops Mouse",
+    "type": "cyclops"
+  },
+  {
+    "name": "Dancer Mouse",
+    "type": "dancer"
+  },
+  {
+    "name": "Davy Jones Mouse",
+    "type": "davy_jones"
+  },
+  {
+    "name": "Defender Mouse",
+    "type": "defender"
+  },
+  {
+    "name": "Demolitions Mouse",
+    "type": "demolitions"
+  },
+  {
+    "name": "Derr Chieftain Mouse",
+    "type": "derr_chieftain"
+  },
+  {
+    "name": "Derr Lich Mouse",
+    "type": "derr_lich"
+  },
+  {
+    "name": "Diamond Mouse",
+    "type": "diamond"
+  },
+  {
+    "name": "Dojo Sensei",
+    "type": "dojo_sensei"
+  },
+  {
+    "name": "Draconic Warden Mouse",
+    "type": "draconic_warden"
+  },
+  {
+    "name": "Dragon Mouse",
+    "type": "dragon"
+  },
+  {
+    "name": "Drummer Mouse",
+    "type": "drummer"
+  },
+  {
+    "name": "Dumpling Chef Mouse",
+    "type": "dumpling_chef"
+  },
+  {
+    "name": "Dwarf Mouse",
+    "type": "dwarf"
+  },
+  {
+    "name": "Eagle Owl Mouse",
+    "type": "eagle_owl"
+  },
+  {
+    "name": "Eclipse Mouse",
+    "type": "eclipse"
+  },
+  {
+    "name": "Elder Mouse",
+    "type": "elder"
+  },
+  {
+    "name": "Elf Mouse",
+    "type": "elf"
+  },
+  {
+    "name": "Elub Chieftain Mouse",
+    "type": "elub_chieftain"
+  },
+  {
+    "name": "Elub Lich Mouse",
+    "type": "elub_lich"
+  },
+  {
+    "name": "Elven Princess Mouse",
+    "type": "elven_princess"
+  },
+  {
+    "name": "Enslaved Spirit Mouse",
+    "type": "enslaved_spirit"
+  },
+  {
+    "name": "Escape Artist Mouse",
+    "type": "escape_artist"
+  },
+  {
+    "name": "Fairy Mouse",
+    "type": "fairy"
+  },
+  {
+    "name": "Fencer Mouse",
+    "type": "fencer"
+  },
+  {
+    "name": "Fetid Swamp Mouse",
+    "type": "fetid_swamp"
+  },
+  {
+    "name": "Fiddler Mouse",
+    "type": "fiddler"
+  },
+  {
+    "name": "Fiend Mouse",
+    "type": "fiend"
+  },
+  {
+    "name": "Finder Mouse",
+    "type": "finder"
+  },
+  {
+    "name": "Flying Mouse",
+    "type": "flying_mouse"
+  },
+  {
+    "name": "Foxy Mouse",
+    "type": "foxy"
+  },
+  {
+    "name": "Frog Mouse",
+    "type": "frog"
+  },
+  {
+    "name": "Frosty Snow Mouse",
+    "type": "frosty_snow"
+  },
+  {
+    "name": "Frozen Mouse",
+    "type": "frozen"
+  },
+  {
+    "name": "Gargoyle Mouse",
+    "type": "gargoyle"
+  },
+  {
+    "name": "Gate Guardian Mouse",
+    "type": "gate_guardian"
+  },
+  {
+    "name": "Ghost Mouse",
+    "type": "ghost"
+  },
+  {
+    "name": "Giant Snail Mouse",
+    "type": "giant_snail"
+  },
+  {
+    "name": "Gladiator Mouse",
+    "type": "gladiator"
+  },
+  {
+    "name": "Glitchpaw Mouse",
+    "type": "glitchpaw"
+  },
+  {
+    "name": "Goblin Mouse",
+    "type": "goblin"
+  },
+  {
+    "name": "Gold Mouse",
+    "type": "gold"
+  },
+  {
+    "name": "Golem Mouse",
+    "type": "golem"
+  },
+  {
+    "name": "Gorgon Mouse",
+    "type": "gorgon"
+  },
+  {
+    "name": "Grandfather Mouse",
+    "type": "grandfather"
+  },
+  {
+    "name": "Granite Mouse",
+    "type": "granite"
+  },
+  {
+    "name": "Grey Mouse",
+    "type": "grey"
+  },
+  {
+    "name": "Grunt Mouse",
+    "type": "grunt"
+  },
+  {
+    "name": "Guardian Mouse",
+    "type": "guardian"
+  },
+  {
+    "name": "Guqin Player Mouse",
+    "type": "guqin_player"
+  },
+  {
+    "name": "Hapless Mouse",
+    "type": "hapless"
+  },
+  {
+    "name": "Harpy Mouse",
+    "type": "harpy"
+  },
+  {
+    "name": "Healer Mouse",
+    "type": "healer"
+  },
+  {
+    "name": "Hollowhead Mouse",
+    "type": "hollowhead"
+  },
+  {
+    "name": "Hope Mouse",
+    "type": "hope"
+  },
+  {
+    "name": "Hydra Mouse",
+    "type": "hydra"
+  },
+  {
+    "name": "Ignis Mouse",
+    "type": "ignis"
+  },
+  {
+    "name": "Impersonator Mouse",
+    "type": "impersonator"
+  },
+  {
+    "name": "Industrious Digger Mouse",
+    "type": "industrious_digger"
+  },
+  {
+    "name": "Itty-Bitty Burroughs Mouse",
+    "type": "itty_bitty_burroughs"
+  },
+  {
+    "name": "Rockstar Mouse",
+    "type": "itunes"
+  },
+  {
+    "name": "Jurassic Mouse",
+    "type": "jurassic"
+  },
+  {
+    "name": "Keeper Mouse",
+    "type": "keeper"
+  },
+  {
+    "name": "Keeper's Assistant Mouse",
+    "type": "keepers_assistant"
+  },
+  {
+    "name": "Knight Mouse",
+    "type": "knight"
+  },
+  {
+    "name": "Kung Fu Mouse",
+    "type": "kung_fu"
+  },
+  {
+    "name": "Lambent Crystal Mouse",
+    "type": "lambent_crystal"
+  },
+  {
+    "name": "Leprechaun Mouse",
+    "type": "leprechaun"
+  },
+  {
+    "name": "Leviathan Mouse",
+    "type": "leviathan"
+  },
+  {
+    "name": "Lich Mouse",
+    "type": "lich"
+  },
+  {
+    "name": "Lockpick Mouse",
+    "type": "lockpick"
+  },
+  {
+    "name": "Longtail Mouse",
+    "type": "longtail_mouse"
+  },
+  {
+    "name": "Lycan Mouse",
+    "type": "lycan"
+  },
+  {
+    "name": "Magma Carrier Mouse",
+    "type": "magma_carrier"
+  },
+  {
+    "name": "Master Burglar Mouse",
+    "type": "master_burglar"
+  },
+  {
+    "name": "Master of the Cheese Belt Mouse",
+    "type": "master_of_the_cheese_belt"
+  },
+  {
+    "name": "Master of the Cheese Claw Mouse",
+    "type": "master_of_the_cheese_claw"
+  },
+  {
+    "name": "Master of the Cheese Fang Mouse",
+    "type": "master_of_the_cheese_fang"
+  },
+  {
+    "name": "Master of the Dojo",
+    "type": "master_of_the_dojo"
+  },
+  {
+    "name": "Mermouse",
+    "type": "mermaid"
+  },
+  {
+    "name": "Miner Mouse",
+    "type": "miner"
+  },
+  {
+    "name": "Mintaka Mouse",
+    "type": "mintaka"
+  },
+  {
+    "name": "Mobster Mouse",
+    "type": "mobster"
+  },
+  {
+    "name": "Mole Mouse",
+    "type": "mole"
+  },
+  {
+    "name": "Monk Mouse",
+    "type": "monk"
+  },
+  {
+    "name": "Monster Mouse",
+    "type": "monster"
+  },
+  {
+    "name": "Moosker Mouse",
+    "type": "moosker"
+  },
+  {
+    "name": "Mummy Mouse",
+    "type": "mummy"
+  },
+  {
+    "name": "Mutated Grey Mouse",
+    "type": "mutated_grey"
+  },
+  {
+    "name": "Mutated White Mouse",
+    "type": "mutated_white"
+  },
+  {
+    "name": "Mystic Mouse",
+    "type": "mystic"
+  },
+  {
+    "name": "Narrator Mouse",
+    "type": "narrator"
+  },
+  {
+    "name": "Necromancer Mouse",
+    "type": "necromancer"
+  },
+  {
+    "name": "Nerg Chieftain Mouse",
+    "type": "nerg_chieftain"
+  },
+  {
+    "name": "Nerg Lich Mouse",
+    "type": "nerg_lich"
+  },
+  {
+    "name": "New Year's Mouse",
+    "type": "new_years"
+  },
+  {
+    "name": "Nibbler Mouse",
+    "type": "nibbler"
+  },
+  {
+    "name": "Ninja Mouse",
+    "type": "ninja"
+  },
+  {
+    "name": "Nomad Mouse",
+    "type": "nomad"
+  },
+  {
+    "name": "Nugget Mouse",
+    "type": "nugget"
+  },
+  {
+    "name": "Nutcracker Mouse",
+    "type": "nutcracker"
+  },
+  {
+    "name": "Ooze Mouse",
+    "type": "ooze"
+  },
+  {
+    "name": "Ornament Mouse",
+    "type": "ornament"
+  },
+  {
+    "name": "Pack Mouse",
+    "type": "pack"
+  },
+  {
+    "name": "Page Mouse",
+    "type": "page"
+  },
+  {
+    "name": "Paladin Mouse",
+    "type": "paladin"
+  },
+  {
+    "name": "Pathfinder Mouse",
+    "type": "pathfinder"
+  },
+  {
+    "name": "Phalanx Mouse",
+    "type": "phanlanx"
+  },
+  {
+    "name": "Swarm of Pygmy Mice",
+    "type": "pigmy_swarm"
+  },
+  {
+    "name": "Pinchy Mouse",
+    "type": "pinchy"
+  },
+  {
+    "name": "Pirate Mouse",
+    "type": "pirate"
+  },
+  {
+    "name": "Present Mouse",
+    "type": "present"
+  },
+  {
+    "name": "Primal Mouse",
+    "type": "primal"
+  },
+  {
+    "name": "Protector Mouse",
+    "type": "protector"
+  },
+  {
+    "name": "Puppet Master Mouse",
+    "type": "puppet_master"
+  },
+  {
+    "name": "Ravenous Zombie Mouse",
+    "type": "ravenous_zombie"
+  },
+  {
+    "name": "Reaper Mouse",
+    "type": "reaper"
+  },
+  {
+    "name": "Red Envelope Mouse",
+    "type": "red_envelope"
+  },
+  {
+    "name": "Renegade Mouse",
+    "type": "renegade"
+  },
+  {
+    "name": "Riptide Mouse",
+    "type": "riptide"
+  },
+  {
+    "name": "Rock Muncher Mouse",
+    "type": "rock_muncher"
+  },
+  {
+    "name": "Rogue Mouse",
+    "type": "rogue"
+  },
+  {
+    "name": "Romeno Mouse",
+    "type": "romeno"
+  },
+  {
+    "name": "Romeo Mouse",
+    "type": "romeo"
+  },
+  {
+    "name": "Sacred Shrine Mouse",
+    "type": "sacred_shrine"
+  },
+  {
+    "name": "Salt Water Snapper Mouse",
+    "type": "salt_water_snapper"
+  },
+  {
+    "name": "Samurai Mouse",
+    "type": "samurai"
+  },
+  {
+    "name": "Scavenger Mouse",
+    "type": "scavenger"
+  },
+  {
+    "name": "Scout Mouse",
+    "type": "scout"
+  },
+  {
+    "name": "Scrooge Mouse",
+    "type": "scrooge"
+  },
+  {
+    "name": "Seer Mouse",
+    "type": "seer"
+  },
+  {
+    "name": "Shaman Mouse",
+    "type": "shaman"
+  },
+  {
+    "name": "Shelder Mouse",
+    "type": "shelder"
+  },
+  {
+    "name": "Shipwrecked Mouse",
+    "type": "shipwrecked"
+  },
+  {
+    "name": "Silth Mouse",
+    "type": "silth"
+  },
+  {
+    "name": "Siren Mouse",
+    "type": "siren"
+  },
+  {
+    "name": "Skeleton Mouse",
+    "type": "skeleton"
+  },
+  {
+    "name": "Slayer Mouse",
+    "type": "slayer"
+  },
+  {
+    "name": "Sock Puppet Ghost Mouse",
+    "type": "sock_puppet_ghost"
+  },
+  {
+    "name": "Soothsayer Mouse",
+    "type": "soothsayer"
+  },
+  {
+    "name": "Sorcerer Mouse",
+    "type": "sorcerer"
+  },
+  {
+    "name": "Spectre Mouse",
+    "type": "spectre"
+  },
+  {
+    "name": "Spellbinder Mouse",
+    "type": "spellbinder"
+  },
+  {
+    "name": "Spider Mouse",
+    "type": "spider"
+  },
+  {
+    "name": "Squeaken Mouse",
+    "type": "squeaken"
+  },
+  {
+    "name": "Stealth Mouse",
+    "type": "stealth"
+  },
+  {
+    "name": "Steel Mouse",
+    "type": "steel"
+  },
+  {
+    "name": "Stocking Mouse",
+    "type": "stocking"
+  },
+  {
+    "name": "Stone Cutter Mouse",
+    "type": "stone_cutter"
+  },
+  {
+    "name": "Stonework Warrior Mouse",
+    "type": "stonework_warrior"
+  },
+  {
+    "name": "Student of the Cheese Belt Mouse",
+    "type": "student_of_the_cheese_belt"
+  },
+  {
+    "name": "Student of the Cheese Claw Mouse",
+    "type": "student_of_the_cheese_claw"
+  },
+  {
+    "name": "Student of the Cheese Fang Mouse",
+    "type": "student_of_the_cheese_fang"
+  },
+  {
+    "name": "Subterranean Mouse",
+    "type": "subterranean"
+  },
+  {
+    "name": "Swabbie Mouse",
+    "type": "swabbie"
+  },
+  {
+    "name": "Sylvan Mouse",
+    "type": "sylvan"
+  },
+  {
+    "name": "Taleweaver Mouse",
+    "type": "taleweaver"
+  },
+  {
+    "name": "Terra Mouse",
+    "type": "terra"
+  },
+  {
+    "name": "Terrible Twos Mouse",
+    "type": "terrible_twos"
+  },
+  {
+    "name": "Terror Knight Mouse",
+    "type": "terror_knight"
+  },
+  {
+    "name": "Tiger Mouse",
+    "type": "tiger"
+  },
+  {
+    "name": "Toy Mouse",
+    "type": "toy"
+  },
+  {
+    "name": "Toy Sylvan Mouse",
+    "type": "toy_sylvan"
+  },
+  {
+    "name": "Trailblazer Mouse",
+    "type": "trailblazer"
+  },
+  {
+    "name": "Treant Mouse",
+    "type": "treant"
+  },
+  {
+    "name": "Troll Mouse",
+    "type": "troll"
+  },
+  {
+    "name": "Twisted Fiend Mouse",
+    "type": "twisted_fiend"
+  },
+  {
+    "name": "Vampire Mouse",
+    "type": "vampire"
+  },
+  {
+    "name": "Vanquisher Mouse",
+    "type": "vanquisher"
+  },
+  {
+    "name": "Water Nymph Mouse",
+    "type": "water_nymph"
+  },
+  {
+    "name": "Whelpling Mouse",
+    "type": "whelpling"
+  },
+  {
+    "name": "White Mouse",
+    "type": "white"
+  },
+  {
+    "name": "White Mage Mouse",
+    "type": "white_mage"
+  },
+  {
+    "name": "Wicked Witch of Whisker Woods Mouse",
+    "type": "wicked_witch_of_whisker_woods"
+  },
+  {
+    "name": "Wiggler Mouse",
+    "type": "wiggler"
+  },
+  {
+    "name": "Wight Mouse",
+    "type": "wight"
+  },
+  {
+    "name": "Wordsmith Mouse",
+    "type": "wordsmith"
+  },
+  {
+    "name": "Worker Mouse",
+    "type": "worker"
+  },
+  {
+    "name": "Wound Up White Mouse",
+    "type": "wound_up_white"
+  },
+  {
+    "name": "Zephyr Mouse",
+    "type": "zephyr"
+  },
+  {
+    "name": "Zombie Mouse",
+    "type": "zombie"
+  },
+  {
+    "name": "Cowardly Mouse",
+    "type": "cowardly"
+  },
+  {
+    "name": "Farmhand Mouse",
+    "type": "farmhand"
+  },
+  {
+    "name": "Speedy Mouse",
+    "type": "fast"
+  },
+  {
+    "name": "Field Mouse",
+    "type": "field"
+  },
+  {
+    "name": "Fog Mouse",
+    "type": "fog"
+  },
+  {
+    "name": "Lightning Rod Mouse",
+    "type": "lightning_rod"
+  },
+  {
+    "name": "Magic Mouse",
+    "type": "magic"
+  },
+  {
+    "name": "Pebble Mouse",
+    "type": "pebble"
+  },
+  {
+    "name": "Pugilist Mouse",
+    "type": "pugilist"
+  },
+  {
+    "name": "Scruffy Mouse",
+    "type": "scruffy"
+  },
+  {
+    "name": "Silvertail Mouse",
+    "type": "silvertail"
+  },
+  {
+    "name": "Spud Mouse",
+    "type": "spud"
+  },
+  {
+    "name": "Tiny Mouse",
+    "type": "tiny"
+  },
+  {
+    "name": "Cherry Mouse",
+    "type": "cherry"
+  },
+  {
+    "name": "Spotted Mouse",
+    "type": "spotted"
+  },
+  {
+    "name": "Derpicorn Mouse",
+    "type": "derpicorn"
+  },
+  {
+    "name": "Fall Familiar Mouse",
+    "type": "fall_familiar"
+  },
+  {
+    "name": "Firebreather Mouse",
+    "type": "firebreather"
+  },
+  {
+    "name": "Firefly Mouse",
+    "type": "firefly"
+  },
+  {
+    "name": "Frostbite Mouse",
+    "type": "fridgid"
+  },
+  {
+    "name": "Harvest Harrier Mouse",
+    "type": "harvest_harrier"
+  },
+  {
+    "name": "Harvester Mouse",
+    "type": "harvester"
+  },
+  {
+    "name": "Hot Head Mouse",
+    "type": "hot_head_mouse"
+  },
+  {
+    "name": "Hydrophobe Mouse",
+    "type": "hydrophobe"
+  },
+  {
+    "name": "Icicle Mouse",
+    "type": "icicle"
+  },
+  {
+    "name": "Monarch Mouse",
+    "type": "monarch"
+  },
+  {
+    "name": "Mystic Bishop Mouse",
+    "type": "mystic_bishop"
+  },
+  {
+    "name": "Mystic King Mouse",
+    "type": "mystic_king"
+  },
+  {
+    "name": "Mystic Knight Mouse",
+    "type": "mystic_knight"
+  },
+  {
+    "name": "Mystic Pawn Mouse",
+    "type": "mystic_pawn"
+  },
+  {
+    "name": "Mystic Queen Mouse",
+    "type": "mystic_queen"
+  },
+  {
+    "name": "Mystic Rook Mouse",
+    "type": "mystic_rook"
+  },
+  {
+    "name": "Over-Prepared Mouse",
+    "type": "overprepared"
+  },
+  {
+    "name": "Penguin Mouse",
+    "type": "penguin"
+  },
+  {
+    "name": "Puddlemancer Mouse",
+    "type": "puddlemancer"
+  },
+  {
+    "name": "Pumpkin Head Mouse",
+    "type": "pumpkin_head"
+  },
+  {
+    "name": "Scarecrow Mouse",
+    "type": "scarecrow"
+  },
+  {
+    "name": "Spring Familiar Mouse",
+    "type": "spring_familiar"
+  },
+  {
+    "name": "Stinger Mouse",
+    "type": "stinger"
+  },
+  {
+    "name": "Summer Mage Mouse",
+    "type": "summer_mage"
+  },
+  {
+    "name": "Tanglefoot Mouse",
+    "type": "tanglefoot"
+  },
+  {
+    "name": "Technic Bishop Mouse",
+    "type": "tech_bishop"
+  },
+  {
+    "name": "Technic King Mouse",
+    "type": "tech_king"
+  },
+  {
+    "name": "Technic Knight Mouse",
+    "type": "tech_knight"
+  },
+  {
+    "name": "Technic Pawn Mouse",
+    "type": "tech_pawn"
+  },
+  {
+    "name": "Technic Queen Mouse",
+    "type": "tech_queen"
+  },
+  {
+    "name": "Technic Rook Mouse",
+    "type": "tech_rook"
+  },
+  {
+    "name": "Vinetail Mouse",
+    "type": "vinetail"
+  },
+  {
+    "name": "Whirleygig Mouse",
+    "type": "whirleygig"
+  },
+  {
+    "name": "Winter Mage Mouse",
+    "type": "winter_mage"
+  },
+  {
+    "name": "Bruticle Mouse",
+    "type": "bruticle"
+  },
+  {
+    "name": "Chess Master",
+    "type": "chess_master"
+  },
+  {
+    "name": "Realm Ripper",
+    "type": "realm_guardian"
+  },
+  {
+    "name": "Tidal Fisher Mouse",
+    "type": "tidal_fisher"
+  },
+  {
+    "name": "Gourdborg",
+    "type": "gordborg"
+  },
+  {
+    "name": "Treat Mouse",
+    "type": "treat"
+  },
+  {
+    "name": "Trick Mouse",
+    "type": "trick"
+  },
+  {
+    "name": "Zombot Unipire Mouse",
+    "type": "zombot_unipire"
+  },
+  {
+    "name": "High Roller Mouse",
+    "type": "high_roller"
+  },
+  {
+    "name": "Snooty Mouse",
+    "type": "snooty"
+  },
+  {
+    "name": "Treasurer Mouse",
+    "type": "treasurer"
+  },
+  {
+    "name": "Missile Toe Mouse",
+    "type": "missle_toe"
+  },
+  {
+    "name": "Slay Ride Mouse",
+    "type": "slay"
+  },
+  {
+    "name": "Snow Fort Mouse",
+    "type": "snow_fort"
+  },
+  {
+    "name": "Squeaker Claws",
+    "type": "squeaker_claws"
+  },
+  {
+    "name": "Wreath Thief Mouse",
+    "type": "wreath_thief"
+  },
+  {
+    "name": "Mouse of Winter Future",
+    "type": "winter_future"
+  },
+  {
+    "name": "Mouse of Winter Past",
+    "type": "winter_past"
+  },
+  {
+    "name": "Mouse of Winter Present",
+    "type": "winter_present"
+  },
+  {
+    "name": "Costumed Rabbit Mouse",
+    "type": "costumed_rabbit"
+  },
+  {
+    "name": "Juliyes Mouse",
+    "type": "juliyes"
+  },
+  {
+    "name": "Buckethead Mouse",
+    "type": "buckethead"
+  },
+  {
+    "name": "Pintail Mouse",
+    "type": "pintail"
+  },
+  {
+    "name": "Sleepwalker Mouse",
+    "type": "sleepwalker"
+  },
+  {
+    "name": "Flame Archer Mouse",
+    "type": "desert_archer"
+  },
+  {
+    "name": "Crimson Ranger Mouse",
+    "type": "desert_archer_epic"
+  },
+  {
+    "name": "Desert Archer Mouse",
+    "type": "desert_archer_weak"
+  },
+  {
+    "name": "Flame Ordnance Mouse",
+    "type": "desert_artillery"
+  },
+  {
+    "name": "Gargantuamouse",
+    "type": "desert_beast"
+  },
+  {
+    "name": "Warmonger Mouse",
+    "type": "desert_boss"
+  },
+  {
+    "name": "Sand Cavalry Mouse",
+    "type": "desert_cavalry"
+  },
+  {
+    "name": "Sandwing Cavalry Mouse",
+    "type": "desert_cavalry_strong"
+  },
+  {
+    "name": "Theurgy Warden Mouse",
+    "type": "desert_elite_gaurd"
+  },
+  {
+    "name": "Crimson Commander Mouse",
+    "type": "desert_general"
+  },
+  {
+    "name": "Inferno Mage Mouse",
+    "type": "desert_mage"
+  },
+  {
+    "name": "Magmarage Mouse",
+    "type": "desert_mage_strong"
+  },
+  {
+    "name": "Sentinel Mouse",
+    "type": "desert_scout"
+  },
+  {
+    "name": "Crimson Watch Mouse",
+    "type": "desert_scout_epic"
+  },
+  {
+    "name": "Vanguard Mouse",
+    "type": "desert_scout_weak"
+  },
+  {
+    "name": "Caravan Guard Mouse",
+    "type": "desert_supply"
+  },
+  {
+    "name": "Flame Warrior Mouse",
+    "type": "desert_warrior"
+  },
+  {
+    "name": "Crimson Titan Mouse",
+    "type": "desert_warrior_epic"
+  },
+  {
+    "name": "Desert Soldier Mouse",
+    "type": "desert_warrior_weak"
+  },
+  {
+    "name": "Coco Commander Mouse",
+    "type": "spring_mouse_1"
+  },
+  {
+    "name": "Egg Painter Mouse",
+    "type": "spring_mouse_2"
+  },
+  {
+    "name": "Eggsplosive Scientist Mouse",
+    "type": "spring_mouse_3"
+  },
+  {
+    "name": "Hare Razer Mouse",
+    "type": "spring_mouse_4"
+  },
+  {
+    "name": "Blacksmith Mouse",
+    "type": "blacksmith"
+  },
+  {
+    "name": "Lumberjack Mouse",
+    "type": "coconut_lumberjack_mouse"
+  },
+  {
+    "name": "Desert Nomad Mouse",
+    "type": "desert_nomad"
+  },
+  {
+    "name": "Desert Architect Mouse",
+    "type": "desert_worker_mouse"
+  },
+  {
+    "name": "Falling Carpet Mouse",
+    "type": "falling_carpet"
+  },
+  {
+    "name": "Glass Blower Mouse",
+    "type": "glass_blower"
+  },
+  {
+    "name": "Limestone Miner Mouse",
+    "type": "limestone_brick_layer"
+  },
+  {
+    "name": "Mage Weaver Mouse",
+    "type": "mage_weaver"
+  },
+  {
+    "name": "Market Guard Mouse",
+    "type": "market_guard"
+  },
+  {
+    "name": "Market Thief Mouse",
+    "type": "market_thief"
+  },
+  {
+    "name": "Pie Thief Mouse",
+    "type": "pie_thief"
+  },
+  {
+    "name": "Snake Charmer Mouse",
+    "type": "snake_charmer"
+  },
+  {
+    "name": "Spice Merchant Mouse",
+    "type": "spice_merchant"
+  },
+  {
+    "name": "Grave Robber Mouse",
+    "type": "grave_digger"
+  },
+  {
+    "name": "Aether Mouse",
+    "type": "aether"
+  },
+  {
+    "name": "Bookborn Mouse",
+    "type": "bookborn"
+  },
+  {
+    "name": "Effervescent Mouse",
+    "type": "effervecent"
+  },
+  {
+    "name": "Explorator Mouse",
+    "type": "explorator"
+  },
+  {
+    "name": "Flutterby Mouse",
+    "type": "flutterby"
+  },
+  {
+    "name": "Infiltrator Mouse",
+    "type": "infiltrator"
+  },
+  {
+    "name": "Zurreal the Eternal",
+    "type": "library_boss"
+  },
+  {
+    "name": "Pocketwatch Mouse",
+    "type": "pocketwatch"
+  },
+  {
+    "name": "Scribe Mouse",
+    "type": "scribe"
+  },
+  {
+    "name": "Steam Grip Mouse",
+    "type": "steam_grip"
+  },
+  {
+    "name": "Tome Sprite Mouse",
+    "type": "tome_sprite"
+  },
+  {
+    "name": "Walker Mouse",
+    "type": "walker"
+  },
+  {
+    "name": "Crown Collector Mouse",
+    "type": "crown_collector_mouse"
+  },
+  {
+    "name": "Mousevina von Vermin",
+    "type": "hween_2011_boss"
+  },
+  {
+    "name": "Cobweb Mouse",
+    "type": "hween_cobweb"
+  },
+  {
+    "name": "Pumpkin Hoarder Mouse",
+    "type": "pumpkin_hoarder"
+  },
+  {
+    "name": "Destructoy Mouse",
+    "type": "winter_hunt_toy"
+  },
+  {
+    "name": "Snowflake Mouse",
+    "type": "winter_hunt_toy_strong"
+  },
+  {
+    "name": "Snow Scavenger",
+    "type": "snow_scavenger"
+  },
+  {
+    "name": "Toy Tinkerer Mouse",
+    "type": "toy_builder"
+  },
+  {
+    "name": "Mad Elf Mouse",
+    "type": "mad_elf"
+  },
+  {
+    "name": "Party Head Mouse",
+    "type": "disco_ball_head"
+  },
+  {
+    "name": "Calligraphy Mouse",
+    "type": "calligraphy"
+  },
+  {
+    "name": "Costumed Dragon Mouse",
+    "type": "costumed_dragon"
+  },
+  {
+    "name": "Forever Alone Mouse",
+    "type": "forever_alone"
+  },
+  {
+    "name": "Pygmy Wrangler Mouse",
+    "type": "pygmy_wrangler"
+  },
+  {
+    "name": "Dinosuit Mouse",
+    "type": "dinosuit"
+  },
+  {
+    "name": "Eggscavator Mouse",
+    "type": "eggscavator"
+  },
+  {
+    "name": "Sinister Egg Painter",
+    "type": "sinister_egg_painter"
+  },
+  {
+    "name": "Incompetent Ice Climber Mouse",
+    "type": "incompetent_ice_climber"
+  },
+  {
+    "name": "Polar Bear Mouse",
+    "type": "polar_bear"
+  },
+  {
+    "name": "Snow Soldier Mouse",
+    "type": "snow_soldier"
+  },
+  {
+    "name": "Wolfskie Mouse",
+    "type": "wolfskie"
+  },
+  {
+    "name": "Chipper Mouse",
+    "type": "chipper"
+  },
+  {
+    "name": "Snow Bowler Mouse",
+    "type": "snow_bowler"
+  },
+  {
+    "name": "Snow Slinger Mouse",
+    "type": "snow_slinger"
+  },
+  {
+    "name": "Icebreaker Mouse",
+    "type": "icebreaker"
+  },
+  {
+    "name": "Saboteur Mouse",
+    "type": "saboteur"
+  },
+  {
+    "name": "Snow Sniper Mouse",
+    "type": "snow_sniper"
+  },
+  {
+    "name": "Yeti Mouse",
+    "type": "yeti"
+  },
+  {
+    "name": "Living Ice Mouse",
+    "type": "living_ice"
+  },
+  {
+    "name": "General Drheller",
+    "type": "drheller"
+  },
+  {
+    "name": "Frostlance Guard",
+    "type": "frostlance_guard"
+  },
+  {
+    "name": "Frostwing Commander",
+    "type": "frostwing_commander"
+  },
+  {
+    "name": "Heavy Blaster Mouse",
+    "type": "heavy_blaster"
+  },
+  {
+    "name": "Iceblade Mouse",
+    "type": "iceblade"
+  },
+  {
+    "name": "Iceblock Mouse",
+    "type": "iceblock"
+  },
+  {
+    "name": "Icewing",
+    "type": "icewing"
+  },
+  {
+    "name": "Lady Coldsnap",
+    "type": "lady_coldsnap"
+  },
+  {
+    "name": "Lord Splodington",
+    "type": "lord_splodington"
+  },
+  {
+    "name": "Mammoth Mouse",
+    "type": "mammoth"
+  },
+  {
+    "name": "Princess Fist",
+    "type": "princess_fist"
+  },
+  {
+    "name": "Snowblind Mouse",
+    "type": "snowblind"
+  },
+  {
+    "name": "Stickybomber Mouse",
+    "type": "stickybomber"
+  },
+  {
+    "name": "Water Wielder Mouse",
+    "type": "water_wielder"
+  },
+  {
+    "name": "Living Salt Mouse",
+    "type": "living_salt"
+  },
+  {
+    "name": "Deep Mouse",
+    "type": "deep"
+  },
+  {
+    "name": "Lucky Mouse",
+    "type": "lucky"
+  },
+  {
+    "name": "Chrono Mouse",
+    "type": "chrono"
+  },
+  {
+    "name": "Hurdle Mouse",
+    "type": "hurdle"
+  },
+  {
+    "name": "Extreme Everysports Mouse",
+    "type": "sporty"
+  },
+  {
+    "name": "Trampoline Mouse",
+    "type": "trampoline"
+  },
+  {
+    "name": "Goldleaf Mouse",
+    "type": "goldleaf"
+  },
+  {
+    "name": "Relic Hunter Mouse",
+    "type": "relic_hunter"
+  },
+  {
+    "name": "Wild Chainsaw Mouse",
+    "type": "chainsaw"
+  },
+  {
+    "name": "Swamp Thang Mouse",
+    "type": "hween_2012_boss"
+  },
+  {
+    "name": "Spirit Light Mouse",
+    "type": "sprit_light"
+  },
+  {
+    "name": "Bark Mouse",
+    "type": "bark"
+  },
+  {
+    "name": "Barkshell Mouse",
+    "type": "barkshell"
+  },
+  {
+    "name": "Calalilly Mouse",
+    "type": "calalilly"
+  },
+  {
+    "name": "Camoflower Mouse",
+    "type": "camoflower"
+  },
+  {
+    "name": "Camofusion Mouse",
+    "type": "camofusion"
+  },
+  {
+    "name": "Carmine the Apothecary",
+    "type": "carmine"
+  },
+  {
+    "name": "Corrupt Mouse",
+    "type": "corrupt"
+  },
+  {
+    "name": "Cursed Mouse",
+    "type": "cursed"
+  },
+  {
+    "name": "Cursed Enchanter Mouse",
+    "type": "cursed_enchanter"
+  },
+  {
+    "name": "Cursed Engineer Mouse",
+    "type": "cursed_engineer"
+  },
+  {
+    "name": "Cursed Librarian Mouse",
+    "type": "cursed_librarian"
+  },
+  {
+    "name": "Cursed Thief Mouse",
+    "type": "cursed_thief"
+  },
+  {
+    "name": "Dehydrated Mouse",
+    "type": "dehydrated"
+  },
+  {
+    "name": "Dunehopper Mouse",
+    "type": "dunehopper"
+  },
+  {
+    "name": "Essence Collector Mouse",
+    "type": "essence_collector"
+  },
+  {
+    "name": "Essence Guardian Mouse",
+    "type": "essence_guardian"
+  },
+  {
+    "name": "Ethereal Enchanter Mouse",
+    "type": "ethereal_enchanter"
+  },
+  {
+    "name": "Ethereal Engineer",
+    "type": "ethereal_engineer"
+  },
+  {
+    "name": "Ethereal Librarian",
+    "type": "ethereal_librarian"
+  },
+  {
+    "name": "Ethereal Thief Mouse",
+    "type": "ethereal_thief"
+  },
+  {
+    "name": "Fungal Spore Mouse",
+    "type": "fungal_spore"
+  },
+  {
+    "name": "Grubling Mouse",
+    "type": "grubling"
+  },
+  {
+    "name": "Grubling Herder Mouse",
+    "type": "grubling_herder"
+  },
+  {
+    "name": "King Grub Mouse",
+    "type": "king_grub"
+  },
+  {
+    "name": "Quesodillo Mouse",
+    "type": "quesodillo"
+  },
+  {
+    "name": "Sand Colossus Mouse",
+    "type": "sand_colossus"
+  },
+  {
+    "name": "Sand Pilgrim",
+    "type": "sand_pilgrim"
+  },
+  {
+    "name": "Sarcophamouse",
+    "type": "sarcophamouse"
+  },
+  {
+    "name": "Scarab Mouse",
+    "type": "scarab"
+  },
+  {
+    "name": "Serpentine Mouse",
+    "type": "serpentine"
+  },
+  {
+    "name": "Shroom Mouse",
+    "type": "shroom"
+  },
+  {
+    "name": "Spiky Devil Mouse",
+    "type": "spiky_devil"
+  },
+  {
+    "name": "Strawberry Hotcakes Mouse",
+    "type": "strawberry_hotcakes"
+  },
+  {
+    "name": "Thirsty Mouse",
+    "type": "thirsty"
+  },
+  {
+    "name": "Thistle Mouse",
+    "type": "thistle"
+  },
+  {
+    "name": "Thorn Mouse",
+    "type": "thorn"
+  },
+  {
+    "name": "Twisted Carmine",
+    "type": "twisted_carmine"
+  },
+  {
+    "name": "Twisted Hotcakes Mouse",
+    "type": "twisted_hotcakes"
+  },
+  {
+    "name": "Twisted Lilly Mouse",
+    "type": "twisted_lilly"
+  },
+  {
+    "name": "Confused Courier Mouse",
+    "type": "confused_courier"
+  },
+  {
+    "name": "Gingerbread Mouse",
+    "type": "gingerbread"
+  },
+  {
+    "name": "Greedy Al",
+    "type": "greedy_al"
+  },
+  {
+    "name": "Ribbon Mouse",
+    "type": "ribbon"
+  },
+  {
+    "name": "Ridiculous Sweater Mouse",
+    "type": "ridiculous_sweater"
+  },
+  {
+    "name": "Snowblower Mouse",
+    "type": "snowblower"
+  },
+  {
+    "name": "Snowglobe Mouse",
+    "type": "snowglobe"
+  },
+  {
+    "name": "Triple Lutz Mouse",
+    "type": "triple_lutz"
+  },
+  {
+    "name": "Dark Magi Mouse",
+    "type": "dark_magi"
+  },
+  {
+    "name": "King Scarab Mouse",
+    "type": "king_scarab"
+  },
+  {
+    "name": "Shattered Carmine",
+    "type": "shattered_carmine"
+  },
+  {
+    "name": "Costumed Snake Mouse",
+    "type": "costumed_snake"
+  },
+  {
+    "name": "Totally Not Bitter Mouse",
+    "type": "totally_not_bitter"
+  },
+  {
+    "name": "Force Fighter Blue",
+    "type": "force_fighter_blue"
+  },
+  {
+    "name": "Force Fighter Green",
+    "type": "force_fighter_green"
+  },
+  {
+    "name": "Force Fighter Pink",
+    "type": "force_fighter_pink"
+  },
+  {
+    "name": "Force Fighter Red",
+    "type": "force_fighter_red"
+  },
+  {
+    "name": "Force Fighter Yellow",
+    "type": "force_fighter_yellow"
+  },
+  {
+    "name": "Super FighterBot MegaSupreme",
+    "type": "super_fighterbot_megasupreme"
+  },
+  {
+    "name": "Chocolate Overload Mouse",
+    "type": "chcolate_overload"
+  },
+  {
+    "name": "Egg Scrambler Mouse",
+    "type": "eggscrambler"
+  },
+  {
+    "name": "Hardboiled Mouse",
+    "type": "hardboiled"
+  },
+  {
+    "name": "Bartender Mouse",
+    "type": "bartender"
+  },
+  {
+    "name": "Bounty Hunter Mouse",
+    "type": "bounty_hunter"
+  },
+  {
+    "name": "Cardshark Mouse",
+    "type": "cardshark"
+  },
+  {
+    "name": "Circuit Judge Mouse",
+    "type": "circuit_judge"
+  },
+  {
+    "name": "Coal Shoveller Mouse",
+    "type": "coal_shoveler"
+  },
+  {
+    "name": "Desperado Mouse",
+    "type": "desperado"
+  },
+  {
+    "name": "Farrier Mouse",
+    "type": "farrier"
+  },
+  {
+    "name": "Lasso Cowgirl Mouse",
+    "type": "lasso_cowgirl"
+  },
+  {
+    "name": "Outlaw Mouse",
+    "type": "outlaw"
+  },
+  {
+    "name": "Parlour Player Mouse",
+    "type": "parlour_player"
+  },
+  {
+    "name": "Prospector Mouse",
+    "type": "prospector"
+  },
+  {
+    "name": "Pyrite Mouse",
+    "type": "pyrite"
+  },
+  {
+    "name": "Ruffian Mouse",
+    "type": "ruffian"
+  },
+  {
+    "name": "Saloon Gal Mouse",
+    "type": "saloon_gal"
+  },
+  {
+    "name": "Shopkeeper Mouse",
+    "type": "shopkeeper"
+  },
+  {
+    "name": "Stagecoach Driver Mouse",
+    "type": "stagecoach_driver"
+  },
+  {
+    "name": "Stuffy Banker Mouse",
+    "type": "stuffy_banker"
+  },
+  {
+    "name": "Tonic Salesman Mouse",
+    "type": "tonic_salesman"
+  },
+  {
+    "name": "Tumbleweed Mouse",
+    "type": "tumbleweed"
+  },
+  {
+    "name": "Undertaker Mouse",
+    "type": "undertaker"
+  },
+  {
+    "name": "Upper Class Lady Mouse",
+    "type": "upper_class_lady"
+  },
+  {
+    "name": "Angry Train Staff Mouse",
+    "type": "angry_train_staff"
+  },
+  {
+    "name": "Automorat",
+    "type": "automorat"
+  },
+  {
+    "name": "Black Powder Thief Mouse",
+    "type": "black_powder_thief"
+  },
+  {
+    "name": "Cannonball Mouse",
+    "type": "cannonball"
+  },
+  {
+    "name": "Crate Camo Mouse",
+    "type": "crate_camo"
+  },
+  {
+    "name": "Cute Crate Carrier Mouse",
+    "type": "cute_crate_carrier"
+  },
+  {
+    "name": "Fuel Mouse",
+    "type": "fuel_mouse"
+  },
+  {
+    "name": "Hookshot Mouse",
+    "type": "hookshot"
+  },
+  {
+    "name": "Magmatic Crystal Thief Mouse",
+    "type": "magmatic_crystal_thief"
+  },
+  {
+    "name": "Magmatic Golem Mouse",
+    "type": "magmatic_golem"
+  },
+  {
+    "name": "Mouse With No Name",
+    "type": "mouse_with_no_name"
+  },
+  {
+    "name": "Mysterious Traveller Mouse",
+    "type": "mysterious_traveller"
+  },
+  {
+    "name": "Passenger Mouse",
+    "type": "passenger"
+  },
+  {
+    "name": "Photographer Mouse",
+    "type": "photographer"
+  },
+  {
+    "name": "Sharpshooter Mouse",
+    "type": "sharpshooter"
+  },
+  {
+    "name": "Steel Horse Rider Mouse",
+    "type": "steel_horse_rider"
+  },
+  {
+    "name": "Stoutgear Mouse",
+    "type": "stoutgear"
+  },
+  {
+    "name": "Stowaway Mouse",
+    "type": "stowaway"
+  },
+  {
+    "name": "Supply Hoarder Mouse",
+    "type": "supply_hoarder"
+  },
+  {
+    "name": "Dangerous Duo Mouse",
+    "type": "the_twins"
+  },
+  {
+    "name": "Train Conductor Mouse",
+    "type": "train_conductor"
+  },
+  {
+    "name": "Train Engineer Mouse",
+    "type": "train_engineer"
+  },
+  {
+    "name": "Travelling Barber Mouse",
+    "type": "travelling_barber"
+  },
+  {
+    "name": "Warehouse Manager Mouse",
+    "type": "warehouse_manager"
+  },
+  {
+    "name": "Gluttonous Zombie Mouse",
+    "type": "gluttonous_zombie"
+  },
+  {
+    "name": "Titanic Brain-Taker Mouse",
+    "type": "hween_2013_boss"
+  },
+  {
+    "name": "Mutated Brown Mouse",
+    "type": "mutated_brown"
+  },
+  {
+    "name": "Sugar Rush Mouse",
+    "type": "sweet_tooth"
+  },
+  {
+    "name": "S.N.O.W. Golem Mouse",
+    "type": "snowball_bully"
+  },
+  {
+    "name": "Snow Boulder Mouse",
+    "type": "snowball_general_one"
+  },
+  {
+    "name": "Snow Sorceress",
+    "type": "snowball_general_three"
+  },
+  {
+    "name": "Reinbo",
+    "type": "snowball_general_two"
+  },
+  {
+    "name": "Snowball Hoarder Mouse",
+    "type": "snowball_hoarder"
+  },
+  {
+    "name": "Mutated Behemoth Mouse",
+    "type": "behemoth"
+  },
+  {
+    "name": "Biohazard Mouse",
+    "type": "biohazard"
+  },
+  {
+    "name": "Bog Beast Mouse",
+    "type": "bog_beast"
+  },
+  {
+    "name": "Gelatinous Octahedron Mouse",
+    "type": "gelatinous_octahedron"
+  },
+  {
+    "name": "Hazmat Mouse",
+    "type": "hazmat"
+  },
+  {
+    "name": "Lab Technician Mouse",
+    "type": "lab_technician"
+  },
+  {
+    "name": "The Menace Mouse",
+    "type": "menace"
+  },
+  {
+    "name": "Monster Tail Mouse",
+    "type": "monster_tail"
+  },
+  {
+    "name": "Mutant Mongrel Mouse",
+    "type": "mutant_mongrel"
+  },
+  {
+    "name": "Mutant Ninja Mouse",
+    "type": "mutant_ninja"
+  },
+  {
+    "name": "Mutated Siblings Mouse",
+    "type": "mutated_siblings"
+  },
+  {
+    "name": "Outbreak Assassin Mouse",
+    "type": "outbreak_assassin"
+  },
+  {
+    "name": "Plague Hag Mouse",
+    "type": "plague_hag"
+  },
+  {
+    "name": "Scrap Metal Monster Mouse",
+    "type": "scrap_metal_monster"
+  },
+  {
+    "name": "Slimefist Mouse",
+    "type": "slimefist"
+  },
+  {
+    "name": "Sludge Mouse",
+    "type": "sludge"
+  },
+  {
+    "name": "Sludge Soaker Mouse",
+    "type": "sludge_soaker"
+  },
+  {
+    "name": "Sludge Swimmer Mouse",
+    "type": "sludge_swimmer"
+  },
+  {
+    "name": "Spore Mouse",
+    "type": "spore"
+  },
+  {
+    "name": "Swamp Runner Mouse",
+    "type": "swamp_runner"
+  },
+  {
+    "name": "Telekinetic Mutant Mouse",
+    "type": "telekinetic_mutant"
+  },
+  {
+    "name": "Tentacle Mouse",
+    "type": "tentacle"
+  },
+  {
+    "name": "Toxic Warrior Mouse",
+    "type": "toxic_warrior"
+  },
+  {
+    "name": "Costumed Horse Mouse",
+    "type": "costumed_horse"
+  },
+  {
+    "name": "Lovely Sports Mouse",
+    "type": "lovely_sports"
+  },
+  {
+    "name": "Winter Games Mouse",
+    "type": "winter_games"
+  },
+  {
+    "name": "M400",
+    "type": "m400"
+  },
+  {
+    "name": "Breakdancer Mouse",
+    "type": "breakdancer"
+  },
+  {
+    "name": "El Flamenco Mouse",
+    "type": "dance_boss"
+  },
+  {
+    "name": "Dance Party Mouse",
+    "type": "dance_party"
+  },
+  {
+    "name": "Para Para Dancer Mouse",
+    "type": "para_para_dancer"
+  },
+  {
+    "name": "Moussile Mouse",
+    "type": "moussile"
+  },
+  {
+    "name": "Cyborg Mouse",
+    "type": "rift_bionic"
+  },
+  {
+    "name": "Riftweaver Mouse",
+    "type": "rift_brown"
+  },
+  {
+    "name": "Agitated Gentle Giant Mouse",
+    "type": "rift_cowardly"
+  },
+  {
+    "name": "Raw Diamond Mouse",
+    "type": "rift_diamond"
+  },
+  {
+    "name": "Rift Guardian Mouse",
+    "type": "rift_dwarf"
+  },
+  {
+    "name": "Goliath Field Mouse",
+    "type": "rift_field"
+  },
+  {
+    "name": "Dream Drifter Mouse",
+    "type": "rift_flying"
+  },
+  {
+    "name": "Wealth Mouse",
+    "type": "rift_gold"
+  },
+  {
+    "name": "Shard Centurion Mouse",
+    "type": "rift_granite"
+  },
+  {
+    "name": "Greyrun Mouse",
+    "type": "rift_grey"
+  },
+  {
+    "name": "Excitable Electric Mouse",
+    "type": "rift_lightning"
+  },
+  {
+    "name": "Mighty Mole Mouse",
+    "type": "rift_mole"
+  },
+  {
+    "name": "Supernatural Mouse",
+    "type": "rift_spotted"
+  },
+  {
+    "name": "Spiritual Steel Mouse",
+    "type": "rift_steel"
+  },
+  {
+    "name": "Micro Mouse",
+    "type": "rift_tiny"
+  },
+  {
+    "name": "Brawny Mouse",
+    "type": "rift_white"
+  },
+  {
+    "name": "Carefree Cook Mouse",
+    "type": "carefree_cook"
+  },
+  {
+    "name": "Onion Chopper",
+    "type": "onion_chopper"
+  },
+  {
+    "name": "Pan Slammer Mouse",
+    "type": "pan_slammer"
+  },
+  {
+    "name": "Ancient of the Deep",
+    "type": "ancient_of_the_deep"
+  },
+  {
+    "name": "Angelfish Mouse",
+    "type": "angelfish"
+  },
+  {
+    "name": "Angler Mouse",
+    "type": "angler"
+  },
+  {
+    "name": "Barnacle Beautician Mouse",
+    "type": "barnacle_beautician"
+  },
+  {
+    "name": "Barracuda Mouse",
+    "type": "barracuda"
+  },
+  {
+    "name": "Betta Mouse",
+    "type": "betta"
+  },
+  {
+    "name": "Bottom Feeder Mouse",
+    "type": "bottom_feeder"
+  },
+  {
+    "name": "Carnivore Mouse",
+    "type": "carnivore"
+  },
+  {
+    "name": "City Noble Mouse",
+    "type": "city_noble"
+  },
+  {
+    "name": "City Worker Mouse",
+    "type": "city_worker"
+  },
+  {
+    "name": "Clownfish Mouse",
+    "type": "clownfish"
+  },
+  {
+    "name": "Clumsy Carrier Mouse",
+    "type": "clumsy_carrier"
+  },
+  {
+    "name": "Coral Mouse",
+    "type": "coral"
+  },
+  {
+    "name": "Coral Cuddler Mouse",
+    "type": "coral_cuddler"
+  },
+  {
+    "name": "Coral Dragon Mouse",
+    "type": "coral_dragon"
+  },
+  {
+    "name": "Coral Gardener Mouse",
+    "type": "coral_gardener"
+  },
+  {
+    "name": "Coral Guard Mouse",
+    "type": "coral_guard"
+  },
+  {
+    "name": "Coral Harvester Mouse",
+    "type": "coral_harvester"
+  },
+  {
+    "name": "Coral Queen Mouse",
+    "type": "coral_queen"
+  },
+  {
+    "name": "Crabolia Mouse",
+    "type": "crabolia"
+  },
+  {
+    "name": "Cuttle Mouse",
+    "type": "cuttle"
+  },
+  {
+    "name": "Deep Sea Diver Mouse",
+    "type": "deep_sea_diver"
+  },
+  {
+    "name": "Deranged Deckhand Mouse",
+    "type": "deranged_deckhand"
+  },
+  {
+    "name": "Derpshark Mouse",
+    "type": "derpshark"
+  },
+  {
+    "name": "Dread Pirate Mousert",
+    "type": "dread_pirate_mousert"
+  },
+  {
+    "name": "Eel Mouse",
+    "type": "eel"
+  },
+  {
+    "name": "Elite Guardian Mouse",
+    "type": "elite_guardian"
+  },
+  {
+    "name": "Enginseer Mouse",
+    "type": "enginseer"
+  },
+  {
+    "name": "Guppy Mouse",
+    "type": "guppy"
+  },
+  {
+    "name": "Hydrologist Mouse",
+    "type": "hydrologist"
+  },
+  {
+    "name": "Jellyfish Mouse",
+    "type": "jellyfish"
+  },
+  {
+    "name": "Koimaid Mouse",
+    "type": "koimaid"
+  },
+  {
+    "name": "Manatee Mouse",
+    "type": "manatee"
+  },
+  {
+    "name": "Mermousette",
+    "type": "mermousette"
+  },
+  {
+    "name": "Mershark Mouse",
+    "type": "mershark"
+  },
+  {
+    "name": "Mlounder Flounder Mouse",
+    "type": "mlounder_flounder"
+  },
+  {
+    "name": "Octomermaid Mouse",
+    "type": "octomermaid"
+  },
+  {
+    "name": "Old One Mouse",
+    "type": "old_one"
+  },
+  {
+    "name": "Oxygen Baron Mouse",
+    "type": "oxygen_baron"
+  },
+  {
+    "name": "Pearl Mouse",
+    "type": "pearl"
+  },
+  {
+    "name": "Pearl Diver Mouse",
+    "type": "pearl_diver"
+  },
+  {
+    "name": "Pirate Anchor Mouse",
+    "type": "pirate_anchor"
+  },
+  {
+    "name": "Puffer Mouse",
+    "type": "puffer"
+  },
+  {
+    "name": "Saltwater Axolotl Mouse",
+    "type": "saltwater_axolotl"
+  },
+  {
+    "name": "Sand Dollar Diver Mouse",
+    "type": "sand_dollar_diver"
+  },
+  {
+    "name": "Sand Dollar Queen Mouse",
+    "type": "sand_dollar_queen"
+  },
+  {
+    "name": "School of Mish",
+    "type": "school_of_mish"
+  },
+  {
+    "name": "Seadragon Mouse",
+    "type": "seadragon"
+  },
+  {
+    "name": "Serpent Monster Mouse",
+    "type": "serpent_monster"
+  },
+  {
+    "name": "Spear Fisher Mouse",
+    "type": "spear_fisher"
+  },
+  {
+    "name": "Stingray Mouse",
+    "type": "stingray"
+  },
+  {
+    "name": "Sunken Banshee Mouse",
+    "type": "sunken_banshee"
+  },
+  {
+    "name": "Sunken Citizen Mouse",
+    "type": "sunken_citizen"
+  },
+  {
+    "name": "Swashblade Mouse",
+    "type": "swashblade"
+  },
+  {
+    "name": "Tadpole Mouse",
+    "type": "tadpole"
+  },
+  {
+    "name": "Treasure Hoarder Mouse",
+    "type": "treasure_hoarder"
+  },
+  {
+    "name": "Treasure Keeper Mouse",
+    "type": "treasure_keeper"
+  },
+  {
+    "name": "Tritus Mouse",
+    "type": "tritus"
+  },
+  {
+    "name": "Turret Guard Mouse",
+    "type": "turret_guard"
+  },
+  {
+    "name": "Urchin King Mouse",
+    "type": "urchin_king"
+  },
+  {
+    "name": "Captain Croissant Mouse",
+    "type": "captain_croissant"
+  },
+  {
+    "name": "Amplified Brown Mouse",
+    "type": "rift_amplified_brown"
+  },
+  {
+    "name": "Amplified Grey Mouse",
+    "type": "rift_amplified_grey"
+  },
+  {
+    "name": "Amplified White Mouse",
+    "type": "rift_amplified_white"
+  },
+  {
+    "name": "Assassin Beast Mouse",
+    "type": "rift_assassin_beast"
+  },
+  {
+    "name": "Automated Sentry Mouse",
+    "type": "rift_automated_sentry"
+  },
+  {
+    "name": "Big Bad Behemoth Burroughs Mouse",
+    "type": "rift_big_bad_burroughs"
+  },
+  {
+    "name": "Rift Bio Engineer",
+    "type": "rift_bio_engineer"
+  },
+  {
+    "name": "Boulder Biter Mouse",
+    "type": "rift_boulder_biter"
+  },
+  {
+    "name": "Clump Mouse",
+    "type": "rift_clump"
+  },
+  {
+    "name": "Count Vampire Mouse",
+    "type": "rift_count_vampire"
+  },
+  {
+    "name": "Cyber Miner Mouse",
+    "type": "rift_cyber_miner"
+  },
+  {
+    "name": "Cybernetic Specialist Mouse",
+    "type": "rift_cybernetic_specialist"
+  },
+  {
+    "name": "Doktor Mouse",
+    "type": "rift_doktor"
+  },
+  {
+    "name": "Evil Scientist Mouse",
+    "type": "rift_evil_scientist"
+  },
+  {
+    "name": "Itty Bitty Rifty Burroughs Mouse",
+    "type": "rift_itty_bitty_burroughs"
+  },
+  {
+    "name": "Lambent Mouse",
+    "type": "rift_lambent"
+  },
+  {
+    "name": "Lycanoid",
+    "type": "rift_lycan"
+  },
+  {
+    "name": "Master Exploder Mouse",
+    "type": "rift_master_exploder"
+  },
+  {
+    "name": "Mecha Tail Mouse",
+    "type": "rift_mecha_tail"
+  },
+  {
+    "name": "Menace of the Rift Mouse",
+    "type": "rift_menace"
+  },
+  {
+    "name": "Monstrous Abomination Mouse",
+    "type": "rift_monstrous_abomination"
+  },
+  {
+    "name": "Phase Zombie",
+    "type": "rift_phase_zombie"
+  },
+  {
+    "name": "Plutonium Tentacle Mouse",
+    "type": "rift_plutonium_tentacle"
+  },
+  {
+    "name": "Pneumatic Dirt Displacement Mouse",
+    "type": "rift_pneumatic_dirt_displacement"
+  },
+  {
+    "name": "Portable Generator Mouse",
+    "type": "rift_portable_generator"
+  },
+  {
+    "name": "Prototype Mouse",
+    "type": "rift_prototype"
+  },
+  {
+    "name": "Super Mega Mecha Ultra RoboGold Mouse",
+    "type": "rift_radioactive_gold"
+  },
+  {
+    "name": "Rancid Bog Beast Mouse",
+    "type": "rift_rancid_bog_beast"
+  },
+  {
+    "name": "Revenant Mouse",
+    "type": "rift_revenant"
+  },
+  {
+    "name": "Rifterranian Mouse",
+    "type": "rift_rifterranian"
+  },
+  {
+    "name": "Robat Mouse",
+    "type": "rift_robat"
+  },
+  {
+    "name": "Radioactive Ooze Mouse",
+    "type": "rift_spore"
+  },
+  {
+    "name": "Surgeon Bot Mouse",
+    "type": "rift_surgeon_bot"
+  },
+  {
+    "name": "Tech Ravenous Zombie",
+    "type": "rift_tech_ravenous_zombie"
+  },
+  {
+    "name": "Toxic Avenger Mouse",
+    "type": "rift_toxic_avenger"
+  },
+  {
+    "name": "Toxikinetic Mouse",
+    "type": "rift_toxikinetic"
+  },
+  {
+    "name": "Zombot Unipire the Third",
+    "type": "rift_zombot_unipire"
+  },
+  {
+    "name": "Candy Cat Mouse",
+    "type": "candy_cat"
+  },
+  {
+    "name": "Candy Goblin Mouse",
+    "type": "candy_goblin"
+  },
+  {
+    "name": "Grey Recluse Mouse",
+    "type": "grey_recluse"
+  },
+  {
+    "name": "Hollowed Mouse",
+    "type": "hollowed_demon"
+  },
+  {
+    "name": "Mousataur Priestess Mouse",
+    "type": "hween_2014_boss"
+  },
+  {
+    "name": "Shortcut Mouse",
+    "type": "shortcut"
+  },
+  {
+    "name": "Tricky Witch Mouse",
+    "type": "tricky_witch"
+  },
+  {
+    "name": "Builder Mouse",
+    "type": "builder"
+  },
+  {
+    "name": "Frigid Foreman Mouse",
+    "type": "frigid_foreman"
+  },
+  {
+    "name": "Glacia Ice Fist",
+    "type": "glacia_ice_fist"
+  },
+  {
+    "name": "Hoarder Mouse",
+    "type": "hoarder"
+  },
+  {
+    "name": "Miser Mouse",
+    "type": "miser"
+  },
+  {
+    "name": "Stuck Snowball Mouse",
+    "type": "stuck_snowball"
+  },
+  {
+    "name": "Tundra Huntress Mouse",
+    "type": "tundra_huntress"
+  },
+  {
+    "name": "Borean Commander Mouse",
+    "type": "winter_boss_2014"
+  },
+  {
+    "name": "Red Coat Bear Mouse",
+    "type": "rift_bear"
+  },
+  {
+    "name": "Monstrous Black Widow Mouse",
+    "type": "rift_black_widow"
+  },
+  {
+    "name": "Centaur Ranger Mouse",
+    "type": "rift_centaur"
+  },
+  {
+    "name": "Karmachameleon Mouse",
+    "type": "rift_chameleon"
+  },
+  {
+    "name": "Cherry Sprite Mouse",
+    "type": "rift_cherry"
+  },
+  {
+    "name": "Naturalist Mouse",
+    "type": "rift_curious_chemist"
+  },
+  {
+    "name": "Cyclops Barbarian Mouse",
+    "type": "rift_cyclops"
+  },
+  {
+    "name": "Red-Eyed Watcher Owl Mouse",
+    "type": "rift_eagle_owl"
+  },
+  {
+    "name": "Treant Queen Mouse",
+    "type": "rift_elven_princess"
+  },
+  {
+    "name": "Spirit of Balance",
+    "type": "rift_fairy"
+  },
+  {
+    "name": "Spirit Fox Mouse",
+    "type": "rift_foxy"
+  },
+  {
+    "name": "Fungal Frog Mouse",
+    "type": "rift_frog"
+  },
+  {
+    "name": "Crazed Goblin Mouse",
+    "type": "rift_goblin"
+  },
+  {
+    "name": "Gilded Leaf Mouse",
+    "type": "rift_goldleaf"
+  },
+  {
+    "name": "Winged Harpy Mouse",
+    "type": "rift_harpy"
+  },
+  {
+    "name": "Tri-dra Mouse",
+    "type": "rift_hydra"
+  },
+  {
+    "name": "Mossy Moosker Mouse",
+    "type": "rift_moosker"
+  },
+  {
+    "name": "Nomadic Warrior Mouse",
+    "type": "rift_nomad"
+  },
+  {
+    "name": "Medicine Mouse",
+    "type": "rift_shaman"
+  },
+  {
+    "name": "Grizzled Silth Mouse",
+    "type": "rift_silth"
+  },
+  {
+    "name": "Bloomed Sylvan Mouse",
+    "type": "rift_sylvan"
+  },
+  {
+    "name": "Rift Tiger",
+    "type": "rift_tiger"
+  },
+  {
+    "name": "Twisted Treant Mouse",
+    "type": "rift_treant"
+  },
+  {
+    "name": "Tree Troll Mouse",
+    "type": "rift_troll"
+  },
+  {
+    "name": "Water Sprite Mouse",
+    "type": "rift_water_nymph"
+  },
+  {
+    "name": "Cranky Caterpillar Mouse",
+    "type": "rift_wiggler"
+  },
+  {
+    "name": "Gentleman Caller Mouse",
+    "type": "friend_zone"
+  },
+  {
+    "name": "Costumed Sheep Mouse",
+    "type": "costumed_sheep"
+  },
+  {
+    "name": "Cupcake Cutie Mouse",
+    "type": "cupcake_cutie"
+  },
+  {
+    "name": "Cupcake Runner Mouse",
+    "type": "cupcake_runner"
+  },
+  {
+    "name": "Chocolate Gold Foil Mouse",
+    "type": "chocolate_gold_foil"
+  },
+  {
+    "name": "Bitter Root Mouse",
+    "type": "bitter_root"
+  },
+  {
+    "name": "Cavern Crumbler Mouse",
+    "type": "cavern_crumbler"
+  },
+  {
+    "name": "Crag Elder Mouse",
+    "type": "crag_elder"
+  },
+  {
+    "name": "Crystal Behemoth Mouse",
+    "type": "crystal_behemoth"
+  },
+  {
+    "name": "Crystal Cave Worm Mouse",
+    "type": "crystal_cave_worm"
+  },
+  {
+    "name": "Crystal Controller Mouse",
+    "type": "crystal_controller"
+  },
+  {
+    "name": "Crystal Golem Mouse",
+    "type": "crystal_golem"
+  },
+  {
+    "name": "Crystal Lurker Mouse",
+    "type": "crystal_lurker"
+  },
+  {
+    "name": "Crystal Observer Mouse",
+    "type": "crystal_observer"
+  },
+  {
+    "name": "Crystal Queen Mouse",
+    "type": "crystal_queen"
+  },
+  {
+    "name": "Crystalback Mouse",
+    "type": "crystalback"
+  },
+  {
+    "name": "Crystalline Slasher Mouse",
+    "type": "crystalline_slasher"
+  },
+  {
+    "name": "Diamondhide Mouse",
+    "type": "diamondhide"
+  },
+  {
+    "name": "Dirt Thing Mouse",
+    "type": "dirt_thing"
+  },
+  {
+    "name": "Floating Spore Mouse",
+    "type": "floating_spore"
+  },
+  {
+    "name": "Funglore Mouse",
+    "type": "funglore"
+  },
+  {
+    "name": "Gemorpher Mouse",
+    "type": "gemorpher"
+  },
+  {
+    "name": "Gemstone Worshipper Mouse",
+    "type": "gemstone_worshipper"
+  },
+  {
+    "name": "Huntereater Mouse",
+    "type": "huntereater"
+  },
+  {
+    "name": "Lumahead Mouse",
+    "type": "lumahead"
+  },
+  {
+    "name": "Mouldy Mole Mouse",
+    "type": "mouldy_mole"
+  },
+  {
+    "name": "Mush Mouse",
+    "type": "mush"
+  },
+  {
+    "name": "Mushroom Sprite Mouse",
+    "type": "mushroom_sprite"
+  },
+  {
+    "name": "Nightshade Masquerade Mouse",
+    "type": "nightshade_masquerade"
+  },
+  {
+    "name": "Quillback Mouse",
+    "type": "quillback"
+  },
+  {
+    "name": "Shattered Obsidian Mouse",
+    "type": "shattered_obsidian"
+  },
+  {
+    "name": "Spiked Burrower Mouse",
+    "type": "spiked_burrower"
+  },
+  {
+    "name": "Splintered Stone Sentry Mouse",
+    "type": "splintered_stone_sentry"
+  },
+  {
+    "name": "Spore Muncher Mouse",
+    "type": "spore_muncher"
+  },
+  {
+    "name": "Sporeticus Mouse",
+    "type": "sporeticus"
+  },
+  {
+    "name": "Stalagmite Mouse",
+    "type": "stalagmite"
+  },
+  {
+    "name": "Stone Maiden Mouse",
+    "type": "stone_maiden"
+  },
+  {
+    "name": "Ancient Scribe Mouse",
+    "type": "ancient_scribe"
+  },
+  {
+    "name": "Ash Golem Mouse",
+    "type": "ash_golem"
+  },
+  {
+    "name": "Automated Stone Sentry Mouse",
+    "type": "automated_stone_sentry"
+  },
+  {
+    "name": "Battle Cleric Mouse",
+    "type": "battle_cleric"
+  },
+  {
+    "name": "Corridor Bruiser Mouse",
+    "type": "corridor_bruiser"
+  },
+  {
+    "name": "Dark Templar Mouse",
+    "type": "dark_templar"
+  },
+  {
+    "name": "Decrepit Tentacle Terror",
+    "type": "decrepit_tentacle_terror"
+  },
+  {
+    "name": "Drudge Mouse",
+    "type": "drudge"
+  },
+  {
+    "name": "Ethereal Guardian Mouse",
+    "type": "ethereal_guardian"
+  },
+  {
+    "name": "Exo-Tech Mouse",
+    "type": "exo_tech"
+  },
+  {
+    "name": "Sir Fleekio Mouse",
+    "type": "fleekio"
+  },
+  {
+    "name": "Fungal Technomorph Mouse",
+    "type": "fungal_technomorph"
+  },
+  {
+    "name": "Hired Eidolon Mouse",
+    "type": "hired_eidolon"
+  },
+  {
+    "name": "Lost Mouse",
+    "type": "lost"
+  },
+  {
+    "name": "Lost Legionnaire Mouse",
+    "type": "lost_legionnaire"
+  },
+  {
+    "name": "Manaforge Smith Mouse",
+    "type": "manaforge_smith"
+  },
+  {
+    "name": "Paladin Weapon Master Mouse",
+    "type": "manaforge_weapon_master"
+  },
+  {
+    "name": "Masked Pikeman Mouse",
+    "type": "masked_pikeman"
+  },
+  {
+    "name": "Matron of Machinery Mouse",
+    "type": "matron_of_machinery"
+  },
+  {
+    "name": "Matron of Wealth Mouse",
+    "type": "matron_of_wealth"
+  },
+  {
+    "name": "Mimic Mouse",
+    "type": "mimic"
+  },
+  {
+    "name": "Mind Tearer Mouse",
+    "type": "mind_tearer"
+  },
+  {
+    "name": "Shadow Stalker Mouse",
+    "type": "mist_stalker"
+  },
+  {
+    "name": "Molten Midas Mouse",
+    "type": "molten_midas"
+  },
+  {
+    "name": "Mush Monster Mouse",
+    "type": "mush_monster"
+  },
+  {
+    "name": "Mushroom Harvester Mouse",
+    "type": "mushroom_harvester"
+  },
+  {
+    "name": "Mystic Guardian Mouse",
+    "type": "mystic_guardian"
+  },
+  {
+    "name": "Mystic Herald Mouse",
+    "type": "mystic_herald"
+  },
+  {
+    "name": "Mystic Scholar Mouse",
+    "type": "mystic_scholar"
+  },
+  {
+    "name": "Nightshade Fungalmancer Mouse",
+    "type": "nightshade_fungalmancer"
+  },
+  {
+    "name": "Nightshade Nanny Mouse",
+    "type": "nightshade_nanny"
+  },
+  {
+    "name": "Reanimated Carver Mouse",
+    "type": "reanimated_carver"
+  },
+  {
+    "name": "Retired Minotaur Mouse",
+    "type": "retired_minotaur"
+  },
+  {
+    "name": "RR-8 Mouse",
+    "type": "rr_8"
+  },
+  {
+    "name": "Sanguinarian Mouse",
+    "type": "sanguinarian"
+  },
+  {
+    "name": "Solemn Soldier Mouse",
+    "type": "solemn_soldier"
+  },
+  {
+    "name": "Soul Binder Mouse",
+    "type": "soul_binder"
+  },
+  {
+    "name": "Summoning Scholar Mouse",
+    "type": "summoning_scholar"
+  },
+  {
+    "name": "Tech Golem Mouse",
+    "type": "tech_golem"
+  },
+  {
+    "name": "Treasure Brawler Mouse",
+    "type": "treasure_brawler"
+  },
+  {
+    "name": "Dire Lycan Mouse",
+    "type": "dire_lycan"
+  },
+  {
+    "name": "Gourd Ghoul Mouse",
+    "type": "gourd_ghoul"
+  },
+  {
+    "name": "Hollowed Minion Mouse",
+    "type": "hollowed_minion"
+  },
+  {
+    "name": "Bonbon Gummy Globlin Mouse",
+    "type": "hween_2015_boss"
+  },
+  {
+    "name": "Maize Harvester Mouse",
+    "type": "maize_harvester"
+  },
+  {
+    "name": "Spectral Butler Mouse",
+    "type": "spectral_butler"
+  },
+  {
+    "name": "Teenage Vampire Mouse",
+    "type": "vampira"
+  },
+  {
+    "name": "Black Diamond Racer Mouse",
+    "type": "black_diamond_racer"
+  },
+  {
+    "name": "Double Black Diamond Racer Mouse",
+    "type": "double_black_diamond"
+  },
+  {
+    "name": "Free Skiing Mouse",
+    "type": "free_skiing"
+  },
+  {
+    "name": "Young Prodigy Racer Mouse",
+    "type": "green_circle_boss"
+  },
+  {
+    "name": "Nitro Racer Mouse",
+    "type": "nitro_racer"
+  },
+  {
+    "name": "Sporty Ski Instructor Mouse",
+    "type": "sporty_ski_instructor"
+  },
+  {
+    "name": "Toboggan Technician Mouse",
+    "type": "toboggan_technician"
+  },
+  {
+    "name": "Rainbow Racer Mouse",
+    "type": "winter_boss_2015"
+  },
+  {
+    "name": "Costumed Monkey Mouse",
+    "type": "costumed_monkey"
+  },
+  {
+    "name": "Cupcake Camo Mouse",
+    "type": "cupcake_camo"
+  },
+  {
+    "name": "Cupcake Candle Thief Mouse",
+    "type": "cupcake_candle_thief"
+  },
+  {
+    "name": "Armored Archer Mouse",
+    "type": "rift_archer"
+  },
+  {
+    "name": "Dancing Assassin Mouse",
+    "type": "rift_assassin"
+  },
+  {
+    "name": "Master of the Chi Belt Mouse",
+    "type": "rift_belt_master"
+  },
+  {
+    "name": "Student of the Chi Belt Mouse",
+    "type": "rift_belt_student"
+  },
+  {
+    "name": "Master of the Chi Claw Mouse",
+    "type": "rift_claw_master"
+  },
+  {
+    "name": "Student of the Chi Claw Mouse",
+    "type": "rift_claw_student"
+  },
+  {
+    "name": "Grand Master of the Dojo Mouse",
+    "type": "rift_dojo_master"
+  },
+  {
+    "name": "Supreme Sensei",
+    "type": "rift_dojo_sensei"
+  },
+  {
+    "name": "Dumpling Delivery Mouse",
+    "type": "rift_dumpling_chef"
+  },
+  {
+    "name": "Master of the Chi Fang Mouse",
+    "type": "rift_fang_master"
+  },
+  {
+    "name": "Student of the Chi Fang Mouse",
+    "type": "rift_fang_student"
+  },
+  {
+    "name": "Ascended Elder Mouse",
+    "type": "rift_hapless"
+  },
+  {
+    "name": "Shaolin Kung Fu Mouse",
+    "type": "rift_kung_fu"
+  },
+  {
+    "name": "Wandering Monk Mouse",
+    "type": "rift_monk"
+  },
+  {
+    "name": "Shinobi Mouse",
+    "type": "rift_ninja"
+  },
+  {
+    "name": "Militant Samurai Mouse",
+    "type": "rift_samurai"
+  },
+  {
+    "name": "Enlightened Labourer Mouse",
+    "type": "rift_worker"
+  },
+  {
+    "name": "Wave Racer Mouse",
+    "type": "water_sports"
+  },
+  {
+    "name": "Creepy Marionette",
+    "type": "creepy_marionette"
+  },
+  {
+    "name": "Sandmouse",
+    "type": "hween_2016_boss"
+  },
+  {
+    "name": "Arcane Summoner Mouse",
+    "type": "arcane_summoner"
+  },
+  {
+    "name": "Meteorite Mover Mouse",
+    "type": "battering_ram_day"
+  },
+  {
+    "name": "Battering Ram Mouse",
+    "type": "battering_ram_night"
+  },
+  {
+    "name": "Cursed Taskmaster Mouse",
+    "type": "cursed_taskmaster"
+  },
+  {
+    "name": "Dawn Guardian Mouse",
+    "type": "dawn_guardian"
+  },
+  {
+    "name": "Mining Materials Manager Mouse",
+    "type": "good_supply_day"
+  },
+  {
+    "name": "Night Shift Materials Manager Mouse",
+    "type": "good_supply_night"
+  },
+  {
+    "name": "Hardworking Hauler Mouse",
+    "type": "hardworking_hauler"
+  },
+  {
+    "name": "Mischievous Meteorite Miner Mouse",
+    "type": "mischievous_moonstone_miner"
+  },
+  {
+    "name": "Mischievous Wereminer Mouse",
+    "type": "mischievous_wereminer"
+  },
+  {
+    "name": "Monster of the Meteor",
+    "type": "monster_of_the_meteor"
+  },
+  {
+    "name": "Meteorite Golem Mouse",
+    "type": "moonstone_golem"
+  },
+  {
+    "name": "Meteorite Miner Mouse",
+    "type": "moonstone_miner"
+  },
+  {
+    "name": "Meteorite Mystic Mouse",
+    "type": "moonstone_mystic"
+  },
+  {
+    "name": "Hypnotized Gunslinger Mouse",
+    "type": "moonstone_slinger"
+  },
+  {
+    "name": "Meteorite Snacker Mouse",
+    "type": "moonstone_snacker"
+  },
+  {
+    "name": "Night Watcher Mouse",
+    "type": "night_watcher"
+  },
+  {
+    "name": "Nightfire Mouse",
+    "type": "nightfire_wallbreak"
+  },
+  {
+    "name": "Nightmancer Mouse",
+    "type": "nightmancer"
+  },
+  {
+    "name": "Reveling Lycanthrope Mouse",
+    "type": "reveling_lycanthrope"
+  },
+  {
+    "name": "Wealthy Werewarrior Mouse",
+    "type": "wealthy_werewarrior"
+  },
+  {
+    "name": "Alpha Weremouse",
+    "type": "were_alpha"
+  },
+  {
+    "name": "Werehauler Mouse",
+    "type": "werehauler"
+  },
+  {
+    "name": "Wereminer Mouse",
+    "type": "wereminer"
+  },
+  {
+    "name": "Joy Mouse",
+    "type": "joy"
+  },
+  {
+    "name": "Great Winter Hunt Impostor",
+    "type": "winter_boss_2016"
+  },
+  {
+    "name": "Frightened Flying Fireworks Mouse",
+    "type": "new_year_flight"
+  },
+  {
+    "name": "Costumed Rooster Mouse",
+    "type": "costumed_rooster"
+  },
+  {
+    "name": "Sprinkly Sweet Cupcake Cook Mouse",
+    "type": "sprinkley_sweet"
+  },
+  {
+    "name": "Heart of the Meteor",
+    "type": "heart_of_the_meteor"
+  },
+  {
+    "name": "Barmy Gunner Mouse",
+    "type": "barmy_gunner"
+  },
+  {
+    "name": "Bilged Boatswain Mouse",
+    "type": "bilged_boatswain"
+  },
+  {
+    "name": "Cabin Boy Mouse",
+    "type": "cabin_boy"
+  },
+  {
+    "name": "Corrupt Commodore Mouse",
+    "type": "corrupt_commodore"
+  },
+  {
+    "name": "Dashing Buccaneer Mouse",
+    "type": "dashing_buccaneer"
+  },
+  {
+    "name": "Eggsquisite Entertainer Mouse",
+    "type": "eggsquisite_entertainer"
+  },
+  {
+    "name": "Tomb Exhumer Mouse",
+    "type": "rift_grave_digger"
+  },
+  {
+    "name": "Absolute Acolyte Mouse",
+    "type": "rift_acolyte"
+  },
+  {
+    "name": "Chronomaster Mouse",
+    "type": "rift_chrono"
+  },
+  {
+    "name": "Vigilant Ward Mouse",
+    "type": "rift_gargoyle"
+  },
+  {
+    "name": "Portal Paladin Mouse",
+    "type": "rift_gate_guardian"
+  },
+  {
+    "name": "Epoch Golem Mouse",
+    "type": "rift_golem"
+  },
+  {
+    "name": "Timeslither Pythoness Mouse",
+    "type": "rift_gorgon"
+  },
+  {
+    "name": "Record Keeper Mouse",
+    "type": "rift_keeper"
+  },
+  {
+    "name": "Record Keeper's Assistant Mouse",
+    "type": "rift_keepers_assistant"
+  },
+  {
+    "name": "Timeless Lich Mouse",
+    "type": "rift_lich"
+  },
+  {
+    "name": "Sentient Slime Mouse",
+    "type": "rift_ooze"
+  },
+  {
+    "name": "Chamber Cleaver Mouse",
+    "type": "rift_realm_ripper"
+  },
+  {
+    "name": "Harbinger of Death Mouse",
+    "type": "rift_reaper"
+  },
+  {
+    "name": "Portal Plunderer Mouse",
+    "type": "rift_scavenger"
+  },
+  {
+    "name": "Skeletal Champion Mouse",
+    "type": "rift_skeleton"
+  },
+  {
+    "name": "Timelost Thaumaturge Mouse",
+    "type": "rift_sorcerer"
+  },
+  {
+    "name": "Shackled Servant Mouse",
+    "type": "rift_spectre"
+  },
+  {
+    "name": "Clockwork Timespinner Mouse",
+    "type": "rift_spider"
+  },
+  {
+    "name": "Portal Pursuer Mouse",
+    "type": "rift_stalker"
+  },
+  {
+    "name": "Dread Knight Mouse",
+    "type": "rift_terror_knight"
+  },
+  {
+    "name": "Carrion Medium Mouse",
+    "type": "rift_wight"
+  },
+  {
+    "name": "Artillery Commander Mouse",
+    "type": "desert_artillery_commander"
+  },
+  {
+    "name": "Charming Chimer Mouse",
+    "type": "charming_chimer"
+  },
+  {
+    "name": "Cloud Collector Mouse",
+    "type": "cloud_collector"
+  },
+  {
+    "name": "Cycloness Mouse",
+    "type": "cycloness"
+  },
+  {
+    "name": "Dragoon Mouse",
+    "type": "drag_goon"
+  },
+  {
+    "name": "Fluttering Flutist Mouse",
+    "type": "fluttering_flutist"
+  },
+  {
+    "name": "Ful'Mina, The Mountain Queen",
+    "type": "ful_mina_mountain_queen"
+  },
+  {
+    "name": "Homeopathic Apothecary Mouse",
+    "type": "homeopathic_apothecary"
+  },
+  {
+    "name": "Monsoon Maker Mouse",
+    "type": "monsoon_maker"
+  },
+  {
+    "name": "Nightshade Flower Girl Mouse",
+    "type": "nightshade_flower_girl"
+  },
+  {
+    "name": "Nightshade Maiden Mouse",
+    "type": "nightshade_maiden"
+  },
+  {
+    "name": "Rain Collector Mouse",
+    "type": "rain_collector"
+  },
+  {
+    "name": "Rainwater Purifier Mouse",
+    "type": "rain_purifier"
+  },
+  {
+    "name": "Rain Wallower Mouse",
+    "type": "rain_wallower"
+  },
+  {
+    "name": "Rainmancer Mouse",
+    "type": "rainmancer"
+  },
+  {
+    "name": "Spore Salesman Mouse",
+    "type": "spore_salesman"
+  },
+  {
+    "name": "Rain Summoner Mouse",
+    "type": "storm_summoner"
+  },
+  {
+    "name": "Thundering Watcher Mouse",
+    "type": "thundering_watcher"
+  },
+  {
+    "name": "⚡Thunderlord⚡",
+    "type": "thunderlord"
+  },
+  {
+    "name": "Thunder Strike",
+    "type": "thunderstriker"
+  },
+  {
+    "name": "Violet Stormchild",
+    "type": "violet_thunderling"
+  },
+  {
+    "name": "Breeze Borrower Mouse",
+    "type": "wind_gatherer"
+  },
+  {
+    "name": "Windy Farmer Mouse",
+    "type": "wind_harvester"
+  },
+  {
+    "name": "Wind Warrior Mouse",
+    "type": "wind_warrior"
+  },
+  {
+    "name": "Wind Watcher Mouse",
+    "type": "wind_watcher"
+  },
+  {
+    "name": "Captain Cannonball",
+    "type": "hween_2017_boss"
+  },
+  {
+    "name": "Ghost Pirate Queen Mouse",
+    "type": "rift_ghost_pirate"
+  },
+  {
+    "name": "Scorned Pirate Mouse",
+    "type": "scorned_pirate"
+  },
+  {
+    "name": "Spectral Swashbuckler Mouse",
+    "type": "spectral_swashbuckler"
+  },
+  {
+    "name": "Craggy Ore Mouse",
+    "type": "craggy_ore"
+  },
+  {
+    "name": "Mountain Mouse",
+    "type": "mountain"
+  },
+  {
+    "name": "Slope Swimmer Mouse",
+    "type": "slope_swimmer"
+  },
+  {
+    "name": "Snow Golem Jockey Mouse",
+    "type": "golem_jockey"
+  },
+  {
+    "name": "Nice Knitting Mouse",
+    "type": "nice_knitting"
+  },
+  {
+    "name": "Snow Golem Architect Mouse",
+    "type": "snowman_architect"
+  },
+  {
+    "name": "Naughty Nougat Mouse",
+    "type": "winter_boss_2017"
+  },
+  {
+    "name": "Costumed Dog Mouse",
+    "type": "costumed_dog"
+  },
+  {
+    "name": "Lunar Red Candle Maker Mouse",
+    "type": "red_candle"
+  },
+  {
+    "name": "Reality Restitch Mouse",
+    "type": "reality_restitch"
+  },
+  {
+    "name": "Time Punk Mouse",
+    "type": "time_punk"
+  },
+  {
+    "name": "Time Tailor Mouse",
+    "type": "time_tailor"
+  },
+  {
+    "name": "Time Thief Mouse",
+    "type": "time_thief"
+  },
+  {
+    "name": "Spring Sprig Mouse",
+    "type": "spring_sprig"
+  },
+  {
+    "name": "Chip Chiseler Mouse",
+    "type": "chip_chiseler"
+  },
+  {
+    "name": "Croquet Crusher Mouse",
+    "type": "croquet_crusher"
+  },
+  {
+    "name": "Fiery Crusher Mouse",
+    "type": "fiery_crusher"
+  },
+  {
+    "name": "Grampa Golem Mouse",
+    "type": "grampa_golem"
+  },
+  {
+    "name": "Nachore Golem Mouse",
+    "type": "nachore_golem"
+  },
+  {
+    "name": "Nachous, The Molten",
+    "type": "nachous"
+  },
+  {
+    "name": "Ore Chipper Mouse",
+    "type": "ore_chipper"
+  },
+  {
+    "name": "Pump Raider Mouse",
+    "type": "pump_raider"
+  },
+  {
+    "name": "Queso Extractor Mouse",
+    "type": "queso_extractor"
+  },
+  {
+    "name": "Queen Quesada",
+    "type": "queso_river_boss"
+  },
+  {
+    "name": "Rubble Rouser Mouse",
+    "type": "rubble_rouser"
+  },
+  {
+    "name": "Rubble Rummager Mouse",
+    "type": "rubble_rummager"
+  },
+  {
+    "name": "Sleepy Merchant Mouse",
+    "type": "sleepy_merchant"
+  },
+  {
+    "name": "Old Spice Collector Mouse",
+    "type": "spice_collector"
+  },
+  {
+    "name": "Spice Farmer",
+    "type": "spice_farmer"
+  },
+  {
+    "name": "Spice Finder Mouse",
+    "type": "spice_finder"
+  },
+  {
+    "name": "Granny Spice Mouse",
+    "type": "spice_grower"
+  },
+  {
+    "name": "Spice Raider Mouse",
+    "type": "spice_raider"
+  },
+  {
+    "name": "Spice Reaper Mouse",
+    "type": "spice_reaper"
+  },
+  {
+    "name": "Spice Seer Mouse",
+    "type": "spice_seer"
+  },
+  {
+    "name": "Inferna, The Engulfed",
+    "type": "spice_sorcerer"
+  },
+  {
+    "name": "Spice Sovereign Mouse",
+    "type": "spice_sovereign"
+  },
+  {
+    "name": "Tiny Saboteur Mouse",
+    "type": "tiny_saboteur"
+  },
+  {
+    "name": "Tiny Toppler Mouse",
+    "type": "tiny_toppler"
+  },
+  {
+    "name": "Clumsy Chemist Mouse",
+    "type": "clumsy_chemist"
+  },
+  {
+    "name": "Coffin Zombie Mouse",
+    "type": "coffin_zombie"
+  },
+  {
+    "name": "Admiral Arrrgh",
+    "type": "hween_2018_boss"
+  },
+  {
+    "name": "Mutated Mole Mouse",
+    "type": "mutated_mole"
+  },
+  {
+    "name": "Sludge Scientist Mouse",
+    "type": "sludge_scientist"
+  },
+  {
+    "name": "Squeaker Bot Mouse",
+    "type": "squeaker_bot"
+  },
+  {
+    "name": "Glazy Mouse",
+    "type": "glazed"
+  },
+  {
+    "name": "Iceberg Sculptor Mouse",
+    "type": "winter_boss_2018"
+  },
+  {
+    "name": "Costumed Pig Mouse",
+    "type": "costumed_pig"
+  },
+  {
+    "name": "Cheesy Party Mouse",
+    "type": "cheesy_party"
+  },
+  {
+    "name": "Factory Technician Mouse",
+    "type": "factory_technician"
+  },
+  {
+    "name": "Vincent, The Magnificent",
+    "type": "vincent_the_magnificent"
+  },
+  {
+    "name": "Fuzzy Drake Mouse",
+    "type": "geyser_cork_dropper_bland"
+  },
+  {
+    "name": "Rambunctious Rain Rumbler Mouse",
+    "type": "geyser_cork_dropper_flaming"
+  },
+  {
+    "name": "Horned Cork Hoarder Mouse",
+    "type": "geyser_cork_dropper_hot"
+  },
+  {
+    "name": "Burly Bruiser Mouse",
+    "type": "geyser_cork_dropper_medium"
+  },
+  {
+    "name": "Cork Defender Mouse",
+    "type": "geyser_cork_dropper_mild"
+  },
+  {
+    "name": "Corky, the Collector Mouse",
+    "type": "geyser_cork_dropper_rare"
+  },
+  {
+    "name": "Corkataur Mouse",
+    "type": "geyser_cork_dropper_wildfire"
+  },
+  {
+    "name": "Stormsurge, the Vile Tempest",
+    "type": "geyser_eruption_dragon_epic"
+  },
+  {
+    "name": "Bruticus, the Blazing",
+    "type": "geyser_eruption_dragon_flaming"
+  },
+  {
+    "name": "Ignatia Mouse",
+    "type": "geyser_eruption_dragon_hot"
+  },
+  {
+    "name": "Cinderstorm Mouse",
+    "type": "geyser_eruption_dragon_large"
+  },
+  {
+    "name": "Bearded Elder Mouse",
+    "type": "geyser_eruption_dragon_medium"
+  },
+  {
+    "name": "Smoldersnap Mouse",
+    "type": "geyser_eruption_dragon_medium_spice"
+  },
+  {
+    "name": "Mild Spicekin Mouse",
+    "type": "geyser_eruption_dragon_mild"
+  },
+  {
+    "name": "Sizzle Pup Mouse",
+    "type": "geyser_eruption_dragon_small"
+  },
+  {
+    "name": "Kalor'ignis of the Geyser",
+    "type": "geyser_eruption_dragon_wildfire"
+  },
+  {
+    "name": "Pyrehyde Mouse",
+    "type": "geyser_pressure_builder_flaming"
+  },
+  {
+    "name": "Vaporior Mouse",
+    "type": "geyser_pressure_builder_hot"
+  },
+  {
+    "name": "Warming Wyvern Mouse",
+    "type": "geyser_pressure_builder_medium"
+  },
+  {
+    "name": "Steam Sailor Mouse",
+    "type": "geyser_pressure_builder_mild"
+  },
+  {
+    "name": "Emberstone Scaled Mouse",
+    "type": "geyser_pressure_builder_wildfire"
+  },
+  {
+    "name": "One-Mouse Band",
+    "type": "rift_gaunt_bard"
+  },
+  {
+    "name": "Champion Danseuse Mouse",
+    "type": "rift_gaunt_bard_champ"
+  },
+  {
+    "name": "Withered Remains Mouse",
+    "type": "rift_gaunt_dust"
+  },
+  {
+    "name": "Arch Champion Necromancer Mouse",
+    "type": "rift_gaunt_dust_champ"
+  },
+  {
+    "name": "Shade of the Eclipse Mouse",
+    "type": "rift_gaunt_eclipse"
+  },
+  {
+    "name": "Timid Explorer Mouse",
+    "type": "rift_gaunt_elixir_one"
+  },
+  {
+    "name": "Elixir Maker Mouse",
+    "type": "rift_gaunt_elixir_two"
+  },
+  {
+    "name": "The Total Eclipse",
+    "type": "rift_gaunt_final_eclipse"
+  },
+  {
+    "name": "Unwavering Adventurer Mouse",
+    "type": "rift_gaunt_generic_one"
+  },
+  {
+    "name": "Lumi-lancer Mouse",
+    "type": "rift_gaunt_generic_three"
+  },
+  {
+    "name": "Berzerker Mouse",
+    "type": "rift_gaunt_generic_two"
+  },
+  {
+    "name": "Mouse of Elements",
+    "type": "rift_gaunt_magic"
+  },
+  {
+    "name": "Magic Champion Mouse",
+    "type": "rift_gaunt_magic_champ"
+  },
+  {
+    "name": "Martial Mouse",
+    "type": "rift_gaunt_melee"
+  },
+  {
+    "name": "Praetorian Champion Mouse",
+    "type": "rift_gaunt_melee_champ"
+  },
+  {
+    "name": "Bulwark of Ascent Mouse",
+    "type": "rift_gaunt_monster"
+  },
+  {
+    "name": "Cursed Crusader Mouse",
+    "type": "rift_gaunt_noble"
+  },
+  {
+    "name": "Fallen Champion Footman Mouse",
+    "type": "rift_gaunt_noble_champ"
+  },
+  {
+    "name": "Soldier of the Shade Mouse",
+    "type": "rift_gaunt_prestige_high"
+  },
+  {
+    "name": "Possessed Armaments Mouse",
+    "type": "rift_gaunt_prestige_low"
+  },
+  {
+    "name": "Prestigious Adventurer Mouse",
+    "type": "rift_gaunt_prestige_med"
+  },
+  {
+    "name": "Puppetto Mouse",
+    "type": "rift_gaunt_puppet"
+  },
+  {
+    "name": "Puppet Champion Mouse",
+    "type": "rift_gaunt_puppet_champ"
+  },
+  {
+    "name": "Terrified Adventurer Mouse",
+    "type": "rift_gaunt_rare"
+  },
+  {
+    "name": "Cutpurse Mouse",
+    "type": "rift_gaunt_thief"
+  },
+  {
+    "name": "Champion Thief Mouse",
+    "type": "rift_gaunt_thief_champ"
+  },
+  {
+    "name": "Shorts-All-Year Mouse",
+    "type": "winter_boss_2019"
+  },
+  {
+    "name": "Costumed Rat Mouse",
+    "type": "costumed_rat"
+  },
+  {
+    "name": "Fete Fromager Mouse",
+    "type": "fromager_mouse"
+  },
+  {
+    "name": "Admiral Cloudbeard",
+    "type": "admiral_cloudbeard"
+  },
+  {
+    "name": "Agent M",
+    "type": "agent_m"
+  },
+  {
+    "name": "Paragon of Arcane",
+    "type": "arcane_paragon"
+  },
+  {
+    "name": "Astrological Astronomer Mouse",
+    "type": "astrological_astronomer"
+  },
+  {
+    "name": "Captain Cloudkicker",
+    "type": "captain_cloudkicker"
+  },
+  {
+    "name": "Cloud Miner Mouse",
+    "type": "cloud_miner"
+  },
+  {
+    "name": "Cumulost Mouse",
+    "type": "cumulost"
+  },
+  {
+    "name": "Cute Cloud Conjurer Mouse",
+    "type": "cute_cloud_conjurer"
+  },
+  {
+    "name": "Cutthroat Cannoneer Mouse",
+    "type": "cutthroat_cannoneer"
+  },
+  {
+    "name": "Cutthroat Pirate Mouse",
+    "type": "cutthroat_pirate"
+  },
+  {
+    "name": "Daydreamer Mouse",
+    "type": "daydreamer"
+  },
+  {
+    "name": "Devious Gentleman Mouse",
+    "type": "devious_gentleman"
+  },
+  {
+    "name": "Paragon of Dragons",
+    "type": "draconic_paragon"
+  },
+  {
+    "name": "Dragonbreather Mouse",
+    "type": "dragon_breather"
+  },
+  {
+    "name": "Lancer Guard",
+    "type": "dragon_lancer"
+  },
+  {
+    "name": "Warden of Fog",
+    "type": "fog_warden"
+  },
+  {
+    "name": "Paragon of Forgotten",
+    "type": "forgotten_paragon"
+  },
+  {
+    "name": "Warden of Frost",
+    "type": "frost_warden"
+  },
+  {
+    "name": "Ground Gavaleer Mouse",
+    "type": "ground_gavaleer"
+  },
+  {
+    "name": "Gyrologer Mouse",
+    "type": "gyrologer"
+  },
+  {
+    "name": "Herc",
+    "type": "heracles"
+  },
+  {
+    "name": "Paragon of Water",
+    "type": "hydro_paragon"
+  },
+  {
+    "name": "Kite Flyer Mouse",
+    "type": "kite_flyer"
+  },
+  {
+    "name": "Launchpad Labourer Mouse",
+    "type": "launchpad_labourer"
+  },
+  {
+    "name": "Paragon of the Lawless",
+    "type": "law_paragon"
+  },
+  {
+    "name": "Lawbender Mouse",
+    "type": "lawbender"
+  },
+  {
+    "name": "Mairitime Pirate Mouse",
+    "type": "mairitime_pirate"
+  },
+  {
+    "name": "Mist Maker Mouse",
+    "type": "mist_maker"
+  },
+  {
+    "name": "Nimbomancer Mouse",
+    "type": "nimbomancer"
+  },
+  {
+    "name": "Overcaster Mouse",
+    "type": "overcaster"
+  },
+  {
+    "name": "Paragon of Strength",
+    "type": "physical_paragon"
+  },
+  {
+    "name": "Warden of Rain",
+    "type": "rain_warden"
+  },
+  {
+    "name": "Regal Spearman Mouse",
+    "type": "regal_spearman"
+  },
+  {
+    "name": "Richard the Rich",
+    "type": "richard_rich"
+  },
+  {
+    "name": "Scarlet Revenger Mouse",
+    "type": "scarlet_revenger"
+  },
+  {
+    "name": "Seasoned Islandographer Mouse",
+    "type": "seasoned_islandographer"
+  },
+  {
+    "name": "Paragon of Shadow",
+    "type": "shadow_paragon"
+  },
+  {
+    "name": "Shadow Sage Mouse",
+    "type": "shadow_sage"
+  },
+  {
+    "name": "Sky Dancer Mouse",
+    "type": "sky_dancer"
+  },
+  {
+    "name": "Sky Glass Glazier",
+    "type": "sky_glass_glazier"
+  },
+  {
+    "name": "Sky Glass Sorcerer Mouse",
+    "type": "sky_glass_sorcerer"
+  },
+  {
+    "name": "Sky Greaser Mouse",
+    "type": "sky_greaser"
+  },
+  {
+    "name": "Sky Highborne Mouse",
+    "type": "sky_highborne"
+  },
+  {
+    "name": "Sky Squire Mouse",
+    "type": "sky_squire"
+  },
+  {
+    "name": "Sky Surfer",
+    "type": "sky_surfer"
+  },
+  {
+    "name": "Sky Swordsman Mouse",
+    "type": "sky_swordsman"
+  },
+  {
+    "name": "Skydiver Mouse",
+    "type": "skydiver"
+  },
+  {
+    "name": "Spheric Diviner",
+    "type": "spheric_diviner"
+  },
+  {
+    "name": "Spry Sky Explorer Mouse",
+    "type": "spry_sky_explorer"
+  },
+  {
+    "name": "Spry Sky Seer Mouse",
+    "type": "spry_sky_seer"
+  },
+  {
+    "name": "Stack of Thieves",
+    "type": "stack_of_thieves"
+  },
+  {
+    "name": "Stratocaster Mouse",
+    "type": "stratocaster"
+  },
+  {
+    "name": "Suave Pirate Mouse",
+    "type": "suave_pirate"
+  },
+  {
+    "name": "Paragon of Tactics",
+    "type": "tactical_paragon"
+  },
+  {
+    "name": "Tiny Dragonfly Mouse",
+    "type": "tiny_dragonfly"
+  },
+  {
+    "name": "Warden of Wind",
+    "type": "wind_warden"
+  },
+  {
+    "name": "Worried Wayfinder Mouse",
+    "type": "worried_wayfinder"
+  },
+  {
+    "name": "Great Giftnapper Mouse",
+    "type": "winter_boss_2020"
+  },
+  {
+    "name": "Costumed Ox Mouse",
+    "type": "costumed_ox"
+  },
+  {
+    "name": "Space Party-Time Plumber Mouse",
+    "type": "time_plumber"
+  },
+  {
+    "name": "Sky Glider Mouse",
+    "type": "empyrean_arcane_mouse"
+  },
+  {
+    "name": "Consumed Charm Tinkerer Mouse",
+    "type": "empyrean_charm_hoarder"
+  },
+  {
+    "name": "Empyrean Geologist Mouse",
+    "type": "empyrean_cloudstone_miner"
+  },
+  {
+    "name": "Empyrean Javelineer Mouse",
+    "type": "empyrean_draconic_mouse"
+  },
+  {
+    "name": "Forgotten Elder Mouse",
+    "type": "empyrean_forgotten_mouse"
+  },
+  {
+    "name": "Cloud Strider Mouse",
+    "type": "empyrean_hydro_mouse"
+  },
+  {
+    "name": "Aristo-Cat Burglar Mouse",
+    "type": "empyrean_law_mouse"
+  },
+  {
+    "name": "Fortuitous Fool Mouse",
+    "type": "empyrean_loot_cache_guardian"
+  },
+  {
+    "name": "Empyrean Appraiser Mouse",
+    "type": "empyrean_oreglass_miner"
+  },
+  {
+    "name": "Glamorous Gladiator Mouse",
+    "type": "empyrean_physical_mouse"
+  },
+  {
+    "name": "Peggy the Plunderer",
+    "type": "empyrean_pirate"
+  },
+  {
+    "name": "Zealous Academic Mouse",
+    "type": "empyrean_shadow_mouse"
+  },
+  {
+    "name": "Rocketeer Mouse",
+    "type": "empyrean_tactical_mouse"
+  },
+  {
+    "name": "Empyrean Empress",
+    "type": "empyrean_treasure_guardian"
+  },
+  {
+    "name": "Baba Gaga",
+    "type": "hween_2021_boss"
+  },
+  {
+    "name": "Ol' King Coal",
+    "type": "winter_boss_2021"
+  },
+  {
+    "name": "Angry Aphid Mouse",
+    "type": "angry_aphid"
+  },
+  {
+    "name": "Architeuthulhu of the Abyss",
+    "type": "architeuthulhu_of_the_abyss"
+  },
+  {
+    "name": "Beachcomber Mouse",
+    "type": "beachcomber"
+  },
+  {
+    "name": "Bitter Grammarian",
+    "type": "bitter_grammarian"
+  },
+  {
+    "name": "Brothers Grimmaus",
+    "type": "brothers_grimmaus"
+  },
+  {
+    "name": "Careless Catfish Mouse",
+    "type": "careless_catfish"
+  },
+  {
+    "name": "Covetous Coastguard Mouse",
+    "type": "covetous_coastguard"
+  },
+  {
+    "name": "Crazed Cultivator Mouse",
+    "type": "crazed_cultivator"
+  },
+  {
+    "name": "Fibbocchio",
+    "type": "fibbocchio"
+  },
+  {
+    "name": "Flamboyant Flautist",
+    "type": "flamboyant_flautist"
+  },
+  {
+    "name": "Greenbeard",
+    "type": "greenbeard"
+  },
+  {
+    "name": "Grit Grifter Mouse",
+    "type": "grit_grifter"
+  },
+  {
+    "name": "Hans Cheesetian Squeakersen",
+    "type": "hans_cheesetian_squeakersen"
+  },
+  {
+    "name": "Humphrey Dumphrey",
+    "type": "humphrey_dumphrey"
+  },
+  {
+    "name": "Ice Regent",
+    "type": "ice_regent"
+  },
+  {
+    "name": "Land Loafer Mouse",
+    "type": "land_loafer"
+  },
+  {
+    "name": "Little Bo Squeak",
+    "type": "little_bo_squeak"
+  },
+  {
+    "name": "Little Miss Fluffet",
+    "type": "little_miss_fluffet"
+  },
+  {
+    "name": "Loathsome Locust Mouse",
+    "type": "loathsome_locust"
+  },
+  {
+    "name": "Madame d'Ormouse",
+    "type": "madame_dormouse"
+  },
+  {
+    "name": "Matriarch Gander Mouse",
+    "type": "matriarch_gander"
+  },
+  {
+    "name": "Melodramatic Minnow Mouse",
+    "type": "melodramatic_minnow"
+  },
+  {
+    "name": "Mighty Mite Mouse",
+    "type": "mighty_mite"
+  },
+  {
+    "name": "Mythweaver",
+    "type": "mythweaver"
+  },
+  {
+    "name": "Nefarious Nautilus Mouse",
+    "type": "nefarious_nautilus"
+  },
+  {
+    "name": "Pinkielina",
+    "type": "pinkielina"
+  },
+  {
+    "name": "Pompous Perch Mouse",
+    "type": "pompous_perch"
+  },
+  {
+    "name": "Princess and the Olive",
+    "type": "princess_and_the_olive"
+  },
+  {
+    "name": "Root Rummager Mouse",
+    "type": "root_rummager"
+  },
+  {
+    "name": "Sand Sifter Mouse",
+    "type": "sand_sifter"
+  },
+  {
+    "name": "Sinister Squid Mouse",
+    "type": "sinister_squid"
+  },
+  {
+    "name": "Tackle Tracker Mouse",
+    "type": "tackle_tracker"
+  },
+  {
+    "name": "Vicious Vampire Squid Mouse",
+    "type": "vicious_vampire_squid"
+  },
+  {
+    "name": "Wily Weevil Mouse",
+    "type": "wily_weevil"
+  },
+  {
+    "name": "Monstrous Midge Mouse",
+    "type": "monstrous_midge"
+  },
+  {
+    "name": "Frost King",
+    "type": "winter_boss_2022"
+  },
+  {
+    "name": "Baroness Von Bean",
+    "type": "baroness_von_bean"
+  },
+  {
+    "name": "Baroque Dancer Mouse",
+    "type": "baroque_dancer"
+  },
+  {
+    "name": "Budrich Thornborn",
+    "type": "budrich_thornborn"
+  },
+  {
+    "name": "Cagey Countess Mouse",
+    "type": "cagey_countess"
+  },
+  {
+    "name": "Cell Sweeper Mouse",
+    "type": "cell_sweeper"
+  },
+  {
+    "name": "Chafed Cellist Mouse",
+    "type": "chafed_cellist"
+  },
+  {
+    "name": "Clumsy Cupbearer Mouse",
+    "type": "clumsy_cupbearer"
+  },
+  {
+    "name": "Dastardly Duchess Mouse",
+    "type": "dastardly_duchess"
+  },
+  {
+    "name": "Diminutive Detainee Mouse",
+    "type": "diminutive_detainee"
+  },
+  {
+    "name": "Dungeon Master",
+    "type": "dungeon_master"
+  },
+  {
+    "name": "Gate Keeper Mouse",
+    "type": "gate_keeper"
+  },
+  {
+    "name": "Jovial Jailor Mouse",
+    "type": "jovial_jailor"
+  },
+  {
+    "name": "Key Master Mouse",
+    "type": "key_master"
+  },
+  {
+    "name": "Leafton Beanwell",
+    "type": "leafton_beanwell"
+  },
+  {
+    "name": "Lethargic Guard Mouse",
+    "type": "lethargic_guard"
+  },
+  {
+    "name": "Malevolent Maestro",
+    "type": "malevolent_maestro"
+  },
+  {
+    "name": "Malicious Marquis Mouse",
+    "type": "malicious_marquis"
+  },
+  {
+    "name": "Mythical Giant King",
+    "type": "mythical_giant_king"
+  },
+  {
+    "name": "Obstinate Oboist Mouse",
+    "type": "obstinate_oboist"
+  },
+  {
+    "name": "Peaceful Prisoner Mouse",
+    "type": "peaceful_prisoner"
+  },
+  {
+    "name": "Peevish Piccoloist Mouse",
+    "type": "peevish_piccoloist"
+  },
+  {
+    "name": "Pernicious Prince Mouse",
+    "type": "pernicious_prince"
+  },
+  {
+    "name": "Plotting Page Mouse",
+    "type": "plotting_page"
+  },
+  {
+    "name": "Sassy Salsa Dancer Mouse",
+    "type": "sassy_salsa_dancer"
+  },
+  {
+    "name": "Scheming Squire Mouse",
+    "type": "scheming_squire"
+  },
+  {
+    "name": "Smug Smuggler Mouse",
+    "type": "smug_smuggler"
+  },
+  {
+    "name": "Sultry Saxophonist Mouse",
+    "type": "sultry_saxophonist"
+  },
+  {
+    "name": "Treacherous Tubaist Mouse",
+    "type": "treacherous_tubaist"
+  },
+  {
+    "name": "Vindictive Viscount Mouse",
+    "type": "vindictive_viscount"
+  },
+  {
+    "name": "Vinneus Stalkhome",
+    "type": "vinneus_stalkhome"
+  },
+  {
+    "name": "Violent Violinist Mouse",
+    "type": "violent_violinist"
+  },
+  {
+    "name": "Whimsical Waltzer Mouse",
+    "type": "whimsical_waltzer"
+  },
+  {
+    "name": "Wrathful Warden Mouse",
+    "type": "wrathful_warden"
+  },
+  {
+    "name": "Herbaceous Bravestalk",
+    "type": "herbaceous_bravestalk"
+  }
+]

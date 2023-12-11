@@ -1,4 +1,4 @@
-import { mapData } from '../../utils';
+import { doRequest, getCurrentLocation, mapData } from '@/utils';
 
 const areaHighlightingVrift = () => {
   if ('rift_valour' !== getCurrentLocation()) {
@@ -115,7 +115,7 @@ const getProfilePic = async () => {
 };
 
 const addProfilePicToCurrentFloor = async () => {
-  const existing = document.getElementById('mh-mapper-current-floor-profile-pic');
+  const existing = document.querySelector('#mh-mapper-current-floor-profile-pic');
   if (existing) {
     return;
   }
@@ -128,10 +128,10 @@ const addProfilePicToCurrentFloor = async () => {
   .mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header::after {
     background-image: url(${profPic});
   }`;
-  document.body.appendChild(styleElement);
+  document.body.append(styleElement);
 };
 
-const doHighlighting = () => {
+export default () => {
   const data = mapData();
   if (! data) {
     return;
@@ -163,5 +163,3 @@ const doHighlighting = () => {
     addProfilePicToCurrentFloor();
   }
 };
-
-export default doHighlighting;

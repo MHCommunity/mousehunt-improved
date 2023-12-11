@@ -1,6 +1,6 @@
-import environments from '../../data/environments.json';
+import environments from '@data/environments.json';
 
-import { addToGlobal, getArForMouse, mapper } from '../utils';
+import { getArForMouse, makeElement, mapper } from '@/utils';
 
 const getMapData = (mapId = false, strict = false) => {
   if (mapId !== false) {
@@ -27,20 +27,6 @@ const setMapData = (mapId, mapData) => {
   sessionStorage.setItem('mh-improved-map-cache-last-map', JSON.stringify(mapData));
 };
 
-const getLastMap = () => {
-  const lastMap = getMapData();
-  if (lastMap) {
-    interceptMapRequest(lastMap);
-  } else {
-    addToGlobal({
-      mapData: false,
-      mapModel: false,
-      stage: false,
-      location: false,
-    });
-  }
-};
-
 const addBlockClasses = () => {
   const rightBlocks = document.querySelectorAll('.treasureMapView-rightBlock > div');
   const leftBlocks = document.querySelectorAll('.treasureMapView-leftBlock > div');
@@ -53,7 +39,7 @@ const addBlockClasses = () => {
         .trim()
         .toLowerCase()
         .replaceAll(' ', '-')
-        .replace(/[^a-z-]/g, '')
+        .replaceAll(/[^a-z-]/g, '')
         .replace('--', '-')
         .replace('goalssearch', 'goals');
       block.classList.add(`mh-ui-${blockType}-title`);
@@ -85,14 +71,10 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     mouse.name = nameEl ? nameEl.innerText : mouse.unique_id;
   }
 
-  if ('item' === type) {
-    mhctLink.href = `https://www.mhct.win/loot.php?item=${mouse.unique_id}`;
-  } else {
-    mhctLink.href = `https://www.mhct.win/attractions.php?mouse_name=${mouse.name}`;
-  }
+  mhctLink.href = 'item' === type ? `https://www.mhct.win/loot.php?item=${mouse.unique_id}` : `https://www.mhct.win/attractions.php?mouse_name=${mouse.name}`;
 
-  header.appendChild(mhctLink);
-  mhctDiv.appendChild(header);
+  header.append(mhctLink);
+  mhctDiv.append(header);
 
   if (! mhctjson.slice) {
     return;
@@ -117,11 +99,11 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
       mhctRow.classList.add('mhct-row-no-env');
     }
 
-    mhctRow.appendChild(location);
+    mhctRow.append(location);
 
     makeElement('div', 'mhct-bait', mhct.cheese, mhctRow);
 
-    const mhctRate = parseInt('item' === type ? mhct.drop_pct : mhct.rate / 100, 10).toFixed(1);
+    const mhctRate = Number.parseInt('item' === type ? mhct.drop_pct : mhct.rate / 100, 10).toFixed(1);
     makeElement('div', 'mhct-rate', `${mhctRate}%`, mhctRow);
 
     mhctRow.addEventListener('click', () => {
@@ -139,23 +121,22 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
       showTravelConfirmation(travelEnvironment, mapModel());
     });
 
-    mhctDiv.appendChild(mhctRow);
+    mhctDiv.append(mhctRow);
   });
 
   // if the rows were empty, then add a message
   if (0 === mhctjson.length) {
     const mhctRow = makeElement('div', 'mhct-row');
     makeElement('div', 'mhct-no-data', 'No data available', mhctRow);
-    mhctDiv.appendChild(mhctRow);
+    mhctDiv.append(mhctRow);
   }
 
-  appendTo.appendChild(mhctDiv);
+  appendTo.append(mhctDiv);
 };
 
 export {
   addBlockClasses,
   getMapData,
   setMapData,
-  getLastMap,
   addMHCTData
 };

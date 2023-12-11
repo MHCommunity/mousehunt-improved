@@ -1,12 +1,14 @@
-import addStyles from './styles';
-import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
-import { showHuntersTab } from './modules/tab-hunters';
-import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
-import { addBlockClasses, getMapData, setMapData } from './map-utils';
-import { addToGlobal } from '../utils';
+import { addToGlobal, makeElement, onAjaxRequest } from '@/utils';
 
-import environments from '../../data/environments.json';
-import relicHunterHints from '../../data/relic-hunter-hints.json';
+import { addBlockClasses, getMapData, setMapData } from './map-utils';
+import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
+import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
+import { showHuntersTab } from './modules/tab-hunters';
+
+import environments from '@data/environments.json';
+import relicHunterHints from '@data/relic-hunter-hints.json';
+
+import addMapStyles from './styles';
 
 const interceptMapRequest = (mapId) => {
   // If we don't have data, we're done.
@@ -87,10 +89,10 @@ const intercept = () => {
   const parentShowMap = hg.controllers.TreasureMapController.showMap;
   hg.controllers.TreasureMapController.showMap = (id = false) => {
     parentShowMap(id);
-    const intercepted = interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
+    const intercepted = interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
     setTimeout(() => {
       if (! intercepted) {
-        interceptMapRequest(id ? id : user?.quests?.QuestRelicHunter?.default_map_id);
+        interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
       }
     }, 1000);
   };
@@ -99,7 +101,7 @@ const intercept = () => {
     if (data.treasure_map && data.treasure_map.map_id) {
       setMapData(data.treasure_map.map_id, data.treasure_map);
     }
-  }, 'managers/ajax/users/treasuremap.php', true); // eslint-disable-line no-undef
+  }, 'managers/ajax/users/treasuremap.php', true);
 };
 
 const clearStickyMouse = () => {
@@ -165,7 +167,7 @@ const updateRelicHunterHint = () => {
     hg.utils.User.travel(environment.id);
   });
 
-  hintWrapper.appendChild(travelButton);
+  hintWrapper.append(travelButton);
 
   return true;
 };
@@ -186,8 +188,11 @@ const relicHunterUpdate = () => {
   };
 };
 
-export default () => {
-  addStyles();
+/**
+ * Initialize the module.
+ */
+const init = () => {
+  addMapStyles();
 
   // Fire the different tab clicks.
   eventRegistry.addEventListener('map_sorted_tab_click', showSortedTab);
@@ -205,4 +210,13 @@ export default () => {
   intercept();
 
   relicHunterUpdate();
+};
+
+export default {
+  id: 'better-maps',
+  name: 'Better Maps',
+  type: 'better',
+  default: true,
+  description: 'Adds a number of features to maps, including showing attracting rates, a sorted tab that categorizes a variety of maps, and showing more infomation on the Hunters tab.',
+  load: init,
 };

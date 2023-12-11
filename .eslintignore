@@ -1,5 +1,11 @@
 /*
 !/src
 !/test
-/src/modules/external
-!README.md
+!/scripts
+!*.md
+!package.json
+
+/src/userscript-header.js
+
+/src/modules/mhct-get-stage.js
+/src/modules/location-hud/rift-valour/simulator.js

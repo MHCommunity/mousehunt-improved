@@ -18,7 +18,7 @@
   background: none;
 }
 
-.sendMapInvite .userInteractionButtonsView-button-buttonOptionContainer:hover .userInteractionButtonsView-button-buttonOption:hover .userInteractionButtonsView-button-buttonOption-image,
+.sendMapInvite .userInteractionButtonsView-button-buttonOptionContainer:hover .userInteractionButtonsView-button-buttonOption:hover .userInteractionButtonsView-button-buttonOption-image, /* stylelint-disable-line prettier/prettier */
 .sendMapInvite .userInteractionButtonsView-button-buttonOptionContainer:hover .userInteractionButtonsView-button-buttonOption:hover .userInteractionButtonsView-button-buttonOption-name {
   background-color: #eaf6ea;
 }
@@ -75,7 +75,8 @@
   width: 180px;
 }
 
-.friendsPage-friendRow-stat.points, .friendsPage-friendRow-stat.gold {
+.friendsPage-friendRow-stat.points,
+.friendsPage-friendRow-stat.gold {
   width: 16%;
 }
 

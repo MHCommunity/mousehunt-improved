@@ -8,6 +8,10 @@
   justify-content: flex-start;
 }
 
+.campPage-trap-armedItem.bait.active {
+  top: 338px;
+}
+
 .campPage-trap-baitDetails {
   color: transparent !important;
   text-shadow: none;
@@ -16,13 +20,17 @@
 .campPage-trap-baitName,
 .campPage-trap-baitQuantity {
   color: #926944;
-  text-shadow: 0 0 1px #ae9b6d, 1px 1px #fff;
+  text-shadow:
+    0 0 1px #ae9b6d,
+    1px 1px #fff;
 }
 
 .mh-dark-mode .campPage-trap-baitName,
 .mh-dark-mode .campPage-trap-baitQuantity {
   color: #ffe6d0;
-  text-shadow: 0 0 1px #ae9b6d, 1px 1px #000;
+  text-shadow:
+    0 0 1px #ae9b6d,
+    1px 1px #000;
 }
 
 .campPage-trap-baitQuantity {
@@ -44,6 +52,8 @@
 }
 
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image {
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: 100%;
 }
 
@@ -83,7 +93,6 @@
   border-bottom: 1px solid #ceb7a6;
   border-radius: 0;
 }
-
 
 .campPage-trap {
   border: 1px solid #9d917f;
@@ -307,4 +316,69 @@ a.campPage-trap-itemBrowser-item-disarmButton {
 
 .campPage-trap-trapStat.cheese_effect .value span {
   font-size: 12px;
+}
+
+/* hide the "armed" text */
+.campPage-trap-itemBrowser-armed-item-image-frame {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+/* don't show the quantity if an item isn't armed */
+.campPage-trap-armedItem.empty .quantity {
+  display: none;
+}
+
+/* make the "no charm armed" text look nicer */
+.empty .campPage-trap-armedItem-empty {
+  top: 11px;
+  right: 2px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  font-size: 12px;
+  color: #671d1d;
+  background: #e3d4d1;
+  border: 1px solid #cdb0b0;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.campPage-trap-itemBrowser-armed-item.empty.clear-block {
+  display: flex;
+  align-items: center;
+  background-color: #e3d4d1;
+}
+
+.campPage-trap-itemBrowser-armed-item.empty.clear-block .campPage-trap-itemBrowser-armed-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.campPage-trap-itemBrowser-armed-item.empty.clear-block .campPage-trap-itemBrowser-armed-item-content .campPage-trap-itemBrowser-item-name {
+  font-size: 18px;
+  font-variant: none;
+  color: #671d1d;
+  background: #e3d4d1;
+}
+
+.campPage-trap-itemBrowser-item-disarmButton {
+  width: 100px;
+  color: #000;
+  background-color: #ffbfbf;
+  box-shadow:
+    0 -20px 5px #ffbfbf inset,
+    1px 1px 1px #671d1d;
+}
+
+a.campPage-trap-itemBrowser-item-disarmButton:hover {
+  box-shadow:
+    0 -20px 5px #cc8b8b inset,
+    1px 1px 1px #671d1d;
 }

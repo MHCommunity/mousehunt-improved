@@ -1,0 +1,193 @@
+.dailydraw {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  place-content: space-evenly center;
+  place-items: stretch stretch;
+  margin: 0 auto;
+}
+
+.drawPage-ballot {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  float: none;
+  margin: 0;
+}
+
+.drawPage-ballot .entries {
+  background-color: #ffe8aa;
+  border-radius: 10px;
+}
+
+.ballotEntry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  float: none;
+  padding: 0;
+  margin: 0;
+  background-color: #ffe8aa;
+}
+
+.dailydraw div[style="clear: both; padding-top: 10px;"],
+.dailydraw div[style="clear: both; padding-top: 20px;"] {
+  display: none;
+}
+
+.ballotEntry .prizeHeader {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.dailydraw h2,
+.ballotEntry .prizeHeader h3 {
+  width: auto;
+  padding: 10px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  background-color: transparent;
+}
+
+.recentWinners,
+.socialBallots,
+.drawPage-ballot,
+.ballotEntry {
+  border: 1px solid #fc6;
+
+  /* max-width: 374px; */
+
+  /* width: auto; */
+}
+
+.drawPage-ballot img {
+  width: 150px;
+}
+
+.recentWinners .draw {
+  display: flex;
+  float: none;
+  width: auto;
+  padding: 10px;
+}
+
+.recentWinners .draw img {
+  width: 60px;
+}
+
+.prizeContent {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.ballotEntry .prizeContent .prizeDesc {
+  float: none;
+  line-height: 20px;
+}
+
+.ballotEntry .entryForm span,
+.ballotEntry .entryForm br {
+  display: none;
+}
+
+form#ballotPurchaseForm {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: a;
+}
+
+.ballotEntry .entryForm .confirmTotal {
+  margin: 10px;
+}
+
+div#ballotPurchase input {
+  padding: 2px 15px;
+  margin-left: 10px;
+  color: #000;
+  text-shadow: 0 0 1px #fff;
+  background-color: #f4e830;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow:
+    0 -5px 8px -2px #ffae00 inset,
+    1px 1px 1px #eee;
+}
+
+div#ballotConfirm input {
+  height: 25px;
+  margin-left: 10px !important;
+}
+
+div#ballotConfirm {
+  position: relative;
+}
+
+div#ballotConfirm a {
+  position: absolute;
+  top: 5px;
+  right: -25px;
+}
+
+div#ballotPurchase,
+div#ballotConfirm {
+  width: 110px;
+  height: 21px;
+}
+
+.socialBallots p {
+  padding: 0 10px;
+  line-height: 16px;
+}
+
+.recentWinners .draw:last-child {
+  border-bottom: none;
+}
+
+.PageDraw .flexibleDialogWarmBrown.shopDescription {
+  height: 25px;
+  visibility: hidden;
+}
+
+.flexibleDialogWarmBrown.shopDescription img {
+  float: none;
+}
+
+.flexibleDialogWarmBrown.shopDescription b {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  left: 0;
+  display: block;
+  font-size: 19px;
+  color: #261900;
+  text-align: center;
+  text-shadow: 0 1px 1px #fc6;
+  visibility: visible;
+}
+
+.recentWinners .draw .drawContent {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-around;
+  float: none;
+}
+
+.ballot_qty {
+  text-align: center;
+}
+
+div#ballotTotal::after {
+  content: " gold";
+}
+
+div#ballotTotal.error::after {
+  content: "";
+}

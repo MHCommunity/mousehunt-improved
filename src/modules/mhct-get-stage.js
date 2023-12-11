@@ -1,4 +1,3 @@
-/* eslint-disable */
 const getLocationAndStage = () => {
   /**
    * Living & Twisted Garden areas share the same HG environment ID, so use the quest data

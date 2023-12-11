@@ -8,6 +8,10 @@
   margin-left: 85px;
 }
 
+.journal .entry.minimalJournal .journalbody {
+  margin-left: 10px;
+}
+
 .journal .entry {
   position: relative;
   padding-right: 3px;
@@ -85,7 +89,7 @@
   width: calc(100% - 10px);
   padding-top: 5px;
   padding-bottom: 3px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 11px;
   font-weight: 100;
   border-bottom: 1px solid #717171;
@@ -188,12 +192,12 @@ a.journal-detailLink.full::after {
 }
 
 .journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"],
-.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"] {
+.journal .entry a.item[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"] {  /* stylelint-disable-line prettier/prettier */
   color: #1e831e;
 }
 
 .journal .entry a.loot[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"],
-.journal .entry a.lucky[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"] {
+.journal .entry a.lucky[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"] { /* stylelint-disable-line prettier/prettier */
   color: #a012a0;
 }
 
@@ -232,4 +236,15 @@ a.journal-detailLink.full::after {
   border: 1px solid #6db8ca;
   outline: 1px solid #90d3e4;
   box-shadow: 0 0 6px -2px #e3e31f;
+}
+
+.journal .entry .journaltext p:last-of-type {
+  margin-bottom: 0;
+}
+
+.journal .entry .journaltext .decoration {
+  margin-left: -12px;
+  font-size: 21px;
+  vertical-align: top;
+  filter: drop-shadow(0 0 1px #89299e) drop-shadow(0 0 5px #89299e) drop-shadow(0 0 10px #89299e);
 }

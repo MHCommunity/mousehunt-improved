@@ -1,6 +1,6 @@
 # 🐭️ MouseHunt Improved
 
-MouseHunt Improved is a browser extension aimed at improving the MouseHunt experience.
+MouseHunt Improved enhances and improves [MouseHunt](https://mousehuntgame.com) with a variety of enhancements and features.
 
 There are numerous features, each of which can be toggled on or off on the [MH Improved](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings) tab of the settings screen to customize your experience.
 
@@ -33,6 +33,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Updates buttons in popups to match other buttons.
   - Hovering over your Cheese, Charm, or Map name will show the full name.
   - Updates the current adventure book task to look nicer.
+  - Modifies the Skins selector to show full-size skin images.
   - Updates the styles and readability of many items.
     - Search & filter dropdowns and results
     - Send Supplies page
@@ -139,6 +140,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Dark Mode Improvements & Tweaks
   - Minor changes to the Dark Mode extension (either standalone or the MHCT built-in).
 
+- Delayed Tooltips
+  - Adds a delay to tooltips so they don't show up immediately when you hover over something.
+
 - Hover Profiles
   - Hover over a friend's name in your journal, inbox, or elsewhere and get a mini-profile popup with all their stats, interaction buttons, and everything you'd expect.
 
@@ -201,7 +205,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Quick Filters and Sort
   - Adds one-click filters to the Trap and Base selectors to show only specific power types.
   - Adds one-click sorting to the Trap, Base, Charm, and Cheese selectors to sort by Power, Power Bonus, Luck, Attraction Bonus, name, or quantity owned (for cheese and charms).
-  - Modifies the Skins selector to show full-size skin images.
 
 - Quick Send Supplies
   - Hovering over the Send Supplies button (including the ones on the Hover Profiles feature) will let you quickly pick an item, enter a quantity, and send it to the person.
@@ -228,8 +231,6 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Hides the share buttons.
 - Remove Sidebar
   - Hides the sidebar and adds a 'Sidebar' dropdown in the top menu.
-- Hide Daily Reward Popup
-  - Automatically close the daily reward popup when it shows
 - Hide player names in journal entries
   - Hides player names in the journal. Good for screenshots where you don't want to share their name.
 
@@ -252,7 +253,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Makes the wave number more clear.
   - Better highlighting of the current target.
   - Cleaner tooltips.
-  - Smoother streak guage.
+  - Smoother streak gauge.
   - Larger power-type icons.
   - Larger artillery strike quantity font size.
 - Floating Islands
@@ -296,9 +297,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Reminds you to light your lantern if you're in a superior hallway and it's not lit.
   - Slightly larger text for resources in the HUD.
 - Muridae Market
-  - Larget font sizes and cleaner colors.
+  - Larger font sizes and cleaner colors.
 - Queso Canyon
-  - Larget font sizes and cleaner colors.
+  - Larger font sizes and cleaner colors.
   - Wild Tonic will animate subtly to remind you to enable it if you don't have it on.
 - Sunken City
   - Updates HUD font sizes and colors.
@@ -313,7 +314,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Whisker Woods Rift
   - More visible warning when a wrong setup is equipped.
   - Bigger faction titles.
-  - Larget rage meter numbers.
+  - Larger rage meter numbers.
 - Zokor
   - Improves item quantity display.
   - Boss name, stealth countdown, and progress are all modified to be more readable.
@@ -364,6 +365,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Removes the text clipping from the 'Collectibles' tab text.
 - Fixes issues when directly loading an item page.
 - Fixes the Larry's Gift quantity background color.
+- Fixes the arrow color in the inbox when hovering over odd rows
 
 ## UserScripts
 
@@ -399,8 +401,11 @@ If you have any of these userscripts installed, you can uninstall them, as the f
 - [MouseHunt - Tournament Time Helper](https://greasyfork.org/en/scripts/37146-mousehunt-tournament-time-helper)
 - [MouseHunt Location HUD Preview](https://greasyfork.org/en/scripts/454413-mousehunt-location-hud-preview)
 - [Mousehunt – Lucky Golden Shield Duration Indicator & Warning](https://greasyfork.org/en/scripts/410966-mousehunt-lucky-golden-shield-duration-indicator-warning)
-
 - Most map color coders
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a list of changes in each version.
 
 ## Contributing
 

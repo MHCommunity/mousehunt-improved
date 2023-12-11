@@ -1,0 +1,562 @@
+.headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  margin-top: -2px;
+  margin-right: 1px;
+  margin-left: 0;
+  font-size: 12px;
+  background-color: #4484a2;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #154b6f;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemPart:nth-child(3) .headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  margin-right: -2px;
+  margin-left: 2px;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemPart:nth-child(2) .headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  margin-right: -1px;
+  margin-left: 1px;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemPart:nth-child(4) .headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  padding-top: 0;
+  padding-bottom: 2px;
+  margin-top: 4px;
+  margin-right: 0;
+  margin-left: 0;
+  color: #133850;
+  background: linear-gradient(90deg, #0c5168 1%, #95c2d3 10%, #a8d3e0 16%, #a8d3e0 84%, #6ba1bb 92%, #0c5168 96%);
+  border-radius: 0 0 3px 3px;
+  box-shadow: inset 1px -2px 2px -1px #0b3f55;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemPart:nth-child(5) .headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  margin-top: -2px;
+  margin-right: -1px;
+  margin-left: 1px;
+  color: #133850;
+  background-color: #a8d3e0;
+  box-shadow: inset 0 0 1px 1px #5f9bb4;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemBuffQuantity.quantity {
+  font-size: 11px;
+  color: #133850;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemUpgradeCost {
+  position: absolute;
+  top: 6px;
+  right: 22px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+  padding: 2px;
+  margin-left: -1px;
+  font-size: 12px;
+  color: #86c8e4;
+  text-align: center;
+  background-color: #18536d;
+  border: 1px solid #915211;
+  border-radius: 10px;
+  box-shadow:
+    inset 0 0 2px 1px #113346,
+    1px -2px 1px -1px #e9c320,
+    -8px 6px 0 -6px #6c5528;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemUpgradeCost::after {
+  display: none;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemLevel {
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.headsUpDisplayWinterHuntRegionView__environmentItemQuantity.quantity {
+  font-size: 13px;
+}
+
+.headsUpDisplayWinterHuntRegionView__cinnamon {
+  margin-bottom: 9px;
+}
+
+.headsUpDisplayWinterHuntRegionView__fuelQuantity.quantity {
+  font-size: 13px;
+}
+
+.campHudSnowballShowdownView__imageContainer {
+  height: 35px;
+  margin-top: -5px;
+  background: rgb(218 188 155 / 60%);
+  border-radius: 13px;
+}
+
+.campHudSnowballShowdownView__image {
+  height: 35px;
+  background-position: bottom center;
+}
+
+.campHudSnowballShowdownView__snowball .campHudSnowballShowdownView__image {
+  background-position: center 5px;
+}
+
+.campHudSnowballShowdownView__quantity {
+  padding: 1px;
+  font-size: 13px;
+  color: #133850;
+  text-align: center;
+  background-color: #a8d3e0;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 1px #2174ab;
+}
+
+button.campHudSnowballShowdownView__buyButton {
+  display: none;
+}
+
+.campHudSnowballShowdownView__item:hover button.campHudSnowballShowdownView__buyButton {
+  position: absolute;
+  right: -1px;
+  bottom: -2px;
+  display: block;
+  width: 17px;
+  height: 17px;
+  background-size: cover;
+}
+
+.headsUpDisplayWinterHuntRegionView__baitImageButton {
+  filter: drop-shadow(0 0 3px #a8d3e0);
+  background-position: -1px -4px;
+  background-size: 41px;
+  border-radius: 50%;
+}
+
+.headsUpDisplayWinterHuntRegionView__basicBaitContainer.super_brie_cheese .headsUpDisplayWinterHuntRegionView__baitImageButton {
+  background-position: -3px -4px;
+  border-radius: 50%;
+}
+
+.greatWinterHuntGolemManagerLaunchTabView__toggleButton {
+  background: linear-gradient(to bottom, #fff9f9 50%, #71a4eb 100%);
+  border: none;
+}
+
+.greatWinterHuntGolemManagerLaunchTabView__toggleButton--disabled {
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.greatWinterHuntGolemManagerLaunchTabView__toggleItemQuantity {
+  padding: 4px;
+  font-size: 13px;
+}
+
+.greatWinterHuntGolemManagerLaunchTabView__toggleItemImage {
+  top: -10px;
+  left: -11px;
+  width: 40px;
+  height: 40px;
+}
+
+.greatWinterHuntDialogView__footerItemQuantity.quantity {
+  padding: 3px;
+  font-size: 13px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 1px 1px #a8d3e0;
+}
+
+.greatWinterHuntDialogView__inventoryFooter .headsUpDisplayWinterHuntRegionView__plusButton {
+  position: absolute;
+  right: -15px;
+  display: none;
+  width: 19px;
+  height: 19px;
+  background-size: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 1px 1px #527e8f;
+}
+
+.greatWinterHuntDialogView__inventoryFooter:hover button.headsUpDisplayWinterHuntRegionView__plusButton {
+  display: block;
+}
+
+.entry.short.active.catchsuccessloot[data-mouse-type="glazed"] {
+  background-color: #fcdb28;
+  box-shadow: 0 0 10px 8px #fdee96 inset;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemHuntsRemaining {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  padding-top: 0;
+  margin-top: 1px;
+  font-size: 15px;
+  line-height: unset;
+  background-color: #0d3650;
+  border-radius: 5px 1px 1px 5px;
+  box-shadow: inset 0 0 2px 2px #5d747f;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemChatMessage span {
+  display: flex;
+  padding-bottom: 2px;
+  font-size: 10px;
+  line-height: 10px;
+}
+
+.headsUpDisplayWinterHuntRegionView__golemChatMessage::before {
+  top: 100%;
+}
+
+.headsUpDisplayWinterHuntRegionView__golem:nth-child(1) .headsUpDisplayWinterHuntRegionView__golemChatMessage {
+  padding: 3px;
+  transform: rotate(-5deg) translateX(-10px) translateY(-25px);
+}
+
+.headsUpDisplayWinterHuntRegionView__golem:nth-child(2) .headsUpDisplayWinterHuntRegionView__golemChatMessage {
+  padding: 3px;
+  transform: translateY(-25px);
+}
+
+.headsUpDisplayWinterHuntRegionView__golem:nth-child(3) .headsUpDisplayWinterHuntRegionView__golemChatMessage {
+  padding: 3px;
+  transform: rotate(5deg) translateX(10px) translateY(-25px);
+}
+
+.headsUpDisplayWinterHuntRegionView__golem .headsUpDisplayWinterHuntRegionView__golemChatMessage {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.headsUpDisplayWinterHuntRegionView__golem:hover .headsUpDisplayWinterHuntRegionView__golemChatMessage {
+  opacity: 1;
+}
+
+.winterHuntGolemView__golem {
+  z-index: 11;
+  overflow: visible;
+  filter: drop-shadow(0 0 4px #18536d);
+  transform: translateY(-8px);
+}
+
+.winterHuntGolemView__head,
+.winterHuntGolemView__arms,
+.winterHuntGolemView__legs,
+.winterHuntGolemView__torso,
+.winterHuntGolemView__scarf {
+  transform: scale(1.6);
+}
+
+.greatWinterHuntClaimRewardDialogView__golem .winterHuntGolemView__head,
+.greatWinterHuntClaimRewardDialogView__golem .winterHuntGolemView__arms,
+.greatWinterHuntClaimRewardDialogView__golem .winterHuntGolemView__legs,
+.greatWinterHuntClaimRewardDialogView__golem .winterHuntGolemView__torso,
+.greatWinterHuntClaimRewardDialogView__golem .winterHuntGolemView__scarf {
+  transform: scale(1.3) translateX(10px);
+}
+
+.winterHuntGolemView.winterHuntGolemView--idleAnimation .winterHuntGolemView__head,
+.winterHuntGolemView.winterHuntGolemView--idleAnimation:hover .winterHuntGolemView__head {
+  transform-origin: 50% 45%;
+}
+
+.winterHuntGolemView__background {
+  box-shadow: 0 0 25px 25px #e0f7fd inset;
+}
+/* stylelint-disable-next-line keyframes-name-pattern */
+@keyframes golemLegWiggle {
+  0% {
+    transform: scale(1.6) rotate(2deg);
+  }
+
+  50% {
+    transform: scale(1.6) rotate(-2deg);
+  }
+
+  100% {
+    transform: scale(1.6) rotate(2deg);
+  }
+}
+
+/* stylelint-disable-next-line keyframes-name-pattern */
+@keyframes golemArmWiggle {
+  0% {
+    transform: scale(1.6) rotate(8deg);
+  }
+
+  50% {
+    transform: scale(1.6) rotate(-8deg);
+  }
+
+  100% {
+    transform: scale(1.6) rotate(8deg);
+  }
+}
+
+/* stylelint-disable-next-line keyframes-name-pattern */
+@keyframes golemHeadWiggle {
+  0% {
+    transform: scale(1.6) translateY(-3px);
+  }
+
+  50% {
+    transform: scale(1.6) translateY(3px);
+  }
+
+  100% {
+    transform: scale(1.6) translateY(-3px);
+  }
+}
+
+/* stylelint-disable-next-line keyframes-name-pattern */
+@keyframes golemHeadWiggleExcited {
+  0% {
+    transform: scale(1.6) translateY(-5px);
+  }
+
+  50% {
+    transform: scale(1.6) translateY(1px);
+  }
+
+  100% {
+    transform: scale(1.6) translateY(-5px);
+  }
+}
+
+/* stylelint-disable-next-line keyframes-name-pattern */
+@keyframes golemJump {
+  0% {
+    transform: scaleY(0.28);
+  }
+
+  20% {
+    transform: scaleY(0.96);
+  }
+
+  50% {
+    transform: scaleY(1.6) translateY(-8.5%);
+  }
+
+  60% {
+    transform: scaleY(1.6) translateY(-8%);
+  }
+
+  95% {
+    transform: scaleY(1.52) translateY(1%);
+  }
+
+  100% {
+    transform: scaleY(1.6) translateY(0);
+  }
+}
+
+.greatWinterHuntGolemManagerDialogView__activeGolem {
+  overflow: visible;
+}
+
+.activeJsDialog .headsUpDisplayWinterHuntRegionView__golemChatMessage {
+  display: none;
+}
+
+.greatWinterHuntGolemManagerDialogView__golemPanel {
+  background-color: #32748c;
+}
+
+.greatWinterHuntGolemManagerDialogView__golemPreview .winterHuntGolemView__background {
+  border-bottom: 1px solid #3887a3;
+  box-shadow:
+    0 0 40px 76px #99cadc inset,
+    0 11px 10px -6px #52b1d3;
+}
+
+.greatWinterHuntGolemManagerDialogView__golem .winterHuntGolemView {
+  width: 60px;
+}
+
+.greatWinterHuntGolemManagerDialogView__golem {
+  width: 33%;
+  margin: 0;
+}
+
+.greatWinterHuntGolemManagerDialogView__golemUpgradeButton {
+  position: absolute;
+  bottom: -25px;
+  left: 5px;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  font-size: 13px;
+  background-position-x: 45px;
+  transform-origin: 0 -40px;
+}
+
+.greatWinterHuntGolemManagerDialogView__golem:hover {
+  transform: none;
+}
+
+.greatWinterHuntGolemManagerDialogView__golem:hover button.greatWinterHuntGolemManagerDialogView__golemSelectButton {
+  transform: scale(1.1);
+}
+
+.greatWinterHuntGolemManagerDialogView__golem .greatWinterHuntGolemManagerDialogView__golemSelectButton {
+  filter: brightness(0.9) !important;
+}
+
+.greatWinterHuntGolemManagerUpgradeTabView__itemQuantity {
+  margin-top: 35px;
+  font-size: 14px;
+  background: #d7f4fe;
+  border: 1px solid #000;
+  box-shadow: none;
+}
+
+.greatWinterHuntGolemManagerUpgradeTabView__item--box {
+  background-color: #96e3fd;
+  border-width: 1px;
+}
+
+.greatWinterHuntDialogView__bigButtonInlineCostQuantity {
+  margin-top: 12px;
+  font-size: 19px;
+  box-shadow: 0 0 20px 4px #074762 inset;
+}
+
+.greatWinterHuntDialogView__bigButtonInlineCost {
+  margin-right: 20px;
+}
+
+.greatWinterHuntDialogView__button {
+  filter: saturate(0.6);
+}
+
+.greatWinterHuntGolemManagerReturnTabView__progressContainer b {
+  display: block;
+  font-size: 15px;
+}
+
+.greatWinterHuntGolemManagerReturnTabView__progressContainer b::after,
+.greatWinterHuntGolemManagerReturnTabView__progressContainer b::before {
+  content: " 🎉️ ";
+}
+
+.greatWinterHuntGolemManagerReturnTabView__instantReturnBellCost {
+  padding: 0 3px 1px;
+  margin: 0 -3px -1px -5px;
+  font-size: 23px;
+  background: linear-gradient(23deg, #e78700 0%, #d16e07 100%);
+  border-radius: 3px;
+  box-shadow: -1px -3px 5px -3px #f9a148;
+}
+
+.greatWinterHuntGolemManagerReturnTabView__instantReturnButton--disabled .greatWinterHuntGolemManagerReturnTabView__instantReturnBellCost {
+  background: linear-gradient(23deg, #8d8d8d 0%, #7e7e7e 100%);
+  box-shadow: none;
+}
+
+.greatWinterHuntRecycleDialogView__itemQuantity.quantity {
+  top: 185px;
+  right: unset;
+  left: unset;
+  min-width: 40px;
+  font-size: 18px;
+  background-color: rgb(255 255 255 / 75%);
+}
+
+.greatWinterHuntRecycleDialogView__item {
+  align-items: center;
+}
+
+.greatWinterHuntRecycleDialogView__action {
+  border-radius: 4px;
+}
+
+.greatWinterHuntRecycleDialogView__craftCost::before {
+  font-size: 24px;
+  content: "−";
+}
+
+.greatWinterHuntRecycleDialogView__smashYield::before {
+  font-size: 24px;
+  content: "+";
+}
+
+.greatWinterHuntRecycleDialogView__golemRequirement {
+  font-size: 13px;
+}
+
+.greatWinterHuntRecycleDialogView__action::after {
+  position: absolute;
+  top: 60px;
+  left: -10px;
+  width: 20px;
+  height: 10px;
+  content: "";
+}
+
+.greatWinterHuntRecycleDialogView__golemRequirementContainer {
+  margin-left: -10px;
+}
+
+.greatWinterHuntRecycleDialogView__golemRequirementTitle {
+  padding-bottom: 4px;
+  color: #1863bf;
+}
+
+.greatWinterHuntRecycleDialogView__item:nth-child(1) .greatWinterHuntRecycleDialogView__itemQuantity.quantity {
+  top: 175px;
+}
+
+.possibleGolems .greatWinterHuntDialogView__footerItemQuantity.quantity {
+  background-color: #51516e;
+  box-shadow: inset 0 0 1px 1px #6ea0d1;
+}
+
+.greatWinterHuntDialogView__footerItemSeperator {
+  width: 50px;
+}
+
+.headsUpDisplayWinterHuntIceFortressView__shieldLabel.headsUpDisplayWinterHuntIceFortressView__shieldLabel--active {
+  top: 6px;
+  font-size: 11px;
+  background-color: #273852;
+  border-radius: 13px;
+}
+
+.headsUpDisplayWinterHuntRegionView__hailstones .headsUpDisplayWinterHuntRegionView__resourceCost {
+  top: 39px;
+  font-size: 14px;
+  background-color: #8de3e4;
+}
+
+.greatWinterHuntRecycleDialogView__itemQuantity.quantity[data-item-type="golem_part_limb_stat_item"] {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--active .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+  top: 172px;
+  left: 54px;
+  width: 20px;
+  font-size: 14px;
+  background: linear-gradient(54deg, #c87d0e 0%, #9f510c 100%);
+  border-radius: 4px;
+}
+
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton:nth-child(2) .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+  left: 55px;
+}
+
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton:nth-child(3) .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+  left: 56px;
+}

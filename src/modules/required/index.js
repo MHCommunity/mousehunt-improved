@@ -1,4 +1,12 @@
-import { addUIStyles, getMhuiSetting, getFlag } from '../utils';
+import {
+  addUIStyles,
+  createPopup,
+  getFlag,
+  getMhuiSetting,
+  makeElement,
+  onNavigation
+} from '@/utils';
+
 import settingStyles from './styles.css';
 
 const addExportSettings = () => {
@@ -14,6 +22,7 @@ const addExportSettings = () => {
   const content = `<div class="mousehunt-improved-settings-export-popup-content">
   <textarea>${settings}</textarea>
   <div class="mousehunt-improved-settings-export-popup-buttons">
+  <pre>${mhImprovedPlatform} v${mhImprovedVersion}</pre>
   <div class="mousehuntActionButton save"><span>Save</span></div>
   <div class="mousehuntActionButton lightBlue download"><span>Download</span></div>
   <div class="mousehuntActionButton cancel"><span>Cancel</span></div>`;
@@ -28,20 +37,20 @@ const addExportSettings = () => {
     });
     /* eslint-enable @wordpress/no-unused-vars-before-return */
 
-    const popupEl = document.querySelector('.mousehunt-improved-settings-export-popup');
-    if (! popupEl) {
+    const popupElement = document.querySelector('.mousehunt-improved-settings-export-popup');
+    if (! popupElement) {
       return;
     }
 
-    const saveButton = popupEl.querySelector('.mousehuntActionButton.save');
+    const saveButton = popupElement.querySelector('.mousehuntActionButton.save');
     saveButton.addEventListener('click', () => {
-      const textarea = popupEl.querySelector('textarea');
+      const textarea = popupElement.querySelector('textarea');
       const newSettings = textarea.value;
       localStorage.setItem('mousehunt-improved-settings', newSettings);
       window.location.reload();
     });
 
-    const downloadButton = popupEl.querySelector('.mousehuntActionButton.download');
+    const downloadButton = popupElement.querySelector('.mousehuntActionButton.download');
     downloadButton.addEventListener('click', () => {
       const link = document.createElement('a');
       link.download = 'mousehunt-improved-settings.json';
@@ -49,13 +58,13 @@ const addExportSettings = () => {
       link.click();
     });
 
-    const cancelButton = popupEl.querySelector('.mousehuntActionButton.cancel');
+    const cancelButton = popupElement.querySelector('.mousehuntActionButton.cancel');
     cancelButton.addEventListener('click', () => {
       popup.hide();
     });
   });
 
-  wrapper.appendChild(exportSettings);
+  wrapper.append(exportSettings);
 };
 
 const modifySettingsPage = () => {
@@ -77,7 +86,7 @@ const modifySettingsPage = () => {
     </svg>`;
 
     const titleText = setting.querySelector('.PagePreferences__titleText');
-    titleText.appendChild(toggle);
+    titleText.append(toggle);
 
     // add the event listener to toggle the class
     toggle.addEventListener('click', () => {
@@ -98,7 +107,7 @@ const modifySettingsPage = () => {
 const loadStyleOverrides = () => {
   const customStyles = getMhuiSetting('override-styles');
   if (customStyles) {
-    addStyles(customStyles, 'mousehunt-improved-override-styles');
+    addUIStyles(customStyles, 'mousehunt-improved-override-styles');
   }
 };
 
@@ -125,7 +134,10 @@ const checkForAutohorn = () => {
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(settingStyles);
 
   onNavigation(modifySettingsPage,
@@ -142,4 +154,10 @@ export default () => {
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
     checkForAutohorn();
   }
+};
+
+export default {
+  id: 'required',
+  type: 'required',
+  load: init,
 };

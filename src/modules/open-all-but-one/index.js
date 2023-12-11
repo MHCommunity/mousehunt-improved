@@ -1,4 +1,5 @@
-import { addUIStyles } from '../utils';
+import { addUIStyles, onNavigation } from '@/utils';
+
 import styles from './styles.css';
 
 const addOpenAllButOneButton = () => {
@@ -10,7 +11,7 @@ const addOpenAllButOneButton = () => {
   // Remove the existing open all but one buttons.
   const existingButtons = document.querySelectorAll('.open-all-but-one');
   existingButtons.forEach((button) => {
-    button.parentNode.removeChild(button);
+    button.remove();
   });
 
   convertibleItems.forEach((item) => {
@@ -24,14 +25,14 @@ const addOpenAllButOneButton = () => {
     newButton.textContent = 'All but One';
     newButton.value = 'All but One';
     newButton.setAttribute('data-item-action', 'single');
-    newButtonon.onclick = null;
+    newButton.onclick = null;
     newButton.addEventListener('click', (e) => {
       const quantity = item.querySelector('.inventoryPage-item-imageContainer .quantity');
       if (! quantity) {
         return;
       }
 
-      quantity.textContent = parseInt(quantity.textContent, 10) - 1;
+      quantity.textContent = Number.parseInt(quantity.textContent, 10) - 1;
       app.pages.InventoryPage.useConvertible(e.target);
     });
 
@@ -39,7 +40,10 @@ const addOpenAllButOneButton = () => {
   });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
 
   addOpenAllButOneButton();
@@ -49,4 +53,13 @@ export default () => {
   }, {
     page: 'inventory',
   });
+};
+
+export default {
+  id: 'open-all-but-one',
+  name: 'Inventory - Open all But One buttons',
+  type: 'feature',
+  default: true,
+  description: 'Adds \'Open All But One\' buttons to convertible items in your inventory.',
+  load: init,
 };

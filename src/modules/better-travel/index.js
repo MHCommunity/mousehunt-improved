@@ -1,6 +1,24 @@
-import { addUIStyles, getMhuiSetting, getRelicHunterLocation } from '../utils';
+import {
+  addSubmenuItem,
+  addUIStyles,
+  getCurrentLocation,
+  getCurrentPage,
+  getCurrentTab,
+  getMhuiSetting,
+  getRelicHunterLocation,
+  makeElement,
+  onEvent,
+  onNavigation,
+  onPageChange,
+  onTravel,
+  showHornMessage
+} from '@/utils';
+
+import environments from '@data/environments.json';
+import eventEnvironments from '@data/environments-events.json';
+
+import settings from './settings';
 import styles from './styles.css';
-import environments from '../../data/environments.json';
 
 /**
  * Expand the travel regions and zoom the map.
@@ -10,7 +28,7 @@ const expandTravelRegions = () => {
     return;
   }
 
-  const hud = document.getElementById('mousehuntHud');
+  const hud = document.querySelector('#mousehuntHud');
   if (hud) {
     const hudHeight = hud.offsetHeight + 30;
 
@@ -56,12 +74,7 @@ const expandTravelRegions = () => {
 };
 
 const travelClickHandler = (event) => {
-  const environment = event.target.getAttribute('data-environment');
-
-  // eslint-disable-next-line no-undef
-  app.pages.TravelPage.travel(environment);
-
-  // eslint-disable-next-line no-undef
+  app.pages.TravelPage.travel(event.target.getAttribute('data-environment'));
   hg.utils.PageUtil.setPage('Camp');
 };
 
@@ -89,7 +102,7 @@ const addTab = (id, label) => {
     return;
   }
 
-  const exists = document.getElementById(`mh-${id}-tab`);
+  const exists = document.querySelector(`#mh-${id}-tab`);
   if (exists) {
     return;
   }
@@ -106,7 +119,7 @@ const addTab = (id, label) => {
 
   makeElement('span', '', label, tab);
 
-  tabContainer.appendChild(tab);
+  tabContainer.append(tab);
 };
 
 const addPage = (id, content) => {
@@ -114,7 +127,7 @@ const addPage = (id, content) => {
     return;
   }
 
-  const exists = document.getElementById(`mh-${id}-page`);
+  const exists = document.querySelector(`#mh-${id}-page`);
   if (exists) {
     return;
   }
@@ -128,14 +141,81 @@ const addPage = (id, content) => {
   page.id = `mh-${id}-page`;
   page.setAttribute('data-tab', id);
 
-  if (! content) {
-    const blank = makeElement('div');
-    page.appendChild(blank);
+  if (content) {
+    page.append(content);
   } else {
-    page.appendChild(content);
+    const blank = makeElement('div');
+    page.append(blank);
   }
 
-  pageContainer.appendChild(page);
+  pageContainer.append(page);
+};
+
+const addAlphabetizedList = (regionMenu) => {
+  const alphaWrapper = makeElement('div', 'travelPage-alpha-wrapper');
+
+  const alphaContent = makeElement('div', 'travelPage-regionMenu');
+  const alphaHeader = makeElement('div', ['travelPage-regionMenu-item', 'active']);
+
+  const alphaList = makeElement('div', 'travelPage-regionMenu-item-contents');
+  const alphaListContent = makeElement('div', 'travelPage-regionMenu-environments');
+
+  const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink');
+
+  // Clone the links, sort them by name, and add them to the alpha list.
+  const sortedLinks = [...links].sort((a, b) => {
+    const aName = a.innerText;
+    const bName = b.innerText;
+
+    if (aName < bName) {
+      return -1;
+    }
+
+    if (aName > bName) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  // While sorting, add a class to the first occurrence of each letter.
+  let lastLetter = '';
+
+  sortedLinks.forEach((link) => {
+    // make a copy of the link
+    const linkClone = link.cloneNode(true);
+    alphaListContent.append(linkClone);
+    linkClone.addEventListener('click', travelClickHandler);
+
+    // get the first letter of the link
+    const firstLetter = linkClone.innerText.charAt(0).toLowerCase();
+
+    // if the first letter is different than the last letter, add a class
+    if (firstLetter !== lastLetter) {
+      linkClone.classList.add('first-letter');
+    }
+
+    // set the last letter to the current letter
+    lastLetter = firstLetter;
+
+    // Check if the link is in the list of environments, if it's not, then it's an event location.
+    const environment = environments.find((env) => {
+      return env.id === link.getAttribute('data-environment');
+    });
+
+    if (! environment) {
+      linkClone.classList.add('event-location');
+    }
+  });
+
+  alphaList.append(alphaListContent);
+
+  alphaHeader.append(alphaList);
+  alphaContent.append(alphaHeader);
+
+  alphaWrapper.append(alphaContent);
+
+  return alphaWrapper;
 };
 
 const addSimpleTravelPage = () => {
@@ -143,57 +223,17 @@ const addSimpleTravelPage = () => {
   const wrapper = makeElement('div', 'travelPage-wrapper');
 
   if ('not-set' === getMhuiSetting('better-travel-default-to-simple-travel', 'not-set')) {
-    const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings"> Game Settings</a>.');
-    wrapper.appendChild(settingTip);
+    const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings">MouseHunt Improved settings</a>.');
+    wrapper.append(settingTip);
   }
 
   const regionMenu = cloneRegionMenu();
 
   if (getMhuiSetting('better-travel-show-alphabetized-list', false)) {
-    const alphaWrapper = makeElement('div', 'travelPage-alpha-wrapper');
-
-    const alphaContent = makeElement('div', 'travelPage-regionMenu');
-    const alphaHeader = makeElement('div', ['travelPage-regionMenu-item', 'active']);
-
-    const alphaList = makeElement('div', 'travelPage-regionMenu-item-contents');
-    const alphaListContent = makeElement('div', 'travelPage-regionMenu-environments');
-
-    const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink');
-
-    // Clone the links, sort them by name, and add them to the alpha list.
-    const sortedLinks = Array.from(links).sort((a, b) => {
-      const aName = a.innerText;
-      const bName = b.innerText;
-
-      if (aName < bName) {
-        return -1;
-      }
-
-      if (aName > bName) {
-        return 1;
-      }
-
-      return 0;
-    });
-
-    sortedLinks.forEach((link) => {
-      // make a copy of the link
-      const linkClone = link.cloneNode(true);
-      alphaListContent.appendChild(linkClone);
-      linkClone.addEventListener('click', travelClickHandler);
-    });
-
-    alphaList.appendChild(alphaListContent);
-
-    alphaHeader.appendChild(alphaList);
-    alphaContent.appendChild(alphaHeader);
-
-    alphaWrapper.appendChild(alphaContent);
-
-    wrapper.appendChild(alphaWrapper);
+    wrapper.append(addAlphabetizedList(regionMenu));
   }
 
-  wrapper.appendChild(regionMenu);
+  wrapper.append(regionMenu);
 
   addPage('simple-travel', wrapper);
 };
@@ -298,10 +338,24 @@ const addSimpleTravel = () => {
 const addRegionToTravelDropdown = () => {
   const currentLocation = getCurrentLocation();
 
+  // merge the event environments into the environments array
+  environments.push(...eventEnvironments);
+
   // get the object that matches the current location
-  const currentRegion = environments.find((environment) => {
+  let currentRegion = environments.find((environment) => {
     return environment.id === currentLocation;
   });
+
+  if (! currentRegion) {
+    // See if it's an event location.
+    currentRegion = eventEnvironments.find((environment) => {
+      return environment.id === currentLocation;
+    });
+
+    if (! currentRegion) {
+      return;
+    }
+  }
 
   // get the other locations in the same region
   const otherRegions = environments.filter((environment) => {
@@ -377,7 +431,7 @@ const maybeSetTab = () => {
     return;
   }
 
-  hg.utils.PageUtil.setPageTab('simple-travel'); // eslint-disable-line no-undef
+  hg.utils.PageUtil.setPageTab('simple-travel');
 };
 
 const addRhToSimpleTravel = async () => {
@@ -410,7 +464,7 @@ const addRhToMap = async () => {
 
   const rh = makeElement('div', 'map-relic-hunter-is-here');
   makeElement('div', 'map-relic-hunter-is-here-image', '', rh);
-  mapLocation.appendChild(rh);
+  mapLocation.append(rh);
 };
 
 const maybeDoMapView = () => {
@@ -458,7 +512,20 @@ const main = () => {
   onTravel(null, { callback: addRegionToTravelDropdown });
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'better-travel',
+  name: 'Better Travel',
+  type: 'better',
+  default: true,
+  description: 'Adds locations in the current region to the Travel dropdown menu, a "Simple Travel" tab with a grid of locations, an optional alphabetized list, an indicator for where the Relic Hunter is.',
+  load: init,
+  settings,
 };

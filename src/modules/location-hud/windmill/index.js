@@ -1,8 +1,10 @@
-import { addHudStyles } from '../../utils';
+import { addHudStyles } from '@/utils';
+
 import styles from './styles.css';
 
-const main = () => {
-  addHudStyles('windmill', styles);
+/**
+ * Initialize the module.
+ */
+export default () => {
+  addHudStyles(styles);
 };
-
-export default main;

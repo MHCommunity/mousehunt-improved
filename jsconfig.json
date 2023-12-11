@@ -12,9 +12,19 @@
       "DOM.Iterable",
       "ScriptHost",
       "ESNext"
-    ]
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./modules/*"],
+      "@data/*": ["./data/*"],
+    }
   },
   "include": [
-    "src/**/*",
-  ]
+    "src",
+  ],
+  "exclude": [
+    "node_modules",
+    "scripts",
+    "dist",
+  ],
 }

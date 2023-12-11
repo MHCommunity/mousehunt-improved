@@ -1,6 +1,10 @@
-import { debug } from './utils';
+import { addSetting, debug, getMhuiSetting } from '@/utils';
+
 import globalStyles from './global-styles/styles.css';
 
+/**
+ * Add the advanced settings tab.
+ */
 const addAdvancedSettings = () => {
   // Add the advanced override settings.
   const advancedTab = {
@@ -31,6 +35,11 @@ const addAdvancedSettings = () => {
   );
 };
 
+/**
+ * Add the settings for a module.
+ *
+ * @param {Object} module The module to add settings for.
+ */
 const addSettingForModule = (module) => {
   module.modules.forEach((subModule) => {
     if (! subModule.alwaysLoad) {
@@ -51,16 +60,23 @@ const addSettingForModule = (module) => {
     if (
       subModule.settings && (
         subModule.alwaysLoad ||
-        getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')
+        getMhuiSetting(subModule.id, subModule.default)
       )
     ) {
-      subModule.settings(module);
+      const subModSettings = module;
+      subModSettings.subSetting = true;
+      subModule.settings(subModSettings);
     }
   });
 };
 
+/**
+ * Show an error message when the script fails to load.
+ *
+ * @param {Error} e The error that was thrown.
+ */
 const showLoadingError = (e) => {
-  debug('Error loading MouseHunt Improved:', e); // eslint-disable-line no-console
+  debug('Error loading MouseHunt Improved:', e);
 
   // Add the error to the page.
   const errorElement = document.createElement('div');
@@ -70,11 +86,11 @@ const showLoadingError = (e) => {
     errorElement.innerHTML += `<pre>${e.message}</pre>`;
   }
   errorElement.innerHTML += '<p>There was an error loading MouseHunt Improved. Try refreshing the page. If the error persists, please add an issue to the <a href="https://github.com/MHCommunity/mousehunt-improved">GitHub repo</a>.</p>';
-  document.body.appendChild(errorElement);
+  document.body.append(errorElement);
 
   const errorStyles = document.createElement('style');
   errorStyles.innerHTML = globalStyles;
-  document.head.appendChild(errorStyles);
+  document.head.append(errorStyles);
 };
 
 export {

@@ -1,6 +1,9 @@
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
-const main = () => {
+/**
+ * Initialize the module.
+ */
+export default () => {
   addCheeseSelector('catacombs', [
     'ancient_cheese',
     'undead_emmental_cheese',
@@ -12,5 +15,3 @@ const main = () => {
     'crescent_cheese',
   ]);
 };
-
-export default main;

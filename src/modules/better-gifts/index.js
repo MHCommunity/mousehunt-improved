@@ -1,4 +1,13 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import {
+  addUIStyles,
+  getMhuiSetting,
+  makeElement,
+  onAjaxRequest,
+  onDialogShow,
+  replaceInTemplate
+} from '@/utils';
+
+import settings from './settings';
 import styles from './styles.css';
 
 const getIgnoredGifts = () => {
@@ -37,118 +46,69 @@ const getIgnoredGifts = () => {
   return skipOptions[ignored] || skipOptions.skip;
 };
 
-/**
- * Send the gifts.
- *
- * @param {string}  buttonClass The class of the button to click.
- * @param {number}  limit       The number of gifts to send.
- * @param {boolean} reverse     Whether to reverse the order of the clicks.
- */
-const sendGifts = (buttonClass, limit = 15, reverse = false) => {
-  if (hg && hg.views?.GiftSelectorView?.show) { // eslint-disable-line no-undef
-    hg.views.GiftSelectorView.show(); // eslint-disable-line no-undef
-  }
+const claimGifts = (send = false, retries = 0) => {
+  // First, show the gift selector.
+  hg.views.GiftSelectorView.show();
 
-  // get all the gift blocks.
-  const giftBlocks = document.querySelectorAll('.giftSelectorView-claimableGift');
-  if (! giftBlocks.length) {
+  const isLoaded = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-friendRow');
+  if (! isLoaded) {
+    if (retries <= 10) {
+      setTimeout(() => {
+        claimGifts(send, retries + 1);
+      }, 250);
+    }
+
     return;
   }
 
-  let giftButtons = [];
+  // Get the limits.
+  let claimLimit = hg.views.GiftSelectorView.getNumClaimableActionsRemaining();
+  if (claimLimit < 1) {
+    return;
+  }
 
-  // add the expanded class to all the ones that aren't ignored.
+  const gifts = hg.views.GiftSelectorView.getClaimableGiftsSortedByTime();
+  if (getMhuiSetting('gift-buttons-claim-order-0', 'reverse') === 'reverse') {
+    gifts.reverse();
+  }
+
   const ignoredGifts = getIgnoredGifts();
-  giftBlocks.forEach((el) => {
-    const giftType = el.getAttribute('data-item-type');
-    if (ignoredGifts.includes(giftType)) {
-      return;
+
+  let sendLimit = hg.views.GiftSelectorView.getNumSendableActionsRemaining();
+
+  for (const gift of gifts) {
+    if (gift.channel !== 'gift') {
+      continue;
     }
 
-    // otherwise, add the expanded class and then get all the buttons.
-    el.classList.add('expanded');
-
-    const buttons = el.querySelectorAll(`.giftSelectorView-friendRow-action.${buttonClass}:not(.disabled):not(.selected)`);
-    buttons.forEach((button) => {
-      giftButtons.push(button);
-    });
-
-    giftButtons = Array.prototype.slice.call(giftButtons);
-
-    // if we're doing it in reverse order, reverse the array.
-    if (getSetting('gift-buttons-send-order-0', 'reverse') || reverse) {
-      giftButtons.reverse();
+    if (ignoredGifts.includes(gift.item_type)) {
+      continue;
     }
 
-    // send the gifts.
-    let sent = 0;
-    giftButtons.forEach((button) => {
-      if (sent >= limit) {
-        return;
-      }
+    const verb = send && sendLimit > 0 && gift.is_returnable ? 'return' : 'claim';
 
-      sent++;
-      button.click();
-    });
-
-    // confirm the gifts.
-    const confirm = document.querySelector('.mousehuntActionButton.giftSelectorView-action-confirm.small');
-    if (confirm) {
-      confirm.click();
+    const giftEl = document.querySelector(`.giftSelectorView-friendRow[data-gift-id="${gift.gift_id}"] .giftSelectorView-friendRow-action.${verb}`);
+    if (! giftEl) {
+      continue;
     }
-  });
-};
 
-const makePaidGiftsButton = (buttonContainer) => {
-  const hasPaidGifts = document.querySelectorAll('.giftSelectorView-friendRow-returnCost');
-  if (! hasPaidGifts.length) {
-    return;
+    const event = { target: giftEl };
+    if ('return' === verb) {
+      hg.views.GiftSelectorView.selectReturnableGift(event, giftEl);
+      sendLimit--;
+    } else {
+      hg.views.GiftSelectorView.selectClaimableGift(event, giftEl);
+      claimLimit--;
+    }
   }
 
-  const paidGiftsButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-paid-gifts'], 'Accept & Return Paid Gifts');
-  paidGiftsButton.addEventListener('click', () => {
-    hg.views.GiftSelectorView.show(); // eslint-disable-line no-undef
-    hg.views?.GiftSelectorView.showTab('claim_paid_gifts', 'selectClaimableGift');
-
-    let acceptedGifts = JSON.parse(sessionStorage.getItem('mh-gift-buttons-accepted-paid-gifts'));
-    if (! acceptedGifts) {
-      acceptedGifts = {};
-    }
-
-    const newAcceptedGifts = {};
-
-    const gifts = document.querySelectorAll('.giftSelectorView-friendRow.paidgift');
-    gifts.forEach((gift) => {
-      const friendId = gift.getAttribute('data-snuid');
-      const giftId = gift.parentNode.parentNode.parentNode.getAttribute('data-item-type');
-
-      const acceptButton = gift.querySelector('.giftSelectorView-friendRow-action.claim');
-      const returnButton = gift.querySelector('.giftSelectorView-friendRow-action.return');
-
-      if (! giftId || ! friendId || ! acceptButton || ! returnButton) {
-        return;
-      }
-
-      if (! acceptedGifts[giftId] || ! acceptedGifts[giftId].includes(friendId)) {
-        returnButton.click();
-
-        // save the gift as accepted.
-        if (! newAcceptedGifts[giftId]) {
-          newAcceptedGifts[giftId] = [];
-        }
-
-        newAcceptedGifts[giftId].push(friendId);
-      } else {
-        acceptButton.click();
-      }
-    });
-
-    if (newAcceptedGifts !== acceptedGifts) {
-      sessionStorage.setItem('mh-gift-buttons-accepted-paid-gifts', JSON.stringify(newAcceptedGifts));
-    }
-  });
-
-  buttonContainer.appendChild(paidGiftsButton);
+  // hit the confirm button.
+  const confirm = document.querySelector('.mousehuntActionButton.giftSelectorView-action-confirm.small');
+  if (confirm) {
+    setTimeout(() => {
+      hg.views.GiftSelectorView.submitConfirm(confirm);
+    }, 250);
+  }
 };
 
 const makeAcceptButton = (buttonContainer) => {
@@ -158,11 +118,11 @@ const makeAcceptButton = (buttonContainer) => {
     acceptButton.classList.add('disabled');
   } else {
     acceptButton.addEventListener('click', () => {
-      sendGifts('claim', acceptLimit ? parseInt(acceptLimit.innerText, 10) : 15);
+      claimGifts();
     });
   }
 
-  buttonContainer.appendChild(acceptButton);
+  buttonContainer.append(acceptButton);
 };
 
 const makeReturnButton = (buttonContainer) => {
@@ -174,20 +134,38 @@ const makeReturnButton = (buttonContainer) => {
     returnButton.classList.add('disabled');
   } else {
     returnButton.addEventListener('click', () => {
-      sendGifts('return', returnLimit ? parseInt(returnLimit.innerText, 10) : 25);
+      claimGifts(true);
     });
   }
 
-  returnWrapper.appendChild(returnButton);
-  buttonContainer.appendChild(returnWrapper);
+  returnWrapper.append(returnButton);
+  buttonContainer.append(returnWrapper);
 };
 
 const fixTypo = () => {
-  const template = hg.utils.TemplateUtil.getTemplate('ViewGiftSelector')
-    .replace('You can send 1 free gifts', 'You can send 1 free gift')
-    .replace('<b>1</b> free gifts', '<b>1</b> free gift');
+  replaceInTemplate('ViewGiftSelector', [
+    [
+      'You can send 1 free gifts',
+      'You can send 1 free gift'
+    ],
+    [
+      '<b>1</b> free gifts',
+      '<b>1</b> free gift'
+    ],
+  ]);
+};
 
-  hg.utils.TemplateUtil.addTemplate('ViewGiftSelector', template);
+const lineBreakGiftFooter = () => {
+  replaceInTemplate('GiftSelectorView', [
+    [
+      'more free gifts today. You can',
+      'more free gifts today. <p class="mh-ui-footer-gifts-second-line">You can'
+    ],
+    [
+      'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">Close</a>',
+      'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">✕</a>'
+    ],
+  ]);
 };
 
 const getButtons = (className = false) => {
@@ -197,7 +175,6 @@ const getButtons = (className = false) => {
     buttonContainer.classList.add(className);
   }
 
-  makePaidGiftsButton(buttonContainer);
   makeAcceptButton(buttonContainer);
   makeReturnButton(buttonContainer);
 
@@ -208,14 +185,13 @@ const getButtons = (className = false) => {
  * Make the buttons and add them to the page.
  */
 const makeButtons = () => {
-  if (document.getElementById('bulk-gifting-gift-buttons')) {
+  if (document.querySelector('#bulk-gifting-gift-buttons')) {
     return;
   }
 
   const buttonContainer = document.createElement('div');
   buttonContainer.id = 'bulk-gifting-gift-buttons';
 
-  makePaidGiftsButton(buttonContainer);
   makeAcceptButton(buttonContainer);
   makeReturnButton(buttonContainer);
 
@@ -249,17 +225,17 @@ const checkForSuccessfulGiftSend = (request) => {
   setTimeout(() => {
     okayBtn.click();
 
-    if ('undefined' === typeof activejsDialog || ! activejsDialog || ! activejsDialog.hide) { // eslint-disable-line no-undef
+    if ('undefined' === typeof activejsDialog || ! activejsDialog || ! activejsDialog.hide) {
       return;
     }
 
-    activejsDialog.hide(); // eslint-disable-line no-undef
+    activejsDialog.hide();
   }, 2000);
 };
 
 const getLimit = () => {
   const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
-  limit = limitEl ? parseInt(limitEl.innerText, 10) : 0;
+  limit = limitEl ? Number.parseInt(limitEl.innerText, 10) : 0;
 
   return limit;
 };
@@ -337,12 +313,12 @@ const addSendButton = (className, text, selector, buttonContainer) => {
     }
   });
 
-  buttonContainer.appendChild(sendButton);
+  buttonContainer.append(sendButton);
 };
 
 const addRandomSendButton = () => {
-  const _selectGift = hg.views.GiftSelectorView.selectGift; // eslint-disable-line no-undef
-  hg.views.GiftSelectorView.selectGift = (gift) => { // eslint-disable-line no-undef
+  const _selectGift = hg.views.GiftSelectorView.selectGift;
+  hg.views.GiftSelectorView.selectGift = (gift) => {
     _selectGift(gift);
 
     const title = document.querySelector('.giftSelectorView-tabContent.active .selectFriends .giftSelectorView-content-title');
@@ -356,8 +332,8 @@ const addRandomSendButton = () => {
 };
 
 const addGiftSwitcher = () => {
-  const _showTab = hg.views.GiftSelectorView.showTab; // eslint-disable-line no-undef
-  const _selectGift = hg.views.GiftSelectorView.selectGift; // eslint-disable-line no-undef
+  const _showTab = hg.views.GiftSelectorView.showTab;
+  const _selectGift = hg.views.GiftSelectorView.selectGift;
   hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
     _showTab(tabType, viewState, preserveVariables, preserveActions);
 
@@ -369,7 +345,7 @@ const addGiftSwitcher = () => {
     // We need to clone the nodes and wait until the selectGift function is called and then
     // we append the cloned nodes to the gift container.
 
-    hg.views.GiftSelectorView.selectGift = (gift) => { // eslint-disable-line no-undef
+    hg.views.GiftSelectorView.selectGift = (gift) => {
       _selectGift(gift);
       const giftContainer = document.querySelector('.giftSelectorView-tabContent.active.selectFriends .giftSelectorView-content-leftBar');
       if (! giftContainer) {
@@ -386,7 +362,7 @@ const addGiftSwitcher = () => {
       gifts.forEach((toClone) => {
         const clone = toClone.cloneNode(true);
         const giftWrap = makeElement('div', 'giftSelectorView-content-leftBar-highlightBlock');
-        giftWrap.appendChild(clone);
+        giftWrap.append(clone);
 
         giftWrap.addEventListener('click', () => {
           const prevSelected = document.querySelectorAll('.mh-gift-buttons-clone-selected');
@@ -397,10 +373,10 @@ const addGiftSwitcher = () => {
           giftWrap.classList.add('mh-gift-buttons-clone-selected');
         });
 
-        cloneWrapper.appendChild(giftWrap);
+        cloneWrapper.append(giftWrap);
       });
 
-      giftContainer.appendChild(cloneWrapper);
+      giftContainer.append(cloneWrapper);
     };
   };
 };
@@ -436,14 +412,28 @@ const main = () => {
   onAjaxRequest(checkForSuccessfulGiftSend, '/managers/ajax/users/socialGift.php');
 
   addButtonsToDropdown();
-  onDialogShow(addButtonsToPopup, 'giftSelectorViewPopup.');
+  onDialogShow(addButtonsToPopup, 'giftSelectorViewPopup');
 
   addRandomSendButton();
   addGiftSwitcher();
   fixTypo();
+  lineBreakGiftFooter();
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'better-gifts',
+  name: 'Better Gifts',
+  type: 'better',
+  default: true,
+  description: 'Quickly accept and return all your gifts as well as picking random friends to send to.',
+  load: init,
+  settings
 };

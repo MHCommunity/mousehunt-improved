@@ -1,6 +1,7 @@
 import humanizeDuration from 'humanize-duration';
 
-import { addUIStyles, getFlag } from '../utils';
+import { addUIStyles, getFlag, makeElement } from '@/utils';
+
 import styles from './styles.css';
 
 const humanizer = humanizeDuration.humanizer({
@@ -77,7 +78,7 @@ const main = () => {
     reminder.classList.add('exact');
   }
 
-  shieldEl.appendChild(reminder);
+  shieldEl.append(reminder);
 
   updateLgsReminder(reminder);
 
@@ -93,7 +94,10 @@ const main = () => {
   }, 750);
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   // Only load if the user has LGS.
   if (user.has_shield) {
     addUIStyles(styles);
@@ -101,4 +105,11 @@ export default () => {
   }
 };
 
-// 8137672
+export default {
+  id: 'lgs-reminder',
+  name: 'Lucky Golden Shield Duration & Reminder',
+  type: 'feature',
+  description: 'Show your LGS duration in the HUD and warn you when it\'s about to expire.',
+  default: true,
+  load: init,
+};

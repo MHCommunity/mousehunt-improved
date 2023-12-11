@@ -1,4 +1,6 @@
-import { addUIStyles, getMhuiSetting } from '../utils';
+import { addUIStyles, getMhuiSetting, makeElement, onNavigation } from '@/utils';
+
+import settings from './settings';
 import styles from './styles.css';
 
 const processSearch = () => {
@@ -37,7 +39,7 @@ const addSearch = () => {
   label.setAttribute('for', 'mhui-supply-search-input');
   makeElement('span', '', 'Search for an item', label);
 
-  form.appendChild(label);
+  form.append(label);
 
   const input = makeElement('input', 'mhui-supply-search-input');
   input.setAttribute('type', 'text');
@@ -47,15 +49,15 @@ const addSearch = () => {
 
   input.addEventListener('keyup', processSearch);
 
-  form.appendChild(input);
+  form.append(input);
 
   // Convert the title into a wrapper that has the title and our form
   const titleWrapper = makeElement('div', 'mhui-supply-search');
   const title = container.querySelector('h2');
   title.textContent = 'Send Supplies';
-  titleWrapper.appendChild(title);
+  titleWrapper.append(title);
 
-  titleWrapper.appendChild(form);
+  titleWrapper.append(form);
 
   container.insertBefore(titleWrapper, container.firstChild);
 
@@ -66,7 +68,7 @@ const addSearch = () => {
 
 const asNum = (number) => {
   // remove any commas, parse as int
-  return parseInt(number.replace(',', ''));
+  return Number.parseInt(number.replace(',', ''));
 };
 
 const resortItems = (sortType = 'alpha') => {
@@ -79,31 +81,37 @@ const resortItems = (sortType = 'alpha') => {
     sortSelector = '.details';
   }
 
-  const sorted = Array.from(items).sort((a, b) => {
+  const sorted = [...items].sort((a, b) => {
     const aText = a.querySelector(sortSelector).textContent;
     const bText = b.querySelector(sortSelector).textContent;
 
-    if (sortType === 'alpha') {
+    switch (sortType) {
+    case 'alpha':
       return aText.localeCompare(bText);
-    } else if (sortType === 'alpha-reverse') {
+
+    case 'alpha-reverse':
       return bText.localeCompare(aText);
-    } else if (sortType === 'qty') {
+
+    case 'qty':
       return asNum(bText) - asNum(aText);
-    } else if (sortType === 'qty-reverse') {
+
+    case 'qty-reverse':
       return asNum(aText) - asNum(bText);
+
+    // No default
     }
 
     return 0;
   });
 
-  sorted.forEach((item) => {
+  for (const item of sorted) {
     // if it has a class of pinned, make sure it's the first item
     if (item.classList.contains('pinned')) {
-      return;
+      continue;
     }
 
-    container.appendChild(item);
-  });
+    container.append(item);
+  }
 
   currentSort = sortType;
 };
@@ -129,7 +137,7 @@ const addSortButtons = () => {
     resortItems(currentSort === 'alpha' ? 'alpha-reverse' : 'alpha');
   });
 
-  sortWrapper.appendChild(alphaSortButton);
+  sortWrapper.append(alphaSortButton);
 
   const sortQtyButton = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-quantity']);
   makeElement('span', 'mousehuntActionButton-text', 'Quantity', sortQtyButton);
@@ -137,28 +145,28 @@ const addSortButtons = () => {
     resortItems(currentSort === 'qty' ? 'qty-reverse' : 'qty');
   });
 
-  sortWrapper.appendChild(sortQtyButton);
+  sortWrapper.append(sortQtyButton);
 
   // append as the 2nd child so it's after the title
   container.insertBefore(sortWrapper, container.childNodes[1]);
 };
 
 const highlightFavoritedItems = () => {
-  const itemsToPin = [
+  const itemsToPin = new Set([
     getMhuiSetting('send-supplies-pinned-items-0', 'SUPER|brie+'),
     getMhuiSetting('send-supplies-pinned-items-1', 'Empowered SUPER|b...'),
     getMhuiSetting('send-supplies-pinned-items-2', 'Rift Cherries'),
     getMhuiSetting('send-supplies-pinned-items-3', 'Rift-torn Roots'),
     getMhuiSetting('send-supplies-pinned-items-4', 'Sap-filled Thorns'),
-  ];
+  ]);
 
-  items.forEach((item) => {
+  for (const item of items) {
     // if the details text content is in the array, then pin it
     const details = item.querySelector('.details');
-    if (itemsToPin.includes(details.textContent)) {
+    if (itemsToPin.has(details.textContent)) {
       item.classList.add('pinned');
     }
-  });
+  }
 };
 
 const addQuickQuantityButtons = () => {
@@ -178,7 +186,7 @@ const addQuickQuantityButtons = () => {
   }
 
   // parse out the max quantity by getting the text between 'you can send up to: ' and the first space after the number
-  const maxAmount = parseInt(maxquantity.textContent.split('You can send up to: ')[1].split(' ')[0].replace(',', ''));
+  const maxAmount = Number.parseInt(maxquantity.textContent.split('You can send up to: ')[1].split(' ')[0].replace(',', ''));
 
   const wrapper = makeElement('div', 'mhui-supply-quick-quantity-wrapper');
 
@@ -189,11 +197,11 @@ const addQuickQuantityButtons = () => {
     100,
   ];
 
-  buttons.forEach((button) => {
+  for (const button of buttons) {
     const btn = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-quick-quantity']);
     makeElement('span', '', `+${button}`, btn);
     btn.addEventListener('click', () => {
-      const value = parseInt(inputVal.value || 0);
+      const value = Number.parseInt(inputVal.value || 0);
       inputVal.value = value + button;
 
       // fire a keyup event so the quantity updates
@@ -201,8 +209,8 @@ const addQuickQuantityButtons = () => {
       inputVal.dispatchEvent(event);
     });
 
-    wrapper.appendChild(btn);
-  });
+    wrapper.append(btn);
+  }
 
   const max = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-quick-quantity']);
   makeElement('span', '', 'All', max);
@@ -215,7 +223,7 @@ const addQuickQuantityButtons = () => {
     inputVal.dispatchEvent(event);
   });
 
-  wrapper.appendChild(max);
+  wrapper.append(max);
 
   // append the wrapper after the input
   inputVal.parentNode.insertBefore(wrapper, inputVal.nextSibling);
@@ -233,7 +241,7 @@ const upgradeSendSupplies = (initial = false) => {
 
   if (isChoosingUser) {
     const users = document.querySelectorAll('#supplytransfer .friendList .element.recipient');
-    users.forEach((user) => {
+    for (const user of users) {
       // add an event listener to the click so we can apply the item changes
       user.addEventListener('click', () => {
         upgradeSendSupplies();
@@ -243,7 +251,7 @@ const upgradeSendSupplies = (initial = false) => {
       if (search) {
         search.focus();
       }
-    });
+    }
   } else if (isChoosingItem) {
     items = document.querySelectorAll('#supplytransfer .tabContent.item .listContainer .item');
     highlightFavoritedItems();
@@ -282,9 +290,22 @@ const main = () => {
   upgradeSendSupplies(true);
 };
 
-export default () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   onNavigation(main, {
     page: 'supplytransfer'
   });
+};
+
+export default {
+  id: 'better-send-supplies',
+  name: 'Better Send Supplies',
+  type: 'better',
+  default: true,
+  description: 'Adds pinned items, search, and sorting to the Send Supplies page.',
+  load: init,
+  settings,
 };

@@ -1,5 +1,14 @@
-import recipesMeConversion from '../../data/recipes-me-conversion.json';
-import recipesToReorder from '../../data/recipes-to-reorder.json';
+import {
+  getCurrentSubtab,
+  getCurrentTab,
+  getUserItems,
+  makeElement,
+  onEvent,
+  onNavigation
+} from '@/utils';
+
+import recipesMeConversion from '@data/recipes-me-conversion.json';
+import recipesToReorder from '@data/recipes-to-reorder.json';
 
 const cleanUpRecipeBook = () => {
   // Re-add the 'All' tab.
@@ -44,7 +53,7 @@ const showCraftWarning = (text) => {
   }
 
   const tooltip = makeElement('div', 'mhui-craft-warning-tooltip', text);
-  confirm.parentNode.appendChild(tooltip);
+  confirm.parentNode.append(tooltip);
 };
 
 const warnOnBadCrafts = (limit = 0) => {
@@ -102,7 +111,7 @@ const warnOnBadCrafts = (limit = 0) => {
 };
 
 const modifySmashableTooltip = async () => {
-  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) { // eslint-disable-line no-undef
+  if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) {
     return;
   }
 
@@ -130,16 +139,12 @@ const modifySmashableTooltip = async () => {
 
       item.setAttribute('data-new-tooltip', 'newTooltip');
 
-      if (producedItem.includes(',')) {
-        producedItem = producedItem.split(',');
-      } else {
-        producedItem = [producedItem];
-      }
+      producedItem = producedItem.includes(',') ? producedItem.split(',') : [producedItem];
 
       const itemType = item.getAttribute('data-item-type');
       producedItem.push(itemType);
 
-      const itemData = await getUserItems(producedItem); // eslint-disable-line no-undef
+      const itemData = await getUserItems(producedItem);
       if (! itemData || ! itemData[0]) {
         return;
       }
@@ -165,7 +170,7 @@ const modifySmashableTooltip = async () => {
 
         if ('gold_stat_item' === itemDataItem.type) {
           // convert to k or m
-          const quantityInt = parseInt(quantity);
+          const quantityInt = Number.parseInt(quantity);
           if (quantityInt >= 1000000) {
             quantity = `${Math.floor(quantityInt / 100000) / 10}m`;
           } else if (quantityInt >= 1000) {
@@ -187,9 +192,6 @@ const modifySmashableTooltip = async () => {
             </div>
           </div>
         </div>`, tooltipWrapper);
-        // makeElement('div', 'tooltip-title', `<b>${name}</b>`, itemTooltip);
-        // makeElement('div', 'tooltip-image', `<img src="${thumb}">`, itemTooltip);
-        // tooltipWrapper.appendChild(itemTooltip);
       });
 
       tooltip.parentNode.insertBefore(tooltipWrapper, tooltip.nextSibling);
@@ -202,7 +204,7 @@ const moveRecipe = (type, recipesContainer) => {
   if (recipeEl) {
     // move it to the bottom of the list
     recipeEl.classList.add('reordered');
-    recipesContainer.appendChild(recipeEl);
+    recipesContainer.append(recipeEl);
   }
 };
 
@@ -225,15 +227,13 @@ const updateRecipesOnPage = async (type) => {
   });
 
   // if there are no recipes to modify, then we can stop here.
-  if (recipesModifying.length < 1) {
+  if (recipesModifying.length === 0) {
     return;
   }
 
   const itemTypes = recipesModifying.map((recipe) => {
     return recipesToReorder[type][recipe];
-  }).filter((itemType) => {
-    return itemType;
-  });
+  }).filter(Boolean);
 
   // if we're on the crafting items tab, then also check for dragon slayer cannon and then we can remove all the dragon slayer cannon recipes.
   if (type === 'crafting_item') {
@@ -256,6 +256,9 @@ const updateRecipesOnPage = async (type) => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onNavigation(cleanUpRecipeBook,
     {

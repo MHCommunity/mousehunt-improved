@@ -56,8 +56,8 @@
 }
 
 .journal .entry.alchemists_cookbook_base_bonus {
-    background-position: 5px;
-    box-shadow: inset 0 0 20px #ae3fa4;
+  background-position: 5px;
+  box-shadow: inset 0 0 20px #ae3fa4;
 }
 
 /* Vrift */
@@ -115,4 +115,43 @@
 
 .journal .entry.queso_canyon_queso_pumped .journalbody {
   margin-left: 63px;
+}
+
+.journal .entry.relicHunter_complete .journaltext b {
+  font-weight: 700;
+}
+
+.journal .entry.folkloreForest.folkloreForest-lootFuelBoost {
+  background-color: #b6f1d1;
+}
+
+.entry.folkloreForest-farmToTable .journaltext a:nth-last-of-type(2)::after {
+  content: " and ";
+}
+
+/* rank up */
+.journal .content .titlechange .journalimage img {
+  width: 75px;
+}
+
+.journal .content .titlechange .journalimage {
+  width: 75px;
+}
+
+.journal .entry.titlechange::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/journal/donation_shimmer.png?asset_cache_version=2) no-repeat -130px 0;
+  filter: hue-rotate(123deg);
+  transition: all 300ms;
+  animation: donationShimmer 5s;
+  animation-iteration-count: infinite;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .journal .entry.titlechange::after {
+    animation: none;
+  }
 }

@@ -67,7 +67,6 @@ a.itemPurchaseView-image-trapPreview-link,
   margin-left: -11px;
   background: #f9f9f9;
   border-left: none;
-
 }
 
 .itemPurchaseView-action-itemCost-table-cell.cost {
@@ -108,7 +107,7 @@ a.itemPurchaseView-image-trapPreview-link,
 
 .itemPurchaseView-image-container,
 .itemPurchaseView-content-container {
-  background-color: #fff;;
+  background-color: #fff;
 }
 
 .itemPurchaseView-action-quantity {
@@ -338,6 +337,7 @@ a.itemPurchaseView-content-skin-link {
   padding: 2px;
   margin: 0;
   margin-right: 5px;
+  background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -391,7 +391,7 @@ a.itemPurchaseView-content-skin-link {
 }
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-goldGost {
-  opacity: .4;
+  opacity: 0.4;
 }
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity {
@@ -469,7 +469,9 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
   background-color: #fff600;
   border: 1px solid #000;
   border-radius: 5px;
-  box-shadow: inset 0 0 5px #fff, 1px 1px 1px #fff;
+  box-shadow:
+    inset 0 0 5px #fff,
+    1px 1px 1px #fff;
 }
 
 /* limit one items */
@@ -487,4 +489,66 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
 .mh-dark-mode .itemPurchaseView-action-goldGost {
   background-color: #0e0e0e;
   border-color: #242424;
+}
+
+.itemPurchaseView-content-details {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-bottom: 10px;
+}
+
+.itemPurchaseView-content-container .itemViewStatBlock.horizontal.base,
+.itemPurchaseView-content-container .itemViewStatBlock.horizontal.weapon {
+  width: auto;
+  margin-bottom: 10px;
+  margin-left: 0;
+}
+
+.title .itemViewStatBlock-stat-value span a {
+  max-width: 60px;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: unset;
+}
+
+a.itemPurchaseView-image {
+  width: 100px;
+  height: 100px;
+}
+
+a.shopsPage-kingsCalibratorPromo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 12px;
+}
+
+.shopsPage-kingsCalibratorPromo-button {
+  top: unset;
+}
+
+.shopsPage-kingsCalibratorPromo br {
+  display: none;
+}
+
+.shopsPage-compareEquipment-stats {
+  width: auto;
+}
+
+.shopsPage-compareEquipment-stats .itemViewStatBlock.horizontal.weapon {
+  float: none;
+  width: auto;
+  margin-left: 0;
+}
+
+.shopsPage-compareEquipment-stats .itemPurchaseView-content-name {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start;
+}
+
+.shopsPage-compareEquipment {
+  background-color: #dbe9ff;
 }

@@ -1,3 +1,5 @@
+import { getCurrentPage, onNavigation } from '@/utils';
+
 const reorderBlocks = () => {
   if ('friends' !== getCurrentPage()) {
     return;
@@ -16,7 +18,7 @@ const reorderBlocks = () => {
   // Move the third block to the top and make the input bigger.
   const block = blocks[2];
   const parent = block.parentNode;
-  parent.removeChild(block);
+  block.remove();
   parent.insertBefore(block, parent.firstChild);
   block.classList.add('friends-page-id-search');
 
@@ -38,6 +40,9 @@ const autofocusIdSearch = () => {
   input.focus();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onNavigation(reorderBlocks, {
     page: 'friends'

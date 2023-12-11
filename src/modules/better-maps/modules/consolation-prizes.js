@@ -1,6 +1,6 @@
-import { mapData } from '../../utils';
+import { makeElement, mapData } from '@/utils';
 
-const addConsolationPrizes = () => {
+export default () => {
   const consolationButton = document.querySelector('.treasureMapView-consolationPrize-message');
   if (! consolationButton || ! mapData().has_consolation_prizes || ! mapData().consolation_prizes) {
     return;
@@ -17,13 +17,11 @@ const addConsolationPrizes = () => {
     const prizeDiv = makeElement('div', 'mh-mapper-consolation-prize');
     const prizeImg = makeElement('img', 'mh-mapper-consolation-prize');
     prizeImg.src = prize.thumb;
-    prizeDiv.appendChild(prizeImg);
+    prizeDiv.append(prizeImg);
     makeElement('div', 'mh-mapper-consolation-prize-text', `${prize.quantity} ${prize.name}`, prizeDiv);
 
-    prizeWrapper.appendChild(prizeDiv);
+    prizeWrapper.append(prizeDiv);
   }
 
-  consolationButton.parentElement.appendChild(prizeWrapper);
+  consolationButton.parentElement.append(prizeWrapper);
 };
-
-export default addConsolationPrizes;

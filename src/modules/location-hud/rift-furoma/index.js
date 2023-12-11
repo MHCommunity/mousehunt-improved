@@ -1,8 +1,10 @@
-import { addHudStyles } from '../../utils';
+import { addHudStyles } from '@/utils';
+
 import styles from './styles.css';
 
-const main = () => {
-  addHudStyles('rift-furoma', styles);
+/**
+ * Initialize the module.
+ */
+export default () => {
+  addHudStyles(styles);
 };
-
-export default main;

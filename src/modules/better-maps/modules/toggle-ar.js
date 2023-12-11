@@ -1,4 +1,4 @@
-import { getArEl, mapper } from '../../utils';
+import { getArEl, makeElement, mapper } from '@/utils';
 
 const addArDataToMap = async (mapData) => {
   let type = 'mouse';
@@ -52,7 +52,7 @@ const addArDataToMap = async (mapData) => {
       return;
     }
 
-    name.appendChild(arEl);
+    name.append(arEl);
 
     mouseEl.setAttribute('data-mh-ui-ar', true);
   });
@@ -123,7 +123,7 @@ const maybeClickArToggle = () => {
   }
 };
 
-const addArToggle = (tab = 'goals') => {
+const addArToggle = async (tab = 'goals') => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
     return;
@@ -160,7 +160,9 @@ const addArToggle = (tab = 'goals') => {
 
   toggle.addEventListener('click', toggleAr);
 
-  wrapper.appendChild(toggle);
+  wrapper.append(toggle);
+
+  await toggleAr();
 
   maybeClickArToggle();
 };

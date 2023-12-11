@@ -1,7 +1,8 @@
-import { addHudStyles } from '../../utils';
+import { addHudStyles, onTravel } from '@/utils';
+
 import styles from './styles.css';
 
-import addCheeseSelector from '../cheese-selectors';
+import addCheeseSelector from '../shared/cheese-selectors';
 
 const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) => {
   const hours = Math.floor(closes);
@@ -24,7 +25,7 @@ const updateClosingTime = () => {
   const today = new Date();
 
   const rotationLength = 18.66666;
-  const rotationsExact = (((today.getTime() / 1000.0) - 1294680060) / 3600) / rotationLength;
+  const rotationsExact = (((today.getTime() / 1000) - 1294680060) / 3600) / rotationLength;
   const rotationsInteger = Math.floor(rotationsExact);
   const partialrotation = (rotationsExact - rotationsInteger) * rotationLength;
   if (partialrotation < 16) {
@@ -61,7 +62,7 @@ const hud = () => {
 
   const timeLeftEl = updateClosingTime();
 
-  hudBar.appendChild(timeLeftEl);
+  hudBar.append(timeLeftEl);
 
   // add a timer to update the time left
   const timer = setInterval(updateClosingTime, 60 * 1000);
@@ -70,9 +71,11 @@ const hud = () => {
   } });
 };
 
-const main = () => {
-  addHudStyles('balacks-cove', styles);
-
+/**
+ * Initialize the module.
+ */
+export default () => {
+  addHudStyles(styles);
   addCheeseSelector('balacks-cove', [
     'vanilla_stilton_cheese',
     'vengeful_vanilla_stilton_cheese',
@@ -80,5 +83,3 @@ const main = () => {
 
   hud();
 };
-
-export default main;
