@@ -241,3 +241,10 @@ a.journal-detailLink.full::after {
 .journal .entry .journaltext p:last-of-type {
   margin-bottom: 0;
 }
+
+.journal .entry .journaltext .decoration {
+  margin-left: -12px;
+  font-size: 21px;
+  vertical-align: top;
+  filter: drop-shadow(0 0 1px #89299e) drop-shadow(0 0 5px #89299e) drop-shadow(0 0 10px #89299e);
+}

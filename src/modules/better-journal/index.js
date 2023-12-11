@@ -149,6 +149,7 @@ const updateJournalText = () => {
     ['•&nbsp;', ' '],
     ['My Condensed Creativity created additional loot:', 'My Condensed Creativity created an additional '],
     ['The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case', 'The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case!'],
+    ['*BLING*', '<span class="decoration">✨️</span>'],
 
     // Event stuff
     // SEH
