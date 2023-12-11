@@ -274,7 +274,7 @@
 }
 
 .multi-toggle .mousehuntSettingSlider {
-  transform: scale(.75);
+  transform: scale(0.75);
   display: block;
 }
 
