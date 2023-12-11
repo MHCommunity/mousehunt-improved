@@ -191,3 +191,7 @@
 .itemView-thumbnail.large {
   margin-left: -15px;
 }
+
+input.itemView-action-convert-quantity {
+  width: 50px;
+}
