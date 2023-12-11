@@ -951,6 +951,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     id: section.id || 'settings',
     name: section.name || 'Userscript Settings',
     description: section.description || '',
+    subSetting: section.subSetting || false,
   };
 
   let tabId = 'mh-utils-settings';
@@ -1008,22 +1009,16 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   }
 
   // Create the markup for the setting row.
-  const settings = document.createElement('div');
-  settings.classList.add('PagePreferences__settingsList');
+  const settings = makeElement('div', 'PagePreferences__settingsList');
   settings.id = `${section.id}-${key}`;
+  if (section.subSetting) {
+    settings.classList.add('PagePreferences__subSetting');
+  }
 
-  const settingRow = document.createElement('div');
-  settingRow.classList.add('PagePreferences__setting');
-
-  const settingRowLabel = document.createElement('div');
-  settingRowLabel.classList.add('PagePreferences__settingLabel');
-
-  const settingName = document.createElement('div');
-  settingName.classList.add('PagePreferences__settingName');
-  settingName.innerHTML = name;
-
-  const defaultSettingText = document.createElement('div');
-  defaultSettingText.classList.add('PagePreferences__settingDefault');
+  const settingRow = makeElement('div', 'PagePreferences__setting');
+  const settingRowLabel = makeElement('div', 'PagePreferences__settingLabel');
+  const settingName = makeElement('div', 'PagePreferences__settingName', name);
+  const defaultSettingText = makeElement('div', 'PagePreferences__settingDefault');
 
   if (settingSettings && (settingSettings.type === 'select' || settingSettings.type === 'multi-select')) {
     addStyles(`.PagePreferences .mousehuntHud-page-tabContent.game_settings.userscript-settings .settingRow .settingRow-action-inputContainer.select.busy:before,
@@ -1067,6 +1062,42 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   const settingRowAction = makeElement('div', 'PagePreferences__settingAction');
   const settingRowInput = makeElement('div', 'settingRow-action-inputContainer');
 
+  /**
+   * Make a toggle for the setting.
+   *
+   * @param {string}  toggleKey          The toggle key.
+   * @param {boolean} toggleDefaultValue The toggle default value.
+   * @param {string}  toggleTab          The toggle tab.
+   *
+   * @return {Object} The toggle.
+   */
+  const makeToggle = (toggleKey, toggleDefaultValue, toggleTab) => {
+    const settingRowInputCheckbox = makeElement('div', 'mousehuntSettingSlider');
+
+    // Depending on the current state of the setting, add the active class.
+    const currentSetting = getSetting(toggleKey, null, toggleTab);
+    let isActive = false;
+    if (currentSetting) {
+      settingRowInputCheckbox.classList.add('active');
+      isActive = true;
+    } else if (null === currentSetting && toggleDefaultValue) {
+      settingRowInputCheckbox.classList.add('active');
+      isActive = true;
+    }
+
+    /**
+     * Event listener for when the setting is clicked.
+     *
+     * @param {Event} event The event.
+     */
+    settingRowInputCheckbox.onclick = (event) => {
+      saveSettingAndToggleClass(event.target, toggleKey, ! isActive, toggleTab);
+    };
+
+    // Add the input to the settings row.
+    return settingRowInputCheckbox;
+  };
+
   if (settingSettings && (settingSettings.type === 'select' || settingSettings.type === 'multi-select')) {
     // Create the dropdown.
     const settingRowInputDropdown = document.createElement('div');
@@ -1077,7 +1108,10 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
       settingRowInput.classList.add('multiSelect', 'select');
     }
 
-    const amount = settingSettings.type === 'multi-select' ? settingSettings.number : 1;
+    let amount = 1;
+    if (settingSettings.type === 'multi-select' && settingSettings.number) {
+      amount = settingSettings.number;
+    }
 
     /**
      * Make an option for the dropdown.
@@ -1251,31 +1285,35 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     settingRowInput.append(settingRowInputText);
     settingRowInput.append(inputSaveButton);
     settingRowAction.append(settingRowInput);
+  } else if (settingSettings && settingSettings.type === 'multi-toggle') {
+    settingRowAction.classList.add('multi-toggle');
+
+    const multiToggleRow = makeElement('div', ['PagePreferences__settingsList', 'multi-toggle-row']);
+
+    settingSettings.options.forEach((option) => {
+      const optionSettingRow = makeElement('div', 'PagePreferences__settingsList');
+
+      // Label.
+      const optionSettingRowLabel = makeElement('div', 'PagePreferences__settingLabel');
+      makeElement('div', 'PagePreferences__settingName', option.name, optionSettingRowLabel);
+      optionSettingRow.append(optionSettingRowLabel);
+
+      // Action.
+      const optionSettingRowAction = makeElement('div', 'PagePreferences__settingAction');
+      const optionSettingRowInput = makeElement('div', 'settingRow-action-inputContainer');
+
+      const settingRowInputCheckbox = makeToggle(`${key}-${option.id}`, option.value, tab);
+      optionSettingRowInput.append(settingRowInputCheckbox);
+      optionSettingRowAction.append(optionSettingRowInput);
+
+      optionSettingRow.append(optionSettingRowAction);
+
+      multiToggleRow.append(optionSettingRow);
+    });
+
+    settingRowAction.append(multiToggleRow);
   } else {
-    const settingRowInputCheckbox = document.createElement('div');
-    settingRowInputCheckbox.classList.add('mousehuntSettingSlider');
-
-    // Depending on the current state of the setting, add the active class.
-    const currentSetting = getSetting(key, null, tab);
-    let isActive = false;
-    if (currentSetting) {
-      settingRowInputCheckbox.classList.add('active');
-      isActive = true;
-    } else if (null === currentSetting && defaultValue) {
-      settingRowInputCheckbox.classList.add('active');
-      isActive = true;
-    }
-
-    /**
-     * Event listener for when the setting is clicked.
-     *
-     * @param {Event} event The event.
-     */
-    settingRowInputCheckbox.onclick = (event) => {
-      saveSettingAndToggleClass(event.target, key, ! isActive, tab);
-    };
-
-    // Add the input to the settings row.
+    const settingRowInputCheckbox = makeToggle(key, defaultValue, tab);
     settingRowInput.append(settingRowInputCheckbox);
     settingRowAction.append(settingRowInput);
   }

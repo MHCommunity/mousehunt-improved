@@ -146,7 +146,7 @@ const init = () => {
   changeShield();
 
   onNavigation(() => {
-    const input = document.querySelector('#mousehunt-improved-settings-feature-modules-custom-shield select');
+    const input = document.querySelector('#mousehunt-improved-settings-feature-custom-shield select');
     if (! input) {
       return;
     }

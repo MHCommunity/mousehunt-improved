@@ -431,7 +431,8 @@ const addMhuiSetting = (id, title, defaultVal, description, module, options = nu
     {
       id: module.id,
       name: module.name,
-      description: module.description
+      description: module.description,
+      subSetting: module.subSetting ?? false,
     },
     'mousehunt-improved-settings',
     options

@@ -97,36 +97,17 @@
 }
 
 /* Sub-settings */
-#mousehunt-improved-settings-mousehunt-improved-better-travel-default-to-simple-travel,
-#mousehunt-improved-settings-mousehunt-improved-better-travel-show-alphabetized-list,
-#mousehunt-improved-settings-mousehunt-improved-better-travel-show-reminders,
-#mousehunt-improved-settings-mousehunt-improved-send-supplies-pinned-items,
-#mousehunt-improved-settings-feature-modules-quick-send-supplies-items,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send,
-#mousehunt-improved-settings-mousehunt-improved-better-tournaments-tournament-time-display-inline,
-#mousehunt-improved-settings-mousehunt-improved-better-marketplace-search-all {
-  padding-left: 10px;
+.PagePreferences__settingsList.PagePreferences__subSetting {
   margin-left: 20px;
 }
 
-#mousehunt-improved-settings-mousehunt-improved-better-travel-default-to-simple-travel .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-travel-show-alphabetized-list .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-travel-show-reminders .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-send-supplies-pinned-items .PagePreferences__settingName,
-#mousehunt-improved-settings-feature-modules-quick-send-supplies-items .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-close-on-send .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-tournaments-tournament-time-display-inline .PagePreferences__settingName,
-#mousehunt-improved-settings-mousehunt-improved-better-marketplace-search-all .PagePreferences__settingName {
+.PagePreferences__subSetting .PagePreferences__settingName {
   font-size: 13px;
 }
 
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-send-order .inputBox.multiSelect,
-#mousehunt-improved-settings-mousehunt-improved-gift-buttons-ignore-bad-gifts .inputBox.multiSelect,
-#mousehunt-improved-settings-feature-modules-custom-shield .inputBox.multiSelect {
+#mousehunt-improved-settings-better-gift-buttons-send-order .inputBox.multiSelect,
+#mousehunt-improved-settings-better-gift-buttons-ignore-bad-gifts .inputBox.multiSelect,
+#mousehunt-improved-settings-feature-custom-shield .inputBox.multiSelect {
   max-width: unset;
 }
 
@@ -136,30 +117,7 @@
   background-color: inherit;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(6),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(7),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(8),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(12),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(13),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(14),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(18),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(19),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(20),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(24),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(25),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(26),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(30),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(31),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(32),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(36),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(37),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(38),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(42),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(43),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(44),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(48),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(49),
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(50) {
+#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(even) {
   background-color: #eee;
   border-radius: 4px;
 }
@@ -242,7 +200,7 @@
   border: 1px solid #ccc;
 }
 
-#mousehunt-improved-settings-feature-modules-quick-send-supplies-items .multiSelect {
+#mousehunt-improved-settings-feature-quick-send-supplies-items .multiSelect {
   width: 375px;
 }
 
@@ -291,4 +249,46 @@
 /* todo: fix this in mhutils */
 .mh-utils-settings-refresh-message-hidden {
   display: none;
+}
+
+.PagePreferences__settingsList.multi-toggle-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  justify-items: end;
+  padding: 0;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList .multi-toggle-row .PagePreferences__settingsList {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-evenly;
+  padding: 0;
+  gap: 0;
+  background-color: transparent;
+}
+
+.PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName {
+  font-size: 10px;
+}
+
+.multi-toggle .mousehuntSettingSlider {
+  transform: scale(.75);
+  display: block;
+}
+
+.PagePreferences__settingAction.multi-toggle {
+  max-width: 480px;
+  display: block;
+}
+
+#mousehunt-improved-settings-feature-custom-shield,
+#mousehunt-improved-settings-feature-ultimate-checkmark-categories {
+  margin: 0;
+}
+
+#mousehunt-improved-settings-feature-custom-shield > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-feature-ultimate-checkmark-categories > div > div > .PagePreferences__settingName {
+  font-size: 15px;
 }

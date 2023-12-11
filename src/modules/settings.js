@@ -63,7 +63,9 @@ const addSettingForModule = (module) => {
         getMhuiSetting(subModule.id, subModule.default)
       )
     ) {
-      subModule.settings(module);
+      const subModSettings = module;
+      subModSettings.subSetting = true;
+      subModule.settings(subModSettings);
     }
   });
 };
