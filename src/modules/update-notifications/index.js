@@ -1,4 +1,6 @@
-import { getSetting, saveSetting } from '@/utils';
+import { addUIStyles, getSetting, saveSetting } from '@/utils';
+
+import styles from './styles.css';
 
 /**
  * Get the last time the user read the update notification.
@@ -31,6 +33,8 @@ const getReadUpdateNotificationTime = (version) => {
  * Initialize the module.
  */
 const init = () => {
+  addUIStyles(styles);
+
   const link = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}`;
 
   const { date, hasRead } = getReadUpdateNotificationTime(mhImprovedVersion);
@@ -48,7 +52,7 @@ const init = () => {
     messageId: `mhui-update-notification-${mhImprovedVersion}`,
     messageType: 'news',
     messageData: {
-      text: `<img src="https://i.mouse.rip/mh-improved/icon-64.png" class="item" alt="MouseHunt Improved icon">MH Improved has been updated to v${mhImprovedVersion}! <a href="${link}">Check out the changelog</a> for more details.`,
+      text: `<img src="https://i.mouse.rip/mh-improved/icon-64.png" class="item" alt="MouseHunt Improved icon">MouseHunt Improved has been updated to v${mhImprovedVersion}! <a href="${link}">Read the release notes</a>.`,
       href: link,
       cssClass: 'mhui-notification',
     },

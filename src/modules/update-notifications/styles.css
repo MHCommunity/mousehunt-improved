@@ -1,0 +1,19 @@
+.notificationMessageList .message.mhui-notification {
+  background-color: #e1fae9;
+}
+
+.notificationMessageList .message.mhui-notification .clear-block {
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 40px;
+}
+
+.notificationMessageList .message.mhui-notification .date {
+  display: none;
+}
+
+.notificationMessageList .message.mhui-notification .messageText {
+  display: block;
+  padding: 0;
+  padding-bottom: 4px;
+}
