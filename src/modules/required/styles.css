@@ -262,10 +262,10 @@
 .mousehunt-improved-settings .PagePreferences__settingsList .multi-toggle-row .PagePreferences__settingsList {
   display: flex;
   flex-direction: row;
+  gap: 0;
   align-items: stretch;
   justify-content: space-evenly;
   padding: 0;
-  gap: 0;
   background-color: transparent;
 }
 
@@ -274,13 +274,13 @@
 }
 
 .multi-toggle .mousehuntSettingSlider {
-  transform: scale(0.75);
   display: block;
+  transform: scale(0.75);
 }
 
 .PagePreferences__settingAction.multi-toggle {
-  max-width: 480px;
   display: block;
+  max-width: 480px;
 }
 
 #mousehunt-improved-settings-feature-custom-shield,
