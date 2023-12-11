@@ -7,6 +7,8 @@ import {
   removeHudStyles
 } from '@/utils';
 
+import settings from './settings';
+
 // Locations
 /* eslint-disable camelcase */
 import acolyte_realm from './acolyte-realm';
@@ -183,8 +185,19 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   main();
   onNavigation(main);
   onTravel(main);
+};
+
+export default {
+  id: 'location-huds',
+  name: 'Location HUD Improvements',
+  type: 'location-hud',
+  default: true,
+  description: '',
+  load: init,
+  alwaysLoad: true,
+  settings,
 };

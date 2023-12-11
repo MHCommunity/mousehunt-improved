@@ -123,7 +123,7 @@ const fixItemPageReciever = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   if ('item' === getCurrentPage()) {
@@ -146,4 +146,10 @@ export default () => {
       onLoad: true,
     }
   );
+};
+
+export default {
+  id: 'fixes',
+  type: 'required',
+  load: init,
 };

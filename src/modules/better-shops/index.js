@@ -134,7 +134,7 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   onNavigation(main, {
@@ -142,4 +142,13 @@ export default () => {
   });
 
   onRequest(updatePlaceholderText, 'managers/ajax/purchases/itempurchase.php');
+};
+
+export default {
+  id: 'better-shops',
+  name: 'Better Shops',
+  type: 'better',
+  default: true,
+  description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.',
+  load: init,
 };

@@ -30,11 +30,20 @@ const addDarkModeBodyClass = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   addDarkModeBodyClass();
 
   onNavigation(addDarkModeBodyClass);
   onRequest(addDarkModeBodyClass);
+};
+
+export default {
+  id: 'dark-mode',
+  name: 'Dark Mode',
+  type: 'feature',
+  default: true,
+  description: 'Improves and tweaks dark mode, either the standalone extension or the MHCT version.',
+  load: init,
 };

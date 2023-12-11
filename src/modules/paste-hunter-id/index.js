@@ -29,6 +29,15 @@ const listenForIDPaste = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   listenForIDPaste();
+};
+
+export default {
+  id: 'paste-hunter-id',
+  name: 'Paste Hunter ID',
+  type: 'feature',
+  default: true,
+  description: 'Copy a Hunter ID to your clipboard and then press Ctrl/Cmd+v anywhere to go directly to that hunter\'s profile.',
+  load: init,
 };

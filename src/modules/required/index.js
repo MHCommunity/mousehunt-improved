@@ -137,7 +137,7 @@ const checkForAutohorn = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(settingStyles);
 
   onNavigation(modifySettingsPage,
@@ -154,4 +154,10 @@ export default () => {
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
     checkForAutohorn();
   }
+};
+
+export default {
+  id: 'required',
+  type: 'required',
+  load: init,
 };

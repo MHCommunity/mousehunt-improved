@@ -1,5 +1,6 @@
 import { addUIStyles, getMhuiSetting, onNavigation } from '@/utils';
 
+import settings from './settings';
 import styles from './styles.css';
 
 const addClass = (el, shieldClass) => {
@@ -139,7 +140,7 @@ const getTitle = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   changeShield();
@@ -157,4 +158,15 @@ export default () => {
     page: 'preferences',
     onLoad: true,
   });
+};
+
+export default {
+  id: 'custom-shield',
+  name: 'Custom Shield',
+  type: 'feature',
+  default: false,
+  description: 'Change your shield in the HUD to a variety of different options.',
+  load: init,
+  alwaysLoad: true,
+  settings,
 };

@@ -37,7 +37,7 @@ const startKingsReward = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   onRequest(initiateKingsReward, 'managers/ajax/turns/activeturn.php', true);
@@ -45,4 +45,13 @@ export default () => {
 
   onRequest(startKingsReward);
   startKingsReward();
+};
+
+export default {
+  id: 'better-kings-reward',
+  name: 'Better King\'s Reward',
+  type: 'better',
+  default: true,
+  description: 'Updates the style of the King\'s Reward slightly, automatically closes the success message',
+  load: init,
 };

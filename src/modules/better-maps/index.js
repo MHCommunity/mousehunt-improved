@@ -191,7 +191,7 @@ const relicHunterUpdate = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addMapStyles();
 
   // Fire the different tab clicks.
@@ -210,4 +210,13 @@ export default () => {
   intercept();
 
   relicHunterUpdate();
+};
+
+export default {
+  id: 'better-maps',
+  name: 'Better Maps',
+  type: 'better',
+  default: true,
+  description: 'Adds a number of features to maps, including showing attracting rates, a sorted tab that categorizes a variety of maps, and showing more infomation on the Hunters tab.',
+  load: init,
 };

@@ -60,10 +60,16 @@ const highlightUsers = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   onNavigation(highlightUsers, {
     page: 'hunterprofile',
   });
+};
+
+export default {
+  id: 'highlight-users',
+  type: 'required',
+  load: init,
 };

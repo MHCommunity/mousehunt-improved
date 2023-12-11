@@ -17,6 +17,7 @@ import {
 import environments from '@data/environments.json';
 import eventEnvironments from '@data/environments-events.json';
 
+import settings from './settings';
 import styles from './styles.css';
 
 /**
@@ -514,7 +515,17 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'better-travel',
+  name: 'Better Travel',
+  type: 'better',
+  default: true,
+  description: 'Adds locations in the current region to the Travel dropdown menu, a "Simple Travel" tab with a grid of locations, an optional alphabetized list, an indicator for where the Relic Hunter is.',
+  load: init,
+  settings,
 };

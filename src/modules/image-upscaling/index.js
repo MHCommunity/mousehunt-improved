@@ -156,7 +156,10 @@ const unupscaledImages = [];
 const upscaledImages = [];
 const lastCheck = { backgrounds: '', images: '' };
 
-export default async () => {
+/**
+ * Initialize the module.
+ */
+const init = async () => {
   addUIStyles([styles, journalThemeStyles]);
 
   // Observe the document for changes and upscale images when they are added.
@@ -191,4 +194,13 @@ export default async () => {
   });
 
   observer.observe(document, options);
+};
+
+export default {
+  id: 'image-upscaling',
+  name: 'Image Upscaling',
+  type: 'feature',
+  default: true,
+  description: 'Updates all images to use higher resolution versions with transparent backgrounds.',
+  load: init,
 };

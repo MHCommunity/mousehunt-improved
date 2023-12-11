@@ -144,7 +144,16 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'better-inventory',
+  name: 'Better Inventory',
+  type: 'better',
+  default: true,
+  description: 'Updates the inventory layout and styling. ',
+  load: init,
 };

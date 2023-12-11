@@ -155,7 +155,16 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'better-item-view',
+  name: 'Better Item View',
+  type: 'better',
+  default: true,
+  description: 'Shows drop rates, links to MHCT and the wiki, and updates the look of the item view popup.',
+  load: init,
 };

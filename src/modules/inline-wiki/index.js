@@ -5,7 +5,7 @@ import styles from './styles.css';
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   const injectIframe = async () => {
     const wikiPage = document.querySelector('#wiki-page');
     if (wikiPage) {
@@ -33,4 +33,13 @@ export default () => {
   }
 
   addUIStyles(styles);
+};
+
+export default {
+  id: 'inline-wiki',
+  name: 'Inline Wiki',
+  type: 'feature',
+  default: true,
+  description: 'Clicking \'Wiki\' in the menu will load it right in the page, rather than opening a new tab.',
+  load: init,
 };

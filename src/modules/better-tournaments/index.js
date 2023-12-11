@@ -7,6 +7,7 @@ import {
   onNavigation
 } from '@/utils';
 
+import settings from './settings';
 import styles from './styles.css';
 
 const updateTournamentHud = async () => {
@@ -210,7 +211,10 @@ const updateTournamentList = async () => {
   });
 };
 
-export default async () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   addUIStyles(styles);
   updateTournamentHud();
 
@@ -218,4 +222,14 @@ export default async () => {
   onNavigation(updateTournamentList, {
     page: 'tournament',
   });
+};
+
+export default {
+  id: 'better-tournaments',
+  name: 'Better Tournaments',
+  type: 'better',
+  default: true,
+  description: 'Updates the Tournaments UI to show information on hover and a variety of small interface tweaks.',
+  load: init,
+  settings
 };

@@ -143,7 +143,7 @@ const savePbStats = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   onPageChange({ blueprint: { show: () => {
     savePbStats();
     setTimeout(modifyPB, 500);
@@ -158,4 +158,13 @@ export default () => {
     savePbStats();
     setPrestigeStats();
   }, 'managers/ajax/users/gettrapcomponents.php');
+};
+
+export default {
+  id: 'prestige-base-stats',
+  name: 'Prestige Base Stats',
+  type: 'feature',
+  default: true,
+  description: 'Shows the correct stats for the Prestige Base in the base selector.',
+  load: init,
 };

@@ -47,7 +47,16 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'copy-id',
+  name: 'Copy ID',
+  type: 'feature',
+  default: true,
+  description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.',
+  load: init,
 };

@@ -97,7 +97,7 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   // Only load if the user has LGS.
   if (user.has_shield) {
     addUIStyles(styles);
@@ -105,4 +105,11 @@ export default () => {
   }
 };
 
-// 8137672
+export default {
+  id: 'lgs-reminder',
+  name: 'Lucky Golden Shield Duration & Reminder',
+  type: 'feature',
+  description: 'Show your LGS duration in the HUD and warn you when it\'s about to expire.',
+  default: true,
+  load: init,
+};

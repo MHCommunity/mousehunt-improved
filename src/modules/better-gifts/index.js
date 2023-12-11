@@ -7,6 +7,7 @@ import {
   replaceInTemplate
 } from '@/utils';
 
+import settings from './settings';
 import styles from './styles.css';
 
 const getIgnoredGifts = () => {
@@ -422,7 +423,17 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   main();
+};
+
+export default {
+  id: 'better-gifts',
+  name: 'Better Gifts',
+  type: 'better',
+  default: true,
+  description: 'Quickly accept and return all your gifts as well as picking random friends to send to.',
+  load: init,
+  settings
 };

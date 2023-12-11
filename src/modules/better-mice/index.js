@@ -319,8 +319,17 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   main();
   mousepage();
+};
+
+export default {
+  id: 'better-mice',
+  name: 'Better Mice',
+  type: 'better',
+  default: true,
+  description: 'Adds attraction rate stats and links to MHWiki and MHCT to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.',
+  load: init
 };

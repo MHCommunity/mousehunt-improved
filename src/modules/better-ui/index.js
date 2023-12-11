@@ -7,10 +7,19 @@ import styles from './styles';
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   styles();
   friends();
   hud();
   inputs();
   skins();
+};
+
+export default {
+  id: 'better-ui',
+  name: 'Better UI',
+  type: 'better',
+  default: true,
+  description: 'Updates the MH interface with a variety of UI and style changes.',
+  load: init,
 };

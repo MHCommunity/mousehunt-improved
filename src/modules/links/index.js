@@ -38,7 +38,13 @@ const addHelpLinks = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addHelpLinks();
   addMouseripLink();
+};
+
+export default {
+  id: 'links',
+  type: 'required',
+  load: init,
 };

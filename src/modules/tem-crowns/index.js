@@ -94,8 +94,17 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   onPageChange({ tem: { show: addCrownsToTEM } });
+};
+
+export default {
+  id: 'tem-crowns',
+  name: 'TEM Crowns',
+  type: 'feature',
+  default: true,
+  description: 'Adds crowns and catches to the the Trap Effectiveness Meter.',
+  load: init,
 };

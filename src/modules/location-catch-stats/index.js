@@ -180,7 +180,7 @@ addSubmenuItem({
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   addSubmenuItem({
@@ -189,4 +189,13 @@ export default () => {
     icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/prize_shoppe.png?',
     callback: showModal
   });
+};
+
+export default {
+  id: 'location-catch-stats',
+  name: 'Location Catch Stats',
+  type: 'feature',
+  default: true,
+  description: 'Adds a "Loaction Catch Stats" to the Mouse dropdown menu to see your catch stats for the current location.',
+  load: init,
 };

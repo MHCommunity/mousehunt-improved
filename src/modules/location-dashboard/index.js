@@ -247,7 +247,7 @@ const getDashboardContents = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   // Cache the quest data for our current location.
   cacheLocationData();
   onTravel(null, { callback: cacheLocationData });
@@ -256,4 +256,13 @@ export default () => {
   makeDashboardTab();
 
   addUIStyles(styles);
+};
+
+export default {
+  id: 'location-dashboard',
+  name: 'Location Dashboard',
+  type: 'feature',
+  default: true,
+  description: 'See location HUD information in a dashboard available in the top dropdown menu.',
+  load: init,
 };

@@ -74,9 +74,18 @@ const convertOnPage = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   onDialogShow(convertInDialog);
 
   onRequest(convertOnPage);
   convertOnPage();
+};
+
+export default {
+  id: 'metric',
+  name: 'Metric Units',
+  type: 'feature',
+  default: false,
+  description: 'Use metric units instead of imperial units.',
+  load: init
 };

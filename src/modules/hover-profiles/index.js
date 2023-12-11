@@ -180,7 +180,7 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   setTimeout(main, 500);
@@ -189,4 +189,13 @@ export default () => {
   });
 
   onInboxOpen(main);
+};
+
+export default {
+  id: 'hover-profiles',
+  name: 'Hover Profiles',
+  type: 'feature',
+  default: true,
+  description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.',
+  load: init,
 };

@@ -43,7 +43,7 @@ const addOpenAllButOneButton = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   addOpenAllButOneButton();
@@ -53,4 +53,13 @@ export default () => {
   }, {
     page: 'inventory',
   });
+};
+
+export default {
+  id: 'open-all-but-one',
+  name: 'Inventory - Open all But One buttons',
+  type: 'feature',
+  default: true,
+  description: 'Adds \'Open All But One\' buttons to convertible items in your inventory.',
+  load: init,
 };

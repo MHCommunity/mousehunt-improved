@@ -11,6 +11,7 @@ import {
   showSuccessMessage
 } from '@/utils';
 
+import settings from './settings';
 import styles from './styles.css';
 
 const makeItem = (name, type, image, appendTo) => {
@@ -202,7 +203,7 @@ const addToMapUsers = (attempts = 0) => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   main();
@@ -211,4 +212,14 @@ export default () => {
   onEvent('profile_hover', main);
 
   onDialogShow(addToMapUsers, 'map');
+};
+
+export default {
+  id: 'quick-send-supplies',
+  name: 'Quick Send Supplies',
+  type: 'feature',
+  default: true,
+  description: 'Hover over the send supplies button on someone\'s profile or hover-profile to easily send any quantity of SUPER|brie+ or another item.',
+  load: init,
+  settings,
 };

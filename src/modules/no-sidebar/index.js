@@ -65,8 +65,17 @@ const moveSidebar = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   persistBodyClass('no-sidebar');
   moveSidebar();
+};
+
+export default {
+  id: 'no-sidebar',
+  name: 'Hide Sidebar',
+  type: 'element-hiding',
+  default: false,
+  description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.',
+  load: init,
 };

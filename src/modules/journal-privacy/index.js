@@ -30,10 +30,19 @@ const applyClassToNames = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   onRequest(() => {
     applyClassToNames();
   }, 'managers/ajax/pages/journal.php');
+};
+
+export default {
+  id: 'journal-privacy',
+  name: 'Journal Privacy',
+  type: 'element-hiding',
+  default: false,
+  description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.',
+  load: init,
 };

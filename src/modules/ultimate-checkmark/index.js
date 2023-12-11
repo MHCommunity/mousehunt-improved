@@ -7,13 +7,14 @@ import {
   onNavigation
 } from '@/utils';
 
-import styles from './styles.css';
 
 import airships from './items/airships.json';
 import currency from './items/currency.json';
 import equipment from './items/equipment.json';
 import plankrunPages from './items/plankrun-pages.json';
 import treasureChests from './items/treasure-chests.json';
+import settings from './settings';
+import styles from './styles.css';
 
 const getItems = async (required, queryTab, queryTag, allItems = []) => {
   if (! allItems.length) {
@@ -301,11 +302,22 @@ const run = async () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   onNavigation(run, {
     page: 'hunterprofile',
     tab: 'items'
   });
+};
+
+export default {
+  id: 'ultimate-checkmark',
+  name: 'Ultimate Checkmark',
+  type: 'feature',
+  default: true,
+  description: 'Adds more things collect on the items view of your Hunter profile.',
+  load: init,
+  alwaysLoad: true,
+  settings,
 };

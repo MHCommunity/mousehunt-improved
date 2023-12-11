@@ -6,6 +6,7 @@ import {
   onRequest
 } from '@/utils';
 
+import settings from './settings';
 import styles from './styles.css';
 
 import itemsToRemove from '@data/items-marketplace-hidden.json';
@@ -182,7 +183,7 @@ let newSelect = null;
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   onOverlayChange({ marketplace: { show: () => {
     waitForSearchReady();
@@ -191,4 +192,14 @@ export default () => {
   } } });
 
   onRequest(autocloseClaim, 'managers/ajax/users/marketplace.php');
+};
+
+export default {
+  id: 'better-marketplace',
+  name: 'Better Marketplace',
+  type: 'better',
+  default: true,
+  description: 'Updates the marketplace layout and appearance and adds a variety of small features, like being able to click the "Buying" or "Selling" text to toggle between the two.',
+  load: init,
+  settings,
 };

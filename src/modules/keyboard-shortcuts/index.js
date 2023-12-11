@@ -84,7 +84,16 @@ const listenForKeypresses = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   listenForKeypresses();
+};
+
+export default {
+  id: 'keyboard-shortcuts',
+  name: 'Keyboard Shortcuts',
+  type: 'feature',
+  default: true,
+  description: 'Press \'?\' to see a list of keyboard shortcuts.',
+  load: init,
 };

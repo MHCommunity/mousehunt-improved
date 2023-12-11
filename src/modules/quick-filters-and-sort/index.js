@@ -127,9 +127,18 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
 
   onRequest(main, 'ajax/users/gettrapcomponents.php');
   onEvent('camp_page_toggle_blueprint', main);
+};
+
+export default {
+  id: 'quick-filters-and-sort',
+  name: 'Quick Filters and Sort',
+  type: 'feature',
+  default: true,
+  description: 'Add quick filters and sorting to the trap, base, charm, and cheese selectors.',
+  load: init,
 };

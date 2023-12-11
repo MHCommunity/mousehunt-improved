@@ -1,5 +1,6 @@
 import { addUIStyles, getMhuiSetting, makeElement, onNavigation } from '@/utils';
 
+import settings from './settings';
 import styles from './styles.css';
 
 const processSearch = () => {
@@ -292,9 +293,19 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles(styles);
   onNavigation(main, {
     page: 'supplytransfer'
   });
+};
+
+export default {
+  id: 'better-send-supplies',
+  name: 'Better Send Supplies',
+  type: 'better',
+  default: true,
+  description: 'Adds pinned items, search, and sorting to the Send Supplies page.',
+  load: init,
+  settings,
 };

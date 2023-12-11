@@ -30,7 +30,7 @@ const getReadUpdateNotificationTime = (version) => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   const link = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}`;
 
   const { date, hasRead } = getReadUpdateNotificationTime(mhImprovedVersion);
@@ -55,4 +55,10 @@ export default () => {
     messageDate: date,
     isNew: ! hasRead,
   });
+};
+
+export default {
+  id: 'update-notifications',
+  type: 'required',
+  load: init,
 };

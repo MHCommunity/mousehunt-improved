@@ -1,9 +1,0 @@
-.mousehuntTooltipParent:hover .mousehuntTooltip {
-  opacity: 1;
-}
-
-.mousehuntTooltip {
-  display: block;
-  opacity: 0;
-  transition: opacity 0s linear 0.4s;
-}

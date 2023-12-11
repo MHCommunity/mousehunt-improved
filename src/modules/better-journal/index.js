@@ -231,7 +231,7 @@ const main = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+const init = () => {
   addUIStyles([
     styles,
     customEntries,
@@ -251,4 +251,13 @@ export default () => {
   if (getMhuiSetting('better-journal-privacy')) {
     journalPrivacy();
   }
+};
+
+export default {
+  id: 'better-journal',
+  name: 'Better Journal',
+  type: 'better',
+  default: true,
+  description: 'Modify the journal text, layout, and styling.',
+  load: init,
 };
