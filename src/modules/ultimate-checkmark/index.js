@@ -3,16 +3,13 @@ import {
   doRequest,
   getCurrentPage,
   getCurrentTab,
+  getMhuiSetting,
   makeElement,
   onNavigation
 } from '@/utils';
 
+import categories from '@data/ultimate-checkmark.json';
 
-import airships from './items/airships.json';
-import currency from './items/currency.json';
-import equipment from './items/equipment.json';
-import plankrunPages from './items/plankrun-pages.json';
-import treasureChests from './items/treasure-chests.json';
 import settings from './settings';
 import styles from './styles.css';
 
@@ -251,47 +248,13 @@ const run = async () => {
     return;
   }
 
-  const categories = [
-    {
-      name: 'Treasure Chests',
-      items: treasureChests,
-      type: 'special',
-      subtype: 'treasure_chests',
-      key: 'chests',
-    },
-    {
-      name: 'Airships',
-      items: airships,
-      type: 'special',
-      subtype: 'cosmetics',
-      key: 'airships',
-    },
-    {
-      name: 'Equipment',
-      items: equipment,
-      type: 'special',
-      subtype: 'equipment',
-      key: 'equipment',
-    },
-    {
-      name: 'Currency',
-      items: currency,
-      type: 'special',
-      subtype: 'currency',
-      key: 'currency',
-    },
-    {
-      name: 'Plankrun Pages',
-      items: plankrunPages,
-      type: 'plankrun',
-      subtype: 'general',
-      key: 'plankrun',
-    },
-  ];
-
   // wait for each category to load + an extra 250ms before loading the next
   let delay = 0;
   for (const category of categories) {
+    if (! getMhuiSetting(`ultimate-checkmark-categories-${category.id}`, true)) {
+      continue;
+    }
+
     setTimeout(() => {
       addCategoryAndItems(category.items, category.type, category.subtype, category.key, category.name);
     }, delay);
