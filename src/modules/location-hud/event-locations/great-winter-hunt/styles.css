@@ -543,3 +543,20 @@ button.campHudSnowballShowdownView__buyButton {
   align-items: center;
   justify-content: space-evenly;
 }
+
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--active .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+  top: 172px;
+  left: 54px;
+  width: 20px;
+  font-size: 14px;
+  background: linear-gradient(54deg, #c87d0e 0%, #9f510c 100%);
+  border-radius: 4px;
+}
+
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton:nth-child(2) .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+  left: 55px;
+}
+
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton:nth-child(3) .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+  left: 56px;
+}
