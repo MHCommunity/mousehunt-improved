@@ -403,6 +403,10 @@ If you have any of these userscripts installed, you can uninstall them, as the f
 - [Mousehunt – Lucky Golden Shield Duration Indicator & Warning](https://greasyfork.org/en/scripts/410966-mousehunt-lucky-golden-shield-duration-indicator-warning)
 - Most map color coders
 
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a list of changes in each version.
+
 ## Contributing
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) for information on how to contribute to this project.
