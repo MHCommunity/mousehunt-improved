@@ -70,20 +70,7 @@
     "jsdoc/no-undefined-types": "warn",
     "jsdoc/require-description-complete-sentence": "warn",
     "jsdoc/require-description": "warn",
-    "jsdoc/require-jsdoc": [
-      "warn",
-      {
-        "require": {
-          "FunctionDeclaration": true,
-          "MethodDefinition": true,
-          "ClassDeclaration": true,
-          "ArrowFunctionExpression": true,
-          "FunctionExpression": true
-        },
-        "enableFixer": false,
-        "minLineCount": 3
-      }
-    ],
+    "jsdoc/require-jsdoc": "off",
     "jsx-quotes": ["error", "prefer-double"],
     "linebreak-style": ["error", "unix"],
     "no-alert": "error",
@@ -121,7 +108,7 @@
     "unicorn/no-keyword-prefix": "off",
     "unicorn/no-null": "off",
     "unicorn/no-unused-properties": "off",
-    "unicorn/prefer-add-event-listener": "off", // todo: disabled to not auto-fix
+    "unicorn/prefer-add-event-listener": "off",
     "unicorn/prefer-blob-reading-methods": "off",
     "unicorn/prefer-dom-node-dataset": "off",
     "unicorn/prefer-dom-node-text-content": "off",
@@ -133,13 +120,6 @@
       "warn",
       {
         "requireReturn": false
-      }
-    ],
-    "no-warning-comments": [
-      "warn",
-      {
-        "terms": ["todo", "fixme"],
-        "location": "anywhere"
       }
     ]
   },
