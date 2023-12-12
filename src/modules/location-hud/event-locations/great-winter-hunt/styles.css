@@ -581,3 +581,7 @@ button.campHudSnowballShowdownView__buyButton {
 #overlayPopup.greatWinterHuntDialog {
   margin-top: 30px;
 }
+
+.greatWinterHuntClaimRewardDialogView__title {
+  padding-left: 20px;
+}
