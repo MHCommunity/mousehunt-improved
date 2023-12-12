@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.25.1
+
+- Removes input updates from text → number, as it broke the marketplace buy/sell functionality when clicking on amounts
+- Fixes droid button colors in Golem Workshop
+- Fixes Snowball Showdown not being playable
+- Fixes images being scaled incorrectly on inventory pages
+- Fixes LGS reminder defaulting to enabled
+- Fixes text color for Glazy mouse catches when in dark mode
+- Show update notifications for last minor version when the current version is a patch version
+
 ## Version 0.25.0
 
 - Updates Image Upscaling to use a new algorithm with better performance and memory usage.
