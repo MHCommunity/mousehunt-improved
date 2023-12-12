@@ -1,8 +1,9 @@
-.notificationMessageList .message.mhui-notification-major {
+.pageFrameView .notificationMessageList .message.mhui-notification-major {
+  color: #000;
   background-color: #e1fae9;
 }
 
-.notificationMessageList .message.mhui-notification-major.new {
+.pageFrameView .notificationMessageList .message.mhui-notification-major.new {
   background-color: #c4ffd7;
 }
 
@@ -13,7 +14,6 @@
 .notificationMessageList .message.mhui-notification-major .clear-block {
   font-size: 14px;
   font-weight: 100;
-  line-height: 40px;
 }
 
 .notificationMessageList .message.mhui-notification .date {
