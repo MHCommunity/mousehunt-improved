@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 0.25.2
+
+- Fixes update notification colors for dark mode
+- Removes snowball showdown changes
+- Fixes dark mode styles for glazy mouse
+- Updates camp armed items to be the correct bg size
+- Fixes golem scarf position on golem preview window
+- Fixes golem overlapping destination tab
+- Moves ← → part buttons to the side to account for the golem
+- Fixes golem overlapping text on golem loot popup
+- Fixes golem loot popup being right at the top of the page
+- Only shows correct type of gifts in the gift switcher
+- Fixes scroll overflow on gift switcher
+- Sets the sidebar gift scroll to only be full height when Taller Windows is enabled
+
 ## Version 0.25.1
 
 - Removes input updates from text → number, as it broke the marketplace buy/sell functionality when clicking on amounts
