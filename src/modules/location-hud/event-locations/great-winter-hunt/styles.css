@@ -549,7 +549,7 @@ button.campHudSnowballShowdownView__buyButton {
   justify-content: space-evenly;
 }
 
-.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--active .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
   top: 172px;
   left: 54px;
   width: 20px;
@@ -564,4 +564,16 @@ button.campHudSnowballShowdownView__buyButton {
 
 .headsUpDisplayWinterHuntGolemWorkshopView__droidButton:nth-child(3) .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
   left: 56px;
+}
+
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--inactive .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+  background: linear-gradient(90deg, #7d3415 0%, #5a231c 100%);
+}
+
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--inactive:hover .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+  background: linear-gradient(112deg, #91492a 0%, #602726 100%);
+}
+
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--active:hover .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+  background: linear-gradient(54deg, #e77f14 0%, #b8590f 100%);
 }
