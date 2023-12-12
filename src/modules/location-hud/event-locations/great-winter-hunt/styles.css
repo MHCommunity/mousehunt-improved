@@ -249,6 +249,7 @@ button.campHudSnowballShowdownView__buyButton {
 .winterHuntGolemView__golem {
   z-index: 11;
   overflow: visible;
+  pointer-events: none;
   filter: drop-shadow(0 0 4px #18536d);
   transform: translateY(-8px);
 }
@@ -588,4 +589,39 @@ button.campHudSnowballShowdownView__buyButton {
 
 .greatWinterHuntGolemManagerDialogView__destinationViewContainer--active {
   z-index: 11;
+}
+
+button.greatWinterHuntGolemManagerDialogView__randomizeButton {
+  top: 15px;
+}
+
+.greatWinterHuntGolemManagerDialogView__activeGolemControls.greatWinterHuntGolemManagerDialogView__activeGolemControls--decrement {
+  right: -25px;
+  left: unset;
+  border-radius: 10px 0 0 10px;
+}
+
+.greatWinterHuntGolemManagerDialogView__partButton {
+  opacity: 1;
+}
+
+.greatWinterHuntGolemManagerDialogView__activeGolemControls--increment {
+  right: -45px;
+}
+
+.greatWinterHuntGolemManagerDialogView__activeGolemControls:hover,
+.greatWinterHuntGolemManagerDialogView__activeGolem:hover .greatWinterHuntGolemManagerDialogView__activeGolemControls {
+  z-index: 12;
+  opacity: 0.8;
+}
+
+.greatWinterHuntGolemManagerDialogView__activeGolemControls {
+  top: 40px;
+  padding: 20px 5px 0;
+  background-color: #32748c;
+  opacity: 0.1;
+}
+
+.greatWinterHuntGolemManagerDialogView__activeGolemControls.greatWinterHuntGolemManagerDialogView__activeGolemControls--increment {
+  border-radius: 0 10 10px 0;
 }
