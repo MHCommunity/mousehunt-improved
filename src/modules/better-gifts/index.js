@@ -337,11 +337,6 @@ const addGiftSwitcher = () => {
   hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
     _showTab(tabType, viewState, preserveVariables, preserveActions);
 
-    const gifts = document.querySelectorAll('.selectGift .giftSelectorView-scroller.giftSelectorView-giftContainer .giftSelectorView-gift.sendable');
-    if (! gifts.length) {
-      return;
-    }
-
     // We need to clone the nodes and wait until the selectGift function is called and then
     // we append the cloned nodes to the gift container.
 
@@ -355,6 +350,13 @@ const addGiftSwitcher = () => {
       const existing = document.querySelector('.mh-gift-buttons-clone-wrapper');
       if (existing) {
         existing.remove();
+      }
+
+      const giftType = tabType === 'send_free_gifts' ? 'gift' : 'paidgift';
+
+      const gifts = document.querySelectorAll(`.active .selectGift .giftSelectorView-scroller.giftSelectorView-giftContainer .giftSelectorView-gift.sendable.${giftType}`);
+      if (! gifts.length) {
+        return;
       }
 
       const cloneWrapper = makeElement('div', 'mh-gift-buttons-clone-wrapper');
