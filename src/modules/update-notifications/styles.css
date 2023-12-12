@@ -1,8 +1,16 @@
-.notificationMessageList .message.mhui-notification {
+.notificationMessageList .message.mhui-notification-major {
   background-color: #e1fae9;
 }
 
+.notificationMessageList .message.mhui-notification-major.new {
+  background-color: #c4ffd7;
+}
+
 .notificationMessageList .message.mhui-notification .clear-block {
+  line-height: 40px;
+}
+
+.notificationMessageList .message.mhui-notification-major .clear-block {
   font-size: 14px;
   font-weight: 100;
   line-height: 40px;
