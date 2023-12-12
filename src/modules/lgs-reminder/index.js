@@ -110,6 +110,6 @@ export default {
   name: 'Lucky Golden Shield Duration & Reminder',
   type: 'feature',
   description: 'Show your LGS duration in the HUD and warn you when it\'s about to expire.',
-  default: true,
+  default: false,
   load: init,
 };
