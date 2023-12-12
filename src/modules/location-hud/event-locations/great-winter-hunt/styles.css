@@ -577,3 +577,7 @@ button.campHudSnowballShowdownView__buyButton {
 .headsUpDisplayWinterHuntGolemWorkshopView__droidButton--active:hover .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
   background: linear-gradient(54deg, #e77f14 0%, #b8590f 100%);
 }
+
+#overlayPopup.greatWinterHuntDialog {
+  margin-top: 30px;
+}
