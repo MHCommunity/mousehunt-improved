@@ -302,7 +302,7 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 
 .mh-gift-buttons-clone-wrapper {
   max-height: 275px;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .paidgift a.giftSelectorView-friendRow-action.return {
