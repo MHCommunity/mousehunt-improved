@@ -2,7 +2,7 @@ import { CSSMinifyTextPlugin, sharedBuildOptions } from './shared.mjs';
 
 import * as esbuild from 'esbuild';
 import archiver from 'archiver';
-import esBuildCopyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line import/default
+import copyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line import/default
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -32,7 +32,7 @@ const buildExtension = async (platform) => {
     outfile: `dist/${platform}/main.js`,
     plugins: [
       CSSMinifyTextPlugin,
-      esBuildCopyPlugin.copyPlugin({
+      copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
         src: 'src/extension',
         dest: `dist/${platform}`,
         filter: (file) => { // eslint-disable-line jsdoc/require-jsdoc
