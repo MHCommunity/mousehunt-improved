@@ -623,7 +623,7 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 }
 
 .greatWinterHuntGolemManagerDialogView__activeGolemControls.greatWinterHuntGolemManagerDialogView__activeGolemControls--increment {
-  border-radius: 0 10 10px 0;
+  border-radius: 0 10px 10px 0;
 }
 
 .greatWinterHuntGolemManagerDialogView__activeGolemContent .winterHuntGolemView--hasScarf .winterHuntGolemView__scarf {
