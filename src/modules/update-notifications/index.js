@@ -29,9 +29,9 @@ const getReadUpdateNotificationTime = (version) => {
 /**
  * Show a notification to the user that MH Improved has been updated.
  *
- * @param {MessengerUINotification} m       The MessengerUINotification object.
- * @param {string}                  version The version of MH Improved.
- * @param {boolean}                 isPatch If the update is a patch update.
+ * @param {any}     m       The MessengerUINotification object.
+ * @param {string}  version The version of MH Improved.
+ * @param {boolean} isPatch If the update is a patch update.
  */
 const showUpdateNotification = (m, version, isPatch = false) => {
   const link = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${version}`;
