@@ -164,8 +164,14 @@
   justify-content: center;
   font-size: 50px;
   color: #6171a0;
+  pointer-events: none;
   content: "'✕'";
   opacity: 0.5;
+}
+
+.snowballShowdownView-board-row-cell.available.busy::after {
+  top: 9px;
+  left: 7px;
 }
 
 .winter_hunt_profile_tree_possible_gifts .gift {
