@@ -163,11 +163,6 @@ a.inventoryPage-item-larryLexicon {
   overflow: visible;
 }
 
-.inventoryPage-item .itemImage img {
-  width: 75px;
-  height: 75px;
-}
-
 .inventoryPage-item-recipeOptions li {
   margin-left: 5px;
   background-color: #fffcdb;
