@@ -165,7 +165,7 @@
   font-size: 50px;
   color: #6171a0;
   pointer-events: none;
-  content: "'✕'";
+  content: "✕";
   opacity: 0.5;
 }
 
