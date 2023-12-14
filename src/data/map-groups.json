@@ -1102,7 +1102,7 @@
           },
           {
             "mouse": "glazed",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "joy",
@@ -1128,55 +1128,55 @@
           },
           {
             "mouse": "black_diamond_racer",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
-            "mouse": "Double black_diamond_racer",
-            "subcategory": "gpp"
+            "mouse": "double_black_diamond",
+            "subcategory": "pp"
           },
           {
             "mouse": "free_skiing",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2020",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "nitro_racer",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2021",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2015",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_general_one",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "golem_jockey",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_hoarder",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "sporty_ski_instructor",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "wreath_thief",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "new_year_flight",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           }
         ]
       },
@@ -1201,55 +1201,55 @@
           },
           {
             "mouse": "christmas_tree",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_hunt_toy",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "elf",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "mad_elf",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "nutcracker",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "ornament",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "present",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "ridiculous_sweater",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowman_architect",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "stocking",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "toy",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "toy_builder",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "disco_ball_head",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           }
         ]
       },
@@ -1272,55 +1272,55 @@
           },
           {
             "mouse": "winter_boss_2014",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "glacia_ice_fist",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2016",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2018",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2017",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_general_two",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_bully",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "slay",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snow_fort",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_general_three",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "squeaker_claws",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "tundra_huntress",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "new_years",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2022",
@@ -1332,11 +1332,11 @@
     "subcategories": [
       {
         "id": "pp",
-        "name": "Pecan Pepperino"
+        "name": "Pecan Pecorino"
       },
       {
         "id": "gpp",
-        "name": "Glazed Pecan Pepperino"
+        "name": "Glazed Pecan Pecorino"
       },
       {
         "id": "sb",
@@ -1367,7 +1367,7 @@
           },
           {
             "mouse": "glazed",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "joy",
@@ -1393,55 +1393,55 @@
           },
           {
             "mouse": "black_diamond_racer",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
-            "mouse": "Double black_diamond_racer",
-            "subcategory": "gpp"
+            "mouse": "double_black_diamond",
+            "subcategory": "pp"
           },
           {
             "mouse": "free_skiing",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2020",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "nitro_racer",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2021",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2015",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_general_one",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "golem_jockey",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_hoarder",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "sporty_ski_instructor",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "wreath_thief",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "new_year_flight",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           }
         ]
       },
@@ -1466,55 +1466,55 @@
           },
           {
             "mouse": "christmas_tree",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_hunt_toy",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "elf",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "mad_elf",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "nutcracker",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "ornament",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "present",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "ridiculous_sweater",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowman_architect",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "stocking",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "toy",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "toy_builder",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "disco_ball_head",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           }
         ]
       },
@@ -1537,55 +1537,55 @@
           },
           {
             "mouse": "winter_boss_2014",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "glacia_ice_fist",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2016",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2018",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2017",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_general_two",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_bully",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "slay",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snow_fort",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "snowball_general_three",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "squeaker_claws",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "tundra_huntress",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "new_years",
-            "subcategory": "gpp"
+            "subcategory": "pp"
           },
           {
             "mouse": "winter_boss_2022",
