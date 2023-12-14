@@ -16,6 +16,7 @@ const init = () => {
     { id: 'birthday-horn', load: () => eventHorn('birthday') },
     { id: 'halloween-horn', load: () => eventHorn('halloween') },
     { id: 'lunar-new-year-horn', load: () => eventHorn('lunar-new-year') },
+    { id: 'great-winter-hunt-horn', load: () => eventHorn('greatWinterHunt') },
   ];
 
   for (const feature of features) {
