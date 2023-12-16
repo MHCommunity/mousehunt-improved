@@ -67,7 +67,7 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
         </a>
       </div>
       <div class="treasureMapView-allyCell lastActive">
-        <div class="treasureMapView-ally-lastActive online">
+        <div class="treasureMapView-ally-lastActive ${hunter.is_online ? 'online' : ''}">
           ${hunter.last_active_formatted}
         </div>
       </div>
