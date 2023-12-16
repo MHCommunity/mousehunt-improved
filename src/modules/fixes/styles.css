@@ -183,3 +183,8 @@ a.mousehuntHud-page-tabHeader.collectibles span {
 #messengerUINotification .tabs a:hover .arrow {
   border-color: transparent transparent transparent #eee;
 }
+
+/* Fix the checkmark on map screens */
+.treasureMapInviteSettingsView-listing-visibility.active::before {
+  content: "✓";
+}
