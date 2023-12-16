@@ -181,7 +181,7 @@ const updateTournamentList = async () => {
       return acc;
     }, 0);
 
-    const inlineOrHover = getMhuiSetting('better-tournaments-tournament-time-display-inline') ? 'tournament-time-display-inline' : 'tournament-time-display-hover';
+    const inlineOrHover = getSetting('better-tournaments-tournament-time-display-inline') ? 'tournament-time-display-inline' : 'tournament-time-display-hover';
 
     const beginsDate = new Date(nowTime + (beginsMinutes * 60000));
     const beginsDateString = beginsDate.toLocaleString('en-US', dateOptions);
