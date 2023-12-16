@@ -12,10 +12,6 @@
   height: auto;
 }
 
-.inventoryPage-item.full {
-  width: 100%;
-}
-
 .inventoryPage-item.torn_page .inventoryPage-item-name,
 .inventoryPage-item.stat .inventoryPage-item-name,
 .inventoryPage-item.collectible .inventoryPage-item-name,
@@ -450,4 +446,9 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
 
 .inventoryPage-confirmPopup-itemRow-quantity {
   font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+}
+
+/* Dont' show the "open:" text when it's half width items */
+.inventoryPage-item-content-action > span {
+  display: none;
 }

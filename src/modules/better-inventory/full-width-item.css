@@ -1,0 +1,17 @@
+.inventoryPage-item.full {
+  width: 100%;
+}
+
+.inventoryPage-item-content-action span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.mousehuntPage-content .inventoryPage-item-button:nth-child(2) {
+  margin-left: 0 !important;
+}
+
+/* Show the "open:" text when it's half width items */
+.inventoryPage-item-content-action > span {
+  display: inline-block;
+}

@@ -8,7 +8,9 @@ import {
 } from '@utils';
 
 import recipes from './recipes';
+import settings from './settings';
 
+import fullWidthStyles from './full-width-item.css';
 import styles from './styles.css';
 
 const setOpenQuantityOnClick = (attempts = 0) => {
@@ -142,12 +144,18 @@ const main = () => {
   recipes();
 };
 
+const maybeAddFullWidthStyles = () => {
+  const isFullWidth = getSetting('better-inventory-one-item-per-row', true);
+  return isFullWidth ? fullWidthStyles : '';
+};
+
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles([
     styles,
+    maybeAddFullWidthStyles()
   ]);
 
   main();
@@ -160,4 +168,5 @@ export default {
   default: true,
   description: 'Updates the inventory layout and styling. ',
   load: init,
+  settings
 };
