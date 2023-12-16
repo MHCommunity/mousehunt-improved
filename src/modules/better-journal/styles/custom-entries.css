@@ -166,3 +166,14 @@
 .mh-dark-mode .entry.short.catchsuccessloot[data-mouse-type="glazed"] a {
   color: #3b5998;
 }
+
+.journal .entry.titlechange {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/camp/re_engagement/popup/rank_up_icon.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
+}
+
+.journal .entry.titlechange .journalbody {
+  text-shadow: 0 0 1px #70c9da;
+}
