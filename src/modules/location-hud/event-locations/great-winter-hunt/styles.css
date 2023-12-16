@@ -203,6 +203,7 @@ button.campHudSnowballShowdownView__buyButton {
 
 .headsUpDisplayWinterHuntRegionView__golemChatMessage span {
   display: flex;
+  width: unset;
   padding-bottom: 2px;
   font-size: 10px;
   line-height: 10px;
@@ -262,7 +263,7 @@ button.campHudSnowballShowdownView__buyButton {
 
 .winterHuntGolemView.winterHuntGolemView--idleAnimation .winterHuntGolemView__head,
 .winterHuntGolemView.winterHuntGolemView--idleAnimation:hover .winterHuntGolemView__head {
-  transform-origin: 50% 45%;
+  transform-origin: 48% 51%;
 }
 
 .winterHuntGolemView__background {
