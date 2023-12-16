@@ -87,12 +87,37 @@ const updateGolemPopup = () => {
   setTimeout(updateGolemPartsQuantity, 250);
 };
 
+const golemDance = () => {
+  const trigger = document.querySelector('.greatWinterHuntRewardTrackView__progress');
+  if (! trigger) {
+    return;
+  }
+
+  trigger.addEventListener('click', () => {
+    const golems = document.querySelectorAll('.headsUpDisplayWinterHuntRegionView__golem .winterHuntGolemView');
+    if (! golems) {
+      return;
+    }
+
+    // Off set the animations so they don't all start at the same time.
+    count = 0;
+    golems.forEach((golem) => {
+      setTimeout(() => {
+        golem.classList.add('winterHuntGolemView--idleAnimation');
+      }, 100 * count);
+      count++;
+    });
+  });
+};
+
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addHudStyles(styles);
   onDialogShow(updateGolemPopup, 'greatWinterHuntDialog');
+
+  golemDance();
 
   onRequest(() => {
     updateGolemPartsQuantity();

@@ -619,3 +619,11 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 .greatWinterHuntGolemManagerDialogView__activeGolemContent .winterHuntGolemView--hasScarf .winterHuntGolemView__scarf {
   top: 15px;
 }
+/* make it so when you hover or click on the lil guy by the rewards indicator, it'll dance */
+.greatWinterHuntRewardTrackView__golem:hover {
+  animation: wallDamageWiggleSmall 0.3s infinite;
+}
+
+.greatWinterHuntRewardTrackView__golem:active {
+  animation-name: wallDamageWiggle;
+}
