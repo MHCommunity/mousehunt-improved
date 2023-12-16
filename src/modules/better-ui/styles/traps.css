@@ -58,7 +58,7 @@
 }
 
 .mh-dark-mode .campPage-trap-baitQuantity,
-.mh-dark-mode.campPage-trap-armedItem .quantity span {
+.mh-dark-mode .campPage-trap-armedItem .quantity span {
   color: #ffe6d0;
   background-color: hsl(0deg 0% 37.11% / 70%);
 }
