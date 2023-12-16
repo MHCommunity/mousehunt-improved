@@ -51,29 +51,6 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   };
 };
 
-const showTravelConfirmation = (environment, mapModel) => {
-  const environmentData = mapModel.getEnvironmentById(environment.id);
-  const environmentGoals = mapModel.getGoalsByEnvironment(environment.id);
-  const templateData = { environment: environmentData, goals: environmentGoals };
-  const noun = environmentData.num_missing_goals === 1 ? 'mouse' : 'mice';
-
-  const dialog = new hg.views.TreasureMapDialogView();
-  dialog.setTitle('Travel to ' + environmentData.name + '?');
-  dialog.setDescription('This area has ' + environmentData.num_missing_goals + ' missing ' + noun + '.');
-
-  dialog.setContent(hg.utils.TemplateUtil.renderFromFile('TreasureMapDialogView', 'travel', templateData));
-  dialog.setCssClass('confirm');
-  dialog.setContinueAction('Travel', () => {
-    app.pages.TravelPage.travel(environment.type);
-    dialog.hide();
-    setTimeout(() => {
-      jsDialog().hide();
-    }, 250);
-  });
-
-  hg.controllers.TreasureMapController.showDialog(dialog);
-};
-
 const makeMouseDiv = async (mouse, type = 'mouse') => {
   // Wrapper.
   const mouseDiv = makeElement('div', 'mouse-container');
