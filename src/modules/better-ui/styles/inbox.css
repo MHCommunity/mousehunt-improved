@@ -109,7 +109,7 @@ div#messengerUINotification {
 
 #messengerUINotification .messengerUINotificationClose {
   top: -15px;
-  right: -15px;
+  right: -5px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
