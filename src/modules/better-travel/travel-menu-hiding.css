@@ -1,0 +1,4 @@
+/* If Lethal Vision's Hyperspeed travel is installed, hide all of the items but our custom ones. */
+ul.fast-travel-list > li:not(.custom-submenu-item) {
+  display: none;
+}

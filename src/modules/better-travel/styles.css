@@ -308,3 +308,33 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.travelPage-map-environment-detail-title .custom-favorite-button {
+  margin-top: -1px;
+  margin-left: 10px;
+}
+
+.mousehuntHud-menu ul li ul li.mh-improved-better-travel-favorites-divider {
+  height: 1px;
+  pointer-events: none;
+  background-color: rgb(108 61 14 / 50%);
+}
+
+.mh-improved-better-travel-favorite-location::after {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  bottom: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/map/star_gold_320.png?asset_cache_version=2);
+  background-size: contain;
+  opacity: 0.3;
+}
+
+.mh-improved-better-travel-favorite-location:hover::after,
+.mh-improved-better-travel-favorite-location:focus::after {
+  opacity: 0.1;
+}

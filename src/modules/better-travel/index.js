@@ -1,24 +1,31 @@
 import {
+  addStyles,
+  addSubmenuDivider,
   addSubmenuItem,
-  addUIStyles,
   getCurrentLocation,
   getCurrentPage,
   getCurrentTab,
-  getMhuiSetting,
+  getFlag,
   getRelicHunterLocation,
+  getSetting,
+  getSettingDirect,
   makeElement,
+  makeFavoriteButton,
   onEvent,
   onNavigation,
   onPageChange,
-  onTravel,
-  showHornMessage
-} from '@/utils';
+  removeSubmenuItem,
+  saveSettingDirect
+} from '@utils';
+
+import addReminders from './reminders';
 
 import environments from '@data/environments.json';
 import eventEnvironments from '@data/environments-events.json';
 
 import settings from './settings';
 import styles from './styles.css';
+import travelMenuHidingStyles from './travel-menu-hiding.css';
 
 /**
  * Expand the travel regions and zoom the map.
@@ -222,105 +229,20 @@ const addSimpleTravelPage = () => {
   expandTravelRegions();
   const wrapper = makeElement('div', 'travelPage-wrapper');
 
-  if ('not-set' === getMhuiSetting('better-travel-default-to-simple-travel', 'not-set')) {
+  if ('not-set' === getSetting('better-travel-default-to-simple-travel', 'not-set')) {
     const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings">MouseHunt Improved settings</a>.');
     wrapper.append(settingTip);
   }
 
   const regionMenu = cloneRegionMenu();
 
-  if (getMhuiSetting('better-travel-show-alphabetized-list', false)) {
+  if (getSetting('better-travel-show-alphabetized-list', false)) {
     wrapper.append(addAlphabetizedList(regionMenu));
   }
 
   wrapper.append(regionMenu);
 
   addPage('simple-travel', wrapper);
-};
-
-const addReminders = () => {
-  const reminderOpts = {
-    title: 'Travel Reminder',
-    dismiss: 4000,
-  };
-
-  switch (getCurrentLocation()) {
-  case 'rift_valour':
-    if (user.quests?.QuestRiftValour?.is_fuel_enabled) {
-      reminderOpts.text = 'Champion\'s Fire is active.';
-      reminderOpts.image = 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/6622efd1db7028b30f48b15771138720.png?cv=2';
-      reminderOpts.button = 'Deactivate';
-      reminderOpts.action = () => {
-        const button = document.querySelector('.valourRiftHUD-fuelContainer-armButton');
-        if (button) {
-          button.click();
-        }
-      };
-    }
-    break;
-  case 'queso_river':
-  case 'queso_plains':
-  case 'queso_quarry':
-  case 'queso_geyser':
-    if (
-      user.quests?.QuestQuesoCanyon?.is_wild_tonic_active ||
-      user.quests?.QuestQuesoGeyser?.is_wild_tonic_enabled
-    ) {
-      reminderOpts.text = 'Wild Tonic is active.';
-      reminderOpts.image = 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/b6b9f97a1ee3692fdff0b5a206adf7e1.png?cv=2';
-      reminderOpts.button = 'Deactivate';
-      reminderOpts.action = () => {
-        const button = document.querySelector('.quesoHUD-wildTonic-button');
-        if (button) {
-          button.click();
-        }
-      };
-    }
-    break;
-  case 'floating_islands':
-    if ('launch_pad_island' === user.quests?.QuestFloatingIslands?.hunting_site_atts?.island_power_type) {
-      break;
-    }
-
-    if (
-      ! user.quests?.QuestFloatingIslands?.hunting_site_atts?.is_fuel_enabled && // BW not active.
-      ! (
-        user.quests?.QuestFloatingIslands?.hunting_site_atts?.is_vault_island && // is SP.
-        user.quests.QuestFloatingIslands.hunting_site_atts.island_mod_panels[2].is_complete // is on 4th tile.
-      )
-    ) {
-      reminderOpts.text = 'Bottled Wind is <strong>not</strong> active.';
-      reminderOpts.image = 'https://www.mousehuntgame.com/images/ui/hud/floating_islands/items/bottled_wind_stat_item.png?asset_cache_version=2';
-      reminderOpts.button = 'Activate';
-      reminderOpts.action = () => {
-        const button = document.querySelector('.floatingIslandsHUD-fuel-button');
-        if (button) {
-          button.click();
-        }
-      };
-    }
-    break;
-  case 'foreword_farm':
-  case 'prologue_pond':
-  case 'table_of_contents':
-    if (user.quests?.QuestProloguePond?.is_fuel_enabled ||
-      user.quests?.QuestForewordFarm?.is_fuel_enabled ||
-      user.quests?.QuestTableOfContents?.is_fuel_enabled) {
-      reminderOpts.text = 'Condensed Creativity is active.';
-      reminderOpts.button = 'Deactivate';
-    } else {
-      reminderOpts.text = 'Condensed Creativity is <strong>not</strong> active.';
-      reminderOpts.button = 'Activate';
-    }
-
-    reminderOpts.image = 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/4f5d55c1eff77474c7363f0e52d03e49.png?cv=2';
-    reminderOpts.action = hg.views.HeadsUpDisplayFolkloreForestRegionView.toggleFuel;
-    break;
-  }
-
-  if (reminderOpts.text) {
-    showHornMessage(reminderOpts);
-  }
 };
 
 /**
@@ -335,7 +257,7 @@ const addSimpleTravel = () => {
   addSimpleTravelPage();
 };
 
-const addRegionToTravelDropdown = () => {
+const addToTravelDropdown = () => {
   const currentLocation = getCurrentLocation();
 
   // merge the event environments into the environments array
@@ -372,15 +294,39 @@ const addRegionToTravelDropdown = () => {
   }), 1);
 
   // remove any existing custom submenu items that we've added
-  const existingCustomSubmenuItems = document.querySelectorAll('.mhui-region-travel-item');
+  const existingCustomSubmenuItems = document.querySelectorAll('.mh-improved-better-travel-menu-item');
   if (existingCustomSubmenuItems) {
     existingCustomSubmenuItems.forEach((item) => {
       item.remove();
     });
   }
 
+  const previousLocation = getSettingDirect('previous-location', false, 'mh-improved-better-travel');
+  if (previousLocation && previousLocation !== currentLocation) {
+    const previousRegion = environments.find((environment) => {
+      return environment.id === previousLocation;
+    });
+
+    // add the previous location to the top of the list
+    if (previousRegion) {
+      addSubmenuItem({
+        menu: 'travel',
+        label: `Back to ${previousRegion.name}`,
+        icon: 'https://www.mousehuntgame.com/images/ui/puzzle/refresh.png',
+        callback: () => {
+          app.pages.TravelPage.travel(previousRegion.id);
+        },
+        class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-previous-location',
+      });
+    }
+  }
+
   // add the custom submenu items
   otherRegions.forEach((region) => {
+    if (region.id === currentLocation) {
+      return;
+    }
+
     addSubmenuItem({
       menu: 'travel',
       label: region.name,
@@ -388,19 +334,44 @@ const addRegionToTravelDropdown = () => {
       callback: () => {
         app.pages.TravelPage.travel(region.id);
       },
-      class: 'mhui-region-travel-item',
+      class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-region-location',
     });
   });
+
+  const favorites = getLocationFavorites();
+  if (favorites && favorites.length > 0) {
+    addSubmenuDivider('travel', 'mh-improved-better-travel-favorites-divider');
+
+    favorites.forEach((favorite) => {
+      const favoriteRegion = environments.find((environment) => {
+        return environment.id === favorite;
+      });
+
+      if (favoriteRegion) {
+        addSubmenuItem({
+          menu: 'travel',
+          label: favoriteRegion.name,
+          icon: favoriteRegion.image,
+          callback: () => {
+            app.pages.TravelPage.travel(favoriteRegion.id);
+          },
+          class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-favorite-location',
+        });
+      }
+    });
+  }
 };
 
-const maybeShowTravelReminders = () => {
-  if (! getMhuiSetting('better-travel-show-reminders', true)) {
-    return;
-  }
-
+const onTravelComplete = () => {
   onEvent('travel_complete', () => {
+    saveTravelLocation();
+
     setTimeout(() => {
-      addReminders();
+      if (getSetting('better-travel-show-reminders', true)) {
+        addReminders();
+      }
+
+      addToTravelDropdown();
     }, 250);
   });
 };
@@ -427,7 +398,7 @@ const maybeSetTab = () => {
     return;
   }
 
-  if (! getMhuiSetting('better-travel-default-to-simple-travel', false)) {
+  if (! getSetting('better-travel-default-to-simple-travel', false)) {
     return;
   }
 
@@ -489,10 +460,113 @@ const listenTabChange = () => {
   };
 };
 
+const saveTravelLocation = () => {
+  // we want to update the 'previousLocation' setting with what the 'currentLocation' is
+  // and then update the 'currentLocation' setting with what getCurrentLocation() returns
+  const previousLocation = getSettingDirect('current-location', 'not-set', 'mh-improved-better-travel');
+  const currentLocation = getCurrentLocation();
+
+  if (currentLocation === previousLocation) {
+    return;
+  }
+
+  saveSettingDirect('previous-location', previousLocation, 'mh-improved-better-travel');
+  saveSettingDirect('current-location', currentLocation, 'mh-improved-better-travel');
+};
+
+const getLocationFavorites = () => {
+  const faves = getSettingDirect('favorites', [], 'mh-improved-better-travel');
+
+  const hasMigratedFaves = getSettingDirect('has-migrated-favorites', false, 'mh-improved-better-travel');
+  if (! hasMigratedFaves) {
+    const lvFaves = getSettingDirect('locationList', [], 'fast-travel-cache');
+    if (lvFaves) {
+      // Get the keys from the lvFaves object.
+      const lvKeys = Object.keys(lvFaves);
+      // merge the lvFaves into the faves array
+      lvKeys.forEach((key) => {
+        faves.push(key);
+      });
+
+      if (faves.length > 0) {
+        // remove any duplicates
+        const uniqueFaves = [...new Set(faves)];
+        // save the faves
+        saveLocationFavorites(uniqueFaves);
+      }
+
+      // save the faves
+      saveSettingDirect('has-migrated-favorites', true, 'mh-improved-better-travel');
+    }
+  }
+
+  return faves;
+};
+
+const isLocationFavorite = (type) => {
+  return getLocationFavorites().includes(type);
+};
+
+const saveLocationFavorites = (favorites) => {
+  saveSettingDirect('favorites', favorites, 'mh-improved-better-travel');
+};
+
+const addToLocationFavorites = (type) => {
+  if (! isLocationFavorite(type)) {
+    const faves = getLocationFavorites();
+    faves.push(type);
+    saveLocationFavorites(faves);
+  }
+};
+
+const removeFromLocationFavorites = (type) => {
+  if (getLocationFavorites()) {
+    const faves = getLocationFavorites();
+    faves.splice(faves.indexOf(type), 1);
+    saveLocationFavorites(faves);
+  }
+};
+
+const addFavoriteButtonsToTravelPage = async () => {
+  const locations = document.querySelectorAll('.travelPage-map-environment-detailContainer .travelPage-map-environment-detail');
+  if (! locations) {
+    return;
+  }
+
+  const locationFavorites = getLocationFavorites();
+
+  locations.forEach((location) => {
+    const type = location.getAttribute('data-environment-type');
+    if (! type) {
+      return;
+    }
+
+    const isFavorite = locationFavorites.includes(type);
+
+    makeFavoriteButton({
+      id: `better-travel-favorite-${type}`,
+      target: location.querySelector('.travelPage-map-environment-detail-title'),
+      size: 'small',
+      state: isFavorite,
+      isSetting: false,
+      defaultState: false,
+      onActivate: () => {
+        addToLocationFavorites(type);
+        addToTravelDropdown();
+      },
+      onDeactivate: () => {
+        removeFromLocationFavorites(type);
+        removeSubmenuItem(type);
+      }
+    });
+  });
+};
+
 const main = () => {
   onNavigation(() => {
     addSimpleTravel();
     addRhToSimpleTravel();
+    addFavoriteButtonsToTravelPage();
   }, {
     page: 'travel',
   });
@@ -506,10 +580,10 @@ const main = () => {
   initSimpleTab();
 
   maybeDoMapView();
-  maybeShowTravelReminders();
+  onTravelComplete();
 
-  addRegionToTravelDropdown();
-  onTravel(null, { callback: addRegionToTravelDropdown });
+  saveTravelLocation();
+  addToTravelDropdown();
 };
 
 /**
@@ -517,6 +591,10 @@ const main = () => {
  */
 const init = async () => {
   const stylesJoined = [styles];
+
+  if (! getFlag('no-travel-menu-hiding')) {
+    stylesJoined.push(travelMenuHidingStyles);
+  }
 
   addStyles(stylesJoined);
   main();
