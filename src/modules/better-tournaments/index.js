@@ -4,7 +4,8 @@ import {
   getSetting,
   makeElement,
   onEvent,
-  onNavigation
+  onNavigation,
+  onRequest
 } from '@utils';
 
 import settings from './settings';
@@ -211,6 +212,30 @@ const updateTournamentList = async () => {
   });
 };
 
+const updateScoreboard = () => {
+  const getRanks = document.querySelectorAll('.tournament-team-rank:not(.updated)');
+  getRanks.forEach((rank) => {
+    rank.classList.add('updated');
+
+    // rank.innerText is something like 2314th or 2nd or 323rd, so we want to regex out the number, add commas, and then add the suffix back on.
+    const rankParts = rank.innerText.split(/(\d+)/);
+    if (rankParts.length !== 3) {
+      return;
+    }
+
+    const rankNum = Number.parseInt(rankParts[1], 10);
+
+    if (rankNum <= 25) {
+      rank.classList.add('rank-first-page');
+    }
+
+    rank.setAttribute('data-rank', rankNum);
+    rank.setAttribute('data-rank-page', Math.ceil(rankNum / 25));
+
+    rank.innerText = rankNum.toLocaleString('en-US') + rankParts[2];
+  });
+};
+
 /**
  * Initialize the module.
  */
@@ -222,6 +247,12 @@ const init = async () => {
   onNavigation(updateTournamentList, {
     page: 'tournament',
   });
+
+  onNavigation(updateScoreboard, {
+    page: 'scoreboards',
+  });
+
+  onRequest(updateScoreboard, 'managers/ajax/pages/scoreboards.php');
 };
 
 export default {

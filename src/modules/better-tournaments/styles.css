@@ -651,3 +651,23 @@ tr.scoreboardTableView-row.highlight {
   outline: 2px solid #fc6;
   box-shadow: none;
 }
+
+/* when hovering over your place, it will show what page you are on */
+.viewer .tournament-team-rank.updated:hover::after {
+  position: absolute;
+  inset: 14px 20px 14px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #000;
+  text-align: center;
+  content: "Page " attr(data-rank-page);
+  background-color: rgb(253 251 204 / 90%);
+  border: 1px #aaa9a9;
+  border-radius: 5px;
+}
+
+.scoreboardTableView-row-rank {
+  position: relative;
+}
