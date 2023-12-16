@@ -1,4 +1,4 @@
-import { addUIStyles, getUserItems } from '@/utils';
+import { addStyles, getUserItems } from '@utils';
 
 import styles from './styles.css';
 
@@ -100,6 +100,6 @@ const getCheeses = (cheeses) => {
 };
 
 export default async (location, cheeses) => {
-  addUIStyles(styles, 'mh-improved-cheese-selectors', true);
+  addStyles(styles, 'mh-improved-cheese-selectors', true);
   await makeCheeseSelector(location, getCheeses(cheeses));
 };

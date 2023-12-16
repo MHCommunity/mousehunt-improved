@@ -29,7 +29,7 @@ const listenForIDPaste = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
+const init = async () => {
   listenForIDPaste();
 };
 

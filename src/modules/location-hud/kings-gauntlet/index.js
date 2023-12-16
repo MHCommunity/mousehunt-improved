@@ -3,7 +3,7 @@ import addCheeseSelector from '../shared/cheese-selectors';
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addCheeseSelector('kings-gauntlet', [
     'super_brie_cheese',
     'gauntlet_cheese_2',

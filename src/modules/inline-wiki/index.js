@@ -1,11 +1,11 @@
-import { addUIStyles } from '@/utils';
+import { addStyles } from '@utils';
 
 import styles from './styles.css';
 
 /**
  * Initialize the module.
  */
-const init = () => {
+const init = async () => {
   const injectIframe = async () => {
     const wikiPage = document.querySelector('#wiki-page');
     if (wikiPage) {
@@ -32,7 +32,7 @@ const init = () => {
     });
   }
 
-  addUIStyles(styles);
+  addStyles(styles);
 };
 
 export default {

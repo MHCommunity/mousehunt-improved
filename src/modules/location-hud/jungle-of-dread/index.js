@@ -3,7 +3,7 @@ import addCheeseSelector from '../shared/cheese-selectors';
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addCheeseSelector('jungle-of-dread', [
     'vanilla_stilton_cheese',
     'vengeful_vanilla_stilton_cheese',

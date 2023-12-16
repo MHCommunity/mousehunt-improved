@@ -154,17 +154,17 @@ const organizedModules = [
  * Load all the modules.
  */
 const loadModules = async () => {
-  if (Utils.getGlobal('loaded')) {
-    Utils.debug('Already loaded.');
+  if (getGlobal('loaded')) {
+    debug('Already loaded.');
     return;
   }
 
-  Utils.addSettingsTab('mousehunt-improved-settings', 'MH Improved');
+  addSettingsTab('mousehunt-improved-settings', 'MH Improved');
 
   modules.forEach((m) => {
     const category = organizedModules.find((c) => c.id === m.type);
     if (! category) {
-      Utils.debug(`Unknown module category: ${m.type}`);
+      debug(`Unknown module category: ${m.type}`);
       return;
     }
 
@@ -182,25 +182,25 @@ const loadModules = async () => {
   const loadedModules = [];
   organizedModules.forEach((module) => {
     module.modules.forEach((subModule) => {
-      const overrideStopLoading = Utils.getFlag(`no-${subModule.id}`);
+      const overrideStopLoading = getFlag(`no-${subModule.id}`);
       if (overrideStopLoading) {
-        Utils.debuglite(`Skipping ${subModule.name} due to override flag.`);
+        debuglite(`Skipping ${subModule.name} due to override flag.`);
         return;
       }
 
       if (
         subModule.alwaysLoad ||
         'required' === subModule.type ||
-        Utils.getSetting(subModule.id, subModule.default, 'mousehunt-improved-settings')
+        getSettingDirect(subModule.id, subModule.default, 'mousehunt-improved-settings')
       ) {
         try {
           subModule.load();
           loadedModules.push(subModule.id);
         } catch (error) {
-          Utils.debug(`Error loading "${subModule.id}"`, error);
+          debug(`Error loading "${subModule.id}"`, error);
         }
       } else {
-        Utils.debuglite(`Skipping "${subModule.id}" (disabled).`);
+        debuglite(`Skipping "${subModule.id}" (disabled).`);
       }
     });
   });
@@ -214,20 +214,20 @@ const loadModules = async () => {
  * Initialize the script.
  */
 const init = async () => {
-  Utils.debug('Initializing...');
+  debug('Initializing...');
 
   // Check if the url is an image and if so, don't load.
-  if (Utils.isInImage()) {
-    Utils.debug('Skipping image.');
+  if (isImage()) {
+    debug('Skipping image.');
     return;
   }
 
-  if (Utils.isiFrame()) {
+  if (isiFrame()) {
     showLoadingError({ message: 'Loading inside an iframe is not supported.' });
     return;
   }
 
-  if (! Utils.isApp()) {
+  if (! isApp()) {
     showLoadingError({ message: 'Global MouseHunt functions not found.' });
     return;
   }
@@ -240,21 +240,21 @@ const init = async () => {
   }, 1000);
 
   try {
-    Utils.debug('Loading modules...');
+    debug('Loading modules...');
 
     // Start it up.
     loadModules();
   } catch (error) {
-    Utils.debug('Error loading modules', error);
+    debug('Error loading modules', error);
 
     showLoadingError(error);
   } finally {
-    Utils.addToGlobal('loaded', true);
+    addToGlobal('loaded', true);
     // Unblank the page.
     document.body.style.display = 'block';
   }
 
-  Utils.debug('Loading complete.');
+  debug('Loading complete.');
 };
 
 init(); // eslint-disable-line unicorn/prefer-top-level-await

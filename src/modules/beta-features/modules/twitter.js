@@ -1,7 +1,7 @@
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   window.twttr = {
     widgets: {
       load: () => {},

@@ -1,4 +1,4 @@
-import { addUIStyles, makeElement, onNavigation } from '@/utils';
+import { addStyles, makeElement, onNavigation } from '@utils';
 
 import styles from './styles.css';
 import userHighlighting from '@data/user-highlighting.json';
@@ -60,8 +60,8 @@ const highlightUsers = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   onNavigation(highlightUsers, {
     page: 'hunterprofile',

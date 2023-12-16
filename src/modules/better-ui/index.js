@@ -6,7 +6,7 @@ import styles from './styles';
 /**
  * Initialize the module.
  */
-const init = () => {
+const init = async () => {
   styles();
   friends();
   hud();

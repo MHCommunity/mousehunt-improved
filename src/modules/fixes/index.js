@@ -1,4 +1,4 @@
-import { addUIStyles, getCurrentPage, onNavigation } from '@/utils';
+import { addStyles, getCurrentPage, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -123,8 +123,8 @@ const fixItemPageReciever = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   if ('item' === getCurrentPage()) {
     fixItemPage();

@@ -1,4 +1,4 @@
-import { getCurrentPage, onNavigation } from '@/utils';
+import { getCurrentPage, onNavigation } from '@utils';
 
 const reorderBlocks = () => {
   if ('friends' !== getCurrentPage()) {
@@ -43,7 +43,7 @@ const autofocusIdSearch = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   onNavigation(reorderBlocks, {
     page: 'friends'
   });

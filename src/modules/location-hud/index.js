@@ -1,11 +1,11 @@
 // Location HUD improvements.
 import {
   getCurrentLocation,
-  getMhuiSetting,
+  getSetting,
   onNavigation,
   onTravel,
   removeHudStyles
-} from '@/utils';
+} from '@utils';
 
 import settings from './settings';
 
@@ -113,11 +113,11 @@ const main = () => {
   const currentLocation = getCurrentLocation();
   const location = normalizeCurrentLocation(currentLocation);
 
-  if (getMhuiSetting('event-locations', true)) {
+  if (getSetting('event-locations', true)) {
     eventLocations(currentLocation);
   }
 
-  if (! getMhuiSetting(location, true)) {
+  if (! getSetting(location, true)) {
     return;
   }
 
@@ -185,7 +185,7 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
+const init = async () => {
   main();
   onNavigation(main);
   onTravel(main);

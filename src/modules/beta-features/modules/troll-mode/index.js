@@ -1,4 +1,4 @@
-import { addUIStyles } from '@/utils';
+import { addStyles } from '@utils';
 
 import styles from './styles.css';
 
@@ -46,7 +46,7 @@ const trollem2 = () => {
   bannerLink.append(newbieImg);
 
   bannerLink.addEventListener('click', () => {
-    addUIStyles(styles);
+    addStyles(styles);
     banner.classList.add('lolspin');
     setTimeout(() => {
       banner.classList.remove('lolspin');
@@ -69,7 +69,7 @@ const trollem2 = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   trollEm();
   trollem2();
 };

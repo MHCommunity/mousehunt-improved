@@ -1,0 +1,76 @@
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.userscript-settings .settingRow .settingRow-action-inputContainer.select.busy::before,
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.userscript-settings .settingRow .settingRow-action-inputContainer.select.completed::before,
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.better-mh-settings .settingRow .settingRow-action-inputContainer.select.busy::before,
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.better-mh-settings .settingRow .settingRow-action-inputContainer.select.completed::before {
+  top: 30px;
+  right: -25px;
+  left: unset;
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings .settingRow .name {
+  height: unset;
+  min-height: 20px;
+}
+
+.PagePreferences__settingAction.inputDropdownWrapper.busy::before,
+.PagePreferences__settingAction.inputDropdownWrapper.completed::before {
+  right: -40px;
+  left: unset;
+}
+
+.inputBoxContainer.multiSelect {
+  max-width: 400px;
+}
+
+.settingRow-action-inputContainer.textarea {
+  display: flex;
+  gap: 5px;
+  align-items: flex-end;
+}
+
+.PagePreferences__setting.textarea {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+}
+
+.textarea .inputBox {
+  width: 100%;
+  min-height: 45px;
+}
+
+.textarea .PagePreferences__settingAction {
+  margin-bottom: 0;
+}
+
+.mh-utils-settings-subheader {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 10px;
+  color: #848484;
+}
+
+.settingRow-action-inputContainer.inputText {
+  display: flex;
+  gap: 5px;
+  align-items: stretch;
+}
+
+.mh-utils-settings-refresh-message {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  padding: 1em;
+  font-size: 1.5em;
+  text-align: center;
+  pointer-events: none;
+  background-color: #d6f2d6;
+  border-top: 1px solid #6cc36c;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.mh-utils-settings-refresh-message-hidden {
+  opacity: 0;
+}

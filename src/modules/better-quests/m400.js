@@ -1,4 +1,4 @@
-import { addUIStyles, makeElement, onNavigation } from '@/utils';
+import { addStyles, makeElement, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -109,8 +109,8 @@ const m400 = () => {
 /**
  * Initialize the module.
  */
-export default () => {
-  addUIStyles(styles);
+export default async () => {
+  addStyles(styles);
 
   m400();
 

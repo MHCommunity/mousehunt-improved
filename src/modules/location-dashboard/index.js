@@ -1,4 +1,4 @@
-import { addUIStyles, makeElement, onRequest, onTravel } from '@/utils';
+import { addStyles, makeElement, onRequest, onTravel } from '@utils';
 
 import styles from './styles.css';
 
@@ -247,7 +247,7 @@ const getDashboardContents = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
+const init = async () => {
   // Cache the quest data for our current location.
   cacheLocationData();
   onTravel(null, { callback: cacheLocationData });
@@ -255,7 +255,7 @@ const init = () => {
 
   makeDashboardTab();
 
-  addUIStyles(styles);
+  addStyles(styles);
 };
 
 export default {

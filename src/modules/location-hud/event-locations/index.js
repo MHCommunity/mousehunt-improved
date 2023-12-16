@@ -1,4 +1,4 @@
-import { addUIStyles, makeElement, onDialogShow } from '@/utils';
+import { addStyles, makeElement, onDialogShow } from '@utils';
 
 import styles from './styles.css';
 
@@ -56,7 +56,7 @@ export default (location) => {
   }
 
   // Need to fire it always because the showdown styles are always loaded
-  addUIStyles(styles);
+  addStyles(styles);
 
   onDialogShow(adventCalendarPopup, 'adventCalendarPopup');
 };

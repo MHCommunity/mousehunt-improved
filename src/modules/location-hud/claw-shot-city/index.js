@@ -1,10 +1,10 @@
-import { addHudStyles } from '@/utils';
+import { addHudStyles } from '@utils';
 
 import styles from './styles.css';
 
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addHudStyles(styles);
 };

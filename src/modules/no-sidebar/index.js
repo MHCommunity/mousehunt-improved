@@ -1,4 +1,4 @@
-import { addUIStyles, persistBodyClass } from '@/utils';
+import { addBodyClass, addStyles } from '@utils';
 
 import styles from './styles.css';
 
@@ -65,9 +65,9 @@ const moveSidebar = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
-  persistBodyClass('no-sidebar');
+const init = async () => {
+  addStyles(styles);
+  addBodyClass('no-sidebar');
   moveSidebar();
 };
 

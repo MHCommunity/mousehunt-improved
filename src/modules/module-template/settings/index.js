@@ -1,4 +1,4 @@
-import { addMhuiSetting } from '@/utils';
+import { addMhuiSetting } from '@utils';
 
 /**
  * Add settings for the module.

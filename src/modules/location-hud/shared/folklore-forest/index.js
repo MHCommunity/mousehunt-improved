@@ -1,11 +1,12 @@
 import {
   getSetting,
+  getSettingDirect,
   makeElement,
   onDialogHide,
   onDialogShow,
   onRequest,
   saveSetting
-} from '@/utils';
+} from '@utils';
 
 const saveHidden = (upgradeId, isHidden) => {
   saveSetting(upgradeId, isHidden, 'mh-improved-visibility-toggles');
@@ -113,10 +114,11 @@ const addUpgradeVisibilityToggles = () => {
 };
 
 let hasAddedUpgradeVisibilityToggles = false;
+
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   onDialogShow(addUpgradeVisibilityToggles, 'fabledForestDialog');
   onDialogHide(() => hasAddedUpgradeVisibilityToggles = false);
 

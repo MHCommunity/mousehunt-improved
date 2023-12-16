@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting, makeElement, onNavigation } from '@/utils';
+import { addStyles, getSetting, makeElement, onNavigation } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -153,11 +153,11 @@ const addSortButtons = () => {
 
 const highlightFavoritedItems = () => {
   const itemsToPin = new Set([
-    getMhuiSetting('send-supplies-pinned-items-0', 'SUPER|brie+'),
-    getMhuiSetting('send-supplies-pinned-items-1', 'Empowered SUPER|b...'),
-    getMhuiSetting('send-supplies-pinned-items-2', 'Rift Cherries'),
-    getMhuiSetting('send-supplies-pinned-items-3', 'Rift-torn Roots'),
-    getMhuiSetting('send-supplies-pinned-items-4', 'Sap-filled Thorns'),
+    getSetting('send-supplies-pinned-items-0', 'SUPER|brie+'),
+    getSetting('send-supplies-pinned-items-1', 'Empowered SUPER|b...'),
+    getSetting('send-supplies-pinned-items-2', 'Rift Cherries'),
+    getSetting('send-supplies-pinned-items-3', 'Rift-torn Roots'),
+    getSetting('send-supplies-pinned-items-4', 'Sap-filled Thorns'),
   ]);
 
   for (const item of items) {
@@ -293,8 +293,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
   onNavigation(main, {
     page: 'supplytransfer'
   });

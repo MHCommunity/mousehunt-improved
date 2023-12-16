@@ -1,4 +1,4 @@
-import { addHudStyles, onRequest } from '@/utils';
+import { addHudStyles, onRequest } from '@utils';
 import folkloreForest from '../shared/folklore-forest';
 
 import regionStyles from '../shared/folklore-forest/styles.css';
@@ -31,7 +31,7 @@ const updateNextWordCount = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addHudStyles([regionStyles, styles]);
 
   folkloreForest();

@@ -1,4 +1,4 @@
-import { addMhuiSetting, getTradableItems } from '@/utils';
+import { addMhuiSetting, getTradableItems } from '@utils';
 
 /**
  * Add settings for the module.

@@ -1,4 +1,4 @@
-import { addUIStyles } from '@/utils';
+import { addStyles, onDialogShow } from '@utils';
 
 import mapping from '@data/upscaled-images.json';
 import pathsToSkip from '@data/upscaled-images-to-skip.json';

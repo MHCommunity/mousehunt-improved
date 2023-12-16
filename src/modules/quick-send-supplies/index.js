@@ -1,6 +1,6 @@
 import {
-  addUIStyles,
-  getMhuiSetting,
+  addStyles,
+  getSetting,
   getTradableItems,
   makeElement,
   onDialogShow,
@@ -9,7 +9,7 @@ import {
   onRequest,
   showErrorMessage,
   showSuccessMessage
-} from '@/utils';
+} from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -62,10 +62,10 @@ const makeSendSuppliesButton = (btn, snuid) => {
   const itemsWrapper = makeElement('div', 'itemsWrapper');
 
   const itemOptions = [
-    getMhuiSetting('quick-send-supplies-items-0', 'super_brie_cheese'),
-    getMhuiSetting('quick-send-supplies-items-1', 'rare_map_dust_stat_item'),
-    getMhuiSetting('quick-send-supplies-items-2', 'floating_trap_upgrade_stat_item'),
-    getMhuiSetting('quick-send-supplies-items-3', 'rift_torn_roots_crafting_item'),
+    getSetting('quick-send-supplies-items-0', 'super_brie_cheese'),
+    getSetting('quick-send-supplies-items-1', 'rare_map_dust_stat_item'),
+    getSetting('quick-send-supplies-items-2', 'floating_trap_upgrade_stat_item'),
+    getSetting('quick-send-supplies-items-3', 'rift_torn_roots_crafting_item'),
   ];
 
   const allTradableItems = getTradableItems('all');
@@ -203,8 +203,8 @@ const addToMapUsers = (attempts = 0) => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   main();
   onNavigation(main);

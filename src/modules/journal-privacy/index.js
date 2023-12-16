@@ -1,4 +1,4 @@
-import { addUIStyles, onRequest } from '@/utils';
+import { addStyles, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -30,8 +30,8 @@ const applyClassToNames = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   onRequest(() => {
     applyClassToNames();

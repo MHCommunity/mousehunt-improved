@@ -1,4 +1,12 @@
-import { addUIStyles, getSetting, saveSetting } from '@/utils';
+import {
+  addBodyClass,
+  addStyles,
+  getCurrentPage,
+  getSettingDirect,
+  makeElement,
+  removeBodyClass,
+  saveSettingDirect
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -10,14 +18,14 @@ import styles from './styles.css';
  * @return {Object} The date and if the user has read the notification.
  */
 const getReadUpdateNotificationTime = (version) => {
-  let date = getSetting(version, false, 'mh-improved-update-notifications');
+  let date = getSettingDirect(version, false, 'mh-improved-update-notifications');
   let hasRead = true;
 
   if (! date) {
     hasRead = false;
 
     date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    saveSetting(version, date, 'mh-improved-update-notifications');
+    saveSettingDirect(version, date, 'mh-improved-update-notifications');
   }
 
   return {

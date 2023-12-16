@@ -1,4 +1,4 @@
-import { addUIStyles, makeElement } from '@/utils';
+import { addStyles, makeElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -47,8 +47,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
   main();
 };
 

@@ -4,7 +4,7 @@ import {
   getCurrentTab,
   makeElement,
   onNavigation
-} from '@/utils';
+} from '@utils';
 
 const makeKingsCrownsTab = () => {
   // Add king's crowns tab;
@@ -389,7 +389,7 @@ const addSortingToStatsPage = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   if ('adversaries' === getCurrentPage() && getCurrentTab() === 'kings_crowns') {
     addKingsCrownsToMicePage();
 

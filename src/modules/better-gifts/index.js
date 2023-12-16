@@ -1,17 +1,17 @@
 import {
-  addUIStyles,
-  getMhuiSetting,
+  addStyles,
+  getSetting,
   makeElement,
-  onAjaxRequest,
   onDialogShow,
+  onRequest,
   replaceInTemplate
-} from '@/utils';
+} from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
 
 const getIgnoredGifts = () => {
-  const ignored = getMhuiSetting('gift-buttons-ignore-bad-gifts-0', 'skip');
+  const ignored = getSetting('gift-buttons-ignore-bad-gifts-0', 'skip');
 
   const skipOptions = {
     skip: [
@@ -68,7 +68,7 @@ const claimGifts = (send = false, retries = 0) => {
   }
 
   const gifts = hg.views.GiftSelectorView.getClaimableGiftsSortedByTime();
-  if (getMhuiSetting('gift-buttons-claim-order-0', 'reverse') === 'reverse') {
+  if (getSetting('gift-buttons-claim-order-0', 'reverse') === 'reverse') {
     gifts.reverse();
   }
 
@@ -208,7 +208,7 @@ const makeButtons = () => {
  * @param {Object} request The request.
  */
 const checkForSuccessfulGiftSend = (request) => {
-  const enabled = getMhuiSetting('gift-buttons-close-on-send', true);
+  const enabled = getSetting('gift-buttons-close-on-send', true);
   if (! enabled) {
     return;
   }
@@ -410,8 +410,8 @@ const addButtonsToPopup = () => {
 };
 
 const main = () => {
-  onAjaxRequest(makeButtons, '/managers/ajax/users/socialGift.php');
-  onAjaxRequest(checkForSuccessfulGiftSend, '/managers/ajax/users/socialGift.php');
+  onRequest(makeButtons, 'managers/ajax/users/socialGift.php');
+  onRequest(checkForSuccessfulGiftSend, 'managers/ajax/users/socialGift.php');
 
   addButtonsToDropdown();
   onDialogShow(addButtonsToPopup, 'giftSelectorViewPopup');
@@ -425,8 +425,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
   main();
 };
 

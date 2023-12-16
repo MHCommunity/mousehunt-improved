@@ -1,4 +1,4 @@
-import { addHudStyles, getCurrentLocation, getUserItems, makeElement } from '@/utils';
+import { addHudStyles, getCurrentLocation, getUserItems, makeElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -362,7 +362,7 @@ const hud = async () => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addHudStyles(styles);
   hud();
 };

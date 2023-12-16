@@ -1,10 +1,10 @@
 import {
-  addUIStyles,
-  getMhuiSetting,
+  addStyles,
+  getSetting,
   makeElement,
   onOverlayChange,
   onRequest
-} from '@/utils';
+} from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -73,7 +73,7 @@ const modifySearch = (opts) => {
   label.append(toggleSearch);
   label.append(document.createTextNode('Search all items'));
 
-  const defaultToAll = getMhuiSetting('better-marketplace-search-all');
+  const defaultToAll = getSetting('better-marketplace-search-all');
   toggleSearch.checked = defaultToAll;
 
   // if we default to all, then we want to show the original options but still have the new ones available.
@@ -170,8 +170,8 @@ let newSelect = null;
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
   onOverlayChange({ marketplace: { show: () => {
     waitForSearchReady();
 

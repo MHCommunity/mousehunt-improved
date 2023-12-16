@@ -1,4 +1,4 @@
-import { addHudStyles, makeElement, onDialogShow, onRequest } from '@/utils';
+import { addHudStyles, makeElement, onDialogShow, onRequest } from '@utils';
 
 import styles from './styles.css';
 

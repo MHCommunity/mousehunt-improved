@@ -1,4 +1,4 @@
-import { addHudStyles, onRequest } from '@/utils';
+import { addHudStyles, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -21,7 +21,7 @@ const undisableCheese = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addHudStyles(styles);
   undisableCheese();
   onRequest(undisableCheese);

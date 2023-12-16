@@ -1,4 +1,4 @@
-import { addUIStyles, getCurrentPage, onNavigation, onRequest } from '@/utils';
+import { addStyles, getCurrentPage, onNavigation, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -134,8 +134,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   onNavigation(main, {
     page: 'shops'

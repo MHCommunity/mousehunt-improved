@@ -3,7 +3,7 @@ import addCheeseSelector from '../shared/cheese-selectors';
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addCheeseSelector('catacombs', [
     'ancient_cheese',
     'undead_emmental_cheese',

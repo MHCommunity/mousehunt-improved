@@ -1,6 +1,4 @@
-import { makeElement, makeLink } from '@/utils';
-
-import { addMHCTData } from '../map-utils';
+import { addMHCTData, makeElement, makeLink } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';

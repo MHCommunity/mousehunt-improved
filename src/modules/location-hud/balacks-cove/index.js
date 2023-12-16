@@ -1,4 +1,4 @@
-import { addHudStyles, onTravel } from '@/utils';
+import { addHudStyles, onTravel } from '@utils';
 
 import styles from './styles.css';
 
@@ -74,7 +74,7 @@ const hud = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addHudStyles(styles);
   addCheeseSelector('balacks-cove', [
     'vanilla_stilton_cheese',

@@ -1,6 +1,11 @@
-import { addToGlobal, makeElement, onAjaxRequest } from '@/utils';
+import {
+  addToGlobal,
+  getMapData,
+  makeElement,
+  onRequest,
+  setMapData
+} from '@utils';
 
-import { addBlockClasses, getMapData, setMapData } from './map-utils';
 import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
@@ -9,6 +14,29 @@ import environments from '@data/environments.json';
 import relicHunterHints from '@data/relic-hunter-hints.json';
 
 import addMapStyles from './styles';
+
+const addBlockClasses = () => {
+  const rightBlocks = document.querySelectorAll('.treasureMapView-rightBlock > div');
+  const leftBlocks = document.querySelectorAll('.treasureMapView-leftBlock > div');
+  const blocks = [...rightBlocks, ...leftBlocks];
+
+  let prevBlockType = '';
+  blocks.forEach((block) => {
+    if (block.classList.contains('treasureMapView-block-title')) {
+      const blockType = block.innerText
+        .trim()
+        .toLowerCase()
+        .replaceAll(' ', '-')
+        .replaceAll(/[^a-z-]/g, '')
+        .replace('--', '-')
+        .replace('goalssearch', 'goals');
+      block.classList.add(`mh-ui-${blockType}-title`);
+      prevBlockType = blockType;
+    } else {
+      block.classList.add(`mh-ui-${prevBlockType}-block`);
+    }
+  });
+};
 
 const interceptMapRequest = (mapId) => {
   // If we don't have data, we're done.
@@ -97,7 +125,7 @@ const intercept = () => {
     }, 1000);
   };
 
-  onAjaxRequest((data) => {
+  onRequest((data) => {
     if (data.treasure_map && data.treasure_map.map_id) {
       setMapData(data.treasure_map.map_id, data.treasure_map);
     }
@@ -191,7 +219,7 @@ const relicHunterUpdate = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
+const init = async () => {
   addMapStyles();
 
   // Fire the different tab clicks.

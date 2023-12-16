@@ -1,6 +1,6 @@
 import humanizeDuration from 'humanize-duration';
 
-import { addUIStyles, getFlag, makeElement } from '@/utils';
+import { addStyles, getFlag, makeElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -97,10 +97,10 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
+const init = async () => {
   // Only load if the user has LGS.
   if (user.has_shield) {
-    addUIStyles(styles);
+    addStyles(styles);
     main();
   }
 };

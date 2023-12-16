@@ -1,4 +1,4 @@
-import { addSubmenuItem, addUIStyles, doRequest, makeElementDraggable } from '@/utils';
+import { addStyles, addSubmenuItem, doRequest, makeElementDraggable } from '@utils';
 
 import styles from './styles.css';
 
@@ -180,8 +180,8 @@ addSubmenuItem({
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   addSubmenuItem({
     menu: 'mice',

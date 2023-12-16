@@ -1,4 +1,4 @@
-import { addUIStyles, onNavigation } from '@/utils';
+import { addStyles, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
@@ -43,8 +43,8 @@ const addOpenAllButOneButton = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   addOpenAllButOneButton();
 

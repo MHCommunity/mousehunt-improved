@@ -1,4 +1,4 @@
-import { getUserSetupDetails, onPageChange, onRequest } from '@/utils';
+import { getUserSetupDetails, onPageChange, onRequest } from '@utils';
 
 const setPrestigeStats = () => {
   const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
@@ -143,7 +143,7 @@ const savePbStats = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
+const init = async () => {
   onPageChange({ blueprint: { show: () => {
     savePbStats();
     setTimeout(modifyPB, 500);

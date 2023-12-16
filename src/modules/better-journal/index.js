@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting, onRequest } from '@/utils';
+import { addStyles, getSetting, onRequest } from '@utils';
 
 import customEntries from './styles/custom-entries.css';
 import fullstop from './styles/fullstop.css';
@@ -12,10 +12,10 @@ import styles from './styles/styles.css';
  * @param {string} selector Element selector.
  * @param {Array}  strings  Array of strings to replace.
  */
-const modifyText = (selector, strings) => {
+const modifyText = async (selector, strings) => {
   const elements = document.querySelectorAll(selector);
-  elements.forEach((element) => {
-    strings.forEach((string) => {
+  elements.forEach(async (element) => {
+    strings.forEach(async (string) => {
       if (! Array.isArray(string) || string.length !== 2) {
         return;
       }
@@ -232,8 +232,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles([
+const init = async () => {
+  addStyles([
     styles,
     customEntries,
     fullstop,
@@ -249,7 +249,7 @@ const init = () => {
     setTimeout(main, 900);
   });
 
-  if (getMhuiSetting('better-journal-privacy')) {
+  if (getSetting('better-journal-privacy')) {
     journalPrivacy();
   }
 };

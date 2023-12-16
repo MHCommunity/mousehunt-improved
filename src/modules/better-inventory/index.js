@@ -1,10 +1,11 @@
 import {
-  addUIStyles,
+  addStyles,
   getCurrentPage,
+  getSetting,
   onEvent,
   onNavigation,
   onOverlayChange
-} from '@/utils';
+} from '@utils';
 
 import recipes from './recipes';
 
@@ -144,8 +145,11 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles([
+    styles,
+  ]);
+
   main();
 };
 

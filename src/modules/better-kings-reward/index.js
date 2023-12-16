@@ -1,4 +1,4 @@
-import { addUIStyles, onRequest } from '@/utils';
+import { addStyles, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -37,8 +37,8 @@ const startKingsReward = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   onRequest(initiateKingsReward, 'managers/ajax/turns/activeturn.php', true);
   onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);

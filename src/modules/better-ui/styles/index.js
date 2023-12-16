@@ -1,4 +1,4 @@
-import { addUIStyles } from '@/utils';
+import { addStyles } from '@utils';
 
 import adventure from './adventure.css';
 import betterLuckyCatchIcon from './better-lucky-catch-icon.css';
@@ -26,7 +26,7 @@ import tutorial from './tutorial.css';
 import userscripts from './userscripts.css';
 
 const main = () => {
-  addUIStyles([
+  addStyles([
     adventure,
     general,
     betterLuckyCatchIcon,

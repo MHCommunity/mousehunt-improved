@@ -1,11 +1,11 @@
 import {
-  addUIStyles,
+  addStyles,
   getArForMouse,
   makeElement,
   makeLink,
   onOverlayChange,
   onPageChange
-} from '@/utils';
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -155,8 +155,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
   main();
 };
 

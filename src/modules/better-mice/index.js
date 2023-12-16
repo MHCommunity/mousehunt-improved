@@ -1,13 +1,13 @@
 import {
+  addStyles,
   addSubmenuItem,
-  addUIStyles,
-  createFavoriteButton,
   doRequest,
   getArForMouse,
   makeElement,
+  makeFavoriteButton,
   makeLink,
   onOverlayChange
-} from '@/utils';
+} from '@utils';
 
 import mousepage from './mousepage';
 
@@ -77,7 +77,7 @@ const isFavorite = async (mouseId) => {
 const addFavoriteButton = async (mouseId, mouseView) => {
   const state = await isFavorite(mouseId);
 
-  const fave = await createFavoriteButton({
+  const fave = await makeFavoriteButton({
     target: mouseView,
     size: 'large',
     isSetting: false,
@@ -319,8 +319,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
   main();
   mousepage();
 };

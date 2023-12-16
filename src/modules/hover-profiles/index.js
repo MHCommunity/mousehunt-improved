@@ -1,4 +1,4 @@
-import { addUIStyles, doRequest, onEvent, onRequest } from '@/utils';
+import { addStyles, doRequest, onEvent, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -180,8 +180,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   setTimeout(main, 500);
   onRequest(() => {

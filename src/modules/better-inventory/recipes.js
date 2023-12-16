@@ -5,7 +5,7 @@ import {
   makeElement,
   onEvent,
   onNavigation
-} from '@/utils';
+} from '@utils';
 
 import recipesMeConversion from '@data/recipes-me-conversion.json';
 import recipesToReorder from '@data/recipes-to-reorder.json';
@@ -259,7 +259,7 @@ const updateRecipesOnPage = async (type) => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   onNavigation(cleanUpRecipeBook,
     {
       page: 'inventory',

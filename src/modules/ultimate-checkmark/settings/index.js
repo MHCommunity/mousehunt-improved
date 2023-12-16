@@ -1,4 +1,4 @@
-import { addMhuiSetting, getMhuiSetting } from '@/utils';
+import { addMhuiSetting, getSetting } from '@utils';
 
 import categories from '@data/ultimate-checkmark.json';
 
@@ -23,7 +23,7 @@ export default function (module) {
     options.push({
       id: category.id,
       name: category.name,
-      value: getMhuiSetting(`ultimate-checkmark-${category.id}`, true),
+      value: getSetting(`ultimate-checkmark-${category.id}`, true),
     });
   });
 

@@ -1,4 +1,4 @@
-import { addUIStyles, doRequest, makeElement, onPageChange } from '@/utils';
+import { addStyles, doRequest, makeElement, onPageChange } from '@utils';
 
 import styles from './styles.css';
 
@@ -94,8 +94,8 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   onPageChange({ tem: { show: addCrownsToTEM } });
 };

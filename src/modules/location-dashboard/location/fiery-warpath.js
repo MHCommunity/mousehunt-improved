@@ -1,4 +1,4 @@
-import { getCurrentLocation } from '@/utils';
+import { getCurrentLocation } from '@utils';
 
 const getFieryWarpathText = (quests) => {
   if (! quests.QuestFieryWarpath) {

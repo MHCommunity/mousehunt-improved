@@ -1,6 +1,12 @@
-import { getArEl, getHighestArForMouse, makeElement, mapData } from '@/utils';
-
-import { addMHCTData, getMapData } from '../map-utils';
+import {
+  addMHCTData,
+  getArEl,
+  getHighestArForMouse,
+  getMapData,
+  makeElement,
+  mapData,
+  showTravelConfirmation
+} from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import doHighlighting from './highlighting';

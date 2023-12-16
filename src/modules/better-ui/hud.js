@@ -1,4 +1,4 @@
-const showFullTitlePercent = () => {
+const showFullTitlePercent = async () => {
   const title = document.querySelector('.mousehuntHud-userStat.title');
   if (! title) {
     return;
@@ -25,15 +25,16 @@ const showFullTitlePercent = () => {
   });
 };
 
-const replaceInboxClose = () => {
+const replaceInboxClose = async () => {
   const template = hg.utils.TemplateUtil.getTemplate('ViewMousehuntHeader_inbox')
     .replace('<a class="messengerUINotificationClose" href="#">X', '<a class="messengerUINotificationClose" href="#">✕');
   hg.utils.TemplateUtil.addTemplate('ViewMousehuntHeader_inbox', template);
 };
+
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   showFullTitlePercent();
   replaceInboxClose();
 };

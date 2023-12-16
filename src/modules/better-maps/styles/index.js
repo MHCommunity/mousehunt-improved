@@ -1,4 +1,4 @@
-import { addUIStyles } from '@/utils';
+import { addStyles } from '@utils';
 
 import general from './general.css';
 import hunters from './hunters.css';
@@ -9,7 +9,7 @@ import sorted from './sorted.css';
 import sortedMap from './sorted-map.css';
 
 const main = () => {
-  addUIStyles([
+  addStyles([
     general,
     hunters,
     mapArea,

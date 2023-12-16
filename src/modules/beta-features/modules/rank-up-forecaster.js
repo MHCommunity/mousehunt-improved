@@ -1,4 +1,4 @@
-import { addUIStyles, makeElement } from '@/utils';
+import { addStyles, makeElement } from '@utils';
 
 const exportRankupForecasterData = () => {
   const allArea = localStorage.getItem('Chro-forecaster-all-area');
@@ -94,8 +94,8 @@ const addRankupForecasterButtons = () => {
 /**
  * Initialize the module.
  */
-export default () => {
-  addUIStyles(`.mh-ui-forecaster-buttons {
+export default async () => {
+  addStyles(`.mh-ui-forecaster-buttons {
     display: flex;
     justify-content: space-around;
     margin-top: 5px;

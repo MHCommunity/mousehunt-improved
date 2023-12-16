@@ -1,11 +1,11 @@
 import {
-  addUIStyles,
+  addStyles,
   getCurrentSubtab,
   getCurrentTab,
   makeElement,
   onNavigation,
   onOverlayChange
-} from '@/utils';
+} from '@utils';
 
 import m400 from './m400';
 import styles from './styles.css';
@@ -359,8 +359,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
   main();
 };
 

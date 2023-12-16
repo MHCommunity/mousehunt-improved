@@ -1,4 +1,4 @@
-import { addHudStyles, createPopup, makeElement } from '@/utils';
+import { addHudStyles, createPopup, makeElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -131,7 +131,7 @@ const addUIComponents = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addHudStyles(styles);
   hud();
 };

@@ -1,6 +1,15 @@
-import { addUIStyles, isDarkMode, onNavigation, onRequest } from '@/utils';
+import { addStyles, onNavigation, onRequest } from '@utils';
 
 import styles from './styles.css';
+
+/**
+ * Check if dark mode is enabled.
+ *
+ * @return {boolean} True if dark mode is enabled, false otherwise.
+ */
+const isDarkMode = () => {
+  return !! getComputedStyle(document.documentElement).getPropertyValue('--mhdm-white');
+};
 
 const checkForDarkModeAndAddBodyClass = () => {
   if (! isDarkMode()) {
@@ -30,8 +39,8 @@ const addDarkModeBodyClass = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   addDarkModeBodyClass();
 

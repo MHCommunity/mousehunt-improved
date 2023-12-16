@@ -1,4 +1,4 @@
-import { addMhuiSetting } from '@/utils';
+import { addMhuiSetting } from '@utils';
 
 import environments from '@data/environments.json';
 

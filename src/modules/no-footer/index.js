@@ -1,13 +1,13 @@
-import { addUIStyles, persistBodyClass } from '@/utils';
+import { addBodyClass, addStyles } from '@utils';
 
 import styles from './styles.css';
 
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
-  persistBodyClass('no-footer');
+const init = async () => {
+  addStyles(styles);
+  addBodyClass('no-footer');
 };
 
 export default {

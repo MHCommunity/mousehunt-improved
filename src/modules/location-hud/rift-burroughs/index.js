@@ -1,4 +1,4 @@
-import { addHudStyles, makeElement } from '@/utils';
+import { addHudStyles, makeElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -355,7 +355,7 @@ const hud = () => {
 /**
  * Initialize the module.
  */
-export default () => {
+export default async () => {
   addHudStyles(styles);
   hud();
 };

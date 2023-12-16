@@ -1,12 +1,12 @@
 import {
-  addUIStyles,
+  addStyles,
   doRequest,
   getCurrentPage,
   getCurrentTab,
-  getMhuiSetting,
+  getSetting,
   makeElement,
   onNavigation
-} from '@/utils';
+} from '@utils';
 
 import categories from '@data/ultimate-checkmark.json';
 
@@ -251,7 +251,7 @@ const run = async () => {
   // wait for each category to load + an extra 250ms before loading the next
   let delay = 0;
   for (const category of categories) {
-    if (! getMhuiSetting(`ultimate-checkmark-categories-${category.id}`, true)) {
+    if (! getSetting(`ultimate-checkmark-categories-${category.id}`, true)) {
       continue;
     }
 
@@ -265,8 +265,8 @@ const run = async () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   onNavigation(run, {
     page: 'hunterprofile',

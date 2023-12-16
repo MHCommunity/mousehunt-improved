@@ -1,4 +1,4 @@
-import { addUIStyles, makeElement, onEvent, onRequest } from '@/utils';
+import { addStyles, makeElement, onEvent, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -127,8 +127,8 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   onRequest(main, 'ajax/users/gettrapcomponents.php');
   onEvent('camp_page_toggle_blueprint', main);

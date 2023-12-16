@@ -1,4 +1,4 @@
-import { addUIStyles, getMhuiSetting, onNavigation } from '@/utils';
+import { addStyles, getSetting, onNavigation } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -54,7 +54,7 @@ const changeShield = () => {
     });
   }
 
-  let shield = getMhuiSetting('custom-shield-0', 'default');
+  let shield = getSetting('custom-shield-0', 'default');
   if ('default' === shield) {
     shieldEl.classList.add('default');
     return;
@@ -64,7 +64,7 @@ const changeShield = () => {
     shieldEl.classList.add('default');
 
     if (shield === 'color-cotton-candy') {
-      addUIStyles(`.huntersHornView__backdrop {
+      addStyles(`.huntersHornView__backdrop {
         filter: hue-rotate(180deg);
         opacity: 1;
         transition: none;
@@ -140,8 +140,8 @@ const getTitle = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
 
   changeShield();
 
