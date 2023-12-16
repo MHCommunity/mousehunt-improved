@@ -1,92 +1,365 @@
-import { addUIStyles, createPopup } from '@/utils';
+import {
+  addStyles,
+  createPopup,
+  getCurrentOverlay,
+  getCurrentPage,
+  getSetting,
+  isAppleOS,
+  onNavigation,
+  saveSetting,
+  hasMiniCRE
+} from '@utils';
+
+import getBaseShortcuts from './shortcuts';
 
 import styles from './styles.css';
 
-const clickMinLuck = () => {
-  const minluckButton = document.querySelector('.min-luck-button');
-  if (minluckButton) {
-    minluckButton.click();
-  } else {
-    app.pages.CampPage.toggleTrapEffectiveness(true);
+const getShortcuts = () => {
+  const shortcuts = getBaseShortcuts();
+
+  const saved = getSetting('keyboard-shortcuts', false);
+  if (! saved) {
+    return shortcuts;
+  }
+
+  // Merge the saved shortcuts with the defaults.
+  saved.forEach((savedShortcut) => {
+    const shortcut = shortcuts.find((s) => s.id === savedShortcut.id);
+    if (! shortcut) {
+      return;
+    }
+
+    shortcut.key = savedShortcut.key;
+    shortcut.metaKey = savedShortcut.metaKey;
+    shortcut.altKey = savedShortcut.altKey;
+    shortcut.shiftKey = savedShortcut.shiftKey;
+  });
+
+  return shortcuts;
+};
+
+const saveShortcut = (shortcutId, shortcutKey) => {
+  let saved = getSetting('keyboard-shortcuts', false);
+
+  if (! saved) {
+    saved = [];
+  }
+
+  const toSave = {
+    id: shortcutId,
+    key: shortcutKey.key,
+    metaKey: shortcutKey.metaKey,
+    altKey: shortcutKey.altKey,
+    shiftKey: shortcutKey.shiftKey,
+  };
+
+  // if the shortcut already exists, then remove it.
+  const existingShortcut = saved.find((s) => s.id === shortcutId);
+  if (existingShortcut) {
+    saved = saved.filter((s) => s.id !== shortcutId);
+  }
+
+  // only save the shortcut if it's not the default, its not blank, delete, or backspace, and it's not already in use.
+  if (
+    toSave.key &&
+    toSave.key !== 'Backspace' &&
+    toSave.key !== 'Delete' &&
+    toSave.key !== ' '
+  ) {
+    saved.push(toSave);
+  }
+
+  saveSetting('keyboard-shortcuts', saved);
+
+  const savedElement = document.querySelector(`.mh-ui-keyboard-shortcut[data-shortcut-id="${shortcutId}"]`);
+  if (savedElement) {
+    savedElement.classList.add('saved');
+    setTimeout(() => {
+      savedElement.classList.remove('saved');
+    }, 300);
   }
 };
 
+const getKeyForDisplay = (keyEvent) => {
+  let keyString = '';
+
+  const keysToShow = [];
+  // Show the modifier keys first.
+  if (keyEvent.metaKey) {
+    keysToShow.push(isAppleOS() ? '⌘' : '⊞');
+  }
+
+  if (keyEvent.ctrlKey) {
+    keysToShow.push(isAppleOS() ? '⌃' : 'Ctrl');
+  }
+
+  if (keyEvent.altKey) {
+    keysToShow.push(isAppleOS() ? '⌥' : 'Alt');
+  }
+
+  if (keyEvent.shiftKey) {
+    keysToShow.push('Shift');
+  }
+
+  switch (keyEvent.key) {
+  case ' ':
+    keysToShow.push('Space');
+    break;
+  case 'ArrowUp':
+    keysToShow.push('↑');
+    break;
+  case 'ArrowDown':
+    keysToShow.push('↓');
+    break;
+  case 'ArrowLeft':
+    keysToShow.push('←');
+    break;
+  case 'ArrowRight':
+    keysToShow.push('→');
+    break;
+  case 'Backspace':
+    // if it's backspace, we want to clear the shortcut.
+    keysToShow.push('');
+    break;
+  default:
+    // upper case the first letter of the key.
+    keysToShow.push(keyEvent.key.charAt(0).toUpperCase() + keyEvent.key.slice(1));
+    break;
+  }
+
+  keyString = keysToShow.join('<span class="connector"> + </span>');
+
+  return keyString;
+};
+
+const isHelpPopupOpen = () => {
+  const overlay = getCurrentOverlay();
+  if (! overlay) {
+    return false;
+  }
+
+  return 'mh-ui-keyboard-shortcuts-popup' === overlay;
+};
+
 const showHelpPopup = () => {
+  if (activejsDialog && activejsDialog.hide) {
+    // If the popup is already open, close it.
+    if (isHelpPopupOpen()) {
+      activejsDialog.hide();
+      return;
+    }
+
+    // Otherwise, close any other popup that might be open and open the help popup.
+    activejsDialog.hide();
+  }
+
+  const shortcuts = getShortcuts();
+  let innerContent = '';
+  shortcuts.forEach((shortcut) => {
+    if ('hidden' === shortcut.type) {
+      return;
+    }
+
+    innerContent += `<div class="mh-ui-keyboard-shortcut" data-shortcut-id="${shortcut.id}">
+    <div class="description">${shortcut.description}</div>
+    <div class="edit-controls">
+      <a class="clear">Clear</a>
+      <a class="reset">Reset</a>
+      <a class="edit">Edit</a>
+    </div>
+    <kbd>${getKeyForDisplay(shortcut)}</kbd>
+    </div>`;
+  });
+
+  const content = `<div class="mh-ui-keyboard-shortcuts-popup-content">
+    <h2 class="mh-ui-keyboard-shortcuts-edit-content">
+      To edit a shortcut, click on <em>Edit</em> on the shortcut, then press the key combination you want to use.
+    </h2>
+    <div class="mh-ui-keyboard-shortcuts-popup-content-list">
+      ${innerContent}
+    </div>
+  </div>`;
+
   createPopup({
     title: 'MouseHunt Improved Keyboard Shortcuts',
-    content: `<div class="mh-ui-keyboard-shortcuts-popup-content">
-      <ul class="mh-ui-keyboard-shortcuts-popup-content-list">
-        <li class="mh-ui-keyboard-shortcuts-popup-content-section">
-          <h2>Navigation</h2>
-          <ul class="mh-ui-keyboard-shortcuts-list">
-            <li><strong>T</strong>Travel</li>
-            <li><strong>J</strong>Journal/Camp</li>
-            <li><strong>F</strong>Friends</li>
-            <li><strong>S</strong>Shops</li>
-            <li><strong>P</strong>Go to your Profile</li>
-            <li><strong>M</strong>Open your Map</li>
-            <li><strong>I</strong>Open your Map Invites</li>
-          </ul>
-        </li>
-        <li class="mh-ui-keyboard-shortcuts-popup-content-section">
-          <h2>Change your Setup</h2>
-          <ul class="mh-ui-keyboard-shortcuts-list">
-            <li><strong>W</strong>Change your Weapon</li>
-            <li><strong>B</strong>Change your Base</li>
-            <li><strong>R</strong>Change your Charm</li>
-            <li><strong>C</strong>Change your Cheese</li>
-            <li><strong>E</strong>Show the TEM</li>
-            <li><strong>L</strong><span>Show the CRE popup</span><em>(If you have the userscript installed)</em></li>
-          </ul>
-        </li>
-      </ul>
-    </div>`,
+    content,
     hasCloseButton: true,
     show: true,
     className: 'mh-ui-keyboard-shortcuts-popup'
   });
+
+  const shortcutsWrapper = document.querySelector('.mh-ui-keyboard-shortcuts-popup-content');
+  const shortcutButtons = document.querySelectorAll('.mh-ui-keyboard-shortcuts-popup-content-list .mh-ui-keyboard-shortcut');
+  shortcutButtons.forEach((shortcut) => {
+    const shortcutId = shortcut.getAttribute('data-shortcut-id');
+    const editButton = shortcut.querySelector('.edit');
+    const resetButton = shortcut.querySelector('.reset');
+    const clearButton = shortcut.querySelector('.clear');
+
+    const kbd = shortcut.querySelector('kbd');
+
+    const startEditing = () => {
+      isEditing = true;
+      editButton.innerText = 'Cancel';
+      shortcut.classList.add('editing');
+      shortcutsWrapper.classList.add('editing');
+      document.addEventListener('keydown', keypressListener);
+    };
+
+    const finishEditing = (id = false, key = false) => {
+      isEditing = false;
+      editButton.innerText = 'Edit';
+      shortcut.classList.remove('editing');
+      shortcutsWrapper.classList.remove('editing');
+      document.removeEventListener('keydown', keypressListener);
+
+      if (! id || ! key) {
+        return;
+      }
+
+      saveShortcut(id, key);
+      kbd.innerHTML = getKeyForDisplay(key);
+    };
+
+    const keypressListener = (event) => {
+      // if the key is alt, shift, ctrl, or meta, by itself, don't do anything, because that's not a valid shortcut by itself.
+      // if the key matches the key of another shortcut, show an error message for a second.
+      // otherwise, save the shortcut and update the display and remove the event listener.
+      if (['Alt', 'Shift', 'Control', 'Meta'].includes(event.key)) {
+        return;
+      }
+
+      const theShortcut = getShortcuts().find((s) => {
+        return (
+          s.key === event.key &&
+          s.metaKey === event.metaKey &&
+          s.altKey === event.altKey &&
+          s.shiftKey === event.shiftKey
+        );
+      });
+
+      if (theShortcut) {
+        // find the shortcut that matches the key and show an error message.
+        const matchingShortcut = document.querySelector(`.mh-ui-keyboard-shortcut[data-shortcut-id="${theShortcut.id}"]`);
+        if (! matchingShortcut) {
+          return;
+        }
+
+        // if the shortcut is already the one we're editing, then just finish editing.
+        if (shortcutId === theShortcut.id) {
+          finishEditing(shortcutId, event);
+          return;
+        }
+
+        matchingShortcut.classList.add('error');
+        shortcut.classList.add('error');
+
+        setTimeout(() => {
+          matchingShortcut.classList.remove('error');
+          shortcut.classList.remove('error');
+        }, 300);
+
+        return;
+      }
+
+      finishEditing(shortcutId, event);
+    };
+
+    editButton.addEventListener('click', () => {
+      if (isEditing) {
+        finishEditing();
+      } else {
+        startEditing();
+      }
+    });
+
+    resetButton.addEventListener('click', () => {
+      const defaultShortcut = getBaseShortcuts().find((s) => s.id === shortcutId);
+      if (! defaultShortcut) {
+        return;
+      }
+
+      finishEditing(shortcutId, defaultShortcut);
+    });
+
+    clearButton.addEventListener('click', () => {
+      finishEditing(shortcutId, {
+        key: '',
+        metaKey: false,
+        altKey: false,
+        shiftKey: false,
+      });
+    });
+  });
 };
 
+let isEditing = false;
 const listenForKeypresses = () => {
-  // Listen for the keypress and call the callback when it happens.
+  // If the help popup is closed, then listen for keypresses, unless it's inside an input or textarea or something like that. When a key is pressed, check if it's one of the shortcuts and if so, run the action.
   document.addEventListener('keydown', (event) => {
+    if (isHelpPopupOpen() || isEditing) {
+      return;
+    }
+
+    const tagName = event.target.tagName.toLowerCase();
     if (
-      /* eslint-disable @wordpress/no-global-active-element */
-      document.activeElement instanceof HTMLInputElement ||
-      document.activeElement instanceof HTMLTextAreaElement ||
-      document.activeElement instanceof HTMLSelectElement ||
-      /* eslint-enable @wordpress/no-global-active-element */
-      event.metaKey || // if the meta key is pressed, we don't want to do anything.
-      event.ctrlKey // if the ctrl key is pressed, we don't want to do anything.
+      'input' === tagName ||
+      'textarea' === tagName ||
+      'select' === tagName
     ) {
       return;
     }
 
-    switch (event.key) {
-    case '?': showHelpPopup(); break; // ? for help.
-    case 'b': app.pages.CampPage.toggleItemBrowser('base'); break; // B for base.
-    case 'c': app.pages.CampPage.toggleItemBrowser('bait'); break; // C for Cheese.
-    case 'e': app.pages.CampPage.toggleTrapEffectiveness(true); break; // E for Effectiveness.
-    case 'f': hg.utils.PageUtil.setPage('Friends'); break; // F for friends.
-    case 'i': hg.controllers.TreasureMapController.showCommunity(); break; // I for map Invites.
-    case 'j': hg.utils.PageUtil.setPage('Camp'); break; // J for Journal/camp.
-    case 'l': clickMinLuck(); break; // L for Luck.
-    case 'm': hg.controllers.TreasureMapController.show(); break; // M for map.
-    case 'p': hg.utils.PageUtil.setPage('HunterProfile'); break; // P for Profile.
-    case 'r': app.pages.CampPage.toggleItemBrowser('trinket'); break; // r for chaRm.
-    case 's': hg.utils.PageUtil.setPage('Shops'); break; // S for shop.
-    case 't': hg.utils.PageUtil.setPage('Travel'); break; // T for travel.
-    case 'w': app.pages.CampPage.toggleItemBrowser('weapon'); break; // W for Weapon.
+    const shortcuts = getShortcuts();
+    const shortcut = shortcuts.find((s) => {
+      return (
+        s.key === event.key &&
+        s.metaKey === event.metaKey &&
+        s.altKey === event.altKey &&
+        s.shiftKey === event.shiftKey
+      );
+    });
+
+    if (shortcut && shortcut.action) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      shortcut.action();
     }
+  });
+};
+
+const openFromSettings = () => {
+  if ('preferences' !== getCurrentPage()) {
+    return;
+  }
+
+  const openLink = document.querySelector('.mh-ui-keyboard-shortcuts-edit');
+  if (! openLink) {
+    return;
+  }
+
+  openLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    showHelpPopup();
   });
 };
 
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
   listenForKeypresses();
+
+  onNavigation(hasMiniCRE, {
+    page: 'camp'
+  });
+
+  onNavigation(openFromSettings, {
+    page: 'preferences',
+    tab: 'mousehunt-improved-settings'
+  });
 };
 
 export default {
@@ -94,6 +367,6 @@ export default {
   name: 'Keyboard Shortcuts',
   type: 'feature',
   default: true,
-  description: 'Press \'?\' to see a list of keyboard shortcuts.',
+  description: 'Press \'?\' to see and edit the keyboard shortcuts. You can also <a href="#" class="mh-ui-keyboard-shortcuts-edit">edit them here</a>.',
   load: init,
 };

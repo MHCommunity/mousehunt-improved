@@ -202,6 +202,27 @@ function isAppleOS(_window = null) {
   );
 }
 
+const hasMiniCRE = () => {
+  const hasMiniCre = sessionStorage.getItem('mh-improved-has-mini-cre');
+  if (hasMiniCre) {
+    return true;
+  }
+
+  if ('camp' !== getCurrentPage()) {
+    return;
+  }
+
+  const cre = document.querySelector('.min-luck-container[style="position: absolute; top: 7px; right: 7px;"]');
+  if (! cre) {
+    sessionStorage.setItem('mh-improved-has-mini-cre', false);
+    return false;
+  }
+
+  sessionStorage.setItem('mh-improved-has-mini-cre', true);
+
+  return true;
+};
+
 export {
   doRequest,
   getTradableItems,
@@ -213,5 +234,6 @@ export {
   isOverlayVisible,
   addBodyClass,
   removeBodyClass,
-  isAppleOS
+  isAppleOS,
+  hasMiniCRE
 };
