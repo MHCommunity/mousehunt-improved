@@ -2,6 +2,15 @@ import { addStyles, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
+const getQuantityInput = () => {
+  const quantity = document.querySelector('.itemView-action-convert-quantity');
+  if (! quantity) {
+    return false;
+  }
+
+  return quantity;
+};
+
 const addOpenAllButOneButton = () => {
   const convertibleItems = document.querySelectorAll('.inventoryPage-item.convertible[data-item-classification="convertible"]');
   if (! convertibleItems.length) {
@@ -24,16 +33,32 @@ const addOpenAllButOneButton = () => {
     newButton.classList.add('open-all-but-one');
     newButton.textContent = 'All but One';
     newButton.value = 'All but One';
-    newButton.setAttribute('data-item-action', 'single');
-    newButton.onclick = null;
-    newButton.addEventListener('click', (e) => {
-      const quantity = item.querySelector('.inventoryPage-item-imageContainer .quantity');
-      if (! quantity) {
-        return;
-      }
 
-      quantity.textContent = Number.parseInt(quantity.textContent, 10) - 1;
-      app.pages.InventoryPage.useConvertible(e.target);
+    newButton.setAttribute('data-item-action', 'all-but-one');
+    newButton.setAttribute('onclick', 'return false;');
+
+    const itemType = item.getAttribute('data-item-type');
+
+    const maxQuantityEl = item.querySelector(`.inventoryPage-item[data-item-type="${itemType}"] .inventoryPage-item-imageContainer .quantity`);
+    const maxQuantity = maxQuantityEl ? Number.parseInt(maxQuantityEl.textContent, 10) : 0;
+
+    newButton.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      hg.views.ItemView.show(itemType);
+
+      const interval = setInterval(() => {
+        quantityInput = getQuantityInput();
+        if (quantityInput) {
+          clearInterval(interval);
+          quantityInput.value = maxQuantity - 1;
+
+          const useButton = document.querySelector('.itemView-action-convert-actionButton');
+          if (useButton) {
+            useButton.click();
+          }
+        }
+      }, 100);
     });
 
     button.parentNode.insertBefore(newButton, button.nextSibling);
