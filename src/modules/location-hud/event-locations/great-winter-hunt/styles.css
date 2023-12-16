@@ -619,6 +619,17 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 .greatWinterHuntGolemManagerDialogView__activeGolemContent .winterHuntGolemView--hasScarf .winterHuntGolemView__scarf {
   top: 15px;
 }
+/* completed reward track, hide text and make the color match */
+.greatWinterHuntRewardTrackView--allRewardsClaimed .greatWinterHuntRewardTrackView__claimedLabel {
+  color: transparent;
+  background: transparent;
+}
+
+.greatWinterHuntRewardTrackView--allRewardsClaimed .greatWinterHuntRewardTrackView__bar {
+  filter: hue-rotate(347deg);
+  transition: none;
+}
+
 /* make it so when you hover or click on the lil guy by the rewards indicator, it'll dance */
 .greatWinterHuntRewardTrackView__golem:hover {
   animation: wallDamageWiggleSmall 0.3s infinite;
