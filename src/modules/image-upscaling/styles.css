@@ -27,8 +27,6 @@
 
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image,
 .campPage-trap-armedItem-image {
-  top: 3px;
-  left: 3px;
   background-size: 100%;
   border: none;
 }
@@ -75,10 +73,6 @@
 .marketplaceView-itemImage {
   background-color: transparent;
   border: none;
-}
-
-.marketplaceHome-block.featured .marketplaceView-itemImage {
-  border: 1px solid #a0a0a0;
 }
 
 .MHCheckout-featuredItem-image.large {
