@@ -219,14 +219,9 @@ const kingsPromoTextChange = () => {
   }
 };
 
-const updateKingsPromoText = () => {
-  onRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
-};
-
 const main = () => {
   updateJournalText();
   updateMouseImageLinks();
-  updateKingsPromoText();
 };
 
 /**
@@ -242,6 +237,7 @@ const init = async () => {
   ]);
 
   main();
+  onRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
 
   onRequest(() => {
     main();
