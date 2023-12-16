@@ -69,5 +69,5 @@ export {
   getSettingDirect,
   saveSettingDirect,
   getSetting,
-  saveSetting,
+  saveSetting
 };

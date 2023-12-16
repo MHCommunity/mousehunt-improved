@@ -1,6 +1,5 @@
 import {
   getSetting,
-  getSettingDirect,
   makeElement,
   onDialogHide,
   onDialogShow,
