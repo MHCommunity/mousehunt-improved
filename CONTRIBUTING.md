@@ -94,10 +94,10 @@ import moduleName from 'modules/your-module-name';
 
 ### Importing utilities
 
-You can import any of the utilities from `src/modules/utils.js` or `src/modules/mh-utils.js` like so:
+All of the utility functions are in `src/utils/`. They are broken up into different files, but you can import any of them like this:
 
 ```javascript
-import { getCurrentLocation } from '@/utils';
+import { addStyles, getCurrentLocation } from '@utils';
 ```
 
 ## Code Style

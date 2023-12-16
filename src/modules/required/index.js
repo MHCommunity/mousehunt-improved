@@ -105,9 +105,9 @@ const modifySettingsPage = () => {
 };
 
 const loadStyleOverrides = () => {
-  const customStyles = getMhuiSetting('override-styles');
+  const customStyles = getSetting('override-styles');
   if (customStyles) {
-    addUIStyles(customStyles, 'mousehunt-improved-override-styles');
+    addStyles(customStyles, 'mousehunt-improved-override-styles');
   }
 };
 
@@ -137,8 +137,8 @@ const checkForAutohorn = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(settingStyles);
+const init = async () => {
+  addStyles(settingStyles);
 
   onNavigation(modifySettingsPage,
     {

@@ -1,11 +1,11 @@
 import {
-  addUIStyles,
+  addStyles,
   doRequest,
-  getMhuiSetting,
+  getSetting,
   makeElement,
   onEvent,
   onNavigation
-} from '@/utils';
+} from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -214,8 +214,8 @@ const updateTournamentList = async () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  addStyles(styles);
   updateTournamentHud();
 
   onEvent('tournament_status_change', updateTournamentHud);

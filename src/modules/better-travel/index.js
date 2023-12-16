@@ -515,8 +515,10 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
-  addUIStyles(styles);
+const init = async () => {
+  const stylesJoined = [styles];
+
+  addStyles(stylesJoined);
   main();
 };
 
