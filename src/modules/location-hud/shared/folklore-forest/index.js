@@ -9,12 +9,15 @@ import {
 } from '@utils';
 
 const saveHidden = (upgradeId, isHidden) => {
-  saveSetting(upgradeId, isHidden, 'mh-improved-visibility-toggles');
+  const upgradeIds = getSetting('visibility-toggles', {});
+  upgradeIds[upgradeId] = isHidden;
+
+  saveSetting('visibility-toggles', upgradeIds);
 };
 
 const isHidden = (upgradeId) => {
-  const setting = getSetting(upgradeId, false, 'mh-improved-visibility-toggles');
-  return setting;
+  const setting = getSetting('visibility-toggles', {});
+  return setting[upgradeId] || false;
 };
 
 const getToggleVisibilityMapping = () => {

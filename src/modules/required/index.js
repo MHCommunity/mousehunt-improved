@@ -1,11 +1,13 @@
 import {
-  addUIStyles,
+  addStyles,
   createPopup,
   getFlag,
-  getMhuiSetting,
+  getSetting,
   makeElement,
   onNavigation
-} from '@/utils';
+} from '@utils';
+
+import migrateSettings from './migrate-settings';
 
 import settingStyles from './styles.css';
 
@@ -154,6 +156,8 @@ const init = async () => {
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
     checkForAutohorn();
   }
+
+  migrateSettings();
 };
 
 export default {
