@@ -19,19 +19,17 @@ const initiateKingsReward = () => {
 };
 
 const startKingsReward = () => {
-  if (! user.has_puzzle) {
-    return;
+  const rewardStart = document.querySelector('.huntersHornMessageView--puzzle .huntersHornMessageView__action');
+  if (rewardStart) {
+    rewardStart.click();
   }
 
-  const claim = document.querySelector('.huntersHornMessageView__action');
-  if (claim) {
-    claim.click();
-  }
-
-  const puzzle = document.querySelector('.puzzleView__code');
-  if (puzzle) {
-    puzzle.focus();
-  }
+  setTimeout(() => {
+    const puzzle = document.querySelector('.puzzleView__code');
+    if (puzzle) {
+      puzzle.focus();
+    }
+  }, 500);
 };
 
 /**
