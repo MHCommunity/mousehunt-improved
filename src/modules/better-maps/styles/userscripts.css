@@ -1,0 +1,70 @@
+fieldset.tsitu-mapping {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  float: right;
+  width: 200px !important;
+  padding: 0 !important;
+  margin-right: 13px;
+  margin-left: 0 !important;
+  border: none !important;
+}
+
+span.tsitu-mapping {
+  display: flex !important;
+  align-items: center;
+  padding-bottom: 8px;
+  margin: 0 !important;
+}
+
+span.tsitu-mapping.tsitu-refresh-span > span {
+  display: none;
+}
+
+.tsitu-mapping br {
+  display: none;
+}
+
+.tsitu-mapping legend {
+  display: none;
+}
+
+.tsitu-mapping label {
+  display: none;
+}
+
+input[name="tsitu-mapping-id-input"] {
+  width: 100px;
+  height: 17px;
+  line-height: 20px;
+}
+
+.tsitu-mapping button[style="margin-left: 5px;"] {
+  padding: 4px 3px;
+  margin-right: 4px;
+  margin-left: 2px !important;
+  font-size: 9px;
+  color: #000;
+  text-shadow: 0 0 1px #fff;
+  background-color: #f4e830;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 0 -5px 8px -2px #ffae00 inset;
+}
+
+.tsitu-mapping button[style="margin-left: 5px;"]:hover,
+.tsitu-mapping button[style="margin-left: 5px;"]:focus {
+  background-color: #fff600;
+  box-shadow: inset 0 0 16px 2px #fffaab;
+}
+
+button.mousehuntActionButton.tiny.tsitu-mapping {
+  padding: 4px !important;
+  margin: 0 !important;
+}
+
+.mh-dark-mode input[name="tsitu-mapping-id-input"] {
+  color: #fff;
+  background-color: #636363;
+  border: 1px solid #2c2c2c;
+}

@@ -7,6 +7,7 @@ import mhct from './mhct.css';
 import sidebar from './sidebar.css';
 import sorted from './sorted.css';
 import sortedMap from './sorted-map.css';
+import userscripts from './userscripts.css';
 
 const main = () => {
   addStyles([
@@ -17,6 +18,7 @@ const main = () => {
     sidebar,
     sorted,
     sortedMap,
+    userscripts,
   ]);
 };
 
