@@ -53,3 +53,27 @@ label.mhui-marketplace-search-toggle {
 .marketplaceView-itemImage .limitedEdition {
   display: none;
 }
+
+.marketplaceHome-blockItem.small .marketplaceView-itemImage {
+  width: 70px;
+  height: 70px;
+  padding-bottom: 0;
+  margin-bottom: 10px;
+}
+
+.marketplaceHome-blockItem.small .marketplaceView-item-imageContainer {
+  width: auto;
+}
+
+.marketplaceHome-blockItem.small .marketplaceView-favouriteButton {
+  right: 5px;
+}
+
+tr.open td.marketplaceView-table-name {
+  white-space: nowrap;
+}
+
+.marketplaceListing .marketplaceView-itemImage.favourite {
+  border: none;
+  box-shadow: none;
+}

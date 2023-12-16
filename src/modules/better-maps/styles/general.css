@@ -112,8 +112,7 @@ img.treasureMapView-reward-chestIcon {
   padding: 0;
   margin: 20px auto;
   background: transparent;
-  border: 1px solid #16851b;
-  box-shadow: 0 0 10px 0 #1daf24;
+  box-shadow: none;
 }
 
 .treasureMapInvitesView .treasureMapView-leftBlock:first-child .treasureMapView-block-title:first-child {
@@ -648,7 +647,17 @@ input.treasureMapView-block-search-text {
 
 .treasureMapInventoryView .treasureMapView-block-search {
   right: 0;
-  bottom: 3px;
+}
+
+.treasureMapInventoryView .treasureMapView-block-title,
+.treasureMapShopsView .treasureMapView-block-title {
+  margin-bottom: 0;
+  visibility: hidden;
+}
+
+.treasureMapInventoryView .treasureMapView-block-search,
+.treasureMapShopsView .treasureMapView-block-search {
+  visibility: visible;
 }
 
 .treasureMapRootView-footer .treasureMapRootView-footer-item {
@@ -700,4 +709,23 @@ input.treasureMapView-block-search-text {
 
 .treasureMapPopup-mapInvite .treasureMapView-hunter {
   margin: 3px 0;
+}
+
+.treasureMapView-mapMenu-group-content.upgraded .treasureMapView-mapMenu-mapIcon,
+.treasureMapListingsTableView-mapThumbnail.rare {
+  filter: drop-shadow(0 0 2px #ffb40c) drop-shadow(0 0 5px #ffb40c);
+  box-shadow: none;
+}
+
+.treasureMapDialogView-inviteFriend-completeContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: stretch stretch;
+}
+
+.treasureMapDialogView-inviteFriend-complete {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
 }

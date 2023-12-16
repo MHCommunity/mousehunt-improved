@@ -120,6 +120,11 @@ div#ballotPurchase input {
     1px 1px 1px #eee;
 }
 
+div#ballotPurchase input:hover,
+div#ballotPurchase input:focus {
+  background-color: #e4d50c;
+}
+
 div#ballotConfirm input {
   height: 25px;
   margin-left: 10px !important;

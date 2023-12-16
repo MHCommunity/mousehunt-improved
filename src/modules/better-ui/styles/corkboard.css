@@ -76,6 +76,12 @@ input.messageBoardView-message-submit {
     1px 1px 1px #eee;
 }
 
+input.messageBoardView-message-submit:hover,
+input.messageBoardView-message-submit:focus {
+  background-color: #fff600;
+  box-shadow: inset 0 0 16px 2px #fffaab;
+}
+
 .treasureMapRootView .messageBoardView .messageBoardView-message-description,
 .teamPage-messageBoard-corkboard .messageBoardView-message-description,
 .hunterInfoView-corkBoardBlock .messageBoardView-message-description {

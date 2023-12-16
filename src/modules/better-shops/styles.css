@@ -17,17 +17,13 @@
   margin: 1em 0;
 }
 
-.itemPurchaseView-container.own_max {
-  opacity: 0.3;
-}
-
 .itemPurchaseView-container.own_max:hover,
 .itemPurchaseView-container.own_max:focus {
   opacity: 1;
 }
 
 .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemPurchaseView-content-description {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .itemPurchaseView-action-quantity span,
@@ -174,6 +170,7 @@ a.itemPurchaseView-action-form-button.sell {
   padding: 4px;
   margin-right: 10px;
   font-size: 11px;
+  white-space: nowrap;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -184,8 +181,7 @@ a.itemPurchaseView-action-form-button.sell {
 }
 
 .itemPurchaseView-container.own_max .itemPurchaseView-action-container {
-  display: block;
-  width: 250px;
+  display: none;
 }
 
 .itemPurchaseView-action-container {
@@ -337,7 +333,7 @@ a.itemPurchaseView-content-skin-link {
 .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
   display: flex;
   align-items: center;
-  min-width: 65px;
+  min-width: 55px;
   padding: 2px;
   margin: 0;
   margin-right: 5px;
@@ -358,10 +354,6 @@ a.itemPurchaseView-content-skin-link {
 
 .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value {
   font-size: 9px;
-}
-
-.shopCustomization .itemViewStatBlock-stat.title {
-  margin-top: 0;
 }
 
 /* kings cart */
@@ -386,6 +378,7 @@ a.itemPurchaseView-content-skin-link {
 .itemPurchaseView-container .itemPurchaseView-content-details,
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details {
   height: 100%;
+  overflow: visible;
 }
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-state.view {
@@ -562,11 +555,72 @@ a.shopsPage-kingsCalibratorPromo {
   background-color: #dbe9ff;
 }
 
+.itemPurchaseView-container.own_max {
+  display: block !important;
+  height: 25px;
+  overflow-y: hidden;
+  opacity: 0.3;
+  transition: 0.4s;
+}
+
+.mh-dark-mode .itemPurchaseView-container.own_max {
+  background-color: #000;
+}
+
+.itemPurchaseView-container.own_max:hover {
+  display: table !important;
+  height: unset;
+  overflow-y: visible;
+}
+
+.itemPurchaseView-container.own_max:hover .itemPurchaseView-action-container {
+  display: table-cell;
+}
+
+.mh-dark-mode .itemPurchaseView-container.own_max .itemPurchaseView-content-container {
+  border-color: transparent;
+}
+
+.itemPurchaseView-container.own_max .itemPurchaseView-content-name b::after {
+  font-size: 10px;
+  content: " (maximum owned)";
+}
+
+.mh-dark-mode .shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect,
+.mh-dark-mode .shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat {
+  background-color: #3d3d3d;
+  border-color: #606060;
+}
+
+.shopCustomization .shopCustomization .itemViewStatBlock-stat.powerType {
+  position: absolute;
+  color: #000;
+  background-color: #e6e6e6;
+}
+
+.shopCustomization .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-value {
+  display: none;
+}
+
+.shopCustomization .itemViewStatBlock-stat.title {
+  bottom: 5px;
+  left: 5px;
+}
+
 .mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.title,
 .mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType {
   background-color: #3d3d3d;
   border-color: #606060;
 }
+
+.itemPurchaseView-container .itemViewStatBlock-stat.powerType {
+  top: -4px;
+  left: -1px;
+  padding: 4px;
+  border-radius: 0;
+  border-bottom-right-radius: 11px;
+}
+
 .mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType {
   background-color: #424242;
   border: none;

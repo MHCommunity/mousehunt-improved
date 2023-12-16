@@ -25,6 +25,17 @@
 .notificationMessageList .message .actions input[type="button"]:focus,
 .notificationMessageList .message .actions input[value="View Profile"]:hover,
 .notificationMessageList .message .actions input[value="View Profile"]:focus,
+.notificationMessageList .message .actions input[value="View Profile"].ignoreRequest.ignoreRequest:hover,
+.notificationMessageList .message .actions input[value="View Profile"].ignoreRequest.ignoreRequest:focus {
+  background-color: #e4d50c;
+}
+
+#overlayPopup .button:hover,
+#overlayPopup .button:focus,
+.notificationMessageList .message .actions input[type="button"]:hover,
+.notificationMessageList .message .actions input[type="button"]:focus,
+.notificationMessageList .message .actions input[value="View Profile"]:hover,
+.notificationMessageList .message .actions input[value="View Profile"]:focus,
 .notificationMessageList .message .actions input[value="View Profile"].ignoreRequest:hover,
 .notificationMessageList .message .actions input[value="View Profile"].ignoreRequest:focus {
   background-color: #fff600;

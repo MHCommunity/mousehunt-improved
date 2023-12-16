@@ -52,6 +52,9 @@
 }
 
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image {
+  left: -3px;
+  width: 60px;
+  margin-right: 0;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
@@ -287,10 +290,6 @@ img.itembrowser-skin-image {
   width: 332px;
 }
 
-a.campPage-trap-itemBrowser-item-disarmButton {
-  margin-top: 10px;
-}
-
 .campPage-trap-trapStat-mathRow {
   font-size: 13px;
   line-height: 23px;
@@ -370,6 +369,7 @@ a.campPage-trap-itemBrowser-item-disarmButton {
 
 .campPage-trap-itemBrowser-item-disarmButton {
   width: 100px;
+  margin-top: 10px;
   color: #000;
   background-color: #ffbfbf;
   box-shadow:
@@ -381,4 +381,15 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
   box-shadow:
     0 -20px 5px #cc8b8b inset,
     1px 1px 1px #671d1d;
+}
+
+.empty .campPage-trap-armedItem-image {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hunters_horn/sandwich_board/icons/bait_empty.png);
+}
+
+.campPage-trap-baitDetails .campPage-trap-baitName {
+  position: absolute;
+  inset: 0 0 0 60px;
+  display: flex;
+  align-items: center;
 }
