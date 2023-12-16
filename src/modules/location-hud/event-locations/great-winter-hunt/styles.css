@@ -619,6 +619,33 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 .greatWinterHuntGolemManagerDialogView__activeGolemContent .winterHuntGolemView--hasScarf .winterHuntGolemView__scarf {
   top: 15px;
 }
+
+.headsUpDisplayWinterHuntRegionView__warning {
+  width: 170px;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 20px;
+  color: #2f2a2a;
+  text-align: center;
+  border: none;
+}
+
+.headsUpDisplayWinterHuntRegionView__trapWarningContainer .greatWinterHuntDialogView {
+  left: 45%;
+  z-index: 11;
+}
+
+.headsUpDisplayWinterHuntRegionView__trapWarningContainer.headsUpDisplayWinterHuntRegionView__trapWarningContainer--active {
+  filter: drop-shadow(0 0 7px #000);
+}
+
+.headsUpDisplayWinterHuntRegionView__trapWarningContainer.headsUpDisplayWinterHuntRegionView__trapWarningContainer--active .greatWinterHuntDialogView__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* completed reward track, hide text and make the color match */
 .greatWinterHuntRewardTrackView--allRewardsClaimed .greatWinterHuntRewardTrackView__claimedLabel {
   color: transparent;
