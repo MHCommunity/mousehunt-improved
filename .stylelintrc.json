@@ -41,7 +41,7 @@
     "stylistic/number-leading-zero": null,
     "prettier/prettier": [true, {
       "singleQuote": false,
-      "printWidth": 160
+      "printWidth": 220
     }]
   },
   "cache": true

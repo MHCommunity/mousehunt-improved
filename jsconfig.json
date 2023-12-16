@@ -16,6 +16,8 @@
     "baseUrl": "src",
     "paths": {
       "@/*": ["./modules/*"],
+      "@utils/*": ["./utils/"],
+      "@utils": ["./utils/index.js"],
       "@data/*": ["./data/*"],
     }
   },
