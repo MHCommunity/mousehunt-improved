@@ -144,7 +144,28 @@ const upscaleBackgroundImages = async () => {
   });
 };
 
-const upscaleImages = async () => {
+const upscaleImages = async (observer) => {
+  if (isUpscaling) {
+    return;
+  }
+
+  // Pause the observer while we are making changes.
+  if (observer) {
+    observer.disconnect();
+  }
+
+  isUpscaling = true;
+
+  // Upscale the images.
+  await upscaleImages();
+  await upscaleBackgroundImages();
+
+  // Resume the observer.
+  if (observer) {
+    observer.observe(document, observerOptions);
+  }
+
+  isUpscaling = false;
   // return a promise that resolves when all the images have been upscaled.
   return Promise.all([
     upscaleImageElements(),
@@ -155,21 +176,20 @@ const upscaleImages = async () => {
 const unupscaledImages = [];
 const upscaledImages = [];
 const lastCheck = { backgrounds: '', images: '' };
+let isUpscaling = false;
+
+const observerOptions = {
+  attributes: true,
+  attributeFilter: ['style'],
+  childList: true,
+  subtree: true,
+};
 
 /**
  * Initialize the module.
  */
 const init = async () => {
-  addUIStyles([styles, journalThemeStyles]);
-
-  // Observe the document for changes and upscale images when they are added.
-  // ignore anything that is in the huntersHornView__timer div.
-  const options = {
-    attributes: true,
-    attributeFilter: ['style'],
-    childList: true,
-    subtree: true,
-  };
+  addStyles([styles, journalThemeStyles]);
 
   const observer = new MutationObserver(async (mutations) => {
     for (const mutation of mutations) {
@@ -186,14 +206,17 @@ const init = async () => {
       // Pause the observer while we are making changes.
       observer.disconnect();
 
-      await upscaleImages();
-
-      // Resume observing.
-      observer.observe(document, options);
+      upscaleImages(observer);
     }
   });
 
-  observer.observe(document, options);
+  observer.observe(document, observerOptions);
+
+  onDialogShow(() => {
+    setTimeout(() => {
+      upscaleImages();
+    }, 500);
+  });
 };
 
 export default {
