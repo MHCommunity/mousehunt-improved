@@ -76,6 +76,7 @@
   margin-left: 20px;
   overflow: hidden;
   font-size: 14px;
+  color: #000;
   text-overflow: ellipsis;
   white-space: nowrap;
   vertical-align: middle;
@@ -199,4 +200,18 @@
 #friend-data-wrapper .friendsPage-friendRow-stat.hasHover:hover {
   text-decoration: underline;
   background: unset;
+}
+
+.mh-dark-mode #friend-data-wrapper .friendsPage-friendRow {
+  color: #87270e;
+  background: linear-gradient(#decebb 5%, #f0eddf 50%);
+}
+
+.mh-dark-mode #friend-data-wrapper .friendsPage-friendRow-statsContainer {
+  color: #87270e;
+  box-shadow: 0 10px 30px #cdb495 inset;
+}
+
+.mh-dark-mode #friend-data-wrapper .friendsPage-friendRow-stat-value a {
+  color: #87270e;
 }
