@@ -187,17 +187,6 @@ button.campHudSnowballShowdownView__buyButton {
   display: block;
 }
 
-.mh-dark-mode .entry.short.catchsuccessloot[data-mouse-type="glazed"],
-.entry.short.catchsuccessloot[data-mouse-type="glazed"] {
-  color: #000 !important;
-  background-color: #fcdb28;
-  box-shadow: 0 0 10px 8px #fdee96 inset;
-}
-
-.mh-dark-mode .entry.short.catchsuccessloot[data-mouse-type="glazed"] a {
-  color: #3b5998;
-}
-
 .headsUpDisplayWinterHuntRegionView__golemHuntsRemaining {
   display: flex;
   align-items: center;

@@ -44,16 +44,8 @@
   background-color: #242424;
 }
 
-.mh-dark-mode .mouse-ar-wrapper:nth-child(odd) {
-  background-color: #323232;
-}
-
 .mh-dark-mode .inventoryPage-item-recipeOptions li {
   color: #2c2c2c;
-}
-
-.mh-dark-mode .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
-  background-color: #323232;
 }
 
 .mh-dark-mode .treasureMapView-environment.active .treasureMapView-environment-title {
@@ -70,26 +62,70 @@
   background-color: #862f2f;
 }
 
-.mh-dark-mode #sorted-mice-container .mouse-container-selected,
-.mh-dark-mode #sorted-mice-container .mouse-container:hover,
-.mh-dark-mode #sorted-mice-container .mouse-container:focus {
-  background-color: #2c2c2c;
-}
-
-.mh-dark-mode #sorted-mice-container .mouse-container-selected .mouse-extra-info {
-  background-color: #2c2c2c;
-  border-top-color: #000;
-}
-
-.mh-dark-mode .mhct-data {
-  background-color: #2c2c2c;
-  border-top-color: #000;
-}
-
-.mh-dark-mode .mhct-row:nth-child(odd) {
-  background-color: #191919;
-}
-
 .mh-dark-mode .pageFrameView #overlayPopup.treasureMapPopup .treasureMapRootView-content a.messageBoardView-message-delete {
   color: transparent;
+}
+
+.mh-dark-mode .itemPurchaseView-image-container,
+.mh-dark-mode .itemPurchaseView-content-container {
+  background-color: #000;
+}
+
+.mh-dark-mode .itemPurchaseView-action-purchaseHelper-owned {
+  background-color: #3d3d3d;
+  border-color: #606060;
+}
+
+.mh-dark-mode .entry.short.misc.custom.unstable_charm_trigger {
+  background: #7ae4ff;
+}
+
+.mh-dark-mode .journal .entry.winterTaiga,
+.mh-dark-mode .entry.short.misc.custom.winter_hunt_2021.instantReturnGolem.jhMisc,
+.mh-dark-mode .entry.short.misc.custom.winter_hunt_2021.claimGolemReward.jhMisc,
+.mh-dark-mode .winter_hunt_2021.sendGolem {
+  background-color: #7ae4ff;
+}
+
+/* journal historian */
+.mh-dark-mode #jhButton {
+  color: #3b5998;
+}
+
+.mh-dark-mode .pageFrameView #overlayPopup.treasureMapPopup .treasureMapRootView-content a.treasureMapView-block-search-clear {
+  color: #ccc;
+  border-left: none;
+}
+
+.mh-dark-mode .treasureMapView-block-search-text {
+  color: #fff;
+  background-color: #636363;
+  border: 1px solid #2c2c2c;
+}
+
+.mh-dark-mode #tsitu-hunter-id-nav-ui input {
+  color: #fff;
+  background-color: #636363;
+  border-color: #2c2c2c !important;
+}
+
+.mh-dark-mode #tsitu-hunter-id-nav-ui input::placeholder {
+  color: #ccc;
+}
+
+.mh-dark-mode .marketplaceView-listing-progressLabel {
+  color: #fff;
+  text-shadow: 0 1px #000;
+}
+
+.mh-dark-mode .marketplaceView-listing-progressBar-padding {
+  background-color: #434343;
+}
+
+.marketplaceView-listing-progressBar span {
+  background-color: #956ab4;
+}
+
+.mh-dark-mode .marketplaceMyListings s {
+  color: #969696;
 }

@@ -53,7 +53,8 @@
 }
 
 .mh-dark-mode .treasureMapRootView .messageBoardView div.messageBoardView-message.new {
-  border-color: #2e2e2e !important;
+  background-color: #191919;
+  border-color: #2c2c2c !important;
 }
 
 .treasureMapRootView .messageBoardView input.messageBoardView-message-submit,
@@ -157,5 +158,13 @@ a.messageBoardView-message-delete:focus::after {
 .mh-dark-mode .treasureMapRootView .messageBoardView .messageBoardView-message-body,
 .mh-dark-mode .teamPage-messageBoard-corkboard .messageBoardView-message-body,
 .mh-dark-mode .hunterInfoView-corkBoardBlock .messageBoardView-message-body {
-  color: #000;
+  color: #fff;
+}
+
+.mh-dark-mode .messageBoardView-message-submitted {
+  color: #ccc;
+}
+
+.mh-dark-mode.PageHunterProfile .pageFrameView .hunterInfoView-wrapper .hunterInfoView-left a.messageBoardView-message-delete {
+  color: transparent;
 }

@@ -90,6 +90,10 @@
   background-color: #f7f7f7;
 }
 
+.mh-dark-mode #messengerUINotification .notificationMessageList .tab {
+  background-color: #242424;
+}
+
 div#messengerUINotification {
   background-color: #f7f7f7 !important;
 }

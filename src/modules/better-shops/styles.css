@@ -105,6 +105,10 @@ a.itemPurchaseView-image-trapPreview-link,
   border-right: 1px solid #ccc;
 }
 
+.mh-dark-mode .itemPurchaseView-content-container {
+  border-color: #242424;
+}
+
 .itemPurchaseView-image-container,
 .itemPurchaseView-content-container {
   background-color: #fff;
@@ -342,6 +346,11 @@ a.itemPurchaseView-content-skin-link {
   border-radius: 5px;
 }
 
+.mh-dark-mode .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
+  background-color: #333;
+  border-color: #606060;
+}
+
 .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value span {
   display: inline-block;
   padding: 0;
@@ -551,4 +560,14 @@ a.shopsPage-kingsCalibratorPromo {
 
 .shopsPage-compareEquipment {
   background-color: #dbe9ff;
+}
+
+.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.title,
+.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType {
+  background-color: #3d3d3d;
+  border-color: #606060;
+}
+.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType {
+  background-color: #424242;
+  border: none;
 }
