@@ -58,11 +58,51 @@ const wrapGoldAndPoints = () => {
   });
 };
 
+const maybeKeepAsOriginal = (entry) => {
+  const keepOriginalMice = [
+    // 'stuck_snowball',
+  ];
+
+  const entryId = entry.getAttribute('data-entry-id');
+  if (! entryId) {
+    return;
+  }
+
+  const hasOriginal = entry.getAttribute('data-is-custom-entry');
+  if (hasOriginal) {
+    return;
+  }
+
+  const isMouse = entry.getAttribute('data-mouse-type');
+  if (isMouse && keepOriginalMice.includes(isMouse)) {
+    const entryText = entry.querySelector('.journaltext');
+    if (entryText) {
+      // save the original text in session storage so we can use it later
+      sessionStorage.setItem(`mhui-custom-entry-${entryId}`, entryText.innerHTML);
+      entry.setAttribute('data-is-custom-entry', true);
+    }
+  }
+};
+
+const maybeRestoreOriginalEntry = (entry) => {
+  const entryId = entry.getAttribute('data-entry-id');
+  const originalText = sessionStorage.getItem(`mhui-custom-entry-${entryId}`);
+
+  if (originalText) {
+    entry.querySelector('.journaltext').innerHTML = originalText;
+  }
+};
+
 /**
  * Update text in journal entries.
  */
 const updateJournalText = () => {
   wrapGoldAndPoints();
+
+  const entries = document.querySelectorAll('.journal .entry');
+  entries.forEach((entry) => {
+    maybeKeepAsOriginal(entry);
+  });
 
   modifyText('.journal .entry .journalbody .journaltext', [
     // Hunt entries
@@ -196,6 +236,11 @@ const updateJournalText = () => {
       link.append(span);
     }
   }
+
+  const restoreEntries = document.querySelectorAll('.journal .entry[data-is-custom-entry]');
+  restoreEntries.forEach((entry) => {
+    maybeRestoreOriginalEntry(entry);
+  });
 };
 
 const updateMouseImageLinks = () => {
