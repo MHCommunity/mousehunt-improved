@@ -196,3 +196,7 @@
 input.itemView-action-convert-quantity {
   width: 50px;
 }
+
+.itemViewPopup .itemViewStatBlock-padding {
+  flex-direction: column;
+}
