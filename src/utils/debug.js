@@ -35,7 +35,18 @@ const debuglite = (message, ...args) => {
   }
 };
 
+const devDebug = (message, ...args) => {
+  // eslint-disable-next-line no-console
+  console.log(
+    `%cMH Improved%c: ${message}`,
+    'color: #ff3434; font-weight: 900',
+    'color: inherit; font-weight: inherit',
+    ...args
+  );
+};
+
 export {
   debug,
-  debuglite
+  debuglite,
+  devDebug,
 };
