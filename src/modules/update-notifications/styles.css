@@ -1,31 +1,3 @@
-.pageFrameView .notificationMessageList .message.mhui-notification-major {
-  color: #000;
-  background-color: #e1fae9;
-}
-
-.pageFrameView .notificationMessageList .message.mhui-notification-major.new {
-  background-color: #c4ffd7;
-}
-
-.notificationMessageList .message.mhui-notification .clear-block {
-  line-height: 40px;
-}
-
-.notificationMessageList .message.mhui-notification-major .clear-block {
-  font-size: 14px;
-  font-weight: 100;
-}
-
-.notificationMessageList .message.mhui-notification .date {
-  display: none;
-}
-
-.notificationMessageList .message.mhui-notification .messageText {
-  display: block;
-  padding: 0;
-  padding-bottom: 4px;
-}
-
 .mhui-update-banner {
   position: absolute;
   top: 0;
