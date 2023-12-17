@@ -40,7 +40,7 @@ const getCurrentSubtab = () => {
  *
  * @return {string} The current overlay.
  */
-const getCurrentOverlay = () => {
+const getCurrentDialog = () => {
   const overlay = document.querySelector('#overlayPopup');
   if (overlay && overlay.classList.length <= 0) {
     return null;
@@ -116,6 +116,6 @@ export {
   getCurrentPage,
   getCurrentTab,
   getCurrentSubtab,
-  getCurrentOverlay,
+  getCurrentDialog,
   isCurrentPage
 };
