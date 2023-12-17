@@ -21,6 +21,7 @@ Thank you for your interest in contributing to MouseHunt Improved! We welcome co
   - [Testing](#testing)
   - [Updating data files](#updating-data-files)
   - [Adding a map to the map sorter/categorizer](#adding-a-map-to-the-map-sortercategorizer)
+  - [Helpful Feature Flags](#helpful-feature-flags)
 
 ## Getting Started
 
@@ -222,3 +223,16 @@ The `subcategories` array is only needed if you have mice that should be sorted 
 
 > [!TIP]
 > Running `bun run fix-map-groups` will go through the mice in the map groups file and replace any mouse names with their mouse types, so you can use the full names like "Mutated Behemoth Mouse" in the file and then run this command to replace them with the mouse types like "mutated_behemoth".
+
+## Helpful Feature Flags
+
+Enabling these feature flags will enable some helpful features for development. You can enable them by adding them to the comma separated list of feature flags in the extension settings.
+
+These will output information to the console, so make sure you have the console open when testing.
+
+- `debug` - Enables debug logging.
+- `debug-all` - Enables all of the debug flags below.
+- `debug-dialog` - Popup/dialog IDs and events.
+- `debug-navigation` - Page, tab, and travel changes.
+- `debug-request` - Ajax requests responses.
+- `debug-events` - Events fired (can be hooked into with `onEvent`).
