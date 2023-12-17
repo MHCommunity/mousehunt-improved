@@ -49,7 +49,7 @@ const organizedModules = [
  */
 const loadModules = async () => {
   if (getGlobal('loaded')) {
-    debug('Already loaded.');
+    debug('Already loaded, exiting.');
     return;
   }
 
@@ -74,6 +74,8 @@ const loadModules = async () => {
 
   // Load the modules.
   const loadedModules = [];
+  let modulesDebug = [];
+
   organizedModules.forEach((module) => {
     module.modules.forEach((subModule) => {
       const overrideStopLoading = getFlag(`no-${subModule.id}`);
@@ -90,13 +92,18 @@ const loadModules = async () => {
         try {
           subModule.load();
           loadedModules.push(subModule.id);
+
+          modulesDebug.push(subModule.id);
         } catch (error) {
           debug(`Error loading "${subModule.id}"`, error);
         }
       } else {
-        debuglite(`Skipping "${subModule.id}" (disabled).`);
+        debuglite(`Skipping "${subModule.id}" (disabled)`);
       }
     });
+
+    debuglite(`Loaded ${module.id}: ${modulesDebug.join(', ')}`);
+    modulesDebug = [];
   });
 
   addAdvancedSettings();
@@ -106,7 +113,7 @@ const loadModules = async () => {
  * Initialize the script.
  */
 const init = async () => {
-  debug('Initializing...');
+  debug(`Initializing MouseHunt Improved v${mhImprovedVersion} / ${mhImprovedPlatform}...`);
 
   // Check if the url is an image and if so, don't load.
   if (isImage()) {
