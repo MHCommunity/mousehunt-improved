@@ -2,20 +2,12 @@
   margin-bottom: 10px;
 }
 
-/*
-
-.mh-ui-keyboard-shortcuts-popup kbd {
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.1em 0.5em;
-  margin: 0 0.2em;
-  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #fff inset;
-  background-color: #f7f7f7;
-} */
-
 .mh-ui-keyboard-shortcuts-popup-content-list {
-  margin: 10px 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 10px;
+  justify-items: stretch;
+  margin: 0;
 }
 
 .mh-ui-keyboard-shortcut {
@@ -37,10 +29,10 @@
 
 .mh-ui-keyboard-shortcut kbd {
   width: 160px;
-  height: 20px;
+  height: 15px;
   padding: 3px;
   font-family: monospace;
-  font-size: 15px;
+  font-size: 13px;
   text-align: center;
   background-color: #f7f7f7;
   border: 1px solid #ccc;
