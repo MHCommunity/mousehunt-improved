@@ -47,7 +47,7 @@ const openInbox = () => {
 };
 
 const openGifts = () => {
-  hg.views.GiftSelectorView.showInbox();
+  hg.views.GiftSelectorView.show();
 };
 
 const disarmCheese = () => {
