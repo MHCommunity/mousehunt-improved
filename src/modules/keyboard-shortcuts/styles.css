@@ -3,11 +3,7 @@
 }
 
 .mh-ui-keyboard-shortcuts-popup-content-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 10px;
-  justify-items: stretch;
-  margin: 0;
+  margin: 0 30px;
 }
 
 .mh-ui-keyboard-shortcut {
