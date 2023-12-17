@@ -1,10 +1,20 @@
 const maybeRedirectToHunterProfile = (text) => {
-  if (! /^\d+$/.test(text)) {
+  // if the text contains 'https://www.mousehuntgame.com/', then it's a full URL
+  // and we should just redirect to that URL.
+  const url = text.match(/https:\/\/www.mousehuntgame.com/);
+  if (url) {
+    window.location.href = text;
+    return;
+  }
+
+  // regex out the digits from any text that was pasted
+  const id = text.match(/\d+/);
+  if (! id) {
     return;
   }
 
   hg.utils.PageUtil.setPage('HunterProfile', {
-    id: text,
+    id,
   });
 };
 
