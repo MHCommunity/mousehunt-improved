@@ -61,7 +61,6 @@ const claimGifts = async (send = false, retries = 0) => {
     return;
   }
 
-
   let gifts = hg.views.GiftSelectorView.getClaimableGiftsSortedByTime();
   if (getSetting('gift-buttons-claim-order-0', 'reverse') === 'reverse') {
     gifts.reverse();

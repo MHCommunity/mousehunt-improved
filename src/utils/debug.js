@@ -48,5 +48,5 @@ const devDebug = (message, ...args) => {
 export {
   debug,
   debuglite,
-  devDebug,
+  devDebug
 };
