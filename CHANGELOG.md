@@ -1,5 +1,49 @@
 # Changelog
 
+## Version 0.26.0
+
+- Adds debugging flags
+- Removes update notifications in inbox
+- Updates Paste Hunter ID to strip out non-numeric characters, so you can paste a string like 'Hunter ID: 1234567' and it will still work
+- Clean up keyboard shortcuts list
+- Fixes Better Gifts "Accept All" button not working
+- Fixes the tooltip location of droid progress in golem workshop
+- Adds commas to numbers on the scoreboard and when hovering over your rank on the scoreboard it will show what page that is
+- Updates keyboard shortcuts to be customizable
+- Updates Better Journal to not apply changes to the Stuck Snowball journal entry
+- Fixes size of bait and outline in Marketplace for Image Upscaling
+- Adds fancy journal styles for title changes entries
+- Attempts to fix Better King's Reward not starting the puzzle for you
+- Updates Image Upscaling to not run upscaling multiple times at once
+- Adds minor GWH size/positioning changes
+- Updates the GWH warning to be more visible
+- Hiues the text and update the color for the completed golem progress track
+- When clicking on the golem rewards quest progress bar your golems will now dance!
+- Add more styles for Better Item View
+- Adds more styles for Better Shops
+- Adds more styles for Better Tournaments
+- Adds more styles for Better Maps
+- Adds more styles for Better UI
+- Fixes inbox close button positioning
+- Adds Festive Spirit to Travel Reminders in Better Travel
+- Adds Location Favorites to Better Travel
+- Adds Back to Previous Location to Better Travel
+- Fixes armed item quantity display in dark mode
+- Adds styles for tsitu's mapping userscript
+- Adds minor styles for Journal Historian userscript
+- Adds a banner above journal on new major updates
+- Updates King's Calibrator text changes to only run when needed
+- Adds more dark mode tweaks, fixes, and changes
+- Fixes background color of Hover profiles not showing
+- Fixes 'Open all but one' functionality
+- Fixes the display of checkmarks on map screens
+- Correctly shows online status for extra hunter views in better maps
+- Add a setting for better inventory to toggle between full and half width
+- Removes blank flash while loading, organize modules into a module loader file
+- Adds GWH horn to the custom event horn beta feature
+- Fixes typo in cheese names in GWH maps
+- Fixes map group categories for GWH maps
+
 ## Version 0.25.2
 
 - Fixes update notification colors for dark mode
