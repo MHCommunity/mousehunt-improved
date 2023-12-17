@@ -1,7 +1,7 @@
 import {
   addStyles,
   createPopup,
-  getCurrentOverlay,
+  getCurrentDialog,
   getCurrentPage,
   getSetting,
   hasMiniCRE,
@@ -37,85 +37,115 @@ const getBaseShortcuts = () => {
       type: 'hidden',
     },
     {
-      id: 'travel',
+      id: 'goto-travel',
       key: 't',
-      description: 'Go to the Travel page',
+      description: 'Go to Travel',
       action: () => gotoPage('Travel'),
     },
     {
-      id: 'camp',
+      id: 'goto-camp',
       key: 'j',
-      description: 'Go to the Camp page',
+      description: 'Go to Camp',
       action: () => gotoPage('Camp'),
     },
     {
-      id: 'friends',
+      id: 'goto-friends',
       key: 'f',
-      description: 'Go to the Friends page',
+      description: 'Go to Friends',
       action: () => gotoPage('Friends'),
     },
     {
-      id: 'shops',
+      id: 'goto-shops',
       key: 's',
-      description: 'Go to the Shops page',
+      description: 'Go to Shops',
       action: () => gotoPage('Shops'),
     },
     {
-      id: 'profile',
+      id: 'goto-profile',
       key: 'p',
       description: 'Go to your Profile',
       action: () => gotoPage('HunterProfile'),
     },
     {
-      id: 'marketplace',
+      id: 'goto-send-supplies',
+      description: 'Go to Send Supplies',
+      action: () => gotoPage('SupplyTransfer'),
+    },
+    {
+      id: 'goto-scoreboards',
+      description: 'Go to Scoreboards',
+      action: () => gotoPage('Scoreboards'),
+    },
+    {
+      id: 'goto-team',
+      description: 'Go to Team',
+      action: () => gotoPage('Team'),
+    },
+    {
+      id: 'goto-tournaments',
+      description: 'Go to Tournaments',
+      action: () => gotoPage('Tournament'),
+    },
+    {
+      id: 'goto-marketplace',
       description: 'Open the Marketplace',
       action: openMarketplace,
     },
     {
-      id: 'map',
+      id: 'open-inbox',
+      description: 'Open the Inbox',
+      action: openInbox,
+    },
+    {
+      id: 'open-gifts',
+      description: 'Open the Gifts popup',
+      action: openGifts,
+    },
+    {
+      id: 'open-map',
       key: 'm',
-      description: 'Open your Map',
+      description: 'Open Map',
       action: openMap,
     },
     {
-      id: 'map-invites',
+      id: 'open-map-invites',
       key: 'i',
-      description: 'Open your Map Invites',
+      description: 'Open Map Invites',
       action: openMapInvites,
     },
     {
       id: 'change-weapon',
       key: 'w',
-      description: 'Change your Weapon',
+      description: 'Change Weapon',
       action: () => openBlueprint('weapon'),
     },
     {
       id: 'change-base',
       key: 'b',
-      description: 'Change your Base',
+      description: 'Change Base',
       action: () => openBlueprint('base'),
     },
     {
       id: 'change-charm',
       key: 'r',
-      description: 'Change your Charm',
+      description: 'Change Charm',
       action: () => openBlueprint('trinket'),
     },
     {
       id: 'change-cheese',
       key: 'c',
-      description: 'Change your Cheese',
+      description: 'Change Cheese',
       action: () => openBlueprint('bait'),
     },
     {
       id: 'change-skin',
-      description: 'Change your Trap Skin',
+      description: 'Change Trap Skin',
       action: () => openBlueprint('skin'),
     },
     {
       id: 'show-tem',
       key: 'e',
-      description: 'Show the Trap Effectiveness Meter',
+      description: 'Show the <abbr title="Trap Effectiveness Meter">TEM</abbr>',
       action: showTem,
     },
     {
@@ -128,23 +158,13 @@ const getBaseShortcuts = () => {
       description: 'Disarm your Charm',
       action: disarmCharm,
     },
-    {
-      id: 'open-inbox',
-      description: 'Open the Inbox',
-      action: openInbox,
-    },
-    {
-      id: 'open-gifts',
-      description: 'Open the Gifts popup',
-      action: openGifts,
-    },
   ];
 
   if (hasMiniCRE()) {
     shortcuts.push({
       id: 'show-mini-cre',
       key: 'l',
-      description: 'Show the Mini CRE popup',
+      description: 'Open Mini CRE',
       action: clickMinLuck,
     });
   }
@@ -276,7 +296,7 @@ const getKeyForDisplay = (keyEvent) => {
 };
 
 const isHelpPopupOpen = () => {
-  const overlay = getCurrentOverlay();
+  const overlay = getCurrentDialog();
   if (! overlay) {
     return false;
   }
