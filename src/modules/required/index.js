@@ -7,8 +7,6 @@ import {
   onNavigation
 } from '@utils';
 
-import migrateSettings from './migrate-settings';
-
 import settingStyles from './styles.css';
 
 const addExportSettings = () => {
@@ -156,8 +154,6 @@ const init = async () => {
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
     checkForAutohorn();
   }
-
-  migrateSettings();
 };
 
 export default {

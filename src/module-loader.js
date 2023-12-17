@@ -55,6 +55,7 @@ import globalStyles from './modules/global-styles';
 import highlightUsers from './modules/highlight-users';
 import links from './modules/links';
 import required from './modules/required';
+import updateMigration from './modules/update-migration';
 import updateNotifications from './modules/update-notifications';
 
 export default [
@@ -115,5 +116,6 @@ export default [
   highlightUsers,
   links,
   required,
+  updateMigration,
   updateNotifications,
 ];

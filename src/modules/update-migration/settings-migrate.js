@@ -11,14 +11,7 @@ const migrateSetting = (settingKey) => {
   localStorage.removeItem(settingKey.from);
 };
 
-const migrateSettings = () => {
-  const settings = [
-    {
-      from: 'mh-improved-visibility-toggles',
-      to: 'farm-visibility-toggles',
-    },
-  ];
-
+const migrateSettings = (settings) => {
   settings.forEach((setting) => {
     migrateSetting(setting);
   });
