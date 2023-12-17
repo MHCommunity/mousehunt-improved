@@ -46,7 +46,7 @@ const getIgnoredGifts = () => {
   return skipOptions[ignored] || skipOptions.skip;
 };
 
-const claimGifts = (send = false, retries = 0) => {
+const claimGifts = async (send = false, retries = 0) => {
   // First, show the gift selector.
   hg.views.GiftSelectorView.show();
 
@@ -61,13 +61,8 @@ const claimGifts = (send = false, retries = 0) => {
     return;
   }
 
-  // Get the limits.
-  let claimLimit = hg.views.GiftSelectorView.getNumClaimableActionsRemaining();
-  if (claimLimit < 1) {
-    return;
-  }
 
-  const gifts = hg.views.GiftSelectorView.getClaimableGiftsSortedByTime();
+  let gifts = hg.views.GiftSelectorView.getClaimableGiftsSortedByTime();
   if (getSetting('gift-buttons-claim-order-0', 'reverse') === 'reverse') {
     gifts.reverse();
   }
@@ -76,16 +71,25 @@ const claimGifts = (send = false, retries = 0) => {
 
   let sendLimit = hg.views.GiftSelectorView.getNumSendableActionsRemaining();
 
-  for (const gift of gifts) {
+  // remove all the gifts that don't have the channel of "gift" and the ones that are ignored.
+  gifts = gifts.filter((gift) => {
     if (gift.channel !== 'gift') {
-      continue;
+      return false;
     }
 
     if (ignoredGifts.includes(gift.item_type)) {
-      continue;
+      return false;
     }
 
-    const verb = send && sendLimit > 0 && gift.is_returnable ? 'return' : 'claim';
+    return true;
+  });
+
+  for (const gift of gifts) {
+    let verb = 'return';
+    if (send && sendLimit > 0 && gift.is_returnable) {
+      verb = 'return';
+      sendLimit--;
+    }
 
     const giftEl = document.querySelector(`.giftSelectorView-friendRow[data-gift-id="${gift.gift_id}"] .giftSelectorView-friendRow-action.${verb}`);
     if (! giftEl) {
@@ -97,18 +101,20 @@ const claimGifts = (send = false, retries = 0) => {
       hg.views.GiftSelectorView.selectReturnableGift(event, giftEl);
       sendLimit--;
     } else {
-      hg.views.GiftSelectorView.selectClaimableGift(event, giftEl);
+      hg.views.GiftSelectorView.selectClaimableGift(giftEl);
       claimLimit--;
     }
   }
 
-  // hit the confirm button.
-  const confirm = document.querySelector('.mousehuntActionButton.giftSelectorView-action-confirm.small');
-  if (confirm) {
-    setTimeout(() => {
-      hg.views.GiftSelectorView.submitConfirm(confirm);
-    }, 250);
-  }
+  setTimeout(() => {
+    // hit the confirm button.
+    const confirm = document.querySelector('.mousehuntActionButton.giftSelectorView-action-confirm.small');
+    if (confirm) {
+      setTimeout(() => {
+        hg.views.GiftSelectorView.submitConfirm(confirm);
+      }, 250);
+    }
+  }, 500);
 };
 
 const makeAcceptButton = (buttonContainer) => {
