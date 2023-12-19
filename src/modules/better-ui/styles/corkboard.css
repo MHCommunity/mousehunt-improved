@@ -164,7 +164,12 @@ a.messageBoardView-message-delete:focus::after {
 .mh-dark-mode .treasureMapRootView .messageBoardView .messageBoardView-message-body,
 .mh-dark-mode .teamPage-messageBoard-corkboard .messageBoardView-message-body,
 .mh-dark-mode .hunterInfoView-corkBoardBlock .messageBoardView-message-body {
-  color: #fff;
+  background: #2e2e2e;
+  border: 1px solid #181818;
+}
+
+.mh-dark-mode .treasureMapView .messageBoardView-message {
+  background: #333;
 }
 
 .mh-dark-mode .messageBoardView-message-submitted {

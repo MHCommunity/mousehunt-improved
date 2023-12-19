@@ -7,6 +7,7 @@
 - Fixes passing parcel message item opening passing parcel collectible item view
 - Fixes paste hunter id always going to own profile
 - Fixes issues with ctrl key in keyboard shortcuts
+- Fixes map corkboard styles in dark mode
 
 ## Version 0.26.0
 
