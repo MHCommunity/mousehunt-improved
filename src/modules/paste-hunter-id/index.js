@@ -14,7 +14,7 @@ const maybeRedirectToHunterProfile = (text) => {
   }
 
   hg.utils.PageUtil.setPage('HunterProfile', {
-    id,
+    id: id[0],
   });
 };
 
