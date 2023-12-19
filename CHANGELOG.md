@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 0.26.1
+
+- Adds 1,975 more images to the Image Upscaling list, bringing the total to 4,926 images!
+- Fixes clearing keyboard shortcuts not saving
+- Fixes passing parcel message item opening passing parcel collectible item view
+- Fixes paste hunter id always going to own profile
+- Fixes issues with ctrl key in keyboard shortcuts
+- Fixes map corkboard styles in dark mode
+
 ## Version 0.26.0
 
 - Adds debugging flags
