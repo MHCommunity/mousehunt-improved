@@ -84,7 +84,7 @@ const addBanner = (hasNewSettings = false) => {
 const init = async () => {
   addStyles(styles);
 
-  addBanner(true); // True if there are new settings, otherwise false.
+  addBanner(false); // True if there are new settings, otherwise false.
 };
 
 export default {
