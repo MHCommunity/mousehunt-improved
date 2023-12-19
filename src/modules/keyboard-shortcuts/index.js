@@ -188,6 +188,7 @@ const getShortcuts = () => {
     }
 
     shortcut.key = savedShortcut.key;
+    shortcut.ctrlKey = savedShortcut.ctrlKey;
     shortcut.metaKey = savedShortcut.metaKey;
     shortcut.altKey = savedShortcut.altKey;
     shortcut.shiftKey = savedShortcut.shiftKey;
@@ -206,6 +207,7 @@ const saveShortcut = (shortcutId, shortcutKey) => {
   const toSave = {
     id: shortcutId,
     key: shortcutKey.key,
+    ctrlKey: shortcutKey.ctrlKey,
     metaKey: shortcutKey.metaKey,
     altKey: shortcutKey.altKey,
     shiftKey: shortcutKey.shiftKey,
@@ -395,6 +397,7 @@ const showHelpPopup = () => {
       const theShortcut = getShortcuts().find((s) => {
         return (
           s.key === event.key &&
+          s.ctrlKey === event.ctrlKey &&
           s.metaKey === event.metaKey &&
           s.altKey === event.altKey &&
           s.shiftKey === event.shiftKey
@@ -448,6 +451,7 @@ const showHelpPopup = () => {
     clearButton.addEventListener('click', () => {
       finishEditing(shortcutId, {
         key: '',
+        ctrlKey: false,
         metaKey: false,
         altKey: false,
         shiftKey: false,
@@ -475,12 +479,14 @@ const listenForKeypresses = () => {
 
     const shortcuts = getShortcuts();
     const shortcut = shortcuts.find((s) => {
+      s.ctrlKey = s.ctrlKey || false;
       s.metaKey = s.metaKey || false;
       s.altKey = s.altKey || false;
       s.shiftKey = s.shiftKey || false;
 
       return (
         s.key === event.key &&
+        s.ctrlKey === event.ctrlKey &&
         s.metaKey === event.metaKey &&
         s.altKey === event.altKey &&
         s.shiftKey === event.shiftKey
