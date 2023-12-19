@@ -221,7 +221,6 @@ const saveShortcut = (shortcutId, shortcutKey) => {
 
   // only save the shortcut if it's not the default, its not blank, delete, or backspace, and it's not already in use.
   if (
-    toSave.key &&
     toSave.key !== 'Backspace' &&
     toSave.key !== 'Delete' &&
     toSave.key !== ' '
