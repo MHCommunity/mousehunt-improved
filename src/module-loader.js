@@ -52,11 +52,11 @@ import dev from './modules/dev';
 import featureFlags from './modules/beta-features';
 import fixes from './modules/fixes';
 import globalStyles from './modules/global-styles';
-import highlightUsers from './modules/highlight-users';
 import links from './modules/links';
 import required from './modules/required';
 import updateMigration from './modules/update-migration';
 import updateNotifications from './modules/update-notifications';
+import userHighlighting from './modules/user-highlighting';
 
 export default [
   // Better modules.
@@ -113,7 +113,7 @@ export default [
   featureFlags,
   fixes,
   globalStyles,
-  highlightUsers,
+  userHighlighting,
   links,
   required,
   updateMigration,

@@ -1,6 +1,8 @@
 import { addStyles, makeElement, onNavigation } from '@utils';
 
+import profileStyles from './profile.css';
 import styles from './styles.css';
+
 import userHighlighting from '@data/user-highlighting.json';
 
 const getUserHighlightingShield = (type) => {
@@ -54,6 +56,11 @@ const highlightUsers = () => {
       profilePage.classList.add('mh-improved-highlight-user', `mh-improved-${key}`);
       idHeader.append(getUserHighlightingShield(key));
     }
+
+    // brad gets some real fancy profile styling.
+    if (8209591 === userId) {
+      profilePage.classList.add('mh-improved-highlight-user', 'mh-improved-fancy-profile');
+    }
   });
 };
 
@@ -61,7 +68,10 @@ const highlightUsers = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles([
+    styles,
+    profileStyles,
+  ]);
 
   onNavigation(highlightUsers, {
     page: 'hunterprofile',
