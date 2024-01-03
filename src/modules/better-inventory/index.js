@@ -2,6 +2,7 @@ import {
   addStyles,
   getCurrentPage,
   getSetting,
+  makeElement,
   onEvent,
   onNavigation,
   onOverlayChange
@@ -123,6 +124,31 @@ const addItemViewPopupToCollectibles = () => {
   });
 };
 
+const addArmButtonToCharms = () => {
+  const charms = document.querySelectorAll('.inventoryPage-item.trinket');
+  if (! charms.length) {
+    return;
+  }
+
+  charms.forEach((charm) => {
+    // If it already has an arm button, skip it.
+    const existingArmButton = charm.querySelector('.inventoryPage-item-imageContainer-action');
+    if (existingArmButton) {
+      return;
+    }
+
+    const actionContainer = charm.querySelector('.inventoryPage-item-imageContainer');
+    if (! actionContainer) {
+      return;
+    }
+
+    const armButton = makeElement('div', 'inventoryPage-item-imageContainer-action');
+    armButton.setAttribute('onclick', 'app.pages.InventoryPage.armItem(this); return false;');
+
+    actionContainer.append(armButton);
+  });
+};
+
 const main = () => {
   onOverlayChange({ item: { show: setOpenQuantityOnClick } });
   if ('item' === getCurrentPage()) {
@@ -131,10 +157,12 @@ const main = () => {
 
   addOpenAlltoConvertible();
   addItemViewPopupToCollectibles();
+  addArmButtonToCharms();
 
   onNavigation(() => {
     addOpenAlltoConvertible();
     addItemViewPopupToCollectibles();
+    addArmButtonToCharms();
   }, {
     page: 'inventory',
   });
