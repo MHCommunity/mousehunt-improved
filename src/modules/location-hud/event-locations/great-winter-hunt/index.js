@@ -3,6 +3,7 @@ import {
   getCurrentLocation,
   makeElement,
   onDialogShow,
+  onEvent,
   onRequest
 } from '@utils';
 
@@ -118,9 +119,20 @@ const updateGolemTravelCount = () => {
 };
 
 const updateGolemPopup = () => {
-  setTimeout(updateGolemTravelCount, 250);
-  setTimeout(updateGolemFooter, 250);
-  setTimeout(updateGolemPartsQuantity, 250);
+  setTimeout(() => {
+    const golems = document.querySelectorAll('.greatWinterHuntGolemManagerDialogView__golem');
+    if (golems) {
+      golems.forEach((golem) => {
+        golem.addEventListener('click', () => {
+          eventRegistry.doEvent('golemSwitchInDialog');
+        });
+      });
+    }
+
+    updateGolemTravelCount();
+    updateGolemFooter();
+    updateGolemPartsQuantity();
+  }, 250);
 };
 
 const golemDance = () => {
@@ -237,6 +249,10 @@ export default async () => {
   onRequest(() => {
     expandAnimatedSnowCount();
     showPossibleSnowballShowdownDustCount();
+  });
+
+  onEvent('golemSwitchInDialog', () => {
+    updateGolemTravelCount();
   });
 
   setTimeout(expandAnimatedSnowCount, 1000);
