@@ -77,3 +77,26 @@ tr.open td.marketplaceView-table-name {
   border: none;
   box-shadow: none;
 }
+
+.marketplaceView-item h1 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.mh-improved-marketplace-item-title-actions {
+  display: inline-flex;
+  flex-grow: 1;
+  gap: 5px;
+  justify-content: end;
+  margin-right: 5px;
+}
+
+.marketplaceView-item.view .mousehuntCharacterGuideBox .mousehuntCharacterGuideBox-content {
+  margin-left: 80px;
+}
+
+.marketplaceView-item-averagePrice,
+.marketplaceView-item-averagePrice span {
+  font-size: 12px;
+}
