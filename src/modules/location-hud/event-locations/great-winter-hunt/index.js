@@ -1,4 +1,12 @@
-import { addHudStyles, makeElement, onDialogShow, onRequest } from '@utils';
+import {
+  addHudStyles,
+  getCurrentLocation,
+  makeElement,
+  onDialogShow,
+  onRequest
+} from '@utils';
+
+import allEnvironments from '@data/environments.json';
 
 import styles from './styles.css';
 
@@ -82,7 +90,35 @@ const updateGolemPartsQuantity = () => {
   limbs.append(newLimbsEl, newLimbsSetEl);
 };
 
+const updateGolemTravelCount = () => {
+  const title = document.querySelector('.greatWinterHuntGolemManagerTabView__destinationHeader');
+  if (! title) {
+    return;
+  }
+
+  const name = title.querySelector('.greatWinterHuntGolemManagerTabView__destinationName');
+  if (! name) {
+    return;
+  }
+
+  // Find the environment type by checking the name against the environment name.
+  const currentEnvironment = allEnvironments.find((env) => env.name === name.textContent);
+  if (! currentEnvironment) {
+    return;
+  }
+
+  const golemCounts = getGolemCounts();
+  const existing = title.querySelector('.greatWinterHuntGolemManagerTabView__destinationCount');
+  if (existing) {
+    existing.textContent = golemCounts[currentEnvironment.id] || 0;
+    return;
+  }
+
+  makeElement('span', ['greatWinterHuntGolemManagerTabView__destinationCount'], golemCounts[currentEnvironment.id] || 0, title);
+};
+
 const updateGolemPopup = () => {
+  setTimeout(updateGolemTravelCount, 250);
   setTimeout(updateGolemFooter, 250);
   setTimeout(updateGolemPartsQuantity, 250);
 };
@@ -110,6 +146,77 @@ const golemDance = () => {
   });
 };
 
+const getQuest = () => {
+  if ('winter_hunt_grove' === getCurrentLocation()) {
+    return user.quests.QuestCinnamonTreeGrove;
+  } else if ('winter_hunt_workshop' === getCurrentLocation()) {
+    return user.quests.QuestGolemWorkshop;
+  } else if ('winter_hunt_fortress' === getCurrentLocation()) {
+    return user.quests.QuestIceFortress;
+  }
+
+  return {};
+};
+
+const expandAnimatedSnowCount = () => {
+  const limbEl = document.querySelector('.headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity[data-item-type="animate_snow_stat_item"]');
+  if (! limbEl) {
+    return;
+  }
+
+  limbEl.textContent = getQuest()?.items?.animate_snow_stat_item.quantity_formatted || 0;
+};
+
+const showPossibleSnowballShowdownDustCount = () => {
+  // 175 for each dust.
+  const showdownItems = document.querySelector('.campHudSnowballShowdownView__itemsContainer');
+  if (! showdownItems) {
+    return;
+  }
+
+  const snowballEl = showdownItems.querySelector('.campHudSnowballShowdownView__snowball');
+  const snowballQtyEl = snowballEl.querySelector('.campHudSnowballShowdownView__quantity');
+  const showballQty = snowballQtyEl ? Number.parseInt(snowballQtyEl.textContent.replaceAll(',', ''), 10) : 0;
+
+  const dustEl = showdownItems.querySelector('.campHudSnowballShowdownView__dust');
+  const currentDustQtyEl = dustEl.querySelector('.campHudSnowballShowdownView__quantity');
+  const currentDustQty = currentDustQtyEl ? Number.parseInt(currentDustQtyEl.textContent.replaceAll(',', ''), 10) : 0;
+
+  const possibleDustQty = Math.floor(showballQty / 175);
+  const snowballText = showballQty - (possibleDustQty * 175);
+  const dustText = currentDustQty + possibleDustQty;
+
+  const possibleSnowballExists = showdownItems.querySelector('.campHudSnowballShowdownView__quantity.possibleSnowball');
+  if (possibleSnowballExists) {
+    possibleSnowballExists.textContent = snowballText;
+  } else {
+    const possibleSnowballWrapper = makeElement('div', 'campHudSnowballShowdownView__quantityContainer possibleAmount');
+    makeElement('div', ['campHudSnowballShowdownView__quantity', 'possibleSnowball'], snowballText, possibleSnowballWrapper);
+    snowballEl.append(possibleSnowballWrapper);
+  }
+
+  const possibleDustExists = showdownItems.querySelector('.campHudSnowballShowdownView__quantity.possibleDust');
+  if (possibleDustExists) {
+    possibleDustExists.textContent = dustText;
+  } else {
+    const dustWrapper = makeElement('div', 'campHudSnowballShowdownView__quantityContainer possibleAmount');
+    makeElement('div', ['campHudSnowballShowdownView__quantity', 'possibleDust'], dustText, dustWrapper);
+    dustEl.append(dustWrapper);
+  }
+};
+
+const getGolemCounts = () => {
+  const golemCounts = {};
+  const destinations = getQuest()?.destinations || {};
+  for (const region in destinations) {
+    destinations[region].environments.forEach((env) => {
+      golemCounts[env.type] = env.num_golem_visits;
+    });
+  }
+
+  return golemCounts;
+};
+
 /**
  * Initialize the module.
  */
@@ -118,11 +225,19 @@ export default async () => {
   onDialogShow(updateGolemPopup, 'greatWinterHuntDialog');
 
   golemDance();
+  expandAnimatedSnowCount();
+  showPossibleSnowballShowdownDustCount();
 
   onRequest(() => {
     updateGolemPartsQuantity();
+
     setTimeout(updateGolemFooter, 250);
   }, 'managers/ajax/purchases/itempurchase.php');
-};
 
-// .greatWinterHuntClaimRewardDialogView__golem wrapper needs to not scale golem
+  onRequest(() => {
+    expandAnimatedSnowCount();
+    showPossibleSnowballShowdownDustCount();
+  });
+
+  setTimeout(expandAnimatedSnowCount, 1000);
+};
