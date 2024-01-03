@@ -97,7 +97,9 @@
   align-items: center;
 }
 
-#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:hover {
+#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:hover,
+#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:focus,
+#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:active {
   cursor: default;
 }
 

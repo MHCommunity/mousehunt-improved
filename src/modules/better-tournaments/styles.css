@@ -242,7 +242,8 @@ img.tournamentPage-profile-details-rules-icon {
 }
 
 .tournamentPage-viewState .mousehuntTabHeader.active span,
-.tournamentPage-viewState .mousehuntTabHeader:hover span {
+.tournamentPage-viewState .mousehuntTabHeader:hover span,
+.tournamentPage-viewState .mousehuntTabHeader:focus span {
   border-bottom: 1px solid #f6f3eb;
 }
 

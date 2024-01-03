@@ -48,8 +48,14 @@
 
 .mh-ui-keyboard-shortcuts-popup-content.editing .mh-ui-keyboard-shortcut.editing .edit-controls a,
 .mh-ui-keyboard-shortcut:hover .edit-controls .reset,
+.mh-ui-keyboard-shortcut:focus .edit-controls .reset,
+.mh-ui-keyboard-shortcut:active .edit-controls .reset,
 .mh-ui-keyboard-shortcut:hover .edit-controls .edit,
+.mh-ui-keyboard-shortcut:focus .edit-controls .edit,
+.mh-ui-keyboard-shortcut:active .edit-controls .edit,
 .mh-ui-keyboard-shortcut:hover .edit-controls .clear,
+.mh-ui-keyboard-shortcut:focus .edit-controls .clear,
+.mh-ui-keyboard-shortcut:active .edit-controls .clear,
 .mh-ui-keyboard-shortcut.editing .edit-controls .edit {
   display: inline-block;
   margin-left: 10px;

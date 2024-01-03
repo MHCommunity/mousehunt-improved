@@ -10,7 +10,9 @@
   background-color: #ddedff;
 }
 
-.mh-mapper-sidebar-mouse:hover {
+.mh-mapper-sidebar-mouse:hover,
+.mh-mapper-sidebar-mouse:focus,
+.mh-mapper-sidebar-mouse:active {
   filter: none;
 }
 

@@ -121,7 +121,9 @@ button.campHudSnowballShowdownView__buyButton {
   display: none;
 }
 
-.campHudSnowballShowdownView__item:hover button.campHudSnowballShowdownView__buyButton {
+.campHudSnowballShowdownView__item:hover button.campHudSnowballShowdownView__buyButton,
+.campHudSnowballShowdownView__item:focus button.campHudSnowballShowdownView__buyButton,
+.campHudSnowballShowdownView__item:active button.campHudSnowballShowdownView__buyButton {
   position: absolute;
   right: -1px;
   bottom: -2px;
@@ -183,7 +185,9 @@ button.campHudSnowballShowdownView__buyButton {
   box-shadow: 0 0 1px 1px #527e8f;
 }
 
-.greatWinterHuntDialogView__inventoryFooter:hover button.headsUpDisplayWinterHuntRegionView__plusButton {
+.greatWinterHuntDialogView__inventoryFooter:hover button.headsUpDisplayWinterHuntRegionView__plusButton,
+.greatWinterHuntDialogView__inventoryFooter:focus button.headsUpDisplayWinterHuntRegionView__plusButton,
+.greatWinterHuntDialogView__inventoryFooter:active button.headsUpDisplayWinterHuntRegionView__plusButton {
   display: block;
 }
 
@@ -233,7 +237,9 @@ button.campHudSnowballShowdownView__buyButton {
   transition: opacity 0.3s;
 }
 
-.headsUpDisplayWinterHuntRegionView__golem:hover .headsUpDisplayWinterHuntRegionView__golemChatMessage {
+.headsUpDisplayWinterHuntRegionView__golem:hover .headsUpDisplayWinterHuntRegionView__golemChatMessage,
+.headsUpDisplayWinterHuntRegionView__golem:focus .headsUpDisplayWinterHuntRegionView__golemChatMessage,
+.headsUpDisplayWinterHuntRegionView__golem:active .headsUpDisplayWinterHuntRegionView__golemChatMessage {
   opacity: 1;
 }
 
@@ -262,7 +268,9 @@ button.campHudSnowballShowdownView__buyButton {
 }
 
 .winterHuntGolemView.winterHuntGolemView--idleAnimation .winterHuntGolemView__head,
-.winterHuntGolemView.winterHuntGolemView--idleAnimation:hover .winterHuntGolemView__head {
+.winterHuntGolemView.winterHuntGolemView--idleAnimation:hover .winterHuntGolemView__head,
+.winterHuntGolemView.winterHuntGolemView--idleAnimation:focus .winterHuntGolemView__head,
+.winterHuntGolemView.winterHuntGolemView--idleAnimation:active .winterHuntGolemView__head {
   transform-origin: 48% 51%;
 }
 
@@ -396,11 +404,15 @@ button.campHudSnowballShowdownView__buyButton {
   transform-origin: 0 -40px;
 }
 
-.greatWinterHuntGolemManagerDialogView__golem:hover {
+.greatWinterHuntGolemManagerDialogView__golem:hover,
+.greatWinterHuntGolemManagerDialogView__golem:focus,
+.greatWinterHuntGolemManagerDialogView__golem:active {
   transform: none;
 }
 
-.greatWinterHuntGolemManagerDialogView__golem:hover button.greatWinterHuntGolemManagerDialogView__golemSelectButton {
+.greatWinterHuntGolemManagerDialogView__golem:hover button.greatWinterHuntGolemManagerDialogView__golemSelectButton,
+.greatWinterHuntGolemManagerDialogView__golem:focus button.greatWinterHuntGolemManagerDialogView__golemSelectButton,
+.greatWinterHuntGolemManagerDialogView__golem:active button.greatWinterHuntGolemManagerDialogView__golemSelectButton {
   transform: scale(1.1);
 }
 
@@ -562,11 +574,15 @@ button.campHudSnowballShowdownView__buyButton {
   background: linear-gradient(90deg, #7d3415 0%, #5a231c 100%);
 }
 
-.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--inactive:hover .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--inactive:hover .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining,
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--inactive:focus .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining,
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--inactive:active .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
   background: linear-gradient(112deg, #91492a 0%, #602726 100%);
 }
 
-.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--active:hover .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--active:hover .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining,
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--active:focus .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining,
+.headsUpDisplayWinterHuntGolemWorkshopView__droidButton--active:active .headsUpDisplayWinterHuntGolemWorkshopView__droidHuntsRemaining {
   background: linear-gradient(54deg, #e77f14 0%, #b8590f 100%);
 }
 
@@ -601,7 +617,11 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 }
 
 .greatWinterHuntGolemManagerDialogView__activeGolemControls:hover,
-.greatWinterHuntGolemManagerDialogView__activeGolem:hover .greatWinterHuntGolemManagerDialogView__activeGolemControls {
+.greatWinterHuntGolemManagerDialogView__activeGolemControls:focus,
+.greatWinterHuntGolemManagerDialogView__activeGolemControls:active,
+.greatWinterHuntGolemManagerDialogView__activeGolem:hover .greatWinterHuntGolemManagerDialogView__activeGolemControls,
+.greatWinterHuntGolemManagerDialogView__activeGolem:focus .greatWinterHuntGolemManagerDialogView__activeGolemControls,
+.greatWinterHuntGolemManagerDialogView__activeGolem:active .greatWinterHuntGolemManagerDialogView__activeGolemControls {
   z-index: 12;
   opacity: 0.8;
 }
@@ -643,6 +663,7 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 
 .headsUpDisplayWinterHuntRegionView__trapWarningContainer.headsUpDisplayWinterHuntRegionView__trapWarningContainer--active .greatWinterHuntDialogView__content {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
@@ -663,6 +684,7 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
   animation: wallDamageWiggleSmall 0.3s infinite;
 }
 
+.greatWinterHuntRewardTrackView__golem:focus,
 .greatWinterHuntRewardTrackView__golem:active {
   animation-name: wallDamageWiggle;
 }
@@ -670,4 +692,138 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 /* make the tooltip closer */
 .headsUpDisplayWinterHuntGolemWorkshopView__droidButton .mousehuntTooltip {
   bottom: 30%;
+}
+
+/* Stops the blurring that happens for a split second when you hover over the button on the new year's popup */
+.greatWinterHuntNewYearsDialogView__shopsButton {
+  transition: none;
+}
+
+.greatWinterHuntNewYearsDialogView__itemImage {
+  background-size: contain;
+}
+
+/* Align the "Wrap cost: 10,000 gold" to be on the left side */
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .suffix {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .wrappingGoldCost {
+  order: 1;
+  margin-right: 10px;
+}
+
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .suffix .cancelGift {
+  order: 5;
+}
+
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .suffix .sendGift {
+  order: 10;
+}
+
+/* Let the text breath */
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .giftCostContainer {
+  line-height: 2;
+}
+
+/* Larger profile image */
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .recipientContainer img {
+  width: 100px;
+  height: 100px;
+}
+
+/* Make the border match the gift picker styles  */
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .recipientContainer {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Make the search bigger */
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .winter_hunt_profile_tree_possible_gifts-search {
+  padding: 5px;
+  margin: 10px;
+  font-size: 12px;
+}
+
+/* Align the clear button */
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .winter_hunt_profile_tree_possible_gifts-clearSearch {
+  top: 10px;
+  right: 12px;
+}
+
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .winter_hunt_profile_tree_possible_gifts-clearSearch:hover,
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .winter_hunt_profile_tree_possible_gifts-clearSearch:focus,
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .winter_hunt_profile_tree_possible_gifts-clearSearch:active {
+  color: #e33f3f;
+  text-decoration: none;
+}
+
+/* Spacing for the "Presents youv'e sent to this hunter" */
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .giftChannel-title {
+  margin-bottom: 10px;
+}
+
+/* Make the profile pic match the other profile pic & item design */
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .recipient {
+  float: right;
+  padding: 10px;
+  margin: -25px 20px 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#overlayPopup.winter_hunt_profile_tree_possible_gifts .giftDescription {
+  margin-left: 0;
+}
+
+/* Make the tree bigger on the profile */
+.winterHuntProfileInteractionView-gifting {
+  background-position-x: 0;
+  background-size: 130px;
+}
+
+/* Make the present text look more aligned visually */
+.winterHuntProfileInteractionView .info {
+  width: 190px;
+  margin-top: 10px;
+}
+
+/* Line height for the bottom green section */
+.winterHuntProfileInteractionView-giftCeremony {
+  line-height: 1.5;
+}
+
+/* Hover effect for the "open your presents" on the profile */
+.winterHuntProfileInteractionView a.giftBox:hover,
+.winterHuntProfileInteractionView a.giftBox:focus,
+.winterHuntProfileInteractionView a.giftBox:active {
+  filter: brightness(1.1);
+}
+
+.campHudSnowballShowdownView__quantityContainer.possibleAmount {
+  display: none;
+  margin-top: 7px;
+}
+
+.campHudSnowballShowdownView--hasSnowballShowdown:hover .campHudSnowballShowdownView__quantityContainer.possibleAmount,
+.campHudSnowballShowdownView--hasSnowballShowdown:focus .campHudSnowballShowdownView__quantityContainer.possibleAmount {
+  display: flex;
+}
+
+.possibleAmount .campHudSnowballShowdownView__quantity {
+  background-color: #d2e8ef;
+  box-shadow: inset 0 0 0 1px #7ebde7;
+}
+
+.headsUpDisplayWinterHuntRegionView__bait .mousehuntTooltip {
+  width: 175px;
+  line-height: 1.5;
+}
+
+.greatWinterHuntGolemManagerTabView__destinationCount {
+  margin-right: 5px;
 }
