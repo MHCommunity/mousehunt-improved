@@ -52,12 +52,6 @@ const makeSendSuppliesButton = (btn, snuid) => {
 
   btn.setAttribute('data-quick-send', 'true');
 
-  btn.classList.remove('mousehuntTooltipParent');
-  const tooltip = btn.querySelector('.mousehuntTooltip');
-  if (tooltip) {
-    tooltip.remove();
-  }
-
   const quickSendLinkWrapper = makeElement('form', ['quickSendWrapper', 'hidden']);
   const itemsWrapper = makeElement('div', 'itemsWrapper');
 
