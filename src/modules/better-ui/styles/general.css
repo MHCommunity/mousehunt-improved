@@ -17,6 +17,10 @@
   box-shadow: -1px 1px 3px 0 #d3cecb inset;
 }
 
+.campPage-trap-itemStats {
+  background-color: transparent;
+}
+
 .campPage-trap-armedItem.bait.active {
   box-shadow: -1px -1px 1px #d3cecb inset;
 }

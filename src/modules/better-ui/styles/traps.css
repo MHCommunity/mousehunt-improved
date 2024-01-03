@@ -341,8 +341,6 @@ img.itembrowser-skin-image {
   height: auto;
   font-size: 12px;
   color: #671d1d;
-  background: #e3d4d1;
-  border: 1px solid #cdb0b0;
   border-radius: 10px;
   box-shadow: none;
 }
@@ -383,7 +381,7 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
     1px 1px 1px #671d1d;
 }
 
-.empty .campPage-trap-armedItem-image {
+.campPage-trap-armedItem.bait.empty .campPage-trap-armedItem-image {
   background-image: url(https://www.mousehuntgame.com/images/ui/hunters_horn/sandwich_board/icons/bait_empty.png);
 }
 

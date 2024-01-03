@@ -135,6 +135,7 @@ a.messageBoardView-message-image {
 }
 
 a.messageBoardView-message-delete {
+  right: 10px;
   color: transparent;
 }
 

@@ -103,10 +103,9 @@
 }
 
 .hunterInfoView-wrapper .hunterInfoView-treasureMaps-left-currentMap-image {
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border-width: 1px;
+  width: 55px;
+  height: 55px;
+  border: none;
 }
 
 .hunterInfoView-treasureMaps-left {
@@ -121,7 +120,7 @@
 }
 
 .hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound-ranking {
-  width: 110px;
+  width: 120px;
   margin-top: 10px;
   margin-bottom: -5px;
   font-size: 11px;
