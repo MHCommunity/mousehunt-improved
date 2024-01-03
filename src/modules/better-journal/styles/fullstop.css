@@ -33,7 +33,9 @@
 .entry.folkloreForest.folkloreForest-lootFuelBoost .journaltext::after,
 .entry.folkloreForest-farmToTable .journaltext a:last-of-type::after,
 .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
-.entry.golemUpgraded .journaltext a::after {
+.entry.festiveSpiritLootBoost .journaltext a::after,
+.entry.golemUpgraded .journaltext a::after,
+.entry.workshopPartProduced .journaltext a::after {
   display: inline;
   content: ".";
 }
