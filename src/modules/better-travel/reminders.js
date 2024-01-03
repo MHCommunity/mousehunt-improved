@@ -90,6 +90,9 @@ const addReminders = () => {
     ) {
       reminderOpts.text = 'Festive Spirit is active.';
       reminderOpts.button = 'Deactivate';
+    } else if ('winter_hunt_forest' === getCurrentLocation()) {
+      reminderOpts.text = 'Festive Spirit is <strong>not</strong> active.';
+      reminderOpts.button = 'Activate';
     }
 
     reminderOpts.image = 'https://www.mousehuntgame.com/images/items/stats/large/cda292833fce3b65b7a6a38c000e8620.png?cv=2';
