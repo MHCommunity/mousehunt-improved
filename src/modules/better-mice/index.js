@@ -206,6 +206,11 @@ const updateMouseView = async () => {
     }
   }
 
+  const grouptitle = mouseView.querySelector('.mouseView-group.mouseview-title-group');
+  if (grouptitle) {
+    grouptitle.innerHTML = grouptitle.innerHTML.replace('Group: ', '');
+  }
+
   const container = mouseView.querySelector('.mouseView-contentContainer');
   if (! container) {
     return;
