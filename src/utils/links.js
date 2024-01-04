@@ -149,7 +149,8 @@ const addSubmenuItem = (options) => {
     exists.remove();
   }
 
-  item.id = `custom-submenu-item-${cleanLabel}`;
+  item.id = settings.id ? `custom-submenu-item-${settings.id}` : `custom-submenu-item-${cleanLabel}`;
+
   if (settings.class) {
     const classes = settings.class.split(' ');
     item.classList.add(...classes);
