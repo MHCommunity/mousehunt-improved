@@ -1,5 +1,6 @@
 import {
   addToGlobal,
+  debug,
   getMapData,
   makeElement,
   onRequest,
@@ -39,6 +40,8 @@ const addBlockClasses = () => {
 };
 
 const interceptMapRequest = (mapId) => {
+  sessionStorage.setItem('mh-improved-map-refreshed', Date.now());
+
   // If we don't have data, we're done.
   if (! mapId) {
     return false;
@@ -216,6 +219,25 @@ const relicHunterUpdate = () => {
   };
 };
 
+const refreshMap = () => {
+  const mapId = user?.quests?.QuestRelicHunter?.default_map_id;
+  if (! mapId) {
+    debug('No map found, skipping refresh …');
+    return;
+  }
+
+  const lastRefreshed = sessionStorage.getItem('mh-improved-map-refreshed');
+  // If we've refreshed in the last 5 minutes, don't refresh again.
+  if (lastRefreshed && Date.now() - lastRefreshed < 300000) {
+    debug(`Map ${mapId} refreshed in the last 5 minutes, skipping …`);
+    return;
+  }
+
+  debug(`🗺️️ Refreshing map ${mapId} …`);
+
+  interceptMapRequest(mapId);
+};
+
 /**
  * Initialize the module.
  */
@@ -238,6 +260,9 @@ const init = async () => {
   intercept();
 
   relicHunterUpdate();
+
+  // Refresh the map every 5 minutes.
+  setInterval(refreshMap, 300000);
 };
 
 export default {
