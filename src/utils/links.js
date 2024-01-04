@@ -175,7 +175,7 @@ const addSubmenuItem = (options) => {
   // Create the label.
   const name = document.createElement('div');
   name.classList.add('name');
-  name.innerText = settings.label;
+  name.innerHTML = settings.label;
 
   // Add the icon and label to the link.
   link.append(icon);
