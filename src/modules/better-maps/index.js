@@ -7,6 +7,8 @@ import {
   setMapData
 } from '@utils';
 
+import helper from './modules/helper';
+
 import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
@@ -260,6 +262,10 @@ const init = async () => {
   intercept();
 
   relicHunterUpdate();
+
+  if (getFlag('better-maps-helper')) {
+    helper();
+  }
 
   // Refresh the map every 5 minutes.
   setInterval(refreshMap, 300000);
