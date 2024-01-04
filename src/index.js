@@ -87,7 +87,8 @@ const loadModules = async () => {
       if (
         subModule.alwaysLoad ||
         'required' === subModule.type ||
-        getSettingDirect(subModule.id, subModule.default, 'mousehunt-improved-settings')
+        getSettingDirect(subModule.id, subModule.default, 'mousehunt-improved-settings') ||
+        (subModule.beta && getFlag(subModule.id))
       ) {
         try {
           subModule.load();
