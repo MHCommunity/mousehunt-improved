@@ -115,7 +115,8 @@ const updateGolemTravelCount = () => {
     return;
   }
 
-  makeElement('span', ['greatWinterHuntGolemManagerTabView__destinationCount'], golemCounts[currentEnvironment.id] || 0, title);
+  const countEl = makeElement('span', ['greatWinterHuntGolemManagerTabView__destinationCount'], `(${golemCounts[currentEnvironment.id] || 0})`);
+  name.append(countEl);
 };
 
 const updateGolemPopup = () => {
