@@ -41,6 +41,16 @@ const adventCalendarPopup = () => {
   suffix.append(toggleBtn);
 };
 
+const maybeHideAdventCalendarInMenu = () => {
+  // If it's not December, then hide the advent calendar in the menu.
+  const now = new Date();
+  if (now.getMonth() !== 11) {
+    return '.mousehuntHeaderView-gameTabs .menuItem.adventCalendar { display: none; }';
+  }
+
+  return '';
+};
+
 export default (location) => {
   switch (location) {
   case 'halloween_event_location':
@@ -56,7 +66,10 @@ export default (location) => {
   }
 
   // Need to fire it always because the showdown styles are always loaded
-  addStyles(styles);
+  addStyles([
+    styles,
+    maybeHideAdventCalendarInMenu()
+  ]);
 
   onDialogShow(adventCalendarPopup, 'adventCalendarPopup');
 };
