@@ -31,7 +31,7 @@ const init = () => {
       Utils.devDebug(`Navigated to ${Utils.getCurrentPage()} / ${Utils.getCurrentTab()} / ${Utils.getCurrentSubtab()}`);
     });
 
-    Utils.onTravel(() => {
+    Utils.onTravel(null, () => {
       Utils.devDebug(`Traveled to ${Utils.getCurrentLocation()}`);
     });
   }
