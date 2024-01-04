@@ -825,5 +825,16 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 }
 
 .greatWinterHuntGolemManagerTabView__destinationCount {
-  margin-right: 5px;
+  margin-left: 5px;
+}
+
+/* Fix the white space for the location images */
+.greatWinterHuntGolemDestinationView__environmentImage {
+  border-radius: 0 0 2px 2px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* hover transition */
+.greatWinterHuntGolemDestinationView__environment:hover .greatWinterHuntGolemDestinationView__environmentImage {
+  background-position: 71% 52%;
 }
