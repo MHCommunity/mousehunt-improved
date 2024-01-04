@@ -163,7 +163,6 @@ const getLinkMarkup = (name, id) => {
 
 const overloadShowItem = () => {
   const originalShowItem = hg.views.MarketplaceView.showItem;
-  console.log(originalShowItem);
 
   hg.views.MarketplaceView.showItem = (itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force) => {
     // allow toggling of buy/sell
