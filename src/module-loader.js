@@ -15,6 +15,7 @@ import betterTravel from './modules/better-travel';
 import betterUi from './modules/better-ui';
 
 // Feature modules.
+import catchRateEstimate from './modules/catch-rate-estimate';
 import copyId from './modules/copy-id';
 import customShield from './modules/custom-shield';
 import darkMode from './modules/dark-mode';
@@ -76,6 +77,7 @@ export default [
   betterTravel,
 
   // Feature modules.
+  catchRateEstimate,
   copyId,
   customShield,
   darkMode,
