@@ -72,7 +72,15 @@ a.itemPurchaseView-image-trapPreview-link,
 }
 
 .itemPurchaseView-action-itemCost-table-row.error {
-  background-color: #ffadad8c;
+  background-color: rgb(255 173 173 / 55%);
+}
+
+.mh-dark-mode .itemPurchaseView-action-itemCost-table-row.error {
+  background-color: rgb(128 45 45 / 55%);
+}
+
+.mh-dark-mode .itemPurchaseView-action-itemCost-table-cell.cost {
+  color: #e36969;
 }
 
 .itemPurchaseView-action-itemCost-table-row {
@@ -289,8 +297,9 @@ a.itemPurchaseView-content-skin-link {
   max-width: 150px;
 }
 
-.item_set {
-  background-color: #eecf2a45;
+.item_set,
+.mh-dark-mode .item_set {
+  background-color: rgb(238 171 42 / 27%);
   border: none;
 }
 
@@ -342,9 +351,13 @@ a.itemPurchaseView-content-skin-link {
   border-radius: 5px;
 }
 
-.mh-dark-mode .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
+.mh-dark-mode.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
   background-color: #333;
   border-color: #606060;
+}
+
+.mh-dark-mode.shopCustomization .pageFrameView .itemViewStatBlock .itemViewStatBlock-stat-value {
+  background-color: transparent;
 }
 
 .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value span {
@@ -621,7 +634,11 @@ a.shopsPage-kingsCalibratorPromo {
   border-bottom-right-radius: 11px;
 }
 
-.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType {
-  background-color: #424242;
+.mh-dark-mode .itemPurchaseView-container .itemPurchaseView-image-container .itemViewStatBlock-stat.powerType {
+  background-color: transparent;
   border: none;
+}
+
+.itemPurchaseView-container.new .itemPurchaseView-margin::after {
+  top: 5px;
 }
