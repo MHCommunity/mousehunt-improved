@@ -6,7 +6,6 @@ import {
   onRequest
 } from '@utils';
 
-import settings from './settings';
 import styles from './styles.css';
 
 import {
@@ -133,5 +132,4 @@ export default {
   default: true,
   description: 'Minluck and catch rate estimates.',
   load: init,
-  settings,
 };
