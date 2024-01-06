@@ -564,6 +564,10 @@ const addFavoriteButtonsToTravelPage = async () => {
 };
 
 const main = () => {
+  if (getSetting('better-travel-travel-window', true)) {
+    travelWindow();
+  }
+
   onNavigation(() => {
     addSimpleTravel();
     addRhToSimpleTravel();
@@ -585,10 +589,6 @@ const main = () => {
 
   saveTravelLocation();
   addToTravelDropdown();
-
-  if (getSetting('better-travel-travel-window', true)) {
-    travelWindow();
-  }
 };
 
 /**
