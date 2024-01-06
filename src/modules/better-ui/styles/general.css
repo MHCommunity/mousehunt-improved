@@ -346,3 +346,8 @@ input.itemView-action-convert-quantity {
 .menuItem.myProfile {
   display: none;
 }
+
+/* vertically align the sb get more button */
+.mousehuntHeaderView a.superBrie .getMore {
+  top: 4px;
+}
