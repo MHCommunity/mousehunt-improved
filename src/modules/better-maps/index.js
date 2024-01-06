@@ -1,6 +1,7 @@
 import {
   addToGlobal,
   debug,
+  getFlag,
   getMapData,
   makeElement,
   onRequest,
