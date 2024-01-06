@@ -134,5 +134,4 @@ export default {
   description: 'Minluck and catch rate estimates.',
   load: init,
   settings,
-  beta: true,
 };
