@@ -1,68 +1,37 @@
-#minluck-button {
-  margin-top: 10px;
+#mh-improved-cre {
+  margin: 10px 0;
 }
 
-#minluck-list {
-  padding: 10px;
-  margin-top: -2px;
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-#minluck-list table {
+#mh-improved-cre table {
   width: 100%;
-  margin: 0 10px 10px;
 }
 
-#minluck-list table th {
+#mh-improved-cre thead {
+  box-shadow: 0 -1px 0 0 #d3cecb inset;
+}
+
+#mh-improved-cre table th {
   font-weight: 700;
   text-align: center;
 }
 
-#minluck-list table th.mousename-header {
+#mh-improved-cre table th.name {
   text-align: left;
 }
 
-#minluck-list table:first-child {
+#mh-improved-cre table:first-child {
   text-align: left;
 }
 
-.minlucklist-minluck-name {
-  min-width: 85px;
-  max-width: 150px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.minlucklist-minluck-data {
+.mh-improved-cre-data {
   min-width: 70px;
   text-align: center;
 }
 
-.minlucklist-minluck-data-good {
+.mh-improved-cre-data-good {
   color: #138f13;
 }
 
-.minlucklist-minluck-data-bad {
+.mh-improved-cre-data-bad {
   color: #bb4646;
-}
-
-.minluck-indicator-all-good {
-  border-top: 5px solid #103a70;
-}
-
-.minluck-indicator-good {
-  border-top: 5px solid #2f82ec;
-}
-
-.minluck-indicator-bad {
-  border-top: 5px solid #900;
-}
-
-.minluck-indicator-all-good,
-.minluck-indicator-good,
-.minluck-indicator-bad {
-  border-top: none;
 }
