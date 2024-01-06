@@ -342,3 +342,7 @@ input.itemView-action-convert-quantity {
   padding: 2px 5px;
   text-align: left;
 }
+
+.menuItem.myProfile {
+  display: none;
+}
