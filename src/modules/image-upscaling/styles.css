@@ -168,3 +168,7 @@
 .itemImage img {
   width: 80px;
 }
+
+.itemImage {
+  background-size: 100%;
+}
