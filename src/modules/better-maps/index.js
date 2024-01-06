@@ -266,10 +266,10 @@ const init = async () => {
 
   if (getFlag('better-maps-helper')) {
     helper();
-  }
 
-  // Refresh the map every 5 minutes.
-  setInterval(refreshMap, 300000);
+    // Refresh the map every 5 minutes.
+    setInterval(refreshMap, 300000);
+  }
 };
 
 export default {
