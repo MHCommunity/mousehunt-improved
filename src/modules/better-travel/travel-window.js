@@ -201,6 +201,9 @@ const openTravelWindow = () => {
         button.classList.toggle('mh-improved-travel-window-hidden');
       } else {
         debug(`Traveling to ${environmentType}`);
+        app.pages.TravelPage.travel(environmentType);
+        hg.utils.PageUtil.setPage('Camp');
+        popup.hide();
       }
     });
   });
