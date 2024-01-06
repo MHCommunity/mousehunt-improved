@@ -43,6 +43,7 @@
 - Fixes marketplace inbox alignment
 - Adds start of Better Maps helper beta feature
 - Removes shield z-index
+- Fixes Open All But One button
 
 ## Version 0.26.1
 
