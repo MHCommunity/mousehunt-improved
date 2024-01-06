@@ -25,6 +25,30 @@ const exportRankupForecasterData = () => {
   link.click();
 };
 
+const exportRankupForecasterDataAsCsv = () => {
+  const time = localStorage.getItem('Chro-forecaster-time');
+
+  const data = JSON.parse(time);
+
+  const csv = [
+    'Time,Wisdom',
+  ];
+
+  data.forEach((row) => {
+    const date = new Date(row[0]);
+    csv.push(`"${date.toLocaleString()}",${row[1]}`);
+  });
+
+  const csvStr = csv.join('\n');
+
+  const link = document.createElement('a');
+  const date = new Date();
+  const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  link.download = `rank-up-forecaster-${dateString}.csv`;
+  link.href = `data:text/csv;charset=utf-8,${csvStr}`;
+  link.click();
+};
+
 const importRankupForecassterData = () => {
   const input = document.createElement('input');
   input.type = 'file';
@@ -86,6 +110,10 @@ const addRankupForecasterButtons = () => {
       importButton.addEventListener('click', importRankupForecassterData);
       wrapper.append(importButton);
 
+      const exportCsvButton = makeElement('button', 'mh-ui-export-forecaster-csv', 'Export as CSV');
+      exportCsvButton.addEventListener('click', exportRankupForecasterDataAsCsv);
+      wrapper.append(exportCsvButton);
+
       rankup.append(wrapper);
     }, 250);
   });
@@ -97,8 +125,11 @@ const addRankupForecasterButtons = () => {
 export default async () => {
   addStyles(`.mh-ui-forecaster-buttons {
     display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
     justify-content: space-around;
-    margin-top: 5px;
+    max-width: 180px;
+    margin-top: 10px;
   }`);
 
   addRankupForecasterButtons();
