@@ -2,7 +2,6 @@
 a.mousehuntHud-shield.golden.default {
   top: 3px;
   left: 12px;
-  z-index: 1;
   background-image: url(https://www.mousehuntgame.com/images/mousehunt_gold_logo.png?asset_cache_version=2);
   filter: drop-shadow(0 0 5px #e8dbb8);
   background-size: contain;

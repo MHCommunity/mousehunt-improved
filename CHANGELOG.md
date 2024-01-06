@@ -42,6 +42,7 @@
 - Adds more GWH style tweaks
 - Fixes marketplace inbox alignment
 - Adds start of Better Maps helper beta feature
+- Removes shield z-index
 
 ## Version 0.26.1
 
