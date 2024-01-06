@@ -12,12 +12,13 @@
 
 .puzzleView__requestNewPuzzleButton {
   background-color: #a35721;
-  opacity: 0.6;
+  opacity: 0.3;
   transition: opacity 0.2s ease-in-out;
 }
 
 .puzzleView__requestNewPuzzleButton:hover,
 .puzzleView__requestNewPuzzleButton:focus {
+  border-color: transparent;
   opacity: 1;
 }
 
