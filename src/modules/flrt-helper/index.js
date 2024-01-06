@@ -1,9 +1,11 @@
 import {
   addStyles,
+  cacheFinishedMap,
   createPopup,
   doRequest,
   getLastMaptain,
   makeElement,
+  onDialogShow,
   onRequest
 } from '@utils';
 
@@ -182,6 +184,8 @@ const flrtPopup = (items) => {
  */
 const init = async () => {
   addStyles(styles);
+
+  onDialogShow(cacheFinishedMap, 'treasureMapPopup');
 
   onRequest(addFlrtButtonToConvertible, 'managers/ajax/users/useconvertible.php');
 };

@@ -78,6 +78,30 @@ const setMapData = (mapId, theMapData) => {
   sessionStorage.setItem('mh-improved-map-cache-last-map', JSON.stringify(theMapData));
 };
 
+const getLastMaptain = () => {
+  return sessionStorage.getItem('mh-improved-last-maptain');
+};
+
+const setLastMaptain = (id) => {
+  sessionStorage.setItem('mh-improved-last-maptain', id);
+};
+
+const cacheFinishedMap = async () => {
+  const completedMap = user.quests.QuestRelicHunter.maps.find((map) => map.is_complete);
+  if (! completedMap?.map_id) {
+    return;
+  }
+
+  const data = getMapData(completedMap.map_id);
+  if (! data) {
+    return;
+  }
+
+  const maptain = data.hunters.find((hunter) => hunter.captain);
+
+  setLastMaptain(maptain.user_id || '');
+};
+
 const showTravelConfirmation = (environment, theMapModel) => {
   const environmentData = theMapModel.getEnvironmentById(environment.id);
   const environmentGoals = theMapModel.getGoalsByEnvironment(environment.id);
@@ -441,5 +465,8 @@ export {
   showTravelConfirmation,
   getArEl,
   getArForMouse,
-  getHighestArForMouse
+  getHighestArForMouse,
+  getLastMaptain,
+  setLastMaptain,
+  cacheFinishedMap
 };
