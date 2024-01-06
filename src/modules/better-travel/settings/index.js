@@ -29,4 +29,12 @@ export default function (module) {
     'Show reminders about active resources when visiting certain locations.',
     module
   );
+
+  addMhuiSetting(
+    'better-travel-travel-window',
+    'Travel Window',
+    true,
+    'Open the travel window to browse locations to travel to.',
+    module
+  );
 }
