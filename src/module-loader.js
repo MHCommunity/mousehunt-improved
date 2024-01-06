@@ -19,6 +19,7 @@ import catchRateEstimate from './modules/catch-rate-estimate';
 import copyId from './modules/copy-id';
 import customShield from './modules/custom-shield';
 import darkMode from './modules/dark-mode';
+import dataExporters from '@/data-exporters';
 import delayedTooltips from '@/delayed-tooltips';
 import hoverProfiles from './modules/hover-profiles';
 import imageUpscaling from './modules/image-upscaling';
@@ -81,6 +82,7 @@ export default [
   copyId,
   customShield,
   darkMode,
+  dataExporters,
   delayedTooltips,
   hoverProfiles,
   imageUpscaling,

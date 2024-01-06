@@ -1,0 +1,109 @@
+#custom-submenu-item-export-data .icon {
+  filter: sepia(1) brightness(0.7);
+}
+
+.export-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.export-items-wrapper {
+  max-height: 70vh;
+  overflow: scroll;
+  border: 1px solid #7e7e7e;
+}
+
+.item-wrapper {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  padding: 3px 5px;
+  margin-bottom: 2px;
+  font-size: 11px;
+}
+
+.inventory .item-wrapper,
+.scoreboard-rankings .item-wrapper,
+.rankup-forecaster-history .item-wrapper,
+.marketplace-transactions .item-wrapper {
+  grid-template-columns: 2fr 1fr;
+}
+
+.item-wrapper .total-items {
+  text-align: right;
+}
+
+.item-wrapper:nth-child(odd) {
+  background-color: #e2e2e2;
+}
+
+.item-wrapper.hidden {
+  display: none;
+}
+
+.item-wrapper.export-items-header,
+.item-wrapper.export-items-footer {
+  padding: 5px;
+  margin-bottom: 0;
+  font-size: 12px;
+  text-align: center;
+  background-color: #bcbcbc;
+  border: 1px solid #7e7e7e;
+}
+
+.item-wrapper.export-items-header {
+  border-bottom: none;
+}
+
+.item-wrapper.export-items-footer {
+  border-top: none;
+}
+
+.rankup-forecaster-history .item-wrapper,
+.marketplace-transactions .item-wrapper {
+  border-top: 1px solid #7e7e7e;
+}
+
+.export-items-header .region-name,
+.export-items-footer .region-name {
+  text-align: left;
+}
+
+.item-wrapper:nth-last-child(2) {
+  margin-bottom: 0;
+}
+
+.actions-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  place-items: center end;
+  margin-top: 10px;
+}
+
+.actions-wrapper .hidden {
+  display: block;
+  visibility: hidden;
+}
+
+.actions-wrapper #export-back {
+  justify-self: start;
+}
+
+.actions-wrapper .fetch-data {
+  justify-self: center;
+}
+
+.mh-improved-export-data-landing {
+  margin-left: 20px;
+  line-height: 2;
+  list-style: disc;
+}
+
+.item-wrapper .mice-caught,
+.item-wrapper .total-catches {
+  text-align: center;
+}
+
+.item-wrapper .total-weight {
+  text-align: right;
+}
