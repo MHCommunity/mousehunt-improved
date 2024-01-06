@@ -838,3 +838,17 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 .greatWinterHuntGolemDestinationView__environment:hover .greatWinterHuntGolemDestinationView__environmentImage {
   background-position: 71% 52%;
 }
+
+/* less distracting new year's button */
+.headsUpDisplayWinterHuntRegionView__newYearsButton--active {
+  opacity: 0.8;
+}
+
+.headsUpDisplayWinterHuntRegionView__newYearsButton--active:hover {
+  opacity: 1;
+}
+
+/* makes it look nicer? */
+.headsUpDisplayWinterHuntRegionView {
+  filter: drop-shadow(0 1px 5px #1b202b);
+}
