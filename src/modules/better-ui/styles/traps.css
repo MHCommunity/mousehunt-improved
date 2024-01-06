@@ -391,3 +391,11 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
   display: flex;
   align-items: center;
 }
+
+/* Prevent wrapping in the stat breakdown when hovering over stats on the camp page */
+.campPage-trap-trapStat-mathRow-name {
+  padding-right: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -740,3 +740,11 @@ input.treasureMapView-block-search-text {
   justify-content: flex-start;
   text-align: left;
 }
+
+.treasureMapDialogView-environmentGoals {
+  max-height: unset;
+}
+
+.treasureMapView-hunter-icon {
+  top: -9px;
+}
