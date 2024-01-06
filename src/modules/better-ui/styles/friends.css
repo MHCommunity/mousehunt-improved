@@ -44,8 +44,8 @@
 
 .friends-page-id-search input.friendsPage-community-hunterIdForm-input {
   width: 175px;
-  padding: 10px;
-  font-size: 15px;
+  padding: 5px;
+  border: 1px solid #767676;
 }
 
 .friends-page-id-search .friendsPage-community-channel-hunterId {
