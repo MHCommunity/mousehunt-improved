@@ -700,6 +700,10 @@ input.treasureMapView-block-search-text {
   margin-bottom: 30px;
 }
 
+.treasureMapView-mapMenu.treasureMapRootView-padding.max_hunters_10 {
+  margin-bottom: 50px;
+}
+
 .mh-ui-we-did-it-title {
   display: none;
 }
