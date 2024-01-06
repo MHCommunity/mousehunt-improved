@@ -1,5 +1,48 @@
 # Changelog
 
+## Version 0.27.0
+
+- Adds Catch Rate Estimator feature.
+- Adds FLRT helper feature.
+- Adds a travel window.
+- Adds more images upscaled images with transparency, including all bases.
+- Hides the advent calendar in the menu if it's not December.
+- Hides "Group: " prefix on mouseviews.
+- Fixes image upscaling borders/sizes.
+- Updates dark mode styles.
+- Adds map refresh functionality.
+- Fixes dark mode styles in Better Shops.
+- Fixes margin and adds hover transition for GWH golem location images.
+- Adds golem destination count to golems.
+- Adds New Year's maps to sorted maps.
+- Adds snowball showdown calculations when hovering over the HUD element.
+- Updates user highlighting, adds a fancy profile for lead dev.
+- Fixes a typo in custom shield settings.
+- Modifies AR rate breakdowns and separates them with styles.
+- Updates map styles for maps with 10 hunters.
+- Aligns King's Reward text better, adds a hover state to the refresh button.
+- Adds a full stop to more journal entries.
+- Aligns more journal entry images.
+- Adds "Arm Now" buttons to all charms in the inventory.
+- Adds a Festive Spirit reminder.
+- Fixes an issue with tooltips on profile pages.
+- Adds wiki/MHCT links to marketplace items.
+- Adds more styles for better UI.
+- Removes the powertype filter from bases, allows toggling active filters.
+- Updates environments to include the article, order, and a 2nd image.
+- Adds more focus/active styles for elements with hover states.
+- Makes the page loading indicator sit on top of the content, rather than a whole white screen
+- Vertically aligns the 'Get More' button in the top menu
+- Hides the 'My Profile' link in the top menu bar
+- Updates padding, font-size, and border for hunter ID search input
+- Adds a change in opacity when hovering over the title progress bar in the stat bar
+- Repositions the shield/title in the stat bar to make the shield bigger
+- Adds subtle shadow to profile image in hud stats bar
+- Aligns marble background to top so that it doesn't jump when changing pages
+- Adds more GWH style tweaks
+- Fixes marketplace inbox alignment
+- Adds start of Better Maps helper beta feature
+
 ## Version 0.26.1
 
 - Adds 1,975 more images to the Image Upscaling list, bringing the total to 4,926 images!
