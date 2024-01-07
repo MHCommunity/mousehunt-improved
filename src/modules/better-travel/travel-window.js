@@ -227,28 +227,9 @@ const makeMenuItem = () => {
   });
 };
 
-const addToEnvHeader = () => {
-  const environmentHeader = document.querySelector('.mousehuntHud-environment');
-  if (! environmentHeader) {
-    return;
-  }
-
-  const existingButton = document.querySelector('.mh-improved-travel-window-button');
-  if (existingButton) {
-    existingButton.remove();
-  }
-
-  const button = makeElement('div', 'mh-improved-travel-window-button', '️');
-  button.addEventListener('click', openTravelWindow);
-  button.setAttribute('title', 'Open Travel Window');
-
-  environmentHeader.append(button);
-};
-
 export default () => {
   addStyles(styles);
   makeMenuItem();
-  addToEnvHeader();
 
   onTravel(null, {
     callback: addToEnvHeader,

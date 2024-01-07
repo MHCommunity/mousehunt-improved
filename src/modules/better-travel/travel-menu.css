@@ -77,32 +77,6 @@
   font-size: 10px;
 }
 
-.mousehuntHud-environmentName {
-  padding-top: 0;
-  margin-top: 29px;
-}
-
-.mh-improved-travel-window-button {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 23px;
-  height: 21px;
-  cursor: pointer;
-  background: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/travel_button.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: 0;
-}
-
-.mh-improved-travel-window-button:hover {
-  background-position: center;
-}
-
-.mousehuntHud-environment:hover .mh-improved-travel-window-button {
-  opacity: 1;
-}
-
 .mh-improved-travel-window-footer {
   position: absolute;
   bottom: 20px;
