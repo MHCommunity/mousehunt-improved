@@ -43,7 +43,8 @@ const addFlrtButtonToConvertible = (response) => {
   }
 
   // Make the button and add it to the dialog.
-  const flrtBtn = makeElement('button', ['mousehuntActionButton', 'small', 'button'], 'Send tradeables to Maptain');
+  const flrtBtn = makeElement('button', ['mousehuntActionButton', 'small', 'button']);
+  makeElement('span', [], 'Return to Maptain', flrtBtn);
 
   flrtBtn.addEventListener('click', () => {
     flrtPopup(items);
