@@ -6,7 +6,6 @@ import {
   getCurrentLocation,
   getSettingDirect,
   onDialogHide,
-  onTravel,
   saveSettingDirect
 } from '@utils';
 
