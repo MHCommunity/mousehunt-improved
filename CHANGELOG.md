@@ -3,6 +3,7 @@
 ## Version 0.27.2
 
 - Fixes return tradables button text
+- Expands width of the Gifts menu item
 
 ## Version 0.27.1
 
