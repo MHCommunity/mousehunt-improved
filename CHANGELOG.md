@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.27.1
+
+- Fixes bug with travel window
+
 ## Version 0.27.0
 
 - Adds Catch Rate Estimator feature.

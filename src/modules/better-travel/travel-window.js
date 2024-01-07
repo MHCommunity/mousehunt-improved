@@ -229,8 +229,4 @@ const makeMenuItem = () => {
 export default () => {
   addStyles(styles);
   makeMenuItem();
-
-  onTravel(null, {
-    callback: addToEnvHeader,
-  });
 };
