@@ -347,6 +347,12 @@ input.itemView-action-convert-quantity {
   display: none;
 }
 
+.mousehuntHeaderView .menuItem.freeGifts,
+.mousehuntHeaderView-gameTabs.small .menuItem.freeGifts {
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
 /* vertically align the sb get more button */
 .mousehuntHeaderView a.superBrie .getMore {
   top: 4px;
