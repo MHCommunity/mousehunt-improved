@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.27.2
+
+- Fixes return tradables button text
+
 ## Version 0.27.1
 
 - Fixes bug with travel window
