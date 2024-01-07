@@ -1,136 +1,270 @@
 [
-  { "id": "acolyte_realm",
- "name": "Acolyte Realm" },
-{ "id": "balacks_cove",
- "name": "Balack's Cove" },
-{ "id": "bazaar",
- "name": "Bazaar" },
-{ "id": "bountiful_beanstalk",
- "name": "Bountiful Beanstalk" },
-{ "id": "rift_bristle_woods",
- "name": "Bristle Woods Rift" },
-{ "id": "rift_burroughs",
- "name": "Burroughs Rift" },
-{ "id": "calm_clearing",
- "name": "Calm Clearing" },
-{ "id": "queso_quarry",
- "name": "Cantera Quarry" },
-{ "id": "cape_clawed",
- "name": "Cape Clawed" },
-{ "id": "catacombs",
- "name": "Catacombs" },
-{ "id": "winter_hunt_grove",
- "name": "Cinnamon Hill" },
-{ "id": "claw_shot_city",
- "name": "Claw Shot City" },
-{ "id": "zugzwang_library",
- "name": "Crystal Library" },
-{ "id": "derr_dunes",
- "name": "Derr Dunes" },
-{ "id": "dojo",
- "name": "Dojo" },
-{ "id": "dracano",
- "name": "Dracano" },
-{ "id": "elub_shore",
- "name": "Elub Shore" },
-{ "id": "desert_warpath",
- "name": "Fiery Warpath" },
-{ "id": "floating_islands",
- "name": "Floating Islands" },
-{ "id": "forbidden_grove",
- "name": "Forbidden Grove" },
-{ "id": "foreword_farm",
- "name": "Foreword Farm" },
-{ "id": "fort_rox",
- "name": "Fort Rox" },
-{ "id": "fungal_cavern",
- "name": "Fungal Cavern" },
-{ "id": "rift_furoma",
- "name": "Furoma Rift" },
-{ "id": "rift_gnawnia",
- "name": "Gnawnia Rift" },
-{ "id": "train_station",
- "name": "Gnawnian Express Station" },
-{ "id": "winter_hunt_workshop",
- "name": "Golem Workshop" },
-{ "id": "great_gnarled_tree",
- "name": "Great Gnarled Tree" },
-{ "id": "harbour",
- "name": "Harbour" },
-{ "id": "winter_hunt_fortress",
- "name": "Ice Fortress" },
-{ "id": "iceberg",
- "name": "Iceberg" },
-{ "id": "jungle_of_dread",
- "name": "Jungle of Dread" },
-{ "id": "kings_arms",
- "name": "King's Arms" },
-{ "id": "kings_gauntlet",
- "name": "King's Gauntlet" },
-{ "id": "laboratory",
- "name": "Laboratory" },
-{ "id": "labyrinth",
- "name": "Labyrinth" },
-{ "id": "lagoon",
- "name": "Lagoon" },
-{ "id": "desert_oasis",
- "name": "Living Garden" },
-{ "id": "lost_city",
- "name": "Lost City" },
-{ "id": "meadow",
- "name": "Meadow" },
-{ "id": "meditation_room",
- "name": "Meditation Room" },
-{ "id": "mountain",
- "name": "Mountain" },
-{ "id": "mousoleum",
- "name": "Mousoleum" },
-{ "id": "moussu_picchu",
- "name": "Moussu Picchu" },
-{ "id": "desert_city",
- "name": "Muridae Market" },
-{ "id": "nerg_plains",
- "name": "Nerg Plains" },
-{ "id": "pinnacle_chamber",
- "name": "Pinnacle Chamber" },
-{ "id": "queso_plains",
- "name": "Prickly Plains" },
-{ "id": "prologue_pond",
- "name": "Prologue Pond" },
-{ "id": "queso_geyser",
- "name": "Queso Geyser" },
-{ "id": "queso_river",
- "name": "Queso River" },
-{ "id": "ss_huntington_ii",
- "name": "S.S. Huntington IV" },
-{ "id": "sand_dunes",
- "name": "Sand Dunes" },
-{ "id": "seasonal_garden",
- "name": "Seasonal Garden" },
-{ "id": "slushy_shoreline",
- "name": "Slushy Shoreline" },
-{ "id": "sunken_city",
- "name": "Sunken City" },
-{ "id": "table_of_contents",
- "name": "Table of Contents" },
-{ "id": "tournament_hall",
- "name": "Tournament Hall" },
-{ "id": "town_of_digby",
- "name": "Town of Digby" },
-{ "id": "town_of_gnawnia",
- "name": "Town of Gnawnia" },
-{ "id": "pollution_outbreak",
- "name": "Toxic Spill" },
-{ "id": "training_grounds",
- "name": "Training Grounds" },
-{ "id": "rift_valour",
- "name": "Valour Rift" },
-{ "id": "rift_whisker_woods",
- "name": "Whisker Woods Rift" },
-{ "id": "windmill",
- "name": "Windmill" },
-{ "id": "ancient_city",
- "name": "Zokor" },
-{ "id": "zugzwang_tower",
- "name": "Zugzwang's Tower" }
+  {
+    "id": "acolyte_realm",
+    "name": "Acolyte Realm"
+  },
+  {
+    "id": "balacks_cove",
+    "name": "Balack's Cove"
+  },
+  {
+    "id": "bazaar",
+    "name": "Bazaar"
+  },
+  {
+    "id": "bountiful_beanstalk",
+    "name": "Bountiful Beanstalk"
+  },
+  {
+    "id": "rift_bristle_woods",
+    "name": "Bristle Woods Rift"
+  },
+  {
+    "id": "rift_burroughs",
+    "name": "Burroughs Rift"
+  },
+  {
+    "id": "calm_clearing",
+    "name": "Calm Clearing"
+  },
+  {
+    "id": "queso_quarry",
+    "name": "Cantera Quarry"
+  },
+  {
+    "id": "cape_clawed",
+    "name": "Cape Clawed"
+  },
+  {
+    "id": "catacombs",
+    "name": "Catacombs"
+  },
+  {
+    "id": "winter_hunt_grove",
+    "name": "Cinnamon Hill"
+  },
+  {
+    "id": "claw_shot_city",
+    "name": "Claw Shot City"
+  },
+  {
+    "id": "zugzwang_library",
+    "name": "Crystal Library"
+  },
+  {
+    "id": "derr_dunes",
+    "name": "Derr Dunes"
+  },
+  {
+    "id": "dojo",
+    "name": "Dojo"
+  },
+  {
+    "id": "dracano",
+    "name": "Dracano"
+  },
+  {
+    "id": "elub_shore",
+    "name": "Elub Shore"
+  },
+  {
+    "id": "desert_warpath",
+    "name": "Fiery Warpath"
+  },
+  {
+    "id": "floating_islands",
+    "name": "Floating Islands"
+  },
+  {
+    "id": "forbidden_grove",
+    "name": "Forbidden Grove"
+  },
+  {
+    "id": "foreword_farm",
+    "name": "Foreword Farm"
+  },
+  {
+    "id": "fort_rox",
+    "name": "Fort Rox"
+  },
+  {
+    "id": "fungal_cavern",
+    "name": "Fungal Cavern"
+  },
+  {
+    "id": "rift_furoma",
+    "name": "Furoma Rift"
+  },
+  {
+    "id": "rift_gnawnia",
+    "name": "Gnawnia Rift"
+  },
+  {
+    "id": "train_station",
+    "name": "Gnawnian Express Station"
+  },
+  {
+    "id": "winter_hunt_workshop",
+    "name": "Golem Workshop"
+  },
+  {
+    "id": "great_gnarled_tree",
+    "name": "Great Gnarled Tree"
+  },
+  {
+    "id": "harbour",
+    "name": "Harbour"
+  },
+  {
+    "id": "winter_hunt_fortress",
+    "name": "Ice Fortress"
+  },
+  {
+    "id": "iceberg",
+    "name": "Iceberg"
+  },
+  {
+    "id": "jungle_of_dread",
+    "name": "Jungle of Dread"
+  },
+  {
+    "id": "kings_arms",
+    "name": "King's Arms"
+  },
+  {
+    "id": "kings_gauntlet",
+    "name": "King's Gauntlet"
+  },
+  {
+    "id": "laboratory",
+    "name": "Laboratory"
+  },
+  {
+    "id": "labyrinth",
+    "name": "Labyrinth"
+  },
+  {
+    "id": "lagoon",
+    "name": "Lagoon"
+  },
+  {
+    "id": "desert_oasis",
+    "name": "Living Garden"
+  },
+  {
+    "id": "lost_city",
+    "name": "Lost City"
+  },
+  {
+    "id": "meadow",
+    "name": "Meadow"
+  },
+  {
+    "id": "meditation_room",
+    "name": "Meditation Room"
+  },
+  {
+    "id": "mountain",
+    "name": "Mountain"
+  },
+  {
+    "id": "mousoleum",
+    "name": "Mousoleum"
+  },
+  {
+    "id": "moussu_picchu",
+    "name": "Moussu Picchu"
+  },
+  {
+    "id": "desert_city",
+    "name": "Muridae Market"
+  },
+  {
+    "id": "nerg_plains",
+    "name": "Nerg Plains"
+  },
+  {
+    "id": "pinnacle_chamber",
+    "name": "Pinnacle Chamber"
+  },
+  {
+    "id": "queso_plains",
+    "name": "Prickly Plains"
+  },
+  {
+    "id": "prologue_pond",
+    "name": "Prologue Pond"
+  },
+  {
+    "id": "queso_geyser",
+    "name": "Queso Geyser"
+  },
+  {
+    "id": "queso_river",
+    "name": "Queso River"
+  },
+  {
+    "id": "ss_huntington_ii",
+    "name": "S.S. Huntington IV"
+  },
+  {
+    "id": "sand_dunes",
+    "name": "Sand Dunes"
+  },
+  {
+    "id": "seasonal_garden",
+    "name": "Seasonal Garden"
+  },
+  {
+    "id": "slushy_shoreline",
+    "name": "Slushy Shoreline"
+  },
+  {
+    "id": "sunken_city",
+    "name": "Sunken City"
+  },
+  {
+    "id": "table_of_contents",
+    "name": "Table of Contents"
+  },
+  {
+    "id": "tournament_hall",
+    "name": "Tournament Hall"
+  },
+  {
+    "id": "town_of_digby",
+    "name": "Town of Digby"
+  },
+  {
+    "id": "town_of_gnawnia",
+    "name": "Town of Gnawnia"
+  },
+  {
+    "id": "pollution_outbreak",
+    "name": "Toxic Spill"
+  },
+  {
+    "id": "training_grounds",
+    "name": "Training Grounds"
+  },
+  {
+    "id": "rift_valour",
+    "name": "Valour Rift"
+  },
+  {
+    "id": "rift_whisker_woods",
+    "name": "Whisker Woods Rift"
+  },
+  {
+    "id": "windmill",
+    "name": "Windmill"
+  },
+  {
+    "id": "ancient_city",
+    "name": "Zokor"
+  },
+  {
+    "id": "zugzwang_tower",
+    "name": "Zugzwang's Tower"
+  }
 ]

@@ -1,174 +1,174 @@
 [
   {
-      "id": "common",
-      "name": "Indigenous Mice"
+    "id": "common",
+    "name": "Indigenous Mice"
   },
   {
-      "id": "dock",
-      "name": "Dock Dwellers"
+    "id": "dock",
+    "name": "Dock Dwellers"
   },
   {
-      "id": "mountain",
-      "name": "Mountain Mice"
+    "id": "mountain",
+    "name": "Mountain Mice"
   },
   {
-      "id": "forest",
-      "name": "Forest Guild"
+    "id": "forest",
+    "name": "Forest Guild"
   },
   {
-      "id": "lab",
-      "name": "Lab Experiments"
+    "id": "lab",
+    "name": "Lab Experiments"
   },
   {
-      "id": "shadow",
-      "name": "Shadow Clan"
+    "id": "shadow",
+    "name": "Shadow Clan"
   },
   {
-      "id": "dirt",
-      "name": "Digby Dirt Dwellers"
+    "id": "dirt",
+    "name": "Digby Dirt Dwellers"
   },
   {
-      "id": "furoma",
-      "name": "Followers of Furoma"
+    "id": "furoma",
+    "name": "Followers of Furoma"
   },
   {
-      "id": "forgotten",
-      "name": "The Forgotten Mice"
+    "id": "forgotten",
+    "name": "The Forgotten Mice"
   },
   {
-      "id": "hydro",
-      "name": "Aquatic Order"
+    "id": "hydro",
+    "name": "Aquatic Order"
   },
   {
-      "id": "elub",
-      "name": "The Elub Tribe"
+    "id": "elub",
+    "name": "The Elub Tribe"
   },
   {
-      "id": "nerg",
-      "name": "The Nerg Tribe"
+    "id": "nerg",
+    "name": "The Nerg Tribe"
   },
   {
-      "id": "derr",
-      "name": "The Derr Tribe"
+    "id": "derr",
+    "name": "The Derr Tribe"
   },
   {
-      "id": "dread",
-      "name": "The Dreaded Horde"
+    "id": "dread",
+    "name": "The Dreaded Horde"
   },
   {
-      "id": "dracaonic",
-      "name": "Draconic Brood"
+    "id": "dracaonic",
+    "name": "Draconic Brood"
   },
   {
-      "id": "balack",
-      "name": "Balack's Banished"
+    "id": "balack",
+    "name": "Balack's Banished"
   },
   {
-      "id": "gauntlet",
-      "name": "Gauntlet Gladiators"
+    "id": "gauntlet",
+    "name": "Gauntlet Gladiators"
   },
   {
-      "id": "seasonal",
-      "name": "Seasonal Soldiers"
+    "id": "seasonal",
+    "name": "Seasonal Soldiers"
   },
   {
-      "id": "chess",
-      "name": "Wizard's Pieces"
+    "id": "chess",
+    "name": "Wizard's Pieces"
   },
   {
-      "id": "zzlibrary",
-      "name": "Zurreal's Breed"
+    "id": "zzlibrary",
+    "name": "Zurreal's Breed"
   },
   {
-      "id": "iceberg",
-      "name": "Icewing's Invasion"
+    "id": "iceberg",
+    "name": "Icewing's Invasion"
   },
   {
-      "id": "wild_bunch",
-      "name": "Wild Bunch"
+    "id": "wild_bunch",
+    "name": "Wild Bunch"
   },
   {
-      "id": "train_robbers",
-      "name": "Train Robbers"
+    "id": "train_robbers",
+    "name": "Train Robbers"
   },
   {
-      "id": "fort_rox",
-      "name": "Meteorite Miners"
+    "id": "fort_rox",
+    "name": "Meteorite Miners"
   },
   {
-      "id": "desertarmy",
-      "name": "The Marching Flame"
+    "id": "desertarmy",
+    "name": "The Marching Flame"
   },
   {
-      "id": "desertmarket",
-      "name": "Muridae Market Mice"
+    "id": "desertmarket",
+    "name": "Muridae Market Mice"
   },
   {
-      "id": "living_garden",
-      "name": "Living Garden Mice"
+    "id": "living_garden",
+    "name": "Living Garden Mice"
   },
   {
-      "id": "lost_city",
-      "name": "Lost City Mice"
+    "id": "lost_city",
+    "name": "Lost City Mice"
   },
   {
-      "id": "sand_dunes",
-      "name": "Sand Dunes Mice"
+    "id": "sand_dunes",
+    "name": "Sand Dunes Mice"
   },
   {
-      "id": "queso_canyon",
-      "name": "Queso Canyoneers"
+    "id": "queso_canyon",
+    "name": "Queso Canyoneers"
   },
   {
-      "id": "deep_sea_dwellers",
-      "name": "Deep Sea Dwellers"
+    "id": "deep_sea_dwellers",
+    "name": "Deep Sea Dwellers"
   },
   {
-      "id": "fungal_cavern",
-      "name": "Fungal Fiends"
+    "id": "fungal_cavern",
+    "name": "Fungal Fiends"
   },
   {
-      "id": "ancient_city",
-      "name": "Citizens of Zokor"
+    "id": "ancient_city",
+    "name": "Citizens of Zokor"
   },
   {
-      "id": "moussu_picchu",
-      "name": "Moussu Picchu Inhabitants"
+    "id": "moussu_picchu",
+    "name": "Moussu Picchu Inhabitants"
   },
   {
-      "id": "floating_island",
-      "name": "Floating Islanders"
+    "id": "floating_island",
+    "name": "Floating Islanders"
   },
   {
-      "id": "foreword_farm",
-      "name": "Foreword Farmers"
+    "id": "foreword_farm",
+    "name": "Foreword Farmers"
   },
   {
-      "id": "prologue_pond",
-      "name": "Prologue Pond Prowlers"
+    "id": "prologue_pond",
+    "name": "Prologue Pond Prowlers"
   },
   {
-      "id": "table_of_contents",
-      "name": "Storytellers"
+    "id": "table_of_contents",
+    "name": "Storytellers"
   },
   {
-      "id": "bountiful_beanstalk",
-      "name": "Beanstalkers"
+    "id": "bountiful_beanstalk",
+    "name": "Beanstalkers"
   },
   {
-      "id": "rift_walkers",
-      "name": "Rift Walkers"
+    "id": "rift_walkers",
+    "name": "Rift Walkers"
   },
   {
-      "id": "rift_stalkers",
-      "name": "Rift Stalkers"
+    "id": "rift_stalkers",
+    "name": "Rift Stalkers"
   },
   {
-      "id": "polluted",
-      "name": "The Polluted"
+    "id": "polluted",
+    "name": "The Polluted"
   },
   {
-      "id": "event",
-      "name": "Event Mice"
+    "id": "event",
+    "name": "Event Mice"
   }
 ]
