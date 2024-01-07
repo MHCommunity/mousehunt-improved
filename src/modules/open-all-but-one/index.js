@@ -64,33 +64,7 @@ const addOpenAllButOneButton = () => {
     newButton.classList.add('open-all-but-one');
     newButton.textContent = 'All but One';
     newButton.value = 'All but One';
-
     newButton.setAttribute('data-item-action', 'all-but-one');
-
-    const itemType = item.getAttribute('data-item-type');
-
-    const maxQuantityEl = item.querySelector(`.inventoryPage-item[data-item-type="${itemType}"] .inventoryPage-item-imageContainer .quantity`);
-    const maxQuantity = maxQuantityEl ? Number.parseInt(maxQuantityEl.textContent, 10) : 0;
-
-    // newButton.addEventListener('click', (e) => {
-    //   console.log('click');
-    //   e.preventDefault();
-
-    //   hg.views.ItemView.show(itemType);
-
-    //   const interval = setInterval(() => {
-    //     quantityInput = getQuantityInput();
-    //     if (quantityInput) {
-    //       clearInterval(interval);
-    //       quantityInput.value = maxQuantity - 1;
-
-    //       const useButton = document.querySelector('.itemView-action-convert-actionButton');
-    //       if (useButton) {
-    //         useButton.click();
-    //       }
-    //     }
-    //   }, 100);
-    // });
 
     button.parentNode.insertBefore(newButton, button.nextSibling);
   });
