@@ -1,4 +1,4 @@
-import { CSSMinifyTextPlugin, sharedBuildOptions } from './shared.mjs';
+import { CSSMinifyTextPlugin, JSONMinifyPlugin, sharedBuildOptions } from './shared.mjs';
 
 import * as esbuild from 'esbuild';
 import fs from 'node:fs';
@@ -10,7 +10,7 @@ const header = fs.readFileSync(
 
 await esbuild.build({
   ...sharedBuildOptions,
-  plugins: [CSSMinifyTextPlugin],
+  plugins: [CSSMinifyTextPlugin, JSONMinifyPlugin],
   outfile: 'dist/mousehunt-improved.user.js',
   minify: false,
   sourcemap: false,

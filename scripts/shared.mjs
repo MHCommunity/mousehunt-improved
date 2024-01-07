@@ -18,6 +18,23 @@ const CSSMinifyTextPlugin = {
   }
 };
 
+const JSONMinifyPlugin = {
+  name: 'JSONMinifyPlugin',
+  setup(build) { // eslint-disable-line jsdoc/require-jsdoc
+    build.onLoad({ filter: /\.json$/ }, async (args) => {
+      const f = await readFile(args.path);
+      const json = await esbuild.transform(f, {
+        loader: 'json',
+        minify: true,
+      });
+      return {
+        loader: 'text',
+        contents: json.code,
+      };
+    });
+  }
+};
+
 const sharedBuildOptions = {
   entryPoints: ['src/index.js'],
   platform: 'browser',
@@ -36,5 +53,6 @@ const sharedBuildOptions = {
 
 export {
   CSSMinifyTextPlugin,
+  JSONMinifyPlugin,
   sharedBuildOptions
 };
