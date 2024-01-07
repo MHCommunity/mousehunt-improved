@@ -5,7 +5,6 @@ import {
   debug,
   getCurrentLocation,
   getSettingDirect,
-  makeElement,
   onDialogHide,
   onTravel,
   saveSettingDirect
