@@ -834,11 +834,6 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
   transition: all 0.2s ease-in-out;
 }
 
-/* hover transition */
-.greatWinterHuntGolemDestinationView__environment:hover .greatWinterHuntGolemDestinationView__environmentImage {
-  background-position: 71% 52%;
-}
-
 /* less distracting new year's button */
 .headsUpDisplayWinterHuntRegionView__newYearsButton--active {
   opacity: 0.8;
