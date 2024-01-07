@@ -7,7 +7,9 @@
   padding-left: 5px;
 }
 
-.campPage-trap-trapEffectiveness-mouse:hover {
+.campPage-trap-trapEffectiveness-mouse:hover,
+.campPage-trap-trapEffectiveness-mouse:focus,
+.campPage-trap-trapEffectiveness-mouse:active {
   border: none;
   outline: 1px solid #ccc;
 }

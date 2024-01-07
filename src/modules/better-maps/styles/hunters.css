@@ -30,7 +30,9 @@
   border-radius: 50%;
 }
 
-.treasureMapDialogView-deleteInviteRequest.reject-invite-request:hover {
+.treasureMapDialogView-deleteInviteRequest.reject-invite-request:hover,
+.treasureMapDialogView-deleteInviteRequest.reject-invite-request:focus,
+.treasureMapDialogView-deleteInviteRequest.reject-invite-request:active {
   text-decoration: none;
   background-color: #a3a3a3;
 }

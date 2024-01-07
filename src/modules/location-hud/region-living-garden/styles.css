@@ -27,12 +27,16 @@
   opacity: 0.9;
 }
 
-.livingGardenHud .essenceContainer .item:hover {
+.livingGardenHud .essenceContainer .item:hover,
+.livingGardenHud .essenceContainer .item:focus,
+.livingGardenHud .essenceContainer .item:active {
   border-radius: 10px;
   box-shadow: inset 0 0 5px 2px #8cffde;
 }
 
-.livingGardenHud .essenceContainer .item:first-child:hover {
+.livingGardenHud .essenceContainer .item:first-child:hover,
+.livingGardenHud .essenceContainer .item:first-child:focus,
+.livingGardenHud .essenceContainer .item:first-child:active {
   width: 24px;
   padding-right: 2px;
   padding-left: 16px;

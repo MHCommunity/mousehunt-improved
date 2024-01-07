@@ -60,7 +60,6 @@ input.treasureMapView-shareLinkInput {
   flex-direction: row-reverse;
   gap: 5px;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 .rewards .treasureMapView-mapMenu-group-content {
@@ -68,6 +67,10 @@ input.treasureMapView-shareLinkInput {
   flex-wrap: wrap;
   justify-content: flex-end;
   max-width: 335px;
+}
+
+.max_hunters_10 .rewards .treasureMapView-mapMenu-group-content {
+  max-width: 200px;
 }
 
 .rewards .treasureMapView-mapMenu-auraIcon {
@@ -103,6 +106,10 @@ input.treasureMapView-shareLinkInput {
 
 .treasureMapView-mapMenu-mapIcon {
   width: 45px;
+}
+
+.max_hunters_10 .treasureMapView-mapMenu-mapIcon {
+  width: 80px;
 }
 
 img.treasureMapView-reward-chestIcon {
@@ -577,8 +584,12 @@ input.treasureMapView-block-search-text {
   background: #f2eb6f;
 }
 
-.treasureMapView-hunter.captain .treasureMapView-hunter-image {
-  box-shadow: 0 0 2px 2px #eae7e7;
+.treasureMapView-hunter.upgrader .treasureMapView-hunter-image {
+  box-shadow: 0 0 1px 3px #ffb40c;
+}
+
+.treasureMapView-hunter-miceCaught.active {
+  background-color: #eee;
 }
 
 .mh-dark-mode .pageFrameView .treasureMapView-rightBlock {
@@ -689,6 +700,10 @@ input.treasureMapView-block-search-text {
   margin-bottom: 30px;
 }
 
+.treasureMapView-mapMenu.treasureMapRootView-padding.max_hunters_10 {
+  margin-bottom: 50px;
+}
+
 .mh-ui-we-did-it-title {
   display: none;
 }
@@ -728,4 +743,12 @@ input.treasureMapView-block-search-text {
   align-items: center;
   justify-content: flex-start;
   text-align: left;
+}
+
+.treasureMapDialogView-environmentGoals {
+  max-height: unset;
+}
+
+.treasureMapView-hunter-icon {
+  top: -9px;
 }

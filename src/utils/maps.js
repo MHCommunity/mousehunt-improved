@@ -78,6 +78,30 @@ const setMapData = (mapId, theMapData) => {
   sessionStorage.setItem('mh-improved-map-cache-last-map', JSON.stringify(theMapData));
 };
 
+const getLastMaptain = () => {
+  return sessionStorage.getItem('mh-improved-last-maptain');
+};
+
+const setLastMaptain = (id) => {
+  sessionStorage.setItem('mh-improved-last-maptain', id);
+};
+
+const cacheFinishedMap = async () => {
+  const completedMap = user.quests.QuestRelicHunter.maps.find((map) => map.is_complete);
+  if (! completedMap?.map_id) {
+    return;
+  }
+
+  const data = getMapData(completedMap.map_id);
+  if (! data) {
+    return;
+  }
+
+  const maptain = data.hunters.find((hunter) => hunter.captain);
+
+  setLastMaptain(maptain.user_id || '');
+};
+
 const showTravelConfirmation = (environment, theMapModel) => {
   const environmentData = theMapModel.getEnvironmentById(environment.id);
   const environmentGoals = theMapModel.getGoalsByEnvironment(environment.id);
@@ -285,17 +309,17 @@ const getArEl = async (id, type = 'mouse') => {
   let arDifficulty = 'easy';
   if (ar >= 99) {
     arDifficulty = 'guaranteed';
-  } else if (ar >= 80) {
+  } else if (ar >= 78) {
     arDifficulty = 'super-easy';
-  } else if (ar >= 50) {
+  } else if (ar >= 48) {
     arDifficulty = 'easy';
-  } else if (ar >= 40) {
+  } else if (ar >= 38) {
     arDifficulty = 'medium';
-  } else if (ar >= 20) {
+  } else if (ar >= 18) {
     arDifficulty = 'hard';
-  } else if (ar >= 10) {
+  } else if (ar >= 8) {
     arDifficulty = 'super-hard';
-  } else if (ar >= 5) {
+  } else if (ar >= 3) {
     arDifficulty = 'extreme';
   } else {
     arDifficulty = 'impossible';
@@ -441,5 +465,8 @@ export {
   showTravelConfirmation,
   getArEl,
   getArForMouse,
-  getHighestArForMouse
+  getHighestArForMouse,
+  getLastMaptain,
+  setLastMaptain,
+  cacheFinishedMap
 };

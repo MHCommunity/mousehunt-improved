@@ -51,7 +51,7 @@ const main = async () => {
     return;
   }
 
-  console.log(`Checking ${groups.length} maps...`);
+  console.log(`Checking ${groups.length} maps …`);
 
   groups.forEach((key) => {
     const categories = mapGroups[key].categories;

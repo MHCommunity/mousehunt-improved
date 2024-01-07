@@ -21,7 +21,10 @@ const makeElement = (tag, classes = '', text = '', appendTo = null) => {
     classes = classes.join(' ');
   }
 
-  element.className = classes;
+  if (classes) {
+    element.className = classes;
+  }
+
   element.innerHTML = text;
 
   if (appendTo) {

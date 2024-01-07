@@ -9,21 +9,30 @@ import twitter from './modules/twitter';
  * Initialize the module.
  */
 const init = async () => {
-  const features = [
+  const defaultDisabledFeatures = [
     { id: 'lol-gottem', load: trollMode },
     { id: 'twitter', load: twitter },
-    { id: 'rankup-forecaster', load: rankupForecaster },
     { id: 'birthday-horn', load: () => eventHorn('birthday') },
     { id: 'halloween-horn', load: () => eventHorn('halloween') },
     { id: 'lunar-new-year-horn', load: () => eventHorn('lunar-new-year') },
     { id: 'great-winter-hunt-horn', load: () => eventHorn('greatWinterHunt') },
   ];
 
-  for (const feature of features) {
+  const defaultEnabledFeatures = [
+    { id: 'rank-up-forecaster', load: rankupForecaster },
+  ];
+
+  defaultDisabledFeatures.forEach((feature) => {
     if (getFlag(feature.id)) {
       feature.load();
     }
-  }
+  });
+
+  defaultEnabledFeatures.forEach((feature) => {
+    if (! getFlag(feature.id)) {
+      feature.load();
+    }
+  });
 };
 
 export default {

@@ -22,9 +22,9 @@ const isApp = () => {
  *
  * @return {boolean} Whether we're in an image.
  */
-const isImage = (path = false) => {
+const isUnsupportedFile = (path = false) => {
   path = path || window.location.pathname;
-  return path.match(/\.(jpeg|jpg|gif|png|svg)$/);
+  return path.match(/\.(jpeg|jpg|gif|png|svg|json)$/i);
 };
 
 /**
@@ -228,7 +228,7 @@ export {
   getTradableItems,
   isApp,
   isiFrame,
-  isImage,
+  isUnsupportedFile,
   isLegacyHUD,
   isLoggedIn,
   isOverlayVisible,

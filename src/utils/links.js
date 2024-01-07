@@ -149,7 +149,8 @@ const addSubmenuItem = (options) => {
     exists.remove();
   }
 
-  item.id = `custom-submenu-item-${cleanLabel}`;
+  item.id = settings.id ? `custom-submenu-item-${settings.id}` : `custom-submenu-item-${cleanLabel}`;
+
   if (settings.class) {
     const classes = settings.class.split(' ');
     item.classList.add(...classes);
@@ -174,7 +175,7 @@ const addSubmenuItem = (options) => {
   // Create the label.
   const name = document.createElement('div');
   name.classList.add('name');
-  name.innerText = settings.label;
+  name.innerHTML = settings.label;
 
   // Add the icon and label to the link.
   link.append(icon);

@@ -1,6 +1,7 @@
 import { addStyles } from '@utils';
 
 import general from './general.css';
+import helper from './helper.css';
 import hunters from './hunters.css';
 import mapArea from './map-ar.css';
 import mhct from './mhct.css';
@@ -12,6 +13,7 @@ import userscripts from './userscripts.css';
 const main = () => {
   addStyles([
     general,
+    helper,
     hunters,
     mapArea,
     mhct,

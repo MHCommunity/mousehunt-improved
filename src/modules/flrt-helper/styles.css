@@ -1,0 +1,191 @@
+.mh-improved-flrt-helper-popup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.mh-improved-flrt-helper-popup .flrt-search-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #e0f9ff;
+  border: 1px solid #a1a1a1;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px -1px #b5b5b5;
+}
+
+.mh-improved-flrt-helper-popup .flrt-friend-finder {
+  display: flex;
+  flex-direction: column;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow.friendsPage-requestRow {
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px #cdb495;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-imageContainer {
+  width: 75px;
+  height: 75px;
+  margin-left: 3px;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-content {
+  max-width: 226px;
+  min-height: 75px;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar-icon {
+  top: -10px;
+  left: 0;
+  height: 35px;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar-name {
+  padding-left: 15px;
+  font-size: 14px;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar {
+  padding-left: 20px;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar-titleDetail {
+  left: 7px;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-environment {
+  position: relative;
+  margin-left: -10px;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-environment-icon {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-environment-name {
+  position: absolute;
+  left: 25px;
+  font-size: 10px;
+  vertical-align: top;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow .friendsPage-friendRow-actions {
+  top: 40px;
+  right: 0;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-actions-interactionButtons {
+  padding-right: 0;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-actions .mousehuntTooltip,
+.mh-improved-flrt-helper-popup .friendsPage-requestRow-actionStatus.accepted,
+.mh-improved-flrt-helper-popup .userInteractionButtonsView-action[data-action="send_daily_gift"],
+.mh-improved-flrt-helper-popup .userInteractionButtonsView-action[data-action="send_draw_ballot"] {
+  display: none !important;
+}
+
+.mh-improved-flrt-helper-popup .userInteractionButtonsView-button {
+  width: 45px;
+  height: 45px;
+  background-size: 45px;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-statsContainer {
+  border-radius: 0;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat.map,
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat.team,
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat-label {
+  display: none !important;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat.online span {
+  width: auto;
+}
+
+.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat {
+  width: auto;
+  margin-right: 10px;
+}
+
+.mh-improved-flrt-helper-popup .instructions {
+  padding: 10px;
+  margin-top: auto;
+  font-style: italic;
+}
+
+.mh-improved-flrt-helper-popup .flrt-items-to-send {
+  min-width: 80%;
+}
+
+.mh-improved-flrt-helper-popup .flrt-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px -1px #b5b5b5;
+}
+
+.mh-improved-flrt-helper-popup .flrt-item .itemImage,
+.mh-improved-flrt-helper-popup .flrt-item .itemImage img {
+  width: 45px;
+  height: 45px;
+}
+
+.mh-improved-flrt-helper-popup .flrt-item-info {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.mh-improved-flrt-helper-popup .flrt-item-name {
+  font-weight: 900;
+  vertical-align: top;
+}
+
+.mh-improved-flrt-helper-popup .flrt-item-disabled .itemImage {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+.mh-improved-flrt-helper-popup .flrt-item-info input[type="checkbox"]:disabled {
+  opacity: 0;
+}
+
+.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sending {
+  background-color: #f3c019;
+}
+
+.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent {
+  position: relative;
+  background-color: #3fcd84;
+}
+
+.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent::after {
+  position: absolute;
+  right: 0;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  margin-bottom: -2px;
+  vertical-align: middle;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}

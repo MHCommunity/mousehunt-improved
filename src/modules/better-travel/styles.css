@@ -338,3 +338,9 @@
 .mh-improved-better-travel-favorite-location:focus::after {
   opacity: 0.1;
 }
+
+.mh-improved-better-travel-menu-item .name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

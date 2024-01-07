@@ -131,6 +131,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 
 ### Feature Modules
 
+- Catch Rate Estimator
+  - Shows the minluck and estimated catch rate for each mouse on the Camp page.
+
 - Copy ID Button
   - Hover over your profile picture in the HUD for a quick 'Copy ID to clipboard' button.
 
@@ -140,8 +143,14 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Dark Mode Improvements & Tweaks
   - Minor changes to the Dark Mode extension (either standalone or the MHCT built-in).
 
+- Data Exporters
+  - Export mouse catch stats, inventory, scoreboard standings, and more to JSON or CSV files.
+
 - Delayed Tooltips
   - Adds a delay to tooltips so they don't show up immediately when you hover over something.
+
+- FLRT Helper
+  - Easily return tradeable items to a maptain when opening the chest from a Free Leech Return Tradeables map.
 
 - Hover Profiles
   - Hover over a friend's name in your journal, inbox, or elsewhere and get a mini-profile popup with all their stats, interaction buttons, and everything you'd expect.

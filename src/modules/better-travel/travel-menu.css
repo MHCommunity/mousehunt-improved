@@ -1,0 +1,113 @@
+.mh-improved-travel-window.greatWinterHuntGolemDestinationView {
+  padding: 10px 0;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__content {
+  align-items: flex-start;
+  margin-right: 5px;
+  background-color: transparent;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environmentsScroller {
+  height: auto;
+  min-height: 425px;
+  max-height: 50vh;
+  padding: 0 0 10px 5px;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__regionEnvironments {
+  gap: 15px 6px;
+  justify-content: space-between;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__regionsContainer {
+  display: none;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__regionName {
+  margin: 10px 0;
+  font-size: 16px;
+  text-align: center;
+  border: none;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment {
+  width: 150px;
+  overflow: hidden;
+  border: 1px solid #b4a481;
+  box-shadow: 0 2px 2px 0 #7d7d7d;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__regionGroup {
+  margin: 0;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environmentName {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  height: 20px;
+  background-color: rgb(255 255 255 / 90%);
+  border-radius: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environmentName span {
+  padding: 5px;
+  text-align: center;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environmentImage {
+  border-radius: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:hover .greatWinterHuntGolemDestinationView__environmentImage,
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:focus .greatWinterHuntGolemDestinationView__environmentImage {
+  background-position-y: 30%;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:hover .greatWinterHuntGolemDestinationView__environmentName,
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:focus .greatWinterHuntGolemDestinationView__environmentName {
+  background-color: #fff;
+}
+
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment[data-environment-type="train_station"] .greatWinterHuntGolemDestinationView__environmentName span {
+  font-size: 10px;
+}
+
+.mh-improved-travel-window-footer {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 330px;
+}
+
+.mh-improved-travel-window-edit {
+  padding: 0 15px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.mh-improved-travel-window--editing {
+  border-radius: 5px;
+  outline: 3px solid #f37c7c;
+}
+
+.mh-improved-travel-window-description,
+.mh-improved-travel-window-hidden {
+  display: none;
+}
+
+.mh-improved-travel-window--editing .mh-improved-travel-window-hidden {
+  display: block;
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+
+.mh-improved-travel-window--editing .mh-improved-travel-window-description {
+  display: inline-block;
+}

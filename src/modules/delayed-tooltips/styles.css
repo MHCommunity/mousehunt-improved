@@ -7,3 +7,9 @@
   opacity: 0;
   transition: opacity 0s linear 0.4s;
 }
+
+.PageHunterProfile .userInteractionButtonsView-button .mousehuntTooltip {
+  display: none;
+  opacity: unset;
+  transition: unset;
+}

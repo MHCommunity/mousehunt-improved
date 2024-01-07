@@ -31,7 +31,7 @@
 }
 
 .mh-dark-mode .item_set {
-  background-color: (--mhdm-black);
+  background-color: var(--mhdm-black);
 }
 
 .mh-dark-mode .itemPurchaseView-action-goldGost {
@@ -128,4 +128,12 @@
 
 .mh-dark-mode .marketplaceMyListings s {
   color: #969696;
+}
+
+.mh-dark-mode .pageFrameView .itemViewStatBlock .itemViewStatBlock-stat-label {
+  background-color: transparent;
+}
+
+.mh-dark-mode.shopCustomization .itemViewStatBlock-stat {
+  border-color: #404040;
 }

@@ -39,6 +39,8 @@
 .journal .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted,
 .journal .entry.folkloreForest.folkloreForest-lootFuelBoost,
 .journal .entry.folkloreForest-farmToTable,
+.journal .entry.snowball_showdown_claim_prize,
+.journal .entry.snowball_showdown_completed,
 .journal .entry.folkloreForest-tableOfContents.folkloreForest-bookFinished {
   background-position: 10px center;
 }
@@ -50,6 +52,8 @@
 /* gotta love !important */
 .entry.short.misc.custom.winterTaiga.festiveSpiritLootBoost.minimalJournalImage,
 .entry.short.misc.custom.winterTaiga.workshopPartProduced.minimalJournalImage,
+.entry.short.misc.custom.winterTaiga.frostKingDefeated.minimalJournalImage,
+.entry.short.misc.custom.winterTaiga.shieldDestroyed.minimalJournalImage,
 .entry.short.misc.custom.winterTaiga.shieldDamaged.minimalJournalImage {
   background-position: 10px center !important;
   background-size: 50px !important;

@@ -16,7 +16,7 @@ export default function (module) {
       { name: 'Birthday (Year 14)', value: 'birthday.year14' },
       { name: 'Birthday (Year 15)', value: 'birthday.year15' },
       { name: 'Birthday', value: 'birthday' },
-      { name: 'Great Winter Hunter', value: 'winter_hunt' },
+      { name: 'Great Winter Hunt', value: 'winter_hunt' },
       { name: 'Halloween', value: 'halloween' },
       { name: 'Larry\'s Football Challenge', value: 'larrys_football_challenge' },
       { name: 'Pride (LGS Required)', value: 'pride' },

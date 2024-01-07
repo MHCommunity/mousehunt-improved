@@ -56,7 +56,9 @@
   font-size: 11px;
 }
 
-#supplytransfer .categoryMenu a:hover {
+#supplytransfer .categoryMenu a:hover,
+#supplytransfer .categoryMenu a:focus,
+#supplytransfer .categoryMenu a:active {
   padding-left: 5px;
   margin-left: -5px;
   text-decoration: none;

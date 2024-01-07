@@ -26,6 +26,18 @@ const addItemToQuickLinks = (link, appendTo, filter, sortDropdown) => {
 
   item.addEventListener('click', (e) => {
     e.preventDefault();
+
+    // If it's already active, remove it.
+    if (e.target.classList.contains('active')) {
+      // Update the filter to not filter by this.
+      hiddenInput.value = 'sortBy' === filter ? 'default' : 'no_tag_selected';
+      e.target.classList.remove('active');
+    } else {
+      // Otherwise, update the filter to filter by this.
+      hiddenInput.value = link.id;
+      e.target.classList.add('active');
+    }
+
     app.pages.CampPage.updateFilter(hiddenInput);
     if (sortDropdown) {
       sortDropdown.value = link.id;
@@ -87,7 +99,7 @@ const addQuickLinksToTrap = () => {
 
   favorites.parentNode.insertBefore(quickLinks, favorites.nextSibling);
 
-  if ('weapon' === type || 'base' === type) {
+  if ('weapon' === type) {
     const powerQuickLinks = document.createElement('div');
     powerQuickLinks.classList.add('campPage-trap-itemBrowser-quickLinks', 'campPage-trap-itemBrowser-quickLinks-power');
 

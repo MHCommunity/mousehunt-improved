@@ -208,3 +208,12 @@ div#messengerUINotification {
   margin-top: -30px;
   text-align: left;
 }
+
+#messengerUINotification .notificationMessageList .tab[data-tab="marketplace"] .message .clear-block {
+  order: 1;
+}
+
+#messengerUINotification .notificationMessageList .tab[data-tab="marketplace"] .message .date {
+  order: 3;
+  margin: 10px;
+}

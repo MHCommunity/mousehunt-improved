@@ -1,5 +1,50 @@
 # Changelog
 
+## Version 0.27.0
+
+- Adds Catch Rate Estimator feature.
+- Adds FLRT helper feature.
+- Adds a travel window.
+- Adds more images upscaled images with transparency, including all bases.
+- Hides the advent calendar in the menu if it's not December.
+- Hides "Group: " prefix on mouseviews.
+- Fixes image upscaling borders/sizes.
+- Updates dark mode styles.
+- Adds map refresh functionality.
+- Fixes dark mode styles in Better Shops.
+- Fixes margin and adds hover transition for GWH golem location images.
+- Adds golem destination count to golems.
+- Adds New Year's maps to sorted maps.
+- Adds snowball showdown calculations when hovering over the HUD element.
+- Updates user highlighting, adds a fancy profile for lead dev.
+- Fixes a typo in custom shield settings.
+- Modifies AR rate breakdowns and separates them with styles.
+- Updates map styles for maps with 10 hunters.
+- Aligns King's Reward text better, adds a hover state to the refresh button.
+- Adds a full stop to more journal entries.
+- Aligns more journal entry images.
+- Adds "Arm Now" buttons to all charms in the inventory.
+- Adds a Festive Spirit reminder.
+- Fixes an issue with tooltips on profile pages.
+- Adds wiki/MHCT links to marketplace items.
+- Adds more styles for better UI.
+- Removes the powertype filter from bases, allows toggling active filters.
+- Updates environments to include the article, order, and a 2nd image.
+- Adds more focus/active styles for elements with hover states.
+- Makes the page loading indicator sit on top of the content, rather than a whole white screen
+- Vertically aligns the 'Get More' button in the top menu
+- Hides the 'My Profile' link in the top menu bar
+- Updates padding, font-size, and border for hunter ID search input
+- Adds a change in opacity when hovering over the title progress bar in the stat bar
+- Repositions the shield/title in the stat bar to make the shield bigger
+- Adds subtle shadow to profile image in hud stats bar
+- Aligns marble background to top so that it doesn't jump when changing pages
+- Adds more GWH style tweaks
+- Fixes marketplace inbox alignment
+- Adds start of Better Maps helper beta feature
+- Removes shield z-index
+- Fixes Open All But One button
+
 ## Version 0.26.1
 
 - Adds 1,975 more images to the Image Upscaling list, bringing the total to 4,926 images!
@@ -601,83 +646,178 @@
 
 ## Version  0.13.0
 
--
+- Minor updates and fixes
 
 ## Version  0.12.5
 
--
+- Adds Gnawnia Rift location HUD styles
+- Adds subtabs to mouse menu dropdown
+- Adds King's Crowns to mouse page
+- Moves adblock to it's own feature module
+- Updats Vrift styles
+- Updates team invite window styles
+- Updates team journal list styles
 
 ## Version  0.12.3
 
--
+- Minor updates and fixes
 
 ## Version  0.12.2
 
--
+- Removes testing and debug calls
 
 ## Version  0.12.1
 
--
+- Fixes firefox ID
+- Update mhutils for userscripts
+- Fixes marketplace image border radius
 
 ## Version  0.12.0
 
--
+- Fixes kings cart desc heights
+- Show/hide aura transition
+- Fixes footer border being weird
+- Adds Vrift styles
+- Fixes spacing for vrift mini journals
+- Fixes journal date color
+- Moves vrift sim script to its own file
+- Adds troll feature
+- Updates footer styles
+- Update stat bar to show full name on hover for trinket, map, and bait
+- Fix larryoffice popup overlay
+- Clean up adblock styles
+- Updates environment image to be bigger
+- Add m400 helper
+- Add seasonal garden to Location Dashboard
+- Don't show MHCT rates for party charms
 
 ## Version  0.11.1
 
--
+- Adds close button to item popups
+- Removes duplicate entry in upscaled image mapping
+- Fixes mouse links
+- Removes airship image mapping
+- Update styles
+- Adds full title percent when hovering over progress bar
+- Updates Fort Rox journal entries
+- Fixes flash of unstyled content for copy ID button
+- Updates friend search
+- Fixes quick send supplies showing when they don't accept supplies
+- Adds Zokor styles
 
 ## Version  0.11.0
 
--
+- Updates journal styles
+- Updates Burroughs Rift cheese quantity styles
+- Fixes link in mouse view
 
 ## Version  0.10.0
 
--
+- Fixes adblock module always hiding sidebar
+- Updates no-sidebars feature
+- Cleans up Toxic Spill UI
+- Fixes Ember Stone/Root quantity display
+- Fixes hunter image size in env list
+- Adds consolation prize list to better maps
+- Adds Furoma Rift to Dashboard
+- Adds Toxic Spill to Dashboard
+- Updates styles
+- Adds Ultimate Checkmark feature
+- Adds Travel Tweaks feature
+- Adds Shields feature
+- Adds Minluck and Cre feature
+- Adds Travel Tweaks feature
+- Adds Catch Stats feature
+- Adds Journal Privacy feature
+- Adds Gift Buttons feature
 
 ## Version  0.9.9
 
--
+- Fixes item stats in popup
+- Updates styling
+- Adds Better Send Supplies feature
+- Move map styles to Better Maps feature
+- Updates Burroughs Rift location HUD styles
+- Fixes excess scrolls to top on Friends page
+- Removes broken M400 helper
+- Fixes trap description height
+- Fixes marketplace 'you own' overlap
+- Removes opacity effect on limit 1 shop items when hovering on them
+- Fixes tem bar colors
+- Removes marketplace search width changes
+- Updates footer to visibly align with the left column rather than both columns
+- Aligns arrows for tooltips
+- Adds Burroughs Rift misting indicator
+- Adds iceberg quantity changes
+- Fixes z-index of drill in Iceberg
+- Fixes cheese font weight
+- Fixes mouse name position
+- Fixes bait warning display in Burroughs Rift
+- Fixes Sunken City warning always showing
 
 ## Version  0.9.8
 
--
+- Fixes journal replacements not persisting
 
 ## Version  0.9.7
 
--
+- Updates shop styles
+- Updates Toxic Spill styles
 
 ## Version  0.9.6
 
--
+- Fixes journal not updating
+- Fixes zoom button position
+- Fixes progress log loot and bait widths
+- Updates styles
+- Fixes journal replacements not working
+- Adds recipes improvements
+- Updates Iceberg styles
+- Adds Sunken City styles
+- Fixes map avatars
+- Fixes tournament hover z-index
 
 ## Version  0.9.5
 
--
+- Minor updates and fixes
 
 ## Version  0.9.1
 
--
+- Minor updates and fixes
 
 ## Version  0.9.0
 
--
-
-## Version  0.0.8
-
--
+- Minor updates and fixes
 
 ## Version  0.7.0
 
--
+- Minor updates and fixes
+
+## Version  0.0.8
+
+- Minor updates and fixes
 
 ## Version  0.0.4
 
--
+- Adds Burroughs Rift location HUD
+- Fixes errors with travel events
+- Adds Better Marketplace feature
 
 ## Version  0.2.0
 
--
+- Adds dark mode support
+- Adds Zugzwang's Tower to dashboard
+- Updates dashboard items
+- Updates vrift styles, add some additional UI elements
+- Moves SEH styles to Image Upscaling
+- Moves non-fixes styles to module
+- Moves modules to better names
+- Update module descriptions
+- Updates styles
+- Adds S.S. Huntington IV location HUD
+- Adds Forbidden Grove location HUD
+- Fixes Labyrinth location HUD
+- Adds Quick Filter and Sort feature
 
 ## Version 0.0.1
 

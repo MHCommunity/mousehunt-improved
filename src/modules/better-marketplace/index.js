@@ -2,6 +2,7 @@ import {
   addStyles,
   getSetting,
   makeElement,
+  makeLink,
   onOverlayChange,
   onRequest
 } from '@utils';
@@ -147,6 +148,19 @@ const autocloseClaim = (resp) => {
   }
 };
 
+/**
+ * Get the markup for the mouse links.
+ *
+ * @param {string} name The name of the mouse.
+ * @param {string} id   The ID of the mouse.
+ *
+ * @return {string} The markup for the mouse links.
+ */
+const getLinkMarkup = (name, id) => {
+  return makeLink('MHCT', `https://www.mhct.win/loot.php?item=${id}`, true) +
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
+};
+
 const overloadShowItem = () => {
   const originalShowItem = hg.views.MarketplaceView.showItem;
 
@@ -161,6 +175,22 @@ const overloadShowItem = () => {
     }
 
     originalShowItem(itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force);
+
+    const actions = document.querySelector('.marketplaceView-item-titleActions');
+    if (! actions) {
+      return;
+    }
+
+    const existing = document.querySelector('.mh-improved-marketplace-item-title-actions');
+    if (existing) {
+      existing.remove();
+    }
+
+    let itemName = document.querySelector('.marketplaceView-item-titleName');
+    itemName = itemName ? itemName.textContent.trim() : '';
+
+    const buttons = makeElement('div', 'mh-improved-marketplace-item-title-actions', getLinkMarkup(itemName, itemId));
+    actions.insertBefore(buttons, actions.firstChild);
   };
 };
 

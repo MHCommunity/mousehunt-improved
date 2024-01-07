@@ -19,6 +19,7 @@ import {
 } from '@utils';
 
 import addReminders from './reminders';
+import travelWindow from './travel-window';
 
 import environments from '@data/environments.json';
 import eventEnvironments from '@data/environments-events.json';
@@ -563,6 +564,10 @@ const addFavoriteButtonsToTravelPage = async () => {
 };
 
 const main = () => {
+  if (getSetting('better-travel-travel-window', true)) {
+    travelWindow();
+  }
+
   onNavigation(() => {
     addSimpleTravel();
     addRhToSimpleTravel();

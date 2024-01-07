@@ -1,0 +1,209 @@
+/* Favorite mice section, hide everything but the first mouse */
+.mh-improved-fancy-profile .hunterInfoView-favoritesBlock-content-mouseContainer,
+.mh-improved-fancy-profile .hunterInfoView-favoritesBlock-content-container-arrow.right,
+.mh-improved-fancy-profile .hunterInfoView-favoritesBlock-content-tabDot-container,
+.mh-improved-fancy-profile .hunterInfoView-favoritesBlock-content-mouseLabel,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-titleBar-icon {
+  display: none;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseContainer:first-child {
+  display: inline-block;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* glazy mouse best mouse */
+.mh-improved-fancy-profile .hunterInfoView-favoritesBlock-content-chunk::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 110px;
+  font-size: 13px;
+  line-height: 2;
+  color: #772b0a;
+  content: "glazy mouse best mouse";
+}
+
+/* main hunter card */
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock .friendsPage-friendRow {
+  background: linear-gradient(#b389a1 5%, #f0dfee 50%);
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-hunterId {
+  color: #252525;
+  background-color: #dcf7ff;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper div.messageBoardView-message-container,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .friendsProfileView-container,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-favoritesBlock .hunterInfoView-favoritesBlock-body,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabContentContainer,
+.mh-improved-fancy-profile .hunterInfoView-achievementsBlock .mousehuntTabContentContainer-padding,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-title-container,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer-stats {
+  background: #f0dfee;
+  background-color: #f0dfee;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .messageBoardView-title,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-header,
+.mh-improved-fancy-profile .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader,
+.mh-improved-fancy-profile .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader.active {
+  background: linear-gradient(#dcf7ff 45%, #8af1ee 55%);
+}
+
+/* corkboard */
+.mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message {
+  background: #f8eff6;
+}
+
+.mh-improved-fancy-profile .mousehuntPage-content textarea {
+  background-color: #f9f9f9;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamInfo-container::before,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamInfo-container,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats-horn-container,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats-huntingSince,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .campPage-trap-trapStat,
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-trap-slot-quantity {
+  background: #dcf7ff;
+  border-color: #80b5b4;
+}
+
+.mh-improved-fancy-profile .journalContainer .top,
+.mh-improved-fancy-profile .journalContainer .bottom {
+  display: none;
+}
+
+.mh-improved-fancy-profile .journalContainer .content {
+  margin: 0 -10px;
+  background: transparent !important;
+}
+
+.mh-improved-fancy-profile .journal .content .entry {
+  background-color: #f0dfee !important;
+  border-color: #98448e;
+}
+
+.mh-improved-fancy-profile .friendsPage-friendRow-image-border {
+  background-image: none !important;
+}
+
+.mh-improved-fancy-profile .friendsPage-friendRow-image {
+  inset: 4px;
+  border: 1px solid #513645;
+  border-radius: 10px;
+}
+
+.mh-improved-fancy-profile .friendsPage-friendRow .friendsPage-friendRow-titleBar {
+  margin-bottom: 10px;
+  margin-left: -9px;
+  background: linear-gradient(#dcf7ff 45%, #89f0ee 55%) !important;
+  border-color: #8af1ef !important;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-titleBar-name {
+  margin-left: -25px;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-titleBar-titleDetail {
+  top: 0;
+  right: 10px;
+  left: unset;
+  font-weight: 900;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamInfo-container {
+  height: 37px;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock {
+  height: 220px;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats {
+  padding: 7px 0;
+}
+
+.mh-improved-fancy-profile .friendsPage-friendRow-statsContainer {
+  background-color: #d2c0ec;
+  border-top: 1px solid #be9bbc;
+  box-shadow: none;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-goldenShield {
+  filter: hue-rotate(148deg);
+}
+
+.mh-improved-fancy-profile .loyaltyBadgeView-years-text::after {
+  content: "00";
+}
+
+.mh-improved-fancy-profile .loyaltyBadgeView .loyaltyBadgeView-years-text {
+  top: 6px;
+  font-size: 20px;
+  color: #4b5554 !important;
+  text-shadow: 0 0 0 #969696 !important;
+}
+
+.mh-improved-fancy-profile .loyaltyBadgeView {
+  background-image: url(https://www.mousehuntgame.com/images/ui/profile/loyalty-badge-3-year.png) !important;
+  filter: hue-rotate(350deg);
+}
+
+.mh-improved-fancy-profile .userInteractionButtonsView-button {
+  filter: hue-rotate(170deg) opacity(0.6);
+}
+
+.mh-improved-fancy-profile .userInteractionButtonsView-relationship .userInteractionButtonsView-button,
+.mh-improved-fancy-profile .userInteractionButtonsView-relationship .userInteractionButtonsView-button:hover,
+.mh-improved-fancy-profile .userInteractionButtonsView-relationship .userInteractionButtonsView-button:focus,
+.mh-improved-fancy-profile .userInteractionButtonsView-relationship .userInteractionButtonsView-button:active {
+  filter: none;
+}
+
+.mh-improved-fancy-profile .userInteractionButtonsView-button:hover {
+  filter: hue-rotate(220deg) opacity(1);
+}
+
+.mh-improved-fancy-profile .friendsProfileView-randomFriend {
+  background-color: #c3f0ff;
+}
+
+.mh-improved-fancy-profile .friendsProfileView-randomFriend:hover {
+  background-color: #93c9db;
+}
+
+.mh-improved-fancy-profile .campPage-trap-trapStat.luck .value span::after {
+  content: "0";
+}
+
+.mh-improved-fancy-profile .trapImageView-tooltip-trapAura-expiry span {
+  display: none;
+}
+
+.mh-improved-fancy-profile .trapImageView-tooltip-trapAura-expiry::after {
+  content: "never! 🎉️ infinite aura!";
+}
+
+.mh-improved-fancy-profile .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:hover,
+.hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader:focus {
+  background: linear-gradient(#dcf7ff 45%, #8adff1 55%);
+}
+
+.mh-improved-fancy-profile #friend-data-wrapper .userInteractionButtonsView-button,
+.mh-improved-fancy-profile #friend-data-wrapper .userInteractionButtonsView-button:hover {
+  filter: none !important;
+}
+
+.mh-improved-fancy-profile #friend-data-wrapper .friendsPage-friendRow-statsContainer {
+  background-color: transparent;
+  box-shadow: 0 10px 30px #cdb495 inset;
+}

@@ -8,7 +8,7 @@
 }
 
 .mh-ui-ar {
-  padding: 2px 3px;
+  padding: 3px;
   font-size: 10px;
   color: #000;
   background-color: #fff;
@@ -65,14 +65,15 @@
 }
 
 .mh-ui-ar-extreme {
-  background-color: #ff9e9e;
-  border-color: #c55a5a;
+  color: #fff;
+  background-color: #ed6464;
+  border-color: #a64a4a;
 }
 
 .mh-ui-ar-impossible {
-  color: #000;
-  background-color: #f77;
-  border-color: #a64a4a;
+  color: #fff;
+  background-color: #c92222;
+  border-color: #5a2121;
 }
 
 .mh-ui-toggle-ar-button {

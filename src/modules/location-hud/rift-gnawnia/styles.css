@@ -1,4 +1,6 @@
-.riftGnawniaHud:hover .riftGnawniaHud-targetsBackground {
+.riftGnawniaHud:hover .riftGnawniaHud-targetsBackground,
+.riftGnawniaHud:focus .riftGnawniaHud-targetsBackground,
+.riftGnawniaHud:active .riftGnawniaHud-targetsBackground {
   filter: hue-rotate(-40deg);
 }
 

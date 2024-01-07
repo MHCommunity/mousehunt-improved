@@ -9,7 +9,7 @@ import {
   getGlobal,
   getSettingDirect,
   isApp,
-  isImage,
+  isUnsupportedFile,
   isiFrame,
   showLoadingError
 } from '@utils';
@@ -87,7 +87,8 @@ const loadModules = async () => {
       if (
         subModule.alwaysLoad ||
         'required' === subModule.type ||
-        getSettingDirect(subModule.id, subModule.default, 'mousehunt-improved-settings')
+        getSettingDirect(subModule.id, subModule.default, 'mousehunt-improved-settings') ||
+        (subModule.beta && getFlag(subModule.id))
       ) {
         try {
           subModule.load();
@@ -116,8 +117,8 @@ const init = async () => {
   debug(`Initializing MouseHunt Improved v${mhImprovedVersion} / ${mhImprovedPlatform}...`);
 
   // Check if the url is an image and if so, don't load.
-  if (isImage()) {
-    debug('Skipping image.');
+  if (isUnsupportedFile()) {
+    debug('Skipping unsupported filetype.');
     return;
   }
 

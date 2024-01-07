@@ -11,6 +11,37 @@ const getQuantityInput = () => {
   return quantity;
 };
 
+const replaceOpenAction = () => {
+  const _original = app.pages.InventoryPage.useConvertible;
+  app.pages.InventoryPage.useConvertible = (element) => {
+    if (element.getAttribute('data-item-action') === 'all-but-one') {
+      const itemType = element.getAttribute('data-item-type');
+
+      hg.views.ItemView.show(itemType);
+
+      // wait for the item view to load
+      const interval = setInterval(() => {
+        const quantityEl = document.querySelector('.itemView-action-convertForm');
+        const maxQuantity = quantityEl ? Number.parseInt(quantityEl.innerText.split('/')[1].trim(), 10) : 0;
+        const quantity = maxQuantity - 1;
+
+        const quantityInput = getQuantityInput();
+        if (quantityInput) {
+          clearInterval(interval);
+          quantityInput.value = quantity;
+
+          const useButton = document.querySelector('.itemView-action-convert-actionButton');
+          if (useButton) {
+            useButton.click();
+          }
+        }
+      }, 100);
+    } else {
+      _original(element);
+    }
+  };
+};
+
 const addOpenAllButOneButton = () => {
   const convertibleItems = document.querySelectorAll('.inventoryPage-item.convertible[data-item-classification="convertible"]');
   if (! convertibleItems.length) {
@@ -33,33 +64,7 @@ const addOpenAllButOneButton = () => {
     newButton.classList.add('open-all-but-one');
     newButton.textContent = 'All but One';
     newButton.value = 'All but One';
-
     newButton.setAttribute('data-item-action', 'all-but-one');
-    newButton.setAttribute('onclick', 'return false;');
-
-    const itemType = item.getAttribute('data-item-type');
-
-    const maxQuantityEl = item.querySelector(`.inventoryPage-item[data-item-type="${itemType}"] .inventoryPage-item-imageContainer .quantity`);
-    const maxQuantity = maxQuantityEl ? Number.parseInt(maxQuantityEl.textContent, 10) : 0;
-
-    newButton.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      hg.views.ItemView.show(itemType);
-
-      const interval = setInterval(() => {
-        quantityInput = getQuantityInput();
-        if (quantityInput) {
-          clearInterval(interval);
-          quantityInput.value = maxQuantity - 1;
-
-          const useButton = document.querySelector('.itemView-action-convert-actionButton');
-          if (useButton) {
-            useButton.click();
-          }
-        }
-      }, 100);
-    });
 
     button.parentNode.insertBefore(newButton, button.nextSibling);
   });
@@ -70,6 +75,8 @@ const addOpenAllButOneButton = () => {
  */
 const init = async () => {
   addStyles(styles);
+
+  replaceOpenAction();
 
   addOpenAllButOneButton();
 
