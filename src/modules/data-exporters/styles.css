@@ -10,7 +10,7 @@
 
 .export-items-wrapper {
   max-height: 70vh;
-  overflow: scroll;
+  overflow: auto;
   border: 1px solid #7e7e7e;
 }
 

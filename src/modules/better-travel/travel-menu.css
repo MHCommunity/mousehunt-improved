@@ -13,6 +13,7 @@
   min-height: 425px;
   max-height: 50vh;
   padding: 0 0 10px 5px;
+  margin-right: -5px;
 }
 
 .mh-improved-travel-window .greatWinterHuntGolemDestinationView__regionEnvironments {
