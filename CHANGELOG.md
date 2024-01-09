@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.27.3
+
+- Fixes not all scoreboards being available in data exporters
+
+
 ## Version 0.27.2
 
 - Fixes return tradables button text

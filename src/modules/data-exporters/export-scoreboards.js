@@ -2,15 +2,7 @@ import { doRequest } from '@utils';
 
 import { exportPopup, recursiveFetch } from './exporter';
 
-// import scoreboards from '@data/scoreboards';
-const scoreboards = [
-  { id: 'QuestRiftValour::highest_floor_reached', name: 'Highest Gauntlet Floor Reached' },
-  { id: 'QuestRiftValour::longest_ultimatum_distance_traveled', name: 'Highest Umbra Gauntlet Steps Reached' },
-  { id: 'QuestRiftValour::highest_ultimatum_floor_reached', name: 'Highest Umbra Gauntlet Floor Reached' },
-  { id: 'QuestFloatingIslands::total_islands_explored', name: 'Total Islands &amp; Vaults Fully Explored' },
-  { id: 'QuestFloatingIslands::total_islands_explored_low_altitude', name: 'Total Low Altitude Islands Fully Explored' },
-  { id: 'QuestFloatingIslands::total_islands_explored_high_altitude', name: 'Total High Altitude Islands Fully Explored' },
-];
+import scoreboards from '@data/scoreboards';
 
 const getData = async (scoreboard) => {
   const totalItemsEl = document.querySelector(`.item-wrapper[data-region="${scoreboard.id}"] .total-items`);
