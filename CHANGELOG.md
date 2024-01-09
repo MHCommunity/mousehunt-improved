@@ -4,7 +4,6 @@
 
 - Fixes not all scoreboards being available in data exporters
 
-
 ## Version 0.27.2
 
 - Fixes return tradables button text
