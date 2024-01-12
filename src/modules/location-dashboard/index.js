@@ -85,6 +85,126 @@ const cacheLocationData = async () => {
   });
 };
 
+const waitForTravel = async (environment) => {
+  return new Promise((resolve) => {
+    hg.utils.User.travel(environment, (success) => {
+      debug(`Travel success: ${success}`);
+      resolve();
+    }, (error) => {
+      debug(`Travel error: ${error}`);
+      resolve();
+    });
+
+    debug(`Traveled to ${environment}.`);
+  });
+};
+
+const doLocationRefresh = async () => {
+  // Show a popup that shows the progress.
+  // Travel to each location.
+  // Cache the data.
+  // Travel back to the original location.
+  // Close the popup.
+  // Refresh the page.
+
+  sessionStorage.setItem('mh-improved-doing-location-refresh', 'true');
+
+  const locationProgress = [];
+
+  const environmentsToTravel = environments.filter((env) => {
+    // Remove some locations that we don't want to travel to, like the current location.
+    const locationsToRemove = [
+      user.environment_type,
+      'forbidden_grove',
+      ...eventEnvironments.map((eenv) => eenv.id),
+    ];
+
+    debug(`Environments to remove: ${locationsToRemove.join(', ')}`);
+
+    return ! locationsToRemove.includes(env.id);
+  });
+
+  debug(`Environments to travel: ${environmentsToTravel.map((env) => env.name).join(', ')}`);
+
+  // Sort environments by order
+  environmentsToTravel.sort((a, b) => {
+    return a.order - b.order;
+  });
+
+  debug(`Sorted environments to travel: ${environmentsToTravel.map((env) => env.name).join(', ')}`);
+
+  let locationProgressMarkup = '';
+  environmentsToTravel.forEach((env) => {
+    locationProgressMarkup += `<div class="location-refresh-item" data-environment-type="${env.id}">
+    <div class="locationImageWrapper">
+      <img class="locationImage" src="${env.image}">
+    </div>
+    <div class="locationName">
+      <div class="name">${env.name}</div>
+      <div class="progress"></div>
+    </div>
+    </div>`;
+    locationProgress.push(env.id);
+    debug(`Adding ${env.name} to the to-travel list.`);
+  });
+
+  const popup = createPopup({
+    title: 'Refreshing Location Data',
+    content: `<div class="mh-improved-location-refresh-popup">
+    <div class="mh-improved-location-refresh-popup-progress">${locationProgressMarkup}</div>
+    </div>`,
+    show: true,
+  });
+
+  const originalLocation = user.environment_type;
+  debug(`Original location: ${user.environment_type}.`);
+
+  for (const location of locationProgress) {
+    const locationData = environments.find((env) => env.id === location);
+    if (! locationData) {
+      continue;
+    }
+
+    debug(`Traveling to ${locationData.name}.`);
+
+    const progressItem = document.querySelector(`.location-refresh-item[data-environment-type="${location}"]`);
+
+    progressItem.classList.add('traveling');
+
+    await waitForTravel(location);
+    await cacheLocationData();
+
+    progressItem.classList.remove('traveling');
+    progressItem.classList.add('done');
+
+    debug(`Traveled to ${locationData.name}.`);
+  }
+
+  await waitForTravel(originalLocation);
+  debug(`Traveled back to ${user.environment_type}.`);
+
+  popup.hide();
+
+  const dashboardMenu = document.querySelector('.mousehuntHeaderView .menuItem.dropdown.dashboard');
+  if (dashboardMenu) {
+    // Make sure the dashboard is expanded.
+    dashboardMenu.classList.add('expanded');
+
+    const existing = document.querySelector('.dashboardContents');
+    if (existing) {
+      const refreshedContents = getDashboardContents();
+      existing.replaceWith(refreshedContents);
+    }
+
+    const wrapper = document.querySelector('.dashboardWrapper');
+    if (wrapper) {
+      wrapper.scrollTop = 0;
+    }
+  }
+
+  sessionStorage.removeItem('mh-improved-doing-location-refresh');
+};
+
 const makeDashboardTab = () => {
   const tabsContainer = document.querySelector('.mousehuntHeaderView-dropdownContainer');
   if (! tabsContainer) {
@@ -119,11 +239,14 @@ const makeDashboardTab = () => {
   const refreshWrapper = makeElement('div', 'refreshWrapper');
 
   // TODO: remove disabled class when we have a way to refresh.
-  const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh', 'disabled']);
+  const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh']);
   makeElement('span', '', 'Refresh', refreshButton);
 
+  refreshButton.addEventListener('click', () => {
+    doLocationRefresh();
+  });
+
   refreshWrapper.append(refreshButton);
-  makeElement('div', '', ' (coming soon, for now just travel to each location)', refreshWrapper);
 
   dashboardWrapper.append(refreshWrapper);
   dropdownContent.append(dashboardWrapper);
