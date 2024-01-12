@@ -14,7 +14,7 @@
 
 .PagePreferences__settingAction.inputDropdownWrapper.busy::before,
 .PagePreferences__settingAction.inputDropdownWrapper.completed::before {
-  right: -40px;
+  right: -25px;
   left: unset;
 }
 

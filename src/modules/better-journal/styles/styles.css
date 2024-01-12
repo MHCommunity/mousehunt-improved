@@ -171,6 +171,7 @@ a.journal-detailLink.full::after {
 
 .journal .entry.socialGift.socialGift-send .journalbody .journaltext {
   margin-right: -2px;
+  margin-left: -85px;
 }
 
 /* hide the friends popup for gifts as it nests and breaks the layout */

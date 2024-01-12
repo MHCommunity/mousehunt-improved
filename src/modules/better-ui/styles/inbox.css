@@ -12,6 +12,7 @@
   flex-direction: row;
   align-items: center;
   order: 5;
+  white-space: nowrap;
 }
 
 .notificationMessageList .message.ballot img.item {
