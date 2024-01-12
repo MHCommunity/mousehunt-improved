@@ -54,8 +54,8 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
   }
 
   if (! skipCache) {
-    sessionStorage.setItem(`friend-${friendId}`, JSON.stringify(data));
-    sessionStorage.setItem(`friend-${friendId}-timestamp`, Date.now());
+    sessionStorage.setItem(`mh-improved-cache-friend-${friendId}`, JSON.stringify(data));
+    sessionStorage.setItem(`mh-improved-cache-friend-${friendId}-timestamp`, Date.now());
   }
 
   const templateType = data[0].user_interactions.relationship.is_stranger ? 'PageFriends_request_row' : 'PageFriends_view_friend_row';
@@ -99,8 +99,8 @@ const onFriendLinkHover = async (e) => {
   }
 
   // See if there is a cached value in sessionStorage
-  const cached = sessionStorage.getItem(`friend-${friendId}`);
-  const cachedTimestamp = sessionStorage.getItem(`friend-${friendId}-timestamp`);
+  const cached = sessionStorage.getItem(`mh-improved-cache-friend-${friendId}`);
+  const cachedTimestamp = sessionStorage.getItem(`mh-improved-cache-friend-${friendId}-timestamp`);
 
   if (cached && cachedTimestamp && (Date.now() - cachedTimestamp) < 150000) {
     makeFriendMarkup(friendId, JSON.parse(cached), true, e);
