@@ -18,10 +18,11 @@ import {
   saveSettingDirect
 } from '@utils';
 
+import { getData } from '@utils/data';
+
 import addReminders from './reminders';
 import travelWindow from './travel-window';
 
-import environments from '@data/environments.json';
 import eventEnvironments from '@data/environments-events.json';
 
 import settings from './settings';

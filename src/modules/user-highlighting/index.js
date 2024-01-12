@@ -1,9 +1,7 @@
-import { addStyles, makeElement, onNavigation } from '@utils';
+import { addStyles, debug, makeElement, onNavigation } from '@utils';
 
 import profileStyles from './profile.css';
 import styles from './styles.css';
-
-import userHighlighting from '@data/user-highlighting.json';
 
 const getUserHighlightingShield = (type) => {
   let text = '';
@@ -26,7 +24,7 @@ const getUserHighlightingShield = (type) => {
   return wrapper;
 };
 
-const highlightUsers = () => {
+const highlightUsers = async () => {
   const existing = document.querySelectorAll('.mh-improved-user-shield');
   if (existing) {
     existing.forEach((el) => {
@@ -49,19 +47,26 @@ const highlightUsers = () => {
     return;
   }
 
-  // for each key in userHiglighting, check if the user id is in the array and add the key as a class
-  Object.keys(userHighlighting).forEach((key) => {
-    const userId = Number.parseInt(id.innerText, 10);
-    if (userHighlighting[key].includes(userId)) {
-      profilePage.classList.add('mh-improved-highlight-user', `mh-improved-${key}`);
-      idHeader.append(getUserHighlightingShield(key));
-    }
+  const userId = Number.parseInt(id.textContent, 10);
+  // query api.mouse.rip/highlight-user/:id to get the user highlighting data
+  const userHighlighting = await fetch(`https://api.mouse.rip/highlight-user/${userId}`);
+  const data = await userHighlighting.json();
 
-    // brad gets some real fancy profile styling.
-    if (8209591 === userId) {
-      profilePage.classList.add('mh-improved-highlight-user', 'mh-improved-fancy-profile');
-    }
-  });
+  debug(`Retrieved user highlighting data for ${userId}`, data);
+
+  if (! data || ! data?.highlighted) {
+    return;
+  }
+
+  const type = data.type;
+
+  profilePage.classList.add('mh-improved-highlight-user', `mh-improved-${type}`);
+  idHeader.append(getUserHighlightingShield(type));
+
+  // brad gets some real fancy profile styling.
+  if (8209591 === userId) {
+    profilePage.classList.add('mh-improved-highlight-user', 'mh-improved-fancy-profile');
+  }
 };
 
 /**

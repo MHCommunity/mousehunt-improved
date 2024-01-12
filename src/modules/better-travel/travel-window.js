@@ -9,7 +9,7 @@ import {
   saveSettingDirect
 } from '@utils';
 
-import environments from '@data/environments.json';
+import { getData } from '@utils/data';
 
 import styles from './travel-menu.css';
 
@@ -212,6 +212,7 @@ const openTravelWindow = () => {
 };
 
 let isEditing = false;
+let environments = [];
 
 const makeMenuItem = () => {
   addSubmenuItem({
@@ -225,7 +226,9 @@ const makeMenuItem = () => {
   });
 };
 
-export default () => {
+export default async () => {
   addStyles(styles);
   makeMenuItem();
+
+  environments = await getData('environments');
 };

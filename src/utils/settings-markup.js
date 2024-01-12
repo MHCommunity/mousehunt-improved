@@ -536,7 +536,7 @@ const addSettingRefreshReminder = () => {
  * @param {Object}  module      Module the setting belongs to.
  * @param {Object}  options     Additional ptions for the setting.
  */
-const addMhuiSetting = (id, title, defaultVal, description, module, options = null) => {
+const addMhuiSetting = async (id, title, defaultVal, description, module, options = null) => {
   addSetting(
     title,
     id,
@@ -592,13 +592,13 @@ const addAdvancedSettings = () => {
  * @param {Object} module The module to add settings for.
  */
 const addSettingForModule = (module) => {
-  module.modules.forEach((subModule) => {
-    if (! subModule.alwaysLoad) {
+  module.modules.forEach((submodule) => {
+    if (! submodule.alwaysLoad && ! submodule.beta) {
       addSetting(
-        subModule.name,
-        subModule.id,
-        subModule.default,
-        subModule.description,
+        submodule.name,
+        submodule.id,
+        submodule.default,
+        submodule.description,
         {
           id: module.id,
           name: module.name,

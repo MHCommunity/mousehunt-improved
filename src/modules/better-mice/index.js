@@ -11,10 +11,8 @@ import {
 
 import mousepage from './mousepage';
 
-import minlucks from '@data/mice-minlucks.json';
-import wisdoms from '@data/mice-wisdom.json';
-
 import styles from './styles.css';
+import { getData } from 'utils/data';
 
 /**
  * Get the markup for the mouse links.
@@ -289,8 +287,14 @@ const updateMouseView = async () => {
   }
 };
 
-const main = () => {
+let minlucks;
+let wisdoms;
+
+const main = async () => {
   onOverlayChange({ mouse: { show: updateMouseView } });
+
+  minlucks = await getData('minlucks');
+  wisdoms = await getData('wisdom');
 
   addSubmenuItem({
     menu: 'mice',

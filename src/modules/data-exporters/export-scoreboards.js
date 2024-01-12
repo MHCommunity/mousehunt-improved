@@ -1,10 +1,9 @@
 import { doRequest } from '@utils';
+import { getData } from '@utils/data';
 
 import { exportPopup, recursiveFetch } from './exporter';
 
-import scoreboards from '@data/scoreboards';
-
-const getData = async (scoreboard) => {
+const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly = false) => {
   const totalItemsEl = document.querySelector(`.item-wrapper[data-region="${scoreboard.id}"] .total-items`);
   totalItemsEl.textContent = '...';
 
@@ -47,11 +46,13 @@ const getData = async (scoreboard) => {
 const exportScoreboards = () => {
   let inventoryMarkup = '';
   scoreboards.forEach((region) => {
+  let scoreboardsToUse = await getData('scoreboards');
+  for (const region of scoreboardsToUse) {
     inventoryMarkup += `<div class="item-wrapper scoreboard" data-region="${region.id}">
       <div class="region-name">${region.name}</div>
       <div class="total-items">-</div>
   </div>`;
-  });
+  }
 
   exportPopup({
     type: 'scoreboard-rankings',

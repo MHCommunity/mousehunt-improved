@@ -1,8 +1,7 @@
 import { doRequest } from '@utils';
+import { getData } from '@utils/data';
 
 import { exportPopup } from './exporter';
-
-import itemsTradable from '@data/items-tradeable.json';
 
 const fetchPage = async (page) => {
   const response = await doRequest('managers/ajax/users/marketplace.php', {
@@ -26,6 +25,8 @@ const fetchTransactions = async () => {
   page = Number.parseInt(sessionStorage.getItem('export-marketplace-page'), 10) || 1;
 
   transactions = JSON.parse(sessionStorage.getItem('export-marketplace-transactions')) || [];
+
+  const tradableItems = await getData('items-tradable');
 
   do {
     response = await fetchPage(page);

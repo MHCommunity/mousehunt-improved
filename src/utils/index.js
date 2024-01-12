@@ -1,3 +1,4 @@
+export * from './data';
 export * from './debug';
 export * from './draggable';
 export * from './elements';

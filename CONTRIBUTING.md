@@ -154,23 +154,17 @@ _For Chrome or Firefox you can reload the extension by clicking the reload butto
 
 The `src/data/` folder contains JSON data files that are used by the extension and may need to be updated from time to time.
 
-- `environments.json` Environment data for regular locations, includes names, id, image, and region.
 - `environments-events.json` Environment data for event locations.
 - `items-marketplace-hidden.json` List of items to hide in the marketplace, this should be updated with any new premium items that aren't popular/useful or any other items that should be hidden.
-- `items-tradeable.json` List of tradeable items, used by the Quick Send Supplies and Better Send Supplies modules to populate the settings.
 - `library-assignments.json` Library Assignments IDs, costs, rewards, etc.
 - `m400-locations.json` Location and mice mapping for the M400 library assignment.
 - `map-groups.json` Map groups for the map sorter/categorizer.
-- `mice-minlucks.json` Minluck values for mice. This file is generated from the [minluck spreadsheet](https://docs.google.com/spreadsheets/d/13hKjNDFTFR3rTkmQzyi3d4ZDOlQJUvTfWPDQemmFW_Y) using `bun run generate:minlucks`.
-- `mice-wisdom.json` Wisdom values for mice. This file is generated from the [wisdom spreadsheet](https://docs.google.com/spreadsheets/d/1nzD6iiHauMMwD2eHBuAyRziYJtCVnNwSYzCKbBnrRgc) using `bun run generate:wisdom`.
-- `mice.json` Mouse name to mouse type mapping, used by `scripts/fix-map-groups.js` to replace mouse names with mouse types in `map-groups.json`.
 - `recipes-me-conversion.json` Recipe IDs that should show a Warning message when converting with Magic Essence.
 - `recipes-to-reorder.json` Recipe IDs that should be reordered on the crafting page.
 - `relic-hunter-hints.json` Mapping of locations and hints for the Relic Hunter mouse.
 - `ultimate-checkmark.json` Item lists for the Ultimate Checkmark feature.
 - `upscaled-images-skip.json` List of image URLs to skip when upscaling, used by the Image Upscaling module to skip images that don't need to be upscaled. Can contain a wildcard at the end of the URL to match paths.
 - `upscaled-images.json` Mapping of image URLs to upscaled image URLs, used by the Image Upscaling module to replace images with upscaled versions.
-- `user-highlighting.json` List of user IDs that will get a special icon on their profile page.
 
 ## Adding a map to the map sorter/categorizer
 
@@ -196,7 +190,7 @@ To add a new map to the list of automatically sorted/categorized maps, you need 
       },
       {
         "name": "Another Category",
-        ...
+        "id": "..."
       }
     ],
     "subcategories": [

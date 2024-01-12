@@ -7,6 +7,7 @@ import {
   onRequest,
   setMapData
 } from '@utils';
+import { getData } from '@utils/data';
 
 import helper from './modules/helper';
 
@@ -14,7 +15,6 @@ import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sor
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
 
-import environments from '@data/environments.json';
 import relicHunterHints from '@data/relic-hunter-hints.json';
 
 import addMapStyles from './styles';
@@ -182,6 +182,7 @@ const updateRelicHunterHint = () => {
   }
 
   // Find the environment that matches the key.
+  const environments = getData('environments');
   const environment = environments.find((e) => e.id === key);
   if (! environment) {
     return true;

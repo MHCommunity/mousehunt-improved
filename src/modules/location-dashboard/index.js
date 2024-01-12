@@ -1,8 +1,17 @@
-import { addStyles, makeElement, onRequest, onTravel } from '@utils';
+import {
+  addStyles,
+  createPopup,
+  debug,
+  makeElement,
+  onRequest,
+  onTravel
+} from '@utils';
+
+import { getData } from '@utils/data';
 
 import styles from './styles.css';
 
-import environments from '@data/environments.json';
+import eventEnvironments from '@data/environments-events.json';
 
 import { getFieryWarpathText, setFieryWarpathData } from './location/fiery-warpath';
 import { getSeasonalGardenText, setSeasonalGardenData } from './location/seasonal-garden';
@@ -244,10 +253,14 @@ const getDashboardContents = () => {
   return contentsWrapper;
 };
 
+let environments = [];
+
 /**
  * Initialize the module.
  */
 const init = async () => {
+  environments = await getData('environments');
+
   // Cache the quest data for our current location.
   cacheLocationData();
   onTravel(null, { callback: cacheLocationData });

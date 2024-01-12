@@ -17,6 +17,19 @@ const debug = (message, ...args) => {
   }
 };
 
+const debuglog = (module, message, ...args) => {
+  if (getFlag('debug')) {
+    // eslint-disable-next-line no-console
+    console.log(
+      `%cMH Improved %c${module}%c ${message}`,
+      'color: #90588c; font-weight: 900',
+      'color: #90588c; font-weight: 400',
+      'color: inherit; font-weight: inherit',
+      ...args
+    );
+  }
+};
+
 /**
  * Helper function to log a debug message.
  *
@@ -35,18 +48,8 @@ const debuglite = (message, ...args) => {
   }
 };
 
-const devDebug = (message, ...args) => {
-  // eslint-disable-next-line no-console
-  console.log(
-    `%cMH Improved%c: ${message}`,
-    'color: #ff3434; font-weight: 900',
-    'color: inherit; font-weight: inherit',
-    ...args
-  );
-};
-
 export {
   debug,
-  debuglite,
-  devDebug
+  debuglog,
+  debuglite
 };

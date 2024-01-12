@@ -6,8 +6,7 @@ import {
   onEvent,
   onRequest
 } from '@utils';
-
-import allEnvironments from '@data/environments.json';
+import { getData } from '@utils/data';
 
 import styles from './styles.css';
 
@@ -91,7 +90,7 @@ const updateGolemPartsQuantity = () => {
   limbs.append(newLimbsEl, newLimbsSetEl);
 };
 
-const updateGolemTravelCount = () => {
+const updateGolemTravelCount = async () => {
   const title = document.querySelector('.greatWinterHuntGolemManagerTabView__destinationHeader');
   if (! title) {
     return;
@@ -101,6 +100,8 @@ const updateGolemTravelCount = () => {
   if (! name) {
     return;
   }
+
+  const allEnvironments = await getData('environments');
 
   // Find the environment type by checking the name against the environment name.
   const currentEnvironment = allEnvironments.find((env) => env.name === name.textContent);

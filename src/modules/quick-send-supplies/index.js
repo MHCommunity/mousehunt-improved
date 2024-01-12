@@ -45,7 +45,7 @@ const makeItem = (name, type, image, appendTo) => {
   appendTo.append(item);
 };
 
-const makeSendSuppliesButton = (btn, snuid) => {
+const makeSendSuppliesButton = async (btn, snuid) => {
   if (snuid === user.sn_user_id) {
     return false;
   }
@@ -62,14 +62,13 @@ const makeSendSuppliesButton = (btn, snuid) => {
     getSetting('quick-send-supplies-items-3', 'rift_torn_roots_crafting_item'),
   ];
 
-  const allTradableItems = getTradableItems('all');
-  itemOptions.forEach((item) => {
+  const allTradableItems = await getTradableItems('all');
+  for (const item of itemOptions) {
     const tradableItem = allTradableItems.find((i) => i.type === item);
     if (tradableItem) {
-      const image = tradableItem.thumbnail_transparent ?? tradableItem.thumbnail;
-      makeItem(tradableItem.name, tradableItem.type, image, itemsWrapper);
+      makeItem(tradableItem.name, tradableItem.type, tradableItem.image, itemsWrapper);
     }
-  });
+  }
 
   quickSendLinkWrapper.append(itemsWrapper);
 
@@ -134,13 +133,13 @@ const makeSendSuppliesButton = (btn, snuid) => {
   return quickSendLinkWrapper;
 };
 
-const main = () => {
+const main = async () => {
   const sendSupplies = document.querySelectorAll('.userInteractionButtonsView-button.sendSupplies');
   if (! sendSupplies) {
     return;
   }
 
-  sendSupplies.forEach((btn) => {
+  for (const btn of sendSupplies) {
     if (btn.classList.contains('disabled')) {
       return;
     }
@@ -156,14 +155,22 @@ const main = () => {
       return;
     }
 
-    const quickSendLinkWrapper = makeSendSuppliesButton(btn, snuid);
+    const quickSendLinkWrapper = await makeSendSuppliesButton(btn, snuid);
     if (quickSendLinkWrapper) {
-      btn.parentNode.insertBefore(quickSendLinkWrapper, btn.nextSibling);
+      if (btn.parentNode) {
+        if (btn.nextSibling) {
+          btn.parentNode.insertBefore(quickSendLinkWrapper, btn.nextSibling);
+        } else {
+          btn.parentNode.append(quickSendLinkWrapper);
+        }
+      } else {
+        btn.append(quickSendLinkWrapper);
+      }
     }
-  });
+  }
 };
 
-const addToMapUsers = (attempts = 0) => {
+const addToMapUsers = async (attempts = 0) => {
   const mapUsers = document.querySelectorAll('.treasureMapView-hunter-wrapper.mousehuntTooltipParent');
   if (! mapUsers || ! mapUsers.length) {
     if (attempts < 10) {
@@ -175,7 +182,7 @@ const addToMapUsers = (attempts = 0) => {
     return;
   }
 
-  mapUsers.forEach((btn) => {
+  mapUsers.forEach(async (btn) => {
     const existing = btn.getAttribute('data-quick-send');
     if (existing) {
       return;
@@ -187,7 +194,7 @@ const addToMapUsers = (attempts = 0) => {
       return;
     }
 
-    const quickSendLinkWrapper = makeSendSuppliesButton(btn, snuid);
+    const quickSendLinkWrapper = await makeSendSuppliesButton(btn, snuid);
     if (quickSendLinkWrapper) {
       btn.append(quickSendLinkWrapper);
     }

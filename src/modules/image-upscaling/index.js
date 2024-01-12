@@ -1,6 +1,6 @@
 import { addStyles, onDialogShow } from '@utils';
+import { getData } from '@utils/data';
 
-import mapping from '@data/upscaled-images.json';
 import pathsToSkip from '@data/upscaled-images-to-skip.json';
 
 import journalThemeStyles from './journal-themes.css';
@@ -185,11 +185,15 @@ const observerOptions = {
   subtree: true,
 };
 
+let mapping = [];
+
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles([styles, journalThemeStyles]);
+
+  mapping = await getData('upscaled-images');
 
   const observer = new MutationObserver(async (mutations) => {
     for (const mutation of mutations) {

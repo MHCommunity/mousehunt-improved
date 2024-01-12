@@ -5,7 +5,7 @@ import { addMhuiSetting, getTradableItems } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
+export default async function (module) {
   addMhuiSetting(
     'quick-send-supplies-items',
     'Quick Send Supplies Items',
@@ -32,7 +32,7 @@ export default function (module) {
     {
       type: 'multi-select',
       number: 4,
-      options: getTradableItems('type'),
+      options: await getTradableItems('type'),
     }
   );
 }

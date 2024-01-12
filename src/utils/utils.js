@@ -1,7 +1,6 @@
 import { onNavigation, onTravel } from './events';
 import { getCurrentPage } from './page';
-
-import tradeableItems from '@data/items-tradeable.json';
+import { getData } from './data';
 
 /**
  * Check to make sure we have the required global functions we need.
@@ -104,24 +103,26 @@ const removeBodyClass = (className) => {
 };
 
 /**
- * Get the tradeable items.
+ * Get the tradable items.
  *
  * @param {string} valueKey Which key to use for the value. 'all' will return the entire object.
  *
- * @return {Array} Array of tradeable items.
+ * @return {Array} Array of tradable items.
  */
-const getTradableItems = (valueKey = 'all') => {
+const getTradableItems = async (valueKey = 'all') => {
+  const tradableItems = await getData('items-tradable');
+
   if ('all' === valueKey) {
-    return tradeableItems;
+    return tradableItems;
   }
 
   const returnItems = [];
-  tradeableItems.forEach((item) => {
+  for (const item of tradableItems) {
     returnItems.push({
       name: item.name,
       value: item[valueKey],
     });
-  });
+  }
 
   return returnItems;
 };
