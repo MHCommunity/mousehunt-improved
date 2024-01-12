@@ -182,10 +182,20 @@
 }
 
 /* Export Settings */
-.mousehunt-improved-export-settings {
-  position: absolute;
-  top: 2px;
-  right: 10px;
+.PagePreferences .mousehuntHud-page-tabContent .mousehunt-improved-settings-mousehunt-improved-settings-overrides .PagePreferences__titleText {
+  display: flex;
+  place-content: center flex-start;
+  align-items: center;
+}
+
+#mousehunt-improved-settings-mousehunt-improved-settings-overrides h3.PagePreferences__titleText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#mousehunt-improved-settings-mousehunt-improved-settings-overrides h3.PagePreferences__titleText .mousehuntActionButton:first-child {
+  margin-left: auto;
 }
 
 #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-styles textarea,

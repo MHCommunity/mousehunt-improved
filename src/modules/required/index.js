@@ -1,5 +1,6 @@
 import {
   addStyles,
+  clearCaches,
   createPopup,
   getFlag,
   getSetting,
@@ -67,6 +68,27 @@ const addExportSettings = () => {
   wrapper.append(exportSettings);
 };
 
+const addClearCache = () => {
+  const wrapper = document.querySelector('#mousehunt-improved-settings-mousehunt-improved-settings-overrides .PagePreferences__titleText');
+  if (! wrapper) {
+    return;
+  }
+
+  const clearCache = makeElement('div', ['mousehunt-improved-clear-cache', 'mousehuntActionButton', 'tiny']);
+  makeElement('span', '', 'Clear Cached Data', clearCache);
+
+  clearCache.addEventListener('click', () => {
+    // Clear the data-caches.
+    clearCaches();
+
+    // Clear the ar
+    localStorage.removeItem(`mh-improved-cached-ar-v${mhImprovedVersion}`);
+    window.location.reload();
+  });
+
+  wrapper.append(clearCache);
+};
+
 const modifySettingsPage = () => {
   const settingsPage = document.querySelectorAll('.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__title');
   if (! settingsPage) {
@@ -101,7 +123,8 @@ const modifySettingsPage = () => {
     });
   });
 
-  setTimeout(addExportSettings, 1000);
+  setTimeout(addClearCache, 250);
+  setTimeout(addExportSettings, 350);
 };
 
 const loadStyleOverrides = () => {
@@ -153,13 +176,11 @@ const addIconToMenu = () => {
 const init = async () => {
   addStyles(settingStyles);
 
-  onNavigation(modifySettingsPage,
-    {
-      page: 'preferences',
-      tab: 'mousehunt-improved-settings',
-      onLoad: true,
-    }
-  );
+  onNavigation(modifySettingsPage, {
+    page: 'preferences',
+    tab: 'mousehunt-improved-settings',
+    onLoad: true,
+  });
 
   loadStyleOverrides();
 
