@@ -1,6 +1,7 @@
 import { debuglog, getFlag } from '@utils';
 
 import eventHorn from './modules/event-horn';
+import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
 import trollMode from './modules/troll-mode';
 import twitter from './modules/twitter';
@@ -15,6 +16,7 @@ const init = async () => {
     { id: 'birthday-horn', load: () => eventHorn('birthday') },
     { id: 'halloween-horn', load: () => eventHorn('halloween') },
     { id: 'great-winter-hunt-horn', load: () => eventHorn('greatWinterHunt') },
+    { id: 'raffle', load: raffle },
   ];
 
   const defaultEnabledFeatures = [
