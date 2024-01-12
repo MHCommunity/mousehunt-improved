@@ -30,7 +30,6 @@ const getMouse = async (mouseId) => {
 const getMousePower = async (mouseId) => {
   const mouse = await getMouse(mouseId);
   return mouse.effectivenesses.power;
-  return mouse;
 };
 
 const getMouseEffectiveness = async (mouseId) => {
@@ -60,7 +59,6 @@ const getPercent = (rate) => {
   }
 
   const percent = (rate * 100).toFixed(2);
-
 
   return `${percent}%`;
 };
