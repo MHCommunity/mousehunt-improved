@@ -23,7 +23,7 @@ const isApp = () => {
  */
 const isUnsupportedFile = (path = false) => {
   path = path || window.location.pathname;
-  return path.match(/\.(jpeg|jpg|gif|png|svg|json)$/i);
+  return path.match(/\.(jpeg|jpg|gif|png|svg|json|css|js)$/i);
 };
 
 /**
