@@ -31,10 +31,21 @@ const replaceInboxClose = async () => {
   hg.utils.TemplateUtil.addTemplate('ViewMousehuntHeader_inbox', template);
 };
 
+const replaceKingdomLink = async () => {
+  const kingdomLink = document.querySelector('.mousehuntHud-menu .kingdom a[href="https://www.mousehuntgame.com/forum.php"]');
+  if (! kingdomLink) {
+    return;
+  }
+
+  kingdomLink.href = 'https://www.mousehuntgame.com/news.php';
+  kingdomLink.setAttribute('data-page', 'News');
+};
+
 /**
  * Initialize the module.
  */
 export default async () => {
   showFullTitlePercent();
   replaceInboxClose();
+  replaceKingdomLink();
 };
