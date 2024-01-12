@@ -26,6 +26,10 @@ const cleanOnUpdate = (previousVersion) => {
       from: 'mh-improved-visibility-toggles', // Updated in v0.26.0.
       to: 'farm-visibility-toggles',
     },
+    {
+      from: 'mh-improved-better-travel', // Updated in v0.28.0.
+      to: 'better-travel',
+    }
   ]);
 
   cleanupSettings([

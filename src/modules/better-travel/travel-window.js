@@ -4,17 +4,17 @@ import {
   createPopup,
   debug,
   getCurrentLocation,
-  getSettingDirect,
-  onDialogHide,
-  saveSettingDirect
+  onDialogHide
 } from '@utils';
 
 import { getData } from '@utils/data';
 
+import { getTravelSetting, saveTravelSetting } from './travel-utils';
+
 import styles from './travel-menu.css';
 
 const getHiddenLocations = () => {
-  return getSettingDirect('travel-window-hidden-locations', [], 'mh-improved-better-travel');
+  return getTravelSetting('travel-window-hidden-locations', []);
 };
 
 const toggleLocation = (location) => {
@@ -32,7 +32,7 @@ const hideLocation = (location) => {
   }
 
   hiddenLocations.push(location);
-  saveSettingDirect('travel-window-hidden-locations', hiddenLocations, 'mh-improved-better-travel');
+  saveTravelSetting('travel-window-hidden-locations', hiddenLocations);
 };
 
 const unhideLocation = (location) => {
@@ -42,7 +42,7 @@ const unhideLocation = (location) => {
   }
 
   hiddenLocations.splice(hiddenLocations.indexOf(location), 1);
-  saveSettingDirect('travel-window-hidden-locations', hiddenLocations, 'mh-improved-better-travel');
+  saveTravelSetting('travel-window-hidden-locations', hiddenLocations);
 };
 
 const isLocationHidden = (location) => {
