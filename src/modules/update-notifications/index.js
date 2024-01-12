@@ -78,6 +78,37 @@ const addBanner = (hasNewSettings = false) => {
   }, 1000);
 };
 
+const addNewBadge = (id, selector, addActions = true) => {
+  const element = document.querySelector(selector);
+  if (! element) {
+    return;
+  }
+
+  const hasSeen = getSetting('has-seen-new-badge', []);
+  if (hasSeen.includes(id)) {
+    return;
+  }
+
+  hasSeen.push(id);
+  saveSetting('has-seen-new-badge', hasSeen);
+
+  element.classList.add('mh-improved-has-new-badge');
+
+  if (addActions) {
+    onTravel(() => {
+      addNewBadge(selector, false);
+    });
+
+    onRequest(() => {
+      addNewBadge(selector, false);
+    });
+
+    onNavigation(() => {
+      addNewBadge(selector, false);
+    });
+  }
+};
+
 /**
  * Initialize the module.
  */

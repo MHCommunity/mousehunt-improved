@@ -55,3 +55,19 @@ a.mhui-update-banner-button {
   background-size: 36px 25px;
   animation: dirigibleFloat ease-in-out 0.4s 3;
 }
+
+.mh-improved-has-new-badge::after {
+  position: absolute;
+  top: -4px;
+  right: -10px;
+  z-index: 1;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 10px;
+  color: #fff;
+  content: "NEW";
+  background: red;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #000;
+}
