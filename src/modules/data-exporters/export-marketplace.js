@@ -15,6 +15,10 @@ const fetchPage = async (page) => {
 const fetchTransactions = async () => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
   totalItemsEl.textContent = '...';
+  totalItemsEl.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+  });
 
   let page = 1;
   let response;
@@ -37,7 +41,7 @@ const fetchTransactions = async () => {
         listing_id: item.listing_id,
         listing_type: item.listing_type,
         item_id: item.item_id,
-        item_name: itemsTradable.find(({ id }) => id === item.item_id)?.name || '',
+        item_name: tradableItems.find(({ id }) => id === item.item_id)?.name || '',
         initial_quantity: item.initial_quantity,
         remaining_quantity: item.remaining_quantity,
         unit_price: item.unit_price,

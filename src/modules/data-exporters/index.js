@@ -1,5 +1,6 @@
 import { addStyles, addSubmenuItem, createPopup, onEvent } from '@utils';
 
+import { exportFavoriteSetups, hasFavoriteSetups } from './export-favorite-setups';
 import { exportRankupForecaster, hasRankupForecaster } from './export-rankup-forecaster';
 
 import exportInventory from './export-inventory';
@@ -34,9 +35,32 @@ const exportDataPopup = () => {
     {
       id: 'scoreboard-rankings',
       name: 'Scoreboard Rankings',
-      callback: exportScoreboards,
+      callback: () => exportScoreboards(),
+    },
+    {
+      id: 'scoreboard-rankings-weekly',
+      name: 'Scoreboard Rankings (Weekly)',
+      callback: () => exportScoreboards({ useWeekly: true }),
+    },
+    {
+      id: 'scoreboard-rankings-friends',
+      name: 'Scoreboard Rankings (Friends)',
+      callback: () => exportScoreboards({ useFriendsOnly: true }),
+    },
+    {
+      id: 'scoreboard-rankings-weekly-friends',
+      name: 'Scoreboard Rankings (Weekly, Friends)',
+      callback: () => exportScoreboards({ useWeekly: true, useFriendsOnly: true }),
     },
   ];
+
+  if (hasFavoriteSetups()) {
+    exporters.push({
+      id: 'favorite-setups',
+      name: 'Favorite Setups',
+      callback: exportFavoriteSetups,
+    });
+  }
 
   if (hasRankupForecaster()) {
     exporters.push({
