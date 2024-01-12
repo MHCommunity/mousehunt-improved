@@ -179,6 +179,10 @@ const doRequest = async (url, formData = {}) => {
   return data;
 };
 
+const sleep = async (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 /**
  * Return true if platform is MacOS. Props @wordpress/keycodes, thanks!
  *
@@ -236,5 +240,6 @@ export {
   addBodyClass,
   removeBodyClass,
   isAppleOS,
-  hasMiniCRE
+  hasMiniCRE,
+  sleep
 };
