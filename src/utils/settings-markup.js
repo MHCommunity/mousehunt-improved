@@ -609,14 +609,14 @@ const addSettingForModule = (module) => {
     }
 
     if (
-      subModule.settings && (
-        subModule.alwaysLoad ||
-        getSetting(subModule.id, subModule.default)
+      submodule.settings && (
+        submodule.alwaysLoad ||
+        getSetting(submodule.id, submodule.default)
       )
     ) {
       const subModSettings = module;
       subModSettings.subSetting = true;
-      subModule.settings(subModSettings);
+      submodule.settings(subModSettings);
     }
   });
 };

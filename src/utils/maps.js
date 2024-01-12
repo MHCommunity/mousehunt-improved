@@ -1,8 +1,8 @@
 import { getCurrentLocation } from './location';
+import { getData } from './data';
 import { getFlag } from './flags';
 import { getGlobal } from './global';
 import { makeElement } from './elements';
-import { getData } from './data';
 
 /**
  * Helper function to get the mapper object from the global object.

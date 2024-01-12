@@ -1,4 +1,4 @@
-import { getFlag } from '@utils';
+import { debuglog, getFlag } from '@utils';
 
 import eventHorn from './modules/event-horn';
 import rankupForecaster from './modules/rank-up-forecaster';
@@ -14,7 +14,6 @@ const init = async () => {
     { id: 'twitter', load: twitter },
     { id: 'birthday-horn', load: () => eventHorn('birthday') },
     { id: 'halloween-horn', load: () => eventHorn('halloween') },
-    { id: 'lunar-new-year-horn', load: () => eventHorn('lunar-new-year') },
     { id: 'great-winter-hunt-horn', load: () => eventHorn('greatWinterHunt') },
   ];
 
@@ -22,17 +21,23 @@ const init = async () => {
     { id: 'rank-up-forecaster', load: rankupForecaster },
   ];
 
+  const loaded = [];
+
   defaultDisabledFeatures.forEach((feature) => {
     if (getFlag(feature.id)) {
+      loaded.push(feature.id);
       feature.load();
     }
   });
 
   defaultEnabledFeatures.forEach((feature) => {
     if (! getFlag(feature.id)) {
+      loaded.push(feature.id);
       feature.load();
     }
   });
+
+  debuglog('beta-features', 'Loaded features:', loaded);
 };
 
 export default {

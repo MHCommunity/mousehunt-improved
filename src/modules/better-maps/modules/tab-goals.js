@@ -213,7 +213,7 @@ const addClassesToGroups = (mapData) => {
   });
 };
 
-const moveLeaveButton = () => {
+const moveLeaveButton = async () => {
   const leaveButton = document.querySelector('.treasureMapView-mapLeaveContainer .treasureMapView-leaveMapButton');
   if (! leaveButton) {
     return;

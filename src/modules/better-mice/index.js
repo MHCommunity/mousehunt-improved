@@ -8,11 +8,11 @@ import {
   makeLink,
   onOverlayChange
 } from '@utils';
+import { getData } from '@utils/data';
 
 import mousepage from './mousepage';
 
 import styles from './styles.css';
-import { getData } from 'utils/data';
 
 /**
  * Get the markup for the mouse links.

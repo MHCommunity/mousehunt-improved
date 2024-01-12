@@ -5,6 +5,7 @@ import {
   addToGlobal,
   debug,
   debuglite,
+  debuglog,
   getFlag,
   getGlobal,
   getSettingDirect,
@@ -76,36 +77,38 @@ const loadModules = async () => {
   const loadedModules = [];
   let modulesDebug = [];
 
+  const load = [];
+
   organizedModules.forEach((module) => {
-    module.modules.forEach((subModule) => {
-      const overrideStopLoading = getFlag(`no-${subModule.id}`);
+    module.modules.forEach((submodule) => {
+      const overrideStopLoading = getFlag(`no-${submodule.id}`);
       if (overrideStopLoading) {
-        debuglite(`Skipping ${subModule.name} due to override flag.`);
+        debuglite(`Skipping ${submodule.name} due to override flag.`);
         return;
       }
 
       if (
-        subModule.alwaysLoad ||
-        'required' === subModule.type ||
-        getSettingDirect(subModule.id, subModule.default, 'mousehunt-improved-settings') ||
-        (subModule.beta && getFlag(subModule.id))
+        submodule.alwaysLoad ||
+        'required' === submodule.type ||
+        getSettingDirect(submodule.id, submodule.default, 'mousehunt-improved-settings') ||
+        (submodule.beta && getFlag(submodule.id))
       ) {
         try {
-          subModule.load();
-          loadedModules.push(subModule.id);
+          load.push(submodule.load());
+          loadedModules.push(submodule.id);
 
-          modulesDebug.push(subModule.id);
+          modulesDebug.push(submodule.id);
         } catch (error) {
-          debug(`Error loading "${subModule.id}"`, error);
+          debug(`Error loading "${submodule.id}"`, error);
         }
-      } else {
-        debuglite(`Skipping "${subModule.id}" (disabled)`);
       }
     });
 
-    debuglite(`Loaded ${module.id}: ${modulesDebug.join(', ')}`);
+    debuglog('loader', `Loaded ${modulesDebug.length} ${module.id} modules`, modulesDebug);
     modulesDebug = [];
   });
+
+  await Promise.all(load);
 
   addAdvancedSettings();
 };
@@ -114,7 +117,7 @@ const loadModules = async () => {
  * Initialize the script.
  */
 const init = async () => {
-  debug(`Initializing MouseHunt Improved v${mhImprovedVersion} / ${mhImprovedPlatform}...`);
+  console.log(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform}%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
 
   // Check if the url is an image and if so, don't load.
   if (isUnsupportedFile()) {
@@ -133,10 +136,8 @@ const init = async () => {
   }
 
   try {
-    debug('Loading modules...');
-
     // Start it up.
-    loadModules();
+    await loadModules();
   } catch (error) {
     debug('Error loading modules', error);
 
@@ -147,7 +148,7 @@ const init = async () => {
     document.body.style.display = 'block';
   }
 
-  debug('Loading complete.');
+  console.log(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
 };
 
 init(); // eslint-disable-line unicorn/prefer-top-level-await
