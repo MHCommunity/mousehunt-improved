@@ -134,6 +134,19 @@ const checkForAutohorn = () => {
   });
 };
 
+const addIconToMenu = () => {
+  const menu = document.querySelector('.mousehuntHeaderView-gameTabs.small .mousehuntHeaderView-dropdownContainer');
+  if (! menu) {
+    return;
+  }
+
+  const icon = makeElement('a', ['menuItem', 'mousehunt-improved-icon-menu']);
+  icon.href = 'https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings';
+  icon.title = 'MouseHunt Improved Settings';
+
+  menu.append(icon);
+};
+
 /**
  * Initialize the module.
  */
@@ -154,6 +167,8 @@ const init = async () => {
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
     checkForAutohorn();
   }
+
+  addIconToMenu();
 };
 
 export default {
