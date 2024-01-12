@@ -1,4 +1,11 @@
-import { addMHCTData, makeElement, makeLink } from '@utils';
+import {
+  addMHCTData,
+  debuglog,
+  doRequest,
+  makeElement,
+  makeLink,
+  showErrorMessage
+} from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';
@@ -234,7 +241,161 @@ const moveLeaveButton = () => {
   actions.insertBefore(clone, actions.firstChild);
 };
 
-const showGoalsTab = (mapData) => {
+const addQuickInvite = async (mapData) => {
+  const sidebar = document.querySelector('.treasureMapView-rightBlock.treasureMapView-goalSidebar');
+  if (! sidebar) {
+    return;
+  }
+
+  const existing = document.querySelector('.mh-ui-quick-invite');
+  if (existing) {
+    existing.remove();
+  }
+
+  // Check if we're the curent map owner.
+  if (! mapData?.is_owner) {
+    return;
+  }
+
+  const mapId = mapData?.map_id;
+  if (! mapId) {
+    return;
+  }
+
+  const inviteWrapper = makeElement('div', 'mh-ui-quick-invite-wrapper');
+
+  const inviteInput = makeElement('input', 'mh-ui-quick-invite-input');
+  inviteInput.type = 'number';
+  inviteInput.placeholder = 'Hunter ID';
+  inviteWrapper.append(inviteInput);
+
+  const inviteButton = makeElement('div', ['mousehuntActionButton', 'tiny', 'mh-ui-quick-invite']);
+  makeElement('span', '', 'Invite', inviteButton);
+
+  const indicators = makeElement('div', 'mh-ui-quick-invite-indicators');
+  const spinner = makeElement('div', ['mh-ui-quick-invite-indicator', 'mh-ui-quick-invite-spinner', 'hidden']);
+  const success = makeElement('div', ['mh-ui-quick-invite-indicator', 'mh-ui-quick-invite-success', 'hidden']);
+
+  indicators.append(spinner);
+  indicators.append(success);
+
+  inviteWrapper.append(indicators);
+
+  const inviteError = (message) => {
+    debuglog('better-maps', `Invite error: ${message}`);
+
+    inviteInput.disabled = false;
+
+    inviteButton.classList.remove('disabled');
+    spinner.classList.add('hidden');
+
+    showErrorMessage(message, inviteWrapper);
+
+    return false;
+  };
+
+  const inviteAction = async () => {
+    if (inviteButton.classList.contains('disabled')) {
+      return;
+    }
+
+    // Set the input to disabled, add a disabled class to the button, and and add a loading spinner.
+    inviteInput.disabled = true;
+    inviteButton.classList.add('disabled');
+    spinner.classList.remove('hidden');
+
+    const hunterId = Number.parseInt(inviteInput.value, 10);
+
+    if (! hunterId) {
+      return inviteError('Invalid hunter ID');
+    }
+
+    // Check if the hunter is already on the map.
+    if (mapData?.hunters?.find((h) => (h.sn_user_id === hunterId) && h.is_active)) {
+      return inviteError('Hunter is already on the map');
+    }
+
+    debuglog('better-maps', `Inviting hunter ${hunterId} to map ${mapId}`);
+
+    let snuid;
+
+    const friendData = JSON.parse(sessionStorage.getItem('mh-improved-cache-maps-hunter-data') || '{}');
+
+    if (friendData && friendData[hunterId]) {
+      debuglog('better-maps', `Using cached friend data for ${hunterId}`);
+
+      snuid = friendData[hunterId];
+    } else {
+      debuglog('better-maps', `Fetching friend data for ${hunterId}`);
+
+      const getFriendData = await doRequest('managers/ajax/pages/friends.php', {
+        action: 'community_search_by_id',
+        user_id: hunterId,
+      });
+
+      if (getFriendData?.success && getFriendData?.friend?.sn_user_id) {
+        snuid = getFriendData.friend.sn_user_id;
+        const canAccept = getFriendData?.friend.user_interactions?.actions?.send_map_invite.maps[0]?.is_allowed || false;
+
+        friendData[hunterId] = {
+          snuid,
+          canAccept,
+        };
+
+        // Only cache the data if they can accept invites, otherwise we'll want to fetch their data again.
+        if (canAccept) {
+          sessionStorage.setItem('mh-improved-cache-maps-hunter-data', JSON.stringify(friendData));
+        }
+      } else {
+        return inviteError('Could not find hunter');
+      }
+    }
+
+    debuglog('better-maps', `Inviting hunter ${hunterId} with snuid ${snuid} to map ${mapId}`);
+
+    // TODO: uncomment when done dev
+    const invited = false;
+    // const invited = await doRequest('managers/ajax/users/treasuremap.php', {
+    //   action: 'send_invites',
+    //   map_id: mapId,
+    //   'snuids[]': snuid,
+    // });
+
+    if (invited && invited?.success) {
+      debuglog('better-maps', `Successfully invited hunter ${hunterId} to map ${mapId}`);
+
+      inviteInput.value = '';
+
+      inviteInput.disabled = false;
+
+      inviteButton.classList.remove('disabled');
+      spinner.classList.add('hidden');
+      success.classList.remove('hidden');
+
+      setTimeout(() => {
+        success.classList.add('hidden');
+      }, 2000);
+    } else {
+      return inviteError('Error inviting hunter');
+    }
+
+    debuglog('better-maps', '.');
+  };
+
+  inviteButton.addEventListener('click', inviteAction);
+  inviteInput.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+      inviteAction();
+    }
+  });
+
+  inviteWrapper.append(inviteButton);
+
+  // append as first child
+  sidebar.insertBefore(inviteWrapper, sidebar.firstChild);
+};
+
+const showGoalsTab = async (mapData) => {
   addArToggle();
   addMouseLinksToMap();
 
@@ -243,6 +404,8 @@ const showGoalsTab = (mapData) => {
   addClassesToGroups(mapData);
 
   moveLeaveButton();
+
+  addQuickInvite(mapData);
 };
 
 const hideGoalsTab = () => {

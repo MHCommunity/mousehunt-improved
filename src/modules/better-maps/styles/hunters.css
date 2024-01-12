@@ -98,3 +98,48 @@ a.mousehuntActionButton.lightBlue.treasureMapView-inviteModeButton {
   min-width: 44px;
   min-height: 44px;
 }
+
+.mh-ui-quick-invite-wrapper {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 185px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input.mh-ui-quick-invite-input {
+  width: auto;
+  max-width: 100px;
+  padding: 5px;
+  margin: 0;
+  border: 1px solid #c8c8c8;
+}
+
+.mh-ui-quick-invite-indicator {
+  position: absolute;
+  top: 15px;
+  right: 65px;
+  width: 20px;
+  height: 20px;
+}
+
+.mh-ui-quick-invite-indicator.mh-ui-quick-invite-spinner {
+  background-color: blue;
+}
+
+.mh-ui-quick-invite-indicator.mh-ui-quick-invite-success {
+  background-color: green;
+}
+
+.mh-ui-quick-invite-wrapper .mh-ui-error-message {
+  position: absolute;
+  top: 42px;
+  right: 5px;
+  left: 5px;
+  text-align: center;
+}
