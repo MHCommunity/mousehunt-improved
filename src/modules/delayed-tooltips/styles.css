@@ -8,7 +8,8 @@
   transition: opacity 0s linear 0.4s;
 }
 
-.PageHunterProfile .userInteractionButtonsView-button .mousehuntTooltip {
+.PageHunterProfile .userInteractionButtonsView-button .mousehuntTooltip,
+.no-delayed-tooltips .mousehuntTooltip {
   display: none;
   opacity: unset;
   transition: unset;
