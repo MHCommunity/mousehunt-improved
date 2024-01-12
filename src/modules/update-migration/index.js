@@ -38,6 +38,7 @@ const cleanOnUpdate = (previousVersion) => {
     'mh-improved-cached-ar-v0.24.1',
     'mh-improved-cached-ar-v0.25.2', // Versions before we saved the version in the settings.
     `mh-improved-cached-ar-v${previousVersion}`,
+    'mh-improved-update-notifications', // Updated in v0.28.0.
   ]);
 };
 

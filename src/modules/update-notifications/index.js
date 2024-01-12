@@ -2,17 +2,16 @@ import {
   addBodyClass,
   addStyles,
   getCurrentPage,
-  getSettingDirect,
+  getSetting,
   makeElement,
+  onNavigation,
+  onRequest,
+  onTravel,
   removeBodyClass,
-  saveSettingDirect
+  saveSetting
 } from '@utils';
 
 import styles from './styles.css';
-
-const getDate = () => {
-  return new Date().toISOString().split('T')[0];
-};
 
 const getUpdateLink = (version) => {
   return `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${version}`;
@@ -20,7 +19,7 @@ const getUpdateLink = (version) => {
 
 const addBanner = (hasNewSettings = false) => {
   // Only show the banner once.
-  if (getSettingDirect(`${mhImprovedVersion}-banner`, false, 'mh-improved-update-notifications')) {
+  if (mhImprovedVersion === getSetting('has-seen-update-banner', '')) {
     if (hasNewSettings) {
       removeBodyClass('mh-improved-has-update');
     }
@@ -55,7 +54,7 @@ const addBanner = (hasNewSettings = false) => {
     e.preventDefault();
 
     bannerWrapper.classList.add('banner-fade-out');
-    saveSettingDirect(`${mhImprovedVersion}-banner`, getDate(), 'mh-improved-update-notifications');
+    saveSetting('has-seen-update-banner', mhImprovedVersion);
 
     removeBodyClass('mh-improved-has-update');
 
