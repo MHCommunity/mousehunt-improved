@@ -177,3 +177,17 @@
 .journal .entry.titlechange .journalbody {
   text-shadow: 0 0 1px #70c9da;
 }
+
+/* daily draw winner */
+.journal .entry.drawwinner {
+  box-shadow: inset 0 0 4px 2px #8fc68f;
+  animation: warpathWiggle 1s 5;
+}
+
+.journal .entry.drawwinner::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/journal/donation_shimmer.png?asset_cache_version=2) no-repeat -130px 0;
+  animation: donationShimmer 5s infinite;
+}
