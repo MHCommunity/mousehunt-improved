@@ -68,3 +68,7 @@
 .mousehuntHud-userStat.title:hover .mousehuntHud-titleProgressBar .wrapper .bar {
   opacity: 1;
 }
+
+.mousehuntHud-userStat.empty .icon {
+  box-shadow: none;
+}
