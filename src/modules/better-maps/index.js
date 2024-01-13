@@ -1,6 +1,5 @@
 import {
   addToGlobal,
-  debuglog,
   getFlag,
   getMapData,
   makeElement,
@@ -221,25 +220,6 @@ const relicHunterUpdate = () => {
       }
     }, 250);
   };
-};
-
-const refreshMap = () => {
-  const mapId = user?.quests?.QuestRelicHunter?.default_map_id;
-  if (! mapId) {
-    debuglog('better-maps', 'No map found, skipping refresh …');
-    return;
-  }
-
-  const lastRefreshed = sessionStorage.getItem('mh-improved-map-refreshed');
-  // If we've refreshed in the last 2 minutes, don't refresh again.
-  if (lastRefreshed && Date.now() - lastRefreshed < 1000 * 60 * 2) {
-    debuglog('better-maps', `Map ${mapId} refreshed in the last 2 minutes, skipping …`);
-    return;
-  }
-
-  debuglog('better-maps', `🗺️️ Refreshing map ${mapId} …`);
-
-  interceptMapRequest(mapId);
 };
 
 /**

@@ -4,9 +4,6 @@ import {
   getCurrentPage,
   getSetting,
   makeElement,
-  onNavigation,
-  onRequest,
-  onTravel,
   removeBodyClass,
   saveSetting
 } from '@utils';

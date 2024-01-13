@@ -104,24 +104,18 @@ const makeBlueprintContainer = () => {
 
   body.append(makeBlueprintRow(getCurrentSetup(), [{
     text: 'Save',
-    callback: () => {
-      console.log('save');
-    }
+    callback: () => {}
   }]));
 
   setups.forEach((setup) => {
     const setupContainer = makeBlueprintRow(setup, [
       {
         text: 'Arm',
-        callback: () => {
-          console.log('arm');
-        }
+        callback: () => {}
       },
       {
         text: 'Edit',
-        callback: () => {
-          console.log('edit');
-        }
+        callback: () => {}
       },
     ]);
 
@@ -177,7 +171,6 @@ const addFavoriteSetupsButton = () => {
 };
 
 const isFavoriteSetupsShowing = () => {
-  console.log('isFavoriteSetupsShowing');
   const pageContainer = document.querySelector('#mousehuntContainer');
   if (! pageContainer) {
     return false;
@@ -187,7 +180,6 @@ const isFavoriteSetupsShowing = () => {
 };
 
 const hideFavoriteSetups = () => {
-  console.log('hideFavoriteSetups');
   const pageContainer = document.querySelector('#mousehuntContainer');
   if (! pageContainer) {
     return;
@@ -202,7 +194,6 @@ const hideFavoriteSetups = () => {
 };
 
 const showFavoriteSetups = () => {
-  console.log('showFavoriteSetups');
   const pageContainer = document.querySelector('#mousehuntContainer');
   if (! pageContainer) {
     return;

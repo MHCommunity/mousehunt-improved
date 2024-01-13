@@ -124,6 +124,7 @@
 
 #mousehunt-improved-settings-location-hud .PagePreferences__settingsList.PagePreferences__subSetting {
   margin-left: 0;
+  border-left: none;
 }
 
 .PagePreferences__subSetting .PagePreferences__settingName {
@@ -363,8 +364,4 @@
 
 .mousehunt-improved-clear-cache.mousehuntActionButton {
   margin-left: auto;
-}
-
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList.PagePreferences__subSetting {
-  border-left: none;
 }

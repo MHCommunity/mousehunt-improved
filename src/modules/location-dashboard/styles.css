@@ -215,7 +215,7 @@ img.locationImage {
   z-index: 1;
 }
 
-@keyframes movingBackground {
+@keyframes moving-background {
   0% {
     right: 100%;
   }
@@ -233,5 +233,5 @@ img.locationImage {
   width: 100%;
   content: "";
   background: #f3c019;
-  animation: movingBackground 1s linear forwards;
+  animation: moving-background 1s linear forwards;
 }

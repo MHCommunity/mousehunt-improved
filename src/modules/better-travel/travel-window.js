@@ -69,6 +69,8 @@ const openTravelWindow = () => {
     { type: 'riftopia', name: 'Rift Plane' },
   ];
 
+  environments = getData('environments');
+
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());
 
   // Wrapper start.

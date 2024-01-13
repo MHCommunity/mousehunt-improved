@@ -82,16 +82,6 @@ const addOpenAlltoConvertible = () => {
   });
 };
 
-const getDesc = (messageItemCopy) => {
-  const popup = document.querySelector('.itemViewPopup .itemViewContainer.message_item .itemView-actionContainer');
-  if (! popup) {
-    return false;
-  }
-
-  popup.append(messageItemCopy);
-  return true;
-};
-
 const addItemViewPopupToCollectibles = () => {
   const collectibles = document.querySelectorAll('.mousehuntHud-page-subTabContent.collectible .inventoryPage-item.small');
   if (! collectibles.length) {
