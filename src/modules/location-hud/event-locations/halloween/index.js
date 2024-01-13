@@ -18,11 +18,20 @@ const undisableCheese = () => {
   });
 };
 
+const halloweenGlobal = async () => {
+  // no-op.
+};
+
 /**
  * Initialize the module.
  */
-export default async () => {
+const halloweenLocation = async () => {
   addHudStyles(styles);
   undisableCheese();
   onRequest(undisableCheese);
+};
+
+export {
+  halloweenGlobal,
+  halloweenLocation
 };

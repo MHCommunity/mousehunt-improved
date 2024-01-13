@@ -91,48 +91,6 @@
   font-size: 13px;
 }
 
-.campHudSnowballShowdownView__imageContainer {
-  height: 35px;
-  margin-top: -5px;
-  background: rgb(218 188 155 / 60%);
-  border-radius: 13px;
-}
-
-.campHudSnowballShowdownView__image {
-  height: 35px;
-  background-position: bottom center;
-}
-
-.campHudSnowballShowdownView__snowball .campHudSnowballShowdownView__image {
-  background-position: center 5px;
-}
-
-.campHudSnowballShowdownView__quantity {
-  padding: 1px;
-  font-size: 13px;
-  color: #133850;
-  text-align: center;
-  background-color: #a8d3e0;
-  border-radius: 5px;
-  box-shadow: inset 0 0 0 1px #2174ab;
-}
-
-button.campHudSnowballShowdownView__buyButton {
-  display: none;
-}
-
-.campHudSnowballShowdownView__item:hover button.campHudSnowballShowdownView__buyButton,
-.campHudSnowballShowdownView__item:focus button.campHudSnowballShowdownView__buyButton,
-.campHudSnowballShowdownView__item:active button.campHudSnowballShowdownView__buyButton {
-  position: absolute;
-  right: -1px;
-  bottom: -2px;
-  display: block;
-  width: 17px;
-  height: 17px;
-  background-size: cover;
-}
-
 .headsUpDisplayWinterHuntRegionView__baitImageButton {
   filter: drop-shadow(0 0 3px #a8d3e0);
   background-position: -1px -4px;
@@ -500,6 +458,7 @@ button.campHudSnowballShowdownView__buyButton {
 
 .greatWinterHuntRecycleDialogView__golemRequirement {
   font-size: 13px;
+  margin-bottom: 3px;
 }
 
 .greatWinterHuntRecycleDialogView__action::after {
@@ -653,7 +612,7 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 }
 
 .headsUpDisplayWinterHuntRegionView__trapWarningContainer .greatWinterHuntDialogView {
-  left: 45%;
+  top: 25%;
   z-index: 11;
 }
 
@@ -802,21 +761,6 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 .winterHuntProfileInteractionView a.giftBox:focus,
 .winterHuntProfileInteractionView a.giftBox:active {
   filter: brightness(1.1);
-}
-
-.campHudSnowballShowdownView__quantityContainer.possibleAmount {
-  display: none;
-  margin-top: 7px;
-}
-
-.campHudSnowballShowdownView--hasSnowballShowdown:hover .campHudSnowballShowdownView__quantityContainer.possibleAmount,
-.campHudSnowballShowdownView--hasSnowballShowdown:focus .campHudSnowballShowdownView__quantityContainer.possibleAmount {
-  display: flex;
-}
-
-.possibleAmount .campHudSnowballShowdownView__quantity {
-  background-color: #d2e8ef;
-  box-shadow: inset 0 0 0 1px #7ebde7;
 }
 
 .headsUpDisplayWinterHuntRegionView__bait .mousehuntTooltip {
