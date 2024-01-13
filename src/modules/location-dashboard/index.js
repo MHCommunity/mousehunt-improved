@@ -385,6 +385,8 @@ const init = async () => {
   environments = await getData('environments');
 
   // Cache the quest data for our current location.
+  sessionStorage.setItem('mh-improved-doing-location-refresh', 'false');
+
   cacheLocationData();
   onTravel(null, { callback: cacheLocationData });
   onRequest(cacheLocationData);
