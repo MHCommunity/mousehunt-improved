@@ -9,7 +9,10 @@
   bottom: 0;
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 100;
+  color: #926944;
+  vertical-align: bottom;
 }
 
 .mh-improved-favorite-setups-blueprint-container {
@@ -47,7 +50,7 @@
   border-radius: 5px;
 }
 
-.mh-improved-favorite-setups-blueprint-container .labelAndControls {
+.mh-improved-favorite-setups-blueprint-container .controls {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -55,20 +58,93 @@
   justify-content: center;
 }
 
-.mh-improved-favorite-setups-blueprint-container .controls {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.mh-improved-favorite-setups-blueprint-container .button-wrapper {
+  display: flex;
   gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
 .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item {
   width: 100%;
 }
 
-/* background: #fff; */
+.mh-improved-favorite-setups-blueprint-container .controls .label {
+  font-size: 14px;
+}
 
-/* padding: 5px; */
+.mh-improved-favorite-setups-blueprint-container .controls .action {
+  padding: 4px 6px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: inherit;
+}
 
-/* border: 1px solid #ceb7a6; */
+.mh-improved-favorite-setups-blueprint-container .edit {
+  position: absolute;
+  right: 10px;
+}
 
-/* border-radius: 5px 3px; */
+.mh-improved-favorite-setups-blueprint-container .controls .delete,
+.mh-improved-favorite-setups-blueprint-container .editing .controls .delete,
+.mh-improved-favorite-setups-blueprint-container .editing .controls .edit-setup,
+.mh-improved-favorite-setups-blueprint-container.editing .controls .edit-setup,
+.mh-improved-favorite-setups-blueprint-container .controls .save-setup,
+.mh-improved-favorite-setups-blueprint-container .controls .cancel-setup,
+.mh-improved-favorite-setups-blueprint-container.editing .controls .arm,
+.mh-improved-favorite-setups-blueprint-container .editing .controls .arm {
+  display: none;
+}
+
+.mh-improved-favorite-setups-blueprint-container.editing .controls .delete,
+.mh-improved-favorite-setups-blueprint-container .editing .controls .save-setup,
+.mh-improved-favorite-setups-blueprint-container .editing .controls .cancel-setup {
+  display: block;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.flash {
+  background-color: #b9ffb9;
+}
+
+.mh-improved-favorite-setups-blueprint-container .controls input {
+  width: 115px;
+}
+
+.row.editing .campPage-trap-itemBrowser-favorite-item::after {
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+  left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 0;
+  content: "edit";
+  background-color: #eeee;
+  border: 1px solid #585858;
+}
+
+.row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
+  background-color: #ddd;
+}
+
+.mh-improved-favorite-setups-component-picker-popup-body-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mh-improved-favorite-setups-component-picker .prefix,
+.mh-improved-favorite-setups-component-picker .content {
+  background-color: #f5f3eb;
+}
+
+.mh-improved-favorite-setups-component-picker .content .content {
+  max-height: 90vh;
+  overflow: scroll;
+}
+
+.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item {
+  width: auto;
+  max-width: 310px;
+}
