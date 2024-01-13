@@ -222,20 +222,18 @@ const checkForSuccessfulGiftSend = (request) => {
     return;
   }
 
-  const okayBtn = document.querySelector('.giftSelectorView-confirmPopup-submitConfirmButton');
-  if (! okayBtn) {
-    return;
-  }
-
   setTimeout(() => {
-    okayBtn.click();
-
     if ('undefined' === typeof activejsDialog || ! activejsDialog || ! activejsDialog.hide) {
-      return;
+      const okayBtn = document.querySelector('.giftSelectorView-confirmPopup-submitConfirmButton');
+      if (! okayBtn) {
+        return;
+      }
+
+      okayBtn.click();
     }
 
     activejsDialog.hide();
-  }, 2000);
+  }, 1000);
 };
 
 const getLimit = () => {
