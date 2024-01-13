@@ -28,7 +28,9 @@ const addBanner = (hasNewSettings = false) => {
   }
 
   // Also add a class to the body so the settings page can show a "new" badge if there are new settings.
-  addBodyClass('mh-improved-has-update');
+  if (hasNewSettings) {
+    addBodyClass('mh-improved-has-update');
+  }
 
   // Don't show except on the camp page.
   if ('camp' !== getCurrentPage()) {
@@ -77,44 +79,13 @@ const addBanner = (hasNewSettings = false) => {
   }, 1000);
 };
 
-const addNewBadge = (id, selector, addActions = true) => {
-  const element = document.querySelector(selector);
-  if (! element) {
-    return;
-  }
-
-  const hasSeen = getSetting('has-seen-new-badge', []);
-  if (hasSeen.includes(id)) {
-    return;
-  }
-
-  hasSeen.push(id);
-  saveSetting('has-seen-new-badge', hasSeen);
-
-  element.classList.add('mh-improved-has-new-badge');
-
-  if (addActions) {
-    onTravel(() => {
-      addNewBadge(selector, false);
-    });
-
-    onRequest(() => {
-      addNewBadge(selector, false);
-    });
-
-    onNavigation(() => {
-      addNewBadge(selector, false);
-    });
-  }
-};
-
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles(styles);
 
-  addBanner(false); // True if there are new settings, otherwise false.
+  addBanner(true); // True if there are new settings, otherwise false.
 };
 
 export default {

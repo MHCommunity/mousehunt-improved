@@ -1,6 +1,6 @@
 .mhui-update-banner {
   position: absolute;
-  top: 0;
+  top: 10px;
   z-index: 11;
   width: 352px;
   padding: 10px;
@@ -41,33 +41,18 @@ a.mhui-update-banner-button {
   opacity: 0;
 }
 
-.mh-improved-has-update .mousehuntHeaderView .menuItem.settings::after {
+.mh-improved-has-update .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu::before {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -12px;
+  right: 4px;
   z-index: 2;
   width: 36px;
   height: 25px;
   content: "";
   background-image: url(https://www.mousehuntgame.com/images/ui/events/halloween_boiling_cauldron/book/new.png);
-  filter: drop-shadow(-1px 0 5px #fff) hue-rotate(40deg);
+  filter: drop-shadow(-1px 0 5px #fff) hue-rotate(200deg);
   background-repeat: no-repeat;
   background-size: 36px 25px;
   animation: dirigibleFloat ease-in-out 0.4s 3;
-}
-
-.mh-improved-has-new-badge::after {
-  position: absolute;
-  top: -4px;
-  right: -10px;
-  z-index: 1;
-  padding: 1px 6px;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 10px;
-  color: #fff;
-  content: "NEW";
-  background: red;
-  border-radius: 2px;
-  box-shadow: 1px 1px 1px #000;
+  animation-delay: 2s;
 }
