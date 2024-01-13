@@ -221,10 +221,14 @@
 
 .mouseCrownsView-group-mice {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   align-items: stretch;
   justify-content: start;
   max-width: 720px;
+}
+
+.no-sidebar .mouseCrownsView-group-mice {
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .mouseCrownsView-group-header b {
@@ -236,7 +240,7 @@
 }
 
 .mouseCrownsView-group-mouse {
-  width: 108px;
+  width: auto;
 }
 
 .mouseCrownsView-group-mouse-image {
