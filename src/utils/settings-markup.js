@@ -247,7 +247,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   }
 
   // Create the markup for the setting row.
-  const settings = makeElement('div', 'PagePreferences__settingsList');
+  const settings = makeElement('div', ['PagePreferences__settingsList', `PagePreferences__settingsList-${key}`, `PagePreferences__settingsList-${section.id}`]);
   settings.id = `${section.id}-${key}`;
   if (section.subSetting) {
     settings.classList.add('PagePreferences__subSetting');
@@ -561,7 +561,7 @@ const addAdvancedSettings = () => {
   // Add the advanced override settings.
   const advancedTab = {
     id: 'mousehunt-improved-settings-overrides',
-    name: 'Overrides',
+    name: 'Advanced',
     default: true,
     description: '',
   };

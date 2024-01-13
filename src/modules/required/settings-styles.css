@@ -15,6 +15,11 @@
   display: flex;
   gap: 10px;
   justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .toggled .PagePreferences__titleText {
+  padding-bottom: 0;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle.toggled {
@@ -30,7 +35,7 @@
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__settingDescription {
-  max-width: 500px;
+  max-width: 650px;
   padding-top: 5px;
 }
 
@@ -61,14 +66,26 @@
   font-size: 11px;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList:nth-child(even) {
-  background-color: #eee;
-  border-radius: 4px;
+#mousehunt-improved-settings-feature-custom-shield,
+#mousehunt-improved-settings-feature-ultimate-checkmark-categories,
+.mousehunt-improved-settings .PagePreferences__settingsList {
+  padding: 10px 5px 5px 10px;
+  margin-top: 10px;
+  border-top: 1px solid #e0d0b4;
+  border-left: none;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList {
-  padding: 5px;
-  padding-left: 10px;
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__subSetting {
+  padding: 0 5px 10px 10px;
+  margin: 0 0 0 50px;
+  border: none;
+  border-left: 1px solid #f8f4ed;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList:nth-child(3) {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
 }
 
 .PagePreferences .mousehunt-improved-settings .PagePreferences__setting {
@@ -80,6 +97,10 @@
 
 .PagePreferences .mousehunt-improved-settings .PagePreferences__setting .PagePreferences__settingAction {
   margin-bottom: 0;
+}
+
+.PagePreferences .mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer {
+  display: flex;
 }
 
 #mousehunt-improved-settings .PagePreferences__settingAction {
@@ -99,6 +120,10 @@
 /* Sub-settings */
 .PagePreferences__settingsList.PagePreferences__subSetting {
   margin-left: 20px;
+}
+
+#mousehunt-improved-settings-location-hud .PagePreferences__settingsList.PagePreferences__subSetting {
+  margin-left: 0;
 }
 
 .PagePreferences__subSetting .PagePreferences__settingName {
@@ -206,7 +231,7 @@
   margin-left: -25px;
   font-family: monospace;
   color: #000;
-  background-color: #dcdcdc;
+  background-color: #eee;
   border: 1px solid #ccc;
 }
 
@@ -264,9 +289,10 @@
 .PagePreferences__settingsList.multi-toggle-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 0;
-  justify-items: end;
+  gap: 0 15px;
+  place-items: end end;
   padding: 0;
+  border: none;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList .multi-toggle-row .PagePreferences__settingsList {
@@ -276,7 +302,9 @@
   align-items: stretch;
   justify-content: space-evenly;
   padding: 0;
+  margin: 0;
   background-color: transparent;
+  border: none;
 }
 
 .PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName {
@@ -315,7 +343,7 @@
 .menuItem.mousehunt-improved-icon-menu:hover {
   width: 20px;
   padding: 0 5px;
-  overflow: hidden;
+  overflow: visible;
   cursor: pointer;
   background: url(https://www.mousehuntgame.com/images/ui/hgbar/menuItem.png?asset_cache_version=2) 0 -30px repeat-x;
   border-top-right-radius: 10px;
@@ -331,4 +359,12 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+
+.mousehunt-improved-clear-cache.mousehuntActionButton {
+  margin-left: auto;
+}
+
+#mousehunt-improved-settings-location-hud .PagePreferences__settingsList.PagePreferences__subSetting {
+  border-left: none;
 }

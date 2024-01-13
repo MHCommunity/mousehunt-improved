@@ -2,13 +2,16 @@ import {
   addStyles,
   clearCaches,
   createPopup,
+  getCurrentPage,
+  getCurrentTab,
   getFlag,
   getSetting,
   makeElement,
   onNavigation
 } from '@utils';
 
-import settingStyles from './styles.css';
+import settingStyles from './settings-styles.css';
+import settingsIconStyles from './settings-icons.css';
 
 const addExportSettings = () => {
   const wrapper = document.querySelector('#mousehunt-improved-settings-mousehunt-improved-settings-overrides .PagePreferences__titleText');
@@ -28,7 +31,10 @@ const addExportSettings = () => {
   <div class="mousehuntActionButton lightBlue download"><span>Download</span></div>
   <div class="mousehuntActionButton cancel"><span>Cancel</span></div>`;
 
-  exportSettings.addEventListener('click', () => {
+  exportSettings.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     /* eslint-disable @wordpress/no-unused-vars-before-return */
     const popup = createPopup({
       title: 'MouseHunt Improved Settings',
@@ -77,8 +83,17 @@ const addClearCache = () => {
   const clearCache = makeElement('div', ['mousehunt-improved-clear-cache', 'mousehuntActionButton', 'tiny']);
   makeElement('span', '', 'Clear Cached Data', clearCache);
 
-  clearCache.addEventListener('click', () => {
+  clearCache.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     // Clear the data-caches.
+    // Confirm the clear
+    const confirm = window.confirm('Are you sure you want to clear the cached data?'); // eslint-disable-line no-alert
+    if (! confirm) {
+      return;
+    }
+
     clearCaches();
 
     // Clear the ar
@@ -108,10 +123,14 @@ const modifySettingsPage = () => {
     </svg>`;
 
     const titleText = setting.querySelector('.PagePreferences__titleText');
-    titleText.append(toggle);
+    if (titleText.childNodes.length > 1) {
+      titleText.insertBefore(toggle, titleText.childNodes[1]);
+    } else {
+      titleText.append(toggle);
+    }
 
     // add the event listener to toggle the class
-    toggle.addEventListener('click', () => {
+    titleText.addEventListener('click', () => {
       const toggled = setting.classList.contains('toggled');
       if (toggled) {
         setting.classList.remove('toggled');
@@ -121,10 +140,17 @@ const modifySettingsPage = () => {
         toggle.classList.add('toggled');
       }
     });
-  });
 
-  setTimeout(addClearCache, 250);
-  setTimeout(addExportSettings, 350);
+    const defaultToggled = [
+      'mousehunt-improved-settings-location-hud',
+      'mousehunt-improved-settings-mousehunt-improved-settings-overrides',
+    ];
+
+    if (defaultToggled.includes(setting.id)) {
+      setting.classList.add('toggled');
+      toggle.classList.add('toggled');
+    }
+  });
 };
 
 const loadStyleOverrides = () => {
@@ -167,6 +193,13 @@ const addIconToMenu = () => {
   icon.href = 'https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings';
   icon.title = 'MouseHunt Improved Settings';
 
+  icon.addEventListener('click', (e) => {
+    if ('preferences' === getCurrentPage() && 'mousehunt-improved-settings' === getCurrentTab()) {
+      e.preventDefault();
+      hg.utils.PageUtil.setPage('Camp');
+    }
+  });
+
   menu.append(icon);
 };
 
@@ -174,9 +207,13 @@ const addIconToMenu = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(settingStyles);
+  addStyles([settingStyles, settingsIconStyles]);
 
-  onNavigation(modifySettingsPage, {
+  onNavigation(() => {
+    setTimeout(addClearCache, 250);
+    setTimeout(addExportSettings, 350);
+    setTimeout(modifySettingsPage, 500);
+  }, {
     page: 'preferences',
     tab: 'mousehunt-improved-settings',
     onLoad: true,

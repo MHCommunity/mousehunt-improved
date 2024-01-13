@@ -54,7 +54,7 @@ const loadModules = async () => {
     return;
   }
 
-  addSettingsTab('mousehunt-improved-settings', 'MH Improved');
+  await addSettingsTab('mousehunt-improved-settings', 'MH Improved');
 
   modules.forEach((m) => {
     const category = organizedModules.find((c) => c.id === m.type);
@@ -67,11 +67,11 @@ const loadModules = async () => {
   });
 
   // Add the settings for each module.
-  organizedModules.forEach((module) => {
+  for (const module of organizedModules) {
     if ('required' !== module.id) {
-      addSettingForModule(module);
+      await addSettingForModule(module);
     }
-  });
+  }
 
   // Load the modules.
   const loadedModules = [];
@@ -79,8 +79,8 @@ const loadModules = async () => {
 
   const load = [];
 
-  organizedModules.forEach((module) => {
-    module.modules.forEach((submodule) => {
+  for (const module of organizedModules) {
+    for (const submodule of module.modules) {
       const overrideStopLoading = getFlag(`no-${submodule.id}`);
       if (overrideStopLoading) {
         debuglite(`Skipping ${submodule.name} due to override flag.`);
@@ -102,11 +102,11 @@ const loadModules = async () => {
           debug(`Error loading "${submodule.id}"`, error);
         }
       }
-    });
+    }
 
     debuglog('loader', `Loaded ${modulesDebug.length} ${module.id} modules`, modulesDebug);
     modulesDebug = [];
-  });
+  }
 
   await Promise.all(load);
 
