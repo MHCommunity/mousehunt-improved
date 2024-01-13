@@ -144,11 +144,9 @@ const init = async () => {
     showLoadingError(error);
   } finally {
     addToGlobal('loaded', true);
-    // Unblank the page.
-    document.body.style.display = 'block';
-  }
 
-  console.log(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
+    console.log(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
+  }
 };
 
 init(); // eslint-disable-line unicorn/prefer-top-level-await
