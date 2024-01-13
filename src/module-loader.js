@@ -45,10 +45,10 @@ import locationHud from '@/location-hud';
 
 // Element hiding modules.
 import adblock from '@/adblock';
+import hideFooter from '@/no-footer';
+import hideShare from '@/no-share';
+import hideSidebar from '@/no-sidebar';
 import journalPrivacy from '@/journal-privacy';
-import noFooter from '@/no-footer';
-import noShare from '@/no-share';
-import noSidebar from '@/no-sidebar';
 
 // All the always loaded modules.
 import dev from '@/dev';
@@ -106,10 +106,10 @@ export default [
 
   // Element hiding modules.
   adblock,
+  hideFooter,
+  hideShare,
+  hideSidebar,
   journalPrivacy,
-  noFooter,
-  noShare,
-  noSidebar,
 
   // Location HUD module.
   locationHud,
