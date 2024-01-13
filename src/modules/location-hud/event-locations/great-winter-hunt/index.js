@@ -233,7 +233,6 @@ const getGolemCounts = () => {
   return golemCounts;
 };
 
-
 const adventCalendarPopup = () => {
   const suffix = document.querySelector('#overlayPopup .suffix');
   if (! suffix) {

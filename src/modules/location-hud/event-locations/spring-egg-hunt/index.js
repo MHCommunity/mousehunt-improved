@@ -1,16 +1,15 @@
-import { addHudStyles, addStyles } from '@utils';
+import { addStyles } from '@utils';
 
 import styles from './styles.css';
-import stylesGlobal from './global.css';
 
 // Always active.
 const springEggHuntGlobal = async () => {
-  addStyles(stylesGlobal);
+  addStyles(styles);
 };
 
 // Only active at the locations.
 const springEggHuntLocation = async () => {
-  addHudStyles(styles);
+  // no-op.
 };
 
 export {
