@@ -77,12 +77,4 @@ export default function (module) {
       options: skipBadGiftOptions,
     }
   );
-
-  addMhuiSetting(
-    'gift-buttons-close-on-send',
-    'Close popup after sending',
-    true,
-    'Automatically close the Gift popup after sending gifts',
-    module
-  );
 }
