@@ -13,6 +13,17 @@
   background-position: center;
   background-size: 25px;
   opacity: 0.4;
+  transition: all 0.2s ease-in-out;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better:hover::before,
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature:hover::before,
+#mousehunt-improved-settings-feature-custom-shield:hover::before,
+#mousehunt-improved-settings-feature-ultimate-checkmark-categories:hover::before {
+  opacity: 0.9;
+  width: 30px;
+  background-size: 30px;
+  left: 2px;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better,
