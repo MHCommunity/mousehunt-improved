@@ -231,9 +231,9 @@ const refreshMap = () => {
   }
 
   const lastRefreshed = sessionStorage.getItem('mh-improved-map-refreshed');
-  // If we've refreshed in the last 5 minutes, don't refresh again.
-  if (lastRefreshed && Date.now() - lastRefreshed < 300000) {
-    debuglog('better-maps', `Map ${mapId} refreshed in the last 5 minutes, skipping …`);
+  // If we've refreshed in the last 2 minutes, don't refresh again.
+  if (lastRefreshed && Date.now() - lastRefreshed < 1000 * 60 * 2) {
+    debuglog('better-maps', `Map ${mapId} refreshed in the last 2 minutes, skipping …`);
     return;
   }
 
@@ -267,9 +267,6 @@ const init = async () => {
 
   if (getFlag('better-maps-helper')) {
     helper();
-
-    // Refresh the map every 5 minutes.
-    setInterval(refreshMap, 300000);
   }
 };
 
