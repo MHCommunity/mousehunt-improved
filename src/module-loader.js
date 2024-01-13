@@ -21,6 +21,7 @@ import customShield from '@/custom-shield';
 import darkMode from '@/dark-mode';
 import dataExporters from '@/data-exporters';
 import delayedTooltips from '@/delayed-tooltips';
+import favoriteSetups from '@/favorite-setups';
 import flrtHelper from '@/flrt-helper';
 import hoverProfiles from '@/hover-profiles';
 import imageUpscaling from '@/image-upscaling';
@@ -86,6 +87,7 @@ export default [
   darkMode,
   dataExporters,
   delayedTooltips,
+  favoriteSetups,
   flrtHelper,
   hoverProfiles,
   imageUpscaling,
