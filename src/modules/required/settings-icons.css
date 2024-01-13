@@ -20,10 +20,10 @@
 .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature:hover::before,
 #mousehunt-improved-settings-feature-custom-shield:hover::before,
 #mousehunt-improved-settings-feature-ultimate-checkmark-categories:hover::before {
-  opacity: 0.9;
+  left: 2px;
   width: 30px;
   background-size: 30px;
-  left: 2px;
+  opacity: 0.9;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better,
