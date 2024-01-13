@@ -43,7 +43,7 @@ const setCacheExpiration = (key) => {
   debuglog('utils.data', `Setting cache expiration for ${key}`);
 
   allCacheExpirations[key] = {
-    date: Date.now() + (7 * 24 * 60 * 60 * 1000),
+    date: Date.now() + ((Math.floor(Math.random() * 7) + 7) * 24 * 60 * 60 * 1000),
     version: mhImprovedVersion,
   };
 
@@ -112,7 +112,6 @@ const getData = async (key) => {
 
   const cachedData = getCachedData(key);
   if (cachedData) {
-    debuglog('utils.data', `Found cached data for ${key}`);
     return cachedData;
   }
 
