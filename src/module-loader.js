@@ -45,6 +45,7 @@ import locationHud from '@/location-hud';
 
 // Element hiding modules.
 import adblock from '@/adblock';
+import hideDailyRewardPopup from '@/hide-daily-reward-popup';
 import hideFooter from '@/no-footer';
 import hideShare from '@/no-share';
 import hideSidebar from '@/no-sidebar';
@@ -106,6 +107,7 @@ export default [
 
   // Element hiding modules.
   adblock,
+  hideDailyRewardPopup,
   hideFooter,
   hideShare,
   hideSidebar,
