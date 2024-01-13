@@ -74,9 +74,7 @@ const openTravelWindow = async () => {
   environments = await getData('environments');
   environments = [...environments, ...eventEnvironments];
 
-  console.log(environments, getCurrentLocation());
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());
-  console.log(currentEnvironment);
 
   // Wrapper start.
   let content = '<div class="mh-improved-travel-window greatWinterHuntGolemDestinationView"><div class="greatWinterHuntGolemDestinationView__content">';

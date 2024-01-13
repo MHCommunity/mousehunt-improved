@@ -280,7 +280,6 @@ const maybeHideAdventCalendarInMenu = () => {
 };
 
 const greatWinterHuntGlobal = () => {
-  console.log('greatWinterHuntGlobal');
   addStyles([stylesGlobal, maybeHideAdventCalendarInMenu]);
   onDialogShow(adventCalendarPopup, 'adventCalendarPopup');
 };
@@ -289,7 +288,6 @@ const greatWinterHuntGlobal = () => {
  * Initialize the module.
  */
 const greatWinterHuntLocation = () => {
-  console.log('greatWinterHuntLocation');
   addHudStyles(styles);
   onDialogShow(updateGolemPopup, 'greatWinterHuntDialog');
 

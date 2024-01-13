@@ -108,9 +108,9 @@ a.mousehuntActionButton.lightBlue.treasureMapView-inviteModeButton {
   max-width: 185px;
   padding: 10px;
   margin-bottom: 10px;
+  background-color: #eee;
   border: 1px solid #ccc;
   border-radius: 3px;
-  background-color: #eee;
 }
 
 input.mh-ui-quick-invite-input {
