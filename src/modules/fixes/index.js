@@ -60,6 +60,10 @@ const fixItemPage = () => {
     return;
   }
 
+  if (type.includes('message_item')) {
+    return;
+  }
+
   const link = document.querySelector(`.itemView-header-classification-link.${type[0]} a`);
   if (! link) {
     return;

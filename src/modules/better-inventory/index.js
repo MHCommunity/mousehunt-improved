@@ -104,22 +104,14 @@ const addItemViewPopupToCollectibles = () => {
       return;
     }
 
-    const messageItem = collectible.querySelector('.tooltipContent .button');
+    if ('message_item' === collectible.getAttribute('data-item-classification')) {
+      return;
+    }
 
     collectible.setAttribute('onclick', '');
     collectible.addEventListener('click', (e) => {
       e.preventDefault();
       hg.views.ItemView.show(type);
-
-      if (messageItem) {
-        const messageItemCopy = messageItem.cloneNode(true);
-
-        eventRegistry.addEventListener('js_dialog_show', () => {
-          setTimeout(() => {
-            getDesc(messageItemCopy);
-          }, 250);
-        }, null, true);
-      }
     });
   });
 };
