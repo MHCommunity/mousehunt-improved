@@ -1,6 +1,7 @@
 import { getCurrentPage, getCurrentTab } from './page';
 import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
 import { addStylesDirect } from './styles';
+import { getFlag } from './flags';
 import { makeElement } from './elements';
 import { onPageChange } from './events';
 
@@ -591,11 +592,14 @@ const addAdvancedSettings = () => {
  *
  * @param {Object} module The module to add settings for.
  */
-const addSettingForModule = (module) => {
-  module.modules.forEach((submodule) => {
-    if (! submodule.alwaysLoad && ! submodule.beta) {
+const addSettingForModule = async (module) => {
+  for (const submodule of module.modules) {
+    if (
+      ! submodule.alwaysLoad ||
+      (submodule.beta && getFlag(submodule.id))
+    ) {
       addSetting(
-        submodule.name,
+        `${submodule.name}${submodule.beta ? ' (Beta)' : ''}`,
         submodule.id,
         submodule.default,
         submodule.description,
@@ -616,9 +620,9 @@ const addSettingForModule = (module) => {
     ) {
       const subModSettings = module;
       subModSettings.subSetting = true;
-      submodule.settings(subModSettings);
+      await submodule.settings(subModSettings);
     }
-  });
+  }
 };
 
 export {
