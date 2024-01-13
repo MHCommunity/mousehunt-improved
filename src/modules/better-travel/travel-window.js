@@ -9,6 +9,8 @@ import {
 
 import { getData } from '@utils/data';
 
+import eventEnvironments from '@data/environments-events.json';
+
 import { getTravelSetting, saveTravelSetting } from './travel-utils';
 
 import styles from './travel-menu.css';
@@ -50,7 +52,7 @@ const isLocationHidden = (location) => {
   return hiddenLocations.includes(location);
 };
 
-const openTravelWindow = () => {
+const openTravelWindow = async () => {
   debug('Opening travel window');
   const regions = [
     { type: 'gnawnia', name: 'Gnawnia' },
@@ -69,23 +71,26 @@ const openTravelWindow = () => {
     { type: 'riftopia', name: 'Rift Plane' },
   ];
 
-  environments = getData('environments');
+  environments = await getData('environments');
+  environments = [...environments, ...eventEnvironments];
 
+  console.log(environments, getCurrentLocation());
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());
+  console.log(currentEnvironment);
 
   // Wrapper start.
   let content = '<div class="mh-improved-travel-window greatWinterHuntGolemDestinationView"><div class="greatWinterHuntGolemDestinationView__content">';
 
   // Region menu.
   content += '<div class="greatWinterHuntGolemDestinationView__regionsContainer">';
-  regions.forEach((region) => {
+  for (const region of regions) {
     let buttonClass = 'greatWinterHuntGolemDestinationView__regionButton';
     if (currentEnvironment.region === region.type) {
       buttonClass += ' greatWinterHuntGolemDestinationView__regionButton--active';
     }
 
     content += `<button class="${buttonClass}" data-region-type="${region.type}">${region.name}</button>`;
-  });
+  }
   content += '</div>';
 
   const hasTitles = false;
@@ -98,7 +103,7 @@ const openTravelWindow = () => {
       <div class="greatWinterHuntGolemDestinationView__regionEnvironments">`;
   }
 
-  regions.forEach((region) => {
+  for (const region of regions) {
     if (hasTitles) {
       content += `<div class="greatWinterHuntGolemDestinationView__regionGroup" data-region-type="${region.type}">
         <div class="greatWinterHuntGolemDestinationView__regionName">${region.name}</div>
@@ -127,7 +132,7 @@ const openTravelWindow = () => {
     if (hasTitles) {
       content += '</div></div>';
     }
-  });
+  }
 
   if (! hasTitles) {
     content += '</div></div>';
@@ -138,7 +143,6 @@ const openTravelWindow = () => {
   // wrapper end.
   content += '</div>';
 
-  // Todo: add an edit link, when editing, clicking on a location will gray it out. Only show enabled locations in the menu.
   content += `<div class="mh-improved-travel-window-footer">
     <div class="mh-improved-travel-window-edit mousehuntActionButton"><span>Edit</span></div>
     <div class="mh-improved-travel-window-description">Click on a location to toggle the visibility.</div>
