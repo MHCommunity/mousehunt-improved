@@ -131,7 +131,7 @@ const init = async () => {
 
 export default {
   id: 'catch-rate-estimate',
-  name: 'Catch Rate Estimate',
+  name: 'Catch Rate Estimator & Minluck',
   type: 'feature',
   default: true,
   description: 'Minluck and catch rate estimates.',
