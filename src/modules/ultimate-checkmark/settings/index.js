@@ -31,7 +31,7 @@ export default function (module) {
     'ultimate-checkmark-categories',
     'Ultimate Checkmark',
     [],
-    'Adds more things collect on the items view of your Hunter profile.',
+    'Adds more things collect on your Hunter profile.',
     module,
     {
       type: 'multi-toggle',
