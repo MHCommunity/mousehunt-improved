@@ -378,6 +378,10 @@ const getArForMouse = async (id, type = 'mouse') => {
 
   mhctdata = await fetch(url);
 
+  if (! mhctdata.ok) {
+    return [];
+  }
+
   mhctjson = await mhctdata.json();
 
   if (! mhctjson || mhctjson.length === 0) {
