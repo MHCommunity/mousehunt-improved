@@ -110,6 +110,7 @@ a.mousehuntActionButton.lightBlue.treasureMapView-inviteModeButton {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  background-color: #eee;
 }
 
 input.mh-ui-quick-invite-input {
@@ -129,11 +130,15 @@ input.mh-ui-quick-invite-input {
 }
 
 .mh-ui-quick-invite-indicator.mh-ui-quick-invite-spinner {
-  background-color: blue;
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-size: 16px;
 }
 
 .mh-ui-quick-invite-indicator.mh-ui-quick-invite-success {
-  background-color: green;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-size: 16px;
 }
 
 .mh-ui-quick-invite-wrapper .mh-ui-error-message {
