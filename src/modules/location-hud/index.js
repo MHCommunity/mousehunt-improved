@@ -186,7 +186,6 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  main();
   onNavigation(main);
   onTravel(main);
 };
