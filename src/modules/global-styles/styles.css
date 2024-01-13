@@ -95,7 +95,7 @@
 .mousehunt-improved-error {
   position: fixed;
   right: 25%;
-  bottom: 15%;
+  bottom: 50px;
   left: 25%;
   z-index: 20;
   display: flex;
