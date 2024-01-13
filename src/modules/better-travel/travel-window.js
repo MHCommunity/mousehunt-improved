@@ -152,7 +152,7 @@ const openTravelWindow = async () => {
     id: 'mh-improved-travel-window',
     title: '',
     content,
-    className: 'mh-improved-travel-window-popup',
+    className: 'mh-improved-travel-window-popup jsDialogFixed',
     show: false,
   });
 
