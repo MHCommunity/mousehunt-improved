@@ -72,3 +72,7 @@
 .mousehuntHud-userStat.empty .icon {
   box-shadow: none;
 }
+
+.mousehuntHud-page-tabHeader-container {
+  margin-bottom: -1.5px;
+}
