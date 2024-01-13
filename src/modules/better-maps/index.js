@@ -152,7 +152,7 @@ const clearStickyMouse = () => {
   }
 };
 
-const updateRelicHunterHint = () => {
+const updateRelicHunterHint = async () => {
   const relicHunter = document.querySelector('.treasureMapInventoryView-relicHunter-hint');
   if (! relicHunter) {
     return false;
@@ -181,7 +181,7 @@ const updateRelicHunterHint = () => {
   }
 
   // Find the environment that matches the key.
-  const environments = getData('environments');
+  environments = await getData('environments');
   const environment = environments.find((e) => e.id === key);
   if (! environment) {
     return true;
