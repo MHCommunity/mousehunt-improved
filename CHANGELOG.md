@@ -1,5 +1,40 @@
 # Changelog
 
+## Version 0.28.0
+
+- Fixes invalid colors defined in HG CSS that causes certain elements to not appear correctly
+- Fixes Larry's football challenge shield not correctly showing golden version
+- Updates Travel Window to be fixed position
+- Adds more global button styles
+- Updates script loading process to prevent flickering while script loads
+- Cleans up event location styles
+- Fixes the width of the mice for the kings crown tab
+- Updates consolation confirmation styles
+- Removes close after sending option for Better Gifts
+- Adds better handling to the location refresh travel checks
+- Fixes environment errors when using Travel Window in event regions
+- Fixes duplicate sunken city charm being displayed
+- Adds beta Favorite Setups feature
+- Adds Hide Daily Reward Popup feature
+- Cleans up update notifications
+- Fixes message item interactions not working correctly in the inventory
+- Updates Delayed Tooltips to default to not being enabled.
+- Fixes typos and cleans up language for settings and descriptions
+- Updates settings to look fancy and slick
+- Updates Kingdom menu to go to the News page rather than the Forum.
+- Removes shadow on emtpy HUD icons
+- Adds Clear Cache button to settings
+- Add MH Improved icon to top menu
+- Adds Location Dashboard refresh functionality
+- Update cache keys
+- Updates Delayed Tooltips to temporary disable while the Shift key is held down
+- Adds smooth scrolling to Data Exporters display
+- Adds Weekly & Friends scoreboard rankings to Data Exporters
+- Adds Favorite Setups userscript export to Data Exporters
+- Adds Daily Draw winner journal entry styles
+- Adds Quick Invite field to Better Maps
+- Removes most data files, updated to now fetch them from api.mouse.rip instead
+
 ## Version 0.27.3
 
 - Fixes not all scoreboards being available in data exporters
