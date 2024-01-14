@@ -255,3 +255,7 @@ a.mousehuntHud-page-tabHeader.collectibles span {
 .mousehuntHud-shield.larrys_football_challenge.golden {
   background-image: url(https://www.mousehuntgame.com/images/ui/elements/header_world_cup_golden_shield.png?asset_cache_version=2);
 }
+
+.eggSweeper-viewAllRewardsButton:hover {
+  background-color: #228b22; /* was 'forest' */
+}
