@@ -78,7 +78,6 @@ const loadModules = async () => {
   let modulesDebug = [];
 
   const load = [];
-
   for (const module of organizedModules) {
     for (const submodule of module.modules) {
       const overrideStopLoading = getFlag(`no-${submodule.id}`);
@@ -109,6 +108,8 @@ const loadModules = async () => {
   }
 
   await Promise.all(load);
+
+  addToGlobal('modules', loadedModules);
 
   addAdvancedSettings();
 };
@@ -143,9 +144,15 @@ const init = async () => {
 
     showLoadingError(error);
   } finally {
+    addToGlobal('version', mhImprovedVersion);
     addToGlobal('loaded', true);
 
     console.log(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
+
+    eventRegistry.doEvent('mh-improved-loaded', {
+      version: mhImprovedVersion,
+      modules: getGlobal('modules'),
+    });
   }
 };
 
