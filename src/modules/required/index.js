@@ -184,7 +184,7 @@ const checkForAutohorn = () => {
 };
 
 const addIconToMenu = () => {
-  const menu = document.querySelector('.mousehuntHeaderView-gameTabs.small .mousehuntHeaderView-dropdownContainer');
+  const menu = document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');
   if (! menu) {
     return;
   }
