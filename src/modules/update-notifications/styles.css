@@ -56,3 +56,11 @@ a.mhui-update-banner-button {
   animation: dirigibleFloat ease-in-out 0.4s 3;
   animation-delay: 2s;
 }
+
+.onboardArrow.mh-improved-onboarding-icon {
+  transform: translate(-50px, 30px);
+}
+
+.onboardArrow.mh-improved-onboarding-settings {
+  transform: translate(-100px, -60px);
+}

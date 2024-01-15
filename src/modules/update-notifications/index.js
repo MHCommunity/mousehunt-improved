@@ -1,9 +1,12 @@
 import {
+  debuglog,
   addBodyClass,
   addStyles,
   getCurrentPage,
+  getCurrentTab,
   getSetting,
   makeElement,
+  onNavigation,
   removeBodyClass,
   saveSetting
 } from '@utils';
@@ -14,9 +17,25 @@ const getUpdateLink = (version) => {
   return `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${version}`;
 };
 
+const hasSeenBanner = () => {
+  return mhImprovedVersion === getSetting('has-seen-update-banner', '');
+};
+
+const hasSeenOnboarding = (step = 0) => {
+  const savedStepNumber = getSetting('has-seen-onboarding', 0);
+  return savedStepNumber >= step;
+};
+
+const saveOnboardingStep = (step) => {
+  const savedStepNumber = getSetting('has-seen-onboarding', 0);
+  if (savedStepNumber < step) {
+    saveSetting('has-seen-onboarding', step);
+  }
+};
+
 const addBanner = (hasNewSettings = false) => {
   // Only show the banner once.
-  if (mhImprovedVersion === getSetting('has-seen-update-banner', '')) {
+  if (hasSeenBanner()) {
     if (hasNewSettings) {
       removeBodyClass('mh-improved-has-update');
     }
@@ -76,13 +95,95 @@ const addBanner = (hasNewSettings = false) => {
   }, 1000);
 };
 
+const registerOnboardingStep = (options) => {
+  const {
+    highlightSelector,
+    classname,
+    content,
+    button,
+    direction,
+    onShowCallback,
+    onCloseCallback,
+    step,
+    page,
+    tab,
+  } = options;
+
+  if (hasSeenOnboarding(step)) {
+    return;
+  }
+
+  debuglog('update-notifications', `Registering onboarding step ${step}`);
+
+  if (page && page !== getCurrentPage()) {
+    return;
+  }
+
+  if (tab && tab !== getCurrentTab()) {
+    return;
+  }
+
+  hg.views.MessengerView.addMessage({
+    content: {
+      body: hg.views.OnboardingTutorialView().wrapInfoArrow(content, button || 'OK'),
+    },
+    highlight_dom: highlightSelector,
+    'highlight_padding': 3,
+    css_class: `larryCircle mh-improved-onboarding ${classname || ''}`,
+    on_show_callback() {
+      hg.views.OnboardingTutorialView().showBouncyArrow(highlightSelector, direction);
+      if (onShowCallback) {
+        onShowCallback();
+      }
+    },
+    on_close_callback() {
+      hg.views.OnboardingTutorialView().hideBouncyArrow();
+
+      saveOnboardingStep(step);
+
+      if (onCloseCallback) {
+        onCloseCallback();
+      }
+    },
+    show_overlay: true,
+  });
+
+  hg.views.MessengerView.go();
+};
+
+const doOnboarding = () => {
+  registerOnboardingStep({
+    step: 1,
+    page: 'camp',
+    highlightSelector: '.mousehunt-improved-icon-menu',
+    classname: 'mh-improved-onboarding-icon',
+    content: 'Welcome to the new version of MouseHunt Improved! You can quickly get to the settings using this icon.',
+    direction: 'bottomLeft',
+  });
+
+  registerOnboardingStep({
+    step: 2,
+    page: 'preferences',
+    tab: 'mousehunt-improved-settings',
+    highlightSelector: '#mousehunt-improved-settings-better',
+    classname: 'mh-improved-onboarding-settings',
+    content: 'Here you can toggle features on and off, and customize them to your liking.',
+    direction: 'top',
+  });
+};
+
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles(styles);
 
-  addBanner(true); // True if there are new settings, otherwise false.
+  addBanner(false); // True if there are new settings, otherwise false.
+
+  // Delay the onboarding a bit so the banner has time to show.
+  onNavigation(() => {
+    setTimeout(doOnboarding, 500);
+  });
 };
 
 export default {
