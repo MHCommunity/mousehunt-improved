@@ -37,6 +37,9 @@
 - Updates color of Stuck Snowball journal entry
 - Updates widths of MHCT item view table
 - Adds a 'Default (low resolution)' option to Custom Shield to allow going back to the actual default shield
+- Adds onboarding to guide users to the settings page
+- Adds version and loaded modules to the `app.mhui` object.
+- When loaded, a `mh-improved-loaded` event is fired through the `eventRegistry`.
 
 ## Version 0.27.3
 
