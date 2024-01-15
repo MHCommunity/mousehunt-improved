@@ -8,6 +8,7 @@ import { addMhuiSetting } from '@utils';
 export default function (module) {
   let options = [
     { name: 'Default', value: 'default' },
+    { name: 'Default (normal resolution)', value: 'default-normal' },
     { name: 'Events', value: 'group', options: [
       { name: 'Birthday (Year 10)', value: 'birthday.year10' },
       { name: 'Birthday (Year 11)', value: 'birthday.year11' },
