@@ -92,10 +92,7 @@ const setCachedData = (key, data) => {
 const fetchAndCacheData = async (key) => {
   const data = await fetch(`https://api.mouse.rip/${key}`, {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-MH-Improved': 'true',
-    },
+    headers: getHeaders()
   });
 
   const json = await data.json();
@@ -133,7 +130,17 @@ const clearCaches = () => {
   localStorage.removeItem(getCacheExpirationKey());
 };
 
+const getHeaders = () => {
+  return {
+    'Content-Type': 'application/json',
+    'X-MH-Improved': 'true',
+    'X-MH-Improved-Version': mhImprovedVersion,
+    'X-MH-Improved-Platform': mhImprovedPlatform,
+  };
+};
+
 export {
   getData,
+  getHeaders,
   clearCaches
 };

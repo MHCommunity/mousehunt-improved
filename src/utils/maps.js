@@ -1,5 +1,5 @@
 import { getCurrentLocation } from './location';
-import { getData } from './data';
+import { getData, getHeaders } from './data';
 import { getFlag } from './flags';
 import { getGlobal } from './global';
 import { makeElement } from './elements';
@@ -376,12 +376,7 @@ const getArForMouse = async (id, type = 'mouse') => {
     url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
   }
 
-  mhctdata = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      'X-MH-Improved': 'true',
-    },
-  });
+  mhctdata = await fetch(url, { headers: getHeaders() });
 
   if (! mhctdata.ok) {
     return [];
