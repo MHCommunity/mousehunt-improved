@@ -4,18 +4,22 @@ import {
   debuglog,
   doRequest,
   getCurrentPage,
-  getSetting,
+  getSettingDirect,
   makeElement,
   onEvent,
   onNavigation,
-  saveSetting
+  saveSettingDirect
 } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
 
 const getFavoriteSetups = () => {
-  return getSetting('favorite-setups', []);
+  return getSettingDirect('favorite-setups', [], 'mh-improved-favorite-setups');
+};
+
+const saveSetting = (key, value) => {
+  return saveSettingDirect(key, value, 'mh-improved-favorite-setups');
 };
 
 const saveFavoriteSetup = (setup) => {
