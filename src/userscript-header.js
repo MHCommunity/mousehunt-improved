@@ -6,7 +6,7 @@
 // @author      bradp
 // @namespace   bradp
 // @match       https://www.mousehuntgame.com/*
-// @icon        https://i.mouse.rip/mouse.png
+// @icon        https://i.mouse.rip/mh-improved/icon-64.png
 // @run-at      document-end
 // @grant       none
 // ==/UserScript==
