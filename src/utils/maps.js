@@ -376,7 +376,12 @@ const getArForMouse = async (id, type = 'mouse') => {
     url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
   }
 
-  mhctdata = await fetch(url);
+  mhctdata = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json',
+      'X-MH-Improved': 'true',
+    },
+  });
 
   if (! mhctdata.ok) {
     return [];

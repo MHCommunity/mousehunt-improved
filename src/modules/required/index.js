@@ -174,6 +174,7 @@ const checkForAutohorn = () => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'X-MH-Improved': 'true',
     },
     body: JSON.stringify({
       id: user.user_id,

@@ -94,6 +94,7 @@ const fetchAndCacheData = async (key) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
+      'X-MH-Improved': 'true',
     },
   });
 
