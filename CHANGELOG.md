@@ -34,6 +34,9 @@
 - Adds Daily Draw winner journal entry styles
 - Adds Quick Invite field to Better Maps
 - Removes most data files, updated to now fetch them from api.mouse.rip instead
+- Updates color of Stuck Snowball journal entry
+- Updates widths of MHCT item view table
+- Adds a 'Default (low resolution)' option to Custom Shield to allow going back to the actual default shield
 
 ## Version 0.27.3
 
