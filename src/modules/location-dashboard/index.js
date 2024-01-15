@@ -153,6 +153,7 @@ const doLocationRefresh = async () => {
     content: `<div class="mh-improved-location-refresh-popup">
     <div class="mh-improved-location-refresh-popup-progress">${locationProgressMarkup}</div>
     </div>`,
+    hasCloseButton: false,
     show: true,
   });
 
