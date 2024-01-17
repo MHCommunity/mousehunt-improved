@@ -1,14 +1,14 @@
 import { getCurrentPage } from './page';
 
 /**
- * Check if an item is in the inventory.
- *
- * @async
- *
- * @param {Array} items The item to check for.
- *
- * @return {Array} The item data.
- */
+* Check if an item is in the inventory.
+*
+* @async
+*
+* @param {Array} items The item to check for.
+*
+* @return {Array} The item data.
+*/
 const getUserItems = async (items) => {
   return new Promise((resolve) => {
     hg.utils.UserInventory.getItems(items, (resp) => {
@@ -18,10 +18,10 @@ const getUserItems = async (items) => {
 };
 
 /**
- * Get the user's setup details.
- *
- * @return {Object} The user's setup details.
- */
+* Get the user's setup details.
+*
+* @return {Object} The user's setup details.
+*/
 const getUserSetupDetails = () => {
   const userObj = user;
   const setup = {
@@ -224,7 +224,69 @@ const getUserSetupDetails = () => {
   return setup;
 };
 
+const normalizeTitle = (title = '') => {
+  if (! title) {
+    return '';
+  }
+
+  const normalizedTitle = title.toLowerCase()
+    .replaceAll(' ', '')
+    .replaceAll('/', '_')
+    .replaceAll('journeyman_journeywoman', 'journeyman')
+    .replaceAll('journeywoman', 'journeyman')
+    .replaceAll('lord_lady', 'lord')
+    .replaceAll('lady', 'lord')
+    .replaceAll('baron_baroness', 'baron')
+    .replaceAll('baroness', 'baron')
+    .replaceAll('count_countess', 'count')
+    .replaceAll('countess', 'count')
+    .replaceAll('grand_duke_grand_duchess', 'grand_duke')
+    .replaceAll('grand_duchess', 'grand_duke')
+    .replaceAll('archduke_archduchess', 'archduke')
+    .replaceAll('archduchess', 'archduke')
+    .replaceAll('duke_duchess', 'duke')
+    .replaceAll('duke_dutchess', 'duke')
+    .replaceAll('duchess', 'duke')
+    .replaceAll('grand_duke', 'grandduke')
+    .replaceAll('/', '')
+    .replaceAll(' ', '')
+    .toLowerCase();
+
+  return normalizedTitle;
+};
+
+const isUserTitleAtLeast = (title) => {
+  const titles = [
+    'novice',
+    'recruit',
+    'apprentice',
+    'initiate',
+    'journeyman',
+    'master',
+    'grandmaster',
+    'legendary',
+    'hero',
+    'knight',
+    'lord',
+    'baron',
+    'count',
+    'duke',
+    'grandduke',
+    'archduke',
+    'viceroy',
+    'elder',
+    'sage',
+    'fable',
+  ];
+
+  const titleIndex = titles.indexOf(normalizeTitle(user.title_name));
+  const checkIndex = titles.indexOf(normalizeTitle(title));
+
+  return titleIndex >= checkIndex;
+};
+
 export {
   getUserItems,
-  getUserSetupDetails
+  getUserSetupDetails,
+  isUserTitleAtLeast
 };
