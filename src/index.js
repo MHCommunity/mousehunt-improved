@@ -24,7 +24,7 @@ if (getSetting('error-reporting', true)) {
   Sentry.init({
     dsn: 'https://c0e7b72f2611e14c356dba1923cedf6e@o4506582061875200.ingest.sentry.io/4506583459233792',
     maxBreadcrumbs: 50,
-    debug: true,
+    debug: false,
     release: `mousehunt-improved-${mhImprovedPlatform}@${mhImprovedVersion}`,
     initialScope: {
       version: mhImprovedVersion,
