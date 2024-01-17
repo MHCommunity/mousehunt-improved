@@ -249,3 +249,10 @@ a.journal-detailLink.full::after {
   vertical-align: top;
   filter: drop-shadow(0 0 1px #89299e) drop-shadow(0 0 5px #89299e) drop-shadow(0 0 10px #89299e);
 }
+
+/* move the share button */
+.journal .entry .journalbody .journalactions {
+  position: absolute;
+  right: 5px;
+  float: none;
+}
