@@ -169,6 +169,21 @@
   width: 80px;
 }
 
+.marketplaceView-item-image,
 .itemImage {
   background-size: 100%;
+}
+
+.journal .relicHunter_slayer_aura_relic_bonus {
+  background-image: url(https://www.mousehuntgame.com/images/items/collectibles/large/a6e804d0d9eeb22ff01660a144521ff1.png?cv=2);
+}
+
+.adventureBookPopup-title-icon {
+  height: 25px;
+  width: auto;
+  top: 5px;
+}
+
+.adventureBookPopup-title.active .adventureBookPopup-title-icon {
+  left: 5px;
 }
