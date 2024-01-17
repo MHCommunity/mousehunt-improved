@@ -1,11 +1,10 @@
-.mousehuntTooltipParent:hover .mousehuntTooltip {
+.mousehuntTooltipParent:hover > .mousehuntTooltip {
   opacity: 1;
 }
 
 .mousehuntTooltip {
-  display: block;
   opacity: 0;
-  transition: opacity 0s linear 0.4s;
+  transition: opacity 1s linear 0.4s;
 }
 
 .PageHunterProfile .userInteractionButtonsView-button .mousehuntTooltip,
