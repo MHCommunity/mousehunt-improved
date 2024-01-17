@@ -179,9 +179,9 @@
 }
 
 .adventureBookPopup-title-icon {
-  height: 25px;
-  width: auto;
   top: 5px;
+  width: auto;
+  height: 25px;
 }
 
 .adventureBookPopup-title.active .adventureBookPopup-title-icon {

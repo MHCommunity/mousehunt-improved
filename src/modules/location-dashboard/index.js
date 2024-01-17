@@ -2,11 +2,10 @@ import {
   addStyles,
   createPopup,
   debug,
-  makeElement,
-  onRequest,
-  onTravel,
   isUserTitleAtLeast,
-  onEvent
+  makeElement,
+  onEvent,
+  onRequest
 } from '@utils';
 
 import { getData } from '@utils/data';

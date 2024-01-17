@@ -1,7 +1,7 @@
 import {
-  debuglog,
   addBodyClass,
   addStyles,
+  debuglog,
   getCurrentPage,
   getCurrentTab,
   getSetting,
@@ -128,7 +128,7 @@ const registerOnboardingStep = (options) => {
       body: hg.views.OnboardingTutorialView().wrapInfoArrow(content, button || 'OK'),
     },
     highlight_dom: highlightSelector,
-    'highlight_padding': 3,
+    highlight_padding: 3,
     css_class: `larryCircle mh-improved-onboarding ${classname || ''}`,
     on_show_callback() {
       hg.views.OnboardingTutorialView().showBouncyArrow(highlightSelector, direction);

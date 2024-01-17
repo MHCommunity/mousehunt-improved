@@ -121,5 +121,5 @@
 }
 
 .adventureBookPopup-adventure-details-block.requirements .adventureBookPopup-adventure-details-block-step.incomplete {
-  box-shadow: 0px 1px 2px 1px #5c1c1c;
+  box-shadow: 0 1px 2px 1px #5c1c1c;
 }

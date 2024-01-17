@@ -16,12 +16,12 @@
 
 .mountainHUD-boulder-state,
 .mousehuntItem.mountainHUD-conduit-charm .mousehuntItem-image {
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .mountainHUD-boulder:hover .mountainHUD-boulder-state {
+  filter: brightness(0.9);
   transform: translateY(4px);
-  filter: brightness(.9);
 }
 
 .mountainHUD-boulderHelper {
@@ -33,33 +33,32 @@
 
 .mountainHUD-conduit-charm .mousehuntItem-image {
   background-color: #835327;
-  border-radius: 0;
-  box-shadow: -1px -1px 0px 0px #835327;
   background-size: 80px;
+  border-radius: 0;
+  box-shadow: -1px -1px 0 0 #835327;
 }
 
-.mountainHUD-conduit-charm .mousehuntItem-image:after {
-  border: 1px solid #d69143;
-  border-radius: 40px;
+.mountainHUD-conduit-charm .mousehuntItem-image::after {
   border: none;
+  border-radius: 40px;
 }
 
 .mountainHUD-conduit-charm:hover .mousehuntItem-image {
-  transform: rotate(5deg);
   background-size: 100px;
+  transform: rotate(5deg);
 }
 
 .mountainHUD-conduit-power {
-  font-size: 15px;
   padding-left: 19px;
+  font-size: 15px;
 }
 
-.mountainHUD-conduit-power:after {
+.mountainHUD-conduit-power::after {
+  top: -2px;
   width: 20px;
   height: 21px;
-  background-size: 20px;
-  top: -2px;
   padding-right: 5px;
+  background-size: 20px;
 }
 
 .mountainHUD-conduit-suggestions .mousehuntItem-image {
@@ -68,21 +67,17 @@
 }
 
 .mountainHUD-conduit-suggestions .mousehuntItem-quantity {
-  font-size: 12px;
-  left: 0;
   right: 0;
   bottom: -11px;
+  left: 0;
+  font-size: 12px;
   border: 1px solid #858585;
 }
 
 .mountainHUD-footer-item .mousehuntItem-image {
-  background-color: transparent;
-}
-
-.mountainHUD-footer-item .mousehuntItem-image {
-  background-color: transparent;
   width: 25px;
   height: 25px;
+  background-color: transparent;
 }
 
 .mountainHUD-footer-item .mousehuntItem-image,
@@ -93,15 +88,15 @@
   box-shadow: none;
 }
 
-.mountainHUD-footer-item .mousehuntItem-image:after,
-.mountainHUD-phaseContainer .mousehuntItem-image:after {
+.mountainHUD-footer-item .mousehuntItem-image::after,
+.mountainHUD-phaseContainer .mousehuntItem-image::after {
   border: none;
 }
 
 .mountainHUD-footer-item .mousehuntItem-quantity {
+  bottom: 4px;
   font-size: 12px;
   background-color: #de9c5f;
-  bottom: 4px;
   box-shadow: inset 0 0 3px 2px #835327;
 }
 
@@ -115,9 +110,9 @@
 }
 
 .mountainHUD-footer-item:nth-child(2) .mountainHUD-footer-item-name {
-  font-size: 12px;
-  margin-left: 24px;
   width: 82px;
+  margin-left: 24px;
+  font-size: 12px;
 }
 
 .mountainHUD-footer-item:nth-child(3) .mountainHUD-footer-item-name {
@@ -129,9 +124,9 @@
 }
 
 .mountainHUD-footer-item:nth-child(5) .mountainHUD-footer-item-name {
-  font-size: 11px;
   width: 80px;
   margin-left: 27px;
+  font-size: 11px;
 }
 
 .mountainHUD-footer-item .mousehuntItem.disabled .mousehuntItem-image {
@@ -162,11 +157,11 @@
 }
 
 .mountainHUD-conduit .mousehuntItem.disabled {
-  background-color: #5f3e1f;
   height: auto;
+  background-color: #5f3e1f;
 }
 
-.mountainHUD-conduit .mousehuntItem-image.disabled:after {
+.mountainHUD-conduit .mousehuntItem-image.disabled::after {
   border: none;
 }
 

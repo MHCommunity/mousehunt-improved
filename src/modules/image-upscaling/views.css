@@ -3,7 +3,7 @@
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/7340a24e5bf4defcc5d855bdb56776c3.png);
 }
 
-.shopsPage-kingsCalibratorPromo:after {
+.shopsPage-kingsCalibratorPromo::after {
   background-image: url(https://i.mouse.rip/upscaled/c6fa46d329c1c7436acad084773c05c6.png);
 }
 
@@ -23,15 +23,15 @@
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png);
 }
 
-.greatWinterHuntClaimRewardDialogView__item--hat:after {
+.greatWinterHuntClaimRewardDialogView__item--hat::after {
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/f2ec13c0297687cbe50c7c35312966b7.png);
 }
 
-.greatWinterHuntClaimRewardDialogView__item--scarf:after {
+.greatWinterHuntClaimRewardDialogView__item--scarf::after {
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/b07954771f93d36f125caab617573edf.png);
 }
 
-.headsUpDisplayWinterHuntRegionView__golemUpgradeCost:after {
+.headsUpDisplayWinterHuntRegionView__golemUpgradeCost::after {
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/a9f0d6cba3beb00ad97a543b5e3ec8f9.png);
 }
 
@@ -107,7 +107,7 @@
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/3f408cc3012bf15bd07d9bce8a6eec75.png);
 }
 
-.MiniEventGiveawayCampHUD:before {
+.MiniEventGiveawayCampHUD::before {
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/6391b886b424174996329aa1eb186a10.png);
 }
 
@@ -127,23 +127,28 @@
   background-image: url(https://i.mouse.rip/upscaled/625bef6da38dc44ddcd70d0da47244ae.png);
 }
 
-.mountainHUD-footer-item .mousehuntItem-image.abominable_asiago_cheese,.mountainHUD-craftDialog .mousehuntItem-image.abominable_asiago_cheese {
+.mountainHUD-footer-item .mousehuntItem-image.abominable_asiago_cheese,
+.mountainHUD-craftDialog .mousehuntItem-image.abominable_asiago_cheese {
   background-image: url(https://www.mousehuntgame.com/images/items/bait/large/7a83faafedc2d9e81cdf7aec4f1eb9a2.png);
 }
 
-.mountainHUD-footer-item .mousehuntItem-image.cheddore_cheese,.mountainHUD-craftDialog .mousehuntItem-image.cheddore_cheese {
+.mountainHUD-footer-item .mousehuntItem-image.cheddore_cheese,
+.mountainHUD-craftDialog .mousehuntItem-image.cheddore_cheese {
   background-image: url(https://www.mousehuntgame.com/images/items/bait/large/b5dde0c4643e52b8bee8b5d35529bc6e.png);
 }
 
-.mountainHUD-footer-item .mousehuntItem-image.faceted_sugar_crafting_item,.mountainHUD-craftDialog .mousehuntItem-image.faceted_sugar_crafting_item {
+.mountainHUD-footer-item .mousehuntItem-image.faceted_sugar_crafting_item,
+.mountainHUD-craftDialog .mousehuntItem-image.faceted_sugar_crafting_item {
   background-image: url(https://i.mouse.rip/upscaled/faceted_sugar_crafting_item.png);
 }
 
-.mountainHUD-footer-item .mousehuntItem-image.ice_curd_crafting_item,.mountainHUD-craftDialog .mousehuntItem-image.ice_curd_crafting_item {
+.mountainHUD-footer-item .mousehuntItem-image.ice_curd_crafting_item,
+.mountainHUD-craftDialog .mousehuntItem-image.ice_curd_crafting_item {
   background-image: url(https://i.mouse.rip/upscaled/ice_curd_crafting_item.png);
 }
 
-.mountainHUD-footer-item .mousehuntItem-image.magic_essence_craft_item,.mountainHUD-craftDialog .mousehuntItem-image.magic_essence_craft_item {
+.mountainHUD-footer-item .mousehuntItem-image.magic_essence_craft_item,
+.mountainHUD-craftDialog .mousehuntItem-image.magic_essence_craft_item {
   background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/1a5559b59d141e76dec3fe4b8780e5e3.png);
 }
 
@@ -179,7 +184,7 @@
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/81e3257baf10421af2fb22d9beeaf89c.png);
 }
 
-.riftFuromaHUD-craftingPopup-recipe-action-magicEssence:after {
+.riftFuromaHUD-craftingPopup-recipe-action-magicEssence::after {
   background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/1a5559b59d141e76dec3fe4b8780e5e3.png);
 }
 
@@ -187,23 +192,23 @@
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png);
 }
 
-.springHuntHUD-interfaceEgg.century_egg_convertible:after {
+.springHuntHUD-interfaceEgg.century_egg_convertible::after {
   background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/d64fc795e30b46f5f8a92f0949ab6988.png);
 }
 
-.springHuntHUD-interfaceEgg.explorers_egg_convertible:after {
+.springHuntHUD-interfaceEgg.explorers_egg_convertible::after {
   background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/fadab13dcd382ee0eb1876ca0c08abd6.png);
 }
 
-.springHuntHUD-interfaceEgg.freshly_painted_egg_convertible:after {
+.springHuntHUD-interfaceEgg.freshly_painted_egg_convertible::after {
   background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/ce737544556d685e1f874c4fd87501ab.png);
 }
 
-.springHuntHUD-interfaceEgg.market_mogul_egg_convertible:after {
+.springHuntHUD-interfaceEgg.market_mogul_egg_convertible::after {
   background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/6af4279a524e8981a4f77e6cd0c1a8fb.png);
 }
 
-.springHuntHUD-interfaceEgg.workshop_egg_convertible:after {
+.springHuntHUD-interfaceEgg.workshop_egg_convertible::after {
   background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/215cb37ca633fed6e55b1014a371acd6.png);
 }
 

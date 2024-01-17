@@ -1,14 +1,14 @@
 import { getCurrentPage } from './page';
 
 /**
-* Check if an item is in the inventory.
-*
-* @async
-*
-* @param {Array} items The item to check for.
-*
-* @return {Array} The item data.
-*/
+ * Check if an item is in the inventory.
+ *
+ * @async
+ *
+ * @param {Array} items The item to check for.
+ *
+ * @return {Array} The item data.
+ */
 const getUserItems = async (items) => {
   return new Promise((resolve) => {
     hg.utils.UserInventory.getItems(items, (resp) => {
@@ -18,10 +18,10 @@ const getUserItems = async (items) => {
 };
 
 /**
-* Get the user's setup details.
-*
-* @return {Object} The user's setup details.
-*/
+ * Get the user's setup details.
+ *
+ * @return {Object} The user's setup details.
+ */
 const getUserSetupDetails = () => {
   const userObj = user;
   const setup = {

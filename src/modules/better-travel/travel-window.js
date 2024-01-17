@@ -4,8 +4,8 @@ import {
   createPopup,
   debug,
   getCurrentLocation,
-  onDialogHide,
-  isUserTitleAtLeast
+  isUserTitleAtLeast,
+  onDialogHide
 } from '@utils';
 
 import { getData } from '@utils/data';
@@ -82,7 +82,6 @@ const openTravelWindow = async () => {
   ];
 
   environments = environments.map((env) => {
-    console.log(env);
     if (! isUserTitleAtLeast(env.title)) {
       locationsToRemove.push(env.id);
     }
@@ -91,7 +90,6 @@ const openTravelWindow = async () => {
   });
 
   environments = environments.filter((env) => ! locationsToRemove.includes(env.id));
-
 
   // Wrapper start.
   let content = '<div class="mh-improved-travel-window greatWinterHuntGolemDestinationView"><div class="greatWinterHuntGolemDestinationView__content">';

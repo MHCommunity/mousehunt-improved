@@ -1,4 +1,4 @@
-import { addHudStyles, getCurrentLocation, onEvent, onTravel } from '@utils';
+import { addHudStyles, getCurrentLocation, onEvent } from '@utils';
 
 import styles from './styles.css';
 

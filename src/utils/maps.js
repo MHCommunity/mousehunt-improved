@@ -1,5 +1,5 @@
-import { getCurrentLocation } from './location';
 import { getData, getHeaders } from './data';
+import { getCurrentLocation } from './location';
 import { getFlag } from './flags';
 import { getGlobal } from './global';
 import { makeElement } from './elements';

@@ -1,4 +1,4 @@
-import { addHudStyles, onEvent, onTravel } from '@utils';
+import { addHudStyles, onEvent } from '@utils';
 
 import styles from './styles.css';
 
