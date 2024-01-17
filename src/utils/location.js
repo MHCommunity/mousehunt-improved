@@ -30,12 +30,17 @@ const getRelicHunterLocation = () => {
   }
 
   // Otherwise, fetch the data and cache it.
-  return fetch('https://rh-api.mouse.rip/', { headers: getHeaders() }).then((response) => response.json())
+  const response = fetch('https://rh-api.mouse.rip/', { headers: getHeaders() }).then((response) => response.json())
     .then((data) => {
       const expiry = Date.now() + cacheExpiry;
       sessionStorage.setItem(cacheKey, JSON.stringify({ expiry, data }));
       return data;
+    })
+    .catch((error) => {
+      console.error(error); // eslint-disable-line no-console
     });
+
+  return response;
 };
 
 export {
