@@ -1,4 +1,4 @@
-import { addHudStyles, onTravel } from '@utils';
+import { addHudStyles, onEvent, onTravel } from '@utils';
 
 import styles from './styles.css';
 
@@ -66,9 +66,9 @@ const hud = () => {
 
   // add a timer to update the time left
   const timer = setInterval(updateClosingTime, 60 * 1000);
-  onTravel(null, { callback: () => {
+  onEvent('travel_complete', () => {
     clearInterval(timer);
-  } });
+  });
 };
 
 /**
