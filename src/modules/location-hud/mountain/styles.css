@@ -1,0 +1,179 @@
+.mountainHUD-boulder-health-percent {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.mountainHUD-boulder-health-percent span {
+  font-size: 12px;
+}
+
+.mountainHUD-boulder-health-progressBar span {
+  top: -2px;
+  bottom: -2px;
+  box-shadow: inset 0 0 2px 1px #000;
+}
+
+.mountainHUD-boulder-state,
+.mousehuntItem.mountainHUD-conduit-charm .mousehuntItem-image {
+  transition: .2s;
+}
+
+.mountainHUD-boulder:hover .mountainHUD-boulder-state {
+  transform: translateY(4px);
+  filter: brightness(.9);
+}
+
+.mountainHUD-boulderHelper {
+  top: 3px;
+  left: 128px;
+  width: 76px;
+  font-size: 11px;
+}
+
+.mountainHUD-conduit-charm .mousehuntItem-image {
+  background-color: #835327;
+  border-radius: 0;
+  box-shadow: -1px -1px 0px 0px #835327;
+  background-size: 80px;
+}
+
+.mountainHUD-conduit-charm .mousehuntItem-image:after {
+  border: 1px solid #d69143;
+  border-radius: 40px;
+  border: none;
+}
+
+.mountainHUD-conduit-charm:hover .mousehuntItem-image {
+  transform: rotate(5deg);
+  background-size: 100px;
+}
+
+.mountainHUD-conduit-power {
+  font-size: 15px;
+  padding-left: 19px;
+}
+
+.mountainHUD-conduit-power:after {
+  width: 20px;
+  height: 21px;
+  background-size: 20px;
+  top: -2px;
+  padding-right: 5px;
+}
+
+.mountainHUD-conduit-suggestions .mousehuntItem-image {
+  background-color: #855a2c;
+  background-size: 33px;
+}
+
+.mountainHUD-conduit-suggestions .mousehuntItem-quantity {
+  font-size: 12px;
+  left: 0;
+  right: 0;
+  bottom: -11px;
+  border: 1px solid #858585;
+}
+
+.mountainHUD-footer-item .mousehuntItem-image {
+  background-color: transparent;
+}
+
+.mountainHUD-footer-item .mousehuntItem-image {
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+}
+
+.mountainHUD-footer-item .mousehuntItem-image,
+.mountainHUD-phaseContainer .mousehuntItem-image,
+.mountainHUD-conduit-suggestions .mousehuntItem-image {
+  background-color: transparent;
+  background-size: cover;
+  box-shadow: none;
+}
+
+.mountainHUD-footer-item .mousehuntItem-image:after,
+.mountainHUD-phaseContainer .mousehuntItem-image:after {
+  border: none;
+}
+
+.mountainHUD-footer-item .mousehuntItem-quantity {
+  font-size: 12px;
+  background-color: #de9c5f;
+  bottom: 4px;
+  box-shadow: inset 0 0 3px 2px #835327;
+}
+
+.mountainHUD-footer-item-name {
+  font-size: 10px;
+}
+
+.mountainHUD-footer-item:nth-child(1) .mountainHUD-footer-item-name {
+  font-size: 10px;
+  line-height: 10px;
+}
+
+.mountainHUD-footer-item:nth-child(2) .mountainHUD-footer-item-name {
+  font-size: 12px;
+  margin-left: 24px;
+  width: 82px;
+}
+
+.mountainHUD-footer-item:nth-child(3) .mountainHUD-footer-item-name {
+  font-size: 12px;
+}
+
+.mountainHUD-footer-item:nth-child(4) .mountainHUD-footer-item-name {
+  font-size: 9px;
+}
+
+.mountainHUD-footer-item:nth-child(5) .mountainHUD-footer-item-name {
+  font-size: 11px;
+  width: 80px;
+  margin-left: 27px;
+}
+
+.mountainHUD-footer-item .mousehuntItem.disabled .mousehuntItem-image {
+  filter: opacity(0.3);
+}
+
+.mountainHUD-phase-description {
+  line-height: 10px;
+}
+
+.mountainHUD-phase-title span {
+  font-size: 10px;
+  font-variant: none;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.mountainHUD-phaseContainer .mousehuntItem-quantity.quantity {
+  font-size: 12px;
+  border: 1px solid #858585;
+}
+
+.mountainHUD.none .mountainHUD-conduit-charm .mousehuntItem-image {
+  border-radius: 50%;
+}
+
+.mousehuntItem.mountainHUD-conduit-charm {
+  background-color: #835327;
+}
+
+.mountainHUD-conduit .mousehuntItem.disabled {
+  background-color: #5f3e1f;
+  height: auto;
+}
+
+.mountainHUD-conduit .mousehuntItem-image.disabled:after {
+  border: none;
+}
+
+.mountainHUD-conduit .mousehuntItem.disabled .mousehuntItem-quantity {
+  display: none;
+}
+
+.mountainHUD-conduit-suggestion-item .mousehuntTooltip {
+  font-size: 12px;
+}

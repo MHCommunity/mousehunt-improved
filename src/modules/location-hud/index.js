@@ -1,7 +1,9 @@
 // Location HUD improvements.
 import {
+  debug,
   getCurrentLocation,
   getSetting,
+  onEvent,
   onNavigation,
   onTravel,
   removeHudStyles
@@ -38,6 +40,7 @@ import kings_arms from './kings-arms';
 import kings_gauntlet from './kings-gauntlet';
 import labyrinth from './labyrinth';
 import lagoon from './lagoon';
+import mountain from './mountain';
 import meditation_room from './meditation-room';
 import moussu_picchu from './moussu-picchu';
 import nerg_plains from './nerg-plains';
@@ -113,6 +116,8 @@ const main = () => {
   const currentLocation = getCurrentLocation();
   const location = normalizeCurrentLocation(currentLocation);
 
+  debug(`Location: ${location}`);
+
   if (getSetting('event-locations', true)) {
     eventLocations(currentLocation);
   }
@@ -150,6 +155,7 @@ const main = () => {
     kings_gauntlet,
     labyrinth,
     lagoon,
+    mountain,
     meditation_room,
     moussu_picchu,
     nerg_plains,
@@ -187,7 +193,7 @@ const main = () => {
  */
 const init = async () => {
   onNavigation(main);
-  onTravel(main);
+  onEvent('travel_complete', main);
 };
 
 export default {
