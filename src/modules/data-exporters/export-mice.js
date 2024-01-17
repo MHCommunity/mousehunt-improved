@@ -1,9 +1,7 @@
 import { doRequest } from '@utils';
+import { getData } from '@utils/data';
 
 import { exportPopup, recursiveFetch } from './exporter';
-
-import groups from '@data/mice-group-groups';
-import regions from '@data/mice-region-groups';
 
 let seenMice = [];
 
@@ -46,6 +44,10 @@ const getWeightFormatted = (weight) => {
 
 const getDataForRegion = async (region) => {
   const regionEl = document.querySelector(`.item-wrapper[data-region="${region.id}"]`);
+  regionEl.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+  });
 
   const miceCaughtEl = regionEl.querySelector('.mice-caught');
   const totalCatchesEl = regionEl.querySelector('.total-catches');
@@ -160,6 +162,8 @@ const processWeights = (results) => {
   totalWeightEl.textContent = getWeightFormatted(totals.totalWeight);
 };
 
+let groups = [];
+let regions = [];
 const exportMicePopup = () => {
   const itemTypes = exportType === 'group' ? groups : regions;
 
@@ -207,8 +211,12 @@ const exportMicePopup = () => {
 
 let exportType;
 
-const exportMice = (type) => {
+const exportMice = async (type) => {
   exportType = type;
+
+  regions = await getData('mice-regions');
+  groups = await getData('mice-groups');
+
   exportMicePopup();
 };
 

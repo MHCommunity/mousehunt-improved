@@ -1,13 +1,12 @@
 import { addMhuiSetting } from '@utils';
-
-import environments from '@data/environments.json';
+import { getData } from '@utils/data';
 
 /**
  * Add settings for the module.
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
+export default async function (module) {
   const locationsToUnset = new Set([
     'desert_oasis',
     'lost_city',
@@ -19,7 +18,6 @@ export default function (module) {
     // Don't have HUD changes for these.
     'meadow',
     'harbour',
-    'mountain',
     'laboratory',
     'mousoleum',
     'training_grounds',
@@ -44,11 +42,13 @@ export default function (module) {
 
   const options = [];
 
-  environments.forEach((environment) => {
+  const environments = await getData('environments');
+
+  for (const environment of environments) {
     if (! locationsToUnset.has(environment.id)) {
       options.push(environment);
     }
-  });
+  }
 
   options.sort((a, b) => {
     if (a.name < b.name) {

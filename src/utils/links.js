@@ -76,21 +76,6 @@ const addItemToGameInfoBar = (options) => {
   menu.insertBefore(item, menu.firstChild);
 };
 
-/**
- * Add the mouse.rip link to the kingdom menu.
- *
- * @ignore
- */
-const addMouseripLink = () => {
-  addSubmenuItem({
-    menu: 'kingdom',
-    label: 'mouse.rip',
-    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/prize_shoppe.png',
-    href: 'https://mouse.rip',
-    external: true,
-  });
-};
-
 const getCleanSubmenuLabel = (label) => {
   return label.toLowerCase().replaceAll(/[^\da-z]/g, '-');
 };
@@ -224,7 +209,6 @@ const addSubmenuDivider = (menu, className = '') => {
 
 export {
   addItemToGameInfoBar,
-  addMouseripLink,
   addSubmenuItem,
   addSubmenuDivider,
   removeSubmenuItem

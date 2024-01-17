@@ -50,7 +50,7 @@ const init = async () => {
 
 export default {
   id: 'dark-mode',
-  name: 'Dark Mode',
+  name: 'Dark Mode Updates & Tweaks',
   type: 'feature',
   default: true,
   description: 'Improves and tweaks dark mode, either the standalone extension or the MHCT version.',

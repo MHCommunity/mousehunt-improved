@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 
@@ -91,10 +92,10 @@ const main = async () => {
     }
 
     if (replacementsMade === 0) {
-      console.log(`✅️ No fixes needed in ${key}`);
+      console.log(` ✓ No fixes needed in ${key}`);
       return;
     }
-    console.log(`✅️ Replaced ${replacementsMade} mice in ${categories.length} categories in ${key}`);
+    console.log(`✓ Replaced ${replacementsMade} mice in ${categories.length} categories in ${key}`);
   });
 
   // write the json back to the src/data/map-groups.json file
@@ -102,9 +103,39 @@ const main = async () => {
   console.log('Done!');
 };
 
+const getReplacements = async () => {
+  // Check if we have a replacements.json file saved in a tmp folder.
+  const tmpPath = os.tmpdir();
+  const replacementsPath = path.resolve(tmpPath, 'mh-improved-replacements.json');
+
+  if (fs.existsSync(replacementsPath)) {
+    console.log('Using cached replacements.json …');
+    return loadFile(replacementsPath);
+  }
+
+  console.log('Getting mice list from api.mouse.rip …');
+
+  // For replacements, grab the file from api.mouse.rip/mice and then make a new array thats just [ { name, type} ].
+  const replacementsData = await fetch('https://api.mouse.rip/mice');
+  let replacements = await replacementsData.json();
+
+  replacements = replacements.map((mouse) => {
+    return {
+      name: mouse.name,
+      type: mouse.type,
+    };
+  });
+
+  // Save the file to a tmp folder.
+  console.log('Saving replacements.json to tmp folder …');
+  fs.writeFileSync(replacementsPath, JSON.stringify(replacements, null, 2));
+
+  return replacements;
+};
+
 const mapGroupsPath = './src/data/map-groups.json';
 const mapGroups = await loadFile(mapGroupsPath);
-const replacements = await loadFile('./src/data/mice.json');
+const replacements = await getReplacements();
 
 await main();
 /* eslint-enable no-console */

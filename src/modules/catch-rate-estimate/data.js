@@ -1,38 +1,43 @@
 import { doRequest } from '@utils';
+import { getData } from '@utils/data';
 
-import miceEffs from '@data/mice-effs.json';
+let miceEffs;
+let hasGottenEffs = false;
 
 const getMiceEffectivness = async () => {
+  if (! hasGottenEffs) {
+    miceEffs = await getData('effs');
+    hasGottenEffs = true;
+  }
+
   const response = await doRequest('managers/ajax/users/getmiceeffectiveness.php');
+
   return response?.effectiveness;
 };
 
-const getMouse = (mouseName) => {
-  return miceEffs[mouseName];
+const getMouse = async (mouseId) => {
+  if (! miceEffs || ! hasGottenEffs) {
+    miceEffs = await getData('effs');
+    hasGottenEffs = true;
+  }
+
+  // Find the mouse in the effs data. based on name.
+  const mouse = miceEffs.find((m) => m.type === mouseId);
+
+  return mouse;
 };
 
-const getMousePower = (mouseName) => {
-  return getMouse(mouseName)?.power;
+const getMousePower = async (mouseId) => {
+  const mouse = await getMouse(mouseId);
+  return mouse.effectivenesses.power;
 };
 
-const getMouseEffectiveness = (mouseName) => {
-  const powerTypes = [
-    'Arcane',
-    'Draconic',
-    'Forgotten',
-    'Hydro',
-    'Parental',
-    'Physical',
-    'Shadow',
-    'Tactical',
-    'Law',
-    'Rift'
-  ];
-
-  return getMouse(mouseName)?.effs[powerTypes.indexOf(user.trap_power_type_name)];
+const getMouseEffectiveness = async (mouseId) => {
+  const mouse = await getMouse(mouseId);
+  return mouse.effectivenesses[user.trap_power_type_name.toLowerCase()];
 };
 
-const getMinluck = (mousePower, effectiveness) => {
+const getMinluck = async (mousePower, effectiveness) => {
   if (effectiveness === 0) {
     return '∞';
   }

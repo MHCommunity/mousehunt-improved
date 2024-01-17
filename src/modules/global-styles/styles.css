@@ -95,7 +95,7 @@
 .mousehunt-improved-error {
   position: fixed;
   right: 25%;
-  bottom: 15%;
+  bottom: 50px;
   left: 25%;
   z-index: 20;
   display: flex;
@@ -240,4 +240,23 @@ a.mousehuntActionButton.success::before {
 
 a.mousehuntActionButton.success {
   background-color: #97f990;
+}
+
+a.mousehuntActionButton.success:hover::before,
+a.mousehuntActionButton.success:focus::before {
+  background-color: #00ff59;
+}
+
+a.mousehuntActionButton.danger::before {
+  background-color: #f27b6a;
+  box-shadow: 0 0 10px #ffa5a5 inset;
+}
+
+a.mousehuntActionButton.danger {
+  background-color: #ffa5a5;
+}
+
+a.mousehuntActionButton.danger:hover::before,
+a.mousehuntActionButton.danger:focus::before {
+  background-color: #ffa5a5;
 }

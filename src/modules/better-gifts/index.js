@@ -207,37 +207,6 @@ const makeButtons = () => {
   }
 };
 
-/**
- * On a sucessful send, close the modal.
- *
- * @param {Object} request The request.
- */
-const checkForSuccessfulGiftSend = (request) => {
-  const enabled = getSetting('gift-buttons-close-on-send', true);
-  if (! enabled) {
-    return;
-  }
-
-  if (! (request && 'undefined' !== request.friends_sent_gifts && request.friends_sent_gifts.length > 1)) {
-    return;
-  }
-
-  const okayBtn = document.querySelector('.giftSelectorView-confirmPopup-submitConfirmButton');
-  if (! okayBtn) {
-    return;
-  }
-
-  setTimeout(() => {
-    okayBtn.click();
-
-    if ('undefined' === typeof activejsDialog || ! activejsDialog || ! activejsDialog.hide) {
-      return;
-    }
-
-    activejsDialog.hide();
-  }, 2000);
-};
-
 const getLimit = () => {
   const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
   limit = limitEl ? Number.parseInt(limitEl.innerText, 10) : 0;
@@ -416,7 +385,6 @@ const addButtonsToPopup = () => {
 
 const main = () => {
   onRequest(makeButtons, 'managers/ajax/users/socialGift.php');
-  onRequest(checkForSuccessfulGiftSend, 'managers/ajax/users/socialGift.php');
 
   addButtonsToDropdown();
   onDialogShow(addButtonsToPopup, 'giftSelectorViewPopup');

@@ -8,20 +8,21 @@ import {
   getFlag,
   getRelicHunterLocation,
   getSetting,
-  getSettingDirect,
   makeElement,
   makeFavoriteButton,
   onEvent,
   onNavigation,
   onPageChange,
-  removeSubmenuItem,
-  saveSettingDirect
+  removeSubmenuItem
 } from '@utils';
+
+import { getData } from '@utils/data';
+
+import { getTravelSetting, saveTravelSetting } from './travel-utils';
 
 import addReminders from './reminders';
 import travelWindow from './travel-window';
 
-import environments from '@data/environments.json';
 import eventEnvironments from '@data/environments-events.json';
 
 import settings from './settings';
@@ -302,7 +303,7 @@ const addToTravelDropdown = () => {
     });
   }
 
-  const previousLocation = getSettingDirect('previous-location', false, 'mh-improved-better-travel');
+  const previousLocation = getTravelSetting('previous-location', false);
   if (previousLocation && previousLocation !== currentLocation) {
     const previousRegion = environments.find((environment) => {
       return environment.id === previousLocation;
@@ -462,25 +463,31 @@ const listenTabChange = () => {
 };
 
 const saveTravelLocation = () => {
+  const isLocationDashboardRefreshing = sessionStorage.getItem('mh-improved-doing-location-refresh');
+  if (isLocationDashboardRefreshing === 'true') {
+    return;
+  }
+
   // we want to update the 'previousLocation' setting with what the 'currentLocation' is
   // and then update the 'currentLocation' setting with what getCurrentLocation() returns
-  const previousLocation = getSettingDirect('current-location', 'not-set', 'mh-improved-better-travel');
+  const previousLocation = getTravelSetting('current-location', 'not-set');
   const currentLocation = getCurrentLocation();
 
   if (currentLocation === previousLocation) {
     return;
   }
 
-  saveSettingDirect('previous-location', previousLocation, 'mh-improved-better-travel');
-  saveSettingDirect('current-location', currentLocation, 'mh-improved-better-travel');
+  saveTravelSetting('previous-location', previousLocation);
+  saveTravelSetting('current-location', currentLocation);
 };
 
 const getLocationFavorites = () => {
-  const faves = getSettingDirect('favorites', [], 'mh-improved-better-travel');
+  const faves = getTravelSetting('favorites', []);
 
-  const hasMigratedFaves = getSettingDirect('has-migrated-favorites', false, 'mh-improved-better-travel');
+  const hasMigratedFaves = getTravelSetting('has-migrated-favorites', false);
   if (! hasMigratedFaves) {
-    const lvFaves = getSettingDirect('locationList', [], 'fast-travel-cache');
+    const lvFavesSettings = JSON.parse(localStorage.getItem('fast-travel-cache'));
+    const lvFaves = lvFavesSettings?.locationList || [];
     if (lvFaves) {
       // Get the keys from the lvFaves object.
       const lvKeys = Object.keys(lvFaves);
@@ -497,7 +504,7 @@ const getLocationFavorites = () => {
       }
 
       // save the faves
-      saveSettingDirect('has-migrated-favorites', true, 'mh-improved-better-travel');
+      getTravelSetting('has-migrated-favorites', true);
     }
   }
 
@@ -509,7 +516,7 @@ const isLocationFavorite = (type) => {
 };
 
 const saveLocationFavorites = (favorites) => {
-  saveSettingDirect('favorites', favorites, 'mh-improved-better-travel');
+  getTravelSetting('favorites', favorites);
 };
 
 const addToLocationFavorites = (type) => {
@@ -591,6 +598,8 @@ const main = () => {
   addToTravelDropdown();
 };
 
+let environments = [];
+
 /**
  * Initialize the module.
  */
@@ -602,6 +611,9 @@ const init = async () => {
   }
 
   addStyles(stylesJoined);
+
+  environments = await getData('environments');
+
   main();
 };
 

@@ -1,6 +1,8 @@
 import {
   addStyles,
   getCurrentPage,
+  getCurrentSubtab,
+  getCurrentTab,
   getSetting,
   makeElement,
   onEvent,
@@ -82,16 +84,6 @@ const addOpenAlltoConvertible = () => {
   });
 };
 
-const getDesc = (messageItemCopy) => {
-  const popup = document.querySelector('.itemViewPopup .itemViewContainer.message_item .itemView-actionContainer');
-  if (! popup) {
-    return false;
-  }
-
-  popup.append(messageItemCopy);
-  return true;
-};
-
 const addItemViewPopupToCollectibles = () => {
   const collectibles = document.querySelectorAll('.mousehuntHud-page-subTabContent.collectible .inventoryPage-item.small');
   if (! collectibles.length) {
@@ -104,27 +96,23 @@ const addItemViewPopupToCollectibles = () => {
       return;
     }
 
-    const messageItem = collectible.querySelector('.tooltipContent .button');
+    if ('message_item' === collectible.getAttribute('data-item-classification')) {
+      return;
+    }
 
     collectible.setAttribute('onclick', '');
     collectible.addEventListener('click', (e) => {
       e.preventDefault();
       hg.views.ItemView.show(type);
-
-      if (messageItem) {
-        const messageItemCopy = messageItem.cloneNode(true);
-
-        eventRegistry.addEventListener('js_dialog_show', () => {
-          setTimeout(() => {
-            getDesc(messageItemCopy);
-          }, 250);
-        }, null, true);
-      }
     });
   });
 };
 
 const addArmButtonToCharms = () => {
+  if ('inventory' !== getCurrentPage() || 'traps' !== getCurrentTab() || 'trinket' !== getCurrentSubtab()) {
+    return;
+  }
+
   const charms = document.querySelectorAll('.inventoryPage-item.trinket');
   if (! charms.length) {
     return;

@@ -1,9 +1,8 @@
+import { getData, getHeaders } from './data';
 import { getCurrentLocation } from './location';
 import { getFlag } from './flags';
 import { getGlobal } from './global';
 import { makeElement } from './elements';
-
-import environments from '@data/environments.json';
 
 /**
  * Helper function to get the mapper object from the global object.
@@ -154,6 +153,8 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   if (! mhctjson.slice) {
     return;
   }
+
+  const environments = await getData('environments');
 
   const amountOfLocationsToShow = 5; // TODO: maybe modify this for some mice or make it an option?
   mhctjson.slice(0, amountOfLocationsToShow).forEach((mhct) => {
@@ -375,7 +376,11 @@ const getArForMouse = async (id, type = 'mouse') => {
     url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
   }
 
-  mhctdata = await fetch(url);
+  mhctdata = await fetch(url, { headers: getHeaders() });
+
+  if (! mhctdata.ok) {
+    return [];
+  }
 
   mhctjson = await mhctdata.json();
 

@@ -4,17 +4,20 @@ import {
   createPopup,
   debug,
   getCurrentLocation,
-  getSettingDirect,
-  onDialogHide,
-  saveSettingDirect
+  isUserTitleAtLeast,
+  onDialogHide
 } from '@utils';
 
-import environments from '@data/environments.json';
+import { getData } from '@utils/data';
+
+import eventEnvironments from '@data/environments-events.json';
+
+import { getTravelSetting, saveTravelSetting } from './travel-utils';
 
 import styles from './travel-menu.css';
 
 const getHiddenLocations = () => {
-  return getSettingDirect('travel-window-hidden-locations', [], 'mh-improved-better-travel');
+  return getTravelSetting('travel-window-hidden-locations', []);
 };
 
 const toggleLocation = (location) => {
@@ -32,7 +35,7 @@ const hideLocation = (location) => {
   }
 
   hiddenLocations.push(location);
-  saveSettingDirect('travel-window-hidden-locations', hiddenLocations, 'mh-improved-better-travel');
+  saveTravelSetting('travel-window-hidden-locations', hiddenLocations);
 };
 
 const unhideLocation = (location) => {
@@ -42,7 +45,7 @@ const unhideLocation = (location) => {
   }
 
   hiddenLocations.splice(hiddenLocations.indexOf(location), 1);
-  saveSettingDirect('travel-window-hidden-locations', hiddenLocations, 'mh-improved-better-travel');
+  saveTravelSetting('travel-window-hidden-locations', hiddenLocations);
 };
 
 const isLocationHidden = (location) => {
@@ -50,7 +53,7 @@ const isLocationHidden = (location) => {
   return hiddenLocations.includes(location);
 };
 
-const openTravelWindow = () => {
+const openTravelWindow = async () => {
   debug('Opening travel window');
   const regions = [
     { type: 'gnawnia', name: 'Gnawnia' },
@@ -69,21 +72,38 @@ const openTravelWindow = () => {
     { type: 'riftopia', name: 'Rift Plane' },
   ];
 
+  environments = await getData('environments');
+  environments = [...environments, ...eventEnvironments];
+
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());
+
+  const locationsToRemove = [
+    'forbidden_grove',
+  ];
+
+  environments = environments.map((env) => {
+    if (! isUserTitleAtLeast(env.title)) {
+      locationsToRemove.push(env.id);
+    }
+
+    return env;
+  });
+
+  environments = environments.filter((env) => ! locationsToRemove.includes(env.id));
 
   // Wrapper start.
   let content = '<div class="mh-improved-travel-window greatWinterHuntGolemDestinationView"><div class="greatWinterHuntGolemDestinationView__content">';
 
   // Region menu.
   content += '<div class="greatWinterHuntGolemDestinationView__regionsContainer">';
-  regions.forEach((region) => {
+  for (const region of regions) {
     let buttonClass = 'greatWinterHuntGolemDestinationView__regionButton';
     if (currentEnvironment.region === region.type) {
       buttonClass += ' greatWinterHuntGolemDestinationView__regionButton--active';
     }
 
     content += `<button class="${buttonClass}" data-region-type="${region.type}">${region.name}</button>`;
-  });
+  }
   content += '</div>';
 
   const hasTitles = false;
@@ -96,7 +116,7 @@ const openTravelWindow = () => {
       <div class="greatWinterHuntGolemDestinationView__regionEnvironments">`;
   }
 
-  regions.forEach((region) => {
+  for (const region of regions) {
     if (hasTitles) {
       content += `<div class="greatWinterHuntGolemDestinationView__regionGroup" data-region-type="${region.type}">
         <div class="greatWinterHuntGolemDestinationView__regionName">${region.name}</div>
@@ -125,7 +145,7 @@ const openTravelWindow = () => {
     if (hasTitles) {
       content += '</div></div>';
     }
-  });
+  }
 
   if (! hasTitles) {
     content += '</div></div>';
@@ -136,7 +156,6 @@ const openTravelWindow = () => {
   // wrapper end.
   content += '</div>';
 
-  // Todo: add an edit link, when editing, clicking on a location will gray it out. Only show enabled locations in the menu.
   content += `<div class="mh-improved-travel-window-footer">
     <div class="mh-improved-travel-window-edit mousehuntActionButton"><span>Edit</span></div>
     <div class="mh-improved-travel-window-description">Click on a location to toggle the visibility.</div>
@@ -148,7 +167,7 @@ const openTravelWindow = () => {
     id: 'mh-improved-travel-window',
     title: '',
     content,
-    className: 'mh-improved-travel-window-popup',
+    className: 'mh-improved-travel-window-popup jsDialogFixed',
     show: false,
   });
 
@@ -212,6 +231,7 @@ const openTravelWindow = () => {
 };
 
 let isEditing = false;
+let environments = [];
 
 const makeMenuItem = () => {
   addSubmenuItem({
@@ -225,7 +245,9 @@ const makeMenuItem = () => {
   });
 };
 
-export default () => {
+export default async () => {
   addStyles(styles);
   makeMenuItem();
+
+  environments = await getData('environments');
 };

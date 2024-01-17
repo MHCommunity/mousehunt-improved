@@ -1,20 +1,23 @@
 import { doRequest } from '@utils';
+import { getData } from '@utils/data';
 
 import { exportPopup, recursiveFetch } from './exporter';
 
-import scoreboards from '@data/scoreboards';
-
-const getData = async (scoreboard) => {
+const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly = false) => {
   const totalItemsEl = document.querySelector(`.item-wrapper[data-region="${scoreboard.id}"] .total-items`);
   totalItemsEl.textContent = '...';
+  totalItemsEl.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+  });
 
   const response = await doRequest('managers/ajax/pages/scoreboards.php', {
     action: 'get_page',
     category: 'main',
     scoreboard: scoreboard.id,
     page: 1,
-    weekly: 0,
-    friends_only: 0,
+    weekly: useWeekly ? 1 : 0,
+    friends_only: useFriendsOnly ? 1 : 0,
     search: '',
   });
 
@@ -44,21 +47,28 @@ const getData = async (scoreboard) => {
   };
 };
 
-const exportScoreboards = () => {
+const exportScoreboards = async ({ useWeekly = false, useFriendsOnly = false } = {}) => {
   let inventoryMarkup = '';
-  scoreboards.forEach((region) => {
+
+  let scoreboardsToUse = await getData('scoreboards');
+
+  if (useWeekly) {
+    scoreboardsToUse = scoreboards.filter((scoreboard) => scoreboard.weekly);
+  }
+
+  for (const region of scoreboardsToUse) {
     inventoryMarkup += `<div class="item-wrapper scoreboard" data-region="${region.id}">
       <div class="region-name">${region.name}</div>
       <div class="total-items">-</div>
   </div>`;
-  });
+  }
 
   exportPopup({
-    type: 'scoreboard-rankings',
-    text: 'Scoreboard Rankings',
+    type: `scoreboard-rankings${useWeekly ? '-weekly' : ''}${useFriendsOnly ? '-friends' : ''}`,
+    text: `Scoreboard Rankings${useWeekly ? (useFriendsOnly ? ' (Weekly, Friends)' : ' (Weekly)') : (useFriendsOnly ? ' (Friends)' : '')}`,
     headerMarkup: '<div class="region-name">Scoreboard</div><div class="total-items">Place</div>',
     itemsMarkup: inventoryMarkup,
-    fetch: () => recursiveFetch(scoreboards, getData),
+    fetch: () => recursiveFetch(scoreboardsToUse, (scoreboard) => getScoreboardData(scoreboard, useWeekly, useFriendsOnly)),
     download: {
       headers: [
         'Scoreboard',

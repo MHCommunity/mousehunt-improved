@@ -77,7 +77,7 @@ img.locationImage {
   position: relative;
   flex-grow: 1;
   min-width: 105px;
-  margin-left: 10px;
+  padding-left: 10px;
   font-size: 12px;
 }
 
@@ -183,4 +183,55 @@ img.locationImage {
 
 .dashboard-fi-tiles .jade {
   background-position-x: 20px;
+}
+
+.location-refresh-item {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px -1px #7d7d7d;
+}
+
+.mh-improved-location-refresh-popup-progress {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.location-refresh-item.done {
+  background-color: #3fcd84;
+  border-color: #adadad;
+}
+
+.location-refresh-item .locationName {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.location-refresh-item .locationName .name {
+  z-index: 1;
+}
+
+@keyframes moving-background {
+  0% {
+    right: 100%;
+  }
+
+  100% {
+    right: 0;
+  }
+}
+
+.location-refresh-item.traveling .locationName .progress::after {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  bottom: 0;
+  width: 100%;
+  content: "";
+  background: #f3c019;
+  animation: moving-background 1s linear forwards;
 }

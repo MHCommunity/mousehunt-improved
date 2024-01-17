@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { sentryEsbuildPlugin } from '@sentry/esbuild-plugin';
+
 import { CSSMinifyTextPlugin, sharedBuildOptions } from './shared.mjs';
 
 import * as esbuild from 'esbuild';
@@ -27,25 +30,40 @@ const buildExtension = async (platform) => {
     }, null, 2)
   );
 
+  const plugins = [
+    CSSMinifyTextPlugin,
+    copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
+      src: 'src/extension',
+      dest: `dist/${platform}`,
+      filter: (file) => { // eslint-disable-line jsdoc/require-jsdoc
+        // Don't copy the screenshots dir or any dotfiles. We don't copy the manifest
+        // because we're copying a modified version of it above.
+        return (
+          ! file.startsWith('screenshots') &&
+          ! file.startsWith('.') &&
+          ! file.startsWith('manifest-')
+        );
+      }
+    }),
+  ];
+
+  // If we're building for production, add the Sentry plugin.
+  if ('production' === process.env.NODE_ENV) {
+    plugins.push(sentryEsbuildPlugin({
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: 'brad-parbs',
+      project: 'mh-improved',
+      telemetry: false,
+      release: {
+        name: `mousehunt-improved-${platform}@${process.env.npm_package_version}`,
+      }
+    }));
+  }
+
   await esbuild.build({
     ...sharedBuildOptions,
     outfile: `dist/${platform}/main.js`,
-    plugins: [
-      CSSMinifyTextPlugin,
-      copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
-        src: 'src/extension',
-        dest: `dist/${platform}`,
-        filter: (file) => { // eslint-disable-line jsdoc/require-jsdoc
-          // Don't copy the screenshots dir or any dotfiles. We don't copy the manifest
-          // because we're copying a modified version of it above.
-          return (
-            ! file.startsWith('screenshots') &&
-            ! file.startsWith('.') &&
-            ! file.startsWith('manifest-')
-          );
-        }
-      })
-    ],
+    plugins,
     banner: {
       js: [
         `const mhImprovedVersion = '${process.env.npm_package_version}';`,

@@ -23,20 +23,29 @@ const updateMinLucks = async () => {
 
   const effectiveness = await getMiceEffectivness();
 
-  const miceNames = Object.values(effectiveness)
+  const miceIds = Object.values(effectiveness)
     .flatMap(({ mice }) => mice)
-    .flatMap(({ name }) => name);
+    .map((mouse) => {
+      return {
+        name: mouse.name,
+        type: mouse.type,
+      };
+    });
 
-  renderList(miceNames);
+  await renderList(miceIds);
 };
 
-const renderList = (list) => {
+const renderList = async (list) => {
   let minluckList = document.querySelector('#mh-improved-cre');
   if (! minluckList) {
     minluckList = makeElement('div', 'campPage-trap-trapEffectiveness');
     minluckList.id = 'mh-improved-cre';
 
     const statsContainer = document.querySelector('.campPage-trap-statsContainer');
+    if (! statsContainer) {
+      return;
+    }
+
     statsContainer.append(minluckList);
   }
 
@@ -56,12 +65,12 @@ const renderList = (list) => {
 
   const rows = [];
 
-  list.forEach((mouseName) => {
-    const mousePower = getMousePower(mouseName);
-    const mouseEffectiveness = getMouseEffectiveness(mouseName);
+  for (const mouse of list) {
+    const mousePower = await getMousePower(mouse.type);
+    const mouseEffectiveness = await getMouseEffectiveness(mouse.type);
 
-    const minluck = getMinluck(mousePower, mouseEffectiveness);
-    const catchRate = getCatchRate(mousePower, mouseEffectiveness);
+    const minluck = await getMinluck(mousePower, mouseEffectiveness);
+    const catchRate = await getCatchRate(mousePower, mouseEffectiveness);
 
     const crClass = ['mh-improved-cre-data'];
     if (catchRate.rate * 100 >= 100) {
@@ -75,13 +84,13 @@ const renderList = (list) => {
     }
 
     rows.push({
-      mouseName,
+      mouse: mouse.name,
       minluck,
       catchRateValue: catchRate.rate,
       catchRate: catchRate.percent,
       crClass,
     });
-  });
+  }
 
   rows.sort((a, b) => {
     if (a.catchRateValue !== b.catchRateValue) {
@@ -91,9 +100,9 @@ const renderList = (list) => {
     return b.minluck - a.minluck;
   });
 
-  rows.forEach(({ mouseName, minluck, catchRate, crClass }) => {
+  rows.forEach(({ mouse, minluck, catchRate, crClass }) => {
     const row = makeElement('tr', 'mh-improved-cre-row');
-    makeElement('td', 'mh-improved-cre-name', mouseName, row);
+    makeElement('td', 'mh-improved-cre-name', mouse, row);
     makeElement('td', crClass, minluck, row);
     makeElement('td', crClass, catchRate, row);
 
@@ -103,14 +112,9 @@ const renderList = (list) => {
   minluckList.append(table);
 };
 
-const main = () => {
+const main = async () => {
   if ('camp' === getCurrentPage()) {
-    updateMinLucks();
-
-    // Run it again after a delay to make sure the page is fully loaded.
-    setTimeout(() => {
-      updateMinLucks();
-    }, 750);
+    await updateMinLucks();
   }
 
   onPageChange({ camp: { show: updateMinLucks } });
@@ -127,7 +131,7 @@ const init = async () => {
 
 export default {
   id: 'catch-rate-estimate',
-  name: 'Catch Rate Estimate',
+  name: 'Catch Rate Estimator & Minluck',
   type: 'feature',
   default: true,
   description: 'Minluck and catch rate estimates.',

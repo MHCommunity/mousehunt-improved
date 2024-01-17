@@ -12,11 +12,6 @@
   border-radius: 0;
 }
 
-.treasureMapView-environment {
-  border: none;
-  border-radius: 3px;
-}
-
 .treasureMapView-block {
   border-radius: 3px;
 }
@@ -171,7 +166,7 @@ img.treasureMapView-reward-chestIcon {
 }
 
 .treasureMapView-block-content-heading {
-  border: none;
+  margin: 10px 0 5px;
 }
 
 .treasureMapInventoryView-scrollCase {
@@ -499,12 +494,14 @@ img.mh-mapper-consolation-prize {
 }
 
 .treasureMapView-block-search {
-  right: 6px;
-  bottom: 20px;
+  right: 7px;
+  bottom: 15px;
 }
 
 input.treasureMapView-block-search-text {
-  border: 1px solid #767676;
+  height: 25px;
+  font-size: 12px;
+  border: 1px solid #ccc;
 }
 
 .treasureMapRootView-subTabRow {
@@ -560,18 +557,22 @@ input.treasureMapView-block-search-text {
   height: 21px;
 }
 
+.treasureMapView-mapLeaveContainer .mousehuntActionButton.lightBlue.treasureMapView-leaveMapButton,
 .mousehuntActionButton.mh-ui-leave-map-button {
-  background-color: #ffa5a5;
+  background: #ffa5a5;
 }
 
+.treasureMapView-mapLeaveContainer .mousehuntActionButton.lightBlue.treasureMapView-leaveMapButton::before,
 .mousehuntActionButton.mh-ui-leave-map-button::before {
-  background-color: #f27b6a;
+  background: #f27b6a;
   box-shadow: 0 0 10px #ffa5a5 inset;
 }
 
+.treasureMapView-mapLeaveContainer .mousehuntActionButton.lightBlue.treasureMapView-leaveMapButton:hover::before,
+.treasureMapView-mapLeaveContainer .mousehuntActionButton.lightBlue.treasureMapView-leaveMapButton:focus::before,
 .mousehuntActionButton.mh-ui-leave-map-button:hover::before,
 .mousehuntActionButton.mh-ui-leave-map-button:focus::before {
-  background-color: #ffa5a5;
+  background: #ffa5a5;
 }
 
 .treasureMapView-block-content.treasureMapInvitesView-scoreboards {
@@ -751,4 +752,26 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-hunter-icon {
   top: -9px;
+}
+
+.treasureMapTooltipView.active {
+  transform: translateY(0);
+}
+
+.treasureMapView-mapWarning.treasureMapRootView-padding {
+  padding-left: 5px;
+  margin-bottom: 10px;
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: 0 0 1px 1px #ffa5a5;
+}
+
+.treasureMapView-consolationPrizeMessage {
+  margin: 15px 0;
+  box-shadow: 0 0 1px 1px #ffa5a5;
+}
+
+.treasureMapView-mapWarning::before {
+  display: none;
 }

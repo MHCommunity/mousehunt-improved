@@ -10,7 +10,7 @@ export default function (module) {
     'better-tournaments-tournament-time-display-inline',
     'Display localized times inline',
     false,
-    'By default, the localized tournament times are displayed on hover. This setting will display them inline instead.',
+    'Display localized tournament times are inline, rather than on hover.',
     module
   );
 }

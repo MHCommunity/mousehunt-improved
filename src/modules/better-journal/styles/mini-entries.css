@@ -35,17 +35,19 @@
 .journal .content .entry.jetStreamAuraActivated,
 .journal .content .entry.birthday2018-rewind-charm,
 .journal .content .entry.relicHunter_slayer_aura_relic_bonus,
-.journal .entry.halloween_boiling_cauldron.brew_finished,
-.journal .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted,
-.journal .entry.folkloreForest.folkloreForest-lootFuelBoost,
-.journal .entry.folkloreForest-farmToTable,
-.journal .entry.snowball_showdown_claim_prize,
-.journal .entry.snowball_showdown_completed,
-.journal .entry.folkloreForest-tableOfContents.folkloreForest-bookFinished {
+.journal .content .entry.winter_hunt_2021.sendGolem,
+.journal .content .entry.halloween_boiling_cauldron.brew_finished,
+.journal .content .entry.snowball_showdown_claim_prize,
+.journal .content .entry.snowball_showdown_completed,
+.journal .content .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted,
+.journal .content .entry.folkloreForest.folkloreForest-lootFuelBoost,
+.journal .content .entry.folkloreForest-farmToTable,
+.journal .content .entry.folkloreForest-tableOfContents.folkloreForest-bookFinished,
+.journal .content .entry.short.misc.custom.adventureBook-journal.goal {
   background-position: 10px center;
 }
 
-.journal .entry.folkloreForest-bookClaimed {
+.journal .content .entry.folkloreForest-bookClaimed {
   background-position: 10px 30px;
 }
 
@@ -54,7 +56,8 @@
 .entry.short.misc.custom.winterTaiga.workshopPartProduced.minimalJournalImage,
 .entry.short.misc.custom.winterTaiga.frostKingDefeated.minimalJournalImage,
 .entry.short.misc.custom.winterTaiga.shieldDestroyed.minimalJournalImage,
-.entry.short.misc.custom.winterTaiga.shieldDamaged.minimalJournalImage {
+.entry.short.misc.custom.winterTaiga.shieldDamaged.minimalJournalImage,
+.journal .content .entry.minimalJournalImage.rift_valour.champions_fire_loot {
   background-position: 10px center !important;
   background-size: 50px !important;
 }

@@ -150,7 +150,7 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Adds a delay to tooltips so they don't show up immediately when you hover over something.
 
 - FLRT Helper
-  - Easily return tradeable items to a maptain when opening the chest from a Free Leech Return Tradeables map.
+  - Easily return tradable items to a maptain when opening the chest from a Free Leech Return Tradables map.
 
 - Hover Profiles
   - Hover over a friend's name in your journal, inbox, or elsewhere and get a mini-profile popup with all their stats, interaction buttons, and everything you'd expect.

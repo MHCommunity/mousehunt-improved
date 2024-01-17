@@ -1,4 +1,4 @@
-import { addMouseripLink, makeElement } from '@utils';
+import { addSubmenuItem, makeElement } from '@utils';
 
 const addHelpLinks = () => {
   const supportDropdown = document.querySelector('.menuItem.dropdown.support .dropdownContent');
@@ -40,7 +40,14 @@ const addHelpLinks = () => {
  */
 const init = async () => {
   addHelpLinks();
-  addMouseripLink();
+
+  addSubmenuItem({
+    menu: 'kingdom',
+    label: 'mouse.rip',
+    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/prize_shoppe.png',
+    href: 'https://mouse.rip',
+    external: true,
+  });
 };
 
 export default {

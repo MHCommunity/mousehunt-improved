@@ -1,15 +1,16 @@
 import {
   addHudStyles,
+  addStyles,
   getCurrentLocation,
   makeElement,
   onDialogShow,
   onEvent,
   onRequest
 } from '@utils';
-
-import allEnvironments from '@data/environments.json';
+import { getData } from '@utils/data';
 
 import styles from './styles.css';
+import stylesGlobal from './global.css';
 
 const updateGolemFooter = () => {
   const footer = document.querySelector('.greatWinterHuntDialogView__inventoryFooter');
@@ -91,7 +92,7 @@ const updateGolemPartsQuantity = () => {
   limbs.append(newLimbsEl, newLimbsSetEl);
 };
 
-const updateGolemTravelCount = () => {
+const updateGolemTravelCount = async () => {
   const title = document.querySelector('.greatWinterHuntGolemManagerTabView__destinationHeader');
   if (! title) {
     return;
@@ -101,6 +102,8 @@ const updateGolemTravelCount = () => {
   if (! name) {
     return;
   }
+
+  const allEnvironments = await getData('environments');
 
   // Find the environment type by checking the name against the environment name.
   const currentEnvironment = allEnvironments.find((env) => env.name === name.textContent);
@@ -230,10 +233,61 @@ const getGolemCounts = () => {
   return golemCounts;
 };
 
+const adventCalendarPopup = () => {
+  const suffix = document.querySelector('#overlayPopup .suffix');
+  if (! suffix) {
+    return;
+  }
+
+  const existingToggle = document.querySelector('.toggle-advent-calendar-spoilers');
+  if (existingToggle) {
+    return;
+  }
+
+  const toggleBtn = makeElement('button', ['mousehuntActionButton', 'tiny', 'toggle-advent-calendar-spoilers']);
+  makeElement('span', '', 'View unblurred calendar', toggleBtn);
+  toggleBtn.setAttribute('data-enabled', 'false');
+
+  toggleBtn.addEventListener('click', () => {
+    const popup = document.querySelector('#overlayPopup');
+    if (! popup) {
+      return;
+    }
+
+    popup.classList.toggle('advent-calendar-spoilers');
+
+    const enabled = toggleBtn.getAttribute('data-enabled');
+    if ('true' === enabled) {
+      toggleBtn.setAttribute('data-enabled', 'false');
+      toggleBtn.querySelector('span').innerText = 'View unblurred calendar';
+    } else {
+      toggleBtn.setAttribute('data-enabled', 'true');
+      toggleBtn.querySelector('span').innerText = 'Hide unblurred calendar';
+    }
+  });
+
+  suffix.append(toggleBtn);
+};
+
+const maybeHideAdventCalendarInMenu = () => {
+  // If it's not December, then hide the advent calendar in the menu.
+  const now = new Date();
+  if (now.getMonth() !== 11) {
+    // return '.mousehuntHeaderView-gameTabs .menuItem.adventCalendar { display: none; }';
+  }
+
+  return '';
+};
+
+const greatWinterHuntGlobal = () => {
+  addStyles([stylesGlobal, maybeHideAdventCalendarInMenu]);
+  onDialogShow(adventCalendarPopup, 'adventCalendarPopup');
+};
+
 /**
  * Initialize the module.
  */
-export default async () => {
+const greatWinterHuntLocation = () => {
   addHudStyles(styles);
   onDialogShow(updateGolemPopup, 'greatWinterHuntDialog');
 
@@ -257,4 +311,9 @@ export default async () => {
   });
 
   setTimeout(expandAnimatedSnowCount, 1000);
+};
+
+export {
+  greatWinterHuntGlobal,
+  greatWinterHuntLocation
 };

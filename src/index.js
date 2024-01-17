@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/browser'; // eslint-disable-line import/no-extraneous-dependencies
+
 import {
   addAdvancedSettings,
   addSettingForModule,
@@ -5,8 +7,10 @@ import {
   addToGlobal,
   debug,
   debuglite,
+  debuglog,
   getFlag,
   getGlobal,
+  getSetting,
   getSettingDirect,
   isApp,
   isUnsupportedFile,
@@ -15,6 +19,19 @@ import {
 } from '@utils';
 
 import modules from './module-loader';
+
+if (getSetting('error-reporting', true)) {
+  Sentry.init({
+    dsn: 'https://c0e7b72f2611e14c356dba1923cedf6e@o4506582061875200.ingest.sentry.io/4506583459233792',
+    maxBreadcrumbs: 50,
+    debug: true,
+    release: `mousehunt-improved-${mhImprovedPlatform}@${mhImprovedVersion}`,
+    initialScope: {
+      version: mhImprovedVersion,
+      platform: mhImprovedPlatform,
+    },
+  });
+}
 
 const organizedModules = [
   {
@@ -53,7 +70,7 @@ const loadModules = async () => {
     return;
   }
 
-  addSettingsTab('mousehunt-improved-settings', 'MH Improved');
+  await addSettingsTab('mousehunt-improved-settings', 'MH Improved');
 
   modules.forEach((m) => {
     const category = organizedModules.find((c) => c.id === m.type);
@@ -66,46 +83,49 @@ const loadModules = async () => {
   });
 
   // Add the settings for each module.
-  organizedModules.forEach((module) => {
+  for (const module of organizedModules) {
     if ('required' !== module.id) {
-      addSettingForModule(module);
+      await addSettingForModule(module);
     }
-  });
+  }
 
   // Load the modules.
   const loadedModules = [];
   let modulesDebug = [];
 
-  organizedModules.forEach((module) => {
-    module.modules.forEach((subModule) => {
-      const overrideStopLoading = getFlag(`no-${subModule.id}`);
+  const load = [];
+  for (const module of organizedModules) {
+    for (const submodule of module.modules) {
+      const overrideStopLoading = getFlag(`no-${submodule.id}`);
       if (overrideStopLoading) {
-        debuglite(`Skipping ${subModule.name} due to override flag.`);
+        debuglite(`Skipping ${submodule.name} due to override flag.`);
         return;
       }
 
       if (
-        subModule.alwaysLoad ||
-        'required' === subModule.type ||
-        getSettingDirect(subModule.id, subModule.default, 'mousehunt-improved-settings') ||
-        (subModule.beta && getFlag(subModule.id))
+        submodule.alwaysLoad ||
+        'required' === submodule.type ||
+        getSettingDirect(submodule.id, submodule.default, 'mousehunt-improved-settings') ||
+        (submodule.beta && getFlag(submodule.id))
       ) {
         try {
-          subModule.load();
-          loadedModules.push(subModule.id);
+          load.push(submodule.load());
+          loadedModules.push(submodule.id);
 
-          modulesDebug.push(subModule.id);
+          modulesDebug.push(submodule.id);
         } catch (error) {
-          debug(`Error loading "${subModule.id}"`, error);
+          debug(`Error loading "${submodule.id}"`, error);
         }
-      } else {
-        debuglite(`Skipping "${subModule.id}" (disabled)`);
       }
-    });
+    }
 
-    debuglite(`Loaded ${module.id}: ${modulesDebug.join(', ')}`);
+    debuglog('loader', `Loaded ${modulesDebug.length} ${module.id} modules`, modulesDebug);
     modulesDebug = [];
-  });
+  }
+
+  await Promise.all(load);
+
+  addToGlobal('modules', loadedModules);
 
   addAdvancedSettings();
 };
@@ -114,7 +134,7 @@ const loadModules = async () => {
  * Initialize the script.
  */
 const init = async () => {
-  debug(`Initializing MouseHunt Improved v${mhImprovedVersion} / ${mhImprovedPlatform}...`);
+  console.log(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform}%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
 
   // Check if the url is an image and if so, don't load.
   if (isUnsupportedFile()) {
@@ -133,21 +153,23 @@ const init = async () => {
   }
 
   try {
-    debug('Loading modules...');
-
     // Start it up.
-    loadModules();
+    await loadModules();
   } catch (error) {
     debug('Error loading modules', error);
 
     showLoadingError(error);
   } finally {
+    addToGlobal('version', mhImprovedVersion);
     addToGlobal('loaded', true);
-    // Unblank the page.
-    document.body.style.display = 'block';
-  }
 
-  debug('Loading complete.');
+    console.log(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
+
+    eventRegistry.doEvent('mh-improved-loaded', {
+      version: mhImprovedVersion,
+      modules: getGlobal('modules'),
+    });
+  }
 };
 
 init(); // eslint-disable-line unicorn/prefer-top-level-await

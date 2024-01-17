@@ -165,12 +165,13 @@ a.journal-detailLink.full::after {
   margin-right: -3px;
   margin-bottom: -4px;
   margin-left: -80px;
-  overflow-y: scroll;
+  overflow-y: auto;
   box-shadow: inset 0 -20px 15px -16px #9d9d9d;
 }
 
 .journal .entry.socialGift.socialGift-send .journalbody .journaltext {
   margin-right: -2px;
+  margin-left: -85px;
 }
 
 /* hide the friends popup for gifts as it nests and breaks the layout */
@@ -247,4 +248,11 @@ a.journal-detailLink.full::after {
   font-size: 21px;
   vertical-align: top;
   filter: drop-shadow(0 0 1px #89299e) drop-shadow(0 0 5px #89299e) drop-shadow(0 0 10px #89299e);
+}
+
+/* move the share button */
+.journal .entry .journalbody .journalactions {
+  position: absolute;
+  right: 5px;
+  float: none;
 }

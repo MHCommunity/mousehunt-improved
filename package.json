@@ -1,6 +1,6 @@
 {
   "name": "mh-ui",
-  "version": "0.27.3",
+  "version": "0.28.0",
   "description": "Improve your MouseHunt experience.",
   "author": "Brad Parbs <brad@bradparbs.com> (https://bradparbs.com/)",
   "license": "MIT",
@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "concurrently \"bun:build:extension\" \"bun:build:userscript\" \"bun:build:archive\"",
+    "build-production": "NODE_ENV=production bun run build",
     "build:archive": "mkdir -p dist && git archive --format zip --output dist/archive.zip HEAD",
     "build:extension": "concurrently \"bun:build:extension:*\"",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
@@ -28,12 +29,12 @@
     "lint": "concurrently \"bun:lint:*(!fix)\"",
     "lint:scripts": "eslint --ext .mjs scripts",
     "lint:scripts:fix": "eslint --ext .mjs scripts --fix",
-    "generate-minlucks": "bash scripts/generate-minlucks",
-    "generate-wisdom": "bash scripts/generate-wisdom",
     "fix-map-groups": "node scripts/fix-map-groups.mjs"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.7",
+    "@sentry/browser": "^7.93.0",
+    "@sentry/esbuild-plugin": "^2.10.2",
     "humanize-duration": "^3.31.0",
     "mousehunt-utils": "^1.11.0"
   },

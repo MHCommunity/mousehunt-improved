@@ -41,6 +41,12 @@ const updateHudImages = () => {
 };
 
 const makeCharmElement = (charm, appendTo) => {
+  // Remove the old one.
+  const existing = document.querySelector(`.mhui-sunken-charm[data-item-type="${charm.type}"]`);
+  if (existing) {
+    existing.remove();
+  }
+
   const wrapper = makeElement('a', ['charm', 'mhui-sunken-charm']);
   if (user.trinket_item_id == charm.item_id) { // eslint-disable-line eqeqeq
     wrapper.classList.add('active');
@@ -93,9 +99,9 @@ const addMoreCharms = async () => {
 
   // remove any existing ones we've added.
   const existingCharms = charmsWrapper.querySelectorAll('.mhui-sunken-charm');
-  existingCharms.forEach((charm) => {
+  for (const charm of existingCharms) {
     charm.remove();
-  });
+  }
 
   const itemsData = await getUserItems([
     'spiked_anchor_trinket',
@@ -118,9 +124,9 @@ const addMoreCharms = async () => {
     }
   }
 
-  itemsData.forEach((item) => {
+  for (const item of itemsData) {
     makeCharmElement(item, charmsWrapper);
-  });
+  }
 };
 
 const hud = () => {

@@ -1,13 +1,21 @@
 import { addStyles, onDialogShow } from '@utils';
+import { getData } from '@utils/data';
 
-import mapping from '@data/upscaled-images.json';
 import pathsToSkip from '@data/upscaled-images-to-skip.json';
 
 import journalThemeStyles from './journal-themes.css';
 import styles from './styles.css';
+import viewsStyles from './views.css';
 
 const stripUrl = (url) => {
-  return url.replaceAll('//images', '/images').replace('https://www.mousehuntgame.com/images/', '').replace('cv=1', 'cv=2');
+  return url.replaceAll('//images', '/images')
+    .replace('https://www.mousehuntgame.com/images/', '')
+    .replaceAll('cv=1', '')
+    .replaceAll('cv=2', '')
+    .replaceAll('asset_cache_version=1', '')
+    .replaceAll('asset_cache_version=2', '')
+    .replaceAll('?', '')
+    .replaceAll('&', '');
 };
 
 const getMappedUrl = (strippedUrl) => {
@@ -185,11 +193,15 @@ const observerOptions = {
   subtree: true,
 };
 
+let mapping = [];
+
 /**
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([styles, journalThemeStyles]);
+  addStyles([styles, journalThemeStyles, viewsStyles]);
+
+  mapping = await getData('upscaled-images');
 
   const observer = new MutationObserver(async (mutations) => {
     for (const mutation of mutations) {

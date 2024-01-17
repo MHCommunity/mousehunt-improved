@@ -221,10 +221,14 @@
 
 .mouseCrownsView-group-mice {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   align-items: stretch;
   justify-content: start;
   max-width: 720px;
+}
+
+.no-sidebar .mouseCrownsView-group-mice {
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .mouseCrownsView-group-header b {
@@ -236,7 +240,7 @@
 }
 
 .mouseCrownsView-group-mouse {
-  width: 108px;
+  width: auto;
 }
 
 .mouseCrownsView-group-mouse-image {
@@ -511,4 +515,21 @@ a.friendsProfileView-randomFriend {
 .hunterInfoView-verifiedUserImage {
   width: 14.5px;
   height: 17.5px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-container {
+  padding-top: 15px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-idCardBlock-goldenShield-image {
+  left: -5px;
+  width: 26px;
+  height: 26px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-idCardBlock-goldenShield-text {
+  width: auto;
+  padding: 2px 7px 3px 20px;
+  font-size: 12px;
+  white-space: nowrap;
 }

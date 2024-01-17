@@ -1,6 +1,7 @@
-import { getFlag } from '@utils';
+import { debuglog, getFlag } from '@utils';
 
 import eventHorn from './modules/event-horn';
+import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
 import trollMode from './modules/troll-mode';
 import twitter from './modules/twitter';
@@ -14,25 +15,31 @@ const init = async () => {
     { id: 'twitter', load: twitter },
     { id: 'birthday-horn', load: () => eventHorn('birthday') },
     { id: 'halloween-horn', load: () => eventHorn('halloween') },
-    { id: 'lunar-new-year-horn', load: () => eventHorn('lunar-new-year') },
     { id: 'great-winter-hunt-horn', load: () => eventHorn('greatWinterHunt') },
+    { id: 'raffle', load: raffle },
   ];
 
   const defaultEnabledFeatures = [
     { id: 'rank-up-forecaster', load: rankupForecaster },
   ];
 
+  const loaded = [];
+
   defaultDisabledFeatures.forEach((feature) => {
     if (getFlag(feature.id)) {
+      loaded.push(feature.id);
       feature.load();
     }
   });
 
   defaultEnabledFeatures.forEach((feature) => {
     if (! getFlag(feature.id)) {
+      loaded.push(feature.id);
       feature.load();
     }
   });
+
+  debuglog('beta-features', 'Loaded features:', loaded);
 };
 
 export default {

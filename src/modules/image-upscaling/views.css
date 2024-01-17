@@ -1,0 +1,241 @@
+/* from pages.css */
+.mousehuntHud-page-tabContent.kings_cart .shopsPage-header-icon {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/7340a24e5bf4defcc5d855bdb56776c3.png);
+}
+
+.shopsPage-kingsCalibratorPromo::after {
+  background-image: url(https://i.mouse.rip/upscaled/c6fa46d329c1c7436acad084773c05c6.png);
+}
+
+.dragonSlayerTeaser {
+  background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/d513d3d88b83e0cbce3be1ca70f8c6c0.png);
+}
+
+.fortRoxHUD-dialog-requiredItem.fort_rox_lair_cheese .itemImage {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/da61a59109bfc60c1d9db20f54c75e63.png);
+}
+
+.fortRoxHUD-dialog-requiredItem.fort_rox_lair_key_stat_item .itemImage {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/312d0ec2cf4e4cc10a223ef1ed7eb1cf.png);
+}
+
+.giftSelectorView-gift-cost-name {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png);
+}
+
+.greatWinterHuntClaimRewardDialogView__item--hat::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/f2ec13c0297687cbe50c7c35312966b7.png);
+}
+
+.greatWinterHuntClaimRewardDialogView__item--scarf::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/b07954771f93d36f125caab617573edf.png);
+}
+
+.headsUpDisplayWinterHuntRegionView__golemUpgradeCost::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/a9f0d6cba3beb00ad97a543b5e3ec8f9.png);
+}
+
+.headsUpDisplayWinterHuntRegionView__hailstoneImage {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/972937f8febcda1ed8e6f592ce34d1eb.png);
+}
+
+.journal .entry.aurora_base_trigger {
+  background-image: url(https://i.mouse.rip/upscaled/bases/20ffa4c4c656ac931e4881d98bda5713.png);
+}
+
+.journal .entry.burroughs_rift.regulator_base_trigger {
+  background-image: url(https://i.mouse.rip/upscaled/bases/aeeb39277ee5bb21bffd2d8e5eb91203.png);
+}
+
+.journal .entry.christmas_crystalabra_trigger {
+  background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/54e6ff0e1a145b4ae1a702dae67f302c.png);
+}
+
+.journal .entry.electromagnetic_base_trigger {
+  background-image: url(https://i.mouse.rip/upscaled/af1aa7a2f55acbce605abc65be1d22e1.png);
+}
+
+.journal .entry.living_grove_base_trigger.cavern_fungus {
+  background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/6b849e20a0a0e8034697dfc0034f20e0.png);
+}
+
+.journal .entry.living_grove_base_trigger.nightshade {
+  background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/075a2bbef9d263b41822be1c318e9ee0.png);
+}
+
+.journal .entry.mousehunt_birthday_cake_claim {
+  background-image: url(https://i.mouse.rip/upscaled/8e4f8ee414643d3dcb39e5bb7df429ed.png);
+}
+
+.journal .entry.rift_mist_diffuser_trigger {
+  background-image: url(https://i.mouse.rip/upscaled/bases/40b591abddca5fa4b1cefb1d1a5c0116.png);
+}
+
+.journal .entry.valour_rift_map_quest_entry {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/b88046add58f39243c14740d7179446e.png);
+}
+
+.journal .entry.vegetation_base_trigger.blue {
+  background-image: url(https://i.mouse.rip/upscaled/12adb0973256a6f3f7061925940593e9.png);
+}
+
+.journal .entry.vegetation_base_trigger.red {
+  background-image: url(https://i.mouse.rip/upscaled/8dff0d6bc2e6d9be450da9bc0d3ab678.png);
+}
+
+.journal .entry.vegetation_base_trigger.yellow {
+  background-image: url(https://i.mouse.rip/upscaled/1a0063f4d3a1995dc23105c4e6db85aa.png);
+}
+
+.journal .halloween-candy {
+  background-image: url(https://i.mouse.rip/upscaled/1682084bc7d5208b582b66476c090a3b.png);
+}
+
+.journal .relicHunter_slayer_aura_relic_bonus {
+  background-image: url(https://i.mouse.rip/upscaled/f21a0fde04887958de39f9e40b8f588e.png);
+}
+
+.kingsGiveawayCalibratorPopup-upgrade-action-kingsCredits {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/7340a24e5bf4defcc5d855bdb56776c3.png);
+}
+
+.labyrinthHUD-confirmItem.labyrinth_scramble_clues_stat_item {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/4af4321a64beff9406d1931e5ea79855.png);
+}
+
+.labyrinthHUD-confirmItem.labyrinth_scramble_doors_stat_item {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/3f408cc3012bf15bd07d9bce8a6eec75.png);
+}
+
+.MiniEventGiveawayCampHUD::before {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/6391b886b424174996329aa1eb186a10.png);
+}
+
+.mountainHUD-conduit-purchase .mousehuntItem-image.charm_level_1_trinket_slot {
+  background-image: url(https://i.mouse.rip/upscaled/06e0b1849d75003231f4cbd8eab65a1a.png);
+}
+
+.mountainHUD-conduit-suggestions .mousehuntItem-image.power_trinket {
+  background-image: url(https://www.mousehuntgame.com/images/items/trinkets/large/b0fb665f8649eb72432c66b0575c9516.png);
+}
+
+.mountainHUD-conduit-suggestions .mousehuntItem-image.super_power_trinket {
+  background-image: url(trinkets/625bef6da38dc44ddcd70d0da47244ae);
+}
+
+.mountainHUD-conduit-suggestions .mousehuntItem-image.weak_power_trinket {
+  background-image: url(https://i.mouse.rip/upscaled/625bef6da38dc44ddcd70d0da47244ae.png);
+}
+
+.mountainHUD-footer-item .mousehuntItem-image.abominable_asiago_cheese,
+.mountainHUD-craftDialog .mousehuntItem-image.abominable_asiago_cheese {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/7a83faafedc2d9e81cdf7aec4f1eb9a2.png);
+}
+
+.mountainHUD-footer-item .mousehuntItem-image.cheddore_cheese,
+.mountainHUD-craftDialog .mousehuntItem-image.cheddore_cheese {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/b5dde0c4643e52b8bee8b5d35529bc6e.png);
+}
+
+.mountainHUD-footer-item .mousehuntItem-image.faceted_sugar_crafting_item,
+.mountainHUD-craftDialog .mousehuntItem-image.faceted_sugar_crafting_item {
+  background-image: url(https://i.mouse.rip/upscaled/faceted_sugar_crafting_item.png);
+}
+
+.mountainHUD-footer-item .mousehuntItem-image.ice_curd_crafting_item,
+.mountainHUD-craftDialog .mousehuntItem-image.ice_curd_crafting_item {
+  background-image: url(https://i.mouse.rip/upscaled/ice_curd_crafting_item.png);
+}
+
+.mountainHUD-footer-item .mousehuntItem-image.magic_essence_craft_item,
+.mountainHUD-craftDialog .mousehuntItem-image.magic_essence_craft_item {
+  background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/1a5559b59d141e76dec3fe4b8780e5e3.png);
+}
+
+.mountainHUD-phaseContainer.bait .mousehuntItem-image.cheddore_cheese {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/b5dde0c4643e52b8bee8b5d35529bc6e.png);
+}
+
+.mountainHUD-phaseContainer.boss .mousehuntItem-image.abominable_asiago_cheese {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/7a83faafedc2d9e81cdf7aec4f1eb9a2.png);
+}
+
+.mountainHUD-phaseContainer.boulder .mousehuntItem-image.brie_cheese {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/9a8d8cd30ea217263779c4bbef463d69.png);
+}
+
+.mountainHUD-phaseContainer.boulder .mousehuntItem-image.super_brie_cheese {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png);
+}
+
+.mousoleumHUD-crafting-recipe-result-image {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/c2300f93eaaff7c48a78c1520b53ac12.png);
+}
+
+.riftBristleWoodsHUD-portalEquipment.acolyteHourglass .riftBristleWoodsHUD-portalEquipment-image {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/ee5ef616058313371f7779297bce4524.png);
+}
+
+.riftBristleWoodsHUD-portalEquipment.portalScrambler .riftBristleWoodsHUD-portalEquipment-image {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/092ff4aa80863a405073ee9685c4710f.png);
+}
+
+.riftBristleWoodsHUD-portalEquipment.portalWarmer .riftBristleWoodsHUD-portalEquipment-image {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/81e3257baf10421af2fb22d9beeaf89c.png);
+}
+
+.riftFuromaHUD-craftingPopup-recipe-action-magicEssence::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/1a5559b59d141e76dec3fe4b8780e5e3.png);
+}
+
+.springEggHuntCampHUD-missingDetector-cost {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png);
+}
+
+.springHuntHUD-interfaceEgg.century_egg_convertible::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/d64fc795e30b46f5f8a92f0949ab6988.png);
+}
+
+.springHuntHUD-interfaceEgg.explorers_egg_convertible::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/fadab13dcd382ee0eb1876ca0c08abd6.png);
+}
+
+.springHuntHUD-interfaceEgg.freshly_painted_egg_convertible::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/ce737544556d685e1f874c4fd87501ab.png);
+}
+
+.springHuntHUD-interfaceEgg.market_mogul_egg_convertible::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/6af4279a524e8981a4f77e6cd0c1a8fb.png);
+}
+
+.springHuntHUD-interfaceEgg.workshop_egg_convertible::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/215cb37ca633fed6e55b1014a371acd6.png);
+}
+
+.townOfGnawniaHUD-bountyRewardContainer {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png);
+}
+
+.valourRiftHUD-towerUpgradeLevel-costIcon.rift_gaunt_upgrade_a_stat_item {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/6b1ff750750b9c48dd330bdb9861ed7e.png);
+}
+
+.valourRiftHUD-towerUpgradeLevel-costIcon.rift_gaunt_upgrade_b_stat_item {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/d4d052ac03c581e15699333f61618e9d.png);
+}
+
+.valourRiftHUD-towerUpgradeLevel-costIcon.shade_eclipse_resource_stat_item {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/e987c0769410db8389c1b299af66710d.png);
+}
+
+.valourRiftHUD-towerUpgradeLevel-costIcon.total_eclipse_resource_stat_item {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/150c36547680239500d7f75221c5cfac.png);
+}
+
+.warpathHUD-dialog-state.clearWave .warpathHUD-dialog-image .itemImage {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/ef8fb33edf7ca54d7ddfc91a215e4845.png);
+}
+
+.warpathHUD-dialog-state.enterPortal .warpathHUD-dialog-image .itemImage {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/26383ddab530a128c32fb2cc5e9e7405.png);
+}

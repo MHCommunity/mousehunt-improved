@@ -8,6 +8,13 @@ a.mousehuntHud-shield.golden.default {
   transition: opacity 0.3s ease-in-out;
 }
 
+a.mousehuntHud-shield.golden.default-normal {
+  top: unset;
+  left: unset;
+  background-image: url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
+  filter: none;
+}
+
 a.mousehuntHud-shield.golden.default:hover,
 a.mousehuntHud-shield.golden.default:focus {
   opacity: 0.9;

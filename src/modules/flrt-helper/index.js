@@ -9,21 +9,23 @@ import {
   onRequest
 } from '@utils';
 
-import tradeableItems from '@data/items-tradeable.json';
+import { getData } from '@utils/data';
 
 import styles from './styles.css';
 
-const addFlrtButtonToConvertible = (response) => {
+const addFlrtButtonToConvertible = async (response) => {
   if (! (response.convertible_open && response.convertible_open.name && response.convertible_open.items)) {
     return;
   }
 
   const items = [];
 
+  const tradableItems = await getData('type');
+
   // Convert the items into a format that flrtPopup can use.
-  response.convertible_open.items.forEach((element) => {
+  for (const element of response.convertible_open.items) {
     // Skip items that are not tradable.
-    const tradable = tradeableItems.find((tradableItem) => {
+    const tradable = tradableItems.find((tradableItem) => {
       return tradableItem.type === element.type;
     });
 
@@ -35,7 +37,7 @@ const addFlrtButtonToConvertible = (response) => {
         quantity: element.quantity,
       });
     }
-  });
+  }
 
   const buttons = document.querySelector('.jsDialogContainer .suffix');
   if (! buttons) {

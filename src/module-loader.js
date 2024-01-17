@@ -21,6 +21,7 @@ import customShield from '@/custom-shield';
 import darkMode from '@/dark-mode';
 import dataExporters from '@/data-exporters';
 import delayedTooltips from '@/delayed-tooltips';
+import favoriteSetups from '@/favorite-setups';
 import flrtHelper from '@/flrt-helper';
 import hoverProfiles from '@/hover-profiles';
 import imageUpscaling from '@/image-upscaling';
@@ -45,10 +46,11 @@ import locationHud from '@/location-hud';
 
 // Element hiding modules.
 import adblock from '@/adblock';
+import hideDailyRewardPopup from '@/hide-daily-reward-popup';
+import hideFooter from '@/no-footer';
+import hideShare from '@/no-share';
+import hideSidebar from '@/no-sidebar';
 import journalPrivacy from '@/journal-privacy';
-import noFooter from '@/no-footer';
-import noShare from '@/no-share';
-import noSidebar from '@/no-sidebar';
 
 // All the always loaded modules.
 import dev from '@/dev';
@@ -85,6 +87,7 @@ export default [
   darkMode,
   dataExporters,
   delayedTooltips,
+  favoriteSetups,
   flrtHelper,
   hoverProfiles,
   imageUpscaling,
@@ -106,10 +109,11 @@ export default [
 
   // Element hiding modules.
   adblock,
+  hideDailyRewardPopup,
+  hideFooter,
+  hideShare,
+  hideSidebar,
   journalPrivacy,
-  noFooter,
-  noShare,
-  noSidebar,
 
   // Location HUD module.
   locationHud,

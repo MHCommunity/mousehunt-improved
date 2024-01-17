@@ -22,6 +22,10 @@ const getData = async (classification) => {
 
   const totalItemsEl = regionEl.querySelector('.total-items');
   totalItemsEl.textContent = '...';
+  totalItemsEl.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest',
+  });
 
   const response = await doRequest('managers/ajax/users/userInventory.php', {
     action: 'get_items_by_classification',

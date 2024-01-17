@@ -15,6 +15,11 @@
   display: flex;
   gap: 10px;
   justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .toggled .PagePreferences__titleText {
+  padding-bottom: 0;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle.toggled {
@@ -30,13 +35,13 @@
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__settingDescription {
-  max-width: 500px;
+  max-width: 650px;
   padding-top: 5px;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings #mousehunt-improved-settings-location-hud .PagePreferences__setting {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   height: 25px;
   padding: 0;
   margin: 0;
@@ -61,14 +66,26 @@
   font-size: 11px;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList:nth-child(even) {
-  background-color: #eee;
-  border-radius: 4px;
+#mousehunt-improved-settings-feature-custom-shield,
+#mousehunt-improved-settings-feature-ultimate-checkmark-categories,
+.mousehunt-improved-settings .PagePreferences__settingsList {
+  padding: 10px 5px 5px 10px;
+  margin-top: 10px;
+  border-top: 1px solid #e0d0b4;
+  border-left: none;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList {
-  padding: 5px;
-  padding-left: 10px;
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__subSetting {
+  padding: 0 5px 10px 10px;
+  margin: 0 0 0 50px;
+  border: none;
+  border-left: 1px solid #f8f4ed;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList:nth-child(3) {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
 }
 
 .PagePreferences .mousehunt-improved-settings .PagePreferences__setting {
@@ -80,6 +97,10 @@
 
 .PagePreferences .mousehunt-improved-settings .PagePreferences__setting .PagePreferences__settingAction {
   margin-bottom: 0;
+}
+
+.PagePreferences .mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer {
+  display: flex;
 }
 
 #mousehunt-improved-settings .PagePreferences__settingAction {
@@ -99,6 +120,11 @@
 /* Sub-settings */
 .PagePreferences__settingsList.PagePreferences__subSetting {
   margin-left: 20px;
+}
+
+#mousehunt-improved-settings-location-hud .PagePreferences__settingsList.PagePreferences__subSetting {
+  margin-left: 0;
+  border-left: none;
 }
 
 .PagePreferences__subSetting .PagePreferences__settingName {
@@ -182,10 +208,20 @@
 }
 
 /* Export Settings */
-.mousehunt-improved-export-settings {
-  position: absolute;
-  top: 2px;
-  right: 10px;
+.PagePreferences .mousehuntHud-page-tabContent .mousehunt-improved-settings-mousehunt-improved-settings-overrides .PagePreferences__titleText {
+  display: flex;
+  place-content: center flex-start;
+  align-items: center;
+}
+
+#mousehunt-improved-settings-mousehunt-improved-settings-overrides h3.PagePreferences__titleText {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#mousehunt-improved-settings-mousehunt-improved-settings-overrides h3.PagePreferences__titleText .mousehuntActionButton:first-child {
+  margin-left: auto;
 }
 
 #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-styles textarea,
@@ -196,7 +232,7 @@
   margin-left: -25px;
   font-family: monospace;
   color: #000;
-  background-color: #dcdcdc;
+  background-color: #eee;
   border: 1px solid #ccc;
 }
 
@@ -254,9 +290,10 @@
 .PagePreferences__settingsList.multi-toggle-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 0;
-  justify-items: end;
+  gap: 0 15px;
+  place-items: end end;
   padding: 0;
+  border: none;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList .multi-toggle-row .PagePreferences__settingsList {
@@ -266,7 +303,9 @@
   align-items: stretch;
   justify-content: space-evenly;
   padding: 0;
+  margin: 0;
   background-color: transparent;
+  border: none;
 }
 
 .PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName {
@@ -291,4 +330,38 @@
 #mousehunt-improved-settings-feature-custom-shield > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-feature-ultimate-checkmark-categories > div > div > .PagePreferences__settingName {
   font-size: 15px;
+}
+
+.menuItem.mousehunt-improved-icon-menu {
+  width: 20px;
+  padding: 0 5px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFX0lEQVRoge3XbYgdVx3H8e85Z87cp7kPc+/u3rvZZDfZPJLEVpI+pQklBWvSSIxWQkFfKCjoiyq+ExXpFoIIPiD6SgT7QgSRglCkSqUkVhu0aWtMW+OSTdJ0H9jsZu/u3se5d2bO8cVa6SuJWNgrzOfVmXe/HzPn/M9AIpFIJBKJRCKxWcRmB7hbUx+tjgz5uU83W0GjvrT+wncvtRcB1GYHuxvnzm4dO/OFE78cKRa+WMnFZ7aOFffsTS09d+EdjNzscHfjwJGjnyzvOPLAG395i7C5Tj4jP7Zt8sApAGezw/0nUyAXDw8/NVLd+/TcTCej6gu0TYpeq6WiqHQOeH4g98CPvvx4amJLdr+Io28eeujeTxV3PsJzP/ges396EYNE5xQinaXTN5MD9QZ+/52zRW+09HChWHi8UCp/olCb2JYdmmB57jY3r0zTaliQMQSGtX6L++4tf2gQCoifPvXI9v33THxmtFZ6ojBUm8jVdpfdygFIu8QLv2HtZoP6wgphTzA6DH4eKkISGTHu/OosavTw4TEh0qvHvvZK838JMgXiAsjh/chcBzlUqCpvLK92TJa1V/TddDbn1mq+brYCv9Vs3zMynDs0VMkfKVVHDmYrW7Su7EYWJsEtY6MuUeMSt/8+zepcm26vR0padEoyUlZsG8kzt2yGnX2nHztRmnjwh8uLnbf/+Oyj00YKq4QkDg1KK1zXwRhAghJIIYWKolBLqZSjpBJSOtbaVBzHrsQ6p6VSUkppLHWtlHbS6Yx2HU9KfClVOZVJFXekdDmXz0snnUek8ljhgNRgoN+4TdS6Qn/lFrTeZfrKDTCadmBY7cL27Qq/lMIrZ3DyxSHHV+qJaPby7urogzu9clWAwGKxBiwgxPumnbXwr2cLGGMIw1jEscF1HRydBqkQxMioASYC2wYs2qsgUyWkzmKNIQ7atFfnEWGLuNei1wvohyHtO0uUs33ml5rIMKBHil69jrEGLaDiKYb9NBnfI5PbWnZm3rwVdtod+ulZk/McEQd9jLEb4S3IKETEESY2CEBYi2VjbexGXYOwza6Je5G1UgphrJBhZKWVQiklyaQcelayFghCJI4jkUKgHIe4H9NuR/iVIrWax+WLV6kMuSihaPQsuw9OMnNtAT8vqY4qtoyk8fJZdNplbXVeOb5XenZ83/DOO+8Eb0ibvxzJwCqtAA3K3ZjVMUgVGSsdixHWYKRCYTDSRkZZYVQpjh1lrTY21FEUuTYOU3EcZWNjM7ExXmxF2VNU+pEpakXNYKph2NTNTpeoG7JyY4l3/yFZXOhw/boBo+gruNMOkY0mtYpke9FQq2XJFnJoP0/GmjVhLeL175+uLN2Kmqd+/NveB3Ow/PuLExeeOa4AJ0PGdTzHDVqBa4NuOlK27Ep5ECEfjvr9E1G/MZ5WHbp9Q7cbcX22y+J6nzVdZEsqJh2uc6AmmdhTxS+kkUMVZpeDpwdikL32k8Oa+rZH47D1ea3aD5XG86M2CnR7tcX0vGZ5qcnKwhz37/PYNV6i6OcQ5RI3Z9a/NBAF3nN+6rhTdIt7QtM7mSvrJ9O+PBQJ6cxfa3Ll9Tc5et8I42MeupjFqVV5+9X1kwNV4D0WxKVzZ7ZKHX3OEDzTMWlx49oMx45UGd5ZxQro2wIvv3x9dCALvN+lb3/8aNf1fn5t+uqOk0/upbJ3F4gPM/fSL17a9dlff2Tgr9P3f+P5V7SX//pY1V+/eH6GXlfQWvhrd6V++1tszNfBF5nmi4VS/EI2jrj6uz/Yub9d/NkDX734Z/6ffinPTx13nFxwTAunWXfzb536ygd75CcSiUQikUgkEv+9fwI8xC/BC1L8/wAAAABJRU5ErkJggg==);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+}
+
+.menuItem.mousehunt-improved-icon-menu:hover {
+  width: 20px;
+  padding: 0 5px;
+  overflow: visible;
+  cursor: pointer;
+  background: url(https://www.mousehuntgame.com/images/ui/hgbar/menuItem.png?asset_cache_version=2) 0 -30px repeat-x;
+  border-top-right-radius: 10px;
+}
+
+.menuItem.mousehunt-improved-icon-menu:hover::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+
+  /* TODO: replace with real url */
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFX0lEQVRoge3XbYgdVx3H8e85Z87cp7kPc+/u3rvZZDfZPJLEVpI+pQklBWvSSIxWQkFfKCjoiyq+ExXpFoIIPiD6SgT7QgSRglCkSqUkVhu0aWtMW+OSTdJ0H9jsZu/u3se5d2bO8cVa6SuJWNgrzOfVmXe/HzPn/M9AIpFIJBKJRCKxWcRmB7hbUx+tjgz5uU83W0GjvrT+wncvtRcB1GYHuxvnzm4dO/OFE78cKRa+WMnFZ7aOFffsTS09d+EdjNzscHfjwJGjnyzvOPLAG395i7C5Tj4jP7Zt8sApAGezw/0nUyAXDw8/NVLd+/TcTCej6gu0TYpeq6WiqHQOeH4g98CPvvx4amJLdr+Io28eeujeTxV3PsJzP/ges396EYNE5xQinaXTN5MD9QZ+/52zRW+09HChWHi8UCp/olCb2JYdmmB57jY3r0zTaliQMQSGtX6L++4tf2gQCoifPvXI9v33THxmtFZ6ojBUm8jVdpfdygFIu8QLv2HtZoP6wgphTzA6DH4eKkISGTHu/OosavTw4TEh0qvHvvZK838JMgXiAsjh/chcBzlUqCpvLK92TJa1V/TddDbn1mq+brYCv9Vs3zMynDs0VMkfKVVHDmYrW7Su7EYWJsEtY6MuUeMSt/8+zepcm26vR0padEoyUlZsG8kzt2yGnX2nHztRmnjwh8uLnbf/+Oyj00YKq4QkDg1KK1zXwRhAghJIIYWKolBLqZSjpBJSOtbaVBzHrsQ6p6VSUkppLHWtlHbS6Yx2HU9KfClVOZVJFXekdDmXz0snnUek8ljhgNRgoN+4TdS6Qn/lFrTeZfrKDTCadmBY7cL27Qq/lMIrZ3DyxSHHV+qJaPby7urogzu9clWAwGKxBiwgxPumnbXwr2cLGGMIw1jEscF1HRydBqkQxMioASYC2wYs2qsgUyWkzmKNIQ7atFfnEWGLuNei1wvohyHtO0uUs33ml5rIMKBHil69jrEGLaDiKYb9NBnfI5PbWnZm3rwVdtod+ulZk/McEQd9jLEb4S3IKETEESY2CEBYi2VjbexGXYOwza6Je5G1UgphrJBhZKWVQiklyaQcelayFghCJI4jkUKgHIe4H9NuR/iVIrWax+WLV6kMuSihaPQsuw9OMnNtAT8vqY4qtoyk8fJZdNplbXVeOb5XenZ83/DOO+8Eb0ibvxzJwCqtAA3K3ZjVMUgVGSsdixHWYKRCYTDSRkZZYVQpjh1lrTY21FEUuTYOU3EcZWNjM7ExXmxF2VNU+pEpakXNYKph2NTNTpeoG7JyY4l3/yFZXOhw/boBo+gruNMOkY0mtYpke9FQq2XJFnJoP0/GmjVhLeL175+uLN2Kmqd+/NveB3Ow/PuLExeeOa4AJ0PGdTzHDVqBa4NuOlK27Ep5ECEfjvr9E1G/MZ5WHbp9Q7cbcX22y+J6nzVdZEsqJh2uc6AmmdhTxS+kkUMVZpeDpwdikL32k8Oa+rZH47D1ea3aD5XG86M2CnR7tcX0vGZ5qcnKwhz37/PYNV6i6OcQ5RI3Z9a/NBAF3nN+6rhTdIt7QtM7mSvrJ9O+PBQJ6cxfa3Ll9Tc5et8I42MeupjFqVV5+9X1kwNV4D0WxKVzZ7ZKHX3OEDzTMWlx49oMx45UGd5ZxQro2wIvv3x9dCALvN+lb3/8aNf1fn5t+uqOk0/upbJ3F4gPM/fSL17a9dlff2Tgr9P3f+P5V7SX//pY1V+/eH6GXlfQWvhrd6V++1tszNfBF5nmi4VS/EI2jrj6uz/Yub9d/NkDX734Z/6ffinPTx13nFxwTAunWXfzb536ygd75CcSiUQikUgkEv+9fwI8xC/BC1L8/wAAAABJRU5ErkJggg==);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.mousehunt-improved-clear-cache.mousehuntActionButton {
+  margin-left: auto;
 }

@@ -5,8 +5,8 @@ import { addMhuiSetting, getTradableItems } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
-  addMhuiSetting(
+export default async function (module) {
+  await addMhuiSetting(
     'send-supplies-pinned-items',
     'Pinned Items',
     [
@@ -36,7 +36,7 @@ export default function (module) {
     {
       type: 'multi-select',
       number: 5,
-      options: getTradableItems('truncated_name'),
+      options: await getTradableItems('truncated_name'),
     }
   );
 }

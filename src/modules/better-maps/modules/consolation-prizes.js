@@ -1,6 +1,6 @@
 import { makeElement, mapData } from '@utils';
 
-export default () => {
+export default async () => {
   const consolationButton = document.querySelector('.treasureMapView-consolationPrize-message');
   if (! consolationButton || ! mapData().has_consolation_prizes || ! mapData().consolation_prizes) {
     return;

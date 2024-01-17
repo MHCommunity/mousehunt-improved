@@ -246,7 +246,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   }
 
   // Create the markup for the setting row.
-  const settings = makeElement('div', 'PagePreferences__settingsList');
+  const settings = makeElement('div', ['PagePreferences__settingsList', `PagePreferences__settingsList-${key}`, `PagePreferences__settingsList-${section.id}`]);
   settings.id = `${section.id}-${key}`;
   if (section.subSetting) {
     settings.classList.add('PagePreferences__subSetting');
@@ -536,7 +536,7 @@ const addSettingRefreshReminder = () => {
  * @param {Object}  module      Module the setting belongs to.
  * @param {Object}  options     Additional ptions for the setting.
  */
-const addMhuiSetting = (id, title, defaultVal, description, module, options = null) => {
+const addMhuiSetting = async (id, title, defaultVal, description, module, options = null) => {
   addSetting(
     title,
     id,
@@ -560,7 +560,7 @@ const addAdvancedSettings = () => {
   // Add the advanced override settings.
   const advancedTab = {
     id: 'mousehunt-improved-settings-overrides',
-    name: 'Overrides',
+    name: 'Advanced',
     default: true,
     description: '',
   };
@@ -584,6 +584,15 @@ const addAdvancedSettings = () => {
     'mousehunt-improved-settings',
     { type: 'input' }
   );
+
+  addSetting(
+    'Error Reporting',
+    'error-reporting',
+    true,
+    'Send anonymous error reports to the developers.',
+    advancedTab,
+    'mousehunt-improved-settings'
+  );
 };
 
 /**
@@ -591,14 +600,14 @@ const addAdvancedSettings = () => {
  *
  * @param {Object} module The module to add settings for.
  */
-const addSettingForModule = (module) => {
-  module.modules.forEach((subModule) => {
-    if (! subModule.alwaysLoad) {
-      addSetting(
-        subModule.name,
-        subModule.id,
-        subModule.default,
-        subModule.description,
+const addSettingForModule = async (module) => {
+  for (const submodule of module.modules) {
+    if (! submodule.alwaysLoad && ! submodule.beta) {
+      await addSetting(
+        submodule.name,
+        submodule.id,
+        submodule.default,
+        submodule.description,
         {
           id: module.id,
           name: module.name,
@@ -609,16 +618,17 @@ const addSettingForModule = (module) => {
     }
 
     if (
-      subModule.settings && (
-        subModule.alwaysLoad ||
-        getSetting(subModule.id, subModule.default)
+      ! submodule.beta &&
+      submodule.settings && (
+        submodule.alwaysLoad ||
+        getSetting(submodule.id, submodule.default)
       )
     ) {
       const subModSettings = module;
       subModSettings.subSetting = true;
-      subModule.settings(subModSettings);
+      await submodule.settings(subModSettings);
     }
-  });
+  }
 };
 
 export {
