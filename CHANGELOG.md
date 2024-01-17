@@ -40,6 +40,10 @@
 - Adds onboarding to guide users to the settings page
 - Adds version and loaded modules to the `app.mhui` object.
 - When loaded, a `mh-improved-loaded` event is fired through the `eventRegistry`.
+- Don't show 'Arm Now' button anywhere but the inventory"
+- Upscales more UI images and journal entry images
+- Updates Travel Window to only show available locations
+- Adds Mountain Location HUD styles
 
 ## Version 0.27.3
 
