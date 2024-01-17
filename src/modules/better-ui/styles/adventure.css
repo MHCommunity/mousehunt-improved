@@ -63,6 +63,7 @@
   left: 10px;
   width: 60px;
   height: 60px;
+  outline: 1px solid #ccc;
 }
 
 .adventureBookBanner-goalName {
@@ -113,4 +114,12 @@
   text-shadow: none;
   background: none;
   box-shadow: none;
+}
+
+.adventureBookBanner-goalWrapper.multi_choice.spacer {
+  min-width: 30px;
+}
+
+.adventureBookPopup-adventure-details-block.requirements .adventureBookPopup-adventure-details-block-step.incomplete {
+  box-shadow: 0px 1px 2px 1px #5c1c1c;
 }
