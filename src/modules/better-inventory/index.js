@@ -1,6 +1,8 @@
 import {
   addStyles,
   getCurrentPage,
+  getCurrentSubtab,
+  getCurrentTab,
   getSetting,
   makeElement,
   onEvent,
@@ -107,6 +109,10 @@ const addItemViewPopupToCollectibles = () => {
 };
 
 const addArmButtonToCharms = () => {
+  if ('inventory' !== getCurrentPage() || 'traps' !== getCurrentTab() || 'trinket' !== getCurrentSubtab()) {
+    return;
+  }
+
   const charms = document.querySelectorAll('.inventoryPage-item.trinket');
   if (! charms.length) {
     return;
