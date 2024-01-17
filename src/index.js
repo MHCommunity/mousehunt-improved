@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/browser'; // eslint-disable-line import/no-extraneous-dependencies
+
 import {
   addAdvancedSettings,
   addSettingForModule,
@@ -8,6 +10,7 @@ import {
   debuglog,
   getFlag,
   getGlobal,
+  getSetting,
   getSettingDirect,
   isApp,
   isUnsupportedFile,
@@ -16,6 +19,19 @@ import {
 } from '@utils';
 
 import modules from './module-loader';
+
+if (getSetting('error-reporting', true)) {
+  Sentry.init({
+    dsn: 'https://c0e7b72f2611e14c356dba1923cedf6e@o4506582061875200.ingest.sentry.io/4506583459233792',
+    maxBreadcrumbs: 50,
+    debug: true,
+    release: `mousehunt-improved-${mhImprovedPlatform}@${mhImprovedVersion}`,
+    initialScope: {
+      version: mhImprovedVersion,
+      platform: mhImprovedPlatform,
+    },
+  });
+}
 
 const organizedModules = [
   {

@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "concurrently \"bun:build:extension\" \"bun:build:userscript\" \"bun:build:archive\"",
+    "build-production": "NODE_ENV=production bun run build",
     "build:archive": "mkdir -p dist && git archive --format zip --output dist/archive.zip HEAD",
     "build:extension": "concurrently \"bun:build:extension:*\"",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
@@ -32,6 +33,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.7",
+    "@sentry/browser": "^7.93.0",
+    "@sentry/esbuild-plugin": "^2.10.2",
     "humanize-duration": "^3.31.0",
     "mousehunt-utils": "^1.11.0"
   },

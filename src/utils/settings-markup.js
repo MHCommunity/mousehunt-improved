@@ -584,6 +584,15 @@ const addAdvancedSettings = () => {
     'mousehunt-improved-settings',
     { type: 'input' }
   );
+
+  addSetting(
+    'Error Reporting',
+    'error-reporting',
+    true,
+    'Send anonymous error reports to the developers.',
+    advancedTab,
+    'mousehunt-improved-settings'
+  );
 };
 
 /**
