@@ -4,7 +4,8 @@ import {
   createPopup,
   debug,
   getCurrentLocation,
-  onDialogHide
+  onDialogHide,
+  isUserTitleAtLeast
 } from '@utils';
 
 import { getData } from '@utils/data';
@@ -75,6 +76,22 @@ const openTravelWindow = async () => {
   environments = [...environments, ...eventEnvironments];
 
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());
+
+  const locationsToRemove = [
+    'forbidden_grove',
+  ];
+
+  environments = environments.map((env) => {
+    console.log(env);
+    if (! isUserTitleAtLeast(env.title)) {
+      locationsToRemove.push(env.id);
+    }
+
+    return env;
+  });
+
+  environments = environments.filter((env) => ! locationsToRemove.includes(env.id));
+
 
   // Wrapper start.
   let content = '<div class="mh-improved-travel-window greatWinterHuntGolemDestinationView"><div class="greatWinterHuntGolemDestinationView__content">';
