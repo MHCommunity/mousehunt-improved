@@ -4,7 +4,9 @@ import {
   debug,
   makeElement,
   onRequest,
-  onTravel
+  onTravel,
+  isUserTitleAtLeast,
+  onEvent
 } from '@utils';
 
 import { getData } from '@utils/data';
@@ -119,6 +121,10 @@ const doLocationRefresh = async () => {
       ...eventEnvironments.map((eenv) => eenv.id),
     ];
 
+    if (! isUserTitleAtLeast(env.title)) {
+      locationsToRemove.push(env.id);
+    }
+
     debug(`Environments to remove: ${locationsToRemove.join(', ')}`);
 
     return ! locationsToRemove.includes(env.id);
@@ -160,6 +166,12 @@ const doLocationRefresh = async () => {
   const originalLocation = user.environment_type;
   debug(`Original location: ${user.environment_type}.`);
 
+  const equippedbait = user.bait_item_id || 'disarmed';
+  debug(`Equipped bait: ${equippedbait}.`);
+
+  // Disarm bait.
+  hg.utils.TrapControl.disarmBait().go();
+
   for (const location of locationProgress) {
     const locationData = environments.find((env) => env.id === location);
     if (! locationData) {
@@ -183,6 +195,9 @@ const doLocationRefresh = async () => {
 
   await waitForTravel(originalLocation);
   debug(`Traveled back to ${user.environment_type}.`);
+
+  hg.utils.TrapControl.setBait(equippedbait).go();
+  debug(`Re-equipped bait: ${equippedbait}.`);
 
   popup.hide();
 
@@ -389,7 +404,7 @@ const init = async () => {
   sessionStorage.setItem('mh-improved-doing-location-refresh', 'false');
 
   cacheLocationData();
-  onTravel(null, { callback: cacheLocationData });
+  onEvent('travel_complete', cacheLocationData);
   onRequest(cacheLocationData);
 
   makeDashboardTab();
