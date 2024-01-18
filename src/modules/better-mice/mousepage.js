@@ -1,6 +1,7 @@
 import {
   doRequest,
   getCurrentPage,
+  getCurrentSubtab,
   getCurrentTab,
   makeElement,
   onNavigation
@@ -190,7 +191,7 @@ const getSetRowValue = (row, type) => {
     return Number.parseInt(value);
   }
 
-  const valueText = row.querySelector(`.mouseListView-categoryContent-subgroup-mouse-stats.${type}`);
+  const valueText = row.querySelector(`${getSelectorPrefix()} .mouseListView-categoryContent-subgroup-mouse-stats.${type}`);
 
   // for weight, we need to parse the text to get the number
   if (type === 'average_weight' || type === 'heaviest_catch') {
@@ -215,12 +216,12 @@ const getSetRowValue = (row, type) => {
 const sortStats = (type, reverse = false) => {
   reverse = ! reverse;
 
-  let rows = document.querySelectorAll('.active  .mouseListView-categoryContent-subgroup-mouse:not(:first-child)');
+  let rows = document.querySelectorAll(`${getSelectorPrefix()} .active  .mouseListView-categoryContent-subgroup-mouse:not(:first-child)`);
   if (! rows.length) {
     return;
   }
 
-  const headerRow = document.querySelector('.active  .mouseListView-categoryContent-subgroup-mouse:first-child');
+  const headerRow = document.querySelector(`${getSelectorPrefix()} .active  .mouseListView-categoryContent-subgroup-mouse:first-child`);
   if (! headerRow) {
     return;
   }
@@ -304,7 +305,17 @@ const addSortButton = (elements, type) => {
   });
 };
 
-const addSortingToCat = (cat) => {
+const getSelectorPrefix = () => {
+  const currentTab = getCurrentTab();
+  let currentSubtab = getCurrentSubtab();
+  if (currentTab === currentSubtab) {
+    currentSubtab = false;
+  }
+
+  return `.${currentTab} .mousehuntHud-page-subTabContent.active${currentSubtab ? `.${currentSubtab}` : ''}`;
+};
+
+const addSortingToCat = (cat, retries = 0) => {
   const cats = [
     'name',
     'catches',
@@ -313,10 +324,15 @@ const addSortingToCat = (cat) => {
     'heaviest_catch',
   ];
 
-  const category = document.querySelector(`.mousehuntHud-page-subTabContent.active .mouseListView-categoryContent-category[data-category="${cat}"]`);
+  const selector = `${getSelectorPrefix()} .mouseListView-categoryContent-category[data-category="${cat}"]`;
+  const category = document.querySelector(selector);
   // if the category has the loading class, then we wait for the content to load
   if (! category || (category && category.classList.contains('loading'))) {
-    setTimeout(() => addSortingToCat(cat), 250);
+    if (retries > 10) {
+      return;
+    }
+
+    setTimeout(() => addSortingToCat(cat, retries + 1), 300);
     return;
   }
 
@@ -325,7 +341,7 @@ const addSortingToCat = (cat) => {
   }
 
   cats.forEach((mcat) => {
-    const els = category.querySelectorAll(`.mouseListView-categoryContent-category.all.active .mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${mcat}`);
+    const els = category.querySelectorAll(`${getSelectorPrefix()} .mouseListView-categoryContent-category.all.active .mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${mcat}`);
     if (els.length) {
       addSortButton(els, mcat);
     }
@@ -334,13 +350,13 @@ const addSortingToCat = (cat) => {
   category.setAttribute('data-added-sorting', true);
 
   // Get all the rows and add the crown classes to them.
-  const rows = category.querySelectorAll('.mouseListView-categoryContent-subgroup-mouse:not(:first-child)');
+  const rows = category.querySelectorAll(`${getSelectorPrefix()} .mouseListView-categoryContent-subgroup-mouse:not(:first-child)`);
   if (! rows.length) {
     return;
   }
 
   rows.forEach((row) => {
-    const catches = row.querySelector('.mouseListView-categoryContent-subgroup-mouse-stats.catches');
+    const catches = row.querySelector(`${getSelectorPrefix()} .mouseListView-categoryContent-subgroup-mouse-stats.catches`);
     if (! catches) {
       return;
     }
@@ -362,7 +378,13 @@ const addSortingToCat = (cat) => {
   });
 };
 
+let hasAddedSortingTabClickListeners = false;
 const addSortingTabClickListeners = () => {
+  if (hasAddedSortingTabClickListeners) {
+    return;
+  }
+
+  hasAddedSortingTabClickListeners = true;
   const _categoryClickHandler = hg.views.MouseListView.categoryClickHandler;
   hg.views.MouseListView.categoryClickHandler = (el) => {
     _categoryClickHandler(el);
@@ -373,7 +395,7 @@ const addSortingTabClickListeners = () => {
 const clickCurrentTab = () => {
   const activeTab = document.querySelector('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabContent.active .mouseListView-categoryContainer.active a');
   if (! activeTab) {
-    setTimeout(clickCurrentTab, 100);
+    setTimeout(clickCurrentTab, 250);
     return;
   }
 
@@ -404,6 +426,19 @@ export default async () => {
   onNavigation(addSortingToStatsPage, {
     page: 'adversaries',
     tab: 'your_stats',
+    subtab: 'group',
+  });
+
+  onNavigation(addSortingToStatsPage, {
+    page: 'adversaries',
+    tab: 'your_stats',
+    subtab: 'location',
+  });
+
+  eventRegistry.addEventListener('set_tab', () => {
+    if ('your_stats' === getCurrentTab()) {
+      addSortingToStatsPage();
+    }
   });
 
   onNavigation(addSortingToStatsPage, {
