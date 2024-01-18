@@ -1,4 +1,4 @@
-import { addHudStyles, getCurrentLocation, makeElement } from '@utils';
+import { addHudStyles, getCurrentLocation, makeElement, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -62,6 +62,11 @@ const hud = () => {
   // Always allow gems to be scrambled.
   scrambleGems();
 
+  const doorTextExisting = document.querySelector('.mh-ui-labyrinth-door-text');
+  if (doorTextExisting) {
+    doorTextExisting.remove();
+  }
+
   const appendTo = document.querySelector('.labyrinthHUD-hallwayDescription');
   if (! appendTo) {
     return;
@@ -121,8 +126,26 @@ const hud = () => {
   const tiles = user.quests.QuestLabyrinth.tiles || [];
   const completed = tiles.filter((tile) => tile.status.includes('complete'));
 
-  makeElement('span', 'mh-ui-labyrinth-step-counter', `${completed.length}/${hallwayLength} steps completed.`, appendTo);
+  if (completed.length !== hallwayLength) {
+    makeElement('span', 'mh-ui-labyrinth-step-counter', `${completed.length}/${hallwayLength} steps completed.`, appendTo);
+  }
+
   const stepsToGo = hallwayLength - completed.length;
+
+  const existingIntersectionText = document.querySelector('.mh-ui-labyrinth-door-text');
+  if (existingIntersectionText) {
+    existingIntersectionText.remove();
+  }
+
+  const stepsExisting = document.querySelector('.mh-ui-laby-steps');
+  if (stepsExisting) {
+    stepsExisting.remove();
+  }
+
+  const cptExisting = document.querySelector('.mh-ui-laby-cpt');
+  if (cptExisting) {
+    cptExisting.remove();
+  }
 
   if (stepsToGo !== 0) { // eslint-disable-line unicorn/no-negated-condition
     const intersectionDoors = document.querySelector('.labyrinthHUD-doorContainer');
@@ -132,11 +155,6 @@ const hud = () => {
       const cluesFound = tilesWithClues.reduce((a, b) => a + Number.parseInt(b.status.replace('complete', '').replace('good_', '').trim()), 0);
       const cluesPerTile = (cluesFound / completed.length).toFixed(1).replace('.0', '');
 
-      const existingIntersectionText = document.querySelector('.mh-ui-labyrinth-door-text');
-      if (existingIntersectionText) {
-        existingIntersectionText.remove();
-      }
-
       const intersectionText = makeElement('div', 'mh-ui-labyrinth-door-text');
 
       makeElement('div', 'mh-ui-laby-steps', `${stepsToGo} hunt${(stepsToGo) > 1 ? 's' : ''} left in the hallway`, intersectionText);
@@ -145,21 +163,6 @@ const hud = () => {
       }
 
       intersectionDoors.append(intersectionText);
-    }
-  } else {
-    const existingIntersectionText = document.querySelector('.mh-ui-labyrinth-door-text');
-    if (existingIntersectionText) {
-      existingIntersectionText.remove();
-    }
-
-    const stepsExisting = document.querySelector('.mh-ui-laby-steps');
-    if (stepsExisting) {
-      stepsExisting.remove();
-    }
-
-    const cptExisting = document.querySelector('.mh-ui-laby-cpt');
-    if (cptExisting) {
-      cptExisting.remove();
     }
   }
 
@@ -174,4 +177,5 @@ const hud = () => {
 export default async () => {
   addHudStyles(styles);
   hud();
+  onRequest(hud);
 };
