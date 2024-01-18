@@ -1,0 +1,18 @@
+.journal .entry.queso_canyon_queso_pumped {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/transparent_thumb/06c81c66b0f21f2a8b6a2b989f40bd8d.png?cv=2);
+  background-repeat: no-repeat;
+  background-position: 9px;
+  background-size: contain;
+}
+
+.journal .entry.queso_canyon_queso_pumped .journalbody {
+  margin-left: 63px;
+}
+
+.entry.short.queso_canyon_queso_pumped .journalbody {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 5px 5px 5px 10px;
+  white-space: normal;
+}

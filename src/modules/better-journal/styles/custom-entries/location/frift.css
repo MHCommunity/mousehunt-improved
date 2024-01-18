@@ -1,0 +1,24 @@
+/* Frift droid */
+.journal .entry.riftFuroma {
+  position: relative;
+}
+
+.journal .entry.riftFuroma-energyLost .journalbody {
+  margin-left: 80px;
+}
+
+.journal .entry.riftFuroma-energyLost .journalbody::before {
+  position: absolute;
+  top: -12px;
+  left: -96px;
+  display: block;
+  width: 75px;
+  height: 80px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/rift_furoma/droid.png?asset_cache_version=2);
+  filter: grayscale(1);
+  background-repeat: no-repeat;
+  background-position: 0 -100px;
+  background-size: 110%;
+  mix-blend-mode: luminosity;
+}

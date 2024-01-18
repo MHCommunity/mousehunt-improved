@@ -1,0 +1,4 @@
+/* nicer shade of green for prize mice */
+.journal .content .catchsuccessprize {
+  background-color: #7dea7d;
+}

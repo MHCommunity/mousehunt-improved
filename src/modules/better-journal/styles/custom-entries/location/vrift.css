@@ -1,0 +1,8 @@
+/* Shrink the text down a bit and make look smaller */
+.journal .entry.rift_valour.minimalJournalImage.enter_tower .journaltext,
+.journal .entry.rift_valour.minimalJournalImage.no_loot_retreat .journaltext,
+.journal .entry.rift_valour.minimalJournalImage.upgrade_longstride .journaltext,
+.journal .entry.rift_valour.minimalJournalImage.upgrade_stamina .journaltext,
+.journal .entry.rift_valour.minimalJournalImage.upgrade_siphon .journaltext {
+  padding-top: 0;
+}

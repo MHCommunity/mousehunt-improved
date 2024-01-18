@@ -1,0 +1,23 @@
+/* Hide lucky clover on mouse image */
+.journal .entry.luckycatchsuccess .journalimage::after {
+  background: none;
+}
+
+.journal .entry.luckycatchsuccess::after {
+  top: 1px;
+  right: 0px;
+  width: 25px;
+  height: 25px;
+  background: url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: '';
+  position: absolute;
+  filter: drop-shadow(0px 2px 2px #89ff45);
+}
+
+.journal .entry.luckycatchsuccess .journalimage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}

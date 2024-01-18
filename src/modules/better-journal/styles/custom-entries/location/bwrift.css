@@ -1,0 +1,12 @@
+.entry.short.rift-bristlewoods-acolyteSandStolen {
+  padding: 2px;
+  background: #ffc16e;
+}
+
+.entry.short.rift-bristlewoods-acolyteSandStolen .journalbody {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 5px 5px 5px 10px;
+  white-space: normal;
+}

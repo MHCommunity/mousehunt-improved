@@ -1,0 +1,15 @@
+/* hiding date for entries that come with a hunt */
+.entry.short.refine_pollutinum .journaldate,
+.entry.short.torch_charm_event .journaldate,
+.entry.short.unstable_charm_trigger .journaldate,
+.entry.short.tournamentpointswithloot .journaldate,
+.entry.short.tournamentpoints .journaldate,
+.entry.short.rift-bristlewoods-acolyteSandStolen .journaldate,
+.entry.short.rift-bristlewoods-lootBooster .journaldate,
+.entry.short.super_rift_vacuum_trigger .journaldate,
+.entry.short.queso_canyon_queso_pumped .journaldate,
+.entry.short.custom.chesla_trap_trigger .journaldate,
+.entry.short.wordCount.minimalJournal .journaldate,
+.entry.short.folkloreForest.folkloreForest-lootFuelBoost .journaldate {
+  display: none;
+}

@@ -1,0 +1,18 @@
+.entry.short.misc.custom.torch_charm_event {
+  display: flex;
+  align-items: center;
+  min-height: 35px;
+  padding-left: 5px;
+  font-size: 10px;
+  line-height: 15px;
+  background-color: #e1f9ff;
+}
+
+.entry.short.misc.custom.torch_charm_event .journalimage {
+  width: 55px;
+}
+
+.entry.short.misc.custom.torch_charm_event .journalimage img {
+  width: 45px;
+  height: 45px;
+}

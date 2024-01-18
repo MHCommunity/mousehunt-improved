@@ -1,0 +1,14 @@
+.entry.short.tournamentpointswithloot,
+.entry.short.tournamentpoints {
+  padding: 2px;
+  background: #dbd1b4;
+}
+
+.entry.short.tournamentpointswithloot .journalbody,
+.entry.short.tournamentpoints .journalbody {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 5px 5px 5px 10px;
+  white-space: normal;
+}

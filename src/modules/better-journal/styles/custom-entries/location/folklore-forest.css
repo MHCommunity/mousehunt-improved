@@ -1,0 +1,12 @@
+.journal .entry.folkloreForest.folkloreForest-lootFuelBoost {
+  min-height: unset;
+  background-color: #b6f1d1;
+}
+
+.entry.folkloreForest-farmToTable .journaltext a:nth-last-of-type(2)::after {
+  content: " and ";
+}
+
+.journal .entry.folkloreForest-tableOfContents.wordCount {
+  background-color: #f7d9a2;
+}

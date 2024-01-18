@@ -1,0 +1,33 @@
+.journal .entry.titlechange {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/camp/re_engagement/popup/rank_up_icon.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: contain;
+}
+
+.journal .entry.titlechange::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/journal/donation_shimmer.png?asset_cache_version=2) no-repeat -130px 0;
+  filter: hue-rotate(123deg);
+  transition: all 300ms;
+  animation: donationShimmer 5s;
+  animation-iteration-count: infinite;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .journal .entry.titlechange::after {
+    animation: none;
+  }
+}
+
+.journal .content .titlechange .journalimage img,
+.journal .content .titlechange .journalimage {
+  width: 75px;
+}
+
+.journal .entry.titlechange .journalbody {
+  text-shadow: 0 0 1px #70c9da;
+}

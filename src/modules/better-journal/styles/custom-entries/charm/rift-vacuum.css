@@ -1,0 +1,8 @@
+.journal .entry.short.super_rift_vacuum_trigger {
+  box-shadow: 0 0 20px 0 #c997de inset;
+}
+
+.journal .entry.short.custom.super_rift_vacuum_trigger {
+  background-position: 10px 5px;
+  background-size: 50px;
+}

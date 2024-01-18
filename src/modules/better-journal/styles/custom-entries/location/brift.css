@@ -1,0 +1,6 @@
+/* nicer shade of gray and better image for brift */
+.journal .entry.burroughs_rift.danger_zone {
+  background-color: #ccdfe2;
+  background-position: 10px center;
+  background-size: 59px;
+}

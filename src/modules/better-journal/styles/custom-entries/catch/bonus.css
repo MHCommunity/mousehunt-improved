@@ -1,0 +1,13 @@
+/* hide the BONUS HUNT banner on bonus hunts */
+.journal .content .bonuscatchsuccess,
+.journal .content .bonuscatchfailure {
+  box-shadow: none;
+}
+
+.journal .content .bonuscatchsuccess::after,
+.journal .content .bonuscatchfailure::after,
+.journal .content .bonuscatchsuccess::before,
+.journal .content .bonuscatchfailure::before {
+  content: none;
+  background: none;
+}

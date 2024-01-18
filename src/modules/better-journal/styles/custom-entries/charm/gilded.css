@@ -1,0 +1,9 @@
+.entry.short.misc.custom.chesla_trap_trigger {
+  display: flex;
+  align-items: center;
+  min-height: 35px;
+  padding-left: 10px;
+  font-size: 10px;
+  line-height: 15px;
+  background-color: #edd1f3;
+}

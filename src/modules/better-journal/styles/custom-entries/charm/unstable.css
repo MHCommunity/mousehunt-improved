@@ -1,0 +1,27 @@
+.entry.short.misc.custom.unstable_charm_trigger {
+  display: flex;
+  align-items: center;
+  min-height: 35px;
+  padding-left: 5px;
+  font-size: 10px;
+  line-height: 15px;
+  background-color: #e1f9ff;
+}
+
+/* force unstable charm entries to always be one line */
+.journal .entry.short.misc.custom.unstable_charm_trigger .journaltext {
+  max-width: 265px;
+  margin-left: -10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.entry.short.misc.custom.unstable_charm_trigger .journalimage {
+  width: 55px;
+}
+
+.journal .entry.short.misc.custom.unstable_charm_trigger .journalimage img {
+  width: 45px;
+  height: 45px;
+}

@@ -1,0 +1,31 @@
+/* Smaller image */
+.journal .content .entry.minimalJournalImage {
+  background-position: 15px center !important;
+  background-size: 40px;
+}
+
+.journal .content .entry,
+.journal .content .entry.short.misc.custom.adventureBook-journal.goal {
+  background-position: 10px center;
+}
+
+.journal .content .entry.folkloreForest-bookClaimed {
+  background-position: 10px 30px;
+}
+
+/* gotta love !important */
+.journal .content .entry.short.misc.custom.winterTaiga.festiveSpiritLootBoost.minimalJournalImage,
+.journal .content .entry.short.misc.custom.winterTaiga.workshopPartProduced.minimalJournalImage,
+.journal .content .entry.short.misc.custom.winterTaiga.frostKingDefeated.minimalJournalImage,
+.journal .content .entry.short.misc.custom.winterTaiga.shieldDestroyed.minimalJournalImage,
+.journal .content .entry.short.misc.custom.winterTaiga.shieldDamaged.minimalJournalImage,
+.journal .content .entry.moved_forward,
+.journal .content .entry.champions_fire_loot {
+  background-position: 10px center !important;
+  background-size: 50px !important;
+}
+
+.entry.short.misc.custom.denture_base_decay_trigger {
+  background-position: 10px;
+  background-size: 50px;
+}

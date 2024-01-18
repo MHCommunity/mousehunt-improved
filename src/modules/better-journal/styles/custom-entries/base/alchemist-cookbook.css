@@ -1,0 +1,13 @@
+.journal .content .entry.alchemists_cookbook_base_bonus {
+  background-position: 10px;
+  background-size: 55px !important;
+}
+
+.journal .content .entry.alchemists_cookbook_base_bonus .journalbody {
+  margin-left: 80px;
+}
+
+.journal .entry.alchemists_cookbook_base_bonus {
+  background-position: 5px;
+  box-shadow: inset 0 0 20px #ae3fa4;
+}

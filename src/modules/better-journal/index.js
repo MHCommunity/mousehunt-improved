@@ -1,10 +1,6 @@
-import { addStyles, getSetting, onRequest } from '@utils';
+import { getSetting, onRequest } from '@utils';
 
-import customEntries from './styles/custom-entries.css';
-import fullstop from './styles/fullstop.css';
-import miniEntries from './styles/mini-entries.css';
-import progressLog from './styles/progress-log.css';
-import styles from './styles/styles.css';
+import styles from './styles';
 
 /**
  * For each element matching the selector, find and replace strings.
@@ -273,13 +269,7 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([
-    styles,
-    customEntries,
-    fullstop,
-    miniEntries,
-    progressLog,
-  ]);
+  styles();
 
   main();
   onRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
