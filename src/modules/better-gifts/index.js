@@ -69,6 +69,7 @@ const claimGifts = async (send = false, retries = 0) => {
   const ignoredGifts = getIgnoredGifts();
 
   let sendLimit = hg.views.GiftSelectorView.getNumSendableActionsRemaining();
+  let claimLimit = hg.views.GiftSelectorView.getNumClaimableActionsRemaining();
 
   // remove all the gifts that don't have the channel of "gift" and the ones that are ignored.
   gifts = gifts.filter((gift) => {
@@ -84,10 +85,11 @@ const claimGifts = async (send = false, retries = 0) => {
   });
 
   for (const gift of gifts) {
-    let verb = 'return';
+    let verb = send ? 'return' : 'claim';
     if (send && sendLimit > 0 && gift.is_returnable) {
       verb = 'return';
       sendLimit--;
+      claimLimit--;
     }
 
     const giftEl = document.querySelector(`.giftSelectorView-friendRow[data-gift-id="${gift.gift_id}"] .giftSelectorView-friendRow-action.${verb}`);
@@ -96,10 +98,13 @@ const claimGifts = async (send = false, retries = 0) => {
     }
 
     const event = { target: giftEl };
-    if ('return' === verb) {
+    if (send && 'return' === verb && sendLimit > 0) {
+      giftEl.style.outline = '2px solid #00ff00';
       hg.views.GiftSelectorView.selectReturnableGift(event, giftEl);
       sendLimit--;
-    } else {
+      claimLimit--;
+    } else if (! send && 'claim' === verb && claimLimit > 0) {
+      giftEl.style.outline = '2px solid #00ff00';
       hg.views.GiftSelectorView.selectClaimableGift(giftEl);
       claimLimit--;
     }
@@ -118,7 +123,8 @@ const claimGifts = async (send = false, retries = 0) => {
 
 const makeAcceptButton = (buttonContainer) => {
   const acceptButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-accept'], 'Accept All');
-  const acceptLimit = document.querySelector('.giftSelectorView-numClaimActionsRemaining');
+  const acceptLimit = hg.views.GiftSelectorView.getNumClaimableActionsRemaining();
+
   if (acceptLimit && acceptLimit.innerText === '0') {
     acceptButton.classList.add('disabled');
   } else {
