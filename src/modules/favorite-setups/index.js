@@ -4,22 +4,19 @@ import {
   debuglog,
   doRequest,
   getCurrentPage,
-  getSettingDirect,
+  getHeaders,
+  getSetting,
   makeElement,
   onEvent,
   onNavigation,
-  saveSettingDirect
+  saveSetting
 } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
 
 const getFavoriteSetups = () => {
-  return getSettingDirect('favorite-setups', [], 'mh-improved-favorite-setups');
-};
-
-const saveSetting = (key, value) => {
-  return saveSettingDirect(key, value, 'mh-improved-favorite-setups');
+  return getSetting('favorite-setups', []);
 };
 
 const saveFavoriteSetup = (setup) => {
@@ -44,13 +41,9 @@ const getCurrentSetup = () => {
     id: 'current',
     name: 'Current Setup',
     bait_id: user.bait_item_id,
-    bait_thumbnail: user.enviroment_atts.bait_thumb,
     base_id: user.base_item_id,
-    base_thumbnail: user.enviroment_atts.base_thumb,
     weapon_id: user.weapon_item_id,
-    weapon_thumbnail: user.enviroment_atts.weapon_thumb,
     trinket_id: user.trinket_item_id,
-    trinket_thumbnail: user.enviroment_atts.trinket_thumb,
   });
 };
 
@@ -207,7 +200,7 @@ const armItem = async (itemId, itemType) => {
   });
 };
 
-const makeBlueprintRow = (setup, isCurrent = false) => {
+const makeBlueprintRow = async (setup, isCurrent = false) => {
   const setupContainer = makeElement('div', ['row']);
 
   const controls = makeElement('div', ['controls']);
@@ -218,7 +211,7 @@ const makeBlueprintRow = (setup, isCurrent = false) => {
     buttonWrapper.append(makeButton({
       text: 'Save',
       className: ['save', 'lightBlue'],
-      callback: () => {
+      callback: async () => {
         // Save the current setup, using the current location as the name.
         const currentSetup = getCurrentSetup();
         currentSetup.name = user.environment_name;
@@ -240,7 +233,7 @@ const makeBlueprintRow = (setup, isCurrent = false) => {
         saveFavoriteSetup(currentSetup);
 
         // append the new setup to the list.
-        const setupRow = makeBlueprintRow(currentSetup);
+        const setupRow = await makeBlueprintRow(currentSetup);
         setupRow.setAttribute('data-setup-id', currentSetup.id);
 
         const body = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content');
@@ -365,7 +358,6 @@ const makeBlueprintRow = (setup, isCurrent = false) => {
 
           // update the setup.
           newSetup[`${itemType}_id`] = newItemId;
-          newSetup[`${itemType}_thumbnail`] = image.getAttribute('data-new-item-image');
 
           // remove the new-item-id attribute.
           image.removeAttribute('data-new-item-id');
@@ -452,15 +444,54 @@ const makeBlueprintRow = (setup, isCurrent = false) => {
   controls.append(buttonWrapper);
   setupContainer.append(controls);
 
-  setupContainer.append(makeImage('bait', setup.bait_id, setup.bait_thumbnail));
-  setupContainer.append(makeImage('base', setup.base_id, setup.base_thumbnail));
-  setupContainer.append(makeImage('weapon', setup.weapon_id, setup.weapon_thumbnail));
-  setupContainer.append(makeImage('trinket', setup.trinket_id, setup.trinket_thumbnail));
+  let cachedThumbnails = JSON.parse(sessionStorage.getItem('mh-improved-favorite-setups-thumbnails'));
+  if (! cachedThumbnails) {
+    cachedThumbnails = {};
+  }
+
+  const needThumbnails = [];
+
+  const items = [
+    setup.bait_id,
+    setup.base_id,
+    setup.weapon_id,
+    setup.trinket_id,
+  ];
+
+  for (const item of items) {
+    if (! cachedThumbnails[item]) {
+      needThumbnails.push(item);
+    }
+  }
+
+  if (needThumbnails.length) {
+    const grabbedThumbnailsReq = await fetch('https://images.mouse.rip', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(needThumbnails),
+    });
+
+    const grabbedThumbnails = await grabbedThumbnailsReq.json();
+
+    const thumbnails = {
+      ...cachedThumbnails,
+      ...grabbedThumbnails,
+    };
+
+    sessionStorage.setItem('mh-improved-favorite-setups-thumbnails', JSON.stringify(thumbnails));
+
+    cachedThumbnails = thumbnails;
+  }
+
+  setupContainer.append(makeImage('bait', setup.bait_id, cachedThumbnails[setup.bait_id]));
+  setupContainer.append(makeImage('base', setup.base_id, cachedThumbnails[setup.base_id]));
+  setupContainer.append(makeImage('weapon', setup.weapon_id, cachedThumbnails[setup.weapon_id]));
+  setupContainer.append(makeImage('trinket', setup.trinket_id, cachedThumbnails[setup.trinket_id]));
 
   return setupContainer;
 };
 
-const makeBlueprintContainer = () => {
+const makeBlueprintContainer = async () => {
   const existing = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
   if (existing) {
     existing.remove();
@@ -496,16 +527,16 @@ const makeBlueprintContainer = () => {
 
   const setups = getFavoriteSetups();
 
-  const currentSetupRow = makeBlueprintRow(getCurrentSetup(), true);
+  const currentSetupRow = await makeBlueprintRow(getCurrentSetup(), true);
   currentSetupRow.classList.add('current-setup');
   body.append(currentSetupRow);
 
-  setups.forEach((setup) => {
-    const setupContainer = makeBlueprintRow(setup);
+  for (const setup of setups) {
+    const setupContainer = await makeBlueprintRow(setup);
     setupContainer.setAttribute('data-setup-id', setup.id);
 
     body.append(setupContainer);
-  });
+  }
 
   container.append(body);
 
@@ -569,11 +600,11 @@ const addFavoriteSetupsButton = () => {
   label.innerHTML = getNameOfCurrentSetup();
   button.append(label);
 
-  button.addEventListener('click', () => {
+  button.addEventListener('click', async () => {
     if (isFavoriteSetupsShowing()) {
       hideFavoriteSetups();
     } else {
-      makeBlueprintContainer();
+      await makeBlueprintContainer();
       showFavoriteSetups();
     }
   });
