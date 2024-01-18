@@ -287,6 +287,20 @@ const updateMouseView = async () => {
   }
 };
 
+const replaceShowMouseImage = () => {
+  const _original = hg.views.MouseCrownsView.showMouseImage;
+
+  hg.views.MouseCrownsView.showMouseImage = (element) => {
+    const type = element.getAttribute('data-mouse-type');
+    if (type) {
+      hg.views.MouseView.show(type);
+      return;
+    }
+
+    _original(element);
+  };
+};
+
 let minlucks;
 let wisdoms;
 
@@ -332,6 +346,8 @@ const init = async () => {
   addStyles(styles);
   main();
   mousepage();
+
+  replaceShowMouseImage();
 };
 
 export default {
