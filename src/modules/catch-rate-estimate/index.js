@@ -23,6 +23,10 @@ const updateMinLucks = async () => {
 
   const effectiveness = await getMiceEffectivness();
 
+  if (! effectiveness) {
+    return;
+  }
+
   const miceIds = Object.values(effectiveness)
     .flatMap(({ mice }) => mice)
     .map((mouse) => {

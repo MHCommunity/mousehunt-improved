@@ -25,6 +25,10 @@ const addArDataToMap = async (mapData) => {
     }
   }
 
+  if (! mice || mice.length === 0) {
+    return;
+  }
+
   mice.forEach(async (mouse) => {
     const mouseEl = document.querySelector(`.treasureMapView-goals-group-goal[data-unique-id="${mouse.unique_id}"]`);
     if (! mouseEl) {
