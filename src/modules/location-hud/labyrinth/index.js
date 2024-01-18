@@ -159,7 +159,7 @@ const hud = () => {
 
       makeElement('div', 'mh-ui-laby-steps', `${stepsToGo} hunt${(stepsToGo) > 1 ? 's' : ''} left in the hallway`, intersectionText);
       if (cluesPerTile !== 'NaN') {
-        makeElement('div', 'mh-ui-laby-cpt', `Avg. ${cluesPerTile} clues per hunt`, intersectionText);
+        makeElement('div', 'mh-ui-laby-cpt', `Avg. ${cluesPerTile}${(cluesPerTile) > 1 ? ' clues' : ' clue'} per tile`, intersectionText);
       }
 
       intersectionDoors.append(intersectionText);
