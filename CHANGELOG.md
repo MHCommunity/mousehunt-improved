@@ -17,6 +17,8 @@
 - Improves styles for Labyrinth Location HUD
 - Adds more styles for Bountiful Beanstalk Location HUD
 - Fixes image display for Favorite Setups beta feature
+- Adds help tooltips to Item and Mouse views with information about data and link to MHCT
+- Adds `journal-icons` feature flag to display icons next to some loot items in journal entries
 
 ## Version 0.28.0
 
