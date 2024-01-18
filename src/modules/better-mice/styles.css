@@ -261,7 +261,7 @@ a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryCont
 
 .mouseViewPopup .mouseView-descriptionContainer {
   display: grid;
-  grid-template-columns: 1fr 175px;
+  grid-template-columns: 1fr 1fr;
   justify-items: stretch;
 }
 
