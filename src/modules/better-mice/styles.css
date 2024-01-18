@@ -308,3 +308,17 @@ ul.minluck-list {
   font-size: 12px;
   font-weight: 900;
 }
+
+.mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-padding {
+  background-color: #fff;
+}
+
+.mouseCrownsView-group-mouse-favouriteButton {
+  top: 0;
+  right: 0;
+}
+
+.mouseCrownsView-group-mouse-image {
+  background-size: cover;
+  transition: 0.4s;
+}
