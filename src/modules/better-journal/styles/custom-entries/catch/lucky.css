@@ -4,16 +4,16 @@
 }
 
 .journal .entry.luckycatchsuccess::after {
+  position: absolute;
   top: 1px;
-  right: 0px;
+  right: 0;
   width: 25px;
   height: 25px;
+  content: "";
   background: url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png?asset_cache_version=2);
+  filter: drop-shadow(0 2px 2px #89ff45);
   background-repeat: no-repeat;
   background-size: cover;
-  content: '';
-  position: absolute;
-  filter: drop-shadow(0px 2px 2px #89ff45);
 }
 
 .journal .entry.luckycatchsuccess .journalimage {

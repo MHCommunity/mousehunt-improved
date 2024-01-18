@@ -1,4 +1,4 @@
-import { addHudStyles, getCurrentLocation, makeElement, onRequest } from '@utils'
+import { addHudStyles, getCurrentLocation, makeElement, onRequest } from '@utils';
 
 import styles from './styles.css';
 

@@ -7,7 +7,6 @@ import general from './general.css';
 import goldPoints from './gold-points.css';
 import icons from './icons.css';
 import linkColors from './link-colors.css';
-import miniEntries from './mini-entries.css';
 import progressLog from './progress-log.css';
 
 // Custom entries.
@@ -50,7 +49,6 @@ const main = () => {
     progressLog,
     goldPoints,
     linkColors,
-    miniEntries,
     crafting,
     drawWinner,
     maps,

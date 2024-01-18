@@ -3,9 +3,9 @@ import {
   getArForMouse,
   makeElement,
   makeLink,
+  makeTooltip,
   onOverlayChange,
-  onPageChange,
-  makeTooltip
+  onPageChange
 } from '@utils';
 
 import styles from './styles.css';
