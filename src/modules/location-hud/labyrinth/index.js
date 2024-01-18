@@ -1,4 +1,4 @@
-import { addHudStyles, getCurrentLocation, makeElement, onRequest } from '@utils';
+import { addHudStyles, getCurrentLocation, makeElement, onRequest } from '@utils'
 
 import styles from './styles.css';
 
@@ -158,14 +158,14 @@ const hud = () => {
       const intersectionText = makeElement('div', 'mh-ui-labyrinth-door-text');
 
       let stepsNoun = 'hunt';
-      if (stepsToGo > 1 || stepsToGo == 0) { // eslint-disable-line eqeqeq
+      if (stepsToGo > 1 || stepsToGo < 1) {
         stepsNoun = 'hunts';
       }
 
       makeElement('div', 'mh-ui-laby-steps', `${stepsToGo} ${stepsNoun} left in the hallway`, intersectionText);
       if (cluesPerTile !== 'NaN') {
         let clueNoun = 'clue';
-        if (cluesPerTile > 1 || cluesPerTile == 0) { // eslint-disable-line eqeqeq
+        if (cluesPerTile > 1 || cluesPerTile < 1) {
           clueNoun = 'clues';
         }
 
@@ -186,6 +186,7 @@ const hud = () => {
  */
 export default async () => {
   addHudStyles(styles);
+
   hud();
   onRequest(hud);
 };
