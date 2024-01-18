@@ -260,3 +260,18 @@ a.mousehuntActionButton.danger:hover::before,
 a.mousehuntActionButton.danger:focus::before {
   background-color: #ffa5a5;
 }
+
+.PreferencesPage__blackTooltip.mh-improved-tooltip {
+  width: 20px;
+  height: 20px;
+  margin-right: auto;
+  margin-left: 5px;
+}
+
+.PreferencesPage__blackTooltip.mh-improved-tooltip:hover .PreferencesPage__blackTooltipText {
+  right: -60px;
+  bottom: 165%;
+  left: -60px;
+  font-weight: 400;
+  line-height: 16px;
+}
