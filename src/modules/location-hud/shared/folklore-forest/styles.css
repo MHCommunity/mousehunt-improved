@@ -224,3 +224,7 @@ a.folkloreForestRegionView__estimate-button:hover {
 .folkloreForestRegionView-dialog-block-cost.error .folkloreForestRegionView-dialog-block-cost-image {
   box-shadow: 0 0 35px #ffa3a3 inset;
 }
+
+a.folkloreForestRegionView-warning:hover {
+  background-color: #ffecd9;
+}

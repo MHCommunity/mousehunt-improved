@@ -43,3 +43,55 @@
   height: 45px;
   filter: drop-shadow(0 0 5px #f0e1a4);
 }
+
+.headsUpDisplayBountifulBeanstalkView__lootMultiplierContainer h3 {
+  font-size: 11px;
+}
+
+.headsUpDisplayBountifulBeanstalkView__lootMultiplierContainer h3 span {
+  font-size: 17px;
+}
+
+.headsUpDisplayBountifulBeanstalkView__lootMultiplierContainer {
+  left: 22px;
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleNextRoomText.headsUpDisplayBountifulBeanstalkView__castleNextRoomText--nextArrow {
+  font-size: 13px;
+}
+
+.bountifulBeanstalkCastleView__plinthOverlay .mousehuntTooltip {
+  top: -31px;
+  bottom: unset;
+  left: -60px;
+  width: 447px;
+  line-height: 1.5;
+  color: #f2e3a6;
+  background: #192518;
+  border: 2px solid #85d523;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.bountifulBeanstalkCastleView__plinthOverlay .mousehuntTooltip-arrow {
+  display: none;
+}
+
+.bountifulBeanstalkCastleView__currentRoomName {
+  font-size: 14px;
+}
+
+.bountifulBeanstalkCastleView__currentRoomLoot b {
+  font-size: 13px;
+}
+
+.bountifulBeanstalkCastleView__plinthOverlay.mousehuntTooltipParent {
+  left: 190px;
+  width: 330px;
+}
+
+.bountifulBeanstalkCastleView__currentRoomLootMultiplier {
+  padding: 0 1px;
+  font-size: 14px;
+}
