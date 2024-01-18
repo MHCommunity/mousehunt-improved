@@ -4,6 +4,11 @@
   background-size: 40px;
 }
 
+.journal .content .entry.labyrinthSmall.minimalJournalImage.labyrinth-clue {
+  background-position: 15px center !important;
+  background-size: 40px !important;
+}
+
 .journal .content .entry,
 .journal .content .entry.short.misc.custom.adventureBook-journal.goal {
   background-position: 10px center;
