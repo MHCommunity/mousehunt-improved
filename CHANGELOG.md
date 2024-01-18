@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 0.28.1
+
+- Fixes alignment of Relic Hunter icon/highlight on travel pages
+- Fixes Accept All button returning gifts instead of accepting them in Better Gifts
+- Fixes sorting not always showing on the mouse stats page for Better Mice
+- Fixes incorrect icon in Floating Islands Location Dashboard entry
+- Adds "Export Mice by Location" to Data Exporters
+- Fixes typo of 'enerchi' in Furoma Rift Location Dashboard
+- Fixes Siphon always showing 0 in Valour Rift Location Dashboard
+- Replaces the Mouse Image popup with the normal Mouse popup on the King's Crowns display
+- Fixes issues with Bottled Wind and Boss Countdowns in Floating Islands Location HUD
+- Adds more styles in Better Maps
+- Improves hover styles on King's Crown view in Better Mice
+- Fixes hallway information showing above doors in Labyrinth Location HUD
+- Improves styles for Labyrinth Location HUD
+- Adds more styles for Bountiful Beanstalk Location HUD
+- Fixes image display for Favorite Setups beta feature
+
 ## Version 0.28.0
 
 - Fixes invalid colors defined in HG CSS that causes certain elements to not appear correctly
