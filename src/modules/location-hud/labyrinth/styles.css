@@ -72,7 +72,7 @@
   position: absolute;
   top: 6px;
   padding: 0 5px;
-  font-size: 11px;
+  font-size: 12px;
   text-align: center;
   background-color: #000;
   border-radius: 5px;
@@ -380,8 +380,13 @@
   animation-iteration-count: 3;
 }
 
+.labyrinthHUD-toggleLantern-name.active {
+  animation: portalPulse 1.5s infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .mh-ui-labyrinth-lantern-reminder {
+  .mh-ui-labyrinth-lantern-reminder,
+  .labyrinthHUD-toggleLantern-name.active {
     animation: none;
   }
 }
@@ -397,6 +402,7 @@
 .labyrinthHUD-scrambleClues.disabled .labyrinthHUD-scrambleClues-name,
 .labyrinthHUD-scrambleClues.disabled:hover .labyrinthHUD-scrambleClues-name {
   color: transparent !important;
+  text-shadow: none;
 }
 
 /* Door labels */
@@ -406,7 +412,7 @@ a.labyrinthHUD-door.labyrinthHUD-door-category-s::after,
 a.labyrinthHUD-door.labyrinthHUD-door-category-t::after,
 a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
   position: absolute;
-  right: 18px;
+  right: 19px;
   bottom: 4px;
   left: 19px;
   padding: 1px 2px 0;
@@ -416,6 +422,7 @@ a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
   content: "";
   background-color: #50306a;
   border-radius: 1px;
+  box-shadow: inset 0 0 4px 0 #636363;
 }
 
 a.labyrinthHUD-door.labyrinthHUD-door-category-y::after {
@@ -453,4 +460,9 @@ a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
 .labyrinthHUD-door-image::after {
   filter: drop-shadow(0 1px 1px #222);
   transform: scale(1.5);
+}
+
+/* brighten the hallway a tiny bit */
+.labyrinthHUD-hallway-background {
+  filter: brightness(1.2);
 }
