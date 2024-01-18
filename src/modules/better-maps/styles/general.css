@@ -356,6 +356,7 @@ img.treasureMapView-reward-chestIcon {
 }
 
 .treasureMapView-hunter.empty img.treasureMapView-hunter-image {
+  border: 1px solid #aaa;
   opacity: 0.4;
 }
 
@@ -774,4 +775,8 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-mapWarning::before {
   display: none;
+}
+
+.treasureMapDialogView-title {
+  margin-bottom: 5px;
 }
