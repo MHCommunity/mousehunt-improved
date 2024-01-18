@@ -11,7 +11,7 @@ export default (quests) => {
     current_step_formatted: quests?.QuestRiftValour?.current_step_formatted || '0',
     speed: quests?.QuestRiftValour?.power_up_data?.hunt_limit?.current_level || 0,
     sync: quests?.QuestRiftValour?.power_up_data?.long_stride?.current_level || 0,
-    siphon: quests?.QuestRiftValour?.power_up_data?.siphon?.current_level || 0,
+    siphon: quests?.QuestRiftValour?.power_up_data?.boss_extension?.current_level || 0,
   };
 
   let text = '';
