@@ -245,8 +245,8 @@ const makeMenuItem = () => {
   addSubmenuItem({
     id: 'mh-improved-map-helper',
     menu: 'camp',
-    label: `<span class="title">${user?.enviroment_atts?.map_label}</span><span class="subtitle">${user?.enviroment_atts?.map_value}</span>`,
-    icon: user?.enviroment_atts?.map_image || '',
+    label: `<span class="title">${user?.quests?.QuestRelicHunter?.label}</span><span class="subtitle">${user?.quests?.QuestRelicHunter?.value}</span>`,
+    icon: user?.quests?.QuestRelicHunter?.image || 'https://www.mousehuntgame.com/images/items/convertibles/large/bfca4a1c658e49903654d0a84f52c9fd.png',
     callback: () => {
       openMiniMap(mapId);
     }

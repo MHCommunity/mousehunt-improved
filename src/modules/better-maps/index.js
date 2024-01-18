@@ -135,6 +135,12 @@ const intercept = () => {
       setMapData(data.treasure_map.map_id, data.treasure_map);
     }
   }, 'managers/ajax/users/treasuremap.php', true);
+
+  onRequest((data) => {
+    if (data.treasure_map && data.treasure_map.map_id) {
+      setMapData(data.treasure_map.map_id, data.treasure_map);
+    }
+  }, 'managers/ajax/board/board.php', true);
 };
 
 const clearStickyMouse = () => {
