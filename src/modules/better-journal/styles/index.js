@@ -1,10 +1,11 @@
-import { addStyles } from '@utils';
+import { addStyles, getFlag } from '@utils';
 
 import backgrounds from './backgrounds.css';
 import dateHiding from './date-hiding.css';
 import fullstop from './fullstop.css';
 import general from './general.css';
 import goldPoints from './gold-points.css';
+import icons from './icons.css';
 import linkColors from './link-colors.css';
 import miniEntries from './mini-entries.css';
 import progressLog from './progress-log.css';
@@ -41,7 +42,7 @@ import mouseGlazy from './custom-entries/mouse/glazy.css';
 import mouseStuckSnowball from './custom-entries/mouse/stuck-snowball.css';
 
 const main = () => {
-  addStyles([
+  const stylesToAdd = [
     general,
     backgrounds,
     dateHiding,
@@ -78,7 +79,13 @@ const main = () => {
     locationVrift,
     mouseGlazy,
     mouseStuckSnowball,
-  ]);
+  ];
+
+  if (getFlag('journal-icons')) {
+    stylesToAdd.push(icons);
+  }
+
+  addStyles(stylesToAdd);
 };
 
 export default main;
