@@ -1,0 +1,5 @@
+.entry.short.misc.custom.labyrinth.labyrinth-chooseDoor,
+.entry.short.misc.custom.labyrinth.labyrinth-intersection {
+  display: flex;
+  align-items: center;
+}

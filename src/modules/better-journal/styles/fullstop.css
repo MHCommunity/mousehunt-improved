@@ -35,7 +35,8 @@
 .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
 .entry.festiveSpiritLootBoost .journaltext a::after,
 .entry.golemUpgraded .journaltext a::after,
-.entry.workshopPartProduced .journaltext a::after {
+.entry.workshopPartProduced .journaltext a::after,
+.entry.labyrinthSmall.minimalJournalImage.labyrinth-clue b::after {
   display: inline;
   content: ".";
 }

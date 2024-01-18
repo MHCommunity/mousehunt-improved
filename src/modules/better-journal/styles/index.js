@@ -4,6 +4,9 @@ import backgrounds from './backgrounds.css';
 import dateHiding from './date-hiding.css';
 import fullstop from './fullstop.css';
 import general from './general.css';
+import goldPoints from './gold-points.css';
+import linkColors from './link-colors.css';
+import miniEntries from './mini-entries.css';
 import progressLog from './progress-log.css';
 
 // Custom entries.
@@ -31,6 +34,7 @@ import locationBwRift from './custom-entries/location/bwrift.css';
 import locationFolkloreForest from './custom-entries/location/folklore-forest.css';
 import locationFrift from './custom-entries/location/frift.css';
 import locationHalloween from './custom-entries/location/halloween.css';
+import locationLabyrinth from './custom-entries/location/labyrinth.css';
 import locationToxicSpill from './custom-entries/location/toxic-spill.css';
 import locationVrift from './custom-entries/location/vrift.css';
 import mouseGlazy from './custom-entries/mouse/glazy.css';
@@ -43,6 +47,9 @@ const main = () => {
     dateHiding,
     fullstop,
     progressLog,
+    goldPoints,
+    linkColors,
+    miniEntries,
     crafting,
     drawWinner,
     maps,
@@ -66,6 +73,7 @@ const main = () => {
     locationFolkloreForest,
     locationFrift,
     locationHalloween,
+    locationLabyrinth,
     locationToxicSpill,
     locationVrift,
     mouseGlazy,

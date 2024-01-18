@@ -10,6 +10,8 @@
 .entry.short.queso_canyon_queso_pumped .journaldate,
 .entry.short.custom.chesla_trap_trigger .journaldate,
 .entry.short.wordCount.minimalJournal .journaldate,
-.entry.short.folkloreForest.folkloreForest-lootFuelBoost .journaldate {
+.entry.short.folkloreForest.folkloreForest-lootFuelBoost .journaldate,
+.entry.short.labyrinth.labyrinth-chooseDoor .journaldate,
+.entry.short.labyrinth.labyrinth-intersection .journaldate {
   display: none;
 }

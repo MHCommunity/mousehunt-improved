@@ -17,6 +17,6 @@
 }
 
 .mh-ui-points::after {
-  top: -1px; /* visually align it */
+  top: -3px; /* visually align it */
   background-image: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/eeebc1c32b4242b95f75041be7275980.png?cv=2);
 }
