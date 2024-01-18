@@ -106,3 +106,13 @@ span.shieldDurationText[data-near-expiry="true"] {
 .journalContainer .top:hover .journalContainer-selectTheme[style="position: initial;transform: none;flex: 1 1 auto;height: 20px;background: none rgb(119, 221, 119);padding: 0px 0px 0px 5px;"]:hover {
   background-color: #5dd55d !important;
 }
+
+/* Wisdom, add some space below. */
+.mousehuntHud-userStat-row.wisdom a {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.mousehuntHud-userStat.goldPoints .wisdom .value {
+  vertical-align: top;
+}
