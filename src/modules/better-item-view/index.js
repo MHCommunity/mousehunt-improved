@@ -4,7 +4,8 @@ import {
   makeElement,
   makeLink,
   onOverlayChange,
-  onPageChange
+  onPageChange,
+  makeTooltip
 } from '@utils';
 
 import styles from './styles.css';
@@ -103,7 +104,12 @@ const updateItemView = async () => {
 
   const arWrapper = makeElement('div', 'ar-wrapper');
   const title = makeElement('div', 'ar-header');
-  makeElement('div', 'ar-title', 'Drop Rates', title);
+  const titleText = makeElement('div', 'ar-title', 'Drop Rates', title);
+
+  makeTooltip({
+    appendTo: titleText,
+    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank">MHCT</a>.',
+  });
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://www.mhct.win/loot.php?item=${itemId}`;

@@ -6,6 +6,7 @@ import {
   makeElement,
   makeFavoriteButton,
   makeLink,
+  makeTooltip,
   onOverlayChange
 } from '@utils';
 import { getData } from '@utils/data';
@@ -241,7 +242,12 @@ const updateMouseView = async () => {
 
   const arWrapper = makeElement('div', 'ar-wrapper');
   const title = makeElement('div', 'ar-header');
-  makeElement('div', 'ar-title', 'Attraction Rates', title);
+  const titleText = makeElement('div', 'ar-title', 'Attraction Rates', title);
+
+  makeTooltip({
+    appendTo: titleText,
+    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank">MHCT</a>.',
+  });
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://www.mhct.win/attractions.php?mouse_name=${name.innerText}`;
