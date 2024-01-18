@@ -57,12 +57,23 @@ const getDataForRegion = async (region) => {
   totalCatchesEl.textContent = '...';
   totalWeightEl.textContent = '...';
 
+  let action;
+  let view;
+
+  if ('group' === exportType) {
+    action = 'get_group';
+    view = 'ViewMouseListGroups';
+  } else {
+    action = 'get_environment';
+    view = 'ViewMouseListEnvironments';
+  }
+
   const miceData = await doRequest('managers/ajax/mice/mouse_list.php', {
-    action: exportType === 'group' ? 'get_group' : 'get_environment',
+    action,
     category: region.id,
     user_id: user.user_id,
     display_mode: 'stats',
-    view: exportType === 'group' ? 'ViewMouseListGroups' : 'ViewMouseListEnvironments',
+    view,
   });
 
   // concat the miceData.mouse_list_category.subgroups array
@@ -165,7 +176,19 @@ const processWeights = (results) => {
 let groups = [];
 let regions = [];
 const exportMicePopup = () => {
-  const itemTypes = exportType === 'group' ? groups : regions;
+  let itemTypes;
+  let title;
+
+  if ('group' === exportType) {
+    title = 'Group';
+    itemTypes = groups;
+  } else if ('region' === exportType) {
+    title = 'Region';
+    itemTypes = regions;
+  } else {
+    title = 'Location';
+    itemTypes = environments;
+  }
 
   let itemsMarkup = '';
   itemTypes.forEach((region) => {
@@ -193,7 +216,7 @@ const exportMicePopup = () => {
     afterFetch: processWeights,
     download: {
       headers: [
-        exportType === 'group' ? 'Group' : 'Region',
+        title,
         'Name',
         'Type',
         'Crown',
@@ -216,6 +239,7 @@ const exportMice = async (type) => {
 
   regions = await getData('mice-regions');
   groups = await getData('mice-groups');
+  environments = await getData('environments');
 
   exportMicePopup();
 };
