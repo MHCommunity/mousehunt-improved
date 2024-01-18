@@ -157,9 +157,19 @@ const hud = () => {
 
       const intersectionText = makeElement('div', 'mh-ui-labyrinth-door-text');
 
-      makeElement('div', 'mh-ui-laby-steps', `${stepsToGo} hunt${(stepsToGo) > 1 ? 's' : ''} left in the hallway`, intersectionText);
+      let stepsNoun = 'hunt';
+      if (stepsToGo > 1 || stepsToGo == 0) { // eslint-disable-line eqeqeq
+        stepsNoun = 'hunts';
+      }
+
+      makeElement('div', 'mh-ui-laby-steps', `${stepsToGo} ${stepsNoun} left in the hallway`, intersectionText);
       if (cluesPerTile !== 'NaN') {
-        makeElement('div', 'mh-ui-laby-cpt', `Avg. ${cluesPerTile}${(cluesPerTile) > 1 ? ' clues' : ' clue'} per tile`, intersectionText);
+        let clueNoun = 'clue';
+        if (cluesPerTile > 1 || cluesPerTile == 0) { // eslint-disable-line eqeqeq
+          clueNoun = 'clues';
+        }
+
+        makeElement('div', 'mh-ui-laby-cpt', `Avg. ${cluesPerTile} ${clueNoun} per tile`, intersectionText);
       }
 
       intersectionDoors.append(intersectionText);
