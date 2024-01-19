@@ -56,7 +56,7 @@
 
 .mh-catch-stats-body {
   max-height: 90vh;
-  overflow: hidden scroll;
+  overflow: hidden auto;
 }
 
 .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd) {
