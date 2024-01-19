@@ -99,12 +99,10 @@ const claimGifts = async (send = false, retries = 0) => {
 
     const event = { target: giftEl };
     if (send && 'return' === verb && sendLimit > 0) {
-      giftEl.style.outline = '2px solid #00ff00';
       hg.views.GiftSelectorView.selectReturnableGift(event, giftEl);
       sendLimit--;
       claimLimit--;
     } else if (! send && 'claim' === verb && claimLimit > 0) {
-      giftEl.style.outline = '2px solid #00ff00';
       hg.views.GiftSelectorView.selectClaimableGift(giftEl);
       claimLimit--;
     }
@@ -123,7 +121,7 @@ const claimGifts = async (send = false, retries = 0) => {
 
 const makeAcceptButton = (buttonContainer) => {
   const acceptButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-accept'], 'Accept All');
-  const acceptLimit = hg.views.GiftSelectorView.getNumClaimableActionsRemaining();
+  const acceptLimit = document.querySelector('.giftSelectorView-numClaimActionsRemaining');
 
   if (acceptLimit && acceptLimit.innerText === '0') {
     acceptButton.classList.add('disabled');
