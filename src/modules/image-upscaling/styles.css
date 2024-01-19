@@ -187,3 +187,7 @@
 .adventureBookPopup-title.active .adventureBookPopup-title-icon {
   left: 5px;
 }
+
+.MiniEventBigJackPopup-block-item-image {
+  background-color: transparent;
+}
