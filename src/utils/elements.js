@@ -1,5 +1,6 @@
 import { getSettingDirect, saveSettingDirect } from './settings';
 import { addStylesDirect } from './styles';
+import { getFlag } from './flags';
 
 import favoriteButtonStyles from './styles/favorite-button.css';
 
@@ -243,6 +244,10 @@ const createPopup = (options) => {
 };
 
 const makeTooltip = (options) => {
+  if (getFlag('disable-mh-improved-tooltips')) {
+    return false;
+  }
+
   if (! options.appendTo) {
     return false;
   }
