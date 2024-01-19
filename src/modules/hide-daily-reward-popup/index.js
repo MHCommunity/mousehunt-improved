@@ -5,9 +5,11 @@ import { onDialogShow } from '@utils';
  */
 const init = async () => {
   onDialogShow(() => {
-    if (activejsDialog) {
-      activejsDialog.hide();
-    }
+    setTimeout(() => {
+      if (activejsDialog) {
+        activejsDialog.hide();
+      }
+    }, 500);
   }, 'dailyRewardPopup');
 };
 
