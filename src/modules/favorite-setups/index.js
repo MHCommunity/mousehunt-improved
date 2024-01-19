@@ -12,7 +12,6 @@ import {
   saveSetting
 } from '@utils';
 
-import settings from './settings';
 import styles from './styles.css';
 
 const getFavoriteSetups = () => {
@@ -710,7 +709,5 @@ export default {
   type: 'feature',
   default: false,
   description: '',
-  load: init,
-  settings,
-  beta: true,
+  load: init
 };
