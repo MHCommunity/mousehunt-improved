@@ -167,6 +167,11 @@ const updateMouseView = async () => {
     return;
   }
 
+  const name = mouseView.querySelector('.mouseView-title');
+  if (! name) {
+    return;
+  }
+
   const catchesEl = document.querySelectorAll('.mouseView-statsContainer-block-padding td abbr');
   if (catchesEl && catchesEl.length > 0) {
     catchesEl.forEach((el) => {
