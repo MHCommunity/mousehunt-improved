@@ -1,0 +1,39 @@
+.transparent-text {
+  color: transparent;
+}
+
+.text-black {
+  color: #000;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.full-opacity {
+  opacity: 1;
+}
+
+.screen-reader-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.outline {
+  outline: 1px solid #f00;
+}
+
+.no-click {
+  pointer-events: none;
+}
