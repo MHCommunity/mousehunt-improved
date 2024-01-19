@@ -261,7 +261,7 @@ a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryCont
 
 .mouseViewPopup .mouseView-descriptionContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   justify-items: stretch;
 }
 
@@ -305,8 +305,10 @@ ul.minluck-list {
   justify-content: space-between;
   padding-bottom: 2px;
   margin-top: 10px;
+  margin-bottom: 5px;
   font-size: 12px;
   font-weight: 900;
+  border-bottom: 1px solid #ccc;
 }
 
 .mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-padding {
