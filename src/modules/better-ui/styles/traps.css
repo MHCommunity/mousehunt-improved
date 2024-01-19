@@ -399,3 +399,7 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.campPage-trap-itemBrowser-item-description-consumeMethod {
+  white-space: nowrap;
+}
