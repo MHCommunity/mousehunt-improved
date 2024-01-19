@@ -99,7 +99,7 @@ const loadModules = async () => {
       const overrideStopLoading = getFlag(`no-${submodule.id}`);
       if (overrideStopLoading) {
         debuglite(`Skipping ${submodule.name} due to override flag.`);
-        return;
+        continue;
       }
 
       if (
