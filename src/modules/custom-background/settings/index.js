@@ -28,7 +28,7 @@ export default function (module) {
     {
       name: 'Gradients', value: 'group', options: [
         { name: 'Salmon to white', value: 'salmon-to-white' },
-        { name: "Purple Radial", value: 'purple-radial' },
+        { name: 'Purple Radial', value: 'purple-radial' },
       ]
     }
   ];
