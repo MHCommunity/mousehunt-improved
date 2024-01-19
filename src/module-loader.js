@@ -17,6 +17,7 @@ import betterUi from '@/better-ui';
 // Feature modules.
 import catchRateEstimate from '@/catch-rate-estimate';
 import copyId from '@/copy-id';
+import customBackground from '@/custom-background';
 import customShield from '@/custom-shield';
 import darkMode from '@/dark-mode';
 import dataExporters from '@/data-exporters';
@@ -83,6 +84,7 @@ export default [
   // Feature modules.
   catchRateEstimate,
   copyId,
+  customBackground,
   customShield,
   darkMode,
   dataExporters,

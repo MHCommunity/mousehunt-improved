@@ -85,21 +85,6 @@ const changeShield = () => {
       shield = 'color-pink-timer-background';
     }
 
-    if (shield.endsWith('-timer-background')) {
-      shield = shield.replace('-timer-background', '');
-      backgroundLeft.classList.add(shield);
-      backgroundRight.classList.add(shield);
-      shieldEl.classList.add(shield);
-      timer.classList.add(shield);
-    }
-
-    if (shield.endsWith('-background')) {
-      shield = shield.replace('-background', '');
-      backgroundLeft.classList.add(shield);
-      backgroundRight.classList.add(shield);
-      shieldEl.classList.add(shield);
-    }
-
     if (shield.endsWith('-timer')) {
       shield = shield.replace('-timer', '');
       if (timer) {

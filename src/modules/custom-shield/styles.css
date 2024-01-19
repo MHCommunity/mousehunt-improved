@@ -233,31 +233,6 @@ a.mousehuntHud-shield.golden.color-rainbow2 {
   animation: shield-hue-rotate 30s infinite;
 }
 
-.pageFrameView-column.left.color-cyan,
-.pageFrameView-column.right.color-cyan {
-  filter: hue-rotate(312deg);
-}
-
-.pageFrameView-column.left.color-green,
-.pageFrameView-column.right.color-green {
-  filter: hue-rotate(266deg);
-}
-
-.pageFrameView-column.left.color-pink,
-.pageFrameView-column.right.color-pink {
-  filter: hue-rotate(80deg);
-}
-
-.pageFrameView-column.left.color-purple,
-.pageFrameView-column.right.color-purple {
-  filter: hue-rotate(51deg);
-}
-
-.pageFrameView-column.left.color-red,
-.pageFrameView-column.right.color-red {
-  filter: hue-rotate(146deg);
-}
-
 /* TODO: add options to also change horn color */
 
 /* a.huntersHornView__horn.huntersHornView__horn--ready */
