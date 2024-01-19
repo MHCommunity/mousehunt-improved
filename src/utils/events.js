@@ -493,10 +493,7 @@ const onNavigation = (callback, options = {}) => {
   const { page, tab, subtab, onLoad } = Object.assign(defaults, options);
 
   // If we don't pass in a page, then we want to run the callback on every page.
-  let bypassMatch = false;
-  if (! page) {
-    bypassMatch = true;
-  }
+  const bypassMatch = ! page;
 
   // We do this once on load in case we are starting on the page we want to watch for.
   if (onLoad && (bypassMatch || isCurrentPage(page, tab, subtab))) {
@@ -508,6 +505,11 @@ const onNavigation = (callback, options = {}) => {
 
     const currentTab = Object.keys(tabs).find((key) => tabs[key].is_active_tab);
     const forceCurrentTab = currentTab?.type;
+
+    if (bypassMatch) {
+      callback();
+      return;
+    }
 
     if (! subtab) {
       if (isCurrentPage(page, tab, false, getCurrentPage(), forceCurrentTab)) {
