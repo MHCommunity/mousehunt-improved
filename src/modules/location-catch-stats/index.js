@@ -8,16 +8,13 @@ import styles from './styles.css';
  * @return {Object} The mouse stats.
  */
 const getMouseStats = async () => {
-  const data = await doRequest(
-    'managers/ajax/mice/mouse_list.php',
-    {
-      action: 'get_environment',
-      category: user.environment_type,
-      user_id: user.user_id,
-      display_mode: 'stats',
-      view: 'ViewMouseListEnvironments',
-    }
-  );
+  const data = await doRequest('managers/ajax/mice/mouse_list.php', {
+    action: 'get_environment',
+    category: user.environment_type,
+    user_id: user.user_id,
+    display_mode: 'stats',
+    view: 'ViewMouseListEnvironments',
+  });
 
   // Grab the data from the response.
   const mouseData = data?.mouse_list_category?.subgroups[0]?.mice;
@@ -169,13 +166,6 @@ const showModal = async () => {
   // Make the modal draggable.
   makeElementDraggable('#mh-catch-stats', '.mh-catch-stats-header', 25, 25, 'mh-catch-stats-position');
 };
-
-addSubmenuItem({
-  menu: 'mice',
-  label: 'Location Catch Stats',
-  icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/prize_shoppe.png?',
-  callback: showModal
-});
 
 /**
  * Initialize the module.
