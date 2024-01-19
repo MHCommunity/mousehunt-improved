@@ -131,16 +131,17 @@
 
 .tableOfContentsProgressView-nextBookContainer {
   position: absolute;
-  bottom: -30px;
+  bottom: -33px;
   padding: 3px;
   font-size: 11px;
+  white-space: nowrap;
   background-color: #fdebab;
   box-shadow: 0 1px 1px 1px #f1b960;
   transform: translate(-50%);
 }
 
 .tableOfContentsView-wordMeter-value {
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .tableOfContentsProgressView-nextBook-wordsRequired {
@@ -170,4 +171,24 @@ a.tableOfContentsProgressView-claimButton.reveal {
 
 .tableOfContentsView-initialFuel-checkboxContainer {
   background-color: transparent;
+}
+
+/* maybe? this makes the writing way less gold and fancy */
+.tableOfContentsProgressView-progressBar-value {
+  filter: sepia(1);
+}
+
+.tableOfContentsProgressView-progressBar {
+  background: none;
+  box-shadow: none;
+}
+
+/* move the X cancel writing button slightly */
+.tableOfContentsProgressView-cancelButton.active {
+  top: -31px;
+  left: 338px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 4px #48762a,
+    inset 0 -1px 3px 1px #d7a086;
 }
