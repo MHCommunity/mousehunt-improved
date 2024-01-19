@@ -417,13 +417,6 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
   margin: 10px 0 0;
 }
 
-.itemViewStatBlock.horizontal.base,
-.itemViewStatBlock.horizontal.weapon {
-  float: right;
-  width: 350px;
-  margin-left: 10px;
-}
-
 .inventoryPage-item.base .inventoryPage-item-content-description-text,
 .inventoryPage-item.weapon .inventoryPage-item-content-description-text {
   max-height: 115px;

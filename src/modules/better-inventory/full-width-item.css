@@ -15,3 +15,17 @@
 .inventoryPage-item-content-action > span {
   display: inline-block;
 }
+
+.inventoryPage-item.base .itemViewStatBlock.horizontal.base,
+.inventoryPage-item.weapon .itemViewStatBlock.horizontal.weapon {
+  float: right;
+  width: 54%;
+}
+
+.inventoryPage-item.base .inventoryPage-item-content-description-text,
+.inventoryPage-item.weapon .inventoryPage-item-content-description-text {
+  width: 45%;
+  height: unset;
+  max-height: 115px;
+  overflow-y: auto;
+}
