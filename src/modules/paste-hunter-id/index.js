@@ -15,6 +15,11 @@ const maybeRedirectToHunterProfile = (text) => {
 
   hg.utils.PageUtil.setPage('HunterProfile', {
     id: id[0],
+  }, (data) => {
+    const snuid = data.tabs.profile.subtabs[0].snuid;
+    if (snuid) {
+      hg.utils.PageUtil.showHunterProfile(snuid);
+    }
   });
 };
 
