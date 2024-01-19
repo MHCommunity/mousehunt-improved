@@ -112,6 +112,9 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
 
   let content = '<div class="mh-improved-favorite-setups-component-picker-popup">';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-body">';
+  content += '<div class="mh-improved-favorite-setups-component-picker-popup-search">';
+  content += '<input type="text" placeholder="Search" id="mh-improved-favorite-setups-component-picker-popup-search-input" />';
+  content += '</div>';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-body-items">';
   for (const item of items) {
     const getStatRow = (stat, title, formatted, compare) => {
@@ -154,7 +157,11 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
     content += item.consume_method ? `<div class="campPage-trap-itemBrowser-item-description-consumeMethod"><b>Consumed on:</b> ${item.consume_method}</div>` : '';
     if ('bait' === type) {
       let description = item.description.replaceAll(/<\/?[^>]+(>|$)/g, ''); // Remove HTML tags
-      description = description.slice(0, 150); // Get the first 150 characters
+      description = description.slice(0, 200); // Get the first 200 characters
+      if (item.description.length > 150) {
+        description += '…';
+      }
+
       content += `<div class="campPage-trap-itemBrowser-item-description-text">${description}</div>`;
     }
 
@@ -188,6 +195,27 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
         saveButton.getAttribute('data-item-image')
       );
       popup.hide();
+    });
+  });
+
+  const searchInput = document.querySelector('#mh-improved-favorite-setups-component-picker-popup-search-input');
+
+  if (! searchInput) {
+    return;
+  }
+
+  searchInput.focus();
+
+  searchInput.addEventListener('keyup', () => {
+    const filter = searchInput.value.toLowerCase();
+    const searchItems = document.querySelectorAll('.campPage-trap-itemBrowser-item');
+    searchItems.forEach((item) => {
+      const name = item.querySelector('.campPage-trap-itemBrowser-item-name');
+      if (name.textContent.toLowerCase().includes(filter)) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
     });
   });
 };
@@ -708,6 +736,6 @@ export default {
   name: 'Favorite Setups',
   type: 'feature',
   default: false,
-  description: '',
+  description: 'Save your favorite setups and arm them with a single click.',
   load: init
 };

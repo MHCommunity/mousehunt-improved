@@ -141,10 +141,26 @@
 
 .mh-improved-favorite-setups-component-picker .content .content {
   max-height: 90vh;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item {
   width: auto;
-  max-width: 310px;
+  max-width: 300px;
+}
+
+.mh-improved-favorite-setups-component-picker-popup-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.mh-improved-favorite-setups-component-picker-popup-search input {
+  width: 350px;
+  padding: 10px;
+}
+
+.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item-statContainer {
+  width: 110%;
 }
