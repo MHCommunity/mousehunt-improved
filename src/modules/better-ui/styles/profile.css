@@ -201,12 +201,31 @@
 }
 
 .mouseCrownsView-group-mouse.highlight .mouseCrownsView-group-mouse-image {
-  width: 132px;
+  width: auto;
   height: 200px;
 }
 
 .mouseCrownsView-group-mouse.highlight .mouseCrownsView-group-mouse-image .mouseCrownsView-crown {
   top: 0;
+}
+
+.mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-image {
+  background-size: 120%;
+}
+
+.mouseCrownsView-group-mouse.landscape .mouseCrownsView-group-mouse-image {
+  background-size: cover;
+  transition: 0.4s;
+}
+
+.mouseCrownsView-group-mouse.landscape:hover .mouseCrownsView-group-mouse-image {
+  background-size: auto 120%;
+}
+
+.mouseCrownsView-group-mouse.highlight .mouseCrownsView-group-mouse-padding {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
 }
 
 .highlight a.mouseCrownsView-group-mouse-favouriteButton.active {
@@ -227,8 +246,8 @@
   max-width: 720px;
 }
 
-.no-sidebar .mouseCrownsView-group-mice {
-  grid-template-columns: repeat(6, 1fr);
+.mouseCrownsView-group-mice.favourites {
+  gap: 5px;
 }
 
 .mouseCrownsView-group-header b {
@@ -250,10 +269,6 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   transition: 0.2s;
-}
-
-.mouseCrownsView-group-mouse-image:hover {
-  transform: scale(1.2);
 }
 
 .bronze .mouseCrownsView-group-mouse {
@@ -459,12 +474,10 @@ a.friendsProfileView-randomFriend {
 }
 
 .hunterProfileItemsView-categoryContent-item .itemImage {
-  width: 110px;
-  height: 110px;
-  margin-top: -1px;
+  width: 90px;
+  height: 100px;
   background-repeat: no-repeat;
-  background-position: -1px -1px;
-  background-size: 102%;
+  background-position: center;
 }
 
 .hunterProfileItemsView-categoryContent[data-category="map_piece"] .hunterProfileItemsView-categoryContent-item .itemImage,
