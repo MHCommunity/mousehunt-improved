@@ -127,6 +127,12 @@ const clearCaches = () => {
     localStorage.removeItem(getCacheKey(key));
   }
 
+  for (const key of Object.keys(sessionStorage)) {
+    if (key.startsWith('mh-improved')) {
+      sessionStorage.removeItem(key);
+    }
+  }
+
   localStorage.removeItem(getCacheExpirationKey());
 };
 
