@@ -15,15 +15,33 @@ import styles from './styles.css';
 
 const getItems = async (required, queryTab, queryTag, allItems = []) => {
   if (! allItems.length) {
-    const inventoryData = await doRequest(
-      'managers/ajax/pages/page.php',
-      {
-        page_class: 'Inventory',
-        'page_arguments[legacyMode]': '',
-        'page_arguments[tab]': queryTab,
-        'page_arguments[sub_tab]': 'false',
-      }
-    );
+    // cache the data for a minute
+
+    let cachedData = sessionStorage.getItem('mh-improved-ultimate-checkmark') || '{}';
+    cachedData = JSON.parse(cachedData);
+
+    let inventoryData = cachedData[queryTab]?.data || null;
+    const lastCachedTime = cachedData[queryTab]?.time || 0;
+
+    // Cache the data for 5 minutes.
+    if (! inventoryData || (Date.now() - lastCachedTime) > 5 * 60 * 1000) {
+      inventoryData = await doRequest(
+        'managers/ajax/pages/page.php',
+        {
+          page_class: 'Inventory',
+          'page_arguments[legacyMode]': '',
+          'page_arguments[tab]': queryTab,
+          'page_arguments[sub_tab]': 'false',
+        }
+      );
+
+      cachedData[queryTab] = {
+        data: inventoryData,
+        time: Date.now(),
+      };
+
+      sessionStorage.setItem('mh-improved-ultimate-checkmark', JSON.stringify(cachedData));
+    }
 
     // Find the inventoryData.page.tabs array item that has type=special
     const specialTab = inventoryData.page.tabs.find((tab) => queryTab === tab.type);
@@ -248,17 +266,12 @@ const run = async () => {
     return;
   }
 
-  // wait for each category to load + an extra 250ms before loading the next
-  let delay = 0;
   for (const category of categories) {
     if (! getSetting(`ultimate-checkmark-categories-${category.id}`, true)) {
       continue;
     }
 
-    setTimeout(() => {
-      addCategoryAndItems(category.items, category.type, category.subtype, category.key, category.name);
-    }, delay);
-    delay += 500;
+    await addCategoryAndItems(category.items, category.type, category.subtype, category.key, category.name, userId);
   }
 };
 
