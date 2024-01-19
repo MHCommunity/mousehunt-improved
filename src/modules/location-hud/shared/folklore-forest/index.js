@@ -27,10 +27,12 @@ const getToggleVisibilityMapping = () => {
     fish_net: '.prologuePondView-fishingBoat-paperDoll-layer.fish_net',
     fishing_line: '.prologuePondView-fishingBoat-paperDoll-layer.fishing_line',
     steam_reel: '.prologuePondView-fishingBoat-paperDoll-layer.steam_reel',
-    binding_thread: '.tableOfContentsView-bookContainer .tableOfContentsView-bookImage-layer.tableOfContentsView-bookImage-paper',
-    leather_cover: '.tableOfContentsView-bookContainer .tableOfContentsView-bookImage-layer.tableOfContentsView-bookImage-binding',
-    edge_gilding: '.tableOfContentsView-bookContainer .tableOfContentsView-bookImage-layer.tableOfContentsView-bookImage-silk',
-    gold_foil: '.tableOfContentsView-bookContainer .tableOfContentsView-bookImage-layer.tableOfContentsView-bookImage-goldFoil',
+    binding_thread: '.tableOfContentsView-bookContainer.active .tableOfContentsView-bookImage-layer.tableOfContentsView-bookImage-paper',
+    leather_cover: '.tableOfContentsView-bookContainer.active .tableOfContentsView-bookImage-layer.tableOfContentsView-bookImage-binding',
+    edge_gilding: '.tableOfContentsView-bookContainer.active .tableOfContentsView-bookImage-layer.tableOfContentsView-bookImage-silk',
+    gold_foil: '.tableOfContentsView-bookContainer.active .tableOfContentsView-bookImage-layer.tableOfContentsView-bookImage-goldFoil',
+    silver_quill: '',
+    golden_quill: '',
   };
 };
 
@@ -42,8 +44,41 @@ const toggleAllVisibility = () => {
   });
 };
 
+const isUnlocked = (upgradeId) => {
+  const upgrade = user.quests.QuestTableOfContents.upgrades.find((u) => u.type === upgradeId);
+  if (! upgrade) {
+    return false;
+  }
+
+  return upgrade.is_unlocked;
+};
+
 const hideOrShowBlock = (blockId, isBlockToggled) => {
   const mapping = getToggleVisibilityMapping();
+
+  if (! mapping[blockId]) {
+    const quill = document.querySelector('.tableOfContentsProgressView-quillContainer');
+    // if it's a quill, we need to remove the 'quill--gold' or 'quill--silver' class from the quill.
+
+    if (isBlockToggled) {
+      if ('golden_quill' === blockId) {
+        quill.classList.remove('quill--gold');
+      } else if ('silver_quill' === blockId) {
+        quill.classList.remove('quill--silver');
+      }
+
+      return;
+    }
+
+    // Not toggled, so re-add the class.
+    if ('golden_quill' === blockId && isUnlocked('golden_quill')) {
+      quill.classList.add('quill--gold');
+    } else if ('silver_quill' === blockId && isUnlocked('silver_quill')) {
+      quill.classList.add('quill--silver');
+    }
+
+    return;
+  }
 
   const selector = mapping[blockId];
   if (! selector) {
