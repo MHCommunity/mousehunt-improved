@@ -38,13 +38,9 @@
 
 /* shield by progress bar */
 .mousehuntHud-userStat.title .shield {
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  z-index: 1;
-  width: 20px;
-  height: 20px;
-  filter: drop-shadow(0 1px 1px #777);
+  width: 19px;
+  height: 19px;
+  margin-top: -4px;
 }
 
 .mousehuntHud-userStat .title-container span.label {
