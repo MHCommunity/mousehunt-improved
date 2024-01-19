@@ -142,11 +142,17 @@ a.inventoryPage-item-larryLexicon {
 }
 
 .inventoryPage-item-content-description-text {
-  max-height: 75px;
+  max-height: 125px;
   padding: 0;
   font-size: 10px;
   line-height: 16px;
   color: #6e6e6e;
+}
+
+.inventoryPage-item.base .inventoryPage-item-content-description-text,
+.inventoryPage-item.weapon .inventoryPage-item-content-description-text,
+.inventoryPage-item.trinket .inventoryPage-item-content-description-text {
+  height: auto;
 }
 
 .inventoryPage-item.full.weapon .quantity,
@@ -214,9 +220,9 @@ input.inventoryPage-tagDirectory-searchBar-input {
 }
 
 .inventoryPage-item.torn_page .itemImage img {
-  width: 40px;
+  width: 50px;
   min-width: unset;
-  height: 40px;
+  height: 50px;
   min-height: unset;
 }
 
@@ -233,6 +239,7 @@ input.inventoryPage-tagDirectory-searchBar-input {
 .inventoryPage-item.torn_page .itemImage {
   width: 40px;
   height: 40px;
+  margin-top: -5px;
 }
 
 .inventoryPage-item.torn_page .inventoryPage-item-contentContainer {
@@ -444,4 +451,73 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
 /* Dont' show the "open:" text when it's half width items */
 .inventoryPage-item-content-action > span {
   display: none;
+}
+
+.inventoryPage-item .item_set::after {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  display: block;
+  width: 28px;
+  height: 28px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/cb301652677b77c9abd3a99622aa3ca7.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.2;
+}
+
+.inventoryPage-item:hover .item_set::after {
+  opacity: 1;
+}
+
+.inventoryPage-item .item_set::before {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  display: block;
+  color: #ccc;
+  content: "Riftstalker Set";
+}
+
+.inventoryPage-item:hover .item_set::before {
+  color: #2c2c2c;
+}
+
+.inventoryPage-item.trinket .inventoryPage-item-content-description {
+  min-height: 120px;
+}
+
+.inventoryPage-item.trinket .itemViewStatBlock.trinket {
+  float: right;
+  width: 90px;
+  margin: 0 5px;
+}
+
+/* hide the warnings on naughty maps and rainbows maps */
+.inventoryPage-item-content-description-text div[style="border: 1px red dotted; padding: 5px; font-size: 10px;"],
+.inventoryPage-item-content-description-text b[style="color:red; font-size: 14px;"] {
+  display: none;
+}
+
+/* hide extra line breaks on rainbow maps */
+.inventoryPage-item[data-item-type="rainbow_scroll_case_convertible"] .inventoryPage-item-content-description-text br,
+.inventoryPage-item[data-item-type="party_size_rainbow_scroll_case_convertible"] .inventoryPage-item-content-description-text br {
+  display: none;
+}
+
+.inventoryPage-item-content-action span {
+  margin-right: 5px;
+}
+
+/* bigger images for small items */
+.inventoryPage-item.small {
+  width: 24%;
+  height: 140px;
+}
+
+.inventoryPage-item.small .itemImage,
+.inventoryPage-item.small .itemImage img {
+  width: 90px;
+  height: 90px;
 }
