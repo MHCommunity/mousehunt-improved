@@ -53,10 +53,6 @@ a.moussuPicchuHUD-footer-item-action.mousehuntArmNowButton {
 }
 
 .moussuPicchuHUD-powerType.moussuPicchuHUD-powerType {
-  width: 40px;
-  height: 40px;
-  filter: drop-shadow(2px 2px 6px #64ff00);
-  background-size: 40px;
   box-shadow: none;
 }
 
@@ -92,4 +88,52 @@ a.moussuPicchuHUD-footer-item-action.mousehuntArmNowButton {
 
 .moussuPicchuHUD .mousehuntItem.active .mousehuntItem-image::after {
   box-shadow: inset 0 0 9px 2px #74e776;
+}
+
+.moussuPicchuHUD-background {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  box-shadow: inset 0 5px 10px -2px #321c1e;
+}
+
+.moussuPicchuHUD-background.wind {
+  top: 2px;
+  left: 8px;
+}
+
+.moussuPicchuHUD-background.storm {
+  top: 3px;
+  left: 8px;
+}
+
+.moussuPicchuHUD-powerTypeWarning.active.useless {
+  right: 200px;
+  left: 200px;
+  padding: 5px;
+  color: #870808;
+  background-color: #ffbfbf;
+  border-color: #ff8a7c;
+}
+
+.moussuPicchuHUD-powerType.wind,
+.moussuPicchuHUD-powerType.wind.active,
+.moussuPicchuHUD-powerType.rain,
+.moussuPicchuHUD-powerType.rain.active {
+  filter: hue-rotate(90deg) opacity(0.6);
+  background-position: center;
+  box-shadow: none;
+}
+
+.moussuPicchuHUD-powerType.rain,
+.moussuPicchuHUD-powerType.rain.active {
+  background-image: url(https://www.mousehuntgame.com/images/powertypes/shadow.png?asset_cache_version=2);
+}
+
+.moussuPicchuHUD-powerType.wind,
+.moussuPicchuHUD-powerType.wind.active {
+  background-image: url(https://www.mousehuntgame.com/images/powertypes/arcane.png?asset_cache_version=2);
+}
+
+.moussuPicchuHUD-powerType.wind.active {
+  filter: opacity(0.8);
 }
