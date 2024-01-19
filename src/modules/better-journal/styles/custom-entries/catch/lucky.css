@@ -5,15 +5,20 @@
 
 .journal .entry.luckycatchsuccess::after {
   position: absolute;
-  top: 1px;
-  right: 0;
-  width: 25px;
-  height: 25px;
+  top: 8px;
+  right: 10px;
+  width: 18px;
+  height: 18px;
   content: "";
   background: url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png?asset_cache_version=2);
-  filter: drop-shadow(0 2px 2px #89ff45);
   background-repeat: no-repeat;
   background-size: cover;
+  animation: mh-improved-fade-out 1s ease-out 1s forwards;
+}
+
+.journal .entry.luckycatchsuccess .journaltext .luckyCatch {
+  -webkit-text-stroke-color: #7bc95e;
+  -webkit-text-stroke-width: thin;
 }
 
 .journal .entry.luckycatchsuccess .journalimage {
