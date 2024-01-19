@@ -9,6 +9,7 @@ import {
   makeTooltip,
   onOverlayChange
 } from '@utils';
+
 import { getData } from '@utils/data';
 
 import mousepage from './mousepage';
@@ -93,16 +94,7 @@ const addFavoriteButton = async (mouseId, mouseView) => {
   mouseView.append(fave);
 };
 
-const addMinluck = async (mouseName, mouseView) => {
-  let minluck = false;
-  if (minlucks[mouseName.innerText]) {
-    minluck = minlucks[mouseName.innerText];
-  } else if (minlucks[mouseName.innerText.replace(' Mouse', '')]) {
-    minluck = minlucks[mouseName.innerText.replace(' Mouse', '')];
-  } else {
-    return;
-  }
-
+const addMinluck = async (mouseId, mouseView) => {
   // get the description container
   const appendTo = mouseView.querySelector('.mouseView-contentContainer');
   if (! appendTo) {
@@ -110,12 +102,26 @@ const addMinluck = async (mouseName, mouseView) => {
   }
 
   const minluckContainer = makeElement('div', 'minluck-container');
-  makeElement('div', 'minluck-title', 'Minlucks', minluckContainer);
+  const titleText = makeElement('div', 'minluck-title', 'Minlucks');
+
+  makeTooltip({
+    appendTo: titleText,
+    text: 'If your current luck is above the minluck, you are guaranteed to catch the mouse if you attract it.',
+  });
+
+  minluckContainer.append(titleText);
 
   // foreach minluck, output the power type and the minluck
   const minluckList = makeElement('ul', 'minluck-list');
-  Object.keys(minluck).forEach((powerType) => {
-    if (! minluck[powerType] || '∞' === minluck[powerType]) {
+
+  // find the mouse in the minlucks data by id
+  const minluck = minlucks.find((m) => m.id === Number.parseInt(mouseId, 10));
+  const mouseMinlucks = minluck?.minlucks || {};
+
+  // We need the keys and values in our loop,
+  // so we can't use a for...in loop.
+  Object.keys(mouseMinlucks).forEach((powerType) => {
+    if (! mouseMinlucks[powerType] || '∞' === mouseMinlucks[powerType]) {
       return;
     }
 
@@ -125,7 +131,7 @@ const addMinluck = async (mouseName, mouseView) => {
     powerTypeImg.src = `https://www.mousehuntgame.com/images/powertypes/${powerType.toLowerCase()}.png`;
     minluckItem.append(powerTypeImg);
 
-    makeElement('div', 'minluck-power-type-minluck', minluck[powerType], minluckItem);
+    makeElement('div', 'minluck-power-type-minluck', mouseMinlucks[powerType], minluckItem);
 
     minluckList.append(minluckItem);
   });
@@ -135,20 +141,15 @@ const addMinluck = async (mouseName, mouseView) => {
   appendTo.append(minluckContainer);
 };
 
-const addWisdom = async (mouseName, mouseView) => {
-  let wisdom = false;
-  if (wisdom[mouseName.innerText]) {
-    wisdom = wisdoms[mouseName.innerText];
-  } else if (wisdoms[mouseName.innerText.replace(' Mouse', '')]) {
-    wisdom = wisdoms[mouseName.innerText.replace(' Mouse', '')];
-  } else {
-    return;
-  }
-
+const addWisdom = async (mouseId, mouseView) => {
   const values = mouseView.querySelector('.mouseView-values');
   if (! values) {
     return;
   }
+
+  let wisdom = wisdoms.find((m) => m.id === Number.parseInt(mouseId, 10));
+
+  wisdom = wisdom?.wisdom || 0;
 
   // comma separate the wisdom number
   wisdom = wisdom.toString().replaceAll(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -184,10 +185,9 @@ const updateMouseView = async () => {
 
   addLinks();
   addFavoriteButton(mouseId, mouseView);
-  const name = mouseView.querySelector('.mouseView-title');
 
-  addMinluck(name, mouseView);
-  addWisdom(name, mouseView);
+  await addMinluck(mouseId, mouseView);
+  await addWisdom(mouseId, mouseView);
 
   mouseView.classList.add('mouseview-has-mhct');
 
@@ -307,9 +307,6 @@ const replaceShowMouseImage = () => {
   };
 };
 
-let minlucks;
-let wisdoms;
-
 const main = async () => {
   onOverlayChange({ mouse: { show: updateMouseView } });
 
@@ -345,6 +342,8 @@ const main = async () => {
   });
 };
 
+let wisdoms;
+let minlucks;
 /**
  * Initialize the module.
  */
