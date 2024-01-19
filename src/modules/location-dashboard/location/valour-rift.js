@@ -9,9 +9,9 @@ export default (quests) => {
     floor_steps: quests?.QuestRiftValour?.floor_steps || 0,
     hunts_remaining: quests?.QuestRiftValour?.hunts_remaining || 0,
     current_step_formatted: quests?.QuestRiftValour?.current_step_formatted || '0',
-    speed: quests?.QuestRiftValour?.power_up_data?.hunt_limit?.current_level || 0,
-    sync: quests?.QuestRiftValour?.power_up_data?.long_stride?.current_level || 0,
-    siphon: quests?.QuestRiftValour?.power_up_data?.boss_extension?.current_level || 0,
+    speed: quests?.QuestRiftValour?.power_up_data?.long_stride?.current_level + 1 || 1,
+    sync: quests?.QuestRiftValour?.power_up_data?.hunt_limit?.current_level + 1 || 1,
+    siphon: quests?.QuestRiftValour?.power_up_data?.boss_extension?.current_level + 1 || 1,
   };
 
   let text = '';
