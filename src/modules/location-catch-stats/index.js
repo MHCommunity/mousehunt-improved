@@ -116,7 +116,7 @@ const showModal = async () => {
 
   // Add the title;
   const title = document.createElement('h1');
-  title.innerText = 'Mouse Catch Stats';
+  title.innerText = 'Location Catch Stats';
   header.append(title);
 
   // Create a close button icon.
