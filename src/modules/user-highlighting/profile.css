@@ -142,8 +142,8 @@
   filter: hue-rotate(148deg);
 }
 
-.mh-improved-fancy-profile .loyaltyBadgeView-years-text::after {
-  content: "00";
+.mh-improved-fancy-profile .loyaltyBadgeView-years-text::before {
+  content: "4";
 }
 
 .mh-improved-fancy-profile .loyaltyBadgeView .loyaltyBadgeView-years-text {
