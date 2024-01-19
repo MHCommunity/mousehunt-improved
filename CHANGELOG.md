@@ -1,5 +1,31 @@
 # Changelog
 
+## Unreleased
+
+- Adds Custom Background feature, allowing you to choose from an event background, different colors, or gradients
+- Fixes Valour Rift Location Dashboard reporting incorrect values for upgrades
+- Fixes Minluck and Wisdom values not showing on Mouse View popups for Better Mice
+- Fixes module loading when using the `no-<module>` feature flags
+- Fixes Better Gifts correctly getting the amount of claimable actions
+- Updates 'Clear Cache' button to also remove cached sessionStorage data
+- Fixes some functionality not correctly working when changing pages
+- Updates clover icon to be more aligned and fade out in lucky catch journal entries
+- Fixes display issues with Better Inventory when set to half width
+- Updates Moussu Picchu Location HUD styles
+- Updates Table of Contents Location HUD styles
+- Updates Folklore Forest region Location HUD styles
+- Fixes Folklore Forest visibility toggles for Silver and Golden Quill upgrades
+- Updates Table of Contents writing journal entry
+- Updates Better Inventory styles to make images slightly bigger, add Riftstalker Set labels, and more
+- Fixes display of Favorited mice on the King's Crowns tab
+- Reverts changes made to the shield in the stat bar
+- Fixes Paste Hunter ID not correctly associating the snuid of the hunter, causing some tabs to load the wrong data
+- Adds a `disable-mh-improved-tooltips` feature flag to disable the added tooltips on Mouse views and Item views
+- Fixes settings not correctly showing that they saved or showing the refresh reminder message
+- Updates Ultimate Checkmark to cache data for 5 minutes, allowing for faster loading of the page
+- Updates user highlighting to cache data to avoid unnecessary requests
+- Adds experimental `ultimate-checkmark-sync` feature flag to sync Ultimate Checkmark data via a server
+
 ## Version 0.28.1
 
 - Fixes alignment of Relic Hunter icon/highlight on travel pages
