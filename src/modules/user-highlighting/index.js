@@ -49,10 +49,20 @@ const highlightUsers = async () => {
 
   const userId = Number.parseInt(id.textContent, 10);
   // query api.mouse.rip/highlight-user/:id to get the user highlighting data
-  const userHighlighting = await fetch(`https://api.mouse.rip/highlight-user/${userId}`);
-  const data = await userHighlighting.json();
 
-  debug(`Retrieved user highlighting data for ${userId}`, data);
+  let data;
+
+  const cachedData = sessionStorage.getItem(`mh-improved-user-highlighting-${userId}`);
+  if (cachedData) {
+    data = JSON.parse(cachedData);
+  } else {
+    const userHighlighting = await fetch(`https://api.mouse.rip/highlight-user/${userId}`);
+    data = await userHighlighting.json();
+
+    debug(`Retrieved user highlighting data for ${userId}`, data);
+
+    sessionStorage.setItem(`mh-improved-user-highlighting-${userId}`, JSON.stringify(data));
+  }
 
   if (! data || ! data?.highlighted) {
     return;
