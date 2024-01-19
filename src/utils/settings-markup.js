@@ -360,6 +360,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
        *
        * @param {Event} event The event.
        */
+      let timeout = null;
       settingRowInputDropdownSelect.onchange = (event) => {
         const parent = settingRowInputDropdownSelect.parentNode.parentNode.parentNode;
         parent.classList.add('inputDropdownWrapper');
@@ -370,7 +371,9 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
         parent.classList.remove('busy');
         parent.classList.add('completed');
-        setTimeout(() => {
+
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
           parent.classList.remove('completed');
         }, 1000);
       };
@@ -385,20 +388,28 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     const inputSaveButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'inputSaveButton']);
     makeElement('span', '', 'Save', inputSaveButton);
 
+    let timeout = null;
     // Event listener for when the setting is clicked.
     inputSaveButton.addEventListener('click', (event) => {
-      const parent = event.target.parentNode.parentNode;
+      const parent = event.target.parentNode.parentNode.parentNode;
       parent.classList.add('inputDropdownWrapper');
+      parent.classList.add('inputTextWrapper');
       parent.classList.add('busy');
+
+      parent.classList.remove('completed');
 
       // save the setting.
       saveSettingDirect(key, settingRowInputText.value, tab);
 
       parent.classList.remove('busy');
       parent.classList.add('completed');
-      setTimeout(() => {
+
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
         parent.classList.remove('completed');
       }, 1000);
+
+      addSettingRefreshReminder();
     });
 
     settingRowInput.classList.add('inputText');
@@ -416,9 +427,12 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     makeElement('span', '', 'Save', inputSaveButton);
 
     // Event listener for when the setting is clicked.
+    let timeout = null;
     inputSaveButton.addEventListener('click', (event) => {
-      const parent = event.target.parentNode.parentNode;
+      const parent = event.target.parentNode.parentNode.parentNode;
       parent.classList.add('inputDropdownWrapper');
+      parent.classList.add('textareaWrapper');
+
       parent.classList.add('busy');
 
       // save the setting.
@@ -426,9 +440,13 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
       parent.classList.remove('busy');
       parent.classList.add('completed');
-      setTimeout(() => {
+
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
         parent.classList.remove('completed');
       }, 1000);
+
+      addSettingRefreshReminder();
     });
 
     settingRowInput.classList.add('textarea');
@@ -483,47 +501,39 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
  *
  * @ignore
  */
+let fadeInTimeout = null;
+let fadeOutTimeout = null;
+let removeTimeout = null;
 const addSettingRefreshReminder = () => {
   addSettingStyles();
 
-  const existing = document.querySelector('.mh-utils-settings-refresh-message');
-  if (existing) {
-    return;
-  }
+  let refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
+  if (! refreshMessage) {
+    const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'Refresh the page to apply your changes.');
+    newMessageEl.id = 'mh-utils-settings-refresh-message';
 
-  const settingsToggles = document.querySelectorAll('.mousehuntSettingSlider');
-  if (! settingsToggles) {
-    return;
-  }
-
-  settingsToggles.forEach((toggle) => {
-    if (toggle.getAttribute('data-has-refresh-reminder')) {
-      return;
-    }
-
-    toggle.setAttribute('data-has-refresh-reminder', true);
-
-    toggle.addEventListener('click', () => {
-      const refreshMessage = document.querySelector('.mh-utils-settings-refresh-message');
-      if (refreshMessage) {
-        refreshMessage.classList.remove('mh-utils-settings-refresh-message-hidden');
-      }
-
-      setTimeout(() => {
-        if (refreshMessage) {
-          refreshMessage.classList.add('mh-utils-settings-refresh-message-hidden');
-        }
-      }, 5000);
-    });
-  });
-
-  const existingRefreshMessage = document.querySelector('.mh-utils-settings-refresh-message');
-  if (! existingRefreshMessage) {
     const body = document.querySelector('body');
-    if (body) {
-      makeElement('div', ['mh-utils-settings-refresh-message', 'mh-utils-settings-refresh-message-hidden'], 'Refresh the page to apply your changes.', body);
-    }
+    body.append(newMessageEl);
+
+    refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
   }
+
+  clearTimeout(fadeInTimeout);
+  clearTimeout(fadeOutTimeout);
+  clearTimeout(removeTimeout);
+
+  fadeInTimeout = setTimeout(() => {
+    refreshMessage.classList.add('mh-ui-fade-in');
+  }, 250);
+
+  fadeOutTimeout = setTimeout(() => {
+    refreshMessage.classList.remove('mh-ui-fade-in');
+    refreshMessage.classList.add('mh-ui-fade-out');
+  }, 3000);
+
+  removeTimeout = setTimeout(() => {
+    refreshMessage.remove();
+  }, 5000);
 };
 
 /**
