@@ -3,6 +3,7 @@ import {
   doRequest,
   getCurrentPage,
   getCurrentTab,
+  getFlag,
   getSetting,
   makeElement,
   onNavigation
@@ -243,17 +244,91 @@ const makeContent = (id, name, items, completed) => {
   content.append(categoryDiv);
 };
 
-const addCategoryAndItems = async (required, type, subtype, key, name) => {
+const sendToApi = async (type, subtype, items) => {
+  items = items.map((item) => {
+    return {
+      item_id: item.item_id, // eslint-disable-line camelcase
+      type: item.type,
+      name: item.name,
+      thumbnail: item.thumbnail.replaceAll('https://www.mousehuntgame.com/images/', ''), // eslint-disable-line camelcase
+      quantity: item.quantity,
+      quantity_formatted: item.quantity_formatted, // eslint-disable-line camelcase
+      le: item.le,
+    };
+  });
+
+  await fetch('https://ultimate-checkmark.mouse.rip/add', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      snuid: user.sn_user_id,
+      type,
+      subtype,
+      items,
+    }),
+  });
+};
+
+const getItemsFromApi = async (userId, type, subtype) => {
+  userId = 'hg_a07516a70978d1dbaf9e29ce638073d9';
+
+  const response = await fetch(`https://ultimate-checkmark.mouse.rip/get/${userId}/${type}/${subtype}`);
+  const data = await response.json();
+
+  const items = JSON.parse(data.items).map((item) => {
+    return {
+      item_id: item.item_id, // eslint-disable-line camelcase
+      type: item.type,
+      name: item.name,
+      thumbnail: `https://www.mousehuntgame.com/images/${item.thumbnail}`, // eslint-disable-line camelcase
+      quantity: item.quantity,
+      quantity_formatted: item.quantity_formatted, // eslint-disable-line camelcase
+      le: item.le,
+    };
+  });
+
+  return items;
+};
+
+const addCategoryAndItems = async (required, type, subtype, key, name, userId = null) => {
   const exists = document.querySelector(`.hunterProfileItemsView-categoryContent[data-category="${key}"]`);
   if (exists) {
     return;
   }
 
-  const items = await getItems(required, type, subtype);
+  let items;
+
+  if (isOwnProfile()) {
+    items = await getItems(required, type, subtype);
+
+    if (syncWithServer) {
+      sendToApi(type, subtype, items);
+    }
+  } else {
+    if (! syncWithServer) {
+      return;
+    }
+
+    items = await getItemsFromApi(userId, type, subtype);
+  }
+
   const progress = getProgress(items, required);
 
   makeCategory(key, name, progress);
   makeContent(key, name, items, progress.completed);
+
+  return true;
+};
+
+const isOwnProfile = () => {
+  const params = hg.utils.PageUtil.getQueryParams();
+  if (! params || ! params.snuid) {
+    return false;
+  }
+
+  return params.snuid === user.sn_user_id;
 };
 
 const run = async () => {
@@ -262,8 +337,17 @@ const run = async () => {
   }
 
   const params = hg.utils.PageUtil.getQueryParams();
-  if (! (params && params.snuid && user.sn_user_id === params.snuid)) {
+  if (! params) {
     return;
+  }
+
+  let userId = null;
+  if (! isOwnProfile()) {
+    if (! syncWithServer) {
+      return;
+    }
+
+    userId = params.snuid;
   }
 
   for (const category of categories) {
@@ -275,11 +359,16 @@ const run = async () => {
   }
 };
 
+let syncWithServer = false;
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles(styles);
+
+  if (getFlag('ultimate-checkmark-sync')) {
+    syncWithServer = true;
+  }
 
   onNavigation(run, {
     page: 'hunterprofile',
