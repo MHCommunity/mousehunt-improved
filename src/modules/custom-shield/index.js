@@ -1,113 +1,102 @@
-import { addStyles, getSetting, onNavigation } from '@utils';
+import { addStyles, getSetting, makeElement, onNavigation } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
 
-const addClass = (el, shieldClass) => {
+import cottonCandyStyles from './cotton-candy.css';
+
+const doClass = (el, shieldClass, verb) => {
   const classToAdd = shieldClass.replace('.', ' ');
 
   classToAdd.split(' ').forEach((className) => {
-    el.classList.add(className);
+    el.classList[verb](className);
   });
 };
 
+const addClass = (el, shieldClass) => {
+  doClass(el, shieldClass, 'add');
+};
+
+const removeClass = (el, shieldClass) => {
+  doClass(el, shieldClass, 'remove');
+};
+
+let lastShield = '';
 const changeShield = () => {
   const shieldEl = document.querySelector('.mousehuntHud-shield');
   if (! shieldEl) {
     return;
   }
 
-  // remove all the classes from the shield exceptfor .mousehuntHud-shield and .golden.
-  shieldEl.classList.forEach((className) => {
-    if (className !== 'mousehuntHud-shield' && className !== 'golden') {
-      shieldEl.classList.remove(className);
-    }
-  });
-
   const timer = document.querySelector('.huntersHornView__timer--default');
-  if (timer) {
-    // remove all the classes that start with 'color-' from the timer.
-    timer.classList.forEach((className) => {
-      if (className.startsWith('color-')) {
-        timer.classList.remove(className);
-      }
+  if (! timer) {
+    return;
+  }
+
+  // Remove the old shield class.
+  if (lastShield) {
+    const remove = [
+      'mhui-custom-shield',
+      lastShield,
+      `${lastShield}-alt`,
+      'alt',
+      'title',
+      'default',
+    ];
+
+    remove.forEach((className) => {
+      console.log(`remove ${className}`); // eslint-disable-line no-console
+      removeClass(shieldEl, className);
     });
   }
 
-  const backgroundLeft = document.querySelector('.pageFrameView-column.left');
-  if (backgroundLeft) {
-    // remove all the classes that start with 'color-' from the timer.
-    backgroundLeft.classList.forEach((className) => {
-      if (className.startsWith('color-')) {
-        backgroundLeft.classList.remove(className);
-      }
-    });
-  }
+  console.log(`changeShield ${lastShield} -> ${getSetting('custom-shield-0', 'default')}`); // eslint-disable-line no-console
 
-  const backgroundRight = document.querySelector('.pageFrameView-column.right');
-  if (backgroundRight) {
-    // remove all the classes that start with 'color-' from the timer.
-    backgroundRight.classList.forEach((className) => {
-      if (className.startsWith('color-')) {
-        backgroundRight.classList.remove(className);
-      }
-    });
-  }
+  // Remove the old timer class.
+  timer.classList.remove(lastShield);
 
+  // Get the new shield.
   let shield = getSetting('custom-shield-0', 'default');
   if ('default' === shield) {
     shieldEl.classList.add('default');
     return;
   }
 
-  if (shield.startsWith('color-')) {
-    shieldEl.classList.add('default');
+  // If it's cotton candy, add the style, otherwise remove it.
+  if (shield === 'color-cotton-candy') {
+    makeElement('style', 'mh-improved-cotton-candy-style', cottonCandyStyles, document.head);
 
-    if (shield === 'color-cotton-candy') {
-      addStyles(`.huntersHornView__backdrop {
-        filter: hue-rotate(180deg);
-        opacity: 1;
-        transition: none;
-      }
-
-      .mousehuntHud-menu.default > ul li a {
-        filter: hue-rotate(337deg);
-        backdrop-filter: hue-rotate(199deg);
-      }
-
-      .mousehuntHud-menu ul li.active .mousehuntHud-menu-item.root,
-      .mousehuntHud-menu ul li:hover .mousehuntHud-menu-item.root {
-        background: url(https://www.mousehuntgame.com/images/ui/hud/menu/menu_seperator.png?asset_cache_version=2) 100% 0 no-repeat;
-        filter: hue-rotate(328deg);
-        backdrop-filter: hue-rotate(292deg);
-      }`);
-
-      shield = 'color-pink-timer-background';
-    }
-
-    if (shield.endsWith('-timer')) {
-      shield = shield.replace('-timer', '');
-      if (timer) {
-        timer.classList.add(shield);
-      }
+    shield = 'color-pink-timer';
+  } else {
+    const cottonCandyStyle = document.querySelector('.mh-improved-cotton-candy-style');
+    if (cottonCandyStyle) {
+      cottonCandyStyle.remove();
     }
   }
 
+  if (shield.startsWith('color-')) {
+    shieldEl.classList.add('default');
+  }
+
+  if (shield.endsWith('-timer')) {
+    shield = shield.replace('-timer', '');
+    timer.classList.add(shield);
+  }
+
+  // if its the alt, also add the non-alt class.
   if (shield.endsWith('-alt')) {
-    // if its the alt, also add the non-alt class.
     shieldEl.classList.add(shield.replace('-alt', ''), 'alt');
   }
 
   if (shield.includes('title')) {
     shieldEl.classList.add('title');
-
-    if ('title' === shield) {
-      shield = getTitle();
-    }
+    shield = 'title' === shield ? getTitle() : shield;
   }
 
   shieldEl.classList.add('mhui-custom-shield');
   addClass(shieldEl, shield);
+
+  lastShield = shield;
 };
 
 const getTitle = () => {
@@ -122,24 +111,28 @@ const getTitle = () => {
   return title;
 };
 
+const watchForPreferenceChanges = () => {
+  const input = document.querySelector('#mousehunt-improved-settings-feature-custom-shield select');
+  if (! input) {
+    return;
+  }
+
+  input.addEventListener('change', () => {
+    changeShield();
+  });
+};
+
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles(styles);
 
+  lastShield = getSetting('custom-shield-0', 'default');
+
   changeShield();
 
-  onNavigation(() => {
-    const input = document.querySelector('#mousehunt-improved-settings-feature-custom-shield select');
-    if (! input) {
-      return;
-    }
-
-    input.addEventListener('change', () => {
-      changeShield();
-    });
-  }, {
+  onNavigation(watchForPreferenceChanges, {
     page: 'preferences',
     onLoad: true,
   });
