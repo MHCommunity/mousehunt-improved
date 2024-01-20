@@ -161,6 +161,10 @@
   padding: 10px;
 }
 
-.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item-statContainer {
-  width: 110%;
+.mh-improved-favorite-setups-component-picker .campPage-trap-itemBrowser-item-description {
+  margin-left: 0;
+}
+
+.mh-improved-favorite-setups-component-picker .trinket .campPage-trap-itemBrowser-item-content {
+  width: 80%;
 }

@@ -185,25 +185,3 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 .forewordFarmHarvestBin-itemImage .quantity {
   font-size: 16px;
 }
-
-/* makes the plant queue top to bottom rather than left and right */
-
-/* .forewordFarmPlotView-plot-queue-list {
-  flex-direction: column;
-  padding: 5px;
-  margin-left: -11px;
-  margin-right: -10px;
-}
-
-.forewordFarmPlotView-plot-queue-item {
-  width: 100%;
-}
-
-.forewordFarmPlotView-plot-queue-item-spacer {
-  display: none;
-}
-
-a.forewordFarmPlotView-plot-queue-cancelButton {
-  top: -12px;
-  right: -11px;
-} */

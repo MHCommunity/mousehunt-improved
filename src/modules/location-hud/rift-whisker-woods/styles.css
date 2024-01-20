@@ -41,3 +41,12 @@ span.riftWhiskerWoodsHUD-zone-rageMax {
   background-color: #ffa5a5;
   border-color: #992023;
 }
+
+.riftWhiskerWoodsHUD-zone-charm-quantity.quantity {
+  width: 30px;
+  font-size: 12px;
+}
+
+.riftWhiskerWoodsHUD-zone .mousehuntArmNowButton {
+  right: -2px;
+}

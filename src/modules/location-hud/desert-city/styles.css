@@ -8,13 +8,17 @@
   text-shadow: 1px 1px 2px #533a20;
 }
 
+.muridaeMarketHud .shop .visit {
+  top: 0;
+  height: 166px;
+}
+
 .muridaeMarketHud .shop:hover .visit::after {
   position: absolute;
   right: 3px;
+  bottom: 78px;
   left: 4px;
-  display: block;
   width: unset;
-  height: 15px;
   font-size: 11px;
   font-weight: 700;
   color: #efdfc4;
@@ -29,8 +33,4 @@
 
 .muridaeMarketHud .shop:hover {
   filter: drop-shadow(0 1px 2px #e7d6ba);
-}
-
-.muridaeMarketHud .shop {
-  cursor: pointer;
 }
