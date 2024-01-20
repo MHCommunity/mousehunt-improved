@@ -133,3 +133,7 @@
 .mh-dark-mode.shopCustomization .itemViewStatBlock-stat {
   border-color: #404040;
 }
+
+.mh-dark-mode .journal .entry.larryGift {
+  background: #deffc7;
+}
