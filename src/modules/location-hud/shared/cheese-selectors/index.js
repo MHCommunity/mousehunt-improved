@@ -1,6 +1,4 @@
-import { addStyles, getUserItems } from '@utils';
-
-import styles from './styles.css';
+import { getUserItems, onEvent, onNavigation, onRequest } from '@utils';
 
 /**
  * Adds a cheese selector a a location that usually doesn't have a HUD.
@@ -9,31 +7,28 @@ import styles from './styles.css';
  * @param {Array}  cheesesToUse Array of cheese types to use.
  */
 const makeCheeseSelector = async (location, cheesesToUse) => {
+  if (isProcessing) {
+    return;
+  }
+
+  isProcessing = true;
+
   const hud = document.querySelector('#hudLocationContent');
   if (! hud) {
     return;
   }
 
-  if (hud.classList.contains('mh-ui-cheese-selector')) {
-    return;
-  }
-
-  hud.classList.add('mh-ui-cheese-selector', `mh-ui-cheese-selector-${location}`);
-
-  let existingCheeseSelector = hud.querySelector('.mh-ui-cheese-selector-wrapper');
-  if (existingCheeseSelector) {
-    existingCheeseSelector.remove();
-  }
+  hud.classList.remove('empty');
 
   const wrapper = document.createElement('div');
   wrapper.classList.add('townOfGnawniaHUD', 'allBountiesComplete', 'mh-ui-cheese-selector-wrapper');
 
   const cheesesContainer = document.createElement('div');
-  cheesesContainer.classList.add('townOfGnawniaHUD-baitContainer');
+  cheesesContainer.classList.add('townOfGnawniaHUD-baitContainer', 'mh-ui-cheese-selector');
 
   const cheeses = await getUserItems(cheesesToUse);
 
-  cheeses.forEach((cheese) => {
+  for (const cheese of cheeses) {
     const cheeseContainer = document.createElement('div');
     cheeseContainer.classList.add('townOfGnawniaHUD-bait', `mh-ui-cheese-selector-${cheese.type}`);
 
@@ -70,16 +65,18 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
     cheeseContainer.setAttribute('onclick', 'hg.utils.TrapControl.toggleItem(this); return false;');
 
     cheesesContainer.append(cheeseContainer);
-  });
-
-  // recheck for existingCheeseSelector because it might have been added already.
-  existingCheeseSelector = hud.querySelector('.mh-ui-cheese-selector-wrapper');
-  if (existingCheeseSelector) {
-    existingCheeseSelector.remove();
   }
 
   wrapper.append(cheesesContainer);
-  hud.append(wrapper);
+
+  const existingCheeseSelector = hud.querySelector('.mh-ui-cheese-selector-wrapper');
+  if (existingCheeseSelector) {
+    existingCheeseSelector.replaceWith(wrapper);
+  } else {
+    hud.append(wrapper);
+  }
+
+  isProcessing = false;
 };
 
 const getCheeses = (cheeses) => {
@@ -99,7 +96,31 @@ const getCheeses = (cheeses) => {
   return cheeses;
 };
 
+let replaced = false;
+const replaceCampShowTab = () => {
+  if (replaced) {
+    return;
+  }
+
+  replaced = true;
+
+  const _original = app.pages.CampPage.showTab;
+  app.pages.CampPage.showTab = (...args) => {
+    _original(...args);
+    eventRegistry.doEvent('set_camp_tab', ...args);
+  };
+};
+
+let isProcessing = false;
 export default async (location, cheeses) => {
-  addStyles(styles, 'mh-improved-cheese-selectors', true);
-  await makeCheeseSelector(location, getCheeses(cheeses));
+  replaceCampShowTab();
+
+  const main = () => {
+    makeCheeseSelector(location, getCheeses(cheeses));
+  };
+
+  main();
+  onNavigation(main);
+
+  onEvent('ajax_response', main);
 };
