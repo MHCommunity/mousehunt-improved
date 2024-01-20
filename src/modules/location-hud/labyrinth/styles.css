@@ -109,6 +109,7 @@
   right: -7px;
   height: 9.5px;
   padding: 4px;
+  pointer-events: none; /* allow for actually clicking the scramble button */
 }
 
 .labyrinthHUD-scrambleClues:hover .labyrinthHUD-scrambleClues-name,
@@ -148,10 +149,6 @@
   text-shadow: 0 0 1px #000;
   background: linear-gradient(180deg, rgb(112 112 112 / 0%) 0%, rgb(168 168 168 / 100%) 50%, rgb(112 112 112 / 0%) 100%);
   border-radius: 20px;
-}
-
-.labyrinthHUD-baitWarning {
-  z-index: 6;
 }
 
 .labyrinthHUD-item:hover .labyrinthHUD-item-location,
