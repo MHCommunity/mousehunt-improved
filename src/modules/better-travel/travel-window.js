@@ -249,5 +249,7 @@ export default async () => {
   addStyles(styles);
   makeMenuItem();
 
+  onEvent('mh-improved-open-travel-window', openTravelWindow);
+
   environments = await getData('environments');
 };
