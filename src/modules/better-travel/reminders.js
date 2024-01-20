@@ -48,7 +48,7 @@ const addReminders = () => {
       ! user.quests?.QuestFloatingIslands?.hunting_site_atts?.is_fuel_enabled && // BW not active.
       ! (
         user.quests?.QuestFloatingIslands?.hunting_site_atts?.is_vault_island && // is SP.
-        user.quests.QuestFloatingIslands.hunting_site_atts.island_mod_panels[2].is_complete // is on 4th tile.
+        user.quests?.QuestFloatingIslands?.hunting_site_atts?.island_mod_panels[2]?.is_complete // Is on the 4th tile.
       )
     ) {
       reminderOpts.text = 'Bottled Wind is <strong>not</strong> active.';
