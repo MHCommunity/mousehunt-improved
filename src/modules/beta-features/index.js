@@ -14,6 +14,7 @@ const init = async () => {
   const defaultDisabledFeatures = [
     { id: 'lol-gottem', load: trollMode },
     { id: 'twitter', load: socialNoop },
+    { id: 'social-noop', load: socialNoop },
     { id: 'birthday-horn', load: () => eventHorn('birthday') },
     { id: 'halloween-horn', load: () => eventHorn('halloween') },
     { id: 'great-winter-hunt-horn', load: () => eventHorn('greatWinterHunt') },
