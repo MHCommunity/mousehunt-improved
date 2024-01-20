@@ -259,6 +259,24 @@ const addSimpleTravel = () => {
   addSimpleTravelPage();
 };
 
+const getPreviousLocation = () => {
+  const previousLocation = getTravelSetting('previous-location', false);
+  if (previousLocation && previousLocation !== getCurrentLocation()) {
+    return environments.find((environment) => {
+      return environment.id === previousLocation;
+    });
+  }
+
+  return false;
+};
+
+const goToPreviousLocation = () => {
+  const previousLocation = getPreviousLocation();
+  if (previousLocation) {
+    app.pages.TravelPage.travel(previousLocation.id);
+  }
+};
+
 const addToTravelDropdown = () => {
   const currentLocation = getCurrentLocation();
 
@@ -303,24 +321,16 @@ const addToTravelDropdown = () => {
     });
   }
 
-  const previousLocation = getTravelSetting('previous-location', false);
-  if (previousLocation && previousLocation !== currentLocation) {
-    const previousRegion = environments.find((environment) => {
-      return environment.id === previousLocation;
+  const previousLocation = getPreviousLocation();
+  // add the previous location to the top of the list
+  if (previousLocation) {
+    addSubmenuItem({
+      menu: 'travel',
+      label: `Back to ${previousLocation.name}`,
+      icon: 'https://www.mousehuntgame.com/images/ui/puzzle/refresh.png',
+      callback: goToPreviousLocation,
+      class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-previous-location',
     });
-
-    // add the previous location to the top of the list
-    if (previousRegion) {
-      addSubmenuItem({
-        menu: 'travel',
-        label: `Back to ${previousRegion.name}`,
-        icon: 'https://www.mousehuntgame.com/images/ui/puzzle/refresh.png',
-        callback: () => {
-          app.pages.TravelPage.travel(previousRegion.id);
-        },
-        class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-previous-location',
-      });
-    }
   }
 
   // add the custom submenu items
@@ -596,6 +606,8 @@ const main = () => {
 
   saveTravelLocation();
   addToTravelDropdown();
+
+  onEvent('mh-improved-goto-previous-location', goToPreviousLocation);
 };
 
 let environments = [];
