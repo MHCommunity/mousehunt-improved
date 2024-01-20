@@ -1,5 +1,5 @@
 /* Lets make that shield look great */
-a.mousehuntHud-shield.golden.default {
+.mousehuntHud-shield.golden.default {
   top: 3px;
   left: 12px;
   background-image: url(https://www.mousehuntgame.com/images/mousehunt_gold_logo.png?asset_cache_version=2);
@@ -8,20 +8,20 @@ a.mousehuntHud-shield.golden.default {
   transition: opacity 0.3s ease-in-out;
 }
 
-a.mousehuntHud-shield.golden.default-normal {
+.mousehuntHud-shield.golden.default-normal {
   top: unset;
   left: unset;
   background-image: url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif?asset_cache_version=2);
   filter: none;
 }
 
-a.mousehuntHud-shield.golden.default:hover,
-a.mousehuntHud-shield.golden.default:focus {
+.mousehuntHud-shield.golden.default:hover,
+.mousehuntHud-shield.golden.default:focus {
   opacity: 0.9;
 }
 
-a.mousehuntHud-shield.mhui-custom-shield.pride,
-a.mousehuntHud-shield.golden.mhui-custom-shield.pride {
+.mousehuntHud-shield.mhui-custom-shield.pride,
+.mousehuntHud-shield.golden.mhui-custom-shield.pride {
   background: url(https://i.mouse.rip/shield-pride.png) 0 0/105%;
 }
 
@@ -63,8 +63,8 @@ a.mousehuntHud-shield.golden.mhui-custom-shield.pride {
   background-size: contain;
 }
 
-a.mousehuntHud-shield.title,
-a.mousehuntHud-shield.golden.title {
+.mousehuntHud-shield.title,
+.mousehuntHud-shield.golden.title {
   background: url(https://i.mouse.rip/shield-blank.png?1) 0 0 / contain no-repeat;
 }
 
@@ -180,36 +180,36 @@ a.mousehuntHud-shield.golden.title {
 }
 
 .huntersHornView__timer--default.color-blue,
-a.mousehuntHud-shield.golden.color-blue {
+.mousehuntHud-shield.golden.color-blue {
   filter: hue-rotate(158deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
 .huntersHornView__timer--default.color-cyan,
-a.mousehuntHud-shield.golden.color-cyan {
+.mousehuntHud-shield.golden.color-cyan {
   filter: hue-rotate(112deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
 .huntersHornView__timer--default.color-green,
-a.mousehuntHud-shield.golden.color-green {
+.mousehuntHud-shield.golden.color-green {
   filter: hue-rotate(66deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
 .huntersHornView__timer--default.color-pink,
-a.mousehuntHud-shield.golden.color-pink {
+.mousehuntHud-shield.golden.color-pink {
   filter: hue-rotate(280deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
 .huntersHornView__timer--default.color-purple,
-a.mousehuntHud-shield.golden.color-purple {
+.mousehuntHud-shield.golden.color-purple {
   filter: hue-rotate(195deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
 .huntersHornView__timer--default.color-red,
-a.mousehuntHud-shield.golden.color-red {
+.mousehuntHud-shield.golden.color-red {
   filter: hue-rotate(317deg) saturate(1.6) drop-shadow(0 0 5px #e8dbb8);
 }
 
-a.mousehuntHud-shield.golden.color-faded {
+.mousehuntHud-shield.golden.color-faded {
   filter: sepia(1) drop-shadow(0 0 5px #e8dbb8);
 }
 
@@ -228,8 +228,8 @@ a.mousehuntHud-shield.golden.color-faded {
 }
 
 .huntersHornView__timer--default.color-rainbow,
-a.mousehuntHud-shield.golden.color-rainbow,
-a.mousehuntHud-shield.golden.color-rainbow2 {
+.mousehuntHud-shield.golden.color-rainbow,
+.mousehuntHud-shield.golden.color-rainbow2 {
   animation: shield-hue-rotate 30s infinite;
 }
 
