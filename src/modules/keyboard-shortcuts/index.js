@@ -396,10 +396,10 @@ const showHelpPopup = () => {
       const theShortcut = getShortcuts().find((s) => {
         return (
           s.key === event.key &&
-          s.ctrlKey === event.ctrlKey &&
-          s.metaKey === event.metaKey &&
-          s.altKey === event.altKey &&
-          s.shiftKey === event.shiftKey
+          event.ctrlKey === (s.ctrlKey || false) &&
+          event.metaKey === (s.metaKey || false) &&
+          event.altKey === (s.altKey || false) &&
+          event.shiftKey === (s.shiftKey || false)
         );
       });
 
