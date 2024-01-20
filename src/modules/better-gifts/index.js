@@ -309,9 +309,15 @@ const addRandomSendButton = () => {
   };
 };
 
+let _showTab;
+let _selectGift;
 const addGiftSwitcher = () => {
-  const _showTab = hg.views.GiftSelectorView.showTab;
-  const _selectGift = hg.views.GiftSelectorView.selectGift;
+  if (_showTab || _selectGift) {
+    return;
+  }
+
+  _showTab = hg.views.GiftSelectorView.showTab;
+  _selectGift = hg.views.GiftSelectorView.selectGift;
   hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
     _showTab(tabType, viewState, preserveVariables, preserveActions);
 

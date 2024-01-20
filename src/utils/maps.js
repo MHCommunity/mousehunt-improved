@@ -102,6 +102,10 @@ const cacheFinishedMap = async () => {
 };
 
 const showTravelConfirmation = (environment, theMapModel) => {
+  if (! environment?.id || ! environment?.type) {
+    return;
+  }
+
   const environmentData = theMapModel.getEnvironmentById(environment.id);
   const environmentGoals = theMapModel.getGoalsByEnvironment(environment.id);
   const templateData = { environment: environmentData, goals: environmentGoals };

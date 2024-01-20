@@ -197,9 +197,7 @@ const init = async () => {
 
   onDialogShow(cacheFinishedMap, 'treasureMapPopup');
 
-  onRequest(() => {
-    await addFlrtButtonToConvertible();
-  }, 'managers/ajax/users/useconvertible.php');
+  onRequest(addFlrtButtonToConvertible, 'managers/ajax/users/useconvertible.php');
 };
 
 export default {

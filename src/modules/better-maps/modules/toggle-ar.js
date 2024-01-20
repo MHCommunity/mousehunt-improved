@@ -8,6 +8,10 @@ const addArDataToMap = async (mapData) => {
 
   const mice = mapData?.goals?.[type];
 
+  if (! mice || mice.length === 0) {
+    return;
+  }
+
   // Remove the hidden class if we've already added the AR data.
   const goals = document.querySelectorAll('.treasureMapView-goals-groups');
   if (goals && goals.length > 0) {
@@ -23,10 +27,6 @@ const addArDataToMap = async (mapData) => {
     if (hasAdded) {
       return;
     }
-  }
-
-  if (! mice || mice.length === 0) {
-    return;
   }
 
   mice.forEach(async (mouse) => {

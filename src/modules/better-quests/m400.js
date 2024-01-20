@@ -49,7 +49,7 @@ const main = () => {
     return;
   }
 
-  const isM400 = user.quests?.QuestLibraryM400Research?.is_assignment || user.quests.QuestLibraryM400Research.is_bait_assignment; // TODO: get the bait assignment quest here.
+  const isM400 = user.quests?.QuestLibraryM400Research?.is_assignment || user.quests.QuestLibraryM400Research?.is_bait_assignment; // TODO: get the bait assignment quest here.
   if (! isM400) {
     return;
   }

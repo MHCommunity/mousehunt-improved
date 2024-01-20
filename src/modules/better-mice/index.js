@@ -298,8 +298,13 @@ const updateMouseView = async () => {
   }
 };
 
+let _original;
 const replaceShowMouseImage = () => {
-  const _original = hg.views.MouseCrownsView.showMouseImage;
+  if (_original) {
+    return;
+  }
+
+  _original = hg.views.MouseCrownsView.showMouseImage;
 
   hg.views.MouseCrownsView.showMouseImage = (element) => {
     const type = element.getAttribute('data-mouse-type');
