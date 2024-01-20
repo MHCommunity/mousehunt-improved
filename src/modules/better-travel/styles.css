@@ -344,3 +344,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* Fix it so that the icon is clickable */
+.mousehuntHud-environmentName {
+  padding-top: 0;
+  margin-top: 29px;
+}
