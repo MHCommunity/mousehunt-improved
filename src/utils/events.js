@@ -532,6 +532,11 @@ const onNavigation = (callback, options = {}) => {
     const forceCurrentTab = e.page_arguments.tab;
     const forceCurrentSubtab = e.page_arguments.sub_tab;
 
+    if (bypassMatch) {
+      callback();
+      return;
+    }
+
     if (isCurrentPage(page, tab, subtab, getCurrentPage(), forceCurrentTab, forceCurrentSubtab)) {
       callback();
     }
