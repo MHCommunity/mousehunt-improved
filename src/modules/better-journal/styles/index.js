@@ -37,6 +37,7 @@ import locationHalloween from './custom-entries/location/halloween.css';
 import locationLabyrinth from './custom-entries/location/labyrinth.css';
 import locationToxicSpill from './custom-entries/location/toxic-spill.css';
 import locationVrift from './custom-entries/location/vrift.css';
+import locationWwrift from './custom-entries/location/wwrift.css';
 import mouseGlazy from './custom-entries/mouse/glazy.css';
 import mouseStuckSnowball from './custom-entries/mouse/stuck-snowball.css';
 
@@ -75,6 +76,7 @@ const main = () => {
     locationLabyrinth,
     locationToxicSpill,
     locationVrift,
+    locationWwrift,
     mouseGlazy,
     mouseStuckSnowball,
   ];
