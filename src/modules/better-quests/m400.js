@@ -1,6 +1,4 @@
-import { addStyles, getCurrentLocation, makeElement, onNavigation } from '@utils';
-
-import styles from './styles.css';
+import { getCurrentLocation, makeElement, onNavigation } from '@utils';
 
 import locations from '@data/m400-locations.json';
 
@@ -44,7 +42,8 @@ const renderButton = (location) => {
   title.append(button);
 };
 
-const m400 = () => {
+const main = () => {
+  console.log('Running M400 helper'); // eslint-disable-line no-console
   const questTitle = document.querySelector('.campPage-quests-title');
   if (! questTitle) {
     return;
@@ -70,8 +69,7 @@ const m400 = () => {
   const taskNames = document.querySelectorAll('.campPage-quests-objective-task');
   if (taskNames) {
     taskNames.forEach((task) => {
-      const newText = task.innerText.replaceAll('Collect 1 Piece of M400 Intel', 'Collect M400 Intel');
-      console.log(`Replacing ${task.innerText} with ${newText}`); // eslint-disable-line no-console
+      const newText = task.innerText.replaceAll('Collect 1 Piece of M400 Intel', 'Collect Intel');
       task.innerText = newText;
     });
   }
@@ -119,11 +117,9 @@ const m400 = () => {
  * Initialize the module.
  */
 export default async () => {
-  addStyles(styles);
+  main();
 
-  m400();
-
-  onNavigation(m400, {
+  onNavigation(main, {
     page: 'camp',
   });
 };

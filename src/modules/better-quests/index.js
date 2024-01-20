@@ -2,10 +2,13 @@ import {
   addStyles,
   getCurrentSubtab,
   getCurrentTab,
+  getSetting,
   makeElement,
   onNavigation,
   onOverlayChange
 } from '@utils';
+
+import settings from './settings';
 
 import m400 from './m400';
 import styles from './styles.css';
@@ -72,7 +75,7 @@ const addQuestTabEventListener = () => {
   // Add an observer to the quest tab content.
   const observer = new MutationObserver(() => {
     updateObjectiveFooterDisplay();
-    m400();
+    m400IfEnabled();
   });
 
   observer.observe(questTabContent, { childList: true });
@@ -326,6 +329,14 @@ const checkForQuestSmash = () => {
   app.pages.InventoryPage.useItem(assignment);
 };
 
+const m400IfEnabled = () => {
+  if (! getSetting('better-quests-m400-helper', true)) {
+    return;
+  }
+
+  m400();
+};
+
 const main = () => {
   const activate = () => {
     addQuestTabEventListener();
@@ -333,7 +344,7 @@ const main = () => {
     checkForQuestSmash();
   };
 
-  m400();
+  m400IfEnabled();
 
   // Add our event listener and add the quests tab.
   activate();
@@ -370,5 +381,6 @@ export default {
   type: 'better',
   default: true,
   description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and adds a helper for the M400 assignments.',
-  load: init
+  load: init,
+  settings,
 };
