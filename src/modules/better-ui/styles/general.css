@@ -373,3 +373,12 @@ input.itemView-action-convert-quantity {
   display: block;
   margin-top: 35px;
 }
+
+/* journal selector preview */
+.journalThemeSelectorView-preview .journalThemeSelectorView-preview-details {
+  display: none;
+}
+
+.journalThemeSelectorView-preview .journal > .content {
+  padding: 5px 10px !important;
+}
