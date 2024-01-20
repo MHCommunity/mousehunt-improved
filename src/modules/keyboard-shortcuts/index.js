@@ -463,7 +463,7 @@ let isEditing = false;
 const listenForKeypresses = () => {
   // If the help popup is closed, then listen for keypresses, unless it's inside an input or textarea or something like that. When a key is pressed, check if it's one of the shortcuts and if so, run the action.
   document.addEventListener('keydown', (event) => {
-    if (isHelpPopupOpen() || isEditing) {
+    if (isHelpPopupOpen() || isEditing || user.has_puzzle) {
       return;
     }
 
