@@ -1,7 +1,3 @@
-.notificationMessageList .message img.item {
-  border: none !important;
-}
-
 .giftSelectorView-inbox-gift-thumb .itemImage,
 .giftSelectorView-inbox-giftRow.paidgift .giftSelectorView-inbox-gift-thumb .itemImage,
 .giftSelectorView-claimableGift-itemContainer .itemImage,
@@ -9,8 +5,63 @@
 .valourRiftPopupClaim-lootLog .itemImage,
 .valourRiftPopupClaim-cacheLoot-image,
 .MHCheckoutCartTableView-reward-image,
-.MHCheckoutCartTableView .trapImageView {
+.MHCheckoutCartTableView .trapImageView,
+.labyrinthHUD-confirmItem,
+.travelPage-map-pieces-detail-image img,
+.halloweenBoilingCauldronRecipeView-thumb,
+.forewordFarmHarvestBin-itemImage.itemImage,
+.campPage-trap-armedItem-empty  {
   box-shadow: none;
+}
+
+.springHuntHUD-dialog-item-image .itemImage.large,
+.springHuntHUD-dialog-item-image .floatingIslandsAirship,
+.MiniEventBigJackPopup-block-item-image,
+.forewordFarmHarvestBin-itemImage.itemImage,
+.marketplaceView-itemImage,
+.mousehuntHud-userStat.bait .icon,
+.itemView-thumbnail {
+  background-color: transparent;
+}
+
+.springHuntHUD-dialog-item-image,
+.journal .entry.convertible_open img,
+.MiniEventGiveawayCampHUD-dialog-item .itemImage,
+.journal .entry.craft.item img,
+.itemPurchaseView-container.apothecary .itemPurchaseView-image,
+.marketplaceView-itemImage,
+.itemView-thumbnail,
+.campPage-trap-armedItem.bait .campPage-trap-armedItem-image,
+.campPage-trap-armedItem-image {
+  border: none;
+}
+
+.notificationMessageList .message img.item {
+  border: none !important;
+}
+
+.campPage-trap-armedItem-empty {
+  background: none;
+}
+
+.treasureMapDialogView.acknowledge .treasureMapDialogView-highlightItem .itemImage,
+.convertibleOpenView-item-image {
+  background-size: cover;
+}
+
+.marketplaceView-item-image,
+.itemImage,
+.campPage-trap-armedItem.bait .campPage-trap-armedItem-image,
+.campPage-trap-armedItem-image {
+  background-size: 100%;
+}
+
+.MHCheckout-featuredItem-image.large {
+  background-size: 100px;
+}
+
+.campPage-trap-armedItem.skin .campPage-trap-armedItem-empty {
+  color: transparent;
 }
 
 .mousehuntHud-userStat .icon {
@@ -18,30 +69,6 @@
   height: 27px;
   border: none;
   box-shadow: none;
-}
-
-.campPage-trap-armedItem-empty {
-  background: none;
-  box-shadow: none;
-}
-
-.campPage-trap-armedItem.bait .campPage-trap-armedItem-image,
-.campPage-trap-armedItem-image {
-  background-size: 100%;
-  border: none;
-}
-
-.campPage-trap-armedItem.skin .campPage-trap-armedItem-empty {
-  color: transparent;
-}
-
-.mousehuntHud-userStat.bait .icon {
-  background-color: transparent;
-}
-
-.itemView-thumbnail {
-  background-color: transparent;
-  border: none;
 }
 
 .inventoryPage-confirmPopup-itemRow-image .itemImage img {
@@ -74,28 +101,8 @@
   box-shadow: none;
 }
 
-.marketplaceView-itemImage {
-  background-color: transparent;
-  border: none;
-}
-
-.MHCheckout-featuredItem-image.large {
-  background-size: 100px;
-}
-
-.journal .entry.convertible_open img,
-.MiniEventGiveawayCampHUD-dialog-item .itemImage,
-.journal .entry.craft.item img {
-  border: none;
-}
-
-/* SEH */
-.springHuntHUD-dialog-item-image {
-  border: none;
-}
-
 .springEggHuntCampHUD-charm-thumb.active {
-  background-color: #79a32c87;
+  background-color: rgb(121 163 44 / 53%);
 }
 
 .springEggHuntCampHUD-charm-thumb {
@@ -103,37 +110,8 @@
   border: none;
 }
 
-/* SEH Choco shop item background */
-.springHuntHUD-dialog-item-image .itemImage.large,
-.springHuntHUD-dialog-item-image .floatingIslandsAirship {
-  background-color: transparent;
-}
-
-.treasureMapDialogView.acknowledge .treasureMapDialogView-highlightItem .itemImage,
-.convertibleOpenView-item-image {
-  background-size: cover;
-}
-
 .marketplaceView-itemImage img {
   border-radius: 0;
-}
-
-/* Halloween */
-.halloweenBoilingCauldronRecipeView-thumb {
-  box-shadow: none;
-}
-
-.itemPurchaseView-container.apothecary .itemPurchaseView-image {
-  border: none;
-}
-
-.forewordFarmHarvestBin-itemImage.itemImage {
-  background-color: transparent;
-  box-shadow: none;
-}
-
-.travelPage-map-pieces-detail-image img {
-  box-shadow: none;
 }
 
 /* Map pieces titles */
@@ -166,12 +144,8 @@
 }
 
 .itemImage img {
-  width: 80px;
-}
-
-.marketplaceView-item-image,
-.itemImage {
-  background-size: 100%;
+  width: auto;
+  max-width: 80px;
 }
 
 .journal .relicHunter_slayer_aura_relic_bonus {
@@ -186,8 +160,4 @@
 
 .adventureBookPopup-title.active .adventureBookPopup-title-icon {
   left: 5px;
-}
-
-.MiniEventBigJackPopup-block-item-image {
-  background-color: transparent;
 }
