@@ -18,14 +18,14 @@
   font-style: italic;
   font-weight: 400;
   line-height: 15px;
-  color: #373737;
+  color: #333;
   background: transparent;
   border-radius: 0;
 }
 
 .mh-dark-mode .adventureBookBanner-container {
   color: #000;
-  background-color: #9b9b9b;
+  background-color: #999;
   border: 1px solid #d3cecb;
   border-radius: 3px;
   box-shadow: inset -1px 1px 3px 0 #888;

@@ -52,7 +52,7 @@
 }
 
 .brift-ui .mist-display.state-yellow {
-  background: radial-gradient(circle, #fff4a9 10%, #ffea5d 50%);
+  background: radial-gradient(circle, #fff4a9 10%, #f4e830 50%);
 }
 
 .brift-ui .mist-display.state-green {
@@ -215,6 +215,6 @@
 .riftBurroughsHud .mistQuantity {
   font-size: 12px;
   font-weight: 900;
-  color: #3a3a3a;
+  color: #3d3d3d;
   text-shadow: 1px 1px 2px #f4f4f4;
 }

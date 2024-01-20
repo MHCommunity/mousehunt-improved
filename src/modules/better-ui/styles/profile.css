@@ -445,7 +445,7 @@ a.friendsProfileView-randomFriend {
   float: none !important;
   width: 40px !important;
   height: 40px !important;
-  filter: drop-shadow(2px 2px 2px #eae1c6);
+  filter: drop-shadow(2px 2px 2px #e9e1c6);
   background-size: cover !important;
 }
 
@@ -491,7 +491,7 @@ a.friendsProfileView-randomFriend {
 }
 
 .hunterProfileItemsView-categoryContent-item.uncollected .hunterProfileItemsView-categoryContent-item-padding {
-  background-color: #ededed;
+  background-color: #eee;
 }
 
 .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamName {

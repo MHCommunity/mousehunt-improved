@@ -120,7 +120,7 @@
   justify-content: center;
   padding: 2px 0;
   content: "edit";
-  background-color: #eeee;
+  background-color: rgb(238 238 238 / 93%);
   border: 1px solid #585858;
 }
 
@@ -136,7 +136,7 @@
 
 .mh-improved-favorite-setups-component-picker .prefix,
 .mh-improved-favorite-setups-component-picker .content {
-  background-color: #f5f3eb;
+  background-color: #f6f3eb;
 }
 
 .mh-improved-favorite-setups-component-picker .content .content {

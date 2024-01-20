@@ -548,8 +548,8 @@ img.pointsMouseIcon {
   padding: 5px;
   text-align: center;
   white-space: nowrap;
-  background-color: #f1f1f1;
-  border: 1px solid #3c3c3c;
+  background-color: #eee;
+  border: 1px solid #3d3d3d;
   border-radius: 5px;
   box-shadow:
     1px 1px 3px 0 #191919,
@@ -575,7 +575,7 @@ img.pointsMouseIcon {
 }
 
 .tournamentPage-tournamentRow:hover {
-  background-color: #ececec;
+  background-color: #eee;
 }
 
 .tournamentPage-tournamentRow.signed_up::before {

@@ -154,7 +154,7 @@
 .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-trap-slot-quantity {
   bottom: 0;
   width: 100%;
-  background-color: #ffffffe8;
+  background-color: rgb(255 255 255 / 90%);
   border-color: #d3cecb;
   border-right: none;
   border-bottom: none;

@@ -3,7 +3,7 @@
   line-height: 18px;
   vertical-align: middle;
   filter: drop-shadow(0 0 1px #000);
-  -webkit-text-stroke: 1px #ffffff82;
+  -webkit-text-stroke: 1px rgb(255 255 255 / 50%);
 }
 
 span.forewordFarmPlotView-plot-progress-catchText {
@@ -42,7 +42,7 @@ span.forewordFarmPlotView-plot-progress-catchText {
   margin-left: 64px;
   font-size: 12px;
   color: #2c4e26 !important;
-  text-shadow: 1px 1px 1px #d1d1d1;
+  text-shadow: 1px 1px 1px #d1d0cf;
 }
 
 .forewordFarmPlotView-plot-queue-item-spacer {
@@ -58,7 +58,7 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
   top: -12px;
   right: -4px;
   padding: 2px;
-  background-color: #febeb8;
+  background-color: #ffbfbf;
   box-shadow: 0 0 3px -1px #000 inset;
 }
 
@@ -81,7 +81,7 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 }
 
 .forewordFarmPlotView-plot-queue-item:hover a.forewordFarmPlotView-plot-queue-cancelButton {
-  background-color: #febeb8;
+  background-color: #ffbfbf;
 }
 
 .folkloreForestRegionView-fuel-quantity.quantity {
@@ -179,7 +179,7 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 }
 
 .forewordFarmPlotView.showPlantIconHighlight .forewordFarmPlotView-plot.highlight .forewordFarmPlotView-plot-progress-plantIcon.highlight {
-  box-shadow: 0 0 1px 2px #6adf4fd4;
+  box-shadow: 0 0 1px 2px rgb(106 223 79 / 83%);
 }
 
 .forewordFarmHarvestBin-itemImage .quantity {

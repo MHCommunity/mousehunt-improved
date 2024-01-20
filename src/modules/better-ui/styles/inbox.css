@@ -87,7 +87,7 @@
 
 #messengerUINotification .notificationMessageList .tab {
   min-height: 55vh;
-  background-color: #f7f7f7;
+  background-color: #f9f9f9;
 }
 
 .mh-dark-mode #messengerUINotification .notificationMessageList .tab {
@@ -95,7 +95,7 @@
 }
 
 div#messengerUINotification {
-  background-color: #f7f7f7 !important;
+  background-color: #f9f9f9 !important;
 }
 
 #messengerUINotification .tabs a:hover {
@@ -126,7 +126,7 @@ div#messengerUINotification {
 
 #messengerUINotification .messengerUINotificationClose:hover {
   color: #fff;
-  background-color: #e13d3d;
+  background-color: #e03a3a;
 }
 
 /* mini journal close */
@@ -201,7 +201,7 @@ div#messengerUINotification {
 .journal.jsingle .close a:hover::after,
 .journal.jsingle .close a:focus::after {
   color: #fff;
-  background-color: #e13d3d;
+  background-color: #e03a3a;
 }
 
 .giftSelectorView-inbox-footer-label {

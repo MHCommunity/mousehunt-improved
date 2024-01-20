@@ -108,7 +108,7 @@
 }
 
 .pollutionOutbreakHUD-pollution-title-block-progressBar {
-  background-color: #469d30f2;
+  background-color: rgb(70 157 48 / 95%);
   box-shadow: -3px 2px 1px 0 #6a6969 inset;
 }
 
@@ -117,7 +117,7 @@
 }
 
 .pollutionOutbreakHUD-pollution-title-block.complete .pollutionOutbreakHUD-pollution-title-block-name {
-  color: #d1d1d1;
+  color: #d1d0cf;
 }
 
 .pollutionOutbreakHUD-pollution-title-block.active .pollutionOutbreakHUD-pollution-title-block-progressBar {
@@ -398,7 +398,7 @@ a.pollutionOutbreakHUD-refineButton:hover {
   text-shadow: 1px 1px 1px #000;
   vertical-align: middle;
   content: "";
-  background: linear-gradient(180deg, #1d1d1d 0%, #232323 100%);
+  background: linear-gradient(180deg, #1d1d1d 0%, #242424 100%);
   border-radius: 10px 10px 0 0;
   box-shadow:
     0 1px 0 0 #9b9d9d,

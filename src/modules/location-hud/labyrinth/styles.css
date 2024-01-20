@@ -455,7 +455,7 @@ a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
 }
 
 .labyrinthHUD-door-image::after {
-  filter: drop-shadow(0 1px 1px #222);
+  filter: drop-shadow(0 1px 1px #242424);
   transform: scale(1.5);
 }
 

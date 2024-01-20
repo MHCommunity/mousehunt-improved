@@ -27,7 +27,7 @@
 
 .regionWrapper {
   margin-bottom: 5px;
-  border: 1px solid #c5c5c5;
+  border: 1px solid #c6c6c6;
 }
 
 .regionName {
@@ -36,7 +36,7 @@
   font-size: 12px;
   font-weight: 900;
   background-color: #f4f7fc;
-  border-bottom: 1px solid #c5c5c5;
+  border-bottom: 1px solid #c6c6c6;
 }
 
 .regionName:first-child {
@@ -58,7 +58,7 @@
 }
 
 .locationWrapper:nth-child(even) {
-  background-color: #f1f1f1;
+  background-color: #eee;
 }
 
 .locationImageWrapper {
@@ -191,7 +191,7 @@ img.locationImage {
   align-items: stretch;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 1px 1px -1px #7d7d7d;
+  box-shadow: 0 1px 1px -1px #7e7e7e;
 }
 
 .mh-improved-location-refresh-popup-progress {

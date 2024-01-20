@@ -127,7 +127,7 @@
   width: 231px;
   height: 15px;
   padding-right: 7px;
-  color: #ebebeb;
+  color: #eee;
   background-color: #4b3d30;
   border-color: #65625f;
   border-radius: 10px 10px 0 0;
@@ -169,7 +169,7 @@
 }
 
 .riftBristleWoodsHUD-chamberSpecificText.acolyte_chamber {
-  color: #eddcbc;
+  color: #e8dbb8;
 }
 
 a.riftBristleWoodsHUD-acolyteChamber-retreat.mousehuntActionButton.tiny.cancel {
