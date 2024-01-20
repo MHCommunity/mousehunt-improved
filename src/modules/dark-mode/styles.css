@@ -30,10 +30,6 @@
   color: #0c5271;
 }
 
-.mh-dark-mode .item_set {
-  background-color: var(--mhdm-black);
-}
-
 .mh-dark-mode .itemPurchaseView-action-goldGost {
   background-color: #0e0e0e;
   border-color: #242424;
