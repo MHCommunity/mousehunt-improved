@@ -19,16 +19,23 @@ import rankUp from './custom-entries/rank-up.css';
 import socialGift from './custom-entries/social-gift.css';
 import tournaments from './custom-entries/tournaments.css';
 
+// Bases.
 import baseAlchemistCookbook from './custom-entries/base/alchemist-cookbook.css';
+
+// Catches.
 import catchBonus from './custom-entries/catch/bonus.css';
 import catchFailure from './custom-entries/catch/failure.css';
 import catchLucky from './custom-entries/catch/lucky.css';
 import catchPrize from './custom-entries/catch/prize.css';
+
+// Charms.
 import charmGilded from './custom-entries/charm/gilded.css';
 import charmRiftVacuum from './custom-entries/charm/rift-vacuum.css';
 import charmTorch from './custom-entries/charm/torch.css';
 import charmUltimate from './custom-entries/charm/ultimate.css';
 import charmUnstable from './custom-entries/charm/unstable.css';
+
+// Locations.
 import locationBrift from './custom-entries/location/brift.css';
 import locationBwRift from './custom-entries/location/bwrift.css';
 import locationFolkloreForest from './custom-entries/location/folklore-forest.css';
@@ -38,6 +45,8 @@ import locationLabyrinth from './custom-entries/location/labyrinth.css';
 import locationToxicSpill from './custom-entries/location/toxic-spill.css';
 import locationVrift from './custom-entries/location/vrift.css';
 import locationWwrift from './custom-entries/location/wwrift.css';
+
+// Mice.
 import mouseGlazy from './custom-entries/mouse/glazy.css';
 import mouseStuckSnowball from './custom-entries/mouse/stuck-snowball.css';
 
