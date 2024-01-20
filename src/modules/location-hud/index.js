@@ -1,5 +1,6 @@
 // Location HUD improvements.
 import {
+  addStyles,
   debug,
   getCurrentLocation,
   getSetting,
@@ -9,6 +10,8 @@ import {
 } from '@utils';
 
 import settings from './settings';
+
+import styles from './styles.css';
 
 // Locations
 /* eslint-disable camelcase */
@@ -191,6 +194,7 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
+  addStyles(styles);
   onNavigation(main);
   onEvent('travel_complete', main);
 };
