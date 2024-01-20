@@ -37,7 +37,7 @@
 #overlayPopup .giftSelectorView-scroller {
   height: auto;
   min-height: 300px;
-  max-height: 75vh;
+  max-height: 65vh;
 }
 
 #overlayPopup.giftSelectorViewPopup {
