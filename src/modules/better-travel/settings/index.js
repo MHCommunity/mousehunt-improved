@@ -37,4 +37,12 @@ export default function (module) {
     'Open the travel window to browse locations to travel to.',
     module
   );
+
+  addMhuiSetting(
+    'better-travel-travel-window-environment-icon',
+    'Environment icon opens Travel Window',
+    true,
+    'Clicking on the environment icon will open the Travel Window.',
+    module
+  );
 }

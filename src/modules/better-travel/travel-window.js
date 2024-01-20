@@ -4,8 +4,10 @@ import {
   createPopup,
   debug,
   getCurrentLocation,
+  getSetting,
   isUserTitleAtLeast,
-  onDialogHide
+  onDialogHide,
+  onEvent
 } from '@utils';
 
 import { getData } from '@utils/data';
@@ -245,9 +247,24 @@ const makeMenuItem = () => {
   });
 };
 
+const addEnvironmentIconListener = () => {
+  const environmentIcon = document.querySelector('.mousehuntHud-environmentIcon');
+  if (! environmentIcon) {
+    return;
+  }
+
+  environmentIcon.addEventListener('click', (e) => {
+    openTravelWindow();
+  });
+};
+
 export default async () => {
   addStyles(styles);
   makeMenuItem();
+
+  if (getSetting('better-travel-travel-window-environment-icon', true)) {
+    addEnvironmentIconListener();
+  }
 
   onEvent('mh-improved-open-travel-window', openTravelWindow);
 
