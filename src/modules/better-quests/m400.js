@@ -38,6 +38,7 @@ const renderButton = (location) => {
     }
 
     app.pages.TravelPage.travel(clickedLocation);
+    hg.utils.PageUtil.setPage('Camp', null, () => {});
   });
 
   title.append(button);
@@ -66,14 +67,18 @@ const m400 = () => {
     return;
   }
 
-  // get the last task that doesn't have the 'locked' or 'complete' class.
-  let last = null;
-  allTasks.forEach((task) => {
-    if (task.classList.contains('locked') || task.classList.contains('complete')) {
-      return;
-    }
+  const taskNames = document.querySelectorAll('.campPage-quests-objective-task');
+  if (taskNames) {
+    taskNames.forEach((task) => {
+      const newText = task.innerText.replaceAll('Collect 1 Piece of M400 Intel', 'Collect M400 Intel');
+      console.log(`Replacing ${task.innerText} with ${newText}`); // eslint-disable-line no-console
+      task.innerText = newText;
+    });
+  }
 
-    last = task;
+  // get the last task that doesn't have the 'locked' or 'complete' class.
+  const last = [...allTasks].reverse().find((task) => {
+    return ! task.classList.contains('locked') && ! task.classList.contains('complete');
   });
 
   if (! last) {
