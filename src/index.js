@@ -26,10 +26,16 @@ if (getSetting('error-reporting', true)) {
     dsn: 'https://c0e7b72f2611e14c356dba1923cedf6e@o4506582061875200.ingest.sentry.io/4506583459233792',
     maxBreadcrumbs: 50,
     debug: false,
-    release: `mousehunt-improved-${mhImprovedPlatform}@${mhImprovedVersion}`,
+    release: `mousehunt-improved@${mhImprovedVersion}`,
+    environment: mhImprovedPlatform,
     initialScope: {
-      version: mhImprovedVersion,
-      platform: mhImprovedPlatform,
+      tags: {
+        platform: mhImprovedPlatform,
+        version: mhImprovedVersion,
+      },
+      user: {
+        id: user.unique_hash,
+      },
     },
   });
 }
@@ -92,6 +98,8 @@ const loadModules = async () => {
 
   // Load the modules.
   const loadedModules = [];
+  const notLoadedModules = [];
+  const skippedModules = [];
   let modulesDebug = [];
 
   const load = [];
@@ -100,6 +108,8 @@ const loadModules = async () => {
       const overrideStopLoading = getFlag(`no-${submodule.id}`);
       if (overrideStopLoading) {
         debuglite(`Skipping ${submodule.name} due to override flag.`);
+        skippedModules.push(submodule.id);
+
         continue;
       }
 
@@ -117,11 +127,22 @@ const loadModules = async () => {
         } catch (error) {
           debug(`Error loading "${submodule.id}"`, error);
         }
+      } else {
+        notLoadedModules.push(submodule.id);
       }
     }
 
     debuglog('loader', `Loaded ${modulesDebug.length} ${module.id} modules`, modulesDebug);
     modulesDebug = [];
+  }
+
+  if (getSetting('error-reporting', true)) {
+    Sentry.setContext('modules', {
+      loaded: loadedModules,
+      not_loaded: notLoadedModules,
+      skipped: skippedModules,
+      feature_flags: getSetting('override-flags', ''),
+    });
   }
 
   await Promise.all(load);
