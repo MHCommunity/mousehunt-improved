@@ -264,29 +264,25 @@ const makeTooltip = (options) => {
 };
 
 const makePage = (content) => {
-  const setContent = (data) => {
-      console.log('setContent', data);
-      const pageContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
-      if (!pageContainer) {
-          return;
-      }
+  const setContent = () => {
+    const pageContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
+    if (! pageContainer) {
+      return;
+    }
 
-      if (typeof content === 'function') {
-          console.log('setting content as function');
-          pageContainer.innerHTML = '';
-          content(pageContainer);
-      } else if (typeof content === 'object' && content instanceof HTMLElement) {
-          console.log('setting content as HTMLElement');
-          pageContainer.innerHTML = '';
-          pageContainer.appendChild(content);
-      } else {
-          console.log('defaulting to setting content as string');
-          pageContainer.innerHTML = content;
-      }
-  }
+    if (typeof content === 'function') {
+      pageContainer.innerHTML = '';
+      content(pageContainer);
+    } else if (typeof content === 'object' && content instanceof HTMLElement) {
+      pageContainer.innerHTML = '';
+      pageContainer.append(content);
+    } else {
+      pageContainer.innerHTML = content;
+    }
+  };
 
   hg.utils.PageUtil.setPage('PrivacyPolicy', {}, setContent, setContent);
-}
+};
 
 export {
   createPopup,
@@ -295,5 +291,5 @@ export {
   makeLink,
   makeFavoriteButton,
   makeTooltip,
-  makePage,
+  makePage
 };
