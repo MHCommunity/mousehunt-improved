@@ -11,6 +11,13 @@ const init = async () => {
       }
     }, 500);
   }, 'dailyRewardPopup');
+
+  if (activejsDialog) {
+    const attrs = activejsDialog.getAttributes();
+    if (attrs && attrs.className && attrs.className === 'dailyRewardPopup') {
+      activejsDialog.hide();
+    }
+  }
 };
 
 export default {
