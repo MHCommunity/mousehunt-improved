@@ -10,6 +10,11 @@ const clickMinLuck = () => {
 };
 
 const gotoPage = (page) => {
+  if ('wiki' === page.toLowerCase()) {
+    eventRegistry.doEvent('mh-improved-open-wiki');
+    return;
+  }
+
   hg.utils.PageUtil.setPage(page);
 };
 
@@ -58,6 +63,14 @@ const disarmCharm = () => {
   hg.utils.TrapControl.disarmTrinket().go();
 };
 
+const openTravelWindow = () => {
+  eventRegistry.doEvent('mh-improved-open-travel-window');
+};
+
+const travelToPreviousLocation = () => {
+  eventRegistry.doEvent('mh-improved-goto-previous-location');
+};
+
 export {
   clickMinLuck,
   disarmCharm,
@@ -69,5 +82,7 @@ export {
   openMap,
   openMapInvites,
   openMarketplace,
-  showTem
+  showTem,
+  openTravelWindow,
+  travelToPreviousLocation
 };

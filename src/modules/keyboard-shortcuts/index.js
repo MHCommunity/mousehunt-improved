@@ -21,7 +21,9 @@ import {
   openMap,
   openMapInvites,
   openMarketplace,
-  showTem
+  showTem,
+  openTravelWindow,
+  travelToPreviousLocation
 } from './actions';
 
 import styles from './styles.css';
@@ -96,6 +98,12 @@ const getBaseShortcuts = () => {
       category: 'navigation',
     },
     {
+      id: 'goto-wiki',
+      description: 'Wiki',
+      action: () => gotoPage('Wiki'),
+      category: 'navigation',
+    },
+    {
       id: 'goto-marketplace',
       description: 'Open the Marketplace',
       action: openMarketplace,
@@ -125,6 +133,12 @@ const getBaseShortcuts = () => {
       key: 'i',
       description: 'Open your Map Invites',
       action: openMapInvites,
+      category: 'open-dialog',
+    },
+    {
+      id: 'open-travel-window',
+      description: 'Open the Travel Window',
+      action: openTravelWindow,
       category: 'open-dialog',
     },
     {
@@ -180,6 +194,12 @@ const getBaseShortcuts = () => {
       action: disarmCharm,
       category: 'trap-setup',
     },
+    {
+      id: 'travel-to-previous-location',
+      description: 'Travel to previous location',
+      action: travelToPreviousLocation,
+      category: 'misc',
+    }
   ];
 
   if (hasMiniCRE()) {
