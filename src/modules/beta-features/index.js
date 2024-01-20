@@ -4,7 +4,8 @@ import eventHorn from './modules/event-horn';
 import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
 import trollMode from './modules/troll-mode';
-import twitter from './modules/twitter';
+
+import socialNoop from '@/shared/social';
 
 /**
  * Initialize the module.
@@ -12,7 +13,7 @@ import twitter from './modules/twitter';
 const init = async () => {
   const defaultDisabledFeatures = [
     { id: 'lol-gottem', load: trollMode },
-    { id: 'twitter', load: twitter },
+    { id: 'twitter', load: socialNoop },
     { id: 'birthday-horn', load: () => eventHorn('birthday') },
     { id: 'halloween-horn', load: () => eventHorn('halloween') },
     { id: 'great-winter-hunt-horn', load: () => eventHorn('greatWinterHunt') },

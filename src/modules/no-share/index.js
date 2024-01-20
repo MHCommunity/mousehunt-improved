@@ -2,11 +2,15 @@ import { addStyles } from '@utils';
 
 import styles from './styles.css';
 
+import socialNoop from '@/shared/social';
+
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles(styles);
+
+  socialNoop();
 };
 
 export default {

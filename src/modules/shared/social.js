@@ -1,12 +1,13 @@
-/**
- * Initialize the module.
- */
-export default async () => {
+export default () => {
   window.twttr = {
     widgets: {
       load: () => {},
       createShareButton: () => {},
     },
+  };
+
+  window.FB = {
+    ui: () => {},
   };
 
   class SocialLink {
