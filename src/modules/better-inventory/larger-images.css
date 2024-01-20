@@ -1,0 +1,12 @@
+/* bigger images for small items */
+.inventoryPage-item.small {
+  width: 19%;
+  height: 125px;
+  margin-bottom: 10px;
+}
+
+.inventoryPage-item.small .itemImage,
+.inventoryPage-item.small .itemImage img {
+  width: 80px;
+  height: 80px;
+}

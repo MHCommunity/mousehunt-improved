@@ -14,6 +14,8 @@ import recipes from './recipes';
 import settings from './settings';
 
 import fullWidthStyles from './full-width-item.css';
+import largerImagesStyles from './larger-images.css';
+
 import styles from './styles.css';
 
 const setOpenQuantityOnClick = (attempts = 0) => {
@@ -160,18 +162,14 @@ const main = () => {
   recipes();
 };
 
-const maybeAddFullWidthStyles = () => {
-  const isFullWidth = getSetting('better-inventory-one-item-per-row', true);
-  return isFullWidth ? fullWidthStyles : '';
-};
-
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles([
     styles,
-    maybeAddFullWidthStyles()
+    getSetting('better-inventory-one-item-per-row', true) ? fullWidthStyles : '',
+    getSetting('better-inventory-larger-images', true) ? largerImagesStyles : '',
   ]);
 
   main();

@@ -510,14 +510,7 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
   margin-right: 5px;
 }
 
-/* bigger images for small items */
-.inventoryPage-item.small {
-  width: 24%;
-  height: 140px;
-}
-
-.inventoryPage-item.small .itemImage,
-.inventoryPage-item.small .itemImage img {
-  width: 90px;
-  height: 90px;
+.inventoryPage-item.small .inventoryPage-item-margin {
+  margin-bottom: 10px;
+  box-shadow: 0 4px 10px -10px #000;
 }

@@ -13,4 +13,12 @@ export default function (module) {
     'Makes each item full-width.',
     module
   );
+
+  addMhuiSetting(
+    'better-inventory-larger-images',
+    'Show larger images',
+    true,
+    'Increases the size of item images for smaller items, such as baits or collectibles.',
+    module
+  );
 }
