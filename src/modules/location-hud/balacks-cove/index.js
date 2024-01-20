@@ -39,7 +39,7 @@ const updateClosingTime = () => {
   } else if (partialrotation >= 17 && partialrotation < 17.66666) {
     // currently high, which means its (40 minutes - current time) until mid tide again, then 1 hour after that until low tide
     const closes = 0.66666 - (partialrotation - 17);
-    timeLeftText = getClosingtimeLeftTextText(closes, 'Low Tide', 60, 'Mid Tide');
+    timeLeftText = getClosingText(closes, 'Low Tide', 60, 'Mid Tide');
   }
 
   const timeLeftEl = document.createElement('div');
