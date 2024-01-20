@@ -34,129 +34,151 @@ const getBaseShortcuts = () => {
       shiftKey: true,
       description: 'Help',
       action: showHelpPopup,
-      type: 'hidden',
+      category: 'hidden',
     },
     {
       id: 'goto-travel',
       key: 't',
       description: 'Go to Travel',
       action: () => gotoPage('Travel'),
+      category: 'navigation',
     },
     {
       id: 'goto-camp',
       key: 'j',
       description: 'Go to Camp',
       action: () => gotoPage('Camp'),
+      category: 'navigation',
     },
     {
       id: 'goto-friends',
       key: 'f',
       description: 'Go to Friends',
       action: () => gotoPage('Friends'),
+      category: 'navigation',
     },
     {
       id: 'goto-shops',
       key: 's',
       description: 'Go to Shops',
       action: () => gotoPage('Shops'),
+      category: 'navigation',
     },
     {
       id: 'goto-profile',
       key: 'p',
       description: 'Go to your Profile',
       action: () => gotoPage('HunterProfile'),
+      category: 'navigation',
     },
     {
       id: 'goto-send-supplies',
       description: 'Go to Send Supplies',
       action: () => gotoPage('SupplyTransfer'),
+      category: 'navigation',
     },
     {
       id: 'goto-scoreboards',
       description: 'Go to Scoreboards',
       action: () => gotoPage('Scoreboards'),
+      category: 'navigation',
     },
     {
       id: 'goto-team',
       description: 'Go to Team',
       action: () => gotoPage('Team'),
+      category: 'navigation',
     },
     {
       id: 'goto-tournaments',
       description: 'Go to Tournaments',
       action: () => gotoPage('Tournament'),
+      category: 'navigation',
     },
     {
       id: 'goto-marketplace',
       description: 'Open the Marketplace',
       action: openMarketplace,
+      category: 'open-dialog',
     },
     {
       id: 'open-inbox',
       description: 'Open the Inbox',
       action: openInbox,
+      category: 'open-dialog',
     },
     {
       id: 'open-gifts',
       description: 'Open the Gifts popup',
       action: openGifts,
+      category: 'open-dialog',
     },
     {
       id: 'open-map',
       key: 'm',
       description: 'Open Map',
       action: openMap,
+      category: 'open-dialog',
     },
     {
       id: 'open-map-invites',
       key: 'i',
       description: 'Open Map Invites',
       action: openMapInvites,
+      category: 'open-dialog',
     },
     {
       id: 'change-weapon',
       key: 'w',
       description: 'Change Weapon',
       action: () => openBlueprint('weapon'),
+      category: 'trap-setup',
     },
     {
       id: 'change-base',
       key: 'b',
       description: 'Change Base',
       action: () => openBlueprint('base'),
+      category: 'trap-setup',
     },
     {
       id: 'change-charm',
       key: 'r',
       description: 'Change Charm',
       action: () => openBlueprint('trinket'),
+      category: 'trap-setup',
     },
     {
       id: 'change-cheese',
       key: 'c',
       description: 'Change Cheese',
       action: () => openBlueprint('bait'),
+      category: 'trap-setup',
     },
     {
       id: 'change-skin',
       description: 'Change Trap Skin',
       action: () => openBlueprint('skin'),
+      category: 'trap-setup',
     },
     {
       id: 'show-tem',
       key: 'e',
       description: 'Show the <abbr title="Trap Effectiveness Meter">TEM</abbr>',
       action: showTem,
+      category: 'trap-setup',
     },
     {
       id: 'disarm-cheese',
       description: 'Disarm your Cheese',
       action: disarmCheese,
+      category: 'trap-setup',
     },
     {
       id: 'disarm-charm',
       description: 'Disarm your Charm',
       action: disarmCharm,
+      category: 'trap-setup',
     },
   ];
 
@@ -166,6 +188,7 @@ const getBaseShortcuts = () => {
       key: 'l',
       description: 'Open Mini CRE',
       action: clickMinLuck,
+      category: 'misc',
     });
   }
 
@@ -319,20 +342,70 @@ const showHelpPopup = () => {
 
   const shortcuts = getShortcuts();
   let innerContent = '';
-  shortcuts.forEach((shortcut) => {
-    if ('hidden' === shortcut.type) {
-      return;
-    }
 
-    innerContent += `<div class="mh-ui-keyboard-shortcut" data-shortcut-id="${shortcut.id}">
-    <div class="description">${shortcut.description}</div>
-    <div class="edit-controls">
-      <a class="clear">Clear</a>
-      <a class="reset">Reset</a>
-      <a class="edit">Edit</a>
-    </div>
-    <kbd>${getKeyForDisplay(shortcut)}</kbd>
-    </div>`;
+  const categories = [
+    {
+      id: 'navigation',
+      name: 'Page Navigation',
+      startOpen: true,
+    },
+    {
+      id: 'open-dialog',
+      name: 'Open Dialogs/Popups',
+      startOpen: true,
+    },
+    {
+      id: 'trap-setup',
+      name: 'Modify Trap Setup',
+      startOpen: false,
+    },
+    {
+      id: 'misc',
+      name: 'Miscellaneous',
+      startOpen: false,
+    },
+  ];
+
+  categories.forEach((category) => {
+    innerContent += `<details class="mh-ui-keyboard-shortcuts-popup-content-category" ${category.startOpen ? 'open' : ''}>
+      <summary>${category.name}</summary>
+      <div class="mh-ui-keyboard-shortcuts-popup-content-category-description">
+        ${category.description || ''}
+      </div>
+      <div class="mh-ui-keyboard-shortcuts-popup-content-category-list">`;
+
+    const categoryShortcuts = shortcuts.filter((s) => s.category === category.id);
+
+    // Sort the shortcuts by name.
+    categoryShortcuts.sort((a, b) => {
+      if (a.description < b.description) {
+        return -1;
+      }
+
+      if (a.description > b.description) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    categoryShortcuts.forEach((shortcut) => {
+      if ('hidden' === shortcut.category) {
+        return;
+      }
+
+      innerContent += `<div class="mh-ui-keyboard-shortcut" data-shortcut-id="${shortcut.id}">
+      <div class="description">${shortcut.description}</div>
+      <div class="edit-controls">
+        <a class="clear">Clear</a>
+        <a class="reset">Reset</a>
+        <a class="edit">Edit</a>
+      </div>
+      <kbd>${getKeyForDisplay(shortcut)}</kbd>
+      </div>`;
+    });
+
+    innerContent += '</div></details>';
   });
 
   const content = `<div class="mh-ui-keyboard-shortcuts-popup-content">

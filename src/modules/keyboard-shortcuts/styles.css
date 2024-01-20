@@ -2,10 +2,6 @@
   margin-bottom: 10px;
 }
 
-.mh-ui-keyboard-shortcuts-popup-content-list {
-  margin: 0 30px;
-}
-
 .mh-ui-keyboard-shortcut {
   display: flex;
   align-items: center;
@@ -21,21 +17,21 @@
 
 .mh-ui-keyboard-shortcut .description {
   flex-grow: 1;
+  font-size: 11px;
 }
 
 .mh-ui-keyboard-shortcut kbd {
-  width: 160px;
-  height: 15px;
+  width: 175px;
+  height: 11px;
   padding: 3px;
   font-family: monospace;
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
-  background-color: #f7f7f7;
+  background-color: #f9f9f9;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-shadow:
-    0 1px rgb(0 0 0 / 20%),
-    0 0 0 2px #fff inset;
+  box-shadow: 0 1px rgb(0 0 0 / 20%), 0 0 0 2px #fff inset;
+  white-space: nowrap;
 }
 
 .mh-ui-keyboard-shortcut .edit-controls {
@@ -46,14 +42,12 @@
   display: none;
 }
 
+.mh-ui-keyboard-shortcut .edit-controls .edit,
 .mh-ui-keyboard-shortcuts-popup-content.editing .mh-ui-keyboard-shortcut.editing .edit-controls a,
-.mh-ui-keyboard-shortcut:hover .edit-controls .reset,
 .mh-ui-keyboard-shortcut:focus .edit-controls .reset,
 .mh-ui-keyboard-shortcut:active .edit-controls .reset,
-.mh-ui-keyboard-shortcut:hover .edit-controls .edit,
 .mh-ui-keyboard-shortcut:focus .edit-controls .edit,
 .mh-ui-keyboard-shortcut:active .edit-controls .edit,
-.mh-ui-keyboard-shortcut:hover .edit-controls .clear,
 .mh-ui-keyboard-shortcut:focus .edit-controls .clear,
 .mh-ui-keyboard-shortcut:active .edit-controls .clear,
 .mh-ui-keyboard-shortcut.editing .edit-controls .edit {
@@ -87,9 +81,28 @@
 }
 
 .mh-ui-keyboard-shortcut.editing .description {
-  color: #125c99;
+  color: #3b5998;
 }
 
 .mh-ui-keyboard-shortcut.editing {
   background-color: #eff8ff;
+}
+
+.mh-ui-keyboard-shortcuts-popup-content-category summary {
+  padding: 10px;
+  font-size: 14px;
+  background-color: #eee;
+}
+
+.mh-ui-keyboard-shortcuts-popup-content-category {
+  margin: 10px 0;
+  border: 1px solid #929292;
+}
+
+.mh-ui-keyboard-shortcut:nth-child(even) {
+  background-color: #eee;
+}
+
+.mh-ui-keyboard-shortcuts-popup-content-category-list {
+  border-top: 1px solid #929292;
 }
