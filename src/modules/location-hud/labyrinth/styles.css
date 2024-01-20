@@ -200,13 +200,15 @@
 
 .labyrinthHUD-door.mh-ui-labyrinth-highlight::before {
   position: absolute;
-  right: 5px;
-  bottom: 20px;
-  width: 30px;
-  height: 30px;
+  top: 5px;
+  right: 15px;
+  z-index: 1;
+  width: 25px;
+  height: 25px;
   overflow: hidden;
   content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png?asset_cache_version=2) no-repeat 95% 90%;
+  background: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png?asset_cache_version=2) no-repeat;
+  background-size: contain;
 }
 
 .labyrinthHUD-confirm-padding .labyrinthHUD-door.mh-ui-labyrinth-highlight::after {

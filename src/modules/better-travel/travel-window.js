@@ -253,7 +253,7 @@ const addEnvironmentIconListener = () => {
     return;
   }
 
-  environmentIcon.addEventListener('click', (e) => {
+  environmentIcon.addEventListener('click', () => {
     openTravelWindow();
   });
 };

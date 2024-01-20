@@ -21,8 +21,8 @@ import {
   openMap,
   openMapInvites,
   openMarketplace,
-  showTem,
   openTravelWindow,
+  showTem,
   travelToPreviousLocation
 } from './actions';
 
@@ -218,8 +218,8 @@ const getBaseShortcuts = () => {
 const getShortcuts = () => {
   const shortcuts = getBaseShortcuts();
 
-  const saved = getSetting('keyboard-shortcuts', false);
-  if (! saved) {
+  const saved = getSetting('keyboard-shortcuts', []);
+  if (! saved || ! saved.length) {
     return shortcuts;
   }
 
@@ -241,9 +241,9 @@ const getShortcuts = () => {
 };
 
 const saveShortcut = (shortcutId, shortcutKey) => {
-  let saved = getSetting('keyboard-shortcuts', false);
+  let saved = getSetting('keyboard-shortcuts', []);
 
-  if (! saved) {
+  if (! saved || ! saved.length) {
     saved = [];
   }
 

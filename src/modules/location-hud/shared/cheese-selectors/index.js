@@ -1,4 +1,4 @@
-import { getUserItems, onEvent, onNavigation, onRequest } from '@utils';
+import { getUserItems, onEvent, onNavigation } from '@utils';
 
 /**
  * Adds a cheese selector a a location that usually doesn't have a HUD.

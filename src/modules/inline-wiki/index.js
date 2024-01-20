@@ -1,4 +1,4 @@
-import { addStyles, onEvent, makePage } from '@utils';
+import { addStyles, makePage, onEvent } from '@utils';
 
 import styles from './styles.css';
 
@@ -42,7 +42,6 @@ const main = () => {
 const init = async () => {
   main();
 };
-
 
 export default {
   id: 'inline-wiki',
