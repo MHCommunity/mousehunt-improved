@@ -195,7 +195,7 @@ const showBWReminder = () => {
   const isStart = user.enviroment_atts?.hunting_site_atts?.hunts_remaining === 75 && user.enviroment_atts?.on_island;
   const bwOff = ! user.enviroment_atts?.hunting_site_atts?.is_fuel_enabled;
   const bw = user.enviroment_atts?.items?.bottled_wind_stat_item?.quantity || '0';
-  const hasBw = Number.parseInt(bw.replaceAll(',', ''), 10) >= 50;
+  const hasBw = Number.parseInt(bw.toString().replaceAll(',', ''), 10) >= 50;
 
   if (isStart && bwOff && hasBw) {
     showHornMessage({
