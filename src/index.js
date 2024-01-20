@@ -8,6 +8,7 @@ import {
   debug,
   debuglite,
   debuglog,
+  debugplain,
   getFlag,
   getGlobal,
   getSetting,
@@ -134,8 +135,6 @@ const loadModules = async () => {
  * Initialize the script.
  */
 const init = async () => {
-  console.log(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform}%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
-
   // Check if the url is an image and if so, don't load.
   if (isUnsupportedFile()) {
     debug('Skipping unsupported filetype.');
@@ -163,7 +162,7 @@ const init = async () => {
     addToGlobal('version', mhImprovedVersion);
     addToGlobal('loaded', true);
 
-    console.log(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
+    debugplain(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
 
     eventRegistry.doEvent('mh-improved-loaded', {
       version: mhImprovedVersion,
