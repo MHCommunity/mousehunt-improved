@@ -17,6 +17,12 @@ const debug = (message, ...args) => {
   }
 };
 
+const debugplain = (...args) => {
+  if (getFlag('debug')) {
+    console.log(...args); // eslint-disable-line no-console
+  }
+};
+
 const debuglog = (module, message, ...args) => {
   if (getFlag('debug')) {
     // eslint-disable-next-line no-console
@@ -51,5 +57,6 @@ const debuglite = (message, ...args) => {
 export {
   debug,
   debuglog,
-  debuglite
+  debuglite,
+  debugplain
 };
