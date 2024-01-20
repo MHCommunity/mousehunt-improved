@@ -1,4 +1,4 @@
-import { getHeaders } from './data';
+import { getHeaders, sessionGet, sessionSet } from './data';
 
 /**
  * Get the current location.
@@ -19,7 +19,7 @@ const getRelicHunterLocation = () => {
   // Cache it in session storage for 5 minutes.
   const cacheExpiry = 5 * 60 * 1000;
   const cacheKey = 'mh-improved-relic-hunter-location';
-  let cached = sessionStorage.getItem(cacheKey);
+  let cached = sessionGet(cacheKey);
   if (cached) {
     cached = JSON.parse(cached);
   }
@@ -33,7 +33,7 @@ const getRelicHunterLocation = () => {
   return fetch('https://rh-api.mouse.rip/', { headers: getHeaders() }).then((response) => response.json())
     .then((data) => {
       const expiry = Date.now() + cacheExpiry;
-      sessionStorage.setItem(cacheKey, JSON.stringify({ expiry, data }));
+      sessionSet(cacheKey, JSON.stringify({ expiry, data }));
       return data;
     })
     .catch((error) => {

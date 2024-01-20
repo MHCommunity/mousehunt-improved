@@ -1,5 +1,5 @@
+import { getData, sessionGet, sessionSet } from '@utils/data';
 import { doRequest } from '@utils';
-import { getData } from '@utils/data';
 
 import { exportPopup } from './exporter';
 
@@ -26,9 +26,9 @@ const fetchTransactions = async () => {
   let transactions = [];
 
   // todo: save the current page to session storage so we can resume if the user navigates away
-  page = Number.parseInt(sessionStorage.getItem('export-marketplace-page'), 10) || 1;
+  page = Number.parseInt(sessionGet('mh-improved-export-marketplace-page'), 10) || 1;
 
-  transactions = JSON.parse(sessionStorage.getItem('export-marketplace-transactions')) || [];
+  transactions = JSON.parse(sessionGet('mh-improved-export-marketplace-transactions')) || [];
 
   const tradableItems = await getData('items-tradable');
 
@@ -59,8 +59,8 @@ const fetchTransactions = async () => {
 
     page++;
 
-    sessionStorage.setItem('export-marketplace-page', page);
-    sessionStorage.setItem('export-marketplace-transactions', JSON.stringify(transactions));
+    sessionSet('mh-improved-export-marketplace-page', page);
+    sessionSet('mh-improved-export-marketplace-transactions', JSON.stringify(transactions));
 
     totalItemsEl.textContent = transactions.length.toLocaleString();
   } while (response.length > 0);

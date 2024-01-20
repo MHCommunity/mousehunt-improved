@@ -1,4 +1,4 @@
-import { getData, getHeaders } from './data';
+import { getData, getHeaders, sessionGet, sessionSet } from './data';
 import { getCurrentLocation } from './location';
 import { getFlag } from './flags';
 import { getGlobal } from './global';
@@ -54,7 +54,7 @@ const mapModel = () => {
 
 const getMapData = (mapId = false, strict = false) => {
   if (mapId !== false) {
-    const sessionMap = JSON.parse(sessionStorage.getItem(`mh-improved-map-cache-${mapId}`));
+    const sessionMap = JSON.parse(sessionGet(`mh-improved-map-cache-${mapId}`));
     if (sessionMap) {
       return sessionMap;
     }
@@ -64,7 +64,7 @@ const getMapData = (mapId = false, strict = false) => {
     return false;
   }
 
-  const localStorageMap = JSON.parse(sessionStorage.getItem('mh-improved-map-cache-last-map'));
+  const localStorageMap = JSON.parse(sessionGet('mh-improved-map-cache-last-map'));
   if (localStorageMap) {
     return localStorageMap;
   }
@@ -73,16 +73,16 @@ const getMapData = (mapId = false, strict = false) => {
 };
 
 const setMapData = (mapId, theMapData) => {
-  sessionStorage.setItem(`mh-improved-map-cache-${mapId}`, JSON.stringify(theMapData));
-  sessionStorage.setItem('mh-improved-map-cache-last-map', JSON.stringify(theMapData));
+  sessionSet(`mh-improved-map-cache-${mapId}`, JSON.stringify(theMapData));
+  sessionSet('mh-improved-map-cache-last-map', JSON.stringify(theMapData));
 };
 
 const getLastMaptain = () => {
-  return sessionStorage.getItem('mh-improved-last-maptain');
+  return sessionGet('mh-improved-last-maptain');
 };
 
 const setLastMaptain = (id) => {
-  sessionStorage.setItem('mh-improved-last-maptain', id);
+  sessionSet('mh-improved-last-maptain', id);
 };
 
 const cacheFinishedMap = async () => {
@@ -223,7 +223,7 @@ const getCachedValue = (key) => {
   }
 
   // check to see if it's in session storage first
-  const isInSession = sessionStorage.getItem(key);
+  const isInSession = sessionGet(key);
   if (isInSession !== null) {
     return JSON.parse(isInSession);
   }
@@ -271,7 +271,7 @@ const getMouseCachedKey = () => {
  */
 const setCachedValue = (key, value, saveToSession = false) => {
   if (saveToSession) {
-    sessionStorage.setItem(key, JSON.stringify(value));
+    sessionSet(key, JSON.stringify(value));
     return;
   }
 

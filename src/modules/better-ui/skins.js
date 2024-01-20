@@ -1,4 +1,10 @@
-import { getUserItems, onEvent, onRequest } from '@utils';
+import {
+  getUserItems,
+  onEvent,
+  onRequest,
+  sessionGet,
+  sessionSet
+} from '@utils';
 
 const addSkinImages = () => {
   const items = document.querySelectorAll('.skin .campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item');
@@ -18,7 +24,7 @@ const addSkinImages = () => {
 
     item.setAttribute('data-rendered-image', true);
 
-    const hasItemData = sessionStorage.getItem(`mh-ui-cache-item-${id}`);
+    const hasItemData = sessionGet(`mh-ui-cache-item-${id}`);
     let itemData = null;
     if (hasItemData) {
       itemData = JSON.parse(hasItemData);
@@ -28,7 +34,7 @@ const addSkinImages = () => {
         return;
       }
 
-      sessionStorage.setItem(`mh-ui-cache-item-${id}`, JSON.stringify(itemData));
+      sessionSet(`mh-ui-cache-item-${id}`, JSON.stringify(itemData));
     }
 
     const imageWrapper = document.createElement('div');

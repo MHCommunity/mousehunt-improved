@@ -1,4 +1,11 @@
-import { addStyles, debug, makeElement, onNavigation } from '@utils';
+import {
+  addStyles,
+  debug,
+  makeElement,
+  onNavigation,
+  sessionGet,
+  sessionSet
+} from '@utils';
 
 import profileStyles from './profile.css';
 import styles from './styles.css';
@@ -52,7 +59,7 @@ const highlightUsers = async () => {
 
   let data;
 
-  const cachedData = sessionStorage.getItem(`mh-improved-user-highlighting-${userId}`);
+  const cachedData = sessionGet(`mh-improved-user-highlighting-${userId}`);
   if (cachedData) {
     data = JSON.parse(cachedData);
   } else {
@@ -61,7 +68,7 @@ const highlightUsers = async () => {
 
     debug(`Retrieved user highlighting data for ${userId}`, data);
 
-    sessionStorage.setItem(`mh-improved-user-highlighting-${userId}`, JSON.stringify(data));
+    sessionSet(`mh-improved-user-highlighting-${userId}`, JSON.stringify(data));
   }
 
   if (! data || ! data?.highlighted) {

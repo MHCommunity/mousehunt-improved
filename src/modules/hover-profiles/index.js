@@ -1,4 +1,11 @@
-import { addStyles, doRequest, onEvent, onRequest } from '@utils';
+import {
+  addStyles,
+  doRequest,
+  onEvent,
+  onRequest,
+  sessionGet,
+  sessionSet
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -54,8 +61,8 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
   }
 
   if (! skipCache) {
-    sessionStorage.setItem(`mh-improved-cache-friend-${friendId}`, JSON.stringify(data));
-    sessionStorage.setItem(`mh-improved-cache-friend-${friendId}-timestamp`, Date.now());
+    sessionSet(`mh-improved-cache-friend-${friendId}`, JSON.stringify(data));
+    sessionSet(`mh-improved-cache-friend-${friendId}-timestamp`, Date.now());
   }
 
   const templateType = data[0].user_interactions.relationship.is_stranger ? 'PageFriends_request_row' : 'PageFriends_view_friend_row';
@@ -99,8 +106,8 @@ const onFriendLinkHover = async (e) => {
   }
 
   // See if there is a cached value in sessionStorage
-  const cached = sessionStorage.getItem(`mh-improved-cache-friend-${friendId}`);
-  const cachedTimestamp = sessionStorage.getItem(`mh-improved-cache-friend-${friendId}-timestamp`);
+  const cached = sessionGet(`mh-improved-cache-friend-${friendId}`);
+  const cachedTimestamp = sessionGet(`mh-improved-cache-friend-${friendId}-timestamp`);
 
   if (cached && cachedTimestamp && (Date.now() - cachedTimestamp) < 150000) {
     makeFriendMarkup(friendId, JSON.parse(cached), true, e);

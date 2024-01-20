@@ -1,4 +1,4 @@
-import { getSetting, onRequest } from '@utils';
+import { getSetting, onRequest, sessionGet, sessionSet } from '@utils';
 
 import styles from './styles';
 
@@ -74,7 +74,7 @@ const maybeKeepAsOriginal = (entry) => {
     const entryText = entry.querySelector('.journaltext');
     if (entryText) {
       // save the original text in session storage so we can use it later
-      sessionStorage.setItem(`mhui-custom-entry-${entryId}`, entryText.innerHTML);
+      sessionSet(`mhui-custom-entry-${entryId}`, entryText.innerHTML);
       entry.setAttribute('data-is-custom-entry', true);
     }
   }
@@ -82,7 +82,7 @@ const maybeKeepAsOriginal = (entry) => {
 
 const maybeRestoreOriginalEntry = (entry) => {
   const entryId = entry.getAttribute('data-entry-id');
-  const originalText = sessionStorage.getItem(`mhui-custom-entry-${entryId}`);
+  const originalText = sessionGet(`mhui-custom-entry-${entryId}`);
 
   if (originalText) {
     entry.querySelector('.journaltext').innerHTML = originalText;

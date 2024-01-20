@@ -145,8 +145,38 @@ const getHeaders = () => {
   };
 };
 
+const sessionSet = (key, value, retry = false) => {
+  const stringified = JSON.stringify(value);
+  try {
+    sessionStorage.setItem(key, stringified);
+  } catch (error) {
+    if ('QuotaExceededError' === error.name && ! retry) {
+      // Delete all the mh-improved keys.
+      for (const skey of Object.keys(sessionStorage)) {
+        if (skey.startsWith('mh-improved')) {
+          sessionStorage.removeItem(skey);
+        }
+      }
+
+      // Try again.
+      sessionSet(key, value, true);
+    }
+  }
+};
+
+const sessionGet = (key) => {
+  const value = sessionStorage.getItem(key);
+  if (! value) {
+    return false;
+  }
+
+  return JSON.parse(value);
+};
+
 export {
   getData,
   getHeaders,
-  clearCaches
+  clearCaches,
+  sessionSet,
+  sessionGet
 };

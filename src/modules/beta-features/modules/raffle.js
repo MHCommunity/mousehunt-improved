@@ -4,6 +4,8 @@ import {
   doRequest,
   makeElement,
   onEvent,
+  sessionGet,
+  sessionSet,
   sleep
 } from '@utils';
 
@@ -33,7 +35,7 @@ const getBallotsToSend = () => {
 };
 
 const getSavedSentBallots = () => {
-  return JSON.parse(sessionStorage.getItem('mh-improved-sent-ballots')) || [];
+  return JSON.parse(sessionGet('mh-improved-sent-ballots')) || [];
 };
 
 const getSavedSentBallot = (id) => {
@@ -45,7 +47,7 @@ const saveSentBallot = (id) => {
   const savedSentBallots = getSavedSentBallots();
   savedSentBallots.push(id);
 
-  sessionStorage.setItem('mh-improved-sent-ballots', JSON.stringify(savedSentBallots));
+  sessionSet('mh-improved-sent-ballots', JSON.stringify(savedSentBallots));
 };
 
 const sendBallot = async (ballot) => {

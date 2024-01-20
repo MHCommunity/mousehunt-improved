@@ -6,7 +6,9 @@ import {
   getFlag,
   getSetting,
   makeElement,
-  onNavigation
+  onNavigation,
+  sessionGet,
+  sessionSet
 } from '@utils';
 
 import categories from '@data/ultimate-checkmark.json';
@@ -18,7 +20,7 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
   if (! allItems.length) {
     // cache the data for a minute
 
-    let cachedData = sessionStorage.getItem('mh-improved-ultimate-checkmark') || '{}';
+    let cachedData = sessionGet('mh-improved-ultimate-checkmark') || '{}';
     cachedData = JSON.parse(cachedData);
 
     let inventoryData = cachedData[queryTab]?.data || null;
@@ -41,7 +43,7 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
         time: Date.now(),
       };
 
-      sessionStorage.setItem('mh-improved-ultimate-checkmark', JSON.stringify(cachedData));
+      sessionSet('mh-improved-ultimate-checkmark', JSON.stringify(cachedData));
     }
 
     // Find the inventoryData.page.tabs array item that has type=special

@@ -1,6 +1,6 @@
+import { getData, sessionGet, sessionSet } from './data';
 import { onNavigation, onTravel } from './events';
 import { getCurrentPage } from './page';
-import { getData } from './data';
 
 /**
  * Check to make sure we have the required global functions we need.
@@ -208,7 +208,7 @@ function isAppleOS(_window = null) {
 }
 
 const hasMiniCRE = () => {
-  const hasMiniCre = sessionStorage.getItem('mh-improved-has-mini-cre');
+  const hasMiniCre = sessionGet('mh-improved-has-mini-cre');
   if (hasMiniCre) {
     return true;
   }
@@ -219,11 +219,11 @@ const hasMiniCRE = () => {
 
   const cre = document.querySelector('.min-luck-container[style="position: absolute; top: 7px; right: 7px;"]');
   if (! cre) {
-    sessionStorage.setItem('mh-improved-has-mini-cre', false);
+    sessionSet('mh-improved-has-mini-cre', false);
     return false;
   }
 
-  sessionStorage.setItem('mh-improved-has-mini-cre', true);
+  sessionSet('mh-improved-has-mini-cre', true);
 
   return true;
 };

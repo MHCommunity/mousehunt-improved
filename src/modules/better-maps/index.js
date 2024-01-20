@@ -4,6 +4,7 @@ import {
   getMapData,
   makeElement,
   onRequest,
+  sessionSet,
   setMapData
 } from '@utils';
 import { getData } from '@utils/data';
@@ -42,7 +43,7 @@ const addBlockClasses = () => {
 };
 
 const interceptMapRequest = (mapId) => {
-  sessionStorage.setItem('mh-improved-map-refreshed', Date.now());
+  sessionSet('mh-improved-map-refreshed', Date.now());
 
   // If we don't have data, we're done.
   if (! mapId) {
