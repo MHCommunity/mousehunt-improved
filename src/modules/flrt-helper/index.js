@@ -24,18 +24,25 @@ const addFlrtButtonToConvertible = async (response) => {
 
   // Convert the items into a format that flrtPopup can use.
   for (const element of response.convertible_open.items) {
-    // Skip items that are not tradable.
-    const tradable = tradableItems.find((tradableItem) => {
-      return tradableItem.type === element.type;
-    });
+    const itemData = {
+      type: element.type,
+      name: element.name,
+      image: element.thumb,
+      quantity: element.quantity,
+    };
 
-    if (tradable) {
-      items.push({
-        type: element.type,
-        name: element.name,
-        image: element.thumb,
-        quantity: element.quantity,
+    // Skip items that are not tradable.
+    if (tradableItems) {
+      const tradable = tradableItems.find((tradableItem) => {
+        return tradableItem.type === element.type;
       });
+
+      if (tradable) {
+        items.push(itemData);
+      }
+    } else {
+      // If we don't have the data for tradable items, just add them all.
+      items.push(itemData);
     }
   }
 
@@ -190,7 +197,9 @@ const init = async () => {
 
   onDialogShow(cacheFinishedMap, 'treasureMapPopup');
 
-  onRequest(addFlrtButtonToConvertible, 'managers/ajax/users/useconvertible.php');
+  onRequest(() => {
+    await addFlrtButtonToConvertible();
+  }, 'managers/ajax/users/useconvertible.php');
 };
 
 export default {
