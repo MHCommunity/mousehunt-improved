@@ -137,3 +137,11 @@
 .mh-dark-mode .journal .entry.larryGift {
   background: #deffc7;
 }
+
+.mh-dark-mode .pageFrameView .mousehuntHeaderView .menuItem:hover {
+  background-color: #000;
+}
+
+.mh-dark-mode .pageFrameView .mousehuntHeaderView .menuItem.dropdown:hover .arrow {
+  border-bottom-color: #666;
+}

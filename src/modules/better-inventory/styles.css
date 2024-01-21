@@ -476,8 +476,16 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
   right: 3px;
   bottom: 3px;
   display: block;
-  color: #ccc;
+  color: #2c2c2c;
   content: "Riftstalker Set";
+}
+
+.mh-dark-mode .itemViewStatBlock.horizontal .itemViewStatBlock-padding {
+  background-color: #2c2c2c;
+}
+
+.mh-dark-mode .inventoryPage-item .item_set::before {
+  color: #2c2c2c;
 }
 
 .inventoryPage-item:hover .item_set::before {
