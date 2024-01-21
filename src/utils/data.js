@@ -147,6 +147,7 @@ const getHeaders = () => {
 
 const sessionSet = (key, value, retry = false) => {
   const stringified = JSON.stringify(value);
+
   try {
     sessionStorage.setItem(key, stringified);
   } catch (error) {

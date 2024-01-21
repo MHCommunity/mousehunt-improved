@@ -88,9 +88,9 @@ img.locationImage {
 }
 
 .locationProgress {
-  text-align: right;
-  line-height: 17px;
   font-size: 11px;
+  line-height: 17px;
+  text-align: right;
   white-space: pre-line;
 }
 

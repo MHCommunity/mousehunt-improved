@@ -291,8 +291,7 @@ const makeDashboardTab = () => {
       });
     }
 
-
-    // doLocationRefresh();
+    doLocationRefresh();
   });
 
   refreshWrapper.append(refreshButton);

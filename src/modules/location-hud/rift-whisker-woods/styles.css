@@ -101,37 +101,40 @@ span.riftWhiskerWoodsHUD-zone-rageMax {
   margin-right: 0;
 }
 
-.riftWhiskerWoodsHUD-zone-charm-description>b {
+.riftWhiskerWoodsHUD-zone-charm-description > b {
   display: inline-block;
   padding-bottom: 5px;
   font-size: 11px;
   text-align: center;
 }
 
-.riftWhiskerWoodsHUD-zone.boss:hover .riftWhiskerWoodsHUD-zone-progress:after,
-.riftWhiskerWoodsHUD-zone.high:hover .riftWhiskerWoodsHUD-zone-progress:after,
-.riftWhiskerWoodsHUD-zone.low:hover .riftWhiskerWoodsHUD-zone-progress:after {
-  content: "Low";
+.riftWhiskerWoodsHUD-zone.boss:hover .riftWhiskerWoodsHUD-zone-progress::after,
+.riftWhiskerWoodsHUD-zone.high:hover .riftWhiskerWoodsHUD-zone-progress::after,
+.riftWhiskerWoodsHUD-zone.low:hover .riftWhiskerWoodsHUD-zone-progress::after {
   position: absolute;
+  top: 0;
+  bottom: 0;
   left: 9px;
-  top: 0px;
-  padding: 2px;
-  bottom: 0px;
   display: flex;
-  font-size: 14px;
-  text-shadow: 1px 1px black;
-  background-color: rgb(0 0 0 / 40%);
   align-items: center;
+  padding: 2px;
+  font-size: 14px;
+  text-shadow: 1px 1px #000;
+  content: "Low";
+  background-color: rgb(0 0 0 / 40%);
 }
 
-.riftWhiskerWoodsHUD-zone.high:hover .riftWhiskerWoodsHUD-zone-progress:after {
+.riftWhiskerWoodsHUD-zone.high:hover .riftWhiskerWoodsHUD-zone-progress::after {
   content: "High";
 }
 
-.riftWhiskerWoodsHUD-zone.boss:hover .riftWhiskerWoodsHUD-zone-progress:after {
+.riftWhiskerWoodsHUD-zone.boss:hover .riftWhiskerWoodsHUD-zone-progress::after {
   content: "Boss";
 }
 
 .boss .riftWhiskerWoodsHUD-zone-rageContainer {
-  box-shadow: 0px 0px 1px 3px inset #b72929, 0 0 1px 2px inset #b78c5c, 0 0 3px 3px inset #292928;
+  box-shadow:
+    0 0 1px 3px inset #b72929,
+    0 0 1px 2px inset #b78c5c,
+    0 0 3px 3px inset #292928;
 }
