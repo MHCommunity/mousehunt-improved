@@ -473,10 +473,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   controls.append(buttonWrapper);
   setupContainer.append(controls);
 
-  let cachedThumbnails = JSON.parse(sessionGet('favorite-setups-thumbnails'));
-  if (! cachedThumbnails) {
-    cachedThumbnails = {};
-  }
+  let cachedThumbnails = sessionGet('favorite-setups-thumbnails', {});
 
   const needThumbnails = [];
 
@@ -507,7 +504,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       ...grabbedThumbnails,
     };
 
-    sessionSet('favorite-setups-thumbnails', JSON.stringify(thumbnails));
+    sessionSet('favorite-setups-thumbnails', thumbnails);
 
     cachedThumbnails = thumbnails;
   }

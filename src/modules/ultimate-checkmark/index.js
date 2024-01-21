@@ -20,8 +20,7 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
   if (! allItems.length) {
     // cache the data for a minute
 
-    let cachedData = sessionGet('ultimate-checkmark') || '{}';
-    cachedData = JSON.parse(cachedData);
+    const cachedData = sessionGet('ultimate-checkmark') || '{}';
 
     let inventoryData = cachedData[queryTab]?.data || null;
     const lastCachedTime = cachedData[queryTab]?.time || 0;
@@ -43,7 +42,7 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
         time: Date.now(),
       };
 
-      sessionSet('ultimate-checkmark', JSON.stringify(cachedData));
+      sessionSet('ultimate-checkmark', cachedData);
     }
 
     // Find the inventoryData.page.tabs array item that has type=special

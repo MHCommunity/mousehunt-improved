@@ -61,7 +61,7 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
   }
 
   if (! skipCache) {
-    sessionSet(`mh-improved-cache-friend-${friendId}`, JSON.stringify(data));
+    sessionSet(`mh-improved-cache-friend-${friendId}`, data);
     sessionSet(`mh-improved-cache-friend-${friendId}-timestamp`, Date.now());
   }
 

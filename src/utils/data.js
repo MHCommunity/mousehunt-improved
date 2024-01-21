@@ -171,15 +171,15 @@ const sessionSet = (key, value, retry = false) => {
   }
 };
 
-const sessionGet = (key) => {
+const sessionGet = (key, defaultValue = false) => {
   if (getFlag('no-cache')) {
-    return false;
+    return defaultValue;
   }
 
   key = `mh-improved-${key}`;
   const value = sessionStorage.getItem(key);
   if (! value) {
-    return false;
+    return defaultValue;
   }
 
   return JSON.parse(value);

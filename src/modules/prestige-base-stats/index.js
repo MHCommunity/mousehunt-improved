@@ -143,7 +143,7 @@ const savePbStats = () => {
     return;
   }
 
-  sessionSet('pb-stats', JSON.stringify(stats));
+  sessionSet('pb-stats', stats);
 };
 
 /**

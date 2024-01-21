@@ -28,7 +28,7 @@ const fetchTransactions = async () => {
   // todo: save the current page to session storage so we can resume if the user navigates away
   page = Number.parseInt(sessionGet('export-marketplace-page'), 10) || 1;
 
-  transactions = JSON.parse(sessionGet('export-marketplace-transactions')) || [];
+  transactions = sessionGet('export-marketplace-transactions', []);
 
   const tradableItems = await getData('items-tradable');
 
@@ -60,7 +60,7 @@ const fetchTransactions = async () => {
     page++;
 
     sessionSet('export-marketplace-page', page);
-    sessionSet('export-marketplace-transactions', JSON.stringify(transactions));
+    sessionSet('export-marketplace-transactions', transactions);
 
     totalItemsEl.textContent = transactions.length.toLocaleString();
   } while (response.length > 0);

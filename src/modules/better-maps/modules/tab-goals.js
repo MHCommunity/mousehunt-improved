@@ -321,7 +321,7 @@ const addQuickInvite = async (mapData) => {
 
     let snuid;
 
-    const friendData = JSON.parse(sessionGet('cache-maps-hunter-data') || '{}');
+    const friendData = sessionGet('cache-maps-hunter-data', {});
 
     if (friendData && friendData[hunterId]) {
       debuglog('better-maps', `Using cached friend data for ${hunterId}`);
@@ -346,7 +346,7 @@ const addQuickInvite = async (mapData) => {
 
         // Only cache the data if they can accept invites, otherwise we'll want to fetch their data again.
         if (canAccept) {
-          sessionSet('cache-maps-hunter-data', JSON.stringify(friendData));
+          sessionSet('cache-maps-hunter-data', friendData);
         }
       } else {
         return inviteError('Could not find hunter');

@@ -60,15 +60,13 @@ const highlightUsers = async () => {
   let data;
 
   const cachedData = sessionGet(`mh-improved-user-highlighting-${userId}`);
-  if (cachedData) {
-    data = JSON.parse(cachedData);
-  } else {
+  if (! cachedData) {
     const userHighlighting = await fetch(`https://api.mouse.rip/highlight-user/${userId}`);
     data = await userHighlighting.json();
 
     debug(`Retrieved user highlighting data for ${userId}`, data);
 
-    sessionSet(`mh-improved-user-highlighting-${userId}`, JSON.stringify(data));
+    sessionSet(`mh-improved-user-highlighting-${userId}`, data);
   }
 
   if (! data || ! data?.highlighted) {

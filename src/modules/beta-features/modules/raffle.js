@@ -35,7 +35,7 @@ const getBallotsToSend = () => {
 };
 
 const getSavedSentBallots = () => {
-  return JSON.parse(sessionGet('sent-ballots')) || [];
+  return sessionGet('sent-ballots', []);
 };
 
 const getSavedSentBallot = (id) => {
@@ -47,7 +47,7 @@ const saveSentBallot = (id) => {
   const savedSentBallots = getSavedSentBallots();
   savedSentBallots.push(id);
 
-  sessionSet('sent-ballots', JSON.stringify(savedSentBallots));
+  sessionSet('sent-ballots', savedSentBallots);
 };
 
 const sendBallot = async (ballot) => {

@@ -149,7 +149,7 @@ const makeKingsCrownsTabContent = async () => {
     });
 
     crowns = crownsReq.page.tabs.kings_crowns.subtabs[0].mouse_crowns;
-    sessionSet('kings-crowns', JSON.stringify(crowns));
+    sessionSet('kings-crowns', crowns);
     sessionSet('kings-crownsTime', Date.now());
   }
 
