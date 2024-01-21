@@ -7,6 +7,7 @@
 - Adds Custom Background feature, allowing you to choose from an event background, different colors, or gradients
 - Adds a `disable-mh-improved-tooltips` feature flag to disable the added tooltips on Mouse views and Item views
 - Adds experimental `ultimate-checkmark-sync` feature flag to sync Ultimate Checkmark data via a server
+- Adds beta `hud-bg-[color]` flags to change the background color of the marble HUD. Available colors are `cyan`, `green`, `orange`, `pink`, `purple`, `cyan`, and `teal`.
 - Adds 'Environment icon opens Travel Window' option to Better Travel
 - Adds an M400 Helper option to Better Quests to enable/disable the helper
 - Adds categories to the help/settings for Keyboard Shortcuts
@@ -14,6 +15,7 @@
 - Adds 'Open Travel Window' to Keyboard Shortcuts
 - Adds 'Travel to previous location' to Keyboard Shortcuts
 - Adds 'Show larger images' option for Better Inventory
+- Adds confirmation to Location Dashboard refresh before traveling
 
 ### Changed
 
@@ -22,6 +24,7 @@
 - Updates Moussu Picchu Location HUD styles
 - Updates Table of Contents Location HUD styles
 - Updates Folklore Forest region Location HUD styles
+- Updates Whisker Woods Rift Location HUD styles
 - Updates Table of Contents writing journal entry
 - Updates Better Inventory styles to make images slightly bigger, add Riftstalker Set labels, and more
 - Renames `twitter` feature flag to `social-noop`
@@ -34,6 +37,7 @@
 - Updates Larry Freebie journal entry color on dark mode
 - FLRT Helper now defaults to all items if unable to fetch the tradable items data
 - Updates Relic Hunter indicator on Travel map view to correctly show
+- Updates colors used in many modules to be more consistent
 
 ### Fixed
 
