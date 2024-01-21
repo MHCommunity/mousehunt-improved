@@ -1,0 +1,142 @@
+.seasonalGardenHUD-season.sg,
+.seasonalGardenHUD-season.sr,
+.seasonalGardenHUD-season.fl,
+.seasonalGardenHUD-season.wr {
+  background: url(https://i.mouse.rip/seasonal-garden-season.png) no-repeat 0 0;
+  transform: scale(1.3);
+  transform-origin: bottom;
+}
+
+.seasonalGardenHUD {
+  background: url(https://i.mouse.rip/seasonal-garden-hud.png) no-repeat 0 0;
+}
+
+.seasonalGardenHUD-season.sg::after,
+.seasonalGardenHUD-season.sr::after,
+.seasonalGardenHUD-season.fl::after,
+.seasonalGardenHUD-season.wr::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.seasonalGardenHUD-season.sg::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/spring_icon.png?asset_cache_version=2);
+}
+
+.seasonalGardenHUD-season.sr::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/summer_icon.png?asset_cache_version=2);
+}
+
+.seasonalGardenHUD-season.fl::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/fall_icon.png?asset_cache_version=2);
+}
+
+.seasonalGardenHUD-season.wr::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/winter_icon.png?asset_cache_version=2);
+}
+
+.seasonalGardenHUD-currentAmplifier {
+  top: 19px;
+  font-size: 15px;
+  text-shadow: 1px 1px 0 #ded3c1;
+}
+
+.seasonalGardenHUD-currentAmplifier::before {
+  position: absolute;
+  top: -15px;
+  left: 10px;
+  width: 125px;
+  padding: 0 20px;
+  font-size: 12px;
+  font-weight: 900;
+  color: #765e4c;
+  content: "Tower Amplifier";
+  background: radial-gradient(circle, #dac8ab 14%, #efe2cd 76%, transparent 100%);
+}
+
+.seasonalGardenHUD-maxAmplifier {
+  top: 34px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75px;
+  height: 14px;
+  padding: 3px;
+  text-align: center;
+  background: radial-gradient(circle, #dac8ab 14%, #d7c1a4 76%, #c4b096 100%);
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+}
+
+.seasonalGardenHUD-maxAmplifier::before {
+  content: "Max:";
+}
+
+span.seasonalGardenHUD-maxAmplifier-value {
+  font-size: 15px;
+  color: #000;
+  text-shadow: 1px 1px 0 #ded3c1;
+}
+
+.seasonalGardenHUD-amplifierBoundingBox {
+  width: 80px;
+  border-radius: 30px;
+}
+
+.seasonalGardenHUD-amplifierProgress {
+  overflow: hidden;
+}
+
+.seasonalGardenHUD-currentAmplifier::after {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  width: 12px;
+  height: 19px;
+  content: "";
+  background: linear-gradient(249deg, #f6e5d0, #dfc9aa);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 7px;
+}
+
+.seasonalGardenHUD-amplifierProgress-bar {
+  transition: width 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
+  transform-origin: left;
+}
+
+.seasonalGardenHUD-amplifierProgress-bar--animating {
+  animation: 0.3s bounce-and-stretch-new 2;
+}
+
+@keyframes bounce-and-stretch-new {
+  0% {
+    transform: scaleX(1) translateX(-10px);
+  }
+
+  60% {
+    transform: scaleX(1);
+  }
+
+  75% {
+    transform: scaleX(0.98);
+  }
+
+  90% {
+    transform: scaleX(0.999);
+  }
+}
+
+.seasonalGardenHUD-amplifierBoundingBox .mousehuntTooltip {
+  top: -10px;
+  left: 120px;
+  width: 460px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.seasonalGardenHUD-amplifierBoundingBox .mousehuntTooltip .mousehuntTooltip-arrow {
+  display: none;
+}

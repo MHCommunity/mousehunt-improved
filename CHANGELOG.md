@@ -16,6 +16,7 @@
 - Adds 'Travel to previous location' to Keyboard Shortcuts
 - Adds 'Show larger images' option for Better Inventory
 - Adds confirmation to Location Dashboard refresh before traveling
+- Adds Seasonal Garden Location HUD styles
 
 ### Changed
 

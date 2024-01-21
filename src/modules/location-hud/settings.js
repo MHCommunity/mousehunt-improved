@@ -21,7 +21,6 @@ export default async function (module) {
     'laboratory',
     'mousoleum',
     'training_grounds',
-    'seasonal_garden',
     'zugzwang_library',
   ]);
 

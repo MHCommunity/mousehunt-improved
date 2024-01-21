@@ -55,6 +55,7 @@ import rift_furoma from './rift-furoma';
 import rift_gnawnia from './rift-gnawnia';
 import rift_valour from './rift-valour';
 import rift_whisker_woods from './rift-whisker-woods';
+import seasonal_garden from './seasonal-garden';
 import slushy_shoreline from './slushy-shoreline';
 import ss_huntington_ii from './ss-huntington-ii';
 import sunken_city from './sunken-city';
@@ -170,6 +171,7 @@ const main = () => {
     rift_gnawnia,
     rift_valour,
     rift_whisker_woods,
+    seasonal_garden,
     slushy_shoreline,
     ss_huntington_ii,
     sunken_city,
