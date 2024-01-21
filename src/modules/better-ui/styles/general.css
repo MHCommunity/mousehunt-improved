@@ -382,3 +382,7 @@ input.itemView-action-convert-quantity {
 .journalThemeSelectorView-preview .journal > .content {
   padding: 5px 10px !important;
 }
+
+.mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
+  display: none;
+}

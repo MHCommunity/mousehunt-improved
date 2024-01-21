@@ -522,3 +522,7 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
   margin-bottom: 10px;
   box-shadow: 0 4px 10px -10px #000;
 }
+
+.mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
+  display: none;
+}
