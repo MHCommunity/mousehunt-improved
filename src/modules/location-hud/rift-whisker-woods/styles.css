@@ -50,3 +50,60 @@ span.riftWhiskerWoodsHUD-zone-rageMax {
 .riftWhiskerWoodsHUD-zone .mousehuntArmNowButton {
   right: -2px;
 }
+
+.riftWhiskerWoodsHUD-zone-charm-craftingItem {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-craftingItem-container {
+  display: inline-flex;
+  align-items: stretch;
+  width: 270px;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-craftButtonContainer {
+  width: 110px;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-craftingItem-quantity {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  align-items: end;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-craftingItem-quantity br {
+  display: none;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-craftingItem-quantity-label {
+  display: block;
+  margin: 0;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-craftingItem .itemName {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-craftButton {
+  display: inline-block;
+  float: none;
+  width: 30px;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-craftButtonMargin {
+  margin-right: 0;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-description > b {
+  display: inline-block;
+  padding-bottom: 5px;
+  font-size: 11px;
+  text-align: center;
+}
