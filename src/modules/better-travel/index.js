@@ -446,8 +446,8 @@ const addRhToMap = async () => {
     return;
   }
 
-  const rh = makeElement('div', 'map-relic-hunter-is-here');
-  makeElement('div', 'map-relic-hunter-is-here-image', '', rh);
+  const rh = makeElement('div', ['map-relic-hunter-is-here', 'travelPage-map-image-environment-pointer']);
+  makeElement('div', ['map-relic-hunter-is-here-image', 'travelPage-map-image-environment-pointer-image'], '', rh);
   mapLocation.append(rh);
 };
 
