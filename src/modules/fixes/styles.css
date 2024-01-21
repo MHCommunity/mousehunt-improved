@@ -259,3 +259,7 @@ a.mousehuntHud-page-tabHeader.collectibles span {
 .eggSweeper-viewAllRewardsButton:hover {
   background-color: #228b22; /* was 'forest' */
 }
+
+.riftWhiskerWoodsHUD-zone-charm-craftingItem-quantity {
+  font-size: 9px; /* was set as 'font-style'; */
+}
