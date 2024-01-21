@@ -28,6 +28,7 @@ import hoverProfiles from '@/hover-profiles';
 import imageUpscaling from '@/image-upscaling';
 import inlineWiki from '@/inline-wiki';
 import keyboardShortcuts from '@/keyboard-shortcuts';
+import larrysLinks from '@/larrys-links';
 import lgsReminder from '@/lgs-reminder';
 import locationCatchStats from '@/location-catch-stats';
 import locationDashboard from '@/location-dashboard';
@@ -95,6 +96,7 @@ export default [
   imageUpscaling,
   inlineWiki,
   keyboardShortcuts,
+  larrysLinks,
   lgsReminder,
   locationCatchStats,
   locationDashboard,
