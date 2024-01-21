@@ -1,8 +1,24 @@
 [
-  { "id": "midnight", "name": "Midnight", "css": "linear-gradient(220.55deg, #565656 0%, #181818 100%)" },
-  { "id": "night-in-salem", "name": "Night in Salem", "css": "linear-gradient(#111827, #581c87, #7c3aed)" },
-  { "id": "cosmic-twilight", "name": "Cosmic Twilight", "css": "linear-gradient(to right, #0f172a, #581c87, #0f172a)" },
-  { "id": "galactic-dusk", "name": "Galactic Dusk", "css": "linear-gradient(220.55deg, #4063bc 0%, #6b0013 100%)" },
+  {
+    "id": "midnight",
+    "name": "Midnight",
+    "css": "linear-gradient(220.55deg, #565656 0%, #181818 100%)"
+  },
+  {
+    "id": "night-in-salem",
+    "name": "Night in Salem",
+    "css": "linear-gradient(#111827, #581c87, #7c3aed)"
+  },
+  {
+    "id": "cosmic-twilight",
+    "name": "Cosmic Twilight",
+    "css": "linear-gradient(to right, #0f172a, #581c87, #0f172a)"
+  },
+  {
+    "id": "galactic-dusk",
+    "name": "Galactic Dusk",
+    "css": "linear-gradient(220.55deg, #4063bc 0%, #6b0013 100%)"
+  },
   {
     "id": "emerald-lagoon",
     "name": "Emerald Lagoon",
@@ -18,33 +34,101 @@
     "name": "Amber Sunrise",
     "css": "radial-gradient(circle at center top, #b45309, #fdba74, #9f1239)"
   },
-  { "id": "warm-glow", "name": "Warm Glow", "css": "radial-gradient(at center top, #d1d5db, #c026d3, #ea580c)" },
-  { "id": "aqua-depths", "name": "Aqua Depths", "css": "linear-gradient(220.55deg, #24cfc5 0%, #001c63 100%)" },
-  { "id": "cobalt-mist", "name": "Cobalt Mist", "css": "linear-gradient(#3951c6, #8896dd)" },
-  { "id": "crimson-blush", "name": "Crimson Blush", "css": "linear-gradient(#b9466c, #e3b5c4)" },
-  { "id": "emerald-forest", "name": "Emerald Forest", "css": "linear-gradient(#43ac20, #76df53)" },
-  { "id": "flamingo-fling", "name": "Flamingo Fling", "css": "linear-gradient(#e84a8c, #f3a5c5)" },
-  { "id": "glacial-gleam", "name": "Glacial Gleam", "css": "linear-gradient(220.55deg, #c5edf5 0%, #4a879a 100%)" },
-  { "id": "lavender-lustre", "name": "Lavender Lustre", "css": "linear-gradient(#de97f9, #9157ff)" },
-  { "id": "mint-surf", "name": "Mint Surf", "css": "linear-gradient(0deg, #08aeea 0%, #2af598 100%)" },
-  { "id": "orange-coral", "name": "Orange Coral", "css": "linear-gradient(to top, #fb923c, #fb7185)" },
+  {
+    "id": "warm-glow",
+    "name": "Warm Glow",
+    "css": "radial-gradient(at center top, #d1d5db, #c026d3, #ea580c)"
+  },
+  {
+    "id": "aqua-depths",
+    "name": "Aqua Depths",
+    "css": "linear-gradient(220.55deg, #24cfc5 0%, #001c63 100%)"
+  },
+  {
+    "id": "cobalt-mist",
+    "name": "Cobalt Mist",
+    "css": "linear-gradient(#3951c6, #8896dd)"
+  },
+  {
+    "id": "crimson-blush",
+    "name": "Crimson Blush",
+    "css": "linear-gradient(#b9466c, #e3b5c4)"
+  },
+  {
+    "id": "emerald-forest",
+    "name": "Emerald Forest",
+    "css": "linear-gradient(#43ac20, #76df53)"
+  },
+  {
+    "id": "flamingo-fling",
+    "name": "Flamingo Fling",
+    "css": "linear-gradient(#e84a8c, #f3a5c5)"
+  },
+  {
+    "id": "glacial-gleam",
+    "name": "Glacial Gleam",
+    "css": "linear-gradient(220.55deg, #c5edf5 0%, #4a879a 100%)"
+  },
+  {
+    "id": "lavender-lustre",
+    "name": "Lavender Lustre",
+    "css": "linear-gradient(#de97f9, #9157ff)"
+  },
+  {
+    "id": "mint-surf",
+    "name": "Mint Surf",
+    "css": "linear-gradient(0deg, #08aeea 0%, #2af598 100%)"
+  },
+  {
+    "id": "orange-coral",
+    "name": "Orange Coral",
+    "css": "linear-gradient(to top, #fb923c, #fb7185)"
+  },
   {
     "id": "radiant-rouge",
     "name": "Radiant Rouge",
     "css": "linear-gradient(161.15deg, #ffa492 12.73%, #ff2c55 72.95%)"
   },
-  { "id": "sangria-solstice", "name": "Sangria Solstice", "css": "linear-gradient(181deg, #770738, #ddbb90)" },
-  { "id": "sea-sky", "name": "Sea Sky", "css": "linear-gradient(to top, #38bdf8, #312e81)" },
-  { "id": "skyline-whisper", "name": "Skyline Whisper", "css": "linear-gradient(#53a5df, #a9d2ef)" },
-  { "id": "cotton-candy-shores", "name": "Cotton Candy Shores", "css": "linear-gradient(#32c7e5, #f078d5)" },
-  { "id": "canary-shine", "name": "Canary Shine", "css": "linear-gradient(220.55deg, #fff500 0%, #ffb800 100%)" },
-  { "id": "oahu-sunset", "name": "Oahu Sunset", "css": "linear-gradient(to top, #fb923c, #38bdf8)" },
+  {
+    "id": "sangria-solstice",
+    "name": "Sangria Solstice",
+    "css": "linear-gradient(181deg, #770738, #ddbb90)"
+  },
+  {
+    "id": "sea-sky",
+    "name": "Sea Sky",
+    "css": "linear-gradient(to top, #38bdf8, #312e81)"
+  },
+  {
+    "id": "skyline-whisper",
+    "name": "Skyline Whisper",
+    "css": "linear-gradient(#53a5df, #a9d2ef)"
+  },
+  {
+    "id": "cotton-candy-shores",
+    "name": "Cotton Candy Shores",
+    "css": "linear-gradient(#32c7e5, #f078d5)"
+  },
+  {
+    "id": "canary-shine",
+    "name": "Canary Shine",
+    "css": "linear-gradient(220.55deg, #fff500 0%, #ffb800 100%)"
+  },
+  {
+    "id": "oahu-sunset",
+    "name": "Oahu Sunset",
+    "css": "linear-gradient(to top, #fb923c, #38bdf8)"
+  },
   {
     "id": "polaroid-memories",
     "name": "Polaroid Memories",
     "css": "linear-gradient(to top, #040308, #ad4a28, #dd723c, #fc7001, #dcb697, #9ba5ae, #3e5879, #020b1a)"
   },
-  { "id": "neon-nights", "name": "Neon Nights", "css": "linear-gradient(#f3b167, #ec38bc, #7303c0, #03001e)" },
+  {
+    "id": "neon-nights",
+    "name": "Neon Nights",
+    "css": "linear-gradient(#f3b167, #ec38bc, #7303c0, #03001e)"
+  },
   {
     "id": "soft-metal",
     "name": "Soft Metal",
@@ -60,7 +144,11 @@
     "name": "Spectral Summer",
     "css": "linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%)"
   },
-  { "id": "cold-breeze", "name": "Cold Breeze", "css": "conic-gradient(at center bottom, #ffffff, #0ea5e9, #0ea5e9)" },
+  {
+    "id": "cold-breeze",
+    "name": "Cold Breeze",
+    "css": "conic-gradient(at center bottom, #ffffff, #0ea5e9, #0ea5e9)"
+  },
   {
     "id": "cyberpop",
     "name": "Cyberpop",
