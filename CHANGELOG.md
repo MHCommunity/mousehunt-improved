@@ -2,29 +2,63 @@
 
 ## Unreleased
 
+### Added
+
 - Adds Custom Background feature, allowing you to choose from an event background, different colors, or gradients
+- Adds a `disable-mh-improved-tooltips` feature flag to disable the added tooltips on Mouse views and Item views
+- Adds experimental `ultimate-checkmark-sync` feature flag to sync Ultimate Checkmark data via a server
+- Adds 'Environment icon opens Travel Window' option to Better Travel
+- Adds an M400 Helper option to Better Quests to enable/disable the helper
+- Adds categories to the help/settings for Keyboard Shortcuts
+- Adds 'Go to Wiki' to Keyboard Shortcuts
+- Adds 'Open Travel Window' to Keyboard Shortcuts
+- Adds 'Travel to previous location' to Keyboard Shortcuts
+- Adds 'Show larger images' option for Better Inventory
+
+### Changed
+
+- Updates 'Clear Cache' button to also remove cached sessionStorage data
+- Updates clover icon to be more aligned and fade out in lucky catch journal entries
+- Updates Moussu Picchu Location HUD styles
+- Updates Table of Contents Location HUD styles
+- Updates Folklore Forest region Location HUD styles
+- Updates Table of Contents writing journal entry
+- Updates Better Inventory styles to make images slightly bigger, add Riftstalker Set labels, and more
+- Renames `twitter` feature flag to `social-noop`
+- Disables M400 Helper travel button when in the correct location
+- Simplifies text of M400 tasks to mostly fit on one line
+- Updates Better Journal with some Whisker Woods Rift journal entry styles
+- Updates Custom Shield to not remove event shields when set to the default shield
+- Updates Keyboard Shortcuts to not process shortcuts when a King's Reward is active
+- Updates the journal theme selector preview to match the journal
+- Updates Larry Freebie journal entry color on dark mode
+- FLRT Helper now defaults to all items if unable to fetch the tradable items data
+- Updates Relic Hunter indicator on Travel map view to correctly show
+
+### Fixed
+
 - Fixes Valour Rift Location Dashboard reporting incorrect values for upgrades
 - Fixes Minluck and Wisdom values not showing on Mouse View popups for Better Mice
 - Fixes module loading when using the `no-<module>` feature flags
 - Fixes Better Gifts correctly getting the amount of claimable actions
-- Updates 'Clear Cache' button to also remove cached sessionStorage data
 - Fixes some functionality not correctly working when changing pages
-- Updates clover icon to be more aligned and fade out in lucky catch journal entries
 - Fixes display issues with Better Inventory when set to half width
-- Updates Moussu Picchu Location HUD styles
-- Updates Table of Contents Location HUD styles
-- Updates Folklore Forest region Location HUD styles
 - Fixes Folklore Forest visibility toggles for Silver and Golden Quill upgrades
-- Updates Table of Contents writing journal entry
-- Updates Better Inventory styles to make images slightly bigger, add Riftstalker Set labels, and more
 - Fixes display of Favorited mice on the King's Crowns tab
 - Reverts changes made to the shield in the stat bar
 - Fixes Paste Hunter ID not correctly associating the snuid of the hunter, causing some tabs to load the wrong data
-- Adds a `disable-mh-improved-tooltips` feature flag to disable the added tooltips on Mouse views and Item views
 - Fixes settings not correctly showing that they saved or showing the refresh reminder message
 - Updates Ultimate Checkmark to cache data for 5 minutes, allowing for faster loading of the page
 - Updates user highlighting to cache data to avoid unnecessary requests
-- Adds experimental `ultimate-checkmark-sync` feature flag to sync Ultimate Checkmark data via a server
+- Fixes M400 Helper not correctly processing S.S. Huntington IV correctly
+- Fixes cheese selectors for Location HUDs not correctly displaying
+- Fixes Custom Shield not correctly removing last saved shield when changing the setting
+- Fixes Keyboard Shortcuts not checking default values for conflicting shortcuts
+- Fixes Riftstalker Set text being black text on a black background for item tooltips
+- Fixes the bait warning covering tooltips for Labyrinth Location HUD
+- Fixes the 'Shuffle Doors' button not being clickable on the right side of the Labyrinth Location HUD
+- Fixes Balack's Cove Location HUD not correctly showing the correct phase
+- Fixes font size in Whisker Woods Rift tooltips
 
 ## Version 0.28.1
 
