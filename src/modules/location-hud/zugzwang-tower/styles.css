@@ -1,6 +1,6 @@
 .zuzwangsTowerHUD-progress {
   overflow: visible;
-  counter-reset: chess -1;
+  counter-reset: chess 0;
 }
 
 .zuzwangsTowerHUD-progress img {
