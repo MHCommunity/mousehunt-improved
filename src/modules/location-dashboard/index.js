@@ -242,6 +242,8 @@ const makeDashboardTab = () => {
       const refreshedContents = getDashboardContents();
       existing.replaceWith(refreshedContents);
     }
+
+    sessionSet('mh-improved-doing-location-refresh', 'false');
   });
 
   makeElement('span', '', 'Dashboard', menuTab);
@@ -254,12 +256,43 @@ const makeDashboardTab = () => {
   // Refresh button.
   const refreshWrapper = makeElement('div', 'refreshWrapper');
 
-  // TODO: remove disabled class when we have a way to refresh.
   const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh']);
   makeElement('span', '', 'Refresh', refreshButton);
 
   refreshButton.addEventListener('click', () => {
-    doLocationRefresh();
+    const confirmPopup = createPopup({
+      title: 'Refresh Location Data',
+      content: `<div class="mh-improved-location-refresh-confirm-popup">
+        <div class="mh-improved-location-refresh-confirm-popup-content">
+          <p>This will refresh the location data for all locations by traveling to each location and caching the data.</p>
+          <div class="mh-improved-location-refresh-confirm-popup-buttons">
+            <div class="mousehuntActionButton mh-improved-location-refresh-confirm-popup-button mh-improved-location-refresh-confirm-popup-button-cancel"><span>Cancel</span></div>
+            <div class="mousehuntActionButton mh-improved-location-refresh-confirm-popup-button mh-improved-location-refresh-confirm-popup-button-confirm"><span>Confirm</span></div>
+          </div>
+        </div>
+      </div>`,
+      className: 'mh-improved-location-refresh-confirm-popup',
+      hasCloseButton: false,
+      show: true,
+    });
+
+    const cancelButton = document.querySelector('.mh-improved-location-refresh-confirm-popup-button-cancel');
+    if (cancelButton) {
+      cancelButton.addEventListener('click', () => {
+        confirmPopup.hide();
+      });
+    }
+
+    const confirmButton = document.querySelector('.mh-improved-location-refresh-confirm-popup-button-confirm');
+    if (confirmButton) {
+      confirmButton.addEventListener('click', () => {
+        confirmPopup.hide();
+        doLocationRefresh();
+      });
+    }
+
+
+    // doLocationRefresh();
   });
 
   refreshWrapper.append(refreshButton);

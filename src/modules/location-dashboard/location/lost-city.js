@@ -8,7 +8,7 @@ export default (quests) => {
   }
 
   const curses = quests.QuestLostCity?.minigame?.curses;
-  const cursesText = curses.map((curse) => curse.name).join(', ').replace(/,([^,]*)$/, '$1');
+  const cursesText = curses.map((curse) => curse.name).join(', ').replaceAll('!', '').replace(/,([^,]*)$/, '$1');
 
   return `Cursed with ${cursesText}`;
 };

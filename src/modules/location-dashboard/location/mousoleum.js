@@ -11,8 +11,8 @@ export default (quests) => {
   };
 
   if (quest.has_wall) {
-    return `Wall: ${quest.wall_health}/${quest.max_wall_health} HP`;
+    return `Wall, ${quest.wall_health}/${quest.max_wall_health} HP`;
   }
 
-  return `No Wall: ${quest.planks} planks`;
+  return `No Wall, ${quest.planks} planks`;
 };

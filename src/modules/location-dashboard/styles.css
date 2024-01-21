@@ -48,8 +48,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 25px;
-  padding: 7px 5px;
+  height: 26px;
+  padding: 9px 5px;
   background-color: #fff;
 }
 
@@ -89,10 +89,12 @@ img.locationImage {
 
 .locationProgress {
   text-align: right;
+  line-height: 17px;
+  font-size: 11px;
+  white-space: pre-line;
 }
 
 .locationProgress .stats {
-  margin-top: -10px;
   text-align: right;
 }
 
@@ -235,4 +237,15 @@ img.locationImage {
   content: "";
   background: #f3c019;
   animation: moving-background 1s linear forwards;
+}
+
+.mh-improved-location-refresh-confirm-popup #overlayPopup .jsDialogContainer .suffix {
+  display: none;
+}
+
+.mh-improved-location-refresh-confirm-popup-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 30px;
 }

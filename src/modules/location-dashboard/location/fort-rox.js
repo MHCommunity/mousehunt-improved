@@ -8,7 +8,10 @@ export default (quests) => {
     stage: quests.QuestFortRox.current_stage || 'stage_none',
     hp: quests.QuestFortRox.hp || 0,
     max_hp: quests.QuestFortRox.max_hp || 0,
+    is_dawn: quests.QuestFortRox.is_dawn || false,
   };
+
+  let phase = 'Day';
 
   const phases = {
     stage_none: 'Day',
@@ -19,5 +22,7 @@ export default (quests) => {
     stage_five: 'First Light'
   };
 
-  return `${phases[quest.stage]}: ${quest.hp}/${quest.max_hp} HP`;
+  phase = quest.is_dawn ? 'Dawn' : phases[quest.stage];
+
+  return `${phase}: ${quest.hp}/${quest.max_hp} HP`;
 };
