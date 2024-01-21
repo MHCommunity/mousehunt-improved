@@ -5,7 +5,8 @@ import {
   isUserTitleAtLeast,
   makeElement,
   onEvent,
-  onRequest
+  onRequest,
+  sessionSet
 } from '@utils';
 
 import { getData } from '@utils/data';
@@ -108,7 +109,7 @@ const doLocationRefresh = async () => {
   // Close the popup.
   // Refresh the page.
 
-  sessionStorage.setItem('mh-improved-doing-location-refresh', 'true');
+  sessionSet('mh-improved-doing-location-refresh', 'true');
 
   const locationProgress = [];
 
@@ -400,7 +401,7 @@ const init = async () => {
   environments = await getData('environments');
 
   // Cache the quest data for our current location.
-  sessionStorage.setItem('mh-improved-doing-location-refresh', 'false');
+  sessionSet('mh-improved-doing-location-refresh', 'false');
 
   cacheLocationData();
   onEvent('travel_complete', cacheLocationData);

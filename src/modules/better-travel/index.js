@@ -13,7 +13,8 @@ import {
   onEvent,
   onNavigation,
   onPageChange,
-  removeSubmenuItem
+  removeSubmenuItem,
+  sessionGet
 } from '@utils';
 
 import { getData } from '@utils/data';
@@ -473,7 +474,7 @@ const listenTabChange = () => {
 };
 
 const saveTravelLocation = () => {
-  const isLocationDashboardRefreshing = sessionStorage.getItem('mh-improved-doing-location-refresh');
+  const isLocationDashboardRefreshing = sessionGet('mh-improved-doing-location-refresh');
   if (isLocationDashboardRefreshing === 'true') {
     return;
   }
