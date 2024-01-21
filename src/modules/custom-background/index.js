@@ -17,8 +17,6 @@ const addBodyClass = (preview = false) => {
     setting = preview;
   }
 
-  const background = `mh-improved-bg-${setting}`;
-
   // remove the old class
   if (addedClass) {
     body.classList.remove(addedClass);
@@ -34,10 +32,17 @@ const addBodyClass = (preview = false) => {
     return;
   }
 
-  body.classList.add(background);
-  addedClass = background;
+  body.classList.add(setting);
+  addedClass = setting;
 
-  if (setting.startsWith('background-color-') || ! gradients) {
+  if (setting.startsWith('background-color-')) {
+    const background = `mh-improved-bg-${setting}`;
+    body.classList.remove(setting);
+    body.classList.add(background);
+    addedClass = background;
+  }
+
+  if (! gradients) {
     return;
   }
 
@@ -73,7 +78,7 @@ const addBodyClass = (preview = false) => {
 };
 
 const listenForPreferenceChanges = () => {
-  const input = document.querySelector('#mousehunt-improved-settings-feature-custom-background select');
+  const input = document.querySelector('#mousehunt-improved-settings-design-custom-background select');
   if (! input) {
     return;
   }
@@ -112,11 +117,6 @@ const addPreview = () => {
 
     popup.show();
 
-    const overlay = document.querySelector('#overlayBg.active');
-    if (overlay) {
-      // overlay.style.background = 'none';
-    }
-
     const previewActions = document.querySelectorAll('.mh-improved-custom-bg-action-button');
     previewActions.forEach((action) => {
       const gradient = action.getAttribute('data-gradient');
@@ -128,7 +128,7 @@ const addPreview = () => {
         if ('preview' === actionType) {
           addBodyClass(gradient);
         } else if ('use' === actionType) {
-          const input = document.querySelector('#mousehunt-improved-settings-feature-custom-background select');
+          const input = document.querySelector('#mousehunt-improved-settings-design-custom-background select');
           if (input) {
             input.value = gradient;
             input.dispatchEvent(new Event('change'));
@@ -169,7 +169,7 @@ const init = async () => {
 export default {
   id: 'custom-background',
   name: 'Custom Background',
-  type: 'feature',
+  type: 'design',
   default: false,
   description: '',
   load: init,

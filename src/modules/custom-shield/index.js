@@ -109,7 +109,7 @@ const getTitle = () => {
 };
 
 const watchForPreferenceChanges = () => {
-  const input = document.querySelector('#mousehunt-improved-settings-feature-custom-shield select');
+  const input = document.querySelector('#mousehunt-improved-settings-design-custom-shield select');
   if (! input) {
     return;
   }
@@ -138,7 +138,7 @@ const init = async () => {
 export default {
   id: 'custom-shield',
   name: 'Custom Shield',
-  type: 'feature',
+  type: 'design',
   default: false,
   description: 'Change your shield in the HUD to a variety of different options.',
   load: init,

@@ -53,10 +53,11 @@ body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
 .mh-improved-custom-bg-preview {
   position: absolute;
   top: 0;
-  right: 20px;
+  right: 225px;
   bottom: 0;
   display: flex;
   align-items: center;
+  font-size: 14px;
 }
 
 .mh-improved-custom-background-gradient-preview {

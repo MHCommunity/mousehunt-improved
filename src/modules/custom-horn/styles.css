@@ -1,0 +1,55 @@
+.huntersHornView.horn-color-blue .huntersHornView__horn {
+  filter: hue-rotate(158deg);
+}
+
+.huntersHornView.horn-color-cyan .huntersHornView__horn {
+  filter: hue-rotate(112deg);
+}
+
+.huntersHornView.horn-color-green .huntersHornView__horn {
+  filter: hue-rotate(66deg);
+}
+
+.huntersHornView.horn-color-pink .huntersHornView__horn {
+  filter: hue-rotate(280deg);
+}
+
+.huntersHornView.horn-color-purple .huntersHornView__horn {
+  filter: hue-rotate(195deg);
+}
+
+.huntersHornView.horn-color-red .huntersHornView__horn {
+  filter: hue-rotate(317deg) saturate(1.6);
+}
+
+.huntersHornView.horn-color-faded .huntersHornView__horn {
+  filter: sepia(1);
+}
+
+@keyframes horn-hue-rotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    filter: hue-rotate(360deg);
+  }
+
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
+.huntersHornView.horn-color-rainbow .huntersHornView__horn {
+  animation: horn-hue-rotate 30s infinite;
+}
+
+.mh-improved-custom-horn-show-horn {
+  position: absolute;
+  top: 0;
+  right: 225px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}

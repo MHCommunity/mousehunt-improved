@@ -66,8 +66,10 @@
   font-size: 11px;
 }
 
-#mousehunt-improved-settings-feature-custom-background,
-#mousehunt-improved-settings-feature-custom-shield,
+#mousehunt-improved-settings-design-custom-background,
+#mousehunt-improved-settings-design-custom-hud,
+#mousehunt-improved-settings-design-custom-horn,
+#mousehunt-improved-settings-design-custom-shield,
 #mousehunt-improved-settings-feature-ultimate-checkmark-categories,
 .mousehunt-improved-settings .PagePreferences__settingsList {
   padding: 10px 5px 5px 10px;
@@ -134,7 +136,11 @@
 
 #mousehunt-improved-settings-better-gift-buttons-send-order .inputBox.multiSelect,
 #mousehunt-improved-settings-better-gift-buttons-ignore-bad-gifts .inputBox.multiSelect,
-#mousehunt-improved-settings-feature-custom-shield .inputBox.multiSelect {
+#mousehunt-improved-settings-design-custom-shield .inputBox.multiSelect,
+#mousehunt-improved-settings-design-custom-background .inputBox.multiSelect,
+#mousehunt-improved-settings-design-custom-hud .inputBox.multiSelect,
+#mousehunt-improved-settings-design-custom-horn .inputBox.multiSelect {
+  width: 200px;
   max-width: unset;
 }
 
@@ -323,14 +329,18 @@
   max-width: 480px;
 }
 
-#mousehunt-improved-settings-feature-custom-background,
-#mousehunt-improved-settings-feature-custom-shield,
+#mousehunt-improved-settings-design-custom-background,
+#mousehunt-improved-settings-design-custom-hud,
+#mousehunt-improved-settings-design-custom-horn,
+#mousehunt-improved-settings-design-custom-shield,
 #mousehunt-improved-settings-feature-ultimate-checkmark-categories {
   margin: 0;
 }
 
-#mousehunt-improved-settings-feature-custom-background > div > div > .PagePreferences__settingName,
-#mousehunt-improved-settings-feature-custom-shield > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-design-custom-background > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-design-custom-hud > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-design-custom-horn > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-design-custom-shield > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-feature-ultimate-checkmark-categories > div > div > .PagePreferences__settingName {
   font-size: 15px;
 }
@@ -369,4 +379,8 @@
 
 .mousehunt-improved-clear-cache.mousehuntActionButton {
   margin-left: auto;
+}
+
+#mousehunt-improved-settings-design .PagePreferences__separator:nth-child(2) {
+  display: none;
 }

@@ -57,6 +57,11 @@ const organizedModules = [
     modules: [],
   },
   {
+    id: 'design',
+    name: 'Design',
+    modules: [],
+  },
+  {
     id: 'element-hiding',
     name: 'Hide Page Elements',
     modules: [],

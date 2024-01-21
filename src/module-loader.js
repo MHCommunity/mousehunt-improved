@@ -17,8 +17,6 @@ import betterUi from '@/better-ui';
 // Feature modules.
 import catchRateEstimate from '@/catch-rate-estimate';
 import copyId from '@/copy-id';
-import customBackground from '@/custom-background';
-import customShield from '@/custom-shield';
 import darkMode from '@/dark-mode';
 import dataExporters from '@/data-exporters';
 import delayedTooltips from '@/delayed-tooltips';
@@ -41,6 +39,12 @@ import quickSendSupplies from '@/quick-send-supplies';
 import tallerWindows from '@/taller-windows';
 import temCrowns from '@/tem-crowns';
 import ultimateCheckmark from '@/ultimate-checkmark';
+
+// Design modules.
+import customBackground from '@/custom-background';
+import customHorn from '@/custom-horn';
+import customHud from '@/custom-hud';
+import customShield from '@/custom-shield';
 
 // Location HUD module.
 import locationHud from '@/location-hud';
@@ -84,8 +88,6 @@ export default [
   // Feature modules.
   catchRateEstimate,
   copyId,
-  customBackground,
-  customShield,
   darkMode,
   dataExporters,
   delayedTooltips,
@@ -108,6 +110,12 @@ export default [
   tallerWindows,
   temCrowns,
   ultimateCheckmark,
+
+  // Design modules.
+  customBackground,
+  customHorn,
+  customHud,
+  customShield,
 
   // Element hiding modules.
   adblock,

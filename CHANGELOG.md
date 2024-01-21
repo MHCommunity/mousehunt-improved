@@ -4,10 +4,12 @@
 
 ### Added
 
+- Adds a new Design section to the settings page
 - Adds Custom Background feature, allowing you to choose from an event background, different colors, or gradients
+- Adds Custom HUD Background feature, allowing you to replace the blue marble background with a different color
+- Adds Custom Horn feature, allowing you to replace the default horn with an event horn or a color
 - Adds a `disable-mh-improved-tooltips` feature flag to disable the added tooltips on Mouse views and Item views
 - Adds experimental `ultimate-checkmark-sync` feature flag to sync Ultimate Checkmark data via a server
-- Adds beta `hud-bg-[color]` flags to change the background color of the marble HUD. Available colors are `cyan`, `green`, `orange`, `pink`, `purple`, `cyan`, and `teal`.
 - Adds 'Environment icon opens Travel Window' option to Better Travel
 - Adds an M400 Helper option to Better Quests to enable/disable the helper
 - Adds categories to the help/settings for Keyboard Shortcuts
