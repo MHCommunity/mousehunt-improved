@@ -43,7 +43,6 @@ const renderButton = (location) => {
 };
 
 const main = () => {
-  console.log('Running M400 helper'); // eslint-disable-line no-console
   const questTitle = document.querySelector('.campPage-quests-title');
   if (! questTitle) {
     return;

@@ -45,12 +45,9 @@ const changeShield = () => {
     ];
 
     remove.forEach((className) => {
-      console.log(`remove ${className}`); // eslint-disable-line no-console
       removeClass(shieldEl, className);
     });
   }
-
-  console.log(`changeShield ${lastShield} -> ${getSetting('custom-shield-0', 'default')}`); // eslint-disable-line no-console
 
   // Remove the old timer class.
   timer.classList.remove(lastShield);
