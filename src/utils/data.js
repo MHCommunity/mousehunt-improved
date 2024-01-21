@@ -1,4 +1,5 @@
 import { debuglog } from './debug';
+import { getFlag } from './flags';
 
 const isValidDataFile = (file) => {
   const validDataFiles = new Set([
@@ -146,6 +147,11 @@ const getHeaders = () => {
 };
 
 const sessionSet = (key, value, retry = false) => {
+  if (getFlag('no-cache')) {
+    return;
+  }
+
+  key = `mh-improved-${key}`;
   const stringified = JSON.stringify(value);
 
   try {
@@ -166,6 +172,11 @@ const sessionSet = (key, value, retry = false) => {
 };
 
 const sessionGet = (key) => {
+  if (getFlag('no-cache')) {
+    return false;
+  }
+
+  key = `mh-improved-${key}`;
   const value = sessionStorage.getItem(key);
   if (! value) {
     return false;

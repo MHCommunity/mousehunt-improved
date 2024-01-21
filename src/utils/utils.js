@@ -208,7 +208,7 @@ function isAppleOS(_window = null) {
 }
 
 const hasMiniCRE = () => {
-  const hasMiniCre = sessionGet('mh-improved-has-mini-cre');
+  const hasMiniCre = sessionGet('has-mini-cre');
   if (hasMiniCre) {
     return true;
   }
@@ -219,11 +219,11 @@ const hasMiniCRE = () => {
 
   const cre = document.querySelector('.min-luck-container[style="position: absolute; top: 7px; right: 7px;"]');
   if (! cre) {
-    sessionSet('mh-improved-has-mini-cre', false);
+    sessionSet('has-mini-cre', false);
     return false;
   }
 
-  sessionSet('mh-improved-has-mini-cre', true);
+  sessionSet('has-mini-cre', true);
 
   return true;
 };

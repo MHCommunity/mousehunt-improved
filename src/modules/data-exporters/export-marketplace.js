@@ -26,9 +26,9 @@ const fetchTransactions = async () => {
   let transactions = [];
 
   // todo: save the current page to session storage so we can resume if the user navigates away
-  page = Number.parseInt(sessionGet('mh-improved-export-marketplace-page'), 10) || 1;
+  page = Number.parseInt(sessionGet('export-marketplace-page'), 10) || 1;
 
-  transactions = JSON.parse(sessionGet('mh-improved-export-marketplace-transactions')) || [];
+  transactions = JSON.parse(sessionGet('export-marketplace-transactions')) || [];
 
   const tradableItems = await getData('items-tradable');
 
@@ -59,8 +59,8 @@ const fetchTransactions = async () => {
 
     page++;
 
-    sessionSet('mh-improved-export-marketplace-page', page);
-    sessionSet('mh-improved-export-marketplace-transactions', JSON.stringify(transactions));
+    sessionSet('export-marketplace-page', page);
+    sessionSet('export-marketplace-transactions', JSON.stringify(transactions));
 
     totalItemsEl.textContent = transactions.length.toLocaleString();
   } while (response.length > 0);

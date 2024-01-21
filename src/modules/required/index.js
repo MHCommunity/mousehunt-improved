@@ -96,6 +96,13 @@ const addClearCache = () => {
 
     clearCaches();
 
+    // Delete all the mh-improved keys that are in session storage.
+    for (const key of Object.keys(sessionStorage)) {
+      if (key.startsWith('mh-improved')) {
+        sessionStorage.removeItem(key);
+      }
+    }
+
     // Clear the ar
     localStorage.removeItem(`mh-improved-cached-ar-v${mhImprovedVersion}`);
     window.location.reload();

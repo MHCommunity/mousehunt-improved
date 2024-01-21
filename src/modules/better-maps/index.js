@@ -43,7 +43,7 @@ const addBlockClasses = () => {
 };
 
 const interceptMapRequest = (mapId) => {
-  sessionSet('mh-improved-map-refreshed', Date.now());
+  sessionSet('map-refreshed', Date.now());
 
   // If we don't have data, we're done.
   if (! mapId) {

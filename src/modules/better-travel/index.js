@@ -474,7 +474,7 @@ const listenTabChange = () => {
 };
 
 const saveTravelLocation = () => {
-  const isLocationDashboardRefreshing = sessionGet('mh-improved-doing-location-refresh');
+  const isLocationDashboardRefreshing = sessionGet('doing-location-refresh');
   if (isLocationDashboardRefreshing === 'true') {
     return;
   }

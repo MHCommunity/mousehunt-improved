@@ -1,4 +1,10 @@
-import { getUserSetupDetails, onPageChange, onRequest } from '@utils';
+import {
+  getUserSetupDetails,
+  onPageChange,
+  onRequest,
+  sessionGet,
+  sessionSet
+} from '@utils';
 
 const setPrestigeStats = () => {
   const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
@@ -7,7 +13,7 @@ const setPrestigeStats = () => {
   }
 
   // update the stats display
-  const savedStats = JSON.parse(localStorage.getItem('mh-improved-cache-pb-stats')) || false;
+  const savedStats = sessionGet('pb-stats') || false;
   if (! savedStats) {
     return;
   }
@@ -137,7 +143,7 @@ const savePbStats = () => {
     return;
   }
 
-  localStorage.setItem('mh-improved-cache-pb-stats', JSON.stringify(stats));
+  sessionSet('pb-stats', JSON.stringify(stats));
 };
 
 /**

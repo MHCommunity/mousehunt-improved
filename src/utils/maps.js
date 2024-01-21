@@ -64,7 +64,7 @@ const getMapData = (mapId = false, strict = false) => {
     return false;
   }
 
-  const localStorageMap = JSON.parse(sessionGet('mh-improved-map-cache-last-map'));
+  const localStorageMap = JSON.parse(sessionGet('map-cache-last-map'));
   if (localStorageMap) {
     return localStorageMap;
   }
@@ -74,15 +74,15 @@ const getMapData = (mapId = false, strict = false) => {
 
 const setMapData = (mapId, theMapData) => {
   sessionSet(`mh-improved-map-cache-${mapId}`, JSON.stringify(theMapData));
-  sessionSet('mh-improved-map-cache-last-map', JSON.stringify(theMapData));
+  sessionSet('map-cache-last-map', JSON.stringify(theMapData));
 };
 
 const getLastMaptain = () => {
-  return sessionGet('mh-improved-last-maptain');
+  return sessionGet('last-maptain');
 };
 
 const setLastMaptain = (id) => {
-  sessionSet('mh-improved-last-maptain', id);
+  sessionSet('last-maptain', id);
 };
 
 const cacheFinishedMap = async () => {

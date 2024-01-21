@@ -4,7 +4,9 @@ import {
   getCurrentSubtab,
   getCurrentTab,
   makeElement,
-  onNavigation
+  onNavigation,
+  sessionGet,
+  sessionSet
 } from '@utils';
 
 const makeKingsCrownsTab = () => {
@@ -131,8 +133,8 @@ const makeKingsCrownsTabContent = async () => {
   makeKingsCrownsTabContentContent();
 
   let crowns = [];
-  const cachedCrowns = localStorage.getItem('mh-improved-cache-kings-crowns');
-  const cachedCrownsTime = localStorage.getItem('mh-improved-cache-kings-crowns-time');
+  const cachedCrowns = sessionGet('kings-crowns');
+  const cachedCrownsTime = sessionGet('kings-crowns-time');
   if (
     cachedCrowns &&
     cachedCrownsTime &&
@@ -140,18 +142,15 @@ const makeKingsCrownsTabContent = async () => {
   ) {
     crowns = JSON.parse(cachedCrowns);
   } else {
-    const crownsReq = await doRequest(
-      'managers/ajax/pages/page.php',
-      {
-        page_class: 'HunterProfile',
-        'page_arguments[tab]': 'kings_crowns',
-        'page_arguments[sub_tab]': false
-      }
-    );
+    const crownsReq = await doRequest('managers/ajax/pages/page.php', {
+      page_class: 'HunterProfile',
+      'page_arguments[tab]': 'kings_crowns',
+      'page_arguments[sub_tab]': false
+    });
 
     crowns = crownsReq.page.tabs.kings_crowns.subtabs[0].mouse_crowns;
-    localStorage.setItem('kingsCrowns', JSON.stringify(crowns));
-    localStorage.setItem('kingsCrownsTime', Date.now());
+    sessionSet('kings-crowns', JSON.stringify(crowns));
+    sessionSet('kings-crownsTime', Date.now());
   }
 
   const tabInnerContent = document.querySelector('.mousehuntHud-page-tabContent.kings_crowns');
