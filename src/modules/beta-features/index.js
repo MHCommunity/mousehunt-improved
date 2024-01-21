@@ -3,9 +3,8 @@ import { debuglog, getFlag } from '@utils';
 import eventHorn from './modules/event-horn';
 import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
+import socialNoop from './modules/social';
 import trollMode from './modules/troll-mode';
-
-import socialNoop from '@/shared/social';
 
 /**
  * Initialize the module.

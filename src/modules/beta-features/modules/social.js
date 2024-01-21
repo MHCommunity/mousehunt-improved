@@ -6,10 +6,6 @@ export default () => {
     },
   };
 
-  window.FB = {
-    ui: () => {},
-  };
-
   class SocialLink {
     constructor(url) {
       this.url = url;
