@@ -1,0 +1,72 @@
+.mhui-inventory-lock-and-hide-controls-wrapper {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.mousehuntHud-page-tabContent.traps .mhui-inventory-lock-and-hide-controls-wrapper {
+  top: -30px;
+}
+
+.mhui-inventory-lock-and-hide-bulk-controls {
+  display: none;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-bulk-controls {
+  display: inline-flex;
+}
+
+.inventoryPage-tagContent.mhui-inventory-lock-and-hide-controls-active {
+  border-radius: 5px;
+  outline: 3px solid #f37c7c;
+}
+
+.mhui-inventory-lock-and-hide-item-controls {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  background-color: rgb(255 255 255 / 50%);
+}
+
+.mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-item-controls {
+  display: flex;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden {
+  display: inline-block;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden .inventoryPage-item-margin {
+  /* filter: grayscale(1); */
+  background-color: #939393;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked {
+  display: inline-block;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked .inventoryPage-item-margin {
+  background-color: #ff7b00;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .tooltip {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.locked .inventoryPage-item-content-action {
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+.mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
+  display: none;
+}

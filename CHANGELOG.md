@@ -4,6 +4,7 @@
 
 ### Added
 
+- Adds Inventory Lock and Hide feature
 - Adds a new Design section to the settings page
 - Adds Custom Background feature, allowing you to choose from an event background, different colors, or gradients
 - Adds Custom HUD Background feature, allowing you to replace the blue marble background with a different color
