@@ -64,6 +64,7 @@
 - Fixes the 'Shuffle Doors' button not being clickable on the right side of the Labyrinth Location HUD
 - Fixes Balack's Cove Location HUD not correctly showing the correct phase
 - Fixes font size in Whisker Woods Rift tooltips
+- Fixes incorrect chess piece count in Zugzwang's Tower Location HUD
 
 ## Version 0.28.1
 
