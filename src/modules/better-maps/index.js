@@ -220,9 +220,9 @@ const relicHunterUpdate = () => {
 
     // Call updateRelicHunterHint, but if it fails, try again in 250ms, but stop after 5 tries.
     let tries = 0;
-    const interval = setInterval(() => {
+    const interval = setInterval(async () => {
       tries++;
-      if (updateRelicHunterHint() || tries > 5) {
+      if (await updateRelicHunterHint() || tries > 5) {
         clearInterval(interval);
       }
     }, 250);
