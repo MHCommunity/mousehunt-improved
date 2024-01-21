@@ -22,7 +22,7 @@ const makeElement = (tag, classes = '', text = '', appendTo = null) => {
     classes = classes.join(' ');
   }
 
-  if (classes) {
+  if (classes && classes.length) {
     element.className = classes;
   }
 
