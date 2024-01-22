@@ -32,11 +32,12 @@ const addBodyClass = (preview = false) => {
     return;
   }
 
-  body.classList.add(setting);
+  const background = `mh-improved-bg-${setting}`;
+
+  body.classList.add(background);
   addedClass = setting;
 
   if (setting.startsWith('background-color-')) {
-    const background = `mh-improved-bg-${setting}`;
     body.classList.remove(setting);
     body.classList.add(background);
     addedClass = background;

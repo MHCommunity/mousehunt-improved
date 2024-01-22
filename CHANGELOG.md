@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.30.1
+
+- Fix issue with custom backgrounds not being applied
+
 ## Version 0.30.0
 
 ### Added
