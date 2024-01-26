@@ -19,7 +19,12 @@ const addStyleEl = () => {
         url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2) 731px 0 no-repeat,
         url(https://i.mouse.rip/mh-improved/marble-shadow.png) 6px 0 no-repeat,
         url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
-    }`;
+    }
+
+    .mousehuntHud-titleProgressBar {
+      mix-blend-mode: luminosity;
+    }
+    `;
 
     document.head.append(style);
   }
