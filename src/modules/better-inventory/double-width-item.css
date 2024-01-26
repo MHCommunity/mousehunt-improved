@@ -2,22 +2,22 @@
 .mousehuntHud-page-tabContent.special div[data-tag="convertibles"] .inventoryPage-tagContent-listing,
 .mousehuntHud-page-tabContent.special div[data-tag="spring_hunt"] .inventoryPage-tagContent-listing,
 .mousehuntHud-page-tabContent.special div[data-tag="treasure_chests"] .inventoryPage-tagContent-listing {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: stretch;
-    gap: 5px 5px;
-    align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+  gap: 5px 5px;
+  align-items: stretch;
 }
 
 .mousehuntHud-page-tabContent.special .inventoryPage-item.full,
 .mousehuntHud-page-tabContent.special .inventoryPage-item.full:nth-child(odd) {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    display: block;
-    width: 282px;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  display: block;
+  width: 282px;
 }
 
 .mousehuntHud-page-tabContent.special div[data-tag="treasure_chests"] .inventoryPage-item-margin.clear-block {
-    height: 100%;
+  height: 100%;
 }
