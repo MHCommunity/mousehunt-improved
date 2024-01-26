@@ -1,18 +1,18 @@
 import {
   addStyles,
   clearCaches,
-  debug,
-  getSettings,
-  onTurn,
-  getHeaders,
   createPopup,
+  debug,
   getCurrentPage,
   getCurrentTab,
   getFlag,
   getGlobal,
+  getHeaders,
   getSetting,
+  getSettings,
   makeElement,
-  onNavigation
+  onNavigation,
+  onTurn
 } from '@utils';
 
 import settingStyles from './settings-styles.css';
