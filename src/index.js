@@ -28,6 +28,11 @@ if (getSetting('error-reporting', true)) {
     debug: false,
     release: `mousehunt-improved@${mhImprovedVersion}`,
     environment: mhImprovedPlatform,
+    allowUrls: [
+      /mproved/, // mproved rather than improved to match the MH-Improved userscript
+      '/nicobnljejcjcbnhgcjhhhbnadkiafca/', // Chrome extension
+      /73164570-6676-4291-809b-7b5c9cf6e626/, // Firefox extension
+    ],
     initialScope: {
       tags: {
         platform: mhImprovedPlatform,
