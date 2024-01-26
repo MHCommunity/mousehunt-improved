@@ -65,7 +65,7 @@
 
 .mousehuntHud-shield.title,
 .mousehuntHud-shield.golden.title {
-  background: url(https://i.mouse.rip/shield-blank.png?1) 0 0 / contain no-repeat;
+  background: url(https://i.mouse.rip/shield-blank-2.png) 0 0 / contain no-repeat;
 }
 
 .mousehuntHud-shield.title::after {
@@ -74,8 +74,8 @@
   content: "";
   filter: drop-shadow(0 0 10px #e8dbb8);
   background-repeat: no-repeat;
-  background-position: 15px 15px;
-  background-size: 105px;
+  background-position: 2px 1px;
+  background-size: 125px;
   transition: background-image 0.5s;
 }
 
