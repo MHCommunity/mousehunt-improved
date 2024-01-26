@@ -1,6 +1,11 @@
 # Changelog
 
-## Version 0.30.2
+## Version 0.30.3
+
+- Fixes Favorite Setups title randomize button not showing
+- Fixes trap math window cutting off text
+
+## Version 0.30.
 
 - Fixes Favorite Setups throwing errors
 - Adds a 'Randomize' button to the title when editing a setup in Favorite Setups, which will automatically generate a title for you
