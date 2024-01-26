@@ -12,6 +12,10 @@ const getMiceEffectivness = async () => {
 
   const response = await doRequest('managers/ajax/users/getmiceeffectiveness.php');
 
+  if (! response?.success) {
+    return false;
+  }
+
   return response?.effectiveness;
 };
 

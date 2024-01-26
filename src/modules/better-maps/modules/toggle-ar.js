@@ -6,7 +6,7 @@ const addArDataToMap = async (mapData) => {
     type = 'item';
   }
 
-  const mice = mapData?.goals?.[type];
+  const mice = mapData?.goals?.[type] || [];
 
   if (! mice || mice.length === 0) {
     return;

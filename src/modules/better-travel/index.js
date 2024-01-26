@@ -464,7 +464,12 @@ const maybeDoMapView = () => {
   addRhToMap();
 };
 
+let _tabHandler = null;
 const listenTabChange = () => {
+  if (_tabHandler) {
+    return;
+  }
+
   _tabHandler = hg.utils.PageUtil.onclickPageTabHandler;
   hg.utils.PageUtil.onclickPageTabHandler = (tab) => {
     _tabHandler(tab);

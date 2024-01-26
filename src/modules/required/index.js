@@ -1,10 +1,15 @@
 import {
   addStyles,
   clearCaches,
+  debug,
+  getSettings,
+  onTurn,
+  getHeaders,
   createPopup,
   getCurrentPage,
   getCurrentTab,
   getFlag,
+  getGlobal,
   getSetting,
   makeElement,
   onNavigation
@@ -177,18 +182,28 @@ const checkForAutohorn = () => {
   }
 
   // Send a post request to the autohorn tracker.
-  fetch('https://autohorn-tracking.mouse.rip/submit', {
+  fetch('https://autohorn.mouse.rip/submit', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-MH-Improved': 'true',
-    },
+    headers: getHeaders(),
     body: JSON.stringify({
       id: user.user_id,
       snid: user.sn_user_id,
       username: user.username,
     })
   });
+};
+
+const sendModulesStats = () => {
+  const statData = {
+    platform: mhImprovedPlatform,
+    version: mhImprovedVersion,
+    modules: getGlobal('modules'),
+    settings: getSettings(),
+    user: user.unique_hash
+  };
+
+  // TODO: Send the stats to the server.
+  debug('Sending stats to the server', statData);
 };
 
 const addIconToMenu = () => {
@@ -232,6 +247,12 @@ const init = async () => {
   // If you want to disable the reporting, you can but you have to admit you're a cheater.
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
     checkForAutohorn();
+    onTurn(checkForAutohorn);
+  }
+
+  if (getSetting('error-reporting', true)) {
+    sendModulesStats();
+    onTurn(sendModulesStats);
   }
 
   addIconToMenu();

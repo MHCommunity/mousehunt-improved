@@ -39,13 +39,30 @@ const getToggleVisibilityMapping = () => {
 const toggleAllVisibility = () => {
   const mapping = getToggleVisibilityMapping();
   const upgradeIds = Object.keys(mapping);
+
   upgradeIds.forEach((upgradeId) => {
     hideOrShowBlock(upgradeId, isHidden(upgradeId));
   });
 };
 
 const isUnlocked = (upgradeId) => {
-  const upgrade = user.quests.QuestTableOfContents.upgrades.find((u) => u.type === upgradeId);
+  let userQuest;
+
+  if (user.quests?.QuestTableOfContents) {
+    userQuest = user.quests.QuestTableOfContents;
+  } else if (user.quests?.QuestProloguePond) {
+    userQuest = user.quests.QuestProloguePond;
+  } else if (user.quests?.QuestForewordFarm) {
+    userQuest = user.quests.QuestForewordFarm;
+  } else {
+    return false;
+  }
+
+  if (! userQuest || ! userQuest.upgrades) {
+    return false;
+  }
+
+  const upgrade = userQuest.upgrades.find((u) => u.type === upgradeId);
   if (! upgrade) {
     return false;
   }

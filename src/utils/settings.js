@@ -51,6 +51,15 @@ const getSetting = (key, defaultValue = false) => {
   return getSettingDirect(key, defaultValue, 'mousehunt-improved-settings');
 };
 
+const getSettings = () => {
+  const settings = localStorage.getItem('mousehunt-improved-settings');
+  if (! settings) {
+    return {};
+  }
+
+  return JSON.parse(settings);
+};
+
 /**
  * Wrapper for saving a setting.
  *
@@ -69,5 +78,6 @@ export {
   getSettingDirect,
   saveSettingDirect,
   getSetting,
-  saveSetting
+  saveSetting,
+  getSettings
 };

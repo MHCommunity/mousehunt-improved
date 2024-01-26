@@ -23,11 +23,15 @@ const addToGlobal = (key, value) => {
  * @return {any|boolean} Value of the key or false if not found.
  */
 const getGlobal = (key) => {
-  if (! window.mhui) {
-    return false;
+  if (window.mhui) {
+    return window.mhui[key] || false;
   }
 
-  return mhui[key];
+  if (app.mhui) {
+    return app.mhui[key] || false;
+  }
+
+  return false;
 };
 
 export {

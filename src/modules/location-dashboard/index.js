@@ -181,6 +181,9 @@ const doLocationRefresh = async () => {
     debug(`Traveling to ${locationData.name}.`);
 
     const progressItem = document.querySelector(`.location-refresh-item[data-environment-type="${location}"]`);
+    if (! progressItem) {
+      continue;
+    }
 
     progressItem.classList.add('traveling');
 

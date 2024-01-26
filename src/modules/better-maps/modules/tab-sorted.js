@@ -5,6 +5,7 @@ import {
   getMapData,
   makeElement,
   mapData,
+  mapModel,
   showTravelConfirmation
 } from '@utils';
 

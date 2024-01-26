@@ -110,9 +110,13 @@ const onFriendLinkHover = async (e) => {
   const cachedTimestamp = sessionGet(`mh-improved-cache-friend-${friendId}-timestamp`);
 
   if (cached && cachedTimestamp && (Date.now() - cachedTimestamp) < 150000) {
-    makeFriendMarkup(friendId, JSON.parse(cached), true, e);
+    makeFriendMarkup(friendId, cached, true, e);
   } else {
     app.pages.FriendsPage.getFriendDataBySnuids([friendId], (data) => {
+      if (! data || ! data.length) {
+        return;
+      }
+
       makeFriendMarkup(friendId, data, false, e);
     });
   }

@@ -20,12 +20,33 @@ const getFavoriteSetups = () => {
   return getSetting('favorite-setups', []);
 };
 
-const saveFavoriteSetup = (setup) => {
+const saveFavoriteSetup = async (setup) => {
   const setups = getFavoriteSetups();
 
-  setups.push(normalizeSetup(setup));
+  const normalizedSetup = normalizeSetup(setup);
+
+  const setupName = await fetch('https://setup-namer.mouse.rip', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify([
+      normalizedSetup.bait_id,
+      normalizedSetup.base_id,
+      normalizedSetup.weapon_id,
+      normalizedSetup.trinket_id,
+    ]),
+  });
+
+  const setupNameData = await setupName.json();
+
+  if (setupNameData.name) {
+    normalizedSetup.name = setupNameData.name;
+  }
+
+  setups.push(normalizedSetup);
 
   saveSetting('favorite-setups', setups);
+
+  return normalizedSetup;
 };
 
 const normalizeSetup = (setup) => {
@@ -242,24 +263,27 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       className: ['save', 'lightBlue'],
       callback: async () => {
         // Save the current setup, using the current location as the name.
-        const currentSetup = getCurrentSetup();
-        currentSetup.name = user.environment_name;
-        currentSetup.id = `${user.environment_type}-${setup.bait_id}-${setup.base_id}-${setup.weapon_id}-${setup.trinket_id}`;
+        let currentSetup = getCurrentSetup();
+        currentSetup.id = `${setup.bait_id}-${setup.base_id}-${setup.weapon_id}-${setup.trinket_id}`;
 
         // if the setup already exists, then just alert the user.
         const setups = getFavoriteSetups();
-        const existingSetup = setups.find((s) => s.id === currentSetup.id);
-        if (existingSetup) {
-          // flash the row.
-          const row = document.querySelector(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${currentSetup.id}"]`);
-          row.classList.add('flash');
-          setTimeout(() => {
-            row.classList.remove('flash');
-          }, 1000);
-          return;
+
+        if (setups.length) {
+          const existingSetup = setups.find((s) => s.id === currentSetup.id);
+          if (existingSetup) {
+            // flash the row.
+            const row = document.querySelector(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${currentSetup.id}"]`);
+            row.classList.add('flash');
+            setTimeout(() => {
+              row.classList.remove('flash');
+            }, 1000);
+
+            return;
+          }
         }
 
-        saveFavoriteSetup(currentSetup);
+        currentSetup = await saveFavoriteSetup(currentSetup);
 
         // append the new setup to the list.
         const setupRow = await makeBlueprintRow(currentSetup);
@@ -282,6 +306,10 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         // get the setup.
         const setups = getFavoriteSetups();
+        if (! setups.length) {
+          return;
+        }
+
         const index = setups.findIndex((s) => s.id === setupId);
 
         const thisSetup = setups[index];
@@ -321,10 +349,41 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         // Update the setup title to be an input.
         const title = setupContainer.querySelector('.label');
+
+        const randomTitleButton = makeElement('a', 'random-title');
+        randomTitleButton.setAttribute('title', 'Generate a random name for this setup');
+
+        randomTitleButton.addEventListener('click', async (e) => {
+          e.preventDefault();
+
+          e.target.classList.add('loading');
+
+          const response = await fetch('https://setup-namer.mouse.rip', {
+            method: 'POST',
+            headers: getHeaders(),
+            body: JSON.stringify([
+              setup.bait_id,
+              setup.base_id,
+              setup.weapon_id,
+              setup.trinket_id,
+            ]),
+          });
+
+          const setupNameData = await response.json();
+
+          if (setupNameData.name) {
+            title.querySelector('input').value = setupNameData.name;
+          }
+
+          e.target.classList.remove('loading');
+        });
+
         const titleInput = document.createElement('input');
         titleInput.value = title.textContent;
         title.textContent = '';
         title.append(titleInput);
+
+        title.prepend(randomTitleButton);
 
         // Update the setup images to be clickable.
         const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
@@ -394,7 +453,11 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           image.removeAttribute('data-old-image-url');
         });
 
-        const setups = getFavoriteSetups();
+        let setups = getFavoriteSetups();
+        if (! setups.length) {
+          setups = [];
+        }
+
         const index = setups.findIndex((s) => s.id === setupId);
 
         // generate a random ID so it's unique.
@@ -459,7 +522,11 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         }
 
         // remove the setup from the list.
-        const setups = getFavoriteSetups();
+        let setups = getFavoriteSetups();
+        if (! setups.length) {
+          setups = [];
+        }
+
         const index = setups.findIndex((s) => s.id === setupId);
         setups.splice(index, 1);
         saveSetting('favorite-setups', setups);
@@ -551,17 +618,18 @@ const makeBlueprintContainer = async () => {
 
   const body = makeElement('div', ['content']);
 
-  const setups = getFavoriteSetups();
-
   const currentSetupRow = await makeBlueprintRow(getCurrentSetup(), true);
   currentSetupRow.classList.add('current-setup');
   body.append(currentSetupRow);
 
-  for (const setup of setups) {
-    const setupContainer = await makeBlueprintRow(setup);
-    setupContainer.setAttribute('data-setup-id', setup.id);
+  const setups = getFavoriteSetups();
+  if (setups.length) {
+    for (const setup of setups) {
+      const setupContainer = await makeBlueprintRow(setup);
+      setupContainer.setAttribute('data-setup-id', setup.id);
 
-    body.append(setupContainer);
+      body.append(setupContainer);
+    }
   }
 
   container.append(body);
@@ -579,8 +647,13 @@ const makeBlueprintContainer = async () => {
 const getNameOfCurrentSetup = () => {
   const setups = getFavoriteSetups();
 
+  if (! setups.length) {
+    return '';
+  }
+
   // if we have a setup with the same IDs, then return the name of that setup.
   const currentSetup = getCurrentSetup();
+
   const setup = setups.find((s) => {
     return s.bait_id === currentSetup.bait_id &&
       s.base_id === currentSetup.base_id &&

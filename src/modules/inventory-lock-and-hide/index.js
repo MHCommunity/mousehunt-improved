@@ -26,7 +26,7 @@ const getSettings = () => {
 };
 
 const shouldAddLocks = (currentTab) => {
-  return ('collectibles' === currentTab || 'bait' === currentTab);
+  return ('collectibles' !== currentTab || 'bait' !== currentTab);
 };
 
 const addControlsToItems = async () => {
@@ -49,8 +49,8 @@ const addControlsToItems = async () => {
       return;
     }
 
-    let isLocked = itemSettings.locked.includes(id);
-    let isHidden = itemSettings.hidden.includes(id);
+    let isLocked = itemSettings?.locked ? itemSettings.locked.includes(id) : false;
+    let isHidden = itemSettings?.hidden ? itemSettings.hidden.includes(id) : false;
 
     const controls = makeElement('div', 'mhui-inventory-lock-and-hide-item-controls');
 
