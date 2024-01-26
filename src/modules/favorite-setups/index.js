@@ -21,7 +21,11 @@ const getFavoriteSetups = () => {
 };
 
 const saveFavoriteSetup = async (setup) => {
-  const setups = getFavoriteSetups();
+  let setups = getFavoriteSetups();
+
+  if (! setups.length) {
+    setups = [];
+  }
 
   const normalizedSetup = normalizeSetup(setup);
 
@@ -42,7 +46,11 @@ const saveFavoriteSetup = async (setup) => {
     normalizedSetup.name = setupNameData.name;
   }
 
-  setups.push(normalizedSetup);
+  try {
+    setups.push(normalizedSetup);
+  } catch {
+    setups = [normalizedSetup];
+  }
 
   saveSetting('favorite-setups', setups);
 
