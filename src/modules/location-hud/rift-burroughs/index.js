@@ -1,4 +1,4 @@
-import { addHudStyles, makeElement } from '@utils';
+import { addHudStyles, makeElement, onRequest, onTurn } from '@utils';
 
 import styles from './styles.css';
 
@@ -358,4 +358,6 @@ const hud = () => {
 export default async () => {
   addHudStyles(styles);
   hud();
+  onTurn(hud);
+  onRequest(hud);
 };

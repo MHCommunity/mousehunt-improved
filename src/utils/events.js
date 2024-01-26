@@ -544,7 +544,7 @@ const onNavigation = (callback, options = {}) => {
 };
 
 const onTurn = (callback) => {
-  onRequest(callback, 'managers/ajax/turns/activeturn.php');
+  onRequest(callback, 'managers/ajax/turns/activeturn.php', true);
 };
 
 export {
