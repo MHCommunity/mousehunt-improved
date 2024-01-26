@@ -172,8 +172,14 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
 }
 
 /* speed up horn transition and make it bigger and stuff */
-a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready:hover {
+a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready {
+  will-change: transform;
   transition: all 0.2s 0.15s;
+  transform-origin: left;
+}
+
+a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready:hover {
+  transform: scale(1.1) rotate(359deg);
 }
 
 a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready .huntersHornView__hornBannerImage {
@@ -182,6 +188,10 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 
 a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready:hover .huntersHornView__hornBannerImage {
   filter: saturate(1.8);
+}
+
+.huntersHornView__hornImage {
+  filter: drop-shadow(1px 1px 0 #fff) drop-shadow(-1px 1px 0 #fff) drop-shadow(1px -1px 0 #fff) drop-shadow(-1px -1px 0 #fff) drop-shadow(1px 4px 3px #6b6b6b);
 }
 
 /* bigger menu icons */
