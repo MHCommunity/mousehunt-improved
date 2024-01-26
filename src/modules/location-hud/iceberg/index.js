@@ -218,7 +218,11 @@ const addDeepWarning = async () => {
     return;
   }
 
-  const bases = await getUserItems(['deep_freeze_base', 'iceberg_boiler_base', 'ultimate_iceberg_base']);
+  const bases = await getUserItems([
+    'deep_freeze_base',
+    'iceberg_boiler_base',
+    'ultimate_iceberg_base',
+  ]);
 
   const equippableBases = [];
 
@@ -240,17 +244,19 @@ const addDeepWarning = async () => {
   }
 
   // Create a list of equippable bases, seperated by 'or'
-  const equippableBasesText = equippableBases.map((base, index) => {
-    if (index === 0) {
+  const equippableBasesText = equippableBases
+    .map((base, index) => {
+      if (index === 0) {
+        return base.name;
+      }
+
+      if (index === equippableBases.length - 1) {
+        return `or ${base.name}`;
+      }
+
       return base.name;
-    }
-
-    if (index === equippableBases.length - 1) {
-      return `or ${base.name}`;
-    }
-
-    return base.name;
-  }).join(' ');
+    })
+    .join(' ');
 
   const warning = document.createElement('div');
   warning.classList.add('deep-warning');

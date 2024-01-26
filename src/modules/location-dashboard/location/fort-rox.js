@@ -19,7 +19,7 @@ export default (quests) => {
     stage_two: 'Midnight',
     stage_three: 'Pitch',
     stage_four: 'Utter Darkness',
-    stage_five: 'First Light'
+    stage_five: 'First Light',
   };
 
   phase = quest.is_dawn ? 'Dawn' : phases[quest.stage];

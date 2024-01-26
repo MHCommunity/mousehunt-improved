@@ -8,7 +8,8 @@ import styles from './styles.css';
 import viewsStyles from './views.css';
 
 const stripUrl = (url) => {
-  return url.replaceAll('//images', '/images')
+  return url
+    .replaceAll('//images', '/images')
     .replace('https://www.mousehuntgame.com/images/', '')
     .replaceAll('cv=1', '')
     .replaceAll('cv=2', '')
@@ -42,14 +43,16 @@ const getMappedUrl = (strippedUrl) => {
 const shouldSkipUpdate = (type, attribute, items) => {
   // hash the backgrounds to check if they are the same as the last check.
   // if they are the same, skip the check.
-  const itemHash = [...items].map((item) => {
-    const itemAttribute = item.getAttribute(attribute);
-    if (! itemAttribute) {
-      return '';
-    }
+  const itemHash = [...items]
+    .map((item) => {
+      const itemAttribute = item.getAttribute(attribute);
+      if (! itemAttribute) {
+        return '';
+      }
 
-    return itemAttribute;
-  }).join(',');
+      return itemAttribute;
+    })
+    .join(',');
 
   if (lastCheck[type] && lastCheck[type] === itemHash) {
     return true;
@@ -175,10 +178,7 @@ const upscaleImages = async (observer) => {
 
   isUpscaling = false;
   // return a promise that resolves when all the images have been upscaled.
-  return Promise.all([
-    upscaleImageElements(),
-    upscaleBackgroundImages(),
-  ]);
+  return Promise.all([upscaleImageElements(), upscaleBackgroundImages()]);
 };
 
 const unupscaledImages = [];

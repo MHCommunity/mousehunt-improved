@@ -260,13 +260,11 @@ const updateRecipesOnPage = async (type) => {
  * Initialize the module.
  */
 export default async () => {
-  onNavigation(cleanUpRecipeBook,
-    {
-      page: 'inventory',
-      tab: 'crafting',
-      subtab: 'recipe',
-    }
-  );
+  onNavigation(cleanUpRecipeBook, {
+    page: 'inventory',
+    tab: 'crafting',
+    subtab: 'recipe',
+  });
 
   onEvent('js_dialog_show', warnOnBadCrafts);
 

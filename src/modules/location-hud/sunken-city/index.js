@@ -13,7 +13,8 @@ const updateHudImages = () => {
   };
 
   const upscaleImage = (image) => {
-    const normalizedImage = image.src.replace('https://www.mousehuntgame.com/images/items', '')
+    const normalizedImage = image.src
+      .replace('https://www.mousehuntgame.com/images/items', '')
       .replace('?cv=1', '')
       .replace('?cv=2', '')
       .replace('?v=1', '')

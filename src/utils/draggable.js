@@ -1,4 +1,3 @@
-
 /**
  * Make an element draggable. Saves the position to local storage.
  *

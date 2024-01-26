@@ -5,7 +5,7 @@ const getSeasonalGardenText = (quests) => {
 
   const quest = {
     amp: quests?.QuestSeasonalGarden?.amp || 0,
-    max: quests?.QuestSeasonalGarden?.max || 0
+    max: quests?.QuestSeasonalGarden?.max || 0,
   };
 
   return `Amp: ${quest.amp}% / ${quest.max}%`;
@@ -14,7 +14,7 @@ const getSeasonalGardenText = (quests) => {
 const setSeasonalGardenData = () => {
   const quest = {
     amp: 0,
-    max: 0
+    max: 0,
   };
 
   const amp = document.querySelector('.seasonalGardenHUD-currentAmplifier-value');

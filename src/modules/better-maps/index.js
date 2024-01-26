@@ -94,7 +94,7 @@ const initMapper = (map) => {
     observer.observe(rootOfChanges, {
       attributes: true,
       childList: true,
-      subtree: true
+      subtree: true,
     });
   }
 

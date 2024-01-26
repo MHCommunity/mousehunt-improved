@@ -145,7 +145,7 @@ const makeKingsCrownsTabContent = async () => {
     const crownsReq = await doRequest('managers/ajax/pages/page.php', {
       page_class: 'HunterProfile',
       'page_arguments[tab]': 'kings_crowns',
-      'page_arguments[sub_tab]': false
+      'page_arguments[sub_tab]': false,
     });
 
     crowns = crownsReq.page.tabs.kings_crowns.subtabs[0].mouse_crowns;

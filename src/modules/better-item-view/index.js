@@ -127,7 +127,9 @@ const updateItemView = async () => {
   }
 
   // shrink the mhctjson array to only include items with non-zero drop rates and a maxiumum of 15 items
-  mhctjson = mhctjson.filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0).slice(0, 15);
+  mhctjson = mhctjson
+    .filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0)
+    .slice(0, 15);
 
   mhctjson.forEach((itemAr) => {
     const dropPercent = Number.parseInt(itemAr.drop_pct, 10).toFixed(2);

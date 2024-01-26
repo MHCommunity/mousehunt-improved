@@ -29,7 +29,7 @@ const cleanOnUpdate = (previousVersion) => {
     {
       from: 'mh-improved-better-travel', // Updated in v0.28.0.
       to: 'better-travel',
-    }
+    },
   ]);
 
   cleanupSettings([

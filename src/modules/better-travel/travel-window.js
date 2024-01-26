@@ -79,9 +79,7 @@ const openTravelWindow = async () => {
 
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());
 
-  const locationsToRemove = [
-    'forbidden_grove',
-  ];
+  const locationsToRemove = ['forbidden_grove'];
 
   environments = environments.map((env) => {
     if (! isUserTitleAtLeast(env.title)) {
@@ -243,7 +241,7 @@ const makeMenuItem = () => {
     icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/special.png?asset_cache_version=2',
     callback: () => {
       openTravelWindow();
-    }
+    },
   });
 };
 

@@ -48,7 +48,7 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
     unsortedMice,
     categories,
     subcategories,
-    getMouseDataForMap
+    getMouseDataForMap,
   };
 };
 
@@ -390,13 +390,15 @@ const makeGenericSortedPage = async () => {
   const { unsortedMice } = getMouseDataForMap(currentMapData, type);
 
   // Sort from highest to lowest AR via the async getHighestArForMouse function.
-  const sortedUnsorted = await Promise.all(unsortedMice.map(async (mouse) => {
-    const ar = await getHighestArForMouse(mouse.unique_id, type);
-    return {
-      ...mouse,
-      ar
-    };
-  }));
+  const sortedUnsorted = await Promise.all(
+    unsortedMice.map(async (mouse) => {
+      const ar = await getHighestArForMouse(mouse.unique_id, type);
+      return {
+        ...mouse,
+        ar,
+      };
+    })
+  );
 
   sortedUnsorted.sort((a, b) => {
     if (a.ar > b.ar) {

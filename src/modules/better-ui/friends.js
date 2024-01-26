@@ -45,7 +45,7 @@ const autofocusIdSearch = () => {
  */
 export default async () => {
   onNavigation(reorderBlocks, {
-    page: 'friends'
+    page: 'friends',
   });
 
   onNavigation(autofocusIdSearch, {

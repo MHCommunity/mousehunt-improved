@@ -91,7 +91,7 @@ const exportMarketplace = () => {
         'Date Updated',
         'Date Closed',
       ],
-    }
+    },
   });
 };
 

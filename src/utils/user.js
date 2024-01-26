@@ -197,7 +197,10 @@ const getUserSetupDetails = () => {
         auraType = auraType.replace('_set_bonus_2_pieces', '');
         auraType = auraType.replace('_set_bonus_3_pieces', '');
 
-        if (! setup.aura[auraType]) { // eslint-disable-line unicorn/no-negated-condition
+        if (setup.aura[auraType]) {
+          setup.aura[auraType].active = true;
+          setup.aura[auraType].type = auraType;
+        } else {
           setup.aura[auraType] = {
             active: true,
             type: auraType,
@@ -205,9 +208,6 @@ const getUserSetupDetails = () => {
             powerBonus: 0,
             luck: 0,
           };
-        } else {
-          setup.aura[auraType].active = true;
-          setup.aura[auraType].type = auraType;
         }
 
         value = Number.parseInt(value);
@@ -229,7 +229,8 @@ const normalizeTitle = (title = '') => {
     return '';
   }
 
-  const normalizedTitle = title.toLowerCase()
+  const normalizedTitle = title
+    .toLowerCase()
     .replaceAll(' ', '')
     .replaceAll('/', '_')
     .replaceAll('journeyman_journeywoman', 'journeyman')

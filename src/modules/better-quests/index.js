@@ -160,7 +160,9 @@ const moveErrorText = () => {
     return;
   }
 
-  errorText = errorText.replace(/ \d\d seconds/, '').replace(' before taking', ' for');
+  errorText = errorText
+    .replace(/ \d\d seconds/, '')
+    .replace(' before taking', ' for');
 
   const titleBar = document.querySelector('#jsDialogAjaxPrefix h2');
   if (! titleBar) {
@@ -234,7 +236,7 @@ const assignments = [
     cost: 1900,
     reward: 300,
     rank: true,
-  }
+  },
 ];
 
 const getAssignmentMeta = (assignment) => {
@@ -350,7 +352,7 @@ const main = () => {
   activate();
 
   onNavigation(activate, {
-    page: 'camp'
+    page: 'camp',
   });
 
   onNavigation(checkForQuestSmash, {
@@ -363,7 +365,7 @@ const main = () => {
     show: () => {
       addResearchSmashWarning();
       modifyAvailableQuestsPopup();
-    }
+    },
   });
 };
 

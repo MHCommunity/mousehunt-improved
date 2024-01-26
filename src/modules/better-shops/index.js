@@ -138,7 +138,7 @@ const init = async () => {
   addStyles(styles);
 
   onNavigation(main, {
-    page: 'shops'
+    page: 'shops',
   });
 
   onRequest(updatePlaceholderText, 'managers/ajax/purchases/itempurchase.php');

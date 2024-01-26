@@ -26,7 +26,7 @@ const getSettings = () => {
 };
 
 const shouldAddLocks = (currentTab) => {
-  return ('collectibles' !== currentTab || 'bait' !== currentTab);
+  return 'collectibles' !== currentTab || 'bait' !== currentTab;
 };
 
 const addControlsToItems = async () => {

@@ -63,7 +63,9 @@ const addQuickLinksToTrap = () => {
     return;
   }
 
-  const type = itemBrowser.classList.value.replace('campPage-trap-itemBrowser', '').trim();
+  const type = itemBrowser.classList.value
+    .replace('campPage-trap-itemBrowser', '')
+    .trim();
   if (! type) {
     return;
   }

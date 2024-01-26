@@ -40,7 +40,7 @@ const onRequest = (callback, url = null, skipSuccess = false) => {
 
   requestCallbacks[url].push({
     callback,
-    skipSuccess
+    skipSuccess,
   });
 
   if (onRequestHolder) {
@@ -133,44 +133,44 @@ const onOverlayChange = (callbacks) => {
   let overlayData = {
     map: {
       isVisible: false,
-      selector: 'treasureMapPopup'
+      selector: 'treasureMapPopup',
     },
     item: {
       isVisible: false,
-      selector: 'itemViewPopup'
+      selector: 'itemViewPopup',
     },
     mouse: {
       isVisible: false,
-      selector: 'mouseViewPopup'
+      selector: 'mouseViewPopup',
     },
     image: {
       isVisible: false,
-      selector: 'largerImage'
+      selector: 'largerImage',
     },
     convertible: {
       isVisible: false,
-      selector: 'convertibleOpenViewPopup'
+      selector: 'convertibleOpenViewPopup',
     },
     adventureBook: {
       isVisible: false,
-      selector: 'adventureBookPopup'
+      selector: 'adventureBookPopup',
     },
     marketplace: {
       isVisible: false,
-      selector: 'marketplaceViewPopup'
+      selector: 'marketplaceViewPopup',
     },
     gifts: {
       isVisible: false,
-      selector: 'giftSelectorViewPopup'
+      selector: 'giftSelectorViewPopup',
     },
     support: {
       isVisible: false,
-      selector: 'supportPageContactUsForm'
+      selector: 'supportPageContactUsForm',
     },
     premiumShop: {
       isVisible: false,
-      selector: 'MHCheckout'
-    }
+      selector: 'MHCheckout',
+    },
   };
 
   overlayCallbacks.push(callbacks);
@@ -216,7 +216,7 @@ const onOverlayChange = (callbacks) => {
   if (observeTarget) {
     observer.observe(observeTarget, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     });
   }
 };
@@ -388,7 +388,7 @@ const onPageChange = (callbacks) => {
   if (observeTarget) {
     observer.observe(observeTarget, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ['class'],
     });
   }
 };

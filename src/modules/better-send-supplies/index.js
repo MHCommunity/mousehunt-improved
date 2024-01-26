@@ -296,7 +296,7 @@ const main = () => {
 const init = async () => {
   addStyles(styles);
   onNavigation(main, {
-    page: 'supplytransfer'
+    page: 'supplytransfer',
   });
 };
 

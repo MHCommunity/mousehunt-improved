@@ -177,7 +177,7 @@ const init = async () => {
     menu: 'mice',
     label: 'Location Catch Stats',
     icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/prize_shoppe.png?',
-    callback: showModal
+    callback: showModal,
   });
 };
 

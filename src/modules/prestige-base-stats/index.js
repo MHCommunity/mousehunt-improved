@@ -128,7 +128,9 @@ const savePbStats = () => {
     // get the type of stat it is by looking at the great grandparent
     const type = row.parentElement.parentElement;
     // remove 'campPage-trap-trapStat' from the class list
-    const typeClass = type.className.replace('campPage-trap-trapStat', '').trim();
+    const typeClass = type.className
+      .replace('campPage-trap-trapStat', '')
+      .trim();
 
     if (typeClass === 'power') {
       parsedValue = parsedValue + 490;
@@ -150,10 +152,14 @@ const savePbStats = () => {
  * Initialize the module.
  */
 const init = async () => {
-  onPageChange({ blueprint: { show: () => {
-    savePbStats();
-    setTimeout(modifyPB, 500);
-  } } });
+  onPageChange({
+    blueprint: {
+      show: () => {
+        savePbStats();
+        setTimeout(modifyPB, 500);
+      },
+    },
+  });
 
   onRequest(() => {
     savePbStats();

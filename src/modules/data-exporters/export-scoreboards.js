@@ -70,12 +70,8 @@ const exportScoreboards = async ({ useWeekly = false, useFriendsOnly = false } =
     itemsMarkup: inventoryMarkup,
     fetch: () => recursiveFetch(scoreboardsToUse, (scoreboard) => getScoreboardData(scoreboard, useWeekly, useFriendsOnly)),
     download: {
-      headers: [
-        'Scoreboard',
-        'Rank',
-        'Value',
-      ],
-    }
+      headers: ['Scoreboard', 'Rank', 'Value'],
+    },
   });
 };
 

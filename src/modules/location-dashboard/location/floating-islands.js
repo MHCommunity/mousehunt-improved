@@ -42,7 +42,8 @@ export default (quests) => {
 
   let tileText = '';
   quest.island_mod_panels.forEach((panel) => {
-    const panelType = panel.type.toLowerCase()
+    const panelType = panel.type
+      .toLowerCase()
       .replaceAll('loot_cache', 'key')
       .replaceAll('charm_bonus', 'J');
     // todo: add in other tiles here.

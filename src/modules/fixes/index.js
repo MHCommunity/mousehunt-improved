@@ -136,20 +136,16 @@ const init = async () => {
 
   fixMpBuyButton();
 
-  onNavigation(fixPassingParcel,
-    {
-      page: 'inventory',
-      tab: 'special',
-      onLoad: true,
-    }
-  );
+  onNavigation(fixPassingParcel, {
+    page: 'inventory',
+    tab: 'special',
+    onLoad: true,
+  });
 
-  onNavigation(fixItemPageReciever,
-    {
-      page: 'inventory',
-      onLoad: true,
-    }
-  );
+  onNavigation(fixItemPageReciever, {
+    page: 'inventory',
+    onLoad: true,
+  });
 };
 
 export default {

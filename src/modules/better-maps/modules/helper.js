@@ -14,6 +14,56 @@ const openMiniMap = async (mapId) => {
 
   const t = mapData.treasure_map;
 
+  const mappedGoals = t.goals.mouse.map((m) => {
+    return `<div class="mouse">
+    <div class="unique_id">${m.unique_id}</div>
+    <div class="model_type">${m.model_type}</div>
+    <div class="type">${m.type}</div>
+    <div class="name">${m.name}</div>
+    <div class="small">${m.small}</div>
+    <div class="large">${m.large}</div>
+    <div class="group">${m.group}</div>
+    <div class="sub_group">${m.sub_group}</div>
+    <div class="is_landscape">${m.is_landscape}</div>
+    <div class="environment_ids">${m.environment_ids.join(', ')}</div>
+    </div>`;
+  }).join('');
+
+  const mappedHunters = t.hunters
+    .map((h) => {
+      return `<div class="hunter">
+        <div class="name">${h.name}</div>
+        <div class="user_id">${h.user_id}</div>
+        <div class="sn_user_id">${h.sn_user_id}</div>
+        <div class="profile_pic">${h.profile_pic}</div>
+        <div class="environment_name">${h.environment_name}</div>
+        <div class="environment_id">${h.environment_id}</div>
+        <div class="environment_icon">${h.environment_icon}</div>
+        <div class="is_online">${h.is_online}</div>
+        <div class="last_active_formatted">${h.last_active_formatted}</div>
+        <div class="base_name">${h.base_name}</div>
+        <div class="base_thumb">${h.base_thumb}</div>
+        <div class="weapon_name">${h.weapon_name}</div>
+        <div class="weapon_thumb">${h.weapon_thumb}</div>
+        <div class="bait_name">${h.bait_name}</div>
+        <div class="bait_thumb">${h.bait_thumb}</div>
+        <div class="trinket_name">${h.trinket_name}</div>
+        <div class="trinket_thumb">${h.trinket_thumb}</div>
+        <div class="is_active">${h.is_active}</div>
+        <div class="display_order">${h.display_order}</div>
+        <div class="captain">${h.captain}</div>
+        <div class="upgrader">${h.upgrader}</div>
+        </div>`;
+    }).join('');
+
+  const mappedEnvironments = t.environments.map((e) => {
+    return `<div class="environment">
+      ${e.name} (${e.type})
+      <div class="thumb">${e.thumb}</div>
+      <div class="header">${e.header}</div>
+    </div>`;
+  }).join('');
+
   createPopup({
     title: 'map',
     content: `<div class="mh-improved-map-helper-popup-content">
@@ -166,20 +216,7 @@ const openMiniMap = async (mapId) => {
         goals.mouse
       </div>
       <div class="value">
-        ${t.goals.mouse.map((m) => {
-    return `<div class="mouse">
-      <div class="unique_id">${m.unique_id}</div>
-      <div class="model_type">${m.model_type}</div>
-      <div class="type">${m.type}</div>
-      <div class="name">${m.name}</div>
-      <div class="small">${m.small}</div>
-      <div class="large">${m.large}</div>
-      <div class="group">${m.group}</div>
-      <div class="sub_group">${m.sub_group}</div>
-      <div class="is_landscape">${m.is_landscape}</div>
-      <div class="environment_ids">${m.environment_ids.join(', ')}</div>
-      </div>`;
-  }).join('')}
+        ${mappedGoals}
       </div>
     </div>
     <div class="row">
@@ -187,31 +224,7 @@ const openMiniMap = async (mapId) => {
         hunters
       </div>
       <div class="value">
-        ${t.hunters.map((h) => {
-    return `<div class="hunter">
-        <div class="name">${h.name}</div>
-        <div class="user_id">${h.user_id}</div>
-        <div class="sn_user_id">${h.sn_user_id}</div>
-        <div class="profile_pic">${h.profile_pic}</div>
-        <div class="environment_name">${h.environment_name}</div>
-        <div class="environment_id">${h.environment_id}</div>
-        <div class="environment_icon">${h.environment_icon}</div>
-        <div class="is_online">${h.is_online}</div>
-        <div class="last_active_formatted">${h.last_active_formatted}</div>
-        <div class="base_name">${h.base_name}</div>
-        <div class="base_thumb">${h.base_thumb}</div>
-        <div class="weapon_name">${h.weapon_name}</div>
-        <div class="weapon_thumb">${h.weapon_thumb}</div>
-        <div class="bait_name">${h.bait_name}</div>
-        <div class="bait_thumb">${h.bait_thumb}</div>
-        <div class="trinket_name">${h.trinket_name}</div>
-        <div class="trinket_thumb">${h.trinket_thumb}</div>
-        <div class="is_active">${h.is_active}</div>
-        <div class="display_order">${h.display_order}</div>
-        <div class="captain">${h.captain}</div>
-        <div class="upgrader">${h.upgrader}</div>
-        </div>`;
-  }).join('')}
+        ${mappedHunters}
       </div>
     </div>
     <div class="row">
@@ -219,13 +232,7 @@ const openMiniMap = async (mapId) => {
         environments
       </div>
       <div class="value">
-        ${t.environments.map((e) => {
-    return `<div class="environment">
-        ${e.name} (${e.type})
-        <div class="thumb">${e.thumb}</div>
-        <div class="header">${e.header}</div>
-      </div>`;
-  }).join('')}
+        ${mappedEnvironments}
       </div>
     </div>
     </div>`,
@@ -249,7 +256,7 @@ const makeMenuItem = () => {
     icon: user?.quests?.QuestRelicHunter?.image || 'https://www.mousehuntgame.com/images/items/convertibles/large/bfca4a1c658e49903654d0a84f52c9fd.png',
     callback: () => {
       openMiniMap(mapId);
-    }
+    },
   });
 };
 

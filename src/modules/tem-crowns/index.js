@@ -28,7 +28,9 @@ const getCrownType = (catches) => {
 
 const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
   if (huntingStats.length === 0) {
-    const crowns = await doRequest('managers/ajax/mice/getstat.php', { action: 'get_hunting_stats' });
+    const crowns = await doRequest('managers/ajax/mice/getstat.php', {
+      action: 'get_hunting_stats',
+    });
     if (! (crowns.hunting_stats && crowns.hunting_stats.length > 0)) {
       return;
     }

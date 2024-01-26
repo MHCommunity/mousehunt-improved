@@ -22,11 +22,8 @@ const exportRankupForecaster = () => {
     afterFetch,
     dataIsAvailable: true,
     download: {
-      headers: [
-        'Date',
-        'Wisdom',
-      ],
-    }
+      headers: ['Date', 'Wisdom'],
+    },
   });
 };
 

@@ -176,7 +176,8 @@ const updateMouseView = async () => {
   if (catchesEl && catchesEl.length > 0) {
     catchesEl.forEach((el) => {
       // remove the ' catches' from the title and use it as the text
-      const catchesNumber = el.getAttribute('title')
+      const catchesNumber = el
+        .getAttribute('title')
         .replace(' Catches', '')
         .replace(' catches', '')
         .replace(' Misses', '')
@@ -371,5 +372,5 @@ export default {
   type: 'better',
   default: true,
   description: 'Adds attraction rate stats and links to MHWiki and MHCT to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.',
-  load: init
+  load: init,
 };

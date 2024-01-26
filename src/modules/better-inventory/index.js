@@ -183,5 +183,5 @@ export default {
   default: true,
   description: 'Updates the inventory layout and styling. ',
   load: init,
-  settings
+  settings,
 };

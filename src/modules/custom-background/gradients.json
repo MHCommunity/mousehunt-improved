@@ -1,187 +1,187 @@
 [
-  {
-    "id": "midnight",
-    "name": "Midnight",
-    "css": "linear-gradient(220.55deg, #565656 0%, #181818 100%)"
-  },
-  {
-    "id": "night-in-salem",
-    "name": "Night in Salem",
-    "css": "linear-gradient(#111827, #581c87, #7c3aed)"
-  },
-  {
-    "id": "cosmic-twilight",
-    "name": "Cosmic Twilight",
-    "css": "linear-gradient(to right, #0f172a, #581c87, #0f172a)"
-  },
-  {
-    "id": "galactic-dusk",
-    "name": "Galactic Dusk",
-    "css": "linear-gradient(220.55deg, #4063bc 0%, #6b0013 100%)"
-  },
-  {
-    "id": "emerald-lagoon",
-    "name": "Emerald Lagoon",
-    "css": "radial-gradient(80.99% 100% at 50% 0%, #00ff0a 0%, #36008e 100%), radial-gradient(50% 123.47% at 50% 50%, #efe7c8 0%, #36008e 100%), linear-gradient(301.28deg, #ff006b 0%, #48dd9e 100%), linear-gradient(294.84deg, #5a60e4 0%, #d30000 100%), linear-gradient(52.29deg, #000000 0%, #00ff85 100%), radial-gradient(100% 138.69% at 100% 0%, #0007a5 0%, #ff7a00 100%), radial-gradient(70.41% 100% at 50% 0%, #d5b300 0%, #2200aa 100%)"
-  },
-  {
-    "id": "aurora",
-    "name": "Aurora",
-    "css": "radial-gradient(65% 100% at 50% 0%, #00ff94 0%, rgba(0, 255, 148, 0.25) 100%), linear-gradient(230deg, #000000 25%, #170059 100%), linear-gradient(215deg, #ffebb9 10%, #19004e 80%), radial-gradient(100% 245% at 100% 100%, #ffffff 0%, #000353 100%), linear-gradient(125deg, #1400ff 0%, #3a0000 100%), linear-gradient(225deg, #00ebfc 3.7%, #00f0ff 11.4%, #000b6f 55.3%, #001676 64.1%, #001676 75%, #00e1f6 100%, #00ecfd 100%, #001676 100%), linear-gradient(135deg, #00f0ff 0%, #000b6f 2.4%, #00ebfc 20.5%, #001676 35%, #00e1f6 47.2%, #001676 66.8%, #00ecfd 84.9%, #001676 100%)"
-  },
-  {
-    "id": "amber-sunrise",
-    "name": "Amber Sunrise",
-    "css": "radial-gradient(circle at center top, #b45309, #fdba74, #9f1239)"
-  },
-  {
-    "id": "warm-glow",
-    "name": "Warm Glow",
-    "css": "radial-gradient(at center top, #d1d5db, #c026d3, #ea580c)"
-  },
-  {
-    "id": "aqua-depths",
-    "name": "Aqua Depths",
-    "css": "linear-gradient(220.55deg, #24cfc5 0%, #001c63 100%)"
-  },
-  {
-    "id": "cobalt-mist",
-    "name": "Cobalt Mist",
-    "css": "linear-gradient(#3951c6, #8896dd)"
-  },
-  {
-    "id": "crimson-blush",
-    "name": "Crimson Blush",
-    "css": "linear-gradient(#b9466c, #e3b5c4)"
-  },
-  {
-    "id": "emerald-forest",
-    "name": "Emerald Forest",
-    "css": "linear-gradient(#43ac20, #76df53)"
-  },
-  {
-    "id": "flamingo-fling",
-    "name": "Flamingo Fling",
-    "css": "linear-gradient(#e84a8c, #f3a5c5)"
-  },
-  {
-    "id": "glacial-gleam",
-    "name": "Glacial Gleam",
-    "css": "linear-gradient(220.55deg, #c5edf5 0%, #4a879a 100%)"
-  },
-  {
-    "id": "lavender-lustre",
-    "name": "Lavender Lustre",
-    "css": "linear-gradient(#de97f9, #9157ff)"
-  },
-  {
-    "id": "mint-surf",
-    "name": "Mint Surf",
-    "css": "linear-gradient(0deg, #08aeea 0%, #2af598 100%)"
-  },
-  {
-    "id": "orange-coral",
-    "name": "Orange Coral",
-    "css": "linear-gradient(to top, #fb923c, #fb7185)"
-  },
-  {
-    "id": "radiant-rouge",
-    "name": "Radiant Rouge",
-    "css": "linear-gradient(161.15deg, #ffa492 12.73%, #ff2c55 72.95%)"
-  },
-  {
-    "id": "sangria-solstice",
-    "name": "Sangria Solstice",
-    "css": "linear-gradient(181deg, #770738, #ddbb90)"
-  },
-  {
-    "id": "sea-sky",
-    "name": "Sea Sky",
-    "css": "linear-gradient(to top, #38bdf8, #312e81)"
-  },
-  {
-    "id": "skyline-whisper",
-    "name": "Skyline Whisper",
-    "css": "linear-gradient(#53a5df, #a9d2ef)"
-  },
-  {
-    "id": "cotton-candy-shores",
-    "name": "Cotton Candy Shores",
-    "css": "linear-gradient(#32c7e5, #f078d5)"
-  },
-  {
-    "id": "canary-shine",
-    "name": "Canary Shine",
-    "css": "linear-gradient(220.55deg, #fff500 0%, #ffb800 100%)"
-  },
-  {
-    "id": "oahu-sunset",
-    "name": "Oahu Sunset",
-    "css": "linear-gradient(to top, #fb923c, #38bdf8)"
-  },
-  {
-    "id": "polaroid-memories",
-    "name": "Polaroid Memories",
-    "css": "linear-gradient(to top, #040308, #ad4a28, #dd723c, #fc7001, #dcb697, #9ba5ae, #3e5879, #020b1a)"
-  },
-  {
-    "id": "neon-nights",
-    "name": "Neon Nights",
-    "css": "linear-gradient(#f3b167, #ec38bc, #7303c0, #03001e)"
-  },
-  {
-    "id": "soft-metal",
-    "name": "Soft Metal",
-    "css": "conic-gradient(at right top, rgb(199, 210, 254), rgb(71, 85, 105), rgb(199, 210, 254))"
-  },
-  {
-    "id": "frosted-orchid",
-    "name": "Frosted Orchid",
-    "css": "linear-gradient(#ecadaf 0%, #e0b6a5 13.54%, #dc8b9d 30.21%, #c05ac9 44.27%, #b865cf 57.81%, #c3a7d9 71.87%, #c5c1e2 84.9%, #c6d8e4 100%)"
-  },
-  {
-    "id": "spectral-summer",
-    "name": "Spectral Summer",
-    "css": "linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%)"
-  },
-  {
-    "id": "cold-breeze",
-    "name": "Cold Breeze",
-    "css": "conic-gradient(at center bottom, #ffffff, #0ea5e9, #0ea5e9)"
-  },
-  {
-    "id": "cyberpop",
-    "name": "Cyberpop",
-    "css": "linear-gradient(135deg, #0e0220 0%, #000000 6px, #e40475 24.8%, #0e0220 35%, #48e0e4 56.3%, #48e0e4 62.4%, #ff00c8 72.9%, rgba(0, 0, 0, 0.86) 78.5%, #48e0e4 100%)"
-  },
-  {
-    "id": "rainbow",
-    "name": "Rainbow",
-    "css": "linear-gradient(#e02020 0%, #fa6400 17%, #f7b500 33%, #6dd400 50%, #0091ff 67%, #6236ff 83%, #b620e0 100%)"
-  },
-  {
-    "id": "candy-cane-breeze",
-    "name": "Candy Cane Breeze",
-    "css": "radial-gradient(at 30% -5%, #92f2f2, #d6cff1, rgba(255, 255, 255, 0) 25%), radial-gradient(at 50% 70%, #c4f2e5, rgba(255, 255, 255, 0) 30%), radial-gradient(at 70% 0%, #d6cff1, rgba(255, 255, 255, 0) 20%), linear-gradient(75deg, #92f2f2 5%, rgba(255, 255, 255, 0), #a8d0f0, rgba(255, 255, 255, 0), #eed5f2, rgba(255, 255, 255, 0), #d6cff1, rgba(255, 255, 255, 0), #c4f2e5 90%), radial-gradient(at 30% 50%, #92f2f2, rgba(255, 255, 255, 0) 30%), radial-gradient(at 30% 50%, #9cb9fc, rgba(255, 255, 255, 0) 30%), radial-gradient(at 100% 50%, #92f2f2, #c2dcf2, rgba(255, 255, 255, 0) 50%), linear-gradient(115deg, #92f2f2 5%, #a8d0f0 10%, #d6cff1, #eed5f2 20%, #a8d0f0, #a8d0f0 30%, #d6cff1, #c2dcf2 40%, #92f2f2, #a8d0f0 70%)"
-  },
-  {
-    "id": "celestial-dreamscape",
-    "name": "Celestial Dreamscape",
-    "css": "radial-gradient(18% 28% at 24% 50%, #cefaff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 18% 71%, rgba(255, 255, 255, 0.35) 6%, rgba(7, 58, 255, 0) 100%), radial-gradient(70% 53% at 36% 76%, #73f2ff 0%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 15% 94%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 34% 72%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 35% 87%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(31% 43% at 7% 98%, #ffffff 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(21% 37% at 72% 23%, rgba(211, 255, 109, 0.61) 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(35% 56% at 91% 74%, rgba(138, 79, 255, 0.96) 9%, rgba(7, 58, 255, 0) 100%), radial-gradient(74% 86% at 67% 38%, rgba(109, 255, 174, 0.96) 24%, rgba(7, 58, 255, 0) 100%), linear-gradient(125deg, #4eb5ff 1%, #4c00fc 100%)"
-  },
-  {
-    "id": "dreamy-hues",
-    "name": "Dreamy Hues",
-    "css": "linear-gradient(97.92deg, #bc97c6 0%, #f6d2c8 6.33%, #f5e2c8 12.2%, #bde8d9 21.5%, #e8dfc6 34.83%, #edc7c6 44.22%, #e6bdcf 52.26%, #c7b2e5 60.55%, #b8bfe7 70.29%, #c3e1d3 79.4%, #eedfc5 89.06%, #e5b0c9 94.93%, #b495c5 100.7%)"
-  },
-  {
-    "id": "pastel-daydream",
-    "name": "Pastel Daydream",
-    "css": "radial-gradient(at 40% 20%, #ffb87a 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 80% 0%, #1fddff 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 50%, #fcdee1 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 73% 51%, #ff85ad 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 100%, #ffb58a 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 80% 100%, #6b66ff 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 0%, #ff85a7 0px, rgba(0, 0, 0, 0) 50%)"
-  },
-  {
-    "id": "rainbows-embrace",
-    "name": "Rainbow's Embrace",
-    "css": "radial-gradient(50% 100% at left -10% top 80%, #db0072, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 25% top 60%, #ffe53e, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 55% top 40%, #00ffe4, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 90% top 20%, #d150ff, rgba(0, 0, 0, 0))"
-  }
+	{
+		"id": "midnight",
+		"name": "Midnight",
+		"css": "linear-gradient(220.55deg, #565656 0%, #181818 100%)"
+	},
+	{
+		"id": "night-in-salem",
+		"name": "Night in Salem",
+		"css": "linear-gradient(#111827, #581c87, #7c3aed)"
+	},
+	{
+		"id": "cosmic-twilight",
+		"name": "Cosmic Twilight",
+		"css": "linear-gradient(to right, #0f172a, #581c87, #0f172a)"
+	},
+	{
+		"id": "galactic-dusk",
+		"name": "Galactic Dusk",
+		"css": "linear-gradient(220.55deg, #4063bc 0%, #6b0013 100%)"
+	},
+	{
+		"id": "emerald-lagoon",
+		"name": "Emerald Lagoon",
+		"css": "radial-gradient(80.99% 100% at 50% 0%, #00ff0a 0%, #36008e 100%), radial-gradient(50% 123.47% at 50% 50%, #efe7c8 0%, #36008e 100%), linear-gradient(301.28deg, #ff006b 0%, #48dd9e 100%), linear-gradient(294.84deg, #5a60e4 0%, #d30000 100%), linear-gradient(52.29deg, #000000 0%, #00ff85 100%), radial-gradient(100% 138.69% at 100% 0%, #0007a5 0%, #ff7a00 100%), radial-gradient(70.41% 100% at 50% 0%, #d5b300 0%, #2200aa 100%)"
+	},
+	{
+		"id": "aurora",
+		"name": "Aurora",
+		"css": "radial-gradient(65% 100% at 50% 0%, #00ff94 0%, rgba(0, 255, 148, 0.25) 100%), linear-gradient(230deg, #000000 25%, #170059 100%), linear-gradient(215deg, #ffebb9 10%, #19004e 80%), radial-gradient(100% 245% at 100% 100%, #ffffff 0%, #000353 100%), linear-gradient(125deg, #1400ff 0%, #3a0000 100%), linear-gradient(225deg, #00ebfc 3.7%, #00f0ff 11.4%, #000b6f 55.3%, #001676 64.1%, #001676 75%, #00e1f6 100%, #00ecfd 100%, #001676 100%), linear-gradient(135deg, #00f0ff 0%, #000b6f 2.4%, #00ebfc 20.5%, #001676 35%, #00e1f6 47.2%, #001676 66.8%, #00ecfd 84.9%, #001676 100%)"
+	},
+	{
+		"id": "amber-sunrise",
+		"name": "Amber Sunrise",
+		"css": "radial-gradient(circle at center top, #b45309, #fdba74, #9f1239)"
+	},
+	{
+		"id": "warm-glow",
+		"name": "Warm Glow",
+		"css": "radial-gradient(at center top, #d1d5db, #c026d3, #ea580c)"
+	},
+	{
+		"id": "aqua-depths",
+		"name": "Aqua Depths",
+		"css": "linear-gradient(220.55deg, #24cfc5 0%, #001c63 100%)"
+	},
+	{
+		"id": "cobalt-mist",
+		"name": "Cobalt Mist",
+		"css": "linear-gradient(#3951c6, #8896dd)"
+	},
+	{
+		"id": "crimson-blush",
+		"name": "Crimson Blush",
+		"css": "linear-gradient(#b9466c, #e3b5c4)"
+	},
+	{
+		"id": "emerald-forest",
+		"name": "Emerald Forest",
+		"css": "linear-gradient(#43ac20, #76df53)"
+	},
+	{
+		"id": "flamingo-fling",
+		"name": "Flamingo Fling",
+		"css": "linear-gradient(#e84a8c, #f3a5c5)"
+	},
+	{
+		"id": "glacial-gleam",
+		"name": "Glacial Gleam",
+		"css": "linear-gradient(220.55deg, #c5edf5 0%, #4a879a 100%)"
+	},
+	{
+		"id": "lavender-lustre",
+		"name": "Lavender Lustre",
+		"css": "linear-gradient(#de97f9, #9157ff)"
+	},
+	{
+		"id": "mint-surf",
+		"name": "Mint Surf",
+		"css": "linear-gradient(0deg, #08aeea 0%, #2af598 100%)"
+	},
+	{
+		"id": "orange-coral",
+		"name": "Orange Coral",
+		"css": "linear-gradient(to top, #fb923c, #fb7185)"
+	},
+	{
+		"id": "radiant-rouge",
+		"name": "Radiant Rouge",
+		"css": "linear-gradient(161.15deg, #ffa492 12.73%, #ff2c55 72.95%)"
+	},
+	{
+		"id": "sangria-solstice",
+		"name": "Sangria Solstice",
+		"css": "linear-gradient(181deg, #770738, #ddbb90)"
+	},
+	{
+		"id": "sea-sky",
+		"name": "Sea Sky",
+		"css": "linear-gradient(to top, #38bdf8, #312e81)"
+	},
+	{
+		"id": "skyline-whisper",
+		"name": "Skyline Whisper",
+		"css": "linear-gradient(#53a5df, #a9d2ef)"
+	},
+	{
+		"id": "cotton-candy-shores",
+		"name": "Cotton Candy Shores",
+		"css": "linear-gradient(#32c7e5, #f078d5)"
+	},
+	{
+		"id": "canary-shine",
+		"name": "Canary Shine",
+		"css": "linear-gradient(220.55deg, #fff500 0%, #ffb800 100%)"
+	},
+	{
+		"id": "oahu-sunset",
+		"name": "Oahu Sunset",
+		"css": "linear-gradient(to top, #fb923c, #38bdf8)"
+	},
+	{
+		"id": "polaroid-memories",
+		"name": "Polaroid Memories",
+		"css": "linear-gradient(to top, #040308, #ad4a28, #dd723c, #fc7001, #dcb697, #9ba5ae, #3e5879, #020b1a)"
+	},
+	{
+		"id": "neon-nights",
+		"name": "Neon Nights",
+		"css": "linear-gradient(#f3b167, #ec38bc, #7303c0, #03001e)"
+	},
+	{
+		"id": "soft-metal",
+		"name": "Soft Metal",
+		"css": "conic-gradient(at right top, rgb(199, 210, 254), rgb(71, 85, 105), rgb(199, 210, 254))"
+	},
+	{
+		"id": "frosted-orchid",
+		"name": "Frosted Orchid",
+		"css": "linear-gradient(#ecadaf 0%, #e0b6a5 13.54%, #dc8b9d 30.21%, #c05ac9 44.27%, #b865cf 57.81%, #c3a7d9 71.87%, #c5c1e2 84.9%, #c6d8e4 100%)"
+	},
+	{
+		"id": "spectral-summer",
+		"name": "Spectral Summer",
+		"css": "linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%)"
+	},
+	{
+		"id": "cold-breeze",
+		"name": "Cold Breeze",
+		"css": "conic-gradient(at center bottom, #ffffff, #0ea5e9, #0ea5e9)"
+	},
+	{
+		"id": "cyberpop",
+		"name": "Cyberpop",
+		"css": "linear-gradient(135deg, #0e0220 0%, #000000 6px, #e40475 24.8%, #0e0220 35%, #48e0e4 56.3%, #48e0e4 62.4%, #ff00c8 72.9%, rgba(0, 0, 0, 0.86) 78.5%, #48e0e4 100%)"
+	},
+	{
+		"id": "rainbow",
+		"name": "Rainbow",
+		"css": "linear-gradient(#e02020 0%, #fa6400 17%, #f7b500 33%, #6dd400 50%, #0091ff 67%, #6236ff 83%, #b620e0 100%)"
+	},
+	{
+		"id": "candy-cane-breeze",
+		"name": "Candy Cane Breeze",
+		"css": "radial-gradient(at 30% -5%, #92f2f2, #d6cff1, rgba(255, 255, 255, 0) 25%), radial-gradient(at 50% 70%, #c4f2e5, rgba(255, 255, 255, 0) 30%), radial-gradient(at 70% 0%, #d6cff1, rgba(255, 255, 255, 0) 20%), linear-gradient(75deg, #92f2f2 5%, rgba(255, 255, 255, 0), #a8d0f0, rgba(255, 255, 255, 0), #eed5f2, rgba(255, 255, 255, 0), #d6cff1, rgba(255, 255, 255, 0), #c4f2e5 90%), radial-gradient(at 30% 50%, #92f2f2, rgba(255, 255, 255, 0) 30%), radial-gradient(at 30% 50%, #9cb9fc, rgba(255, 255, 255, 0) 30%), radial-gradient(at 100% 50%, #92f2f2, #c2dcf2, rgba(255, 255, 255, 0) 50%), linear-gradient(115deg, #92f2f2 5%, #a8d0f0 10%, #d6cff1, #eed5f2 20%, #a8d0f0, #a8d0f0 30%, #d6cff1, #c2dcf2 40%, #92f2f2, #a8d0f0 70%)"
+	},
+	{
+		"id": "celestial-dreamscape",
+		"name": "Celestial Dreamscape",
+		"css": "radial-gradient(18% 28% at 24% 50%, #cefaff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 18% 71%, rgba(255, 255, 255, 0.35) 6%, rgba(7, 58, 255, 0) 100%), radial-gradient(70% 53% at 36% 76%, #73f2ff 0%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 15% 94%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 34% 72%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 35% 87%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(31% 43% at 7% 98%, #ffffff 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(21% 37% at 72% 23%, rgba(211, 255, 109, 0.61) 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(35% 56% at 91% 74%, rgba(138, 79, 255, 0.96) 9%, rgba(7, 58, 255, 0) 100%), radial-gradient(74% 86% at 67% 38%, rgba(109, 255, 174, 0.96) 24%, rgba(7, 58, 255, 0) 100%), linear-gradient(125deg, #4eb5ff 1%, #4c00fc 100%)"
+	},
+	{
+		"id": "dreamy-hues",
+		"name": "Dreamy Hues",
+		"css": "linear-gradient(97.92deg, #bc97c6 0%, #f6d2c8 6.33%, #f5e2c8 12.2%, #bde8d9 21.5%, #e8dfc6 34.83%, #edc7c6 44.22%, #e6bdcf 52.26%, #c7b2e5 60.55%, #b8bfe7 70.29%, #c3e1d3 79.4%, #eedfc5 89.06%, #e5b0c9 94.93%, #b495c5 100.7%)"
+	},
+	{
+		"id": "pastel-daydream",
+		"name": "Pastel Daydream",
+		"css": "radial-gradient(at 40% 20%, #ffb87a 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 80% 0%, #1fddff 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 50%, #fcdee1 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 73% 51%, #ff85ad 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 100%, #ffb58a 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 80% 100%, #6b66ff 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 0%, #ff85a7 0px, rgba(0, 0, 0, 0) 50%)"
+	},
+	{
+		"id": "rainbows-embrace",
+		"name": "Rainbow's Embrace",
+		"css": "radial-gradient(50% 100% at left -10% top 80%, #db0072, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 25% top 60%, #ffe53e, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 55% top 40%, #00ffe4, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 90% top 20%, #d150ff, rgba(0, 0, 0, 0))"
+	}
 ]

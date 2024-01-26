@@ -14,33 +14,14 @@ const getIgnoredGifts = () => {
   const ignored = getSetting('gift-buttons-ignore-bad-gifts-0', 'skip');
 
   const skipOptions = {
-    skip: [
-      'mozzarella_cheese',
-      'stale_cheese',
-      'stale_cheese_craft_item',
-    ],
+    skip: ['mozzarella_cheese', 'stale_cheese', 'stale_cheese_craft_item'],
     'no-skip': [],
-    mozzarella: [
-      'mozzarella_cheese',
-    ],
-    stale: [
-      'stale_cheese_craft_item',
-    ],
-    sludge: [
-      'radioactive_sludge',
-    ],
-    'mozzarella-stale': [
-      'mozzarella_cheese',
-      'stale_cheese_craft_item',
-    ],
-    'mozzarella-sludge': [
-      'mozzarella_cheese',
-      'radioactive_sludge',
-    ],
-    'stale-sludge': [
-      'stale_cheese_craft_item',
-      'radioactive_sludge',
-    ],
+    mozzarella: ['mozzarella_cheese'],
+    stale: ['stale_cheese_craft_item'],
+    sludge: ['radioactive_sludge'],
+    'mozzarella-stale': ['mozzarella_cheese', 'stale_cheese_craft_item'],
+    'mozzarella-sludge': ['mozzarella_cheese', 'radioactive_sludge'],
+    'stale-sludge': ['stale_cheese_craft_item', 'radioactive_sludge'],
   };
 
   return skipOptions[ignored] || skipOptions.skip;
@@ -168,11 +149,11 @@ const lineBreakGiftFooter = () => {
   replaceInTemplate('GiftSelectorView', [
     [
       'more free gifts today. You can',
-      'more free gifts today. <p class="mh-ui-footer-gifts-second-line">You can'
+      'more free gifts today. <p class="mh-ui-footer-gifts-second-line">You can',
     ],
     [
       'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">Close</a>',
-      'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">✕</a>'
+      'class="giftSelectorView-inboxHeader-closeButton" onclick="hg.views.GiftSelectorView.hideInbox(); return false;">✕</a>',
     ],
   ]);
 };
@@ -373,7 +354,7 @@ const addButtonsToDropdown = () => {
     return;
   }
 
-  buttonLink.addEventListener('click', function () {
+  buttonLink.addEventListener('click', () => {
     makeButtons();
   });
 };
@@ -420,5 +401,5 @@ export default {
   default: true,
   description: 'Quickly accept and return all your gifts as well as picking random friends to send to.',
   load: init,
-  settings
+  settings,
 };

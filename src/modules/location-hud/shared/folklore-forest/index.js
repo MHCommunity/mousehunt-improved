@@ -116,7 +116,12 @@ const addToggle = (upgradeBlock) => {
   }
 
   const classList = upgradeBlock.classList.value;
-  const blockId = classList.replace('folkloreForestRegionView-dialog-block', '').replace('active', '').replace('prologue_pond', '').replace('table_of_contents', '').trim();
+  const blockId = classList
+    .replace('folkloreForestRegionView-dialog-block', '')
+    .replace('active', '')
+    .replace('prologue_pond', '')
+    .replace('table_of_contents', '')
+    .trim();
   let isBlockToggled = isHidden(blockId);
 
   const toggle = makeElement('div', ['mhui-folklore-forest-upgrade-toggle', 'mousehuntActionButton', 'tiny', 'lightBlue']);
@@ -174,7 +179,7 @@ let hasAddedUpgradeVisibilityToggles = false;
  */
 export default async () => {
   onDialogShow(addUpgradeVisibilityToggles, 'fabledForestDialog');
-  onDialogHide(() => hasAddedUpgradeVisibilityToggles = false);
+  onDialogHide(() => (hasAddedUpgradeVisibilityToggles = false));
 
   toggleAllVisibility();
   onRequest(toggleAllVisibility);

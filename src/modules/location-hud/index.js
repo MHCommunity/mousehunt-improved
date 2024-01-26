@@ -78,20 +78,11 @@ import eventLocations from './event-locations';
 const regionMapping = [
   {
     region: 'region-living-garden',
-    locations: [
-      'desert_oasis',
-      'lost_city',
-      'sand_dunes',
-    ],
+    locations: ['desert_oasis', 'lost_city', 'sand_dunes'],
   },
   {
     region: 'region-queso',
-    locations: [
-      'queso_geyser',
-      'queso_plains',
-      'queso_quarry',
-      'queso_river',
-    ],
+    locations: ['queso_geyser', 'queso_plains', 'queso_quarry', 'queso_river'],
   },
   {
     region: 'event-locations',

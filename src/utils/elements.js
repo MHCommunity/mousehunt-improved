@@ -252,11 +252,7 @@ const makeTooltip = (options) => {
     return false;
   }
 
-  const {
-    appendTo,
-    className = '',
-    text = '',
-  } = options;
+  const { appendTo, className = '', text = '' } = options;
 
   const tooltip = makeElement('div', ['PreferencesPage__blackTooltip', 'mh-improved-tooltip', className]);
   makeElement('span', 'PreferencesPage__blackTooltipText', text, tooltip);

@@ -581,7 +581,7 @@ const addFavoriteButtonsToTravelPage = async () => {
       onDeactivate: () => {
         removeFromLocationFavorites(type);
         removeSubmenuItem(type);
-      }
+      },
     });
   });
 };
@@ -600,7 +600,7 @@ const main = () => {
   });
 
   onPageChange({
-    travel: { show: maybeSetTab }
+    travel: { show: maybeSetTab },
   });
 
   listenTabChange();

@@ -34,11 +34,11 @@
   "dependencies": {
     "@babel/runtime": "^7.23.7",
     "@sentry/browser": "^7.93.0",
-    "@sentry/esbuild-plugin": "^2.10.2",
     "humanize-duration": "^3.31.0",
     "mousehunt-utils": "^1.11.0"
   },
   "devDependencies": {
+    "@sentry/esbuild-plugin": "^2.10.2",
     "@sprout2000/esbuild-copy-plugin": "^1.1.12",
     "@wordpress/eslint-plugin": "^17.5.0",
     "archiver": "^6.0.1",

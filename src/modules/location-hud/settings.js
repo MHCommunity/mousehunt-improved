@@ -36,7 +36,7 @@ export default async function (module) {
     {
       name: 'Event Locations',
       id: 'event-locations',
-    }
+    },
   ];
 
   const options = [];

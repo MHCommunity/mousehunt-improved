@@ -87,7 +87,7 @@ const getCatchRate = (mousePower, effectiveness, power = null, luck = null) => {
 
   return {
     rate,
-    percent: getPercent(rate)
+    percent: getPercent(rate),
   };
 };
 

@@ -89,13 +89,17 @@ const cacheLocationData = async () => {
 
 const waitForTravel = async (environment) => {
   return new Promise((resolve) => {
-    hg.utils.User.travel(environment, (success) => {
-      debug(`Travel success: ${success}`);
-      resolve();
-    }, (error) => {
-      debug(`Travel error: ${error}`);
-      resolve();
-    });
+    hg.utils.User.travel(
+      environment,
+      (success) => {
+        debug(`Travel success: ${success}`);
+        resolve();
+      },
+      (error) => {
+        debug(`Travel error: ${error}`);
+        resolve();
+      }
+    );
 
     debug(`Traveled to ${environment}.`);
   });

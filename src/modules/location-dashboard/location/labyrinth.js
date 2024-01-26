@@ -13,7 +13,9 @@ export default (quests) => {
   if (quest.clues) {
     const clueTexts = [];
     quest.clues.forEach((clue) => {
-      const clueName = clue.name.replace('Farming', 'Farm').replace('Dead End', 'DEC');
+      const clueName = clue.name
+        .replace('Farming', 'Farm')
+        .replace('Dead End', 'DEC');
       clueTexts.push(`${clue.quantity} ${clueName}`);
     });
 

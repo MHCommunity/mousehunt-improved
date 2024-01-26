@@ -8,10 +8,12 @@ import { getCurrentPage } from './page';
  * @return {boolean} Whether we have the required functions.
  */
 const isApp = () => {
-  return typeof app !== 'undefined' &&
-    typeof user !== 'undefined' &&
-    typeof hg !== 'undefined' &&
-    typeof eventRegistry !== 'undefined';
+  return (
+    typeof app !== 'undefined' &&
+		typeof user !== 'undefined' &&
+		typeof hg !== 'undefined' &&
+		typeof eventRegistry !== 'undefined'
+  );
 };
 
 /**
@@ -93,7 +95,7 @@ const addBodyClass = (className) => {
      */
     callback: () => {
       setTimeout(addClass, 500);
-    }
+    },
   });
 };
 
@@ -201,10 +203,7 @@ function isAppleOS(_window = null) {
 
   const { platform } = _window.navigator;
 
-  return (
-    platform.includes('Mac') ||
-		['iPad', 'iPhone'].includes(platform)
-  );
+  return platform.includes('Mac') || ['iPad', 'iPhone'].includes(platform);
 }
 
 const hasMiniCRE = () => {

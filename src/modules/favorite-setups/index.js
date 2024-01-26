@@ -107,7 +107,7 @@ const getCheeseEffect = (textValue) => {
     'Extremely Stale': 4,
     'Insanely Stale': 3,
     'Ultimately Stale': 2,
-    'Uber Stale': 1
+    'Uber Stale': 1,
   };
 
   return data[textValue];
@@ -809,5 +809,5 @@ export default {
   type: 'feature',
   default: false,
   description: 'Save your favorite setups and arm them with a single click.',
-  load: init
+  load: init,
 };

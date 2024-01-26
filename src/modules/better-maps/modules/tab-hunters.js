@@ -132,9 +132,26 @@ const getInvitedHunterData = async (invited) => {
 
 const getUserData = async (userId) => {
   return new Promise((resolve) => {
-    hg.utils.User.getUserData(userId, ['bait_name', 'bait_thumb', 'base_name', 'base_thumb', 'environment_id', 'environment_name', 'is_online', 'last_active_formatted', 'trinket_name', 'trinket_thumb', 'weapon_name', 'weapon_thumb'], (resp) => {
-      resolve(resp);
-    });
+    hg.utils.User.getUserData(
+      userId,
+      [
+        'bait_name',
+        'bait_thumb',
+        'base_name',
+        'base_thumb',
+        'environment_id',
+        'environment_name',
+        'is_online',
+        'last_active_formatted',
+        'trinket_name',
+        'trinket_thumb',
+        'weapon_name',
+        'weapon_thumb',
+      ],
+      (resp) => {
+        resolve(resp);
+      }
+    );
   });
 };
 

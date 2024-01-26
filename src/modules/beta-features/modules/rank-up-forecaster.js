@@ -30,9 +30,7 @@ const exportRankupForecasterDataAsCsv = () => {
 
   const data = JSON.parse(time);
 
-  const csv = [
-    'Time,Wisdom',
-  ];
+  const csv = ['Time,Wisdom'];
 
   data.forEach((row) => {
     const date = new Date(row[0]);

@@ -25,7 +25,7 @@ const exportDataPopup = () => {
     {
       id: 'mouse-stats-by-location',
       name: 'Mouse Stats by Location',
-      callback: () => exportMice('location')
+      callback: () => exportMice('location'),
     },
     {
       id: 'inventory',

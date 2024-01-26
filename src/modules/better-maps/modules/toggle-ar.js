@@ -119,7 +119,11 @@ const maybeClickArToggle = () => {
   }
 
   const showing = mapView.classList.contains('mh-ui-ar-showing');
-  const currentButtonState = toggle.querySelector('.toggle-ar-text').innerText.replace('AR', '').replace('DR', '').trim();
+  const currentButtonState = toggle
+    .querySelector('.toggle-ar-text')
+    .innerText.replace('AR', '')
+    .replace('DR', '')
+    .trim();
   if (showing && currentButtonState !== 'Hide') {
     toggle.click();
   } else if (! showing && currentButtonState !== 'Show') {

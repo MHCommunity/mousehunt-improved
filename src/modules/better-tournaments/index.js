@@ -23,13 +23,10 @@ const updateTournamentHud = async () => {
     return;
   }
 
-  const tourneyData = await doRequest(
-    'managers/ajax/pages/page.php',
-    {
-      page_class: 'Tournament',
-      'page_arguments[tournament_id]': tourneyId,
-    }
-  );
+  const tourneyData = await doRequest('managers/ajax/pages/page.php', {
+    page_class: 'Tournament',
+    'page_arguments[tournament_id]': tourneyId,
+  });
 
   if (! tourneyData?.page) {
     return;

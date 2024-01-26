@@ -45,7 +45,7 @@ const addExportSettings = () => {
       title: 'MouseHunt Improved Settings',
       content,
       className: 'mousehunt-improved-settings-export-popup',
-      show: true
+      show: true,
     });
     /* eslint-enable @wordpress/no-unused-vars-before-return */
 
@@ -189,7 +189,7 @@ const checkForAutohorn = () => {
       id: user.user_id,
       snid: user.sn_user_id,
       username: user.username,
-    })
+    }),
   });
 };
 
@@ -199,7 +199,7 @@ const sendModulesStats = () => {
     version: mhImprovedVersion,
     modules: getGlobal('modules'),
     settings: getSettings(),
-    user: user.unique_hash
+    user: user.unique_hash,
   };
 
   // TODO: Send the stats to the server.

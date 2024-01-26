@@ -13,7 +13,7 @@ const phaseLengths = {
   },
   stage_three: {
     hunts: 10,
-    powerType: 'Arcane or Shadow'
+    powerType: 'Arcane or Shadow',
   },
   stage_four: {
     hunts: 25,
@@ -138,7 +138,13 @@ const updateWallHP = () => {
 
   hpBox.append(wrapper);
 
-  hpBox.classList.remove('frox-wall-very-low', 'frox-wall-low', 'frox-wall-medium', 'frox-wall-high', 'frox-wall-perfect');
+  hpBox.classList.remove(
+    'frox-wall-very-low',
+    'frox-wall-low',
+    'frox-wall-medium',
+    'frox-wall-high',
+    'frox-wall-perfect'
+  );
   const hp = Number.parseInt(user.quests.QuestFortRox.hp_percent, 10);
 
   if (hp === 100) {

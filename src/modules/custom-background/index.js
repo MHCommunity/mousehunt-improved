@@ -113,7 +113,7 @@ const addPreview = () => {
       title: '',
       className: 'mh-improved-custom-background-gradient-preview-popup',
       content: `<div class="mh-improved-custom-background-gradient-preview">${content}</div>`,
-      show: false
+      show: false,
     });
 
     popup.show();

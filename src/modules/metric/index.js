@@ -87,5 +87,5 @@ export default {
   type: 'feature',
   default: false,
   description: 'Use metric units instead of imperial units.',
-  load: init
+  load: init,
 };

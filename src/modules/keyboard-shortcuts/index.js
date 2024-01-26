@@ -199,7 +199,7 @@ const getBaseShortcuts = () => {
       description: 'Travel to previous location',
       action: travelToPreviousLocation,
       category: 'misc',
-    }
+    },
   ];
 
   if (hasMiniCRE()) {
@@ -442,7 +442,7 @@ const showHelpPopup = () => {
     content,
     hasCloseButton: true,
     show: true,
-    className: 'mh-ui-keyboard-shortcuts-popup'
+    className: 'mh-ui-keyboard-shortcuts-popup',
   });
 
   const shortcutsWrapper = document.querySelector('.mh-ui-keyboard-shortcuts-popup-content');
@@ -561,11 +561,7 @@ const listenForKeypresses = () => {
     }
 
     const tagName = event.target.tagName.toLowerCase();
-    if (
-      'input' === tagName ||
-      'textarea' === tagName ||
-      'select' === tagName
-    ) {
+    if ('input' === tagName || 'textarea' === tagName || 'select' === tagName) {
       return;
     }
 
@@ -618,12 +614,12 @@ const init = async () => {
   listenForKeypresses();
 
   onNavigation(hasMiniCRE, {
-    page: 'camp'
+    page: 'camp',
   });
 
   onNavigation(openFromSettings, {
     page: 'preferences',
-    tab: 'mousehunt-improved-settings'
+    tab: 'mousehunt-improved-settings',
   });
 };
 

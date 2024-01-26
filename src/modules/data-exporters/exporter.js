@@ -57,9 +57,13 @@ const addCsvDownloadToButton = (opts) => {
       results = resultReducer(results);
     }
 
-    let csv = results.map((row) => {
-      return Object.values(row).map((value) => `"${value}"`).join(',');
-    }).join('\n');
+    let csv = results
+      .map((row) => {
+        return Object.values(row)
+          .map((value) => `"${value}"`)
+          .join(',');
+      })
+      .join('\n');
 
     if (opts.headers) {
       csv = `${opts.headers.join(',')}\n${csv}`;
@@ -100,7 +104,7 @@ const addDownloadButtons = (opts) => {
     results,
     filename,
     headers,
-    reduceResults
+    reduceResults,
   });
 };
 

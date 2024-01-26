@@ -23,19 +23,27 @@ const initSearch = (searchInputDOM) => {
   searchInputDOM.prepend(blankOpt);
 
   searchInputDOM = $('.marketplaceView-header-search');
-  searchInputDOM.select2({
-    formatResult: hg.views.MarketplaceView.formatSelect2Result,
-    formatSelection: hg.views.MarketplaceView.formatSelect2Result,
-    dropdownAutoWidth: false,
-    placeholder: 'Search for items...',
-    minimumInputLength: 0,
-    dropdownCssClass: 'marketplaceView-header-search-dropdown',
-    width: 'resolve',
-  }).on('change', function () {
-    if (! searchInputDOM.prop('disabled') && searchInputDOM.val()) {
-      hg.views.MarketplaceView.showItem(searchInputDOM.val(), 'view', false, false, true);
-    }
-  });
+  searchInputDOM
+    .select2({
+      formatResult: hg.views.MarketplaceView.formatSelect2Result,
+      formatSelection: hg.views.MarketplaceView.formatSelect2Result,
+      dropdownAutoWidth: false,
+      placeholder: 'Search for items...',
+      minimumInputLength: 0,
+      dropdownCssClass: 'marketplaceView-header-search-dropdown',
+      width: 'resolve',
+    })
+    .on('change', () => {
+      if (! searchInputDOM.prop('disabled') && searchInputDOM.val()) {
+        hg.views.MarketplaceView.showItem(
+          searchInputDOM.val(),
+          'view',
+          false,
+          false,
+          true
+        );
+      }
+    });
 };
 
 const modifySearch = (opts) => {
@@ -202,11 +210,15 @@ let newSelect = null;
  */
 const init = async () => {
   addStyles(styles);
-  onOverlayChange({ marketplace: { show: () => {
-    waitForSearchReady();
+  onOverlayChange({
+    marketplace: {
+      show: () => {
+        waitForSearchReady();
 
-    overloadShowItem();
-  } } });
+        overloadShowItem();
+      },
+    },
+  });
 
   onRequest(autocloseClaim, 'managers/ajax/users/marketplace.php');
 };

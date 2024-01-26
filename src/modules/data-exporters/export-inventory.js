@@ -87,10 +87,10 @@ const exportInventory = () => {
         'Thumbnail',
         'Limited Edition',
         'Tradable',
-        'Givable'
+        'Givable',
       ],
       reduceResults: true,
-    }
+    },
   });
 };
 

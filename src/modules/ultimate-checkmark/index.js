@@ -26,16 +26,13 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
     const lastCachedTime = cachedData[queryTab]?.time || 0;
 
     // Cache the data for 5 minutes.
-    if (! inventoryData || (Date.now() - lastCachedTime) > 5 * 60 * 1000) {
-      inventoryData = await doRequest(
-        'managers/ajax/pages/page.php',
-        {
-          page_class: 'Inventory',
-          'page_arguments[legacyMode]': '',
-          'page_arguments[tab]': queryTab,
-          'page_arguments[sub_tab]': 'false',
-        }
-      );
+    if (! inventoryData || Date.now() - lastCachedTime > 5 * 60 * 1000) {
+      inventoryData = await doRequest('managers/ajax/pages/page.php', {
+        page_class: 'Inventory',
+        'page_arguments[legacyMode]': '',
+        'page_arguments[tab]': queryTab,
+        'page_arguments[sub_tab]': 'false',
+      });
 
       cachedData[queryTab] = {
         data: inventoryData,
@@ -373,7 +370,7 @@ const init = async () => {
 
   onNavigation(run, {
     page: 'hunterprofile',
-    tab: 'items'
+    tab: 'items',
   });
 };
 

@@ -461,7 +461,7 @@ const getHighestArForMouse = async (id, type = 'mouse') => {
     return 0;
   }
 
-  return (rate.rate / 100);
+  return rate.rate / 100;
 };
 
 export {

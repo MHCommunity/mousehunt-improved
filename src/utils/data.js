@@ -93,7 +93,7 @@ const setCachedData = (key, data) => {
 const fetchAndCacheData = async (key) => {
   const data = await fetch(`https://api.mouse.rip/${key}`, {
     method: 'GET',
-    headers: getHeaders()
+    headers: getHeaders(),
   });
 
   const json = await data.json();

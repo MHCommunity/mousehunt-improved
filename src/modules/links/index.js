@@ -20,7 +20,7 @@ const addHelpLinks = () => {
       title: 'MH Improved',
       href: 'https://github.com/MHCommunity/mousehunt-improved',
       text: 'Bug reports and feature requests.',
-    }
+    },
   ];
 
   helpLinks.forEach((helpLink) => {

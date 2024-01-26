@@ -16,8 +16,8 @@ const humanizer = humanizeDuration.humanizer({
       m: () => 'm',
       s: () => 's',
       ms: () => 'ms',
-    }
-  }
+    },
+  },
 });
 
 const isExact = () => {
@@ -53,12 +53,12 @@ const updateLgsReminder = (el) => {
   const timeFmt = getShieldTimeFormattted(time);
 
   // Check if we have less than 2 days left.
-  if (time <= (60 * 60 * 24 * 2)) {
+  if (time <= 60 * 60 * 24 * 2) {
     el.classList.add('lgs-warning');
   }
 
   // If we have less than 1 hour left, then add another warning.
-  if (time <= (60 * 60)) {
+  if (time <= 60 * 60) {
     el.classList.add('lgs-danger');
   }
 
@@ -83,7 +83,7 @@ const main = () => {
   updateLgsReminder(reminder);
 
   // Every minute, update the time.
-  const interval = exact ? 1000 : (60 * 1000);
+  const interval = exact ? 1000 : 60 * 1000;
 
   /* Wait a bit so we sync to the horn countdown a bit more */
   setTimeout(() => {

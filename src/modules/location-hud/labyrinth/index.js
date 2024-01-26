@@ -13,7 +13,7 @@ const highlightDoors = () => {
   }
 
   const clues = user.quests.QuestLabyrinth.clues || [];
-  const clue = clues.reduce((a, b) => a.quantity > b.quantity ? a : b);
+  const clue = clues.reduce((a, b) => (a.quantity > b.quantity ? a : b));
 
   if (clue) {
     const doors = user.quests.QuestLabyrinth.doors || [];
@@ -93,7 +93,10 @@ const hud = () => {
   const clueProgress = document.querySelectorAll('.labyrinthHUD-clue');
   if (clueProgress) {
     clueProgress.forEach((progress) => {
-      const clueType = progress.classList.value.replace('labyrinthHUD-clue', '').replace('clueFound', '').trim();
+      const clueType = progress.classList.value
+        .replace('labyrinthHUD-clue', '')
+        .replace('clueFound', '')
+        .trim();
 
       // check if user.quests.QuestLabyrinth.clues has a clue of this type
       const clues = user.quests.QuestLabyrinth.clues || [];
