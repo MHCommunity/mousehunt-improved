@@ -9,6 +9,8 @@ import {
   sleep
 } from '@utils';
 
+import styles from './raffle.css';
+
 const getBallotsToSend = () => {
   const ballotsToSend = [];
   const ballots = document.querySelectorAll('.message.notification.ballot');
@@ -24,9 +26,13 @@ const getBallotsToSend = () => {
 
     const name = ballot.querySelector('.messageText a');
     const action = ballot.querySelector('.sendBallot');
+    if (! action || ! name) {
+      return;
+    }
+
     ballotsToSend.push({
       id: action.getAttribute('data-sender'),
-      name: name.innerHTML,
+      name: name.innerText ? name.innerText.trim() : '',
       element: ballot,
     });
   });
@@ -219,33 +225,7 @@ const replaceInboxMethods = () => {
 };
 
 const main = () => {
-  addStyles(`.mh-return-raffles.message {
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
-  }
-
-  .notificationMessageList .tab {
-    scroll-behavior: smooth;
-  }
-
-  .mh-return-raffles.message .actions {
-    float: none;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 10px
-  }
-
-  .notificationMessageList .message.done {
-    background-color: #bffdd2;
-  }
-
-  .notificationMessageList .message.skipped {
-    background-color: #dfdfdf;
-  }`);
+  addStyles(styles);
 
   replaceInboxMethods();
 };
