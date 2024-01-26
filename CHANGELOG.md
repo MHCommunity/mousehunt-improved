@@ -21,6 +21,7 @@
 - Updates Valour Rift Location HUD styles
 - Updates Quick Send Supplies styles
 - Fixes Quick Send Supplies not showing on results for friend search
+- Fixes LGS reminder positioning
 
 ## Version 0.30.1
 
