@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.30.4
+
+- Fixes Catch Rate Estimator not showing
+- Updates Valour Rift Location HUD styles
+
 ## Version 0.30.3
 
 - Fixes Favorite Setups title randomize button not showing
