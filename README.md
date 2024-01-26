@@ -137,6 +137,18 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Copy ID Button
   - Hover over your profile picture in the HUD for a quick 'Copy ID to clipboard' button.
 
+- Custom Background
+  - Customize the background of the page with a variety of options including events, colors, or beautiful gradients.
+
+- Custom Horn
+  - Customize the horn by changing it to an event horn or a variety of color tints.
+
+- Custom HUD
+  - Customize the blue marble background of the HUD with a variety of options.
+
+- Custom Theme
+  - Customize the theme of the MH interface with a variety of options.
+
 - Custom Shield
   - Change your shield in the HUD to a variety of different options including past events, color tints (with optional timer color), or some fun meme shields.
 
@@ -149,6 +161,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 - Delayed Tooltips
   - Adds a delay to tooltips so they don't show up immediately when you hover over something.
 
+- Favorite Setups
+  - Easily save and load your favorite trap setups.
+
 - FLRT Helper
   - Easily return tradable items to a maptain when opening the chest from a Free Leech Return Tradables map.
 
@@ -160,6 +175,9 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
 
 - Inline Wiki
   - Clicking 'Wiki' in the menu will load it right on the page, rather than opening a new tab.
+
+- Inventory Lock and Hide
+  - Lock items in your inventory so they can't be used and hide them so they don't show up in the inventory or trap selector.
 
 - Keyboard Shortcuts
   - Press '?' to see a list of keyboard shortcuts.
@@ -404,12 +422,13 @@ If you have any of these userscripts installed, you can uninstall them, as the f
 - [MH: M400 Hunting Helper](https://greasyfork.org/en/scripts/429044-mh-m400-hunting-helper)
 - [MouseHunt - Gifting Buttons](https://greasyfork.org/en/scripts/376572-mousehunt-gifting-buttons)
 - [MouseHunt - Mapping Helper](https://greasyfork.org/en/scripts/384275-mousehunt-mapping-helper)
+- [MouseHunt - QoL Utilities](https://greasyfork.org/en/scripts/405334-mousehunt-qol-utilities)
 - [MouseHunt - Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)
 - [MouseHunt - Sort charms by quantity](https://greasyfork.org/en/scripts/389861-mousehunt-sort-charms-by-quantity)
 - [MouseHunt - TEM Catch Stats](https://greasyfork.org/en/scripts/376770-mousehunt-tem-catch-stats)
 - [MouseHunt - Tournament Time Helper](https://greasyfork.org/en/scripts/37146-mousehunt-tournament-time-helper)
-- [MouseHunt Location HUD Preview](https://greasyfork.org/en/scripts/454413-mousehunt-location-hud-preview)
 - [Mousehunt – Lucky Golden Shield Duration Indicator & Warning](https://greasyfork.org/en/scripts/410966-mousehunt-lucky-golden-shield-duration-indicator-warning)
+- [MouseHunt Location HUD Preview](https://greasyfork.org/en/scripts/454413-mousehunt-location-hud-preview)
 - Most map color coders
 
 ## Changelog
