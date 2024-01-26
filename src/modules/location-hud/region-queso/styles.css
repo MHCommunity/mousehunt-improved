@@ -125,3 +125,19 @@
 .quesoCanyonHUD.showBossCheese .quesoHUD-bait-group.super_brie_cheese .quesoHUD-bait-group-baitQuantity {
   right: 26px;
 }
+
+.quesoHUD-bait-group {
+  display: inline-block;
+}
+
+.quesoHUD-bait-group-cheeseImage .mousehuntItem-image,
+.quesoHUD-bait-group-spiceImage .mousehuntItem-image {
+  background-color: transparent;
+}
+
+.quesoHUD-bait-group-spiceImage .mousehuntItem-image {
+  border: none;
+  box-shadow: none;
+  transform: scale(1.2);
+  transform-origin: top;
+}

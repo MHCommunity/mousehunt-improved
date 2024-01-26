@@ -6,3 +6,7 @@
 .journal .entry.rift_valour.minimalJournalImage.upgrade_siphon .journaltext {
   padding-top: 0;
 }
+
+.journal .entry.rift_valour.moved_forward {
+  background-color: #6dd5fb;
+}

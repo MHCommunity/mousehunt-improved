@@ -14,7 +14,8 @@
   content: " ";
 }
 
-.journal .entry .journaltext br,
+.journal .entry.catchsuccessloot .journaltext br,
+.journal .entry.luckycatchsuccess .journaltext br,
 .journal .entry.relicHunter_catch .journaltext br::after,
 .journal .entry.relicHunter_complete .journaltext br::after {
   content: "";

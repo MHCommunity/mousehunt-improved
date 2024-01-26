@@ -79,8 +79,8 @@ a.itemPurchaseView-image-trapPreview-link,
   background-color: rgb(128 45 45 / 55%);
 }
 
-.mh-dark-mode .itemPurchaseView-action-itemCost-table-cell.cost {
-  color: #e36969;
+.mh-dark-mode .itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.cost {
+  color: #f66060;
 }
 
 .itemPurchaseView-action-itemCost-table-row {

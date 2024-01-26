@@ -120,3 +120,8 @@
   position: absolute;
   bottom: -30px;
 }
+
+.friendsPage-community-hunterResult .quickSendWrapper {
+  top: -55px;
+  left: 35px;
+}

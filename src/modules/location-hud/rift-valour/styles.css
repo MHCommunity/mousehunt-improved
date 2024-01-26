@@ -449,3 +449,17 @@ span.valourRiftHUD-stepsTaken-value {
 .valourRiftHUD.tower .valourRiftHUD-state.tower {
   font-size: 11px;
 }
+
+.valourRiftHUD-towerLoot-thumb:hover {
+  transform: scale(2.2);
+}
+
+.valourRiftHUD-towerLoot-thumb {
+  background-size: 80%;
+  transition: 0.2s;
+  transform: scale(1.7);
+}
+
+a.valourRiftHUD-gauntletBait-image.active {
+  filter: drop-shadow(0 5px 5px #68b868);
+}

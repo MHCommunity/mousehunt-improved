@@ -128,10 +128,6 @@ a.journal-detailLink.full::after {
   border: none;
 }
 
-.journal .entry .journaltext br:last-child {
-  display: none;
-}
-
 .jsingle .journalEntries {
   padding-top: 1px;
 }
