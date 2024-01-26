@@ -23,7 +23,7 @@ const updateMinLucks = async () => {
 
   const effectiveness = await getMiceEffectivness();
 
-  if (! effectiveness || ! Object.keys(effectiveness).length) {
+  if (! effectiveness) {
     return;
   }
 
@@ -36,7 +36,7 @@ const updateMinLucks = async () => {
       };
     });
 
-  await renderList(miceIds);
+  renderList(miceIds);
 };
 
 const renderList = async (list) => {
