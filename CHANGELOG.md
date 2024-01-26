@@ -1,8 +1,30 @@
 # Changelog
 
+## Version 0.30.2
+
+- Fixes Favorite Setups throwing errors
+- Adds a 'Randomize' button to the title when editing a setup in Favorite Setups, which will automatically generate a title for you
+- Fixes Inventory Lock and Hide only show lock buttons on collectibles page, rather than all but collectibles page
+- Fixes Hover Profiles not correctly reading cached data
+- Fixes mice ARs not correctly reading cached data
+- Fixes Folklore Forest visibility toggles not correctly checking available upgrades
+- Fixes potential memory leak in tab handlers
+- Adds a 'Blueprint' option to Custom HUD
+- Updates rank progress bar to blend with Custom HUD background
+- Updates style of Better Inventory display for when Full Width is disabled
+- Fixes styling conflict between Inventory Lock and Hide and MouseHunt QoL Utilities userscript
+- Fixes Burroughs Rift Location HUD not correctly updating when honking horn
+- Fixes Better Journal making bonus loot journal entries look terrible
+- Updates Better Shops styles
+- Updates Better UI styles
+- Updates Favorite Setups styles
+- Updates Valour Rift Location HUD styles
+- Updates Quick Send Supplies styles
+- Fixes Quick Send Supplies not showing on results for friend search
+
 ## Version 0.30.1
 
-- Fix issue with custom backgrounds not being applied
+- Fixes issue with custom backgrounds not being applied
 
 ## Version 0.30.0
 
