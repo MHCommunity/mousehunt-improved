@@ -70,3 +70,23 @@
 .mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
   display: none;
 }
+
+.inventoryPage-tagContent-tagTitle {
+  display: flex;
+  align-items: center;
+  padding: 0 5px 10px;
+  margin: 0;
+  font-size: 1.4em;
+  border: none;
+}
+
+span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible {
+  top: -6px;
+  right: 110px;
+  font-size: 0.75em;
+}
+
+span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible button {
+  padding: 2px;
+  font-size: 1em;
+}
