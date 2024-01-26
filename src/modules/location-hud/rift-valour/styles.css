@@ -159,11 +159,17 @@ span.valourRiftHUD-towerUpgrade-currentValue {
 }
 
 .valourRiftHUD-powerUp-currentLevel {
-  top: 6px;
-  right: 10px;
+  top: 9px;
+  right: 8px;
+  width: 23px;
   padding: 2px;
-  font-size: 13px;
+  font-size: 15px;
+  line-height: 27px;
   color: #fff;
+  background: radial-gradient(circle, #4d3bac 0%, #1a115b 100%);
+  border: none;
+  border-radius: 10px 15px 15px 10px;
+  box-shadow: inset 0 0 2px 1px #171717;
 }
 
 .valourRiftHUD-powerUp.hunt_limit .valourRiftHUD-powerUp-currentLevel {
@@ -448,6 +454,30 @@ span.valourRiftHUD-stepsTaken-value {
 
 .valourRiftHUD.tower .valourRiftHUD-state.tower {
   font-size: 11px;
+}
+
+.valourRiftHUD-powerUp .valourRiftHUD-powerUpIcon {
+  top: 2px;
+  left: 2px;
+  width: 44px;
+  height: 45px;
+}
+
+.valourRiftHUD-powerUp-title {
+  margin-top: -3px;
+  margin-left: 2px;
+  font-size: 13px;
+}
+
+a.valourRiftHUD-gauntletBait-image {
+  background-color: #694481;
+  outline: 1px solid #564065;
+}
+
+a.valourRiftHUD-bait-image {
+  background-color: #6d90de;
+  outline: 2px solid #4f71bc;
+  box-shadow: 0 0 0 2px #5071bc;
 }
 
 .valourRiftHUD-towerLoot-thumb:hover {
