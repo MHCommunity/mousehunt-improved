@@ -17,6 +17,7 @@ export default function (module) {
       { name: 'Teal', value: 'hud-teal' },
       { name: 'Faded', value: 'hud-faded' },
       { name: 'Gray', value: 'hud-gray' },
+      { name: 'Blueprint', value: 'hud-blueprint' },
     ] },
   ];
 
