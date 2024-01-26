@@ -13,6 +13,7 @@ import {
 import recipes from './recipes';
 import settings from './settings';
 
+import doubleWidthStyles from './double-width-item.css';
 import fullWidthStyles from './full-width-item.css';
 import largerImagesStyles from './larger-images.css';
 
@@ -168,7 +169,7 @@ const main = () => {
 const init = async () => {
   addStyles([
     styles,
-    getSetting('better-inventory-one-item-per-row', true) ? fullWidthStyles : '',
+    getSetting('better-inventory-one-item-per-row', true) ? fullWidthStyles : doubleWidthStyles,
     getSetting('better-inventory-larger-images', true) ? largerImagesStyles : '',
   ]);
 

@@ -455,7 +455,7 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
 
 .inventoryPage-item .item_set::after {
   position: absolute;
-  top: 3px;
+  top: 8px;
   right: 3px;
   display: block;
   width: 28px;
@@ -469,15 +469,6 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
 
 .inventoryPage-item:hover .item_set::after {
   opacity: 1;
-}
-
-.inventoryPage-item .item_set::before {
-  position: absolute;
-  right: 3px;
-  bottom: 3px;
-  display: block;
-  color: #2c2c2c;
-  content: "Riftstalker Set";
 }
 
 .mh-dark-mode .itemViewStatBlock.horizontal .itemViewStatBlock-padding {
