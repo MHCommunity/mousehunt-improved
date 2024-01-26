@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.30.5
+
+- Fixes locked inventory items not correctly locking
+
 ## Version 0.30.4
 
 - Fixes Catch Rate Estimator not showing

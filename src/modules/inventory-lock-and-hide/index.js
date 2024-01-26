@@ -153,7 +153,8 @@ const maybeLockOrHideItems = async () => {
   }
 
   for (const item of items) {
-    const id = item.getAttribute('data-item-id');
+    let id = item.getAttribute('data-item-id');
+    id = Number.parseInt(id, 10);
     if (! id) {
       return;
     }

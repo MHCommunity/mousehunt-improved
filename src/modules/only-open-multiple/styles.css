@@ -12,3 +12,8 @@
   pointer-events: all;
   filter: none;
 }
+
+.inventoryPage-item.convertible .locked .inventoryPage-item-content-action input:first-of-type:not(:only-of-type),
+.inventoryPage-item.convertible .locked .inventoryPage-item-content-action input.allButOne {
+  pointer-events: none;
+}
