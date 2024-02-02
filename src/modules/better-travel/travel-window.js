@@ -251,6 +251,9 @@ const addEnvironmentIconListener = () => {
     return;
   }
 
+  environmentIcon.classList.add('mh-improved-travel-window-environment-icon');
+  environmentIcon.title = 'Open Travel Window';
+
   environmentIcon.addEventListener('click', () => {
     openTravelWindow();
   });
