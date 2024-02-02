@@ -332,7 +332,7 @@ const hud = () => {
   }
 
   let color = 'yellow';
-  if (mistLevel >= 7) {
+  if (mistLevel >= 6) {
     color = 'green';
   }
   if (mistLevel >= 19) {
