@@ -6,6 +6,7 @@ import fullstop from './fullstop.css';
 import general from './general.css';
 import goldPoints from './gold-points.css';
 import icons from './icons.css';
+import iconsAll from './icons-all.css';
 import linkColors from './link-colors.css';
 import progressLog from './progress-log.css';
 
@@ -92,8 +93,12 @@ const main = () => {
     mouseStuckSnowball,
   ];
 
-  if (getFlag('journal-icons')) {
+  if (getFlag('journal-icons') || getFlag('journal-icons-all')) {
     stylesToAdd.push(icons);
+  }
+
+  if (getFlag('journal-icons-all')) {
+    stylesToAdd.push(iconsAll);
   }
 
   addStyles(stylesToAdd);
