@@ -1,4 +1,4 @@
-import { getUserItems, onEvent, onNavigation } from '@utils';
+import { doEvent, getUserItems, onEvent, onNavigation } from '@utils';
 
 /**
  * Adds a cheese selector a a location that usually doesn't have a HUD.
@@ -107,7 +107,7 @@ const replaceCampShowTab = () => {
   const _original = app.pages.CampPage.showTab;
   app.pages.CampPage.showTab = (...args) => {
     _original(...args);
-    eventRegistry.doEvent('set_camp_tab', ...args);
+    doEvent('set_camp_tab', ...args);
   };
 };
 

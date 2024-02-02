@@ -1,5 +1,6 @@
 import {
   addToGlobal,
+  doEvent,
   getFlag,
   getMapData,
   makeElement,
@@ -56,7 +57,7 @@ const interceptMapRequest = (mapId) => {
       mapModel: new hg.models.TreasureMapModel(mapData),
     });
 
-    eventRegistry.doEvent('mapper_loaded', mapData);
+    doEvent('mapper_loaded', mapData);
     return data;
   };
 
@@ -107,13 +108,13 @@ const initMapper = (map) => {
     tab.addEventListener('click', () => {
       addBlockClasses();
 
-      eventRegistry.doEvent('map_tab_click', map);
-      eventRegistry.doEvent(`map_${tab.getAttribute('data-type')}_tab_click`, map);
+      doEvent('map_tab_click', map);
+      doEvent(`map_${tab.getAttribute('data-type')}_tab_click`, map);
     });
   });
 
   // Fire the goals click because we default to that tab.
-  eventRegistry.doEvent('map_show_goals_tab_click', map);
+  doEvent('map_show_goals_tab_click', map);
 
   // Add the block classes.
   addBlockClasses();

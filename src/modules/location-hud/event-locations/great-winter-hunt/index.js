@@ -128,7 +128,7 @@ const updateGolemPopup = () => {
     if (golems) {
       golems.forEach((golem) => {
         golem.addEventListener('click', () => {
-          eventRegistry.doEvent('golemSwitchInDialog');
+          eventRegistry.doEvent('golem-switch-in-dialog');
         });
       });
     }
@@ -306,7 +306,7 @@ const greatWinterHuntLocation = () => {
     showPossibleSnowballShowdownDustCount();
   });
 
-  onEvent('golemSwitchInDialog', () => {
+  onEvent('golem-switch-in-dialog', () => {
     updateGolemTravelCount();
   });
 

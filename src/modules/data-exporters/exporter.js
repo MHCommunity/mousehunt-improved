@@ -1,4 +1,4 @@
-import { createPopup } from '@utils';
+import { createPopup, doEvent } from '@utils';
 
 const recursiveFetch = (data, callbackToRun) => {
   return data.reduce((promiseChain, item) => {
@@ -185,7 +185,7 @@ const exportPopup = (opts) => {
   }
 
   exportBackButton.addEventListener('click', () => {
-    eventRegistry.doEvent('show-export-data');
+    doEvent('show-export-data');
   });
 
   const fetchButton = document.querySelector(`#fetch-${type}`);

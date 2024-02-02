@@ -3,6 +3,7 @@ export * from './debug';
 export * from './draggable';
 export * from './elements';
 export * from './events';
+export * from './event-registry';
 export * from './flags';
 export * from './global';
 export * from './horn';

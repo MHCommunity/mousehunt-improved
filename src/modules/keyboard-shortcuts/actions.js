@@ -1,4 +1,4 @@
-import { getCurrentPage } from '@utils';
+import { doEvent, getCurrentPage } from '@utils';
 
 const clickMinLuck = () => {
   const minluckButton = document.querySelector('.min-luck-button');
@@ -11,7 +11,7 @@ const clickMinLuck = () => {
 
 const gotoPage = (page) => {
   if ('wiki' === page.toLowerCase()) {
-    eventRegistry.doEvent('mh-improved-open-wiki');
+    doEvent('mh-improved-open-wiki');
     return;
   }
 

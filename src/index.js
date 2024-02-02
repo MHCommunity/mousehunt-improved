@@ -9,6 +9,7 @@ import {
   debuglite,
   debuglog,
   debugplain,
+  doEvent,
   getFlag,
   getGlobal,
   getSetting,
@@ -103,6 +104,7 @@ const loadModules = async () => {
   for (const module of organizedModules) {
     if ('required' !== module.id) {
       await addSettingForModule(module);
+      doEvent('mh-improved-settings-added', { module });
     }
   }
 
@@ -130,7 +132,12 @@ const loadModules = async () => {
         (submodule.beta && getFlag(submodule.id))
       ) {
         try {
+          doEvent('mh-improved-module-before-load', submodule);
+
           load.push(submodule.load());
+
+          doEvent('mh-improved-module-loaded', submodule);
+
           loadedModules.push(submodule.id);
 
           modulesDebug.push(submodule.id);
@@ -166,6 +173,8 @@ const loadModules = async () => {
  * Initialize the script.
  */
 const init = async () => {
+  doEvent('mh-improved-init');
+
   // Check if the url is an image and if so, don't load.
   if (isUnsupportedFile()) {
     debug('Skipping unsupported filetype.');
@@ -195,7 +204,7 @@ const init = async () => {
 
     debugplain(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
 
-    eventRegistry.doEvent('mh-improved-loaded', {
+    doEvent('mh-improved-loaded', {
       version: mhImprovedVersion,
       modules: getGlobal('modules'),
     });

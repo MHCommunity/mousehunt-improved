@@ -1,5 +1,6 @@
 import {
   addStyles,
+  doEvent,
   doRequest,
   onEvent,
   onRequest,
@@ -79,7 +80,7 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
     e.target.append(friendDataWrapper);
   }
 
-  eventRegistry.doEvent('profile_hover');
+  doEvent('profile_hover');
 };
 
 const onFriendLinkHover = async (e) => {

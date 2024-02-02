@@ -4,6 +4,7 @@ import {
   getCurrentSubtab,
   getCurrentTab,
   makeElement,
+  onEvent,
   onNavigation,
   sessionGet,
   sessionSet
@@ -434,7 +435,7 @@ export default async () => {
     subtab: 'location',
   });
 
-  eventRegistry.addEventListener('set_tab', () => {
+  onEvent('set_tab', () => {
     if ('your_stats' === getCurrentTab()) {
       addSortingToStatsPage();
     }
