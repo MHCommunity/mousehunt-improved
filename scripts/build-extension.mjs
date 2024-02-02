@@ -55,7 +55,7 @@ const buildExtension = async (platform) => {
       project: 'mh-improved',
       telemetry: false,
       release: {
-        name: `mousehunt-improved-${platform}@${process.env.npm_package_version}`,
+        name: `mousehunt-improved@${process.env.npm_package_version}`,
       }
     }));
   }
