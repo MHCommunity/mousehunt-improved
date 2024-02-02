@@ -1,4 +1,16 @@
-import { onDialogShow } from '@utils';
+import { debuglog, onDialogShow, onRequest } from '@utils';
+
+const hidePopup = () => {
+  debuglog('hide-daily-reward-popup', 'Attempting to hide daily reward popup');
+  if (activejsDialog) {
+    debuglog('hide-daily-reward-popup', 'ActiveJS dialog found');
+    const attrs = activejsDialog.getAttributes();
+    debuglog('hide-daily-reward-popup', 'ActiveJS dialog attributes', attrs);
+    if (attrs && attrs.className && attrs.className === 'dailyRewardPopup') {
+      activejsDialog.hide();
+    }
+  }
+};
 
 /**
  * Initialize the module.
@@ -12,12 +24,11 @@ const init = async () => {
     }, 500);
   }, 'dailyRewardPopup');
 
-  if (activejsDialog) {
-    const attrs = activejsDialog.getAttributes();
-    if (attrs && attrs.className && attrs.className === 'dailyRewardPopup') {
-      activejsDialog.hide();
-    }
-  }
+  hidePopup();
+  setTimeout(hidePopup, 1000);
+  setTimeout(hidePopup, 2000);
+
+  onRequest(hidePopup);
 };
 
 export default {
