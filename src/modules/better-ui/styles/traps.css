@@ -52,7 +52,6 @@
 }
 
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image {
-  left: -3px;
   width: 60px;
   margin-right: 0;
   background-repeat: no-repeat;
@@ -291,7 +290,7 @@ img.itembrowser-skin-image {
 }
 
 .campPage-trap-trapStat-mathRow {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 23px;
 }
 
@@ -387,7 +386,7 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
 
 .campPage-trap-baitDetails .campPage-trap-baitName {
   position: absolute;
-  inset: 0 0 0 60px;
+  inset: 0 0 0 70px;
   display: flex;
   align-items: center;
 }

@@ -61,11 +61,6 @@
   background-size: 20px;
 }
 
-.mountainHUD-conduit-suggestions .mousehuntItem-image {
-  background-color: #855a2c;
-  background-size: 33px;
-}
-
 .mountainHUD-conduit-suggestions .mousehuntItem-quantity {
   right: 0;
   bottom: -11px;
@@ -86,6 +81,10 @@
   background-color: transparent;
   background-size: cover;
   box-shadow: none;
+}
+
+.mountainHUD-conduit-suggestions .mousehuntItem-image {
+  background-size: 125%;
 }
 
 .mountainHUD-footer-item .mousehuntItem-image::after,
@@ -171,4 +170,91 @@
 
 .mountainHUD-conduit-suggestion-item .mousehuntTooltip {
   font-size: 12px;
+}
+
+.mountainHUD-conduit-suggestions .mousehuntItem-image.power_trinket {
+  background-image: url(https://www.mousehuntgame.com/images/items/trinkets/large/b0fb665f8649eb72432c66b0575c9516.png);
+}
+
+.mountainHUD-conduit-suggestions .mousehuntItem-image.super_power_trinket {
+  background-image: url(https://i.mouse.rip/upscaled/625bef6da38dc44ddcd70d0da47244ae.png);
+}
+
+.mountainHUD-conduit-suggestions .mousehuntItem-image.weak_power_trinket {
+  background-image: url(https://www.mousehuntgame.com/images/items/trinkets/large/47a2b0f87d6ec8a9d86f39417a619f85.png);
+}
+
+.active .mousehuntItem-image.power_trinket {
+  box-shadow: 0 0 5px 3px #00e505 inset;
+}
+
+.mountainHUD-minibossHelper {
+  padding: 2px;
+  margin-left: -3px;
+  font-size: 10px;
+}
+
+.mountainHUD-mouse {
+  transition: 0.2s ease-out;
+  transform-origin: bottom;
+  will-change: transform;
+}
+
+.mountainHUD-mouse:nth-child(1):hover {
+  transform: scale(1.1) rotate(-3deg);
+}
+
+.mountainHUD-mouse:nth-child(2):hover {
+  transform: scale(1.1);
+}
+
+.mountainHUD-mouse:nth-child(3):hover {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.mountainHUD-mouse .mountainHUD-mouse-image {
+  border-radius: 15px 15px 0 0;
+}
+
+.mountainHUD-conduit-suggestions .mountainHUD-conduit-suggestion-item:hover .mousehuntItem-image {
+  background-size: 150%;
+}
+
+.mountainHUD-miniBoulderContainer .mountainHUD-miniBoulder-health-percent {
+  font-size: 10px;
+}
+
+.mountainHUD-miniBoulderContainer .mountainHUD-miniBoulder-health-percent span {
+  font-size: 12px;
+}
+
+.mountainHUD-miniBoulderContainer .mountainHUD-miniBoulder-health-progressBar {
+  top: 7px;
+  height: 11px;
+  background-color: #815026;
+  box-shadow: inset 0 0 1px 1px #100802;
+}
+
+.mountainHUD-miniBoulderContainer .mountainHUD-miniBoulder-health-progressBar span {
+  box-shadow: inset 1px 0 2px 1px #000;
+  transition: 0.2s;
+}
+
+.mountainHUD-miniBoulder-state {
+  filter: drop-shadow(0 0 1px #fff15b);
+  transition: all 0.2s ease-out;
+  transform-origin: center;
+}
+
+.mountainHUD-miniBoulder-state:hover {
+  filter: drop-shadow(0 0 3px #fff15b);
+  transform: scale(1.4);
+}
+
+.mountainHUD-mouse-difficulty {
+  font-size: 13px;
+}
+
+.mountainHUD-miniBoulderContainer .mountainHUD-miniBoulder-health-progressBar:hover span {
+  filter: hue-rotate(105deg);
 }

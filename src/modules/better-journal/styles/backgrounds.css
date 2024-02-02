@@ -10,7 +10,8 @@
 }
 
 .journal .content .entry,
-.journal .content .entry.short.misc.custom.adventureBook-journal.goal {
+.journal .content .entry.short.misc.custom.adventureBook-journal.goal,
+.journal .entry.craft.newrecipe {
   background-position: 10px center;
 }
 

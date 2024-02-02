@@ -17,6 +17,7 @@
   padding-right: 3px;
   border: 1px solid #5b5b5b;
   border-bottom: none;
+  transition: box-shadow 0.1s;
 }
 
 .journal .entry:last-child {
@@ -154,4 +155,27 @@ a.journal-detailLink.full::after {
   position: absolute;
   right: 5px;
   float: none;
+}
+
+.journal .entry .journaltext p.double {
+  margin-top: 1em;
+}
+
+.jsingle.journal .content .log_summary table {
+  margin: 0 auto;
+}
+
+.journal .entry.minimalJournalImage .journalbody .journaldate {
+  display: none;
+}
+
+p.mhi-x-entry {
+  display: block;
+  padding: 0;
+  margin: 0;
+  line-height: 22px !important;
+}
+
+.journal .entry:hover {
+  box-shadow: inset 0 0 5px 3px rgb(0 0 0 / 40%);
 }

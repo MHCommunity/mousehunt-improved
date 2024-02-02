@@ -12,6 +12,16 @@
 }
 
 #OnboardArrow.onboardPopup.canShare .closeButton {
-  right: 150px;
+  right: 40px;
   left: unset;
+}
+
+#OnboardArrow.onboardPopup.top .canShare .larryTip {
+  color: #fff;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+#OnboardArrow.onboardPopup.top .canShare .larryTip img {
+  display: none;
 }

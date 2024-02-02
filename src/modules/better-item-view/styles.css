@@ -125,6 +125,7 @@
 
 .itemViewContainer .itemViewStatBlock-stat-value {
   flex: 1;
+  text-align: left;
 }
 
 .itemViewContainer .itemViewStatBlock-stat.cheeseEffect {
@@ -199,4 +200,15 @@ input.itemView-action-convert-quantity {
 
 .itemViewPopup .itemViewStatBlock-padding {
   flex-direction: column;
+}
+
+/* hovering over larry makes him rotate slightly */
+.itemView-character .itemView-character-image {
+  transition: all 0.4s ease-out;
+  transform-origin: bottom;
+}
+
+.itemView-character:hover .itemView-character-image {
+  filter: drop-shadow(1px 3px 2px #514629);
+  transform: scale(1.2) rotate(-10deg) translateX(5px);
 }

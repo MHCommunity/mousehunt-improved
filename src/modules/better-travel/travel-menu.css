@@ -112,3 +112,7 @@
 .mh-improved-travel-window--editing .mh-improved-travel-window-description {
   display: inline-block;
 }
+
+.mh-improved-travel-window-environment-icon {
+  cursor: pointer;
+}

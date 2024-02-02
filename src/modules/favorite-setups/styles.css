@@ -97,7 +97,7 @@
   display: none;
 }
 
-.mh-improved-favorite-setups-blueprint-container.editing .controls .delete,
+.mh-improved-favorite-setups-blueprint-container .editing .controls .delete,
 .mh-improved-favorite-setups-blueprint-container .editing .controls .save-setup,
 .mh-improved-favorite-setups-blueprint-container .editing .controls .cancel-setup {
   display: block;

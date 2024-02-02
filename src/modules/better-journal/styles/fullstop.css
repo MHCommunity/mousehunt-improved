@@ -14,6 +14,10 @@
   content: " ";
 }
 
+.journal .entry .journaltext br:last-child {
+  display: none;
+}
+
 .journal .entry.catchsuccessloot .journaltext br,
 .journal .entry.luckycatchsuccess .journaltext br,
 .journal .entry.relicHunter_catch .journaltext br::after,
@@ -37,7 +41,8 @@
 .entry.festiveSpiritLootBoost .journaltext a::after,
 .entry.golemUpgraded .journaltext a::after,
 .entry.workshopPartProduced .journaltext a::after,
-.entry.labyrinthSmall.minimalJournalImage.labyrinth-clue b::after {
+.entry.labyrinthSmall.minimalJournalImage.labyrinth-clue b::after,
+.entry.adventureBook-journal.goal .journaltext b::after {
   display: inline;
   content: ".";
 }

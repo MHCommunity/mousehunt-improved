@@ -1,4 +1,5 @@
 #mh-improved-cre {
+  padding-right: 5px;
   margin: 10px 0;
 }
 
@@ -34,4 +35,8 @@
 
 .mh-improved-cre-data-bad {
   color: #bb4646;
+}
+
+.mh-improved-cre-name {
+  padding-left: 5px;
 }

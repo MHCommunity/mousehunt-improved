@@ -9,6 +9,7 @@
   padding: 3px 10px 2px 0;
   background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/hud_bg_blue_repeating.png?asset_cache_version=2);
   border-radius: 5px;
+  mix-blend-mode: luminosity;
 }
 
 .mousehuntHud-userStat.treasureMap:hover .label {

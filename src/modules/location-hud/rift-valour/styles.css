@@ -91,9 +91,11 @@
 }
 
 .valourRiftHUD-dialog-inventory-item-quantity.quantity {
-  font-size: 14px;
+  min-width: 30px;
+  font-size: 12px;
   font-weight: 900;
   line-height: 20px;
+  text-align: center;
   text-shadow: none;
   background-color: #282659;
   box-shadow: none;
@@ -221,7 +223,6 @@ span.valourRiftHUD-towerUpgrade-currentValue {
 }
 
 span.valourRiftHUD-huntsRemaining-value {
-  margin-right: 5px;
   font-size: 13px;
   font-weight: 900;
   line-height: 14px;
@@ -453,7 +454,7 @@ span.valourRiftHUD-stepsTaken-value {
 }
 
 .valourRiftHUD.tower .valourRiftHUD-state.tower {
-  font-size: 11px;
+  font-size: 10px;
 }
 
 .valourRiftHUD-powerUp .valourRiftHUD-powerUpIcon {
