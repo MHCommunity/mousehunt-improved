@@ -40,6 +40,7 @@ import iceberg from './iceberg';
 import jungle_of_dread from './jungle-of-dread';
 import kings_arms from './kings-arms';
 import kings_gauntlet from './kings-gauntlet';
+import laboratory from './laboratory';
 import labyrinth from './labyrinth';
 import lagoon from './lagoon';
 import meditation_room from './meditation-room';
@@ -147,6 +148,7 @@ const main = () => {
     jungle_of_dread,
     kings_arms,
     kings_gauntlet,
+    laboratory,
     labyrinth,
     lagoon,
     meditation_room,

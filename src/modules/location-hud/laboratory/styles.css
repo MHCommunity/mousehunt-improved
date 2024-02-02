@@ -1,0 +1,41 @@
+.laboratoryHUD .mousehuntItem-image {
+  background-color: transparent;
+}
+
+.laboratoryHUD .laboratoryHUD-areaBaitContainer .mousehuntItem-image {
+  box-sizing: border-box;
+  width: 64px;
+  height: 64px;
+  margin-top: -4px;
+  margin-left: -5px;
+  background-color: #d0e9ec;
+  border: 1px solid #d0e9ec;
+  outline: 5px solid #d0e9ec;
+  box-shadow: none;
+}
+
+.laboratoryHUD .mousehuntItem-quantity.quantity {
+  padding: 3px 4px;
+  font-size: 12px;
+}
+
+.laboratoryHUD .laboratoryHUD-basicBaitContainer .mousehuntItem-image {
+  background-color: #a6c0c4;
+}
+
+.laboratoryHUD-state {
+  text-shadow: 0 1px 3px #000;
+}
+
+.laboratoryHUD-basicBaitContainer .mousehuntTooltip > div {
+  display: flex;
+  justify-content: center;
+}
+
+.laboratoryHUDArmNowButton.active {
+  filter: hue-rotate(90deg);
+}
+
+.laboratoryHUD-basicBaitContainer .mousehuntTooltip {
+  width: 180px;
+}

@@ -18,7 +18,6 @@ export default async function (module) {
     // Don't have HUD changes for these.
     'meadow',
     'harbour',
-    'laboratory',
     'mousoleum',
     'training_grounds',
     'zugzwang_library',
