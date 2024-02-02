@@ -274,7 +274,7 @@ const makeDashboardTab = () => {
           <p>This will refresh the location data for all locations by traveling to each location and caching the data.</p>
           <div class="mh-improved-location-refresh-confirm-popup-buttons">
             <div class="mousehuntActionButton mh-improved-location-refresh-confirm-popup-button mh-improved-location-refresh-confirm-popup-button-cancel"><span>Cancel</span></div>
-            <div class="mousehuntActionButton mh-improved-location-refresh-confirm-popup-button mh-improved-location-refresh-confirm-popup-button-confirm"><span>Confirm</span></div>
+            <div class="mousehuntActionButton mh-improved-location-refresh-confirm-popup-button mh-improved-location-refresh-confirm-popup-button-confirm"><span>Start Traveling</span></div>
           </div>
         </div>
       </div>`,
