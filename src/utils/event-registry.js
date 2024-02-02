@@ -14,7 +14,7 @@ const addEventToFunction = (functionName, eventName) => {
 
   functionsAdded[functionName] = true;
   const originalFunction = window[functionName];
-  window[functionName] = function() {
+  window[functionName] = function () {
     doEvent(eventName, arguments);
     console.log('event fired', eventName);
     Reflect.apply(originalFunction, this, arguments);
