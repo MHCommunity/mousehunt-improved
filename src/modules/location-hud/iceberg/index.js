@@ -39,8 +39,8 @@ const getSections = (quest) => {
   if (quest.isDeep) {
     sections.push({
       name: 'Hidden Depths',
-      where: '1800-2100 ft',
-      length: 300,
+      where: '1800-2000 ft',
+      length: 200,
       complete: false,
     });
   }
