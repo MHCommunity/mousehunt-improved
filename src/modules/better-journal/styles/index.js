@@ -14,6 +14,7 @@ import crafting from './custom-entries/crafting.css';
 import drawWinner from './custom-entries/draw-winner.css';
 import maps from './custom-entries/maps.css';
 import other from './custom-entries/other.css';
+import popup from './custom-entries/popup.css';
 import quesoPump from './custom-entries/queso-pump.css';
 import rankUp from './custom-entries/rank-up.css';
 import socialGift from './custom-entries/social-gift.css';
@@ -63,6 +64,7 @@ const main = () => {
     drawWinner,
     maps,
     other,
+    popup,
     quesoPump,
     rankUp,
     socialGift,

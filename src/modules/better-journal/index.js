@@ -195,9 +195,10 @@ const updateJournalText = () => {
     [/an additional:<br>/i, 'an additional '],
 
     [/ · /g, ''],
-    [/(\d+?) x /gi, ' · $1 x '],
+    [/(\d+?) x /gi, '<p class="mhi-x-entry"> · $1 x '],
 
     ['<p></p>', ''],
+    ['I can view other recipe', '<p class="double">I can view other recipe'],
   ]);
 
   const replacements = [];
