@@ -26,6 +26,7 @@ import hoverProfiles from '@/hover-profiles';
 import imageUpscaling from '@/image-upscaling';
 import inlineWiki from '@/inline-wiki';
 import inventoryLockAndHide from '@/inventory-lock-and-hide';
+import journalChanger from '@/journal-changer';
 import keyboardShortcuts from '@/keyboard-shortcuts';
 import lgsReminder from '@/lgs-reminder';
 import locationCatchStats from '@/location-catch-stats';
@@ -98,6 +99,7 @@ export default [
   imageUpscaling,
   inlineWiki,
   inventoryLockAndHide,
+  journalChanger,
   keyboardShortcuts,
   lgsReminder,
   locationCatchStats,
