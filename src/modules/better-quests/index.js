@@ -3,6 +3,7 @@ import {
   getCurrentSubtab,
   getCurrentTab,
   getSetting,
+  isUserTitleAtLeast,
   makeElement,
   onNavigation,
   onOverlayChange
@@ -340,6 +341,11 @@ const m400IfEnabled = () => {
 };
 
 const main = () => {
+  // Don't run if we're not at least a lord.
+  if (! isUserTitleAtLeast('lord')) {
+    return;
+  }
+
   const activate = () => {
     addQuestTabEventListener();
     addQuestsTab();
