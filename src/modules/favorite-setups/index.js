@@ -20,7 +20,7 @@ const getFavoriteSetups = () => {
   return getSetting('favorite-setups', []);
 };
 
-const saveFavoriteSetup = async (setup) => {
+const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   let setups = getFavoriteSetups();
 
   if (! setups.length) {
@@ -29,21 +29,25 @@ const saveFavoriteSetup = async (setup) => {
 
   const normalizedSetup = normalizeSetup(setup);
 
-  const setupName = await fetch('https://setup-namer.mouse.rip', {
-    method: 'POST',
-    headers: getHeaders(),
-    body: JSON.stringify([
-      normalizedSetup.bait_id,
-      normalizedSetup.base_id,
-      normalizedSetup.weapon_id,
-      normalizedSetup.trinket_id,
-    ]),
-  });
+  if (useGeneratedName) {
+    const setupName = await fetch('https://setup-namer.mouse.rip', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify([
+        normalizedSetup.bait_id,
+        normalizedSetup.base_id,
+        normalizedSetup.weapon_id,
+        normalizedSetup.trinket_id,
+      ]),
+    });
 
-  const setupNameData = await setupName.json();
+    const setupNameData = await setupName.json();
 
-  if (setupNameData.name) {
-    normalizedSetup.name = setupNameData.name;
+    if (setupNameData.name) {
+      normalizedSetup.name = setupNameData.name;
+    }
+  } else {
+    normalizedSetup.name = user.environment_name;
   }
 
   try {
@@ -291,7 +295,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           }
         }
 
-        currentSetup = await saveFavoriteSetup(currentSetup);
+        currentSetup = await saveFavoriteSetup(currentSetup, false);
 
         // append the new setup to the list.
         const setupRow = await makeBlueprintRow(currentSetup);
@@ -602,25 +606,6 @@ const makeBlueprintContainer = async () => {
 
   const header = makeElement('div', ['header']);
   makeElement('b', ['title'], 'Favorite Setups', header);
-
-  const editLink = makeElement('a', ['mousehuntActionButton', 'tiny', 'edit']);
-  const editLinkText = makeElement('span', '', 'Edit');
-  editLink.append(editLinkText);
-
-  let isEditing = false;
-  editLink.addEventListener('click', () => {
-    isEditing = ! isEditing;
-
-    if (isEditing) {
-      editLinkText.innerHTML = 'Done';
-      container.classList.add('editing');
-    } else {
-      editLinkText.innerHTML = 'Edit';
-      container.classList.remove('editing');
-    }
-  });
-
-  header.append(editLink);
 
   container.append(header);
 
