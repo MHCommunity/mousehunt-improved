@@ -18,7 +18,7 @@
 
 .mh-improved-travel-window .greatWinterHuntGolemDestinationView__regionEnvironments {
   gap: 15px 6px;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .mh-improved-travel-window .greatWinterHuntGolemDestinationView__regionsContainer {
