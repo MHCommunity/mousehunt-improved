@@ -114,6 +114,11 @@ const removeBodyClass = (className) => {
 const getTradableItems = async (valueKey = 'all') => {
   const tradableItems = await getData('items-tradable');
 
+  // sort the items by name
+  tradableItems.sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
   if ('all' === valueKey) {
     return tradableItems;
   }
