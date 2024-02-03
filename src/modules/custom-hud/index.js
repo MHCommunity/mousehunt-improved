@@ -10,23 +10,41 @@ const addStyleEl = () => {
     stylesEl.remove();
   }
 
-  if ('default' !== setting) {
-    const style = document.createElement('style');
-    style.id = 'mh-improved-custom-hud-style';
-    style.innerHTML = `body .mousehuntHud-marbleDrawer {
+  if ('default' === setting) {
+    return;
+  }
+
+  let style;
+
+  const pedastal = 'https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2';
+  if ('hud-blueprint' === setting) {
+    style = `body .mousehuntHud-marbleDrawer {
       background:
-        url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2) -46px 0 no-repeat,
-        url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2) 731px 0 no-repeat,
+        url(${pedastal}) -46px 0 no-repeat,
+        url(${pedastal}) 731px 0 no-repeat,
+        url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
+    }`;
+
+    document.head.append(style);
+  } else {
+    style = `body .mousehuntHud-marbleDrawer {
+      background:
+        url(${pedastal}) -46px 0 no-repeat,
+        url(${pedastal}) 731px 0 no-repeat,
         url(https://i.mouse.rip/mh-improved/marble-shadow.png) 6px 0 no-repeat,
         url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
     }
 
     .mousehuntHud-titleProgressBar {
       mix-blend-mode: luminosity;
-    }
-    `;
+    }`;
+  }
 
-    document.head.append(style);
+  if (style) {
+    const styleEl = document.createElement('style');
+    styleEl.id = 'mh-improved-custom-hud-style';
+    styleEl.innerHTML = style;
+    document.head.append(styleEl);
   }
 };
 
