@@ -203,6 +203,10 @@ const init = async () => {
 
   mapping = await getData('upscaled-images');
 
+  mapping['items/trinkets/1dd7ea1380d9193ae1be9fb13335272d.gif'] = 'https://i.mouse.rip/upscaled/uluck.png';
+  mapping['items/trinkets/large/07cee94773b821f8db533d23ff511643.png'] = 'https://i.mouse.rip/upscaled/uluck.png';
+  mapping['items/trinkets/transparent_thumb/88917c0fb84e407929193251b8362496.png'] = 'https://i.mouse.rip/upscaled/uluck.png';
+
   const observer = new MutationObserver(async (mutations) => {
     for (const mutation of mutations) {
       // Don't run when it's the horn counting down.

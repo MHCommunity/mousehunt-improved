@@ -20,6 +20,7 @@
 .forewordFarmHarvestBin-itemImage.itemImage,
 .marketplaceView-itemImage,
 .mousehuntHud-userStat.bait .icon,
+.itemView-thumbnail.large,
 .itemView-thumbnail {
   background-color: transparent;
 }
@@ -52,10 +53,13 @@
 }
 
 .marketplaceView-item-image,
-.itemImage,
+.itemImage {
+  background-size: 100%;
+}
+
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image,
 .campPage-trap-armedItem-image {
-  background-size: 100%;
+  background-size: contain;
 }
 
 .MHCheckout-featuredItem-image.large {
