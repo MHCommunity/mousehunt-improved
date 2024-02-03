@@ -254,6 +254,10 @@ a.random-title.loading::after {
   width: 25px;
 }
 
+.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType.hidden {
+  visibility: hidden;
+}
+
 .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType::before {
   box-sizing: border-box;
   border-radius: 3px;

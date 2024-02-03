@@ -486,6 +486,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           const powerTypeImage = setupContainer.querySelector('.campPage-trap-itemBrowser-item-powerType');
           powerTypeImage.classList.remove(getPowerTypeId(lastPowerType));
           powerTypeImage.classList.add(getPowerTypeId(setup.power_type));
+          powerTypeImage.classList.remove('hidden');
         }
 
         // if there are any items with a new-item-id, then update the setup.
@@ -630,7 +631,13 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     cachedThumbnails = thumbnails;
   }
 
-  makeElement('div', ['campPage-trap-itemBrowser-item-powerType', getPowerTypeId(setup.power_type)], '', setupContainer);
+  const powerTypeId = getPowerTypeId(setup.power_type);
+  const powertype = makeElement('div', ['campPage-trap-itemBrowser-item-powerType', powerTypeId]);
+  if (! powerTypeId) {
+    powertype.classList.add('hidden');
+  }
+
+  setupContainer.append(powertype);
 
   setupContainer.append(makeImage('bait', setup.bait_id, cachedThumbnails[setup.bait_id]));
   setupContainer.append(makeImage('base', setup.base_id, cachedThumbnails[setup.base_id]));
