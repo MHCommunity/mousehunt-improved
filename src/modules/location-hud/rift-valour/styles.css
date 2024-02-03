@@ -494,3 +494,18 @@ a.valourRiftHUD-bait-image {
 a.valourRiftHUD-gauntletBait-image.active {
   filter: drop-shadow(0 5px 5px #68b868);
 }
+
+@keyframes mh-improved-player-spin {
+  0% {
+    transform: scaleX(-1) rotate(0deg);
+  }
+
+  100% {
+    transform: scaleX(-1) rotate(360deg);
+  }
+}
+
+.mh-improved-player-spin {
+  animation: mh-improved-player-spin 0.7s linear 1;
+}
+

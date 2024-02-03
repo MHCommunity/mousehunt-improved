@@ -128,10 +128,33 @@ const addUIComponents = () => {
   makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
 };
 
+const spinPlayerIcon = () => {
+  const playerIcon = document.querySelector('.valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image');
+  if (! playerIcon) {
+    return;
+  }
+
+  const timer = document.querySelector('.valourRiftHUD-huntsRemaining');
+  if (! timer) {
+    return;
+  }
+
+  let timeout;
+  timer.addEventListener('click', () => {
+    playerIcon.classList.add('mh-improved-player-spin');
+
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      playerIcon.classList.remove('mh-improved-player-spin');
+    }, 700);
+  });
+};
+
 /**
  * Initialize the module.
  */
 export default async () => {
   addHudStyles(styles);
   hud();
+  spinPlayerIcon();
 };
