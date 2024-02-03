@@ -10,7 +10,8 @@
 
 .riftGnawniaHud-targets .mousehuntTooltip {
   inset: 0 34px 0 -5px;
-  display: block;
+  display: flex;
+  align-items: center;
   width: auto;
   font-size: 11px;
   text-align: center;
@@ -19,6 +20,59 @@
   opacity: 0.9;
 }
 
+.riftGnawniaHud-targets.mousehuntTooltipParent:hover .mousehuntTooltip {
+  display: flex;
+}
+
+.riftGnawniaHud-targets {
+  right: -10px;
+}
+
 .riftGnawniaHud-targets .mousehuntTooltip .mousehuntTooltip-arrow {
   display: none;
+}
+
+.riftGnawniaHud .riftGnawniaHud-stringBait > .itemImage,
+.riftGnawniaHud .riftGnawniaHud-potion > .itemImage,
+.riftGnawniaHud .riftGnawniaHud-craftingBait > .itemImage {
+  background-color: #a39d99;
+}
+
+.riftGnawniaHud .mousehuntTooltip.top {
+  width: 280px;
+  min-height: 40px;
+}
+
+.riftGnawniaHud .riftGnawniaHud-tooltip-content {
+  margin-right: 0;
+}
+
+.riftGnawniaHud .riftGnawniaHud-stringBait.mousehuntTooltipParent:hover .mousehuntTooltip,
+.riftGnawniaHud .riftGnawniaHud-potion.mousehuntTooltipParent:hover .mousehuntTooltip,
+.riftGnawniaHud .riftGnawniaHud-craftingBait.mousehuntTooltipParent:hover .mousehuntTooltip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  place-items: center stretch;
+}
+
+.riftGnawniaHud .mousehuntTooltipParent:hover .mousehuntTooltip .riftGnawniaHud-tooltip-result {
+  position: relative;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.riftGnawniaHud-tooltip-quantity {
+  box-sizing: border-box;
+  width: 50px;
+  padding: 2px;
+}
+
+.riftGnawniaHud-label {
+  text-shadow:
+    1px 1px #333,
+    0 0 1px #333,
+    -1px 0 1px #333;
 }
