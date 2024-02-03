@@ -3,15 +3,19 @@ import {
   debuglog,
   doRequest,
   getCurrentLocation,
+  getSetting,
   makeElement,
   onEvent,
-  onNavigation
+  onNavigation,
+  saveSetting
 } from '@utils';
 
 import journals from './journals.json';
 
 import settings from './settings';
 import styles from './styles.css';
+
+let themes = [];
 
 const getJournalThemes = async () => {
   const req = await doRequest('managers/ajax/users/journal_theme.php', {
@@ -99,6 +103,17 @@ const changeForLocation = async () => {
   }
 };
 
+const randomizeTheme = async () => {
+  if (themes.length === 0) {
+    debuglog('journal-changer', 'Fetching journal themes');
+    themes = await getJournalThemes();
+  }
+
+  const theme = themes[Math.floor(Math.random() * themes.length)];
+  debuglog('journal-changer', 'Setting random theme', theme.type);
+  updateJournalTheme(theme.type);
+};
+
 const addRandomButton = () => {
   const journal = document.querySelector('#journalContainer .top');
   if (! journal) {
@@ -106,21 +121,29 @@ const addRandomButton = () => {
   }
 
   const button = makeElement('a', ['journalContainer-selectTheme', 'mh-improved-random-journal'], 'Randomize');
-  button.addEventListener('click', async () => {
-    if (themes.length === 0) {
-      debuglog('journal-changer', 'Fetching journal themes');
-      themes = await getJournalThemes();
-    }
-
-    const theme = themes[Math.floor(Math.random() * themes.length)];
-    debuglog('journal-changer', 'Setting random theme', theme.type);
-    updateJournalTheme(theme.type);
-  });
+  button.addEventListener('click', randomizeTheme);
 
   journal.append(button);
 };
+const changeJournalDaily = () => {
+  const lastChangeValue = getSetting('journal-changer-last-change', '0');
+  const lastChange = new Date(Number.parseInt(lastChangeValue, 10));
+  const now = new Date();
 
-let themes = [];
+  debuglog('journal-changer', 'Last journal change', lastChange.getDate(), now.getDate());
+
+  // Check if the current time is past midnight and the journal has not been changed today
+  debuglog('journal-changer', 'Checking if journal should be changed', lastChange.getDate(), now.getDate());
+  if (
+    ! lastChange ||
+    lastChange.getDate() !== now.getDate() ||
+    lastChange.getMonth() !== now.getMonth() ||
+    lastChange.getFullYear() !== now.getFullYear()
+  ) {
+    randomizeTheme();
+    saveSetting('journal-changer-last-change', now.getTime());
+  }
+};
 
 /**
  * Initialize the module.
@@ -128,13 +151,18 @@ let themes = [];
 const init = async () => {
   addStyles(styles, 'journal-changer');
 
-  changeForLocation();
+  if (getSetting('journal-changer-change-daily', false)) {
+    changeJournalDaily();
+  }
+
+  if (getSetting('journal-changer-change-location', true)) {
+    changeForLocation();
+    onEvent('travel_complete', changeForLocation);
+  }
 
   onNavigation(addRandomButton, {
     page: 'camp'
   });
-
-  onEvent('travel_complete', changeForLocation);
 };
 
 export default {

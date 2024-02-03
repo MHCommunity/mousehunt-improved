@@ -7,10 +7,18 @@ import { addMhuiSetting } from '@utils';
  */
 export default function (module) {
   addMhuiSetting(
-    'example-setting',
-    'Example Setting',
+    'journal-changer-change-daily',
+    'Randomize Journal Daily',
+    false,
+    'Randomize the journal theme daily',
+    module
+  );
+
+  addMhuiSetting(
+    'journal-changer-change-location',
+    'Change Journal for Location',
     true,
-    'This is an example setting.',
+    'Change the journal theme based on the current location',
     module
   );
 }
