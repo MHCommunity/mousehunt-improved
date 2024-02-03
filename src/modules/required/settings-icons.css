@@ -18,7 +18,8 @@
   background-position: center;
   background-size: 25px;
   opacity: 0.4;
-  transition: all 0.2s ease-in-out;
+  transition: opacity 0.1s ease-out;
+  will-change: transform;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better:hover::before,
