@@ -71,8 +71,6 @@ const claimGifts = async (send = false, retries = 0) => {
     let verb = send ? 'return' : 'claim';
     if (send && sendLimit > 0 && gift.is_returnable) {
       verb = 'return';
-      sendLimit--;
-      claimLimit--;
     }
 
     const giftEl = document.querySelector(`.giftSelectorView-friendRow[data-gift-id="${gift.gift_id}"] .giftSelectorView-friendRow-action.${verb}`);
