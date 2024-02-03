@@ -224,13 +224,13 @@ span.valourRiftHUD-towerUpgrade-currentValue {
 }
 
 .valourRiftHUD-previewTower.mh-vrift-sim-link {
+  top: 43px;
   left: 550px;
-  background-image: url('https://i.mouse.rip/mh-improved/sim.png');
-  color: transparent;
-  filter: grayscale(1);
   width: 21px;
   height: 21px;
-  top: 43px;
+  color: transparent;
+  background-image: url(https://i.mouse.rip/mh-improved/sim.png);
+  filter: grayscale(1);
 }
 
 span.valourRiftHUD-huntsRemaining-value {
@@ -557,6 +557,16 @@ a.valourRiftHUD-gauntletBait-image.active {
 
 @keyframes mh-improved-player-spin {
   0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mh-improved-player-flipped-spin {
+  0% {
     transform: scaleX(-1) rotate(0deg);
   }
 
@@ -565,11 +575,55 @@ a.valourRiftHUD-gauntletBait-image.active {
   }
 }
 
+@keyframes mh-improved-large-player-spin {
+  0% {
+    transform: scale(2) rotate(0deg);
+  }
+
+  100% {
+    transform: scale(2) rotate(360deg);
+  }
+}
+
+@keyframes mh-improved-large-player-flipped-spin {
+  0% {
+    transform: scale(-2, 2) rotate(0deg);
+  }
+
+  100% {
+    transform: scale(-2, 2) rotate(360deg);
+  }
+}
+
 .mh-improved-player-spin {
   animation: mh-improved-player-spin 0.7s linear 1;
+}
+
+.flipped .mh-improved-player-spin {
+  animation: mh-improved-player-flipped-spin 0.7s linear 1;
+}
+
+.mh-improved-player-spin.mh-improved-player-large {
+  animation: mh-improved-large-player-spin 0.7s linear 1;
+}
+
+.flipped .mh-improved-player-spin.mh-improved-player-large {
+  animation: mh-improved-large-player-flipped-spin 0.7s linear 1;
 }
 
 .valourRiftHUD-crafting-image {
   background-position: center;
   background-size: 120%;
+}
+
+.valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image.mh-improved-player-large {
+  transform: scale(2);
+}
+
+.valourRiftHUD-tower-sprite.player.flipped .valourRiftHUD-tower-sprite-image.mh-improved-player-large {
+  transform: scale(-2, 2);
+}
+
+.valourRiftHUD {
+  filter: drop-shadow(0 2px 1px #25266a);
 }

@@ -126,19 +126,20 @@ const addUIComponents = () => {
   makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
 };
 
-const spinPlayerIcon = () => {
+const modifyPlayerIcon = () => {
   const playerIcon = document.querySelector('.valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image');
   if (! playerIcon) {
     return;
   }
 
-  const timer = document.querySelector('.valourRiftHUD-huntsRemaining');
-  if (! timer) {
-    return;
-  }
-
   let timeout;
-  timer.addEventListener('click', () => {
+  playerIcon.addEventListener('click', (event) => {
+    // If they're holding shift, then instead of spinning, change the size
+    if (event.shiftKey) {
+      playerIcon.classList.toggle('mh-improved-player-large');
+      return;
+    }
+
     playerIcon.classList.add('mh-improved-player-spin');
 
     clearTimeout(timeout);
@@ -169,7 +170,8 @@ const addSimulatorEvents = () => {
  */
 export default async () => {
   addHudStyles(styles);
+
   addUIComponents();
   addSimulatorEvents();
-  spinPlayerIcon();
+  modifyPlayerIcon();
 };
