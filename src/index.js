@@ -13,7 +13,6 @@ import {
   getFlag,
   getGlobal,
   getSetting,
-  getSettingDirect,
   isApp,
   isUnsupportedFile,
   isiFrame,
@@ -128,7 +127,7 @@ const loadModules = async () => {
       if (
         submodule.alwaysLoad ||
         'required' === submodule.type ||
-        getSettingDirect(submodule.id, submodule.default, 'mousehunt-improved-settings') ||
+        getSetting(submodule.id, submodule.default) ||
         (submodule.beta && getFlag(submodule.id))
       ) {
         try {
