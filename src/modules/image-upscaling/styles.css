@@ -32,6 +32,7 @@
 .marketplaceView-itemImage,
 .itemView-thumbnail,
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image,
+.mousoleumHUD-crafting-recipe-result-image,
 .campPage-trap-armedItem-image {
   border: none;
 }
@@ -45,6 +46,7 @@
 }
 
 .treasureMapDialogView.acknowledge .treasureMapDialogView-highlightItem .itemImage,
+.greatWinterHuntNewYearsDialogView__itemImage,
 .convertibleOpenView-item-image {
   background-size: cover;
 }
