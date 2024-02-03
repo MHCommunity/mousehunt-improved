@@ -1,38 +1,34 @@
-.mousehunt-improved-lgs-reminder {
+.mousehunt-improved-lgs-reminder,
+.default.mhui-custom-shield .mousehunt-improved-lgs-reminder {
   position: absolute;
   right: 12px;
-  bottom: 1px;
+  bottom: 4px;
   left: -6px;
+  z-index: 1;
   font-size: 12px;
-  color: #83543f;
+  color: #684434;
   text-align: center;
-  background-color: rgb(221 205 162 / 79%);
+  background-color: rgb(221 205 162 / 85%);
   border: 1px solid #9d9a91;
-  border-radius: 11px;
-}
-
-.mousehunt-improved-lgs-reminder.exact {
-  right: 5px;
-  left: -15px;
+  border-radius: 5px;
 }
 
 .mhui-custom-shield .mousehunt-improved-lgs-reminder {
-  right: 20px;
-  left: 0;
+  right: 10px;
+  bottom: 2px;
+  left: 10px;
 }
 
 .mhui-custom-shield .mousehunt-improved-lgs-reminder.exact {
-  right: 5px;
-  left: -12px;
+  right: 2px;
+  left: 2px;
 }
 
 .mousehunt-improved-lgs-reminder.lgs-warning {
-  font-weight: 900;
   background-color: #ffbfbf;
 }
 
 .mousehunt-improved-lgs-reminder.lgs-danger {
-  font-weight: 900;
   color: #f1d7d7;
   background-color: #b32d26;
   border-color: #af8080;
