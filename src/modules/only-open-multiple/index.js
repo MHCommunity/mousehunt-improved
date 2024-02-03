@@ -11,7 +11,7 @@ const init = async () => {
 
 export default {
   id: 'only-open-multiple',
-  name: 'Inventory - Only Open multiple',
+  name: 'Inventory - Only Open Multiple',
   type: 'feature',
   default: false,
   description: 'Lock opening things in your inventory unless you have multiple of them.',
