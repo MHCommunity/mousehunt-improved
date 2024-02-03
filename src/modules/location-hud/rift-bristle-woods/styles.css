@@ -9,13 +9,13 @@
 }
 
 .riftBristleWoodsHUD-chamberProgressQuantity {
-  top: 72px;
+  top: 71px;
   left: 7px;
   z-index: 1;
-  padding: 0 9px;
+  width: 50px;
+  padding: 0 6px;
   text-shadow: none;
   background-color: #fefae9;
-  border: 3px solid #987653;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   box-shadow: inset 1px -1px 3px 1px #d1caaa;
@@ -145,27 +145,12 @@
 }
 
 .riftBristleWoodsHUD-acolyteStats-block-value {
-  margin-left: 8px;
   font-size: 11px;
 }
 
 .riftBristleWoodsHUD-acolyteStats-block-title span {
   display: block;
   text-align: center;
-}
-
-.riftBristleWoodsHUD-acolyteStats-acolyteCatches::after {
-  position: absolute;
-  top: 0;
-  right: -8px;
-  width: 17px;
-  height: 25px;
-  padding-right: 4px;
-  background-color: #4b3d30;
-  border-radius: 50%;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  box-shadow: 1px 0 0 1px #666;
 }
 
 .riftBristleWoodsHUD-chamberSpecificText.acolyte_chamber {
@@ -182,4 +167,130 @@ a.riftBristleWoodsHUD-acolyteChamber-retreat.mousehuntActionButton.tiny.cancel {
 
 a.riftBristleWoodsHUD-acolyteChamber-retreat.mousehuntActionButton.tiny.cancel:hover {
   opacity: 1;
+}
+
+.riftBristleWoodsHUD-acolyteStats.bronze::after {
+  position: absolute;
+  top: 1px;
+  right: 40px;
+  width: 20px;
+  height: 17px;
+  padding: 0 5px;
+  content: "";
+  background-color: #4b3d30;
+  background-image: url(https://www.mousehuntgame.com//images/ui/crowns/crown_bronze.png?asset_cache_version=2);
+  background-position: center;
+  background-size: cover;
+  border-radius: 8px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 -1px 0 1px #5b5041;
+}
+
+.riftBristleWoodsHUD-acolyteStats {
+  top: -1px;
+  right: 0;
+  box-sizing: border-box;
+  padding: 0 5px;
+  background-color: #4b3d30;
+  background-blend-mode: multiply;
+  border: 1px solid #5b5041;
+  border-bottom: none;
+  border-radius: 8px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.riftBristleWoodsHUD-acolyteStats::before {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: -1px;
+  height: 2px;
+  content: "";
+  background-color: #4b3d30;
+}
+
+.mousehuntTooltip .riftBristleWoodsHUD-footer-item-quantity.quantity {
+  top: 4px;
+  left: 31px;
+  width: 33px;
+  border: 1px solid #a6a6a6;
+  box-shadow: none;
+}
+
+.mousehuntTooltip .riftBristleWoodsHUD-footer-item-tooltip-baitRow-name {
+  margin-left: 50px;
+}
+
+.mousehuntTooltip .riftBristleWoodsHUD-footer-item-tooltip-baitRow .mousehuntArmNowButton {
+  top: 0;
+  left: -2px;
+  width: 25px;
+  height: 22px;
+  padding: 3px;
+  background: transparent;
+  filter: none;
+  border-radius: 10px;
+  outline: 1px solid #34cfff;
+  box-shadow: inset 0 0 3px 1px #34cfff;
+}
+
+.riftBristleWoodsHUD-footer-item-image {
+  background-color: #e0cdbd;
+}
+
+.riftBristleWoodsHUD-portalEquipment.disabled .riftBristleWoodsHUD-footer-item-quantity {
+  top: 27px;
+  padding: 0 3px;
+  font-size: 9px;
+  opacity: 0.9;
+}
+
+.riftBristleWoodsHUD-portalContainer {
+  margin-top: -1px;
+  border-top: 2px solid #5b4d3f;
+  border-top-left-radius: 3px;
+  box-shadow:
+    -4px 2px 0 -2px #2e2014,
+    -1px -1px 0 1px #514236;
+}
+
+.riftBristleWoodsHUD-chamberDetails {
+  background-color: #312822;
+}
+
+.riftBristleWoodsHUD-chamberSpecificText.icebreak_chamber,
+.riftBristleWoodsHUD-chamberSpecificText.silence_chamber,
+.riftBristleWoodsHUD-chamberSpecificText.stalker_chamber,
+.riftBristleWoodsHUD-chamberSpecificText.treasury_chamber,
+.riftBristleWoodsHUD-chamberSpecificText.lucky_chamber {
+  line-height: 2;
+}
+
+.riftBristleWoodsHUD-chamberSpecificText.potion_chamber {
+  line-height: 1.5;
+}
+
+.riftBristleWoodsHUD-chamberDetails-image-padding {
+  margin-right: 4px;
+  margin-left: -2px;
+  background-color: #817871;
+  border-color: #d1caaa;
+  border-radius: 10px;
+}
+
+.riftBristleWoodsHUD-chamberDetails-imageContainer.floatl {
+  margin: 0;
+}
+
+.riftBristleWoodsHUD-chamberDetails-imageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.riftBristleWoodsHUD-chamberDetails-image:nth-last-child(3),
+.riftBristleWoodsHUD-chamberDetails-image:nth-last-child(3) ~ .riftBristleWoodsHUD-chamberDetails-image {
+  width: auto;
 }
