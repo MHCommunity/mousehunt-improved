@@ -3,7 +3,9 @@ import {
   debuglog,
   doRequest,
   getCurrentLocation,
-  onEvent
+  makeElement,
+  onEvent,
+  onNavigation
 } from '@utils';
 
 import journals from './journals.json';
@@ -24,10 +26,21 @@ const getJournalThemes = async () => {
 };
 
 const updateJournalTheme = async (theme) => {
+  const current = getCurrentJournalTheme();
+
   const req = await doRequest('managers/ajax/users/journal_theme.php', {
     action: 'set_theme',
     theme,
   });
+
+  if (req.success) {
+    // remove the old theme and add the new one
+    const journal = document.querySelector('#journalContainer');
+    if (journal) {
+      journal.classList.remove(current);
+      journal.classList.add(theme);
+    }
+  }
 
   return req;
 };
@@ -51,7 +64,7 @@ const getJournalThemeForLocation = () => {
   return journalTheme.type;
 };
 
-const main = async () => {
+const changeForLocation = async () => {
   if (themes.length === 0) {
     debuglog('journal-changer', 'Fetching journal themes');
     themes = await getJournalThemes();
@@ -86,6 +99,27 @@ const main = async () => {
   }
 };
 
+const addRandomButton = () => {
+  const journal = document.querySelector('#journalContainer .top');
+  if (! journal) {
+    return;
+  }
+
+  const button = makeElement('a', ['journalContainer-selectTheme', 'mh-improved-random-journal'], 'Randomize');
+  button.addEventListener('click', async () => {
+    if (themes.length === 0) {
+      debuglog('journal-changer', 'Fetching journal themes');
+      themes = await getJournalThemes();
+    }
+
+    const theme = themes[Math.floor(Math.random() * themes.length)];
+    debuglog('journal-changer', 'Setting random theme', theme.type);
+    updateJournalTheme(theme.type);
+  });
+
+  journal.append(button);
+};
+
 let themes = [];
 
 /**
@@ -94,9 +128,13 @@ let themes = [];
 const init = async () => {
   addStyles(styles, 'journal-changer');
 
-  main();
+  changeForLocation();
 
-  onEvent('travel_complete', main);
+  onNavigation(addRandomButton, {
+    page: 'camp'
+  });
+
+  onEvent('travel_complete', changeForLocation);
 };
 
 export default {

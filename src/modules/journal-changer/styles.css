@@ -1,1 +1,15 @@
-/* Module Template */
+.journalContainer .top {
+  display: flex;
+  gap: 3px;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.journalContainer-selectTheme {
+  position: relative;
+  background-color: #e6e6e6;
+}
+
+.mh-improved-random-journal {
+  background-image: url(https://i.mouse.rip/mh-improved/journal-random.png);
+}
