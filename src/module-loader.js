@@ -41,6 +41,7 @@ import quickSendSupplies from '@/quick-send-supplies';
 import tallerWindows from '@/taller-windows';
 import temCrowns from '@/tem-crowns';
 import ultimateCheckmark from '@/ultimate-checkmark';
+import wisdomInStatsBar from '@/wisdom-in-stats-bar';
 
 // Design modules.
 import customBackground from '@/custom-background';
@@ -114,6 +115,7 @@ export default [
   tallerWindows,
   temCrowns,
   ultimateCheckmark,
+  wisdomInStatsBar,
 
   // Design modules.
   customBackground,
