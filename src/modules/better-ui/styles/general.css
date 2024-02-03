@@ -304,14 +304,6 @@ a.inventoryPage-tagDirectory-tag {
   padding-top: 30px;
 }
 
-#OnboardArrow.onboardPopup.celebrationPopup .firstCatch .introPopupContent h2 {
-  padding-bottom: 30px;
-}
-
-#OnboardArrow.onboardPopup.celebrationPopup .firstCatch .introPopupContent {
-  font-size: 14px;
-}
-
 #OnboardArrow.onboardPopup.celebrationPopup .introPopupContent .clear-block img {
   float: none;
   margin-top: -10px;
