@@ -42,7 +42,10 @@
 
 .mh-improved-favorite-setups-blueprint-container .row {
   display: grid;
-  grid-template-columns: 1fr repeat(4, 50px);
+  grid-template-columns: 1fr 25px repeat(4, 50px);
+  align-items: center;
+  height: auto;
+  min-height: 55px;
   padding: 3px;
   margin-bottom: 15px;
   background: #fff;
@@ -50,17 +53,26 @@
   border-radius: 5px;
 }
 
+.mh-improved-favorite-setups-blueprint-container .row .campPage-trap-itemBrowser-favorite-item-image {
+  width: 100%;
+  height: 50px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.editing {
+  grid-template-columns: 1fr repeat(4, 50px);
+}
+
 .mh-improved-favorite-setups-blueprint-container .controls {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   align-items: center;
   justify-content: center;
 }
 
 .mh-improved-favorite-setups-blueprint-container .button-wrapper {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   align-items: center;
   justify-content: center;
 }
@@ -70,6 +82,7 @@
 }
 
 .mh-improved-favorite-setups-blueprint-container .controls .label {
+  padding: 0 1px;
   font-size: 13px;
   text-align: center;
 }
@@ -108,7 +121,8 @@
 }
 
 .mh-improved-favorite-setups-blueprint-container .controls input {
-  width: 115px;
+  width: calc(100% - 25px);
+  margin-right: 25px;
 }
 
 .row.editing .campPage-trap-itemBrowser-favorite-item::after {
@@ -126,7 +140,11 @@
 }
 
 .row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
-  background-color: #ddd;
+  background-color: #ccc;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editing .campPage-trap-itemBrowser-favorite-item:hover .campPage-trap-itemBrowser-favorite-item-image {
+  opacity: 0.8;
 }
 
 .mh-improved-favorite-setups-component-picker-popup-body-items {
@@ -172,17 +190,19 @@
 
 a.random-title::after {
   position: absolute;
-  top: 4px;
-  right: -19px;
+  top: 0;
+  right: -6px;
+  box-sizing: border-box;
   display: block;
-  width: 12px;
-  height: 12px;
-  padding: 2px;
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  margin: 1px;
   content: "";
-  /* stylelint-disable-next-line */
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>');
   background-color: #fff;
   border-radius: 50%;
+  /* stylelint-disable-next-line */
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>');
 }
 
 a.random-title:hover::after {
@@ -205,5 +225,40 @@ a.random-title.loading::after {
 
 .mh-improved-favorite-setups-blueprint-container .editing .controls .label {
   position: relative;
-  place-self: self-start;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row .mh-improved-favorite-setups-power-type-wrapper .campPage-trap-itemBrowser-favorite-item-image {
+  width: 25px;
+  height: 25px;
+  opacity: 0.8;
+}
+
+.mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-statContainer {
+  width: 75%;
+  margin-top: 5px;
+}
+
+.mh-improved-favorite-setups-component-picker-popup .campPage-trap-itemBrowser-item-content {
+  width: 80%;
+}
+
+.mh-improved-favorite-setups-blueprint-container .editing .campPage-trap-itemBrowser-item-powerType {
+  display: none;
+}
+
+.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType::before {
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row:hover .controls .action.arm {
+  outline: 2px solid #eab35d;
 }
