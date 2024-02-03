@@ -399,8 +399,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     makeElement('span', '', 'Save', inputSaveButton);
 
     let timeout = null;
-    // Event listener for when the setting is clicked.
-    inputSaveButton.addEventListener('click', (event) => {
+    const save = (event) => {
       const parent = event.target.parentNode.parentNode.parentNode;
       parent.classList.add('inputDropdownWrapper');
       parent.classList.add('inputTextWrapper');
@@ -427,6 +426,14 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
       }, 1000);
 
       addSettingRefreshReminder();
+    };
+
+    // Event listener for when the setting is clicked.
+    inputSaveButton.addEventListener('click', save);
+    settingRowInputText.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        save(event);
+      }
     });
 
     settingRowInput.classList.add('inputText');
@@ -445,7 +452,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
     // Event listener for when the setting is clicked.
     let timeout = null;
-    inputSaveButton.addEventListener('click', (event) => {
+    const save = (event) => {
       const parent = event.target.parentNode.parentNode.parentNode;
       parent.classList.add('inputDropdownWrapper');
       parent.classList.add('textareaWrapper');
@@ -471,6 +478,13 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
       }, 1000);
 
       addSettingRefreshReminder();
+    };
+
+    inputSaveButton.addEventListener('click', save);
+    settingRowInputText.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        save(event);
+      }
     });
 
     settingRowInput.classList.add('textarea');
