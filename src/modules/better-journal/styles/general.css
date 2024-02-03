@@ -2,17 +2,17 @@
   padding-top: 5px;
 }
 
-.journal .entry .journalbody {
+.journal .content .entry .journalbody {
   margin-top: 3px;
   margin-bottom: 3px;
   margin-left: 85px;
 }
 
-.journal .entry.minimalJournal .journalbody {
+.journal .content .entry.minimalJournal .journalbody {
   margin-left: 10px;
 }
 
-.journal .entry {
+.journal .content .entry {
   position: relative;
   padding-right: 3px;
   border: 1px solid #5b5b5b;
@@ -20,12 +20,12 @@
   transition: box-shadow 0.1s;
 }
 
-.journal .entry:last-child {
+.journal .content .entry:last-child {
   border-bottom: 1px solid #a4a4a4;
 }
 
 /* Images */
-.journal .entry .journalimage {
+.journal .content .entry .journalimage {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -37,23 +37,23 @@
   height: auto;
 }
 
-.shop_purchase .journal .entry .journalimage {
+.shop_purchase .journal .content .entry .journalimage {
   margin: 15px 0 0 10px;
 }
 
-.journal .entry .journalimage a:hover,
-.journal .entry .journalimage a:focus {
+.journal .content .entry .journalimage a:hover,
+.journal .content .entry .journalimage a:focus {
   overflow: visible;
 }
 
-.journal .entry .journalimage a {
+.journal .content .entry .journalimage a {
   display: inline-block;
   width: 60px;
   height: 60px;
   overflow: hidden;
 }
 
-.journal .entry a img {
+.journal .content .entry a img {
   width: 62px;
   height: auto;
   padding: 0;
@@ -61,31 +61,31 @@
   border: 1px solid #000;
 }
 
-.journal .entry a:hover img,
-.journal .entry a:focus img {
+.journal .content .entry a:hover img,
+.journal .content .entry a:focus img {
   filter: brightness(1.1);
 }
 
 /* Text */
-.journal .entry .journalbody .journaltext {
+.journal .content .entry .journalbody .journaltext {
   margin-right: 5px;
   line-height: 20px;
 }
 
-.journal .entry .journaltext b {
+.journal .content .entry .journaltext b {
   font-weight: 400;
 }
 
-.journal .entry .journaltext p:first-of-type {
+.journal .content .entry .journaltext p:first-of-type {
   margin-top: 0;
 }
 
-.journal .entry .journaltext > * {
+.journal .content .entry .journaltext > * {
   line-height: 24px;
 }
 
 /* Date */
-.journal .entry .journalbody .journaldate {
+.journal .content .entry .journalbody .journaldate {
   display: inline-block;
   width: calc(100% - 10px);
   padding-top: 5px;
@@ -133,17 +133,17 @@ a.journal-detailLink.full::after {
   padding-top: 1px;
 }
 
-.journal .entry a:hover img {
+.journal .content .entry a:hover img {
   border: 1px solid #6db8ca;
   outline: 1px solid #90d3e4;
   box-shadow: 0 0 6px -2px #e3e31f;
 }
 
-.journal .entry .journaltext p:last-of-type {
+.journal .content .entry .journaltext p:last-of-type {
   margin-bottom: 0;
 }
 
-.journal .entry .journaltext .decoration {
+.journal .content .entry .journaltext .decoration {
   margin-left: -12px;
   font-size: 21px;
   vertical-align: top;
@@ -151,13 +151,13 @@ a.journal-detailLink.full::after {
 }
 
 /* move the share button */
-.journal .entry .journalbody .journalactions {
+.journal .content .entry .journalbody .journalactions {
   position: absolute;
   right: 5px;
   float: none;
 }
 
-.journal .entry .journaltext p.double {
+.journal .content .entry .journaltext p.double {
   margin-top: 1em;
 }
 
@@ -165,7 +165,7 @@ a.journal-detailLink.full::after {
   margin: 0 auto;
 }
 
-.journal .entry.minimalJournalImage .journalbody .journaldate {
+.journal .content .entry.minimalJournalImage .journalbody .journaldate {
   display: none;
 }
 
@@ -176,6 +176,64 @@ p.mhi-x-entry {
   line-height: 22px !important;
 }
 
-.journal .entry:hover {
+.journal .content .entry:hover {
   box-shadow: inset 0 0 5px rgb(0 0 0 / 40%);
+}
+
+.journal .content .entry.craft.item {
+  padding-bottom: 10px;
+}
+
+.journal .content .entry.out_of_candles {
+  background-color: #bd7f89;
+}
+
+.journal .content .entry.desert_heater_base_trigger.fail {
+  background-image: url(https://i.mouse.rip/upscaled/flameshard_crafting_item.png);
+  background-blend-mode: luminosity;
+}
+
+.journal .content .entry.alchemists_cookbook_base_bonus {
+  background-position: 10px;
+}
+
+.journal .content .entry.electromagnetic_base_trigger::after {
+  display: none;
+}
+
+.journal .content .entry.halloween-special-loot,
+.journal .content .entry.halloween2019_shot_supplies {
+  padding-left: 0;
+}
+
+.journal .content .entry.outofsuperbriebutton {
+  margin-left: 0;
+}
+
+.journal .content .entry.pirate_sleigh_trigger {
+  background: #4fa9e6;
+}
+
+.journal .content .entry.queso_cannonstorm_base_trigger.fail {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/fe36041df0bec6dcc887ce67feefc4c8.png?cv=2);
+}
+
+.journal .content .entry.short.queso_canyon_queso_pumped .journalbody {
+  margin-left: 85px;
+}
+
+.journal .content .entry.valentines_matchmaker {
+  padding-left: 0;
+  margin-left: 0;
+  background-position: center;
+  background-size: cover;
+}
+
+.journal .entry.vegetation_base_trigger::after {
+  display: none;
+}
+
+.journal .content .entry.vending_machine_purchase {
+  background-position: top, bottom, center;
+  background-size: contain;
 }

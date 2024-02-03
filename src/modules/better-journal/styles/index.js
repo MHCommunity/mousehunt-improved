@@ -35,7 +35,6 @@ import catchPrize from './custom-entries/catch/prize.css';
 import charmGilded from './custom-entries/charm/gilded.css';
 import charmRiftVacuum from './custom-entries/charm/rift-vacuum.css';
 import charmTorch from './custom-entries/charm/torch.css';
-import charmUltimate from './custom-entries/charm/ultimate.css';
 import charmUnstable from './custom-entries/charm/unstable.css';
 
 // Locations.
@@ -80,7 +79,6 @@ const main = () => {
     charmGilded,
     charmRiftVacuum,
     charmTorch,
-    charmUltimate,
     charmUnstable,
     locationBrift,
     locationBwRift,

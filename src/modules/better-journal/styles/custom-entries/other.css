@@ -8,3 +8,93 @@
   background-repeat: no-repeat;
   background-size: 45px !important;
 }
+
+.journal .entry.donationComplete {
+  background-color: #c9c5fc;
+}
+
+.journal .content .ultimate_pop,
+.journal .content .ultimate_intact {
+  background-color: #49eec2;
+}
+
+.journal .entry.generic_falure,
+.journal .entry.pollutinum_stolen {
+  background: #ffbfbf;
+}
+
+.journal .halloween-candy {
+  background-color: #f1b7dc;
+}
+
+.journal .content .iceberg_advance,
+.journal .content .iceberg_pushback,
+.journal .content .iceberg_pushback_prevented,
+.journal .entry.riftFuroma {
+  font-style: inherit;
+}
+
+.journal .entry.lunar_lantern {
+  background-color: #ffd0b3;
+  border: 1px solid #5b5b5b;
+}
+
+.journal .content .entry.minigame_start.yellow_drops {
+  background-color: #fffd97;
+  background-blend-mode: darken;
+}
+
+.journal .content .entry.minigame_start.red_drops {
+  background-color: #ffaf98;
+  background-blend-mode: darken;
+}
+
+.journal .content .entry.minigame_start.orange_drops {
+  background-color: #ffde97;
+  background-blend-mode: darken;
+}
+
+.journal .entry.mousoleum.creepy_coffin_trigger,
+.journal .entry.mousoleum.repair_wall,
+.journal .entry.mousoleum.damage_wall {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/d764ca82aa14f187f9796e1e5334e20c.png);
+}
+
+.journal .entry.queso_geyser.wild_tonic_disabled {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/8e292ff717bd65936d2c96707aa77de0.png);
+  background-blend-mode: darken;
+}
+
+.journal .rift-whisker-woods-catch-miniboss {
+  background-color: #d8d479;
+}
+
+.journal .rift-whisker-woods-catch-boss {
+  background-color: #fac75f;
+}
+
+.journal .riftFuroma-retreat {
+  background-color: #f4c3b2;
+}
+
+.journal .content .entry.riftFuroma-energyLost {
+  min-height: 60px;
+}
+
+.journal .riftFuroma-enterPagoda,
+.journal .riftFuroma-unlockBattery {
+  background-color: #f3b782;
+}
+
+.journal .riftFuroma-exitPagoda {
+  background-color: #e3bfb4;
+}
+
+.journal .entry.ronza_chrome_voucher_claim {
+  background-color: #cae5e8;
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/a3be8c11176c289f6c79068cbe813968.png?cv=2);
+}
+
+.journal .entry.spring_hunt_warmonger_egg_drop .journaltext {
+  padding-left: 0;
+}

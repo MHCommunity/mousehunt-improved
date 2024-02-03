@@ -1,35 +1,60 @@
-/* Smaller image */
-.journal .content .entry.minimalJournalImage {
-  background-position: 15px center !important;
-  background-size: 40px;
-}
-
-.journal .content .entry.labyrinthSmall.minimalJournalImage.labyrinth-clue {
-  background-position: 10px center !important;
-  background-size: 50px !important;
+.journal .content .entry {
+  background-repeat: no-repeat;
 }
 
 .journal .content .entry,
-.journal .content .entry.short.misc.custom.adventureBook-journal.goal,
-.journal .entry.craft.newrecipe {
+.journal .content .entry.adventureBook-journal,
+.journal .content .entry.craft.newrecipe,
+.journal .content .entry.folkloreForest-bookClaimed,
+.journal .content .entry.aurora_base_trigger,
+.journal .content .entry.regulator_base_trigger,
+.journal .content .entry.short.misc.custom.denture_base_decay_trigger,
+.journal .content .entry.burroughs_rift.danger_zone,
+.journal .content .entry.burroughs_rift.regulator_base_trigger,
+.journal .content .entry.birthday_factory,
+.journal .content .entry.boiling_cauldron_potion_bonus.boon_potion_bonus,
+.journal .content .entry.desert_heater_base_trigger,
+.journal .content .iceberg_advance_prevented,
+.journal .content .entry.minigame_done,
+.journal .content .entry.minigame_start,
+.journal .content .entry.living_grove_base_trigger,
+.journal .content .entry.queso_geyser,
+.journal .content .entry.rift_valour.claim_loot,
+.journal .content .entry.slac_in_a_box_trigger.popped,
+.journal .content .entry.sunken_city.dive,
+.journal .content .entry.sunken_city.zone,
+.journal .content .train_station.load_supply_crates,
+.journal .content .train_station.minigame_done,
+.journal .content .train_station.minigame_start,
+.journal .content .train_station.phase_bridge_jump,
+.journal .content .train_station.prize_claimed,
+.journal .content .train_station.progress,
+.journal .content .train_station.raider_wave_defeated,
+.journal .content .train_station.stoke_furnace,
+.journal .content .train_station.train_done,
+.journal .content .train_station.train_leave,
+.journal .content .train_station.train_start,
+.journal .content .train_station.use_mouse_repellent,
+.journal .content .train_station.warehouse_manager_catch,
+.journal .content .train_station.warehouse_manager_done,
+.journal .content .train_station.phase_boarding,
+.journal .content .entry.winter_hunt_2013,
+.journal .content .entry.winter_hunt_2015,
+.journal .content .entry.winter_hunt_2016,
+.journal .content .entry.vegetation_base_trigger {
   background-position: 10px center;
-}
-
-.journal .content .entry.folkloreForest-bookClaimed {
-  background-position: 10px 30px;
+  background-size: 50px;
 }
 
 /* gotta love !important */
-.journal .content .entry.short.misc.custom.winterTaiga.festiveSpiritLootBoost.minimalJournalImage,
-.journal .content .entry.short.misc.custom.winterTaiga.workshopPartProduced.minimalJournalImage,
-.journal .content .entry.short.misc.custom.winterTaiga.frostKingDefeated.minimalJournalImage,
-.journal .content .entry.short.misc.custom.winterTaiga.shieldDestroyed.minimalJournalImage,
-.journal .content .entry.short.misc.custom.winterTaiga.shieldDamaged.minimalJournalImage {
+.journal .content .entry.minimalJournalImage,
+.journal .content .entry.labyrinthSmall.labyrinth-clue,
+.journal .content .entry.winterTaiga {
   background-position: 10px center !important;
   background-size: 50px !important;
 }
 
-.entry.short.misc.custom.denture_base_decay_trigger {
-  background-position: 10px;
-  background-size: 50px;
+.journal .content .entry.bonuscatchfailure,
+.journal .content .entry.bonuscatchsuccess {
+  background-position: left;
 }
