@@ -13,6 +13,7 @@ import progressLog from './progress-log.css';
 // Custom entries.
 import crafting from './custom-entries/crafting.css';
 import drawWinner from './custom-entries/draw-winner.css';
+import larryGift from './custom-entries/larry-gift.css';
 import maps from './custom-entries/maps.css';
 import other from './custom-entries/other.css';
 import popup from './custom-entries/popup.css';
@@ -63,6 +64,7 @@ const main = () => {
     linkColors,
     crafting,
     drawWinner,
+    larryGift,
     maps,
     other,
     popup,
