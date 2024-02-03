@@ -5,15 +5,19 @@ import { getCurrentPage } from './page';
  *
  * @async
  *
- * @param {Array} items The item to check for.
+ * @param {Array}   items       The item to check for.
+ * @param {boolean} forceUpdate Force an update of the user's inventory.
  *
  * @return {Array} The item data.
  */
-const getUserItems = async (items) => {
+const getUserItems = async (items, forceUpdate = false) => {
   return new Promise((resolve) => {
     hg.utils.UserInventory.getItems(items, (resp) => {
       resolve(resp);
-    });
+    }, (err) => {
+      console.error('Error getting user items:', err); // eslint-disable-line no-console
+      resolve([]);
+    }, forceUpdate);
   });
 };
 
