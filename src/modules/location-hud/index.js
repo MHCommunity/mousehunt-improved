@@ -45,6 +45,7 @@ import labyrinth from './labyrinth';
 import lagoon from './lagoon';
 import meditation_room from './meditation-room';
 import mountain from './mountain';
+import mousoleum from './mousoleum';
 import moussu_picchu from './moussu-picchu';
 import nerg_plains from './nerg-plains';
 import pinnacle_chamber from './pinnacle-chamber';
@@ -153,6 +154,7 @@ const main = () => {
     lagoon,
     meditation_room,
     mountain,
+    mousoleum,
     moussu_picchu,
     nerg_plains,
     pinnacle_chamber,
