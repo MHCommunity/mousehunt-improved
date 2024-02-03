@@ -7,7 +7,7 @@ import { addMhuiSetting } from '@utils';
  */
 export default function (module) {
   addMhuiSetting(
-    'wisdom-refresh',
+    'wisdom-in-stat-bar-auto-refresh',
     'Update automatically',
     true,
     'If enabled, wisdom will be automatically updated when it changes. Otherwise, you\'ll need to click the value to refresh it.',
