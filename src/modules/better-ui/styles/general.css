@@ -388,3 +388,7 @@ input.itemView-action-convert-quantity {
 .mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
   display: none;
 }
+
+.mousehuntHud-userStat-row {
+  line-height: 14px;
+}
