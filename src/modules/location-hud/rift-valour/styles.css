@@ -236,16 +236,20 @@ span.valourRiftHUD-stepsTaken-value {
 
 #mh-vrift-floor-name {
   position: absolute;
-  top: 0;
+  top: 2px;
   right: 25px;
   left: 25px;
   z-index: 1;
   height: 20px;
-  font-size: 13px;
-  line-height: 17px;
+  font-family: Rockwell, "Rockwell Nova", "Roboto Slab", "DejaVu Serif", "Sitka Small", serif;
+  font-size: 21px;
+  font-variant: petite-caps;
+  color: #ebfffd;
+  text-shadow: 0 0 2px #62fff3;
   background-color: #231857;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
+  -webkit-text-stroke: 1px #62fff3;
 }
 
 .valourRiftHUD-currentFloor:hover #mh-vrift-floor-name,
@@ -256,10 +260,14 @@ span.valourRiftHUD-stepsTaken-value {
 }
 
 .bottom.mh-vrift-floor-tooltip {
-  right: -50px;
-  bottom: -60px;
-  left: -60px;
+  right: -60px;
+  bottom: -40px;
+  left: -70px;
   font-size: 11px;
+}
+
+.bottom.mh-vrift-floor-tooltip .mousehuntTooltip-arrow {
+  display: none;
 }
 
 .valourRiftHUD-stepsTaken .mousehuntTooltip {
@@ -439,18 +447,29 @@ span.valourRiftHUD-stepsTaken-value {
 }
 
 .valourRiftHUD-tower .valourRiftHUD-tower-sprite-name,
-.valourRiftHUD-tower .valourRiftHUD-tower-sprite.step .valourRiftHUD-tower-sprite-image,
-.valourRiftHUD-tower .valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image,
+.valourRiftHUD-tower .valourRiftHUD-tower-sprite.step,
+.valourRiftHUD-tower .valourRiftHUD-tower-sprite.player,
 .valourRiftHUD-tower .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image::before {
   opacity: 1;
   transition: opacity 0.4s ease-in-out;
 }
 
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite-name,
-.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.step .valourRiftHUD-tower-sprite-image,
-.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image,
+.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.step,
+.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.player,
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image::before {
   opacity: 0.4;
+}
+
+.valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-name {
+  font-size: 11px;
+  mix-blend-mode: hard-light;
+}
+
+.valourRiftHUD.tower .valourRiftHUD-huntsRemaining .valourRiftHUD-state.tower {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .valourRiftHUD.tower .valourRiftHUD-state.tower {
@@ -495,6 +514,30 @@ a.valourRiftHUD-gauntletBait-image.active {
   filter: drop-shadow(0 5px 5px #68b868);
 }
 
+.floor_8 .valourRiftHUD-currentFloor {
+  filter: hue-rotate(125deg);
+  mix-blend-mode: color-dodge;
+}
+
+.floor_8 .valourRiftHUD-floorProgress-barContainer {
+  filter: hue-rotate(110deg);
+}
+
+.valourRiftHUD-tower-sprite.floor_8 .valourRiftHUD-tower-sprite-image {
+  filter: saturate(1.2);
+  box-shadow: inset 0 10px 25px 5px #000;
+}
+
+.valourRiftHUD-floorProgress-boss {
+  top: -2px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  outline: 2px solid #6c87be;
+  box-shadow: 0 0 2px 2px #231855;
+}
+
 @keyframes mh-improved-player-spin {
   0% {
     transform: scaleX(-1) rotate(0deg);
@@ -509,3 +552,11 @@ a.valourRiftHUD-gauntletBait-image.active {
   animation: mh-improved-player-spin 0.7s linear 1;
 }
 
+.valourRiftHUD-crafting-image {
+  background-position: center;
+  background-size: 120%;
+}
+
+.valourRiftHUD.tower .valourRiftHUD-previewTower {
+  mix-blend-mode: color-burn;
+}
