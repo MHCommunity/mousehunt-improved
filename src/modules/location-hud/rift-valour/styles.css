@@ -383,7 +383,6 @@ span.valourRiftHUD-stepsTaken-value {
 
 .valourRiftPopupClaim-newFloorRecord {
   grid-column: span 3;
-  margin-left: -50px;
 }
 
 .valourRiftPopupIllustrated-inventoryCostContainer {
@@ -406,7 +405,7 @@ span.valourRiftHUD-stepsTaken-value {
   top: 72px;
   right: 69px;
   display: flex;
-  padding: 3px 6 px;
+  padding: 3px 6px;
   background-color: #3f354d;
   border: 1px solid #2f283a;
   border-radius: 4px;
