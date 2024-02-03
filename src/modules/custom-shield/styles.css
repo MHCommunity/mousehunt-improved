@@ -74,8 +74,8 @@
   content: "";
   filter: drop-shadow(0 0 10px #e8dbb8);
   background-repeat: no-repeat;
-  background-position: 2px 1px;
-  background-size: 125px;
+  background-position: center;
+  background-size: 105px;
   transition: background-image 0.5s;
 }
 
