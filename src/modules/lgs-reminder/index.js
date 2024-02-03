@@ -1,6 +1,12 @@
 import humanizeDuration from 'humanize-duration';
 
-import { addStyles, getFlag, makeElement } from '@utils';
+import {
+  addStyles,
+  getFlag,
+  makeElement,
+  onActivation,
+  onDeactivation
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -94,15 +100,24 @@ const main = () => {
   }, 750);
 };
 
-/**
- * Initialize the module.
- */
-const init = async () => {
+const load = () => {
   // Only load if the user has LGS.
   if (user.has_shield) {
     addStyles(styles, 'lgs-reminder');
     main();
   }
+};
+/**
+ * Initialize the module.
+ */
+const init = async () => {
+  onActivation('lgs-reminder', load);
+  onDeactivation('lgs-reminder', () => {
+    const reminder = document.querySelector('.mousehunt-improved-lgs-reminder');
+    if (reminder) {
+      reminder.remove();
+    }
+  });
 };
 
 export default {
