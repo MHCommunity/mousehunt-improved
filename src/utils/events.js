@@ -1,5 +1,6 @@
 import { getCurrentPage, isCurrentPage } from './page';
 import { getCurrentLocation } from './location';
+import { onEvent } from './event-registry';
 import { showHornMessage } from './horn';
 
 const requestCallbacks = {};
@@ -394,17 +395,6 @@ const onPageChange = (callbacks) => {
 };
 
 /**
- * Add something to the event registry.
- *
- * @param {string}   event    The event name.
- * @param {Function} callback The callback to run when the event is fired.
- * @param {boolean}  remove   Whether or not to remove the event listener after it's fired.
- */
-const onEvent = (event, callback, remove = false) => {
-  eventRegistry.addEventListener(event, callback, null, remove);
-};
-
-/**
  * Do something when the user travels to a location.
  *
  * @param {string} location                  The location traveled to.
@@ -569,7 +559,6 @@ const onTurn = (callback) => {
 export {
   onDialogHide,
   onDialogShow,
-  onEvent,
   onNavigation,
   onOverlayChange,
   onPageChange,

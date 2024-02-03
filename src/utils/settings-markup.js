@@ -1,6 +1,7 @@
 import { getCurrentPage, getCurrentTab } from './page';
 import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
 import { addStylesDirect } from './styles';
+import { doEvent } from './event-registry';
 import { makeElement } from './elements';
 import { onPageChange } from './events';
 
@@ -27,11 +28,17 @@ const addSettingStyles = () => {
 const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-utils-settings') => {
   node.parentNode.parentNode.classList.add('busy');
 
-  // Toggle the state of the checkbox.
-  node.classList.toggle('active');
-
   // Save the setting.
   saveSettingDirect(key, value, identifier);
+
+  doEvent('mh-improved-settings-changed', {
+    key,
+    value,
+    tab: identifier,
+    type: 'toggle',
+  });
+
+  doEvent(`mh-improved-settings-changed-${key}`, value);
 
   // Add the completed class & remove it in a second.
   node.parentNode.parentNode.classList.remove('busy');
@@ -40,6 +47,7 @@ const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-util
     node.parentNode.parentNode.classList.remove('completed');
   }, 1000);
 
+  // TODO: remove this or hook it to the event.
   addSettingRefreshReminder();
 };
 
@@ -147,13 +155,10 @@ const makeToggle = (toggleKey, toggleDefaultValue, toggleTab) => {
 
   // Depending on the current state of the setting, add the active class.
   const currentSetting = getSettingDirect(toggleKey, null, toggleTab);
-  let isActive = false;
   if (currentSetting) {
     settingRowInputCheckbox.classList.add('active');
-    isActive = true;
   } else if (null === currentSetting && toggleDefaultValue) {
     settingRowInputCheckbox.classList.add('active');
-    isActive = true;
   }
 
   /**
@@ -162,7 +167,10 @@ const makeToggle = (toggleKey, toggleDefaultValue, toggleTab) => {
    * @param {Event} event The event.
    */
   settingRowInputCheckbox.onclick = (event) => {
-    saveSettingDirectAndToggleClass(event.target, toggleKey, ! isActive, toggleTab);
+    const isSettingActive = event.target.classList.contains('active');
+    event.target.classList.toggle('active');
+
+    saveSettingDirectAndToggleClass(event.target, toggleKey, ! isSettingActive, toggleTab);
   };
 
   // Add the input to the settings row.
@@ -208,25 +216,11 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   // If we don't have our custom settings section, then create it.
   let sectionExists = document.querySelector(`#${section.id}`);
   if (! sectionExists) {
-    // Make the element, add the ID and class.
-    const title = document.createElement('div');
+    const title = makeElement('div', 'PagePreferences__title');
     title.id = section.id;
-    title.classList.add('PagePreferences__title');
 
-    // Set the title of our section.
-    const titleText = document.createElement('h3');
-    titleText.classList.add('PagePreferences__titleText');
-    titleText.textContent = section.name;
-
-    // Append the title.
-    title.append(titleText);
-
-    // Add a separator.
-    const seperator = document.createElement('div');
-    seperator.classList.add('PagePreferences__separator');
-
-    // Append the separator.
-    title.append(seperator);
+    makeElement('h3', 'PagePreferences__titleText', section.name, title);
+    makeElement('div', 'PagePreferences__separator', '', title);
 
     // Append it.
     container.append(title);
@@ -253,8 +247,17 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   }
 
   const settingRow = makeElement('div', 'PagePreferences__setting');
+
   const settingRowLabel = makeElement('div', 'PagePreferences__settingLabel');
-  const settingName = makeElement('div', 'PagePreferences__settingName', name);
+  const settingName = makeElement('div', 'PagePreferences__settingName');
+
+  const settingNameText = makeElement('a', 'PagePreferences__settingNameText', name);
+  settingNameText.href = `#${section.id}-${key}`;
+  settingNameText.setAttribute('data-setting', key);
+  settingNameText.setAttribute('data-tab', tab);
+  settingNameText.setAttribute('data-default', defaultValue);
+  settingName.append(settingNameText);
+
   const defaultSettingText = makeElement('div', 'PagePreferences__settingDefault');
 
   if (settingSettings && (settingSettings.type === 'select' || settingSettings.type === 'multi-select')) {
@@ -369,6 +372,13 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
         // save the setting.
         saveSettingDirect(`${key}-${i}`, event.target.value, tab);
 
+        doEvent('mh-improved-settings-changed', {
+          key: `${key}-${i}`,
+          value: event.target.value,
+          tab,
+          type: 'multi-select',
+        });
+
         parent.classList.remove('busy');
         parent.classList.add('completed');
 
@@ -400,6 +410,13 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
       // save the setting.
       saveSettingDirect(key, settingRowInputText.value, tab);
+
+      doEvent('mh-improved-settings-changed', {
+        key,
+        value: settingRowInputText.value,
+        tab,
+        type: 'input',
+      });
 
       parent.classList.remove('busy');
       parent.classList.add('completed');
@@ -437,6 +454,13 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
       // save the setting.
       saveSettingDirect(key, settingRowInputText.value, tab);
+
+      doEvent('mh-improved-settings-changed', {
+        key,
+        value: settingRowInputText.value,
+        tab,
+        type: 'textarea',
+      });
 
       parent.classList.remove('busy');
       parent.classList.add('completed');
@@ -603,6 +627,8 @@ const addAdvancedSettings = () => {
     advancedTab,
     'mousehunt-improved-settings'
   );
+
+  doEvent('mh-improved-advanced-settings-added');
 };
 
 /**
