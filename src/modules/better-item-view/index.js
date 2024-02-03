@@ -4,6 +4,7 @@ import {
   makeElement,
   makeLink,
   makeTooltip,
+  onActivation,
   onOverlayChange,
   onPageChange
 } from '@utils';
@@ -165,8 +166,8 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  main();
   addStyles(styles, 'better-item-view');
+  onActivation('better-item-view', main);
 };
 
 export default {

@@ -1,4 +1,10 @@
-import { getSetting, onRequest, sessionGet, sessionSet } from '@utils';
+import {
+  getSetting,
+  onActivation,
+  onRequest,
+  sessionGet,
+  sessionSet
+} from '@utils';
 
 import styles from './styles';
 
@@ -262,9 +268,24 @@ const kingsPromoTextChange = () => {
   }
 };
 
-const main = () => {
+const updateEls = () => {
   updateJournalText();
   updateMouseImageLinks();
+};
+
+const main = () => {
+  onRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
+
+  updateEls();
+  onRequest(() => {
+    updateEls();
+    setTimeout(updateEls, 300);
+    setTimeout(updateEls, 900);
+  });
+
+  if (getSetting('better-journal-privacy')) {
+    journalPrivacy();
+  }
 };
 
 /**
@@ -273,18 +294,7 @@ const main = () => {
 const init = async () => {
   styles();
 
-  main();
-  onRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
-
-  onRequest(() => {
-    main();
-    setTimeout(main, 300);
-    setTimeout(main, 900);
-  });
-
-  if (getSetting('better-journal-privacy')) {
-    journalPrivacy();
-  }
+  onActivation('better-journal', main);
 };
 
 export default {

@@ -543,6 +543,25 @@ const onNavigation = (callback, options = {}) => {
   });
 };
 
+const onActivation = (module, callback) => {
+  onEvent('mh-improved-settings-changed', ({ key, value }) => {
+    if (key === module && value) {
+      callback();
+    }
+  });
+
+  // Also fire the callback if the module is already active.
+  callback();
+};
+
+const onDeactivation = (module, callback) => {
+  onEvent('mh-improved-settings-changed', ({ key, value }) => {
+    if (key === module && ! value) {
+      callback();
+    }
+  });
+};
+
 const onTurn = (callback) => {
   onRequest(callback, 'managers/ajax/turns/activeturn.php', true);
 };
@@ -556,5 +575,7 @@ export {
   onPageChange,
   onRequest,
   onTravel,
+  onActivation,
+  onDeactivation,
   onTurn
 };

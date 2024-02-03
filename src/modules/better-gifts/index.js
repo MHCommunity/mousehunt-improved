@@ -2,6 +2,8 @@ import {
   addStyles,
   getSetting,
   makeElement,
+  onActivation,
+  onDeactivation,
   onDialogShow,
   onRequest,
   replaceInTemplate
@@ -392,6 +394,14 @@ const main = () => {
 const init = async () => {
   addStyles(styles, 'better-gifts');
   main();
+
+  onActivation('better-gifts', main);
+  onDeactivation('better-gifts', () => {
+    const buttons = document.querySelectorAll('.mh-gift-buttons');
+    buttons.forEach((button) => {
+      button.remove();
+    });
+  });
 };
 
 export default {

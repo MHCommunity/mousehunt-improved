@@ -5,6 +5,7 @@ import {
   getCurrentTab,
   getSetting,
   makeElement,
+  onActivation,
   onEvent,
   onNavigation,
   onOverlayChange
@@ -173,7 +174,7 @@ const init = async () => {
     getSetting('better-inventory-larger-images', true) ? largerImagesStyles : '',
   ], 'better-inventory');
 
-  main();
+  onActivation('better-inventory', main);
 };
 
 export default {
