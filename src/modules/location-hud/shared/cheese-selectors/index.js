@@ -1,4 +1,10 @@
-import { doEvent, getUserItems, onEvent, onNavigation } from '@utils';
+import {
+  doEvent,
+  getCurrentLocation,
+  getUserItems,
+  onEvent,
+  onNavigation
+} from '@utils';
 
 /**
  * Adds a cheese selector a a location that usually doesn't have a HUD.
@@ -7,6 +13,36 @@ import { doEvent, getUserItems, onEvent, onNavigation } from '@utils';
  * @param {Array}  cheesesToUse Array of cheese types to use.
  */
 const makeCheeseSelector = async (location, cheesesToUse) => {
+  if (location.replaceAll('-', '_') !== getCurrentLocation()) {
+    await new Promise((resolve) => {
+      const remove = () => {
+        const existingCheeseSelector = document.querySelector('.mh-ui-cheese-selector-wrapper');
+        if (existingCheeseSelector) {
+          existingCheeseSelector.remove();
+          resolve();
+        }
+
+        return false;
+      };
+
+      // try to remove the cheese selector if it exists, and try again in 100ms if it doesn't until we have tried 10 times.
+      let tries = 0;
+      const interval = setInterval(() => {
+        if (remove()) {
+          clearInterval(interval);
+        }
+
+        tries += 1;
+        if (tries >= 10) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, 250);
+    });
+
+    return;
+  }
+
   if (isProcessing) {
     return;
   }
@@ -77,6 +113,8 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
   }
 
   isProcessing = false;
+
+  doEvent('mh-improved-cheese-selector-added', location, cheesesToUse);
 };
 
 const getCheeses = (cheeses) => {
@@ -112,10 +150,11 @@ const replaceCampShowTab = () => {
 };
 
 let isProcessing = false;
-export default async (location, cheeses) => {
+export default (location, cheeses) => {
   replaceCampShowTab();
 
   const main = () => {
+    console.log('cheese selector main');
     makeCheeseSelector(location, getCheeses(cheeses));
   };
 
@@ -123,4 +162,5 @@ export default async (location, cheeses) => {
   onNavigation(main);
 
   onEvent('ajax_response', main);
+  onEvent('travel_complete', main);
 };
