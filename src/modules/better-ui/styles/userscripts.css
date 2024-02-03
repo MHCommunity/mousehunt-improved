@@ -107,12 +107,144 @@ span.shieldDurationText[data-near-expiry="true"] {
   background-color: #5dd55d !important;
 }
 
-/* Wisdom, add some space below. */
-.mousehuntHud-userStat-row.wisdom a {
-  display: block;
-  margin-bottom: 5px;
+/* tsitu location catch stats */
+#tsitu-location-stats {
+  width: 300px !important;
+  background: #f6f3eb !important;
+  border: 1px solid #534022 !important;
+  padding: 0 !important;
+  box-shadow:
+    1px 1px 1px #9d917f,
+    1px 3px 5px #6a6969 !important;
+  border-radius: 0 !important;
 }
 
-.mousehuntHud-userStat.goldPoints .wisdom .value {
-  vertical-align: top;
+#tsitu-location-stats span[style="font-weight: bold; font-size: 18px; text-decoration: underline; padding-left: 20px;"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px !important;
+  color: #f6f3eb;
+  cursor: grab;
+  background-color: #926944;
+  border-bottom: 1px solid #ceb7a6;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+  font-size: 1.5em !important;
+}
+
+#tsitu-location-stats button[style="float: right; font-size: 8px;"] {
+  border: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  height: 20px;
+  width: 20px;
+  font-size: 16px !important;
+  color: white;
+  background-color: transparent;
+}
+
+#tsitu-location-stats button[style="float: right; font-size: 8px;"]:hover {
+  color: #926944;
+  background-color: #eee;
+  border-radius: 50%;
+  outline: 1px solid #ccc;
+}
+
+#tsitu-location-stats > div br {
+  display: none;
+}
+
+#tsitu-location-stats > div span:nth-of-type(2) {
+  display: none;
+}
+
+.tsitu-current-detail > span > button,
+#tsitu-location-stats > button {
+  margin: 10px 0;
+  background-color: #fff600;
+  padding: 2px 15px;
+  line-height: 1.25;
+  color: #000;
+  text-shadow: 0 0 1px #fff;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow:
+    0 -5px 8px -2px #ffae00 inset,
+    1px 1px 1px #eee;
+  line-height: 1.5;
+}
+
+.tsitu-current-detail > span > button {
+  display: block;
+  margin: 0.25em auto;
+}
+
+#tsitu-hideCaught-box {
+  margin: 0 3px;
+  vertical-align: bottom;
+}
+
+#tsitu-location-stats > span {
+  padding: 0.125em;
+  font-size: 0.9em;
+}
+
+#tsitu-location-stats details {
+  padding: 0.5em;
+}
+
+#tsitu-location-stats details details:nth-child(even) {
+  background-color: #e8e3d7;
+}
+
+#tsitu-location-stats details[style="font-size: 16px;"] {
+  margin: 0.25em 0;
+  border-top: 1px solid #926944;
+}
+
+#tsitu-location-stats details {
+  position: relative;
+}
+
+#tsitu-complete-box,
+#tsitu-incomplete-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.tsitu-complete-box-label,
+.tsitu-incomplete-box-label {
+  position: absolute;
+  top: 3px;
+  right: 20px;
+  text-align: right;
+  color: #7b6b47;
+  font-size: 10px !important;
+}
+
+#tsitu-location-stats details[style="font-size: 16px;"] > summary {
+  margin: 0.5em 0;
+}
+
+.tsitu-current-detail > span {
+  line-height: 1.5;
+}
+
+#tsitu-location-stats span[style="font-style: italic; font-size: 12px;"] {
+  display: block;
+  line-height: 2;
+  font-size: 10px !important;
+  color: #7b6b47;
+  margin-left: 1.5em;
+}
+
+.tsitu-current-detail > br:first-of-type,
+.tsitu-current-detail > span br:nth-of-type(1),
+.tsitu-current-detail > span br:nth-of-type(2),
+.tsitu-current-detail > span br:nth-last-of-type(1),
+.tsitu-current-detail > span br:nth-last-of-type(2) {
+  display: none;
 }
