@@ -1,8 +1,8 @@
 import {
   addStyles,
-  clearCaches,
-  createPopup,
   debug,
+  doEvent,
+  getCurrentLocation,
   getCurrentPage,
   getCurrentTab,
   getFlag,
@@ -11,110 +11,14 @@ import {
   getSetting,
   getSettings,
   makeElement,
-  onNavigation,
+  onEvent,
   onTurn
 } from '@utils';
 
+import loadAdvancedSettings from './advanced-settings';
+
 import settingStyles from './settings-styles.css';
 import settingsIconStyles from './settings-icons.css';
-
-const addExportSettings = () => {
-  const wrapper = document.querySelector('#mousehunt-improved-settings-mousehunt-improved-settings-overrides .PagePreferences__titleText');
-  if (! wrapper) {
-    return;
-  }
-
-  const exportSettings = makeElement('div', ['mousehunt-improved-export-settings', 'mousehuntActionButton', 'tiny']);
-  makeElement('span', '', 'Import / Export Settings', exportSettings);
-
-  const settings = JSON.stringify(JSON.parse(localStorage.getItem('mousehunt-improved-settings')), null, 2);
-  const content = `<div class="mousehunt-improved-settings-export-popup-content">
-  <textarea>${settings}</textarea>
-  <div class="mousehunt-improved-settings-export-popup-buttons">
-  <pre>${mhImprovedPlatform} v${mhImprovedVersion}</pre>
-  <div class="mousehuntActionButton save"><span>Save</span></div>
-  <div class="mousehuntActionButton lightBlue download"><span>Download</span></div>
-  <div class="mousehuntActionButton cancel"><span>Cancel</span></div>`;
-
-  exportSettings.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    /* eslint-disable @wordpress/no-unused-vars-before-return */
-    const popup = createPopup({
-      title: 'MouseHunt Improved Settings',
-      content,
-      className: 'mousehunt-improved-settings-export-popup',
-      show: true,
-    });
-    /* eslint-enable @wordpress/no-unused-vars-before-return */
-
-    const popupElement = document.querySelector('.mousehunt-improved-settings-export-popup');
-    if (! popupElement) {
-      return;
-    }
-
-    const saveButton = popupElement.querySelector('.mousehuntActionButton.save');
-    saveButton.addEventListener('click', () => {
-      const textarea = popupElement.querySelector('textarea');
-      const newSettings = textarea.value;
-      localStorage.setItem('mousehunt-improved-settings', newSettings);
-      window.location.reload();
-    });
-
-    const downloadButton = popupElement.querySelector('.mousehuntActionButton.download');
-    downloadButton.addEventListener('click', () => {
-      const link = document.createElement('a');
-      link.download = 'mousehunt-improved-settings.json';
-      link.href = `data:application/json;base64,${btoa(settings)}`;
-      link.click();
-    });
-
-    const cancelButton = popupElement.querySelector('.mousehuntActionButton.cancel');
-    cancelButton.addEventListener('click', () => {
-      popup.hide();
-    });
-  });
-
-  wrapper.append(exportSettings);
-};
-
-const addClearCache = () => {
-  const wrapper = document.querySelector('#mousehunt-improved-settings-mousehunt-improved-settings-overrides .PagePreferences__titleText');
-  if (! wrapper) {
-    return;
-  }
-
-  const clearCache = makeElement('div', ['mousehunt-improved-clear-cache', 'mousehuntActionButton', 'tiny']);
-  makeElement('span', '', 'Clear Cached Data', clearCache);
-
-  clearCache.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Clear the data-caches.
-    // Confirm the clear
-    const confirm = window.confirm('Are you sure you want to clear the cached data?'); // eslint-disable-line no-alert
-    if (! confirm) {
-      return;
-    }
-
-    clearCaches();
-
-    // Delete all the mh-improved keys that are in session storage.
-    for (const key of Object.keys(sessionStorage)) {
-      if (key.startsWith('mh-improved')) {
-        sessionStorage.removeItem(key);
-      }
-    }
-
-    // Clear the ar
-    localStorage.removeItem(`mh-improved-cached-ar-v${mhImprovedVersion}`);
-    window.location.reload();
-  });
-
-  wrapper.append(clearCache);
-};
 
 const modifySettingsPage = () => {
   const settingsPage = document.querySelectorAll('.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__title');
@@ -154,7 +58,6 @@ const modifySettingsPage = () => {
     });
 
     const defaultToggled = [
-      'mousehunt-improved-settings-location-hud',
       'mousehunt-improved-settings-mousehunt-improved-settings-overrides',
     ];
 
@@ -163,6 +66,12 @@ const modifySettingsPage = () => {
       toggle.classList.add('toggled');
     }
   });
+
+  // highlight the current location in the location hud settings
+  const locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-${getCurrentLocation()}`);
+  if (locationHudSettings) {
+    locationHudSettings.classList.add('highlight');
+  }
 };
 
 const loadStyleOverrides = () => {
@@ -230,19 +139,16 @@ const addIconToMenu = () => {
  * Initialize the module.
  */
 const init = async () => {
-
-  onNavigation(() => {
-    setTimeout(addClearCache, 250);
-    setTimeout(addExportSettings, 350);
-    setTimeout(modifySettingsPage, 500);
-  }, {
-    page: 'preferences',
-    tab: 'mousehunt-improved-settings',
-    onLoad: true,
-  });
   addStyles([settingStyles, settingsIconStyles], 'required');
 
   loadStyleOverrides();
+
+  loadAdvancedSettings();
+
+  onEvent('mh-improved-advanced-settings-added', () => {
+    modifySettingsPage();
+    doEvent('mh-improved-settings-loaded');
+  });
 
   // If you want to disable the reporting, you can but you have to admit you're a cheater.
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
