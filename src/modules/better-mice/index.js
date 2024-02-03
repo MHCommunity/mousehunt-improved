@@ -359,7 +359,7 @@ let minlucks;
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'better-mice');
   main();
   mousepage();
 

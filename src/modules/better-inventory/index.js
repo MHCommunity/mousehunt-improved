@@ -171,7 +171,7 @@ const init = async () => {
     styles,
     getSetting('better-inventory-one-item-per-row', true) ? fullWidthStyles : doubleWidthStyles,
     getSetting('better-inventory-larger-images', true) ? largerImagesStyles : '',
-  ]);
+  ], 'better-inventory');
 
   main();
 };

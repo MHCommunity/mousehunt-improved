@@ -209,7 +209,8 @@ let newSelect = null;
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'better-marketplace');
+
   onOverlayChange({
     marketplace: {
       show: () => {

@@ -237,7 +237,7 @@ const updateScoreboard = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'better-tournaments');
   updateTournamentHud();
 
   onEvent('tournament_status_change', updateTournamentHud);

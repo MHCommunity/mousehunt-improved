@@ -97,7 +97,7 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'tem-crowns');
 
   onPageChange({ tem: { show: addCrownsToTEM } });
 };

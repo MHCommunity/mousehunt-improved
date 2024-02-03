@@ -135,7 +135,7 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'better-shops');
 
   onNavigation(main, {
     page: 'shops',

@@ -163,7 +163,8 @@ const persistBackground = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'custom-background');
+
   persistBackground();
 };
 

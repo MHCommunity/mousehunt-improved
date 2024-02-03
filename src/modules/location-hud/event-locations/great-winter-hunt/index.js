@@ -280,7 +280,7 @@ const maybeHideAdventCalendarInMenu = () => {
 };
 
 const greatWinterHuntGlobal = () => {
-  addStyles([stylesGlobal, maybeHideAdventCalendarInMenu]);
+  addStyles([stylesGlobal, maybeHideAdventCalendarInMenu], 'location-hud-events-great-winter-hunt');
   onDialogShow(adventCalendarPopup, 'adventCalendarPopup');
 };
 

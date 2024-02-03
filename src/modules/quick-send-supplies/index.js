@@ -205,7 +205,7 @@ const addToMapUsers = async (attempts = 0) => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'quick-send-supplies');
 
   main();
   onNavigation(main);

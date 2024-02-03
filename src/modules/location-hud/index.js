@@ -189,7 +189,8 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'location-huds');
+
   onNavigation(main);
   onEvent('travel_complete', main);
 };

@@ -211,7 +211,7 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'quick-filters-and-sort');
 
   onRequest(main, 'ajax/users/gettrapcomponents.php');
   onEvent('camp_page_toggle_blueprint', main);

@@ -114,7 +114,8 @@ const persistHornClass = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'custom-horn');
+
   persistHornClass();
 };
 

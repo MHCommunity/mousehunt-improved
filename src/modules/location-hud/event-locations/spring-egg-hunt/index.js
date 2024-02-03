@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 // Always active.
 const springEggHuntGlobal = async () => {
-  addStyles(styles);
+  addStyles(styles, 'location-hud-events-spring-egg-hunt');
 };
 
 // Only active at the locations.

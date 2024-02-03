@@ -260,7 +260,7 @@ const addEnvironmentIconListener = () => {
 };
 
 export default async () => {
-  addStyles(styles);
+  addStyles(styles, 'better-travel');
   makeMenuItem();
 
   if (getSetting('better-travel-travel-window-environment-icon', true)) {

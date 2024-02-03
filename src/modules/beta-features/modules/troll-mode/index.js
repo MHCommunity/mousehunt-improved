@@ -46,7 +46,7 @@ const trollem2 = () => {
   bannerLink.append(newbieImg);
 
   bannerLink.addEventListener('click', () => {
-    addStyles(styles);
+    addStyles(styles, 'troll-mode');
     banner.classList.add('lolspin');
     setTimeout(() => {
       banner.classList.remove('lolspin');

@@ -628,7 +628,7 @@ const init = async () => {
     stylesJoined.push(travelMenuHidingStyles);
   }
 
-  addStyles(stylesJoined);
+  addStyles(stylesJoined, 'better-travel');
 
   environments = await getData('environments');
 

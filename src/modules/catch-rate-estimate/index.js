@@ -129,7 +129,8 @@ const main = async () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'catch-rate-estimate');
+
   main();
 };
 

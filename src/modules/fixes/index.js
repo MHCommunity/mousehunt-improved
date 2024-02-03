@@ -128,7 +128,7 @@ const fixItemPageReciever = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'fixes');
 
   if ('item' === getCurrentPage()) {
     fixItemPage();

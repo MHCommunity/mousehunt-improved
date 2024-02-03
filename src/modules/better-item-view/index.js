@@ -165,8 +165,8 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
   main();
+  addStyles(styles, 'better-item-view');
 };
 
 export default {

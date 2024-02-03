@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 // Always active.
 const lunarNewYearGlobal = async () => {
-  addStyles(styles);
+  addStyles(styles, 'location-hud-events-lunar-new-year');
 };
 
 // Only active at the locations.

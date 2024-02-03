@@ -11,7 +11,8 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'module-template');
+
   main();
 };
 

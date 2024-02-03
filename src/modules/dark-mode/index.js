@@ -40,7 +40,7 @@ const addDarkModeBodyClass = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'dark-mode');
 
   addDarkModeBodyClass();
 

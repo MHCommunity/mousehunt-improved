@@ -51,7 +51,7 @@ const main = () => {
     traps,
     tutorial,
     userscripts,
-  ]);
+  ], 'better-ui');
 };
 
 export default main;

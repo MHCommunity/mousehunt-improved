@@ -171,7 +171,7 @@ const showModal = async () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'location-catch-stats');
 
   addSubmenuItem({
     menu: 'mice',

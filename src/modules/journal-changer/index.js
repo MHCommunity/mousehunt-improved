@@ -92,7 +92,8 @@ let themes = [];
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'journal-changer');
+
   main();
 
   onEvent('travel_complete', main);

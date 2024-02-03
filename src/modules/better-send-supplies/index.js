@@ -294,7 +294,7 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'better-send-supplies');
   onNavigation(main, {
     page: 'supplytransfer',
   });

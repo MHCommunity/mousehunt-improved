@@ -225,7 +225,7 @@ const replaceInboxMethods = () => {
 };
 
 const main = () => {
-  addStyles(styles);
+  addStyles(styles, 'beta-features-raffle');
 
   replaceInboxMethods();
 };

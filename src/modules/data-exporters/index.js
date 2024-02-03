@@ -110,7 +110,8 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'data-exporters');
+
   main();
 
   onEvent('show-export-data', exportDataPopup);

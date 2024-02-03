@@ -31,7 +31,7 @@ const applyClassToNames = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'journal-privacy');
 
   onRequest(() => {
     applyClassToNames();

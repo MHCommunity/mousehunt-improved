@@ -437,6 +437,8 @@ let environments = [];
  * Initialize the module.
  */
 const init = async () => {
+  addStyles(styles, 'location-dashboard');
+
   environments = await getData('environments');
 
   // Cache the quest data for our current location.
@@ -447,8 +449,6 @@ const init = async () => {
   onRequest(cacheLocationData);
 
   makeDashboardTab();
-
-  addStyles(styles);
 };
 
 export default {

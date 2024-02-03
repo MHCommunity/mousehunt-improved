@@ -199,7 +199,7 @@ let mapping = [];
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([styles, journalThemeStyles, viewsStyles]);
+  addStyles([styles, journalThemeStyles, viewsStyles], 'image-upscaling');
 
   mapping = await getData('upscaled-images');
 

@@ -176,7 +176,7 @@ const doOnboarding = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'update-notifications');
 
   addBanner(false); // True if there are new settings, otherwise false.
 

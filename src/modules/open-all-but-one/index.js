@@ -74,7 +74,7 @@ const addOpenAllButOneButton = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'open-all-but-one');
 
   replaceOpenAction();
 

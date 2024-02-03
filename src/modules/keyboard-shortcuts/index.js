@@ -610,7 +610,8 @@ const openFromSettings = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'keyboard-shortcuts');
+
   listenForKeypresses();
 
   onNavigation(hasMiniCRE, {

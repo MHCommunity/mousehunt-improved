@@ -36,7 +36,7 @@ const startKingsReward = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'better-kings-reward');
 
   onRequest(initiateKingsReward, 'managers/ajax/turns/activeturn.php', true);
   onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);

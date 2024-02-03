@@ -193,7 +193,7 @@ const flrtPopup = (items) => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'flrt-helper');
 
   onDialogShow(cacheFinishedMap, 'treasureMapPopup');
 

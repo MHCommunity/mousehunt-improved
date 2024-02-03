@@ -100,7 +100,7 @@ const main = () => {
 const init = async () => {
   // Only load if the user has LGS.
   if (user.has_shield) {
-    addStyles(styles);
+    addStyles(styles, 'lgs-reminder');
     main();
   }
 };

@@ -362,7 +362,7 @@ let syncWithServer = false;
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'ultimate-checkmark');
 
   if (getFlag('ultimate-checkmark-sync')) {
     syncWithServer = true;

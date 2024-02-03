@@ -101,7 +101,7 @@ const main = () => {
     stylesToAdd.push(iconsAll);
   }
 
-  addStyles(stylesToAdd);
+  addStyles(stylesToAdd, 'better-journal');
 };
 
 export default main;

@@ -5,7 +5,7 @@ import stylesGlobal from './global.css';
 
 // Always active.
 const birthdayGlobal = async () => {
-  addStyles(stylesGlobal);
+  addStyles(stylesGlobal, 'location-hud-events-birthday');
 };
 
 // Only active at the locations.

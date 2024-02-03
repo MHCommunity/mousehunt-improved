@@ -23,7 +23,7 @@ const addMenuListener = () => {
 };
 
 const main = () => {
-  addStyles(styles);
+  addStyles(styles, 'inline-wiki');
 
   addMenuListener();
   onEvent('mh-improved-open-wiki', () => {

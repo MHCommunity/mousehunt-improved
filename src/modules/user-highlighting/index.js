@@ -88,10 +88,7 @@ const highlightUsers = async () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([
-    styles,
-    profileStyles,
-  ]);
+  addStyles([styles, profileStyles], 'highlight-users');
 
   onNavigation(highlightUsers, {
     page: 'hunterprofile',

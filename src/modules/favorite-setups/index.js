@@ -776,7 +776,7 @@ const replaceCloseBlueprintDrawer = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'favorite-setups');
 
   onNavigation(addFavoriteSetupsButton, {
     page: 'camp',

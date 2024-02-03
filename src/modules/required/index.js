@@ -230,7 +230,6 @@ const addIconToMenu = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([settingStyles, settingsIconStyles]);
 
   onNavigation(() => {
     setTimeout(addClearCache, 250);
@@ -241,6 +240,7 @@ const init = async () => {
     tab: 'mousehunt-improved-settings',
     onLoad: true,
   });
+  addStyles([settingStyles, settingsIconStyles], 'required');
 
   loadStyleOverrides();
 

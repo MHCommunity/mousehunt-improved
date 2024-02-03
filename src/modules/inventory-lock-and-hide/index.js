@@ -377,7 +377,7 @@ const main = async () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'inventory-lock-and-hide');
 
   onNavigation(main, {
     page: 'inventory',

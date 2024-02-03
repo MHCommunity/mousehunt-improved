@@ -66,7 +66,7 @@ const moveSidebar = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'no-sidebar');
   addBodyClass('no-sidebar');
   moveSidebar();
 };

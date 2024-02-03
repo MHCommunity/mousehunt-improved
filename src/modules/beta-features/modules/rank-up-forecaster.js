@@ -128,7 +128,7 @@ export default async () => {
     justify-content: space-around;
     max-width: 180px;
     margin-top: 10px;
-  }`);
+  }`, 'rank-up-forecaster');
 
   addRankupForecasterButtons();
 };

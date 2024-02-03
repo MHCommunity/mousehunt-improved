@@ -21,7 +21,7 @@ const main = () => {
     sorted,
     sortedMap,
     userscripts,
-  ]);
+  ], 'better-maps');
 };
 
 export default main;

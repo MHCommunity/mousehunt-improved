@@ -123,7 +123,7 @@ const watchForPreferenceChanges = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'custom-shield');
 
   lastShield = getSetting('custom-shield-0', 'default');
 

@@ -22,7 +22,7 @@ const init = async () => {
     messagesStyles,
     tooltipsStyles,
     utilityStyles,
-  ]);
+  ], 'global-styles');
 };
 
 export default {

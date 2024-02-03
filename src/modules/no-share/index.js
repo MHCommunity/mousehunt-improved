@@ -6,7 +6,7 @@ import styles from './styles.css';
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'no-share');
 };
 
 export default {

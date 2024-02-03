@@ -193,7 +193,7 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'hover-profiles');
 
   setTimeout(main, 500);
   onRequest(() => {

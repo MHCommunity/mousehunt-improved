@@ -379,7 +379,7 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'better-quests');
   main();
 };
 
