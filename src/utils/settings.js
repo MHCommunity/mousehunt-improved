@@ -7,7 +7,7 @@
  *
  * @return {Object} The saved settings.
  */
-const getSettingDirect = (key = null, defaultValue = null, identifier = 'mh-utils-settings') => {
+const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehunt-improved-settings') => {
   // Grab the local storage data.
   const settings = JSON.parse(localStorage.getItem(identifier)) || {};
 
@@ -31,7 +31,7 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mh-util
  * @param {boolean} value      The setting value.
  * @param {string}  identifier The identifier for the settings.
  */
-const saveSettingDirect = (key, value, identifier = 'mh-utils-settings') => {
+const saveSettingDirect = (key, value, identifier = 'mousehunt-improved-settings') => {
   // Grab all the settings, set the new one, and save them.
   const settings = getSettingDirect(null, {}, identifier);
   settings[key] = value;
