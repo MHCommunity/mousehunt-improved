@@ -24,9 +24,7 @@
 .journal .content .entry.short.misc.custom.winterTaiga.workshopPartProduced.minimalJournalImage,
 .journal .content .entry.short.misc.custom.winterTaiga.frostKingDefeated.minimalJournalImage,
 .journal .content .entry.short.misc.custom.winterTaiga.shieldDestroyed.minimalJournalImage,
-.journal .content .entry.short.misc.custom.winterTaiga.shieldDamaged.minimalJournalImage,
-.journal .content .entry.moved_forward,
-.journal .content .entry.champions_fire_loot {
+.journal .content .entry.short.misc.custom.winterTaiga.shieldDamaged.minimalJournalImage {
   background-position: 10px center !important;
   background-size: 50px !important;
 }
