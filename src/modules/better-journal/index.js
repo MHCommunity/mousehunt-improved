@@ -1,4 +1,6 @@
 import {
+  dbGet,
+  dbSet,
   getSetting,
   onActivation,
   onRequest,
@@ -9,6 +11,51 @@ import {
 
 import styles from './styles';
 
+const saveEntries = async (callback) => {
+  const entries = document.querySelectorAll('.journal .entry');
+
+  // reverse the entries so we can process them in order
+  const reversedEntries = [...entries].reverse();
+
+  let lastDate = '';
+  reversedEntries.forEach(async (entry) => {
+    const entryId = Number.parseInt(entry.getAttribute('data-entry-id'), 10);
+    if (! entryId) {
+      return;
+    }
+
+    const entryText = entry.querySelector('.journalbody .journaltext');
+    if (! entryText) {
+      return;
+    }
+
+    const original = await dbGet('better-journal-original', entryId);
+
+    if (original && original.text) {
+      callback(original, entry, entryText);
+      return;
+    }
+
+    const dateEl = entry.querySelector('.journaldate');
+
+    let date = dateEl ? dateEl.innerText : lastDate;
+    lastDate = date;
+
+    date = date.split('-');
+
+    const journalData = {
+      id: entryId,
+      date: date[0] ? date[0].trim() : '0:00',
+      location: date[1] ? date[1].trim() : 'Unknown',
+      text: entryText.innerHTML,
+      type: [...entry.classList],
+      mouse: entry.getAttribute('data-mouse-type') || null,
+    };
+
+    await dbSet('better-journal-original', journalData);
+  });
+};
+
 /**
  * For each element matching the selector, find and replace strings.
  *
@@ -17,7 +64,9 @@ import styles from './styles';
  */
 const modifyText = async (selector, strings) => {
   const elements = document.querySelectorAll(selector);
-  elements.forEach(async (element) => {
+  elements.forEach(async (entry) => {
+    const element = entry.querySelector('.journalbody .journaltext');
+
     strings.forEach(async (string) => {
       if (! Array.isArray(string) || string.length !== 2) {
         return;
@@ -99,7 +148,16 @@ const maybeRestoreOriginalEntry = (entry) => {
 /**
  * Update text in journal entries.
  */
-const updateJournalText = () => {
+const updateJournalText = async () => {
+  // Save the original journal entries
+  await saveEntries((original, entry, entryText) => {
+    if (original.text && entryText.innerHTML !== original.text && entry.getAttribute('data-updated') !== 'true') {
+      return;
+    }
+
+    entry.setAttribute('data-updated', true);
+  });
+
   wrapGoldAndPoints();
 
   const entries = document.querySelectorAll('.journal .entry');
@@ -107,7 +165,7 @@ const updateJournalText = () => {
     maybeKeepAsOriginal(entry);
   });
 
-  modifyText('.journal .entry .journalbody .journaltext', [
+  modifyText('.journal .entry', [
     // Hunt entries
     ['I sounded the Hunter\'s Horn and was successful in the hunt!', ''],
     ['where I was successful in my hunt! I', 'and'],
@@ -227,7 +285,7 @@ const updateJournalText = () => {
     replacements.push([`A ${word}`, 'I caught a bonus']);
   });
 
-  modifyText('.journal .entry.custom .journalbody .journaltext', replacements);
+  modifyText('.journal .entry.custom', replacements);
 
   // Update log
   const log = document.querySelector('.journal .content .log_summary');
