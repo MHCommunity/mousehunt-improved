@@ -63,25 +63,23 @@ const displayResults = (results) => {
   </div>`;
 };
 
-const hud = () => {
-  addUIComponents();
-
-  const simPopup = document.querySelector('.valourRiftHUD-floorProgress-barContainer');
-  // const simPopup = document.querySelector('.valourRiftHUD-floorProgress-boss');
-
-  if (simPopup) {
-    simPopup.addEventListener('click', () => {
-      const data = simulate(false);
-      const popup = createPopup({
-        title: 'Valour Rift Run Simulation',
-        content: displayResults(data),
-        show: false,
-      });
-
-      popup.setAttributes({ className: 'mh-vrift-popup' });
-      popup.show();
-    });
+const doSimulation = (selector) => {
+  const simPopup = document.querySelector(selector);
+  if (! simPopup) {
+    return;
   }
+
+  simPopup.addEventListener('click', () => {
+    const data = simulate(false);
+    const popup = createPopup({
+      title: 'Valour Rift Run Simulation',
+      content: displayResults(data),
+      show: false,
+    });
+
+    popup.setAttributes({ className: 'mh-vrift-popup' });
+    popup.show();
+  });
 };
 
 const addUIComponents = () => {
@@ -150,11 +148,28 @@ const spinPlayerIcon = () => {
   });
 };
 
+const addSimulatorEvents = () => {
+  doSimulation('.valourRiftHUD-floorProgress-barContainer');
+
+  const magnifyingGlass = document.querySelector('.valourRiftHUD-previewTower');
+  if (! magnifyingGlass) {
+    return;
+  }
+
+  const simLink = makeElement('a', ['valourRiftHUD-previewTower', 'mh-vrift-sim-link'], 'Simulate Run');
+  simLink.title = 'Simulate Valour Rift Run';
+  // append next to the magnifying glass
+  magnifyingGlass.after(simLink);
+
+  doSimulation('.mh-vrift-sim-link');
+};
+
 /**
  * Initialize the module.
  */
 export default async () => {
   addHudStyles(styles);
-  hud();
+  addUIComponents();
+  addSimulatorEvents();
   spinPlayerIcon();
 };

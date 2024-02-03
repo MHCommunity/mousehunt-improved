@@ -218,18 +218,30 @@ span.valourRiftHUD-towerUpgrade-currentValue {
 
 .valourRiftHUD-previewTower {
   top: 45px;
+  left: 580px;
   filter: grayscale(1);
-  opacity: 0.4;
+  opacity: 0.6;
+}
+
+.valourRiftHUD-previewTower.mh-vrift-sim-link {
+  left: 550px;
+  background-image: url('https://i.mouse.rip/mh-improved/sim.png');
+  color: transparent;
+  filter: grayscale(1);
+  width: 21px;
+  height: 21px;
+  top: 43px;
 }
 
 span.valourRiftHUD-huntsRemaining-value {
-  font-size: 13px;
+  margin-right: 5px;
+  font-size: 15px;
   font-weight: 900;
   line-height: 14px;
 }
 
 span.valourRiftHUD-stepsTaken-value {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 900;
   color: #2d2964;
 }
@@ -245,11 +257,11 @@ span.valourRiftHUD-stepsTaken-value {
   font-size: 21px;
   font-variant: petite-caps;
   color: #ebfffd;
-  text-shadow: 0 0 2px #62fff3;
+  text-shadow: 0 0 1px #62fff3;
   background-color: #231857;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
-  -webkit-text-stroke: 1px #62fff3;
+  -webkit-text-stroke: 1px #4fc5bc;
 }
 
 .valourRiftHUD-currentFloor:hover #mh-vrift-floor-name,
@@ -454,11 +466,14 @@ span.valourRiftHUD-stepsTaken-value {
   transition: opacity 0.4s ease-in-out;
 }
 
-.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite-name,
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.step,
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.player,
 .valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-image::before {
   opacity: 0.4;
+}
+
+.valourRiftHUD-tower:hover .valourRiftHUD-tower-sprite.player:hover {
+  opacity: 1;
 }
 
 .valourRiftHUD-tower-sprite.floor .valourRiftHUD-tower-sprite-name {
@@ -466,8 +481,10 @@ span.valourRiftHUD-stepsTaken-value {
   mix-blend-mode: hard-light;
 }
 
-.valourRiftHUD.tower .valourRiftHUD-huntsRemaining .valourRiftHUD-state.tower {
+.valourRiftHUD.tower .valourRiftHUD-huntsRemaining .valourRiftHUD-state.tower,
+.valourRiftHUD.tower .valourRiftHUD-stepsTaken .valourRiftHUD-state.tower {
   display: flex;
+  gap: 5px;
   align-items: center;
   justify-content: flex-end;
 }
@@ -555,8 +572,4 @@ a.valourRiftHUD-gauntletBait-image.active {
 .valourRiftHUD-crafting-image {
   background-position: center;
   background-size: 120%;
-}
-
-.valourRiftHUD.tower .valourRiftHUD-previewTower {
-  mix-blend-mode: color-burn;
 }
