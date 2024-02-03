@@ -172,6 +172,7 @@
 
 .sunkenCityHud .sidebarContent .zoneName {
   padding-top: 0;
+  line-height: 0.9;
 }
 
 .sunkenCityHud .diveControls {
