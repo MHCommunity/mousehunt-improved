@@ -1,3 +1,5 @@
+import { onEvent } from './event-registry';
+
 /**
  * Add styles to the page.
  *
@@ -56,8 +58,10 @@ const addStylesDirect = (styles, identifier = 'mh-utils-custom-styles', once = f
  * @param {string|Array} styles     CSS to add to the page.
  * @param {string}       identifier Identifier to use for the styles.
  * @param {boolean}      replace    Whether to replace the existing styles.
+ *
+ * @return {Element} The style element.
  */
-const addStyles = async (styles, identifier = 'mh-improved-styles', replace = false) => {
+const addModuleStyles = (styles, identifier = 'mh-improved-styles', replace = false) => {
   const existingStyles = document.querySelector(`#${identifier}`);
 
   styles = Array.isArray(styles) ? styles.join('\n') : styles;
@@ -69,13 +73,43 @@ const addStyles = async (styles, identifier = 'mh-improved-styles', replace = fa
       existingStyles.innerHTML += styles;
     }
 
-    return;
+    return existingStyles;
   }
 
   const style = document.createElement('style');
   style.id = identifier;
   style.innerHTML = styles;
   document.head.append(style);
+
+  return style;
+};
+
+/**
+ * Add custom styles to the page.
+ *
+ * @param {string|Array} styles     CSS to add to the page.
+ * @param {string}       module     The module ID to add the styles to.
+ * @param {string}       identifier Identifier to use for the styles.
+ */
+const addStyles = (styles, module = false, identifier = 'mh-improved-styles') => {
+  if (! module) {
+    throw new Error('Module ID is required for adding module styles.', module);
+  }
+
+  let key = `mh-improved-styles-${module}`;
+  if (identifier) {
+    key = `${key}-${identifier}`;
+  }
+
+  let stylesEl = addModuleStyles(styles, key, true);
+
+  onEvent(`mh-improved-settings-changed-${module}`, (enabled) => {
+    if (enabled) {
+      stylesEl = addModuleStyles(styles, key, true);
+    } else if (stylesEl) {
+      stylesEl.remove();
+    }
+  });
 };
 
 /**
@@ -100,6 +134,7 @@ const removeHudStyles = () => {
 export {
   addStylesDirect,
   addHudStyles,
+  addModuleStyles,
   addStyles,
   removeHudStyles
 };
