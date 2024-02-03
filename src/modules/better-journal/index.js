@@ -2,6 +2,7 @@ import {
   getSetting,
   onActivation,
   onRequest,
+  onTurn,
   sessionGet,
   sessionSet
 } from '@utils';
@@ -282,6 +283,8 @@ const main = () => {
     setTimeout(updateEls, 300);
     setTimeout(updateEls, 900);
   });
+
+  onTurn(updateEls);
 
   if (getSetting('better-journal-privacy')) {
     journalPrivacy();
