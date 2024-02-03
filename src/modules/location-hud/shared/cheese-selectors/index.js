@@ -154,7 +154,6 @@ export default (location, cheeses) => {
   replaceCampShowTab();
 
   const main = () => {
-    console.log('cheese selector main');
     makeCheeseSelector(location, getCheeses(cheeses));
   };
 

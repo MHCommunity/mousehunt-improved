@@ -560,7 +560,7 @@ const listenForKeypresses = () => {
       return;
     }
 
-    const tagName = event.target.tagName.toLowerCase();
+    const tagName = event?.target?.tagName?.toLowerCase();
     if ('input' === tagName || 'textarea' === tagName || 'select' === tagName) {
       return;
     }
