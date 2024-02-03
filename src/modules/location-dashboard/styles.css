@@ -113,79 +113,84 @@ img.locationImage {
   background-size: 354px;
 }
 
-.dashboard-fi-tiles .inactive {
-  background-position-y: 51px;
-}
-
-.dashboard-fi-tiles .glass {
-  background-position-x: 354px;
+.dashboard-fi-tiles .glass,
+.dashboard-fi-tiles .gem_bonus {
+  background-position-x: 0;
 }
 
 .dashboard-fi-tiles .ore,
 .dashboard-fi-tiles .ore_bonus {
-  background-position-x: 330px;
+  background-position-x: 6.6%;
 }
 
-.dashboard-fi-tiles .sky_cheese,
-.dashboard-fi-tiles .curd {
-  background-position-x: 308px;
+.dashboard-fi-tiles .curd,
+.dashboard-fi-tiles .sky_cheese {
+  background-position-x: 13.3%;
 }
 
 .dashboard-fi-tiles .pirate,
-.dashboard-fi-tiles .sky_pirate {
-  background-position-x: 286px;
+.dashboard-fi-tiles .sky_pirates {
+  background-position-x: 20%;
 }
 
-.dashboard-fi-tiles .key {
-  background-position-x: 263px;
+.dashboard-fi-tiles .key,
+.dashboard-fi-tiles .loot_cache {
+  background-position-x: 26.6%;
 }
 
 .dashboard-fi-tiles .warden-wind,
 .dashboard-fi-tiles .wind_shrine {
-  background-position-x: 240px;
+  background-position-x: 33.3%;
 }
 
 .dashboard-fi-tiles .warden-rain,
 .dashboard-fi-tiles .rain_shrine {
-  background-position-x: 217px;
+  background-position-x: 40%;
 }
 
 .dashboard-fi-tiles .warden-frost,
 .dashboard-fi-tiles .frost_shrine {
-  background-position-x: 196px;
+  background-position-x: 46.6%;
 }
 
 .dashboard-fi-tiles .warden-fog,
 .dashboard-fi-tiles .fog_shrine {
-  background-position-x: 173px;
+  background-position-x: 53.3%;
 }
 
-.dashboard-fi-tiles .sprocket {
-  background-position-x: 151px;
+.dashboard-fi-tiles .sprocket,
+.dashboard-fi-tiles .paragon_cache_a {
+  background-position-x: 60%;
 }
 
-.dashboard-fi-tiles .bangle {
-  background-position-x: 129px;
+.dashboard-fi-tiles .bangle,
+.dashboard-fi-tiles .paragon_cache_d {
+  background-position-x: 66.6%;
 }
 
-.dashboard-fi-tiles .wing {
-  background-position-x: 106px;
+.dashboard-fi-tiles .wing,
+.dashboard-fi-tiles .paragon_cache_c {
+  background-position-x: 73.3%;
 }
 
-.dashboard-fi-tiles .silk {
-  background-position-x: 84px;
+.dashboard-fi-tiles .silk,
+.dashboard-fi-tiles .paragon_cache_b {
+  background-position-x: 80%;
 }
 
-.dashboard-fi-tiles .glore {
-  background-position-x: 65px;
+.dashboard-fi-tiles .glore,
+.dashboard-fi-tiles .ore_gem_bonus {
+  background-position-x: 86.6%;
 }
 
-.dashboard-fi-tiles .seal {
-  background-position-x: 43px;
+.dashboard-fi-tiles .seal,
+.dashboard-fi-tiles .cloudstone_bonus {
+  background-position-x: 93.3%;
 }
 
-.dashboard-fi-tiles .jade {
-  background-position-x: 20px;
+.dashboard-fi-tiles .jade,
+.dashboard-fi-tiles .charm_bonus {
+  background-position-x: 100%;
 }
 
 .location-refresh-item {
