@@ -14,9 +14,19 @@ const getFlag = (flag) => {
   }
 
   // split the flags into an array and check if the flag is in the array
-  return flags.replaceAll(' ', '').split(',').includes(flag);
+  return flags.toLowerCase().replaceAll(' ', '').split(',').includes(flag);
+};
+
+const getFlags = () => {
+  const flags = getSetting('override-flags');
+  if (! flags) {
+    return [];
+  }
+
+  return flags.toLowerCase().replaceAll(' ', '').split(',');
 };
 
 export {
-  getFlag
+  getFlag,
+  getFlags
 };
