@@ -4,6 +4,8 @@ import {
   getSettingDirect,
   getUserItems,
   makeElement,
+  onActivation,
+  onDeactivation,
   onTurn,
   saveSettingDirect
 } from '@utils';
@@ -87,11 +89,7 @@ const addRefreshListener = () => {
   });
 };
 
-let useCachedWisdom = false;
-/**
- * Initialize the module.
- */
-const init = async () => {
+const main = async () => {
   if (! getSetting('wisdom-in-stat-bar-auto-refresh', true)) {
     useCachedWisdom = true;
     onTurn(updateWisdom);
@@ -99,6 +97,20 @@ const init = async () => {
 
   await updateWisdom();
   addRefreshListener();
+};
+
+let useCachedWisdom = false;
+/**
+ * Initialize the module.
+ */
+const init = async () => {
+  onActivation(main);
+  onDeactivation(() => {
+    const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
+    if (wisdomRow) {
+      wisdomRow.remove();
+    }
+  });
 };
 
 export default {
