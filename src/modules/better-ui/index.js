@@ -1,16 +1,40 @@
+import { addStyles, getFlag, onNavigation } from '@utils';
+
 import friends from './friends';
 import hud from './hud';
 import skins from './skins';
-import styles from './styles';
+
+import profilePlusFixStyles from './profile-plus-fixes.css';
+
+import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
+const styles = imported;
+
+const addProfilePlusFixes = () => {
+  const hasProfilePlus = document.querySelector('#copyCrownsButton');
+  if (! hasProfilePlus) {
+    return;
+  }
+
+  addStyles(profilePlusFixStyles, 'better-ui-profile-plus-fixes');
+};
 
 /**
  * Initialize the module.
  */
 const init = async () => {
-  styles();
+  addStyles(styles, 'better-ui');
+
   friends();
   hud();
   skins();
+
+  if (! getFlag('no-better-ui-profile-plus', false)) {
+    onNavigation(() => {
+      setTimeout(addProfilePlusFixes, 1000);
+    }, {
+      page: 'hunterprofile',
+    });
+  }
 };
 
 export default {
