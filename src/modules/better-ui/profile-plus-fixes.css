@@ -8,8 +8,8 @@
 }
 
 .mouseCrownsView-group-mouse-favouriteButton {
-  left: 2px;
   top: 2px;
+  left: 2px;
 }
 
 .mouseCrownsView .pt.event {
@@ -55,15 +55,15 @@
 
 .mouseCrownsView .toolBar {
   position: absolute;
-  right: 9px;
   top: -1px;
+  right: 9px;
   display: flex;
   gap: 2px;
   align-items: center;
   justify-content: flex-end;
-  float: none!important;
+  float: none !important;
   padding: 1px;
   background-color: #d1d1d1;
   border: 1px solid #a7a7a7;
-  border-radius: 0 5px 0 5px;
+  border-radius: 0 5px;
 }
