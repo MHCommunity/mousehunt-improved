@@ -1,10 +1,8 @@
 import {
-  debuglog,
   getSetting,
   getSettingDirect,
   getUserItems,
   makeElement,
-  onActivation,
   onDeactivation,
   onTurn,
   saveSettingDirect
@@ -118,7 +116,7 @@ export default {
   id: 'wisdom-in-stat-bar',
   name: 'Wisdom in Stat Bar',
   type: 'feature',
-  default: true,
+  default: false,
   description: 'Show wisdom in the stat bar.',
   load: init,
   settings,

@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.31.2
+
+- Fixes default state for Wisdom in Stat Bar
+- Removes 'Module Template' from module list
+
 ## Version 0.31.1
 
 - Fixes journal icons always showing
