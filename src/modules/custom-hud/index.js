@@ -17,6 +17,7 @@ const addStyleEl = () => {
   let style;
 
   const pedastal = 'https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2';
+  // eslint-disable-next-line unicorn/prefer-ternary
   if ('hud-blueprint' === setting) {
     style = `body .mousehuntHud-marbleDrawer {
       background:
@@ -24,8 +25,6 @@ const addStyleEl = () => {
         url(${pedastal}) 731px 0 no-repeat,
         url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
     }`;
-
-    document.head.append(style);
   } else {
     style = `body .mousehuntHud-marbleDrawer {
       background:
