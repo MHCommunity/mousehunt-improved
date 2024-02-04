@@ -1,6 +1,6 @@
 import {
   addStyles,
-  debug,
+  debuglog,
   doEvent,
   getCurrentLocation,
   getCurrentPage,
@@ -90,6 +90,8 @@ const checkForAutohorn = () => {
     return false;
   }
 
+  isAutohorning = true;
+
   // Send a post request to the autohorn tracker.
   fetch('https://autohorn.mouse.rip/submit', {
     method: 'POST',
@@ -102,17 +104,56 @@ const checkForAutohorn = () => {
   });
 };
 
-const sendModulesStats = () => {
+let lastSubmit = 0;
+const sendModulesStats = async (force = false) => {
+  // Don't send the stats more than once every 5 minutes, unless it's the settings page.
+  if (Date.now() - lastSubmit < 300000 && ! force) {
+    return;
+  }
+
+  lastSubmit = Date.now();
+
+  // Only used to generate a unique hash for the user that doesn't change but is unique and anonymous. props MHCT.
+  const msgUint8 = new TextEncoder().encode(user.user_id.toString().trim());
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+  const hashArray = [...new Uint8Array(hashBuffer)];
+  userHash = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+
+  const settings = getSettings();
+
+  delete settings['keyboard-shortcuts'];
+  delete settings['favorite-setups'];
+
+  if (settings['inventory-lock-and-hide']) {
+    settings['inventory-lock-and-hide'] = {
+      locked: settings['inventory-lock-and-hide']?.locked?.length || 0,
+      hidden: settings['inventory-lock-and-hide']?.hidden?.length || 0,
+    };
+  }
+
+  if (settings['override-styles']) {
+    settings['override-styles'] = settings['override-styles'].length;
+  }
+
+  if (settings['better-travel'] && settings['better-travel']['travel-window-hidden-locations']) {
+    settings['better-travel']['travel-window-hidden-locations'] = settings['better-travel']['travel-window-hidden-locations'].length;
+  }
+
   const statData = {
-    platform: mhImprovedPlatform,
-    version: mhImprovedVersion,
     modules: getGlobal('modules'),
-    settings: getSettings(),
-    user: user.unique_hash,
+    settings,
+    user: userHash,
+    isAutohorning,
+    hasSeenUserscriptMigration: localStorage.getItem('mh-improved-ignore-migrated-userscript-warning'),
   };
 
-  // TODO: Send the stats to the server.
-  debug('Sending stats to the server', statData);
+  debuglog('usage-stats', 'Updating usage stats', statData);
+
+  fetch('https://mhi-stats.mouse.rip/submit', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(statData),
+  });
 };
 
 const addIconToMenu = () => {
@@ -135,6 +176,8 @@ const addIconToMenu = () => {
   menu.append(icon);
 };
 
+let isAutohorning = false;
+
 /**
  * Initialize the module.
  */
@@ -153,12 +196,23 @@ const init = async () => {
   // If you want to disable the reporting, you can but you have to admit you're a cheater.
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
     checkForAutohorn();
-    onTurn(checkForAutohorn);
+    onTurn(setTimeout(checkForAutohorn, 2000));
   }
 
   if (getSetting('error-reporting', true)) {
-    sendModulesStats();
-    onTurn(sendModulesStats);
+    // No personal data is sent, just the settings and modules that are enabled.
+    // Delay the first call so we don't send it while things are still loading.
+    setTimeout(sendModulesStats, 3000);
+
+    // Send the stats every horn, but delay it so we dont fire off at the same time as MHCT.
+    onTurn(sendModulesStats, 2000);
+
+    // Send the stats when the settings are changed.
+    let timeout;
+    onEvent('mh-improved-settings-changed', () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => sendModulesStats(true), 1000); // Debounce the event.
+    });
   }
 
   addIconToMenu();
