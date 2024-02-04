@@ -1,4 +1,4 @@
-import { addStyles, doRequest, makeElement, onPageChange } from '@utils';
+import { addStyles, doRequest, makeElement, onActivation, onPageChange } from '@utils';
 
 import styles from './styles.css';
 
@@ -99,7 +99,9 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
 const init = async () => {
   addStyles(styles, 'tem-crowns');
 
-  onPageChange({ tem: { show: addCrownsToTEM } });
+  onActivation(async () => {
+    onPageChange({ tem: { show: addCrownsToTEM } });
+  });
 };
 
 export default {
