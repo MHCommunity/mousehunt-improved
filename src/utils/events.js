@@ -549,8 +549,11 @@ const onDeactivation = (module, callback) => {
   });
 };
 
-const onTurn = (callback) => {
-  onRequest(callback, 'managers/ajax/turns/activeturn.php', true);
+const onTurn = (callback, delay = null) => {
+  onRequest(() => {
+    delay = delay || Math.floor(Math.random() * 1000) + 1000;
+    setTimeout(callback, delay);
+  }, 'managers/ajax/turns/activeturn.php', true);
 };
 
 export {
