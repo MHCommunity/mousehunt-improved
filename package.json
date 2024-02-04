@@ -16,6 +16,7 @@
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
     "build:extension:firefox": "node scripts/build-extension.mjs firefox",
     "build:userscript": "node scripts/build-userscript.mjs",
+    "build:userscripts": "node scripts/build-individual-userscripts.mjs",
     "clean": "del-cli dist",
     "lint:css:fix": "stylelint **/**/*.css --fix",
     "lint:css": "stylelint src/**/*.css",
@@ -34,8 +35,7 @@
   "dependencies": {
     "@babel/runtime": "^7.23.7",
     "@sentry/browser": "^7.93.0",
-    "humanize-duration": "^3.31.0",
-    "mousehunt-utils": "^1.11.0"
+    "humanize-duration": "^3.31.0"
   },
   "devDependencies": {
     "@sentry/esbuild-plugin": "^2.10.2",
@@ -57,6 +57,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-require-jsdoc": "^1.0.4",
     "eslint-plugin-unicorn": "^50.0.1",
+    "fast-glob": "^3.3.2",
     "json-minify": "^1.0.0",
     "jsonc-eslint-parser": "^2.4.0",
     "node-fetch": "^3.3.2",
