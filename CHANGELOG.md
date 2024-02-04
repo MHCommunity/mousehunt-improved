@@ -1,5 +1,54 @@
 # Changelog
 
+## Version 0.31.0
+
+### Added
+
+- Adds Wisdom in Stat Bar feature
+- Adds Journal Changer feature
+- Adds Mousoleum Location HUD
+- Adds Laboratory Location HUD
+- Adds minigame to Fiery Warpath HUD, first click on the streak display to activate and then click in the HUD to launch missiles
+- Adds a power type indicator to Favorite Setups
+- Adds `journal-icons` and `journal-icons-all` beta testing features
+- Adds Better UI styles for tsitu's Location Catch stats script
+- Adds Gnawnia Rift Location HUD styles
+- Adds more custom entry styling to Better Journal
+- Adds a Blueprint option to Custom HUD
+- Adds a quick spin animation to the player icon when clicking (or shift-clicking) on it in Valour Rift Location HUD
+- Adds a better link to the sim popup in Valour Rift Location HUD
+
+### Changed
+
+- Alphabetizes item list for Quick Send Supplies and Pinned Send Supplies settings
+- Updates the size of the title shield slightly
+- Updates Better Quests to not show the Quest tab if not Lord/Lady
+- Updates Favorite Setups edit/delete buttons to be more consistent
+- Updates Better King's Reward to honk the horn after successfully submitting the puzzle
+- Updates Better Journal's entry rewriting to save entries in IndexDB to avoid rewriting the same entry multiple times
+- Updaes Bristled Woods Rift Location HUD styles
+- Updates Valour Rift Location HUD styles
+- Updates Image Upscaling to look nicer in more places
+- Updates most modules to take effect immediately when settings are changed, rather than requiring a page refresh
+
+### Fixed
+
+- Fixes Better Gifts not sending or claiming all gifts
+- Fixes Favorite Setups trying to generate a name on first save
+- Fixes LGS reminder alignment and styles
+- Fixes Iceberg Location HUD Hidden Depths length
+- Fixes Burroughs Rift Location HUD mist showing wrong ccolor at 6
+- Fixes Hide Daily Reward Popup not correctly hiding the popup _finally_
+- Fixes Better UI style conflicts with Profile+
+- Fixes Location HUD cheese selectors showing after traveling away
+- Fixes Floating Islands Location Dashboard not correctly showing the correct tiles
+- Fixes Sunken City Location HUD zone name size
+- Fixes User Highlighting not showing after the data has been cached
+- Removes the shadow from the HUD when using the blueprint background
+- Fixes Gnawnia Rift not showing cheese quantities in tooltips
+- Fixes too tall Theme Preview popup
+- Fixes various minor bugs and style issues
+
 ## Version 0.30.5
 
 - Fixes locked inventory items not correctly locking
