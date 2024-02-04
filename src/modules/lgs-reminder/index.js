@@ -1,12 +1,6 @@
 import humanizeDuration from 'humanize-duration';
 
-import {
-  addStyles,
-  getFlag,
-  makeElement,
-  onActivation,
-  onDeactivation
-} from '@utils';
+import { addStyles, getFlag, makeElement, onDeactivation } from '@utils';
 
 import styles from './styles.css';
 

@@ -4,7 +4,6 @@ import {
   makeElement,
   makeLink,
   makeTooltip,
-  onActivation,
   onOverlayChange,
   onPageChange
 } from '@utils';

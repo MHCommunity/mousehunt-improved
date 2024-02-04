@@ -1,6 +1,6 @@
 import * as esbuild from 'esbuild';
-import fs from 'node:fs';
 import FastGlob from 'fast-glob';
+import fs from 'node:fs';
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 

@@ -1,3 +1,11 @@
+/* eslint-disable array-callback-return */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-alert */
+/* eslint-disable no-console */
+/* eslint-disable no-mixed-operators */
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-var */
 // This is all borrowed from the original sim script while it's being rewritten.
 // Sets the display for the percentages
 // Set to true or false depending on which display you want
@@ -87,8 +95,8 @@ const cacheLoot =
     [500, 296],
     [500, 300]];
 
-const normalAR = [[0.00000, 0.00000, 0.00000, 0.00000],
-  [0.00000, 0.00000, 0.00000, 0.00000],
+const normalAR = [[0, 0, 0, 0],
+  [0, 0, 0, 0],
   [0.08246, 0.05616, 0.04866, 0.04231],
   [0.08246, 0.05616, 0.04866, 0.04231],
   [0.08246, 0.05616, 0.04866, 0.04231],
@@ -96,80 +104,80 @@ const normalAR = [[0.00000, 0.00000, 0.00000, 0.00000],
   [0.08246, 0.05616, 0.04866, 0.04231],
   [0.08246, 0.05616, 0.04866, 0.04231],
   [0.08246, 0.05616, 0.04866, 0.04231],
-  [0.00000, 0.00000, 0.00000, 0.00000],
-  [0.00000, 0.01658, 0.02836, 0.04121],
-  [0.00000, 0.01658, 0.02836, 0.04121],
-  [0.00000, 0.01658, 0.02836, 0.04121],
-  [0.00000, 0.01658, 0.02836, 0.04121],
-  [0.00000, 0.01658, 0.02836, 0.04121],
-  [0.00000, 0.01658, 0.02836, 0.04121],
-  [0.00000, 0.01658, 0.02836, 0.04121],
-  [0.00000, 0.00000, 0.00000, 0.00000],
+  [0, 0, 0, 0],
+  [0, 0.01658, 0.02836, 0.04121],
+  [0, 0.01658, 0.02836, 0.04121],
+  [0, 0.01658, 0.02836, 0.04121],
+  [0, 0.01658, 0.02836, 0.04121],
+  [0, 0.01658, 0.02836, 0.04121],
+  [0, 0.01658, 0.02836, 0.04121],
+  [0, 0.01658, 0.02836, 0.04121],
+  [0, 0, 0, 0],
   [0.17073, 0.06332, 0.06193, 0.08571],
   [0.04065, 0.01583, 0.02368, 0.01978],
   [0.03252, 0.01583, 0.02732, 0.01209],
-  [0.00000, 0.29288, 0.11840, 0.03626],
-  [0.00000, 0.00000, 0.12750, 0.07473],
-  [0.00000, 0.00000, 0.00000, 0.09725],
-  [0.17886, 0.10290, 0.10200, 0.08956],
-  [0.00000, 0.00000, 0.00000, 0.00000],
-  [0.00000, 0.00000, 0.00000, 0.00000]];
+  [0, 0.29288, 0.1184, 0.03626],
+  [0, 0, 0.1275, 0.07473],
+  [0, 0, 0, 0.09725],
+  [0.17886, 0.1029, 0.102, 0.08956],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0]];
 
-const umbraAR = [[0.00000, 0.00000, 0.00000, 0.00000],
-  [0.00000, 0.00000, 0.00000, 0.00000],
-  [0.06600, 0.04129, 0.03857, 0.03100],
-  [0.06600, 0.04129, 0.03857, 0.03100],
-  [0.06600, 0.04129, 0.03857, 0.03100],
-  [0.06600, 0.04129, 0.03857, 0.03100],
-  [0.06600, 0.04129, 0.03857, 0.03100],
-  [0.06600, 0.04129, 0.03857, 0.03100],
-  [0.06600, 0.04129, 0.03857, 0.03100],
-  [0.00000, 0.00000, 0.00000, 0.00000],
-  [0.00000, 0.01043, 0.01886, 0.03600],
-  [0.00000, 0.01043, 0.01886, 0.03600],
-  [0.00000, 0.01043, 0.01886, 0.03600],
-  [0.00000, 0.01043, 0.01886, 0.03600],
-  [0.00000, 0.01043, 0.01886, 0.03600],
-  [0.00000, 0.01043, 0.01886, 0.03600],
-  [0.00000, 0.01043, 0.01886, 0.03600],
-  [0.00000, 0.00000, 0.00000, 0.00000],
-  [0.11500, 0.07200, 0.06500, 0.05600],
-  [0.03800, 0.02300, 0.02000, 0.01700],
-  [0.02300, 0.01400, 0.01300, 0.00900],
-  [0.00000, 0.23110, 0.10806, 0.03300],
-  [0.00000, 0.00000, 0.09800, 0.05500],
-  [0.00000, 0.00000, 0.00000, 0.08100],
-  [0.18300, 0.11200, 0.10200, 0.08000],
-  [0.17900, 0.18600, 0.19200, 0.20000],
-  [0.00000, 0.00000, 0.00000, 0.00000]];
+const umbraAR = [[0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0.066, 0.04129, 0.03857, 0.031],
+  [0.066, 0.04129, 0.03857, 0.031],
+  [0.066, 0.04129, 0.03857, 0.031],
+  [0.066, 0.04129, 0.03857, 0.031],
+  [0.066, 0.04129, 0.03857, 0.031],
+  [0.066, 0.04129, 0.03857, 0.031],
+  [0.066, 0.04129, 0.03857, 0.031],
+  [0, 0, 0, 0],
+  [0, 0.01043, 0.01886, 0.036],
+  [0, 0.01043, 0.01886, 0.036],
+  [0, 0.01043, 0.01886, 0.036],
+  [0, 0.01043, 0.01886, 0.036],
+  [0, 0.01043, 0.01886, 0.036],
+  [0, 0.01043, 0.01886, 0.036],
+  [0, 0.01043, 0.01886, 0.036],
+  [0, 0, 0, 0],
+  [0.115, 0.072, 0.065, 0.056],
+  [0.038, 0.023, 0.02, 0.017],
+  [0.023, 0.014, 0.013, 0.009],
+  [0, 0.2311, 0.10806, 0.033],
+  [0, 0, 0.098, 0.055],
+  [0, 0, 0, 0.081],
+  [0.183, 0.112, 0.102, 0.08],
+  [0.179, 0.186, 0.192, 0.2],
+  [0, 0, 0, 0]];
 
-const mouseDrops = [[0.00000, 0.00000, 0.00000, 0.00000, 1982],
-  [0.00000, 0.00000, 0.00000, 0.00000, 4250],
-  [0.60515, 0.60515, 0.00000, 0.00000, 1000],
-  [0.63774, 0.63774, 0.00000, 0.00000, 1250],
-  [0.56444, 0.56444, 0.00000, 0.00000, 1500],
-  [0.57674, 0.57674, 0.00000, 0.00000, 2000],
-  [0.63102, 0.63102, 0.00000, 0.00000, 2500],
-  [0.57209, 0.57209, 0.00000, 0.00000, 3000],
-  [0.59000, 0.59000, 0.00000, 0.00000, 4000],
-  [2.40541, 0.98649, 0.00000, 0.00000, 25000],
-  [0.01000, 0.01000, 1.10000, 1.00000, 6000],
-  [0.00000, 0.00000, 1.10000, 1.00000, 6000],
-  [0.00909, 0.00909, 1.10000, 1.00000, 6000],
-  [0.00000, 0.00000, 1.10000, 1.00000, 6000],
-  [0.00800, 0.00800, 1.10000, 1.00000, 6000],
-  [0.00826, 0.00826, 1.10000, 1.00000, 6000],
-  [0.03150, 0.03150, 1.10000, 1.00000, 6000],
-  [3.82927, 1.00000, 0.00000, 0.00000, 100000],
-  [0.01770, 0.01770, 0.00000, 0.00000, 2000],
-  [0.00000, 0.00000, 0.00000, 0.00000, 1500],
-  [0.01429, 0.01429, 0.00000, 0.00000, 1000],
-  [0.00643, 0.00643, 1.10000, 1.00000, 5000],
-  [0.00000, 0.00000, 1.15000, 1.00000, 5000],
-  [0.02475, 0.02475, 1.75000, 1.00000, 8000],
-  [0.99597, 0.99396, 0.00000, 0.00000, 4795],
-  [0.00000, 0.00000, 0.00000, 0.00000, 12000],
-  [0.00000, 0.00000, 0.00000, 0.00000, 0]];
+const mouseDrops = [[0, 0, 0, 0, 1982],
+  [0, 0, 0, 0, 4250],
+  [0.60515, 0.60515, 0, 0, 1000],
+  [0.63774, 0.63774, 0, 0, 1250],
+  [0.56444, 0.56444, 0, 0, 1500],
+  [0.57674, 0.57674, 0, 0, 2000],
+  [0.63102, 0.63102, 0, 0, 2500],
+  [0.57209, 0.57209, 0, 0, 3000],
+  [0.59, 0.59, 0, 0, 4000],
+  [2.40541, 0.98649, 0, 0, 25000],
+  [0.01, 0.01, 1.1, 1, 6000],
+  [0, 0, 1.1, 1, 6000],
+  [0.00909, 0.00909, 1.1, 1, 6000],
+  [0, 0, 1.1, 1, 6000],
+  [0.008, 0.008, 1.1, 1, 6000],
+  [0.00826, 0.00826, 1.1, 1, 6000],
+  [0.0315, 0.0315, 1.1, 1, 6000],
+  [3.82927, 1, 0, 0, 100000],
+  [0.0177, 0.0177, 0, 0, 2000],
+  [0, 0, 0, 0, 1500],
+  [0.01429, 0.01429, 0, 0, 1000],
+  [0.00643, 0.00643, 1.1, 1, 5000],
+  [0, 0, 1.15, 1, 5000],
+  [0.02475, 0.02475, 1.75, 1, 8000],
+  [0.99597, 0.99396, 0, 0, 4795],
+  [0, 0, 0, 0, 12000],
+  [0, 0, 0, 0, 0]];
 
 const mouseStats = [[3300, 1],
   [5050, 1],
@@ -215,7 +223,7 @@ function convertToCR(power, luck, stats) {
 }
 
 function simulate(shouldDisplay = true) {
-  const time = (new Date()).getTime() / 1000;
+  const time = Date.now() / 1000;
 
   const lvSpeed = window.user.enviroment_atts.power_up_data.long_stride.current_value;
   const lvSync = window.user.enviroment_atts.power_up_data.hunt_limit.current_level + 1;
@@ -237,12 +245,12 @@ function simulate(shouldDisplay = true) {
   let luck = (window.user.trinket_name == 'Ultimate Charm') ? 100000 : window.user.trap_luck;
 
   try {
-    const altpower = Number(document.getElementsByClassName('campPage-trap-trapStat power')[0].children[1].innerText.match(/[0-9]/g).join(''));
-    const altluck = Number(document.getElementsByClassName('campPage-trap-trapStat luck')[0].children[1].innerText);
+    const altpower = Number(document.querySelectorAll('.campPage-trap-trapStat.power')[0].children[1].innerText.match(/\d/g).join(''));
+    const altluck = Number(document.querySelectorAll('.campPage-trap-trapStat.luck')[0].children[1].innerText);
     power = Number.isNaN(altpower) ? power : Math.max(power, altpower);
     luck = Number.isNaN(altluck) ? luck : Math.max(luck, altluck);
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 
   const mouseCR = mouseStats.map(function (stats) {
@@ -347,7 +355,7 @@ function simulate(shouldDisplay = true) {
   }
 
   var syncSpent = 0;
-  const valuesDistribution = Array(500);
+  const valuesDistribution = Array.from({ length: 500 });
   for (var i = 0; i < 500; i++) {
     valuesDistribution[i] = [];
   }
@@ -357,8 +365,8 @@ function simulate(shouldDisplay = true) {
   let endActive = steps;
   let loopEnd;
 
-  for (let k = 0; k < valuesDistribution.length; k++) {
-    valuesDistribution[k][0] = 0;
+  for (const element of valuesDistribution) {
+    element[0] = 0;
   }
   var runValues = [];
   for (var step = 0; step < steps; step++) {
@@ -421,7 +429,7 @@ function simulate(shouldDisplay = true) {
     averageFloor += a * (b + 1);
   });
 
-  const loopDistribution = Array(25).fill(0).map(
+  const loopDistribution = Array.from({ length: 25 }).fill(0).map(
     function (a, index) {
       let sum = 0;
       valuesDistribution.slice(index * 8, (index + 1) * 8).map(
@@ -439,14 +447,14 @@ function simulate(shouldDisplay = true) {
     runningProbability -= a;
     return result;
   });
-  const loopCopy = loopDistribution.slice(0).filter(function (a) {
+  const loopCopy = [...loopDistribution].filter(function (a) {
     return a > 0.001;
   });
 
   const avgFloor = Math.round(averageFloor);
   const curCache = getCacheLoot(curFloor);
   const avgCache = getCacheLoot(avgFloor);
-  const mult = [sh ? 1.5 : 1.0, sr ? 1.5 : 1.0];
+  const mult = [sh ? 1.5 : 1, sr ? 1.5 : 1];
   const deltaCache = [Math.ceil(avgCache[0] * mult[0]) - Math.ceil(curCache[0] * mult[0]), Math.ceil(avgCache[1] * mult[1]) - Math.ceil(curCache[1] * mult[1])];
 
   const display = [
@@ -460,7 +468,7 @@ function simulate(shouldDisplay = true) {
   ];
 
   const startDisplay = display.length;
-  const fullDisplay = ['VRift Run Simulation: ' + ((new Date()).getTime() / 1000 - time) + ' seconds taken.',
+  const fullDisplay = ['VRift Run Simulation: ' + (Date.now() / 1000 - time) + ' seconds taken.',
     'Speed: ' + lvSpeed,
     'Siphon: ' + siphon,
     (torchState ? 'CF ' : '') + (superSiphon ? 'SS ' : '') + (umbra ? 'UU ' : '') + (strStep ? 'SSt ' : ''),
@@ -533,3 +541,11 @@ function simulate(shouldDisplay = true) {
 }
 
 export default simulate;
+/* eslint-enable array-callback-return */
+/* eslint-enable eqeqeq */
+/* eslint-enable no-alert */
+/* eslint-enable no-console */
+/* eslint-enable no-mixed-operators */
+/* eslint-enable no-shadow */
+/* eslint-enable no-unused-vars */
+/* eslint-enable no-var */

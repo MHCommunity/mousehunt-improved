@@ -5,7 +5,6 @@ import {
   getCurrentTab,
   getSetting,
   makeElement,
-  onActivation,
   onEvent,
   onNavigation,
   onOverlayChange

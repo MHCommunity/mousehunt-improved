@@ -2,7 +2,6 @@ import {
   addStyles,
   getSetting,
   makeElement,
-  onActivation,
   onDeactivation,
   onDialogShow,
   onRequest,
