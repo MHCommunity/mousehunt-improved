@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.31.1
+
+- Fixes journal icons always showing
+
 ## Version 0.31.0
 
 ### Added
