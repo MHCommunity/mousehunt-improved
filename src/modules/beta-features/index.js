@@ -1,5 +1,7 @@
 import { debuglog, getFlag } from '@utils';
 
+import journalIcons from './modules/journal-icons';
+import journalIconsAll from './modules/journal-icons-all';
 import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
 import socialNoop from './modules/social';
@@ -14,6 +16,8 @@ const init = async () => {
     { id: 'twitter', load: socialNoop },
     { id: 'social-noop', load: socialNoop },
     { id: 'raffle', load: raffle },
+    { id: 'journal-icons', load: journalIcons },
+    { id: 'journal-icons-all', load: journalIconsAll },
   ];
 
   const defaultEnabledFeatures = [

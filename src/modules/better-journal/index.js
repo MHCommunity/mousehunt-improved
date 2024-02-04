@@ -1,6 +1,8 @@
 import {
+  addStyles,
   dbGet,
   dbSet,
+  getCurrentPage,
   getSetting,
   onActivation,
   onRequest,
@@ -9,9 +11,14 @@ import {
   sessionSet
 } from '@utils';
 
-import styles from './styles';
+import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
+const styles = imported;
 
 const saveEntries = async (callback) => {
+  if ('camp' !== getCurrentPage()) {
+    return;
+  }
+
   const entries = document.querySelectorAll('.journal .entry');
 
   // reverse the entries so we can process them in order
@@ -29,7 +36,7 @@ const saveEntries = async (callback) => {
       return;
     }
 
-    const original = await dbGet('better-journal-original', entryId);
+    const original = await dbGet('journal-entries', entryId);
 
     if (original && original.text) {
       callback(original, entry, entryText);
@@ -52,7 +59,7 @@ const saveEntries = async (callback) => {
       mouse: entry.getAttribute('data-mouse-type') || null,
     };
 
-    await dbSet('better-journal-original', journalData);
+    await dbSet('journal-entries', journalData);
   });
 };
 
@@ -353,7 +360,7 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  styles();
+  addStyles(styles, 'better-journal');
 
   onActivation('better-journal', main);
 };
