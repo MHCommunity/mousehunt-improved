@@ -30,6 +30,8 @@
 - Updates Valour Rift Location HUD styles
 - Updates Image Upscaling to look nicer in more places
 - Updates most modules to take effect immediately when settings are changed, rather than requiring a page refresh
+- Updated error reporting to be more helpful
+- Minor style updates to Better UI and other modules
 
 ### Fixed
 
