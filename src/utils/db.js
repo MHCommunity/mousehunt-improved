@@ -47,25 +47,6 @@ const dbSet = async (databaseName, data) => {
   const transaction = db.transaction(databaseName, 'readwrite');
   const objectStore = transaction.objectStore(databaseName);
 
-  const request = objectStore.add(data);
-
-  return new Promise((resolve, reject) => {
-    request.onsuccess = () => {
-      resolve(request.result);
-    };
-
-    request.onerror = () => {
-      reject(request.error);
-    };
-  });
-};
-
-const dbUpdate = async (databaseName, data) => {
-  const db = await database(databaseName);
-
-  const transaction = db.transaction(databaseName, 'readwrite');
-  const objectStore = transaction.objectStore(databaseName);
-
   const request = objectStore.put(data);
 
   return new Promise((resolve, reject) => {
@@ -117,10 +98,29 @@ const dbGetAll = async (databaseName) => {
   });
 };
 
+const dbDeleteAll = async (databaseName) => {
+  const db = await database(databaseName);
+
+  const transaction = db.transaction(databaseName, 'readwrite');
+  const objectStore = transaction.objectStore(databaseName);
+
+  const request = objectStore.clear();
+
+  return new Promise((resolve, reject) => {
+    request.onsuccess = () => {
+      resolve(request.result);
+    };
+
+    request.onerror = () => {
+      reject(request.error);
+    };
+  });
+};
+
 export {
   dbGet,
   dbSet,
-  dbUpdate,
   dbDelete,
   dbGetAll,
+  dbDeleteAll
 };
