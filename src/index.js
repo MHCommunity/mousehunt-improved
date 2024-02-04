@@ -22,11 +22,11 @@ import {
 import * as imported from './modules/*/index.js'; // eslint-disable-line import/no-unresolved
 const modules = imported;
 
-if (getSetting('error-reporting', true)) {
+if (getSetting('error-reporting', true) && ! getFlag('no-sentry', false)) {
   Sentry.init({
     dsn: 'https://c0e7b72f2611e14c356dba1923cedf6e@o4506582061875200.ingest.sentry.io/4506583459233792',
     maxBreadcrumbs: 50,
-    debug: ! getFlag('debug'),
+    debug: false,
     release: `mousehunt-improved@${mhImprovedVersion}`,
     environment: mhImprovedPlatform,
     allowUrls: [
