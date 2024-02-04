@@ -1,8 +1,8 @@
-import { CSSMinifyTextPlugin, sharedBuildOptions } from './shared.mjs';
-
 import * as esbuild from 'esbuild';
 import fs from 'node:fs';
 import path from 'node:path';
+
+import { CSSMinifyTextPlugin, ImportGlobPlugin, sharedBuildOptions } from './shared.mjs';
 
 const header = fs.readFileSync(
   path.join(process.cwd(), 'src/userscript-header.js'), 'utf8')
@@ -10,7 +10,10 @@ const header = fs.readFileSync(
 
 await esbuild.build({
   ...sharedBuildOptions,
-  plugins: [CSSMinifyTextPlugin],
+  plugins: [
+    ImportGlobPlugin,
+    CSSMinifyTextPlugin
+  ],
   outfile: 'dist/mousehunt-improved.user.js',
   minify: false,
   sourcemap: true,

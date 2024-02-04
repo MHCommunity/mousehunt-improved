@@ -1,4 +1,7 @@
 import * as esbuild from 'esbuild';
+import fs from 'node:fs';
+import FastGlob from 'fast-glob';
+import path from 'node:path';
 import { readFile } from 'node:fs/promises';
 
 const CSSMinifyTextPlugin = {
@@ -18,13 +21,49 @@ const CSSMinifyTextPlugin = {
   }
 };
 
+const ImportGlobPlugin = {
+  name: 'ImportGlobPlugin',
+  setup(build) {
+    build.onLoad({ filter: /\.js$/ }, async (args) => {
+      let contents = fs.readFileSync(args.path, 'utf8');
+
+      const matches = contents.match(/import \* as imported from '(.*)';/);
+      if (matches) {
+        const globPattern = path.resolve(path.dirname(args.path), matches[1]);
+        const files = (
+          await FastGlob(globPattern)
+        );
+
+        let importStatements = '';
+        const importNames = [];
+
+        for (const [index, file] of files.entries()) {
+          const relativePath = path.relative(path.dirname(args.path), file);
+          const importName = `imported${index}`;
+          importStatements += `import ${importName} from './${relativePath}';\n`;
+          importNames.push(importName);
+        }
+
+        importStatements += `const imported = [${importNames.join(', ')}];\n`;
+
+        contents = contents.replace(matches[0], importStatements);
+      }
+
+      return {
+        contents,
+        loader: 'js',
+      };
+    });
+  },
+};
+
 const sharedBuildOptions = {
   entryPoints: ['src/index.js'],
   platform: 'browser',
   format: 'iife',
   globalName: 'mhui',
   bundle: true,
-  minify: false,
+  minify: true,
   metafile: true,
   sourcemap: true,
   target: [
@@ -36,5 +75,6 @@ const sharedBuildOptions = {
 
 export {
   CSSMinifyTextPlugin,
+  ImportGlobPlugin,
   sharedBuildOptions
 };

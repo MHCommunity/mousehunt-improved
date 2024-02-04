@@ -1,13 +1,10 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { sentryEsbuildPlugin } from '@sentry/esbuild-plugin';
-
-import { CSSMinifyTextPlugin, sharedBuildOptions } from './shared.mjs';
-
 import * as esbuild from 'esbuild';
+import { CSSMinifyTextPlugin, ImportGlobPlugin, sharedBuildOptions } from './shared.mjs';
 import archiver from 'archiver';
 import copyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line import/default
 import fs from 'node:fs';
 import path from 'node:path';
+import { sentryEsbuildPlugin } from '@sentry/esbuild-plugin';
 
 /**
  * Main build function.
@@ -31,6 +28,7 @@ const buildExtension = async (platform) => {
   );
 
   const plugins = [
+    ImportGlobPlugin,
     CSSMinifyTextPlugin,
     copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
       src: 'src/extension',
