@@ -1,3 +1,4 @@
+import { dbDeleteAll } from './db';
 import { debuglog } from './debug';
 import { getFlag } from './flags';
 
@@ -121,7 +122,7 @@ const getData = async (key) => {
   return data;
 };
 
-const clearCaches = () => {
+const clearCaches = async () => {
   const allCacheExpirations = getCacheExpirations();
 
   for (const key of Object.keys(allCacheExpirations)) {
@@ -133,6 +134,9 @@ const clearCaches = () => {
       sessionStorage.removeItem(key);
     }
   }
+
+  // also delete the specified IndexedDB databases
+  await dbDeleteAll('journal-entries');
 
   localStorage.removeItem(getCacheExpirationKey());
 };
