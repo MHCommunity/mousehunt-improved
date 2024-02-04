@@ -1,11 +1,8 @@
-import { debuglog, onDialogShow, onRequest } from '@utils';
+import { onDialogShow, onRequest } from '@utils';
 
 const hidePopup = () => {
-  debuglog('hide-daily-reward-popup', 'Attempting to hide daily reward popup');
   if (activejsDialog) {
-    debuglog('hide-daily-reward-popup', 'ActiveJS dialog found');
     const attrs = activejsDialog.getAttributes();
-    debuglog('hide-daily-reward-popup', 'ActiveJS dialog attributes', attrs);
     if (attrs && attrs.className && attrs.className === 'dailyRewardPopup') {
       activejsDialog.hide();
     }
