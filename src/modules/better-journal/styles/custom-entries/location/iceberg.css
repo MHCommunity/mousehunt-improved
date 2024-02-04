@@ -1,0 +1,6 @@
+.journal .content .iceberg_advance,
+.journal .content .iceberg_pushback,
+.journal .content .iceberg_pushback_prevented,
+.journal .entry.riftFuroma {
+  font-style: inherit;
+}

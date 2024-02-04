@@ -1,13 +1,13 @@
 /* Frift droid */
-.journal .entry.riftFuroma {
+.journal .content .entry.riftFuroma {
   position: relative;
 }
 
-.journal .entry.riftFuroma-energyLost .journalbody {
+.journal .content .entry.riftFuroma-energyLost .journalbody {
   margin-left: 80px;
 }
 
-.journal .entry.riftFuroma-energyLost .journalbody::before {
+.journal .content .entry.riftFuroma-energyLost .journalbody::before {
   position: absolute;
   top: -12px;
   left: -96px;
@@ -21,4 +21,27 @@
   background-position: 0 -100px;
   background-size: 110%;
   mix-blend-mode: luminosity;
+}
+
+.journal .content .entry.riftFuroma-energyLost .journaltext {
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+}
+
+.journal .content .entry.riftFuroma-retreat {
+  background-color: #f4c3b2;
+}
+
+.journal .content .entry.riftFuroma-energyLost {
+  min-height: 60px;
+}
+
+.journal .content .entry.riftFuroma-enterPagoda,
+.journal .content .entry.riftFuroma-unlockBattery {
+  background-color: #f3b782;
+}
+
+.journal .content .entry.riftFuroma-exitPagoda {
+  background-color: #e3bfb4;
 }

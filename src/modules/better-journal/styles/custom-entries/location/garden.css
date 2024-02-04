@@ -1,0 +1,14 @@
+.journal .content .entry.minigame_start.yellow_drops {
+  background-color: #fffd97;
+  background-blend-mode: darken;
+}
+
+.journal .content .entry.minigame_start.red_drops {
+  background-color: #ffaf98;
+  background-blend-mode: darken;
+}
+
+.journal .content .entry.minigame_start.orange_drops {
+  background-color: #ffde97;
+  background-blend-mode: darken;
+}

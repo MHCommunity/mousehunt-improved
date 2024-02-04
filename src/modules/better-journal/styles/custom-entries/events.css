@@ -1,0 +1,17 @@
+.journal .entry.ronza_chrome_voucher_claim {
+  background-color: #cae5e8;
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/a3be8c11176c289f6c79068cbe813968.png?cv=2);
+}
+
+.journal .entry.halloween-candy {
+  background-color: #f1b7dc;
+}
+
+.journal .entry.lunar_lantern {
+  background-color: #ffd0b3;
+  border: 1px solid #5b5b5b;
+}
+
+.journal .entry.spring_hunt_warmonger_egg_drop .journaltext {
+  padding-left: 0;
+}
