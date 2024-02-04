@@ -12,7 +12,6 @@ import settings from './settings';
 
 const getWisdomSetting = (key) => {
   const setting = getSettingDirect('wisdom-stat', {});
-  debuglog('wisdom', `Getting setting: ${key}`, setting[key]);
   return setting[key];
 };
 
@@ -23,12 +22,10 @@ const saveWisdomSetting = (key, value) => {
 };
 
 const getWisdom = async () => {
-  debuglog('wisdom', `Getting wisdom. using cached: ${useCachedWisdom}`);
   let wisdom = 0;
 
   if (useCachedWisdom) {
     const cachedWisdom = getWisdomSetting('value');
-    debuglog('wisdom', `Got cached wisdom: ${cachedWisdom}`);
     if (cachedWisdom) {
       return cachedWisdom;
     }
@@ -36,8 +33,6 @@ const getWisdom = async () => {
 
   wisdom = await getUserItems(['wisdom_stat_item'], true);
   wisdom = wisdom[0]?.quantity || 0;
-
-  debuglog('wisdom', `Got wisdom: ${wisdom}`);
 
   saveWisdomSetting('value', wisdom);
   saveWisdomSetting('last-updated', Date.now());
