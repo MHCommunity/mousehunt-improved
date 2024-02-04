@@ -130,8 +130,6 @@ const changeJournalDaily = () => {
   const lastChange = new Date(Number.parseInt(lastChangeValue, 10));
   const now = new Date();
 
-  debuglog('journal-changer', 'Last journal change', lastChange.getDate(), now.getDate());
-
   // Check if the current time is past midnight and the journal has not been changed today
   debuglog('journal-changer', 'Checking if journal should be changed', lastChange.getDate(), now.getDate());
   if (
