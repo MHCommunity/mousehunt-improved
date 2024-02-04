@@ -19,7 +19,8 @@ import {
   showLoadingError
 } from '@utils';
 
-import modules from './module-loader';
+import * as imported from './modules/*/index.js'; // eslint-disable-line import/no-unresolved
+const modules = imported;
 
 if (getSetting('error-reporting', true)) {
   Sentry.init({
