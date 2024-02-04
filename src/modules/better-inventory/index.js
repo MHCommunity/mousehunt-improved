@@ -174,7 +174,7 @@ const init = async () => {
     getSetting('better-inventory-larger-images', true) ? largerImagesStyles : '',
   ], 'better-inventory');
 
-  onActivation('better-inventory', main);
+  main();
 };
 
 export default {

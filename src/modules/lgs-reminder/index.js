@@ -100,18 +100,16 @@ const main = () => {
   }, 750);
 };
 
-const load = () => {
+/**
+ * Initialize the module.
+ */
+const init = async () => {
   // Only load if the user has LGS.
   if (user.has_shield) {
     addStyles(styles, 'lgs-reminder');
     main();
   }
-};
-/**
- * Initialize the module.
- */
-const init = async () => {
-  onActivation('lgs-reminder', load);
+
   onDeactivation('lgs-reminder', () => {
     const reminder = document.querySelector('.mousehunt-improved-lgs-reminder');
     if (reminder) {

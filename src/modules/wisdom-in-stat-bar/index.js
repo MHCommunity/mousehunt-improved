@@ -104,7 +104,8 @@ let useCachedWisdom = false;
  * Initialize the module.
  */
 const init = async () => {
-  onActivation(main);
+  main();
+
   onDeactivation(() => {
     const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
     if (wisdomRow) {

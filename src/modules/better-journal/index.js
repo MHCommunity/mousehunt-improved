@@ -4,7 +4,6 @@ import {
   dbSet,
   getCurrentPage,
   getSetting,
-  onActivation,
   onRequest,
   onTurn,
   sessionGet,
@@ -362,7 +361,7 @@ const main = () => {
 const init = async () => {
   addStyles(styles, 'better-journal');
 
-  onActivation('better-journal', main);
+  main();
 };
 
 export default {

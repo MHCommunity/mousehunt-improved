@@ -167,7 +167,7 @@ const main = () => {
  */
 const init = async () => {
   addStyles(styles, 'better-item-view');
-  onActivation('better-item-view', main);
+  main();
 };
 
 export default {
