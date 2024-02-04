@@ -13,6 +13,7 @@
 .entry.short.folkloreForest.folkloreForest-lootFuelBoost .journaldate,
 .entry.short.labyrinth.labyrinth-chooseDoor .journaldate,
 .entry.short.labyrinth.labyrinth-intersection .journaldate,
+.entry.short.misc.custom.chesla_trap_trigger .journaldate,
 .entry.short.rift-whisker-woods-increase .journaldate {
   display: none;
 }
