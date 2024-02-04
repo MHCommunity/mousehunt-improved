@@ -16,6 +16,7 @@ import {
   isApp,
   isUnsupportedFile,
   isiFrame,
+  onActivation,
   showLoadingError
 } from '@utils';
 
@@ -124,6 +125,8 @@ const loadModules = async () => {
 
         continue;
       }
+
+      onActivation(submodule.id, submodule.load);
 
       if (
         submodule.alwaysLoad ||

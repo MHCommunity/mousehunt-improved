@@ -547,7 +547,7 @@ const addSettingRefreshReminder = () => {
 
   let refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
   if (! refreshMessage) {
-    const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'Refresh the page to apply your changes.');
+    const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'You may need to refresh the page for some settings to take effect.');
     newMessageEl.id = 'mh-utils-settings-refresh-message';
 
     const body = document.querySelector('body');

@@ -539,9 +539,6 @@ const onActivation = (module, callback) => {
       callback();
     }
   });
-
-  // Also fire the callback if the module is already active.
-  callback();
 };
 
 const onDeactivation = (module, callback) => {
