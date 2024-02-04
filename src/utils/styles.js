@@ -96,10 +96,7 @@ const addStyles = (styles, module = false, identifier = 'mh-improved-styles') =>
     throw new Error('Module ID is required for adding module styles.', module);
   }
 
-  let key = `mh-improved-styles-${module}`;
-  if (identifier) {
-    key = `${key}-${identifier}`;
-  }
+  const key = `${identifier}-${module}`;
 
   let stylesEl = addModuleStyles(styles, key, true);
 
