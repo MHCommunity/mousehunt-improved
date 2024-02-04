@@ -26,7 +26,7 @@
 - Updates Favorite Setups edit/delete buttons to be more consistent
 - Updates Better King's Reward to honk the horn after successfully submitting the puzzle
 - Updates Better Journal's entry rewriting to save entries in IndexDB to avoid rewriting the same entry multiple times
-- Updaes Bristled Woods Rift Location HUD styles
+- Updaes Bristle Woods Rift Location HUD styles
 - Updates Valour Rift Location HUD styles
 - Updates Image Upscaling to look nicer in more places
 - Updates most modules to take effect immediately when settings are changed, rather than requiring a page refresh
