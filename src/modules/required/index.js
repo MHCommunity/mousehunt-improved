@@ -123,6 +123,7 @@ const sendModulesStats = async (force = false) => {
 
   delete settings['keyboard-shortcuts'];
   delete settings['favorite-setups'];
+  delete settings['wisdom-stat'];
 
   if (settings['inventory-lock-and-hide']) {
     settings['inventory-lock-and-hide'] = {
@@ -184,7 +185,7 @@ let isAutohorning = false;
 const init = async () => {
   addStyles([settingStyles, settingsIconStyles], 'required');
 
-  loadStyleOverrides();
+  onEvent('mh-improved-loaded', loadStyleOverrides);
 
   loadAdvancedSettings();
 

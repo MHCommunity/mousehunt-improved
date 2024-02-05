@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.31.3
+
+- Fixes Custom Styles not applying in the correct order
+
 ## Version 0.31.2
 
 - Fixes default state for Wisdom in Stat Bar
