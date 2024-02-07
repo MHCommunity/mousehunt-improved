@@ -41,7 +41,7 @@ if (getSetting('error-reporting', true) && ! getFlag('no-sentry', false)) {
         version: mhImprovedVersion,
       },
       user: {
-        id: user.unique_hash,
+        id: typeof user === 'undefined' ? null : user?.unique_hash,
       },
     },
   });
@@ -191,6 +191,11 @@ const init = async () => {
 
   if (! isApp()) {
     showLoadingError({ message: 'Global MouseHunt functions not found.' });
+    return;
+  }
+
+  if (! eventRegistry) {
+    showLoadingError({ message: 'Event registry not found.' });
     return;
   }
 
