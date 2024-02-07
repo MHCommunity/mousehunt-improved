@@ -227,7 +227,7 @@ const assignments = [
   {
     id: 'library_m400_bait_assignment_convertible',
     name: 'M400 Bait Research Assignment',
-    cost: 1250,
+    cost: 1500,
     reward: 200,
     rank: true,
   },
