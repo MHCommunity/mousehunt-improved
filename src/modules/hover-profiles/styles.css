@@ -120,11 +120,7 @@
 }
 
 #friend-data-wrapper .mousehuntTooltip {
-  position: absolute;
-  left: -20px;
-  width: auto;
-  height: auto;
-  background: #fff;
+  opacity: 0;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment {
