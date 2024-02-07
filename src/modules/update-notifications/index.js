@@ -178,7 +178,7 @@ const doOnboarding = () => {
 const init = async () => {
   addStyles(styles, 'update-notifications');
 
-  addBanner(true); // True if there are new settings, otherwise false.
+  addBanner(false); // True if there are new settings, otherwise false.
 
   // Delay the onboarding a bit so the banner has time to show.
   onNavigation(() => {
