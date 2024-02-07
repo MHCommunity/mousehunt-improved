@@ -105,7 +105,7 @@
 .giftSelectorView-scroller.giftSelectorView-giftContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .giftSelectorView-gift.gift_of_the_day:hover .giftSelectorView-gift-padding {
@@ -123,8 +123,15 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   filter: drop-shadow(0 0 3px #b9ff5d) drop-shadow(1px 1px 4px #b9ff5d) drop-shadow(-1px -1px 3px #b9ff5d);
 }
 
+.mh-gift-buttons-clone-wrapper {
+  scrollbar-color: #938f83 #e9e1c6;
+  max-height: 275px;
+  overflow-y: auto;
+}
+
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift-description {
   display: flex;
+  flex-direction: column-reverse;
   align-items: stretch;
 }
 
@@ -148,6 +155,23 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   margin: 0 5px 0 10px;
   margin-top: 0;
   background-color: transparent;
+}
+
+.mh-gift-buttons-clone-wrapper .giftSelectorView-friendRow-returnCost {
+  bottom: 3px;
+}
+
+.giftSelectorView-content-leftBar > .giftSelectorView-content-leftBar-highlightBlock::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: "";
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0 4px 4px -3px #000;
+}
+
+.giftSelectorView-content-leftBar > .giftSelectorView-content-leftBar-highlightBlock {
+  position: relative;
 }
 
 .giftSelectorView-friend.complete .giftSelectorView-friend-padding::after,
@@ -175,7 +199,7 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 }
 
 .giftSelectorView-friend .giftSelectorView-friend-padding {
-  height: 30px;
+  height: 35px;
 }
 
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift .itemImage {
@@ -300,11 +324,39 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
   vertical-align: middle;
 }
 
-.mh-gift-buttons-clone-wrapper {
-  max-height: 275px;
-  overflow-y: auto;
-}
-
 .paidgift a.giftSelectorView-friendRow-action.return {
   text-indent: -70px;
+}
+
+.giftSelectorView-friendRow-returnQuantity {
+  width: 30px;
+}
+
+.giftSelectorView-gift.paidgift .giftSelectorView-gift-padding {
+  box-shadow: 0 0 1px #000 inset;
+}
+
+.giftSelectorView-tabContent.hasSidebar .giftSelectorView-content-rightBar {
+  border-bottom-left-radius: 10px;
+}
+
+.giftSelectorView-friendRow-sender {
+  position: relative;
+}
+
+.giftSelectorView-friendRow:hover {
+  padding-bottom: 5px;
+  margin-bottom: 7px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  outline: 1px solid #bdbdbd;
+  box-shadow: none;
+}
+
+.giftSelectorView-friend-image {
+  top: -7px;
+  left: -7px;
+  width: 33px;
+  height: 33px;
+  border: 1px solid #bdbdbd;
 }
