@@ -279,7 +279,6 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
 };
 
 const armItem = async (itemId, itemType) => {
-  // hg.utils.TrapControl.armItem(id, type, success, failure);
   return new Promise((resolve, reject) => {
     hg.utils.TrapControl.armItem(itemId, itemType).go(resolve, reject);
   });
@@ -353,11 +352,6 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         const thisSetup = setups[index];
 
         // eslint-disable-next-line eqeqeq
-        if (thisSetup.bait_id && thisSetup.bait_id != user.bait_id) {
-          await armItem(thisSetup.bait_id, 'bait');
-        }
-
-        // eslint-disable-next-line eqeqeq
         if (thisSetup.base_id && thisSetup.base_id != user.base_id) {
           await armItem(thisSetup.base_id, 'base');
         }
@@ -370,6 +364,11 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         // eslint-disable-next-line eqeqeq
         if (thisSetup.trinket_id && thisSetup.trinket_id != user.trinket_id) {
           await armItem(thisSetup.trinket_id, 'trinket');
+        }
+
+        // eslint-disable-next-line eqeqeq
+        if (thisSetup.bait_id && thisSetup.bait_id != user.bait_id) {
+          await armItem(thisSetup.bait_id, 'bait');
         }
 
         updateFavoriteSetupName();
