@@ -71,6 +71,7 @@ const main = () => {
     return;
   }
 
+  const wrapper = makeElement('div', 'mousehunt-improved-lgs-reminder-wrapper');
   const reminder = makeElement('div', 'mousehunt-improved-lgs-reminder');
 
   const exact = isExact();
@@ -78,7 +79,8 @@ const main = () => {
     reminder.classList.add('exact');
   }
 
-  shieldEl.append(reminder);
+  wrapper.append(reminder);
+  shieldEl.after(wrapper);
 
   updateLgsReminder(reminder);
 

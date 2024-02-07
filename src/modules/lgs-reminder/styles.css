@@ -1,37 +1,10 @@
-.mousehunt-improved-lgs-reminder,
-.default.mhui-custom-shield .mousehunt-improved-lgs-reminder {
-  position: absolute;
-  right: 12px;
-  bottom: 4px;
-  left: -6px;
-  z-index: 1;
-  font-size: 12px;
-  color: #684434;
-  text-align: center;
-  background-color: rgb(221 205 162 / 85%);
-  border: 1px solid #9d9a91;
-  border-radius: 5px;
-}
-
-.mhui-custom-shield .mousehunt-improved-lgs-reminder {
-  right: 10px;
-  bottom: 2px;
-  left: 10px;
-}
-
-.mhui-custom-shield .mousehunt-improved-lgs-reminder.exact {
-  right: 2px;
-  left: 2px;
-}
-
 .mousehunt-improved-lgs-reminder.lgs-warning {
-  background-color: #ffbfbf;
+  background: linear-gradient(#fff,#ffbfbf);
 }
 
 .mousehunt-improved-lgs-reminder.lgs-danger {
   color: #f1d7d7;
-  background-color: #b32d26;
-  border-color: #af8080;
+  background: #b32d26;
   transition: 1.75s;
   animation: mh-improved-slight-fade 1.75s infinite;
 }
@@ -41,4 +14,23 @@
   .mousehunt-improved-lgs-reminder.lgs-danger {
     animation: none;
   }
+}
+
+.mousehunt-improved-lgs-reminder-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.mousehunt-improved-lgs-reminder {
+  border: 1px solid #d4af37;
+  background: linear-gradient(#fff 45%,#f8e7bb 55%);
+  padding: 2px 5px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px 6px 0 0;
+  justify-content: center;
+  border-bottom: none;
 }
