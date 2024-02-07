@@ -1,5 +1,5 @@
 .mousehunt-improved-lgs-reminder.lgs-warning {
-  background: linear-gradient(#fff,#ffbfbf);
+  background: linear-gradient(#fff, #ffbfbf);
 }
 
 .mousehunt-improved-lgs-reminder.lgs-danger {
@@ -25,12 +25,12 @@
 }
 
 .mousehunt-improved-lgs-reminder {
-  border: 1px solid #d4af37;
-  background: linear-gradient(#fff 45%,#f8e7bb 55%);
-  padding: 2px 5px;
   display: flex;
   align-items: center;
-  border-radius: 6px 6px 0 0;
   justify-content: center;
+  padding: 2px 5px;
+  background: linear-gradient(#fff 45%, #f8e7bb 55%);
+  border: 1px solid #d4af37;
   border-bottom: none;
+  border-radius: 6px 6px 0 0;
 }
