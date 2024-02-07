@@ -124,6 +124,10 @@ const maybeKeepAsOriginal = (entry) => {
     // 'stuck_snowball',
   ];
 
+  const keepOriginalClasses = new Set([
+    'lunar_lantern',
+  ]);
+
   const entryId = entry.getAttribute('data-entry-id');
   if (! entryId) {
     return;
@@ -136,6 +140,16 @@ const maybeKeepAsOriginal = (entry) => {
 
   const isMouse = entry.getAttribute('data-mouse-type');
   if (isMouse && keepOriginalMice.includes(isMouse)) {
+    const entryText = entry.querySelector('.journaltext');
+    if (entryText) {
+      // save the original text in session storage so we can use it later
+      sessionSet(`mhui-custom-entry-${entryId}`, entryText.innerHTML);
+      entry.setAttribute('data-is-custom-entry', true);
+    }
+  }
+
+  const classList = [...entry.classList];
+  if (classList.some((c) => keepOriginalClasses.has(c))) {
     const entryText = entry.querySelector('.journaltext');
     if (entryText) {
       // save the original text in session storage so we can use it later
