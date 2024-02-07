@@ -4,7 +4,6 @@ import archiver from 'archiver';
 import copyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line import/default
 import fs from 'node:fs';
 import path from 'node:path';
-import { sentryEsbuildPlugin } from '@sentry/esbuild-plugin';
 
 /**
  * Main build function.
@@ -27,41 +26,26 @@ const buildExtension = async (platform) => {
     }, null, 2)
   );
 
-  const plugins = [
-    ImportGlobPlugin,
-    CSSMinifyTextPlugin,
-    copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
-      src: 'src/extension',
-      dest: `dist/${platform}`,
-      filter: (file) => { // eslint-disable-line jsdoc/require-jsdoc
-        // Don't copy the screenshots dir or any dotfiles. We don't copy the manifest
-        // because we're copying a modified version of it above.
-        return (
-          ! file.startsWith('screenshots') &&
-          ! file.startsWith('.') &&
-          ! file.startsWith('manifest-')
-        );
-      }
-    }),
-  ];
-
-  // If we're building for production, add the Sentry plugin.
-  if ('production' === process.env.NODE_ENV) {
-    plugins.push(sentryEsbuildPlugin({
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-      org: 'brad-parbs',
-      project: 'mh-improved',
-      telemetry: false,
-      release: {
-        name: `mousehunt-improved@${process.env.npm_package_version}`,
-      }
-    }));
-  }
-
   await esbuild.build({
     ...sharedBuildOptions,
     outfile: `dist/${platform}/main.js`,
-    plugins,
+    plugins: [
+      ImportGlobPlugin,
+      CSSMinifyTextPlugin,
+      copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
+        src: 'src/extension',
+        dest: `dist/${platform}`,
+        filter: (file) => { // eslint-disable-line jsdoc/require-jsdoc
+          // Don't copy the screenshots dir or any dotfiles. We don't copy the manifest
+          // because we're copying a modified version of it above.
+          return (
+            ! file.startsWith('screenshots') &&
+            ! file.startsWith('.') &&
+            ! file.startsWith('manifest-')
+          );
+        }
+      }),
+    ],
     banner: {
       js: [
         `const mhImprovedVersion = '${process.env.npm_package_version}';`,
