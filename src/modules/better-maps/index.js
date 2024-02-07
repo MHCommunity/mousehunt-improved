@@ -200,7 +200,7 @@ const updateRelicHunterHint = async () => {
     hintWrapper = relicHunter;
   }
 
-  makeElement('div', 'treasureMapInventoryView-relicHunter-hintSuffix', `... in ${environment.name}.`, hintWrapper);
+  makeElement('div', 'treasureMapInventoryView-relicHunter-hintSuffix', `... in ${environment.article}.`, hintWrapper);
 
   const travelButton = makeElement('div', ['mousehuntActionButton', 'small']);
   makeElement('span', '', 'Travel', travelButton);
