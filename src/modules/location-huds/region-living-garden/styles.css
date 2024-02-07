@@ -43,3 +43,206 @@
   margin-left: 22px;
   text-align: left;
 }
+
+.itemImage.dewthief_petal_crafting_item::before,
+.itemImage.dreamfluff_herbs_crafting_item::before,
+.itemImage.duskshade_petal_crafting_item::before {
+  position: absolute;
+  top: -26px;
+  left: -2px;
+  z-index: 1;
+  padding: 4px;
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+  text-shadow: 1px 1px 0 #2e1800;
+  content: "Garden";
+  background-color: #412200;
+}
+
+.itemImage.dewthief_petal_crafting_item::before {
+  right: -2px;
+  left: -9px;
+  padding-left: 6px;
+  color: #7fd981;
+  border-top-left-radius: 10px;
+}
+
+.itemImage.dreamfluff_herbs_crafting_item::before {
+  right: -2px;
+  left: -3px;
+  color: #91e9fb;
+  content: "City";
+}
+
+.itemImage.duskshade_petal_crafting_item::before {
+  content: "Desert";
+  border-top-right-radius: 10px;
+  left: -3px;
+  right: -8px;
+  padding-left: 2px;
+  color: #f4daba;
+}
+
+
+.livingGardenHud .itemContainer .itemImage.faded {
+  overflow: visible;
+  opacity: 1;
+}
+
+.livingGardenHud .itemContainer .itemImage.faded img,
+.livingGardenHud .itemContainer .itemImage.faded .quantity {
+  opacity: 0.4;
+}
+
+.travelHudLg > div {
+  display: none;
+}
+
+
+.livingGardenHud .minigameContainer .curseContainer .curse.active:after {
+  content: "cursed!";
+  position: absolute;
+  bottom: 0;
+  right: 13px;
+  left: 15px;
+  background-color: #050605;
+  text-align: center;
+  padding: 2px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.mist.active:after {
+  background-color: #8bf7f5;
+  box-shadow: -3px 0px 5px 1px #8bf7f5, 3px 0px 5px -1px #8bf7f5;
+  content: "Clarity";
+  color: #086c6a;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.darkness.active:after {
+  background-color: #050605;
+  color: #68a856;
+  content: "Shine";
+  text-shadow: 0px 0px 3px #63765f;
+  box-shadow: -7px 4px 5px -1px #649e53, 7px 2px 5px -1px #649e53;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.fear.active:after {
+  background-color: #f09036;
+  box-shadow: -7px 2px 5px -1px #da7b34, 5px 2px 5px -1px #da7b34;
+  content: "Bravery";
+  text-shadow: 0px 0px 1px #fee236;
+}
+
+
+.livingGardenHud.lost_city.corrupted .curse.active .curseActive {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.active .help {
+  left: 20px;
+  right: 18px;
+  width: unset;
+  top: 20px;
+  bottom: 20px;
+  height: unset;
+  padding: 5px;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.active .help img {
+  /* visibility: visible; */
+  left: 6px;
+  width: 45px;
+  height: 45px;
+  top: 5px;
+  bottom: 0;
+  right: 0;
+}
+
+
+.livingGardenHud .minigameContainer .curseContainer .curse.active .help {
+  display: block;
+  visibility: hidden;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.active:hover .help {
+  visibility: visible;
+}
+
+
+.livingGardenHud .minigameContainer .curseContainer .curse.active .help b {
+  visibility: visible;
+  left: -5px;
+  right: -5px;
+  position: absolute;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  top: -22px;
+  padding-top: 2px;
+  font-size: 12px;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.mist.active .help b {
+  background-color: #8bf7f5;
+  box-shadow: -3px 0px 5px 1px #8bf7f5, 3px 0px 5px -1px #8bf7f5;
+  content: "Clarity";
+  color: #086c6a;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.darkness.active .help b {
+  background-color: #050605;
+  content: "Shine";
+  text-shadow: 0px 0px 3px #63765f;
+  color: #68a856;
+  box-shadow: -5px -3px 5px -2px #649e53, 6px -2px 5px -2px #649e53;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.fear.active .help b {
+  background-color: #f09036;
+  box-shadow: -7px 2px 5px -1px #da7b34, 5px 2px 5px -1px #da7b34;
+  content: "Bravery";
+  text-shadow: 0px 0px 1px #fee236;
+}
+
+.livingGardenHud .minigameContainer .curseContainer .curse.active .help span {
+  margin: 0;
+}
+
+.livingGardenHud.lost_city.corrupted .curse {
+    display: block !important;
+    visibility: hidden;
+}
+
+.livingGardenHud.lost_city.corrupted .curse .curseDispelled {
+    position: absolute;
+    top: 0;
+    background-color: #f6ffd4;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: inset 0 0 5px black;
+    justify-content: space-evenly;
+}
+
+.livingGardenHud.lost_city.corrupted .curse.active {
+    visibility: visible;
+}
+
+.livingGardenHud.lost_city.corrupted .curse .curseDispelled b {
+    text-decoration: line-through;
+    font-size: 11px;
+}
+
+.livingGardenHud.lost_city.corrupted .curse .curseDispelled br {
+    display: none;
+}
