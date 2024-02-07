@@ -1877,5 +1877,49 @@
         "name": "Boss"
       }
     ]
+  },
+  "lunar_new_year_list": {
+    "categories": [
+      {
+        "name": "Standard",
+        "id": "anywhere",
+        "icon": "https://www.mousehuntgame.com/images/items/stats/large/2b92cfc72df4733942a9d7f63d1f3378.png",
+        "color": "#b9d1ff",
+        "mice": [
+          "costumed_dog",
+          "costumed_dragon",
+          "costumed_horse",
+          "costumed_monkey",
+          "costumed_ox",
+          "costumed_pig",
+          "costumed_rabbit",
+          "costumed_rat",
+          "costumed_rooster",
+          "costumed_sheep",
+          "costumed_snake",
+          "costumed_tiger"
+        ]
+      },
+      {
+        "name": "Dumpling",
+        "id": "dumpling",
+        "icon": "https://www.mousehuntgame.com/images/items/bait/large/f4c3ee4bb9aba29938223172a791650b.png",
+        "color": "#ffefb9",
+        "mice": [
+          "calligraphy",
+          "dumpling_chef",
+          "red_envelope"
+        ]
+      },
+      {
+        "name": "Nian Gao'da",
+        "id": "ngd",
+        "icon": "https://www.mousehuntgame.com/images/items/bait/large/d4813a69fff0b714f79976a726b7ce66.png",
+        "color": "#ffa4a4",
+        "mice": [
+          "red_candle"
+        ]
+      }
+    ]
   }
 }
