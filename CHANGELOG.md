@@ -1,5 +1,33 @@
 # Changelog
 
+## Version 0.31.4
+
+- Adds Lunar New Year maps to the Sorted map tab of Better Maps
+- Adds `journal-list` feature flag to display journal loot in a list
+- Updates `journal-icons-all` to use transparent images
+- Removes the 99 item limit when sending paid gifts to friends
+- Adds a warning in Whisker Woods Rift when you have high rage or LLC equipped but not a Taunting charm
+- Updates the LGS reminder display to be more like the display on Hunter Profiles
+- Adds Event Location styles for Lunar New Year, including the ability to drag or scroll the lantern height map
+- Updates Living Garden Location HUD to Garden, City, Desert markers on ingredients
+- Updates Cursed City Location HUD to show curse name & necessary charm without having to hover
+- Fixes a potential error happening when toggling quill visiblity in Table of Contents
+- Updates Better Journal styles to not break for certain entries or mess up the formatting of event entries
+- Fixes Catch Rate Estimator wrapping mice names to a new line
+- Fixes broken tooltips inside of Hover Profiles
+- Fix item classification not showing for item views
+- Removes shadow on Larry when hovering over him on an item view due to a weird rendering issue
+- Fixes Inbox arrow showing a line between the arrow and the text
+- Fixes Journal Changer trying to change to unowned journals
+- Updates Better Journal to not rewrite LNY entries
+- Updates Better Journal to rewrite the extra Slayer entry to be one line
+- Fixes a grammar mistake in purchase complete journal entries
+- Updates Better Gifts styles to look a bit nicer for the gift selector
+- Fixes button postion on news posts in the Inbox
+- Fixes image displays in news posts, adds fun hover state to them
+- Fixes display issues with Bristle Woods Rift Location HUD
+- Minor other style updates and fixes to various modules
+
 ## Version 0.31.3
 
 - Fixes Custom Styles not applying in the correct order
