@@ -1,8 +1,16 @@
 const addEvent = (eventName, eventCallback, eventScope, removeAfterFire, weight, uniqueId) => {
+  if (! eventRegistry) {
+    return;
+  }
+
   eventRegistry.addEventListener(eventName, callback, eventScope, removeAfterFire, weight, uniqueId);
 };
 
 const doEvent = (eventName, params) => {
+  if (! eventRegistry) {
+    return;
+  }
+
   eventRegistry.doEvent(eventName, params);
 };
 
@@ -14,6 +22,10 @@ const doEvent = (eventName, params) => {
  * @param {boolean}  remove   Whether or not to remove the event listener after it's fired.
  */
 const onEvent = (event, callback, remove = false) => {
+  if (! eventRegistry) {
+    return;
+  }
+
   eventRegistry.addEventListener(event, callback, null, remove);
 };
 
