@@ -62,7 +62,7 @@ const exportDataPopup = () => {
   if (hasFavoriteSetups()) {
     exporters.push({
       id: 'favorite-setups',
-      name: 'Favorite Setups',
+      name: 'Favorite Setups (userscript)',
       callback: exportFavoriteSetups,
     });
   }
