@@ -151,17 +151,12 @@
 
 #overlayPopup.itemViewPopup .itemView-header-classification {
   right: 25px;
-  color: transparent;
 }
 
 .itemView-actionContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.itemView-header-classification {
-  color: transparent;
 }
 
 .itemView-action {
