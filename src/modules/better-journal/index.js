@@ -274,6 +274,7 @@ const updateJournalText = async () => {
     ['My Condensed Creativity created additional loot:', 'My Condensed Creativity created an additional '],
     ['The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case', 'The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case!'],
     ['*BLING*', '<span class="decoration">✨️</span>'],
+    ['Aura helped me find', 'Aura found'],
 
     // Event stuff
     // SEH
