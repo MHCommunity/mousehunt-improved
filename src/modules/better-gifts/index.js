@@ -291,21 +291,32 @@ const addRandomSendButton = () => {
 
 let _showTab;
 let _selectGift;
+let _updateGiftMultiplierQuantity;
 const addGiftSwitcher = () => {
-  if (_showTab || _selectGift) {
+  if (_showTab || _selectGift || _updateGiftMultiplierQuantity) {
     return;
   }
 
   _showTab = hg.views.GiftSelectorView.showTab;
   _selectGift = hg.views.GiftSelectorView.selectGift;
+  _updateGiftMultiplierQuantity = hg.views.GiftSelectorView.updateGiftMultiplierQuantity;
   hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
     _showTab(tabType, viewState, preserveVariables, preserveActions);
 
+    hg.views.GiftSelectorView.updateGiftMultiplierQuantity = (input) => {
+      // Remove the maxlength attribute so that we can send more than 99 gifts.
+      if (input && input.hasAttribute('maxlength')) {
+        input.removeAttribute('maxlength');
+      }
+
+      return _updateGiftMultiplierQuantity(input);
+    };
+
     // We need to clone the nodes and wait until the selectGift function is called and then
     // we append the cloned nodes to the gift container.
-
     hg.views.GiftSelectorView.selectGift = (gift) => {
       _selectGift(gift);
+
       const giftContainer = document.querySelector('.giftSelectorView-tabContent.active.selectFriends .giftSelectorView-content-leftBar');
       if (! giftContainer) {
         return false;
