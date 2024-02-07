@@ -48,6 +48,19 @@
   line-height: 14px;
 }
 
+.notificationMessageList .tab[data-tab="news"] .message {
+  line-height: 18px;
+}
+
+.notificationMessageList .tab[data-tab="news"] .message .actions.newsPost {
+  padding: 2px 15px;
+  transform: translateY(65%);
+}
+
+.notificationMessageList .tab[data-tab="news"] .message .date {
+  margin-left: 0;
+}
+
 .notificationMessageList .message .actions input[type="button"].delete {
   position: absolute;
   left: -60px;
