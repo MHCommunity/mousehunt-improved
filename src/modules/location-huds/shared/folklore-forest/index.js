@@ -77,7 +77,7 @@ const hideOrShowBlock = (blockId, isBlockToggled) => {
     const quill = document.querySelector('.tableOfContentsProgressView-quillContainer');
     // if it's a quill, we need to remove the 'quill--gold' or 'quill--silver' class from the quill.
 
-    if (isBlockToggled) {
+    if (isBlockToggled && quill) {
       if ('golden_quill' === blockId) {
         quill.classList.remove('quill--gold');
       } else if ('silver_quill' === blockId) {
@@ -88,7 +88,7 @@ const hideOrShowBlock = (blockId, isBlockToggled) => {
     }
 
     // Not toggled, so re-add the class.
-    if ('golden_quill' === blockId && isUnlocked('golden_quill')) {
+    if ('golden_quill' === blockId && isUnlocked('golden_quill') && quill) {
       quill.classList.add('quill--gold');
     } else if ('silver_quill' === blockId && isUnlocked('silver_quill')) {
       quill.classList.add('quill--silver');

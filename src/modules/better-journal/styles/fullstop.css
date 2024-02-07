@@ -14,7 +14,9 @@
   content: " ";
 }
 
-.journal .entry .journaltext br:last-child {
+.journal .entry .journaltext br:last-child,
+.journal .content .entry .journaltext > br:last-of-type,
+.journal .content .entry .journaltext br + br {
   display: none;
 }
 
@@ -47,7 +49,14 @@
   content: ".";
 }
 
-.entry.alchemists_cookbook_base_bonus .journaltext .loot:last-of-type::after {
+.journaltext .better-journal-list a.lucky:last-of-type:after,
+.journaltext .better-journal-list a.item:last-of-type:after,
+.journaltext .better-journal-list a.loot:last-of-type:after {
+  content: "";
+}
+
+.entry.alchemists_cookbook_base_bonus .journaltext .loot:last-of-type::after,
+.entry.short.craft.convertible_open a.item::after {
   content: "";
 }
 

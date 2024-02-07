@@ -10,6 +10,7 @@
 .journal .entry.lunar_lantern {
   background-color: #ffd0b3;
   border: 1px solid #5b5b5b;
+  border-bottom: none;
 }
 
 .journal .entry.spring_hunt_warmonger_egg_drop .journaltext {

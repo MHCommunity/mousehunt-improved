@@ -58,3 +58,8 @@
 .journal .content .entry.bonuscatchsuccess {
   background-position: left;
 }
+
+.journal .content .entry.minimalJournalImage {
+  background-position: 15px center !important;
+  background-size: 40px !important;
+}
