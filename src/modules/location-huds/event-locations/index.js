@@ -24,8 +24,8 @@ export default async (location) => {
   }
 
   const events = {
-    0: [greatWinterHuntGlobal, lunarNewYearGlobal], // January.
-    1: [birthdayGlobal], // February.
+    0: [greatWinterHuntGlobal], // January.
+    1: [birthdayGlobal, lunarNewYearGlobal], // February.
     2: [birthdayGlobal, springEggHuntGlobal], // March.
     3: [springEggHuntGlobal], // April.
     4: [], // May.
