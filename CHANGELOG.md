@@ -27,6 +27,9 @@
 - Fixes image displays in news posts, adds fun hover state to them
 - Fixes display issues with Bristle Woods Rift Location HUD
 - Minor other style updates and fixes to various modules
+- Fixes Better Quests showing the wrong number of required Library Points for M400 Bait Assignment
+- Updates Favorite Setups to arm bait last when equipping a setup
+- Updates Relic Hunter hint display to use the proper article before an environment name
 
 ## Version 0.31.3
 
