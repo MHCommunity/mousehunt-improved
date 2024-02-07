@@ -45,7 +45,7 @@ const dragMap = async () => {
 
     const style = window.getComputedStyle(map);
     const matrix = new WebKitCSSMatrix(style.transform);
-    let currentTranslateY = matrix.m42;
+    const currentTranslateY = matrix.m42;
     let newTranslateY = currentTranslateY - event.deltaY;
 
     if (newTranslateY < 0) {
