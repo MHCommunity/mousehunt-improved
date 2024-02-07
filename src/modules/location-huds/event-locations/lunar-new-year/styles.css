@@ -1,1 +1,79 @@
-/* Styles that apply to all locations */
+.lunarNewYearCampPopup-content-endDate {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.lunarNewYearCampPopup-environment .mousehuntTooltip {
+  top: -44%;
+}
+
+.lunarNewYearCampHUD-window-row-reward {
+  width: 28px;
+  height: 18px;
+}
+
+.lunarNewYearCampHUD-window-row-reward:after {
+  top: 1px;
+  background-color: #9b2034;
+  border-color: #ef617e;
+}
+
+.lunarNewYearCampHUD-window-row:nth-child(even) .lunarNewYearCampHUD-window-row-reward:after {
+  right: 35px;
+}
+
+.lunarNewYearCampHUD-window-row:nth-child(odd) .lunarNewYearCampHUD-window-row-reward::after {
+  left: 35px;
+  top: 0;
+}
+
+.lunarNewYearCampHUD-window-row .lunarNewYearCampHUD-window-row-reward::after {
+  box-shadow: 0 -1px 1px 0 #f3577c, 0 1px 1px 0 #f3577c;
+}
+
+.lunarNewYearCampHUD-window-row-reward {
+  border-radius: 6px;
+  box-shadow: 0 -1px 1px 0 #f3577c, 0 1px 1px 0 #f3577c;
+}
+
+.lunarNewYearCampHUD-window-row.lunar_new_year_2018_cheese.reward .lunarNewYearCampHUD-window-row-reward::after,
+.lunarNewYearCampHUD-window-row.lunar_new_year_2018_cheese.claimed .lunarNewYearCampHUD-window-row-reward::after {
+  width: 180px;
+}
+
+.lunarNewYearCampHUD-container .mousehuntItem .mousehuntItem-quantity.quantity {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  font-size: 12px;
+  padding-top: 2px;
+  left: 0;
+  right: 0px;
+  bottom: 0px;
+}
+.lunarNewYearCampHUD-container .mousehuntItem.active .mousehuntItem-quantity.quantity {
+  box-shadow: inset 0 0 5px 5px #ffe344;
+  border-top: 1px solid #d6a766;
+}
+
+.lunarNewYearCampHUD-stat-value {
+  font-size: 13px;
+  text-shadow: 0px 0px 10px #fee7a6;
+  box-shadow: inset 0 0 3px 1px #b81d3e;
+}
+
+.lunarNewYearCampHUD-stat-label {
+  text-align: center;
+}
+
+.lunarNewYearCampHUD-statsContainer .lunarNewYearCampHUD-stat:nth-child(3) .lunarNewYearCampHUD-stat-value {
+  width: 32px;
+}
+
+.lunarNewYearCampHUD-window-background .lunarNewYearCampHUD-window-lantern:after {
+  transition: .7s;
+}
+
+.lunarNewYearCampHUD-window-background:hover .lunarNewYearCampHUD-window-lantern:after {
+  transform: scale(1.5);
+  filter: brightness(1.5) drop-shadow(1px 0px 4px #000);
+}
