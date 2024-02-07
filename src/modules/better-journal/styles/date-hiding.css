@@ -1,20 +1,20 @@
 /* hiding date for entries that come with a hunt */
-.journal .content .entry.short.refine_pollutinum .journalbody  .journaldate,
-.journal .content .entry.short.torch_charm_event .journalbody  .journaldate,
-.journal .content .entry.short.unstable_charm_trigger .journalbody  .journaldate,
-.journal .content .entry.short.tournamentpointswithloot .journalbody  .journaldate,
-.journal .content .entry.short.tournamentpoints .journalbody  .journaldate,
-.journal .content .entry.short.rift-bristlewoods-acolyteSandStolen .journalbody  .journaldate,
-.journal .content .entry.short.rift-bristlewoods-lootBooster .journalbody  .journaldate,
-.journal .content .entry.short.super_rift_vacuum_trigger .journalbody  .journaldate,
-.journal .content .entry.short.queso_canyon_queso_pumped .journalbody  .journaldate,
-.journal .content .entry.short.custom.chesla_trap_trigger .journalbody  .journaldate,
-.journal .content .entry.short.wordCount.minimalJournal .journalbody  .journaldate,
-.journal .content .entry.short.folkloreForest.folkloreForest-lootFuelBoost .journalbody  .journaldate,
-.journal .content .entry.short.labyrinth.labyrinth-chooseDoor .journalbody  .journaldate,
-.journal .content .entry.short.labyrinth.labyrinth-intersection .journalbody  .journaldate,
-.journal .content .entry.short.misc.custom.chesla_trap_trigger .journalbody  .journaldate,
-.journal .content .entry.short.rift-whisker-woods-increase  .journalbody .journaldate {
+.journal .content .entry.short.refine_pollutinum .journalbody .journaldate,
+.journal .content .entry.short.torch_charm_event .journalbody .journaldate,
+.journal .content .entry.short.unstable_charm_trigger .journalbody .journaldate,
+.journal .content .entry.short.tournamentpointswithloot .journalbody .journaldate,
+.journal .content .entry.short.tournamentpoints .journalbody .journaldate,
+.journal .content .entry.short.rift-bristlewoods-acolyteSandStolen .journalbody .journaldate,
+.journal .content .entry.short.rift-bristlewoods-lootBooster .journalbody .journaldate,
+.journal .content .entry.short.super_rift_vacuum_trigger .journalbody .journaldate,
+.journal .content .entry.short.queso_canyon_queso_pumped .journalbody .journaldate,
+.journal .content .entry.short.custom.chesla_trap_trigger .journalbody .journaldate,
+.journal .content .entry.short.wordCount.minimalJournal .journalbody .journaldate,
+.journal .content .entry.short.folkloreForest.folkloreForest-lootFuelBoost .journalbody .journaldate,
+.journal .content .entry.short.labyrinth.labyrinth-chooseDoor .journalbody .journaldate,
+.journal .content .entry.short.labyrinth.labyrinth-intersection .journalbody .journaldate,
+.journal .content .entry.short.misc.custom.chesla_trap_trigger .journalbody .journaldate,
+.journal .content .entry.short.rift-whisker-woods-increase .journalbody .journaldate {
   display: none;
 }
 

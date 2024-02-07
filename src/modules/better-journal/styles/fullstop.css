@@ -49,9 +49,9 @@
   content: ".";
 }
 
-.journaltext .better-journal-list a.lucky:last-of-type:after,
-.journaltext .better-journal-list a.item:last-of-type:after,
-.journaltext .better-journal-list a.loot:last-of-type:after {
+.journaltext .better-journal-list a.lucky:last-of-type::after,
+.journaltext .better-journal-list a.item:last-of-type::after,
+.journaltext .better-journal-list a.loot:last-of-type::after {
   content: "";
 }
 
