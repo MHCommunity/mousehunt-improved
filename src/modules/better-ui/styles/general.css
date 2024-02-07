@@ -392,3 +392,24 @@ input.itemView-action-convert-quantity {
 .mousehuntHud-userStat-row {
   line-height: 14px;
 }
+
+.newsPostBody .flexCenter {
+  justify-content: space-evenly;
+}
+
+.newsPostBody #news-post-responsive .flexCenter img {
+  max-width: 100px;
+  transition: 0.2s;
+}
+
+.newsPostBody #news-post-responsive .flexCenter img.huge {
+  max-width: 100%;
+}
+
+.newsPostBody #news-post-responsive .flexCenter img.huge:hover {
+  transform: none;
+}
+
+.newsPostBody #news-post-responsive .flexCenter img:hover {
+  transform: rotate(4deg) scale(1.1);
+}
