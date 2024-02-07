@@ -222,3 +222,11 @@ span.kingsGiveawayCalibratorPopup-upgrade-action-cost {
 .upgrade_gifts .kingsGiveawayCalibratorPopup-upgrade-description {
   font-size: 14px;
 }
+
+#messengerUINotification .tabs a.active .arrow {
+  right: -19px;
+}
+
+#messengerUINotification .tabs a.active .arrowShadow {
+  right: -20px;
+}
