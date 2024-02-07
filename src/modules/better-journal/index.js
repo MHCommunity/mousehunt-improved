@@ -2,6 +2,7 @@ import {
   addStyles,
   dbGet,
   dbSet,
+  doEvent,
   getCurrentPage,
   getSetting,
   onRequest,
@@ -84,6 +85,8 @@ const modifyText = async (selector, strings) => {
         element.innerHTML = newText;
       }
     });
+
+    doEvent('better-journal-update', { entry, text: element });
   });
 };
 
