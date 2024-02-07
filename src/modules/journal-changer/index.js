@@ -22,11 +22,16 @@ const getJournalThemes = async () => {
     action: 'get_themes',
   });
 
+  debuglog('journal-changer', 'Themes', req.journal_themes);
+
   if (! req.journal_themes) {
     return [];
   }
 
-  return req.journal_themes.theme_list.filter((theme) => theme.can_equip);
+  themes = req.journal_themes.theme_list.filter((theme) => theme.can_equip === true);
+
+  debuglog('journal-changer', 'Filtered themes', themes);
+  return themes;
 };
 
 const updateJournalTheme = async (theme) => {
@@ -65,6 +70,11 @@ const getJournalThemeForLocation = () => {
     return false;
   }
 
+  // check if the theme is available
+  if (themes.some((t) => t.type === journalTheme.type)) {
+    return journalTheme.type;
+  }
+
   return journalTheme.type;
 };
 
@@ -84,6 +94,12 @@ const changeForLocation = async () => {
   const currentTheme = getCurrentJournalTheme();
   if (! currentTheme) {
     debuglog('journal-changer', 'No current theme found');
+    return;
+  }
+
+  // check if we even have the theme
+  if (! themes.some((t) => t.type === newTheme)) {
+    debuglog('journal-changer', 'Theme not available', newTheme);
     return;
   }
 
@@ -138,8 +154,11 @@ const changeJournalDaily = () => {
     lastChange.getMonth() !== now.getMonth() ||
     lastChange.getFullYear() !== now.getFullYear()
   ) {
+    debuglog('journal-changer', 'Changing journal');
     randomizeTheme();
     saveSetting('journal-changer-last-change', now.getTime());
+  } else {
+    debuglog('journal-changer', 'Journal has already been changed today');
   }
 };
 
