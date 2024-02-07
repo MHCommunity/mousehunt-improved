@@ -539,6 +539,10 @@ input.treasureMapView-block-search-text {
   max-height: unset;
 }
 
+.treasureMapView-goals-group-goal {
+  width: 33%;
+}
+
 .treasureMapView-goals-group-goal.notAvailable {
   opacity: 0.5;
 }
@@ -779,4 +783,19 @@ input.treasureMapView-block-search-text {
 
 .treasureMapDialogView-title {
   margin-bottom: 5px;
+}
+
+.incomplete .treasureMapView-goals-group-goal-padding {
+  overflow: visible;
+}
+
+.treasureMapView-goals-group-goal-image {
+  width: 34px;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.treasureMapView-goals-group-goal.landscape .treasureMapView-goals-group-goal-image {
+  height: 33px;
+  background-position: right;
 }

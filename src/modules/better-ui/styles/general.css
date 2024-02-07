@@ -62,6 +62,11 @@ span.campPage-trap-baitQuantity {
   border-bottom: none;
 }
 
+.span.campPage-trap-baitQuantity,
+.campPage-trap-armedItem .quantity span {
+  border-bottom-right-radius: 0;
+}
+
 /* recipe page */
 .mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent {
   padding: none;
@@ -334,6 +339,10 @@ a.inventoryPage-tagDirectory-tag {
 .campPage-trap-itemBrowser-item-image::after {
   border-color: #ccc;
   box-shadow: 2px 2px 3px -1px #cdc9c6 inset;
+}
+
+.campPage-trap-itemBrowser-item {
+  overflow: hidden;
 }
 
 .itemView-action-convertForm {

@@ -615,23 +615,10 @@ a.shopsPage-kingsCalibratorPromo {
   display: none;
 }
 
-.shopCustomization .itemViewStatBlock-stat.title {
-  bottom: 5px;
-  left: 5px;
-}
-
 .mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.title,
 .mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType {
   background-color: #3d3d3d;
   border-color: #606060;
-}
-
-.itemPurchaseView-container .itemViewStatBlock-stat.powerType {
-  top: -4px;
-  left: -1px;
-  padding: 4px;
-  border-radius: 0;
-  border-bottom-right-radius: 11px;
 }
 
 .mh-dark-mode .itemPurchaseView-container .itemPurchaseView-image-container .itemViewStatBlock-stat.powerType {

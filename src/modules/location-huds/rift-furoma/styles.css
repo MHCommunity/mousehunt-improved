@@ -86,3 +86,11 @@
   font-size: 10px;
   font-weight: 900;
 }
+
+span.riftFuromaHUD-craftingPopup-recipe-part-quantity {
+  font-size: 12px;
+}
+
+.riftFuromaHUD-craftingPopup-recipe-part-padding span.quantity {
+  font-size: 12px;
+}
