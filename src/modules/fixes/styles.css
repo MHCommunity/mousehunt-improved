@@ -38,6 +38,10 @@ body .mousehuntHud-menu .forum .icon {
 }
 
 /* Fix arrow outline showing */
+.mousehuntTooltip.top .mousehuntTooltip-arrow::after {
+  top: -16px;
+}
+
 .mousehuntTooltip.left .mousehuntTooltip-arrow::after {
   right: -6px;
 }
