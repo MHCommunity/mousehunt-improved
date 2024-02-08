@@ -96,7 +96,7 @@ span.floatingIslandsHUD-huntsRemaining {
 .floatingIslandsHUD-bait-quantity,
 .floatingIslandsHUD-bait-craftingItem-quantity {
   padding-right: 4px;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .floatingIslandsHUD-statItem-quantity.quantity {
