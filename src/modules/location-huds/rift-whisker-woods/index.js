@@ -14,10 +14,7 @@ const showTauntingWarning = () => {
     return;
   }
 
-  console.log('showing taunting warning');
-
   if (hasHiddenTauntingWarning) {
-    console.log('has hidden taunting warning');
     return;
   }
 
