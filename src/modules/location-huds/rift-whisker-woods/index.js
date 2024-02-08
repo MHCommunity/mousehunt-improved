@@ -1,15 +1,23 @@
-import { addHudStyles, onRequest } from '@utils';
+import { addHudStyles, makeElement, onRequest } from '@utils';
 
 import styles from './styles.css';
 
+let hasHiddenTauntingWarning = false;
 const showTauntingWarning = () => {
   const existing = document.querySelector('.mhui-taunting-warning');
   if (existing) {
     return;
   }
 
-  const baitWarning = document.querySelector('.riftWhiskerWoodsHUD-baitWarning');
+  const baitWarning = document.querySelector('.riftWhiskerWoodsHUD-bossBaitWarning');
   if (! baitWarning) {
+    return;
+  }
+
+  console.log('showing taunting warning');
+
+  if (hasHiddenTauntingWarning) {
+    console.log('has hidden taunting warning');
     return;
   }
 
@@ -17,6 +25,16 @@ const showTauntingWarning = () => {
   const warning = baitWarning.cloneNode(true);
   warning.classList.add('mhui-taunting-warning', 'active');
   warning.innerHTML = 'You don\'t have a Taunting Charm equipped! You will reset your rage!';
+
+  const warningClose = makeElement('div', 'mhui-taunting-warning-close');
+  warningClose.innerHTML = '×';
+  warningClose.onclick = (e) => {
+    e.preventDefault();
+    hasHiddenTauntingWarning = true;
+    warning.classList.remove('active');
+  };
+
+  warning.append(warningClose);
   baitWarning.after(warning);
 };
 

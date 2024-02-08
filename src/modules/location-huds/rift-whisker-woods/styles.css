@@ -145,5 +145,37 @@ span.riftWhiskerWoodsHUD-zone-rageMax {
 }
 
 .mhui-taunting-warning {
+  top: 36px;
+  left: 150px;
+  width: 414px;
   padding: 10px 20px;
+  border-color: #992023;
+}
+
+.mhui-taunting-warning-close {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  z-index: 15;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 17px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 15px;
+  color: #fff;
+  text-align: center;
+  background-color: #e03a3a;
+  border: 1px solid #992023;
+  border-color: #d1d0cf;
+  border-radius: 20px;
+}
+
+.mhui-taunting-warning-close:hover {
+  color: #ffb4b4;
+  background-color: #992023;
 }
