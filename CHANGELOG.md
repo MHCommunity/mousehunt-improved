@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.31.5
+
+- Moves new LGS Reminder style to an option
+- Fixes LGS Reminder alignment
+- Fixes spacebar not working while in Fiery Warpath
+- Adds dragging/scrolling to the lantern height map on the HUD
+- Updates reward image size/position in LNY reward popup
+- Adds ability to dismniss Taunting charm warning in Whisker Woods Rift Location HUD
+- Adds ability to reorder Favorite Setups
+- Fixes minor journal entry styles
+
 ## Version 0.31.4
 
 - Adds Lunar New Year maps to the Sorted map tab of Better Maps
@@ -11,7 +22,7 @@
 - Adds Event Location styles for Lunar New Year, including the ability to drag or scroll the lantern height map
 - Updates Living Garden Location HUD to Garden, City, Desert markers on ingredients
 - Updates Cursed City Location HUD to show curse name & necessary charm without having to hover
-- Fixes a potential error happening when toggling quill visiblity in Table of Contents
+- Fixes a potential error happeningla when toggling quill visiblity in Table of Contents
 - Updates Better Journal styles to not break for certain entries or mess up the formatting of event entries
 - Fixes Catch Rate Estimator wrapping mice names to a new line
 - Fixes broken tooltips inside of Hover Profiles
