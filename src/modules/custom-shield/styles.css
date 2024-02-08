@@ -179,31 +179,37 @@
   background-image: url(https://www.mousehuntgame.com/images/titles/5daba92a8d609834aa8b789f37544e08.png?cv=2);
 }
 
+.mousehunt-improved-lgs-reminder-new.color-blue,
 .huntersHornView__timer--default.color-blue,
 .mousehuntHud-shield.golden.color-blue {
   filter: hue-rotate(158deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
+.mousehunt-improved-lgs-reminder-new.color-cyan,
 .huntersHornView__timer--default.color-cyan,
 .mousehuntHud-shield.golden.color-cyan {
   filter: hue-rotate(112deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
+.mousehunt-improved-lgs-reminder-new.color-green,
 .huntersHornView__timer--default.color-green,
 .mousehuntHud-shield.golden.color-green {
   filter: hue-rotate(66deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
+.mousehunt-improved-lgs-reminder-new.color-pink,
 .huntersHornView__timer--default.color-pink,
 .mousehuntHud-shield.golden.color-pink {
   filter: hue-rotate(280deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
+.mousehunt-improved-lgs-reminder-new.color-purple,
 .huntersHornView__timer--default.color-purple,
 .mousehuntHud-shield.golden.color-purple {
   filter: hue-rotate(195deg) drop-shadow(0 0 5px #e8dbb8);
 }
 
+.mousehunt-improved-lgs-reminder-new.color-red,
 .huntersHornView__timer--default.color-red,
 .mousehuntHud-shield.golden.color-red {
   filter: hue-rotate(317deg) saturate(1.6) drop-shadow(0 0 5px #e8dbb8);
@@ -227,6 +233,7 @@
   }
 }
 
+.mousehunt-improved-lgs-reminder-new.color-rainbow,
 .huntersHornView__timer--default.color-rainbow,
 .mousehuntHud-shield.golden.color-rainbow,
 .mousehuntHud-shield.golden.color-rainbow2 {

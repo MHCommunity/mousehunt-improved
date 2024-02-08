@@ -1,30 +1,57 @@
-.mousehunt-improved-lgs-reminder.lgs-warning {
-  background: linear-gradient(#fff, #ffbfbf);
+.mousehunt-improved-lgs-reminder,
+.default.mhui-custom-shield .mousehunt-improved-lgs-reminder {
+  position: absolute;
+  right: 20px;
+  bottom: 4px;
+  left: 0;
+  z-index: 1;
+  font-size: 11px;
+  color: #684434;
+  text-align: center;
+  background-color: rgb(221 205 162 / 85%);
+  border: 1px solid #9d9a91;
+  border-radius: 5px;
 }
 
-.mousehunt-improved-lgs-reminder.lgs-danger {
+.mhui-custom-shield .mousehunt-improved-lgs-reminder.exact {
+  font-size: 10px;
+}
+
+.mousehunt-improved-lgs-reminder-new.lgs-warning,
+.mousehunt-improved-lgs-reminder.lgs-warning,
+.default.mhui-custom-shield .mousehunt-improved-lgs-reminder.lgs-warning {
+  background-color: #ffbfbf;
+}
+
+.mousehunt-improved-lgs-reminder-new.lgs-danger,
+.mousehunt-improved-lgs-reminder.lgs-danger,
+.default.mhui-custom-shield .mousehunt-improved-lgs-reminder.lgs-danger {
   color: #f1d7d7;
-  background: #b32d26;
+  background-color: #b32d26;
+  border-color: #af8080;
   transition: 1.75s;
   animation: mh-improved-slight-fade 1.75s infinite;
 }
 
 /* if they have prefers reduced motion enabled, don't animate */
 @media (prefers-reduced-motion: reduce) {
-  .mousehunt-improved-lgs-reminder.lgs-danger {
+  .mousehunt-improved-lgs-reminder-new.lgs-danger,
+  .mousehunt-improved-lgs-reminder.lgs-danger,
+  .default.mhui-custom-shield .mousehunt-improved-lgs-reminder-new.lgs-danger {
     animation: none;
   }
 }
 
-.mousehunt-improved-lgs-reminder-wrapper {
+.mousehunt-improved-lgs-reminder {
   position: absolute;
+  right: 650px;
   bottom: 0;
-  left: 15px;
+  left: 25px;
   font-size: 9px;
   white-space: nowrap;
 }
 
-.mousehunt-improved-lgs-reminder {
+.mousehunt-improved-lgs-reminder-new {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,4 +60,13 @@
   border: 1px solid #d4af37;
   border-bottom: none;
   border-radius: 6px 6px 0 0;
+}
+
+.mousehunt-improved-lgs-reminder-new.lgs-warning {
+  background: linear-gradient(#fff, #ffbfbf);
+}
+
+.mousehunt-improved-lgs-reminder-new.lgs-danger {
+  background: #b32d26;
+  border: none;
 }

@@ -1,7 +1,14 @@
 import humanizeDuration from 'humanize-duration';
 
-import { addStyles, getFlag, makeElement, onDeactivation } from '@utils';
+import {
+  addStyles,
+  getFlag,
+  getSetting,
+  makeElement,
+  onDeactivation
+} from '@utils';
 
+import settings from './settings';
 import styles from './styles.css';
 
 const humanizer = humanizeDuration.humanizer({
@@ -71,16 +78,28 @@ const main = () => {
     return;
   }
 
-  const wrapper = makeElement('div', 'mousehunt-improved-lgs-reminder-wrapper');
-  const reminder = makeElement('div', 'mousehunt-improved-lgs-reminder');
+  const newStyle = getSetting('lgs-new-style', false);
+
+  let wrapper;
+  let reminder;
+  if (newStyle) {
+    wrapper = makeElement('div', 'mousehunt-improved-lgs-reminder-wrapper');
+    reminder = makeElement('div', 'mousehunt-improved-lgs-reminder-new');
+  } else {
+    reminder = makeElement('div', 'mousehunt-improved-lgs-reminder');
+  }
 
   const exact = isExact();
   if (exact) {
     reminder.classList.add('exact');
   }
 
-  wrapper.append(reminder);
-  shieldEl.after(wrapper);
+  if (newStyle) {
+    wrapper.append(reminder);
+    shieldEl.after(wrapper);
+  } else {
+    shieldEl.append(reminder);
+  }
 
   updateLgsReminder(reminder);
 
@@ -101,10 +120,12 @@ const main = () => {
  */
 const init = async () => {
   // Only load if the user has LGS.
-  if (user.has_shield) {
-    addStyles(styles, 'lgs-reminder');
-    main();
+  if (! user.has_shield) {
+    return;
   }
+
+  addStyles(styles, 'lgs-reminder');
+  main();
 
   onDeactivation('lgs-reminder', () => {
     const reminder = document.querySelector('.mousehunt-improved-lgs-reminder');
@@ -121,4 +142,5 @@ export default {
   description: 'Show your LGS duration in the HUD and warn you when it\'s about to expire.',
   default: false,
   load: init,
+  settings,
 };
