@@ -457,6 +457,67 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
             });
           });
         });
+
+        const existing = setupContainer.querySelector('.move-buttons');
+        if (existing) {
+          existing.remove();
+        }
+
+        // Also add move up and move down buttons.
+        const moveUpButton = makeElement('a', ['move-up']);
+        moveUpButton.addEventListener('click', (event) => {
+          const previous = event.target.closest('.row').previousElementSibling;
+          if (previous) {
+            const setups = getFavoriteSetups();
+            if (! setups.length) {
+              return;
+            }
+
+            // Swap the setups.
+            const index = setups.findIndex((s) => s.id === setupId);
+            const previousIndex = setups.findIndex((s) => s.id === previous.getAttribute('data-setup-id'));
+
+            const temp = setups[index];
+            setups[index] = setups[previousIndex];
+            setups[previousIndex] = temp;
+
+            saveSetting('favorite-setups', setups);
+
+            // move the row up.
+            previous.before(setupContainer);
+          }
+        });
+
+        const moveDownButton = makeElement('a', ['move-down']);
+        moveDownButton.addEventListener('click', (event) => {
+          // Get the element after this one.
+          const next = event.target.closest('.row').nextElementSibling;
+          if (next) {
+            // move the setup down and resave the setups.
+            const setups = getFavoriteSetups();
+            if (! setups.length) {
+              return;
+            }
+
+            // Swap the setups.
+            const index = setups.findIndex((s) => s.id === setupId);
+            const nextIndex = setups.findIndex((s) => s.id === next.getAttribute('data-setup-id'));
+
+            const temp = setups[index];
+            setups[index] = setups[nextIndex];
+            setups[nextIndex] = temp;
+
+            saveSetting('favorite-setups', setups);
+
+            next.after(setupContainer);
+          }
+        });
+
+        const moveButtons = makeElement('div', ['move-buttons']);
+        moveButtons.append(moveUpButton);
+        moveButtons.append(moveDownButton);
+
+        controls.append(moveButtons);
       }
     }));
 

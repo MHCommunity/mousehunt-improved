@@ -59,10 +59,11 @@
 }
 
 .mh-improved-favorite-setups-blueprint-container .row.editing {
-  grid-template-columns: 1fr repeat(4, 50px);
+  grid-template-columns: 1fr repeat(4, 40px);
 }
 
 .mh-improved-favorite-setups-blueprint-container .controls {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -70,11 +71,19 @@
   justify-content: center;
 }
 
+.mh-improved-favorite-setups-blueprint-container .row.editing .controls {
+  align-items: flex-end;
+}
+
 .mh-improved-favorite-setups-blueprint-container .button-wrapper {
   display: flex;
   gap: 5px;
   align-items: center;
   justify-content: center;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.editing .button-wrapper {
+  margin-right: 5px;
 }
 
 .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-favorite-item {
@@ -265,4 +274,57 @@ a.random-title.loading::after {
 
 .mh-improved-favorite-setups-blueprint-container .row:hover .controls .action.arm {
   outline: 2px solid #eab35d;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.editing .campPage-trap-itemBrowser-favorite-item-image {
+  height: 40px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.editing .move-buttons {
+  display: flex;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row .move-buttons {
+  position: absolute;
+  bottom: 20px;
+  left: 32px;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.editing a.move-down::after,
+.mh-improved-favorite-setups-blueprint-container .row.editing a.move-up::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  content: "";
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.4;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.editing a.move-up::after {
+  position: absolute;
+  right: 15px;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 17a.75.75 0 0 1-.75-.75V5.612L5.29 9.77a.75.75 0 0 1-1.08-1.04l5.25-5.5a.75.75 0 0 1 1.08 0l5.25 5.5a.75.75 0 1 1-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0 1 10 17Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.editing a.move-down::after {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a.75.75 0 0 1 .75.75v10.638l3.96-4.158a.75.75 0 1 1 1.08 1.04l-5.25 5.5a.75.75 0 0 1-1.08 0l-5.25-5.5a.75.75 0 1 1 1.08-1.04l3.96 4.158V3.75A.75.75 0 0 1 10 3Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.editing a.move-down:hover::after,
+.mh-improved-favorite-setups-blueprint-container .row.editing a.move-up:hover::after {
+  opacity: 1;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row:last-child .move-down {
+  display: none;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row:nth-child(2) .move-up {
+  display: none;
 }
