@@ -1,11 +1,30 @@
-import { addStyles, onRequest } from '@utils';
+import { addStyles, onNavigation, onRequest } from '@utils';
 
 import styles from './styles.css';
 
 let startY, initialTranslateY;
 
-const dragMap = async () => {
+const dragMapPopup = async () => {
   const map = document.querySelector('.lunarNewYearCampPopupContainer .lunarNewYearCampHUD-window-background');
+  if (! map) {
+    return;
+  }
+
+  dragMap({ map, maxHeight: 2310 });
+};
+
+const dragMapCamp = async () => {
+  const map = document.querySelector('.lunarNewYearCampHUD-window .lunarNewYearCampHUD-window-background');
+  if (! map) {
+    return;
+  }
+
+  dragMap({ map, maxHeight: 1881 });
+};
+
+const dragMap = async (args) => {
+  const { map, maxHeight } = args;
+
   if (! map) {
     return;
   }
@@ -16,8 +35,8 @@ const dragMap = async () => {
 
     if (newTranslateY < 0) {
       newTranslateY = 0;
-    } else if (newTranslateY > 2300) {
-      newTranslateY = 2300;
+    } else if (newTranslateY > maxHeight) {
+      newTranslateY = maxHeight;
     }
 
     map.style.transform = `translateY(${newTranslateY}px)`;
@@ -50,8 +69,8 @@ const dragMap = async () => {
 
     if (newTranslateY < 0) {
       newTranslateY = 0;
-    } else if (newTranslateY > 2300) {
-      newTranslateY = 2300;
+    } else if (newTranslateY > maxHeight) {
+      newTranslateY = maxHeight;
     }
 
     map.style.transform = `translateY(${newTranslateY}px)`;
@@ -66,7 +85,11 @@ const dragMap = async () => {
 const lunarNewYearGlobal = async () => {
   addStyles(styles, 'location-hud-events-lunar-new-year');
 
-  onRequest(dragMap, 'managers/ajax/events/lunar_new_year.php');
+  onRequest(dragMapPopup, 'managers/ajax/events/lunar_new_year.php');
+
+  onNavigation(dragMapCamp, {
+    page: 'camp',
+  });
 };
 
 // Only active at the locations.
