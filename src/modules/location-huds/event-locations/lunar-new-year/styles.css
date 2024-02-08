@@ -79,3 +79,7 @@
   filter: brightness(1.5) drop-shadow(1px 0 4px #000);
   transform: scale(1.5);
 }
+
+.lunarNewYearCampPopup .lunarNewYear2018-claimRow-image {
+  text-align: left;
+}
