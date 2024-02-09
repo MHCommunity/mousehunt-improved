@@ -111,6 +111,12 @@ span.seasonalGardenHUD-maxAmplifier-value {
   animation: 0.3s bounce-and-stretch-new 2;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .seasonalGardenHUD-amplifierProgress-bar--animating {
+    animation: none;
+  }
+}
+
 @keyframes bounce-and-stretch-new {
   0% {
     transform: scaleX(1) translateX(-10px);

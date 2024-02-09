@@ -422,3 +422,13 @@ input.itemView-action-convert-quantity {
 .newsPostBody #news-post-responsive .flexCenter img:hover {
   transform: rotate(4deg) scale(1.1);
 }
+
+#overlayPopup {
+  animation: MHCheckoutDialogView-frameReveal 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #overlayPopup {
+    animation: none;
+  }
+}

@@ -80,11 +80,12 @@
   margin-top: 10px;
   border-top: 1px solid #e0d0b4;
   border-left: none;
+  gap: 0;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__subSetting {
-  padding: 0 5px 10px 10px;
-  margin: 0 0 0 50px;
+  padding: 0;
+  margin: 0;
   border: none;
   border-left: 1px solid #f6f3eb;
 }
@@ -395,4 +396,12 @@
 
 #mousehunt-improved-settings-location-hud .PagePreferences__settingDescription {
   display: none;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__settingsList {
+  display: none;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__settingsList {
+  display: block;
 }

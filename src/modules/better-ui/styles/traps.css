@@ -76,7 +76,7 @@
   border-right: none;
   border-bottom: none;
   border-radius: 0;
-  border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 4px;
   box-shadow: -1px -1px 1px #d3cecb inset;
 }
 
@@ -401,4 +401,14 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
 
 .campPage-trap-itemBrowser-item-description-consumeMethod {
   white-space: nowrap;
+}
+
+.campPage-trap-blueprintContainer {
+  animation: mh-improved-in-from-left 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .campPage-trap-blueprintContainer {
+    animation: none;
+  }
 }
