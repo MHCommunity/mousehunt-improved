@@ -81,6 +81,15 @@ const loadStyleOverrides = () => {
   }
 };
 
+const doSettingsPage = () => {
+  loadAdvancedSettings();
+
+  onEvent('mh-improved-advanced-settings-added', () => {
+    modifySettingsPage();
+    doEvent('mh-improved-settings-loaded');
+  });
+};
+
 const checkForAutohorn = () => {
   // If these elements exist, they're autohorning.
   const time = document.querySelector('#nextHornTimeElement');
@@ -92,16 +101,20 @@ const checkForAutohorn = () => {
 
   isAutohorning = true;
 
-  // Send a post request to the autohorn tracker.
-  fetch('https://autohorn.mouse.rip/submit', {
-    method: 'POST',
-    headers: getHeaders(),
-    body: JSON.stringify({
-      id: user.user_id,
-      snid: user.sn_user_id,
-      username: user.username,
-    }),
-  });
+  try {
+    // Send a post request to the autohorn tracker.
+    fetch('https://autohorn.mouse.rip/submit', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify({
+        id: user.user_id,
+        snid: user.sn_user_id,
+        username: user.username,
+      }),
+    });
+  } catch (error) {
+    console.error(error); // eslint-disable-line no-console
+  }
 };
 
 let lastSubmit = 0;
@@ -177,23 +190,7 @@ const addIconToMenu = () => {
   menu.append(icon);
 };
 
-let isAutohorning = false;
-
-/**
- * Initialize the module.
- */
-const init = async () => {
-  addStyles([settingStyles, settingsIconStyles], 'required');
-
-  onEvent('mh-improved-loaded', loadStyleOverrides);
-
-  loadAdvancedSettings();
-
-  onEvent('mh-improved-advanced-settings-added', () => {
-    modifySettingsPage();
-    doEvent('mh-improved-settings-loaded');
-  });
-
+const sendUsageStats = () => {
   // If you want to disable the reporting, you can but you have to admit you're a cheater.
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
     checkForAutohorn();
@@ -215,8 +212,48 @@ const init = async () => {
       timeout = setTimeout(() => sendModulesStats(true), 1000); // Debounce the event.
     });
   }
+};
 
+const addEvents = () => {
+  const hunterHornTimer = document.querySelector('.huntersHornView__timerState');
+  if (hunterHornTimer) {
+    // Add a mutation observer to check when the innertext changes and when it does, start an interval where we fire an event every second.
+    const observer = new MutationObserver(() => {
+      // After the mutation, start the interval and then stop watching for mutations.
+      setInterval(() => {
+        doEvent('horn-countdown-tick', hunterHornTimer.innerText);
+      }, 1000);
+
+      setInterval(() => {
+        doEvent('horn-countdown-tick-minute', hunterHornTimer.innerText);
+      }, 60 * 1000);
+
+      observer.disconnect();
+    });
+
+    observer.observe(hunterHornTimer, { childList: true });
+  }
+};
+
+// huntersHornView__timerState
+
+let isAutohorning = false;
+
+/**
+ * Initialize the module.
+ */
+const init = async () => {
+  addStyles([settingStyles, settingsIconStyles], 'required');
   addIconToMenu();
+  doSettingsPage();
+  sendUsageStats();
+  addEvents();
+
+  onEvent('mh-improved-loaded', loadStyleOverrides);
+
+  onEvent('horn-countdown-tick', (time) => {
+    //
+  });
 };
 
 export default {
