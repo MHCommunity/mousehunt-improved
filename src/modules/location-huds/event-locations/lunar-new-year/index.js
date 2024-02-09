@@ -1,4 +1,10 @@
-import { addStyles, onNavigation, onRequest } from '@utils';
+import {
+  addStyles,
+  getCurrentPage,
+  makeElement,
+  onEvent,
+  onRequest
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -81,14 +87,56 @@ const dragMap = async (args) => {
   });
 };
 
+const triggerFireworks = () => {
+  const existing = document.querySelector('.launch-the-fireworks-please');
+  if (existing) {
+    return;
+  }
+
+  const fireworks = document.querySelector('.lunarNewYearCampHUD-container .lunarNewYearCampHUD-window-fireworksContainer');
+  if (! fireworks) {
+    return;
+  }
+
+  const statsContainer = document.querySelector('.lunarNewYearCampHUD-container .lunarNewYearCampHUD-statsContainer');
+  if (! statsContainer) {
+    return;
+  }
+
+  const launchButton = makeElement('div', 'launch-the-fireworks-please', '');
+  statsContainer.append(launchButton);
+
+  let isAnimating = false;
+  launchButton.addEventListener('click', () => {
+    launchButton.classList.add('launched');
+    fireworks.classList.add('launch-the-fireworks');
+    if (isAnimating) {
+      return;
+    }
+    isAnimating = true;
+
+    setTimeout(() => {
+      launchButton.classList.remove('launched');
+      fireworks.classList.remove('launch-the-fireworks');
+      isAnimating = false;
+    }, 5 * 1000);
+  });
+};
+
 // Always active.
 const lunarNewYearGlobal = async () => {
   addStyles(styles, 'location-hud-events-lunar-new-year');
 
   onRequest(dragMapPopup, 'managers/ajax/events/lunar_new_year.php');
 
-  onNavigation(dragMapCamp, {
-    page: 'camp',
+  if ('camp' === getCurrentPage()) {
+    dragMapCamp();
+    triggerFireworks();
+  }
+
+  onEvent('camp_quest_hud_view_initialize', () => {
+    dragMapCamp();
+    triggerFireworks();
   });
 };
 

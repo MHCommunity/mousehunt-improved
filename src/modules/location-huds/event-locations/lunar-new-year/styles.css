@@ -52,9 +52,16 @@
   border-top-right-radius: 0;
 }
 
+.lunarNewYearCampHUD-container .mousehuntItem:hover .mousehuntItem-quantity.quantity,
+.lunarNewYearCampHUD-container .mousehuntItem:focus .mousehuntItem-quantity.quantity,
 .lunarNewYearCampHUD-container .mousehuntItem.active .mousehuntItem-quantity.quantity {
   border-top: 1px solid #d6a766;
   box-shadow: inset 0 0 5px 5px #ffe344;
+}
+
+.lunarNewYearCampHUD-container .mousehuntItem:hover .mousehuntItem-image::after,
+.lunarNewYearCampHUD-container .mousehuntItem:focus .mousehuntItem-image::after {
+  border-color: #ffe344;
 }
 
 .lunarNewYearCampHUD-stat-value {
@@ -82,4 +89,177 @@
 
 .lunarNewYearCampPopup .lunarNewYear2018-claimRow-image {
   text-align: left;
+}
+
+.lunarNewYearCampHUD-window-row-height {
+  font-size: 12px;
+  font-weight: 900;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.lunarNewYearCampPopup-subtitle {
+  margin-bottom: 5px;
+}
+
+.lunarNewYearCampPopupContainer .lunarNewYearCampHUD-window.lunarNewYearCampHUD-viewState.hasLantern {
+  box-shadow: inset 1px 0 4px 2px black;
+  top: 21px;
+  bottom: 22px;
+}
+
+.lunarNewYearCampHUD-window-background {
+  box-shadow: inset 1px 0 10px 0px #05050a;
+}
+
+.lunarNewYearCampPopupContainer .lunarNewYearCampHUD-window-background {
+  border: 2px solid #decfb4;
+}
+
+.lunarNewYearCampPopup-lanternMap-button.up {
+  border-bottom-width: 1px;
+}
+
+.lunarNewYearCampPopup-lanternMap-button.down {
+  border-top-width: 1px;
+}
+
+.lunarNewYearCampPopup-environment:hover .lunarNewYearCampPopup-environment-image {
+  box-shadow: 0 -1px 7px -4px black;
+}
+
+.lunarNewYearCampPopup-environment:hover .lunarNewYearCampPopup-environment-name {
+  box-shadow: 0 4px 9px -2px black;
+}
+
+.lunarNewYearCampPopup-environment:hover {
+  transform: scale(1.2);
+  box-shadow: 0px 1px 5px 0px #2e2e2e;
+  border-radius: 4px;
+}
+
+.lunarNewYearCampPopup-environment {
+  border-radius: 6px;
+  box-shadow: 0 0 2px 0px black;
+}
+
+.lunarNewYearCampPopup-stockpile-environmentContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  align-items: start;
+}
+
+.lunarNewYearCampPopup-environment {
+  width: 100%;
+  padding: 0;
+  transform-origin: bottom;
+  transition: .2s;
+}
+
+.lunarNewYearCampPopup-environment:hover .lunarNewYearCampPopup-environment-name,
+.lunarNewYearCampPopup-environment.selected .lunarNewYearCampPopup-environment-name {
+  background-color: #b4383a;
+  color: white;
+}
+
+.lunarNewYearCampPopup-environment.disabled .lunarNewYearCampPopup-environment-name,
+.lunarNewYearCampPopup-environment.disabled .lunarNewYearCampPopup-environment-image {
+  opacity: .4;
+}
+
+.lunarNewYearCampPopup-content-block-image {
+  box-shadow: none;
+  width: auto;
+  height: 60px;
+  background-repeat: no-repeat;
+}
+
+.lunarNewYearCampPopup-itemContainer {
+  display: flex;
+  gap: 5px;
+  align-content: center;
+}
+
+.lunarNewYearCampPopup-content-block {
+  width: 100%;
+}
+
+.launch-the-fireworks {
+  display: block;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(1):before {
+  animation-delay: 0.1s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(1):after {
+  animation-delay: 0.7s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(2):before {
+  animation-delay: 0.9s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(2):after {
+  animation-delay: 1.1s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(3):before {
+  animation-delay: 1.4s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(3):after {
+  animation-delay: 1.8s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(4):before {
+  animation-delay: 2s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(4):after {
+  animation-delay: 2.5s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(5):before {
+  animation-delay: 2.8s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(5):after {
+  animation-delay: 3.3s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(6):before {
+  animation-delay: 3.7s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(6):after {
+  animation-delay: 4.1s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(7):before {
+  animation-delay: 4.5s;
+}
+
+.launch-the-fireworks .lunarNewYearCampHUD-window-fireworks:nth-child(7):after {
+  animation-delay: 5.9s;
+}
+
+.launch-the-fireworks-please {
+  background-image: url(https://i.mouse.rip/upscaled/festive_firework_stat_item.png);
+  position: absolute;
+  bottom: 2px;
+  left: -3px;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: .4;
+  transform: scaleX(-1);
+  transition: .3s;
+}
+
+.launch-the-fireworks-please:hover {
+  opacity: .9;
+  transform: scaleX(-1.2) scaleY(1.2);
+  cursor: pointer;
 }
