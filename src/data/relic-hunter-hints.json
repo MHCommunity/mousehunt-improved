@@ -16,7 +16,7 @@
   "bountiful_beanstalk": [
     "Hobnobbing with giants.",
     "Infiltrating a lofty castle.",
-	"Climbing into the clouds."
+	  "Climbing into the clouds."
   ],
   "calm_clearing": [
     "Taking a relaxing hike through a forested area.",
@@ -37,7 +37,8 @@
   ],
   "derr_dunes": [
     "Ankle deep in rocky, tropical sand.",
-    "Tumbling down hills of rreD sand."
+    "Tumbling down hills of reD sand.",
+    "Tumbling down hills of red sand."
   ],
   "desert_city": [
     "Visiting a walled city that is no stranger to sieges.",
@@ -58,6 +59,7 @@
   ],
   "elub_shore": [
     "Near the bluE waters of the island.",
+    "Near the blue waters of the island.",
     "Watching the calm waters of Rodentia while remaining safely ashore."
   ],
   "floating_islands": [
@@ -127,7 +129,8 @@
   ],
   "nerg_plains": [
     "Investigating a well-seasoned Gumbo Cheese.",
-    "Running through flat fields of greeN."
+    "Running through flat fields of greeN.",
+    "Running through flat fields of green."
   ],
   "prologue_pond": [
     "Reeling it in...",
