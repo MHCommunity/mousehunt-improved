@@ -6,7 +6,7 @@ import { addMhuiSetting } from '@utils';
  * @param {Object} module The module to add settings for.
  */
 export default function (module) {
-  addMhuiSetting(
+  return addMhuiSetting(
     'better-inventory-one-item-per-row',
     'Show one item per row',
     true,
@@ -14,7 +14,7 @@ export default function (module) {
     module
   );
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'better-inventory-larger-images',
     'Show larger images',
     true,

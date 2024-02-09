@@ -128,7 +128,7 @@ export default function (module) {
     });
   }
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'custom-shield',
     'Custom Shield',
     [options[0]],

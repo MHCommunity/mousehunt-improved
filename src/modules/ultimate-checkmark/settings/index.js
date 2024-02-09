@@ -27,7 +27,7 @@ export default function (module) {
     });
   });
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'ultimate-checkmark-categories',
     'Ultimate Checkmark',
     [],

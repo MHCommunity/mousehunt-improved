@@ -25,7 +25,7 @@ export default function (module) {
     },
   ];
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'custom-hud',
     'Custom HUD background',
     [options[0]],

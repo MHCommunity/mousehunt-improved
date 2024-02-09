@@ -6,7 +6,7 @@ import { addMhuiSetting } from '@utils';
  * @param {Object} module The module to add settings for.
  */
 export default function (module) {
-  addMhuiSetting(
+  return addMhuiSetting(
     'journal-changer-change-daily',
     'Randomize Journal Daily',
     false,
@@ -14,7 +14,7 @@ export default function (module) {
     module
   );
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'journal-changer-change-location',
     'Change Journal for Location',
     true,

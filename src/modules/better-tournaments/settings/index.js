@@ -6,7 +6,7 @@ import { addMhuiSetting } from '@utils';
  * @param {Object} module The module to add settings for.
  */
 export default function (module) {
-  addMhuiSetting(
+  return addMhuiSetting(
     'better-tournaments-tournament-time-display-inline',
     'Display localized times inline',
     false,

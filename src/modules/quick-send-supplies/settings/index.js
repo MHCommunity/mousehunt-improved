@@ -6,7 +6,7 @@ import { addMhuiSetting, getTradableItems } from '@utils';
  * @param {Object} module The module to add settings for.
  */
 export default async function (module) {
-  addMhuiSetting(
+  return addMhuiSetting(
     'quick-send-supplies-items',
     'Quick Send Supplies Items',
     [

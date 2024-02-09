@@ -6,7 +6,7 @@ import { addMhuiSetting } from '@utils';
  * @param {Object} module The module to add settings for.
  */
 export default function (module) {
-  addMhuiSetting(
+  return addMhuiSetting(
     'wisdom-in-stat-bar-auto-refresh',
     'Update automatically',
     true,

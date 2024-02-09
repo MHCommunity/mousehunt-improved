@@ -17,7 +17,7 @@ export default function (module) {
     },
   ];
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'gift-buttons-send-order',
     'Order to send',
     [orderOptions[0]],
@@ -65,7 +65,7 @@ export default function (module) {
     },
   ];
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'gift-buttons-ignore-bad-gifts',
     'Ignore gifts that aren\'t the Gift of the Day',
     [skipBadGiftOptions[0]],

@@ -135,10 +135,12 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
  * @param {Object}  section      The section settings.
  * @param {string}  tab          The tab to add the settings to.
  * @param {Object}  settings     The settings for the settings.
+ *
+ * @return {boolean|Node} The setting row.
  */
 const addSetting = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settings = null) => {
   onPageChange({ preferences: { show: () => addSettingOnce(name, key, defaultValue, description, section, tab, settings) } });
-  addSettingOnce(name, key, defaultValue, description, section, tab, settings);
+  return addSettingOnce(name, key, defaultValue, description, section, tab, settings);
 };
 
 /**
@@ -147,18 +149,25 @@ const addSetting = (name, key, defaultValue = true, description = '', section = 
  * @param {string}  toggleKey          The toggle key.
  * @param {boolean} toggleDefaultValue The toggle default value.
  * @param {string}  toggleTab          The toggle tab.
+ * @param {Node}    settingRow         The setting row.
  *
  * @return {Object} The toggle.
  */
-const makeToggle = (toggleKey, toggleDefaultValue, toggleTab) => {
+const makeToggle = (toggleKey, toggleDefaultValue, toggleTab, settingRow = null) => {
   const settingRowInputCheckbox = makeElement('div', 'mousehuntSettingSlider');
 
   // Depending on the current state of the setting, add the active class.
   const currentSetting = getSettingDirect(toggleKey, null, toggleTab);
   if (currentSetting) {
     settingRowInputCheckbox.classList.add('active');
+    if (settingRow) {
+      settingRow.classList.add('active');
+    }
   } else if (null === currentSetting && toggleDefaultValue) {
     settingRowInputCheckbox.classList.add('active');
+    if (settingRow) {
+      settingRow.classList.add('active');
+    }
   }
 
   /**
@@ -169,6 +178,10 @@ const makeToggle = (toggleKey, toggleDefaultValue, toggleTab) => {
   settingRowInputCheckbox.onclick = (event) => {
     const isSettingActive = event.target.classList.contains('active');
     event.target.classList.toggle('active');
+
+    if (settingRow) {
+      settingRow.classList.toggle('active');
+    }
 
     saveSettingDirectAndToggleClass(event.target, toggleKey, ! isSettingActive, toggleTab);
   };
@@ -189,6 +202,8 @@ const makeToggle = (toggleKey, toggleDefaultValue, toggleTab) => {
  * @param {Object}  section         The section settings.
  * @param {string}  tab             The tab to add the settings to.
  * @param {Object}  settingSettings The settings for the settings.
+ *
+ * @return {boolean|Node} The setting row.
  */
 const addSettingOnce = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settingSettings = null) => {
   addSettingStyles();
@@ -196,7 +211,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   // Make sure we have the container for our settings.
   const container = document.querySelector(`.mousehuntHud-page-tabContent.${tab}`);
   if (! container) {
-    return;
+    return false;
   }
 
   section = {
@@ -236,7 +251,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   // If we already have a setting visible for our key, bail.
   const settingExists = document.querySelector(`#${section.id}-${key}`);
   if (settingExists) {
-    return;
+    return settingExists;
   }
 
   // Create the markup for the setting row.
@@ -520,7 +535,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
     settingRowAction.append(multiToggleRow);
   } else {
-    const settingRowInputCheckbox = makeToggle(key, defaultValue, tab);
+    const settingRowInputCheckbox = makeToggle(key, defaultValue, tab, settings);
     settingRowInput.append(settingRowInputCheckbox);
     settingRowAction.append(settingRowInput);
   }
@@ -532,6 +547,8 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   // Add the settings row to the settings container.
   settings.append(settingRow);
   sectionExists.append(settings);
+
+  return settings;
 };
 
 /**
@@ -583,9 +600,11 @@ const addSettingRefreshReminder = () => {
  * @param {string}  description Description of the setting.
  * @param {Object}  module      Module the setting belongs to.
  * @param {Object}  options     Additional ptions for the setting.
+ *
+ * @return {boolean|Node} The setting row.
  */
 const addMhuiSetting = async (id, title, defaultVal, description, module, options = null) => {
-  addSetting(
+  return addSetting(
     title,
     id,
     defaultVal,
@@ -653,7 +672,7 @@ const addAdvancedSettings = () => {
 const addSettingForModule = async (module) => {
   for (const submodule of module.modules) {
     if (! submodule.alwaysLoad && ! submodule.beta) {
-      await addSetting(
+      const setting = await addSetting(
         submodule.name,
         submodule.id,
         submodule.default,
@@ -665,18 +684,16 @@ const addSettingForModule = async (module) => {
         },
         'mousehunt-improved-settings'
       );
-    }
 
-    if (
-      ! submodule.beta &&
-      submodule.settings && (
-        submodule.alwaysLoad ||
-        getSetting(submodule.id, submodule.default)
-      )
-    ) {
-      const subModSettings = module;
-      subModSettings.subSetting = true;
-      await submodule.settings(subModSettings);
+      if (submodule.settings) {
+        const subModSettings = module;
+        subModSettings.subSetting = true;
+        const settingRow = await submodule.settings(subModSettings);
+
+        if (settingRow) {
+          setting.append(settingRow);
+        }
+      }
     }
   }
 };

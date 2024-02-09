@@ -6,7 +6,7 @@ import { addMhuiSetting } from '@utils';
  * @param {Object} module The module to add settings for.
  */
 export default function (module) {
-  addMhuiSetting(
+  return addMhuiSetting(
     'better-travel-default-to-simple-travel',
     'Show Simple Travel tab by default',
     false,
@@ -14,7 +14,7 @@ export default function (module) {
     module
   );
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'better-travel-show-alphabetized-list',
     'Show Alphabetized List',
     false,
@@ -22,7 +22,7 @@ export default function (module) {
     module
   );
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'better-travel-show-reminders',
     'Show Travel Reminders',
     true,
@@ -30,7 +30,7 @@ export default function (module) {
     module
   );
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'better-travel-travel-window',
     'Travel Window',
     true,
@@ -38,7 +38,7 @@ export default function (module) {
     module
   );
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'better-travel-travel-window-environment-icon',
     'Environment icon opens Travel Window',
     true,

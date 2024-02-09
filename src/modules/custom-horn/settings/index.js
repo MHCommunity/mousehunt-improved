@@ -43,7 +43,7 @@ export default function (module) {
       ],
     },
   ];
-  addMhuiSetting(
+  return addMhuiSetting(
     'custom-horn',
     'Custom Horn <a class="mh-improved-custom-horn-show-horn">Show Horn</a>',
     [options[0]],
