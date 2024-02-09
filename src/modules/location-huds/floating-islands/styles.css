@@ -203,10 +203,6 @@ span.floatingIslandsHUD-huntsRemaining {
     inset 1px 0 0 1px #9a6f43;
 }
 
-.floatingIslandsHUD-goalContainer .floatingIslandsHUD-enemy-state.enemyApproaching {
-  color: transparent;
-}
-
 span.mh-ui-fi-enemy-countdown-hunts {
   font-size: 14px;
   color: #fbe296;
@@ -351,7 +347,7 @@ a.floatingIslandsHUD-islandLoot:focus {
   position: absolute;
   top: 15px;
   right: 15px;
-  z-index: 4;
+  z-index: 10;
   width: 30px;
   height: 30px;
 }
@@ -370,7 +366,7 @@ a.floatingIslandsHUD-islandLoot:focus {
 .floatingIslandsHUD-jetstream .trapImageView-trapAura.active .mousehuntTooltip {
   top: -20px;
   left: -250px;
-  z-index: 11;
+  z-index: 15;
   width: 235px;
 }
 

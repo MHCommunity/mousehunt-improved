@@ -36,8 +36,6 @@ const toggleFuelClass = (fuelCount, isActive) => {
   } else {
     fuelCount.classList.add('active');
   }
-
-  setTimeout(addBossCountdown, 200);
 };
 
 const toggleFuel = () => {
@@ -62,20 +60,15 @@ const toggleFuel = () => {
   });
 };
 
-const addBossCountdown = () => {
-  // .floatingIslandsHUD-enemy-state.enemyApproaching:not(.enemyActive) maybe?
-  const enemyContainer = document.querySelector('.floatingIslandsHUD-goalContainer');
-  if (! enemyContainer) {
+let isAdding = false;
+const addBossCountdown = async () => {
+  if (isAdding) {
     return;
   }
 
+  isAdding = true;
   const atts = user?.quests?.QuestFloatingIslands?.hunting_site_atts || {};
   if (! atts.has_enemy) {
-    return;
-  }
-
-  const isEnemyActiveOrDefeated = atts.has_encountered_enemy || atts.has_defeated_enemy;
-  if (isEnemyActiveOrDefeated) {
     return;
   }
 
@@ -83,41 +76,38 @@ const addBossCountdown = () => {
   // split the name and get the first word
   name = name.split(' ')[0];
 
+
   const huntsRemaining = atts.enemy_encounter_hunts_remaining || 0;
+
+  const bossCountdown = document.createElement('div');
+  bossCountdown.classList.add('mh-ui-fi-enemy-countdown');
+  makeElement('span', 'mh-ui-fi-enemy-countdown-name', name, bossCountdown);
+  makeElement('span', 'mh-ui-fi-enemy-countdown-in', ' in ', bossCountdown);
+  makeElement('span', 'mh-ui-fi-enemy-countdown-hunts', huntsRemaining, bossCountdown);
 
   const existing = document.querySelector('.mh-ui-fi-enemy-countdown');
   if (existing) {
-    const huntsRemainingEl = existing.querySelector('.mh-ui-fi-enemy-countdown-hunts');
-    if (huntsRemainingEl) {
-      huntsRemainingEl.innerText = huntsRemaining;
-    } else {
-      existing.remove();
-    }
-  } else {
-    const bossCountdown = document.createElement('div');
-    bossCountdown.classList.add('mh-ui-fi-enemy-countdown');
-    makeElement('span', 'mh-ui-fi-enemy-countdown-name', name, bossCountdown);
-    makeElement('span', 'mh-ui-fi-enemy-countdown-in', ' in ', bossCountdown);
-    makeElement('span', 'mh-ui-fi-enemy-countdown-hunts', huntsRemaining, bossCountdown);
-
-    enemyContainer.append(bossCountdown);
+    existing.remove();
   }
+
+  const isEnemyActiveOrDefeated = atts.has_encountered_enemy || atts.has_defeated_enemy;
+  if (isEnemyActiveOrDefeated) {
+    return;
+  }
+
+  const goalContainer = document.querySelector('.floatingIslandsHUD-goalContainer');
+  if (! goalContainer) {
+    return;
+  }
+
+  goalContainer.append(bossCountdown);
+
+  isAdding = false;
 };
 
-const addEnemyClass = () => {
-  const container = document.querySelector('.floatingIslandsHUD');
-  if (! container) {
-    return;
-  }
-
-  const enemyContainer = document.querySelector('.floatingIslandsHUD-islandTitle');
-  if (! enemyContainer) {
-    return;
-  }
-
+const addEnemyClass = async () => {
   const name = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy?.name || false;
   const type = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy?.type || false;
-
   if (! name || ! type) {
     return;
   }
@@ -126,6 +116,11 @@ const addEnemyClass = () => {
   if (exists) {
     exists.innerText = name;
   } else {
+    const enemyContainer = document.querySelector('.floatingIslandsHUD-islandTitle');
+    if (! enemyContainer) {
+      return;
+    }
+
     makeElement('div', 'mh-ui-fi-enemy-name', name, enemyContainer);
   }
 };
@@ -227,7 +222,7 @@ const showBWReminder = () => {
   }
 };
 
-const maybeChangeWarning = () => {
+const maybeChangeWarning = async () => {
   const isLAI = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.is_low_tier_island;
   const isAtBoss = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_encountered_enemy && ! user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_defeated_enemy;
 
@@ -243,7 +238,7 @@ const maybeChangeWarning = () => {
   }
 };
 
-const updateJetstreamTime = () => {
+const updateJetstreamTime = async () => {
   const container = document.querySelector('.floatingIslandsHUD-jetstream-time');
   if (! container) {
     return;
@@ -297,7 +292,7 @@ const updateJetstreamTime = () => {
 };
 
 let jsClone;
-const showJetstream = () => {
+const showJetstream = async () => {
   const exists = document.querySelector('.floatingIslandsHUD-jetstream');
   if (exists) {
     exists.remove();
@@ -352,23 +347,11 @@ const showJetstream = () => {
   updateJetstreamTime();
 };
 
-const runWithTimeout = (fn, timeout = 500) => {
-  fn();
-  setTimeout(fn, timeout);
-};
-
 const run = async () => {
-  const calls = [
-    showJetstream,
-    addEnemyClass,
-    addBossCountdown,
-    maybeChangeWarning,
-  ];
-
-  calls.forEach((fn) => {
-    runWithTimeout(fn, 150);
-    runWithTimeout(fn, 1000);
-  });
+  await showJetstream();
+  await addEnemyClass();
+  await addBossCountdown();
+  await maybeChangeWarning();
 };
 
 const hud = () => {
@@ -376,24 +359,16 @@ const hud = () => {
   showGloreProgress();
 
   run();
+
   showBWReminder();
   onTravel(() => {
     setTimeout(showBWReminder, 1500);
   });
 
-  onRequest(() => {
-    run();
-    setTimeout(run, 1500);
-  });
+  onEvent('ajax_response', run);
 
   onEvent('horn-countdown-tick', updateJetstreamTime);
-
-  onRequest(() => {
-    run();
-    setTimeout(run, 1500);
-  }, 'managers/ajax/environment/floating_islands.php');
-
-  onDialogShow(onSkyMapShow, 'floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace');
+  onDialogShow('floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace', onSkyMapShow);
 };
 
 /**
