@@ -47,7 +47,7 @@
   height: auto;
   min-height: 55px;
   padding: 3px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   background: #fff;
   border: 1px solid #ceb7a6;
   border-radius: 5px;
@@ -180,7 +180,7 @@
 .mh-improved-favorite-setups-component-picker-popup-search {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   margin-bottom: 20px;
 }
 

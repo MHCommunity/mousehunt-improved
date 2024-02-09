@@ -87,6 +87,8 @@ const makeImage = (type, id, thumbnail) => {
   wrapper.setAttribute('data-item-id', id);
   wrapper.setAttribute('data-item-type', type);
 
+  wrapper.setAttribute('title', `Click to change ${type}`);
+
   const item = makeElement('div', ['campPage-trap-itemBrowser-favorite-item-image']);
   item.style.backgroundImage = `url(${thumbnail})`;
 
@@ -140,7 +142,7 @@ const getPowerTypeId = (powerType) => {
     tactical: 'tctcl',
   };
 
-  return data[powerType];
+  return data[powerType] || powerType;
 };
 
 const makeImagePicker = async (setupId, type, currentId, callback) => {
@@ -167,6 +169,7 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-body">';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-search">';
   content += '<input type="text" placeholder="Search" id="mh-improved-favorite-setups-component-picker-popup-search-input" />';
+  content += '<div class="mh-improved-favorites-setups-component-picker-popup-use-current mousehuntActionButton" title="Use current item"><span>Use currently armed item</span></div>';
   content += '</div>';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-body-items">';
   for (const item of items) {
@@ -187,7 +190,7 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
     content += `<div class="campPage-trap-itemBrowser-item loaded ${type}" data-item-id="${item.item_id}">`;
     content += ' <div class="campPage-trap-itemBrowser-item-leftBar">';
     content += `  <a href="#"><div class="campPage-trap-itemBrowser-item-image" style="background-image:url(${item.thumbnail});"></div></a>`;
-    content += `  <a href="#" class="campPage-trap-itemBrowser-item-armButton save-button" data-item-id="${item.item_id}" data-item-classification="${type}" data-item-image="${item.thumbnail}" data-power-type="${item.power_type_image_name}">Save</a>`;
+    content += `  <a href="#" class="campPage-trap-itemBrowser-item-armButton save-button" data-item-id="${item.item_id}" data-item-classification="${type}" data-item-image="${item.thumbnail}" data-power-type="${item.power_type_image_name}">Use</a>`;
     content += ' </div>';
     content += ' <div class="campPage-trap-itemBrowser-item-content">';
     content += ` <div class="campPage-trap-itemBrowser-item-name">${item.name}</div>`;
@@ -237,7 +240,7 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
     className: 'mh-improved-favorite-setups-component-picker',
   });
 
-  popup.setIsModal(true);
+  // popup.setIsModal(true);
   popup.show();
 
   const saveButtons = document.querySelectorAll('.campPage-trap-itemBrowser-item-armButton.save-button');
@@ -276,11 +279,36 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
       }
     });
   });
+
+  const useCurrentItemButton = document.querySelector('.mh-improved-favorites-setups-component-picker-popup-use-current');
+  useCurrentItemButton.addEventListener('click', () => {
+    const item = document.querySelector(`.campPage-trap-itemBrowser-item[data-item-id="${user[`${type}_item_id`]}"]`);
+    if (! item) {
+      return;
+    }
+
+    const saveButton = item.querySelector('.campPage-trap-itemBrowser-item-armButton.save-button');
+    if (! saveButton) {
+      return;
+    }
+
+    callback(
+      saveButton.getAttribute('data-item-id'),
+      saveButton.getAttribute('data-item-classification'),
+      saveButton.getAttribute('data-item-image'),
+      saveButton.getAttribute('data-power-type')
+    );
+    popup.hide();
+  });
 };
 
-const armItem = async (itemId, itemType) => {
+const armItem = async (items) => {
   return new Promise((resolve, reject) => {
-    hg.utils.TrapControl.armItem(itemId, itemType).go(resolve, reject);
+    items.forEach(({ id, type }) => {
+      hg.utils.TrapControl.armItem(id, type);
+    });
+
+    hg.utils.TrapControl.go(resolve, reject);
   });
 };
 
@@ -350,25 +378,34 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         const index = setups.findIndex((s) => s.id === setupId);
 
         const thisSetup = setups[index];
+        if (! thisSetup) {
+          return;
+        }
+
+        const toArm = [];
 
         // eslint-disable-next-line eqeqeq
-        if (thisSetup.base_id && thisSetup.base_id != user.base_id) {
-          await armItem(thisSetup.base_id, 'base');
+        if (thisSetup.base_id && thisSetup.base_id != user.base_item_id) {
+          toArm.push({ id: thisSetup.base_id, type: 'base' });
         }
 
         // eslint-disable-next-line eqeqeq
-        if (thisSetup.weapon_id && thisSetup.weapon_id != user.weapon_id) {
-          await armItem(thisSetup.weapon_id, 'weapon');
+        if (thisSetup.weapon_id && thisSetup.weapon_id != user.weapon_item_id) {
+          toArm.push({ id: thisSetup.weapon_id, type: 'weapon' });
         }
 
         // eslint-disable-next-line eqeqeq
-        if (thisSetup.trinket_id && thisSetup.trinket_id != user.trinket_id) {
-          await armItem(thisSetup.trinket_id, 'trinket');
+        if (thisSetup.trinket_id && thisSetup.trinket_id != user.trinket_item_id) {
+          toArm.push({ id: thisSetup.trinket_id, type: 'trinket' });
         }
 
         // eslint-disable-next-line eqeqeq
-        if (thisSetup.bait_id && thisSetup.bait_id != user.bait_id) {
-          await armItem(thisSetup.bait_id, 'bait');
+        if (thisSetup.bait_id && thisSetup.bait_id != user.bait_item_id) {
+          toArm.push({ id: thisSetup.bait_id, type: 'bait' });
+        }
+
+        if (toArm.length) {
+          await armItem(toArm);
         }
 
         updateFavoriteSetupName();
@@ -423,7 +460,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         title.prepend(randomTitleButton);
 
         const powerTypeInput = makeElement('input', ['hidden', 'power-type-input']);
-        powerTypeInput.value = setup.power_type;
+        powerTypeInput.setAttribute('data-power-type', setup.power_type);
         title.append(powerTypeInput);
 
         // Update the setup images to be clickable.
@@ -435,13 +472,13 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
             const itemType = image.getAttribute('data-item-type');
             const itemId = image.getAttribute('data-item-id');
             const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
+            imageDisplay.style.outline = '2px solid #ff0000';
             await makeImagePicker(setupId, itemType, itemId, (newItemId, newItemType, newItemImageUrl, newItemPowerType) => {
               if (itemType !== newItemType) {
                 return;
               }
 
-              // no change.
-              if (itemId === newItemId) {
+              if (itemId == newItemId) { // eslint-disable-line eqeqeq
                 return;
               }
 
@@ -450,11 +487,15 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
               image.setAttribute('data-old-image-url', imageDisplay.style.backgroundImage);
 
               if (newItemPowerType) {
-                powerTypeInput.value = newItemPowerType;
+                const ptInput = setupContainer.querySelector('.power-type-input');
+                ptInput.setAttribute('data-power-type', newItemPowerType);
               }
 
+              imageDisplay.style.outline = '2px solid #00ff00';
               imageDisplay.style.backgroundImage = `url(${newItemImageUrl})`;
             });
+
+            // save the new item id.
           });
         });
 
@@ -538,15 +579,23 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         setup.name = titleInput.value;
 
         const powerTypeInput = setupContainer.querySelector('.power-type-input');
-        if (powerTypeInput && powerTypeInput.value) {
+        if (powerTypeInput) {
           const lastPowerType = setup.power_type;
-          setup.power_type = powerTypeInput.value;
+          const newPowerType = powerTypeInput.getAttribute('data-power-type');
 
-          // update the power type image.
-          const powerTypeImage = setupContainer.querySelector('.campPage-trap-itemBrowser-item-powerType');
-          powerTypeImage.classList.remove(getPowerTypeId(lastPowerType));
-          powerTypeImage.classList.add(getPowerTypeId(setup.power_type));
-          powerTypeImage.classList.remove('hidden');
+          if (newPowerType && lastPowerType !== newPowerType) {
+            setup.power_type = newPowerType;
+
+            const powerTypeImage = setupContainer.querySelector('.campPage-trap-itemBrowser-item-powerType');
+            if (powerTypeImage) {
+              const lastPowerTypeClass = lastPowerType ? getPowerTypeId(lastPowerType) : 'hidden';
+              const newPowerTypeClass = newPowerType ? getPowerTypeId(newPowerType) : 'hidden';
+
+              powerTypeImage.classList.remove(lastPowerTypeClass);
+              powerTypeImage.classList.add(newPowerTypeClass);
+              powerTypeImage.classList.remove('hidden');
+            }
+          }
         }
 
         // if there are any items with a new-item-id, then update the setup.
