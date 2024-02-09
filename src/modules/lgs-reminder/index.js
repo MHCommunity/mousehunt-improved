@@ -5,7 +5,8 @@ import {
   getFlag,
   getSetting,
   makeElement,
-  onDeactivation
+  onDeactivation,
+  onEvent
 } from '@utils';
 
 import settings from './settings';
@@ -32,7 +33,17 @@ const isExact = () => {
 };
 
 const getShieldTime = () => {
-  return user.shield_seconds * 1000;
+  const shieldExpiry = user.shield_expiry;
+  if (! shieldExpiry) {
+    return;
+  }
+
+  // make a new date object
+  const expiry = Date.parse(shieldExpiry);
+  const now = new Date();
+
+  // get the difference in seconds
+  return Math.floor((expiry - now));
 };
 
 const getShieldTimeFormattted = (time) => {
@@ -73,6 +84,8 @@ const updateLgsReminder = (el) => {
 };
 
 const main = () => {
+  startingTime = getShieldTime();
+
   const shieldEl = document.querySelector('.mousehuntHud-shield.golden');
   if (! shieldEl) {
     return;
@@ -103,16 +116,15 @@ const main = () => {
 
   updateLgsReminder(reminder);
 
-  // Every minute, update the time.
-  const interval = exact ? 1000 : 60 * 1000;
-
-  /* Wait a bit so we sync to the horn countdown a bit more */
-  setTimeout(() => {
-    setInterval(() => {
-      user.shield_seconds -= interval / 1000;
+  if (isExact()) {
+    onEvent('horn-countdown-tick', () => {
       updateLgsReminder(reminder);
-    }, interval);
-  }, 750);
+    });
+  } else {
+    onEvent('horn-countdown-tick-minute', () => {
+      updateLgsReminder(reminder);
+    });
+  }
 };
 
 /**
