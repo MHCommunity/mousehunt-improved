@@ -1,0 +1,40 @@
+.journaltext p {
+  margin: 0;
+}
+
+ul.better-journal-list {
+  margin-top: 5px;
+}
+
+.journaldate {
+  margin-bottom: 5px;
+}
+
+.journal .entry br + br {
+  display: none;
+}
+
+.journal .entry.luckycatchsuccess .journalimage::after {
+  top: -5px;
+  left: -5px;
+  width: 20px;
+  height: 20px;
+  background: url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.journaltext .lucky::after {
+  position: relative;
+  top: 3px;
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  background: url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.better-journal-list li {
+  line-height: 15px;
+}

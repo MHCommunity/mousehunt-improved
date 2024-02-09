@@ -10,3 +10,10 @@
   background: url(https://www.mousehuntgame.com/images/ui/journal/donation_shimmer.png?asset_cache_version=2) no-repeat -130px 0;
   animation: donationShimmer 5s infinite;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .journal .entry.drawwinner,
+  .journal .entry.drawwinner::after {
+    animation: none;
+  }
+}

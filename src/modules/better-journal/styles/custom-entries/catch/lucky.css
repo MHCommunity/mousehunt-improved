@@ -16,6 +16,12 @@
   animation: mh-improved-fade-out 1s ease-out 1s forwards;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .journal .entry.luckycatchsuccess::after {
+    animation: none;
+  }
+}
+
 .journal .entry.luckycatchsuccess .journaltext .luckyCatch {
   -webkit-text-stroke-color: #7bc95e;
   -webkit-text-stroke-width: thin;

@@ -20,6 +20,10 @@
   display: none;
 }
 
+.journal .content .entry .journaltext > br + br:last-of-type {
+  display: block;
+}
+
 .journal .entry.catchsuccessloot .journaltext br,
 .journal .entry.luckycatchsuccess .journaltext br,
 .journal .entry.relicHunter_catch .journaltext br::after,

@@ -11,7 +11,11 @@ import {
   sessionSet
 } from '@utils';
 
+import settings from './settings';
+
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
+import astStyles from './asterios-mode-styles.css';
+
 const styles = imported;
 
 const saveEntries = async (callback) => {
@@ -284,8 +288,8 @@ const updateJournalText = async () => {
     // Halloween
     [/an additional:<br>/i, 'an additional '],
 
-    [/ · /g, ''],
-    [/(\d+?) x /gi, '<p class="mhi-x-entry"> · $1 x '],
+    [/<p class="mhi-x-entry"> • /g, ''],
+    [/(\d+?) x /gi, '<p class="mhi-x-entry"> • $1 x '],
 
     ['<p></p>', ''],
     ['I can view other recipe', '<p class="double">I can view other recipe'],
@@ -363,22 +367,24 @@ const main = () => {
   updateEls();
   onRequest(() => {
     updateEls();
-    setTimeout(updateEls, 300);
-    setTimeout(updateEls, 900);
   });
 
   onTurn(updateEls);
-
-  if (getSetting('better-journal-privacy')) {
-    journalPrivacy();
-  }
 };
 
 /**
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles, 'better-journal');
+  if (getSetting('better-journal-styles', false)) {
+    addStyles(astStyles, 'better-journal');
+  } else {
+    addStyles(styles, 'better-journal');
+  }
+
+  if (getSetting('better-journal-privacy')) {
+    journalPrivacy();
+  }
 
   main();
 };
@@ -390,4 +396,5 @@ export default {
   default: true,
   description: 'Modify the journal text, layout, and styling.',
   load: init,
+  settings,
 };

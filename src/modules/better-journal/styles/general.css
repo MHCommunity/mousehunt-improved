@@ -33,8 +33,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 65px;
+  width: 60px;
   height: auto;
+  margin: 10px 0 0 10px;
 }
 
 .shop_purchase .journal .content .entry .journalimage {
@@ -48,17 +49,9 @@
 
 .journal .content .entry .journalimage a {
   display: inline-block;
-  width: 60px;
-  height: 60px;
+  width: 59px;
+  height: 59px;
   overflow: hidden;
-}
-
-.journal .content .entry a img {
-  width: 62px;
-  height: auto;
-  padding: 0;
-  margin: -2px;
-  border: 1px solid #000;
 }
 
 .journal .content .entry a:hover img,
