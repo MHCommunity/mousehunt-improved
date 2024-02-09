@@ -1,13 +1,34 @@
+import humanizeDuration from 'humanize-duration';
+
 import {
   addHudStyles,
+  getCurrentPage,
   getUserItems,
   makeElement,
   onDialogShow,
+  onEvent,
   onRequest,
+  onTravel,
   showHornMessage
 } from '@utils';
 
 import styles from './styles.css';
+
+const humanizer = humanizeDuration.humanizer({
+  language: 'shortEn',
+  languages: {
+    shortEn: {
+      y: () => 'y',
+      mo: () => 'mo',
+      w: () => 'w',
+      d: () => 'd',
+      h: () => 'h',
+      m: () => 'm',
+      s: () => 's',
+      ms: () => 'ms',
+    },
+  },
+});
 
 const toggleFuelClass = (fuelCount, isActive) => {
   if (isActive) {
@@ -58,21 +79,6 @@ const addBossCountdown = () => {
     return;
   }
 
-  // let prefix = 'Enemy';
-  // if (atts.is_low_tier_island) {
-  //   prefix = 'Warden';
-
-  // const allRemainingHunts = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy_encounter_hunts_remaining || 0;
-
-  // let warGons = 'Paragon: ';
-  // if (user.quests.QuestFloatingIslands.hunting_site_atts.has_enemy == null) {
-  //     warGons = 'Enemy: ';
-  // } else if (user.quests.QuestFloatingIslands.hunting_site_atts.is_high_altitude == null) {
-  //     warGons = 'Warden: ';
-  // } else if (user.quests.QuestFloatingIslands.hunting_site_atts.is_vault_island != null) {
-  //     warGons = 'Empress: ';
-  // }
-
   let name = atts.enemy?.abbreviated_name || 'Enemy';
   // split the name and get the first word
   name = name.split(' ')[0];
@@ -81,16 +87,21 @@ const addBossCountdown = () => {
 
   const existing = document.querySelector('.mh-ui-fi-enemy-countdown');
   if (existing) {
-    existing.remove();
+    const huntsRemainingEl = existing.querySelector('.mh-ui-fi-enemy-countdown-hunts');
+    if (huntsRemainingEl) {
+      huntsRemainingEl.innerText = huntsRemaining;
+    } else {
+      existing.remove();
+    }
+  } else {
+    const bossCountdown = document.createElement('div');
+    bossCountdown.classList.add('mh-ui-fi-enemy-countdown');
+    makeElement('span', 'mh-ui-fi-enemy-countdown-name', name, bossCountdown);
+    makeElement('span', 'mh-ui-fi-enemy-countdown-in', ' in ', bossCountdown);
+    makeElement('span', 'mh-ui-fi-enemy-countdown-hunts', huntsRemaining, bossCountdown);
+
+    enemyContainer.append(bossCountdown);
   }
-
-  const bossCountdown = document.createElement('div');
-  bossCountdown.classList.add('mh-ui-fi-enemy-countdown');
-  makeElement('span', 'mh-ui-fi-enemy-countdown-name', name, bossCountdown);
-  makeElement('span', 'mh-ui-fi-enemy-countdown-in', ' in ', bossCountdown);
-  makeElement('span', 'mh-ui-fi-enemy-countdown-hunts', huntsRemaining, bossCountdown);
-
-  enemyContainer.append(bossCountdown);
 };
 
 const addEnemyClass = () => {
@@ -113,10 +124,10 @@ const addEnemyClass = () => {
 
   const exists = document.querySelector('.mh-ui-fi-enemy-name');
   if (exists) {
-    exists.remove();
+    exists.innerText = name;
+  } else {
+    makeElement('div', 'mh-ui-fi-enemy-name', name, enemyContainer);
   }
-
-  makeElement('div', 'mh-ui-fi-enemy-name', name, enemyContainer);
 };
 
 const getNextOcUpgradeCost = (ocLevel) => {
@@ -216,28 +227,173 @@ const showBWReminder = () => {
   }
 };
 
+const maybeChangeWarning = () => {
+  const isLAI = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.is_low_tier_island;
+  const isAtBoss = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_encountered_enemy && ! user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_defeated_enemy;
+
+  if (! isLAI || ! isAtBoss) {
+    return;
+  }
+
+  const bossWarning = document.querySelector('.floatingIslandsHUD-warning.floatingIslandsHUD-powerTypeWarning.active');
+
+  // Replace the text to be a "use your most powerful setup" warning
+  if (bossWarning) {
+    bossWarning.innerHTML = 'Use your most powerful setup!';
+  }
+};
+
+const updateJetstreamTime = () => {
+  const container = document.querySelector('.floatingIslandsHUD-jetstream-time');
+  if (! container) {
+    return;
+  }
+
+  container.innerHTML = '';
+
+  if (! user?.quests?.QuestFloatingIslands?.jet_stream_active) {
+    return;
+  }
+
+  const expiry = document.querySelector('.floatingIslandsHUD-jetstream .trapImageView-tooltip-trapAura-expiry span');
+  if (! expiry) {
+    return;
+  }
+
+  const dateParts = expiry.innerText.split(' ');
+  if (! dateParts.length || dateParts.length < 5) {
+    return;
+  }
+
+  const month = dateParts[0];
+  const day = dateParts[1].replace(',', '');
+  const year = dateParts[2];
+  const timeParts = dateParts[4].split(':');
+  let hours = Number.parseInt(timeParts[0]);
+  const minutes = timeParts[1].slice(0, 2); // remove 'am' or 'pm'
+
+  if (dateParts[4].includes('pm') && hours !== 12) {
+    hours += 12;
+  } else if (dateParts[4].includes('am') && hours === 12) {
+    hours = 0;
+  }
+
+  const expiryDate = Date.parse(`${month} ${day}, ${year} ${hours}:${minutes}`);
+  if (Number.isNaN(expiryDate)) {
+    return;
+  }
+
+  const now = new Date();
+  const timeRemaining = expiryDate - now;
+
+  const duration = humanizer(timeRemaining, {
+    round: true,
+    units: ['d', 'h', 'm'],
+    spacer: '',
+    delimiter: ' ',
+  });
+
+  container.innerText = duration;
+};
+
+let jsClone;
+const showJetstream = () => {
+  const exists = document.querySelector('.floatingIslandsHUD-jetstream');
+  if (exists) {
+    exists.remove();
+  }
+
+  if (! user?.quests?.QuestFloatingIslands?.jet_stream_active) {
+    return;
+  }
+
+  const existing = document.querySelector('.floatingIslandsHUD-jetstream');
+  if (existing) {
+    return;
+  }
+
+  const container = document.querySelector('.floatingIslandsHUD');
+  if (! container) {
+    return;
+  }
+
+  let hudAura;
+  if ('camp' === getCurrentPage()) {
+    const aura = document.querySelector('.trapImageView-trapAura.mousehuntTooltipParent.QuestJetStreamAura.active');
+    if (! aura) {
+      return;
+    }
+
+    hudAura = aura.cloneNode(true);
+
+    jsClone = hudAura;
+  } else {
+    hudAura = jsClone;
+  }
+
+  if (! hudAura) {
+    return;
+  }
+
+  const tooltip = hudAura.querySelector('.mousehuntTooltip');
+  if (tooltip) {
+    tooltip.classList.remove('right');
+    tooltip.classList.add('left');
+  }
+
+  const auraContainer = makeElement('div', 'floatingIslandsHUD-jetstream');
+  auraContainer.append(hudAura);
+
+  container.append(auraContainer);
+
+  const timeRemainingEl = makeElement('div', 'floatingIslandsHUD-jetstream-time');
+  auraContainer.append(timeRemainingEl);
+
+  updateJetstreamTime();
+};
+
+const runWithTimeout = (fn, timeout = 500) => {
+  fn();
+  setTimeout(fn, timeout);
+};
+
+const run = async () => {
+  const calls = [
+    showJetstream,
+    addEnemyClass,
+    addBossCountdown,
+    maybeChangeWarning,
+  ];
+
+  calls.forEach((fn) => {
+    runWithTimeout(fn, 150);
+    runWithTimeout(fn, 1000);
+  });
+};
+
 const hud = () => {
   toggleFuel();
-
-  addBossCountdown();
-  setTimeout(addBossCountdown, 300);
-  setTimeout(addBossCountdown, 500);
-  setTimeout(addEnemyClass, 1000);
-
-  addEnemyClass();
-  setTimeout(addEnemyClass, 500);
-
-  onRequest(() => {
-    addBossCountdown();
-    addEnemyClass();
-  }, 'managers/ajax/environment/floating_islands.php');
-
   showGloreProgress();
 
-  onDialogShow(onSkyMapShow, 'floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace');
-
+  run();
   showBWReminder();
-  onRequest(showBWReminder);
+  onTravel(() => {
+    setTimeout(showBWReminder, 1500);
+  });
+
+  onRequest(() => {
+    run();
+    setTimeout(run, 1500);
+  });
+
+  onEvent('horn-countdown-tick', updateJetstreamTime);
+
+  onRequest(() => {
+    run();
+    setTimeout(run, 1500);
+  }, 'managers/ajax/environment/floating_islands.php');
+
+  onDialogShow(onSkyMapShow, 'floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace');
 };
 
 /**

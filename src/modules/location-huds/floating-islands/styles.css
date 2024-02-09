@@ -338,3 +338,49 @@ a.floatingIslandsHUD-islandLoot:focus {
   transition: 0.3s;
   transform-origin: left;
 }
+
+.floatingIslandsAdventureBoardSkyMap-rerollButton.busy {
+  pointer-events: none;
+}
+
+.floatingIslandsAdventureBoard-info span {
+  line-height: 1.5;
+}
+
+.floatingIslandsHUD-jetstream {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 4;
+  width: 30px;
+  height: 30px;
+}
+
+.floatingIslandsHUD-jetstream .trapImageView-trapAura.active {
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  opacity: 0.5;
+}
+
+.floatingIslandsHUD-jetstream .trapImageView-trapAura.active:hover {
+  opacity: 1;
+}
+
+.floatingIslandsHUD-jetstream .trapImageView-trapAura.active .mousehuntTooltip {
+  top: -20px;
+  left: -250px;
+  z-index: 11;
+  width: 235px;
+}
+
+.floatingIslandsHUD-jetstream-time {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: auto;
+  min-width: 100px;
+  font-size: 11px;
+  color: #71d0ff;
+  text-align: right;
+}
