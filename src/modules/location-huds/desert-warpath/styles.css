@@ -114,3 +114,28 @@
 .warpathHUD-waveContainer.warpathHUD-engaged .warpathHUD-wave {
   box-shadow: inset 0 0 10px 4px #fc4848;
 }
+
+.warpathHUD-engaged .warpathHUD-wave-mouse .mousehuntTooltip.tight.top {
+  display: none;
+}
+
+.warpathHud-missle-activate {
+  position: absolute;
+  top: -15px;
+  left: -26px;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: 0.3s;
+  transform: rotate(270deg) scale(0.8);
+  animation: none;
+}
+
+.warpathHud-missle-activate:hover {
+  opacity: 1;
+  transform: rotate(270deg) scale(1);
+}
+
+.warpathHUD-engaged .warpathHud-missle-activate {
+  filter: hue-rotate(281deg);
+  opacity: 0.9;
+}

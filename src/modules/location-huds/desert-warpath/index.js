@@ -1,4 +1,4 @@
-import { addHudStyles } from '@utils';
+import { addHudStyles, makeElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -9,10 +9,8 @@ const addMissiles = () => {
     return;
   }
 
-  const trigger = document.querySelector('.warpathHUD-streakContainer');
-  if (! trigger) {
-    return;
-  }
+  const trigger = makeElement('div', ['warpathHud-missle-activate', 'warpathHUD-missile']);
+  container.append(trigger);
 
   trigger.addEventListener('click', () => {
     engaged = ! engaged;
@@ -25,6 +23,14 @@ const addMissiles = () => {
   });
 
   const launchMissle = (event) => {
+    if (! container.classList.contains('warpathHUD-engaged')) {
+      return;
+    }
+
+    if (event.target.classList.contains('warpathHUD-missile')) {
+      return;
+    }
+
     if (! engaged) {
       return;
     }
