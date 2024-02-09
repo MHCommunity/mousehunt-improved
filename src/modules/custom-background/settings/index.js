@@ -47,7 +47,7 @@ export default function (module) {
     },
   ];
 
-  addMhuiSetting(
+  return addMhuiSetting(
     'custom-background',
     'Custom Background <a class="mh-improved-custom-bg-preview hidden">Preview</a>',
     [options[0]],

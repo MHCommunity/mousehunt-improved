@@ -65,7 +65,7 @@ export default async function (module) {
   });
 
   options.forEach((location) => {
-    addMhuiSetting(
+    return addMhuiSetting(
       location.id,
       location.name,
       true,
