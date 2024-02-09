@@ -446,7 +446,7 @@ const init = async () => {
 
   cacheLocationData();
   onEvent('travel_complete', cacheLocationData);
-  onRequest(cacheLocationData);
+  onRequest('all', cacheLocationData);
 
   makeDashboardTab();
 };

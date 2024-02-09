@@ -249,7 +249,7 @@ const init = async () => {
     page: 'scoreboards',
   });
 
-  onRequest(updateScoreboard, 'managers/ajax/pages/scoreboards.php');
+  onRequest('pages/scoreboards.php', updateScoreboard);
 };
 
 export default {

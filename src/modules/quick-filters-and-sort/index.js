@@ -213,7 +213,7 @@ const main = () => {
 const init = async () => {
   addStyles(styles, 'quick-filters-and-sort');
 
-  onRequest(main, 'ajax/users/gettrapcomponents.php');
+  onRequest('users/gettrapcomponents.php', main);
   onEvent('camp_page_toggle_blueprint', main);
 };
 

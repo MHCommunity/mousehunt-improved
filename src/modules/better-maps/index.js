@@ -132,17 +132,17 @@ const intercept = () => {
     }, 1000);
   };
 
-  onRequest((data) => {
+  onRequest('users/treasuremap.php', (data) => {
     if (data.treasure_map && data.treasure_map.map_id) {
       setMapData(data.treasure_map.map_id, data.treasure_map);
     }
-  }, 'managers/ajax/users/treasuremap.php', true);
+  }, true);
 
-  onRequest((data) => {
+  onRequest('board/board.php', (data) => {
     if (data.treasure_map && data.treasure_map.map_id) {
       setMapData(data.treasure_map.map_id, data.treasure_map);
     }
-  }, 'managers/ajax/board/board.php', true);
+  }, true);
 };
 
 const clearStickyMouse = () => {

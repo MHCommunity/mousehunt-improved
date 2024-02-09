@@ -58,10 +58,10 @@ const startKingsReward = () => {
 const init = async () => {
   addStyles(styles, 'better-kings-reward');
 
-  onRequest(initiateKingsReward, 'managers/ajax/turns/activeturn.php', true);
-  onRequest(continueOnKingsReward, 'managers/ajax/users/puzzle.php', true);
+  onRequest('turns/activeturn.php', initiateKingsReward, true);
+  onRequest('users/puzzle.php', continueOnKingsReward, true);
 
-  onRequest(startKingsReward);
+  onRequest('all', startKingsReward);
   startKingsReward();
 };
 

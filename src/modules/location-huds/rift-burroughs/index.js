@@ -388,6 +388,5 @@ const hud = () => {
 export default async () => {
   addHudStyles(styles);
   hud();
-  onTurn(hud);
-  onRequest(hud);
+  onRequest('all', hud);
 };

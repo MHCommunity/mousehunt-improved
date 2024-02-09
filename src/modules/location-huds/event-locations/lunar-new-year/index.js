@@ -127,7 +127,7 @@ const triggerFireworks = () => {
 const lunarNewYearGlobal = async () => {
   addStyles(styles, 'location-hud-events-lunar-new-year');
 
-  onRequest(dragMapPopup, 'managers/ajax/events/lunar_new_year.php');
+  onRequest('events/lunar_new_year.php', dragMapPopup);
 
   if ('camp' === getCurrentPage()) {
     dragMapCamp();

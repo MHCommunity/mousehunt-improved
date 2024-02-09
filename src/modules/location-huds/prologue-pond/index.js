@@ -48,8 +48,8 @@ export default async () => {
   folkloreForest();
 
   addDisarmedClass();
-  onRequest(addDisarmedClass, 'managers/ajax/users/changetrap.php');
+  onRequest('users/changetrap.php', addDisarmedClass);
 
   updatePondLootQuantity();
-  onRequest(updatePondLootQuantity, 'managers/ajax/environment/prologue_pond.php');
+  onRequest('environment/prologue_pond.php', updatePondLootQuantity);
 };

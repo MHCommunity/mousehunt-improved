@@ -228,7 +228,7 @@ const init = async () => {
 
   observer.observe(document, observerOptions);
 
-  onDialogShow(() => {
+  onDialogShow('all', () => {
     setTimeout(() => {
       upscaleImages();
     }, 500);

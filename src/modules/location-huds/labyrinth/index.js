@@ -191,5 +191,5 @@ export default async () => {
   addHudStyles(styles);
 
   hud();
-  onRequest(hud);
+  onRequest('all', hud);
 };

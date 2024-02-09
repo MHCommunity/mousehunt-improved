@@ -161,15 +161,15 @@ const init = async () => {
     },
   });
 
-  onRequest(() => {
+  onRequest('users/changetrap.php', () => {
     savePbStats();
     setPrestigeStats();
-  }, 'managers/ajax/users/changetrap.php');
+  });
 
-  onRequest(() => {
+  onRequest('users/gettrapcomponents.php', () => {
     savePbStats();
     setPrestigeStats();
-  }, 'managers/ajax/users/gettrapcomponents.php');
+  });
 };
 
 export default {

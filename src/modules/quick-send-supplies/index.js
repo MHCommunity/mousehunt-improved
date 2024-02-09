@@ -210,13 +210,13 @@ const init = async () => {
   main();
   onNavigation(main);
 
-  onRequest(() => {
+  onRequest('all', () => {
     setTimeout(main, 500);
   });
 
   onEvent('profile_hover', main);
 
-  onDialogShow(addToMapUsers, 'map');
+  onDialogShow('map', addToMapUsers);
 };
 
 export default {

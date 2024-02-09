@@ -141,7 +141,7 @@ const init = async () => {
     page: 'shops',
   });
 
-  onRequest(updatePlaceholderText, 'managers/ajax/purchases/itempurchase.php');
+  onRequest('purchases/itempurchase.php', updatePlaceholderText);
 };
 
 export default {

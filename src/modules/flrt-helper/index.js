@@ -195,9 +195,9 @@ const flrtPopup = (items) => {
 const init = async () => {
   addStyles(styles, 'flrt-helper');
 
-  onDialogShow(cacheFinishedMap, 'treasureMapPopup');
+  onDialogShow('treasureMapPopup', cacheFinishedMap);
 
-  onRequest(addFlrtButtonToConvertible, 'managers/ajax/users/useconvertible.php');
+  onRequest('users/useconvertible.php', addFlrtButtonToConvertible);
 };
 
 export default {

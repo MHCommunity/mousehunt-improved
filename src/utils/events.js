@@ -30,9 +30,11 @@ let onRequestHolder = null;
  * @param {string}   url         The url to match. If not provided, all ajax requests will be matched.
  * @param {boolean}  skipSuccess Skip the success check.
  */
-const onRequest = (callback, url = null, skipSuccess = false) => {
-  if (! url) {
-    url = '*';
+const onRequest = (url = null, callback = null, skipSuccess = false) => {
+  url = ! url || 'all' === url ? '*' : `managers/ajax/${url}`;
+
+  if (! callback) {
+    return;
   }
 
   if (! requestCallbacks[url]) {
@@ -249,7 +251,7 @@ const getDialogMapping = () => {
  * @param {string}   overlay  The overlay to check for.
  * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
-const onDialogShow = (callback, overlay = null, once = false) => {
+const onDialogShow = (overlay = null, callback = null, once = false) => {
   // make a unique identifier for the event listener based on the callback.
   const identifier = callback.toString().replaceAll(/[^\w-]/gi, '');
   eventRegistry.addEventListener('js_dialog_show', () => {
@@ -290,7 +292,7 @@ const onDialogShow = (callback, overlay = null, once = false) => {
       dialogType = dialogType.slice(0, -1);
     }
 
-    if (! overlay && 'function' === typeof callback) {
+    if ((! overlay || 'all' === overlay ) && 'function' === typeof callback) {
       return callback();
     }
 
@@ -550,10 +552,10 @@ const onDeactivation = (module, callback) => {
 };
 
 const onTurn = (callback, delay = null) => {
-  onRequest(() => {
+  onRequest('turns/activeturn.php', () => {
     delay = delay || Math.floor(Math.random() * 1000) + 1000;
     setTimeout(callback, delay);
-  }, 'managers/ajax/turns/activeturn.php', true);
+  }, true);
 };
 
 export {

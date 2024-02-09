@@ -13,19 +13,19 @@ const hidePopup = () => {
  * Initialize the module.
  */
 const init = async () => {
-  onDialogShow(() => {
+  onDialogShow('dailyRewardPopup', () => {
     setTimeout(() => {
       if (activejsDialog) {
         activejsDialog.hide();
       }
     }, 500);
-  }, 'dailyRewardPopup');
+  });
 
   hidePopup();
   setTimeout(hidePopup, 1000);
   setTimeout(hidePopup, 2000);
 
-  onRequest(hidePopup);
+  onRequest('all', hidePopup);
 };
 
 export default {

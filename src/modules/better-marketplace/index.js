@@ -221,7 +221,7 @@ const init = async () => {
     },
   });
 
-  onRequest(autocloseClaim, 'managers/ajax/users/marketplace.php');
+  onRequest('users/marketplace.php', autocloseClaim);
 };
 
 export default {

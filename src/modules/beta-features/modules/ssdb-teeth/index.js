@@ -51,6 +51,6 @@ export default async () => {
   }`, 'ssdb-teeth');
 
   main();
-  onRequest(main, 'managers/ajax/users/changetrap.php');
+  onRequest('users/changetrap.php', main);
   onTurn(main, 150);
 };

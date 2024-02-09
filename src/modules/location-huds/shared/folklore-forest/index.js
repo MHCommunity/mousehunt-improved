@@ -181,9 +181,9 @@ let hasAddedUpgradeVisibilityToggles = false;
  * Initialize the module.
  */
 export default async () => {
-  onDialogShow(addUpgradeVisibilityToggles, 'fabledForestDialog');
+  onDialogShow('fabledForestDialog', addUpgradeVisibilityToggles);
   onDialogHide(() => (hasAddedUpgradeVisibilityToggles = false));
 
   toggleAllVisibility();
-  onRequest(toggleAllVisibility);
+  onRequest('all', toggleAllVisibility);
 };

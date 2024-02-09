@@ -33,9 +33,7 @@ const applyClassToNames = () => {
 const init = async () => {
   addStyles(styles, 'journal-privacy');
 
-  onRequest(() => {
-    applyClassToNames();
-  }, 'managers/ajax/pages/journal.php');
+  onRequest('pages/journal.php', applyClassToNames);
 };
 
 export default {

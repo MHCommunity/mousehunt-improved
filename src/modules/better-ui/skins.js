@@ -79,7 +79,7 @@ const addQuickLinksToTrap = () => {
  * Initialize the module.
  */
 export default async () => {
-  onRequest(addQuickLinksToTrap, 'ajax/users/gettrapcomponents.php');
   onEvent('camp_page_toggle_blueprint', addQuickLinksToTrap);
-  onRequest(addSkinImages, 'managers/ajax/users/changetrap.php', true);
+  onRequest('users/gettrapcomponents.php', addQuickLinksToTrap);
+  onRequest('users/changetrap.php', addSkinImages, true);
 };

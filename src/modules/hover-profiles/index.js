@@ -196,7 +196,7 @@ const init = async () => {
   addStyles(styles, 'hover-profiles');
 
   setTimeout(main, 500);
-  onRequest(() => {
+  onRequest('all', () => {
     setTimeout(main, 1000);
   });
 

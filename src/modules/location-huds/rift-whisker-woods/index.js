@@ -66,5 +66,5 @@ export default async () => {
   addHudStyles(styles);
 
   checkAndWarnWhenNoTauntingCharm();
-  onRequest(checkAndWarnWhenNoTauntingCharm);
+  onRequest('all', checkAndWarnWhenNoTauntingCharm);
 };

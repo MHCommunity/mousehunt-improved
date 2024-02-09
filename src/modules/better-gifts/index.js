@@ -385,10 +385,10 @@ const addButtonsToPopup = () => {
 };
 
 const main = () => {
-  onRequest(makeButtons, 'managers/ajax/users/socialGift.php');
+  onRequest('users/socialGift.php', makeButtons);
 
   addButtonsToDropdown();
-  onDialogShow(addButtonsToPopup, 'giftSelectorViewPopup');
+  onDialogShow('giftSelectorViewPopup', addButtonsToPopup);
 
   addRandomSendButton();
   addGiftSwitcher();

@@ -42,7 +42,7 @@ const init = () => {
       debug(`Dialog hidden: ${currentDialog}`);
     });
 
-    Utils.onDialogShow(() => {
+    Utils.onDialogShow('all', () => {
       currentDialog = Utils.getCurrentDialog();
       debug(`Dialog shown: ${currentDialog}`);
     });
@@ -63,7 +63,7 @@ const init = () => {
   }
 
   if (isDebugging('debug-request')) {
-    Utils.onRequest((response) => {
+    Utils.onRequest('all', (response) => {
       debug('onRequest', response);
     });
   }

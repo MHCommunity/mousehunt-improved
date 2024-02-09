@@ -37,12 +37,12 @@ export default async () => {
   folkloreForest();
 
   updateWordLootQuantity();
-  onRequest(updateWordLootQuantity, 'managers/ajax/environment/table_of_contents.php');
+  onRequest('environment/table_of_contents.php', updateWordLootQuantity);
 
   updateNextWordCount();
-  onRequest(() => {
+  onTurn(() => {
     updateNextWordCount();
     setTimeout(updateNextWordCount, 500);
     setTimeout(updateNextWordCount, 1000);
-  }, 'managers/ajax/turns/activeturn.php');
+  });
 };

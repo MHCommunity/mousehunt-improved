@@ -281,7 +281,7 @@ const maybeHideAdventCalendarInMenu = () => {
 
 const greatWinterHuntGlobal = () => {
   addStyles([stylesGlobal, maybeHideAdventCalendarInMenu], 'location-hud-events-great-winter-hunt');
-  onDialogShow(adventCalendarPopup, 'adventCalendarPopup');
+  onDialogShow('adventCalendarPopup', adventCalendarPopup);
 };
 
 /**
@@ -289,19 +289,19 @@ const greatWinterHuntGlobal = () => {
  */
 const greatWinterHuntLocation = () => {
   addHudStyles(styles);
-  onDialogShow(updateGolemPopup, 'greatWinterHuntDialog');
+  onDialogShow('greatWinterHuntDialog', updateGolemPopup);
 
   golemDance();
   expandAnimatedSnowCount();
   showPossibleSnowballShowdownDustCount();
 
-  onRequest(() => {
+  onRequest('purchases/itempurchase.php', () => {
     updateGolemPartsQuantity();
 
     setTimeout(updateGolemFooter, 250);
-  }, 'managers/ajax/purchases/itempurchase.php');
+  });
 
-  onRequest(() => {
+  onRequest('all', () => {
     expandAnimatedSnowCount();
     showPossibleSnowballShowdownDustCount();
   });

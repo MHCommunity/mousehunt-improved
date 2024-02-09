@@ -362,13 +362,10 @@ const updateEls = () => {
 };
 
 const main = () => {
-  onRequest(kingsPromoTextChange, 'managers/ajax/users/dailyreward.php');
+  onRequest('users/dailyreward.php', kingsPromoTextChange);
 
   updateEls();
-  onRequest(() => {
-    updateEls();
-  });
-
+  onRequest('all', updateEls);
   onTurn(updateEls);
 };
 
