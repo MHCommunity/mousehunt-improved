@@ -6,6 +6,7 @@ import journalList from './modules/journal-list';
 import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
 import socialNoop from './modules/social';
+import ssdbTeeth from './modules/ssdb-teeth';
 import trollMode from './modules/troll-mode';
 
 /**
@@ -20,6 +21,7 @@ const init = async () => {
     { id: 'journal-icons', load: journalIcons },
     { id: 'journal-icons-all', load: journalIconsAll },
     { id: 'journal-list', load: journalList },
+    { id: 'ssdb-teeth', load: ssdbTeeth },
   ];
 
   const defaultEnabledFeatures = [
