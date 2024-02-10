@@ -11,6 +11,11 @@ import {
 
 import styles from './raffle.css';
 
+/**
+ * Get ballots to send.
+ *
+ * @return {Array} The ballots to send.
+ */
 const getBallotsToSend = () => {
   const ballotsToSend = [];
   const ballots = document.querySelectorAll('.message.notification.ballot');
@@ -40,15 +45,32 @@ const getBallotsToSend = () => {
   return ballotsToSend;
 };
 
+/**
+ * Get the cached sent ballots.
+ *
+ * @return {Array} The cached sent ballots.
+ */
 const getSavedSentBallots = () => {
   return sessionGet('sent-ballots', []);
 };
 
+/**
+ * Get the saved sent ballot.
+ *
+ * @param {string} id The ballot ID.
+ *
+ * @return {boolean} The saved sent ballot.
+ */
 const getSavedSentBallot = (id) => {
   const savedSentBallots = getSavedSentBallots();
   return savedSentBallots.includes(id);
 };
 
+/**
+ * Save a sent ballot.
+ *
+ * @param {string} id The ballot ID.
+ */
 const saveSentBallot = (id) => {
   const savedSentBallots = getSavedSentBallots();
   savedSentBallots.push(id);
@@ -56,6 +78,13 @@ const saveSentBallot = (id) => {
   sessionSet('sent-ballots', savedSentBallots);
 };
 
+/**
+ * Send a ballot.
+ *
+ * @param {Object} ballot The ballot to send.
+ *
+ * @return {Object} The send ballot response.
+ */
 const sendBallot = async (ballot) => {
   debuglog('beta-features-raffle', `Returning ballot for ${ballot.name} (${ballot.id})…`);
 
@@ -98,6 +127,9 @@ const sendBallot = async (ballot) => {
   return { status: 'done', proceed: true };
 };
 
+/**
+ * Return raffles.
+ */
 const returnRaffles = async () => {
   const drawTab = document.querySelector('.notificationMessageList .tab.active[data-tab="daily_draw"]');
   if (! drawTab) {
@@ -197,6 +229,9 @@ const returnRaffles = async () => {
   drawTab.insertBefore(messageWrapper, drawTab.firstChild);
 };
 
+/**
+ * Replace inbox methods.
+ */
 const replaceInboxMethods = () => {
   const _inboxOpen = messenger.UI.notification.showTab;
   messenger.UI.notification.showTab = (tab) => {
@@ -225,6 +260,9 @@ const replaceInboxMethods = () => {
 };
 
 const main = () => {
+/**
+ * Initialize the module.
+ */
   addStyles(styles, 'beta-features-raffle');
 
   replaceInboxMethods();

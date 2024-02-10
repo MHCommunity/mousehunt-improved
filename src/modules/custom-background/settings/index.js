@@ -2,6 +2,8 @@ import gradients from '../gradients.json';
 
 /**
  * Add settings for the module.
+ *
+ * @return {Array} The settings for the module.
  */
 export default async () => {
   const gradientOptions = gradients.map((gradient) => ({

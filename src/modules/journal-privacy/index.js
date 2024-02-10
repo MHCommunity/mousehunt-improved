@@ -2,6 +2,9 @@ import { addStyles, onRequest } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Apply a class to names in the journal.
+ */
 const applyClassToNames = () => {
   const entries = document.querySelectorAll('#journalContainer .entry.relicHunter_start .journaltext');
   if (! entries) {

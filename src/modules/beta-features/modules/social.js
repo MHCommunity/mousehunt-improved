@@ -6,6 +6,9 @@ export default () => {
     },
   };
 
+  /**
+   * Social link class.
+   */
   class SocialLink {
     constructor(url) {
       this.url = url;

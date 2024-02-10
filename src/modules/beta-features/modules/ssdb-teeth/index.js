@@ -7,10 +7,18 @@ import {
   onTurn
 } from '@utils';
 
+/**
+ * Check if the user has the SSDB equipped.
+ *
+ * @return {boolean} True if the user has the SSDB equipped.
+ */
 const hasSsdbEquipped = () => {
   return (3023 === Number.parseInt(user.base_item_id, 10));
 };
 
+/**
+ * Main function.
+ */
 const main = async () => {
   if ('camp' !== getCurrentPage()) {
     return;
@@ -44,6 +52,9 @@ const main = async () => {
   trapContainer.append(newCounter);
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   addStyles(`.mhui-ssdb-teeth-counter {
     right: 1px;

@@ -2,6 +2,8 @@ import { getTradableItems } from '@utils';
 
 /**
  * Add settings for the module.
+ *
+ * @return {Array} The settings for the module.
  */
 export default async () => {
   const tradableItems = await getTradableItems('type');

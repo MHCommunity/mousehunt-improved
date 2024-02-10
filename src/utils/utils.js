@@ -99,6 +99,11 @@ const addBodyClass = (className) => {
   });
 };
 
+/**
+ * Remove a body class that persists across navigation.
+ *
+ * @param {string} className Class to remove.
+ */
 const removeBodyClass = (className) => {
   bodyClasses.removed.push(className);
   document.body.classList.remove(className);

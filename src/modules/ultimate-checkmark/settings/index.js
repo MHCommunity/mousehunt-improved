@@ -4,6 +4,8 @@ import categories from '@data/ultimate-checkmark.json';
 
 /**
  * Add settings for the module.
+ *
+ * @return {Array} The settings for the module.
  */
 export default async () => {
   const options = [];

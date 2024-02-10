@@ -1,5 +1,8 @@
 import { addStyles, makeElement } from '@utils';
 
+/**
+ * Export the rank-up forecaster data.
+ */
 const exportRankupForecasterData = () => {
   const allArea = localStorage.getItem('Chro-forecaster-all-area');
   const currentArea = localStorage.getItem('Chro-forecaster-current-area');
@@ -25,6 +28,9 @@ const exportRankupForecasterData = () => {
   link.click();
 };
 
+/**
+ * Export the rank-up forecaster data as a CSV.
+ */
 const exportRankupForecasterDataAsCsv = () => {
   const time = localStorage.getItem('Chro-forecaster-time');
 
@@ -80,6 +86,9 @@ const importRankupForecassterData = () => {
   }
 };
 
+/**
+ * Add the rank-up forecaster buttons.
+ */
 const addRankupForecasterButtons = () => {
   const forecastOpen = document.querySelector('.mousehuntHud-userStat-row.points');
   if (! forecastOpen) {

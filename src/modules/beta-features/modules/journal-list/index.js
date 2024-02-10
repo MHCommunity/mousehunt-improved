@@ -1,6 +1,13 @@
 import { addStyles, onEvent } from '@utils';
 import styles from './styles.css';
 
+/**
+ * Format a journal entry as a list.
+ *
+ * @param {Object} args        The entry arguments.
+ * @param {Element} args.entry The journal entry.
+ * @param {Element} args.text  The journal entry text.
+ */
 const formatAsList = async (args) => {
   const { entry, text } = args;
 
@@ -43,6 +50,9 @@ const formatAsList = async (args) => {
   text.append(list);
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   addStyles(styles, 'beta-features-journal-list');
 

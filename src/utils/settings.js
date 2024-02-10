@@ -51,6 +51,11 @@ const getSetting = (key, defaultValue = false) => {
   return getSettingDirect(key, defaultValue, 'mousehunt-improved-settings');
 };
 
+/**
+ * Get the saved settings.
+ *
+ * @return {Object} The saved settings.
+ */
 const getSettings = () => {
   const settings = localStorage.getItem('mousehunt-improved-settings');
   if (! settings) {

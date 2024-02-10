@@ -19,6 +19,11 @@ import largerImagesStyles from './larger-images.css';
 
 import styles from './styles.css';
 
+/**
+ * Set the quantity to the max when clicking the convert button.
+ *
+ * @param {number} attempts The number of attempts.
+ */
 const setOpenQuantityOnClick = (attempts = 0) => {
   const qty = document.querySelector('.itemView-action-convertForm');
   if (! qty) {
@@ -46,6 +51,9 @@ const setOpenQuantityOnClick = (attempts = 0) => {
   });
 };
 
+/**
+ * Add the open all button to the convertible items.
+ */
 const addOpenAlltoConvertible = () => {
   const form = document.querySelector('.convertible .itemView-action-convertForm');
   if (! form) {
@@ -87,6 +95,9 @@ const addOpenAlltoConvertible = () => {
   });
 };
 
+/**
+ * Add the item view popup to collectibles.
+ */
 const addItemViewPopupToCollectibles = () => {
   const collectibles = document.querySelectorAll('.mousehuntHud-page-subTabContent.collectible .inventoryPage-item.small');
   if (! collectibles.length) {
@@ -111,6 +122,9 @@ const addItemViewPopupToCollectibles = () => {
   });
 };
 
+/**
+ * Add the arm button to charms.
+ */
 const addArmButtonToCharms = () => {
   if ('inventory' !== getCurrentPage() || 'traps' !== getCurrentTab() || 'trinket' !== getCurrentSubtab()) {
     return;
@@ -140,6 +154,9 @@ const addArmButtonToCharms = () => {
   });
 };
 
+/**
+ * Main function.
+ */
 const main = () => {
   onOverlayChange({ item: { show: setOpenQuantityOnClick } });
   if ('item' === getCurrentPage()) {

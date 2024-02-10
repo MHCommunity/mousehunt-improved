@@ -10,6 +10,9 @@ import {
 import recipesMeConversion from '@data/recipes-me-conversion.json';
 import recipesToReorder from '@data/recipes-to-reorder.json';
 
+/**
+ * Clean up the recipe book.
+ */
 const cleanUpRecipeBook = () => {
   // Re-add the 'All' tab.
   const allTab = document.querySelector('.inventoryPage-tagDirectory-tag.all.hidden');
@@ -41,6 +44,11 @@ const cleanUpRecipeBook = () => {
   });
 };
 
+/**
+ * Show a warning when crafting a recipe that may not be worth it.
+ *
+ * @param {string} text The warning text.
+ */
 const showCraftWarning = (text) => {
   const confirm = document.querySelector('.mousehuntActionButton.inventoryPage-confirmPopup-suffix-button.confirm');
   if (! confirm) {
@@ -56,6 +64,11 @@ const showCraftWarning = (text) => {
   confirm.parentNode.append(tooltip);
 };
 
+/**
+ * Warn the user when crafting a recipe that may not be worth it.
+ *
+ * @param {number} limit The limit of the number of times to check for the confirm button.
+ */
 const warnOnBadCrafts = (limit = 0) => {
   const confirm = document.querySelector('.mousehuntActionButton.inventoryPage-confirmPopup-suffix-button.confirm');
   if (! confirm) {
@@ -110,6 +123,9 @@ const warnOnBadCrafts = (limit = 0) => {
   }
 };
 
+/**
+ * Modify the smashable tooltip.
+ */
 const modifySmashableTooltip = async () => {
   if ('crafting' !== getCurrentTab() || 'hammer' !== getCurrentSubtab()) {
     return;
@@ -199,6 +215,12 @@ const modifySmashableTooltip = async () => {
   });
 };
 
+/**
+ * Move the recipe to the bottom of the list.
+ *
+ * @param {string}      type             The type of recipe.
+ * @param {HTMLElement} recipesContainer The container for the recipes.
+ */
 const moveRecipe = (type, recipesContainer) => {
   const recipeEl = document.querySelector(`.inventoryPage-item.recipe[data-produced-item="${type}"]`);
   if (recipeEl) {

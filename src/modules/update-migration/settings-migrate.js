@@ -18,6 +18,11 @@ const migrateSetting = (settingKey) => {
   localStorage.removeItem(settingKey.from);
 };
 
+/**
+ * Migrate settings.
+ *
+ * @param {Array} settings The settings to migrate.
+ */
 const migrateSettings = (settings) => {
   settings.forEach((setting) => {
     migrateSetting(setting);

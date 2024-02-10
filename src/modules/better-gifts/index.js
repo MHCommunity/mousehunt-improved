@@ -11,6 +11,11 @@ import {
 import settings from './settings';
 import styles from './styles.css';
 
+/**
+ * Get the ignored gifts.
+ *
+ * @return {Array} The ignored gifts.
+ */
 const getIgnoredGifts = () => {
   const ignored = getSetting('gift-buttons-ignore-bad-gifts-0', 'skip');
 
@@ -28,6 +33,14 @@ const getIgnoredGifts = () => {
   return skipOptions[ignored] || skipOptions.skip;
 };
 
+/**
+ * Claim all the gifts.
+ *
+ * @param {boolean} send    Whether to send the gifts.
+ * @param {number}  retries The number of retries.
+ *
+ * @return {boolean} Whether the gifts were claimed.
+ */
 const claimGifts = async (send = false, retries = 0) => {
   // First, show the gift selector.
   hg.views.GiftSelectorView.show();
@@ -114,6 +127,11 @@ const makeAcceptButton = (buttonContainer) => {
   buttonContainer.append(acceptButton);
 };
 
+/**
+ * Make the return button.
+ *
+ * @param {HTMLElement} buttonContainer The container for the buttons.
+ */
 const makeReturnButton = (buttonContainer) => {
   // Return button.
   const returnWrapper = makeElement('div', 'mh-gift-buttons-return-wrapper');
@@ -131,6 +149,9 @@ const makeReturnButton = (buttonContainer) => {
   buttonContainer.append(returnWrapper);
 };
 
+/**
+ * Fix typos in the gift selector.
+ */
 const fixTypo = () => {
   replaceInTemplate('ViewGiftSelector', [
     [
@@ -144,6 +165,9 @@ const fixTypo = () => {
   ]);
 };
 
+/**
+ * Add a line break to the gift footer.
+ */
 const lineBreakGiftFooter = () => {
   replaceInTemplate('GiftSelectorView', [
     [
@@ -157,6 +181,13 @@ const lineBreakGiftFooter = () => {
   ]);
 };
 
+/**
+ * Get the buttons for the gift selector.
+ *
+ * @param {string} className The class name for the buttons.
+ *
+ * @return {HTMLElement} The button container.
+ */
 const getButtons = (className = false) => {
   const buttonContainer = document.createElement('div');
   buttonContainer.id = 'bulk-gifting-gift-buttons';
@@ -191,6 +222,11 @@ const makeButtons = () => {
   }
 };
 
+/**
+ * Get the limit for sending gifts.
+ *
+ * @return {number} The limit.
+ */
 const getLimit = () => {
   const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
   limit = limitEl ? Number.parseInt(limitEl.innerText, 10) : 0;
@@ -198,6 +234,12 @@ const getLimit = () => {
   return limit;
 };
 
+/**
+ * Pick friends to send gifts to.
+ *
+ * @param {Array}   friends   The friends to pick from.
+ * @param {boolean} useRandom Whether to use random selection.
+ */
 const pickFriends = (friends, useRandom = true) => {
   const selected = [];
   let sent = 0;
@@ -244,6 +286,14 @@ const pickFriends = (friends, useRandom = true) => {
   }
 };
 
+/**
+ * Add the send buttons to the gift selector.
+ *
+ * @param {string} className            The class name for the button.
+ * @param {string} text                 The button text.
+ * @param {string} selector             The selector for the friends.
+ * @param {HTMLElement} buttonContainer The container for the buttons.
+ */
 const addSendButton = (className, text, selector, buttonContainer) => {
   const existing = document.querySelector(`.mh-gift-buttons-send-${className}`);
   if (existing) {
@@ -274,6 +324,9 @@ const addSendButton = (className, text, selector, buttonContainer) => {
   buttonContainer.append(sendButton);
 };
 
+/**
+ * Add the random send button to the gift selector.
+ */
 const addRandomSendButton = () => {
   const _selectGift = hg.views.GiftSelectorView.selectGift;
   hg.views.GiftSelectorView.selectGift = (gift) => {
@@ -292,6 +345,10 @@ const addRandomSendButton = () => {
 let _showTab;
 let _selectGift;
 let _updateGiftMultiplierQuantity;
+
+/**
+ * Add the gift switcher to the gift selector.
+ */
 const addGiftSwitcher = () => {
   if (_showTab || _selectGift || _updateGiftMultiplierQuantity) {
     return;
@@ -358,6 +415,9 @@ const addGiftSwitcher = () => {
   };
 };
 
+/**
+ * Add the buttons to the dropdown.
+ */
 const addButtonsToDropdown = () => {
   const buttonLink = document.querySelector('#hgbar_freegifts');
   if (! buttonLink) {
@@ -369,6 +429,9 @@ const addButtonsToDropdown = () => {
   });
 };
 
+/**
+ * Add the buttons to the gift popup.
+ */
 const addButtonsToPopup = () => {
   const actionRow = document.querySelector('.giftSelectorView-tabContentContainer .giftSelectorView-tabContent.active .giftSelectorView-actionContainer');
   if (! actionRow) {
@@ -384,6 +447,9 @@ const addButtonsToPopup = () => {
   actionRow.insertBefore(buttons, actionRow.firstChild);
 };
 
+/**
+ * Main function.
+ */
 const main = () => {
   onRequest('users/socialGift.php', makeButtons);
 

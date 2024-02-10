@@ -53,6 +53,9 @@ const addLinks = (itemId) => {
   }
 };
 
+/**
+ * Update the item view.
+ */
 const updateItemView = async () => {
   const itemView = document.querySelector('.itemViewContainer');
   if (! itemView) {

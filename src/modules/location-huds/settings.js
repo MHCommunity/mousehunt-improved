@@ -2,6 +2,8 @@ import { getData } from '@utils/data';
 
 /**
  * Add settings for the module.
+ *
+ * @return {Array} The settings for the module.
  */
 export default async () => {
   const locationsToUnset = new Set([

@@ -2,6 +2,9 @@ import { addStyles } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Troll mode.
+ */
 const trollEm = () => {
   const domQuery = '#journallatestentry';
   const lastCatch = document.querySelector(domQuery);
@@ -33,6 +36,9 @@ const trollEm = () => {
   }
 };
 
+/**
+ * Troll mode 2.
+ */
 const trollem2 = () => {
   const banner = document.querySelector('.campPage-banner');
   if (! banner) {
