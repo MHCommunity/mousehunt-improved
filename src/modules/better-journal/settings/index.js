@@ -13,4 +13,14 @@ export default async (module) => {
     '',
     module
   );
-}
+
+  const replacements = await addMhuiSetting(
+    'better-journal-no-replacements',
+    'No Replacements',
+    false,
+    '',
+    module
+  );
+
+  return [styles, replacements];
+};

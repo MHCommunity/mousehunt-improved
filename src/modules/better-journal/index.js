@@ -363,14 +363,6 @@ const updateEls = () => {
   updateMouseImageLinks();
 };
 
-const main = () => {
-  onRequest('users/dailyreward.php', kingsPromoTextChange);
-
-  updateEls();
-  onRequest('all', updateEls);
-  onTurn(updateEls);
-};
-
 /**
  * Initialize the module.
  */
@@ -385,7 +377,13 @@ const init = async () => {
     journalPrivacy();
   }
 
-  main();
+  onRequest('users/dailyreward.php', kingsPromoTextChange);
+
+  if (! getSetting('better-journal-no-replacements', true)) {
+    updateEls();
+    onRequest('all', updateEls);
+    onTurn(updateEls);
+  }
 };
 
 export default {
