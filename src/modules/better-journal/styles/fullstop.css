@@ -16,7 +16,7 @@
 
 .journal .entry .journaltext br:last-child,
 .journal .content .entry .journaltext > br:last-of-type,
-.journal .content .entry .journaltext br + br {
+.journal .content .entry .journaltext > br:first-of-type {
   display: none;
 }
 
