@@ -13,11 +13,10 @@ import {
 import recipes from './recipes';
 import settings from './settings';
 
-import doubleWidthStyles from './double-width-item.css';
-import fullWidthStyles from './full-width-item.css';
-import largerImagesStyles from './larger-images.css';
-
-import styles from './styles.css';
+import doubleWidthStyles from './styles/double-width-item.css';
+import fullWidthStyles from './styles/full-width-item.css';
+import largerImagesStyles from './styles/larger-images.css';
+import styles from './styles/styles.css';
 
 /**
  * Set the quantity to the max when clicking the convert button.
