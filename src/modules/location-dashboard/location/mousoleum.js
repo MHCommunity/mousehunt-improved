@@ -1,3 +1,10 @@
+/**
+ * Dashboard output.
+ *
+ * @param {Object} quests The quests data.
+ *
+ * @return {string} The dashboard output.
+ */
 export default (quests) => {
   if (! quests.QuestMousoleum) {
     return '';

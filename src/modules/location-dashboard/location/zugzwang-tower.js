@@ -1,3 +1,10 @@
+/**
+ * Get the chess progress based on the number of pieces.
+ *
+ * @param {number} pieces The number of chess pieces.
+ *
+ * @return {string} The chess progress.
+ */
 const getChessProgress = (pieces) => {
   if (pieces <= 8) {
     return 'Pawns';
@@ -39,6 +46,11 @@ const getZugzwangTowerText = (quests) => {
   return `${returnText} Amp, Technic: ${getChessProgress(techProgress)}, Mystic: ${getChessProgress(mythProgress)}`;
 };
 
+/**
+ * Set the Zugzwang Tower data.
+ *
+ * @return {Object} The Zugzwang Tower data.
+ */
 const setZugzwangTowerData = () => {
   const ampEl = document.querySelector('.zuzwangsTowerHUD-currentAmplifier span');
   const amp = ampEl ? Number.parseInt(ampEl.innerText, 10) : 0;

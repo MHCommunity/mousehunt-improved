@@ -1,5 +1,12 @@
 import { getCurrentLocation } from '@utils';
 
+/**
+ * Dashboard output.
+ *
+ * @param {Object} quests The quests data.
+ *
+ * @return {string} The dashboard output.
+ */
 const getFieryWarpathText = (quests) => {
   if (! quests.QuestFieryWarpath) {
     return '';
@@ -20,6 +27,11 @@ const getFieryWarpathText = (quests) => {
   return `Wave ${quest.wave}: ${quest.percent}% remaining${streakText} `;
 };
 
+/**
+ * Set the Fiery Warpath data.
+ *
+ * @return {boolean|Object} The Fiery Warpath data.
+ */
 const setFieryWarpathData = () => {
   if ('desert_warpath' !== getCurrentLocation()) {
     return false;

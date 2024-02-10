@@ -1,3 +1,10 @@
+/**
+ * Dashboard output.
+ *
+ * @param {Object} quests The quests data.
+ *
+ * @return {string} The dashboard output.
+ */
 const getSeasonalGardenText = (quests) => {
   if (! quests.QuestSeasonalGarden) {
     return '';
@@ -11,6 +18,11 @@ const getSeasonalGardenText = (quests) => {
   return `Amp: ${quest.amp}% / ${quest.max}%`;
 };
 
+/**
+ * Set the Seasonal Garden data.
+ *
+ * @return {Object} The Seasonal Garden data.
+ */
 const setSeasonalGardenData = () => {
   const quest = {
     amp: 0,

@@ -123,7 +123,9 @@ const triggerFireworks = () => {
   });
 };
 
-// Always active.
+/**
+ * Always active.
+ */
 const lunarNewYearGlobal = async () => {
   addStyles(styles, 'location-hud-events-lunar-new-year');
 
@@ -140,7 +142,9 @@ const lunarNewYearGlobal = async () => {
   });
 };
 
-// Only active at the locations.
+/**
+ * Only active at the event location.
+ */
 const lunarNewYearLocation = async () => {
   // no-op.
 };

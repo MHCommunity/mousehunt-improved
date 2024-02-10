@@ -10,6 +10,9 @@ import exportScoreboards from './export-scoreboards';
 
 import styles from './styles.css';
 
+/**
+ * Export the data.
+ */
 const exportDataPopup = () => {
   const exporters = [
     {

@@ -18,12 +18,15 @@ const undisableCheese = () => {
   });
 };
 
+/**
+ * Always active.
+ */
 const halloweenGlobal = async () => {
   // no-op.
 };
 
 /**
- * Initialize the module.
+ * Only active at the event location.
  */
 const halloweenLocation = async () => {
   addHudStyles(styles);

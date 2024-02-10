@@ -2,12 +2,16 @@ import { addStyles } from '@utils';
 
 import styles from './styles.css';
 
-// Always active.
+/**
+ * Always active.
+ */
 const springEggHuntGlobal = async () => {
   addStyles(styles, 'location-hud-events-spring-egg-hunt');
 };
 
-// Only active at the locations.
+/**
+ * Only active at the event location.
+ */
 const springEggHuntLocation = async () => {
   // no-op.
 };

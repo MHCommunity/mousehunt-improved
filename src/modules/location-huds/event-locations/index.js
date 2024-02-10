@@ -6,6 +6,11 @@ import { halloweenGlobal, halloweenLocation } from './halloween';
 import { lunarNewYearGlobal } from './lunar-new-year';
 import { springEggHuntGlobal } from './spring-egg-hunt';
 
+/**
+ * Load events based on the location.
+ *
+ * @param {string} location The location.
+ */
 export default async (location) => {
   switch (location) {
   case 'halloween_event_location':

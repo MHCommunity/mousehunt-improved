@@ -150,6 +150,13 @@ const replaceCampShowTab = () => {
 };
 
 let isProcessing = false;
+
+/**
+ * Initialize the module.
+ *
+ * @param {string} location Name of the location.
+ * @param {Array}  cheeses  Array of cheese types to use.
+ */
 export default (location, cheeses) => {
   replaceCampShowTab();
 
