@@ -288,10 +288,12 @@ const updateJournalText = async () => {
     // Halloween
     [/an additional:<br>/i, 'an additional '],
 
+    ['<br></p><p>', '<p>'],
+    ['<br><p>', '<p>'],
     [/<p class="mhi-x-entry"> • /g, ''],
     [/(\d+?) x /gi, '<p class="mhi-x-entry"> • $1 x '],
 
-    ['<p></p>', ''],
+    [/<p><\/p>/g, ''],
     ['I can view other recipe', '<p class="double">I can view other recipe'],
   ]);
 
