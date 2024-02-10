@@ -3,7 +3,7 @@
 }
 
 .mousehuntTooltipParent:hover > .mousehuntTooltip {
-  animation: mh-improved-in-scale 0.5s 1;
+  animation: mh-improved-in-scale 0.4s 1 forwards cubic-bezier(0.4, 0, 1, 1) 0s;
 }
 
 .PageHunterProfile .userInteractionButtonsView-button .mousehuntTooltip,
