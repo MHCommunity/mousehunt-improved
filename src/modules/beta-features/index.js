@@ -1,5 +1,6 @@
 import { debuglog, getFlag } from '@utils';
 
+import journalHistory from './modules/journal-history';
 import journalIcons from './modules/journal-icons';
 import journalIconsAll from './modules/journal-icons-all';
 import journalList from './modules/journal-list';
@@ -16,6 +17,7 @@ import settings from './settings';
  */
 const init = async () => {
   const defaultDisabledFeatures = [
+    { id: 'journal-history', load: journalHistory },
     { id: 'journal-icons-all', load: () => {
       journalIcons();
       journalIconsAll();
