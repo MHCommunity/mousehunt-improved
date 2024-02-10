@@ -368,9 +368,7 @@ const hideItemsInTrapBrowser = async () => {
 
 let itemSettings;
 const main = async () => {
-  console.log('inventory-lock-and-hide: main');
   itemSettings = getSettings();
-  console.log('itemSettings', itemSettings);
 
   maybeLockOrHideItems();
   addLockAndHideControls();

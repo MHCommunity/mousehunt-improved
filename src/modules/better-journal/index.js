@@ -6,6 +6,7 @@ import {
   getCurrentPage,
   getFlag,
   getSetting,
+  onNavigation,
   onRequest,
   onTurn,
   sessionGet,

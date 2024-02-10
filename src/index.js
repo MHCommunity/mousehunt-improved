@@ -1,7 +1,6 @@
 import * as Sentry from '@sentry/browser'; // eslint-disable-line import/no-extraneous-dependencies
 
 import {
-  addAdvancedSettings,
   addSettingForModule,
   addSettingsTab,
   addToGlobal,
@@ -12,8 +11,8 @@ import {
   doEvent,
   getFlag,
   getGlobal,
-  getUserHash,
   getSetting,
+  getUserHash,
   isApp,
   isUnsupportedFile,
   isiFrame,
@@ -55,6 +54,11 @@ const organizedModules = [
     name: 'Location HUDs',
     modules: [],
   },
+  {
+    id: 'advanced',
+    name: 'Advanced',
+    modules: [],
+  }
 ];
 
 const initSentry = async () => {
@@ -102,19 +106,25 @@ const loadModules = async () => {
     category.modules.push(m);
   });
 
-  // Move Better UI to the top.
-  const betterUi = organizedModules.find((c) => c.id === 'better').modules.find((m) => m.id === 'better-ui');
-  if (betterUi) {
-    organizedModules.find((c) => c.id === 'better').modules = [betterUi, ...organizedModules.find((c) => c.id === 'better').modules.filter((m) => m.id !== 'better-ui')];
-  }
+  // Sort the modules by name, moving any that start with an underscore to the top, as well as moving better-ui to the top.
+  for (const category of organizedModules) {
+    category.modules.sort((a, b) => {
+      if (a.id === 'better-ui' || (a.id.startsWith('_') && ! b.id.startsWith('_'))) {
+        return -1;
+      }
 
+      if (b.id === 'better-ui' || (b.id.startsWith('_') && ! a.id.startsWith('_'))) {
+        return 1;
+      }
+
+      return a.id.localeCompare(b.id);
+    });
+  }
 
   // Add the settings for each module.
   for (const module of organizedModules) {
-    if ('required' !== module.id) {
-      await addSettingForModule(module);
-      doEvent('mh-improved-settings-added', { module });
-    }
+    await addSettingForModule(module);
+    doEvent('mh-improved-settings-added', { module });
   }
 
   // Load the modules.
@@ -177,7 +187,11 @@ const loadModules = async () => {
 
   addToGlobal('modules', loadedModules);
 
-  addAdvancedSettings();
+  doEvent('mh-improved-modules-loaded', {
+    loaded: loadedModules,
+    notLoaded: notLoadedModules,
+    skipped: skippedModules,
+  });
 };
 
 /**

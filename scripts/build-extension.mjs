@@ -32,7 +32,7 @@ const buildExtension = async (platform) => {
     format: 'iife',
     globalName: 'mhui',
     bundle: true,
-    minify: true,
+    minify: false,
     metafile: true,
     sourcemap: true,
     target: [
