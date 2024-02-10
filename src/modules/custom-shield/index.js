@@ -136,12 +136,10 @@ const init = async () => {
 };
 
 export default {
+  alwaysLoad: true,
   id: 'custom-shield',
-  name: 'Custom Shield',
   type: 'design',
   default: false,
-  description: 'Change your shield in the HUD to a variety of different options.',
   load: init,
-  alwaysLoad: true,
   settings,
 };

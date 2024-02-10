@@ -5,7 +5,7 @@ import { addMhuiSetting } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
+export default async (module) => {
   const orderOptions = [
     {
       name: 'Newest to Oldest',
@@ -17,11 +17,11 @@ export default function (module) {
     },
   ];
 
-  return addMhuiSetting(
+  const sendOrder = await addMhuiSetting(
     'gift-buttons-send-order',
     'Order to send',
     [orderOptions[0]],
-    'Whether to send gifts from newest received to oldest received or the other way around.',
+    '',
     module,
     {
       type: 'multi-select',
@@ -65,11 +65,11 @@ export default function (module) {
     },
   ];
 
-  return addMhuiSetting(
+  const ignoreBad = await addMhuiSetting(
     'gift-buttons-ignore-bad-gifts',
     'Ignore gifts that aren\'t the Gift of the Day',
     [skipBadGiftOptions[0]],
-    'Skip sending over Mozzarella Cheese, Stale Cheese, and Radioactive Sludge.',
+    '',
     module,
     {
       type: 'multi-select',
@@ -77,4 +77,6 @@ export default function (module) {
       options: skipBadGiftOptions,
     }
   );
-}
+
+  return [sendOrder, ignoreBad];
+};

@@ -5,20 +5,22 @@ import { addMhuiSetting } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
-  return addMhuiSetting(
+export default async (module) => {
+  const daily = await addMhuiSetting(
     'journal-changer-change-daily',
-    'Randomize Journal Daily',
+    'Randomize daily',
     false,
-    'Randomize the journal theme daily',
+    '',
     module
   );
 
-  return addMhuiSetting(
+  const location = await addMhuiSetting(
     'journal-changer-change-location',
-    'Change Journal for Location',
+    'Change based on location',
     true,
-    'Change the journal theme based on the current location',
+    '',
     module
   );
-}
+
+  return [daily, location];
+};

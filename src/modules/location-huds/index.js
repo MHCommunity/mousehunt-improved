@@ -198,12 +198,10 @@ const init = async () => {
 };
 
 export default {
+  alwaysLoad: true,
   id: 'location-huds',
-  name: 'Location HUD Improvements',
   type: 'location-hud',
   default: true,
-  description: '',
   load: init,
-  alwaysLoad: true,
   settings,
 };

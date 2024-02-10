@@ -5,10 +5,10 @@ import { addMhuiSetting, getTradableItems } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default async function (module) {
-  const setting = await addMhuiSetting(
+export default async (module) => {
+  const pinnedItems = await addMhuiSetting(
     'send-supplies-pinned-items',
-    'Pinned Items',
+    'Pinned items',
     [
       {
         name: 'SUPER|brie+',
@@ -40,5 +40,5 @@ export default async function (module) {
     }
   );
 
-  return setting;
-}
+  return [pinnedItems];
+};

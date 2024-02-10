@@ -398,10 +398,10 @@
   display: none;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__settingsList {
+.PagePreferences .mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__subSetting .PagePreferences__setting {
   display: none;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__settingsList {
-  display: block;
+.PagePreferences .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting .PagePreferences__setting {
+  display: flex;
 }

@@ -136,7 +136,7 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
  * @param {string}  tab          The tab to add the settings to.
  * @param {Object}  settings     The settings for the settings.
  *
- * @return {boolean|Node} The setting row.
+ * @return {Object} The setting.
  */
 const addSetting = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settings = null) => {
   onPageChange({ preferences: { show: () => addSettingOnce(name, key, defaultValue, description, section, tab, settings) } });
@@ -149,22 +149,24 @@ const addSetting = (name, key, defaultValue = true, description = '', section = 
  * @param {string}  toggleKey          The toggle key.
  * @param {boolean} toggleDefaultValue The toggle default value.
  * @param {string}  toggleTab          The toggle tab.
- * @param {Node}    settingRow         The setting row.
+ * @param {boolean} settingRow         Whether or not the setting is a row.
  *
  * @return {Object} The toggle.
  */
-const makeToggle = (toggleKey, toggleDefaultValue, toggleTab, settingRow = null) => {
+const makeToggle = (toggleKey, toggleDefaultValue, toggleTab, settingRow = false) => {
   const settingRowInputCheckbox = makeElement('div', 'mousehuntSettingSlider');
 
   // Depending on the current state of the setting, add the active class.
   const currentSetting = getSettingDirect(toggleKey, null, toggleTab);
   if (currentSetting) {
     settingRowInputCheckbox.classList.add('active');
+
     if (settingRow) {
       settingRow.classList.add('active');
     }
   } else if (null === currentSetting && toggleDefaultValue) {
     settingRowInputCheckbox.classList.add('active');
+
     if (settingRow) {
       settingRow.classList.add('active');
     }
@@ -203,7 +205,7 @@ const makeToggle = (toggleKey, toggleDefaultValue, toggleTab, settingRow = null)
  * @param {string}  tab             The tab to add the settings to.
  * @param {Object}  settingSettings The settings for the settings.
  *
- * @return {boolean|Node} The setting row.
+ * @return {Object} The setting.
  */
 const addSettingOnce = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settingSettings = null) => {
   addSettingStyles();
@@ -251,6 +253,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   // If we already have a setting visible for our key, bail.
   const settingExists = document.querySelector(`#${section.id}-${key}`);
   if (settingExists) {
+    console.log('name', name, 'key', key, 'tab', tab, 'settingSettings', settingSettings, 'settingExists', settingExists);
     return settingExists;
   }
 
@@ -259,6 +262,10 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   settings.id = `${section.id}-${key}`;
   if (section.subSetting) {
     settings.classList.add('PagePreferences__subSetting');
+  }
+
+  if (settingSettings && settingSettings.type) {
+    settings.classList.add(`PagePreferences__settingsList-${settingSettings.type}`);
   }
 
   const settingRow = makeElement('div', 'PagePreferences__setting');
@@ -600,8 +607,6 @@ const addSettingRefreshReminder = () => {
  * @param {string}  description Description of the setting.
  * @param {Object}  module      Module the setting belongs to.
  * @param {Object}  options     Additional ptions for the setting.
- *
- * @return {boolean|Node} The setting row.
  */
 const addMhuiSetting = async (id, title, defaultVal, description, module, options = null) => {
   return addSetting(
@@ -671,8 +676,9 @@ const addAdvancedSettings = () => {
  */
 const addSettingForModule = async (module) => {
   for (const submodule of module.modules) {
+    let moduleSettingRow = null;
     if (! submodule.alwaysLoad && ! submodule.beta) {
-      const setting = await addSetting(
+      moduleSettingRow = await addSetting(
         submodule.name,
         submodule.id,
         submodule.default,
@@ -684,14 +690,26 @@ const addSettingForModule = async (module) => {
         },
         'mousehunt-improved-settings'
       );
+    }
 
-      if (submodule.settings) {
-        const subModSettings = module;
-        subModSettings.subSetting = true;
-        const settingRow = await submodule.settings(subModSettings);
+    if (
+      ! submodule.beta &&
+      submodule.settings && (
+        submodule.alwaysLoad ||
+        getSetting(submodule.id, submodule.default)
+      )
+    ) {
+      const subModSettings = module;
+      subModSettings.subSetting = true;
+      const subSettingRow = await submodule.settings(subModSettings);
 
-        if (settingRow) {
-          setting.append(settingRow);
+      if (moduleSettingRow && subSettingRow) {
+        if (Array.isArray(subSettingRow)) {
+          subSettingRow.forEach((row) => {
+            moduleSettingRow.append(row);
+          });
+        } else {
+          moduleSettingRow.append(subSettingRow);
         }
       }
     }

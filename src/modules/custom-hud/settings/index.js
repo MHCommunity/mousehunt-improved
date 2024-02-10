@@ -5,7 +5,7 @@ import { addMhuiSetting } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
+export default (module) => {
   const options = [
     { name: 'Default', value: 'default' },
     {

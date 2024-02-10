@@ -375,12 +375,10 @@ const init = async () => {
 };
 
 export default {
+  alwaysLoad: true,
   id: 'ultimate-checkmark',
-  name: 'Ultimate Checkmark',
   type: 'feature',
   default: true,
-  description: 'Adds more things collect on your Hunter profile.',
   load: init,
-  alwaysLoad: true,
   settings,
 };

@@ -5,44 +5,46 @@ import { addMhuiSetting } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
-  return addMhuiSetting(
+export default async (module) => {
+  const defaultSimpleTab = await addMhuiSetting(
     'better-travel-default-to-simple-travel',
     'Show Simple Travel tab by default',
     false,
-    'Show the Simple Travel tab by default instead of the map when going to the Travel page.',
+    '',
     module
   );
 
-  return addMhuiSetting(
+  const alphaList = await addMhuiSetting(
     'better-travel-show-alphabetized-list',
-    'Show Alphabetized List',
+    'Show alphabetized List',
     false,
-    'Show an alphabetized list of locations on the top of the Simple Travel page.',
+    '',
     module
   );
 
-  return addMhuiSetting(
+  const reminders = await addMhuiSetting(
     'better-travel-show-reminders',
     'Show Travel Reminders',
     true,
-    'Show reminders about active resources when visiting certain locations.',
+    '',
     module
   );
 
-  return addMhuiSetting(
+  const travelWindow = await addMhuiSetting(
     'better-travel-travel-window',
     'Travel Window',
     true,
-    'Open the travel window to browse locations to travel to.',
+    '',
     module
   );
 
-  return addMhuiSetting(
+  const envIcon = await addMhuiSetting(
     'better-travel-travel-window-environment-icon',
     'Environment icon opens Travel Window',
     true,
-    'Clicking on the environment icon will open the Travel Window.',
+    '',
     module
   );
-}
+
+  return [defaultSimpleTab, alphaList, reminders, travelWindow, envIcon];
+};

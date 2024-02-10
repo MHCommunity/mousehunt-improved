@@ -5,12 +5,14 @@ import { addMhuiSetting } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
-  return addMhuiSetting(
+export default async (module) => {
+  const newStyle = await addMhuiSetting(
     'lgs-new-style',
-    'New Style',
+    'Use "new" style',
     false,
-    'Use the \'new\' style for the LGS reminder',
+    '',
     module
   );
+
+  return [newStyle];
 }

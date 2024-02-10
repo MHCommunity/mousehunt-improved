@@ -7,7 +7,7 @@ import gradients from '../gradients.json';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
+export default (module) => {
   const gradientOptions = gradients.map((gradient) => ({
     name: gradient.name,
     value: gradient.id,

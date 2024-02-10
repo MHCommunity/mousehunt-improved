@@ -5,8 +5,8 @@ import { addMhuiSetting } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
-  return addMhuiSetting(
+export default async (module) => {
+  const onePerRow = await addMhuiSetting(
     'better-inventory-one-item-per-row',
     'Show one item per row',
     true,
@@ -14,11 +14,13 @@ export default function (module) {
     module
   );
 
-  return addMhuiSetting(
+  const largerImages = await addMhuiSetting(
     'better-inventory-larger-images',
     'Show larger images',
     true,
-    'Increases the size of item images for smaller items, such as baits or collectibles.',
+    '',
     module
   );
-}
+
+  return [onePerRow, largerImages];
+};

@@ -5,10 +5,10 @@ import { addMhuiSetting, getTradableItems } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default async function (module) {
-  return addMhuiSetting(
+export default async (module) => {
+  const items = await addMhuiSetting(
     'quick-send-supplies-items',
-    'Quick Send Supplies Items',
+    'Items shown in popup',
     [
       {
         name: 'SUPER|brie+',
@@ -27,7 +27,7 @@ export default async function (module) {
         value: 'rift_torn_roots_crafting_item',
       },
     ],
-    'Items to make available in the Quick Send Supplies popup.',
+    '',
     module,
     {
       type: 'multi-select',
@@ -35,4 +35,6 @@ export default async function (module) {
       options: await getTradableItems('type'),
     }
   );
+
+  return [items];
 }

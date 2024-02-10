@@ -74,12 +74,10 @@ const init = async () => {
 };
 
 export default {
+  alwaysLoad: true,
   id: 'custom-hud',
-  name: 'Custom HUD',
   type: 'design',
   default: false,
-  description: '',
   load: init,
-  alwaysLoad: true,
   settings,
 };

@@ -181,7 +181,7 @@ export default {
   name: 'Better Inventory',
   type: 'better',
   default: true,
-  description: 'Updates the inventory layout and styling. ',
+  description: 'Updates the inventory layout and styling.',
   load: init,
   settings,
 };

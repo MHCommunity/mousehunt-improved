@@ -5,12 +5,14 @@ import { addMhuiSetting } from '@utils';
  *
  * @param {Object} module The module to add settings for.
  */
-export default function (module) {
-  return addMhuiSetting(
+export default async (module) => {
+  const refresh = await addMhuiSetting(
     'wisdom-in-stat-bar-auto-refresh',
     'Update automatically',
     true,
-    'If enabled, wisdom will be automatically updated when it changes. Otherwise, you\'ll need to click the value to refresh it.',
+    '',
     module
   );
-}
+
+  return [refresh];
+};
