@@ -397,6 +397,10 @@ const addCategoryAndItems = async (required, type, subtype, key, name, userId = 
 };
 
 const isOwnProfile = () => {
+  if (! hg?.utils?.PageUtil?.getQueryParams) {
+    return false;
+  }
+
   const params = hg.utils.PageUtil.getQueryParams();
   if (! params || ! params.snuid) {
     return false;
@@ -410,6 +414,10 @@ const isOwnProfile = () => {
  */
 const run = async () => {
   if (! ('hunterprofile' === getCurrentPage() && 'items' === getCurrentTab())) {
+    return;
+  }
+
+  if (! hg?.utils?.PageUtil?.getQueryParams) {
     return;
   }
 

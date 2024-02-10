@@ -416,7 +416,9 @@ export default async () => {
     addKingsCrownsToMicePage();
 
     const tab = document.querySelector('.mousehuntHud-page-tabHeader.kings-crowns-tab');
-    hg.utils.PageUtil.onclickPageTabHandler(tab);
+    if (tab && hg?.utils?.PageUtil?.onclickPageTabHandler) {
+      hg.utils.PageUtil.onclickPageTabHandler(tab);
+    }
   }
 
   onNavigation(addKingsCrownsToMicePage, {

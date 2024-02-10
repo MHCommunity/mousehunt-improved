@@ -7,7 +7,8 @@ import {
   getSetting,
   isUserTitleAtLeast,
   onDialogHide,
-  onEvent
+  onEvent,
+  setPage
 } from '@utils';
 
 import { getData } from '@utils/data';
@@ -219,7 +220,7 @@ const openTravelWindow = async () => {
       } else {
         debug(`Traveling to ${environmentType}`);
         app.pages.TravelPage.travel(environmentType);
-        hg.utils.PageUtil.setPage('Camp');
+        setPage('Camp');
         popup.hide();
       }
     });

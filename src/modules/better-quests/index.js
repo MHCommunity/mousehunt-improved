@@ -91,8 +91,7 @@ const addResearchSmashWarning = () => {
     existing.remove();
   }
 
-  const subtab = hg.utils.PageUtil.getCurrentPageSubTab();
-  if ('hammer' !== subtab) {
+  if ('hammer' !== getCurrentSubtab()) {
     return;
   }
 

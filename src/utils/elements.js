@@ -296,6 +296,10 @@ const makePage = (content) => {
     }
   };
 
+  if (! hg?.utils?.PageUtil?.setPage) {
+    return;
+  }
+
   hg.utils.PageUtil.setPage('PrivacyPolicy', {}, setContent, setContent);
 };
 

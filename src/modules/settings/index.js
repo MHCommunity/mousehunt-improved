@@ -6,7 +6,8 @@ import {
   getCurrentPage,
   getCurrentTab,
   makeElement,
-  onNavigation
+  onNavigation,
+  setPage
 } from '@utils';
 
 import settingsSettings from './settings';
@@ -215,7 +216,7 @@ const addIconToMenu = () => {
   icon.addEventListener('click', (e) => {
     if ('preferences' === getCurrentPage() && 'mousehunt-improved-settings' === getCurrentTab()) {
       e.preventDefault();
-      hg.utils.PageUtil.setPage('Camp');
+      setPage('Camp');
     }
   });
 

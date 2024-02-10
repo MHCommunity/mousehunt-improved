@@ -14,7 +14,8 @@ import {
   onNavigation,
   onPageChange,
   removeSubmenuItem,
-  sessionGet
+  sessionGet,
+  setTab
 } from '@utils';
 
 import { getData } from '@utils/data';
@@ -78,14 +79,18 @@ const expandTravelRegions = () => {
     });
   }
 
-  setTimeout(() => {
-    app.pages.TravelPage.zoomOut();
-  }, 500);
+  if (app?.pages?.TravelPage?.zoomOut) {
+    setTimeout(() => {
+      app.pages.TravelPage.zoomOut();
+    }, 500);
+  }
 };
 
 const travelClickHandler = (event) => {
-  app.pages.TravelPage.travel(event.target.getAttribute('data-environment'));
-  hg.utils.PageUtil.setPage('Camp');
+  if (app?.pages?.TravelPage?.travel) {
+    app.pages.TravelPage.travel(event.target.getAttribute('data-environment'));
+    setPage('Camp');
+  }
 };
 
 const cloneRegionMenu = () => {
@@ -396,7 +401,7 @@ const initSimpleTab = () => {
       return;
     }
 
-    hg.utils.PageUtil.setPageTab('simple-travel');
+    setTab('simple-travel');
   }
 };
 
@@ -415,7 +420,7 @@ const maybeSetTab = () => {
     return;
   }
 
-  hg.utils.PageUtil.setPageTab('simple-travel');
+  setTab('simple-travel');
 };
 
 const addRhToSimpleTravel = async () => {
@@ -467,6 +472,10 @@ const maybeDoMapView = () => {
 let _tabHandler = null;
 const listenTabChange = () => {
   if (_tabHandler) {
+    return;
+  }
+
+  if (! hg?.utils?.PageUtil?.onclickPageTabHandler) {
     return;
   }
 

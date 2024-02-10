@@ -42,7 +42,19 @@ const getRelicHunterLocation = () => {
     });
 };
 
+/**
+ * Travel to a location.
+ *
+ * @param {string} location The location to travel to.
+ */
+const travelTo = (location) => {
+  if (app?.pages?.TravelPage?.travel) {
+    app.pages.TravelPage.travel(location);
+  }
+};
+
 export {
   getCurrentLocation,
-  getRelicHunterLocation
+  getRelicHunterLocation,
+  travelTo
 };

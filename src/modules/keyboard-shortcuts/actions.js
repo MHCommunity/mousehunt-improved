@@ -1,4 +1,4 @@
-import { doEvent, getCurrentPage } from '@utils';
+import { doEvent, getCurrentPage, setPage } from '@utils';
 
 /**
  * Click the min luck button.
@@ -18,12 +18,7 @@ const clickMinLuck = () => {
  * @param {string} page The page to go to.
  */
 const gotoPage = (page) => {
-  if ('wiki' === page.toLowerCase()) {
-    doEvent('mh-improved-open-wiki');
-    return;
-  }
-
-  hg.utils.PageUtil.setPage(page);
+  setPage(page);
 };
 
 /**
@@ -32,15 +27,18 @@ const gotoPage = (page) => {
  * @param {string} type The blueprint type to open.
  */
 const openBlueprint = (type) => {
-  const open = app.pages.CampPage.toggleItemBrowser;
-  if ('camp' === getCurrentPage()) {
-    open(type);
+  if (! app?.pages?.CampPage?.toggleItemBrowser) {
     return;
   }
 
-  hg.utils.PageUtil.setPage('Camp');
+  if ('camp' === getCurrentPage()) {
+    app.pages.CampPage.toggleItemBrowser(type);
+    return;
+  }
+
+  setPage('Camp');
   setTimeout(() => {
-    open(type);
+    app.pages.CampPage.toggleItemBrowser(type);
   }, 500);
 };
 
@@ -48,70 +46,86 @@ const openBlueprint = (type) => {
  * Open the map.
  */
 const openMap = () => {
-  hg.controllers.TreasureMapController.show();
+  if (hg?.controllers?.TreasureMapController) {
+    hg.controllers.TreasureMapController.show();
+  }
 };
 
 /**
  * Open the map invites.
  */
 const openMapInvites = () => {
-  hg.controllers.TreasureMapController.showCommunity();
+  if (hg?.controllers?.TreasureMapController) {
+    hg.controllers.TreasureMapController.showCommunity();
+  }
 };
 
 /**
  * Open the marketplace.
  */
 const openMarketplace = () => {
-  hg.views.MarketplaceView.show();
+  if (hg?.views?.MarketplaceView) {
+    hg.views.MarketplaceView.show();
+  }
 };
 
 /**
  * Show the trap effectiveness meter.
  */
 const showTem = () => {
-  app.pages.CampPage.toggleTrapEffectiveness(true);
+  if (app?.pages?.CampPage?.toggleTrapEffectiveness) {
+    app.pages.CampPage.toggleTrapEffectiveness(true);
+  }
 };
 
 /**
  * Open the inbox.
  */
 const openInbox = () => {
-  messenger.UI.notification.togglePopup();
+  if (messenger?.UI?.notification?.togglePopup) {
+    messenger.UI.notification.togglePopup();
+  }
 };
 
 /**
  * Open the gifts.
  */
 const openGifts = () => {
-  hg.views.GiftSelectorView.show();
+  if (hg?.views?.GiftSelectorView) {
+    hg.views.GiftSelectorView.show();
+  }
 };
 
 /**
  * Disarm the cheese.
  */
 const disarmCheese = () => {
-  hg.utils.TrapControl.disarmBait().go();
+  if (hg?.utils?.TrapControl?.disarmBait && hg?.utils?.TrapControl?.disarmBait?.go) {
+    hg.utils.TrapControl.disarmBait().go();
+  }
 };
 
 /**
  * Disarm the charm.
  */
 const disarmCharm = () => {
-  hg.utils.TrapControl.disarmTrinket().go();
+  if (hg?.utils?.TrapControl?.disarmTrinket && hg?.utils?.TrapControl?.disarmTrinket?.go) {
+    hg.utils.TrapControl.disarmTrinket().go();
+  }
 };
 
 /**
  * Open the travel window.
  */
 const openTravelWindow = () => {
-  eventRegistry.doEvent('mh-improved-open-travel-window');
+  doEvent('mh-improved-open-travel-window');
 };
 
 /**
  * Travel to the previous location.
  */
 const travelToPreviousLocation = () => {
-  eventRegistry.doEvent('mh-improved-goto-previous-location');
+  doEvent('mh-improved-goto-previous-location');
 };
 
 export {

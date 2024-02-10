@@ -4,7 +4,48 @@
  * @return {string} The page slug.
  */
 const getCurrentPage = () => {
-  return hg.utils.PageUtil.getCurrentPage().toLowerCase();
+  if (! hg?.utils?.PageUtil?.getCurrentPage) {
+    return null;
+  }
+
+  const page = hg.utils.PageUtil.getCurrentPage();
+  if (! page) {
+    return null;
+  }
+
+  return page.toLowerCase();
+};
+
+/**
+ * Go to the specified page.
+ *
+ * @param {string} page The page to go to.
+ * @param {Array}  args The arguments to pass to the page.
+ */
+const setPage = (page, ...args) => {
+  if ('wiki' === page.toLowerCase()) {
+    doEvent('mh-improved-open-wiki');
+    return;
+  }
+
+  // Uppercase the first letter of the page.
+  page = page.charAt(0).toUpperCase() + page.slice(1);
+
+  if (hg?.utils?.PageUtil?.setPage) {
+    hg.utils.PageUtil.setPage(page, ...args);
+  }
+};
+
+/**
+ * Set the current page tab.
+ *
+ * @param {string} tab  The tab to set.
+ * @param {Array}  args The arguments to pass to the tab.
+ */
+const setTab = (tab, ...args) => {
+  if (hg?.utils?.PageUtil?.setPageTab) {
+    hg.utils.PageUtil.setPageTab(tab, ...args);
+  }
 };
 
 /**
@@ -13,12 +54,17 @@ const getCurrentPage = () => {
  * @return {string} The page tab.
  */
 const getCurrentTab = () => {
-  const tab = hg.utils.PageUtil.getCurrentPageTab().toLowerCase();
+  if (! hg?.utils?.PageUtil?.getCurrentPageTab) {
+    return getCurrentPage();
+  }
+
+  const tab = hg.utils.PageUtil.getCurrentPageTab();
+
   if (tab.length <= 0) {
     return getCurrentPage();
   }
 
-  return tab;
+  return tab.toLowerCase();
 };
 
 /**
@@ -117,5 +163,7 @@ export {
   getCurrentTab,
   getCurrentSubtab,
   getCurrentDialog,
-  isCurrentPage
+  isCurrentPage,
+  setPage,
+  setTab
 };

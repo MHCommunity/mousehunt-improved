@@ -13,11 +13,15 @@ const maybeRedirectToHunterProfile = (text) => {
     return;
   }
 
+  if (! hg?.utils?.PageUtil?.setPage) {
+    return;
+  }
+
   hg.utils.PageUtil.setPage('HunterProfile', {
     id: id[0],
   }, (data) => {
     const snuid = data.tabs.profile.subtabs[0].snuid;
-    if (snuid) {
+    if (snuid && hg?.utils?.PageUtil?.showHunterProfile) {
       hg.utils.PageUtil.showHunterProfile(snuid);
     }
   });

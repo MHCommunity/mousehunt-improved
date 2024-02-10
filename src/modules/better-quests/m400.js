@@ -1,4 +1,4 @@
-import { getCurrentLocation, makeElement, onNavigation } from '@utils';
+import { getCurrentLocation, makeElement, onNavigation, setPage, travelTo } from '@utils';
 
 import locations from '@data/m400-locations.json';
 
@@ -35,8 +35,8 @@ const renderButton = (location) => {
       clickedLocation = parent.getAttribute('data-location');
     }
 
-    app.pages.TravelPage.travel(clickedLocation);
-    hg.utils.PageUtil.setPage('Camp', null, () => {});
+    travelTo(clickedLocation);
+    setPage('Camp', null, () => {});
   });
 
   title.append(button);

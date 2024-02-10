@@ -202,7 +202,9 @@ const addClassesToGroups = (mapData) => {
     nameLink.setAttribute('data-snuid', hunter.sn_user_id);
     nameLink.addEventListener('click', (e) => {
       e.preventDefault();
-      hg.utils.PageUtil.showHunterProfile(hunter.sn_user_id);
+      if (hg?.utils?.PageUtil?.showHunterProfile) {
+        hg.utils.PageUtil.showHunterProfile(hunter.sn_user_id);
+      }
     });
     replacementTitle.append(nameLink);
 

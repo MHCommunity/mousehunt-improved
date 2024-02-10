@@ -43,6 +43,10 @@ const isiFrame = () => {
  * @return {boolean} Whether the legacy HUD is enabled.
  */
 const isLegacyHUD = () => {
+  if (! hg?.utils?.PageUtil?.isLegacy) {
+    return false;
+  }
+
   return hg.utils.PageUtil.isLegacy();
 };
 
@@ -155,7 +159,7 @@ const doRequest = async (url, formData = {}) => {
   }
 
   // If our needed params are empty, bail.
-  if (! lastReadJournalEntryId || ! user || ! user.unique_hash) {
+  if (! lastReadJournalEntryId || ! user || ! user?.unique_hash) {
     return;
   }
 
@@ -164,7 +168,7 @@ const doRequest = async (url, formData = {}) => {
   form.append('sn', 'Hitgrab');
   form.append('hg_is_ajax', 1);
   form.append('last_read_journal_entry_id', lastReadJournalEntryId ?? 0);
-  form.append('uh', user.unique_hash ?? '');
+  form.append('uh', user?.unique_hash ?? '');
 
   // Add in the passed in form data.
   for (const key in formData) {
