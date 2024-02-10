@@ -16,7 +16,7 @@ const dragMapPopup = async () => {
     return;
   }
 
-  dragMap({ map, maxHeight: 2310 });
+  dragMap({ map, maxHeight: 2300 });
 };
 
 const dragMapCamp = async () => {
