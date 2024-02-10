@@ -425,6 +425,7 @@ If you have any of these userscripts installed, you can uninstall them, as the f
 - [MouseHunt - QoL Utilities](https://greasyfork.org/en/scripts/405334-mousehunt-qol-utilities)
 - [MouseHunt - Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)
 - [MouseHunt - Sort charms by quantity](https://greasyfork.org/en/scripts/389861-mousehunt-sort-charms-by-quantity)
+- [MouseHunt - Wisdom Stats](https://greasyfork.org/en/scripts/381219-mousehunt-wisdom-stats)
 - [MouseHunt - TEM Catch Stats](https://greasyfork.org/en/scripts/376770-mousehunt-tem-catch-stats)
 - [MouseHunt - Tournament Time Helper](https://greasyfork.org/en/scripts/37146-mousehunt-tournament-time-helper)
 - [Mousehunt – Lucky Golden Shield Duration Indicator & Warning](https://greasyfork.org/en/scripts/410966-mousehunt-lucky-golden-shield-duration-indicator-warning)
