@@ -19,7 +19,9 @@ const init = async () => {
     { id: 'social-noop', load: socialNoop },
     { id: 'raffle', load: raffle },
     { id: 'journal-icons', load: journalIcons },
-    { id: 'journal-icons-all', load: journalIconsAll },
+    { id: 'journal-icons-all', load: () => {
+      journalIcons(); journalIconsAll();
+    } },
     { id: 'journal-list', load: journalList },
     { id: 'ssdb-teeth', load: ssdbTeeth },
   ];
