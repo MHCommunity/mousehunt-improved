@@ -244,7 +244,7 @@ const init = async () => {
   }
 };
 
-if (getSetting('error-reporting', true) && ! getFlag('no-sentry', false)) {
+if (getSetting('error-reporting', true)) {
   initSentry(); // eslint-disable-line unicorn/prefer-top-level-await
 }
 
