@@ -9,14 +9,13 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "concurrently \"bun:build:extension\" \"bun:build:userscript\" \"bun:build:archive\"",
-    "build-production": "NODE_ENV=production bun run build",
+    "build": "concurrently \"bun:build:extension\" \"bun:build:archive\" \"bun:build:userscript\" \"bun:build:userscript:all\"",
     "build:archive": "mkdir -p dist && git archive --format zip --output dist/archive.zip HEAD",
     "build:extension": "concurrently \"bun:build:extension:*\"",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
     "build:extension:firefox": "node scripts/build-extension.mjs firefox",
     "build:userscript": "node scripts/build-userscript.mjs",
-    "build:userscripts": "node scripts/build-individual-userscripts.mjs",
+    "build:userscript:all": "node scripts/build-individual-userscripts.mjs",
     "clean": "del-cli dist",
     "lint:css:fix": "stylelint **/**/*.css --fix",
     "lint:css": "stylelint src/**/*.css",
@@ -61,6 +60,7 @@
     "json-minify": "^1.0.0",
     "jsonc-eslint-parser": "^2.4.0",
     "node-fetch": "^3.3.2",
+    "ora": "^8.0.1",
     "prettier": "^3.1.1",
     "pretty-ms": "^8.0.0",
     "stylelint": "15.11.0",
@@ -69,6 +69,7 @@
     "stylelint-config-standard": "34.0.0",
     "stylelint-order": "6.0.3",
     "stylelint-prettier": "4.1.0",
-    "stylelint-stylistic": "^0.4.3"
+    "stylelint-stylistic": "^0.4.3",
+    "yargs": "^17.7.2"
   }
 }

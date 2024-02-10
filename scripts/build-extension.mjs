@@ -1,5 +1,5 @@
 import * as esbuild from 'esbuild';
-import { CSSMinifyTextPlugin, ImportGlobPlugin, sharedBuildOptions } from './shared.mjs';
+import { CSSMinifyTextPlugin, ImportGlobPlugin } from './shared.mjs';
 import archiver from 'archiver';
 import copyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line import/default
 import fs from 'node:fs';
@@ -27,7 +27,19 @@ const buildExtension = async (platform) => {
   );
 
   await esbuild.build({
-    ...sharedBuildOptions,
+    entryPoints: ['src/index.js'],
+    platform: 'browser',
+    format: 'iife',
+    globalName: 'mhui',
+    bundle: true,
+    minify: true,
+    metafile: true,
+    sourcemap: true,
+    target: [
+      'es6',
+      'chrome58',
+      'firefox57'
+    ],
     outfile: `dist/${platform}/main.js`,
     plugins: [
       ImportGlobPlugin,

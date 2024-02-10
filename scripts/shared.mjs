@@ -57,24 +57,7 @@ const ImportGlobPlugin = {
   },
 };
 
-const sharedBuildOptions = {
-  entryPoints: ['src/index.js'],
-  platform: 'browser',
-  format: 'iife',
-  globalName: 'mhui',
-  bundle: true,
-  minify: true,
-  metafile: true,
-  sourcemap: true,
-  target: [
-    'es6',
-    'chrome58',
-    'firefox57'
-  ],
-};
-
 export {
   CSSMinifyTextPlugin,
-  ImportGlobPlugin,
-  sharedBuildOptions
+  ImportGlobPlugin
 };
