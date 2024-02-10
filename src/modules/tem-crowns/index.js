@@ -2,6 +2,13 @@ import { addStyles, doRequest, makeElement, onPageChange } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Get the crown type.
+ *
+ * @param {number} catches The number of catches.
+ *
+ * @return {string} The crown type.
+ */
 const getCrownType = (catches) => {
   if (catches < 10) {
     return 'none';
@@ -26,6 +33,12 @@ const getCrownType = (catches) => {
   return 'diamond';
 };
 
+/**
+ * Add crowns to the TEM.
+ *
+ * @param {Array}  huntingStats The hunting stats.
+ * @param {number} attempts     The number of attempts to retry.
+ */
 const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
   if (huntingStats.length === 0) {
     const crowns = await doRequest('managers/ajax/mice/getstat.php', {

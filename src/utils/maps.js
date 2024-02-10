@@ -52,6 +52,14 @@ const mapModel = () => {
   return m.mapModel;
 };
 
+/**
+ * Get the cached map data for the given map ID.
+ *
+ * @param {string|boolean} mapId  Map ID to get the data for, or false to get the last map.
+ * @param {boolean}        strict Whether to only get the data from the cache, not the last map.
+ *
+ * @return {Object|boolean} Map data or false if not found.
+ */
 const getMapData = (mapId = false, strict = false) => {
   if (mapId !== false) {
     const sessionMap = sessionGet(`mh-improved-map-cache-${mapId}`);
@@ -72,19 +80,38 @@ const getMapData = (mapId = false, strict = false) => {
   return false;
 };
 
+/**
+ * Set the map data for the given map ID.
+ *
+ * @param {string} mapId      Map ID to set the data for.
+ * @param {Object} theMapData Map data to set.
+ */
 const setMapData = (mapId, theMapData) => {
   sessionSet(`mh-improved-map-cache-${mapId}`, theMapData);
   sessionSet('map-cache-last-map', theMapData);
 };
 
+/**
+ * Get the last maptain.
+ *
+ * @return {string} Last maptain.
+ */
 const getLastMaptain = () => {
   return sessionGet('last-maptain');
 };
 
+/**
+ * Set the last maptain.
+ *
+ * @param {string} id ID to set as the last maptain.
+ */
 const setLastMaptain = (id) => {
   sessionSet('last-maptain', id);
 };
 
+/**
+ * Cache the finished map.
+ */
 const cacheFinishedMap = async () => {
   const completedMap = user.quests.QuestRelicHunter.maps.find((map) => map.is_complete);
   if (! completedMap?.map_id) {
@@ -101,6 +128,12 @@ const cacheFinishedMap = async () => {
   setLastMaptain(maptain.user_id || '');
 };
 
+/**
+ * Show the travel confirmation dialog.
+ *
+ * @param {Object} environment Environment to travel to.
+ * @param {Object} theMapModel Map model.
+ */
 const showTravelConfirmation = (environment, theMapModel) => {
   if (! environment?.id || ! environment?.type) {
     return;
@@ -128,6 +161,13 @@ const showTravelConfirmation = (environment, theMapModel) => {
   hg.controllers.TreasureMapController.showDialog(dialog);
 };
 
+/**
+ * Add the MHCT data to the given element.
+ *
+ * @param {Object} mouse    Mouse to get the data for.
+ * @param {Object} appendTo Element to append the data to.
+ * @param {string} type     Type of data to get, either 'mouse' or 'item'.
+ */
 const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   const existingMhct = appendTo.querySelector(`#mhct-${mouse.unique_id}-${type}`);
   if (existingMhct) {

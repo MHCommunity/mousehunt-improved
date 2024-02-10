@@ -26,8 +26,8 @@ let onRequestHolder = null;
  * console.log(response);
  * });
  *
- * @param {Function} callback    The callback to call when an ajax request is completed.
  * @param {string}   url         The url to match. If not provided, all ajax requests will be matched.
+ * @param {Function} callback    The callback to call when an ajax request is completed.
  * @param {boolean}  skipSuccess Skip the success check.
  */
 const onRequest = (url = null, callback = null, skipSuccess = false) => {
@@ -247,8 +247,8 @@ const getDialogMapping = () => {
 /**
  * When the dialog is shown, run the callback.
  *
- * @param {Function} callback The callback to run.
  * @param {string}   overlay  The overlay to check for.
+ * @param {Function} callback The callback to run.
  * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
 const onDialogShow = (overlay = null, callback = null, once = false) => {
@@ -546,6 +546,12 @@ const onNavigation = (callback, options = {}) => {
   });
 };
 
+/**
+ * Do something when the user activates a module.
+ *
+ * @param {string}   module   The module to watch for.
+ * @param {Function} callback The callback to run when the module is activated.
+ */
 const onActivation = (module, callback) => {
   onEvent('mh-improved-settings-changed', ({ key, value }) => {
     if (key === module && value) {
@@ -554,6 +560,12 @@ const onActivation = (module, callback) => {
   });
 };
 
+/**
+ * Do something when the user deactivates a module.
+ *
+ * @param {string}   module   The module to watch for.
+ * @param {Function} callback The callback to run when the module is deactivated.
+ */
 const onDeactivation = (module, callback) => {
   onEvent('mh-improved-settings-changed', ({ key, value }) => {
     if (key === module && ! value) {
@@ -562,6 +574,12 @@ const onDeactivation = (module, callback) => {
   });
 };
 
+/**
+ * Do something when the user honks.
+ *
+ * @param {Function} callback The callback to run when the user honks.
+ * @param {number}   delay    The delay to wait before running the callback.
+ */
 const onTurn = (callback, delay = null) => {
   onRequest('turns/activeturn.php', () => {
     delay = delay || Math.floor(Math.random() * 1000) + 1000;

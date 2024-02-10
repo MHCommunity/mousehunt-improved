@@ -94,6 +94,8 @@ const makeLink = (text, href, encodeAsSpace = false) => {
  * @param {string} options.onChange     The function to run when the button is toggled.
  * @param {string} options.onActivate   The function to run when the button is activated.
  * @param {string} options.onDeactivate The function to run when the button is deactivated.
+ *
+ * @return {HTMLElement} The created button.
  */
 const makeFavoriteButton = async (options) => {
   addStylesDirect(favoriteButtonStyles, 'mh-improved-styles-favorite-button', true);
@@ -243,6 +245,16 @@ const createPopup = (options) => {
   return popup;
 };
 
+/**
+ * Make a tooltip.
+ *
+ * @param {Object}      options           The options for the tooltip.
+ * @param {HTMLElement} options.appendTo  The element to append the tooltip to.
+ * @param {string}      options.className The class name to add to the tooltip.
+ * @param {string}      options.text      The text for the tooltip.
+ *
+ * @return {HTMLElement|boolean} The tooltip or false if we can't create it.
+ */
 const makeTooltip = (options) => {
   if (getFlag('disable-mh-improved-tooltips')) {
     return false;
@@ -257,8 +269,15 @@ const makeTooltip = (options) => {
   const tooltip = makeElement('div', ['PreferencesPage__blackTooltip', 'mh-improved-tooltip', className]);
   makeElement('span', 'PreferencesPage__blackTooltipText', text, tooltip);
   appendTo.append(tooltip);
+
+  return tooltip;
 };
 
+/**
+ * Make a page.
+ *
+ * @param {string|HTMLElement|Function} content The content for the page.
+ */
 const makePage = (content) => {
   const setContent = () => {
     const pageContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');

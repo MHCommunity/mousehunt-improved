@@ -3,6 +3,13 @@ import { debug, getSetting, saveSetting } from '@utils';
 import cleanupSettings from './settings-cleanup';
 import migrateSettings from './settings-migrate';
 
+/**
+ * Check if the version is new.
+ *
+ * @param {string} version The version to check.
+ *
+ * @return {boolean} True if it's a new version, false otherwise.
+ */
 const isNewVersion = (version) => {
   const currentVersion = mhImprovedVersion;
 
@@ -20,6 +27,11 @@ const isNewVersion = (version) => {
   return false;
 };
 
+/**
+ * Clean up settings on update.
+ *
+ * @param {string} previousVersion The previous version.
+ */
 const cleanOnUpdate = (previousVersion) => {
   migrateSettings([
     {
@@ -42,6 +54,9 @@ const cleanOnUpdate = (previousVersion) => {
   ]);
 };
 
+/**
+ * Initialize the update migration.
+ */
 const init = async () => {
   const installedVersion = getSetting('mh-improved-version', null);
   if (! isNewVersion(installedVersion)) {

@@ -188,6 +188,11 @@ const addSubmenuItem = (options) => {
   }
 };
 
+/**
+ * Remove a submenu item from a menu.
+ *
+ * @param {string} id The id of the submenu item to remove.
+ */
 const removeSubmenuItem = (id) => {
   id = getCleanSubmenuLabel(id);
   const item = document.querySelector(`#custom-submenu-item-${id}`);
@@ -196,6 +201,12 @@ const removeSubmenuItem = (id) => {
   }
 };
 
+/**
+ * Add a divider to a submenu.
+ *
+ * @param {string} menu      The menu to add the divider to.
+ * @param {string} className The class for the divider.
+ */
 const addSubmenuDivider = (menu, className = '') => {
   addSubmenuItem({
     menu,

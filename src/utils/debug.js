@@ -17,12 +17,24 @@ const debug = (message, ...args) => {
   }
 };
 
+/**
+ * Helper function to log a debug message.
+ *
+ * @param {any} args Additional arguments to log.
+ */
 const debugplain = (...args) => {
   if (getFlag('debug')) {
     console.log(...args); // eslint-disable-line no-console
   }
 };
 
+/**
+ * Helper function to log a debug message.
+ *
+ * @param {string} module  Module name.
+ * @param {string} message Message to log.
+ * @param {any}    args    Additional arguments to log.
+ */
 const debuglog = (module, message, ...args) => {
   if (getFlag('debug')) {
     // eslint-disable-next-line no-console

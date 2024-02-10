@@ -8,6 +8,10 @@ import { onPageChange } from './events';
 import settingsStyles from './styles/settings.css';
 
 let hasAddedSettingsStyles = false;
+
+/**
+ * Add the settings styles.
+ */
 const addSettingStyles = () => {
   if (hasAddedSettingsStyles) {
     return;
@@ -575,14 +579,13 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   return settings;
 };
 
-/**
- * Add a refresh reminder to the settings page.
- *
- * @ignore
- */
 let fadeInTimeout = null;
 let fadeOutTimeout = null;
 let removeTimeout = null;
+
+/**
+ * Add a refresh reminder to the settings page.
+ */
 const addSettingRefreshReminder = () => {
   addSettingStyles();
 

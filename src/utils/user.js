@@ -228,6 +228,13 @@ const getUserSetupDetails = () => {
   return setup;
 };
 
+/**
+ * Normalize the title.
+ *
+ * @param {string} title The title to normalize.
+ *
+ * @return {string} The normalized title.
+ */
 const normalizeTitle = (title = '') => {
   if (! title) {
     return '';
@@ -260,6 +267,13 @@ const normalizeTitle = (title = '') => {
   return normalizedTitle;
 };
 
+/**
+ * Check if the user's title is at least a certain title.
+ *
+ * @param {string} title The title to check against.
+ *
+ * @return {boolean} Whether the user's title is at least the title.
+ */
 const isUserTitleAtLeast = (title) => {
   const titles = [
     'novice',
@@ -290,6 +304,11 @@ const isUserTitleAtLeast = (title) => {
   return titleIndex >= checkIndex;
 };
 
+/**
+ * Get a unique, encrypted hash for the user.
+ *
+ * @return {string} The user's hash.
+ */
 const getUserHash = async () => {
   if (typeof user === 'undefined' || ! user.user_id) {
     return '';

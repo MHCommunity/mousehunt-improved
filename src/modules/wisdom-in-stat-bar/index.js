@@ -10,17 +10,35 @@ import {
 
 import settings from './settings';
 
+/**
+ * Get the wisdom setting.
+ *
+ * @param {string} key Key to get.
+ *
+ * @return {any} The setting.
+ */
 const getWisdomSetting = (key) => {
   const setting = getSettingDirect('wisdom-stat', {});
   return setting[key];
 };
 
+/**
+ * Save the wisdom setting.
+ *
+ * @param {string} key   Key to save.
+ * @param {any}    value Value to save.
+ */
 const saveWisdomSetting = (key, value) => {
   const setting = getSettingDirect('wisdom-stat', {});
   setting[key] = value;
   saveSettingDirect('wisdom-stat', setting);
 };
 
+/**
+ * Get the wisdom.
+ *
+ * @return {number} The wisdom.
+ */
 const getWisdom = async () => {
   let wisdom = 0;
 
@@ -40,11 +58,21 @@ const getWisdom = async () => {
   return wisdom;
 };
 
+/**
+ * Get the wisdom formatted.
+ *
+ * @return {string} The formatted wisdom.
+ */
 const getWisdomFormatted = async () => {
   const wisdom = await getWisdom();
   return wisdom.toLocaleString();
 };
 
+/**
+ * Add wisdom to the stat bar.
+ *
+ * @param {string} wisdom The wisdom to add.
+ */
 const addWisdomToStatBar = (wisdom) => {
   const existingWisdom = document.querySelector('.mousehuntHud-userStat-row.wisdom .value.hud_wisdom');
   if (existingWisdom) {
@@ -65,11 +93,17 @@ const addWisdomToStatBar = (wisdom) => {
   pointsRow.after(wisdomRow);
 };
 
+/**
+ * Update the wisdom.
+ */
 const updateWisdom = async () => {
   const wisdom = await getWisdomFormatted();
   addWisdomToStatBar(wisdom);
 };
 
+/**
+ * Add the click listener to refresh the wisdom.
+ */
 const addRefreshListener = () => {
   const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
   if (! wisdomRow) {

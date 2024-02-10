@@ -1,3 +1,10 @@
+/**
+ * Initializes a new IndexedDB database with the given name.
+ *
+ * @param {string} databaseName The name of the database to be created.
+ *
+ * @return {Promise} Promise that resolves with the database.
+ */
 const database = async (databaseName) => {
   const request = window.indexedDB.open('mh-improved', 1);
 
@@ -18,6 +25,14 @@ const database = async (databaseName) => {
   });
 };
 
+/**
+ * Get an item from the given IndexedDB database.
+ *
+ * @param {string} databaseName The name of the database to get the item from.
+ * @param {string} id           The id of the item to get.
+ *
+ * @return {Promise} Promise that resolves with the item.
+ */
 const dbGet = async (databaseName, id) => {
   const db = await database(databaseName);
 
@@ -41,6 +56,14 @@ const dbGet = async (databaseName, id) => {
   });
 };
 
+/**
+ * Set an item in the given IndexedDB database.
+ *
+ * @param {string} databaseName The name of the database to set the item in.
+ * @param {Object} data         The data to set in the database.
+ *
+ * @return {Promise} Promise that resolves with the result of the set.
+ */
 const dbSet = async (databaseName, data) => {
   const db = await database(databaseName);
 
@@ -60,6 +83,14 @@ const dbSet = async (databaseName, data) => {
   });
 };
 
+/**
+ * Delete an item from the given IndexedDB database.
+ *
+ * @param {string} databaseName The name of the database to delete the item from.
+ * @param {string} id           The id of the item to delete.
+ *
+ * @return {Promise} Promise that resolves with the result of the delete.
+ */
 const dbDelete = async (databaseName, id) => {
   const db = await database(databaseName);
 
@@ -79,6 +110,13 @@ const dbDelete = async (databaseName, id) => {
   });
 };
 
+/**
+ * Get all items from the given IndexedDB database.
+ *
+ * @param {string} databaseName The name of the database to get the items from.
+ *
+ * @return {Promise} Promise that resolves with the items.
+ */
 const dbGetAll = async (databaseName) => {
   const db = await database(databaseName);
 
@@ -98,6 +136,13 @@ const dbGetAll = async (databaseName) => {
   });
 };
 
+/**
+ * Delete all items from the given IndexedDB database.
+ *
+ * @param {string} databaseName The name of the database to delete the items from.
+ *
+ * @return {Promise} Promise that resolves with the result of the delete.
+ */
 const dbDeleteAll = async (databaseName) => {
   const db = await database(databaseName);
 

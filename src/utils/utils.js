@@ -186,6 +186,13 @@ const doRequest = async (url, formData = {}) => {
   return data;
 };
 
+/**
+ * Sleep for a given number of milliseconds.
+ *
+ * @param {number} ms The number of milliseconds to sleep.
+ *
+ * @return {Promise} A promise that resolves after the sleep.
+ */
 const sleep = async (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
@@ -211,6 +218,11 @@ function isAppleOS(_window = null) {
   return platform.includes('Mac') || ['iPad', 'iPhone'].includes(platform);
 }
 
+/**
+ * Check if the user has the mini CRE.
+ *
+ * @return {boolean} True if the user has the mini CRE; false otherwise.
+ */
 const hasMiniCRE = () => {
   const hasMiniCre = sessionGet('has-mini-cre');
   if (hasMiniCre) {

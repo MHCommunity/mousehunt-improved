@@ -13,19 +13,43 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Get the link to a version's release notes.
+ *
+ * @param {string} version The version to get the link for.
+ *
+ * @return {string} The link to the release notes.
+ */
 const getUpdateLink = (version) => {
   return `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${version}`;
 };
 
+/**
+ * Check if the user has seen the update banner.
+ *
+ * @return {boolean} True if the user has seen the banner, false otherwise.
+ */
 const hasSeenBanner = () => {
   return mhImprovedVersion === getSetting('has-seen-update-banner', '');
 };
 
+/**
+ * Check if the user has seen the onboarding step.
+ *
+ * @param {number} step The step to check.
+ *
+ * @return {boolean} True if the user has seen the onboarding step, false otherwise.
+ */
 const hasSeenOnboarding = (step = 0) => {
   const savedStepNumber = getSetting('has-seen-onboarding', 0);
   return savedStepNumber >= step;
 };
 
+/**
+ * Save the onboarding step.
+ *
+ * @param {number} step The step to save.
+ */
 const saveOnboardingStep = (step) => {
   const savedStepNumber = getSetting('has-seen-onboarding', 0);
   if (savedStepNumber < step) {
@@ -33,6 +57,11 @@ const saveOnboardingStep = (step) => {
   }
 };
 
+/**
+ * Add the update banner.
+ *
+ * @param {boolean} hasNewSettings Whether there are new settings.
+ */
 const addBanner = (hasNewSettings = false) => {
   // Only show the banner once.
   if (hasSeenBanner()) {
@@ -95,6 +124,21 @@ const addBanner = (hasNewSettings = false) => {
   }, 1000);
 };
 
+/**
+ * Register an onboarding step.
+ *
+ * @param {Object}   options                   The options for the onboarding step.
+ * @param {string}   options.highlightSelector The selector to highlight.
+ * @param {string}   options.classname         The class name to add to the onboarding step.
+ * @param {string}   options.content           The content for the onboarding step.
+ * @param {string}   options.button            The button text for the onboarding step.
+ * @param {string}   options.direction         The direction for the onboarding step.
+ * @param {Function} options.onShowCallback    The callback to run when the onboarding step is shown.
+ * @param {Function} options.onCloseCallback   The callback to run when the onboarding step is closed.
+ * @param {number}   options.step              The step number for the onboarding step.
+ * @param {string}   options.page              The page to show the onboarding step on.
+ * @param {string}   options.tab               The tab to show the onboarding step on.
+ */
 const registerOnboardingStep = (options) => {
   const {
     highlightSelector,
@@ -151,6 +195,9 @@ const registerOnboardingStep = (options) => {
   hg.views.MessengerView.go();
 };
 
+/**
+ * Do the onboarding.
+ */
 const doOnboarding = () => {
   registerOnboardingStep({
     step: 1,

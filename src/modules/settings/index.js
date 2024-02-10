@@ -14,6 +14,11 @@ import settingsSettings from './settings';
 import iconStyles from './icons.css';
 import styles from './styles.css';
 
+/**
+ * Add the export settings button.
+ *
+ * @return {HTMLElement} The export settings button.
+ */
 const addExportSettings = () => {
   const existing = document.querySelector('.mousehunt-improved-export-settings');
   if (existing) {
@@ -75,6 +80,11 @@ const addExportSettings = () => {
   return exportSettings;
 };
 
+/**
+ * Add the clear cache button.
+ *
+ * @return {HTMLElement} The clear cache button.
+ */
 const addClearCache = () => {
   const existing = document.querySelector('.mousehunt-improved-clear-cache');
   if (existing) {
@@ -112,6 +122,9 @@ const addClearCache = () => {
   return clearCache;
 };
 
+/**
+ * Add the advanced settings buttons.
+ */
 const addAdvancedSettingsButtons = () => {
   const settingInput = document.querySelector('#mousehunt-improved-settings-advanced-mh-improved-advanced-settings .PagePreferences__setting');
   if (! settingInput) {
@@ -129,6 +142,9 @@ const addAdvancedSettingsButtons = () => {
   }
 };
 
+/**
+ * Modify the settings page, adding toggles to the settings.
+ */
 const modifySettingsPage = () => {
   const settingsPage = document.querySelectorAll('.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__title');
   if (! settingsPage) {
@@ -183,6 +199,9 @@ const modifySettingsPage = () => {
   }
 };
 
+/**
+ * Add the icon to the menu.
+ */
 const addIconToMenu = () => {
   const menu = document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');
   if (! menu) {
@@ -203,6 +222,9 @@ const addIconToMenu = () => {
   menu.append(icon);
 };
 
+/**
+ * Initialize the module.
+ */
 const init = async () => {
   addStyles([
     styles,

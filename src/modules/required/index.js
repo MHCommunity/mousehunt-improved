@@ -1,5 +1,8 @@
 import { doEvent } from '@utils';
 
+/**
+ * Add events that we can listen for.
+ */
 const addEvents = () => {
   const hunterHornTimer = document.querySelector('.huntersHornView__timerState');
   if (hunterHornTimer) {

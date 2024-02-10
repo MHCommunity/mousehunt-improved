@@ -17,6 +17,11 @@ const getFlag = (flag) => {
   return flags.toLowerCase().replaceAll(' ', '').split(',').includes(flag);
 };
 
+/**
+ * Get the list of enabled flags.
+ *
+ * @return {Array} List of enabled flags.
+ */
 const getFlags = () => {
   const flags = getSetting('override-flags');
   if (! flags) {

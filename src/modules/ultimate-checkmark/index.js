@@ -16,6 +16,16 @@ import categories from '@data/ultimate-checkmark.json';
 import settings from './settings';
 import styles from './styles.css';
 
+/**
+ * Get the items for a category.
+ *
+ * @param {Array}  required The required items.
+ * @param {string} queryTab The query tab.
+ * @param {string} queryTag The query tag.
+ * @param {Array}  allItems All the items.
+ *
+ * @return {Array} The items.
+ */
 const getItems = async (required, queryTab, queryTag, allItems = []) => {
   if (! allItems.length) {
     // cache the data for a minute
@@ -92,6 +102,14 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
   return allItems;
 };
 
+/**
+ * Get the progress for a category.
+ *
+ * @param {Array} items    The items.
+ * @param {Array} required The required items.
+ *
+ * @return {Object} The progress.
+ */
 const getProgress = (items, required) => {
   // Count the number of required chests that are owned
   let le = 0;
@@ -116,6 +134,13 @@ const getProgress = (items, required) => {
   };
 };
 
+/**
+ * Make the progress string.
+ *
+ * @param {Object} progress The progress.
+ *
+ * @return {string} The progress string.
+ */
 const makeProgressString = (progress) => {
   const { completed, required, le } = progress;
 
@@ -127,6 +152,13 @@ const makeProgressString = (progress) => {
   return text;
 };
 
+/**
+ * Make the markup for a category.
+ *
+ * @param {string} category The category.
+ * @param {string} name     The name.
+ * @param {Object} progress The progress.
+ */
 const makeCategory = (category, name, progress) => {
   const exists = document.querySelector(`.hunterProfileItemsView-category[data-category="${category}"]`);
   if (exists) {
@@ -162,6 +194,21 @@ const makeCategory = (category, name, progress) => {
   sidebar.append(catSidebarCategory);
 };
 
+/**
+ * Make the markup for an item.
+ *
+ * @param {Object}  item                    The item.
+ * @param {string}  item.item_id            The item id.
+ * @param {string}  item.type               The item type.
+ * @param {string}  item.name               The item name.
+ * @param {string}  item.thumbnail          The item thumbnail.
+ * @param {string}  item.thumbnail_gray     The item gray thumbnail.
+ * @param {number}  item.quantity           The item quantity.
+ * @param {string}  item.quantity_formatted The item formatted quantity.
+ * @param {boolean} item.le                 If the item is limited edition.
+ *
+ * @return {HTMLElement} The item div.
+ */
 const makeItem = (item) => {
   const { item_id, type, name, thumbnail, thumbnail_gray, quantity, quantity_formatted, le } = item; // eslint-disable-line camelcase
 
@@ -202,6 +249,14 @@ const makeItem = (item) => {
   return itemDiv;
 };
 
+/**
+ * Make the markup for the content.
+ *
+ * @param {string}  id        The id.
+ * @param {string}  name      The name.
+ * @param {Array}   items     The items.
+ * @param {boolean} completed If the category is completed.
+ */
 const makeContent = (id, name, items, completed) => {
   const content = document.querySelector('.hunterProfileItemsView-content-padding');
   if (! content) {
@@ -269,6 +324,15 @@ const sendToApi = async (type, subtype, items) => {
   });
 };
 
+/**
+ * Get the items from the API.
+ *
+ * @param {string} userId  The user id.
+ * @param {string} type    The type.
+ * @param {string} subtype The subtype.
+ *
+ * @return {Array} The items.
+ */
 const getItemsFromApi = async (userId, type, subtype) => {
   userId = 'hg_a07516a70978d1dbaf9e29ce638073d9';
 
@@ -290,6 +354,18 @@ const getItemsFromApi = async (userId, type, subtype) => {
   return items;
 };
 
+/**
+ * Add the category and items.
+ *
+ * @param {Array}  required The required items.
+ * @param {string} type     The type.
+ * @param {string} subtype  The subtype.
+ * @param {string} key      The key.
+ * @param {string} name     The name.
+ * @param {string} userId   The user id.
+ *
+ * @return {boolean} If the category and items were added.
+ */
 const addCategoryAndItems = async (required, type, subtype, key, name, userId = null) => {
   const exists = document.querySelector(`.hunterProfileItemsView-categoryContent[data-category="${key}"]`);
   if (exists) {
@@ -329,6 +405,9 @@ const isOwnProfile = () => {
   return params.snuid === user.sn_user_id;
 };
 
+/**
+ * Run the module.
+ */
 const run = async () => {
   if (! ('hunterprofile' === getCurrentPage() && 'items' === getCurrentTab())) {
     return;

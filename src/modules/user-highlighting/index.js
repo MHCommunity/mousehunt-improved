@@ -10,6 +10,13 @@ import {
 import profileStyles from './profile.css';
 import styles from './styles.css';
 
+/**
+ * Get the user highlighting shield.
+ *
+ * @param {string} type The type of user highlighting.
+ *
+ * @return {HTMLElement} The user highlighting shield.
+ */
 const getUserHighlightingShield = (type) => {
   let text = '';
   switch (type) {
