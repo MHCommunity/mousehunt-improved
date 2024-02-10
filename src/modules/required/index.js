@@ -2,6 +2,7 @@ import {
   addStyles,
   debuglog,
   doEvent,
+  getUserHash,
   getCurrentLocation,
   getCurrentPage,
   getCurrentTab,
@@ -126,12 +127,6 @@ const sendModulesStats = async (force = false) => {
 
   lastSubmit = Date.now();
 
-  // Only used to generate a unique hash for the user that doesn't change but is unique and anonymous. props MHCT.
-  const msgUint8 = new TextEncoder().encode(user.user_id.toString().trim());
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-  const hashArray = [...new Uint8Array(hashBuffer)];
-  userHash = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
-
   const settings = getSettings();
 
   delete settings['keyboard-shortcuts'];
@@ -156,7 +151,7 @@ const sendModulesStats = async (force = false) => {
   const statData = {
     modules: getGlobal('modules'),
     settings,
-    user: userHash,
+    user: await getUserHash(),
     isAutohorning,
     hasSeenUserscriptMigration: localStorage.getItem('mh-improved-ignore-migrated-userscript-warning'),
   };
