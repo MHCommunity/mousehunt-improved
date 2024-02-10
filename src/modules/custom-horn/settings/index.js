@@ -1,11 +1,7 @@
-import { addMhuiSetting } from '@utils';
-
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default (module) => {
+export default async () => {
   const options = [
     { name: 'Default', value: 'default' },
     { name: 'Tournament Horn', value: 'huntersHornView__horn--tournament' },
@@ -43,16 +39,16 @@ export default (module) => {
       ],
     },
   ];
-  return addMhuiSetting(
-    'custom-horn',
-    'Custom Horn <a class="mh-improved-custom-horn-show-horn">Show Horn</a>',
-    [options[0]],
-    'Replace the horn.',
-    module,
-    {
+
+  return [{
+    id: 'custom-horn',
+    title: 'Custom Horn <a class="mh-improved-custom-horn-show-horn">Show Horn</a>',
+    default: [options[0]],
+    description: 'Replace the horn.',
+    settings: {
       type: 'multi-select',
       number: 1,
       options,
-    }
-  );
-}
+    },
+  }];
+};

@@ -1,11 +1,7 @@
-import { addMhuiSetting } from '@utils';
-
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default (module) => {
+export default async () => {
   const options = [
     { name: 'Default', value: 'default' },
     {
@@ -25,16 +21,15 @@ export default (module) => {
     },
   ];
 
-  return addMhuiSetting(
-    'custom-hud',
-    'Custom HUD background',
-    [options[0]],
-    'Change the marbled HUD background.',
-    module,
-    {
+  return [{
+    id: 'custom-hud',
+    title: 'Custom HUD background',
+    default: [options[0]],
+    description: 'Change the marbled HUD background.',
+    settings: {
       type: 'multi-select',
       number: 1,
       options,
-    }
-  );
-}
+    },
+  }];
+};

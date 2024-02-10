@@ -1,13 +1,9 @@
-import { addMhuiSetting } from '@utils';
-
 import gradients from '../gradients.json';
 
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default (module) => {
+export default async () => {
   const gradientOptions = gradients.map((gradient) => ({
     name: gradient.name,
     value: gradient.id,
@@ -47,16 +43,15 @@ export default (module) => {
     },
   ];
 
-  return addMhuiSetting(
-    'custom-background',
-    'Custom Background <a class="mh-improved-custom-bg-preview hidden">Preview</a>',
-    [options[0]],
-    'Change the background to an event background or a color.',
-    module,
-    {
+  return [{
+    id: 'custom-background',
+    title: 'Custom Background <a class="mh-improved-custom-bg-preview hidden">Preview</a>',
+    default: [options[0]],
+    description: 'Change the background to an event background or a color.',
+    settings: {
       type: 'multi-select',
       number: 1,
       options,
-    }
-  );
-}
+    },
+  }];
+};

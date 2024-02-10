@@ -1,26 +1,19 @@
-import { addMhuiSetting } from '@utils';
-
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default async (module) => {
-  const styles = await addMhuiSetting(
-    'better-journal-styles',
-    'Asterios Mode',
-    true,
-    '',
-    module
-  );
-
-  const replacements = await addMhuiSetting(
-    'better-journal-no-replacements',
-    'No Replacements',
-    false,
-    '',
-    module
-  );
-
-  return [styles, replacements];
+export default async () => {
+  return [
+    {
+      id: 'better-journal-styles',
+      title: 'Asterios Mode',
+      default: true,
+      description: '',
+    },
+    {
+      id: 'better-journal-no-replacements',
+      title: 'No Replacements',
+      default: false,
+      description: '',
+    }
+  ];
 };

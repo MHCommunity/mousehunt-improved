@@ -96,5 +96,6 @@ const init = async () => {
 export default {
   id: 'highlight-users',
   type: 'required',
+  alwaysLoad: true,
   load: init,
 };

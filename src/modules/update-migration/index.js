@@ -59,5 +59,6 @@ const init = async () => {
 export default {
   id: 'update-migration',
   type: 'required',
+  alwaysLoad: true,
   load: init,
 };

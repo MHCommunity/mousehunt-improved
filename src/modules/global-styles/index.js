@@ -28,5 +28,6 @@ const init = async () => {
 export default {
   id: 'global-styles',
   type: 'required',
+  alwaysLoad: true,
   load: init,
 };

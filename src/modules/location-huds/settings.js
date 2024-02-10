@@ -1,12 +1,9 @@
-import { addMhuiSetting } from '@utils';
 import { getData } from '@utils/data';
 
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default async (module) => {
+export default async () => {
   const locationsToUnset = new Set([
     'desert_oasis',
     'lost_city',
@@ -67,14 +64,13 @@ export default async (module) => {
   const optionsToReturn = [];
 
   for (const location of options) {
-    optionsToReturn.push(await addMhuiSetting(
-      location.id,
-      location.name,
-      true,
-      location.description,
-      module
-    ));
+    optionsToReturn.push({
+      id: location.id,
+      title: location.name,
+      default: true,
+      description: location.description,
+    });
   }
 
   return optionsToReturn;
-}
+};

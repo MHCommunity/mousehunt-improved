@@ -9,21 +9,24 @@ import socialNoop from './modules/social';
 import ssdbTeeth from './modules/ssdb-teeth';
 import trollMode from './modules/troll-mode';
 
+import settings from './settings';
+
 /**
  * Initialize the module.
  */
 const init = async () => {
   const defaultDisabledFeatures = [
-    { id: 'lol-gottem', load: trollMode },
-    { id: 'twitter', load: socialNoop },
-    { id: 'social-noop', load: socialNoop },
-    { id: 'raffle', load: raffle },
-    { id: 'journal-icons', load: journalIcons },
     { id: 'journal-icons-all', load: () => {
-      journalIcons(); journalIconsAll();
+      journalIcons();
+      journalIconsAll();
     } },
+    { id: 'journal-icons', load: journalIcons },
     { id: 'journal-list', load: journalList },
+    { id: 'lol-gottem', load: trollMode },
+    { id: 'raffle', load: raffle },
+    { id: 'social-noop', load: socialNoop },
     { id: 'ssdb-teeth', load: ssdbTeeth },
+    { id: 'twitter', load: socialNoop },
   ];
 
   const defaultEnabledFeatures = [
@@ -51,6 +54,8 @@ const init = async () => {
 
 export default {
   id: 'beta-features',
-  type: 'required',
+  type: 'advanced',
+  alwaysLoad: true,
   load: init,
+  settings,
 };

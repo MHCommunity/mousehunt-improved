@@ -108,7 +108,7 @@ const init = () => {
 
 export default {
   id: 'dev',
-  name: 'Developer Tools',
   type: 'required',
+  alwaysLoad: true,
   load: init,
 };

@@ -189,5 +189,6 @@ const init = async () => {
 export default {
   id: 'update-notifications',
   type: 'required',
+  alwaysLoad: true,
   load: init,
 };

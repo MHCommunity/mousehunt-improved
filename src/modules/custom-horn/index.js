@@ -120,10 +120,9 @@ const init = async () => {
 };
 
 export default {
-  alwaysLoad: true,
   id: 'custom-horn',
   type: 'design',
-  default: false,
+  alwaysLoad: true,
   load: init,
   settings,
 };

@@ -253,7 +253,6 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   // If we already have a setting visible for our key, bail.
   const settingExists = document.querySelector(`#${section.id}-${key}`);
   if (settingExists) {
-    console.log('name', name, 'key', key, 'tab', tab, 'settingSettings', settingSettings, 'settingExists', settingExists);
     return settingExists;
   }
 
@@ -292,6 +291,9 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
 
   const settingDescription = makeElement('div', 'PagePreferences__settingDescription');
   settingDescription.innerHTML = description;
+  if (description.trim() === '') {
+    settingDescription.classList.add('empty-description');
+  }
 
   settingRowLabel.append(settingName);
   settingRowLabel.append(defaultSettingText);
@@ -414,6 +416,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
       settingRowAction.append(settingRowInput);
     }
   } else if (settingSettings && settingSettings.type === 'input') {
+    settingRow.classList.add('inputText');
     const settingRowInputText = makeElement('input', 'inputBox');
     settingRowInputText.value = getSettingDirect(key, defaultValue, tab);
 
@@ -541,6 +544,10 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     });
 
     settingRowAction.append(multiToggleRow);
+  } else if (settingSettings && settingSettings.type === 'blank') {
+    const action = makeElement('div', ['blank', 'blankSetting'], '');
+    action.id = `${section.id}-${key}-blank`;
+    settingRowAction.append(action);
   } else {
     const settingRowInputCheckbox = makeToggle(key, defaultValue, tab, settings);
     settingRowInput.append(settingRowInputCheckbox);
@@ -554,6 +561,16 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   // Add the settings row to the settings container.
   settings.append(settingRow);
   sectionExists.append(settings);
+
+  doEvent('mh-improved-setting-added-to-page', {
+    name,
+    key,
+    defaultValue,
+    description,
+    section,
+    tab,
+    settings,
+  });
 
   return settings;
 };
@@ -599,77 +616,6 @@ const addSettingRefreshReminder = () => {
 };
 
 /**
- * Wrapper for adding a setting to the settings page.
- *
- * @param {string}  id          ID of the setting.
- * @param {string}  title       Title of the setting.
- * @param {boolean} defaultVal  Default value of the setting.
- * @param {string}  description Description of the setting.
- * @param {Object}  module      Module the setting belongs to.
- * @param {Object}  options     Additional ptions for the setting.
- */
-const addMhuiSetting = async (id, title, defaultVal, description, module, options = null) => {
-  return addSetting(
-    title,
-    id,
-    defaultVal,
-    description,
-    {
-      id: module.id,
-      name: module.name,
-      description: module.description,
-      subSetting: module.subSetting ?? false,
-    },
-    'mousehunt-improved-settings',
-    options
-  );
-};
-
-/**
- * Add the advanced settings tab.
- */
-const addAdvancedSettings = () => {
-  // Add the advanced override settings.
-  const advancedTab = {
-    id: 'mousehunt-improved-settings-overrides',
-    name: 'Advanced',
-    default: true,
-    description: '',
-  };
-
-  addSetting(
-    'Custom Styles',
-    'override-styles',
-    '',
-    '<a href="https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS" target="_blank">Custom CSS</a> to apply to MouseHunt.',
-    advancedTab,
-    'mousehunt-improved-settings',
-    { type: 'textarea' }
-  );
-
-  addSetting(
-    'Feature Flags',
-    'override-flags',
-    '',
-    'Comma seperated list of <a href="https://github.com/MHCommunity/mousehunt-improved/wiki/List-of-Feature-Flags" target="_blank">feature flags</a> to enable.',
-    advancedTab,
-    'mousehunt-improved-settings',
-    { type: 'input' }
-  );
-
-  addSetting(
-    'Error Reporting',
-    'error-reporting',
-    true,
-    'Send anonymous error reports to the developers.',
-    advancedTab,
-    'mousehunt-improved-settings'
-  );
-
-  doEvent('mh-improved-advanced-settings-added');
-};
-
-/**
  * Add the settings for a module.
  *
  * @param {Object} module The module to add settings for.
@@ -699,16 +645,26 @@ const addSettingForModule = async (module) => {
         getSetting(submodule.id, submodule.default)
       )
     ) {
-      const subModSettings = module;
-      subModSettings.subSetting = true;
-      const subSettingRow = await submodule.settings(subModSettings);
+      const subSettingsGroup = await submodule.settings(module);
+      if (! subSettingsGroup) {
+        continue;
+      }
 
-      if (moduleSettingRow && subSettingRow) {
-        if (Array.isArray(subSettingRow)) {
-          subSettingRow.forEach((row) => {
-            moduleSettingRow.append(row);
-          });
-        } else {
+      for (const subSettings of subSettingsGroup) {
+        const subSettingRow = await addSetting(
+          subSettings.title,
+          subSettings.id,
+          subSettings.default,
+          subSettings.description,
+          {
+            ...module,
+            subSetting: true,
+          },
+          'mousehunt-improved-settings',
+          subSettings.settings
+        );
+
+        if (moduleSettingRow && subSettingRow) {
           moduleSettingRow.append(subSettingRow);
         }
       }
@@ -717,9 +673,7 @@ const addSettingForModule = async (module) => {
 };
 
 export {
-  addAdvancedSettings,
   addSettingForModule,
   addSetting,
-  addSettingsTab,
-  addMhuiSetting
+  addSettingsTab
 };

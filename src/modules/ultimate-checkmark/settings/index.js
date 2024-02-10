@@ -1,13 +1,11 @@
-import { addMhuiSetting, getSetting } from '@utils';
+import { getSetting } from '@utils';
 
 import categories from '@data/ultimate-checkmark.json';
 
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default function (module) {
+export default async () => {
   const options = [];
 
   // sort the categories by name
@@ -27,15 +25,14 @@ export default function (module) {
     });
   });
 
-  return addMhuiSetting(
-    'ultimate-checkmark-categories',
-    'Ultimate Checkmark',
-    [],
-    'Adds more things collect on your Hunter profile.',
-    module,
-    {
+  return [{
+    id: 'ultimate-checkmark-categories',
+    title: 'Ultimate Checkmark',
+    default: [],
+    description: 'Adds more things collect on your Hunter profile.',
+    settings: {
       type: 'multi-toggle',
       options,
     }
-  );
-}
+  }];
+};

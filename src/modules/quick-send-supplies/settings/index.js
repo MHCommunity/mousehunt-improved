@@ -1,15 +1,15 @@
-import { addMhuiSetting, getTradableItems } from '@utils';
+import { getTradableItems } from '@utils';
 
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default async (module) => {
-  const items = await addMhuiSetting(
-    'quick-send-supplies-items',
-    'Items shown in popup',
-    [
+export default async () => {
+  const tradableItems = await getTradableItems('type');
+
+  return [{
+    id: 'quick-send-supplies-items',
+    title: 'Items shown in popup',
+    default: [
       {
         name: 'SUPER|brie+',
         value: 'super_brie_cheese',
@@ -27,14 +27,11 @@ export default async (module) => {
         value: 'rift_torn_roots_crafting_item',
       },
     ],
-    '',
-    module,
-    {
+    description: '',
+    settings: {
       type: 'multi-select',
       number: 4,
-      options: await getTradableItems('type'),
-    }
-  );
-
-  return [items];
-}
+      options: tradableItems,
+    },
+  }];
+};

@@ -375,10 +375,9 @@ const init = async () => {
 };
 
 export default {
-  alwaysLoad: true,
   id: 'ultimate-checkmark',
   type: 'feature',
-  default: true,
+  alwaysLoad: true,
   load: init,
   settings,
 };

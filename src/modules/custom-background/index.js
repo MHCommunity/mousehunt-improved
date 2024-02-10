@@ -169,10 +169,9 @@ const init = async () => {
 };
 
 export default {
-  alwaysLoad: true,
   id: 'custom-background',
   type: 'design',
-  default: false,
+  alwaysLoad: true,
   load: init,
   settings,
 };

@@ -1,11 +1,7 @@
-import { addMhuiSetting } from '@utils';
-
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default async (module) => {
+export default async () => {
   const orderOptions = [
     {
       name: 'Newest to Oldest',
@@ -16,19 +12,6 @@ export default async (module) => {
       value: 'reverse',
     },
   ];
-
-  const sendOrder = await addMhuiSetting(
-    'gift-buttons-send-order',
-    'Order to send',
-    [orderOptions[0]],
-    '',
-    module,
-    {
-      type: 'multi-select',
-      number: 1,
-      options: orderOptions,
-    }
-  );
 
   const skipBadGiftOptions = [
     {
@@ -65,18 +48,28 @@ export default async (module) => {
     },
   ];
 
-  const ignoreBad = await addMhuiSetting(
-    'gift-buttons-ignore-bad-gifts',
-    'Ignore gifts that aren\'t the Gift of the Day',
-    [skipBadGiftOptions[0]],
-    '',
-    module,
+  return [
     {
-      type: 'multi-select',
-      number: 1,
-      options: skipBadGiftOptions,
+      id: 'gift-buttons-send-order',
+      title: 'Order to send',
+      default: [orderOptions[0]],
+      description: '',
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options: orderOptions,
+      }
+    },
+    {
+      id: 'gift-buttons-ignore-bad-gifts',
+      title: 'Ignore gifts that aren\'t the Gift of the Day',
+      default: [skipBadGiftOptions[0]],
+      description: '',
+      settings: {
+        type: 'multi-select',
+        number: 1,
+        options: skipBadGiftOptions,
+      }
     }
-  );
-
-  return [sendOrder, ignoreBad];
+  ];
 };

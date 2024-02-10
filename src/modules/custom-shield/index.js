@@ -136,10 +136,9 @@ const init = async () => {
 };
 
 export default {
-  alwaysLoad: true,
   id: 'custom-shield',
   type: 'design',
-  default: false,
+  alwaysLoad: true,
   load: init,
   settings,
 };

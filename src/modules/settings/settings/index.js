@@ -3,9 +3,12 @@
  */
 export default async () => {
   return [{
-    id: 'wisdom-in-stat-bar-auto-refresh',
-    title: 'Update automatically',
+    id: 'mh-improved-advanced-settings',
+    title: '',
     default: true,
     description: '',
+    settings: {
+      type: 'blank',
+    }
   }];
 };

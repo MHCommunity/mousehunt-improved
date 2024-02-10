@@ -1,15 +1,15 @@
-import { addMhuiSetting, getTradableItems } from '@utils';
+import { getTradableItems } from '@utils';
 
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default async (module) => {
-  const pinnedItems = await addMhuiSetting(
-    'send-supplies-pinned-items',
-    'Pinned items',
-    [
+export default async () => {
+  const tradableItems = await getTradableItems('truncated_name');
+
+  return [{
+    id: 'send-supplies-pinned-items',
+    title: 'Pinned items',
+    default: [
       {
         name: 'SUPER|brie+',
         value: 'SUPER|brie+',
@@ -31,14 +31,11 @@ export default async (module) => {
         value: 'Sap-filled Thorns',
       },
     ],
-    'Items to pin at the top of the send supplies page.',
-    module,
-    {
+    description: 'Items to pin at the top of the send supplies page.',
+    settings: {
       type: 'multi-select',
       number: 5,
-      options: await getTradableItems('truncated_name'),
-    }
-  );
-
-  return [pinnedItems];
+      options: tradableItems,
+    },
+  }];
 };

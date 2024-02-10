@@ -4,6 +4,7 @@ import {
   dbSet,
   doEvent,
   getCurrentPage,
+  getFlag,
   getSetting,
   onRequest,
   onTurn,
@@ -379,7 +380,7 @@ const init = async () => {
 
   onRequest('users/dailyreward.php', kingsPromoTextChange);
 
-  if (! getSetting('better-journal-no-replacements', true)) {
+  if (! getSetting('better-journal-no-replacements', false)) {
     updateEls();
     onRequest('all', updateEls);
     onTurn(updateEls);

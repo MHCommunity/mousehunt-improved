@@ -53,5 +53,6 @@ const init = async () => {
 export default {
   id: 'links',
   type: 'required',
+  alwaysLoad: true,
   load: init,
 };

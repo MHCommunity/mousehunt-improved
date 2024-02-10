@@ -1,11 +1,7 @@
-import { addMhuiSetting } from '@utils';
-
 /**
  * Add settings for the module.
- *
- * @param {Object} module The module to add settings for.
  */
-export default (module) => {
+export default async () => {
   let options = [
     { name: 'Default', value: 'default' },
     { name: 'Default (normal resolution)', value: 'default-normal' },
@@ -128,16 +124,15 @@ export default (module) => {
     });
   }
 
-  return addMhuiSetting(
-    'custom-shield',
-    'Custom Shield',
-    [options[0]],
-    'Replace the default shield with a custom one.',
-    module,
-    {
+  return [{
+    id: 'custom-shield',
+    title: 'Custom Shield',
+    default: [options[0]],
+    description: 'Replace the default shield with a custom one.',
+    settings: {
       type: 'multi-select',
       number: 1,
       options,
-    }
-  );
-}
+    },
+  }];
+};

@@ -198,10 +198,9 @@ const init = async () => {
 };
 
 export default {
-  alwaysLoad: true,
   id: 'location-huds',
   type: 'location-hud',
-  default: true,
+  alwaysLoad: true,
   load: init,
   settings,
 };
