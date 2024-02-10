@@ -219,6 +219,15 @@
   filter: sepia(1) drop-shadow(0 0 5px #e8dbb8);
 }
 
+.huntersHornView__timer--default.color-blue .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,
+.huntersHornView__timer--default.color-cyan .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,
+.huntersHornView__timer--default.color-green .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,
+.huntersHornView__timer--default.color-pink .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,
+.huntersHornView__timer--default.color-purple .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,
+.huntersHornView__timer--default.color-red .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown {
+  mix-blend-mode: color-burn;
+}
+
 @keyframes shield-hue-rotate {
   0% {
     filter: hue-rotate(0deg) drop-shadow(0 0 5px #e8dbb8);
