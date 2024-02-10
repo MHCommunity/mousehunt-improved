@@ -1,4 +1,5 @@
 import {
+  addStyles,
   addToGlobal,
   doEvent,
   getFlag,
@@ -18,7 +19,8 @@ import { showHuntersTab } from './modules/tab-hunters';
 
 import relicHunterHints from '@data/relic-hunter-hints.json';
 
-import addMapStyles from './styles';
+import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
+const styles = imported;
 
 const addBlockClasses = () => {
   const rightBlocks = document.querySelectorAll('.treasureMapView-rightBlock > div');
@@ -234,7 +236,7 @@ const relicHunterUpdate = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addMapStyles();
+  addStyles(styles, 'better-maps');
 
   // Fire the different tab clicks.
   eventRegistry.addEventListener('map_sorted_tab_click', showSortedTab);
