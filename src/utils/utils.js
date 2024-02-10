@@ -253,6 +253,17 @@ const hasMiniCRE = () => {
   return true;
 };
 
+/**
+ * Uppercase the first letter of a string.
+ *
+ * @param {string} string The string to uppercase.
+ *
+ * @return {string} The string with the first letter uppercased.
+ */
+const uppercaseFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 export {
   doRequest,
   getTradableItems,
@@ -266,5 +277,6 @@ export {
   removeBodyClass,
   isAppleOS,
   hasMiniCRE,
-  sleep
+  sleep,
+  uppercaseFirstLetter
 };

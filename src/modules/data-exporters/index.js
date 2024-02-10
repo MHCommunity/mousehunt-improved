@@ -96,7 +96,14 @@ const exportDataPopup = () => {
   });
 };
 
-const main = () => {
+/**
+ * Initialize the module.
+ */
+const init = async () => {
+  addStyles(styles, 'data-exporters');
+
+  onEvent('show-export-data', exportDataPopup);
+
   addSubmenuItem({
     menu: 'kingdom',
     label: 'Export Data',
@@ -104,17 +111,6 @@ const main = () => {
     class: 'export-data',
     callback: exportDataPopup,
   });
-};
-
-/**
- * Initialize the module.
- */
-const init = async () => {
-  addStyles(styles, 'data-exporters');
-
-  main();
-
-  onEvent('show-export-data', exportDataPopup);
 };
 
 export default {

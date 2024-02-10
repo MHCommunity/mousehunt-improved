@@ -1,7 +1,12 @@
-const uppercaseFirst = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-};
+import { uppercaseFirstLetter } from '@utils';
 
+/**
+ * Dashboard output.
+ *
+ * @param {Object} quests The quests data.
+ *
+ * @return {string} The dashboard output.
+ */
 export default (quests) => {
   if (! (quests.QuestMoussuPicchu && quests.QuestMoussuPicchu.elements)) {
     return '';
@@ -16,12 +21,9 @@ export default (quests) => {
     windLevel: quests?.QuestMoussuPicchu?.elements?.wind?.level || null,
   };
 
-  let level = quest.stormLevel;
-  level = level.charAt(0).toUpperCase() + level.slice(1);
-
   if ('none' !== quest.stormLevel) {
-    return `${level} Storm`;
+    return `${uppercaseFirstLetter(quest.stormLevel)} Storm`;
   }
 
-  return `${uppercaseFirst(quest.windLevel)} Wind (${quest.windPercent}%), ${uppercaseFirst(quest.rainLevel)} Rain (${quest.rainPercent}%)`;
+  return `${uppercaseFirstLetter(quest.windLevel)} Wind (${quest.windPercent}%), ${uppercaseFirstLetter(quest.rainLevel)} Rain (${quest.rainPercent}%)`;
 };
