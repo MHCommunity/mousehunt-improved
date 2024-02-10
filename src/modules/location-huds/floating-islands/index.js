@@ -7,7 +7,6 @@ import {
   makeElement,
   onDialogShow,
   onEvent,
-  onRequest,
   onTravel,
   showHornMessage
 } from '@utils';
@@ -75,7 +74,6 @@ const addBossCountdown = async () => {
   let name = atts.enemy?.abbreviated_name || 'Enemy';
   // split the name and get the first word
   name = name.split(' ')[0];
-
 
   const huntsRemaining = atts.enemy_encounter_hunts_remaining || 0;
 

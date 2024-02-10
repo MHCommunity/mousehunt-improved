@@ -1,4 +1,4 @@
-import { addStyles, onEvent, getSetting } from '@utils';
+import { addStyles, getSetting, onEvent } from '@utils';
 
 import settings from './settings';
 

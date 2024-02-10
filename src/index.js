@@ -23,44 +23,9 @@ import {
 import * as imported from './modules/*/index.js'; // eslint-disable-line import/no-unresolved
 const modules = imported;
 
-const organizedModules = [
-  {
-    // Always loaded modules.
-    id: 'required',
-    modules: [],
-  },
-  {
-    id: 'better',
-    name: 'MouseHunt Improved',
-    modules: [],
-  },
-  {
-    id: 'feature',
-    name: 'Features',
-    modules: [],
-  },
-  {
-    id: 'design',
-    name: 'Design',
-    modules: [],
-  },
-  {
-    id: 'element-hiding',
-    name: 'Hide Page Elements',
-    modules: [],
-  },
-  {
-    id: 'location-hud',
-    name: 'Location HUDs',
-    modules: [],
-  },
-  {
-    id: 'advanced',
-    name: 'Advanced',
-    modules: [],
-  }
-];
-
+/**
+ * Initialize Sentry.
+ */
 const initSentry = async () => {
   Sentry.init({
     dsn: 'https://c0e7b72f2611e14c356dba1923cedf6e@o4506582061875200.ingest.sentry.io/4506583459233792',
@@ -89,6 +54,44 @@ const initSentry = async () => {
  * Load all the modules.
  */
 const loadModules = async () => {
+  const organizedModules = [
+    {
+      // Always loaded modules.
+      id: 'required',
+      modules: [],
+    },
+    {
+      id: 'better',
+      name: 'MouseHunt Improved',
+      modules: [],
+    },
+    {
+      id: 'feature',
+      name: 'Features',
+      modules: [],
+    },
+    {
+      id: 'design',
+      name: 'Design',
+      modules: [],
+    },
+    {
+      id: 'element-hiding',
+      name: 'Hide Page Elements',
+      modules: [],
+    },
+    {
+      id: 'location-hud',
+      name: 'Location HUDs',
+      modules: [],
+    },
+    {
+      id: 'advanced',
+      name: 'Advanced',
+      modules: [],
+    }
+  ];
+
   if (getGlobal('loaded')) {
     debug('Already loaded, exiting.');
     return;

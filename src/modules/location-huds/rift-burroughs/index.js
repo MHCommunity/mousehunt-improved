@@ -1,4 +1,4 @@
-import { addHudStyles, makeElement, onRequest, onTurn } from '@utils';
+import { addHudStyles, makeElement, onRequest } from '@utils';
 
 import styles from './styles.css';
 

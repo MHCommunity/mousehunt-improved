@@ -87,7 +87,12 @@ const addRefreshListener = () => {
   });
 };
 
-const main = async () => {
+let useCachedWisdom = false;
+
+/**
+ * Initialize the module.
+ */
+const init = async () => {
   if (! getSetting('wisdom-in-stat-bar-auto-refresh', true)) {
     useCachedWisdom = true;
     onTurn(updateWisdom);
@@ -95,14 +100,6 @@ const main = async () => {
 
   await updateWisdom();
   addRefreshListener();
-};
-
-let useCachedWisdom = false;
-/**
- * Initialize the module.
- */
-const init = async () => {
-  main();
 
   onDeactivation(() => {
     const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');

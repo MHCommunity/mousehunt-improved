@@ -76,10 +76,10 @@
 #mousehunt-improved-settings-design-custom-shield,
 #mousehunt-improved-settings-feature-ultimate-checkmark-categories,
 .mousehunt-improved-settings .PagePreferences__settingsList {
+  gap: 0;
   padding: 10px 5px 15px 10px;
   border-top: 1px solid #e0d0b4;
   border-left: none;
-  gap: 0;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__subSetting {
@@ -264,11 +264,6 @@
   display: none;
 }
 
-/* todo: fix this in mhutils */
-.mh-utils-settings-refresh-message-hidden {
-  display: none;
-}
-
 .mousehunt-improved-settings .PagePreferences__settingsList.multi-toggle-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -404,8 +399,8 @@
 .mousehunt-improved-settings .settingRow-action-inputContainer input,
 .mousehunt-improved-settings .settingRow-action-inputContainer textarea {
   width: 100%;
-  border: 1px solid #ccc;
   font-family: monospace;
+  border: 1px solid #ccc;
 }
 
 .mousehunt-improved-settings .PagePreferences__setting.textarea,
@@ -483,8 +478,8 @@
 }
 
 #mousehunt-improved-settings-advanced-style-overrides {
-  border-bottom: none;
   padding-bottom: 10px;
+  border-bottom: none;
 }
 
 #mousehunt-improved-settings-advanced-mh-improved-advanced-settings {

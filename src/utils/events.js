@@ -292,7 +292,7 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
       dialogType = dialogType.slice(0, -1);
     }
 
-    if ((! overlay || 'all' === overlay ) && 'function' === typeof callback) {
+    if ((! overlay || 'all' === overlay) && 'function' === typeof callback) {
       return callback();
     }
 

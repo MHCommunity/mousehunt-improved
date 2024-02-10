@@ -1,10 +1,10 @@
 import {
   debuglog,
-  getSettings,
   getFlag,
   getGlobal,
   getHeaders,
   getSetting,
+  getSettings,
   getUserHash,
   onEvent,
   onTurn
