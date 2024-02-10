@@ -12,6 +12,7 @@ import {
   doEvent,
   getFlag,
   getGlobal,
+  getUserHash,
   getSetting,
   isApp,
   isUnsupportedFile,
@@ -22,30 +23,6 @@ import {
 
 import * as imported from './modules/*/index.js'; // eslint-disable-line import/no-unresolved
 const modules = imported;
-
-if (getSetting('error-reporting', true) && ! getFlag('no-sentry', false)) {
-  Sentry.init({
-    dsn: 'https://c0e7b72f2611e14c356dba1923cedf6e@o4506582061875200.ingest.sentry.io/4506583459233792',
-    maxBreadcrumbs: 50,
-    debug: false,
-    release: `mousehunt-improved@${mhImprovedVersion}`,
-    environment: mhImprovedPlatform,
-    allowUrls: [
-      /mproved/, // mproved rather than improved to match the MH-Improved userscript
-      '/nicobnljejcjcbnhgcjhhhbnadkiafca/', // Chrome extension
-      /73164570-6676-4291-809b-7b5c9cf6e626/, // Firefox extension
-    ],
-    initialScope: {
-      tags: {
-        platform: mhImprovedPlatform,
-        version: mhImprovedVersion,
-      },
-      user: {
-        id: typeof user === 'undefined' ? null : user?.unique_hash,
-      },
-    },
-  });
-}
 
 const organizedModules = [
   {
@@ -80,6 +57,30 @@ const organizedModules = [
   },
 ];
 
+const initSentry = async () => {
+  Sentry.init({
+    dsn: 'https://c0e7b72f2611e14c356dba1923cedf6e@o4506582061875200.ingest.sentry.io/4506583459233792',
+    maxBreadcrumbs: 50,
+    debug: ! getFlag('debug'),
+    release: `mousehunt-improved@${mhImprovedVersion}`,
+    environment: mhImprovedPlatform,
+    allowUrls: [
+      /mproved/, // mproved rather than improved to match the MH-Improved userscript
+      '/nicobnljejcjcbnhgcjhhhbnadkiafca/', // Chrome extension
+      /73164570-6676-4291-809b-7b5c9cf6e626/, // Firefox extension
+    ],
+    initialScope: {
+      tags: {
+        platform: mhImprovedPlatform,
+        version: mhImprovedVersion,
+      },
+      user: {
+        id: await getUserHash()
+      },
+    },
+  });
+};
+
 /**
  * Load all the modules.
  */
@@ -100,6 +101,13 @@ const loadModules = async () => {
 
     category.modules.push(m);
   });
+
+  // Move Better UI to the top.
+  const betterUi = organizedModules.find((c) => c.id === 'better').modules.find((m) => m.id === 'better-ui');
+  if (betterUi) {
+    organizedModules.find((c) => c.id === 'better').modules = [betterUi, ...organizedModules.find((c) => c.id === 'better').modules.filter((m) => m.id !== 'better-ui')];
+  }
+
 
   // Add the settings for each module.
   for (const module of organizedModules) {
@@ -218,5 +226,9 @@ const init = async () => {
     });
   }
 };
+
+if (getSetting('error-reporting', true) && ! getFlag('no-sentry', false)) {
+  initSentry(); // eslint-disable-line unicorn/prefer-top-level-await
+}
 
 init(); // eslint-disable-line unicorn/prefer-top-level-await

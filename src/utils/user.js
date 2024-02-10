@@ -290,8 +290,23 @@ const isUserTitleAtLeast = (title) => {
   return titleIndex >= checkIndex;
 };
 
+const getUserHash = async () => {
+  if (typeof user === 'undefined' || ! user.user_id) {
+    return '';
+  }
+
+  // Used to generate a unique hash for the user that doesn't change but is unique and anonymous. props MHCT.
+  const msgUint8 = new TextEncoder().encode(user.user_id.toString().trim());
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+  const hashArray = [...new Uint8Array(hashBuffer)];
+  userHash = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+
+  return userHash;
+};
+
 export {
   getUserItems,
+  getUserHash,
   getUserSetupDetails,
   isUserTitleAtLeast
 };
