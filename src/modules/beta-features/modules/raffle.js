@@ -229,11 +229,20 @@ const returnRaffles = async () => {
   drawTab.insertBefore(messageWrapper, drawTab.firstChild);
 };
 
+let _inboxOpen;
 /**
  * Replace inbox methods.
  */
 const replaceInboxMethods = () => {
-  const _inboxOpen = messenger.UI.notification.showTab;
+  if (! messenger?.UI?.notification?.showTab) {
+    return;
+  }
+
+  if (_inboxOpen) {
+    return;
+  }
+
+  _inboxOpen = messenger.UI.notification.showTab;
   messenger.UI.notification.showTab = (tab) => {
     const toReturn = _inboxOpen(tab);
     if (tab === 'daily_draw') {
@@ -259,13 +268,11 @@ const replaceInboxMethods = () => {
   };
 };
 
-const main = () => {
 /**
  * Initialize the module.
  */
+export default async () => {
   addStyles(styles, 'beta-features-raffle');
 
   replaceInboxMethods();
 };
-
-export default main;

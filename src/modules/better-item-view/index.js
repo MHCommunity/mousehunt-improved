@@ -158,18 +158,13 @@ const updateItemView = async () => {
   }
 };
 
-const main = () => {
-  onOverlayChange({ item: { show: updateItemView } });
-
-  onPageChange({ item: { show: updateItemView } });
-};
-
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles(styles, 'better-item-view');
-  main();
+  onOverlayChange({ item: { show: updateItemView } });
+  onPageChange({ item: { show: updateItemView } });
 };
 
 export default {
