@@ -799,3 +799,7 @@ input.treasureMapView-block-search-text {
   height: 33px;
   background-position: right;
 }
+
+.treasureMapPopup-shop .treasureMapView-block-content-heading {
+  border-color: transparent;
+}
