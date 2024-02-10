@@ -43,11 +43,6 @@ const addBodyClass = (preview = false) => {
     addedClass = background;
   }
 
-  const existingStyle = document.querySelector('#mh-improved-custom-background-style');
-  if (existingStyle) {
-    return;
-  }
-
   if (! gradients) {
     return;
   }
@@ -81,21 +76,6 @@ const addBodyClass = (preview = false) => {
   }`;
 
   document.head.append(gradientStyle);
-};
-
-const persistBackground = () => {
-  let added = addBodyClass();
-  // add a delay to make sure the body class is added before the styles are applied.
-  if (! added) {
-    setTimeout(() => {
-      added = addBodyClass();
-      if (! added) {
-        setTimeout(() => {
-          addBodyClass();
-        }, 1000);
-      }
-    }, 500);
-  }
 };
 
 const listenForPreferenceChanges = () => {
@@ -162,12 +142,7 @@ const addPreview = () => {
   });
 };
 
-/**
- * Initialize the module.
- */
-const init = async () => {
-  addStyles(styles, 'custom-background');
-
+const persistBackground = () => {
   addBodyClass();
   onNavigation(() => {
     addBodyClass();
@@ -182,6 +157,13 @@ const init = async () => {
     page: 'preferences',
     onLoad: true,
   });
+};
+
+/**
+ * Initialize the module.
+ */
+const init = async () => {
+  addStyles(styles, 'custom-background');
 
   persistBackground();
 };
