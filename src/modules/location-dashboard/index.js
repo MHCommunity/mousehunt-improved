@@ -13,20 +13,18 @@ import { getData } from '@utils/data';
 
 import styles from './styles.css';
 
-import eventEnvironments from '@data/environments-events.json';
-
-import { getFieryWarpathText, setFieryWarpathData } from './location/fiery-warpath';
+import { getFieryWarpathText, setFieryWarpathData } from './location/desert-warpath';
 import { getSeasonalGardenText, setSeasonalGardenData } from './location/seasonal-garden';
 import { getZugzwangTowerText, setZugzwangTowerData } from './location/zugzwang-tower';
-import getBristleWoodsRiftText from './location/bristle-woods-rift';
-import getBurroughsRiftText from './location/burroughs-rift';
+import getBristleWoodsRiftText from './location/rift-bristle-woods';
+import getBurroughsRiftText from './location/rift_burroughs';
 import getFloatingIslandsText from './location/floating-islands';
 import getForewordFarmText from './location/foreword-farm';
 import getFortRoxText from './location/fort-rox';
-import getFuromaRiftText from './location/furoma-rift';
+import getFuromaRiftText from './location/rift-furoma';
 import getIcebergText from './location/iceberg';
 import getLabyrinthText from './location/labyrinth';
-import getLivingGardenText from './location/living-garden';
+import getLivingGardenText from './location/desert-oasis';
 import getLostCityText from './location/lost-city';
 import getMousoleumText from './location/mousoleum';
 import getMoussuPicchuText from './location/moussu-picchu';
@@ -34,10 +32,10 @@ import getQuesoGeyserText from './location/queso-geyser';
 import getSandDunesText from './location/sand-dunes';
 import getSunkenCityText from './location/sunken-city';
 import getTableOfContentsText from './location/table-of-contents';
-import getToxicSpillText from './location/toxic-spill';
-import getValourRiftText from './location/valour-rift';
+import getToxicSpillText from './location/pollution-outbreak';
+import getValourRiftText from './location/rift-valour';
 import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
-import getZokorText from './location/zokor';
+import getZokorText from './location/ancient-city';
 
 const cacheLocationData = async () => {
   return new Promise((resolve) => {
@@ -117,21 +115,34 @@ const doLocationRefresh = async () => {
 
   const locationProgress = [];
 
+  const environmentsToUse = new Set([
+    'ancient_city',
+    'desert_warpath',
+    'floating_islands',
+    'foreword_farm',
+    'fort_rox',
+    'iceberg',
+    'labyrinth',
+    'desert_oasis',
+    'lost_city',
+    'mousoleum',
+    'moussu_picchu',
+    'pollution_outbreak',
+    'queso_geyser',
+    'rift_bristle_woods',
+    'rift_burroughs',
+    'rift_furoma',
+    'rift_valour',
+    'rift_whisker_woods',
+    'sand_dunes',
+    'seasonal_garden',
+    'sunken_city',
+    'table_of_contents',
+    'zugzwang_tower',
+  ]);
+
   const environmentsToTravel = environments.filter((env) => {
-    // Remove some locations that we don't want to travel to, like the current location.
-    const locationsToRemove = [
-      user.environment_type,
-      'forbidden_grove',
-      ...eventEnvironments.map((eenv) => eenv.id),
-    ];
-
-    if (! isUserTitleAtLeast(env.title)) {
-      locationsToRemove.push(env.id);
-    }
-
-    debug(`Environments to remove: ${locationsToRemove.join(', ')}`);
-
-    return ! locationsToRemove.includes(env.id);
+    return (environmentsToUse.has(env.id) && isUserTitleAtLeast(env.title));
   });
 
   debug(`Environments to travel: ${environmentsToTravel.map((env) => env.name).join(', ')}`);
