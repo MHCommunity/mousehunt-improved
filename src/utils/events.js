@@ -1,4 +1,4 @@
-import { getCurrentPage, isCurrentPage } from './page';
+import { getCurrentPage, getCurrentSubtab, getCurrentTab, isCurrentPage } from './page';
 import { getCurrentLocation } from './location';
 import { onEvent } from './event-registry';
 import { showHornMessage } from './horn';
@@ -479,16 +479,27 @@ const onNavigation = (callback, options = {}) => {
     tab: false,
     subtab: false,
     onLoad: true,
+    anyTab: false,
+    anySubtab: false,
   };
 
   // merge the defaults with the options
-  const { page, tab, subtab, onLoad } = Object.assign(defaults, options);
+  const { page, tab, subtab, onLoad, anyTab, anySubtab } = Object.assign(defaults, options);
 
   // If we don't pass in a page, then we want to run the callback on every page.
   const bypassMatch = ! page;
 
   // We do this once on load in case we are starting on the page we want to watch for.
-  if (onLoad && (bypassMatch || isCurrentPage(page, tab, subtab))) {
+  if (
+    onLoad && (
+      bypassMatch ||
+      isCurrentPage(
+        page,
+        anyTab ? getCurrentTab() : tab,
+        anySubtab ? getCurrentSubtab() : subtab
+      )
+    )
+  ) {
     callback();
   }
 

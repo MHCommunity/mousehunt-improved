@@ -62,9 +62,18 @@
   opacity: 0;
 }
 
-.locked .inventoryPage-item-content-action {
+.locked .inventoryPage-item-content-action,
+.locked.message_item.inventoryPage-item.small .inventoryPage-item-button,
+.locked.bait.inventoryPage-item.small .inventoryPage-item-button,
+.locked .inventoryPage-item-recipeOptions,
+.locked .inventoryPage-item-imageContainer-action {
   pointer-events: none;
   filter: grayscale(1);
+}
+
+.locked.message_item.inventoryPage-item.small,
+.locked.bait.inventoryPage-item.small {
+  pointer-events: none;
 }
 
 .mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
@@ -89,4 +98,8 @@ span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible {
 span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible button {
   padding: 2px;
   font-size: 1em;
+}
+
+.mhui-inventory-lock-and-hide-hidden-count {
+  margin-left: 5px;
 }

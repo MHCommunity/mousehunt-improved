@@ -1,4 +1,5 @@
 import {
+  addEvent,
   addStyles,
   getCurrentPage,
   getCurrentTab,
@@ -367,10 +368,17 @@ const hideItemsInTrapBrowser = async () => {
 
 let itemSettings;
 const main = async () => {
+  console.log('inventory-lock-and-hide: main');
   itemSettings = getSettings();
+  console.log('itemSettings', itemSettings);
 
   maybeLockOrHideItems();
   addLockAndHideControls();
+};
+
+const onSetPage = () => {
+  main();
+  addEvent('ajax_request', main, null, true);
 };
 
 /**
@@ -379,8 +387,11 @@ const main = async () => {
 const init = async () => {
   addStyles(styles, 'inventory-lock-and-hide');
 
-  onNavigation(main, {
+  main();
+  onNavigation(onSetPage, {
     page: 'inventory',
+    anyTab: true,
+    anySubTab: true,
   });
 
   onEvent('camp_page_toggle_blueprint', hideItemsInTrapBrowser);
