@@ -208,3 +208,7 @@ img.campPage-larryTip-external-link-icon {
   display: flex;
   align-items: center;
 }
+
+.mousehuntHud-menu .name {
+  mix-blend-mode: multiply;
+}
