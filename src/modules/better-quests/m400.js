@@ -1,4 +1,10 @@
-import { getCurrentLocation, makeElement, onNavigation, setPage, travelTo } from '@utils';
+import {
+  getCurrentLocation,
+  makeElement,
+  onNavigation,
+  setPage,
+  travelTo
+} from '@utils';
 
 import locations from '@data/m400-locations.json';
 

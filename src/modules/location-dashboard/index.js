@@ -17,7 +17,7 @@ import { getFieryWarpathText, setFieryWarpathData } from './location/desert-warp
 import { getSeasonalGardenText, setSeasonalGardenData } from './location/seasonal-garden';
 import { getZugzwangTowerText, setZugzwangTowerData } from './location/zugzwang-tower';
 import getBristleWoodsRiftText from './location/rift-bristle-woods';
-import getBurroughsRiftText from './location/rift_burroughs';
+import getBurroughsRiftText from './location/rift-burroughs';
 import getFloatingIslandsText from './location/floating-islands';
 import getForewordFarmText from './location/foreword-farm';
 import getFortRoxText from './location/fort-rox';

@@ -7,7 +7,7 @@
  */
 export default (quests) => {
   if (! quests.QuestRiftValour) {
-    return;
+    return '';
   }
 
   const quest = {

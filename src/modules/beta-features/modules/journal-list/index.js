@@ -4,7 +4,7 @@ import styles from './styles.css';
 /**
  * Format a journal entry as a list.
  *
- * @param {Object} args        The entry arguments.
+ * @param {Object}  args       The entry arguments.
  * @param {Element} args.entry The journal entry.
  * @param {Element} args.text  The journal entry text.
  */

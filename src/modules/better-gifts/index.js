@@ -289,9 +289,9 @@ const pickFriends = (friends, useRandom = true) => {
 /**
  * Add the send buttons to the gift selector.
  *
- * @param {string} className            The class name for the button.
- * @param {string} text                 The button text.
- * @param {string} selector             The selector for the friends.
+ * @param {string}      className       The class name for the button.
+ * @param {string}      text            The button text.
+ * @param {string}      selector        The selector for the friends.
  * @param {HTMLElement} buttonContainer The container for the buttons.
  */
 const addSendButton = (className, text, selector, buttonContainer) => {

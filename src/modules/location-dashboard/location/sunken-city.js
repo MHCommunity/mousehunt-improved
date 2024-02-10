@@ -7,7 +7,7 @@
  */
 export default (quests) => {
   if (! quests.QuestSunkenCity) {
-    return;
+    return '';
   }
 
   const oxygen = quests.QuestSunkenCity.items?.oxygen_stat_item || 0;
