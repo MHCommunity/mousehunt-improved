@@ -1,6 +1,5 @@
 import {
   addStyles,
-  debuglog,
   doRequest,
   getCurrentLocation,
   getSetting,
@@ -22,16 +21,11 @@ const getJournalThemes = async () => {
     action: 'get_themes',
   });
 
-  debuglog('journal-changer', 'Themes', req.journal_themes);
-
   if (! req.journal_themes) {
     return [];
   }
 
-  themes = req.journal_themes.theme_list.filter((theme) => theme.can_equip === true);
-
-  debuglog('journal-changer', 'Filtered themes', themes);
-  return themes;
+  return req.journal_themes.theme_list.filter((theme) => theme.can_equip === true);
 };
 
 const updateJournalTheme = async (theme) => {
@@ -80,36 +74,29 @@ const getJournalThemeForLocation = () => {
 
 const changeForLocation = async () => {
   if (themes.length === 0) {
-    debuglog('journal-changer', 'Fetching journal themes');
     themes = await getJournalThemes();
   }
 
   const newTheme = getJournalThemeForLocation();
-  debuglog('journal-changer', 'New theme', newTheme);
   if (! newTheme) {
-    debuglog('journal-changer', 'No theme found for current location');
     return;
   }
 
   const currentTheme = getCurrentJournalTheme();
   if (! currentTheme) {
-    debuglog('journal-changer', 'No current theme found');
     return;
   }
 
   // check if we even have the theme
   if (! themes.some((t) => t.type === newTheme)) {
-    debuglog('journal-changer', 'Theme not available', newTheme);
     return;
   }
 
   if (currentTheme === newTheme) {
-    debuglog('journal-changer', 'Current theme is already set');
     return;
   }
 
   // Set the new theme.
-  debuglog('journal-changer', 'Setting new theme', newTheme);
   updateJournalTheme(newTheme);
 
   const journal = document.querySelector('#journalContainer');
@@ -121,12 +108,10 @@ const changeForLocation = async () => {
 
 const randomizeTheme = async () => {
   if (themes.length === 0) {
-    debuglog('journal-changer', 'Fetching journal themes');
     themes = await getJournalThemes();
   }
 
   const theme = themes[Math.floor(Math.random() * themes.length)];
-  debuglog('journal-changer', 'Setting random theme', theme.type);
   updateJournalTheme(theme.type);
 };
 
@@ -147,18 +132,14 @@ const changeJournalDaily = () => {
   const now = new Date();
 
   // Check if the current time is past midnight and the journal has not been changed today
-  debuglog('journal-changer', 'Checking if journal should be changed', lastChange.getDate(), now.getDate());
   if (
     ! lastChange ||
     lastChange.getDate() !== now.getDate() ||
     lastChange.getMonth() !== now.getMonth() ||
     lastChange.getFullYear() !== now.getFullYear()
   ) {
-    debuglog('journal-changer', 'Changing journal');
     randomizeTheme();
     saveSetting('journal-changer-last-change', now.getTime());
-  } else {
-    debuglog('journal-changer', 'Journal has already been changed today');
   }
 };
 
