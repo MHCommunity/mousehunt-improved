@@ -184,7 +184,7 @@ const init = async () => {
 
 export default {
   id: 'journal-changer',
-  name: 'Journal Changer',
+  name: 'Journal Theme Changer',
   type: 'feature',
   default: false,
   description: '',

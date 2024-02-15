@@ -183,7 +183,9 @@ const init = async () => {
 
 export default {
   id: 'fixes',
-  type: 'required',
-  alwaysLoad: true,
+  name: 'Fixes',
+  type: 'feature',
+  description: 'Fixes various bugs and issues in the game.',
+  default: true,
   load: init,
 };
