@@ -231,6 +231,11 @@ span.valourRiftHUD-towerUpgrade-currentValue {
   color: transparent;
   background-image: url(https://i.mouse.rip/mh-improved/sim.png);
   filter: grayscale(1);
+  opacity: 0.4;
+}
+
+.valourRiftHUD-previewTower.mh-vrift-sim-link:hover {
+  opacity: 0.8;
 }
 
 span.valourRiftHUD-huntsRemaining-value {
@@ -539,6 +544,11 @@ a.valourRiftHUD-gauntletBait-image.active {
   filter: hue-rotate(110deg);
 }
 
+.eclipse.floor_8 .valourRiftHUD-floorProgress-barContainer {
+  filter: brightness(1.2);
+  animation: fortRoxlairPulse 2s 3;
+}
+
 .valourRiftHUD-tower-sprite.floor_8 .valourRiftHUD-tower-sprite-image {
   filter: saturate(1.2);
   box-shadow: inset 0 10px 25px 5px #000;
@@ -625,4 +635,9 @@ a.valourRiftHUD-gauntletBait-image.active {
 
 .valourRiftHUD {
   filter: drop-shadow(0 2px 1px #25266a);
+}
+
+.valourRiftHUD.tower .valourRiftHUD-huntsRemaining .valourRiftHUD-state.tower {
+  gap: 0;
+  margin-right: -3px;
 }

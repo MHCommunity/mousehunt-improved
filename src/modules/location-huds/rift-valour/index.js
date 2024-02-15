@@ -157,6 +157,11 @@ const addSimulatorEvents = () => {
     return;
   }
 
+  const existing = document.querySelector('.mh-vrift-sim-link');
+  if (existing) {
+    existing.remove();
+  }
+
   const simLink = makeElement('a', ['valourRiftHUD-previewTower', 'mh-vrift-sim-link'], 'Simulate Run');
   simLink.title = 'Simulate Valour Rift Run';
   // append next to the magnifying glass
