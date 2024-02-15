@@ -1,0 +1,18 @@
+.journal .content .entry.valentines_matchmaker {
+  background-position: left;
+  animation: slide-background 720s ease-in-out infinite;
+}
+
+@keyframes slide-background {
+  0% {
+    background-position: left;
+  }
+
+  50% {
+    background-position: right;
+  }
+
+  100% {
+    background-position: left;
+  }
+}
