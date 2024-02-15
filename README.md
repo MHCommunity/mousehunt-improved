@@ -1,20 +1,11 @@
 # 🐭️ MouseHunt Improved
 
-MouseHunt Improved enhances and improves [MouseHunt](https://mousehuntgame.com) with a variety of enhancements and features.
+![Add to Chrome](https://img.shields.io/badge/Add_to_Chrome-4c8bf5?style=plastic&logo=googlechrome&logoColor=white&link=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fmousehunt-improved%2Ffgjkidgknmkhnbeobehlfabjbignhkhm) ![Add to Firefox](https://img.shields.io/badge/Add_to_Firefox-ff7139?style=plastic&logo=firefoxbrowser&logoColor=white&link=https%3A%2F%2Faddons.mozilla.org%2Fen-US%2Ffirefox%2Faddon%2Fmousehunt-improved%2F)
 
-There are numerous features, each of which can be toggled on or off on the [MH Improved](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings) tab of the settings screen to customize your experience.
-
-⭐️ **Over 150 features and improvements!** ⭐️
+Enhance your [MouseHunt](https://mousehuntgame.com) experience with over 150 customizable features and improvements, each toggleable to your preference.
 
 ## Installation
 
-Chrome: [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm)
-
-Firefox: [Install from Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/)
-
-Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-mousehunt-improved) _(only recommended for use on mobile browsers or other cases where the extension isn't available)_
-
-## Features
 
 **Each feature can be enabled or disabled individually, allowing you to customize your experience.**
 
@@ -371,75 +362,29 @@ Userscript: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-m
   - Town Of Digby
   - Training Grounds
 
-### Fixes
+- **Chrome**: [Install from Chrome Web Store](https://chrome.google.com/webstore/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm)
+- **Firefox**: [Install from Mozilla Addons](https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/)
+- **Userscript**: [Install from Greasyfork](https://greasyfork.org/en/scripts/465139-mousehunt-improved) for mobile or unsupported browsers.
 
-- Fixes the Passing Parcel collectible display to match the other collectibles.
-- Fixes the vertical spacing for the Weekly & Friends checkboxes on scoreboards.
-- Updates the team, scoreboard, and forum icons in the main navigation to be the intended ones.
-- Fixes the dropdown arrow direction in the top menu.
-- Fixes HUD shadow leftover from old HUD.
-- Fixes Tooltip arrows incorrectly showing the side border.
-- Removes 'Combine 12 items while crafting' on the ranks page from the ranks that already have it.
-- Fixes the rank underline color for the current rank.
-- Fixes environment names being truncated in the HUD.
-- Fixes the item classification link when viewing an item page.
-- Fixes the width of the map link text box.
-- Fixes the 'Classification' link on the item page.
-- Fixes Whisker Woods Rift rage meter font sizes.
-- Fixes the tutorial overlay shadow.
-- Fixes the price being set incorrectly on the first click of the Best price in the Marketplace.
-- Fixes the smash assignment button to go to the correct page.
-- Removes the text clipping from the 'Collectibles' tab text.
-- Fixes issues when directly loading an item page.
-- Fixes the Larry's Gift quantity background color.
-- Fixes the arrow color in the inbox when hovering over odd rows
+## ⭐️ Features
+## 🔧️ Advanced Customization
 
-## UserScripts
+There are a variety of beta features and other advanced settings that can be enabled or controlled with feature flags. Refer to [Feature Flags/Beta Features](https://github.com/MHCommunity/mousehunt-improved/wiki/Feature-Flags---Beta-Features) on the GitHub Wiki for more information.
 
-If you have any of these userscripts installed, you can uninstall them, as the features are all included in MouseHunt Improved.
+You can also override styles with the **Custom Styles** option in Advanced Settings. Refer to [Custom CSS](https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS) for some commonly used custom styles that you can copy and paste.
 
-- [🐭️ MouseHunt - Better Lucky Catch Icon](https://greasyfork.org/en/scripts/449493-mousehunt-better-lucky-catch-icon)
-- [🐭️ Mousehunt - Fancy King's Reward](https://greasyfork.org/en/scripts/459629-mousehunt-fancy-king-s-reward)
-- [🐭️ MouseHunt - Gift Buttons](https://greasyfork.org/en/scripts/449489-mousehunt-gift-buttons)
-- [🐭️ MouseHunt - Item Links](https://greasyfork.org/en/scripts/445920-mousehunt-item-links)
-- [🐭️ MouseHunt - Item Quantity Fix](https://greasyfork.org/en/scripts/445926-mousehunt-item-quantity-fix)
-- [🐭️ Mousehunt - Journal Privacy](https://greasyfork.org/en/scripts/453301-mousehunt-journal-privacy)
-- [🐭️ MouseHunt - Labyrinth HUD Enhancer](https://greasyfork.org/en/scripts/465603-mousehunt-labyrinth-hud-enhancer)
-- [🐭️ Mousehunt - Location Catches](https://greasyfork.org/en/scripts/463018-mousehunt-location-catches)
-- [🐭️ MouseHunt - Metric](https://greasyfork.org/en/scripts/449840-mousehunt-metric)
-- [🐭️ MouseHunt - Mouse Links](https://greasyfork.org/en/scripts/449332-mousehunt-mouse-links)
-- [🐭️ MouseHunt - No Share Buttons](https://greasyfork.org/en/scripts/452434-mousehunt-no-share-buttons)
-- [🐭️ MouseHunt - No Sidebar](https://greasyfork.org/en/scripts/449491-mousehunt-no-sidebar)
-- [🐭️ Mousehunt - Shields](https://greasyfork.org/en/scripts/454147-mousehunt-shields)
-- [🐭️ MouseHunt - Taller Windows](https://greasyfork.org/en/scripts/452235-mousehunt-taller-windows)
-- [🐭️ Mousehunt - Travel Tweaks](https://greasyfork.org/en/scripts/452232-mousehunt-travel-tweaks)
-- [🐭️ MouseHunt - Ultimate Checkmark](https://greasyfork.org/en/scripts/461469-mousehunt-ultimate-checkmark)
-- [MH - Consolidated Map Colour Coder](https://greasyfork.org/en/scripts/428959-mh-consolidated-map-colour-coder)
-- [MH - Iceberg Progress Info](https://greasyfork.org/en/scripts/399553-mh-iceberg-progress-info)
-- [MH Maps Tweaker](https://greasyfork.org/en/scripts/5352-mh-maps-tweaker)
-- [MH Region Quick Travel](https://greasyfork.org/en/scripts/439343-mh-region-quick-travel)
-- [MH: Floating Islands HUD Enhancer](https://greasyfork.org/en/scripts/419909-mh-floating-islands-hud-enhancer)
-- [MH: M400 Hunting Helper](https://greasyfork.org/en/scripts/429044-mh-m400-hunting-helper)
-- [MouseHunt - Gifting Buttons](https://greasyfork.org/en/scripts/376572-mousehunt-gifting-buttons)
-- [MouseHunt - Mapping Helper](https://greasyfork.org/en/scripts/384275-mousehunt-mapping-helper)
-- [MouseHunt - QoL Utilities](https://greasyfork.org/en/scripts/405334-mousehunt-qol-utilities)
-- [MouseHunt - Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)
-- [MouseHunt - Sort charms by quantity](https://greasyfork.org/en/scripts/389861-mousehunt-sort-charms-by-quantity)
-- [MouseHunt - Wisdom Stats](https://greasyfork.org/en/scripts/381219-mousehunt-wisdom-stats)
-- [MouseHunt - TEM Catch Stats](https://greasyfork.org/en/scripts/376770-mousehunt-tem-catch-stats)
-- [MouseHunt - Tournament Time Helper](https://greasyfork.org/en/scripts/37146-mousehunt-tournament-time-helper)
-- [Mousehunt – Lucky Golden Shield Duration Indicator & Warning](https://greasyfork.org/en/scripts/410966-mousehunt-lucky-golden-shield-duration-indicator-warning)
-- [MouseHunt Location HUD Preview](https://greasyfork.org/en/scripts/454413-mousehunt-location-hud-preview)
-- Most map color coders
+## 🗑️ Uninstalling Userscripts
 
-## Changelog
+Refer to [Superseded Userscripts](https://github.com/MHCommunity/mousehunt-improved/wiki/Superseded-Userscripts) on the GitHub Wiki for a list of userscripts you no longer need after installing MouseHunt Improved.
 
-See [CHANGELOG.md](CHANGELOG.md) for a list of changes in each version.
+## 📝 Changelog
 
-## Contributing
+Refer to [CHANGELOG.md](CHANGELOG.md) for detailed updates and changes.
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for information on how to contribute to this project.
+## 🤝 Contributing
 
-## License
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on contributing to this project.
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+## 📜 License
+
+Licensed under the MIT License. [LICENSE.md](LICENSE.md) details the terms and conditions.
