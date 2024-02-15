@@ -130,6 +130,7 @@ const maybeKeepAsOriginal = (entry) => {
 
   const keepOriginalClasses = new Set([
     'lunar_lantern',
+    'valentines_matchmaker',
   ]);
 
   const entryId = entry.getAttribute('data-entry-id');
@@ -280,6 +281,7 @@ const updateJournalText = async () => {
     ['*BLING*', '<span class="decoration">✨️</span>'],
     ['Aura helped me find', 'Aura found'],
     ['processed  added', 'processed and added'],
+    ['I have started a', 'I started a'],
 
     // Event stuff
     // SEH
