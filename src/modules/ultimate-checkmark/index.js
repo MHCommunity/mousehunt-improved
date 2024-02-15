@@ -322,11 +322,24 @@ const addCategoryAndItems = async (required, type, subtype, key, name) => {
   return true;
 };
 
+const isOwnProfile = () => {
+  if (! hg?.utils?.PageUtil?.getQueryParams) {
+    return false;
+  }
+
+  const params = hg.utils.PageUtil.getQueryParams();
+  if (! params || ! params.snuid) {
+    return false;
+  }
+
+  return params.snuid === user.sn_user_id;
+};
+
 /**
  * Run the module.
  */
 const run = async () => {
-  if (! ('hunterprofile' === getCurrentPage() && 'items' === getCurrentTab())) {
+  if (! ('hunterprofile' === getCurrentPage() && 'items' === getCurrentTab() && isOwnProfile())) {
     return;
   }
 
