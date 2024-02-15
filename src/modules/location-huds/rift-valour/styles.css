@@ -641,3 +641,7 @@ a.valourRiftHUD-gauntletBait-image.active {
   gap: 0;
   margin-right: -3px;
 }
+
+.valourRiftHUD-fuelContainer-armButton {
+  font-size: 12px;
+}
