@@ -48,3 +48,7 @@ a.mousehuntActionButton.danger:hover::before,
 a.mousehuntActionButton.danger:focus::before {
   background-color: #ffa5a5;
 }
+
+.mousehuntActionButton:hover::before {
+  pointer-events: none;
+}
