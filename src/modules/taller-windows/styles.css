@@ -3,8 +3,6 @@
 .marketplaceView-browse-content,
 .MHCheckoutAllRewardsPageView,
 .treasureMapListingsView-tableView,
-.treasureMapView-block-content,
-.treasureMapView-block-content.halfHeight,
 .treasureMapView-block-content.tall,
 .treasureMapView-blockWrapper.tall .treasureMapView-block-content,
 #messengerUINotification .notificationHeader,
@@ -14,6 +12,12 @@
 #supplytransfer .drawer {
   height: auto;
   max-height: 75vh;
+}
+
+.treasureMapView-block-content,
+.treasureMapView-block-content.halfHeight {
+  height: auto;
+  max-height: 50vh;
 }
 
 #supplytransfer .drawer {
