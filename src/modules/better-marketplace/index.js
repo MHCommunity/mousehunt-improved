@@ -204,6 +204,34 @@ const overloadShowItem = () => {
   };
 };
 
+const waitForFooterReady = (attempts = 0) => {
+  const opts = document.querySelectorAll('.marketplaceView-table-listing-quantity');
+  let timeoutPending = false;
+
+  // if there are no options, try again
+  if (! (opts && opts.length > 0)) {
+    if (attempts < 10) {
+      timeoutPending = setTimeout(() => updateQuantityButtons(attempts + 1), 300);
+    }
+    return;
+  }
+
+  // if we have a timeout pending, clear it
+  if (timeoutPending) {
+    clearTimeout(timeoutPending);
+  }
+
+  // wait another 300ms to make sure it's ready
+  setTimeout(() => {
+    opts.forEach((order) => {
+      order.addEventListener('click', () => {
+        const quantity = order.textContent.trim();
+        hg.views.MarketplaceView.setOrderQuantity(quantity);
+      });
+    });
+  }, 300);
+};
+
 let originalSelect = null;
 let newSelect = null;
 
@@ -223,15 +251,13 @@ const init = async () => {
     marketplace: {
       show: () => {
         waitForSearchReady();
-
         overloadShowItem();
       },
     },
   });
 
-  onRequest('users/marketplace.php', () => {
-    autocloseClaim();
-  });
+  onRequest('users/marketplace.php', autocloseClaim);
+  onRequest('users/marketplace.php', waitForFooterReady, true);
 };
 
 export default {
