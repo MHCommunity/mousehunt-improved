@@ -39,16 +39,16 @@ const addArDataToMap = async (mapData) => {
       return;
     }
 
-    if (mouseEl.getAttribute('data-mh-ui-ar')) {
-      const existing = mouseEl.querySelector('.mh-ui-ar');
-      if (existing) {
-        existing.remove();
-      }
-    }
-
     const name = mouseEl.querySelector('.treasureMapView-goals-group-goal-name');
     if (! name) {
       return;
+    }
+
+    const existingArEl = name.querySelectorAll('.mh-ui-ar');
+    if (existingArEl.length > 0) {
+      existingArEl.forEach((el) => {
+        el.remove();
+      });
     }
 
     const arEl = await getArEl(mouse.unique_id, type);
@@ -107,6 +107,20 @@ const toggleAr = async () => {
   toggle.classList.remove('disabled');
 };
 
+const clickArToggle = () => {
+  const mapView = document.querySelector('.treasureMapView');
+  if (! mapView) {
+    return;
+  }
+
+  const toggle = mapView.querySelector('.mh-ui-toggle-ar-button');
+  if (! toggle) {
+    return;
+  }
+
+  toggle.click();
+};
+
 const maybeClickArToggle = () => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
@@ -125,17 +139,24 @@ const maybeClickArToggle = () => {
     .replace('DR', '')
     .trim();
   if (showing && currentButtonState !== 'Hide') {
-    toggle.click();
+    clickArToggle();
   } else if (! showing && currentButtonState !== 'Show') {
-    toggle.click();
+    clickArToggle();
   }
 };
 
+let isAdding = false;
 const addArToggle = async (tab = 'goals') => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
     return;
   }
+
+  if (isAdding && tab === isAdding) {
+    return;
+  }
+
+  isAdding = tab;
 
   const exists = document.querySelector('.mh-ui-toggle-ar-button');
   if (exists) {
@@ -146,11 +167,13 @@ const addArToggle = async (tab = 'goals') => {
       addArDataToMap(mapper('mapData'));
     }
 
+    isAdding = false;
     return;
   }
 
   const wrapper = document.querySelector('.treasureMapRootView-subTabRow');
   if (! wrapper) {
+    isAdding = false;
     return;
   }
 
@@ -173,6 +196,8 @@ const addArToggle = async (tab = 'goals') => {
   await toggleAr();
 
   maybeClickArToggle();
+
+  isAdding = false;
 };
 
 const removeArToggle = () => {
@@ -184,5 +209,6 @@ const removeArToggle = () => {
 
 export {
   addArToggle,
-  removeArToggle
+  removeArToggle,
+  clickArToggle
 };

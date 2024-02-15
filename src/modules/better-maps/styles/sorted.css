@@ -240,6 +240,7 @@
   cursor: not-allowed;
 }
 
+.scavenger-location-content,
 .sorted-page-content.generic-sorted-page {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -256,4 +257,43 @@
   max-width: 110px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.treasureMapView-leftBlock {
+  position: relative;
+}
+
+.mh-ui-goals-sidebar-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="28" fill="currentColor"><path d="M4 0h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm7.828 8L8.293 6.464A1 1 0 0 1 9.707 5.05l4.243 4.243a1 1 0 0 1 0 1.414L9.707 14.95a1 1 0 1 1-1.414-1.414L11.828 10z"></path></svg>'); /* stylelint-disable-line */
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 0.5;
+}
+
+.mh-ui-goals-sidebar-toggle.closed {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="28" fill="currentColor"><path d="M4 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm0-2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"></path><path d="M8.414 9H14a1 1 0 1 1 0 2H8.414l2.536 2.536a1 1 0 0 1-1.414 1.414l-4.243-4.243a.997.997 0 0 1 0-1.414L9.536 5.05a1 1 0 1 1 1.414 1.414L8.414 9z"></path></svg>'); /* stylelint-disable-line */
+}
+
+.mh-ui-goals-sidebar-toggle:hover {
+  opacity: 1;
+}
+
+.treasureMapView-leftBlock.full-width {
+  width: 100%;
+}
+
+.full-width .treasureMapView-goals-group-goal {
+  width: 12%;
+}
+
+.scavenger-toggle-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 }

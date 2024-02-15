@@ -141,17 +141,28 @@ const showTravelConfirmation = (environment, theMapModel) => {
 
   const environmentData = theMapModel.getEnvironmentById(environment.id);
   const environmentGoals = theMapModel.getGoalsByEnvironment(environment.id);
-  const templateData = { environment: environmentData, goals: environmentGoals };
   const noun = environmentData.num_missing_goals === 1 ? 'mouse' : 'mice';
 
+  showTravelConfirmationForMice({
+    title: `Travel to ${environmentData.name}?`,
+    description: `This area has ${environmentData.num_missing_goals} missing ${noun}.`,
+    environment: environment.type,
+    templateData: {
+      environment: environmentData,
+      goals: environmentGoals
+    }
+  });
+};
+
+const showTravelConfirmationForMice = ({ title, description, environment, templateData }) => {
   const dialog = new hg.views.TreasureMapDialogView();
-  dialog.setTitle('Travel to ' + environmentData.name + '?');
-  dialog.setDescription('This area has ' + environmentData.num_missing_goals + ' missing ' + noun + '.');
+  dialog.setTitle(title);
+  dialog.setDescription(description);
 
   dialog.setContent(hg.utils.TemplateUtil.renderFromFile('TreasureMapDialogView', 'travel', templateData));
   dialog.setCssClass('confirm');
   dialog.setContinueAction('Travel', () => {
-    app.pages.TravelPage.travel(environment.type);
+    app.pages.TravelPage.travel(environment);
     dialog.hide();
     setTimeout(() => {
       jsDialog().hide();
@@ -159,6 +170,33 @@ const showTravelConfirmation = (environment, theMapModel) => {
   });
 
   hg.controllers.TreasureMapController.showDialog(dialog);
+};
+
+const showTravelConfirmationNoDetails = async (environment) => {
+  const templateData = {
+    environment: {
+      name: environment.name,
+      id: environment.id,
+      type: environment.id,
+      thumb: environment.image,
+      header: environment.headerImage,
+      goals,
+      num_completed_goals: 0,
+      num_total_goals: environmentMice.length,
+      hunters: [],
+      is_current_environment: getCurrentLocation() === environment.id,
+      can_travel: true,
+      num_missing_goals: environmentMice.length,
+    },
+    goals: []
+  };
+
+  showTravelConfirmationForMice({
+    title: `Travel to ${environment.name}?`,
+    description: '',
+    environment: environment.id,
+    templateData
+  });
 };
 
 /**
@@ -262,12 +300,12 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
  * @return {any|boolean} Cached value or false if not found.
  */
 const getCachedValue = (key) => {
-  if (getFlag('no-cache')) {
+  if (getFlag('no-cache', false)) {
     return false;
   }
 
   // check to see if it's in session storage first
-  const isInSession = sessionGet(key);
+  const isInSession = sessionGet(key, null);
   if (isInSession !== null) {
     return JSON.parse(isInSession);
   }
@@ -292,7 +330,7 @@ const getCachedValue = (key) => {
  * @return {string} Cache key.
  */
 const getCacheKey = () => {
-  return `mh-improved-cached-ar-v${mhImprovedVersion}`;
+  return `mh-improved-cached-ar-v${mhImprovedVersion.replaceAll('.', '-')}`;
 };
 
 /**
@@ -303,7 +341,7 @@ const getCacheKey = () => {
  * @return {string} Cache key.
  */
 const getMouseCachedKey = () => {
-  return `mhct-ar-value-v${mhImprovedVersion}`;
+  return `mhct-ar-value-v${mhImprovedVersion.replaceAll('.', '-')}`;
 };
 
 /**
@@ -374,7 +412,12 @@ const getArEl = async (id, type = 'mouse') => {
     ar = ar.toString().slice(0, -3);
   }
 
-  return makeElement('div', ['mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`], `${ar}%`);
+  const arEl = makeElement('div', ['mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`], `${ar}%`);
+
+  arEl.title = `Attraction rate: ${ar}%`;
+  arEl.setAttribute('data-ar', ar);
+
+  return arEl;
 };
 
 /**
@@ -401,8 +444,10 @@ const getHighestArText = async (id, type = 'mouse') => {
 const getArForMouse = async (id, type = 'mouse') => {
   let mhctjson = [];
 
+  const cacheKey = `${getMouseCachedKey()}-${id}-${type}`;
+
   // check if the attraction rates are cached
-  const cachedAr = getCachedValue(`${getMouseCachedKey()}-${id}-${type}`);
+  const cachedAr = getCachedValue(cacheKey);
   if (cachedAr) {
     return cachedAr;
   }
@@ -429,20 +474,20 @@ const getArForMouse = async (id, type = 'mouse') => {
   mhctjson = await mhctdata.json();
 
   if (! mhctjson || mhctjson.length === 0) {
-    setCachedValue(`${getMouseCachedKey()}-${id}-${type}`, [], true);
+    setCachedValue(cacheKey, [], true);
     return [];
   }
 
   if (isItem) {
     // change the 'drop_ct' to 'rate'
-    mhctjson.forEach((rate) => {
+    for (const rate of mhctjson) {
       // convert from a '13.53' to 1353
       rate.rate = Number.parseInt(rate.drop_pct * 100);
       delete rate.drop_ct;
-    });
+    }
   }
 
-  setCachedValue(`${getMouseCachedKey()}-${id}-${type}`, mhctjson);
+  setCachedValue(cacheKey, mhctjson);
 
   return mhctjson;
 };
@@ -504,6 +549,47 @@ const getHighestArForMouse = async (id, type = 'mouse') => {
   return rate.rate / 100;
 };
 
+const getLocationForMouse = async (mouse, type = 'mouse') => {
+  // get the AR for the mouse and then grab the location property from the highest AR.
+  // compare that to the name string of the environments and return the environment ID.
+  const environments = await getData('environments');
+  const rates = await getArForMouse(mouse, type);
+
+  if (! rates || rates.length === 0) {
+    return false;
+  }
+
+  const rate = rates[0];
+
+  if (! rate) {
+    return false;
+  }
+
+  const originalName = rate.location;
+
+  const twistedMap = {
+    'Twisted Garden': 'Living Garden',
+    'Sand Crypts': 'Sand Dunes',
+    'Cursed City': 'Lost City',
+  };
+
+  if (twistedMap[rate.location]) {
+    rate.location = twistedMap[rate.location];
+  }
+
+  const environment = environments.find((env) => {
+    return env.name === rate.location;
+  });
+
+  if (! environment) {
+    return false;
+  }
+
+  environment.name = originalName;
+
+  return environment;
+};
+
 export {
   mapper,
   mapData,
@@ -517,5 +603,7 @@ export {
   getHighestArForMouse,
   getLastMaptain,
   setLastMaptain,
-  cacheFinishedMap
+  cacheFinishedMap,
+  getLocationForMouse,
+  showTravelConfirmationNoDetails
 };

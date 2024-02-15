@@ -13,9 +13,20 @@ import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';
 
 const getLinkMarkup = (name) => {
+  name = name.replaceAll(' ', '_');
+
+  const nameMouse = `${name}_Mouse`.replaceAll('_Mouse_Mouse', '_Mouse');
+
   return makeLink('MHCT AR', `https://www.mhct.win/attractions.php?mouse=${name}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}_Mouse`) +
-    makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${name}_Mouse`);
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${nameMouse}`) +
+    makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${nameMouse}`);
+};
+
+const getItemLinkMarkup = (name) => {
+  name = name.replace(' ', '_');
+  return makeLink('MHCT DR', `https://www.mhct.win/loot.php?item=${name}`, true) +
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`) +
+    makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${name}`);
 };
 
 /**
@@ -80,13 +91,24 @@ const addMouseLinksToMap = async () => {
         return;
       }
 
-      const div = makeElement('div', 'mh-ui-mouse-links-map');
-      div.id = `mh-ui-mouse-links-map-${mouseType}-${type}`;
-      div.innerHTML = getLinkMarkup(title.innerText);
+      if ('mouse' === type) {
+        const div = makeElement('div', 'mh-ui-mouse-links-map');
+        div.id = `mh-ui-mouse-links-map-${mouseType}-${type}`;
+        div.innerHTML = getLinkMarkup(title.innerText);
 
-      const envs = document.querySelector('.treasureMapView-highlight-environments');
-      if (envs) {
-        envs.parentNode.insertBefore(div, envs.nextSibling);
+        const envs = document.querySelector('.treasureMapView-highlight-environments');
+        if (envs) {
+          envs.parentNode.insertBefore(div, envs.nextSibling);
+        }
+      } else if ('item' === type) {
+        const div = makeElement('div', 'mh-ui-mouse-links-map');
+        div.id = `mh-ui-mouse-links-map-${mouseType}-${type}`;
+        div.innerHTML = getItemLinkMarkup(mouseType);
+
+        const desc = document.querySelector('.treasureMapView-highlight-description');
+        if (desc) {
+          desc.prepend(div);
+        }
       }
 
       let appendMHCTto = document.querySelector('.treasureMapView-highlight-weaknessContainer');
@@ -397,6 +419,70 @@ const addQuickInvite = async (mapData) => {
   sidebar.insertBefore(inviteWrapper, sidebar.firstChild);
 };
 
+const addSidebarToggle = async () => {
+  const rightBlock = document.querySelector('.treasureMapView-rightBlock');
+  if (! rightBlock) {
+    return;
+  }
+
+  const leftBlock = document.querySelector('.treasureMapView-leftBlock');
+  if (! leftBlock) {
+    return;
+  }
+
+  const existing = document.querySelector('.mh-ui-goals-sidebar-toggle');
+  if (existing) {
+    return;
+  }
+
+  const toggle = makeElement('a', 'mh-ui-goals-sidebar-toggle');
+
+  const isStartingToggled = sessionGet('better-maps-sidebar-toggled', false);
+  if ('open' === isStartingToggled) {
+    toggle.classList.remove('open');
+    toggle.classList.add('closed');
+    toggle.setAttribute('data-state', 'closed');
+    toggle.setAttribute('title', 'Show Sidebar');
+
+    rightBlock.classList.add('hidden');
+    leftBlock.classList.add('full-width');
+  } else {
+    toggle.classList.remove('closed');
+    toggle.classList.add('open');
+    toggle.setAttribute('data-state', 'open');
+    toggle.setAttribute('title', 'Hide Sidebar');
+
+    rightBlock.classList.remove('hidden');
+    leftBlock.classList.remove('full-width');
+  }
+
+  toggle.addEventListener('click', () => {
+    const isToggled = toggle.getAttribute('data-state');
+
+    sessionSet('better-maps-sidebar-toggled', isToggled);
+
+    if ('open' === isToggled) {
+      toggle.setAttribute('data-state', 'closed');
+      toggle.setAttribute('title', 'Show Sidebar');
+      toggle.classList.remove('open');
+      toggle.classList.add('closed');
+
+      rightBlock.classList.add('hidden');
+      leftBlock.classList.add('full-width');
+    } else {
+      toggle.setAttribute('data-state', 'open');
+      toggle.setAttribute('title', 'Hide Sidebar');
+      toggle.classList.remove('closed');
+      toggle.classList.add('open');
+
+      rightBlock.classList.remove('hidden');
+      leftBlock.classList.remove('full-width');
+    }
+  });
+
+  leftBlock.append(toggle);
+};
+
 const showGoalsTab = async (mapData) => {
   addArToggle();
   addMouseLinksToMap();
@@ -408,6 +494,8 @@ const showGoalsTab = async (mapData) => {
   moveLeaveButton();
 
   addQuickInvite(mapData);
+
+  addSidebarToggle();
 };
 
 const hideGoalsTab = () => {

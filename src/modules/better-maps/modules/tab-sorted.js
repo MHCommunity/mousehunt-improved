@@ -1,12 +1,15 @@
 import {
   addMHCTData,
   getArEl,
+  getData,
   getHighestArForMouse,
+  getLocationForMouse,
   getMapData,
   makeElement,
   mapData,
   mapModel,
-  showTravelConfirmation
+  showTravelConfirmation,
+  showTravelConfirmationNoDetails
 } from '@utils';
 
 import { addArToggle, removeArToggle } from './toggle-ar';
@@ -98,7 +101,7 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
         locationLink.setAttribute('data-environment-id', environment.id);
 
         locationLink.addEventListener('click', () => {
-          showTravelConfirmation(environment, mapModel());
+          showTravelConfirmationNoDetails(environment);
         });
 
         // If it's not the first item, append a comma before it
@@ -360,16 +363,224 @@ const makeSortedMiceList = async () => {
   target.append(categoriesWrapper);
 };
 
-const makeScavengerSortedPage = async () => {
-  const target = document.querySelector('.sorted-page-content');
-  if (! target) {
+const makeScavengerSortedPage = async (target) => {
+  target.classList.add('scavenger-sorted-page');
+  target.classList.add('treasureMapView-block');
+
+  target.setAttribute('data-scavenger-sorted-by', 'none');
+  target.setAttribute('data-scavenger-sort-direction', 'descending');
+
+  const sortMice = (direction = 'descending') => {
+    const container = target.querySelector('.sorted-page-content');
+    if (! container) {
+      return;
+    }
+
+    const mice = target.querySelectorAll('.mouse-container');
+    if (! mice) {
+      return;
+    }
+
+    // sort the mice by the value in the data-ar attribute on the mh-ui-ar element
+    const miceArray = [...mice];
+    miceArray.sort((a, b) => {
+      let aAr = 0;
+      let bAr = 0;
+
+      const aArEl = a.querySelector('.mh-ui-ar');
+      if (aArEl) {
+        aAr = aArEl.getAttribute('data-ar') || 0;
+      }
+
+      const bArEl = b.querySelector('.mh-ui-ar');
+      if (bArEl) {
+        bAr = bArEl.getAttribute('data-ar') || 0;
+      }
+
+      if (direction === 'ascending') {
+        return aAr - bAr;
+      }
+
+      return bAr - aAr;
+    });
+
+    mice.forEach((mouse) => {
+      mouse.remove();
+    });
+
+    const locationHeaders = container.querySelectorAll('.scavenger-location-wrapper');
+    if (locationHeaders) {
+      locationHeaders.forEach((header) => {
+        header.remove();
+      });
+    }
+
+    miceArray.forEach((mouse) => {
+      container.append(mouse);
+    });
+  };
+
+  const environments = await getData('environments');
+  if (! environments) {
     return;
   }
 
-  target.classList.add('scavenger-sorted-page');
+  const sortMiceIntoLocations = async (direction = 'descending') => {
+    const container = target.querySelector('.sorted-page-content');
+    if (! container) {
+      return;
+    }
 
-  const currentMapData = getMapData(mapData().map_id);
-  console.log(currentMapData); // eslint-disable-line no-console
+    const mice = target.querySelectorAll('.mouse-container');
+    if (! mice) {
+      return;
+    }
+
+    // for each mouse, call getLocationForMouse and then seperate them into their respective locations
+    const miceByLocation = {};
+    const locations = {};
+
+    for (const mouse of mice) {
+      const mouseId = mouse.getAttribute('data-mouse-id');
+      const location = await getLocationForMouse(mouseId, 'item');
+      locations[location.id] = location;
+
+      const locationId = location.id;
+
+      if (! miceByLocation[locationId]) {
+        miceByLocation[locationId] = [];
+      }
+
+      miceByLocation[locationId].push(mouse);
+    }
+
+    // move all the mice to the container
+    mice.forEach((mouse) => {
+      mouse.remove();
+    });
+
+    // remove all the location headers
+    const locationHeaders = document.querySelectorAll('.scavenger-location-wrapper');
+    if (locationHeaders) {
+      locationHeaders.forEach((header) => {
+        header.remove();
+      });
+    }
+
+    // Sort the locations by the number of mice in them
+    const sortedLocations = Object.keys(miceByLocation).sort((a, b) => {
+      return miceByLocation[b].length - miceByLocation[a].length;
+    });
+
+    // Make a header for each location and then append the mice to it
+    sortedLocations.forEach((location) => {
+      const locationWrapper = makeElement('div', ['treasureMapView-goals-groups', 'scavenger-location-wrapper']);
+      const header = makeElement('div', ['treasureMapView-block-content-heading', 'scavenger-location-header']);
+      const locationContent = makeElement('div', 'scavenger-location-content');
+
+      // get the environment name and icon
+      const environment = environments.find((env) => env.id === location);
+
+      // Handle the whole twisted garden thing.
+      if (locations[environment.id]) {
+        environment.name = locations[environment.id].name;
+      }
+
+      if (environment) {
+        if (environment.image) {
+          const headerImage = makeElement('div', ['treasureMapView-block-content-heading-image', 'scavenger-location-icon']);
+          headerImage.style.backgroundImage = `url(${environment.image})`;
+          header.append(headerImage);
+        }
+
+        if (environment.name) {
+          const envLink = makeElement('a', 'scavenger-location-name', environment.name);
+          envLink.title = `Travel to ${environment.name}`;
+          envLink.setAttribute('data-environment-id', location);
+          envLink.addEventListener('click', () => {
+            showTravelConfirmation(environment, mapModel());
+          });
+
+          header.append(envLink);
+          makeElement('span', 'scavenger-location-count', ` (${miceByLocation[location].length})`, header);
+        }
+      }
+
+      locationWrapper.append(header);
+
+      miceByLocation[location].forEach((mouse) => {
+        // Depending on the direction, we want to reverse the order of the mice
+        if (direction === 'ascending') {
+          locationContent.prepend(mouse);
+        } else {
+          locationContent.append(mouse);
+        }
+      });
+
+      locationWrapper.append(locationContent);
+      container.append(locationWrapper);
+    });
+  };
+
+  const toggleSortDirection = async () => {
+    const currentDirection = target.getAttribute('data-scavenger-sort-direction');
+    const currentSort = target.getAttribute('data-scavenger-sorted-by');
+
+    const newDirection = currentDirection === 'descending' ? 'ascending' : 'descending';
+    target.setAttribute('data-scavenger-sort-direction', newDirection);
+
+    await sortMice(newDirection);
+    if (currentSort === 'location') {
+      await sortMiceIntoLocations(newDirection);
+    }
+  };
+
+  const toggleSortType = async () => {
+    const currentSort = target.getAttribute('data-scavenger-sorted-by');
+    const currentDirection = target.getAttribute('data-scavenger-sort-direction');
+
+    if (currentSort === 'location') {
+      target.setAttribute('data-scavenger-sorted-by', 'none');
+      sortMice(currentDirection);
+    } else {
+      target.setAttribute('data-scavenger-sorted-by', 'location');
+      await sortMiceIntoLocations(currentDirection);
+    }
+  };
+
+  // make buttons to toggle between drop rate sorting or by location
+  const toggleWrapper = makeElement('div', 'scavenger-toggle-wrapper');
+
+  const toggleByLocation = makeElement('button', ['scavenger-toggle-button', 'mousehuntActionButton', 'tiny']);
+  makeElement('span', 'scavenger-toggle-text', 'Sort by Location', toggleByLocation);
+  toggleByLocation.addEventListener('click', async () => {
+    toggleByLocation.classList.add('disabled');
+    await toggleSortType();
+    toggleByLocation.classList.remove('disabled');
+  });
+
+  toggleWrapper.append(toggleByLocation);
+
+  const toggleByDropRate = makeElement('button', ['scavenger-toggle-button', 'mousehuntActionButton', 'tiny']);
+  makeElement('span', 'scavenger-toggle-text', 'Sort by Drop Rate', toggleByDropRate);
+  toggleByDropRate.addEventListener('click', async () => {
+    toggleByDropRate.classList.add('disabled');
+    await toggleSortDirection();
+    toggleByDropRate.classList.remove('disabled');
+  });
+
+  toggleWrapper.append(toggleByDropRate);
+
+  const sortedContainer = document.querySelector('#sorted-mice-container');
+  if (sortedContainer) {
+    sortedContainer.prepend(toggleWrapper);
+  } else {
+    target.prepend(toggleWrapper);
+  }
+
+  target.setAttribute('data-scavenger-sorted-by', 'location');
+  target.setAttribute('data-scavenger-sort-direction', 'descending');
+  await sortMiceIntoLocations('descending');
 };
 
 const makeGenericSortedPage = async () => {
@@ -378,13 +589,15 @@ const makeGenericSortedPage = async () => {
     return;
   }
 
-  target.classList.add('generic-sorted-page');
-
   const currentMapData = getMapData(mapData().map_id);
 
   let type = 'mouse';
   if (currentMapData.map_type.includes('scavenger')) {
     type = 'item';
+    target.classList.add('treasureMapView-block-content');
+    target.classList.add('scavenger-sorted-page');
+  } else {
+    target.classList.add('generic-sorted-page');
   }
 
   const { unsortedMice } = getMouseDataForMap(currentMapData, type);
@@ -493,8 +706,8 @@ const processSortedTabClick = async () => {
   if (mouseGroups[currentMapData.map_type]) {
     await makeSortedMiceList();
   } else if (currentMapData.is_scavenger_hunt) {
-    await makeScavengerSortedPage();
     await makeGenericSortedPage();
+    await makeScavengerSortedPage(sortedPage);
   } else {
     await makeGenericSortedPage();
   }
@@ -521,6 +734,8 @@ const addSortedMapTab = () => {
   const sortedTab = makeElement('a', 'treasureMapRootView-subTab sorted-map-tab', 'Sorted');
   sortedTab.setAttribute('data-type', 'sorted');
 
+  sortedTab.addEventListener('click', processSortedTabClick);
+
   const divider = makeElement('div', 'treasureMapRootView-subTab-spacer');
 
   // Add as the first tab.
@@ -532,7 +747,7 @@ const addSortedMapTab = () => {
 
 const showSortedTab = () => {
   processSortedTabClick();
-  addArToggle();
+  addArToggle('sorted');
 };
 
 const hideSortedTab = () => {
