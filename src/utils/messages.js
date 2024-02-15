@@ -61,17 +61,24 @@ const showLoadingError = (e) => {
   debug('Error loading MouseHunt Improved:', e);
 
   // Add the error to the page.
-  const errorElement = document.createElement('div');
-  errorElement.classList.add('mousehunt-improved-error');
-  errorElement.innerHTML = '<h1>Error loading MouseHunt Improved</h1>';
+  const errorElement = makeElement('div', 'mousehunt-improved-error');
+  makeElement('h1', 'mousehunt-improved-error-title', 'Error loading MouseHunt Improved', errorElement);
+
   if (e.message) {
-    errorElement.innerHTML += `<pre>${e.message}</pre>`;
+    makeElement('pre', 'mousehunt-improved-error-message', e.message, errorElement);
   }
-  errorElement.innerHTML += '<p>There was an error loading MouseHunt Improved. Try refreshing the page. If the error persists, please add an issue to the <a href="https://github.com/MHCommunity/mousehunt-improved">GitHub repo</a>.</p>';
+
+  makeElement('p', 'mousehunt-improved-error-message', 'There was an error loading MouseHunt Improved. Try refreshing the page. If the error persists, please add an issue to the <a href="https://github.com/MHCommunity/mousehunt-improved">GitHub repo</a>.', errorElement);
+
+  const closeButton = makeElement('button', 'mousehunt-improved-error-close', 'Close');
+  closeButton.addEventListener('click', () => {
+    errorElement.remove();
+  });
+  errorElement.append(closeButton);
+
   document.body.append(errorElement);
 
-  const errorStyles = document.createElement('style');
-  errorStyles.innerHTML = globalStyles;
+  const errorStyles = makeElement('style', 'mh-improved-error-styles', globalStyles);
   document.head.append(errorStyles);
 };
 
