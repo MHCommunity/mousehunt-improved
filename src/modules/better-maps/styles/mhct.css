@@ -1,8 +1,5 @@
 .mhct-data {
   display: none;
-  padding-top: 5px;
-  margin-top: 5px;
-  border-top: 1px solid #a8a8a8;
 }
 
 .mouse-container-selected .mhct-data {
@@ -53,6 +50,14 @@
   font-family: monospace;
   font-size: 13px;
   text-align: right;
+}
+
+.mh-ui-mouse-links-map-ars {
+  display: none;
+}
+
+.sticky .mh-ui-mouse-links-map-ars {
+  display: block;
 }
 
 .mh-ui-mouse-links-map-ars .mhct-data {

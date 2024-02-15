@@ -209,6 +209,6 @@ img.campPage-larryTip-external-link-icon {
   align-items: center;
 }
 
-.mousehuntHud-menu .name {
-  mix-blend-mode: multiply;
+.mousehuntHud-menu ul li a {
+  text-shadow: 0 0 1px #cbbba9;
 }

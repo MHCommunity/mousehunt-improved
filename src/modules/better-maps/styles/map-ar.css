@@ -3,8 +3,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  gap: 5px;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .mh-ui-ar {

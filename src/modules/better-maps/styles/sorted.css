@@ -82,17 +82,15 @@
 #sorted-mice-container .mouse-container:focus {
   position: relative;
   background: rgb(255 255 255 / 50%);
-  outline: 1px solid #6d6d6d;
+  outline: 1px solid #ccc;
 }
 
 #sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper {
   position: absolute;
-  right: -30px;
-  left: -30px;
   z-index: 10;
   display: block;
   padding: 10px 5px;
-  margin-top: -5px;
+  margin: -5px -10px;
   background-color: #eaeaea;
   border: 1px solid #000;
   border-radius: 3px;
@@ -114,6 +112,10 @@
   margin: 5px;
   border-radius: 3px;
   outline: 1px solid #989898;
+}
+
+#sorted-mice-container .scavenger-sorted-page .mouse-image {
+  outline: none;
 }
 
 .mh-dark-mode #sorted-mice-container .mouse-image {
