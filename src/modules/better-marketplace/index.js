@@ -8,7 +8,9 @@ import {
 } from '@utils';
 
 import settings from './settings';
-import styles from './styles.css';
+
+import smallImageStyles from './styles/small-images.css';
+import styles from './styles/styles.css';
 
 import itemsToRemove from '@data/items-marketplace-hidden.json';
 
@@ -209,7 +211,13 @@ let newSelect = null;
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles, 'better-marketplace');
+  const stylesToUse = [styles];
+
+  if (getSetting('better-marketplace-small-images')) {
+    stylesToUse.push(smallImageStyles);
+  }
+
+  addStyles(stylesToUse, 'better-marketplace');
 
   onOverlayChange({
     marketplace: {
@@ -221,7 +229,9 @@ const init = async () => {
     },
   });
 
-  onRequest('users/marketplace.php', autocloseClaim);
+  onRequest('users/marketplace.php', () => {
+    autocloseClaim();
+  });
 };
 
 export default {
