@@ -121,6 +121,7 @@
 
 #friend-data-wrapper .mousehuntTooltip {
   opacity: 0;
+  animation: none;
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment {
