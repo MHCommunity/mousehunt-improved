@@ -210,13 +210,16 @@ const init = async () => {
   main();
   onNavigation(main);
 
-  onRequest('all', () => {
+  onRequest('*', () => {
     setTimeout(main, 500);
   });
 
   onEvent('profile_hover', main);
 
   onDialogShow('map', addToMapUsers);
+
+  onEvent('map_show_goals_tab_click', addToMapUsers);
+  onEvent('map_tab_click', addToMapUsers);
 };
 
 export default {

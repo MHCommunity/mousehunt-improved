@@ -122,7 +122,7 @@ const main = async () => {
   }
 
   onPageChange({ camp: { show: updateMinLucks } });
-  onRequest('/managers/ajax/users/changetrap.php', updateMinLucks);
+  onRequest('users/changetrap.php', updateMinLucks);
 };
 
 /**

@@ -185,5 +185,5 @@ export default async () => {
   onDialogHide(() => (hasAddedUpgradeVisibilityToggles = false));
 
   toggleAllVisibility();
-  onRequest('all', toggleAllVisibility);
+  onRequest('*', toggleAllVisibility);
 };

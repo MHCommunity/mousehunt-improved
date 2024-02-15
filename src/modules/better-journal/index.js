@@ -381,7 +381,7 @@ const init = async () => {
 
   if (! getSetting('better-journal-no-replacements', false)) {
     updateEls();
-    onRequest('all', updateEls);
+    onRequest('*', updateEls);
     onTurn(updateEls);
   }
 };

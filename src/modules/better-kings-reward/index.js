@@ -61,7 +61,7 @@ const init = async () => {
   onRequest('turns/activeturn.php', initiateKingsReward, true);
   onRequest('users/puzzle.php', continueOnKingsReward, true);
 
-  onRequest('all', startKingsReward);
+  onRequest('*', startKingsReward);
   startKingsReward();
 };
 

@@ -45,7 +45,7 @@ const init = async () => {
   addDarkModeBodyClass();
 
   onNavigation(addDarkModeBodyClass);
-  onRequest('all', addDarkModeBodyClass);
+  onRequest('*', addDarkModeBodyClass);
 };
 
 export default {

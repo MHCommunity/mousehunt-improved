@@ -77,7 +77,7 @@ const convertOnPage = () => {
 const init = async () => {
   onDialogShow('all', convertInDialog);
 
-  onRequest('all', convertOnPage);
+  onRequest('*', convertOnPage);
   convertOnPage();
 };
 

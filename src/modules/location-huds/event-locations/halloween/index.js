@@ -31,7 +31,7 @@ const halloweenGlobal = async () => {
 const halloweenLocation = async () => {
   addHudStyles(styles);
   undisableCheese();
-  onRequest('all', undisableCheese);
+  onRequest('*', undisableCheese);
 };
 
 export {

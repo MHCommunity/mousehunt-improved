@@ -304,7 +304,7 @@ const greatWinterHuntLocation = () => {
     setTimeout(updateGolemFooter, 250);
   });
 
-  onRequest('all', () => {
+  onRequest('*', () => {
     expandAnimatedSnowCount();
     showPossibleSnowballShowdownDustCount();
   });

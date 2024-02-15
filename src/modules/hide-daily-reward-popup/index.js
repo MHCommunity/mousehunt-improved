@@ -25,7 +25,7 @@ const init = async () => {
   setTimeout(hidePopup, 1000);
   setTimeout(hidePopup, 2000);
 
-  onRequest('all', hidePopup);
+  onRequest('*', hidePopup);
 };
 
 export default {

@@ -63,7 +63,7 @@ const init = () => {
   }
 
   if (isDebugging('debug-request')) {
-    Utils.onRequest('all', (response) => {
+    Utils.onRequest('*', (response) => {
       debug('onRequest', response);
     });
   }

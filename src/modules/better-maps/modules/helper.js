@@ -262,5 +262,5 @@ const makeMenuItem = () => {
 
 export default () => {
   makeMenuItem();
-  onRequest('all', makeMenuItem);
+  onRequest('*', makeMenuItem);
 };
