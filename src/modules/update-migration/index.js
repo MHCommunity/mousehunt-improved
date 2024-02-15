@@ -1,4 +1,4 @@
-import { debug, getSetting, saveSetting } from '@utils';
+import { clearCaches, debug, getSetting, saveSetting } from '@utils';
 
 import cleanupSettings from './settings-cleanup';
 import migrateSettings from './settings-migrate';
@@ -66,6 +66,8 @@ const init = async () => {
   debug(`New version: ${mhImprovedVersion}, updating from ${installedVersion}`);
 
   cleanOnUpdate(installedVersion);
+
+  clearCaches();
 
   saveSetting('mh-improved-version', mhImprovedVersion);
   saveSetting('mh-improved-platform', mhImprovedPlatform);
