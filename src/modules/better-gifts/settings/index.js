@@ -53,7 +53,7 @@ export default async () => {
   return [
     {
       id: 'gift-buttons-send-order',
-      title: 'Order to send',
+      title: 'Order to accept/send',
       default: [orderOptions[0]],
       description: '',
       settings: {

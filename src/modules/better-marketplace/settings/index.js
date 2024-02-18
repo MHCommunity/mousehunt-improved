@@ -13,7 +13,7 @@ export default async () => {
     },
     {
       id: 'better-marketplace-small-images',
-      title: 'Use smaller images in marketplace',
+      title: 'Smaller images',
       default: false,
       description: '',
     }

@@ -55,7 +55,7 @@ const init = async () => {
 
 export default {
   id: 'copy-id',
-  name: 'Copy ID',
+  name: 'Copy ID Button',
   type: 'feature',
   default: true,
   description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.',

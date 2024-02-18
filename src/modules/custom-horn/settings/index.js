@@ -46,7 +46,7 @@ export default async () => {
     id: 'custom-horn',
     title: 'Custom Horn <a class="mh-improved-custom-horn-show-horn">Show Horn</a>',
     default: [options[0]],
-    description: 'Replace the horn.',
+    description: 'Change the horn to an event horn or a different color.',
     settings: {
       type: 'multi-select',
       number: 1,

@@ -9,13 +9,13 @@ export default async () => {
   return [
     {
       id: 'better-journal-styles',
-      title: 'Journal Styles',
+      title: 'Journal styles',
       default: true,
       description: '',
     },
     {
       id: 'better-journal-no-replacements',
-      title: 'Journal Replacements',
+      title: 'Journal replacements',
       default: true,
       description: '',
     },
