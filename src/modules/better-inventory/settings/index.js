@@ -9,7 +9,7 @@ export default async () => {
       id: 'better-inventory-one-item-per-row',
       title: 'Show one item per row',
       default: true,
-      description: 'Makes each item full-width.',
+      description: '',
     },
     {
       id: 'better-inventory-larger-images',

@@ -120,7 +120,11 @@ const loadModules = async () => {
         return 1;
       }
 
-      return a.id.localeCompare(b.id);
+      // Use the .name property to sort the modules if it is set, otherwise use the .id property.
+      const aName = a.name || a.id;
+      const bName = b.name || b.id;
+
+      return aName.localeCompare(bName);
     });
   }
 
