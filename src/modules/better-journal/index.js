@@ -13,7 +13,7 @@ import {
 
 import settings from './settings';
 
-import astStyles from './asterios-mode-styles.css';
+import noStyles from './no-styles.css';
 
 import journalIcons from './journal-icons';
 import journalIconsLight from './journal-icons-light';
@@ -373,19 +373,17 @@ const updateEls = () => {
  * Initialize the module.
  */
 const init = async () => {
-  if (getSetting('better-journal-styles', false)) {
-    addStyles(astStyles, 'better-journal');
-  } else {
+  if (getSetting('better-journal-styles', true)) {
     addStyles(styles, 'better-journal');
+  } else {
+    addStyles(noStyles, 'better-journal');
   }
 
   if (getSetting('better-journal-privacy')) {
     journalPrivacy();
   }
 
-  onRequest('users/dailyreward.php', kingsPromoTextChange);
-
-  if (! getSetting('better-journal-no-replacements', false)) {
+  if (getSetting('better-journal-replacements', true)) {
     updateEls();
     onRequest('*', updateEls);
     onTurn(updateEls);
@@ -402,6 +400,8 @@ const init = async () => {
   if (getSetting('better-journal-list', false)) {
     journalList();
   }
+
+  onRequest('users/dailyreward.php', kingsPromoTextChange);
 };
 
 export default {

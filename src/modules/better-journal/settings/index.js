@@ -9,14 +9,14 @@ export default async () => {
   return [
     {
       id: 'better-journal-styles',
-      title: 'Asterios Mode',
+      title: 'Journal Styles',
       default: true,
       description: '',
     },
     {
       id: 'better-journal-no-replacements',
-      title: 'No Replacements',
-      default: false,
+      title: 'Journal Replacements',
+      default: true,
       description: '',
     },
     {
