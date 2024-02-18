@@ -549,6 +549,14 @@ const getHighestArForMouse = async (id, type = 'mouse') => {
   return rate.rate / 100;
 };
 
+/**
+ * Get the best AR location for the given mouse.
+ *
+ * @param {Object} mouse Mouse to get the location for.
+ * @param {string} type  Type of mouse, either 'mouse' or 'item'.
+ *
+ * @return {Object|boolean} Location object or false if not found.
+ */
 const getLocationForMouse = async (mouse, type = 'mouse') => {
   // get the AR for the mouse and then grab the location property from the highest AR.
   // compare that to the name string of the environments and return the environment ID.
