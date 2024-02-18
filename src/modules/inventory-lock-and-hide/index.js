@@ -397,7 +397,7 @@ const init = async () => {
 
 export default {
   id: 'inventory-lock-and-hide',
-  name: 'Inventory Lock and Hide',
+  name: 'Inventory - Lock and Hide',
   type: 'feature',
   default: true,
   description: 'Lock and hide items in your inventory. Will also hide items in the trap browser.',
