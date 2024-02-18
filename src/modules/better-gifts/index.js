@@ -112,8 +112,20 @@ const claimGifts = async (send = false, retries = 0) => {
   }, 500);
 };
 
-const makeAcceptButton = (buttonContainer) => {
-  const acceptButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-accept'], 'Accept All');
+/**
+ * Make the Accept button.
+ *
+ * @param {HTMLElement} buttonContainer The container for the buttons.
+ * @param {boolean}     isTiny          Whether the buttons are tiny or not.
+ */
+const makeAcceptButton = (buttonContainer, isTiny = false) => {
+  const acceptButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-accept', 'mousehuntActionButton']);
+  makeElement('span', 'mousehuntActionButton-text', 'Accept All', acceptButton);
+
+  if (isTiny) {
+    acceptButton.classList.add('tiny');
+  }
+
   const acceptLimit = document.querySelector('.giftSelectorView-numClaimActionsRemaining');
 
   if (acceptLimit && acceptLimit.innerText === '0') {
@@ -131,11 +143,18 @@ const makeAcceptButton = (buttonContainer) => {
  * Make the return button.
  *
  * @param {HTMLElement} buttonContainer The container for the buttons.
+ * @param {boolean}     isTiny          Whether the buttons are tiny or not.
  */
-const makeReturnButton = (buttonContainer) => {
+const makeReturnButton = (buttonContainer, isTiny = false) => {
   // Return button.
   const returnWrapper = makeElement('div', 'mh-gift-buttons-return-wrapper');
-  const returnButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-return'], 'Accept & Return All');
+  const returnButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-return', 'mousehuntActionButton']);
+  makeElement('span', 'mousehuntActionButton-text', 'Accept & Return All', returnButton);
+
+  if (isTiny) {
+    returnButton.classList.add('tiny');
+  }
+
   const returnLimit = document.querySelector('.giftSelectorView-numSendActionsRemaining');
   if (returnLimit && returnLimit.innerText === '0') {
     returnButton.classList.add('disabled');
@@ -184,19 +203,20 @@ const lineBreakGiftFooter = () => {
 /**
  * Get the buttons for the gift selector.
  *
- * @param {string} className The class name for the buttons.
+ * @param {string}  className The class name for the buttons.
+ * @param {boolean} isTiny    Whether the buttons are tiny or not.
  *
  * @return {HTMLElement} The button container.
  */
-const getButtons = (className = false) => {
+const getButtons = (className = false, isTiny = false) => {
   const buttonContainer = document.createElement('div');
   buttonContainer.id = 'bulk-gifting-gift-buttons';
   if (className) {
     buttonContainer.classList.add(className);
   }
 
-  makeAcceptButton(buttonContainer);
-  makeReturnButton(buttonContainer);
+  makeAcceptButton(buttonContainer, isTiny);
+  makeReturnButton(buttonContainer, isTiny);
 
   return buttonContainer;
 };
@@ -443,7 +463,7 @@ const addButtonsToPopup = () => {
     existing.remove();
   }
 
-  const buttons = getButtons('mh-gift-buttons-send-popup');
+  const buttons = getButtons('mh-gift-buttons-send-popup', true);
   actionRow.insertBefore(buttons, actionRow.firstChild);
 };
 

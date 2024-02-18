@@ -10,48 +10,17 @@
   margin-bottom: 10px;
 }
 
-#bulk-gifting-gift-buttons button {
-  display: block;
-  padding: 10px;
-  font-size: 12px;
-  color: #000;
-  text-align: center;
-  text-decoration: none;
-  background-color: #eee;
-  border: 1px solid #000;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px #eee;
+#bulk-gifting-gift-buttons .mh-gift-button {
+  padding: 0 15px;
+  font-weight: 400;
 }
 
 #bulk-gifting-gift-buttons .mh-gift-buttons-accept {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 #bulk-gifting-gift-buttons .mh-gift-buttons-paid-gifts {
   margin-right: 10px;
-}
-
-#bulk-gifting-gift-buttons button:hover,
-#bulk-gifting-gift-buttons button:focus,
-#bulk-gifting-gift-buttons .mh-gift-buttons-return:hover,
-#bulk-gifting-gift-buttons .mh-gift-buttons-return:focus,
-#bulk-gifting-gift-buttons .mh-gift-buttons-accept-reverse:hover,
-#bulk-gifting-gift-buttons .mh-gift-buttons-accept-reverse:focus {
-  background-color: #ffae00;
-  box-shadow:
-    0 0 5px #fff inset,
-    1px 1px 1px #fff;
-}
-
-#bulk-gifting-gift-buttons button.disabled:hover,
-#bulk-gifting-gift-buttons button.disabled:focus {
-  cursor: default;
-  background-color: #eee;
-  box-shadow: 0 0 3px #f00;
-}
-
-#bulk-gifting-gift-buttons .mh-gift-buttons-return {
-  background-color: #fff600;
 }
 
 .giftSelectorView-inbox-giftContainer {
@@ -125,7 +94,7 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 
 .mh-gift-buttons-clone-wrapper {
   scrollbar-color: #938f83 #e9e1c6;
-  max-height: 275px;
+  max-height: calc(75vh - 175px);
   overflow-y: auto;
 }
 
@@ -282,6 +251,7 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 
 .giftSelectorView-inboxGiftOfTheDay {
   padding: 5px 0;
+  border-color: #d1d0cf;
 }
 
 .giftSelectorView-inbox-giftRow.paidgift {
@@ -349,7 +319,7 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
   margin-bottom: 7px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  outline: 1px solid #bdbdbd;
+  outline: 1px solid #dfdfdf;
   box-shadow: none;
 }
 
@@ -359,4 +329,108 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
   width: 33px;
   height: 33px;
   border: 1px solid #bdbdbd;
+}
+
+.giftSelectorView-friend-image.paidgift {
+  top: -11px;
+  width: 31px;
+  height: 31px;
+}
+
+#giftSelectorView-inbox {
+  border: 1px solid #d1d0cf;
+  box-shadow: 0 3px 6px -3px #000;
+}
+
+.giftSelectorView-inbox-footer-viewMore a {
+  position: relative;
+  font-weight: 400;
+  line-height: 24px;
+  text-shadow: 0 0 1px #fff;
+  background: none;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.giftSelectorView-inbox-footer-viewMore {
+  position: absolute;
+  right: 10px;
+  width: 135px;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 30px;
+  color: #000 !important;
+  text-align: center;
+  background: #b3edff;
+  border: 1px solid #50549c;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px #eee;
+}
+
+.giftSelectorView-inbox-footer-viewMore:hover {
+  background-color: #b3f4ff;
+  border-color: #000;
+  box-shadow:
+    0 0 5px #fff inset,
+    1px 1px 1px #fff;
+}
+
+.giftSelectorView-inbox-footer-viewMore::before {
+  position: absolute;
+  inset: 40% 0 0;
+  content: "";
+  background: #b2e2ff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #7bf inset;
+}
+
+.giftSelectorView-inbox-footer-viewMore::before:hover {
+  background-color: #a5e2ff;
+  box-shadow: 0 0 10px #f0f4f7 inset;
+}
+
+.giftSelectorView-inbox-footer {
+  padding-bottom: 18px;
+}
+
+.giftSelectorView-inbox-giftContainer .mousehuntActionButton.return.disabled,
+.giftSelectorView-inbox-giftContainer .mousehuntActionButton.claim.disabled {
+  opacity: 0.5;
+}
+
+.giftSelectorView-inbox-giftContainer .mousehuntActionButton.return.disabled:hover,
+.giftSelectorView-inbox-giftContainer .mousehuntActionButton.claim.disabled:hover {
+  opacity: 1;
+}
+
+.giftSelectorView-friendRow-action.ignore {
+  outline: 1px solid #ededed;
+  box-shadow: none;
+}
+
+.giftSelectorView-friendRow-action.ignore:hover {
+  background-color: #eee;
+  outline-color: #c6c6c6;
+}
+
+.giftSelectorView-friendRow-action.claim,
+.giftSelectorView-friendRow-action.return {
+  box-sizing: border-box;
+  outline: 1px solid #e7e7e7;
+}
+
+.giftSelectorView-friendRow-action.claim:hover,
+.giftSelectorView-friendRow-action.return:hover {
+  box-shadow:
+    0 0 1px #000 inset,
+    0 -1px 1px #fff inset;
+}
+
+.giftSelectorView-friendRow.new .giftSelectorView-friend-image::after {
+  top: -4px;
+  left: -4px;
+  border-radius: 4px;
+  box-shadow: none;
 }
