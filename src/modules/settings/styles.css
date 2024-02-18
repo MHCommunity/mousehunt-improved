@@ -26,24 +26,33 @@
   padding-bottom: 0;
 }
 
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle.toggled svg {
-  transform: rotate(270deg);
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle.toggled {
+  transform: rotate(-180deg);
 }
 
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle svg {
-  transform-origin: center;
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  border-right: 6px solid transparent;
+  border-bottom: 9px solid #999;
+  border-left: 6px solid transparent;
+  transition: transform 150ms;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__titleText {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__titleText {
   grid-column: span 3;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__settingDescription {
   max-width: 650px;
   padding-top: 5px;
+  line-height: 1.5;
 }
 
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings #mousehunt-improved-settings-location-hud .PagePreferences__setting {
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__setting {
   display: flex;
   align-items: center;
   height: 25px;
@@ -88,7 +97,7 @@
   border: none;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList:nth-child(3) {
+.mousehunt-improved-settings .PagePreferences__settingsWrapper .PagePreferences__settingsList:nth-child(1) {
   border-top: none;
 }
 
@@ -122,7 +131,7 @@
   margin-left: 20px;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList.PagePreferences__subSetting {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting {
   margin-left: 0;
   border-left: none;
 }
@@ -142,22 +151,22 @@
 }
 
 /* Location HUD */
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList {
   padding: 0 5px 0 10px;
   background-color: inherit;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(even) {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(even) {
   background-color: #eee;
   border-radius: 4px;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList .PagePreferences__settingName {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingName {
   font-size: 11px;
 }
 
-#mousehunt-improved-settings-location-hud .settings-subheader,
-#mousehunt-improved-settings-location-hud .PagePreferences__separator {
+#mousehunt-improved-settings-location-hud-wrapper .settings-subheader,
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__separator {
   grid-column: span 3;
   padding-bottom: 10px;
 }
@@ -166,42 +175,42 @@
   padding-bottom: 10px;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting .settingRow-action-inputContainer,
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting .description {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting .settingRow-action-inputContainer,
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting .description {
   padding: 0;
   vertical-align: middle;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList .PagePreferences__settingDefault {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingDefault {
   display: none;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__setting {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__setting {
   padding: 0;
   margin-bottom: -10px;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingName {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingName {
   font-size: 11px;
 }
 
-#mousehunt-improved-settings-location-hud #mousehunt-improved-settings-location-hud-train_station.PagePreferences__settingsList .PagePreferences__settingName {
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-train_station.PagePreferences__settingsList .PagePreferences__settingName {
   font-size: 10px;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingAction {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingAction {
   transform: scale(0.75);
 }
 
-#mousehunt-improved-settings-location-hud {
+#mousehunt-improved-settings-location-hud-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0 40px;
   justify-items: stretch;
-  margin: 0;
+  margin: 10px 0;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -209,8 +218,8 @@
   border-bottom: none;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting .PagePreferences__settingLabel,
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList .PagePreferences__setting .PagePreferences__settingAction {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting .PagePreferences__settingLabel,
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting .PagePreferences__settingAction {
   display: inline-block;
   padding: 0;
   vertical-align: middle;
@@ -357,11 +366,12 @@
   display: none;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingsList.highlight {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight {
   background-color: #7af7f8;
+  border-radius: 4px;
 }
 
-#mousehunt-improved-settings-location-hud .PagePreferences__settingDescription {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingDescription {
   display: none;
 }
 
@@ -403,10 +413,11 @@
   border: 1px solid #ccc;
 }
 
-.mousehunt-improved-settings .PagePreferences__setting.textarea,
-.mousehunt-improved-settings .PagePreferences__setting.inputText {
+.mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,
+.mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting {
   display: grid;
   grid-template-columns: 1fr 400px;
+  margin-right: 10px;
 }
 
 .mousehunt-improved-settings .textarea .inputBox {
@@ -484,10 +495,22 @@
 
 #mousehunt-improved-settings-advanced-mh-improved-advanced-settings {
   position: absolute;
-  top: 13px;
-  right: 10px;
+  top: 11px;
+  right: 50px;
 }
 
 #mousehunt-improved-settings-advanced {
   position: relative;
+}
+
+#mousehunt-improved-settings-location-hud-region-living-garden {
+  grid-column-start: 1;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-last-child(3),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-last-child(2),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-last-child(1) {
+  margin-top: 20px;
+  background-color: #e3e3e3;
+  border-radius: 4px;
 }
