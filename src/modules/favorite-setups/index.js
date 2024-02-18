@@ -472,7 +472,6 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
             const itemType = image.getAttribute('data-item-type');
             const itemId = image.getAttribute('data-item-id');
             const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
-            imageDisplay.style.outline = '2px solid #ff0000';
             await makeImagePicker(setupId, itemType, itemId, (newItemId, newItemType, newItemImageUrl, newItemPowerType) => {
               if (itemType !== newItemType) {
                 return;
@@ -486,12 +485,11 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
               image.setAttribute('data-new-item-image', newItemImageUrl);
               image.setAttribute('data-old-image-url', imageDisplay.style.backgroundImage);
 
-              if (newItemPowerType) {
+              if (newItemPowerType && 'undefined' !== newItemPowerType) {
                 const ptInput = setupContainer.querySelector('.power-type-input');
                 ptInput.setAttribute('data-power-type', newItemPowerType);
               }
 
-              imageDisplay.style.outline = '2px solid #00ff00';
               imageDisplay.style.backgroundImage = `url(${newItemImageUrl})`;
             });
 
