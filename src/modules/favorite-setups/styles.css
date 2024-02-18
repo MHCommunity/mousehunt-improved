@@ -42,7 +42,7 @@
 
 .mh-improved-favorite-setups-blueprint-container .row {
   display: grid;
-  grid-template-columns: 1fr 25px repeat(4, 50px);
+  grid-template-columns: 1fr 35px repeat(4, 45px);
   align-items: center;
   height: auto;
   min-height: 55px;
@@ -55,7 +55,7 @@
 
 .mh-improved-favorite-setups-blueprint-container .row .campPage-trap-itemBrowser-favorite-item-image {
   width: 100%;
-  height: 50px;
+  height: 45px;
 }
 
 .mh-improved-favorite-setups-blueprint-container .row.editing {
@@ -101,6 +101,10 @@
   font-size: 11px;
   font-weight: 400;
   line-height: inherit;
+}
+
+.mh-improved-favorite-setups-blueprint-container .controls .action.arm {
+  padding: 4px 15px;
 }
 
 .mh-improved-favorite-setups-blueprint-container .edit {
@@ -269,7 +273,8 @@ a.random-title.loading::after {
 
 .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType::before {
   box-sizing: border-box;
-  border-radius: 3px;
+  background-color: transparent;
+  border: none;
 }
 
 .mh-improved-favorite-setups-blueprint-container .row:hover .controls .action.arm {
