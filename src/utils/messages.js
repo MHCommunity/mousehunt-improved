@@ -52,6 +52,7 @@ const showSuccessMessage = (message, appendTo, classes = '') => {
   showErrorMessage(message, appendTo, classes, 'success');
 };
 
+hadAddedErrorStyles = false;
 /**
  * Show an error message when the script fails to load.
  *
@@ -78,8 +79,12 @@ const showLoadingError = (e) => {
 
   document.body.append(errorElement);
 
-  const errorStyles = makeElement('style', 'mh-improved-error-styles', globalStyles);
-  document.head.append(errorStyles);
+  if (hadAddedErrorStyles) {
+    return;
+  }
+
+  const errorStylesEl = makeElement('style', 'mh-improved-error-styles', errorStyles);
+  document.head.append(errorStylesEl);
 };
 
 export {
