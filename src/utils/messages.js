@@ -1,7 +1,7 @@
 import { debug } from './debug';
 import { makeElement } from './elements';
 
-import globalStyles from '@/global-styles/errors.css';
+import errorStyles from './styles/errors.css';
 
 /**
  * Show an error message appended to the given element.

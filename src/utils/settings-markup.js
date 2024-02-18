@@ -8,7 +8,6 @@ import { onPageChange } from './events';
 import settingsStyles from './styles/settings.css';
 
 let hasAddedSettingsStyles = false;
-
 /**
  * Add the settings styles.
  */

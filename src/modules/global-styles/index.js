@@ -1,28 +1,13 @@
 import { addStyles } from '@utils';
 
-import animationStyles from './animations.css';
-import buttonStyles from './buttons.css';
-import errorPageStyles from './error-page.css';
-import errorStyles from './errors.css';
-import generalStyles from './general.css';
-import messagesStyles from './messages.css';
-import tooltipsStyles from './tooltips.css';
-import utilityStyles from './utility.css';
+import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
+const styles = imported;
 
 /**
  * Initialize the module.
  */
 const init = async () => {
-  addStyles([
-    animationStyles,
-    buttonStyles,
-    errorPageStyles,
-    errorStyles,
-    generalStyles,
-    messagesStyles,
-    tooltipsStyles,
-    utilityStyles,
-  ], 'global-styles');
+  addStyles(styles, 'global-styles');
 };
 
 export default {
