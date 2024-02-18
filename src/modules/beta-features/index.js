@@ -1,9 +1,6 @@
 import { debuglog, getFlag } from '@utils';
 
 import journalHistory from './modules/journal-history';
-import journalIcons from './modules/journal-icons';
-import journalIconsAll from './modules/journal-icons-all';
-import journalList from './modules/journal-list';
 import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
 import socialNoop from './modules/social';
@@ -18,12 +15,6 @@ import settings from './settings';
 const init = async () => {
   const defaultDisabledFeatures = [
     { id: 'journal-history', load: journalHistory },
-    { id: 'journal-icons-all', load: () => {
-      journalIcons();
-      journalIconsAll();
-    } },
-    { id: 'journal-icons', load: journalIcons },
-    { id: 'journal-list', load: journalList },
     { id: 'lol-gottem', load: trollMode },
     { id: 'raffle', load: raffle },
     { id: 'social-noop', load: socialNoop },

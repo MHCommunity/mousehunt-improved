@@ -13,9 +13,13 @@ import {
 
 import settings from './settings';
 
-import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 import astStyles from './asterios-mode-styles.css';
 
+import journalIcons from './journal-icons';
+import journalIconsLight from './journal-icons-light';
+import journalList from './journal-list';
+
+import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
 const saveEntries = async (callback) => {
@@ -385,6 +389,18 @@ const init = async () => {
     updateEls();
     onRequest('*', updateEls);
     onTurn(updateEls);
+  }
+
+  if (getSetting('better-journal-journal-icons', false)) {
+    journalIcons();
+  }
+
+  if (getSetting('better-journal-journal-icons-light', false)) {
+    journalIconsLight();
+  }
+
+  if (getSetting('better-journal-list', false)) {
+    journalList();
   }
 };
 
