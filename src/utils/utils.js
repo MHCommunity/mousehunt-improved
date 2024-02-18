@@ -25,6 +25,12 @@ const isApp = () => {
  */
 const isUnsupportedFile = (path = false) => {
   path = path || window.location.pathname;
+
+  // Don't load on the puzzle image page.
+  if ('puzzleimage.php' === path) {
+    return true;
+  }
+
   return path.match(/\.(jpeg|jpg|gif|png|svg|json|css|js)$/i);
 };
 
