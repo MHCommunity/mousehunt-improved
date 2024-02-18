@@ -40,6 +40,10 @@ const toggleAllVisibility = () => {
   const mapping = getToggleVisibilityMapping();
   const upgradeIds = Object.keys(mapping);
 
+  if (upgradeIds.length === 0) {
+    return;
+  }
+
   upgradeIds.forEach((upgradeId) => {
     hideOrShowBlock(upgradeId, isHidden(upgradeId));
   });

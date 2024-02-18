@@ -44,10 +44,10 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
     const crowns = await doRequest('managers/ajax/mice/getstat.php', {
       action: 'get_hunting_stats',
     });
-    if (! (crowns.hunting_stats && crowns.hunting_stats.length > 0)) {
+    if (! (crowns?.hunting_stats && crowns?.hunting_stats.length > 0)) {
       return;
     }
-    huntingStats = crowns.hunting_stats;
+    huntingStats = crowns?.hunting_stats;
   }
 
   const temMice = document.querySelectorAll('.campPage-trap-trapEffectiveness-mouse');
