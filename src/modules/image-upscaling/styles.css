@@ -36,6 +36,7 @@
 .itemView-thumbnail,
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image,
 .mousoleumHUD-crafting-recipe-result-image,
+.floatingIslandsHUD .upsellItemActionView-cost-image,
 .campPage-trap-armedItem-image {
   border: none;
 }
