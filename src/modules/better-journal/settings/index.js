@@ -26,7 +26,7 @@ export default async () => {
       description: '',
     },
     {
-      id: 'better-journal-icons-light',
+      id: 'better-journal-icons-minimal',
       title: 'Show loot icons (minimal)',
       default: getFlag('journal-icons'),
       description: '',

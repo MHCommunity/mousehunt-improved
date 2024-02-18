@@ -4,6 +4,7 @@ import {
   dbSet,
   doEvent,
   getCurrentPage,
+  getFlag,
   getSetting,
   onRequest,
   onTurn,
@@ -11,13 +12,12 @@ import {
   sessionSet
 } from '@utils';
 
+import journalList from './journal-list';
 import settings from './settings';
 
+import journalIconsMinimalStyles from './journal-icons-minimal/styles.css';
+import journalIconsStyles from './journal-icons/styles.css';
 import noStyles from './no-styles.css';
-
-import journalIcons from './journal-icons';
-import journalIconsLight from './journal-icons-light';
-import journalList from './journal-list';
 
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -373,10 +373,12 @@ const updateEls = () => {
  * Initialize the module.
  */
 const init = async () => {
+  let stylesToAdd = [];
+
   if (getSetting('better-journal-styles', true)) {
-    addStyles(styles, 'better-journal');
+    stylesToAdd = styles;
   } else {
-    addStyles(noStyles, 'better-journal');
+    stylesToAdd.push(noStyles);
   }
 
   if (getSetting('better-journal-privacy')) {
@@ -389,17 +391,17 @@ const init = async () => {
     onTurn(updateEls);
   }
 
-  if (getSetting('better-journal-journal-icons', false)) {
-    journalIcons();
-  }
-
-  if (getSetting('better-journal-journal-icons-light', false)) {
-    journalIconsLight();
+  if (getSetting('better-journal-icons', getFlag('journal-icons-all', false))) {
+    stylesToAdd.push(journalIconsMinimalStyles, journalIconsStyles);
+  } else if (getSetting('better-journal-icons-minimal', getFlag('journal-icons', false))) {
+    stylesToAdd.push(journalIconsMinimalStyles);
   }
 
   if (getSetting('better-journal-list', false)) {
     journalList();
   }
+
+  addStyles(stylesToAdd, 'better-journal');
 
   onRequest('users/dailyreward.php', kingsPromoTextChange);
 };

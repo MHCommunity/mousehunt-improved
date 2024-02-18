@@ -2,3 +2,7 @@ ul.better-journal-list {
   margin-left: 15px;
   list-style: disc;
 }
+
+.better-journal-list a::after {
+  content: "" !important;
+}
