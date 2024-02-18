@@ -80,7 +80,7 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
   const quickSendButton = makeElement('div', ['quickSendButton', 'mousehuntActionButton', 'tiny'], '<span>Send</span>');
 
-  quickSendButton.addEventListener('click', () => {
+  const sendIt = async () => {
     if (quickSendButton.classList.contains('disabled')) {
       return;
     }
@@ -109,7 +109,7 @@ const makeSendSuppliesButton = async (btn, snuid) => {
     const itemName = item.getAttribute('data-name');
     const url = `https://www.mousehuntgame.com/managers/ajax/users/supplytransfer.php?sn=Hitgrab&hg_is_ajax=1&receiver=${snuid}&uh=${user.unique_hash}&item=${itemType}&item_quantity=${qty}`;
 
-    fetch(url, {
+    await fetch(url, {
       method: 'POST',
     }).then((response) => {
       if (response.status === 200) {
@@ -124,6 +124,22 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
       showErrorMessage('There was an error sending supplies', quickSendGoWrapper, 'mh-ui-quick-send-error');
     });
+  };
+
+  quickSendButton.addEventListener('click', sendIt);
+
+  // Add event listener for 'Enter' key on input
+  quickSendInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      sendIt();
+    }
+  });
+
+  // Add event listener for 'Enter' key on submit button
+  submitButton.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      sendIt();
+    }
   });
 
   quickSendGoWrapper.append(quickSendInput);
