@@ -380,3 +380,7 @@ a.floatingIslandsHUD-islandLoot:focus {
   color: #71d0ff;
   text-align: right;
 }
+
+.floatingIslandsHUD-inventoryBag-item .floatingIslandsHUD-item-image {
+  background-color: transparent;
+}
