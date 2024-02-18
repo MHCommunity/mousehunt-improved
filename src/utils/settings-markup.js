@@ -196,6 +196,345 @@ const makeToggle = (toggleKey, toggleDefaultValue, toggleTab, settingRow = false
 };
 
 /**
+ * Helper function to make a toggle on the settings page.
+ *
+ * @param {Object} options              The options for the toggle.
+ * @param {string} options.key          The setting key.
+ * @param {string} options.tab          The tab to add the settings to.
+ * @param {string} options.defaultValue The default value.
+ * @param {Object} options.settings     The settings for the settings.
+ *
+ * @return {Object} The toggle.
+ */
+const makeSettingToggle = ({ key, defaultValue, tab, settings }) => {
+  const settingRowInput = makeElement('div', 'settingRow-action-inputContainer');
+
+  const settingRowInputCheckbox = makeToggle(key, defaultValue, tab, settings);
+
+  settingRowInput.append(settingRowInputCheckbox);
+
+  return settingRowInput;
+};
+
+/**
+ * Helper function to make a select on the settings page.
+ *
+ * @param {Object} options                 The options for the select.
+ * @param {string} options.key             The setting key.
+ * @param {string} options.tab             The tab to add the settings to.
+ * @param {string} options.defaultValue    The default value.
+ * @param {Object} options.settingSettings The settings for the settings.
+ *
+ * @return {Object} The select.
+ */
+const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
+  const settingRowInputWrapper = makeElement('div', 'settingRow-action-inputContainer');
+
+  const settingRowInput = makeElement('div', 'settingRow-action-inputContainer');
+
+  const settingRowInputDropdown = document.createElement('div');
+  settingRowInputDropdown.classList.add('inputBoxContainer');
+
+  if (settingSettings.type === 'multi-select') {
+    settingRowInputDropdown.classList.add('multiSelect');
+    settingRowInput.classList.add('multiSelect', 'select');
+  }
+
+  let amount = 1;
+  if (settingSettings.type === 'multi-select' && settingSettings.number) {
+    amount = settingSettings.number;
+  }
+
+  /**
+   * Make an option for the dropdown.
+   *
+   * @param {Object}  option         The option to make.
+   * @param {boolean} foundSelected  Whether or not the option is selected.
+   * @param {string}  currentSetting The current setting.
+   * @param {Object}  dValue         The default value.
+   * @param {number}  i              The index of the option.
+   *
+   * @return {Object} The option and whether or not it's selected.
+   */
+  const makeOption = (option, foundSelected, currentSetting, dValue, i) => {
+    const settingRowInputDropdownSelectOption = document.createElement('option');
+    settingRowInputDropdownSelectOption.value = option.value;
+    settingRowInputDropdownSelectOption.textContent = option.name;
+    settingRowInputDropdownSelectOption.disabled = option.disabled || false;
+
+    if (currentSetting && currentSetting === option.value) {
+      settingRowInputDropdownSelectOption.selected = true;
+      foundSelected = true;
+    } else if (! foundSelected && dValue && dValue[i] && dValue[i].value === option.value) {
+      settingRowInputDropdownSelectOption.selected = true;
+      foundSelected = true;
+    }
+
+    return {
+      settingRowInputDropdownSelectOption,
+      foundSelected
+    };
+  };
+
+  // make a multi-select dropdown.
+  for (let i = 0; i < amount; i++) {
+    const settingRowInputDropdownSelect = document.createElement('select');
+    settingRowInputDropdownSelect.classList.add('inputBox');
+
+    if (settingSettings.type === 'multi-select') {
+      settingRowInputDropdownSelect.classList.add('multiSelect');
+    }
+
+    const currentSetting = getSettingDirect(`${key}-${i}`, null, tab);
+    let foundSelected = false;
+
+    settingSettings.options.forEach((option) => {
+      // If the value is 'optgroup', then we want to make an optgroup and use the options inside of it.
+      if (option.value === 'group') {
+        const settingRowInputDropdownSelectOptgroup = document.createElement('optgroup');
+        settingRowInputDropdownSelectOptgroup.label = option.name;
+
+        option.options.forEach((optgroupOption) => {
+          const result = makeOption(optgroupOption, foundSelected, currentSetting, defaultValue, i);
+          foundSelected = result.foundSelected;
+          settingRowInputDropdownSelectOptgroup.append(result.settingRowInputDropdownSelectOption);
+        });
+
+        settingRowInputDropdownSelect.append(settingRowInputDropdownSelectOptgroup);
+      } else {
+        const result = makeOption(option, foundSelected, currentSetting, defaultValue, i);
+        foundSelected = result.foundSelected;
+        settingRowInputDropdownSelect.append(result.settingRowInputDropdownSelectOption);
+      }
+    });
+
+    settingRowInputDropdown.append(settingRowInputDropdownSelect);
+
+    /**
+     * Event listener for when the setting is clicked.
+     *
+     * @param {Event} event The event.
+     */
+    let timeout = null;
+    settingRowInputDropdownSelect.onchange = (event) => {
+      const parent = settingRowInputDropdownSelect.parentNode.parentNode.parentNode;
+      parent.classList.add('inputDropdownWrapper');
+      parent.classList.add('busy');
+
+      // save the setting.
+      saveSettingDirect(`${key}-${i}`, event.target.value, tab);
+
+      doEvent('mh-improved-settings-changed', {
+        key: `${key}-${i}`,
+        value: event.target.value,
+        tab,
+        type: 'multi-select',
+      });
+
+      parent.classList.remove('busy');
+      parent.classList.add('completed');
+
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        parent.classList.remove('completed');
+      }, 1000);
+    };
+
+    settingRowInput.append(settingRowInputDropdown);
+
+    settingRowInputWrapper.append(settingRowInput);
+  }
+
+  return settingRowInputWrapper;
+};
+
+/**
+ * Helper function to make an input on the settings page.
+ *
+ * @param {Object} options              The options for the input.
+ * @param {string} options.key          The setting key.
+ * @param {string} options.tab          The tab to add the settings to.
+ * @param {string} options.defaultValue The default value.
+ *
+ * @return {Object} The input.
+ */
+const makeSettingInput = ({ key, tab, defaultValue }) => {
+  const settingRowInput = makeElement('div', ['settingRow-action-inputContainer', 'inputText']);
+
+  const settingRowInputText = makeElement('input', 'inputBox');
+  settingRowInputText.value = getSettingDirect(key, defaultValue, tab);
+
+  const inputSaveButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'inputSaveButton']);
+  makeElement('span', '', 'Save', inputSaveButton);
+
+  let timeout = null;
+  const save = (event) => {
+    const parent = event.target.parentNode.parentNode.parentNode;
+    parent.classList.add('inputDropdownWrapper');
+    parent.classList.add('inputTextWrapper');
+    parent.classList.add('busy');
+
+    parent.classList.remove('completed');
+
+    // save the setting.
+    saveSettingDirect(key, settingRowInputText.value, tab);
+
+    doEvent('mh-improved-settings-changed', {
+      key,
+      value: settingRowInputText.value,
+      tab,
+      type: 'input',
+    });
+
+    parent.classList.remove('busy');
+    parent.classList.add('completed');
+
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      parent.classList.remove('completed');
+    }, 1000);
+
+    addSettingRefreshReminder();
+  };
+
+  // Event listener for when the setting is clicked.
+  inputSaveButton.addEventListener('click', save);
+  settingRowInputText.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      save(event);
+    }
+  });
+
+  settingRowInput.classList.add('inputText');
+
+  settingRowInput.append(settingRowInputText);
+  settingRowInput.append(inputSaveButton);
+
+  return settingRowInput;
+};
+
+/**
+ * Helper function to make a textarea on the settings page.
+ *
+ * @param {Object} options              The options for the textarea.
+ * @param {string} options.key          The setting key.
+ * @param {string} options.tab          The tab to add the settings to.
+ * @param {string} options.defaultValue The default value.
+ *
+ * @return {Object} The textarea.
+ */
+const makeSettingTextArea = ({ key, tab, defaultValue }) => {
+  const settingRowInput = makeElement('div', ['settingRow-action-inputContainer', 'textarea']);
+
+  const settingRowInputText = makeElement('textarea', 'inputBox');
+  settingRowInputText.value = getSettingDirect(key, defaultValue, tab);
+
+  const inputSaveButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'inputSaveButton']);
+  makeElement('span', '', 'Save', inputSaveButton);
+
+  // Event listener for when the setting is clicked.
+  let timeout = null;
+  const save = (event) => {
+    const parent = event.target.parentNode.parentNode.parentNode;
+    parent.classList.add('inputDropdownWrapper');
+    parent.classList.add('inputTextWrapper');
+    parent.classList.remove('completed');
+    parent.classList.add('busy');
+
+    // save the setting.
+    saveSettingDirect(key, settingRowInputText.value, tab);
+
+    doEvent('mh-improved-settings-changed', {
+      key,
+      value: settingRowInputText.value,
+      tab,
+      type: 'textarea',
+    });
+
+    parent.classList.remove('busy');
+    parent.classList.add('completed');
+
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      parent.classList.remove('completed');
+    }, 1000);
+
+    addSettingRefreshReminder();
+  };
+
+  // Event listener for when the setting is clicked.
+  inputSaveButton.addEventListener('click', save);
+
+  settingRowInputText.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      save(event);
+    }
+  });
+
+  settingRowInput.append(settingRowInputText);
+  settingRowInput.append(inputSaveButton);
+
+  return settingRowInput;
+};
+
+/**
+ * Helper function to make a multi-toggle on the settings page.
+ *
+ * @param {Object} options                 The options for the multi-toggle.
+ * @param {string} options.key             The setting key.
+ * @param {string} options.tab             The tab to add the settings to.
+ * @param {Object} options.settingSettings The setting's settings.
+ *
+ * @return {Object} The multi-toggle.
+ */
+const makeSettingMultiToggle = ({ key, tab, settingSettings }) => {
+  const multiToggleWrapper = makeElement('div', 'multi-toggle');
+
+  const multiToggleRow = makeElement('div', ['PagePreferences__settingsList', 'multi-toggle-row']);
+
+  settingSettings.options.forEach((option) => {
+    const optionSettingRow = makeElement('div', 'PagePreferences__settingsList');
+
+    // Label.
+    const optionSettingRowLabel = makeElement('div', 'PagePreferences__settingLabel');
+    makeElement('div', 'PagePreferences__settingName', option.name, optionSettingRowLabel);
+    optionSettingRow.append(optionSettingRowLabel);
+
+    // Action.
+    const optionSettingRowAction = makeElement('div', 'PagePreferences__settingAction');
+    const optionSettingRowInput = makeElement('div', 'settingRow-action-inputContainer');
+
+    const settingRowInputCheckbox = makeToggle(`${key}-${option.id}`, option.value, tab);
+    optionSettingRowInput.append(settingRowInputCheckbox);
+    optionSettingRowAction.append(optionSettingRowInput);
+
+    optionSettingRow.append(optionSettingRowAction);
+
+    multiToggleRow.append(optionSettingRow);
+  });
+
+  multiToggleWrapper.append(multiToggleRow);
+
+  return multiToggleWrapper;
+};
+
+/**
+ * Helper function to make a blank setting on the settings page.
+ *
+ * @param {Object} options         The options for the blank setting.
+ * @param {Object} options.section The section settings.
+ * @param {string} options.key     The setting key.
+ *
+ * @return {Object} The blank setting.
+ */
+const makeSettingBlank = ({ section, key }) => {
+  const action = makeElement('div', ['blank', 'blankSetting'], '');
+  action.id = `${section.id}-${key}-blank`;
+
+  return action;
+};
+
+/**
  * Add a setting to the preferences page.
  *
  * @ignore
@@ -234,7 +573,7 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   section.id = `${tabId}-${section.id.replaceAll(/[^\w-]/gi, '')}`;
 
   // If we don't have our custom settings section, then create it.
-  let sectionExists = document.querySelector(`#${section.id}`);
+  let sectionExists = document.querySelector(`#${section.id}-wrapper`);
   if (! sectionExists) {
     const title = makeElement('div', 'PagePreferences__title');
     title.id = section.id;
@@ -245,12 +584,19 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     // Append it.
     container.append(title);
 
-    sectionExists = document.querySelector(`#${section.id}`);
-
     if (section.description) {
       const settingSubHeader = makeElement('h4', ['settings-subheader', 'mh-utils-settings-subheader'], section.description);
-      seperator.before(settingSubHeader);
+      title.after(settingSubHeader);
     }
+
+    // append a wrapper for the settings.
+    const settingsWrapper = makeElement('div', 'PagePreferences__settingsWrapper');
+    settingsWrapper.id = `${section.id}-wrapper`;
+    container.append(settingsWrapper);
+
+    title.append(settingsWrapper);
+
+    sectionExists = document.querySelector(`#${section.id}-wrapper`);
   }
 
   // If we already have a setting visible for our key, bail.
@@ -303,258 +649,23 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
   settingRowLabel.append(settingDescription);
 
   const settingRowAction = makeElement('div', 'PagePreferences__settingAction');
-  const settingRowInput = makeElement('div', 'settingRow-action-inputContainer');
 
-  if (settingSettings && (settingSettings.type === 'select' || settingSettings.type === 'multi-select')) {
-    // Create the dropdown.
-    const settingRowInputDropdown = document.createElement('div');
-    settingRowInputDropdown.classList.add('inputBoxContainer');
-
-    if (settingSettings.type === 'multi-select') {
-      settingRowInputDropdown.classList.add('multiSelect');
-      settingRowInput.classList.add('multiSelect', 'select');
+  if (settingSettings) {
+    if (settingSettings.type === 'select' || settingSettings.type === 'multi-select') {
+      settingRowAction.append(makeSettingRowSelect({ key, tab, defaultValue, settingSettings }));
+    } else if (settingSettings.type === 'input') {
+      settingRowAction.append(makeSettingInput({ key, tab, defaultValue }));
+    } else if (settingSettings.type === 'textarea') {
+      settingRowAction.append(makeSettingTextArea({ key, tab, defaultValue }));
+    } else if (settingSettings.type === 'multi-toggle') {
+      settingRowAction.append(makeSettingMultiToggle({ key, tab, settingSettings }));
+    } else if (settingSettings.type === 'blank') {
+      settingRowAction.append(makeSettingBlank({ section, key }));
+    } else {
+      settingRowAction.append(makeSettingToggle({ key, defaultValue, tab, settings }));
     }
-
-    let amount = 1;
-    if (settingSettings.type === 'multi-select' && settingSettings.number) {
-      amount = settingSettings.number;
-    }
-
-    /**
-     * Make an option for the dropdown.
-     *
-     * @param {Object}  option         The option to make.
-     * @param {boolean} foundSelected  Whether or not the option is selected.
-     * @param {string}  currentSetting The current setting.
-     * @param {Object}  dValue         The default value.
-     * @param {number}  i              The index of the option.
-     *
-     * @return {Object} The option and whether or not it's selected.
-     */
-    const makeOption = (option, foundSelected, currentSetting, dValue, i) => {
-      const settingRowInputDropdownSelectOption = document.createElement('option');
-      settingRowInputDropdownSelectOption.value = option.value;
-      settingRowInputDropdownSelectOption.textContent = option.name;
-      settingRowInputDropdownSelectOption.disabled = option.disabled || false;
-
-      if (currentSetting && currentSetting === option.value) {
-        settingRowInputDropdownSelectOption.selected = true;
-        foundSelected = true;
-      } else if (! foundSelected && dValue && dValue[i] && dValue[i].value === option.value) {
-        settingRowInputDropdownSelectOption.selected = true;
-        foundSelected = true;
-      }
-
-      return {
-        settingRowInputDropdownSelectOption,
-        foundSelected
-      };
-    };
-
-    // make a multi-select dropdown.
-    for (let i = 0; i < amount; i++) {
-      const settingRowInputDropdownSelect = document.createElement('select');
-      settingRowInputDropdownSelect.classList.add('inputBox');
-
-      if (settingSettings.type === 'multi-select') {
-        settingRowInputDropdownSelect.classList.add('multiSelect');
-      }
-
-      const currentSetting = getSettingDirect(`${key}-${i}`, null, tab);
-      let foundSelected = false;
-
-      settingSettings.options.forEach((option) => {
-        // If the value is 'optgroup', then we want to make an optgroup and use the options inside of it.
-        if (option.value === 'group') {
-          const settingRowInputDropdownSelectOptgroup = document.createElement('optgroup');
-          settingRowInputDropdownSelectOptgroup.label = option.name;
-
-          option.options.forEach((optgroupOption) => {
-            const result = makeOption(optgroupOption, foundSelected, currentSetting, defaultValue, i);
-            foundSelected = result.foundSelected;
-            settingRowInputDropdownSelectOptgroup.append(result.settingRowInputDropdownSelectOption);
-          });
-
-          settingRowInputDropdownSelect.append(settingRowInputDropdownSelectOptgroup);
-        } else {
-          const result = makeOption(option, foundSelected, currentSetting, defaultValue, i);
-          foundSelected = result.foundSelected;
-          settingRowInputDropdownSelect.append(result.settingRowInputDropdownSelectOption);
-        }
-      });
-
-      settingRowInputDropdown.append(settingRowInputDropdownSelect);
-
-      /**
-       * Event listener for when the setting is clicked.
-       *
-       * @param {Event} event The event.
-       */
-      let timeout = null;
-      settingRowInputDropdownSelect.onchange = (event) => {
-        const parent = settingRowInputDropdownSelect.parentNode.parentNode.parentNode;
-        parent.classList.add('inputDropdownWrapper');
-        parent.classList.add('busy');
-
-        // save the setting.
-        saveSettingDirect(`${key}-${i}`, event.target.value, tab);
-
-        doEvent('mh-improved-settings-changed', {
-          key: `${key}-${i}`,
-          value: event.target.value,
-          tab,
-          type: 'multi-select',
-        });
-
-        parent.classList.remove('busy');
-        parent.classList.add('completed');
-
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          parent.classList.remove('completed');
-        }, 1000);
-      };
-
-      settingRowInput.append(settingRowInputDropdown);
-      settingRowAction.append(settingRowInput);
-    }
-  } else if (settingSettings && settingSettings.type === 'input') {
-    settingRow.classList.add('inputText');
-    const settingRowInputText = makeElement('input', 'inputBox');
-    settingRowInputText.value = getSettingDirect(key, defaultValue, tab);
-
-    const inputSaveButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'inputSaveButton']);
-    makeElement('span', '', 'Save', inputSaveButton);
-
-    let timeout = null;
-    const save = (event) => {
-      const parent = event.target.parentNode.parentNode.parentNode;
-      parent.classList.add('inputDropdownWrapper');
-      parent.classList.add('inputTextWrapper');
-      parent.classList.add('busy');
-
-      parent.classList.remove('completed');
-
-      // save the setting.
-      saveSettingDirect(key, settingRowInputText.value, tab);
-
-      doEvent('mh-improved-settings-changed', {
-        key,
-        value: settingRowInputText.value,
-        tab,
-        type: 'input',
-      });
-
-      parent.classList.remove('busy');
-      parent.classList.add('completed');
-
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        parent.classList.remove('completed');
-      }, 1000);
-
-      addSettingRefreshReminder();
-    };
-
-    // Event listener for when the setting is clicked.
-    inputSaveButton.addEventListener('click', save);
-    settingRowInputText.addEventListener('keyup', (event) => {
-      if (event.key === 'Enter') {
-        save(event);
-      }
-    });
-
-    settingRowInput.classList.add('inputText');
-
-    settingRowInput.append(settingRowInputText);
-    settingRowInput.append(inputSaveButton);
-    settingRowAction.append(settingRowInput);
-  } else if (settingSettings && settingSettings.type === 'textarea') {
-    settingRow.classList.add('textarea');
-
-    const settingRowInputText = makeElement('textarea', 'inputBox');
-    settingRowInputText.value = getSettingDirect(key, defaultValue, tab);
-
-    const inputSaveButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'inputSaveButton']);
-    makeElement('span', '', 'Save', inputSaveButton);
-
-    // Event listener for when the setting is clicked.
-    let timeout = null;
-    const save = (event) => {
-      const parent = event.target.parentNode.parentNode.parentNode;
-      parent.classList.add('inputDropdownWrapper');
-      parent.classList.add('textareaWrapper');
-
-      parent.classList.add('busy');
-
-      // save the setting.
-      saveSettingDirect(key, settingRowInputText.value, tab);
-
-      doEvent('mh-improved-settings-changed', {
-        key,
-        value: settingRowInputText.value,
-        tab,
-        type: 'textarea',
-      });
-
-      parent.classList.remove('busy');
-      parent.classList.add('completed');
-
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        parent.classList.remove('completed');
-      }, 1000);
-
-      addSettingRefreshReminder();
-    };
-
-    inputSaveButton.addEventListener('click', save);
-    settingRowInputText.addEventListener('keyup', (event) => {
-      if (event.key === 'Enter') {
-        save(event);
-      }
-    });
-
-    settingRowInput.classList.add('textarea');
-
-    settingRowInput.append(settingRowInputText);
-    settingRowInput.append(inputSaveButton);
-    settingRowAction.append(settingRowInput);
-  } else if (settingSettings && settingSettings.type === 'multi-toggle') {
-    settingRowAction.classList.add('multi-toggle');
-
-    const multiToggleRow = makeElement('div', ['PagePreferences__settingsList', 'multi-toggle-row']);
-
-    settingSettings.options.forEach((option) => {
-      const optionSettingRow = makeElement('div', 'PagePreferences__settingsList');
-
-      // Label.
-      const optionSettingRowLabel = makeElement('div', 'PagePreferences__settingLabel');
-      makeElement('div', 'PagePreferences__settingName', option.name, optionSettingRowLabel);
-      optionSettingRow.append(optionSettingRowLabel);
-
-      // Action.
-      const optionSettingRowAction = makeElement('div', 'PagePreferences__settingAction');
-      const optionSettingRowInput = makeElement('div', 'settingRow-action-inputContainer');
-
-      const settingRowInputCheckbox = makeToggle(`${key}-${option.id}`, option.value, tab);
-      optionSettingRowInput.append(settingRowInputCheckbox);
-      optionSettingRowAction.append(optionSettingRowInput);
-
-      optionSettingRow.append(optionSettingRowAction);
-
-      multiToggleRow.append(optionSettingRow);
-    });
-
-    settingRowAction.append(multiToggleRow);
-  } else if (settingSettings && settingSettings.type === 'blank') {
-    const action = makeElement('div', ['blank', 'blankSetting'], '');
-    action.id = `${section.id}-${key}-blank`;
-    settingRowAction.append(action);
   } else {
-    const settingRowInputCheckbox = makeToggle(key, defaultValue, tab, settings);
-    settingRowInput.append(settingRowInputCheckbox);
-    settingRowAction.append(settingRowInput);
+    settingRowAction.append(makeSettingToggle({ key, defaultValue, tab, settings }));
   }
 
   // Add the label and action to the settings row.
