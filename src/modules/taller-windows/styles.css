@@ -6,7 +6,6 @@
 .treasureMapView-block-content.tall,
 .treasureMapView-blockWrapper.tall .treasureMapView-block-content,
 #messengerUINotification .notificationHeader,
-#messengerUINotification .notificationMessageList,
 #supplytransfer .drawer .listContainer,
 #supplytransfer .drawer .tabContent,
 #supplytransfer .drawer {
@@ -14,6 +13,7 @@
   max-height: 75vh;
 }
 
+#messengerUINotification .notificationMessageList,
 .treasureMapView-block-content,
 .treasureMapView-block-content.halfHeight {
   height: auto;
@@ -150,5 +150,5 @@
 }
 
 .mh-gift-buttons-clone-wrapper {
-  max-height: calc(75vh - 65px);
+  max-height: calc(75vh - 175px);
 }

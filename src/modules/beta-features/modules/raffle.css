@@ -4,6 +4,7 @@
   right: 0;
   left: 0;
   z-index: 10;
+  background-color: #f9f9f9;
 }
 
 .notificationMessageList .tab {
