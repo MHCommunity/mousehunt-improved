@@ -751,13 +751,7 @@ const addSettingForModule = async (module) => {
       );
     }
 
-    if (
-      ! submodule.beta &&
-      submodule.settings && (
-        submodule.alwaysLoad ||
-        getSetting(submodule.id, submodule.default)
-      )
-    ) {
+    if (submodule.settings) {
       const subSettingsGroup = await submodule.settings(module);
       if (! subSettingsGroup) {
         continue;
