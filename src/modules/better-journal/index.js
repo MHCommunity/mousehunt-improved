@@ -387,7 +387,10 @@ const init = async () => {
 
   if (getSetting('better-journal-replacements', true)) {
     updateEls();
-    onRequest('*', updateEls);
+    onRequest('*', () => {
+      setTimeout(updateEls, 100);
+      setTimeout(updateEls, 500);
+    });
     onTurn(updateEls);
   }
 
