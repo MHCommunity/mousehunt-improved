@@ -60,6 +60,7 @@
   background-size: 100%;
 }
 
+.treasureMapOpenChestView-chestImage,
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image,
 .campPage-trap-armedItem-image {
   background-size: contain;
