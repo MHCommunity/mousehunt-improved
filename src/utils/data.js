@@ -209,7 +209,9 @@ const clearCaches = async () => {
   }
 
   // also delete the specified IndexedDB databases
-  await dbDeleteAll('journal-entries');
+  if (! getFlag('journal-history')) {
+    await dbDeleteAll('journal-entries');
+  }
 
   localStorage.removeItem(getCacheExpirationKey());
 };
