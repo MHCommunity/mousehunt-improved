@@ -136,7 +136,7 @@ const makeSendSuppliesButton = async (btn, snuid) => {
   });
 
   // Add event listener for 'Enter' key on submit button
-  submitButton.addEventListener('keydown', (event) => {
+  quickSendInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       sendIt();
     }
