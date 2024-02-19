@@ -1,1 +1,76 @@
 # [Location Dashboard](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-location-dashboard)
+
+Adds a "Dashboard" menu to the top menu bar that will show you the important details of each location.
+
+## Supported Locations
+
+- Bristle Woods Rift
+  - Current room
+  - Loot progress
+  - Total Time Sand
+- Burroughs Rift
+  - Mist level
+- Fiery Warpath
+  - Current wave
+  - Current streak
+  - Mice remaining
+- Floating Islands
+  - Current island
+  - Current island tiles
+  - Hunts remaining
+- Foreward Farm
+  - Plants growing
+- Fort Rox
+  - Phase of night
+  - Wall HP
+- Furoma Rift
+  - Whether you are inside the pagoda
+  - Battery level
+  - Enerchi amount
+- Iceberg
+  - Phase
+  - Number of feet
+  - Number of hunts taken
+- Labyrinth
+  - Hallway
+  - Number of clues
+- Living Garden
+  - Whether your are Twisted or not
+- Lost City
+  - Curses
+- Mousoleum
+  - Whether you have a wall or not
+  - Wall HP
+- Moussu Pichu
+  - Storm level
+  - Rain level and percentage
+  - Wind level and percentage
+- Queso Geyser
+  - Eruption type
+  - Hunts remaining
+- Sand Dunes
+  - Whether or not you have a Stampede
+- Seasonal Garden
+  - Amplifier percentage
+- Sunken City
+  - Zone
+  - Depth
+  - Oxygen remaining
+- Toxic Spill
+  - Crude Polluntium
+  - Max Polluntium capacity
+  - Refined Polluntium
+- Valour Rift
+  - Floor number and name
+  - Hunts Remaining
+  - Speed stat level
+  - Sync stat level
+  - Siphon stat level
+- Whisker Woods Rift
+  - Rage levels
+- Zokor
+  - Current district
+  - Stealth remaining
+- Zugzwang's Tower
+  - Mystic progress
+  - Technic progress
