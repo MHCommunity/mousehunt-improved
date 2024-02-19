@@ -8,8 +8,7 @@
 - Adds an indicator on any collectibles that have a special action.
 - Resizes the crafting table to be easier to read and use.
 
-
 ## Options
 
-- **Show one item per row**:
-- **Show larger images**:
+- **Show one item per row**: Makes each item in the inventory take up the full width of the inventory, rather than two items per row.
+- **Show larger images**: Makes the images in the inventory larger.
