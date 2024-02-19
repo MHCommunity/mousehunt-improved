@@ -20,7 +20,7 @@
 /* add a quill to the word count entry */
 .journal .entry.folkloreForest-tableOfContents.wordCount::after {
   position: absolute;
-  top: 1px;
+  top: 10px;
   left: 20px;
   width: 37px;
   height: 37px;
