@@ -1,5 +1,5 @@
 import { getCurrentPage, getCurrentTab } from './page';
-import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
+import { getSettingDirect, saveSettingDirect } from './settings';
 import { addStylesDirect } from './styles';
 import { doEvent } from './event-registry';
 import { makeElement } from './elements';
