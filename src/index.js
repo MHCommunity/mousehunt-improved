@@ -28,16 +28,23 @@ const modules = imported;
  */
 const initSentry = async () => {
   Sentry.init({
-    dsn: 'https://c0e7b72f2611e14c356dba1923cedf6e@o4506582061875200.ingest.sentry.io/4506583459233792',
+    dsn: 'https://a677b0fe4d2fbc3a7db7410353d91f39@o4506582061875200.ingest.sentry.io/4506781071835136',
     maxBreadcrumbs: 50,
     debug: ! getFlag('debug'),
     release: `mousehunt-improved@${mhImprovedVersion}`,
     environment: mhImprovedPlatform,
-    allowUrls: [
-      /mproved/, // mproved rather than improved to match the MH-Improved userscript
-      '/nicobnljejcjcbnhgcjhhhbnadkiafca/', // Chrome extension
-      /73164570-6676-4291-809b-7b5c9cf6e626/, // Firefox extension
-    ],
+    sendClientReports: false,
+    beforeSend: async (event) => {
+      if (event?.exception?.values?.[0]?.stacktrace?.frames?.length > 0) {
+        for (const frame of event.exception.values[0].stacktrace.frames) {
+          if (frame.filename.includes('/nicobnljejcjcbnhgcjhhhbnadkiafca/') || frame.filename.includes('73164570-6676-4291-809b-7b5c9cf6e626')) {
+            return event;
+          }
+        }
+      }
+
+      return null; // Drop events not from the extension
+    },
     initialScope: {
       tags: {
         platform: mhImprovedPlatform,
