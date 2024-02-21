@@ -73,13 +73,13 @@ const getJournalThemeForLocation = () => {
 };
 
 const changeForLocation = async () => {
-  if (themes.length === 0) {
-    themes = await getJournalThemes();
-  }
-
   const newTheme = getJournalThemeForLocation();
   if (! newTheme) {
     return;
+  }
+
+  if (themes.length === 0) {
+    themes = await getJournalThemes();
   }
 
   const currentTheme = getCurrentJournalTheme();
