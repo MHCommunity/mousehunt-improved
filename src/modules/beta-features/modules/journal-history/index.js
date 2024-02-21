@@ -1,11 +1,13 @@
 import { dbGetAll, onEvent, onNavigation, onRequest } from '@utils';
 
-import tempMiceImages from '@data/temp-mice-images.json';
+// import tempMiceImages from '@data/temp-mice-images.json';
 
 let pager;
 let journalEntries = [];
 let totalPages = 0;
 let currentPage = 0;
+
+const tempMiceImages = [];
 
 const makeEntriesMarkup = (entries) => {
   return entries.map((entry) => {
