@@ -12,7 +12,6 @@
 - Updates buttons in popups to match other buttons.
 - Hovering over your Cheese, Charm, or Map name will show the full name.
 - Updates the current adventure book task to look nicer.
-- Modifies the Skins selector to show full-size skin images.
 - Updates the styles and readability of many items.
   - Search & filter dropdowns and results
   - Send Supplies page
