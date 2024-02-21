@@ -1,4 +1,4 @@
-import { addHudStyles, createPopup, makeElement } from '@utils';
+import { addHudStyles, createPopup, makeElement, onTrapChange } from '@utils';
 
 import styles from './styles.css';
 
@@ -170,6 +170,55 @@ const addSimulatorEvents = () => {
   doSimulation('.mh-vrift-sim-link');
 };
 
+const removeWarningIfUcEquipped = () => {
+  const warningContainer = document.querySelector('.valourRiftHUD-warningContainer.active');
+  if (! warningContainer) {
+    return;
+  }
+
+  warningContainer.classList.remove('hidden');
+
+  const powerTypeWarning = warningContainer.querySelector('.valourRiftHUD-powerTypeWarning.active');
+  if (! powerTypeWarning) {
+    return;
+  }
+
+  powerTypeWarning.classList.remove('hidden');
+
+  if (1075 == user.trinket_item_id) { // eslint-disable-line eqeqeq
+    warningContainer.classList.add('hidden');
+    powerTypeWarning.classList.add('hidden');
+  }
+};
+
+const highlightQuantitiesIfUcEquipped = async () => {
+  const selectors = [
+    '.valourRiftHUD-gauntletBait-quantity.quantity',
+    '.valourRiftHUD-towerLoot-quantity.quantity',
+    '.valourRiftHUD-powerUp-currentLevel',
+  ];
+
+  selectors.forEach((selector) => {
+    const existing = document.querySelectorAll(selector);
+    if (! existing) {
+      return;
+    }
+
+    existing.forEach((e) => {
+      if (1075 == user.trinket_item_id) { // eslint-disable-line eqeqeq
+        e.classList.add('uc-text-highlight');
+      } else {
+        e.classList.remove('uc-text-highlight');
+      }
+    });
+  });
+};
+
+const ifUcEquipped = () => {
+  removeWarningIfUcEquipped();
+  highlightQuantitiesIfUcEquipped();
+};
+
 /**
  * Initialize the module.
  */
@@ -179,4 +228,6 @@ export default async () => {
   addUIComponents();
   addSimulatorEvents();
   modifyPlayerIcon();
+
+  onTrapChange(ifUcEquipped);
 };

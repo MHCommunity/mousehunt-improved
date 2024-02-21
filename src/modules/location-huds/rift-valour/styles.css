@@ -645,3 +645,13 @@ a.valourRiftHUD-gauntletBait-image.active {
 .valourRiftHUD-fuelContainer-armButton {
   font-size: 12px;
 }
+
+.valourRiftHUD-warningContainer.active.hidden,
+.valourRiftHUD-powerTypeWarning.active.hidden {
+  display: none;
+}
+
+.uc-text-highlight,
+.valourRiftHUD-powerUp-currentLevel.uc-text-highlight {
+  color: #90ffe1;
+}
