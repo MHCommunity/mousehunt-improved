@@ -5,8 +5,6 @@ import {
   addSettingsTab,
   addToGlobal,
   debug,
-  debuglite,
-  debuglog,
   debugplain,
   doEvent,
   getFlag,
@@ -16,7 +14,6 @@ import {
   isApp,
   isUnsupportedFile,
   isiFrame,
-  onActivation,
   showLoadingError
 } from '@utils';
 
@@ -61,10 +58,10 @@ const initSentry = async () => {
  * Load all the modules.
  */
 const loadModules = async () => {
-  const organizedModules = [
+  const categories = [
     {
-      // Always loaded modules.
       id: 'required',
+      name: 'Always Loaded',
       modules: [],
     },
     {
@@ -99,15 +96,18 @@ const loadModules = async () => {
     }
   ];
 
+  // Don't load if already loaded.
   if (getGlobal('loaded')) {
     debug('Already loaded, exiting.');
     return;
   }
 
+  // Initialize the settings tab.
   await addSettingsTab('mousehunt-improved-settings', 'MH Improved');
 
+  // Add the settings for each module.
   modules.forEach((m) => {
-    const category = organizedModules.find((c) => c.id === m.type);
+    const category = categories.find((c) => c.id === m.type);
     if (! category) {
       debug(`Unknown module category: ${m.type}`);
       return;
@@ -116,8 +116,8 @@ const loadModules = async () => {
     category.modules.push(m);
   });
 
-  // Sort the modules by name, moving any that start with an underscore to the top, as well as moving better-ui to the top.
-  for (const category of organizedModules) {
+  for (const category of categories) {
+    // Sort modules alphabetically, with underscores first, and 'better-ui' on top.
     category.modules.sort((a, b) => {
       if (a.id === 'better-ui' || (a.id.startsWith('_') && ! b.id.startsWith('_'))) {
         return -1;
@@ -127,136 +127,121 @@ const loadModules = async () => {
         return 1;
       }
 
-      // Use the .name property to sort the modules if it is set, otherwise use the .id property.
-      const aName = a.name || a.id;
-      const bName = b.name || b.id;
-
-      return aName.localeCompare(bName);
+      return (a.name || a.id).localeCompare(b.name || b.id);
     });
   }
 
   // Add the settings for each module.
-  for (const module of organizedModules) {
+  for (const module of categories) {
     await addSettingForModule(module);
     doEvent('mh-improved-settings-added', { module });
   }
 
-  // Load the modules.
-  const loadedModules = [];
-  const notLoadedModules = [];
-  const skippedModules = [];
-  let modulesDebug = [];
-
+  // Track modules to load.
   const load = [];
-  for (const module of organizedModules) {
-    for (const submodule of module.modules) {
-      const overrideStopLoading = getFlag(`no-${submodule.id}`);
-      if (overrideStopLoading) {
-        debuglite(`Skipping ${submodule.name} due to override flag.`);
-        skippedModules.push(submodule.id);
 
+  // Track loaded modules.
+  let loadedModules;
+
+  // Loop through the categories and load the modules.
+  for (const category of categories) {
+    loadedModules = [];
+
+    // Load the modules.
+    for (const module of category.modules) {
+      // Skip loading if the `no-<module.id>` flag is set.
+      if (getFlag(`no-${module.id}`)) {
         continue;
       }
 
-      onActivation(submodule.id, submodule.load);
-
-      if (
-        submodule.alwaysLoad ||
-        'required' === submodule.type ||
-        getSetting(submodule.id, submodule.default) ||
-        (submodule.beta && getFlag(submodule.id))
-      ) {
+      // If the module is always loaded, or if the category is required, or if the module is enabled, load it.
+      if (module.alwaysLoad || 'required' === category.id || getSetting(module.id, module.default)) {
         try {
-          doEvent('mh-improved-module-before-load', submodule);
+          // Add the module to the load queue.
+          load.push(module.load());
 
-          load.push(submodule.load());
-
-          doEvent('mh-improved-module-loaded', submodule);
-
-          loadedModules.push(submodule.id);
-
-          modulesDebug.push(submodule.id);
+          // Add the module to the loaded modules.
+          loadedModules.push(module.id);
         } catch (error) {
-          debug(`Error loading "${submodule.id}"`, error);
+          // If the module fails to load, log the error.
+          debug(`Error loading "${module.id}"`, error);
         }
-      } else {
-        notLoadedModules.push(submodule.id);
       }
     }
 
-    debuglog('loader', `Loaded ${modulesDebug.length} ${module.id} modules`, modulesDebug);
-    modulesDebug = [];
+    // Log the loaded modules for the category.
+    debug(`Loaded ${category.modules.length} ${category.name} modules`, loadedModules);
   }
 
-  if (getSetting('error-reporting', true)) {
-    Sentry.setContext('modules', {
-      loaded: loadedModules,
-      not_loaded: notLoadedModules,
-      skipped: skippedModules,
-      feature_flags: getSetting('override-flags', ''),
-    });
-  }
-
+  // Wait for all modules to load.
   await Promise.all(load);
 
+  // Add the loaded modules to the global scope.
   addToGlobal('modules', loadedModules);
 
-  doEvent('mh-improved-modules-loaded', {
-    loaded: loadedModules,
-    notLoaded: notLoadedModules,
-    skipped: skippedModules,
-  });
+  // Fire the event to signal that all modules have been loaded.
+  doEvent('mh-improved-modules-loaded');
 };
 
 /**
  * Initialize the script.
  */
 const init = async () => {
-  doEvent('mh-improved-init');
-
-  // Check if the url is an image and if so, don't load.
+  // Validate loading conditions.
   if (isUnsupportedFile()) {
     debug('Skipping unsupported filetype.');
     return;
   }
 
+  // Make sure we're not inside an iframe.
   if (isiFrame()) {
-    showLoadingError({ message: 'Loading inside an iframe is not supported.' });
+    debug('Loading inside an iframe is not supported.');
     return;
   }
 
+  // Make sure the global MouseHunt functions are available.
   if (! isApp()) {
-    showLoadingError({ message: 'Global MouseHunt functions not found.' });
+    debug('Global MouseHunt functions not found.');
     return;
   }
 
+  // Make sure the event registry is available.
   if (! eventRegistry) {
-    showLoadingError({ message: 'Event registry not found.' });
+    debug('Event registry not found.');
     return;
   }
 
-  try {
-    // Start it up.
-    await loadModules();
-  } catch (error) {
-    debug('Error loading modules', error);
+  // Initialize Sentry if error reporting is enabled.
+  if (getSetting('error-reporting', true)) {
+    initSentry();
+  }
 
+  // Time to load the modules.
+  try {
+    loadModules();
+  } catch (error) {
+    debug('Error loading MouseHunt Improved', error);
     showLoadingError(error);
+    Sentry.captureException(error);
   } finally {
+    // Add the version and loaded flag to the global scope.
     addToGlobal('version', mhImprovedVersion);
     addToGlobal('loaded', true);
 
-    debugplain(`%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`, 'color: #ca77ff; font-weight: 900; font-size: 1.1em', 'color: inherit; font-weight: inherit; font-size: inherit'); // eslint-disable-line no-console
+    // Welcome message.
+    debugplain(
+      `%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`,
+      'color: #ca77ff; font-weight: 900; font-size: 1.1em',
+      'color: inherit; font-weight: inherit; font-size: inherit'
+    );
 
+    // Fire the events to signal that the script has been loaded.
+    doEvent('mh-improved-init');
     doEvent('mh-improved-loaded', {
       version: mhImprovedVersion,
       modules: getGlobal('modules'),
     });
   }
 };
-
-if (getSetting('error-reporting', true)) {
-  initSentry(); // eslint-disable-line unicorn/prefer-top-level-await
-}
 
 init(); // eslint-disable-line unicorn/prefer-top-level-await
