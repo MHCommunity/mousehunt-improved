@@ -308,7 +308,7 @@ const makeContent = (id, name, items, completed) => {
  * @return {boolean} If the category and items were added.
  */
 const addCategoryAndItems = async (required, type, subtype, key, name) => {
-  const exists = document.querySelector(`.hunterProfileItemsView-categoryContent[data-category="${key}"]`);
+  const exists = document.querySelector(`.hunterProfileItemsView-category[data-category="${key}"]`);
   if (exists) {
     return;
   }
