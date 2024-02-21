@@ -585,6 +585,35 @@ const onTurn = (callback, delay = null) => {
   }, true);
 };
 
+/**
+ * Do something when the user changes their trap.
+ *
+ * @param {Function} callback                    The callback to run when the user changes their trap.
+ * @param {Object}   opts                        The options.
+ * @param {boolean}  opts.runOnLoad              Whether or not to run the callback on load.
+ * @param {boolean}  opts.runOnGetTrapComponents Whether or not to run the callback when getting trap components.
+ */
+const onTrapChange = (callback, opts) => {
+  // Set the default options.
+  const defaults = {
+    runOnLoad: true,
+    runOnGetTrapComponents: true,
+  };
+
+  // Merge the defaults with the options.
+  const options = Object.assign(defaults, opts);
+
+  if (options?.runOnLoad) {
+    callback();
+  }
+
+  onRequest('users/changetrap.php', callback);
+
+  if (options?.runOnGetTrapComponents) {
+    onRequest('users/gettrapcomponents.php', callback);
+  }
+};
+
 export {
   onDialogHide,
   onDialogShow,
@@ -595,5 +624,6 @@ export {
   onTravel,
   onActivation,
   onDeactivation,
-  onTurn
+  onTurn,
+  onTrapChange
 };
