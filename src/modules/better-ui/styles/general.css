@@ -227,7 +227,8 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 .trapImageView-trapAura,
 .trapImageView-trapAura.active,
 .trapImageView-trapAura.inactive,
-.trapImageView-zoomButton {
+.trapImageView-zoomButton,
+.min-luck-button {
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }
@@ -236,7 +237,8 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 .trapImageView:hover .trapImageView-trapAura,
 .trapImageView:hover .trapImageView-trapAura.active,
 .trapImageView:hover .trapImageView-trapAura.inactive,
-.trapImageView:hover .trapImageView-zoomButton {
+.trapImageView:hover .trapImageView-zoomButton,
+.trapImageView:hover .min-luck-button {
   opacity: 1;
 }
 
