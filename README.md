@@ -1,6 +1,6 @@
 # 🐭️ MouseHunt Improved
 
-![Add to Chrome](https://img.shields.io/badge/Add_to_Chrome-4c8bf5?style=plastic&logo=googlechrome&logoColor=white&link=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fmousehunt-improved%2Ffgjkidgknmkhnbeobehlfabjbignhkhm) ![Add to Firefox](https://img.shields.io/badge/Add_to_Firefox-ff7139?style=plastic&logo=firefoxbrowser&logoColor=white&link=https%3A%2F%2Faddons.mozilla.org%2Fen-US%2Ffirefox%2Faddon%2Fmousehunt-improved%2F)
+[![Add to Chrome](https://img.shields.io/badge/Add_to_Chrome-4c8bf5?style=plastic&logo=googlechrome&logoColor=white&link=https%3A%2F%2Fchromewebstore.google.com%2Fdetail%2Fmousehunt-improved%2Ffgjkidgknmkhnbeobehlfabjbignhkhm)](https://chrome.google.com/webstore/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm) [![Add to Firefox](https://img.shields.io/badge/Add_to_Firefox-ff7139?style=plastic&logo=firefoxbrowser&logoColor=white&link=https%3A%2F%2Faddons.mozilla.org%2Fen-US%2Ffirefox%2Faddon%2Fmousehunt-improved%2F)](https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/)
 
 Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of improvements and features. Each feature can be enabled or disabled individually to suit your preferences.
 
