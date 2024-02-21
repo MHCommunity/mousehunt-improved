@@ -785,7 +785,8 @@ const makeBlueprintContainer = async () => {
 
   container.append(body);
 
-  const appendTo = document.querySelector('.campPage-trap-blueprintContainer');
+  // trapSelectorView__browserStateParent
+  const appendTo = document.querySelector('.trapSelectorView__blueprint');
   if (! appendTo) {
     return false;
   }
@@ -838,7 +839,7 @@ const addFavoriteSetupsButton = () => {
     return;
   }
 
-  const appendTo = document.querySelector('.campPage-trap-itemStats');
+  const appendTo = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
   if (! appendTo) {
     return;
   }
@@ -860,7 +861,7 @@ const addFavoriteSetupsButton = () => {
   });
 
   // Append as a sibling to the existing button.
-  appendTo.parentNode.insertBefore(button, appendTo.nextSibling);
+  appendTo.append(button);
 };
 
 const isFavoriteSetupsShowing = () => {
@@ -895,6 +896,13 @@ const showFavoriteSetups = () => {
   pageContainer.classList.remove('editTrap', 'showTrapEffectiveness');
   pageContainer.classList.add('showBlueprint', 'showFavoriteSetups');
 
+  const blueprint = document.querySelector('.trapSelectorView__blueprint');
+  if (! blueprint) {
+    return;
+  }
+
+  blueprint.classList.add('trapSelectorView__blueprint--active');
+
   const container = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
   if (container) {
     container.classList.remove('hidden');
@@ -902,32 +910,39 @@ const showFavoriteSetups = () => {
 };
 
 const replaceCloseBlueprintDrawer = () => {
-  const _closeBlueprintDrawer = app.pages.CampPage.closeBlueprintDrawer;
-  app.pages.CampPage.closeBlueprintDrawer = (...args) => {
+  const closeButton = document.querySelector('.campPage-trap-blueprint-closeButton');
+  closeButton.addEventListener('click', () => {
     if (isFavoriteSetupsShowing()) {
       hideFavoriteSetups();
     }
+  });
 
-    _closeBlueprintDrawer(...args);
-  };
+  // const _closeBlueprintDrawer = app.pages.CampPage.closeBlueprintDrawer;
+  // app.pages.CampPage.closeBlueprintDrawer = (...args) => {
+  //   if (isFavoriteSetupsShowing()) {
+  //     hideFavoriteSetups();
+  //   }
 
-  const _toggleItemBrowser = app.pages.CampPage.toggleItemBrowser;
-  app.pages.CampPage.toggleItemBrowser = (...args) => {
-    if (isFavoriteSetupsShowing()) {
-      hideFavoriteSetups();
-    }
+  //   _closeBlueprintDrawer(...args);
+  // };
 
-    _toggleItemBrowser(...args);
-  };
+  // const _toggleItemBrowser = app.pages.CampPage.toggleItemBrowser;
+  // app.pages.CampPage.toggleItemBrowser = (...args) => {
+  //   if (isFavoriteSetupsShowing()) {
+  //     hideFavoriteSetups();
+  //   }
 
-  const _toggleTrapEffectiveness = app.pages.CampPage.toggleTrapEffectiveness;
-  app.pages.CampPage.toggleTrapEffectiveness = (...args) => {
-    if (isFavoriteSetupsShowing()) {
-      hideFavoriteSetups();
-    }
+  //   _toggleItemBrowser(...args);
+  // };
 
-    _toggleTrapEffectiveness(...args);
-  };
+  // const _toggleTrapEffectiveness = app.pages.CampPage.toggleTrapEffectiveness;
+  // app.pages.CampPage.toggleTrapEffectiveness = (...args) => {
+  //   if (isFavoriteSetupsShowing()) {
+  //     hideFavoriteSetups();
+  //   }
+
+  //   _toggleTrapEffectiveness(...args);
+  // };
 };
 
 /**
@@ -951,6 +966,11 @@ const init = async () => {
     timeoutId = setTimeout(updateFavoriteSetupName, 500);
   });
 
+  onEvent('camp_page_toggle_blueprint', () => {
+    if (isFavoriteSetupsShowing()) {
+      hideFavoriteSetups();
+    }
+  });
   replaceCloseBlueprintDrawer();
 };
 

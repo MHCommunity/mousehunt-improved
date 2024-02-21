@@ -1,6 +1,7 @@
 import {
+  debuglog,
   getUserSetupDetails,
-  onPageChange,
+  onEvent,
   onRequest,
   sessionGet,
   sessionSet
@@ -13,8 +14,8 @@ const setPrestigeStats = () => {
   }
 
   // update the stats display
-  const savedStats = sessionGet('pb-stats') || false;
-  if (! savedStats) {
+  const pbStats = sessionGet('mh-ui-pb-stats', false);
+  if (! pbStats) {
     return;
   }
 
@@ -23,18 +24,19 @@ const setPrestigeStats = () => {
     return;
   }
 
-  const setup = getUserSetupDetails();
+  const currentSetup = getUserSetupDetails();
 
   const power = stats.querySelector('.campPage-trap-itemBrowser-item-stat.power');
   if (power) {
     const powerValue = power.querySelector('.value span');
     if (powerValue) {
-      powerValue.innerText = savedStats.power;
+      powerValue.innerText = pbStats.power;
 
+      power.classList.remove('better', 'worse');
       // if the power is higher than the current setup, then add a class to it
-      if (setup.power < savedStats.power) {
+      if (currentSetup.base.power < pbStats.power) {
         power.classList.add('better');
-      } else if (setup.power > savedStats.power) {
+      } else if (currentSetup.base.power > pbStats.power) {
         power.classList.add('worse');
       }
     }
@@ -44,49 +46,75 @@ const setPrestigeStats = () => {
   if (luck) {
     const luckValue = luck.querySelector('.value span');
     if (luckValue) {
-      luckValue.innerText = savedStats.luck;
+      luckValue.innerText = pbStats.luck;
 
-      if (setup.luck < savedStats.luck) {
+      luck.classList.remove('better', 'worse');
+
+      if (currentSetup.base.luck < pbStats.luck) {
         luck.classList.add('better');
-      } else if (setup.luck > savedStats.luck) {
+      } else if (currentSetup.base.luck > pbStats.luck) {
         luck.classList.add('worse');
       }
     }
   }
 };
 
-const modifyPB = (retry = false) => {
-  const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
-  if (! prestige) {
-    // try again in 500ms but only once
-    if (! retry) {
-      setTimeout(() => {
-        modifyPB(true);
-      }, 500);
-    }
+const modifyPB = (opts) => {
+  const activeBp = document.querySelector('.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent');
+  if (! activeBp) {
     return;
   }
 
-  // pin it to the top
+  const bpType = activeBp.getAttribute('data-blueprint-type');
+  if (! bpType || bpType !== 'base') {
+    return;
+  }
+
+  const { retryPrestige, retryRecommended } = opts || {};
+
+  const savedStats = sessionGet('mh-ui-pb-stats', false);
+  debuglog('prestige-base-stats', 'Saved Prestige Base stats:', savedStats);
+  if (! savedStats) {
+    return;
+  }
+
+  const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
+  if (! prestige) {
+    if (! retryPrestige) {
+      setTimeout(() => {
+        modifyPB({ retryPrestige: true });
+      }, 500);
+    }
+
+    return;
+  }
+
   if (prestige.getAttribute('data-pinned')) {
     return;
   }
 
-  const recomended = document.querySelector('.campPage-trap-itemBrowser.base .campPage-trap-itemBrowser-tagGroup.recommended');
-  if (! recomended) {
+  const recommended = document.querySelector('.trapSelectorView__browserStateParent--items[data-blueprint-type="base"] .recommended');
+
+  if (! recommended) {
+    if (! retryRecommended) {
+      setTimeout(() => {
+        modifyPB({ retryRecommended: true });
+      }, 500);
+    }
+
     return;
+  }
+
+  if (recommended) {
+    const header = recommended.querySelector('.campPage-trap-itemBrowser-tagGroup-name');
+    if (! header) {
+      return;
+    }
+
+    header.after(prestige);
   }
 
   prestige.setAttribute('data-pinned', true);
-
-  // insert after the header
-  const header = recomended.querySelector('.campPage-trap-itemBrowser-tagGroup-name');
-  if (! header) {
-    return;
-  }
-
-  header.after(prestige);
-
   setPrestigeStats();
 };
 
@@ -96,6 +124,8 @@ const savePbStats = () => {
   if (setup.base.id !== 2904) {
     return;
   }
+
+  debuglog('prestige-base-stats', 'Saving Prestige Base stats…');
 
   const trapMath = document.querySelectorAll('.campPage-trap-trapStat-mathRow');
   if (! trapMath.length) {
@@ -145,30 +175,29 @@ const savePbStats = () => {
     return;
   }
 
-  sessionSet('pb-stats', stats);
+  debuglog('prestige-base-stats', 'Prestige Base stats:', stats);
+  sessionSet('mh-ui-pb-stats', stats);
 };
 
 /**
  * Initialize the module.
  */
 const init = async () => {
-  onPageChange({
-    blueprint: {
-      show: () => {
-        savePbStats();
-        setTimeout(modifyPB, 500);
-      },
-    },
+  onEvent('camp_page_toggle_blueprint', () => {
+    savePbStats();
+    setTimeout(() => {
+      modifyPB();
+    }, 500);
   });
 
   onRequest('users/changetrap.php', () => {
     savePbStats();
-    setPrestigeStats();
+    modifyPB();
   });
 
   onRequest('users/gettrapcomponents.php', () => {
     savePbStats();
-    setPrestigeStats();
+    modifyPB();
   });
 };
 

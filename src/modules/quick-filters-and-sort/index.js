@@ -2,7 +2,12 @@ import { addStyles, makeElement, onEvent, onRequest } from '@utils';
 
 import styles from './styles.css';
 
-const addItemToQuickLinks = (link, appendTo, filter, sortDropdown) => {
+const addItemToQuickLinks = (link, appendTo, filter) => {
+  const existing = document.querySelector(`.campPage-trap-itemBrowser-favorite-item.quicklinks-filter.quicklinks-filter-${filter}-${link.id}`);
+  if (existing) {
+    return;
+  }
+
   const item = document.createElement('div');
   item.classList.add('campPage-trap-itemBrowser-favorite-item', 'quicklinks-filter', `quicklinks-filter-${filter}-${link.id}`);
 
@@ -24,23 +29,44 @@ const addItemToQuickLinks = (link, appendTo, filter, sortDropdown) => {
   item.append(itemAnchor);
   item.append(hiddenInput);
 
+  const filterInput = document.querySelector('.campPage-trap-itemBrowser-filter.powerType select');
+  const sortInput = document.querySelector('.campPage-trap-itemBrowser-filter.sortBy select');
+
   item.addEventListener('click', (e) => {
     e.preventDefault();
 
-    // If it's already active, remove it.
-    if (e.target.classList.contains('active')) {
-      // Update the filter to not filter by this.
-      hiddenInput.value = 'sortBy' === filter ? 'default' : 'no_tag_selected';
-      e.target.classList.remove('active');
+    const input = filter === 'sortBy' ? sortInput : filterInput;
+
+    let reset = false;
+    if (item.getAttribute('data-selected') === 'true') {
+      // reset the filter to the default
+      reset = true;
+      item.setAttribute('data-selected', false);
     } else {
-      // Otherwise, update the filter to filter by this.
-      hiddenInput.value = link.id;
-      e.target.classList.add('active');
+      // reset all other filters
+      const items = document.querySelectorAll('.quicklinks-filter[data-selected="true"]');
+      items.forEach((i) => {
+        i.setAttribute('data-selected', false);
+      });
+
+      item.setAttribute('data-selected', true);
     }
 
-    app.pages.CampPage.updateFilter(hiddenInput);
-    if (sortDropdown) {
-      sortDropdown.value = link.id;
+    let option;
+
+    if (reset) {
+      if (filter === 'sortBy') {
+        option = input.querySelector('option[value="default"]');
+      } else if (filter === 'powerType') {
+        option = input.querySelector('option[value="no_tag_selected"]');
+      }
+    } else {
+      option = input.querySelector(`option[value="${link.id}"]`);
+    }
+
+    if (option) {
+      option.selected = true;
+      input.dispatchEvent(new Event('change'));
     }
   });
 
@@ -48,13 +74,14 @@ const addItemToQuickLinks = (link, appendTo, filter, sortDropdown) => {
 };
 
 const addQuickLinksToTrap = () => {
-  const itemBrowser = document.querySelector('.campPage-trap-itemBrowser');
+  const itemBrowser = document.querySelector('.trapSelectorView__itemBrowserContainer');
   if (! itemBrowser) {
     return;
   }
 
   const type = itemBrowser.classList.value
-    .replace('campPage-trap-itemBrowser', '')
+    .replace('trapSelectorView__itemBrowserContainer', '')
+    .replace('trapSelectorView__outerBlock', '')
     .trim();
   if (! type) {
     return;
@@ -203,18 +230,14 @@ const addQuickLinksToTrap = () => {
   }
 };
 
-const main = () => {
-  addQuickLinksToTrap();
-};
-
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles(styles, 'quick-filters-and-sort');
 
-  onRequest('users/gettrapcomponents.php', main);
-  onEvent('camp_page_toggle_blueprint', main);
+  onRequest('users/gettrapcomponents.php', addQuickLinksToTrap);
+  onEvent('camp_page_toggle_blueprint', addQuickLinksToTrap);
 };
 
 export default {

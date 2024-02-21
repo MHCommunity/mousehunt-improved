@@ -1,4 +1,4 @@
-import { addStyles, doRequest, makeElement, onPageChange } from '@utils';
+import { addStyles, doRequest, makeElement, onEvent } from '@utils';
 
 import styles from './styles.css';
 
@@ -35,29 +35,20 @@ const getCrownType = (catches) => {
 
 /**
  * Add crowns to the TEM.
- *
- * @param {Array}  huntingStats The hunting stats.
- * @param {number} attempts     The number of attempts to retry.
  */
-const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
-  if (huntingStats.length === 0) {
-    const crowns = await doRequest('managers/ajax/mice/getstat.php', {
-      action: 'get_hunting_stats',
-    });
-    if (! (crowns?.hunting_stats && crowns?.hunting_stats.length > 0)) {
-      return;
-    }
-    huntingStats = crowns?.hunting_stats;
+const addCrownsToTEM = async () => {
+  const crowns = await doRequest('managers/ajax/mice/getstat.php', {
+    action: 'get_hunting_stats',
+  });
+
+  if (! (crowns?.hunting_stats && crowns?.hunting_stats.length > 0)) {
+    return;
   }
 
-  const temMice = document.querySelectorAll('.campPage-trap-trapEffectiveness-mouse');
-  if (! temMice || temMice.length === 0) {
-    if (attempts > 10) {
-      return;
-    }
-    attempts++;
+  huntingStats = crowns?.hunting_stats;
 
-    setTimeout(() => addCrownsToTEM(huntingStats, attempts), 250 * attempts);
+  const temMice = document.querySelectorAll('.campPage-trap-trapEffectiveness-mouse');
+  if (! temMice || ! temMice.length) {
     return;
   }
 
@@ -112,7 +103,7 @@ const addCrownsToTEM = async (huntingStats = [], attempts = 0) => {
 const init = async () => {
   addStyles(styles, 'tem-crowns');
 
-  onPageChange({ tem: { show: addCrownsToTEM } });
+  onEvent('camp_page_toggle_blueprint', addCrownsToTEM);
 };
 
 export default {

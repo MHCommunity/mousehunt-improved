@@ -45,7 +45,7 @@ const renderList = async (list) => {
     minluckList = makeElement('div', 'campPage-trap-trapEffectiveness');
     minluckList.id = 'mh-improved-cre';
 
-    const statsContainer = document.querySelector('.campPage-trap-statsContainer');
+    const statsContainer = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
     if (! statsContainer) {
       return;
     }

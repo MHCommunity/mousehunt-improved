@@ -135,3 +135,7 @@
 .mh-dark-mode .quicklinks-filter-sortBy-quantity a {
   filter: invert(1) contrast(0.5);
 }
+
+.trapSelectorView__browserStateParent--items[data-blueprint-type="skin"] .campPage-trap-itemBrowser-quickLinks {
+  display: none;
+}
