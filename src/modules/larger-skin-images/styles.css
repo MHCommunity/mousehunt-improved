@@ -1,0 +1,21 @@
+.skin .campPage-trap-itemBrowser-items {
+  top: 50px;
+}
+
+.skin .campPage-trap-itemBrowser-item-description.shortDescription,
+.skin .campPage-trap-itemBrowser-item-image {
+  display: none;
+}
+
+.skin .campPage-trap-itemBrowser-item-content .campPage-trap-itemBrowser-item-name {
+  margin-top: 11px;
+}
+
+.trapSelectorView__itemBrowserContainer.skin .campPage-trap-itemBrowser-tagGroup-name {
+  display: none;
+}
+
+.trapSelectorView__itemBrowserContainer.skin .campPage-trap-itemBrowser-items {
+  right: 5px;
+  left: 5px;
+}

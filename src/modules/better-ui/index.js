@@ -2,7 +2,6 @@ import { addStyles, getFlag, onNavigation } from '@utils';
 
 import friends from './friends';
 import hud from './hud';
-import skins from './skins';
 
 import profilePlusFixStyles from './profile-plus-fixes.css';
 
@@ -26,7 +25,6 @@ const init = async () => {
 
   friends();
   hud();
-  skins();
 
   if (! getFlag('no-better-ui-profile-plus', false)) {
     onNavigation(() => {
