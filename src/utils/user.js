@@ -310,7 +310,7 @@ const isUserTitleAtLeast = (title) => {
  * @return {string} The user's hash.
  */
 const getUserHash = async () => {
-  if (typeof user === 'undefined' || ! user.user_id) {
+  if (typeof user === 'undefined' || ! user?.user_id) {
     return '';
   }
 

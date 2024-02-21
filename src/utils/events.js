@@ -51,9 +51,6 @@ const onRequest = (url = null, callback = null, skipSuccess = false) => {
   }
 
   const req = XMLHttpRequest.prototype.open;
-  /**
-   * @ignore
-   */
   XMLHttpRequest.prototype.open = function () {
     this.addEventListener('load', function () {
       if (this.responseText) {
@@ -75,6 +72,7 @@ const onRequest = (url = null, callback = null, skipSuccess = false) => {
         });
       }
     });
+
     Reflect.apply(req, this, arguments);
   };
 

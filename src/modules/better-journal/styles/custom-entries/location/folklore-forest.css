@@ -21,7 +21,7 @@
 .journal .entry.folkloreForest-tableOfContents.wordCount::after {
   position: absolute;
   top: 10px;
-  left: 0px;
+  left: 0;
   width: 37px;
   height: 37px;
   color: #d9bb92;

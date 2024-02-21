@@ -1,5 +1,3 @@
-import { debuglog } from '@utils';
-
 import { birthdayGlobal, birthdayLocation } from './birthday';
 import { greatWinterHuntGlobal, greatWinterHuntLocation } from './great-winter-hunt';
 import { halloweenGlobal, halloweenLocation } from './halloween';
@@ -47,7 +45,6 @@ export default async (location) => {
   const date = new Date();
   const month = date.getMonth();
 
-  debuglog('event-locations', `Loading ${events[month].length} global events for month ${month}.`);
   events[month].forEach((event) => {
     event();
   });

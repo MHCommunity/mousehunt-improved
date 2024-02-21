@@ -111,7 +111,7 @@ const doLocationRefresh = async () => {
   // Close the popup.
   // Refresh the page.
 
-  sessionSet('doing-location-refresh', 'true');
+  sessionSet('doing-location-refresh', true);
 
   const locationProgress = [];
 
@@ -236,7 +236,7 @@ const doLocationRefresh = async () => {
     }
   }
 
-  sessionSet('doing-location-refresh', 'false');
+  sessionSet('doing-location-refresh', false);
 };
 
 const makeDashboardTab = () => {
@@ -261,7 +261,7 @@ const makeDashboardTab = () => {
       existing.replaceWith(refreshedContents);
     }
 
-    sessionSet('doing-location-refresh', 'false');
+    sessionSet('doing-location-refresh', false);
   });
 
   makeElement('span', '', 'Dashboard', menuTab);
@@ -453,7 +453,7 @@ const init = async () => {
   environments = await getData('environments');
 
   // Cache the quest data for our current location.
-  sessionSet('doing-location-refresh', 'false');
+  sessionSet('doing-location-refresh', false);
 
   cacheLocationData();
   onEvent('travel_complete', cacheLocationData);

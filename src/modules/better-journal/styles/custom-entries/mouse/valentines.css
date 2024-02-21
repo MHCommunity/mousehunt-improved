@@ -1,6 +1,6 @@
 .journal .content .entry.valentines_matchmaker {
   background-position: left;
-  animation: slide-background 240s ease-in-out infinite;
+  animation: mhui-slide-background 240s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -9,7 +9,7 @@
   }
 }
 
-@keyframes slide-background {
+@keyframes mhui-slide-background {
   0% {
     background-position: left;
   }

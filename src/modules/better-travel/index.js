@@ -488,8 +488,8 @@ const listenTabChange = () => {
 };
 
 const saveTravelLocation = () => {
-  const isLocationDashboardRefreshing = sessionGet('doing-location-refresh');
-  if (isLocationDashboardRefreshing === 'true') {
+  const isLocationDashboardRefreshing = sessionGet('doing-location-refresh', false);
+  if (isLocationDashboardRefreshing) {
     return;
   }
 

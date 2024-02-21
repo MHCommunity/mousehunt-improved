@@ -178,9 +178,9 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
 
 /* speed up horn transition and make it bigger and stuff */
 a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready {
-  will-change: transform;
   transition: all 0.2s 0.15s;
   transform-origin: left;
+  will-change: transform;
 }
 
 a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready:hover {

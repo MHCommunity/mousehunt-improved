@@ -1,7 +1,7 @@
 // Location HUD improvements.
 import {
   addStyles,
-  debug,
+  debuglog,
   getCurrentLocation,
   getSetting,
   onEvent,
@@ -112,7 +112,7 @@ const main = () => {
   const currentLocation = getCurrentLocation();
   const location = normalizeCurrentLocation(currentLocation);
 
-  debug(`Location: ${location}`);
+  debuglog('location-huds', `Location: ${location}`);
 
   if (getSetting('event-locations', true)) {
     eventLocations(currentLocation);
