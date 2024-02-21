@@ -47,7 +47,6 @@
 .entry.festiveSpiritLootBoost .journaltext a::after,
 .entry.golemUpgraded .journaltext a::after,
 .entry.workshopPartProduced .journaltext a::after,
-.entry.labyrinthSmall.minimalJournalImage.labyrinth-clue b::after,
 .entry.adventureBook-journal.goal .journaltext b::after {
   display: inline;
   content: ".";
