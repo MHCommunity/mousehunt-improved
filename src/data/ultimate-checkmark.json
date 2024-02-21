@@ -2,6 +2,9 @@
   {
     "id": "treasure_chests",
     "name": "Treasure Chests",
+    "type": "special",
+    "subtype": "treasure_chests",
+    "key": "chests",
     "items": [
       {
         "item_id": "1802",
@@ -905,6 +908,42 @@
         "name": "Rare Bountiful Beanstalk Treasure Chest",
         "thumbnail": "https://www.mousehuntgame.com/images/items/convertibles/69339eb720246c6bdb52c9ed69c61153.gif?cv=2",
         "thumbnail_gray": "https://www.mousehuntgame.com/images/items/collectibles/gray/fcabbb74823de7e0550767d7b19aab64.jpg?cv=2"
+      },
+      {
+        "item_id": 1784,
+        "type": "rare_undead_treasure_chest_convertible",
+        "name": "Rare Mousoleum Treasure Chest",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/convertibles/large/0fee52ee24185102c6a83d2a516d3e9c.png?cv=2"
+      },
+      {
+        "item_id": 1767,
+        "type": "rare_bounty_reward_f_convertible",
+        "name": "Rare Bounty Reward",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/convertibles/large/de13b50192b3779f0090297e585bbcf0.png?cv=2"
+      },
+      {
+        "item_id": 1745,
+        "type": "bounty_reward_f_convertible",
+        "name": "Bounty Reward",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/convertibles/large/22d0a380c41de2e75430b38ce988380c.png?cv=2"
+      },
+      {
+        "item_id": 3266,
+        "type": "empyrean_floating_loot_cache_convertible",
+        "name": "Empyrean Treasure Trove",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/convertibles/large/01b9064000b003e9bbf34d980a367c6d.png?cv=2"
+      },
+      {
+        "item_id": 3039,
+        "type": "heavy_floating_loot_cache_convertible",
+        "name": "High Altitude Treasure Trove",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/convertibles/large/aba8f0c2028abcb4da63ef78b1cb82ea.png?cv=2"
+      },
+      {
+        "item_id": 3040,
+        "type": "light_floating_loot_cache_convertible",
+        "name": "Low Altitude Treasure Trove",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png?cv=2"
       }
     ],
     "type": "special",
