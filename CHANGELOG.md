@@ -1,5 +1,73 @@
 # Changelog
 
+## Version 0.32.0
+
+### Added
+
+- Adds "Larger Skin Images" feature module
+- Adds "Journal styles" setting in Better Journal
+- Adds "Journal text replacements" setting in Better Journal
+- Adds "Show loot icons" setting in Better Journal
+- Adds "Show loot icons (minimal)" setting in Better Journal
+- Adds "Show loot as list" setting in Better Journal
+- Adds Codex category to Ultimate Checkmark
+- Added Rare Mousoleum Treasure Chest, Rare Bounty Reward, Bounty Reward, Empyrean Treasure Trove, High Altitude Treasure Trove, and Low Altitude Treasure Trove to Ultimate Checkmark treasure chests.
+- Adds custom styles for Labyrinth location entries in Better Journal
+- Adds subtle animation and background styles to Ultimate Charm entries in Better Journal
+- Adds "Hide Codices" feature module
+- Adds ability to hit Enter in Quick Send Supplies after filling in amount
+- Adds subtle background animation to Valentine's bonus mice catches in Better Journal
+- Adds "Use smaller images" setting in Better Marketplace
+- Adds sorting by location or Drop Rate for Scavenger maps in Better Maps
+- Adds Jetstream countdown to Floating Islands Location HUD
+
+### Changed
+
+- Updates Delayed Tooltips to be use a different method with less conflicts
+- Updates position and alignment of lgs-reminder element
+- Updates hiding of minluck button for trap image view
+- Updates max-height for Travel Menu in Better Travel
+- Updates Journal Theme Changer to use less requests
+- Updates travel settings key in Better Travel (will reset Travel Window settings)
+- Updates docs in GitHub
+- Updates position of word count entry in folklore-forest.css
+- Updates Image Upscaling & Transparency styles
+- Updates Favorite Setups button and image sizing
+- Updates background color of inventory bag item image in floating islands HUD
+- Updates module names and descriptions
+- Updates settings titles and descriptions
+- Updates settings styles
+- Updates Better Gifts buttons & styles
+- Updates vrift styles/sim link
+- Updates loading error message and makes it dismissable
+- Updates Location Dashboard refresh to only travel to locations in the dashboard
+- Updates LNY map height
+- Updates Lucky Golden Shield reminder to tick in tune with the horn countdown
+- Updates module settings to show/hide when enabling or disabling a module
+- Updates Relic Hunter hints
+- Updates Favorite setups component picker to have a 'Use currently equipped' button
+
+### Fixed
+
+- Fixes Better UI to work with new layout
+- Fixes Quick Filter and Sort to work with new layout
+- Fixes Favorite Setups to work with new layout
+- Fixes Prestige Base stats to work with new layout
+- Fixes Floating Islands Location HUD changes disappearing
+- Fixes Location HUDs not updating when actions are taken
+- Fixes Ultimate Checkmark showing duplicate categories
+- Fixes Journal replacements not always applying
+- Fixes animation issue in hover-profiles
+- Fixes issue with sentry sending user hashes
+- Fixes Custom Backgrounds and Inventory locking not applying on page change
+
+### Removed
+
+- Removes usage stats
+- Removes remote optional ultimate checkmark syncing
+- Removes `journal-icons`, `journal-icons-all`, and `journal-list` feature flags (moved to options)
+- Removes larger skin images from Better UI (moved to own module)
+
 ## Version 0.31.5
 
 - Moves new LGS Reminder style to an option
