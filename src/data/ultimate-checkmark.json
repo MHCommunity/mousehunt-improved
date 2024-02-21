@@ -1402,6 +1402,12 @@
         "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/9e93cfb618d3bfd87661d8ff8f099052.png?cv=2"
       },
       {
+        "item_id": 2896,
+        "type": "codex_of_valour_stat_item",
+        "name": "Codex of Valour",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/stats/large/876307601a3a29a53c2184ac7a89a0d3.png?cv=2"
+      },
+      {
         "item_id": 2888,
         "type": "codex_of_valor_bard_page_stat_item",
         "name": "Codex of Valour: Bard Page",
@@ -1449,6 +1455,21 @@
         "name": "Codex of Valour: Thievery Page",
         "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5acc2cc5a1594204bf91fda1b2e416cb.png?cv=2"
       },
+      {
+        "item_id": 3271,
+        "type": "empyrean_codex_stat_item",
+        "name": "Empyrean Codex",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5392f862aaed731800d8bee0c8094395.png?cv=2"
+      },
+      {
+        "item_id": 2335,
+        "type": "rift_luck_codex_stat_item",
+        "name": "Riftstalker Codex",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5aac08c099e23916f710c99f7817c89a.png?cv=2"
+      }
+    ]
+  },
+  {
     "id": "equipment",
     "name": "Equipment",
     "type": "special",
@@ -1478,12 +1499,6 @@
         "type": "iceberg_drill_level_four_stat_item",
         "name": "Diamond Ice Drill",
         "thumbnail": "https://www.mousehuntgame.com/images/items/stats/7ae345b6f2bde9a47e662b6a750d627c.gif?cv=2"
-      },
-      {
-        "item_id": 3271,
-        "type": "empyrean_codex_stat_item",
-        "name": "Empyrean Codex",
-        "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5392f862aaed731800d8bee0c8094395.png?cv=2"
       },
       {
         "item_id": 3255,
@@ -1544,12 +1559,6 @@
         "type": "rift_chronometer_stat_item",
         "name": "Rift Chronometer",
         "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/210796b9e766d0c2e3f5133446b3f874.png?cv=2"
-      },
-      {
-        "item_id": 2335,
-        "type": "rift_luck_codex_stat_item",
-        "name": "Riftstalker Codex",
-        "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5aac08c099e23916f710c99f7817c89a.png?cv=2"
       },
       {
         "item_id": 528,
@@ -1823,6 +1832,18 @@
         "type": "war_scrap_stat_item",
         "name": "War Scrap",
         "thumbnail": "https://www.mousehuntgame.com/images/items/stats/931a03134475b7df6350a2b059b5c8e7.gif?cv=2"
+      },
+      {
+        "item_id": 923,
+        "type": "ancient_relic_collectible",
+        "name": "Ancient Relic",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/collectibles/large/a6e804d0d9eeb22ff01660a144521ff1.png?cv=2"
+      },
+      {
+        "item_id": 3572,
+        "type": "golden_goose_egg_stat_item",
+        "name": "Golden Goose Egg",
+        "thumbnail": "https://www.mousehuntgame.com/images/items/stats/large/178d8b743ef536688412a1f9fa60523a.png?cv=2"
       }
     ]
   },
