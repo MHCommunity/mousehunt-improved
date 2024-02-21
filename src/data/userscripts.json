@@ -91,7 +91,7 @@
     "id": "no-share",
     "name": "No Share Buttons",
     "description": "Remove the \"Share\" buttons that prompt you to share on Facebook.",
-    "path": "src/modules/no-share/index.js",
+    "path": "src/modules/hide-share/index.js",
     "version": "1.1.1",
     "url": "https://greasyfork.org/en/scripts/452434-mousehunt-no-share-buttons"
   },
@@ -99,7 +99,7 @@
     "id": "no-sidebar",
     "name": "No Sidebar",
     "description": "",
-    "path": "src/modules/no-sidebar/index.js",
+    "path": "src/modules/hide-sidebar/index.js",
     "version": "1.3.0",
     "url": "https://greasyfork.org/en/scripts/449491-mousehunt-no-sidebar"
   },

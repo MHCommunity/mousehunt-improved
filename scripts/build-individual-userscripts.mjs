@@ -11,7 +11,9 @@ const main = async () => {
   ));
 
   for (let userscript of userscriptsToBuild) {
+    console.log(`Building userscript: ${userscript.id}`); // eslint-disable-line no-console
     userscript = {
+      id: userscript.id ?? '',
       name: userscript.name ?? '',
       description: userscript.description ?? ' ',
       icon: userscript.icon ?? 'https://brrad.com/mouse.png',
@@ -29,7 +31,7 @@ const main = async () => {
     const command = [
       'bun run build:userscript',
       '--path', `'"${userscript.path}"'`,
-      '--out', `'"userscripts/${userscript.id}.user.js"'`,
+      '--out', `'"${userscript.id}.user.js"'`,
       '--name', `'"${userscript.name}"'`,
       '--description', `'"${userscript.description}"'`,
       '--icon', `'"${userscript.icon}"'`,
