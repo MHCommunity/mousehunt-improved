@@ -1,0 +1,4 @@
+.trapSelectorView__activeCodexContainer,
+.trapSelectorView__activeCodexContainer--visible {
+  display: none;
+}
