@@ -945,14 +945,14 @@
         "name": "Low Altitude Treasure Trove",
         "thumbnail": "https://www.mousehuntgame.com/images/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png?cv=2"
       }
-    ],
-    "type": "special",
-    "subtype": "treasure_chests",
-    "key": "chests"
+    ]
   },
   {
     "id": "airships",
     "name": "Airships",
+    "type": "special",
+    "subtype": "cosmetics",
+    "key": "airships",
     "items": [
       {
         "item_id": "3166",
@@ -1386,14 +1386,14 @@
         "name": "Springtime Schooner Airship Balloon",
         "thumbnail": "https://www.mousehuntgame.com/images/items/stats/951f009629deb210f74ab3127ddfb2ab.gif?cv=2"
       }
-    ],
-    "type": "special",
-    "subtype": "cosmetics",
-    "key": "airships"
+    ]
   },
   {
-    "id": "equipment",
-    "name": "Equipment",
+    "id": "codex",
+    "name": "Codex",
+    "type": "special",
+    "subtype": "codex",
+    "key": "codex",
     "items": [
       {
         "item_id": 3418,
@@ -1449,6 +1449,12 @@
         "name": "Codex of Valour: Thievery Page",
         "thumbnail": "https://www.mousehuntgame.com/images/items/stats/transparent_thumb/5acc2cc5a1594204bf91fda1b2e416cb.png?cv=2"
       },
+    "id": "equipment",
+    "name": "Equipment",
+    "type": "special",
+    "subtype": "equipment",
+    "key": "equipment",
+    "items": [
       {
         "item_id": 2426,
         "type": "moussu_picchu_fealty_stat_item",
@@ -1551,14 +1557,14 @@
         "name": "Warpath Victory",
         "thumbnail": "https://www.mousehuntgame.com/images/items/stats/85fdfa73d10ab54dd0ff5262502a0ebc.gif?cv=2"
       }
-    ],
-    "type": "special",
-    "subtype": "equipment",
-    "key": "equipment"
+    ]
   },
   {
     "id": "currency",
     "name": "Currency",
+    "type": "special",
+    "subtype": "currency",
+    "key": "currency",
     "items": [
       {
         "item_id": 2837,
@@ -1818,14 +1824,14 @@
         "name": "War Scrap",
         "thumbnail": "https://www.mousehuntgame.com/images/items/stats/931a03134475b7df6350a2b059b5c8e7.gif?cv=2"
       }
-    ],
-    "type": "special",
-    "subtype": "currency",
-    "key": "currency"
+    ]
   },
   {
     "id": "plankrun",
     "name": "Plankrun Pages",
+    "type": "plankrun",
+    "subtype": "general",
+    "key": "plankrun",
     "items": [
       {
         "item_id": "1078",
@@ -1905,9 +1911,6 @@
         "name": "Plankrun's Journal Cover",
         "thumbnail": "https://www.mousehuntgame.com/images/items/torn_pages/bf51e70097f2a8a25d71bc714582a9bd.gif?cv=2"
       }
-    ],
-    "type": "plankrun",
-    "subtype": "general",
-    "key": "plankrun"
+    ]
   }
 ]
