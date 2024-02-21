@@ -15,7 +15,7 @@ export default async () => {
     },
     {
       id: 'better-journal-replacements',
-      title: 'Journal replacements',
+      title: 'Journal text replacements',
       default: true,
       description: '',
     },
