@@ -248,7 +248,7 @@ const hasMiniCRE = () => {
     return;
   }
 
-  const cre = document.querySelector('.min-luck-container[style="position: absolute; top: 7px; right: 7px;"]');
+  const cre = document.querySelector('.min-luck-button');
   if (! cre) {
     sessionSet('has-mini-cre', false);
     return false;
