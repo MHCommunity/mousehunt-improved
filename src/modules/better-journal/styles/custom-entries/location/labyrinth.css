@@ -3,3 +3,19 @@
   display: flex;
   align-items: center;
 }
+
+.journal .content .entry.ancient-stealth .journalbody {
+  margin-left: 85px;
+}
+
+.journal .content .entry.ancient-stealth .journaldate {
+  display: none;
+}
+
+.journal .entry.labyrinth-intersection {
+  background-color: #acc8dc;
+}
+
+.journal .entry.ancient-stealth {
+  padding: 1px 0;
+}
