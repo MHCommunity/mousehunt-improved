@@ -31,7 +31,7 @@ let onRequestHolder = null;
  * @param {boolean}  skipSuccess Skip the success check.
  */
 const onRequest = (url = null, callback = null, skipSuccess = false) => {
-  url = ! url || 'all' === url ? '*' : `managers/ajax/${url}`;
+  url = '*' === url ? '*' : `managers/ajax/${url}`;
 
   if (! callback) {
     return;
@@ -62,7 +62,7 @@ const onRequest = (url = null, callback = null, skipSuccess = false) => {
         }
 
         Object.keys(requestCallbacks).forEach((key) => {
-          if (key === '*' || key === 'all' || this.responseURL.includes(key)) {
+          if ('*' === key || this.responseURL.includes(key)) {
             requestCallbacks[key].forEach((item) => {
               if (item.callback && typeof item.callback === 'function' && (item.skipSuccess || response?.success)) {
                 item.callback(response);
