@@ -1,4 +1,60 @@
 .journal .content .ultimate_pop,
 .journal .content .ultimate_intact {
+  position: relative;
   background-color: #49eec2;
+  background-size: 60px;
+}
+
+.journal .content .ultimate_pop::before,
+.journal .content .ultimate_intact::before {
+  position: absolute;
+  top: 25px;
+  left: 10px;
+  width: 56px;
+  height: 56px;
+  content: "";
+  border: 2px solid #49eec2;
+}
+
+@keyframes mhui-uc-glow {
+  0% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.1);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+@keyframes mhui-uc-glow-sad {
+  0% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(0.8);
+  }
+
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.journal .content .ultimate_intact {
+  animation: mhui-uc-glow 0.8s ease-in-out 1;
+}
+
+.journal .content .ultimate_pop {
+  animation: mhui-uc-glow-sad 0.8s ease-in-out 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journal .content .ultimate_intact,
+  .journal .content .ultimate_pop {
+    animation: none;
+  }
 }
