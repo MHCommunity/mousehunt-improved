@@ -262,6 +262,11 @@ const makeContent = (id, name, items, completed) => {
     return;
   }
 
+  const exists = document.querySelector(`.hunterProfileItemsView-categoryContent[data-category="${id}"]`);
+  if (exists) {
+    return;
+  }
+
   const categoryDiv = makeElement('div', 'hunterProfileItemsView-categoryContent');
   if (completed) {
     categoryDiv.classList.add('collected');
