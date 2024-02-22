@@ -367,6 +367,8 @@ const hud = () => {
 
   onEvent('horn-countdown-tick', updateJetstreamTime);
   onDialogShow('floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace', onSkyMapShow);
+
+  onRequest('environment/floating_islands.php', run);
 };
 
 /**
