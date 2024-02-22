@@ -541,7 +541,7 @@ const isLocationFavorite = (type) => {
 };
 
 const saveLocationFavorites = (favorites) => {
-  getTravelSetting('favorites', favorites);
+  saveTravelSetting('favorites', favorites);
 };
 
 const addToLocationFavorites = (type) => {
