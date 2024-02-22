@@ -3,10 +3,12 @@ import humanizeDuration from 'humanize-duration';
 import {
   addHudStyles,
   getCurrentPage,
+  getFlag,
   getUserItems,
   makeElement,
   onDialogShow,
   onEvent,
+  onRequest,
   onTravel,
   showHornMessage
 } from '@utils';
@@ -345,6 +347,48 @@ const showJetstream = async () => {
   updateJetstreamTime();
 };
 
+const makeAirshipDraggable = () => {
+  const airship = document.querySelector('.floatingIslandsHUD.island .floatingIslandsHUD-airshipContainer');
+  if (! airship) {
+    return;
+  }
+
+  let isDragging = false;
+  let startX, startY, startTop, startLeft;
+
+  // Function to update the position of the airship
+  const moveAirship = (e) => {
+    if (! isDragging) {
+      return;
+    }
+    // Calculate the new position
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    // Update the position of the airship
+    airship.style.top = `${startTop + dy}px`;
+    airship.style.left = `${startLeft + dx}px`;
+  };
+
+  // Mouse down event to start dragging
+  airship.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+
+    isDragging = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    startTop = airship.offsetTop;
+    startLeft = airship.offsetLeft;
+
+    // When dragging starts, listen for mouse movement and release
+    document.addEventListener('mousemove', moveAirship);
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      // Remove the event listeners when dragging is finished
+      document.removeEventListener('mousemove', moveAirship);
+    }, { once: true });
+  });
+};
+
 const run = async () => {
   await showJetstream();
   await addEnemyClass();
@@ -377,4 +421,8 @@ const hud = () => {
 export default async () => {
   addHudStyles(styles);
   hud();
+
+  if (getFlag('fi-draggable-airship')) {
+    makeAirshipDraggable();
+  }
 };
