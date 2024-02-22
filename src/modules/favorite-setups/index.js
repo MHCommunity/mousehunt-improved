@@ -911,6 +911,10 @@ const showFavoriteSetups = () => {
 
 const replaceCloseBlueprintDrawer = () => {
   const closeButton = document.querySelector('.campPage-trap-blueprint-closeButton');
+  if (! closeButton) {
+    return;
+  }
+
   closeButton.addEventListener('click', () => {
     if (isFavoriteSetupsShowing()) {
       hideFavoriteSetups();
