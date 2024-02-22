@@ -20,6 +20,7 @@ const isValidDataFile = (file) => {
     'scoreboards',
     'environments',
     'upscaled-images',
+    'ultimate-checkmark',
   ]);
 
   return validDataFiles.has(file);

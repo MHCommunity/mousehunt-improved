@@ -1,6 +1,4 @@
-import { getSetting } from '@utils';
-
-import categories from '@data/ultimate-checkmark.json';
+import { getData, getSetting } from '@utils';
 
 /**
  * Add settings for the module.
@@ -9,6 +7,8 @@ import categories from '@data/ultimate-checkmark.json';
  */
 export default async () => {
   const options = [];
+
+  const categories = await getData('ultimate-checkmark');
 
   // sort the categories by name
   categories.sort((a, b) => {
