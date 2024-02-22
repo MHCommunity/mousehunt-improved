@@ -3,12 +3,12 @@ import {
   doRequest,
   getCurrentPage,
   getCurrentTab,
+  getData,
   getSetting,
   makeElement,
   onNavigation,
   sessionGet,
-  sessionSet,
-  getData
+  sessionSet
 } from '@utils';
 
 import settings from './settings';

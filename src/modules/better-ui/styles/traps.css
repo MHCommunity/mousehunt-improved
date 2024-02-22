@@ -520,8 +520,8 @@ input.trapSelectorView__codexListSearch {
 }
 
 .trapImageView-layer {
-  border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 #overlayPopup.LargerTrapView #jsDialogClose {
@@ -529,8 +529,8 @@ input.trapSelectorView__codexListSearch {
 }
 
 #overlayPopup.LargerTrapView .trapImageView-layerWrapper {
-  border-top-right-radius: 7px;
   border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
 }
 
 #overlayPopup.LargerTrapView .trapImageView {
