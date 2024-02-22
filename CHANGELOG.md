@@ -1,5 +1,27 @@
 # Changelog
 
+## Version 0.33.0
+
+### Added
+
+- Adds "SSDB Toothlet Counter" feature module
+- Adds "Printing Press Paper Counter" feature module
+- Adds `fi-draggable-airship` beta feature
+
+### Changed
+
+- Updates Better UI userscript styles to be toggleable with flags
+- Updates Floating Islands Location HUD to add a slight bob animation to pirate airships
+- Updates Better Journal loot list to also show convertibles as a list
+
+### Fixed
+
+- Fixes Custom CSS not applying
+- Fixes Custom Backgrounds not applying
+- Fixes Floating Islands Location HUD not applying when taking off from launchpad
+- Fixes Better Gifts gift order not applying
+- Fixes Better Travel location favorites not saving
+
 ## Version 0.32.0
 
 ### Added
