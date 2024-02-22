@@ -218,7 +218,7 @@ const init = async () => {
 
   // Time to load the modules.
   try {
-    loadModules();
+    await loadModules();
   } catch (error) {
     debug('Error loading MouseHunt Improved', error);
     showLoadingError(error);
@@ -236,12 +236,13 @@ const init = async () => {
     );
 
     // Fire the events to signal that the script has been loaded.
-    doEvent('mh-improved-init');
     doEvent('mh-improved-loaded', {
       version: mhImprovedVersion,
       modules: getGlobal('modules'),
     });
   }
+
+  doEvent('mh-improved-init');
 };
 
 init(); // eslint-disable-line unicorn/prefer-top-level-await
