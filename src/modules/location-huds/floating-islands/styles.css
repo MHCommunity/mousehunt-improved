@@ -388,3 +388,9 @@ a.floatingIslandsHUD-islandLoot:focus {
 .floatingIslandPaperDoll-mod.sky_pirates.level_1 {
   animation: dirigibleFloat 5s infinite;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .floatingIslandPaperDoll-mod {
+    animation: none;
+  }
+}
