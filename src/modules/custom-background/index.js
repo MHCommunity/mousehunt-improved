@@ -19,7 +19,16 @@ const addBodyClass = (preview = false) => {
 
   // remove the old class
   if (addedClass) {
-    body.classList.remove(addedClass);
+    // remove all the old classes
+    if (Array.isArray(addedClass)) {
+      addedClass.forEach((cls) => {
+        body.classList.remove(cls);
+      });
+    } else {
+      body.classList.remove(addedClass);
+    }
+
+    addedClass = '';
   }
 
   // remove the old injected style
@@ -34,8 +43,8 @@ const addBodyClass = (preview = false) => {
 
   const background = `mh-improved-bg-${setting}`;
 
-  body.classList.add(background);
-  addedClass = setting;
+  body.classList.add(background, setting);
+  addedClass = [background, setting];
 
   if (setting.startsWith('background-color-')) {
     body.classList.remove(setting);
