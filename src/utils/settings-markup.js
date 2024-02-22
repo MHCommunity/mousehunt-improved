@@ -1,5 +1,5 @@
 import { getCurrentPage, getCurrentTab } from './page';
-import { getSettingDirect, saveSettingDirect } from './settings';
+import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
 import { addStylesDirect } from './styles';
 import { doEvent } from './event-registry';
 import { makeElement } from './elements';
@@ -427,7 +427,7 @@ const makeSettingTextArea = ({ key, tab, defaultValue }) => {
   const settingRowInput = makeElement('div', ['settingRow-action-inputContainer', 'textarea']);
 
   const settingRowInputText = makeElement('textarea', 'inputBox');
-  settingRowInputText.value = getSettingDirect(key, defaultValue, tab);
+  settingRowInputText.value = getSetting(key, defaultValue);
 
   const inputSaveButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'inputSaveButton']);
   makeElement('span', '', 'Save', inputSaveButton);
