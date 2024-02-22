@@ -1,20 +1,10 @@
 import {
-  addStyles,
   getCurrentPage,
   getUserItems,
   makeElement,
   onRequest,
   onTurn
 } from '@utils';
-
-/**
- * Check if the user has the SSDB equipped.
- *
- * @return {boolean} True if the user has the SSDB equipped.
- */
-const hasSsdbEquipped = () => {
-  return (3023 === Number.parseInt(user.base_item_id, 10));
-};
 
 /**
  * Main function.
@@ -24,12 +14,12 @@ const main = async () => {
     return;
   }
 
-  if (! hasSsdbEquipped()) {
-    const existingCounter = document.querySelector('.mhui-ssdb-teeth-counter');
-    if (existingCounter) {
-      existingCounter.remove();
-    }
+  const existingCounter = document.querySelector('.mhui-ssdb-teeth-counter');
+  if (existingCounter) {
+    existingCounter.remove();
+  }
 
+  if (3023 !== Number.parseInt(user.base_item_id, 10)) {
     return;
   }
 
@@ -41,12 +31,12 @@ const main = async () => {
     counter.textContent = teeth;
   }
 
-  const trapContainer = document.querySelector('.campPage-trap-armedItem.base .campPage-trap-armedItem-image');
+  const trapContainer = document.querySelector('.trapSelectorView__armedItem[data-item-classification="base"] .trapSelectorView__armedItemImage');
   if (! trapContainer) {
     return;
   }
 
-  const newCounter = makeElement('div', ['mhui-ssdb-teeth-counter', 'quantity']);
+  const newCounter = makeElement('div', ['mhui-ssdb-teeth-counter', 'trapSelectorView__armedItemQuantity']);
   makeElement('span', 'mh-ui-ssdb-teeth-counter-text', teeth.toLocaleString(), newCounter);
 
   trapContainer.append(newCounter);
@@ -55,13 +45,17 @@ const main = async () => {
 /**
  * Initialize the module.
  */
-export default async () => {
-  addStyles(`.mhui-ssdb-teeth-counter {
-    right: 1px;
-    bottom: -8px;
-  }`, 'ssdb-teeth');
-
+const init = async () => {
   main();
   onRequest('users/changetrap.php', main);
   onTurn(main, 150);
+};
+
+export default {
+  id: 'ssdb-teeth-counter',
+  name: 'SSDB Teeth Counter',
+  type: 'feature',
+  default: true,
+  description: 'Shows the number of toothlets you have when SSDB is equipped.',
+  load: init,
 };

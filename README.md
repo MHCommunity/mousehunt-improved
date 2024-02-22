@@ -49,8 +49,10 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Metric Units](docs/metric-units.md)**: Convert all game units to metric.
 - **[Paste Hunter ID](docs/paste-hunter-id.md)**: Just hit paste while on any page to jump directly to a hunter's profile.
 - **[Prestige Base Stats](docs/prestige-base-stats.md)**: Shows the correct stats for the Prestige Base in the base selector.
+- **[Printing Press Paper Counter](docs/printing-press-paper-counter.md)**: Shows the number of Prolific Printing Papers you have when Naughty List Printing Press Base is equipped.
 - **[Quick Filters and Sort](docs/quick-filters-and-sort.md)**: One-click filters and sorting for traps, bases, and charms.
 - **[Quick Send Supplies](docs/quick-send-supplies.md)**: Quickly pick and send supplies directly from the HUD.
+- **[SSDB Toothlet Counter](docs/ssdb-toothlet-counter.md)**: Shows the number of toothlets you have when SSDB is equipped.
 - **[Taller Windows](docs/taller-windows.md)**: Increase the height of various windows for better readability.
 - **[TEM Crowns](docs/tem-crowns.md)**: Easily see your mouse crowns and number of catches in the Trap Effectiveness view.
 - **[Ultimate Checkmark](docs/ultimate-checkmark.md)**: Adds more things to be collected on the items view of your Hunter profile.
