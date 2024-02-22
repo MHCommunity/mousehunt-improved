@@ -7,13 +7,14 @@ import {
   makeElement,
   onNavigation,
   sessionGet,
-  sessionSet
+  sessionSet,
+  getData
 } from '@utils';
-
-import categories from '@data/ultimate-checkmark.json';
 
 import settings from './settings';
 import styles from './styles.css';
+
+let categories;
 
 /**
  * Get the items for a category.
@@ -344,6 +345,10 @@ const isOwnProfile = () => {
  * Run the module.
  */
 const run = async () => {
+  if (! categories) {
+    categories = await getData('ultimate-checkmark');
+  }
+
   if (! ('hunterprofile' === getCurrentPage() && 'items' === getCurrentTab() && isOwnProfile())) {
     return;
   }
