@@ -14,7 +14,7 @@
     "build:extension": "concurrently \"bun:build:extension:*\"",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
     "build:extension:firefox": "node scripts/build-extension.mjs firefox",
-    "build:userscript": "node scripts/build-userscript.mjs",
+    "build:userscript": "node scripts/build-main-userscript.mjs",
     "build:userscript:all": "node scripts/build-individual-userscripts.mjs",
     "clean": "del-cli dist",
     "lint:css:fix": "stylelint **/**/*.css --fix",
