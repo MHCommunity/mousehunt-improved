@@ -7,10 +7,10 @@ import {
   debug,
   debugplain,
   doEvent,
+  getAnonymousUserHash,
   getFlag,
   getGlobal,
   getSetting,
-  getUserHash,
   isApp,
   isUnsupportedFile,
   isiFrame,
@@ -19,40 +19,6 @@ import {
 
 import * as imported from './modules/*/index.js'; // eslint-disable-line import/no-unresolved
 const modules = imported;
-
-/**
- * Initialize Sentry.
- */
-const initSentry = async () => {
-  Sentry.init({
-    dsn: 'https://a677b0fe4d2fbc3a7db7410353d91f39@o4506582061875200.ingest.sentry.io/4506781071835136',
-    maxBreadcrumbs: 50,
-    debug: ! getFlag('debug'),
-    release: `mousehunt-improved@${mhImprovedVersion}`,
-    environment: mhImprovedPlatform,
-    sendClientReports: false,
-    beforeSend: async (event) => {
-      if (event?.exception?.values?.[0]?.stacktrace?.frames?.length > 0) {
-        for (const frame of event.exception.values[0].stacktrace.frames) {
-          if (frame.filename.includes('/nicobnljejcjcbnhgcjhhhbnadkiafca/') || frame.filename.includes('73164570-6676-4291-809b-7b5c9cf6e626')) {
-            return event;
-          }
-        }
-      }
-
-      return null; // Drop events not from the extension
-    },
-    initialScope: {
-      tags: {
-        platform: mhImprovedPlatform,
-        version: mhImprovedVersion,
-      },
-      user: {
-        id: await getUserHash()
-      },
-    },
-  });
-};
 
 /**
  * Load all the modules.
@@ -165,6 +131,7 @@ const loadModules = async () => {
         } catch (error) {
           // If the module fails to load, log the error.
           debug(`Error loading "${module.id}"`, error);
+          throw error;
         }
       }
     }
@@ -174,7 +141,15 @@ const loadModules = async () => {
   }
 
   // Wait for all modules to load.
-  await Promise.all(load);
+  try {
+    await Promise.all(load);
+  } catch (error) {
+    if (getSetting('error-reporting', true)) {
+      Sentry.captureException(error);
+    }
+
+    throw error;
+  }
 
   // Add the loaded modules to the global scope.
   addToGlobal('modules', loadedModules);
@@ -211,18 +186,30 @@ const init = async () => {
     return;
   }
 
-  // Initialize Sentry if error reporting is enabled.
   if (getSetting('error-reporting', true)) {
-    initSentry();
+    Sentry.init({
+      dsn: 'https://a677b0fe4d2fbc3a7db7410353d91f39@o4506582061875200.ingest.sentry.io/4506781071835136',
+      maxBreadcrumbs: 50,
+      debug: ! getFlag('debug'),
+      release: `mousehunt-improved@${mhImprovedVersion}`,
+      environment: mhImprovedPlatform,
+      initialScope: {
+        tags: {
+          platform: mhImprovedPlatform,
+          version: mhImprovedVersion,
+        },
+        user: {
+          id: await getAnonymousUserHash()
+        },
+      },
+    });
   }
 
   // Time to load the modules.
   try {
     await loadModules();
   } catch (error) {
-    debug('Error loading MouseHunt Improved', error);
     showLoadingError(error);
-    Sentry.captureException(error);
   } finally {
     // Add the version and loaded flag to the global scope.
     addToGlobal('version', mhImprovedVersion);
