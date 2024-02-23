@@ -37,8 +37,9 @@
   background-color: #f6f3eb;
 }
 
+.mh-dark-mode .pageFrameView .campPage-trap-itemBrowser-favorites,
 .mh-dark-mode .campPage-trap-itemBrowser-quickLinks {
-  background-color: #242424;
+  background-color: #424242;
 }
 
 .campPage-trap-itemBrowser-quickLinks-power {
@@ -50,7 +51,7 @@
   left: 0;
   padding: 5px;
   margin-top: 10px;
-  color: var(--mhdm-brown, #96704b);
+  color: #96704b;
   text-align: center;
   transform: rotate(-90deg);
 }
@@ -133,7 +134,7 @@
 
 .mh-dark-mode .quicklinks-filter-sortBy-name a,
 .mh-dark-mode .quicklinks-filter-sortBy-quantity a {
-  filter: invert(1) contrast(0.5);
+  background-color: #f2f2f2;
 }
 
 .trapSelectorView__browserStateParent--items[data-blueprint-type="skin"] .campPage-trap-itemBrowser-quickLinks {

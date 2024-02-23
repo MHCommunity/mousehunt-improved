@@ -315,6 +315,7 @@ ul.minluck-list {
   border-bottom: 1px solid #ccc;
 }
 
+.mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-padding,
 .mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-padding {
   background-color: #fff;
 }

@@ -316,6 +316,9 @@
   align-items: center;
   padding-left: 5px;
   border: none !important; /* profile+ */
+.mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group-header-subtitle {
+  color: #787;
+}
 }
 
 .mouseCrownsView-group .mouseCrownsView-group-mouse-padding {

@@ -6,27 +6,16 @@
   color: #000;
 }
 
-.mh-dark-mode .mousehuntActionButton {
-  box-shadow: 1px 1px 1px #535151;
-}
-
-.mh-dark-mode .journal .relicHunter_complete,
-.mh-dark-mode .journal .relicHunter_start,
-.mh-dark-mode .journal .content .catchsuccessloot {
-  color: #fff !important;
-  background-color: #2e2e2e;
-}
-
 .mh-dark-mode .journal a {
-  color: #009adf;
+  color: #0174a7;
 }
 
-.entry.short.supplytransferitem {
+.mh-dark-mode .entry.short.supplytransferitem {
   background: url(https://i.mouse.rip/upscaled/item-add.png) no-repeat 10px center;
-  background-color: var(--mhdm-dark7);
+  background-color: #a0a0a0;
 }
 
-.entry.short.supplytransferitem a {
+.mh-dark-mode .entry.short.supplytransferitem a {
   color: #0c5271;
 }
 
@@ -118,7 +107,7 @@
   background-color: #424140;
 }
 
-.marketplaceView-listing-progressBar span {
+.mh-dark-mode .marketplaceView-listing-progressBar span {
   background-color: #956ab4;
 }
 
@@ -144,4 +133,92 @@
 
 .mh-dark-mode .pageFrameView .mousehuntHeaderView .menuItem.dropdown:hover .arrow {
   border-bottom-color: #666;
+}
+
+.mh-dark-mode .trapSelectorView__trapStatSummaryContainer {
+  background: #333;
+}
+
+.mh-dark-mode .pageFrameView .campPage-trap-itemBrowser-armed-item-content .campPage-trap-itemBrowser-item-disarmButton {
+  color: #000;
+}
+
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .trapImageView {
+  background: #000 !important;
+  border: none;
+}
+
+.mh-dark-mode .mh-ui-goals-sidebar-toggle {
+  filter: invert(1);
+}
+
+.mh-dark-mode .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding {
+  color: #000;
+}
+
+.mh-dark-mode .mousehuntHeaderView .dropdownContent a span,
+.mh-dark-mode .pageFrameView .giftSelectorView-friend > .giftSelectorView-friend-padding {
+  color: #fff;
+}
+
+.mh-dark-mode .regionName {
+  background-color: #1c1c1c;
+  border-color: #000;
+}
+
+.mh-dark-mode .regionWrapper {
+  border-color: #0c0c0c;
+}
+
+.mh-dark-mode .locationWrapper {
+  background-color: #2e2e2e;
+}
+
+.mh-dark-mode .locationWrapper:nth-child(2n) {
+  background-color: #242424;
+}
+
+.mh-dark-mode .dashboardWrapper {
+  border-color: #0c0c0c;
+}
+
+.mh-dark-mode .scoreboardRelativeRankingTableView-table,
+.mh-dark-mode .mousehuntHeaderView .dropdownContent {
+  color: #fff;
+  background-color: #252525;
+  border-color: #666;
+  border-radius: 0;
+}
+
+.mh-dark-mode .mousehuntHeaderView .menuItem.sidebar .dropdownContent a.pageSidebarView-user-logout,
+.mh-dark-mode .mousehuntHeaderView .menuItem.sidebar .dropdownContent .pageSidebarView-user a:nth-child(2),
+.mh-dark-mode .mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a,
+.mh-dark-mode .mousehuntHeaderView .dropdownContent a {
+  color: #009adf;
+}
+
+.mh-dark-mode .mousehuntHeaderView .dropdownContent a {
+  border-color: #666;
+}
+
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageHunterProfile .trapImageView {
+  background: none;
+  border: none;
+}
+
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp {
+  box-shadow: none;
+}
+
+.mh-dark-mode .trapSelectorView__codexBrowser .loading,
+.mh-dark-mode .campPage-trap-itemBrowser-empty-container {
+  color: #fff;
+  background-color: #424242;
+  border-color: #5c5c5c;
+}
+
+/* maybe ?? */
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .journal::before,
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageJournal .journal::before {
+  background: none;
 }

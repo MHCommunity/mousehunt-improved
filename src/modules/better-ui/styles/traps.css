@@ -27,6 +27,8 @@
 
 .mh-dark-mode .campPage-trap-baitName,
 .mh-dark-mode .campPage-trap-baitQuantity {
+  right: 0;
+  bottom: 0;
   color: #ffe6d0;
   text-shadow:
     0 0 1px #ae9b6d,
@@ -52,6 +54,12 @@
   box-shadow: -1px -1px 1px #d3cecb inset;
 }
 
+.mh-dark-mode .trapSelectorView__armedItemQuantity span {
+  color: #ffe6d0;
+  text-shadow: none;
+  background-color: #333;
+}
+
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image {
   width: 60px;
   margin-right: 0;
@@ -63,7 +71,19 @@
 .mh-dark-mode .campPage-trap-baitQuantity,
 .mh-dark-mode .campPage-trap-armedItem .quantity span {
   color: #ffe6d0;
-  background-color: hsl(0deg 0% 37.11% / 70%);
+  background-color: #333;
+}
+
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-trapEffectiveness {
+  background: #424242;
+  border: 1px solid #888;
+  box-shadow: 1px 1px 1px #535151;
+}
+
+.mh-dark-mode .campPage-trap-trapStat .value {
+  color: #fff;
+  background-color: #333;
+  border-color: #5c5c5c;
 }
 
 .campPage-trap-armedItem .quantity span {
@@ -210,6 +230,11 @@ span.campPage-trap-armedItem-skin-description-content br {
   border: 1px solid #9c938e;
 }
 
+.mh-dark-mode .campPage-trap-trapEffectivenessBar {
+  background-color: #424242;
+  border-color: #5c5c5c;
+}
+
 .campPage-trap-trapEffectivenessBar.easy::after,
 .campPage-trap-trapEffectivenessBar.effortless::after,
 .campPage-trap-trapEffectivenessBar.strong::after,
@@ -279,7 +304,7 @@ span.campPage-trap-armedItem-skin-description-content br {
 }
 
 .campPage-trap-trapStat.power .value b {
-  line-height: 15px;
+  line-height: 17px;
 }
 
 .itembrowser-skin-image-wrapper {
@@ -424,6 +449,14 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
   box-shadow: -1px 1px 3px #d3cecb inset;
 }
 
+.mh-dark-mode .trapSelectorView__armedItemBorder,
+.mh-dark-mode .trapSelectorView__weaponSkinGroup button,
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait {
+  border: 1px solid #5c5c5c;
+  border-radius: 5px 5px 4px 4px;
+  box-shadow: -1px 1px 3px #515151 inset;
+}
+
 .trapSelectorView__weaponSkinGroup {
   padding: 0;
   margin: 0;
@@ -445,16 +478,26 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
   box-shadow: none;
 }
 
-.trapSelectorView__trapStatSummary {
+.mh-dark-mode .trapSelectorView__trapStatSummaryContainer {
+  background: #333;
+  border-color: #fff;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.trapSelectorView__trapStatSummary,
+.trapSelectorView__outerBlock {
   border: 1px solid #d3cecb;
   border-radius: 4px;
   box-shadow: -1px 1px 3px #d3cecb inset;
 }
 
-.trapSelectorView__outerBlock {
-  border: 1px solid #d3cecb;
-  border-radius: 4px;
-  box-shadow: -1px 1px 3px #d3cecb inset;
+.mh-dark-mode .trapSelectorView__trapStatSummary,
+.mh-dark-mode .trapSelectorView__outerBlock,
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-trapEffectiveness {
+  background: #424242;
+  border: 1px solid #888;
+  box-shadow: 1px 1px 1px #535151;
 }
 
 .trapSelectorView__activeCodexList.trapSelectorView__innerBlock {
@@ -500,6 +543,10 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
   filter: none;
 }
 
+.mh-dark-mode .trapSelectorView__activeCodexContainer:hover {
+  background-color: #494949;
+}
+
 .trapSelectorView__armedItem--empty .trapSelectorView__armedItemImage {
   background: transparent;
   box-shadow: none;
@@ -519,7 +566,7 @@ input.trapSelectorView__codexListSearch {
   box-shadow: none;
 }
 
-.trapImageView-layer {
+.PageCamp .trapImageView-layer {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
@@ -535,4 +582,31 @@ input.trapSelectorView__codexListSearch {
 
 #overlayPopup.LargerTrapView .trapImageView {
   top: 1px;
+}
+
+.mh-dark-mode .trapSelectorView__trapStatSummary,
+.mh-dark-mode .trapSelectorView__outerBlock,
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-trapEffectiveness,
+.mh-dark-mode .trapSelectorView__armedItemBorder,
+.mh-dark-mode .trapSelectorView__weaponSkinGroup button,
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait {
+  border: 1px solid #5c5c5c;
+  border-radius: 5px 5px 4px 4px;
+  box-shadow: -1px 1px 3px #515151 inset;
+}
+
+.mh-dark-mode .trapSelectorView__armedItemQuantity span,
+.mh-dark-mode .campPage-trap-baitName,
+.mh-dark-mode .campPage-trap-baitQuantity {
+  border-color: #5a5a5a;
+  box-shadow: -1px -1px 1px #5c5c5c inset;
+}
+
+.mh-dark-mode .mh-improved-favorite-setups-button-label {
+  color: #e0d3b3;
+}
+
+.mh-dark-mode .campPage-trap-trapEffectivenessBar {
+  background-color: #424242;
+  border-color: #5c5c5c;
 }

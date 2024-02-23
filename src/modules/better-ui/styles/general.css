@@ -434,3 +434,7 @@ input.itemView-action-convert-quantity {
     animation: none;
   }
 }
+
+.mousehuntHeaderView-gameTabs {
+  border-bottom: 1px solid #ccc;
+}

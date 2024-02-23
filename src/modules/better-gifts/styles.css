@@ -434,3 +434,16 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
   border-radius: 4px;
   box-shadow: none;
 }
+
+.mh-dark-mode #giftSelectorView-inbox {
+  border-color: #424242;
+}
+
+.mh-dark-mode .giftSelectorView-inboxGiftOfTheDay {
+  border-color: #424242;
+}
+
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .mh-improved-favorite-setups-button:hover,
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer:hover {
+  background-color: #494949;
+}
