@@ -3,18 +3,21 @@
     "id": "winter_hunt_grove",
     "name": "Cinnamon Hill",
     "image": "https://www.mousehuntgame.com/images/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg?cv=2",
-    "region": "events"
+    "region": "events",
+    "event": "gwh"
   },
   {
     "id": "winter_hunt_workshop",
     "name": "Golem Workshop",
     "image": "https://www.mousehuntgame.com/images/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg?cv=2",
-    "region": "events"
+    "region": "events",
+    "event": "gwh"
   },
   {
     "id": "winter_hunt_fortress",
     "name": "Ice Fortress",
     "image": "https://www.mousehuntgame.com/images/environments/15d8d9d837b22b31707d06f412b78e0d.jpg?cv=2",
-    "region": "events"
+    "region": "events",
+    "event": "gwh"
   }
 ]
