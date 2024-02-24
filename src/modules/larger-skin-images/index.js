@@ -1,5 +1,6 @@
 import {
   addStyles,
+  cacheSet,
   makeElement,
   onEvent,
   onRequest,
@@ -64,11 +65,11 @@ const addSkinImages = async () => {
 
 const updateSkinCache = async (data) => {
   skinCache = data;
-  sessionSet('mhui-skin-cache', data);
+  cacheSet('skin-cache', data);
 };
 
 const getSkinCache = async () => {
-  const cache = sessionGet('mhui-skin-cache', null);
+  const cache = await cacheGet('skin-cache');
   if (cache) {
     skinCache = cache;
   }

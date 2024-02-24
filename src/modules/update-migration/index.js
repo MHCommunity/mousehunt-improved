@@ -1,7 +1,7 @@
 import { clearCaches, debug, getSetting, saveSetting } from '@utils';
 
-import cleanupSettings from './settings-cleanup';
-import migrateSettings from './settings-migrate';
+import { cleanupCacheArSettings, cleanupSettings, removeOldEventFavoriteLocations } from './settings-cleanup';
+import { migrateJournalChangerDate, migrateQuestsCache, migrateSettings, migrateWisdomStat } from './settings-migrate';
 
 /**
  * Check if the version is new.
@@ -40,15 +40,19 @@ const cleanOnUpdate = (previousVersion) => {
     },
     {
       from: 'mh-improved-better-travel', // Updated in v0.28.0.
-      to: 'better-travel',
+      to: 'better-travel-settings',
     },
   ]);
 
+  migrateQuestsCache();
+  migrateWisdomStat();
+  migrateJournalChangerDate();
+
+  cleanupCacheArSettings();
+
+  removeOldEventFavoriteLocations();
+
   cleanupSettings([
-    'mh-improved-cache-ar',
-    'mh-improved-cached-ar-v0.21.0',
-    'mh-improved-cached-ar-v0.24.1',
-    'mh-improved-cached-ar-v0.25.2', // Versions before we saved the version in the settings.
     `mh-improved-cached-ar-v${previousVersion}`,
     'mh-improved-update-notifications', // Updated in v0.28.0.
   ]);

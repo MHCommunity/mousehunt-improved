@@ -1,5 +1,7 @@
 import {
   addStyles,
+  cacheGet,
+  cacheSet,
   createPopup,
   debug,
   isUserTitleAtLeast,
@@ -38,51 +40,50 @@ import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
 import getZokorText from './location/ancient-city';
 
 const cacheLocationData = async () => {
-  return new Promise((resolve) => {
-    if (! user.environment_type || ! user.quests) {
-      resolve();
-      return;
+  if (! user.environment_type || ! user.quests) {
+    return;
+  }
+
+  // For some environments, we need to build the data from the quests.
+  if (user.environment_type === 'desert_warpath') {
+    const fwQuestData = setFieryWarpathData();
+    if (fwQuestData) {
+      user.quests.QuestFieryWarpath = fwQuestData;
     }
-
-    // For some environments, we need to build the data from the quests.
-    if (user.environment_type === 'desert_warpath') {
-      const fwQuestData = setFieryWarpathData();
-      if (fwQuestData) {
-        user.quests.QuestFieryWarpath = fwQuestData;
-      }
-    } else if (user.environment_type === 'zugzwang_tower') {
-      const ztQuestData = setZugzwangTowerData();
-      if (ztQuestData) {
-        user.quests.QuestZugzwangTower = ztQuestData;
-      }
-    } else if (user.environment_type === 'seasonal_garden') {
-      const sgQuestData = setSeasonalGardenData();
-      if (sgQuestData) {
-        user.quests.QuestSeasonalGarden = sgQuestData;
-      }
+  } else if (user.environment_type === 'zugzwang_tower') {
+    const ztQuestData = setZugzwangTowerData();
+    if (ztQuestData) {
+      user.quests.QuestZugzwangTower = ztQuestData;
     }
-
-    // Get the current cached quests.
-    const questsCached = JSON.parse(localStorage.getItem('mh-improved-cache-quests')) || {};
-
-    // Combine the cached quests with the current quests.
-    const questsCombined = Object.assign({}, questsCached, user.quests);
-
-    if (user.environment_type === 'labyrinth') {
-      questsCombined.QuestAncientCity = {};
-    } else if (user.environment_type === 'ancient_city') {
-      questsCombined.QuestLabyrinth = {};
-    } else if (user.environment_type === 'zugzwang_tower') {
-      questsCombined.QuestSeasonalGarden = {};
-    } else if (user.environment_type === 'seasonal_garden') {
-      questsCombined.QuestZugzwangTower = {};
+  } else if (user.environment_type === 'seasonal_garden') {
+    const sgQuestData = setSeasonalGardenData();
+    if (sgQuestData) {
+      user.quests.QuestSeasonalGarden = sgQuestData;
     }
+  }
 
-    // Save the combined data to localStorage.
-    localStorage.setItem('mh-improved-cache-quests', JSON.stringify(questsCombined));
+  // Get the current cached quests.
+  const questsCached = await cacheGet('quests', {});
 
-    resolve();
-  });
+  // Combine the cached quests with the current quests.
+  const questsCombined = Object.assign({}, questsCached, user.quests);
+
+  if (user.environment_type === 'labyrinth') {
+    questsCombined.QuestAncientCity = {};
+  } else if (user.environment_type === 'ancient_city') {
+    questsCombined.QuestLabyrinth = {};
+  } else if (user.environment_type === 'zugzwang_tower') {
+    questsCombined.QuestSeasonalGarden = {};
+  } else if (user.environment_type === 'seasonal_garden') {
+    questsCombined.QuestZugzwangTower = {};
+  }
+
+  // Save the combined data to localStorage.
+  try {
+    cacheSet('quests', questsCombined);
+  } catch (error) {
+    debug('Error saving location data to localStorage:', error);
+  }
 };
 
 const waitForTravel = async (environment) => {
@@ -226,7 +227,7 @@ const doLocationRefresh = async () => {
 
     const existing = document.querySelector('.dashboardContents');
     if (existing) {
-      const refreshedContents = getDashboardContents();
+      const refreshedContents = await getDashboardContents();
       existing.replaceWith(refreshedContents);
     }
 
@@ -252,12 +253,12 @@ const makeDashboardTab = () => {
   menuTab.classList.add('dashboard');
 
   // Register click event listener.
-  menuTab.addEventListener('click', () => {
+  menuTab.addEventListener('click', async () => {
     menuTab.classList.toggle('expanded');
 
     const existing = document.querySelector('.dashboardContents');
     if (existing) {
-      const refreshedContents = getDashboardContents();
+      const refreshedContents = await getDashboardContents();
       existing.replaceWith(refreshedContents);
     }
 
@@ -371,8 +372,8 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
   appendTo.append(locationWrapper);
 };
 
-const getDashboardContents = () => {
-  const quests = JSON.parse(localStorage.getItem('mh-improved-cache-quests')) || {};
+const getDashboardContents = async () => {
+  const quests = await cacheGet('quests', {});
 
   const contentsWrapper = document.createElement('div');
   contentsWrapper.classList.add('dashboardContents');

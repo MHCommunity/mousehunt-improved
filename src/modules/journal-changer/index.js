@@ -1,12 +1,13 @@
 import {
   addStyles,
+  cacheGet,
+  cacheSet,
   doRequest,
   getCurrentLocation,
   getSetting,
   makeElement,
   onEvent,
-  onNavigation,
-  saveSetting
+  onNavigation
 } from '@utils';
 
 import journals from './journals.json';
@@ -106,13 +107,26 @@ const changeForLocation = async () => {
   }
 };
 
-const randomizeTheme = async () => {
+const randomizeTheme = async (skip = false) => {
   if (themes.length === 0) {
     themes = await getJournalThemes();
   }
 
+  if (skip) {
+    // remove that theme from the list
+    themes = themes.filter((t) => t.type !== skip);
+  }
+
+  // remove the current theme
+  const current = getCurrentJournalTheme();
+  if (current) {
+    themes = themes.filter((t) => t.type !== current);
+  }
+
   const theme = themes[Math.floor(Math.random() * themes.length)];
   updateJournalTheme(theme.type);
+
+  return theme.type;
 };
 
 const addRandomButton = () => {
@@ -126,8 +140,9 @@ const addRandomButton = () => {
 
   journal.append(button);
 };
-const changeJournalDaily = () => {
-  const lastChangeValue = getSetting('journal-changer-last-change', '0');
+
+const changeJournalDaily = async () => {
+  const lastChangeValue = await cacheGet('journal-changer-last-change', 0);
   const lastChange = new Date(Number.parseInt(lastChangeValue, 10));
   const now = new Date();
 
@@ -138,8 +153,11 @@ const changeJournalDaily = () => {
     lastChange.getMonth() !== now.getMonth() ||
     lastChange.getFullYear() !== now.getFullYear()
   ) {
-    randomizeTheme();
-    saveSetting('journal-changer-last-change', now.getTime());
+    const lastTheme = await cacheGet('journal-changer-last-theme', false);
+    const theme = await randomizeTheme(lastTheme);
+
+    cacheSet('journal-changer-last-change', now.getTime());
+    cacheSet('journal-changer-last-theme', theme);
   }
 };
 

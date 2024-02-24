@@ -1,6 +1,19 @@
-import { dbDeleteAll } from './db';
+import { dbDelete, dbDeleteAll, dbGet, dbSet } from './db';
 import { debuglog } from './debug';
 import { getFlag } from './flags';
+
+const validDataFiles = new Set([
+  'minlucks',
+  'wisdom',
+  'effs',
+  'mice-groups',
+  'mice-regions',
+  'items-tradable',
+  'scoreboards',
+  'environments',
+  'upscaled-images',
+  'ultimate-checkmark',
+]);
 
 /**
  * Check if the given file is a valid data file available from the API.
@@ -10,49 +23,7 @@ import { getFlag } from './flags';
  * @return {boolean} Whether the file is valid.
  */
 const isValidDataFile = (file) => {
-  const validDataFiles = new Set([
-    'minlucks',
-    'wisdom',
-    'effs',
-    'mice-groups',
-    'mice-regions',
-    'items-tradable',
-    'scoreboards',
-    'environments',
-    'upscaled-images',
-    'ultimate-checkmark',
-  ]);
-
   return validDataFiles.has(file);
-};
-
-/**
- * Get a prefixed cache key.
- *
- * @param {string} key Key to prefix.
- *
- * @return {string} The prefixed key.
- */
-const getCacheKey = (key) => {
-  return `mh-improved-cached-data--${key}`;
-};
-
-/**
- * Get the cache expiration key.
- *
- * @return {string} The cache expiration key.
- */
-const getCacheExpirationKey = () => {
-  return 'mh-improved-cached-data-expiration';
-};
-
-/**
- * Get the cache expirations.
- *
- * @return {Object} The cache expirations.
- */
-const getCacheExpirations = () => {
-  return JSON.parse(localStorage.getItem(getCacheExpirationKey())) || {};
 };
 
 /**
@@ -62,13 +33,8 @@ const getCacheExpirations = () => {
  *
  * @return {Object} The cache expiration.
  */
-const getCacheExpiration = (key) => {
-  const allCacheExpirations = getCacheExpirations();
-
-  return allCacheExpirations[key] || {
-    date: 0,
-    version: 0,
-  };
+const getCacheExpiration = async (key = null) => {
+  return await cacheGet(`expiration-${key}`, false);
 };
 
 /**
@@ -76,19 +42,10 @@ const getCacheExpiration = (key) => {
  *
  * @param {string} key Key to set the expiration for.
  */
-const setCacheExpiration = (key) => {
-  const allCacheExpirations = getCacheExpirations();
-
+const setCacheExpiration = async (key) => {
   debuglog('utils.data', `Setting cache expiration for ${key}`);
 
-  allCacheExpirations[key] = {
-    date: Date.now() + ((Math.floor(Math.random() * 7) + 7) * 24 * 60 * 60 * 1000),
-    version: mhImprovedVersion,
-  };
-
-  debuglog('utils.data', `Setting cache expiration for ${key} to ${allCacheExpirations[key].date}`);
-
-  localStorage.setItem(getCacheExpirationKey(), JSON.stringify(allCacheExpirations));
+  cacheSet(`expiration-${key}`, Date.now() + ((Math.floor(Math.random() * 7) + 7) * 24 * 60 * 60 * 1000));
 };
 
 /**
@@ -98,14 +55,10 @@ const setCacheExpiration = (key) => {
  *
  * @return {boolean} Whether the cache is expired.
  */
-const isCacheExpired = (key) => {
-  const expiration = getCacheExpiration(key);
+const isCacheExpired = async (key) => {
+  const expiration = await getCacheExpiration(key);
 
-  if (! expiration || ! expiration?.date || ! expiration?.version) {
-    return true;
-  }
-
-  if (expiration.version !== mhImprovedVersion) {
+  if (! expiration) {
     return true;
   }
 
@@ -113,59 +66,19 @@ const isCacheExpired = (key) => {
 };
 
 /**
- * Get the cached data for the given key.
+ * Fetch the data for the given key.
  *
- * @param {string} key Key to get the cached data for.
+ * @param {string} key Key to fetch.
  *
- * @return {Object} The cached data.
+ * @return {Object} The fetched data.
  */
-const getCachedData = (key) => {
-  const isExpired = isCacheExpired(key);
-
-  if (isExpired) {
-    return false;
-  }
-
-  const fromStorage = localStorage.getItem(getCacheKey(key));
-
-  if (! fromStorage) {
-    return false;
-  }
-
-  return JSON.parse(fromStorage);
-};
-
-/**
- * Set the cached data for the given key.
- *
- * @param {string} key  Key to set the cached data for.
- * @param {Object} data Data to cache.
- */
-const setCachedData = (key, data) => {
-  const cacheKey = getCacheKey(key);
-
-  localStorage.setItem(cacheKey, JSON.stringify(data));
-  setCacheExpiration(key);
-};
-
-/**
- * Fetch and cache the data for the given key.
- *
- * @param {string} key Key to fetch and cache the data for.
- *
- * @return {Object} The fetched and cached data.
- */
-const fetchAndCacheData = async (key) => {
+const fetchData = async (key) => {
   const data = await fetch(`https://api.mouse.rip/${key}`, {
     method: 'GET',
     headers: getHeaders(),
   });
 
-  const json = await data.json();
-
-  setCachedData(key, json);
-
-  return json;
+  return await data.json();
 };
 
 /**
@@ -181,15 +94,23 @@ const getData = async (key) => {
     return false;
   }
 
-  const cachedData = getCachedData(key);
-  if (cachedData) {
-    return cachedData;
+  const isExpired = await isCacheExpired(key);
+  if (! isExpired) {
+    const cachedData = await cacheGet(key, false);
+    if (cachedData) {
+      return cachedData;
+    }
   }
 
   debuglog('utils.data', `Fetching data for ${key} ...`);
-  const data = await fetchAndCacheData(key);
-
+  const data = await fetchData(key);
   debuglog('utils.data', `Fetched data for ${key}`, data);
+
+  if (data) {
+    cacheSet(key, data);
+    setCacheExpiration(key);
+  }
+
   return data;
 };
 
@@ -197,10 +118,14 @@ const getData = async (key) => {
  * Clear all the caches.
  */
 const clearCaches = async () => {
-  const allCacheExpirations = getCacheExpirations();
+  validDataFiles.forEach((file) => {
+    cacheDelete(file);
+  });
 
-  for (const key of Object.keys(allCacheExpirations)) {
-    localStorage.removeItem(getCacheKey(key));
+  for (const key of Object.keys(localStorage)) {
+    if (key.startsWith('mh-improved-cache')) {
+      localStorage.removeItem(key);
+    }
   }
 
   for (const key of Object.keys(sessionStorage)) {
@@ -214,7 +139,7 @@ const clearCaches = async () => {
     await dbDeleteAll('journal-entries');
   }
 
-  localStorage.removeItem(getCacheExpirationKey());
+  dbDelete('cache', 'expirations');
 };
 
 /**
@@ -250,12 +175,7 @@ const sessionSet = (key, value, retry = false) => {
     sessionStorage.setItem(key, stringified);
   } catch (error) {
     if ('QuotaExceededError' === error.name && ! retry) {
-      // Delete all the mh-improved keys.
-      for (const skey of Object.keys(sessionStorage)) {
-        if (skey.startsWith('mh-improved')) {
-          sessionStorage.removeItem(skey);
-        }
-      }
+      clearCaches();
 
       // Try again.
       sessionSet(key, value, true);
@@ -285,10 +205,49 @@ const sessionGet = (key, defaultValue = false) => {
   return JSON.parse(value);
 };
 
+/**
+ * Set a cache value.
+ *
+ * @param {string} key   Key to set the value for.
+ * @param {Object} value Value to set.
+ */
+const cacheSet = (key, value) => {
+  dbSet('cache', { id: key, value });
+};
+
+/**
+ * Get a cache value.
+ *
+ * @param {string} key          Key to get the value for.
+ * @param {Object} defaultValue Default value to return if the key doesn't exist.
+ *
+ * @return {Object} The cache value.
+ */
+const cacheGet = async (key, defaultValue = false) => {
+  const cached = await dbGet('cache', key);
+  if (! cached) {
+    return defaultValue;
+  }
+
+  return cached.value;
+};
+
+/**
+ * Delete a cache value.
+ *
+ * @param {string} key Key to delete the value for.
+ */
+const cacheDelete = (key) => {
+  dbDelete('cache', key);
+};
+
 export {
   getData,
   getHeaders,
   clearCaches,
   sessionSet,
-  sessionGet
+  sessionGet,
+  cacheSet,
+  cacheGet,
+  cacheDelete
 };

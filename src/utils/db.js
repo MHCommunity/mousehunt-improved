@@ -6,12 +6,14 @@
  * @return {Promise} Promise that resolves with the database.
  */
 const database = async (databaseName) => {
-  const request = window.indexedDB.open('mh-improved', 1);
+  const request = window.indexedDB.open('mh-improved', 2);
 
   request.onupgradeneeded = (event) => {
     const db = event.target.result;
-    const objectStore = db.createObjectStore(databaseName, { keyPath: 'id' });
-    objectStore.createIndex('id', 'id', { unique: true });
+    if (! db.objectStoreNames.contains(databaseName)) {
+      const objectStore = db.createObjectStore(databaseName, { keyPath: 'id' });
+      objectStore.createIndex('id', 'id', { unique: true });
+    }
   };
 
   return new Promise((resolve, reject) => {

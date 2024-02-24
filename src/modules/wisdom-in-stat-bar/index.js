@@ -1,11 +1,11 @@
 import {
+  cacheGet,
+  cacheSet,
   getSetting,
-  getSettingDirect,
   getUserItems,
   makeElement,
   onDeactivation,
-  onTurn,
-  saveSettingDirect
+  onTurn
 } from '@utils';
 
 import settings from './settings';
@@ -17,9 +17,8 @@ import settings from './settings';
  *
  * @return {any} The setting.
  */
-const getWisdomSetting = (key) => {
-  const setting = getSettingDirect('wisdom-stat', {});
-  return setting[key];
+const getWisdomSetting = async (key) => {
+  return await cacheGet(`wisdom-stat-${key}`);
 };
 
 /**
@@ -29,9 +28,7 @@ const getWisdomSetting = (key) => {
  * @param {any}    value Value to save.
  */
 const saveWisdomSetting = (key, value) => {
-  const setting = getSettingDirect('wisdom-stat', {});
-  setting[key] = value;
-  saveSettingDirect('wisdom-stat', setting);
+  cacheSet(`wisdom-stat-${key}`, value);
 };
 
 /**
@@ -43,7 +40,7 @@ const getWisdom = async () => {
   let wisdom = 0;
 
   if (useCachedWisdom) {
-    const cachedWisdom = getWisdomSetting('value');
+    const cachedWisdom = await getWisdomSetting('value');
     if (cachedWisdom) {
       return cachedWisdom;
     }

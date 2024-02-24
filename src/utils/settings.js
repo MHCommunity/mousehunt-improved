@@ -52,6 +52,17 @@ const getSetting = (key, defaultValue = false) => {
 };
 
 /**
+ * Delete a setting.
+ *
+ * @param {string} key The setting key.
+ */
+const deleteSetting = (key) => {
+  const settings = getSettings();
+  delete settings[key];
+  localStorage.setItem('mousehunt-improved-settings', JSON.stringify(settings));
+};
+
+/**
  * Get the saved settings.
  *
  * @return {Object} The saved settings.
@@ -84,5 +95,6 @@ export {
   saveSettingDirect,
   getSetting,
   saveSetting,
-  getSettings
+  getSettings,
+  deleteSetting
 };
