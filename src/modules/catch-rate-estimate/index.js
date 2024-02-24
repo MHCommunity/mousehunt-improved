@@ -3,7 +3,8 @@ import {
   getCurrentPage,
   makeElement,
   onPageChange,
-  onRequest
+  onRequest,
+  onTravel
 } from '@utils';
 
 import styles from './styles.css';
@@ -122,7 +123,8 @@ const main = async () => {
   }
 
   onPageChange({ camp: { show: updateMinLucks } });
-  onRequest('users/changetrap.php', updateMinLucks);
+  onRequest('*', updateMinLucks);
+  onTravel(null, { callback: updateMinLucks });
 };
 
 /**
