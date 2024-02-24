@@ -826,7 +826,7 @@ const updateFavoriteSetupName = () => {
     return;
   }
 
-  label.innerHTML = getNameOfCurrentSetup();
+  label.innerHTML = getNameOfCurrentSetup() || '';
 };
 
 const addFavoriteSetupsButton = () => {
@@ -970,7 +970,7 @@ const init = async () => {
     timeoutId = setTimeout(updateFavoriteSetupName, 500);
   });
 
-  onEvent('camp_page_toggle_blueprint', () => {
+  onEvent('camp_page_toggle_blueprint', async () => {
     if (isFavoriteSetupsShowing()) {
       hideFavoriteSetups();
     }
