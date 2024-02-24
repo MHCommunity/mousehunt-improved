@@ -267,3 +267,24 @@ a.mousehuntHud-page-tabHeader.collectibles span {
 .riftWhiskerWoodsHUD-zone-charm-craftingItem-quantity {
   font-size: 9px; /* was set as 'font-style'; */
 }
+
+.mousehuntHud-page-tabHeader {
+  height: 29px;
+}
+
+/* Fix menu tab border alignment */
+.mousehuntHeaderView .support .dropdownContent {
+  right: -0.5px;
+  border-top: 1px solid #ccc;
+}
+
+/* Fix TEM hover */
+.pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer:hover {
+  background-color: #fdfaf2;
+}
+
+/* Fix TEM padding */
+body .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer {
+  padding-left: 10px;
+  margin-top: 10px;
+}

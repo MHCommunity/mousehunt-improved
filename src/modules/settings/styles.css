@@ -514,3 +514,20 @@
   background-color: #e3e3e3;
   border-radius: 4px;
 }
+
+.mousehuntHud-page-tabHeader.userscript-settings span {
+  height: 17px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+#mousehunt-improved-settings-advanced-override-styles {
+  padding-bottom: 15px;
+}
+
+#mousehunt-improved-settings-advanced-override-flags input,
+#mousehunt-improved-settings-advanced-override-styles textarea {
+  font-family: monospace;
+  font-size: 12px;
+  background-color: #eee;
+}

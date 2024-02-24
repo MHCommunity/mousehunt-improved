@@ -10,6 +10,7 @@
 
 .mousehuntHeaderView .dashboard .dropdownContent {
   width: 420px;
+  border-radius: 0;
 }
 
 .dashboardWrapper {

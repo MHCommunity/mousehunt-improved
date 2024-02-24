@@ -19,7 +19,8 @@
 .mouseCrownsView #copyCrownsButton {
   width: 16px !important;
   height: 16px !important;
-  border: none;
+  border: none !important;
+  background-color: transparent !important;
 }
 
 .mouseCrownsView .pt {
@@ -49,10 +50,6 @@
   gap: 5px;
 }
 
-.mouseCrownsView-crown.powerCrown {
-  background-size: contain !important;
-}
-
 .mouseCrownsView .toolBar {
   position: absolute;
   top: -1px;
@@ -66,4 +63,55 @@
   background-color: #d1d1d1;
   border: 1px solid #a7a7a7;
   border-radius: 0 5px;
+}
+
+.powerCrown .mouseCrownsView-group-header-name,
+.mouseCrownsView-crown.powerCrown {
+  display: none !important;
+}
+
+.mouseCrownsView-group-header.powerCrown {
+  padding: 0;
+  margin: 0;
+  background-color: transparent !important;
+}
+
+button.ptbtn img {
+  width: auto !important;
+  height: 50px !important;
+}
+
+button.ptbtn {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  width: 100% !important;
+  justify-content: flex-start;
+  align-content: center;
+  border-width: 1px;
+  max-width: 244px;
+  justify-items: center;
+  background-color: #00b0eb !important;
+}
+
+#powerTypeBtns {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 6px;
+  margin: 0;
+  justify-content: center;
+  background-color: transparent;
+  gap: 5px;
+}
+
+.mouseCrownsView-crown.community {
+  padding-right: 5px;
+}
+
+.mouseCrownsView-group-header.community {
+  margin: 10px;
+}
+
+.rank.summary {
+  line-height: 1.5;
 }

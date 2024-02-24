@@ -394,3 +394,8 @@ a.floatingIslandsHUD-islandLoot:focus {
     animation: none;
   }
 }
+
+.floatingIslandsHUD-warningContainer {
+  top: 20px;
+  left: 548px;
+}

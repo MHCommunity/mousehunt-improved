@@ -561,11 +561,6 @@ input.trapSelectorView__codexListSearch {
   max-width: 100px;
 }
 
-.campPage-trap-itemBrowser-item-image::after {
-  border: none;
-  box-shadow: none;
-}
-
 .PageCamp .trapImageView-layer {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -606,7 +601,10 @@ input.trapSelectorView__codexListSearch {
   color: #e0d3b3;
 }
 
-.mh-dark-mode .campPage-trap-trapEffectivenessBar {
-  background-color: #424242;
-  border-color: #5c5c5c;
+.campPage-trap-itemBrowser-favorite-item-image-frame {
+  top: -1px;
+  left: -1px;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
 }
