@@ -42,6 +42,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Inventory - Open All but One](docs/inventory-open-all-but-one.md)**: For collectors, open multiple items while saving one.
 - **[Journal Theme Changer](docs/journal-theme-changer.md)**: Randomize your journal theme with a click, randomize it daily, or automatically change it to a location when traveling.
 - **[Keyboard Shortcuts](docs/keyboard-shortcuts.md)**: Handy shortcuts for quick actions.
+- **[Larger Codices](docs/larger-codices.md)**: Larger images for codices in the trap selector.
 - **[Larger Skin Images](docs/larger-skin-images.md)**: Larger skin images in the trap selector.
 - **[Location Catch Stats](docs/location-catch-stats.md)**: View catch stats for the current location.
 - **[Location Dashboard](docs/location-dashboard.md)**: HUD information for various locations in a dashboard view, easily accessible from the top menu bar.
