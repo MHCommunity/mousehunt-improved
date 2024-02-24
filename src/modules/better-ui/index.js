@@ -35,7 +35,7 @@ const addUserscriptStyles = () => {
 
   if (! getFlag('better-ui-no-profile-plus-styles', getFlag('no-better-ui-profile-plus', false))) {
     onNavigation(() => {
-      setTimeout(profilePlusStyles, 1000);
+      addStyles(profilePlusStyles, 'better-ui-profile-plus');
     }, {
       page: 'hunterprofile',
     });
