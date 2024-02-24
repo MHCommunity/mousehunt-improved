@@ -42,6 +42,7 @@
   }
 }
 
+.mousehunt-improved-lgs-reminder-wrapper,
 .mousehunt-improved-lgs-reminder {
   position: absolute;
   right: 650px;
@@ -49,6 +50,11 @@
   left: 25px;
   font-size: 9px;
   white-space: nowrap;
+}
+
+.mousehunt-improved-lgs-reminder-wrapper {
+  right: 642px;
+  left: 15px;
 }
 
 .mousehunt-improved-lgs-reminder-new {
