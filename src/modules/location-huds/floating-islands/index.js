@@ -39,7 +39,7 @@ const toggleFuelClass = (fuelCount, isActive) => {
   }
 };
 
-const toggleFuel = () => {
+const toggleFuel = (skip = false) => {
   const fuel = document.querySelector('.floatingIslandsHUD-fuel-button');
   if (! fuel) {
     return;
@@ -53,6 +53,12 @@ const toggleFuel = () => {
   const enabled = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.is_fuel_enabled || false;
   if (enabled) {
     fuelCount.classList.add('active');
+  } else {
+    fuelCount.classList.remove('active');
+  }
+
+  if (skip) {
+    return;
   }
 
   fuel.addEventListener('click', (e) => {
@@ -412,7 +418,11 @@ const hud = () => {
   onEvent('horn-countdown-tick', updateJetstreamTime);
   onDialogShow('floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace', onSkyMapShow);
 
-  onRequest('environment/floating_islands.php', run);
+  onRequest('environment/floating_islands.php', () => {
+    run();
+    toggleFuel(true);
+    setTimeout(run, 3500);
+  });
 };
 
 /**
