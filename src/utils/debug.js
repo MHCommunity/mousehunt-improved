@@ -1,4 +1,6 @@
 import { getFlag } from './flags';
+import { getSetting } from './settings';
+
 /**
  * Helper function to log a debug message.
  *

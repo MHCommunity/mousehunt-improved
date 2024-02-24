@@ -42,8 +42,7 @@ export default async (location) => {
   };
 
   // No matter what, we want to load the global stuff, but only during the event.
-  const date = new Date();
-  const month = date.getMonth();
+  const month = new Date().getMonth();
 
   events[month].forEach((event) => {
     event();

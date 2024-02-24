@@ -73,7 +73,7 @@ const addItemToQuickLinks = (link, appendTo, filter) => {
   appendTo.append(item);
 };
 
-const addQuickLinksToTrap = () => {
+const addQuickLinksToTrap = async () => {
   const itemBrowser = document.querySelector('.trapSelectorView__itemBrowserContainer');
   if (! itemBrowser) {
     return;

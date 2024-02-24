@@ -309,7 +309,7 @@ const isUserTitleAtLeast = (title) => {
  *
  * @return {string} The user's hash.
  */
-const getUserHash = async () => {
+const getAnonymousUserHash = async () => {
   if (typeof user === 'undefined' || ! user?.user_id) {
     return '';
   }
@@ -325,7 +325,7 @@ const getUserHash = async () => {
 
 export {
   getUserItems,
-  getUserHash,
+  getAnonymousUserHash,
   getUserSetupDetails,
   isUserTitleAtLeast
 };
