@@ -1,25 +1,14 @@
 import {
+  cacheGet,
+  cacheSet,
   debuglog,
   getUserSetupDetails,
   onEvent,
-  onRequest,
-  sessionGet,
-  sessionSet
+  onRequest
 } from '@utils';
 
-const setPrestigeStats = () => {
-  const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
-  if (! prestige) {
-    return;
-  }
-
-  // update the stats display
-  const pbStats = sessionGet('mh-ui-pb-stats', false);
-  if (! pbStats) {
-    return;
-  }
-
-  const stats = prestige.querySelector('.campPage-trap-itemBrowser-item-statContainer');
+const updateStats = (selector, pbStats) => {
+  const stats = selector.querySelector('.campPage-trap-itemBrowser-item-statContainer');
   if (! stats) {
     return;
   }
@@ -59,22 +48,61 @@ const setPrestigeStats = () => {
   }
 };
 
-const modifyPB = (opts) => {
+const setPrestigeStats = async () => {
+  const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
+  if (! prestige) {
+    return;
+  }
+
+  // update the stats display
+  const pbStats = await cacheGet('pb-stats', false);
+  if (! pbStats) {
+    return;
+  }
+
+  updateStats(prestige, pbStats);
+
+  const armed = document.querySelector('.campPage-trap-itemBrowser-armed-item.base');
+  if (! armed) {
+    return;
+  }
+
+  const name = armed.querySelector('.campPage-trap-itemBrowser-item-name');
+  if (! name) {
+    return;
+  }
+
+  if (name.innerText.includes('Prestige Base')) {
+    updateStats(armed, pbStats);
+  }
+};
+
+let isModifying = false;
+const modifyPB = async (opts) => {
+  if (isModifying) {
+    return;
+  }
+
+  isModifying = true;
+
   const activeBp = document.querySelector('.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent');
   if (! activeBp) {
+    isModifying = false;
     return;
   }
 
   const bpType = activeBp.getAttribute('data-blueprint-type');
   if (! bpType || bpType !== 'base') {
+    isModifying = false;
     return;
   }
 
-  const { retryPrestige, retryRecommended } = opts || {};
+  const { retryPrestige } = opts || {};
 
-  const savedStats = sessionGet('mh-ui-pb-stats', false);
+  const savedStats = await cacheGet('pb-stats', false);
   debuglog('prestige-base-stats', 'Saved Prestige Base stats:', savedStats);
   if (! savedStats) {
+    isModifying = false;
     return;
   }
 
@@ -86,42 +114,44 @@ const modifyPB = (opts) => {
       }, 500);
     }
 
+    isModifying = false;
     return;
   }
 
   if (prestige.getAttribute('data-pinned')) {
+    isModifying = false;
     return;
   }
 
   const recommended = document.querySelector('.trapSelectorView__browserStateParent--items[data-blueprint-type="base"] .recommended');
-
   if (! recommended) {
-    if (! retryRecommended) {
-      setTimeout(() => {
-        modifyPB({ retryRecommended: true });
-      }, 500);
-    }
-
+    isModifying = false;
     return;
   }
 
-  if (recommended) {
-    const header = recommended.querySelector('.campPage-trap-itemBrowser-tagGroup-name');
-    if (! header) {
-      return;
-    }
-
+  const header = recommended.querySelector('.campPage-trap-itemBrowser-tagGroup-name');
+  if (header) {
     header.after(prestige);
   }
 
   prestige.setAttribute('data-pinned', true);
   setPrestigeStats();
+
+  isModifying = false;
 };
 
+let isSaving = false;
 const savePbStats = () => {
+  if (isSaving) {
+    return;
+  }
+
+  isSaving = true;
+
   // if we have pb equipped, then save the stats for it
   const setup = getUserSetupDetails();
   if (setup.base.id !== 2904) {
+    isSaving = false;
     return;
   }
 
@@ -129,6 +159,7 @@ const savePbStats = () => {
 
   const trapMath = document.querySelectorAll('.campPage-trap-trapStat-mathRow');
   if (! trapMath.length) {
+    isSaving = false;
     return;
   }
 
@@ -138,17 +169,20 @@ const savePbStats = () => {
     // get the name of the stat
     const stat = row.querySelector('.campPage-trap-trapStat-mathRow-name');
     if (! stat) {
+      isSaving = false;
       return;
     }
 
     // if the name doesn't contain Prestige Base, then skip it
     if (! stat.innerText.includes('Prestige Base')) {
+      isSaving = false;
       return;
     }
 
     // get the value of the stat
     const value = row.querySelector('.campPage-trap-trapStat-mathRow-value');
     if (! value) {
+      isSaving = false;
       return;
     }
 
@@ -172,33 +206,27 @@ const savePbStats = () => {
   });
 
   if (! stats.power || ! stats.luck) {
+    isSaving = false;
     return;
   }
 
   debuglog('prestige-base-stats', 'Prestige Base stats:', stats);
-  sessionSet('mh-ui-pb-stats', stats);
+  cacheSet('pb-stats', stats);
+
+  isSaving = false;
+};
+
+const run = async () => {
+  modifyPB();
+  savePbStats();
 };
 
 /**
  * Initialize the module.
  */
 const init = async () => {
-  onEvent('camp_page_toggle_blueprint', () => {
-    savePbStats();
-    setTimeout(() => {
-      modifyPB();
-    }, 500);
-  });
-
-  onRequest('users/changetrap.php', () => {
-    savePbStats();
-    modifyPB();
-  });
-
-  onRequest('users/gettrapcomponents.php', () => {
-    savePbStats();
-    modifyPB();
-  });
+  onEvent('camp_page_toggle_blueprint', run);
+  onRequest('users/changetrap.php', run);
 };
 
 export default {

@@ -19,3 +19,4 @@ export * from './styles';
 export * from './templates';
 export * from './user';
 export * from './utils';
+export * from './shared/trap-quantity';
