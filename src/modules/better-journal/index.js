@@ -135,6 +135,7 @@ const maybeKeepAsOriginal = (entry) => {
   const keepOriginalClasses = new Set([
     'lunar_lantern',
     'valentines_matchmaker',
+    'vending_machine_purchase',
   ]);
 
   const entryId = entry.getAttribute('data-entry-id');
