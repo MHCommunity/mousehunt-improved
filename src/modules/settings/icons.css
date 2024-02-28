@@ -160,7 +160,11 @@
 }
 
 #mousehunt-improved-settings-feature-keyboard-shortcuts::before {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>');
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -5 24 24" width="28" fill="currentColor"><path d="M3 0h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H3zm0 4h2v2H3V6zm0-3h2v2H3V3zm0 6h2v2H3V9zm3 0h8v2H6V9zm0-3h2v2H6V6zm0-3h2v2H6V3zm3 3h2v2H9V6zm0-3h2v2H9V3zm6 6h2v2h-2V9zm-3-3h2v2h-2V6zm0-3h2v2h-2V3zm3 0h2v5h-2V3z"></path></svg>');
+}
+
+#mousehunt-improved-settings-feature-larger-codices::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 24 24" width="28" fill="currentColor"><path d="M12.586 2H11a1 1 0 0 1 0-2h4a1 1 0 0 1 1 1v4a1 1 0 0 1-2 0V3.414L9.414 8 14 12.586V11a1 1 0 0 1 2 0v4a1 1 0 0 1-1 1h-4a1 1 0 0 1 0-2h1.586L8 9.414 3.414 14H5a1 1 0 0 1 0 2H1a1 1 0 0 1-1-1v-4a1 1 0 0 1 2 0v1.586L6.586 8 2 3.414V5a1 1 0 1 1-2 0V1a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H3.414L8 6.586 12.586 2z"></path></svg>');
 }
 
 #mousehunt-improved-settings-feature-larger-skin-images::before {
@@ -196,7 +200,7 @@
 }
 
 #mousehunt-improved-settings-feature-prestige-base-stats::before {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>');
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -4 24 24" width="28" fill="currentColor"><path d="M1 0a1 1 0 0 1 1 1v14a1 1 0 0 1-2 0V1a1 1 0 0 1 1-1zm12 4a1 1 0 0 1 1 1v10a1 1 0 0 1-2 0V5a1 1 0 0 1 1-1zM7 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"></path></svg>');
 }
 
 #mousehunt-improved-settings-feature-printing-press-paper-counter::before {
@@ -225,6 +229,10 @@
 
 #mousehunt-improved-settings-feature-ultimate-checkmark-categories::before {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>');
+}
+
+#mousehunt-improved-settings-feature-userscript-styles::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1.5 24 24" width="28" fill="currentColor"><path d="M14.243 7.172l3.535-3.536-.707-.707-3.535 3.535.707.708zm-1.415 1.414l-.707-.707L2.93 17.07l.707.707 9.192-9.192zm4.95-7.778l2.121 2.12a1 1 0 0 1 0 1.415L4.343 19.9a1 1 0 0 1-1.414 0L.808 17.78a1 1 0 0 1 0-1.415L16.364.808a1 1 0 0 1 1.414 0zM8.586.1l1.393.704L11.414.1l-.68 1.46.68 1.368-1.384-.664-1.444.664.689-1.42L8.585.1zm9.9 7.07l1.393.705 1.435-.704-.68 1.46.68 1.368-1.384-.664-1.445.664.69-1.42-.69-1.408z"></path></svg>');
 }
 
 #mousehunt-improved-settings-feature-wisdom-in-stat-bar::before {
