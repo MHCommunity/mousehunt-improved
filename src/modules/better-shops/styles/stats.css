@@ -1,0 +1,65 @@
+/* Trap stats in store */
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-padding {
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.shopCustomization .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.title,
+.shopCustomization .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect {
+  width: 70px;
+}
+
+.shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.title,
+.itemPurchaseView-container .itemViewStatBlock-stat.powerType {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: auto;
+  line-height: 14px;
+  border: 1px solid #ccc;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-label {
+  display: inline-block;
+  padding: 0;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 3px;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
+  display: flex;
+  align-items: center;
+  min-width: 55px;
+  padding: 2px;
+  margin: 0;
+  margin-right: 5px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.mh-dark-mode.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
+  background-color: #333;
+  border-color: #606060;
+}
+
+.mh-dark-mode.shopCustomization .pageFrameView .itemViewStatBlock .itemViewStatBlock-stat-value {
+  background-color: transparent;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value span {
+  display: inline-block;
+  padding: 0;
+}
+
+.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value {
+  font-size: 9px;
+}

@@ -1,6 +1,7 @@
 import { addStyles, getCurrentPage, onNavigation, onRequest } from '@utils';
 
-import styles from './styles.css';
+import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
+const styles = imported;
 
 const updatePlaceholderText = () => {
   const purchaseBlocks = document.querySelectorAll('.itemPurchaseView-action-state.view');

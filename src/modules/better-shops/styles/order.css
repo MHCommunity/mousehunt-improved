@@ -1,0 +1,21 @@
+.itemViewStatBlock.trinket {
+  order: 2;
+}
+
+.itemPurchaseView-content-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemPurchaseView-content-name {
+  order: 1;
+}
+
+.itemPurchaseView-content-details {
+  display: flex;
+  order: 3;
+}
+
+.itemPurchaseView-content-description {
+  order: -1;
+}

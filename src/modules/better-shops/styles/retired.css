@@ -1,0 +1,11 @@
+/* Items that have retired items as cost */
+.kings_cart .hasShop .cannot_buy.super_dragonbane_trinket,
+.kings_cart .hasShop .cannot_buy.extrme_dragonbane_trinket,
+.kings_cart .hasShop .cannot_buy.wild_tonic_remote_pumping_trinket,
+.kings_cart .hasShop .cannot_buy.hot_spice_crafting_item,
+.kings_cart .hasShop .cannot_buy.flaming_spice_crafting_item,
+.kings_cart .hasShop .cannot_buy.dragonshard_sparkling_nest_convertible,
+.itemPurchaseView-container.eggstra_trinket.cannot_buy.no_gold_cost,
+.itemPurchaseView-container.eggstra_charge_trinket.cannot_buy.no_gold_cost {
+  display: none !important;
+}

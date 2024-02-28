@@ -1,0 +1,104 @@
+.itemPurchaseView-action-itemCost-table-row {
+  display: grid;
+  grid-template-columns: 1fr 15fr 1fr;
+  place-items: center stretch;
+  width: 100%;
+  padding: 5px;
+  margin: 0 -5px;
+}
+
+.itemPurchaseView-action-goldGost {
+  padding: 5px;
+  padding-left: 25px;
+  font-size: 1.3em;
+  font-weight: 400;
+  text-align: left;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-left: none;
+}
+
+.itemPurchaseView-content-container {
+  padding: 0;
+  border-right: 1px solid #ccc;
+}
+
+.mh-dark-mode .itemPurchaseView-content-container {
+  border-color: #242424;
+}
+
+.itemPurchaseView-image-container,
+.itemPurchaseView-content-container {
+  background-color: #fff;
+}
+
+.itemPurchaseView-action-quantity {
+  width: auto;
+  margin: 0 5px 0 10px;
+}
+
+.itemPurchaseView-action-quantity input {
+  width: 100%;
+  padding: 3px;
+  margin: 0;
+}
+
+a.itemPurchaseView-action-form-button.buy,
+a.itemPurchaseView-action-form-button.sell {
+  width: auto;
+  height: 21px;
+  margin-top: 0;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+a.itemPurchaseView-action-form-button.buy {
+  height: 21px;
+  margin-left: 7px;
+  background: #f4e830;
+}
+
+a.itemPurchaseView-action-form-button.sell {
+  margin-left: 7px;
+  background: #b3edff;
+}
+
+.itemPurchaseView-container.cannot_sell .itemPurchaseView-action-form-button.sell,
+.itemPurchaseView-container.cannot_buy .itemPurchaseView-action-form-button.buy {
+  filter: grayscale(1) opacity(0.75);
+}
+
+.itemPurchaseView-action-purchaseHelper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.itemPurchaseView-container.no_gold_cost .itemPurchaseView-action-goldGost {
+  display: block;
+}
+
+.itemPurchaseView-content-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+
+.itemPurchaseView-action-purchaseHelper-owned {
+  padding: 4px;
+  margin-right: 10px;
+  font-size: 11px;
+  white-space: nowrap;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.itemPurchaseView-action-purchaseHelper-error {
+  height: auto;
+}

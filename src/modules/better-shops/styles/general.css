@@ -4,9 +4,7 @@
 .itemPurchaseView-container.flaming_spice_crafting_item.kingsCartItem,
 .itemPurchaseView-container.dragonshard_sparkling_nest_convertible.kingsCartItem,
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-description,
-.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-title,
-.hasShop .itemPurchaseView-container.super_brie_cheese,
-.hasShop .itemPurchaseView-container.donation {
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-title {
   display: none !important;
 }
 
@@ -83,111 +81,6 @@ a.itemPurchaseView-image-trapPreview-link,
   color: #f66060;
 }
 
-.itemPurchaseView-action-itemCost-table-row {
-  display: grid;
-  grid-template-columns: 1fr 15fr 1fr;
-  place-items: center stretch;
-  width: 100%;
-  padding: 5px;
-  margin: 0 -5px;
-}
-
-.itemPurchaseView-action-goldGost {
-  padding: 5px;
-  padding-left: 25px;
-  font-size: 1.3em;
-  font-weight: 400;
-  text-align: left;
-  background: #f9f9f9;
-  border: 1px solid #ccc;
-  border-right: none;
-  border-left: none;
-}
-
-.itemPurchaseView-content-container {
-  padding: 0;
-  border-right: 1px solid #ccc;
-}
-
-.mh-dark-mode .itemPurchaseView-content-container {
-  border-color: #242424;
-}
-
-.itemPurchaseView-image-container,
-.itemPurchaseView-content-container {
-  background-color: #fff;
-}
-
-.itemPurchaseView-action-quantity {
-  width: auto;
-  margin: 0 5px 0 10px;
-}
-
-.itemPurchaseView-action-quantity input {
-  width: 100%;
-  padding: 3px;
-  margin: 0;
-}
-
-a.itemPurchaseView-action-form-button.buy,
-a.itemPurchaseView-action-form-button.sell {
-  width: auto;
-  height: 21px;
-  margin-top: 0;
-  font-weight: 400;
-  line-height: 21px;
-}
-
-a.itemPurchaseView-action-form-button.buy {
-  height: 21px;
-  margin-left: 7px;
-  background: #f4e830;
-}
-
-a.itemPurchaseView-action-form-button.sell {
-  margin-left: 7px;
-  background: #b3edff;
-}
-
-.itemPurchaseView-container.cannot_sell .itemPurchaseView-action-form-button.sell,
-.itemPurchaseView-container.cannot_buy .itemPurchaseView-action-form-button.buy {
-  filter: grayscale(1) opacity(0.75);
-}
-
-.itemPurchaseView-action-purchaseHelper {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-}
-
-.itemPurchaseView-container.no_gold_cost .itemPurchaseView-action-goldGost {
-  display: block;
-}
-
-.itemPurchaseView-content-name {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 6px;
-  margin-bottom: 4px;
-}
-
-.itemPurchaseView-action-purchaseHelper-owned {
-  padding: 4px;
-  margin-right: 10px;
-  font-size: 11px;
-  white-space: nowrap;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.itemPurchaseView-action-purchaseHelper-error {
-  height: auto;
-}
-
 .itemPurchaseView-container.own_max .itemPurchaseView-action-container {
   display: none;
 }
@@ -235,18 +128,6 @@ a.itemPurchaseView-content-skin-link {
 /* Hide the marketplace footer */
 #overlayPopup.marketplaceViewPopup .suffix {
   display: none;
-}
-
-/* Items that have retired items as cost */
-.kings_cart .hasShop .cannot_buy.super_dragonbane_trinket,
-.kings_cart .hasShop .cannot_buy.extrme_dragonbane_trinket,
-.kings_cart .hasShop .cannot_buy.wild_tonic_remote_pumping_trinket,
-.kings_cart .hasShop .cannot_buy.hot_spice_crafting_item,
-.kings_cart .hasShop .cannot_buy.flaming_spice_crafting_item,
-.kings_cart .hasShop .cannot_buy.dragonshard_sparkling_nest_convertible,
-.itemPurchaseView-container.eggstra_trinket.cannot_buy.no_gold_cost,
-.itemPurchaseView-container.eggstra_charge_trinket.cannot_buy.no_gold_cost {
-  display: none !important;
 }
 
 /* Align stats that were moved to the description */
@@ -301,72 +182,6 @@ a.itemPurchaseView-content-skin-link {
 .mh-dark-mode .item_set {
   background-color: rgb(238 171 42 / 27%);
   border: none;
-}
-
-/* Trap stats in store */
-.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-padding {
-  display: flex;
-  flex-flow: row wrap;
-  row-gap: 5px;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.shopCustomization .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.title,
-.shopCustomization .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect {
-  width: 70px;
-}
-
-.shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.title,
-.itemPurchaseView-container .itemViewStatBlock-stat.powerType {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: auto;
-  line-height: 14px;
-  border: 1px solid #ccc;
-}
-
-.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-label {
-  display: inline-block;
-  padding: 0;
-}
-
-.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 3px;
-}
-
-.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
-  display: flex;
-  align-items: center;
-  min-width: 55px;
-  padding: 2px;
-  margin: 0;
-  margin-right: 5px;
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.mh-dark-mode.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
-  background-color: #333;
-  border-color: #606060;
-}
-
-.mh-dark-mode.shopCustomization .pageFrameView .itemViewStatBlock .itemViewStatBlock-stat-value {
-  background-color: transparent;
-}
-
-.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value span {
-  display: inline-block;
-  padding: 0;
-}
-
-.shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value {
-  font-size: 9px;
 }
 
 /* kings cart */
@@ -490,7 +305,6 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
 }
 
 /* limit one items */
-
 .itemPurchaseView-container.marketplace_buy_regal_stool_collectible.kingsCartItem.cannot_sell.own_max,
 .itemPurchaseView-container.marketplace_sell_regal_display_case_collectible.kingsCartItem.cannot_sell.own_max,
 .itemPurchaseView-container.kings_calibrator_message_item.kingsCartItem.cannot_sell.own_max {
@@ -568,18 +382,25 @@ a.shopsPage-kingsCalibratorPromo {
   background-color: #dbe9ff;
 }
 
+.hasShop .itemPurchaseView-container.donation,
 .itemPurchaseView-container.own_max {
   display: block !important;
   height: 25px;
-  overflow-y: hidden;
+  overflow: hidden;
   opacity: 0.3;
   transition: 0.4s;
+}
+
+.hasShop .itemPurchaseView-container.donation .itemPurchaseView-content-container,
+.itemPurchaseView-container.own_max .itemPurchaseView-content-container {
+  width: 100%;
 }
 
 .mh-dark-mode .itemPurchaseView-container.own_max {
   background-color: #000;
 }
 
+.hasShop .itemPurchaseView-container.donation:hover,
 .itemPurchaseView-container.own_max:hover {
   display: table !important;
   height: unset;
