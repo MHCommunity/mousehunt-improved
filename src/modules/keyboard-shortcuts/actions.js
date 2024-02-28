@@ -1,4 +1,10 @@
-import { doEvent, getCurrentPage, setPage } from '@utils';
+import {
+  doEvent,
+  doRequest,
+  getCurrentLocation,
+  getCurrentPage,
+  setPage
+} from '@utils';
 
 /**
  * Click the min luck button.
@@ -128,6 +134,22 @@ const travelToPreviousLocation = () => {
   doEvent('mh-improved-goto-previous-location');
 };
 
+const toggleFuel = () => {
+  if ('floating_islands' === getCurrentLocation()) {
+    doRequest('managers/ajax/environment/floating_islands.php', {
+      action: 'toggle_fuel',
+    });
+  }
+
+  if ('table_of_contents' === getCurrentLocation()) {
+    // todo: add the farm locations
+  }
+
+  // todo: add the queso locations
+
+  // todo: add vrift
+};
+
 export {
   clickMinLuck,
   disarmCharm,
@@ -141,5 +163,6 @@ export {
   openMarketplace,
   showTem,
   openTravelWindow,
-  travelToPreviousLocation
+  travelToPreviousLocation,
+  toggleFuel
 };
