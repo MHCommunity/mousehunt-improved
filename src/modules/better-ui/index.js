@@ -1,4 +1,4 @@
-import { addStyles, getFlag, onNavigation } from '@utils';
+import { addStyles, getFlag } from '@utils';
 
 import friends from './friends';
 import hud from './hud';
@@ -15,16 +15,16 @@ import tsituSupplySearchStyles from './userscript-styles/tsitu-supply-search.css
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
-const addUserscriptStyles = () => {
+const addUserscriptStyles = async () => {
   const userscriptStyles = [
-    { id: 'better-ui-no-profile-plus-styles', styles: profilePlusStyles },
-    { id: 'better-ui-no-favorite-setups-styles', styles: favoriteSetupsStyles },
-    { id: 'better-ui-no-journal-historian-styles', styles: journalHistorianStyles },
-    { id: 'better-ui-no-lgs-reminder-styles', styles: lgsReminderStyles },
-    { id: 'better-ui-no-mhct-styles', styles: mhctStyles },
-    { id: 'better-ui-no-tsitu-location-catch-stats-styles', styles: tsituLocationCatchStatsStyles },
-    { id: 'better-ui-no-tsitu-qol-styles', styles: tsituQolStyles },
-    { id: 'better-ui-no-tsitu-supply-search-styles', styles: tsituSupplySearchStyles },
+    { id: 'userscript-styles-no-profile-plus-styles', styles: profilePlusStyles },
+    { id: 'userscript-styles-no-favorite-setups-styles', styles: favoriteSetupsStyles },
+    { id: 'userscript-styles-no-journal-historian-styles', styles: journalHistorianStyles },
+    { id: 'userscript-styles-no-lgs-reminder-styles', styles: lgsReminderStyles },
+    { id: 'userscript-styles-no-mhct-styles', styles: mhctStyles },
+    { id: 'userscript-styles-no-tsitu-location-catch-stats-styles', styles: tsituLocationCatchStatsStyles },
+    { id: 'userscript-styles-no-tsitu-qol-styles', styles: tsituQolStyles },
+    { id: 'userscript-styles-no-tsitu-supply-search-styles', styles: tsituSupplySearchStyles },
   ];
 
   userscriptStyles.forEach(({ id, userscriptStyle }) => {
@@ -32,14 +32,6 @@ const addUserscriptStyles = () => {
       addStyles(userscriptStyle, id);
     }
   });
-
-  if (! getFlag('better-ui-no-profile-plus-styles', getFlag('no-better-ui-profile-plus', false))) {
-    onNavigation(() => {
-      addStyles(profilePlusStyles, 'better-ui-profile-plus');
-    }, {
-      page: 'hunterprofile',
-    });
-  }
 };
 
 /**

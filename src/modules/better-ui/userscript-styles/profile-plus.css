@@ -19,8 +19,8 @@
 .mouseCrownsView #copyCrownsButton {
   width: 16px !important;
   height: 16px !important;
-  border: none !important;
   background-color: transparent !important;
+  border: none !important;
 }
 
 .mouseCrownsView .pt {
@@ -84,24 +84,22 @@ button.ptbtn img {
 button.ptbtn {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  align-items: center;
+  place-content: center flex-start;
+  place-items: center center;
   width: 100% !important;
-  justify-content: flex-start;
-  align-content: center;
-  border-width: 1px;
   max-width: 244px;
-  justify-items: center;
   background-color: #00b0eb !important;
+  border-width: 1px;
 }
 
 #powerTypeBtns {
   display: flex;
   flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
   padding: 6px;
   margin: 0;
-  justify-content: center;
   background-color: transparent;
-  gap: 5px;
 }
 
 .mouseCrownsView-crown.community {
