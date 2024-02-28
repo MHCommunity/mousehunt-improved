@@ -74,6 +74,12 @@ const addBossCountdown = async () => {
   }
 
   isAdding = true;
+
+  const existing = document.querySelector('.mh-ui-fi-enemy-countdown');
+  if (existing) {
+    existing.remove();
+  }
+
   const atts = user?.quests?.QuestFloatingIslands?.hunting_site_atts || {};
   if (! atts.has_enemy) {
     return;
@@ -90,11 +96,6 @@ const addBossCountdown = async () => {
   makeElement('span', 'mh-ui-fi-enemy-countdown-name', name, bossCountdown);
   makeElement('span', 'mh-ui-fi-enemy-countdown-in', ' in ', bossCountdown);
   makeElement('span', 'mh-ui-fi-enemy-countdown-hunts', huntsRemaining, bossCountdown);
-
-  const existing = document.querySelector('.mh-ui-fi-enemy-countdown');
-  if (existing) {
-    existing.remove();
-  }
 
   const isEnemyActiveOrDefeated = atts.has_encountered_enemy || atts.has_defeated_enemy;
   if (isEnemyActiveOrDefeated) {
@@ -422,6 +423,7 @@ const hud = () => {
     run();
     toggleFuel(true);
     setTimeout(run, 3500);
+    setTimeout(run, 10000);
   });
 };
 

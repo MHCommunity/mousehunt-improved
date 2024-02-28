@@ -17,7 +17,7 @@ const getIdSelector = (itemId, bases) => {
 };
 
 const addQuantityToDisplay = async (itemId, bases) => {
-  if ('camp' !== getCurrentPage()) {
+  if ('camp' !== getCurrentPage() || ! itemId || ! bases) {
     return;
   }
 

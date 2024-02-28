@@ -1,11 +1,10 @@
 import {
   addStyles,
+  cacheGet,
   cacheSet,
   makeElement,
   onEvent,
-  onRequest,
-  sessionGet,
-  sessionSet
+  onRequest
 } from '@utils';
 
 import styles from './styles.css';
