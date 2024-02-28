@@ -1,5 +1,29 @@
 # Changelog
 
+## Version 0.34.0
+
+### Added
+
+- Adds Birthday maps to Better Maps sorted tab
+- Adds Larger Codices feature
+- Adds quantity display in trap selector for SSDB Toothlet Counter & Printing Press Paper Counter
+- Adds new storage mechanism for cached data & sub-settings
+
+### Changed
+
+- Updates userscript styles, adds flags to toggle each individually
+- Removes old event locations from Favorite locations
+- Makes pirate airship bob up and down in FI
+
+### Fixed
+
+- Fixes LGS Reminder alignment
+- Fixes CRE not refreshing
+- Fixes Custom CSS not applying
+- Fixes Custom Backgrounds not applying
+- Fixes Better Gifts gift order not applying
+- Fixes Better Travel location favorites not saving
+
 ## Version 0.33.0
 
 ### Added
