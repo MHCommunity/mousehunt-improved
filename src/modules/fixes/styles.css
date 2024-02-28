@@ -268,10 +268,6 @@ a.mousehuntHud-page-tabHeader.collectibles span {
   font-size: 9px; /* was set as 'font-style'; */
 }
 
-.mousehuntHud-page-tabHeader {
-  height: 29px;
-}
-
 /* Fix menu tab border alignment */
 .mousehuntHeaderView .support .dropdownContent {
   right: -0.5px;

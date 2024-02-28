@@ -338,7 +338,7 @@ a.random-title.loading::after {
   background-color: #fdfaf2;
 }
 
-.mh-dark-mode .pageFrameView .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType:after {
+.mh-dark-mode .pageFrameView .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType::after {
   color: #000;
 }
 
