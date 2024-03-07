@@ -1,0 +1,89 @@
+@media only screen and (max-width: 1000px) {
+  body.halloween .pageFrameView-column.left,
+  body.halloween .pageFrameView-column.right {
+    background-color: #e87e33 !important;
+    background-repeat: no-repeat !important;
+    background-position: 0 0 !important;
+  }
+
+  body.halloween .pageFrameView-column.left {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/halloween/left.png?asset_cache_version=2) !important;
+    background-position-x: 100% !important;
+  }
+
+  body.halloween .pageFrameView-column.right {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/halloween/right.png?asset_cache_version=2) !important;
+  }
+
+  body.lunar_new_year .pageFrameView-column.left,
+  body.lunar_new_year .pageFrameView-column.right {
+    background-color: #7f051b !important;
+    background-repeat: no-repeat !important;
+    background-position: 0 0 !important;
+  }
+
+  body.lunar_new_year .pageFrameView-column.left {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/lunar_new_year/left.png?asset_cache_version=2) !important;
+    background-position-x: 100% !important;
+  }
+
+  body.lunar_new_year .pageFrameView-column.right {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/lunar_new_year/right.png?asset_cache_version=2) !important;
+  }
+
+  body.great_winter_hunt .pageFrameView-column.left,
+  body.great_winter_hunt .pageFrameView-column.right {
+    background-color: #bad4ed !important;
+  }
+
+  body.great_winter_hunt .pageFrameView-column.left {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/great_winter_hunt/left.jpg?asset_cache_version=2) !important;
+  }
+
+  body.great_winter_hunt .pageFrameView-column.right {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/great_winter_hunt/right.jpg?asset_cache_version=2) !important;
+  }
+
+  body.birthday .pageFrameView-column.left,
+  body.birthday .pageFrameView-column.right {
+    background-color: #bad4ed !important;
+    background-repeat: no-repeat !important;
+    background-position: 0 0 !important;
+  }
+
+  body.birthday .pageFrameView-column.left {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/birthday/left.png?asset_cache_version=2) !important;
+    background-position-x: 100% !important;
+  }
+
+  body.birthday .pageFrameView-column.right {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/birthday/right.png?asset_cache_version=2) !important;
+  }
+
+  body.valentines .pageFrameView-column.left,
+  body.valentines .pageFrameView-column.right {
+    background-color: #f69798 !important;
+  }
+
+  body.valentines .pageFrameView-column.left {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/valentines/left.png?asset_cache_version=2) !important;
+  }
+
+  body.valentines .pageFrameView-column.right {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/valentines/right.png?asset_cache_version=2) !important;
+  }
+
+  body.spring_hunt .pageFrameView-column.left,
+  body.spring_hunt .pageFrameView-column.right {
+    background-color: #86ce5c !important;
+    background-repeat: no-repeat !important;
+  }
+
+  body.spring_hunt .pageFrameView-column.left {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/spring_hunt/left.png?asset_cache_version=2) !important;
+  }
+
+  body.spring_hunt .pageFrameView-column.right {
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/spring_hunt/right.png?asset_cache_version=2) !important;
+  }
+}

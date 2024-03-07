@@ -8,6 +8,7 @@ import {
 } from '@utils';
 
 import styles from './styles.css';
+import backgrounds from './backgrounds.css';
 
 const fixPassingParcel = () => {
   const passingParcel = document.querySelector('.inventoryPage-item[data-item-type="passing_parcel_message_item"]');
@@ -156,7 +157,7 @@ const fixRiftTooltipQuantities = async () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles, 'fixes');
+  addStyles([styles, backgrounds], 'fixes');
 
   if ('item' === getCurrentPage()) {
     fixItemPage();

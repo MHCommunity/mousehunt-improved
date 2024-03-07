@@ -28,3 +28,4 @@ Fixes a variety of bugs and issues in the game, including:
 - Fixes the Table of Contents progress reward quantity background color.
 - Fixes the Premium shop overlay background color.
 - Fixes various colors and styles that had typos in the stylesheets.
+- Fixes event backgrounds changing to a solid color on narrow screens.
