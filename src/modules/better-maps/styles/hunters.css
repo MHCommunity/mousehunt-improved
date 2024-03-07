@@ -150,14 +150,7 @@ input.mh-ui-quick-invite-input {
 }
 
 span.treasureMapView-shareLinkInputStatus {
-  position: absolute;
-  right: 20px;
-  bottom: 4px;
-  padding: 3px;
-  font-size: 11px;
-  background-color: #baf966;
-  border-radius: 5px;
-  box-shadow: 0 1px 2px -1px #000;
+  display: none;
 }
 
 .treasureMapView-mapMenu-group-invite {
