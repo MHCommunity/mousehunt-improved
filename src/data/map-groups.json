@@ -1999,16 +1999,16 @@
           }
         ]
       }
+    ],
+    "subcategories": [
+      {
+        "id": "frc",
+        "name": "Factory Repair Charm"
+      },
+      {
+        "id": "sb",
+        "name": "SUPER|brie+"
+      }
     ]
   },
-  "subcategories": [
-    {
-      "id": "frc",
-      "name": "Factory Repair Charm"
-    },
-    {
-      "id": "sb",
-      "name": "SUPER|brie+"
-    }
-  ]
 }
