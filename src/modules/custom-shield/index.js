@@ -42,6 +42,8 @@ const changeShield = () => {
       'alt',
       'title',
       'default',
+      'birthday',
+      'year16', // TODO: remove this after the event.
     ];
 
     remove.forEach((className) => {
