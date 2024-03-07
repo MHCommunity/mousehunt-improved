@@ -17,7 +17,7 @@
 .treasureMapView-block-content,
 .treasureMapView-block-content.halfHeight {
   height: auto;
-  max-height: 50vh;
+  max-height: 55vh;
 }
 
 #supplytransfer .drawer {

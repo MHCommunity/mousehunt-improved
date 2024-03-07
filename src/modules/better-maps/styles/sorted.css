@@ -82,7 +82,7 @@
 #sorted-mice-container .mouse-container:focus {
   position: relative;
   background: rgb(255 255 255 / 50%);
-  outline: 1px solid #ccc;
+  outline: 1px solid rgb(25 25 25 / 35%);
 }
 
 #sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper {
@@ -288,7 +288,7 @@
 }
 
 .full-width .treasureMapView-goals-group-goal {
-  width: 20%;
+  width: calc(20% - 5px);
 }
 
 .scavenger-toggle-wrapper {

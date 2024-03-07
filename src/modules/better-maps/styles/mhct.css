@@ -8,7 +8,7 @@
 
 .treasureMapView-highlight.goal.sticky .mh-ui-mouse-links-map-ars .mhct-data {
   display: block;
-  margin-top: 3px;
+  margin-top: 1px;
 }
 
 .mhct-title {
@@ -21,10 +21,10 @@
 
 .mhct-row {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr;
-  column-gap: 5px;
+  grid-template-columns: 3fr 3fr 1fr;
+  column-gap: 4px;
   place-items: center stretch;
-  padding: 5px 0;
+  padding: 4px;
   font-size: 11px;
   color: #000;
 }
@@ -63,7 +63,6 @@
 .mh-ui-mouse-links-map-ars .mhct-data {
   position: relative;
   display: flex;
-  padding: 4px;
   margin: 0;
   color: #000;
   background-color: #fff;
@@ -82,7 +81,10 @@
 }
 
 .mh-ui-mouse-links-map-ars .mhct-rate {
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 13px;
 }
 
 .mh-ui-mouse-links-map-ars .mhct-row {
@@ -94,8 +96,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 5px;
-  margin: -4px;
-  margin-bottom: 2px;
   font-size: 11px;
   color: #000;
   background-color: #d6d6d6;
@@ -115,4 +115,20 @@
   max-width: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.treasureMapView-highlight-content {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.mh-ui-mouse-links-map-ars .mhct-title,
+.mh-ui-mouse-links-map-ars .mhct-data {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.mh-ui-mouse-links-map-ars .mhct-row:last-child {
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
