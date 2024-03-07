@@ -1,5 +1,26 @@
 # Changelog
 
+## Version 0.35.0
+
+### Added
+
+- Adds Gilded Birthday and Party Size Gilded Birthday maps to the Sorted tab in Better Maps
+- Adds Birthday (Year 16) as an option for Custom Shield
+
+### Changed
+
+- Updates Birthday event HUD styles, including higher quality images, a fun animation, and other changes
+- Removes the Birthday even shield unless it is selected in Custom Shield
+- Updates Better Map styles
+- Updates Better Shops styles
+- Updates Better Journal styles
+- Miscellaneous bug fixes
+- Updates Fixes module to make event backgrounds still show on narrow screens
+
+### Fixed
+
+- Fixes power type filter not showing in Quick Filter and Sort
+
 ## Version 0.34.0
 
 ### Added
