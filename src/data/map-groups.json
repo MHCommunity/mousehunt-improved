@@ -2011,4 +2011,93 @@
       }
     ]
   },
+  "birthday_2021_gilded_party_size": {
+    "categories": [
+      {
+        "name": "Mixing Room",
+        "id": "mixing-room",
+        "icon": "/ui/events/birthday_factory/item_mixing_rod.png?asset_cache_version=2",
+        "color": "#0aebdd",
+        "mice": [
+          "force_fighter_blue",
+          "force_fighter_green",
+          "force_fighter_pink",
+          "force_fighter_red",
+          "force_fighter_yellow",
+          "super_fighterbot_megasupreme"
+        ]
+      },
+      {
+        "name": "Pumping Room",
+        "id": "pumping-room",
+        "icon": "/ui/events/birthday_factory/item_pressurized_pump.png?asset_cache_version=2",
+        "color": "#fca00a",
+        "mice": [
+          "reality_restitch",
+          "time_punk",
+          "time_tailor",
+          "time_thief",
+          "time_plumber"
+        ]
+      },
+      {
+        "name": "Break Room",
+        "id": "break-room",
+        "icon": "/ui/events/birthday_factory/item_circuit_breaker.png?asset_cache_version=2",
+        "color": "#ea8cab",
+        "mice": [
+          "breakdancer",
+          "fromager_mouse",
+          "dance_party",
+          "dance_boss",
+          "para_para_dancer"
+        ]
+      },
+      {
+        "name": "QA Room",
+        "id": "qa-room",
+        "icon": "/ui/events/birthday_factory/item_quality_cog.png?asset_cache_version=2",
+        "color": "#fbabff",
+        "mice": [
+          "cupcake_candle_thief",
+          "cupcake_cutie",
+          "sprinkley_sweet",
+          "cupcake_camo",
+          "cupcake_runner"
+        ]
+      },
+      {
+        "name": "Any Room",
+        "id": "any-room",
+        "icon": "/items/bait/large/39a63a48084383a7eb07d64c74357544.png",
+        "color": "#ffeeca",
+        "mice": [
+          "buckethead",
+          "present",
+          "pintail",
+          "dinosuit",
+          "sleepwalker",
+          "terrible_twos",
+          {
+            "mouse": "factory_technician",
+            "subcategory": "frc"
+          },
+          {
+            "mouse": "cheesy_party",
+            "subcategory": "sb"
+          }
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "frc",
+        "name": "Factory Repair Charm"
+      },
+      {
+        "id": "sb",
+        "name": "SUPER|brie+"
+      }
+    ]
+  }
 }
