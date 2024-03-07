@@ -222,6 +222,10 @@ p.mhi-x-entry {
   background-size: cover;
 }
 
+.journal .entry.luckycatchsuccess .journalimage::after,
+.journal .entry.short.misc.custom.donationComplete br:last-of-type,
+.journal .content .entry.short.relicHunter_complete .journaltext > br + br:last-of-type,
+.journal .entry.short.relicHunter_complete br:nth-of-type(2),
 .journal .entry.vegetation_base_trigger::after {
   display: none;
 }
@@ -229,8 +233,4 @@ p.mhi-x-entry {
 .journal .content .entry.vending_machine_purchase {
   background-position: top, bottom, center;
   background-size: contain;
-}
-
-.journal .entry.luckycatchsuccess .journalimage::after {
-  display: none;
 }
