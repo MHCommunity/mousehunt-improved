@@ -13,8 +13,6 @@ const clickMinLuck = () => {
   const minluckButton = document.querySelector('.min-luck-button');
   if (minluckButton) {
     minluckButton.click();
-  } else {
-    app.pages.CampPage.toggleTrapEffectiveness(true);
   }
 };
 

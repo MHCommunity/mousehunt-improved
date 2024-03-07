@@ -22,7 +22,11 @@ const replaceOpenAction = () => {
       // wait for the item view to load
       const interval = setInterval(() => {
         const quantityEl = document.querySelector('.itemView-action-convertForm');
-        const maxQuantity = quantityEl ? Number.parseInt(quantityEl.innerText.split('/')[1].trim(), 10) : 0;
+        let maxQuantity = 0;
+        if (quantityEl && quantityEl.innerText.includes('/')) {
+          maxQuantity = Number.parseInt(quantityEl.innerText.split('/')[1].trim(), 10);
+        }
+
         const quantity = maxQuantity - 1;
 
         const quantityInput = getQuantityInput();

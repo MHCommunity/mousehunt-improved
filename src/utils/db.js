@@ -18,7 +18,12 @@ const database = async (databaseName) => {
 
   return new Promise((resolve, reject) => {
     request.onsuccess = () => {
-      resolve(request.result);
+      const db = request.result;
+      if (db.objectStoreNames.contains(databaseName)) {
+        resolve(db);
+      } else {
+        reject(new Error(`Object store ${databaseName} does not exist`));
+      }
     };
 
     request.onerror = () => {

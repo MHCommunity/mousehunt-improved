@@ -58,6 +58,10 @@ const addQuantityToDisplay = async (itemId, bases) => {
 };
 
 const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
+  if (! el || ! itemId || ! base) {
+    return;
+  }
+
   const selector = getIdSelector(itemId, base);
 
   let qty = await cacheGet(`${itemId}-quantity`, 0);

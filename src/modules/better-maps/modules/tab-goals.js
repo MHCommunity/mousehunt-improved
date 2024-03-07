@@ -486,15 +486,10 @@ const addSidebarToggle = async () => {
 const showGoalsTab = async (mapData) => {
   addArToggle();
   addMouseLinksToMap();
-
   addConsolationPrizes();
-
   addClassesToGroups(mapData);
-
   moveLeaveButton();
-
   addQuickInvite(mapData);
-
   addSidebarToggle();
 };
 

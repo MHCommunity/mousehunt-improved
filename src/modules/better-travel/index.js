@@ -15,6 +15,7 @@ import {
   onPageChange,
   removeSubmenuItem,
   sessionGet,
+  setPage,
   setTab
 } from '@utils';
 

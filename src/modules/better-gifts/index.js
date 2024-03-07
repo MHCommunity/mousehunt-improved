@@ -377,6 +377,7 @@ const addGiftSwitcher = () => {
   _showTab = hg.views.GiftSelectorView.showTab;
   _selectGift = hg.views.GiftSelectorView.selectGift;
   _updateGiftMultiplierQuantity = hg.views.GiftSelectorView.updateGiftMultiplierQuantity;
+
   hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
     _showTab(tabType, viewState, preserveVariables, preserveActions);
 
