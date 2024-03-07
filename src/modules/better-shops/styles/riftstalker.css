@@ -1,0 +1,48 @@
+ul.set_bonus_effects {
+  display: inline-block;
+  flex-wrap: nowrap;
+}
+
+.item_set .set_bonus_effects li {
+  display: inline;
+  margin: 0;
+}
+
+.item_set .set_bonus_level {
+  width: 40%;
+}
+
+.item_set {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.item_set .set_bonus_effects li::after {
+  content: ", ";
+}
+
+.item_set .set_bonus_effects li:last-of-type::after {
+  content: "";
+}
+
+.item_set > b {
+  display: none;
+}
+
+.item_set .set_name > img {
+  right: 30px;
+  display: none;
+}
+
+.item_set .set_name {
+  margin: 0;
+  font-size: 11px;
+}
+
+.item_set .set_name::after {
+  margin-right: 5px;
+  margin-left: 10px;
+  font-weight: 400;
+  content: " Requires: ";
+}

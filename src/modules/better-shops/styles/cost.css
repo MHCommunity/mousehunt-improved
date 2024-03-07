@@ -2,14 +2,13 @@
   display: grid;
   grid-template-columns: 1fr 15fr 1fr;
   place-items: center stretch;
-  width: 100%;
-  padding: 5px;
-  margin: 0 -5px;
+  width: 97%;
+  padding: 2px;
+  margin: 0;
 }
 
 .itemPurchaseView-action-goldGost {
-  padding: 5px;
-  padding-left: 25px;
+  padding: 5px 5px 5px 20px;
   font-size: 1.3em;
   font-weight: 400;
   text-align: left;
@@ -17,11 +16,6 @@
   border: 1px solid #ccc;
   border-right: none;
   border-left: none;
-}
-
-.itemPurchaseView-content-container {
-  padding: 0;
-  border-right: 1px solid #ccc;
 }
 
 .mh-dark-mode .itemPurchaseView-content-container {

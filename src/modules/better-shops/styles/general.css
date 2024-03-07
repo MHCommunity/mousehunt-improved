@@ -46,6 +46,7 @@ a.itemPurchaseView-image-trapPreview-link,
 
 .itemPurchaseView-content-description {
   max-height: 173px;
+  padding-right: 5px;
   padding-bottom: 10px;
   margin-top: 0;
   margin-bottom: 0;
@@ -54,19 +55,19 @@ a.itemPurchaseView-image-trapPreview-link,
 }
 
 .itemPurchaseView-action-itemCost-table {
-  width: 252px;
-  padding: 0 5px;
-  padding-bottom: 0;
-  margin-right: -11px;
-  margin-left: -11px;
+  width: 250px;
+  padding: 0;
+  margin-right: -10px;
+  margin-left: -10px;
   background: #f9f9f9;
+  border-right: none;
   border-left: none;
 }
 
 .itemPurchaseView-action-itemCost-table-cell.cost {
-  width: 45px;
-  padding-left: 10px;
-  background-size: contain;
+  padding-left: 15px;
+  background-position: 5px 0;
+  background-size: 10px;
 }
 
 .itemPurchaseView-action-itemCost-table-row.error {
@@ -85,9 +86,13 @@ a.itemPurchaseView-image-trapPreview-link,
   display: none;
 }
 
+.itemPurchaseView-container {
+  width: calc(100% - 1px);
+}
+
 .itemPurchaseView-action-container {
-  padding: 10px 0 0;
-  border: none;
+  padding: 8px 0 0;
+  border-right: 1px solid #ccc;
 }
 
 /* Marketplace close button - make the normal X button */
@@ -121,8 +126,12 @@ a.itemPurchaseView-image-trapPreview-link,
 }
 
 a.itemPurchaseView-content-skin-link {
-  padding-left: 26px;
-  background-size: 23px;
+  display: flex;
+  align-items: center;
+  min-height: 25px;
+  padding-left: 30px;
+  line-height: unset;
+  background-size: 25px;
 }
 
 /* Hide the marketplace footer */
@@ -382,7 +391,6 @@ a.shopsPage-kingsCalibratorPromo {
   background-color: #dbe9ff;
 }
 
-.hasShop .itemPurchaseView-container.donation,
 .itemPurchaseView-container.own_max {
   display: block !important;
   height: 25px;
@@ -393,14 +401,13 @@ a.shopsPage-kingsCalibratorPromo {
 
 .hasShop .itemPurchaseView-container.donation .itemPurchaseView-content-container,
 .itemPurchaseView-container.own_max .itemPurchaseView-content-container {
-  width: 100%;
+  width: calc(100% - 10px);
 }
 
 .mh-dark-mode .itemPurchaseView-container.own_max {
   background-color: #000;
 }
 
-.hasShop .itemPurchaseView-container.donation:hover,
 .itemPurchaseView-container.own_max:hover {
   display: table !important;
   height: unset;
@@ -449,4 +456,67 @@ a.shopsPage-kingsCalibratorPromo {
 
 .itemPurchaseView-container.new .itemPurchaseView-margin::after {
   top: 5px;
+}
+
+.itemPurchaseView-action-marketplace b,
+.itemPurchaseView-action-marketplace br {
+  display: none;
+}
+
+.itemPurchaseView-action-marketplace a:last-of-type::after {
+  content: " in the Marketplace";
+}
+
+.itemPurchaseView-action-marketplace {
+  padding: 5px 0;
+}
+
+a.itemPurchaseView-action-buySuperBrie {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.super_brie_cheese .itemPurchaseView-action-purchaseHelper {
+  display: block;
+}
+
+.donation.no_gold_cost.can_buy .itemPurchaseView-action-itemCost-table-row {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.itemPurchaseView-container.donation .itemPurchaseView-action-container,
+.itemPurchaseView-container.donation .itemPurchaseView-action-itemCost-table {
+  border-top-color: #ffc62b;
+  border-bottom-color: #c7991c;
+}
+
+.super_brie_cheese .itemPurchaseView-content-name b {
+  display: none;
+}
+
+.itemPurchaseView-container:hover .itemPurchaseView-margin,
+.itemPurchaseView-container:hover .itemPurchaseView-image-container,
+.itemPurchaseView-container:hover .itemPurchaseView-content-container {
+  background-color: #f9f9f9;
+}
+
+.itemPurchaseView-container.trinket .itemViewStatBlock {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.itemViewStatBlock-stat-helper {
+  padding: 10px;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  background: #000;
+  border: none;
+  border-radius: 10px;
+}
+
+.itemViewStatBlock-stat-helper-arrow::after {
+  border-top: 10px solid #000;
 }
