@@ -5,7 +5,7 @@ import styles from './styles.css';
 const addItemToQuickLinks = (link, appendTo, filter) => {
   const existing = document.querySelector(`.campPage-trap-itemBrowser-favorite-item.quicklinks-filter.quicklinks-filter-${filter}-${link.id}`);
   if (existing) {
-    return;
+    existing.remove();
   }
 
   const item = document.createElement('div');
@@ -80,8 +80,10 @@ const addQuickLinksToTrap = async () => {
   }
 
   const type = itemBrowser.classList.value
-    .replace('trapSelectorView__itemBrowserContainer', '')
-    .replace('trapSelectorView__outerBlock', '')
+    .replaceAll('trapSelectorView__itemBrowserContainer', '')
+    .replaceAll('trapSelectorView__outerBlock', '')
+    .replaceAll('campPage-trap-itemBrowser', '')
+    .replaceAll(' ', '')
     .trim();
   if (! type) {
     return;
