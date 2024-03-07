@@ -420,17 +420,22 @@ const addQuickInvite = async (mapData) => {
 };
 
 const addSidebarToggle = async () => {
-  const rightBlock = document.querySelector('.treasureMapView-rightBlock');
+  const mapView = document.querySelector('.treasureMapView');
+  if (! mapView) {
+    return;
+  }
+
+  const rightBlock = mapView.querySelector('.treasureMapView-rightBlock');
   if (! rightBlock) {
     return;
   }
 
-  const leftBlock = document.querySelector('.treasureMapView-leftBlock');
+  const leftBlock = mapView.querySelector('.treasureMapView-leftBlock');
   if (! leftBlock) {
     return;
   }
 
-  const existing = document.querySelector('.mh-ui-goals-sidebar-toggle');
+  const existing = mapView.querySelector('.mh-ui-goals-sidebar-toggle');
   if (existing) {
     return;
   }
@@ -444,6 +449,7 @@ const addSidebarToggle = async () => {
     toggle.setAttribute('data-state', 'closed');
     toggle.setAttribute('title', 'Show Sidebar');
 
+    mapView.classList.add('mh-ui-goals-sidebar-toggled');
     rightBlock.classList.add('hidden');
     leftBlock.classList.add('full-width');
   } else {
@@ -452,6 +458,7 @@ const addSidebarToggle = async () => {
     toggle.setAttribute('data-state', 'open');
     toggle.setAttribute('title', 'Hide Sidebar');
 
+    mapView.classList.remove('mh-ui-goals-sidebar-toggled');
     rightBlock.classList.remove('hidden');
     leftBlock.classList.remove('full-width');
   }
@@ -467,6 +474,7 @@ const addSidebarToggle = async () => {
       toggle.classList.remove('open');
       toggle.classList.add('closed');
 
+      mapView.classList.add('mh-ui-goals-sidebar-toggled');
       rightBlock.classList.add('hidden');
       leftBlock.classList.add('full-width');
     } else {
@@ -475,12 +483,57 @@ const addSidebarToggle = async () => {
       toggle.classList.remove('closed');
       toggle.classList.add('open');
 
+      mapView.classList.remove('mh-ui-goals-sidebar-toggled');
       rightBlock.classList.remove('hidden');
       leftBlock.classList.remove('full-width');
     }
   });
 
   leftBlock.append(toggle);
+};
+
+const makeStickyDraggable = () => {
+  const sticky = document.querySelector('.treasureMapView-highlight');
+  if (! sticky) {
+    return;
+  }
+
+  // make it so the user can drag the sticky around.
+  let pos1 = 0;
+  let pos2 = 0;
+  let pos3 = 0;
+  let pos4 = 0;
+
+  const dragMouseDown = (e) => {
+    e = e || window.event;
+    e.preventDefault();
+
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  };
+
+  const elementDrag = (e) => {
+    e = e || window.event;
+    e.preventDefault();
+
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+
+    sticky.style.top = `${(sticky.offsetTop - pos2)}px`;
+    sticky.style.left = `${(sticky.offsetLeft - pos1)}px`;
+  };
+
+  const closeDragElement = () => {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  };
+
+  sticky.onmousedown = dragMouseDown;
 };
 
 const showGoalsTab = async (mapData) => {
@@ -491,6 +544,7 @@ const showGoalsTab = async (mapData) => {
   moveLeaveButton();
   addQuickInvite(mapData);
   addSidebarToggle();
+  makeStickyDraggable();
 };
 
 const hideGoalsTab = () => {
