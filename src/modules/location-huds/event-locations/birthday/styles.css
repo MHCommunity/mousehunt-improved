@@ -1,7 +1,7 @@
 .superBrieFactoryHUD-vendingMachine-quantity.quantity,
 .superBrieFactoryHUD-item-quantity.quantity {
   font-size: 12px;
-  line-height: 14px;
+  line-height: 15px;
 }
 
 .superBrieFactoryHUD-itemContainer.boss_ticket .superBrieFactoryHUD-item-quantity.quantity {
@@ -16,4 +16,280 @@
 
 .superBrieFactoryHUD-pipeProgress {
   font-size: 10px;
+}
+
+.superBrieFactoryHUD-vendingMachine-quantity {
+  min-width: 30px;
+  margin-right: 4px;
+  text-align: right;
+}
+
+.superBrieFactoryHUD-factoryRoom.mixing_room,
+.superBrieFactoryHUD-factoryRoom.break_room,
+.superBrieFactoryHUD-factoryRoom.pumping_room,
+.superBrieFactoryHUD-factoryRoom.quality_assurance_room {
+  box-sizing: border-box;
+  padding: 2px;
+  border: 1px solid #000;
+}
+
+.superBrieFactoryHUD-factoryRoom.mixing_room,
+.superBrieFactoryHUD-factoryRoom.break_room,
+.superBrieFactoryHUD-factoryRoom.pumping_room,
+.superBrieFactoryHUD-factoryRoom.quality_assurance_room,
+.superBrieFactoryHUD-factoryRoom.mixing_room::before,
+.superBrieFactoryHUD-factoryRoom.break_room::before,
+.superBrieFactoryHUD-factoryRoom.pumping_room::before,
+.superBrieFactoryHUD-factoryRoom.quality_assurance_room::before {
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.superBrieFactoryHUD-factoryRoom.mixing_room {
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_mixing_room.jpg?cv=Birthday2022&asset_cache_version=2);
+}
+
+.superBrieFactoryHUD-factoryRoom.break_room {
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_break_room.jpg?cv=Birthday2022&asset_cache_version=2);
+  background-size: contain;
+}
+
+.superBrieFactoryHUD-factoryRoom.pumping_room {
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_pump_room.jpg?cv=Birthday2022&asset_cache_version=2);
+}
+
+.superBrieFactoryHUD-factoryRoom.quality_assurance_room {
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_qa_room.jpg?cv=Birthday2022&asset_cache_version=2);
+}
+
+.superBrieFactoryHUD-factoryRoom.mixing_room::before,
+.superBrieFactoryHUD-factoryRoom.break_room::before,
+.superBrieFactoryHUD-factoryRoom.pumping_room::before,
+.superBrieFactoryHUD-factoryRoom.quality_assurance_room::before {
+  background-image: none;
+}
+
+.superBrieFactoryHUD-factoryRoom::before {
+  border-color: #fe9ff1;
+  border-width: 1px;
+  border-radius: 1px;
+  outline: 1px solid #dc4a9e;
+  box-shadow: inset 0 0 2px 1px #87378f;
+}
+
+.superBrieFactoryHUD-factoryRoom::after {
+  top: 44px;
+  left: 3px;
+  width: 149px;
+  background-color: #15ff46;
+  background-image: none;
+  filter: invert(1);
+  mix-blend-mode: color;
+  opacity: 0.3;
+}
+
+.superBrieFactoryHUD-factoryRoom:nth-child(2) .superBrieFactoryHUD-factoryRoom-level,
+.superBrieFactoryHUD-factoryRoom:nth-child(4) .superBrieFactoryHUD-factoryRoom-level {
+  left: 43px;
+}
+
+.superBrieFactoryHUD-room-name {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.superBrieFactoryHUD-room-effectPrefix {
+  margin-bottom: 4px;
+  font-size: 10px;
+}
+
+.superBrieFactoryHUD-room-costLevel.level_max {
+  margin-top: 5px;
+}
+
+.level_5 .superBrieFactoryHUD-room-cost-levelNumber {
+  display: none;
+}
+
+.level_5 .superBrieFactoryHUD-room-cost-effect {
+  margin-left: -6px;
+}
+
+.superBrieFactoryHUD-room-costLevel {
+  margin-top: 5px;
+}
+
+.superBrieFactoryHUD-factoryRoom-level {
+  left: 75.5px;
+}
+
+.superBrieFactoryHUD-showControlPanelButton::after {
+  background-color: #4cc2a6;
+  border-radius: 4px;
+}
+
+.superBrieFactoryHUD-craftingItem.active .quantity::before {
+  position: absolute;
+  inset: 8px 0 0;
+  display: block;
+  content: "";
+}
+
+.superBrieFactoryHUD-craftingItem .quantity {
+  position: absolute;
+  inset: 4px 5px 2px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 3px;
+  margin-right: -10px;
+  background-color: #f6f3eb;
+  border: 1px solid #aeb1b0;
+  border-radius: 2px;
+}
+
+.superBrieFactoryHUD-craftingItem.active .quantity {
+  color: #fff;
+  text-shadow: none;
+  background-color: #338577;
+  border-color: #2dc49f;
+}
+
+.superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_break_room_stat_item"]::after,
+.superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_mixing_room_stat_item"]::after,
+.superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_pumping_room_stat_item"]::after,
+.superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_quality_assurance_room_stat_item"]::after {
+  position: absolute;
+  top: -4px;
+  left: -16px;
+  width: 20px;
+  height: 20px;
+  content: "";
+  background-size: contain;
+}
+
+.superBrieFactoryHUD-craftingItem.active .quantity[data-item-type="birthday_factory_break_room_stat_item"]::after,
+.superBrieFactoryHUD-craftingItem.active .quantity[data-item-type="birthday_factory_mixing_room_stat_item"]::after,
+.superBrieFactoryHUD-craftingItem.active .quantity[data-item-type="birthday_factory_pumping_room_stat_item"]::after,
+.superBrieFactoryHUD-craftingItem.active .quantity[data-item-type="birthday_factory_quality_assurance_room_stat_item"]::after {
+  transform: scale(1.3);
+}
+
+.superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_break_room_stat_item"]::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/4a52c6d8607991a93d3167ac401802ec.png?cv=2);
+}
+
+.superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_mixing_room_stat_item"]::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/2396577aacb317979238844ae30b62c1.png?cv=2);
+}
+
+.superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_pumping_room_stat_item"]::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/c3c5cb340c3949ba5280c63b2f552a19.png?cv=2);
+}
+
+.superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_quality_assurance_room_stat_item"]::after {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/97bb19e8f5ae6cc29a7a0f312a1a3b14.png?cv=2);
+}
+
+.superBrieFactoryHUD-item-boundingBox {
+  z-index: 1;
+}
+
+.superBrieFactoryHUD-item-boundingBox[data-item-type="coggy_colby_cheese"]::before,
+.superBrieFactoryHUD-item-boundingBox[data-item-type="speed_coggy_colby_cheese"]::before,
+.superBrieFactoryHUD-item-boundingBox[data-item-type="birthday_factory_trinket"]::before {
+  position: absolute;
+  inset: -16px 0 0 -1px;
+  top: -16px;
+  left: -1px;
+  content: "";
+  background-repeat: no-repeat;
+  background-size: 45px;
+  transition: transform 0.3s;
+  transform: rotate(351deg);
+}
+
+.superBrieFactoryHUD-item-boundingBox[data-item-type="coggy_colby_cheese"]::before {
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/39a63a48084383a7eb07d64c74357544.png?cv=2);
+}
+
+.superBrieFactoryHUD-item-boundingBox[data-item-type="speed_coggy_colby_cheese"]::before {
+  top: -15px;
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/9326f63ea3644631c5fe8360ea4ffdf5.png?cv=2);
+}
+
+.superBrieFactoryHUD-item-boundingBox[data-item-type="birthday_factory_trinket"]::before {
+  top: -9px;
+  left: 5px;
+  background-image: url(https://www.mousehuntgame.com/images/items/trinkets/large/907ce5291e023dedae8ed33c98546743.png?cv=2);
+  background-size: 36px;
+  transform: rotate(0deg);
+}
+
+.superBrieFactoryHUD-item-boundingBox:hover::before {
+  transform: scale(1.3);
+}
+
+.superBrieFactoryHUD-item-quantity.quantity {
+  position: relative;
+  z-index: 2;
+}
+
+.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot {
+  animation: mh-improved-hue-scale 1s 1;
+}
+
+.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(4) {
+  animation-delay: 0.5s;
+}
+
+.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(5) {
+  animation-delay: 0.6s;
+}
+
+@keyframes mh-improved-hue-scale {
+  0% {
+    filter: hue-rotate(0deg);
+    transform: scale(1);
+  }
+
+  50% {
+    filter: hue-rotate(360deg);
+    transform: scale(1.5);
+  }
+
+  100% {
+    filter: hue-rotate(0deg);
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot {
+    animation: none;
+  }
+
+  .superBrieFactoryHUD-item-boundingBox:hover::before {
+    transform: none;
+  }
+}
+
+.superBrieFactoryVendingMachinePopup .superBrieFactoryVendingMachineView-numTokens {
+  top: 202px;
+  right: 57px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
