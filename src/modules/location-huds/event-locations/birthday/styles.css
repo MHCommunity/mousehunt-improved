@@ -235,27 +235,27 @@
   z-index: 2;
 }
 
-.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot {
+.superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot {
   animation: mh-improved-hue-scale 1s 1;
 }
 
-.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(1) {
+.superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(1) {
   animation-delay: 0s;
 }
 
-.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(2) {
+.superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(2) {
   animation-delay: 0.2s;
 }
 
-.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(3) {
+.superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(3) {
   animation-delay: 0.4s;
 }
 
-.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(4) {
+.superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(4) {
   animation-delay: 0.5s;
 }
 
-.superBrieFactoryHUD-factoryRoom-level:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(5) {
+.superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(5) {
   animation-delay: 0.6s;
 }
 
@@ -292,4 +292,8 @@
   background: transparent;
   border: none;
   box-shadow: none;
+}
+
+.superBrieFactoryHUD-dateCountdownMiniContainer {
+  transform: rotate(10deg);
 }
