@@ -7,8 +7,8 @@ import {
   onTravel
 } from '@utils';
 
-import styles from './styles.css';
 import backgrounds from './backgrounds.css';
+import styles from './styles.css';
 
 const fixPassingParcel = () => {
   const passingParcel = document.querySelector('.inventoryPage-item[data-item-type="passing_parcel_message_item"]');
