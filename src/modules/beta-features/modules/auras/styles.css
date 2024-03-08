@@ -1,22 +1,21 @@
 .mh-improved-aura-view .image.trapImageView-trapAura {
-  visibility: visible;
-  opacity: 1;
   width: 35px;
   height: 35px;
+  visibility: visible;
+  opacity: 1;
 }
 
 .mh-improved-aura-view .aura {
   display: grid;
   grid-template-columns: 35px 1fr 4fr;
-  justify-items: stretch;
-  align-items: center;
+  place-items: center stretch;
   margin: 10px 0;
 }
 
 .mh-improved-aura-view .type {
-  font-weight: 900;
-  font-size: 12px;
   margin-left: 1em;
+  font-size: 12px;
+  font-weight: 900;
 }
 
 .times {
@@ -41,18 +40,17 @@ below is
 
 .mh-improved-aura-view.campPage-trap-trapEffectiveness {
   display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  padding: 0;
+  flex-flow: row nowrap;
   justify-content: space-evenly;
+  padding: 0;
   margin-top: 10px;
 }
 
 .mh-improved-aura-view .aura {
   display: flex;
   flex-direction: column;
-  align-items: center;
   align-content: center;
+  align-items: center;
 }
 
 .time {
@@ -61,11 +59,11 @@ below is
 
 .mh-improved-aura-view .times {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  text-align: center;
   margin: 0 5px;
+  text-align: center;
 }
 
 /* only show the relative expiry time */
