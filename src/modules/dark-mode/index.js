@@ -53,6 +53,6 @@ export default {
   name: 'Dark Mode Updates & Tweaks',
   type: 'feature',
   default: true,
-  description: 'Improves and tweaks dark mode, either the standalone extension or the MHCT version.',
+  description: 'Improves and tweaks dark mode. <strong>Requires either the standalone extension or enabling the setting in MHCT</strong>.',
   load: init,
 };
