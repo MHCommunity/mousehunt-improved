@@ -3,7 +3,7 @@
   position: absolute;
   right: 10px;
   bottom: 4px;
-  left: -10px;
+  left: 15px;
   z-index: 1;
   font-size: 11px;
   color: #684434;
@@ -11,6 +11,19 @@
   background-color: rgb(221 205 162 / 85%);
   border: 1px solid #9d9a91;
   border-radius: 5px;
+}
+
+.default .mousehunt-improved-lgs-reminder {
+  left: 0;
+}
+
+.default-fancy .mousehunt-improved-lgs-reminder {
+  right: 20px;
+}
+
+.mousehuntHud-shield.color .mousehunt-improved-lgs-reminder {
+  right: 20px;
+  left: 0;
 }
 
 .mhui-custom-shield .mousehunt-improved-lgs-reminder.exact {
@@ -42,19 +55,13 @@
   }
 }
 
-.mousehunt-improved-lgs-reminder-wrapper,
-.mousehunt-improved-lgs-reminder {
+.mousehunt-improved-lgs-reminder-wrapper {
   position: absolute;
-  right: 650px;
+  right: 642px;
   bottom: 0;
-  left: 25px;
+  left: 15px;
   font-size: 9px;
   white-space: nowrap;
-}
-
-.mousehunt-improved-lgs-reminder-wrapper {
-  right: 642px;
-  left: 15px;
 }
 
 .mousehunt-improved-lgs-reminder-new {

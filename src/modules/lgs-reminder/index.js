@@ -5,6 +5,7 @@ import {
   getFlag,
   getSetting,
   makeElement,
+  onActivation,
   onDeactivation,
   onEvent
 } from '@utils';
@@ -32,7 +33,7 @@ const isExact = () => {
   return getFlag('lgs-reminder-exact');
 };
 
-const getShieldTime = () => {
+const getShieldEndDateTime = () => {
   const shieldExpiry = user.shield_expiry;
   if (! shieldExpiry) {
     return;
@@ -40,13 +41,24 @@ const getShieldTime = () => {
 
   // make a new date object
   const expiry = Date.parse(shieldExpiry);
+
+  return new Date(expiry);
+};
+
+const getShieldTime = () => {
+  const expiry = getShieldEndDateTime();
   const now = new Date();
 
   // get the difference in seconds
   return Math.floor((expiry - now));
 };
 
-const getShieldTimeFormattted = (time) => {
+const getShieldTimeFormattted = () => {
+  const time = getShieldTime();
+  if (! time) {
+    return '';
+  }
+
   const units = ['y', 'mo', 'w', 'd', 'h', 'm'];
   if (isExact()) {
     units.push('s');
@@ -64,11 +76,6 @@ const getShieldTimeFormattted = (time) => {
 
 const updateLgsReminder = (el) => {
   const time = getShieldTime();
-  if (! time) {
-    return;
-  }
-
-  const timeFmt = getShieldTimeFormattted(time);
 
   // Check if we have less than 2 days left.
   if (time <= 60 * 60 * 24 * 2) {
@@ -80,7 +87,7 @@ const updateLgsReminder = (el) => {
     el.classList.add('lgs-danger');
   }
 
-  el.innerText = timeFmt;
+  el.innerText = getShieldTimeFormattted();
 };
 
 const main = () => {
@@ -107,10 +114,33 @@ const main = () => {
     reminder.classList.add('exact');
   }
 
+  // Set the title to be the final time and remaining time.
+  const endDate = getShieldEndDateTime().toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  });
+
+  reminder.title = `LGS Expires on ${endDate} (${getShieldTimeFormattted()} remaining)`;
+
   if (newStyle) {
+    const existing = document.querySelector('.mousehunt-improved-lgs-reminder-wrapper');
+    if (existing) {
+      existing.remove();
+    }
+
     wrapper.append(reminder);
     shieldEl.after(wrapper);
   } else {
+    const existing = document.querySelector('.mousehunt-improved-lgs-reminder');
+    if (existing) {
+      existing.remove();
+    }
+
     shieldEl.append(reminder);
   }
 
@@ -138,6 +168,27 @@ const init = async () => {
 
   addStyles(styles, 'lgs-reminder');
   main();
+
+  onEvent('mh-improved-settings-changed', (args) => {
+    if ('lgs-new-style' === args.key) {
+      const selectors = [
+        '.mousehunt-improved-lgs-reminder',
+        '.mousehunt-improved-lgs-reminder-new',
+        '.mousehunt-improved-lgs-reminder-wrapper',
+      ];
+
+      selectors.forEach((selector) => {
+        const el = document.querySelector(selector);
+        if (el) {
+          el.remove();
+        }
+      });
+
+      main();
+    }
+  });
+
+  onActivation('lgs-reminder', main);
 
   onDeactivation('lgs-reminder', () => {
     const reminder = document.querySelector('.mousehunt-improved-lgs-reminder');

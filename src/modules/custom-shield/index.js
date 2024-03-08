@@ -6,10 +6,22 @@ import styles from './styles.css';
 import cottonCandyStyles from './cotton-candy.css';
 
 const doClass = (el, shieldClass, verb) => {
-  const classToAdd = shieldClass.replace('.', ' ');
+  // if shieldClass is an array, join it.
+  if (Array.isArray(shieldClass)) {
+    shieldClass = shieldClass.join(' ');
+  }
 
-  classToAdd.split(' ').forEach((className) => {
-    el.classList[verb](className);
+  let classToAdd = shieldClass.replace('.', ' ');
+  classToAdd = classToAdd.split(' ');
+
+  classToAdd.forEach((className) => {
+    if (el && el.classList && el.classList[verb]) {
+      if ('remove' === verb && ! el.classList.contains(className)) {
+        return;
+      }
+
+      el.classList[verb](className);
+    }
   });
 };
 
@@ -36,28 +48,23 @@ const changeShield = () => {
   // Remove the old shield class.
   if (lastShield) {
     const remove = [
+      ...lastShield,
       'mhui-custom-shield',
-      lastShield,
-      `${lastShield}-alt`,
-      'alt',
-      'title',
-      'default',
       'birthday',
       'year16', // TODO: remove this after the event.
     ];
 
     remove.forEach((className) => {
       removeClass(shieldEl, className);
+      timer.classList.remove(className);
     });
   }
-
-  // Remove the old timer class.
-  timer.classList.remove(lastShield);
 
   // Get the new shield.
   let shield = getSetting('custom-shield-0', 'default');
   if ('default' === shield) {
-    shieldEl.classList.add('default');
+    shieldEl.classList.add('default', 'default-fancy');
+    lastShield = ['default', 'default-fancy'];
     return;
   }
 
@@ -73,29 +80,37 @@ const changeShield = () => {
     }
   }
 
+  lastShield = [shield];
+
   if (shield.startsWith('color-')) {
     shieldEl.classList.add('default');
+    shieldEl.classList.add('color');
+
+    lastShield.push('color');
   }
 
   if (shield.endsWith('-timer')) {
     shield = shield.replace('-timer', '');
     timer.classList.add(shield);
+
+    lastShield.push(shield);
   }
 
   // if its the alt, also add the non-alt class.
   if (shield.endsWith('-alt')) {
-    shieldEl.classList.add(shield.replace('-alt', ''), 'alt');
+    const altClass = shield.replace('-alt', '');
+    shieldEl.classList.add(altClass, 'alt');
+    lastShield.push(altClass, 'alt');
   }
 
   if (shield.includes('title')) {
     shieldEl.classList.add('title');
     shield = 'title' === shield ? getTitle() : shield;
+    lastShield.push('title', shield);
   }
 
   shieldEl.classList.add('mhui-custom-shield');
   addClass(shieldEl, shield);
-
-  lastShield = shield;
 };
 
 const getTitle = () => {
