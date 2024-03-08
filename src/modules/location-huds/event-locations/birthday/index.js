@@ -1,7 +1,6 @@
 import { addHudStyles, addStyles, makeElement, onDialogShow } from '@utils';
 
 import styles from './styles.css';
-import stylesGlobal from './global.css';
 
 const changeColors = () => {
   const popup = document.querySelector('.superBrieFactoryVendingMachinePopup');
@@ -56,9 +55,7 @@ const changeColors = () => {
 /**
  * Always active.
  */
-const birthdayGlobal = async () => {
-  addStyles(stylesGlobal, 'location-hud-events-birthday');
-};
+const birthdayGlobal = () => {}; // noop.
 
 /**
  * Only active at the event location.
