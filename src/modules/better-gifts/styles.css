@@ -447,3 +447,8 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 .mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer:hover {
   background-color: #494949;
 }
+
+.complete .giftSelectorView-inbox-gift-details {
+  margin-right: 150px;
+  margin-left: 0;
+}

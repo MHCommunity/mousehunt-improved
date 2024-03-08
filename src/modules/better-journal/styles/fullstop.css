@@ -48,6 +48,7 @@
 .entry.golemUpgraded .journaltext a::after,
 .entry.workshopPartProduced .journaltext a::after,
 .entry.adventureBook-journal.goal .journaltext b::after,
+.entry.birthday_factory.enter_room b::after,
 .entry.donationComplete .journaltext a:last-of-type::after {
   display: inline;
   content: ".";

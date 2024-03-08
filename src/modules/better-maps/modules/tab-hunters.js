@@ -51,8 +51,8 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
     }
 
     const markup = `<div class="treasureMapView-allyCell favourite"></div>
-      <div class="treasureMapView-allyCell image">
-        <div class="treasureMapView-hunter">
+      <div class="treasureMapView-allyCell image" data-snuid="${hunter.sn_user_id}">
+        <div class="treasureMapView-hunter" data-snuid="${hunter.sn_user_id}">
           <div class="treasureMapView-hunter-image-wrapper">
             <img src="${hunter.profile_pic}" class="treasureMapView-hunter-image">
           </div>

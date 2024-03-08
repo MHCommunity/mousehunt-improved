@@ -206,3 +206,11 @@ input.itemView-action-convert-quantity {
 .itemView-character:hover .itemView-character-image {
   transform: scale(1.2) rotate(-10deg) translateX(5px);
 }
+
+.itemView-header-classification {
+  visibility: hidden;
+}
+
+.itemView-header-classification span {
+  visibility: visible;
+}

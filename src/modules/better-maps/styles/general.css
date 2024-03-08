@@ -862,3 +862,7 @@ input.treasureMapView-block-search-text {
   margin-left: 10px;
   overflow-y: auto;
 }
+
+.treasureMapView-scoreboard-table .treasureMapView-block-row:hover {
+  background-color: #eee;
+}
