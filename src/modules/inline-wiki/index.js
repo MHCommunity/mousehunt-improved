@@ -1,4 +1,10 @@
-import { addStyles, makePage, onEvent } from '@utils';
+import {
+  addStyles,
+  makePage,
+  onActivation,
+  onDeactivation,
+  onEvent
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -10,37 +16,57 @@ const openWiki = () => {
   makePage(iframe);
 };
 
-const addMenuListener = () => {
+const getLink = () => {
   const wikiLink = document.querySelector('.mousehuntHud-menu ul li ul li.wiki a');
-  if (! wikiLink) {
-    return;
+  if (wikiLink) {
+    return wikiLink;
   }
 
-  wikiLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    openWiki();
-  });
+  return null;
 };
 
+const wikiListener = (e) => {
+  e.preventDefault();
+  openWiki();
+};
+
+const addMenuListener = () => {
+  const wikiLink = getLink();
+  if (wikiLink && ! listener) {
+    listener = wikiLink.addEventListener('click', wikiListener);
+  }
+};
+
+const removeMenuListener = () => {
+  const wikiLink = getLink();
+  if (wikiLink && listener) {
+    wikiLink.removeEventListener('click', wikiListener);
+    listener = null;
+  }
+};
+
+const clickWiki = () => {
+  const wikiLink = getLink();
+  if (wikiLink) {
+    wikiLink.click();
+  }
+};
+
+let listener = null;
 const main = () => {
-  addStyles(styles, 'inline-wiki');
-
   addMenuListener();
-  onEvent('mh-improved-open-wiki', () => {
-    const wikiLink = document.querySelector('.mousehuntHud-menu ul li ul li.wiki a');
-    if (wikiLink) {
-      wikiLink.click();
-    }
-
-    return true;
-  });
+  onEvent('mh-improved-open-wiki', clickWiki);
 };
 
 /**
  * Initialize the module.
  */
 const init = async () => {
+  addStyles(styles, 'inline-wiki');
   main();
+
+  onActivation('inline-wiki', main);
+  onDeactivation('inline-wiki', removeMenuListener);
 };
 
 export default {
