@@ -5,6 +5,8 @@ import { doEvent } from './event-registry';
 import { makeElement } from './elements';
 import { onPageChange } from './events';
 
+import settingsData from '@data/settings.json';
+
 import settingsStyles from './styles/settings.css';
 
 let hasAddedSettingsStyles = false;
@@ -51,7 +53,7 @@ const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-util
   }, 1000);
 
   // TODO: remove this or hook it to the event.
-  addSettingRefreshReminder();
+  addSettingRefreshReminder(key);
 };
 
 /**
@@ -394,7 +396,7 @@ const makeSettingInput = ({ key, tab, defaultValue }) => {
       parent.classList.remove('completed');
     }, 1000);
 
-    addSettingRefreshReminder();
+    addSettingRefreshReminder(key);
   };
 
   // Event listener for when the setting is clicked.
@@ -459,7 +461,7 @@ const makeSettingTextArea = ({ key, tab, defaultValue }) => {
       parent.classList.remove('completed');
     }, 1000);
 
-    addSettingRefreshReminder();
+    addSettingRefreshReminder(key);
   };
 
   // Event listener for when the setting is clicked.
@@ -695,8 +697,15 @@ let removeTimeout = null;
 
 /**
  * Add a refresh reminder to the settings page.
+ *
+ * @param {string} key The setting key.
  */
-const addSettingRefreshReminder = () => {
+const addSettingRefreshReminder = (key) => {
+  const noReminder = settingsData.noReminder || [];
+  if (noReminder.includes(key)) {
+    return;
+  }
+
   addSettingStyles();
 
   let refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');

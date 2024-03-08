@@ -10,6 +10,8 @@ import {
   setPage
 } from '@utils';
 
+import settingsData from '@data/settings.json';
+
 import settingsSettings from './settings';
 
 import iconStyles from './icons.css';
@@ -219,13 +221,31 @@ const addIconToMenu = () => {
   menu.append(icon);
 };
 
+const makeModuleIconStyles = () => {
+  const icons = settingsData.icons || [];
+  if (! icons.length) {
+    return '';
+  }
+
+  let returnString = '';
+
+  icons.forEach((icon) => {
+    returnString += `#mousehunt-improved-settings-${icon.category}-${icon.id}::before {
+      background-image: url('${icon.icon.replaceAll('\'', '"')}');
+    }`;
+  });
+
+  return returnString;
+};
+
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles([
     styles,
-    iconStyles
+    iconStyles,
+    makeModuleIconStyles(),
   ], 'mousehunt-improved-settings');
 
   addIconToMenu();
