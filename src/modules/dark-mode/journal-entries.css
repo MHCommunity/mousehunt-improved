@@ -1,0 +1,17 @@
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .journal::before,
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageJournal .journal::before {
+  background: none;
+}
+
+.entry.short.misc.custom.floatingIslands.dirigibleTravel {
+  color: #e9e9e9;
+  background-color: #2a0034;
+}
+
+.entry.short.misc.custom.floatingIslands.dirigibleTravel a {
+  color: #41c5ff;
+}
+
+.entry.short.misc.custom.floatingIslands.dirigibleTravel .journaldate {
+  border-color: rgb(255 255 255 / 30%);
+}
