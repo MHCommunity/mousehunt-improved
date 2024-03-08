@@ -34,7 +34,7 @@
     0 2px 2px #d6c8a2,
     -2px 0 2px #d6c8a2,
     0 -2px 2px #d6c8a2;
-  filter: drop-shadow(1px 1px 1px #d6c8a2);
+  filter: drop-shadow(0 1px 1px #d6c8a2) drop-shadow(0 2px 1px #d6c8a2) drop-shadow(-1px 4px 1px #d6c8a2);
 }
 
 .mousehuntHud-userStatBar .profileImage {
