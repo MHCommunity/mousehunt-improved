@@ -1,4 +1,4 @@
-import { addBodyClass, addStyles } from '@utils';
+import { addBodyClass, addStyles, onActivation, removeBodyClass } from '@utils';
 
 import styles from './styles.css';
 
@@ -8,6 +8,14 @@ import styles from './styles.css';
 const init = async () => {
   addStyles(styles, 'no-footer');
   addBodyClass('no-footer');
+
+  onActivation('no-footer', () => {
+    addBodyClass('no-footer');
+  });
+
+  onActivation('no-footer', () => {
+    removeBodyClass('no-footer');
+  });
 };
 
 export default {
