@@ -14,8 +14,8 @@ import settingsData from '@data/settings.json';
 
 import settingsSettings from './settings';
 
-import iconStyles from './icons.css';
-import styles from './styles.css';
+import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
+const styles = imported;
 
 /**
  * Add the export settings button.
@@ -244,7 +244,6 @@ const makeModuleIconStyles = () => {
 const init = async () => {
   addStyles([
     styles,
-    iconStyles,
     makeModuleIconStyles(),
   ], 'mousehunt-improved-settings');
 

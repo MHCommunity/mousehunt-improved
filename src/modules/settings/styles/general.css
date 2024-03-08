@@ -531,3 +531,7 @@
   font-size: 12px;
   background-color: #eee;
 }
+
+.PagePreferences__settingDescription strong {
+  font-weight: 900;
+}
