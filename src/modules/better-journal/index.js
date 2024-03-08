@@ -9,7 +9,8 @@ import {
   onRequest,
   onTurn,
   sessionGet,
-  sessionSet
+  sessionSet,
+  setMultipleTimeout
 } from '@utils';
 
 import journalList from './journal-list';
@@ -389,8 +390,7 @@ const init = async () => {
   if (getSetting('better-journal-replacements', true)) {
     updateEls();
     onRequest('*', () => {
-      setTimeout(updateEls, 100);
-      setTimeout(updateEls, 500);
+      setMultipleTimeout(updateEls, [0, 100, 500]);
     });
     onTurn(updateEls);
   }
