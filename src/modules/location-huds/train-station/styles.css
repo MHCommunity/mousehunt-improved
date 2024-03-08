@@ -24,3 +24,8 @@
   height: 32px;
   overflow: hidden;
 }
+
+.pendingTrainContainer .trainRow:hover,
+.pendingTrainContainer .trainRow:nth-child(even):hover {
+  background-color: #645052;
+}
