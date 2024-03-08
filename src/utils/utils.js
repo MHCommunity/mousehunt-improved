@@ -270,6 +270,17 @@ const uppercaseFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+const setMultipleTimeout = (fn, ms) => {
+  // If ms isn't an array, make it one.
+  if (! Array.isArray(ms)) {
+    ms = [ms];
+  }
+
+  ms.forEach((time) => {
+    setTimeout(fn, time);
+  });
+};
+
 export {
   doRequest,
   getTradableItems,
@@ -284,5 +295,6 @@ export {
   isAppleOS,
   hasMiniCRE,
   sleep,
-  uppercaseFirstLetter
+  uppercaseFirstLetter,
+  setMultipleTimeout
 };
