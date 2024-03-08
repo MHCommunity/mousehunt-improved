@@ -109,6 +109,18 @@ const addStyles = (styles, module = false, identifier = 'mh-improved-styles') =>
   });
 };
 
+const removeStyles = (module = false, identifier = 'mh-improved-styles') => {
+  if (! module) {
+    throw new Error('Module ID is required for adding module styles.', module);
+  }
+
+  const key = `${identifier}-${module}`;
+  const stylesEl = document.querySelector(`#${key}`);
+  if (stylesEl) {
+    stylesEl.remove();
+  }
+};
+
 /**
  * Add custom styles specific for a location hud.
  *
@@ -133,5 +145,6 @@ export {
   addHudStyles,
   addModuleStyles,
   addStyles,
-  removeHudStyles
+  removeHudStyles,
+  removeStyles
 };
