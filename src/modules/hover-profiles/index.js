@@ -10,10 +10,14 @@ import {
 
 import styles from './styles.css';
 
+const cleanId = (id) => {
+  return id.replaceAll('#', '');
+};
+
 const getFriendId = async (target) => {
   // if there is a data-snuid attribute, use that
   if (target.getAttribute('data-snuid')) {
-    return target.getAttribute('data-snuid');
+    return cleanId(target.getAttribute('data-snuid'));
   }
 
   if (target.href) {
@@ -30,7 +34,7 @@ const getFriendId = async (target) => {
       .replace('https://www.mousehuntgame.com/hunterprofile.php?snuid=', '')
       .replace('https://www.mousehuntgame.com/profile.php?snuid=', '');
     if (urlMatch && urlMatch !== href) {
-      return urlMatch;
+      return cleanId(urlMatch);
     }
 
     const pMatch = href.replace('https://www.mousehuntgame.com/p.php?id=', '');
@@ -41,7 +45,7 @@ const getFriendId = async (target) => {
       });
 
       if (snuid.friend.sn_user_id) {
-        return snuid.friend.sn_user_id;
+        return cleanId(snuid.friend.sn_user_id);
       }
     }
   }
@@ -49,14 +53,14 @@ const getFriendId = async (target) => {
   if (target.onclick) {
     const giftMatch = target.onclick.toString().match(/show\('(.+)'\)/);
     if (giftMatch && giftMatch.length) {
-      return giftMatch[1];
+      return cleanId(giftMatch[1]);
     }
   }
 
   return false;
 };
 
-const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
+const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
   if (! data || ! data.length || ! data[0].user_interactions.relationship) {
     return;
   }
@@ -66,18 +70,69 @@ const makeFriendMarkup = (friendId, data, skipCache = false, e) => {
     sessionSet(`mh-improved-cache-friend-${friendId}-timestamp`, Date.now());
   }
 
-  const templateType = data[0].user_interactions.relationship.is_stranger ? 'PageFriends_request_row' : 'PageFriends_view_friend_row';
-  const content = hg.utils.TemplateUtil.render(templateType, data[0]);
+  let content;
+  if (data) {
+    const templateType = data[0].user_interactions.relationship.is_stranger ? 'PageFriends_request_row' : 'PageFriends_view_friend_row';
+    content = hg.utils.TemplateUtil.render(templateType, data[0]);
+  } else {
+    hg.pages.FriendsPage().getPlaceholderData();
+  }
+
+  const existing = document.querySelectorAll('#friend-data-wrapper');
+  if (existing && existing.length) {
+    existing.forEach((el) => {
+      el.remove();
+    });
+  }
 
   const friendDataWrapper = document.createElement('div', 'friend-data-wrapper');
   friendDataWrapper.id = 'friend-data-wrapper';
   friendDataWrapper.innerHTML = content;
 
-  const friendLinkParent = e.target.parentElement;
-  if (friendLinkParent) {
-    friendLinkParent.append(friendDataWrapper);
-  } else {
-    e.target.append(friendDataWrapper);
+  // append to the body and position it
+  document.body.append(friendDataWrapper);
+  const rect = e.target.getBoundingClientRect();
+  const top = rect.top + window.scrollY;
+  const left = rect.left + window.scrollX;
+
+  // Calculate the desired top position for the tooltip
+  let tooltipTop = top - friendDataWrapper.offsetHeight - 10;
+
+  // Check if the tooltip would end up off the screen
+  if (tooltipTop < 0) {
+    // If it would, position it below the target element instead
+    tooltipTop = top + rect.height + 10;
+  }
+
+  friendDataWrapper.style.top = `${tooltipTop}px`;
+  friendDataWrapper.style.left = `${left - (friendDataWrapper.offsetWidth / 2) + (rect.width / 2)}px`;
+  let timeoutId;
+
+  // add a mouseleave event to remove it
+  friendDataWrapper.addEventListener('mouseleave', () => {
+    timeoutId = setTimeout(() => {
+      friendDataWrapper.remove();
+    }, 500); // delay in milliseconds
+  });
+
+  // cancel the removal if the mouse enters the tooltip
+  friendDataWrapper.addEventListener('mouseenter', () => {
+    clearTimeout(timeoutId);
+  });
+
+  // also hide it if the parent element is no longer being hovered
+  const parent = e.target.parentElement;
+  if (parent) {
+    parent.addEventListener('mouseleave', () => {
+      timeoutId = setTimeout(() => {
+        friendDataWrapper.remove();
+      }, 500); // delay in milliseconds
+    });
+
+    // cancel the removal if the mouse enters the tooltip
+    parent.addEventListener('mouseenter', () => {
+      clearTimeout(timeoutId);
+    });
   }
 
   doEvent('profile_hover');
@@ -113,6 +168,8 @@ const onFriendLinkHover = async (e) => {
   if (cached && cachedTimestamp && (Date.now() - cachedTimestamp) < 150000) {
     makeFriendMarkup(friendId, cached, true, e);
   } else {
+    makeFriendMarkup(null, null, true, e);
+
     app.pages.FriendsPage.getFriendDataBySnuids([friendId], (data) => {
       if (! data || ! data.length) {
         return;
@@ -182,6 +239,7 @@ const main = () => {
     '.entry.socialGift .journaltext a',
     '.notificationMessageList .messageText a[href*="https://www.mousehuntgame.com/p"]',
     'tr.teamPage-memberRow-identity a[href*="https://www.mousehuntgame.com/profile.php"]',
+    '.treasureMapView-scoreboard-table a[href*="https://www.mousehuntgame.com/profile.php"]',
   ];
 
   selectors.forEach((selector) => {

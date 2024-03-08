@@ -8,7 +8,7 @@
   top: -125px;
   z-index: 999999;
   box-sizing: border-box;
-  display: none;
+  display: block;
   width: 325px;
   height: 125px;
   border: 1px solid #9a8872;
