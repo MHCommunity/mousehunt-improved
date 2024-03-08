@@ -77,17 +77,27 @@
 }
 
 button.ptbtn img {
+  left: unset !important;
   width: auto !important;
   height: 50px !important;
 }
 
+.mouseCrownsView button.ptbtn > div {
+  top: unset !important;
+  right: unset !important;
+  bottom: unset !important;
+  left: unset !important;
+  width: unset !important;
+}
+
 button.ptbtn {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr;
   place-content: center flex-start;
   place-items: center center;
   width: 100% !important;
-  max-width: 244px;
+  max-width: 180px;
+  height: unset !important;
   background-color: #00b0eb !important;
   border-width: 1px;
 }
