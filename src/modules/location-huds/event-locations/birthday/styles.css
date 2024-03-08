@@ -294,8 +294,8 @@
   box-shadow: none;
 }
 
-.superBrieFactoryHUD-dateCountdownMiniContainer {
-  transform: rotate(10deg);
+.superBrieFactoryHUD .superBrieFactoryHUD-dateCountdownMiniWrapper {
+  top: -10px;
 }
 
 .hudLocationContent.super_brie_factory {
@@ -342,4 +342,12 @@
   background-image: url(https://i.mouse.rip/bday/vending-machine-hat-2.png);
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.superBrieFactoryHUD-dateCountdownMiniWrapper.mousehuntTooltipParent .mousehuntTooltip {
+  top: 40px;
+}
+
+.superBrieFactoryClaimReward-item .itemImage {
+  border: none;
 }
