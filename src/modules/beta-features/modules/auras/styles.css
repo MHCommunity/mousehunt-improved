@@ -34,7 +34,7 @@
 below is
 0 0 0
  1day 4d */
-.mh-improved-aura-view .type {
+.mh-improved-aura-view .type { /* stylelint-disable-line */
   display: none;
 }
 
@@ -46,7 +46,7 @@ below is
   margin-top: 10px;
 }
 
-.mh-improved-aura-view .aura {
+.mh-improved-aura-view .aura { /* stylelint-disable-line */
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -78,7 +78,7 @@ below is
 }
 
 /* bigger images if its only the icons */
-.mh-improved-aura-view .image.trapImageView-trapAura {
+.mh-improved-aura-view .image.trapImageView-trapAura { /* stylelint-disable-line */
   width: 40px;
   height: 40px;
 }
