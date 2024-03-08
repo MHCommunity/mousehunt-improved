@@ -229,6 +229,7 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 .trapImageView-trapAura.inactive,
 .trapImageView-zoomButton,
 .min-luck-button {
+  visibility: hidden;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }
@@ -239,6 +240,14 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 .trapImageView:hover .trapImageView-trapAura.inactive,
 .trapImageView:hover .trapImageView-zoomButton,
 .trapImageView:hover .min-luck-button {
+  visibility: visible;
+  opacity: 1;
+}
+
+.trapImageView-trapAura.active.expiring-soon {
+  visibility: visible;
+  border-radius: 50%;
+  box-shadow: inset 0 0 10px 1px #ff4d4d;
   opacity: 1;
 }
 
