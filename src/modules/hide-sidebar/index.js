@@ -1,4 +1,4 @@
-import { addBodyClass, addStyles } from '@utils';
+import { addBodyClass, addStyles, onActivation, onDeactivation } from '@utils';
 
 import styles from './styles.css';
 
@@ -30,7 +30,9 @@ const moveSidebar = () => {
   // Grab sidebar content.
   const sidebarUser = document.querySelector('.pageSidebarView-user');
   if (sidebarUser) {
-    dropdownContent.append(sidebarUser);
+    // clone the sidebarUser element and append it to the dropdownContent
+    const sidebarUserClone = sidebarUser.cloneNode(true);
+    dropdownContent.append(sidebarUserClone);
   }
 
   const scoreBoardRankings = document.querySelectorAll('.scoreboardRelativeRankingTableView-table');
@@ -40,7 +42,8 @@ const moveSidebar = () => {
 
     // for each scoreBoardRanking in scoreBoardRankings, append
     scoreBoardRankings.forEach((scoreBoardRanking) => {
-      scoreBoardRankingWrapper.append(scoreBoardRanking);
+      const scoreBoardRankingClone = scoreBoardRanking.cloneNode(true);
+      scoreBoardRankingWrapper.append(scoreBoardRankingClone);
     });
 
     dropdownContent.append(scoreBoardRankingWrapper);
@@ -69,6 +72,21 @@ const init = async () => {
   addStyles(styles, 'no-sidebar');
   addBodyClass('no-sidebar');
   moveSidebar();
+  hg.views.PageFrameView.setShowSidebar(false);
+
+  onActivation('no-sidebar', () => {
+    moveSidebar();
+    addBodyClass('no-sidebar');
+    hg.views.PageFrameView.setShowSidebar(false);
+  });
+
+  onDeactivation('no-sidebar', () => {
+    hg.views.PageFrameView.setShowSidebar(true);
+    const menuTab = document.querySelector('.menuItem.sidebar');
+    if (menuTab) {
+      menuTab.remove();
+    }
+  });
 };
 
 export default {
