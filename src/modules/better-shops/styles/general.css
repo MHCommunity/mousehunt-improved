@@ -480,7 +480,7 @@ a.itemPurchaseView-action-buySuperBrie {
   display: block;
 }
 
-.donation.no_gold_cost.can_buy .itemPurchaseView-action-itemCost-table-row {
+.donation .itemPurchaseView-action-itemCost-table-row {
   display: flex;
   justify-content: center;
   font-size: 15px;
@@ -492,6 +492,14 @@ a.itemPurchaseView-action-buySuperBrie {
   border-bottom-color: #c7991c;
 }
 
+.mh-dark-mode .itemPurchaseView-container.donation .itemPurchaseView-action-container {
+  background-color: #e6b963;
+}
+
+.mh-dark-mode .itemPurchaseView-container.donation .itemPurchaseView-action-itemCost-table {
+  background-color: #f4eeca;
+}
+
 .super_brie_cheese .itemPurchaseView-content-name b {
   display: none;
 }
@@ -500,6 +508,12 @@ a.itemPurchaseView-action-buySuperBrie {
 .itemPurchaseView-container:hover .itemPurchaseView-image-container,
 .itemPurchaseView-container:hover .itemPurchaseView-content-container {
   background-color: #f9f9f9;
+}
+
+.mh-dark-mode .itemPurchaseView-container:hover .itemPurchaseView-margin,
+.mh-dark-mode .itemPurchaseView-container:hover .itemPurchaseView-image-container,
+.mh-dark-mode .itemPurchaseView-container:hover .itemPurchaseView-content-container {
+  background-color: #242424;
 }
 
 .itemPurchaseView-container.trinket .itemViewStatBlock {

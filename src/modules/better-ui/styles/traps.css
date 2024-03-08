@@ -201,6 +201,11 @@
   border-radius: 3px;
 }
 
+.mh-dark-mode .hunterInfoView-wrapper .campPage-trap-trapStat {
+  background: #424242;
+  border-color: #5c5c5c;
+}
+
 .hunterInfoView-wrapper .campPage-trap-itemStats {
   display: flex;
   padding-bottom: 0;

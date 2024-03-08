@@ -22,6 +22,11 @@
   border: 1px solid #ccc;
 }
 
+.mh-dark-mode .shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.title,
+.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType {
+  border-color: #606060;
+}
+
 .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat-label {
   display: inline-block;
   padding: 0;

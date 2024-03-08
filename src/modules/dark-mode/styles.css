@@ -222,3 +222,14 @@
 .mh-dark-mode .pageFrameView #mousehuntContainer.PageJournal .journal::before {
   background: none;
 }
+
+.mh-dark-mode .giftSelectorView-confirmPopup-content {
+  color: #dcddde;
+  background-color: #242424;
+}
+
+.mh-dark-mode .giftSelectorView-confirmPopup-padding {
+  background-color: #0f0f0f;
+  border-color: #0f0f0f;
+  box-shadow: 0 0 10px #c8c8c8;
+}
