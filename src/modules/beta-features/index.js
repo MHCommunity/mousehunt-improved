@@ -1,5 +1,6 @@
 import { debuglog, getFlag } from '@utils';
 
+import auras from './modules/auras';
 import journalHistory from './modules/journal-history';
 import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
@@ -13,6 +14,7 @@ import settings from './settings';
  */
 const init = async () => {
   const defaultDisabledFeatures = [
+    { id: 'auras', load: auras },
     { id: 'journal-history', load: journalHistory },
     { id: 'lol-gottem', load: trollMode },
     { id: 'raffle', load: raffle },

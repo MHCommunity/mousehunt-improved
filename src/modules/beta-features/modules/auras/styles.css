@@ -1,0 +1,86 @@
+.mh-improved-aura-view .image.trapImageView-trapAura {
+  visibility: visible;
+  opacity: 1;
+  width: 35px;
+  height: 35px;
+}
+
+.mh-improved-aura-view .aura {
+  display: grid;
+  grid-template-columns: 35px 1fr 4fr;
+  justify-items: stretch;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.mh-improved-aura-view .type {
+  font-weight: 900;
+  font-size: 12px;
+  margin-left: 1em;
+}
+
+.times {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* above is
+0 winter 1day
+0 slayer 3d
+
+below is
+0 0 0
+ 1day 4d */
+.mh-improved-aura-view .type {
+  display: none;
+}
+
+.mh-improved-aura-view.campPage-trap-trapEffectiveness {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  padding: 0;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.mh-improved-aura-view .aura {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.time {
+  font-size: 10px;
+}
+
+.mh-improved-aura-view .times {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 5px;
+}
+
+/* only show the relative expiry time */
+.expiry {
+  display: none !important;
+}
+
+/* only show the icons */
+.expiry,
+.time {
+  display: none !important;
+}
+
+/* bigger images if its only the icons */
+.mh-improved-aura-view .image.trapImageView-trapAura {
+  width: 40px;
+  height: 40px;
+}
