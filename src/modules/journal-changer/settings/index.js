@@ -6,13 +6,13 @@
 export default async () => {
   return [
     {
-      id: 'journal-changer-change-daily',
+      id: 'journal-changer.change-daily',
       title: 'Randomize daily',
       default: false,
       description: '',
     },
     {
-      id: 'journal-changer-change-location',
+      id: 'journal-changer.change-location',
       title: 'Change based on location',
       default: false,
       description: '',

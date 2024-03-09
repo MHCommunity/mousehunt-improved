@@ -6,13 +6,13 @@
 export default async () => {
   return [
     {
-      id: 'better-inventory-one-item-per-row',
+      id: 'better-inventory.one-item-per-row',
       title: 'Show one item per row',
       default: true,
       description: '',
     },
     {
-      id: 'better-inventory-larger-images',
+      id: 'better-inventory.larger-images',
       title: 'Show larger images',
       default: true,
       description: '',
