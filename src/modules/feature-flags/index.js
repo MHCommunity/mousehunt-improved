@@ -1,7 +1,5 @@
 import { debuglog, getFlag } from '@utils';
 
-import auras from './modules/auras';
-import journalHistory from './modules/journal-history';
 import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
 import socialNoop from './modules/social';
@@ -14,8 +12,6 @@ import settings from './settings';
  */
 const init = async () => {
   const defaultDisabledFeatures = [
-    { id: 'auras', load: auras },
-    { id: 'journal-history', load: journalHistory },
     { id: 'lol-gottem', load: trollMode },
     { id: 'raffle', load: raffle },
     { id: 'social-noop', load: socialNoop },
@@ -42,13 +38,14 @@ const init = async () => {
     }
   });
 
-  debuglog('beta-features', 'Loaded features:', loaded);
+  debuglog('feature-flags', 'Loaded features:', loaded);
 };
 
 export default {
-  id: 'beta-features',
+  id: 'feature-flags',
   type: 'advanced',
   alwaysLoad: true,
   load: init,
   settings,
+  order: 200,
 };

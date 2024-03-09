@@ -86,11 +86,11 @@ const saveSentBallot = (id) => {
  * @return {Object} The send ballot response.
  */
 const sendBallot = async (ballot) => {
-  debuglog('beta-features-raffle', `Returning ballot for ${ballot.name} (${ballot.id})…`);
+  debuglog('feature-flags-raffle', `Returning ballot for ${ballot.name} (${ballot.id})…`);
 
   const button = document.querySelector(`.sendBallot[data-sender="${ballot.id}"]`);
   if (! button) {
-    debuglog('beta-features-raffle', `Could not find button for ${ballot.name} (${ballot.id})`);
+    debuglog('feature-flags-raffle', `Could not find button for ${ballot.name} (${ballot.id})`);
     return { status: 'error', proceed: false };
   }
 
@@ -100,7 +100,7 @@ const sendBallot = async (ballot) => {
 
     if (id) {
       if (getSavedSentBallot(id)) {
-        debuglog('beta-features-raffle', `Already returned ballot for ${ballot.name} (${ballot.id})`);
+        debuglog('feature-flags-raffle', `Already returned ballot for ${ballot.name} (${ballot.id})`);
         return { status: 'skipped', proceed: true };
       }
 
@@ -113,11 +113,11 @@ const sendBallot = async (ballot) => {
   });
 
   if (response.error && ! response.error.includes('You have already entered ')) {
-    debuglog('beta-features-raffle', `Error returning ballot for ${ballot.name}: ${response.error}`);
+    debuglog('feature-flags-raffle', `Error returning ballot for ${ballot.name}: ${response.error}`);
     return { status: 'error', proceed: false };
   }
 
-  debuglog('beta-features-raffle', `Returned ballot for ${ballot.name} (${ballot.id})`);
+  debuglog('feature-flags-raffle', `Returned ballot for ${ballot.name} (${ballot.id})`);
 
   button.classList.add('disabled');
   button.setAttribute('disabled', true);
@@ -174,7 +174,7 @@ const returnRaffles = async () => {
       return;
     }
 
-    debuglog('beta-features-raffle', `Returning ${ballotsToSend.length} ballots…`, ballotsToSend);
+    debuglog('feature-flags-raffle', `Returning ${ballotsToSend.length} ballots…`, ballotsToSend);
 
     const tab = document.querySelector('.notificationMessageList .tab.active[data-tab="daily_draw"]');
     if (! tab) {
@@ -272,7 +272,7 @@ const replaceInboxMethods = () => {
  * Initialize the module.
  */
 export default async () => {
-  addStyles(styles, 'beta-features-raffle');
+  addStyles(styles, 'feature-flags-raffle');
 
   replaceInboxMethods();
 };

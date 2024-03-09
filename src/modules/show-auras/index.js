@@ -152,11 +152,17 @@ const main = () => {
   addTrapBlock();
 };
 
-const auras = () => {
+const init = async () => {
   addStyles(styles, 'auras');
 
   main();
   onPageChange(main, { page: 'camp' });
 };
 
-export default auras;
+export default {
+  id: 'show-auras',
+  name: 'Show Auras in Trap Selector',
+  type: 'beta',
+  default: true,
+  load: init
+};

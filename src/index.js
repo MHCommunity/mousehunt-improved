@@ -25,41 +25,14 @@ const modules = imported;
  */
 const loadModules = async () => {
   const categories = [
-    {
-      id: 'required',
-      name: 'Always Loaded',
-      modules: [],
-    },
-    {
-      id: 'better',
-      name: 'MouseHunt Improved',
-      modules: [],
-    },
-    {
-      id: 'feature',
-      name: 'Features',
-      modules: [],
-    },
-    {
-      id: 'design',
-      name: 'Design',
-      modules: [],
-    },
-    {
-      id: 'element-hiding',
-      name: 'Hide Page Elements',
-      modules: [],
-    },
-    {
-      id: 'location-hud',
-      name: 'Location HUDs',
-      modules: [],
-    },
-    {
-      id: 'advanced',
-      name: 'Advanced',
-      modules: [],
-    }
+    { id: 'required', name: 'Always Loaded' },
+    { id: 'better', name: 'MouseHunt Improved' },
+    { id: 'feature', name: 'Features' },
+    { id: 'design', name: 'Design' },
+    { id: 'element-hiding', name: 'Hide Page Elements' },
+    { id: 'location-hud', name: 'Location HUDs' },
+    { id: 'advanced', name: 'Advanced' },
+    { id: 'beta', name: 'Beta Features' }
   ];
 
   // Don't load if already loaded.
@@ -77,6 +50,10 @@ const loadModules = async () => {
     if (! category) {
       debug(`Unknown module category: ${m.type}`);
       return;
+    }
+
+    if (! category.modules) {
+      category.modules = [];
     }
 
     category.modules.push(m);

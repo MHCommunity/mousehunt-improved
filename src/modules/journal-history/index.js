@@ -1,4 +1,4 @@
-import { dbGetAll, onEvent, onNavigation, onRequest } from '@utils';
+import { dbGetAll, onNavigation, onRequest } from '@utils';
 
 // import tempMiceImages from '@data/temp-mice-images.json';
 
@@ -129,11 +129,15 @@ const onJournalRequest = (data) => {
   journalHistory();
 };
 
-const main = async () => {
+const init = async () => {
   onNavigation(journalHistory, { page: 'camp' });
   onRequest('pages/journal.php', onJournalRequest);
 };
 
-export default async () => {
-  onEvent('mh-improved-loaded', main);
+export default {
+  id: 'journal-history',
+  name: 'Journal History',
+  type: 'beta',
+  default: true,
+  load: init
 };
