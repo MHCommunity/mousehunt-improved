@@ -93,7 +93,7 @@ export default {
   id: 'no-sidebar',
   name: 'Hide Sidebar',
   type: 'element-hiding',
-  default: false,
+  default: true,
   description: 'Hides the sidebar and adds a \'Sidebar\' dropdown in the top menu.',
   load: init,
 };
