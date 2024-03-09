@@ -1,3 +1,49 @@
-# [Beta Features / Feature Flags](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-advanced-override-flags)
+# [Feature Flags](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-advanced-override-flags)
 
-Enable Beta features and Feature Flags. See [List of Feature Flags](https://github.com/MHCommunity/mousehunt-improved/wiki/List-of-Feature-Flags) for a list of available feature flags.
+Enable hidden features and other advanced options.
+
+Add any of the following flags, comma-separated, to the feature flags option to enable them.
+
+## Hidden Features
+
+|Flag|Description|Required Module|
+|---|---|---|
+|`lgs-reminder-exact`|Change the Lucky Golden Shield Duration & Reminder display to include seconds.|[Lucky Golden Shield Duration & Reminder](./lucky-golden-shield-duration-and-reminder.md)|
+|`raffle`|Adds a 'Return Raffles' button to the Daily Draw inbox.|[Better Gifts](./better-gifts.md)|
+|`lol-gottem`|Enables an easter egg to troll yourself.||
+
+### Debug & Developers
+
+|Flag|Description|
+|---|---|
+|`social-noop`|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
+|`no-cache`|Disables caching of remote data. Should only be used for debugging, as otherwise you will need to pull down multiple copies of the same data.|
+
+The [debug logging](./debug-logging.md) module also is configured using feature flags.
+
+### Userscript Integrations
+
+|Userscript|Flag|Required Module|
+|---|---|--|
+|[Profile+](https://greasyfork.org/en/scripts/381389-mh-profile)|`userscript-styles-no-profile-plus-styles`|[Better UI](./better-ui.md)|
+|[Favorite Setups](https://greasyfork.org/en/scripts/443164-mousehunt-favorite-setups)|`userscript-styles-no-favorite-setups-styles`|[Better UI](./better-ui.md)|
+|[Journal Historian](https://greasyfork.org/en/scripts/454968-mousehunt-journal-historian)|`userscript-styles-no-journal-historian-styles`|[Better UI](./better-ui.md)|
+|[LGS Duration Indicator & Warning](https://greasyfork.org/en/scripts/410966-mousehunt-lucky-golden-shield-duration-indicator-warning)|`userscript-styles-no-lgs-reminder-styles`|[Better UI](./better-ui.md)|
+|[MHCT](https://www.mhct.win/)*|`userscript-styles-no-mhct-styles`|[Better UI](./better-ui.md)|
+|[Location Catch Stats](https://greasyfork.org/en/scripts/381438-mousehunt-location-catch-stats)|`userscript-styles-no-tsitu-location-catch-stats-styles`|[Better UI](./better-ui.md)|
+|[QoL Utilities](https://greasyfork.org/en/scripts/405334-mousehunt-qol-utilities)|`userscript-styles-no-tsitu-qol-styles`|[Better UI](./better-ui.md)|
+|[Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)|`userscript-styles-no-tsitu-supply-search-styles`|[Better UI](./better-ui.md)|
+|[Hyperspeed Travel](https://greasyfork.org/en/scripts/448542-mousehunt-hyperspeed-travel)|`userscript-styles-no-hyperspeed-travel-styles`|[Better Travel](./better-travel.md)|
+
+### Disable Modules
+
+You can force-disable modules using the `no-<module-id>` feature flag. This is the same as having the module turned off in the options, but can also disable features that are not usually toggle-able.
+
+|Flag|Module|
+|---|---|
+|`no-global-styles`|Disables MH Improved's global styles.|
+|`no-highlight-users`|Disables the added badge on MouseHunt Improved developer and contributor hunter profiles.|
+|`no-links`|Disables the added links to the Support and Kingdom menus.|
+|`no-onboarding`|Disables the MouseHunt Improved tutorial from Larry.|
+|`no-update-migration`|Disables migrating settings from old options to new options on update.|
+|`no-update-notifications`|Disables update notifications.|
