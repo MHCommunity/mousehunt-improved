@@ -15,7 +15,7 @@ import {
  */
 const migrateSetting = (settingKey) => {
   debuglog('update-migration', `Migrating setting from ${settingKey.from} to ${settingKey.to}`);
-  const setting = getSetting(settingKey.from);
+  const setting = getSetting(settingKey.from, null);
   if (null === setting) {
     return;
   }
