@@ -4,6 +4,7 @@ import {
   debuglog,
   getCurrentPage,
   getCurrentTab,
+  getFlag,
   getSetting,
   makeElement,
   onNavigation,
@@ -41,6 +42,10 @@ const hasSeenBanner = () => {
  * @return {boolean} True if the user has seen the onboarding step, false otherwise.
  */
 const hasSeenOnboarding = (step = 0) => {
+  if (getFlag('no-onboarding')) {
+    return true;
+  }
+
   const savedStepNumber = getSetting('updates.onboarding', 0);
   return savedStepNumber >= step;
 };
