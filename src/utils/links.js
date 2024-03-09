@@ -221,9 +221,79 @@ const addSubmenuDivider = (menu, className = '') => {
   });
 };
 
+/**
+ * Add the icon to the menu.
+ *
+ * @param {Object} opts The options for the menu item.
+ */
+const addIconToMenu = (opts) => {
+  const menu = document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');
+  if (! menu) {
+    return;
+  }
+
+  const defaults = {
+    id: '',
+    classname: '',
+    href: false,
+    title: '',
+    text: '',
+    action: null,
+    position: 'prepend',
+  };
+
+  const settings = Object.assign({}, defaults, opts);
+
+  if (! settings.classname) {
+    settings.classname = settings.id;
+  }
+
+  const icon = makeElement('a', ['menuItem', settings.classname], settings.text);
+  icon.id = settings.id;
+  if (settings.href) {
+    icon.href = settings.href;
+    icon.title = settings.title;
+  }
+
+  if (settings.action) {
+    icon.addEventListener('click', (e) => {
+      settings.action(e, icon);
+    });
+  }
+
+  if (settings.id) {
+    const exists = document.querySelector(`#${settings.id}`);
+    if (exists) {
+      exists.replaceWith(icon);
+      return;
+    }
+  }
+
+  if ('prepend' === settings.position) {
+    menu.prepend(icon);
+  } else if ('append' === settings.position) {
+    menu.append(icon);
+  }
+};
+
+const removeIconFromMenu = (id) => {
+  const icon = document.querySelector(`#${id}`);
+  if (icon) {
+    icon.remove();
+  }
+};
+
+const replaceIconInMenu = (id, opts) => {
+  removeIconFromMenu(id);
+  addIconToMenu(opts);
+};
+
 export {
   addItemToGameInfoBar,
   addSubmenuItem,
   addSubmenuDivider,
-  removeSubmenuItem
+  removeSubmenuItem,
+  addIconToMenu,
+  removeIconFromMenu,
+  replaceIconInMenu
 };
