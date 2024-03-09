@@ -1,3 +1,10 @@
 .pageFrameView-column {
   min-height: 100vh;
 }
+
+code {
+  padding: 0 3px;
+  font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  background-color: #eee;
+  border-radius: 3px;
+}

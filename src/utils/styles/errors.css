@@ -27,13 +27,11 @@
   line-height: 1.5;
 }
 
-.mousehunt-improved-error pre {
-  margin: 0 0.5em;
-  color: #8b0101;
-}
-
-.mousehunt-improved-error pre::before {
-  content: "> ";
+textarea.mousehunt-improved-error-message {
+  min-height: 50px;
+  font-size: 11px;
+  background-color: #f2c4c4;
+  border-color: #cf7676;
 }
 
 .mousehunt-improved-error-close {
