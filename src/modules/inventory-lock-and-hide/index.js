@@ -160,11 +160,11 @@ const maybeLockOrHideItems = async () => {
       return;
     }
 
-    if (itemSettings.locked.includes(id)) {
+    if (itemSettings?.locked?.length > 0 && itemSettings.locked.includes(id)) {
       item.classList.add('locked');
     }
 
-    if (itemSettings.hidden.includes(id)) {
+    if (itemSettings?.hidden?.length > 0 && itemSettings.hidden.includes(id)) {
       item.classList.add('hidden');
     }
   }
