@@ -11,8 +11,16 @@ const doClass = (el, shieldClass, verb) => {
     shieldClass = shieldClass.join(' ');
   }
 
+  if (! shieldClass) {
+    return;
+  }
+
   let classToAdd = shieldClass.replace('.', ' ');
   classToAdd = classToAdd.split(' ');
+
+  if (! Array.isArray(classToAdd)) {
+    classToAdd = [classToAdd];
+  }
 
   classToAdd.forEach((className) => {
     if (el && el.classList && el.classList[verb]) {
