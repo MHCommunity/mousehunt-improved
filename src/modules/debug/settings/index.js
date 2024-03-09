@@ -42,9 +42,8 @@ export default async () => {
     },
     {
       id: 'debug.events',
-      title: 'Log Events',
+      title: 'Log events',
       default: false,
-      description: 'Logs a subset of triggered events. Add <code>debug-events-<em>event-name</em></code> to the feature flags to log specific events. <div>You can also use <code>debug-events-only-<em>event-name</em></code> to only log specific events.</div>',
     },
   ];
 };

@@ -596,15 +596,17 @@ const addSettingOnce = (options) => {
     sectionExists = document.querySelector(`#${section.id}-wrapper`);
   }
 
+  const keySafe = key.replaceAll('.', '-');
+
   // If we already have a setting visible for our key, bail.
-  const settingExists = document.querySelector(`#${section.id}-${key}`);
+  const settingExists = document.querySelector(`#${section.id}-${keySafe}`);
   if (settingExists) {
     return settingExists;
   }
 
   // Create the markup for the setting row.
-  const settings = makeElement('div', ['PagePreferences__settingsList', `PagePreferences__settingsList-${key}`, `PagePreferences__settingsList-${section.id}`]);
-  settings.id = `${section.id}-${key}`;
+  const settings = makeElement('div', ['PagePreferences__settingsList', `PagePreferences__settingsList-${keySafe}`, `PagePreferences__settingsList-${section.id}`]);
+  settings.id = `${section.id}-${keySafe}`;
   if (section.subSetting) {
     settings.classList.add('PagePreferences__subSetting');
   }
@@ -619,7 +621,7 @@ const addSettingOnce = (options) => {
   const settingName = makeElement('div', 'PagePreferences__settingName');
 
   const settingNameText = makeElement('a', 'PagePreferences__settingNameText', name);
-  settingNameText.href = `#${section.id}-${key}`;
+  settingNameText.href = `#${section.id}-${keySafe}`;
   settingNameText.setAttribute('data-setting', key);
   settingNameText.setAttribute('data-tab', tab);
   settingNameText.setAttribute('data-default', defaultValue);
@@ -627,7 +629,7 @@ const addSettingOnce = (options) => {
 
   settingNameText.addEventListener('click', (event) => {
     event.preventDefault();
-    navigator.clipboard.writeText(`${window.location.href}#${section.id}-${key}`);
+    navigator.clipboard.writeText(`${window.location.href}#${section.id}-${keySafe}`);
 
     showSuccessMessage({
       message: 'Copied link to clipboard',
