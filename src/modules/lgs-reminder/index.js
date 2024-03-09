@@ -7,7 +7,8 @@ import {
   makeElement,
   onActivation,
   onDeactivation,
-  onEvent
+  onEvent,
+  onSettingsChange
 } from '@utils';
 
 import settings from './settings';
@@ -169,23 +170,21 @@ const init = async () => {
   addStyles(styles, 'lgs-reminder');
   main();
 
-  onEvent('mh-improved-settings-changed', (args) => {
-    if ('lgs-new-style' === args.key) {
-      const selectors = [
-        '.mousehunt-improved-lgs-reminder',
-        '.mousehunt-improved-lgs-reminder-new',
-        '.mousehunt-improved-lgs-reminder-wrapper',
-      ];
+  onSettingsChange('lgs-reminder.new-style', () => {
+    const selectors = [
+      '.mousehunt-improved-lgs-reminder',
+      '.mousehunt-improved-lgs-reminder-new',
+      '.mousehunt-improved-lgs-reminder-wrapper',
+    ];
 
-      selectors.forEach((selector) => {
-        const el = document.querySelector(selector);
-        if (el) {
-          el.remove();
-        }
-      });
+    selectors.forEach((selector) => {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.remove();
+      }
+    });
 
-      main();
-    }
+    main();
   });
 
   onActivation('lgs-reminder', main);
