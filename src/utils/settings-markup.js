@@ -8,6 +8,7 @@ import { onPageChange } from './events';
 import settingsData from '@data/settings.json';
 
 import settingsStyles from './styles/settings.css';
+import { showSuccessMessage } from './messages';
 
 let hasAddedSettingsStyles = false;
 /**
@@ -623,6 +624,18 @@ const addSettingOnce = (options) => {
   settingNameText.setAttribute('data-tab', tab);
   settingNameText.setAttribute('data-default', defaultValue);
   settingName.append(settingNameText);
+
+  settingNameText.addEventListener('click', (event) => {
+    event.preventDefault();
+    navigator.clipboard.writeText(`${window.location.href}#${section.id}-${key}`);
+
+    showSuccessMessage({
+      message: 'Copied link to clipboard',
+      append: settingNameText,
+      after: true,
+      classnames: 'setting-link-copied',
+    });
+  });
 
   const defaultSettingText = makeElement('div', 'PagePreferences__settingDefault');
 

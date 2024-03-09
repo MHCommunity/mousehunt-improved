@@ -74,3 +74,11 @@
 .mh-utils-settings-refresh-message-hidden {
   opacity: 0;
 }
+
+.mh-ui-success-message.setting-link-copied {
+  position: absolute;
+  top: 10px;
+  display: inline;
+  padding: 3px;
+  margin-left: 9px;
+}
