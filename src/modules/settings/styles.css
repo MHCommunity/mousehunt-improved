@@ -83,7 +83,7 @@
 #mousehunt-improved-settings-design-custom-hud,
 #mousehunt-improved-settings-design-custom-horn,
 #mousehunt-improved-settings-design-custom-shield,
-#mousehunt-improved-settings-feature-ultimate-checkmark-categories,
+#mousehunt-improved-settings-feature-ultimate-checkmark-show,
 .mousehunt-improved-settings .PagePreferences__settingsList {
   gap: 0;
   padding: 10px 5px 15px 10px;
@@ -210,6 +210,10 @@
   margin: 10px 0;
 }
 
+.toggled #mousehunt-improved-settings-location-hud-wrapper {
+  display: none;
+}
+
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting {
   display: flex;
   align-items: center;
@@ -233,10 +237,16 @@
 .mousehunt-improved-settings-export-popup-content {
   display: grid;
   grid-template-columns: 1fr 100px;
-  gap: 30px;
-  min-height: 400px;
+  gap: 10px 20px;
 }
 
+.mousehunt-improved-settings-export-popup-tip {
+  display: flex;
+  grid-column: 1 / 3;
+  align-items: center;
+}
+
+.mousehunt-improved-settings-export-popup-buttons-buttons,
 .mousehunt-improved-settings-export-popup-buttons {
   position: relative;
   display: flex;
@@ -246,12 +256,40 @@
   justify-content: flex-end;
 }
 
+.mousehunt-improved-settings-export-popup-left {
+  align-items: stretch;
+}
+
 .mousehunt-improved-settings-export-popup-content textarea {
+  height: 90%;
+  min-height: 400px;
   padding: 10px;
   font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   font-size: 12px;
   background-color: #f6f6f6;
   border: 1px solid #b3b3b3;
+}
+
+.mousehunt-improved-settings-export-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: auto;
+}
+
+.mousehunt-improved-settings-export-details .export-reset {
+  color: #ff4242;
+}
+
+.mousehunt-improved-settings-export-details hr {
+  width: 100%;
+  height: 1px;
+  background-color: #b3b3b3;
+  border: none;
+}
+
+.mousehunt-improved-settings-export-details code {
+  padding: 3px;
 }
 
 .mousehunt-improved-settings-export-popup .suffix {
@@ -313,7 +351,7 @@
 #mousehunt-improved-settings-design-custom-hud,
 #mousehunt-improved-settings-design-custom-horn,
 #mousehunt-improved-settings-design-custom-shield,
-#mousehunt-improved-settings-feature-ultimate-checkmark-categories {
+#mousehunt-improved-settings-feature-ultimate-checkmark-show {
   margin: 0;
 }
 
@@ -321,7 +359,7 @@
 #mousehunt-improved-settings-design-custom-hud > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-design-custom-horn > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-design-custom-shield > div > div > .PagePreferences__settingName,
-#mousehunt-improved-settings-feature-ultimate-checkmark-categories > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-feature-ultimate-checkmark-show > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-advanced-override-flags > div > div > .PagePreferences__settingName,
 #mousehunt-improved-settings-advanced-style-overrides > div > div > .PagePreferences__settingName {
   font-size: 15px;
@@ -504,7 +542,7 @@
   position: relative;
 }
 
-#mousehunt-improved-settings-location-hud-region-living-garden {
+#mousehunt-improved-settings-location-hud-location-huds.region-living-garden {
   grid-column-start: 1;
 }
 
@@ -545,7 +583,7 @@
 #mousehunt-improved-settings-design-custom-horn::before,
 #mousehunt-improved-settings-design-custom-hud::before,
 #mousehunt-improved-settings-design-custom-shield::before,
-#mousehunt-improved-settings-feature-ultimate-checkmark-categories::before {
+#mousehunt-improved-settings-feature-ultimate-checkmark-show::before {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -567,7 +605,7 @@
 #mousehunt-improved-settings-design-custom-horn:hover::before,
 #mousehunt-improved-settings-design-custom-hud:hover::before,
 #mousehunt-improved-settings-design-custom-shield:hover::before,
-#mousehunt-improved-settings-feature-ultimate-checkmark-categories:hover::before {
+#mousehunt-improved-settings-feature-ultimate-checkmark-show:hover::before {
   left: 2px;
   width: 30px;
   background-size: 30px;
@@ -580,7 +618,7 @@
 #mousehunt-improved-settings-design-custom-horn,
 #mousehunt-improved-settings-design-custom-hud,
 #mousehunt-improved-settings-design-custom-shield,
-#mousehunt-improved-settings-feature-ultimate-checkmark-categories {
+#mousehunt-improved-settings-feature-ultimate-checkmark-show {
   position: relative;
   padding-left: 45px;
 }
@@ -606,4 +644,10 @@
 
 .mh-ui-success-message.settings-export-save-success {
   bottom: 100px;
+}
+
+.mousehunt-improved-settings-export-popup-content .dragover {
+  background-color: #f0f0f0;
+  border-color: #ffb503;
+  box-shadow: inset 0 0 6px 0 #f4e82f;
 }
