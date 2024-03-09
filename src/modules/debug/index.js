@@ -1,12 +1,6 @@
 import * as Utils from '@utils';
 
-const isDebugging = (flag) => {
-  if (Utils.getFlag('debug-all')) {
-    return true;
-  }
-
-  return Utils.getFlag(flag);
-};
+import settings from './settings';
 
 const debug = (message, ...args) => {
   const textMessages = [];
@@ -30,13 +24,13 @@ const debug = (message, ...args) => {
   );
 };
 
-const init = () => {
+const main = () => {
   // Add all the stuff from Utils to be accessible in the console as 'app.mhutils'
   window.app = window.app || {};
   window.app.mhutils = Utils;
 
   // To enable, either add `debug-all` or one of the following: debug-dialog, debug-navigation, debug-request, debug-events.
-  if (isDebugging('debug-dialog')) {
+  if (Utils.getSetting('debug.dialog', false)) {
     let currentDialog = null;
     Utils.onDialogHide(() => {
       debug(`Dialog hidden: ${currentDialog}`);
@@ -48,7 +42,7 @@ const init = () => {
     });
   }
 
-  if (isDebugging('debug-navigation')) {
+  if (Utils.getSetting('debug.navigation', false)) {
     Utils.onNavigation(() => {
       debug('onNavigation', {
         page: Utils.getCurrentPage(),
@@ -62,16 +56,14 @@ const init = () => {
     });
   }
 
-  if (isDebugging('debug-request')) {
+  if (Utils.getSetting('debug.request', false)) {
     Utils.onRequest('*', (response) => {
       debug('onRequest', response);
     });
   }
 
-  if (isDebugging('debug-events')) {
-    const events = [
-      'ajax_response',
-      'app_init',
+  if (Utils.getSetting('debug.events', false)) {
+    let events = [
       'camp_page_arm_item',
       'camp_page_toggle_blueprint',
       'camp_page_update_item_array',
@@ -79,14 +71,8 @@ const init = () => {
       'checkout_cart_update',
       'info_arrow_hide',
       'info_arrow_show',
-      'js_dialog_hide',
-      'js_dialog_show',
-      'set_inset_tab',
-      'set_page',
-      'set_tab',
       'spring_hunt_claim_hidden_egg',
       'tournament_status_change',
-      'travel_complete',
       'treasure_map_update_favourite_friends',
       'treasure_map_update_sent_requests',
       'treasure_map_update',
@@ -98,6 +84,23 @@ const init = () => {
       'user_trap_update',
     ];
 
+    let hasSingleEvent = false;
+
+    // If Utils.getFlags() contains debug-events-<event-name>, also log that event.
+    for (const flag in Utils.getFlags()) {
+      if (flag.startsWith('debug-events-only-')) {
+        const event = flag.replace('debug-events-only-', '');
+        hasSingleEvent = event;
+      } else if (flag.startsWith('debug-events-')) {
+        const event = flag.replace('debug-events-', '');
+        events.push(event);
+      }
+    }
+
+    if (hasSingleEvent) {
+      events = [hasSingleEvent];
+    }
+
     events.forEach((event) => {
       Utils.onEvent(event, (...data) => {
         debug(`onEvent: ${event}`, data);
@@ -106,9 +109,22 @@ const init = () => {
   }
 };
 
+const init = () => {
+  main();
+
+  Utils.onActivation('dev', main);
+  Utils.onDeactivation('dev', () => {
+    window.location.reload();
+  });
+};
+
 export default {
-  id: 'dev',
-  type: 'required',
-  alwaysLoad: true,
+  id: 'debug',
+  name: 'Debug logging',
+  type: 'advanced',
+  description: 'Enables debug logging for various parts of the app.',
+  default: true,
+  order: 900,
   load: init,
+  settings
 };

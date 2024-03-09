@@ -5,7 +5,7 @@ import {
   addSettingsTab,
   addToGlobal,
   debug,
-  debugplain,
+  debuglog,
   doEvent,
   getAnonymousUserHash,
   getFlag,
@@ -114,7 +114,7 @@ const loadModules = async () => {
     }
 
     // Log the loaded modules for the category.
-    debug(`Loaded ${category.modules.length} ${category.name} modules`, loadedModules);
+    debuglog('module-loading', `Loaded ${category.modules.length} ${category.name} modules`, loadedModules);
   }
 
   // Wait for all modules to load.
@@ -193,7 +193,8 @@ const init = async () => {
     addToGlobal('loaded', true);
 
     // Welcome message.
-    debugplain(
+    // eslint-disable-next-line no-console
+    console.log(
       `%c🐭️ MouseHunt Improved v${mhImprovedVersion}-${mhImprovedPlatform} has been loaded. Happy Hunting!%c`,
       'color: #ca77ff; font-weight: 900; font-size: 1.1em',
       'color: inherit; font-weight: inherit; font-size: inherit'

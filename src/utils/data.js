@@ -43,7 +43,7 @@ const getCacheExpiration = async (key = null) => {
  * @param {string} key Key to set the expiration for.
  */
 const setCacheExpiration = async (key) => {
-  debuglog('utils.data', `Setting cache expiration for ${key}`);
+  debuglog('utils-data', `Setting cache expiration for ${key}`);
 
   cacheSet(`expiration-${key}`, Date.now() + ((Math.floor(Math.random() * 7) + 7) * 24 * 60 * 60 * 1000));
 };
@@ -90,7 +90,7 @@ const fetchData = async (key) => {
  */
 const getData = async (key) => {
   if (! isValidDataFile(key)) {
-    debuglog('utils.data', `Cannot get data for ${key}, invalid key`);
+    debuglog('utils-data', `Cannot get data for ${key}, invalid key`);
     return false;
   }
 
@@ -102,9 +102,9 @@ const getData = async (key) => {
     }
   }
 
-  debuglog('utils.data', `Fetching data for ${key} ...`);
+  debuglog('utils-data', `Fetching data for ${key} ...`);
   const data = await fetchData(key);
-  debuglog('utils.data', `Fetched data for ${key}`, data);
+  debuglog('utils-data', `Fetched data for ${key}`, data);
 
   if (data) {
     cacheSet(key, data);
