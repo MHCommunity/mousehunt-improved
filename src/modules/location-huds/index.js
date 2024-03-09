@@ -3,12 +3,14 @@ import {
   addStyles,
   debuglog,
   getCurrentLocation,
+  getFlag,
   getSetting,
   onEvent,
   onNavigation,
   removeHudStyles
 } from '@utils';
 
+import addToggleIcon from './toggle-icon';
 import settings from './settings';
 
 import styles from './styles.css';
@@ -192,6 +194,10 @@ const main = () => {
  */
 const init = async () => {
   addStyles(styles, 'location-huds');
+
+  if (getFlag('location-hud-toggle')) {
+    addToggleIcon();
+  }
 
   onNavigation(main);
   onEvent('travel_complete', main);
