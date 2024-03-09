@@ -3,7 +3,7 @@
   "tasks": [
     {
       "label": "Build",
-      "command": "bun run build",
+      "command": "bun run build:extension:chrome",
       "type": "shell",
       "options": {
         "cwd": "${workspaceRoot}"
