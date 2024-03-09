@@ -45,8 +45,28 @@ const onEvent = (event, callback, remove = false) => {
   eventRegistry.addEventListener(event, callback, null, remove);
 };
 
+const onSettingsChange = (key, callback) => {
+  // If callback is a function, then use it. If it's an object, then use the 'enable' and 'disable' keys.
+  onEvent('mh-improved-settings-changed', (args) => {
+    if (args.key !== key) {
+      return;
+    }
+
+    if (typeof callback === 'function') {
+      callback(args);
+    } else if (typeof callback === 'object') {
+      if (args.value) {
+        callback.enable(args);
+      } else {
+        callback.disable(args);
+      }
+    }
+  });
+};
+
 export {
   addEvent,
   doEvent,
-  onEvent
+  onEvent,
+  onSettingsChange
 };
