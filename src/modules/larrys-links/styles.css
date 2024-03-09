@@ -1,9 +1,17 @@
 .mh-improved-larrys-links {
-  border-top: 1px solid #cbc6bb;
   padding-top: 20px;
+  border-top: 1px solid #cbc6bb;
 }
 
 .mh-improved-larrys-links ul {
-  list-style: disc;
   margin-left: 20px;
+  list-style: disc;
+}
+
+.mh-improved-larrys-images {
+  margin-bottom: 20px;
+}
+
+.mh-improved-larrys-image {
+  max-width: 330px;
 }

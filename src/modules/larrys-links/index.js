@@ -2,13 +2,12 @@ import { addStyles, getCurrentLocation, makeElement, onNavigation } from '@utils
 
 import linksData from './links.json';
 
-import settings from './settings';
 import styles from './styles.css';
 
-const addLinks = (links, container) => {
-  const existingLinks = document.querySelector('.mh-improved-larrys-links');
-  if (existingLinks) {
-    existingLinks.remove();
+const addLinks = (links) => {
+  const larryContainer = document.querySelector('.campPage-tabs-tabContent-larryTip-container');
+  if (! larryContainer) {
+    return;
   }
 
   const linksContainer = makeElement('div', ['mh-improved-larrys-links']);
@@ -29,29 +28,55 @@ const addLinks = (links, container) => {
   });
 
   linksContainer.append(linksList);
-  container.append(linksContainer);
+
+  const existingLinks = document.querySelector('.mh-improved-larrys-links');
+  if (existingLinks) {
+    existingLinks.replaceWith(linksContainer);
+  } else {
+    larryContainer.append(linksContainer);
+  }
 };
 
-const main = () => {
+const addImages = (images) => {
   const larryContainer = document.querySelector('.campPage-tabs-tabContent-larryTip-container');
   if (! larryContainer) {
     return;
   }
 
-  if (! linksData && linksData[getCurrentLocation()]) {
-    return;
+  const imagesContainer = makeElement('div', ['mh-improved-larrys-images']);
+
+  images.forEach((image) => {
+    const imageEl = makeElement('img', ['mh-improved-larrys-image']);
+    imageEl.src = image.url;
+    imageEl.alt = image.alt;
+    imagesContainer.append(imageEl);
+  });
+
+  const existingImages = document.querySelector('.mh-improved-larrys-images');
+  if (existingImages) {
+    existingImages.replaceWith(imagesContainer);
+  } else {
+    larryContainer.prepend(imagesContainer);
+  }
+};
+
+const main = () => {
+  const location = getCurrentLocation();
+
+  if (linksData?.links?.[location]) {
+    addLinks(linksData.links[location]);
   }
 
-  addLinks(linksData[getCurrentLocation()], larryContainer);
-
-  console.log('larrys-links: main', larryContainer);
+  if (linksData?.images?.[location]) {
+    addImages(linksData.images[location]);
+  }
 };
 
 /**
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles);
+  addStyles(styles, 'larrys-links');
   onNavigation(main, {
     page: 'camp',
     onLoad: true,
@@ -61,9 +86,7 @@ const init = async () => {
 export default {
   id: 'larrys-links',
   name: 'Larry\'s Links',
-  type: 'feature',
+  type: 'beta',
   default: true,
-  description: 'This is a template for creating new modules.',
-  load: init,
-  settings,
+  load: init
 };

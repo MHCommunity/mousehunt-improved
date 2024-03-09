@@ -1,256 +1,266 @@
 {
-	"meadow": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/novice#meadow"
-    }
-  ],
-	"town_of_gnawnia": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/recruit#town-of-gnawnia"
-    }
-  ],
-	"windmill": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/apprentice#windmill"
-    }
-  ],
-	"harbour": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/initiate#harbour"
-    }
-  ],
-	"mountain": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/journeyman-journeywoman#mountain"
-    }
-  ],
-	"kings_arms": [],
-	"tournament_hall": [],
-	"kings_gauntlet": [],
-	"calm_clearing": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/master#calm-clearing"
-    }
-  ],
-	"great_gnarled_tree": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/master#great-gnarled-tree"
-    }
-  ],
-	"lagoon": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/master#lagoon"
-    }
-  ],
-	"laboratory": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/master#laboratory"
-    }
-  ],
-	"mousoleum": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/master#mousoleum"
-    }
-  ],
-	"town_of_digby": [],
-	"bazaar": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/grandmaster#bazaar"
-    }
-  ],
-	"pollution_outbreak": [],
-	"training_grounds": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/grandmaster#training-grounds"
-    }
-  ],
-	"dojo": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/grandmaster#dojo"
-    }
-  ],
-	"meditation_room": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/grandmaster#meditation-room"
-    }
-  ],
-	"pinnacle_chamber": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/grandmaster#pinnacle-chamber"
-    }
-  ],
-	"catacombs": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/hero#catacombs"
-    }
-  ],
-	"forbidden_grove": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/hero#forbidden-grove"
-    }
-  ],
-	"acolyte_realm": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/hero#acolyte-realm"
-    }
-  ],
-	"cape_clawed": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/legendary#cape-clawed"
-    }
-  ],
-	"elub_shore": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/legendary#elub-shore"
-    }
-  ],
-	"nerg_plains": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/legendary#nerg-plains"
-    }
-  ],
-	"derr_dunes": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/legendary#derr-dunes"
-    }
-  ],
-	"jungle_of_dread": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/hero#jungle-of-dread"
-    }
-  ],
-	"dracano": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/knight#dracano"
-    }
-  ],
-	"balacks_cove": [],
-	"claw_shot_city": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/lord-lady#claw-shot-city"
-    }
-  ],
-	"train_station": [],
-	"fort_rox": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/baron-baroness#fort-rox"
-    }
-  ],
-	"desert_warpath": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/baron-baroness#fiery-warpath"
-    }
-  ],
-	"desert_city": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/baron-baroness#muridae-market"
-    }
-  ],
-	"desert_oasis": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/baron-baroness#living-garden"
-    }
-  ],
-	"lost_city": [],
-	"sand_dunes": [],
-	"ss_huntington_ii": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/legendary#ss-huntington-iv"
-    }
-  ],
-	"seasonal_garden": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/lord-lady#seasonal-garden"
-    }
-  ],
-	"zugzwang_tower": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/lord-lady#zugzwangs-tower"
-    }
-  ],
-	"zugzwang_library": [],
-	"slushy_shoreline": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/lord-lady#slushy-shoreline"
-    }
-  ],
-	"iceberg": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/lord-lady#iceberg"
-    }
-  ],
-	"sunken_city": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/count-countess#sunken-city"
-    }
-  ],
-	"queso_river": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/count-countess#queso-river"
-    }
-  ],
-	"queso_plains": [],
-	"queso_quarry": [],
-	"queso_geyser": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/count-countess#queso-geyser"
-    }
-  ],
-	"fungal_cavern": [],
-	"labyrinth": [],
-	"ancient_city": [],
-	"moussu_picchu": [],
-	"floating_islands": [],
-	"foreword_farm": [],
-	"prologue_pond": [],
-	"table_of_contents": [],
-	"bountiful_beanstalk": [],
-	"rift_gnawnia": [
-    {
-      "text": "MouseHunt Essentials Guide",
-      "url": "https://guide.mouse.rip/guide/count-countess#gnawnia-rift"
-    }
-  ],
-	"rift_burroughs": [],
-	"rift_whisker_woods": [],
-	"rift_furoma": [],
-	"rift_bristle_woods": [],
-	"rift_valour": []
+  "links": {
+    "meadow": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/novice#meadow"
+      }
+    ],
+    "town_of_gnawnia": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/recruit#town-of-gnawnia"
+      }
+    ],
+    "windmill": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/apprentice#windmill"
+      }
+    ],
+    "harbour": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/initiate#harbour"
+      }
+    ],
+    "mountain": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/journeyman-journeywoman#mountain"
+      }
+    ],
+    "kings_arms": [],
+    "tournament_hall": [],
+    "kings_gauntlet": [],
+    "calm_clearing": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/master#calm-clearing"
+      }
+    ],
+    "great_gnarled_tree": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/master#great-gnarled-tree"
+      }
+    ],
+    "lagoon": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/master#lagoon"
+      }
+    ],
+    "laboratory": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/master#laboratory"
+      }
+    ],
+    "mousoleum": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/master#mousoleum"
+      }
+    ],
+    "town_of_digby": [],
+    "bazaar": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/grandmaster#bazaar"
+      }
+    ],
+    "pollution_outbreak": [],
+    "training_grounds": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/grandmaster#training-grounds"
+      }
+    ],
+    "dojo": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/grandmaster#dojo"
+      }
+    ],
+    "meditation_room": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/grandmaster#meditation-room"
+      }
+    ],
+    "pinnacle_chamber": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/grandmaster#pinnacle-chamber"
+      }
+    ],
+    "catacombs": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/hero#catacombs"
+      }
+    ],
+    "forbidden_grove": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/hero#forbidden-grove"
+      }
+    ],
+    "acolyte_realm": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/hero#acolyte-realm"
+      }
+    ],
+    "cape_clawed": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/legendary#cape-clawed"
+      }
+    ],
+    "elub_shore": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/legendary#elub-shore"
+      }
+    ],
+    "nerg_plains": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/legendary#nerg-plains"
+      }
+    ],
+    "derr_dunes": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/legendary#derr-dunes"
+      }
+    ],
+    "jungle_of_dread": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/hero#jungle-of-dread"
+      }
+    ],
+    "dracano": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/knight#dracano"
+      }
+    ],
+    "balacks_cove": [],
+    "claw_shot_city": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/lord-lady#claw-shot-city"
+      }
+    ],
+    "train_station": [],
+    "fort_rox": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/baron-baroness#fort-rox"
+      }
+    ],
+    "desert_warpath": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/baron-baroness#fiery-warpath"
+      }
+    ],
+    "desert_city": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/baron-baroness#muridae-market"
+      }
+    ],
+    "desert_oasis": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/baron-baroness#living-garden"
+      }
+    ],
+    "lost_city": [],
+    "sand_dunes": [],
+    "ss_huntington_ii": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/legendary#ss-huntington-iv"
+      }
+    ],
+    "seasonal_garden": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/lord-lady#seasonal-garden"
+      }
+    ],
+    "zugzwang_tower": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/lord-lady#zugzwangs-tower"
+      }
+    ],
+    "zugzwang_library": [],
+    "slushy_shoreline": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/lord-lady#slushy-shoreline"
+      }
+    ],
+    "iceberg": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/lord-lady#iceberg"
+      }
+    ],
+    "sunken_city": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/count-countess#sunken-city"
+      }
+    ],
+    "queso_river": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/count-countess#queso-river"
+      }
+    ],
+    "queso_plains": [],
+    "queso_quarry": [],
+    "queso_geyser": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/count-countess#queso-geyser"
+      }
+    ],
+    "fungal_cavern": [],
+    "labyrinth": [],
+    "ancient_city": [],
+    "moussu_picchu": [],
+    "floating_islands": [],
+    "foreword_farm": [],
+    "prologue_pond": [],
+    "table_of_contents": [],
+    "bountiful_beanstalk": [],
+    "rift_gnawnia": [
+      {
+        "text": "MouseHunt Essentials Guide",
+        "url": "https://guide.mouse.rip/guide/count-countess#gnawnia-rift"
+      }
+    ],
+    "rift_burroughs": [],
+    "rift_whisker_woods": [],
+    "rift_furoma": [],
+    "rift_bristle_woods": [],
+    "rift_valour": []
+  },
+  "images": {
+    "super_brie_factory": [
+      {
+        "url": "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGxrNmFwZjVpaHRwd2Rncng4aThwNGh5anc0NjkzZ21iYWRuM3NoNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/tOYq12nXAdY6TG9vS3/giphy.gif",
+        "alt": "happy birthday"
+      }
+    ]
+  }
 }
