@@ -17,14 +17,8 @@
 
 .mh-improved-favorite-setups-blueprint-container {
   position: absolute;
-  inset: 10px;
-  padding: 5px 6px;
-  margin-left: 10px;
+  inset: 0;
   color: #4e300b;
-  background: #f6f3eb;
-  border: 1px solid #534022;
-  border-radius: 3px;
-  box-shadow: -1px -1px 2px #d3cecb inset;
 }
 
 .mh-improved-favorite-setups-blueprint-container .header {
@@ -141,7 +135,7 @@
 .row.editing .campPage-trap-itemBrowser-favorite-item::after {
   position: absolute;
   right: 5px;
-  bottom: 0;
+  bottom: -8px;
   left: 5px;
   display: flex;
   align-items: center;
@@ -150,6 +144,7 @@
   content: "edit";
   background-color: rgb(238 238 238 / 93%);
   border: 1px solid #585858;
+  border-radius: 5px;
 }
 
 .row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
@@ -344,4 +339,28 @@ a.random-title.loading::after {
 
 .mh-dark-mode .mh-improved-favorite-setups-button-label {
   color: #e0d3b3;
+}
+
+.mousehuntHeaderView .menuItem.mousehunt-improved-favorite-setups-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 25px;
+  padding: 0;
+  opacity: 0.5;
+}
+
+.mousehuntHeaderView .menuItem.mousehunt-improved-favorite-setups-icon:hover {
+  opacity: 1;
+}
+
+.mousehunt-improved-favorite-setups-icon::before {
+  display: block;
+  width: 15px;
+  height: 15px;
+  content: "";
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
+  background-repeat: no-repeat;
+  background-size: contain;
 }

@@ -1,0 +1,11 @@
+.mh-improved-blueprint .trapSelectorView__outerBlock {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mh-improved-blueprint--active .mh-improved-blueprint {
+  display: flex;
+}

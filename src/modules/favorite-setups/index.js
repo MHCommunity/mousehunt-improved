@@ -1,9 +1,11 @@
 import {
+  addIconToMenu,
   addStyles,
   createPopup,
   debuglog,
   doRequest,
   getCurrentPage,
+  getFlag,
   getHeaders,
   getSetting,
   makeElement,
@@ -11,7 +13,8 @@ import {
   onNavigation,
   saveSetting,
   sessionGet,
-  sessionSet
+  sessionSet,
+  toggleBlueprint
 } from '@utils';
 
 import styles from './styles.css';
@@ -785,14 +788,6 @@ const makeBlueprintContainer = async () => {
 
   container.append(body);
 
-  // trapSelectorView__browserStateParent
-  const appendTo = document.querySelector('.trapSelectorView__blueprint');
-  if (! appendTo) {
-    return false;
-  }
-
-  appendTo.append(container);
-
   return container;
 };
 
@@ -851,102 +846,25 @@ const addFavoriteSetupsButton = () => {
   label.innerHTML = getNameOfCurrentSetup();
   button.append(label);
 
-  button.addEventListener('click', async () => {
-    if (isFavoriteSetupsShowing()) {
-      hideFavoriteSetups();
-    } else {
-      await makeBlueprintContainer();
-      showFavoriteSetups();
-    }
-  });
+  button.addEventListener('click', toggleFavoriteSetups);
 
   // Append as a sibling to the existing button.
   appendTo.append(button);
 };
 
-const isFavoriteSetupsShowing = () => {
-  const pageContainer = document.querySelector('#mousehuntContainer');
-  if (! pageContainer) {
-    return false;
-  }
-
-  return pageContainer.classList.contains('showFavoriteSetups');
+const toggleFavoriteSetups = async () => {
+  const content = await makeBlueprintContainer();
+  toggleBlueprint('favorite-setups', content);
 };
 
-const hideFavoriteSetups = () => {
-  const pageContainer = document.querySelector('#mousehuntContainer');
-  if (! pageContainer) {
-    return;
-  }
-
-  pageContainer.classList.remove('showBlueprint', 'showFavoriteSetups');
-
-  const container = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
-  if (container) {
-    container.classList.add('hidden');
-  }
-};
-
-const showFavoriteSetups = () => {
-  const pageContainer = document.querySelector('#mousehuntContainer');
-  if (! pageContainer) {
-    return;
-  }
-
-  pageContainer.classList.remove('editTrap', 'showTrapEffectiveness');
-  pageContainer.classList.add('showBlueprint', 'showFavoriteSetups');
-
-  const blueprint = document.querySelector('.trapSelectorView__blueprint');
-  if (! blueprint) {
-    return;
-  }
-
-  blueprint.classList.add('trapSelectorView__blueprint--active');
-
-  const container = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
-  if (container) {
-    container.classList.remove('hidden');
-  }
-};
-
-const replaceCloseBlueprintDrawer = () => {
-  const closeButton = document.querySelector('.campPage-trap-blueprint-closeButton');
-  if (! closeButton) {
-    return;
-  }
-
-  closeButton.addEventListener('click', () => {
-    if (isFavoriteSetupsShowing()) {
-      hideFavoriteSetups();
-    }
+const addIcon = () => {
+  addIconToMenu({
+    id: 'favorite-setups',
+    classname: 'mousehunt-improved-favorite-setups-icon',
+    title: 'Favorite Setups',
+    action: toggleFavoriteSetups,
+    position: 'prepend',
   });
-
-  // const _closeBlueprintDrawer = app.pages.CampPage.closeBlueprintDrawer;
-  // app.pages.CampPage.closeBlueprintDrawer = (...args) => {
-  //   if (isFavoriteSetupsShowing()) {
-  //     hideFavoriteSetups();
-  //   }
-
-  //   _closeBlueprintDrawer(...args);
-  // };
-
-  // const _toggleItemBrowser = app.pages.CampPage.toggleItemBrowser;
-  // app.pages.CampPage.toggleItemBrowser = (...args) => {
-  //   if (isFavoriteSetupsShowing()) {
-  //     hideFavoriteSetups();
-  //   }
-
-  //   _toggleItemBrowser(...args);
-  // };
-
-  // const _toggleTrapEffectiveness = app.pages.CampPage.toggleTrapEffectiveness;
-  // app.pages.CampPage.toggleTrapEffectiveness = (...args) => {
-  //   if (isFavoriteSetupsShowing()) {
-  //     hideFavoriteSetups();
-  //   }
-
-  //   _toggleTrapEffectiveness(...args);
-  // };
 };
 
 /**
@@ -954,6 +872,12 @@ const replaceCloseBlueprintDrawer = () => {
  */
 const init = async () => {
   addStyles(styles, 'favorite-setups');
+
+  if (getFlag('favorite-setups-toggle') {
+    addFavoriteSetupsButton();
+  }
+
+  addIcon();
 
   onNavigation(addFavoriteSetupsButton, {
     page: 'camp',
@@ -969,13 +893,6 @@ const init = async () => {
     // Set a new timeout to call the function after 500ms
     timeoutId = setTimeout(updateFavoriteSetupName, 500);
   });
-
-  onEvent('camp_page_toggle_blueprint', async () => {
-    if (isFavoriteSetupsShowing()) {
-      hideFavoriteSetups();
-    }
-  });
-  replaceCloseBlueprintDrawer();
 };
 
 export default {
