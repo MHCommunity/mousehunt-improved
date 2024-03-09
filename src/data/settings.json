@@ -4,7 +4,14 @@
     "inline-wiki",
     "no-footer",
     "no-sidebar",
-    "hide-daily-reward-popup"
+    "hide-daily-reward-popup",
+    "journal-privacy",
+    "journal-privacy-show-toggle-icon",
+    "debug",
+    "debug-dialog",
+    "debug-navigation",
+    "debug-request",
+    "debug-events"
   ],
   "icons": [
     {

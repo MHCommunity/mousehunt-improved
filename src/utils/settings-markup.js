@@ -708,7 +708,7 @@ let removeTimeout = null;
  * @param {string} key The setting key.
  */
 const addSettingRefreshReminder = (key) => {
-  const noReminder = settingsData.noReminder || [];
+  const noReminder = settingsData['no-reminders'] || [];
   if (noReminder.includes(key)) {
     return;
   }
