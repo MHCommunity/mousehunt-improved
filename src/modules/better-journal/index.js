@@ -395,9 +395,9 @@ const init = async () => {
     onTurn(updateEls);
   }
 
-  if (getSetting('better-journal.icons', getFlag('journal-icons-all', false))) {
+  if (getSetting('better-journal.icons', getFlag('journal-icons-all'))) {
     stylesToAdd.push(journalIconsMinimalStyles, journalIconsStyles);
-  } else if (getSetting('better-journal.icons-minimal', getFlag('journal-icons', false))) {
+  } else if (getSetting('better-journal.icons-minimal', getFlag('journal-icons'))) {
     stylesToAdd.push(journalIconsMinimalStyles);
   }
 

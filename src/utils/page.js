@@ -58,7 +58,7 @@ const getCurrentTab = () => {
     return getCurrentPage();
   }
 
-  const tab = hg.utils.PageUtil.getCurrentPageTab();
+  const tab = hg.utils.PageUtil.getCurrentPageTab() || '';
 
   if (tab.length <= 0) {
     return getCurrentPage();

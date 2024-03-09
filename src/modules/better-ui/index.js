@@ -28,7 +28,7 @@ const addUserscriptStyles = async () => {
   ];
 
   userscriptStyles.forEach((userscript) => {
-    if (! getFlag(userscript.id, false)) {
+    if (! getFlag(userscript.id)) {
       addStyles(userscript.styles, userscript.id);
     }
   });

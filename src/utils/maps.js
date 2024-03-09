@@ -300,7 +300,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
  * @return {any|boolean} Cached value or false if not found.
  */
 const getCachedValue = (key) => {
-  if (getFlag('no-cache', false)) {
+  if (getFlag('no-cache')) {
     return false;
   }
 

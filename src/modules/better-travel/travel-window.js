@@ -99,7 +99,7 @@ const openTravelWindow = async () => {
   content += '<div class="greatWinterHuntGolemDestinationView__regionsContainer">';
   for (const region of regions) {
     let buttonClass = 'greatWinterHuntGolemDestinationView__regionButton';
-    if (currentEnvironment.region === region.type) {
+    if (currentEnvironment?.region === region?.type) {
       buttonClass += ' greatWinterHuntGolemDestinationView__regionButton--active';
     }
 
