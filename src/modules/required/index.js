@@ -1,15 +1,17 @@
 import { doEvent, getFlag, onTurn } from '@utils';
 
 const checkForAutohorn = () => {
-  // If these elements exist, they're autohorning.
+  const storageKeys = new Set(['NOB-huntsLeft', 'HornTimeDelayMax', 'AutoSolveKR', 'TrapCheckTimeDelayMax', 'TrapCheckTimeOffset', 'TrapCheckTimeDelayMin', 'AutoSolveKRDelayMin', 'AutoSolveKRDelayMax', 'SaveKRImage', 'autoPopupKR', 'AggressiveMode', 'HornTimeDelayMin']);
+  if (! Object.keys(localStorage).filter((key) => storageKeys.has(key)).length) {
+    return;
+  }
+
   const time = document.querySelector('#nextHornTimeElement');
   const msg = document.querySelector('#nobSpecialMessage');
 
-  if (! time || ! msg) {
-    return false;
+  if (! (time || msg)) {
+    return;
   }
-
-  isAutohorning = true;
 
   try {
     // Send a post request to the autohorn tracker.
@@ -58,7 +60,7 @@ const init = async () => {
   // If you want to disable the reporting, you can but you have to admit you're a cheater.
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
     checkForAutohorn();
-    onTurn(setTimeout(checkForAutohorn, 2000));
+    onTurn(checkForAutohorn, 2000);
   }
 
   addEvents();
