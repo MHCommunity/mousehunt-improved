@@ -238,6 +238,7 @@
 }
 
 .mousehunt-improved-settings-export-popup-buttons {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -247,7 +248,7 @@
 
 .mousehunt-improved-settings-export-popup-content textarea {
   padding: 10px;
-  font-family: monospace;
+  font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   font-size: 12px;
   background-color: #f6f6f6;
   border: 1px solid #b3b3b3;
@@ -534,4 +535,75 @@
 
 .PagePreferences__settingDescription strong {
   font-weight: 900;
+}
+
+/* stylelint-disable function-url-quotes */
+/* stylelint-disable stylistic/a */
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better::before,
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature::before,
+#mousehunt-improved-settings-design-custom-background::before,
+#mousehunt-improved-settings-design-custom-horn::before,
+#mousehunt-improved-settings-design-custom-hud::before,
+#mousehunt-improved-settings-design-custom-shield::before,
+#mousehunt-improved-settings-feature-ultimate-checkmark-categories::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  width: 25px;
+  height: auto;
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px;
+  opacity: 0.4;
+  transition: opacity 0.1s ease-out;
+  will-change: transform;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better:hover::before,
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature:hover::before,
+#mousehunt-improved-settings-design-custom-background:hover::before,
+#mousehunt-improved-settings-design-custom-horn:hover::before,
+#mousehunt-improved-settings-design-custom-hud:hover::before,
+#mousehunt-improved-settings-design-custom-shield:hover::before,
+#mousehunt-improved-settings-feature-ultimate-checkmark-categories:hover::before {
+  left: 2px;
+  width: 30px;
+  background-size: 30px;
+  opacity: 0.9;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better,
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature,
+#mousehunt-improved-settings-design-custom-background,
+#mousehunt-improved-settings-design-custom-horn,
+#mousehunt-improved-settings-design-custom-hud,
+#mousehunt-improved-settings-design-custom-shield,
+#mousehunt-improved-settings-feature-ultimate-checkmark-categories {
+  position: relative;
+  padding-left: 45px;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better.PagePreferences__subSetting,
+.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature.PagePreferences__subSetting {
+  padding-left: 5px;
+}
+
+#mousehunt-improved-settings-advanced-override-flags {
+  padding: 10px 0 15px;
+  border-top: 1px solid #e0d0b4;
+}
+
+.mh-ui-success-message.settings-export-save-success,
+.mh-ui-success-message.settings-export-copy-success {
+  position: absolute;
+  right: -25px;
+  bottom: 60px;
+  left: -25px;
+  padding: 4px;
+}
+
+.mh-ui-success-message.settings-export-save-success {
+  bottom: 100px;
 }

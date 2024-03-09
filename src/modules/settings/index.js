@@ -1,4 +1,5 @@
 import {
+  addIconToMenu,
   addStyles,
   clearCaches,
   createPopup,
@@ -7,15 +8,15 @@ import {
   getCurrentTab,
   makeElement,
   onNavigation,
-  setPage
+  setPage,
+  showSuccessMessage
 } from '@utils';
 
 import settingsData from '@data/settings.json';
 
 import settingsSettings from './settings';
 
-import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
-const styles = imported;
+import styles from './styles.css';
 
 /**
  * Add the export settings button.
@@ -31,18 +32,19 @@ const addExportSettings = () => {
   const exportSettings = makeElement('div', ['mousehunt-improved-export-settings', 'mousehuntActionButton', 'tiny']);
   makeElement('span', '', 'Import / Export Settings', exportSettings);
 
-  const settings = JSON.stringify(JSON.parse(localStorage.getItem('mousehunt-improved-settings')), null, 2);
-  const content = `<div class="mousehunt-improved-settings-export-popup-content">
-  <textarea spellcheck="false">${settings}</textarea>
-  <div class="mousehunt-improved-settings-export-popup-buttons">
-  <pre>${mhImprovedPlatform} v${mhImprovedVersion}</pre>
-  <div class="mousehuntActionButton save"><span>Save</span></div>
-  <div class="mousehuntActionButton lightBlue download"><span>Download</span></div>
-  <div class="mousehuntActionButton cancel"><span>Cancel</span></div>`;
-
   exportSettings.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
+
+    const settings = JSON.stringify(JSON.parse(localStorage.getItem('mousehunt-improved-settings')), null, 2);
+    const content = `<div class="mousehunt-improved-settings-export-popup-content">
+    <textarea spellcheck="false">${settings}</textarea>
+    <div class="mousehunt-improved-settings-export-popup-buttons">
+    <pre>${mhImprovedPlatform} v${mhImprovedVersion}</pre>
+    <div class="mousehuntActionButton save"><span>Save</span></div>
+    <div class="mousehuntActionButton lightBlue copy"><span>Copy</span></div>
+    <div class="mousehuntActionButton lightBlue download"><span>Download</span></div>
+    <div class="mousehuntActionButton cancel"><span>Cancel</span></div>`;
 
     /* eslint-disable @wordpress/no-unused-vars-before-return */
     const popup = createPopup({
@@ -62,8 +64,31 @@ const addExportSettings = () => {
     saveButton.addEventListener('click', () => {
       const textarea = popupElement.querySelector('textarea');
       const newSettings = textarea.value;
+      localStorage.setItem('mousehunt-improved-settings-backup', localStorage.getItem('mousehunt-improved-settings'));
       localStorage.setItem('mousehunt-improved-settings', newSettings);
-      window.location.reload();
+
+      showSuccessMessage({
+        message: 'Settings saved. Refreshing...',
+        append: saveButton,
+        after: true,
+        classname: 'settings-export-save-success',
+      });
+
+      setTimeout(() => {
+        window.location.reload();
+      });
+    });
+
+    const copyButton = popupElement.querySelector('.mousehuntActionButton.copy');
+    copyButton.addEventListener('click', () => {
+      const textarea = popupElement.querySelector('textarea');
+      navigator.clipboard.writeText(textarea.value);
+      showSuccessMessage({
+        message: 'Settings copied to clipboard.',
+        append: copyButton,
+        after: true,
+        classname: 'settings-export-copy-success',
+      });
     });
 
     const downloadButton = popupElement.querySelector('.mousehuntActionButton.download');
@@ -201,24 +226,19 @@ const modifySettingsPage = () => {
 /**
  * Add the icon to the menu.
  */
-const addIconToMenu = () => {
-  const menu = document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');
-  if (! menu) {
-    return;
-  }
-
-  const icon = makeElement('a', ['menuItem', 'mousehunt-improved-icon-menu']);
-  icon.href = 'https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings';
-  icon.title = 'MouseHunt Improved Settings';
-
-  icon.addEventListener('click', (e) => {
-    if ('preferences' === getCurrentPage() && 'mousehunt-improved-settings' === getCurrentTab()) {
-      e.preventDefault();
-      setPage('Camp');
-    }
+const addMhImprovedIconToMenu = () => {
+  addIconToMenu({
+    id: 'mousehunt-improved-icon-menu',
+    href: 'https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings',
+    title: 'MouseHunt Improved Settings',
+    position: 'append',
+    action: (e) => {
+      if ('preferences' === getCurrentPage() && 'mousehunt-improved-settings' === getCurrentTab()) {
+        e.preventDefault();
+        setPage('Camp');
+      }
+    },
   });
-
-  menu.append(icon);
 };
 
 const makeModuleIconStyles = () => {
@@ -247,7 +267,7 @@ const init = async () => {
     makeModuleIconStyles(),
   ], 'mousehunt-improved-settings');
 
-  addIconToMenu();
+  addMhImprovedIconToMenu();
   onNavigation(() => {
     modifySettingsPage();
     addAdvancedSettingsButtons();
