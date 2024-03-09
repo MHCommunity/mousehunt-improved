@@ -40,7 +40,7 @@ const isNewVersion = (version) => {
  */
 const cleanOnUpdate = (previousVersion) => {
   const current = getSettings();
-  localStorage.setItem('mh-improved-settings-backup', JSON.stringify(current));
+  localStorage.setItem('mousehunt-improved-settings-migration-backup', JSON.stringify(current));
 
   migrateSettings([
     {
@@ -249,8 +249,8 @@ const init = async () => {
 
   clearCaches();
 
-  saveSetting('mh-improved-version', mhImprovedVersion);
   saveSetting('mh-improved-platform', mhImprovedPlatform);
+  saveSetting('mh-improved-version', mhImprovedVersion);
 };
 
 export default {

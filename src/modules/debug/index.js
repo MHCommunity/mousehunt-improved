@@ -130,7 +130,7 @@ export default {
   id: 'debug',
   name: 'Debug logging',
   type: 'advanced',
-  description: 'Enables debug logging for various parts of the app.',
+  description: 'Enables debug logging for various parts of MouseHunt.',
   default: true,
   order: 900,
   load: init,

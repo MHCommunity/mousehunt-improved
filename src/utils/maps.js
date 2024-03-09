@@ -1,4 +1,11 @@
-import { getData, getHeaders, sessionGet, sessionSet } from './data';
+import {
+  cacheGet,
+  getData,
+  getHeaders,
+  sessionGet,
+  sessionSet
+} from './data';
+
 import { getCurrentLocation } from './location';
 import { getFlag } from './flags';
 import { getGlobal } from './global';
