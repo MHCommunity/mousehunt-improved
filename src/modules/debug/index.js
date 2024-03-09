@@ -85,6 +85,7 @@ const main = () => {
     ];
 
     let hasSingleEvent = false;
+    const ignoredEvents = [];
 
     // If Utils.getFlags() contains debug-events-<event-name>, also log that event.
     for (const flag in Utils.getFlags()) {
@@ -94,7 +95,14 @@ const main = () => {
       } else if (flag.startsWith('debug-events-')) {
         const event = flag.replace('debug-events-', '');
         events.push(event);
+      } else if (flag.startsWith('debug-events-no-')) {
+        const event = flag.replace('debug-events-no-', '');
+        ignoredEvents.push(event);
       }
+    }
+
+    if (ignoredEvents.length > 0) {
+      events = events.filter((event) => ! ignoredEvents.includes(event));
     }
 
     if (hasSingleEvent) {
