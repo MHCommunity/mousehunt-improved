@@ -78,12 +78,15 @@ const bodyClasses = { added: [], removed: [] };
 /**
  * Add a body class that persists across navigation.
  *
- * @param {string} className Class to add.
+ * @param {string}  className Class to add.
+ * @param {boolean} force     Whether to force the class to be added.
  */
-const addBodyClass = (className) => {
+const addBodyClass = (className, force = false) => {
   if (
-    bodyClasses.removed.includes(className) ||
-    bodyClasses.added.includes(className)
+    ! force && (
+      bodyClasses.removed.includes(className) ||
+      bodyClasses.added.includes(className)
+    )
   ) {
     return;
   }
@@ -115,6 +118,7 @@ const addBodyClass = (className) => {
  * @param {string} className Class to remove.
  */
 const removeBodyClass = (className) => {
+  bodyClasses.added = bodyClasses.added.filter((c) => c !== className);
   bodyClasses.removed.push(className);
   document.body.classList.remove(className);
 };
