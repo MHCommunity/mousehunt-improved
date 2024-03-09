@@ -1,4 +1,5 @@
 import { addStylesDirect } from './styles';
+import { makeElement } from './elements';
 
 import gameInfoBarStyles from './styles/game-info-bar.css';
 
@@ -19,6 +20,7 @@ const addItemToGameInfoBar = (options) => {
     class: '',
     callback: null,
     external: false,
+    title: '',
   }, options);
 
   const safeLabel = settings.label.replaceAll(/[^\da-z]/gi, '_').toLowerCase();
@@ -38,6 +40,7 @@ const addItemToGameInfoBar = (options) => {
   item.id = `mh-custom-topmenu-${safeLabel}`;
   item.classList.add('mousehuntHud-gameInfo-item');
   item.classList.add('mousehuntHud-custom-menu-item');
+  item.title = settings.title || settings.label;
 
   item.href = settings.href || '#';
 
