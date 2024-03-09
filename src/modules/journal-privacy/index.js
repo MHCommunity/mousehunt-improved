@@ -1,11 +1,28 @@
-import { addStyles, onRequest } from '@utils';
+import {
+  addBodyClass,
+  addIconToMenu,
+  addStyles,
+  getSetting,
+  onActivation,
+  onDeactivation,
+  onRequest,
+  onSettingsChange,
+  removeBodyClass
+} from '@utils';
 
+import settings from './settings';
+
+import iconStyles from './icon.css';
 import styles from './styles.css';
 
 /**
  * Apply a class to names in the journal.
  */
 const applyClassToNames = () => {
+  if (! isPrivacyEnabled) {
+    return;
+  }
+
   const entries = document.querySelectorAll('#journalContainer .entry.relicHunter_start .journaltext');
   if (! entries) {
     return;
@@ -13,6 +30,10 @@ const applyClassToNames = () => {
 
   entries.forEach((entry) => {
     if (! entry || ! entry.textContent) {
+      return;
+    }
+
+    if (entry.getAttribute('replaced') === 'true') {
       return;
     }
 
@@ -24,19 +45,123 @@ const applyClassToNames = () => {
       span.classList.add('mh-journal-privacy-name');
       span.textContent = match[1];
 
+      entry.setAttribute('data-original', match[1]);
+      entry.setAttribute('replaced', 'true');
+
       // Replace the match with the span.
       entry.innerHTML = entry.innerHTML.replace(match[1], span.outerHTML);
     }
   });
 };
 
+const removeClassFromNames = () => {
+  if (isPrivacyEnabled) {
+    return;
+  }
+
+  const entries = document.querySelectorAll('#journalContainer .entry.relicHunter_start .journaltext');
+  if (! entries) {
+    return;
+  }
+
+  entries.forEach((entry) => {
+    if (! entry || ! entry.textContent) {
+      return;
+    }
+
+    if (entry.getAttribute('replaced') !== 'true') {
+      return;
+    }
+
+    // Get the span and replace it with the original text.
+    const span = entry.querySelector('.mh-journal-privacy-name');
+    if (span) {
+      entry.innerHTML = entry.innerHTML.replace(span.outerHTML, span.textContent);
+      entry.removeAttribute('replaced');
+    }
+  });
+};
+
+const enablePrivacy = () => {
+  addBodyClass('mh-journal-privacy-enabled', true);
+  removeBodyClass('mh-journal-privacy-disabled');
+  applyClassToNames();
+};
+
+const disablePrivacy = () => {
+  removeBodyClass('mh-journal-privacy-enabled');
+  addBodyClass('mh-journal-privacy-disabled', true);
+  removeClassFromNames();
+};
+
+const addIcon = () => {
+  if (! getSetting('journal-privacy-show-toggle-icon', true)) {
+    return;
+  }
+
+  const existingIcon = document.querySelector('#mousehunt-improved-journal-privacy');
+  if (existingIcon) {
+    existingIcon.style.display = '';
+    existingIcon.style.visibility = '';
+    return;
+  }
+
+  addIconToMenu({
+    id: 'mousehunt-improved-journal-privacy',
+    classname: 'mousehunt-improved-journal-privacy-icon',
+    title: 'Toggle Journal Privacy',
+    position: 'prepend',
+    action: () => {
+      if (isPrivacyEnabled) {
+        disablePrivacy();
+      } else {
+        enablePrivacy();
+      }
+
+      isPrivacyEnabled = ! isPrivacyEnabled;
+    },
+  });
+};
+
+const removeIcon = () => {
+  if (getSetting('journal-privacy.show-toggle-icon', true)) {
+    return;
+  }
+
+  const icon = document.querySelector('#mousehunt-improved-journal-privacy');
+  if (icon) {
+    icon.style.display = 'none';
+    icon.style.visibility = 'hidden';
+  }
+};
+
+let isPrivacyEnabled = true;
+
 /**
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles, 'journal-privacy');
+  addStyles([styles, iconStyles], 'journal-privacy');
+
+  addIcon();
+  enablePrivacy();
 
   onRequest('pages/journal.php', applyClassToNames);
+
+  onActivation(() => {
+    addIcon();
+    enablePrivacy();
+  });
+
+  onDeactivation(() => {
+    removeIcon();
+    disablePrivacy();
+  });
+
+  onSettingsChange('journal-privacy.show-toggle-icon', {
+    enable: addIcon,
+    disable: removeIcon,
+  });
 };
 
 export default {
@@ -46,4 +171,5 @@ export default {
   default: false,
   description: 'Hides player names in the journal. Good for screenshots that won\'t dox them.',
   load: init,
+  settings,
 };
