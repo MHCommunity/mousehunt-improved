@@ -16,12 +16,14 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
     return settings;
   }
 
-  // If the setting doesn't exist, return the default value.
-  if (Object.prototype.hasOwnProperty.call(settings, key)) {
-    return settings[key];
+  const groupAndKey = getGroupAndKey(key);
+
+  if (groupAndKey.group) {
+    const group = settings[groupAndKey.group] || {};
+    return group[groupAndKey.key] || defaultValue;
   }
 
-  return defaultValue;
+  return settings[key] || defaultValue;
 };
 
 /**
@@ -34,9 +36,34 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
 const saveSettingDirect = (key, value, identifier = 'mousehunt-improved-settings') => {
   // Grab all the settings, set the new one, and save them.
   const settings = getSettingDirect(null, {}, identifier);
-  settings[key] = value;
+
+  const groupAndKey = getGroupAndKey(key);
+
+  if (groupAndKey.group) {
+    if (! settings[groupAndKey.group]) {
+      settings[groupAndKey.group] = {};
+    }
+
+    settings[groupAndKey.group][groupAndKey.key] = value;
+  } else {
+    settings[key] = value;
+  }
 
   localStorage.setItem(identifier, JSON.stringify(settings));
+};
+
+const getGroupAndKey = (key) => {
+  // if the string is not in the format of group.key, then we assume it's a global setting
+  if (! key.includes('.')) {
+    return { key };
+  }
+
+  const split = key.split('.');
+
+  return {
+    group: `${split[0]}-settings`,
+    key: split[1],
+  };
 };
 
 /**

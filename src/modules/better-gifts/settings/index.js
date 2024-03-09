@@ -52,7 +52,7 @@ export default async () => {
 
   return [
     {
-      id: 'gift-buttons-send-order',
+      id: 'better-gifts.send-order',
       title: 'Order to accept/send',
       default: [orderOptions[0]],
       description: '',
@@ -63,7 +63,7 @@ export default async () => {
       }
     },
     {
-      id: 'gift-buttons-ignore-bad-gifts',
+      id: 'better-gifts.ignore-bad-gifts',
       title: 'Ignore gifts that aren\'t the Gift of the Day',
       default: [skipBadGiftOptions[0]],
       description: '',

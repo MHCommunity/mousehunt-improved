@@ -98,7 +98,7 @@ const main = () => {
     return;
   }
 
-  const newStyle = getSetting('lgs-new-style', false);
+  const newStyle = getSetting('lgs-reminder.new-style', false);
 
   let wrapper;
   let reminder;

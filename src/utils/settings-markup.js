@@ -133,19 +133,25 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
 /**
  * Add a setting to the preferences page, both on page load and when the page changes.
  *
- * @param {string}  name         The setting name.
- * @param {string}  key          The setting key.
- * @param {boolean} defaultValue The default value.
- * @param {string}  description  The setting description.
- * @param {Object}  section      The section settings.
- * @param {string}  tab          The tab to add the settings to.
- * @param {Object}  settings     The settings for the settings.
+ * @see addSettingOnce
+ *
+ * @param {Object}  options             The options for the setting.
+ * @param {string}  options.name        The name of the setting.
+ * @param {string}  options.id          The setting id.
+ * @param {boolean} options.default     The default value.
+ * @param {string}  options.description The description of the setting.
+ * @param {Object}  options.module      The module the setting is for.
+ * @param {Object}  options.subsettings The subsettings for the setting.
+ * @param {string}  options.group       The group the setting is in.
+ * @param {string}  options.tab         The tab to add the settings to.
+ * @param {Object}  options.settings    The settings for the setting.
  *
  * @return {Object} The setting.
  */
-const addSetting = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settings = null) => {
-  onPageChange({ preferences: { show: () => addSettingOnce(name, key, defaultValue, description, section, tab, settings) } });
-  return addSettingOnce(name, key, defaultValue, description, section, tab, settings);
+// const addSetting = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settings = null) => {
+const addSetting = (options) => {
+  onPageChange({ preferences: { show: () => addSettingOnce(options) } });
+  return addSettingOnce(options);
 };
 
 /**
@@ -287,7 +293,7 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
       settingRowInputDropdownSelect.classList.add('multiSelect');
     }
 
-    const currentSetting = getSettingDirect(`${key}-${i}`, null, tab);
+    const currentSetting = getSetting(`${key}-${i}`, null, tab);
     let foundSelected = false;
 
     settingSettings.options.forEach((option) => {
@@ -370,7 +376,7 @@ const makeSettingInput = ({ key, tab, defaultValue }) => {
   makeElement('span', '', 'Save', inputSaveButton);
 
   let timeout = null;
-  const save = (event) => {
+  inputSaveButton.addEventListener('click', (event) => {
     const parent = event.target.parentNode.parentNode.parentNode;
     parent.classList.add('inputDropdownWrapper');
     parent.classList.add('inputTextWrapper');
@@ -541,18 +547,28 @@ const makeSettingBlank = ({ section, key }) => {
  *
  * @ignore
  *
- * @param {string}  name            The setting name.
- * @param {string}  key             The setting key.
- * @param {boolean} defaultValue    The default value.
- * @param {string}  description     The setting description.
- * @param {Object}  section         The section settings.
- * @param {string}  tab             The tab to add the settings to.
- * @param {Object}  settingSettings The settings for the settings.
+ * @param {Object}  options             The options for the setting.
+ * @param {string}  options.name        The name of the setting.
+ * @param {string}  options.id          The setting id.
+ * @param {boolean} options.default     The default value.
+ * @param {string}  options.description The description of the setting.
+ * @param {Object}  options.module      The module the setting is for.
+ * @param {Object}  options.subsettings The subsettings for the setting.
+ * @param {string}  options.group       The group the setting is in.
+ * @param {string}  options.tab         The tab to add the settings to.
+ * @param {Object}  options.settings    The settings for the setting.
  *
  * @return {Object} The setting.
  */
-const addSettingOnce = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settingSettings = null) => {
+const addSettingOnce = (options) => {
   addSettingStyles();
+
+  const name = options.name;
+  const key = options.id;
+  const defaultValue = options.default || null;
+  const description = options.description || '';
+  const tab = 'mousehunt-improved-settings';
+  const settingSettings = options.subsettings || null;
 
   // Make sure we have the container for our settings.
   const container = document.querySelector(`.mousehuntHud-page-tabContent.${tab}`);
@@ -560,19 +576,14 @@ const addSettingOnce = (name, key, defaultValue = true, description = '', sectio
     return false;
   }
 
-  section = {
-    id: section.id || 'settings',
-    name: section.name || 'Userscript Settings',
-    description: section.description || '',
-    subSetting: section.subSetting || false,
+  const section = {
+    id: options.module.id,
+    name: options.module.name || '',
+    description: options.module.description || '',
+    subSetting: options.module.subSetting || false,
   };
 
-  let tabId = 'mh-utils-settings';
-  if (tab !== 'userscript-settings') {
-    tabId = tab;
-  }
-
-  section.id = `${tabId}-${section.id.replaceAll(/[^\w-]/gi, '')}`;
+  section.id = `${tab}-${section.id.replaceAll(/[^\w-]/gi, '')}`;
 
   // If we don't have our custom settings section, then create it.
   let sectionExists = document.querySelector(`#${section.id}-wrapper`);
@@ -746,18 +757,14 @@ const addSettingForModule = async (module) => {
   for (const submodule of module.modules) {
     let moduleSettingRow = null;
     if (! submodule.alwaysLoad && ! submodule.beta) {
-      moduleSettingRow = await addSetting(
-        submodule.name,
-        submodule.id,
-        submodule.default,
-        submodule.description,
-        {
-          id: module.id,
-          name: module.name,
-          description: module.description,
-        },
-        'mousehunt-improved-settings'
-      );
+      moduleSettingRow = await addSetting({
+        name: submodule.name,
+        id: submodule.id,
+        group: submodule.group,
+        default: submodule.default,
+        description: submodule.description,
+        module,
+      });
     }
 
     if (submodule.settings) {
@@ -767,18 +774,18 @@ const addSettingForModule = async (module) => {
       }
 
       for (const subSettings of subSettingsGroup) {
-        const subSettingRow = await addSetting(
-          subSettings.title,
-          subSettings.id,
-          subSettings.default,
-          subSettings.description,
-          {
+        const subSettingRow = await addSetting({
+          name: subSettings.title,
+          id: subSettings.id,
+          group: submodule.group || false,
+          default: subSettings.default,
+          description: subSettings.description,
+          module: {
             ...module,
             subSetting: true,
           },
-          'mousehunt-improved-settings',
-          subSettings.settings
-        );
+          subsettings: subSettings.settings,
+        });
 
         if (moduleSettingRow && subSettingRow) {
           moduleSettingRow.append(subSettingRow);

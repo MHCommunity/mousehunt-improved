@@ -17,7 +17,7 @@ import styles from './styles.css';
  * @return {Array} The ignored gifts.
  */
 const getIgnoredGifts = () => {
-  const ignored = getSetting('gift-buttons-ignore-bad-gifts-0', 'skip');
+  const ignored = getSetting('better-gifts.ignore-bad-gifts-0', 'skip');
 
   const skipOptions = {
     skip: ['mozzarella_cheese', 'stale_cheese', 'stale_cheese_craft_item'],
@@ -57,7 +57,7 @@ const claimGifts = async (send = false, retries = 0) => {
   }
 
   let gifts = hg.views.GiftSelectorView.getClaimableGiftsSortedByTime();
-  if (getSetting('gift-buttons-send-order-0', 'default') === 'reverse') {
+  if (getSetting('better-gifts.send-order-0', 'default') === 'reverse') {
     gifts.reverse();
   }
 

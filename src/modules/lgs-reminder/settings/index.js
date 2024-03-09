@@ -5,7 +5,7 @@
  */
 export default async () => {
   return [{
-    id: 'lgs-new-style',
+    id: 'lgs-reminder.new-style',
     title: 'Use "new" style',
     default: false,
     description: '',

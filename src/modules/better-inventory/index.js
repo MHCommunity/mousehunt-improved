@@ -185,8 +185,8 @@ const main = () => {
 const init = async () => {
   addStyles([
     styles,
-    getSetting('better-inventory-one-item-per-row', true) ? fullWidthStyles : doubleWidthStyles,
-    getSetting('better-inventory-larger-images', true) ? largerImagesStyles : '',
+    getSetting('better-inventory.one-item-per-row', true) ? fullWidthStyles : doubleWidthStyles,
+    getSetting('better-inventory.larger-images', true) ? largerImagesStyles : '',
   ], 'better-inventory');
 
   main();

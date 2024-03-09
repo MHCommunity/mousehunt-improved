@@ -13,14 +13,14 @@ import {
 import styles from './styles.css';
 
 const saveSettings = (shouldUpdateTitles = true) => {
-  saveSetting('inventory-lock-and-hide', itemSettings);
+  saveSetting('inventory-lock-and-hide.items', itemSettings);
   if (shouldUpdateTitles) {
     updateGroupTitles();
   }
 };
 
 const getSettings = () => {
-  return getSetting('inventory-lock-and-hide', {
+  return getSetting('inventory-lock-and-hide.items', {
     locked: [],
     hidden: [],
   });

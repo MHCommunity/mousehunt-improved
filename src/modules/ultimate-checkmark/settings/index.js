@@ -23,12 +23,12 @@ export default async () => {
     options.push({
       id: category.id,
       name: category.name,
-      value: getSetting(`ultimate-checkmark-${category.id}`, true),
+      value: getSetting(`ultimate-checkmark.show-${category.id}`, true),
     });
   });
 
   return [{
-    id: 'ultimate-checkmark-categories',
+    id: 'ultimate-checkmark.show',
     title: 'Ultimate Checkmark',
     default: [],
     description: 'Adds more things collect on your Hunter profile.',

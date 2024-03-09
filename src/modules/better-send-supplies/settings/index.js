@@ -9,7 +9,7 @@ export default async () => {
   const tradableItems = await getTradableItems('truncated_name');
 
   return [{
-    id: 'send-supplies-pinned-items',
+    id: 'better-send-supplies.pinned-items',
     title: 'Pinned items',
     default: [
       {

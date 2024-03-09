@@ -167,11 +167,11 @@ const changeJournalDaily = async () => {
 const init = async () => {
   addStyles(styles, 'journal-changer');
 
-  if (getSetting('journal-changer-change-daily', false)) {
+  if (getSetting('journal-changer.change-daily', false)) {
     changeJournalDaily();
   }
 
-  if (getSetting('journal-changer-change-location', true)) {
+  if (getSetting('journal-changer.change-location', true)) {
     changeForLocation();
     onEvent('travel_complete', changeForLocation);
   }

@@ -30,7 +30,7 @@ const getUpdateLink = (version) => {
  * @return {boolean} True if the user has seen the banner, false otherwise.
  */
 const hasSeenBanner = () => {
-  return mhImprovedVersion === getSetting('has-seen-update-banner', '');
+  return mhImprovedVersion === getSetting('updates.banner', '');
 };
 
 /**
@@ -41,7 +41,7 @@ const hasSeenBanner = () => {
  * @return {boolean} True if the user has seen the onboarding step, false otherwise.
  */
 const hasSeenOnboarding = (step = 0) => {
-  const savedStepNumber = getSetting('has-seen-onboarding', 0);
+  const savedStepNumber = getSetting('updates.onboarding', 0);
   return savedStepNumber >= step;
 };
 
@@ -51,9 +51,9 @@ const hasSeenOnboarding = (step = 0) => {
  * @param {number} step The step to save.
  */
 const saveOnboardingStep = (step) => {
-  const savedStepNumber = getSetting('has-seen-onboarding', 0);
+  const savedStepNumber = getSetting('updates.onboarding', 0);
   if (savedStepNumber < step) {
-    saveSetting('has-seen-onboarding', step);
+    saveSetting('updates.onboarding', step);
   }
 };
 
@@ -101,7 +101,7 @@ const addBanner = (hasNewSettings = false) => {
     e.preventDefault();
 
     bannerWrapper.classList.add('banner-fade-out');
-    saveSetting('has-seen-update-banner', mhImprovedVersion);
+    saveSetting('updates.banner', mhImprovedVersion);
 
     removeBodyClass('mh-improved-has-update');
 

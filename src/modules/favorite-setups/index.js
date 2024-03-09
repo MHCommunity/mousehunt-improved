@@ -17,7 +17,7 @@ import {
 import styles from './styles.css';
 
 const getFavoriteSetups = () => {
-  return getSetting('favorite-setups', []);
+  return getSetting('favorite-setups.setups', []);
 };
 
 const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
@@ -56,7 +56,7 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
     setups = [normalizedSetup];
   }
 
-  saveSetting('favorite-setups', setups);
+  saveSetting('favorite-setups.setups', setups);
 
   return normalizedSetup;
 };
@@ -520,7 +520,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
             setups[index] = setups[previousIndex];
             setups[previousIndex] = temp;
 
-            saveSetting('favorite-setups', setups);
+            saveSetting('favorite-setups.setups', setups);
 
             // move the row up.
             previous.before(setupContainer);
@@ -546,7 +546,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
             setups[index] = setups[nextIndex];
             setups[nextIndex] = temp;
 
-            saveSetting('favorite-setups', setups);
+            saveSetting('favorite-setups.setups', setups);
 
             next.after(setupContainer);
           }
@@ -627,7 +627,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         // replace the setup in the list.
         setups[index] = newSetup;
-        saveSetting('favorite-setups', setups);
+        saveSetting('favorite-setups.setups', setups);
 
         // Update the setup title to be a div.
         title.textContent = newSetup.name;
@@ -691,7 +691,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         const index = setups.findIndex((s) => s.id === setupId);
         setups.splice(index, 1);
-        saveSetting('favorite-setups', setups);
+        saveSetting('favorite-setups.setups', setups);
 
         // remove the setup from the list.
         setupContainer.remove();

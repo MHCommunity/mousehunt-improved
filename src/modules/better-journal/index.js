@@ -377,17 +377,17 @@ const updateEls = () => {
 const init = async () => {
   let stylesToAdd = [];
 
-  if (getSetting('better-journal-styles', true)) {
+  if (getSetting('better-journal.styles', true)) {
     stylesToAdd = styles;
   } else {
     stylesToAdd.push(noStyles);
   }
 
-  if (getSetting('better-journal-privacy')) {
+  if (getSetting('better-journal.privacy')) {
     journalPrivacy();
   }
 
-  if (getSetting('better-journal-replacements', true)) {
+  if (getSetting('better-journal.replacements', true)) {
     updateEls();
     onRequest('*', () => {
       setMultipleTimeout(updateEls, [0, 100, 500]);
@@ -395,13 +395,13 @@ const init = async () => {
     onTurn(updateEls);
   }
 
-  if (getSetting('better-journal-icons', getFlag('journal-icons-all', false))) {
+  if (getSetting('better-journal.icons', getFlag('journal-icons-all', false))) {
     stylesToAdd.push(journalIconsMinimalStyles, journalIconsStyles);
-  } else if (getSetting('better-journal-icons-minimal', getFlag('journal-icons', false))) {
+  } else if (getSetting('better-journal.icons-minimal', getFlag('journal-icons', false))) {
     stylesToAdd.push(journalIconsMinimalStyles);
   }
 
-  if (getSetting('better-journal-list', false)) {
+  if (getSetting('better-journal.list', false)) {
     journalList();
   }
 

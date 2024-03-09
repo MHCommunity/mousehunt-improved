@@ -264,7 +264,7 @@ export default async () => {
   addStyles(styles, 'better-travel-travel-window');
   makeMenuItem();
 
-  if (getSetting('better-travel-travel-window-environment-icon', true)) {
+  if (getSetting('better-travel.travel-window-environment-icon', true)) {
     addEnvironmentIconListener();
   }
 

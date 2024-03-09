@@ -9,7 +9,7 @@ export default async () => {
   const tradableItems = await getTradableItems('type');
 
   return [{
-    id: 'quick-send-supplies-items',
+    id: 'quick-send-supplies.items',
     title: 'Items shown in popup',
     default: [
       {

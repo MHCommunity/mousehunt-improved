@@ -124,7 +124,7 @@ let useCachedWisdom = false;
  * Initialize the module.
  */
 const init = async () => {
-  if (! getSetting('wisdom-in-stat-bar-auto-refresh', true)) {
+  if (! getSetting('wisdom-in-stat-bar.auto-refresh', true)) {
     useCachedWisdom = true;
     onTurn(updateWisdom);
   }

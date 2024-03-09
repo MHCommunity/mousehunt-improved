@@ -358,7 +358,7 @@ const run = async () => {
   }
 
   for (const category of categories) {
-    if (! getSetting(`ultimate-checkmark-categories-${category.id}`, true)) {
+    if (! getSetting(`ultimate-checkmark.show-${category.id}`, true)) {
       continue;
     }
 

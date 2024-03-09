@@ -218,7 +218,7 @@ const getBaseShortcuts = () => {
 const getShortcuts = () => {
   const shortcuts = getBaseShortcuts();
 
-  const saved = getSetting('keyboard-shortcuts', []);
+  const saved = getSetting('keyboard-shortcuts.shortcuts', []);
   if (! saved || ! saved.length) {
     return shortcuts;
   }
@@ -241,7 +241,7 @@ const getShortcuts = () => {
 };
 
 const saveShortcut = (shortcutId, shortcutKey) => {
-  let saved = getSetting('keyboard-shortcuts', []);
+  let saved = getSetting('keyboard-shortcuts.shortcuts', []);
 
   if (! saved || ! saved.length) {
     saved = [];
@@ -271,7 +271,7 @@ const saveShortcut = (shortcutId, shortcutKey) => {
     saved.push(toSave);
   }
 
-  saveSetting('keyboard-shortcuts', saved);
+  saveSetting('keyboard-shortcuts.shortcuts', saved);
 
   const savedElement = document.querySelector(`.mh-ui-keyboard-shortcut[data-shortcut-id="${shortcutId}"]`);
   if (savedElement) {

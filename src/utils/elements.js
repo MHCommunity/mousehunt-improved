@@ -1,4 +1,4 @@
-import { getSettingDirect, saveSettingDirect } from './settings';
+import { getSetting, saveSetting } from './settings';
 import { addStylesDirect } from './styles';
 import { getFlag } from './flags';
 
@@ -131,7 +131,7 @@ const makeFavoriteButton = async (options) => {
   star.style.display = 'inline-block';
 
   let currentSetting = false;
-  currentSetting = isSetting ? getSettingDirect(id, defaultState) : state;
+  currentSetting = isSetting ? getSetting(id, defaultState) : state;
 
   if (currentSetting) {
     star.classList.add('active');
@@ -149,7 +149,7 @@ const makeFavoriteButton = async (options) => {
     if (onChange !== null) {
       await onChange(currentState);
     } else if (isSetting) {
-      saveSettingDirect(id, currentState);
+      saveSetting(id, currentState);
     }
 
     currentStar.classList.remove('inactive');

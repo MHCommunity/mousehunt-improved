@@ -238,14 +238,14 @@ const addSimpleTravelPage = () => {
   expandTravelRegions();
   const wrapper = makeElement('div', 'travelPage-wrapper');
 
-  if ('not-set' === getSetting('better-travel-default-to-simple-travel', 'not-set')) {
+  if ('not-set' === getSetting('better-travel.default-to-simple-travel', 'not-set')) {
     const settingTip = makeElement('div', ['travelPage-map-prefix', 'simple-travel-tip'], 'You can set this as the default travel tab in the <a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings">MouseHunt Improved settings</a>.');
     wrapper.append(settingTip);
   }
 
   const regionMenu = cloneRegionMenu();
 
-  if (getSetting('better-travel-show-alphabetized-list', false)) {
+  if (getSetting('better-travel.show-alphabetized-list', false)) {
     wrapper.append(addAlphabetizedList(regionMenu));
   }
 
@@ -386,7 +386,7 @@ const onTravelComplete = () => {
     saveTravelLocation();
 
     setTimeout(() => {
-      if (getSetting('better-travel-show-reminders', true)) {
+      if (getSetting('better-travel.show-reminders', true)) {
         addReminders();
       }
 
@@ -417,7 +417,7 @@ const maybeSetTab = () => {
     return;
   }
 
-  if (! getSetting('better-travel-default-to-simple-travel', false)) {
+  if (! getSetting('better-travel.default-to-simple-travel', false)) {
     return;
   }
 
@@ -597,7 +597,7 @@ const addFavoriteButtonsToTravelPage = async () => {
 };
 
 const main = () => {
-  if (getSetting('better-travel-travel-window', true)) {
+  if (getSetting('better-travel.travel-window', true)) {
     travelWindow();
   }
 

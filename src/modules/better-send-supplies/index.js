@@ -153,11 +153,11 @@ const addSortButtons = () => {
 
 const highlightFavoritedItems = () => {
   const itemsToPin = new Set([
-    getSetting('send-supplies-pinned-items-0', 'SUPER|brie+'),
-    getSetting('send-supplies-pinned-items-1', 'Empowered SUPER|b...'),
-    getSetting('send-supplies-pinned-items-2', 'Rift Cherries'),
-    getSetting('send-supplies-pinned-items-3', 'Rift-torn Roots'),
-    getSetting('send-supplies-pinned-items-4', 'Sap-filled Thorns'),
+    getSetting('better-send-supplies.pinned-items-0', 'SUPER|brie+'),
+    getSetting('better-send-supplies.pinned-items-1', 'Empowered SUPER|b...'),
+    getSetting('better-send-supplies.pinned-items-2', 'Rift Cherries'),
+    getSetting('better-send-supplies.pinned-items-3', 'Rift-torn Roots'),
+    getSetting('better-send-supplies.pinned-items-4', 'Sap-filled Thorns'),
   ]);
 
   for (const item of items) {

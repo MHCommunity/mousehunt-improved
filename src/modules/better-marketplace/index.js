@@ -84,7 +84,7 @@ const modifySearch = (opts) => {
   label.append(toggleSearch);
   label.append(document.createTextNode('Search all items'));
 
-  const defaultToAll = getSetting('better-marketplace-search-all');
+  const defaultToAll = getSetting('better-marketplace.search-all');
   toggleSearch.checked = defaultToAll;
 
   // if we default to all, then we want to show the original options but still have the new ones available.
@@ -241,7 +241,7 @@ let newSelect = null;
 const init = async () => {
   const stylesToUse = [styles];
 
-  if (getSetting('better-marketplace-small-images')) {
+  if (getSetting('better-marketplace.small-images')) {
     stylesToUse.push(smallImageStyles);
   }
 

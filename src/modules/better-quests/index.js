@@ -332,7 +332,7 @@ const checkForQuestSmash = () => {
 };
 
 const m400IfEnabled = () => {
-  if (! getSetting('better-quests-m400-helper', true)) {
+  if (! getSetting('better-quests.m400-helper', true)) {
     return;
   }
 

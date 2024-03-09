@@ -15,14 +15,22 @@ import {
  */
 const migrateSetting = (settingKey) => {
   debuglog('update-migration', `Migrating setting from ${settingKey.from} to ${settingKey.to}`);
-  const setting = localStorage.getItem(settingKey.from);
+  const setting = getSetting(settingKey.from);
   if (null === setting) {
     return;
   }
 
-  saveSetting(settingKey.to, JSON.parse(setting));
+  saveSetting(settingKey.to, setting);
 
-  localStorage.removeItem(settingKey.from);
+  if (settingKey.clear) {
+    saveSetting(settingKey.from, null);
+  } else if (settingKey.setTrue) {
+    saveSetting(settingKey.from, true);
+  } else if (settingKey.setFalse) {
+    saveSetting(settingKey.from, false);
+  } else {
+    deleteSetting(settingKey.from);
+  }
 };
 
 /**
