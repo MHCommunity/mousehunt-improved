@@ -403,14 +403,6 @@ const makeSettingInput = ({ key, tab, defaultValue }) => {
     }, 1000);
 
     addSettingRefreshReminder(key);
-  };
-
-  // Event listener for when the setting is clicked.
-  inputSaveButton.addEventListener('click', save);
-  settingRowInputText.addEventListener('keyup', (event) => {
-    if (event.key === 'Enter') {
-      save(event);
-    }
   });
 
   settingRowInput.classList.add('inputText');
@@ -442,7 +434,7 @@ const makeSettingTextArea = ({ key, tab, defaultValue }) => {
 
   // Event listener for when the setting is clicked.
   let timeout = null;
-  const save = (event) => {
+  inputSaveButton.addEventListener('click', (event) => {
     const parent = event.target.parentNode.parentNode.parentNode;
     parent.classList.add('inputDropdownWrapper');
     parent.classList.add('inputTextWrapper');
@@ -468,15 +460,6 @@ const makeSettingTextArea = ({ key, tab, defaultValue }) => {
     }, 1000);
 
     addSettingRefreshReminder(key);
-  };
-
-  // Event listener for when the setting is clicked.
-  inputSaveButton.addEventListener('click', save);
-
-  settingRowInputText.addEventListener('keyup', (event) => {
-    if (event.key === 'Enter') {
-      save(event);
-    }
   });
 
   settingRowInput.append(settingRowInputText);
