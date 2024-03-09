@@ -112,7 +112,7 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
   friendDataWrapper.addEventListener('mouseleave', () => {
     timeoutId = setTimeout(() => {
       friendDataWrapper.remove();
-    }, 500); // delay in milliseconds
+    }, 250); // delay in milliseconds
   });
 
   // cancel the removal if the mouse enters the tooltip
