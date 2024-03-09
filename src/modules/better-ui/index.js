@@ -51,5 +51,6 @@ export default {
   type: 'better',
   default: true,
   description: 'Updates the MH interface with a variety of UI and style changes.',
+  order: -1,
   load: init,
 };

@@ -60,16 +60,16 @@ const loadModules = async () => {
   });
 
   for (const category of categories) {
-    // Sort modules alphabetically, with underscores first, and 'better-ui' on top.
     category.modules.sort((a, b) => {
-      if (a.id === 'better-ui' || (a.id.startsWith('_') && ! b.id.startsWith('_'))) {
-        return -1;
+      a.order = a.order || 1;
+      b.order = b.order || 1;
+
+      // Sort by 'order' property
+      if (a.order !== b.order) {
+        return a.order - b.order;
       }
 
-      if (b.id === 'better-ui' || (b.id.startsWith('_') && ! a.id.startsWith('_'))) {
-        return 1;
-      }
-
+      // If order is the same, sort by name.
       return (a.name || a.id).localeCompare(b.name || b.id);
     });
   }
