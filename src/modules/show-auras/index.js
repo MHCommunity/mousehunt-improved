@@ -1,8 +1,10 @@
 import humanizeDuration from 'humanize-duration';
 
-import { addStyles, getCurrentPage, makeElement, onPageChange } from '@utils';
+import { addStyles, getCurrentPage, getFlag, makeElement, onNavigation, onPageChange } from '@utils';
 
-import styles from './styles.css';
+import onlyIconsStyles from './icons.css';
+import listStyles from './list.css';
+import baseStyles from './styles.css';
 
 const humanizer = humanizeDuration.humanizer({
   language: 'shortEn',
@@ -44,7 +46,7 @@ const getExpiryRemainingFormatted = (time) => {
 const addExpiryWarning = () => {
   // if any of the auras are expiring soon, show a notification
   // const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24);
-  const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24 * 40); // TODO: figure out the time.
+  const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24 * 40); // TODO: figure out the time that's worht a warning
   if (soon.length) {
     // add a class to the aura to show it's expiring soon
     soon.forEach((aura) => {
@@ -60,6 +62,7 @@ const addTrapBlock = () => {
   }
 
   const auraTrapBlock = makeElement('div', ['mh-improved-aura-view', 'campPage-trap-trapEffectiveness']);
+  auraTrapBlock.id = 'mh-improved-aura-view';
 
   aurasExpiry.forEach((aura) => {
     const auraEl = makeElement('div', 'aura');
@@ -74,14 +77,19 @@ const addTrapBlock = () => {
     makeElement('div', 'type', aura.type, auraEl);
 
     const times = makeElement('div', 'times');
-    makeElement('div', 'expiry', getExpiryFormatted(aura.expiry), times);
+    // makeElement('div', 'expiry', getExpiryFormatted(aura.expiry), times);
     makeElement('div', 'time', getExpiryRemainingFormatted(aura.remaining * 1000), times);
     auraEl.append(times);
 
     auraTrapBlock.append(auraEl);
   });
 
-  trapSummary.append(auraTrapBlock);
+  const existing = document.querySelector('#mh-improved-aura-view');
+  if (existing) {
+    existing.replaceWith(auraTrapBlock);
+  } else {
+    trapSummary.append(auraTrapBlock);
+  }
 };
 
 const getAuras = () => {
@@ -153,10 +161,15 @@ const main = () => {
 };
 
 const init = async () => {
-  addStyles(styles, 'auras');
+  if (getFlag('show-auras-list')) {
+    addStyles(listStyles, 'show-auras');
+  } else if (getFlag('show-auras-icons')) {
+    addStyles(onlyIconsStyles, 'show-auras');
+  } else {
+    addStyles(baseStyles, 'show-auras');
+  }
 
-  main();
-  onPageChange(main, { page: 'camp' });
+  onNavigation(main, { page: 'camp' });
 };
 
 export default {
