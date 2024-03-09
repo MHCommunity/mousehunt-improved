@@ -35,7 +35,11 @@
   align-items: center;
   justify-content: center;
   margin: 0 5px;
-  text-align: center;
   font-weight: 400;
   line-height: 1.5;
+  text-align: center;
+}
+
+.mh-improved-aura-view .expiry {
+  display: none;
 }

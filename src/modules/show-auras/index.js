@@ -1,10 +1,16 @@
 import humanizeDuration from 'humanize-duration';
 
-import { addStyles, getCurrentPage, getFlag, makeElement, onNavigation, onPageChange } from '@utils';
+import {
+  addStyles,
+  getCurrentPage,
+  getFlag,
+  makeElement,
+  onNavigation
+} from '@utils';
 
-import onlyIconsStyles from './icons.css';
+import gridStyles from './grid.css';
 import listStyles from './list.css';
-import baseStyles from './styles.css';
+import onlyIconsStyles from './icons.css';
 
 const humanizer = humanizeDuration.humanizer({
   language: 'shortEn',
@@ -77,7 +83,7 @@ const addTrapBlock = () => {
     makeElement('div', 'type', aura.type, auraEl);
 
     const times = makeElement('div', 'times');
-    // makeElement('div', 'expiry', getExpiryFormatted(aura.expiry), times);
+    makeElement('div', 'expiry', getExpiryFormatted(aura.expiry), times);
     makeElement('div', 'time', getExpiryRemainingFormatted(aura.remaining * 1000), times);
     auraEl.append(times);
 
@@ -166,7 +172,7 @@ const init = async () => {
   } else if (getFlag('show-auras-icons')) {
     addStyles(onlyIconsStyles, 'show-auras');
   } else {
-    addStyles(baseStyles, 'show-auras');
+    addStyles(gridStyles, 'show-auras');
   }
 
   onNavigation(main, { page: 'camp' });

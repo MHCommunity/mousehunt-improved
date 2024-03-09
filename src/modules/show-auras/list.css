@@ -1,11 +1,10 @@
 .mh-improved-aura-view.campPage-trap-trapEffectiveness {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+  gap: 10px;
   justify-content: space-evenly;
   padding: 5px;
   margin-bottom: 10px;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .mh-improved-aura-view .trapImageView-trapAura,
@@ -40,4 +39,8 @@
   justify-content: center;
   font-weight: 400;
   line-height: 1.5;
+}
+
+.mh-improved-aura-view .expiry {
+  display: none;
 }
