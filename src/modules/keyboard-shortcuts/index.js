@@ -39,6 +39,17 @@ const getBaseShortcuts = () => {
       category: 'hidden',
     },
     {
+      id: 'close-popup',
+      key: 'Escape',
+      description: 'Close the current popup',
+      action: () => {
+        if (activejsDialog && activejsDialog.hide) {
+          activejsDialog.hide();
+        }
+      },
+      category: 'hidden',
+    },
+    {
       id: 'goto-travel',
       key: 't',
       description: 'Travel',
