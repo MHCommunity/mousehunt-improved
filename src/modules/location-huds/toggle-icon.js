@@ -1,12 +1,18 @@
-import { addIconToMenu, getCurrentLocation, getSetting, saveSetting } from '@utils';
+import {
+  addIconToMenu,
+  getCurrentLocation,
+  getFlag,
+  getSetting,
+  saveSetting
+} from '@utils';
 
-import eventEnvioronments from '@data/environments-events.json';
-
-const getCurrentLocationForSettings = () => {
+const getCurrentLocationForSettings = async () => {
   const currentLocation = getCurrentLocation();
 
+  const eventEnvironments = await getData('environments-events');
+
   // check if we are in an event location
-  const eventLocation = eventEnvioronments.find((event) => event.id === currentLocation);
+  const eventLocation = eventEnvironments.find((event) => event.id === currentLocation);
   if (eventLocation) {
     return 'event-locations';
   }
@@ -14,8 +20,8 @@ const getCurrentLocationForSettings = () => {
   return currentLocation;
 };
 
-const getIconSettings = () => {
-  let key = getCurrentLocationForSettings();
+const getIconSettings = async () => {
+  let key = await getCurrentLocationForSettings();
   let value = getSetting(key, true);
 
   return {
@@ -49,7 +55,7 @@ const addToggleIcon = () => {
     return;
   }
 
-  addIconToMenu(getIconSettings);
+  addIconToMenu(await getIconSettings());
 };
 
 export default addToggleIcon;

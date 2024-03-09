@@ -13,8 +13,6 @@ import {
 
 import { getData } from '@utils/data';
 
-import eventEnvironments from '@data/environments-events.json';
-
 import { getTravelSetting, saveTravelSetting } from './travel-utils';
 
 import styles from './travel-menu.css';
@@ -76,6 +74,7 @@ const openTravelWindow = async () => {
   ];
 
   environments = await getData('environments');
+  const eventEnvironments = await getData('environments-events');
   environments = [...environments, ...eventEnvironments];
 
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());

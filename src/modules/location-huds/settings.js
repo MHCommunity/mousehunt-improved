@@ -39,11 +39,18 @@ export default async () => {
   const options = [];
 
   const environments = await getData('environments');
+  const eventEnvironments = await getData('environments-events');
 
   for (const environment of environments) {
-    if (! locationsToUnset.has(environment.id)) {
-      options.push(environment);
+    if (locationsToUnset.has(environment.id)) {
+      continue;
     }
+
+    if (eventEnvironments.find((event) => event.id === environment.id)) {
+      continue;
+    }
+
+    options.push(environment);
   }
 
   options.sort((a, b) => {

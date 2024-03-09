@@ -11,6 +11,7 @@ const validDataFiles = new Set([
   'items-tradable',
   'scoreboards',
   'environments',
+  'environments-events',
   'upscaled-images',
   'ultimate-checkmark',
 ]);

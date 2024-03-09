@@ -26,8 +26,6 @@ import { getTravelSetting, saveTravelSetting } from './travel-utils';
 import addReminders from './reminders';
 import travelWindow from './travel-window';
 
-import eventEnvironments from '@data/environments-events.json';
-
 import settings from './settings';
 import styles from './styles.css';
 import travelMenuHidingStyles from './travel-menu-hiding.css';
@@ -284,10 +282,11 @@ const goToPreviousLocation = () => {
   }
 };
 
-const addToTravelDropdown = () => {
+const addToTravelDropdown = async () => {
   const currentLocation = getCurrentLocation();
 
   // merge the event environments into the environments array
+  const eventEnvironments = await getData('environments-events');
   environments.push(...eventEnvironments);
 
   // get the object that matches the current location

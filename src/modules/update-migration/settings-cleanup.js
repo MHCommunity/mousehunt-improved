@@ -1,6 +1,4 @@
-import { debuglog, getSetting, saveSetting } from '@utils';
-
-import eventEnvironments from '@data/environments-events.json';
+import { debuglog, getData, getSetting, saveSetting } from '@utils';
 
 /**
  * Removes settings from local storage.
@@ -26,7 +24,7 @@ const cleanupCacheArSettings = () => {
   });
 };
 
-const removeOldEventFavoriteLocations = () => {
+const removeOldEventFavoriteLocations = async () => {
   // key is event, value is array of months
   const events = [
     {
@@ -47,6 +45,8 @@ const removeOldEventFavoriteLocations = () => {
   if (! travelSettings || ! travelSettings.favorites) {
     return;
   }
+
+  const eventEnvironments = await getData('environments-events');
 
   const currentMonth = new Date().getMonth();
   travelSettings.favorites.forEach((favorite, index) => {
