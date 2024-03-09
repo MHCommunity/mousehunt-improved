@@ -299,7 +299,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
  *
  * @return {any|boolean} Cached value or false if not found.
  */
-const getCachedValue = (key) => {
+const getCachedValue = async (key) => {
   if (getFlag('no-cache')) {
     return false;
   }
@@ -310,7 +310,7 @@ const getCachedValue = (key) => {
     return JSON.parse(isInSession);
   }
 
-  const localStorageContainer = localStorage.getItem(getCacheKey());
+  const localStorageContainer = await cacheGet(getCacheKey());
   if (! localStorageContainer) {
     return false;
   }
@@ -331,17 +331,6 @@ const getCachedValue = (key) => {
  */
 const getCacheKey = () => {
   return `mh-improved-cached-ar-v${mhImprovedVersion.replaceAll('.', '-')}`;
-};
-
-/**
- * Get the cache key for mouse AR values.
- *
- * @see getCacheKey
- *
- * @return {string} Cache key.
- */
-const getMouseCachedKey = () => {
-  return `mhct-ar-value-v${mhImprovedVersion.replaceAll('.', '-')}`;
 };
 
 /**
@@ -366,6 +355,7 @@ const setCachedValue = (key, value, saveToSession = false) => {
   // set the value
   container[key] = value;
 
+  cacheSet(getCacheKey(), container);
   localStorage.setItem(getCacheKey(), JSON.stringify(container));
 };
 
@@ -444,10 +434,10 @@ const getHighestArText = async (id, type = 'mouse') => {
 const getArForMouse = async (id, type = 'mouse') => {
   let mhctjson = [];
 
-  const cacheKey = `${getMouseCachedKey()}-${id}-${type}`;
+  const cacheKey = `${type}-${id}`;
 
   // check if the attraction rates are cached
-  const cachedAr = getCachedValue(cacheKey);
+  const cachedAr = await getCachedValue(cacheKey);
   if (cachedAr) {
     return cachedAr;
   }
