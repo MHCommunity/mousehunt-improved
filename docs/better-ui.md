@@ -1,6 +1,6 @@
 # [Better UI](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-ui)
 
-- Updates the MH interface with a variety of UI and style changes.
+- Updates the MouseHunt interface with a variety of UI and style changes.
 - Updates the Prestige Base to have the correct stats.
 - Autofocuses the Hunter ID search box on the Find Friends page.
 - Modifies the Hunter ID search box to be a bit bigger and moves it to the top.
@@ -12,6 +12,7 @@
 - Updates buttons in popups to match other buttons.
 - Hovering over your Cheese, Charm, or Map name will show the full name.
 - Updates the current adventure book task to look nicer.
+- Updates the styling of various userscripts
 - Updates the styles and readability of many items.
   - Search & filter dropdowns and results
   - Send Supplies page

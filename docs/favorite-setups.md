@@ -5,3 +5,6 @@ Easily save and load your favorite trap setups. Find the "Favorite Setups" secti
 When saving a setup, it will default to the name of the current location. Clicking the "Randomize" icon when editing a trap will automatically generate a unique name for your setup, otherwise you can name it yourself while editing.
 
 The "Favorite Setups" button will also show the current setup name if you have it equipped.
+
+> [!TIP]
+> If you're looking for more features for favorite setups, check out the [Favorite Setups+](https://greasyfork.org/en/scripts/443164-mousehunt-favorite-setups) userscript.
