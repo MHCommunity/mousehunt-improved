@@ -60,7 +60,7 @@ const makeKingsCrownsTabContentContent = () => {
 };
 
 const makeMouseCrownSection = (type, mice, header = false, subheader = false) => {
-  const wrapper = makeElement('div', ['mouseCrownsView-group', type]);
+  const wrapper = makeElement('div', ['kings-crown-section', 'mouseCrownsView-group', type]);
 
   if (header) {
     const headerDiv = makeElement('div', 'mouseCrownsView-group-header');
@@ -159,12 +159,32 @@ const makeKingsCrownsTabContent = async () => {
     return;
   }
 
-  const favorites = makeMouseCrownSection('favorites', crowns.favourite_mice);
-  tabInnerContent.append(favorites);
+  if (crowns.favourite_mice_count > 0) {
+    const favorites = makeMouseCrownSection('favorites', crowns.favourite_mice);
+    const existingFavorites = tabInnerContent.querySelector('.mouseCrownsView-group.favorites');
+    if (existingFavorites) {
+      existingFavorites.replaceWith(favorites);
+    } else {
+      tabInnerContent.append(favorites);
+    }
+  }
 
   crowns.badge_groups.forEach((group) => {
-    const section = makeMouseCrownSection(group.type, group.mice, `${group.name} Crowns (${group.count})`, `Earned at ${group.catches} catches`);
-    tabInnerContent.append(section);
+    if (group.mice.length === 0) {
+      return;
+    }
+
+    group.name = group?.name?.length > 0 ? group.name : 'No';
+    group.catches = group?.catches?.length > 0 ? group.catches : '0';
+
+    const section = makeMouseCrownSection(group.type, group.mice, `${group.name} Crown (${group.count})`, `Earned at ${group.catches} catches`);
+
+    const existingSection = tabInnerContent.querySelector(`.mouseCrownsView-group.${group.type}`);
+    if (existingSection) {
+      existingSection.replaceWith(section);
+    } else {
+      tabInnerContent.append(section);
+    }
   });
 };
 
