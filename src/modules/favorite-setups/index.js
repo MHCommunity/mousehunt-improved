@@ -873,7 +873,7 @@ const addIcon = () => {
 const init = async () => {
   addStyles(styles, 'favorite-setups');
 
-  if (getFlag('favorite-setups-toggle') {
+  if (getFlag('favorite-setups-toggle')) {
     addFavoriteSetupsButton();
   }
 
