@@ -214,3 +214,8 @@ input.itemView-action-convert-quantity {
 .itemView-header-classification span {
   visibility: visible;
 }
+
+.itemViewStatBlock-stat {
+  display: flex;
+  align-items: center;
+}

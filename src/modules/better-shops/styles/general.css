@@ -345,14 +345,21 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
 
 .title .itemViewStatBlock-stat-value span a {
   max-width: 60px;
+  font-size: 10px;
   text-overflow: ellipsis;
-  word-wrap: break-word;
-  white-space: unset;
 }
 
-a.itemPurchaseView-image {
-  width: 100px;
-  height: 100px;
+.itemPurchaseView-image-container .itemViewStatBlock-stat.title.error {
+  background-color: #ffc9c9;
+}
+
+.itemPurchaseView-image-container .itemViewStatBlock-stat-icon {
+  width: 20px;
+  height: 17px;
+}
+
+.itemViewStatBlock-stat.error .itemViewStatBlock-stat-value {
+  background-color: unset;
 }
 
 a.shopsPage-kingsCalibratorPromo {

@@ -258,23 +258,19 @@
 
 .mouseCrownsView-group-mouse-image {
   width: 100%;
-  height: 150px;
+  height: 200px;
   border: none !important; /* profile+ */
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   transition: 0.2s;
 }
 
-.bronze .mouseCrownsView-group-mouse-image {
-  height: 130px;
-}
-
 .none .mouseCrownsView-group-mouse-catches {
   font-size: 12px;
 }
 
-.none .mouseCrownsView-group-mouse-image {
-  height: 102px;
+.mouseCrownsView-group-header-name {
+  margin-left: 10px;
 }
 
 .mouseCrownsView-group {

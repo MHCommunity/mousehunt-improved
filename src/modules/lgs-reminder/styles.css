@@ -14,11 +14,11 @@
 }
 
 .default .mousehunt-improved-lgs-reminder {
-  left: 0;
+  left: -5px;
 }
 
 .default-fancy .mousehunt-improved-lgs-reminder {
-  right: 20px;
+  right: 15px;
 }
 
 .mousehuntHud-shield.color .mousehunt-improved-lgs-reminder {

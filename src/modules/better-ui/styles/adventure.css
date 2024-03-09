@@ -123,3 +123,9 @@
 .adventureBookPopup-adventure-details-block.requirements .adventureBookPopup-adventure-details-block-step.incomplete {
   box-shadow: 0 1px 2px 1px #5c1c1c;
 }
+
+.adventureBookPopup-adventure-details-environment-image {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}

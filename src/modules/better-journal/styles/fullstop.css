@@ -3,14 +3,6 @@
   display: none;
 }
 
-.journal .entry .journalbody .journaltext .lucky::after {
-  position: relative;
-  top: unset;
-  display: inline;
-  margin: 0;
-  background: unset;
-}
-
 .journal .entry .journaltext br::after {
   content: " ";
 }
@@ -47,7 +39,6 @@
 .entry.festiveSpiritLootBoost .journaltext a::after,
 .entry.golemUpgraded .journaltext a::after,
 .entry.workshopPartProduced .journaltext a::after,
-.entry.adventureBook-journal.goal .journaltext b::after,
 .entry.birthday_factory.enter_room b::after,
 .entry.donationComplete .journaltext a:last-of-type::after {
   display: inline;
@@ -62,12 +53,4 @@
 .entry.folkloreForest-plantStarted,
 .entry.short.supplytransferitem .journaltext #friend-data-wrapper a::after .entry.short.craft.convertible_open a.item::after {
   content: "";
-}
-
-.journal .entry a.lucky::after {
-  top: 0;
-  left: 0;
-  width: unset;
-  height: unset;
-  background: none;
 }

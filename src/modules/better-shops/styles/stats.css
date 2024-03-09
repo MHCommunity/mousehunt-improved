@@ -16,7 +16,7 @@
 .itemPurchaseView-container .itemViewStatBlock-stat.powerType {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: auto;
   line-height: 14px;
   border: 1px solid #ccc;
@@ -42,6 +42,7 @@
 .shopCustomization .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
   display: flex;
   align-items: center;
+  justify-content: space-around;
   min-width: 55px;
   padding: 2px;
   margin: 0;

@@ -74,7 +74,3 @@
 .mousehuntHud-userStat.empty .icon {
   box-shadow: none;
 }
-
-.mousehuntHud-userStat.trinket.empty .label::after {
-  content: " 😢️";
-}

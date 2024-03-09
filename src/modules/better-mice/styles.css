@@ -70,6 +70,7 @@
 }
 
 .mouseview-has-mhct .mouseView-statsContainer-block-padding {
+  min-width: 125px;
   padding: 10px;
 }
 

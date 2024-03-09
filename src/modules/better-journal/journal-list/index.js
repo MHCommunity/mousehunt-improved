@@ -117,7 +117,7 @@ const formatAsList = async (args) => {
  * Initialize the module.
  */
 export default async () => {
-  addStyles(styles, 'beta-features-journal-list');
+  addStyles(styles, 'better-journal-list');
 
   onEvent('better-journal-update', formatAsList);
 };

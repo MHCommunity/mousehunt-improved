@@ -7,7 +7,7 @@
   background-color: #f5b9b9;
   border: 1px solid #803e3e;
   border-radius: 5px;
-  box-shadow: 0 1px 3px 0 #5e5e5e;
+  box-shadow: 0 1px 5px -1px #5e5e5e;
 }
 
 .mh-ui-success-message {
