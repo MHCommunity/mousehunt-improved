@@ -95,7 +95,7 @@ const disablePrivacy = () => {
 };
 
 const addIcon = () => {
-  if (! getSetting('journal-privacy-show-toggle-icon', true)) {
+  if (! getSetting('journal-privacy.show-toggle-icon', false)) {
     return;
   }
 
@@ -112,19 +112,19 @@ const addIcon = () => {
     title: 'Toggle Journal Privacy',
     position: 'prepend',
     action: () => {
+      isPrivacyEnabled = ! isPrivacyEnabled;
+
       if (isPrivacyEnabled) {
         disablePrivacy();
       } else {
         enablePrivacy();
       }
-
-      isPrivacyEnabled = ! isPrivacyEnabled;
     },
   });
 };
 
 const removeIcon = () => {
-  if (getSetting('journal-privacy.show-toggle-icon', true)) {
+  if (getSetting('journal-privacy.show-toggle-icon', false)) {
     return;
   }
 
@@ -143,8 +143,11 @@ let isPrivacyEnabled = true;
 const init = async () => {
   addStyles([styles, iconStyles], 'journal-privacy');
 
-  addIcon();
   enablePrivacy();
+  if (getSetting('journal-privacy.show-toggle-icon', false)) {
+    addIcon();
+    disablePrivacy();
+  }
 
   onRequest('pages/journal.php', applyClassToNames);
 

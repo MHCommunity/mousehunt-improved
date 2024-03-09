@@ -6,7 +6,7 @@
     "no-sidebar",
     "hide-daily-reward-popup",
     "journal-privacy",
-    "journal-privacy-show-toggle-icon",
+    "journal-privacy.show-toggle-icon",
     "debug",
     "debug-dialog",
     "debug-navigation",
