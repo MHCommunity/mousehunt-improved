@@ -315,7 +315,10 @@ const addQuickInvite = async (mapData) => {
     inviteButton.classList.remove('disabled');
     spinner.classList.add('hidden');
 
-    showErrorMessage(message, inviteWrapper);
+    showErrorMessage({
+      message,
+      append: inviteWrapper
+    });
 
     return false;
   };

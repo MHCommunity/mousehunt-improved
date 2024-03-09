@@ -85,21 +85,24 @@ const makeSendSuppliesButton = async (btn, snuid) => {
       return;
     }
 
+    const errorMessageOpts = {
+      message: 'There was an error sending supplies',
+      append: quickSendGoWrapper,
+      classname: 'mh-ui-quick-send-error',
+    };
+
     const qty = quickSendInput.value;
     if (! qty) {
-      showErrorMessage('Please enter a quantity', quickSendGoWrapper, 'mh-ui-quick-send-error');
+      errorMessageOpts.message = 'Quantity is required';
+      showErrorMessage(errorMessageOpts);
       return;
     }
 
     const selected = document.querySelector('.quickSendItem.selected');
-    if (! selected) {
-      showErrorMessage('Please select an item', quickSendGoWrapper, 'mh-ui-quick-send-error');
-      return;
-    }
-
     const item = selected.querySelector('.quickSendItemRadio');
-    if (! item) {
-      showErrorMessage('Please select an item', quickSendGoWrapper, 'mh-ui-quick-send-error');
+    if (! selected || ! item) {
+      errorMessageOpts.message = 'Item is required';
+      showErrorMessage(errorMessageOpts);
       return;
     }
 
@@ -117,12 +120,20 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
         quickSendButton.classList.remove('disabled');
 
-        showSuccessMessage(`Sent ${qty} ${itemName}!`, quickSendGoWrapper, 'mh-ui-quick-send-success');
+        showSuccessMessage({
+          message: `Sent ${qty} ${itemName}!`,
+          append: quickSendGoWrapper,
+          classname: 'mh-ui-quick-send-success',
+        });
       }
     }).catch(() => {
       quickSendButton.classList.remove('disabled');
 
-      showErrorMessage('There was an error sending supplies', quickSendGoWrapper, 'mh-ui-quick-send-error');
+      showErrorMessage({
+        message: 'There was an error sending supplies',
+        append: quickSendGoWrapper,
+        classname: 'mh-ui-quick-send-error',
+      });
     });
   };
 

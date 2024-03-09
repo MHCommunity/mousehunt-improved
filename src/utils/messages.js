@@ -6,15 +6,23 @@ import errorStyles from './styles/errors.css';
 /**
  * Show an error message appended to the given element.
  *
- * @param {string}      message  Message to show.
- * @param {HTMLElement} appendTo Element to append the error to.
- * @param {string}      classes  Classes to add to the error element.
- * @param {string}      type     Type of error to show, either 'error' or 'success'.
+ * @param {Object}      options           Options for the message.
+ * @param {string}      options.message   Message to show.
+ * @param {HTMLElement} options.append    Element to append the error to.
+ * @param {boolean}     options.before    Whether to append the message before the element.
+ * @param {boolean}     options.after     Whether to append the message after the element.
+ * @param {string}      options.classname Classes to add to the error element.
+ * @param {string}      options.type      Type of message to show (error or success).
  */
-const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
-  if (! appendTo) {
-    appendTo = document.querySelector('.treasureMapRootView-subTabRow.treasureMapRootView-padding');
-  }
+const showErrorMessage = (options) => {
+  const {
+    message,
+    append,
+    before = false,
+    after = false,
+    classname = [],
+    type = 'error',
+  } = options;
 
   const typeClass = `mh-ui-${type}-message`;
   const existing = document.querySelector(`.${typeClass}`);
@@ -22,8 +30,17 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
     existing.remove();
   }
 
-  const error = makeElement('div', [`mh-ui-${type}-message`, 'mh-ui-fade', classes], message);
-  appendTo.append(error);
+  const error = makeElement('div', [`mh-ui-${type}-message`, 'mh-ui-fade', classname], message);
+
+  if (append) {
+    if (before) {
+      append.before(error);
+    } else if (after) {
+      append.after(error);
+    } else {
+      append.append(error);
+    }
+  }
 
   setTimeout(() => {
     error.classList.add('mh-ui-fade-in');
@@ -44,12 +61,16 @@ const showErrorMessage = (message, appendTo, classes = '', type = 'error') => {
  *
  * @see showErrorMessage
  *
- * @param {string}      message  Message to show.
- * @param {HTMLElement} appendTo Element to append the message to.
- * @param {string}      classes  Classes to add to the message element.
+ * @param {Object}      opts         Options for the message.
+ * @param {string}      opts.message Message to show.
+ * @param {HTMLElement} opts.append  Element to append the error to.
+ * @param {boolean}     opts.before  Whether to append the message before the element.
+ * @param {boolean}     opts.after   Whether to append the message after the element.
+ * @param {string}      opts.classes Classes to add to the error element.
  */
-const showSuccessMessage = (message, appendTo, classes = '') => {
-  showErrorMessage(message, appendTo, classes, 'success');
+const showSuccessMessage = (opts) => {
+  opts.type = 'success';
+  showErrorMessage(opts);
 };
 
 hadAddedErrorStyles = false;
@@ -66,7 +87,9 @@ const showLoadingError = (e) => {
   makeElement('h1', 'mousehunt-improved-error-title', 'Error loading MouseHunt Improved', errorElement);
 
   if (e.message) {
-    makeElement('pre', 'mousehunt-improved-error-message', e.message, errorElement);
+    const errorText = makeElement('textarea', 'mousehunt-improved-error-message');
+    errorText.value = `${e.message}\n\n${e.stack}`;
+    errorElement.append(errorText);
   }
 
   makeElement('p', 'mousehunt-improved-error-message', 'There was an error loading MouseHunt Improved. Try refreshing the page. If the error persists, please add an issue to the <a href="https://github.com/MHCommunity/mousehunt-improved">GitHub repo</a>.', errorElement);
