@@ -6,8 +6,11 @@ import {
   getCurrentLocation,
   getCurrentPage,
   getCurrentTab,
+  getSettings,
   makeElement,
   onNavigation,
+  sessionGet,
+  sessionSet,
   setPage,
   showSuccessMessage
 } from '@utils';
@@ -38,31 +41,136 @@ const addExportSettings = () => {
 
     const settings = JSON.stringify(JSON.parse(localStorage.getItem('mousehunt-improved-settings')), null, 2);
     const content = `<div class="mousehunt-improved-settings-export-popup-content">
-    <textarea spellcheck="false">${settings}</textarea>
+    <div class="mousehunt-improved-settings-export-popup-tip">
+      To import settings, drag and drop the file into the box below, or paste the text in the box.
+    </div>
+    <textarea id="mousehunt-improved-settings-text" spellcheck="false">${settings}</textarea>
     <div class="mousehunt-improved-settings-export-popup-buttons">
-    <pre>${mhImprovedPlatform} v${mhImprovedVersion}</pre>
-    <div class="mousehuntActionButton save"><span>Save</span></div>
-    <div class="mousehuntActionButton lightBlue copy"><span>Copy</span></div>
-    <div class="mousehuntActionButton lightBlue download"><span>Download</span></div>
-    <div class="mousehuntActionButton cancel"><span>Cancel</span></div>`;
+      <div class="mousehunt-improved-settings-export-details">
+        <a href="#" class="export-copy">Copy to clipboard</a>
+        <a href="#" class="export-download">Download file</a>
+        <hr>
+        <a href="#" class="export-upload">Upload file</a>
+        <a href="#" class="export-format">Format</a>
+        <a href="#" class="export-reset">Reset to default</a>
+      </div>
+      <div class="mousehunt-improved-settings-export-popup-buttons-buttons">
+        <div class="mousehuntActionButton save">
+          <span>Save</span>
+        </div>
+        <div class="mousehuntActionButton cancel">
+          <span>Cancel</span>
+        </div>
+      </div>
+    </div>`;
 
     /* eslint-disable @wordpress/no-unused-vars-before-return */
     const popup = createPopup({
-      title: 'MouseHunt Improved Settings',
+      title: `MouseHunt Improved Settings <code>v${mhImprovedVersion}</code>`,
       content,
       className: 'mousehunt-improved-settings-export-popup',
       show: true,
     });
     /* eslint-enable @wordpress/no-unused-vars-before-return */
 
+    // Save the current settings to the backup.
+    localStorage.setItem('mousehunt-improved-settings-backup', JSON.stringify(getSettings()));
+
     const popupElement = document.querySelector('.mousehunt-improved-settings-export-popup');
     if (! popupElement) {
       return;
     }
 
+    const textarea = popupElement.querySelector('textarea');
+
+    textarea.addEventListener('dragover', (dragevent) => {
+      dragevent.preventDefault();
+      textarea.classList.add('dragover');
+    });
+
+    // Add the drop event listener
+    textarea.addEventListener('drop', (dropevent) => {
+      dropevent.preventDefault();
+
+      textarea.classList.remove('dragover');
+
+      // Get the file
+      if (! dropevent.dataTransfer?.files?.length) {
+        return;
+      }
+
+      const file = dropevent.dataTransfer.files[0];
+      const reader = new FileReader();
+      reader.onload = (loadEvent) => {
+        textarea.value = loadEvent.target.result;
+      };
+
+      reader.readAsText(file);
+    });
+
+    const uploadButton = document.querySelector('.export-upload');
+    uploadButton.addEventListener('click', (evt) => {
+      evt.preventDefault();
+
+      // prompt the user to select a file
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json';
+      input.addEventListener('change', (changeEvent) => {
+        if (! changeEvent?.target?.files?.length) {
+          return;
+        }
+
+        const file = changeEvent.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (loadEvent) => {
+          textarea.value = loadEvent.target.result;
+        };
+
+        reader.readAsText(file);
+      });
+
+      input.click();
+    });
+
+    const resetButton = document.querySelector('.export-reset');
+    resetButton.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      textarea.value = JSON.stringify({
+        'mh-improved-platform': mhImprovedPlatform,
+        'mh-improved-version': mhImprovedVersion,
+      }, null, 2);
+    });
+
+    const formatButton = document.querySelector('.export-format');
+    formatButton.addEventListener('click', (evt) => {
+      evt.preventDefault();
+
+      const currentSettings = JSON.parse(textarea.value);
+
+      // sort the keys alphabetically, with the mh-improved keys at the top
+      const sorted = Object.keys(currentSettings).sort((a, b) => {
+        if (a.startsWith('mh-improved') && ! b.startsWith('mh-improved')) {
+          return -1;
+        }
+
+        if (b.startsWith('mh-improved') && ! a.startsWith('mh-improved')) {
+          return 1;
+        }
+
+        return a.localeCompare(b);
+      });
+
+      const newSettings = {};
+      sorted.forEach((key) => {
+        newSettings[key] = currentSettings[key];
+      });
+
+      textarea.value = JSON.stringify(newSettings, null, 2);
+    });
+
     const saveButton = popupElement.querySelector('.mousehuntActionButton.save');
     saveButton.addEventListener('click', () => {
-      const textarea = popupElement.querySelector('textarea');
       const newSettings = textarea.value;
       localStorage.setItem('mousehunt-improved-settings-backup', localStorage.getItem('mousehunt-improved-settings'));
       localStorage.setItem('mousehunt-improved-settings', newSettings);
@@ -79,9 +187,9 @@ const addExportSettings = () => {
       });
     });
 
-    const copyButton = popupElement.querySelector('.mousehuntActionButton.copy');
-    copyButton.addEventListener('click', () => {
-      const textarea = popupElement.querySelector('textarea');
+    const copyButton = popupElement.querySelector('.export-copy');
+    copyButton.addEventListener('click', (evt) => {
+      evt.preventDefault();
       navigator.clipboard.writeText(textarea.value);
       showSuccessMessage({
         message: 'Settings copied to clipboard.',
@@ -91,8 +199,9 @@ const addExportSettings = () => {
       });
     });
 
-    const downloadButton = popupElement.querySelector('.mousehuntActionButton.download');
-    downloadButton.addEventListener('click', () => {
+    const downloadButton = popupElement.querySelector('.export-download');
+    downloadButton.addEventListener('click', (evt) => {
+      evt.preventDefault();
       const link = document.createElement('a');
       link.download = 'mousehunt-improved-settings.json';
       link.href = `data:application/json;base64,${btoa(settings)}`;
@@ -184,6 +293,9 @@ const modifySettingsPage = () => {
     toggle.remove();
   });
 
+  // Beta section is default hidden.
+  let toggledSections = sessionGet('toggled-sections') || ['mousehunt-improved-settings-beta'];
+
   settingsPage.forEach((setting) => {
     // Append an svg to toggle the class
     const toggle = makeElement('div', 'mhui-setting-toggle');
@@ -195,24 +307,35 @@ const modifySettingsPage = () => {
     }
 
     // add the event listener to toggle the class
-    titleText.addEventListener('click', () => {
+    titleText.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      toggledSections = sessionGet('toggled-sections') || [];
+
       const toggled = setting.classList.contains('toggled');
       if (toggled) {
         setting.classList.remove('toggled');
         toggle.classList.remove('toggled');
+
+        // save to session storage
+        toggledSections = toggledSections.filter((section) => section !== setting.id);
+        sessionSet('toggled-sections', toggledSections);
       } else {
         setting.classList.add('toggled');
         toggle.classList.add('toggled');
+
+        // save to session storage
+        toggledSections.push(setting.id);
+        sessionSet('toggled-sections', toggledSections);
       }
     });
 
-    const defaultToggled = [
-      'mousehunt-improved-settings-mousehunt-improved-settings-overrides',
-    ];
-
-    if (defaultToggled.includes(setting.id)) {
+    if (toggledSections.includes(setting.id)) {
       setting.classList.add('toggled');
       toggle.classList.add('toggled');
+    } else {
+      setting.classList.remove('toggled');
+      toggle.classList.remove('toggled');
     }
   });
 
