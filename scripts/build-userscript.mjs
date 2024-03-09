@@ -1,90 +1,49 @@
-import * as esbuild from 'esbuild';
-import yargs from 'yargs';
+import { exec } from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import util from 'node:util';
 
-import { CSSMinifyTextPlugin, ImportGlobPlugin } from './shared.mjs';
+const pexec = util.promisify(exec);
 
-const main = async (entryfile, outfile, name, description, icon, version, url, replacementKey, replacementValue, subuserscript) => {
-  const header = `// ==UserScript==
-// @name        🐭️ MouseHunt - @replacement.name
-// @description @replacement.description
-// @version     @replacement.version
-// @license     MIT
-// @author      bradp
-// @namespace   bradp
-// @match       https://www.mousehuntgame.com/*
-// @icon        @replacement.icon
-// @replacement.key @replacement.value
-// @run-at      document-end
-// @grant       none
-// ==/UserScript==
-`;
+const main = async () => {
+  const userscriptsToBuild = JSON.parse(fs.readFileSync(
+    path.join(process.cwd(), 'src/data/userscripts.json')
+  ));
 
-  if ('-' === replacementKey) {
-    replacementKey = '';
-  }
-
-  if ('-' === replacementValue) {
-    replacementValue = '';
-  }
-
-  name = name.replaceAll('@replacement.quote', '\'');
-  description = description.replaceAll('@replacement.quote', '\'');
-
-  const options = {
-    entryPoints: [entryfile],
-    platform: 'browser',
-    format: 'iife',
-    globalName: 'mhui',
-    bundle: true,
-    minify: false,
-    metafile: true,
-    sourcemap: false,
-    target: [
-      'es6',
-      'chrome58',
-      'firefox57'
-    ],
-    plugins: [
-      ImportGlobPlugin,
-      CSSMinifyTextPlugin
-    ],
-    outfile: `dist/${outfile}`,
-    banner: {
-      js: header
-        .replaceAll('@replacement.name', name)
-        .replaceAll('@replacement.description', description)
-        .replaceAll('@replacement.icon', icon)
-        .replaceAll('@replacement.version', version)
-        .replaceAll('@replacement.key', replacementKey)
-        .replaceAll('@replacement.value', replacementValue)
-    }
-  };
-
-  if (subuserscript) {
-    options.footer = {
-      js: [
-        'mhui.default.load();',
-        `migrateUserscript('${name}', '${url}');`,
-      ].join('\n')
+  userscriptsToBuild.forEach(async (userscript) => {
+    console.log(`Building userscript: ${userscript.id}`); // eslint-disable-line no-console
+    userscript = {
+      id: userscript.id ?? '',
+      name: userscript.name ?? '',
+      description: userscript.description ?? ' ',
+      icon: userscript.icon ?? 'https://brrad.com/mouse.png',
+      version: userscript.version ?? '0.0.0',
+      path: userscript.path ?? 'src/index.js',
+      url: userscript.url ?? '',
     };
 
-    options.outfile = `dist/userscripts/${outfile}`;
-  }
+    // For each of the keys, we need to escape any single quotes.
+    Object.keys(userscript).forEach((key) => {
+      userscript[key] = userscript[key].replaceAll('\'', '@replacement.quote');
+    });
 
-  return await esbuild.build(options);
+    // I need to run 'bun run build-userscript -- userscript.<id>.user.js src/modules/<id>/index.js <name> <description> <icon> <version>'
+    const command = [
+      'bun run build:userscript',
+      '--path', `'"${userscript.path}"'`,
+      '--out', `'"${userscript.id}.user.js"'`,
+      '--name', `'"${userscript.name}"'`,
+      '--description', `'"${userscript.description}"'`,
+      '--icon', `'"${userscript.icon}"'`,
+      '--ver', `'"${userscript.version}"'`,
+      '--url', `'"${userscript.url}"'`,
+      '--replacementKey', '\'"@require    "\'',
+      '--replacementValue', '\'"https://cdn.jsdelivr.net/npm/script-migration@1.1.1"\'',
+      '--subuserscript', 'true'
+    ].join(' ');
+
+    pexec(command);
+  });
 };
 
-const argv = yargs(process.argv.slice(2)).parse();
-
-await main(
-  argv.path ?? 'src/index.js',
-  argv.out ?? 'mousehunt-improved.user.js',
-  argv.name ?? '🐭️ MouseHunt Improved',
-  argv.description ?? 'Improve your MouseHunt experience. Please only use this when the extension is not available, like on mobile.',
-  argv.icon ?? 'https://i.mouse.rip/mh-improved/icon-64.png',
-  argv.ver ?? process.env.npm_package_version,
-  argv.url ?? '',
-  argv.replacementKey ?? '',
-  argv.replacementValue ?? '',
-  argv.subuserscript ?? false
-);
+await main();

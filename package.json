@@ -9,13 +9,13 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "concurrently \"bun:build:extension\" \"bun:build:archive\" \"bun:build:userscript\" \"bun:build:userscript:all\"",
+    "build": "concurrently \"bun:build:extension:chrome\" \"bun:build:extension:firefox\" \"bun:build:archive\" \"bun:build:userscript\" \"bun:build:userscript:all\"",
     "build:archive": "mkdir -p dist && git archive --format zip --output dist/archive.zip HEAD",
     "build:extension": "concurrently \"bun:build:extension:*\"",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
     "build:extension:firefox": "node scripts/build-extension.mjs firefox",
     "build:userscript": "node scripts/build-main-userscript.mjs",
-    "build:userscript:all": "node scripts/build-individual-userscripts.mjs",
+    "build:userscript:all": "node scripts/build-userscript.mjs",
     "clean": "del-cli dist",
     "lint:css:fix": "stylelint **/**/*.css --fix",
     "lint:css": "stylelint src/**/*.css",
