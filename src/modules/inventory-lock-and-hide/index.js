@@ -60,7 +60,7 @@ const addControlsToItems = async () => {
       const lockText = makeElement('span', '', isLocked ? 'Unlock' : 'Lock');
       lock.append(lockText);
 
-      lock.addEventListener('click', (e) => {
+      const clickLock = (e) => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -77,6 +77,14 @@ const addControlsToItems = async () => {
         }
 
         saveSettings();
+      };
+
+      lock.addEventListener('click', clickLock);
+
+      controls.addEventListener('click', (e) => {
+        if ((e.altKey && e.shiftKey) || e.metaKey) {
+          clickLock(e);
+        }
       });
 
       controls.append(lock);
@@ -86,7 +94,7 @@ const addControlsToItems = async () => {
     const hideText = makeElement('span', '', isHidden ? 'Show' : 'Hide');
     hide.append(hideText);
 
-    hide.addEventListener('click', (e) => {
+    const clickHide = (e) => {
       e.preventDefault();
       e.stopPropagation();
 
@@ -103,6 +111,17 @@ const addControlsToItems = async () => {
       }
 
       saveSettings();
+    };
+
+    hide.addEventListener('click', clickHide);
+
+    controls.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (e.altKey && ! e.shiftKey) {
+        clickHide(e);
+      }
     });
 
     controls.append(hide);
