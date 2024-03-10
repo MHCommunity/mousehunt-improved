@@ -1,16 +1,11 @@
 /* Lets make that shield look great */
 .mousehuntHud-shield.golden.default {
-  top: 0;
-  left: 0;
+  top: 2px;
+  left: 10px;
   background-image: url(https://www.mousehuntgame.com/images/mousehunt_gold_logo.png?asset_cache_version=2);
   filter: drop-shadow(0 0 5px #e8dbb8);
   background-size: contain;
   transition: opacity 0.3s ease-in-out;
-}
-
-a.mousehuntHud-shield.golden.default.default-fancy {
-  top: 2px;
-  left: 10px;
 }
 
 .mousehuntHud-shield.golden.default-normal {
