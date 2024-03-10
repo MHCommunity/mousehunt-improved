@@ -86,7 +86,8 @@ const init = async () => {
 export default {
   id: 'larrys-links',
   name: 'Larry\'s Links',
+  description: 'Adds links to guides and resources to Larry\'s Tips.',
   type: 'beta',
-  default: true,
+  default: false,
   load: init
 };

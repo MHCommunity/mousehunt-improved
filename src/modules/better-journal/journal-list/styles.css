@@ -6,3 +6,7 @@ ul.better-journal-list {
 .better-journal-list a::after {
   content: "" !important;
 }
+
+.journal .content .entry .journaltext .better-journal-list {
+  line-height: 19px;
+}

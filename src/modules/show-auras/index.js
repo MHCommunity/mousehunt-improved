@@ -180,8 +180,9 @@ const init = async () => {
 
 export default {
   id: 'show-auras',
-  name: 'Show Auras in Trap Selector',
+  name: 'Show Auras',
+  description: 'Show auras and their expiry time below the trap stats.',
   type: 'beta',
-  default: true,
+  default: false,
   load: init
 };
