@@ -19,7 +19,7 @@ await esbuild.build({
   ],
   outfile: 'dist/mousehunt-improved.user.js',
   minify: false,
-  sourcemap: true,
+  sourcemap: false,
   banner: {
     js: [
       '// ==UserScript==',
