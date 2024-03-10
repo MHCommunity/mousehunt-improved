@@ -85,7 +85,8 @@ const addQuickLinksToTrap = async () => {
     .replaceAll('campPage-trap-itemBrowser', '')
     .replaceAll(' ', '')
     .trim();
-  if (! type) {
+
+  if (! type || 'bai' === type) {
     return;
   }
 
@@ -143,7 +144,7 @@ const addQuickLinksToTrap = async () => {
     },
   ];
 
-  if ('bait' === type || 'trinket' === type) {
+  if ('trinket' === type) {
     links.push({ id: 'quantity', name: 'Quantity', image: 'https://i.mouse.rip/sort-qty-icon.png' });
   }
 
