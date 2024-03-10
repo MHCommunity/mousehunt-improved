@@ -11,6 +11,7 @@ In addition to the [Beta feature modules](https://www.mousehuntgame.com/preferen
 |Flag|Description|
 |---|---|
 |`location-hud-toggle`|Adds a toggle icon to the top menu bar to toggle the Location HUD changes.|
+|`favorite-setups-toggle`|Adds a toggle icon to the top menu bar to open your Favorite Setups.|
 
 ## Hidden Features
 

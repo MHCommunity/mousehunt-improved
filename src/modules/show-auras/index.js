@@ -3,7 +3,7 @@ import humanizeDuration from 'humanize-duration';
 import {
   addStyles,
   getCurrentPage,
-  getFlag,
+  getSetting,
   makeElement,
   onNavigation
 } from '@utils';
@@ -167,9 +167,9 @@ const main = () => {
 };
 
 const init = async () => {
-  if (getFlag('show-auras-list')) {
+  if (getSetting('show-auras.list')) {
     addStyles(listStyles, 'show-auras');
-  } else if (getFlag('show-auras-icons')) {
+  } else if (getSetting('show-auras.icons')) {
     addStyles(onlyIconsStyles, 'show-auras');
   } else {
     addStyles(gridStyles, 'show-auras');

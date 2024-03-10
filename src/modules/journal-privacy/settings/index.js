@@ -9,7 +9,6 @@ export default async () => {
       id: 'journal-privacy.show-toggle-icon',
       title: 'Show toggle icon in top menu',
       default: true,
-      description: 'Show an icon in the top menu to toggle journal privacy.',
     },
   ];
 };
