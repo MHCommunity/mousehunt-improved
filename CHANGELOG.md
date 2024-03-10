@@ -1,9 +1,13 @@
 # Changelog
 
+## Version 0.35.6
+
+- Fixes error when getting AR data on sorted tab
+
 ## Version 0.35.5
 
 - Fixes error when getting cached AR data _again_
--
+
 ## Version 0.35.4
 
 - Fixes setting migration overwriting settings

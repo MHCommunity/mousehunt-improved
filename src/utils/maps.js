@@ -319,16 +319,7 @@ const getCachedValue = async (key) => {
   }
 
   const localStorageContainer = await cacheGet(getCacheKey());
-  if (! localStorageContainer) {
-    return false;
-  }
-
-  const container = JSON.parse(localStorageContainer);
-  if (! container[key]) {
-    return false;
-  }
-
-  return container[key];
+  return localStorageContainer[key] || false;
 };
 
 /**
