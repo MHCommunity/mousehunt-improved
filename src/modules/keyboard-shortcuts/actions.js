@@ -1,4 +1,4 @@
-import { doEvent, setPage, hasMiniCRE } from '@utils';
+import { doEvent, hasMiniCRE, setPage } from '@utils';
 
 export default () => {
   const shortcuts = [
