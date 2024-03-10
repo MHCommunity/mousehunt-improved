@@ -12,6 +12,7 @@
 - Adds a `location-hud-toggle` flag that shows an icon in the top menu that will toggle the current Location HUD on and off
 - Adds a `favorite-setups-toggle` flag that shows an icon in the top menu that will toggle the Favorite Setups on and off
 - Adds a "Show toggle icon in top menu" setting to Journal Privacy to be able to toggle it on and off
+- Adds Favorite Setups and toggling Inventory Lock and Hide to Keyboard Shortcuts
 
 ### Changed
 
@@ -37,6 +38,7 @@
 - Removes the `disable-mh-improved-tooltips` flag
 - Updates Dark Mode styles with a variety of changes and improvements
 - Updates the Valour Rift Location Dashboard to show Umbra run state
+- Updates Inventory Lock and Hide to be able to Alt+Click to lock/unlock items and Shift+Alt+Click to hide/show items.
 
 ### Fixed
 
@@ -50,6 +52,9 @@
 - Fixes Custom Shields not correctly applying without a refresh
 - Fixes Userscript styles in Better UI not correctly applying
 - Fixes various issues related to King's Crowns
+- Fixes issues with Inventory Lock and Hide interface and styles
+- Fixes trap selector Keyboard Shortcuts not working
+- Fixes other minor bugs and style issues
 
 ## Version 0.34.0
 
