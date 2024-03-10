@@ -3,17 +3,20 @@ import { debuglog } from './debug';
 import { getSetting } from './settings';
 
 const validDataFiles = new Set([
-  'minlucks',
-  'wisdom',
   'effs',
+  'environments-events',
+  'environments',
+  'items-tradable',
+  'm400-locations',
+  'marketplace-hidden-items',
   'mice-groups',
   'mice-regions',
-  'items-tradable',
+  'minlucks',
+  'relic-hunter-hints',
   'scoreboards',
-  'environments',
-  'environments-events',
-  'upscaled-images',
   'ultimate-checkmark',
+  'upscaled-images',
+  'wisdom',
 ]);
 
 /**

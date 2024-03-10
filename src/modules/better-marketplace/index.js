@@ -1,5 +1,6 @@
 import {
   addStyles,
+  getData,
   getSetting,
   makeElement,
   makeLink,
@@ -11,8 +12,6 @@ import settings from './settings';
 
 import smallImageStyles from './styles/small-images.css';
 import styles from './styles/styles.css';
-
-import itemsToRemove from '@data/items-marketplace-hidden.json';
 
 const initSearch = (searchInputDOM) => {
   // add one blank one to the start
@@ -48,7 +47,7 @@ const initSearch = (searchInputDOM) => {
     });
 };
 
-const modifySearch = (opts) => {
+const modifySearch = async (opts) => {
   const searchContainer = document.querySelector('.marketplaceView-header-searchContainer');
   if (! searchContainer) {
     return;
@@ -63,6 +62,8 @@ const modifySearch = (opts) => {
     originalSelect = originalSelectNode.cloneNode(true);
     originalSelect.classList.remove('marketplaceView-header-search');
   }
+
+  const itemsToRemove = await getData('marketplace-hidden-items');
 
   opts.forEach((opt) => {
     if (! opt.value || opt.value === '' || itemsToRemove.some((item) => item.id === opt.value || item.name === opt.text)) {

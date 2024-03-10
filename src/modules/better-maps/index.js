@@ -1,6 +1,7 @@
 import {
   addStyles,
   doEvent,
+  getData,
   getMapData,
   getSetting,
   makeElement,
@@ -9,15 +10,12 @@ import {
   setGlobal,
   setMapData
 } from '@utils';
-import { getData } from '@utils/data';
 
 import helper from './modules/helper';
 
 import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
-
-import relicHunterHints from '@data/relic-hunter-hints.json';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -176,6 +174,7 @@ const updateRelicHunterHint = async () => {
 
   const hint = relicHunter.innerText.trim();
 
+  const relicHunterHints = await getData('relic-hunter-hints');
   // relicHunterHints is an object with each key having an array of hints.
   // Find the key that has the hint we're looking for.
   let key = false;

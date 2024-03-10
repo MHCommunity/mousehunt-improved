@@ -1,12 +1,11 @@
 import {
   getCurrentLocation,
+  getData,
   makeElement,
   onNavigation,
   setPage,
   travelTo
 } from '@utils';
-
-import locations from '@data/m400-locations.json';
 
 const renderButton = (location) => {
   const title = document.querySelector('.campPage-quests-title');
@@ -48,7 +47,7 @@ const renderButton = (location) => {
   title.append(button);
 };
 
-const main = () => {
+const main = async () => {
   const questTitle = document.querySelector('.campPage-quests-title');
   if (! questTitle) {
     return;
@@ -105,6 +104,8 @@ const main = () => {
   }
 
   location = location[1].replace('Mice', '').replace('the ', '').trim();
+
+  const locations = await getData('m400-locations');
 
   // get the actual location name from the locations object.
   const locationKey = Object.keys(locations).find((key) => {
