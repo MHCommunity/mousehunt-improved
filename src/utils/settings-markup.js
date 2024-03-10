@@ -635,7 +635,7 @@ const addSettingOnce = (options) => {
       message: 'Copied link to clipboard',
       append: settingNameText,
       after: true,
-      classnames: 'setting-link-copied',
+      classname: 'setting-link-copied',
     });
   });
 
