@@ -378,29 +378,17 @@ const journalReplacements = () => {
   });
 };
 
-const getStyles = () => {
-  const stylesToAdd = [];
-
-  if (getSetting('better-journal.styles', true)) {
-    stylesToAdd.push(styles);
-  } else {
-    stylesToAdd.push(noStyles);
-  }
-
-  if (getSetting('better-journal.icons')) {
-    stylesToAdd.push(journalIconsMinimalStyles, journalIconsStyles);
-  } else if (getSetting('better-journal.icons-minimal')) {
-    stylesToAdd.push(journalIconsMinimalStyles);
-  }
-
-  return stylesToAdd;
-};
-
 /**
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(getStyles(), 'better-journal');
+  addStyles(getSetting('better-journal.styles', true) ? styles : noStyles, 'better-journal-styles');
+
+  if (getSetting('better-journal.icons')) {
+    addStyles([journalIconsMinimalStyles, journalIconsStyles], 'better-journal-icons');
+  } else if (getSetting('better-journal.icons-minimal')) {
+    addStyles(journalIconsMinimalStyles, 'better-journal-icons');
+  }
 
   if (getSetting('better-journal.replacements', true)) {
     journalReplacements();
