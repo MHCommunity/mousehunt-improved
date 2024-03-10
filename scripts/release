@@ -12,3 +12,5 @@ bun run sentry-cli sourcemaps upload --release="$(jq -r .version package.json)" 
 bun run build:zips
 
 bun run build:userscript
+
+bun run build:archive
