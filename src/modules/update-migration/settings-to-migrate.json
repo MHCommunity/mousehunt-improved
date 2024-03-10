@@ -41,7 +41,6 @@
     { "from": "ultimate-checkmark-categories-plankrun", "to": "ultimate-checkmark.show-plankrun" },
     { "from": "ultimate-checkmark-categories-treasure_chests", "to": "ultimate-checkmark.show-treasure_chests" },
     { "from": "wisdom-in-stat-bar-auto-refresh", "to": "wisdom-in-stat-bar.auto-refresh" },
-    { "from": "has-seen-onboarding", "to": "updates.onboarding" },
     { "from": "has-seen-update-banner", "to": "updates.banner" },
     { "from": "acolyte_realm", "to": "location-huds-enabled.acolyte_realm" },
     { "from": "ancient_city", "to": "location-huds-enabled.ancient_city" },
