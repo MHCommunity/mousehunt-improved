@@ -340,7 +340,7 @@ const modifySettingsPage = () => {
   });
 
   // highlight the current location in the location hud settings
-  const locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-${getCurrentLocation()}`);
+  const locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-location-huds-enabled-${getCurrentLocation()}`);
   if (locationHudSettings) {
     locationHudSettings.classList.add('highlight');
   }

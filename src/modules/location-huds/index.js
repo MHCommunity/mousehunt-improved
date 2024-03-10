@@ -116,11 +116,11 @@ const main = () => {
 
   debuglog('location-huds', `Location: ${location}`);
 
-  if (getSetting('event-locations', true)) {
+  if (getSetting('location-huds-enabled.event-locations', true)) {
     eventLocations(currentLocation);
   }
 
-  if (! getSetting(location, true)) {
+  if (! getSetting(`location-huds-enabled.${location}`, true)) {
     return;
   }
 

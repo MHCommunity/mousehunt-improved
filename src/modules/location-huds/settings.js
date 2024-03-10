@@ -74,7 +74,7 @@ export default async () => {
 
   for (const location of options) {
     optionsToReturn.push({
-      id: `location-huds.${location.id}`,
+      id: `location-huds-enabled.${location.id}`,
       title: location.name,
       default: true,
       description: location.description,

@@ -4,6 +4,14 @@ Enable hidden features and other advanced options.
 
 Add any of the following flags, comma-separated, to the feature flags option to enable them.
 
+## Beta Features
+
+In addition to the [Beta feature modules](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-beta) there are some features that are only available by enabling a feature flag.
+
+|Flag|Description|
+|---|---|
+|`location-hud-toggle`|Adds a toggle icon to the top menu bar to toggle the Location HUD changes.|
+
 ## Hidden Features
 
 |Flag|Description|Required Module|

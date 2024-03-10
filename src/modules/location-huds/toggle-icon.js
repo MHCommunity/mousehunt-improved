@@ -50,8 +50,8 @@ const getIconSettings = async () => {
   };
 };
 
-const addToggleIcon = () => {
-  if (! getSetting('location-huds-show-toggle-icon', true)) {
+const addToggleIcon = async () => {
+  if (! getFlag('location-hud-toggle')) {
     return;
   }
 

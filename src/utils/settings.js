@@ -60,6 +60,13 @@ const getGroupAndKey = (key) => {
 
   const split = key.split('.');
 
+  if (split[0] === 'location-huds-enabled') {
+    return {
+      group: 'location-huds-enabled',
+      key: split[1],
+    };
+  }
+
   return {
     group: `${split[0]}-settings`,
     key: split[1],

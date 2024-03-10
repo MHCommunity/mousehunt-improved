@@ -542,13 +542,13 @@
   position: relative;
 }
 
-#mousehunt-improved-settings-location-hud-location-huds.region-living-garden {
+#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living-garden {
   grid-column-start: 1;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-last-child(3),
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-last-child(2),
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-last-child(1) {
+#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living-garden,
+#mousehunt-improved-settings-location-hud-location-huds-enabled-region-queso,
+#mousehunt-improved-settings-location-hud-location-huds-enabled-event-locations {
   margin-top: 20px;
   background-color: #e3e3e3;
   border-radius: 4px;

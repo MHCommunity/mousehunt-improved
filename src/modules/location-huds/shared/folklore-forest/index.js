@@ -8,14 +8,14 @@ import {
 } from '@utils';
 
 const saveHidden = (upgradeId, isHidden) => {
-  const upgradeIds = getSetting('visibility-toggles', {});
+  const upgradeIds = getSetting('location-huds.folklore-forest-visibility-toggles', {});
   upgradeIds[upgradeId] = isHidden;
 
-  saveSetting('visibility-toggles', upgradeIds);
+  saveSetting('location-huds.folklore-forest-visibility-toggles', upgradeIds);
 };
 
 const isHidden = (upgradeId) => {
-  const setting = getSetting('visibility-toggles', {});
+  const setting = getSetting('location-huds.folklore-forest-visibility-toggles', {});
   return setting[upgradeId] || false;
 };
 
