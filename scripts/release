@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+source .env
+
+bun run clean
+bun run build:extension:chrome
+bun run build:extension:firefox
+
+bun run sentry-cli sourcemaps inject dist
+bun run sentry-cli sourcemaps upload --release="$(jq -r .version package.json)" dist
+
+bun run build:zips

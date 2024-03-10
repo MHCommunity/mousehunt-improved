@@ -1,6 +1,5 @@
 import * as esbuild from 'esbuild';
 import { CSSMinifyTextPlugin, ImportGlobPlugin } from './shared.mjs';
-import archiver from 'archiver';
 import copyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line import/default
 import fs from 'node:fs';
 import path from 'node:path';
@@ -65,22 +64,6 @@ const buildExtension = async (platform) => {
       ].join('\n'),
     },
   });
-
-  // Zip up the extension folder.
-  const output = fs.createWriteStream(path.join(process.cwd(), `dist/${platform}.zip`));
-  const archive = archiver('zip', {
-    zlib: { level: 9 }
-  });
-
-  archive.on('error', function (err) {
-    throw err;
-  });
-
-  archive.pipe(output);
-
-  archive.directory(path.join(process.cwd(), `dist/${platform}`), false);
-
-  await archive.finalize();
 };
 
 await buildExtension(process.argv[2]);
