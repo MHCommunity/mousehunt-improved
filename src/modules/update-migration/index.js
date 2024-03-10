@@ -1,8 +1,6 @@
 import {
   addBodyClass,
   clearCaches,
-  debug,
-  getGlobal,
   getSetting,
   getSettings,
   refreshPage,

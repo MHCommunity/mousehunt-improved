@@ -46,7 +46,7 @@ export default async () => {
       continue;
     }
 
-    if (eventEnvironments.find((event) => event.id === environment.id)) {
+    if (eventEnvironments.some((event) => event.id === environment.id)) {
       continue;
     }
 

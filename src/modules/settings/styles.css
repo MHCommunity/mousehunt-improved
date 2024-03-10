@@ -47,8 +47,13 @@
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__settingDescription {
-  max-width: 500px;
+  max-width: 550px;
   padding: 5px 0;
+}
+
+.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingDescription {
+  max-width: unset;
+  padding: 0;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__setting {
@@ -144,7 +149,22 @@
 }
 
 .PagePreferences__subSetting .PagePreferences__settingName {
-  font-size: 13px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.PagePreferences__subSetting .mousehuntSettingSlider {
+  width: 40px; /* was 50px */
+  height: 16px; /* was 20px */
+}
+
+.PagePreferences__subSetting .mousehuntSettingSlider::after {
+  width: 14px;
+  height: 14px; /* was 18px */
+}
+
+.PagePreferences__subSetting .mousehuntSettingSlider.active::after {
+  left: calc(100% - 14px);
 }
 
 #mousehunt-improved-settings-better-gift-buttons-send-order .inputBox.multiSelect,
@@ -229,14 +249,12 @@
 
 #mousehunt-improved-settings-location-hud-wrapper {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 360px;
-  align-items: stretch;
+  flex-flow: column wrap;
   gap: 0;
+  place-content: center center;
+  align-items: stretch;
+  height: 360px;
   margin-top: 5px;
-  justify-content: center;
-  align-content: center;
 }
 
 /* Export Settings */
@@ -430,7 +448,7 @@
 
 .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting .PagePreferences__setting {
   display: flex;
-  padding: 5px;
+  padding: 0;
   margin: 0;
 }
 
@@ -520,8 +538,11 @@
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting .PagePreferences__setting:hover {
+  padding-left: 5px;
+  margin-left: -5px;
   background-color: #eee;
-  border-radius: 5px;
+  border-radius: 8px;
+  outline: 1px solid #eee;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingDescription.empty-description {
@@ -623,7 +644,7 @@
 
 .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better.PagePreferences__subSetting,
 .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature.PagePreferences__subSetting {
-  padding-left: 5px;
+  padding: 0 5px;
 }
 
 #mousehunt-improved-settings-advanced-override-flags {
