@@ -1,10 +1,7 @@
 import {
   addBodyClass,
   addStyles,
-  debuglog,
   getCurrentPage,
-  getCurrentTab,
-  getFlag,
   getGlobal,
   getSetting,
   makeElement,
