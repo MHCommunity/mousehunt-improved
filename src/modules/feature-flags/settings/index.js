@@ -8,7 +8,7 @@ export default async () => {
     id: 'override-flags',
     title: 'Feature Flags',
     default: '',
-    description: 'Comma separated list of <a href="https://github.com/MHCommunity/mousehunt-improved/wiki/List-of-Feature-Flags" target="_blank">feature flags</a> to enable.',
+    description: 'Comma separated list of <a href="https://github.com/MHCommunity/mousehunt-improved/blob/c0bec5ea0f0b5f34b179507891e294559e39f34d/docs/feature-flags.md" target="_blank">feature flags</a> to enable.',
     settings: {
       type: 'input',
     },

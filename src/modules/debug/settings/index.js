@@ -6,44 +6,45 @@
 export default async () => {
   return [
     {
-      id: 'debug.all',
-      title: 'Log module debug messages',
-      default: false,
-    },
-    {
-      id: 'debug.module-loading',
-      title: 'Log module loading',
-      default: false,
-    },
-    {
       id: 'debug.utils-data',
-      title: 'Log data caching and retrieval',
-      default: false,
-    },
-    {
-      id: 'debug.update-migration',
-      title: 'Log update migration',
-      default: false,
-    },
-    {
-      id: 'debug.dialog',
-      title: 'Log IDs of opening and closing dialogs/popups',
-      default: false,
-    },
-    {
-      id: 'debug.navigation',
-      title: 'Log page, tab, and subtab navigations',
-      default: false,
-    },
-    {
-      id: 'debug.request',
-      title: 'Log remote requests and responses',
-      default: false,
+      title: 'Log data caching and retrieval'
     },
     {
       id: 'debug.events',
-      title: 'Log events',
-      default: false,
+      title: 'Log events'
     },
+    {
+      id: 'debug.dialog',
+      title: 'Log IDs of opening and closing dialogs/popups'
+    },
+    {
+      id: 'debug.all',
+      title: 'Log module debug messages'
+    },
+    {
+      id: 'debug.module-loading',
+      title: 'Log module loading'
+    },
+    {
+      id: 'debug.navigation',
+      title: 'Log page, tab, and subtab navigations'
+    },
+    {
+      id: 'debug.request',
+      title: 'Log remote requests and responses'
+    },
+    {
+      id: 'debug.update-migration',
+      title: 'Log update migrations'
+    },
+    {
+      id: 'debug.sentry',
+      title: 'Set Sentry to debug mode'
+    },
+    {
+      id: 'debug.disable-cache',
+      title: 'Disable caching',
+      description: 'Disable caching of data and settings'
+    }
   ];
 };

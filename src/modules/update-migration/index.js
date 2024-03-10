@@ -1,6 +1,7 @@
 import {
   addBodyClass,
   clearCaches,
+  fillDataCaches,
   databaseDelete,
   getSetting,
   getSettings,
@@ -8,11 +9,18 @@ import {
   saveSetting,
   setGlobal,
   showLoadingPopup,
-  sleep
+  sleep,
+  debuglog
 } from '@utils';
 
 import { cleanupCacheArSettings, cleanupSettings, removeOldEventFavoriteLocations } from './settings-cleanup';
-import { migrateJournalChangerDate, migrateQuestsCache, migrateSettings, migrateWisdomStat } from './settings-migrate';
+import {
+  migrateFlags,
+  migrateJournalChangerDate,
+  migrateQuestsCache,
+  migrateSettings,
+  migrateWisdomStat
+} from './settings-migrate';
 
 import settingsToMigrate from './settings-to-migrate.json';
 
@@ -49,36 +57,64 @@ const isNewVersion = (version) => {
 const update = async (previousVersion, newVersion) => {
   showLoadingPopup(`Updating MouseHunt Improved to v${newVersion}...`);
 
+  saveSetting('debug.all', true);
+
   addBodyClass('mh-improved-updating');
   setGlobal('mh-improved-updating', true);
 
-  // We don't want to show the popup, close it, and refresh all super fast, so add some artificial delay.
-  await sleep(3000);
+  const start = Date.now();
 
   const current = getSettings();
-  localStorage.setItem('mousehunt-improved-settings-migration-backup', JSON.stringify(current));
+  localStorage.setItem('mousehunt-improved-settings-backup', JSON.stringify(current));
 
-  migrateSettings(settingsToMigrate);
+  debuglog('update-migration', 'Migrating settings');
+  migrateSettings(settingsToMigrate.settings);
 
+  debuglog('update-migration', 'Migrating flags');
+  migrateFlags(settingsToMigrate.flags);
+
+  debuglog('update-migration', 'Migrating quests cache');
   migrateQuestsCache();
+
+  debuglog('update-migration', 'Migrating other settings');
   migrateWisdomStat();
+
+  debuglog('update-migration', 'Migrating journal changer date');
   migrateJournalChangerDate();
 
+  debuglog('update-migration', 'Cleaning up settings');
   cleanupCacheArSettings();
+
+  debuglog('update-migration', 'Cleaning up old event favorite locations');
   removeOldEventFavoriteLocations();
+
+  debuglog('update-migration', 'Cleaning up old databases');
   cleanupSettings([
     `mh-improved-cached-ar-v${previousVersion}`,
     'mh-improved-update-notifications', // Updated in v0.28.0.
   ]);
 
   // Moved to 'mh-improved-<id>' databases in v0.35.0.
+  debuglog('update-migration', 'Deleting old databases');
   await databaseDelete('mh-improved');
 
+  // Clear caches and then refetch the data.
+  debuglog('update-migration', 'Clearing caches');
   await clearCaches();
+
+  debuglog('update-migration', 'Filling data caches');
+  await fillDataCaches();
+
+  const end = Date.now();
+
+  // Because we are showing a loading popup, we want to make sure it's shown for at least 3 seconds.
+  if (end - start < 3000) {
+    await sleep(3000 - (end - start));
+  }
 
   saveSetting('mh-improved-version', newVersion);
 
-  refreshPage();
+  // refreshPage();
 };
 
 /**

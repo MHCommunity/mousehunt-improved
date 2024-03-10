@@ -1,7 +1,7 @@
 import {
   addIconToMenu,
   getCurrentLocation,
-  getFlag,
+  getData,
   getSetting,
   saveSetting
 } from '@utils';
@@ -51,10 +51,6 @@ const getIconSettings = async () => {
 };
 
 const addToggleIcon = async () => {
-  if (! getFlag('location-hud-toggle')) {
-    return;
-  }
-
   addIconToMenu(await getIconSettings());
 };
 

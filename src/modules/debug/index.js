@@ -128,9 +128,9 @@ const init = () => {
 
 export default {
   id: 'debug',
-  name: 'Debug logging',
+  name: 'Debug',
+  description: 'Adds all utility functions to <code>app.mhutils</code>, adds debug logs, and other development tools.',
   type: 'advanced',
-  description: 'Enables debug logging for various parts of MouseHunt.',
   default: false,
   order: 900,
   load: init,

@@ -2,7 +2,6 @@ import humanizeDuration from 'humanize-duration';
 
 import {
   addStyles,
-  getFlag,
   getSetting,
   makeElement,
   onActivation,
@@ -31,7 +30,7 @@ const humanizer = humanizeDuration.humanizer({
 });
 
 const isExact = () => {
-  return getFlag('lgs-reminder-exact');
+  return getSetting('lgs-reminder.show-seconds');
 };
 
 const getShieldEndDateTime = () => {

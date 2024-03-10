@@ -5,7 +5,6 @@ import {
   debuglog,
   doRequest,
   getCurrentPage,
-  getFlag,
   getHeaders,
   getSetting,
   makeElement,
@@ -873,11 +872,7 @@ const addIcon = () => {
 const init = async () => {
   addStyles(styles, 'favorite-setups');
 
-  if (getFlag('favorite-setups-toggle')) {
-    addFavoriteSetupsButton();
-  }
-
-  addIcon();
+  addFavoriteSetupsButton();
 
   onNavigation(addFavoriteSetupsButton, {
     page: 'camp',
@@ -893,6 +888,10 @@ const init = async () => {
     // Set a new timeout to call the function after 500ms
     timeoutId = setTimeout(updateFavoriteSetupName, 500);
   });
+
+  if (getSetting('experiments.favorite-setups-toggle', false)) {
+    addIcon();
+  }
 };
 
 export default {

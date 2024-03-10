@@ -3,7 +3,7 @@ import humanizeDuration from 'humanize-duration';
 import {
   addHudStyles,
   getCurrentPage,
-  getFlag,
+  getSetting,
   getUserItems,
   makeElement,
   onDialogShow,
@@ -434,7 +434,7 @@ export default async () => {
   addHudStyles(styles);
   hud();
 
-  if (getFlag('fi-draggable-airship')) {
+  if (getSetting('experiments.fi-draggable-airship')) {
     makeAirshipDraggable();
   }
 };

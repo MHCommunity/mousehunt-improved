@@ -387,9 +387,9 @@ const getStyles = () => {
     stylesToAdd.push(noStyles);
   }
 
-  if (getSetting('better-journal.icons', getFlag('journal-icons-all'))) {
+  if (getSetting('better-journal.icons')) {
     stylesToAdd.push(journalIconsMinimalStyles, journalIconsStyles);
-  } else if (getSetting('better-journal.icons-minimal', getFlag('journal-icons'))) {
+  } else if (getSetting('better-journal.icons-minimal')) {
     stylesToAdd.push(journalIconsMinimalStyles);
   }
 

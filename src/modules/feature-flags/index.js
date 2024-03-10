@@ -1,4 +1,4 @@
-import { debuglog, getFlag } from '@utils';
+import { getFlag, getSetting } from '@utils';
 
 import raffle from './modules/raffle';
 import rankupForecaster from './modules/rank-up-forecaster';
@@ -11,34 +11,21 @@ import settings from './settings';
  * Initialize the module.
  */
 const init = async () => {
-  const defaultDisabledFeatures = [
-    { id: 'lol-gottem', load: trollMode },
-    { id: 'raffle', load: raffle },
-    { id: 'social-noop', load: socialNoop },
-    { id: 'twitter', load: socialNoop },
-  ];
+  if (getSetting('experiments.raffle')) {
+    raffle();
+  }
 
-  const defaultEnabledFeatures = [
-    { id: 'rank-up-forecaster', load: rankupForecaster },
-  ];
+  if (getSetting('experiments.lol-gottem')) {
+    trollMode();
+  }
 
-  const loaded = [];
+  if (getFlag('social-noop') || getFlag('twitter')) {
+    socialNoop();
+  }
 
-  defaultDisabledFeatures.forEach((feature) => {
-    if (getFlag(feature.id)) {
-      loaded.push(feature.id);
-      feature.load();
-    }
-  });
-
-  defaultEnabledFeatures.forEach((feature) => {
-    if (! getFlag(feature.id)) {
-      loaded.push(feature.id);
-      feature.load();
-    }
-  });
-
-  debuglog('feature-flags', 'Loaded features:', loaded);
+  if (! getFlag('rankup-forecaster')) {
+    rankupForecaster();
+  }
 };
 
 export default {

@@ -7,7 +7,6 @@ import {
 } from './data';
 
 import { getCurrentLocation } from './location';
-import { getFlag } from './flags';
 import { getGlobal } from './global';
 import { makeElement } from './elements';
 
@@ -307,7 +306,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
  * @return {any|boolean} Cached value or false if not found.
  */
 const getCachedValue = async (key) => {
-  if (getFlag('no-cache')) {
+  if (getSetting('debug.no-cache')) {
     return false;
   }
 

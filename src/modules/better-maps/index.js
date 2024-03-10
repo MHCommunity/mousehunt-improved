@@ -1,11 +1,11 @@
 import {
   addStyles,
   doEvent,
-  getFlag,
   getMapData,
   makeElement,
   onRequest,
   sessionSet,
+  getSetting,
   setGlobal,
   setMapData
 } from '@utils';
@@ -255,7 +255,7 @@ const init = async () => {
 
   relicHunterUpdate();
 
-  if (getFlag('better-maps-helper')) {
+  if (getSetting('experiments.better-maps-helper')) {
     helper();
   }
 };

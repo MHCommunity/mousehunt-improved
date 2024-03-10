@@ -4,29 +4,12 @@ Enable hidden features and other advanced options.
 
 Add any of the following flags, comma-separated, to the feature flags option to enable them.
 
-## Beta Features
-
-In addition to the [Beta feature modules](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-beta) there are some features that are only available by enabling a feature flag.
-
-|Flag|Description|
-|---|---|
-|`location-hud-toggle`|Adds a toggle icon to the top menu bar to toggle the Location HUD changes.|
-|`favorite-setups-toggle`|Adds a toggle icon to the top menu bar to open your Favorite Setups.|
-
-## Hidden Features
-
-|Flag|Description|Required Module|
-|---|---|---|
-|`lgs-reminder-exact`|Change the Lucky Golden Shield Duration & Reminder display to include seconds.|[Lucky Golden Shield Duration & Reminder](./lucky-golden-shield-duration-and-reminder.md)|
-|`raffle`|Adds a 'Return Raffles' button to the Daily Draw inbox.|[Better Gifts](./better-gifts.md)|
-|`lol-gottem`|Enables an easter egg to troll yourself.||
-
-### Debug & Developers
+## Flags
 
 |Flag|Description|
 |---|---|
 |`social-noop`|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
-|`no-cache`|Disables caching of remote data. Should only be used for debugging, as otherwise you will need to pull down multiple copies of the same data.|
+|`no-onboarding`|Disables the MouseHunt Improved tutorial from Larry.|
 
 The [debug logging](./debug-logging.md) module also is configured using feature flags.
 

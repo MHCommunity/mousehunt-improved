@@ -2,6 +2,7 @@ import {
   cacheSet,
   debuglog,
   deleteSetting,
+  getFlags,
   getSetting,
   saveSetting
 } from '@utils';
@@ -42,6 +43,23 @@ const migrateSettings = (settings) => {
   settings.forEach((setting) => {
     migrateSetting(setting);
   });
+};
+
+const migrateFlags = (flags) => {
+  const savedFlags = getFlags();
+
+  flags.forEach((flag) => {
+    debuglog('update-migration', `Migrating flag from ${flag.from} to setting ${flag.to}`);
+
+    // if we have the flag, set the setting to true and remove the flag
+    if (savedFlags.includes(flag.from)) {
+      saveSetting(flag.to, true);
+      savedFlags.splice(savedFlags.indexOf(flag.from), 1);
+    }
+  });
+
+  // save the remaining flags
+  saveSetting('override-flags', savedFlags.join(','));
 };
 
 const migrateQuestsCache = () => {
@@ -86,5 +104,6 @@ export {
   migrateSettings,
   migrateQuestsCache,
   migrateWisdomStat,
-  migrateJournalChangerDate
+  migrateJournalChangerDate,
+  migrateFlags
 };

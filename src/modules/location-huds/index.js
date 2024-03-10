@@ -3,7 +3,6 @@ import {
   addStyles,
   debuglog,
   getCurrentLocation,
-  getFlag,
   getSetting,
   onEvent,
   onNavigation,
@@ -195,7 +194,7 @@ const main = () => {
 const init = async () => {
   addStyles(styles, 'location-huds');
 
-  if (getFlag('location-hud-toggle')) {
+  if (getSetting('experiments.location-hud-toggle')) {
     addToggleIcon();
   }
 

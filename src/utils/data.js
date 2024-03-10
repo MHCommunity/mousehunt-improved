@@ -1,6 +1,6 @@
 import { dbDelete, dbGet, dbSet } from './db';
 import { debuglog } from './debug';
-import { getFlag } from './flags';
+import { getSetting } from './settings';
 
 const validDataFiles = new Set([
   'minlucks',
@@ -139,6 +139,15 @@ const clearCaches = async () => {
 };
 
 /**
+ * Prime the caches.
+ */
+const fillDataCaches = async () => {
+  validDataFiles.forEach(async (file) => {
+    await getData(file);
+  });
+};
+
+/**
  * Get the headers for the fetch request.
  *
  * @return {Object} The headers.
@@ -160,7 +169,7 @@ const getHeaders = () => {
  * @param {boolean} retry Whether to retry setting the value.
  */
 const sessionSet = (key, value, retry = false) => {
-  if (getFlag('no-cache')) {
+  if (getSetting('debug.no-cache')) {
     return;
   }
 
@@ -188,7 +197,7 @@ const sessionSet = (key, value, retry = false) => {
  * @return {Object} The session value.
  */
 const sessionGet = (key, defaultValue = false) => {
-  if (getFlag('no-cache')) {
+  if (getSetting('debug.no-cache')) {
     return defaultValue;
   }
 
@@ -238,12 +247,13 @@ const cacheDelete = (key) => {
 };
 
 export {
+  cacheDelete,
+  cacheGet,
+  cacheSet,
+  clearCaches,
   getData,
   getHeaders,
-  clearCaches,
-  sessionSet,
+  fillDataCaches,
   sessionGet,
-  cacheSet,
-  cacheGet,
-  cacheDelete
+  sessionSet
 };
