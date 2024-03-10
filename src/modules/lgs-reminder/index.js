@@ -59,7 +59,12 @@ const getShieldTimeFormattted = () => {
     return '';
   }
 
-  const units = ['y', 'mo', 'w', 'd', 'h', 'm'];
+  let units = ['y', 'mo', 'w', 'd', 'h', 'm'];
+
+  if (getSetting('lgs-reminder.days-and-lower')) {
+    units = ['d', 'h', 'm'];
+  }
+
   if (isExact()) {
     units.push('s');
   }
