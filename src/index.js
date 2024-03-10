@@ -179,6 +179,20 @@ const init = async () => {
           id: await getAnonymousUserHash()
         },
       },
+      beforeSend(event, hint) { // eslint-disable-line no-unused-vars
+        const file = event.exception?.values?.[0]?.stacktrace?.frames?.[0]?.filename;
+        if (
+          file && (
+            file.includes('hknhadpnfdnkinmompmkclpfkngdcdph') ||
+            file.includes('fgjkidgknmkhnbeobehlfabjbignhkhm') ||
+            file.includes('mousehunt-improved')
+          )
+        ) {
+          return event;
+        }
+
+        return null;
+      }
     });
   }
 
