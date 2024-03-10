@@ -16,12 +16,12 @@ Thank you for your interest in contributing to MouseHunt Improved! We welcome co
   - [Project Structure](#project-structure)
   - [How to add a new module](#how-to-add-a-new-module)
     - [Importing utilities](#importing-utilities)
+    - [Adding settings to a module](#adding-settings-to-a-module)
   - [Code Style](#code-style)
   - [Building](#building)
   - [Testing](#testing)
   - [Updating data files](#updating-data-files)
   - [Adding a map to the map sorter/categorizer](#adding-a-map-to-the-map-sortercategorizer)
-  - [Helpful Feature Flags](#helpful-feature-flags)
 
 ## Getting Started
 
@@ -76,22 +76,27 @@ The project is structured as follows:
 - `src/data/` Data files, such as the image upscaling mapping file.
 - `src/extension/` Files for building the extensions, such as the manifest files.
 - `src/modules/` The code for all the different modules.
-
+- `src/utils/` Utility functions used by the modules.
 - `src/index.js` The entry point for the extension. This handles module registration and loading.
-
-- `src/modules/utils.js` Utility functions used by the modules.
-- `src/modules/mh-utils.js` Forked version of [MouseHunt Utils](https://github.com/MHCommunity/mousehunt-utils), imported into `utils.js` to allow for just one import path in modules.
 
 ## How to add a new module
 
-1. Copy `src/modules/module-template` to `src/modules/your-module-name`.
-2. In `src/index.js` add the following line to the top of the file:
+1. Create a new folder in `src/modules/` with the name of your module. Inside this folder, create an `index.js` file that exports the expected module properties, for example:
 
 ```javascript
-import moduleName from 'modules/your-module-name';
-```
+const init = async () => {
+  // Your module code here.
+};
 
-3. Edit `const modules = [ ... ]` and add `moduleName` to the list of modules in the section it belongs to.
+export default {
+  id: 'my-module',
+  name: 'My Module',
+  description: 'This is my module description.',
+  type: 'feature', // or 'element-hiding', 'advanced', or 'beta'.
+  default: false, // Whether the module should be enabled by default.
+  load: init
+};
+```
 
 ### Importing utilities
 
@@ -100,6 +105,33 @@ All of the utility functions are in `src/utils/`. They are broken up into differ
 ```javascript
 import { addStyles, getCurrentLocation } from '@utils';
 ```
+
+### Adding settings to a module
+
+Settings for a module are defined by passing an array of settings objects to the module. A simple example of a toggle setting would look like this:
+
+```javascript
+const settings = : [
+  {
+    id: 'my-module.my-setting',
+    title: 'Enable an option for my module',
+    description: 'This is a description of the setting.', // Optional, usually not needed.
+    default: false,
+  }
+];
+
+export default {
+  id: 'my-module',
+  name: 'My Module',
+  description: 'This is my module description.',
+  type: 'feature',
+  default: false,
+  load: init,
+  settings
+};
+```
+
+There are a variety of different setting types available, such as text inputs, dropdowns, and more. Check out the existing modules for examples of how to use these.
 
 ## Code Style
 
@@ -154,17 +186,13 @@ _For Chrome or Firefox you can reload the extension by clicking the reload butto
 
 The `src/data/` folder contains JSON data files that are used by the extension and may need to be updated from time to time.
 
-- `environments-events.json` Environment data for event locations.
 - `items-marketplace-hidden.json` List of items to hide in the marketplace, this should be updated with any new premium items that aren't popular/useful or any other items that should be hidden.
 - `library-assignments.json` Library Assignments IDs, costs, rewards, etc.
 - `m400-locations.json` Location and mice mapping for the M400 library assignment.
 - `map-groups.json` Map groups for the map sorter/categorizer.
 - `recipes-me-conversion.json` Recipe IDs that should show a Warning message when converting with Magic Essence.
 - `recipes-to-reorder.json` Recipe IDs that should be reordered on the crafting page.
-- `relic-hunter-hints.json` Mapping of locations and hints for the Relic Hunter mouse.
-- `ultimate-checkmark.json` Item lists for the Ultimate Checkmark feature.
 - `upscaled-images-skip.json` List of image URLs to skip when upscaling, used by the Image Upscaling module to skip images that don't need to be upscaled. Can contain a wildcard at the end of the URL to match paths.
-- `upscaled-images.json` Mapping of image URLs to upscaled image URLs, used by the Image Upscaling module to replace images with upscaled versions.
 
 ## Adding a map to the map sorter/categorizer
 
@@ -217,16 +245,3 @@ The `subcategories` array is only needed if you have mice that should be sorted 
 
 > [!TIP]
 > Running `bun run fix-map-groups` will go through the mice in the map groups file and replace any mouse names with their mouse types, so you can use the full names like "Mutated Behemoth Mouse" in the file and then run this command to replace them with the mouse types like "mutated_behemoth".
-
-## Helpful Feature Flags
-
-Enabling these feature flags will enable some helpful features for development. You can enable them by adding them to the comma separated list of feature flags in the extension settings.
-
-These will output information to the console, so make sure you have the console open when testing.
-
-- `debug` - Enables debug logging.
-- `debug-all` - Enables all of the debug flags below.
-- `debug-dialog` - Popup/dialog IDs and events.
-- `debug-navigation` - Page, tab, and travel changes.
-- `debug-request` - Ajax requests responses.
-- `debug-events` - Events fired (can be hooked into with `onEvent`).
