@@ -16,14 +16,32 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
     return settings;
   }
 
-  const groupAndKey = getGroupAndKey(key);
+  // If the key contains a period, then it's a group and key, otherwise it's just a key.
+  if (! key.includes('.')) {
+    if (settings[key] === undefined) {
+      return defaultValue;
+    }
 
-  if (groupAndKey.group) {
-    const group = settings[groupAndKey.group] || {};
-    return group[groupAndKey.key] || defaultValue;
+    return settings[key];
   }
 
-  return settings[key] || defaultValue;
+  const groupAndKey = getGroupAndKey(key);
+
+  if (! groupAndKey.group) {
+    if (settings[groupAndKey.key] === undefined) {
+      return defaultValue;
+    }
+
+    return settings[groupAndKey.key];
+  }
+
+  const groupSettings = settings[groupAndKey.group] || {};
+
+  if (groupSettings[groupAndKey.key] === undefined) {
+    return defaultValue;
+  }
+
+  return groupSettings[groupAndKey.key];
 };
 
 /**
@@ -53,12 +71,15 @@ const saveSettingDirect = (key, value, identifier = 'mousehunt-improved-settings
 };
 
 const getGroupAndKey = (key) => {
-  // if the string is not in the format of group.key, then we assume it's a global setting
-  if (! key.includes('.')) {
-    return { key };
-  }
-
   const split = key.split('.');
+
+  // If there's only one part, then return it as the key.
+  if (split.length === 1) {
+    return {
+      group: null,
+      key: split[0],
+    };
+  }
 
   if (split[0] === 'location-huds-enabled') {
     return {
