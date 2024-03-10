@@ -79,6 +79,7 @@
     "no-implied-eval": "error",
     "no-template-curly-in-string": "error",
     "no-undef": 0,
+    "no-unused-labels": 0,
     "no-useless-concat": "error",
     "object-curly-spacing": ["error", "always"],
     "promise/always-return": ["error", { "ignoreLastCallback": true }],
