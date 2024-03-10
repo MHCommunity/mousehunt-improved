@@ -7,12 +7,12 @@ import {
   getFlag,
   getSetting,
   onRequest,
-  onTurn,
   sessionGet,
   sessionSet,
   setMultipleTimeout
 } from '@utils';
 
+import journalHistory from './journal-history';
 import journalList from './journal-list';
 import settings from './settings';
 
@@ -45,7 +45,7 @@ const saveEntries = async (callback) => {
       return;
     }
 
-    const original = await dbGet('journal-entries', entryId);
+    const original = await dbGet('journal', entryId);
 
     if (original && original.text) {
       callback(original, entry, entryText);
@@ -68,7 +68,7 @@ const saveEntries = async (callback) => {
       mouse: entry.getAttribute('data-mouse-type') || null,
     };
 
-    await dbSet('journal-entries', journalData);
+    await dbSet('journal', journalData);
   });
 };
 
@@ -371,28 +371,20 @@ const updateEls = () => {
   updateMouseImageLinks();
 };
 
-/**
- * Initialize the module.
- */
-const init = async () => {
-  let stylesToAdd = [];
+const journalReplacements = () => {
+  updateEls();
+  onRequest('*', () => {
+    setMultipleTimeout(updateEls, [0, 100, 500]);
+  });
+};
+
+const getStyles = () => {
+  const stylesToAdd = [];
 
   if (getSetting('better-journal.styles', true)) {
-    stylesToAdd = styles;
+    stylesToAdd.push(styles);
   } else {
     stylesToAdd.push(noStyles);
-  }
-
-  if (getSetting('better-journal.privacy')) {
-    journalPrivacy();
-  }
-
-  if (getSetting('better-journal.replacements', true)) {
-    updateEls();
-    onRequest('*', () => {
-      setMultipleTimeout(updateEls, [0, 100, 500]);
-    });
-    onTurn(updateEls);
   }
 
   if (getSetting('better-journal.icons', getFlag('journal-icons-all'))) {
@@ -401,11 +393,26 @@ const init = async () => {
     stylesToAdd.push(journalIconsMinimalStyles);
   }
 
+  return stylesToAdd;
+};
+
+/**
+ * Initialize the module.
+ */
+const init = async () => {
+  addStyles(getStyles(), 'better-journal');
+
+  if (getSetting('better-journal.replacements', true)) {
+    journalReplacements();
+  }
+
   if (getSetting('better-journal.list', false)) {
     journalList();
   }
 
-  addStyles(stylesToAdd, 'better-journal');
+  if (getFlag('journal-history')) {
+    journalHistory();
+  }
 
   onRequest('users/dailyreward.php', kingsPromoTextChange);
 };

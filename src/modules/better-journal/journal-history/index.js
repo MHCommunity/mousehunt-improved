@@ -1,4 +1,4 @@
-import { dbGetAll, onNavigation, onRequest } from '@utils';
+import { database, dbGetAll, onNavigation, onRequest } from '@utils';
 
 // import tempMiceImages from '@data/temp-mice-images.json';
 
@@ -62,7 +62,7 @@ const getPager = () => {
 
 const getAllEntries = async () => {
   if (! journalEntries.length) {
-    journalEntries = await dbGetAll('journal-entries');
+    journalEntries = await dbGetAll('journal');
   }
 
   if (! journalEntries.length) {
@@ -81,7 +81,7 @@ const eventListeners = {
   lastLink: (event) => doPageStuff(totalPages, event),
 };
 
-const journalHistory = async () => {
+const main = async () => {
   pager = pager || getPager();
   journalEntries = journalEntries.length ? journalEntries : await getAllEntries();
 
@@ -126,18 +126,12 @@ const onJournalRequest = (data) => {
   currentPage = reportedCurrentPage;
   lastResponsePage = currentPage;
 
-  journalHistory();
+  main();
 };
 
-const init = async () => {
-  onNavigation(journalHistory, { page: 'camp' });
+const journalHistory = async () => {
+  onNavigation(main, { page: 'camp' });
   onRequest('pages/journal.php', onJournalRequest);
 };
 
-export default {
-  id: 'journal-history',
-  name: 'Journal History',
-  type: 'beta',
-  default: true,
-  load: init
-};
+export default journalHistory;

@@ -5,6 +5,7 @@ import {
   getSettings,
   refreshPage,
   saveSetting,
+  databaseDelete,
   setGlobal,
   showLoadingPopup,
   sleep
@@ -70,7 +71,11 @@ const update = async (previousVersion, newVersion) => {
     'mh-improved-update-notifications', // Updated in v0.28.0.
   ]);
 
+  // Moved to 'mh-improved-<id>' databases in v0.35.0.
+  await databaseDelete('mh-improved');
+
   await clearCaches();
+
   saveSetting('mh-improved-version', newVersion);
 
   refreshPage();
@@ -81,6 +86,11 @@ const update = async (previousVersion, newVersion) => {
  */
 const init = async () => {
   const installedVersion = getSetting('mh-improved-version', null);
+  if (installedVersion === null) {
+    await update(null, mhImprovedVersion);
+    return;
+  }
+
   if (! isNewVersion(installedVersion)) {
     return;
   }

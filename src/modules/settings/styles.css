@@ -51,11 +51,6 @@
   padding: 5px 0;
 }
 
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingDescription {
-  max-width: unset;
-  padding: 0;
-}
-
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__setting {
   display: flex;
   align-items: center;

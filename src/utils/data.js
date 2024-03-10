@@ -135,11 +135,6 @@ const clearCaches = async () => {
     }
   }
 
-  // also delete the specified IndexedDB databases
-  if (! getFlag('journal-history')) {
-    await dbDeleteAll('journal-entries');
-  }
-
   dbDelete('cache', 'expirations');
 };
 

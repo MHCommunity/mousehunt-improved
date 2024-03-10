@@ -6,31 +6,42 @@
  * @return {Promise} Promise that resolves with the database.
  */
 const database = async (databaseName) => {
-  const request = window.indexedDB.open('mh-improved', 2);
-
-  request.onupgradeneeded = (event) => {
-    const db = event.target.result;
-    if (! db.objectStoreNames.contains(databaseName)) {
-      const objectStore = db.createObjectStore(databaseName, { keyPath: 'id' });
-      objectStore.createIndex('id', 'id', { unique: true });
-    }
-  };
-
   return new Promise((resolve, reject) => {
-    request.onsuccess = () => {
-      const db = request.result;
-      if (db.objectStoreNames.contains(databaseName)) {
-        resolve(db);
-      } else {
-        reject(new Error(`Object store ${databaseName} does not exist`));
-      }
+    const request = indexedDB.open(`mh-improved-${databaseName}`, 1);
+
+    request.onerror = (event) => {
+      reject(event.target.error);
     };
 
-    request.onerror = () => {
-      reject(request.error);
+    request.onsuccess = (event) => {
+      resolve(event.target.result);
+    };
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+
+      if (! db.objectStoreNames.contains(databaseName)) {
+        db.createObjectStore(databaseName, { keyPath: 'id' });
+      }
     };
   });
 };
+
+const databaseDelete = async (databaseName) => {
+  databaseName = `mh-improved-${databaseName}`;
+
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.deleteDatabase(databaseName);
+
+    request.onerror = (event) => {
+      reject(event.target.error);
+    };
+
+    request.onsuccess = (event) => {
+      resolve(event.target.result);
+    };
+  });
+}
 
 /**
  * Get an item from the given IndexedDB database.
@@ -60,6 +71,10 @@ const dbGet = async (databaseName, id) => {
     request.onerror = () => {
       reject(request.error);
     };
+
+    transaction.oncomplete = () => {
+      db.close();
+    };
   });
 };
 
@@ -87,6 +102,10 @@ const dbSet = async (databaseName, data) => {
     request.onerror = () => {
       reject(request.error);
     };
+
+    transaction.oncomplete = () => {
+      db.close();
+    }
   });
 };
 
@@ -114,6 +133,10 @@ const dbDelete = async (databaseName, id) => {
     request.onerror = () => {
       reject(request.error);
     };
+
+    transaction.oncomplete = () => {
+      db.close();
+    }
   });
 };
 
@@ -139,6 +162,10 @@ const dbGetAll = async (databaseName) => {
 
     request.onerror = () => {
       reject(request.error);
+    };
+
+    transaction.oncomplete = () => {
+      db.close();
     };
   });
 };
@@ -166,10 +193,16 @@ const dbDeleteAll = async (databaseName) => {
     request.onerror = () => {
       reject(request.error);
     };
+
+    transaction.oncomplete = () => {
+      db.close();
+    };
   });
 };
 
 export {
+  database,
+  databaseDelete,
   dbGet,
   dbSet,
   dbDelete,
