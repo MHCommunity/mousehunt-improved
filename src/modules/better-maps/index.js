@@ -2,10 +2,10 @@ import {
   addStyles,
   doEvent,
   getMapData,
+  getSetting,
   makeElement,
   onRequest,
   sessionSet,
-  getSetting,
   setGlobal,
   setMapData
 } from '@utils';

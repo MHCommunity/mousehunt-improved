@@ -1,5 +1,3 @@
-import { getFlag } from '@utils';
-
 /**
  * Add settings for the module.
  *

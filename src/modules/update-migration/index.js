@@ -1,16 +1,16 @@
 import {
   addBodyClass,
   clearCaches,
-  fillDataCaches,
   databaseDelete,
+  debuglog,
+  fillDataCaches,
   getSetting,
   getSettings,
   refreshPage,
   saveSetting,
   setGlobal,
   showLoadingPopup,
-  sleep,
-  debuglog
+  sleep
 } from '@utils';
 
 import { cleanupCacheArSettings, cleanupSettings, removeOldEventFavoriteLocations } from './settings-cleanup';
@@ -114,7 +114,7 @@ const update = async (previousVersion, newVersion) => {
 
   saveSetting('mh-improved-version', newVersion);
 
-  // refreshPage();
+  refreshPage();
 };
 
 /**
