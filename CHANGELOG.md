@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.35.1
+
+- Fixes issue with settings not correct reading the new value
+
 ## Version 0.35.0
 
 ### Added
