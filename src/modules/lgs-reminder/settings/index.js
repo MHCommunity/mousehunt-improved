@@ -1,5 +1,3 @@
-import { getFlag } from '@utils';
-
 /**
  * Add settings for the module.
  *
@@ -10,13 +8,10 @@ export default async () => {
     {
       id: 'lgs-reminder.new-style',
       title: 'Use "new" style',
-      default: false,
-      description: '',
     },
     {
       id: 'lgs-reminder.show-seconds',
       title: 'Show exact time',
-      default: getFlag('lgs-reminder-exact'),
       description: 'Show exact time, including seconds',
     }
   ];
