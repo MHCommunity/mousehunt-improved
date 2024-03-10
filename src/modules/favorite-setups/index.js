@@ -892,6 +892,8 @@ const init = async () => {
   if (getSetting('experiments.favorite-setups-toggle', false)) {
     addIcon();
   }
+
+  onEvent('mh-improved-toggle-favorite-setups', toggleFavoriteSetups);
 };
 
 export default {

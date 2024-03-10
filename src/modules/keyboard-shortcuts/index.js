@@ -10,26 +10,12 @@ import {
   saveSetting
 } from '@utils';
 
-import {
-  clickMinLuck,
-  disarmCharm,
-  disarmCheese,
-  gotoPage,
-  openBlueprint,
-  openGifts,
-  openInbox,
-  openMap,
-  openMapInvites,
-  openMarketplace,
-  openTravelWindow,
-  showTem,
-  travelToPreviousLocation
-} from './actions';
+import actions from './actions';
 
 import styles from './styles.css';
 
 const getBaseShortcuts = () => {
-  const shortcuts = [
+  return [
     {
       id: 'help',
       key: '?',
@@ -42,188 +28,11 @@ const getBaseShortcuts = () => {
       id: 'close-popup',
       key: 'Escape',
       description: 'Close the current popup',
-      action: () => {
-        if (activejsDialog && activejsDialog.hide) {
-          activejsDialog.hide();
-        }
-      },
+      action: () => activejsDialog.hide(),
       category: 'hidden',
     },
-    {
-      id: 'goto-travel',
-      key: 't',
-      description: 'Travel',
-      action: () => gotoPage('Travel'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-camp',
-      key: 'j',
-      description: 'Camp',
-      action: () => gotoPage('Camp'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-friends',
-      key: 'f',
-      description: 'Friends',
-      action: () => gotoPage('Friends'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-shops',
-      key: 's',
-      description: 'Shops',
-      action: () => gotoPage('Shops'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-profile',
-      key: 'p',
-      description: 'Your Hunter Profile',
-      action: () => gotoPage('HunterProfile'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-send-supplies',
-      description: 'Send Supplies',
-      action: () => gotoPage('SupplyTransfer'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-scoreboards',
-      description: 'Scoreboards',
-      action: () => gotoPage('Scoreboards'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-team',
-      description: 'Team',
-      action: () => gotoPage('Team'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-tournaments',
-      description: 'Tournaments',
-      action: () => gotoPage('Tournament'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-wiki',
-      description: 'Wiki',
-      action: () => gotoPage('Wiki'),
-      category: 'navigation',
-    },
-    {
-      id: 'goto-marketplace',
-      description: 'Open the Marketplace',
-      action: openMarketplace,
-      category: 'open-dialog',
-    },
-    {
-      id: 'open-inbox',
-      description: 'Open the Inbox',
-      action: openInbox,
-      category: 'open-dialog',
-    },
-    {
-      id: 'open-gifts',
-      description: 'Open the Gifts popup',
-      action: openGifts,
-      category: 'open-dialog',
-    },
-    {
-      id: 'open-map',
-      key: 'm',
-      description: 'Open your Map',
-      action: openMap,
-      category: 'open-dialog',
-    },
-    {
-      id: 'open-map-invites',
-      key: 'i',
-      description: 'Open your Map Invites',
-      action: openMapInvites,
-      category: 'open-dialog',
-    },
-    {
-      id: 'open-travel-window',
-      description: 'Open the Travel Window',
-      action: openTravelWindow,
-      category: 'open-dialog',
-    },
-    {
-      id: 'change-weapon',
-      key: 'w',
-      description: 'Change Weapon',
-      action: () => openBlueprint('weapon'),
-      category: 'trap-setup',
-    },
-    {
-      id: 'change-base',
-      key: 'b',
-      description: 'Change Base',
-      action: () => openBlueprint('base'),
-      category: 'trap-setup',
-    },
-    {
-      id: 'change-charm',
-      key: 'r',
-      description: 'Change Charm',
-      action: () => openBlueprint('trinket'),
-      category: 'trap-setup',
-    },
-    {
-      id: 'change-cheese',
-      key: 'c',
-      description: 'Change Cheese',
-      action: () => openBlueprint('bait'),
-      category: 'trap-setup',
-    },
-    {
-      id: 'change-skin',
-      description: 'Change Trap Skin',
-      action: () => openBlueprint('skin'),
-      category: 'trap-setup',
-    },
-    {
-      id: 'show-tem',
-      key: 'e',
-      description: 'Show the <abbr title="Trap Effectiveness Meter">TEM</abbr>',
-      action: showTem,
-      category: 'trap-setup',
-    },
-    {
-      id: 'disarm-cheese',
-      description: 'Disarm your Cheese',
-      action: disarmCheese,
-      category: 'trap-setup',
-    },
-    {
-      id: 'disarm-charm',
-      description: 'Disarm your Charm',
-      action: disarmCharm,
-      category: 'trap-setup',
-    },
-    {
-      id: 'travel-to-previous-location',
-      description: 'Travel to previous location',
-      action: travelToPreviousLocation,
-      category: 'misc',
-    },
+    ...actions(),
   ];
-
-  if (hasMiniCRE()) {
-    shortcuts.push({
-      id: 'show-mini-cre',
-      key: 'l',
-      description: 'Open Mini CRE',
-      action: clickMinLuck,
-      category: 'misc',
-    });
-  }
-
-  return shortcuts;
 };
 
 const getShortcuts = () => {

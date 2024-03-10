@@ -393,6 +393,13 @@ const main = async () => {
   addLockAndHideControls();
 };
 
+const toggleControls = () => {
+  const button = document.querySelector('.mhui-inventory-lock-and-hide-controls');
+  if (button) {
+    button.click();
+  }
+};
+
 const onSetPage = () => {
   main();
   addEvent('ajax_request', main, null, true);
@@ -412,6 +419,7 @@ const init = async () => {
   });
 
   onEvent('camp_page_toggle_blueprint', hideItemsInTrapBrowser);
+  onEvent('mh-improved-toggle-inventory-lock', toggleControls);
 };
 
 export default {
