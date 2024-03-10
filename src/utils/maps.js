@@ -8,6 +8,7 @@ import {
 
 import { getCurrentLocation } from './location';
 import { getGlobal } from './global';
+import { getSetting } from './settings';
 import { makeElement } from './elements';
 
 /**

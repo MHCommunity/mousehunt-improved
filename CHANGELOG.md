@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.35.3
+
+- Fixes error when getting cached AR data
+
 ## Version 0.35.2
 
 - Fixes Better Journal styles regression
