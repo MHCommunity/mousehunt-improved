@@ -108,17 +108,19 @@ import { addStyles, getCurrentLocation } from '@utils';
 
 ### Adding settings to a module
 
-Settings for a module are defined by passing an array of settings objects to the module. A simple example of a toggle setting would look like this:
+Settings for a module are defined by passing a function that returns an array of settings objects to the module. A simple example of a toggle setting would look like this:
 
 ```javascript
-const settings = : [
-  {
-    id: 'my-module.my-setting',
-    title: 'Enable an option for my module',
-    description: 'This is a description of the setting.', // Optional, usually not needed.
-    default: false,
-  }
-];
+const settings = () => {
+  return [
+    {
+      id: 'my-module.my-setting',
+      title: 'Enable an option for my module',
+      description: 'This is a description of the setting.', // Optional, usually not needed.
+      default: false,
+    }
+  ];
+};
 
 export default {
   id: 'my-module',
