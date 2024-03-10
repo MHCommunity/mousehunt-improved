@@ -16,37 +16,12 @@ import {
 import styles from './styles.css';
 
 /**
- * Get the link to a version's release notes.
- *
- * @param {string} version The version to get the link for.
- *
- * @return {string} The link to the release notes.
- */
-const getUpdateLink = (version) => {
-  return `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${version}`;
-};
-
-/**
- * Check if the user has seen the update banner.
- *
- * @return {boolean} True if the user has seen the banner, false otherwise.
- */
-const hasSeenBanner = () => {
-  return mhImprovedVersion === getSetting('updates.banner', '');
-};
-
-/**
  * Add the update banner.
  *
  * @param {boolean} hasNewSettings Whether there are new settings.
  */
 const addBanner = (hasNewSettings = false) => {
-  // Only show the banner once.
-  if (hasSeenBanner()) {
-    if (hasNewSettings) {
-      removeBodyClass('mh-improved-has-update');
-    }
-
+  if (mhImprovedVersion === getSetting('updates.banner', '')) {
     return;
   }
 
@@ -69,7 +44,7 @@ const addBanner = (hasNewSettings = false) => {
   const buttonWrapper = makeElement('div', 'mhui-update-banner-buttons', '');
   const button = makeElement('a', ['mhui-update-banner-button', 'mousehuntActionButton', 'small', 'lightBlue']);
   makeElement('span', '', 'See what\'s new', button);
-  button.href = getUpdateLink(mhImprovedVersion);
+  button.href = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}`;
   button.target = '_blank';
   buttonWrapper.append(button);
 
@@ -112,7 +87,12 @@ const init = async () => {
     return;
   }
 
-  addBanner(true); // True if there are new settings, otherwise false.
+  // True if there are new settings, otherwise false.
+  onNavigation(() => {
+    addBanner(true);
+  }, {
+    page: 'camp',
+  });
 };
 
 export default {
