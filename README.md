@@ -135,12 +135,6 @@ See [Location HUDs](docs/location-huds/README.md) for a list of changes and feat
 - **[Zokor](docs/location-huds/zokor.md)**
 - **[Zuzwang's Tower](docs/location-huds/zuzwangs-tower.md)**
 
-## 🔧️ Advanced Customization
-
-There are a variety of beta features and other advanced settings that can be enabled or controlled with feature flags. Refer to [Feature Flags/Beta Features](https://github.com/MHCommunity/mousehunt-improved/wiki/Feature-Flags---Beta-Features) on the GitHub Wiki for more information.
-
-You can also override styles with the **Custom Styles** option in Advanced Settings. Refer to [Custom CSS](https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS) for some commonly used custom styles that you can copy and paste.
-
 ## 🗑️ Uninstalling Userscripts
 
 Refer to [Superseded Userscripts](https://github.com/MHCommunity/mousehunt-improved/wiki/Superseded-Userscripts) on the GitHub Wiki for a list of userscripts you no longer need after installing MouseHunt Improved.
