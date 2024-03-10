@@ -21,6 +21,11 @@ const migrateSetting = (settingKey) => {
     return;
   }
 
+  // If the destination setting already exists, don't overwrite it
+  if (null !== getSetting(settingKey.to, null)) {
+    return;
+  }
+
   saveSetting(settingKey.to, setting);
 
   if (settingKey.clear) {

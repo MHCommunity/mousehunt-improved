@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.35.4
+
+- Fixes setting migration overwriting settings
+
 ## Version 0.35.3
 
 - Fixes error when getting cached AR data
