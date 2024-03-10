@@ -188,9 +188,7 @@ _For Chrome or Firefox you can reload the extension by clicking the reload butto
 
 The `src/data/` folder contains JSON data files that are used by the extension and may need to be updated from time to time.
 
-- `items-marketplace-hidden.json` List of items to hide in the marketplace, this should be updated with any new premium items that aren't popular/useful or any other items that should be hidden.
 - `library-assignments.json` Library Assignments IDs, costs, rewards, etc.
-- `m400-locations.json` Location and mice mapping for the M400 library assignment.
 - `map-groups.json` Map groups for the map sorter/categorizer.
 - `recipes-me-conversion.json` Recipe IDs that should show a Warning message when converting with Magic Essence.
 - `recipes-to-reorder.json` Recipe IDs that should be reordered on the crafting page.
