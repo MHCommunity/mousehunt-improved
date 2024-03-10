@@ -41,7 +41,7 @@ const databaseDelete = async (databaseName) => {
       resolve(event.target.result);
     };
   });
-}
+};
 
 /**
  * Get an item from the given IndexedDB database.
@@ -105,7 +105,7 @@ const dbSet = async (databaseName, data) => {
 
     transaction.oncomplete = () => {
       db.close();
-    }
+    };
   });
 };
 
@@ -136,7 +136,7 @@ const dbDelete = async (databaseName, id) => {
 
     transaction.oncomplete = () => {
       db.close();
-    }
+    };
   });
 };
 

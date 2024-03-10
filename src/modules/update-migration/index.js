@@ -1,11 +1,11 @@
 import {
   addBodyClass,
   clearCaches,
+  databaseDelete,
   getSetting,
   getSettings,
   refreshPage,
   saveSetting,
-  databaseDelete,
   setGlobal,
   showLoadingPopup,
   sleep

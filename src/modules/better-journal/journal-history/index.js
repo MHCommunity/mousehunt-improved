@@ -1,4 +1,4 @@
-import { database, dbGetAll, onNavigation, onRequest } from '@utils';
+import { dbGetAll, onNavigation, onRequest } from '@utils';
 
 // import tempMiceImages from '@data/temp-mice-images.json';
 

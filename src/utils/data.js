@@ -1,4 +1,4 @@
-import { dbDelete, dbDeleteAll, dbGet, dbSet } from './db';
+import { dbDelete, dbGet, dbSet } from './db';
 import { debuglog } from './debug';
 import { getFlag } from './flags';
 
