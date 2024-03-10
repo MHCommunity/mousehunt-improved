@@ -172,6 +172,6 @@ export default {
   name: 'Better Item View',
   type: 'better',
   default: true,
-  description: 'Shows drop rates, links to MHCT and the wiki, and updates the look of the item view popup.',
+  description: 'Updates the styles and shows drop rates, links to MHCT, and MH Wiki.',
   load: init,
 };
