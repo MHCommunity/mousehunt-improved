@@ -57,6 +57,13 @@ const isNewVersion = (version) => {
 const update = async (previousVersion, newVersion) => {
   showLoadingPopup(`Updating MouseHunt Improved to v${newVersion}...`);
 
+  if ('0.35.0' === previousVersion) {
+    const backedUpSettings = localStorage.getItem('mousehunt-improved-settings-backup');
+    if (backedUpSettings) {
+      localStorage.setItem('mousehunt-improved-settings', backedUpSettings);
+    }
+  }
+
   saveSetting('debug.all', true);
 
   addBodyClass('mh-improved-updating');
