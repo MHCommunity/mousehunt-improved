@@ -34,6 +34,7 @@ The [debug logging](./debug-logging.md) module also is configured using feature 
 
 |Userscript|Flag|Required Module|
 |---|---|--|
+|All|`no-userscript-styles`|[Better UI](./better-ui.md)|
 |[Profile+](https://greasyfork.org/en/scripts/381389-mh-profile)|`userscript-styles-no-profile-plus-styles`|[Better UI](./better-ui.md)|
 |[Favorite Setups](https://greasyfork.org/en/scripts/443164-mousehunt-favorite-setups)|`userscript-styles-no-favorite-setups-styles`|[Better UI](./better-ui.md)|
 |[Journal Historian](https://greasyfork.org/en/scripts/454968-mousehunt-journal-historian)|`userscript-styles-no-journal-historian-styles`|[Better UI](./better-ui.md)|

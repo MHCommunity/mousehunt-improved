@@ -27,6 +27,10 @@ const addUserscriptStyles = async () => {
     { id: 'userscript-styles-no-tsitu-supply-search-styles', styles: tsituSupplySearchStyles },
   ];
 
+  if (getFlag('no-userscript-styles')) {
+    return;
+  }
+
   userscriptStyles.forEach((userscript) => {
     if (! getFlag(userscript.id)) {
       addStyles(userscript.styles, userscript.id);
