@@ -42,7 +42,10 @@ const getShieldEndDateTime = () => {
   // make a new date object
   const expiry = Date.parse(shieldExpiry);
 
-  return new Date(expiry);
+  // subtract 5 hours from the expiry time for some reason.
+  const realExpiry = expiry - (5 * 60 * 60 * 1000);
+
+  return new Date(realExpiry);
 };
 
 const getShieldTime = () => {
