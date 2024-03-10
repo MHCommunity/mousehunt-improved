@@ -241,3 +241,7 @@
 .livingGardenHud.lost_city.corrupted .curse .curseDispelled br {
   display: none;
 }
+
+.livingGardenHud .minigameContainer {
+  z-index: 1;
+}
