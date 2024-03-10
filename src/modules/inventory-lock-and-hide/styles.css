@@ -44,7 +44,6 @@
 }
 
 .mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden .inventoryPage-item-margin {
-  /* filter: grayscale(1); */
   background-color: #939393;
 }
 
@@ -54,6 +53,11 @@
 
 .mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked .inventoryPage-item-margin {
   background-color: #ff7b00;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .locked.message_item.inventoryPage-item.small,
+.mhui-inventory-lock-and-hide-controls-active .locked.bait.inventoryPage-item.small {
+  pointer-events: auto;
 }
 
 .mhui-inventory-lock-and-hide-controls-active .tooltip {
@@ -66,6 +70,7 @@
 .locked.message_item.inventoryPage-item.small .inventoryPage-item-button,
 .locked.bait.inventoryPage-item.small .inventoryPage-item-button,
 .locked .inventoryPage-item-recipeOptions,
+.locked .campPage-trap-itemBrowser-item-armButton,
 .locked .inventoryPage-item-imageContainer-action {
   pointer-events: none;
   filter: grayscale(1);
@@ -102,4 +107,12 @@ span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible button {
 
 .mhui-inventory-lock-and-hide-hidden-count {
   margin-left: 5px;
+}
+
+.mhui-inventory-lock-and-hide-controls-lock {
+  min-width: 35px;
+}
+
+.mhui-inventory-lock-and-hide-controls-hide {
+  min-width: 25px;
 }
