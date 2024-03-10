@@ -1,5 +1,6 @@
 import {
   cacheGet,
+  cacheSet,
   getData,
   getHeaders,
   sessionGet,

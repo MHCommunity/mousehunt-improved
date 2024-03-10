@@ -2,12 +2,17 @@
 
 source .env
 
+version=$(jq -r .version package.json)
+
+git push origin main
+git push origin "v$version"
+
 bun run clean
 bun run build:extension:chrome
 bun run build:extension:firefox
 
 bun run sentry-cli sourcemaps inject dist
-bun run sentry-cli sourcemaps upload --release="$(jq -r .version package.json)" dist
+bun run sentry-cli sourcemaps upload --release="$version" dist
 
 bun run build:zips
 
