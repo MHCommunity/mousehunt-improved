@@ -6,20 +6,50 @@
 
 - Adds Gilded Birthday and Party Size Gilded Birthday maps to the Sorted tab in Better Maps
 - Adds Birthday (Year 16) as an option for Custom Shield
+- Adds Beta Features to the settings page
+- Adds Show Auras in Trap Selector beta feature
+- Adds Larry's Links beta feature
+- Adds a `location-hud-toggle` flag that shows an icon in the top menu that will toggle the current Location HUD on and off
+- Adds a `favorite-setups-toggle` flag that shows an icon in the top menu that will toggle the Favorite Setups on and off
+- Adds a "Show toggle icon in top menu" setting to Journal Privacy to be able to toggle it on and off
 
 ### Changed
 
-- Updates Birthday event HUD styles, including higher quality images, a fun animation, and other changes
+- Updates Birthday event HUD styles, adds higher quality images, adds a fun room hover animation, the ability to drag the vending machine hat around, and ability to change the vending machine can color, and fixes the reminder date text alignment
 - Removes the Birthday even shield unless it is selected in Custom Shield
-- Updates Better Map styles
-- Updates Better Shops styles
-- Updates Better Journal styles
-- Miscellaneous bug fixes
+- Updates Gnawnia Express Station Location HUD styles
+- Updates Hover Profile to be more stable and correctly display itself
 - Updates Fixes module to make event backgrounds still show on narrow screens
+- Updates Custom Shield to handle previewing shields correctly and interacting with LGS Reminder
+- Updates Hide Footer to be able to be toggled without a refresh
+- Updates Inline Wiki to be able to be toggled without a refresh
+- Updates Hide Sidebar to be able to be toggled without a refresh
+- Updates Hide Sidebar to be enbled by default
+- Updates Hide Share Buttons to be enbled by default
+- Updates Import / Export Settings to be able to drag in an exported file to import it, format it, or reset back to default, and various other style updates
+- Updates Better UI styles
+- Updates Betteer Item View styles
+- Updates Better Journal styles
+- Updaets Better Maps styles
+- Updates Better Shops styles
+- Updates various other styles
+- Removes the local event environment data files and instead fetch them remotely
+- Removes the `disable-mh-improved-tooltips` flag
+- Updates Dark Mode styles with a variety of changes and improvements
+- Updates the Valour Rift Location Dashboard to show Umbra run state
 
 ### Fixed
 
 - Fixes power type filter not showing in Quick Filter and Sort
+- Fixes LGS Reminder alignment _again_
+- Fixes Better Journal replacements not applying in some cases
+- Fixes Favorite Setups not correctly showing
+- Fixes Favorite Setups setups being lost when toggling the module
+- Fixes Inventory Lock and Hide not correctly applying
+- Fixes Inventory Lock and Hide settings being lost when toggling the module
+- Fixes Custom Shields not correctly applying without a refresh
+- Fixes Userscript styles in Better UI not correctly applying
+- Fixes various issues related to King's Crowns
 
 ## Version 0.34.0
 
