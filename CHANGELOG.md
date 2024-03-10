@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 0.35.2
+
+- Fixes Better Journal styles regression
+- Adds "Convert weeks and months to days" setting to Lucky Golden Shield Reminder to match the display on mobile
+- Fixes Lucky Golden Shield Reminder not correctly showing the correct time remaining and instead being off by a few hours
+- Removes `items-marketplace-hidden.json` and instead fetchs it from api.mouse.rip
+- Removes `m400-locations.json` and instead fetchs it from api.mouse.rip
+- Removes `relic-hunter-hints.json` and instead fetchs it from api.mouse.rip
+- Excludes Error Reporting functionality from the Userscript build
+- Removes onboarding tutorial
+- Fixes Lucky Golden Shield alignment
+
 ## Version 0.35.1
 
 - Fixes issue with settings not correct reading the new value
