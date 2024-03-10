@@ -3,7 +3,6 @@ import * as Sentry from '@sentry/browser'; // eslint-disable-line import/no-extr
 import {
   addSettingForModule,
   addSettingsTab,
-  addToGlobal,
   debug,
   debuglog,
   doEvent,
@@ -14,6 +13,7 @@ import {
   isApp,
   isUnsupportedFile,
   isiFrame,
+  setGlobal,
   showLoadingError
 } from '@utils';
 
@@ -129,7 +129,7 @@ const loadModules = async () => {
   }
 
   // Add the loaded modules to the global scope.
-  addToGlobal('modules', loadedModules);
+  setGlobal('modules', loadedModules);
 
   // Fire the event to signal that all modules have been loaded.
   doEvent('mh-improved-modules-loaded');
@@ -189,8 +189,8 @@ const init = async () => {
     showLoadingError(error);
   } finally {
     // Add the version and loaded flag to the global scope.
-    addToGlobal('version', mhImprovedVersion);
-    addToGlobal('loaded', true);
+    setGlobal('version', mhImprovedVersion);
+    setGlobal('loaded', true);
 
     // Welcome message.
     // eslint-disable-next-line no-console

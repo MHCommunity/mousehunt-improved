@@ -274,6 +274,12 @@ const uppercaseFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+/**
+ * Set multiple timeouts.
+ *
+ * @param {Function}     fn The function to run.
+ * @param {Array|number} ms The milliseconds to wait.
+ */
 const setMultipleTimeout = (fn, ms) => {
   // If ms isn't an array, make it one.
   if (! Array.isArray(ms)) {
@@ -283,6 +289,17 @@ const setMultipleTimeout = (fn, ms) => {
   ms.forEach((time) => {
     setTimeout(fn, time);
   });
+};
+
+/**
+ * Refresh the page after a delay.
+ *
+ * @param {number} delay The delay before refreshing the page.
+ */
+const refreshPage = (delay = 0) => {
+  setTimeout(() => {
+    window.location.reload();
+  }, delay);
 };
 
 export {
@@ -300,5 +317,6 @@ export {
   hasMiniCRE,
   sleep,
   uppercaseFirstLetter,
-  setMultipleTimeout
+  setMultipleTimeout,
+  refreshPage
 };

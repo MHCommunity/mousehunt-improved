@@ -1,9 +1,15 @@
 import {
+  addBodyClass,
   clearCaches,
   debug,
+  getGlobal,
   getSetting,
   getSettings,
-  saveSetting
+  refreshPage,
+  saveSetting,
+  setGlobal,
+  showLoadingPopup,
+  sleep
 } from '@utils';
 
 import { cleanupCacheArSettings, cleanupSettings, removeOldEventFavoriteLocations } from './settings-cleanup';
@@ -39,8 +45,17 @@ const isNewVersion = (version) => {
  * Clean up settings on update.
  *
  * @param {string} previousVersion The previous version.
+ * @param {string} newVersion      The new version.
  */
-const cleanOnUpdate = (previousVersion) => {
+const update = async (previousVersion, newVersion) => {
+  showLoadingPopup(`Updating MouseHunt Improved to v${newVersion}...`);
+
+  addBodyClass('mh-improved-updating');
+  setGlobal('mh-improved-updating', true);
+
+  // We don't want to show the popup, close it, and refresh all super fast, so add some artificial delay.
+  await sleep(3000);
+
   const current = getSettings();
   localStorage.setItem('mousehunt-improved-settings-migration-backup', JSON.stringify(current));
 
@@ -51,13 +66,16 @@ const cleanOnUpdate = (previousVersion) => {
   migrateJournalChangerDate();
 
   cleanupCacheArSettings();
-
   removeOldEventFavoriteLocations();
-
   cleanupSettings([
     `mh-improved-cached-ar-v${previousVersion}`,
     'mh-improved-update-notifications', // Updated in v0.28.0.
   ]);
+
+  await clearCaches();
+  saveSetting('mh-improved-version', newVersion);
+
+  refreshPage();
 };
 
 /**
@@ -69,21 +87,11 @@ const init = async () => {
     return;
   }
 
-  debug(`New version: ${mhImprovedVersion}, updating from ${installedVersion}`);
-
-  cleanOnUpdate(installedVersion);
-
-  await clearCaches();
-
-  saveSetting('mh-improved-platform', mhImprovedPlatform);
-  saveSetting('mh-improved-version', mhImprovedVersion);
-
-  // reload the page to ensure everything is updated.
-  window.location.reload();
+  await update(installedVersion, mhImprovedVersion);
 };
 
 export default {
-  id: 'update-migration',
+  id: '_update-migration',
   type: 'required',
   alwaysLoad: true,
   load: init,

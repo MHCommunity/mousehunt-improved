@@ -131,7 +131,7 @@ export default {
   name: 'Debug logging',
   type: 'advanced',
   description: 'Enables debug logging for various parts of MouseHunt.',
-  default: true,
+  default: false,
   order: 900,
   load: init,
   settings

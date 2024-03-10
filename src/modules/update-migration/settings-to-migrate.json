@@ -23,10 +23,7 @@
   { "from": "send-supplies-pinned-items-2", "to": "better-send-supplies.pinned-items-2" },
   { "from": "send-supplies-pinned-items-3", "to": "better-send-supplies.pinned-items-3" },
   { "from": "send-supplies-pinned-items-4", "to": "better-send-supplies.pinned-items-4" },
-  {
-    "from": "better-tournaments-tournament-time-display-inline",
-    "to": "better-tournaments.tournament-time-display-inline"
-  },
+  { "from": "better-tournaments-tournament-time-display-inline", "to": "better-tournaments.time-inline" },
   { "from": "journal-changer-change-daily", "to": "journal-changer.change-daily'" },
   { "from": "journal-changer-change-location", "to": "journal-changer.change-location'" },
   { "from": "journal-privacy-show-toggle-icon", "to": "journal-privacy.show-toggle-icon'" },
@@ -43,7 +40,7 @@
   { "from": "ultimate-checkmark-categories-plankrun", "to": "ultimate-checkmark.show-plankrun" },
   { "from": "ultimate-checkmark-categories-treasure_chests", "to": "ultimate-checkmark.show-treasure_chests" },
   { "from": "wisdom-in-stat-bar-auto-refresh", "to": "wisdom-in-stat-bar.auto-refresh" },
-  { "from": "has-seen-onboarding", "to": "updates.onboarding'" },
+  { "from": "has-seen-onboarding", "to": "updates.onboarding" },
   { "from": "has-seen-update-banner", "to": "updates.banner" },
   { "from": "acolyte_realm", "to": "location-huds-enabled.acolyte_realm" },
   { "from": "ancient_city", "to": "location-huds-enabled.ancient_city" },

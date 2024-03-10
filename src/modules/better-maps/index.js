@@ -1,12 +1,12 @@
 import {
   addStyles,
-  addToGlobal,
   doEvent,
   getFlag,
   getMapData,
   makeElement,
   onRequest,
   sessionSet,
+  setGlobal,
   setMapData
 } from '@utils';
 import { getData } from '@utils/data';
@@ -54,7 +54,7 @@ const interceptMapRequest = (mapId) => {
   }
 
   const init = (mapData) => {
-    addToGlobal('mapper', {
+    setGlobal('mapper', {
       mapData,
       mapModel: new hg.models.TreasureMapModel(mapData),
     });

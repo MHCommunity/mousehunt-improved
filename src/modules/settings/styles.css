@@ -47,9 +47,8 @@
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__settingDescription {
-  max-width: 650px;
-  padding-top: 5px;
-  line-height: 1.5;
+  max-width: 500px;
+  padding: 5px 0;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__setting {
@@ -71,8 +70,12 @@
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .inputBox.multiSelect {
-  max-width: 125px;
+  max-width: 150px;
   margin-right: 4px;
+}
+
+#mousehunt-improved-settings-better-better-gifts-ignore-bad-gifts select.inputBox.multiSelect {
+  max-width: unset;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings select {
@@ -133,6 +136,10 @@
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting {
   margin-left: 0;
+  border-left: 1px solid #e0d0b4;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting:nth-child(-n + 14) {
   border-left: none;
 }
 
@@ -158,7 +165,6 @@
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(even) {
   background-color: #eee;
-  border-radius: 4px;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingName {
@@ -202,14 +208,6 @@
   transform: scale(0.75);
 }
 
-#mousehunt-improved-settings-location-hud-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0 40px;
-  justify-items: stretch;
-  margin: 10px 0;
-}
-
 .toggled #mousehunt-improved-settings-location-hud-wrapper {
   display: none;
 }
@@ -227,6 +225,18 @@
   display: inline-block;
   padding: 0;
   vertical-align: middle;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 360px;
+  align-items: stretch;
+  gap: 0;
+  margin-top: 5px;
+  justify-content: center;
+  align-content: center;
 }
 
 /* Export Settings */
@@ -540,18 +550,6 @@
 
 #mousehunt-improved-settings-advanced {
   position: relative;
-}
-
-#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living-garden {
-  grid-column-start: 1;
-}
-
-#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living-garden,
-#mousehunt-improved-settings-location-hud-location-huds-enabled-region-queso,
-#mousehunt-improved-settings-location-hud-location-huds-enabled-event-locations {
-  margin-top: 20px;
-  background-color: #e3e3e3;
-  border-radius: 4px;
 }
 
 .mousehuntHud-page-tabHeader.userscript-settings span {

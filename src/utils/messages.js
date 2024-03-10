@@ -110,8 +110,75 @@ const showLoadingError = (e) => {
   document.head.append(errorStylesEl);
 };
 
+/**
+ * Show an error message in a popup.
+ *
+ * @param {Object} options         Options for the message.
+ * @param {string} options.title   Title of the message.
+ * @param {string} options.content Content of the message.
+ */
+const showLoadingPopupError = (options) => {
+  const popup = new jsDialog();
+  popup.setTemplate('error');
+  popup.setAttributes({ className: 'error' });
+  popup.addToken('{*title*}', options.title);
+  popup.addToken('{*content*}', options.content || '');
+  popup.show();
+};
+
+/**
+ * Show a loading popup.
+ *
+ * @param {string} title Title of the loading popup.
+ *
+ * @return {Object} The popup and its elements.
+ */
+const showLoadingPopup = (title) => {
+  const popup = new jsDialog();
+  popup.setTemplate('loading');
+  popup.setAttributes({ className: 'loading' });
+  popup.show();
+
+  const element = document.querySelector('#overlayPopup .jsDialog .title');
+  if (! element) {
+    return {
+      popup,
+      title: null,
+      text: null,
+      setText: () => {},
+      setTitle: () => {},
+      show: () => {},
+      hide: () => {},
+    };
+  }
+
+  element.textContent = title;
+
+  const loadingText = makeElement('div', 'loading-text', '', element);
+
+  return {
+    popup,
+    title: element,
+    text: loadingText,
+    setText: (newText) => {
+      loadingText.textContent = newText;
+    },
+    setTitle: (newTitle) => {
+      element.textContent = newTitle;
+    },
+    show: () => {
+      popup.show();
+    },
+    hide: () => {
+      popup.hide();
+    },
+  };
+};
+
 export {
   showErrorMessage,
   showSuccessMessage,
-  showLoadingError
+  showLoadingError,
+  showLoadingPopupError,
+  showLoadingPopup
 };

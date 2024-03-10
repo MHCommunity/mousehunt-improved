@@ -5,6 +5,7 @@ import {
   getCurrentPage,
   getCurrentTab,
   getFlag,
+  getGlobal,
   getSetting,
   makeElement,
   onNavigation,
@@ -230,11 +231,15 @@ const doOnboarding = () => {
 const init = async () => {
   addStyles(styles, 'update-notifications');
 
+  if (getGlobal('mh-improved-updating')) {
+    return;
+  }
+
   addBanner(false); // True if there are new settings, otherwise false.
 
   // Delay the onboarding a bit so the banner has time to show.
   onNavigation(() => {
-    setTimeout(doOnboarding, 500);
+    setTimeout(doOnboarding, 1500);
   });
 };
 

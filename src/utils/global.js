@@ -4,7 +4,7 @@
  * @param {string} key   Key to add.
  * @param {any}    value Value to add.
  */
-const addToGlobal = (key, value) => {
+const setGlobal = (key, value) => {
   // if we don't have a global object, create it
   if (! window.mhui) {
     window.mhui = {};
@@ -35,6 +35,6 @@ const getGlobal = (key) => {
 };
 
 export {
-  addToGlobal,
+  setGlobal,
   getGlobal
 };
