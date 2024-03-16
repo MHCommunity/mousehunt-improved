@@ -4,6 +4,7 @@ import {
   createPopup,
   debuglog,
   doRequest,
+  getCurrentLocation,
   getCurrentPage,
   getHeaders,
   getSetting,
@@ -19,7 +20,10 @@ import {
 import styles from './styles.css';
 
 const getFavoriteSetups = () => {
-  return getSetting('favorite-setups.setups', []);
+  const faves = getSetting('favorite-setups.setups', []);
+
+  // remove any that are just null.
+  return faves.filter(Boolean);
 };
 
 const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
@@ -81,6 +85,7 @@ const getCurrentSetup = () => {
     weapon_id: user.weapon_item_id,
     trinket_id: user.trinket_item_id,
     power_type: user?.trap_power_type_name.toLowerCase(),
+    location: getCurrentLocation(),
   });
 };
 
@@ -315,10 +320,14 @@ const armItem = async (items) => {
 };
 
 const makeBlueprintRow = async (setup, isCurrent = false) => {
+  if (! setup) {
+    return;
+  }
+
   const setupContainer = makeElement('div', ['row']);
 
   const controls = makeElement('div', ['controls']);
-  makeElement('div', ['label'], setup.name, controls);
+  makeElement('div', ['label'], setup?.name || '', controls);
 
   let hasHighlighted = false;
   const buttonWrapper = makeElement('div', ['button-wrapper']);
@@ -329,13 +338,14 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       callback: async () => {
         // Save the current setup, using the current location as the name.
         let currentSetup = getCurrentSetup();
-        currentSetup.id = `${setup.bait_id}-${setup.base_id}-${setup.weapon_id}-${setup.trinket_id}`;
+
+        currentSetup.id = `${setup?.bait_id}-${setup?.base_id}-${setup?.weapon_id}-${setup?.trinket_id}`;
 
         // if the setup already exists, then just alert the user.
         const setups = getFavoriteSetups();
 
         if (setups.length) {
-          const existingSetup = setups.find((s) => s.id === currentSetup.id);
+          const existingSetup = setups.find((s) => s?.id && (s.id === currentSetup.id));
           if (existingSetup && ! hasHighlighted) {
             // flash the row.
             const row = document.querySelector(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${currentSetup.id}"]`);
@@ -377,7 +387,11 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           return;
         }
 
-        const index = setups.findIndex((s) => s.id === setupId);
+        if (! setupId) {
+          return;
+        }
+
+        const index = setups.findIndex((s) => s?.id && (s.id === setupId));
 
         const thisSetup = setups[index];
         if (! thisSetup) {
@@ -494,8 +508,6 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
               imageDisplay.style.backgroundImage = `url(${newItemImageUrl})`;
             });
-
-            // save the new item id.
           });
         });
 
@@ -515,8 +527,8 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
             }
 
             // Swap the setups.
-            const index = setups.findIndex((s) => s.id === setupId);
-            const previousIndex = setups.findIndex((s) => s.id === previous.getAttribute('data-setup-id'));
+            const index = setups.findIndex((s) => s?.id && (s.id === setupId));
+            const previousIndex = setups.findIndex((s) => s?.id === previous.getAttribute('data-setup-id'));
 
             const temp = setups[index];
             setups[index] = setups[previousIndex];
@@ -541,8 +553,8 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
             }
 
             // Swap the setups.
-            const index = setups.findIndex((s) => s.id === setupId);
-            const nextIndex = setups.findIndex((s) => s.id === next.getAttribute('data-setup-id'));
+            const index = setups.findIndex((s) => s?.id && (s.id === setupId));
+            const nextIndex = setups.findIndex((s) => s?.id && (s.id === next.getAttribute('data-setup-id')));
 
             const temp = setups[index];
             setups[index] = setups[nextIndex];
@@ -622,7 +634,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           setups = [];
         }
 
-        const index = setups.findIndex((s) => s.id === setupId);
+        const index = setups.findIndex((s) => s?.id && (s.id === setupId));
 
         // generate a random ID so it's unique.
         newSetup.id = Math.random().toString(36).slice(2, 15) + Math.random().toString(36).slice(2, 15);
@@ -691,7 +703,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           setups = [];
         }
 
-        const index = setups.findIndex((s) => s.id === setupId);
+        const index = setups.findIndex((s) => s?.id && (s.id === setupId));
         setups.splice(index, 1);
         saveSetting('favorite-setups.setups', setups);
 
@@ -709,10 +721,10 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   const needThumbnails = [];
 
   const items = [
-    setup.bait_id,
-    setup.base_id,
-    setup.weapon_id,
-    setup.trinket_id,
+    setup?.bait_id || 0,
+    setup?.base_id || 0,
+    setup?.weapon_id || 0,
+    setup?.trinket_id || 0,
   ];
 
   for (const item of items) {
@@ -740,7 +752,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     cachedThumbnails = thumbnails;
   }
 
-  const powerTypeId = getPowerTypeId(setup.power_type);
+  const powerTypeId = getPowerTypeId(setup?.power_type);
   const powertype = makeElement('div', ['campPage-trap-itemBrowser-item-powerType', powerTypeId]);
   if (! powerTypeId) {
     powertype.classList.add('hidden');
@@ -777,7 +789,41 @@ const makeBlueprintContainer = async () => {
 
   const setups = getFavoriteSetups();
   if (setups.length) {
+    const locationFavorites = [];
+
     for (const setup of setups) {
+      if (! setup || ! setup.id) {
+        continue;
+      }
+
+      if (setup.location && setup.location === getCurrentLocation()) {
+        locationFavorites.push(setup);
+      }
+    }
+
+    if (locationFavorites.length) {
+      const locationWrapper = makeElement('div', ['location-favorites']);
+
+      for (const setup of locationFavorites) {
+        if (! setup || ! setup.id) {
+          continue;
+        }
+
+        const setupContainer = await makeBlueprintRow(setup);
+        setupContainer.setAttribute('data-setup-id', setup.id);
+        setupContainer.classList.add('location-favorite');
+
+        locationWrapper.append(setupContainer);
+      }
+
+      body.append(locationWrapper);
+    }
+
+    for (const setup of setups) {
+      if (! setup || ! setup.id) {
+        continue;
+      }
+
       const setupContainer = await makeBlueprintRow(setup);
       setupContainer.setAttribute('data-setup-id', setup.id);
 
@@ -801,13 +847,13 @@ const getNameOfCurrentSetup = () => {
   const currentSetup = getCurrentSetup();
 
   const setup = setups.find((s) => {
-    return s.bait_id === currentSetup.bait_id &&
-      s.base_id === currentSetup.base_id &&
-      s.weapon_id === currentSetup.weapon_id &&
-      s.trinket_id === currentSetup.trinket_id;
+    return s?.bait_id === currentSetup?.bait_id &&
+      s?.base_id === currentSetup?.base_id &&
+      s?.weapon_id === currentSetup?.weapon_id &&
+      s?.trinket_id === currentSetup?.trinket_id;
   });
 
-  if (setup) {
+  if (setup && setup.name) {
     return setup.name;
   }
 
@@ -838,7 +884,7 @@ const addFavoriteSetupsButton = () => {
     return;
   }
 
-  const button = makeElement('a', ['mh-improved-favorite-setups-button', 'campPage-trap-trapEffectiveness']);
+  const button = makeElement('a', ['mh-improved-favorite-setups-button']);
   makeElement('div', ['mh-improved-favorite-setups-button-text'], 'Favorite Setups', button);
   const label = makeElement('div', ['mh-improved-favorite-setups-button-label']);
 

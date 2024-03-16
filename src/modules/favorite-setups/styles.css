@@ -1,5 +1,17 @@
 .mh-improved-favorite-setups-button {
-  margin: 10px 0;
+  position: relative;
+  display: block;
+  padding: 5px 10px;
+  margin: 5px 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 31px;
+  color: #4e300b;
+  cursor: pointer;
+  background: #f6f3eb;
+  border: 1px solid #d3cecb;
+  border-radius: 4px;
+  box-shadow: -1px 1px 3px #d3cecb inset;
 }
 
 .mh-improved-favorite-setups-button-label {
@@ -22,7 +34,7 @@
 }
 
 .mh-improved-favorite-setups-blueprint-container .header {
-  margin: 10px 0;
+  margin-top: 10px;
   font-size: 13px;
   color: #926944;
   text-align: center;
@@ -30,26 +42,40 @@
 
 .mh-improved-favorite-setups-blueprint-container .content {
   position: absolute;
-  inset: 50px 5px 10px;
+  inset: 35px 5px 10px;
   overflow-y: auto;
 }
 
 .mh-improved-favorite-setups-blueprint-container .row {
   display: grid;
-  grid-template-columns: 1fr 35px repeat(4, 45px);
+  grid-template-columns: 1fr 30px repeat(4, 45px);
   align-items: center;
   height: auto;
-  min-height: 55px;
+  min-height: 50px;
   padding: 3px;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   background: #fff;
   border: 1px solid #ceb7a6;
   border-radius: 5px;
 }
 
+.mh-improved-favorite-setups-blueprint-container .location-favorites {
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.location-favorite {
+  background-color: #fdfacf;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.location-favorite:last-child {
+  margin-bottom: 0;
+}
+
 .mh-improved-favorite-setups-blueprint-container .row .campPage-trap-itemBrowser-favorite-item-image {
   width: 100%;
   height: 45px;
+  border-radius: 0;
 }
 
 .mh-improved-favorite-setups-blueprint-container .row.editing {
@@ -60,9 +86,9 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 5px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  height: 50px;
 }
 
 .mh-improved-favorite-setups-blueprint-container .row.editing .controls {
@@ -77,6 +103,7 @@
 }
 
 .mh-improved-favorite-setups-blueprint-container .row.editing .button-wrapper {
+  align-self: flex-end;
   margin-right: 5px;
 }
 
@@ -86,7 +113,7 @@
 
 .mh-improved-favorite-setups-blueprint-container .controls .label {
   padding: 0 1px;
-  font-size: 13px;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -98,7 +125,7 @@
 }
 
 .mh-improved-favorite-setups-blueprint-container .controls .action.arm {
-  padding: 4px 15px;
+  padding: 4px 10px;
 }
 
 .mh-improved-favorite-setups-blueprint-container .edit {
@@ -128,8 +155,7 @@
 }
 
 .mh-improved-favorite-setups-blueprint-container .controls input {
-  width: calc(100% - 25px);
-  margin-right: 25px;
+  width: 150px;
 }
 
 .row.editing .campPage-trap-itemBrowser-favorite-item::after {
@@ -198,13 +224,13 @@
 
 a.random-title::after {
   position: absolute;
-  top: 0;
-  right: -6px;
+  top: 2px;
+  right: -19px;
   box-sizing: border-box;
   display: block;
-  width: 20px;
-  height: 20px;
-  padding: 10px;
+  width: 17px;
+  height: 17px;
+  padding: 9px;
   margin: 1px;
   content: "";
   background-color: #fff;
@@ -233,6 +259,7 @@ a.random-title.loading::after {
 
 .mh-improved-favorite-setups-blueprint-container .editing .controls .label {
   position: relative;
+  align-self: flex-start;
 }
 
 .mh-improved-favorite-setups-blueprint-container .row .mh-improved-favorite-setups-power-type-wrapper .campPage-trap-itemBrowser-favorite-item-image {
@@ -287,7 +314,7 @@ a.random-title.loading::after {
 .mh-improved-favorite-setups-blueprint-container .row .move-buttons {
   position: absolute;
   bottom: 20px;
-  left: 32px;
+  left: 28px;
   display: none;
   flex-direction: row;
   align-items: center;
@@ -298,8 +325,8 @@ a.random-title.loading::after {
   position: absolute;
   top: 0;
   right: 0;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   content: "";
   background-repeat: no-repeat;
   background-size: contain;
@@ -308,7 +335,7 @@ a.random-title.loading::after {
 
 .mh-improved-favorite-setups-blueprint-container .row.editing a.move-up::after {
   position: absolute;
-  right: 15px;
+  right: 13px;
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 17a.75.75 0 0 1-.75-.75V5.612L5.29 9.77a.75.75 0 0 1-1.08-1.04l5.25-5.5a.75.75 0 0 1 1.08 0l5.25 5.5a.75.75 0 1 1-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0 1 10 17Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
 }
 
