@@ -1,4 +1,10 @@
-import { addHudStyles, getCurrentLocation, makeElement, onRequest } from '@utils';
+import {
+  addHudStyles,
+  getCurrentLocation,
+  makeElement,
+  onRequest,
+  onTurn
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -49,39 +55,14 @@ const scrambleGems = () => {
   gems.forEach((gem) => {
     gem.removeAttribute('onclick');
     gem.addEventListener('click', () => {
-      hg.views.HeadsUpDisplayLabyrinthView.labyrinthScrambleGem(gem, 2);
+      gems.forEach((g) => {
+        hg.views.HeadsUpDisplayLabyrinthView.labyrinthScrambleGem(g, 2);
+      });
     });
   });
 };
 
-const hud = () => {
-  if ('labyrinth' !== getCurrentLocation()) {
-    return;
-  }
-
-  // Always allow gems to be scrambled.
-  scrambleGems();
-
-  const doorTextExisting = document.querySelector('.mh-ui-labyrinth-door-text');
-  if (doorTextExisting) {
-    doorTextExisting.remove();
-  }
-
-  const appendTo = document.querySelector('.labyrinthHUD-hallwayDescription');
-  if (! appendTo) {
-    return;
-  }
-
-  const existing = document.querySelector('.mh-ui-labyrinth-step-counter');
-  if (existing) {
-    existing.remove();
-  }
-
-  const existingStepsToGo = document.querySelector('.mh-ui-labyrinth-steps-to-go');
-  if (existingStepsToGo) {
-    existingStepsToGo.remove();
-  }
-
+const expandClueBar = () => {
   const clueProgresses = document.querySelectorAll('.mh-ui-labyrinth-clue-count');
   if (clueProgresses) {
     clueProgresses.forEach((progress) => {
@@ -108,7 +89,9 @@ const hud = () => {
       }
     });
   }
+};
 
+const addLanternReminder = () => {
   if ('inactive' === user?.quests?.QuestLabyrinth?.lantern_status && user?.quests?.QuestLabyrinth?.hallway_tier >= 2) {
     setTimeout(() => {
       const existingLanternReminder = document.querySelector('.mh-ui-labyrinth-lantern-reminder');
@@ -118,11 +101,33 @@ const hud = () => {
 
       const labyHud = document.querySelector('.labyrinthHUD-intersection');
       if (labyHud) {
-        const lanternReminer = document.createElement('div');
-        lanternReminer.classList.add('mh-ui-labyrinth-lantern-reminder');
-        labyHud.append(lanternReminer);
+        const lanternReminder = document.createElement('div');
+        lanternReminder.classList.add('mh-ui-labyrinth-lantern-reminder');
+        labyHud.append(lanternReminder);
       }
     }, 500);
+  }
+};
+
+const updateDoorText = () => {
+  const doorTextExisting = document.querySelector('.mh-ui-labyrinth-door-text');
+  if (doorTextExisting) {
+    doorTextExisting.remove();
+  }
+
+  const appendTo = document.querySelector('.labyrinthHUD-hallwayDescription');
+  if (! appendTo) {
+    return;
+  }
+
+  const existing = document.querySelector('.mh-ui-labyrinth-step-counter');
+  if (existing) {
+    existing.remove();
+  }
+
+  const existingStepsToGo = document.querySelector('.mh-ui-labyrinth-steps-to-go');
+  if (existingStepsToGo) {
+    existingStepsToGo.remove();
   }
 
   const hallwayLength = user.quests.QuestLabyrinth.hallway_length || 0;
@@ -184,12 +189,106 @@ const hud = () => {
   }
 };
 
+const highlight100Clues = () => {
+  const clues = document.querySelector('.labyrinthHUD-clueBar-totalContainer');
+  if (! clues) {
+    return;
+  }
+
+  if (Number.parseInt(user?.quests?.QuestLabyrinth.total_clues || 0) < 100) {
+    clues.classList.remove('mh-ui-labyrinth-100clues');
+  } else {
+    clues.classList.add('mh-ui-labyrinth-100clues');
+  }
+};
+
+const highlightTileForMinigame = (tile) => {
+  tile.classList.add('mh-ui-labyrinth-tile-clicked');
+
+  const id = tile.getAttribute('data-index');
+  const length = user?.quests?.QuestLabyrinth?.hallway_length || 10;
+  const degree = (id / length) * 360;
+
+  tile.style.filter = `brightness(1.5) hue-rotate(${Math.floor(degree)}deg)`;
+
+  setTimeout(() => {
+    tile.classList.add('mh-ui-labyrinth-tile-clicked-fade-in');
+  }, 100);
+
+  setTimeout(() => {
+    tile.style.filter = 'brightness(1) hue-rotate(0deg)';
+  }, 500);
+
+  setTimeout(() => {
+    tile.classList.remove('mh-ui-labyrinth-tile-clicked-fade-in');
+    tile.classList.remove('mh-ui-labyrinth-tile-clicked');
+    tile.style.filter = '';
+  }, 510);
+};
+
+const minigame = async () => {
+  // whenever a user clicks on a .labyrinthHUD-hallway-tile.locked, change it to a random color for 2 seconds
+  const tiles = document.querySelectorAll('.labyrinthHUD-hallway-tile');
+  if (! tiles) {
+    return;
+  }
+
+  let highlightOnMouseover = false;
+
+  tiles.forEach((tile) => {
+    const mouseoverHandler = () => {
+      if (! highlightOnMouseover) {
+        return;
+      }
+
+      highlightTileForMinigame(tile);
+    };
+
+    if ([...tile.classList].includes('active')) {
+      tile.addEventListener('click', () => {
+        let delay = 0;
+        tiles.forEach((t) => {
+          setTimeout(() => {
+            highlightTileForMinigame(t);
+          }, delay);
+          delay += 50;
+        });
+      });
+    } else {
+      tile.addEventListener('mouseover', mouseoverHandler);
+
+      tile.addEventListener('click', () => {
+        tile.removeEventListener('mouseover', mouseoverHandler);
+
+        highlightOnMouseover = ! highlightOnMouseover;
+        highlightTileForMinigame(tile);
+      });
+    }
+  });
+};
+
+const refreshHud = async () => {
+  if ('labyrinth' !== getCurrentLocation()) {
+    return;
+  }
+
+  expandClueBar();
+  updateDoorText();
+  highlight100Clues();
+  minigame();
+};
+
 /**
  * Initialize the module.
  */
 export default async () => {
   addHudStyles(styles);
 
-  hud();
-  onRequest('*', hud);
+  scrambleGems();
+
+  refreshHud();
+  addLanternReminder();
+
+  onRequest('*', refreshHud);
+  onTurn(refreshHud, 1000);
 };

@@ -12,13 +12,14 @@
   padding-left: 4px;
   font-size: 12px;
   border-radius: 6px;
+  outline: 2px solid #000;
 }
 
 .labyrinthHUD-clue {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .labyrinthHUD-clue-name {
@@ -27,10 +28,9 @@
 }
 
 .mh-ui-labyrinth-clue-count {
-  padding: 4px;
+  padding-left: 4px;
+  font-weight: 900;
   color: #050505;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
 }
 
 .y .labyrinthHUD-clue-name,
@@ -330,7 +330,7 @@
 }
 
 .labyrinthHUD-hallway-padding:hover .labyrinthHUD-hallway-tile.complete::after {
-  color: #0e0e0e;
+  color: #343434;
   text-shadow: none;
   content: "0";
 }
@@ -365,6 +365,29 @@
   content: "6";
 }
 
+.labyrinthHUD-hallway-tile.active {
+  z-index: 6;
+  outline: 1px solid #bbf8fa;
+}
+
+@keyframes mh-improved-lantern-swing {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-5deg);
+  }
+
+  75% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .mh-ui-labyrinth-lantern-reminder {
   position: absolute;
   bottom: 0;
@@ -375,8 +398,7 @@
   filter: drop-shadow(1px 0 8px #f6eac3);
   background-size: contain;
   transform-origin: bottom;
-  animation: mh-improved-sway-side-to-side 0.75s;
-  animation-iteration-count: 3;
+  animation: mh-improved-lantern-swing 1s ease-out 1;
 }
 
 .labyrinthHUD-toggleLantern-name.active {
@@ -464,4 +486,124 @@ a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
 /* brighten the hallway a tiny bit */
 .labyrinthHUD-hallway-background {
   filter: brightness(1.2);
+}
+
+.labyrinthHUD-clueBar-totalContainer.mh-ui-labyrinth-100clues {
+  background-color: #479f49;
+}
+
+.mh-ui-labyrinth-tile-clicked {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mh-ui-labyrinth-tile-clicked-fade-in {
+  opacity: 1;
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit .mousehuntTooltip {
+  top: -3px;
+  bottom: unset;
+  display: none;
+  align-items: center;
+  width: 75px;
+  height: 49px;
+  padding: 0 2px;
+  margin-left: 7px;
+  color: #dad0d0;
+  background-color: rgb(51 47 43 / 85%);
+  border: none;
+  border-radius: 18px 18px 0 0;
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit .mousehuntTooltip .mousehuntTooltip-arrow {
+  display: none;
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit.disabled::after {
+  position: absolute;
+  inset: -5px -5px 0 -7px;
+  display: block;
+  content: "";
+  background-color: #825c33d6;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: 0.4s;
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit:hover::after {
+  background-color: transparent;
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit-y1::after,
+.labyrinthHUD-exitContainer .labyrinthHUD-exit-h1::after,
+.labyrinthHUD-exitContainer .labyrinthHUD-exit-s1::after,
+.labyrinthHUD-exitContainer .labyrinthHUD-exit-n1::after {
+  position: absolute;
+  top: -40px;
+  right: -8px;
+  left: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font-size: 11px;
+  font-weight: 900;
+  color: #371d0085;
+  text-align: center;
+  content: "";
+  transition: 0.3s;
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit-y1::after {
+  content: "Paladin Weapon Master";
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit-h1::after {
+  content: "Manaforge Smith";
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit-s1::after {
+  content: "Soul Binder";
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit-n1::after {
+  top: -29px;
+  content: "Retired Minotaur";
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit.labyrinthHUD-exit-y1:hover::after,
+.labyrinthHUD-exitContainer .labyrinthHUD-exit.labyrinthHUD-exit-h1:hover::after,
+.labyrinthHUD-exitContainer .labyrinthHUD-exit.labyrinthHUD-exit-s1:hover::after,
+.labyrinthHUD-exitContainer .labyrinthHUD-exit.labyrinthHUD-exit-n1:hover::after {
+  color: #f2c899;
+  opacity: 0.8;
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit.mousehuntTooltipParent:hover .mousehuntTooltip {
+  display: flex;
+  animation: none;
+}
+
+.labyrinthHUD-exitContainer .labyrinthHUD-exit.labyrinthHUD-exit-n1 .mousehuntTooltip {
+  top: 8px;
+  left: -1px;
+  width: 93px;
+  height: 60px;
+}
+
+.labyrinthHUD-secretContainer {
+  font-weight: 900;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  mix-blend-mode: overlay;
+}
+
+.labyrinthHUD-confirmDescription .labyrinthHUD-exit {
+  top: -4px;
+}
+
+.ancientCityHUD-bossContainer.mousehuntTooltipParent.ancientCityHUD-boss-n.hiddenDistrict:active {
+  background-position: 0 0;
 }
