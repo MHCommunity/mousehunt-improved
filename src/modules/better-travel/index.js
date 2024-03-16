@@ -265,7 +265,7 @@ const addSimpleTravel = () => {
 };
 
 const getPreviousLocation = () => {
-  const previousLocation = getTravelSetting('previous-location', false);
+  const previousLocation = getSetting('better-travel.previous-location', false);
   if (previousLocation && previousLocation !== getCurrentLocation()) {
     return environments.find((environment) => {
       return environment.id === previousLocation;
@@ -507,32 +507,7 @@ const saveTravelLocation = () => {
 };
 
 const getLocationFavorites = () => {
-  const faves = getTravelSetting('favorites', []);
-
-  const hasMigratedFaves = getTravelSetting('has-migrated-favorites', false);
-  if (! hasMigratedFaves) {
-    const lvFavesSettings = JSON.parse(localStorage.getItem('fast-travel-cache'));
-    const lvFaves = lvFavesSettings?.locationList || [];
-    if (lvFaves) {
-      // Get the keys from the lvFaves object.
-      const lvKeys = Object.keys(lvFaves);
-      // merge the lvFaves into the faves array
-      lvKeys.forEach((key) => {
-        faves.push(key);
-      });
-
-      if (faves.length > 0) {
-        // remove any duplicates
-        const uniqueFaves = [...new Set(faves)];
-        // save the faves
-        saveLocationFavorites(uniqueFaves);
-      }
-
-      // save the faves
-      getTravelSetting('has-migrated-favorites', true);
-    }
-  }
-
+  const faves = getSetting('better-travel.favorites', []);
   return faves;
 };
 
@@ -571,6 +546,15 @@ const addFavoriteButtonsToTravelPage = async () => {
   locations.forEach((location) => {
     const type = location.getAttribute('data-environment-type');
     if (! type) {
+      return;
+    }
+
+    // Don't add a favorite button to event locations.
+    const isEventLocation = environments.find((environment) => {
+      return environment.id === type;
+    });
+
+    if (isEventLocation) {
       return;
     }
 
