@@ -1,4 +1,6 @@
 import {
+  cacheGet,
+  cacheSet,
   getCurrentSubtab,
   getCurrentTab,
   getUserItems,
@@ -148,6 +150,10 @@ const modifySmashableTooltip = async () => {
       return;
     }
 
+    item.addEventListener('mouseleave', () => {
+      item.classList.remove('new-tooltip-loading');
+    });
+
     item.addEventListener('mouseenter', async () => {
       if (item.getAttribute('data-new-tooltip') === 'newTooltip') {
         return;
@@ -160,7 +166,14 @@ const modifySmashableTooltip = async () => {
       const itemType = item.getAttribute('data-item-type');
       producedItem.push(itemType);
 
-      const itemData = await getUserItems(producedItem);
+      item.classList.add('new-tooltip-loading');
+
+      let itemData = await cacheGet(`smashable-${producedItem.join('-')}`);
+      if (! itemData) {
+        itemData = await getUserItems(producedItem);
+        cacheSet(`smashable-${producedItem.join('-')}`, itemData);
+      }
+
       if (! itemData || ! itemData[0]) {
         return;
       }
@@ -211,6 +224,8 @@ const modifySmashableTooltip = async () => {
       });
 
       tooltip.parentNode.insertBefore(tooltipWrapper, tooltip.nextSibling);
+
+      item.classList.remove('new-tooltip-loading');
     });
   });
 };
