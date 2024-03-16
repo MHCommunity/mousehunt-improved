@@ -3,9 +3,11 @@ import {
   addStyles,
   clearCaches,
   createPopup,
+  doEvent,
   getCurrentLocation,
   getCurrentPage,
   getCurrentTab,
+  getSetting,
   getSettings,
   makeElement,
   onNavigation,
@@ -279,11 +281,16 @@ const addAdvancedSettingsButtons = () => {
   }
 };
 
-/**
- * Modify the settings page, adding toggles to the settings.
- */
-const modifySettingsPage = () => {
-  const settingsPage = document.querySelectorAll('.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__title');
+const highlightLocationHud = () => {
+  // highlight the current location in the location hud settings
+  const locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-location-huds-enabled-${getCurrentLocation()}`);
+  if (locationHudSettings) {
+    locationHudSettings.classList.add('highlight');
+  }
+};
+
+const addTogglesToSettings = () => {
+  const settingsPage = document.querySelectorAll('.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__section');
   if (! settingsPage) {
     return;
   }
@@ -294,7 +301,7 @@ const modifySettingsPage = () => {
   });
 
   // Beta section is default hidden.
-  let toggledSections = sessionGet('toggled-sections') || ['mousehunt-improved-settings-beta'];
+  let toggledSections = sessionGet('toggled-sections', ['mousehunt-improved-settings-beta', 'mousehunt-improved-settings-advanced']);
 
   settingsPage.forEach((setting) => {
     // Append an svg to toggle the class
@@ -338,12 +345,6 @@ const modifySettingsPage = () => {
       toggle.classList.remove('toggled');
     }
   });
-
-  // highlight the current location in the location hud settings
-  const locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-location-huds-enabled-${getCurrentLocation()}`);
-  if (locationHudSettings) {
-    locationHudSettings.classList.add('highlight');
-  }
 };
 
 /**
@@ -381,6 +382,17 @@ const makeModuleIconStyles = () => {
   return returnString;
 };
 
+const linkVersionNumber = () => {
+  const version = document.querySelector('#mousehunt-improved-settings-better .PagePreferences__title .version');
+  if (! version) {
+    return;
+  }
+
+  version.addEventListener('click', () => {
+    doEvent('mh-improved-show-update-summary');
+  });
+};
+
 /**
  * Initialize the module.
  */
@@ -392,8 +404,13 @@ const init = async () => {
 
   addMhImprovedIconToMenu();
   onNavigation(() => {
-    modifySettingsPage();
+    highlightLocationHud();
     addAdvancedSettingsButtons();
+    linkVersionNumber();
+
+    if (! getSetting('experiments.new-settings-styles-columns', false)) {
+      addTogglesToSettings();
+    }
   }, {
     page: 'preferences',
     tab: 'mousehunt-improved-settings',
