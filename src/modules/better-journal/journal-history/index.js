@@ -161,8 +161,6 @@ let lastResponsePage;
 const onJournalRequest = (data) => {
   const reportedCurrentPage = data.journal_page.pager.current;
 
-  console.log('onJournalRequest', 'currentPage', currentPage, 'reportedCurrentPage', reportedCurrentPage, 'lastResponsePage', lastResponsePage);
-
   if (lastResponsePage === reportedCurrentPage) {
     return;
   }
