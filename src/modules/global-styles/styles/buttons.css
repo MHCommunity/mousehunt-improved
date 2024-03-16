@@ -52,3 +52,19 @@
 .mousehuntActionButton:hover::before {
   pointer-events: none;
 }
+
+.mousehuntActionButton.gray {
+  background-color: #e5e5e5;
+  border: 1px solid #8e8e8e;
+  box-shadow: 1px 1px 1px #eee;
+}
+
+.mousehuntActionButton.gray::before {
+  background: #dedede;
+  box-shadow: 0 0 10px #e8e8e8 inset;
+}
+
+.mousehuntActionButton.gray:hover,
+.mousehuntActionButton.gray:focus {
+  background-color: #f3f3f3;
+}
