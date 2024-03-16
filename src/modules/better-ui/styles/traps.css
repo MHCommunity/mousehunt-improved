@@ -499,10 +499,16 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
 
 .mh-dark-mode .trapSelectorView__trapStatSummary,
 .mh-dark-mode .trapSelectorView__outerBlock,
-.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-trapEffectiveness {
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-trapEffectiveness,
+.mh-dark-mode .mh-improved-favorite-setups-button {
   background: #424242;
   border: 1px solid #888;
   box-shadow: 1px 1px 1px #535151;
+}
+
+.mh-dark-mode .mh-improved-favorite-setups-button {
+  background-color: #424242;
+  border-color: #5c5c5c;
 }
 
 .trapSelectorView__activeCodexList.trapSelectorView__innerBlock {

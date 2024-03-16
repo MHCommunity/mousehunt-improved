@@ -62,8 +62,18 @@
 }
 
 .notificationMessageList .message .actions input[type="button"].delete {
-  position: absolute;
-  left: -60px;
+  margin: 0 2px;
+}
+
+.notificationMessageList .message .actions.friendRequestAccepted input[type="button"].delete {
+  padding: 4px;
+  margin-left: 4px;
+}
+
+.message.notification .actions.ballot {
+  display: flex;
+  gap: 3px;
+  float: none;
 }
 
 .notificationMessageList .message input[type="button"].delete,

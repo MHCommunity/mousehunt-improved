@@ -12,7 +12,8 @@
   border-radius: 0;
 }
 
-.treasureMapView-block {
+.treasureMapView-block,
+.treasureMapView-block > .treasureMapView-block-content {
   border-radius: 3px;
 }
 
@@ -865,4 +866,32 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-scoreboard-table .treasureMapView-block-row:hover {
   background-color: #eee;
+}
+
+.treasureMapView-previewBar {
+  padding-left: 15px;
+  background: #d9ffbf;
+}
+
+.treasureMapView-previewBar::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 100px;
+  height: 40px;
+  content: "";
+  background: #d9ffbf url(https://www.mousehuntgame.com/images/ui/elements/larry_circle_large.gif?asset_cache_version=2) 0 -16px no-repeat;
+  background-size: 90px;
+  transform: scaleX(-1);
+}
+
+.treasureMapView-previewBar-content {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 100px;
+}
+
+.treasureMapView-mapMenu-group:first-child .treasureMapView-mapMenu-group-title {
+  margin-bottom: 15px;
 }

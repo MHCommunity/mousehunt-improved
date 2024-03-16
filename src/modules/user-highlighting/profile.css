@@ -94,6 +94,10 @@
   border-color: #98448e;
 }
 
+.mh-improved-fancy-profile .journal .content .entry.short.travel {
+  background-color: #f2f2f2;
+}
+
 .mh-improved-fancy-profile .friendsPage-friendRow-image-border {
   background-image: none;
 }
