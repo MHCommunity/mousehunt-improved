@@ -21,9 +21,9 @@
 - Fixes Better Journal styles regression
 - Adds "Convert weeks and months to days" setting to Lucky Golden Shield Reminder to match the display on mobile
 - Fixes Lucky Golden Shield Reminder not correctly showing the correct time remaining and instead being off by a few hours
-- Removes `items-marketplace-hidden.json` and instead fetchs it from api.mouse.rip
-- Removes `m400-locations.json` and instead fetchs it from api.mouse.rip
-- Removes `relic-hunter-hints.json` and instead fetchs it from api.mouse.rip
+- Removes `items-marketplace-hidden.json` and instead fetches it from api.mouse.rip
+- Removes `m400-locations.json` and instead fetches it from api.mouse.rip
+- Removes `relic-hunter-hints.json` and instead fetches it from api.mouse.rip
 - Excludes Error Reporting functionality from the Userscript build
 - Removes onboarding tutorial
 - Fixes Lucky Golden Shield alignment
@@ -57,13 +57,13 @@
 - Updates Hide Footer to be able to be toggled without a refresh
 - Updates Inline Wiki to be able to be toggled without a refresh
 - Updates Hide Sidebar to be able to be toggled without a refresh
-- Updates Hide Sidebar to be enbled by default
-- Updates Hide Share Buttons to be enbled by default
+- Updates Hide Sidebar to be enabled by default
+- Updates Hide Share Buttons to be enabled by default
 - Updates Import / Export Settings to be able to drag in an exported file to import it, format it, or reset back to default, and various other style updates
 - Updates Better UI styles
-- Updates Betteer Item View styles
+- Updates Better Item View styles
 - Updates Better Journal styles
-- Updaets Better Maps styles
+- Updates Better Maps styles
 - Updates Better Shops styles
 - Updates various other styles
 - Removes the local event environment data files and instead fetch them remotely
@@ -209,7 +209,7 @@
 - Fixes spacebar not working while in Fiery Warpath
 - Adds dragging/scrolling to the lantern height map on the HUD
 - Updates reward image size/position in LNY reward popup
-- Adds ability to dismniss Taunting charm warning in Whisker Woods Rift Location HUD
+- Adds ability to dismiss Taunting charm warning in Whisker Woods Rift Location HUD
 - Adds ability to reorder Favorite Setups
 - Fixes minor journal entry styles
 
@@ -224,7 +224,7 @@
 - Adds Event Location styles for Lunar New Year, including the ability to drag or scroll the lantern height map
 - Updates Living Garden Location HUD to Garden, City, Desert markers on ingredients
 - Updates Cursed City Location HUD to show curse name & necessary charm without having to hover
-- Fixes a potential error happeningla when toggling quill visiblity in Table of Contents
+- Fixes a potential error happening when toggling quill visiblity in Table of Contents
 - Updates Better Journal styles to not break for certain entries or mess up the formatting of event entries
 - Fixes Catch Rate Estimator wrapping mice names to a new line
 - Fixes broken tooltips inside of Hover Profiles
@@ -283,7 +283,7 @@
 - Updates Favorite Setups edit/delete buttons to be more consistent
 - Updates Better King's Reward to honk the horn after successfully submitting the puzzle
 - Updates Better Journal's entry rewriting to save entries in IndexDB to avoid rewriting the same entry multiple times
-- Updaes Bristle Woods Rift Location HUD styles
+- Updates Bristle Woods Rift Location HUD styles
 - Updates Valour Rift Location HUD styles
 - Updates Image Upscaling to look nicer in more places
 - Updates most modules to take effect immediately when settings are changed, rather than requiring a page refresh
@@ -296,7 +296,7 @@
 - Fixes Favorite Setups trying to generate a name on first save
 - Fixes LGS reminder alignment and styles
 - Fixes Iceberg Location HUD Hidden Depths length
-- Fixes Burroughs Rift Location HUD mist showing wrong ccolor at 6
+- Fixes Burroughs Rift Location HUD mist showing wrong color at 6
 - Fixes Hide Daily Reward Popup not correctly hiding the popup _finally_
 - Fixes Better UI style conflicts with Profile+
 - Fixes Location HUD cheese selectors showing after traveling away
@@ -460,7 +460,7 @@
 - Fixes typos and cleans up language for settings and descriptions
 - Updates settings to look fancy and slick
 - Updates Kingdom menu to go to the News page rather than the Forum.
-- Removes shadow on emtpy HUD icons
+- Removes shadow on empty HUD icons
 - Adds Clear Cache button to settings
 - Add MH Improved icon to top menu
 - Adds Location Dashboard refresh functionality
@@ -653,7 +653,7 @@
 - Updates a number of miscellaneous journal entry styles.
 - Fixes spacing of success message for Quick Send Supplies.
 - Updates marketplace search dropdown to not have borders on the images.
-- Updates gift inbox footer "You can send/recieve X gifts today" to be two lines.
+- Updates gift inbox footer "You can send/receive X gifts today" to be two lines.
 - Updates the inbox styling and order of menu.
 - Makes close buttons more consistent across the site.
 - Updates completed map reward styles.
@@ -680,13 +680,13 @@
 - Removes crafted image border
 - Loads modules async
 - Resplits better ui and better inventory options into standalone modules
-- Splits required module into seperate modules, set to alwaysLoad
+- Splits required module into separate modules, set to alwaysLoad
 - Moves journal privacy back to standalone module
 - Moves dev to module folder
 - Reorders location dashboard setting
 - Adds changelog.md
 - Adds debug functionality with a flag
-- Removes sample migtated userscript
+- Removes sample migrated userscript
 - Updates styles
 - Add docblocks
 - Fixes spelling and grammar a bit
@@ -710,7 +710,7 @@
 - Adds more styling for item views
 - Adds inbox styling
 - Adds gift buttons to main gift view, improve styling
-- Don't show fullstop after team name in hover profile
+- Don't show full stop after team name in hover profile
 - Fixes alignment of friend request and accepted buttons in the inbox
 - Makes it so the background of the page will always be the same color, rather than switching to white on narrow screens
 - Adds better error displays & debugging information
@@ -754,7 +754,7 @@
 - Fixes Larry's Gift background color
 - Sets min-height and width for hunter images on the map
 - Removes broken links to mhdb
-- Updates keyboard shortcuts to ignore keypresses when ctrl is pressed
+- Updates keyboard shortcuts to ignore key presses when ctrl is pressed
 - Fixes corkboard colors for darkmode
 - Fixes map title width blocking elements
 - Fixes popup journal spacing
@@ -768,7 +768,7 @@
 - Adds crowns to mouse stats page
 - Add setting for disabling paste hunter ID
 - Enable rankup forecaster import/export buttons by default in feature flags
-- Moves 'Only ppen multiple' to Better Inventory
+- Moves 'Only open multiple' to Better Inventory
 - Adds settings for Better Inventory
 - Adds open all but one button functionality
 - Fixes Location Catch Stats loading
@@ -858,77 +858,77 @@
 
 - Don't show attraction rates on the mouse popup if there aren't any
 - Don't show drop rates on the mouse popup if there aren't any
-- Update font size for MHCT links
+- Updates font size for MHCT links
 - Make the 'you own' in shops look nicer and more clear
-- Fix alignment of kings crown mice
-- Fix issues with better travel settings & correctly defaulting to the tab
-- Switch to using helper method to grab settings to ensure they're prefix correctly
-- Bump mh-utils version
-- Shrink puzzle input font size a bit
-- Upscale storm cell image
-- Fix the 'send 1 free gifts' typo
-- Style the gift of the day
-- Add a 'select random friends' button for gift sending
+- Fixes alignment of kings crown mice
+- Fixes issues with better travel settings & correctly defaulting to the tab
+- Switches to using helper method to grab settings to ensure they're prefix correctly
+- Bumps mh-utils version
+- Shrinks puzzle input font size a bit
+- Upscales storm cell image
+- Fixes the 'send 1 free gifts' typo
+- Styles the gift of the day
+- Adds a 'select random friends' button for gift sending
 - Don't make multiple leave buttons for the M400 helper
-- Simplify travel location option
-- General map support and styles cleanup
-- Clone the leave map button so it's at the top as well
-- Add error message if no ARs are found on mousepopup, link to MHCT
-- Remove broken MHCT link
-- Use the same _mhct target for mhct links to reuse window
-- Update name of localstorage keys to be consistent
-- Add export/import buttons to rankup forecast userscript
-- Reposition current floor marker for maps
-- Remove weird inventory action button spacing
-- Move away from onPageChange to onNavigate for performance
-- Limit the warn on bad crafts overlay checker to not fire constantly
-- Add a slight delay to keyboard shortcuts to attempt to prevent keyboard shortcut mashing and crashing the page
-- Fix charm shortcut key
-- Fix TEM crown styles
-- Cache AR values in session storage if there was an error retrieving them or they were empty
-- Clean up and rewriting of AR caching, use of map type, etc
-- Support scavenger maps in generic sorted page
-- Remove extra padding in map mouse data dropdown
-- Clean up mice crowns display
-- Add keyboard shortcuts help popup, add more shortcuts
+- Simplifies travel location option
+- Adds general map support and styles cleanup
+- Clones the leave map button so it's at the top as well
+- Adds error message if no ARs are found on mousepopup, link to MHCT
+- Removes broken MHCT link
+- Uses the same _mhct target for mhct links to reuse window
+- Updates name of localstorage keys to be consistent
+- Adds export/import buttons to rankup forecast userscript
+- Repositions current floor marker for maps
+- Removes weird inventory action button spacing
+- Moves away from onPageChange to onNavigate for performance
+- Limits the warn on bad crafts overlay checker to not fire constantly
+- Adds a slight delay to keyboard shortcuts to attempt to prevent keyboard shortcut mashing and crashing the page
+- Fixes charm shortcut key
+- Fixes TEM crown styles
+- Caches AR values in session storage if there was an error retrieving them or they were empty
+- Cleans up and rewriting of AR caching, use of map type, etc
+- Supports scavenger maps in generic sorted page
+- Removes extra padding in map mouse data dropdown
+- Cleans up mice crowns display
+- Adds keyboard shortcuts help popup, add more shortcuts
 - Switch to listening for the paste shortcut for hunter ID quick navigation
-- Add daily reward and King's Reward styles
-- Update Map subcategory header styles
+- Adds daily reward and King's Reward styles
+- Updates Map subcategory header styles
 
 ## Version 0.17.1
 
-- Fix keyboard shortcuts firing always, even in input fields
+- Fixes keyboard shortcuts firing always, even in input fields
 
 ## Version 0.17.0
 
-- Add keyboard shortcuts feature
-- Fix gift buttons setting alignment
-- Add more map styles
-- Highlight paragon shrines on sky map
-- Allow skipping 'bad' gifts in gift return buttons
-- Revert mapping full height tweak
+- Adds keyboard shortcuts feature
+- Fixes gift buttons setting alignment
+- Adds more map styles
+- Highlights paragon shrines on sky map
+- Allows skipping 'bad' gifts in gift return buttons
+- Reverts mapping full height tweak
 
 ## Version 0.16.4
 
-- Update M400 helper
-- Underline quest smash link
-- Move message indicator dot
-- Fix passing parcel display
-- Fix hover profile name color
-- Add BW reminder to Floating Island island start
-- Fix plural invites text
-- Make gift item icon look nicer on gift selector
-- Fix map heights
-- Fix quick send supplies trying to use null thumbnail
-- Dont show HUD setting toggles for areas without new HUDs
-- Clean up TEM mice display
-- Add windmill styles
-- Align quick travel icons
-- Add fullstop to unstable charm journal entries
-- Fix TEM power type alignment
-- Show full catch/miss number on mouse view popup
-- Make current iceberg zone show as bold
-- Unhide invite manage link on maps
+- Updates M400 helper
+- Underlines quest smash link
+- Moves message indicator dot
+- Fixes passing parcel display
+- Fixes hover profile name color
+- Adds BW reminder to Floating Island island start
+- Fixes plural invites text
+- Makes gift item icon look nicer on gift selector
+- Fixes map heights
+- Fixes quick send supplies trying to use null thumbnail
+- Don't show HUD setting toggles for areas without new HUDs
+- Cleans up TEM mice display
+- Adds windmill styles
+- Aligns quick travel icons
+- Adds full stop to unstable charm journal entries
+- Fixes TEM power type alignment
+- Shows full catch/miss number on mouse view popup
+- Makes current iceberg zone show as bold
+- Unhides invite manage link on maps
 
 ## Version 0.16.3
 
@@ -988,10 +988,10 @@
 - Adds mouserip link to kingdom dropdown, add MH Improved github link and mouse.rip link to help menu
 - Modifies cheese effect font sizes
 - Rounds the corners on the quick travel icons
-- Fixes EMP400 charm thubmnail, closes #118
+- Fixes EMP400 charm thumbnail, closes #118
 - Updates King's Cart costs
 - Removes twttr object fill
-- Fixes journal fullstop again
+- Fixes journal full stop again
 - Fixes hover profiles styling and quick send supplies interaction
 - Rewrites a bunch of the mapping functionality and improve it
 - Fixes title when hovering on mouse locations
@@ -1013,14 +1013,14 @@
 ## Version 0.14.11
 
 - Fixes linting errors
-- Fixs journal image size to not clip border
+- Fixes journal image size to not clip border
 - Loads all the high res journal themes
 - Forces journal theme selector preview to be the max height so the bottom of the dialog doesnt bounce around
 - Adds more Journal style tweaks
 - Adds an extra online indicator to the top right of each member on the team journal page
 - Hides the label and make the text bigger for team mate setup on journal page
 - Hides the expiring prize notice
-- Vertically centers the 'udpate details' button for the team
+- Vertically centers the 'update details' button for the team
 - Only shows team trophy note on hover
 - Styles team corkboard to match hunter and map
 - Makes the alpha sort page actually just be on top of the simple travel page
@@ -1029,7 +1029,7 @@
 - Removes friend profile redirect
 - Updates esbuild for userscript
 - Adds zugwangs tower styles
-- Forces frox wall percent to be an interger
+- Forces frox wall percent to be an integer
 - Also ignores King's Prize Key in better-item-view mhct data
 - Adds changelog to release notes
 - Fixes item view image background
@@ -1092,7 +1092,7 @@
 - Style tab lock/unlock buttons
 - Fix tsitu lock/unlock buttons not showing
 - Add margin to the right of journal entries
-- Fix fullstop in journal.. again?
+- Fix full stop in journal.. again?
 - Fix bait font weight
 - Move tournaments to its own module
 - Add tournament member listing on hover
