@@ -114,7 +114,7 @@ const loadModules = async () => {
     }
 
     // Log the loaded modules for the category.
-    debuglog('module-loading', `Loaded ${category.modules.length} ${category.name} modules`, loadedModules);
+    debuglog('module-loading', `Loaded ${category.modules.length} ${category.id} modules`, loadedModules);
   }
 
   // Wait for all modules to load.
