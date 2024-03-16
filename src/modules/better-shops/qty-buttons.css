@@ -1,0 +1,23 @@
+.mh-improved-shop-buy-controls {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: row wrap;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+.itemPurchaseView-action-form.clear-block {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.mh-improved-shop-buy-max {
+  min-width: 25px;
+}

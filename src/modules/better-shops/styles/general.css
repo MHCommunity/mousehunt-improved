@@ -541,3 +541,16 @@ a.itemPurchaseView-action-buySuperBrie {
 .itemViewStatBlock-stat-helper-arrow::after {
   border-top: 10px solid #000;
 }
+
+.itemPurchaseView-container .itemPurchaseView-action-form {
+  min-height: 50px;
+}
+
+.itemPurchaseView-action-itemCost-table-cell {
+  font-size: 11px;
+}
+
+.itemPurchaseView-action-confirm-button:focus,
+.itemPurchaseView-action-confirm-button:hover {
+  filter: hue-rotate(50deg);
+}

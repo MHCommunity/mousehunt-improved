@@ -28,6 +28,7 @@
 }
 
 .itemPurchaseView-action-quantity {
+  flex-grow: 1;
   width: auto;
   margin: 0 5px 0 10px;
 }
@@ -95,4 +96,9 @@ a.itemPurchaseView-action-form-button.sell {
 
 .itemPurchaseView-action-purchaseHelper-error {
   height: auto;
+}
+
+.itemPurchaseView-action-purchaseHelper-maxPurchasesLimitReached {
+  margin-bottom: 5px;
+  font-size: 11px;
 }

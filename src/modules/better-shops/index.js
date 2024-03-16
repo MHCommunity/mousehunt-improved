@@ -1,32 +1,72 @@
-import { addStyles, getCurrentPage, onNavigation, onRequest } from '@utils';
+import {
+  addStyles,
+  getCurrentPage,
+  getSetting,
+  onNavigation,
+  onRequest
+} from '@utils';
+
+import settings from './settings';
+
+import qtyButtons from './qty-buttons';
+import qtyButtonsStyles from './qty-buttons.css';
+
+import maxOwnedHide from './max-owned-hide.css';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
-const updatePlaceholderText = () => {
+const updateInputField = async () => {
   const purchaseBlocks = document.querySelectorAll('.itemPurchaseView-action-state.view');
-  if (purchaseBlocks) {
-    purchaseBlocks.forEach((block) => {
-      const qty = block.querySelector('.itemPurchaseView-action-maxPurchases');
-      if (! qty) {
-        return;
-      }
-
-      let maxQty = qty.innerText;
-      if (maxQty.includes('Inventory max')) {
-        maxQty = 0;
-      }
-
-      const input = block.querySelector('input');
-      if (! input) {
-        return;
-      }
-
-      // maxQty = parseInt(maxQty) ? parseInt(maxQty) + 1 : 0;
-
-      input.setAttribute('placeholder', maxQty);
-    });
+  if (! purchaseBlocks) {
+    return;
   }
+
+  purchaseBlocks.forEach((block) => {
+    const qty = block.querySelector('.itemPurchaseView-action-maxPurchases');
+    if (! qty) {
+      return;
+    }
+
+    let maxQty = qty.innerText;
+    if (maxQty.includes('Inventory max')) {
+      maxQty = 0;
+    }
+
+    const input = block.querySelector('input');
+    if (! input) {
+      return;
+    }
+
+    input.setAttribute('placeholder', maxQty);
+
+    // listen for the enter key when the input is focused
+    const buyButton = block.querySelector('.itemPurchaseView-action-form-button.buy');
+    if (buyButton) {
+      input.addEventListener('focus', () => {
+        const enterEvt = input.addEventListener('keydown', (e) => {
+          if ('Enter' === e.key) {
+            buyButton.click();
+
+            setTimeout(() => {
+              const confirmButton = document.querySelector('.itemPurchaseView-container.confirmPurchase .itemPurchaseView-action-confirm-button');
+              if (confirmButton) {
+                confirmButton.focus();
+              }
+            }, 200);
+          }
+        });
+
+        input.addEventListener('blur', () => {
+          input.removeEventListener('keydown', enterEvt);
+        });
+      });
+    }
+
+    if (getSetting('better-shops.show-qty-buttons', true)) {
+      qtyButtons(block, input, maxQty);
+    }
+  });
 };
 
 const main = () => {
@@ -68,7 +108,7 @@ const main = () => {
     });
   }
 
-  updatePlaceholderText();
+  updateInputField();
 
   const owned = document.querySelectorAll('.itemPurchaseView-action-purchaseHelper-owned');
   if (owned) {
@@ -91,7 +131,6 @@ const main = () => {
   const kingsCart = document.querySelectorAll('.itemPurchaseView-container.kingsCartItem');
   if (kingsCart) {
     kingsCart.forEach((cart) => {
-      // cart.classList.remove('kingsCartItem');
       cart.querySelector('input').value = '';
     });
   }
@@ -136,13 +175,23 @@ const main = () => {
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles, 'better-shops');
+  const stylesToAdd = [...styles];
+
+  if (getSetting('better-shops.hide-max-owned', false)) {
+    stylesToAdd.push(maxOwnedHide);
+  }
+
+  if (getSetting('better-shops.show-qty-buttons', true)) {
+    stylesToAdd.push(qtyButtonsStyles);
+  }
+
+  addStyles(stylesToAdd, 'better-shops');
 
   onNavigation(main, {
     page: 'shops',
   });
 
-  onRequest('purchases/itempurchase.php', updatePlaceholderText);
+  onRequest('purchases/itempurchase.php', updateInputField);
 };
 
 export default {
@@ -152,4 +201,5 @@ export default {
   default: true,
   description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.',
   load: init,
+  settings,
 };
