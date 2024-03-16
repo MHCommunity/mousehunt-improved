@@ -1,149 +1,87 @@
 import {
   addBodyClass,
-  clearCaches,
-  databaseDelete,
   debuglog,
-  fillDataCaches,
+  doEvent,
   getSetting,
-  getSettings,
-  refreshPage,
   saveSetting,
   setGlobal,
   showLoadingPopup,
-  sleep
+  updateCaches
 } from '@utils';
 
-import { cleanupCacheArSettings, cleanupSettings, removeOldEventFavoriteLocations } from './settings-cleanup';
-import {
-  migrateFlags,
-  migrateJournalChangerDate,
-  migrateQuestsCache,
-  migrateSettings,
-  migrateWisdomStat
-} from './settings-migrate';
+import { isVersionBefore, restoreSettingsBackup, saveSettingsBackup } from './utils';
 
-import settingsToMigrate from './settings-to-migrate.json';
+import * as imported from './versions/*.js'; // eslint-disable-line import/no-unresolved
+const versionUpdates = imported;
 
-/**
- * Check if the version is new.
- *
- * @param {string} version The version to check.
- *
- * @return {boolean} True if it's a new version, false otherwise.
- */
-const isNewVersion = (version) => {
-  const currentVersion = mhImprovedVersion;
-
-  // If it's not set, then it's a new install (or an update from before this was added).
-  if (version === null) {
-    return true;
+const doVersionUpdates = async () => {
+  if ('0.0.0' === previousVersion) {
+    return;
   }
 
-  // If it's not the same, then it's an update.
-  if (version !== currentVersion) {
-    return true;
-  }
-
-  // Otherwise, it's the same version.
-  return false;
-};
-
-/**
- * Clean up settings on update.
- *
- * @param {string} previousVersion The previous version.
- * @param {string} newVersion      The new version.
- */
-const update = async (previousVersion, newVersion) => {
-  showLoadingPopup(`Updating MouseHunt Improved to v${newVersion}...`);
-
-  if ('0.35.0' === previousVersion) {
-    const backedUpSettings = localStorage.getItem('mousehunt-improved-settings-backup');
-    if (backedUpSettings) {
-      localStorage.setItem('mousehunt-improved-settings', backedUpSettings);
+  for (const version in versionUpdates) {
+    const currentVersion = versionUpdates[version];
+    if (isVersionBefore(currentVersion.id, mhImprovedVersion)) {
+      try {
+        await currentVersion.update();
+      } catch (error) {
+        debuglog('update-migration', `Error updating to ${currentVersion.id}:`, error);
+        throw error;
+      }
     }
   }
+};
 
-  saveSetting('debug.all', true);
+const update = async () => {
+  debuglog('update-migration', `Updating from ${previousVersion} to ${mhImprovedVersion}`);
 
+  showLoadingPopup(`Updating MouseHunt Improved to v${mhImprovedVersion}...`);
   addBodyClass('mh-improved-updating');
   setGlobal('mh-improved-updating', true);
 
-  const start = Date.now();
+  // Backup the settings before we start updating in case something goes wrong.
+  saveSettingsBackup();
 
-  const current = getSettings();
-  localStorage.setItem('mousehunt-improved-settings-backup', JSON.stringify(current));
+  try {
+    await doVersionUpdates();
+    saveSetting('mh-improved-version', mhImprovedVersion);
 
-  debuglog('update-migration', 'Migrating settings');
-  migrateSettings(settingsToMigrate.settings);
+    await updateCaches();
 
-  debuglog('update-migration', 'Migrating flags');
-  migrateFlags(settingsToMigrate.flags);
+    doEvent('mh-improved-updated', mhImprovedVersion);
+  } catch (error) {
+    // If something goes wrong, restore the settings from the backup
+    restoreSettingsBackup();
 
-  debuglog('update-migration', 'Migrating quests cache');
-  migrateQuestsCache();
+    // Show the error to the user.
+    showLoadingPopup('Error updating MouseHunt Improved. Please try refreshing the page.');
 
-  debuglog('update-migration', 'Migrating other settings');
-  migrateWisdomStat();
-
-  debuglog('update-migration', 'Migrating journal changer date');
-  migrateJournalChangerDate();
-
-  debuglog('update-migration', 'Cleaning up settings');
-  cleanupCacheArSettings();
-
-  debuglog('update-migration', 'Cleaning up old event favorite locations');
-  removeOldEventFavoriteLocations();
-
-  debuglog('update-migration', 'Cleaning up old databases');
-  cleanupSettings([
-    `mh-improved-cached-ar-v${previousVersion}`,
-    'mh-improved-update-notifications', // Updated in v0.28.0.
-  ]);
-
-  // Moved to 'mh-improved-<id>' databases in v0.35.0.
-  debuglog('update-migration', 'Deleting old databases');
-  await databaseDelete('mh-improved');
-
-  // Clear caches and then refetch the data.
-  debuglog('update-migration', 'Clearing caches');
-  await clearCaches();
-
-  debuglog('update-migration', 'Filling data caches');
-  await fillDataCaches();
-
-  const end = Date.now();
-
-  // Because we are showing a loading popup, we want to make sure it's shown for at least 3 seconds.
-  if (end - start < 3000) {
-    await sleep(3000 - (end - start));
+    throw error;
   }
-
-  saveSetting('mh-improved-version', newVersion);
-
-  refreshPage();
 };
+
+let previousVersion = null;
 
 /**
  * Initialize the update migration.
  */
 const init = async () => {
-  const installedVersion = getSetting('mh-improved-version', null);
-  if (installedVersion === null) {
-    await update(null, mhImprovedVersion);
+  previousVersion = getSetting('mh-improved-version', '0.0.0');
+  if ('0.0.0' === previousVersion) {
     return;
   }
 
-  if (! isNewVersion(installedVersion)) {
-    return;
+  if (previousVersion !== mhImprovedVersion) {
+    debuglog('update-migration', `Previous version: ${previousVersion}`);
+    await update();
+    doEvent('mh-improved-updated', mhImprovedVersion);
   }
-
-  await update(installedVersion, mhImprovedVersion);
 };
 
 export default {
-  id: '_update-migration',
+  id: 'update-migration',
   type: 'required',
   alwaysLoad: true,
+  order: 300,
   load: init,
 };
