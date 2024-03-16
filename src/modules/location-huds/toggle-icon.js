@@ -22,25 +22,25 @@ const getCurrentLocationForSettings = async () => {
 
 const getIconSettings = async () => {
   let key = await getCurrentLocationForSettings();
+  key = `location-huds-enabled.${key}`;
+
   let value = getSetting(key, true);
 
   return {
     id: 'mousehunt-improved-location-huds',
     classname: 'mousehunt-improved-location-huds-icon',
-    text: value ? 'Disable' : 'Enable',
+    text: value ? 'Disable HUD' : 'Enable HUD',
     position: 'prepend',
     action: (e, icon) => {
-      key = getCurrentLocationForSettings();
       value = getSetting(key, true);
-
       saveSetting(key, ! value);
 
       if (value) {
-        icon.textContent = 'Enable';
+        icon.textContent = 'Enable HUD';
         icon.classList.add('disabled');
         icon.classList.remove('enabled');
       } else {
-        icon.textContent = 'Disable';
+        icon.textContent = 'Disable HUD';
         icon.classList.remove('disabled');
         icon.classList.add('enabled');
       }
