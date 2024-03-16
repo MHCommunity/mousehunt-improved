@@ -100,7 +100,7 @@ const getData = async (key) => {
 
   const isExpired = await isCacheExpired(key);
   if (! isExpired) {
-    const cachedData = await cacheGet(key, false);
+    const cachedData = await dataCacheGet(key, false);
     if (cachedData) {
       return cachedData;
     }
@@ -111,7 +111,7 @@ const getData = async (key) => {
   debuglog('utils-data', `Fetched data for ${key}`, data);
 
   if (data) {
-    cacheSet(key, data);
+    dataCacheSet(key, data);
     setCacheExpiration(key);
   }
 
@@ -138,13 +138,13 @@ const clearCaches = async () => {
     }
   }
 
-  dbDelete('cache', 'expirations');
+  await dbDelete('cache', 'expirations');
 };
 
 /**
  * Prime the caches.
  */
-const fillDataCaches = async () => {
+const updateCaches = async () => {
   validDataFiles.forEach(async (file) => {
     await getData(file);
   });
@@ -223,6 +223,10 @@ const cacheSet = (key, value) => {
   dbSet('cache', { id: key, value });
 };
 
+const dataCacheSet = (key, value) => {
+  dbSet('data', { id: key, value });
+};
+
 /**
  * Get a cache value.
  *
@@ -233,6 +237,15 @@ const cacheSet = (key, value) => {
  */
 const cacheGet = async (key, defaultValue = false) => {
   const cached = await dbGet('cache', key);
+  if (! cached) {
+    return defaultValue;
+  }
+
+  return cached.value;
+};
+
+const dataCacheGet = async (key, defaultValue = false) => {
+  const cached = await dbGet('data', key);
   if (! cached) {
     return defaultValue;
   }
@@ -256,7 +269,7 @@ export {
   clearCaches,
   getData,
   getHeaders,
-  fillDataCaches,
+  updateCaches,
   sessionGet,
   sessionSet
 };

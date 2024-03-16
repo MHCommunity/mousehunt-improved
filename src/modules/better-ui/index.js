@@ -1,4 +1,4 @@
-import { addStyles, getFlag } from '@utils';
+import { addStyles, getFlag, onRequest } from '@utils';
 
 import friends from './friends';
 import hud from './hud';
@@ -14,6 +14,13 @@ import tsituSupplySearchStyles from './userscript-styles/tsitu-supply-search.css
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
+
+const kingsPromoTextChange = () => {
+  const kingsPromo = document.querySelector('.shopsPage-kingsCalibratorPromo');
+  if (kingsPromo) {
+    kingsPromo.innerHTML = kingsPromo.innerHTML.replace('and even', 'and');
+  }
+};
 
 const addUserscriptStyles = async () => {
   const userscriptStyles = [
@@ -47,6 +54,8 @@ const init = async () => {
   addUserscriptStyles();
   friends();
   hud();
+
+  onRequest('users/dailyreward.php', kingsPromoTextChange);
 };
 
 export default {

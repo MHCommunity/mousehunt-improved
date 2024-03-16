@@ -553,9 +553,11 @@ const addSettingOnce = (options) => {
   const description = options.description || '';
   const tab = 'mousehunt-improved-settings';
   const settingSettings = options.subSettings || null;
+  const moduleType = options.moduleType || null;
 
   // Make sure we have the container for our settings.
-  const container = document.querySelector(`.mousehuntHud-page-tabContent.${tab}`);
+  let container = document.querySelector(`.mousehuntHud-page-tabContent.${tab}`);
+  const originalContainer = container;
   if (! container) {
     return false;
   }
@@ -567,18 +569,53 @@ const addSettingOnce = (options) => {
     subSetting: options.module.subSetting || false,
   };
 
+  let leftSide = container.querySelector('.PagePreferences__settingsLeft');
+  if (! leftSide) {
+    leftSide = makeElement('div', 'PagePreferences__settingsLeft');
+    container.append(leftSide);
+    container.classList.add('two-column');
+  }
+
+  let rightSide = container.querySelector('.PagePreferences__settingsRight');
+  if (! rightSide) {
+    rightSide = makeElement('div', 'PagePreferences__settingsRight');
+    container.append(rightSide);
+    container.classList.add('two-column');
+  }
+
+  if (moduleType && getSetting('experiments.new-settings-styles-columns', false)) {
+    switch (moduleType) {
+    case 'better':
+    case 'design':
+    case 'element-hiding':
+    case 'advanced':
+      container = leftSide;
+      break;
+    case 'feature':
+    case 'location-hud':
+    case 'beta':
+      container = rightSide;
+      break;
+    default:
+      container = originalContainer;
+      break;
+    }
+  }
+
   section.id = `${tab}-${section.id.replaceAll(/[^\w-]/gi, '')}`;
 
   // If we don't have our custom settings section, then create it.
   let sectionExists = document.querySelector(`#${section.id}-wrapper`);
   if (! sectionExists) {
-    const title = makeElement('div', 'PagePreferences__title');
+    const title = makeElement('div', 'PagePreferences__section');
     title.id = section.id;
 
-    makeElement('h3', 'PagePreferences__titleText', section.name, title);
-    makeElement('div', 'PagePreferences__separator', '', title);
+    const titleSection = makeElement('div', 'PagePreferences__title');
+    makeElement('h3', 'PagePreferences__titleText', section.name, titleSection);
+    // makeElement('div', 'PagePreferences__separator', '', titleSection);
 
     // Append it.
+    title.append(titleSection);
     container.append(title);
 
     if (section.description) {
@@ -587,11 +624,11 @@ const addSettingOnce = (options) => {
     }
 
     // append a wrapper for the settings.
-    const settingsWrapper = makeElement('div', 'PagePreferences__settingsWrapper');
-    settingsWrapper.id = `${section.id}-wrapper`;
-    container.append(settingsWrapper);
+    const sectionWrapper = makeElement('div', 'PagePreferences__sectionWrapper');
+    sectionWrapper.id = `${section.id}-wrapper`;
+    container.append(sectionWrapper);
 
-    title.append(settingsWrapper);
+    title.append(sectionWrapper);
 
     sectionExists = document.querySelector(`#${section.id}-wrapper`);
   }
@@ -605,10 +642,13 @@ const addSettingOnce = (options) => {
   }
 
   // Create the markup for the setting row.
-  const settings = makeElement('div', ['PagePreferences__settingsList', `PagePreferences__settingsList-${keySafe}`, `PagePreferences__settingsList-${section.id}`]);
+  const settings = makeElement('div', ['PagePreferences__settingsList']);
   settings.id = `${section.id}-${keySafe}`;
+
   if (section.subSetting) {
     settings.classList.add('PagePreferences__subSetting');
+  } else {
+    settings.classList.add(`PagePreferences__settingsList-${keySafe}`, `PagePreferences__settingsList-${section.id}`);
   }
 
   if (settingSettings && settingSettings.type) {
@@ -624,20 +664,22 @@ const addSettingOnce = (options) => {
   settingNameText.href = `#${section.id}-${keySafe}`;
   settingNameText.setAttribute('data-setting', key);
   settingNameText.setAttribute('data-tab', tab);
-  settingNameText.setAttribute('data-default', defaultValue);
+  settingNameText.setAttribute('data-default', JSON.stringify(defaultValue));
   settingName.append(settingNameText);
 
-  settingNameText.addEventListener('click', (event) => {
-    event.preventDefault();
-    navigator.clipboard.writeText(`${window.location.href}#${section.id}-${keySafe}`);
+  if (! section.subSetting) {
+    settingNameText.addEventListener('click', (event) => {
+      event.preventDefault();
+      navigator.clipboard.writeText(`${window.location.href}#${section.id}-${keySafe}`);
 
-    showSuccessMessage({
-      message: 'Copied link to clipboard',
-      append: settingNameText,
-      after: true,
-      classname: 'setting-link-copied',
+      showSuccessMessage({
+        message: 'Copied link to clipboard',
+        append: settingNameText,
+        after: true,
+        classname: 'setting-link-copied',
+      });
     });
-  });
+  }
 
   const defaultSettingText = makeElement('div', 'PagePreferences__settingDefault');
 
@@ -679,11 +721,9 @@ const addSettingOnce = (options) => {
     settingRowAction.append(makeSettingToggle({ key, defaultValue, tab, settings }));
   }
 
-  // Add the label and action to the settings row.
   settingRow.append(settingRowLabel);
   settingRow.append(settingRowAction);
 
-  // Add the settings row to the settings container.
   settings.append(settingRow);
   sectionExists.append(settings);
 
@@ -756,6 +796,7 @@ const addSettingForModule = async (module) => {
     let moduleSettingRow = null;
     if (! submodule.alwaysLoad && ! submodule.beta) {
       moduleSettingRow = await addSetting({
+        moduleType: module.id,
         name: submodule.name,
         id: submodule.id,
         group: submodule.group,
@@ -773,6 +814,7 @@ const addSettingForModule = async (module) => {
 
       for (const subSettings of subSettingsGroup) {
         const subSettingRow = await addSetting({
+          moduleType: module.id,
           name: subSettings.title,
           id: subSettings.id,
           group: submodule.group || false,

@@ -402,7 +402,7 @@ const toggleControls = () => {
 
 const onSetPage = () => {
   main();
-  addEvent('ajax_request', main, null, true);
+  addEvent('ajax_request', main, { removeAfterFire: true, id: 'inventory-lock-and-hide' });
 };
 
 /**

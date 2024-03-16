@@ -7,7 +7,7 @@
  */
 const database = async (databaseName) => {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open(`mh-improved-${databaseName}`, 1);
+    const request = indexedDB.open(`mh-improved-${databaseName}`, 5);
 
     request.onerror = (event) => {
       reject(event.target.error);
@@ -91,6 +91,11 @@ const dbSet = async (databaseName, data) => {
 
   const transaction = db.transaction(databaseName, 'readwrite');
   const objectStore = transaction.objectStore(databaseName);
+
+  data = {
+    data,
+    id: data.id || Date.now()
+  }
 
   const request = objectStore.put(data);
 

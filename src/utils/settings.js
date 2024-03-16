@@ -113,7 +113,18 @@ const getSetting = (key, defaultValue = false) => {
  */
 const deleteSetting = (key) => {
   const settings = getSettings();
-  delete settings[key];
+
+  const groupAndKey = getGroupAndKey(key);
+  if (groupAndKey.group) {
+    if (settings[groupAndKey.group]) {
+      delete settings[groupAndKey.group][groupAndKey.key];
+    } else {
+      delete settings[groupAndKey.key];
+    }
+  } else {
+    delete settings[key];
+  }
+
   localStorage.setItem('mousehunt-improved-settings', JSON.stringify(settings));
 };
 

@@ -208,11 +208,16 @@ const doRequest = async (url, formData = {}) => {
 /**
  * Sleep for a given number of milliseconds.
  *
- * @param {number} ms The number of milliseconds to sleep.
+ * @param {number} ms      The number of milliseconds to sleep.
+ * @param {number} elapsed The time already elapsed.
  *
  * @return {Promise} A promise that resolves after the sleep.
  */
-const sleep = async (ms) => {
+const sleep = async (ms, elapsed = 0) => {
+  if (elapsed) {
+    ms -= elapsed;
+  }
+
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
