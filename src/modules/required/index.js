@@ -1,4 +1,4 @@
-import { doEvent, getFlag, onTurn } from '@utils';
+import { doEvent, getFlag, getHeaders, onTurn } from '@utils';
 
 const checkForAutoHorn = () => {
   const storageKeys = new Set(['NOB-huntsLeft', 'HornTimeDelayMax', 'AutoSolveKR', 'TrapCheckTimeDelayMax', 'TrapCheckTimeOffset', 'TrapCheckTimeDelayMin', 'AutoSolveKRDelayMin', 'AutoSolveKRDelayMax', 'SaveKRImage', 'autoPopupKR', 'AggressiveMode', 'HornTimeDelayMin']);
