@@ -12,7 +12,7 @@ export default async () => {
       description: '',
     },
     {
-      id: 'journal-changer.icons',
+      id: 'show-auras.icons',
       title: 'Only show icons',
       default: false,
       description: '',

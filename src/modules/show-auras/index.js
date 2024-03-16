@@ -37,7 +37,7 @@ const getExpiryFormatted = (time) => {
 };
 
 const getExpiryRemainingFormatted = (time) => {
-  const units = ['y', 'mo', 'w', 'd', 'h', 'm'];
+  const units = ['d', 'h'];
 
   const duration = humanizer(time, {
     round: true,
@@ -52,7 +52,7 @@ const getExpiryRemainingFormatted = (time) => {
 const addExpiryWarning = () => {
   // if any of the auras are expiring soon, show a notification
   // const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24);
-  const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24 * 40); // TODO: figure out the time that's worht a warning
+  const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24 * 40); // TODO: figure out the time that's worth a warning
   if (soon.length) {
     // add a class to the aura to show it's expiring soon
     soon.forEach((aura) => {
@@ -65,6 +65,11 @@ const addTrapBlock = () => {
   const trapSummary = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
   if (! trapSummary) {
     return;
+  }
+
+  const existing = document.querySelector('#mh-improved-aura-view');
+  if (existing) {
+    existing.remove();
   }
 
   const auraTrapBlock = makeElement('div', ['mh-improved-aura-view', 'campPage-trap-trapEffectiveness']);
@@ -90,12 +95,7 @@ const addTrapBlock = () => {
     auraTrapBlock.append(auraEl);
   });
 
-  const existing = document.querySelector('#mh-improved-aura-view');
-  if (existing) {
-    existing.replaceWith(auraTrapBlock);
-  } else {
-    trapSummary.append(auraTrapBlock);
-  }
+  trapSummary.append(auraTrapBlock);
 };
 
 const getAuras = () => {
