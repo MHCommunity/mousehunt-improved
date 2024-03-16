@@ -278,7 +278,7 @@ const addQuickInvite = async (mapData) => {
     existing.remove();
   }
 
-  // Check if we're the curent map owner.
+  // Check if we're the current map owner.
   if (! mapData?.is_owner) {
     return;
   }

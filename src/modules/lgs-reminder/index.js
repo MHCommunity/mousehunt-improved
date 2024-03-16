@@ -56,7 +56,7 @@ const getShieldTime = () => {
   return Math.floor((expiry - now));
 };
 
-const getShieldTimeFormattted = () => {
+const getShieldTimeFormatted = () => {
   const time = getShieldTime();
   if (! time) {
     return '';
@@ -95,7 +95,7 @@ const updateLgsReminder = (el) => {
     el.classList.add('lgs-danger');
   }
 
-  el.innerText = getShieldTimeFormattted();
+  el.innerText = getShieldTimeFormatted();
 };
 
 const main = () => {
@@ -133,7 +133,7 @@ const main = () => {
     second: 'numeric',
   });
 
-  reminder.title = `LGS Expires on ${endDate} (${getShieldTimeFormattted()} remaining)`;
+  reminder.title = `LGS Expires on ${endDate} (${getShieldTimeFormatted()} remaining)`;
 
   if (newStyle) {
     const existing = document.querySelector('.mousehunt-improved-lgs-reminder-wrapper');

@@ -49,7 +49,7 @@ const replaceInJournal = () => {
 };
 
 const replaceOnMousePage = () => {
-  // Check for the mousepage stats.
+  // Check for the mouse page stats.
   const mouseWeightsStats = document.querySelectorAll('.mouseListView-categoryContent-subgroupContainer .mouseListView-categoryContent-subgroup-mouse-stats');
   if (! mouseWeightsStats.length) {
     return;

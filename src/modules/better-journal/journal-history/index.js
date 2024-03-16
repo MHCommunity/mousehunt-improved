@@ -69,7 +69,7 @@ const getAllEntries = async () => {
     return [];
   }
 
-  // sort the entrieys by id, with the newest first
+  // sort the entries by id, with the newest first
   journalEntries.sort((a, b) => b.id - a.id);
 
   return journalEntries;

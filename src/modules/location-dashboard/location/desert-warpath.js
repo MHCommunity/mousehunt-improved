@@ -54,10 +54,10 @@ const setFieryWarpathData = () => {
     streak = Number.parseInt(streakEl.innerText.replaceAll('\n', ' ').replace(' 0', '').trim());
   }
 
-  const remaininEl = document.querySelectorAll('.warpathHUD-wave-mouse-population');
-  if (remaininEl.length) {
+  const remainingEl = document.querySelectorAll('.warpathHUD-wave-mouse-population');
+  if (remainingEl.length) {
     // sum all the values that have an innerText
-    remaining = [...remaininEl].reduce((sum, el) => {
+    remaining = [...remainingEl].reduce((sum, el) => {
       if (el.innerText) {
         sum += Number.parseInt(el.innerText);
       }

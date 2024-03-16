@@ -53,7 +53,7 @@ const setOpenQuantityOnClick = (attempts = 0) => {
 /**
  * Add the open all button to the convertible items.
  */
-const addOpenAlltoConvertible = () => {
+const addOpenAllToConvertible = () => {
   const form = document.querySelector('.convertible .itemView-action-convertForm');
   if (! form) {
     return;
@@ -68,7 +68,7 @@ const addOpenAlltoConvertible = () => {
   // get the innerHTML and split it on the input tag. then wrap the second match in a span so we can target it
   const formHTML = form.innerHTML;
   const formHTMLArray = formHTML.split(' /');
-  // if we dont have a second match, just return
+  // if we don't have a second match, just return
   if (! formHTMLArray[1]) {
     return;
   }
@@ -162,19 +162,19 @@ const main = () => {
     setOpenQuantityOnClick();
   }
 
-  addOpenAlltoConvertible();
+  addOpenAllToConvertible();
   addItemViewPopupToCollectibles();
   addArmButtonToCharms();
 
   onNavigation(() => {
-    addOpenAlltoConvertible();
+    addOpenAllToConvertible();
     addItemViewPopupToCollectibles();
     addArmButtonToCharms();
   }, {
     page: 'inventory',
   });
 
-  onEvent('js_dialog_show', addOpenAlltoConvertible);
+  onEvent('js_dialog_show', addOpenAllToConvertible);
 
   recipes();
 };

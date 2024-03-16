@@ -4,7 +4,7 @@ import { addStylesDirect } from './styles';
 import favoriteButtonStyles from './styles/favorite-button.css';
 
 /**
- * Creates an element with the given tag, classname, text, and appends it to the given element.
+ * Creates an element with the given tag, class name, text, and appends it to the given element.
  *
  * @param {string}      tag      The tag of the element to create.
  * @param {string}      classes  The classes of the element to create.

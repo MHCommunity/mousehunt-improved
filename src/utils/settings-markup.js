@@ -142,7 +142,7 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
  * @param {boolean} options.default     The default value.
  * @param {string}  options.description The description of the setting.
  * @param {Object}  options.module      The module the setting is for.
- * @param {Object}  options.subsettings The subsettings for the setting.
+ * @param {Object}  options.subSettings The sub-settings for the setting.
  * @param {string}  options.group       The group the setting is in.
  * @param {string}  options.tab         The tab to add the settings to.
  * @param {Object}  options.settings    The settings for the setting.
@@ -537,7 +537,7 @@ const makeSettingBlank = ({ section, key }) => {
  * @param {boolean} options.default     The default value.
  * @param {string}  options.description The description of the setting.
  * @param {Object}  options.module      The module the setting is for.
- * @param {Object}  options.subsettings The subsettings for the setting.
+ * @param {Object}  options.subSettings The sub-settings for the setting.
  * @param {string}  options.group       The group the setting is in.
  * @param {string}  options.tab         The tab to add the settings to.
  * @param {Object}  options.settings    The settings for the setting.
@@ -552,7 +552,7 @@ const addSettingOnce = (options) => {
   const defaultValue = options.default || null;
   const description = options.description || '';
   const tab = 'mousehunt-improved-settings';
-  const settingSettings = options.subsettings || null;
+  const settingSettings = options.subSettings || null;
 
   // Make sure we have the container for our settings.
   const container = document.querySelector(`.mousehuntHud-page-tabContent.${tab}`);
@@ -782,7 +782,7 @@ const addSettingForModule = async (module) => {
             ...module,
             subSetting: true,
           },
-          subsettings: subSettings.settings,
+          subSettings: subSettings.settings,
         });
 
         if (moduleSettingRow && subSettingRow) {

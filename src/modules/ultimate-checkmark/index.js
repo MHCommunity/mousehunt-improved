@@ -78,12 +78,12 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
     const requiredItem = required.find((i) => i.type === item.type);
 
     return {
-      item_id: item.item_id, // eslint-disable-line camelcase
+      item_id: item.item_id,
       type: item.type,
       name: item.name,
-      thumbnail: item.thumbnail_gray || item.thumbnail, // eslint-disable-line camelcase
+      thumbnail: item.thumbnail_gray || item.thumbnail,
       quantity: item.quantity || 0,
-      quantity_formatted: item.quantity_formatted || '0', // eslint-disable-line camelcase
+      quantity_formatted: item.quantity_formatted || '0',
       le: ! requiredItem,
     };
   });

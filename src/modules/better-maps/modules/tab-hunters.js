@@ -8,12 +8,12 @@ const makeUserTableLoading = (id, title, appendTo) => {
   const loading = makeElement('div', 'treasureMapView-block');
   loading.id = `hunters-loading-${id}-block`;
 
-  const loadingWwrapper = makeElement('div', 'treasureMapView-allyTable', '');
+  const loadingWrapper = makeElement('div', 'treasureMapView-allyTable', '');
   const row = makeElement('div', 'treasureMapView-allyRow', '');
   makeElement('div', ['mousehuntPage-loading', 'active'], '', row);
-  loadingWwrapper.append(row);
+  loadingWrapper.append(row);
 
-  loading.append(loadingWwrapper);
+  loading.append(loadingWrapper);
   appendTo.append(loading);
 };
 

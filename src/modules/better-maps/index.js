@@ -74,17 +74,17 @@ const initMapper = (map) => {
     return;
   }
 
-  // get the treasureMapRootView-content element, and if it has a loading class, wait for the class to be removed by watching the element for chagnes. once its loaded, proceed with our code
+  // get the treasureMapRootView-content element, and if it has a loading class, wait for the class to be removed by watching the element for changes. once its loaded, proceed with our code
   const content = document.querySelector('.treasureMapRootView-content');
   if (content && content.classList.contains('loading')) {
-    const observer = new MutationObserver((mutations, mobserver) => {
+    const observer = new MutationObserver((mutations, mObserver) => {
       mutations.forEach((mutation) => {
         if (
           mutation.type === 'attributes' &&
           mutation.attributeName === 'class' &&
           ! mutation.target.classList.contains('loading')
         ) {
-          mobserver.disconnect();
+          mObserver.disconnect();
           // call the init function again to proceed with our code
           initMapper(map);
         }
@@ -264,6 +264,6 @@ export default {
   name: 'Better Maps',
   type: 'better',
   default: true,
-  description: 'Adds a number of features to maps, including showing attracting rates, a sorted tab that categorizes a variety of maps, and showing more infomation on the Hunters tab.',
+  description: 'Adds a number of features to maps, including showing attracting rates, a sorted tab that categorizes a variety of maps, and showing more information on the Hunters tab.',
   load: init,
 };

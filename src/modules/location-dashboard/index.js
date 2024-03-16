@@ -182,8 +182,8 @@ const doLocationRefresh = async () => {
   const originalLocation = user.environment_type;
   debug(`Original location: ${user.environment_type}.`);
 
-  const equippedbait = user.bait_item_id || 'disarmed';
-  debug(`Equipped bait: ${equippedbait}.`);
+  const equippedBait = user.bait_item_id || 'disarmed';
+  debug(`Equipped bait: ${equippedBait}.`);
 
   // Disarm bait.
   hg.utils.TrapControl.disarmBait().go();
@@ -215,8 +215,8 @@ const doLocationRefresh = async () => {
   await waitForTravel(originalLocation);
   debug(`Traveled back to ${user.environment_type}.`);
 
-  hg.utils.TrapControl.setBait(equippedbait).go();
-  debug(`Re-equipped bait: ${equippedbait}.`);
+  hg.utils.TrapControl.setBait(equippedBait).go();
+  debug(`Re-equipped bait: ${equippedBait}.`);
 
   popup.hide();
 

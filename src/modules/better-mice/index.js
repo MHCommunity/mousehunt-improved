@@ -12,7 +12,7 @@ import {
 
 import { getData } from '@utils/data';
 
-import mousepage from './mousepage';
+import mousePage from './mouse-page';
 
 import styles from './styles.css';
 
@@ -211,9 +211,9 @@ const updateMouseView = async () => {
     }
   }
 
-  const grouptitle = mouseView.querySelector('.mouseView-group.mouseview-title-group');
-  if (grouptitle) {
-    grouptitle.innerHTML = grouptitle.innerHTML.replace('Group: ', '');
+  const groupTitle = mouseView.querySelector('.mouseView-group.mouseview-title-group');
+  if (groupTitle) {
+    groupTitle.innerHTML = groupTitle.innerHTML.replace('Group: ', '');
   }
 
   const container = mouseView.querySelector('.mouseView-contentContainer');
@@ -252,7 +252,7 @@ const updateMouseView = async () => {
 
   makeTooltip({
     appendTo: titleText,
-    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank">MHCT</a>.',
+    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noopener noreferrer">MHCT</a>.',
   });
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
@@ -262,23 +262,23 @@ const updateMouseView = async () => {
 
   arWrapper.append(title);
 
-  const mhctjson = await getArForMouse(mouseId, 'mouse');
-  if (! mhctjson || mhctjson === undefined || mhctjson.length === 0 || 'error' in mhctjson) {
+  const mhctJson = await getArForMouse(mouseId, 'mouse');
+  if (! mhctJson || mhctJson === undefined || mhctJson.length === 0 || 'error' in mhctJson) {
     return;
   }
 
   const miceArWrapper = makeElement('div', 'mice-ar-wrapper');
-  const hasStages = mhctjson.some((mouseAr) => mouseAr.stage);
+  const hasStages = mhctJson.some((mouseAr) => mouseAr.stage);
   if (hasStages) {
     miceArWrapper.classList.add('has-stages');
   }
 
-  // if mhctjson is not able to be sliced, then it is an error
-  if (! mhctjson.slice) {
+  // if mhctJson is not able to be sliced, then it is an error
+  if (! mhctJson.slice) {
     return;
   }
 
-  mhctjson.slice(0, 15).forEach((mouseAr) => {
+  mhctJson.slice(0, 15).forEach((mouseAr) => {
     const mouseArWrapper = makeElement('div', 'mouse-ar-wrapper');
 
     makeElement('div', 'location', mouseAr.location, mouseArWrapper);
@@ -293,7 +293,7 @@ const updateMouseView = async () => {
     miceArWrapper.append(mouseArWrapper);
   });
 
-  if (mhctjson.length > 0) {
+  if (mhctJson.length > 0) {
     arWrapper.append(miceArWrapper);
     container.append(arWrapper);
   }
@@ -361,7 +361,7 @@ let minlucks;
 const init = async () => {
   addStyles(styles, 'better-mice');
   main();
-  mousepage();
+  mousePage();
 
   replaceShowMouseImage();
 };

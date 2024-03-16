@@ -4,7 +4,7 @@ import { getData } from '@utils/data';
 let miceEffs;
 let hasGottenEffs = false;
 
-const getMiceEffectivness = async () => {
+const getMiceEffectiveness = async () => {
   if (! hasGottenEffs) {
     miceEffs = await getData('effs');
     hasGottenEffs = true;
@@ -89,7 +89,7 @@ const getCatchRate = (mousePower, effectiveness, power = null, luck = null) => {
 
 export {
   getCatchRate,
-  getMiceEffectivness,
+  getMiceEffectiveness,
   getMinluck,
   getMouseEffectiveness,
   getMousePower

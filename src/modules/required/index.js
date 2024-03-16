@@ -1,6 +1,6 @@
 import { doEvent, getFlag, onTurn } from '@utils';
 
-const checkForAutohorn = () => {
+const checkForAutoHorn = () => {
   const storageKeys = new Set(['NOB-huntsLeft', 'HornTimeDelayMax', 'AutoSolveKR', 'TrapCheckTimeDelayMax', 'TrapCheckTimeOffset', 'TrapCheckTimeDelayMin', 'AutoSolveKRDelayMin', 'AutoSolveKRDelayMax', 'SaveKRImage', 'autoPopupKR', 'AggressiveMode', 'HornTimeDelayMin']);
   if (! Object.keys(localStorage).filter((key) => storageKeys.has(key)).length) {
     return;
@@ -14,7 +14,7 @@ const checkForAutohorn = () => {
   }
 
   try {
-    // Send a post request to the autohorn tracker.
+    // Send a post request to the auto horn tracker.
     fetch('https://autohorn.mouse.rip/submit', {
       method: 'POST',
       headers: getHeaders(),
@@ -35,7 +35,7 @@ const checkForAutohorn = () => {
 const addEvents = () => {
   const hunterHornTimer = document.querySelector('.huntersHornView__timerState');
   if (hunterHornTimer) {
-    // Add a mutation observer to check when the innertext changes and when it does, start an interval where we fire an event every second.
+    // Add a mutation observer to check when the innerText changes and when it does, start an interval where we fire an event every second.
     const observer = new MutationObserver(() => {
       // After the mutation, start the interval and then stop watching for mutations.
       setInterval(() => {
@@ -59,8 +59,8 @@ const addEvents = () => {
 const init = async () => {
   // If you want to disable the reporting, you can but you have to admit you're a cheater.
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
-    checkForAutohorn();
-    onTurn(checkForAutohorn, 2000);
+    checkForAutoHorn();
+    onTurn(checkForAutoHorn, 2000);
   }
 
   addEvents();

@@ -130,9 +130,9 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
       makeElement('div', 'weakness-name', weaknessType.name, weaknessTypeDiv);
 
       const powerTypes = makeElement('div', 'power-types');
-      weaknessType.power_types.forEach((ptype) => {
+      weaknessType.power_types.forEach((pType) => {
         const powerType = document.createElement('img');
-        powerType.src = `https://www.mousehuntgame.com/images/powertypes/${ptype.name}.png`;
+        powerType.src = `https://www.mousehuntgame.com/images/powertypes/${pType.name}.png`;
         powerTypes.append(powerType);
       });
 
@@ -307,8 +307,8 @@ const makeSortedMiceList = async () => {
         }
 
         // find the subcategory name
-        const currentSubCat = mouseGroups[currentMapData.map_type].subcategories.find((subcat) => {
-          return subcat.id === subcategory.id;
+        const currentSubCat = mouseGroups[currentMapData.map_type].subcategories.find((subCat) => {
+          return subCat.id === subcategory.id;
         });
 
         // Subcategory header.
@@ -436,7 +436,7 @@ const makeScavengerSortedPage = async (target) => {
       return;
     }
 
-    // for each mouse, call getLocationForMouse and then seperate them into their respective locations
+    // for each mouse, call getLocationForMouse and then separate them into their respective locations
     const miceByLocation = {};
     const locations = {};
 
@@ -620,7 +620,7 @@ const makeGenericSortedPage = async () => {
     return 1;
   });
 
-  // call makeMouseDiv for each mouse but in the sorted order and not asynchonously
+  // call makeMouseDiv for each mouse but in the sorted order and not asynchronously
   for (const mouse of sortedUnsorted) {
     const mouseDiv = await makeMouseDiv(mouse, type);
     target.append(mouseDiv);

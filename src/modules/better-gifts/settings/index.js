@@ -64,7 +64,7 @@ export default async () => {
     },
     {
       id: 'better-gifts.ignore-bad-gifts',
-      title: 'Ignore gifts that aren\'t the Gift of the Day',
+      title: 'Ignore gifts',
       default: [skipBadGiftOptions[0]],
       description: '',
       settings: {

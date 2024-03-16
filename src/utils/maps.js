@@ -33,7 +33,7 @@ const mapper = (key = false) => {
 };
 
 /**
- * Helper function to get the mapdata from the global object.
+ * Helper function to get the map data from the global object.
  *
  * @return {Object} Map data.
  */
@@ -47,7 +47,7 @@ const mapData = () => {
 };
 
 /**
- * Helper function to get the mapmodel from the global object.
+ * Helper function to get the map model from the global object.
  *
  * @return {Object} Map model.
  */
@@ -220,7 +220,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     return;
   }
 
-  const mhctjson = await getArForMouse(mouse.unique_id, type);
+  const mhctJson = await getArForMouse(mouse.unique_id, type);
 
   const mhctDiv = makeElement('div', 'mhct-data');
   mhctDiv.id = `mhct-${mouse.unique_id}-${type}`;
@@ -240,14 +240,14 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   header.append(mhctLink);
   mhctDiv.append(header);
 
-  if (! mhctjson.slice) {
+  if (! mhctJson.slice) {
     return;
   }
 
   const environments = await getData('environments');
 
   const amountOfLocationsToShow = 5; // TODO: maybe modify this for some mice or make it an option?
-  mhctjson.slice(0, amountOfLocationsToShow).forEach((mhct) => {
+  mhctJson.slice(0, amountOfLocationsToShow).forEach((mhct) => {
     const mhctRow = makeElement('div', 'mhct-row');
     const location = makeElement('div', 'mhct-location');
 
@@ -291,7 +291,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   });
 
   // if the rows were empty, then add a message
-  if (0 === mhctjson.length) {
+  if (0 === mhctJson.length) {
     const mhctRow = makeElement('div', 'mhct-row');
     makeElement('div', 'mhct-no-data', 'No data available', mhctRow);
     mhctDiv.append(mhctRow);
@@ -431,7 +431,7 @@ const getHighestArText = async (id, type = 'mouse') => {
  * @return {Array|boolean} Array of attraction rates or false if not found.
  */
 const getArForMouse = async (id, type = 'mouse') => {
-  let mhctjson = [];
+  let mhctJson = [];
 
   const cacheKey = `${type}-${id}`;
 
@@ -444,7 +444,7 @@ const getArForMouse = async (id, type = 'mouse') => {
   const isItem = 'item' === type;
   const mhctPath = isItem ? 'mhct-item' : 'mhct';
 
-  let mhctdata = [];
+  let mhctData = [];
 
   // Temp hack for halloween.
   const data = mapData() || {};
@@ -454,31 +454,30 @@ const getArForMouse = async (id, type = 'mouse') => {
     url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
   }
 
-  mhctdata = await fetch(url, { headers: getHeaders() });
+  mhctData = await fetch(url, { headers: getHeaders() });
 
-  if (! mhctdata.ok) {
+  if (! mhctData.ok) {
     return [];
   }
 
-  mhctjson = await mhctdata.json();
+  mhctJson = await mhctData.json();
 
-  if (! mhctjson || mhctjson.length === 0) {
-    setCachedValue(cacheKey, [], true);
+  if (! mhctJson || mhctJson.length === 0) {
     return [];
   }
 
   if (isItem) {
     // change the 'drop_ct' to 'rate'
-    for (const rate of mhctjson) {
+    for (const rate of mhctJson) {
       // convert from a '13.53' to 1353
       rate.rate = Number.parseInt(rate.drop_pct * 100);
       delete rate.drop_ct;
     }
   }
 
-  setCachedValue(cacheKey, mhctjson);
+  await setCachedValue(cacheKey, mhctJson);
 
-  return mhctjson;
+  return mhctJson;
 };
 
 /**

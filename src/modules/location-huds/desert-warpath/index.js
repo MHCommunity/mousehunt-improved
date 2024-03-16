@@ -9,7 +9,7 @@ const addMissiles = () => {
     return;
   }
 
-  const trigger = makeElement('div', ['warpathHud-missle-activate', 'warpathHUD-missile']);
+  const trigger = makeElement('div', ['warpathHud-missle-activate', 'warpathHUD-missile']); /* cspell: disable-line */
   container.append(trigger);
 
   trigger.addEventListener('click', () => {
@@ -22,7 +22,7 @@ const addMissiles = () => {
     }
   });
 
-  const launchMissle = (event) => {
+  const launchMissile = (event) => {
     if (! container.classList.contains('warpathHUD-engaged')) {
       return;
     }
@@ -66,7 +66,7 @@ const addMissiles = () => {
     }, 700);
   };
 
-  container.addEventListener('click', launchMissle);
+  container.addEventListener('click', launchMissile);
 };
 
 /**

@@ -27,7 +27,7 @@ export default async () => {
     },
     {
       id: 'debug.navigation',
-      title: 'Log page, tab, and subtab navigations'
+      title: 'Log page, tab, and subtab navigation'
     },
     {
       id: 'debug.request',

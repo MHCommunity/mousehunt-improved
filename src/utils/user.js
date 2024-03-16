@@ -35,7 +35,7 @@ const getUserSetupDetails = () => {
       powerBonus: userObj.trap_power_bonus,
       luck: userObj.trap_luck,
       attractionBonus: userObj.trap_attraction_bonus,
-      cheeseEfect: userObj.trap_cheese_effect,
+      cheeseEffect: userObj.trap_cheese_effect,
     },
     bait: {
       id: Number.parseInt(userObj.bait_item_id),

@@ -2,7 +2,7 @@ import { addHudStyles, onRequest } from '@utils';
 
 import styles from './styles.css';
 
-const undisableCheese = () => {
+const unDisableCheese = () => {
   const armButtons = document.querySelectorAll('.halloweenBoilingCauldronHUD-bait');
   armButtons.forEach((armButton) => {
     armButton.classList.remove('disabled');
@@ -30,8 +30,8 @@ const halloweenGlobal = async () => {
  */
 const halloweenLocation = async () => {
   addHudStyles(styles);
-  undisableCheese();
-  onRequest('*', undisableCheese);
+  unDisableCheese();
+  onRequest('*', unDisableCheese);
 };
 
 export {

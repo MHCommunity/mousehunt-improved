@@ -12,9 +12,9 @@ const updateClosingTime = () => {
   const rotationLength = 20;
   const rotationsExact = (((today.getTime() / 1000) - 1285704000) / 3600) / rotationLength;
   const rotationsInteger = Math.floor(rotationsExact);
-  const partialrotation = (rotationsExact - rotationsInteger) * rotationLength;
-  if (partialrotation < 16) {
-    const closes = (16 - partialrotation).toFixed(3);
+  const partialRotation = (rotationsExact - rotationsInteger) * rotationLength;
+  if (partialRotation < 16) {
+    const closes = (16 - partialRotation).toFixed(3);
     const hours = Math.floor(closes);
     const minutes = Math.ceil((closes - Math.floor(closes)) * 60);
 

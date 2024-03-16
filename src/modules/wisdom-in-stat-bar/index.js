@@ -109,12 +109,12 @@ const addRefreshListener = () => {
 
   wisdomRow.addEventListener('click', () => {
     // Save whether we should use cached wisdom.
-    const cachedWidsomSetting = useCachedWisdom;
+    const cachedWisdomSetting = useCachedWisdom;
 
     // Force update the wisdom.
     useCachedWisdom = false;
     updateWisdom();
-    useCachedWisdom = cachedWidsomSetting;
+    useCachedWisdom = cachedWisdomSetting;
   });
 };
 

@@ -27,18 +27,18 @@ const updateClosingTime = () => {
   const rotationLength = 18.66666;
   const rotationsExact = (((today.getTime() / 1000) - 1294680060) / 3600) / rotationLength;
   const rotationsInteger = Math.floor(rotationsExact);
-  const partialrotation = (rotationsExact - rotationsInteger) * rotationLength;
-  if (partialrotation < 16) {
-    // currently low, whcih means its (16 hours - current time) until mid flooding, then one more hour after than until high tide
-    const closes = 16 - partialrotation;
+  const partialRotation = (rotationsExact - rotationsInteger) * rotationLength;
+  if (partialRotation < 16) {
+    // currently low, which means its (16 hours - current time) until mid flooding, then one more hour after than until high tide
+    const closes = 16 - partialRotation;
     timeLeftText = getClosingText(closes, 'Mid Tide', 60, 'High Tide');
-  } else if (partialrotation >= 16 && partialrotation < 17) {
+  } else if (partialRotation >= 16 && partialRotation < 17) {
     // currently mid, which means its (1hr - current time) until high tide, then 40 minutes after that until low mid time again
-    const closes = 1 - (partialrotation - 16);
+    const closes = 1 - (partialRotation - 16);
     timeLeftText = getClosingText(closes, 'High Tide', 40, 'Low Tide');
-  } else if (partialrotation >= 17 && partialrotation < 17.66666) {
+  } else if (partialRotation >= 17 && partialRotation < 17.66666) {
     // currently high, which means its (40 minutes - current time) until mid tide again, then 1 hour after that until low tide
-    const closes = 0.66666 - (partialrotation - 17);
+    const closes = 0.66666 - (partialRotation - 17);
     timeLeftText = getClosingText(closes, 'Low Tide', 60, 'Mid Tide');
   }
 

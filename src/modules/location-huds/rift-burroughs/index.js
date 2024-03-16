@@ -8,8 +8,8 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
     wrapper.classList.add('active');
   }
 
-  const mtitle = makeElement('a', 'mouse-type-title', title);
-  mtitle.addEventListener('click', () => {
+  const mTitle = makeElement('a', 'mouse-type-title', title);
+  mTitle.addEventListener('click', () => {
     let id = 1426; // magical string.
     if ('terra' === type) {
       id = 1551;
@@ -21,7 +21,7 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
     hg.utils.TrapControl.go();
   });
 
-  wrapper.append(mtitle);
+  wrapper.append(mTitle);
 
   const miceWrapper = makeElement('div', 'mouse-type-mice');
 

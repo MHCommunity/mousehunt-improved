@@ -11,7 +11,7 @@ import styles from './styles.css';
 
 import {
   getCatchRate,
-  getMiceEffectivness,
+  getMiceEffectiveness,
   getMinluck,
   getMouseEffectiveness,
   getMousePower
@@ -22,7 +22,7 @@ const updateMinLucks = async () => {
     return;
   }
 
-  const effectiveness = await getMiceEffectivness();
+  const effectiveness = await getMiceEffectiveness();
 
   if (! effectiveness) {
     return;

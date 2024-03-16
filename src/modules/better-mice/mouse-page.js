@@ -246,7 +246,7 @@ const sortStats = (type, reverse = false) => {
     return;
   }
 
-  // loop through the rows and add the data-attribute values to each row if they dont already exist
+  // loop through the rows and add the data-attribute values to each row if they don't already exist
   rows.forEach((row) => {
     getSetRowValue(row, type);
   });
@@ -304,7 +304,7 @@ const addSortButton = (elements, type) => {
         }
       });
 
-      // if the is-reverse data attribute is set, then we sort low to high otherwise we sort high to low. We dont want to add the reverse class if the unsorted class is already set, we just want to remove the unsorted class
+      // if the is-reverse data attribute is set, then we sort low to high otherwise we sort high to low. We don't want to add the reverse class if the unsorted class is already set, we just want to remove the unsorted class
       if (sortButton.classList.contains('unsorted')) {
         sortButton.classList.remove('unsorted');
         sortStats(type);
@@ -360,10 +360,10 @@ const addSortingToCat = (cat, retries = 0) => {
     return;
   }
 
-  cats.forEach((mcat) => {
-    const els = category.querySelectorAll(`${getSelectorPrefix()} .mouseListView-categoryContent-category.all.active .mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${mcat}`);
+  cats.forEach((mCat) => {
+    const els = category.querySelectorAll(`${getSelectorPrefix()} .mouseListView-categoryContent-category.all.active .mouseListView-categoryContent-subgroup-mouse.header .mouseListView-categoryContent-subgroup-mouse-stats.${mCat}`);
     if (els.length) {
-      addSortButton(els, mcat);
+      addSortButton(els, mCat);
     }
   });
 

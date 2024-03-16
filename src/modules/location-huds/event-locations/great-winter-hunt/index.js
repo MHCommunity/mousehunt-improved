@@ -192,14 +192,14 @@ const showPossibleSnowballShowdownDustCount = () => {
 
   const snowballEl = showdownItems.querySelector('.campHudSnowballShowdownView__snowball');
   const snowballQtyEl = snowballEl.querySelector('.campHudSnowballShowdownView__quantity');
-  const showballQty = snowballQtyEl ? Number.parseInt(snowballQtyEl.textContent.replaceAll(',', ''), 10) : 0;
+  const snowballQty = snowballQtyEl ? Number.parseInt(snowballQtyEl.textContent.replaceAll(',', ''), 10) : 0;
 
   const dustEl = showdownItems.querySelector('.campHudSnowballShowdownView__dust');
   const currentDustQtyEl = dustEl.querySelector('.campHudSnowballShowdownView__quantity');
   const currentDustQty = currentDustQtyEl ? Number.parseInt(currentDustQtyEl.textContent.replaceAll(',', ''), 10) : 0;
 
-  const possibleDustQty = Math.floor(showballQty / 175);
-  const snowballText = showballQty - (possibleDustQty * 175);
+  const possibleDustQty = Math.floor(snowballQty / 175);
+  const snowballText = snowballQty - (possibleDustQty * 175);
   const dustText = currentDustQty + possibleDustQty;
 
   const possibleSnowballExists = showdownItems.querySelector('.campHudSnowballShowdownView__quantity.possibleSnowball');
