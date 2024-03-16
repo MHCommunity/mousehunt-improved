@@ -233,6 +233,50 @@ const waitForFooterReady = (attempts = 0) => {
   }, 300);
 };
 
+const addChartToCategories = async () => {
+  const items = document.querySelectorAll('.marketplaceView-table tr');
+  items.forEach((item) => {
+    const itemId = item.getAttribute('data-item-id');
+    if (! itemId) {
+      return;
+    }
+
+    const name = item.querySelector('.marketplaceView-table-name');
+    if (! name) {
+      return;
+    }
+
+    const hasChartImage = item.querySelector('.marketplaceView-table-chartImage');
+    if (hasChartImage) {
+      return;
+    }
+
+    const chartImage = makeElement('img', 'marketplaceView-table-chartImage');
+    chartImage.src = `https://markethunt-chart.mouse.rip/${itemId}.png?small`;
+    name.append(chartImage);
+  });
+};
+
+let _showBrowseCategory = null;
+let _showBrowser = null;
+const replaceShowBrowseCategory = () => {
+  if (_showBrowseCategory) {
+    return;
+  }
+
+  _showBrowseCategory = hg.views.MarketplaceView.showBrowseCategory;
+  hg.views.MarketplaceView.showBrowseCategory = (category) => {
+    _showBrowseCategory(category);
+    addChartToCategories();
+  };
+
+  _showBrowser = hg.views.MarketplaceView.showBrowser;
+  hg.views.MarketplaceView.showBrowser = (category) => {
+    _showBrowser(category);
+    addChartToCategories();
+  };
+};
+
 let originalSelect = null;
 let newSelect = null;
 
@@ -253,6 +297,10 @@ const init = async () => {
       show: () => {
         waitForSearchReady();
         overloadShowItem();
+
+        if (getSetting('better-marketplace.show-chart-images')) {
+          replaceShowBrowseCategory();
+        }
       },
     },
   });

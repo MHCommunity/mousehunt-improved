@@ -100,3 +100,20 @@ tr.open td.marketplaceView-table-name {
 .marketplaceView-item-averagePrice span {
   font-size: 12px;
 }
+
+.marketplaceView-table-chartImage {
+  position: absolute;
+  top: 0;
+  right: -30px;
+  bottom: 0;
+  height: 49px;
+  opacity: 0.5;
+}
+
+.marketplaceView-table-name:hover .marketplaceView-table-chartImage {
+  opacity: 1;
+}
+
+td.marketplaceView-table-name {
+  position: relative;
+}

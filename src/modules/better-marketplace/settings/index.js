@@ -9,13 +9,16 @@ export default async () => {
       id: 'better-marketplace.search-all',
       title: 'Default to showing all items in search',
       default: false,
-      description: '',
     },
     {
       id: 'better-marketplace.small-images',
       title: 'Smaller images',
       default: false,
-      description: '',
+    },
+    {
+      id: 'better-marketplace.show-chart-images',
+      title: 'Show charts on category pages',
+      default: false,
     }
   ];
 };
