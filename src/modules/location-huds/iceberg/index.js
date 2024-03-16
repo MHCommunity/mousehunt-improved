@@ -404,16 +404,6 @@ const makeMapScrollable = () => {
       map.removeEventListener('wheel', scrollListener);
     });
   });
-
-  map.addEventListener('click', (event) => {
-    event.preventDefault();
-    const popup = new jsDialog();
-    popup.setAttributes({ className: 'largerImage icebergMap' });
-    popup.setTemplate('largerImageWithClass');
-    popup.addToken('{*image*}', 'https://www.mousehuntgame.com/images/ui/hud/iceberg_bg.png?asset_cache_version=2');
-    popup.addToken('{*imageCaption*}', '');
-    popup.show();
-  });
 };
 
 /**
