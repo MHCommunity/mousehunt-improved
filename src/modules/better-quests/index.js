@@ -241,7 +241,7 @@ const assignments = [
 
 const getAssignmentMeta = (assignment) => {
   const wikiLink = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replaceAll(' ', '_')}`;
-  return `<a href="${wikiLink}" target="_blank">Wiki</a> | Requires: ${assignment.cost} | Reward: ${assignment.reward}`;
+  return `<a href="${wikiLink}" target="_blank" rel="noopener noreferrer">Wiki</a> | Requires: ${assignment.cost} | Reward: ${assignment.reward}`;
 };
 
 const updateAssignmentList = () => {
