@@ -1,4 +1,4 @@
-import { database, dbGet, dbSet } from './db';
+import { dbGet, dbSet } from './db';
 import { getData, getHeaders, sessionGet, sessionSet } from './data';
 
 import { getCurrentLocation } from './location';
@@ -308,11 +308,10 @@ const getCachedValue = async (key) => {
 /**
  * Set the cached value for the given key.
  *
- * @param {string}  key           Key to set the cached value for.
- * @param {any}     value         Value to cache.
- * @param {boolean} saveToSession Whether to only save to session storage, not local storage.
+ * @param {string} key   Key to set the cached value for.
+ * @param {any}    value Value to cache.
  */
-const setCachedValue = async (key, value ) => {
+const setCachedValue = async (key, value) => {
   await dbSet('ar-cache', { id: key, value });
 };
 

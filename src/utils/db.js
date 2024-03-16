@@ -95,7 +95,7 @@ const dbSet = async (databaseName, data) => {
   data = {
     data,
     id: data.id || Date.now()
-  }
+  };
 
   const request = objectStore.put(data);
 
