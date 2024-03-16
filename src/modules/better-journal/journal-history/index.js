@@ -1,4 +1,11 @@
-import { dbGetAll, onNavigation, onRequest } from '@utils';
+import {
+  addEvent,
+  dbGet,
+  dbGetAll,
+  dbSet,
+  onNavigation,
+  onRequest
+} from '@utils';
 
 // import tempMiceImages from '@data/temp-mice-images.json';
 
@@ -47,8 +54,6 @@ const doPageStuff = (page, event) => {
 
   const journalEntriesForPage = journalEntries.slice((page - 1) * 12, page * 12);
   journalEntryContainer.innerHTML = makeEntriesMarkup(journalEntriesForPage);
-
-  journalHistory();
 };
 
 const getPager = () => {
@@ -115,9 +120,48 @@ const main = async () => {
   }
 };
 
+let lastDate = '';
+const saveToDatabase = async (entry) => {
+  const entryId = Number.parseInt(entry.getAttribute('data-entry-id'), 10);
+  if (! entryId) {
+    return;
+  }
+
+  const entryText = entry.querySelector('.journalbody .journaltext');
+  if (! entryText) {
+    return;
+  }
+
+  const original = await dbGet('journal', entryId);
+
+  if (original && original.text) {
+    return;
+  }
+
+  const dateEl = entry.querySelector('.journaldate');
+
+  let date = dateEl ? dateEl.innerText : lastDate;
+  lastDate = date;
+
+  date = date.split('-');
+
+  const journalData = {
+    id: entryId,
+    date: date[0] ? date[0].trim() : '0:00',
+    location: date[1] ? date[1].trim() : 'Unknown',
+    text: entryText.innerHTML,
+    type: [...entry.classList],
+    mouse: entry.getAttribute('data-mouse-type') || null,
+  };
+
+  await dbSet('journal', journalData);
+};
+
 let lastResponsePage;
 const onJournalRequest = (data) => {
   const reportedCurrentPage = data.journal_page.pager.current;
+
+  console.log('onJournalRequest', 'currentPage', currentPage, 'reportedCurrentPage', reportedCurrentPage, 'lastResponsePage', lastResponsePage);
 
   if (lastResponsePage === reportedCurrentPage) {
     return;
@@ -129,9 +173,11 @@ const onJournalRequest = (data) => {
   main();
 };
 
-const journalHistory = async () => {
-  onNavigation(main, { page: 'camp' });
-  onRequest('pages/journal.php', onJournalRequest);
-};
+export default async (enabled) => {
+  if (enabled) {
+    onNavigation(main, { page: 'camp' });
+    onRequest('pages/journal.php', onJournalRequest);
+  }
 
-export default journalHistory;
+  addEvent('journal-entry', saveToDatabase, { weight: 1, id: 'better-journal-history' });
+};

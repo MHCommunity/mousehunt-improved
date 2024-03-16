@@ -1,5 +1,6 @@
 /* bigger ftc image */
 .journal .content .entry.catchfailure {
+  background-color: #f2f2f2;
   background-position: 0;
   background-size: 75px;
 }

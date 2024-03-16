@@ -41,7 +41,6 @@
 .journal .content .log_summary table {
   display: flex;
   justify-content: center;
-  width: 330px;
 }
 
 .journal .content .log_summary table td.field {

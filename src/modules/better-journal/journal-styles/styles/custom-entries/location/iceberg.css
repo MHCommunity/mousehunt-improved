@@ -4,3 +4,9 @@
 .journal .entry.riftFuroma {
   font-style: inherit;
 }
+
+.journal .iceberg_advance .journalbody,
+.journal .iceberg_pushback .journalbody,
+.journal .iceberg_pushback_prevented .journalbody {
+  font-size: 11px;
+}

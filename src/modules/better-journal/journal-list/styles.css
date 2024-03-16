@@ -8,5 +8,15 @@ ul.better-journal-list {
 }
 
 .journal .content .entry .journaltext .better-journal-list {
-  line-height: 20px;
+  line-height: 21px;
+}
+
+.journal .content .entry.bountifulBeanstalk-defeatedGiant .journaltext ul {
+  margin-top: -15px;
+  line-height: 21px;
+  list-style: disc;
+}
+
+.journal .content .entry.bountifulBeanstalk-defeatedGiant .journaltext li {
+  margin-left: 20px;
 }

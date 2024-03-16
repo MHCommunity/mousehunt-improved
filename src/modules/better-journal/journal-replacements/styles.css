@@ -1,0 +1,7 @@
+.itemtransaction p.mhi-x-entry {
+  display: inline;
+}
+
+.itemtransaction p.mhi-x-entry .dot {
+  display: none;
+}

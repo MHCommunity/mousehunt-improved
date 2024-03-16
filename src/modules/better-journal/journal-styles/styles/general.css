@@ -236,11 +236,11 @@ p.mhi-x-entry {
 }
 
 .journal .entry .journalbody .journaltext .lucky::after {
-  position: absolute;
+  /* position: absolute;
   top: -2px;
   display: inline-block;
   width: 15px;
-  height: 15px;
+  height: 15px; */
   background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png?asset_cache_version=2);
   background-size: cover;
 }

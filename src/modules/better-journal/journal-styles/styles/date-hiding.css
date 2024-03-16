@@ -45,6 +45,7 @@
 .journal .entry.labyrinth-lantern .journaldat,
 .journal .entry.labyrinth-base-burnClue .journaldate,
 .journal .entry.labyrinth-clue .journaldate,
+.journal .entry.bountifulBeanstalk-goldenHarpStrings .journaldate,
 .journal .entry.riftFuroma-energyLost .journaldate {
   display: none !important;
 }

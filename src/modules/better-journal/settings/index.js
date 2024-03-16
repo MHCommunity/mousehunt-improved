@@ -26,6 +26,16 @@ export default async () => {
     {
       id: 'better-journal.list',
       title: 'Show loot as list',
-    }
+    },
+    {
+      id: 'better-journal.gold-and-points',
+      title: 'Show gold and points icons',
+      default: true,
+    },
+    {
+      id: 'better-journal.item-colors',
+      title: 'Unique item colors (Map clues, Ful\'Mina\'s gifts, etc.)',
+      default: true,
+    },
   ];
 };

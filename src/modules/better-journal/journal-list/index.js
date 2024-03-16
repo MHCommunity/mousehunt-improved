@@ -1,4 +1,5 @@
-import { addStyles, onEvent } from '@utils';
+import { addEvent, addStyles } from '@utils';
+
 import styles from './styles.css';
 
 const makeListItems = (itemList) => {
@@ -69,13 +70,9 @@ const getItemsFromText = (type, text) => {
 /**
  * Format a journal entry as a list.
  *
- * @param {Object}  args       The entry arguments.
- * @param {Element} args.entry The journal entry.
- * @param {Element} args.text  The journal entry text.
+ * @param {Object} entry The journal entry to format.
  */
-const formatAsList = async (args) => {
-  const { entry, text } = args;
-
+const formatAsList = async (entry) => {
   const processed = entry.getAttribute('data-better-journal-processed');
   if (processed) {
     return;
@@ -107,6 +104,8 @@ const formatAsList = async (args) => {
 
   entry.setAttribute('data-better-journal-processed', 'true');
 
+  const text = entry.querySelector('.journalbody .journaltext');
+
   const { newText, list } = getItemsFromText(type, text);
 
   text.innerHTML = newText;
@@ -119,5 +118,5 @@ const formatAsList = async (args) => {
 export default async () => {
   addStyles(styles, 'better-journal-list');
 
-  onEvent('better-journal-update', formatAsList);
+  addEvent('journal-entry', formatAsList, { weight: 3000, id: 'better-journal-list' });
 };

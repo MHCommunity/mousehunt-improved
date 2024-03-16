@@ -56,3 +56,12 @@
   top: -2px;
   background-image: url(https://www.mousehuntgame.com/images/items/trinkets/large/36d3d62f27e2b76944591f86229bc2f0.png?cv=2);
 }
+
+/* Don't show the icon in unstable charm trigger */
+.journal .entry.unstable_charm_trigger  a[href*="https://www.mousehuntgame.com/item.php?item_type="]:before {
+  display: none;
+}
+
+.journal .entry.unstable_charm_trigger .journaltext a {
+  padding-left: unset;
+}

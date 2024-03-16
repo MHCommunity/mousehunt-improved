@@ -18,11 +18,11 @@
 }
 
 .entry.short.misc.custom.unstable_charm_trigger .journalimage {
-  width: 50px;
-  margin-top: -5px;
+  width: 45px;
+  margin-top: 0;
 }
 
 .journal .entry.short.misc.custom.unstable_charm_trigger .journalimage img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
