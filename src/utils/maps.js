@@ -1,15 +1,8 @@
-import {
-  cacheGet,
-  cacheSet,
-  getData,
-  getHeaders,
-  sessionGet,
-  sessionSet
-} from './data';
+import { database, dbGet, dbSet } from './db';
+import { getData, getHeaders, sessionGet, sessionSet } from './data';
 
 import { getCurrentLocation } from './location';
 import { getGlobal } from './global';
-import { getSetting } from './settings';
 import { makeElement } from './elements';
 
 /**
@@ -308,28 +301,8 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
  * @return {any|boolean} Cached value or false if not found.
  */
 const getCachedValue = async (key) => {
-  if (getSetting('debug.no-cache')) {
-    return false;
-  }
-
-  // check to see if it's in session storage first
-  const isInSession = sessionGet(key, null);
-  if (isInSession !== null) {
-    return JSON.parse(isInSession);
-  }
-
-  const localStorageContainer = await cacheGet(getCacheKey());
-  return localStorageContainer[key] || false;
-};
-
-/**
- * Get the cache key for the current version of MH Improved, only needs to
- * be bumped when the cache needs to be cleared or the cache structure changes.
- *
- * @return {string} Cache key.
- */
-const getCacheKey = () => {
-  return `mh-improved-cached-ar-v${mhImprovedVersion.replaceAll('.', '-')}`;
+  const value = await dbGet('ar-cache', key);
+  return value === undefined ? false : value.value;
 };
 
 /**
@@ -339,23 +312,8 @@ const getCacheKey = () => {
  * @param {any}     value         Value to cache.
  * @param {boolean} saveToSession Whether to only save to session storage, not local storage.
  */
-const setCachedValue = (key, value, saveToSession = false) => {
-  if (saveToSession) {
-    sessionSet(key, JSON.stringify(value));
-    return;
-  }
-
-  const localStorageContainer = localStorage.getItem(getCacheKey());
-  let container = {};
-  if (localStorageContainer) {
-    container = JSON.parse(localStorageContainer);
-  }
-
-  // set the value
-  container[key] = value;
-
-  cacheSet(getCacheKey(), container);
-  localStorage.setItem(getCacheKey(), JSON.stringify(container));
+const setCachedValue = async (key, value ) => {
+  await dbSet('ar-cache', { id: key, value });
 };
 
 /**

@@ -1,5 +1,96 @@
 # Changelog
 
+## Version 0.36.0
+
+### New Features
+
+- Hide News Ticker module
+
+### Better Inventory
+
+- Fixes the recipe results tooltip not showing quickly & not caching the data
+
+### Better Item View
+
+- Adds a ‘Show Drop Rates’ setting
+
+### Better Journal
+
+- Journal replacement and modifications now happen more efficiently and faster
+- More styles added
+- Gold and points icons is now a separate option
+- Unique link colors is now a separate option
+
+### Better Maps
+
+- Minor style updates
+
+### Better Marketplace
+
+- Add option to show charts on category pages
+
+### Better Mice
+
+- Adds a ‘Show Attraction Rates’ setting
+
+### Better Shops
+
+- Added new ‘Hide max quantity owned’ setting
+- Added new setting to show quantity buttons for buy amount
+- Adds ability to hit enter while typing in an input field instead of clicking the buy button. Hitting enter a second time will confirm it.
+
+### Better UI
+
+- Minor style updates
+- Fixes delete button being hidden in inbox
+- Updates game settings styles
+
+### Experiments
+
+- Added new experiment: Iceberg progress stats always visible
+- Added new experiment: New settings styles
+- Added new experiment: New settings styles (columns)
+- Added new experiment: Scoreboard search on Hunter Profiles
+- Shortened Location HUD toggle button text
+
+### Favorite Setups
+
+- Fixes bugs with favorite setups showing
+- Saves location when saving setup
+- Suggests setups for a location
+
+### Image Upscaling
+
+- rewrote for better performance and memory usage
+
+### Location HUDs: Bountiful Beanstalk
+
+- makes the inventory panel save whether it’s toggled or not
+- can also toggle the loot multiplier panel
+- adds slight animations and minor style updates
+- makes the question mark button less obvious
+- makes the autoharp icon move when hovering
+
+### Location HUDs: Iceberg
+
+- allows scrolling the map
+- adds setting for always showing the progress tooltip
+- adds animation to the iceberg
+- adds more style updates
+
+### Location HUDs: Labyrinth
+
+- adds easter egg when clicking on the current tile or another tile
+- scrambles both gems when you scramble one
+- fixes the lantern reminder animating on every turn
+- adds special styles for final exit doors
+- updates other styles
+
+### Show Auras
+
+- Fixed duplication of icons
+Style updates
+
 ## Version 0.35.6
 
 - Fixes error when getting AR data on sorted tab
