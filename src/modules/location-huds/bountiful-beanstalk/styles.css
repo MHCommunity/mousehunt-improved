@@ -6,9 +6,12 @@
 }
 
 .headsUpDisplayBountifulBeanstalk__inventoryBlockQuantity.quantity {
-  padding: 2px;
-  margin-top: -4px;
-  font-size: 13px;
+  width: 42px;
+  padding: 1px 2px;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: inset 0 0 0 1px #fa822d;
 }
 
 .bountifulBeanstalkCastleView__noiseLevel,
@@ -37,8 +40,8 @@
 }
 
 .bountifulBeanstalkCastleView__plinthLootImage .headsUpDisplayBountifulBeanstalkView__loot {
-  top: 47px;
-  right: 242px;
+  top: 45px;
+  right: 245px;
   width: 45px;
   height: 45px;
   filter: drop-shadow(0 0 5px #f0e1a4);
@@ -61,17 +64,13 @@
 }
 
 .bountifulBeanstalkCastleView__plinthOverlay .mousehuntTooltip {
-  top: -31px;
+  top: -20px;
   bottom: unset;
   left: -60px;
   width: 447px;
-  line-height: 1.5;
   color: #f2e3a6;
   background: #192518;
   border: 2px solid #85d523;
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 .bountifulBeanstalkCastleView__plinthOverlay .mousehuntTooltip-arrow {
@@ -79,11 +78,11 @@
 }
 
 .bountifulBeanstalkCastleView__currentRoomName {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .bountifulBeanstalkCastleView__currentRoomLoot b {
-  font-size: 13px;
+  font-size: 10px;
 }
 
 .bountifulBeanstalkCastleView__plinthOverlay.mousehuntTooltipParent {
@@ -94,4 +93,100 @@
 .bountifulBeanstalkCastleView__currentRoomLootMultiplier {
   padding: 0 1px;
   font-size: 14px;
+}
+
+.bountifulBeanstalkPlayHarpDialogView__optionActionLabel {
+  margin-bottom: 5px;
+}
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlock:hover .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
+  filter: brightness(1.3);
+  transform: scale(1.3);
+}
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlock .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
+  transition: 0.3s;
+  animation: adminShimmer 1s 3;
+}
+
+.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
+  transition: 0.3s;
+  animation: mh-improved-loot-shake 0.5s 2;
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleChevronContainer .headsUpDisplayBountifulBeanstalkView__loot:hover {
+  animation: mh-improved-loot-shake 0.5s 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headsUpDisplayBountifulBeanstalk__embellishmentBlock:hover .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
+    filter: none;
+    transform: none;
+  }
+
+  .headsUpDisplayBountifulBeanstalk__embellishmentBlock .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
+    transition: none;
+    animation: none;
+  }
+
+  .headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
+    animation: none;
+  }
+
+  .headsUpDisplayBountifulBeanstalkView__castleChevronContainer .headsUpDisplayBountifulBeanstalkView__loot:hover {
+    animation-iteration-count: 1;
+  }
+}
+
+@keyframes mh-improved-loot-shake {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  75% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.headsUpDisplayBountifulBeanstalkView .folkloreForestRegionView-helpButton {
+  width: 22px;
+  height: 21px;
+  border-radius: 20px;
+  box-shadow: inset 0 0 3px 1px #c5ad6f;
+  opacity: 0.3;
+}
+
+.headsUpDisplayBountifulBeanstalkView .folkloreForestRegionView-helpButton:hover {
+  opacity: 1;
+}
+
+.mh-improved-room-data--open,
+.mh-improved-room-data--open .headsUpDisplayBountifulBeanstalkView__lootMultiplierDetailsContainer {
+  z-index: 35;
+  display: block;
+}
+
+.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying:hover .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
+  transform: scale(1.1) rotate(3deg) translateX(5px);
+}
+
+.headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText {
+  mix-blend-mode: multiply;
+  opacity: 0.7;
+}
+
+.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying:hover .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText {
+  opacity: 1;
 }
