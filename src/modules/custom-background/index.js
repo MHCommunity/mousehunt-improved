@@ -106,6 +106,7 @@ const addPreview = () => {
 
   previewLink.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     let content = '';
     gradients.forEach((gradient) => {

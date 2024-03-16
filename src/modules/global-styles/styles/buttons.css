@@ -21,31 +21,31 @@
   opacity: 0.5;
 }
 
-a.mousehuntActionButton.success::before {
+.mousehuntActionButton.success::before {
   background-color: #00ff59;
   box-shadow: 0 0 10px #beff99 inset;
 }
 
-a.mousehuntActionButton.success {
+.mousehuntActionButton.success {
   background-color: #97f990;
 }
 
-a.mousehuntActionButton.success:hover::before,
-a.mousehuntActionButton.success:focus::before {
+.mousehuntActionButton.success:hover::before,
+.mousehuntActionButton.success:focus::before {
   background-color: #00ff59;
 }
 
-a.mousehuntActionButton.danger::before {
+.mousehuntActionButton.danger::before {
   background-color: #f27b6a;
   box-shadow: 0 0 10px #ffa5a5 inset;
 }
 
-a.mousehuntActionButton.danger {
+.mousehuntActionButton.danger {
   background-color: #ffa5a5;
 }
 
-a.mousehuntActionButton.danger:hover::before,
-a.mousehuntActionButton.danger:focus::before {
+.mousehuntActionButton.danger:hover::before,
+.mousehuntActionButton.danger:focus::before {
   background-color: #ffa5a5;
 }
 

@@ -55,6 +55,7 @@ const addPreview = () => {
   let timeout = null;
   previewLink.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
     const horn = document.querySelector('.huntersHornView__horn');
     if (! horn) {

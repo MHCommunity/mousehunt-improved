@@ -8,5 +8,5 @@ export default {
   description: 'Send anonymous error reports to the developers.',
   default: true,
   order: 1000,
-  load: init,
+  load: () => {},
 };

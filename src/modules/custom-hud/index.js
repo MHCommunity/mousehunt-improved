@@ -16,20 +16,20 @@ const addStyleEl = () => {
 
   let style;
 
-  const pedastal = 'https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2';
+  const pedestal = 'https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2';
   // eslint-disable-next-line unicorn/prefer-ternary
   if ('hud-blueprint' === setting) {
     style = `body .mousehuntHud-marbleDrawer {
       background:
-        url(${pedastal}) -46px 0 no-repeat,
-        url(${pedastal}) 731px 0 no-repeat,
+        url(${pedestal}) -46px 0 no-repeat,
+        url(${pedestal}) 731px 0 no-repeat,
         url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
     }`;
   } else {
     style = `body .mousehuntHud-marbleDrawer {
       background:
-        url(${pedastal}) -46px 0 no-repeat,
-        url(${pedastal}) 731px 0 no-repeat,
+        url(${pedestal}) -46px 0 no-repeat,
+        url(${pedestal}) 731px 0 no-repeat,
         url(https://i.mouse.rip/mh-improved/marble-shadow.png) 6px 0 no-repeat,
         url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
     }

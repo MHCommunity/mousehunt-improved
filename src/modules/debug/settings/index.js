@@ -34,10 +34,6 @@ export default async () => {
       title: 'Log remote requests and responses'
     },
     {
-      id: 'debug.update-migration',
-      title: 'Log update migrations'
-    },
-    {
       id: 'debug.sentry',
       title: 'Set Sentry to debug mode'
     },
