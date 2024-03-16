@@ -1,0 +1,49 @@
+.mousehunt-improved-settings .PagePreferences__settingName,
+.mousehunt-improved-settings .PagePreferences__settingDescription,
+.mousehunt-improved-settings .PagePreferences__titleText {
+  font-family: system-ui, sans-serif;
+}
+
+.mousehunt-improved-settings .PagePreferences__titleText {
+  font-weight: 200;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingName,
+.mousehunt-improved-settings .PagePreferences__settingDescription {
+  font-weight: 400;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingDescription {
+  height: 0;
+  padding: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.active.hover .PagePreferences__subSetting,
+.mousehunt-improved-settings .PagePreferences__settingsList.active:hover .PagePreferences__subSetting {
+  height: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList {
+  padding: 5px 0;
+  border-color: #f2ebde;
+}
+
+#mousehunt-improved-settings-design-custom-background,
+#mousehunt-improved-settings-design-custom-hud,
+#mousehunt-improved-settings-design-custom-horn,
+#mousehunt-improved-settings-design-custom-shield,
+#mousehunt-improved-settings-feature-ultimate-checkmark-show,
+.mousehunt-improved-settings .PagePreferences__settingsList,
+#mousehunt-improved-settings-advanced-override-flags,
+.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting {
+  border-color: #f2ebde;
+}
+
+.PagePreferences__section {
+  padding: 10px 10px 0;
+}
