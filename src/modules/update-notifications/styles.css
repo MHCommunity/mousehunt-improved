@@ -1,46 +1,3 @@
-.mhui-update-banner {
-  position: absolute;
-  top: 10px;
-  z-index: 11;
-  width: 352px;
-  padding: 10px;
-  margin: 10px 3px;
-  background: linear-gradient(320deg, #e1fae9 0%, #b0f5c6 100%);
-  background-color: #e1fae9;
-  border: 1px solid #6e7d73;
-  border-radius: 5px;
-  box-shadow:
-    1px 0 3px -1px #3d3d3d,
-    0 2px 5px 1px #111;
-}
-
-.mhui-update-banner-text {
-  margin: 10px 0 20px;
-  font-size: 16px;
-  text-align: center;
-}
-
-.mhui-update-banner-buttons {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-a.mhui-update-banner-button {
-  border: 1px solid #000;
-}
-
-.banner-fade {
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.banner-fade-out {
-  opacity: 0;
-}
-
 .mh-improved-has-update .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu::before {
   position: absolute;
   top: -12px;
@@ -57,10 +14,100 @@ a.mhui-update-banner-button {
   animation-delay: 2s;
 }
 
-.onboardArrow.mh-improved-onboarding-icon {
-  transform: translate(-50px, 30px);
+#overlayPopup.mh-improved-update-summary .jsDialog.top,
+#overlayPopup.mh-improved-update-summary .jsDialog.bottom,
+#overlayPopup.mh-improved-update-summary .jsDialog.background,
+#overlayPopup.mh-improved-update-summary .jsDialogContainer .prefix,
+#overlayPopup.mh-improved-update-summary .jsDialogContainer .content,
+#overlayPopup.mh-improved-update-summary .jsDialogContainer .suffix {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
 }
 
-.onboardArrow.mh-improved-onboarding-settings {
-  transform: translate(-100px, -60px);
+#overlayPopup.mh-improved-update-summary .jsDialog.top,
+#overlayPopup.mh-improved-update-summary .jsDialog.bottom {
+  pointer-events: none;
+}
+
+#overlayPopup.mh-improved-update-summary .jsDialogContainer {
+  padding: 0 20px;
+  background-image: url(https://www.mousehuntgame.com/images/ui/newsposts/np_border.png);
+  background-repeat: repeat-y;
+  background-size: 100%;
+}
+
+#overlayPopup.mh-improved-update-summary .jsDialogContainer::before {
+  position: absolute;
+  top: -80px;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  height: 100px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/newsposts/np_header.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+#overlayPopup.mh-improved-update-summary .jsDialogContainer::after {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  height: 126px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/newsposts/np_footer.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.mh-improved-update-summary-wrapper {
+  margin: 0 25px;
+  line-height: 1.5;
+}
+
+.mh-improved-update-summary-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+.mh-improved-update-summary h1 {
+  padding-bottom: 5px;
+  margin-top: -40px;
+  font-size: 1.75em;
+  font-weight: 700;
+  color: #693312;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: #c1915a;
+  text-underline-offset: 10px;
+}
+
+.mh-improved-update-summary h2 {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  font-size: 1.25em;
+  font-weight: 900;
+  border-bottom: 1px solid #c1915a;
+}
+
+.mh-improved-update-summary ul {
+  margin: 0 0 20px 20px;
+  list-style: disc;
+}
+
+.mh-improved-update-summary-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mh-improved-update-summary-links ul {
+  font-size: 1.125em;
+  line-height: 2;
 }

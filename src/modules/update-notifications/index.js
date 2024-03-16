@@ -1,77 +1,102 @@
-import {
-  addBodyClass,
-  addStyles,
-  getCurrentPage,
-  getGlobal,
-  getSetting,
-  makeElement,
-  onNavigation,
-  removeBodyClass,
-  saveSetting
-} from '@utils';
+import { addStyles, createPopup, onEvent } from '@utils';
 
 import styles from './styles.css';
 
-/**
- * Add the update banner.
- *
- * @param {boolean} hasNewSettings Whether there are new settings.
- */
-const addBanner = (hasNewSettings = false) => {
-  if (mhImprovedVersion === getSetting('updates.banner', '')) {
+import update from '@data/update-summary.json';
+
+const github = 'https://github.com/MHCommunity/mousehunt-improved';
+
+const getExtensionLink = () => {
+  if ('chrome' === mhImprovedPlatform) {
+    return 'https://chromewebstore.google.com/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm';
+  }
+
+  if ('firefox' === mhImprovedPlatform) {
+    return 'https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/';
+  }
+
+  if ('userscript' === mhImprovedPlatform) {
+    return 'https://greasyfork.org/en/scripts/465139-mousehunt-improved';
+  }
+
+  return github;
+};
+
+const makeList = (title, items) => {
+  if (! items || ! items.length) {
+    return '';
+  }
+
+  let markup = `<h2>${title}</h2><ul>`;
+  for (const item of items) {
+    markup += `<li>${item}</li>`;
+  }
+  markup += '</ul>';
+
+  return markup;
+};
+
+const showUpdateSummary = () => {
+  if (! update.summary && ! update.details) {
     return;
   }
 
-  // Also add a class to the body so the settings page can show a "new" badge if there are new settings.
-  if (hasNewSettings) {
-    addBodyClass('mh-improved-has-update');
+  let lists = '';
+
+  for (const list of update.details) {
+    lists += makeList(list.title, list.items);
   }
 
-  // Don't show except on the camp page.
-  if ('camp' !== getCurrentPage()) {
-    return;
-  }
+  const links = [
+    '<a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings">Settings</a>',
+    `<a href="${getExtensionLink()}" target="_blank" rel="noopener noreferrer">Leave a review</a>`,
+    '<a href="#">Support on Patreon</a>',
+    `<a href="${github}/issues">Report an issue</a>`,
+  ];
 
-  const banner = document.querySelector('.campPage-tabs .campPage-banner');
+  const markup = `<div class="mh-improved-update-summary-wrapper">
+	<h1 class="mh-improved-update-summary-title">MouseHunt Improved v${mhImprovedVersion}</h1>
+	<div class="mh-improved-update-summary-content">
+		<p>${update.summary || ''}</p>
+	</div>
+	<div class="mh-improved-update-summary-body">
+		<div class="mh-improved-update-summary-changes">
+      ${lists}
+    </div>
+    <div class="mh-improved-update-summary-links">
+      ${makeList('Links', links)}
+      <div class="mh-improved-update-summary-misc">
+        Want to contribute to MouseHunt Improved? Check out our <a href="${github}" target="_blank" rel="noopener noreferrer">GitHub</a>.
+      </div>
+    </div>
+	</div>
+	<div class="mh-improved-update-summary-buttons">
+		<a href="${github}/releases/tag/v${mhImprovedVersion}">View full changelog</a>
+		<a href="#" id="mh-improved-dismiss-popup" class="button">Dismiss</a>
+	</div>
+</div>`;
 
-  const bannerWrapper = makeElement('div', ['mhui-update-banner', 'banner-fade']);
-  const bannerContent = makeElement('div', 'mhui-update-banner-content');
-  makeElement('div', 'mhui-update-banner-text', `Welcome to MouseHunt Improved v${mhImprovedVersion}!`, bannerContent);
-
-  const buttonWrapper = makeElement('div', 'mhui-update-banner-buttons', '');
-  const button = makeElement('a', ['mhui-update-banner-button', 'mousehuntActionButton', 'small', 'lightBlue']);
-  makeElement('span', '', 'See what\'s new', button);
-  button.href = `https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}`;
-  button.target = '_blank';
-  buttonWrapper.append(button);
-
-  const closeButton = makeElement('a', ['mhui-update-banner-close', 'mousehuntActionButton', 'small', 'cancel']);
-  makeElement('span', '', 'Dismiss', closeButton);
-  closeButton.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    bannerWrapper.classList.add('banner-fade-out');
-    saveSetting('updates.banner', mhImprovedVersion);
-
-    removeBodyClass('mh-improved-has-update');
-
-    setTimeout(() => {
-      bannerWrapper.remove();
-    }, 1000);
+  // Initiate the popup.
+  const popup = createPopup({
+    hasCloseButton: false,
+    template: 'ajax',
+    content: markup,
+    show: false,
+    className: 'mh-improved-update-summary',
   });
 
-  buttonWrapper.append(closeButton);
+  // Set more of our tokens.
+  popup.addToken('{*prefix*}', '');
+  popup.addToken('{*suffix*}', '');
 
-  bannerContent.append(buttonWrapper);
-  bannerWrapper.append(bannerContent);
+  // If we want to show the popup, show it.
+  popup.show();
 
-  banner.append(bannerWrapper);
-
-  banner.classList.remove('hidden');
-
-  setTimeout(() => {
-    bannerWrapper.classList.add('banner-fade-in');
-  }, 1000);
+  const dismiss = document.querySelector('#mh-improved-dismiss-popup');
+  dismiss.addEventListener('click', (e) => {
+    e.preventDefault();
+    popup.hide(); // TODO: maybe refresh the page here if the update needs it?
+  });
 };
 
 /**
@@ -80,21 +105,14 @@ const addBanner = (hasNewSettings = false) => {
 const init = async () => {
   addStyles(styles, 'update-notifications');
 
-  if (getGlobal('mh-improved-updating')) {
-    return;
-  }
-
-  // True if there are new settings, otherwise false.
-  onNavigation(() => {
-    addBanner(true);
-  }, {
-    page: 'camp',
-  });
+  onEvent('mh-improved-updated', showUpdateSummary);
+  onEvent('mh-improved-show-update-summary', showUpdateSummary);
 };
 
 export default {
   id: 'update-notifications',
   type: 'required',
   alwaysLoad: true,
+  order: 200,
   load: init,
 };
