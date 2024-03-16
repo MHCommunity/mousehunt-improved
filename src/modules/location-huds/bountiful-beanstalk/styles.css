@@ -190,3 +190,7 @@
 .headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying:hover .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText {
   opacity: 1;
 }
+
+.folkloreForestRegionView-dialog-recipeResult-image.itemImage .quantity {
+  background: rgb(255 255 255 / 75%);
+}

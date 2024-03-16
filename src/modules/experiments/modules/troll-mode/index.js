@@ -1,4 +1,4 @@
-import { addStyles } from '@utils';
+import { addStyles, onTurn } from '@utils';
 
 import styles from './styles.css';
 
@@ -77,5 +77,6 @@ const trollem2 = () => {
  */
 export default async () => {
   trollEm();
+  onTurn(trollem, 1000);
   trollem2();
 };

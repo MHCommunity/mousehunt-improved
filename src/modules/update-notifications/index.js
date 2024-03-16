@@ -27,11 +27,11 @@ const makeList = (title, items) => {
     return '';
   }
 
-  let markup = `<h2>${title}</h2><ul>`;
+  let markup = `<div class="update-list-section"><h2>${title}</h2><ul>`;
   for (const item of items) {
     markup += `<li>${item}</li>`;
   }
-  markup += '</ul>';
+  markup += '</ul></div>';
 
   return markup;
 };
@@ -68,11 +68,11 @@ const showUpdateSummary = () => {
       <div class="mh-improved-update-summary-misc">
         Want to contribute to MouseHunt Improved? Check out our <a href="${github}" target="_blank" rel="noopener noreferrer">GitHub</a>.
       </div>
+      <div class="mh-improved-update-summary-buttons">
+        <a href="${github}/releases/tag/v${mhImprovedVersion}">View full changelog</a>
+        <a href="#" id="mh-improved-dismiss-popup" class="button">Dismiss</a>
+      </div>
     </div>
-	</div>
-	<div class="mh-improved-update-summary-buttons">
-		<a href="${github}/releases/tag/v${mhImprovedVersion}">View full changelog</a>
-		<a href="#" id="mh-improved-dismiss-popup" class="button">Dismiss</a>
 	</div>
 </div>`;
 

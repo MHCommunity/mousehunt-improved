@@ -11,7 +11,6 @@
   display: flex;
   gap: 10px;
   justify-content: flex-start;
-  padding-bottom: 10px;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingNameText {
@@ -228,7 +227,7 @@
 #mousehunt-improved-settings-location-hud-wrapper {
   display: flex;
   flex-flow: column wrap;
-  gap: 0;
+  gap: 0 5px;
   place-content: center center;
   align-content: stretch;
   align-items: stretch;
@@ -681,4 +680,12 @@
 
 .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting:nth-child(odd) {
   background-color: #f4f4f4;
+}
+
+.highlight .mousehuntSettingSlider.active {
+  border-color: #0ac7c7;
+}
+
+#mousehunt-improved-settings-advanced-error-reporting {
+  padding-bottom: 0;
 }

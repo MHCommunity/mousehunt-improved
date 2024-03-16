@@ -22,6 +22,10 @@ import styles from './styles.css';
 const getFavoriteSetups = () => {
   const faves = getSetting('favorite-setups.setups', []);
 
+  if (! faves.length) {
+    return [];
+  }
+
   // remove any that are just null.
   return faves.filter(Boolean);
 };

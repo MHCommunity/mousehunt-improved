@@ -21,11 +21,17 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  margin: 0;
 }
 
 .two-column.mousehunt-improved-settings .mh-improved-custom-bg-preview,
 .two-column.mousehunt-improved-settings .mh-improved-custom-horn-show-horn {
+  top: 10px;
   right: 0;
+}
+
+#mousehunt-improved-settings-design .PagePreferences__settingAction {
+  max-width: 200px;
 }
 
 .two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-ultimate-checkmark-show.PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName {
@@ -49,7 +55,8 @@
 .two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting {
   padding: 0 5px 0 10px;
   margin-right: 0;
-  margin-left: 0;
+  margin-left: 1px;
+  border-radius: 0;
 }
 
 .two-column.mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,
@@ -95,12 +102,14 @@
 .two-column .inputBoxContainer.multiSelect {
   gap: 5px 10px;
   justify-content: flex-start;
+  margin-top: 5px;
 }
 
 .two-column #mousehunt-improved-settings-location-hud-wrapper {
+  gap: 0;
   height: 700px;
   padding: 11px 0 0;
-  margin: 0 -10px -10px -11px;
+  margin: 0 -10px -10px;
   overflow: hidden;
 }
 
@@ -117,6 +126,11 @@
 .two-column #mousehunt-improved-settings-advanced-override-styles,
 .two-column #mousehunt-improved-settings-advanced-override-flags {
   margin-left: 0;
+}
+
+.two-column #mousehunt-improved-settings-advanced-override-styles .PagePreferences__settingName,
+.two-column #mousehunt-improved-settings-advanced-override-flags .PagePreferences__settingName {
+  margin-bottom: 10px;
 }
 
 .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.two-column .PagePreferences__settingDescription {
