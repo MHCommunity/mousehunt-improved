@@ -1,4 +1,4 @@
-import { addStyles, onDialogShow } from '@utils';
+import { addStyles, onDialogShow, onEvent, onRequest } from '@utils';
 import { getData } from '@utils/data';
 
 import pathsToSkip from '@data/upscaled-images-to-skip.json';
@@ -155,30 +155,33 @@ const upscaleBackgroundImages = async () => {
   });
 };
 
-const upscaleImages = async (observer) => {
+let lastUpscaledRan = 0;
+const upscaleImages = async () => {
   if (isUpscaling) {
     return;
   }
 
-  // Pause the observer while we are making changes.
-  if (observer) {
-    observer.disconnect();
-  }
-
   isUpscaling = true;
 
-  // Upscale the images.
-  await upscaleImages();
-  await upscaleBackgroundImages();
-
-  // Resume the observer.
-  if (observer) {
-    observer.observe(document, observerOptions);
+  // check when we last ran the upscale function and if it was less than 1 second ago, skip the upscale.
+  if (lastUpscaledRan > Date.now() - 100) {
+    // return;
   }
 
+  lastUpscaledRan = Date.now();
+
+  observer.disconnect();
+
+  // Upscale the images.
+  await upscaleImageElements();
+  await upscaleBackgroundImages();
+
   isUpscaling = false;
-  // return a promise that resolves when all the images have been upscaled.
-  return Promise.all([upscaleImageElements(), upscaleBackgroundImages()]);
+
+  // Reconnect the observer
+  observer.observe(document, observerOptions);
+
+  return true;
 };
 
 const unupscaledImages = [];
@@ -194,44 +197,89 @@ const observerOptions = {
 };
 
 let mapping = [];
-
+let observer;
 /**
  * Initialize the module.
  */
+const main = async () => {
+  observer = new MutationObserver(async (mutations) => {
+    const skipClasses = new Set([
+      'huntersHornView__timerState',
+      'mousehuntHud-gameInfo',
+      'campPage-daily-tomorrow-countDown',
+      'ticker',
+      'mousehuntHeaderView-menu-notification',
+      'mousehunt-improved-lgs-reminder-new',
+      'mousehunt-improved-lgs-reminder',
+      // Select2, search boxes on marketplace and friends list..
+      'select2-chosen',
+      'select2-offscreen',
+      'select2-container',
+      'select2-search',
+      'select2-drop',
+      'marketplaceView-header-searchContainer',
+      // Markethunt.
+      'highcharts-tracker',
+      'highcharts-grid',
+      'highcharts-axis',
+      'highcharts-axis-labels',
+    ]);
+
+    const skipIds = new Set([
+      'mh-improved-cre',
+      'mhhh_flast_message_div',
+    ]);
+
+    const skipElements = new Set([
+      'head',
+      'title',
+      'optgroup',
+      'option',
+    ]);
+
+    for (const mutation of mutations) {
+      if ((mutation.type === 'childList' || mutation.type === 'attributes') && (
+        (mutation.target.classList && [...mutation.target.classList].some((c) => skipClasses.has(c))) ||
+        (mutation.target.id && skipIds.has(mutation.target.id)) ||
+        (mutation.target.nodeName && skipElements.has(mutation.target.nodeName.toLowerCase()))
+      )) {
+        continue;
+      }
+
+      await upscaleImages();
+    }
+  });
+
+  observer.observe(document, observerOptions);
+};
+
 const init = async () => {
   addStyles([styles, journalThemeStyles, viewsStyles], 'image-upscaling');
 
   mapping = await getData('upscaled-images');
 
-  mapping['items/trinkets/1dd7ea1380d9193ae1be9fb13335272d.gif'] = 'https://i.mouse.rip/upscaled/uluck.png';
-  mapping['items/trinkets/large/07cee94773b821f8db533d23ff511643.png'] = 'https://i.mouse.rip/upscaled/uluck.png';
-  mapping['items/trinkets/transparent_thumb/88917c0fb84e407929193251b8362496.png'] = 'https://i.mouse.rip/upscaled/uluck.png';
+  onEvent('mh-improved-init', main);
 
-  const observer = new MutationObserver(async (mutations) => {
-    for (const mutation of mutations) {
-      // Don't run when it's the horn counting down.
-      if (mutation.type === 'childList' && mutation.target.classList.contains('huntersHornView__timerState')) {
-        continue;
-      }
-
-      // Don't run on the news ticker.
-      if (mutation.type === 'attributes' && mutation.target.classList.contains('ticker')) {
-        continue;
-      }
-
-      // Pause the observer while we are making changes.
-      observer.disconnect();
-
-      upscaleImages(observer);
-    }
-  });
-
-  observer.observe(document, observerOptions);
+  main();
 
   onDialogShow('all', () => {
-    setTimeout(() => {
-      upscaleImages();
-    }, 500);
+    setTimeout(upscaleImages, 500);
+  });
+
+  onRequest('*', () => {
+    if (isUpscaling) {
+      return;
+    }
+
+    setTimeout(upscaleImages, 500);
+  });
+
+  onEvent('journal-entry', () => {
+    isUpscaling = true;
+  });
+
+  onEvent('journal-entries', () => {
+    isUpscaling = false;
   });
 };
 
