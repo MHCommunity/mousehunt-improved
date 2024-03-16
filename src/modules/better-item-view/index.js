@@ -1,12 +1,15 @@
 import {
   addStyles,
   getArForMouse,
+  getSetting,
   makeElement,
   makeLink,
   makeTooltip,
   onOverlayChange,
   onPageChange
 } from '@utils';
+
+import settings from './settings';
 
 import styles from './styles.css';
 
@@ -78,10 +81,14 @@ const updateItemView = async () => {
 
   addLinks(itemId);
 
-  // dont show drop rates for items that arent consistent.
+  if (! getSetting('better-item-view.show-drop-rates', true)) {
+    return;
+  }
+
+  // don't show drop rates for items that aren't consistent.
   const id = Number.parseInt(itemId, 10);
   const ignored = [
-    2473, // mina's gift
+    2473, // Mina's gift
     823, // party charm
     803, // chrome charm
     420, // king's credits
@@ -93,8 +100,8 @@ const updateItemView = async () => {
     return;
   }
 
-  let mhctjson = await getArForMouse(itemId, 'item');
-  if (! mhctjson || mhctjson === undefined) {
+  let mhctJson = await getArForMouse(itemId, 'item');
+  if (! mhctJson || mhctJson === undefined) {
     return;
   }
 
@@ -111,7 +118,7 @@ const updateItemView = async () => {
 
   makeTooltip({
     appendTo: titleText,
-    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank">MHCT</a>.',
+    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noopener noreferrer">MHCT</a>.',
   });
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
@@ -123,18 +130,18 @@ const updateItemView = async () => {
   const itemsArWrapper = makeElement('div', 'item-ar-wrapper');
 
   // check if there are stages in any of the item
-  const hasStages = mhctjson.some((itemAr) => itemAr.stage);
+  const hasStages = mhctJson.some((itemAr) => itemAr.stage);
 
   if (hasStages) {
     itemsArWrapper.classList.add('has-stages');
   }
 
-  // shrink the mhctjson array to only include items with non-zero drop rates and a maxiumum of 15 items
-  mhctjson = mhctjson
+  // shrink the mhct json array to only include items with non-zero drop rates and a maximum of 15 items
+  mhctJson = mhctJson
     .filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0)
-    .slice(0, 15);
+    .slice(0, 10);
 
-  mhctjson.forEach((itemAr) => {
+  mhctJson.forEach((itemAr) => {
     const dropPercent = Number.parseInt(itemAr.drop_pct, 10).toFixed(2);
     if (dropPercent !== '0.00') {
       const itemArWrapper = makeElement('div', 'mouse-ar-wrapper');
@@ -152,7 +159,7 @@ const updateItemView = async () => {
     }
   });
 
-  if (mhctjson.length > 0) {
+  if (mhctJson.length > 0) {
     arWrapper.append(itemsArWrapper);
     container.append(arWrapper);
   }
@@ -174,4 +181,5 @@ export default {
   default: true,
   description: 'Updates the styles and shows drop rates, links to MHCT, and MH Wiki.',
   load: init,
+  settings,
 };

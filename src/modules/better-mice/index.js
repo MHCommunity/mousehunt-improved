@@ -3,6 +3,8 @@ import {
   addSubmenuItem,
   doRequest,
   getArForMouse,
+  getData,
+  getSetting,
   makeElement,
   makeFavoriteButton,
   makeLink,
@@ -10,9 +12,8 @@ import {
   onOverlayChange
 } from '@utils';
 
-import { getData } from '@utils/data';
-
 import mousePage from './mouse-page';
+import settings from './settings';
 
 import styles from './styles.css';
 
@@ -246,6 +247,10 @@ const updateMouseView = async () => {
     imageContainer.append(movedContainer);
   }
 
+  if (! getSetting('better-mice.show-attraction-rates', true)) {
+    return;
+  }
+
   const arWrapper = makeElement('div', 'ar-wrapper');
   const title = makeElement('div', 'ar-header');
   const titleText = makeElement('div', 'ar-title', 'Attraction Rates', title);
@@ -373,4 +378,5 @@ export default {
   default: true,
   description: 'Adds attraction rate stats and links to MHWiki and MHCT to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.',
   load: init,
+  settings,
 };

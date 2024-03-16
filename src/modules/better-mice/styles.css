@@ -328,6 +328,7 @@ ul.minluck-list {
 
 .mouseCrownsView-group-mouse.landscape .mouseCrownsView-group-mouse-image,
 .mouseCrownsView-group-mouse-image {
+  background-position: center;
   background-size: 100%;
   transition: 0.4s;
 }
