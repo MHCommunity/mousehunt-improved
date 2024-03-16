@@ -1,12 +1,16 @@
 import {
   addHudStyles,
   getCurrentLocation,
+  getFlag,
   getUserItems,
   makeElement,
-  onRequest
+  onRequest,
+  onTurn
 } from '@utils';
 
-import styles from './styles.css';
+import alwaysShowProgress from './styles/always-show-progress.css';
+import bobIceberg from './styles/bob-iceberg.css';
+import styles from './styles/styles.css';
 
 const getSections = (quest) => {
   const sections = [
@@ -160,15 +164,17 @@ const getTooltipText = (quest) => {
   progress.append(averageHunts);
 
   if (! quest.isLair) {
-    const stageProgressPercent = document.createElement('div');
-    stageProgressPercent.classList.add('stage-progress-percent');
-    stageProgressPercent.innerText = `Stage Progress: ${roundProgress(quest.stagePercent)}%`;
+    const stageProgressPercent = makeElement('div', 'stage-progress-percent');
+    makeElement('span', 'progress-label', 'Stage Progress: ', stageProgressPercent);
+    makeElement('span', ['progress-label-short', 'hidden'], 'Stage: ', stageProgressPercent);
+    makeElement('strong', '', `${roundProgress(quest.stagePercent)}%`, stageProgressPercent);
     progress.append(stageProgressPercent);
 
     if (! quest.isDeep) {
-      const totalProgressPercent = document.createElement('div');
-      totalProgressPercent.classList.add('total-progress-percent');
-      totalProgressPercent.innerText = `Total Progress: ${roundProgress(quest.totalPercent)}%`;
+      const totalProgressPercent = makeElement('div', 'total-progress-percent');
+      makeElement('span', 'progress-label', 'Total Progress: ', totalProgressPercent);
+      makeElement('span', ['progress-label-short', 'hidden'], 'Total: ', totalProgressPercent);
+      makeElement('strong', '', `${roundProgress(quest.totalPercent)}%`, totalProgressPercent);
       progress.append(totalProgressPercent);
     }
   }
@@ -249,7 +255,7 @@ const addDeepWarning = async () => {
     return;
   }
 
-  // Create a list of equippable bases, seperated by 'or'
+  // Create a list of equippable bases, separated by 'or'
   const equippableBasesText = equippableBases
     .map((base, index) => {
       if (index === 0) {
@@ -264,21 +270,22 @@ const addDeepWarning = async () => {
     })
     .join(' ');
 
-  const warning = document.createElement('div');
-  warning.classList.add('deep-warning');
+  const warning = makeElement('div', 'deep-warning');
 
-  const warningText = document.createElement('div');
-  warningText.classList.add('deep-warning-text');
-  warningText.innerText = `To access the Hidden Depths, make sure you equip ${equippableBasesText}.`;
+  const warningText = makeElement('div', 'deep-warning-text', `To access the Hidden Depths, make sure you equip ${equippableBasesText}.`);
 
-  const warningIcon = document.createElement('img');
-  warningIcon.classList.add('deep-warning-icon');
+  const warningIcon = makeElement('img', 'deep-warning-icon');
   warningIcon.src = 'https://www.mousehuntgame.com/images/ui/journal/pillage.gif?asset_cache_version=2';
 
   warning.append(warningIcon);
   warning.append(warningText);
 
-  appendTo.append(warning);
+  const existingWarning = appendTo.querySelector('.deep-warning');
+  if (existingWarning) {
+    existingWarning.replaceWith(warning);
+  } else {
+    appendTo.append(warning);
+  }
 };
 
 const hud = async () => {
@@ -300,13 +307,6 @@ const hud = async () => {
 
   quest = addProgressToQuestData(quest);
 
-  // Stage distance.
-  // Remove the existing stage distance.
-  const existingStage = huntInfo.querySelector('.remaining-stage-distance');
-  if (existingStage) {
-    existingStage.remove();
-  }
-
   // If we're in icewing's lair, don't show the stage distance.
   if (! quest.isLair) {
     // Create the stage distance element.
@@ -314,21 +314,21 @@ const hud = async () => {
     remainingStageDistance.classList.add('remaining-stage-distance');
     const destination = quest.isDeep ? 'Deep' : 'next stage';
     if (quest.stage !== quest.total) {
-      remainingStageDistance.innerText = `${quest.stage} feet until ${destination}`;
+      const feet = quest.stage.toLocaleString();
+      remainingStageDistance.innerText = `${feet} feet until ${destination}`;
       if (quest.stageHunts > 0) {
         remainingStageDistance.innerText += ` (~${quest.stageHunts} hunts)`;
       }
     }
 
-    // Append the stage distance element.
-    huntInfo.insertBefore(remainingStageDistance, huntInfo.lastChild);
-  }
-
-  // Total distance.
-  // Remove the existing distance.
-  const existingDistance = huntInfo.querySelector('.remaining-distance');
-  if (existingDistance) {
-    existingDistance.remove();
+    // Remove the existing stage distance.
+    const existingStage = huntInfo.querySelector('.remaining-stage-distance');
+    if (existingStage) {
+      existingStage.replaceWith(remainingStageDistance);
+    } else {
+      // Append the stage distance element.
+      huntInfo.insertBefore(remainingStageDistance, huntInfo.lastChild);
+    }
   }
 
   // If we're in icewing's lair, don't show the total distance.
@@ -337,21 +337,20 @@ const hud = async () => {
     const remainingDistance = document.createElement('div');
     remainingDistance.classList.add('remaining-distance');
     if (quest.total !== 0) {
-      remainingDistance.innerText = `${quest.total} feet until Icewing's Lair`;
+      const feet = quest.total.toLocaleString();
+      remainingDistance.innerText = `${feet} feet until Icewing's Lair`;
       if (quest.totalHunts > 0) {
         remainingDistance.innerText += `(~${quest.totalHunts} hunts)`;
       }
     }
 
-    // Append the distance element.
-    huntInfo.insertBefore(remainingDistance, huntInfo.lastChild);
-  }
-
-  // Tooltip.
-  // Remove the existing tooltip.
-  const existingTooltip = huntInfo.querySelector('.icebergStatusTooltip');
-  if (existingTooltip) {
-    existingTooltip.remove();
+    // Remove the existing distance.
+    const existingDistance = huntInfo.querySelector('.remaining-distance');
+    if (existingDistance) {
+      existingDistance.replaceWith(remainingDistance);
+    } else {
+      huntInfo.insertBefore(remainingDistance, huntInfo.lastChild);
+    }
   }
 
   huntInfo.classList.add('mousehuntTooltipParent');
@@ -360,22 +359,78 @@ const hud = async () => {
   tooltip.classList.add('mousehuntTooltip', 'right', 'noEvents');
 
   const tooltipContent = getTooltipText(quest);
+
+  const existingTooltip = huntInfo.querySelector('.icebergStatusTooltip');
   tooltip.append(tooltipContent);
 
   makeElement('div', 'mousehuntTooltip-arrow', '', tooltip);
 
-  huntInfo.append(tooltip);
+  if (existingTooltip) {
+    existingTooltip.replaceWith(tooltip);
+  } else {
+    huntInfo.append(tooltip);
+  }
 
   if (quest.isLair) {
     addDeepWarning();
   }
 };
 
+const makeMapScrollable = () => {
+  const map = document.querySelector('.icebergHud .timeline .icebergContainer .iceberg');
+  if (! map) {
+    return;
+  }
+
+  // When the user hovers over the map, allow them to scroll. Scrolling changes the current top of the element.
+  // When the user's mouse leaves the map, stop scrolling and reset the top to what it was before.
+  map.addEventListener('mouseenter', () => {
+    const startingTop = map.style.top.replace('px', '');
+
+    // add a scroll listener to the map
+    const scrollListener = (event) => {
+      event.preventDefault();
+
+      const scrollAmount = event.deltaY;
+      const newTop = Number.parseInt(startingTop, 10) - scrollAmount;
+      map.style.top = `${newTop}px`;
+    };
+
+    map.addEventListener('wheel', scrollListener);
+
+    map.addEventListener('mouseleave', () => {
+      map.style.top = `${startingTop}px`;
+
+      map.removeEventListener('wheel', scrollListener);
+    });
+  });
+
+  map.addEventListener('click', (event) => {
+    event.preventDefault();
+    const popup = new jsDialog();
+    popup.setAttributes({ className: 'largerImage icebergMap' });
+    popup.setTemplate('largerImageWithClass');
+    popup.addToken('{*image*}', 'https://www.mousehuntgame.com/images/ui/hud/iceberg_bg.png?asset_cache_version=2');
+    popup.addToken('{*imageCaption*}', '');
+    popup.show();
+  });
+};
+
 /**
  * Initialize the module.
  */
 export default async () => {
-  addHudStyles(styles);
+  let stylesToUse = styles + bobIceberg;
+  if (getFlag('iceberg-always-show-progress')) {
+    stylesToUse += alwaysShowProgress;
+  }
+
+  addHudStyles(stylesToUse);
+
   hud();
-  onRequest('*', hud);
+
+  onTurn(hud, 1000);
+  onRequest('environment/iceberg.php', hud);
+
+  makeMapScrollable();
 };

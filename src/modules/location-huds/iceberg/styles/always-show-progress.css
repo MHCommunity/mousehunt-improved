@@ -1,0 +1,16 @@
+.icebergStatusTooltip.mousehuntTooltip {
+  display: block;
+}
+
+.icebergStatusTooltip.mousehuntTooltip .mousehuntTooltip-arrow {
+  display: none;
+}
+
+.icebergHud .cutaway .drill .help {
+  top: 89px;
+  box-shadow: 0 2px 3px -1px #797979;
+}
+
+.depth.mousehuntTooltipParent:hover > .mousehuntTooltip {
+  animation: none !important;
+}

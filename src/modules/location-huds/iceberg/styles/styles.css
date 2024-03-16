@@ -13,16 +13,19 @@
 }
 
 .icebergStatusTooltip {
-  bottom: -25px;
-  left: calc(100% + 4px);
-  width: 320px;
-  margin-left: 1em;
+  bottom: -3px;
+  left: 170px;
+  width: 330px;
+  padding: 5px 5px 0;
+  background-color: #edf1f8;
+  border: 1px solid #a4b5bf;
+  box-shadow: 0 1px 0 1px #9caab4;
 }
 
 .icebergStatusTooltip .mousehuntTooltip-content {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 10px;
+  gap: 15px;
   align-items: center;
 }
 
@@ -39,7 +42,11 @@
 }
 
 .icebergStatusTooltip .hunts-wrapper div {
-  margin-top: 0.75em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin: 0;
 }
 
 .icebergStatusTooltip .hunts-wrapper div:first-child {
@@ -48,7 +55,7 @@
 }
 
 .icebergStatusTooltip .iceberg-sections {
-  width: 190px;
+  width: 175px;
 }
 
 .icebergStatusTooltip .iceberg-section {
@@ -56,42 +63,38 @@
   display: flex;
   place-items: center start;
   justify-content: space-between;
-  width: 180px;
+  width: auto;
   margin-bottom: 0.25em;
   overflow: visible;
 }
 
-.icebergStatusTooltip .iceberg-section-name {
-  width: auto;
-  min-width: 110px;
-}
-
 .icebergStatusTooltip .iceberg-section.complete {
   color: #989898;
-}
-
-.icebergStatusTooltip .iceberg-section.complete::after {
-  position: absolute;
-  top: -2px;
-  right: -15px;
-  width: 12px;
-  height: 12px;
-  content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=2) 0 0 no-repeat;
-  background-size: contain;
   opacity: 0.6;
 }
 
+.icebergStatusTooltip .iceberg-section.complete .iceberg-section-name::before {
+  position: absolute;
+  top: 1px;
+  left: -10px;
+  width: 10px;
+  height: 10px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=2) 0 0 no-repeat;
+  background-size: contain;
+  opacity: 1;
+}
+
 .icebergStatusTooltip .iceberg-section.incomplete {
-  color: #52969b;
+  color: #488589;
 }
 
 .icebergStatusTooltip .iceberg-section.current::before {
   position: absolute;
-  top: 0;
+  top: 1px;
   left: -7px;
-  font-size: 9px;
-  color: #579ca2;
+  font-size: 8px;
+  color: #6aa9af;
   vertical-align: middle;
   content: "•";
   border-radius: 3px;
@@ -136,28 +139,26 @@
   opacity: 1;
 }
 
-#icebergDrill {
-  z-index: 2;
-}
-
 .icebergHud .cutaway .wax .quantity,
 .icebergHud .cutaway .sticky .quantity {
+  box-sizing: border-box;
   width: 38px;
   padding: 0;
-  margin-left: 3px;
+  margin-top: 22px;
+  margin-left: 4px;
   font-size: 12px;
   font-weight: 400;
   border-color: #89989e;
-  border-radius: 3px 3px 4px 4px;
+  border-radius: 2px 2px 6px 6px;
 }
 
 .icebergHud .cutaway .sticky .quantity {
-  margin-top: 25px;
+  margin-top: 26px;
 }
 
 .icebergHud .cutaway .drill .quantity {
-  top: 26px;
-  left: 108px;
+  top: 28px;
+  left: 110px;
   font-size: 14px;
   text-align: left;
   text-shadow: 1px 1px #000;
@@ -165,4 +166,75 @@
 
 .iceberg-section.current {
   font-weight: 900;
+}
+
+.icebergHud .cutaway .depth {
+  top: 3px;
+  z-index: 4;
+  padding-top: 6px;
+  background-color: rgb(0 0 0 / 35%);
+  border-color: #8d98a0;
+  border-radius: 0;
+}
+
+.icebergHud .cutaway .drill .heatContainer .heat {
+  mix-blend-mode: overlay;
+}
+
+.icebergStatusTooltip .hunts-wrapper strong {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1.125;
+  text-align: center;
+}
+
+.icebergStatusTooltip.mousehuntTooltip {
+  pointer-events: all;
+}
+
+.icebergStatusTooltip.mousehuntTooltip .mousehuntTooltip-arrow {
+  top: 70%;
+  left: -24px;
+  border-color: transparent #a4b5bf transparent transparent;
+  border-width: 12px;
+}
+
+.icebergStatusTooltip.mousehuntTooltip .mousehuntTooltip-arrow::after {
+  bottom: -10px;
+  left: -8px;
+  border-color: transparent #edf1f8 transparent transparent;
+  border-width: 10px;
+}
+
+.icebergHud .cutaway .icebergContainer .label {
+  font-size: 12px;
+}
+
+.icebergMap img {
+  width: 600px;
+}
+
+/* .bonus_timeline .icebergContainer {
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+}
+
+.bonus_timeline {
+  position: relative;
+  height: 30px;
+} */
+
+.icebergHud .cutaway .drill .help b.warning {
+  display: block;
+}
+
+.icebergHud .cutaway .drill .help {
+  width: 400px;
+}
+
+.icebergHud .timeline .waterline {
+  bottom: -2px;
 }
