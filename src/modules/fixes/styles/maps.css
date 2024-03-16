@@ -1,0 +1,15 @@
+/* Don't show the clue circle for the blank profile of empty map slots */
+.treasureMapView-hunter.empty .treasureMapView-hunter-miceCaught {
+  display: none;
+}
+
+/* Full width for the map link text box */
+input.treasureMapView-shareLinkInput {
+  width: 95%;
+  margin: 0 auto;
+}
+
+/* Fix the checkmark on map screens */
+.treasureMapInviteSettingsView-listing-visibility.active::before {
+  content: "✓";
+}

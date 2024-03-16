@@ -1,0 +1,4 @@
+/* One pixel change to prevent an extra border from appearing */
+.labyrinthHUD.exit.secret {
+  background-position-y: -184px;
+}

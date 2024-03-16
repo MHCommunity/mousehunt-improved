@@ -1,0 +1,19 @@
+/* Top menu, fix dropdown arrow direction */
+.mousehuntHeaderView .menuItem.dropdown .arrow {
+  top: 10px;
+  transform: rotate(180deg);
+}
+
+.mousehuntHeaderView .menuItem.dropdown.expanded .arrow {
+  top: 5px;
+}
+
+.dropdownContent {
+  color: #000;
+}
+
+/* Fix menu tab border alignment */
+.mousehuntHeaderView .support .dropdownContent {
+  right: -0.5px;
+  border-top: 1px solid #ccc;
+}

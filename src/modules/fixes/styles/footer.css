@@ -1,0 +1,5 @@
+/* Fix the weird footer width */
+.pageFrameView-column.left,
+.pageFrameView-column.right {
+  margin-bottom: -140px;
+}

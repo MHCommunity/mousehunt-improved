@@ -1,0 +1,65 @@
+/* Invalid color codes in HG css files */
+.halloweenBoilingCauldronRecipeView-cauldronTooltip {
+  background: #333aaa; /* was #333aa */
+}
+
+.eggSweeper-control-boundingBox:hover {
+  box-shadow: 5px 5px 10px #fff82f inset; /* was #fff82 */
+}
+
+.greatWinterHuntRewardTrackView__claimButton {
+  text-shadow: 1px 1px 1px #fff777; /* was #fff77 */
+}
+
+.forewordFarmPlotView-plot-help {
+  box-shadow: 2px 3px 3px 1px #333666; /* was #33366 */
+}
+
+.floatingIslandsHUD.unlockedSkyPalace .floatingIslandsHUD-overlay {
+  background: linear-gradient(to right, #000999, transparent); /* was #00099 */
+}
+
+.tableOfContentsProgressView-claimButton.busy::after,
+.folkloreForestRegionView-button.busy::after {
+  background: #000888 url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif?asset_cache_version=2) 50% 50% no-repeat; /* was #00088 */
+}
+
+.halloweenBoilingCauldronHUD-dialog-reward.complete::after {
+  box-shadow: 5px 5px 5px #000888; /* was #00088 */
+}
+
+.folkloreForestRegionView-dialogContainer {
+  box-shadow: 10px 10px 4px 1px #000333 inset; /* was #00033 */
+}
+
+.folkloreForestRegionView-boost {
+  box-shadow: 2px 2px 2px #333111; /* was #33311 */
+}
+
+.MHCheckout-featuredItemTransparent.small .MHCheckout-featuredItemTransparent-backlight {
+  background: linear-gradient(-45deg, #fff, #fffaaa); /* was #fffaa */
+}
+
+.MHCheckout-relicHunterGrouped {
+  background: #fff555; /* was #fff55 */
+}
+
+.MHCheckout-splash.halloween_skins .MHCheckout-link {
+  background: #000999; /* was #00099 */
+}
+
+.MHCheckout-splash.lunar_new_year_2023 .MHCheckout-featuredItem-actions {
+  border: 1px solid #ff351f; /* was #ff351 */
+}
+
+.tableOfContentsProgressView-reward-quantity {
+  background: #fffaaa; /* was #fffaa */
+}
+
+.MHCheckoutDialogView-overlay {
+  background: #fffa8a; /* was #fffa8 */
+}
+
+.eggSweeper-viewAllRewardsButton:hover {
+  background-color: #228b22; /* was 'forest' */
+}

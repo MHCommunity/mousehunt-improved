@@ -1,0 +1,10 @@
+/* Make facebook images correct size even when facebook is blocked */
+img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {  /* stylelint-disable-line prettier/prettier */
+  width: 44px;
+  height: 44px;
+}
+
+.treasureMapView-environment-hunters img[src*="https://graph.facebook.com"].treasureMapView-hunter-image {  /* stylelint-disable-line prettier/prettier */
+  width: 20px;
+  height: 20px;
+}

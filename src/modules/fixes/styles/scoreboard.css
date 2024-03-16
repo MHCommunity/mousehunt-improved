@@ -1,0 +1,6 @@
+/* Align the friends checkbox on the scoreboard */
+.scoreboardTableView-friends,
+.scoreboardTableView-weekly {
+  margin-top: 1px;
+  vertical-align: middle;
+}

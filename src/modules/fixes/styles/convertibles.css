@@ -1,0 +1,9 @@
+/* Vertical align the quantity input and open button on convertible dialogs */
+.itemView-action-convertForm {
+  display: flex;
+  align-items: center;
+}
+
+.itemView-action-convert-quantity {
+  top: 0;
+}

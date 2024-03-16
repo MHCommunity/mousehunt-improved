@@ -1,0 +1,10 @@
+/* Fix TEM hover */
+.pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer:hover {
+  background-color: #fdfaf2;
+}
+
+/* Fix TEM padding */
+body .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer {
+  padding-left: 10px;
+  margin: 5px 0;
+}

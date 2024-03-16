@@ -1,0 +1,8 @@
+/* Original wwrift rage font size */
+.riftWhiskerWoodsHUD-zone-rageLevel {
+  font-size: 14px;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-craftingItem-quantity {
+  font-size: 9px; /* was set as 'font-style'; */
+}

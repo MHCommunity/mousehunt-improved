@@ -1,0 +1,40 @@
+/* Make the collectibles tab show the full text */
+a.mousehuntHud-page-tabHeader.collectibles span {
+  padding-top: 6px;
+  overflow: visible !important;
+  font-size: 13px;
+  text-overflow: unset !important;
+  white-space: normal !important;
+}
+
+/* Make the inbox arrow color match on hover */
+#messengerUINotification .tabs a:hover .arrow {
+  border-color: transparent transparent transparent #eee;
+}
+
+/* Make page sub tabs align correctly */
+.mousehuntHud-page-tabHeader-container {
+  margin-bottom: -1px;
+}
+
+.mousehuntHud-page-tabHeader.active span {
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.mousehuntHud-page-tabHeader {
+  height: 29px;
+}
+
+.mousehuntHud-page-tabHeader.active span,
+.mousehuntHud-page-tabHeader:hover span,
+.mousehuntHud-page-tabHeader span {
+  padding-bottom: 0.5px;
+  margin-top: 4px;
+}
+
+.mousehuntHud-page-tabHeader.active span,
+.mousehuntHud-page-tabHeader:hover span {
+  padding-bottom: 5px;
+  margin-top: 0;
+}
