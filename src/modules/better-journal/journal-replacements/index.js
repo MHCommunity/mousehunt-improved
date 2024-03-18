@@ -198,5 +198,10 @@ const processEntry = async (entry) => {
 export default async () => {
   addStyles(styles, 'better-journal-replacements');
 
-  addEvent('journal-entry', processEntry, { weight: 1000, id: 'better-journal-replacements' });
+  addEvent('journal-entry', (entry) => {
+    processEntry(entry);
+    setTimeout(() => {
+      processEntry(entry);
+    }, 500);
+  }, { weight: 1000, id: 'better-journal-replacements' });
 };
