@@ -4,7 +4,7 @@
 
 ### New Features
 
-- Hide News Ticker module
+- Adds "Hide News Ticker" module
 
 ### Better Inventory
 
@@ -12,14 +12,14 @@
 
 ### Better Item View
 
-- Adds a ‘Show Drop Rates’ setting
+- Adds a "Show Drop Rates" setting
 
 ### Better Journal
 
-- Journal replacement and modifications now happen more efficiently and faster
-- More styles added
-- Gold and points icons is now a separate option
-- Unique link colors is now a separate option
+- Updates Journal replacement logic to happen more efficiently, quickly, and consistently
+- Adds more styles for journal entries
+- Adds a setting for "Show Gold and Points icons"
+- Adds a setting for "Unique Loot Colors"
 
 ### Better Maps
 
@@ -27,16 +27,16 @@
 
 ### Better Marketplace
 
-- Add option to show charts on category pages
+- Adds a setting to show price history charts on category pages
 
 ### Better Mice
 
-- Adds a ‘Show Attraction Rates’ setting
+- Adds a ‘Show Attraction Rates’ setting, Minor style updates
 
 ### Better Shops
 
-- Added new ‘Hide max quantity owned’ setting
-- Added new setting to show quantity buttons for buy amount
+- Adds a "Hide max quantity owned" setting,
+- Adds a setting to show quantity buttons for buy amount
 - Adds ability to hit enter while typing in an input field instead of clicking the buy button. Hitting enter a second time will confirm it.
 
 ### Better UI
@@ -47,11 +47,11 @@
 
 ### Experiments
 
-- Added new experiment: Iceberg progress stats always visible
-- Added new experiment: New settings styles
-- Added new experiment: New settings styles (columns)
-- Added new experiment: Scoreboard search on Hunter Profiles
-- Shortened Location HUD toggle button text
+- Adds new experiment: Iceberg progress stats always visible
+- Adds new experiment: New settings styles
+- Adds new experiment: New settings styles (columns)
+- Adds new experiment: Scoreboard search on Hunter Profiles
+- Shortens Location HUD toggle button text
 
 ### Favorite Setups
 
@@ -61,35 +61,47 @@
 
 ### Image Upscaling
 
-- rewrote for better performance and memory usage
+- Updates processing logic to be more efficient and less memory intensive
+
+### Journal Changer
+
+- Fixes theme being randomized more than once per day
 
 ### Location HUDs: Bountiful Beanstalk
 
-- makes the inventory panel save whether it’s toggled or not
-- can also toggle the loot multiplier panel
-- adds slight animations and minor style updates
-- makes the question mark button less obvious
-- makes the autoharp icon move when hovering
+- Updates the inventory and loot multiplier panels to be save their toggle state
+- Makes the giant more visible during chase
+- Adds slight animations
+- Minor style updates
+
+### Location HUDs: Folklore Forest Region
+
+- Minor style updates
 
 ### Location HUDs: Iceberg
 
-- allows scrolling the map
-- adds setting for always showing the progress tooltip
-- adds animation to the iceberg
-- adds more style updates
+- Adds ability to scroll the map
+- Adds setting for always showing the progress tooltip
+- Adds floating animation to the Iceberg in the HUD
+- Minor style updates
 
 ### Location HUDs: Labyrinth
 
-- adds easter egg when clicking on the current tile or another tile
-- scrambles both gems when you scramble one
-- fixes the lantern reminder animating on every turn
-- adds special styles for final exit doors
-- updates other styles
+- Adds easter egg when clicking on the current tile or another tile
+- Updates gem scrambling animation
+- Fixes the lantern reminder animating on every horn, instead of just once
+- Adds special styles for final exit doors
+- Minor style updates
+
+### Location HUDs: Living Garden Region
+
+- Adds ability to click to equip cursebreaking charms in Cursed City
+- Minor style updates
 
 ### Show Auras
 
-- Fixed duplication of icons
-Style updates
+- Fixed duplication of icons, Style updates
+
 
 ## Version 0.35.6
 
