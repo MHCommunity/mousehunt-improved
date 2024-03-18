@@ -102,7 +102,6 @@
 
 - Fixed duplication of icons, Style updates
 
-
 ## Version 0.35.6
 
 - Fixes error when getting AR data on sorted tab
