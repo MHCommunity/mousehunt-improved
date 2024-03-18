@@ -2,8 +2,6 @@ import { addStyles, createPopup, onEvent } from '@utils';
 
 import styles from './styles.css';
 
-import update from '@data/update-summary.json';
-
 const github = 'https://github.com/MHCommunity/mousehunt-improved';
 
 const getExtensionLink = () => {
@@ -36,7 +34,16 @@ const makeList = (title, items) => {
   return markup;
 };
 
-const showUpdateSummary = () => {
+const showUpdateSummary = async () => {
+  const updateSummaries = await fetch('https://api.mouse.rip/update-summary');
+  const updates = await updateSummaries.json();
+
+  if (! updates[mhImprovedVersion]) {
+    return;
+  }
+
+  const update = updates[mhImprovedVersion];
+
   if (! update.summary && ! update.details) {
     return;
   }
