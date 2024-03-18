@@ -1,4 +1,4 @@
-import { addHudStyles, getSetting, saveSetting } from '@utils';
+import { addHudStyles, getSetting, onTurn, saveSetting } from '@utils';
 
 import regionStyles from '../shared/folklore-forest/styles.css';
 import styles from './styles.css';
@@ -17,6 +17,7 @@ const keepInventoryToggled = () => {
   let isSetOpen = getSetting('location-huds.bountiful-beanstalk-inventory-toggled', 'not-set');
   if (isSetOpen) {
     inventory.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open');
+    toggleButton.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open');
   } else if (isSetOpen === 'not-set') {
     isSetOpen = false;
   }
@@ -28,9 +29,11 @@ const keepInventoryToggled = () => {
     if (isSetOpen) {
       isSetOpen = false;
       inventory.classList.remove('headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open');
+      toggleButton.classList.remove('headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open');
     } else {
       isSetOpen = true;
       inventory.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open');
+      toggleButton.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open');
     }
 
     saveSetting('location-huds.bountiful-beanstalk-inventory-toggled', isSetOpen);
@@ -87,6 +90,20 @@ const funTime = () => {
   });
 };
 
+const makeGiantMoreVisible = () => {
+  const background = document.querySelector('.bountifulBeanstalkCastleView__background');
+  if (! background) {
+    return;
+  }
+
+  const isGiantChase = user?.quests?.QuestBountifulBeanstalk?.castle?.is_boss_chase || false;
+  if (isGiantChase) {
+    background.classList.add('is-boss-chase');
+  } else {
+    background.classList.remove('is-boss-chase');
+  }
+};
+
 /**
  * Initialize the module.
  */
@@ -95,6 +112,9 @@ export default async () => {
 
   keepInventoryToggled();
   keepRoomDataToggled();
+  makeGiantMoreVisible();
 
   funTime();
+
+  onTurn(makeGiantMoreVisible, 1000);
 };
