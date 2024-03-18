@@ -141,7 +141,9 @@
 }
 
 .tableOfContentsView-wordMeter-value {
+  margin-right: 2px;
   font-size: 14px;
+  border-radius: 3px;
 }
 
 .tableOfContentsProgressView-nextBook-wordsRequired {
