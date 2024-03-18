@@ -1,13 +1,12 @@
 import {
   addStyles,
-  cacheGet,
-  cacheSet,
   doRequest,
   getCurrentLocation,
   getSetting,
   makeElement,
   onEvent,
-  onNavigation
+  onNavigation,
+  saveSetting
 } from '@utils';
 
 import journals from './journals.json';
@@ -142,7 +141,7 @@ const addRandomButton = () => {
 };
 
 const changeJournalDaily = async () => {
-  const lastChangeValue = await cacheGet('journal-changer-last-change', 0);
+  const lastChangeValue = getSetting('journal-changer.last-change', 0);
   const lastChange = new Date(Number.parseInt(lastChangeValue, 10));
   const now = new Date();
 
@@ -153,11 +152,11 @@ const changeJournalDaily = async () => {
     lastChange.getMonth() !== now.getMonth() ||
     lastChange.getFullYear() !== now.getFullYear()
   ) {
-    const lastTheme = await cacheGet('journal-changer-last-theme', false);
+    const lastTheme = getSetting('journal-changer.last-theme', false);
     const theme = await randomizeTheme(lastTheme);
 
-    cacheSet('journal-changer-last-change', now.getTime());
-    cacheSet('journal-changer-last-theme', theme);
+    saveSetting('journal-changer.last-change', now.getTime());
+    saveSetting('journal-changer.last-theme', theme);
   }
 };
 
