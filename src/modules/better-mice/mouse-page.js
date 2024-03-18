@@ -149,7 +149,10 @@ const makeKingsCrownsTabContent = async () => {
       'page_arguments[sub_tab]': false,
     });
 
-    crowns = crownsReq.page.tabs.kings_crowns.subtabs[0].mouse_crowns;
+    crowns = crownsReq?.page?.tabs?.kings_crowns?.subtabs[0]?.mouse_crowns || [];
+    if (crowns.length <= 0) {
+      return;
+    }
     sessionSet('kings-crowns', crowns);
     sessionSet('kings-crownsTime', Date.now());
   }

@@ -178,6 +178,10 @@ const shouldSkip = (entry) => {
     'vending_machine_purchase',
   ]);
 
+  if (! entry.classList) {
+    return true;
+  }
+
   const classList = [...entry.classList];
   return (classList.some((c) => keepOriginalClasses.has(c)));
 };

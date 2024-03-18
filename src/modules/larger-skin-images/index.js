@@ -52,7 +52,9 @@ const addSkinImages = async () => {
     imageEl.setAttribute('data-item-id', id);
     imageEl.addEventListener('click', (e) => {
       e.preventDefault();
-      app.pages.CampPage.armItem(e.target);
+      if (app?.pages?.CampPage?.armItem) {
+        app.pages.CampPage.armItem(e.target);
+      }
     });
 
     imageWrapper.append(imageEl);

@@ -21,7 +21,7 @@ const getJournalThemes = async () => {
     action: 'get_themes',
   });
 
-  if (! req.journal_themes) {
+  if (! req || ! req.journal_themes) {
     return [];
   }
 

@@ -88,7 +88,7 @@ const getCurrentSubtab = () => {
  */
 const getCurrentDialog = () => {
   const overlay = document.querySelector('#overlayPopup');
-  if (overlay && overlay.classList.length <= 0) {
+  if (! overlay || ! overlay.classList || overlay.classList.length <= 0) {
     return null;
   }
 

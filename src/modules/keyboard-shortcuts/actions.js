@@ -143,7 +143,12 @@ export default () => {
       id: 'show-tem',
       key: 'e',
       description: 'Show the <abbr title="Trap Effectiveness Meter">TEM</abbr>',
-      action: () => document.querySelector('button.campPage-trap-trapEffectiveness.campPage-trap-statsContainer').click(),
+      action: () => {
+        const tem = document.querySelector('button.campPage-trap-trapEffectiveness.campPage-trap-statsContainer');
+        if (tem) {
+          tem.click();
+        }
+      },
       category: 'trap-setup',
     },
     {

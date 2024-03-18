@@ -65,7 +65,7 @@ const isFavorite = async (mouseId) => {
     'page_arguments[snuid]': window.user.sn_user_id,
   });
 
-  if (! favorites.page?.tabs?.kings_crowns?.subtabs[0]?.mouse_crowns?.favourite_mice.length) {
+  if (! favorites?.page?.tabs?.kings_crowns?.subtabs[0]?.mouse_crowns?.favourite_mice.length) {
     return false;
   }
 

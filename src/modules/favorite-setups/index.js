@@ -22,7 +22,7 @@ import styles from './styles.css';
 const getFavoriteSetups = () => {
   const faves = getSetting('favorite-setups.setups', []);
 
-  if (! faves.length) {
+  if (! faves || ! Array.isArray(faves) || ! faves.length) {
     return [];
   }
 
