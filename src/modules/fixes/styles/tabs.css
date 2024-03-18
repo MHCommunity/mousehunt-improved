@@ -23,7 +23,7 @@ a.mousehuntHud-page-tabHeader.collectibles span {
 }
 
 .mousehuntHud-page-tabHeader {
-  height: 29px;
+  height: 28px;
 }
 
 .mousehuntHud-page-tabHeader.active span,
@@ -35,6 +35,6 @@ a.mousehuntHud-page-tabHeader.collectibles span {
 
 .mousehuntHud-page-tabHeader.active span,
 .mousehuntHud-page-tabHeader:hover span {
-  padding-bottom: 5px;
+  padding-bottom: 6px;
   margin-top: 0;
 }
