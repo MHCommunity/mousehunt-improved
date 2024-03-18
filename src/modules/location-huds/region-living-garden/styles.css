@@ -37,9 +37,9 @@
 .livingGardenHud .essenceContainer .item:first-child:hover,
 .livingGardenHud .essenceContainer .item:first-child:focus,
 .livingGardenHud .essenceContainer .item:first-child:active {
-  width: 24px;
-  padding-right: 2px;
-  padding-left: 16px;
+  width: 25px;
+  padding-right: 10px;
+  padding-left: 11px;
   margin-left: 22px;
   text-align: left;
 }
@@ -208,8 +208,12 @@
     5px 2px 5px -1px #da7b34;
 }
 
+.livingGardenHud .minigameContainer .curseContainer .curse.active {
+  cursor: pointer;
+}
+
 .livingGardenHud .minigameContainer .curseContainer .curse.active .help span {
-  margin: 0;
+  display: none;
 }
 
 .livingGardenHud.lost_city.corrupted .curse {
@@ -244,4 +248,13 @@
 
 .livingGardenHud .minigameContainer {
   z-index: 1;
+}
+
+.livingGardenHud {
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.livingGardenHud .essenceContainer .item.essence_a_crafting_item {
+  padding-left: 25px;
 }

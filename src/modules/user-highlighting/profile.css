@@ -34,6 +34,7 @@
 /* main hunter card */
 .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock .friendsPage-friendRow {
   background: linear-gradient(#b389a1 5%, #f0dfee 50%) !important;
+  border-radius: 6px;
 }
 
 .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-hunterId {
@@ -51,6 +52,12 @@
 .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer-stats {
   background: #f0dfee !important;
   background-color: #f0dfee !important;
+  border-color: #de72ba;
+  box-shadow: none;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper div.messageBoardView-message-container {
+  border: 1px solid #de72ba;
 }
 
 .mh-improved-fancy-profile .hunterInfoView-wrapper .messageBoardView-title,
@@ -61,8 +68,10 @@
 }
 
 /* corkboard */
-.mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message {
+.mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message,
+.mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message.new {
   background: #f8eff6;
+  border-color: #de72ba !important;
 }
 
 .mh-dark-mode .mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message {
@@ -70,7 +79,8 @@
 }
 
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .mousehuntPage-content textarea {
-  background-color: #513d4c;
+  background-color: #f8eff7;
+  border-color: #de72ba;
 }
 
 .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats,
@@ -85,13 +95,19 @@
 }
 
 .mh-improved-fancy-profile .journalContainer .content {
-  margin: 0 -10px;
-  background: transparent;
+  padding: 0;
+  margin: 0;
+  background: transparent !important;
 }
 
-.mh-improved-fancy-profile .journal .content .entry {
+.mh-improved-fancy-profile .jlarge {
+  overflow: hidden;
+}
+
+.mh-improved-fancy-profile .journal .content .entry,
+.mh-improved-fancy-profile .journal .content .entry:last-child {
   background-color: #f0dfee;
-  border-color: #98448e;
+  border-color: #de72ba;
 }
 
 .mh-improved-fancy-profile .journal .content .entry.short.travel {
@@ -110,9 +126,27 @@
 
 .mh-improved-fancy-profile .friendsPage-friendRow .friendsPage-friendRow-titleBar {
   margin-bottom: 10px;
-  margin-left: -9px;
+  margin-left: -4px;
   background: linear-gradient(#dcf7ff 45%, #89f0ee 55%);
   border-color: #8af1ef;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-thumbnail-image {
+  border-color: #de72ba;
+  box-shadow: none;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-title-container {
+  top: 1px;
+  height: 59px;
+  border-top: none;
+  border-bottom: 1px solid #de72ba;
+  border-radius: 7px 50px 0 0;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-container {
+  padding-top: 1px;
+  border: 1px solid #de72ba;
 }
 
 .mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-titleBar-name {
@@ -143,6 +177,7 @@
   color: #513645;
   background-color: #d2c0ec;
   border-top: 1px solid #be9bbc;
+  border-radius: 0 0 6px 6px;
   box-shadow: none;
 }
 
@@ -163,11 +198,15 @@
 
 .mh-improved-fancy-profile .loyaltyBadgeView {
   background-image: url(https://www.mousehuntgame.com/images/ui/profile/loyalty-badge-3-year.png);
-  filter: hue-rotate(350deg);
+  filter: hue-rotate(237deg);
 }
 
 .mh-improved-fancy-profile .userInteractionButtonsView-button {
   filter: hue-rotate(170deg) opacity(0.6);
+}
+
+.mh-improved-fancy-profile .hunterInfoView-idCardBlock-stats-horn-image {
+  filter: hue-rotate(250deg);
 }
 
 .mh-improved-fancy-profile .userInteractionButtonsView-relationship .userInteractionButtonsView-button,
@@ -224,7 +263,8 @@
 .mh-improved-fancy-profile .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader.active {
   color: #615d5d !important;
   background: linear-gradient(#dcf7ff 45%, #8adff1 55%);
-  border: none;
+  border-color: #de72ba;
+  border-radius: 7px 7px 0 0;
   box-shadow: none;
 }
 
@@ -245,8 +285,42 @@
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-title,
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound-label,
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound,
-.PageHunterProfile .pageFrameView .PageHunterProfile.mh-improved-fancy-profile .friendsProfileView-container,
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .friendsProfileView-container,
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabContentContainer,
-.PageHunterProfile .pageFrameView .PageHunterProfile.mh-improved-fancy-profile .friendsPage-friendRow {
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .friendsPage-friendRow {
   color: #615d5d;
+}
+
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-trap-slot,
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-trap-slot.middle {
+  top: -2px;
+  overflow: hidden;
+  border-color: #99448e;
+  border-radius: 9px;
+  outline: 1px solid #f0dfee;
+  box-shadow:
+    1px -1px 0 3px #f0dfee,
+    -1px -1px 0 3px #f0dfee;
+}
+
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-items {
+  padding: 0;
+  margin: 0 10px;
+  background-color: #f0dfee;
+  border-radius: 10px;
+  box-shadow:
+    0 -6px 0 1px #f0dfee,
+    -23px 10px 0 -19px #f0dfee,
+    27px 10px 0 -19px #f0dfee,
+    0 -6px 0 2px #de72ba;
+}
+
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-setup-container {
+  border-color: #de72ba;
+}
+
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock,
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-favoritesBlock {
+  border-color: #de72ba;
+  box-shadow: none;
 }

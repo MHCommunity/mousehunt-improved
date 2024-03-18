@@ -13,15 +13,15 @@
 }
 
 .journal .entry.folkloreForest-tableOfContents.wordCount .journaltext {
-  margin-left: 70px;
+  margin-left: 10px;
   font-size: 11px;
 }
 
 /* add a quill to the word count entry */
 .journal .entry.folkloreForest-tableOfContents.wordCount::after {
   position: absolute;
-  top: 10px;
-  left: 0;
+  top: 2px;
+  left: 2px;
   width: 37px;
   height: 37px;
   color: #d9bb92;

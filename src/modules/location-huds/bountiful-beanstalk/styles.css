@@ -18,11 +18,12 @@
 .bountifulBeanstalkCastleView__maxNoiseLevel {
   padding: 0 2px;
   font-size: 17px;
-  vertical-align: middle;
 }
 
 .bountifulBeanstalkCastleView__noiseMeterLabel {
-  vertical-align: middle;
+  color: #ffefc7;
+  text-shadow: 0 0 1px #5b4200;
+  filter: drop-shadow(1px 1px 1px #000);
 }
 
 .headsUpDisplayBountifulBeanstalkView__baitImage {
@@ -67,7 +68,9 @@
   top: -20px;
   bottom: unset;
   left: -60px;
+  z-index: 30;
   width: 447px;
+  line-height: 1.75;
   color: #f2e3a6;
   background: #192518;
   border: 2px solid #85d523;
@@ -91,8 +94,11 @@
 }
 
 .bountifulBeanstalkCastleView__currentRoomLootMultiplier {
-  padding: 0 1px;
-  font-size: 14px;
+  font-size: 12px;
+}
+
+.headsUpDisplayBountifulBeanstalk__inventoryContainer {
+  z-index: 29;
 }
 
 .bountifulBeanstalkPlayHarpDialogView__optionActionLabel {
@@ -191,6 +197,34 @@
   opacity: 1;
 }
 
+.disabled .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText {
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
 .folkloreForestRegionView-dialog-recipeResult-image.itemImage .quantity {
   background: rgb(255 255 255 / 75%);
+}
+
+.bountifulBeanstalkCastleView__content:hover .bountifulBeanstalkCastleView__bossMarker {
+  transform: scale(1.2);
+}
+
+.bountifulBeanstalkCastleView__bossMarker {
+  filter: drop-shadow(2px -1px 4px #000);
+  transition: 0.4s;
+  transform-origin: bottom;
+}
+
+.headsUpDisplayBountifulBeanstalkView__climbNextRoomText,
+.headsUpDisplayBountifulBeanstalkView__castleNextRoomText {
+  font-size: 12px;
+}
+
+.bountifulBeanstalkCastleView__background {
+  transition: opacity 0.3s;
+}
+
+.bountifulBeanstalkCastleView__background.is-boss-chase {
+  opacity: 0.7;
 }
