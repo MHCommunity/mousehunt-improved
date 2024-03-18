@@ -77,6 +77,6 @@ const trollem2 = () => {
  */
 export default async () => {
   trollEm();
-  onTurn(trollem, 1000);
+  onTurn(trollEm, 1000);
   trollem2();
 };
