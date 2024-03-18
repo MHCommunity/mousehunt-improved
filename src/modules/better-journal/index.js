@@ -72,7 +72,7 @@ const init = async () => {
 
   processEntries();
   onRequest('*', () => {
-    setMultipleTimeout(processEntries, [0, 100, 500]);
+    setMultipleTimeout(processEntries, [100, 500, 1000]);
   });
 };
 
