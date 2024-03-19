@@ -43,7 +43,7 @@ const getShieldEndDateTime = () => {
   const expiry = Date.parse(shieldExpiry);
 
   // subtract 5 hours from the expiry time for some reason.
-  const realExpiry = expiry - (5 * 60 * 60 * 1000);
+  const realExpiry = expiry - offset;
 
   return new Date(realExpiry);
 };
@@ -165,6 +165,17 @@ const main = () => {
   }
 };
 
+const setOffset = () => {
+  const userShieldExpiry = new Date(Date.parse(user.shield_expiry));
+  const userShieldSeconds = new Date(new Date().setSeconds(new Date().getSeconds() + user.shield_seconds));
+  const difference = userShieldExpiry - userShieldSeconds;
+
+  // round to the nearest second
+  offset = Math.round(difference / 1000) * 1000;
+};
+
+let offset;
+
 /**
  * Initialize the module.
  */
@@ -173,6 +184,8 @@ const init = async () => {
   if (! user.has_shield) {
     return;
   }
+
+  setOffset();
 
   addStyles(styles, 'lgs-reminder');
   main();
