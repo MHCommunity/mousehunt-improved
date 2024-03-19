@@ -12,6 +12,7 @@ import {
   onOverlayChange
 } from '@utils';
 
+import hoverMice from './hover-mice';
 import mousePage from './mouse-page';
 import settings from './settings';
 
@@ -376,6 +377,10 @@ const init = async () => {
   addStyles(styles, 'better-mice');
   main();
   mousePage();
+
+  if (getSetting('better-mice.show-mouse-hover', true)) {
+    hoverMice();
+  }
 
   replaceShowMouseImage();
 };

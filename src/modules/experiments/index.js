@@ -51,6 +51,10 @@ const experiments = [
     id: 'experiments.profile-scoreboard-search',
     title: 'Scoreboard search on Hunter Profiles',
     load: profileScoreboardSearch,
+  },
+  {
+    id: 'better-mice.show-mouse-hover',
+    title: 'Show mice details on hover in journal',
   }
 ];
 
