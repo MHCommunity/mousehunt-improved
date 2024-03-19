@@ -123,6 +123,10 @@ const replacements = [
 ];
 
 const replaceInEntry = (entry) => {
+  if (entry.getAttribute('data-replaced')) {
+    return;
+  }
+
   const element = entry.querySelector('.journalbody .journaltext');
 
   replacements.forEach(async (string) => {
@@ -136,6 +140,8 @@ const replaceInEntry = (entry) => {
       element.innerHTML = newText;
     }
   });
+
+  entry.setAttribute('data-replaced', 'true');
 };
 
 const updateLog = (entry) => {
