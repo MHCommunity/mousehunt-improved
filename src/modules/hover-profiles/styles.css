@@ -11,6 +11,7 @@
   display: block;
   width: 325px;
   height: 125px;
+  background: linear-gradient(#decebb 5%, #f0eddf 50%);
   border: 1px solid #9a8872;
   border-radius: 10px;
   box-shadow: 0 1px 5px -1px #5e5e5e;
@@ -83,8 +84,8 @@
 }
 
 #friend-data-wrapper .friendsPage-friendRow-environment-icon {
-  width: 25px;
-  height: 25px;
+  width: 27px;
+  height: 27px;
   margin-right: 3px;
 }
 
@@ -128,9 +129,7 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  width: 145px;
   height: 40px;
-  padding-right: 10px;
   margin-left: -10px;
 }
 
@@ -211,4 +210,34 @@
 
 .mh-dark-mode #friend-data-wrapper .friendsPage-friendRow-stat-value a {
   color: #87270e;
+}
+
+.friend-data-wrapper-loading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 90%;
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 55px;
+}
+
+.friendsPage-friendRow.loading .friendsPage-friendRow-titleBar-icon::after {
+  top: 2px;
+  left: 2px;
+  width: 30px;
+  height: 30px;
+  background: #eee;
+  border: 2px solid #7b7b7b;
+}
+
+.friendsPage-friendRow.loading .friendsPage-friendRow-image,
+.friendsPage-friendRow.loading .friendsPage-friendRow-environment-icon {
+  background: #eee;
+  box-shadow: none;
+}
+
+.friendsPage-friendRow.loading .friendsPage-friendRow-image {
+  inset: 7px;
 }

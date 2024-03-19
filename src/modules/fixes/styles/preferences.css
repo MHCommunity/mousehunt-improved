@@ -11,11 +11,6 @@
   padding-left: 18px;
 }
 
-.accountVerificationRewardsView__step.claimed {
-  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/checkmark.png?asset_cache_version=2);
-  background-size: 30px;
-}
-
 .accountVerificationRewardsView__step.can_claim {
   background-image: none;
 }

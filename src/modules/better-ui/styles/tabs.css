@@ -7,17 +7,22 @@
   box-shadow: -1px -1px 1px #d3cecb inset;
 }
 
+.campPage-tabs-tabRow {
+  top: 0;
+}
+
 .campPage-tabs-tabRow:hover .campPage-tabs-tabHeader span,
 .campPage-tabs-tabRow:focus .campPage-tabs-tabHeader span,
 .campPage-tabs-tabHeader span {
-  border-bottom: 1px solid #cbc6bb;
+  border-bottom: 1px solid #f6f3eb;
 }
 
 .campPage-tabs-tabHeader.active span,
 .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span,
 .campPage-tabs-tabRow a.campPage-tabs-tabHeader:focus span {
-  border: 1px solid #cbc6bb;
+  border: 1px solid #f7f5ee;
   border-bottom: none;
+  box-shadow: 0 1px #f7f5ee;
 }
 
 /* tab content */

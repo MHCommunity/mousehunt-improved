@@ -1,0 +1,7 @@
+.entry.short.misc.custom.refine_pollutinum .journaltext a::before {
+  display: none;
+}
+
+.entry.short.misc.custom.refine_pollutinum .journaltext a {
+  padding: 0;
+}

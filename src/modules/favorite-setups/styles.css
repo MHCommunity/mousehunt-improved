@@ -27,6 +27,14 @@
   vertical-align: bottom;
 }
 
+.mh-improved-favorite-setups-button:hover {
+  text-decoration: none;
+}
+
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .mh-improved-favorite-setups-button:hover {
+  background-color: #494949;
+}
+
 .mh-improved-favorite-setups-blueprint-container {
   position: absolute;
   inset: 0;

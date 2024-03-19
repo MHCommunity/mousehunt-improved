@@ -181,6 +181,17 @@
 
 .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseImage {
   border-width: 2px;
+  transition: 0.2s;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseImage-overlay-container,
+.hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseImage-overlay {
+  width: 54px;
+  height: 54px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseImage:hover {
+  background-size: 120%;
 }
 
 .mouseCrownsView-group-mouse-catches {

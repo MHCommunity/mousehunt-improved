@@ -21,3 +21,8 @@
 .mh-improved-shop-buy-max {
   min-width: 25px;
 }
+
+.mh-improved-shop-qty,
+.mh-improved-shop-buy-max {
+  user-select: none;
+}

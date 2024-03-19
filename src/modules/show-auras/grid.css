@@ -41,6 +41,7 @@
   text-align: center;
 }
 
-.mh-improved-aura-view .expiry {
+.mh-improved-aura-view .expiry,
+.aura.QuestJetStreamAura {
   display: none;
 }

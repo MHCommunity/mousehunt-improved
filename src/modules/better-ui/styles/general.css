@@ -443,3 +443,7 @@ input.itemView-action-convert-quantity {
     animation: none;
   }
 }
+
+.mousehuntHeaderView .dropdownContent a {
+  background-position-x: 8px;
+}

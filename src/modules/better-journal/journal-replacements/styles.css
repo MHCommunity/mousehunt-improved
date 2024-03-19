@@ -5,3 +5,7 @@
 .itemtransaction p.mhi-x-entry .dot {
   display: none;
 }
+
+.entry.short.relicHunter_catch br {
+  display: none;
+}

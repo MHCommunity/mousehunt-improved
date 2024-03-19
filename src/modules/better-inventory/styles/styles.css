@@ -546,3 +546,7 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
     url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png?asset_cache_version=2) 0 0 repeat;
   border-radius: 10px;
 }
+
+.inventoryPage-item.small .tooltip {
+  padding: 10px;
+}

@@ -219,3 +219,9 @@ input.itemView-action-convert-quantity {
   display: flex;
   align-items: center;
 }
+
+.itemView-sidebar-checklistItem:nth-child(1),
+.itemView-sidebar-checklistItem:nth-child(2),
+.itemView-sidebar-checklistItem.checked {
+  display: block;
+}
