@@ -358,6 +358,10 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
   height: 17px;
 }
 
+.itemViewStatBlock-stat.title .itemPurchaseView-image-container .itemViewStatBlock-stat-icon {
+  background-size: 100%;
+}
+
 .itemViewStatBlock-stat.error .itemViewStatBlock-stat-value {
   background-color: unset;
 }
