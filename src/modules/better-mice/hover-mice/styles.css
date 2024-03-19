@@ -25,16 +25,16 @@
 #mouse-data-wrapper .mouse-data {
   display: grid;
   grid-template-columns: 90px 1fr;
-  height: 95px;
-  align-items: center;
   gap: 10px;
+  align-items: center;
+  height: 95px;
 }
 
 #mouse-data-wrapper .mouse-image {
   height: 80px;
-  border-radius: 5px;
-  border: 1px solid #25211e;
   margin-left: 10px;
+  border: 1px solid #25211e;
+  border-radius: 5px;
 }
 
 #mouse-data-wrapper .mouse-text {
@@ -51,11 +51,11 @@
 }
 
 .mouse-catch-stats {
-  font-size: 10px;
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 0 20px;
   margin-right: 10px;
+  font-size: 10px;
 }
 
 .mouse-catch-stats div {
