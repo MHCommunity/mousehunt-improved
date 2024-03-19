@@ -2,6 +2,7 @@ import {
   addStyles,
   doEvent,
   doRequest,
+  makeElement,
   onEvent,
   onRequest,
   sessionGet,
@@ -60,22 +61,21 @@ const getFriendId = async (target) => {
   return false;
 };
 
+let friendDataWrapper;
 const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
-  if (! data || ! data.length || ! data[0].user_interactions.relationship) {
-    return;
-  }
-
   if (! skipCache) {
     sessionSet(`mh-improved-cache-friend-${friendId}`, data);
     sessionSet(`mh-improved-cache-friend-${friendId}-timestamp`, Date.now());
   }
+
+  friendDataWrapper?.remove();
 
   let content;
   if (data) {
     const templateType = data[0].user_interactions.relationship.is_stranger ? 'PageFriends_request_row' : 'PageFriends_view_friend_row';
     content = hg.utils.TemplateUtil.render(templateType, data[0]);
   } else {
-    hg.pages.FriendsPage().getPlaceholderData();
+    content = hg.utils.TemplateUtil.render('PageFriends_view_friend_row', hg.pages.FriendsPage().getPlaceholderData());
   }
 
   const existing = document.querySelectorAll('#friend-data-wrapper');
@@ -85,9 +85,9 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
     });
   }
 
-  const friendDataWrapper = document.createElement('div', 'friend-data-wrapper');
+  friendDataWrapper = makeElement('div', 'friend-data-wrapper');
   friendDataWrapper.id = 'friend-data-wrapper';
-  friendDataWrapper.innerHTML = content;
+  friendDataWrapper.innerHTML = content || '<span class="friend-data-wrapper-loading">Loading...</span>';
 
   // append to the body and position it
   document.body.append(friendDataWrapper);
