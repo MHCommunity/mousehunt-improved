@@ -76,10 +76,12 @@ const addTrapBlock = () => {
   auraTrapBlock.id = 'mh-improved-aura-view';
 
   aurasExpiry.forEach((aura) => {
-    const auraEl = makeElement('div', 'aura');
+    const auraClasses = aura.element.classList;
+
+    const questClass = [...auraClasses].find((c) => c.startsWith('Quest'));
+    const auraEl = makeElement('div', ['aura', questClass]);
 
     const auraImage = makeElement('div', 'image');
-    const auraClasses = aura.element.classList;
     // copy the classes from the aura to the new element
     auraImage.classList.add(...auraClasses);
     auraImage.classList.remove('mousehuntTooltipParent');
