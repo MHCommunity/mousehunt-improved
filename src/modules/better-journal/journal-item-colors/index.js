@@ -1,7 +1,18 @@
 import { addStyles } from '@utils';
 
-import styles from './styles.css';
+import colors from './colors.json';
+
+const makeStyles = () => {
+  let styles = '';
+
+  colors.forEach((color) => {
+    console.log(color);
+    styles += `.journal .entry a[href="https://www.mousehuntgame.com/item.php?item_type=${color.item}"] { color: ${color.color}; }`;
+  });
+
+  return styles;
+};
 
 export default async () => {
-  addStyles(styles, 'better-journal-link-colors');
+  addStyles(makeStyles(), 'better-journal-link-colors');
 };
