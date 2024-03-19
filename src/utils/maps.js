@@ -302,7 +302,11 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
  */
 const getCachedValue = async (key) => {
   const value = await dbGet('ar-cache', key);
-  return value === undefined ? false : value.value;
+  if (! value?.data?.value) {
+    return null;
+  }
+
+  return value.data.value;
 };
 
 /**

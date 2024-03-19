@@ -213,6 +213,19 @@ const sessionGet = (key, defaultValue = false) => {
   return JSON.parse(value);
 };
 
+const sessionDelete = (key) => {
+  key = `mh-improved-${key}`;
+  sessionStorage.removeItem(key);
+};
+
+const sessionsDelete = (prefix) => {
+  for (const key of Object.keys(sessionStorage)) {
+    if (key.startsWith(prefix)) {
+      sessionStorage.removeItem(key);
+    }
+  }
+};
+
 /**
  * Set a cache value.
  *
@@ -227,6 +240,15 @@ const dataCacheSet = (key, value) => {
   dbSet('data', { id: key, value });
 };
 
+const cacheGetHelper = async (key, defaultValue = false, db = 'cache') => {
+  const cached = await dbGet(db, key);
+  if (! cached?.data?.value) {
+    return defaultValue;
+  }
+
+  return cached.data.value;
+};
+
 /**
  * Get a cache value.
  *
@@ -236,21 +258,11 @@ const dataCacheSet = (key, value) => {
  * @return {Object} The cache value.
  */
 const cacheGet = async (key, defaultValue = false) => {
-  const cached = await dbGet('cache', key);
-  if (! cached) {
-    return defaultValue;
-  }
-
-  return cached.value;
+  return await cacheGetHelper(key, defaultValue, 'cache');
 };
 
 const dataCacheGet = async (key, defaultValue = false) => {
-  const cached = await dbGet('data', key);
-  if (! cached) {
-    return defaultValue;
-  }
-
-  return cached.value;
+  return await cacheGetHelper(key, defaultValue, 'data');
 };
 
 /**
@@ -271,5 +283,7 @@ export {
   getHeaders,
   updateCaches,
   sessionGet,
-  sessionSet
+  sessionSet,
+  sessionDelete,
+  sessionsDelete
 };
