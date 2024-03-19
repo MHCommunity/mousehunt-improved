@@ -9,6 +9,6 @@ export default async () => {
       id: 'better-mice.show-attraction-rates',
       title: 'Show attraction rates',
       default: true,
-    },
+    }
   ];
 };
