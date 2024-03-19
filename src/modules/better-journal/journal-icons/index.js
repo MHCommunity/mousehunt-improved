@@ -1,6 +1,7 @@
 import { addStyles } from '@utils';
 
 import minimalStyles from '../journal-icons-minimal/styles.css';
+import styles from './styles.css';
 
 export default async () => {
   const existing = document.querySelector('#better-journal-icons');
@@ -15,5 +16,5 @@ export default async () => {
 
   document.head.append(style);
 
-  addStyles(minimalStyles, 'better-journal-icons');
+  addStyles([styles, minimalStyles], 'better-journal-icons');
 };
