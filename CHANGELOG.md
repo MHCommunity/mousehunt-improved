@@ -27,6 +27,7 @@
 - Adds more styles for journal entries
 - Adds a setting for "Show Gold and Points icons"
 - Adds a setting for "Unique Loot Colors"
+- Adds unique loot color for Snowball charms
 - Minor style updates
 
 ### Better Maps
