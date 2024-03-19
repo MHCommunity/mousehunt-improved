@@ -126,6 +126,10 @@
 
 - Minor style updates
 
+### Lucky Golden Shield Duration & Reminder
+
+- Fixes expiry time being off by a number of hours
+
 ### Show Auras
 
 - Fixed duplication of icons, Style updates
