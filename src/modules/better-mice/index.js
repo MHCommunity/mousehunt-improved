@@ -214,7 +214,16 @@ const updateMouseView = async () => {
 
   const groupTitle = mouseView.querySelector('.mouseView-group.mouseview-title-group');
   if (groupTitle) {
-    groupTitle.innerHTML = groupTitle.innerHTML.replace('Group: ', '');
+    let newHtml = groupTitle.innerHTML.replace('Group: ', '');
+    const subGroups = newHtml.split('(');
+    if (subGroups.length > 1) {
+      newHtml = `<span class="mouseview-group">${subGroups[0]}</span><span class="mouseview-subgroup">(${subGroups[1]}</span>`;
+      groupTitle.classList.add('mouseview-title-group-has-subgroup');
+    } else {
+      newHtml = `<span class="mouseview-group">${newHtml}</span>`;
+    }
+
+    groupTitle.innerHTML = newHtml;
   }
 
   const container = mouseView.querySelector('.mouseView-contentContainer');
