@@ -6,24 +6,33 @@
 
 - Adds "Hide News Ticker" module
 
+### Better Gifts
+
+- Minor style updates
+
 ### Better Inventory
 
 - Fixes the recipe results tooltip not showing quickly & not caching the data
+- Minor style updates
 
 ### Better Item View
 
 - Adds a "Show Drop Rates" setting
+- Minor style updates
 
 ### Better Journal
 
 - Updates Journal replacement logic to happen more efficiently, quickly, and consistently
+- Fixes issues with replacements happening multiple times
 - Adds more styles for journal entries
 - Adds a setting for "Show Gold and Points icons"
 - Adds a setting for "Unique Loot Colors"
+- Minor style updates
 
 ### Better Maps
 
 - Minor style updates
+- Fix AR data not being cached
 
 ### Better Marketplace
 
@@ -31,7 +40,9 @@
 
 ### Better Mice
 
-- Adds a ‘Show Attraction Rates’ setting, Minor style updates
+- Adds a "Show Attraction Rates" setting, Minor style updates
+- Updates mice Group and Subgroup to be on two lines in Mouse popup
+- Minor style updates
 
 ### Better Shops
 
@@ -41,9 +52,13 @@
 
 ### Better UI
 
-- Minor style updates
 - Fixes delete button being hidden in inbox
 - Updates game settings styles
+- Minor style updates
+
+### Custom HUD
+
+- Adds two more options for the Custom HUD background
 
 ### Experiments
 
@@ -51,6 +66,7 @@
 - Adds new experiment: New settings styles
 - Adds new experiment: New settings styles (columns)
 - Adds new experiment: Scoreboard search on Hunter Profiles
+- Adds new experiment: Show mice details on hover in journal
 - Shortens Location HUD toggle button text
 
 ### Favorite Setups
@@ -58,6 +74,15 @@
 - Fixes bugs with favorite setups showing
 - Saves location when saving setup
 - Suggests setups for a location
+
+### Fixes
+
+- Fixes tab heights
+
+### Hover Profiles
+
+- Adds loading display
+- Fixes issues with multiple requests happening to fetch data
 
 ### Image Upscaling
 
@@ -90,7 +115,6 @@
 - Adds easter egg when clicking on the current tile or another tile
 - Updates gem scrambling animation
 - Fixes the lantern reminder animating on every horn, instead of just once
-- Adds special styles for final exit doors
 - Minor style updates
 
 ### Location HUDs: Living Garden Region
@@ -98,9 +122,14 @@
 - Adds ability to click to equip cursebreaking charms in Cursed City
 - Minor style updates
 
+### Location HUDs: Toxic Spill
+
+- Minor style updates
+
 ### Show Auras
 
 - Fixed duplication of icons, Style updates
+- Hides Jetstream aura to make the display less cluttered
 
 ## Version 0.35.6
 
