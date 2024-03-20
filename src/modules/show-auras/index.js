@@ -61,25 +61,40 @@ const addExpiryWarning = () => {
   }
 };
 
+let isAppending = false;
 const addTrapBlock = () => {
+  if (isAppending) {
+    return;
+  }
+
+  isAppending = true;
+
   const trapSummary = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
   if (! trapSummary) {
     return;
   }
 
-  const existing = document.querySelector('#mh-improved-aura-view');
+  let existing = document.querySelector('#mh-improved-aura-view');
   if (existing) {
-    existing.remove();
+    return;
   }
 
   const auraTrapBlock = makeElement('div', ['mh-improved-aura-view', 'campPage-trap-trapEffectiveness']);
   auraTrapBlock.id = 'mh-improved-aura-view';
 
   aurasExpiry.forEach((aura) => {
+    const auraKey = `mh-aura-${aura.type.toLowerCase().replaceAll(' ', '-')}`;
+    const existingAura = document.querySelector(`#${auraKey}`);
+    if (existingAura) {
+      return;
+    }
+
     const auraClasses = aura.element.classList;
 
-    const questClass = [...auraClasses].find((c) => c.startsWith('Quest'));
+    const questClass = [...auraClasses].find((c) => c.startsWith('Quest') || c.startsWith('Event') || c.startsWith('Mini'));
     const auraEl = makeElement('div', ['aura', questClass]);
+
+    auraEl.id = auraKey;
 
     const auraImage = makeElement('div', 'image');
     // copy the classes from the aura to the new element
@@ -97,7 +112,14 @@ const addTrapBlock = () => {
     auraTrapBlock.append(auraEl);
   });
 
-  trapSummary.append(auraTrapBlock);
+  existing = document.querySelector('#mh-improved-aura-view');
+  if (existing) {
+    existing.replaceWith(auraTrapBlock);
+  } else {
+    trapSummary.append(auraTrapBlock);
+  }
+
+  isAppending = false;
 };
 
 const getAuras = () => {
@@ -163,9 +185,11 @@ const getAuras = () => {
 
 const aurasExpiry = [];
 const main = () => {
-  getAuras();
-  addExpiryWarning();
-  addTrapBlock();
+  setTimeout(() => {
+    getAuras();
+    addExpiryWarning();
+    addTrapBlock();
+  }, 1000);
 };
 
 const init = async () => {
