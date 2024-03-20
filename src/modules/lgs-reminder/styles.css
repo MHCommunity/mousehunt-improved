@@ -1,9 +1,9 @@
 .mousehunt-improved-lgs-reminder,
 .default.mhui-custom-shield .mousehunt-improved-lgs-reminder {
   position: absolute;
-  right: 10px;
+  right: 8px;
   bottom: 4px;
-  left: 15px;
+  left: 13px;
   z-index: 1;
   font-size: 11px;
   color: #684434;

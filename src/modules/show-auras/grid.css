@@ -6,8 +6,10 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
+  max-width: 325px;
   padding: 5px 0;
   margin: 5px 0;
+  overflow: hidden;
 }
 
 .mh-improved-aura-view .aura {

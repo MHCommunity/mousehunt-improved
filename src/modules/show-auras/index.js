@@ -127,11 +127,12 @@ const getAuras = () => {
     return;
   }
 
-  const auras = document.querySelectorAll('.trapImageView-trapAura.active');
+  const auras = document.querySelectorAll('.trapSelectorView .trapImageView-trapAuraContainer .trapImageView-trapAura.active');
   if (! auras) {
     return;
   }
 
+  aurasExpiry = [];
   auras.forEach((aura) => {
     const typeEl = aura.querySelector('.trapImageView-tooltip-trapAura-title');
     if (! typeEl) {
@@ -183,7 +184,7 @@ const getAuras = () => {
   });
 };
 
-const aurasExpiry = [];
+let aurasExpiry = [];
 const main = () => {
   setTimeout(() => {
     getAuras();
