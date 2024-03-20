@@ -172,6 +172,10 @@
   background-color: #eee;
 }
 
+.mh-dark-mode #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(even) {
+  background-color: #e8dbc0;
+}
+
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingName {
   font-size: 11px;
 }
@@ -680,6 +684,10 @@
 
 .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting:nth-child(odd) {
   background-color: #f4f4f4;
+}
+
+.mh-dark-mode .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting:nth-child(odd) {
+  background-color: #e8dbc0;
 }
 
 .highlight .mousehuntSettingSlider.active {

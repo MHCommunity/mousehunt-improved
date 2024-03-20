@@ -109,3 +109,16 @@
 .eggSweeper-dialog-state.rewards {
   margin-top: -10px;
 }
+
+.springEggHuntCampHUD-fuelQuantity {
+  top: 15px;
+  left: 27px;
+  font-size: 13px;
+}
+
+.springEggHuntCampHUD-buyFuelButton {
+  top: 14px;
+  border: 1px solid #5f221e;
+  border-radius: 7px;
+  mix-blend-mode: luminosity;
+}
