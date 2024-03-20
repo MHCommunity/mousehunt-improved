@@ -3,6 +3,7 @@
   top: 0;
   display: inline-flex;
   align-items: center;
+  font-size: 14px;
   border-color: #666;
   border-radius: 0;
 }

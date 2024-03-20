@@ -258,3 +258,7 @@
 .livingGardenHud .essenceContainer .item.essence_a_crafting_item {
   padding-left: 25px;
 }
+
+.livingGardenHud .spongeDoubleYellow {
+  width: 55px;
+}

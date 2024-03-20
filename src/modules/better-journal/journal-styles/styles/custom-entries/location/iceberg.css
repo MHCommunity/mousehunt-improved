@@ -5,8 +5,34 @@
   font-style: inherit;
 }
 
-.journal .iceberg_advance .journalbody,
-.journal .iceberg_pushback .journalbody,
-.journal .iceberg_pushback_prevented .journalbody {
+.journal .content .iceberg_advance .journalbody,
+.journal .content .iceberg_pushback .journalbody,
+.journal .content .iceberg_pushback_prevented .journalbody {
   font-size: 11px;
+}
+
+.journal .content .iceberg_advance_prevented.general {
+  background-color: #a6d1ee;
+  background-position: 10px;
+}
+
+.journal .content .iceberg_advance,
+.journal .content .iceberg_advance_prevented,
+.journal .content .iceberg_pushback,
+.journal .content .iceberg_pushback_prevented {
+  padding-bottom: 6px;
+}
+
+/* fixes alignment with hidden date */
+.entry.short.iceberg_phase_change .journaltext {
+  display: flex;
+  align-items: center;
+}
+
+.journal .content .entry.iceberg_defeated .journaltext > br {
+  display: block;
+}
+
+.journal .content .entry.iceberg_phase_change .journalbody .journaltext {
+  line-height: 23px;
 }

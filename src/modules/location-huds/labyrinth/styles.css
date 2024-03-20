@@ -512,7 +512,3 @@ a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
 .labyrinthHUD-confirmDescription .labyrinthHUD-exit {
   top: -4px;
 }
-
-.ancientCityHUD-bossContainer.mousehuntTooltipParent.ancientCityHUD-boss-n.hiddenDistrict:active {
-  background-position: 0 0;
-}

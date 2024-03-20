@@ -19,3 +19,12 @@
 .journal .entry.ancient-stealth {
   padding: 1px 0;
 }
+
+.entry.short.misc.custom.labyrinth.labyrinth-exitMaze li {
+  padding: 0;
+  line-height: 1.6;
+}
+
+.entry.short.misc.custom.labyrinth.labyrinth-exitMaze br {
+  display: block;
+}

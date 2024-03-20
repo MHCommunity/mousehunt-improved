@@ -3,7 +3,8 @@
   filter: grayscale(0);
 }
 
-.inventoryPage-item.convertible .inventoryPage-item-content-action input[data-item-action="all"] {
+.inventoryPage-item.convertible .inventoryPage-item-content-action input[data-item-action="all"],
+.inventoryPage-item.convertible .inventoryPage-item-content-action input[data-item-action="single"] {
   pointer-events: none;
   filter: grayscale(1);
 }
@@ -13,7 +14,7 @@
   filter: none;
 }
 
-.inventoryPage-item.convertible .locked .inventoryPage-item-content-action input:first-of-type:not(:only-of-type),
-.inventoryPage-item.convertible .locked .inventoryPage-item-content-action input.allButOne {
+.inventoryPage-item.convertible .inventoryPage-item-content-action input:first-of-type:not(:only-of-type),
+.inventoryPage-item.convertible .inventoryPage-item-content-action input.allButOne {
   pointer-events: none;
 }

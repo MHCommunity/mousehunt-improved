@@ -9,3 +9,7 @@
 .entry.short.misc.custom.anniversaryAuraActivated br:nth-of-type(3) {
   display: none;
 }
+
+.entry.short.misc.custom.minimalJournalImage.relicHunter_slayer_aura_relic_bonus .journaltext {
+  line-height: 25px;
+}
