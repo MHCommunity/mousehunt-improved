@@ -51,6 +51,7 @@
   color: transparent;
 }
 
+.mh-dark-mode .itemPurchaseView-margin,
 .mh-dark-mode .itemPurchaseView-image-container,
 .mh-dark-mode .itemPurchaseView-content-container {
   background-color: #000;
