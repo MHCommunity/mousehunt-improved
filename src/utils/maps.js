@@ -181,7 +181,7 @@ const showTravelConfirmationNoDetails = async (environment) => {
       type: environment.id,
       thumb: environment.image,
       header: environment.headerImage,
-      goals,
+      goals: goals || [],
       num_completed_goals: 0,
       num_total_goals: environmentMice.length,
       hunters: [],
