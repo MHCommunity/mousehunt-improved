@@ -7,7 +7,7 @@
  */
 const database = async (databaseName) => {
   return new Promise((resolve, reject) => {
-    const request = indexedDB.open(`mh-improved-${databaseName}`, 5);
+    const request = indexedDB.open(`mh-improved-${databaseName}`, 6);
 
     request.onerror = (event) => {
       reject(event.target.error);

@@ -11,6 +11,7 @@ const validDataFiles = new Set([
   'marketplace-hidden-items',
   'mice-groups',
   'mice-regions',
+  'mice-thumbnails',
   'minlucks',
   'relic-hunter-hints',
   'scoreboards',

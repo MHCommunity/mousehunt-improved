@@ -3,30 +3,35 @@ import {
   dbGet,
   dbGetAll,
   dbSet,
+  getData,
   onNavigation,
   onRequest
 } from '@utils';
-
-// import tempMiceImages from '@data/temp-mice-images.json';
 
 let pager;
 let journalEntries = [];
 let totalPages = 0;
 let currentPage = 0;
 
-const tempMiceImages = [];
-
 const makeEntriesMarkup = (entries) => {
   return entries.map((entry) => {
+    entry = {
+      id: entry.data?.id || 0,
+      date: entry.data?.date || '0:00',
+      location: entry.data?.location || '',
+      text: entry.data?.text || '',
+      type: entry.data?.type || [],
+    };
+
     let html = `<div class="${entry.type.join(' ')}" data-entry-id="${entry.id}" data-mouse-type="${entry.mouse || ''}">`;
     if (entry.mouse && entry.mouse.length > 0) {
-      const mouseImages = tempMiceImages.find((mouse) => mouse.type === entry.mouse);
+      const mouseImages = miceThumbs.find((mouse) => mouse.type === entry.mouse);
       if (mouseImages) {
-        html += `<div class="journalimage"><a href="${mouseImages.large}" onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" border="0"></a></div>`;
+        html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" border="0"></a></div>`;
       }
     }
 
-    html += `<div class="journalbody"><div class="journalactions"></a></div><div class="journaldate">${entry.date} - ${entry.location} - ${entry.id}</div><div class="journaltext">${entry.text}</div></div></div></div>`;
+    html += `<div class="journalbody"><div class="journalactions"></a></div><div class="journaldate">${entry.date} - ${entry.location}</div><div class="journaltext">${entry.text}</div></div></div></div>`;
 
     return html;
   }).join('');
@@ -47,13 +52,19 @@ const doPageStuff = (page, event) => {
 
   currentPage = page;
 
-  const journalEntryContainer = document.querySelector('#journalContainer .journalEntries');
-  if (! journalEntryContainer) {
-    return;
-  }
-
   const journalEntriesForPage = journalEntries.slice((page - 1) * 12, page * 12);
-  journalEntryContainer.innerHTML = makeEntriesMarkup(journalEntriesForPage);
+  const markup = makeEntriesMarkup(journalEntriesForPage);
+
+  setTimeout(() => {
+    const journalEntryContainer = document.querySelector('#journalContainer .journalEntries');
+    if (! journalEntryContainer) {
+      return;
+    }
+
+    journalEntryContainer.innerHTML = markup;
+
+    main();
+  }, 500);
 };
 
 const getPager = () => {
@@ -171,7 +182,10 @@ const onJournalRequest = (data) => {
   main();
 };
 
+let miceThumbs = [];
 export default async (enabled) => {
+  miceThumbs = await getData('mice-thumbs');
+
   if (enabled) {
     onNavigation(main, { page: 'camp' });
     onRequest('pages/journal.php', onJournalRequest);
