@@ -10,6 +10,10 @@ const wrapGoldAndPoints = (entry) => {
 
   entry.setAttribute('data-modified-points-gold', true);
 
+  if (entry.querySelector('.mh-ui-points') || entry.querySelector('.mh-ui-gold')) {
+    return;
+  }
+
   // Find the amount of points via a regex and wrap it in a span
   const points = entry.innerHTML.match(/worth (.+?) points/i);
   // also match the 'and X,XXX gold' part
