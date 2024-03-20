@@ -14,11 +14,6 @@ export default async () => {
       id: 'better-marketplace.small-images',
       title: 'Smaller images',
       default: false,
-    },
-    {
-      id: 'better-marketplace.show-chart-images',
-      title: 'Show charts on category pages',
-      default: false,
     }
   ];
 };
