@@ -57,7 +57,7 @@ const showUpdateSummary = async () => {
   const links = [
     '<a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings">Settings</a>',
     `<a href="${getExtensionLink()}" target="_blank" rel="noopener noreferrer">Leave a review</a>`,
-    '<a href="#">Support on Patreon</a>',
+    // '<a href="#">Support on Patreon</a>',
     `<a href="${github}/issues">Report an issue</a>`,
   ];
 
