@@ -177,6 +177,27 @@ const updateMouseImageLinks = (entry) => {
   });
 };
 
+const updateItemLinks = (entry) => {
+  if (! entry.classList.contains('iceberg_defeated')) {
+    return;
+  }
+
+  const itemLinks = entry.querySelectorAll('.journaltext a[href*="item.php"]');
+  if (! itemLinks) {
+    return;
+  }
+
+  itemLinks.forEach((link) => {
+    const itemType = link.href.match(/item\.php\?item_type=(\w+)/);
+    if (itemType && itemType.length === 2) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        hg.views.ItemView.show(itemType[1]);
+      });
+    }
+  });
+};
+
 const shouldSkip = (entry) => {
   const keepOriginalClasses = new Set([
     'lunar_lantern',
@@ -200,6 +221,7 @@ const processEntry = async (entry) => {
   replaceInEntry(entry);
   updateLog(entry);
   updateMouseImageLinks(entry);
+  updateItemLinks(entry);
 };
 
 /**

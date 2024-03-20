@@ -20,6 +20,7 @@ const makeListItems = (itemList) => {
 };
 
 const splitText = (text) => {
+  text = text.replaceAll('Really, Really', 'Really Really');
   const splitItems = text.split(/, | and /);
   return splitItems.map((item) => item.trim()).filter(Boolean);
 };
@@ -65,6 +66,22 @@ const getItemsFromText = (type, text) => {
       newText: `I opened ${suffix[1]} and received:`,
     };
   }
+
+  if ('other' === type) {
+    items = text.innerHTML.split('the following loot</b>');
+    if (items.length < 2) {
+      return {
+        list: [],
+        newText: text.innerHTML,
+      };
+    }
+
+    return {
+      items,
+      list: splitText(items[1]),
+      newText: `${items[0]} the following loot</b>:`,
+    };
+  }
 };
 
 /**
@@ -89,6 +106,10 @@ const formatAsList = async (entry) => {
     'convertible_open',
   ];
 
+  const otherClassesToCheck = [
+    'iceberg_defeated',
+  ];
+
   const classes = new Set(entry.classList);
 
   let type;
@@ -98,6 +119,8 @@ const formatAsList = async (entry) => {
     type = 'loot';
   } else if (convertibleClassesToCheck.some((c) => classes.has(c))) {
     type = 'convertible';
+  } else if (otherClassesToCheck.some((c) => classes.has(c))) {
+    type = 'other';
   } else {
     return;
   }
