@@ -303,6 +303,12 @@ export default async () => {
     subtab: 'recipe',
   });
 
+  onNavigation(modifySmashableTooltip, {
+    page: 'inventory',
+    tab: 'crafting',
+    subtab: 'hammer',
+  });
+
   onEvent('js_dialog_show', warnOnBadCrafts);
 
   modifySmashableTooltip();
