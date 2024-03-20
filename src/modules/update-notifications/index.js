@@ -76,8 +76,7 @@ const showUpdateSummary = async () => {
         Want to contribute to MouseHunt Improved? Check out our <a href="${github}" target="_blank" rel="noopener noreferrer">GitHub</a>.
       </div>
       <div class="mh-improved-update-summary-buttons">
-        <a href="${github}/releases/tag/v${mhImprovedVersion}">View full changelog</a>
-        <a href="#" id="mh-improved-dismiss-popup" class="button">Dismiss</a>
+        <a href="#" id="mh-improved-dismiss-popup" class="button">Continue</a>
       </div>
     </div>
 	</div>
