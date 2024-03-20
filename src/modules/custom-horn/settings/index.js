@@ -24,6 +24,10 @@ export default async () => {
           name: 'Lunar New Year',
           value: 'huntersHornView--seasonalEvent-lunarNewYear',
         },
+        {
+          name: 'Spring Egg Hunt',
+          value: 'huntersHornView--seasonalEvent-springEggHunt',
+        }
       ],
     },
     {
