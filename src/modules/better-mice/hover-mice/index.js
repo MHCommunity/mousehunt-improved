@@ -1,6 +1,5 @@
 import {
   addStyles,
-  doEvent,
   doRequest,
   makeElement,
   onRequest,
@@ -96,18 +95,13 @@ const makeMouseMarkup = async (mouseId, e) => {
 
   fetchAndFillMouseData(mouseId);
 
-  // append to the body and position it
   document.body.append(mouseDataWrapper);
   const rect = e.target.getBoundingClientRect();
   const top = rect.top + window.scrollY;
   const left = rect.left + window.scrollX;
 
-  // Calculate the desired top position for the tooltip
   let tooltipTop = top - mouseDataWrapper.offsetHeight - 10;
-
-  // Check if the tooltip would end up off the screen
   if (tooltipTop < 0) {
-    // If it would, position it below the target element instead
     tooltipTop = top + rect.height + 10;
   }
 
@@ -130,15 +124,13 @@ const makeMouseMarkup = async (mouseId, e) => {
     parent.addEventListener('mouseleave', () => {
       timeoutId = setTimeout(() => {
         mouseDataWrapper.remove();
-      }, 500); // delay in milliseconds
+      }, 500);
     });
 
     parent.addEventListener('mouseenter', () => {
       clearTimeout(timeoutId);
     });
   }
-
-  doEvent('mouse_hover');
 };
 
 const main = () => {

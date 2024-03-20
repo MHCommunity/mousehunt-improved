@@ -6,7 +6,6 @@ const makeStyles = () => {
   let styles = '';
 
   colors.forEach((color) => {
-    console.log(color);
     styles += `.journal .entry a[href="https://www.mousehuntgame.com/item.php?item_type=${color.item}"] { color: ${color.color}; }`;
   });
 
