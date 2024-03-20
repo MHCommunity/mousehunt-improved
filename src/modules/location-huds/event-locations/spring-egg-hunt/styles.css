@@ -1,1 +1,111 @@
-/* Styles that apply to all locations */
+.springEggHuntCampHUD-chocolate-quantity {
+  font-size: 14px;
+}
+
+.springHuntHUD-popup-region-environment.active::before {
+  left: -9px;
+  outline: 1px solid #364661;
+  box-shadow:
+    0 0 125px #1be300 inset,
+    0 1px 6px -2px #000;
+}
+
+.springHuntHUD-popup-egg-quantity {
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.springHuntHUD-popup-region-environment-header {
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.springHuntHUD-popup-region-environment-header .mousehuntActionButton {
+  bottom: 5px;
+}
+
+.springHuntHUD-popup-region-environment-margin {
+  margin-bottom: 15px;
+}
+
+.springHuntHUD-totalEggStats {
+  top: -2px;
+  font-size: 13px;
+}
+
+.springHuntHUD-popup-tabHeader span {
+  top: 0;
+  padding-top: 8px;
+}
+
+.springHuntHUD-popup-tabHeader.active,
+.springHuntHUD-popup-tabHeader:hover {
+  padding-top: 5px;
+}
+
+.springHuntHUD-shop-cost {
+  margin-top: -2px;
+  font-size: 12px;
+}
+
+.springHuntHUD-shelf .springHuntHUD-shelf-itemsContainer {
+  margin-bottom: 5px;
+}
+
+.springHuntHUD-shelf-unlockContainer::before,
+.springHuntHUD-shelf.locked:nth-of-type(6) .springHuntHUD-shelf-unlockContainer::before,
+.springHuntHUD-shelf.locked:nth-of-type(3) .springHuntHUD-shelf-unlockContainer::before {
+  height: 155px;
+}
+
+.springHuntHUD-shelf.locked:nth-of-type(4) .springHuntHUD-shelf-unlockContainer::before {
+  height: 282px;
+}
+
+.springHuntHUD-shelf.locked:nth-of-type(5) .springHuntHUD-shelf-unlockContainer::before {
+  height: 292px;
+}
+
+.springHuntHUD-unlockShelfButton {
+  display: flex;
+  align-items: center;
+}
+
+.springHuntHUD-shelf-unlockContainer span {
+  display: flex;
+  align-items: center;
+}
+
+.springHuntHUD-unlockShelfButton .springHuntHUD-shop-cost {
+  margin: -1px -6px -1px 10px;
+}
+
+.springHuntHUD-shelf-unlock-reward-image {
+  filter: drop-shadow(0 1px 1px #c7f4ff);
+  transition: 0.3s;
+}
+
+.springHuntHUD-shelf-unlock-reward-image:hover {
+  transform: scale(1.35);
+}
+
+.springHuntHUD-interfaceEgg::after {
+  border: none;
+  transform-origin: center;
+  animation: 2s wallDamageWiggle infinite;
+}
+
+.eggSweeper-inventoryReminder-quantity,
+.eggSweeper-play-upgradeQuantity {
+  font-size: 12px;
+}
+
+.eggSweeper-dialog-title {
+  margin-bottom: 10px;
+}
+
+.eggSweeper-dialog-state.rewards {
+  margin-top: -10px;
+}

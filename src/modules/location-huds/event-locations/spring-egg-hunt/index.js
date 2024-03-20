@@ -1,4 +1,6 @@
-import { addStyles } from '@utils';
+import { addStyles, setMultipleTimeout } from '@utils';
+
+import { updateDateDates } from '../shared';
 
 import styles from './styles.css';
 
@@ -7,6 +9,10 @@ import styles from './styles.css';
  */
 const springEggHuntGlobal = async () => {
   addStyles(styles, 'location-hud-events-spring-egg-hunt');
+
+  setMultipleTimeout(() => {
+    updateDateDates('.springEggHuntCampHUD-dateCountdownMiniContainer .dateCountdownMini__remainingText');
+  }, [100, 500, 1000]);
 };
 
 /**
