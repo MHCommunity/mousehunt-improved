@@ -8,6 +8,7 @@ import journalHistorianStyles from './userscript-styles/journal-historian.css';
 import lgsReminderStyles from './userscript-styles/lgs-reminder.css';
 import mhctStyles from './userscript-styles/mhct.css';
 import profilePlusStyles from './userscript-styles/profile-plus.css';
+import tsituAutoloaderStyles from './userscript-styles/tsitu-autoloader.css';
 import tsituLocationCatchStatsStyles from './userscript-styles/tsitu-location-catch-stats.css';
 import tsituQolStyles from './userscript-styles/tsitu-qol.css';
 import tsituSupplySearchStyles from './userscript-styles/tsitu-supply-search.css';
@@ -29,6 +30,7 @@ const addUserscriptStyles = async () => {
     { id: 'userscript-styles-no-journal-historian-styles', styles: journalHistorianStyles },
     { id: 'userscript-styles-no-lgs-reminder-styles', styles: lgsReminderStyles },
     { id: 'userscript-styles-no-mhct-styles', styles: mhctStyles },
+    { id: 'userscript-styles-no-tsitu-autoloader-styles', styles: tsituAutoloaderStyles },
     { id: 'userscript-styles-no-tsitu-location-catch-stats-styles', styles: tsituLocationCatchStatsStyles },
     { id: 'userscript-styles-no-tsitu-qol-styles', styles: tsituQolStyles },
     { id: 'userscript-styles-no-tsitu-supply-search-styles', styles: tsituSupplySearchStyles },
