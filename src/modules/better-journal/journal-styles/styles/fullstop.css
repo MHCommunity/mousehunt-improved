@@ -55,3 +55,8 @@
 .entry.short.supplytransferitem .journaltext #friend-data-wrapper a::after .entry.short.craft.convertible_open a.item::after {
   content: "";
 }
+
+.journaltext .lucky::after {
+  margin: 0;
+  background: none;
+}
