@@ -13,6 +13,7 @@
 ### Better Inventory
 
 - Fixes the recipe results tooltip not showing quickly & not caching the data
+- Fixes recipe results tooltip not showing on page navigation, only on refresh
 - Minor style updates
 
 ### Better Item View
@@ -55,7 +56,12 @@
 
 - Fixes delete button being hidden in inbox
 - Updates game settings styles
+- Adds styles for the Tsuitu's autoloader
 - Minor style updates
+
+### Custom Horn
+
+- Adds Spring Egg Hunt horn as an option
 
 ### Custom HUD
 
@@ -89,6 +95,10 @@
 
 - Updates processing logic to be more efficient and less memory intensive
 
+### Inventory - Only Open Multiple
+
+- Fixes issue with Open button being available when it shouldn't be
+
 ### Journal Changer
 
 - Fixes theme being randomized more than once per day
@@ -99,6 +109,10 @@
 - Makes the giant more visible during chase
 - Adds slight animations
 - Minor style updates
+
+### Location HUDs: Event Location
+
+- Add Spring Egg Hunt styles
 
 ### Location HUDs: Folklore Forest Region
 
