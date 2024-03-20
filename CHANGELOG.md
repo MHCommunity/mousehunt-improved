@@ -5,6 +5,8 @@
 ### New Features
 
 - Adds "Hide News Ticker" module
+- Adds a number of new settings to various modules
+- Adds a handful of new experimental features
 
 ### Better Gifts
 
@@ -49,7 +51,7 @@
 ### Better Shops
 
 - Adds a "Hide max quantity owned" setting,
-- Adds a setting to show quantity buttons for buy amount
+- Adds a "Show quantity & max buttons" for buy amount
 - Adds ability to hit enter while typing in an input field instead of clicking the buy button. Hitting enter a second time will confirm it.
 
 ### Better UI
@@ -112,7 +114,7 @@
 
 ### Location HUDs: Event Location
 
-- Add Spring Egg Hunt styles
+- Adds Spring Egg Hunt styles
 
 ### Location HUDs: Folklore Forest Region
 
