@@ -13,6 +13,7 @@ const stripUrl = (url) => {
     .replace('https://www.mousehuntgame.com/images/', '')
     .replaceAll('cv=1', '')
     .replaceAll('cv=2', '')
+    .replaceAll('cv=3', '')
     .replaceAll('asset_cache_version=1', '')
     .replaceAll('asset_cache_version=2', '')
     .replaceAll('?', '')
@@ -155,20 +156,12 @@ const upscaleBackgroundImages = async () => {
   });
 };
 
-let lastUpscaledRan = 0;
 const upscaleImages = async () => {
   if (isUpscaling) {
     return;
   }
 
   isUpscaling = true;
-
-  // check when we last ran the upscale function and if it was less than 1 second ago, skip the upscale.
-  if (lastUpscaledRan > Date.now() - 100) {
-    // return;
-  }
-
-  lastUpscaledRan = Date.now();
 
   observer.disconnect();
 
@@ -251,6 +244,8 @@ const main = async () => {
   });
 
   observer.observe(document, observerOptions);
+
+  upscaleImages();
 };
 
 const init = async () => {
@@ -272,14 +267,6 @@ const init = async () => {
     }
 
     setTimeout(upscaleImages, 500);
-  });
-
-  onEvent('journal-entry', () => {
-    isUpscaling = true;
-  });
-
-  onEvent('journal-entries', () => {
-    isUpscaling = false;
   });
 };
 
