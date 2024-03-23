@@ -1,7 +1,7 @@
 .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active.two-column {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 10px;
+  grid-template-columns: 49% 49%;
+  justify-content: space-between;
 }
 
 .two-column.mousehunt-improved-settings .PagePreferences__title {
@@ -53,9 +53,8 @@
 }
 
 .two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting {
-  padding: 0 5px 0 10px;
-  margin-right: 0;
-  margin-left: 1px;
+  padding: 0 5px;
+  border-right: 1px solid #e0cfb4;
   border-radius: 0;
 }
 
@@ -105,12 +104,20 @@
   margin-top: 5px;
 }
 
+.two-column #mousehunt-improved-settings-location-hud {
+  padding-bottom: 0;
+}
+
 .two-column #mousehunt-improved-settings-location-hud-wrapper {
   gap: 0;
   height: 700px;
-  padding: 11px 0 0;
-  margin: 0 -10px -10px;
-  overflow: hidden;
+  padding: 10px 0 0;
+  margin: 0 -11px;
+  border-left: 1px solid #e0cfb4;
+}
+
+.two-column #mousehunt-improved-settings-location-hud .PagePreferences__title {
+  border-bottom: 1px solid #f2ebde;
 }
 
 .two-column.mousehunt-improved-settings .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle,
@@ -133,10 +140,6 @@
   margin-bottom: 10px;
 }
 
-.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.two-column .PagePreferences__settingDescription {
-  padding: 0;
-}
-
 .two-column .PagePreferences__settingsList .PagePreferences__subSetting {
   opacity: 0.4;
 }
@@ -152,4 +155,13 @@
 .two-column .mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,
 .two-column .mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting {
   gap: 5px;
+}
+
+.two-column .mousehunt-improved-settings .PagePreferences__settingDescription {
+  display: none;
+}
+
+.two-column .mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingName {
+  font-size: 11px;
+  line-height: 1.5;
 }

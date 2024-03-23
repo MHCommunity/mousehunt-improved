@@ -1,6 +1,5 @@
 import { getSetting } from '@utils';
 
-import newSettingsStyles from './modules/new-settings-styles';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import profileScoreboardSearch from './modules/profile-scoreboard-search';
 import raffle from './modules/raffle';
@@ -38,13 +37,8 @@ const experiments = [
     title: 'Iceberg progress stats always visible',
   },
   {
-    id: 'experiments.new-settings-styles',
-    title: 'New settings styles',
-    load: newSettingsStyles,
-  },
-  {
     id: 'experiments.new-settings-styles-columns',
-    title: 'New settings styles (columns)',
+    title: 'Settings: Columns',
     load: newSettingsStylesColumns,
   },
   {

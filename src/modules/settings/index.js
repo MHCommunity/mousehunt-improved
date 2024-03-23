@@ -11,8 +11,7 @@ import {
   getSettings,
   makeElement,
   onNavigation,
-  sessionGet,
-  sessionSet,
+  saveSetting,
   setPage,
   showSuccessMessage
 } from '@utils';
@@ -301,7 +300,7 @@ const addTogglesToSettings = () => {
   });
 
   // Beta section is default hidden.
-  let toggledSections = sessionGet('toggled-sections', ['mousehunt-improved-settings-beta', 'mousehunt-improved-settings-advanced']);
+  let toggledSections = getSetting('settings.toggled-sections', ['mousehunt-improved-settings-beta', 'mousehunt-improved-settings-advanced']);
 
   settingsPage.forEach((setting) => {
     // Append an svg to toggle the class
@@ -317,7 +316,7 @@ const addTogglesToSettings = () => {
     titleText.addEventListener('click', (event) => {
       event.preventDefault();
 
-      toggledSections = sessionGet('toggled-sections') || [];
+      toggledSections = getSetting('settings.toggled-sections', ['mousehunt-improved-settings-beta', 'mousehunt-improved-settings-advanced']);
 
       const toggled = setting.classList.contains('toggled');
       if (toggled) {
@@ -326,15 +325,15 @@ const addTogglesToSettings = () => {
 
         // save to session storage
         toggledSections = toggledSections.filter((section) => section !== setting.id);
-        sessionSet('toggled-sections', toggledSections);
       } else {
         setting.classList.add('toggled');
         toggle.classList.add('toggled');
 
         // save to session storage
         toggledSections.push(setting.id);
-        sessionSet('toggled-sections', toggledSections);
       }
+
+      saveSetting('settings.toggled-sections', toggledSections);
     });
 
     if (toggledSections.includes(setting.id)) {
@@ -388,9 +387,12 @@ const linkVersionNumber = () => {
     return;
   }
 
-  version.addEventListener('click', () => {
+  version.addEventListener('click', (e) => {
+    e.preventDefault();
     doEvent('mh-improved-show-update-summary');
   });
+
+  version.title = 'Click to view the update summary';
 };
 
 /**

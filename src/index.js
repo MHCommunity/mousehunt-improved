@@ -26,7 +26,7 @@ const modules = imported;
 const loadModules = async () => {
   const categories = [
     { id: 'required', name: 'Always Loaded' },
-    { id: 'better', name: `MouseHunt Improved <span class="version">v${mhImprovedVersion}</span>` },
+    { id: 'better', name: `MouseHunt Improved <a class="version">v${mhImprovedVersion}</a>` },
     { id: 'feature', name: 'Features' },
     { id: 'design', name: 'Design' },
     { id: 'element-hiding', name: 'Hide Page Elements' },
