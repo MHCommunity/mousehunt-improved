@@ -90,6 +90,7 @@ const renderList = async (list) => {
 
     rows.push({
       mouse: mouse.name,
+      type: mouse.type,
       minluck,
       catchRateValue: catchRate.rate,
       catchRate: catchRate.percent,
@@ -105,9 +106,17 @@ const renderList = async (list) => {
     return b.minluck - a.minluck;
   });
 
-  rows.forEach(({ mouse, minluck, catchRate, crClass }) => {
+  rows.forEach(({ mouse, type, minluck, catchRate, crClass }) => {
     const row = makeElement('tr', 'mh-improved-cre-row');
-    makeElement('td', 'mh-improved-cre-name', mouse, row);
+    const name = makeElement('td', 'mh-improved-cre-name');
+    const nameLink = makeElement('a', '', mouse);
+    nameLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      hg.views.MouseView.show(type);
+    });
+    name.append(nameLink);
+    row.append(name);
+
     makeElement('td', crClass, minluck, row);
     makeElement('td', crClass, catchRate, row);
 
