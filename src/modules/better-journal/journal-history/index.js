@@ -4,28 +4,45 @@ import {
   dbGetAll,
   dbSet,
   getData,
-  onNavigation,
+  makeElement,
   onRequest
 } from '@utils';
 
-let pager;
-let journalEntries = [];
-let totalPages = 0;
-let currentPage = 0;
-
 const makeEntriesMarkup = (entries) => {
   return entries.map((entry) => {
+    if (entry.data) {
+      entry = entry.data;
+    }
+
     entry = {
-      id: entry.data?.id || 0,
-      date: entry.data?.date || '0:00',
-      location: entry.data?.location || '',
-      text: entry.data?.text || '',
-      type: entry.data?.type || [],
+      id: entry?.id || 0,
+      date: entry?.date || '0:00',
+      location: entry?.location || '',
+      text: entry?.text || '',
+      type: entry?.type || [],
     };
 
+    if (
+      (
+        entry.type.includes('catchsuccess') ||
+        entry.type.includes('catchsuccessloot') ||
+        entry.type.includes('bonuscatchsuccess') ||
+        entry.type.includes('luckycatchsuccess') ||
+        entry.type.includes('bonuscatchsuccess')
+      ) && ! entry.mouse
+    ) {
+      // get the mouse type by parsing the link for hg.views.MouseView.show
+      const mouseLink = entry.text.match(/hg\.views\.MouseView\.show\('([^']+)'\)/);
+      if (mouseLink && mouseLink[1]) {
+        entry.mouse = mouseLink[1];
+      }
+    }
+
     let html = `<div class="${entry.type.join(' ')}" data-entry-id="${entry.id}" data-mouse-type="${entry.mouse || ''}">`;
-    if (entry.mouse && entry.mouse.length > 0) {
+    console.log('entry', entry);
+    if (entry.mouse) {
       const mouseImages = miceThumbs.find((mouse) => mouse.type === entry.mouse);
+      console.log('mouseImages', mouseImages);
       if (mouseImages) {
         html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" border="0"></a></div>`;
       }
@@ -37,43 +54,23 @@ const makeEntriesMarkup = (entries) => {
   }).join('');
 };
 
-const doPageStuff = (page, event) => {
-  if (page < 6) {
+const doPageStuff = (page, event = null) => {
+  if (page <= 6 || page > totalPages) {
     return;
   }
 
-  if (page === 6) {
-    currentPage = page;
-    return;
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
   }
-
-  event.preventDefault();
-  event.stopPropagation();
-
-  currentPage = page;
 
   const journalEntriesForPage = journalEntries.slice((page - 1) * 12, page * 12);
-  const markup = makeEntriesMarkup(journalEntriesForPage);
-
-  setTimeout(() => {
-    const journalEntryContainer = document.querySelector('#journalContainer .journalEntries');
-    if (! journalEntryContainer) {
-      return;
-    }
-
-    journalEntryContainer.innerHTML = markup;
-
-    main();
-  }, 500);
-};
-
-const getPager = () => {
-  const journalPageLink = document.querySelector('.pagerView-nextPageLink.pagerView-link');
-  if (! journalPageLink) {
+  const journalEntryContainer = document.querySelector('#journalContainer .journalEntries');
+  if (! journalEntriesForPage.length || ! journalEntryContainer) {
     return;
   }
 
-  return hg.views.JournalView.getPager(journalPageLink);
+  journalEntryContainer.append(makeElement('div', 'journal-history-entries', makeEntriesMarkup(journalEntriesForPage)));
 };
 
 const getAllEntries = async () => {
@@ -91,46 +88,6 @@ const getAllEntries = async () => {
   return journalEntries;
 };
 
-const eventListeners = {
-  prevLink: (event) => doPageStuff(currentPage - 1, event),
-  nextLink: (event) => doPageStuff(currentPage + 1, event),
-  lastLink: (event) => doPageStuff(totalPages, event),
-};
-
-const main = async () => {
-  pager = pager || getPager();
-  journalEntries = journalEntries.length ? journalEntries : await getAllEntries();
-
-  totalPages = Math.ceil(journalEntries.length / 12);
-  pager.setTotalItems(journalEntries.length);
-  pager.enable();
-  pager.render();
-
-  const prevLink = document.querySelector('.pagerView-previousPageLink.pagerView-link');
-  const nextLink = document.querySelector('.pagerView-nextPageLink.pagerView-link');
-  const lastLink = document.querySelector('.pagerView-lastPageLink.pagerView-link');
-  if (! prevLink || ! nextLink || ! lastLink) {
-    return;
-  }
-
-  // The normal handler will only work for the first 6 pages. If we're on the 6th page, we
-  // need to re-enable the next and last buttons and when they're clicked, we need to
-  // handle the page change ourselves.
-
-  prevLink.removeEventListener('click', eventListeners.prevLink);
-  nextLink.removeEventListener('click', eventListeners.nextLink);
-  lastLink.removeEventListener('click', eventListeners.lastLink);
-
-  if (6 >= currentPage) {
-    nextLink.addEventListener('click', eventListeners.nextLink);
-    lastLink.addEventListener('click', eventListeners.lastLink);
-  }
-
-  if (currentPage >= 7) {
-    prevLink.addEventListener('click', eventListeners.prevLink);
-  }
-};
-
 let lastDate = '';
 const saveToDatabase = async (entry) => {
   const entryId = Number.parseInt(entry.getAttribute('data-entry-id'), 10);
@@ -145,7 +102,7 @@ const saveToDatabase = async (entry) => {
 
   const original = await dbGet('journal', entryId);
 
-  if (original && original.text) {
+  if (original && original.data?.text) {
     return;
   }
 
@@ -156,6 +113,8 @@ const saveToDatabase = async (entry) => {
 
   date = date.split('-');
 
+  const entryImage = entry.querySelector('.journalimage');
+
   const journalData = {
     id: entryId,
     date: date[0] ? date[0].trim() : '0:00',
@@ -163,32 +122,46 @@ const saveToDatabase = async (entry) => {
     text: entryText.innerHTML,
     type: [...entry.classList],
     mouse: entry.getAttribute('data-mouse-type') || null,
+    image: entryImage ? entryImage.innerHTML : null,
   };
 
   await dbSet('journal', journalData);
 };
 
-let lastResponsePage;
-const onJournalRequest = (data) => {
-  const reportedCurrentPage = data.journal_page.pager.current;
+const doJournalHistory = async () => {
+  if (! pager) {
+    const journalPageLink = document.querySelector('.pagerView-nextPageLink.pagerView-link');
+    if (! journalPageLink) {
+      return;
+    }
 
-  if (lastResponsePage === reportedCurrentPage) {
-    return;
+    pager = hg.views.JournalView.getPager(journalPageLink);
   }
 
-  currentPage = reportedCurrentPage;
-  lastResponsePage = currentPage;
+  journalEntries = journalEntries.length ? journalEntries : await getAllEntries();
 
-  main();
+  totalPages = Math.ceil(journalEntries.length / 12);
+  pager.setTotalItems(journalEntries.length);
+  pager.enable();
+  pager.render();
 };
 
+const doJournalHistoryRequest = () => {
+  doJournalHistory();
+
+  if (pager.getCurrentPage() > 6) {
+    doPageStuff(pager.getCurrentPage());
+  }
+};
+
+let pager;
+let journalEntries = [];
 let miceThumbs = [];
 export default async (enabled) => {
-  miceThumbs = await getData('mice-thumbs');
-
+  miceThumbs = await getData('mice-thumbnails');
   if (enabled) {
-    onNavigation(main, { page: 'camp' });
-    onRequest('pages/journal.php', onJournalRequest);
+    doJournalHistory();
+    onRequest('pages/journal.php', doJournalHistoryRequest);
   }
 
   addEvent('journal-entry', saveToDatabase, { weight: 1, id: 'better-journal-history' });

@@ -1,3 +1,5 @@
+import { getSetting } from '@utils';
+
 /**
  * Add settings for the module.
  *
@@ -36,6 +38,11 @@ export default async () => {
       id: 'better-journal.item-colors',
       title: 'Unique item colors (Map clues, Ful\'Mina\'s gifts, etc.)',
       default: true,
+    },
+    {
+      id: 'better-journal.journal-history',
+      title: 'Journal History',
+      default: getSetting('experiments.journal-history', true),
     },
   ];
 };
