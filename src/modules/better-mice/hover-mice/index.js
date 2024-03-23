@@ -143,9 +143,16 @@ const main = () => {
     const mouseType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
 
-    // On mouseover, show the small data popup
+    let timer;
     link.addEventListener('mouseover', (e) => {
-      makeMouseMarkup(mouseType, e);
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        makeMouseMarkup(mouseType, e);
+      }, 200);
+    });
+
+    link.addEventListener('mouseout', () => {
+      clearTimeout(timer);
     });
   });
 };

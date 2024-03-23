@@ -191,7 +191,15 @@ const addFriendLinkEventListener = (selector) => {
       return;
     }
 
-    friendLink.addEventListener('mouseenter', onFriendLinkHover);
+    let timer;
+    friendLink.addEventListener('mouseover', (e) => {
+      clearTimeout(timer);
+      timer = setTimeout(onFriendLinkHover, 200);
+    });
+
+    friendLink.addEventListener('mouseout', () => {
+      clearTimeout(timer);
+    });
   });
 };
 
