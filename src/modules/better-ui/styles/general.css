@@ -426,11 +426,16 @@ input.itemView-action-convert-quantity {
   max-width: 100%;
 }
 
-.newsPostBody #news-post-responsive .flexCenter img.huge:hover {
+.newsPostBody #news-post-responsive img.huge:hover,
+.newsPostBody #news-post-responsive img[style*="width:100%"]:hover {
   transform: none;
 }
 
-.newsPostBody #news-post-responsive .flexCenter img:hover {
+.newsPostBody #news-post-responsive img {
+  transition: 0.2s;
+}
+
+.newsPostBody #news-post-responsive img:hover {
   transform: rotate(4deg) scale(1.1);
 }
 
