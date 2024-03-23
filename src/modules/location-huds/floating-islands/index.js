@@ -67,14 +67,7 @@ const toggleFuel = (skip = false) => {
   });
 };
 
-let isAdding = false;
 const addBossCountdown = async () => {
-  if (isAdding) {
-    return;
-  }
-
-  isAdding = true;
-
   const existing = document.querySelector('.mh-ui-fi-enemy-countdown');
   if (existing) {
     existing.remove();
@@ -102,14 +95,28 @@ const addBossCountdown = async () => {
     return;
   }
 
-  const goalContainer = document.querySelector('.floatingIslandsHUD-goalContainer');
-  if (! goalContainer) {
+  let goalContainer = document.querySelector('.floatingIslandsHUD-goalContainer');
+  if (goalContainer) {
+    goalContainer.append(bossCountdown);
     return;
   }
 
-  goalContainer.append(bossCountdown);
+  // if we can't find the goal container, try again in 1 second up to 10 times until we find it
+  let tries = 0;
+  const maxTries = 10;
 
-  isAdding = false;
+  const interval = setInterval(() => {
+    goalContainer = document.querySelector('.floatingIslandsHUD-goalContainer');
+    if (goalContainer) {
+      goalContainer.append(bossCountdown);
+      clearInterval(interval);
+    }
+
+    tries += 1;
+    if (tries >= maxTries) {
+      clearInterval(interval);
+    }
+  }, 1000 * tries);
 };
 
 const addEnemyClass = async () => {
@@ -422,8 +429,6 @@ const hud = () => {
   onRequest('environment/floating_islands.php', () => {
     run();
     toggleFuel(true);
-    setTimeout(run, 3500);
-    setTimeout(run, 10000);
   });
 };
 
