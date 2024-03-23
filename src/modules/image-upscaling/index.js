@@ -156,7 +156,18 @@ const upscaleBackgroundImages = async () => {
   });
 };
 
-const upscaleImages = async () => {
+let debounceDelay = 0;
+
+const debounce = (func, delay) => {
+  debounceDelay = 250;
+  let timeout;
+  return async (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(async () => await func(...args), delay);
+  };
+};
+
+const upscaleImages = debounce(async () => {
   if (isUpscaling) {
     return;
   }
@@ -175,8 +186,10 @@ const upscaleImages = async () => {
   observer.observe(document, observerOptions);
 
   return true;
-};
+}, debounceDelay);
 
+let mapping = [];
+let observer;
 const unupscaledImages = [];
 const upscaledImages = [];
 const lastCheck = { backgrounds: '', images: '' };
@@ -189,12 +202,14 @@ const observerOptions = {
   subtree: true,
 };
 
-let mapping = [];
-let observer;
 /**
  * Initialize the module.
  */
 const main = async () => {
+  if (observer) {
+    return;
+  }
+
   observer = new MutationObserver(async (mutations) => {
     const skipClasses = new Set([
       'huntersHornView__timerState',
@@ -239,13 +254,23 @@ const main = async () => {
         continue;
       }
 
-      await upscaleImages();
+      await upscaleImages(mutation.target);
     }
   });
 
   observer.observe(document, observerOptions);
+};
 
-  upscaleImages();
+const handleUpscalingImages = async () => {
+  if (! observer) {
+    await main();
+  }
+
+  if (isUpscaling) {
+    return;
+  }
+
+  await upscaleImages(document.querySelector('body'));
 };
 
 const init = async () => {
@@ -253,21 +278,9 @@ const init = async () => {
 
   mapping = await getData('upscaled-images');
 
-  onEvent('mh-improved-init', main);
-
-  main();
-
-  onDialogShow('all', () => {
-    setTimeout(upscaleImages, 500);
-  });
-
-  onRequest('*', () => {
-    if (isUpscaling) {
-      return;
-    }
-
-    setTimeout(upscaleImages, 500);
-  });
+  onEvent('mh-improved-init', handleUpscalingImages);
+  onDialogShow('all', handleUpscalingImages);
+  onRequest('*', handleUpscalingImages);
 };
 
 export default {
