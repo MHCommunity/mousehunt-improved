@@ -8,6 +8,8 @@ import {
   onNavigation
 } from '@utils';
 
+import settings from './settings';
+
 import styles from './styles.css';
 import gridStyles from './grid.css';
 import listStyles from './list.css';
@@ -93,12 +95,26 @@ const addTrapBlock = () => {
     const auraClasses = aura.element.classList;
 
     const questClass = [...auraClasses].find((c) => c.startsWith('Quest') || c.startsWith('Event') || c.startsWith('Mini'));
-    const auraEl = makeElement('div', ['aura', questClass]);
+    const auraEl = makeElement('div', ['aura', 'mousehuntTooltipParent', questClass]);
 
     auraEl.id = auraKey;
 
+    const expiryText = getExpiryFormatted(aura.expiry);
+    const remaining = getExpiryRemainingFormatted(aura.remaining * 1000);
+
+    auraEl.title = `Expires on ${expiryText}, ${remaining} remaining`;
+
+    const tooltip = makeElement('div', ['mousehuntTooltip', 'top', 'noEvents']);
+    const tooltipContent = makeElement('div', 'mousehuntTooltipContent');
+    makeElement('div', 'mousehuntTooltipContentTitle', `${aura.type} Aura`, tooltipContent);
+    makeElement('div', 'mousehuntTooltipContentTime', `Expires on ${expiryText}, ${remaining} remaining`, tooltipContent);
+    tooltip.append(tooltipContent);
+
+    makeElement('div', 'mousehuntTooltip-arrow', '', tooltip);
+    auraEl.append(tooltip);
+
     const auraImage = makeElement('div', 'image');
-    // copy the classes from the aura to the new element
+
     auraImage.classList.add(...auraClasses);
     auraImage.classList.remove('mousehuntTooltipParent');
     auraEl.append(auraImage);
@@ -106,8 +122,8 @@ const addTrapBlock = () => {
     makeElement('div', 'type', aura.type, auraEl);
 
     const times = makeElement('div', 'times');
-    makeElement('div', 'expiry', getExpiryFormatted(aura.expiry), times);
-    makeElement('div', 'time', getExpiryRemainingFormatted(aura.remaining * 1000), times);
+    makeElement('div', 'expiry', expiryText, times);
+    makeElement('div', 'time', remaining, times);
     auraEl.append(times);
 
     auraTrapBlock.append(auraEl);
@@ -215,5 +231,6 @@ export default {
   description: 'Show auras and their expiry time below the trap stats.',
   type: 'beta',
   default: false,
-  load: init
+  load: init,
+  settings
 };
