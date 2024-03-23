@@ -74,8 +74,24 @@ const updateItemView = async () => {
   if (sidebar) {
     const crafting = document.querySelector('.itemView-action.crafting_item');
     if (crafting) {
-      // move the crafting item to the sidebar
       sidebar.append(crafting);
+    }
+
+    const smashing = document.querySelector('.itemView-partsContainer');
+    if (smashing) {
+      sidebar.append(smashing);
+
+      if (smashing.getAttribute('data-has-changed-title')) {
+        return;
+      }
+
+      const smashingTitle = smashing.querySelector('b');
+      if (smashingTitle) {
+        smashingTitle.innerText = 'Hunter\'s Hammer to get:';
+        smashing.setAttribute('data-has-changed-title', 'true');
+
+        smashing.innerHtml = smashing.innerHTML.replace('If you smash it, you\'ll get:', '');
+      }
     }
   }
 
