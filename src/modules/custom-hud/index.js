@@ -22,7 +22,7 @@ const addStyleEl = () => {
     style = `body .mousehuntHud-marbleDrawer {
       background: url(${pedestal}) -46px 0 no-repeat, url(${pedestal}) 731px 0 no-repeat, url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
     }`;
-  } else if ('suede' === setting) {
+  } else if ('hud-suede' === setting) {
     style = `.mousehuntHud-marbleDrawer {
       background: url(${pedestal}) -51px 0 no-repeat, url(${pedestal}) 736px 0 no-repeat, url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg) repeat bottom left/760px
     }
@@ -30,7 +30,7 @@ const addStyleEl = () => {
     #mousehuntContainer.PageCamp {
       background: url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg?asset_cache_version=2) repeat-y;
     }`;
-  } else if ('groovy-green' === setting) {
+  } else if ('hud-groovy-green' === setting) {
     style = `body .mousehuntHud-marbleDrawer {
       background: url(${pedestal}) -46px 0 no-repeat, url(${pedestal}) 731px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/pattern.png) repeat-y bott center/cover;
     }`;

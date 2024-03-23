@@ -20,9 +20,9 @@ export default async () => {
         { name: 'Gray', value: 'hud-gray' },
       ],
     },
-    { name: 'Suede', value: 'suede' },
     { name: 'Blueprint', value: 'hud-blueprint' },
-    { name: 'Groovy Green', value: 'groovy-green' },
+    { name: 'Suede', value: 'hud-suede' },
+    { name: 'Groovy Green', value: 'hud-groovy-green' },
   ];
 
   return [{
