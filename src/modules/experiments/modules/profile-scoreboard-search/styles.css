@@ -5,3 +5,20 @@
   border: 1px solid #985f42;
   border-radius: 3px;
 }
+
+.mh-improved-scoreboard-results {
+  margin-top: 10px;
+}
+
+.mh-improved-scoreboard-results table {
+  width: 100%;
+}
+
+.mh-improved-scoreboard-loading {
+  display: flex;
+  height: 30px;
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 30px;
+}
