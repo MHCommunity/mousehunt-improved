@@ -1,4 +1,4 @@
-import { dbDelete, dbGet, dbSet } from './db';
+import { dbDelete, dbDeleteAll, dbGet, dbSet } from './db';
 import { debuglog } from './debug';
 import { getSetting } from './settings';
 
@@ -6,6 +6,7 @@ const validDataFiles = new Set([
   'effs',
   'environments-events',
   'environments',
+  'item-thumbnails',
   'items-tradable',
   'm400-locations',
   'marketplace-hidden-items',
@@ -126,6 +127,8 @@ const clearCaches = async () => {
   validDataFiles.forEach((file) => {
     dbDelete('data', file);
   });
+
+  dbDeleteAll('ar-cache');
 
   for (const key of Object.keys(localStorage)) {
     if (key.startsWith('mh-improved-cache')) {

@@ -436,6 +436,22 @@ const getArForMouse = async (id, type = 'mouse') => {
     }
   }
 
+  console.log('mhctJson', mhctJson);
+
+  // if any of the rates are 0, then remove them
+  // if any of the rates are 9999 then set them to 100
+  mhctJson = mhctJson.filter((rate) => {
+    if (rate.rate === 0) {
+      return false;
+    }
+
+    if (rate.rate === 9999) {
+      rate.rate = 10000;
+    }
+
+    return true;
+  });
+
   await setCachedValue(cacheKey, mhctJson);
 
   return mhctJson;
