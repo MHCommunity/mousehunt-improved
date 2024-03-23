@@ -1,0 +1,62 @@
+.mh-ui-progress-log-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mh-ui-progress-log-title {
+  text-align: center;
+}
+
+.mh-ui-progress-log-title .reportTitle {
+  font-size: 1.5em;
+  padding: 5px 0;
+  font-weight: 900;
+}
+
+.mh-ui-progress-log-table {
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #c6c6c6;
+  padding-bottom: 10px;
+}
+
+.mh-ui-progress-log-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  border-top: 1px solid #c6c6c6;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.mh-ui-progress-log-group-title {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.mh-ui-progress-log-group-values {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5px 0;
+}
+
+.mh-ui-progress-log-cell-entry {
+  font-size: 13px;
+  text-align: right;
+}
+
+.mh-ui-progress-log-cell-entry.mh-ui-progress-log-cell-entry-title {
+  text-align: left;
+}
+
+.mousehuntActionButton.tiny.mh-ui-progress-log-link {
+  width: unset;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.journal .content .log_summary table {
+  display: none;
+}

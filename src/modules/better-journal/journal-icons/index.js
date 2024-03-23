@@ -12,7 +12,7 @@ export default async () => {
   const style = document.createElement('link');
   style.id = 'better-journal-icons';
   style.rel = 'stylesheet';
-  style.href = 'https://i.mouse.rip/css/journal-icons.css?v=1.0.1';
+  style.href = `https://api.mouse.rip/journal-icons.css?v=${mhImprovedVersion}`;
 
   document.head.append(style);
 

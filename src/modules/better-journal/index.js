@@ -14,6 +14,7 @@ import journalItemColors from './journal-item-colors';
 import journalList from './journal-list';
 import journalReplacements from './journal-replacements';
 import journalStyles from './journal-styles';
+import progressLog from './progress-log';
 
 import settings from './settings';
 
@@ -68,6 +69,10 @@ const init = async () => {
 
   if (getSetting('better-journal.item-colors', true)) {
     journalItemColors();
+  }
+
+  if (getSetting('better-journal.progress-log', true)) {
+    progressLog();
   }
 
   processEntries();
