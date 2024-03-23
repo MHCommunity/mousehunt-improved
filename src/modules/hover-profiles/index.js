@@ -120,21 +120,6 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
     clearTimeout(timeoutId);
   });
 
-  // also hide it if the parent element is no longer being hovered
-  const parent = e.target.parentElement;
-  if (parent) {
-    parent.addEventListener('mouseleave', () => {
-      timeoutId = setTimeout(() => {
-        friendDataWrapper.remove();
-      }, 500); // delay in milliseconds
-    });
-
-    // cancel the removal if the mouse enters the tooltip
-    parent.addEventListener('mouseenter', () => {
-      clearTimeout(timeoutId);
-    });
-  }
-
   doEvent('profile_hover');
 };
 
@@ -194,7 +179,7 @@ const addFriendLinkEventListener = (selector) => {
     let timer;
     friendLink.addEventListener('mouseover', (e) => {
       clearTimeout(timer);
-      timer = setTimeout(onFriendLinkHover, 200);
+      timer = setTimeout(() => onFriendLinkHover(e), 200);
     });
 
     friendLink.addEventListener('mouseout', () => {
