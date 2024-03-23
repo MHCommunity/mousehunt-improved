@@ -1,0 +1,22 @@
+.mh-improved-aura-view .aura .mousehuntTooltip {
+  bottom: 60px;
+  right: -50px;
+  padding: 5px;
+  left: -50px;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.mh-improved-aura-view .aura {
+  position: relative;
+}
+
+.mh-improved-aura-view .QuestJetStreamAura {
+  display: none;
+}
+
+.mh-improved-aura-view .mousehuntTooltipContentTitle {
+  font-size: 12px;
+  font-weight: 900;
+}

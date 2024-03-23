@@ -52,6 +52,7 @@
 .entry.alchemists_cookbook_base_bonus .journaltext .loot:last-of-type::after,
 .entry.short.dailyreward a:last-of-type::after,
 .entry.folkloreForest-plantStarted,
+.entry.short.log_summary.stats .journaltext .loot:last-of-type::after,
 .entry.short.supplytransferitem .journaltext #friend-data-wrapper a::after .entry.short.craft.convertible_open a.item::after {
   content: "";
 }

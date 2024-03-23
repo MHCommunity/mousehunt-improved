@@ -152,3 +152,11 @@
 .mh-gift-buttons-clone-wrapper {
   max-height: calc(75vh - 175px);
 }
+
+.mh-ui-goals-block .treasureMapView-block-content {
+  max-height: 75vh;
+}
+
+.mh-ui-environments-block .treasureMapView-block-content {
+  max-height: 68vh;
+}

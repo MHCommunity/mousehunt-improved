@@ -122,3 +122,7 @@
   border-radius: 7px;
   mix-blend-mode: luminosity;
 }
+
+.eggSweeper-eggConvertible .itemImage {
+  background-color: transparent;
+}

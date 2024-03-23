@@ -2,3 +2,8 @@
 .mousehuntHud-shield.larrys_football_challenge.golden {
   background-image: url(https://www.mousehuntgame.com/images/ui/elements/header_world_cup_golden_shield.png?asset_cache_version=2);
 }
+
+/* Don't hide the close button as much. */
+.itemView-loading {
+  border-top-right-radius: 20px;
+}

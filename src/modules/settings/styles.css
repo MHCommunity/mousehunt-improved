@@ -1,9 +1,12 @@
-/* hack to make the settings page look better until the settings stuff gets sub-settings */
-.mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer.select.busy::before, /* stylelint-disable-line prettier/prettier */
-.mousehunt-improved-settings .PagePreferences__setting .settingRow-action-inputContainer.select.completed::before {
-  top: 30px;
-  right: -25px;
-  left: unset;
+.mousehunt-improved-settings .PagePreferences__section {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #e0cfb4;
+}
+
+.mousehunt-improved-settings .PagePreferences__title {
+  padding-bottom: 10px;
+  margin: 0;
 }
 
 .mousehunt-improved-settings .PagePreferences__titleText {
@@ -11,14 +14,16 @@
   display: flex;
   gap: 10px;
   justify-content: flex-start;
+  font-family: system-ui, sans-serif;
+  font-weight: 200;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingNameText {
   color: #000;
 }
 
-.mousehunt-improved-settings .mhui-setting-toggle.toggled {
-  transform: rotate(-180deg);
+.mousehunt-improved-settings .PagePreferences__settingNameText:hover {
+  text-decoration: none;
 }
 
 .mousehunt-improved-settings .mhui-setting-toggle {
@@ -30,47 +35,24 @@
   border-right: 6px solid transparent;
   border-bottom: 9px solid #999;
   border-left: 6px solid transparent;
-  transition: transform 150ms;
+  transition: transform 0.15s;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__titleText {
-  grid-column: span 3;
+.mousehunt-improved-settings .mhui-setting-toggle.toggled {
+  transform: rotate(-180deg);
 }
 
-.mousehunt-improved-settings .PagePreferences__settingDescription {
-  max-width: 550px;
-  padding: 5px 0;
-}
-
-.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__setting {
-  display: flex;
-  align-items: center;
-  height: 25px;
+.mousehunt-improved-settings .toggled .PagePreferences__titleText,
+.mousehunt-improved-settings .toggled .PagePreferences__title {
   padding: 0;
-  margin: 0;
 }
 
-.mousehunt-improved-settings .settingRow-label {
-  padding: 10px 0;
-}
-
-.inputBoxContainer.multiSelect {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-}
-
-.inputBox.multiSelect {
-  max-width: 150px;
-  margin-right: 4px;
-}
-
-#mousehunt-improved-settings-better-better-gifts-ignore-bad-gifts .inputBox.multiSelect {
-  max-width: unset;
-}
-
-.mousehunt-improved-settings select {
-  font-size: 11px;
+.mousehunt-improved-settings .toggled .PagePreferences__separator,
+.mousehunt-improved-settings .toggled .PagePreferences__sectionWrapper,
+.mousehunt-improved-settings .toggled #mousehunt-improved-settings-location-hud-wrapper {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
 }
 
 #mousehunt-improved-settings-design-custom-background,
@@ -79,53 +61,102 @@
 #mousehunt-improved-settings-design-custom-shield,
 #mousehunt-improved-settings-feature-ultimate-checkmark-show,
 .mousehunt-improved-settings .PagePreferences__settingsList {
+  position: relative;
   gap: 0;
-  padding: 10px 5px 15px 10px;
-  border-top: 1px solid #e0d0b4;
+  padding: 5px 0 5px 45px;
+  border-color: #f2ebde;
+  border-top: 1px solid #f2ebde;
   border-left: none;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__subSetting {
-  padding: 0;
-  margin: 0 0 0 10px;
-  border: none;
+#mousehunt-improved-settings-advanced .PagePreferences__settingsList,
+#mousehunt-improved-settings-design .PagePreferences__settingsList,
+#mousehunt-improved-settings-element-hiding .PagePreferences__settingsList {
+  padding-left: 10px;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsWrapper .PagePreferences__settingsList:nth-child(1) {
-  border-top: none;
+.mousehunt-improved-settings .PagePreferences__settingsList:not(.PagePreferences__subSetting)::before,
+#mousehunt-improved-settings-feature-ultimate-checkmark-show::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  width: 25px;
+  height: auto;
+  content: "";
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px;
+  opacity: 0.4;
+  transition: opacity 0.1s ease-out;
+  will-change: transform;
 }
 
-.PagePreferences .mousehunt-improved-settings .PagePreferences__setting {
+.mousehunt-improved-settings .PagePreferences__setting {
   gap: 5px;
   align-items: center;
   padding-right: 5px;
-  margin: 5px 0;
+  margin: 3px 0;
 }
 
-.PagePreferences .mousehunt-improved-settings .PagePreferences__setting .PagePreferences__settingAction {
+.mousehunt-improved-settings .PagePreferences__setting .PagePreferences__settingAction {
   margin-bottom: 0;
 }
 
-#mousehunt-improved-settings .PagePreferences__settingAction {
+.mousehunt-improved-settings .PagePreferences__settingDefault,
+#mousehunt-improved-settings-beta-experiments > .PagePreferences__setting .PagePreferences__settingAction,
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingDescription,
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingDefault {
+  display: none;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingName {
+  font-family: system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingDescription {
+  display: none; /* TODO: maybe not? */
+  max-width: 550px;
+  padding: 5px 0;
+  font-family: system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingDescription {
+  padding-bottom: 0;
+}
+
+.mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingDescription.empty-description,
+.mousehunt-improved-settings .PagePreferences__settingDescription.empty-description {
   padding: 0;
-  margin: 0;
 }
 
-#mousehunt-improved-settings .PagePreferences__settingDescription {
-  font-size: 12px;
+.mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__subSetting {
+  display: none;
+  padding: 5px 10px 5px 5px;
+  margin-left: 5px;
+  border-top: none;
+  border-left: 1px solid #f2ebde;
 }
 
-.mousehunt-improved-settings .PagePreferences__title > .PagePreferences__settingsWrapper {
-  margin-bottom: -10px;
+#mousehunt-improved-settings-location-hud .PagePreferences__title {
+  margin-bottom: 5px;
+  border-bottom: 1px solid #f2ebde;
 }
 
-/* Sub-settings */
-.PagePreferences__settingsList.PagePreferences__subSetting {
-  margin-left: 20px;
+#mousehunt-improved-settings-advanced.toggled .PagePreferences__title,
+#mousehunt-improved-settings-location-hud.toggled .PagePreferences__title {
+  margin-bottom: 0;
+  border: none;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting {
-  margin-left: 0;
+.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting {
+  display: block;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__subSetting:nth-child(odd) {
+  background-color: #f4f4f4;
 }
 
 .PagePreferences__subSetting .PagePreferences__settingName {
@@ -133,101 +164,117 @@
   line-height: 1;
 }
 
-#mousehunt-improved-settings-feature-ultimate-checkmark-show.PagePreferences__subSetting .PagePreferences__settingName {
-  line-height: 20px;
+.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting .PagePreferences__setting {
+  display: flex;
+  padding: 0;
+  margin: 0;
 }
 
-.PagePreferences__subSetting .mousehuntSettingSlider {
-  width: 40px; /* was 50px */
-  height: 16px; /* was 20px */
+.mousehunt-improved-settings .active.highlight .mousehuntSettingSlider::before {
+  box-shadow: 0 0 3px #0ac2c2 inset;
 }
 
-.PagePreferences__subSetting .mousehuntSettingSlider::after {
+/* Fields */
+.mousehunt-improved-settings .inputBoxContainer.multiSelect {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  max-width: 400px;
+}
+
+.mousehunt-improved-settings .inputBox.multiSelect {
+  margin-right: 4px;
+  font-size: 11px;
+}
+
+#mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBox.multiSelect {
+  max-width: 160px;
+}
+
+#mousehunt-improved-settings-design .inputBox.multiSelect {
+  width: 200px;
+}
+
+/* Multi toggle row */
+.mousehunt-improved-settings .PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName {
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.multi-toggle-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 15px;
+  place-items: end end;
+  padding: 0;
+  border: none;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList .multi-toggle-row .PagePreferences__settingsList {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  align-items: stretch;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider {
+  display: block;
+  width: 40px;
+  height: 16px;
+}
+
+.mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider::after {
   width: 14px;
-  height: 14px; /* was 18px */
+  height: 14px;
 }
 
-.PagePreferences__subSetting .mousehuntSettingSlider.active::after {
+.mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider.active::after {
   left: calc(100% - 14px);
 }
 
-#mousehunt-improved-settings-better-gift-buttons-send-order .inputBox.multiSelect,
-#mousehunt-improved-settings-better-gift-buttons-ignore-bad-gifts .inputBox.multiSelect,
-#mousehunt-improved-settings-design-custom-shield .inputBox.multiSelect,
-#mousehunt-improved-settings-design-custom-background .inputBox.multiSelect,
-#mousehunt-improved-settings-design-custom-hud .inputBox.multiSelect,
-#mousehunt-improved-settings-design-custom-horn .inputBox.multiSelect {
-  width: 200px;
-  max-width: unset;
+.mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,
+.mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting {
+  display: grid;
+  grid-template-columns: 1fr 400px;
 }
 
-/* Location HUD */
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList {
-  padding: 0 5px 0 10px;
-  background-color: inherit;
-  border-radius: 3px;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(even) {
+.mousehunt-improved-settings input,
+.mousehunt-improved-settings textarea {
+  width: 100%;
+  font-family: monospace;
+  font-size: 12px;
   background-color: #eee;
+  border: 1px solid #ccc;
 }
 
-.mh-dark-mode #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(even) {
-  background-color: #e8dbc0;
+.mousehunt-improved-settings textarea {
+  min-height: 45px;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingName {
-  font-size: 11px;
+/* Weird fields */
+#mousehunt-improved-settings-design-custom-background > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-design-custom-hud > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-design-custom-horn > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-design-custom-shield > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-feature-ultimate-checkmark-show > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-advanced-override-flags > div > div > .PagePreferences__settingName,
+#mousehunt-improved-settings-advanced-override-styles > div > div > .PagePreferences__settingName {
+  font-size: 15px;
+  line-height: 1;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .settings-subheader,
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__separator {
-  grid-column: span 3;
-  padding-bottom: 10px;
-}
-
-#mousehunt-improved-settings-advanced .PagePreferences__separator {
-  padding-bottom: 10px;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting .settingRow-action-inputContainer,
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting .description {
-  padding: 0;
-  vertical-align: middle;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__setting {
-  padding: 0;
-  margin-bottom: -10px;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingName {
-  font-size: 11px;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-train_station.PagePreferences__settingsList .PagePreferences__settingName {
-  font-size: 10px;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingAction {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingAction,
+.mousehunt-improved-settings .multi-toggle .mousehuntSettingSlider {
+  display: block;
   transform: scale(0.75);
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 20px;
-  border-bottom: none;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting .PagePreferences__settingLabel,
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting .PagePreferences__settingAction {
-  display: inline-block;
-  padding: 0;
-  vertical-align: middle;
-}
-
+/* Location HUD */
 #mousehunt-improved-settings-location-hud-wrapper {
   display: flex;
   flex-flow: column wrap;
@@ -236,9 +283,59 @@
   align-content: stretch;
   align-items: stretch;
   height: 350px;
+  margin-bottom: 5px;
 }
 
-/* Export Settings */
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList {
+  padding: 0 5px 0 10px;
+  margin-left: 0;
+  background-color: inherit;
+  border: none;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(2n) {
+  background-color: #eee;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight {
+  background-color: #7af7f8;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting {
+  display: flex;
+  gap: 0;
+  height: 25px;
+  padding: 0;
+  margin: 0;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingName {
+  font-size: 11px;
+}
+
+/* Advanced Settings */
+#mousehunt-improved-settings-advanced {
+  position: relative;
+}
+
+#mousehunt-improved-settings-advanced-mh-improved-advanced-settings {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  padding: 0;
+  border: none;
+}
+
+#mousehunt-improved-settings-feature-quick-send-supplies-items .inputBoxContainer .multiSelect {
+  max-width: 150px;
+  margin-right: 4px;
+}
+
+#mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBoxContainer.multiSelect {
+  max-width: 550px;
+}
+
+/* import/export */
 #mousehunt-improved-settings-feature-quick-send-supplies-items .multiSelect {
   width: 375px;
 }
@@ -305,79 +402,35 @@
   text-align: center;
 }
 
-.mousehunt-improved-settings .settingRow-action-inputContainer.textarea,
-.mousehunt-improved-settings .settingRow-action-inputContainer.inputText {
-  display: flex;
-  gap: 5px;
-  align-items: center;
+.mh-ui-success-message.settings-export-save-success,
+.mh-ui-success-message.settings-export-copy-success {
+  position: absolute;
+  right: -25px;
+  bottom: 50px;
+  left: -25px;
+  padding: 4px;
 }
 
-#mousehunt-improved-settings-beta-experiments > .PagePreferences__setting .PagePreferences__settingAction,
-.mousehunt-improved-settings .PagePreferences__settingDefault,
-.toggled #mousehunt-improved-settings-location-hud-wrapper,
-.mousehunt-improved-settings-export-popup .suffix,
-.mousehunt-improved-settings .PagePreferences__title.toggled .PagePreferences__settingsList,
-.mousehunt-improved-settings .PagePreferences__title.toggled .PagePreferences__separator,
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingDescription,
-.mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__subSetting .PagePreferences__setting,
-#mousehunt-improved-settings-design .PagePreferences__separator:nth-child(2),
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingDefault {
+.mh-ui-success-message.settings-export-copy-success {
+  top: 25px;
+  bottom: unset;
+}
+
+.mh-ui-success-message.settings-export-save-success {
+  bottom: 100px;
+}
+
+.mousehunt-improved-settings-export-popup-content .dragover {
+  background-color: #f0f0f0;
+  border-color: #ffb503;
+  box-shadow: inset 0 0 6px 0 #f4e82f;
+}
+
+.mousehunt-improved-settings-export-popup .suffix {
   display: none;
 }
 
-.mousehunt-improved-settings .PagePreferences__settingsList.multi-toggle-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0 15px;
-  place-items: end end;
-  padding: 0;
-  border: none;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingsList .multi-toggle-row .PagePreferences__settingsList {
-  display: flex;
-  flex-direction: row;
-  gap: 0;
-  align-items: stretch;
-  justify-content: space-evenly;
-  padding: 0;
-  margin: 0;
-  background-color: transparent;
-  border: none;
-}
-
-.mousehunt-improved-settings .PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName {
-  font-size: 10px;
-}
-
-.mousehunt-improved-settings .multi-toggle .mousehuntSettingSlider {
-  display: block;
-  transform: scale(0.75);
-}
-
-.mousehunt-improved-settings .PagePreferences__settingAction.multi-toggle {
-  display: block;
-  max-width: 480px;
-}
-
-#mousehunt-improved-settings-design-custom-background,
-#mousehunt-improved-settings-design-custom-hud,
-#mousehunt-improved-settings-design-custom-horn,
-#mousehunt-improved-settings-design-custom-shield,
-#mousehunt-improved-settings-feature-ultimate-checkmark-show {
-  margin: 0;
-}
-
-#mousehunt-improved-settings-design-custom-background > div > div > .PagePreferences__settingName,
-#mousehunt-improved-settings-design-custom-hud > div > div > .PagePreferences__settingName,
-#mousehunt-improved-settings-design-custom-horn > div > div > .PagePreferences__settingName,
-#mousehunt-improved-settings-design-custom-shield > div > div > .PagePreferences__settingName,
-#mousehunt-improved-settings-feature-ultimate-checkmark-show > div > div > .PagePreferences__settingName,
-#mousehunt-improved-settings-advanced-override-flags > div > div > .PagePreferences__settingName,
-#mousehunt-improved-settings-advanced-style-overrides > div > div > .PagePreferences__settingName {
-  font-size: 15px;
-}
-
+/* top menu */
 .pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu {
   width: 20px;
   padding: 0 5px;
@@ -408,292 +461,4 @@
 
 .mh-dark-mode .pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover {
   background: #000;
-}
-
-.mousehunt-improved-clear-cache.mousehuntActionButton {
-  margin-left: auto;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight {
-  background-color: #7af7f8;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting .PagePreferences__setting {
-  display: flex;
-  padding: 0;
-  margin: 0;
-}
-
-.mousehunt-improved-settings .mousehuntHud-page-tabContent.game_settings .settingRow .name {
-  height: unset;
-  min-height: 20px;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingAction.inputDropdownWrapper.busy::before,
-.mousehunt-improved-settings .PagePreferences__settingAction.inputDropdownWrapper.completed::before {
-  right: -25px;
-  left: unset;
-}
-
-.mousehunt-improved-settings .inputBoxContainer.multiSelect {
-  max-width: 400px;
-}
-
-.mousehunt-improved-settings .settingRow-action-inputContainer.textarea {
-  display: flex;
-  gap: 5px;
-  align-items: flex-end;
-}
-
-.mousehunt-improved-settings .settingRow-action-inputContainer input,
-.mousehunt-improved-settings .settingRow-action-inputContainer textarea {
-  width: 100%;
-  font-family: monospace;
-  border: 1px solid #ccc;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,
-.mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting {
-  display: grid;
-  grid-template-columns: 1fr 400px;
-}
-
-.mousehunt-improved-settings .textarea .inputBox {
-  width: 100%;
-  min-height: 45px;
-}
-
-.mousehunt-improved-settings .textarea .PagePreferences__settingAction {
-  margin-bottom: 0;
-}
-
-.mousehunt-improved-settings .mh-utils-settings-subheader {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 10px;
-  color: #848484;
-}
-
-.mousehunt-improved-settings .settingRow-action-inputContainer.inputText {
-  display: flex;
-  gap: 5px;
-  align-items: stretch;
-}
-
-.mh-utils-settings-refresh-message {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 5;
-  padding: 1em;
-  font-size: 1.5em;
-  text-align: center;
-  pointer-events: none;
-  background-color: #d6f2d6;
-  border-top: 1px solid #6cc36c;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.mh-utils-settings-refresh-message-hidden {
-  opacity: 0;
-}
-
-.mousehunt-improved-settings.PagePreferences__settingsList.active .PagePreferences__subSetting .PagePreferences__setting {
-  margin: 5px 0;
-}
-
-.mousehunt-improved-settings .settingRow-action-inputContainer {
-  display: flex;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingDescription.empty-description {
-  padding: 0;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingNameText:hover {
-  text-decoration: none;
-  cursor: default;
-}
-
-.mousehunt-improved-settings .PagePreferences__separator {
-  padding-bottom: 0;
-}
-
-#mousehunt-improved-settings-advanced-style-overrides {
-  padding-bottom: 10px;
-  border-bottom: none;
-}
-
-#mousehunt-improved-settings-advanced-mh-improved-advanced-settings {
-  position: absolute;
-  top: 11px;
-  right: 50px;
-}
-
-.PagePreferences__title.toggled #mousehunt-improved-settings-advanced-mh-improved-advanced-settings .PagePreferences__settingsList {
-  height: 0;
-  padding: 0;
-  visibility: hidden;
-}
-
-.PagePreferences__title.toggled #mousehunt-improved-settings-advanced-mh-improved-advanced-settings {
-  display: block;
-  height: auto;
-  visibility: visible;
-}
-
-#mousehunt-improved-settings-advanced {
-  position: relative;
-}
-
-.mousehuntHud-page-tabHeader.userscript-settings span {
-  height: 17px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-#mousehunt-improved-settings-advanced-override-styles {
-  padding-bottom: 15px;
-  margin-left: 0;
-}
-
-#mousehunt-improved-settings-advanced-override-flags input,
-#mousehunt-improved-settings-advanced-override-styles textarea {
-  font-family: monospace;
-  font-size: 12px;
-  background-color: #eee;
-}
-
-.PagePreferences__settingDescription strong {
-  font-weight: 900;
-}
-
-/* stylelint-disable function-url-quotes */
-/* stylelint-disable stylistic/a */
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better::before,
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature::before,
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-beta::before,
-#mousehunt-improved-settings-design-custom-background::before,
-#mousehunt-improved-settings-design-custom-horn::before,
-#mousehunt-improved-settings-design-custom-hud::before,
-#mousehunt-improved-settings-design-custom-shield::before,
-#mousehunt-improved-settings-feature-ultimate-checkmark-show::before {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 5px;
-  width: 25px;
-  height: auto;
-  content: "";
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 25px;
-  opacity: 0.4;
-  transition: opacity 0.1s ease-out;
-  will-change: transform;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better:hover::before,
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature:hover::before,
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-beta:hover::before,
-#mousehunt-improved-settings-design-custom-background:hover::before,
-#mousehunt-improved-settings-design-custom-horn:hover::before,
-#mousehunt-improved-settings-design-custom-hud:hover::before,
-#mousehunt-improved-settings-design-custom-shield:hover::before,
-#mousehunt-improved-settings-feature-ultimate-checkmark-show:hover::before {
-  left: 2px;
-  width: 30px;
-  background-size: 30px;
-  opacity: 0.9;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better,
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature,
-.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-beta,
-#mousehunt-improved-settings-design-custom-background,
-#mousehunt-improved-settings-design-custom-horn,
-#mousehunt-improved-settings-design-custom-hud,
-#mousehunt-improved-settings-design-custom-shield,
-#mousehunt-improved-settings-feature-ultimate-checkmark-show {
-  position: relative;
-  padding-left: 45px;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting {
-  padding: 5px;
-  padding-left: 10px;
-  margin-left: 0;
-  border-left: 1px solid #e6d9c1;
-}
-
-#mousehunt-improved-settings-advanced-override-flags {
-  padding: 10px 0 15px;
-  margin-left: 0;
-  border-top: 1px solid #e0d0b4;
-}
-
-.mh-ui-success-message.settings-export-save-success,
-.mh-ui-success-message.settings-export-copy-success {
-  position: absolute;
-  right: -25px;
-  bottom: 50px;
-  left: -25px;
-  padding: 4px;
-}
-
-.mh-ui-success-message.settings-export-copy-success {
-  top: 25px;
-  bottom: unset;
-}
-
-.mh-ui-success-message.settings-export-save-success {
-  bottom: 100px;
-}
-
-.mousehunt-improved-settings-export-popup-content .dragover {
-  background-color: #f0f0f0;
-  border-color: #ffb503;
-  box-shadow: inset 0 0 6px 0 #f4e82f;
-}
-
-.mousehunt-improved-settings #mousehunt-improved-settings-location-hud.toggled .PagePreferences__titleText {
-  padding-bottom: 0;
-}
-
-#mousehunt-improved-settings-advanced-override-styles .PagePreferences__settingName {
-  font-size: 15px;
-}
-
-.toggled .PagePreferences__separator {
-  display: none;
-}
-
-.toggled .PagePreferences__sectionWrapper {
-  display: none;
-}
-
-.toggled .PagePreferences__titleText {
-  padding: 0;
-}
-
-.toggled .PagePreferences__title {
-  padding: 0;
-}
-
-.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting:nth-child(odd) {
-  background-color: #f4f4f4;
-}
-
-.mh-dark-mode .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting:nth-child(odd) {
-  background-color: #e8dbc0;
-}
-
-.highlight .mousehuntSettingSlider.active {
-  border-color: #0ac7c7;
-}
-
-#mousehunt-improved-settings-advanced-error-reporting {
-  padding-bottom: 0;
 }

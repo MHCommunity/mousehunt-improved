@@ -26,3 +26,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait.active {
+  background-color: #c2dbef;
+}
+
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait.active .townOfGnawniaHUD-bait-name {
+  text-shadow: none;
+}

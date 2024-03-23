@@ -619,3 +619,13 @@ input.trapSelectorView__codexListSearch {
   height: 50px;
   overflow: hidden;
 }
+
+.trapSelectorView__armedItem--empty[data-item-classification="bait"] .trapSelectorView__armedItemImage::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 70px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/hunters_horn/sandwich_board/icons/bait_empty.png) no-repeat 50% 50% / contain;
+}

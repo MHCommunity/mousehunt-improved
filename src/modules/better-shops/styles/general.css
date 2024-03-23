@@ -45,7 +45,6 @@ a.itemPurchaseView-image-trapPreview-link,
 }
 
 .itemPurchaseView-content-description {
-  max-height: 173px;
   padding-right: 5px;
   padding-bottom: 10px;
   margin-top: 0;
@@ -65,8 +64,8 @@ a.itemPurchaseView-image-trapPreview-link,
 }
 
 .itemPurchaseView-action-itemCost-table-cell.cost {
-  padding-left: 15px;
-  background-position: 5px 0;
+  padding-left: 11px;
+  background-position: 0 0;
   background-size: 10px;
 }
 
@@ -140,18 +139,18 @@ a.itemPurchaseView-content-skin-link {
 }
 
 /* Align stats that were moved to the description */
-.shopCustomization .itemViewStatBlock-padding {
+.shopCustomization .PageShops .itemViewStatBlock-padding {
   display: flex;
   align-items: center;
 }
 
-.shopCustomization .itemViewStatBlock,
-.shopCustomization .itemViewStatBlock-stat {
+.shopCustomization .PageShops .itemViewStatBlock,
+.shopCustomization .PageShops .itemViewStatBlock-stat {
   margin-top: 10px;
   border: none;
 }
 
-.shopCustomization .itemViewStatBlock-stat {
+.shopCustomization .PageShops .itemViewStatBlock-stat {
   padding: 2px;
   padding-right: 4px;
   margin-top: 3px;
@@ -160,29 +159,29 @@ a.itemPurchaseView-content-skin-link {
   border-radius: 5px;
 }
 
-.shopCustomization .itemViewStatBlock-stat-helper {
+.shopCustomization .PageShops .itemViewStatBlock-stat-helper {
   right: unset;
   left: unset;
   white-space: nowrap;
 }
 
-.shopCustomization .itemViewStatBlock-stat-label {
+.shopCustomization .PageShops .itemViewStatBlock-stat-label {
   margin-right: 0;
   background: none;
 }
 
-.shopCustomization .itemViewStatBlock-stat-value {
+.shopCustomization .PageShops .itemViewStatBlock-stat-value {
   max-width: unset;
   background: none;
   border-radius: 0;
 }
 
-.shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect {
+.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect {
   width: auto;
   border-bottom: 1px solid #ccc;
 }
 
-.shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value {
+.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value {
   width: auto;
   max-width: 150px;
 }
@@ -210,12 +209,6 @@ a.itemPurchaseView-content-skin-link {
 .mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container {
   color: #fff;
   background-color: #242424;
-}
-
-.itemPurchaseView-container .itemPurchaseView-content-details,
-.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details {
-  height: 100%;
-  overflow: visible;
 }
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-state.view {
@@ -343,7 +336,7 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
   margin-left: 0;
 }
 
-.title .itemViewStatBlock-stat-value span a {
+.shopCustomization .PageShops .itemPurchaseView-container .title .itemViewStatBlock-stat-value span a {
   max-width: 60px;
   font-size: 10px;
   text-overflow: ellipsis;
@@ -511,10 +504,6 @@ a.itemPurchaseView-action-buySuperBrie {
   background-color: #f4eeca;
 }
 
-.super_brie_cheese .itemPurchaseView-content-name b {
-  display: none;
-}
-
 .itemPurchaseView-container:hover .itemPurchaseView-margin,
 .itemPurchaseView-container:hover .itemPurchaseView-image-container,
 .itemPurchaseView-container:hover .itemPurchaseView-content-container {
@@ -550,11 +539,103 @@ a.itemPurchaseView-action-buySuperBrie {
   min-height: 50px;
 }
 
-.itemPurchaseView-action-itemCost-table-cell {
-  font-size: 11px;
-}
-
 .itemPurchaseView-action-confirm-button:focus,
 .itemPurchaseView-action-confirm-button:hover {
   filter: hue-rotate(50deg);
+}
+
+.shopsPageTrapPreview .trapImageView-layerWrapper {
+  top: 10px;
+}
+
+.shopsPageTrapPreview .trapImageView {
+  height: 370px;
+}
+
+.itemViewPopup .itemViewStatBlock-stat.title {
+  order: 1;
+}
+
+.itemViewPopup .itemViewStatBlock-stat.powerType {
+  order: 2;
+}
+
+.itemViewPopup .itemViewStatBlock-stat.points {
+  order: 3;
+}
+
+.itemViewPopup .itemViewStatBlock-stat.power,
+.itemViewPopup .itemViewStatBlock-stat.luck,
+.itemViewPopup .itemViewStatBlock-stat.powerBonus,
+.itemViewPopup .itemViewStatBlock-stat.attraction {
+  order: 4;
+}
+
+.itemViewPopup .itemViewStatBlock-stat.cheeseEffect {
+  order: 5;
+}
+
+.itemViewPopup .itemView-thumbnailContainer a {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.itemViewPopup .itemViewStatBlock-stat:last-child .itemViewStatBlock-stat-label {
+  border-radius: 0 0 0 5px;
+}
+
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 115px;
+  font-weight: 900;
+  content: "";
+}
+
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/arcane.png);"]::after {
+  content: "Arcane";
+}
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/draconic.png);"]::after {
+  content: "Draconic";
+}
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/forgotten.png);"]::after {
+  content: "Forgotten";
+}
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/hydro.png);"]::after {
+  content: "Hydro";
+}
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/law.png);"]::after {
+  content: "Law";
+}
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/parental.png);"]::after {
+  content: "Parental";
+}
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/physical.png);"]::after {
+  content: "Physical";
+}
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/rift.png);"]::after {
+  content: "Rift";
+}
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/shadow.png);"]::after {
+  content: "Shadow";
+}
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/tactical.png);"]::after {
+  content: "Tactical";
+}
+
+.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-label {
+  position: relative;
+  width: 26px;
+}
+
+.itemViewPopup .itemViewStatBlock-stat-value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

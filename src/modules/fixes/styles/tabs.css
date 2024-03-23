@@ -1,6 +1,5 @@
 /* Make the collectibles tab show the full text */
 a.mousehuntHud-page-tabHeader.collectibles span {
-  padding-top: 6px;
   overflow: visible !important;
   font-size: 13px;
   text-overflow: unset !important;
@@ -27,13 +26,13 @@ a.mousehuntHud-page-tabHeader.collectibles span {
 }
 
 .mousehuntHud-page-tabHeader span {
-  padding-bottom: 0.5px;
+  height: 16px;
   margin-top: 4px;
 }
 
 .mousehuntHud-page-tabHeader.active span,
 .mousehuntHud-page-tabHeader:hover span {
-  padding-bottom: 6px;
+  padding-bottom: 7px;
   margin-top: 0;
   border-bottom: none;
 }

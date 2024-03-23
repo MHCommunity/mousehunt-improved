@@ -16,3 +16,7 @@
 .journal .entry.spring_hunt_warmonger_egg_drop .journaltext {
   padding-left: 0;
 }
+
+.entry.short.misc.custom.chocolateshop_reward_claimed {
+  background-color: #e7cdaa;
+}

@@ -35,15 +35,19 @@
 
 /* Chrome charm */
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chrome_trinket"]::before {
+  top: -4px;
+  left: -3px;
   background-image: url(https://i.mouse.rip/upscaled/7d9f0e220db8280b84b8bffe39cd803e.png);
+  background-size: 22px;
 }
 
 /* Party charm */
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"] {
-  padding-left: 15px;
+  padding-left: 20px;
 }
 
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"]::before {
+  left: -4px;
   background-image: url(https://i.mouse.rip/upscaled/8331fe131377c15fcf5c4773bde1fd8f.png);
 }
 

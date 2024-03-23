@@ -7,21 +7,22 @@
 *[src="https://www.mousehuntgame.com//images/ui/buttons/share_green.gif"],
 #jsDialog-publishToOwnWall,
 .publishToWall,
-#OnboardArrow.onboardPopup.canShare .shareButton {
+#OnboardArrow.onboardPopup.top .canShare .larryTip img {
   display: none;
 }
 
+#OnboardArrow.onboardPopup.canShare .shareButton {
+  display: none !important;
+}
+
 #OnboardArrow.onboardPopup.canShare .closeButton {
-  right: 40px;
+  right: 43px;
   left: unset;
+  z-index: 2;
 }
 
 #OnboardArrow.onboardPopup.top .canShare .larryTip {
   color: #fff;
   background-color: #fff;
   border-color: #fff;
-}
-
-#OnboardArrow.onboardPopup.top .canShare .larryTip img {
-  display: none;
 }

@@ -8,6 +8,7 @@ import {
   onNavigation
 } from '@utils';
 
+import styles from './styles.css';
 import gridStyles from './grid.css';
 import listStyles from './list.css';
 import onlyIconsStyles from './icons.css';
@@ -194,13 +195,16 @@ const main = () => {
 };
 
 const init = async () => {
-  if (getSetting('show-auras.list')) {
-    addStyles(listStyles, 'show-auras');
-  } else if (getSetting('show-auras.icons')) {
-    addStyles(onlyIconsStyles, 'show-auras');
+  const stylesToUse = [styles];
+  if (getSetting('show-auras.icons')) {
+    stylesToUse.push(onlyIconsStyles);
+  } else if (getSetting('show-auras.list')) {
+    stylesToUse.push(listStyles);
   } else {
-    addStyles(gridStyles, 'show-auras');
+    stylesToUse.push(gridStyles);
   }
+
+  addStyles(stylesToUse, 'show-auras');
 
   onNavigation(main, { page: 'camp' });
 };

@@ -227,3 +227,11 @@
 .warpathHUD-dialog-state.enterPortal .warpathHUD-dialog-image .itemImage {
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/26383ddab530a128c32fb2cc5e9e7405.png);
 }
+
+.campPage-daily-draw-prize-image {
+  background-image: url(https://i.mouse.rip/upscaled/raffle_ticket.png);
+}
+
+.journal .entry.ronza_chrome_voucher_claim {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/a3be8c11176c289f6c79068cbe813968.png);
+}

@@ -8,6 +8,8 @@
   left: 3px;
   z-index: 10;
   display: none;
+  padding: 2px 4px;
+  font-size: 9px;
   cursor: pointer;
 }
 

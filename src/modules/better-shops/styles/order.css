@@ -1,5 +1,5 @@
 .itemViewStatBlock.trinket {
-  order: 2;
+  order: 3;
 }
 
 .itemPurchaseView-content-container {
@@ -13,9 +13,9 @@
 
 .itemPurchaseView-content-details {
   display: flex;
-  order: 3;
+  order: 4;
 }
 
 .itemPurchaseView-content-description {
-  order: -1;
+  order: 2;
 }

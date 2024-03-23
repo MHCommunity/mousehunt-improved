@@ -1,12 +1,24 @@
 /* Fix arrow outline showing */
 .mousehuntTooltip.top .mousehuntTooltip-arrow::after {
   top: -16px;
+  left: -13px;
+  border-width: 13px;
 }
 
 .mousehuntTooltip.left .mousehuntTooltip-arrow::after {
-  right: -6px;
+  right: -10px;
+  border-width: 13px;
+  bottom: -13px;
 }
 
 .mousehuntTooltip.right .mousehuntTooltip-arrow::after {
-  left: -6px;
+  left: -10px;
+  border-width: 13px;
+  bottom: -13px;
+}
+
+.mousehuntTooltip.bottom .mousehuntTooltip-arrow::after {
+  bottom: -16px;
+  left: -13px;
+  border-width: 13px;
 }
