@@ -11,14 +11,6 @@ const experiments = [
     title: 'Favorite Setups button in top menu',
   },
   {
-    id: 'experiments.fi-draggable-airship',
-    title: 'Floating Islands draggable airship',
-  },
-  {
-    id: 'experiments.journal-history',
-    title: 'Journal History',
-  },
-  {
     id: 'experiments.location-hud-toggle',
     title: 'Location HUD toggle button in top menu',
   },
@@ -33,10 +25,6 @@ const experiments = [
     load: raffle,
   },
   {
-    id: 'experiments.iceberg-always-show-progress',
-    title: 'Iceberg progress stats always visible',
-  },
-  {
     id: 'experiments.new-settings-styles-columns',
     title: 'Settings: Columns',
     load: newSettingsStylesColumns,
@@ -49,6 +37,18 @@ const experiments = [
   {
     id: 'better-marketplace.show-chart-images',
     title: 'Better Marketplace: Show charts on category pages',
+  },
+  {
+    id: 'location-huds.bountiful-beanstalk-invetory-in-one-row',
+    title: 'Location HUD - Bountiful Beanstalk: Inventory box in one row',
+  },
+  {
+    id: 'experiments.iceberg-always-show-progress',
+    title: 'Location HUD - Iceberg: Always show progress details',
+  },
+  {
+    id: 'experiments.fi-draggable-airship',
+    title: 'Location HUD - Floating Islands: Make airship draggable',
   },
 ];
 
@@ -66,7 +66,7 @@ const init = async () => {
 export default {
   id: 'experiments',
   name: 'Experiments',
-  description: 'Upcoming features and experiments.',
+  description: '',
   type: 'beta',
   default: true,
   order: -1,

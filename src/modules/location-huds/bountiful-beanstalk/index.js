@@ -1,6 +1,7 @@
 import { addHudStyles, getSetting, onTurn, saveSetting } from '@utils';
 
 import regionStyles from '../shared/folklore-forest/styles.css';
+import smallInvStyles from './small-inv.css';
 import styles from './styles.css';
 
 const keepInventoryToggled = () => {
@@ -108,7 +109,13 @@ const makeGiantMoreVisible = () => {
  * Initialize the module.
  */
 export default async () => {
-  addHudStyles([regionStyles, styles]);
+  const stylesToAdd = [regionStyles, styles];
+
+  if (getSetting('location-huds.bountiful-beanstalk-invetory-in-one-row', false)) {
+    stylesToAdd.push(smallInvStyles);
+  }
+
+  addHudStyles(stylesToAdd);
 
   keepInventoryToggled();
   keepRoomDataToggled();

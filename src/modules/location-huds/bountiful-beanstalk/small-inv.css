@@ -1,0 +1,34 @@
+.headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--animating,
+.headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open .headsUpDisplayBountifulBeanstalk__inventoryContainerPanel:nth-child(2) {
+  display: grid;
+  width: 160px;
+  grid-template-columns: repeat(4, 50px);
+}
+
+.headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--animating {
+  grid-template-columns: 95px auto;
+}
+
+.headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent.headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open {
+  height: 50px;
+  width: 300px;
+  display: grid;
+  grid-template-columns: 100px 0;
+}
+
+.headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent {
+  height: 50px;
+  width: 100px;
+  grid-template-columns: 105px 0;
+  display: grid;
+}
+
+.headsUpDisplayBountifulBeanstalk__inventoryContainer {
+  top: unset;
+  bottom: 75px;
+}
+
+.headsUpDisplayBountifulBeanstalk__inventoryContainerPanel:nth-child(1) {
+  display: grid;
+  grid-template-columns: 50px 50px;
+}
