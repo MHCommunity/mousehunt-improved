@@ -14,7 +14,7 @@
 /* Style the sidebar block */
 .mh-improved-map-sidebar {
   padding: 0;
-  margin: 10px 0 20px;
+  margin: 5px 0 15px;
   border: 1px solid #ddedff;
 }
 
@@ -65,7 +65,6 @@
   background-color: #fdfbcc;
 }
 
-
 .mh-improved-map-sidebar-title::after {
   position: absolute;
   top: 2px;
@@ -79,7 +78,7 @@
   content: "";
   background: url(https://www.mousehuntgame.com/images/ui/puzzle/refresh.png) no-repeat center center / contain;
   border-radius: 50%;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .mh-improved-map-sidebar-title:hover::after {

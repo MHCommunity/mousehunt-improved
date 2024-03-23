@@ -363,7 +363,7 @@ const makeSortedMiceList = async () => {
   target.append(categoriesWrapper);
 };
 
-const makeScavengerSortedPage = async (target) => {
+const makeScavengerSortedPage = async (isNormal, target) => {
   target.classList.add('scavenger-sorted-page');
   target.classList.add('treasureMapView-block');
 
@@ -442,7 +442,7 @@ const makeScavengerSortedPage = async (target) => {
 
     for (const mouse of mice) {
       const mouseId = mouse.getAttribute('data-mouse-id');
-      const location = await getLocationForMouse(mouseId, 'item');
+      const location = await getLocationForMouse(mouseId, isNormal ? 'mouse' : 'item');
       locations[location.id] = location;
 
       const locationId = location.id;
@@ -482,7 +482,7 @@ const makeScavengerSortedPage = async (target) => {
       const environment = environments.find((env) => env.id === location);
 
       // Handle the whole twisted garden thing.
-      if (locations[environment.id]) {
+      if (locations[environment?.id]) {
         environment.name = locations[environment.id].name;
       }
 
@@ -553,6 +553,7 @@ const makeScavengerSortedPage = async (target) => {
 
   const toggleByLocation = makeElement('button', ['scavenger-toggle-button', 'mousehuntActionButton', 'tiny']);
   makeElement('span', 'scavenger-toggle-text', 'Sort by Location', toggleByLocation);
+
   toggleByLocation.addEventListener('click', async () => {
     toggleByLocation.classList.add('disabled');
     await toggleSortType();
@@ -562,7 +563,9 @@ const makeScavengerSortedPage = async (target) => {
   toggleWrapper.append(toggleByLocation);
 
   const toggleByDropRate = makeElement('button', ['scavenger-toggle-button', 'mousehuntActionButton', 'tiny']);
-  makeElement('span', 'scavenger-toggle-text', 'Sort by Drop Rate', toggleByDropRate);
+  const text = isNormal ? 'Sort by Attraction Rate' : 'Sort by Drop Rate';
+  makeElement('span', 'scavenger-toggle-text', text, toggleByDropRate);
+
   toggleByDropRate.addEventListener('click', async () => {
     toggleByDropRate.classList.add('disabled');
     await toggleSortDirection();
@@ -580,10 +583,11 @@ const makeScavengerSortedPage = async (target) => {
 
   target.setAttribute('data-scavenger-sorted-by', 'location');
   target.setAttribute('data-scavenger-sort-direction', 'descending');
+
   await sortMiceIntoLocations('descending');
 };
 
-const makeGenericSortedPage = async () => {
+const makeGenericSortedPage = async (isNormal, sortedPage) => {
   const target = document.querySelector('.sorted-page-content');
   if (! target) {
     return;
@@ -591,14 +595,8 @@ const makeGenericSortedPage = async () => {
 
   const currentMapData = getMapData(mapData().map_id);
 
-  let type = 'mouse';
-  if (currentMapData.map_type.includes('scavenger')) {
-    type = 'item';
-    target.classList.add('treasureMapView-block-content');
-    target.classList.add('scavenger-sorted-page');
-  } else {
-    target.classList.add('generic-sorted-page');
-  }
+  const type = isNormal ? 'mouse' : 'item';
+  target.classList.add('treasureMapView-block-content', 'scavenger-sorted-page');
 
   const { unsortedMice } = getMouseDataForMap(currentMapData, type);
 
@@ -625,6 +623,8 @@ const makeGenericSortedPage = async () => {
     const mouseDiv = await makeMouseDiv(mouse, type);
     target.append(mouseDiv);
   }
+
+  await makeScavengerSortedPage(isNormal, sortedPage);
 };
 
 const moveTabToBody = () => {
@@ -706,10 +706,9 @@ const processSortedTabClick = async () => {
   if (mouseGroups[currentMapData.map_type]) {
     await makeSortedMiceList();
   } else if (currentMapData.is_scavenger_hunt) {
-    await makeGenericSortedPage();
-    await makeScavengerSortedPage(sortedPage);
+    await makeGenericSortedPage(false, sortedPage);
   } else {
-    await makeGenericSortedPage();
+    await makeGenericSortedPage(true, sortedPage);
   }
 
   // Remove the loading icon.

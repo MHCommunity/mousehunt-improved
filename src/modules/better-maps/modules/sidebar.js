@@ -4,13 +4,18 @@ import {
   makeElement,
   onTravel,
   onTurn,
-  sessionGet
+  sessionGet,
+  setMapData
 } from '@utils';
 
-const getCompletedGoals = (mapData) => {
+const getCompletedGoals = () => {
   let goals = mapData?.is_scavenger_hunt ? mapData?.goals?.item : mapData?.goals?.mouse;
+  if (! goals) {
+    return [];
+  }
+
   const completedGoals = [];
-  const hunters = mapData?.hunters;
+  const hunters = mapData?.hunters || [];
   for (const hunter of hunters) {
     const completed = mapData?.is_scavenger_hunt ? hunter?.completed_goal_ids?.item : hunter?.completed_goal_ids?.mouse;
 
@@ -25,7 +30,7 @@ const getCompletedGoals = (mapData) => {
   return goals;
 };
 
-const addMapToSidebar = () => {
+const addMapToSidebar = async () => {
   const sidebar = document.querySelector('.pageSidebarView .pageSidebarView-block');
   if (! sidebar) {
     return;
@@ -36,10 +41,13 @@ const addMapToSidebar = () => {
     return;
   }
 
-  const mapData = sessionGet(`mh-improved-map-cache-${mapId}`);
+  mapData = sessionGet(`mh-improved-map-cache-${mapId}`);
+  if (! mapData) {
+    await refreshMap();
+  }
 
   const mapSidebar = makeElement('div', 'mh-improved-map-sidebar');
-  const title = makeElement('h3', 'mh-improved-map-sidebar-title', mapData?.name.replaceAll('Treasure Map', '') || 'Map');
+  const title = makeElement('h3', 'mh-improved-map-sidebar-title', mapData?.name?.replaceAll('Treasure Map', '') || 'Map');
   title.addEventListener('click', async () => {
     mapSidebar.classList.add('loading');
 
@@ -61,13 +69,16 @@ const addMapToSidebar = () => {
     const goalEl = makeElement('div', 'mh-improved-map-sidebar-goal');
 
     const goalImage = makeElement('div', 'mh-improved-map-sidebar-goal-image');
-    const thumbnail = miceThumbs.find((thumb) => thumb.type === goal.type);
+
+    const thumbnail = mapData.is_scavenger_hunt ? itemThumbs.find((thumb) => thumb.type === goal.type) : miceThumbs.find((thumb) => thumb.type === goal.type);
+
     goalImage.style.backgroundImage = thumbnail ? `url(${thumbnail.thumb})` : `url(${goal.large})`;
     goalEl.append(goalImage);
 
     makeElement('div', 'mh-improved-map-sidebar-goal-name', goal.name, goalEl);
 
-    if (goal.environment_ids.includes(user?.environment_id)) {
+    const environments = goal?.environment_ids || [];
+    if (environments.includes(user?.environment_id)) {
       goalEl.classList.add('mh-improved-map-sidebar-goal-active');
     }
 
@@ -97,28 +108,32 @@ const addMapToSidebar = () => {
 };
 
 const refreshMap = async () => {
-  console.log('Refreshing map data');
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
 
-  const mapData = await doRequest('managers/ajax/users/treasuremap.php', {
+  const newMapData = await doRequest('managers/ajax/users/treasuremap.php', {
     action: 'map_info',
     map_id: mapId,
   });
 
+  setMapData(mapId, newMapData.treasure_map);
+
   const currentMapData = sessionGet(`mh-improved-map-cache-${mapId}`);
   const currentGoals = getCompletedGoals(currentMapData);
   const newGoals = getCompletedGoals(mapData.treasure_map);
-
   if (currentGoals.length !== newGoals.length) {
-    console.log('Updating map data');
-    sessionSet(`mh-improved-map-cache-${mapId}`, mapData.treasure_map);
     addMapToSidebar();
   }
+
+  mapData = newMapData.treasure_map;
+  return newMapData;
 };
 
+let mapData;
 let miceThumbs;
+let itemThumbs;
 export default async () => {
   miceThumbs = await getData('mice-thumbnails');
+  itemThumbs = await getData('item-thumbnails');
 
   addMapToSidebar();
 

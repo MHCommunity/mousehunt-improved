@@ -244,7 +244,11 @@
 .sorted-page-content.generic-sorted-page {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 0 40px;
+  gap: 0 30px;
+}
+
+.scavenger-location-content .mh-ui-ar {
+  margin-left: 5px;
 }
 
 .poster .sorted-page-content .mh-ui-ar {
@@ -296,4 +300,10 @@
   gap: 10px;
   justify-content: flex-start;
   margin-bottom: 20px;
+}
+
+.sorted-page[data-scavenger-sorted-by="none"] .sorted-page-content.treasureMapView-block-content.scavenger-sorted-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 30px;
 }
