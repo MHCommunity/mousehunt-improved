@@ -145,36 +145,41 @@ const replaceInEntry = (entry) => {
 };
 
 const updateLog = (entry) => {
-  const log = entry.querySelector('.content .log_summary');
-  if (log) {
-    const link = log.querySelector('td a');
-    if (link) {
-      link.classList.add('mh-ui-progress-log-link', 'mousehuntActionButton', 'tiny', 'lightBlue');
-      const span = document.createElement('span');
-      span.innerText = 'View Progress Log';
-      link.innerText = '';
-      link.append(span);
-    }
-  }
-};
-
-const updateMouseImageLinks = (entry) => {
-  if (! entry.getAttribute('data-mouse-type')) {
+  if (! entry.classList.contains('log_summary')) {
     return;
   }
 
-  const mouseType = entry.getAttribute('data-mouse-type');
-  const mouseImageLink = entry.querySelector('.journalimage a[onclick]');
+  const link = entry.querySelector('td a');
+  if (! link) {
+    return;
+  }
 
-  if (! (mouseType && mouseImageLink)) {
+  link.classList.add('mh-ui-progress-log-link', 'mousehuntActionButton', 'tiny', 'lightBlue');
+
+  const span = document.createElement('span');
+  span.innerText = 'View Progress Log';
+  link.innerText = '';
+  link.append(span);
+};
+
+const updateMouseImageLinks = (entry) => {
+  const mouseType = entry.getAttribute('data-mouse-type');
+  if (! mouseType) {
+    return;
+  }
+
+  const hasUpdated = entry.getAttribute('data-mouse-image-updated');
+  if (hasUpdated) {
+    return;
+  }
+
+  const mouseImageLink = entry.querySelector('.journalimage a[onclick]');
+  if (! mouseImageLink) {
     return;
   }
 
   mouseImageLink.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
-  mouseImageLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    hg.views.MouseView.show(mouseType);
-  });
+  entry.setAttribute('data-mouse-image-updated', 'true');
 };
 
 const updateItemLinks = (entry) => {
