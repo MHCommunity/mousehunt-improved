@@ -1,45 +1,42 @@
-.mh-mapper-sidebar {
+/* Make the sidebar wider */
+.pageSidebarView {
+  padding-left: 10px;
+}
+
+.pageFrameView-column.right {
+  border-left-width: 15px;
+}
+
+.pageFrameView {
+  grid-template-columns: [first] auto [content-start] 760px [sidebar] 210px [content-end] auto [last];
+}
+
+/* Style the sidebar block */
+.mh-improved-map-sidebar {
   padding: 0;
   margin: 10px 0 20px;
   border: 1px solid #ddedff;
 }
 
-.mh-mapper-sidebar .mh-mapper-sidebar-name {
-  width: auto;
+.mh-improved-map-sidebar-title {
+  position: relative;
   padding: 5px;
+  font-size: 11px;
+  text-align: center;
   background-color: #ddedff;
 }
 
-.mh-mapper-sidebar-mouse:hover,
-.mh-mapper-sidebar-mouse:focus,
-.mh-mapper-sidebar-mouse:active {
-  filter: none;
+.mh-improved-map-sidebar-title:hover {
+  cursor: pointer;
 }
 
-.mh-mice-sidebar {
-  background-color: #ddedff;
-}
-
-.mh-mapper-sidebar .mousehuntHud-userStat.treasureMap {
+.mh-improved-map-sidebar-goals {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  text-shadow: none;
+  flex-direction: column;
+  padding-bottom: 5px;
 }
 
-.mh-mapper-sidebar .mousehuntHud-userStat.treasureMap .label {
-  width: auto;
-  padding: 0;
-  color: #181818;
-  text-shadow: none;
-}
-
-.mh-mapper-sidebar .mousehuntHud-userStat.treasureMap .icon {
-  margin-right: 10px;
-}
-
-.mh-mapper-sidebar-mouse {
+.mh-improved-map-sidebar-goal {
   display: flex;
   gap: 5px;
   align-items: center;
@@ -47,7 +44,71 @@
   padding: 1px 5px;
 }
 
-.mh-mapper-sidebar .mouse-image {
-  width: 25px;
-  height: 25px;
+.mh-improved-map-sidebar-goal-image {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #fff;
+}
+
+.mh-improved-map-sidebar-goal-name {
+  font-size: 10px;
+}
+
+.mh-improved-map-sidebar-goal:hover {
+  cursor: pointer;
+  background-color: #eee;
+}
+
+.mh-improved-map-sidebar-goal-active {
+  background-color: #fdfbcc;
+}
+
+
+.mh-improved-map-sidebar-title::after {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  box-sizing: border-box;
+  display: block;
+  width: 17px;
+  height: 17px;
+  padding: 9px;
+  margin: 1px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/puzzle/refresh.png) no-repeat center center / contain;
+  border-radius: 50%;
+  opacity: .3;
+}
+
+.mh-improved-map-sidebar-title:hover::after {
+  opacity: 1;
+}
+
+.loading .mh-improved-map-sidebar-title::after {
+  animation: mh-improved-map-sidebar-loading 1s linear infinite;
+}
+
+@keyframes mh-improved-map-sidebar-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* TODO: implement this on the markup side */
+.mh-improved-map-sidebar-goal-has-hunter::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: 3px;
+  border: 1px solid grey;
+  border-radius: 50%;
+  background-size: contain;
+  height: 15px;
+  width: 15px;
 }

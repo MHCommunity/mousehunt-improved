@@ -11,11 +11,15 @@ import {
   setMapData
 } from '@utils';
 
+import settings from './settings';
+
 import helper from './modules/helper';
 
 import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
+
+import sidebar from './modules/sidebar';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -257,6 +261,10 @@ const init = async () => {
   if (getSetting('experiments.better-maps-helper')) {
     helper();
   }
+
+  if (! getSetting('no-sidebar') && getSetting('better-maps.show-sidebar-goals', true)) {
+    sidebar();
+  }
 };
 
 export default {
@@ -266,4 +274,5 @@ export default {
   default: true,
   description: 'Adds a number of features to maps, including showing attracting rates, a sorted tab that categorizes a variety of maps, and showing more information on the Hunters tab.',
   load: init,
+  settings
 };
