@@ -13,8 +13,13 @@
   display: none;
 }
 
-.journal .content .entry .journaltext > br + br:last-of-type {
+.journal .content .entry .journaltext > br + br:last-of-type,
+.journal .content .entry.floatingIslands.fullyExplored .journaltext br {
   display: block;
+}
+
+.journal .content .entry.floatingIslands.fullyExplored .journaltext br:first-of-type {
+  display: none;
 }
 
 .journal .entry.catchsuccessloot .journaltext br,
@@ -54,6 +59,10 @@
 .entry.folkloreForest-plantStarted,
 .entry.short.log_summary.stats .journaltext .loot:last-of-type::after,
 .entry.short.supplytransferitem .journaltext #friend-data-wrapper a::after .entry.short.craft.convertible_open a.item::after {
+  content: "";
+}
+
+.entry.floatingIslands.fullyExplored .journaltext .item:last-of-type::after {
   content: "";
 }
 

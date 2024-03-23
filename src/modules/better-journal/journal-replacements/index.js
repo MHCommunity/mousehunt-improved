@@ -208,6 +208,7 @@ const shouldSkip = (entry) => {
     'lunar_lantern',
     'valentines_matchmaker',
     'vending_machine_purchase',
+    'fullyExplored'
   ]);
 
   if (! entry.classList) {
