@@ -1,3 +1,5 @@
+import { onTurn } from '@utils';
+
 const showFullTitlePercent = async () => {
   const title = document.querySelector('.mousehuntHud-userStat.title');
   if (! title) {
@@ -48,4 +50,6 @@ export default async () => {
   showFullTitlePercent();
   replaceInboxClose();
   replaceKingdomLink();
+
+  onTurn(showFullTitlePercent, 1000);
 };
