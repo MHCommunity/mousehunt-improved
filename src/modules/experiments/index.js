@@ -25,6 +25,10 @@ const experiments = [
     load: raffle,
   },
   {
+    id: 'experiments.journal-history',
+    title: 'Journal History',
+  },
+  {
     id: 'experiments.new-settings-styles-columns',
     title: 'Settings: Columns',
     load: newSettingsStylesColumns,
