@@ -124,7 +124,7 @@ const getData = async (key) => {
  */
 const clearCaches = async () => {
   validDataFiles.forEach((file) => {
-    cacheDelete(file);
+    dbDelete('data', file);
   });
 
   for (const key of Object.keys(localStorage)) {
