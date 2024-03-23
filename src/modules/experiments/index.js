@@ -47,13 +47,9 @@ const experiments = [
     load: profileScoreboardSearch,
   },
   {
-    id: 'better-mice.show-mouse-hover',
-    title: 'Better Mice: Show mice details on hover in journal',
-  },
-  {
     id: 'better-marketplace.show-chart-images',
     title: 'Better Marketplace: Show charts on category pages',
-  }
+  },
 ];
 
 const init = async () => {
