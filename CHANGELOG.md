@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.37.1
+## Version 0.37.2
 
 - Adds icon to Profile Scoreboard Search in settings
 - Fixes gold and points alignment in journal entries
