@@ -1,5 +1,83 @@
 # Changelog
 
+## Version 0.37.0
+
+### New Features
+
+- Journal History is now available in Better Journal!
+- Adds "Scoreboard Search on Profiles" feature to easily find a friend's rank on a scoreboard
+
+### Better Item View
+
+- Moved the crafting/smashing details to the side
+- Fixed the window moving after drop rates load
+- Minor style updates
+
+### Better Journal
+
+- Added Journal History
+- Fixed a few issues with replacements
+- Updated the progress log entrt to be more readable
+- Style updates
+
+### Better Maps
+
+- Adds a Sidebar block showing the current map's mice/items
+- Updates the Sorted tab to allow for sorting by location for maps
+- Style updates
+
+### Better Mice
+
+- Fixed the window moving after drop rates load
+- Minor style updates
+
+### Better Shops
+
+- Style updates
+
+### Better UI
+
+- Fixes exact title percent that shows on hover not updating after a hunt
+- Adds an easter egg when using the Scrambles item
+- Minor style updates
+
+### Catch Rate Estimator
+
+- Makes mice names clickable to open the mouse view
+
+### Copy ID Button
+
+- Minor style updates
+
+### Hover Profiles
+
+- Fixes popup hiding too quickly when hovering over it
+
+### Image Upscaling
+
+- Performance improvements
+
+### Location HUDs: Bountiful Beanstalk
+
+- Adds "Inventory box in one row" setting in experimental features to show the inventory in one row
+
+### Location HUDs: Floating Islands
+
+- Fixes some HUD elements not updating when traveling to a new island
+- Minor style updates
+
+### Show Auras
+
+- Adds settings to change the display style - List, Grid, or Icons only
+- Adds tooltips to show duration and remaining time
+- Style updates
+
+### Other
+
+- Fixes issues with AR data not being cached
+- Adds settings migrations for some settings keys being renamed
+- Updates the settings page to show the current version of the extension
+
 ## Version 0.36.0
 
 ### New Features
