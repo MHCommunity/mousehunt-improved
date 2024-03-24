@@ -5,6 +5,7 @@ import {
   makeElement,
   makeLink,
   makeTooltip,
+  onDialogHide,
   onOverlayChange,
   onPageChange
 } from '@utils';
@@ -92,6 +93,23 @@ const updateItemView = async () => {
 
         smashing.innerHtml = smashing.innerHTML.replace('If you smash it, you\'ll get:', '');
       }
+    }
+  }
+
+  const overlayPopup = document.querySelector('#overlayPopup');
+  if (overlayPopup) {
+    const startingTop = overlayPopup.style.top;
+    if (startingTop) {
+      // inject a style tag to set the top position of the mouseView without it being overwritten
+      const style = document.createElement('style');
+      style.id = 'mh-improved-dialog-top';
+      style.innerHTML = `#overlayPopup { top: ${startingTop} !important; }`;
+      document.head.append(style);
+
+      onDialogHide(() => {
+        // remove the style tag when the dialog is hidden
+        style.remove();
+      }, { once: true });
     }
   }
 

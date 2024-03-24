@@ -9,6 +9,7 @@ import {
   makeFavoriteButton,
   makeLink,
   makeTooltip,
+  onDialogHide,
   onOverlayChange
 } from '@utils';
 
@@ -191,11 +192,30 @@ const updateMouseView = async () => {
     });
   }
 
+  const overlayPopup = document.querySelector('#overlayPopup');
+  if (overlayPopup) {
+    const startingTop = overlayPopup.style.top;
+    if (startingTop) {
+      // inject a style tag to set the top position of the mouseView without it being overwritten
+      const style = document.createElement('style');
+      style.id = 'mh-improved-dialog-top';
+      style.innerHTML = `#overlayPopup { top: ${startingTop} !important; }`;
+      document.head.append(style);
+
+      onDialogHide(() => {
+        // remove the style tag when the dialog is hidden
+        style.remove();
+      }, { once: true });
+    }
+  }
+
   addLinks();
+
   addFavoriteButton(mouseId, mouseView);
 
-  await addMinluck(mouseId, mouseView);
-  await addWisdom(mouseId, mouseView);
+  addMinluck(mouseId, mouseView);
+
+  addWisdom(mouseId, mouseView);
 
   mouseView.classList.add('mouseview-has-mhct');
 
@@ -277,10 +297,12 @@ const updateMouseView = async () => {
 
   arWrapper.append(title);
 
-  const mhctJson = await getArForMouse(mouseId, 'mouse');
+  let mhctJson = await getArForMouse(mouseId, 'mouse');
   if (! mhctJson || mhctJson === undefined || mhctJson.length === 0 || 'error' in mhctJson) {
     return;
   }
+
+  mhctJson = mhctJson.slice(0, 15);
 
   const miceArWrapper = makeElement('div', 'mice-ar-wrapper');
   const hasStages = mhctJson.some((mouseAr) => mouseAr.stage);
@@ -288,12 +310,7 @@ const updateMouseView = async () => {
     miceArWrapper.classList.add('has-stages');
   }
 
-  // if mhctJson is not able to be sliced, then it is an error
-  if (! mhctJson.slice) {
-    return;
-  }
-
-  mhctJson.slice(0, 15).forEach((mouseAr) => {
+  mhctJson.forEach((mouseAr) => {
     const mouseArWrapper = makeElement('div', 'mouse-ar-wrapper');
 
     makeElement('div', 'location', mouseAr.location, mouseArWrapper);
