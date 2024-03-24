@@ -99,8 +99,13 @@ const makeSendSuppliesButton = async (btn, snuid) => {
     }
 
     const selected = document.querySelector('.quickSendItem.selected');
+    if (! selected) {
+      errorMessageOpts.message = 'Item is required';
+      showErrorMessage(errorMessageOpts);
+    }
+
     const item = selected.querySelector('.quickSendItemRadio');
-    if (! selected || ! item) {
+    if (! item) {
       errorMessageOpts.message = 'Item is required';
       showErrorMessage(errorMessageOpts);
       return;

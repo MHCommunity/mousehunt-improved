@@ -7,7 +7,7 @@
 .mh-ui-gold::after,
 .mh-ui-points::after {
   position: absolute;
-  inset: -4px 0 0 -22px;
+  inset: -4px 0 0 -20px;
   width: 18px;
   height: 18px;
   content: "";

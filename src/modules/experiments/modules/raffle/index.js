@@ -234,7 +234,7 @@ let _inboxOpen;
  * Replace inbox methods.
  */
 const replaceInboxMethods = () => {
-  if (! messenger?.UI?.notification?.showTab) {
+  if (! messenger || ! messenger?.UI?.notification?.showTab) {
     return;
   }
 

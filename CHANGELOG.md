@@ -2,6 +2,12 @@
 
 ## Version 0.37.1
 
+- Adds icon to Profile Scoreboard Search in settings
+- Fixes gold and points alignment in journal entries
+- Miscellaneous fixes for data retrieval and caching edge cases
+
+## Version 0.37.1
+
 - Fixes Journal History saving other players' journal entries
 - Reverts Better Item View & Better Mice popup moving changes
 

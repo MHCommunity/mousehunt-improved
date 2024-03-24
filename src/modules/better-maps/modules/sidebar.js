@@ -115,12 +115,20 @@ const refreshMap = async () => {
     map_id: mapId,
   });
 
+  if (! newMapData || ! newMapData.treasure_map) {
+    return;
+  }
+
   setMapData(mapId, newMapData.treasure_map);
 
   const currentMapData = sessionGet(`mh-improved-map-cache-${mapId}`);
-  const currentGoals = getCompletedGoals(currentMapData);
-  const newGoals = getCompletedGoals(mapData.treasure_map);
-  if (currentGoals.length !== newGoals.length) {
+  if (currentMapData) {
+    const currentGoals = getCompletedGoals(currentMapData);
+    const newGoals = getCompletedGoals(mapData.treasure_map);
+    if (currentGoals.length !== newGoals.length) {
+      addMapToSidebar();
+    }
+  } else {
     addMapToSidebar();
   }
 
