@@ -5,7 +5,7 @@ import { exportPopup, recursiveFetch } from './exporter';
 
 const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly = false) => {
   const totalItemsEl = document.querySelector(`.item-wrapper[data-region="${scoreboard.id}"] .total-items`);
-  totalItemsEl.textContent = '...';
+  totalItemsEl.textContent = '…';
   totalItemsEl.scrollIntoView({
     behavior: 'smooth',
     block: 'nearest',

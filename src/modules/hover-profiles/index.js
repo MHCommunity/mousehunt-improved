@@ -87,7 +87,7 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
 
   friendDataWrapper = makeElement('div', 'friend-data-wrapper');
   friendDataWrapper.id = 'friend-data-wrapper';
-  friendDataWrapper.innerHTML = content || '<span class="friend-data-wrapper-loading">Loading...</span>';
+  friendDataWrapper.innerHTML = content || '<span class="friend-data-wrapper-loading">Loading…</span>';
 
   // append to the body and position it
   document.body.append(friendDataWrapper);

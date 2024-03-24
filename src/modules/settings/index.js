@@ -177,7 +177,7 @@ const addExportSettings = () => {
       localStorage.setItem('mousehunt-improved-settings', newSettings);
 
       showSuccessMessage({
-        message: 'Settings saved. Refreshing...',
+        message: 'Settings saved. Refreshing…',
         append: saveButton,
         after: true,
         classname: 'settings-export-save-success',

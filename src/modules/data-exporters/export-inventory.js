@@ -21,7 +21,7 @@ const getData = async (classification) => {
   const regionEl = document.querySelector(`.item-wrapper[data-region="${classification.id}"]`);
 
   const totalItemsEl = regionEl.querySelector('.total-items');
-  totalItemsEl.textContent = '...';
+  totalItemsEl.textContent = '…';
   totalItemsEl.scrollIntoView({
     behavior: 'smooth',
     block: 'nearest',

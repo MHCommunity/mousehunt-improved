@@ -108,7 +108,7 @@ const getData = async (key) => {
     }
   }
 
-  debuglog('utils-data', `Fetching data for ${key} ...`);
+  debuglog('utils-data', `Fetching data for ${key}…`);
   const data = await fetchData(key);
   debuglog('utils-data', `Fetched data for ${key}`, data);
 

@@ -14,7 +14,7 @@ const fetchPage = async (page) => {
 
 const fetchTransactions = async () => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
-  totalItemsEl.textContent = '...';
+  totalItemsEl.textContent = '…';
   totalItemsEl.scrollIntoView({
     behavior: 'smooth',
     block: 'nearest',

@@ -53,9 +53,9 @@ const getDataForRegion = async (region) => {
   const totalCatchesEl = regionEl.querySelector('.total-catches');
   const totalWeightEl = regionEl.querySelector('.total-weight');
 
-  miceCaughtEl.textContent = '...';
-  totalCatchesEl.textContent = '...';
-  totalWeightEl.textContent = '...';
+  miceCaughtEl.textContent = '…';
+  totalCatchesEl.textContent = '…';
+  totalWeightEl.textContent = '…';
 
   let action;
   let view;

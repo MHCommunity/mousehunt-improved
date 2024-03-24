@@ -29,7 +29,7 @@ const initSearch = (searchInputDOM) => {
       formatResult: hg.views.MarketplaceView.formatSelect2Result,
       formatSelection: hg.views.MarketplaceView.formatSelect2Result,
       dropdownAutoWidth: false,
-      placeholder: 'Search for items...',
+      placeholder: 'Search for items…',
       minimumInputLength: 0,
       dropdownCssClass: 'marketplaceView-header-search-dropdown',
       width: 'resolve',
