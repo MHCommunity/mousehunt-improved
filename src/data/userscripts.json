@@ -4,23 +4,23 @@
     "name": "Better Gifts / Gift Buttons",
     "description": "Adds buttons to easily accept and return all daily gifts.",
     "path": "src/modules/better-gifts/index.js",
-    "version": "1.7.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/449489-mousehunt-gift-buttons"
   },
   {
     "id": "better-item-view",
-    "name": "Better Item View",
+    "name": "Better Links",
     "description": "Adds a drop rate table from MHCT, links to the MouseHunt wiki, MHCT looter, and Markethunt, as well as various other features to the item view page.",
     "path": "src/modules/better-item-view/index.js",
-    "version": "1.5.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/445920-mousehunt-item-links"
   },
   {
     "id": "better-kings-reward",
-    "name": "Better Kings Reward",
+    "name": "Fancy King's Reward",
     "description": "Clicks the 'Resume Hunting' button after solving a King's Reward.",
     "path": "src/modules/better-kings-reward/index.js",
-    "version": "2.1.0",
+    "version": "3.0.0",
     "url": "https://greasyfork.org/en/scripts/459629-mousehunt-fancy-king-s-reward"
   },
   {
@@ -28,7 +28,7 @@
     "name": "Better Mice",
     "description": "Adds an attraction rate table from MHCT, links to the MouseHunt wiki and MHCT, as well as various other features to the mouse view page.",
     "path": "src/modules/better-mice/index.js",
-    "version": "1.4.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/449332-mousehunt-mouse-links"
   },
   {
@@ -36,7 +36,7 @@
     "name": "Better Travel / Travel Tweaks",
     "description": "Makes the travel page better.",
     "path": "src/modules/better-travel/index.js",
-    "version": "2.4.0",
+    "version": "3.0.0",
     "url": "https://greasyfork.org/en/scripts/452232-mousehunt-travel-tweaks"
   },
   {
@@ -44,7 +44,7 @@
     "name": "Minluck & Catch Rate Estimate",
     "description": "View the minluck and catch rate estimate, right on the camp page.",
     "path": "src/modules/catch-rate-estimate/index.js",
-    "version": "1.45.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/449334-mousehunt-minluck-catch-rate-estimate"
   },
   {
@@ -52,23 +52,15 @@
     "name": "Custom Shield",
     "description": "Change your MouseHunt shield to an event shield, a color of your choice, or a few other options.",
     "path": "src/modules/custom-shield/index.js",
-    "version": "1.7.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/454147-mousehunt-shields"
-  },
-  {
-    "id": "journal-changer",
-    "name": "Journal Changer",
-    "description": "",
-    "path": "src/modules/journal-changer/index.js",
-    "version": "",
-    "url": ""
   },
   {
     "id": "journal-privacy",
     "name": "Journal Privacy",
     "description": "Hides usernames from the journal entries on the journal page.",
     "path": "src/modules/journal-privacy/index.js",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/453301-mousehunt-journal-privacy"
   },
   {
@@ -76,7 +68,7 @@
     "name": "Location Catches",
     "description": "View your mouse catches in your current location",
     "path": "src/modules/location-catch-stats/index.js",
-    "version": "1.3.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/463018-mousehunt-location-catches"
   },
   {
@@ -84,7 +76,7 @@
     "name": "Metric",
     "description": "Convert mice weight to metric.",
     "path": "src/modules/metric/index.js",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/449840-mousehunt-metric"
   },
   {
@@ -92,7 +84,7 @@
     "name": "No Share Buttons",
     "description": "Remove the \"Share\" buttons that prompt you to share on Facebook.",
     "path": "src/modules/hide-share/index.js",
-    "version": "1.1.1",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/452434-mousehunt-no-share-buttons"
   },
   {
@@ -100,7 +92,7 @@
     "name": "No Sidebar",
     "description": "",
     "path": "src/modules/hide-sidebar/index.js",
-    "version": "1.3.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/449491-mousehunt-no-sidebar"
   },
   {
@@ -108,7 +100,7 @@
     "name": "Taller Windows",
     "description": "Makes all the windows taller, so you can see more of the content without scrolling.",
     "path": "src/modules/taller-windows/index.js",
-    "version": "1.3.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/452235-mousehunt-taller-windows"
   },
   {
@@ -116,7 +108,7 @@
     "name": "Ultimate Checkmark",
     "description": "Track your progress towards the \"Ultimate Checkmark\".",
     "path": "src/modules/ultimate-checkmark/index.js",
-    "version": "1.4.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/461469-mousehunt-ultimate-checkmark"
   },
   {
@@ -124,7 +116,7 @@
     "name": "Labyrinth HUD Enhancer",
     "description": "Enhances the Labyrinth HUD in a variety of ways.",
     "path": "src/modules/location-huds/labyrinth/index.js",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "url": "https://greasyfork.org/en/scripts/465603-mousehunt-labyrinth-hud-enhancer"
   }
 ]

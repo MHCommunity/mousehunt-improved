@@ -1,9 +1,67 @@
-import { exec } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import util from 'node:util';
 
-const pexec = util.promisify(exec);
+import * as esbuild from 'esbuild';
+
+import { CSSMinifyTextPlugin, ImportGlobPlugin } from './shared.mjs';
+
+const build = async (entryfile, outfile, name, description, version, url) => {
+  const header = `// ==UserScript==
+// @name        🐭️ MouseHunt - @replacement.name
+// @description @replacement.description
+// @version     @replacement.version
+// @license     MIT
+// @author      bradp
+// @namespace   bradp
+// @match       https://www.mousehuntgame.com/*
+// @icon        https://i.mouse.rip/mh-improved/icon-64.png
+// @run-at      document-end
+// @grant       none
+// @require     https://cdn.jsdelivr.net/npm/script-migration@1.1.1
+// ==/UserScript==
+`;
+
+  name = name.replaceAll('@replacement.quote', '\'');
+  description = description.replaceAll('@replacement.quote', '\'');
+
+  const options = {
+    entryPoints: [entryfile],
+    platform: 'browser',
+    format: 'iife',
+    globalName: 'mhui',
+    bundle: true,
+    minify: false,
+    metafile: true,
+    sourcemap: false,
+    target: [
+      'es6',
+      'chrome58',
+      'firefox57'
+    ],
+    plugins: [
+      ImportGlobPlugin,
+      CSSMinifyTextPlugin
+    ],
+    outfile: `dist/${outfile}`,
+    banner: {
+      js: header
+        .replaceAll('@replacement.name', name)
+        .replaceAll('@replacement.description', description)
+        .replaceAll('@replacement.version', version)
+    }
+  };
+
+  options.footer = {
+    js: [
+      'mhui.default.load();',
+      `migrateUserscript('${name.replaceAll("'", "\\'")}', '${version}', '${url}');`
+    ].join('\n')
+  };
+
+  options.outfile = `dist/userscripts/${outfile}`;
+
+  return await esbuild.build(options);
+};
 
 const main = async () => {
   const userscriptsToBuild = JSON.parse(fs.readFileSync(
@@ -27,22 +85,14 @@ const main = async () => {
       userscript[key] = userscript[key].replaceAll('\'', '@replacement.quote');
     });
 
-    // I need to run 'bun run build-userscript -- userscript.<id>.user.js src/modules/<id>/index.js <name> <description> <icon> <version>'
-    const command = [
-      'bun run build:userscript',
-      '--path', `'"${userscript.path}"'`,
-      '--out', `'"${userscript.id}.user.js"'`,
-      '--name', `'"${userscript.name}"'`,
-      '--description', `'"${userscript.description}"'`,
-      '--icon', `'"${userscript.icon}"'`,
-      '--ver', `'"${userscript.version}"'`,
-      '--url', `'"${userscript.url}"'`,
-      '--replacementKey', '\'"@require    "\'',
-      '--replacementValue', '\'"https://cdn.jsdelivr.net/npm/script-migration@1.1.1"\'',
-      '--subuserscript', 'true'
-    ].join(' ');
-
-    pexec(command);
+    build(
+      userscript.path || 'src/index.js',
+      `${userscript.id}.user.js` || 'mousehunt-improved.user.js',
+      userscript.name || '🐭️ MouseHunt Improved',
+      userscript.description || 'Improve your MouseHunt experience. Please only use this when the extension is not available, like on mobile.',
+      userscript.version || process.env.npm_package_version,
+      userscript.url || ''
+    );
   });
 };
 
