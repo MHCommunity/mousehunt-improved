@@ -1,5 +1,6 @@
 import { getSetting } from '@utils';
 
+import codexAtBottom from './modules/codex-at-bottom';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
 import trollMode from './modules/troll-mode';
@@ -27,6 +28,11 @@ const experiments = [
     id: 'experiments.new-settings-styles-columns',
     title: 'Settings: Columns',
     load: newSettingsStylesColumns,
+  },
+  {
+    id: 'experiments.codex-at-bottom',
+    title: 'Move Codex section to the bottom of the trap selector',
+    load: codexAtBottom,
   },
   {
     id: 'better-marketplace.show-chart-images',
