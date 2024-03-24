@@ -1,8 +1,8 @@
 .headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--animating,
 .headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open .headsUpDisplayBountifulBeanstalk__inventoryContainerPanel:nth-child(2) {
   display: grid;
-  width: 160px;
   grid-template-columns: repeat(4, 50px);
+  width: 160px;
 }
 
 .headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--animating {
@@ -10,17 +10,17 @@
 }
 
 .headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent.headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open {
-  height: 50px;
-  width: 300px;
   display: grid;
   grid-template-columns: 100px 0;
+  width: 300px;
+  height: 50px;
 }
 
 .headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent {
-  height: 50px;
-  width: 100px;
-  grid-template-columns: 105px 0;
   display: grid;
+  grid-template-columns: 105px 0;
+  width: 100px;
+  height: 50px;
 }
 
 .headsUpDisplayBountifulBeanstalk__inventoryContainer {

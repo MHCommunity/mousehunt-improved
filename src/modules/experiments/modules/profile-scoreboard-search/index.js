@@ -1,4 +1,10 @@
-import { addStyles, doRequest, getData, makeElement, onNavigation } from '@utils';
+import {
+  addStyles,
+  doRequest,
+  getData,
+  makeElement,
+  onNavigation
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -86,8 +92,6 @@ const main = async () => {
       friends_only: 0,
       search: friendName.getAttribute('data-text'),
     });
-
-    console.log(response);
 
     const data = response?.scoreboard_page?.rows;
     if (! data || ! data.length) {

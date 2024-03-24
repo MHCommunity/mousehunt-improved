@@ -39,10 +39,8 @@ const makeEntriesMarkup = (entries) => {
     }
 
     let html = `<div class="${entry.type.join(' ')}" data-entry-id="${entry.id}" data-mouse-type="${entry.mouse || ''}">`;
-    console.log('entry', entry);
     if (entry.mouse) {
       const mouseImages = miceThumbs.find((mouse) => mouse.type === entry.mouse);
-      console.log('mouseImages', mouseImages);
       if (mouseImages) {
         html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" border="0"></a></div>`;
       }

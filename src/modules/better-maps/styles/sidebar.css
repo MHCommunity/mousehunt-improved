@@ -101,13 +101,13 @@
 
 /* TODO: implement this on the markup side */
 .mh-improved-map-sidebar-goal-has-hunter::after {
-  content: "";
   position: absolute;
-  right: 4px;
   top: 3px;
-  border: 1px solid grey;
-  border-radius: 50%;
-  background-size: contain;
-  height: 15px;
+  right: 4px;
   width: 15px;
+  height: 15px;
+  content: "";
+  background-size: contain;
+  border: 1px solid #808080;
+  border-radius: 50%;
 }

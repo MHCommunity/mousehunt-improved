@@ -10,10 +10,10 @@ import {
 
 import settings from './settings';
 
-import styles from './styles.css';
 import gridStyles from './grid.css';
 import listStyles from './list.css';
 import onlyIconsStyles from './icons.css';
+import styles from './styles.css';
 
 const humanizer = humanizeDuration.humanizer({
   language: 'shortEn',

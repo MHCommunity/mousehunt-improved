@@ -104,7 +104,7 @@
 }
 
 .mouseview-has-mhct .has-stages .mouse-ar-wrapper {
-  grid-template-columns: 2fr 3fr 4fr 50px;
+  grid-template-columns: 3fr 2fr 2fr 50px;
 }
 
 .mouseview-has-mhct .mouse-ar-wrapper div {
