@@ -3,7 +3,8 @@ import {
   deleteSetting,
   getData,
   getSetting,
-  saveSetting
+  saveSetting,
+  setGlobal
 } from '@utils';
 
 const deleteLocalStorageArCache = () => {
