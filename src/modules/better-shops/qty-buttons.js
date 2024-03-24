@@ -32,12 +32,11 @@ export default async (block, input, maxQty) => {
     buyControls.append(button);
   };
 
-  makeMathButton(-10);
-  makeMathButton(-5);
-  makeMathButton(-1);
   makeMathButton(1);
-  makeMathButton(5);
   makeMathButton(10);
+  makeMathButton(50);
+  makeMathButton(100);
+  makeMathButton(1000);
 
   const buyMaxButton = makeElement('a', ['mousehuntActionButton', 'lightBlue', 'tiny', 'mh-improved-shop-buy-max']);
   const buyMaxButtonText = makeElement('span', '', 'Max');
