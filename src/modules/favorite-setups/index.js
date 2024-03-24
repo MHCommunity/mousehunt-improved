@@ -952,5 +952,6 @@ export default {
   type: 'feature',
   default: false,
   description: 'Save your favorite setups and arm them with a single click.',
+  order: 100,
   load: init,
 };

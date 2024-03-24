@@ -1,5 +1,6 @@
 import {
   addStyles,
+  doEvent,
   getCurrentPage,
   makeElement,
   onPageChange,
@@ -7,7 +8,6 @@ import {
   onTravel
 } from '@utils';
 
-import styles from './styles.css';
 
 import {
   getCatchRate,
@@ -17,9 +17,24 @@ import {
   getMousePower
 } from './data';
 
+import styles from './styles.css';
+
 const updateMinLucks = async () => {
   if ('camp' !== getCurrentPage()) {
     return;
+  }
+
+  let minluckList = document.querySelector('#mh-improved-cre');
+  if (! minluckList) {
+    minluckList = makeElement('div', ['campPage-trap-trapEffectiveness', 'cre-loading']);
+    minluckList.id = 'mh-improved-cre';
+
+    const statsContainer = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
+    if (! statsContainer) {
+      return;
+    }
+
+    statsContainer.append(minluckList);
   }
 
   const effectiveness = await getMiceEffectiveness();
@@ -52,12 +67,15 @@ const renderList = async (list) => {
     }
 
     statsContainer.append(minluckList);
+    doEvent('mh-improved-cre-list-rendered');
   }
 
   const existing = document.querySelector('#mh-improved-cre-table');
   if (existing) {
     existing.remove();
   }
+
+  minluckList.classList.remove('cre-loading');
 
   const table = makeElement('table');
   table.id = 'mh-improved-cre-table';
@@ -151,5 +169,6 @@ export default {
   type: 'feature',
   default: true,
   description: 'Minluck and catch rate estimates.',
+  order: 200,
   load: init,
 };

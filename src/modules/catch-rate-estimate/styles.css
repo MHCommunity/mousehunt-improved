@@ -60,3 +60,27 @@
 .mh-improved-cre-name a {
   color: inherit;
 }
+
+#mh-improved-cre.cre-loading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+  min-height: 50px;
+  padding: 20px 0;
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif?asset_cache_version=2);
+  background-repeat: no-repeat;
+  background-position: center 10px;
+  background-size: 55px;
+}
+
+#mh-improved-cre.cre-loading::after {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  left: 0;
+  font-weight: 400;
+  color: #926944;
+  text-align: center;
+  content: "Loading Catch Rate Estimator…";
+}
