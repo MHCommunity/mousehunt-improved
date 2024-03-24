@@ -1,7 +1,6 @@
 import { getSetting } from '@utils';
 
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
-import profileScoreboardSearch from './modules/profile-scoreboard-search';
 import raffle from './modules/raffle';
 import trollMode from './modules/troll-mode';
 
@@ -28,11 +27,6 @@ const experiments = [
     id: 'experiments.new-settings-styles-columns',
     title: 'Settings: Columns',
     load: newSettingsStylesColumns,
-  },
-  {
-    id: 'experiments.profile-scoreboard-search',
-    title: 'Scoreboard search on Hunter Profiles',
-    load: profileScoreboardSearch,
   },
   {
     id: 'better-marketplace.show-chart-images',

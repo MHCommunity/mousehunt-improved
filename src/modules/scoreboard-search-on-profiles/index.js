@@ -129,10 +129,19 @@ const main = async () => {
   achievementsBlock.setAttribute('data-added-scoreboard', 'true');
 };
 
-export default async () => {
+const init = async () => {
   addStyles(styles, 'profile-scoreboard-search');
 
   onNavigation(main, {
     page: 'hunterprofile',
   });
+};
+
+export default {
+  id: 'profile-scoreboard-search',
+  name: 'Scoreboard Search on Profiles',
+  type: 'feature',
+  default: true,
+  description: 'Easily search for a friend on the scoreboard from their profile.',
+  load: init,
 };
