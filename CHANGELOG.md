@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.37.1
+
+- Fixes Journal History saving other players' journal entries
+- Reverts Better Item View & Better Mice popup moving changes
+
 ## Version 0.37.0
 
 ### New Features

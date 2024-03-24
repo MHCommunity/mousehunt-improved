@@ -9,7 +9,6 @@ import {
   makeFavoriteButton,
   makeLink,
   makeTooltip,
-  onDialogHide,
   onOverlayChange
 } from '@utils';
 
@@ -190,23 +189,6 @@ const updateMouseView = async () => {
         el.innerText = catchesNumber;
       }
     });
-  }
-
-  const overlayPopup = document.querySelector('#overlayPopup');
-  if (overlayPopup) {
-    const startingTop = overlayPopup.style.top;
-    if (startingTop) {
-      // inject a style tag to set the top position of the mouseView without it being overwritten
-      const style = document.createElement('style');
-      style.id = 'mh-improved-dialog-top';
-      style.innerHTML = `#overlayPopup { top: ${startingTop} !important; }`;
-      document.head.append(style);
-
-      onDialogHide(() => {
-        // remove the style tag when the dialog is hidden
-        style.remove();
-      }, { once: true });
-    }
   }
 
   addLinks();

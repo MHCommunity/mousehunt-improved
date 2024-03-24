@@ -2,6 +2,7 @@ import {
   addBodyClass,
   debuglog,
   doEvent,
+  getGlobal,
   getSetting,
   saveSetting,
   setGlobal,
@@ -47,6 +48,12 @@ const update = async () => {
     saveSetting('mh-improved-version', mhImprovedVersion);
 
     await updateCaches();
+
+    if (getGlobal('mh-improved-update-needs-refresh')) {
+      showLoadingPopup('MouseHunt Improved has been updated. Please refresh the page.');
+    } else {
+      activejsDialog?.hide();
+    }
 
     doEvent('mh-improved-updated', mhImprovedVersion);
   } catch (error) {

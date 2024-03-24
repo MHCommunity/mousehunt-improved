@@ -1,5 +1,6 @@
 import {
   doEvent,
+  getCurrentPage,
   getFlag,
   getSetting,
   onRequest,
@@ -20,6 +21,10 @@ import settings from './settings';
 
 let isProcessing = false;
 const processEntries = async () => {
+  if ('camp' !== getCurrentPage()) {
+    return;
+  }
+
   if (isProcessing) {
     return;
   }
