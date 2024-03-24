@@ -20,6 +20,7 @@
 .journal .content .entry.iceberg_defeated .journalbody .journaldate,
 .journal .content .entry.iceberg_phase_change .journalbody .journaldate,
 .journal .content .entry.iceberg_advance_prevented.general .journalbody .journaldate,
+.journal .content .entry.spring_hunt_charge_trinket_effect .journalbody .journaldate,
 .journal .content .entry.short.rift-whisker-woods-increase .journalbody .journaldate {
   display: none;
 }
