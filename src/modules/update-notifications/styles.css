@@ -141,3 +141,12 @@
     100% 15px;
   border: 1px solid #b07842;
 }
+
+.mh-improved-update-summary-misc {
+  margin-bottom: 5px;
+}
+
+.mh-improved-update-summary-changes.no-changes {
+  border: none;
+  box-shadow: none;
+}

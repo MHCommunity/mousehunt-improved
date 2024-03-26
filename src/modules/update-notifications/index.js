@@ -39,19 +39,27 @@ const showUpdateSummary = async () => {
   const updates = await updateSummaries.json();
 
   if (! updates[mhImprovedVersion]) {
-    return;
+    updates[mhImprovedVersion] = {
+      summary: '',
+      details: [],
+    };
   }
 
   const update = updates[mhImprovedVersion];
 
-  if (! update.summary && ! update.details) {
-    return;
-  }
+  update.summary = update.summary || '';
+  update.details = update.details || [];
 
   let lists = '';
 
   for (const list of update.details) {
     lists += makeList(list.title, list.items);
+  }
+
+  let noChanges = '';
+  if (! update.summary.length && ! update.details.length) {
+    noChanges = ' no-changes';
+    lists = '<p><a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noopener noreferrer">Check out the latest release notes</a> for more information.</p>';
   }
 
   const links = [
@@ -67,7 +75,7 @@ const showUpdateSummary = async () => {
 		<p>${update.summary || ''}</p>
 	</div>
 	<div class="mh-improved-update-summary-body">
-		<div class="mh-improved-update-summary-changes">
+		<div class="mh-improved-update-summary-changes${noChanges}">
       ${lists}
     </div>
     <div class="mh-improved-update-summary-links">

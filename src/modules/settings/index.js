@@ -389,6 +389,7 @@ const linkVersionNumber = () => {
 
   version.addEventListener('click', (e) => {
     e.preventDefault();
+    e.stopPropagation();
     doEvent('mh-improved-show-update-summary');
   });
 
