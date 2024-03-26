@@ -2,6 +2,7 @@ import {
   addStyles,
   debuglog,
   doRequest,
+  getSetting,
   makeElement,
   onEvent,
   sessionGet,
@@ -272,6 +273,10 @@ const replaceInboxMethods = () => {
  * Initialize the module.
  */
 export default async () => {
+  if (getSetting('hide-daily-draw', false)) {
+    return;
+  }
+
   addStyles(styles, 'feature-flags-raffle');
 
   replaceInboxMethods();
