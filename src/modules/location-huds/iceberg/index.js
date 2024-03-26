@@ -130,6 +130,10 @@ const addProgressToQuestData = (data) => {
 };
 
 const roundProgress = (progress) => {
+  if (Number.isNaN(progress)) {
+    return 0;
+  }
+
   if (progress >= 100) {
     return 100;
   }
