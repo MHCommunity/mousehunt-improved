@@ -4,12 +4,14 @@ import {
   doRequest,
   getArForMouse,
   getData,
+  getRelicHunterLocation,
   getSetting,
   makeElement,
   makeFavoriteButton,
   makeLink,
   makeTooltip,
-  onOverlayChange
+  onOverlayChange,
+  setPage
 } from '@utils';
 
 import hoverMice from './hover-mice';
@@ -254,6 +256,25 @@ const updateMouseView = async () => {
           w.classList.add('hidden');
         }
       });
+    }
+
+    if (401 === Number.parseInt(mouseId, 10)) {
+      const location = await getRelicHunterLocation();
+
+      if (location && location.name) {
+        const relicHunterBox = makeElement('div', ['mouseview-relicHunter', 'mouseview-relicHunter']);
+        makeElement('div', 'hint', location.name, relicHunterBox);
+        const button = makeElement('div', ['mousehuntActionButton', 'small']);
+        makeElement('span', '', 'Travel', button);
+        button.addEventListener('click', () => {
+          app.pages.TravelPage.travel(environmentType);
+          setPage('Camp');
+        });
+
+        relicHunterBox.append(button);
+
+        movedContainer.append(relicHunterBox);
+      }
     }
 
     imageContainer.append(movedContainer);
