@@ -133,7 +133,12 @@ const addTrapBlock = () => {
   if (existing) {
     existing.replaceWith(auraTrapBlock);
   } else {
-    trapSummary.append(auraTrapBlock);
+    const tem = document.querySelector('.campPage-trap-trapEffectiveness.campPage-trap-statsContainer');
+    if (tem) {
+      tem.after(auraTrapBlock);
+    } else {
+      trapSummary.append(auraTrapBlock);
+    }
   }
 
   isAppending = false;
