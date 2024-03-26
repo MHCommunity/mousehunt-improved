@@ -94,6 +94,14 @@
   box-shadow: none;
 }
 
+.adventureBookBanner-completed .adventureBookBanner-moreInfo {
+  top: 7px;
+}
+
+.adventureBookBanner-completed b {
+  margin-bottom: 5px;
+}
+
 .adventureBookBanner-goalName-padding {
   display: block;
   width: auto;
