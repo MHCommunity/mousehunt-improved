@@ -31,8 +31,12 @@
 }
 
 .springHuntHUD-totalEggStats {
-  top: -2px;
-  font-size: 13px;
+  top: -7px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+  font-size: 12px;
 }
 
 .springHuntHUD-popup-tabHeader span {
@@ -125,4 +129,16 @@
 
 .eggSweeper-eggConvertible .itemImage {
   background-color: transparent;
+}
+
+.highlight .springHuntHUD-popup-egg.found {
+  opacity: 0.2;
+}
+
+.springHuntHUD-totalEggStats {
+  top: -7px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
 }
