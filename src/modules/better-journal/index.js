@@ -1,4 +1,5 @@
 import {
+  addStyles,
   doEvent,
   getCurrentPage,
   getFlag,
@@ -16,6 +17,8 @@ import journalList from './journal-list';
 import journalReplacements from './journal-replacements';
 import journalStyles from './journal-styles';
 import progressLog from './progress-log';
+
+import listAndIconsStyles from './list-and-icons.css';
 
 import settings from './settings';
 
@@ -41,48 +44,77 @@ const processEntries = async () => {
   isProcessing = false;
 };
 
+const processSingleEntries = async () => {
+  if (isProcessing) {
+    return;
+  }
+
+  isProcessing = true;
+  const entriesEl = document.querySelectorAll('.jsingle .entry');
+  for (const entry of entriesEl) {
+    doEvent('journal-entry', entry);
+  }
+  isProcessing = false;
+};
+
 /**
  * Initialize the module.
  */
 const init = async () => {
-  if (getSetting('better-journal.styles', true)) {
+  const enabled = {
+    styles: getSetting('better-journal.styles', true),
+    list: getSetting('better-journal.list', false),
+    icons: getSetting('better-journal.icons'),
+    iconsMinimal: getSetting('better-journal.icons-minimal'),
+    replacements: getSetting('better-journal.replacements', true),
+    goldAndPoints: getSetting('better-journal.gold-and-points', true),
+    itemColors: getSetting('better-journal.item-colors', true),
+    progressLog: getSetting('better-journal.progress-log', true),
+  };
+
+  if (enabled.styles) {
     journalStyles();
   }
 
-  journalHistory(getFlag('journal-history'));
+  if (enabled.list) {
+    journalList();
+    if (enabled.icons || enabled.iconsMinimal) {
+      addStyles(listAndIconsStyles, 'better-journal-list-and-icons');
+    }
+  }
 
-  if (getSetting('better-journal.icons')) {
-    journalIconsMinimal();
+  if (enabled.icons) {
     journalIcons();
-  }
-
-  if (getSetting('better-journal.icons-minimal')) {
+    journalIconsMinimal();
+  } else if (enabled.iconsMinimal) {
     journalIconsMinimal();
   }
 
-  if (getSetting('better-journal.replacements', true)) {
+  if (enabled.replacements) {
     journalReplacements();
   }
 
-  if (getSetting('better-journal.list', false)) {
-    journalList();
-  }
-
-  if (getSetting('better-journal.gold-and-points', true)) {
+  if (enabled.goldAndPoints) {
     journalGoldAndPoints();
   }
 
-  if (getSetting('better-journal.item-colors', true)) {
+  if (enabled.itemColors) {
     journalItemColors();
   }
 
-  if (getSetting('better-journal.progress-log', true)) {
+  if (enabled.progressLog) {
     progressLog();
   }
 
+  journalHistory(getSetting('better-journal.history', getFlag('journal-history', true)));
+
   processEntries();
-  onRequest('*', () => {
+  onRequest('*', (data) => {
     setMultipleTimeout(processEntries, [100, 500, 1000]);
+
+    if (data.journal_markup && data.journal_markup.length > 0) {
+      processSingleEntries(data.journal_markup);
+    }
   });
 };
 

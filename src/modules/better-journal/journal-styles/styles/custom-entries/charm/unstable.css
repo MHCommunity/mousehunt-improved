@@ -17,6 +17,10 @@
   white-space: nowrap;
 }
 
+.jsingle.journal .entry.short.misc.custom.unstable_charm_trigger .journaltext {
+  max-width: 580px;
+}
+
 .entry.short.misc.custom.unstable_charm_trigger .journalimage {
   width: 45px;
   margin-top: 0;
