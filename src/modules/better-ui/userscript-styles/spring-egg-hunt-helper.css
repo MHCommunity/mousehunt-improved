@@ -1,0 +1,5 @@
+.eggs-wrapper .egg-wrapper-unfound img {
+  filter: sepia(1);
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}

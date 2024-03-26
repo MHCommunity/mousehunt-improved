@@ -8,6 +8,7 @@ import journalHistorianStyles from './userscript-styles/journal-historian.css';
 import lgsReminderStyles from './userscript-styles/lgs-reminder.css';
 import mhctStyles from './userscript-styles/mhct.css';
 import profilePlusStyles from './userscript-styles/profile-plus.css';
+import springEggHuntHelperStyles from './userscript-styles/spring-egg-hunt-helper.css';
 import tsituAutoloaderStyles from './userscript-styles/tsitu-autoloader.css';
 import tsituLocationCatchStatsStyles from './userscript-styles/tsitu-location-catch-stats.css';
 import tsituQolStyles from './userscript-styles/tsitu-qol.css';
@@ -25,15 +26,16 @@ const kingsPromoTextChange = () => {
 
 const addUserscriptStyles = async () => {
   const userscriptStyles = [
-    { id: 'userscript-styles-no-profile-plus-styles', styles: profilePlusStyles },
-    { id: 'userscript-styles-no-favorite-setups-styles', styles: favoriteSetupsStyles },
-    { id: 'userscript-styles-no-journal-historian-styles', styles: journalHistorianStyles },
-    { id: 'userscript-styles-no-lgs-reminder-styles', styles: lgsReminderStyles },
     { id: 'userscript-styles-no-mhct-styles', styles: mhctStyles },
-    { id: 'userscript-styles-no-tsitu-autoloader-styles', styles: tsituAutoloaderStyles },
-    { id: 'userscript-styles-no-tsitu-location-catch-stats-styles', styles: tsituLocationCatchStatsStyles },
     { id: 'userscript-styles-no-tsitu-qol-styles', styles: tsituQolStyles },
+    { id: 'userscript-styles-no-profile-plus-styles', styles: profilePlusStyles },
+    { id: 'userscript-styles-no-spring-egg-hunt-helper-styles', styles: springEggHuntHelperStyles },
+    { id: 'userscript-styles-no-lgs-reminder-styles', styles: lgsReminderStyles },
+    { id: 'userscript-styles-no-favorite-setups-styles', styles: favoriteSetupsStyles },
+    { id: 'userscript-styles-no-tsitu-autoloader-styles', styles: tsituAutoloaderStyles },
+    { id: 'userscript-styles-no-journal-historian-styles', styles: journalHistorianStyles },
     { id: 'userscript-styles-no-tsitu-supply-search-styles', styles: tsituSupplySearchStyles },
+    { id: 'userscript-styles-no-tsitu-location-catch-stats-styles', styles: tsituLocationCatchStatsStyles },
   ];
 
   if (getFlag('no-userscript-styles')) {
