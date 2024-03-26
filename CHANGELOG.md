@@ -22,6 +22,7 @@
 - Fixes mice display issue in Burroughs Rift Location HUD
 - Fixes Better Journal checking for flag/experiment setting
 - Fixes minor issues in Better Journal
+- Fixes update migration running once per update, rather than just once
 
 ## Version 0.37.2
 

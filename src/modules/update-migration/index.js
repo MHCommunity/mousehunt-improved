@@ -22,7 +22,8 @@ const doVersionUpdates = async () => {
 
   for (const version in versionUpdates) {
     const currentVersion = versionUpdates[version];
-    if (isVersionBefore(currentVersion.id, mhImprovedVersion)) {
+    console.log('currentVersion', currentVersion, 'mhImprovedVersion', mhImprovedVersion, 'isVersionBefore', isVersionBefore(currentVersion.id, mhImprovedVersion));
+    if (isVersionBefore(previousVersion, currentVersion.id)) {
       try {
         await currentVersion.update();
       } catch (error) {
