@@ -4,6 +4,7 @@ import {
   cacheSet,
   createPopup,
   debug,
+  doEvent,
   isUserTitleAtLeast,
   makeElement,
   onEvent,
@@ -251,6 +252,8 @@ const doLocationRefresh = async () => {
   }
 
   sessionSet('doing-location-refresh', false);
+
+  doEvent('travel_complete');
 };
 
 const makeDashboardTab = () => {
