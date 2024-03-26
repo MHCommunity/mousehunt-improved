@@ -1,3 +1,73 @@
 .windmillHud-helpContainer-section-quantity {
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 49;
+  color: #000;
+}
+
+.windmillHud-bossContainer.complete::after {
+  position: absolute;
+  inset: 0;
+  display: block;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/hud/windmill/boss.png?asset_cache_version=3) 0 100% no-repeat;
+  filter: drop-shadow(2px 4px 4px #16240a);
+}
+
+.windmillHud-helpContainer-section-content {
+  top: -5px;
+  right: 0;
+  left: 57px;
+  height: 80px;
+  line-height: 13px;
+}
+
+.windmillHud-helpContainer-section-title {
+  margin-bottom: 5px;
+}
+
+.windmillHud-bonusContainer {
+  top: 34px;
+  left: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 105px;
+  height: 67px;
+  padding: 0;
+  font-size: 11px;
+  text-align: center;
+}
+
+.windmillHud-bonusContainer.none .windmillHud-bonus.none,
+.windmillHud-bonusContainer.low .windmillHud-bonus.low,
+.windmillHud-bonusContainer.ultra_low .windmillHud-bonus.ultra_low,
+.windmillHud-bonusContainer.medium .windmillHud-bonus.medium,
+.windmillHud-bonusContainer.high .windmillHud-bonus.high,
+.windmillHud-bonusContainer.max .windmillHud-bonus.max {
+  line-height: 1.4;
+}
+
+.windmillHud-bonusContainer.none {
+  font-size: 13px;
+}
+
+.windmillHud-bonusContainer.low .windmillHud-bonus.low,
+.windmillHud-bonusContainer.medium .windmillHud-bonus.medium {
+  font-size: 12px;
+}
+
+.windmillHud-speed {
+  left: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 20px;
+  font-size: 13px;
+  font-weight: 900;
+  user-select: none;
+}
+
+.windmillHud-speed span {
+  margin-right: 5px;
 }
