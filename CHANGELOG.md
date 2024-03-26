@@ -16,6 +16,7 @@
 - Adds little easter egg when clicking on windmill speed for Windmill Location HUD
 - Updates Show Auras (only show icons) spacing
 - Updates Show Auras to always display under the TEM
+- Minor style updates
 
 ### Fixed
 
