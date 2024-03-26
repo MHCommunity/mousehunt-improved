@@ -1,4 +1,6 @@
-import { onEvent, onNavigation } from '@utils';
+import { addStyles, onEvent, onNavigation } from '@utils';
+
+import styles from './styles.css';
 
 const moveCodex = async () => {
   const codex = document.querySelector('.trapSelectorView__activeCodexContainer');
@@ -15,6 +17,7 @@ const moveCodex = async () => {
 };
 
 export default async () => {
+  addStyles(styles, 'codex-at-bottom');
   moveCodex();
   onNavigation(moveCodex, {
     page: 'camp',
