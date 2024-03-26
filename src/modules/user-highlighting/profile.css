@@ -165,6 +165,7 @@
 }
 
 .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock {
+  z-index: 0;
   height: 220px;
 }
 
