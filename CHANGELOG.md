@@ -1,27 +1,27 @@
 # Changelog
 
-
-
-
-
-
-
-
-
-
-
 ## Version 0.38.0
 
-- Adds trap selector styles in Better UI
+### Added
+
 - Adds "Hide Daily Draw" beta feature
-- Updates styles for Windmill Location HUD
-- Adds easter egg when clicking on windmill speed for Windmill Location HUD
-- Fixes mice display issue in Burroughs Rift Location HUD
+- Adds trap selector styles to Better UI
 - Adds "Highlight missing eggs" to SEH egg popup
-- Fixes minor issues in Better Journal
 - Adds current Relic Hunter location to the Relic Hunter mouse popup
+
+### Changed
+
+- Updates Better UI styles - adds trap selector styles
+- Updates styles for Windmill Location HUD
+- Adds little easter egg when clicking on windmill speed for Windmill Location HUD
 - Updates Show Auras (only show icons) spacing
 - Updates Show Auras to always display under the TEM
+
+### Fixed
+
+- Fixes mice display issue in Burroughs Rift Location HUD
+- Fixes Better Journal checking for flag/experiment setting
+- Fixes minor issues in Better Journal
 
 ## Version 0.37.2
 
