@@ -8,7 +8,6 @@ import {
   onTravel
 } from '@utils';
 
-
 import {
   getCatchRate,
   getMiceEffectiveness,
