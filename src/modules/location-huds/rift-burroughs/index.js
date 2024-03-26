@@ -37,7 +37,7 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
     });
 
     const mouseImage = makeElement('img', 'mouse-type-mouse-image');
-    mouseImage.src = `https://www.mousehuntgame.com/images/mice/thumb/${miceNameImages[mouse]}`;
+    mouseImage.src = `https://www.mousehuntgame.com/images/mice/thumb/${miceNameImages[mouse].image}`;
     mouseLink.append(mouseImage);
 
     makeElement('div', 'mouse-type-mouse-name', miceNameImages[mouse].name, mouseLink);
