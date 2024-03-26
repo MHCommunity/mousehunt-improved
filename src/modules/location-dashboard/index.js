@@ -104,6 +104,16 @@ const waitForTravel = async (environment) => {
   });
 };
 
+const disarmBait = async () => {
+  return new Promise((resolve) => {
+    hg.utils.TrapControl.disarmBait().go(() => {
+      resolve();
+    }, () => {
+      reject();
+    });
+  });
+};
+
 const doLocationRefresh = async () => {
   // Show a popup that shows the progress.
   // Travel to each location.
@@ -185,10 +195,13 @@ const doLocationRefresh = async () => {
   const equippedBait = user.bait_item_id || 'disarmed';
   debug(`Equipped bait: ${equippedBait}.`);
 
-  // Disarm bait.
-  hg.utils.TrapControl.disarmBait().go();
+  await disarmBait();
 
   for (const location of locationProgress) {
+    if (originalLocation === location) {
+      continue;
+    }
+
     const locationData = environments.find((env) => env.id === location);
     if (! locationData) {
       continue;
