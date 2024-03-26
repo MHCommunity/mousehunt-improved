@@ -44,7 +44,7 @@ const addUnfoundEggHighlightWithTimeout = () => {
   setMultipleTimeout(() => {
     addUnfoundEggHighlight();
   }, [10, 500, 1000]);
-}
+};
 
 /**
  * Always active.

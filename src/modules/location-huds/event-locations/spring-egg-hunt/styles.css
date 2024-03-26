@@ -134,11 +134,3 @@
 .highlight .springHuntHUD-popup-egg.found {
   opacity: 0.2;
 }
-
-.springHuntHUD-totalEggStats {
-  top: -7px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  align-items: flex-end;
-}
