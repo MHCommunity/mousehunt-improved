@@ -1,4 +1,8 @@
 const maybeRedirectToHunterProfile = (text) => {
+  if (text.length > 30) {
+    return;
+  }
+
   // if the text contains 'https://www.mousehuntgame.com/', then it's a full URL
   // and we should just redirect to that URL.
   const url = text.match(/https:\/\/www.mousehuntgame.com/);
