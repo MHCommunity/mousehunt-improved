@@ -163,8 +163,8 @@ const getHeaders = () => {
   return {
     'Content-Type': 'application/json',
     'X-MH-Improved': 'true',
-    'X-MH-Improved-Version': mhImprovedVersion,
-    'X-MH-Improved-Platform': mhImprovedPlatform,
+    'X-MH-Improved-Version': mhImprovedVersion || 'unknown',
+    'X-MH-Improved-Platform': mhImprovedPlatform || 'unknown',
   };
 };
 
