@@ -20,6 +20,7 @@ export default async () => {
         { name: 'Gray', value: 'hud-gray' },
       ],
     },
+    { name: 'Midnight', value: 'hud-midnight' },
     { name: 'Blueprint', value: 'hud-blueprint' },
     { name: 'Suede', value: 'hud-suede' },
     { name: 'Groovy Green', value: 'hud-groovy-green' },

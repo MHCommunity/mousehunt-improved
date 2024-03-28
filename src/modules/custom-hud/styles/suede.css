@@ -1,0 +1,10 @@
+.mousehuntHud-marbleDrawer {
+  background:
+    url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -51px 0 no-repeat,
+    url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 736px 0 no-repeat,
+    url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg) repeat bottom left/760px;
+}
+
+#mousehuntContainer.PageCamp {
+  background: url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg) repeat-y;
+}

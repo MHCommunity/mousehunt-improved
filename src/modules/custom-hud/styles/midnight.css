@@ -1,0 +1,23 @@
+.pageFrameView #mousehuntContainer.PageCamp .gameHeader::before,
+.pageFrameView #mousehuntContainer.PageJournal .gameHeader::before {
+  background: transparent;
+}
+
+.pageFrameView #mousehuntContainer.PageCamp,
+.pageFrameView #mousehuntContainer.PageJournal {
+  background-color: #383e49;
+}
+
+body .mousehuntHud-marbleDrawer {
+  background:
+    url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat,
+    url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat;
+  background-color: #383e49;
+}
+
+.pageFrameView .pageFrameView-contentContainer,
+.pageFrameView .pageFrameView-column.right,
+.pageFrameView .pageFrameView-column.left {
+  background-color: #111;
+  border-color: #111;
+}

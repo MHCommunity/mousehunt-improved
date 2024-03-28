@@ -2,6 +2,11 @@ import { getSetting, onNavigation } from '@utils';
 
 import settings from './settings';
 
+import blueprint from './styles/blueprint.css';
+import groovyGreen from './styles/groovy-green.css';
+import midnight from './styles/midnight.css';
+import suede from './styles/suede.css';
+
 const addStyleEl = () => {
   const setting = getSetting('custom-hud-0', 'default');
 
@@ -14,29 +19,22 @@ const addStyleEl = () => {
     return;
   }
 
-  let style;
+  const mapping = {
+    'hud-blueprint': blueprint,
+    'hud-suede': suede,
+    'hud-groovy-green': groovyGreen,
+    'hud-midnight': midnight,
+  };
 
-  const pedestal = 'https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif?asset_cache_version=2';
+  const styleEl = document.createElement('style');
+  styleEl.id = 'mh-improved-custom-hud-style';
+
   // eslint-disable-next-line unicorn/prefer-ternary
-  if ('hud-blueprint' === setting) {
-    style = `body .mousehuntHud-marbleDrawer {
-      background: url(${pedestal}) -46px 0 no-repeat, url(${pedestal}) 731px 0 no-repeat, url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
-    }`;
-  } else if ('hud-suede' === setting) {
-    style = `.mousehuntHud-marbleDrawer {
-      background: url(${pedestal}) -51px 0 no-repeat, url(${pedestal}) 736px 0 no-repeat, url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg) repeat bottom left/760px
-    }
-
-    #mousehuntContainer.PageCamp {
-      background: url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg?asset_cache_version=2) repeat-y;
-    }`;
-  } else if ('hud-groovy-green' === setting) {
-    style = `body .mousehuntHud-marbleDrawer {
-      background: url(${pedestal}) -46px 0 no-repeat, url(${pedestal}) 731px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/pattern.png) repeat-y bott center/cover;
-    }`;
+  if (mapping[setting]) {
+    styleEl.innerHTML = mapping[setting];
   } else {
-    style = `body .mousehuntHud-marbleDrawer {
-      background: url(${pedestal}) -46px 0 no-repeat, url(${pedestal}) 731px 0 no-repeat, url(https://i.mouse.rip/mh-improved/marble-shadow.png) 6px 0 no-repeat, url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
+    styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
+      background: url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat, url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat, url(https://i.mouse.rip/mh-improved/marble-shadow.png) 6px 0 no-repeat, url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
     }
 
     .mousehuntHud-titleProgressBar {
@@ -44,12 +42,7 @@ const addStyleEl = () => {
     }`;
   }
 
-  if (style) {
-    const styleEl = document.createElement('style');
-    styleEl.id = 'mh-improved-custom-hud-style';
-    styleEl.innerHTML = style;
-    document.head.append(styleEl);
-  }
+  document.head.append(styleEl);
 };
 
 const listenForPreferenceChanges = () => {
