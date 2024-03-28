@@ -21,6 +21,7 @@
   padding-left: unset;
 }
 
+.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=storm_egg_convertible"]::before,
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=prize_credit_stat_item"]::before {
   left: 0;
 }

@@ -70,6 +70,7 @@
   content: "";
 }
 
+.journaltext .lucky:last-of-type::after,
 .journaltext .lucky::after {
   display: none;
 }

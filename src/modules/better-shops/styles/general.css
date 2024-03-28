@@ -598,48 +598,6 @@ a.itemPurchaseView-action-buySuperBrie {
   content: "";
 }
 
-/* stylelint-disable */
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/arcane.png);"]::after {
-  content: "Arcane";
-}
-
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/draconic.png);"]::after {
-  content: "Draconic";
-}
-
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/forgotten.png);"]::after {
-  content: "Forgotten";
-}
-
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/hydro.png);"]::after {
-  content: "Hydro";
-}
-
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/law.png);"]::after {
-  content: "Law";
-}
-
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/parental.png);"]::after {
-  content: "Parental";
-}
-
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/physical.png);"]::after {
-  content: "Physical";
-}
-
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/rift.png);"]::after {
-  content: "Rift";
-}
-
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/shadow.png);"]::after {
-  content: "Shadow";
-}
-
-.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon[style="background-image:url(https://www.mousehuntgame.com/images/powertypes/tactical.png);"]::after {
-  content: "Tactical";
-}
-/* stylelint-enable */
-
 .itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-label {
   position: relative;
   width: 26px;
