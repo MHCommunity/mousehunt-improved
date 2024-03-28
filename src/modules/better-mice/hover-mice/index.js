@@ -39,6 +39,9 @@ const fetchAndFillMouseData = async (mouseId) => {
   }
 
   const mouseData = makeElement('div', 'mouse-data');
+  if (mouse.crown && 'none' !== mouse.crown) {
+    mouseData.classList.add('crown', mouse.crown);
+  }
 
   const mouseImage = makeElement('img', 'mouse-image');
   mouseImage.src = mouse.square;
@@ -54,7 +57,7 @@ const fetchAndFillMouseData = async (mouseId) => {
   catchStats.append(catches);
 
   const avgWeight = makeElement('div', 'mouse-avg-weight');
-  makeElement('span', '', 'Avg. Weight: ', avgWeight);
+  makeElement('span', '', 'Avg: ', avgWeight);
   makeElement('span', '', mouse.avg_weight, avgWeight);
   catchStats.append(avgWeight);
 
