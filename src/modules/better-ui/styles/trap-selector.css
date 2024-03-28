@@ -66,12 +66,11 @@
   height: 50px;
 }
 
-
 .campPage-trap-itemBrowser-armed-item.trinket .campPage-trap-itemBrowser-item-statContainer {
-  display: block;
   position: absolute;
   top: 20px;
   left: 60px;
+  display: block;
 }
 
 .campPage-trap-itemBrowser-armed-item-content {
@@ -80,23 +79,23 @@
 }
 
 .campPage-trap-itemBrowser-armed-item .campPage-trap-itemBrowser-item-quantity {
-  width: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 50px;
 }
 
 a.campPage-trap-itemBrowser-item-disarmButton {
   position: absolute;
-  left: -85px;
   top: 50px;
-  line-height: 20px;
-  font-weight: 400;
+  left: -85px;
   width: 74px;
-  background-color: #ff6161;
-  box-shadow: 0 -13px 7px #b30000 inset;
+  font-weight: 400;
+  line-height: 20px;
   color: #fff;
+  background-color: #ff6161;
   border: 1px solid #666;
+  box-shadow: 0 -13px 7px #b30000 inset;
 }
 
 a.campPage-trap-itemBrowser-item-disarmButton:hover {

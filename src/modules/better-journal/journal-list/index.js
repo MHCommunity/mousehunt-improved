@@ -3,7 +3,6 @@ import { addEvent, addStyles, makeElement } from '@utils';
 import styles from './styles.css';
 
 const makeListItems = (itemList) => {
-  console.log(itemList);
   const list = makeElement('ul', 'better-journal-list');
   if (0 === itemList.length) {
     return list;
