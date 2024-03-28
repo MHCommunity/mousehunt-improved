@@ -5,6 +5,7 @@
   justify-content: space-evenly;
   padding: 5px;
   margin: 5px 0;
+  cursor: default;
 }
 
 .mh-improved-aura-view .trapImageView-trapAura,

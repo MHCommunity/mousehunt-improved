@@ -5,6 +5,8 @@
 
 .journal.theme_living_garden .content {
   background: url(https://www.mousehuntgame.com/images/ui/journal/themes/journal_living_garden_wide_middle.png?asset_cache_version=2) repeat-y scroll left bottom;
+  background-position: top;
+  background-size: contain;
 }
 
 .journal.theme_living_garden .bottom {

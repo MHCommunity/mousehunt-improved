@@ -1,9 +1,11 @@
 .mh-improved-aura-view.campPage-trap-trapEffectiveness {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
+  gap: 20px;
+  justify-content: center;
   padding: 10px;
   margin: 5px 0;
+  cursor: default;
 }
 
 .mh-improved-aura-view .trapImageView-trapAura,

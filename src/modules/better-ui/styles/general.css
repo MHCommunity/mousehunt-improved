@@ -178,13 +178,13 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
 
 /* speed up horn transition and make it bigger and stuff */
 a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready {
-  transition: all 0.2s 0.15s;
+  transition: all 0.2s;
   transform-origin: left;
   will-change: transform;
 }
 
 a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready:hover {
-  transform: scale(1.1) rotate(359deg);
+  transform: scale(1.1) rotate(-1deg);
 }
 
 a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready .huntersHornView__hornBannerImage {
@@ -451,4 +451,26 @@ input.itemView-action-convert-quantity {
 
 .mousehuntHeaderView .dropdownContent a {
   background-position-x: 8px;
+}
+
+/* userscripts */
+.tsitu-maptem .notification {
+  left: 0 !important;
+}
+
+.tsitu-maptem .notification[title="No uncaught map mice with this setup (according to TEM)"] {
+  display: none;
+}
+
+.campPage-trap-itemBrowser-armed-itemContainer.empty .campPage-trap-itemBrowser-item-subtitle {
+  color: #671d1d;
+}
+
+.mh-dark-mode .campPage-trap-itemBrowser-item.largeQuantity .campPage-trap-itemBrowser-item-quantity .quantity {
+  background-color: #333;
+}
+
+.mh-dark-mode .campPage-trap-itemBrowser-item-image::after {
+  border-color: #000;
+  box-shadow: 2px 2px 3px -1px #000 inset;
 }

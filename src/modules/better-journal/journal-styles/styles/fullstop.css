@@ -71,6 +71,5 @@
 }
 
 .journaltext .lucky::after {
-  margin: 0;
-  background: none;
+  display: none;
 }

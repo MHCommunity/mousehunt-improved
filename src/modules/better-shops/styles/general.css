@@ -650,3 +650,7 @@ a.itemPurchaseView-action-buySuperBrie {
   align-items: center;
   justify-content: center;
 }
+
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details {
+  height: auto;
+}

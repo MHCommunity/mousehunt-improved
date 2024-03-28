@@ -46,6 +46,7 @@
 }
 
 #mouse-data-wrapper .mouse-name {
+  width: 160px;
   font-size: 12px;
   font-weight: 900;
 }
@@ -64,4 +65,34 @@
   align-items: center;
   justify-content: space-between;
   line-height: 1.5;
+}
+
+#mouse-data-wrapper .mouse-data.crown::after {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  content: "";
+  background-size: cover;
+}
+
+#mouse-data-wrapper .mouse-data.crown.bronze::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_bronze.png);
+}
+
+#mouse-data-wrapper .mouse-data.crown.silver::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_silver.png);
+}
+
+#mouse-data-wrapper .mouse-data.crown.gold::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_gold.png);
+}
+
+#mouse-data-wrapper .mouse-data.crown.platinum::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_platinum.png);
+}
+
+#mouse-data-wrapper .mouse-data.crown.diamond::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_diamond.png);
 }

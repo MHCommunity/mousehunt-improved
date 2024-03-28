@@ -20,3 +20,18 @@
 .entry.short.misc.custom.chocolateshop_reward_claimed {
   background-color: #e7cdaa;
 }
+
+.spring_hunt_charge_trinket_effect .journalimage img {
+  width: 30px;
+}
+
+.journal .entry.spring_hunt_charge_trinket_effect {
+  display: flex;
+  align-items: center;
+  min-height: 35px;
+  padding-bottom: 6px;
+}
+
+.journal .entry.spring_hunt_charge_trinket_effect .journalimage {
+  margin: 0;
+}

@@ -6,17 +6,22 @@
   padding: 0;
 }
 
-/* stylelint-disable-next-line prettier/prettier */
+/* stylelint-disable prettier/prettier */
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]::before {
   left: 1px;
 }
 
-/* stylelint-disable-next-line prettier/prettier */
+.spring_hunt_charge_trinket_effect .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chocolatium_stat_item"]::before,
 .spring_hunt_relic_hunter_egg_drop .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=relic_hunter_egg_convertible"]::before {
   display: none;
 }
 
-/* stylelint-disable-next-line prettier/prettier */
-.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=relic_hunter_egg_convertible"] {
+.spring_hunt_charge_trinket_effect .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chocolatium_stat_item"],
+.spring_hunt_relic_hunter_egg_drop .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=relic_hunter_egg_convertible"] {
   padding-left: unset;
 }
+
+.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=prize_credit_stat_item"]::before {
+  left: 0;
+}
+/* stylelint-enable prettier/prettier */

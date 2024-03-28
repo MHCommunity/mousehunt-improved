@@ -62,8 +62,8 @@
 }
 
 .campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image {
-  width: 41px;
-  height: 41px;
+  width: 40px;
+  height: 40px;
   background-position: center;
 }
 
@@ -139,4 +139,8 @@
 
 .trapSelectorView__browserStateParent--items[data-blueprint-type="skin"] .campPage-trap-itemBrowser-quickLinks {
   display: none;
+}
+
+.campPage-trap-itemBrowser-favorite-item.quicklinks-filter.quicklinks-filter-sortBy-name a {
+  background-position: 5px 4px;
 }

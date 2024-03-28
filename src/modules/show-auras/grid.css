@@ -10,6 +10,7 @@
   padding: 5px 0;
   margin: 5px 0;
   overflow: hidden;
+  cursor: default;
 }
 
 .mh-improved-aura-view .aura {

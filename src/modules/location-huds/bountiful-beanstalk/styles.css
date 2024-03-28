@@ -101,7 +101,7 @@
 }
 
 .headsUpDisplayBountifulBeanstalk__embellishmentBlock:hover .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
-  filter: brightness(1.3);
+  filter: brightness(1.3) drop-shadow(0 0 1px #224e1c) drop-shadow(0 0 1px #224e1c);
   transform: scale(1.3);
 }
 
@@ -116,7 +116,7 @@
 }
 
 .headsUpDisplayBountifulBeanstalkView__castleChevronContainer .headsUpDisplayBountifulBeanstalkView__loot:hover {
-  animation: mh-improved-loot-shake 0.5s 2;
+  animation: mh-improved-loot-shake 0.5s infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -161,18 +161,6 @@
   }
 }
 
-.headsUpDisplayBountifulBeanstalkView .folkloreForestRegionView-helpButton {
-  width: 22px;
-  height: 21px;
-  border-radius: 20px;
-  box-shadow: inset 0 0 3px 1px #c5ad6f;
-  opacity: 0.3;
-}
-
-.headsUpDisplayBountifulBeanstalkView .folkloreForestRegionView-helpButton:hover {
-  opacity: 1;
-}
-
 .mh-improved-room-data--open,
 .mh-improved-room-data--open .headsUpDisplayBountifulBeanstalkView__lootMultiplierDetailsContainer {
   z-index: 35;
@@ -181,20 +169,6 @@
 
 .headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying:hover .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
   transform: scale(1.1) rotate(3deg) translateX(5px);
-}
-
-.headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText {
-  mix-blend-mode: multiply;
-  opacity: 0.7;
-}
-
-.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying:hover .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText {
-  opacity: 1;
-}
-
-.disabled .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText {
-  mix-blend-mode: normal;
-  opacity: 1;
 }
 
 .folkloreForestRegionView-dialog-recipeResult-image.itemImage .quantity {
@@ -208,6 +182,7 @@
 .bountifulBeanstalkCastleView__bossMarker {
   filter: drop-shadow(2px -1px 4px #000);
   transition: 0.4s;
+  transform: scale(1.1);
   transform-origin: bottom;
 }
 
@@ -235,4 +210,178 @@
 
 .headsUpDisplayBountifulBeanstalkView__ingredientQuantity.quantity {
   top: 26px;
+}
+
+.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer .mousehuntTooltip {
+  line-height: 1.5;
+  text-align: center;
+}
+
+.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer[data-item-type="leaping_lavish_beanster_cheese"] .mousehuntTooltip {
+  right: -40px;
+  left: -40px;
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleChevronContainer .mousehuntTooltip {
+  line-height: 1.4;
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleChevronContainer .mousehuntTooltip > b:first-of-type {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  border-bottom: 1px solid #d5d5d5;
+}
+
+.headsUpDisplayBountifulBeanstalkView__fuelQuantity.quantity {
+  font-size: 13px;
+  color: #fff;
+  background-color: #2c4d26;
+}
+
+.active .headsUpDisplayBountifulBeanstalkView__fuelQuantity.quantity {
+  text-shadow: 0 0 2px #5ac976;
+}
+
+.headsUpDisplayBountifulBeanstalkView__fuelContainer:hover {
+  cursor: pointer;
+}
+
+.folkloreForestRegionView-helpButton {
+  top: 13px;
+  width: 22px;
+  height: 22px;
+  background: url(https://www.mousehuntgame.com/images/ui/events/egg_sweeper/help_button.png);
+  background-position: center;
+  background-size: 26px;
+  border-radius: 10px;
+  mix-blend-mode: darken;
+  opacity: 0.3;
+}
+
+.folkloreForestRegionView-helpButton:hover {
+  opacity: 1;
+}
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlock .mousehuntTooltip {
+  right: -70px;
+  bottom: 50px;
+  left: -70px;
+}
+
+/* Bigger tutorial images */
+.folkloreForestRegionView-dialog-help .beanstalkHelp__image {
+  flex: 1;
+  width: 100%;
+  height: 150px;
+  background-size: contain;
+}
+
+.folkloreForestRegionView-dialog-help .beanstalkHelp__section {
+  flex-wrap: wrap;
+  padding-top: 30px;
+  margin-bottom: 30px;
+  border-top: 1px solid #487426;
+}
+
+.folkloreForestRegionView-dialog-help .beanstalkHelp__section:nth-child(3) {
+  border-top: none;
+}
+
+.folkloreForestRegionView-dialog-help .beanstalkHelp__section:nth-child(4) .beanstalkHelp__image {
+  order: -1;
+}
+
+.headsUpDisplayBountifulBeanstalkView__frame {
+  filter: drop-shadow(0 1px 2px #333);
+}
+
+.headsUpDisplayBountifulBeanstalkView__multiplier div:nth-child(2) {
+  font-size: 13px;
+}
+
+.headsUpDisplayBountifulBeanstalkView__lootMultiplierDetailsContainer > div {
+  align-items: center;
+  margin: 2px;
+}
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlock {
+  top: -5px;
+  left: -10px;
+  width: 34px;
+  height: 34px;
+}
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 0 1px #224e1c) drop-shadow(0 0 1px #224e1c);
+  background-position: center;
+  transform: scale(1);
+}
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlock.golden_feather {
+  left: -6px;
+}
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlock.ruby_remover {
+  left: -2px;
+}
+
+.loot-displayed.bountifulBeanstalkCastleView__title > div {
+  position: absolute;
+  top: 18px;
+  right: 50px;
+  left: 50px;
+  height: 18px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  background: linear-gradient(90deg, #f4e4a6 0%, #faedb1 50%, #f4e4a6 100%);
+  border-radius: 42%;
+  box-shadow: 0 3px 3px -2px #6d3421;
+}
+
+.loot-displayed.bountifulBeanstalkCastleView__title {
+  bottom: 243px;
+}
+
+.headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--feather,
+.headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--condensed_creativity {
+  font-size: 10px;
+}
+
+.folkloreForestRegionView-dialog-block-name {
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  padding: 0;
+  font-size: 13px;
+  text-align: center;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.basicBaits .mousehuntArmNowButton {
+  transform: scale(1.2);
+}
+
+/* makes it so that on a full bar the bottom right corner isn't rounded */
+.bountifulBeanstalkCastleView__noiseMeterBar {
+  padding-right: 1px;
+}
+
+button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
+  right: 3px;
+}
+
+.active button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
+  right: 2px;
+}
+
+.bountifulBeanstalkCastleView__playerMarkerUserThumb {
+  border: 1px solid #0aaa62;
+  box-shadow: inset 0 1px 3px 0 #3d3d3d;
+}
+
+.bountifulBeanstalkCastleView__playerMarker--player_marker_chase .bountifulBeanstalkCastleView__playerMarkerUserThumb {
+  border: 1px solid #d7440d;
 }

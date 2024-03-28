@@ -1,0 +1,82 @@
+.mobile.MobilePageCamp #mobileHorn img {
+  display: none;
+}
+
+.mobile.MobilePageCamp #mobileHorn {
+  position: relative;
+  display: block;
+  width: 237px;
+  height: 57px;
+  margin: 10px auto;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hunters_horn/horn_background.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  transition: all 0.2s;
+}
+
+.mobile.MobilePageCamp #mobileHorn::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hunters_horn/horn_foreground.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+.mobile.MobilePageCamp #mobileHorn::before {
+  position: absolute;
+  top: 20px;
+  left: 78px;
+  z-index: 1;
+  width: 101px;
+  height: 41px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hunters_horn/banner.png);
+}
+
+body.mobile.MobilePageCamp #mobileHorn:hover,
+body.mobile.MobilePageCamp #mobileHorn:active {
+  transform: scale(1.1) rotate(-1deg);
+}
+
+body.mobile.MobilePageCamp .mobileHeader img {
+  display: none;
+}
+
+body.mobile.MobilePageCamp div[data-role="header"]::after {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 85px;
+  height: 85px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/elements/golden_shield_page_shield_disabled_320.png) no-repeat;
+  background-position: right;
+  background-size: cover;
+  opacity: 0.3;
+  transform: scaleX(-1);
+}
+
+body.mobile.MobilePageCamp .headerText > div:first-child {
+  font-size: 17px;
+}
+
+body.mobile.MobilePageCamp .pageFrameView,
+body.mobile.MobilePageCamp.noSidebar .pageFrameView {
+  grid-template-columns: [first] auto [content-start] 485px [content-end] auto [last];
+}
+
+body.mobile.MobilePageCamp .pageFrameView-column.right,
+body.mobile.MobilePageCamp .pageFrameView-column.left {
+  border-width: 5px;
+}
+
+div#mobileCountdown {
+  margin: 10px;
+  font-size: 15px;
+}
+
+div#mobileJournal {
+  margin-top: 10px;
+}
