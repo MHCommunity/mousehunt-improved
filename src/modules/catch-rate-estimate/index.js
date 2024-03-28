@@ -5,7 +5,8 @@ import {
   makeElement,
   onPageChange,
   onRequest,
-  onTravel
+  onTravel,
+  onTurn
 } from '@utils';
 
 import {
@@ -18,6 +19,8 @@ import {
 
 import styles from './styles.css';
 
+let lastStats = [];
+let effectiveness = null;
 const updateMinLucks = async () => {
   if ('camp' !== getCurrentPage()) {
     return;
@@ -36,7 +39,26 @@ const updateMinLucks = async () => {
     statsContainer.append(minluckList);
   }
 
-  const effectiveness = await getMiceEffectiveness();
+  const currentStats = [
+    user.trap_power,
+    user.trap_luck,
+    user.trap_attraction_bonus,
+    user.trap_cheese_effect,
+    user.trap_luck,
+    user.trap_power,
+    user.trap_power_bonus,
+    user.trap_power_type_name,
+    user.trinket_item_id,
+    user.base_item_id,
+    user.weapon_item_id,
+    user.bait_item_id,
+    user.environment_id,
+  ];
+
+  if (currentStats !== lastStats) {
+    effectiveness = await getMiceEffectiveness();
+    lastStats = currentStats;
+  }
 
   if (! effectiveness) {
     return;
@@ -149,8 +171,9 @@ const main = async () => {
   }
 
   onPageChange({ camp: { show: updateMinLucks } });
-  onRequest('*', updateMinLucks);
+  onRequest('users/changetrap.php', updateMinLucks);
   onTravel(null, { callback: updateMinLucks });
+  onTurn(updateMinLucks, 3000);
 };
 
 /**
