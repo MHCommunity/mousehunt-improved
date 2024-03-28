@@ -234,3 +234,34 @@ a.folkloreForestRegionView-warning:hover {
 .folkloreForestRegionView-dialog-block-costLabel {
   display: none;
 }
+
+.folkloreForestRegionView-helpButton {
+  top: 13px;
+  width: 22px;
+  height: 22px;
+  background: url(https://www.mousehuntgame.com/images/ui/events/egg_sweeper/help_button.png);
+  background-position: center;
+  background-size: 26px;
+  border-radius: 10px;
+  mix-blend-mode: darken;
+  opacity: 0.3;
+}
+
+.folkloreForestRegionView-helpButton:hover {
+  opacity: 1;
+}
+
+a.folkloreForestRegionView-travelButton {
+  top: 16px;
+  left: 226px;
+  width: 17px;
+  height: 17px;
+  background: url(https://www.mousehuntgame.com/images/ui/hud/menu/treasure_chests.png);
+  background-size: cover;
+  opacity: 0.3;
+  transform: scaleX(-1) rotate(99deg);
+}
+
+a.folkloreForestRegionView-travelButton:hover {
+  opacity: 1;
+}

@@ -1,4 +1,11 @@
-import { addHudStyles, getSetting, onTurn, saveSetting } from '@utils';
+import {
+  addHudStyles,
+  getSetting,
+  makeElement,
+  onRequest,
+  onTurn,
+  saveSetting
+} from '@utils';
 
 import regionStyles from '../shared/folklore-forest/styles.css';
 import smallInvStyles from './small-inv.css';
@@ -105,6 +112,61 @@ const makeGiantMoreVisible = () => {
   }
 };
 
+const toggleFuelWithIcon = () => {
+  const icon = document.querySelector('.headsUpDisplayBountifulBeanstalkView__fuelContainer');
+  if (! icon) {
+    return;
+  }
+
+  const button = document.querySelector('.headsUpDisplayBountifulBeanstalkView__fuelToggleButton');
+  if (! button) {
+    return;
+  }
+
+  icon.addEventListener('click', () => {
+    button.click();
+  });
+};
+
+const updateTitle = () => {
+  const title = document.querySelector('.bountifulBeanstalkCastleView__title');
+  if (! title) {
+    return;
+  }
+
+  if (title.classList.contains('loot-displayed')) {
+    const display = document.querySelector('.loot-display');
+    if (display) {
+      display.remove();
+    }
+  }
+
+  const loot = document.querySelector('.bountifulBeanstalkCastleView__currentRoomLoot');
+  const lootMult = document.querySelector('.bountifulBeanstalkCastleView__currentRoomLootMultiplier');
+
+  if (! loot || ! lootMult) {
+    title.classList.remove('loot-displayed');
+    return;
+  }
+
+  if (loot.innerText && lootMult.innerText) {
+    makeElement('div', 'loot-display', `${lootMult.innerText}x ${loot.innerText}`, title);
+    title.classList.add('loot-displayed');
+  }
+};
+
+const updateLootText = () => {
+  const ccLoot = document.querySelector('.headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--condensed_creativity div');
+  if (ccLoot) {
+    ccLoot.innerText = 'Con. Creativity:';
+  }
+
+  const featherLoot = document.querySelector('.headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--feather div');
+  if (featherLoot) {
+    featherLoot.innerText = 'Golden Feather:';
+  }
+};
+
 /**
  * Initialize the module.
  */
@@ -120,6 +182,12 @@ export default async () => {
   keepInventoryToggled();
   keepRoomDataToggled();
   makeGiantMoreVisible();
+  toggleFuelWithIcon();
+  updateTitle();
+  updateLootText();
+
+  onRequest('*', updateTitle);
+  onTurn(updateTitle, 1000);
 
   funTime();
 
