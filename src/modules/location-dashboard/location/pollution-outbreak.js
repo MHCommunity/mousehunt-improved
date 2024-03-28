@@ -10,6 +10,9 @@ export default (quests) => {
     return '';
   }
 
-  const q = quests.QuestPollutionOutbreak;
-  return `${q.items.crude_pollutinum_stat_item.quantity}/${q.max_pollutinum} Pollutinum, ${q.refined_pollutinum} refined`;
+  const crude = quests.QuestPollutionOutbreak?.items?.crude_pollutinum_stat_item?.quantity || 0;
+  const refined = quests.QuestPollutionOutbreak?.items?.refined_pollutinum_stat_item?.quantity || 0;
+  const max = quests.QuestPollutionOutbreak?.max_pollutinum || 0;
+
+  return `${crude.toLocaleString()}/${max} Pollutinum<div class="stats">${refined.toLocaleString()} Refined Pollutinum</div>`;
 };

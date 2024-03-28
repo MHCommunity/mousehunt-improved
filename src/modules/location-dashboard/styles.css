@@ -255,3 +255,7 @@ img.locationImage {
   justify-content: space-around;
   margin-top: 30px;
 }
+
+.dashboard-fi-tiles {
+  vertical-align: middle;
+}

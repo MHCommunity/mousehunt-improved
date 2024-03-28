@@ -16,5 +16,5 @@ export default (quests) => {
     hunts: quests.QuestIceberg.turns_taken || 0,
   };
 
-  return `${quest.phase}: ${quest.progress} ft - Hunt #${quest.hunts}`;
+  return `${quest.phase}: ${quest.progress} ft.<div class="stats">Hunt #${quest.hunts}</div>`;
 };
