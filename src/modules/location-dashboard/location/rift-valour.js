@@ -24,7 +24,7 @@ export default (quests) => {
 
   let text = '';
 
-  text = quest.floor === 0 ? 'Outside' : `Floor ${quest.floor} (${quest.floor_name}) ${quest.hunts_remaining} hunts remaining`;
+  text = quest.floor === 0 ? 'Outside' : `Floor ${quest.floor} (${quest.floor_name}) · ${quest.hunts_remaining} hunts remaining`;
 
   return `<div>${quest.umbra}</div> ${text} <div class="stats">Speed ${quest.speed} · Sync ${quest.sync} · Siphon ${quest.siphon}</div>`;
 };
