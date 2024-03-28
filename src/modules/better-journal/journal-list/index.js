@@ -1,28 +1,24 @@
-import { addEvent, addStyles } from '@utils';
+import { addEvent, addStyles, makeElement } from '@utils';
 
 import styles from './styles.css';
 
 const makeListItems = (itemList) => {
-  const list = document.createElement('ul');
-  list.classList.add('better-journal-list');
-
+  console.log(itemList);
+  const list = makeElement('ul', 'better-journal-list');
   if (0 === itemList.length) {
     return list;
   }
 
   itemList.forEach((item) => {
-    const listItem = document.createElement('li');
-    listItem.innerHTML = item.trim();
-    list.append(listItem);
+    makeElement('li', 'better-journal-list-item', item, list);
   });
 
   return list;
 };
 
 const splitText = (text) => {
-  text = text.replaceAll('Really, Really', 'Really Really');
-  const splitItems = text.split(/, | and /);
-  return splitItems.map((item) => item.trim()).filter(Boolean);
+  const items = text.split(/, (?=\d)| and (?=\d)/);
+  return items.map((item) => item.trim()).filter(Boolean);
 };
 
 const getItemsFromText = (type, text) => {
@@ -57,29 +53,38 @@ const getItemsFromText = (type, text) => {
     if (suffix.length < 2) {
       return {
         list: splitText(items[1]),
-        newText: 'I received:',
+        newText: 'I received: ',
       };
+    }
+
+    let suffixString = suffix[1];
+    // remove the trailing . if it exists
+    if (suffixString.endsWith('.')) {
+      suffixString = suffixString.slice(0, -1);
     }
 
     return {
       list: splitText(suffix[0]),
-      newText: `I opened ${suffix[1]} and received:`,
+      newText: `I opened ${suffixString} and received:`,
     };
   }
 
-  if ('other' === type) {
-    items = text.innerHTML.split('the following loot</b>');
-    if (items.length < 2) {
-      return {
-        list: [],
-        newText: text.innerHTML,
-      };
-    }
+  // if the text contains "the following loot</b>", we want to split it there
+  // if the text contains "Inside my chest was", we want to split it there
 
+  if (text.innerHTML.includes('the following loot</b>')) {
+    items = text.innerHTML.split('the following loot</b>');
     return {
-      items,
       list: splitText(items[1]),
-      newText: `${items[0]} the following loot</b>:`,
+      newText: `${items[0]} the following loot</b>: `,
+    };
+  }
+
+  if (text.innerHTML.includes('Inside my chest was')) {
+    items = text.innerHTML.split('Inside my chest was');
+    return {
+      list: splitText(items[1]),
+      newText: `${items[0]} Inside my chest was: `,
     };
   }
 };
@@ -100,6 +105,7 @@ const formatAsList = async (entry) => {
     'catchsuccess',
     'catchsuccessloot',
     'luckycatchsuccess',
+    'catchsuccessprize',
   ];
 
   const convertibleClassesToCheck = [
@@ -108,6 +114,7 @@ const formatAsList = async (entry) => {
 
   const otherClassesToCheck = [
     'iceberg_defeated',
+    'dailyreward',
   ];
 
   const classes = new Set(entry.classList);
