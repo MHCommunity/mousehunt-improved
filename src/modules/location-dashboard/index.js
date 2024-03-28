@@ -19,6 +19,7 @@ import styles from './styles.css';
 import { getFieryWarpathText, setFieryWarpathData } from './location/desert-warpath';
 import { getSeasonalGardenText, setSeasonalGardenData } from './location/seasonal-garden';
 import { getZugzwangTowerText, setZugzwangTowerData } from './location/zugzwang-tower';
+import getBountifulBeanstalkText from './location/bountiful-beanstalk';
 import getBristleWoodsRiftText from './location/rift-bristle-woods';
 import getBurroughsRiftText from './location/rift-burroughs';
 import getFloatingIslandsText from './location/floating-islands';
@@ -129,6 +130,7 @@ const doLocationRefresh = async () => {
 
   const environmentsToUse = new Set([
     'ancient_city',
+    'bountiful_beanstalk',
     'desert_warpath',
     'floating_islands',
     'foreword_farm',
@@ -429,6 +431,7 @@ const getDashboardContents = async () => {
   makeRegionMarkup('Hollow Heights', hollowHeights, contentsWrapper);
 
   const folkloreForest = document.createElement('div');
+  makeLocationMarkup('bountiful_beanstalk', 'Bountiful Beanstalk', getBountifulBeanstalkText, folkloreForest, quests);
   makeLocationMarkup('foreword_farm', 'Foreword Farm', getForewordFarmText, folkloreForest, quests);
   makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest, quests);
   makeRegionMarkup('Folklore Forest', folkloreForest, contentsWrapper);
