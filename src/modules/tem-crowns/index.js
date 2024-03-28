@@ -35,8 +35,14 @@ const getCrownType = (catches) => {
 
 /**
  * Add crowns to the TEM.
+ *
+ * @param {string} panel The panel type.
  */
-const addCrownsToTEM = async () => {
+const addCrownsToTEM = async (panel) => {
+  if ('trap_effectiveness' !== panel) {
+    return;
+  }
+
   const crowns = await doRequest('managers/ajax/mice/getstat.php', {
     action: 'get_hunting_stats',
   });
