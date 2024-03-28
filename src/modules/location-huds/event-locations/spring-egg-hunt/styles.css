@@ -134,3 +134,29 @@
 .highlight .springHuntHUD-popup-egg.found {
   opacity: 0.2;
 }
+
+.springHuntHUD-popup-egg.found::after {
+  top: 60px;
+  left: 0;
+}
+
+.springHuntHUD-popup-moreInfo-content-paragraph-container img {
+  transition: 0.2s;
+}
+
+.springHuntHUD-popup-moreInfo-content-paragraph-container img:hover {
+  transform: scale(1.2) rotate(-2deg);
+}
+
+.springHuntHUD-shelf-item.mousehuntTooltipParent:hover .mousehuntTooltip {
+  display: none;
+}
+
+.springHuntHUD-shelf-item-name {
+  margin: 2px -30px;
+  line-height: 1.4;
+}
+
+.springHuntHUD-shop-cost:hover {
+  filter: brightness(1.3);
+}
