@@ -118,9 +118,12 @@ const replacements = [
   ['A hungry', 'I caught a bonus'],
   ['A hyperactive', 'I caught a bonus'],
   ['A sugar-induced', 'I caught a bonus'],
+  ['Eggstra Fondue extracted', 'My Eggstra Fondue extracted'],
+  ['Additionally my Eggstra Fondue also extracted', 'And'],
 
   ['Here is the loot summary from my infiltration of', 'I looted the following from'],
   ['Trove. and received', 'Trove and received'],
+  ['Lucky me, a prize mouse wandered by and fell for my trap!', '🎉️ A prize mouse fell into my trap!'],
 ];
 
 const replaceInEntry = (entry) => {
