@@ -5,8 +5,7 @@ import {
   makeElement,
   onPageChange,
   onRequest,
-  onTravel,
-  onTurn
+  onTravel
 } from '@utils';
 
 import {
@@ -171,9 +170,8 @@ const main = async () => {
   }
 
   onPageChange({ camp: { show: updateMinLucks } });
-  onRequest('users/changetrap.php', updateMinLucks);
+  onRequest('*', updateMinLucks);
   onTravel(null, { callback: updateMinLucks });
-  onTurn(updateMinLucks, 3000);
 };
 
 /**
