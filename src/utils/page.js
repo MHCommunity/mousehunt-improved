@@ -10,6 +10,11 @@ const getCurrentPage = () => {
 
   const page = hg.utils.PageUtil.getCurrentPage();
   if (! page) {
+    const query = hg?.utils?.PageUtil?.getQueryParams() || {};
+    if (query?.switch_to && 'mobile' === query.switch_to) {
+      return 'camp';
+    }
+
     return null;
   }
 
