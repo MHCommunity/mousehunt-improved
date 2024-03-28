@@ -59,12 +59,12 @@
 
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"],
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"] {
-  padding-left: 24px;
+  padding-left: 17px;
 }
 
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"]::before,
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]::before {
-  left: 1px;
+  left: -3px;
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/5da5d920ba95f944d4e5b37ae235685e.png?cv=2);
 }
 
