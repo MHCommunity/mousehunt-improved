@@ -10,6 +10,10 @@ import styles from './styles.css';
 
 let _togglePopup;
 const replaceInboxOpen = () => {
+  if (! messenger || ! messenger?.UI?.notification?.togglePopup) {
+    return;
+  }
+
   if (! _togglePopup) {
     _togglePopup = messenger.UI.notification.togglePopup;
   }
@@ -100,7 +104,9 @@ const removeDailyDrawNotifications = async (data) => {
 const init = async () => {
   addStyles(styles, 'hide-daily-draw');
 
-  replaceInboxOpen();
+  if ('undefined' !== typeof messenger) {
+    replaceInboxOpen();
+  }
 
   // this clears the notification count when it does its self request.
   setTimeout(removeDailyDrawNotifications, 1000);
