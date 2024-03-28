@@ -2188,5 +2188,159 @@
         "name": "SUPER|brie+"
       }
     ]
+  },
+  "bountiful_beanstalk": {
+    "categories": [
+      {
+        "name": "Beanstalk",
+        "id": "beanstalk",
+        "icon": "",
+        "color": "#45890e",
+        "mice": [
+          "budrich_thornborn",
+          "leafton_beanwell",
+          "herbaceous_bravestalk",
+          {
+            "mouse": "vinneus_stalkhome",
+            "subcategory": "boss"
+          }
+        ]
+      },
+      {
+        "name": "Dungeon",
+        "id": "dungeon",
+        "icon": "",
+        "color": "#919ac7",
+        "mice": [
+          "peaceful_prisoner",
+          "diminutive_detainee",
+          "smug_smuggler",
+          {
+            "mouse": "cell_sweeper",
+            "subcategory": "beanster"
+          },
+          {
+            "mouse": "jovial_jailor",
+            "subcategory": "beanster"
+          },
+          {
+            "mouse": "lethargic_guard",
+            "subcategory": "beanster"
+          },
+          {
+            "mouse": "gate_keeper",
+            "subcategory": "lavish"
+          },
+          {
+            "mouse": "key_master",
+            "subcategory": "royal"
+          },
+          {
+            "mouse": "wrathful_warden",
+            "subcategory": "royal"
+          },
+          {
+            "mouse": "dungeon_master",
+            "subcategory": "boss"
+          }
+        ]
+      },
+      {
+        "name": "Ballroom",
+        "id": "ballroom",
+        "icon": "",
+        "color": "#e0b1b2",
+        "mice": [
+          "whimsical_waltzer",
+          "sassy_salsa_dancer",
+          "baroque_dancer",
+          {
+            "mouse": "obstinate_oboist",
+            "subcategory": "beanster"
+          },
+          {
+            "mouse": "peevish_piccoloist",
+            "subcategory": "beanster"
+          },
+          {
+            "mouse": "sultry_saxophonist",
+            "subcategory": "beanster"
+          },
+          {
+            "mouse": "violent_violinist",
+            "subcategory": "lavish"
+          },
+          {
+            "mouse": "Chafed Cellis",
+            "subcategory": "lavish"
+          },
+          {
+            "mouse": "treacherous_tubaist",
+            "subcategory": "royal"
+          },
+          {
+            "mouse": "malevolent_maestro",
+            "subcategory": "boss"
+          }
+        ]
+      },
+      {
+        "name": "Great Hall",
+        "id": "great-hall",
+        "icon": "",
+        "color": "#d68d0a",
+        "mice": [
+          "clumsy_cupbearer",
+          "plotting_page",
+          "scheming_squire",
+          {
+            "mouse": "vindictive_viscount",
+            "subcategory": "beanster"
+          },
+          {
+            "mouse": "baroness_von_bean",
+            "subcategory": "beanster"
+          },
+          {
+            "mouse": "cagey_countess",
+            "subcategory": "beanster"
+          },
+          {
+            "mouse": "dastardly_duchess",
+            "subcategory": "lavish"
+          },
+          {
+            "mouse": "malicious_marquis",
+            "subcategory": "lavish"
+          },
+          {
+            "mouse": "pernicious_prince",
+            "subcategory": "royal"
+          },
+          {
+            "mouse": "mythical_giant_king",
+            "subcategory": "boss"
+          }
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "beanster",
+        "name": "Beanster"
+      },
+      {
+        "id": "Lavish",
+        "name": "Lavish Beanster"
+      },
+      {
+        "id": "royal",
+        "nme": "Royal Beanster"
+      },
+      {
+        "id": "boss",
+        "name": "Boss"
+      }
+    ]
   }
 }
