@@ -1,7 +1,9 @@
 import {
   addHudStyles,
+  doRequest,
   getSetting,
   makeElement,
+  makeMhButton,
   onRequest,
   onTurn,
   saveSetting
@@ -180,6 +182,136 @@ const updateLootText = async () => {
   }
 };
 
+const addCraftingButtons = async () => {
+  const baits = document.querySelectorAll('.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer');
+  if (! baits) {
+    return;
+  }
+
+  const purchaseBait = async (type, quantity, baitEl, actionsEl) => {
+    actionsEl.classList.add('loading');
+
+    if (quantity === 2) {
+      if ('beanster_cheese' === type) {
+        type = 'beanster_pack_small_convertible';
+      } else if ('lavish_beanster_cheese' === type) {
+        type = 'lavish_beanster_pack_small_convertible';
+      } else if ('leaping_lavish_beanster_cheese' === type) {
+        type = 'leaping_lavish_beanster_pack_small_convertible';
+      } else if ('royal_beanster_cheese' === type) {
+        type = 'royal_beanster_pack_small_convertible';
+      }
+    }
+
+    const results = await doRequest('managers/ajax/purchases/itempurchase.php', {
+      type: quantity === 1 ? type : `${type}_small_convertible`,
+      quantity: 1,
+      buy: 1,
+      is_kings_cart_item: 0,
+    });
+
+    const newInventoryQuantities = Object.keys(results.inventory).reduce((acc, key) => {
+      acc[key] = results.inventory[key].quantity;
+      return acc;
+    }, {});
+
+    const newItemsQuantities = Object.keys(results.items).reduce((acc, key) => {
+      acc[key] = results.items[key].num_owned;
+      return acc;
+    }, {});
+
+    const newQuantities = {
+      ...newInventoryQuantities,
+      ...newItemsQuantities,
+    };
+
+    baits.forEach((bait) => {
+      const baitQuantity = bait.querySelector('.headsUpDisplayBountifulBeanstalkView__baitQuantity');
+      if (! baitQuantity) {
+        return;
+      }
+
+      const baitQuantityType = baitQuantity.getAttribute('data-item-type');
+      if (baitQuantityType && newQuantities[baitQuantityType]) {
+        baitQuantity.innerText = newQuantities[baitQuantityType];
+      }
+
+      const baitCraftQty = bait.querySelector('.headsUpDisplayBountifulBeanstalkView__ingredientQuantity');
+      if (! baitCraftQty) {
+        return;
+      }
+
+      const baitIngredientType = baitCraftQty.getAttribute('data-item-type');
+      if (baitIngredientType && newQuantities[baitIngredientType]) {
+        baitCraftQty.innerText = newQuantities[baitIngredientType];
+      }
+    });
+
+    actionsEl.classList.remove('loading');
+    actionsEl.classList.add('success');
+
+    setTimeout(() => {
+      actionsEl.classList.remove('success');
+    }, 1000);
+
+    return (results && results.success);
+  };
+
+  baits.forEach((bait) => {
+    const quantity = bait.querySelector('.headsUpDisplayBountifulBeanstalkView__baitQuantity');
+    if (! quantity) {
+      return;
+    }
+
+    const existingCraftingPopup = bait.querySelector('.mh-crafting-popup');
+    if (existingCraftingPopup) {
+      return;
+    }
+
+    quantity.classList.add('mousehuntTooltipParent');
+
+    const popup = makeElement('div', ['mh-crafting-popup']);
+
+    const existingPopup = bait.querySelector('.mousehuntTooltip');
+    if (existingPopup) {
+      existingPopup.classList.remove('noEvents');
+    } else {
+      popup.classList.add('mousehuntTooltip', 'tight', 'top');
+    }
+
+    const actions = makeElement('div', 'mh-crafting-actions');
+    const baitType = bait.getAttribute('data-item-type');
+
+    makeMhButton({
+      text: 'Craft 1',
+      className: 'mh-crafting-action',
+      size: 'tiny',
+      callback: () => {
+        purchaseBait(baitType, 1, bait, popup);
+      },
+      appendTo: actions,
+    });
+
+    makeMhButton({
+      text: 'Craft 2',
+      className: 'mh-crafting-action',
+      size: 'tiny',
+      callback: () => {
+        purchaseBait(baitType, 2, bait, popup);
+      },
+      appendTo: actions,
+    });
+
+    popup.append(actions);
+
+    if (existingPopup) {
+      existingPopup.insertBefore(popup, existingPopup.lastChild);
+    } else {
+      bait.append(popup);
+    }
+  });
+};
+
 /**
  * Initialize the module.
  */
@@ -199,6 +331,7 @@ export default async () => {
   toggleFuelWithIcon();
   updateTitle();
   updateLootText();
+  addCraftingButtons();
 
   onRequest('*', updateTitle);
   onTurn(updateTitle, 1000);
