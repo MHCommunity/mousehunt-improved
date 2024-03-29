@@ -12,3 +12,11 @@
   font-weight: 400;
   line-height: 16px;
 }
+
+.mh-improved-tooltip-stay-open,
+.mousehuntTooltip.mh-improved-tooltip-stay-open,
+.mousehuntTooltipParent:hover > .mousehuntTooltip.mh-improved-tooltip-stay-open {
+  display: block;
+  transition: none;
+  animation: none;
+}

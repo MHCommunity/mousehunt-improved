@@ -11,7 +11,7 @@ import regionStyles from '../shared/folklore-forest/styles.css';
 import smallInvStyles from './small-inv.css';
 import styles from './styles.css';
 
-const keepInventoryToggled = () => {
+const keepInventoryToggled = async () => {
   const toggleButton = document.querySelector('.headsUpDisplayBountifulBeanstalk__inventoryContainer .headsUpDisplayBountifulBeanstalk__inventoryContainerButton');
   if (! toggleButton) {
     return;
@@ -48,7 +48,7 @@ const keepInventoryToggled = () => {
   });
 };
 
-const keepRoomDataToggled = () => {
+const keepRoomDataToggled = async () => {
   const roomData = document.querySelector('.headsUpDisplayBountifulBeanstalkView__lootMultiplierContainer');
   if (! roomData) {
     return;
@@ -76,7 +76,20 @@ const keepRoomDataToggled = () => {
   });
 };
 
-const funTime = () => {
+const keepTooltipToggled = async () => {
+  const tooltip = document.querySelector('.bountifulBeanstalkCastleView__plinthOverlay.mousehuntTooltipParent .mousehuntTooltip');
+  if (! tooltip) {
+    return;
+  }
+
+  tooltip.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    tooltip.classList.toggle('mh-improved-tooltip-stay-open');
+  });
+};
+
+const funTime = async () => {
   const meter = document.querySelector('.bountifulBeanstalkCastleView__noiseMeterFrame');
   if (! meter) {
     return;
@@ -98,7 +111,7 @@ const funTime = () => {
   });
 };
 
-const makeGiantMoreVisible = () => {
+const makeGiantMoreVisible = async () => {
   const background = document.querySelector('.bountifulBeanstalkCastleView__background');
   if (! background) {
     return;
@@ -112,7 +125,7 @@ const makeGiantMoreVisible = () => {
   }
 };
 
-const toggleFuelWithIcon = () => {
+const toggleFuelWithIcon = async () => {
   const icon = document.querySelector('.headsUpDisplayBountifulBeanstalkView__fuelContainer');
   if (! icon) {
     return;
@@ -128,7 +141,7 @@ const toggleFuelWithIcon = () => {
   });
 };
 
-const updateTitle = () => {
+const updateTitle = async () => {
   const title = document.querySelector('.bountifulBeanstalkCastleView__title');
   if (! title) {
     return;
@@ -155,7 +168,7 @@ const updateTitle = () => {
   }
 };
 
-const updateLootText = () => {
+const updateLootText = async () => {
   const ccLoot = document.querySelector('.headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--condensed_creativity div');
   if (ccLoot) {
     ccLoot.innerText = 'Con. Creativity:';
@@ -181,6 +194,7 @@ export default async () => {
 
   keepInventoryToggled();
   keepRoomDataToggled();
+  keepTooltipToggled();
   makeGiantMoreVisible();
   toggleFuelWithIcon();
   updateTitle();
