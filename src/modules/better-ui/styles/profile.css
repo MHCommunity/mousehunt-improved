@@ -216,7 +216,8 @@
 
 .mouseCrownsView-group-mouse.highlight .mouseCrownsView-group-mouse-image .mouseCrownsView-crown {
   top: 5px;
-  left: 5px;
+  right: 5px;
+  left: unset;
 }
 
 .mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-image {
@@ -224,7 +225,7 @@
 }
 
 .mouseCrownsView-group-mouse.landscape:hover .mouseCrownsView-group-mouse-image {
-  background-size: 200%;
+  background-size: auto 230px;
 }
 
 .mouseCrownsView-group-mouse.highlight .mouseCrownsView-group-mouse-padding {
@@ -249,6 +250,8 @@
   align-items: stretch;
   justify-content: start;
   max-width: 720px;
+  margin-right: -2px;
+  margin-left: -5px;
 }
 
 .mouseCrownsView-group-mice.favourites {
@@ -269,15 +272,15 @@
 
 .mouseCrownsView-group-mouse-image {
   width: 100%;
-  height: 160px;
-  border: none !important; /* profile+ */
+  height: 200px;
+  border: none !important;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
-.none .mouseCrownsView-group-mouse-catches {
-  font-size: 12px;
+.mouseCrownsView-crown.none {
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_none.png?asset_cache_version=3) !important;
 }
 
 .mouseCrownsView-group-header-name {
@@ -289,7 +292,7 @@
   margin: 10px;
   background-color: #f5f5f5;
   border-radius: 5px;
-  box-shadow: 0 0 1px 1px #a7a7a7;
+  box-shadow: 0 0 1px 1px #cbcbcb;
 }
 
 .mouseCrownsView-group.platinum {
@@ -297,9 +300,17 @@
   box-shadow: 0 0 1px 1px #7e6af9;
 }
 
+.mouseCrownsView-group.platinum .mouseCrownsView-group-header {
+  box-shadow: inset 0 0 1px 1px #bfb6fc;
+}
+
 .mouseCrownsView-group.gold {
   background-color: #fbf5ce;
   box-shadow: 0 0 1px 1px #cfc791;
+}
+
+.mouseCrownsView-group.gold .mouseCrownsView-group-header {
+  box-shadow: 0 0 1px 1px #ded9b5;
 }
 
 .mouseCrownsView-group.silver {
@@ -307,16 +318,28 @@
   box-shadow: 0 0 1px 1px #8fb9e6;
 }
 
+.mouseCrownsView-group.silver .mouseCrownsView-group-header {
+  box-shadow: 0 0 1px 1px #b4d0ee;
+}
+
 .mouseCrownsView-group.bronze {
   background-color: #ffe6d4;
   box-shadow: 0 0 1px 1px #d8af91;
+}
+
+.mouseCrownsView-group.bronze .mouseCrownsView-group-header {
+  box-shadow: 0 0 1px 1px #ead3c3;
+}
+
+.mouseCrownsView-group.none .mouseCrownsView-group-header {
+  box-shadow: 0 0 1px 1px #c5c5c5;
 }
 
 .mouseCrownsView-group-header {
   display: flex;
   align-items: center;
   padding: 5px;
-  border: none !important; /* profile+ */
+  border: none !important;
   border-radius: 5px;
 }
 
@@ -330,10 +353,11 @@
 
 .mouseCrownsView-group-mouse-favouriteButton.active {
   opacity: 0;
-  transition: 0.4s;
+  transition: 0.4s ease-in;
 }
 
-.mouseCrownsView-group-mouse.highlight.favourite:hover .mouseCrownsView-group-mouse-favouriteButton {
+.mouseCrownsView-group-mouse.favourite:hover .mouseCrownsView-group-mouse-favouriteButton,
+.mouseCrownsView-group-mouse.favourite:hover .mouseCrownsView-group-mouse-favouriteButton.active {
   opacity: 1;
 }
 
@@ -359,11 +383,15 @@
 
 .hideLeContainer {
   position: absolute;
-  top: -7px;
-  right: 35px;
+  top: -9px;
+  right: 0;
   display: flex;
-  align-items: center;
-  width: auto !important;
+  flex-direction: row-reverse;
+  opacity: 0.5;
+}
+
+.hideLeContainer:hover {
+  opacity: 1;
 }
 
 .hideLeContainer #hideLeCb {
@@ -423,7 +451,14 @@ a.friendsProfileView-randomFriend {
 }
 
 .hunterProfileItemsView-categoryContent-item-name {
+  width: 95%;
   padding: 0 1px 3px;
+}
+
+.hunterProfileItemsView-categoryContent-item-padding .itemImage .quantity {
+  right: 0;
+  bottom: 5px;
+  padding: 5px;
 }
 
 .hunterProfileItemsView-categoryContent-item .itemImage {
@@ -431,6 +466,8 @@ a.friendsProfileView-randomFriend {
   height: 100px;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 100%;
+  transition: 0.2s ease-in;
 }
 
 .hunterProfileItemsView-categoryContent[data-category="map_piece"] .hunterProfileItemsView-categoryContent-item .itemImage,
@@ -498,4 +535,67 @@ a.friendsProfileView-randomFriend {
   padding: 2px 7px 3px 20px;
   font-size: 12px;
   white-space: nowrap;
+}
+
+.mouseCrownsView-group-mouse.landscape .mouseCrownsView-group-mouse-image,
+.mouseCrownsView-group-mouse-image {
+  background-position: center;
+  background-size: 100%;
+  transition: 0.4s ease-in;
+}
+
+.mouseCrownsView-group-mouse.landscape .mouseCrownsView-group-mouse-image {
+  background-position: center;
+  background-size: auto 200px;
+}
+
+.mouseCrownsView-group-mouse.landscape .mouseCrownsView-group-mouse-image.ful_mina_mountain_queen {
+  background-position: 80% center;
+}
+
+.mouseCrownsView-group-mouse.landscape:hover .mouseCrownsView-group-mouse-image.ful_mina_mountain_queen {
+  background-position: 78% center;
+}
+
+.mouseView-group.mouseview-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-padding,
+.mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-padding {
+  background-color: #fff;
+}
+
+.mouseCrownsView-group-mouse-favouriteButton {
+  top: 0;
+  right: 0;
+}
+
+.mouseCrownsView-group-mouse-favouriteButton:hover {
+  background-color: transparent;
+  border: none;
+}
+
+.mouseCrownsView-group-mouse .mouseCrownsView-group-mouse-favouriteButton {
+  pointer-events: all !important;
+}
+
+.mouseCrownsView-group-mouse .mouseCrownsView-group-mouse-favouriteButton:hover {
+  top: 2px;
+  right: 2px;
+  background: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png?asset_cache_version=3) 0 0 / cover no-repeat;
+}
+
+.hunterProfileItemsView-categoryContent-item:hover .itemImage {
+  background-size: 125%;
+}
+
+.hunterProfileItemsView-categoryContent-item .itemImage .quantity {
+  opacity: 1;
+  transition: 0.2s ease-in;
+}
+
+.hunterProfileItemsView-categoryContent-item:hover .itemImage .quantity {
+  opacity: 0;
 }

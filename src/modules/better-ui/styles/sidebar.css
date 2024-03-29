@@ -1,3 +1,7 @@
 .pageSidebarView-user {
   border-bottom: none;
 }
+
+.pageSidebarView-block-description {
+  display: none;
+}

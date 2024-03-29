@@ -47,6 +47,19 @@
   display: none;
 }
 
+#tsitu-location-stats > div span br {
+  display: block;
+}
+
+#tsitu-location-stats > div span br:first-child,
+#tsitu-location-stats > div span br:last-child {
+  display: none;
+}
+
+#tsitu-location-stats > div span {
+  line-height: 20px;
+}
+
 #tsitu-location-stats > div span > button,
 .tsitu-current-detail > span > button,
 #tsitu-location-stats > button {

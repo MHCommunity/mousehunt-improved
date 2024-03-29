@@ -254,6 +254,7 @@ a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryCont
 
 .mouseViewPopup .mouseView-image {
   transition: 0.2s;
+  margin-bottom: 10px;
 }
 
 .mouseViewPopup .mouseView-descriptionContainer {
@@ -310,32 +311,6 @@ ul.minluck-list {
   font-size: 12px;
   font-weight: 900;
   border-bottom: 1px solid #ccc;
-}
-
-.mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-padding,
-.mouseCrownsView-group-mouse:hover .mouseCrownsView-group-mouse-padding {
-  background-color: #fff;
-}
-
-.mouseCrownsView-group-mouse-favouriteButton {
-  top: 0;
-  right: 0;
-}
-
-.mouseCrownsView-group-mouse.landscape .mouseCrownsView-group-mouse-image,
-.mouseCrownsView-group-mouse-image {
-  background-position: center;
-  background-size: 100%;
-  transition: 0.4s;
-}
-
-.mouseCrownsView-group-mouse.landscape .mouseCrownsView-group-mouse-image {
-  background-size: 175%;
-}
-
-.mouseView-group.mouseview-title-group {
-  display: flex;
-  flex-direction: column;
 }
 
 .mouseview-relicHunter {

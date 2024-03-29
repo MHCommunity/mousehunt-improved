@@ -28,13 +28,11 @@
   top: 3px;
   right: 3px;
   padding: 2px;
-  background-color: #eee;
-  border: 1px solid #ccc;
   border-radius: 50%;
 }
 
 .mouseCrownsView button.ptbtn {
-  font-size: 13px !important;
+  font-size: 14px !important;
   background-color: #9fcad8 !important;
   border: 1px solid #008cba;
 }
@@ -122,4 +120,23 @@ button.ptbtn {
 
 .rank.summary {
   line-height: 1.5;
+}
+
+img.pt.undefined {
+  display: none;
+}
+
+a.mouseListView-categoryContent-subgroup-mouse-thumb {
+  position: relative;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.mouseCrownsView-group-mouse.landscape .mouseCrownsView-group-mouse-image {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.mouseCrownsView-group-mice.favourites img.pt {
+  display: none;
 }
