@@ -1,0 +1,43 @@
+.mh-improved-mice-sidebar {
+  padding: 0;
+  margin: 5px 0 15px;
+  border: 1px solid #ddedff;
+}
+
+.mh-improved-mice-sidebar-title {
+  position: relative;
+  padding: 5px;
+  font-size: 11px;
+  text-align: center;
+  background-color: #ddedff;
+}
+
+.mh-improved-mice-sidebar-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.mh-improved-mice-sidebar-mouse {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1px 5px;
+}
+
+.mh-improved-mice-sidebar-mouse-image {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px #fff;
+}
+
+.mh-improved-mice-sidebar-mouse-name {
+  font-size: 10px;
+}
+
+.mh-improved-mice-sidebar-mouse:hover {
+  cursor: pointer;
+  background-color: #eee;
+}

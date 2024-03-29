@@ -17,6 +17,7 @@ import {
 import hoverMice from './hover-mice';
 import mousePage from './mouse-page';
 import settings from './settings';
+import sidebar from './sidebar';
 
 import styles from './styles.css';
 
@@ -400,6 +401,10 @@ const init = async () => {
 
   if (getSetting('better-mice.show-mouse-hover', true)) {
     hoverMice();
+  }
+
+  if (getSetting('better-mice.show-mice-sidebar', true)) {
+    sidebar();
   }
 
   replaceShowMouseImage();
