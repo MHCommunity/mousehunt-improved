@@ -141,7 +141,7 @@
 }
 
 .springHuntHUD-popup-moreInfo-content-paragraph-container img {
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 .springHuntHUD-popup-moreInfo-content-paragraph-container img:hover {
@@ -159,4 +159,19 @@
 
 .springHuntHUD-shop-cost:hover {
   filter: brightness(1.3);
+}
+
+.mousehuntTooltipParent:hover .springEggHuntCampHUD-fuelButtonBackground::after {
+  position: absolute;
+  top: 9px;
+  right: 24px;
+  width: 14px;
+  height: 11px;
+  content: "";
+  background: linear-gradient(90deg, #5b201c 0%, #4e1915 100%);
+  border-radius: 0 0 40px 36px;
+  box-shadow:
+    0 -0.7px 0 0 #652c1c,
+    0 -1px 0 0 #eda934,
+    0 -3px 0 0 #f5a02d;
 }
