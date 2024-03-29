@@ -16,7 +16,7 @@
 
 .mountainHUD-boulder-state,
 .mousehuntItem.mountainHUD-conduit-charm .mousehuntItem-image {
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 .mountainHUD-boulder:hover .mountainHUD-boulder-state {
@@ -195,7 +195,7 @@
 }
 
 .mountainHUD-mouse {
-  transition: 0.2s ease-out;
+  transition: 0.2s ease-in ease-out;
   transform-origin: bottom;
   will-change: transform;
 }
@@ -237,7 +237,7 @@
 
 .mountainHUD-miniBoulderContainer .mountainHUD-miniBoulder-health-progressBar span {
   box-shadow: inset 1px 0 2px 1px #000;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 .mountainHUD-miniBoulder-state {

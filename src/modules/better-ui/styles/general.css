@@ -419,7 +419,7 @@ input.itemView-action-convert-quantity {
 
 .newsPostBody #news-post-responsive .flexCenter img {
   max-width: 100px;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 .newsPostBody #news-post-responsive .flexCenter img.huge {
@@ -432,7 +432,7 @@ input.itemView-action-convert-quantity {
 }
 
 .newsPostBody #news-post-responsive img {
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 .newsPostBody #news-post-responsive img:hover {

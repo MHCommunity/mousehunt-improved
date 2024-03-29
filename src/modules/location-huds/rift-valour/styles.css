@@ -527,7 +527,7 @@ a.valourRiftHUD-bait-image {
 
 .valourRiftHUD-towerLoot-thumb {
   background-size: 80%;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
   transform: scale(1.7);
 }
 

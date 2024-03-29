@@ -236,7 +236,7 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
 
 .mouseListView-categoryContent-subgroup-mouse-thumb,
 .mouseListView-categoryContent-subgroup-mouse .mouseListView-categoryContent-subgroup-mouse-margin {
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 .mouseListView-categoryContent-subgroup-mouse-thumb:hover {
@@ -253,8 +253,8 @@ a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryCont
 }
 
 .mouseViewPopup .mouseView-image {
-  transition: 0.2s;
   margin-bottom: 10px;
+  transition: 0.2s ease-in;
 }
 
 .mouseViewPopup .mouseView-descriptionContainer {

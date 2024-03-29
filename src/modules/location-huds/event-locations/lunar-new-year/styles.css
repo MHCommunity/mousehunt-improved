@@ -142,7 +142,7 @@
   padding: 0;
   border-radius: 6px;
   box-shadow: 0 0 2px 0 #000;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
   transform-origin: bottom;
 }
 

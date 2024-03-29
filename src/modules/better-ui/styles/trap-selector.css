@@ -25,7 +25,7 @@
   background-color: #fff;
   border-radius: 50%;
   opacity: 0;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 .campPage-trap-itemBrowser-item:hover .campPage-trap-itemBrowser-item-favorite {

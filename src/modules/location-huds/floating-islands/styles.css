@@ -319,7 +319,7 @@ a.floatingIslandsHUD-islandLoot:focus {
 }
 
 .floatingIslandsHUD-enemyContainer .floatingIslandsHUD-enemy-thumb {
-  transition: 0.3s;
+  transition: 0.3s ease-in;
   transform: scale(1.1) translate(-2px, -3px);
   transform-origin: left;
 }
@@ -384,7 +384,7 @@ a.floatingIslandsHUD-islandLoot:focus {
   background-color: transparent;
   border: none;
   box-shadow: none;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 .floatingIslandsHUD-inventoryBag-item:hover .floatingIslandsHUD-item-image {

@@ -14,7 +14,7 @@
   max-height: 25px;
   margin: 5px 10px 0 0;
   opacity: 0.2;
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 .pageFrameView-footer a:nth-child(4) {

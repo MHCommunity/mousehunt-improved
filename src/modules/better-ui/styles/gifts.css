@@ -38,7 +38,7 @@
 }
 
 .dailyRewardPopup .progress .chest .image {
-  transition: 0.2s;
+  transition: 0.2s ease-in;
 }
 
 #overlayPopup.dailyRewardPopup .todaysRewards .reward:hover {
