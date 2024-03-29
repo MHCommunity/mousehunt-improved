@@ -1,5 +1,6 @@
 import { getData, sessionGet, sessionSet } from './data';
 import { onNavigation, onTravel } from './events';
+import { debuglog } from './debug';
 import { getCurrentPage } from './page';
 
 /**
@@ -153,16 +154,18 @@ const getTradableItems = async (valueKey = 'all') => {
   return returnItems;
 };
 
+const requests = {};
 /**
  * POST a request to the server and return the response.
  *
  * @async
- * @param {string} url      The url to post to, not including the base url.
- * @param {Object} formData The form data to post.
+ * @param {string}  url        The url to post to, not including the base url.
+ * @param {Object}  formData   The form data to post.
+ * @param {boolean} skipChecks Whether to skip the checks for an existing request.
  *
  * @return {Promise} The response.
  */
-const doRequest = async (url, formData = {}) => {
+const doRequest = async (url, formData = {}, skipChecks = false) => {
   // If we don't have the needed params, bail.
   if ('undefined' === typeof lastReadJournalEntryId || 'undefined' === typeof user) {
     return;
@@ -172,6 +175,48 @@ const doRequest = async (url, formData = {}) => {
   if (! lastReadJournalEntryId || ! user || ! user?.unique_hash) {
     return;
   }
+
+  const requestKey = Object.keys(formData).length ? `${url}-${JSON.stringify(formData)}` : url;
+  const timeRequested = Date.now();
+  debuglog('utils-data', `Making request: ${requestKey} at ${timeRequested}`);
+
+  if (requests[requestKey] && ! skipChecks) {
+    debuglog('utils-data', `Request already in progress: ${requestKey}`);
+
+    if (requests[requestKey].in_progress) {
+      return new Promise((resolve) => {
+        const timeout = setTimeout(async () => {
+          debuglog('utils-data', `Request timed out: ${requestKey}, starting new request`);
+
+          clearInterval(interval);
+          const newRequest = await doRequest(url, formData, true);
+          resolve(newRequest);
+        }, 2500);
+
+        const interval = setInterval(() => {
+          debuglog('utils-data', `Checking if request is complete: ${requestKey}`);
+
+          if (! requests[requestKey].in_progress) {
+            debuglog('utils-data', `Returning saved response: ${requestKey}`);
+
+            clearInterval(interval);
+            clearTimeout(timeout);
+            resolve(requests[requestKey].response);
+          }
+        }, 100);
+      });
+    } else if (requests[requestKey].time_requested > (timeRequested - 350)) {
+      debuglog('utils-data', `Request already completed: ${requestKey}`);
+      return requests[requestKey].response;
+    }
+  }
+
+  debuglog('utils-data', `Starting request: ${requestKey}`);
+
+  requests[requestKey] = {
+    in_progress: true,
+    time_requested: timeRequested,
+  };
 
   // Build the form for the request.
   const form = new FormData();
@@ -202,6 +247,13 @@ const doRequest = async (url, formData = {}) => {
 
   // Wait for the response and return it.
   const data = await response.json();
+
+  // Store the request in the requests object.
+  requests[requestKey] = {
+    time_requested: timeRequested,
+    response: data,
+  };
+
   return data;
 };
 
