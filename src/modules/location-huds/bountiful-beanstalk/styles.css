@@ -92,10 +92,6 @@
   font-size: 12px;
 }
 
-.headsUpDisplayBountifulBeanstalk__inventoryContainer {
-  z-index: 29;
-}
-
 .bountifulBeanstalkPlayHarpDialogView__optionActionLabel {
   margin-bottom: 5px;
 }
@@ -110,32 +106,25 @@
   animation: adminShimmer 1s 3;
 }
 
-.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
-  transition: 0.3s;
-  animation: mh-improved-loot-shake 0.5s 2;
-}
-
-.headsUpDisplayBountifulBeanstalkView__castleChevronContainer .headsUpDisplayBountifulBeanstalkView__loot:hover {
-  animation: mh-improved-loot-shake 0.5s infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .headsUpDisplayBountifulBeanstalk__embellishmentBlock:hover .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
-    filter: none;
-    transform: none;
+@keyframes mh-improved-boss-shake {
+  0% {
+    transform: scale(1.2) rotate(0deg);
   }
 
-  .headsUpDisplayBountifulBeanstalk__embellishmentBlock .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
-    transition: none;
-    animation: none;
+  25% {
+    transform: scale(1.2) rotate(5deg);
   }
 
-  .headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
-    animation: none;
+  50% {
+    transform: scale(1.2) rotate(-5deg);
   }
 
-  .headsUpDisplayBountifulBeanstalkView__castleChevronContainer .headsUpDisplayBountifulBeanstalkView__loot:hover {
-    animation-iteration-count: 1;
+  75% {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  100% {
+    transform: scale(1.2) rotate(0deg);
   }
 }
 
@@ -161,10 +150,61 @@
   }
 }
 
+.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
+  transition: 0.3s;
+  animation: mh-improved-loot-shake 0.5s 2;
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleChevronContainer .headsUpDisplayBountifulBeanstalkView__loot:hover {
+  animation: mh-improved-loot-shake 0.5s infinite;
+}
+
+.bountifulBeanstalkCastleView__content:active .bountifulBeanstalkCastleView__bossMarker {
+  animation: mh-improved-boss-shake 0.5s infinite;
+}
+
+.bountifulBeanstalkCastleView__content:hover .bountifulBeanstalkCastleView__bossMarker {
+  transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headsUpDisplayBountifulBeanstalk__embellishmentBlock:hover .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
+    filter: none;
+    transform: none;
+  }
+
+  .headsUpDisplayBountifulBeanstalk__embellishmentBlock .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
+    transition: none;
+    animation: none;
+  }
+
+  .bountifulBeanstalkCastleView__content:active .bountifulBeanstalkCastleView__bossMarker,
+  .headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
+    animation: none;
+  }
+
+  .bountifulBeanstalkCastleView__content:hover .bountifulBeanstalkCastleView__bossMarker {
+    transform: none;
+  }
+
+  .headsUpDisplayBountifulBeanstalkView__castleChevronContainer .headsUpDisplayBountifulBeanstalkView__loot:hover {
+    animation-iteration-count: 1;
+  }
+}
+
 .mh-improved-room-data--open,
-.mh-improved-room-data--open .headsUpDisplayBountifulBeanstalkView__lootMultiplierDetailsContainer {
-  z-index: 35;
+.mh-improved-room-data--open .headsUpDisplayBountifulBeanstalkView__lootMultiplierDetailsContainer,
+.headsUpDisplayBountifulBeanstalkView__lootMultiplierContainer {
+  z-index: 29;
   display: block;
+}
+
+.headsUpDisplayBountifulBeanstalk__inventoryContainer {
+  z-index: 28;
+}
+
+.bountifulBeanstalkCastleView__content {
+  z-index: 27;
 }
 
 .headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying:hover .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
@@ -173,10 +213,6 @@
 
 .folkloreForestRegionView-dialog-recipeResult-image.itemImage .quantity {
   background: rgb(255 255 255 / 75%);
-}
-
-.bountifulBeanstalkCastleView__content:hover .bountifulBeanstalkCastleView__bossMarker {
-  transform: scale(1.2);
 }
 
 .bountifulBeanstalkCastleView__bossMarker {
@@ -385,4 +421,39 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 
 .bountifulBeanstalkCastleView__playerMarker--player_marker_chase .bountifulBeanstalkCastleView__playerMarkerUserThumb {
   border: 1px solid #d7440d;
+}
+
+.mh-crafting-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 5px;
+  transition: 0.2s ease-in;
+}
+
+.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer.mousehuntTooltipParent::after {
+  position: absolute;
+  inset: -30px 0 0;
+  content: "";
+}
+
+.mh-crafting-popup.loading::after,
+.mh-crafting-popup.success::after {
+  position: absolute;
+  right: 0;
+  bottom: 7px;
+  left: 0;
+  display: block;
+  height: 20px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif?asset_cache_version=3) center no-repeat;
+}
+
+.mh-crafting-popup.success::after {
+  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=3) center no-repeat;
+}
+
+.loading .mh-crafting-actions,
+.success .mh-crafting-actions {
+  opacity: 0.1;
 }
