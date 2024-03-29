@@ -180,7 +180,7 @@ const main = async () => {
 const init = async () => {
   addStyles(styles, 'catch-rate-estimate');
 
-  main();
+  setTimeout(main, 240);
 };
 
 export default {
