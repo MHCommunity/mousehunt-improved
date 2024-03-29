@@ -56,6 +56,29 @@ const makeButton = (text, href, tiny = true, extraClasses = [], encodeAsSpace = 
   return `<a href="${href}" class="mousehuntActionButton ${tiny ? 'tiny' : ''} ${extraClasses.join(' ')}"><span>${text}</span></a>`;
 };
 
+const makeMhButton = (opts) => {
+  const {
+    text = '',
+    size = 'small',
+    className = '',
+    callback = () => {},
+    appendTo = null,
+  } = opts;
+
+  const button = makeElement('a', ['mousehuntActionButton', size, className]);
+  makeElement('span', '', text, button);
+
+  button.addEventListener('click', () => {
+    callback();
+  });
+
+  if (appendTo) {
+    appendTo.append(button);
+  }
+
+  return button;
+};
+
 /**
  * Return an anchor element with the given text and href.
  *
@@ -305,5 +328,6 @@ export {
   makeLink,
   makeFavoriteButton,
   makeTooltip,
-  makePage
+  makePage,
+  makeMhButton
 };
