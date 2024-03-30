@@ -73,7 +73,7 @@ const makeMouseMarkup = async (itemId, e) => {
   const existing = document.querySelectorAll('#item-data-wrapper');
   if (existing && existing.length) {
     existing.forEach((el) => {
-      // el.remove();
+      el.remove();
     });
   }
 
@@ -99,7 +99,7 @@ const makeMouseMarkup = async (itemId, e) => {
 
   itemDataWrapper.addEventListener('mouseleave', () => {
     timeoutId = setTimeout(() => {
-      // itemDataWrapper.remove();
+      itemDataWrapper.remove();
     }, 250);
   });
 
@@ -111,7 +111,7 @@ const makeMouseMarkup = async (itemId, e) => {
   if (parent) {
     parent.addEventListener('mouseleave', () => {
       timeoutId = setTimeout(() => {
-        // itemDataWrapper.remove();
+        itemDataWrapper.remove();
       }, 500);
     });
 

@@ -1,4 +1,10 @@
-import { addStyles, getCurrentPage, getFlag, onNavigation, onRequest } from '@utils';
+import {
+  addStyles,
+  getCurrentPage,
+  getFlag,
+  onNavigation,
+  onRequest
+} from '@utils';
 
 import friends from './friends';
 import hud from './hud';

@@ -141,7 +141,6 @@ const replaceInEntry = (entry) => {
     }
 
     if (string.length === 3) {
-      console.log(string[2].includes('!') && entry.classList.contains(string[2]), entry.classList.contains(string[2]) );
       if (string[2].includes('!') && entry.classList.contains(string[2])) {
         return;
       }

@@ -1,4 +1,10 @@
-import { addStyles, doRequest, getSetting, makeElement, onRequest } from '@utils';
+import {
+  addStyles,
+  doRequest,
+  getSetting,
+  makeElement,
+  onRequest
+} from '@utils';
 
 import styles from './styles.css';
 

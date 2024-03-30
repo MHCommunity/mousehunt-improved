@@ -49,7 +49,7 @@
 and yes, this super weird selector is necessary because nothing has classes. */
 div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] img {
   transform-origin: bottom;
-  animation-name: .7s mh-improved-shake-light infinite;
+  animation-name: 0.7s mh-improved-shake-light infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
