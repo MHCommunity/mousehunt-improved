@@ -74,7 +74,10 @@ const addWisdomToStatBar = (wisdom) => {
   const existingWisdom = document.querySelector('.mousehuntHud-userStat-row.wisdom .value.hud_wisdom');
   if (existingWisdom) {
     existingWisdom.textContent = wisdom;
-    blinkText(existingWisdom, '#59f659', '#fff', 0.7);
+    if ('undefined' !== typeof blinkText) {
+      blinkText(existingWisdom, '#59f659', '#fff', 0.7);
+    }
+
     return;
   }
 
@@ -124,7 +127,7 @@ let useCachedWisdom = false;
  * Initialize the module.
  */
 const init = async () => {
-  if (! getSetting('wisdom-in-stat-bar.auto-refresh', true)) {
+  if (getSetting('wisdom-in-stat-bar.auto-refresh', true)) {
     useCachedWisdom = false;
     onTurn(updateWisdom);
   }
