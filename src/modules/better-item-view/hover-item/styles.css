@@ -1,0 +1,53 @@
+#item-data-wrapper {
+  position: absolute;
+  z-index: 999999;
+  box-sizing: border-box;
+  display: block;
+  width: 300px;
+  height: 100px;
+  background: linear-gradient(#decebb 5%, #f0eddf 50%);
+  border: 1px solid #9a8872;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px -1px #5e5e5e;
+}
+
+.item-data-wrapper-loading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 90%;
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 55px;
+}
+
+#item-data-wrapper .item-data {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 10px;
+  align-items: center;
+  height: 95px;
+}
+
+#item-data-wrapper .item-image {
+  height: 80px;
+  margin-left: 10px;
+  background-color: #fff;
+  border: 1px solid #25211e;
+  border-radius: 5px;
+}
+
+#item-data-wrapper .item-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 80px;
+  margin-right: 10px;
+}
+
+#item-data-wrapper .item-name {
+  width: 160px;
+  font-size: 12px;
+  font-weight: 900;
+}

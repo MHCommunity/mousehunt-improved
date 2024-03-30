@@ -10,5 +10,10 @@ export default async () => {
       title: 'Show drop rates',
       default: true,
     },
+    {
+      id: 'better-item-view.show-item-hover',
+      title: 'Show item details on hover (in journal)',
+      default: true,
+    },
   ];
 };

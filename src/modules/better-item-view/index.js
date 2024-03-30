@@ -9,6 +9,7 @@ import {
   onPageChange
 } from '@utils';
 
+import hoverItem from './hover-item';
 import settings from './settings';
 
 import styles from './styles.css';
@@ -186,6 +187,11 @@ const updateItemView = async () => {
  */
 const init = async () => {
   addStyles(styles, 'better-item-view');
+
+  if (getSetting('better-item-view.show-item-hover', true)) {
+    hoverItem();
+  }
+
   onOverlayChange({ item: { show: updateItemView } });
   onPageChange({ item: { show: updateItemView } });
 };
