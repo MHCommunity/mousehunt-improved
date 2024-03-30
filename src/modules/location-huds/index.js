@@ -37,6 +37,7 @@ import foreword_farm from './foreword-farm';
 import fort_rox from './fort-rox';
 import fungal_cavern from './fungal-cavern';
 import great_gnarled_tree from './great-gnarled-tree';
+import harbour from './harbour';
 import iceberg from './iceberg';
 import jungle_of_dread from './jungle-of-dread';
 import kings_arms from './kings-arms';
@@ -146,6 +147,7 @@ const main = () => {
     fort_rox,
     fungal_cavern,
     great_gnarled_tree,
+    harbour,
     iceberg,
     jungle_of_dread,
     kings_arms,

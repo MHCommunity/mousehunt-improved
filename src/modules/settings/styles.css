@@ -279,11 +279,14 @@
   display: flex;
   flex-flow: column wrap;
   gap: 0 5px;
-  place-content: center center;
+  place-content: center start;
   align-content: stretch;
   align-items: stretch;
-  height: 350px;
-  margin-bottom: 5px;
+  height: 375px;
+}
+
+div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living-garden {
+  margin-top: auto;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList {

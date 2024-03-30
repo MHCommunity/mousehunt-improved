@@ -16,7 +16,6 @@ export default async () => {
     'queso_river',
     // Don't have HUD changes for these.
     'meadow',
-    'harbour',
     'training_grounds',
     'zugzwang_library',
   ]);
