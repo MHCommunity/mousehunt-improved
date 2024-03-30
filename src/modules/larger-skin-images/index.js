@@ -9,7 +9,11 @@ import {
 
 import styles from './styles.css';
 
-const addSkinImages = async () => {
+const addSkinImages = async (panel) => {
+  if ('item_browser' !== panel) {
+    return;
+  }
+
   const blueprint = document.querySelector('.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent');
   if (! blueprint) {
     return;
@@ -32,7 +36,7 @@ const addSkinImages = async () => {
     });
   }
 
-  getSkinCache();
+  await getSkinCache();
 
   items.forEach(async (item) => {
     const id = item.getAttribute('data-item-id');
@@ -42,7 +46,18 @@ const addSkinImages = async () => {
 
     skin = skinCache.find((s) => s.item_id == id); // eslint-disable-line eqeqeq
     if (! skin || ! skin.image_trap) {
-      return;
+      const itemData = await fetch(`https://api.mouse.rip/item/${id}`).then((res) => res.json());
+
+      if (! (itemData && itemData.images.trap)) {
+        return;
+      }
+
+      skin = {
+        item_id: id,
+        image_trap: itemData.images.trap,
+      };
+
+      skinCache.push(skin);
     }
 
     const imageWrapper = makeElement('div', 'itembrowser-skin-image-wrapper');
