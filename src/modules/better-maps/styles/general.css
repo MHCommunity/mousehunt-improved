@@ -565,6 +565,10 @@ input.treasureMapView-block-search-text {
   margin: 3px 5px 3px 0;
 }
 
+.treasureMapView-highlight .treasureMapView-goals-group-goal {
+  width: auto;
+}
+
 .treasureMapView-goals-group-goal.notAvailable {
   opacity: 0.5;
 }
