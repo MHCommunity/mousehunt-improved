@@ -5,7 +5,7 @@
 }
 
 .inventoryPage-item-content-action {
-  margin-top: 15px;
+  margin-top: 10px 0;
 }
 
 .inventoryPage-item-content-description {
@@ -288,10 +288,20 @@ input.inventoryPage-tagDirectory-searchBar-input {
 }
 
 .mousehuntHud-page-subTabContent.crafting_table .inventoryPage-craftingTable {
+  width: 20%;
   background: #f6f3eb;
   border: 1px solid #d3cecb;
   border-radius: 3px;
   box-shadow: inset -1px 1px 3px 0 #d3cecb;
+}
+
+.mousehuntHud-page-subTabContent.crafting_table .inventoryPage-item.small .itemImage img {
+  width: 70px;
+  height: 70px;
+}
+
+.mousehuntHud-page-subTabContent.crafting_table .mousehuntHud-page-subTabContent-margin {
+  width: 78%;
 }
 
 .inventoryPage-craftingTable-slot-item.itemImage {
@@ -305,6 +315,7 @@ input.inventoryPage-tagDirectory-searchBar-input {
   height: 17px;
   margin: 0;
   background: transparent;
+  border: 1px solid #ccc;
 }
 
 .inventoryPage-craftingTable-slot-item-controls input {
@@ -323,7 +334,7 @@ input.inventoryPage-tagDirectory-searchBar-input {
 }
 
 .inventoryPage-craftingTable-slot {
-  width: 160px;
+  width: 120px;
   padding: 5px;
   margin: 5px;
   background: #f6f3eb;
@@ -374,14 +385,11 @@ input.inventoryPage-tagDirectory-searchBar-input {
   margin: 5px;
 }
 
-.inventoryPage-craftingTable-slot-item .itemImage {
-  width: 55px;
-  height: 55px;
-}
-
-.inventoryPage-craftingTable-slot-item img {
-  width: 55px;
-  height: 55px;
+.inventoryPage-craftingTable-slot-item img,
+.inventoryPage-craftingTable-slot-item .itemImage,
+.inventoryPage-craftingTable-slot-item .itemImage img {
+  width: 35px;
+  height: 35px;
 }
 
 a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
@@ -390,12 +398,17 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px !important;
+  width: 17px;
+  height: 17px !important;
   padding: 2px;
   font-size: 13px;
   border: 1px solid #bebebe;
   border-radius: 50%;
+  opacity: 0.5;
+}
+
+a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
+  opacity: 1;
 }
 
 .inventoryPage-tagContent-tagTitle.tsitu-lock-convertible {
@@ -427,6 +440,13 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
   background: #f5c7c7;
   border: 1px solid #e07878;
   border-radius: 5px;
+  animation: 0.4s mh-improved-shake-light 0.7s 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mhui-craft-warning-tooltip {
+    animation: none;
+  }
 }
 
 #jsDialogAjaxSuffix {
@@ -549,4 +569,48 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible {
 
 .inventoryPage-item.small .tooltip {
   padding: 10px;
+}
+
+.inventoryPage-item-content-description-consumedItemContainer {
+  margin-top: 0;
+}
+
+.crafting .recipe .inventoryPage-item-margin {
+  padding-bottom: 0;
+}
+
+.crafting .recipe .inventoryPage-item .mousehuntActionButton {
+  padding: 2px;
+  margin-top: -5px !important;
+}
+
+.crafting .recipe .inventoryPage-item-name {
+  margin-bottom: 0;
+}
+
+.mousehuntHud-page-subTabContent.crafting_table .inventoryPage-item .inventoryPage-item-margin {
+  padding: 0;
+  margin: 0;
+}
+
+.inventoryPage-item-recipeOptions li.inactive {
+  background: #ededed;
+  opacity: 0.5;
+}
+
+.inventoryPage-item-recipeOptions li.inactive:hover {
+  opacity: 1;
+}
+
+.inventoryPage-item-recipeOptions li.selected {
+  border-color: #fc6;
+}
+
+.inventoryPage-item-recipeOptions li:hover,
+.inventoryPage-item-recipeOptions li.inactive:hover {
+  border-color: #bbb;
+}
+
+.inventoryPage-item.potion .inventoryPage-item-button {
+  margin: 5px 0 0 5px;
 }

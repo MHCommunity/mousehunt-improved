@@ -1,0 +1,9 @@
+.inventoryPage-item.full.recipe.known.reordered {
+  max-height: 38px;
+  overflow: hidden;
+  border-bottom: 1px solid #ccc;
+}
+
+.inventoryPage-item.full.recipe.known.reordered:hover {
+  max-height: 500px;
+}

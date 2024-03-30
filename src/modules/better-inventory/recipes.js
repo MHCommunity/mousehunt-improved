@@ -1,4 +1,5 @@
 import {
+  addStyles,
   cacheGet,
   cacheSet,
   getCurrentSubtab,
@@ -8,6 +9,8 @@ import {
   onEvent,
   onNavigation
 } from '@utils';
+
+import styles from './styles/recipes.css';
 
 import recipesMeConversion from '@data/recipes-me-conversion.json';
 import recipesToReorder from '@data/recipes-to-reorder.json';
@@ -200,11 +203,7 @@ const modifySmashableTooltip = async () => {
         if ('gold_stat_item' === itemDataItem.type) {
           // convert to k or m
           const quantityInt = Number.parseInt(quantity);
-          if (quantityInt >= 1000000) {
-            quantity = `${Math.floor(quantityInt / 100000) / 10}m`;
-          } else if (quantityInt >= 1000) {
-            quantity = `${Math.floor(quantityInt / 100) / 10}k`;
-          }
+          quantity = quantityInt >= 1000000 ? `${Math.floor(quantityInt / 100000) / 10}m` : quantity.toLocaleString();
         }
 
         // const itemTooltip = makeElement('div', 'new-tooltip-item');
@@ -246,7 +245,7 @@ const moveRecipe = (type, recipesContainer) => {
 };
 
 const updateRecipesOnPage = async (type) => {
-  if (! recipesToReorder[type]) {
+  if (! recipesToReorder[type] || 'recommended' === type) {
     return;
   }
 
@@ -297,6 +296,8 @@ const updateRecipesOnPage = async (type) => {
  * Initialize the module.
  */
 export default async () => {
+  addStyles(styles, 'better-inventory-recipes');
+
   onNavigation(cleanUpRecipeBook, {
     page: 'inventory',
     tab: 'crafting',
