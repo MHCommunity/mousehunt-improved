@@ -13,3 +13,9 @@
 .mh-improved-random-journal {
   background-image: url(https://i.mouse.rip/mh-improved/journal-random.png);
 }
+
+#journalContainer .journal__privacy-button {
+  margin-right: 85px;
+  background: #e6e6e6;
+  border: 1px solid #333;
+}
