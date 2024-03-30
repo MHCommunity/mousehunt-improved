@@ -298,6 +298,7 @@ a.inventoryPage-tagDirectory-tag {
 }
 
 .inventoryPage-tagDirectory-tag:hover {
+  color: #3b5998;
   background-color: #dfdcdc;
   box-shadow: 0 0 1px 0 #354661;
 }

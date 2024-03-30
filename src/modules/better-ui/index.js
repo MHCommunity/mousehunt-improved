@@ -1,4 +1,4 @@
-import { addStyles, getFlag, onRequest } from '@utils';
+import { addStyles, getCurrentPage, getFlag, onNavigation, onRequest } from '@utils';
 
 import friends from './friends';
 import hud from './hud';
@@ -22,6 +22,19 @@ const kingsPromoTextChange = () => {
   if (kingsPromo) {
     kingsPromo.innerHTML = kingsPromo.innerHTML.replace('and even', 'and');
   }
+};
+
+const addAdventureBookClass = () => {
+  if (! user?.quests?.QuestAdventureBook?.adventure?.can_claim || ! getCurrentPage('camp')) {
+    return;
+  }
+
+  const adventureBook = document.querySelector('.adventureBookBanner');
+  if (! adventureBook) {
+    return;
+  }
+
+  adventureBook.classList.add('adventureBookBanner-complete');
 };
 
 const addUserscriptStyles = async () => {
@@ -58,6 +71,11 @@ const init = async () => {
   addUserscriptStyles();
   friends();
   hud();
+
+  onNavigation(addAdventureBookClass, {
+    page: 'camp',
+  });
+  onRequest('*', addAdventureBookClass);
 
   onRequest('users/dailyreward.php', kingsPromoTextChange);
 };

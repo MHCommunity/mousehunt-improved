@@ -14,11 +14,14 @@
 .mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .adventureBookBanner-adventureName {
   padding: 15px 5px 0;
   margin-left: 75px;
-  font-size: 15px;
+  overflow: hidden;
+  font-size: 13px;
   font-style: italic;
   font-weight: 400;
   line-height: 15px;
   color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   background: transparent;
   border-radius: 0;
 }
@@ -50,6 +53,7 @@
 }
 
 .adventureBookBanner-adventureImage {
+  height: 45px;
   background-image: none !important;
 }
 
@@ -63,7 +67,8 @@
   left: 10px;
   width: 60px;
   height: 60px;
-  outline: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: none;
 }
 
 .adventureBookBanner-goalName {
@@ -94,12 +99,24 @@
   box-shadow: none;
 }
 
-.adventureBookBanner-completed .adventureBookBanner-moreInfo {
-  top: 7px;
+.adventureBookBanner-completed b {
+  font-size: 10px;
 }
 
-.adventureBookBanner-completed b {
-  margin-bottom: 5px;
+.adventureBookBanner-completed {
+  top: 0;
+  bottom: 20px;
+  left: 75px;
+  background: none;
+  box-shadow: none;
+}
+
+.adventureBookBanner-completedCheckmark {
+  top: -10px;
+  background-color: #fff;
+  box-shadow:
+    0 0 10px #94ff65,
+    0 0 10px #94ff65;
 }
 
 .adventureBookBanner-goalName-padding {
@@ -136,4 +153,103 @@
   width: 40px;
   height: 40px;
   margin-bottom: 10px;
+}
+
+.adventureBookBanner-complete .adventureBookBanner-adventureName {
+  display: none;
+}
+
+.adventureBookBanner-complete .adventureBookBanner-completedCheckmark {
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.adventureBookBanner-complete .adventureBookBanner-completed {
+  font-size: 11px;
+}
+
+.adventureBookBanner-complete .adventureBookBanner-completed b {
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.adventureBookBanner-complete .adventureBookBanner-moreInfo {
+  top: unset;
+}
+
+a.adventureBookPopup-title {
+  display: block;
+  height: auto;
+  margin-bottom: 4px;
+  margin-left: 10px;
+  text-align: right;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.adventureBookPopup-title-margin {
+  padding: 3px 15px;
+}
+
+img.adventureBookPopup-title-icon {
+  left: 5px;
+  height: 20px;
+}
+
+.adventureBookPopup-title.complete .adventureBookPopup-title-status {
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=3) 0 0 no-repeat;
+  background-color: rgb(238 238 238 / 50%);
+  background-size: cover;
+  border-radius: 50px;
+}
+
+.adventureBookPopup-title-name {
+  padding-left: 16px;
+  margin: 0;
+}
+
+a.adventureBookPopup-title:hover {
+  background: #dfdcdc;
+}
+
+a.adventureBookPopup-title.active {
+  margin-left: 2px;
+  color: #fff;
+  background: #354661;
+}
+
+.adventureBookPopup-title.active .adventureBookPopup-title-icon {
+  top: 6px;
+  left: 5px;
+}
+
+.adventureBookPopup-titleDirectory {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: -5px;
+  margin-bottom: 5px;
+  border-right: 1px solid #ccc;
+}
+
+.adventureBookPopup-header-title {
+  margin-bottom: 5px;
+}
+
+.adventureBookPopup-adventureContainer.canClaim .adventureBookPopup-adventure-footer {
+  box-shadow: -120px 0 50px #6bff75 inset;
+}
+
+.adventureBookPopup-adventureContainer.claimed .adventureBookPopup-adventure-footer-claim.adventureBookPopup-adventure-button {
+  border: 1px solid #158f00;
+  box-shadow: none;
 }
