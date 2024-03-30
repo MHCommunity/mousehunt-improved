@@ -84,3 +84,7 @@
   text-align: center;
   content: "Loading Catch Rate Estimator…";
 }
+
+span.mh-improved-cre-no-mice {
+  font-size: 12px;
+}

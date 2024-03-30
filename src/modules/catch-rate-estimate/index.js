@@ -144,6 +144,12 @@ const renderList = async (list) => {
     return b.minluck - a.minluck;
   });
 
+  if (rows.length === 0) {
+    makeElement('span', 'mh-improved-cre-no-mice', 'No mice found.', table);
+    minluckList.append(table);
+    return;
+  }
+
   rows.forEach(({ mouse, type, minluck, catchRate, crClass }) => {
     const row = makeElement('tr', 'mh-improved-cre-row');
     const name = makeElement('td', 'mh-improved-cre-name');
