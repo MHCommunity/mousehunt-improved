@@ -87,7 +87,7 @@ const replacements = [
   ['•&nbsp;', ' '],
   ['My Condensed Creativity created additional loot:', 'My Condensed Creativity created an additional '],
   ['The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case', 'The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case!'],
-  ['*BLING*', '<span class="decoration">✨️</span>'],
+  ['*BLING*', '<span class="decoration"></span>'],
   ['Aura helped me find', 'Aura found'],
   ['processed  added', 'processed and added'],
   ['I have started a', 'I started a'],
@@ -101,29 +101,31 @@ const replacements = [
 
   ['<br></p><p>', '<p>'],
   ['<br><p>', '<p>'],
-  [/<p class="mhi-x-entry"><span class="dot"> • <\/span>/g, ''],
-  [/(\d+?) x /gi, '<p class="mhi-x-entry"><span class="dot"> • </span>$1 x '],
+  [/<p class="mhi-x-entry"><span class="dot"> • <\/span>/g, '', '!shop_purchase'],
+  [/(\d+?) x /gi, '<p class="mhi-x-entry"><span class="dot"> • </span>$1 x ', '!shop_purchase'],
 
   [/<p><\/p>/g, ''],
   ['I can view other recipe', '<p class="double">I can view other recipe'],
 
   // SEH.
-  ['A chocoholic', 'I caught a bonus'],
-  ['A chocolate-crazed', 'I caught a bonus'],
-  ['A voracious', 'I caught a bonus'],
-  ['A gluttonous', 'I caught a bonus'],
-  ['A hypoglycemic', 'I caught a bonus'],
-  ['A ravenous', 'I caught a bonus'],
-  ['A greedy', 'I caught a bonus'],
-  ['A hungry', 'I caught a bonus'],
-  ['A hyperactive', 'I caught a bonus'],
-  ['A sugar-induced', 'I caught a bonus'],
+  ['A chocoholic', 'I caught a bonus', '!catchfailure'],
+  ['A chocolate-crazed', 'I caught a bonus', '!catchfailure'],
+  ['A voracious', 'I caught a bonus', '!catchfailure'],
+  ['A gluttonous', 'I caught a bonus', '!catchfailure'],
+  ['A hypoglycemic', 'I caught a bonus', '!catchfailure'],
+  ['A ravenous', 'I caught a bonus', '!catchfailure'],
+  ['A greedy', 'I caught a bonus', '!catchfailure'],
+  ['A hungry', 'I caught a bonus', '!catchfailure'],
+  ['A hyperactive', 'I caught a bonus', '!catchfailure'],
+  ['A sugar-induced', 'I caught a bonus', '!catchfailure'],
   ['Eggstra Fondue extracted', 'My Eggstra Fondue extracted'],
   ['Additionally my Eggstra Fondue also extracted', 'And'],
 
   ['Here is the loot summary from my infiltration of', 'I looted the following from'],
   ['Trove. and received', 'Trove and received'],
   ['Lucky me, a prize mouse wandered by and fell for my trap!', '🎉️ A prize mouse fell into my trap!'],
+  [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
+  ['In a flash of light my', 'My'],
 ];
 
 const replaceInEntry = (entry) => {
@@ -134,8 +136,19 @@ const replaceInEntry = (entry) => {
   const element = entry.querySelector('.journalbody .journaltext');
 
   replacements.forEach(async (string) => {
-    if (! Array.isArray(string) || string.length !== 2) {
+    if (! Array.isArray(string)) {
       return;
+    }
+
+    if (string.length === 3) {
+      console.log(string[2].includes('!') && entry.classList.contains(string[2]), entry.classList.contains(string[2]) );
+      if (string[2].includes('!') && entry.classList.contains(string[2])) {
+        return;
+      }
+
+      if (! entry.classList.contains(string[2])) {
+        return;
+      }
     }
 
     const oldText = element.innerHTML;

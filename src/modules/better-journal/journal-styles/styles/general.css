@@ -137,10 +137,19 @@ a.journal-detailLink.full::after {
 }
 
 .journal .content .entry .journaltext .decoration {
-  margin-left: -12px;
-  font-size: 21px;
-  vertical-align: top;
-  filter: drop-shadow(0 0 1px #89299e) drop-shadow(0 0 5px #89299e) drop-shadow(0 0 10px #89299e);
+  margin-right: 65px;
+}
+
+.journal .content .entry .journaltext .decoration::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 28px;
+  height: 28px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/items/trinkets/large/430b05beed99ba1995f5ab78e394f5d6.png) no-repeat;
+  background-size: contain;
 }
 
 /* move the share button */

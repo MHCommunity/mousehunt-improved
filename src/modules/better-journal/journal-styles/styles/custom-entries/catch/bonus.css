@@ -11,3 +11,7 @@
   content: none;
   background: none;
 }
+
+.journal .content .bonuscatchfailure {
+  background: linear-gradient(45deg, #fbdede, #f687a0);
+}

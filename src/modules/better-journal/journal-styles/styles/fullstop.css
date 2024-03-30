@@ -14,7 +14,8 @@
 }
 
 .journal .content .entry .journaltext > br + br:last-of-type,
-.journal .content .entry.floatingIslands.fullyExplored .journaltext br {
+.journal .content .entry.floatingIslands.fullyExplored .journaltext br,
+.journal .content .entry.harbour br {
   display: block;
 }
 
