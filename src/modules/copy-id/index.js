@@ -1,4 +1,6 @@
-import { addStyles, makeElement } from '@utils';
+import { addStyles, getSetting, makeElement } from '@utils';
+
+import settings from './settings';
 
 import styles from './styles.css';
 
@@ -16,7 +18,9 @@ const main = () => {
   successMessage.style.opacity = 0;
   copyIdButton.parentNode.insertBefore(successMessage, copyIdButton.nextSibling);
 
-  copyIdButton.addEventListener('click', () => {
+  const clickAction = (e) => {
+    e.preventDefault();
+
     const Id = user.user_id;
     navigator.clipboard.writeText(Id);
 
@@ -24,7 +28,14 @@ const main = () => {
     setTimeout(() => {
       successMessage.style.opacity = 0;
     }, 1000);
-  });
+  };
+
+  copyIdButton.addEventListener('click', clickAction);
+
+  if (getSetting('copy-id-button.hide-button')) {
+    profilePic.setAttribute('onclick', '');
+    profilePic.addEventListener('click', clickAction);
+  }
 
   // When hovering over the profile pic, show the copy button and hide it if they're not hovering the profile pic or teh button.
   profilePic.addEventListener('mouseenter', () => {
@@ -60,4 +71,5 @@ export default {
   default: true,
   description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.',
   load: init,
+  settings,
 };

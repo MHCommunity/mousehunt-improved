@@ -465,3 +465,7 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
 .mh-dark-mode .pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover {
   background: #000;
 }
+
+.mousehunt-improved-settings em {
+  font-style: italic;
+}
