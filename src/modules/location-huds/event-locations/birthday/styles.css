@@ -236,7 +236,7 @@
 }
 
 .superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot {
-  animation: mh-improved-hue-scale 1s 1;
+  animation: mh-improved-hue-rotate-and-scale 1s 1;
 }
 
 .superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(1) {
@@ -257,23 +257,6 @@
 
 .superBrieFactoryHUD-factoryRoom:hover .superBrieFactoryHUD-factoryRoom-level-dot:nth-child(5) {
   animation-delay: 0.6s;
-}
-
-@keyframes mh-improved-hue-scale {
-  0% {
-    filter: hue-rotate(0deg);
-    transform: scale(1);
-  }
-
-  50% {
-    filter: hue-rotate(360deg);
-    transform: scale(1.5);
-  }
-
-  100% {
-    filter: hue-rotate(0deg);
-    transform: scale(1);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

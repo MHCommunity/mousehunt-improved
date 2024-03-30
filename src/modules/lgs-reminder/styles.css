@@ -43,7 +43,7 @@
   background-color: #b32d26;
   border-color: #af8080;
   transition: 1.75s;
-  animation: mh-improved-slight-fade 1.75s infinite;
+  animation: mh-improved-fade-slightly 1.75s infinite;
 }
 
 /* if they have prefers reduced motion enabled, don't animate */

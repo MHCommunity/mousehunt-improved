@@ -564,60 +564,30 @@ a.valourRiftHUD-gauntletBait-image.active {
   box-shadow: 0 0 2px 2px #231855;
 }
 
-@keyframes mh-improved-player-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes mh-improved-player-flipped-spin {
-  0% {
-    transform: scaleX(-1) rotate(0deg);
-  }
-
-  100% {
-    transform: scaleX(-1) rotate(360deg);
-  }
-}
-
-@keyframes mh-improved-large-player-spin {
-  0% {
-    transform: scale(2) rotate(0deg);
-  }
-
-  100% {
-    transform: scale(2) rotate(360deg);
-  }
-}
-
-@keyframes mh-improved-large-player-flipped-spin {
-  0% {
-    transform: scale(-2, 2) rotate(0deg);
-  }
-
-  100% {
-    transform: scale(-2, 2) rotate(360deg);
-  }
-}
-
 .mh-improved-player-spin {
-  animation: mh-improved-player-spin 0.7s linear 1;
+  animation: mh-improved-spin 0.7s linear 1;
 }
 
 .flipped .mh-improved-player-spin {
-  animation: mh-improved-player-flipped-spin 0.7s linear 1;
+  animation: mh-improved-spin-flipped 0.7s linear 1;
 }
 
 .mh-improved-player-spin.mh-improved-player-large {
-  animation: mh-improved-large-player-spin 0.7s linear 1;
+  animation: mh-improved-spin-large 0.7s linear 1;
 }
 
 .flipped .mh-improved-player-spin.mh-improved-player-large {
-  animation: mh-improved-large-player-flipped-spin 0.7s linear 1;
+  animation: mh-improved-spin-large-flipped 0.7s linear 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eclipse.floor_8 .valourRiftHUD-floorProgress-barContainer,
+  .mh-improved-player-spin,
+  .mh-improved-player-spin.mh-improved-player-large,
+  .flipped .mh-improved-player-spin,
+  .flipped .mh-improved-player-spin.mh-improved-player-large {
+    animation: none;
+  }
 }
 
 .valourRiftHUD-crafting-image {

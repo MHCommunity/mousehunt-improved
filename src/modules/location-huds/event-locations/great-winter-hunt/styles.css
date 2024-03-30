@@ -648,6 +648,15 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
   animation-name: wallDamageWiggle;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .greatWinterHuntRewardTrackView__golem,
+  .greatWinterHuntRewardTrackView__golem:hover,
+  .greatWinterHuntRewardTrackView__golem:focus,
+  .greatWinterHuntRewardTrackView__golem:active {
+    animation: none;
+  }
+}
+
 /* make the tooltip closer */
 .headsUpDisplayWinterHuntGolemWorkshopView__droidButton .mousehuntTooltip {
   bottom: 30%;

@@ -230,7 +230,7 @@
   mix-blend-mode: color-burn;
 }
 
-@keyframes shield-hue-rotate {
+@keyframes mh-improved-shield-hue-rotate {
   0% {
     filter: hue-rotate(0deg) drop-shadow(0 0 5px #e8dbb8);
   }
@@ -248,5 +248,14 @@
 .huntersHornView__timer--default.color-rainbow,
 .mousehuntHud-shield.golden.color-rainbow,
 .mousehuntHud-shield.golden.color-rainbow2 {
-  animation: shield-hue-rotate 30s infinite;
+  animation: mh-improved-shield-hue-rotate 30s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mousehunt-improved-lgs-reminder-new.color-rainbow,
+  .huntersHornView__timer--default.color-rainbow,
+  .mousehuntHud-shield.golden.color-rainbow,
+  .mousehuntHud-shield.golden.color-rainbow2 {
+    animation: none;
+  }
 }

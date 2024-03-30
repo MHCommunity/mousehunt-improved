@@ -121,7 +121,7 @@
 }
 
 .mh-improved-favorite-setups-blueprint-container .controls .label {
-  padding: 0 1px;
+  padding: 0;
   font-size: 12px;
   text-align: center;
 }
@@ -250,18 +250,14 @@ a.random-title:hover::after {
   background-color: #ddd;
 }
 
-@keyframes mh-improved-favorite-setups-component-picker-popup-search-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+a.random-title.loading::after {
+  animation: mh-improved-spin 1s linear infinite;
 }
 
-a.random-title.loading::after {
-  animation: mh-improved-favorite-setups-component-picker-popup-search-loading 1s linear infinite;
+@media (prefers-reduced-motion: reduce) {
+  a.random-title.loading::after {
+    animation: none;
+  }
 }
 
 .mh-improved-favorite-setups-blueprint-container .editing .controls .label {

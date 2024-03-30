@@ -224,16 +224,6 @@ img.locationImage {
   z-index: 1;
 }
 
-@keyframes moving-background {
-  0% {
-    right: 100%;
-  }
-
-  100% {
-    right: 0;
-  }
-}
-
 .location-refresh-item.traveling .locationName .progress::after {
   position: absolute;
   top: 0;
@@ -242,7 +232,13 @@ img.locationImage {
   width: 100%;
   content: "";
   background: #f3c019;
-  animation: moving-background 1s linear forwards;
+  animation: mh-improved-right-to-left 1s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .location-refresh-item.traveling .locationName .progress::after {
+    animation: none;
+  }
 }
 
 .mh-improved-location-refresh-confirm-popup #overlayPopup .jsDialogContainer .suffix {

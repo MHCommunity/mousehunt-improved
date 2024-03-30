@@ -16,40 +16,12 @@
   border: 2px solid #49eec2;
 }
 
-@keyframes mhui-uc-glow {
-  0% {
-    filter: brightness(1);
-  }
-
-  50% {
-    filter: brightness(1.1);
-  }
-
-  100% {
-    filter: brightness(1);
-  }
-}
-
-@keyframes mhui-uc-glow-sad {
-  0% {
-    filter: brightness(1);
-  }
-
-  50% {
-    filter: brightness(0.8);
-  }
-
-  100% {
-    filter: brightness(1);
-  }
-}
-
 .journal .content .ultimate_intact {
-  animation: mhui-uc-glow 0.8s ease-in-out 1;
+  animation: mh-improved-glow 0.8s ease-in-out 1;
 }
 
 .journal .content .ultimate_pop {
-  animation: mhui-uc-glow-sad 0.8s ease-in-out 1;
+  animation: mh-improved-dim 0.8s ease-in-out 1;
 }
 
 @media (prefers-reduced-motion: reduce) {

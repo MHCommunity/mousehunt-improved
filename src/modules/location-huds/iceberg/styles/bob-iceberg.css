@@ -6,6 +6,12 @@
   animation: 6s dirigibleFloat ease-in-out infinite;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .icebergHud .timeline .icebergContainer .iceberg {
+    animation: none;
+  }
+}
+
 .icebergHud .timeline .icebergContainer .iceberg::after {
   position: absolute;
   right: 1px;

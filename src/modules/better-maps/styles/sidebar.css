@@ -85,16 +85,12 @@
 }
 
 .loading .mh-improved-map-sidebar-title::after {
-  animation: mh-improved-map-sidebar-loading 1s linear infinite;
+  animation: mh-improved-spin 1s linear infinite;
 }
 
-@keyframes mh-improved-map-sidebar-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
+@media (prefers-reduced-motion: reduce) {
+  .loading .mh-improved-map-sidebar-title::after {
+    animation: none;
   }
 }
 

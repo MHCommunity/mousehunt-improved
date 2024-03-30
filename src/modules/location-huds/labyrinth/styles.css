@@ -370,24 +370,6 @@
   outline: 1px solid #bbf8fa;
 }
 
-@keyframes mh-improved-lantern-swing {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(-5deg);
-  }
-
-  75% {
-    transform: rotate(5deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .mh-ui-labyrinth-lantern-reminder {
   position: absolute;
   bottom: 0;
@@ -398,7 +380,7 @@
   filter: drop-shadow(1px 0 8px #f6eac3);
   background-size: contain;
   transform-origin: bottom;
-  animation: mh-improved-lantern-swing 1s ease-out 1;
+  animation: mh-improved-shake-light 1s ease-out 1;
 }
 
 .labyrinthHUD-toggleLantern-name.active {

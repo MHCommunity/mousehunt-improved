@@ -25,6 +25,12 @@
   animation: 1s claimWiggle 1 1s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  #overlayPopup.spring_chick_message_item .jsDialogContainer .content {
+    animation: none;
+  }
+}
+
 #overlayPopup.spring_chick_message_item .jsDialogContainer {
   display: flex;
   flex-direction: row;

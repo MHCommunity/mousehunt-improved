@@ -1,24 +1,10 @@
 .journal .content .entry.valentines_matchmaker {
   background-position: left;
-  animation: mhui-slide-background 240s ease-in-out infinite;
+  animation: mh-improved-background-slide 240s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animation {
+  .journal .content .entry.valentines_matchmaker {
     animation: none;
-  }
-}
-
-@keyframes mhui-slide-background {
-  0% {
-    background-position: left;
-  }
-
-  50% {
-    background-position: right;
-  }
-
-  100% {
-    background-position: left;
   }
 }

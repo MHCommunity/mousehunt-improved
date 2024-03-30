@@ -108,30 +108,12 @@ span.seasonalGardenHUD-maxAmplifier-value {
 }
 
 .seasonalGardenHUD-amplifierProgress-bar--animating {
-  animation: 0.3s bounce-and-stretch-new 2;
+  animation: 0.3s mh-improved-bounce-and-stretch 2;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .seasonalGardenHUD-amplifierProgress-bar--animating {
     animation: none;
-  }
-}
-
-@keyframes bounce-and-stretch-new {
-  0% {
-    transform: scaleX(1) translateX(-10px);
-  }
-
-  60% {
-    transform: scaleX(1);
-  }
-
-  75% {
-    transform: scaleX(0.98);
-  }
-
-  90% {
-    transform: scaleX(0.999);
   }
 }
 

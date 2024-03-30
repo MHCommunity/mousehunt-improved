@@ -106,61 +106,17 @@
   animation: adminShimmer 1s 3;
 }
 
-@keyframes mh-improved-boss-shake {
-  0% {
-    transform: scale(1.2) rotate(0deg);
-  }
-
-  25% {
-    transform: scale(1.2) rotate(5deg);
-  }
-
-  50% {
-    transform: scale(1.2) rotate(-5deg);
-  }
-
-  75% {
-    transform: scale(1.2) rotate(5deg);
-  }
-
-  100% {
-    transform: scale(1.2) rotate(0deg);
-  }
-}
-
-@keyframes mh-improved-loot-shake {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  75% {
-    transform: rotate(5deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 .headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
   transition: 0.3s;
-  animation: mh-improved-loot-shake 0.5s 2;
+  animation: mh-improved-shake 0.5s 2;
 }
 
 .headsUpDisplayBountifulBeanstalkView__castleChevronContainer .headsUpDisplayBountifulBeanstalkView__loot:hover {
-  animation: mh-improved-loot-shake 0.5s infinite;
+  animation: mh-improved-shake 0.5s infinite;
 }
 
 .bountifulBeanstalkCastleView__content:active .bountifulBeanstalkCastleView__bossMarker {
-  animation: mh-improved-boss-shake 0.5s infinite;
+  animation: mh-improved-shake-scaled 0.5s infinite;
 }
 
 .bountifulBeanstalkCastleView__content:hover .bountifulBeanstalkCastleView__bossMarker {

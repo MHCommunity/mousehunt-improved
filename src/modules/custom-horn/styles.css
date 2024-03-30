@@ -26,22 +26,14 @@
   filter: sepia(1);
 }
 
-@keyframes horn-hue-rotate {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-
-  50% {
-    filter: hue-rotate(360deg);
-  }
-
-  100% {
-    filter: hue-rotate(0deg);
-  }
+.huntersHornView.horn-color-rainbow .huntersHornView__horn {
+  animation: mh-improved-hue-rotate 30s infinite;
 }
 
-.huntersHornView.horn-color-rainbow .huntersHornView__horn {
-  animation: horn-hue-rotate 30s infinite;
+@media (prefers-reduced-motion: reduce) {
+  .huntersHornView.horn-color-rainbow .huntersHornView__horn {
+    animation: none;
+  }
 }
 
 .mh-improved-custom-horn-show-horn {

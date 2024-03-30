@@ -14,6 +14,12 @@
   animation-delay: 2s;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .mh-improved-has-update .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu::before {
+    animation: none;
+  }
+}
+
 #overlayPopup.mh-improved-update-summary .jsDialog.top,
 #overlayPopup.mh-improved-update-summary .jsDialog.bottom,
 #overlayPopup.mh-improved-update-summary .jsDialog.background,

@@ -49,9 +49,13 @@
 and yes, this super weird selector is necessary because nothing has classes. */
 div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] img {
   transform-origin: bottom;
-  animation-name: mh-improved-sway-side-to-side;
-  animation-duration: 7s;
-  animation-iteration-count: infinite;
+  animation-name: .7s mh-improved-shake-light infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] img {
+    animation: none;
+  }
 }
 
 div[style="margin: 0 auto; text-align: center; width: 100%; font-size: 20px;"] a:hover {
