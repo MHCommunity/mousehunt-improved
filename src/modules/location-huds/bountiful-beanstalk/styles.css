@@ -413,6 +413,7 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 
 .mh-crafting-popup.success::after {
   background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=3) center no-repeat;
+  background-size: contain;
 }
 
 .loading .mh-crafting-actions,

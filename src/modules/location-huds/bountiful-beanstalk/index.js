@@ -98,7 +98,6 @@ const funTime = async () => {
   }
 
   meter.addEventListener('click', () => {
-    // For 1 second, animate through the colors of the rainbow using hue-rotate.
     const time = 1000;
 
     let hue = 0;
@@ -191,7 +190,7 @@ const addCraftingButtons = async () => {
   const purchaseBait = async (type, quantity, baitEl, actionsEl) => {
     actionsEl.classList.add('loading');
 
-    if (quantity === 2) {
+    if (quantity >= 2) {
       if ('beanster_cheese' === type) {
         type = 'beanster_pack_small_convertible';
       } else if ('lavish_beanster_cheese' === type) {
@@ -201,11 +200,13 @@ const addCraftingButtons = async () => {
       } else if ('royal_beanster_cheese' === type) {
         type = 'royal_beanster_pack_small_convertible';
       }
+
+      quantity = quantity / 2;
     }
 
     const results = await doRequest('managers/ajax/purchases/itempurchase.php', {
-      type: quantity === 1 ? type : `${type}_small_convertible`,
-      quantity: 1,
+      type,
+      quantity,
       buy: 1,
       is_kings_cart_item: 0,
     });
@@ -282,6 +283,14 @@ const addCraftingButtons = async () => {
     const actions = makeElement('div', 'mh-crafting-actions');
     const baitType = bait.getAttribute('data-item-type');
 
+    let twoQuantity = 2;
+
+    if ('leaping_lavish_beanster_cheese' === baitType) {
+      twoQuantity = 4;
+    } else if ('royal_beanster_cheese' === baitType) {
+      twoQuantity = 20;
+    }
+
     makeMhButton({
       text: 'Craft 1',
       className: 'mh-crafting-action',
@@ -293,11 +302,12 @@ const addCraftingButtons = async () => {
     });
 
     makeMhButton({
-      text: 'Craft 2',
+      text: `Craft ${twoQuantity}`,
       className: 'mh-crafting-action',
+      title: `Craft ${twoQuantity} using Magic Essence`,
       size: 'tiny',
       callback: () => {
-        purchaseBait(baitType, 2, bait, popup);
+        purchaseBait(baitType, twoQuantity, bait, popup);
       },
       appendTo: actions,
     });
