@@ -68,6 +68,8 @@ const makeMhButton = (opts) => {
   const button = makeElement('a', ['mousehuntActionButton', size, className]);
   makeElement('span', '', text, button);
 
+  button.title = opts.title || text;
+
   button.addEventListener('click', () => {
     callback();
   });
