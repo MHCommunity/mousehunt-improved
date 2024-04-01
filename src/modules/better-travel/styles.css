@@ -326,3 +326,13 @@
   border: 1px solid #9f9171;
   border-radius: 3px;
 }
+
+.mh-improved-travel-message.travelPage-map-message.active {
+  top: 46px;
+  box-shadow: 0 3px 6px -3px #333;
+}
+
+.mh-improved-travel-message.travelPage-map-message .mousehuntActionButton {
+  padding: 3px 10px;
+  font-size: 11px;
+}

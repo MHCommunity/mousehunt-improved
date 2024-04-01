@@ -5,6 +5,7 @@ import {
   getCurrentLocation,
   getCurrentPage,
   getCurrentTab,
+  getData,
   getFlag,
   getRelicHunterLocation,
   getSetting,
@@ -19,9 +20,7 @@ import {
   setTab
 } from '@utils';
 
-import { getData } from '@utils/data';
-
-import { getTravelSetting, saveTravelSetting } from './travel-utils';
+import { getTravelSetting, saveTravelSetting, travelTo } from './travel-utils';
 
 import addReminders from './reminders';
 import travelWindow from './travel-window';
@@ -87,7 +86,7 @@ const expandTravelRegions = () => {
 
 const travelClickHandler = (event) => {
   if (app?.pages?.TravelPage?.travel) {
-    app.pages.TravelPage.travel(event.target.getAttribute('data-environment'));
+    travelTo(event.target.getAttribute('data-environment'));
     setPage('Camp');
   }
 };
@@ -278,7 +277,7 @@ const getPreviousLocation = () => {
 const goToPreviousLocation = () => {
   const previousLocation = getPreviousLocation();
   if (previousLocation) {
-    app.pages.TravelPage.travel(previousLocation.id);
+    travelTo(previousLocation.id);
   }
 };
 
@@ -350,7 +349,7 @@ const addToTravelDropdown = async () => {
       label: region.name,
       icon: region.image,
       callback: () => {
-        app.pages.TravelPage.travel(region.id);
+        travelTo(region.id);
       },
       class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-region-location',
     });
@@ -371,7 +370,7 @@ const addToTravelDropdown = async () => {
           label: favoriteRegion.name,
           icon: favoriteRegion.image,
           callback: () => {
-            app.pages.TravelPage.travel(favoriteRegion.id);
+            travelTo(favoriteRegion.id);
           },
           class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-favorite-location',
         });

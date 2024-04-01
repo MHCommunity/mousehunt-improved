@@ -4,6 +4,7 @@ import {
   createPopup,
   debug,
   getCurrentLocation,
+  getData,
   getSetting,
   isUserTitleAtLeast,
   onDialogHide,
@@ -11,9 +12,7 @@ import {
   setPage
 } from '@utils';
 
-import { getData } from '@utils/data';
-
-import { getTravelSetting, saveTravelSetting } from './travel-utils';
+import { getTravelSetting, saveTravelSetting, travelTo } from './travel-utils';
 
 import styles from './travel-menu.css';
 
@@ -218,7 +217,7 @@ const openTravelWindow = async () => {
         button.classList.toggle('mh-improved-travel-window-hidden');
       } else {
         debug(`Traveling to ${environmentType}`);
-        app.pages.TravelPage.travel(environmentType);
+        travelTo(environmentType);
         setPage('Camp');
         popup.hide();
       }
