@@ -1,5 +1,107 @@
 # Changelog
 
+## Version 0.39.0
+
+### Better Inventory
+
+- Updated recipe styles
+- Minor style updates
+
+### Better Item View
+
+- Added item details on hover in journal entries
+- Minor style updates
+
+### Better Journal
+
+- Reverted progress log changes
+- Updated journal replacements
+- Style updates
+
+### Better Maps
+
+- Added Bountiful Beanstalk map to the Sorted tab
+- Minor style updates
+
+### Better Mice
+
+- Added current Relic Hunter location to the Relic Hunter mouse popup
+- Adds setting to show currently available mice in the sidebar
+- Adds crowns to hover view
+- Minor style updates
+
+### Better Shops
+
+- Minor style updates
+
+### Better UI
+
+- Various style updates
+
+### Catch Rate Estimator & Minlucks
+
+- Fixed issues with display not updating
+- Added an option to hide the button and allow clicking on the profile picture to copy your ID
+
+### Custom HUD
+
+- Added "\"Midnight"\" custom HUD (pairs perfectly with Dark mode!)
+
+### Dark Mode Updates & Tweaks
+
+- Various style updates
+
+### Journal Changer
+
+- Fixed style conflict with Censor Journal Names userscript
+
+### Larger Skin Images
+
+- Fixed unowned skins not displaying images
+- Updated loading method to speed it up
+
+### Location Dashboard
+
+- Added Bountiful Beanstalk to Location Dashboard
+- Removed broken UU display for Valour Rift
+- Updated text to be more consistent
+
+### Location Huds: Bountiful Beanstalk
+
+- Added quick purchase buttons for cheeses
+- Added ability to toggle room details panel
+- Style updates
+
+### Location Huds: Event Regions
+
+- Updated Spring Egg Hunt styles
+
+### Location Huds: Harbour
+
+- Added Harbour Location HUD styles
+
+### Location Huds: Living Garden Region
+
+- Updated backgrounds to use custom images with slight edits
+- Minor style updates
+
+### Quick Filters And Sort
+
+- Minor style updates
+
+### Show Auras
+
+- Updated to force block to always appear under the TEM
+- Minor style updates
+
+### Wisdom In Stat Bar
+
+- Fixed automatic refresh not updating value automatically
+
+### Other
+
+- Added better handling of data retrieval and caching
+
 ## Version 0.38.0
 
 ### Added
