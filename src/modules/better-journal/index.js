@@ -16,7 +16,6 @@ import journalItemColors from './journal-item-colors';
 import journalList from './journal-list';
 import journalReplacements from './journal-replacements';
 import journalStyles from './journal-styles';
-import progressLog from './progress-log';
 
 import listAndIconsStyles from './list-and-icons.css';
 
@@ -100,10 +99,6 @@ const init = async () => {
 
   if (enabled.itemColors) {
     journalItemColors();
-  }
-
-  if (enabled.progressLog) {
-    progressLog();
   }
 
   journalHistory(getSetting('better-journal.history', getFlag('journal-history', true)));
