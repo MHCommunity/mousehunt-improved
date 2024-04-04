@@ -11,6 +11,12 @@ const main = () => {
   }
 
   const copyIdButton = makeElement('div', ['mh-copy-id-button', 'mousehuntActionButton', 'tiny']);
+
+  const hidebutton = getSetting('copy-id-button.hide-button');
+  if (hidebutton) {
+    copyIdButton.classList.add('hidden');
+  }
+
   makeElement('span', 'mh-copy-id-button-text', 'Copy ID', copyIdButton);
   profilePic.parentNode.insertBefore(copyIdButton, profilePic.nextSibling);
 
@@ -32,27 +38,27 @@ const main = () => {
 
   copyIdButton.addEventListener('click', clickAction);
 
-  if (getSetting('copy-id-button.hide-button')) {
+  if (hidebutton) {
     profilePic.setAttribute('onclick', '');
     profilePic.addEventListener('click', clickAction);
+  } else {
+    // When hovering over the profile pic, show the copy button and hide it if they're not hovering the profile pic or teh button.
+    profilePic.addEventListener('mouseenter', () => {
+      copyIdButton.style.display = 'block';
+    });
+
+    profilePic.addEventListener('mouseleave', () => {
+      copyIdButton.style.display = 'none';
+    });
+
+    copyIdButton.addEventListener('mouseenter', () => {
+      copyIdButton.style.display = 'block';
+    });
+
+    copyIdButton.addEventListener('mouseleave', () => {
+      copyIdButton.style.display = 'none';
+    });
   }
-
-  // When hovering over the profile pic, show the copy button and hide it if they're not hovering the profile pic or teh button.
-  profilePic.addEventListener('mouseenter', () => {
-    copyIdButton.style.display = 'block';
-  });
-
-  profilePic.addEventListener('mouseleave', () => {
-    copyIdButton.style.display = 'none';
-  });
-
-  copyIdButton.addEventListener('mouseenter', () => {
-    copyIdButton.style.display = 'block';
-  });
-
-  copyIdButton.addEventListener('mouseleave', () => {
-    copyIdButton.style.display = 'none';
-  });
 };
 
 /**

@@ -22,11 +22,6 @@
   }
 }
 
-.journal .entry.luckycatchsuccess .journaltext .luckyCatch {
-  -webkit-text-stroke-color: #7bc95e;
-  -webkit-text-stroke-width: thin;
-}
-
 .journal .entry.luckycatchsuccess .journalimage {
   position: absolute;
   top: 0;

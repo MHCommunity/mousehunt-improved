@@ -34,7 +34,7 @@ const makeList = (title, items) => {
   return markup;
 };
 
-const showUpdateSummary = async () => {
+const showUpdateSummary = async (force = false) => {
   const updateSummaries = await fetch('https://api.mouse.rip/update-summary');
   const updates = await updateSummaries.json();
 
@@ -58,6 +58,10 @@ const showUpdateSummary = async () => {
 
   let noChanges = '';
   if (! update.summary.length && ! update.details.length) {
+    if (! force) {
+      return;
+    }
+
     noChanges = ' no-changes';
     lists = '<p><a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noopener noreferrer">Check out the latest release notes</a> for more information.</p>';
   }
@@ -120,7 +124,9 @@ const init = async () => {
   addStyles(styles, 'update-notifications');
 
   onEvent('mh-improved-updated', showUpdateSummary);
-  onEvent('mh-improved-show-update-summary', showUpdateSummary);
+  onEvent('mh-improved-show-update-summary', () => {
+    showUpdateSummary(true);
+  });
 };
 
 export default {

@@ -1,5 +1,6 @@
 import { getSetting } from '@utils';
 
+import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
@@ -50,6 +51,11 @@ const experiments = [
     id: 'experiments.fi-draggable-airship',
     title: 'Location HUD - Floating Islands: Make airship draggable',
   },
+  {
+    id: 'experiments.big-timer',
+    title: 'Big Timer',
+    load: bigTimer,
+  }
 ];
 
 const init = async () => {

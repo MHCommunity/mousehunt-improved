@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.39.1
+
+- Fixes Boutiful Beanstalk Location HUD blocking normal crafting buttons
+- Fixes Copy ID Button hide button setting not hiding the button
+- Adds Big Timer experimental feature (click on the timer in the HUD to toggle after enabling)
+
 ## Version 0.39.0
 
 ### Better Inventory
