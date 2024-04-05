@@ -5,11 +5,13 @@ import { exportPopup, recursiveFetch } from './exporter';
 
 const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly = false) => {
   const totalItemsEl = document.querySelector(`.item-wrapper[data-region="${scoreboard.id}"] .total-items`);
-  totalItemsEl.textContent = '…';
-  totalItemsEl.scrollIntoView({
-    behavior: 'smooth',
-    block: 'nearest',
-  });
+  if (totalItemsEl) {
+    totalItemsEl.textContent = '…';
+    totalItemsEl.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    });
+  }
 
   const response = await doRequest('managers/ajax/pages/scoreboards.php', {
     action: 'get_page',
@@ -22,7 +24,9 @@ const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly =
   });
 
   if (null === response.scoreboard_page?.viewer_row) {
-    totalItemsEl.textContent = '-';
+    if (totalItemsEl) {
+      totalItemsEl.textContent = '-';
+    }
 
     return {
       scoreboard: scoreboard.name,
@@ -37,7 +41,10 @@ const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly =
   };
 
   const rankSuffix = response.scoreboard_page.viewer_row.rank_formatted.replaceAll(/[\d\s]+/g, '');
-  totalItemsEl.textContent = `${entry.rank.toLocaleString()}${rankSuffix}`;
+
+  if (totalItemsEl) {
+    totalItemsEl.textContent = `${entry.rank.toLocaleString()}${rankSuffix}`;
+  }
 
   // resolve the promise with the data
   return {

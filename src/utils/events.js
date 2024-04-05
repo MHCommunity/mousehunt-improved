@@ -29,9 +29,14 @@ let onRequestHolder = null;
  * @param {string}   url         The url to match. If not provided, all ajax requests will be matched.
  * @param {Function} callback    The callback to call when an ajax request is completed.
  * @param {boolean}  skipSuccess Skip the success check.
+ * @param {Array}    ignore      The urls to ignore.
  */
-const onRequest = (url = null, callback = null, skipSuccess = false) => {
+const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []) => {
   url = '*' === url ? '*' : `managers/ajax/${url}`;
+
+  if (ignore.includes(url)) {
+    return;
+  }
 
   if (! callback) {
     return;

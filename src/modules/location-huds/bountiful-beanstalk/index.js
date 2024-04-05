@@ -211,6 +211,9 @@ const addCraftingButtons = async () => {
       is_kings_cart_item: 0,
     });
 
+    results.inventory = results.inventory || {};
+    results.items = results.items || {};
+
     const newInventoryQuantities = Object.keys(results.inventory).reduce((acc, key) => {
       acc[key] = results.inventory[key].quantity;
       return acc;

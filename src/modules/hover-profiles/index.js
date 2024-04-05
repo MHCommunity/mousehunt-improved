@@ -72,8 +72,8 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
   friendDataWrapper?.remove();
 
   let content;
-  if (data) {
-    const templateType = data[0].user_interactions.relationship.is_stranger ? 'PageFriends_request_row' : 'PageFriends_view_friend_row';
+  if (data && data.length) {
+    const templateType = ! data[0].user_interactions?.relationship?.is_stranger ? 'PageFriends_view_friend_row' : 'PageFriends_request_row'; // eslint-disable-line unicorn/no-negated-condition
     content = hg.utils.TemplateUtil.render(templateType, data[0]);
   } else {
     content = hg.utils.TemplateUtil.render('PageFriends_view_friend_row', hg.pages.FriendsPage().getPlaceholderData());

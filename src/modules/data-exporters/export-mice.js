@@ -44,10 +44,12 @@ const getWeightFormatted = (weight) => {
 
 const getDataForRegion = async (region) => {
   const regionEl = document.querySelector(`.item-wrapper[data-region="${region.id}"]`);
-  regionEl.scrollIntoView({
-    behavior: 'smooth',
-    block: 'nearest',
-  });
+  if (regionEl) {
+    regionEl.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    });
+  }
 
   const miceCaughtEl = regionEl.querySelector('.mice-caught');
   const totalCatchesEl = regionEl.querySelector('.total-catches');

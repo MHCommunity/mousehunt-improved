@@ -111,6 +111,10 @@ const showUpdateSummary = async (force = false) => {
   popup.show();
 
   const dismiss = document.querySelector('#mh-improved-dismiss-popup');
+  if (! dismiss) {
+    return;
+  }
+
   dismiss.addEventListener('click', (e) => {
     e.preventDefault();
     popup.hide(); // TODO: maybe refresh the page here if the update needs it?

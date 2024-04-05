@@ -268,7 +268,7 @@ const updateMouseView = async () => {
         const button = makeElement('div', ['mousehuntActionButton', 'small']);
         makeElement('span', '', 'Travel', button);
         button.addEventListener('click', () => {
-          app.pages.TravelPage.travel(environmentType);
+          app.pages.TravelPage.travel(location.id);
           setPage('Camp');
         });
 

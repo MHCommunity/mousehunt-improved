@@ -63,7 +63,7 @@ const isLegacyHUD = () => {
  * @return {boolean} True if the user is logged in, false otherwise.
  */
 const isLoggedIn = () => {
-  return user.length > 0 && 'login' !== getCurrentPage();
+  return user && user.user_id && 'login' !== getCurrentPage();
 };
 
 /**
@@ -166,6 +166,10 @@ const requests = {};
  * @return {Promise} The response.
  */
 const doRequest = async (url, formData = {}, skipChecks = false) => {
+  if (! isLoggedIn()) {
+    return;
+  }
+
   // If we don't have the needed params, bail.
   if ('undefined' === typeof lastReadJournalEntryId || 'undefined' === typeof user) {
     return;
@@ -234,19 +238,41 @@ const doRequest = async (url, formData = {}, skipChecks = false) => {
   const requestBody = new URLSearchParams(form).toString();
 
   // Send the request.
-  const response = await fetch(
-    callbackurl ? callbackurl + url : 'https://www.mousehuntgame.com/' + url,
-    {
-      method: 'POST',
-      body: requestBody,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+  let response;
+  let attempts = 0;
+
+  while (! response && attempts < 3) {
+    try {
+      response = await fetch(
+        callbackurl ? callbackurl + url : 'https://www.mousehuntgame.com/' + url,
+        {
+          method: 'POST',
+          body: requestBody,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      );
+    } catch (error) {
+      attempts++;
+      console.error(`Attempt ${attempts} failed. Retrying...`, error); // eslint-disable-line no-console
     }
-  );
+  }
+
+  if (attempts >= 3) {
+    console.error('Failed to fetch after maximum attempts'); // eslint-disable-line no-console
+  }
 
   // Wait for the response and return it.
-  const data = await response.json();
+  let data;
+
+  try {
+    data = await response.json();
+  } catch (error) {
+    console.error(`Error parsing response for ${url}:`, error, url, formData, response); // eslint-disable-line no-console
+
+    return false;
+  }
 
   // Store the request in the requests object.
   requests[requestKey] = {

@@ -8,7 +8,7 @@ import { getSetting } from './settings';
  * @param {any}    args    Additional arguments to log.
  */
 const debug = (message, ...args) => {
-  if (getSetting('debug.module', false) || getGlobal('mh-improved-updating', false)) {
+  if (getSetting('debug.module', false) || getGlobal('mh-improved-updating') || getGlobal('mh-improved-debug')) {
     // eslint-disable-next-line no-console
     console.log(
       `%cMH Improved%c: ${message}`,
@@ -27,7 +27,7 @@ const debug = (message, ...args) => {
  * @param {any}    args    Additional arguments to log.
  */
 const debuglog = (module, message, ...args) => {
-  if (getSetting('debug.all', false) || getSetting(`debug.${module}`, false) || getGlobal('mh-improved-updating', false)) {
+  if (getSetting('debug.all', false) || getSetting(`debug.${module}`, false) || getGlobal('mh-improved-updating')) {
     // eslint-disable-next-line no-console
     console.log(
       `%cMH Improved %c${module}%c ${message}`,

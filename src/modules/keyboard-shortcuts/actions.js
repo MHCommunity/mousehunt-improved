@@ -70,33 +70,33 @@ export default () => {
     {
       id: 'goto-marketplace',
       description: 'Open the Marketplace',
-      action: () => hg.views.MarketplaceView.show(),
+      action: () => hg?.views?.MarketplaceView?.show && hg.views.MarketplaceView.show(),
       category: 'open-dialog',
     },
     {
       id: 'open-inbox',
       description: 'Open the Inbox',
-      action: () => messenger.UI.notification.togglePopup(),
+      action: () => messenger?.UI?.notification?.togglePopup && messenger.UI.notification.togglePopup(),
       category: 'open-dialog',
     },
     {
       id: 'open-gifts',
       description: 'Open the Gifts popup',
-      action: () => hg.views.GiftSelectorView.show(),
+      action: () => hg?.views?.GiftSelectorView?.show && hg.views.GiftSelectorView.show(),
       category: 'open-dialog',
     },
     {
       id: 'open-map',
       key: 'm',
       description: 'Open your Map',
-      action: () => hg.controllers.TreasureMapController.show(),
+      action: () => hg?.controllers?.TreasureMapController?.show && hg.controllers.TreasureMapController.show(),
       category: 'open-dialog',
     },
     {
       id: 'open-map-invites',
       key: 'i',
       description: 'Open your Map Invites',
-      action: () => hg.controllers.TreasureMapController.showCommunity(),
+      action: () => hg?.controllers?.TreasureMapController?.showCommunity && hg.controllers.TreasureMapController.showCommunity(),
       category: 'open-dialog',
     },
     {
@@ -154,13 +154,13 @@ export default () => {
     {
       id: 'disarm-cheese',
       description: 'Disarm your Cheese',
-      action: () => hg.utils.TrapControl.disarmBait().go(),
+      action: () => hg?.utils?.TrapControl?.disarmBait && hg?.utils?.TrapControl?.go && hg.utils.TrapControl.disarmBait().go(),
       category: 'trap-setup',
     },
     {
       id: 'disarm-charm',
       description: 'Disarm your Charm',
-      action: () => hg.utils.TrapControl.disarmTrinket().go(),
+      action: () => hg?.utils?.TrapControl?.disarmBait && hg?.utils?.TrapControl?.go && hg.utils.TrapControl.disarmBait().go(),
       category: 'trap-setup',
     },
     {

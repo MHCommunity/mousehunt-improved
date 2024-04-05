@@ -86,6 +86,11 @@ const getItemsFromText = (type, text) => {
       newText: `${items[0]} Inside my chest was: `,
     };
   }
+
+  return {
+    list: [],
+    newText: text.innerHTML,
+  };
 };
 
 /**

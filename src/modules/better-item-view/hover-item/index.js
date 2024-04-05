@@ -69,8 +69,11 @@ const fetchAndFillItemData = async (itemId) => {
 let debugPopup = false;
 let itemDataWrapper;
 let isLoading = false;
+let timeoutId;
 const makeMouseMarkup = async (itemId, e) => {
   itemDataWrapper?.remove();
+
+  clearTimeout(timeoutId);
 
   const existing = document.querySelectorAll('#item-data-wrapper');
   if (existing && existing.length) {
@@ -97,7 +100,6 @@ const makeMouseMarkup = async (itemId, e) => {
 
   itemDataWrapper.style.top = `${tooltipTop}px`;
   itemDataWrapper.style.left = `${left - (itemDataWrapper.offsetWidth / 2) + (rect.width / 2)}px`;
-  let timeoutId;
 
   itemDataWrapper.addEventListener('mouseleave', () => {
     timeoutId = setTimeout(() => {

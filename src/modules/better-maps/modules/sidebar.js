@@ -52,7 +52,7 @@ const addMapToSidebar = async () => {
     mapSidebar.classList.add('loading');
 
     await refreshMap();
-    addMapToSidebar();
+    await addMapToSidebar();
 
     setTimeout(() => {
       mapSidebar.classList.remove('loading');
@@ -110,26 +110,32 @@ const addMapToSidebar = async () => {
 const refreshMap = async () => {
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
 
-  const newMapData = await doRequest('managers/ajax/users/treasuremap.php', {
-    action: 'map_info',
-    map_id: mapId,
-  });
+  let newMapData;
+  try {
+    newMapData = await doRequest('managers/ajax/users/treasuremap.php', {
+      action: 'map_info',
+      map_id: mapId,
+    });
+  } catch (e) {
+    console.error('Error refreshing map:', e);
+    return false;
+  }
 
-  if (! newMapData || ! newMapData.treasure_map) {
-    return;
+  if (! (newMapData && newMapData?.treasure_map)) {
+    return false;
   }
 
   setMapData(mapId, newMapData.treasure_map);
 
   const currentMapData = sessionGet(`mh-improved-map-cache-${mapId}`);
-  if (currentMapData) {
+  if (currentMapData && mapData.treasure_map) {
     const currentGoals = getCompletedGoals(currentMapData);
-    const newGoals = getCompletedGoals(mapData.treasure_map);
+    const newGoals = getCompletedGoals(newMapData.treasure_map);
     if (currentGoals.length !== newGoals.length) {
-      addMapToSidebar();
+      await addMapToSidebar();
     }
   } else {
-    addMapToSidebar();
+    await addMapToSidebar();
   }
 
   mapData = newMapData.treasure_map;

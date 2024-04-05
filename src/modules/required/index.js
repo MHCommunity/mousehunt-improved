@@ -59,8 +59,8 @@ const addEvents = () => {
 const init = async () => {
   // If you want to disable the reporting, you can but you have to admit you're a cheater.
   if (! getFlag('i-am-a-cheater-and-i-know-it')) {
-    checkForAutoHorn();
-    onTurn(checkForAutoHorn, 2000);
+    setTimeout(checkForAutoHorn, 5000);
+    onTurn(checkForAutoHorn, 5000);
   }
 
   addEvents();

@@ -181,7 +181,7 @@ const showTravelConfirmationNoDetails = async (environment) => {
       type: environment.id,
       thumb: environment.image,
       header: environment.headerImage,
-      goals: goals || [],
+      goals: environment.goals || [],
       num_completed_goals: 0,
       num_total_goals: environmentMice.length,
       hunters: [],
@@ -267,8 +267,8 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
 
     mhctRow.addEventListener('click', () => {
       // if we're in the right location, then equip the right cheese, otherwise show the travel dialog)
-      if (environment.id === getCurrentLocation()) {
-        app.pages.CampPage.toggleItemBrowser('bait');
+      if (environment.id === getCurrentLocation() && app?.pages?.CampPage?.showTrapSelector) {
+        app.pages.CampPage.showTrapSelector('bait');
         jsDialog().hide();
         return;
       }
@@ -415,7 +415,19 @@ const getArForMouse = async (id, type = 'mouse') => {
     url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
   }
 
-  mhctData = await fetch(url, { headers: getHeaders() });
+  try {
+    mhctData = await fetch(url, { headers: getHeaders() });
+  } catch (error) {
+    console.error('Error fetching MHCT data:', error); // eslint-disable-line no-console
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    try {
+      mhctData = await fetch(url, { headers: getHeaders() });
+    } catch (errorRetry) { // eslint-disable-line unicorn/catch-error-name
+      console.error('Error fetching MHCT data:', errorRetry); // eslint-disable-line no-console
+      return [];
+    }
+  }
 
   if (! mhctData.ok) {
     return [];

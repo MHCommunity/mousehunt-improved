@@ -74,17 +74,30 @@ const isCacheExpired = async (key) => {
 /**
  * Fetch the data for the given key.
  *
- * @param {string} key Key to fetch.
+ * @param {string} key     Key to fetch.
+ * @param {number} retries Number of retries.
  *
  * @return {Object} The fetched data.
  */
-const fetchData = async (key) => {
-  const data = await fetch(`https://api.mouse.rip/${key}`, {
-    method: 'GET',
-    headers: getHeaders(),
-  });
+const fetchData = async (key, retries = 0) => {
+  try {
+    const data = await fetch(`https://api.mouse.rip/${key}`, {
+      method: 'GET',
+      headers: getHeaders(),
+    });
 
-  return await data.json();
+    return await data.json();
+  } catch (error) {
+    console.error(`Error fetching data for ${key}:`, error); // eslint-disable-line no-console
+
+    if (retries >= 3) {
+      return false;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 500 * retries));
+
+    return fetchData(key, retries + 1);
+  }
 };
 
 /**

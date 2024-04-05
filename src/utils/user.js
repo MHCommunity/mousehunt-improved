@@ -15,7 +15,7 @@ const getUserItems = async (items, forceUpdate = false) => {
     hg.utils.UserInventory.getItems(items, (resp) => {
       resolve(resp);
     }, (err) => {
-      console.error('Error getting user items:', err); // eslint-disable-line no-console
+      console.error('Error getting user items:', items, err); // eslint-disable-line no-console
       resolve([]);
     }, forceUpdate);
   });

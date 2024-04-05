@@ -20,10 +20,17 @@ import styles from './styles.css';
 
 let lastStats = [];
 let effectiveness = null;
+let isUpdating = false;
 const updateMinLucks = async () => {
   if ('camp' !== getCurrentPage()) {
     return;
   }
+
+  if (isUpdating) {
+    return;
+  }
+
+  isUpdating = true;
 
   let minluckList = document.querySelector('#mh-improved-cre');
   if (! minluckList) {
@@ -32,6 +39,7 @@ const updateMinLucks = async () => {
 
     const statsContainer = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
     if (! statsContainer) {
+      isUpdating = false;
       return;
     }
 
@@ -60,6 +68,7 @@ const updateMinLucks = async () => {
   }
 
   if (! effectiveness) {
+    isUpdating = false;
     return;
   }
 
@@ -72,7 +81,9 @@ const updateMinLucks = async () => {
       };
     });
 
-  renderList(miceIds);
+  await renderList(miceIds);
+
+  isUpdating = false;
 };
 
 const renderList = async (list) => {
@@ -175,7 +186,7 @@ const main = async () => {
     page: 'camp',
   });
 
-  onRequest('*', updateMinLucks);
+  onRequest('*', updateMinLucks, false, ['users/getmiceeffectiveness.php']);
   onTravel(null, { callback: updateMinLucks });
 };
 

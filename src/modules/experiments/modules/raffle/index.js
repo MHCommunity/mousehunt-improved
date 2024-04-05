@@ -109,11 +109,20 @@ const sendBallot = async (ballot) => {
     }
   }
 
-  const response = await doRequest('managers/ajax/users/givefriendballot.php', {
-    snuid: ballot.id,
-  });
+  let response;
+  try {
+    response = await doRequest('managers/ajax/users/givefriendballot.php', {
+      snuid: ballot.id,
+    });
+  } catch (error) {
+    debuglog('feature-flags-raffle', `Error returning ballot for ${ballot.name}: ${error}`);
 
-  if (response.error && ! response.error.includes('You have already entered ')) {
+    await sleep(1000);
+
+    return { status: 'error', proceed: true };
+  }
+
+  if (response.error && ! response?.error?.includes('You have already entered ')) {
     debuglog('feature-flags-raffle', `Error returning ballot for ${ballot.name}: ${response.error}`);
     return { status: 'error', proceed: false };
   }
@@ -235,7 +244,7 @@ let _inboxOpen;
  * Replace inbox methods.
  */
 const replaceInboxMethods = () => {
-  if (! messenger || ! messenger?.UI?.notification?.showTab) {
+  if ('undefined' === typeof messenger || ! messenger?.UI?.notification?.showTab) {
     return;
   }
 
@@ -252,6 +261,10 @@ const replaceInboxMethods = () => {
 
     return toReturn;
   };
+
+  if (! messenger?.UI?.notification?.togglePopup) {
+    return;
+  }
 
   const _inboxPopup = messenger.UI.notification.togglePopup;
   messenger.UI.notification.togglePopup = (e) => {

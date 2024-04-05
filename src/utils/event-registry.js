@@ -34,6 +34,7 @@ const doEvent = (eventName, params) => {
   eventRegistry.doEvent(eventName, params);
 };
 
+const eventsAdded = {};
 /**
  * Add something to the event registry.
  *
@@ -45,6 +46,14 @@ const onEvent = (event, callback, remove = false) => {
   if (! eventRegistry) {
     return;
   }
+
+  // generate a unique id for the event based on the event name and the callback
+  const id = `${event}-${remove.toString()}-${callback.toString()}`;
+  if (eventsAdded[id]) {
+    return;
+  }
+
+  eventsAdded[id] = true;
 
   eventRegistry.addEventListener(event, callback, null, remove);
 };
