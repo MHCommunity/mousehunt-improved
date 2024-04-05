@@ -55,7 +55,6 @@
   display: grid;
   grid-template-columns: 2fr 3fr;
   gap: 0 20px;
-  margin-right: 10px;
   font-size: 10px;
 }
 

@@ -162,3 +162,8 @@ span.treasureMapView-shareLinkInputStatus {
 .treasureMapView-inviteModeDescription {
   margin-bottom: 5px;
 }
+
+.treasureMapView-hunter-wrapper.mousehuntTooltipParent {
+  padding-top: 20px;
+  margin-top: -10px;
+}

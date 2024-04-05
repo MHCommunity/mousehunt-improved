@@ -175,3 +175,7 @@
     0 -1px 0 0 #eda934,
     0 -3px 0 0 #f5a02d;
 }
+
+.springHuntHUD-setMaxQuantityButton {
+  font-size: 14px;
+}
