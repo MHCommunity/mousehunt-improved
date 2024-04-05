@@ -6,6 +6,10 @@
 export default async () => {
   return [
     {
+      id: 'better-maps.default-to-sorted',
+      title: 'Default to sorted tab',
+    },
+    {
       id: 'better-maps.show-sidebar-goals',
       title: 'Show map goals in sidebar',
       default: true,

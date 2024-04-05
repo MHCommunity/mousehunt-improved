@@ -117,8 +117,12 @@ const initMapper = (map) => {
     });
   });
 
-  // Fire the goals click because we default to that tab.
-  doEvent('map_show_goals_tab_click', map);
+  if (getSetting('better-maps.show-sorted-tab', true)) {
+    doEvent('map_sorted_tab_click', map);
+  } else {
+    // Fire the goals click because we default to that tab.
+    doEvent('map_show_goals_tab_click', map);
+  }
 
   // Add the block classes.
   addBlockClasses();
