@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'better-maps.default-to-sorted',
-      title: 'Default to sorted tab',
+      title: 'Default to Sorted tab',
     },
     {
       id: 'better-maps.show-sidebar-goals',
