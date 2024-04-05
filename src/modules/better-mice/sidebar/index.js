@@ -64,12 +64,16 @@ const updateSidebarList = async (data = null, isFromMiceEff = false) => {
 
   miceSidebar.append(miceContainer);
 
-  if (getSetting('sidebar-stuff.above-map-list', false)) {
-    const mapSidebar = document.querySelector('.pageSidebarView-block .mh-improved-map-sidebar');
-    if (mapSidebar) {
-      mapSidebar.before(miceSidebar);
-      return;
-    }
+  const mapSidebar = document.querySelector('.pageSidebarView-block .mh-improved-map-sidebar');
+  if (mapSidebar) {
+    mapSidebar.before(miceSidebar);
+    return;
+  }
+
+  const existing = document.querySelector('.mh-improved-mice-sidebar');
+  if (existing) {
+    existing.replaceWith(miceSidebar);
+    return;
   }
 
   sidebar.append(miceSidebar);
