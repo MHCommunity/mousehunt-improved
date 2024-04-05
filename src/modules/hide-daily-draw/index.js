@@ -116,7 +116,7 @@ const init = async () => {
 export default {
   id: 'hide-daily-draw',
   name: 'Hide Daily Draw',
-  type: 'beta', // will be 'element-hiding',
+  type: 'element-hiding',
   default: false,
   description: 'Hides the daily draw from the inbox',
   load: init,
