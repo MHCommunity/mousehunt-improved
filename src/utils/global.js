@@ -23,11 +23,11 @@ const setGlobal = (key, value) => {
  * @return {any|boolean} Value of the key or false if not found.
  */
 const getGlobal = (key) => {
-  if (window.mhui) {
+  if (window && window.mhui) {
     return window.mhui[key] || false;
   }
 
-  if (app.mhui) {
+  if ('undefined' !== typeof app && app && app.mhui) {
     return app.mhui[key] || false;
   }
 
