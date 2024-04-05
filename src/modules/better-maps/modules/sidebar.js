@@ -5,9 +5,7 @@ import {
   onTravel,
   onTurn,
   sessionGet,
-  setMapData,
-  setMultipleTimeout,
-  sleep
+  setMapData
 } from '@utils';
 
 const getCompletedGoals = () => {
@@ -118,8 +116,8 @@ const refreshMap = async () => {
       action: 'map_info',
       map_id: mapId,
     });
-  } catch (e) {
-    console.error('Error refreshing map:', e);
+  } catch (error) {
+    console.error('Error refreshing map:', error); // eslint-disable-line no-console
     return false;
   }
 
