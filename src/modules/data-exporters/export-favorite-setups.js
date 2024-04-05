@@ -1,29 +1,22 @@
 import { exportPopup } from './exporter';
-
-const hasFavoriteSetups = () => {
-  return localStorage.getItem('favorite-setups-saved');
-};
+import { getSetting } from '@utils';
 
 const fetch = async () => {
-  const setups = JSON.parse(localStorage.getItem('favorite-setups-saved'));
+  const setups = getSetting('favorite-setups.setups');
 
-  const flattenedSetups = [];
-
-  for (const setupName in setups) {
-    const setup = setups[setupName];
-    flattenedSetups.push({
-      name: setupName,
-      bait: setup.bait,
-      base: setup.base,
-      weapon: setup.weapon,
-      trinket: setup.trinket,
-      skin: setup.skin,
-      location: setup.location,
-      sort: setup.sort,
-    });
-  }
-
-  return flattenedSetups;
+  // resort the setups so that they are { id, name, location, weapon_id, base_id, trinket_id, bait_id, power_type } and add default values
+  return setups.map((setup) => {
+    return {
+      id: setup.id || 0,
+      name: setup.name || '',
+      location: setup.location || '',
+      bait_id: setup.bait_id || 0,
+      base_id: setup.base_id || 0,
+      trinket_id: setup.trinket_id || 0,
+      weapon_id: setup.weapon_id || 0,
+      power_type: setup.power_type || '',
+    };
+  });
 };
 
 const afterFetch = (data) => {
@@ -33,7 +26,7 @@ const afterFetch = (data) => {
 
 const exportFavoriteSetups = () => {
   exportPopup({
-    type: 'favorite-setups-saved',
+    type: 'favorite-setups',
     text: 'Favorite Setups',
     footerMarkup: '<div class="region-name">Total Values</div><div class="total-items">-</div>',
     fetch,
@@ -41,20 +34,17 @@ const exportFavoriteSetups = () => {
     dataIsAvailable: true,
     download: {
       headers: [
+        'ID',
         'Name',
-        'Bait',
-        'Base',
-        'Weapon',
-        'Trinket',
-        'Skin',
         'Location',
-        'Sort',
+        'Bait ID',
+        'Base ID',
+        'Trinket ID',
+        'Weapon ID',
+        'Power Type',
       ],
     },
   });
 };
 
-export {
-  exportFavoriteSetups,
-  hasFavoriteSetups
-};
+export default exportFavoriteSetups;

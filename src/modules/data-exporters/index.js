@@ -1,9 +1,11 @@
 import { addStyles, addSubmenuItem, createPopup, onEvent } from '@utils';
 
-import { exportFavoriteSetups, hasFavoriteSetups } from './export-favorite-setups';
+import { exportFavoriteSetupsUserscript, hasFavoriteSetupsUserscript } from './export-favorite-setups-userscript';
 import { exportRankupForecaster, hasRankupForecaster } from './export-rankup-forecaster';
 
+import exportFavoriteSetups from './export-favorite-setups';
 import exportInventory from './export-inventory';
+import exportJournalEntries from './export-journal-entries';
 import exportMarketplace from './export-marketplace';
 import exportMice from './export-mice';
 import exportScoreboards from './export-scoreboards';
@@ -60,13 +62,23 @@ const exportDataPopup = () => {
       name: 'Scoreboard Rankings (Weekly, Friends)',
       callback: () => exportScoreboards({ useWeekly: true, useFriendsOnly: true }),
     },
+    {
+      id: 'journal-entries',
+      name: 'Journal Entries',
+      callback: exportJournalEntries,
+    },
+    {
+      id: 'favorite-setups',
+      name: 'Favorite Setups',
+      callback: exportFavoriteSetups,
+    }
   ];
 
-  if (hasFavoriteSetups()) {
+  if (hasFavoriteSetupsUserscript()) {
     exporters.push({
-      id: 'favorite-setups',
+      id: 'favorite-setups-userscript',
       name: 'Favorite Setups (userscript)',
-      callback: exportFavoriteSetups,
+      callback: exportFavoriteSetupsUserscript,
     });
   }
 
