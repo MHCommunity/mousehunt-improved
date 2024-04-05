@@ -1,6 +1,7 @@
 import {
   addStyles,
   doRequest,
+  getSetting,
   makeElement,
   onRequest,
   onTurn,
@@ -65,6 +66,7 @@ const fetchAndFillItemData = async (itemId) => {
   isLoading = false;
 };
 
+let debugPopup = false;
 let itemDataWrapper;
 let isLoading = false;
 const makeMouseMarkup = async (itemId, e) => {
@@ -99,7 +101,9 @@ const makeMouseMarkup = async (itemId, e) => {
 
   itemDataWrapper.addEventListener('mouseleave', () => {
     timeoutId = setTimeout(() => {
-      itemDataWrapper.remove();
+      if (! debugPopup) {
+        itemDataWrapper.remove();
+      }
     }, 250);
   });
 
@@ -108,7 +112,7 @@ const makeMouseMarkup = async (itemId, e) => {
   });
 
   const parent = e.target.parentElement;
-  if (parent) {
+  if (parent && ! debugPopup) {
     parent.addEventListener('mouseleave', () => {
       timeoutId = setTimeout(() => {
         itemDataWrapper.remove();
@@ -147,6 +151,8 @@ const main = () => {
 
 const hoverMice = () => {
   addStyles(styles, 'better-item-view-hover-mice');
+
+  debugPopup = getSetting('debug.hover-popups', false);
 
   setTimeout(main, 500);
   onRequest('*', () => {

@@ -38,6 +38,10 @@ export default async () => {
       title: 'Set Sentry to debug mode'
     },
     {
+      id: 'debug.hover-popups',
+      title: 'Keep hover popups open for debugging'
+    },
+    {
       id: 'debug.disable-cache',
       title: 'Disable caching',
       description: 'Disable caching of data and settings'

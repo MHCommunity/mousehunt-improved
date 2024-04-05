@@ -2,6 +2,7 @@ import {
   addStyles,
   doEvent,
   doRequest,
+  getSetting,
   makeElement,
   onEvent,
   onRequest,
@@ -111,7 +112,9 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
   // add a mouseleave event to remove it
   friendDataWrapper.addEventListener('mouseleave', () => {
     timeoutId = setTimeout(() => {
-      friendDataWrapper.remove();
+      if (! debugPopup) {
+        friendDataWrapper.remove();
+      }
     }, 250); // delay in milliseconds
   });
 
@@ -240,11 +243,14 @@ const main = () => {
   });
 };
 
+let debugPopup = false;
 /**
  * Initialize the module.
  */
 const init = async () => {
   addStyles(styles, 'hover-profiles');
+
+  debugPopup = getSetting('debug.hover-popups', false);
 
   setTimeout(main, 500);
   onRequest('*', () => {
