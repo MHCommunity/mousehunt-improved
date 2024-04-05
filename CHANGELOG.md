@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 0.39.2
+
+- Adds "Journal Entries" and "Favorite Setups" to Data Exporters
+- Adds 'Default to Sorted tab" setting to Better Maps
+- Adds new "Hide Daily Draw" module (was previously a beta feature)
+- Fixes Journal Theme image upscaling leading to misaligned images
+- Updates styles in various modules
+- Various performance improvements, safety checks, and bug fixes
+
 ## Version 0.39.1
 
 - Fixes Boutiful Beanstalk Location HUD blocking normal crafting buttons
