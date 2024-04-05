@@ -5,7 +5,9 @@ import {
   onTravel,
   onTurn,
   sessionGet,
-  setMapData
+  setMapData,
+  setMultipleTimeout,
+  sleep
 } from '@utils';
 
 const getCompletedGoals = () => {
@@ -142,6 +144,29 @@ const refreshMap = async () => {
   return newMapData;
 };
 
+const refreshSidebar = async () => {
+  const refreshed = await refreshMap();
+  if (! refreshed) {
+    shouldRefresh = false;
+    return;
+  }
+
+  addMapToSidebar();
+};
+
+let shouldRefresh = true;
+let timeoutFive;
+let timeoutTen;
+const refreshSidebarAfterTurn = () => {
+  clearTimeout(timeoutFive);
+  clearTimeout(timeoutTen);
+
+  if (shouldRefresh) {
+    timeoutFive = setTimeout(refreshSidebar, 5 * 60 * 1000);
+    timeoutTen = setTimeout(refreshSidebar, 10 * 60 * 1000);
+  }
+};
+
 let mapData;
 let miceThumbs;
 let itemThumbs;
@@ -150,13 +175,10 @@ export default async () => {
   itemThumbs = await getData('item-thumbnails');
 
   addMapToSidebar();
-
-  onTurn(async () => {
-    await refreshMap();
-    addMapToSidebar();
-  }, 1000);
   onTravel(null, { callback: addMapToSidebar });
 
-  // Refresh map data every 5 minutes.
-  setInterval(refreshMap, 300000);
+  onTurn(() => {
+    refreshSidebar();
+    refreshSidebarAfterTurn();
+  }, 1000);
 };
