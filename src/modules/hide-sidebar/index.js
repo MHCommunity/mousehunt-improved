@@ -1,4 +1,4 @@
-import { addBodyClass, addStyles, onActivation, onDeactivation } from '@utils';
+import { addBodyClass, addStyles, onDeactivation } from '@utils';
 
 import styles from './styles.css';
 
@@ -73,12 +73,6 @@ const init = async () => {
   addBodyClass('no-sidebar');
   moveSidebar();
   hg.views.PageFrameView.setShowSidebar(false);
-
-  onActivation('no-sidebar', () => {
-    moveSidebar();
-    addBodyClass('no-sidebar');
-    hg.views.PageFrameView.setShowSidebar(false);
-  });
 
   onDeactivation('no-sidebar', () => {
     hg.views.PageFrameView.setShowSidebar(true);
