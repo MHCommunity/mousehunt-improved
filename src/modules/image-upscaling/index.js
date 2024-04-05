@@ -1,7 +1,15 @@
-import { addStyles, onDialogShow, onEvent, onRequest } from '@utils';
-import { getData } from '@utils/data';
+import {
+  addStyles,
+  getData,
+  getFlag,
+  onDialogShow,
+  onEvent,
+  onRequest
+} from '@utils';
 
 import pathsToSkip from './paths-to-skip.json';
+
+import journalThemes from './journal-themes';
 
 import journalThemeStyles from './journal-themes.css';
 import styles from './styles.css';
@@ -274,13 +282,23 @@ const handleUpscalingImages = async () => {
 };
 
 const init = async () => {
-  addStyles([styles, journalThemeStyles, viewsStyles], 'image-upscaling');
+  const stylesToAdd = [styles, viewsStyles];
+
+  if (! getFlag('no-image-upscaling-journal-themes')) {
+    stylesToAdd.push(journalThemeStyles);
+  }
+
+  addStyles(stylesToAdd, 'image-upscaling');
 
   mapping = await getData('upscaled-images');
 
   onEvent('mh-improved-init', handleUpscalingImages);
   onDialogShow('all', handleUpscalingImages);
   onRequest('*', handleUpscalingImages);
+
+  if (! getFlag('no-image-upscaling-journal-themes')) {
+    journalThemes();
+  }
 };
 
 export default {
