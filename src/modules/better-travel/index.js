@@ -13,7 +13,6 @@ import {
   makeFavoriteButton,
   onEvent,
   onNavigation,
-  onPageChange,
   removeSubmenuItem,
   sessionGet,
   setPage,
@@ -587,12 +586,9 @@ const main = () => {
     addSimpleTravel();
     addRhToSimpleTravel();
     addFavoriteButtonsToTravelPage();
+    maybeSetTab();
   }, {
     page: 'travel',
-  });
-
-  onPageChange({
-    travel: { show: maybeSetTab },
   });
 
   listenTabChange();

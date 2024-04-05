@@ -471,6 +471,8 @@ const onTravelCallback = (location, options) => {
  * @param {string}   options.subtab The subtab to watch for.
  * @param {boolean}  options.onLoad Whether or not to run the callback on load.
  */
+const callbacks = [];
+let hasAddedNavigationListener = false;
 const onNavigation = (callback, options = {}) => {
   const defaults = {
     page: false,
@@ -501,46 +503,56 @@ const onNavigation = (callback, options = {}) => {
     callback();
   }
 
+  callbacks.push({ callback, page, tab, subtab, bypassMatch });
+
+  if (! hasAddedNavigationListener) {
+    addNavigationListeners();
+    hasAddedNavigationListener = true;
+  }
+};
+
+const addNavigationListeners = () => {
   eventRegistry.addEventListener('set_page', (e) => {
     const tabs = e?.data?.tabs || {};
 
     const currentTab = Object.keys(tabs).find((key) => tabs[key].is_active_tab);
     const forceCurrentTab = currentTab?.type;
 
-    if (bypassMatch) {
-      callback();
-      return;
-    }
-
-    if (! subtab) {
-      if (isCurrentPage(page, tab, false, getCurrentPage(), forceCurrentTab)) {
+    callbacks.forEach(({ callback, page, tab, subtab, bypassMatch }) => {
+      if (bypassMatch) {
         callback();
+        return;
       }
 
-      return;
-    }
+      if (! subtab) {
+        if (isCurrentPage(page, tab, false, getCurrentPage(), forceCurrentTab)) {
+          callback();
+        }
 
-    if (currentTab?.subtabs && currentTab?.subtabs.length > 0) {
-      const forceSubtab = currentTab.subtabs.find((searchTab) => searchTab.is_active_subtab).subtab_type;
-
-      if (isCurrentPage(page, tab, subtab, getCurrentPage(), forceCurrentTab, forceSubtab)) {
-        callback();
+        return;
       }
-    }
+
+      if (currentTab?.subtabs && currentTab?.subtabs.length > 0) {
+        const forceSubtab = currentTab.subtabs.find((searchTab) => searchTab.is_active_subtab).subtab_type;
+
+        if (isCurrentPage(page, tab, subtab, getCurrentPage(), forceCurrentTab, forceSubtab)) {
+          callback();
+        }
+      }
+    });
   });
 
   eventRegistry.addEventListener('set_tab', (e) => {
-    const forceCurrentTab = e.page_arguments.tab;
-    const forceCurrentSubtab = e.page_arguments.sub_tab;
+    callbacks.forEach(({ callback, page, tab, subtab, bypassMatch }) => {
+      if (bypassMatch) {
+        callback();
+        return;
+      }
 
-    if (bypassMatch) {
-      callback();
-      return;
-    }
-
-    if (isCurrentPage(page, tab, subtab, getCurrentPage(), forceCurrentTab, forceCurrentSubtab)) {
-      callback();
-    }
+      if (isCurrentPage(page, tab, subtab, getCurrentPage(), e.page_arguments.tab, e.page_arguments.sub_tab)) {
+        callback();
+      }
+    });
   });
 };
 

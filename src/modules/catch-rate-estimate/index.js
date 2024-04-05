@@ -3,7 +3,7 @@ import {
   doEvent,
   getCurrentPage,
   makeElement,
-  onPageChange,
+  onNavigation,
   onRequest,
   onTravel
 } from '@utils';
@@ -171,11 +171,10 @@ const renderList = async (list) => {
 };
 
 const main = async () => {
-  if ('camp' === getCurrentPage()) {
-    await updateMinLucks();
-  }
+  onNavigation(updateMinLucks, {
+    page: 'camp',
+  });
 
-  onPageChange({ camp: { show: updateMinLucks } });
   onRequest('*', updateMinLucks);
   onTravel(null, { callback: updateMinLucks });
 };

@@ -3,7 +3,7 @@ import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
 import { addStylesDirect } from './styles';
 import { doEvent } from './event-registry';
 import { makeElement } from './elements';
-import { onPageChange } from './events';
+import { onNavigation } from './events';
 
 import settingsData from '@data/settings.json';
 
@@ -68,7 +68,9 @@ const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-util
 const addSettingsTab = (identifier = 'userscript-settings', name = 'Userscript Settings') => {
   addSettingStyles();
   addSettingsTabOnce(identifier, name);
-  onPageChange({ preferences: { show: () => addSettingsTabOnce(identifier, name) } });
+  onNavigation(() => addSettingsTabOnce(identifier, name), {
+    page: 'preferences',
+  });
 
   return identifier;
 };
@@ -151,7 +153,9 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
  */
 // const addSetting = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settings = null) => {
 const addSetting = (options) => {
-  onPageChange({ preferences: { show: () => addSettingOnce(options) } });
+  onNavigation(() => addSettingOnce(options), {
+    page: 'preferences',
+  });
   return addSettingOnce(options);
 };
 

@@ -5,8 +5,7 @@ import {
   makeElement,
   makeLink,
   makeTooltip,
-  onOverlayChange,
-  onPageChange
+  onDialogShow
 } from '@utils';
 
 import hoverItem from './hover-item';
@@ -192,8 +191,7 @@ const init = async () => {
     hoverItem();
   }
 
-  onOverlayChange({ item: { show: updateItemView } });
-  onPageChange({ item: { show: updateItemView } });
+  onDialogShow('itemViewPopup', updateItemView);
 };
 
 export default {
