@@ -188,11 +188,7 @@ _For Chrome or Firefox you can reload the extension by clicking the reload butto
 
 The `src/data/` folder contains JSON data files that are used by the extension and may need to be updated from time to time.
 
-- `library-assignments.json` Library Assignments IDs, costs, rewards, etc.
 - `map-groups.json` Map groups for the map sorter/categorizer.
-- `recipes-me-conversion.json` Recipe IDs that should show a Warning message when converting with Magic Essence.
-- `recipes-to-reorder.json` Recipe IDs that should be reordered on the crafting page.
-- `upscaled-images-skip.json` List of image URLs to skip when upscaling, used by the Image Upscaling module to skip images that don't need to be upscaled. Can contain a wildcard at the end of the URL to match paths.
 
 ## Adding a map to the map sorter/categorizer
 

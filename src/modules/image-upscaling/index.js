@@ -1,7 +1,7 @@
 import { addStyles, onDialogShow, onEvent, onRequest } from '@utils';
 import { getData } from '@utils/data';
 
-import pathsToSkip from '@data/upscaled-images-to-skip.json';
+import pathsToSkip from './paths-to-skip.json';
 
 import journalThemeStyles from './journal-themes.css';
 import styles from './styles.css';

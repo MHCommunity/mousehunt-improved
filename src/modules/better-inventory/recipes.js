@@ -12,8 +12,8 @@ import {
 
 import styles from './styles/recipes.css';
 
-import recipesMeConversion from '@data/recipes-me-conversion.json';
-import recipesToReorder from '@data/recipes-to-reorder.json';
+import recipesMeConversion from './recipes-me-conversion.json';
+import recipesToReorder from './recipes-to-reorder.json';
 
 /**
  * Clean up the recipe book.
