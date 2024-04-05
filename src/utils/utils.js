@@ -84,11 +84,14 @@ const bodyClasses = { added: [], removed: [] };
  */
 const addBodyClass = (className, force = false) => {
   if (
-    ! force && (
-      bodyClasses.removed.includes(className) ||
-      bodyClasses.added.includes(className)
-    )
+    bodyClasses.removed.includes(className) ||
+    bodyClasses.added.includes(className)
   ) {
+    if (force) {
+      bodyClasses.added.push(className);
+      document.body.classList.add(className);
+    }
+
     return;
   }
 

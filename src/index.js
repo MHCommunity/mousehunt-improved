@@ -84,11 +84,11 @@ const loadModules = async () => {
   const load = [];
 
   // Track loaded modules.
-  let loadedModules;
+  const allLoadedModules = [];
 
   // Loop through the categories and load the modules.
   for (const category of categories) {
-    loadedModules = [];
+    const loadedModules = [];
 
     // Load the modules.
     for (const module of category.modules) {
@@ -98,7 +98,11 @@ const loadModules = async () => {
       }
 
       // If the module is always loaded, or if the category is required, or if the module is enabled, load it.
-      if (module.alwaysLoad || 'required' === category.id || getSetting(module.id, module.default)) {
+      if (
+        module.alwaysLoad ||
+        'required' === category.id ||
+        getSetting(module.id, module.default)
+      ) {
         try {
           // Add the module to the load queue.
           load.push(module.load());
@@ -112,6 +116,8 @@ const loadModules = async () => {
         }
       }
     }
+
+    allLoadedModules.push(...loadedModules);
 
     // Log the loaded modules for the category.
     debuglog('module-loading', `Loaded ${category.modules.length} ${category.id} modules`, loadedModules);
@@ -129,7 +135,7 @@ const loadModules = async () => {
   }
 
   // Add the loaded modules to the global scope.
-  setGlobal('modules', loadedModules);
+  setGlobal('modules', allLoadedModules);
 
   // Fire the event to signal that all modules have been loaded.
   doEvent('mh-improved-modules-loaded');

@@ -346,6 +346,20 @@ const addTogglesToSettings = () => {
   });
 };
 
+const moveTabToEnd = () => {
+  const mhImprovedTab = document.querySelector('#mousehunt-improved-settings');
+  if (! mhImprovedTab) {
+    return;
+  }
+
+  const userscriptTab = document.querySelector('#userscript-settings');
+  if (! userscriptTab) {
+    return;
+  }
+
+  userscriptTab.after(mhImprovedTab);
+};
+
 /**
  * Add the icon to the menu.
  */
@@ -407,6 +421,7 @@ const init = async () => {
 
   addMhImprovedIconToMenu();
   onNavigation(() => {
+    moveTabToEnd();
     highlightLocationHud();
     addAdvancedSettingsButtons();
     linkVersionNumber();
