@@ -5,7 +5,7 @@ import {
   makeElement,
   makeLink,
   makeTooltip,
-  onDialogShow
+  onOverlayChange
 } from '@utils';
 
 import hoverItem from './hover-item';
@@ -188,10 +188,10 @@ const init = async () => {
   addStyles(styles, 'better-item-view');
 
   if (getSetting('better-item-view.show-item-hover', true)) {
-    hoverItem();
+    excludeFromStandaloneUserscript: hoverItem();
   }
 
-  onDialogShow('itemViewPopup', updateItemView);
+  onOverlayChange({ item: { show: updateItemView } });
 };
 
 export default {

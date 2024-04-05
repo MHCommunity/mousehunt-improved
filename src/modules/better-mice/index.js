@@ -400,11 +400,11 @@ const init = async () => {
   mousePage();
 
   if (getSetting('better-mice.show-mouse-hover', true)) {
-    hoverMice();
+    excludeFromStandaloneUserscript: hoverMice();
   }
 
   if (getSetting('better-mice.show-mice-sidebar', true)) {
-    sidebar();
+    excludeFromStandaloneUserscript: sidebar();
   }
 
   replaceShowMouseImage();
