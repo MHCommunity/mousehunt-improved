@@ -85,13 +85,8 @@ let debugPopup = false;
 let mouseDataWrapper;
 let isLoading = false;
 const makeMouseMarkup = async (mouseId, e) => {
-  mouseDataWrapper?.remove();
-
-  const existing = document.querySelectorAll('#mouse-data-wrapper');
-  if (existing && existing.length) {
-    existing.forEach((el) => {
-      el.remove();
-    });
+  if (mouseDataWrapper) {
+    mouseDataWrapper.remove();
   }
 
   mouseDataWrapper = makeElement('div', 'mouse-data-wrapper');
@@ -112,30 +107,10 @@ const makeMouseMarkup = async (mouseId, e) => {
 
   mouseDataWrapper.style.top = `${tooltipTop}px`;
   mouseDataWrapper.style.left = `${left - (mouseDataWrapper.offsetWidth / 2) + (rect.width / 2)}px`;
-  let timeoutId;
 
-  mouseDataWrapper.addEventListener('mouseleave', () => {
-    timeoutId = setTimeout(() => {
-      if (! debugPopup) {
-        mouseDataWrapper.remove();
-      }
-    }, 250);
-  });
-
-  mouseDataWrapper.addEventListener('mouseenter', () => {
-    clearTimeout(timeoutId);
-  });
-
-  const parent = e.target.parentElement;
-  if (parent && ! debugPopup) {
-    parent.addEventListener('mouseleave', () => {
-      timeoutId = setTimeout(() => {
-        mouseDataWrapper.remove();
-      }, 500);
-    });
-
-    parent.addEventListener('mouseenter', () => {
-      clearTimeout(timeoutId);
+  if (e.target && ! debugPopup) {
+    e.target.addEventListener('mouseleave', () => {
+      mouseDataWrapper.remove();
     });
   }
 };

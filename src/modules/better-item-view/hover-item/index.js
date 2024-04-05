@@ -3,15 +3,13 @@ import {
   doRequest,
   getSetting,
   makeElement,
-  onRequest,
-  onTurn,
-  sessionGet,
-  sessionSet,
-  sessionsDelete
+  onRequest
 } from '@utils';
 
 import styles from './styles.css';
 
+let lastItem;
+let lastItemId;
 const fetchAndFillItemData = async (itemId) => {
   if (isLoading) {
     return;
@@ -20,10 +18,8 @@ const fetchAndFillItemData = async (itemId) => {
   isLoading = true;
 
   let item;
-
-  const cacheditemData = sessionGet(`better-item-view-hover-mice-${itemId}`, false);
-  if (cacheditemData) {
-    item = cacheditemData;
+  if (lastItemId === itemId) {
+    item = lastItem;
   } else {
     const itemDataRequest = await doRequest('managers/ajax/users/userInventory.php', {
       action: 'get_items',
@@ -35,8 +31,8 @@ const fetchAndFillItemData = async (itemId) => {
     }
 
     item = itemDataRequest?.items[0];
-
-    sessionSet(`better-item-view-hover-mice-${itemId}`, item);
+    lastItem = item;
+    lastItemId = itemId;
   }
 
   const itemData = makeElement('div', 'item-data');
@@ -69,17 +65,9 @@ const fetchAndFillItemData = async (itemId) => {
 let debugPopup = false;
 let itemDataWrapper;
 let isLoading = false;
-let timeoutId;
 const makeMouseMarkup = async (itemId, e) => {
-  itemDataWrapper?.remove();
-
-  clearTimeout(timeoutId);
-
-  const existing = document.querySelectorAll('#item-data-wrapper');
-  if (existing && existing.length) {
-    existing.forEach((el) => {
-      el.remove();
-    });
+  if (itemDataWrapper) {
+    itemDataWrapper.remove();
   }
 
   itemDataWrapper = makeElement('div', 'item-data-wrapper');
@@ -101,28 +89,9 @@ const makeMouseMarkup = async (itemId, e) => {
   itemDataWrapper.style.top = `${tooltipTop}px`;
   itemDataWrapper.style.left = `${left - (itemDataWrapper.offsetWidth / 2) + (rect.width / 2)}px`;
 
-  itemDataWrapper.addEventListener('mouseleave', () => {
-    timeoutId = setTimeout(() => {
-      if (! debugPopup) {
-        itemDataWrapper.remove();
-      }
-    }, 250);
-  });
-
-  itemDataWrapper.addEventListener('mouseenter', () => {
-    clearTimeout(timeoutId);
-  });
-
-  const parent = e.target.parentElement;
-  if (parent && ! debugPopup) {
-    parent.addEventListener('mouseleave', () => {
-      timeoutId = setTimeout(() => {
-        itemDataWrapper.remove();
-      }, 500);
-    });
-
-    parent.addEventListener('mouseenter', () => {
-      clearTimeout(timeoutId);
+  if (e.target && ! debugPopup) {
+    e.target.addEventListener('mouseleave', () => {
+      itemDataWrapper.remove();
     });
   }
 };
@@ -160,10 +129,6 @@ const hoverMice = () => {
   onRequest('*', () => {
     setTimeout(main, 1000);
   });
-
-  onTurn(() => {
-    sessionsDelete('better-item-view-hover-mice-');
-  }, 1000);
 };
 
 export default hoverMice;
