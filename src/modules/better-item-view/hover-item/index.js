@@ -49,7 +49,7 @@ const fetchAndFillItemData = async (itemId) => {
   makeElement('div', 'item-name', item.name, itemText);
 
   const quantity = makeElement('div', 'item-quanity');
-  makeElement('span', '', 'Quantity: ', quantity);
+  makeElement('span', '', 'You own: ', quantity);
   makeElement('span', '', item.quantity.toLocaleString(), quantity);
 
   itemText.append(quantity);
