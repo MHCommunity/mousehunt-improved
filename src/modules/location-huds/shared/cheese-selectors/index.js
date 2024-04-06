@@ -3,8 +3,6 @@ import {
   getCurrentLocation,
   getUserItems,
   makeElement,
-  onEvent,
-  onNavigation,
   onRequest
 } from '@utils';
 

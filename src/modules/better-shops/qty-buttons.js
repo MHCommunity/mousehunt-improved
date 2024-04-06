@@ -1,4 +1,4 @@
-import { makeElement, makeMathButton, makeMathButtons } from '@utils';
+import { makeElement, makeMathButtons } from '@utils';
 
 export default async (block, input, maxQty) => {
   const existingButtons = block.querySelector('.mh-improved-shop-buy-controls');
