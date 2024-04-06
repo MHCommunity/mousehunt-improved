@@ -1,4 +1,4 @@
-import { addHudStyles, onEvent } from '@utils';
+import { addHudStyles, makeElement, onEvent } from '@utils';
 
 import styles from './styles.css';
 
@@ -19,6 +19,11 @@ const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) =>
 };
 
 const updateClosingTime = () => {
+  const hudBar = document.querySelector('.balacksCoveHUD-tideContainer');
+  if (! hudBar) {
+    return;
+  }
+
   let timeLeftText = '';
 
   // Props Warden Slayer & Timers+ for the math and logic.
@@ -28,47 +33,24 @@ const updateClosingTime = () => {
   const rotationsExact = (((today.getTime() / 1000) - 1294680060) / 3600) / rotationLength;
   const rotationsInteger = Math.floor(rotationsExact);
   const partialRotation = (rotationsExact - rotationsInteger) * rotationLength;
+
   if (partialRotation < 16) {
     // currently low, which means its (16 hours - current time) until mid flooding, then one more hour after than until high tide
-    const closes = 16 - partialRotation;
-    timeLeftText = getClosingText(closes, 'Mid Tide', 60, 'High Tide');
+    timeLeftText = getClosingText(16 - partialRotation, 'Mid Tide', 60, 'High Tide');
   } else if (partialRotation >= 16 && partialRotation < 17) {
     // currently mid, which means its (1hr - current time) until high tide, then 40 minutes after that until low mid time again
-    const closes = 1 - (partialRotation - 16);
-    timeLeftText = getClosingText(closes, 'High Tide', 40, 'Low Tide');
+    timeLeftText = getClosingText(1 - (partialRotation - 16), 'High Tide', 40, 'Low Tide');
   } else if (partialRotation >= 17 && partialRotation < 17.66666) {
     // currently high, which means its (40 minutes - current time) until mid tide again, then 1 hour after that until low tide
-    const closes = 0.66666 - (partialRotation - 17);
-    timeLeftText = getClosingText(closes, 'Low Tide', 60, 'Mid Tide');
-  }
-
-  const timeLeftEl = document.createElement('div');
-  timeLeftEl.classList.add('balacksCoveHUD-tideContainer-timeLeft');
-  timeLeftEl.innerHTML = timeLeftText;
-
-  return timeLeftEl;
-};
-
-const hud = () => {
-  const hudBar = document.querySelector('.balacksCoveHUD-tideContainer');
-  if (! hudBar) {
-    return;
+    timeLeftText = getClosingText(0.66666 - (partialRotation - 17), 'Mid Tide', 60, 'Low Tide');
   }
 
   const existing = document.querySelector('.balacksCoveHUD-tideContainer-timeLeft');
   if (existing) {
-    existing.remove();
+    existing.innerHTML = timeLeftText;
+  } else {
+    makeElement('div', 'balacksCoveHUD-tideContainer-timeLeft', timeLeftText, hudBar);
   }
-
-  const timeLeftEl = updateClosingTime();
-
-  hudBar.append(timeLeftEl);
-
-  // add a timer to update the time left
-  const timer = setInterval(updateClosingTime, 60 * 1000);
-  onEvent('travel_complete', () => {
-    clearInterval(timer);
-  });
 };
 
 /**
@@ -81,5 +63,6 @@ export default async () => {
     'vengeful_vanilla_stilton_cheese',
   ]);
 
-  hud();
+  updateClosingTime();
+  onEvent('horn-countdown-tick-minute', updateClosingTime);
 };
