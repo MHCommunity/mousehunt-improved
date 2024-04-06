@@ -1,13 +1,132 @@
 # Changelog
 
-## Version 0.39.2
+## Version 0.40.0
 
-- Adds "Journal Entries" and "Favorite Setups" to Data Exporters
-- Adds 'Default to Sorted tab" setting to Better Maps
-- Adds new "Hide Daily Draw" module (was previously a beta feature)
-- Fixes Journal Theme image upscaling leading to misaligned images
-- Updates styles in various modules
-- Various performance improvements, safety checks, and bug fixes
+### New Features
+
+- Added "Hide Daily Draw" feature
+
+### Better Inventory
+
+- Updated styles
+
+### Better Item View
+
+- Updated hover popup to not cache data as aggresively
+- Updated hover popup text to "You own:" to be consistent
+- Minor style updates
+
+### Better Journal
+
+- Added "Journal Tags" experimental feature
+- Fixed alignment of gold and points icons
+- Fixed images not correctly display in historical entries
+- Fixed issue where the loot list could fail
+- Added a slight animation to crown entries
+- Re-added higher resolution lucky catch icon
+
+### Better Maps
+
+- Added "Default to Sorted tab" option
+- Added "Community maps information" experimental feature
+- Fixed issues with map sidebar trying to request data that wasn't there
+- Fixed issue that caused hunters to not go inactive even without interaction
+
+### Better Mice
+
+- Fixed hover popup refreshing inconsistently
+- Fixed interaction between Better Maps sidebar list and mice sidebar list
+- Minor style updates
+
+### Better Send Supplies
+
+- Added "None" option for pinned item choices
+
+### Better Shops
+
+- Added ability to hold the shift key to change quantity buttons from adding to subtracting the amount
+- Minor style updates
+
+### Better Travel
+
+- Minor style updates
+
+### Better UI
+
+- Minor style updates
+
+### Catch Rate Estimate
+
+- Updated triggers for display refresh
+- Fixed multiple refreshes happening at the same time
+
+### Dark Mode
+
+- Minor style updates
+
+### Data Exporters
+
+- Added "Journal Entries" exporter
+- Added "Favorite Setups" exporter
+
+### Debug
+
+- Added "Don't close hover popups on mouseout" option for debugging
+
+### Experiments
+
+- Added "Big Timer" experimental feature
+- Added "Replace Favicon" experimental feature
+- Added "Journal Tags" experimental feature
+- Added "Community maps information" experimental feature
+
+### Journal Changer
+
+- Fixed issue with journal entries not being replaced
+
+### Favorite Setups
+
+- Minor style updates
+
+### Image Upscaling
+
+- Drastically improved performance and speed
+- Fixed image flickering when replaced
+- Fixed journal theme image upscaling leading to misaligned images
+
+### Inventory Lock And Hide
+
+- Minor style updates
+
+### Keyboard Shortcuts
+
+- Fixed disarming cheese/charm shortcuts
+
+### Larger Skin Images
+
+- Fixed images not displaying
+
+### Location HUDs
+
+- Fixed a number of issues with the cheese selectors for a number of locations
+- Updates cheese selector styles
+
+### Quick Filters And Sort
+
+- Minor style updates
+
+### Quick Send Supplies
+
+- Added "None" option for item choices
+
+### TEM Crowns
+
+- Updated styles
+
+### Other
+
+- Improved performance and memory usage
+- Added more checks and caching around remote requests
 
 ## Version 0.39.1
 
