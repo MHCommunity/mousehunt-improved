@@ -1,3 +1,4 @@
+.journal .content .attractionfailure::after,
 .journal .content .catchfailure::after,
 .journal .content .luckycatchsuccess::after,
 .journal .content .passive::after,
@@ -25,10 +26,6 @@
   background: #891b1b;
 }
 
-.journal .content .passive::after {
-  content: "Trap Check";
-}
-
 .journal .content .linked::after {
   content: "Friend";
 }
@@ -38,6 +35,36 @@
   background-color: #4ac338;
 }
 
+.journal .content .passive::after {
+  content: "Trap Check";
+}
+
+.journal .content .attractionfailure::after {
+  content: "FTA";
+  background: #959595;
+}
+
+.journal .content .linked.attractionfailure::after {
+  content: "Friend · FTA";
+}
+
+.journal .content .linked.catchfailure::after {
+  content: "Friend · FTC";
+}
+
+.journal .content .linked.luckycatchsuccess::after {
+  content: "Friend · Lucky";
+}
+
+.journal .content .passive.attractionfailure::after {
+  content: "Trap Check · FTA";
+}
+
+.journal .content .passive.catchfailure::after {
+  content: "Trap Check · FTC";
+}
+
+.journal .content .attractionfailure:hover::after,
 .journal .content .catchfailure:hover::after,
 .journal .content .luckycatchsuccess:hover::after,
 .journal .content .passive:hover::after,
