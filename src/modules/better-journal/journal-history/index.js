@@ -20,6 +20,7 @@ const makeEntriesMarkup = (entries) => {
       location: entry?.location || '',
       text: entry?.text || '',
       type: entry?.type || [],
+      image: entry?.image || '',
     };
 
     if (
@@ -44,6 +45,10 @@ const makeEntriesMarkup = (entries) => {
       if (mouseImages) {
         html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" border="0"></a></div>`;
       }
+    }
+
+    if (entry.image) {
+      html += `<div class="journalimage">${entry.image}</div>`;
     }
 
     html += `<div class="journalbody"><div class="journalactions"></a></div><div class="journaldate">${entry.date} - ${entry.location}</div><div class="journaltext">${entry.text}</div></div></div></div>`;
