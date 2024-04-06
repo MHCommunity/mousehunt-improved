@@ -201,7 +201,9 @@ const init = async () => {
   }
 
   onNavigation(main);
-  onEvent('travel_complete', main);
+  onEvent('travel_complete', () => {
+    setTimeout(main, 1000);
+  });
 };
 
 export default {

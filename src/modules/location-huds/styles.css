@@ -11,13 +11,17 @@
   width: 145px;
   margin: 3px 0;
   cursor: pointer;
+  outline: 1px solid #3d4d6c;
+  box-shadow: none;
 }
 
 .mh-ui-cheese-selector .townOfGnawniaHUD-bait-image {
   left: 2px;
+  background-color: transparent;
   filter: none;
   background-repeat: no-repeat;
-  background-size: 75%;
+  background-size: cover;
+  border: none;
 }
 
 .mh-ui-cheese-selector .townOfGnawniaHUD-bait-name {
@@ -27,10 +31,27 @@
   white-space: nowrap;
 }
 
-.mh-ui-cheese-selector .townOfGnawniaHUD-bait.active {
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait.active,
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait:hover {
   background-color: #c2dbef;
 }
 
 .mh-ui-cheese-selector .townOfGnawniaHUD-bait.active .townOfGnawniaHUD-bait-name {
+  text-shadow: none;
+}
+
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait-quantity {
+  color: #eee;
+  background: linear-gradient(to bottom, #2a354b, #485a7f);
+}
+
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait.active .townOfGnawniaHUD-bait-quantity,
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait:hover .townOfGnawniaHUD-bait-quantity {
+  background: linear-gradient(to bottom, #4f638c, #798db4);
+}
+
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait.active .townOfGnawniaHUD-bait-name,
+.mh-ui-cheese-selector .townOfGnawniaHUD-bait:hover .townOfGnawniaHUD-bait-name {
+  color: #000;
   text-shadow: none;
 }
