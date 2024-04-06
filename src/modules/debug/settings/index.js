@@ -39,7 +39,7 @@ export default async () => {
     },
     {
       id: 'debug.hover-popups',
-      title: 'Keep hover popups open for debugging'
+      title: 'Don\'t close hover popups on mouseout'
     },
     {
       id: 'debug.disable-cache',

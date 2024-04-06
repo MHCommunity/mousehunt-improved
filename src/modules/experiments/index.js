@@ -2,25 +2,30 @@ import { getSetting } from '@utils';
 
 import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
-import favicon from './modules/favicon';
 import journalTags from './modules/journal-tags';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
+import replaceFavicon from './modules/replace-favicon';
 import trollMode from './modules/troll-mode';
 
 const experiments = [
   {
-    id: 'experiments.favorite-setups-toggle',
-    title: 'Favorite Setups button in top menu',
+    id: 'experiments.big-timer',
+    title: 'Big Timer',
+    description: 'Click the timer to toggle between big and small.',
+    load: bigTimer,
   },
   {
-    id: 'experiments.location-hud-toggle',
-    title: 'Location HUD toggle button in top menu',
+    id: 'experiments.codex-at-bottom',
+    title: 'Codex at bottom',
+    description: 'Moves the Codex section to the bottom of the trap selector',
+    load: codexAtBottom,
   },
   {
-    id: 'experiments.lol-gottem',
-    title: 'Troll mode',
-    load: trollMode,
+    id: 'experiments.replace-favicon',
+    title: 'Replace Favicon',
+    description: 'Changes the favicon to a golden shield.',
+    load: replaceFavicon,
   },
   {
     id: 'experiments.raffle',
@@ -28,49 +33,49 @@ const experiments = [
     load: raffle,
   },
   {
-    id: 'experiments.new-settings-styles-columns',
-    title: 'Settings: Columns',
-    load: newSettingsStylesColumns,
+    id: 'experiments.lol-gottem',
+    title: 'Troll mode',
+    load: trollMode,
   },
   {
-    id: 'experiments.codex-at-bottom',
-    title: 'Move Codex section to the bottom of the trap selector',
-    load: codexAtBottom,
+    id: 'better-journal.journal-tags',
+    title: 'Better Journal: Journal Tags',
+    description: 'Shows entry type when hovering over journal entries.',
+    load: journalTags,
+  },
+  {
+    id: 'better-maps.community',
+    title: 'Better Maps: Community maps information',
+    description: 'Shows last active time on community maps. Hides old maps.',
   },
   {
     id: 'better-marketplace.show-chart-images',
     title: 'Better Marketplace: Show charts on category pages',
   },
   {
+    id: 'experiments.favorite-setups-toggle',
+    title: 'Favorite Setups: Add toggle button to top menu',
+  },
+  {
+    id: 'experiments.location-hud-toggle',
+    title: 'Location HUDs: Add toggle button to top menu',
+  },
+  {
     id: 'location-huds.bountiful-beanstalk-invetory-in-one-row',
-    title: 'Location HUD - Bountiful Beanstalk: Inventory box in one row',
+    title: 'Location HUDs - Bountiful Beanstalk: Inventory box in one row',
   },
   {
     id: 'experiments.iceberg-always-show-progress',
-    title: 'Location HUD - Iceberg: Always show progress details',
+    title: 'Location HUDs - Iceberg: Always show progress details',
   },
   {
     id: 'experiments.fi-draggable-airship',
-    title: 'Location HUD - Floating Islands: Make airship draggable',
+    title: 'Location HUDs - Floating Islands: Make airship draggable',
   },
   {
-    id: 'experiments.big-timer',
-    title: 'Big Timer',
-    load: bigTimer,
-  },
-  {
-    id: 'experiments.favicon',
-    title: 'Favicon',
-    load: favicon,
-  },
-  {
-    id: 'experiments.journal-tags',
-    title: 'Journal Tags',
-    load: journalTags,
-  },
-  {
-    id: 'better-maps.community',
-    title: 'Better Maps: Community maps information',
+    id: 'experiments.new-settings-styles-columns',
+    title: 'Settings: Columns',
+    load: newSettingsStylesColumns,
   },
 ];
 

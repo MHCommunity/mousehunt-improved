@@ -469,3 +469,7 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
 .mousehunt-improved-settings em {
   font-style: italic;
 }
+
+#mousehunt-improved-settings-beta-experiments .PagePreferences__settingDescription {
+  display: block;
+}
