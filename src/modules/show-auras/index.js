@@ -234,7 +234,7 @@ export default {
   id: 'show-auras',
   name: 'Show Auras',
   description: 'Show auras and their expiry time below the trap stats.',
-  type: 'beta',
+  type: 'feature',
   default: false,
   load: init,
   settings
