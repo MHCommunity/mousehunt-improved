@@ -1,42 +1,48 @@
 import {
   addStyles,
-  cacheGet,
-  cacheSet,
+  dbGet,
+  dbSet,
+  debounce,
   makeElement,
   onEvent,
+  onNavigation,
   onRequest
 } from '@utils';
 
 import styles from './styles.css';
 
-const addSkinImages = async (panel) => {
+const skinImages = {};
+let isAdding = false;
+const addSkinImages = async (panel, force = false) => {
   if ('item_browser' !== panel) {
     return;
   }
 
-  const blueprint = document.querySelector('.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent');
-  if (! blueprint) {
+  if (isAdding) {
     return;
   }
 
-  const type = blueprint.getAttribute('data-blueprint-type');
-  if (! type || type !== 'skin') {
+  isAdding = true;
+
+  const blueprint = document.querySelector('.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent');
+  if (! blueprint) {
+    isAdding = false;
     return;
+  }
+
+  if (! force) {
+    const type = blueprint.getAttribute('data-blueprint-type');
+    if (! type || type !== 'skin') {
+      isAdding = false;
+      return;
+    }
   }
 
   const items = document.querySelectorAll('.campPage-trap-itemBrowser-item.skin');
   if (! items) {
+    isAdding = false;
     return;
   }
-
-  const existingImages = document.querySelectorAll('.itembrowser-skin-image-wrapper');
-  if (existingImages) {
-    existingImages.forEach((img) => {
-      img.remove();
-    });
-  }
-
-  await getSkinCache();
 
   items.forEach(async (item) => {
     const id = item.getAttribute('data-item-id');
@@ -44,56 +50,67 @@ const addSkinImages = async (panel) => {
       return;
     }
 
-    skin = skinCache.find((s) => s.item_id == id); // eslint-disable-line eqeqeq
-    if (! skin || ! skin.image_trap) {
-      const itemData = await fetch(`https://api.mouse.rip/item/${id}`).then((res) => res.json());
+    let skin;
 
-      if (! (itemData && itemData.images.trap)) {
-        return;
+    if (skinImages[id]) {
+      skin = skinImages[id];
+    } else {
+      const cachedData = await dbGet('cache', `skin-image-${id}`);
+      if (cachedData && cachedData.data && cachedData.data.image) {
+        skin = cachedData.data.image;
+      } else {
+        const itemData = await fetch(`https://api.mouse.rip/item/${id}`).then((res) => res.json());
+
+        if (! (itemData && itemData.images.trap)) {
+          return;
+        }
+
+        skin = itemData.images.trap;
+
+        dbSet('cache', {
+          id: `skin-image-${id}`,
+          data: {
+            id,
+            image: skin,
+          },
+        });
       }
 
-      skin = {
-        item_id: id,
-        image_trap: itemData.images.trap,
-      };
-
-      skinCache.push(skin);
+      skinImages[id] = skin;
     }
 
     const imageWrapper = makeElement('div', 'itembrowser-skin-image-wrapper');
     const imageEl = makeElement('img', 'itembrowser-skin-image');
-    imageEl.setAttribute('src', skin.image_trap);
+    imageEl.setAttribute('src', skin);
     imageEl.setAttribute('data-item-classification', 'skin');
     imageEl.setAttribute('data-item-id', id);
-    imageEl.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (app?.pages?.CampPage?.armItem) {
-        app.pages.CampPage.armItem(e.target);
-      }
-    });
-
     imageWrapper.append(imageEl);
 
-    // Append as first child
-    item.insertBefore(imageWrapper, item.firstChild);
+    const existingImage = item.querySelector('.itembrowser-skin-image-wrapper');
+    if (! existingImage) {
+      item.insertBefore(imageWrapper, item.firstChild);
+    }
   });
-};
 
-const updateSkinCache = async (data) => {
-  skinCache = data;
-  cacheSet('skin-cache', data);
-};
-
-const getSkinCache = async () => {
-  const cache = await cacheGet('skin-cache');
-  if (cache) {
-    skinCache = cache;
+  const searchInput = document.querySelector('.campPage-trap-itemBrowser-filter input');
+  if (searchInput) {
+    searchInput.addEventListener('keyup', debounce(() => {
+      addSkinImages('item_browser', true);
+    }, 300));
   }
 
-  return skinCache;
+  isAdding = false;
 };
 
-let skinCache = [];
+const triggerFromClick = () => {
+  const button = document.querySelector('.trapSelectorView__armedItem[data-item-classification=skin]');
+  if (button) {
+    button.addEventListener('click', () => {
+      addSkinImages('item_browser', true);
+    });
+  }
+};
+
 /**
  * Initialize the module.
  */
@@ -104,8 +121,14 @@ const init = () => {
 
   onRequest('users/gettrapcomponents.php', (data) => {
     if (data?.components && 'skin' === data?.components[0]?.classification) {
-      updateSkinCache(data.components);
+      setTimeout(() => {
+        addSkinImages('item_browser');
+      }, 250);
     }
+  });
+
+  onNavigation(triggerFromClick, {
+    page: 'camp',
   });
 };
 
