@@ -1,0 +1,150 @@
+body.PageMaintenance .pageFrameView {
+  grid-template-rows: [page-start] auto [page-end];
+  grid-template-columns: [first] auto [content-start] 400px [content-end] auto [last];
+}
+
+body.PageMaintenance .pageFrameView-column.right {
+  background: #bad4ed url(https://www.mousehuntgame.com/images/ui/backgrounds/app_frame_right.gif) repeat-y 0% 0% !important;
+  border: none;
+}
+
+body.PageMaintenance .pageFrameView-column.left {
+  background: #bad4ed url(https://www.mousehuntgame.com/images/ui/backgrounds/app_frame_left.gif) repeat-y 100% 0% !important;
+  border: none;
+}
+
+body.PageMaintenance {
+  background: url(https://www.mousehuntgame.com/images/map/login-page/standard/1.jpg) no-repeat top center;
+}
+
+body.PageMaintenance .pageFrameView-content {
+  min-height: calc(100vh - 110px);
+  background: transparent;
+}
+
+body.PageMaintenance .pageFrameView-footer {
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255 255 255 / 25%);
+  transition: 0.3s;
+}
+
+body.PageMaintenance .pageFrameView-footer-linksContainer {
+  flex: 0 0 100%;
+}
+
+body.PageMaintenance .pageFrameView-footer a img {
+  opacity: 0.4;
+  transition: 0.3s;
+  transform: scale(0.8);
+}
+
+body.PageMaintenance .pageFrameView-footer-links.terms {
+  text-align: center;
+}
+
+body.PageMaintenance .pageFrameView-footer a:hover img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.PageMaintenance .maintenanceBody {
+  position: relative;
+  min-height: unset;
+  background: transparent;
+  transition: background-size 0.3s;
+  animation: mh-improved-hue-rotate 20s 20s linear infinite;
+}
+
+body.PageMaintenance .maintenanceMessage {
+  background-color: transparent;
+}
+
+body.PageMaintenance .maintenanceMessage::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  content: "";
+  background: url(https://i.mouse.rip/maintenance-mousey.png) no-repeat center / contain;
+  transition: 0.3s;
+  transform-origin: center;
+}
+
+body.PageMaintenance .maintenanceMessage:hover::after {
+  transform: rotate(-3deg) scale(1.2);
+}
+
+body.PageMaintenance .maintenanceHeader {
+  background-image: url(https://i.mouse.rip/maintenance.png);
+}
+
+@keyframes mh-improved-hue-rotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    filter: hue-rotate(360deg);
+  }
+
+  100% {
+    filter: hue-rotate(0deg);
+  }
+}
+
+body.PageMaintenance .maintenanceDebugInfo {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+body.PageMaintenance .pageFrameView-contentContainer {
+  background: none;
+}
+
+body.PageMaintenance .container {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+body.PageMaintenance .maintenanceContainer {
+  background-color: rgb(255 255 255 / 85%);
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 #383838;
+}
+
+@media screen and (min-width: 501px) {
+  body.PageMaintenance .pageFrameView {
+    grid-template-columns: [first] auto [content-start] 500px [content-end] auto [last];
+  }
+
+  body.PageMaintenance .maintenanceMessage::after {
+    width: 175px;
+    height: 175px;
+  }
+}
+
+@media only screen and (min-width: 801px) {
+  body.PageMaintenance .pageFrameView {
+    grid-template-columns: [first] auto [content-start] 800px [content-end] auto [last];
+  }
+
+  body.PageMaintenance .maintenanceMessage::after {
+    top: -80px;
+    left: -10px;
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 810px) {
+  body.PageMaintenance.noSidebar .pageFrameView {
+    background: none !important;
+  }
+}

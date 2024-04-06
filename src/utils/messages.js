@@ -2,6 +2,7 @@ import { debug } from './debug';
 import { makeElement } from './elements';
 
 import errorStyles from './styles/errors.css';
+import maintenanceStyles from './styles/maintenance.css';
 
 /**
  * Show an error message appended to the given element.
@@ -110,6 +111,16 @@ const showLoadingError = (e) => {
   document.head.append(errorStylesEl);
 };
 
+const maybeDoMaintenance = () => {
+  const maintenance = document.querySelector('body.PageMaintenance');
+  if (! maintenance) {
+    return;
+  }
+
+  const maintenanceStylesEl = makeElement('style', 'mh-improved-maintenance-styles', maintenanceStyles);
+  document.head.append(maintenanceStylesEl);
+};
+
 /**
  * Show an error message in a popup.
  *
@@ -180,5 +191,6 @@ export {
   showSuccessMessage,
   showLoadingError,
   showLoadingPopupError,
-  showLoadingPopup
+  showLoadingPopup,
+  maybeDoMaintenance
 };

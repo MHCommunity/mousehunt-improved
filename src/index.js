@@ -13,6 +13,7 @@ import {
   isApp,
   isUnsupportedFile,
   isiFrame,
+  maybeDoMaintenance,
   setGlobal,
   showLoadingError
 } from '@utils';
@@ -159,6 +160,7 @@ const init = async () => {
 
   // Make sure the global MouseHunt functions are available.
   if (! isApp()) {
+    maybeDoMaintenance();
     debug('Global MouseHunt functions not found.');
     return;
   }
