@@ -11,7 +11,6 @@ import pathsToSkip from './paths-to-skip.json';
 
 import journalThemes from './journal-themes';
 
-import journalThemeStyles from './journal-themes.css';
 import styles from './styles.css';
 import viewsStyles from './views.css';
 
@@ -282,13 +281,7 @@ const handleUpscalingImages = async () => {
 };
 
 const init = async () => {
-  const stylesToAdd = [styles, viewsStyles];
-
-  if (! getFlag('no-image-upscaling-journal-themes')) {
-    stylesToAdd.push(journalThemeStyles);
-  }
-
-  addStyles(stylesToAdd, 'image-upscaling');
+  addStyles([styles, viewsStyles], 'image-upscaling');
 
   mapping = await getData('upscaled-images');
 

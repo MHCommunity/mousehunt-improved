@@ -133,6 +133,12 @@ export default async () => {
       bottom: 'journal_halloween_2014_wide_bottom.png',
       content: 'journal_halloween_2014_wide_middle.png',
       top: 'journal_halloween_2014_wide_top.png',
+      styles: [
+        {
+          selector: 'bottom',
+          styles: 'background-size: contain; background-position: 0 -1px;',
+        },
+      ],
     },
     {
       id: 'theme_halloween_2019',

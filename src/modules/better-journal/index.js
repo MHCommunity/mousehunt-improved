@@ -17,6 +17,7 @@ import journalList from './journal-list';
 import journalReplacements from './journal-replacements';
 import journalStyles from './journal-styles';
 
+import styles from './styles.css';
 import listAndIconsStyles from './list-and-icons.css';
 
 import settings from './settings';
@@ -60,6 +61,8 @@ const processSingleEntries = async () => {
  * Initialize the module.
  */
 const init = async () => {
+  addStyles(styles, 'better-journal');
+
   const enabled = {
     styles: getSetting('better-journal.styles', true),
     list: getSetting('better-journal.list', false),

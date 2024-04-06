@@ -186,7 +186,7 @@ const main = async () => {
     page: 'camp',
   });
 
-  onRequest('*', updateMinLucks, false, ['users/getmiceeffectiveness.php']);
+  onRequest('users/changetrap.php', updateMinLucks);
   onTravel(null, { callback: updateMinLucks });
 };
 

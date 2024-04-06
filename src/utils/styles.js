@@ -107,6 +107,8 @@ const addStyles = (styles, module = false, identifier = 'mh-improved-styles') =>
       stylesEl.remove();
     }
   });
+
+  return stylesEl;
 };
 
 const removeStyles = (module = false, identifier = 'mh-improved-styles') => {

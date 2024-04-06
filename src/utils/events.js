@@ -57,6 +57,20 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
 
   const req = XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open = function () {
+    const send = XMLHttpRequest.prototype.send;
+
+    XMLHttpRequest.prototype.send = function (data) {
+      const params = new URLSearchParams(data);
+      this._data = Object.fromEntries(params);
+
+      delete this._data.hg_is_ajax;
+      delete this._data.sn;
+      delete this._data.uh;
+      delete this._data.last_read_journal_entry_id;
+
+      return Reflect.apply(send, this, arguments);
+    };
+
     this.addEventListener('load', function () {
       if (this.responseText) {
         let response = {};
@@ -70,7 +84,9 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
           if ('*' === key || this.responseURL.includes(key)) {
             requestCallbacks[key].forEach((item) => {
               if (item.callback && typeof item.callback === 'function' && (item.skipSuccess || response?.success)) {
-                item.callback(response);
+
+
+                item.callback(response, this._data);
               }
             });
           }
