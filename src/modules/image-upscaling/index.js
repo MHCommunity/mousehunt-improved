@@ -1,4 +1,5 @@
 import {
+  addExternalStyles,
   addStyles,
   getData,
   getFlag,
@@ -9,8 +10,6 @@ import {
 
 import pathsToSkip from './paths-to-skip.json';
 
-import journalThemes from './journal-themes';
-
 import styles from './styles.css';
 import viewsStyles from './views.css';
 
@@ -19,25 +18,14 @@ class ImageUpscaler {
     this.mapping = [];
     this.unupscaledImages = new Set();
     this.upscaledImages = new Set();
-    this.lastCheck = { backgrounds: '', images: '' };
+    this.lastCheck = '';
     this.isUpscaling = false;
     this.observerOptions = {
-      attributes: true,
-      attributeFilter: ['style'],
       childList: true,
       subtree: true,
     };
     this.observer = null;
-    this.debounceDelay = 250;
     this.handleUpscalingImages = this.handleUpscalingImages.bind(this);
-  }
-
-  debounce(func, delay) {
-    let timeout;
-    return async (...args) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(async () => await func(...args), delay);
-    };
   }
 
   stripUrl(url) {
@@ -86,13 +74,13 @@ class ImageUpscaler {
     return `https://www.mousehuntgame.com/images/${mappedUrl}`;
   }
 
-  shouldSkipUpdate(type, attribute, items) {
+  shouldSkipUpdate(items) {
     const itemHash = [...items]
-      .map((item) => item.getAttribute(attribute) || '')
+      .map((item) => item.getAttribute('src') || '')
       .join(',');
 
-    const shouldSkip = this.lastCheck[type] === itemHash;
-    this.lastCheck[type] = itemHash;
+    const shouldSkip = this.lastCheck === itemHash;
+    this.lastCheck = itemHash;
 
     return shouldSkip;
   }
@@ -119,36 +107,6 @@ class ImageUpscaler {
       return url === path;
     });
   }
-  upscaleElement(element, attribute, urlExtractor) {
-    const attributeValue = element.getAttribute(attribute);
-    if (! attributeValue) {
-      return;
-    }
-
-    const originalUrl = urlExtractor(attributeValue);
-    if (! originalUrl) {
-      return;
-    }
-
-    const url = this.stripUrl(originalUrl);
-
-    if (this.shouldSkipUrl(url)) {
-      return;
-    }
-
-    const mappedUrl = this.getMappedUrl(url);
-    if (mappedUrl && originalUrl !== mappedUrl) {
-    // Preload the image
-      const img = new Image();
-      img.onload = () => {
-      // Once the image is loaded, replace the URL in the original element
-        element.setAttribute(attribute, attributeValue.replace(originalUrl, mappedUrl));
-      };
-      img.src = mappedUrl;
-    } else {
-      this.unupscaledImages.add(url);
-    }
-  }
 
   upscaleImageElements() {
     const images = document.querySelectorAll('img');
@@ -156,7 +114,7 @@ class ImageUpscaler {
       return;
     }
 
-    if (this.shouldSkipUpdate('images', 'src', images)) {
+    if (this.shouldSkipUpdate(images)) {
       return;
     }
 
@@ -175,33 +133,14 @@ class ImageUpscaler {
     });
   }
 
-  upscaleBackgroundImages() {
-    const backgrounds = document.querySelectorAll('[style*="background-image"]');
-    if (! backgrounds) {
-      return;
-    }
-
-    if (this.shouldSkipUpdate('backgrounds', 'style', backgrounds)) {
-      return;
-    }
-
-    backgrounds.forEach((background) => {
-      this.upscaleElement(background, 'style', (style) => {
-        const urls = style.match(/url\((.*?)\)/);
-        return urls && urls[1] ? urls[1].replaceAll(/["']+/g, '') : null;
-      });
-    });
-  }
-
   startObserver() {
     if (this.observer) {
       this.observer.disconnect();
     }
 
-    this.observer = new MutationObserver(this.debounce(() => {
+    this.observer = new MutationObserver(() => {
       this.upscaleImageElements();
-      this.upscaleBackgroundImages();
-    }, this.debounceDelay));
+    });
 
     this.observer.observe(document.body, this.observerOptions);
   }
@@ -216,7 +155,6 @@ class ImageUpscaler {
     await this.fetchMapping();
 
     this.upscaleImageElements();
-    this.upscaleBackgroundImages();
 
     this.startObserver();
 
@@ -228,7 +166,6 @@ class ImageUpscaler {
   }
 
   async start() {
-    console.log('Starting image upscaling...'); // eslint-disable-line no-console
     if (this.observer) {
       return;
     }
@@ -304,6 +241,7 @@ class ImageUpscaler {
 }
 
 const init = async () => {
+  addExternalStyles('https://api.mouse.rip/upscaled-images.css');
   addStyles([styles, viewsStyles], 'image-upscaling');
 
   imageUpscaler = new ImageUpscaler();
@@ -315,7 +253,7 @@ const init = async () => {
   onDialogShow('all', imageUpscaler.handleUpscalingImages);
 
   if (! getFlag('no-image-upscaling-journal-themes')) {
-    journalThemes();
+    addExternalStyles('https://api.mouse.rip/upscaled-journal-theme-images.css');
   }
 };
 
