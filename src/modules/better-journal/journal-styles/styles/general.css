@@ -1,3 +1,7 @@
+.journalEntries {
+  background-color: #f1f1f1;
+}
+
 .journal .content {
   padding: 0 5px;
 }
@@ -18,10 +22,6 @@
   border: 1px solid #5b5b5b;
   border-bottom: none;
   transition: box-shadow 0.1s;
-}
-
-.journal .content .entry:last-child {
-  border-bottom: 1px solid #a4a4a4;
 }
 
 /* Images */
@@ -115,7 +115,8 @@ a.journal-detailLink.full::after {
 }
 
 .pagerView-container {
-  background: transparent;
+  width: calc(100% - 2px);
+  border: 1px solid #5b5b5b;
 }
 
 .pagerView-link {

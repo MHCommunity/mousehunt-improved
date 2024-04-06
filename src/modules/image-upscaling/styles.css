@@ -173,3 +173,19 @@
 .adventureBookPopup-title.active .adventureBookPopup-title-icon {
   left: 5px;
 }
+
+.journal .entry.socialGift,
+.journal .content .marketplacepurchase,
+.journal .content .supplytransferitem,
+.journal .content .toolbarinstalled {
+  background-image: url(https://i.mouse.rip/item_add.png);
+}
+
+.journal .content .marketplacesale,
+.journal .content .supplytransfergold {
+  background-image: url(https://i.mouse.rip/gold_add.png);
+}
+
+.journal .content .travel {
+  background-image: url(https://i.mouse.rip/travel.png);
+}
