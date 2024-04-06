@@ -1,14 +1,9 @@
-import { addStylesDirect } from './styles';
 import { makeElement } from './elements';
 import { onEvent } from './event-registry';
-
-import styles from './styles/blueprint.css';
 
 let activeBlueprint = null;
 let addedEvent = false;
 const toggleBlueprint = (id, content) => {
-  addStylesDirect(styles, 'mh-improved-styles-blueprints', true);
-
   const container = document.querySelector('#mousehuntContainer');
   if (! container) {
     return;
