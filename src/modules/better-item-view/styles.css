@@ -246,6 +246,6 @@ input.itemView-action-convert-quantity {
 }
 
 .convertibleOpenView-itemContainer.num_items_1 .convertibleOpenView-item {
-  width: 100%;
   gap: 20px;
+  width: 100%;
 }

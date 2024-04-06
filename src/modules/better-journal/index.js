@@ -17,8 +17,8 @@ import journalList from './journal-list';
 import journalReplacements from './journal-replacements';
 import journalStyles from './journal-styles';
 
-import styles from './styles.css';
 import listAndIconsStyles from './list-and-icons.css';
+import styles from './styles.css';
 
 import settings from './settings';
 

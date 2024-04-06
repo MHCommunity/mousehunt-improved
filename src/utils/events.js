@@ -84,8 +84,6 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
           if ('*' === key || this.responseURL.includes(key)) {
             requestCallbacks[key].forEach((item) => {
               if (item.callback && typeof item.callback === 'function' && (item.skipSuccess || response?.success)) {
-
-
                 item.callback(response, this._data);
               }
             });
