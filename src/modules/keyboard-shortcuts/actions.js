@@ -154,13 +154,13 @@ export default () => {
     {
       id: 'disarm-cheese',
       description: 'Disarm your Cheese',
-      action: () => hg?.utils?.TrapControl?.disarmBait && hg?.utils?.TrapControl?.go && hg.utils.TrapControl.disarmBait().go(),
+      action: () => hg?.utils?.TrapControl?.disarmBait && hg?.utils?.TrapControl?.go && hg.utils.TrapControl.disarmBait() && hg.utils.TrapControl.go(),
       category: 'trap-setup',
     },
     {
       id: 'disarm-charm',
       description: 'Disarm your Charm',
-      action: () => hg?.utils?.TrapControl?.disarmBait && hg?.utils?.TrapControl?.go && hg.utils.TrapControl.disarmBait().go(),
+      action: () => hg?.utils?.TrapControl?.disarmBait && hg?.utils?.TrapControl?.go && hg.utils.TrapControl.disarmBait() && hg.utils.TrapControl.go(),
       category: 'trap-setup',
     },
     {
