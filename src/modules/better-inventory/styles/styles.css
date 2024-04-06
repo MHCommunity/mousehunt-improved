@@ -180,7 +180,6 @@ a.inventoryPage-item-larryLexicon {
 }
 
 .inventoryPage-item.small .itemImage .quantity {
-  right: 10px;
   overflow: visible;
 }
 
@@ -544,8 +543,16 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 }
 
 .inventoryPage-item.small .inventoryPage-item-margin {
-  margin-bottom: 10px;
-  box-shadow: 0 4px 10px -8px #000;
+  border-color: #ccc;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px -2px #1f1f1f;
+}
+
+.inventoryPage-item.small:hover .inventoryPage-item-margin,
+.inventoryPage-item.small:focus .inventoryPage-item-margin {
+  background-color: #d8f0ff;
+  border-color: #ccc;
+  box-shadow: 0 1px 2px -2px #1f1f1f;
 }
 
 .mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
@@ -608,4 +615,18 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 
 .inventoryPage-item.potion .inventoryPage-item-button {
   margin: 5px 0 0 5px;
+}
+
+.inventoryPage-item.small:hover .tooltip {
+  max-width: 250px;
+}
+
+.inventoryPage-item.small:hover .tooltip .description {
+  max-height: 58px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.inventoryPage-item.small:hover .tooltip .inventoryPage-item-button {
+  margin-top: 10px;
 }
