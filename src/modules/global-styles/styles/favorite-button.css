@@ -1,0 +1,30 @@
+.custom-favorite-button {
+  top: 0;
+  right: 0;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  vertical-align: middle;
+  background: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_empty.png) 50% 50% no-repeat;
+  background-size: 90%;
+  border-radius: 50%;
+}
+
+.custom-favorite-button-small {
+  width: 20px;
+  height: 20px;
+}
+
+.custom-favorite-button:hover {
+  background-color: #fff;
+  background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png);
+  outline: 2px solid #ccc;
+}
+
+.custom-favorite-button.active {
+  background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png);
+}
+
+.custom-favorite-button.busy {
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif);
+}

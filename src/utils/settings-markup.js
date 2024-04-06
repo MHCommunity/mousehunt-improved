@@ -1,27 +1,12 @@
 import { getCurrentPage, getCurrentTab } from './page';
 import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
-import { addStylesDirect } from './styles';
 import { doEvent } from './event-registry';
 import { makeElement } from './elements';
 import { onNavigation } from './events';
 
 import settingsData from '@data/settings.json';
 
-import settingsStyles from './styles/settings.css';
 import { showSuccessMessage } from './messages';
-
-let hasAddedSettingsStyles = false;
-/**
- * Add the settings styles.
- */
-const addSettingStyles = () => {
-  if (hasAddedSettingsStyles) {
-    return;
-  }
-
-  hasAddedSettingsStyles = true;
-  addStylesDirect(settingsStyles, 'mh-improved-styles-settings');
-};
 
 /**
  * Save a setting and toggle the class in the settings UI.
@@ -66,7 +51,6 @@ const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-util
  * @return {string} The identifier.
  */
 const addSettingsTab = (identifier = 'userscript-settings', name = 'Userscript Settings') => {
-  addSettingStyles();
   addSettingsTabOnce(identifier, name);
   onNavigation(() => addSettingsTabOnce(identifier, name), {
     page: 'preferences',
@@ -549,8 +533,6 @@ const makeSettingBlank = ({ section, key }) => {
  * @return {Object} The setting.
  */
 const addSettingOnce = (options) => {
-  addSettingStyles();
-
   const name = options.name;
   const key = options.id;
   const defaultValue = options.default || null;
@@ -758,8 +740,6 @@ const addSettingRefreshReminder = (key) => {
   if (noReminder.includes(key)) {
     return;
   }
-
-  addSettingStyles();
 
   let refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
   if (! refreshMessage) {

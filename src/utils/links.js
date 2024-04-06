@@ -1,7 +1,4 @@
-import { addStylesDirect } from './styles';
 import { makeElement } from './elements';
-
-import gameInfoBarStyles from './styles/game-info-bar.css';
 
 /**
  * Add an item to the top 'Hunters Online' menu.
@@ -28,8 +25,6 @@ const addItemToGameInfoBar = (options) => {
   if (exists) {
     return;
   }
-
-  addStylesDirect(gameInfoBarStyles, 'mh-improved-styles-game-info-bar', true);
 
   const menu = document.querySelector('.mousehuntHud-gameInfo');
   if (! menu) {

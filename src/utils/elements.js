@@ -1,7 +1,4 @@
 import { getSetting, saveSetting } from './settings';
-import { addStylesDirect } from './styles';
-
-import favoriteButtonStyles from './styles/favorite-button.css';
 
 /**
  * Creates an element with the given tag, class name, text, and appends it to the given element.
@@ -122,8 +119,6 @@ const makeLink = (text, href, encodeAsSpace = false) => {
  * @return {HTMLElement} The created button.
  */
 const makeFavoriteButton = async (options) => {
-  addStylesDirect(favoriteButtonStyles, 'mh-improved-styles-favorite-button', true);
-
   const {
     id = null,
     target = null,
