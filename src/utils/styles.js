@@ -90,6 +90,8 @@ const addModuleStyles = (styles, identifier = 'mh-improved-styles', replace = fa
  * @param {string|Array} styles     CSS to add to the page.
  * @param {string}       module     The module ID to add the styles to.
  * @param {string}       identifier Identifier to use for the styles.
+ *
+ * @return {Element} The style element.
  */
 const addStyles = (styles, module = false, identifier = 'mh-improved-styles') => {
   if (! module) {
