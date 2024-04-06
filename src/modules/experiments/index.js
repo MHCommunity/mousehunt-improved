@@ -3,6 +3,7 @@ import { getSetting } from '@utils';
 import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
 import favicon from './modules/favicon';
+import journalTags from './modules/journal-tags';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
 import trollMode from './modules/troll-mode';
@@ -62,6 +63,11 @@ const experiments = [
     title: 'Favicon',
     load: favicon,
   },
+  {
+    id: 'experiments.journal-tags',
+    title: 'Journal Tags',
+    load: journalTags,
+  }
 ];
 
 const init = async () => {

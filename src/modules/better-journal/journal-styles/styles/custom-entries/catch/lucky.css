@@ -2,28 +2,3 @@
 .journal .entry.luckycatchsuccess .journalimage::after {
   background: none;
 }
-
-.journal .entry.luckycatchsuccess::after {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  width: 18px;
-  height: 18px;
-  content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png?asset_cache_version=2);
-  background-repeat: no-repeat;
-  background-size: cover;
-  animation: mh-improved-fade-out 1s ease-out 1s forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .journal .entry.luckycatchsuccess::after {
-    animation: none;
-  }
-}
-
-.journal .entry.luckycatchsuccess .journalimage {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}

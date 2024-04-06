@@ -1,0 +1,58 @@
+.journal .content .catchfailure::after,
+.journal .content .luckycatchsuccess::after,
+.journal .content .passive::after,
+.journal .content .linked::after {
+  opacity: 0;
+  position: absolute;
+  padding: 1px 3px;
+  border-radius: 3px;
+  background: #53891b;
+  font-size: 9px;
+  line-height: 11px;
+  z-index: 1;
+  color: #fff;
+  font-weight: 700;
+  top: 10px;
+  right: 12px;
+  left: unset;
+  content: "";
+  text-transform: uppercase;
+  transition: 0.2s;
+}
+
+.journal .content .catchfailure::after {
+  content: "FTC";
+  background: #891b1b;
+}
+
+.journal .content .passive::after {
+  content: "Trap Check";
+}
+
+.journal .content .linked::after {
+  content: "Friend";
+}
+
+.journal .content .luckycatchsuccess::after {
+  content: "Lucky";
+  background-color: #4ac338;
+}
+
+.journal .content .catchfailure:hover::after,
+.journal .content .luckycatchsuccess:hover::after,
+.journal .content .passive:hover::after,
+.journal .content .linked:hover::after {
+  opacity: 1;
+}
+
+
+.journal .content .bonuscatchsuccess::after,
+.journal .content .bonuscatchfailure::after {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.journal .content .bonuscatchsuccess:hover::after,
+.journal .content .bonuscatchfailure:hover::after {
+  opacity: 1;
+}
