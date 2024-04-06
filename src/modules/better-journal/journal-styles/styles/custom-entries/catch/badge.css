@@ -1,0 +1,9 @@
+.entry.short.badge {
+  animation: townOfGnawniaHighlightAction 1s 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry.short.badge {
+    animation: none;
+  }
+}
