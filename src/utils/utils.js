@@ -388,6 +388,14 @@ const refreshPage = (delay = 0) => {
   }, delay);
 };
 
+const debounce = (func, delay) => {
+  let timeout;
+  return async (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(async () => await func(...args), delay);
+  };
+};
+
 export {
   doRequest,
   getTradableItems,
@@ -404,5 +412,6 @@ export {
   sleep,
   uppercaseFirstLetter,
   setMultipleTimeout,
-  refreshPage
+  refreshPage,
+  debounce
 };
