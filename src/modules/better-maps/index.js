@@ -19,6 +19,7 @@ import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sor
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
 
+import community from './modules/community';
 import sidebar from './modules/sidebar';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
@@ -261,6 +262,10 @@ const init = async () => {
   intercept();
 
   relicHunterUpdate();
+
+  if (getSetting('better-maps.community')) {
+    community();
+  }
 
   if (getSetting('experiments.better-maps-helper')) {
     helper();

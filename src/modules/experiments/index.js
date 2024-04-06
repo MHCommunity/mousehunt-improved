@@ -67,7 +67,11 @@ const experiments = [
     id: 'experiments.journal-tags',
     title: 'Journal Tags',
     load: journalTags,
-  }
+  },
+  {
+    id: 'better-maps.community',
+    title: 'Better Maps: Community maps information',
+  },
 ];
 
 const init = async () => {
