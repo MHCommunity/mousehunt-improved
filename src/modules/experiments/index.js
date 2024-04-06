@@ -2,6 +2,7 @@ import { getSetting } from '@utils';
 
 import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
+import favicon from './modules/favicon';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
 import trollMode from './modules/troll-mode';
@@ -55,7 +56,12 @@ const experiments = [
     id: 'experiments.big-timer',
     title: 'Big Timer',
     load: bigTimer,
-  }
+  },
+  {
+    id: 'experiments.favicon',
+    title: 'Favicon',
+    load: favicon,
+  },
 ];
 
 const init = async () => {
