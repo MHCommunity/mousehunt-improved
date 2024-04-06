@@ -1,4 +1,4 @@
-import { makeElement } from '@utils';
+import { makeElement, makeMathButton, makeMathButtons } from '@utils';
 
 export default async (block, input, maxQty) => {
   const existingButtons = block.querySelector('.mh-improved-shop-buy-controls');
@@ -11,32 +11,12 @@ export default async (block, input, maxQty) => {
 
   const buyControls = makeElement('div', ['mh-improved-shop-buy-controls']);
 
-  const makeMathButton = (amount) => {
-    const button = makeElement('a', ['mousehuntActionButton', 'tiny', 'gray', 'mh-improved-shop-qty']);
-    makeElement('span', '', amount > 0 ? `+${amount}` : amount, button);
-    button.addEventListener('click', () => {
-      let current = Number.parseInt(input.value, 10);
-      if (Number.isNaN(current)) {
-        current = 0;
-      }
-
-      if (current + amount >= maxQty) {
-        input.value = maxQty;
-      } else if (current + amount <= 0) {
-        input.value = 0;
-      } else {
-        input.value = current + amount;
-      }
-    });
-
-    buyControls.append(button);
-  };
-
-  makeMathButton(1);
-  makeMathButton(10);
-  makeMathButton(50);
-  makeMathButton(100);
-  makeMathButton(1000);
+  makeMathButtons([1, 10, 50, 100, 1000], {
+    appendTo: buyControls,
+    input,
+    maxQty,
+    classNames: ['mh-improved-shop-qty', 'tiny', 'gray'],
+  });
 
   const buyMaxButton = makeElement('a', ['mousehuntActionButton', 'lightBlue', 'tiny', 'mh-improved-shop-buy-max']);
   const buyMaxButtonText = makeElement('span', '', 'Max');

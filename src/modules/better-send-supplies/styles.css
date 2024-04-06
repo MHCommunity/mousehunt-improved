@@ -3,8 +3,8 @@
 }
 
 #supplytransfer .listContainer a.element.recipient {
-  width: 97px;
-  height: 73px;
+  width: 81px;
+  height: 71px;
   white-space: nowrap;
 }
 
@@ -12,22 +12,35 @@
   font-size: 12px;
 }
 
+#supplytransfer .listContainer a.element.item.pinned:hover,
 #supplytransfer .listContainer a.element:hover {
   background-color: #d8f0ff;
 }
 
 #supplytransfer .listContainer a.element.item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 82px;
-  height: 77px;
+  display: grid;
+  grid-template-rows: 60px 20px;
+  align-content: space-around;
+  justify-items: center;
+  width: 85px;
+  height: 90px;
 }
 
-#supplytransfer .itemList a.element .itemImage {
-  width: 50px;
-  height: 50px;
+#supplytransfer .listContainer a.element.item,
+#supplytransfer .listContainer a.element.recipient {
+  border-radius: 5px;
+  box-shadow: 0 1px 2px -2px #1f1f1f;
+}
+
+#supplytransfer .listContainer a.element:hover,
+#supplytransfer .listContainer a.element:focus,
+#supplytransfer .listContainer a.element.recipient:hover,
+#supplytransfer .listContainer a.element.recipient:focus {
+  border-color: #b3b3b3;
+}
+
+#supplytransfer .itemList a.element .quantity {
+  bottom: 20px;
 }
 
 #supplytransfer .tabContent.item .listContainer {
@@ -48,8 +61,8 @@
 }
 
 #supplytransfer .itemList a.element .itemImage img {
-  width: 45px;
-  height: 45px;
+  width: 60px;
+  height: 60px;
 }
 
 #supplytransfer .listContainer a.element .details {
@@ -82,7 +95,7 @@
 
 input.mhui-supply-search-input {
   padding: 9px;
-  margin-right: 10px;
+  margin-right: -2px;
 }
 
 form.mhui-supply-search-form {
@@ -149,8 +162,18 @@ form.mhui-supply-search-form {
 
 .mhui-supply-quick-quantity-wrapper {
   display: flex;
+  gap: 10px;
   align-items: center;
-  justify-content: space-around;
-  max-width: 150px;
+  justify-content: center;
   margin: 10px auto;
+}
+
+.mhui-supply-quick-quantit-max {
+  width: 53px;
+}
+
+.friendList.listContainer {
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid #ccc;
 }

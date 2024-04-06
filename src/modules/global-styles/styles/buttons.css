@@ -68,3 +68,8 @@
 .mousehuntActionButton.gray:focus {
   background-color: #f3f3f3;
 }
+
+.mh-improved-math-button {
+  font-family: monospace;
+  user-select: none;
+}

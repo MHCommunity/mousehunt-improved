@@ -318,6 +318,71 @@ const makePage = (content) => {
   hg.utils.PageUtil.setPage('PrivacyPolicy', {}, setContent, setContent);
 };
 
+const makeMathButton = (amount, opts) => {
+  const {
+    appendTo = null,
+    input = null,
+    maxQty = 0,
+    classNames = [],
+  } = opts;
+
+  const button = makeElement('a', ['mousehuntActionButton', 'mh-improved-math-button', ...classNames]);
+
+  const plusText = amount > 0 ? `+${amount}` : amount;
+  const minusText = amount > 0 ? `-${amount}` : amount;
+  const buttonText = makeElement('span', '', plusText);
+
+  const updateButtonText = (e) => {
+    const currentText = buttonText.innerText;
+
+    if (e.shiftKey && currentText !== minusText) {
+      buttonText.innerText = minusText;
+    } else if (! e.shiftKey && currentText !== plusText) {
+      buttonText.innerText = plusText;
+    }
+  };
+
+  buttonText.addEventListener('mouseover', updateButtonText);
+  window.addEventListener('keydown', updateButtonText);
+  window.addEventListener('keyup', updateButtonText);
+
+  button.append(buttonText);
+
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    let current = Number.parseInt(input.value, 10);
+    if (Number.isNaN(current)) {
+      current = 0;
+    }
+
+    const tempAmount = e.shiftKey ? -amount : amount;
+
+    if (current + tempAmount >= maxQty) {
+      input.value = maxQty;
+    } else if (current + tempAmount <= 0) {
+      input.value = 0;
+    } else {
+      input.value = current + tempAmount;
+    }
+
+    const event = new Event('keyup');
+    input.dispatchEvent(event);
+  });
+
+  if (appendTo) {
+    appendTo.append(button);
+  }
+
+  return button;
+};
+
+const makeMathButtons = (amounts, opts) => {
+  amounts.forEach((amount) => {
+    makeMathButton(amount, opts);
+  });
+};
+
 export {
   createPopup,
   makeButton,
@@ -326,5 +391,7 @@ export {
   makeFavoriteButton,
   makeTooltip,
   makePage,
-  makeMhButton
+  makeMhButton,
+  makeMathButton,
+  makeMathButtons
 };

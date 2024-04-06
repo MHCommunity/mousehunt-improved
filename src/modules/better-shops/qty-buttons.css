@@ -18,6 +18,11 @@
   margin-bottom: 40px;
 }
 
+.mousehuntActionButton.mh-improved-shop-qty {
+  font-family: monospace;
+  font-size: 11px;
+}
+
 .mh-improved-shop-buy-max {
   min-width: 25px;
 }
@@ -25,4 +30,8 @@
 .mh-improved-shop-qty,
 .mh-improved-shop-buy-max {
   user-select: none;
+}
+
+.mousehuntActionButton.mh-improved-shop-buy-max {
+  max-width: 25px;
 }

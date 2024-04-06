@@ -1,4 +1,10 @@
-import { addStyles, getSetting, makeElement, onNavigation } from '@utils';
+import {
+  addStyles,
+  getSetting,
+  makeElement,
+  makeMathButtons,
+  onNavigation
+} from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -170,8 +176,8 @@ const highlightFavoritedItems = () => {
 };
 
 const addQuickQuantityButtons = () => {
-  const inputVal = document.querySelector('#supplytransfer-confirm-text input');
-  if (! inputVal) {
+  const input = document.querySelector('#supplytransfer-confirm-text input');
+  if (! input) {
     return;
   }
 
@@ -186,47 +192,36 @@ const addQuickQuantityButtons = () => {
   }
 
   // parse out the max quantity by getting the text between 'you can send up to: ' and the first space after the number
-  const maxAmount = Number.parseInt(maxquantity.textContent.split('You can send up to: ')[1].split(' ')[0].replace(',', ''));
+  const maxQty = Number.parseInt(maxquantity.textContent.split('You can send up to: ')[1].split(' ')[0].replace(',', ''));
 
   const wrapper = makeElement('div', 'mhui-supply-quick-quantity-wrapper');
 
-  const buttons = [
-    1,
-    5,
-    10,
-    100,
-  ];
+  makeMathButtons([1, 5, 10, 100], {
+    appendTo: wrapper,
+    input,
+    maxQty,
+    classNames: ['mhui-supply-quick-quantity', 'gray', 'small'],
+  });
 
-  for (const button of buttons) {
-    const btn = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-quick-quantity']);
-    makeElement('span', '', `+${button}`, btn);
-    btn.addEventListener('click', () => {
-      const value = Number.parseInt(inputVal.value || 0);
-      inputVal.value = value + button;
-
-      // fire a keyup event so the quantity updates
-      const event = new Event('keyup');
-      inputVal.dispatchEvent(event);
-    });
-
-    wrapper.append(btn);
-  }
-
-  const max = makeElement('button', ['mousehuntActionButton', 'tiny', 'mhui-supply-quick-quantity']);
-  makeElement('span', '', 'All', max);
+  const max = makeElement('button', ['mousehuntActionButton', 'lightBlue', 'small', 'mhui-supply-quick-quantity', 'mhui-supply-quick-quantit-max']);
+  const maxText = makeElement('span', '', 'Max');
 
   max.addEventListener('click', () => {
-    inputVal.value = maxAmount;
-
-    // fire a keyup event so the quantity updates
-    const event = new Event('keyup');
-    inputVal.dispatchEvent(event);
+    if (maxText.textContent === 'Reset') {
+      input.value = 0;
+      maxText.textContent = 'Max';
+    } else {
+      input.value = maxQty;
+      maxText.textContent = 'Reset';
+    }
   });
+
+  max.append(maxText);
 
   wrapper.append(max);
 
   // append the wrapper after the input
-  inputVal.parentNode.insertBefore(wrapper, inputVal.nextSibling);
+  input.parentNode.insertBefore(wrapper, input.nextSibling);
 };
 
 let items = [];
