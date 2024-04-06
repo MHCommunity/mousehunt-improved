@@ -143,17 +143,6 @@ class ImageUpscaler {
       img.onload = () => {
       // Once the image is loaded, replace the URL in the original element
         element.setAttribute(attribute, attributeValue.replace(originalUrl, mappedUrl));
-
-        // Set up a MutationObserver to prevent other code from changing the background-image
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-              element.style.backgroundImage = `url(${mappedUrl})`;
-            }
-          });
-        });
-
-        observer.observe(element, { attributes: true });
       };
       img.src = mappedUrl;
     } else {
