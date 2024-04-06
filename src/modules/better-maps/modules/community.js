@@ -2,6 +2,7 @@ import {
   addStyles,
   dbGet,
   dbSet,
+  getData,
   makeElement,
   onRequest,
   sleep
@@ -17,71 +18,6 @@ const getMapData = async (mapId, forceUpdate = false) => {
   });
 };
 
-const oldIds = new Set([
-  6124452,
-  6116356,
-  6112572,
-  6063829,
-  6041361,
-  6001101,
-  5982797,
-  5980839,
-  5975294,
-  5974787,
-  5962498,
-  5923595,
-  5846849,
-  5816550,
-  5786343,
-  5777911,
-  5762791,
-  5707992,
-  5642430,
-  5635162,
-  5629841,
-  5617390,
-  5617130,
-  5613596,
-  5601746,
-  5594573,
-  5586111,
-  5580675,
-  5570940,
-  5564304,
-  5559943,
-  5519757,
-  5504581,
-  5492386,
-  5475950,
-  5470552,
-  5466555,
-  5463382,
-  5450350,
-  5372374,
-  5367257,
-  5326509,
-  5303846,
-  5277604,
-  5269785,
-  5259977,
-  5251286,
-  5182548,
-  5094152,
-  5093755,
-  4976280,
-  4973249,
-  4973128,
-  4938259,
-  4934275,
-  4792221,
-  4772313,
-  4770377,
-  4760688,
-  4749373,
-  4723507,
-  4711829,
-]);
-
 const updateListing = async (mapId) => {
   let mapData;
 
@@ -91,6 +27,13 @@ const updateListing = async (mapId) => {
   }
 
   mapEl.classList.add('mh-improved-map-listing-highlight');
+
+  const mapsData = await getData('community-map-data', {});
+  let oldIds = new Set();
+
+  if (mapsData && mapsData.old) {
+    oldIds = new Set(mapsData.old);
+  }
 
   if (oldIds.has(mapId)) {
     mapEl.remove();

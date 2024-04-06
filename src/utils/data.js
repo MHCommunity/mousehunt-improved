@@ -3,6 +3,7 @@ import { debuglog } from './debug';
 import { getSetting } from './settings';
 
 const validDataFiles = new Set([
+  'community-map-data',
   'effs',
   'environments-events',
   'environments',
@@ -162,9 +163,9 @@ const clearCaches = async () => {
  * Prime the caches.
  */
 const updateCaches = async () => {
-  validDataFiles.forEach(async (file) => {
+  for (const file of validDataFiles) {
     await getData(file);
-  });
+  }
 };
 
 /**
