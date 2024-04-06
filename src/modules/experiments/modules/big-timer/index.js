@@ -14,7 +14,8 @@ const toggleBigTimer = () => {
 };
 
 export default async () => {
-  addStyles(styles, 'big-timer');
+  addStyles(styles, 'experiment-big-timer');
 
+  toggleBigTimer();
   setTimeout(toggleBigTimer, 1000);
 };

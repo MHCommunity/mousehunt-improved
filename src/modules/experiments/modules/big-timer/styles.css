@@ -1,4 +1,4 @@
-.big-timer.huntersHornView__timer.huntersHornView__timer--default.countdown {
+.big-timer.huntersHornView__timer.huntersHornView__timer.countdown {
   position: absolute;
   top: 40px;
   left: 185px;
@@ -6,7 +6,7 @@
   transform: scale(2.2);
 }
 
-.big-timer.huntersHornView__timer.huntersHornView__timer--default.countdown::after {
+.big-timer.huntersHornView__timer.huntersHornView__timer.countdown::after {
   position: absolute;
   top: 6px;
   right: 5px;
