@@ -245,6 +245,7 @@ p.mhi-x-entry {
   background-size: contain;
 }
 
+.journal .content .entry .journaltext,
 .journal .content .entry .journaltext p {
-  font-size: 12px;
+  font-size: 11px;
 }
