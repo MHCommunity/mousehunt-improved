@@ -7,3 +7,20 @@
 .inventoryPage-item.full.recipe.known.reordered:hover {
   max-height: 500px;
 }
+
+.mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent {
+  position: relative;
+}
+
+.mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent-prefix-title {
+  display: none;
+}
+
+.mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent-prefix.clear-block {
+  position: absolute;
+  right: 10px;
+}
+
+.mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabHeader-container {
+  margin-bottom: 20px;
+}

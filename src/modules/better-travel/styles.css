@@ -140,6 +140,7 @@
 #mh-simple-travel-page .travelPage-regionMenu-environmentLink:focus {
   color: #fff;
   background-color: #6383bf;
+  border-radius: 3px;
 }
 
 .huntersHornView__messageContent strong {
@@ -219,7 +220,7 @@
 .mousehuntHud-page-tabContent.simple-travel .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
   margin: 0;
   border: none;
-  border-radius: 6px;
+  border-radius: 3px;
   outline: 1px solid #ccc;
 }
 

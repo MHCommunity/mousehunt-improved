@@ -788,6 +788,7 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapTooltipView.active {
+  min-height: 35px;
   transform: translateY(10px);
 }
 
@@ -898,4 +899,14 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-mapMenu-group:first-child .treasureMapView-mapMenu-group-title {
   margin-bottom: 15px;
+}
+
+.mh-improved-map-listing-last-active-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.mh-improved-map-listing-full {
+  opacity: 0.5;
 }

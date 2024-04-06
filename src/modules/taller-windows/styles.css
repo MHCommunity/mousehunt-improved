@@ -38,6 +38,10 @@
   transform: translate(-50%, -100px);
 }
 
+.treasureMapDialogView.wide.limitHeight.confirm {
+  transform: translate(-50%, -165px);
+}
+
 .giftSelectorView-inbox-giftContainer,
 #overlayPopup .giftSelectorView-scroller {
   height: auto;

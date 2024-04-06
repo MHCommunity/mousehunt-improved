@@ -33,6 +33,7 @@
   align-items: flex-start;
   justify-content: space-evenly;
   background-color: rgb(255 255 255 / 50%);
+  border-radius: 10px;
 }
 
 .mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-item-controls {

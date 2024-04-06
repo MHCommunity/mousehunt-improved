@@ -54,10 +54,6 @@
   padding: 8px 0 8px 8px;
 }
 
-.mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-tagGroup:nth-child(even) {
-  background-color: #f6f6f6;
-}
-
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-tagTitle {
   padding: 0 0 10px;
   font-size: 14px;
@@ -92,7 +88,7 @@
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .inventoryPage-item-margin {
   background-color: #e3e3e3;
-  border-color: #c9c9c9;
+  box-shadow: none;
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item .tooltip,
@@ -215,7 +211,6 @@ input.inventoryPage-tagDirectory-searchBar-input {
 
 .mousehuntHud-page-subTabContent-prefix.clear-block {
   height: 25px;
-  margin-top: -20px;
   color: transparent;
 }
 

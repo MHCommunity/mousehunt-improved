@@ -240,3 +240,12 @@ input.itemView-action-convert-quantity {
   margin-top: 15px;
   border-top: 1px solid #666;
 }
+
+.convertibleOpenView-item-imageContainer {
+  margin-right: auto;
+}
+
+.convertibleOpenView-itemContainer.num_items_1 .convertibleOpenView-item {
+  width: 100%;
+  gap: 20px;
+}

@@ -1,3 +1,7 @@
+.journal .content {
+  padding: 0 5px;
+}
+
 .journal .content .entry .journalbody {
   margin-top: 3px;
   margin-bottom: 3px;
@@ -238,4 +242,8 @@ p.mhi-x-entry {
 .journal .content .entry.vending_machine_purchase {
   background-position: top, bottom, center;
   background-size: contain;
+}
+
+.journal .content .entry .journaltext p {
+  font-size: 12px;
 }

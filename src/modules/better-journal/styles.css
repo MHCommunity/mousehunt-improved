@@ -1,0 +1,14 @@
+.journal .entry .journalbody .journaltext p {
+  margin: 0;
+}
+
+.journal .content .entry .journaltext .better-journal-list {
+  margin-top: 5px;
+}
+
+.journaltext .lucky:after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png);
+  background-size: cover;
+  width: 14px;
+  height: 14px;
+}
