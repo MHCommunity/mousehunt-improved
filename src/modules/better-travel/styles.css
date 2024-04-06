@@ -337,3 +337,7 @@
   padding: 3px 10px;
   font-size: 11px;
 }
+
+.mh-improved-travel-message > div {
+  display: none;
+}
