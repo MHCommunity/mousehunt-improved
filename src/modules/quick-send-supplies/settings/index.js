@@ -8,6 +8,11 @@ import { getTradableItems } from '@utils';
 export default async () => {
   const tradableItems = await getTradableItems('type');
 
+  tradableItems.unshift({
+    name: 'None',
+    value: '',
+  });
+
   return [{
     id: 'quick-send-supplies.items',
     title: 'Items shown in popup',
