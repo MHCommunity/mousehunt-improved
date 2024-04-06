@@ -53,6 +53,7 @@
 
 ### Better UI
 
+- Added styles for maintenance page
 - Minor style updates
 
 ### Catch Rate Estimate
