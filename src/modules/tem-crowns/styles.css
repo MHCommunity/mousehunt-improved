@@ -3,8 +3,10 @@
   flex-flow: column wrap;
   place-content: flex-start space-around;
   align-items: flex-start;
+  justify-content: flex-start;
   width: 95px;
   padding-left: 5px;
+  margin-top: -10px;
 }
 
 .campPage-trap-trapEffectiveness-mouse:hover,
@@ -31,11 +33,11 @@ img.mh-ui-tem-crown-icon {
   right: -5px;
   z-index: 2;
   box-sizing: border-box;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   vertical-align: middle;
-  background-color: #fdfdfa;
-  border: 1px solid #929292;
+  background-color: #f4f4f4;
+  border: 1px solid #8d8282;
   border-right: none;
   border-radius: 50% 0 0 50%;
 }
@@ -48,7 +50,7 @@ span.mh-ui-tem-crown-text {
   box-sizing: border-box;
   display: inline-block;
   width: auto;
-  height: 24px;
+  height: 22px;
   padding: 4px 10px 2px 15px;
   font-size: 12px;
   font-weight: 900;
@@ -58,8 +60,9 @@ span.mh-ui-tem-crown-text {
 }
 
 .mh-ui-tem-crown-wrapper {
-  margin-top: 5px;
-  margin-left: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 45px;
 }
 
 .campPage-trap-trapEffectiveness-mouse-chance {
@@ -69,9 +72,11 @@ span.mh-ui-tem-crown-text {
 }
 
 .campPage-trap-trapEffectiveness-mouse-powerType {
-  right: 25px;
-  bottom: -10px;
+  right: 28px;
+  bottom: -11px;
+  background-color: #f4f4f4;
   background-size: 70%;
+  border-color: #8d8282;
 }
 
 .campPage-trap-trapEffectiveness span {
