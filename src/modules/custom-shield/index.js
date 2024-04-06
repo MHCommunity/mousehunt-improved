@@ -123,14 +123,17 @@ const changeShield = () => {
 
 const getTitle = () => {
   let title = user.title_name || 'novice';
-  title = title.toLowerCase();
 
-  title.replace('lady', 'lord');
-  title.replace('wo', '');
-  title.replace('ess', '');
-  title.replace('duch', 'duke');
+  if (title.includes('/')) {
+    title = title.split('/')[0];
+  }
 
-  return title;
+  return title.toLowerCase()
+    .replaceAll('lady', 'lord')
+    .replace('wo', '')
+    .replace('ess', '')
+    .replace('duch', 'duke')
+    .trim();
 };
 
 const watchForPreferenceChanges = () => {
