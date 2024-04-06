@@ -746,7 +746,7 @@
         "name": "Pressure Set",
         "id": "pressure-set",
         "color": "#dcb8ff",
-        "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png?cv=2",
+        "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png",
         "mice": [
           "geyser_pressure_builder_hot",
           "geyser_pressure_builder_medium",
@@ -758,7 +758,7 @@
         "name": "Corky & Friends",
         "id": "corky-friends",
         "color": "#f4c47e",
-        "icon": "/items/crafting_items/transparent_thumb/17907f705fe8e7fa8f7b94f058e11ae5.png?cv=2",
+        "icon": "/items/crafting_items/transparent_thumb/17907f705fe8e7fa8f7b94f058e11ae5.png",
         "mice": [
           "geyser_cork_dropper_bland",
           "geyser_cork_dropper_medium",
@@ -1004,7 +1004,7 @@
       {
         "name": "Standard",
         "id": "standard",
-        "icon": "/items/bait/large/bb0fe6fa6f55e5ccb1f98dea058409e0.png?cv=2",
+        "icon": "/items/bait/large/bb0fe6fa6f55e5ccb1f98dea058409e0.png",
         "color": "#fefa76",
         "mice": [
           "grey_recluse",
@@ -1021,7 +1021,7 @@
       {
         "name": "Monterey Jack-O-Lantern",
         "id": "monterey-Jack",
-        "icon": "/items/bait/large/65fd19bf5b16dcaa6b3cfebd2f55348c.png?cv=2",
+        "icon": "/items/bait/large/65fd19bf5b16dcaa6b3cfebd2f55348c.png",
         "color": "#f9a645",
         "mice": [
           "sprit_light",
@@ -1040,7 +1040,7 @@
       {
         "name": "Bonefort",
         "id": "bonefort",
-        "icon": "/items/bait/large/e6ac92f19a6ac930aad02e317cf8e6e8.png?cv=2",
+        "icon": "/items/bait/large/e6ac92f19a6ac930aad02e317cf8e6e8.png",
         "color": "#bfbfbf",
         "mice": [
           "creepy_marionette",
@@ -1056,7 +1056,7 @@
       {
         "name": "Polter-Geitost",
         "id": "polter-geitost",
-        "icon": "/items/bait/large/04d69ccc7a5b1578cdf90b9651fb2315.png?cv=2",
+        "icon": "/items/bait/large/04d69ccc7a5b1578cdf90b9651fb2315.png",
         "color": "#84bde6",
         "mice": [
           "hween_2018_boss",
@@ -1071,7 +1071,7 @@
       {
         "name": "Scream",
         "id": "scream",
-        "icon": "/items/bait/large/fe9d538d1a811bdb787b78aa1526ee50.png?cv=2",
+        "icon": "/items/bait/large/fe9d538d1a811bdb787b78aa1526ee50.png",
         "color": "#86dd6c",
         "mice": [
           "hween_2021_boss",
@@ -1088,7 +1088,7 @@
       {
         "name": "Anywhere",
         "id": "anywhere",
-        "icon": "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png?cv=2",
+        "icon": "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png",
         "color": "#3f8bae",
         "mice": [
           "hoarder",
@@ -1113,7 +1113,7 @@
       {
         "name": "Cinnamon Hill",
         "id": "cinnamon_hill",
-        "icon": "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg?cv=2",
+        "icon": "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg",
         "color": "#c76e39",
         "mice": [
           "candy_cane",
@@ -1183,7 +1183,7 @@
       {
         "name": "Golem Workshop",
         "id": "golem_workshop",
-        "icon": "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg?cv=2",
+        "icon": "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg",
         "color": "#9ab1b4",
         "mice": [
           "gingerbread",
@@ -1256,7 +1256,7 @@
       {
         "name": "Ice Fortress",
         "id": "ice_fortress",
-        "icon": "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg?cv=2",
+        "icon": "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg",
         "color": "#cc85fe",
         "mice": [
           "confused_courier",
@@ -1353,7 +1353,7 @@
       {
         "name": "Anywhere",
         "id": "anywhere",
-        "icon": "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png?cv=2",
+        "icon": "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png",
         "color": "#3f8bae",
         "mice": [
           "hoarder",
@@ -1378,7 +1378,7 @@
       {
         "name": "Cinnamon Hill",
         "id": "cinnamon_hill",
-        "icon": "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg?cv=2",
+        "icon": "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg",
         "color": "#c76e39",
         "mice": [
           "candy_cane",
@@ -1448,7 +1448,7 @@
       {
         "name": "Golem Workshop",
         "id": "golem_workshop",
-        "icon": "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg?cv=2",
+        "icon": "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg",
         "color": "#9ab1b4",
         "mice": [
           "gingerbread",
@@ -1521,7 +1521,7 @@
       {
         "name": "Ice Fortress",
         "id": "ice_fortress",
-        "icon": "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg?cv=2",
+        "icon": "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg",
         "color": "#cc85fe",
         "mice": [
           "confused_courier",
@@ -1618,7 +1618,7 @@
       {
         "name": "Anywhere",
         "id": "anywhere",
-        "icon": "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png?cv=2",
+        "icon": "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png",
         "color": "#3f8bae",
         "mice": [
           "hoarder",
@@ -1643,7 +1643,7 @@
       {
         "name": "Cinnamon Hill",
         "id": "cinnamon_hill",
-        "icon": "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg?cv=2",
+        "icon": "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg",
         "color": "#c76e39",
         "mice": [
           "candy_cane",
@@ -1713,7 +1713,7 @@
       {
         "name": "Golem Workshop",
         "id": "golem_workshop",
-        "icon": "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg?cv=2",
+        "icon": "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg",
         "color": "#9ab1b4",
         "mice": [
           "gingerbread",
@@ -1786,7 +1786,7 @@
       {
         "name": "Ice Fortress",
         "id": "ice_fortress",
-        "icon": "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg?cv=2",
+        "icon": "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg",
         "color": "#cc85fe",
         "mice": [
           "confused_courier",
@@ -1927,7 +1927,7 @@
       {
         "name": "Mixing Room",
         "id": "mixing-room",
-        "icon": "/ui/events/birthday_factory/item_mixing_rod.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_mixing_rod.png",
         "color": "#0aebdd",
         "mice": [
           "force_fighter_blue",
@@ -1941,7 +1941,7 @@
       {
         "name": "Pumping Room",
         "id": "pumping-room",
-        "icon": "/ui/events/birthday_factory/item_pressurized_pump.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_pressurized_pump.png",
         "color": "#fca00a",
         "mice": [
           "reality_restitch",
@@ -1954,7 +1954,7 @@
       {
         "name": "Break Room",
         "id": "break-room",
-        "icon": "/ui/events/birthday_factory/item_circuit_breaker.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_circuit_breaker.png",
         "color": "#ea8cab",
         "mice": [
           "breakdancer",
@@ -1967,7 +1967,7 @@
       {
         "name": "QA Room",
         "id": "qa-room",
-        "icon": "/ui/events/birthday_factory/item_quality_cog.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_quality_cog.png",
         "color": "#fbabff",
         "mice": [
           "cupcake_candle_thief",
@@ -2016,7 +2016,7 @@
       {
         "name": "Mixing Room",
         "id": "mixing-room",
-        "icon": "/ui/events/birthday_factory/item_mixing_rod.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_mixing_rod.png",
         "color": "#0aebdd",
         "mice": [
           "force_fighter_blue",
@@ -2030,7 +2030,7 @@
       {
         "name": "Pumping Room",
         "id": "pumping-room",
-        "icon": "/ui/events/birthday_factory/item_pressurized_pump.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_pressurized_pump.png",
         "color": "#fca00a",
         "mice": [
           "reality_restitch",
@@ -2043,7 +2043,7 @@
       {
         "name": "Break Room",
         "id": "break-room",
-        "icon": "/ui/events/birthday_factory/item_circuit_breaker.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_circuit_breaker.png",
         "color": "#ea8cab",
         "mice": [
           "breakdancer",
@@ -2056,7 +2056,7 @@
       {
         "name": "QA Room",
         "id": "qa-room",
-        "icon": "/ui/events/birthday_factory/item_quality_cog.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_quality_cog.png",
         "color": "#fbabff",
         "mice": [
           "cupcake_candle_thief",
@@ -2105,7 +2105,7 @@
       {
         "name": "Mixing Room",
         "id": "mixing-room",
-        "icon": "/ui/events/birthday_factory/item_mixing_rod.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_mixing_rod.png",
         "color": "#0aebdd",
         "mice": [
           "force_fighter_blue",
@@ -2119,7 +2119,7 @@
       {
         "name": "Pumping Room",
         "id": "pumping-room",
-        "icon": "/ui/events/birthday_factory/item_pressurized_pump.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_pressurized_pump.png",
         "color": "#fca00a",
         "mice": [
           "reality_restitch",
@@ -2132,7 +2132,7 @@
       {
         "name": "Break Room",
         "id": "break-room",
-        "icon": "/ui/events/birthday_factory/item_circuit_breaker.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_circuit_breaker.png",
         "color": "#ea8cab",
         "mice": [
           "breakdancer",
@@ -2145,7 +2145,7 @@
       {
         "name": "QA Room",
         "id": "qa-room",
-        "icon": "/ui/events/birthday_factory/item_quality_cog.png?asset_cache_version=2",
+        "icon": "/ui/events/birthday_factory/item_quality_cog.png",
         "color": "#fbabff",
         "mice": [
           "cupcake_candle_thief",

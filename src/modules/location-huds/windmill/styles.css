@@ -9,7 +9,7 @@
   inset: 0;
   display: block;
   content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/hud/windmill/boss.png?asset_cache_version=3) 0 100% no-repeat;
+  background: url(https://www.mousehuntgame.com/images/ui/hud/windmill/boss.png) 0 100% no-repeat;
   filter: drop-shadow(2px 4px 4px #16240a);
 }
 

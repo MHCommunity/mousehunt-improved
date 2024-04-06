@@ -207,7 +207,7 @@ img.adventureBookPopup-title-icon {
   width: 20px;
   height: 20px;
   padding: 2px;
-  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=3) 0 0 no-repeat;
+  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png) 0 0 no-repeat;
   background-color: rgb(238 238 238 / 50%);
   background-size: cover;
   border-radius: 50px;

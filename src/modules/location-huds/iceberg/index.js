@@ -279,7 +279,7 @@ const addDeepWarning = async () => {
   const warningText = makeElement('div', 'deep-warning-text', `To access the Hidden Depths, make sure you equip ${equippableBasesText}.`);
 
   const warningIcon = makeElement('img', 'deep-warning-icon');
-  warningIcon.src = 'https://www.mousehuntgame.com/images/ui/journal/pillage.gif?asset_cache_version=2';
+  warningIcon.src = 'https://www.mousehuntgame.com/images/ui/journal/pillage.gif';
 
   warning.append(warningIcon);
   warning.append(warningText);

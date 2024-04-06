@@ -200,7 +200,7 @@
   width: 20px;
   height: 20px;
   content: "";
-  background-image: url(https://www.mousehuntgame.com/images/mice/thumb/d6980f1b00ff8ec688804706cba9370c.gif?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/mice/thumb/d6980f1b00ff8ec688804706cba9370c.gif);
   background-repeat: no-repeat;
   background-size: contain;
   border-radius: 5px;
@@ -235,7 +235,7 @@
   width: 60px;
   height: 60px;
   overflow: hidden;
-  background: url(https://www.mousehuntgame.com/images/mice/thumb/d6980f1b00ff8ec688804706cba9370c.gif?cv=2);
+  background: url(https://www.mousehuntgame.com/images/mice/thumb/d6980f1b00ff8ec688804706cba9370c.gif);
   filter: hue-rotate(-326deg);
   background-repeat: no-repeat;
   background-size: contain;
@@ -275,7 +275,7 @@
   width: 15px;
   height: 15px;
   content: "";
-  background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png);
   filter: drop-shadow(0 0 1px #fff);
   background-repeat: no-repeat;
   background-size: contain;
@@ -301,7 +301,7 @@
   width: 20px;
   height: 20px;
   content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/map/star_gold_320.png?asset_cache_version=2);
+  background: url(https://www.mousehuntgame.com/images/ui/map/star_gold_320.png);
   background-size: contain;
   opacity: 0.3;
 }

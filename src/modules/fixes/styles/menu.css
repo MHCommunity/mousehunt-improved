@@ -1,11 +1,11 @@
 body .mousehuntHud-menu .friends .team .icon {
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/team.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/team.png);
 }
 
 body .mousehuntHud-menu .scoreboards .icon {
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/scoreboard.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/scoreboard.png);
 }
 
 body .mousehuntHud-menu .forum .icon {
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/forum.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/forum.png);
 }

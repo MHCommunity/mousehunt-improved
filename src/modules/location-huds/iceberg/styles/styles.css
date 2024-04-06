@@ -81,7 +81,7 @@
   width: 10px;
   height: 10px;
   content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=2) 0 0 no-repeat;
+  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png) 0 0 no-repeat;
   background-size: contain;
   opacity: 1;
 }

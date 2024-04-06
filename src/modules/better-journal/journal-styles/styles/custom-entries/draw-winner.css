@@ -7,7 +7,7 @@
   position: absolute;
   inset: 0;
   content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/journal/donation_shimmer.png?asset_cache_version=2) no-repeat -130px 0;
+  background: url(https://www.mousehuntgame.com/images/ui/journal/donation_shimmer.png) no-repeat -130px 0;
   animation: donationShimmer 5s infinite;
 }
 

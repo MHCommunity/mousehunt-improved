@@ -108,7 +108,7 @@ div#dailyRewardTimer {
 .campPage-daily-container.draw .campPage-daily-content {
   height: 230px;
   padding-top: 0;
-  background: url(https://www.mousehuntgame.com/images/ui/daily/next_day_bkg.png?asset_cache_version=2);
+  background: url(https://www.mousehuntgame.com/images/ui/daily/next_day_bkg.png);
   background-position-x: center;
   background-position-y: 7px;
   background-size: cover;

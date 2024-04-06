@@ -231,7 +231,7 @@ const showBWReminder = () => {
         }, 750);
       },
       dismiss: 4000,
-      image: 'https://www.mousehuntgame.com/images/ui/hud/floating_islands/items/bottled_wind_stat_item.png?asset_cache_version=2',
+      image: 'https://www.mousehuntgame.com/images/ui/hud/floating_islands/items/bottled_wind_stat_item.png',
     });
   }
 };

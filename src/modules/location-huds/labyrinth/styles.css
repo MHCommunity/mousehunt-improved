@@ -207,7 +207,7 @@
   height: 25px;
   overflow: hidden;
   content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png?asset_cache_version=2) no-repeat;
+  background: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png) no-repeat;
   background-size: contain;
 }
 
@@ -376,7 +376,7 @@
   left: -8px;
   width: 75px;
   height: 75px;
-  background: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png?cv=2) 0 0 no-repeat;
+  background: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/d1c4774c7afebe379bef83d30b81f069.png) 0 0 no-repeat;
   filter: drop-shadow(1px 0 8px #f6eac3);
   background-size: contain;
   transform-origin: bottom;

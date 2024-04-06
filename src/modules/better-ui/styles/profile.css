@@ -280,7 +280,7 @@
 }
 
 .mouseCrownsView-crown.none {
-  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_none.png?asset_cache_version=3) !important;
+  background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_none.png) !important;
 }
 
 .mouseCrownsView-group-header-name {
@@ -584,7 +584,7 @@ a.friendsProfileView-randomFriend {
 .mouseCrownsView-group-mouse .mouseCrownsView-group-mouse-favouriteButton:hover {
   top: 2px;
   right: 2px;
-  background: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png?asset_cache_version=3) 0 0 / cover no-repeat;
+  background: url(https://www.mousehuntgame.com/images/ui/camp/trap/star_favorite.png) 0 0 / cover no-repeat;
 }
 
 .hunterProfileItemsView-categoryContent-item:hover .itemImage {

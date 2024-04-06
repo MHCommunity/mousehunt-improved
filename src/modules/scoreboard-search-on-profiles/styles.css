@@ -17,7 +17,7 @@
 .mh-improved-scoreboard-loading {
   display: flex;
   height: 30px;
-  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif);
   background-repeat: no-repeat;
   background-position: top;
   background-size: 30px;

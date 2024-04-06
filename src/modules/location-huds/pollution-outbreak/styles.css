@@ -46,35 +46,35 @@
 
 /* Upscale the shield icons */
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/50f10ec5c7bc01cb99af2003b30d400d.png"] {
-  background-image: url(https://www.mousehuntgame.com/images/titles/0567284d6e12aaaed35ca5912007e070.png?cv=2) !important;
+  background-image: url(https://www.mousehuntgame.com/images/titles/0567284d6e12aaaed35ca5912007e070.png) !important;
 }
 
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/2e17d44079e1538b28409c05da497440.png"] {
-  background-image: url(https://www.mousehuntgame.com/images/titles/398dca9a8c7703de969769491622ca32.png?cv=2) !important;
+  background-image: url(https://www.mousehuntgame.com/images/titles/398dca9a8c7703de969769491622ca32.png) !important;
 }
 
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/322d0b6d9527f1f09c0e213c2fc7abbe.png"] {
-  background-image: url(https://www.mousehuntgame.com/images/titles/9a6acd429a9a3a4849ed13901288b0b8.png?cv=2) !important;
+  background-image: url(https://www.mousehuntgame.com/images/titles/9a6acd429a9a3a4849ed13901288b0b8.png) !important;
 }
 
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/8ed26547b6ce5606faed7ce7d3494232.png"] {
-  background-image: url(https://www.mousehuntgame.com/images/titles/ea9c0ec2e6d3d81c14e61f5ce924d0e1.png?cv=2) !important;
+  background-image: url(https://www.mousehuntgame.com/images/titles/ea9c0ec2e6d3d81c14e61f5ce924d0e1.png) !important;
 }
 
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/53f8ec71d1a26beec6277152afdcc9ba.png"] {
-  background-image: url(https://www.mousehuntgame.com/images/titles/dd11711a25b80db90e0306193f2e8d78.png?cv=2) !important;
+  background-image: url(https://www.mousehuntgame.com/images/titles/dd11711a25b80db90e0306193f2e8d78.png) !important;
 }
 
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/759a709a33a52b2fb70f0d6d994afc16.png"] {
-  background-image: url(https://www.mousehuntgame.com/images/titles/eb46ac1e8197b13299ab860f07d963db.png?cv=2) !important;
+  background-image: url(https://www.mousehuntgame.com/images/titles/eb46ac1e8197b13299ab860f07d963db.png) !important;
 }
 
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/56ff0615bc3f03729b1d2b2bb52693c1.png"] {
-  background-image: url(https://www.mousehuntgame.com/images/titles/87937fa96bbb3b2dd3225df883002642.png?cv=2) !important;
+  background-image: url(https://www.mousehuntgame.com/images/titles/87937fa96bbb3b2dd3225df883002642.png) !important;
 }
 
 .pollutionOutbreakHUD-pollution-title-block-icon[style*="https://www.mousehuntgame.com/images/titles/e258cd2f5606d678cc0bba000b930500.png"] {
-  background-image: url(https://www.mousehuntgame.com/images/titles/043efe31de4f0f2e0ddca590fe829032.png?cv=2) !important;
+  background-image: url(https://www.mousehuntgame.com/images/titles/043efe31de4f0f2e0ddca590fe829032.png) !important;
 }
 
 /* stylelint-enable prettier/prettier */
@@ -276,7 +276,7 @@ a.pollutionOutbreakHUD-refineButton:hover {
   width: auto;
   padding: 2px 5px;
   font-size: 12px;
-  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png?asset_cache_version=2) top right;
+  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) top right;
   background-color: transparent;
   border-top: 1px solid #999;
   border-right: 1px solid #999;

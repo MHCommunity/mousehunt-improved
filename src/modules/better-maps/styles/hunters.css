@@ -130,13 +130,13 @@ input.mh-ui-quick-invite-input {
 }
 
 .mh-ui-quick-invite-indicator.mh-ui-quick-invite-spinner {
-  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif);
   background-repeat: no-repeat;
   background-size: 16px;
 }
 
 .mh-ui-quick-invite-indicator.mh-ui-quick-invite-success {
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png);
   background-repeat: no-repeat;
   background-size: 16px;
 }

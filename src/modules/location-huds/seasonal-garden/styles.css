@@ -21,19 +21,19 @@
 }
 
 .seasonalGardenHUD-season.sg::after {
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/spring_icon.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/spring_icon.png);
 }
 
 .seasonalGardenHUD-season.sr::after {
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/summer_icon.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/summer_icon.png);
 }
 
 .seasonalGardenHUD-season.fl::after {
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/fall_icon.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/fall_icon.png);
 }
 
 .seasonalGardenHUD-season.wr::after {
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/winter_icon.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/winter_icon.png);
 }
 
 .seasonalGardenHUD-currentAmplifier {

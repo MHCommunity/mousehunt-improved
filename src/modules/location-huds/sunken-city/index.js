@@ -17,11 +17,13 @@ const updateHudImages = () => {
       .replace('https://www.mousehuntgame.com/images/items', '')
       .replace('?cv=1', '')
       .replace('?cv=2', '')
+      .replace('?cv=3', '')
       .replace('?v=1', '')
-      .replace('?v=2', '');
+      .replace('?v=2', '')
+      .replace('?v=3', '');
 
     if (upscaleMapping[normalizedImage]) {
-      image.src = `https://www.mousehuntgame.com/images/items/${upscaleMapping[normalizedImage]}?cv=2`;
+      image.src = `https://www.mousehuntgame.com/images/items/${upscaleMapping[normalizedImage]}`;
     }
   };
 

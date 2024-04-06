@@ -113,7 +113,7 @@
   color: #000;
   text-align: center;
   content: "";
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/camp.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/camp.png);
   filter: grayscale(1);
   background-repeat: no-repeat;
   background-position: center;

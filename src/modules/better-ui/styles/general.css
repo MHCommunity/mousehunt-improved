@@ -328,7 +328,7 @@ a.inventoryPage-tagDirectory-tag {
 }
 
 #OnboardArrow.onboardPopup.celebrationPopup .closeButton {
-  background: url(https://www.mousehuntgame.com/images/ui/buttons/continue.png?asset_cache_version=2) 0 0 no-repeat;
+  background: url(https://www.mousehuntgame.com/images/ui/buttons/continue.png) 0 0 no-repeat;
 }
 
 /* stop making the background white when it's a narrow screen */

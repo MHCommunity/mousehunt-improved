@@ -557,8 +557,8 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
   inset: 0 0 10px;
   content: "";
   background:
-    url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif?asset_cache_version=2) center no-repeat,
-    url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png?asset_cache_version=2) 0 0 repeat;
+    url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif) center no-repeat,
+    url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) 0 0 repeat;
   border-radius: 10px;
 }
 

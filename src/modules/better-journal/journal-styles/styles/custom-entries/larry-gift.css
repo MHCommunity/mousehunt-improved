@@ -6,7 +6,7 @@
   width: 61px;
   height: 61px;
   content: "";
-  background-image: url(https://www.mousehuntgame.com/images/ui/onboarding/info_arrow_larry.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/onboarding/info_arrow_larry.png);
   filter: opacity(0.4) saturate(0.3);
   background-repeat: no-repeat;
   background-position: 10px;

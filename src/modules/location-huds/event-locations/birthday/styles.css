@@ -46,20 +46,20 @@
 }
 
 .superBrieFactoryHUD-factoryRoom.mixing_room {
-  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_mixing_room.jpg?cv=Birthday2022&asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_mixing_room.jpg);
 }
 
 .superBrieFactoryHUD-factoryRoom.break_room {
-  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_break_room.jpg?cv=Birthday2022&asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_break_room.jpg);
   background-size: contain;
 }
 
 .superBrieFactoryHUD-factoryRoom.pumping_room {
-  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_pump_room.jpg?cv=Birthday2022&asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_pump_room.jpg);
 }
 
 .superBrieFactoryHUD-factoryRoom.quality_assurance_room {
-  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_qa_room.jpg?cv=Birthday2022&asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/birthday_factory/active_qa_room.jpg);
 }
 
 .superBrieFactoryHUD-factoryRoom.mixing_room::before,
@@ -176,19 +176,19 @@
 }
 
 .superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_break_room_stat_item"]::after {
-  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/4a52c6d8607991a93d3167ac401802ec.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/4a52c6d8607991a93d3167ac401802ec.png);
 }
 
 .superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_mixing_room_stat_item"]::after {
-  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/2396577aacb317979238844ae30b62c1.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/2396577aacb317979238844ae30b62c1.png);
 }
 
 .superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_pumping_room_stat_item"]::after {
-  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/c3c5cb340c3949ba5280c63b2f552a19.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/c3c5cb340c3949ba5280c63b2f552a19.png);
 }
 
 .superBrieFactoryHUD-craftingItem .quantity[data-item-type="birthday_factory_quality_assurance_room_stat_item"]::after {
-  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/97bb19e8f5ae6cc29a7a0f312a1a3b14.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/97bb19e8f5ae6cc29a7a0f312a1a3b14.png);
 }
 
 .superBrieFactoryHUD-item-boundingBox {
@@ -210,18 +210,18 @@
 }
 
 .superBrieFactoryHUD-item-boundingBox[data-item-type="coggy_colby_cheese"]::before {
-  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/39a63a48084383a7eb07d64c74357544.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/39a63a48084383a7eb07d64c74357544.png);
 }
 
 .superBrieFactoryHUD-item-boundingBox[data-item-type="speed_coggy_colby_cheese"]::before {
   top: -15px;
-  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/9326f63ea3644631c5fe8360ea4ffdf5.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/items/bait/large/9326f63ea3644631c5fe8360ea4ffdf5.png);
 }
 
 .superBrieFactoryHUD-item-boundingBox[data-item-type="birthday_factory_trinket"]::before {
   top: -9px;
   left: 5px;
-  background-image: url(https://www.mousehuntgame.com/images/items/trinkets/large/907ce5291e023dedae8ed33c98546743.png?cv=2);
+  background-image: url(https://www.mousehuntgame.com/images/items/trinkets/large/907ce5291e023dedae8ed33c98546743.png);
   background-size: 36px;
   transform: rotate(0deg);
 }

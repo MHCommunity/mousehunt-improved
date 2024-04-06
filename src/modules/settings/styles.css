@@ -448,7 +448,7 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
   padding: 0 5px;
   overflow: visible;
   cursor: pointer;
-  background: url(https://www.mousehuntgame.com/images/ui/hgbar/menuItem.png?asset_cache_version=2) 0 -30px repeat-x;
+  background: url(https://www.mousehuntgame.com/images/ui/hgbar/menuItem.png) 0 -30px repeat-x;
   border-top-right-radius: 10px;
 }
 

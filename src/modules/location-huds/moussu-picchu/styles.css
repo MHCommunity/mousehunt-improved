@@ -126,12 +126,12 @@ a.moussuPicchuHUD-footer-item-action.mousehuntArmNowButton {
 
 .moussuPicchuHUD-powerType.rain,
 .moussuPicchuHUD-powerType.rain.active {
-  background-image: url(https://www.mousehuntgame.com/images/powertypes/shadow.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/powertypes/shadow.png);
 }
 
 .moussuPicchuHUD-powerType.wind,
 .moussuPicchuHUD-powerType.wind.active {
-  background-image: url(https://www.mousehuntgame.com/images/powertypes/arcane.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/powertypes/arcane.png);
 }
 
 .moussuPicchuHUD-powerType.wind.active {

@@ -7,12 +7,12 @@
   }
 
   body.halloween .pageFrameView-column.left {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/halloween/left.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/halloween/left.png) !important;
     background-position-x: 100% !important;
   }
 
   body.halloween .pageFrameView-column.right {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/halloween/right.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/halloween/right.png) !important;
   }
 
   body.lunar_new_year .pageFrameView-column.left,
@@ -23,12 +23,12 @@
   }
 
   body.lunar_new_year .pageFrameView-column.left {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/lunar_new_year/left.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/lunar_new_year/left.png) !important;
     background-position-x: 100% !important;
   }
 
   body.lunar_new_year .pageFrameView-column.right {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/lunar_new_year/right.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/lunar_new_year/right.png) !important;
   }
 
   body.great_winter_hunt .pageFrameView-column.left,
@@ -37,11 +37,11 @@
   }
 
   body.great_winter_hunt .pageFrameView-column.left {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/great_winter_hunt/left.jpg?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/great_winter_hunt/left.jpg) !important;
   }
 
   body.great_winter_hunt .pageFrameView-column.right {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/great_winter_hunt/right.jpg?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/great_winter_hunt/right.jpg) !important;
   }
 
   body.birthday .pageFrameView-column.left,
@@ -52,12 +52,12 @@
   }
 
   body.birthday .pageFrameView-column.left {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/birthday/left.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/birthday/left.png) !important;
     background-position-x: 100% !important;
   }
 
   body.birthday .pageFrameView-column.right {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/birthday/right.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/birthday/right.png) !important;
   }
 
   body.valentines .pageFrameView-column.left,
@@ -66,11 +66,11 @@
   }
 
   body.valentines .pageFrameView-column.left {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/valentines/left.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/valentines/left.png) !important;
   }
 
   body.valentines .pageFrameView-column.right {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/valentines/right.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/valentines/right.png) !important;
   }
 
   body.spring_hunt .pageFrameView-column.left,
@@ -80,10 +80,10 @@
   }
 
   body.spring_hunt .pageFrameView-column.left {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/spring_hunt/left.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/spring_hunt/left.png) !important;
   }
 
   body.spring_hunt .pageFrameView-column.right {
-    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/spring_hunt/right.png?asset_cache_version=2) !important;
+    background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/spring_hunt/right.png) !important;
   }
 }

@@ -222,7 +222,7 @@
   width: 37px;
   height: 48px;
   content: "";
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/player.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/player.png);
   filter: hue-rotate(275deg);
   background-repeat: no-repeat;
   background-position: center;

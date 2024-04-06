@@ -106,7 +106,7 @@ a.itemPurchaseView-image-trapPreview-link,
   overflow: hidden;
   text-align: center;
   text-indent: 34px;
-  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png);
   background-repeat: no-repeat;
   border: none;
   border-bottom: 0;
@@ -117,7 +117,7 @@ a.itemPurchaseView-image-trapPreview-link,
 #overlayPopup .marketplaceView input.button:first-child:hover,
 #overlayPopup .marketplaceView input.button:first-child:focus {
   background-color: transparent;
-  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png);
   background-repeat: no-repeat;
   background-position: 0 -27px;
   border-bottom: none;

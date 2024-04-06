@@ -21,7 +21,7 @@ const fixPassingParcel = () => {
     <a href="#" class="inventoryPage-item-larryLexicon" onclick="hg.views.ItemView.show('passing_parcel_message_item'); return false;">?</a>
     <div class="inventoryPage-item-imageContainer">
       <div class="itemImage"><a href="#" class="" onclick="hg.views.ItemView.show('passing_parcel_message_item'); return false;">
-        <img src="https://www.mousehuntgame.com/images/items/message_items/5591e5c34f081715aaca4e95e97a3379.jpg?cv=2"></a>
+        <img src="https://www.mousehuntgame.com/images/items/message_items/5591e5c34f081715aaca4e95e97a3379.jpg"></a>
           <div class="quantity">${quantity.innerText}</div>
         </div>
       </div>

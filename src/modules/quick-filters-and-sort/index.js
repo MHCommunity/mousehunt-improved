@@ -117,25 +117,25 @@ const addQuickLinksToTrap = async () => {
       id: 'power',
       name: 'Power',
       image:
-				'https://www.mousehuntgame.com/images/ui/camp/trap/stat_power.png?asset_cache_version=2',
+				'https://www.mousehuntgame.com/images/ui/camp/trap/stat_power.png',
     },
     {
       id: 'power_bonus',
       name: 'Power Bonus',
       image:
-				'https://www.mousehuntgame.com/images/ui/camp/trap/stat_power_bonus.png?asset_cache_version=2',
+				'https://www.mousehuntgame.com/images/ui/camp/trap/stat_power_bonus.png',
     },
     {
       id: 'luck',
       name: 'Luck',
       image:
-				'https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png?asset_cache_version=2',
+				'https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png',
     },
     {
       id: 'attraction_bonus',
       name: 'Attraction Bonus',
       image:
-				'https://www.mousehuntgame.com/images/ui/camp/trap/stat_attraction_bonus.png?asset_cache_version=2',
+				'https://www.mousehuntgame.com/images/ui/camp/trap/stat_attraction_bonus.png',
     },
     {
       id: 'name',
@@ -166,55 +166,55 @@ const addQuickLinksToTrap = async () => {
         id: 'arcane',
         name: 'Arcane',
         image:
-					'https://www.mousehuntgame.com/images/powertypes/arcane.png?asset_cache_version=2',
+					'https://www.mousehuntgame.com/images/powertypes/arcane.png',
       },
       {
         id: 'draconic',
         name: 'Draconic',
         image:
-					'https://www.mousehuntgame.com/images/powertypes/draconic.png?asset_cache_version=2',
+					'https://www.mousehuntgame.com/images/powertypes/draconic.png',
       },
       {
         id: 'forgotten',
         name: 'Forgotten',
         image:
-					'https://www.mousehuntgame.com/images/powertypes/forgotten.png?asset_cache_version=2',
+					'https://www.mousehuntgame.com/images/powertypes/forgotten.png',
       },
       {
         id: 'hydro',
         name: 'Hydro',
         image:
-					'https://www.mousehuntgame.com/images/powertypes/hydro.png?asset_cache_version=2',
+					'https://www.mousehuntgame.com/images/powertypes/hydro.png',
       },
       {
         id: 'law',
         name: 'Law',
         image:
-					'https://www.mousehuntgame.com/images/powertypes/law.png?asset_cache_version=2',
+					'https://www.mousehuntgame.com/images/powertypes/law.png',
       },
       {
         id: 'physical',
         name: 'Physical',
         image:
-					'https://www.mousehuntgame.com/images/powertypes/physical.png?asset_cache_version=2',
+					'https://www.mousehuntgame.com/images/powertypes/physical.png',
       },
       {
         id: 'rift',
         name: 'Rift',
         image:
-					'https://www.mousehuntgame.com/images/powertypes/rift.png?asset_cache_version=2',
+					'https://www.mousehuntgame.com/images/powertypes/rift.png',
       },
       {
         id: 'shadow',
         name: 'Shadow',
         image:
-					'https://www.mousehuntgame.com/images/powertypes/shadow.png?asset_cache_version=2',
+					'https://www.mousehuntgame.com/images/powertypes/shadow.png',
       },
       {
         id: 'tactical',
         name: 'Tactical',
         image:
-					'https://www.mousehuntgame.com/images/powertypes/tactical.png?asset_cache_version=2',
+					'https://www.mousehuntgame.com/images/powertypes/tactical.png',
       },
     ];
 

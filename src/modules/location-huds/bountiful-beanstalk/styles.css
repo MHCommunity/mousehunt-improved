@@ -408,11 +408,11 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
   display: block;
   height: 20px;
   content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif?asset_cache_version=3) center no-repeat;
+  background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif) center no-repeat;
 }
 
 .mh-crafting-popup.success::after {
-  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png?asset_cache_version=3) center no-repeat;
+  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png) center no-repeat;
   background-size: contain;
 }
 

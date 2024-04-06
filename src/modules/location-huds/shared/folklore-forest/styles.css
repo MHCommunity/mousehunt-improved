@@ -50,7 +50,7 @@ a.folkloreForestRegionView-upgradeButton.canUnlock::after {
   width: 14px;
   height: 14px;
   content: "";
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/upgrade_arrow_small.png?asset_cache_version=2);
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/upgrade_arrow_small.png);
   filter: hue-rotate(300deg) brightness(1.1);
   background-repeat: no-repeat;
   background-size: contain;

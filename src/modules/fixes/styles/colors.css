@@ -21,7 +21,7 @@
 
 .tableOfContentsProgressView-claimButton.busy::after,
 .folkloreForestRegionView-button.busy::after {
-  background: #000888 url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif?asset_cache_version=2) 50% 50% no-repeat; /* was #00088 */
+  background: #000888 url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif) 50% 50% no-repeat; /* was #00088 */
 }
 
 .halloweenBoilingCauldronHUD-dialog-reward.complete::after {
