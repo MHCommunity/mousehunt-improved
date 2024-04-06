@@ -1,4 +1,4 @@
-import { addStyles, addExternalStyles } from '@utils';
+import { addExternalStyles, addStyles } from '@utils';
 
 import minimalStyles from '../journal-icons-minimal/styles.css';
 import styles from './styles.css';
