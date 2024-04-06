@@ -65,10 +65,6 @@ const experiments = [
     title: 'Location HUDs - Bountiful Beanstalk: Inventory box in one row',
   },
   {
-    id: 'experiments.iceberg-always-show-progress',
-    title: 'Location HUDs - Iceberg: Always show progress details',
-  },
-  {
     id: 'experiments.fi-draggable-airship',
     title: 'Location HUDs - Floating Islands: Make airship draggable',
   },

@@ -1,14 +1,14 @@
 import {
   addHudStyles,
   getCurrentLocation,
-  getFlag,
+  getSetting,
   getUserItems,
   makeElement,
   onRequest,
-  onTurn
+  onTurn,
+  saveSetting
 } from '@utils';
 
-import alwaysShowProgress from './styles/always-show-progress.css';
 import bobIceberg from './styles/bob-iceberg.css';
 import styles from './styles/styles.css';
 
@@ -58,10 +58,16 @@ const getSections = (quest) => {
   return sections;
 };
 
-const addProgressToQuestData = (data) => {
-  const depth = data.progress;
+const getQuestProgress = () => {
+  const depth = user?.quests?.QuestIceberg?.user_progress || 0;
 
-  const remaining = {
+  const charges = user?.quests?.QuestIceberg?.drill_max_charges || 0;
+  const heat = user?.quests?.QuestIceberg?.drill_heat || 0;
+  const drillsUsed = charges - Math.floor(charges * (heat / 100)) || 0;
+
+  const progressWithoutDrills = depth - (drillsUsed * 20);
+
+  const data = {
     stage: 0,
     stagePercent: 0,
     total: 1800 - depth,
@@ -84,75 +90,68 @@ const addProgressToQuestData = (data) => {
 
   if (depth < 300) {
     // If we are less than 300ft, we are in the first stage.
-    remaining.stage = 300 - depth;
-    remaining.stagePercent = (remaining.stage / 300) * 100;
+    data.stage = 300 - depth;
+    data.stagePercent = (data.stage / 300) * 100;
   } else if (depth < 600) {
     // If we are less than 600ft, we are in the second stage, so we need to subtract the first stage.
-    remaining.stage = 600 - depth;
-    remaining.stagePercent = (remaining.stage / 300) * 100;
-    remaining.complete.tunnels = true;
+    data.stage = 600 - depth;
+    data.stagePercent = (data.stage / 300) * 100;
+    data.complete.tunnels = true;
   } else if (depth < 1600) {
-    remaining.stage = 1600 - depth;
-    remaining.stagePercent = (remaining.stage / 1000) * 100;
-    remaining.complete.tunnels = true;
-    remaining.complete.bulwark = true;
+    data.stage = 1600 - depth;
+    data.stagePercent = (data.stage / 1000) * 100;
+    data.complete.tunnels = true;
+    data.complete.bulwark = true;
   } else if (depth < 1800) {
-    remaining.stage = 1800 - depth;
-    remaining.stagePercent = remaining.totalPercent;
-    remaining.complete.tunnels = true;
-    remaining.complete.bulwark = true;
-    remaining.complete.bombing = true;
+    data.stage = 1800 - depth;
+    data.stagePercent = data.totalPercent;
+    data.complete.tunnels = true;
+    data.complete.bulwark = true;
+    data.complete.bombing = true;
   } else {
-    remaining.stage = 0;
-    remaining.stagePercent = 0;
-    remaining.isLair = true;
-    remaining.complete.tunnels = true;
-    remaining.complete.bulwark = true;
-    remaining.complete.bombing = true;
-    remaining.complete.depths = true;
+    data.stage = 0;
+    data.stagePercent = 0;
+    data.isLair = true;
+    data.complete.tunnels = true;
+    data.complete.bulwark = true;
+    data.complete.bombing = true;
+    data.complete.depths = true;
   }
 
-  if (data.isDeep) {
-    remaining.stage = 200 - depth;
-    remaining.stagePercent = (depth / 200) * 100;
-    remaining.totalPercent = remaining.stagePercent;
-    remaining.progress = depth + 1800;
+  if (user?.quests?.QuestIceberg?.in_bonus) {
+    data.stage = 200 - depth;
+    data.stagePercent = (depth / 200) * 100;
+    data.totalPercent = data.stagePercent;
+    data.progress = depth + 1800;
   }
 
-  remaining.avg = data.progress / data.hunts;
-  if (data.isDeep) {
-    remaining.avg = (depth + 1800) / data.hunts;
+  const turnsTaken = user?.quests?.QuestIceberg?.turns_taken || 0;
+
+  data.avg = progressWithoutDrills / turnsTaken;
+  if (Number.isNaN(data.avg)) {
+    data.avg = 0;
   }
 
-  remaining.stageHunts = Math.ceil(remaining.stage / remaining.avg);
+  if (user?.quests?.QuestIceberg?.in_bonus) {
+    data.avg = (progressWithoutDrills + 1800) / turnsTaken;
+  }
 
-  return Object.assign(data, remaining);
+  data.stagePercent = Math.min(100, 100 - data.stagePercent);
+  data.stageHunts = data.avg === 0 ? 0 : Math.ceil(data.stage / data.avg);
+
+  return data;
 };
 
 const roundProgress = (progress) => {
-  if (Number.isNaN(progress)) {
-    return 0;
+  if (Number.isNaN(progress) || progress <= 0) {
+    return '0';
   }
 
   if (progress >= 100) {
-    return 100;
+    return '100';
   }
 
-  if (progress <= 0) {
-    return 0;
-  }
-
-  const percent = progress.toFixed(2);
-
-  if (percent.slice(-2) === '00') {
-    return percent.slice(0, -2);
-  }
-
-  if (percent.slice(-1) === '0') {
-    return percent.slice(0, -1);
-  }
-
-  return percent;
+  return Number(progress.toFixed(2)).toString();
 };
 
 const getTooltipText = (quest) => {
@@ -297,19 +296,12 @@ const hud = async () => {
     return;
   }
 
-  let quest = {
-    progress: user.quests.QuestIceberg.user_progress || 0,
-    hunts: user.quests.QuestIceberg.turns_taken || 0,
-    chests: user.quests.QuestIceberg.chests || [],
-    isDeep: user.quests.QuestIceberg.in_bonus || false,
-  };
-
   const huntInfo = document.querySelector('.icebergHud  .depth');
   if (! huntInfo) {
     return;
   }
 
-  quest = addProgressToQuestData(quest);
+  const quest = getQuestProgress();
 
   // If we're in icewing's lair, don't show the stage distance.
   if (! quest.isLair) {
@@ -319,9 +311,9 @@ const hud = async () => {
     const destination = quest.isDeep ? 'Deep' : 'next stage';
     if (quest.stage !== quest.total) {
       const feet = quest.stage.toLocaleString();
-      remainingStageDistance.innerText = `${feet} feet until ${destination}`;
+      remainingStageDistance.innerHTML = `<strong>${feet}</strong> feet until ${destination}`;
       if (quest.stageHunts > 0) {
-        remainingStageDistance.innerText += ` (~${quest.stageHunts} hunts)`;
+        remainingStageDistance.innerHTML += ` (~${quest.stageHunts} hunts)`;
       }
     }
 
@@ -342,9 +334,9 @@ const hud = async () => {
     remainingDistance.classList.add('remaining-distance');
     if (quest.total !== 0) {
       const feet = quest.total.toLocaleString();
-      remainingDistance.innerText = `${feet} feet until Icewing's Lair`;
+      remainingDistance.innerHTML = `<strong>${feet}</strong> feet until Icewing's Lair`;
       if (quest.totalHunts > 0) {
-        remainingDistance.innerText += `(~${quest.totalHunts} hunts)`;
+        remainingDistance.innerHTML += `(~${quest.totalHunts} hunts)`;
       }
     }
 
@@ -358,6 +350,17 @@ const hud = async () => {
   }
 
   huntInfo.classList.add('mousehuntTooltipParent');
+
+  let isStuck = getSetting('location-huds.iceberg-sticky-tooltip', false);
+  if (isStuck) {
+    huntInfo.classList.add('mh-improved-stick-iceberg-tooltip');
+  }
+
+  huntInfo.addEventListener('click', () => {
+    isStuck = ! isStuck;
+    huntInfo.classList.toggle('mh-improved-stick-iceberg-tooltip');
+    saveSetting('location-huds.iceberg-sticky-tooltip', isStuck);
+  });
 
   const tooltip = makeElement('div', 'icebergStatusTooltip');
   tooltip.classList.add('mousehuntTooltip', 'right', 'noEvents');
@@ -414,12 +417,7 @@ const makeMapScrollable = () => {
  * Initialize the module.
  */
 export default async () => {
-  let stylesToUse = styles + bobIceberg;
-  if (getFlag('iceberg-always-show-progress')) {
-    stylesToUse += alwaysShowProgress;
-  }
-
-  addHudStyles(stylesToUse);
+  addHudStyles([styles, bobIceberg]);
 
   hud();
 
