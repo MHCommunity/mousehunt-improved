@@ -30,8 +30,9 @@ let onRequestHolder = null;
  * @param {Function} callback    The callback to call when an ajax request is completed.
  * @param {boolean}  skipSuccess Skip the success check.
  * @param {Array}    ignore      The urls to ignore.
+ * @param {boolean}  priority    Whether or not to run the callback first.
  */
-const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []) => {
+const onRequest = (url = null, callback = null, skipSuccess = false, ignore = [], priority = false) => {
   url = '*' === url ? '*' : `managers/ajax/${url}`;
 
   if (ignore.includes(url)) {
@@ -46,10 +47,17 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
     requestCallbacks[url] = [];
   }
 
-  requestCallbacks[url].push({
-    callback,
-    skipSuccess,
-  });
+  if (priority) {
+    requestCallbacks[url].unshift({
+      callback,
+      skipSuccess,
+    });
+  } else {
+    requestCallbacks[url].push({
+      callback,
+      skipSuccess,
+    });
+  }
 
   if (onRequestHolder) {
     return;
