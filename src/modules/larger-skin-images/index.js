@@ -44,7 +44,7 @@ const addSkinImages = async (panel, force = false) => {
     return;
   }
 
-  items.forEach(async (item) => {
+  for (const item of items) {
     const id = item.getAttribute('data-item-id');
     if (! id) {
       return;
@@ -56,8 +56,8 @@ const addSkinImages = async (panel, force = false) => {
       skin = skinImages[id];
     } else {
       const cachedData = await dbGet('cache', `skin-image-${id}`);
-      if (cachedData && cachedData.data && cachedData.data.image) {
-        skin = cachedData.data.image;
+      if (cachedData && cachedData.data && cachedData.data.skin) {
+        skin = cachedData.data.skin;
       } else {
         const itemData = await fetch(`https://api.mouse.rip/item/${id}`).then((res) => res.json());
 
@@ -69,10 +69,7 @@ const addSkinImages = async (panel, force = false) => {
 
         dbSet('cache', {
           id: `skin-image-${id}`,
-          data: {
-            id,
-            image: skin,
-          },
+          skin
         });
       }
 
@@ -90,7 +87,7 @@ const addSkinImages = async (panel, force = false) => {
     if (! existingImage) {
       item.insertBefore(imageWrapper, item.firstChild);
     }
-  });
+  }
 
   const searchInput = document.querySelector('.campPage-trap-itemBrowser-filter input');
   if (searchInput) {
