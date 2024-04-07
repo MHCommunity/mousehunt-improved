@@ -585,6 +585,7 @@ const makeScavengerSortedPage = async (isNormal, target) => {
   target.setAttribute('data-scavenger-sort-direction', 'descending');
 
   await sortMiceIntoLocations('descending');
+  await toggleSortType();
 };
 
 const makeGenericSortedPage = async (isNormal, sortedPage) => {
