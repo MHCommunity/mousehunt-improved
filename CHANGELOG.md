@@ -1,9 +1,13 @@
 # Changelog
 
+## Version 0.40.4
+
+- Fixes Send Supplies width
+
 ## Version 0.40.3
 
-- Fixed cheese selectors dissapearing
-- Added Legacy HUD tweaks experimental feature
+- Fixes cheese selectors dissapearing
+- Addes Legacy HUD tweaks experimental feature
 
 ## Version 0.40.2
 

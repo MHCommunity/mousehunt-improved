@@ -44,8 +44,11 @@
 }
 
 #supplytransfer .tabContent.item .listContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
   width: auto;
-  margin-left: 80px;
+  margin-left: 75px;
 }
 
 #supplytransfer .categoryMenu {
