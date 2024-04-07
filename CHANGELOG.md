@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.40.3
+
+- Fixed cheese selectors dissapearing
+- Added Legacy HUD tweaks experimental feature
+
 ## Version 0.40.2
 
 - Fixes sorted tab default toggle
