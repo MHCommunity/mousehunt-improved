@@ -323,9 +323,25 @@ const getAnonymousUserHash = async () => {
   return userHash;
 };
 
+const getUserTitle = () => {
+  let title = user.title_name || 'novice';
+
+  if (title.includes('/')) {
+    title = title.split('/')[0];
+  }
+
+  return title.toLowerCase()
+    .replaceAll('lady', 'lord')
+    .replace('wo', '')
+    .replace('ess', '')
+    .replace('duch', 'duke')
+    .trim();
+};
+
 export {
   getUserItems,
   getAnonymousUserHash,
   getUserSetupDetails,
-  isUserTitleAtLeast
+  isUserTitleAtLeast,
+  getUserTitle
 };

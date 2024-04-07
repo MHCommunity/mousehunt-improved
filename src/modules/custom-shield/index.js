@@ -1,4 +1,10 @@
-import { addStyles, getSetting, makeElement, onNavigation } from '@utils';
+import {
+  addStyles,
+  getSetting,
+  getUserTitle,
+  makeElement,
+  onNavigation
+} from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -113,27 +119,12 @@ const changeShield = () => {
 
   if (shield.includes('title')) {
     shieldEl.classList.add('title');
-    shield = 'title' === shield ? getTitle() : shield;
+    shield = 'title' === shield ? getUserTitle() : shield;
     lastShield.push('title', shield);
   }
 
   shieldEl.classList.add('mhui-custom-shield');
   addClass(shieldEl, shield);
-};
-
-const getTitle = () => {
-  let title = user.title_name || 'novice';
-
-  if (title.includes('/')) {
-    title = title.split('/')[0];
-  }
-
-  return title.toLowerCase()
-    .replaceAll('lady', 'lord')
-    .replace('wo', '')
-    .replace('ess', '')
-    .replace('duch', 'duke')
-    .trim();
 };
 
 const watchForPreferenceChanges = () => {
