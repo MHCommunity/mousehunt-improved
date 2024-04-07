@@ -342,17 +342,19 @@ const getArEl = async (id, type = 'mouse') => {
   let arDifficulty = 'easy';
   if (ar >= 99) {
     arDifficulty = 'guaranteed';
-  } else if (ar >= 78) {
+  } else if (ar >= 59) {
     arDifficulty = 'super-easy';
-  } else if (ar >= 48) {
+  } else if (ar >= 49) {
     arDifficulty = 'easy';
-  } else if (ar >= 38) {
+  } else if (ar >= 39) {
     arDifficulty = 'medium';
-  } else if (ar >= 18) {
+  } else if (ar >= 27) {
     arDifficulty = 'hard';
-  } else if (ar >= 8) {
+  } else if (ar >= 14) {
+    arDifficulty = 'kinda-hard';
+  } else if (ar >= 5) {
     arDifficulty = 'super-hard';
-  } else if (ar >= 3) {
+  } else if (ar >= 2) {
     arDifficulty = 'extreme';
   } else {
     arDifficulty = 'impossible';

@@ -163,11 +163,9 @@ img.treasureMapView-reward-chestIcon {
 }
 
 .treasureMapPopup-shop {
-  padding: 10px;
   margin-bottom: 10px;
   background-color: #fbfbfb;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .treasureMapPopup-shop-environment.active::before {
@@ -181,11 +179,10 @@ img.treasureMapView-reward-chestIcon {
 .treasureMapInventoryView-scrollCase {
   align-items: center;
   padding: 10px;
-  margin-top: 8px;
-  margin-bottom: 10px;
-  background-color: #fbfbfb;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin: 5px;
+  background-color: rgb(255 255 255 / 65%);
+  border: 1px solid rgb(150 150 150 / 50%);
+  border-radius: 5px;
 }
 
 .mh-dark-mode .treasureMapInventoryView-scrollCase {
@@ -337,6 +334,10 @@ img.treasureMapView-reward-chestIcon {
 
 .treasureMapPopup-shop[data-environment-type="harbour"] {
   background-color: #fffcb6;
+}
+
+.treasureMapPopup-shop[data-environment-type="bountiful_beanstalk"] {
+  background-color: #94f05a;
 }
 
 .treasureMapPopup-shop[data-environment-type="queso_quarry"],
@@ -834,7 +835,14 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapPopup-shop .treasureMapView-block-content-heading {
+  padding: 10px 0 0 10px;
+  margin: 0;
   border-color: transparent;
+}
+
+.treasureMapPopup-shop-environment {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .treasureMapView-goals-group-goal:hover::before,
