@@ -1,6 +1,10 @@
 # Changelog
 
-## Version 0.40.0
+## Version 0.40.2
+
+- Fixes sorted tab default toggle
+
+## Version 0.40.1
 
 - Fixes "Default to Sorted tab" setting not correctly saving
 
