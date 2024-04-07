@@ -47,6 +47,10 @@ const showUpdateSummary = async (force = false) => {
 
   const update = updates[mhImprovedVersion];
 
+  if (update?.skip) {
+    return;
+  }
+
   update.summary = update.summary || '';
   update.details = update.details || [];
 

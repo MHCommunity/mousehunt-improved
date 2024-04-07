@@ -36,18 +36,22 @@ const doVersionUpdates = async () => {
 const update = async () => {
   debuglog('update-migration', `Updating from ${previousVersion} to ${mhImprovedVersion}`);
 
-  showLoadingPopup(`Updating MouseHunt Improved to v${mhImprovedVersion}...`);
-  addBodyClass('mh-improved-updating');
-  setGlobal('mh-improved-updating', true);
+  const showPopup = setTimeout(() => {
+    showLoadingPopup(`Updating MouseHunt Improved to v${mhImprovedVersion}...`);
+    addBodyClass('mh-improved-updating');
+    setGlobal('mh-improved-updating', true);
 
-  // Backup the settings before we start updating in case something goes wrong.
-  saveSettingsBackup();
+    // Backup the settings before we start updating in case something goes wrong.
+    saveSettingsBackup();
+  }, 400);
 
   try {
     await doVersionUpdates();
     saveSetting('mh-improved-version', mhImprovedVersion);
 
     await updateCaches();
+
+    clearTimeout(showPopup);
 
     if (getGlobal('mh-improved-update-needs-refresh')) {
       showLoadingPopup('MouseHunt Improved has been updated. Please refresh the page.');
@@ -59,6 +63,8 @@ const update = async () => {
   } catch (error) {
     // If something goes wrong, restore the settings from the backup
     restoreSettingsBackup();
+
+    clearTimeout(showPopup);
 
     // Show the error to the user.
     showLoadingPopup('Error updating MouseHunt Improved. Please try refreshing the page.');
