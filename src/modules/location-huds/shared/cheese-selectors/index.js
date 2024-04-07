@@ -48,7 +48,7 @@ const makeCheeseSelectorElement = async (cheesesToUse) => {
  */
 const makeCheeseSelector = async (location, cheesesToUse) => {
   if (location.replaceAll('-', '_') !== getCurrentLocation()) {
-    const existingCheeseSelector = document.querySelector('#hudLocationContent .mh-ui-cheese-selector-wrapper');
+    const existingCheeseSelector = document.querySelector('.mh-ui-cheese-selector-wrapper');
     if (existingCheeseSelector) {
       existingCheeseSelector.remove();
     }
@@ -61,15 +61,13 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
     return;
   }
 
-  hud.classList.remove('empty');
-
   const cheeseSelector = await makeCheeseSelectorElement(cheesesToUse);
 
-  const existingCheeseSelector = document.querySelector('#hudLocationContent .mh-ui-cheese-selector-wrapper');
+  const existingCheeseSelector = document.querySelector('.mh-ui-cheese-selector-wrapper');
   if (existingCheeseSelector) {
     existingCheeseSelector.replaceWith(cheeseSelector);
   } else {
-    hud.append(cheeseSelector);
+    hud.after(cheeseSelector);
   }
 
   doEvent('mh-improved-cheese-selector-added', location, cheesesToUse);
