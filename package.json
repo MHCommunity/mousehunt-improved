@@ -35,11 +35,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.1",
-    "@sentry/browser": "^7.108.0",
-    "humanize-duration": "^3.31.0"
+    "@sentry/browser": "^7.109.0",
+    "humanize-duration": "^3.32.0"
   },
   "devDependencies": {
-    "@sentry/cli": "^2.30.2",
+    "@sentry/cli": "^2.31.0",
     "@sprout2000/esbuild-copy-plugin": "^1.1.13",
     "@wordpress/eslint-plugin": "^17.11.0",
     "archiver": "^7.0.1",
@@ -51,10 +51,10 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-import-newlines": "^1.4.0",
-    "eslint-plugin-jsdoc": "^48.2.1",
+    "eslint-plugin-jsdoc": "^48.2.2",
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-markdownlint": "^0.5.0",
-    "eslint-plugin-package-json": "^0.11.0",
+    "eslint-plugin-package-json": "^0.12.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-require-jsdoc": "^1.0.4",
     "eslint-plugin-unicorn": "^51.0.1",
