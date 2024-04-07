@@ -323,9 +323,10 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
 
 #mousehunt-improved-settings-advanced-mh-improved-advanced-settings {
   position: absolute;
-  top: 10px;
+  top: 13px;
   right: 50px;
   padding: 0;
+  visibility: visible;
   border: none;
 }
 
