@@ -1,0 +1,47 @@
+.hud_titleIcon {
+  width: auto;
+  height: 32px;
+  padding: 2px;
+  overflow: visible;
+  background-color: #d9c9a0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #d9c9a0;
+}
+
+.headsup .shieldped {
+  width: 50px;
+  height: 50px;
+  padding: 8px 0 0 14px;
+  background-image: url(https://i.mouse.rip/shieldped-arch.png);
+}
+
+/* .mousehuntHud-menu.legacy .mice .mousehuntHud-menu-item.root {
+  filter: hue-rotate(174deg);
+}
+
+.mousehuntHud-menu.legacy .shops .mousehuntHud-menu-item.root {
+  filter: hue-rotate(254deg);
+}
+
+.mousehuntHud-menu.legacy .friends .mousehuntHud-menu-item.root {
+  filter: hue-rotate(87deg);
+}
+
+.mousehuntHud-menu.legacy .travel .mousehuntHud-menu-item.root {
+  filter: hue-rotate(57deg);
+}
+
+.mousehuntHud-menu.legacy .inventory .mousehuntHud-menu-item.root {
+  filter: hue-rotate(340deg);
+} */
+
+.hudstatlist.legacyFix .mousehuntHud-userStat.trinket .label {
+  width: auto;
+}
+
+.headsup .hudstatlist:nth-child(5) ul li:nth-child(1),
+.headsup .hudstatlist:nth-child(5) ul li:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}

@@ -2,7 +2,7 @@ body .mousehuntHud-menu .friends .team .icon {
   background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/team.png);
 }
 
-body .mousehuntHud-menu .scoreboards .icon {
+body .mousehuntHud-menu .scoreboards > a > .icon {
   background-image: url(https://www.mousehuntgame.com/images/ui/hud/menu/scoreboard.png);
 }
 

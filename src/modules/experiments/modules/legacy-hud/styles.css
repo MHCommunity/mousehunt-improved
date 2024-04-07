@@ -1,0 +1,29 @@
+.mousehuntHud-userStatBar,
+.mousehuntHud-environment,
+.mousehuntHud-menu .camp,
+.mousehuntHud-menu .friends .team,
+.mousehuntHud-menu .friends .tournaments,
+.mousehuntHud-menu .friends .tournament_scoreboards,
+.mousehuntHud-menu .team .friend_list,
+.mousehuntHud-menu .team .hunter_community,
+.mousehuntHud-menu .team .community_maps,
+.mousehuntHud-menu .team .free_gifts,
+.mousehuntHud-menu .team .send_supplies,
+.mousehuntHud-menu .scoreboards .forum,
+.mousehuntHud-menu .scoreboards .news,
+.mousehuntHud-menu .kingdom .wiki,
+.mousehuntHud-menu .kingdom .guide,
+.mousehuntHud-menu .kingdom .feedback_friday,
+.mousehuntHud-menu .kingdom .merch_store,
+.mh-legacy-mode-remove {
+  display: none;
+}
+
+.headsup .cheeseped a.baiticon img {
+  height: 50px;
+}
+
+.headsup .cheeseped a.baiticon {
+  top: -13px;
+  right: 4px;
+}

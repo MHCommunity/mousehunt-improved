@@ -1,0 +1,20 @@
+.huntersHornView__timer.huntersHornView__timer.countdown::after {
+  content: "";
+}
+
+.mousehuntHud-userStat .icon {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #c2b384;
+  box-shadow: 1px 1px 1px #7d6027;
+}
+
+.mousehuntHud-userStat.bait:hover .value,
+.mousehuntHud-userStat.trinket:hover .value,
+.mousehuntHud-userStat.treasureMap:hover .value {
+  margin: 0;
+}
+
+#mh-custom-icon-egg img {
+  filter: none;
+}

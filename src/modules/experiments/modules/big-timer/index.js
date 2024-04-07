@@ -1,5 +1,6 @@
-import { addStyles } from '@utils';
+import { addStyles, isLegacyHUD } from '@utils';
 
+import legacyStyles from './legacy-styles.css';
 import styles from './styles.css';
 
 const toggleBigTimer = () => {
@@ -14,7 +15,10 @@ const toggleBigTimer = () => {
 };
 
 export default async () => {
-  addStyles(styles, 'experiment-big-timer');
+  addStyles([
+    styles,
+    isLegacyHUD() ? legacyStyles : '',
+  ], 'experiment-big-timer');
 
   toggleBigTimer();
   setTimeout(toggleBigTimer, 1000);

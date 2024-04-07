@@ -1,0 +1,19 @@
+.big-timer.huntersHornView__timer.huntersHornView__timer.countdown::after {
+  content: "";
+}
+
+.big-timer.huntersHornView__timer.huntersHornView__timer--legacy.countdown .huntersHornView__timerState--type-countdown::before {
+  content: "";
+}
+
+.big-timer.huntersHornView__timer.huntersHornView__timer.countdown {
+  position: absolute;
+  top: 63px;
+  left: 265px;
+  z-index: 100;
+  padding: 2px;
+  background-color: #d9c9a0;
+  border-radius: 5px;
+  box-shadow: 0 -1px 0 0 #ded9c3;
+  transform: scale(2.2);
+}

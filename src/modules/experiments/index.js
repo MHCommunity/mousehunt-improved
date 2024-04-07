@@ -3,6 +3,8 @@ import { getSetting } from '@utils';
 import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
 import journalTags from './modules/journal-tags';
+import legacyHud from './modules/legacy-hud';
+import legacyHudTweaks from './modules/legacy-hud-tweaks';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
 import replaceFavicon from './modules/replace-favicon';
@@ -20,6 +22,16 @@ const experiments = [
     title: 'Codex at bottom',
     description: 'Moves the Codex section to the bottom of the trap selector',
     load: codexAtBottom,
+  },
+  {
+    id: 'experiments.legacy-hud',
+    title: 'Legacy HUD',
+    load: legacyHud,
+  },
+  {
+    id: 'experiments.legacy-hud-tweaks',
+    title: 'Legacy HUD Tweaks',
+    load: legacyHudTweaks,
   },
   {
     id: 'experiments.replace-favicon',

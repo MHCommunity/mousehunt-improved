@@ -2,6 +2,7 @@ import {
   addStyles,
   getCurrentPage,
   getFlag,
+  isLegacyHUD,
   onNavigation,
   onRequest
 } from '@utils';
@@ -19,6 +20,8 @@ import tsituAutoloaderStyles from './userscript-styles/tsitu-autoloader.css';
 import tsituLocationCatchStatsStyles from './userscript-styles/tsitu-location-catch-stats.css';
 import tsituQolStyles from './userscript-styles/tsitu-qol.css';
 import tsituSupplySearchStyles from './userscript-styles/tsitu-supply-search.css';
+
+import legacyStyles from './legacy-styles.css';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -73,6 +76,10 @@ const addUserscriptStyles = async () => {
  */
 const init = async () => {
   addStyles(styles, 'better-ui');
+
+  if (isLegacyHUD()) {
+    addStyles(legacyStyles, 'better-ui-legacy');
+  }
 
   addUserscriptStyles();
   friends();

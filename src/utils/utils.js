@@ -2,6 +2,7 @@ import { getData, sessionGet, sessionSet } from './data';
 import { onNavigation, onTravel } from './events';
 import { debuglog } from './debug';
 import { getCurrentPage } from './page';
+import { getFlag } from './flags';
 
 /**
  * Check to make sure we have the required global functions we need.
@@ -50,6 +51,10 @@ const isiFrame = () => {
  * @return {boolean} Whether the legacy HUD is enabled.
  */
 const isLegacyHUD = () => {
+  if (getFlag('legacy-hud')) {
+    return true;
+  }
+
   if (! hg?.utils?.PageUtil?.isLegacy) {
     return false;
   }
