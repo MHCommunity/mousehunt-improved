@@ -8,11 +8,11 @@ const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) =>
   const hours = Math.floor(closes);
   const minutes = Math.ceil((closes - Math.floor(closes)) * 60);
 
-  let timeLeftText = `${hours}h ${minutes}m until ${stage}`;
+  let timeLeftText = `${hours > 0 ? `${hours}h ` : ''}${minutes}m until ${stage}`;
 
   if (nextStageOffsetMinutes && nextStageText) {
     const totTimeMinutes = (hours * 60) + minutes + nextStageOffsetMinutes;
-    timeLeftText += `, <span class="offset">${Math.floor(totTimeMinutes / 60)}h ${totTimeMinutes % 60}m until ${nextStageText}</span>`;
+    timeLeftText += `, <span class="offset">${hours > 0 ? `${Math.floor(totTimeMinutes / 60)}h ` : ''}${totTimeMinutes % 60}m until ${nextStageText}</span>`;
   }
 
   return timeLeftText;
