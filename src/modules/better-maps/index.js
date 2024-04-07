@@ -118,7 +118,7 @@ const initMapper = (map) => {
     });
   });
 
-  if (getSetting('better-maps.show-sorted-tab', true)) {
+  if (getSetting('better-maps.show-sorted-tab', false)) {
     doEvent('map_sorted_tab_click', map);
   } else {
     // Fire the goals click because we default to that tab.
