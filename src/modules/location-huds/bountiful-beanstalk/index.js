@@ -291,7 +291,7 @@ const addCraftingButtons = async () => {
     if ('leaping_lavish_beanster_cheese' === baitType) {
       twoQuantity = 4;
     } else if ('royal_beanster_cheese' === baitType) {
-      twoQuantity = 20;
+      twoQuantity = 18;
     }
 
     makeMhButton({
