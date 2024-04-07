@@ -5,6 +5,7 @@
 ### New Features
 
 - Added "Hide Daily Draw" feature
+- Added "Show Auras" feature
 
 ### Better Inventory
 
@@ -28,6 +29,7 @@
 ### Better Maps
 
 - Added "Default to Sorted tab" option
+- Updated AR rate color coding
 - Added "Community maps information" experimental feature
 - Fixed issues with map sidebar trying to request data that wasn't there
 - Fixed issue that caused hunters to not go inactive even without interaction
@@ -61,6 +63,10 @@
 - Updated triggers for display refresh
 - Fixed multiple refreshes happening at the same time
 
+### Custom Shield
+
+- Fixed issue with title shield not displaying
+
 ### Dark Mode
 
 - Minor style updates
@@ -80,6 +86,7 @@
 - Added "Replace Favicon" experimental feature
 - Added "Journal Tags" experimental feature
 - Added "Community maps information" experimental feature
+- Removed "Location HUDs - Iceberg: Always show progress details" experimental feature, as it is no longer experimental
 
 ### Journal Changer
 
@@ -111,6 +118,21 @@
 
 - Fixed a number of issues with the cheese selectors for a number of locations
 - Updates cheese selector styles
+
+### Location Huds: Balack's Cove
+
+- Fixed issue with wrong phase being displayed
+- Improved timer countdown interval
+- Minor style updates
+
+### Location Huds: Bountiful Beanstalk
+
+- Updated Royal Beanster crafting amount
+
+### Location Huds: Iceberg
+
+- Added ability to toggle progress tooltip data by clicking on the progress stats
+- Style updates
 
 ### Quick Filters And Sort
 
