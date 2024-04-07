@@ -2,6 +2,10 @@
 
 ## Version 0.40.0
 
+- Fixes "Default to Sorted tab" setting not correctly saving
+
+## Version 0.40.0
+
 ### New Features
 
 - Added "Hide Daily Draw" feature
