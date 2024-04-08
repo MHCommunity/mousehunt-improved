@@ -5,7 +5,7 @@ import addCheeseSelector from '../shared/cheese-selectors';
  */
 export default async () => {
   addCheeseSelector('pinnacle-chamber', [
-    'maki_cheese',
+    'rumble_cheese',
     'onyx_gorgonzola_cheese',
   ]);
 };
