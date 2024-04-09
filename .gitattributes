@@ -1,0 +1,5 @@
+# Force Git to checkout text files as LF for ESLint conformity
+* text eol=lf
+
+# Git thinks PNG files are a good candidate for CRLF replacement. They aren't.
+*.png binary
