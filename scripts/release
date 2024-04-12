@@ -19,3 +19,5 @@ bun run build:zips
 bun run build:userscript
 
 bun run build:archive
+
+gh release create "v$version" --title "MouseHunt Improved $version" --draft dist/chrome.zip dist/firefox.zip dist/*.user.js
