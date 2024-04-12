@@ -211,6 +211,8 @@
 }
 
 .headsUpDisplayBountifulBeanstalkView__baitCraftableContainer .mousehuntTooltip {
+  right: -40px;
+  left: -40px;
   line-height: 1.5;
   text-align: center;
 }
