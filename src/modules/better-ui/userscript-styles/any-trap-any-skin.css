@@ -1,0 +1,52 @@
+#custom-skins-flex {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonstyle {
+  position: relative;
+  display: block;
+  width: 100px;
+  height: 25px;
+  margin: 5px;
+  line-height: 25px;
+  color: #926944;
+  background-color: #f6f3eb !important;
+  border: 1px solid #d3cecb;
+  border-radius: 4px;
+  box-shadow: -1px 1px 3px #d3cecb inset;
+}
+
+.buttonstyle:hover {
+  color: #926944;
+  background-color: #fdfaf2 !important;
+}
+
+/* activated button */
+.buttonstyle[style*="rgb(34, 139, 34);"] {
+  color: #fff;
+  background-color: #5ccd5d !important;
+}
+
+.buttonstyle[style*="rgb(34, 139, 34);"]:hover {
+  background-color: #2e942f !important;
+}
+
+#trap-skin-button::after,
+#base-skin-button::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  content: "Toggle Trap";
+}
+
+#base-skin-button::after {
+  content: "Toggle Base";
+}
+
+#wb-steal {
+  margin-left: 10px;
+}

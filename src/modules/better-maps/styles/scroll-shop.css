@@ -1,0 +1,83 @@
+.treasureMapPopup-shop .treasureMapView-block-content-heading {
+  padding: 10px;
+  margin: 0;
+  border-color: transparent;
+}
+
+.treasureMapInventoryView-scrollCase:first-of-type {
+  margin-top: 0;
+}
+
+.treasureMapPopup-shop-environment {
+  padding-bottom: 0;
+  margin-bottom: 5px;
+  border: 1px solid rgb(0 0 0 / 12%);
+  border-radius: 3px;
+}
+
+.treasureMapShopsView .treasureMapView-leftBlock {
+  width: 99%;
+  height: 600px;
+}
+
+.treasureMapShopsView .treasureMapView-rightBlock {
+  display: none;
+}
+
+.treasureMapPopup-shop {
+  margin-bottom: 10px;
+  background-color: #fbfbfb;
+  border-radius: 3px;
+}
+
+.treasureMapPopup-shop-environment.active::before {
+  box-shadow: none;
+}
+
+.treasureMapView-block-content.treasureMapShopsView-shopItems {
+  padding: 0;
+}
+
+.treasureMapShopsView .treasureMapView-blockWrapper .treasureMapView-leftBlock > .treasureMapView-block {
+  height: calc(100% - 18px);
+  overflow-y: auto;
+  border: none;
+}
+
+.treasureMapInventoryView-scrollCase-content div[style="border: 1px red dotted; padding: 5px; font-size: 10px;"] {
+  display: none;
+}
+
+b[style="color:red; font-size: 14px;"],
+b[style="color:red; font-size: 14px;"] + br {
+  display: none;
+}
+
+/*
+.map-shop-environment-title {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.map-shop-environment-title::marker {
+    display: none
+}
+
+.map-shop-environment-title::after {
+  content: '';
+  position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-right: 6px solid transparent;
+    border-bottom: 9px solid #555;
+    border-left: 6px solid transparent;
+    transition: transform .15s;
+}
+
+details[open] summary.map-shop-environment-title:after {
+  content: "";
+  transform: rotate(-180deg);
+} */

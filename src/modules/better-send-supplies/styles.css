@@ -3,27 +3,25 @@
 }
 
 #supplytransfer .listContainer a.element.recipient {
-  width: 81px;
-  height: 71px;
+  width: auto;
+  height: auto;
   white-space: nowrap;
+  background-color: #fff;
 }
 
 #supplytransfer .tabContent.recipient .listContainer span.content {
   font-size: 12px;
 }
 
-#supplytransfer .listContainer a.element.item.pinned:hover,
-#supplytransfer .listContainer a.element:hover {
-  background-color: #d8f0ff;
-}
-
 #supplytransfer .listContainer a.element.item {
   display: grid;
-  grid-template-rows: 60px 20px;
-  align-content: space-around;
-  justify-items: center;
-  width: 85px;
-  height: 90px;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  width: auto;
+  height: 100px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
 #supplytransfer .listContainer a.element.item,
@@ -33,28 +31,28 @@
 }
 
 #supplytransfer .listContainer a.element:hover,
-#supplytransfer .listContainer a.element:focus,
 #supplytransfer .listContainer a.element.recipient:hover,
-#supplytransfer .listContainer a.element.recipient:focus {
-  border-color: #b3b3b3;
-}
-
-#supplytransfer .itemList a.element .quantity {
-  bottom: 20px;
+#supplytransfer .listContainer a.element.item.pinned:hover,
+#supplytransfer .tabs .tab .image:hover,
+#supplytransfer .tabs .tab .image.empty:hover {
+  color: #3b5998;
+  background-color: #d8f0ff;
+  border-color: #ccc;
 }
 
 #supplytransfer .tabContent.item .listContainer {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-  width: auto;
-  margin-left: 75px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  width: 550px;
+  max-height: unset;
+  margin-bottom: 0;
+  margin-left: 90px;
 }
 
 #supplytransfer .categoryMenu {
-  width: 70px;
-  padding-left: 5px;
-  background-color: #fff;
+  position: fixed;
+  width: 90px;
+  background: none;
 }
 
 #supplytransfer .categoryMenu a {
@@ -63,13 +61,16 @@
   text-align: left;
 }
 
-#supplytransfer .itemList a.element .itemImage img {
+#supplytransfer .itemList .element .itemImage img {
   width: 60px;
   height: 60px;
 }
 
 #supplytransfer .listContainer a.element .details {
+  width: 90px;
+  margin: 0 auto;
   font-size: 11px;
+  text-align: center;
 }
 
 #supplytransfer .categoryMenu a:hover,
@@ -81,46 +82,25 @@
   background-color: #d8f0ff;
 }
 
-#supplytransfer .drawer {
-  padding-bottom: 40px;
-  margin-bottom: 10px;
-}
-
 .mhui-supply-search {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  margin: 5px;
-  margin-left: 0;
-  line-height: 20px;
-}
-
-input.mhui-supply-search-input {
-  padding: 9px;
-  margin-right: -2px;
-}
-
-form.mhui-supply-search-form {
-  display: flex;
-  align-items: center;
+  padding-bottom: 5px;
+  margin: 5px 5px 15px;
+  border-bottom: 1px solid #ccc;
 }
 
 #supplytransfer .drawer .tabContent .searchContainer {
   position: absolute;
   top: -5px;
-  right: 26px;
+  right: 0;
 }
 
 #supplytransfer .drawer .tabContent h2 {
-  display: inline-block;
-  min-width: 230px;
-  padding-bottom: 0;
-  margin-bottom: 0;
-  margin-left: 8px;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: unset;
+  padding: 0;
+  margin: 0;
+  margin-right: auto;
+  font-size: 14px;
   border: none;
 }
 
@@ -139,9 +119,7 @@ form.mhui-supply-search-form {
   flex-direction: row;
   gap: 5px;
   align-items: center;
-  justify-content: flex-end;
-  width: 30%;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .mhui-supply-sort-wrapper a {
@@ -179,4 +157,137 @@ form.mhui-supply-search-form {
   padding-top: 10px;
   margin-top: 10px;
   border-top: 1px solid #ccc;
+}
+
+#supplytransfer .tabs .tab.recipient .image.empty::after,
+#supplytransfer .tabs .tab.item .image.empty::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3b5998;
+  cursor: pointer;
+  content: "";
+}
+
+#supplytransfer .tabs .tab.recipient .image.empty::after {
+  content: "Select Friend";
+}
+
+#supplytransfer .tabs .tab.item .image.empty::after {
+  content: "Select Item";
+}
+
+#supplytransfer .drawer .tabContent.confirm #supplytransfer-confirm-text {
+  padding: 0;
+}
+
+#supplytransfer .tabs .tab.confirm {
+  display: none;
+}
+
+#supplytransfer .tabs .tab.recipient .image.empty,
+#supplytransfer .tabs .tab.item .image.empty {
+  position: relative;
+  margin-bottom: -20px;
+  background-image: none;
+}
+
+#supplytransfer .tabs .tab .image {
+  background: #ccc;
+  border: 1px solid #eee;
+}
+
+.PageSupplyTransfer .flexibleDialogWarmBrown {
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+#supplytransfer .drawer {
+  width: unset;
+  height: 100%;
+  max-height: unset;
+  padding: 5px;
+  border: none;
+}
+
+#supplytransfer .tabs {
+  position: fixed;
+  z-index: 1;
+  width: auto;
+  padding: 10px 10px 0;
+  margin-top: 35px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px -2px #1f1f1f;
+}
+
+#supplytransfer .tabs .tab .image,
+#supplytransfer .tabs .tab .image.empty {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#supplytransfer .drawer .listContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px 0;
+}
+
+#supplytransfer .listContainer.friendList img {
+  width: 85px;
+  height: 85px;
+  padding-bottom: 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+#supplytransfer .tabs .tab:hover {
+  background: transparent;
+}
+
+.tabContent.item {
+  margin: -5px;
+}
+
+span.mhui-supply-sort-label {
+  color: #000;
+}
+
+#supplytransfer .itemList a.element .itemImage {
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+  overflow: visible;
+}
+
+#supplytransfer .drawer .tabContent {
+  position: relative;
+  height: 100%;
+  max-height: unset;
+}
+
+#supplytransfer .tabs .tab .image .img,
+#supplytransfer .tabs .tab .image {
+  width: 80px;
+  height: 80px;
+}
+
+#supplytransfer .tabs .tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.itemImage .quantity {
+  right: -5px;
+  bottom: -1px;
+  background-color: rgb(255 255 255 / 60%);
+}
+
+#supplytransfer .listContainer a.element.item.pinned .itemImage .quantity {
+  background-color: rgb(174 245 247 / 60%);
 }

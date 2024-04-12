@@ -11,288 +11,143 @@
   opacity: 0;
 }
 
+/* stylelint-disable rule-empty-line-before */
+/* stylelint-disable prettier/prettier */
+/* stylelint-disable stylistic/block-opening-brace-space-before */
+/* stylelint-disable declaration-block-single-line-max-declarations */
 @keyframes mh-improved-fade-slightly {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.75;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  0%   { opacity: 1; }
+  50%  { opacity: 0.75; }
+  100% { opacity: 1; }
 }
 
 @keyframes mh-improved-fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes mh-improved-fade-out {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes mh-improved-in-from-left {
-  from {
-    opacity: 0;
-    transform: translate3d(-100%, 0, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
+  0%   { opacity: 0; transform: translate3d(-100%, 0, 0); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 @keyframes mh-improved-in-from-top {
-  from {
-    visibility: visible;
-    transform: translate3d(0, -100%, 0);
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-  }
+  0%   { visibility: visible; transform: translate3d(0, -100%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 @keyframes mh-improved-in-scale {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
+  0%   { opacity: 0; transform: scale(0); }
+  100% { opacity: 1; transform: scale(1); }
+}
 
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+@keyframes mh-improved-in-scale-y {
+  0%   { opacity: 0; transform: scaleY(0); }
+  100% { opacity: 1; transform: scaleY(1); }
 }
 
 @keyframes mh-improved-shake {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  75% {
-    transform: rotate(5deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(5deg); }
+  50%  { transform: rotate(-5deg); }
+  75%  { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
 }
 
 @keyframes mh-improved-shake-scaled {
-  0% {
-    transform: scale(1.2) rotate(0deg);
-  }
-
-  25% {
-    transform: scale(1.2) rotate(5deg);
-  }
-
-  50% {
-    transform: scale(1.2) rotate(-5deg);
-  }
-
-  75% {
-    transform: scale(1.2) rotate(5deg);
-  }
-
-  100% {
-    transform: scale(1.2) rotate(0deg);
-  }
+  0%   { transform: scale(1.2) rotate(0deg); }
+  25%  { transform: scale(1.2) rotate(5deg); }
+  50%  { transform: scale(1.2) rotate(-5deg); }
+  75%  { transform: scale(1.2) rotate(5deg); }
+  100% { transform: scale(1.2) rotate(0deg); }
 }
 
 @keyframes mh-improved-shake-light {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(-5deg);
-  }
-
-  75% {
-    transform: rotate(5deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(-5deg); }
+  75%  { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
 }
 
 @keyframes mh-improved-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @keyframes mh-improved-spin-flipped {
-  0% {
-    transform: scaleX(-1) rotate(0deg);
-  }
-
-  100% {
-    transform: scaleX(-1) rotate(360deg);
-  }
+  0%   { transform: scaleX(-1) rotate(0deg); }
+  100% { transform: scaleX(-1) rotate(360deg); }
 }
 
 @keyframes mh-improved-spin-large {
-  0% {
-    transform: scale(2) rotate(0deg);
-  }
-
-  100% {
-    transform: scale(2) rotate(360deg);
-  }
+  0%   { transform: scale(2) rotate(0deg); }
+  100% { transform: scale(2) rotate(360deg); }
 }
 
 @keyframes mh-improved-spin-large-flipped {
-  0% {
-    transform: scale(-2, 2) rotate(0deg);
-  }
-
-  100% {
-    transform: scale(-2, 2) rotate(360deg);
-  }
+  0%   { transform: scale(-2, 2) rotate(0deg); }
+  100% { transform: scale(-2, 2) rotate(360deg); }
 }
 
 @keyframes mh-improved-right-to-left {
-  0% {
-    right: 100%;
-  }
-
-  100% {
-    right: 0;
-  }
+  0%   { right: 100%; }
+  100% { right: 0; }
 }
 
 @keyframes mh-improved-background-slide {
-  0% {
-    background-position: left;
-  }
-
-  50% {
-    background-position: right;
-  }
-
-  100% {
-    background-position: left;
-  }
+  0%   { background-position: left; }
+  50%  { background-position: right; }
+  100% { background-position: left; }
 }
 
 @keyframes mh-improved-bounce-and-stretch {
-  0% {
-    transform: scaleX(1) translateX(-10px);
-  }
-
-  60% {
-    transform: scaleX(1);
-  }
-
-  75% {
-    transform: scaleX(0.98);
-  }
-
-  90% {
-    transform: scaleX(0.999);
-  }
+  0%  { transform: scaleX(1) translateX(-10px); }
+  60% { transform: scaleX(1); }
+  75% { transform: scaleX(0.98); }
+  90% { transform: scaleX(0.999); }
 }
 
 @keyframes mh-improved-hue-rotate {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-
-  50% {
-    filter: hue-rotate(360deg);
-  }
-
-  100% {
-    filter: hue-rotate(0deg);
-  }
+  0%   { filter: hue-rotate(0deg); }
+  50%  { filter: hue-rotate(360deg); }
+  100% { filter: hue-rotate(0deg); }
 }
 
 @keyframes mh-improved-hue-rotate-and-scale {
-  0% {
-    filter: hue-rotate(0deg);
-    transform: scale(1);
-  }
-
-  50% {
-    filter: hue-rotate(360deg);
-    transform: scale(1.5);
-  }
-
-  100% {
-    filter: hue-rotate(0deg);
-    transform: scale(1);
-  }
+  0%   { filter: hue-rotate(0deg); transform: scale(1); }
+  50%  { filter: hue-rotate(360deg); transform: scale(1.5); }
+  100% { filter: hue-rotate(0deg); transform: scale(1); }
 }
 
 @keyframes mh-improved-glow {
-  0% {
-    filter: brightness(1);
-  }
-
-  50% {
-    filter: brightness(1.1);
-  }
-
-  100% {
-    filter: brightness(1);
-  }
+  0%   { filter: brightness(1); }
+  50%  { filter: brightness(1.1); }
+  100% { filter: brightness(1); }
 }
 
 @keyframes mh-improved-dim {
-  0% {
-    filter: brightness(1);
-  }
-
-  50% {
-    filter: brightness(0.8);
-  }
-
-  100% {
-    filter: brightness(1);
-  }
+  0%   { filter: brightness(1); }
+  50%  { filter: brightness(0.8); }
+  100% { filter: brightness(1); }
 }
 
 @keyframes mh-improved-scale-large {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(2.7);
-  }
-
-  100% {
-    transform: scale(1);
-  }
+  0%   { transform: scale(1); }
+  50%  { transform: scale(2.7); }
+  100% { transform: scale(1); }
 }
+
+@keyframes mh-improved-fade-busy {
+  0%   { pointer-events: none; opacity: 0.5; }
+  100% { pointer-events: all; opacity: 1; }
+}
+
+/* stylelint-enable rule-empty-line-before */
+/* stylelint-enable prettier/prettier */
+/* stylelint-enable stylistic/block-opening-brace-space-before */
+/* stylelint-enable declaration-block-single-line-max-declarations */

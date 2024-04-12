@@ -6,7 +6,7 @@
   left: -9px;
   outline: 1px solid #364661;
   box-shadow:
-    0 0 125px #1be300 inset,
+    0 0 125px #bbffb3 inset,
     0 1px 6px -2px #000;
 }
 
@@ -178,4 +178,13 @@
 
 .springHuntHUD-setMaxQuantityButton {
   font-size: 14px;
+}
+
+.springHuntHUD-popup-dialogContainer {
+  top: 50vh;
+}
+
+.springHuntHUD-popup-dialogFrame-content {
+  max-height: 60vh;
+  overflow-y: auto;
 }
