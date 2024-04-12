@@ -254,6 +254,13 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
    * @return {Object} The option and whether or not it's selected.
    */
   const makeOption = (option, foundSelected, currentSetting, dValue, i) => {
+    if (option.seperator) {
+      return {
+        settingRowInputDropdownSelectOption: makeElement('hr'),
+        foundSelected,
+      };
+    }
+
     const settingRowInputDropdownSelectOption = document.createElement('option');
     settingRowInputDropdownSelectOption.value = option.value;
     settingRowInputDropdownSelectOption.textContent = option.name;

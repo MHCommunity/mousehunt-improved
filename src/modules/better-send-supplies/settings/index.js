@@ -8,10 +8,7 @@ import { getTradableItems } from '@utils';
 export default async () => {
   const tradableItems = await getTradableItems('truncated_name');
 
-  tradableItems.unshift({
-    name: 'None',
-    value: '',
-  });
+  tradableItems.unshift({ name: 'None', value: 'none' }, { seperator: true });
 
   return [{
     id: 'better-send-supplies.pinned-items',

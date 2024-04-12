@@ -25,6 +25,9 @@ export default async () => {
       value: 'no-skip',
     },
     {
+      seperator: true,
+    },
+    {
       name: 'Skip Mozzarella Cheese only',
       value: 'mozzarella',
     },

@@ -56,6 +56,7 @@ export default async () => {
       value: 'group',
       options: [
         { name: 'Current Title ', value: 'title' },
+        { seperator: true },
         { name: 'Novice', value: 'title.novice' },
         { name: 'Recruit', value: 'title.recruit' },
         { name: 'Apprentice', value: 'title.apprentice' },

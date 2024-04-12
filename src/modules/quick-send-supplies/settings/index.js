@@ -8,10 +8,7 @@ import { getTradableItems } from '@utils';
 export default async () => {
   const tradableItems = await getTradableItems('type');
 
-  tradableItems.unshift({
-    name: 'None',
-    value: '',
-  });
+  tradableItems.unshift({ name: 'None', value: 'none' }, { seperator: true });
 
   return [{
     id: 'quick-send-supplies.items',
