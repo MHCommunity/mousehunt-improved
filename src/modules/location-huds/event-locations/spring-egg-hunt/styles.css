@@ -52,6 +52,7 @@
 .springHuntHUD-shop-cost {
   margin-top: -2px;
   font-size: 12px;
+  border-color: #999;
 }
 
 .springHuntHUD-shelf .springHuntHUD-shelf-itemsContainer {
@@ -187,4 +188,9 @@
 .springHuntHUD-popup-dialogFrame-content {
   max-height: 60vh;
   overflow-y: auto;
+}
+
+.springHuntHUD-shelf-item .itemImage {
+  border-width: 1px;
+  box-shadow: inset 0 0 7px -1px #db882f;
 }
