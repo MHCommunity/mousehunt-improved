@@ -1,8 +1,9 @@
 import { debug } from './debug';
 import { makeElement } from './elements';
 
+import errorPageStyles from './styles/page-error.css';
 import errorStyles from './styles/errors.css';
-import maintenanceStyles from './styles/maintenance.css';
+import maintenanceStyles from './styles/page-maintenance.css';
 
 /**
  * Show an error message appended to the given element.
@@ -113,12 +114,16 @@ const showLoadingError = (e) => {
 
 const maybeDoMaintenance = () => {
   const maintenance = document.querySelector('body.PageMaintenance');
-  if (! maintenance) {
-    return;
+  if (maintenance) {
+    const maintenanceStylesEl = makeElement('style', 'mh-improved-maintenance-styles', maintenanceStyles);
+    document.head.append(maintenanceStylesEl);
   }
 
-  const maintenanceStylesEl = makeElement('style', 'mh-improved-maintenance-styles', maintenanceStyles);
-  document.head.append(maintenanceStylesEl);
+  const errorPage = document.querySelector('body.PageLockError');
+  if (errorPage) {
+    const errorPageStylesEl = makeElement('style', 'mh-improved-error-page-styles', errorPageStyles);
+    document.head.append(errorPageStylesEl);
+  }
 };
 
 /**
