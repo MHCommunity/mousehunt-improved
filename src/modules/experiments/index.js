@@ -10,6 +10,7 @@ import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
 import replaceFavicon from './modules/replace-favicon';
 import shieldGoesToCamp from './modules/shield-goes-to-camp';
+import stickyPopups from './modules/sticky-popups';
 import trollMode from './modules/troll-mode';
 import uniqueLootCount from './modules/unique-loot-count';
 
@@ -56,6 +57,11 @@ const experiments = [
     id: 'experiments.raffle',
     title: 'Return Raffles button',
     load: raffle,
+  },
+  {
+    id: 'experiments.sticky-popups',
+    title: 'Sticky Popups',
+    load: stickyPopups,
   },
   {
     id: 'experiments.lol-gottem',
