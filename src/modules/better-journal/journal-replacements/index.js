@@ -126,6 +126,7 @@ const replacements = [
   ['Lucky me, a prize mouse wandered by and fell for my trap!', '🎉️ A prize mouse fell into my trap!'],
   [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
   ['In a flash of light my', 'My'],
+  ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found another '],
 ];
 
 const replaceInEntry = (entry) => {
