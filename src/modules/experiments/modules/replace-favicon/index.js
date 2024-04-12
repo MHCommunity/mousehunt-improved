@@ -9,5 +9,5 @@ const replace = () => {
 
 export default async () => {
   replace();
-  onTurn(replace, 500);
+  onTurn(replace, 2500);
 };
