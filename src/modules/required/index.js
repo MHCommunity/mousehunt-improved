@@ -1,4 +1,16 @@
-import { doEvent, getFlag, getHeaders, onTurn } from '@utils';
+import {
+  doEvent,
+  getCurrentDialog,
+  getCurrentPage,
+  getFlag,
+  getHeaders,
+  onDialogHide,
+  onDialogShow,
+  onEvent,
+  onRequest,
+  onTurn,
+  setMultipleTimeout
+} from '@utils';
 
 const checkForAutoHorn = () => {
   const storageKeys = new Set(['NOB-huntsLeft', 'HornTimeDelayMax', 'AutoSolveKR', 'TrapCheckTimeDelayMax', 'TrapCheckTimeOffset', 'TrapCheckTimeDelayMin', 'AutoSolveKRDelayMin', 'AutoSolveKRDelayMax', 'SaveKRImage', 'autoPopupKR', 'AggressiveMode', 'HornTimeDelayMin']);
@@ -53,6 +65,75 @@ const addEvents = () => {
   }
 };
 
+let isJournalProcessing = false;
+const processEntries = async () => {
+  if (! ('camp' === getCurrentPage() || 'hunterprofile' === getCurrentPage())) {
+    return;
+  }
+
+  if (isJournalProcessing) {
+    return;
+  }
+
+  isJournalProcessing = true;
+
+  const entries = document.querySelectorAll('.journal .entry');
+  for (const entry of entries) {
+    doEvent('journal-entry', entry);
+  }
+
+  doEvent('journal-entries', entries);
+
+  isJournalProcessing = false;
+};
+
+const processSingleEntries = async () => {
+  if (isJournalProcessing) {
+    return;
+  }
+
+  isJournalProcessing = true;
+  const entriesEl = document.querySelectorAll('.jsingle .entry');
+  for (const entry of entriesEl) {
+    doEvent('journal-entry', entry);
+  }
+  isJournalProcessing = false;
+};
+
+const addJournalProcessingEvents = async () => {
+  processEntries();
+  onRequest('*', (data) => {
+    setMultipleTimeout(processEntries, [100, 500, 1000]);
+
+    if (data.journal_markup && data.journal_markup.length > 0) {
+      processSingleEntries(data.journal_markup);
+    }
+  });
+
+  onEvent('journal-history-entry-added', processEntries);
+};
+
+const addDialogListeners = () => {
+  let currentDialog = null;
+  onEvent('js_dialog_hide', () => {
+    console.log('dialog-hide', `dialog-hide-${currentDialog}`); // eslint-disable-line no-console
+    doEvent('dialog-hide', currentDialog);
+    doEvent(`dialog-hide-${currentDialog}`);
+  });
+
+  onDialogShow('all', () => {
+    currentDialog = getCurrentDialog();
+    console.log('dialog-show', `dialog-show-${currentDialog}`); // eslint-disable-line no-console
+    doEvent('dialog-show', currentDialog);
+    doEvent(`dialog-show-${currentDialog}`);
+  });
+};
+
+const checkForMHCT = () => {
+  const hasMhct = document.querySelector('#mhhh_version');
+  console.log(hasMhct ? 'MHCT is installed' : 'MHCT is not installed'); // eslint-disable-line no-console
+};
+
 /**
  * Initialize the module.
  */
@@ -64,6 +145,10 @@ const init = async () => {
   }
 
   addEvents();
+  addDialogListeners();
+  addJournalProcessingEvents();
+
+  checkForMHCT();
 };
 
 export default {
