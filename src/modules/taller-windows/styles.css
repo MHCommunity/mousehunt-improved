@@ -3,7 +3,6 @@
 .convertibleOpenView-itemContainer,
 .marketplaceView-browse-content,
 .MHCheckoutAllRewardsPageView,
-.treasureMapRootView-content,
 .treasureMapListingsView-tableView,
 .treasureMapView-block-content.tall,
 .treasureMapView-blockWrapper.tall .treasureMapView-block-content,
@@ -33,14 +32,6 @@
 .treasureMapDialogView.limitHeight .treasureMapView-block-content,
 .treasureMapDialogView.limitHeight .treasureMapDialogView-content {
   max-height: 75vh;
-}
-
-.treasureMapDialogView.wide.limitHeight {
-  transform: translate(-50%, -100px);
-}
-
-.treasureMapDialogView.wide.limitHeight.confirm {
-  transform: translate(-50%, -165px);
 }
 
 .giftSelectorView-inbox-giftContainer,

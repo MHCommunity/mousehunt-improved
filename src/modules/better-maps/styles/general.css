@@ -489,11 +489,6 @@ img.mh-mapper-consolation-prize {
   display: none;
 }
 
-.treasureMapView-block-search {
-  right: 7px;
-  bottom: 15px;
-}
-
 input.treasureMapView-block-search-text {
   height: 18px;
   font-size: 12px;
@@ -677,8 +672,9 @@ input.treasureMapView-block-search-text {
   border-radius: 3px;
 }
 
-.treasureMapInventoryView .treasureMapView-block-search {
+.treasureMapView-block-search {
   right: 0;
+  bottom: 25px;
 }
 
 .treasureMapInventoryView .treasureMapView-block-title,
@@ -773,15 +769,22 @@ input.treasureMapView-block-search-text {
 .treasureMapView-hunter-icon {
   top: -9px;
 }
-
-.treasureMapPopup-mapInvite .treasureMapTooltipView.active {
-  min-height: 35px;
-  transform: translateY(-40px);
+/*
+.treasureMapDialogView.wide.limitHeight.confirm {
+  transform: translate(-50%, -130px);
 }
 
 .treasureMapTooltipView.active {
   min-height: 35px;
-  transform: translateY(15px);
+  transform: translateY(20px);
+} */
+
+.treasureMapTooltipView.active {
+  top: 0 !important;
+}
+
+.mh-ui-multiple-maps .treasureMapTooltipView.active {
+  top: 30px !important;
 }
 
 .treasureMapView-mapWarning.treasureMapRootView-padding {
@@ -923,4 +926,104 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-scoreboard .treasureMapView-block-cell.rank {
   padding-left: 2px;
+}
+
+.treasureMapRootView-footer {
+  margin-top: 0;
+}
+
+.treasureMapInventoryView .treasureMapView-blockWrapper .treasureMapView-leftBlock .treasureMapView-block {
+  padding: 0;
+  margin-top: -25px;
+  border: none;
+}
+
+.treasureMapInventoryView .treasureMapView-blockWrapper .treasureMapView-block-content-heading {
+  margin: 10px 10px 5px;
+  border: none;
+}
+
+.treasureMapInventoryView .treasureMapView-rightBlock {
+  margin-top: -46px;
+}
+
+.treasureMapInventoryView .treasureMapView-blockWrapper .treasureMapView-leftBlock .treasureMapView-block-content {
+  margin-left: -10px;
+}
+
+.treasureMapInventoryView-scrollCase-content br + br {
+  display: none;
+}
+
+.treasureMapInventoryView-scrollCase-content {
+  line-height: 16px;
+}
+
+.treasureMapInventoryView-scrollCase-content br + br + b {
+  display: inline-block;
+}
+
+.treasureMapView-block-title.mh-ui-maps-title,
+.treasureMapView-block-title.mh-ui-map-scrolls-title,
+.treasureMapView-block-title.mh-ui-scroll-shop-title {
+  display: none;
+}
+
+.treasureMapShopsView .treasureMapView-block-search {
+  bottom: 20px;
+}
+
+.treasureMapTooltipView-hunterText-state.captain {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  visibility: hidden;
+}
+
+.treasureMapTooltipView-hunterText-state.captain:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 16px;
+  background: url(https://www.mousehuntgame.com/images/ui/tournaments/captain_icon.png?asset_cache_version=3) no-repeat 50% 50% / contain;
+  content: "";
+  visibility: visible;
+}
+
+.treasureMapTooltipView-hunterText-state.upgrader {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  visibility: hidden;
+}
+
+.treasureMapTooltipView-hunterText-state.upgrader:after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  background: #ffb615;
+border-radius: 50%;
+  content: "";
+  visibility: visible;
+}
+
+.treasureMapView-hunter-wrapper .quickSendWrapper {
+  top: 60px !important;
+left: 30px;
+}
+
+.treasureMapTooltipView {
+  height: 45px;
+}
+
+.treasureMapTooltipView.active {
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-content: space-around;
 }

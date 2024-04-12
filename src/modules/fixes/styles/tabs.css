@@ -22,17 +22,17 @@ a.mousehuntHud-page-tabHeader.collectibles span {
 }
 
 .mousehuntHud-page-tabHeader {
-  height: 29px;
+  height: 30px;
 }
 
 .mousehuntHud-page-tabHeader span {
-  height: 17px;
-  margin-top: 4px;
+  height: 16px;
+  margin-top: 5px;
 }
 
 .mousehuntHud-page-tabHeader.active span,
 .mousehuntHud-page-tabHeader:hover span {
-  padding-bottom: 7px;
+  padding-bottom: 8px;
   margin-top: 0;
   border-bottom: none;
 }

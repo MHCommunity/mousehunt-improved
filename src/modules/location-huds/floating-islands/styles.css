@@ -345,6 +345,11 @@ a.floatingIslandsHUD-islandLoot:focus {
   height: 30px;
 }
 
+.launch_pad_island .floatingIslandsHUD-jetstream {
+  top: 12px;
+  right: 47px;
+}
+
 .floatingIslandsHUD-jetstream .trapImageView-trapAura.active {
   width: 30px;
   height: 30px;

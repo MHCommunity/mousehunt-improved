@@ -77,8 +77,9 @@
 }
 
 .mousehuntHud-userStat .icon {
-  width: 27px;
-  height: 27px;
+  width: 28px;
+  height: 28px;
+  background-size: 100%;
   border: none;
   box-shadow: none;
 }
