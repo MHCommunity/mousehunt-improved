@@ -21,9 +21,9 @@ export default (quests) => {
     windLevel: quests?.QuestMoussuPicchu?.elements?.wind?.level || null,
   };
 
-  if ('none' !== quest.stormLevel) {
-    return `${uppercaseFirstLetter(quest.stormLevel)} Storm`;
+  if (quest.rainPercent === 100 && quest.windPercent === 100) {
+    return 'Max Storm · Wind (100%) · Rain (100%)';
   }
 
-  return `${uppercaseFirstLetter(quest.windLevel)} Wind (${quest.windPercent}%), ${uppercaseFirstLetter(quest.rainLevel)} Rain (${quest.rainPercent}%)`;
+  return `${uppercaseFirstLetter(quest.windLevel)} Wind (${quest.windPercent}%) · ${uppercaseFirstLetter(quest.rainLevel)} · Rain (${quest.rainPercent}%)`;
 };
