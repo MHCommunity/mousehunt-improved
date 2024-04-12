@@ -149,11 +149,11 @@
   margin: 10px auto;
 }
 
-.mhui-supply-quick-quantit-max {
+.mhui-supply-quick-quantity-max {
   width: 53px;
 }
 
-.friendList.listContainer {
+#supplytransfer .friendList.listContainer {
   padding-top: 10px;
   margin-top: 10px;
   border-top: 1px solid #ccc;
@@ -249,7 +249,7 @@
   background: transparent;
 }
 
-.tabContent.item {
+#supplytransfer .tabContent.item {
   margin: -5px;
 }
 
@@ -282,7 +282,7 @@ span.mhui-supply-sort-label {
   align-items: center;
 }
 
-.itemImage .quantity {
+#supplytransfer .itemImage .quantity {
   right: -5px;
   bottom: -1px;
   background-color: rgb(255 255 255 / 60%);

@@ -201,7 +201,7 @@ const addQuickQuantityButtons = () => {
     classNames: ['mhui-supply-quick-quantity', 'gray', 'small'],
   });
 
-  const max = makeElement('button', ['mousehuntActionButton', 'lightBlue', 'small', 'mhui-supply-quick-quantity', 'mhui-supply-quick-quantit-max']);
+  const max = makeElement('button', ['mousehuntActionButton', 'lightBlue', 'small', 'mhui-supply-quick-quantity', 'mhui-supply-quick-quantity-max']);
   const maxText = makeElement('span', '', 'Max');
 
   max.addEventListener('click', () => {
