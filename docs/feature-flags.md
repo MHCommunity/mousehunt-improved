@@ -10,6 +10,7 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |---|---|
 |`social-noop`|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
 |`no-onboarding`|Disables the MouseHunt Improved tutorial from Larry.|
+|`no-kingdom-link-replacement`|Makes the Kingdom link to go the forums, rather than the News page.|
 
 The [debug logging](./debug-logging.md) module also is configured using feature flags.
 
