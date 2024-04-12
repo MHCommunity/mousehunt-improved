@@ -3,13 +3,17 @@ import {
   getCurrentPage,
   getFlag,
   isLegacyHUD,
+  makeElement,
   onNavigation,
-  onRequest
+  onRequest,
+  sessionGet,
+  sessionSet
 } from '@utils';
 
 import friends from './friends';
 import hud from './hud';
 
+import anyTrapAnySkinStyles from './userscript-styles/any-trap-any-skin.css';
 import favoriteSetupsStyles from './userscript-styles/favorite-setups.css';
 import journalHistorianStyles from './userscript-styles/journal-historian.css';
 import lgsReminderStyles from './userscript-styles/lgs-reminder.css';
@@ -48,6 +52,7 @@ const addAdventureBookClass = () => {
 
 const addUserscriptStyles = async () => {
   const userscriptStyles = [
+    { id: 'userscript-styles-no-any-trap-any-skin-styles', styles: anyTrapAnySkinStyles },
     { id: 'userscript-styles-no-mhct-styles', styles: mhctStyles },
     { id: 'userscript-styles-no-tsitu-qol-styles', styles: tsituQolStyles },
     { id: 'userscript-styles-no-profile-plus-styles', styles: profilePlusStyles },
@@ -71,6 +76,46 @@ const addUserscriptStyles = async () => {
   });
 };
 
+const addMaintenceClasses = () => {
+  const banner = document.querySelector('div[style="background: #f2f27c; border:1px solid #555; border-radius: 3px; text-align: center; font-size: 12px; padding: 6px 3px"]');
+  if (! banner) {
+    return;
+  }
+
+  const isHidden = sessionGet('maintenance-banner-hidden');
+  if (isHidden) {
+    banner.classList.add('hidden');
+    return;
+  }
+
+  banner.classList.add('maintenance-banner', 'mh-ui-fade', 'mh-ui-fade-in');
+
+  const existingClose = banner.querySelector('.close');
+  if (existingClose) {
+    return;
+  }
+
+  banner.childNodes.forEach((node) => {
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      node.innerHTML = `${node.innerHTML}.`;
+    } else if (node.nodeType === Node.TEXT_NODE) {
+      node.textContent = `${node.textContent}.`;
+    }
+  });
+
+  const close = makeElement('div', 'close', '✕');
+  close.addEventListener('click', () => {
+    banner.classList.add('mh-ui-fade-out');
+
+    setTimeout(() => {
+      banner.classList.add('hidden');
+      sessionSet('maintenance-banner-hidden', true);
+    }, 350);
+  });
+
+  banner.append(close);
+};
+
 /**
  * Initialize the module.
  */
@@ -81,16 +126,19 @@ const init = async () => {
     addStyles(legacyStyles, 'better-ui-legacy');
   }
 
+  addMaintenceClasses();
   addUserscriptStyles();
   friends();
   hud();
 
-  onNavigation(addAdventureBookClass, {
+  onRequest('*', addAdventureBookClass);
+  onRequest('users/dailyreward.php', kingsPromoTextChange);
+  onNavigation(() => {
+    addMaintenceClasses();
+    addAdventureBookClass();
+  }, {
     page: 'camp',
   });
-  onRequest('*', addAdventureBookClass);
-
-  onRequest('users/dailyreward.php', kingsPromoTextChange);
 };
 
 export default {

@@ -10,6 +10,10 @@ const getCurrentLocation = () => {
   return location.toLowerCase();
 };
 
+const getCurrentLocationName = () => {
+  return user?.environment_name || getCurrentLocation();
+};
+
 /**
  * Ping https://rh-api.mouse.rip/ to get the current location of the Relic Hunter.
  *
@@ -55,6 +59,7 @@ const travelTo = (location) => {
 
 export {
   getCurrentLocation,
+  getCurrentLocationName,
   getRelicHunterLocation,
   travelTo
 };

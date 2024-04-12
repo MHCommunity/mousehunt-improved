@@ -4,6 +4,7 @@ import {
   doRequest,
   makeElement,
   makeLink,
+  onEvent,
   sessionGet,
   sessionSet,
   showErrorMessage
@@ -495,7 +496,7 @@ const addSidebarToggle = async () => {
   leftBlock.append(toggle);
 };
 
-const makeStickyDraggable = () => {
+const makeStickyDraggable = (isClone = false) => {
   const sticky = document.querySelector('.treasureMapView-highlight');
   if (! sticky) {
     return;
@@ -534,9 +535,50 @@ const makeStickyDraggable = () => {
   const closeDragElement = () => {
     document.onmouseup = null;
     document.onmousemove = null;
+
+    if (! isClone) {
+      const existing = document.querySelector('.better-maps-sticky-clone');
+      if (existing) {
+        existing.remove();
+      }
+
+      clone = sticky.cloneNode(true);
+      clone.classList.add('hidden', 'better-maps-sticky-clone');
+
+      // calculate the position of the clone because the sticky is positioned absolute and the clone is positioned fixed.
+      const rect = sticky.getBoundingClientRect();
+      clone.style.top = `${rect.top}px`;
+      clone.style.left = `${rect.left}px`;
+      clone.style.width = `${rect.width}px`;
+
+      const cloneClose = clone.querySelector('.treasureMapView-highlight-close');
+      if (cloneClose) {
+        cloneClose.addEventListener('click', () => {
+          clone.classList.add('hidden');
+        });
+      }
+
+      document.body.append(clone);
+    }
   };
 
   sticky.onmousedown = dragMouseDown;
+};
+
+let clone;
+const onMapOpen = () => {
+  if (clone) {
+    clone.classList.add('hidden');
+  }
+};
+
+const onMapClose = () => {
+  if (clone) {
+    clone.classList.remove('hidden');
+
+    // Allow the user to drag the sticky around again.
+    makeStickyDraggable(true);
+  }
 };
 
 const showGoalsTab = async (mapData) => {
@@ -548,6 +590,9 @@ const showGoalsTab = async (mapData) => {
   addQuickInvite(mapData);
   addSidebarToggle();
   makeStickyDraggable();
+
+  onEvent('dialog-show-map', onMapOpen);
+  onEvent('dialog-hide-map', onMapClose);
 };
 
 const hideGoalsTab = () => {

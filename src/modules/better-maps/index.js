@@ -118,7 +118,7 @@ const initMapper = (map) => {
     });
   });
 
-  if (getSetting('better-maps.show-sorted-tab', false)) {
+  if (getSetting('better-maps.default-to-sorted', false)) {
     doEvent('map_sorted_tab_click', map);
   } else {
     // Fire the goals click because we default to that tab.
@@ -224,8 +224,13 @@ const updateRelicHunterHint = async () => {
   return true;
 };
 
+let _showInventory;
 const relicHunterUpdate = () => {
-  const _showInventory = hg.controllers.TreasureMapController.showInventory;
+  if (_showInventory) {
+    return;
+  }
+
+  _showInventory = hg.controllers.TreasureMapController.showInventory;
   hg.controllers.TreasureMapController.showInventory = () => {
     _showInventory();
 

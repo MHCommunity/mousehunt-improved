@@ -138,10 +138,6 @@ const getData = async (key) => {
  * Clear all the caches.
  */
 const clearCaches = async () => {
-  validDataFiles.forEach((file) => {
-    dbDelete('data', file);
-  });
-
   dbDeleteAll('ar-cache');
 
   for (const key of Object.keys(localStorage)) {

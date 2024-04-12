@@ -107,7 +107,8 @@ const addTrapBlock = () => {
     const tooltip = makeElement('div', ['mousehuntTooltip', 'top', 'noEvents']);
     const tooltipContent = makeElement('div', 'mousehuntTooltipContent');
     makeElement('div', 'mousehuntTooltipContentTitle', `${aura.type} Aura`, tooltipContent);
-    makeElement('div', 'mousehuntTooltipContentTime', `Expires on ${expiryText}, ${remaining} remaining`, tooltipContent);
+    makeElement('div', 'mousehuntTooltipContentTime', `Expires on ${expiryText}`, tooltipContent);
+    makeElement('div', 'mousehuntTooltipContentTime', `${remaining} remaining`, tooltipContent);
     tooltip.append(tooltipContent);
 
     makeElement('div', 'mousehuntTooltip-arrow', '', tooltip);

@@ -258,19 +258,20 @@ const updateJetstreamTime = async () => {
     return;
   }
 
-  container.innerHTML = '';
-
   if (! user?.quests?.QuestFloatingIslands?.jet_stream_active) {
+    container.innerHTML = '';
     return;
   }
 
   const expiry = document.querySelector('.floatingIslandsHUD-jetstream .trapImageView-tooltip-trapAura-expiry span');
   if (! expiry) {
+    container.innerHTML = '';
     return;
   }
 
   const dateParts = expiry.innerText.split(' ');
   if (! dateParts.length || dateParts.length < 5) {
+    container.innerHTML = '';
     return;
   }
 
@@ -301,6 +302,10 @@ const updateJetstreamTime = async () => {
     spacer: '',
     delimiter: ' ',
   });
+
+  if (container.innerText === duration) {
+    return;
+  }
 
   container.innerText = duration;
 };
@@ -426,9 +431,16 @@ const hud = () => {
   onEvent('horn-countdown-tick', updateJetstreamTime);
   onDialogShow('floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace', onSkyMapShow);
 
-  onRequest('environment/floating_islands.php', () => {
+  onRequest('environment/floating_islands.php', (request, data) => {
     run();
     toggleFuel(true);
+
+    if (data?.action === 'launch') {
+      setTimeout(() => {
+        run();
+        showBWReminder();
+      }, 2000);
+    }
   });
 };
 

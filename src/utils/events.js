@@ -157,6 +157,7 @@ const overlayCallbacks = [];
  * @param {Function} callbacks.change The callback to call when the overlay is changed.
  */
 const onOverlayChange = (callbacks) => {
+  // TODO: rewrite this.
   // Track the different overlay states.
   let overlayData = {
     map: {
@@ -277,6 +278,7 @@ const getDialogMapping = () => {
  * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
 const onDialogShow = (overlay = null, callback = null, once = false) => {
+  // TODO: rewrite this.
   // make a unique identifier for the event listener based on the callback.
   const identifier = callback.toString().replaceAll(/[^\w-]/gi, '');
   eventRegistry.addEventListener('js_dialog_show', () => {
@@ -317,6 +319,9 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
       dialogType = dialogType.slice(0, -1);
     }
 
+    window.mhutils = window.mhutils ? { ...window.mhutils, lastDialog: { overlay: dialogType } } : { lastDialog: { overlay: dialogType } };
+    lastDialog = dialogType;
+
     if ((! overlay || 'all' === overlay) && 'function' === typeof callback) {
       return callback();
     }
@@ -329,6 +334,8 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
   }, null, once, 0, identifier);
 };
 
+const dialogHideCallbacks = [];
+let lastDialog = null;
 /**
  * When the dialog is hidden, run the callback.
  *
@@ -337,21 +344,30 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
  * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
 const onDialogHide = (callback, overlay = null, once = false) => {
+  const dialogMapping = getDialogMapping();
+  if (overlay in dialogMapping && ! dialogHideCallbacks.some((item) => item.callback === callback)) {
+    dialogHideCallbacks.push({
+      overlay: dialogMapping[overlay],
+      callback,
+    });
+  } else if (! dialogHideCallbacks.some((item) => item.callback === callback)) {
+    dialogHideCallbacks.push({
+      overlay: 'all',
+      callback,
+    });
+  }
+
   eventRegistry.addEventListener('js_dialog_hide', () => {
-    const dialogType = window?.mhutils?.lastDialog?.overlay || null;
-
-    // Set window.mhutils.lastDialog to null so we don't run the callback again, making sure that window.mhutils exists.
-    window.mhutils = window.mhutils ? { ...window.mhutils, lastDialog: null } : null;
-
-    if (! overlay) {
-      return callback();
+    if (! lastDialog) {
+      return;
     }
 
-    const dialogMapping = getDialogMapping();
-    if (overlay === dialogType || overlay === dialogMapping[dialogType]) {
-      return callback();
-    }
-  }, null, once);
+    dialogHideCallbacks.forEach((item) => {
+      if (lastDialog === item.overlay || 'all' === item.overlay) {
+        item.callback();
+      }
+    });
+  });
 };
 
 const pageChangeCallbacks = [];

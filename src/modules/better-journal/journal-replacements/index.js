@@ -170,7 +170,7 @@ const updateLog = (entry) => {
     return;
   }
 
-  link.classList.add('mh-ui-progress-log-link', 'mousehuntActionButton', 'tiny', 'lightBlue');
+  link.classList.add('mh-ui-progress-log-link', 'mousehuntActionButton', 'small', 'lightBlue');
 
   const span = document.createElement('span');
   span.innerText = 'View Progress Log';
