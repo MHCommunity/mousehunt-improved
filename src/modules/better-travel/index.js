@@ -549,10 +549,9 @@ const addFavoriteButtonsToTravelPage = async () => {
     }
 
     // Don't add a favorite button to event locations.
-    const isEventLocation = environments.find((environment) => {
+    const isEventLocation = eventEnvironments.find((environment) => {
       return environment.id === type;
     });
-
     if (isEventLocation) {
       return;
     }
@@ -609,6 +608,7 @@ const main = () => {
 };
 
 let environments = [];
+let eventEnvironments = [];
 
 /**
  * Initialize the module.
@@ -623,6 +623,7 @@ const init = async () => {
   addStyles(stylesJoined, 'better-travel');
 
   environments = await getData('environments');
+  eventEnvironments = await getData('environments-events');
 
   main();
 };
