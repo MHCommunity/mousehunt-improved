@@ -39,7 +39,8 @@
 }
 
 .headsup .hudstatlist:nth-child(5) ul li:nth-child(1),
-.headsup .hudstatlist:nth-child(5) ul li:nth-child(2) {
+.headsup .hudstatlist:nth-child(5) ul li:nth-child(2),
+.headsup .hudstatlist:nth-child(5) ul li:nth-child(3) {
   display: flex;
   justify-content: space-between;
   width: 150px;

@@ -1,4 +1,3 @@
-.mousehuntHud-userStatBar,
 .mousehuntHud-environment,
 .mousehuntHud-menu .camp,
 .mousehuntHud-menu .friends .team,
@@ -17,13 +16,4 @@
 .mousehuntHud-menu .kingdom .merch_store,
 .mh-legacy-mode-remove {
   display: none;
-}
-
-.headsup .cheeseped a.baiticon img {
-  height: 50px;
-}
-
-.headsup .cheeseped a.baiticon {
-  top: -13px;
-  right: 4px;
 }

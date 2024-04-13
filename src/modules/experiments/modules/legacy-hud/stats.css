@@ -1,0 +1,8 @@
+.headsup .cheeseped a.baiticon img {
+  height: 45px;
+}
+
+.headsup .cheeseped a.baiticon {
+  top: -4px;
+  right: 2px;
+}
