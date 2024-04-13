@@ -343,16 +343,16 @@
 }
 
 .travelPage-map-image-environment-pointer {
-  left: 29px;
   top: 5px;
+  left: 29px;
   width: 140px;
   height: 116px;
   background-size: cover;
 }
 
 .travelPage-map-image-environment-pointer-image {
-  left: 6px;
   top: 10px;
+  left: 6px;
   width: 70px;
   height: 70px;
 }

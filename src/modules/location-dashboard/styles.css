@@ -269,35 +269,31 @@ img.locationImage {
   width: 20px;
   height: 20px;
   color: transparent;
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/floating_islands/mods.png);
-}
-
-.dashboard-bb-wrap .tile {
   background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/chevrons.png?asset_cache_version=3);
-  background-size: 100%
+  background-size: 100%;
 }
 
 .dashboard-bb-wrap .tile.standard {
-  background-position-y: 0%
+  background-position-y: 0%;
 }
 
 .dashboard-bb-wrap .tile.super {
-  background-position-y: 34%
+  background-position-y: 34%;
 }
 
 .dashboard-bb-wrap .tile.extreme {
-  background-position-y: 67%
+  background-position-y: 67%;
 }
 
 .dashboard-bb-wrap .tile.ultimate {
-  background-position-y: 100%
+  background-position-y: 100%;
 }
 
 .dashboard-bb-wrap.room-name {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
   gap: 5px;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .dashboard-bb-wrap.embellishments .tile {
@@ -308,13 +304,13 @@ img.locationImage {
 }
 
 .dashboard-bb-wrap.embellishments .tile.golden_key {
-  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/d855937c33e0fc0db25fbdf1aea70aa2.png);'
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/d855937c33e0fc0db25fbdf1aea70aa2.png);
 }
 
 .dashboard-bb-wrap.embellishments .tile.golden_feather {
-  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/654d4e0c8308c3ab0ee99d32503bf82a.png);'
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/654d4e0c8308c3ab0ee99d32503bf82a.png);
 }
 
 .dashboard-bb-wrap.embellishments .tile.ruby_remover {
-  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/6753553ca41cb4754fba0ebf7600378b.png)
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/6753553ca41cb4754fba0ebf7600378b.png);
 }

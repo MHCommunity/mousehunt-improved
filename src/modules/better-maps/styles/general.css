@@ -769,18 +769,13 @@ input.treasureMapView-block-search-text {
 .treasureMapView-hunter-icon {
   top: -9px;
 }
-/*
-.treasureMapDialogView.wide.limitHeight.confirm {
-  transform: translate(-50%, -130px);
-}
-
-.treasureMapTooltipView.active {
-  min-height: 35px;
-  transform: translateY(20px);
-} */
 
 .treasureMapTooltipView.active {
   top: 0 !important;
+  display: flex;
+  flex-direction: column;
+  place-content: flex-start space-around;
+  align-items: center;
 }
 
 .mh-ui-multiple-maps .treasureMapTooltipView.active {
@@ -796,6 +791,7 @@ input.treasureMapView-block-search-text {
   box-shadow: 0 0 1px 1px #ffa5a5;
 }
 
+.treasureMapView-consolationPrize-message,
 .treasureMapView-consolationPrizeMessage {
   margin: 15px 0;
   box-shadow: 0 0 1px 1px #ffa5a5;
@@ -980,15 +976,15 @@ input.treasureMapView-block-search-text {
   visibility: hidden;
 }
 
-.treasureMapTooltipView-hunterText-state.captain:after {
+.treasureMapTooltipView-hunterText-state.captain::after {
   position: absolute;
-  left: 0;
   top: 0;
+  left: 0;
   width: 18px;
   height: 16px;
-  background: url(https://www.mousehuntgame.com/images/ui/tournaments/captain_icon.png?asset_cache_version=3) no-repeat 50% 50% / contain;
-  content: "";
   visibility: visible;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/tournaments/captain_icon.png?asset_cache_version=3) no-repeat 50% 50% / contain;
 }
 
 .treasureMapTooltipView-hunterText-state.upgrader {
@@ -998,32 +994,30 @@ input.treasureMapView-block-search-text {
   visibility: hidden;
 }
 
-.treasureMapTooltipView-hunterText-state.upgrader:after {
+.treasureMapTooltipView-hunterText-state.upgrader::after {
   position: absolute;
-  right: 0;
   top: 0;
+  right: 0;
   width: 16px;
   height: 16px;
-  background: #ffb615;
-border-radius: 50%;
-  content: "";
   visibility: visible;
+  content: "";
+  background: #ffb615;
+  border-radius: 50%;
 }
 
 .treasureMapView-hunter-wrapper .quickSendWrapper {
   top: 60px !important;
-left: 30px;
+  left: 30px;
 }
 
 .treasureMapTooltipView {
   height: 45px;
 }
 
-.treasureMapTooltipView.active {
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    align-content: space-around;
+.treasureMapTooltipView-hunterText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
