@@ -1,7 +1,6 @@
 import { onRequest } from '@utils';
 
 const updateShopsMarkup = async () => {
-  console.log('updateShopsMarkup');
   const shops = document.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop');
   if (! shops.length) {
     return;

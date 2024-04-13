@@ -4,7 +4,6 @@ import {
   getCurrentPage,
   getFlag,
   getHeaders,
-  onDialogHide,
   onDialogShow,
   onEvent,
   onRequest,

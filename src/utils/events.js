@@ -341,9 +341,8 @@ let lastDialog = null;
  *
  * @param {Function} callback The callback to run.
  * @param {string}   overlay  The overlay to check for.
- * @param {boolean}  once     Whether or not to remove the event listener after it's fired.
  */
-const onDialogHide = (callback, overlay = null, once = false) => {
+const onDialogHide = (callback, overlay = null) => {
   const dialogMapping = getDialogMapping();
   if (overlay in dialogMapping && ! dialogHideCallbacks.some((item) => item.callback === callback)) {
     dialogHideCallbacks.push({
