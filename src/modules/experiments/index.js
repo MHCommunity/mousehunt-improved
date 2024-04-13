@@ -43,6 +43,14 @@ const experiments = [
     load: legacyHud,
   },
   {
+    id: 'experiments.legacy-hud-only-menu',
+    title: 'Legacy HUD: Menu only',
+  },
+  {
+    id: 'experiments.legacy-hud-only-stats',
+    title: 'Legacy HUD: Stats bar only',
+  },
+  {
     id: 'experiments.legacy-hud-tweaks',
     title: 'Legacy HUD Tweaks',
     load: legacyHudTweaks,
