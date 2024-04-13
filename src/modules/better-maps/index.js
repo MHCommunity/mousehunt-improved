@@ -5,6 +5,8 @@ import {
   getMapData,
   getSetting,
   makeElement,
+  onDialogShow,
+  onEvent,
   onRequest,
   sessionSet,
   setGlobal,
@@ -20,10 +22,24 @@ import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
 
 import community from './modules/community';
+import shops from './modules/shops';
 import sidebar from './modules/sidebar';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
+
+const updateMapClasses = () => {
+  const map = document.querySelector('.treasureMapRootView');
+  if (user?.quests?.QuestRelicHunter?.maps?.length >= 2) {
+    map.classList.add('mh-ui-multiple-maps');
+  } else {
+    map.classList.remove('mh-ui-multiple-maps');
+  }
+};
+
+const updateBlockContent = (block) => {
+  console.log('updateBlockContent', block);
+};
 
 const addBlockClasses = () => {
   const rightBlocks = document.querySelectorAll('.treasureMapView-rightBlock > div');
@@ -45,6 +61,8 @@ const addBlockClasses = () => {
     } else {
       block.classList.add(`mh-ui-${prevBlockType}-block`);
     }
+
+    updateBlockContent(block);
   });
 };
 
@@ -267,6 +285,7 @@ const init = async () => {
   intercept();
 
   relicHunterUpdate();
+  shops();
 
   if (getSetting('better-maps.community')) {
     community();
@@ -279,6 +298,31 @@ const init = async () => {
   if (! getSetting('no-sidebar') && getSetting('better-maps.show-sidebar-goals', true)) {
     sidebar();
   }
+
+  onDialogShow('map', () => {
+    const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
+    tabs.forEach((tab) => {
+      const classes = [...tab.classList];
+
+      if (classes.includes('active')) {
+        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item').trim());
+      }
+
+      tab.addEventListener('click', () => {
+        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
+      });
+    });
+  });
+
+  onEvent('map_navigation_tab_click', () => {
+    addBlockClasses();
+    updateMapClasses();
+  });
+
+  onRequest('users/treasuremap.php', () => {
+    addBlockClasses();
+    updateMapClasses();
+  });
 };
 
 export default {
