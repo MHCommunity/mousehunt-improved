@@ -9,8 +9,10 @@ const toggleBigTimer = () => {
     return;
   }
 
+  let isBigTimer = timer.classList.contains('big-timer');
   timer.addEventListener('click', () => {
-    timer.classList.toggle('big-timer');
+    isBigTimer = ! isBigTimer;
+    timer.classList.toggle('big-timer', isBigTimer);
   });
 };
 
