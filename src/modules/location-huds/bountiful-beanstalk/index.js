@@ -243,7 +243,7 @@ const addCraftingButtons = async () => {
 
       const baitQuantityType = baitQuantity.getAttribute('data-item-type');
       if (baitQuantityType && newQuantities[baitQuantityType]) {
-        baitQuantity.innerText = newQuantities[baitQuantityType];
+        baitQuantity.innerText = newQuantities[baitQuantityType].toLocaleString();
       }
 
       const baitCraftQty = bait.querySelector('.headsUpDisplayBountifulBeanstalkView__ingredientQuantity');
@@ -253,7 +253,7 @@ const addCraftingButtons = async () => {
 
       const baitIngredientType = baitCraftQty.getAttribute('data-item-type');
       if (baitIngredientType && newQuantities[baitIngredientType]) {
-        baitCraftQty.innerText = newQuantities[baitIngredientType];
+        baitCraftQty.innerText = newQuantities[baitIngredientType].toLocaleString();
       }
     });
 
