@@ -206,11 +206,6 @@ div#messengerUINotification {
   background-color: #e03a3a;
 }
 
-.giftSelectorView-inbox-footer-label {
-  margin-top: -30px;
-  text-align: left;
-}
-
 #messengerUINotification .notificationMessageList .tab[data-tab="marketplace"] .message .clear-block {
   order: 1;
 }
