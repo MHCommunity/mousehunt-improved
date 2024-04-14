@@ -64,8 +64,6 @@ const changeShield = () => {
     const remove = [
       ...lastShield,
       'mhui-custom-shield',
-      'birthday',
-      'year16', // TODO: remove this after the event.
     ];
 
     remove.forEach((className) => {
