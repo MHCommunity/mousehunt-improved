@@ -90,7 +90,7 @@ const addOpenAllToConvertible = () => {
       return;
     }
 
-    input.value = quantity;
+    input.value = Number.parseInt(input.value, 10) > 200 ? 200 : Number.parseInt(input.value, 10);
   });
 };
 

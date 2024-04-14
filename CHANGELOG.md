@@ -15,6 +15,10 @@
 
 - Updated styles
 
+### Better Inventory
+
+- Added cap of 200 items being opened at once
+
 ### Better Journal
 
 - Refactored journal processing for more stablility
@@ -30,9 +34,9 @@
 - Added ability to drag sticky mouse details popup out of map and keep it open
 - Updated styles
 
-- ### Better Send Supplies
--
-- - Updated styles
+### Better Send Supplies
+
+- Updated styles
 
 ### Better Shops
 
@@ -59,6 +63,10 @@
 - Big Timer - Updated styles for Legacy HUD
 - Journal Tags - Updated styles
 - favicons
+
+### Inventory Open all but One
+
+- Added cap of 200 items being opened at once
 
 ### Location Dashboard
 
