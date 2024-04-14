@@ -37,10 +37,6 @@ const updateMapClasses = () => {
   }
 };
 
-const updateBlockContent = (block) => {
-  console.log('updateBlockContent', block);
-};
-
 const addBlockClasses = () => {
   const rightBlocks = document.querySelectorAll('.treasureMapView-rightBlock > div');
   const leftBlocks = document.querySelectorAll('.treasureMapView-leftBlock > div');
@@ -61,8 +57,6 @@ const addBlockClasses = () => {
     } else {
       block.classList.add(`mh-ui-${prevBlockType}-block`);
     }
-
-    updateBlockContent(block);
   });
 };
 
