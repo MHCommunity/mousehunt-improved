@@ -1,4 +1,4 @@
-import { getSetting, makeElement, saveSetting } from '@utils';
+import { getSetting, saveSetting } from '@utils';
 
 const getTravelSetting = (settingName, defaultValue) => {
   return getSetting(`better-travel.${settingName}`, defaultValue);

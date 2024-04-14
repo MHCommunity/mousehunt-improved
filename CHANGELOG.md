@@ -40,7 +40,7 @@
 
 ### Better Shops
 
-- Added "Limit 1" to items that have an inventory limit	Updated styles
+- Added "Limit 1" to items that have an inventory limit
 
 ### Better Travel
 
