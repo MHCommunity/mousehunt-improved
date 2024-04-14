@@ -33,6 +33,7 @@
 - Updated scroll shop tab to be easier to navigate
 - Added ability to drag sticky mouse details popup out of map and keep it open
 - Updated styles
+- Updated 'Show goals in sidebar' setting to default to disabled
 
 ### Better Send Supplies
 
