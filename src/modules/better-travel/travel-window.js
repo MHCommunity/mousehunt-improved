@@ -9,10 +9,11 @@ import {
   isUserTitleAtLeast,
   onDialogHide,
   onEvent,
-  setPage
+  setPage,
+  travelTo
 } from '@utils';
 
-import { getTravelSetting, saveTravelSetting, travelTo } from './travel-utils';
+import { getTravelSetting, saveTravelSetting } from './travel-utils';
 
 import styles from './travel-menu.css';
 

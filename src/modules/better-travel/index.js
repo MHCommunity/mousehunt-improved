@@ -17,10 +17,11 @@ import {
   removeSubmenuItem,
   sessionGet,
   setPage,
-  setTab
+  setTab,
+  travelTo
 } from '@utils';
 
-import { getTravelSetting, saveTravelSetting, travelTo } from './travel-utils';
+import { getTravelSetting, saveTravelSetting } from './travel-utils';
 
 import addReminders from './reminders';
 import travelWindow from './travel-window';

@@ -9,7 +9,8 @@ import {
   makeElement,
   onEvent,
   onRequest,
-  sessionSet
+  sessionSet,
+  travelTo
 } from '@utils';
 
 import { getData } from '@utils/data';
@@ -374,17 +375,28 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
   // Name & travel links
   const locationImageWrapper = makeElement('div', 'locationImageWrapper');
   // get the image for the location
-  const image = environments.find((env) => env.id === id);
-  if (image.image) {
+  const environment = environments.find((env) => env.id === id);
+  if (environment.image) {
     const locationImage = makeElement('img', 'locationImage');
-    locationImage.setAttribute('src', image.image);
+    locationImage.setAttribute('src', environment.image);
 
     locationImageWrapper.append(locationImage);
   }
 
+  locationImageWrapper.addEventListener('click', async () => {
+    travelTo(environment.id);
+  });
+
   locationWrapper.append(locationImageWrapper);
 
-  makeElement('div', 'locationName', name, locationWrapper);
+  const nameEl = makeElement('div', 'locationName', name);
+
+  nameEl.addEventListener('click', async () => {
+    travelTo(environment.id);
+  });
+
+  locationWrapper.append(nameEl);
+
   makeElement('div', 'locationProgress', markup, locationWrapper);
 
   appendTo.append(locationWrapper);

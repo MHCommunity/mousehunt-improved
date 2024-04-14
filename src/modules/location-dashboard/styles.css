@@ -314,3 +314,9 @@ img.locationImage {
 .dashboard-bb-wrap.embellishments .tile.ruby_remover {
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/6753553ca41cb4754fba0ebf7600378b.png);
 }
+
+.locationImageWrapper:hover,
+.locationName:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
