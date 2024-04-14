@@ -142,33 +142,6 @@ const toggleFuelWithIcon = async () => {
   });
 };
 
-const updateTitle = async () => {
-  const title = document.querySelector('.bountifulBeanstalkCastleView__title');
-  if (! title) {
-    return;
-  }
-
-  if (title.classList.contains('loot-displayed')) {
-    const display = document.querySelector('.loot-display');
-    if (display) {
-      display.remove();
-    }
-  }
-
-  const loot = document.querySelector('.bountifulBeanstalkCastleView__currentRoomLoot');
-  const lootMult = document.querySelector('.bountifulBeanstalkCastleView__currentRoomLootMultiplier');
-
-  if (! loot || ! lootMult) {
-    title.classList.remove('loot-displayed');
-    return;
-  }
-
-  if (loot.innerText && lootMult.innerText) {
-    makeElement('div', 'loot-display', `${lootMult.innerText}x ${loot.innerText}`, title);
-    title.classList.add('loot-displayed');
-  }
-};
-
 const updateLootText = async () => {
   const ccLoot = document.querySelector('.headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--condensed_creativity div');
   if (ccLoot) {
@@ -340,7 +313,6 @@ export default async () => {
   keepTooltipToggled();
   makeGiantMoreVisible();
   toggleFuelWithIcon();
-  updateTitle();
   updateLootText();
   addCraftingButtons();
 
