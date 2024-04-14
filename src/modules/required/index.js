@@ -4,6 +4,7 @@ import {
   getCurrentPage,
   getFlag,
   getHeaders,
+  makeElement,
   onDialogShow,
   onEvent,
   onRequest,
@@ -132,6 +133,24 @@ const addDialogListeners = () => {
 const checkForMHCT = () => {
   const hasMhct = document.querySelector('#mhhh_version');
   console.log(hasMhct ? 'MHCT is installed' : 'MHCT is not installed'); // eslint-disable-line no-console
+  // todo: add a popup to inform the user that they should install MHCT.
+};
+
+const addSupportLink = () => {
+  const description = document.querySelector('#overlayPopup .jsDialogContainer .contactUsForm .description');
+  if (! description) {
+    return;
+  }
+
+  const supportWrap = makeElement('div', 'support-link');
+
+  makeElement('p', '', 'Before contacting support, please make sure that the issue isn\'t caused by MouseHunt Improved. If it is, please report it on the GitHub page.', supportWrap);
+  const supportLink = makeElement('a', '', 'Visit the MouseHunt Improved GitHub page');
+  supportLink.href = 'https://github.com/MHCommunity/mousehunt-improved/issues';
+  supportLink.target = '_blank';
+  supportWrap.append(supportLink);
+
+  description.before(supportWrap);
 };
 
 /**
@@ -149,6 +168,8 @@ const init = async () => {
   addJournalProcessingEvents();
 
   checkForMHCT();
+
+  onEvent('dialog-show-support', addSupportLink);
 };
 
 export default {
