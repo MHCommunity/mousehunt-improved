@@ -451,3 +451,12 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
   margin-right: 150px;
   margin-left: 0;
 }
+
+.giftSelectorView-scroller {
+  height: 100%;
+}
+
+.giftSelectorView-inbox-footer-label {
+  margin-top: -30px;
+  text-align: left;
+}

@@ -5,14 +5,18 @@
 
 .journal .entry.log_summary .journaltext b {
   display: block;
+  width: 30%;
   padding-top: 0.5em;
+  padding-bottom: 5px;
+  margin: 0 auto;
   font-weight: 900;
+  border-bottom: 1px solid #c6c6c6;
 }
 
 /* Progress log */
 .mh-ui-progress-log-link {
   display: block;
-  width: 100px;
+  width: 50%;
   margin: 1em auto;
 }
 
@@ -162,6 +166,7 @@
 }
 
 .reportTitle {
+  margin-bottom: 5px;
   font-size: 1.5em;
 }
 

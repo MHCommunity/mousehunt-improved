@@ -25,3 +25,21 @@ code {
 .pageSidebarView .fb-page {
   order: 1000;
 }
+
+.support-link {
+  padding: 10px;
+  background: #8dff7d;
+  border-radius: 10px;
+  box-shadow: -1px -1px 1px #ccc inset;
+}
+
+.support-link p {
+  margin-top: 0;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.support-link a {
+  font-size: 16px;
+  font-weight: 900;
+}

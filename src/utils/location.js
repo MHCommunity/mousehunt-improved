@@ -1,4 +1,5 @@
 import { getHeaders, sessionGet, sessionSet } from './data';
+import { makeElement } from './elements';
 
 /**
  * Get the current location.
@@ -8,6 +9,10 @@ import { getHeaders, sessionGet, sessionSet } from './data';
 const getCurrentLocation = () => {
   const location = user?.environment_type || '';
   return location.toLowerCase();
+};
+
+const getCurrentLocationName = () => {
+  return user?.environment_name || getCurrentLocation();
 };
 
 /**
@@ -48,6 +53,16 @@ const getRelicHunterLocation = () => {
  * @param {string} location The location to travel to.
  */
 const travelTo = (location) => {
+  const header = document.querySelector('.mousehuntHeaderView');
+  if (header) {
+    const existing = header.querySelector('.mh-improved-travel-message');
+    if (existing) {
+      existing.remove();
+    }
+
+    makeElement('div', ['mh-improved-travel-message', 'travelPage-map-message'], 'Traveling...', header);
+  }
+
   if (app?.pages?.TravelPage?.travel) {
     app.pages.TravelPage.travel(location);
   }
@@ -55,6 +70,7 @@ const travelTo = (location) => {
 
 export {
   getCurrentLocation,
+  getCurrentLocationName,
   getRelicHunterLocation,
   travelTo
 };

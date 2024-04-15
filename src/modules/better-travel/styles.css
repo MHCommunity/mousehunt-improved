@@ -42,7 +42,7 @@
 }
 
 .travelPage-map-zoomContainer {
-  bottom: 300px;
+  bottom: 200px;
   transform: scale(1.5);
 }
 
@@ -340,4 +340,19 @@
 
 .mh-improved-travel-message > div {
   display: none;
+}
+
+.travelPage-map-image-environment-pointer {
+  top: 5px;
+  left: 29px;
+  width: 140px;
+  height: 116px;
+  background-size: cover;
+}
+
+.travelPage-map-image-environment-pointer-image {
+  top: 10px;
+  left: 6px;
+  width: 70px;
+  height: 70px;
 }

@@ -12,7 +12,6 @@ export default async () => {
     {
       id: 'better-maps.show-sidebar-goals',
       title: 'Show map goals in sidebar',
-      default: true,
     },
   ];
 };

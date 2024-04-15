@@ -34,14 +34,6 @@
   max-height: 75vh;
 }
 
-.treasureMapDialogView.wide.limitHeight {
-  transform: translate(-50%, -100px);
-}
-
-.treasureMapDialogView.wide.limitHeight.confirm {
-  transform: translate(-50%, -125px);
-}
-
 .giftSelectorView-inbox-giftContainer,
 #overlayPopup .giftSelectorView-scroller {
   height: auto;
@@ -64,90 +56,51 @@
   max-height: 500px;
 }
 
-/* FI airship */
-.floatingIslandsWorkshop-parts-content {
+.floatingIslandsWorkshop-partsContainer {
+  top: 263px;
+  left: 113px;
+  width: 533px;
   height: auto;
-  background: linear-gradient(255deg, #fbf3b0 75%, #fdfcc7 100%);
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  outline: 10px solid #fbf3ae;
-  box-shadow:
-    0 2px 1px 11px #b9570e,
-    0 3px 2px 12px #985316,
-    0 4px 1px 13px #84420f,
-    0 5px 1px 14px #c47728,
-    0 6px 1px 15px #cd7f2c,
-    0 7px 1px 16px #e19439;
+  background-image: url(https://i.mouse.rip/fi-airships-middle.png);
+  background-size: contain;
+  border-radius: 12px;
+}
+
+.floatingIslandsWorkshop-parts-content {
+  position: relative;
+  height: 100%;
+  max-height: 60vh;
+}
+
+.floatingIslandsWorkshop-parts-title {
+  padding: 5px 10px 0;
+  margin-top: -23px;
+  margin-right: -1px;
+  background: radial-gradient(circle, #fdf9bd 0%, #fefdd6 50%, #fdf9bd 100%);
+  border: none;
+  border-radius: 4px 5px 0 0;
+}
+
+.floatingIslandsWorkshop-partsContainer::after {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 533px;
+  height: 30px;
+  content: "";
+  background-image: url(https://i.mouse.rip/fi-airships-bottom-2.png);
+  background-position: bottom;
 }
 
 .floatingIslandsWorkshop-stabilizer {
-  top: 325px;
-  right: 78px;
-  left: unset;
-  border: none;
-  transform: rotate(90deg);
-}
-
-.floatingIslandsWorkshop-stabilizer label {
-  color: #848383;
-}
-
-.floatingIslandsWorkshop-part-name {
   position: absolute;
-  top: 0;
-  right: 10px;
-  left: 0;
-}
-
-.floatingIslandsWorkshop-part-border {
-  margin-top: 18px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.floatingIslandsWorkshop-part-state a.mousehuntActionButton.tiny.lightBlue {
-  font-size: 9px;
-  background: #fefad7;
-  box-shadow: none;
-}
-
-.floatingIslandsWorkshop-part-state a.mousehuntActionButton.tiny.lightBlue::before {
-  background: #fff9c3;
-  box-shadow: 0 0 10px #f3ecb2 inset;
-}
-
-.floatingIslandsWorkshop-parts-total {
-  margin-right: 15px;
-}
-
-.floatingIslandsWorkshop-partsContainer {
-  background-color: #fbf3ae;
-  border-radius: 5px;
-}
-
-.floatingIslandsWorkshop-part.active .floatingIslandsWorkshop-part-border {
-  background-color: #90cefa;
-}
-
-.floatingIslandsWorkshop-part-state .mousehuntActionButton.tiny.selected {
-  box-shadow: none;
-}
-
-.floatingIslandsWorkshop-part-actions {
-  background-color: #c48648;
-}
-
-.floatingIslandsWorkshop-part.active .floatingIslandsWorkshop-part-border::after {
-  border: none;
+  top: 250px;
+  left: 430px;
 }
 
 /* select 2 */
 .select2-results {
   max-height: 50vh;
-}
-
-.treasureMapDialogView.limitHeight .treasureMapDialogView-content {
-  max-height: unset;
 }
 
 .giftSelectorView-scroller {

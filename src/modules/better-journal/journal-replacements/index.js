@@ -126,6 +126,7 @@ const replacements = [
   ['Lucky me, a prize mouse wandered by and fell for my trap!', '🎉️ A prize mouse fell into my trap!'],
   [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
   ['In a flash of light my', 'My'],
+  ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found another '],
 ];
 
 const replaceInEntry = (entry) => {
@@ -170,7 +171,7 @@ const updateLog = (entry) => {
     return;
   }
 
-  link.classList.add('mh-ui-progress-log-link', 'mousehuntActionButton', 'tiny', 'lightBlue');
+  link.classList.add('mh-ui-progress-log-link', 'mousehuntActionButton', 'small', 'lightBlue');
 
   const span = document.createElement('span');
   span.innerText = 'View Progress Log';

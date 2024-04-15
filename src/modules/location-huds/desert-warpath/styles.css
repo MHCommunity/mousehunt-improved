@@ -122,12 +122,16 @@
 .warpathHud-missle-activate {
   position: absolute;
   top: -15px;
-  left: -26px;
+  left: -150px;
   cursor: pointer;
   opacity: 0.4;
   transition: 0.3s;
   transform: rotate(270deg) scale(0.8);
   animation: none;
+}
+
+.wave_4 .warpathHud-missle-activate {
+  left: -26px;
 }
 
 .warpathHud-missle-activate:hover {
@@ -138,4 +142,9 @@
 .warpathHUD-engaged .warpathHud-missle-activate {
   filter: hue-rotate(281deg);
   opacity: 0.9;
+}
+
+.warpathHUD-streakContainer.streak_0 .warpathHUD-streak-image-empty {
+  color: transparent;
+  text-shadow: none;
 }

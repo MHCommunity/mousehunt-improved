@@ -1,4 +1,4 @@
-import { onTurn } from '@utils';
+import { getFlag, onTurn } from '@utils';
 
 const showFullTitlePercent = async () => {
   const title = document.querySelector('.mousehuntHud-userStat.title');
@@ -49,7 +49,10 @@ const replaceKingdomLink = async () => {
 export default async () => {
   showFullTitlePercent();
   replaceInboxClose();
-  replaceKingdomLink();
+
+  if (! getFlag('no-kingdom-link-replacement')) {
+    replaceKingdomLink();
+  }
 
   onTurn(showFullTitlePercent, 1000);
 };

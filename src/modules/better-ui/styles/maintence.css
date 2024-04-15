@@ -1,0 +1,36 @@
+.maintenance-banner {
+  margin-bottom: 20px;
+  line-height: 20px;
+  background-color: #f5f3eb !important;
+  border-color: #ceb7a6 !important;
+  box-shadow: -1px -1px 1px #d3cecb inset;
+}
+
+.maintenance-banner .close {
+  position: absolute;
+  top: -5px;
+  right: 5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: unset;
+  color: #e03a3a;
+  text-align: center;
+  content: "";
+  background: #fff;
+  border: 1px solid #d1d0cf;
+  border-color: #d1d0cf;
+  border-radius: 20px;
+  box-shadow: inset 0 0 3px -1px #d1d0cf;
+}
+
+.maintenance-banner .close:hover {
+  color: #fff;
+  background-color: #e03a3a;
+}

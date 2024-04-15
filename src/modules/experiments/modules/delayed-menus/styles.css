@@ -1,0 +1,4 @@
+.mousehuntHud-menu ul li ul {
+  transform-origin: top;
+  animation: mh-improved-in-scale-y 0.15s 1 backwards cubic-bezier(0.4, 0, 1, 1);
+}

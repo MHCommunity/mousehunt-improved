@@ -20,6 +20,10 @@
   transform: translate(-50%);
 }
 
+.treasureMapView-hunter-wrapper .quickSendWrapper {
+  top: 60px !important;
+}
+
 .userInteractionButtonsView-buttonGroup:hover .quickSendWrapper,
 .quickSendWrapper:hover {
   display: block;

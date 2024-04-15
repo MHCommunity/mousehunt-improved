@@ -3,6 +3,7 @@ import {
   makeElement,
   onDialogShow,
   onEvent,
+  onRequest,
   setMultipleTimeout
 } from '@utils';
 
@@ -46,6 +47,39 @@ const addUnfoundEggHighlightWithTimeout = () => {
   }, [10, 500, 1000]);
 };
 
+const rightclickToFlag = () => {
+  const board = document.querySelector('.eggSweeper');
+  if (! board) {
+    return;
+  }
+
+  const isFlagMode = board.classList.contains('flags');
+  if (isFlagMode) {
+    return;
+  }
+
+  const spaces = board.querySelectorAll('.eggSweeper-board-row-cell');
+  if (! spaces) {
+    return;
+  }
+
+  // Add an event listener to each space and if it is right-clicked, toggle the class on the parent.
+  spaces.forEach((space) => {
+    space.addEventListener('contextmenu', async (e) => {
+      const cell = space.querySelector('a');
+      if (! cell) {
+        return;
+      }
+
+      e.preventDefault();
+
+      hg.views.EggstremeEggscavationView.setFlagMode();
+      hg.views.EggstremeEggscavationView.pickTile(cell);
+      hg.views.EggstremeEggscavationView.setShovelMode();
+    });
+  });
+};
+
 /**
  * Always active.
  */
@@ -55,6 +89,16 @@ const springEggHuntGlobal = async () => {
   onDialogShow('springHuntPopup', () => {
     addUnfoundEggHighlightWithTimeout();
     onEvent('ajax_response', addUnfoundEggHighlightWithTimeout, true);
+  });
+
+  onDialogShow('eggSweeperPopup', () => {
+    setTimeout(rightclickToFlag, 1000);
+  });
+
+  onRequest('events/eggstreme_eggscavation.php', (request, data) => {
+    if ('show_field' === data.action) {
+      setTimeout(rightclickToFlag, 1000);
+    }
   });
 
   setMultipleTimeout(() => {

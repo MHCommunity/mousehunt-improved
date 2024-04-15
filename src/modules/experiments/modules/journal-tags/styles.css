@@ -1,3 +1,4 @@
+.journal .content .catchsuccessloot::after,
 .journal .content .attractionfailure::after,
 .journal .content .catchfailure::after,
 .journal .content .luckycatchsuccess::after,
@@ -19,6 +20,31 @@
   border-radius: 3px;
   opacity: 0;
   transition: 0.2s;
+}
+
+.journal .content .catchsuccessloot:hover::after,
+.journal .content .attractionfailure:hover::after,
+.journal .content .catchfailure:hover::after,
+.journal .content .luckycatchsuccess:hover::after,
+.journal .content .passive:hover::after,
+.journal .content .linked:hover::after {
+  opacity: 1;
+}
+
+.journal .content .bonuscatchsuccess::after,
+.journal .content .bonuscatchfailure::after {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.journal .content .bonuscatchsuccess:hover::after,
+.journal .content .bonuscatchfailure:hover::after {
+  opacity: 1;
+}
+
+.journal .content .catchsuccessloot::after {
+  content: "Catch";
+  background: #53891b;
 }
 
 .journal .content .catchfailure::after {
@@ -62,23 +88,4 @@
 
 .journal .content .passive.catchfailure::after {
   content: "Trap Check · FTC";
-}
-
-.journal .content .attractionfailure:hover::after,
-.journal .content .catchfailure:hover::after,
-.journal .content .luckycatchsuccess:hover::after,
-.journal .content .passive:hover::after,
-.journal .content .linked:hover::after {
-  opacity: 1;
-}
-
-.journal .content .bonuscatchsuccess::after,
-.journal .content .bonuscatchfailure::after {
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.journal .content .bonuscatchsuccess:hover::after,
-.journal .content .bonuscatchfailure:hover::after {
-  opacity: 1;
 }

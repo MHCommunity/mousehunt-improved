@@ -109,8 +109,8 @@ div#messengerUINotification {
 }
 
 #messengerUINotification .messengerUINotificationClose {
-  top: -15px;
-  right: -5px;
+  top: -14px;
+  right: -12px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -204,11 +204,6 @@ div#messengerUINotification {
 .journal.jsingle .close a:focus::after {
   color: #fff;
   background-color: #e03a3a;
-}
-
-.giftSelectorView-inbox-footer-label {
-  margin-top: -30px;
-  text-align: left;
 }
 
 #messengerUINotification .notificationMessageList .tab[data-tab="marketplace"] .message .clear-block {

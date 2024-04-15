@@ -211,6 +211,8 @@
 }
 
 .headsUpDisplayBountifulBeanstalkView__baitCraftableContainer .mousehuntTooltip {
+  right: -40px;
+  left: -40px;
   line-height: 1.5;
   text-align: center;
 }
@@ -326,24 +328,6 @@
   left: -2px;
 }
 
-.loot-displayed.bountifulBeanstalkCastleView__title > div {
-  position: absolute;
-  top: 18px;
-  right: 50px;
-  left: 50px;
-  height: 18px;
-  font-size: 11px;
-  font-weight: 400;
-  line-height: 16px;
-  background: linear-gradient(90deg, #f4e4a6 0%, #faedb1 50%, #f4e4a6 100%);
-  border-radius: 42%;
-  box-shadow: 0 3px 3px -2px #6d3421;
-}
-
-.loot-displayed.bountifulBeanstalkCastleView__title {
-  bottom: 243px;
-}
-
 .headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--feather,
 .headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--condensed_creativity {
   font-size: 10px;
@@ -419,4 +403,8 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 .loading .mh-crafting-actions,
 .success .mh-crafting-actions {
   opacity: 0.1;
+}
+
+.folkloreForestRegionView-trapWarningContainer.active {
+  z-index: 35;
 }

@@ -3,6 +3,7 @@ import {
   dbGet,
   dbGetAll,
   dbSet,
+  doEvent,
   getData,
   makeElement,
   onRequest
@@ -47,7 +48,7 @@ const makeEntriesMarkup = (entries) => {
       }
     }
 
-    if (entry.image) {
+    if (entry.image && ! entry.mouse) {
       html += `<div class="journalimage">${entry.image}</div>`;
     }
 
@@ -74,6 +75,8 @@ const doPageStuff = (page, event = null) => {
   }
 
   journalEntryContainer.append(makeElement('div', 'journal-history-entries', makeEntriesMarkup(journalEntriesForPage)));
+
+  doEvent('journal-history-entry-added', journalEntryContainer);
 };
 
 const getAllEntries = async () => {

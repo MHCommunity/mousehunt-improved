@@ -1,0 +1,5 @@
+#overlayPopup {
+  position: sticky;
+  top: 10vh !important;
+  overflow: hidden;
+}

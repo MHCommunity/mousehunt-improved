@@ -86,15 +86,17 @@
 }
 
 #sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper {
-  position: absolute;
+  position: fixed;
   z-index: 10;
   display: block;
+  width: 350px;
   padding: 10px 5px;
   margin: -5px -10px;
   background-color: #eaeaea;
-  border: 1px solid #000;
+  border: 1px solid #a8a8a8;
   border-radius: 3px;
-  box-shadow: 0 10px 15px 0 rgb(0 0 0 / 53%);
+  box-shadow: 0 10px 15px 0 rgb(0 0 0 / 50%);
+  transform: translate(calc((200px - 350px) / 2), -5px);
 }
 
 #sorted-mice-container .mouse-subcategory-mice .mouse-container-selected .mouse-mhct-extra-info-wrapper {
@@ -166,6 +168,7 @@
 #sorted-mice-container .mouse-weakness {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: 10px;
 }
 

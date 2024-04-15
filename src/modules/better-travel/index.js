@@ -17,10 +17,11 @@ import {
   removeSubmenuItem,
   sessionGet,
   setPage,
-  setTab
+  setTab,
+  travelTo
 } from '@utils';
 
-import { getTravelSetting, saveTravelSetting, travelTo } from './travel-utils';
+import { getTravelSetting, saveTravelSetting } from './travel-utils';
 
 import addReminders from './reminders';
 import travelWindow from './travel-window';
@@ -549,10 +550,9 @@ const addFavoriteButtonsToTravelPage = async () => {
     }
 
     // Don't add a favorite button to event locations.
-    const isEventLocation = environments.find((environment) => {
+    const isEventLocation = eventEnvironments.find((environment) => {
       return environment.id === type;
     });
-
     if (isEventLocation) {
       return;
     }
@@ -609,6 +609,7 @@ const main = () => {
 };
 
 let environments = [];
+let eventEnvironments = [];
 
 /**
  * Initialize the module.
@@ -623,6 +624,7 @@ const init = async () => {
   addStyles(stylesJoined, 'better-travel');
 
   environments = await getData('environments');
+  eventEnvironments = await getData('environments-events');
 
   main();
 };

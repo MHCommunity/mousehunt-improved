@@ -12,17 +12,21 @@
 }
 
 .campPage-tabs-tabRow:hover .campPage-tabs-tabHeader span,
-.campPage-tabs-tabRow:focus .campPage-tabs-tabHeader span,
-.campPage-tabs-tabHeader span {
-  border-bottom: 1px solid #f6f3eb;
+.campPage-tabs-tabRow a.campPage-tabs-tabHeader span {
+  border-bottom: none;
 }
 
-.campPage-tabs-tabHeader.active span,
+.campPage-tabs-tabRow a.campPage-tabs-tabHeader.active span {
+  padding-bottom: 5px;
+  margin-bottom: -1px;
+  border: 1px solid #cbc6bb;
+  border-bottom: none;
+  box-shadow: 0 1px #f5f3eb;
+}
+
 .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span,
 .campPage-tabs-tabRow a.campPage-tabs-tabHeader:focus span {
-  border: 1px solid #f7f5ee;
-  border-bottom: none;
-  box-shadow: 0 1px #f7f5ee;
+  margin-bottom: -1px;
 }
 
 /* tab content */
@@ -184,6 +188,10 @@ div#dailyRewardTimer::before {
   border: 1px solid #d3cecb;
   border-radius: 3px;
   box-shadow: -1px 1px 3px 0 #d3cecb inset;
+}
+
+.campPage-tabs-tabContent-larryTip-container {
+  padding-top: 10px;
 }
 
 .campPage-daily-container.daily .campPage-daily-content {

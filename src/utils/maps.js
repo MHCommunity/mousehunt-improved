@@ -180,14 +180,14 @@ const showTravelConfirmationNoDetails = async (environment) => {
       id: environment.id,
       type: environment.id,
       thumb: environment.image,
-      header: environment.headerImage,
+      header: environment.header,
       goals: environment.goals || [],
       num_completed_goals: 0,
-      num_total_goals: environmentMice.length,
+      num_total_goals: 0,
       hunters: [],
       is_current_environment: getCurrentLocation() === environment.id,
       can_travel: true,
-      num_missing_goals: environmentMice.length,
+      num_missing_goals: 0,
     },
     goals: []
   };

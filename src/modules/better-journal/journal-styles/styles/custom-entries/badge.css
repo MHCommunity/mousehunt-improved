@@ -1,0 +1,63 @@
+.journal .content .entry.badge {
+  z-index: 1;
+  margin-bottom: -1px;
+  background: linear-gradient(135deg, #eee 0%, #c6d8ee 50%);
+  border: 1px solid #5b5b5b;
+  transition: transform 0.3s ease-in-out;
+}
+
+.journal .content .entry.badge:hover {
+  transform: scale(1.1);
+}
+
+.journal .content .entry.badge:hover,
+.journal .content .entry.badge {
+  animation: mh-improved-glow 1s 2;
+}
+
+.journal .content .entry.badge .journalimage {
+  width: 80px;
+  height: 80px;
+  margin: 0;
+}
+
+.journal .content .entry.badge .journalimage img {
+  width: 65px;
+  transition: 0.3s ease-in-out;
+}
+
+.journal .content .entry.badge:hover .journalimage img {
+  transform: rotate(-10deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journal .content .entry.badge,
+  .journal .content .entry.badge:hover {
+    transform: none;
+    animation: none;
+  }
+
+  .journal .content .entry.badge .journalimage img {
+    transform: none;
+  }
+}
+
+.entry.short.badge.better-journal-styles-badge-bronze {
+  background: linear-gradient(135deg, #eee, #f6b584 80%);
+}
+
+.entry.short.badge.better-journal-styles-badge-silver {
+  background: linear-gradient(135deg, #eee, #c6d8ee 50%);
+}
+
+.entry.short.badge.better-journal-styles-badge-gold {
+  background: linear-gradient(135deg, #eee, #fff24e 80%);
+}
+
+.entry.short.badge.better-journal-styles-badge-platinum {
+  background: linear-gradient(135deg, #eee, #c3b8ff 80%);
+}
+
+.entry.short.badge.better-journal-styles-badge-diamond {
+  background: linear-gradient(135deg, #eee, #8bdae9 80%);
+}

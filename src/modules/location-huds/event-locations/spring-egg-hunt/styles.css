@@ -6,7 +6,7 @@
   left: -9px;
   outline: 1px solid #364661;
   box-shadow:
-    0 0 125px #1be300 inset,
+    0 0 125px #bbffb3 inset,
     0 1px 6px -2px #000;
 }
 
@@ -52,6 +52,7 @@
 .springHuntHUD-shop-cost {
   margin-top: -2px;
   font-size: 12px;
+  border-color: #999;
 }
 
 .springHuntHUD-shelf .springHuntHUD-shelf-itemsContainer {
@@ -178,4 +179,18 @@
 
 .springHuntHUD-setMaxQuantityButton {
   font-size: 14px;
+}
+
+.springHuntHUD-popup-dialogContainer {
+  top: 50vh;
+}
+
+.springHuntHUD-popup-dialogFrame-content {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.springHuntHUD-shelf-item .itemImage {
+  border-width: 1px;
+  box-shadow: inset 0 0 7px -1px #db882f;
 }

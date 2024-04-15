@@ -612,3 +612,12 @@ a.itemPurchaseView-action-buySuperBrie {
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details {
   height: auto;
 }
+
+.itemPurchaseView-container[data-max-inventory-quantity="1"]::after {
+  position: absolute;
+  top: 17px;
+  right: 5px;
+  z-index: 1;
+  color: #3b3b3b;
+  content: "(Limit " attr(data-max-inventory-quantity) ")";
+}

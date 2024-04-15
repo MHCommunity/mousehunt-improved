@@ -2,13 +2,17 @@ import { getSetting } from '@utils';
 
 import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
+import delayedMenus from './modules/delayed-menus';
 import journalTags from './modules/journal-tags';
 import legacyHud from './modules/legacy-hud';
 import legacyHudTweaks from './modules/legacy-hud-tweaks';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
 import replaceFavicon from './modules/replace-favicon';
+import shieldGoesToCamp from './modules/shield-goes-to-camp';
+import stickyPopups from './modules/sticky-popups';
 import trollMode from './modules/troll-mode';
+import uniqueLootCount from './modules/unique-loot-count';
 
 const experiments = [
   {
@@ -18,15 +22,33 @@ const experiments = [
     load: bigTimer,
   },
   {
+    id: 'experiments.shield-goes-to-camp',
+    title: 'Clicking shield goes to camp if not already there',
+    load: shieldGoesToCamp
+  },
+  {
     id: 'experiments.codex-at-bottom',
     title: 'Codex at bottom',
     description: 'Moves the Codex section to the bottom of the trap selector',
     load: codexAtBottom,
   },
   {
+    id: 'experiments.delayed-menus',
+    title: 'Delayed Menus',
+    load: delayedMenus,
+  },
+  {
     id: 'experiments.legacy-hud',
     title: 'Legacy HUD',
     load: legacyHud,
+  },
+  {
+    id: 'experiments.legacy-hud-only-menu',
+    title: 'Legacy HUD: Menu only',
+  },
+  {
+    id: 'experiments.legacy-hud-only-stats',
+    title: 'Legacy HUD: Stats bar only',
   },
   {
     id: 'experiments.legacy-hud-tweaks',
@@ -45,9 +67,19 @@ const experiments = [
     load: raffle,
   },
   {
+    id: 'experiments.sticky-popups',
+    title: 'Sticky Popups',
+    load: stickyPopups,
+  },
+  {
     id: 'experiments.lol-gottem',
     title: 'Troll mode',
     load: trollMode,
+  },
+  {
+    id: 'experiments.unique-loot-count',
+    title: 'Unique loot count in progress log',
+    load: uniqueLootCount,
   },
   {
     id: 'better-journal.journal-tags',

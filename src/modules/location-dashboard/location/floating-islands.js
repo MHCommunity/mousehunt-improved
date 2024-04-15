@@ -62,7 +62,11 @@ export default (quests) => {
 
   const powerType = powerTypes[quest.island_power_type];
 
-  let returnText = `<div class='dashboard-fi-tiles'>${tileText}</div> ${powerType} ${type}`;
+  let returnText = '<div class="dashboard-fi-wrap">';
+  returnText += `<div class='dashboard-fi-tiles'>${tileText}</div>`;
+  returnText += `<div class='dashboard-fi-type'>${powerType} ${type}</div>`;
+  returnText += '</div>';
+
   if (quest.isLai) {
     returnText += `<div class="stats">${quest.hunts_remaining} hunts remaining, ${quest.wardens_caught} wardens caught</div>`;
   } else {

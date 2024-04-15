@@ -1,6 +1,7 @@
-import { addStyles, makeElement } from '@utils';
+import { addStyles, getSetting, makeElement } from '@utils';
 
-import styles from './styles.css';
+import menuStyles from './menu.css';
+import statsStyles from './stats.css';
 
 const getMapText = () => {
   if (user?.quests?.QuestRelicHunter?.maps?.length) {
@@ -17,7 +18,7 @@ const getMapText = () => {
 };
 
 const getEquippedStat = (type, label, id, name, quantity) => {
-  return `<li class="mousehuntHud-userStat ${type}" data-item-id="${id}">
+  return `<li class="mousehuntHud-userStat ${type}" data-item-id="${id}" data-itemId="${id}">
     <span class="hudstatlabel">${label}:</span>
     <span id="hud_${type}" class="hudstatvalue">
       <a href="#" class="label" onclick="hg.utils.PageUtil.setPage('Inventory', {tab:'traps', sub_tab:'${type}'}); return false;">
@@ -72,7 +73,7 @@ const getLegacyHudHtml = () => {
     </div>
     <div id="cheeseped" class="cheeseped">
       <a href="#" class="baiticon" target="_parent" onclick="hg.utils.PageUtil.setPage('Inventory', {tab:'cheese'}); return false;">
-        <img id="hud_baitIcon" src="${user?.bait_thumb}" border="0" title="${user?.bait_name} ${user?.bait_quantity.toLocaleString()}">
+        <img id="hud_baitIcon" src="${user?.bait_thumb}" border="0">
       </a>
     </div>
     <div class="hudstatlist legacyFix">
@@ -86,7 +87,7 @@ const getLegacyHudHtml = () => {
       <ul>
         ${getStat('gold', 'Gold', user?.gold.toLocaleString())}
         ${getStat('points', 'Points', user?.points.toLocaleString())}
-        ${getEquippedStat('bait', 'Bait', user?.bait_item_id, user?.bait_name, user?.bait_quantity.toLocaleString())}
+        ${getEquippedStat('bait', 'Bait', user?.bait_item_id, user?.bait_name, user?.bait_quantity)}
       </ul>
     </div>
     <div class="hudstatlist">
@@ -169,7 +170,9 @@ const makeOldMenu = () => {
       kingdomMenu.parentNode.insertBefore(lore, kingdomMenu.nextSibling);
     }
   }
+};
 
+const replaceStatsBar = () => {
   const hudStats = document.querySelector('.headsUpDisplayView-stats');
   if (hudStats) {
     const existingLegacyHud = document.querySelector('.mh-legacy-mode-hud');
@@ -179,10 +182,29 @@ const makeOldMenu = () => {
       hudStats.parentNode.insertBefore(legacyHud, hudStats.nextSibling);
     }
   }
+
+  const oldStats = document.querySelector('.mousehuntHud-userStatBar');
+  if (oldStats) {
+    oldStats.remove();
+  }
 };
 
 export default async () => {
-  addStyles(styles, 'experiment-legacy-hud');
+  const stylesToAdd = [];
 
-  makeOldMenu();
+  const loadMenu = getSetting('experiments.legacy-hud-only-menu', false);
+  const loadStats = getSetting('experiments.legacy-hud-only-stats', false);
+  const loadBoth = loadMenu === loadStats;
+
+  if (loadMenu || loadBoth) {
+    stylesToAdd.push(menuStyles);
+    makeOldMenu();
+  }
+
+  if (loadStats || loadBoth) {
+    stylesToAdd.push(statsStyles);
+    replaceStatsBar();
+  }
+
+  addStyles(stylesToAdd, 'experiment-legacy-hud');
 };

@@ -142,33 +142,6 @@ const toggleFuelWithIcon = async () => {
   });
 };
 
-const updateTitle = async () => {
-  const title = document.querySelector('.bountifulBeanstalkCastleView__title');
-  if (! title) {
-    return;
-  }
-
-  if (title.classList.contains('loot-displayed')) {
-    const display = document.querySelector('.loot-display');
-    if (display) {
-      display.remove();
-    }
-  }
-
-  const loot = document.querySelector('.bountifulBeanstalkCastleView__currentRoomLoot');
-  const lootMult = document.querySelector('.bountifulBeanstalkCastleView__currentRoomLootMultiplier');
-
-  if (! loot || ! lootMult) {
-    title.classList.remove('loot-displayed');
-    return;
-  }
-
-  if (loot.innerText && lootMult.innerText) {
-    makeElement('div', 'loot-display', `${lootMult.innerText}x ${loot.innerText}`, title);
-    title.classList.add('loot-displayed');
-  }
-};
-
 const updateLootText = async () => {
   const ccLoot = document.querySelector('.headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--condensed_creativity div');
   if (ccLoot) {
@@ -181,31 +154,37 @@ const updateLootText = async () => {
   }
 };
 
+const baitAmounts = {
+  beanster_cheese: {
+    amounts: ['160-normal', 160],
+    shop: 'beanster_pack_small_convertible',
+    shopNormal: 'beanster_cheese',
+  },
+  lavish_beanster_cheese: {
+    amounts: [4, 8, 80],
+    shop: 'lavish_beanster_pack_small_convertible',
+  },
+  leaping_lavish_beanster_cheese: {
+    amounts: [2, 4, 8],
+    shop: 'leaping_lavish_beanster_pack_small_convertible',
+  },
+  royal_beanster_cheese: {
+    amounts: [2, 18, 20],
+    shop: 'royal_beanster_pack_small_convertible',
+  }
+};
+
 const addCraftingButtons = async () => {
   const baits = document.querySelectorAll('.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer');
   if (! baits) {
     return;
   }
 
-  const purchaseBait = async (type, quantity, baitEl, actionsEl) => {
-    actionsEl.classList.add('loading');
-
-    if (quantity >= 2) {
-      if ('beanster_cheese' === type) {
-        type = 'beanster_pack_small_convertible';
-      } else if ('lavish_beanster_cheese' === type) {
-        type = 'lavish_beanster_pack_small_convertible';
-      } else if ('leaping_lavish_beanster_cheese' === type) {
-        type = 'leaping_lavish_beanster_pack_small_convertible';
-      } else if ('royal_beanster_cheese' === type) {
-        type = 'royal_beanster_pack_small_convertible';
-      }
-
-      quantity = quantity / 2;
-    }
+  const purchaseBait = async (shopItem, quantity, popup) => {
+    popup.classList.add('loading');
 
     const results = await doRequest('managers/ajax/purchases/itempurchase.php', {
-      type,
+      type: shopItem,
       quantity,
       buy: 1,
       is_kings_cart_item: 0,
@@ -237,7 +216,7 @@ const addCraftingButtons = async () => {
 
       const baitQuantityType = baitQuantity.getAttribute('data-item-type');
       if (baitQuantityType && newQuantities[baitQuantityType]) {
-        baitQuantity.innerText = newQuantities[baitQuantityType];
+        baitQuantity.innerText = newQuantities[baitQuantityType].toLocaleString();
       }
 
       const baitCraftQty = bait.querySelector('.headsUpDisplayBountifulBeanstalkView__ingredientQuantity');
@@ -247,15 +226,15 @@ const addCraftingButtons = async () => {
 
       const baitIngredientType = baitCraftQty.getAttribute('data-item-type');
       if (baitIngredientType && newQuantities[baitIngredientType]) {
-        baitCraftQty.innerText = newQuantities[baitIngredientType];
+        baitCraftQty.innerText = newQuantities[baitIngredientType].toLocaleString();
       }
     });
 
-    actionsEl.classList.remove('loading');
-    actionsEl.classList.add('success');
+    popup.classList.remove('loading');
+    popup.classList.add('success');
 
     setTimeout(() => {
-      actionsEl.classList.remove('success');
+      popup.classList.remove('success');
     }, 1000);
 
     return (results && results.success);
@@ -286,34 +265,26 @@ const addCraftingButtons = async () => {
     const actions = makeElement('div', 'mh-crafting-actions');
     const baitType = bait.getAttribute('data-item-type');
 
-    let twoQuantity = 2;
+    const amounts = baitAmounts[baitType].amounts;
+    for (const amount of amounts) {
+      const isNormal = amount.toString().includes('-normal');
 
-    if ('leaping_lavish_beanster_cheese' === baitType) {
-      twoQuantity = 4;
-    } else if ('royal_beanster_cheese' === baitType) {
-      twoQuantity = 18;
+      const qty = isNormal ? amount.toString().replace('-normal', '') : amount;
+      const className = isNormal ? 'mh-crafting-action' : 'mh-crafting-action lightBlue';
+      const title = isNormal ? `Craft ${amount}` : `Craft ${amount} using Magic Essence`;
+      const type = isNormal ? baitAmounts[baitType].shopNormal : baitAmounts[baitType].shop;
+
+      makeMhButton({
+        text: `Craft ${qty}`,
+        className,
+        title,
+        size: 'tiny',
+        callback: () => {
+          purchaseBait(type, qty, popup);
+        },
+        appendTo: actions,
+      });
     }
-
-    makeMhButton({
-      text: 'Craft 1',
-      className: 'mh-crafting-action',
-      size: 'tiny',
-      callback: () => {
-        purchaseBait(baitType, 1, bait, popup);
-      },
-      appendTo: actions,
-    });
-
-    makeMhButton({
-      text: `Craft ${twoQuantity}`,
-      className: 'mh-crafting-action',
-      title: `Craft ${twoQuantity} using Magic Essence`,
-      size: 'tiny',
-      callback: () => {
-        purchaseBait(baitType, twoQuantity, bait, popup);
-      },
-      appendTo: actions,
-    });
 
     popup.append(actions);
 
@@ -342,7 +313,6 @@ export default async () => {
   keepTooltipToggled();
   makeGiantMoreVisible();
   toggleFuelWithIcon();
-  updateTitle();
   updateLootText();
   addCraftingButtons();
 

@@ -41,21 +41,19 @@ const addSearch = () => {
   }
 
   const form = makeElement('form', 'mhui-supply-search-form');
-  const label = makeElement('label', ['mhui-supply-search-label', 'screen-reader-only']);
+  const label = makeElement('label', ['mhui-supply-search-label']);
   label.setAttribute('for', 'mhui-supply-search-input');
-  makeElement('span', '', 'Search for an item', label);
-
-  form.append(label);
+  makeElement('span', '', 'Search: ', label);
 
   const input = makeElement('input', 'mhui-supply-search-input');
   input.setAttribute('type', 'text');
   input.setAttribute('id', 'mhui-supply-search-input');
-  input.setAttribute('placeholder', 'Search for an item');
   input.setAttribute('autocomplete', 'off');
 
   input.addEventListener('keyup', processSearch);
 
-  form.append(input);
+  label.append(input);
+  form.append(label);
 
   // Convert the title into a wrapper that has the title and our form
   const titleWrapper = makeElement('div', 'mhui-supply-search');
@@ -203,7 +201,7 @@ const addQuickQuantityButtons = () => {
     classNames: ['mhui-supply-quick-quantity', 'gray', 'small'],
   });
 
-  const max = makeElement('button', ['mousehuntActionButton', 'lightBlue', 'small', 'mhui-supply-quick-quantity', 'mhui-supply-quick-quantit-max']);
+  const max = makeElement('button', ['mousehuntActionButton', 'lightBlue', 'small', 'mhui-supply-quick-quantity', 'mhui-supply-quick-quantity-max']);
   const maxText = makeElement('span', '', 'Max');
 
   max.addEventListener('click', () => {
@@ -268,6 +266,14 @@ const upgradeSendSupplies = (initial = false) => {
     if (inputVal) {
       inputVal.focus();
     }
+  }
+
+  const categories = document.querySelectorAll('#supplytransfer .categoryMenu a');
+  for (const category of categories) {
+    category.addEventListener('click', () => {
+      // re-sort the pinned items
+      highlightFavoritedItems();
+    }, { once: true });
   }
 
   sendTo.addEventListener('click', () => {

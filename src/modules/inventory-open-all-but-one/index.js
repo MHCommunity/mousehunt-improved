@@ -27,7 +27,7 @@ const replaceOpenAction = () => {
           maxQuantity = Number.parseInt(quantityEl.innerText.split('/')[1].trim(), 10);
         }
 
-        const quantity = maxQuantity - 1;
+        const quantity = maxQuantity > 200 ? 200 : maxQuantity - 1;
 
         const quantityInput = getQuantityInput();
         if (quantityInput) {

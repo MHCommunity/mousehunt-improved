@@ -1,5 +1,119 @@
 # Changelog
 
+## Version 0.41.0
+
+### New Features
+
+- Added "Delayed Menus" experiment to delay the opening of menus
+- Added "Legacy HUD Tweaks" experiment to tweak the Legacy HUD
+- Added "Legacy HUD" experiment to enable either part or all of the Legacy HUD
+- Added "Shield Goes to Camp" experiment which will update the shield to link to the camp unless you're already there
+- Added "Sticky Popups" experiment to make popups/overlays sticky
+- Added "Unique Loot Count" experiment to show the total and unique loot counts in your progress log
+
+### Better Gifts
+
+- Updated styles
+
+### Better Inventory
+
+- Added cap of 200 items being opened at once
+
+### Better Journal
+
+- Refactored journal processing for more stablility
+- Fixed image duplication when viewing historical mouse catch entries
+- Updated replacements
+- Added new crown journal entry styles
+- Update styles
+
+### Better Maps
+
+- Fixed issue with "Default to Sorted tab" not working
+- Updated scroll shop tab to be easier to navigate
+- Added ability to drag sticky mouse details popup out of map and keep it open
+- Updated styles
+- Updated 'Show goals in sidebar' setting to default to disabled
+
+### Better Send Supplies
+
+- Updated styles
+
+### Better Shops
+
+- Added "Limit 1" to items that have an inventory limit
+
+### Better Travel
+
+- Fixed favorite buttons not showing
+- Updated styles
+
+### Better UI
+
+- Added `no-kingdom-link-replacement` feature flag to disable kingdom link replacement
+- Updated styles
+
+### Experiments
+
+- Added "Delayed Menus" experiment to delay the opening of menus
+- Added "Legacy HUD Tweaks" experiment to tweak the Legacy HUD
+- Added "Legacy HUD" experiment to enable either part or all of the Legacy HUD
+- already there    Added "Sticky Popups" experiment to make popups/overlays sticky
+- Added "Unique Loot Count" experiment to show the total and unique loot counts in your progress log
+- Big Timer - Fixed issue with timer not showing
+- Big Timer - Updated styles for Legacy HUD
+- Journal Tags - Updated styles
+- favicons
+
+### Inventory Open all but One
+
+- Added cap of 200 items being opened at once
+
+### Location Dashboard
+
+- Added ability to click on the location name to travel to the location
+- Updates Bountiful Beanstalk display
+- Updates Fiery Warpath display
+- Updates Floating Islands display
+
+### Location HUDs: Bountiful Beanstalk
+
+- Removes room loot title change
+- Updates crafting button amounts
+- Updates styles
+
+### Location HUDs: Fiery Warpath
+
+- Fixed easter egg activation position and streak container styling
+
+### Location HUDs: Floating Islands
+
+- Style updates
+
+### Location HUDs: Spring Egg Hunt
+
+- Add ability to right-click on tile while playing Eggsweeper to mark with a flag
+- Updated styles
+
+### Quick Send Supplies
+
+- Added seperator in options for clarity
+- Updated styles
+
+### Show Auras
+
+- Updated styles
+
+### Taller Windows
+
+- Updated Airship customizer window to be full height
+- Updated styles
+
+### Other
+
+- Updates error page styles
+- Performance improvements and minor bug fixes
+
 ## Version 0.40.4
 
 - Fixes Send Supplies width

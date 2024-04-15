@@ -9,6 +9,7 @@ export * from './event-registry';
 export * from './flags';
 export * from './global';
 export * from './horn';
+export * from './journal';
 export * from './links';
 export * from './location';
 export * from './maps';

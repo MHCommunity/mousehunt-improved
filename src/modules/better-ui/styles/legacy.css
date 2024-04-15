@@ -1,0 +1,25 @@
+.headsup .mousehuntHud-userStat.bait:hover .label,
+.headsup .mousehuntHud-userStat.trinket:hover .label,
+.headsup .mousehuntHud-userStat.treasureMap:hover .label {
+  position: relative;
+  top: unset;
+  right: unset;
+  left: unset;
+  width: unset;
+  padding: 0;
+  background: none;
+  mix-blend-mode: normal;
+}
+
+.headsup .mousehuntHud-userStat.treasureMap:hover .label {
+  padding-top: 3px;
+}
+
+.headsup .mousehuntHud-userStat.bait:hover .label {
+  width: 83px;
+}
+
+.headsup .mousehuntHud-userStat:hover .icon {
+  border-color: #ccc;
+  box-shadow: 0 0 3px #ffde00;
+}
