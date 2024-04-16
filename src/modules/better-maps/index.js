@@ -37,6 +37,18 @@ const updateMapClasses = () => {
   }
 };
 
+const updateBlockContent = (block, type) => {
+  if ('environments' === type) {
+    // reorder the .treasureMapView-environment items to be in alphabetical order
+    const environments = block.querySelectorAll('.treasureMapView-environment');
+    console.log('environments', environments);
+    const sortedEnvironments = [...environments].sort((a, b) => a.innerText.localeCompare(b.innerText));
+    sortedEnvironments.forEach((env) => {
+      block.append(env);
+    });
+  }
+};
+
 const addBlockClasses = () => {
   const rightBlocks = document.querySelectorAll('.treasureMapView-rightBlock > div');
   const leftBlocks = document.querySelectorAll('.treasureMapView-leftBlock > div');
@@ -53,9 +65,12 @@ const addBlockClasses = () => {
         .replace('--', '-')
         .replace('goalssearch', 'goals');
       block.classList.add(`mh-ui-${blockType}-title`);
+      updateBlockContent(block, `${blockType}-title`);
+
       prevBlockType = blockType;
     } else {
       block.classList.add(`mh-ui-${prevBlockType}-block`);
+      updateBlockContent(block, prevBlockType);
     }
   });
 };
