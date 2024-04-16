@@ -118,3 +118,7 @@
 .mh-ui-environments-block .treasureMapView-block-content {
   max-height: 68vh;
 }
+
+.treasureMapView-block-content {
+  height: unset;
+}

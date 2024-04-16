@@ -7,10 +7,6 @@
   border-radius: 2px;
 }
 
-.treasureMapView-block-content {
-  height: unset;
-}
-
 .treasureMapView-block-content.halfHeight {
   padding: 0;
   border-radius: 0;
@@ -846,7 +842,7 @@ input.treasureMapView-block-search-text {
   top: 25px;
   right: 175px;
   left: unset;
-  width: 38%;
+  width: 45%;
 }
 
 .treasureMapView-highlight-environments {
@@ -1016,7 +1012,12 @@ input.treasureMapView-block-search-text {
 
 .treasureMapTooltipView-hunterText {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+
+.treasureMapDialogView.wide.limitHeight.confirm .treasureMapView {
+  max-height: 40vh;
 }
