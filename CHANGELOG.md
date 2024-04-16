@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.41.1
+
+- Fixes unique loot count display in progress log
+- Allows unselecting "Select random" buttons in Better Gifts
+- Fixes map heights
+- Fixes Bountiful Beanstalk Location HUD crafting amounts
+- Updates Better Send Supplies styles
+- Alphabetizes map location list
+- Minor style updates
+
 ## Version 0.41.0
 
 ### New Features
