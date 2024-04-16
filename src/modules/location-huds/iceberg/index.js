@@ -58,88 +58,63 @@ const getSections = (quest) => {
   return sections;
 };
 
+const calculateRemaining = (depth, stageStart, stageEnd) => {
+  const stage = stageEnd - depth;
+  const stagePercent = (stage / (stageEnd - stageStart)) * 100;
+  return { stage, stagePercent };
+};
+
+const calculateCompletion = (depth, stages) => {
+  return stages.map((stageEnd) => depth >= stageEnd);
+};
+
+const calculateAverage = (progress, hunts, isDeep, depth) => {
+  return isDeep ? (depth + 1800) / hunts : progress / hunts;
+};
+
+const calculateStageHunts = (stage, avg) => {
+  return Math.ceil(stage / avg);
+};
+
 const getQuestProgress = () => {
-  const depth = user?.quests?.QuestIceberg?.user_progress || 0;
-
-  const charges = user?.quests?.QuestIceberg?.drill_max_charges || 0;
-  const heat = user?.quests?.QuestIceberg?.drill_heat || 0;
-  const drillsUsed = charges - Math.floor(charges * (heat / 100)) || 0;
-
-  const progressWithoutDrills = depth - (drillsUsed * 20);
+  const quest = user?.quests?.QuestIceberg;
+  if (! quest) {
+    return false;
+  }
 
   const data = {
-    stage: 0,
-    stagePercent: 0,
+    progress: quest.user_progress || 0,
+    hunts: quest.turns_taken || 0,
+    chests: quest.chests || [],
+    isDeep: quest.in_bonus || false,
+  };
+
+  const depth = data.progress;
+  const stages = [300, 600, 1600, 1800];
+  const stageIndex = stages.findIndex((stageEnd) => depth < stageEnd);
+  const { stage, stagePercent } = calculateRemaining(depth, stages[stageIndex - 1] || 0, stages[stageIndex]);
+  const complete = calculateCompletion(depth, stages);
+  const avg = calculateAverage(data.progress, data.hunts, data.isDeep, depth);
+  const stageHunts = calculateStageHunts(stage, avg);
+
+  const remaining = {
+    stage,
+    stagePercent: 100 - stagePercent,
     total: 1800 - depth,
     totalPercent: (depth / 1800) * 100,
     complete: {
-      tunnels: false,
-      bulwark: false,
-      bombing: false,
-      depths: false,
-      lair: false,
+      tunnels: complete[0],
+      bulwark: complete[1],
+      bombing: complete[2],
+      depths: complete[3],
+      lair: depth >= 1800,
     },
-    isLair: false,
+    isLair: depth >= 1800,
+    avg,
+    stageHunts,
   };
 
-  // 0-300ft Treacherous Tunnels
-  // 300-600ft Brutal Bulwark
-  // 600-1600ft Bombing Run
-  // 1600-1800ft The Mad Depths
-  // 1800+ Icewing's Lair
-
-  if (depth < 300) {
-    // If we are less than 300ft, we are in the first stage.
-    data.stage = 300 - depth;
-    data.stagePercent = (data.stage / 300) * 100;
-  } else if (depth < 600) {
-    // If we are less than 600ft, we are in the second stage, so we need to subtract the first stage.
-    data.stage = 600 - depth;
-    data.stagePercent = (data.stage / 300) * 100;
-    data.complete.tunnels = true;
-  } else if (depth < 1600) {
-    data.stage = 1600 - depth;
-    data.stagePercent = (data.stage / 1000) * 100;
-    data.complete.tunnels = true;
-    data.complete.bulwark = true;
-  } else if (depth < 1800) {
-    data.stage = 1800 - depth;
-    data.stagePercent = data.totalPercent;
-    data.complete.tunnels = true;
-    data.complete.bulwark = true;
-    data.complete.bombing = true;
-  } else {
-    data.stage = 0;
-    data.stagePercent = 0;
-    data.isLair = true;
-    data.complete.tunnels = true;
-    data.complete.bulwark = true;
-    data.complete.bombing = true;
-    data.complete.depths = true;
-  }
-
-  if (user?.quests?.QuestIceberg?.in_bonus) {
-    data.stage = 200 - depth;
-    data.stagePercent = (depth / 200) * 100;
-    data.totalPercent = data.stagePercent;
-    data.progress = depth + 1800;
-  }
-
-  const turnsTaken = user?.quests?.QuestIceberg?.turns_taken || 0;
-
-  data.avg = progressWithoutDrills / turnsTaken;
-  if (Number.isNaN(data.avg)) {
-    data.avg = 0;
-  }
-
-  if (user?.quests?.QuestIceberg?.in_bonus) {
-    data.avg = (progressWithoutDrills + 1800) / turnsTaken;
-  }
-
-  data.stagePercent = Math.min(100, 100 - data.stagePercent);
-  data.stageHunts = data.avg === 0 ? 0 : Math.ceil(data.stage / data.avg);
-
-  return data;
+  return { ...data, ...remaining };
 };
 
 const roundProgress = (progress) => {
@@ -155,16 +130,10 @@ const roundProgress = (progress) => {
 };
 
 const getTooltipText = (quest) => {
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('mousehuntTooltip-content');
+  const wrapper = makeElement('div', 'mousehuntTooltip-content');
+  const progress = makeElement('div', 'hunts-wrapper');
 
-  const progress = document.createElement('div');
-  progress.classList.add('hunts-wrapper');
-
-  const averageHunts = document.createElement('div');
-  averageHunts.classList.add('average-hunts');
-  averageHunts.innerText = `Avg. ${roundProgress(quest.avg)} ft/hunt`;
-  progress.append(averageHunts);
+  makeElement('div', 'average-hunts', `Avg. ${roundProgress(quest.avg)} ft/hunt`, progress);
 
   if (! quest.isLair) {
     const stageProgressPercent = makeElement('div', 'stage-progress-percent');
@@ -184,8 +153,7 @@ const getTooltipText = (quest) => {
 
   wrapper.append(progress);
 
-  const sectionsWrapper = document.createElement('div');
-  sectionsWrapper.classList.add('iceberg-sections');
+  const sectionsWrapper = makeElement('div', 'iceberg-sections');
 
   const sections = getSections(quest);
 
@@ -195,24 +163,14 @@ const getTooltipText = (quest) => {
       sectionData.complete = true;
     }
 
-    const section = document.createElement('div');
-    section.classList.add('iceberg-section', sectionData.complete ? 'complete' : 'incomplete');
+    const section = makeElement('div', ['iceberg-section', sectionData.complete ? 'complete' : 'incomplete']);
     if (! currentSection && ! sectionData.complete) {
       section.classList.add('current');
       currentSection = true;
     }
 
-    const sectionName = document.createElement('div');
-    sectionName.classList.add('iceberg-section-name');
-    sectionName.innerText = sectionData.name;
-
-    section.append(sectionName);
-
-    const sectionLength = document.createElement('div');
-    sectionLength.classList.add('iceberg-section-length');
-    sectionLength.innerText = sectionData.where;
-
-    section.append(sectionLength);
+    makeElement('div', 'iceberg-section-name', sectionData.name, section);
+    makeElement('div', 'iceberg-section-length', sectionData.where, section);
 
     sectionsWrapper.append(section);
   });
@@ -293,6 +251,10 @@ const addDeepWarning = async () => {
 
 const hud = async () => {
   if ('iceberg' !== getCurrentLocation()) {
+    return;
+  }
+
+  if (! user.quests.QuestIceberg) {
     return;
   }
 
