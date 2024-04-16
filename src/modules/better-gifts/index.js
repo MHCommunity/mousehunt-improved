@@ -334,6 +334,20 @@ const addSendButton = (className, text, selector, buttonContainer) => {
       return;
     }
 
+    if (sendButton.classList.contains('disabled')) {
+      const selectedFriends = document.querySelectorAll('.giftSelectorView-friend.selected');
+      selectedFriends.forEach((friend) => {
+        friend.click();
+      });
+
+      const buttons = document.querySelectorAll('.mh-gift-buttons.disabled');
+      buttons.forEach((button) => {
+        button.classList.remove('disabled');
+      });
+
+      return;
+    }
+
     if ('faves' === className) {
       pickFriends(friends, false);
     } else {
