@@ -77,6 +77,10 @@ const isLoggedIn = () => {
  * @return {boolean} True if the overlay is visible, false otherwise.
  */
 const isOverlayVisible = () => {
+  if ('undefined' === typeof activejsDialog) {
+    return false;
+  }
+
   return activejsDialog && activejsDialog.isVisible();
 };
 
