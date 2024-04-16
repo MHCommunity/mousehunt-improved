@@ -205,6 +205,5 @@ export default {
   type: 'feature',
   default: true,
   description: 'Minluck and catch rate estimates.',
-  order: 200,
   load: init,
 };
