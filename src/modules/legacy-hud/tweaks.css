@@ -14,6 +14,10 @@
   padding: 8px 0 0 14px;
 }
 
+.headsup .hudstatlist {
+  margin-right: 20px;
+}
+
 .mousehuntHud-menu.legacy .mice .mousehuntHud-menu-item.root {
   filter: hue-rotate(174deg);
 }
@@ -44,4 +48,8 @@
   display: flex;
   justify-content: space-between;
   width: 150px;
+}
+
+.mousehuntHud-marbleDrawer #hudLocationContent {
+  margin-top: 0;
 }
