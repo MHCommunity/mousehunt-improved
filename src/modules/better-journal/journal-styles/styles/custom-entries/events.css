@@ -31,3 +31,7 @@
 .journal .entry.spring_hunt_charge_trinket_effect .journalimage {
   margin: 0;
 }
+
+.journal .entry.chocolateshop_item_purchased {
+  background-repeat: repeat;
+}
