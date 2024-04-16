@@ -1,10 +1,10 @@
 import {
   addHudStyles,
   doRequest,
+  getFlag,
   getSetting,
   makeElement,
   makeMhButton,
-  onRequest,
   onTurn,
   saveSetting
 } from '@utils';
@@ -269,7 +269,11 @@ const addCraftingButtons = async () => {
     for (const amount of amounts) {
       const isNormal = amount.toString().includes('-normal');
 
-      const qty = isNormal ? amount.toString().replace('-normal', '') : amount;
+      let qty = isNormal ? amount.toString().replace('-normal', '') : amount;
+      if (! isNormal) {
+        qty = qty / 2;
+      }
+
       const className = isNormal ? 'mh-crafting-action' : 'mh-crafting-action lightBlue';
       const title = isNormal ? `Craft ${amount}` : `Craft ${amount} using Magic Essence`;
       const type = isNormal ? baitAmounts[baitType].shopNormal : baitAmounts[baitType].shop;
@@ -302,6 +306,10 @@ const addCraftingButtons = async () => {
 export default async () => {
   const stylesToAdd = [regionStyles, styles];
 
+  if (getFlag('flip-bountiful-beanstalk-avatar')) {
+    stylesToAdd.push('.bountifulBeanstalkCastleView__playerMarkerUserThumb { transform: scaleX(-1); }');
+  }
+
   if (getSetting('location-huds.bountiful-beanstalk-invetory-in-one-row', false)) {
     stylesToAdd.push(smallInvStyles);
   }
@@ -315,9 +323,6 @@ export default async () => {
   toggleFuelWithIcon();
   updateLootText();
   addCraftingButtons();
-
-  onRequest('*', updateTitle);
-  onTurn(updateTitle, 1000);
 
   funTime();
 
