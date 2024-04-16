@@ -3,7 +3,7 @@ import { addStyles, makeElement, onDialogShow, setMultipleTimeout } from '@utils
 import styles from './styles.css';
 
 const updateSection = async (selector) => {
-  const section = document.querySelector(`#overlayPopup.hunting_summary .${selector} .label`);
+  const section = document.querySelector(`#overlayPopup.hunting_summary .${selector}`);
   if (! section) {
     return;
   }
@@ -14,7 +14,10 @@ const updateSection = async (selector) => {
   }
 
   const loots = section.querySelectorAll('a');
-  makeElement('span', 'uniqueLootCount', `(${loots.length} unique)`, section);
+  const count = makeElement('span', 'uniqueLootCount', `(${loots.length} unique)`);
+
+  const header = section.querySelector('.label');
+  header.append(count);
 };
 
 const addUniqueLootCount = async () => {
