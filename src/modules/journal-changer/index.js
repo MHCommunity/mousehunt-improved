@@ -6,6 +6,7 @@ import {
   makeElement,
   onEvent,
   onNavigation,
+  onRequest,
   saveSetting
 } from '@utils';
 
@@ -31,6 +32,7 @@ const getJournalThemes = async () => {
 const updateJournalTheme = async (theme) => {
   const current = getCurrentJournalTheme();
 
+  shouldListen = false;
   const req = await doRequest('managers/ajax/users/journal_theme.php', {
     action: 'set_theme',
     theme,
@@ -44,6 +46,8 @@ const updateJournalTheme = async (theme) => {
       journal.classList.add(theme);
     }
   }
+
+  shouldListen = true;
 
   return req;
 };
@@ -72,9 +76,17 @@ const getJournalThemeForLocation = () => {
   return journalTheme.type;
 };
 
+const revertToSavedTheme = () => {
+  const lastTheme = getSetting('journal-changer.last-theme', false);
+  if (getCurrentJournalTheme() !== lastTheme) {
+    updateJournalTheme(lastTheme);
+  }
+};
+
 const changeForLocation = async () => {
   const newTheme = getJournalThemeForLocation();
   if (! newTheme) {
+    revertToSavedTheme();
     return;
   }
 
@@ -87,12 +99,13 @@ const changeForLocation = async () => {
     return;
   }
 
-  // check if we even have the theme
-  if (! themes.some((t) => t.type === newTheme)) {
+  if (currentTheme === newTheme) {
     return;
   }
 
-  if (currentTheme === newTheme) {
+  // check if we even have the theme
+  if (! themes.some((t) => t.type === newTheme)) {
+    revertToSavedTheme();
     return;
   }
 
@@ -160,6 +173,26 @@ const changeJournalDaily = async () => {
   }
 };
 
+let _themeSelector;
+let shouldListen = true;
+const onThemeSelectorChange = () => {
+  if (_themeSelector) {
+    return;
+  }
+
+  _themeSelector = hg.views.JournalThemeSelectorView.show;
+  hg.views.JournalThemeSelectorView.show = async () => {
+    _themeSelector();
+
+    onRequest('users/journal_theme.php', (request, data) => {
+      if ('set_theme' === data.action && shouldListen) {
+        saveSetting('journal-changer.last-theme', data.theme);
+        saveSetting('journal-changer.chosen-theme', data.theme);
+      }
+    });
+  };
+};
+
 /**
  * Initialize the module.
  */
@@ -178,6 +211,8 @@ const init = async () => {
   onNavigation(addRandomButton, {
     page: 'camp'
   });
+
+  onThemeSelectorChange();
 };
 
 export default {
