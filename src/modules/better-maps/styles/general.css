@@ -448,7 +448,6 @@ label.userSelectorView-filter-label {
 .mh-mapper-consolation-prizes {
   display: flex;
   flex-direction: column;
-  margin: 10px 5px;
 }
 
 h2.mh-mapper-consolation-prizes-title {
@@ -827,7 +826,12 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapView-goals-group-goal.item {
+  width: calc(25% - 5px);
   padding: 5px 0;
+}
+
+.full-width .treasureMapView-goals-group-goal {
+  width: calc(16% - 1px);
 }
 
 .treasureMapView-goals-group-goal:hover::before {
@@ -994,7 +998,15 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapTooltipView {
-  height: 45px;
+  height: 40px;
+}
+
+.treasureMapDialogView.wide.limitHeight.confirm .treasureMapDialogView-description {
+  display: none;
+}
+
+.treasureMapDialogView.wide.limitHeight.confirm .treasureMapDialogView-header {
+  margin-bottom: 0;
 }
 
 .treasureMapTooltipView-hunterText {
@@ -1005,6 +1017,18 @@ input.treasureMapView-block-search-text {
   height: 100%;
 }
 
-.treasureMapDialogView.wide.limitHeight.confirm .treasureMapView {
-  max-height: 40vh;
+.treasureMapDialogView-chest-item-padding::before {
+  box-shadow: 1px 1px 2px -1px #333;
+}
+
+.mh-ui-environments-block .treasureMapView-block-content:first-child {
+  display: none;
+}
+
+.treasureMapView-block.mh-ui-listed-maps-block {
+  display: none;
+}
+
+.treasureMapView-block-title.mh-ui-listed-maps-title {
+  display: none;
 }

@@ -394,6 +394,7 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 
 .giftSelectorView-inbox-footer {
   padding-bottom: 18px;
+  border-width: 1px;
 }
 
 .giftSelectorView-inbox-giftContainer .mousehuntActionButton.return.disabled,

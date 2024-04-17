@@ -28,10 +28,10 @@
 
 .icebergStatusTooltip {
   bottom: -3px;
-  left: 180px;
+  left: 190px;
   width: 325px;
   padding: 8px 7px 6px 0;
-  background-color: rgb(240 240 240 / 90%);
+  background-color: rgb(250 250 250 / 90%);
   border: 1px solid #a4b5bf;
   box-shadow: 0 1px 3px -1px #141414;
 }
@@ -191,7 +191,7 @@
   padding-top: 5px;
   font-size: 11px;
   color: #000;
-  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) 0 0 repeat;
+  background: rgb(250 250 250 / 90%);
   border-color: #8d98a0;
   border-bottom: 1px solid #9aa8b2;
   border-radius: 0;
@@ -247,10 +247,6 @@
   width: 400px;
 }
 
-.icebergHud .timeline .waterline {
-  bottom: -2px;
-}
-
 .mh-improved-stick-iceberg-tooltip .icebergStatusTooltip.mousehuntTooltip {
   display: block;
 }
@@ -278,4 +274,18 @@
 .icebergHud .timeline .chest:hover .mousehuntTooltip {
   transform: scale(0.75);
   animation: none;
+}
+
+.icebergHud .timeline .chest:active {
+  animation: 0.4s mh-improved-shake-scaled infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icebergHud .timeline .chest:active {
+    animation: none;
+  }
+}
+
+span.user_progress_container .user_progress {
+  color: #000 !important;
 }

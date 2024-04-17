@@ -59,33 +59,49 @@
   right: -2px;
   left: -9px;
   padding-left: 6px;
-  color: #7fd981;
+  color: #2f9d31;
   border-top-left-radius: 10px;
+}
+
+.livingGardenHud.desert_oasis .itemImage.dewthief_petal_crafting_item::before {
+  color: #7fd981;
 }
 
 .itemImage.dreamfluff_herbs_crafting_item::before {
   right: -2px;
   left: -3px;
-  color: #91e9fb;
+  color: #079dbb;
   content: "City";
+}
+
+.livingGardenHud.lost_city .itemImage.dreamfluff_herbs_crafting_item::before {
+  color: #91e9fb;
 }
 
 .itemImage.duskshade_petal_crafting_item::before {
   right: -8px;
   left: -3px;
   padding-left: 2px;
-  color: #f4daba;
+  color: #d48321;
   content: "Desert";
   border-top-right-radius: 10px;
 }
 
-.livingGardenHud .itemContainer .itemImage {
+.livingGardenHud.sand_dunes .itemImage.duskshade_petal_crafting_item::before {
+  color: #f4daba;
+}
+
+.livingGardenHud .itemContainer .itemImage,
+.livingGardenHud .itemContainer .itemImage:hover img,
+.livingGardenHud .itemContainer .itemImage:hover .quantity,
+.livingGardenHud .itemContainer .itemImage.faded:hover img,
+.livingGardenHud .itemContainer .itemImage.faded:hover .quantity {
   overflow: visible;
   opacity: 1;
 }
 
-.livingGardenHud .itemContainer .itemImage img,
-.livingGardenHud .itemContainer .itemImage .quantity {
+.livingGardenHud .itemContainer .itemImage.faded img,
+.livingGardenHud .itemContainer .itemImage.faded .quantity {
   opacity: 0.4;
 }
 
@@ -151,12 +167,14 @@
   height: unset;
   padding: 5px;
   visibility: hidden;
+  background-color: transparent;
 }
 
 .livingGardenHud .minigameContainer .curseContainer .curse.active .help img {
   inset: 5px 0 0 6px;
   width: 45px;
   height: 45px;
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff) drop-shadow(0 0 3px #fff) drop-shadow(0 0 4px #fff) drop-shadow(0 0 5px #fff);
 }
 
 .livingGardenHud .minigameContainer .curseContainer .curse.active:hover .help {
@@ -282,4 +300,14 @@
 
 .livingGardenHud.sand_dunes.corrupted {
   background-image: url(https://i.mouse.rip/living-garden/king_grub_bg.png);
+}
+
+.livingGardenHud .minigameContainer .minigameHelp {
+  bottom: 25px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.livingGardenHud.lost_city.corrupted .minigameContainer.blessed {
+  visibility: visible;
 }

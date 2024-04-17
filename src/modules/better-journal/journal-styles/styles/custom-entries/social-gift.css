@@ -1,5 +1,6 @@
 /* Make the gifts entry normal height and scrollable */
 .socialGift.socialGift-send .journaltext {
+  min-height: 40px;
   max-height: 60px;
   padding-right: 10px;
   padding-left: 80px;

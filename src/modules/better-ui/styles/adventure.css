@@ -49,6 +49,8 @@
 }
 
 .adventureBookPopup-adventureContainer.highlight {
+  margin-right: 5px;
+  margin-bottom: 10px;
   box-shadow: none;
 }
 
@@ -252,4 +254,68 @@ a.adventureBookPopup-title.active {
 .adventureBookPopup-adventureContainer.claimed .adventureBookPopup-adventure-footer-claim.adventureBookPopup-adventure-button {
   border: 1px solid #158f00;
   box-shadow: none;
+}
+
+.adventureBookPopup-adventureContainer {
+  margin-right: 5px;
+  border-color: #ccc;
+  border-radius: 5px;
+}
+
+.adventureBookPopup-adventure-header {
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 5px 5px 0 0;
+}
+
+.adventureBookPopup-adventure-header-accordion {
+  top: 14px;
+}
+
+.adventureBookPopup-adventureContainer.available .adventureBookPopup-adventure-favorite {
+  top: 6px;
+}
+
+.adventureBookPopup-adventure-details-block-step.multi_choice {
+  background-color: #ffc20a;
+}
+
+.adventureBookPopup-adventure-details-block-step-checkmark {
+  border: 1px solid #ababab;
+  box-shadow: none;
+}
+
+.adventureBookPopup-adventure-details-block-goalGroup-container {
+  border-color: #171717;
+}
+
+.adventureBookPopup-adventure-footer-claim-reward abbr {
+  text-decoration: none;
+}
+
+.adventureBookPopup-adventure-details-powerTypeContainer {
+  margin: 10px 0;
+}
+
+.claimed .adventureBookPopup-adventure-header {
+  color: #fff;
+  text-shadow: 0 1px 1px #000;
+  background: #62aa42;
+}
+
+.adventureBookPopup-adventure-footer {
+  border-radius: 0 0 5px 5px;
+}
+
+.highlight .adventureBookPopup-adventure-header,
+.highlight .adventureBookPopup-adventure-footer {
+  background-color: #fff0c2;
+}
+
+.adventureBookPopup-adventure-button.disabled {
+  opacity: 0.6;
+}
+
+.adventureBookPopup-adventure-header-duration {
+  font-size: 13px;
 }
