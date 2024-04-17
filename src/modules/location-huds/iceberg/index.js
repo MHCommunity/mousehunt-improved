@@ -345,36 +345,6 @@ const hud = async () => {
   }
 };
 
-const makeMapScrollable = () => {
-  const map = document.querySelector('.icebergHud .timeline .icebergContainer .iceberg');
-  if (! map) {
-    return;
-  }
-
-  // When the user hovers over the map, allow them to scroll. Scrolling changes the current top of the element.
-  // When the user's mouse leaves the map, stop scrolling and reset the top to what it was before.
-  map.addEventListener('mouseenter', () => {
-    const startingTop = map.style.top.replace('px', '');
-
-    // add a scroll listener to the map
-    const scrollListener = (event) => {
-      event.preventDefault();
-
-      const scrollAmount = event.deltaY;
-      const newTop = Number.parseInt(startingTop, 10) - scrollAmount;
-      map.style.top = `${newTop}px`;
-    };
-
-    map.addEventListener('wheel', scrollListener);
-
-    map.addEventListener('mouseleave', () => {
-      map.style.top = `${startingTop}px`;
-
-      map.removeEventListener('wheel', scrollListener);
-    });
-  });
-};
-
 /**
  * Initialize the module.
  */
@@ -385,6 +355,4 @@ export default async () => {
 
   onTurn(hud, 1000);
   onRequest('environment/iceberg.php', hud);
-
-  makeMapScrollable();
 };
