@@ -3,6 +3,7 @@ import {
   doRequest,
   getSetting,
   makeElement,
+  onEvent,
   onRequest
 } from '@utils';
 
@@ -106,16 +107,12 @@ const main = () => {
     const itemType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.ItemView.show('${itemType}'); return false;`);
 
-    let timer;
     link.addEventListener('mouseover', (e) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        makeMouseMarkup(itemType, e);
-      }, 200);
+      makeMouseMarkup(itemType, e);
     });
 
     link.addEventListener('mouseout', () => {
-      clearTimeout(timer);
+      itemDataWrapper.remove();
     });
   });
 };
@@ -128,6 +125,13 @@ const hoverMice = () => {
   setTimeout(main, 500);
   onRequest('*', () => {
     setTimeout(main, 1000);
+  });
+
+  onEvent('dialog-show-item', () => {
+    const hoverItem = document.querySelector('#item-data-wrapper');
+    if (hoverItem) {
+      hoverItem.remove();
+    }
   });
 };
 

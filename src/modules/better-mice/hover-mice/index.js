@@ -125,16 +125,12 @@ const main = () => {
     const mouseType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
 
-    let timer;
     link.addEventListener('mouseover', (e) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        makeMouseMarkup(mouseType, e);
-      }, 200);
+      makeMouseMarkup(mouseType, e);
     });
 
     link.addEventListener('mouseout', () => {
-      clearTimeout(timer);
+      mouseDataWrapper.remove();
     });
   });
 };
