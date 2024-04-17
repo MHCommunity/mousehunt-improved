@@ -77,9 +77,9 @@ const getJournalThemeForLocation = () => {
 };
 
 const revertToSavedTheme = () => {
-  const lastTheme = getSetting('journal-changer.last-theme', false);
-  if (getCurrentJournalTheme() !== lastTheme) {
-    updateJournalTheme(lastTheme);
+  const chosenTheme = getSetting('journal-changer.chosen-theme', false);
+  if (getCurrentJournalTheme() !== chosenTheme) {
+    updateJournalTheme(chosenTheme);
   }
 };
 
