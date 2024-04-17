@@ -104,7 +104,7 @@ const addJournalProcessingEvents = async () => {
   setMultipleTimeout(processEntries, [100, 500, 1000]);
 
   onRequest('*', (data) => {
-    setMultipleTimeout(processEntries, [100, 500, 1000]);
+    setMultipleTimeout(processEntries, [100, 500, 1000, 2500]);
 
     if (data.journal_markup && data.journal_markup.length > 0) {
       processSingleEntries(data.journal_markup);
