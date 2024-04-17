@@ -119,8 +119,9 @@ const maybeDoMaintenance = () => {
     document.head.append(maintenanceStylesEl);
   }
 
-  const errorPage = document.querySelector('body.PageLockError');
-  if (errorPage) {
+  const errorLockPage = document.querySelector('body.PageLockError');
+  const errorPage = document.querySelector('body.PageError');
+  if (errorLockPage || errorPage) {
     const errorPageStylesEl = makeElement('style', 'mh-improved-error-page-styles', errorPageStyles);
     document.head.append(errorPageStylesEl);
   }

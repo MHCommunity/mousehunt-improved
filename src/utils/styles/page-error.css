@@ -1,27 +1,33 @@
+body.PageError .pageFrameView,
 body.PageLockError .pageFrameView {
   grid-template-rows: [page-start] auto [page-end];
   grid-template-columns: [first] auto [content-start] 400px [content-end] auto [last];
 }
 
+body.PageError .pageFrameView-column.right,
 body.PageLockError .pageFrameView-column.right {
   background: #bad4ed url(https://www.mousehuntgame.com/images/ui/backgrounds/app_frame_right.gif) repeat-y 0% 0% !important;
   border: none;
 }
 
+body.PageError .pageFrameView-column.left,
 body.PageLockError .pageFrameView-column.left {
   background: #bad4ed url(https://www.mousehuntgame.com/images/ui/backgrounds/app_frame_left.gif) repeat-y 100% 0% !important;
   border: none;
 }
 
+body.PageError,
 body.PageLockError {
   background: url(https://www.mousehuntgame.com/images/map/login-page/standard/1.jpg) no-repeat top center;
 }
 
+body.PageError .pageFrameView-content,
 body.PageLockError .pageFrameView-content {
   min-height: calc(80vh - 110px);
   background: transparent;
 }
 
+body.PageError .pageFrameView-footer,
 body.PageLockError .pageFrameView-footer {
   display: flex;
   flex-flow: row wrap;
@@ -32,51 +38,61 @@ body.PageLockError .pageFrameView-footer {
   transition: 0.3s;
 }
 
+body.PageError .pageFrameView-footer-linksContainer,
 body.PageLockError .pageFrameView-footer-linksContainer {
   flex: 0 0 100%;
 }
 
+body.PageError .pageFrameView-footer a img,
 body.PageLockError .pageFrameView-footer a img {
   opacity: 0.4;
   transition: 0.3s;
   transform: scale(0.8);
 }
 
+body.PageError .pageFrameView-footer-links.terms,
 body.PageLockError .pageFrameView-footer-links.terms {
   text-align: center;
 }
 
+body.PageError .pageFrameView-footer a:hover img,
 body.PageLockError .pageFrameView-footer a:hover img {
   opacity: 1;
   transform: scale(1);
 }
 
+body.PageError .maintenanceMessage:hover::after,
 body.PageLockError .maintenanceMessage:hover::after {
   transform: rotate(-3deg) scale(1.2);
 }
 
+body.PageError .pageFrameView-contentContainer,
 body.PageLockError .pageFrameView-contentContainer {
   background: none;
 }
 
+body.PageError .container,
 body.PageLockError .container {
   background-color: transparent;
   box-shadow: none;
 }
 
 @media screen and (min-width: 501px) {
+  body.PageError .pageFrameView,
   body.PageLockError .pageFrameView {
     grid-template-columns: [first] auto [content-start] 500px [content-end] auto [last];
   }
 }
 
 @media only screen and (min-width: 801px) {
+  body.PageError .pageFrameView,
   body.PageLockError .pageFrameView {
     grid-template-columns: [first] auto [content-start] 800px [content-end] auto [last];
   }
 }
 
 @media only screen and (max-width: 810px) {
+  body.PageError.noSidebar .pageFrameView,
   body.PageLockError.noSidebar .pageFrameView {
     background: none !important;
   }
@@ -99,6 +115,15 @@ div[style*="float:left"] img {
   display: none;
 }
 
+.PageError div[style*="float:left"] {
+  background: none;
+}
+
+.PageError div[style*="float:left"] img {
+  display: block;
+  mix-blend-mode: darken;
+}
+
 div[style*="margin:24px 0px 0px 230px;"] {
   display: flex;
   flex-direction: column;
@@ -107,10 +132,10 @@ div[style*="margin:24px 0px 0px 230px;"] {
   height: 190px;
 }
 
-div[style*="float:left"]:hover {
+.PageLockError div[style*="float:left"]:hover {
   transform: translateX(10px);
 }
 
-div[style*="float:left"]:active {
+.PageLockError div[style*="float:left"]:active {
   transform: translateX(20px);
 }
