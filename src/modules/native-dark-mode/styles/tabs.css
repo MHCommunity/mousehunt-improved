@@ -1,0 +1,17 @@
+.mh-dark .mousehuntHud-page-tabHeader span,
+.mh-dark .mousehuntHud-page-tabHeader.active span,
+.mh-dark .mousehuntHud-page-tabHeader:hover span,
+.mh-dark .mousehuntHud-page-tabHeader:focus span {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  border-bottom-color: var(--d-alt);
+  box-shadow: 1px 1px 1px var(--d-border);
+}
+
+.mh-dark .mousehuntHud-page-tabHeader.active span,
+.mh-dark .mousehuntHud-page-tabHeader:hover span {
+  background-color: var(--d);
+  border-bottom-color: var(--d);
+  box-shadow: 1px 1px 1px var(--d);
+}

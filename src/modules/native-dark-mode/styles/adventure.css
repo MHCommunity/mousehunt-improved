@@ -1,0 +1,46 @@
+.mh-dark .adventureBookPopup-adventure-details-block-goalGroup.visible {
+  background-color: var(--d-alt);
+  box-shadow: -1px -1px 1px var(--d-border) inset;
+}
+
+.mh-dark .adventureBookPopup-adventure-details-powerTypeContainer {
+  margin-right: revert-layer;
+  margin-left: 0;
+  background-color: var(--d-alt);
+  border-color: var(--d);
+}
+
+.mh-dark .adventureBookPopup-adventure-footer {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+}
+
+.mh-dark .adventureBookPopup-adventure-details-description-reason {
+  color: var(--d-text-dark);
+  background-color: var(--d-orange);
+}
+
+.mh-dark a.adventureBookPopup-title.complete {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .adventureBookPopup-adventure-details-block-step.multi_choice {
+  background-color: var(--d);
+}
+
+.mh-dark .adventureBookBanner-goalImage {
+  outline: none;
+}
+
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .adventureBookBanner-adventureName {
+  color: var(--d-text);
+}
+
+.mh-dark .adventureBookPopup-titleDirectory,
+.mh-dark a.adventureBookPopup-title.active {
+  border-color: var(--d-border);
+}
+
+.mh-dark .adventureBookPopup-title-margin {
+  color: var(--d-text-dark);
+}

@@ -1,0 +1,340 @@
+.mh-dark .campPage-trap {
+  background: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: -1px -1px 1px var(--d-border) inset;
+}
+
+.mh-dark a.campPage-trap-friendContainer-toggleFriendsButton {
+  color: var(--d-link);
+}
+
+.mh-dark .campPage-trap-friendContainer-toggleFriendsButton-arrow {
+  border-color: var(--d-link) transparent transparent transparent;
+}
+
+.mh-dark .campPage-trap-friendContainer .label {
+  color: var(--d-text);
+}
+
+.mh-dark .campPage-trap-friendContainer span {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .campPage-trap-friendList.full,
+.mh-dark .campPage-trap-itemStats,
+.mh-dark .campPage-trap-trapEffectiveness,
+.mh-dark .campPage-trap-armedItem,
+.mh-dark .campPage-trap-armedItem.bait.active,
+.mh-dark .campPage-trap-armedItem.bait,
+.mh-dark .campPage-trap-armedItem.skin,
+.mh-dark .campPage-trap-armedItem.mh-favorite-setups-button,
+.mh-dark .campPage-trap-itemBrowser-armed,
+.mh-dark .campPage-trap-trapEffectivenessContainer,
+.mh-dark .campPage-trap-itemBrowser-itemContainer {
+  color: var(--d-text);
+  background: var(--d);
+  border-color: var(--d-border);
+  box-shadow: -1px 1px 3px var(--d-bg) inset;
+}
+
+.mh-dark .campPage-trap-armedItem-skin-description {
+  color: var(--d-text);
+}
+
+.mh-dark .campPage-trap-baitName,
+.mh-dark .campPage-trap-baitQuantity {
+  color: var(--d-text);
+  text-shadow: none;
+}
+
+.mh-dark span.campPage-trap-baitQuantity,
+.mh-dark .trapSelectorView__armedItemQuantity span,
+.mh-dark .campPage-trap-armedItem .quantity span {
+  right: -5px;
+  bottom: 4px;
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-action);
+  box-shadow: -1px -1px 1px var(--d-bg) inset;
+}
+
+.mh-dark .trapSelectorView__weaponSkinGroup.trapSelectorView__armedItemBorder {
+  background-color: transparent;
+}
+
+.mh-dark .campPage-trap-trapStat .value {
+  color: var(--d-text);
+  background: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap .trapImageView {
+  border-bottom-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-armed-label {
+  color: var(--d-text);
+}
+
+.mh-dark .campPage-trap-armedItem.active {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .campPage-trap-armedItem.inactive {
+  background-color: var(--d);
+}
+
+.mh-dark .campPage-trap-itemBrowser-favorites {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .campPage-trap-trapEffectiveness span {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .campPage-trap-itemBrowser-armed-item,
+.mh-dark .campPage-trap-itemBrowser-armed .loading,
+.mh-dark .campPage-trap-itemBrowser-empty-container {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-filter input[data-filter="search"] {
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-filter input[data-filter="search"]::placeholder {
+  color: var(--text-dark);
+}
+
+.mh-dark .campPage-trap-blueprint-closeButton {
+  color: var(--d-text);
+  background: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-favorite-item-image-frame {
+  border-color: var(--d-border);
+  box-shadow: 2px 2px 3px var(--d-border) inset;
+}
+
+.mh-dark .empty .campPage-trap-itemBrowser-favorite-item-image {
+  background: var(--d-bg);
+}
+
+.mh-dark .campPage-trap-itemBrowser-favorite-item.loading .campPage-trap-itemBrowser-favorite-item-image::after {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container {
+  color: var(--d-text);
+  background: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: 2px 2px 3px var(--d-border) inset;
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .header {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-improved-favorite-setups-blueprint-container .row {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-item-powerType::after {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .campPage-trap-itemBrowser-tagGroup-name {
+  color: var(--d-text-muted);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-quickLinks {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .campPage-trap-itemBrowser-quickLinks-header {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mousehuntPage-content select,
+.mh-dark .mousehuntPage-content textarea,
+.mh-dark .mousehuntPage-content input,
+.mh-dark #mousehunt-improved-settings-advanced-override-flags input,
+.mh-dark #mousehunt-improved-settings-advanced-override-styles textarea {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-item-statContainer {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.mh-dark .campPage-trap-itemBrowser-item-stat .value span {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .campPage-trap-armedItem:hover,
+.mh-dark .campPage-trap-armedItem:focus,
+.mh-dark .campPage-trap-armedItem.inactive:hover,
+.mh-dark .campPage-trap-armedItem.inactive:focus,
+.mh-dark .campPage-trap-armedItem.active:hover,
+.mh-dark .campPage-trap-armedItem.active:focus,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer:hover,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer:focus,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .mh-improved-favorite-setups-button:hover,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .mh-improved-favorite-setups-button:focus {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .campPage-trap-itemBrowser-item {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-itemBrowser-items {
+  scrollbar-color: var(--d-text-muted) var(--d-alt);
+}
+
+.mh-dark .campPage-trap-itemBrowser-favorite-item-image-quantity {
+  right: 1px;
+  bottom: 0;
+  box-sizing: content-box;
+  color: var(--d-text);
+  background: var(--d-bg);
+  border-color: var(--d-border);
+  border-right: none;
+  border-bottom: none;
+  border-bottom-right-radius: 2px;
+}
+
+.mh-dark .campPage-trap-itemBrowser-item-powerType::before {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item::after {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mousehuntActionButton {
+  box-shadow: 1px 1px 1px var(--d-yellow);
+}
+
+.mh-dark a.mousehuntActionButton.danger {
+  box-shadow: 1px 1px 1px var(--d-red);
+}
+
+.mh-dark a.random-title::after {
+  filter: invert(1);
+}
+
+.mh-dark .row.editing .campPage-trap-itemBrowser-favorite-item:hover::after {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .campPage-trap-trapStat .math {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  box-shadow: -1px -1px 1px var(--d) inset;
+}
+
+.mh-dark a.campPage-trap-itemBrowser-item-armButton,
+.mh-dark .armed a.campPage-trap-itemBrowser-item-armButton {
+  color: var(--d-black);
+}
+
+.mh-dark .armed a.campPage-trap-itemBrowser-item-armButton {
+  background-color: var(--d-orange);
+  box-shadow:
+    0 -2px 1px var(--d-orange) inset,
+    0 -13px 1px var(--d-orange-dark) inset,
+    0 0 1px #333;
+}
+
+.mh-dark .campPage-trap-itemBrowser-item-image::after {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.mh-dark .campPage-trap-trapEffectivenessContainer .loading,
+.mh-dark .campPage-trap-itemBrowser-items .loading {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-trapEffectiveness-header b {
+  color: var(--d-text);
+}
+
+.mh-dark .campPage-trap-trapEffectiveness-difficultyGroup {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-trapEffectiveness-mouse:hover {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  outline-color: var(--d-border);
+}
+
+.mh-dark .trapSelectorView__trapStatSummary,
+.mh-dark .trapSelectorView__outerBlock,
+.mh-dark button.trapSelectorView__armedItem,
+.mh-dark .campPage-trap-friendList.full,
+.mh-dark .campPage-trap-itemStats,
+.mh-dark .campPage-trap-trapEffectiveness,
+.mh-dark .mh-improved-favorite-setups-button,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-trapEffectiveness,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-statsContainer,
+.mh-dark .trapSelectorView__armedItemBorder,
+.mh-dark .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait,
+.mh-dark #mh-improved-cre {
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-border);
+  box-shadow: -1px 1px 3px var(--d-bg) inset;
+}
+
+.mh-dark .campPage-trap-baitName {
+  box-shadow: none;
+}
+
+.mh-dark .trapSelectorView__armedItemQuantity span {
+  text-shadow: none;
+}
+
+.mh-dark span.campPage-trap-baitQuantity {
+  right: 0;
+  bottom: 0;
+}
+
+.mh-dark .trapSelectorView__trapStatSummaryContainer {
+  background: transparent;
+  border: none;
+}
+
+.mh-dark .campPage-trap-itemBrowser-item-favorite,
+.mh-dark .campPage-trap-itemBrowser-item.largeQuantity .campPage-trap-itemBrowser-item-quantity .quantity {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .trapSelectorView__armedItem--empty .trapSelectorView__armedItemImage {
+  color: var(--d-text-muted);
+}
+
+.mh-dark #mh-improved-cre thead {
+  box-shadow: 0 -1px var(--d-border) inset;
+}
+
+.mh-dark .mh-improved-cre-name a {
+  color: inherit;
+}

@@ -1,0 +1,35 @@
+.mh-dark .mouseView-title {
+  color: var(--d-text);
+}
+
+.mh-dark .minluck-title,
+.mh-dark .mouseview-has-mhct .ar-header {
+  border-bottom-color: var(--d-bg);
+}
+
+.mh-dark .mouseview-has-mhct .mouse-ar-wrapper {
+  background-color: var(--d);
+}
+
+.mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
+  background-color: var(--d-alt);
+}
+
+.mh-dark li.minluck-item {
+  background-color: var(--d-alt);
+  border-color: var(--d-bg-alt);
+}
+
+.mh-dark .mouseView-categoryContent-subgroup-mouse-weaknesses-label {
+  border-color: var(--d-bg-alt);
+}
+
+.mh-dark .mouseView-statsContainer-block {
+  background-color: var(--d-yellow-dark);
+}
+
+.mh-dark .minluck-title,
+.mh-dark .mouseview-has-mhct .ar-header,
+.mh-dark .mouseView-titleContainer {
+  border-bottom-color: var(--d-bg-alt);
+}

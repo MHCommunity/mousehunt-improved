@@ -1,0 +1,52 @@
+.mh-dark .scoreboardTableView-content {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .scoreboardTableView-table th {
+  color: var(--d-text);
+}
+
+.mh-dark .scoreboardTableView-filters label {
+  color: var(--d-text-muted);
+}
+
+.mh-dark tr.scoreboardTableView-row.viewer,
+.mh-dark tr.scoreboardTableView-row.highlight {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .scoreboardTableView-header {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .scoreboardTableView-header-title {
+  color: var(--d-text);
+  text-shadow: none;
+}
+
+.mh-dark .scoreboardTableView-content .pagerView-container {
+  border: none;
+  border-top: 1px solid var(--d-border);
+}
+
+.mh-dark .scoreboardTableView-content .pagerView-section.previous.active .pagerView-link,
+.mh-dark .scoreboardTableView-content .pagerView-section.next.active .pagerView-link {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .scoreboardTableView-separator hr {
+  background-color: transparent;
+  border-color: var(--d-border);
+}
+
+.mh-dark .tournamentPage-tournamentHeader {
+  color: var(--d-text);
+  text-shadow: none;
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: none;
+}

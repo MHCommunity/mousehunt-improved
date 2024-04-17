@@ -1,0 +1,145 @@
+.mh-dark .mh-ui-quick-invite-wrapper {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapView-leftBlock .treasureMapView-block {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapRootView-subTabContainer {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapRootView-subTab.active,
+.mh-dark .treasureMapRootView-subTabContainer:hover .treasureMapRootView-subTab:hover {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+  border-radius: 0;
+}
+
+.mh-dark .treasureMapRootView-subTab,
+.mh-dark .treasureMapRootView-subTabContainer:hover .treasureMapRootView-subTab.active {
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapRootView .messageBoardView div.messageBoardView-message-container,
+.mh-dark .teamPage-messageBoard-corkboard .messageBoardView-message-container {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapRootView .messageBoardView .messageBoardView-message,
+.mh-dark .teamPage-messageBoard-corkboard .messageBoardView-message,
+.mh-dark .hunterInfoView-corkBoardBlock .messageBoardView-message {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .treasureMapRootView .messageBoardView div.messageBoardView-message.new {
+  border-color: var(--d-border) !important;
+}
+
+.mh-dark textarea.messageBoardView-message-textarea {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapView-environment.complete .treasureMapView-environment-title {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .treasureMapView-mapWarning.treasureMapRootView-padding {
+  color: var(--d-text);
+  background-color: var(--d-red-dark);
+}
+
+.mh-dark .mh-ui-environments-block .treasureMapView-block-content {
+  background-color: transparent;
+}
+
+.mh-dark .treasureMapView-allyTable .treasureMapView-allyRow:nth-child(even) {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .treasureMapView-block {
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapRootView-tab-name {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .treasureMapView-scoreboard {
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapView-block-row.active {
+  background-color: var(--d-yellow-dark);
+}
+
+.mh-dark .treasureMapInventoryView .treasureMapView-blockWrapper .treasureMapView-leftBlock .treasureMapView-block-content {
+  margin-left: 0;
+}
+
+.mh-dark .treasureMapPopup-seasonContainer.mousehuntTooltipParent {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapInventoryView-relicHunter {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-ui-goals-sidebar-toggle {
+  filter: invert(1);
+}
+
+.mh-dark .treasureMapView-highlight-content {
+  background-color: var(--d);
+}
+
+.mh-dark .treasureMapView-highlight-name.mh-ui-mouse-links-map-name {
+  color: var(--d-blue);
+}
+
+.mh-dark .mh-ui-mouse-links-map-ars .mhct-data {
+  color: var(--d-text-muted);
+  background-color: var(--d);
+}
+
+.mh-dark .mhct-row {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mh-ui-mouse-links-map-ars .mhct-row:nth-child(odd) {
+  color: var(--d-text-muted);
+  background-color: var(--d-alt);
+}
+
+.mh-dark .treasureMapView-highlight {
+  outline: 1px solid var(--d-border);
+}
+
+.mh-dark .mh-ui-mouse-links-map-ars .mhct-title {
+  color: var(--d-text);
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapPopup-shop .treasureMapInventoryView-scrollCase-content,
+.mh-dark .treasureMapPopup-shop .treasureMapView-block-content-heading {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .treasureMapView-environment.wrong .treasureMapView-environment-title {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .treasureMapView-consolationPrize-message {
+  color: var(--d-text-dark);
+}

@@ -1,0 +1,63 @@
+.mh-dark .friendsPage-subduedLink {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .friendsPage-subduedLink:hover {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .teamPage-messageBoard-corkboard .messageBoardView-message,
+.mh-dark .hunterInfoView-corkBoardBlock .messageBoardView-message {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .teamPage-messageBoard-corkboard .messageBoardView-message-body,
+.mh-dark .hunterInfoView-corkBoardBlock .messageBoardView-message-body {
+  color: var(--d-text);
+}
+
+.mh-dark .hunterInfoView-wrapper .friendsPage-friendRow-statsContainer {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .hunterInfoView-wrapper .campPage-trap-trapStat {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer,
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-trapBlock-footer-stats {
+  background-color: var(--d);
+}
+
+.mh-dark .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader {
+  border-bottom: none;
+  box-shadow: -1px 1px 1px #a59f8e;
+}
+
+.mh-dark .hunterProfileItemsView-content-padding {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .hunterProfileItemsView-categoryContent-name {
+  color: var(--d-text);
+}
+
+.mh-dark .hunterProfileItemsView-category-margin {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .hunterProfileItemsView-category {
+  color: var(--d-text);
+}
+
+.mh-dark .hunterProfileItemsView-category.active .hunterProfileItemsView-category-margin {
+  color: var(--d-text);
+}
+
+.mh-dark .hunterProfileItemsView-categoryContent-item-padding {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+}

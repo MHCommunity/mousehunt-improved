@@ -1,0 +1,29 @@
+.mh-dark .itemViewContainer {
+  margin-right: -1px;
+  margin-left: -1px;
+  background-color: var(--d-bg);
+  border-bottom-color: var(--d-bg);
+}
+
+.mh-dark .itemView-padding {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .itemView-character-name {
+  color: var(--d-text);
+  text-shadow: -1px -1px 5px var(--d-text-muted);
+}
+
+.mh-dark .itemView-header {
+  border-color: var(--d-transparent-10);
+  border-width: 1px;
+}
+
+.mh-dark .itemViewContainer .itemViewStatBlock-stat {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-dark .itemViewStatBlock-stat-value {
+  background-color: transparent;
+}

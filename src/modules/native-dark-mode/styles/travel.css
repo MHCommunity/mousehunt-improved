@@ -1,0 +1,60 @@
+.mh-dark .travelPage-regionMenu-environments,
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu-item,
+.mh-dark #mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environments {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .travelPage-regionMenu-environmentLink.relic-hunter-is-here,
+.mh-dark .mousehuntHud-page-tabContent.simple-travel .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
+  background-color: var(--d-green-dark);
+  outline-color: var(--d-alt);
+}
+
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink:hover,
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink:focus,
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight,
+.mh-dark #mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.active.highlight {
+  color: var(--d-text);
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .travelPage-regionMenu-stats {
+  color: var(--d-text);
+  background-color: var(--d);
+}
+
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight {
+  margin-right: -4px;
+}
+
+.mh-dark .travelPage-regionMenu-item.active .travelPage-regionMenu-regionLink {
+  background-color: var(--d-blue-dark);
+  box-shadow: 2px 2px 2px var(--d-blue-dark) inset;
+}
+
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu-item {
+  border-color: var(--d-blue-dark);
+}
+
+.mh-dark a.travelPage-regionMenu-environmentLink,
+.mh-dark a.travelPage-regionMenu-regionLink,
+.mh-dark .travelPage-map-pieces-detail-title {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .travelPage-map-pieces-row {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .travelPage-map-pieces-detail-environment-title {
+  border: none;
+}
+
+.mh-dark .travelPage-map-environment-detailContainer {
+  background: var(--d);
+  border-color: var(--d-border);
+  border-bottom: none;
+  box-shadow: none;
+}

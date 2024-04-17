@@ -1,0 +1,54 @@
+.mh-dark .mousehuntHeaderView .dropdownContent {
+  color: var(--d-color);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mousehuntHeaderView .menuItem.sidebar .dropdownContent .pageSidebarView-user a:nth-child(2) {
+  color: var(--d-link);
+}
+
+.mh-dark .mousehuntHeaderView .menuItem.sidebar .dropdownContent a.pageSidebarView-user-logout {
+  color: var(--d-link);
+}
+
+.mh-dark .mousehuntHeaderView .dropdownContent a {
+  color: var(--d-text);
+  border-color: var(--d-border);
+}
+
+.mh-dark .regionName {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .regionWrapper {
+  border-color: var(--d-border);
+}
+
+.mh-dark .locationWrapper {
+  background-color: var(--d);
+}
+
+.mh-dark .locationWrapper:nth-child(2n) {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .dashboardWrapper {
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .scoreboardRelativeRankingTableView-table {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a {
+  color: var(--d-link);
+}
+
+.mh-dark .scoreboardRelativeRankingTableView-table tr.highlight {
+  color: var(--d-text-dark);
+  background-color: var(--d-yellow);
+}

@@ -1,0 +1,76 @@
+.mh-dark .PagePreferences__title,
+.mh-dark .mousehunt-improved-settings .PagePreferences__title,
+.mh-dark .PagePreferences__section,
+.mh-dark #mousehunt-improved-settings-location-hud .PagePreferences__title {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .PagePreferences__separator,
+.mh-dark #mousehunt-improved-settings-design-custom-background,
+.mh-dark #mousehunt-improved-settings-design-custom-hud,
+.mh-dark #mousehunt-improved-settings-design-custom-horn,
+.mh-dark #mousehunt-improved-settings-design-custom-shield,
+.mh-dark #mousehunt-improved-settings-feature-ultimate-checkmark-categories,
+.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList,
+.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting:nth-child(odd) {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting {
+  border-color: var(--d-alt);
+}
+
+.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-better::before,
+.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-feature::before,
+.mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-beta::before,
+.mh-dark #mousehunt-improved-settings-design-custom-background::before,
+.mh-dark #mousehunt-improved-settings-design-custom-horn::before,
+.mh-dark #mousehunt-improved-settings-design-custom-hud::before,
+.mh-dark #mousehunt-improved-settings-design-custom-shield::before,
+.mh-dark #mousehunt-improved-settings-feature-ultimate-checkmark-show::before {
+  filter: invert(1);
+}
+
+.mh-dark h3.PagePreferences__titleText {
+  color: var(--d-text);
+}
+
+.mh-dark .PagePreferences .mousehuntHud-page-tabContent.game_settings .PagePreferences__settingNameText,
+.mh-dark .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__settingNameText {
+  color: var(--d-text);
+}
+
+.mh-dark .PagePreferences__settingDescription {
+  color: var(--d-text-muted);
+}
+
+.mh-dark #mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(2n) {
+  background-color: var(--d);
+}
+
+.mh-dark #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-styles textarea,
+.mh-dark #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-flags input {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mousehuntSettingSlider {
+  border-color: var(--d-border);
+  box-shadow: 0 0 7px var(--d-border) inset;
+}
+
+.mh-dark .accountVerificationRewardsView__step.claimed {
+  color: var(--d-text-dark);
+  background-color: var(--d-green);
+}
+
+.mh-dark .accountVerificationRewardsView__step.can_claim {
+  color: var(--d-text-dark);
+  background-color: var(--d-yellow);
+}

@@ -1,0 +1,85 @@
+.mh-dark .inventoryPage-item-content-description-consumedItem.error {
+  color: var(--d-red-dark);
+}
+
+.mh-dark .inventoryPage-item-content-description-consumedItem-image {
+  margin-left: 0;
+}
+
+.mh-dark .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container,
+.mh-dark .itemPurchaseView-container:hover .itemPurchaseView-margin,
+.mh-dark .itemPurchaseView-container:hover .itemPurchaseView-image-container,
+.mh-dark .itemPurchaseView-container:hover .itemPurchaseView-content-container,
+.mh-dark .itemPurchaseView-container .itemPurchaseView-margin,
+.mh-dark .itemPurchaseView-image-container,
+.mh-dark .itemPurchaseView-content-container {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .itemPurchaseView-container {
+  border-color: var(--d-border);
+}
+
+.mh-dark .itemPurchaseView-content-description {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .itemPurchaseView-action-container {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .itemPurchaseView-action-goldGost,
+.mh-dark .itemPurchaseView-action-purchaseHelper-owned {
+  color: var(--d-text-muted);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .itemPurchaseView-action-itemCost-table-cell.cost {
+  color: var(--d-green);
+  text-shadow: none;
+}
+
+.mh-dark .itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.cost,
+.mh-dark .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-row.error a {
+  color: var(--d-red-dark);
+}
+
+.mh-dark .itemPurchaseView-action-itemCost-table-cell.owned {
+  color: var(--d-text);
+}
+
+.mh-dark .itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.owned {
+  color: var(--d-text-dark);
+}
+
+.mh-dark.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.title,
+.mh-dark .itemPurchaseView-container .itemViewStatBlock-stat.powerType,
+.mh-dark.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .itemViewStatBlock-stat.success,
+.mh-dark .itemViewStatBlock-stat.success .itemViewStatBlock-stat-value a {
+  color: var(--d-green);
+}
+
+.mh-dark .itemPurchaseView-action-itemCost-table {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .itemPurchaseView-container.donation .itemPurchaseView-action-itemCost-table {
+  background-color: var(--d-yellow);
+}
+
+.mh-dark .itemPurchaseView-action-itemCost-table a {
+  color: var(--d-text);
+}
+
+.mh-dark .shopsPage-otherEnvironment {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}

@@ -1,0 +1,74 @@
+.mh-dark .mousehuntHud-gameInfo {
+  background-color: var(--d);
+  border-right: none;
+}
+
+.mh-dark div#envHeaderImg::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image: url(https://i.mouse.rip/dark/envHeaderImg.png?a);
+  opacity: 0.7;
+}
+
+.mh-dark .mousehuntHud-menu ul li a {
+  height: 25px;
+  color: var(--d-border);
+  text-shadow: none;
+}
+
+.mh-dark .mousehunt-improved-lgs-reminder-new,
+.mh-dark .huntersHornView__timer {
+  filter: brightness(0.8);
+}
+
+.mh-dark .mousehuntHud-environmentIconWrapper,
+.mh-dark .huntersHornView__backdrop {
+  filter: brightness(0.6);
+}
+
+.mh-dark .mousehuntHud-menu.default {
+  z-index: 90;
+  filter: brightness(0.8);
+}
+
+.mh-dark a.mousehuntHud-shield.golden.default {
+  filter: drop-shadow(0 0 5px rgb(92 77 30 / 50%)) brightness(0.9);
+}
+
+.mh-dark .mousehuntHud-menu ul li:hover a,
+.mh-dark .mousehuntHud-menu ul li.active a {
+  color: var(--d-text-dark);
+  text-shadow: none;
+}
+
+body.mh-dark .mousehuntHud-marbleDrawer {
+  background:
+    url(https://i.mouse.rip/dark/mousehuntHudPedestal.png) -46px 0 no-repeat,
+    url(https://i.mouse.rip/dark/mousehuntHudPedestal.png) 731px 0 no-repeat,
+    url(https://i.mouse.rip/mh-improved/custom-hud/hud-blueprint.png) repeat-y top center !important;
+}
+
+.mh-dark .mousehuntHud-environmentName {
+  color: #d6c8a2;
+  text-shadow: none;
+  filter: drop-shadow(0 1px 1px #554825) drop-shadow(0 2px 1px #554825);
+}
+
+.mh-dark .huntersHornView__messageContainer {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .mousehuntHeaderView-gameTabs,
+.mh-dark .mousehuntHeaderView .menuItem {
+  background: url(https://i.mouse.rip/dark/menuItem.png?d) 0 0 repeat-x;
+}
+
+.mh-dark .mousehuntHeaderView-gameTabs {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mousehuntHeaderView .menuItem {
+  color: var(--d-text);
+  border-color: var(--d-border);
+}

@@ -1,0 +1,75 @@
+.mh-dark .mouseListView-categoryContent-category {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mouseListView-categoryContent-name {
+  color: var(--d-text);
+}
+
+.mh-dark .mouseListView-category-margin {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .mouseListView-categoryContent-subgroupContainer,
+.mh-dark .mouseListView-categoryContent-subgroup-name,
+.mh-dark .mouseListView-categoryContent-weaknessesContainer {
+  background-color: var(--d-alt);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark .mouseListView-categoryContent-subgroupContainer {
+  border-radius: 10px;
+}
+
+.mh-dark .mouseListView-categoryContent-subgroup-name {
+  margin: 0;
+  background-color: var(--d-bg-alt);
+  border: none;
+  border-bottom: 1px solid var(--d-border);
+}
+
+.mh-dark .mouseListView-categoryContent::before {
+  left: 0;
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mouseListView-categoryContainer.active {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .mouseListView-categoryContainer.active .mouseListView-category-progress,
+.mh-dark .mouseListView-categoryContainer.active .mouseListView-category-name {
+  color: var(--d-text);
+}
+
+.mh-dark .mouseListView-categoryContent-subgroup-mouse-margin {
+  color: var(--d-text);
+}
+
+.mh-dark .adversariesPage-list-header {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .adversariesPage-list-header label {
+  color: var(--d-text);
+}
+
+.mh-dark .mouseListView-categoryContent-subgroup-mouse.stats:nth-child(odd) {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mouseListView-categoryContent-filter-option {
+  margin-left: 1px;
+  background-color: var(--d);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark .mouseListView-categoryContent-subgroup-mouse.stats.header {
+  background-color: var(--d) !important;
+}
+
+.mh-dark .mouseCrownsView-group-header b {
+  color: var(--d-text-dark);
+}

@@ -1,0 +1,111 @@
+.mh-dark .campPage-tabs-tabHeader span,
+.mh-dark .campPage-tabs-tabHeader.active span,
+.mh-dark .campPage-tabs-tabHeader:hover span,
+.mh-dark .campPage-tabs-tabHeader:focus span,
+.campPage-tabs-tabHeader.active span,
+.campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span,
+.campPage-tabs-tabRow a.campPage-tabs-tabHeader:focus span {
+  color: var(--d-text);
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+  box-shadow: 1px 1px 1px var(--d-bg);
+}
+
+.mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader.active span,
+.mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: 1px 1px 1px var(--d-bg);
+}
+
+.mh-dark .campPage-tabs-tabHeader.active span,
+.mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span {
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span {
+  box-shadow: none;
+}
+
+.mh-dark .campPage-tabs-tabContentContainer {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: 1px 1px 1px var(--d-border);
+}
+
+.mh-dark .campPage-tabs-tabContent.active[data-tab="daily"],
+.mh-dark .campPage-tabs-tabContent-larryTip-container,
+.mh-dark .campPage-quests-container {
+  background-color: var(--d);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .campPage-tabs-tabContent-larryTip-environment,
+.mh-dark .campPage-quests-title {
+  color: var(--d-text);
+}
+
+.mh-dark .campPage-tabs-tabHeader span {
+  border-bottom-color: var(--d-border) !important;
+}
+
+.mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span,
+.mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:focus span {
+  border-color: var(--d-border) !important;
+}
+
+.mh-dark .campPage-daily-draw-prize-description,
+.mh-dark .campPage-daily-draw-button {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .campPage-quests-objective {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .campPage-quests-footer-smash {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .adventureBookBanner-container {
+  background-color: var(--d);
+  border-color: var(--d-border);
+  box-shadow: -1px 1px 3px var(--d-bg) inset;
+}
+
+.mh-dark .adventureBookBanner-complete .adventureBookBanner-completed,
+.mh-dark .adventureBookBanner-adventureName {
+  color: var(--d-text);
+}
+
+.mh-dark .adventureBookBanner-goalContainer {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .adventureBookBanner-moreInfo {
+  color: var(--d-link);
+}
+
+.mh-dark span.mh-ui-tem-crown-text {
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-trap-trapEffectiveness-mouse-image {
+  box-shadow: 1px 1px 1px var(--d-bg);
+}
+
+.mh-dark .trapSelectorView__blueprint {
+  border-color: var(--d-blue-dark);
+}
+
+.mh-dark img.mh-ui-tem-crown-icon,
+.mh-dark .campPage-trap-trapEffectiveness-mouse-powerType {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}

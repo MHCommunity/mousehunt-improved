@@ -1,0 +1,33 @@
+.mh-dark .mh-improved-map-sidebar-goal-image,
+.mh-dark .mh-improved-mice-sidebar-mouse-image {
+  box-shadow: inset 0 0 0 1px var(--d-border);
+}
+
+.mh-dark .mh-improved-map-sidebar-goal:hover,
+.mh-dark .mh-improved-mice-sidebar-mouse:hover {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mh-improved-mice-sidebar,
+.mh-dark .mh-improved-map-sidebar {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-mice-sidebar-title,
+.mh-dark .mh-improved-map-sidebar-title {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .scoreboardRelativeRankingTableView-table {
+  background-color: var(--d-bg);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark .scoreboardRelativeRankingTableView tr {
+  color: var(--d-text);
+}
+
+.mh-dark .scoreboardRelativeRankingTableView th {
+  color: var(--d-text-dark);
+}

@@ -1,0 +1,53 @@
+.mh-dark .shopsPage-kingsCalibratorPromo {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  box-shadow: inset -1px -1px 2px var(--d-border);
+}
+
+.mh-dark .campPage-daily-container .shopsPage-kingsCalibratorPromo-button {
+  background-color: var(--d-blue);
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-upgradeContainer {
+  background-color: var(--d);
+  box-shadow: none;
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-tabHeader span {
+  color: var(--d-text);
+  background-color: var(--d);
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-tabHeader:hover span,
+.mh-dark .kingsGiveawayCalibratorPopup-tabHeader.active span {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-upgrade.active {
+  color: var(--d-text-dark);
+  background-color: var(--d-green);
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-upgrade-description {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-upgrade {
+  border-color: var(--d-border);
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-numCredits {
+  color: var(--d-text);
+  text-shadow: none;
+  background-color: var(--d);
+}
+
+.mh-dark .kingsGiveawayCalibratorPopup-upgrade-name {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .locked .kingsGiveawayCalibratorPopup-upgrade-name {
+  color: var(--d-text-muted);
+}

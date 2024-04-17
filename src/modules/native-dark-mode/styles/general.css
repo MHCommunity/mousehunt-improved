@@ -1,0 +1,56 @@
+body.mh-dark {
+  color: var(--d-text);
+  background-color: var(--d);
+  scrollbar-color: var(--d-text-muted) var(--d-alt);
+}
+
+.mh-dark .quickSendWrapper {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .puzzleView {
+  filter: brightness(0.7);
+}
+
+.mh-dark .mousehuntActionButton.lightBlue {
+  box-shadow: 1px 1px 1px var(--d-blue-dark);
+}
+
+.mh-dark .mousehunt-improved-lgs-reminder-new {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .journal .entry .journaltext input.quickSendInput,
+.mh-dark .mousehuntPage-content input.quickSendInput,
+.mh-dark .quickSendInput,
+.mh-dark .mh-improved-favorite-setups-component-picker-popup-search input {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark .huntersHornView__hornImage {
+  /* stylelint-disable-next-line */
+  filter:
+    drop-shadow(1px 1px 0  rgb(175 175 175 / 50%))
+    drop-shadow(-1px 1px 0  rgb(175 175 175 / 50%))
+    drop-shadow(1px -1px 0 rgb(175 175 175 / 50%))
+    drop-shadow(-1px -1px 0  rgb(175 175 175 / 50%))
+    drop-shadow(1px 4px 3px #6b6b6b);
+}
+
+.mh-dark .treasureMapRootView .messageBoardView .pagerView-section.previous .pagerView-link,
+.mh-dark .teamPage-messageBoard-corkboard .pagerView-section.previous .pagerView-link,
+.mh-dark .hunterInfoView-corkBoardBlock .pagerView-section.previous .pagerView-link {
+  color: var(--d-text-muted);
+}
+
+.mh-dark #OnboardArrow.onboardPopup.top {
+  z-index: 100;
+  color: #000;
+}
+
+.travelPage-map-message {
+  color: #000;
+}

@@ -1,0 +1,9 @@
+.mh-dark .marketplaceView-table,
+.mh-dark a.marketplaceView-header-tabHeader,
+.mh-dark .marketplaceView-browse-sidebar-link {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .marketplaceView-browse-sidebar-link.active {
+  color: var(--d-text);
+}

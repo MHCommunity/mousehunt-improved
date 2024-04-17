@@ -1,0 +1,165 @@
+.mh-dark .inventoryPage-item.small .inventoryPage-item-margin {
+  background-color: var(--d-bg);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark .itemImage .quantity {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .inventoryPage-tagContent-tagTitle {
+  color: var(--d-text);
+}
+
+.mh-dark a.inventoryPage-tagDirectory-tag {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-tagDirectory {
+  border-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-tagDirectory-tag.active,
+.mh-dark .inventoryPage-tagDirectory-tag:hover {
+  color: var(--d-text-muted);
+  background-color: var(--d-blue-extra-dark);
+}
+
+.mh-dark .inventoryPage-item.small .tooltip {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .inventoryPage-item.small .inventoryPage-item-button {
+  color: #000;
+  background-color: #fc6;
+  border-color: #ddd;
+}
+
+.mh-dark .inventoryPage-item.small.armed .inventoryPage-item-margin {
+  border-color: var(--d-green);
+  box-shadow: inset 0 0 4px var(--d-green);
+}
+
+.mh-dark .mhui-inventory-lock-and-hide-item-controls {
+  background-color: var(--d-transparent-20);
+}
+
+.mh-dark a.mousehuntHud-page-subTabContent-prefix-filter-option,
+.mh-dark .mousehuntHud-page-subTabHeader span {
+  color: var(--d-text);
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .mousehuntHud-page-subTabContent-prefix-filter-option.active,
+.mh-dark .mousehuntHud-page-subTabContent-prefix-filter-option:hover,
+.mh-dark .mousehuntHud-page-subTabHeader.active span,
+.mh-dark .mousehuntHud-page-subTabHeader:hover span,
+.mh-dark .mousehuntHud-page-subTabHeader:focus span {
+  color: #fff;
+  background-color: #8595b0;
+}
+
+.mh-dark .mousehuntHud-page-subTabContent-prefix-filter-options {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mousehuntHud-page-subTabHeader-container .mousehuntHud-page-subTabHeader:last-child span {
+  border-right-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-item-margin {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .item_set {
+  color: var(--d-text-dark);
+  background-color: var(--d-yellow);
+}
+
+.mh-dark .itemViewStatBlock-stat-value {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .itemViewStatBlock {
+  border-color: var(--d-border);
+}
+
+.mh-dark .itemViewStatBlock-stat-label {
+  background-color: var(--d-action);
+}
+
+.mh-dark .inventoryPage-item-content-description-text {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mousehuntHud-page-tabContent-loading {
+  background: url(https://www.mousehuntgame.com/images/ui/loaders/mouse_loading_large.gif?asset_cache_version=3) 50% 50% no-repeat;
+}
+
+.mh-dark .inventoryPage-item-recipeOptions li {
+  color: var(--d-text);
+  background-color: var(--d-yellow-dark);
+  border-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-item-recipeOptions li:hover {
+  color: var(--d-text-dark);
+  background-color: var(--d-yellow);
+}
+
+.mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="submit"],
+.mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="button"] {
+  color: #000;
+  background-color: #fc6;
+}
+
+.mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="submit"]:hover,
+.mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="button"]:hover {
+  color: #000;
+  background-color: #fc9;
+}
+
+.mh-dark .mousehuntHud-page-tabContent.crafting .mousehuntHud-page-subTabContent-margin {
+  background-color: var(--d);
+}
+
+.mh-dark .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .inventoryPage-item-margin {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .mousehuntHud-page-subTabContent-prefix-title {
+  color: var(--d-text);
+  text-shadow: none;
+}
+
+.mh-dark .inventoryPage-craftingTable-slotContainer {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mousehuntHud-page-subTabContent.crafting_table .inventoryPage-craftingTable {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .inventoryPage-craftingTable-slot {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .inventoryPage-craftingTable-slot-item.empty .itemImage {
+  box-shadow: 0 0 0 1px var(--d-action) inset;
+}
+
+.mh-dark .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .tooltip .inventoryPage-item-margin {
+  background-color: transparent;
+}
+
+.mh-dark .inventoryPage-item-content-description-consumedItem.error {
+  color: var(--d-red-dark);
+}

@@ -1,0 +1,75 @@
+.mh-dark .journalContainer .top a {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .journal a {
+  color: var(--d-link);
+}
+
+.mh-dark .entry.short.misc.custom.unstable_charm_trigger {
+  background-color: var(--d-blue);
+}
+
+.mh-dark .journal .content .entry {
+  color: var(--d-text) !important;
+  background-color: var(--d);
+  background-blend-mode: soft-light;
+}
+
+.mh-dark .journal .content .entry.catchsuccessloot {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .journal .content .entry.catchfailure {
+  background-color: var(--d-red-dark);
+}
+
+.mh-dark .journal .content .entry.short.misc.custom.chesla_trap_trigger {
+  background-color: var(--d-purple);
+}
+
+.mh-dark .journal .content .entry a {
+  color: var(--d-link);
+}
+
+.mh-dark .entry.short.supplytransferitem {
+  background-blend-mode: normal;
+}
+
+.mh-dark .entry.short.supplytransfergold {
+  background-image: url(https://i.imgur.com/Z3buYfj.png); /* TODO: move to i.mouse.rip */
+  background-blend-mode: normal;
+}
+
+.mh-dark .entry.short.travel {
+  background-image: url(https://i.imgur.com/xZL91qg.png); /* TODO: move to i.mouse.rip */
+  background-blend-mode: normal;
+}
+
+.mh-dark .journal .content .entry .journalbody .journaldate {
+  color: var(--d-text-muted);
+  border-bottom: 1px solid rgb(255 255 255 / 30%);
+}
+
+.mh-dark .pagerView-container {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .journal .content .entry:last-child {
+  border-bottom-color: #5b5b5b;
+}
+
+.mh-dark .campPage-quests-objective-container.complete .campPage-quests-objective {
+  color: var(--d-text);
+}
+
+.mh-dark .campPage-quests-objective-container.complete {
+  background-color: var(--d-green-dark);
+  border-color: transparent;
+}
+
+.mh-dark .pagerView-section.previous.active .pagerView-link,
+.mh-dark .pagerView-section.next.active .pagerView-link {
+  color: var(--d-text-muted);
+}

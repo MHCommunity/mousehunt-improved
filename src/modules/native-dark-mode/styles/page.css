@@ -1,0 +1,18 @@
+.mh-dark .pageFrameView-content,
+.mh-dark .mousehuntHeaderView,
+.mh-dark .pageFrameView-contentContainer,
+.mh-dark .pageSidebarView,
+.mh-dark .bg-color {
+  background-color: var(--d);
+}
+
+.mh-dark #mousehuntContainer.PageCamp {
+  background: var(--d);
+  box-shadow: none;
+}
+
+.mh-dark .pageFrameView-column.left,
+.mh-dark .pageFrameView-column.right {
+  background: var(--d-bg);
+  border-color: var(--d);
+}

@@ -1,0 +1,79 @@
+.mh-dark #overlayPopup .jsDialogContainer .content {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup .jsDialogContainer .suffix {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark #overlayBg {
+  background: var(--d-transparent-30);
+}
+
+.mh-dark #overlayPopup .jsDialog.bottom {
+  background-color: var(--d-alt);
+  border-radius: 0 0 15px 15px;
+}
+
+.mh-dark .mh-improved-travel-window.greatWinterHuntGolemDestinationView {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environmentName {
+  color: var(--d-text);
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:hover .greatWinterHuntGolemDestinationView__environmentName,
+.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:focus .greatWinterHuntGolemDestinationView__environmentName {
+  background-color: var(--d-action);
+}
+
+.mh-dark #overlayPopup .button,
+.mh-dark .notificationMessageList .message .actions input[type="button"],
+.mh-dark .notificationMessageList .message .actions input[value="View Profile"],
+.mh-dark .notificationMessageList .message .actions input[value="View Profile"].ignoreRequest.ignoreRequest {
+  box-shadow: 0 -5px 8px -2px #ffae00 inset;
+}
+
+.mh-dark #overlayPopup h2,
+.mh-dark #overlayPopup h3 {
+  color: var(--d-text);
+}
+
+.mh-dark #overlayPopup.tornPage .tornPageText p {
+  color: var(--d-text-muted);
+}
+
+.mh-dark #overlayPopup .jsDialogContainer .prefix {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .inventoryPage-confirmPopup-itemContainer {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .inventoryPage-confirmPopup-itemTable {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .inventoryPage-confirmPopup-itemContainer.received {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .inventoryPage-confirmPopup-suffix-quantityContainer input {
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-border);
+  border-width: 1px;
+}

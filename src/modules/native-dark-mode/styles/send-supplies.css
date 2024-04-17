@@ -1,0 +1,47 @@
+.mh-dark #supplytransfer .categoryMenu a,
+.mh-dark #supplytransfer .drawer {
+  background-color: var(--d);
+}
+
+.mh-dark #supplytransfer .drawer .tabContent h2 {
+  color: var(--d-text);
+}
+
+.mh-dark span.mhui-supply-sort-label,
+.mh-dark .mhui-supply-search-form label {
+  color: var(--d-text);
+}
+
+.mh-dark #supplytransfer .listContainer a.element.item {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark #supplytransfer .listContainer a.element.item.pinned {
+  color: var(--d-text-dark);
+}
+
+.mh-dark #supplytransfer .categoryMenu a:hover {
+  color: var(--d-text-dark);
+}
+
+.mh-dark #supplytransfer .listContainer a.element:hover,
+.mh-dark #supplytransfer .listContainer a.element.recipient:hover,
+.mh-dark #supplytransfer .listContainer a.element.item.pinned:hover,
+.mh-dark #supplytransfer .tabs .tab .image:hover,
+.mh-dark #supplytransfer .tabs .tab .image.empty:hover {
+  color: var(--d-text-dark);
+}
+
+.mh-dark #supplytransfer .listContainer a.element.item:hover {
+  background-color: #d8f0ff;
+}
+
+.mh-dark #supplytransfer .listContainer a.element.recipient {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark #supplytransfer .drawer .tabContent .summary .box {
+  background-color: var(--d-bg);
+}

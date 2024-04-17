@@ -1,0 +1,30 @@
+.mh-dark #friend-data-wrapper,
+.mh-dark #friend-data-wrapper .friendsPage-friendRow,
+.mh-dark #friend-data-wrapper .friendsPage-friendRow-statsContainer,
+.mh-dark #mouse-data-wrapper,
+.mh-dark #item-data-wrapper {
+  color: var(--d-text);
+  background: var(--d);
+  border: var(--d-black);
+  box-shadow: 0 1px 5px -1px var(--d-action);
+}
+
+.mh-dark #friend-data-wrapper .friendsPage-friendRow-stat span,
+.mh-dark #friend-data-wrapper .friendsPage-friendRow-stat a {
+  color: var(--d-text);
+}
+
+.mh-dark #friend-data-wrapper .friendsPage-friendRow-statsContainer {
+  background: var(--d);
+  box-shadow: 0 10px 30px var(--d-alt) inset;
+}
+
+.mh-dark #friend-data-wrapper a.userInteractionButtonsView-button {
+  border-radius: 25%;
+  box-shadow: 0 0 2px 1px var(--d-black) inset;
+}
+
+.mh-dark #friend-data-wrapper .userInteractionButtonsView-button:hover::before,
+.mh-dark #friend-data-wrapper .userInteractionButtonsView-button.busy::before {
+  border-radius: 25%;
+}
