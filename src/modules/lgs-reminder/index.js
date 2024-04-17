@@ -2,6 +2,7 @@ import humanizeDuration from 'humanize-duration';
 
 import {
   addStyles,
+  sleep,
   getSetting,
   makeElement,
   onActivation,
@@ -155,7 +156,8 @@ const main = () => {
   updateLgsReminder(reminder);
 
   if (isExact()) {
-    onEvent('horn-countdown-tick', () => {
+    onEvent('horn-countdown-tick', async () => {
+      await sleep(500);
       updateLgsReminder(reminder);
     });
   } else {
