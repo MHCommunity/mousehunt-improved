@@ -144,7 +144,10 @@ const initMapper = (map) => {
   });
 
   if (getSetting('better-maps.default-to-sorted', false)) {
-    doEvent('map_sorted_tab_click', map);
+    // check if the map is completed, and if so don't click the sorted tab
+    if (! (map.can_claim_reward || map.is_complete)) {
+      doEvent('map_sorted_tab_click', map);
+    }
   } else {
     // Fire the goals click because we default to that tab.
     doEvent('map_show_goals_tab_click', map);
