@@ -4,8 +4,6 @@ import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
 import delayedMenus from './modules/delayed-menus';
 import journalTags from './modules/journal-tags';
-import legacyHud from './modules/legacy-hud';
-import legacyHudTweaks from './modules/legacy-hud-tweaks';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
 import replaceFavicon from './modules/replace-favicon';
@@ -36,24 +34,6 @@ const experiments = [
     id: 'experiments.delayed-menus',
     title: 'Delayed Menus',
     load: delayedMenus,
-  },
-  {
-    id: 'experiments.legacy-hud',
-    title: 'Legacy HUD',
-    load: legacyHud,
-  },
-  {
-    id: 'experiments.legacy-hud-only-menu',
-    title: 'Legacy HUD: Menu only',
-  },
-  {
-    id: 'experiments.legacy-hud-only-stats',
-    title: 'Legacy HUD: Stats bar only',
-  },
-  {
-    id: 'experiments.legacy-hud-tweaks',
-    title: 'Legacy HUD Tweaks',
-    load: legacyHudTweaks,
   },
   {
     id: 'experiments.replace-favicon',
