@@ -39,9 +39,7 @@ const updateMapClasses = () => {
 
 const updateBlockContent = (block, type) => {
   if ('environments' === type) {
-    // reorder the .treasureMapView-environment items to be in alphabetical order
     const environments = block.querySelectorAll('.treasureMapView-environment');
-    console.log('environments', environments);
     const sortedEnvironments = [...environments].sort((a, b) => a.innerText.localeCompare(b.innerText));
     sortedEnvironments.forEach((env) => {
       block.append(env);
