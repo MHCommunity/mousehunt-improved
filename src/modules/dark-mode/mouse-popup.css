@@ -1,0 +1,15 @@
+.mh-dark-mode .mouseViewPopup .mouseView-image::after {
+  position: absolute;
+  inset: 0;
+  height: 390px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/mice/silhouette_large/780235d7d25a27779d9608da65c3a87d.jpg) no-repeat;
+  // TODO need to generate this for all mice.
+  background-size: contain;
+  mix-blend-mode: difference;
+}
+
+.mh-dark-mode .mouseViewPopup .mouseView-image {
+  position: relative;
+  border-radius: 0;
+}
