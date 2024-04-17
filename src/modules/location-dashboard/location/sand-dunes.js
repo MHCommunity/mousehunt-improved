@@ -6,10 +6,17 @@
  * @return {string} The dashboard output.
  */
 export default (quests) => {
-  // salt level, is stampede
   if (! quests.QuestSandDunes) {
     return '';
   }
 
-  return quests.QuestSandDunes.minigame?.has_stampede ? 'Stampeding' : 'Not stampeding';
+  const quest = quests.QuestSandDunes;
+
+  const twistedText = quest.is_normal ? 'Not twisted' : 'Twisted';
+
+  if (quest?.is_normal) {
+    return `${twistedText} · ${quest?.minigame?.has_stampede ? 'Stampeding' : 'Not stampeding'}`;
+  }
+
+  return `${twistedText} · ${quest?.minigame?.salt_charms_used || 0} salt`;
 };

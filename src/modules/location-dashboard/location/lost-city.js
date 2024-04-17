@@ -10,16 +10,20 @@ export default (quests) => {
     return '';
   }
 
-  if (! quests.QuestLostCity?.minigame?.is_cursed) {
-    return 'Not cursed';
+  const quest = quests.QuestLostCity;
+
+  const twistedText = quest.is_normal ? 'Not twisted' : 'Twisted';
+
+  if (! quest?.minigame?.is_cursed) {
+    return `${twistedText} · Not cursed`;
   }
 
-  const curses = quests.QuestLostCity?.minigame?.curses;
+  const curses = quest?.minigame?.curses;
   const cursesText = curses
     .map((curse) => curse.name)
     .join(', ')
     .replaceAll('!', '')
     .replace(/,([^,]*)$/, '$1');
 
-  return `Cursed with ${cursesText}`;
+  return `${twistedText} · Cursed with ${cursesText}`;
 };

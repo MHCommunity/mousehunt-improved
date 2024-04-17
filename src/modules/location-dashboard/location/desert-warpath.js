@@ -21,7 +21,7 @@ const getFieryWarpathText = (quests) => {
 
   let streakText = '';
   if (quest.streak !== 0) {
-    streakText = `· ${quest.streak} streak`;
+    streakText = ` · ${quest.streak} streak`;
   }
 
   return `Wave ${quest.wave}: ${100 - quest.percent}% remaining${streakText} `;
