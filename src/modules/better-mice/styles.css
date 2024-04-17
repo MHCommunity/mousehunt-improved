@@ -323,3 +323,31 @@ ul.minluck-list {
   background-color: #edd1f3;
   border-radius: 10px;
 }
+
+.mouseListView-categoryContent-subgroup-mouse-stats.catches,
+.mouseListView-categoryContent-subgroup-mouse-stats.misses {
+  width: 13%;
+}
+
+.mouseListView-categoryContent-subgroup-mouse-stats.average_weight,
+.mouseListView-categoryContent-subgroup-mouse-stats.heaviest_catch {
+  width: 15%;
+  text-align: center;
+}
+
+.mouseListView-categoryContent-subgroup-mouse-stats.name {
+  width: 44%;
+}
+
+.mouseListView-categoryContent-subgroup-mouse-thumb-name {
+  width: auto;
+}
+
+.mouseListView-categoryContent-filter-option:hover {
+  color: #fff;
+  background: #344562;
+}
+
+.mouseListView-categoryContent-filter-option {
+  margin-left: 5px;
+}

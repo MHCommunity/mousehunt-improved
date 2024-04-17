@@ -335,7 +335,7 @@ const getSelectorPrefix = () => {
     currentSubtab = false;
   }
 
-  return `.${currentTab} .mousehuntHud-page-subTabContent.active${currentSubtab ? `.${currentSubtab}` : ''}`;
+  return `.mousehuntHud-page-subTabContent.active${currentSubtab ? `.${currentSubtab}` : ''}`;
 };
 
 const addSortingToCat = (cat, retries = 0) => {
@@ -469,5 +469,12 @@ export default async () => {
   onNavigation(addSortingToStatsPage, {
     page: 'hunterprofile',
     tab: 'mice',
+    subtab: 'group',
+  });
+
+  onNavigation(addSortingToStatsPage, {
+    page: 'hunterprofile',
+    tab: 'mice',
+    subtab: 'location',
   });
 };
