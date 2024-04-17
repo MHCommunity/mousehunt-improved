@@ -232,10 +232,6 @@ const init = async () => {
   const loadStats = getSetting('legacy-hud.stats', getSetting('experiments.legacy-hud-only-stats', false));
   const loadBoth = (loadMenu && loadStats) || getSetting('legacy-hud.enabled', getSetting('experiments.legacy-hud', true));
 
-  console.log('loadMenu', loadMenu);
-  console.log('loadStats', loadStats);
-  console.log('loadBoth', loadBoth);
-
   if (loadMenu || loadBoth) {
     stylesToAdd.push(menuStyles);
     replaceMenuBar();

@@ -128,7 +128,7 @@ const refreshMap = async () => {
   setMapData(mapId, newMapData.treasure_map);
 
   const currentMapData = sessionGet(`mh-improved-map-cache-${mapId}`);
-  if (currentMapData && mapData.treasure_map) {
+  if (currentMapData && mapData && mapData.treasure_map) {
     const currentGoals = getCompletedGoals(currentMapData);
     const newGoals = getCompletedGoals(newMapData.treasure_map);
     if (currentGoals.length !== newGoals.length) {

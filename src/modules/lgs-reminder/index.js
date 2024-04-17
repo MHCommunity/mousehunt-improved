@@ -2,13 +2,13 @@ import humanizeDuration from 'humanize-duration';
 
 import {
   addStyles,
-  sleep,
   getSetting,
   makeElement,
   onActivation,
   onDeactivation,
   onEvent,
-  onSettingsChange
+  onSettingsChange,
+  sleep
 } from '@utils';
 
 import settings from './settings';

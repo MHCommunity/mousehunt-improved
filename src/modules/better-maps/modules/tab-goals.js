@@ -4,7 +4,6 @@ import {
   doRequest,
   makeElement,
   makeLink,
-  onEvent,
   sessionGet,
   sessionSet,
   showErrorMessage
