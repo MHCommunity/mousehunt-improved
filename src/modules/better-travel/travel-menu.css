@@ -1,10 +1,6 @@
-.mh-improved-travel-window.greatWinterHuntGolemDestinationView {
-  padding: 10px 0;
-}
-
 .mh-improved-travel-window .greatWinterHuntGolemDestinationView__content {
-  align-items: flex-start;
-  margin-right: 5px;
+  flex-direction: column;
+  align-items: center;
   background-color: transparent;
 }
 
@@ -115,4 +111,20 @@
 
 .mh-improved-travel-window-environment-icon {
   cursor: pointer;
+}
+
+.mh-improved-travel-window-search-input-wrapper {
+  margin-bottom: 15px;
+}
+
+.mh-improved-travel-window-search-input {
+  width: auto;
+  min-width: 350px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #333;
+}
+
+.greatWinterHuntGolemDestinationView__environment.greatWinterHuntGolemDestinationView__environment--active {
+  opacity: 0.4;
 }

@@ -94,6 +94,8 @@ const openTravelWindow = async () => {
   // Wrapper start.
   let content = '<div class="mh-improved-travel-window greatWinterHuntGolemDestinationView"><div class="greatWinterHuntGolemDestinationView__content">';
 
+  content += '<div class="mh-improved-travel-window-search-input-wrapper"><input type="text" class="mh-improved-travel-window-search-input" placeholder="Search locations"></div>';
+
   // Region menu.
   content += '<div class="greatWinterHuntGolemDestinationView__regionsContainer">';
   for (const region of regions) {
@@ -132,6 +134,10 @@ const openTravelWindow = async () => {
 
       if (isLocationHidden(environment.id)) {
         envButtonClass += ' mh-improved-travel-window-hidden';
+      }
+
+      if (environment.type === getCurrentLocation()) {
+        envButtonClass += ' greatWinterHuntGolemDestinationView__environment--current';
       }
 
       content += `<button class="${envButtonClass}" data-environment-type="${environment.id}">
@@ -227,6 +233,34 @@ const openTravelWindow = async () => {
 
   onDialogHide(() => {
     isEditing = false;
+  });
+
+  const search = document.querySelector('.mh-improved-travel-window-search-input');
+  if (! search) {
+    return;
+  }
+
+  search.focus();
+
+  search.addEventListener('input', () => {
+    const value = search.value.trim().toLowerCase();
+
+    environmentButtons.forEach((button) => {
+      const environmentType = button.getAttribute('data-environment-type');
+      const environment = environments.find((e) => e.id === environmentType);
+
+      button.style.display = environment.name.toLowerCase().includes(value) ? 'block' : 'none';
+    });
+  });
+
+  // if they hit enter, travel to the first visible location.
+  search.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const visibleButton = document.querySelector('.greatWinterHuntGolemDestinationView__environment[style="display: block;"]');
+      if (visibleButton && ! visibleButton.classList.contains('greatWinterHuntGolemDestinationView__environment--active')) {
+        visibleButton.click();
+      }
+    }
   });
 };
 
