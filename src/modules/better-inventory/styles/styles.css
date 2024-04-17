@@ -195,6 +195,15 @@ a.inventoryPage-item-larryLexicon {
   height: 50px;
 }
 
+.inventoryPage-item-content-description-consumedItem {
+  width: calc(33% - 3px);
+  margin-right: 3px;
+}
+
+.inventoryPage-item-content-description-consumedItem-image {
+  margin-left: 0;
+}
+
 .inventoryPage-item-content-description-consumedItem.error {
   gap: 2px;
   background-color: rgb(245 221 221 / 82%);

@@ -454,14 +454,6 @@ a.campPage-trap-itemBrowser-item-disarmButton:hover {
   box-shadow: -1px 1px 3px #d3cecb inset;
 }
 
-.mh-dark-mode .trapSelectorView__armedItemBorder,
-.mh-dark-mode .trapSelectorView__weaponSkinGroup button,
-.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .campPage-trap-armedItem.bait {
-  border: 1px solid #5c5c5c;
-  border-radius: 5px 5px 4px 4px;
-  box-shadow: -1px 1px 3px #515151 inset;
-}
-
 .trapSelectorView__weaponSkinGroup {
   padding: 0;
   margin: 0;
@@ -599,6 +591,11 @@ input.trapSelectorView__codexListSearch {
   border: 1px solid #5c5c5c;
   border-radius: 5px 5px 4px 4px;
   box-shadow: -1px 1px 3px #515151 inset;
+}
+
+.mh-dark-mode .trapSelectorView__weaponSkinGroup.trapSelectorView__armedItemBorder {
+  border: none;
+  box-shadow: none;
 }
 
 .mh-dark-mode .trapSelectorView__armedItemQuantity span,

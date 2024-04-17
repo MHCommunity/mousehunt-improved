@@ -11,6 +11,7 @@
 .remaining-distance,
 .remaining-stage-distance {
   margin: 2px 0;
+  font-size: 10px;
 }
 
 .remaining-stage-distance {
@@ -18,12 +19,19 @@
   border-top: 1px solid #a4b5bf;
 }
 
+.icebergHud .cutaway .currentPhase {
+  padding-top: 1px;
+  margin-top: 3px;
+  font-size: 14px;
+  border-top: 1px solid #a4b5bf;
+}
+
 .icebergStatusTooltip {
   bottom: -3px;
-  left: 190px;
+  left: 180px;
   width: 325px;
-  padding: 5px 5px 5px 0;
-  background-color: #edf1f8;
+  padding: 8px 7px 6px 0;
+  background-color: rgb(240 240 240 / 90%);
   border: 1px solid #a4b5bf;
   box-shadow: 0 1px 3px -1px #141414;
 }
@@ -31,7 +39,7 @@
 .icebergStatusTooltip .mousehuntTooltip-content {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 15px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -44,7 +52,7 @@
 }
 
 .icebergStatusTooltip .hunts-wrapper .average-hunts {
-  font-size: 1.25em;
+  font-size: 15px;
 }
 
 .icebergStatusTooltip .hunts-wrapper div {
@@ -61,7 +69,7 @@
 }
 
 .icebergStatusTooltip .iceberg-sections {
-  width: 175px;
+  width: 160px;
 }
 
 .icebergStatusTooltip .iceberg-section {
@@ -174,6 +182,7 @@
   font-weight: 900;
 }
 
+.icebergHud .cutaway .depth,
 .icebergHud .cutaway .depth.early {
   top: 3px;
   bottom: 8px;
@@ -181,6 +190,8 @@
   z-index: 4;
   padding-top: 5px;
   font-size: 11px;
+  color: #000;
+  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) 0 0 repeat;
   border-color: #8d98a0;
   border-bottom: 1px solid #9aa8b2;
   border-radius: 0;
@@ -230,6 +241,9 @@
 }
 
 .icebergHud .cutaway .drill .help {
+  position: absolute;
+  top: 90px;
+  right: -55px;
   width: 400px;
 }
 
@@ -247,4 +261,21 @@
 
 .mh-improved-stick-iceberg-tooltip.depth.mousehuntTooltipParent:hover > .mousehuntTooltip {
   animation: none !important;
+}
+
+.icebergHud .cutaway {
+  filter: drop-shadow(0 1px 2px #141414);
+}
+
+.icebergHud .timeline .chest {
+  transition: 0.2s ease-out;
+}
+
+.icebergHud .timeline .chest:hover {
+  transform: scale(1.5);
+}
+
+.icebergHud .timeline .chest:hover .mousehuntTooltip {
+  transform: scale(0.75);
+  animation: none;
 }

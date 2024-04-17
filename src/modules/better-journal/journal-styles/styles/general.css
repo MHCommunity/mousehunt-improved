@@ -115,8 +115,9 @@ a.journal-detailLink.full::after {
 }
 
 .pagerView-container {
-  width: calc(100% - 2px);
   border: 1px solid #5b5b5b;
+  border-right: none;
+  border-left: none;
 }
 
 .pagerView-link {

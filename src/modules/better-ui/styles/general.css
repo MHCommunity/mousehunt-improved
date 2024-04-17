@@ -479,3 +479,7 @@ input.itemView-action-convert-quantity {
 .travelPage-map-pieces-detail-title {
   padding: 5px 10px;
 }
+
+.mouseListView-categoryContent-category {
+  padding-right: 5px;
+}

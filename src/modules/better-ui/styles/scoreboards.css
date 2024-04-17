@@ -34,3 +34,8 @@
 .viewer .tournament-team-rank.updated:hover::after {
   border-radius: 2px;
 }
+
+.pageFrameView .scoreboardRelativeRankingTableView-table {
+  margin-bottom: 15px;
+  border: 1px solid #ddedff;
+}

@@ -65,11 +65,6 @@ a.itemPurchaseView-image-trapPreview-link,
 
 .itemPurchaseView-action-itemCost-table-cell.cost {
   padding-left: 11px;
-  text-shadow:
-    -1px -1px 0 #f9f9f9,
-    1px -1px 0 #f9f9f9,
-    -1px 1px 0 #f9f9f9,
-    1px 1px 0 #f9f9f9;
   background-position: 0 0;
   background-size: 10px;
 }

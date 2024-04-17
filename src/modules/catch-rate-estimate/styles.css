@@ -1,5 +1,5 @@
 #mh-improved-cre {
-  padding-right: 5px;
+  padding: 3px;
   margin: 5px 0;
   cursor: default;
 }
@@ -24,6 +24,10 @@
 #mh-improved-cre table th.name {
   padding-left: 5px;
   text-align: left;
+}
+
+#mh-improved-cre table th:last-of-type {
+  padding-right: 5px;
 }
 
 #mh-improved-cre table:first-child {
