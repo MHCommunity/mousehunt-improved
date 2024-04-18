@@ -599,3 +599,36 @@ a.friendsProfileView-randomFriend {
 .hunterProfileItemsView-categoryContent-item:hover .itemImage .quantity {
   opacity: 0;
 }
+
+.hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseImage::after {
+  width: 30px;
+  height: 30px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseImage::before {
+  top: -10px;
+  left: -10px;
+  width: 25px;
+  height: 25px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats-horn-container:hover .hunterInfoView-idCardBlock-stats-horn-image {
+  transition: 0.4s;
+  transform: rotate(-6deg) scale(1.5);
+}
+
+.hunterInfoView-wrapper hr {
+  background-color: #000;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-idCardTooltipBox-content > div {
+  margin: 5px 0;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-idCardTooltipBox-content > div:first-child {
+  margin-top: 0;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-idCardTooltipBox-content > div:last-child {
+  margin-bottom: 0;
+}
