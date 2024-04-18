@@ -258,7 +258,7 @@ const hud = async () => {
     return;
   }
 
-  const huntInfo = document.querySelector('.icebergHud  .depth');
+  const huntInfo = document.querySelector('.icebergHud .depth');
   if (! huntInfo) {
     return;
   }
