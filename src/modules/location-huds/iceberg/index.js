@@ -313,17 +313,6 @@ const hud = async () => {
 
   huntInfo.classList.add('mousehuntTooltipParent');
 
-  let isStuck = getSetting('location-huds.iceberg-sticky-tooltip', false);
-  if (isStuck) {
-    huntInfo.classList.add('mh-improved-stick-iceberg-tooltip');
-  }
-
-  huntInfo.addEventListener('click', () => {
-    isStuck = ! isStuck;
-    huntInfo.classList.toggle('mh-improved-stick-iceberg-tooltip');
-    saveSetting('location-huds.iceberg-sticky-tooltip', isStuck);
-  });
-
   const tooltip = makeElement('div', 'icebergStatusTooltip');
   tooltip.classList.add('mousehuntTooltip', 'right', 'noEvents');
 
@@ -345,6 +334,29 @@ const hud = async () => {
   }
 };
 
+const makeTooltipSticky = () => {
+  const tooltip = document.querySelector('.icebergStatusTooltip');
+  if (! tooltip) {
+    return;
+  }
+
+  const huntInfo = document.querySelector('.icebergHud .depth');
+  if (! huntInfo) {
+    return;
+  }
+
+  let isStuck = getSetting('location-huds.iceberg-sticky-tooltip', false);
+  if (isStuck) {
+    huntInfo.classList.add('mh-improved-stick-iceberg-tooltip');
+  }
+
+  huntInfo.addEventListener('click', () => {
+    isStuck = ! isStuck;
+    huntInfo.classList.toggle('mh-improved-stick-iceberg-tooltip');
+    saveSetting('location-huds.iceberg-sticky-tooltip', isStuck);
+  });
+};
+
 /**
  * Initialize the module.
  */
@@ -352,6 +364,7 @@ export default async () => {
   addHudStyles([styles, bobIceberg]);
 
   hud();
+  makeTooltipSticky();
 
   onTurn(hud, 1000);
   onRequest('environment/iceberg.php', hud);
