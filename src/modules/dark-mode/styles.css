@@ -328,7 +328,7 @@
   border-color: #606060;
 }
 
-.pageFrameView .mouseViewPopup .content {
+.mh-dark-mode .pageFrameView .mouseViewPopup .content {
   color: #dcddde;
   background-color: #242424;
 }
