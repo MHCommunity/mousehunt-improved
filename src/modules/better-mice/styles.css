@@ -143,8 +143,7 @@
 }
 
 .mouseview-has-mhct .mouseView-description {
-  font-weight: 500;
-  line-height: 19px;
+  line-height: 1.5;
 }
 
 .mh-ui-mouse-links-map-name {
