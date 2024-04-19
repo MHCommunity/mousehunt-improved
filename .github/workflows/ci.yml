@@ -1,0 +1,43 @@
+
+name: Build
+
+concurrency:
+  # Allow concurrent CI runs on main, but only cancel-in-progress if not main
+  group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        node-version:
+          - 20.x
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest
+    runs-on:
+      ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: oven-sh/setup-bun@v1
+
+    - uses: actions/cache@v4
+      with:
+        path: ~/.bun/install/cache
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
+
+    - run: bun i
+
+    - run: bun run build
