@@ -29,7 +29,7 @@ const ImportGlobPlugin = {
 
       const matches = contents.match(/import \* as imported from '(.*)';/);
       if (matches) {
-        const globPattern = path.resolve(path.dirname(args.path), matches[1]);
+        const globPattern = path.resolve(path.dirname(args.path), matches[1]).replaceAll('\\', '/');
         const files = (
           await FastGlob(globPattern)
         );
@@ -38,7 +38,7 @@ const ImportGlobPlugin = {
         const importNames = [];
 
         for (const [index, file] of files.entries()) {
-          const relativePath = path.relative(path.dirname(args.path), file);
+          const relativePath = path.relative(path.dirname(args.path), file).replaceAll('\\', '/');
           const importName = `imported${index}`;
           importStatements += `import ${importName} from './${relativePath}';\n`;
           importNames.push(importName);
