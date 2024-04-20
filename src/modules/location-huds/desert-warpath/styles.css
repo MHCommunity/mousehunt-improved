@@ -39,7 +39,7 @@
   left: 60px;
   width: 17px;
   padding: 2px;
-  font-size: 17px;
+  font-size: 16px;
   color: #f5d172;
   background-color: #633e29;
   border-radius: 2px;
@@ -58,8 +58,15 @@
 }
 
 .warpathHUD-wave-mouse-population {
-  font-size: 13px;
-  line-height: 22px;
+  position: absolute;
+  bottom: -3px;
+  left: -3px;
+  width: 70px;
+  height: 25px;
+  font-size: 15px;
+  line-height: 20px;
+  background: url(https://www.mousehuntgame.com/images/ui/hud/desert_warpath/desert_warpath_opponent.png) no-repeat bottom center / 75px;
+  border-radius: 20px;
 }
 
 .warpathHUD-wave-mouse.mousehuntTooltipParent.active.laser_targetted {
@@ -68,10 +75,9 @@
 }
 
 .warpathHUD-wave-mouse-powerType {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   margin-top: 0;
-  margin-right: 10px;
 }
 
 .warpathHUD-wave-mouse .mousehuntTooltip.tight.top {
@@ -85,7 +91,8 @@
 }
 
 .warpathHUD-wave-mouse .mousehuntTooltip.hasCharms .warpathHUD-wave-mouse-name {
-  line-height: 14px;
+  height: 33px;
+  line-height: 2.5;
 }
 
 .warpathHUD-wave-mouse.desert_general .mousehuntTooltip .warpathHUD-wave-mouse-name,
@@ -112,6 +119,7 @@
 }
 
 .warpathHUD-waveContainer.warpathHUD-engaged .warpathHUD-wave {
+  border-radius: 5px;
   box-shadow: inset 0 0 10px 4px #fc4848;
 }
 
@@ -147,4 +155,47 @@
 .warpathHUD-streakContainer.streak_0 .warpathHUD-streak-image-empty {
   color: transparent;
   text-shadow: none;
+}
+
+.warpathHUD-streak-victories {
+  top: 36px;
+  left: 7px;
+  z-index: 1;
+  width: 43px;
+  height: 18px;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  background-color: #000;
+  border-radius: 3px;
+  box-shadow:
+    inset 1px 0 2px 1px #633e2a,
+    inset 1px 0 2px 1px #8f5d42;
+}
+
+.warpathHUD-enterPortalButton.disabled {
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in;
+}
+
+.warpathHUD-enterPortalButton.disabled:hover {
+  opacity: 1;
+}
+
+.warpathHUD-wave-mouse-image {
+  outline: 1px solid #915931;
+}
+
+.warpathHUD-wave-mouse:hover .warpathHUD-wave-mouse-image {
+  outline: 1px solid #e1ae3e;
+}
+
+.warpathHUD-streakContainer.streak_7 .warpathHUD-streak-quantity {
+  animation: 0.9s quesoGesyerBackgroundFlare 10;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .warpathHUD-streakContainer.streak_7 .warpathHUD-streak-quantity {
+    animation: none;
+  }
 }

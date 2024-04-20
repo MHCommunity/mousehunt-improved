@@ -190,6 +190,7 @@
   bottom: 8px;
   left: 25px;
   z-index: 4;
+  min-width: 100px;
   padding-top: 5px;
   font-size: 11px;
   color: #000;
@@ -314,4 +315,11 @@ span.user_progress_container .user_progress {
 .icebergHud .cutaway .icebergContainer .label.phase_1 {
   border: 1px solid #9fd5e3;
   box-shadow: none;
+}
+
+.icebergHud.bonus .bonus_timeline .help {
+  top: 5px;
+  left: 120px;
+  padding: 5px;
+  background-color: #e4f6fe;
 }

@@ -233,17 +233,7 @@ const minigame = async () => {
     return;
   }
 
-  let highlightOnMouseover = false;
-
   tiles.forEach((tile) => {
-    const mouseoverHandler = () => {
-      if (! highlightOnMouseover) {
-        return;
-      }
-
-      highlightTileForMinigame(tile);
-    };
-
     if ([...tile.classList].includes('active')) {
       tile.addEventListener('click', () => {
         let delay = 0;
@@ -253,15 +243,6 @@ const minigame = async () => {
           }, delay);
           delay += 50;
         });
-      });
-    } else {
-      tile.addEventListener('mouseover', mouseoverHandler);
-
-      tile.addEventListener('click', () => {
-        tile.removeEventListener('mouseover', mouseoverHandler);
-
-        highlightOnMouseover = ! highlightOnMouseover;
-        highlightTileForMinigame(tile);
       });
     }
   });

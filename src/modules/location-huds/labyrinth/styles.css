@@ -18,19 +18,25 @@
 .labyrinthHUD-clue {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   font-size: 12px;
+  box-shadow: inset 0 0 3px -1px #000;
 }
 
-.labyrinthHUD-clue-name {
+.labyrinthHUD-clue:hover .labyrinthHUD-clue-name {
+  z-index: 10;
   overflow: visible;
-  text-overflow: unset;
 }
 
 .mh-ui-labyrinth-clue-count {
-  padding-left: 4px;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  padding-right: 3px;
+  padding-left: 3px;
   font-weight: 900;
   color: #050505;
+  border-radius: 0 5px 5px 0;
 }
 
 .y .labyrinthHUD-clue-name,

@@ -137,3 +137,11 @@ a.moussuPicchuHUD-footer-item-action.mousehuntArmNowButton {
 .moussuPicchuHUD-powerType.wind.active {
   filter: opacity(0.8);
 }
+
+a.moussuPicchuHUD-powerType:hover {
+  transform: scale(1.5);
+}
+
+a.moussuPicchuHUD-powerType {
+  transition: transform 0.2s ease-out;
+}
