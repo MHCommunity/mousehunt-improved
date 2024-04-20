@@ -118,8 +118,9 @@
   max-height: 75vh;
 }
 
-.mh-ui-environments-block .treasureMapView-block-content {
+.mh-ui-environments-block {
   max-height: 68vh;
+  overflow-y: auto;
 }
 
 .treasureMapView-block-content {

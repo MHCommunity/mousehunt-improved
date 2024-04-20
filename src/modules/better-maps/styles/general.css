@@ -527,7 +527,8 @@ input.treasureMapView-block-search-text {
 }
 
 .mh-ui-environments-block {
-  border: none;
+  padding: 6px;
+  margin: -1px;
 }
 
 .mh-ui-environments-block .treasureMapView-block-content.halfHeight {
