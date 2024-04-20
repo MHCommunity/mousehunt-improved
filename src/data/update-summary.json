@@ -1,0 +1,18 @@
+{
+  "summary": "This is the text for the update summary",
+  "details": [
+    {
+      "title": "New Features",
+      "items": [
+        "A new feature"
+      ]
+    },
+    {
+      "title": "This is a module",
+      "items": [
+        "A new feature",
+        "A bug fix"
+      ]
+    }
+  ]
+}
