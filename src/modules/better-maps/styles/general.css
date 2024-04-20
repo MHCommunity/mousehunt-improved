@@ -62,7 +62,7 @@ input.treasureMapView-shareLinkInput {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  max-width: 335px;
+  max-width: 360px;
 }
 
 .max_hunters_10 .rewards .treasureMapView-mapMenu-group-content {
@@ -442,6 +442,8 @@ label.userSelectorView-filter-label {
 .treasureMapView-environment-hunters .treasureMapView-hunter.captain .treasureMapView-hunter-image {
   width: 20px;
   height: 20px;
+  outline: 1px solid #ffe298;
+  box-shadow: none;
 }
 
 /* consolation prizes */
@@ -545,6 +547,7 @@ input.treasureMapView-block-search-text {
   opacity: 0.5;
 }
 
+.treasureMapView-goals-group-goal.notAvailable.m400.mouse,
 .treasureMapView-goals-group-goal.notAvailable:hover,
 .treasureMapView-goals-group-goal.notAvailable.sticky {
   opacity: 1;
@@ -774,7 +777,7 @@ input.treasureMapView-block-search-text {
 }
 
 .mh-ui-multiple-maps .treasureMapTooltipView.active {
-  top: 30px !important;
+  top: 35px !important;
 }
 
 .treasureMapView-mapWarning.treasureMapRootView-padding {
@@ -861,6 +864,7 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-previewBar {
   padding-left: 15px;
+  margin: 0;
   background: #d9ffbf;
 }
 
@@ -881,6 +885,21 @@ input.treasureMapView-block-search-text {
   display: flex;
   justify-content: space-between;
   margin-right: 100px;
+}
+
+.treasureMapView-previewBar .mousehuntActionButton[onclick*="hg.controllers.TreasureMapController.showCommunity();"] {
+  display: none;
+}
+
+.treasureMapView-previewBar-padding {
+  display: flex;
+  align-items: center;
+}
+
+.treasureMapView-previewBar-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .treasureMapView-mapMenu-group:first-child .treasureMapView-mapMenu-group-title {
@@ -1007,14 +1026,6 @@ input.treasureMapView-block-search-text {
 
 .treasureMapDialogView.wide.limitHeight.confirm .treasureMapDialogView-header {
   margin-bottom: 0;
-}
-
-.treasureMapTooltipView-hunterText {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
 }
 
 .treasureMapDialogView-chest-item-padding::before {
