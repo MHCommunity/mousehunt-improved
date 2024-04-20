@@ -78,3 +78,21 @@
 .mousehuntHud-userStat.empty .icon {
   box-shadow: none;
 }
+
+.mousehuntHud-userStat .miceWarning {
+  top: -1px;
+  left: 11px;
+  width: 21px;
+  height: 21px;
+  background: url(https://i.mouse.rip/map-marker.png) 0 -26px no-repeat;
+  background-size: 21px;
+  box-shadow: none;
+}
+
+.mousehuntHud-userStat .corkboardUpdate {
+  top: -4px;
+  left: -13px;
+  width: 35px;
+  height: 27px;
+  background-size: 26px;
+}
