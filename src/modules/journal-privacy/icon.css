@@ -5,11 +5,6 @@
   width: 20px;
   height: 25px;
   padding: 0;
-  opacity: 0.5;
-}
-
-.mousehuntHeaderView .menuItem.mousehunt-improved-journal-privacy-icon:hover {
-  opacity: 1;
 }
 
 .mh-journal-privacy-enabled .mousehunt-improved-journal-privacy-icon::before,
@@ -20,6 +15,11 @@
   content: "";
   background-repeat: no-repeat;
   background-size: contain;
+  opacity: 0.5;
+}
+
+.mousehuntHeaderView .menuItem.mousehunt-improved-journal-privacy-icon:hover::before {
+  opacity: 1;
 }
 
 .mh-journal-privacy-enabled .mousehunt-improved-journal-privacy-icon::before {
