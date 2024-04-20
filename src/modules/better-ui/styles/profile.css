@@ -571,8 +571,7 @@ a.friendsProfileView-randomFriend {
   background-position: 60% center;
 }
 
-.mouseCrownsView-group-mouse.landscape:hover .mouseCrownsView-group-mouse-image.magmatic_golem
-.mouseCrownsView-group-mouse.landscape:hover .mouseCrownsView-group-mouse-image.empyrean_treasure_guardian,
+.mouseCrownsView-group-mouse.landscape:hover .mouseCrownsView-group-mouse-image.magmatic_golem .mouseCrownsView-group-mouse.landscape:hover .mouseCrownsView-group-mouse-image.empyrean_treasure_guardian,
 .mouseCrownsView-group-mouse.landscape:hover .mouseCrownsView-group-mouse-image.richard_rich {
   background-position: 62% center;
 }
