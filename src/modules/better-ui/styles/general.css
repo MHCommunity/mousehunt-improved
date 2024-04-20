@@ -527,3 +527,7 @@ input.itemView-action-convert-quantity {
 .menuItem.superBrie {
   border-right: 1px solid #ccc;
 }
+
+.inventoryPage-confirmPopup-itemRow.small {
+  min-height: 35px;
+}
