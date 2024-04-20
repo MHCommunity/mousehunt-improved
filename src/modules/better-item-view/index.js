@@ -196,7 +196,7 @@ const init = async () => {
 
 export default {
   id: 'better-item-view',
-  name: 'Better Item View',
+  name: 'Better Items',
   type: 'better',
   default: true,
   description: 'Updates the styles and shows drop rates, links to MHCT, and MH Wiki.',
