@@ -217,10 +217,6 @@
   border: none;
 }
 
-.trapImageView-trapAura {
-  opacity: 0.9;
-}
-
 .largerTrapView-popup-name,
 span.campPage-trap-armedItem-skin-description-content b,
 span.campPage-trap-armedItem-skin-description-content br {
@@ -625,4 +621,12 @@ input.trapSelectorView__codexListSearch {
   width: 70px;
   content: "";
   background: url(https://www.mousehuntgame.com/images/ui/hunters_horn/sandwich_board/icons/bait_empty.png) no-repeat 50% 50% / contain;
+}
+
+#mousehuntContainer.PageCamp.showBlueprint {
+  background: url(https://i.mouse.rip/bg-wood.png);
+}
+
+.trapSelectorView__blueprint.trapSelectorView__blueprint--active {
+  background: url(https://www.mousehuntgame.com/images/ui/hud/blueprint_tile.png) repeat;
 }

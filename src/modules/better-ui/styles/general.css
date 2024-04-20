@@ -244,6 +244,16 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
   opacity: 1;
 }
 
+.trapImageView .trapImageView-trapAura {
+  z-index: 1;
+  transition: 0.4s;
+}
+
+.trapImageView .trapImageView-trapAura:hover {
+  z-index: 2;
+  transform: scale(1.25);
+}
+
 .trapImageView-trapAura.active.expiring-soon {
   visibility: visible;
   border-radius: 50%;
@@ -253,7 +263,8 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 
 /* fix zoom button position */
 a.trapImageView-zoomButton {
-  top: 85%;
+  border: 1px solid #d3cecb;
+  border-radius: 50%;
 }
 
 /* mousepage styles */
@@ -482,4 +493,37 @@ input.itemView-action-convert-quantity {
 
 .mouseListView-categoryContent-category {
   padding-right: 5px;
+}
+
+.mousehuntHud-menu-item.root {
+  height: 25px;
+}
+
+.mousehuntHud-gameInfo {
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.mousehuntHeaderView-gameTabs {
+  border-bottom: 1px solid #ccc;
+}
+
+.huntersHornView {
+  border-right: 1px solid #ccc;
+}
+
+.mousehuntHeaderView .menuItem.first {
+  border-left: none;
+}
+
+.mousehuntHeaderView .menuItem {
+  border-color: #ccc;
+}
+
+.mousehuntHud-menu {
+  box-shadow: 0 10px 0 -8px #bfac91;
+}
+
+.menuItem.superBrie {
+  border-right: 1px solid #ccc;
 }

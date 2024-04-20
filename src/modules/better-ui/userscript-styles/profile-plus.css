@@ -3,10 +3,6 @@
   display: inline-block;
 }
 
-.mouseCrownsView-group-header-subtitle {
-  margin-left: 0;
-}
-
 .mouseCrownsView-group-mouse-favouriteButton {
   top: 2px;
   left: 2px;
@@ -58,9 +54,14 @@
   justify-content: flex-end;
   float: none !important;
   padding: 1px;
-  background-color: #d1d1d1;
+  background-color: #ececec;
   border: 1px solid #a7a7a7;
   border-radius: 0 5px;
+  opacity: 0.5;
+}
+
+.mouseCrownsView .toolBar:hover {
+  opacity: 1;
 }
 
 .powerCrown .mouseCrownsView-group-header-name,
@@ -139,4 +140,33 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
 
 .mouseCrownsView-group-mice.favourites img.pt {
   display: none;
+}
+
+.hideLeContainer {
+  position: absolute;
+  top: -9px;
+  right: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  opacity: 0.5;
+}
+
+.hideLeContainer:hover {
+  opacity: 1;
+}
+
+.hideLeContainer #hideLeCb {
+  width: auto !important;
+}
+
+.hideLeContainer label {
+  font-size: 10px !important;
+  line-height: 18px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.mouseCrownsView-group-mouse-image {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
