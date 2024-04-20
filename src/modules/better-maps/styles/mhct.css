@@ -52,7 +52,8 @@
   text-align: right;
 }
 
-.mh-ui-mouse-links-map-ars {
+.mh-ui-mouse-links-map-ars,
+.treasureMapView-highlight.environment .mh-ui-mouse-links-map-ars {
   display: none;
 }
 
