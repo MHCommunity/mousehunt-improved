@@ -12,7 +12,7 @@ const init = async () => {
 export default {
   id: 'native-dark-mode',
   name: 'Native Dark Mode',
-  description: '',
+  description: 'Please disable the Dark Mode extension/MHCT setting to prevent conflicts.',
   type: 'beta',
   default: false,
   load: init,
