@@ -394,7 +394,7 @@
 }
 
 .labyrinthHUD-toggleLantern-name.active {
-  animation: portalPulse 1.5s infinite;
+  animation: mh-improved-scale 1.5s 2;
 }
 
 @media (prefers-reduced-motion: reduce) {

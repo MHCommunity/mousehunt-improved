@@ -136,6 +136,12 @@
   100% { filter: brightness(1); }
 }
 
+@keyframes mh-improved-scale {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 @keyframes mh-improved-scale-large {
   0%   { transform: scale(1); }
   50%  { transform: scale(2.7); }
