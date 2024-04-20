@@ -13,6 +13,7 @@
 .journal .content .entry.short.folkloreForest.folkloreForest-lootFuelBoost .journalbody .journaldate,
 .journal .content .entry.short.labyrinth.labyrinth-chooseDoor .journalbody .journaldate,
 .journal .content .entry.short.labyrinth.labyrinth-intersection .journalbody .journaldate,
+.journal .content .entry.short.labyrinth.labyrinth-scrambleDoors .journalbody .journaldate,
 .journal .content .entry.short.misc.custom.chesla_trap_trigger .journalbody .journaldate,
 .journal .content .entry.short.misc.custom.birthday_factory.claim_package .journaldate,
 .journal .content .entry.folkloreForest-tableOfContents.mythweaverIncrease .journaldate,
@@ -22,6 +23,8 @@
 .journal .content .entry.iceberg_advance_prevented.general .journalbody .journaldate,
 .journal .content .entry.spring_hunt_charge_trinket_effect .journalbody .journaldate,
 .journal .content .entry.harbour .journalbody .journaldate,
+.journal .content .entry.iceberg_drill .journalbody .journaldate,
+.journal .content .entry.short.desertstreak .journalbody .journaldate,
 .journal .content .entry.short.rift-whisker-woods-increase .journalbody .journaldate {
   display: none;
 }
