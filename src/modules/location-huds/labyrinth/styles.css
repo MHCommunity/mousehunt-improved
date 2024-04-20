@@ -397,10 +397,31 @@
   animation: mh-improved-scale 1.5s 2;
 }
 
+.labyrinthHUD-scrambleClues-boundingBox::after {
+  position: absolute;
+  bottom: 4px;
+  left: 131px;
+  z-index: 12;
+  width: 34px;
+  height: 33px;
+  content: "";
+  background: url(https://i.mouse.rip/laby-compass.png) 0 0 no-repeat;
+  background-size: contain;
+  transition: 0.3s ease-in-out;
+}
+
+.labyrinthHUD-scrambleClues-boundingBox:hover::after {
+  transform: scale(1.2);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mh-ui-labyrinth-lantern-reminder,
   .labyrinthHUD-toggleLantern-name.active {
     animation: none;
+  }
+
+  .labyrinthHUD-scrambleClues-boundingBox:hover::after {
+    transform: none;
   }
 }
 
