@@ -34,6 +34,10 @@ const getMousePower = async (mouseId) => {
 
 const getMouseEffectiveness = async (mouseId) => {
   const mouse = await getMouse(mouseId);
+  if (! mouse || ! mouse.effectivenesses) {
+    return 0;
+  }
+
   return mouse.effectivenesses[user.trap_power_type_name.toLowerCase()];
 };
 

@@ -136,6 +136,10 @@ const randomizeTheme = async (skip = false) => {
   }
 
   const theme = themes[Math.floor(Math.random() * themes.length)];
+  if (! theme || ! theme.type) {
+    return false;
+  }
+
   updateJournalTheme(theme.type);
 
   return theme.type;

@@ -46,7 +46,7 @@ const getFriendId = async (target) => {
         user_id: pMatch,
       });
 
-      if (snuid.friend.sn_user_id) {
+      if (snuid?.friend?.sn_user_id) {
         return cleanId(snuid.friend.sn_user_id);
       }
     }

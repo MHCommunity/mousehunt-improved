@@ -30,10 +30,12 @@ const styles = imported;
 
 const updateMapClasses = () => {
   const map = document.querySelector('.treasureMapRootView');
-  if (user?.quests?.QuestRelicHunter?.maps?.length >= 2) {
-    map.classList.add('mh-ui-multiple-maps');
-  } else {
-    map.classList.remove('mh-ui-multiple-maps');
+  if (map) {
+    if (user?.quests?.QuestRelicHunter?.maps?.length >= 2) {
+      map.classList.add('mh-ui-multiple-maps');
+    } else {
+      map.classList.remove('mh-ui-multiple-maps');
+    }
   }
 };
 
