@@ -504,3 +504,23 @@ a.labyrinthHUD-door.labyrinthHUD-door-category-f::after {
 .labyrinthHUD-confirmDescription .labyrinthHUD-exit {
   top: -4px;
 }
+
+.labyrinthHUD-hallwayDescription-f .labyrinthHUD-hallwayName {
+  color: #11f400;
+}
+
+.labyrinthHUD-hallwayDescription-h .labyrinthHUD-hallwayName {
+  color: #21e2ff;
+}
+
+.labyrinthHUD-hallwayDescription-s .labyrinthHUD-hallwayName {
+  color: #e96300;
+}
+
+.labyrinthHUD-hallwayDescription-y .labyrinthHUD-hallwayName {
+  color: #d851ff;
+}
+
+.labyrinthHUD-hallwayDescription-t .labyrinthHUD-hallwayName {
+  color: #ffe400;
+}
