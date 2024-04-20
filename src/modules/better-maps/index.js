@@ -311,7 +311,8 @@ const init = async () => {
     sidebar();
   }
 
-  onDialogShow('map', () => {
+  let clearCacheTimeout;
+  onDialogShow('map', async () => {
     const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
     tabs.forEach((tab) => {
       const classes = [...tab.classList];
@@ -324,6 +325,12 @@ const init = async () => {
         doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
       });
     });
+
+    // Clear the map cache after 10 seconds so that we always fetch the latest map data when opening the map.
+    clearCacheTimeout = setTimeout(() => {
+      clearTimeout(clearCacheTimeout);
+      hg.controllers.TreasureMapController.clearMapCache();
+    }, 10 * 1000); // 10 seconds.
   });
 
   onEvent('map_navigation_tab_click', () => {
