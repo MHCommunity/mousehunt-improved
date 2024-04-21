@@ -474,3 +474,8 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
 #mousehunt-improved-settings-beta-experiments .PagePreferences__settingDescription {
   display: block;
 }
+
+#mousehunt-improved-settings-beta .PagePreferences__settingDescription,
+#mousehunt-improved-settings-feature .PagePreferences__settingsList:hover .PagePreferences__settingDescription {
+  display: block;
+}
