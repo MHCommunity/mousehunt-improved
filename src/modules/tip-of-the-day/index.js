@@ -47,7 +47,7 @@ const init = async () => {
 export default {
   id: 'tip-of-the-day',
   name: 'Tip of the Day',
-  type: 'beta',
+  type: 'hidden',
   default: false,
   load: init,
 };
