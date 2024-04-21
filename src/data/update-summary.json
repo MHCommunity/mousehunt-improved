@@ -1,5 +1,5 @@
 {
-  "summary": "This release adds a new 'Native Dark Mode' beta feature. When trying it out, please disable the Dark mode extension/MHCT setting, as it may conflict with the new feature.",
+  "summary": "This release contains quite a few improvements and bug fixes, as well as some new features. <p>There is now a 'Legacy HUD' feature that will allow you to enable the old HUD stats bar while retaining the current menu bar or the old menu bar with the new HUD stats bar.<p>There is also a 'Native Dark Mode' beta feature that will allow you to enable a dark mode for the game. Please note, you'll need to disable the MHCT dark mode setting or disable the dark mode extension to prevent conflicts.",
   "details": [
     {
       "title": "New Features",
@@ -11,10 +11,10 @@
     {
       "title": "Better Maps",
       "items": [
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO"
+        "Fixed reward not being claimable when defaulting to Sorted tab",
+        "Removed persistent sticky feature, as it was causing issues",
+        "Fixed profile tooltips alignment",
+        "Updated styles"
       ]
     },
     {
@@ -32,25 +32,13 @@
     {
       "title": "Better UI",
       "items": [
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO"
+        "Updated styles for a variety of elements"
       ]
     },
     {
       "title": "Dark Mode Updates & Tweaks",
       "items": [
-        "Style updates"
-      ]
-    },
-    {
-      "title": "Experiments",
-      "items": [
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO"
+        "Updated styles"
       ]
     },
     {
@@ -58,10 +46,6 @@
       "items": [
         "Added fallback to last chosen theme when traveling to a location without a theme available"
       ]
-    },
-    {
-      "title": "Legacy HUD",
-      "items": []
     },
     {
       "title": "Lucky Golden Shield Duration & Reminder",
@@ -85,21 +69,14 @@
     {
       "title": "Location HUDs - Iceberg",
       "items": [
-        "Updated styles",
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO"
+        "Fixed errors in progress calculations",
+        "Updated styles"
       ]
     },
     {
       "title": "Location HUDs - Labyrinth",
       "items": [
-        "Updated styles",
-        "TODO",
-        "TODO",
-        "TODO",
-        "TODO"
+        "Updated styles"
       ]
     },
     {
