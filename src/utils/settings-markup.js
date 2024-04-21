@@ -3,10 +3,9 @@ import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
 import { doEvent } from './event-registry';
 import { makeElement } from './elements';
 import { onNavigation } from './events';
+import { showSuccessMessage } from './messages';
 
 import settingsData from '@data/settings.json';
-
-import { showSuccessMessage } from './messages';
 
 /**
  * Save a setting and toggle the class in the settings UI.
@@ -750,7 +749,7 @@ const addSettingRefreshReminder = (key) => {
 
   let refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
   if (! refreshMessage) {
-    const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'You may need to refresh the page for some settings to take effect.');
+    const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'Please refresh the page to apply your changes.');
     newMessageEl.id = 'mh-utils-settings-refresh-message';
 
     const body = document.querySelector('body');
