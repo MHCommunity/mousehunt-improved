@@ -255,7 +255,7 @@ const init = async () => {
 
 export default {
   id: 'legacy-hud',
-  name: 'Legacy HUD & Tweaks',
+  name: 'Legacy HUD & Legacy HUD Tweaks',
   type: 'feature',
   default: false,
   description: 'Enable the legacy HUD or tweaks to it.',
