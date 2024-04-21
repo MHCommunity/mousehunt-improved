@@ -1,5 +1,73 @@
 # Changelog
 
+## Version 0.42.0
+
+### New Features
+
+- Added 'Native Dark Mode' beta feature
+- Legacy HUD and related features are no longer experimental, they've been moved to the main features list
+
+### Better Maps
+
+- Fixed reward not being claimable when defaulting to Sorted tab
+- Removed persistent sticky feature, as it was causing issues
+- Fixed profile tooltips alignment
+- Updated styles
+
+### Better Mice
+
+- Fixed mouse stat sorting not applying when on a Hunter's profile
+
+### Better Travel
+
+- Added a search feature to the travel window
+
+### Better UI
+
+- Updated styles for a variety of elements
+
+### Dark Mode Updates & Tweaks
+
+- Updated styles
+
+### Journal Changer
+
+- Added fallback to last chosen theme when traveling to a location without a theme available
+
+### Lucky Golden Shield Duration & Reminder
+
+- Updated timing to better sync with horn timer
+
+### Location Dashboard
+
+- Updated all Living Garden region information
+- Updated text seperators to be more consistent
+
+### Location HUDs - Fiery Warpath
+
+- Updated styles
+
+### Location HUDs - Iceberg
+
+- Fixed errors in progress calculations
+- Updated styles
+
+### Location HUDs - Labyrinth
+
+- Updated styles
+
+### Location HUDs
+
+- Minor style updates for various locations, like Living Garden Region and Moussu Picchu
+
+### Other
+
+- Renamed 'Better Item View' to 'Better Items'
+- Added more checks and safeguards to prevent errors
+- Miscellaneous style updates
+- Moved map height changes from 'Better Maps' to 'Taller Windows'
+- Minor bug fixes and performance improvements
+
 ## Version 0.41.1
 
 - Fixes unique loot count display in progress log
