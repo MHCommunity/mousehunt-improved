@@ -1,98 +1,13 @@
 {
-  "summary": "This release contains quite a few improvements and bug fixes, as well as some new features. <p>There is now a 'Legacy HUD' feature that will allow you to enable the old HUD stats bar while retaining the current menu bar or the old menu bar with the new HUD stats bar.<p>There is also a 'Native Dark Mode' beta feature that will allow you to enable a dark mode for the game. Please note, you'll need to disable the MHCT dark mode setting or disable the dark mode extension to prevent conflicts.",
+  "summary": "",
   "details": [
     {
-      "title": "New Features",
+      "title": "Updates",
       "items": [
-        "Added 'Native Dark Mode' beta feature",
-        "Legacy HUD and related features are no longer experimental, they've been moved to the main features list"
-      ]
-    },
-    {
-      "title": "Better Maps",
-      "items": [
-        "Fixed reward not being claimable when defaulting to Sorted tab",
-        "Removed persistent sticky feature, as it was causing issues",
-        "Fixed profile tooltips alignment",
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Better Mice",
-      "items": [
-        "Fixed mouse stat sorting not applying when on a Hunter's profile"
-      ]
-    },
-    {
-      "title": "Better Travel",
-      "items": [
-        "Added a search feature to the travel window"
-      ]
-    },
-    {
-      "title": "Better UI",
-      "items": [
-        "Updated styles for a variety of elements"
-      ]
-    },
-    {
-      "title": "Dark Mode Updates & Tweaks",
-      "items": [
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Journal Changer",
-      "items": [
-        "Added fallback to last chosen theme when traveling to a location without a theme available"
-      ]
-    },
-    {
-      "title": "Lucky Golden Shield Duration & Reminder",
-      "items": [
-        "Updated timing to better sync with horn timer"
-      ]
-    },
-    {
-      "title": "Location Dashboard",
-      "items": [
-        "Updated all Living Garden region information",
-        "Updated text seperators to be more consistent"
-      ]
-    },
-    {
-      "title": "Location HUDs - Fiery Warpath",
-      "items": [
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Location HUDs - Iceberg",
-      "items": [
-        "Fixed errors in progress calculations",
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Location HUDs - Labyrinth",
-      "items": [
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Location HUDs",
-      "items": [
-        "Minor style updates for various locations, like Living Garden Region and Moussu Picchu"
-      ]
-    },
-    {
-      "title": "Other",
-      "items": [
-        "Renamed 'Better Item View' to 'Better Items'",
-        "Added more checks and safeguards to prevent errors",
-        "Miscellaneous style updates",
-        "Moved map height changes from 'Better Maps' to 'Taller Windows'",
-        "Minor bug fixes and performance improvements"
+        "Updated data files with latest changes",
+        "Fixed styles in Queso Region Location HUD",
+        "Fixed Show Auras breaking on new aura",
+        "Updated Dark Mode styles"
       ]
     }
   ]
