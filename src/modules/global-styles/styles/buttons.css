@@ -73,3 +73,12 @@
   font-family: monospace;
   user-select: none;
 }
+
+#overlayPopup .button.button-grey {
+  box-shadow: none;
+}
+
+#overlayPopup .button.button-grey:hover {
+  color: #000;
+  background-color: #ddd;
+}

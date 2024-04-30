@@ -36,13 +36,37 @@
   background-blend-mode: normal;
 }
 
+.mh-dark .journal .content .supplytransfergold,
+.mh-dark .journal .content .marketplacesale,
 .mh-dark .entry.short.supplytransfergold {
-  background-image: url(https://i.imgur.com/Z3buYfj.png); /* TODO: move to i.mouse.rip */
+  background-image: url(https://i.mouse.rip/gold-journal.png);
   background-blend-mode: normal;
 }
 
 .mh-dark .entry.short.travel {
-  background-image: url(https://i.imgur.com/xZL91qg.png); /* TODO: move to i.mouse.rip */
+  background-image: url(https://i.mouse.rip/travel-journal.png);
+  background-blend-mode: normal;
+}
+
+.journal .content .attractionfailurestale {
+  background-image: url(https://i.mouse.rip/stale.png);
+  background-blend-mode: normal;
+}
+
+.journal .content .captchasolved {
+  background-image: url(https://i.mouse.rip/journal_puzzle_reward.png);
+  background-blend-mode: normal;
+}
+
+.journal .content .attractionfailure,
+.journal .content .outofsuperbrie,
+.journal .content .catchfailure {
+  background-image: url(https://i.mouse.rip/steal.png);
+  background-blend-mode: normal;
+}
+
+.journal .content .catchfailuredamage {
+  background-image: url(https://i.mouse.rip/pillage.png);
   background-blend-mode: normal;
 }
 

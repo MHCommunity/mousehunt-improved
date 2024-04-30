@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Fixes styles in Queso Region Location HUD
+- Fixes Show Auras breaking on new aura
+- Updates Dark Mode styles
+
 ## Version 0.42.0
 
 ### New Features
