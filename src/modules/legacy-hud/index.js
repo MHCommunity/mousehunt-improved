@@ -228,9 +228,9 @@ const getUserShield = () => {
 const init = async () => {
   const stylesToAdd = [];
 
-  const loadMenu = getSetting('legacy-hud.menu', getSetting('experiments.legacy-hud-only-menu', false));
-  const loadStats = getSetting('legacy-hud.stats', getSetting('experiments.legacy-hud-only-stats', false));
-  const loadBoth = (loadMenu && loadStats) || getSetting('legacy-hud.enabled', getSetting('experiments.legacy-hud', true));
+  const loadMenu = getSetting('legacy-hud.menu', false);
+  const loadStats = getSetting('legacy-hud.stats', false);
+ const loadBoth = loadMenu === loadStats;
 
   if (loadMenu || loadBoth) {
     stylesToAdd.push(menuStyles);
@@ -246,7 +246,7 @@ const init = async () => {
     stylesToAdd.push(generalStyles);
   }
 
-  if (getSetting('legacy-hud.tweaks', getSetting('experiments.legacy-hud-tweaks', true))) {
+  if (getSetting('legacy-hud.tweaks', true)) {
     stylesToAdd.push(tweaksStyles, `.headsup .shieldped { background-image: url(${getUserShield()}); }`);
   }
 
