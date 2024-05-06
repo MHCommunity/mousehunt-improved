@@ -534,7 +534,7 @@ function simulate(shouldDisplay = true) {
       lootSigils: Math.round(sigils),
       lootSecrets: Math.round(secrets),
       cacheSigils: deltaCache[0],
-      cacheSecrets: deltaCache[0],
+      cacheSecrets: deltaCache[1],
       eclipses,
     };
   }
