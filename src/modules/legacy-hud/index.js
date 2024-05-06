@@ -230,7 +230,7 @@ const init = async () => {
 
   const loadMenu = getSetting('legacy-hud.menu', false);
   const loadStats = getSetting('legacy-hud.stats', false);
- const loadBoth = loadMenu === loadStats;
+  const loadBoth = loadMenu === loadStats;
 
   if (loadMenu || loadBoth) {
     stylesToAdd.push(menuStyles);

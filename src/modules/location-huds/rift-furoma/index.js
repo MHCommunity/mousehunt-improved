@@ -41,6 +41,12 @@ const getBatteryStats = () => {
   return batteryInfo;
 };
 
+const addBatteryDetails = () => {
+  const batteryInfo = getBatteryStats();
+
+  // TODO: Add battery details to the batteries.
+};
+
 const addRecallCaclulation = () => {
   const { recall, afterRecall } = getEnergyStats();
 
