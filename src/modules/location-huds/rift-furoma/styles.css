@@ -1,14 +1,12 @@
 .riftFuromaHUD-battery-energyRemaining {
-  right: 0;
-  left: -1px;
+  top: 22px;
+  right: 1px;
+  left: 1px;
   width: auto;
-  font-size: 13px;
+  font-size: 11px;
   font-style: normal;
   color: #fff;
-  text-shadow:
-    1px 1px 1px #000,
-    1px 1px 2px #000;
-  background-color: #7a8b8a;
+  background-color: rgb(140 170 170 / 75%);
   border: 1px solid #535757;
   border-radius: 1px;
 }
@@ -75,10 +73,14 @@
   font-size: 17px;
 }
 
+.riftFuromaHUD-chargeLevel-statContainer .luck .riftFuromaHUD-chargeLevel-stat-value {
+  margin-left: 5px;
+}
+
 .riftFuromaHUD-chargeLevel-stat.power_usage .riftFuromaHUD-chargeLevel-stat-value {
   padding-top: 0;
   margin-top: -2px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .riftFuromaHUD-chargeLevel-stat.luck .riftFuromaHUD-chargeLevel-stat-label,
@@ -93,4 +95,143 @@ span.riftFuromaHUD-craftingPopup-recipe-part-quantity {
 
 .riftFuromaHUD-craftingPopup-recipe-part-padding span.quantity {
   font-size: 12px;
+}
+
+a.riftFuromaHUD-battery.hidden {
+  display: inline-block;
+}
+
+/* Labels for the battery charge levels */
+a.riftFuromaHUD-battery::before {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  font-size: 9px;
+  color: #073833;
+  text-align: center;
+}
+
+a.riftFuromaHUD-battery.hidden::before {
+  display: none;
+}
+
+a.riftFuromaHUD-battery.disabled::before {
+  color: #97a8a6;
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_one"]::before {
+  right: 6px;
+  left: 5px;
+  content: "1";
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_two"]::before {
+  right: 6px;
+  left: 7px;
+  content: "2";
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_three"]::before {
+  right: 6px;
+  left: 8px;
+  content: "3";
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_four"]::before {
+  right: 8px;
+  left: 11px;
+  content: "4";
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_five"]::before {
+  right: 9px;
+  left: 12px;
+  content: "5";
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_six"]::before {
+  right: 9px;
+  left: 14px;
+  content: "6";
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_seven"]::before {
+  right: 11px;
+  left: 16px;
+  content: "7";
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_eight"]::before {
+  right: 12px;
+  left: 18px;
+  content: "8";
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_nine"]::before {
+  right: 12px;
+  left: 20px;
+  content: "9";
+}
+
+a.riftFuromaHUD-battery[data-type="charge_level_ten"]::before {
+  right: 12px;
+  left: 24px;
+  content: "10";
+}
+
+/* Make unfixed look like fixed */
+.riftFuromaHUD-battery.locked .riftFuromaHUD-battery-progressContainer {
+  background: transparent;
+  box-shadow: none;
+}
+
+.riftFuromaHUD-battery-image {
+  transform: none;
+}
+
+/* Hide the recall calc stats from the userscript */
+.riftFuromaHUD-chargeLevel-stat-label.riftFuromaHUD-chargeLevel-stat-label-meowth-furoma-calc,
+.riftFuromaHUD-chargeLevel-stat-value.riftFuromaHUD-chargeLevel-stat-value-meowth-furoma-calc {
+  display: none;
+}
+
+/* New recall calc stats */
+.riftFuromaHUD-droid-details .riftFuromaHUD-chargeLevel-stat.droid_energy .riftFuromaHUD-chargeLevel-stat-label {
+  padding-top: 0;
+  font-size: 6px;
+}
+
+.riftFuromaHUD-droid-details .riftFuromaHUD-chargeLevel-stat.droid_energy .riftFuromaHUD-chargeLevel-stat-value {
+  min-height: 18px;
+  padding-top: 2px;
+}
+
+.riftFuromaHUD-chargeLevel-stat.droid_energy {
+  padding-top: 1px;
+}
+
+.mh-improved-recall {
+  margin-right: -5px;
+  margin-left: -6px;
+  border-top: 2px solid #6f7374;
+}
+
+.mh-improved-riftFuromaHUD-leavePagoda-amount {
+  position: absolute;
+  top: 13px;
+  right: 0;
+  left: 0;
+  padding: 1px;
+  font-size: 9px;
+  color: #39e4eb;
+  text-align: center;
+  background-color: #333;
+  border-radius: 0 0 5px 5px;
+}
+
+.riftFuromaHUD-leavePagoda {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
