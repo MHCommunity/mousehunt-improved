@@ -475,6 +475,10 @@ a.floatingIslandsHUD-islandLoot:focus {
   width: 335px;
 }
 
+.floatingIslandsHUD-inventoryBagButton {
+  right: 110px;
+}
+
 .floatingIslandsHUD-statItem.active {
   display: flex;
   flex-direction: column;

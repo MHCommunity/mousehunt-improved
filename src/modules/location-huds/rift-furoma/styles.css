@@ -235,3 +235,7 @@ a.riftFuromaHUD-battery[data-type="charge_level_ten"]::before {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+.riftFuromaHUD-item .itemImage {
+  background-color: #fff;
+}
