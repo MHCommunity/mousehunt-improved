@@ -2,6 +2,7 @@ import {
   addStyles,
   doEvent,
   getCurrentPage,
+  getFlag,
   makeElement,
   onNavigation,
   onRequest,
@@ -186,7 +187,12 @@ const main = async () => {
     page: 'camp',
   });
 
-  onRequest('users/changetrap.php', updateMinLucks);
+  if (getFlag('catch-rate-estimate-more-refresh')) {
+    onRequest('*', updateMinLucks);
+  } else {
+    onRequest('users/changetrap.php', updateMinLucks);
+  }
+
   onTravel(null, { callback: updateMinLucks });
 };
 
