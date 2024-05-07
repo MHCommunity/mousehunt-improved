@@ -119,7 +119,7 @@ const claimGifts = async (send = false, retries = 0) => {
  * @param {boolean}     isTiny          Whether the buttons are tiny or not.
  */
 const makeAcceptButton = (buttonContainer, isTiny = false) => {
-  const acceptButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-accept', 'mousehuntActionButton']);
+  const acceptButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-accept', 'mousehuntActionButton', 'small']);
   makeElement('span', 'mousehuntActionButton-text', 'Accept All', acceptButton);
 
   if (isTiny) {
@@ -148,7 +148,7 @@ const makeAcceptButton = (buttonContainer, isTiny = false) => {
 const makeReturnButton = (buttonContainer, isTiny = false) => {
   // Return button.
   const returnWrapper = makeElement('div', 'mh-gift-buttons-return-wrapper');
-  const returnButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-return', 'mousehuntActionButton']);
+  const returnButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-return', 'mousehuntActionButton', 'small']);
   makeElement('span', 'mousehuntActionButton-text', 'Accept & Return All', returnButton);
 
   if (isTiny) {
