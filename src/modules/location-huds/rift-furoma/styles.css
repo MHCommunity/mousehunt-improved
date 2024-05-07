@@ -200,7 +200,9 @@ a.riftFuromaHUD-battery[data-type="charge_level_ten"]::before {
 /* New recall calc stats */
 .riftFuromaHUD-droid-details .riftFuromaHUD-chargeLevel-stat.droid_energy .riftFuromaHUD-chargeLevel-stat-label {
   padding-top: 0;
-  font-size: 6px;
+  margin-right: -5px;
+  margin-left: -5px;
+  font-size: 7.5px;
 }
 
 .riftFuromaHUD-droid-details .riftFuromaHUD-chargeLevel-stat.droid_energy .riftFuromaHUD-chargeLevel-stat-value {
