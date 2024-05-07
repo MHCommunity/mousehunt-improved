@@ -17,7 +17,7 @@ import styles from './styles.css';
  * @return {Array} The ignored gifts.
  */
 const getIgnoredGifts = () => {
-  const ignored = getSetting('better-gifts.ignore-bad-gifts-0', 'skip');
+  const ignored = getSetting('better-gifts-settings.ignore-bad-gifts-0', 'skip');
 
   const skipOptions = {
     skip: ['mozzarella_cheese', 'stale_cheese', 'stale_cheese_craft_item'],
