@@ -144,6 +144,13 @@ const removeHudStyles = () => {
   });
 };
 
+/**
+ * Add external styles to the page.
+ *
+ * @param {string} url The URL of the external styles.
+ *
+ * @return {Element} The style element.
+ */
 const addExternalStyles = async (url) => {
   const identifier = url.split('/').pop().split('.').shift();
 

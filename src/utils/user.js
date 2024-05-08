@@ -323,6 +323,11 @@ const getAnonymousUserHash = async () => {
   return userHash;
 };
 
+/**
+ * Get the user's title, normalized.
+ *
+ * @return {string} The user's title.
+ */
 const getUserTitle = () => {
   let title = user.title_name || 'novice';
 

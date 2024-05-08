@@ -9,6 +9,14 @@ import {
   onTurn
 } from '@utils';
 
+/**
+ * Get the selector for the item.
+ *
+ * @param {string} itemId The item ID.
+ * @param {Array}  bases  The base IDs.
+ *
+ * @return {string} The selector.
+ */
 const getIdSelector = (itemId, bases) => {
   if (Array.isArray(bases)) {
     bases = bases.join('-');
@@ -16,6 +24,12 @@ const getIdSelector = (itemId, bases) => {
   return `mh-improved-${itemId}-${bases}-counter`;
 };
 
+/**
+ * Add the quantity to the display.
+ *
+ * @param {string} itemId The item ID.
+ * @param {Array}  bases  The base IDs.
+ */
 const addQuantityToDisplay = async (itemId, bases) => {
   if ('camp' !== getCurrentPage() || ! itemId || ! bases) {
     return;
@@ -57,6 +71,13 @@ const addQuantityToDisplay = async (itemId, bases) => {
   trapContainer.append(newCounter);
 };
 
+/**
+ * Add the quantity to the trap browser.
+ *
+ * @param {string} el     The element to add the quantity to.
+ * @param {string} itemId The item ID.
+ * @param {string} base   The base ID.
+ */
 const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
   if (! el || ! itemId || ! base) {
     return;
@@ -79,6 +100,14 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
   el.append(counter);
 };
 
+/**
+ * Add the quantity to the trap browser.
+ *
+ * @param {string} tab          The tab to add the quantity to.
+ * @param {Object} opts         The options for the trap.
+ * @param {string} opts.itemId  The item ID.
+ * @param {Array}  opts.baseIds The base IDs.
+ */
 const addQtyToTrapBrowser = async (tab, opts) => {
   if ('item_browser' !== tab || ! opts.itemId || ! opts.baseSlugs) {
     return;
@@ -103,6 +132,13 @@ const addQtyToTrapBrowser = async (tab, opts) => {
   });
 };
 
+/**
+ * Add the quantity to the trap.
+ *
+ * @param {Object} opts         The options for the trap.
+ * @param {string} opts.itemId  The item ID.
+ * @param {Array}  opts.baseIds The base IDs.
+ */
 const addTrapQuantity = async (opts) => {
   const run = () => {
     addQuantityToDisplay(opts.itemId, opts.baseIds);

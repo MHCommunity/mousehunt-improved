@@ -58,6 +58,12 @@ const onEvent = (event, callback, remove = false) => {
   eventRegistry.addEventListener(event, callback, null, remove);
 };
 
+/**
+ * Add a settings change event.
+ *
+ * @param {string}          key      The key to listen for.
+ * @param {Function|Object} callback The callback to run when the event is fired.
+ */
 const onSettingsChange = (key, callback) => {
   // If callback is a function, then use it. If it's an object, then use the 'enable' and 'disable' keys.
   onEvent('mh-improved-settings-changed', (args) => {

@@ -271,6 +271,11 @@ const addIconToMenu = (opts) => {
   }
 };
 
+/**
+ * Remove an icon from the menu.
+ *
+ * @param {string} id The id of the icon to remove.
+ */
 const removeIconFromMenu = (id) => {
   const icon = document.querySelector(`#${id}`);
   if (icon) {
@@ -278,6 +283,12 @@ const removeIconFromMenu = (id) => {
   }
 };
 
+/**
+ * Replace an icon in the menu.
+ *
+ * @param {string} id   The id of the icon to replace.
+ * @param {Object} opts The options for the menu item. See addIconToMenu for details.
+ */
 const replaceIconInMenu = (id, opts) => {
   removeIconFromMenu(id);
   addIconToMenu(opts);

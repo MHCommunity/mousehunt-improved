@@ -2,6 +2,18 @@ import { dbGet, dbSet } from './db';
 import { getCurrentLocationName } from './location';
 import { onEvent } from './event-registry';
 
+/**
+ * Replace a journal entry with new content.
+ *
+ * @param {Element}  entry         The entry to replace.
+ * @param {Object}   opts          The options for the new entry.
+ * @param {Array}    opts.classes  The classes to add to the entry.
+ * @param {string}   opts.image    The image to display.
+ * @param {string}   opts.text     The text to display.
+ * @param {string}   opts.time     The time to display.
+ * @param {string}   opts.location The location to display.
+ * @param {Function} opts.callback The callback to run after replacing the entry.
+ */
 const replaceJournalEntry = (entry, opts = {}) => {
   const {
     classes = ['short'],
@@ -33,6 +45,18 @@ const replaceJournalEntry = (entry, opts = {}) => {
   callback(entry);
 };
 
+/**
+ * Create a new journal entry.
+ *
+ * @param {Object}  opts          The options for the new entry.
+ * @param {string}  opts.id       The ID of the new entry.
+ * @param {Array}   opts.classes  The classes to add to the entry.
+ * @param {string}  opts.image    The image to display.
+ * @param {string}  opts.text     The text to display.
+ * @param {string}  opts.time     The time to display.
+ * @param {string}  opts.location The location to display.
+ * @param {boolean} opts.noDate   Whether to include a date or not.
+ */
 const makeJournalEntry = (opts = {}) => {
   const existingEntry = document.querySelector(`.journalEntries .entry[data-entry-id="journal-entry-${opts.id}"]`);
   if (existingEntry) {
@@ -49,6 +73,11 @@ const makeJournalEntry = (opts = {}) => {
   replaceJournalEntry(newEntry, opts);
 };
 
+/**
+ * Get the ID of the latest journal entry.
+ *
+ * @return {string} The ID of the latest journal entry.
+ */
 const getLatestJournalEntryId = () => {
   const entries = document.querySelectorAll('.journalEntries .entry');
 
@@ -56,6 +85,19 @@ const getLatestJournalEntryId = () => {
   return entry ? entry.getAttribute('data-entry-id') : 0;
 };
 
+/**
+ * Add a new journal entry.
+ *
+ * @param {Object}  opts          The options for the new entry.
+ * @param {string}  opts.id       The ID of the new entry.
+ * @param {Array}   opts.classes  The classes to add to the entry.
+ * @param {string}  opts.image    The image to display.
+ * @param {string}  opts.text     The text to display.
+ * @param {string}  opts.time     The time to display.
+ * @param {string}  opts.location The location to display.
+ * @param {boolean} opts.noDate   Whether to include a date or not.
+ * @param {string}  opts.before   The ID of the entry to insert the new entry before.
+ */
 const addJournalEntry = async (opts = {}) => {
   const previousEntryData = await dbGet('data', `journal-entry-${opts.id}`);
   const previousEntryId = previousEntryData ? previousEntryData.data?.previous : null;

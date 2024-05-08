@@ -155,6 +155,15 @@ const showTravelConfirmation = (environment, theMapModel) => {
   });
 };
 
+/**
+ * Show the travel confirmation dialog for mice.
+ *
+ * @param {Object} options              Options for the dialog.
+ * @param {string} options.title        Title for the dialog.
+ * @param {string} options.description  Description for the dialog.
+ * @param {Object} options.environment  Environment to travel to.
+ * @param {Object} options.templateData Template data for the dialog.
+ */
 const showTravelConfirmationForMice = ({ title, description, environment, templateData }) => {
   const dialog = new hg.views.TreasureMapDialogView();
   dialog.setTitle(title);
@@ -172,6 +181,11 @@ const showTravelConfirmationForMice = ({ title, description, environment, templa
   hg.controllers.TreasureMapController.showDialog(dialog);
 };
 
+/**
+ * Show the travel confirmation dialog, but just for the environment.
+ *
+ * @param {Object} environment Environment to travel to.
+ */
 const showTravelConfirmationNoDetails = async (environment) => {
   const templateData = {
     environment: {

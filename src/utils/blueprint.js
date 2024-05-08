@@ -3,6 +3,13 @@ import { onEvent } from './event-registry';
 
 let activeBlueprint = null;
 let addedEvent = false;
+
+/**
+ * Toggle the blueprint view.
+ *
+ * @param {string}  id      The ID of the blueprint.
+ * @param {Element} content The content to display in the blueprint.
+ */
 const toggleBlueprint = (id, content) => {
   const container = document.querySelector('#mousehuntContainer');
   if (! container) {

@@ -53,6 +53,18 @@ const makeButton = (text, href, tiny = true, extraClasses = [], encodeAsSpace = 
   return `<a href="${href}" class="mousehuntActionButton ${tiny ? 'tiny' : ''} ${extraClasses.join(' ')}"><span>${text}</span></a>`;
 };
 
+/**
+ * Create a MouseHunt button.
+ *
+ * @param {Object}      opts           The options for the button.
+ * @param {string}      opts.text      The text for the button.
+ * @param {string}      opts.size      The size of the button.
+ * @param {string}      opts.className The class name for the button.
+ * @param {Function}    opts.callback  The callback for the button.
+ * @param {HTMLElement} opts.appendTo  The element to append the button to.
+ *
+ * @return {HTMLElement} The created button.
+ */
 const makeMhButton = (opts) => {
   const {
     text = '',
@@ -318,6 +330,18 @@ const makePage = (content) => {
   hg.utils.PageUtil.setPage('PrivacyPolicy', {}, setContent, setContent);
 };
 
+/**
+ * Create a math button to add or subtract from an input.
+ *
+ * @param {number}      amount          The amount to add or subtract.
+ * @param {Object}      opts            The options for the button.
+ * @param {HTMLElement} opts.appendTo   The element to append the button to.
+ * @param {HTMLElement} opts.input      The input to update.
+ * @param {number}      opts.maxQty     The maximum quantity for the input.
+ * @param {Array}       opts.classNames The class names to add to the button.
+ *
+ * @return {HTMLElement} The created button.
+ */
 const makeMathButton = (amount, opts) => {
   const {
     appendTo = null,
@@ -377,10 +401,25 @@ const makeMathButton = (amount, opts) => {
   return button;
 };
 
+/**
+ * Create a series of math buttons.
+ *
+ * @param {Array}       amounts         The amounts to add or subtract.
+ * @param {Object}      opts            The options for the buttons.
+ * @param {HTMLElement} opts.appendTo   The element to append the button to.
+ * @param {HTMLElement} opts.input      The input to update.
+ * @param {number}      opts.maxQty     The maximum quantity for the input.
+ * @param {Array}       opts.classNames The class names to add to the button.
+ *
+ * @return {Array} The created buttons.
+ */
 const makeMathButtons = (amounts, opts) => {
+  const returnVal = [];
   amounts.forEach((amount) => {
-    makeMathButton(amount, opts);
+    returnVal.push(makeMathButton(amount, opts));
   });
+
+  return returnVal;
 };
 
 export {
