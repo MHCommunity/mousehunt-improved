@@ -4,8 +4,8 @@
   place-content: flex-start space-around;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 95px;
-  padding-left: 5px;
+  width: 100px;
+  padding-left: 0;
   margin-top: -10px;
 }
 
@@ -51,7 +51,7 @@ span.mh-ui-tem-crown-text {
   display: inline-block;
   width: auto;
   height: 22px;
-  padding: 4px 10px 2px 15px;
+  padding: 3px 4px 3px 20px;
   font-size: 12px;
   font-weight: 900;
   color: #926944;
@@ -73,7 +73,7 @@ span.mh-ui-tem-crown-text {
 
 .campPage-trap-trapEffectiveness-mouse-powerType {
   right: 28px;
-  bottom: -11px;
+  bottom: -9px;
   background-color: #f4f4f4;
   background-size: 70%;
   border-color: #8d8282;

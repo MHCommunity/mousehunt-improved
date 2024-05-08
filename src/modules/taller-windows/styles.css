@@ -130,4 +130,5 @@
 .treasureMapView-blockWrapper.tall .treasureMapView-block-content.treasureMapShopsView-shopItems {
   height: 100%;
   max-height: unset;
+  overflow-x: hidden;
 }

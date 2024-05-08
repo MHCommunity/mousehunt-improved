@@ -566,6 +566,10 @@ input.treasureMapView-block-search-text {
   height: 21px;
 }
 
+.treasureMapView-mapLeaveContainer {
+  margin-top: 5px;
+}
+
 .treasureMapView-mapLeaveContainer .mousehuntActionButton.lightBlue.treasureMapView-leaveMapButton,
 .mousehuntActionButton.mh-ui-leave-map-button {
   background: #ffa5a5;
