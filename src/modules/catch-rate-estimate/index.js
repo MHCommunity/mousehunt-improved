@@ -116,6 +116,8 @@ const renderList = async (list) => {
   makeElement('th', 'name', 'Mouse', tableheader);
   makeElement('th', '', 'Minluck', tableheader);
   makeElement('th', '', 'Catch Rate', tableheader);
+
+  tableheader.addEventListener('click', updateMinLucks);
   table.append(tableheader);
 
   const rows = [];
