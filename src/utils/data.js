@@ -154,6 +154,8 @@ const clearCaches = async () => {
   }
 
   await dbDelete('cache', 'expirations');
+
+  await updateCaches();
 };
 
 /**
