@@ -32,6 +32,10 @@ const getJournalThemes = async () => {
 const updateJournalTheme = async (theme) => {
   const current = getCurrentJournalTheme();
 
+  if (! theme || current === theme) {
+    return false;
+  }
+
   shouldListen = false;
   const req = await doRequest('managers/ajax/users/journal_theme.php', {
     action: 'set_theme',
