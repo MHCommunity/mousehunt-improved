@@ -9,7 +9,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "concurrently \"bun:build:extension:chrome\" \"bun:build:extension:firefox\" \"bun:build:archive\" \"bun:build:userscript\" \"bun:build:userscript:all\" \"bun:build:zips\"",
+    "build": "concurrently \"bun:build:extension:chrome\" \"bun:build:extension:firefox\" \"bun:build:archive\" \"bun:build:userscript\" \"bun:build:zips\"",
     "build:archive": "mkdir -p dist && git archive --format zip --output dist/archive.zip HEAD",
     "build:extension": "concurrently \"bun:build:extension:*\"",
     "build:extension:chrome": "node scripts/build-extension.mjs chrome",
@@ -22,15 +22,15 @@
     "lint:css:fix": "stylelint **/**/*.css --fix",
     "lint:css": "stylelint src/**/*.css",
     "lint:fix": "concurrently \"bun:lint:*:fix\"",
-    "lint:js:fix": "eslint --ext .js src --fix",
-    "lint:js": "eslint --ext .js src",
-    "lint:json:fix": "eslint --ext .json . --fix",
-    "lint:json": "eslint --ext .json .",
-    "lint:md:fix": "eslint --ext .md . --fix",
-    "lint:md": "eslint --ext .md .",
+    "lint:js:fix": "eslint src/**/*.js --fix",
+    "lint:js": "eslint src/**/*.js",
+    "lint:json:fix": "eslint **/*.json --fix",
+    "lint:json": "eslint **/*.json .",
+    "lint:md:fix": "eslint **/*.md --fix",
+    "lint:md": "eslint **/*.md",
     "lint": "concurrently \"bun:lint:*(!fix)\"",
-    "lint:scripts": "eslint --ext .mjs scripts",
-    "lint:scripts:fix": "eslint --ext .mjs scripts --fix",
+    "lint:scripts": "eslint scripts/**/.mjs",
+    "lint:scripts:fix": "eslint scripts/**/.mjs --fix",
     "fix-map-groups": "node scripts/fix-map-groups.mjs"
   },
   "dependencies": {
