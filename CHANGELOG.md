@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 0.43.0
+
+- Fixed issue with data files not being updated on a new version.
+- Fixed issues with traveling and other requests failing.
+- Updated Native Dark Mode styles.
+- Added styles and Enerchi recall calculations to Furoma Rift Location HUD.
+- Fixed issue with non-gift of the day items not being skipped in Better Gifts.
+- Updated Better Gifts return and accept button sizes.
+- Fixed issue with Legacy HUD settings not correctly being applied.
+- Fixed Valour Rift Simulator secrets value display wrong value.
+- Added School of Sorcery Location HUD.
+- Added `better-kings-reward-no-horn` flag to disable the horn sounding after claiming a King's Reward.
+- Added `catch-rate-estimate-more-refresh` flag to restore more aggressive refreshing in the Catch Rate Estimator.
+- Minor bug fixes and improvements.
+
 ## Version 0.42.1
 
 - Fixes styles in Queso Region Location HUD
