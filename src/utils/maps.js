@@ -164,7 +164,6 @@ const showTravelConfirmationForMice = ({ title, description, environment, templa
   dialog.setCssClass('confirm');
   dialog.setContinueAction('Travel', () => {
     app.pages.TravelPage.travel(environment);
-    dialog.hide();
     setTimeout(() => {
       jsDialog().hide();
     }, 250);
@@ -176,11 +175,11 @@ const showTravelConfirmationForMice = ({ title, description, environment, templa
 const showTravelConfirmationNoDetails = async (environment) => {
   const templateData = {
     environment: {
-      name: environment.name,
+      name: environment.name || environment.id || '',
       id: environment.id,
       type: environment.id,
-      thumb: environment.image,
-      header: environment.header,
+      thumb: environment.image || environment.thumb,
+      header: environment.header || environment.image || environment.thumb,
       goals: environment.goals || [],
       num_completed_goals: 0,
       num_total_goals: 0,
@@ -195,7 +194,7 @@ const showTravelConfirmationNoDetails = async (environment) => {
   showTravelConfirmationForMice({
     title: `Travel to ${environment.name}?`,
     description: '',
-    environment: environment.id,
+    environment: environment.type,
     templateData
   });
 };

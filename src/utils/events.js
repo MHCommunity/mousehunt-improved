@@ -71,11 +71,6 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
       const params = new URLSearchParams(data);
       this._data = Object.fromEntries(params);
 
-      delete this._data.hg_is_ajax;
-      delete this._data.sn;
-      delete this._data.uh;
-      delete this._data.last_read_journal_entry_id;
-
       return Reflect.apply(send, this, arguments);
     };
 
