@@ -124,6 +124,12 @@ const init = () => {
     }
   });
 
+  onRequest('users/changetrap.php', (data) => {
+    if (data.skin && data.skin.length) {
+      addSkinImages('item_browser');
+    }
+  });
+
   onNavigation(triggerFromClick, {
     page: 'camp',
   });
