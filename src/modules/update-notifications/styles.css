@@ -116,7 +116,7 @@
   flex-direction: column;
   flex-grow: 1;
   gap: 10px;
-  justify-content: flex-end;
+  justify-content: center;
   text-align: center;
 }
 
@@ -159,4 +159,16 @@
 
 .mh-improved-update-summary-content p {
   font-size: 12px;
+}
+
+.mh-dark h1.mh-improved-update-summary-title {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-improved-update-summary-body a {
+  color: var(--d-link);
+}
+
+.mh-dark .mh-improved-update-summary-changes {
+  background: var(--d-bg);
 }
