@@ -104,18 +104,19 @@ const fetchData = async (key, retries = 0) => {
 /**
  * Get the data for the given key.
  *
- * @param {string} key Key to get the data for.
+ * @param {string}  key   Key to get the data for.
+ * @param {boolean} force Whether to force fetching the data.
  *
  * @return {Object} The data.
  */
-const getData = async (key) => {
+const getData = async (key, force = false) => {
   if (! isValidDataFile(key)) {
     debuglog('utils-data', `Cannot get data for ${key}, invalid key`);
     return false;
   }
 
   const isExpired = await isCacheExpired(key);
-  if (! isExpired) {
+  if (! isExpired && ! force) {
     const cachedData = await dataCacheGet(key, false);
     if (cachedData) {
       return cachedData;
@@ -160,7 +161,7 @@ const clearCaches = async () => {
  */
 const updateCaches = async () => {
   for (const file of validDataFiles) {
-    await getData(file);
+    await getData(file, true);
   }
 };
 
