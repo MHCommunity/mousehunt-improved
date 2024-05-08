@@ -47,7 +47,7 @@ const fetchAndFillItemData = async (itemId) => {
 
   const quantity = makeElement('div', 'item-quanity');
   makeElement('span', '', 'You own: ', quantity);
-  makeElement('span', '', item.quantity.toLocaleString(), quantity);
+  makeElement('span', '', Number.parseInt(item.quantity).toLocaleString(), quantity);
 
   itemText.append(quantity);
 
@@ -92,7 +92,9 @@ const makeMouseMarkup = async (itemId, e) => {
 
   if (e.target && ! debugPopup) {
     e.target.addEventListener('mouseleave', () => {
-      itemDataWrapper.remove();
+      if (itemDataWrapper) {
+        itemDataWrapper.remove();
+      }
     });
   }
 };
@@ -112,7 +114,9 @@ const main = () => {
     });
 
     link.addEventListener('mouseout', () => {
-      itemDataWrapper.remove();
+      if (itemDataWrapper) {
+        itemDataWrapper.remove();
+      }
     });
   });
 };

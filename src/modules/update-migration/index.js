@@ -55,8 +55,8 @@ const update = async () => {
 
     if (getGlobal('mh-improved-update-needs-refresh')) {
       showLoadingPopup('MouseHunt Improved has been updated. Please refresh the page.');
-    } else {
-      activejsDialog?.hide();
+    } else if (activejsDialog && activejsDialog?.hide) {
+      activejsDialog.hide();
     }
 
     doEvent('mh-improved-updated', mhImprovedVersion);

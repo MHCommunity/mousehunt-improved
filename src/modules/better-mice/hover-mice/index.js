@@ -110,7 +110,9 @@ const makeMouseMarkup = async (mouseId, e) => {
 
   if (e.target && ! debugPopup) {
     e.target.addEventListener('mouseleave', () => {
-      mouseDataWrapper.remove();
+      if (mouseDataWrapper) {
+        mouseDataWrapper.remove();
+      }
     });
   }
 };
@@ -130,7 +132,9 @@ const main = () => {
     });
 
     link.addEventListener('mouseout', () => {
-      mouseDataWrapper.remove();
+      if (mouseDataWrapper) {
+        mouseDataWrapper.remove();
+      }
     });
   });
 };

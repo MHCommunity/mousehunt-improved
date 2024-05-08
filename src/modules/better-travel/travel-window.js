@@ -128,7 +128,7 @@ const openTravelWindow = async () => {
     const regionEnvironments = environments.filter((e) => e.region === region.type);
     regionEnvironments.forEach((environment) => {
       let envButtonClass = 'greatWinterHuntGolemDestinationView__environment';
-      if (currentEnvironment.id === environment.id) {
+      if (currentEnvironment && currentEnvironment.id && currentEnvironment.id === environment.id) {
         envButtonClass += ' greatWinterHuntGolemDestinationView__environment--active';
       }
 

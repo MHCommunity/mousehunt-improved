@@ -53,7 +53,8 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
     }
 
     // Find the inventoryData.page.tabs array item that has type=special
-    const specialTab = inventoryData.page.tabs.find((tab) => queryTab === tab.type);
+    const tabs = inventoryData?.page?.tabs || [];
+    const specialTab = tabs.find((tab) => queryTab === tab.type);
     if (! specialTab || ! specialTab.subtabs || ! specialTab.subtabs.length || ! specialTab.subtabs[0].tags) {
       return [];
     }

@@ -30,7 +30,7 @@ const styles = imported;
 
 const updateMapClasses = () => {
   const map = document.querySelector('.treasureMapRootView');
-  if (map) {
+  if (map && map.classList) {
     if (user?.quests?.QuestRelicHunter?.maps?.length >= 2) {
       map.classList.add('mh-ui-multiple-maps');
     } else {

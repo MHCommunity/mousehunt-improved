@@ -122,7 +122,7 @@ const sendBallot = async (ballot) => {
     return { status: 'error', proceed: true };
   }
 
-  if (response.error && ! response?.error?.includes('You have already entered ')) {
+  if (response?.error && ! response?.error?.includes('You have already entered ')) {
     debuglog('feature-flags-raffle', `Error returning ballot for ${ballot.name}: ${response.error}`);
     return { status: 'error', proceed: false };
   }

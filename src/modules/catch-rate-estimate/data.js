@@ -29,6 +29,10 @@ const getMouse = async (mouseId) => {
 
 const getMousePower = async (mouseId) => {
   const mouse = await getMouse(mouseId);
+  if (! mouse || ! mouse.effectivenesses) {
+    return 0;
+  }
+
   return mouse?.effectivenesses?.power;
 };
 
