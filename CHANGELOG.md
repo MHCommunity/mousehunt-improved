@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.43.1
+
+- Fixes minor issues in Sorted maps tab
+- Updates Native Dark Mode mice styles
+
 ## Version 0.43.0
 
 - Fixed issue with data files not being updated on a new version.

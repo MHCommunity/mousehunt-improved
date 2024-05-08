@@ -13,6 +13,8 @@
         "Fixed issue with Legacy HUD settings not correctly being applied.",
         "Fixed Valour Rift Simulator secrets value display wrong value.",
         "Added School of Sorcery Location HUD.",
+        "Fixes minor issues in Sorted maps tab",
+        "Updates Native Dark Mode mice styles",
         "Added `better-kings-reward-no-horn` flag to disable the horn sounding after claiming a King's Reward.",
         "Added `catch-rate-estimate-more-refresh` flag to restore more aggressive refreshing in the Catch Rate Estimator.",
         "Minor bug fixes and improvements."
