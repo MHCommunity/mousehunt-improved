@@ -350,3 +350,12 @@ ul.minluck-list {
 .mouseListView-categoryContent-filter-option {
   margin-left: 5px;
 }
+
+.mouseView .mouseView-imageContainer a.custom-favorite-button {
+  opacity: 0;
+  transition: 0.2s ease-in;
+}
+
+.mouseView .mouseView-imageContainer:hover a.custom-favorite-button {
+  opacity: 1;
+}

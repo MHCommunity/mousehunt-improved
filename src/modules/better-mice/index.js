@@ -96,7 +96,12 @@ const addFavoriteButton = async (mouseId, mouseView) => {
     },
   });
 
-  mouseView.append(fave);
+  const mouseviewImage = mouseView.querySelector('.mouseView-imageContainer');
+  if (mouseviewImage) {
+    mouseviewImage.append(fave);
+  } else {
+    mouseView.append(fave);
+  }
 };
 
 const addMinluck = async (mouseId, mouseView) => {
@@ -150,6 +155,10 @@ const addWisdom = async (mouseId, mouseView) => {
   const values = mouseView.querySelector('.mouseView-values');
   if (! values) {
     return;
+  }
+
+  if (! wisdoms) {
+    wisdoms = await getData('wisdom');
   }
 
   let wisdom = wisdoms.find((m) => m.id === Number.parseInt(mouseId, 10));
