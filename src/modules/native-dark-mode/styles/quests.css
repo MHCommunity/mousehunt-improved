@@ -10,8 +10,8 @@
 }
 
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
-  border-color: var(--d-border);
   background-color: var(--d-alt);
+  border-color: var(--d-border);
 }
 
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content {
@@ -23,6 +23,6 @@
 }
 
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup #jsDialogAjaxPrefix {
-  border-color: transparent;
   margin-bottom: 0;
+  border-color: transparent;
 }
