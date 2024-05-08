@@ -5,7 +5,7 @@ import styles from './styles.css';
 const getEnergyStats = () => {
   const droid = Number.parseInt(`${user?.quests?.QuestRiftFuroma?.droid?.remaining_energy || 0}`.replaceAll(',', ''));
   const lost = Number.parseInt(`${user?.quests?.QuestRiftFuroma?.droid?.energy_lost || 0}`.replaceAll(',', ''));
-  const recall = (droid - lost) / 2;
+  const recall = Math.floor((droid - lost) / 2);
   const energy = Number.parseInt(`${user?.quests?.QuestRiftFuroma?.items?.combat_energy_stat_item?.quantity || 0}`.replaceAll(',', ''));
 
   return {
