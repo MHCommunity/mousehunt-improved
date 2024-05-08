@@ -6,3 +6,13 @@
   top: -4px;
   right: 2px;
 }
+
+span.hud_titlePercentage::after {
+  content: "%";
+}
+
+.mousehuntHud-userStat.bait:hover .value,
+.mousehuntHud-userStat.trinket:hover .value,
+.mousehuntHud-userStat.treasureMap:hover .value {
+  margin-top: 0;
+}
