@@ -1,4 +1,4 @@
-import { addStyles, onRequest } from '@utils';
+import { addStyles, getFlag, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -59,7 +59,10 @@ const init = async () => {
   addStyles(styles, 'better-kings-reward');
 
   onRequest('turns/activeturn.php', initiateKingsReward, true);
-  onRequest('users/puzzle.php', continueOnKingsReward, true);
+
+  if (! getFlag('better-kings-reward-no-horn')) {
+    onRequest('users/puzzle.php', continueOnKingsReward, true);
+  }
 
   onRequest('*', startKingsReward);
   startKingsReward();
