@@ -32,7 +32,7 @@ const getJournalThemes = async () => {
 const updateJournalTheme = async (theme) => {
   const current = getCurrentJournalTheme();
 
-  if (! theme || current === theme) {
+  if (! theme || current == theme) { // eslint-disable-line eqeqeq
     return false;
   }
 
