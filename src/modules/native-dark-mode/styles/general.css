@@ -52,5 +52,6 @@ body.mh-dark {
 }
 
 .travelPage-map-message {
+  top: 375px;
   color: #000;
 }

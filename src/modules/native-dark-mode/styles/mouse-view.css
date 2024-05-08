@@ -33,3 +33,7 @@
 .mh-dark .mouseView-titleContainer {
   border-bottom-color: var(--d-bg-alt);
 }
+
+.mh-dark .mouseview-has-mhct .ar-link {
+  color: var(--d-link);
+}

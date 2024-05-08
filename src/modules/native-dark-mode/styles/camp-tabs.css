@@ -86,6 +86,7 @@
   color: var(--d-text-muted);
 }
 
+.mh-dark .adventureBookBanner-container:hover .adventureBookBanner-moreInfo,
 .mh-dark .adventureBookBanner-moreInfo {
   color: var(--d-link);
 }
@@ -108,4 +109,8 @@
 .mh-dark .campPage-trap-trapEffectiveness-mouse-powerType {
   background-color: var(--d);
   border-color: var(--d-border);
+}
+
+.mh-dark .campPage-tabs-tabContent-larryTip-container p:last-of-type a {
+  color: var(--d-link);
 }

@@ -1,13 +1,14 @@
 .mh-dark .travelPage-regionMenu-environments,
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu-item,
 .mh-dark #mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environments {
-  background-color: var(--d-alt);
+  background-color: var(--d);
 }
 
 .mh-dark .travelPage-regionMenu-environmentLink.relic-hunter-is-here,
 .mh-dark .mousehuntHud-page-tabContent.simple-travel .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
   background-color: var(--d-green-dark);
   outline-color: var(--d-alt);
+  color: var(--d-text);
 }
 
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink:hover,
@@ -15,16 +16,17 @@
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight,
 .mh-dark #mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.active.highlight {
   color: var(--d-text);
-  background-color: var(--d-blue-dark);
+  background-color: var(--d-blue);
 }
 
 .mh-dark .travelPage-regionMenu-stats {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-alt);
 }
 
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight {
-  margin-right: -4px;
+  margin-right: -1px;
+  border-right: none;
 }
 
 .mh-dark .travelPage-regionMenu-item.active .travelPage-regionMenu-regionLink {
@@ -57,4 +59,16 @@
   border-color: var(--d-border);
   border-bottom: none;
   box-shadow: none;
+}
+
+.mh-dark .travelPage-regionMenu-environmentLink {
+  color: var(--d-link);
+}
+
+.mh-dark .travelPage-map-pieces-detail-environment-name {
+  color: var(--d-text);
+}
+
+.mh-dark .travelPage-map-pieces-row a {
+  color: var(--d-link);
 }

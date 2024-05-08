@@ -338,3 +338,7 @@
 .mh-dark .mh-improved-cre-name a {
   color: inherit;
 }
+
+.mh-dark .campPage-trap-trapEffectiveness-mouse-name {
+  color: var(--d-text);
+}

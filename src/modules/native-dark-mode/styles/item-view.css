@@ -27,3 +27,7 @@
 .mh-dark .mh-dark .itemViewStatBlock-stat-value {
   background-color: transparent;
 }
+
+.mh-dark .itemViewContainer a {
+  color: var(--d-link);
+}
