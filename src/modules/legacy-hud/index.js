@@ -63,7 +63,7 @@ const getLegacyHudHtml = () => {
             <a href="#" class="hudstatvalue" onclick="hg.utils.PageUtil.setPage('Title'); return false;">
               ${user?.title_name}
             </a>
-          </span> (<span class="hud_titlePercentage">${user?.title_percent}%</span>)
+          </span> (<span class="hud_titlePercentage">${user?.title_percent}</span>)
         </li>
         <li>
           <div class="mousehuntHud-titleProgressBar">
