@@ -1,29 +1,28 @@
-.mh-dark .mh-ui-assignment-meta ,
+.mh-dark .mh-ui-assignment-meta,
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content b {
   color: var(--d-text);
 }
 
-
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer .suffix,
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .smashQuest a,
 .mh-dark .mh-ui-assignment-meta a {
-    color: var(--d-link);
+  color: var(--d-link);
 }
 
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
-    border-color: var(--d-border);
-    background-color: var(--d-alt);
+  border-color: var(--d-border);
+  background-color: var(--d-alt);
 }
 
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content {
-    background-color: var(--d-alt);
+  background-color: var(--d-alt);
 }
 
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer .content {
-    padding: 10px;
+  padding: 10px;
 }
 
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup #jsDialogAjaxPrefix {
-    border-color: transparent;
-    margin-bottom: 0;
+  border-color: transparent;
+  margin-bottom: 0;
 }

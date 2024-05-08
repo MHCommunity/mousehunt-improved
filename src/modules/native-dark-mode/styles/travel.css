@@ -6,9 +6,9 @@
 
 .mh-dark .travelPage-regionMenu-environmentLink.relic-hunter-is-here,
 .mh-dark .mousehuntHud-page-tabContent.simple-travel .travelPage-regionMenu-environmentLink.relic-hunter-is-here {
+  color: var(--d-text);
   background-color: var(--d-green-dark);
   outline-color: var(--d-alt);
-  color: var(--d-text);
 }
 
 .mh-dark #mh-simple-travel-page .travelPage-regionMenu-environmentLink:hover,
