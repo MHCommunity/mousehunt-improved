@@ -17,36 +17,6 @@ const getEnergyStats = () => {
   };
 };
 
-const getBatteryStats = () => {
-  const batteryInfo = [];
-  const numbers = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-
-  for (const num of numbers) {
-    const battery = user?.quests?.QuestRiftFuroma?.batteries[`charge_level_${num}`];
-    if (battery) {
-      batteryInfo.push({
-        percent: battery.percent || 0,
-        remaining: battery.remaining || 0,
-        status: battery.status.split(' '),
-        isActive: battery.status.includes('selected'),
-        isLocked: battery.status.includes('locked'),
-        isDisabled: battery.status.includes('disabled'),
-        isUnlocked: battery.status.includes('unlocked'),
-        isConnected: battery.status.includes('connected'),
-        total: battery.total || 0,
-      });
-    }
-  }
-
-  return batteryInfo;
-};
-
-const addBatteryDetails = () => {
-  const batteryInfo = getBatteryStats();
-
-  // TODO: Add battery details to the batteries.
-};
-
 const addRecallCaclulation = () => {
   const { recall, afterRecall } = getEnergyStats();
 
@@ -86,8 +56,5 @@ export default async () => {
   addHudStyles(styles);
 
   addRecallCaclulation();
-
-  onTurn(() => {
-    addRecallCaclulation();
-  });
+  onTurn(addRecallCaclulation);
 };
