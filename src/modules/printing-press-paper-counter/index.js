@@ -2,8 +2,8 @@ import { addTrapQuantity } from '@utils';
 
 const init = async () => {
   addTrapQuantity({
-    baseIds: [3628],
-    baseSlugs: ['naughty_list_printing_press_base'],
+    baseIds: [3628, 3683],
+    baseSlugs: ['naughty_list_printing_press_base', 'folklore_printing_press_base'],
     itemId: 'printing_press_charge_stat_item'
   });
 };
@@ -13,6 +13,6 @@ export default {
   name: 'Printing Press Paper Counter',
   type: 'feature',
   default: true,
-  description: 'Shows the number of Prolific Printing Papers you have when Naughty List Printing Press Base is equipped.',
+  description: 'Shows the number of Prolific Printing Papers you have for the Printing Press bases.',
   load: init,
 };
