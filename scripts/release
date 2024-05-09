@@ -4,7 +4,7 @@ source .env
 
 version=$(jq -r .version package.json)
 
-git tag -a "v$version" -m "Release v$version"
+git tag -a "v$version" -m "Release v$version" || exit 1
 
 git push origin main
 git push origin "v$version"
