@@ -176,6 +176,10 @@ const updateTournamentList = async () => {
         return acc + (Number.parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10) * 60);
       }
 
+      if (part === 'days' || part === 'day') {
+        return acc + (Number.parseInt(beginsParts[beginsParts.indexOf(part) - 1], 10) * 1440);
+      }
+
       return acc;
     }, 0);
 
@@ -196,6 +200,10 @@ const updateTournamentList = async () => {
 
       if (part === 'hours' || part === 'hour') {
         return acc + (Number.parseInt(durationParts[durationParts.indexOf(part) - 1], 10) * 60);
+      }
+
+      if (part === 'days' || part === 'day') {
+        return acc + (Number.parseInt(durationParts[durationParts.indexOf(part) - 1], 10) * 1440);
       }
 
       return acc;
