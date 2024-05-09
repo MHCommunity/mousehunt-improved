@@ -8,7 +8,6 @@
 - Rewrites the journal to use simpler entries and clearer information.
 - Modifies the mouse image to open the mouse view, rather than just an image.
 
-
 ## Options
 
 - **Journal styles**: TODO:

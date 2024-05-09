@@ -29,8 +29,8 @@
     "lint:md:fix": "eslint **/*.md --fix",
     "lint:md": "eslint **/*.md",
     "lint": "concurrently \"bun:lint:*(!fix)\"",
-    "lint:scripts": "eslint scripts/**/.mjs",
-    "lint:scripts:fix": "eslint scripts/**/.mjs --fix",
+    "lint:scripts": "eslint scripts/**/*.mjs",
+    "lint:scripts:fix": "eslint scripts/**/*.mjs --fix",
     "fix-map-groups": "node scripts/fix-map-groups.mjs"
   },
   "dependencies": {

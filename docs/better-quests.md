@@ -4,8 +4,6 @@
 - Adds the cost, reward, and a link to [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php) for each assignment in the assignment list.
 - Adds an M400 helper that lets you quickly travel to the next location.
 - Updates the progress display of tasks to be more concise.
-- Moves the warning text about smashing an assignment to be more clear.
-
 
 ## Options
 

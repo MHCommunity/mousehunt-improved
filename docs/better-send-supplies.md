@@ -6,7 +6,6 @@
 - Adds +1, +5, +10, +100, and All buttons to the quantity input page to easily set the quantity.
 - Allows favoriting items to be highlighted and show them at the top of the list.
 
-
 ## Options
 
 - **Pinned Items**:

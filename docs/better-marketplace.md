@@ -5,7 +5,6 @@
 - Auto-close the "I claimed…" popup when claiming or closing a listing.
 - When on the buy or sell screen, clicking on 'Buying' or 'Selling' will toggle to the other.
 
-
 ## Options
 
 - **Default to showing all items in search**:
