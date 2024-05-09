@@ -26,7 +26,7 @@ const buildExtension = async (platform, watch = false) => {
     }, null, 2)
   );
 
-  const ctx = await esbuild.context({
+  const opts = {
     entryPoints: ['src/index.js'],
     platform: 'browser',
     format: 'iife',
@@ -64,11 +64,16 @@ const buildExtension = async (platform, watch = false) => {
         `const mhImprovedPlatform = '${platform}';`,
       ].join('\n'),
     },
-    logLevel: 'info',
-  });
+  };
 
-  console.log(watch ? 'Watching for changes...' : 'Building extension...'); // eslint-disable-line no-console
-  await (watch ? ctx.watch() : ctx.rebuild());
+  console.log(watch ? 'Watching for changes...' : 'Building extension...');
+  if (watch) {
+    opts.logLevel = 'info';
+    const ctx = await esbuild.context(opts)
+    return await ctx.watch();
+  }
+
+  return await esbuild.build(opts);
 };
 
 await buildExtension(process.argv[2], process.argv[3] === 'watch');
