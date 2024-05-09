@@ -22,7 +22,7 @@ import styles from './styles.css';
  * @return {string} The markup for the mouse links.
  */
 const getLinkMarkup = (name, id) => {
-  return makeLink('MHCT', `https://www.mhct.win/loot.php?item=${id}`, true) +
+  return makeLink('MHCT', `https://api.mouse.rip/mhct-redirect-item/${id}`, true) +
     makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
 };
 

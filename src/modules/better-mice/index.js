@@ -25,18 +25,21 @@ import styles from './styles.css';
  * Get the markup for the mouse links.
  *
  * @param {string} name The name of the mouse.
+ * @param {string} id   The ID of the mouse.
  *
  * @return {string} The markup for the mouse links.
  */
-const getLinkMarkup = (name) => {
-  return makeLink('MHCT AR', `https://www.mhct.win/attractions.php?mouse_name=${name}`) +
+const getLinkMarkup = (name, id) => {
+  return makeLink('MHCT AR', `https://api.mouse.rip/mhct-redirect/${id}`) +
     makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
 };
 
 /**
  * Add links to the mouse overlay.
+ *
+ * @param {string} id The ID of the mouse.
  */
-const addLinks = () => {
+const addLinks = (id) => {
   const title = document.querySelector('.mouseView-title');
   if (! title) {
     return;
@@ -49,7 +52,7 @@ const addLinks = () => {
 
   const div = document.createElement('div');
   div.classList.add('mh-ui-mouse-links');
-  div.innerHTML = getLinkMarkup(title.innerText);
+  div.innerHTML = getLinkMarkup(title.innerText, id);
   title.parentNode.insertBefore(div, title);
 
   // Move the values into the main text.
@@ -203,7 +206,7 @@ const updateMouseView = async () => {
     });
   }
 
-  addLinks();
+  addLinks(mouseId);
 
   addFavoriteButton(mouseId, mouseView);
 
