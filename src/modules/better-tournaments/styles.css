@@ -27,14 +27,6 @@
   display: none;
 }
 
-.tournamentPage-tournament-column.label {
-  text-align: center;
-}
-
-.tournamentPage-tournament-column.label.nameIcon {
-  text-align: left;
-}
-
 .tournamentPage-tournamentContainer-labels .tournamentPage-tournament-column:nth-child(6) {
   display: none;
 }
