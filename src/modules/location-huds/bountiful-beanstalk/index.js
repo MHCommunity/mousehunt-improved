@@ -279,7 +279,7 @@ const addCraftingButtons = async () => {
       const type = isNormal ? baitAmounts[baitType].shopNormal : baitAmounts[baitType].shop;
 
       makeMhButton({
-        text: `Craft ${qty}`,
+        text: `Craft ${amount}`,
         className,
         title,
         size: 'tiny',

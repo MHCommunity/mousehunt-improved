@@ -10,6 +10,7 @@
 - Fixed Favorite Setups slow loading and editing
 - Fixed mouse and item MHCT link destinations
 - Fixed localized tournament times not correctly displaying
+- Fixed Bountiful Beanstalk Location HUD not showing the correct crafting amounts
 
 ## Version 0.43.1
 
