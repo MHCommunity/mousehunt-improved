@@ -10,18 +10,9 @@
           "sky_dancer",
           "sky_glass_glazier",
           "sky_glass_sorcerer",
-          {
-            "mouse": "arcane_paragon",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "sky_highborne",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "empyrean_arcane_mouse",
-            "subcategory": "sp"
-          }
+          { "mouse": "arcane_paragon", "subcategory": "hai" },
+          { "mouse": "sky_highborne", "subcategory": "hai" },
+          { "mouse": "empyrean_arcane_mouse", "subcategory": "sp" }
         ]
       },
       {
@@ -33,18 +24,9 @@
           "dragon_breather",
           "dragon_lancer",
           "tiny_dragonfly",
-          {
-            "mouse": "draconic_paragon",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "regal_spearman",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "empyrean_draconic_mouse",
-            "subcategory": "sp"
-          }
+          { "mouse": "draconic_paragon", "subcategory": "hai" },
+          { "mouse": "regal_spearman", "subcategory": "hai" },
+          { "mouse": "empyrean_draconic_mouse", "subcategory": "sp" }
         ]
       },
       {
@@ -56,18 +38,9 @@
           "cumulost",
           "spry_sky_explorer",
           "spry_sky_seer",
-          {
-            "mouse": "forgotten_paragon",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "spheric_diviner",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "empyrean_forgotten_mouse",
-            "subcategory": "sp"
-          }
+          { "mouse": "forgotten_paragon", "subcategory": "hai" },
+          { "mouse": "spheric_diviner", "subcategory": "hai" },
+          { "mouse": "empyrean_forgotten_mouse", "subcategory": "sp" }
         ]
       },
       {
@@ -79,18 +52,9 @@
           "cute_cloud_conjurer",
           "nimbomancer",
           "sky_surfer",
-          {
-            "mouse": "hydro_paragon",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "mist_maker",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "empyrean_hydro_mouse",
-            "subcategory": "sp"
-          }
+          { "mouse": "hydro_paragon", "subcategory": "hai" },
+          { "mouse": "mist_maker", "subcategory": "hai" },
+          { "mouse": "empyrean_hydro_mouse", "subcategory": "sp" }
         ]
       },
       {
@@ -102,18 +66,9 @@
           "devious_gentleman",
           "lawbender",
           "stack_of_thieves",
-          {
-            "mouse": "law_paragon",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "agent_m",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "empyrean_law_mouse",
-            "subcategory": "sp"
-          }
+          { "mouse": "law_paragon", "subcategory": "hai" },
+          { "mouse": "agent_m", "subcategory": "hai" },
+          { "mouse": "empyrean_law_mouse", "subcategory": "sp" }
         ]
       },
       {
@@ -125,18 +80,9 @@
           "ground_gavaleer",
           "heracles",
           "sky_swordsman",
-          {
-            "mouse": "physical_paragon",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "sky_squire",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "empyrean_physical_mouse",
-            "subcategory": "sp"
-          }
+          { "mouse": "physical_paragon", "subcategory": "hai" },
+          { "mouse": "sky_squire", "subcategory": "hai" },
+          { "mouse": "empyrean_physical_mouse", "subcategory": "sp" }
         ]
       },
       {
@@ -148,18 +94,9 @@
           "astrological_astronomer",
           "overcaster",
           "stratocaster",
-          {
-            "mouse": "shadow_paragon",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "shadow_sage",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "empyrean_shadow_mouse",
-            "subcategory": "sp"
-          }
+          { "mouse": "shadow_paragon", "subcategory": "hai" },
+          { "mouse": "shadow_sage", "subcategory": "hai" },
+          { "mouse": "empyrean_shadow_mouse", "subcategory": "sp" }
         ]
       },
       {
@@ -171,18 +108,9 @@
           "gyrologer",
           "seasoned_islandographer",
           "worried_wayfinder",
-          {
-            "mouse": "tactical_paragon",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "captain_cloudkicker",
-            "subcategory": "hai"
-          },
-          {
-            "mouse": "empyrean_tactical_mouse",
-            "subcategory": "sp"
-          }
+          { "mouse": "tactical_paragon", "subcategory": "hai" },
+          { "mouse": "captain_cloudkicker", "subcategory": "hai" },
+          { "mouse": "empyrean_tactical_mouse", "subcategory": "sp" }
         ]
       },
       {
@@ -216,47 +144,26 @@
         "name": "Other",
         "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
         "color": "#",
-        "mice": [
-          "daydreamer",
-          "kite_flyer",
-          "richard_rich",
-          "empyrean_loot_cache_guardian"
-        ]
+        "mice": ["daydreamer", "kite_flyer", "richard_rich", "empyrean_loot_cache_guardian"]
       },
       {
         "name": "Wardens",
         "id": "esp-wardens",
         "icon": "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png",
         "color": "#d3bdd3",
-        "mice": [
-          "fog_warden",
-          "frost_warden",
-          "rain_warden",
-          "wind_warden"
-        ]
+        "mice": ["fog_warden", "frost_warden", "rain_warden", "wind_warden"]
       },
       {
         "name": "Launchpad",
         "id": "esp-launchpad",
         "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
         "color": "#c2c2c2",
-        "mice": [
-          "cloud_miner",
-          "launchpad_labourer",
-          "sky_greaser",
-          "skydiver"
-        ]
+        "mice": ["cloud_miner", "launchpad_labourer", "sky_greaser", "skydiver"]
       }
     ],
     "subcategories": [
-      {
-        "id": "hai",
-        "name": "High Altitude Island"
-      },
-      {
-        "id": "sp",
-        "name": "Sky Palace"
-      }
+      { "id": "hai", "name": "High Altitude Island" },
+      { "id": "sp", "name": "Sky Palace" }
     ]
   },
   "farming_and_fishing": {
@@ -273,18 +180,9 @@
           "mighty_mite",
           "root_rummager",
           "wily_weevil",
-          {
-            "mouse": "crazed_cultivator",
-            "subcategory": "sb"
-          },
-          {
-            "mouse": "land_loafer",
-            "subcategory": "zero-plants"
-          },
-          {
-            "mouse": "loathsome_locust",
-            "subcategory": "three-papyrus"
-          }
+          { "mouse": "crazed_cultivator", "subcategory": "sb" },
+          { "mouse": "land_loafer", "subcategory": "zero-plants" },
+          { "mouse": "loathsome_locust", "subcategory": "three-papyrus" }
         ]
       },
       {
@@ -296,10 +194,7 @@
           "beachcomber",
           "sand_sifter",
           "tackle_tracker",
-          {
-            "mouse": "covetous_coastguard",
-            "subcategory": "sb"
-          }
+          { "mouse": "covetous_coastguard", "subcategory": "sb" }
         ]
       },
       {
@@ -307,47 +202,27 @@
         "subtitle": "Grubben",
         "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
         "color": "#fbc3fa",
-        "mice": [
-          "pompous_perch",
-          "careless_catfish",
-          "melodramatic_minnow"
-        ]
+        "mice": ["pompous_perch", "careless_catfish", "melodramatic_minnow"]
       },
       {
         "name": "Prologue Pond",
         "subtitle": "Clamebert",
         "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
         "color": "#f3e0ff",
-        "mice": [
-          "nefarious_nautilus",
-          "vicious_vampire_squid",
-          "sinister_squid"
-        ]
+        "mice": ["nefarious_nautilus", "vicious_vampire_squid", "sinister_squid"]
       },
       {
         "name": "Bosses",
         "id": "fofo-bosses",
         "icon": "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png",
         "color": "#fde671",
-        "mice": [
-          "monstrous_midge",
-          "architeuthulhu_of_the_abyss"
-        ]
+        "mice": ["monstrous_midge", "architeuthulhu_of_the_abyss"]
       }
     ],
     "subcategories": [
-      {
-        "id": "sb",
-        "name": "SUPER|brie+"
-      },
-      {
-        "id": "zero-plants",
-        "name": "Zero Plants"
-      },
-      {
-        "id": "three-papyrus",
-        "name": "Three Papyrus Plants"
-      }
+      { "id": "sb", "name": "SUPER|brie+" },
+      { "id": "zero-plants", "name": "Zero Plants" },
+      { "id": "three-papyrus", "name": "Three Papyrus Plants" }
     ]
   },
   "folklore_forest_prelude": {
@@ -364,18 +239,9 @@
           "crazed_cultivator",
           "mighty_mite",
           "wily_weevil",
-          {
-            "mouse": "crazed_cultivator",
-            "subcategory": "sb"
-          },
-          {
-            "mouse": "land_loafer",
-            "subcategory": "zero-plants"
-          },
-          {
-            "mouse": "loathsome_locust",
-            "subcategory": "three-papyrus"
-          }
+          { "mouse": "crazed_cultivator", "subcategory": "sb" },
+          { "mouse": "land_loafer", "subcategory": "zero-plants" },
+          { "mouse": "loathsome_locust", "subcategory": "three-papyrus" }
         ]
       },
       {
@@ -387,10 +253,7 @@
           "beachcomber",
           "sand_sifter",
           "tackle_tracker",
-          {
-            "mouse": "covetous_coastguard",
-            "subcategory": "sb"
-          }
+          { "mouse": "covetous_coastguard", "subcategory": "sb" }
         ]
       },
       {
@@ -398,22 +261,14 @@
         "subtitle": "Grubben",
         "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
         "color": "#fbc3fa",
-        "mice": [
-          "pompous_perch",
-          "careless_catfish",
-          "melodramatic_minnow"
-        ]
+        "mice": ["pompous_perch", "careless_catfish", "melodramatic_minnow"]
       },
       {
         "name": "Prologue Pond",
         "subtitle": "Clamebert",
         "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
         "color": "#f3e0ff",
-        "mice": [
-          "nefarious_nautilus",
-          "vicious_vampire_squid",
-          "sinister_squid"
-        ]
+        "mice": ["nefarious_nautilus", "vicious_vampire_squid", "sinister_squid"]
       },
       {
         "name": "Table of Contents",
@@ -424,10 +279,7 @@
           "brothers_grimmaus",
           "hans_cheesetian_squeakersen",
           "madame_dormouse",
-          {
-            "mouse": "matriarch_gander",
-            "subcategory": "sb"
-          }
+          { "mouse": "matriarch_gander", "subcategory": "sb" }
         ]
       },
       {
@@ -436,60 +288,34 @@
         "id": "fofo-toc-writing",
         "icon": "/folklore_forest_upgrades/golden_quill_thumb.png",
         "color": "#e9c390",
-        "mice": [
-          "humphrey_dumphrey",
-          "little_bo_squeak",
-          "little_miss_fluffet"
-        ]
+        "mice": ["humphrey_dumphrey", "little_bo_squeak", "little_miss_fluffet"]
       },
       {
         "name": "Table of Contents",
         "subtitle": "Writing - First Draft",
         "id": "fofo-toc-first-draft",
         "icon": "/items/bait/large/9782ba50ed4c64f8f8412563cf2ce709.png",
-        "mice": [
-          "fibbocchio",
-          "pinkielina",
-          "princess_and_the_olive"
-        ]
+        "mice": ["fibbocchio", "pinkielina", "princess_and_the_olive"]
       },
       {
         "name": "Table of Contents",
         "subtitle": "Writing - Second Draft",
         "id": "fofo-toc-second-draft",
         "icon": "/items/bait/large/e0cb22771eba37bf047a801edbf7f91e.png",
-        "mice": [
-          "flamboyant_flautist",
-          "greenbeard",
-          "ice_regent"
-        ]
+        "mice": ["flamboyant_flautist", "greenbeard", "ice_regent"]
       },
       {
         "name": "Bosses",
         "id": "fofo-bosses",
         "icon": "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png",
         "color": "#fde671",
-        "mice": [
-          "bitter_grammarian",
-          "mythweaver",
-          "monstrous_midge",
-          "architeuthulhu_of_the_abyss"
-        ]
+        "mice": ["bitter_grammarian", "mythweaver", "monstrous_midge", "architeuthulhu_of_the_abyss"]
       }
     ],
     "subcategories": [
-      {
-        "id": "sb",
-        "name": "SUPER|brie+"
-      },
-      {
-        "id": "zero-plants",
-        "name": "Zero Plants"
-      },
-      {
-        "id": "three-papyrus",
-        "name": "Three Papyrus Plants"
-      }
+      { "id": "sb", "name": "SUPER|brie+" },
+      { "id": "zero-plants", "name": "Zero Plants" },
+      { "id": "three-papyrus", "name": "Three Papyrus Plants" }
     ]
   },
   "valour_rift": {
@@ -499,87 +325,61 @@
         "subtitle": "Floors 1, 9, 17, 25",
         "id": "vrift-1",
         "color": "#EAF2D3",
-        "mice": [
-          "rift_gaunt_puppet",
-          "rift_gaunt_puppet_champ"
-        ]
+        "mice": ["rift_gaunt_puppet", "rift_gaunt_puppet_champ"]
       },
       {
         "name": "Thievery",
         "subtitle": "Floors 2, 10, 18, 26",
         "id": "vrift-2",
         "color": "#acf28d",
-        "mice": [
-          "rift_gaunt_thief",
-          "rift_gaunt_thief_champ"
-        ]
+        "mice": ["rift_gaunt_thief", "rift_gaunt_thief_champ"]
       },
       {
         "name": "Melee",
         "subtitle": "Floors 3, 11, 19, 27",
         "id": "vrift-3",
         "color": "#FCE5CD",
-        "mice": [
-          "rift_gaunt_melee",
-          "rift_gaunt_melee_champ"
-        ]
+        "mice": ["rift_gaunt_melee", "rift_gaunt_melee_champ"]
       },
       {
         "name": "Bard",
         "subtitle": "Floors 4, 12, 20, 28",
         "id": "vrift-4",
         "color": "#F6B26B",
-        "mice": [
-          "rift_gaunt_bard",
-          "rift_gaunt_bard_champ"
-        ]
+        "mice": ["rift_gaunt_bard", "rift_gaunt_bard_champ"]
       },
       {
         "name": "Magic",
         "subtitle": "Floors 5, 13, 21, 29",
         "id": "vrift-5",
         "color": "#F9CB9C",
-        "mice": [
-          "rift_gaunt_magic",
-          "rift_gaunt_magic_champ"
-        ]
+        "mice": ["rift_gaunt_magic", "rift_gaunt_magic_champ"]
       },
       {
         "name": "Noble",
         "subtitle": "Floors 6, 14, 22, 30",
         "id": "vrift-6",
         "color": "#F4CCCC",
-        "mice": [
-          "rift_gaunt_noble",
-          "rift_gaunt_noble_champ"
-        ]
+        "mice": ["rift_gaunt_noble", "rift_gaunt_noble_champ"]
       },
       {
         "name": "Dusty",
         "subtitle": "Floors 7, 15, 23, 31",
         "id": "vrift-7",
         "color": "#E06666",
-        "mice": [
-          "rift_gaunt_dust",
-          "rift_gaunt_dust_champ"
-        ]
+        "mice": ["rift_gaunt_dust", "rift_gaunt_dust_champ"]
       },
       {
         "name": "Non-UU",
         "id": "vrift-eclipse",
         "color": "#EA9999",
-        "mice": [
-          "rift_gaunt_eclipse"
-        ]
+        "mice": ["rift_gaunt_eclipse"]
       },
       {
         "name": "Ultimate Umbra",
         "id": "vrift-eclipse-uu",
         "color": "#ff8181",
-        "mice": [
-          "rift_gaunt_monster",
-          "rift_gaunt_final_eclipse"
-        ]
+        "mice": ["rift_gaunt_monster", "rift_gaunt_final_eclipse"]
       },
       {
         "name": "Other",
@@ -600,10 +400,7 @@
         "id": "vrift-outside",
         "icon": "",
         "color": "#d0def7",
-        "mice": [
-          "rift_gaunt_elixir_one",
-          "rift_gaunt_elixir_two"
-        ]
+        "mice": ["rift_gaunt_elixir_one", "rift_gaunt_elixir_two"]
       }
     ],
     "subcategories": []
@@ -613,25 +410,13 @@
       {
         "name": "Gnawnia Rift",
         "color": "#f7e8f9",
-        "mice": [
-          "rift_white",
-          "rift_dwarf",
-          "rift_diamond",
-          "rift_gold"
-        ]
+        "mice": ["rift_white", "rift_dwarf", "rift_diamond", "rift_gold"]
       },
       {
         "name": "Furoma Rift",
         "subtitle": "Training Grounds",
         "color": "#e5a571",
-        "mice": [
-          "rift_samurai",
-          "rift_kung_fu",
-          "rift_worker",
-          "rift_ninja",
-          "rift_dumpling_chef",
-          "rift_archer"
-        ]
+        "mice": ["rift_samurai", "rift_kung_fu", "rift_worker", "rift_ninja", "rift_dumpling_chef", "rift_archer"]
       },
       {
         "name": "Furoma Rift",
@@ -707,41 +492,28 @@
         "id": "kss",
         "color": "#96b9dc",
         "icon": "/powertypes/draconic.png",
-        "mice": [
-          "geyser_eruption_dragon_wildfire",
-          "geyser_eruption_dragon_epic"
-        ]
+        "mice": ["geyser_eruption_dragon_wildfire", "geyser_eruption_dragon_epic"]
       },
       {
         "name": "Cinder-Brut",
         "id": "cinder-brut",
         "color": "#7fff66",
         "icon": "/powertypes/draconic.png",
-        "mice": [
-          "geyser_eruption_dragon_large",
-          "geyser_eruption_dragon_flaming"
-        ]
+        "mice": ["geyser_eruption_dragon_large", "geyser_eruption_dragon_flaming"]
       },
       {
         "name": "BE Trio",
         "id": "be-trio",
         "color": "#ffb1b1",
         "icon": "/powertypes/draconic.png",
-        "mice": [
-          "geyser_eruption_dragon_hot",
-          "geyser_eruption_dragon_medium",
-          "geyser_eruption_dragon_medium_spice"
-        ]
+        "mice": ["geyser_eruption_dragon_hot", "geyser_eruption_dragon_medium", "geyser_eruption_dragon_medium_spice"]
       },
       {
         "name": "Sizzle Mild",
         "id": "sizzle-mild",
         "color": "#ffc816",
         "icon": "/powertypes/draconic.png",
-        "mice": [
-          "geyser_eruption_dragon_small",
-          "geyser_eruption_dragon_mild"
-        ]
+        "mice": ["geyser_eruption_dragon_small", "geyser_eruption_dragon_mild"]
       },
       {
         "name": "Pressure Set",
@@ -774,12 +546,7 @@
         "id": "queso-river",
         "color": "#89e8a9",
         "icon": "/powertypes/law.png",
-        "mice": [
-          "croquet_crusher",
-          "pump_raider",
-          "sleepy_merchant",
-          "tiny_saboteur"
-        ]
+        "mice": ["croquet_crusher", "pump_raider", "sleepy_merchant", "tiny_saboteur"]
       },
       {
         "name": "Prickly Plains",
@@ -787,38 +554,14 @@
         "color": "#cddb75",
         "icon": "/powertypes/arcane.png",
         "mice": [
-          {
-            "mouse": "spice_grower",
-            "subcategory": "mild"
-          },
-          {
-            "mouse": "spice_collector",
-            "subcategory": "bland"
-          },
-          {
-            "mouse": "spice_farmer",
-            "subcategory": "mild"
-          },
-          {
-            "mouse": "spice_finder",
-            "subcategory": "medium"
-          },
-          {
-            "mouse": "spice_raider",
-            "subcategory": "hot"
-          },
-          {
-            "mouse": "spice_reaper",
-            "subcategory": "hot"
-          },
-          {
-            "mouse": "spice_seer",
-            "subcategory": "bland"
-          },
-          {
-            "mouse": "spice_sovereign",
-            "subcategory": "medium"
-          }
+          { "mouse": "spice_grower", "subcategory": "mild" },
+          { "mouse": "spice_collector", "subcategory": "bland" },
+          { "mouse": "spice_farmer", "subcategory": "mild" },
+          { "mouse": "spice_finder", "subcategory": "medium" },
+          { "mouse": "spice_raider", "subcategory": "hot" },
+          { "mouse": "spice_reaper", "subcategory": "hot" },
+          { "mouse": "spice_seer", "subcategory": "bland" },
+          { "mouse": "spice_sovereign", "subcategory": "medium" }
         ]
       },
       {
@@ -827,58 +570,22 @@
         "color": "#e9b2db",
         "icon": "/powertypes/shadow.png",
         "mice": [
-          {
-            "mouse": "chip_chiseler",
-            "subcategory": "bland"
-          },
-          {
-            "mouse": "fiery_crusher",
-            "subcategory": "hot"
-          },
-          {
-            "mouse": "grampa_golem",
-            "subcategory": "hot"
-          },
-          {
-            "mouse": "nachore_golem",
-            "subcategory": "medium"
-          },
-          {
-            "mouse": "ore_chipper",
-            "subcategory": "mild"
-          },
-          {
-            "mouse": "rubble_rouser",
-            "subcategory": "medium"
-          },
-          {
-            "mouse": "rubble_rummager",
-            "subcategory": "mild"
-          },
-          {
-            "mouse": "tiny_toppler",
-            "subcategory": "bland"
-          }
+          { "mouse": "chip_chiseler", "subcategory": "bland" },
+          { "mouse": "fiery_crusher", "subcategory": "hot" },
+          { "mouse": "grampa_golem", "subcategory": "hot" },
+          { "mouse": "nachore_golem", "subcategory": "medium" },
+          { "mouse": "ore_chipper", "subcategory": "mild" },
+          { "mouse": "rubble_rouser", "subcategory": "medium" },
+          { "mouse": "rubble_rummager", "subcategory": "mild" },
+          { "mouse": "tiny_toppler", "subcategory": "bland" }
         ]
       }
     ],
     "subcategories": [
-      {
-        "id": "bland",
-        "name": "Bland Queso"
-      },
-      {
-        "id": "medium",
-        "name": "Medium Queso"
-      },
-      {
-        "id": "mild",
-        "name": "Mild Queso"
-      },
-      {
-        "id": "hot",
-        "name": "Hot Queso"
-      }
+      { "id": "bland", "name": "Bland Queso" },
+      { "id": "medium", "name": "Medium Queso" },
+      { "id": "mild", "name": "Mild Queso" },
+      { "id": "hot", "name": "Hot Queso" }
     ]
   },
   "fort_rox": {
@@ -888,12 +595,7 @@
         "id": "night",
         "color": "#d0d0d0",
         "icon": "",
-        "mice": [
-          "were_alpha",
-          "moonstone_slinger",
-          "mischievous_wereminer",
-          "wealthy_werewarrior"
-        ]
+        "mice": ["were_alpha", "moonstone_slinger", "mischievous_wereminer", "wealthy_werewarrior"]
       },
       {
         "name": "First Light / Utter Darkness",
@@ -914,23 +616,14 @@
         "id": "twilight-midnight-pitch",
         "color": "#84c3ff",
         "icon": "/powertypes/shadow.png",
-        "mice": [
-          "good_supply_night",
-          "nightmancer",
-          "reveling_lycanthrope",
-          "werehauler",
-          "wereminer"
-        ]
+        "mice": ["good_supply_night", "nightmancer", "reveling_lycanthrope", "werehauler", "wereminer"]
       },
       {
         "name": "Dawn",
         "id": "dawn",
         "color": "#f9d65a",
         "icon": "/powertypes/arcane.png",
-        "mice": [
-          "dawn_guardian",
-          "monster_of_the_meteor"
-        ]
+        "mice": ["dawn_guardian", "monster_of_the_meteor"]
       },
       {
         "name": "Day",
@@ -952,22 +645,12 @@
       {
         "name": "Wave 1",
         "color": "#f1d16f",
-        "mice": [
-          "desert_scout_weak",
-          "desert_warrior_weak",
-          "desert_archer_weak"
-        ]
+        "mice": ["desert_scout_weak", "desert_warrior_weak", "desert_archer_weak"]
       },
       {
         "name": "Wave 2",
         "color": "#ea947b",
-        "mice": [
-          "desert_mage",
-          "desert_archer",
-          "desert_warrior",
-          "desert_scout",
-          "desert_cavalry"
-        ]
+        "mice": ["desert_mage", "desert_archer", "desert_warrior", "desert_scout", "desert_cavalry"]
       },
       {
         "name": "Wave 3",
@@ -984,19 +667,12 @@
       {
         "name": "Wave 4",
         "color": "#ffad49",
-        "mice": [
-          "desert_elite_gaurd",
-          "desert_boss"
-        ]
+        "mice": ["desert_elite_gaurd", "desert_boss"]
       },
       {
         "name": "Any wave",
         "color": "#fffcb2",
-        "mice": [
-          "desert_beast",
-          "desert_supply",
-          "desert_general"
-        ]
+        "mice": ["desert_beast", "desert_supply", "desert_general"]
       }
     ]
   },
@@ -1024,15 +700,7 @@
         "id": "monterey-Jack",
         "icon": "/items/bait/large/65fd19bf5b16dcaa6b3cfebd2f55348c.png",
         "color": "#f9a645",
-        "mice": [
-          "sprit_light",
-          "gordborg",
-          "pumpkin_hoarder",
-          "trick",
-          "treat",
-          "chainsaw",
-          "maize_harvester"
-        ]
+        "mice": ["sprit_light", "gordborg", "pumpkin_hoarder", "trick", "treat", "chainsaw", "maize_harvester"]
       }
     ]
   },
@@ -1074,13 +742,7 @@
         "id": "scream",
         "icon": "/items/bait/large/fe9d538d1a811bdb787b78aa1526ee50.png",
         "color": "#86dd6c",
-        "mice": [
-          "hween_2021_boss",
-          "hween_2015_boss",
-          "hollowed_demon",
-          "hollowed_minion",
-          "hween_2012_boss"
-        ]
+        "mice": ["hween_2021_boss", "hween_2015_boss", "hollowed_demon", "hollowed_minion", "hween_2012_boss"]
       }
     ]
   },
@@ -1093,22 +755,10 @@
         "color": "#3f8bae",
         "mice": [
           "hoarder",
-          {
-            "mouse": "winter_hunt_toy_strong",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "stuck_snowball",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "glazed",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "joy",
-            "subcategory": "gpp"
-          }
+          { "mouse": "winter_hunt_toy_strong", "subcategory": "pp" },
+          { "mouse": "stuck_snowball", "subcategory": "pp" },
+          { "mouse": "glazed", "subcategory": "pp" },
+          { "mouse": "joy", "subcategory": "gpp" }
         ]
       },
       {
@@ -1123,62 +773,20 @@
           "snow_scavenger",
           "toboggan_technician",
           "green_circle_boss",
-          {
-            "mouse": "triple_lutz",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "black_diamond_racer",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "double_black_diamond",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "free_skiing",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2020",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "nitro_racer",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2021",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2015",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_general_one",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "golem_jockey",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_hoarder",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "sporty_ski_instructor",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "wreath_thief",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "new_year_flight",
-            "subcategory": "pp"
-          }
+          { "mouse": "triple_lutz", "subcategory": "pp" },
+          { "mouse": "black_diamond_racer", "subcategory": "pp" },
+          { "mouse": "double_black_diamond", "subcategory": "pp" },
+          { "mouse": "free_skiing", "subcategory": "pp" },
+          { "mouse": "winter_boss_2020", "subcategory": "pp" },
+          { "mouse": "nitro_racer", "subcategory": "pp" },
+          { "mouse": "winter_boss_2021", "subcategory": "pp" },
+          { "mouse": "winter_boss_2015", "subcategory": "pp" },
+          { "mouse": "snowball_general_one", "subcategory": "pp" },
+          { "mouse": "golem_jockey", "subcategory": "pp" },
+          { "mouse": "snowball_hoarder", "subcategory": "pp" },
+          { "mouse": "sporty_ski_instructor", "subcategory": "pp" },
+          { "mouse": "wreath_thief", "subcategory": "pp" },
+          { "mouse": "new_year_flight", "subcategory": "pp" }
         ]
       },
       {
@@ -1192,66 +800,21 @@
           "winter_future",
           "winter_past",
           "winter_present",
-          {
-            "mouse": "scrooge",
-            "subcategory": "sb"
-          },
-          {
-            "mouse": "ribbon",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "christmas_tree",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_hunt_toy",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "elf",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "mad_elf",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "nutcracker",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "ornament",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "present",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "ridiculous_sweater",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowman_architect",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "stocking",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "toy",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "toy_builder",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "disco_ball_head",
-            "subcategory": "pp"
-          }
+          { "mouse": "scrooge", "subcategory": "sb" },
+          { "mouse": "ribbon", "subcategory": "pp" },
+          { "mouse": "christmas_tree", "subcategory": "pp" },
+          { "mouse": "winter_hunt_toy", "subcategory": "pp" },
+          { "mouse": "elf", "subcategory": "pp" },
+          { "mouse": "mad_elf", "subcategory": "pp" },
+          { "mouse": "nutcracker", "subcategory": "pp" },
+          { "mouse": "ornament", "subcategory": "pp" },
+          { "mouse": "present", "subcategory": "pp" },
+          { "mouse": "ridiculous_sweater", "subcategory": "pp" },
+          { "mouse": "snowman_architect", "subcategory": "pp" },
+          { "mouse": "stocking", "subcategory": "pp" },
+          { "mouse": "toy", "subcategory": "pp" },
+          { "mouse": "toy_builder", "subcategory": "pp" },
+          { "mouse": "disco_ball_head", "subcategory": "pp" }
         ]
       },
       {
@@ -1267,86 +830,29 @@
           "snowblower",
           "snowglobe",
           "builder",
-          {
-            "mouse": "builder",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2014",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "glacia_ice_fist",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2016",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2018",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2017",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_general_two",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_bully",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "slay",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snow_fort",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_general_three",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "squeaker_claws",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "tundra_huntress",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "new_years",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2022",
-            "subcategory": "boss"
-          }
+          { "mouse": "builder", "subcategory": "pp" },
+          { "mouse": "winter_boss_2014", "subcategory": "pp" },
+          { "mouse": "glacia_ice_fist", "subcategory": "pp" },
+          { "mouse": "winter_boss_2016", "subcategory": "pp" },
+          { "mouse": "winter_boss_2018", "subcategory": "pp" },
+          { "mouse": "winter_boss_2017", "subcategory": "pp" },
+          { "mouse": "snowball_general_two", "subcategory": "pp" },
+          { "mouse": "snowball_bully", "subcategory": "pp" },
+          { "mouse": "slay", "subcategory": "pp" },
+          { "mouse": "snow_fort", "subcategory": "pp" },
+          { "mouse": "snowball_general_three", "subcategory": "pp" },
+          { "mouse": "squeaker_claws", "subcategory": "pp" },
+          { "mouse": "tundra_huntress", "subcategory": "pp" },
+          { "mouse": "new_years", "subcategory": "pp" },
+          { "mouse": "winter_boss_2022", "subcategory": "boss" }
         ]
       }
     ],
     "subcategories": [
-      {
-        "id": "pp",
-        "name": "Pecan Pecorino"
-      },
-      {
-        "id": "gpp",
-        "name": "Glazed Pecan Pecorino"
-      },
-      {
-        "id": "sb",
-        "name": "SUPER|brie+"
-      },
-      {
-        "id": "boss",
-        "name": "Boss"
-      }
+      { "id": "pp", "name": "Pecan Pecorino" },
+      { "id": "gpp", "name": "Glazed Pecan Pecorino" },
+      { "id": "sb", "name": "SUPER|brie+" },
+      { "id": "boss", "name": "Boss" }
     ]
   },
   "nice_f_list": {
@@ -1358,22 +864,10 @@
         "color": "#3f8bae",
         "mice": [
           "hoarder",
-          {
-            "mouse": "winter_hunt_toy_strong",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "stuck_snowball",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "glazed",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "joy",
-            "subcategory": "gpp"
-          }
+          { "mouse": "winter_hunt_toy_strong", "subcategory": "pp" },
+          { "mouse": "stuck_snowball", "subcategory": "pp" },
+          { "mouse": "glazed", "subcategory": "pp" },
+          { "mouse": "joy", "subcategory": "gpp" }
         ]
       },
       {
@@ -1388,62 +882,20 @@
           "snow_scavenger",
           "toboggan_technician",
           "green_circle_boss",
-          {
-            "mouse": "triple_lutz",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "black_diamond_racer",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "double_black_diamond",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "free_skiing",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2020",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "nitro_racer",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2021",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2015",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_general_one",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "golem_jockey",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_hoarder",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "sporty_ski_instructor",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "wreath_thief",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "new_year_flight",
-            "subcategory": "pp"
-          }
+          { "mouse": "triple_lutz", "subcategory": "pp" },
+          { "mouse": "black_diamond_racer", "subcategory": "pp" },
+          { "mouse": "double_black_diamond", "subcategory": "pp" },
+          { "mouse": "free_skiing", "subcategory": "pp" },
+          { "mouse": "winter_boss_2020", "subcategory": "pp" },
+          { "mouse": "nitro_racer", "subcategory": "pp" },
+          { "mouse": "winter_boss_2021", "subcategory": "pp" },
+          { "mouse": "winter_boss_2015", "subcategory": "pp" },
+          { "mouse": "snowball_general_one", "subcategory": "pp" },
+          { "mouse": "golem_jockey", "subcategory": "pp" },
+          { "mouse": "snowball_hoarder", "subcategory": "pp" },
+          { "mouse": "sporty_ski_instructor", "subcategory": "pp" },
+          { "mouse": "wreath_thief", "subcategory": "pp" },
+          { "mouse": "new_year_flight", "subcategory": "pp" }
         ]
       },
       {
@@ -1457,66 +909,21 @@
           "winter_future",
           "winter_past",
           "winter_present",
-          {
-            "mouse": "scrooge",
-            "subcategory": "sb"
-          },
-          {
-            "mouse": "ribbon",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "christmas_tree",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_hunt_toy",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "elf",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "mad_elf",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "nutcracker",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "ornament",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "present",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "ridiculous_sweater",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowman_architect",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "stocking",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "toy",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "toy_builder",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "disco_ball_head",
-            "subcategory": "pp"
-          }
+          { "mouse": "scrooge", "subcategory": "sb" },
+          { "mouse": "ribbon", "subcategory": "pp" },
+          { "mouse": "christmas_tree", "subcategory": "pp" },
+          { "mouse": "winter_hunt_toy", "subcategory": "pp" },
+          { "mouse": "elf", "subcategory": "pp" },
+          { "mouse": "mad_elf", "subcategory": "pp" },
+          { "mouse": "nutcracker", "subcategory": "pp" },
+          { "mouse": "ornament", "subcategory": "pp" },
+          { "mouse": "present", "subcategory": "pp" },
+          { "mouse": "ridiculous_sweater", "subcategory": "pp" },
+          { "mouse": "snowman_architect", "subcategory": "pp" },
+          { "mouse": "stocking", "subcategory": "pp" },
+          { "mouse": "toy", "subcategory": "pp" },
+          { "mouse": "toy_builder", "subcategory": "pp" },
+          { "mouse": "disco_ball_head", "subcategory": "pp" }
         ]
       },
       {
@@ -1532,86 +939,29 @@
           "snowblower",
           "snowglobe",
           "builder",
-          {
-            "mouse": "builder",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2014",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "glacia_ice_fist",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2016",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2018",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2017",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_general_two",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_bully",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "slay",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snow_fort",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_general_three",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "squeaker_claws",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "tundra_huntress",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "new_years",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2022",
-            "subcategory": "boss"
-          }
+          { "mouse": "builder", "subcategory": "pp" },
+          { "mouse": "winter_boss_2014", "subcategory": "pp" },
+          { "mouse": "glacia_ice_fist", "subcategory": "pp" },
+          { "mouse": "winter_boss_2016", "subcategory": "pp" },
+          { "mouse": "winter_boss_2018", "subcategory": "pp" },
+          { "mouse": "winter_boss_2017", "subcategory": "pp" },
+          { "mouse": "snowball_general_two", "subcategory": "pp" },
+          { "mouse": "snowball_bully", "subcategory": "pp" },
+          { "mouse": "slay", "subcategory": "pp" },
+          { "mouse": "snow_fort", "subcategory": "pp" },
+          { "mouse": "snowball_general_three", "subcategory": "pp" },
+          { "mouse": "squeaker_claws", "subcategory": "pp" },
+          { "mouse": "tundra_huntress", "subcategory": "pp" },
+          { "mouse": "new_years", "subcategory": "pp" },
+          { "mouse": "winter_boss_2022", "subcategory": "boss" }
         ]
       }
     ],
     "subcategories": [
-      {
-        "id": "pp",
-        "name": "Pecan Pecorino"
-      },
-      {
-        "id": "gpp",
-        "name": "Glazed Pecan Pecorino"
-      },
-      {
-        "id": "sb",
-        "name": "SUPER|brie+"
-      },
-      {
-        "id": "boss",
-        "name": "Boss"
-      }
+      { "id": "pp", "name": "Pecan Pecorino" },
+      { "id": "gpp", "name": "Glazed Pecan Pecorino" },
+      { "id": "sb", "name": "SUPER|brie+" },
+      { "id": "boss", "name": "Boss" }
     ]
   },
   "new_years": {
@@ -1623,22 +973,10 @@
         "color": "#3f8bae",
         "mice": [
           "hoarder",
-          {
-            "mouse": "winter_hunt_toy_strong",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "stuck_snowball",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "glazed",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "joy",
-            "subcategory": "gpp"
-          }
+          { "mouse": "winter_hunt_toy_strong", "subcategory": "pp" },
+          { "mouse": "stuck_snowball", "subcategory": "pp" },
+          { "mouse": "glazed", "subcategory": "pp" },
+          { "mouse": "joy", "subcategory": "gpp" }
         ]
       },
       {
@@ -1653,62 +991,20 @@
           "snow_scavenger",
           "toboggan_technician",
           "green_circle_boss",
-          {
-            "mouse": "triple_lutz",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "black_diamond_racer",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "double_black_diamond",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "free_skiing",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2020",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "nitro_racer",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2021",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2015",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_general_one",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "golem_jockey",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_hoarder",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "sporty_ski_instructor",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "wreath_thief",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "new_year_flight",
-            "subcategory": "pp"
-          }
+          { "mouse": "triple_lutz", "subcategory": "pp" },
+          { "mouse": "black_diamond_racer", "subcategory": "pp" },
+          { "mouse": "double_black_diamond", "subcategory": "pp" },
+          { "mouse": "free_skiing", "subcategory": "pp" },
+          { "mouse": "winter_boss_2020", "subcategory": "pp" },
+          { "mouse": "nitro_racer", "subcategory": "pp" },
+          { "mouse": "winter_boss_2021", "subcategory": "pp" },
+          { "mouse": "winter_boss_2015", "subcategory": "pp" },
+          { "mouse": "snowball_general_one", "subcategory": "pp" },
+          { "mouse": "golem_jockey", "subcategory": "pp" },
+          { "mouse": "snowball_hoarder", "subcategory": "pp" },
+          { "mouse": "sporty_ski_instructor", "subcategory": "pp" },
+          { "mouse": "wreath_thief", "subcategory": "pp" },
+          { "mouse": "new_year_flight", "subcategory": "pp" }
         ]
       },
       {
@@ -1722,66 +1018,21 @@
           "winter_future",
           "winter_past",
           "winter_present",
-          {
-            "mouse": "scrooge",
-            "subcategory": "sb"
-          },
-          {
-            "mouse": "ribbon",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "christmas_tree",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_hunt_toy",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "elf",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "mad_elf",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "nutcracker",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "ornament",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "present",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "ridiculous_sweater",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowman_architect",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "stocking",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "toy",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "toy_builder",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "disco_ball_head",
-            "subcategory": "pp"
-          }
+          { "mouse": "scrooge", "subcategory": "sb" },
+          { "mouse": "ribbon", "subcategory": "pp" },
+          { "mouse": "christmas_tree", "subcategory": "pp" },
+          { "mouse": "winter_hunt_toy", "subcategory": "pp" },
+          { "mouse": "elf", "subcategory": "pp" },
+          { "mouse": "mad_elf", "subcategory": "pp" },
+          { "mouse": "nutcracker", "subcategory": "pp" },
+          { "mouse": "ornament", "subcategory": "pp" },
+          { "mouse": "present", "subcategory": "pp" },
+          { "mouse": "ridiculous_sweater", "subcategory": "pp" },
+          { "mouse": "snowman_architect", "subcategory": "pp" },
+          { "mouse": "stocking", "subcategory": "pp" },
+          { "mouse": "toy", "subcategory": "pp" },
+          { "mouse": "toy_builder", "subcategory": "pp" },
+          { "mouse": "disco_ball_head", "subcategory": "pp" }
         ]
       },
       {
@@ -1797,86 +1048,29 @@
           "snowblower",
           "snowglobe",
           "builder",
-          {
-            "mouse": "builder",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2014",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "glacia_ice_fist",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2016",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2018",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2017",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_general_two",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_bully",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "slay",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snow_fort",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "snowball_general_three",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "squeaker_claws",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "tundra_huntress",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "new_years",
-            "subcategory": "pp"
-          },
-          {
-            "mouse": "winter_boss_2022",
-            "subcategory": "boss"
-          }
+          { "mouse": "builder", "subcategory": "pp" },
+          { "mouse": "winter_boss_2014", "subcategory": "pp" },
+          { "mouse": "glacia_ice_fist", "subcategory": "pp" },
+          { "mouse": "winter_boss_2016", "subcategory": "pp" },
+          { "mouse": "winter_boss_2018", "subcategory": "pp" },
+          { "mouse": "winter_boss_2017", "subcategory": "pp" },
+          { "mouse": "snowball_general_two", "subcategory": "pp" },
+          { "mouse": "snowball_bully", "subcategory": "pp" },
+          { "mouse": "slay", "subcategory": "pp" },
+          { "mouse": "snow_fort", "subcategory": "pp" },
+          { "mouse": "snowball_general_three", "subcategory": "pp" },
+          { "mouse": "squeaker_claws", "subcategory": "pp" },
+          { "mouse": "tundra_huntress", "subcategory": "pp" },
+          { "mouse": "new_years", "subcategory": "pp" },
+          { "mouse": "winter_boss_2022", "subcategory": "boss" }
         ]
       }
     ],
     "subcategories": [
-      {
-        "id": "pp",
-        "name": "Pecan Pecorino"
-      },
-      {
-        "id": "gpp",
-        "name": "Glazed Pecan Pecorino"
-      },
-      {
-        "id": "sb",
-        "name": "SUPER|brie+"
-      },
-      {
-        "id": "boss",
-        "name": "Boss"
-      }
+      { "id": "pp", "name": "Pecan Pecorino" },
+      { "id": "gpp", "name": "Glazed Pecan Pecorino" },
+      { "id": "sb", "name": "SUPER|brie+" },
+      { "id": "boss", "name": "Boss" }
     ]
   },
   "lunar_new_year_list": {
@@ -1906,20 +1100,14 @@
         "id": "dumpling",
         "icon": "/items/bait/large/f4c3ee4bb9aba29938223172a791650b.png",
         "color": "#ffefb9",
-        "mice": [
-          "calligraphy",
-          "dumpling_chef",
-          "red_envelope"
-        ]
+        "mice": ["calligraphy", "dumpling_chef", "red_envelope"]
       },
       {
         "name": "Nian Gao'da",
         "id": "ngd",
         "icon": "/items/bait/large/d4813a69fff0b714f79976a726b7ce66.png",
         "color": "#ffa4a4",
-        "mice": [
-          "red_candle"
-        ]
+        "mice": ["red_candle"]
       }
     ]
   },
@@ -1944,39 +1132,21 @@
         "id": "pumping-room",
         "icon": "/ui/events/birthday_factory/item_pressurized_pump.png",
         "color": "#fca00a",
-        "mice": [
-          "reality_restitch",
-          "time_punk",
-          "time_tailor",
-          "time_thief",
-          "time_plumber"
-        ]
+        "mice": ["reality_restitch", "time_punk", "time_tailor", "time_thief", "time_plumber"]
       },
       {
         "name": "Break Room",
         "id": "break-room",
         "icon": "/ui/events/birthday_factory/item_circuit_breaker.png",
         "color": "#ea8cab",
-        "mice": [
-          "breakdancer",
-          "fromager_mouse",
-          "dance_party",
-          "dance_boss",
-          "para_para_dancer"
-        ]
+        "mice": ["breakdancer", "fromager_mouse", "dance_party", "dance_boss", "para_para_dancer"]
       },
       {
         "name": "QA Room",
         "id": "qa-room",
         "icon": "/ui/events/birthday_factory/item_quality_cog.png",
         "color": "#fbabff",
-        "mice": [
-          "cupcake_candle_thief",
-          "cupcake_cutie",
-          "sprinkley_sweet",
-          "cupcake_camo",
-          "cupcake_runner"
-        ]
+        "mice": ["cupcake_candle_thief", "cupcake_cutie", "sprinkley_sweet", "cupcake_camo", "cupcake_runner"]
       },
       {
         "name": "Any Room",
@@ -1990,26 +1160,14 @@
           "dinosuit",
           "sleepwalker",
           "terrible_twos",
-          {
-            "mouse": "factory_technician",
-            "subcategory": "frc"
-          },
-          {
-            "mouse": "cheesy_party",
-            "subcategory": "sb"
-          }
+          { "mouse": "factory_technician", "subcategory": "frc" },
+          { "mouse": "cheesy_party", "subcategory": "sb" }
         ]
       }
     ],
     "subcategories": [
-      {
-        "id": "frc",
-        "name": "Factory Repair Charm"
-      },
-      {
-        "id": "sb",
-        "name": "SUPER|brie+"
-      }
+      { "id": "frc", "name": "Factory Repair Charm" },
+      { "id": "sb", "name": "SUPER|brie+" }
     ]
   },
   "birthday_2019_gilded": {
@@ -2033,39 +1191,21 @@
         "id": "pumping-room",
         "icon": "/ui/events/birthday_factory/item_pressurized_pump.png",
         "color": "#fca00a",
-        "mice": [
-          "reality_restitch",
-          "time_punk",
-          "time_tailor",
-          "time_thief",
-          "time_plumber"
-        ]
+        "mice": ["reality_restitch", "time_punk", "time_tailor", "time_thief", "time_plumber"]
       },
       {
         "name": "Break Room",
         "id": "break-room",
         "icon": "/ui/events/birthday_factory/item_circuit_breaker.png",
         "color": "#ea8cab",
-        "mice": [
-          "breakdancer",
-          "fromager_mouse",
-          "dance_party",
-          "dance_boss",
-          "para_para_dancer"
-        ]
+        "mice": ["breakdancer", "fromager_mouse", "dance_party", "dance_boss", "para_para_dancer"]
       },
       {
         "name": "QA Room",
         "id": "qa-room",
         "icon": "/ui/events/birthday_factory/item_quality_cog.png",
         "color": "#fbabff",
-        "mice": [
-          "cupcake_candle_thief",
-          "cupcake_cutie",
-          "sprinkley_sweet",
-          "cupcake_camo",
-          "cupcake_runner"
-        ]
+        "mice": ["cupcake_candle_thief", "cupcake_cutie", "sprinkley_sweet", "cupcake_camo", "cupcake_runner"]
       },
       {
         "name": "Any Room",
@@ -2079,26 +1219,14 @@
           "dinosuit",
           "sleepwalker",
           "terrible_twos",
-          {
-            "mouse": "factory_technician",
-            "subcategory": "frc"
-          },
-          {
-            "mouse": "cheesy_party",
-            "subcategory": "sb"
-          }
+          { "mouse": "factory_technician", "subcategory": "frc" },
+          { "mouse": "cheesy_party", "subcategory": "sb" }
         ]
       }
     ],
     "subcategories": [
-      {
-        "id": "frc",
-        "name": "Factory Repair Charm"
-      },
-      {
-        "id": "sb",
-        "name": "SUPER|brie+"
-      }
+      { "id": "frc", "name": "Factory Repair Charm" },
+      { "id": "sb", "name": "SUPER|brie+" }
     ]
   },
   "birthday_2021_gilded_party_size": {
@@ -2122,39 +1250,21 @@
         "id": "pumping-room",
         "icon": "/ui/events/birthday_factory/item_pressurized_pump.png",
         "color": "#fca00a",
-        "mice": [
-          "reality_restitch",
-          "time_punk",
-          "time_tailor",
-          "time_thief",
-          "time_plumber"
-        ]
+        "mice": ["reality_restitch", "time_punk", "time_tailor", "time_thief", "time_plumber"]
       },
       {
         "name": "Break Room",
         "id": "break-room",
         "icon": "/ui/events/birthday_factory/item_circuit_breaker.png",
         "color": "#ea8cab",
-        "mice": [
-          "breakdancer",
-          "fromager_mouse",
-          "dance_party",
-          "dance_boss",
-          "para_para_dancer"
-        ]
+        "mice": ["breakdancer", "fromager_mouse", "dance_party", "dance_boss", "para_para_dancer"]
       },
       {
         "name": "QA Room",
         "id": "qa-room",
         "icon": "/ui/events/birthday_factory/item_quality_cog.png",
         "color": "#fbabff",
-        "mice": [
-          "cupcake_candle_thief",
-          "cupcake_cutie",
-          "sprinkley_sweet",
-          "cupcake_camo",
-          "cupcake_runner"
-        ]
+        "mice": ["cupcake_candle_thief", "cupcake_cutie", "sprinkley_sweet", "cupcake_camo", "cupcake_runner"]
       },
       {
         "name": "Any Room",
@@ -2168,26 +1278,14 @@
           "dinosuit",
           "sleepwalker",
           "terrible_twos",
-          {
-            "mouse": "factory_technician",
-            "subcategory": "frc"
-          },
-          {
-            "mouse": "cheesy_party",
-            "subcategory": "sb"
-          }
+          { "mouse": "factory_technician", "subcategory": "frc" },
+          { "mouse": "cheesy_party", "subcategory": "sb" }
         ]
       }
     ],
     "subcategories": [
-      {
-        "id": "frc",
-        "name": "Factory Repair Charm"
-      },
-      {
-        "id": "sb",
-        "name": "SUPER|brie+"
-      }
+      { "id": "frc", "name": "Factory Repair Charm" },
+      { "id": "sb", "name": "SUPER|brie+" }
     ]
   },
   "bountiful_beanstalk": {
@@ -2201,10 +1299,7 @@
           "budrich_thornborn",
           "leafton_beanwell",
           "herbaceous_bravestalk",
-          {
-            "mouse": "vinneus_stalkhome",
-            "subcategory": "boss"
-          }
+          { "mouse": "vinneus_stalkhome", "subcategory": "boss" }
         ]
       },
       {
@@ -2216,34 +1311,13 @@
           "peaceful_prisoner",
           "diminutive_detainee",
           "smug_smuggler",
-          {
-            "mouse": "cell_sweeper",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "jovial_jailor",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "lethargic_guard",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "gate_keeper",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "key_master",
-            "subcategory": "royal"
-          },
-          {
-            "mouse": "wrathful_warden",
-            "subcategory": "royal"
-          },
-          {
-            "mouse": "dungeon_master",
-            "subcategory": "boss"
-          }
+          { "mouse": "cell_sweeper", "subcategory": "beanster" },
+          { "mouse": "jovial_jailor", "subcategory": "beanster" },
+          { "mouse": "lethargic_guard", "subcategory": "beanster" },
+          { "mouse": "gate_keeper", "subcategory": "lavish" },
+          { "mouse": "key_master", "subcategory": "royal" },
+          { "mouse": "wrathful_warden", "subcategory": "royal" },
+          { "mouse": "dungeon_master", "subcategory": "boss" }
         ]
       },
       {
@@ -2255,34 +1329,13 @@
           "whimsical_waltzer",
           "sassy_salsa_dancer",
           "baroque_dancer",
-          {
-            "mouse": "obstinate_oboist",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "peevish_piccoloist",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "sultry_saxophonist",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "violent_violinist",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "chafed_cellist",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "treacherous_tubaist",
-            "subcategory": "royal"
-          },
-          {
-            "mouse": "malevolent_maestro",
-            "subcategory": "boss"
-          }
+          { "mouse": "obstinate_oboist", "subcategory": "beanster" },
+          { "mouse": "peevish_piccoloist", "subcategory": "beanster" },
+          { "mouse": "sultry_saxophonist", "subcategory": "beanster" },
+          { "mouse": "violent_violinist", "subcategory": "lavish" },
+          { "mouse": "chafed_cellist", "subcategory": "lavish" },
+          { "mouse": "treacherous_tubaist", "subcategory": "royal" },
+          { "mouse": "malevolent_maestro", "subcategory": "boss" }
         ]
       },
       {
@@ -2294,54 +1347,21 @@
           "clumsy_cupbearer",
           "plotting_page",
           "scheming_squire",
-          {
-            "mouse": "vindictive_viscount",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "baroness_von_bean",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "cagey_countess",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "dastardly_duchess",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "malicious_marquis",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "pernicious_prince",
-            "subcategory": "royal"
-          },
-          {
-            "mouse": "mythical_giant_king",
-            "subcategory": "boss"
-          }
+          { "mouse": "vindictive_viscount", "subcategory": "beanster" },
+          { "mouse": "baroness_von_bean", "subcategory": "beanster" },
+          { "mouse": "cagey_countess", "subcategory": "beanster" },
+          { "mouse": "dastardly_duchess", "subcategory": "lavish" },
+          { "mouse": "malicious_marquis", "subcategory": "lavish" },
+          { "mouse": "pernicious_prince", "subcategory": "royal" },
+          { "mouse": "mythical_giant_king", "subcategory": "boss" }
         ]
       }
     ],
     "subcategories": [
-      {
-        "id": "beanster",
-        "name": "Beanster"
-      },
-      {
-        "id": "Lavish",
-        "name": "Lavish Beanster"
-      },
-      {
-        "id": "royal",
-        "name": "Royal Beanster"
-      },
-      {
-        "id": "boss",
-        "name": "Boss"
-      }
+      { "id": "beanster", "name": "Beanster" },
+      { "id": "Lavish", "name": "Lavish Beanster" },
+      { "id": "royal", "name": "Royal Beanster" },
+      { "id": "boss", "name": "Boss" }
     ]
   }
 }
