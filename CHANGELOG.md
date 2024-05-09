@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.43.2
+
+- Miscellaneous style changes
+- Fixed Prelude map grouping
+- Fixed Hidden Depths length offset in Icerberg Location HUD
+- Fixed title percent being truncated in Legacy HUD
+- Fixed trap skin images not showing when equipping
+- Fixed Favorite Setups slow loading and editing
+- Fixed mouse and item MHCT link destinations
+- Fixed localized tournament times not correctly displaying
+
 ## Version 0.43.1
 
 - Fixes minor issues in Sorted maps tab

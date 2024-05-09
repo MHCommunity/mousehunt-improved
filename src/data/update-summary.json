@@ -2,22 +2,16 @@
   "summary": "",
   "details": [
     {
-      "title": "Updates",
+      "title": "Changes",
       "items": [
-        "Fixed issue with data files not being updated on a new version.",
-        "Fixed issues with traveling and other requests failing.",
-        "Updated Native Dark Mode styles.",
-        "Added styles and Enerchi recall calculations to Furoma Rift Location HUD.",
-        "Fixed issue with non-gift of the day items not being skipped in Better Gifts.",
-        "Updated Better Gifts return and accept button sizes.",
-        "Fixed issue with Legacy HUD settings not correctly being applied.",
-        "Fixed Valour Rift Simulator secrets value display wrong value.",
-        "Added School of Sorcery Location HUD.",
-        "Fixes minor issues in Sorted maps tab",
-        "Updates Native Dark Mode mice styles",
-        "Added `better-kings-reward-no-horn` flag to disable the horn sounding after claiming a King's Reward.",
-        "Added `catch-rate-estimate-more-refresh` flag to restore more aggressive refreshing in the Catch Rate Estimator.",
-        "Minor bug fixes and improvements."
+        "Miscellaneous style changes",
+        "Fixed Prelude map grouping",
+        "Fixed Hidden Depths length offset in Icerberg Location HUD",
+        "Fixed title percent being truncated in Legacy HUD",
+        "Fixed trap skin images not showing when equipping",
+        "Fixed Favorite Setups slow loading and editing",
+        "Fixed mouse and item MHCT link destinations",
+        "Fixed localized tournament times not correctly displaying"
       ]
     }
   ]
