@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.43.3
+
+- Fixed Clear Cached Data button refreshing before clearing
+
 ## Version 0.43.2
 
 - Miscellaneous style changes

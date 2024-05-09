@@ -232,7 +232,7 @@ const addClearCache = () => {
   const clearCache = makeElement('div', ['mousehunt-improved-clear-cache', 'mousehuntActionButton', 'tiny']);
   makeElement('span', '', 'Clear Cached Data', clearCache);
 
-  clearCache.addEventListener('click', (e) => {
+  clearCache.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -243,7 +243,7 @@ const addClearCache = () => {
       return;
     }
 
-    clearCaches();
+    await clearCaches();
 
     // Delete all the mh-improved keys that are in session storage.
     for (const key of Object.keys(sessionStorage)) {
