@@ -7,9 +7,10 @@ import path from 'node:path';
 /**
  * Main build function.
  *
- * @param {string} platform The platform to build for.
+ * @param {string}  platform The platform to build for.
+ * @param {boolean} watch    Whether to watch for changes.
  */
-const buildExtension = async (platform) => {
+const buildExtension = async (platform, watch = false) => {
   fs.mkdirSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });
 
   // Copy manifest.json and inject the version number.
@@ -25,7 +26,7 @@ const buildExtension = async (platform) => {
     }, null, 2)
   );
 
-  await esbuild.build({
+  const ctx = await esbuild.context({
     entryPoints: ['src/index.js'],
     platform: 'browser',
     format: 'iife',
@@ -63,7 +64,11 @@ const buildExtension = async (platform) => {
         `const mhImprovedPlatform = '${platform}';`,
       ].join('\n'),
     },
+    logLevel: 'info',
   });
+
+  console.log(watch ? 'Watching for changes...' : 'Building extension...'); // eslint-disable-line no-console
+  await (watch ? ctx.watch() : ctx.rebuild());
 };
 
-await buildExtension(process.argv[2]);
+await buildExtension(process.argv[2], process.argv[3] === 'watch');

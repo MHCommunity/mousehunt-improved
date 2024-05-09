@@ -31,7 +31,10 @@
     "lint": "concurrently \"bun:lint:*(!fix)\"",
     "lint:scripts": "eslint scripts/**/*.mjs",
     "lint:scripts:fix": "eslint scripts/**/*.mjs --fix",
-    "fix-map-groups": "node scripts/fix-map-groups.mjs"
+    "fix-map-groups": "node scripts/fix-map-groups.mjs",
+    "watch": "node scripts/build-extension.mjs chrome watch",
+    "watch:chrome": "node scripts/build-extension.mjs chrome watch",
+    "watch:firefox": "node scripts/build-extension.mjs firefox watch"
   },
   "dependencies": {
     "@babel/runtime": "^7.24.1",
