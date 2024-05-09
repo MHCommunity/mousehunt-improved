@@ -406,3 +406,22 @@ a.random-title.loading::after {
 .mh-improved-favorite-setups-blueprint-container .location-favorite .controls .edit-setup {
   display: none;
 }
+
+.campPage-trap-itemBrowser-favorite-item.loading .campPage-trap-itemBrowser-favorite-item-image::after,
+.mousehuntActionButton.loading::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    center / 15px no-repeat url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif),
+    center / contain repeat url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png);
+  border-radius: 5px;
+}
+
+.row .campPage-trap-itemBrowser-favorite-item {
+  pointer-events: none;
+}
+
+.row.editing .campPage-trap-itemBrowser-favorite-item.clickable {
+  pointer-events: auto;
+}

@@ -6,6 +6,7 @@ import {
   doRequest,
   getCurrentLocation,
   getCurrentPage,
+  getData,
   getHeaders,
   getSetting,
   makeElement,
@@ -30,6 +31,21 @@ const getFavoriteSetups = () => {
   return faves.filter(Boolean);
 };
 
+const getGeneratedName = async (setup) => {
+  const response = await fetch('https://setup-namer.mouse.rip', {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify([
+      setup.bait_id,
+      setup.base_id,
+      setup.weapon_id,
+      setup.trinket_id,
+    ]),
+  });
+
+  return await response.json();
+};
+
 const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   let setups = getFavoriteSetups();
 
@@ -40,18 +56,7 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   const normalizedSetup = normalizeSetup(setup);
 
   if (useGeneratedName) {
-    const setupName = await fetch('https://setup-namer.mouse.rip', {
-      method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify([
-        normalizedSetup.bait_id,
-        normalizedSetup.base_id,
-        normalizedSetup.weapon_id,
-        normalizedSetup.trinket_id,
-      ]),
-    });
-
-    const setupNameData = await setupName.json();
+    const setupNameData = await getGeneratedName(normalizeSetup);
 
     if (setupNameData.name) {
       normalizedSetup.name = setupNameData.name;
@@ -60,10 +65,21 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
     normalizedSetup.name = user.environment_name;
   }
 
-  try {
-    setups.push(normalizedSetup);
-  } catch {
-    setups = [normalizedSetup];
+  if (setup.id) {
+    normalizedSetup.id = setup.id;
+    // replace the setup in the list.
+    const index = setups.findIndex((s) => s?.id && (s.id === setup.id));
+    if (-1 === index) {
+      setups.push(normalizedSetup);
+    } else {
+      setups[index] = normalizedSetup;
+    }
+  } else {
+    try {
+      setups.push(normalizedSetup);
+    } catch {
+      setups = [normalizedSetup];
+    }
   }
 
   saveSetting('favorite-setups.setups', setups);
@@ -93,7 +109,8 @@ const getCurrentSetup = () => {
   });
 };
 
-const makeImage = (type, id, thumbnail) => {
+let itemThumbs;
+const addImage = async (type, id, appendTo) => {
   const wrapper = makeElement('div', 'campPage-trap-itemBrowser-favorite-item');
   wrapper.setAttribute('data-item-id', id);
   wrapper.setAttribute('data-item-type', type);
@@ -101,13 +118,17 @@ const makeImage = (type, id, thumbnail) => {
   wrapper.setAttribute('title', `Click to change ${type}`);
 
   const item = makeElement('div', ['campPage-trap-itemBrowser-favorite-item-image']);
-  item.style.backgroundImage = `url(${thumbnail})`;
+
+  if (! itemThumbs) {
+    itemThumbs = await getData('item-thumbnails');
+  }
+
+  item.style.backgroundImage = `url(${itemThumbs.find((thumb) => thumb.id == id)?.thumb || ''})`; // eslint-disable-line eqeqeq
 
   makeElement('div', 'campPage-trap-itemBrowser-favorite-item-frame', '', item);
 
   wrapper.append(item);
-
-  return wrapper;
+  appendTo.append(wrapper);
 };
 
 const makeButton = (button) => {
@@ -157,24 +178,32 @@ const getPowerTypeId = (powerType) => {
 };
 
 const makeImagePicker = async (setupId, type, currentId, callback) => {
-  const response = await doRequest('managers/ajax/users/gettrapcomponents.php', {
-    classification: type,
-  });
+  let components;
+  const cached = sessionGet('mh-improved-favorite-setups-components');
+  if (cached) {
+    components = cached;
+  } else {
+    const response = await doRequest('managers/ajax/users/gettrapcomponents.php');
 
-  const items = response?.components || [];
+    components = response?.components || [];
 
-  // re-sort the items by item name.
-  items.sort((a, b) => {
-    if (a.name < b.name) {
-      return -1;
-    }
+    // re-sort the items by item name.
+    components.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
 
-    if (a.name > b.name) {
-      return 1;
-    }
+      if (a.name > b.name) {
+        return 1;
+      }
 
-    return 0;
-  });
+      return 0;
+    });
+
+    sessionSet('mh-improved-favorite-setups-components', components);
+  }
+
+  const items = components.filter((item) => item.classification === type);
 
   let content = '<div class="mh-improved-favorite-setups-component-picker-popup">';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-body">';
@@ -201,13 +230,12 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
     content += `<div class="campPage-trap-itemBrowser-item loaded ${type}" data-item-id="${item.item_id}">`;
     content += ' <div class="campPage-trap-itemBrowser-item-leftBar">';
     content += `  <a href="#"><div class="campPage-trap-itemBrowser-item-image" style="background-image:url(${item.thumbnail});"></div></a>`;
-    content += `  <a href="#" class="campPage-trap-itemBrowser-item-armButton save-button" data-item-id="${item.item_id}" data-item-classification="${type}" data-item-image="${item.thumbnail}" data-power-type="${item.power_type_image_name}">Use</a>`;
+    content += `  <a href="#" class="campPage-trap-itemBrowser-item-armButton save-button" data-item-id="${item.item_id}" data-item-classification="${type}" data-item-image="${item.thumbnail}" data-the-power-type="${item.power_type_image_name}">Use</a>`;
     content += ' </div>';
     content += ' <div class="campPage-trap-itemBrowser-item-content">';
     content += ` <div class="campPage-trap-itemBrowser-item-name">${item.name}</div>`;
     if ('bait' === type || 'trinket' === type) {
-      const quantityFormatted = item.quantity.toLocaleString();
-      content += `<div class="campPage-trap-itemBrowser-item-quantity"><span class="quantity">${quantityFormatted}</span><span class="label">Quantity</span></div>`;
+      content += `<div class="campPage-trap-itemBrowser-item-quantity"><span class="quantity">${Number.parseInt(item.quantity).toLocaleString()}</span><span class="label">Quantity</span></div>`;
     }
 
     if (item.power_type) {
@@ -226,15 +254,6 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
 
     content += '<div class="campPage-trap-itemBrowser-item-description shortDescription">';
     content += item.consume_method ? `<div class="campPage-trap-itemBrowser-item-description-consumeMethod"><b>Consumed on:</b> ${item.consume_method}</div>` : '';
-    if ('bait' === type) {
-      let description = item.description.replaceAll(/<\/?[^>]+(>|$)/g, ''); // Remove HTML tags
-      description = description.slice(0, 200); // Get the first 200 characters
-      if (item.description.length > 150) {
-        description += '…';
-      }
-
-      content += `<div class="campPage-trap-itemBrowser-item-description-text">${description}</div>`;
-    }
 
     content += '</div>';
     content += '</div>';
@@ -264,7 +283,7 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
         saveButton.getAttribute('data-item-id'),
         saveButton.getAttribute('data-item-classification'),
         saveButton.getAttribute('data-item-image'),
-        saveButton.getAttribute('data-power-type')
+        saveButton.getAttribute('data-the-power-type')
       );
       popup.hide();
     });
@@ -307,7 +326,7 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
       saveButton.getAttribute('data-item-id'),
       saveButton.getAttribute('data-item-classification'),
       saveButton.getAttribute('data-item-image'),
-      saveButton.getAttribute('data-power-type')
+      saveButton.getAttribute('data-the-power-type')
     );
     popup.hide();
   });
@@ -343,26 +362,40 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         // Save the current setup, using the current location as the name.
         let currentSetup = getCurrentSetup();
 
-        currentSetup.id = `${setup?.bait_id}-${setup?.base_id}-${setup?.weapon_id}-${setup?.trinket_id}`;
-
         // if the setup already exists, then just alert the user.
         const setups = getFavoriteSetups();
 
         if (setups.length) {
-          const existingSetup = setups.find((s) => s?.id && (s.id === currentSetup.id));
+          // check if the setup has a matching bait, base, weapon, and trinket.
+          const existingSetup = setups.find((s) => {
+            return s?.bait_id === currentSetup.bait_id &&
+              s?.base_id === currentSetup.base_id &&
+              s?.weapon_id === currentSetup.weapon_id &&
+              s?.trinket_id === currentSetup.trinket_id;
+          });
+
           if (existingSetup && ! hasHighlighted) {
             // flash the row.
-            const row = document.querySelector(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${currentSetup.id}"]`);
-            row.classList.add('flash');
-            setTimeout(() => {
-              row.classList.remove('flash');
-            }, 1000);
+            const rows = document.querySelectorAll(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${existingSetup.id}"]`);
+            rows.forEach((row) => {
+              row.classList.add('flash');
+              setTimeout(() => {
+                row.classList.remove('flash');
+              }, 1000);
+            });
 
             hasHighlighted = true;
+            // allow clicking save a second time to bypass the highlight for 2 seconds.
+            setTimeout(() => {
+              hasHighlighted = false;
+            }, 2000);
 
             return;
           }
         }
+
+        // Generate a random name for the setup.
+        currentSetup.id = Math.random().toString(36).slice(2, 15) + Math.random().toString(36).slice(2, 15);
 
         currentSetup = await saveFavoriteSetup(currentSetup, false);
 
@@ -377,10 +410,12 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       }
     }));
   } else {
-    buttonWrapper.append(makeButton({
+    const armButton = makeButton({
       text: 'Arm',
       className: ['arm'],
       callback: async () => {
+        armButton.classList.add('loading');
+
         // Arm the setup.
         const setupId = setupContainer.getAttribute('data-setup-id');
         debuglog('favorite-setups', `Arming setup ${setupId}`);
@@ -428,10 +463,15 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           await armItem(toArm);
         }
 
+        armButton.classList.remove('loading');
+
         updateFavoriteSetupName();
       }
-    }));
+    });
 
+    buttonWrapper.append(armButton);
+
+    let editClickables = [];
     buttonWrapper.append(makeButton({
       text: 'Edit',
       className: ['edit-setup'],
@@ -452,18 +492,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
           e.target.classList.add('loading');
 
-          const response = await fetch('https://setup-namer.mouse.rip', {
-            method: 'POST',
-            headers: getHeaders(),
-            body: JSON.stringify([
-              setup.bait_id,
-              setup.base_id,
-              setup.weapon_id,
-              setup.trinket_id,
-            ]),
-          });
-
-          const setupNameData = await response.json();
+          const setupNameData = await getGeneratedName(setup);
 
           if (setupNameData.name) {
             title.querySelector('input').value = setupNameData.name;
@@ -480,14 +509,16 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         title.prepend(randomTitleButton);
 
         const powerTypeInput = makeElement('input', ['hidden', 'power-type-input']);
-        powerTypeInput.setAttribute('data-power-type', setup.power_type);
+        powerTypeInput.setAttribute('data-the-power-type', setup.power_type);
         title.append(powerTypeInput);
 
         // Update the setup images to be clickable.
         const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
         images.forEach((image) => {
           image.classList.add('clickable');
-          image.addEventListener('click', async () => {
+          const eventListenerClickable = image.addEventListener('click', async () => {
+            image.classList.add('loading');
+
             // Handle image click
             const itemType = image.getAttribute('data-item-type');
             const itemId = image.getAttribute('data-item-id');
@@ -512,7 +543,11 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
               imageDisplay.style.backgroundImage = `url(${newItemImageUrl})`;
             });
+
+            image.classList.remove('loading');
           });
+
+          editClickables.push({ image, event: eventListenerClickable });
         });
 
         const existing = setupContainer.querySelector('.move-buttons');
@@ -578,6 +613,16 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       }
     }));
 
+    const stopEditing = () => {
+      // Remove the event listeners from the images.
+      editClickables.forEach(({ image, event }) => {
+        image.removeEventListener('click', event);
+        image.classList.remove('clickable');
+      });
+
+      editClickables = [];
+    };
+
     buttonWrapper.append(makeButton({
       text: 'Save',
       className: ['save-setup'],
@@ -597,7 +642,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         const powerTypeInput = setupContainer.querySelector('.power-type-input');
         if (powerTypeInput) {
           const lastPowerType = setup.power_type;
-          const newPowerType = powerTypeInput.getAttribute('data-power-type');
+          const newPowerType = powerTypeInput.getAttribute('data-the-power-type');
 
           if (newPowerType && lastPowerType !== newPowerType) {
             setup.power_type = newPowerType;
@@ -640,9 +685,6 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         const index = setups.findIndex((s) => s?.id && (s.id === setupId));
 
-        // generate a random ID so it's unique.
-        newSetup.id = Math.random().toString(36).slice(2, 15) + Math.random().toString(36).slice(2, 15);
-
         // replace the setup in the list.
         setups[index] = newSetup;
         saveSetting('favorite-setups.setups', setups);
@@ -652,6 +694,8 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         titleInput.remove();
 
         updateFavoriteSetupName();
+
+        stopEditing();
       }
     }));
 
@@ -685,6 +729,8 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           image.removeAttribute('data-new-item-image');
           image.removeAttribute('data-old-image-url');
         });
+
+        stopEditing();
       }
     }));
 
@@ -720,42 +766,6 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   controls.append(buttonWrapper);
   setupContainer.append(controls);
 
-  let cachedThumbnails = sessionGet('favorite-setups-thumbnails', {});
-
-  const needThumbnails = [];
-
-  const items = [
-    setup?.bait_id || 0,
-    setup?.base_id || 0,
-    setup?.weapon_id || 0,
-    setup?.trinket_id || 0,
-  ];
-
-  for (const item of items) {
-    if (! cachedThumbnails[item]) {
-      needThumbnails.push(item);
-    }
-  }
-
-  if (needThumbnails.length) {
-    const grabbedThumbnailsReq = await fetch('https://images.mouse.rip', {
-      method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify(needThumbnails),
-    });
-
-    const grabbedThumbnails = await grabbedThumbnailsReq.json();
-
-    const thumbnails = {
-      ...cachedThumbnails,
-      ...grabbedThumbnails,
-    };
-
-    sessionSet('favorite-setups-thumbnails', thumbnails);
-
-    cachedThumbnails = thumbnails;
-  }
-
   const powerTypeId = getPowerTypeId(setup?.power_type);
   const powertype = makeElement('div', ['campPage-trap-itemBrowser-item-powerType', powerTypeId]);
   if (! powerTypeId) {
@@ -764,10 +774,10 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
   setupContainer.append(powertype);
 
-  setupContainer.append(makeImage('bait', setup.bait_id, cachedThumbnails[setup.bait_id]));
-  setupContainer.append(makeImage('base', setup.base_id, cachedThumbnails[setup.base_id]));
-  setupContainer.append(makeImage('weapon', setup.weapon_id, cachedThumbnails[setup.weapon_id]));
-  setupContainer.append(makeImage('trinket', setup.trinket_id, cachedThumbnails[setup.trinket_id]));
+  await addImage('bait', setup.bait_id, setupContainer);
+  await addImage('base', setup.base_id, setupContainer);
+  await addImage('weapon', setup.weapon_id, setupContainer);
+  await addImage('trinket', setup.trinket_id, setupContainer);
 
   return setupContainer;
 };
