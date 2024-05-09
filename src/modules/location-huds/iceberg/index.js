@@ -270,9 +270,13 @@ const hud = async () => {
     // Create the stage distance element.
     const remainingStageDistance = document.createElement('div');
     remainingStageDistance.classList.add('remaining-stage-distance');
-    const destination = quest.isDeep ? 'Deep' : 'next stage';
+    const destination = quest.isDeep ? 'Hidden Depths' : 'next stage';
     if (quest.stage !== quest.total) {
-      const feet = quest.stage.toLocaleString();
+      let feet = quest.stage.toLocaleString();
+      if (quest.isDeep) {
+        feet = feet - 100;
+      }
+
       remainingStageDistance.innerHTML = `<strong>${feet}</strong> feet until ${destination}`;
       if (quest.stageHunts > 0) {
         remainingStageDistance.innerHTML += ` (~${quest.stageHunts} hunts)`;
@@ -292,9 +296,11 @@ const hud = async () => {
   // If we're in icewing's lair, don't show the total distance.
   if (! quest.isLair && ! quest.isDeep) {
     // Create the distance element.
-    const remainingDistance = document.createElement('div');
-    remainingDistance.classList.add('remaining-distance');
-    if (quest.total !== 0) {
+    const remainingDistance = makeElement('div', 'remaining-distance');
+
+    if (quest.total === 0) {
+      remainingDistance.innerHTML = '';
+    } else {
       const feet = quest.total.toLocaleString();
       remainingDistance.innerHTML = `<strong>${feet}</strong> feet until Icewing's Lair`;
       if (quest.totalHunts > 0) {
@@ -308,6 +314,11 @@ const hud = async () => {
       existingDistance.replaceWith(remainingDistance);
     } else {
       huntInfo.insertBefore(remainingDistance, huntInfo.lastChild);
+    }
+  } else {
+    const existingDistance = huntInfo.querySelector('.remaining-distance');
+    if (existingDistance) {
+      existingDistance.remove();
     }
   }
 
