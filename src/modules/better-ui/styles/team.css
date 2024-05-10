@@ -69,6 +69,7 @@
 .teamPage-memberJournals {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  align-items: stretch;
 }
 
 .teamPage-memberJournalContainer {
@@ -91,8 +92,8 @@
 
 .teamPage-memberJournal-identity a.teamPage-member-image.online::before {
   position: absolute;
-  top: 0;
-  right: -180px;
+  top: 3px;
+  right: -182px;
   width: 10px;
   height: 10px;
   content: "";
@@ -121,4 +122,40 @@
 
 .teamPage-profile-awardContainer-awardList:hover .teamPage-profile-awardContainerInfo {
   opacity: 1;
+}
+
+.teamPage-memberJournal-padding {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  height: calc(100% - 8px);
+}
+
+.teamPage-memberJournal-trapSetup {
+  flex-grow: 1;
+}
+
+.teamPage-memberJournal-identity:hover a.teamPage-member-image.online::before {
+  display: flex;
+  justify-content: end;
+  line-height: 7px;
+  text-shadow:
+    0 0 #fff,
+    1px 1px #fff,
+    2px 2px #fff,
+    -1px -1px #fff,
+    -2px -2px #fff,
+    0 1px #fff,
+    0 2px #fff,
+    0 -1px #fff,
+    0 -2px #fff,
+    -1px 0 #fff,
+    -2px 0 #fff,
+    1px -1px #fff,
+    2px -2px #fff,
+    -1px 1px #fff,
+    -2px 2px #fff;
+  white-space: nowrap;
+  content: attr(title) "    ";
 }

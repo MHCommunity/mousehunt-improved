@@ -85,7 +85,7 @@
   padding-bottom: 3px;
   margin-bottom: 5px;
   font-size: 11px;
-  font-weight: 100;
+  font-weight: 400;
   border-bottom: 1px solid rgb(0 0 0 / 30%);
 }
 
@@ -249,4 +249,22 @@ p.mhi-x-entry {
 .journal .content .entry .journaltext,
 .journal .content .entry .journaltext p {
   font-size: 11px;
+}
+
+.journal.jdouble .content .entry:last-child {
+  border-bottom: 1px solid #5b5b5b;
+}
+
+.journal.jdouble .leftcol {
+  border: none;
+}
+
+.journal.jdouble .rightcol {
+  margin-left: 10px;
+  border: none;
+}
+
+.journal.jdouble .journalEntries {
+  display: flex;
+  padding: 10px;
 }

@@ -3,13 +3,8 @@
 .mousehuntHud-userStat.trinket:hover .label,
 .mousehuntHud-userStat.treasureMap:hover .label {
   position: absolute;
-  top: 7px;
   z-index: 11;
   width: auto;
-  padding: 3px 10px 2px 0;
-  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/hud_bg_blue_repeating.png);
-  border-radius: 5px;
-  mix-blend-mode: luminosity;
 }
 
 .mousehuntHud-userStat.treasureMap:hover .label {

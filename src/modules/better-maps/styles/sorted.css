@@ -197,8 +197,7 @@
   display: flex;
 }
 
-.mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::after,
-.mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header::after {
+.mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::after {
   position: absolute;
   top: -4px;
   right: 2px;
@@ -211,11 +210,6 @@
   background-image: url(https://www.mousehuntgame.com//images/ui/friends/anonymous_user.png);
   background-size: cover;
   border-radius: 50%;
-}
-
-.mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header::after {
-  top: 5px;
-  border: 1px solid #9f9f9f;
 }
 
 .mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::before {

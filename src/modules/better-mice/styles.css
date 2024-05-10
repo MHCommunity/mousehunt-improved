@@ -258,7 +258,7 @@ a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryCont
 
 .mouseViewPopup .mouseView-descriptionContainer {
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 4fr 2fr;
   justify-items: stretch;
 }
 
@@ -281,7 +281,7 @@ img.minluck-power-type-img {
 
 li.minluck-item {
   display: inline-flex;
-  gap: 3px;
+  gap: 2px;
   align-items: center;
   width: auto;
   padding: 2px 3px;
