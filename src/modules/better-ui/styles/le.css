@@ -1,0 +1,28 @@
+.itemImage .limitedEdition,
+.itemPurchaseView-image-limitedEdition,
+.marketplaceView-itemImage .limitedEdition,
+.inventoryPage-item .itemImage .limitedEdition,
+.campPage-trap-itemBrowser-item-image.limitedEdition::before {
+  top: -10px;
+  right: -10px;
+  z-index: 1;
+  width: 25px;
+  height: 25px;
+  background: url(https://i.mouse.rip/le-badge.png) no-repeat 0 0;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 50%));
+  background-size: contain;
+}
+
+.campPage-trap-itemBrowser-item-image.limitedEdition::before {
+  top: -5px;
+  right: -8px;
+}
+
+.trapImageView-layer.limitedEdition {
+  bottom: 10px;
+  left: 7px;
+  width: 100%;
+  height: 50px;
+  background: url(https://i.mouse.rip/le-trap-badge.png?) no-repeat 0 0;
+  background-size: contain;
+}
