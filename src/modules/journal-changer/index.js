@@ -40,6 +40,8 @@ const updateJournalTheme = async (theme) => {
   const req = await doRequest('managers/ajax/users/journal_theme.php', {
     action: 'set_theme',
     theme,
+  }, false, {
+    skipLastReadJournalEntryId: true,
   });
 
   if (req.success) {
