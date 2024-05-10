@@ -1,4 +1,4 @@
-.inventoryPage-item.convertible .inventoryPage-item-content-action input:first-of-type:not(:only-of-type) {
+.inventoryPage-item.convertible .inventoryPage-item-content-action input.button:first-of-type:not(:only-of-type) {
   pointer-events: all;
   filter: grayscale(0);
 }
