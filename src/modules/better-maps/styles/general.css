@@ -834,12 +834,12 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapView-goals-group-goal.item {
-  width: calc(25% - 5px);
+  width: calc(20% - 5px);
   padding: 5px 0;
 }
 
 .full-width .treasureMapView-goals-group-goal {
-  width: calc(16% - 1px);
+  width: calc(14% - 5px);
 }
 
 .treasureMapView-goals-group-goal:hover::before {
@@ -1047,4 +1047,9 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-block-title.mh-ui-listed-maps-title {
   display: none;
+}
+
+.item .treasureMapView-highlight-description {
+  max-height: 80px;
+  overflow-y: auto;
 }
