@@ -3,4 +3,3 @@
 - Updates the style of the King's Reward image to match the background.
 - Makes the input box for the King's Reward larger.
 - Automatically closes the success message.
-- Automatically sounds your horn when claiming the King's Reward, if it's ready.
