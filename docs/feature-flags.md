@@ -11,7 +11,6 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |`social-noop`|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
 |`no-onboarding`|Disables the MouseHunt Improved tutorial from Larry.|
 |`no-kingdom-link-replacement`|Makes the Kingdom link to go the forums, rather than the News page.|
-|`better-kings-reward-no-horn`|Disables sounding the horn after claiming the King's Reward.|
 |`catch-rate-estimate-more-refresh`|Restores previous behavior of the Catch Rate Estimator module where it refreshes more often.|
 
 The [debug logging](./debug-logging.md) module also is configured using feature flags.

@@ -1,35 +1,6 @@
-import { addStyles, getFlag, onRequest } from '@utils';
+import { addStyles, onRequest } from '@utils';
 
 import styles from './styles.css';
-
-const honk = async () => {
-  const horn = document.querySelector('.huntersHornView__horn--ready');
-  if (! horn) {
-    return;
-  }
-
-  // dispatch a mousedown event to the horn
-  horn.dispatchEvent(new MouseEvent('mousedown', {
-    bubbles: true,
-  }));
-
-  await new Promise((resolve) => setTimeout(resolve, 250));
-
-  horn.dispatchEvent(new MouseEvent('mouseup', {
-    bubbles: true
-  }));
-};
-
-const continueOnKingsReward = (req) => {
-  if (req.success && req.puzzle_reward) {
-    const resume = document.querySelector('.puzzleView__resumeButton');
-    if (resume) {
-      resume.click();
-
-      setTimeout(honk, 250);
-    }
-  }
-};
 
 const initiateKingsReward = () => {
   const reward = document.querySelector('.huntersHornMessageView huntersHornMessageView--puzzle .huntersHornMessageView__action');
@@ -59,10 +30,6 @@ const init = async () => {
   addStyles(styles, 'better-kings-reward');
 
   onRequest('turns/activeturn.php', initiateKingsReward, true);
-
-  if (! getFlag('better-kings-reward-no-horn')) {
-    onRequest('users/puzzle.php', continueOnKingsReward, true);
-  }
 
   onRequest('*', startKingsReward);
   startKingsReward();
