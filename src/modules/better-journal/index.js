@@ -29,6 +29,7 @@ const init = async () => {
     goldAndPoints: getSetting('better-journal.gold-and-points', true),
     itemColors: getSetting('better-journal.item-colors', true),
     progressLog: getSetting('better-journal.progress-log', true),
+    history: getSetting('better-journal.history', true),
   };
 
   if (enabled.styles) {
@@ -61,7 +62,7 @@ const init = async () => {
     journalItemColors();
   }
 
-  journalHistory(getSetting('better-journal.history', getFlag('journal-history', true)));
+  journalHistory(enabled.history);
 };
 
 export default {
