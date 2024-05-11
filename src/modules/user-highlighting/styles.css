@@ -1,6 +1,4 @@
-.mh-improved-developer .hunterInfoView-verifiedUserImage,
-.mh-improved-contributor .hunterInfoView-verifiedUserImage,
-.mh-improved-supporter .hunterInfoView-verifiedUserImage {
+.mh-improved-highlight-user .hunterInfoView-verifiedUserImage {
   width: 14.5px;
   height: 17.5px;
   background: url(https://i.mouse.rip/mh-improved/tada-badge.png) no-repeat;
@@ -13,15 +11,9 @@
   background-size: contain;
 }
 
-.mh-improved-developer .friendsPage-friendRow-image:hover::after,
-.mh-improved-developer .friendsPage-friendRow-image:focus::after,
-.mh-improved-developer .friendsPage-friendRow-image:active::after,
-.mh-improved-contributor .friendsPage-friendRow-image:hover::after,
-.mh-improved-contributor .friendsPage-friendRow-image:focus::after,
-.mh-improved-contributor .friendsPage-friendRow-image:active::after,
-.mh-improved-supporter .friendsPage-friendRow-image:focus::after,
-.mh-improved-supporter .friendsPage-friendRow-image:hover::after,
-.mh-improved-supporter .friendsPage-friendRow-image:active::after {
+.mh-improved-highlight-user .friendsPage-friendRow-image:focus::after,
+.mh-improved-highlight-userr .friendsPage-friendRow-image:hover::after,
+.mh-improved-highlight-user .friendsPage-friendRow-image:active::after {
   position: absolute;
   top: 5px;
   left: 5px;
@@ -35,4 +27,8 @@
   filter: drop-shadow(0 0 2px #000);
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.mh-improved-highlight-user #tipButton {
+  right: 155px;
 }
