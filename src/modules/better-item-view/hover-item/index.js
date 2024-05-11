@@ -1,16 +1,16 @@
 import {
   addStyles,
+  debounce,
   doRequest,
   getSetting,
   makeElement,
   onEvent,
+  sleep,
   onRequest
 } from '@utils';
 
 import styles from './styles.css';
 
-let lastItem;
-let lastItemId;
 const fetchAndFillItemData = async (itemId) => {
   if (isLoading) {
     return;
@@ -18,23 +18,19 @@ const fetchAndFillItemData = async (itemId) => {
 
   isLoading = true;
 
-  let item;
-  if (lastItemId === itemId) {
-    item = lastItem;
-  } else {
-    const itemDataRequest = await doRequest('managers/ajax/users/userInventory.php', {
-      action: 'get_items',
-      'item_types[]': itemId,
-    });
+  // Artificial delay to prevent spamming the server when the user is quickly moving the mouse.
+  await sleep(500);
 
-    if (! itemDataRequest?.items?.length) {
-      return;
-    }
+  const itemDataRequest = await doRequest('managers/ajax/users/userInventory.php', {
+    action: 'get_items',
+    'item_types[]': itemId,
+  });
 
-    item = itemDataRequest?.items[0];
-    lastItem = item;
-    lastItemId = itemId;
+  if (! itemDataRequest?.items?.length) {
+    return;
   }
+
+  const item = itemDataRequest?.items[0];
 
   const itemData = makeElement('div', 'item-data');
 
@@ -100,24 +96,24 @@ const makeMouseMarkup = async (itemId, e) => {
 };
 
 const main = () => {
-  const itemLinks = document.querySelectorAll('.journal .content .entry .journaltext a[onclick*="ItemView.show"]');
+  const itemLinks = document.querySelectorAll('.journal .content .entry .journaltext a[href*="https://www.mousehuntgame.com/item.php?item_type="]');
   if (! itemLinks) {
     return;
   }
 
   itemLinks.forEach((link) => {
-    const itemType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
+    const itemType = link.getAttribute('href').match(/item_type=(\w+)/)[1];
     link.setAttribute('onclick', `hg.views.ItemView.show('${itemType}'); return false;`);
 
-    link.addEventListener('mouseover', (e) => {
+    link.addEventListener('mouseover', debounce((e) => {
       makeMouseMarkup(itemType, e);
-    });
+    }));
 
-    link.addEventListener('mouseout', () => {
+    link.addEventListener('mouseout', debounce(() => {
       if (itemDataWrapper) {
         itemDataWrapper.remove();
       }
-    });
+    }));
   });
 };
 
