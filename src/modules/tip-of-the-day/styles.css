@@ -1,1 +1,3 @@
-/* Tip of the day styles */
+.journal .content .entry strong {
+  font-weight: 900;
+}

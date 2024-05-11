@@ -27,7 +27,8 @@ const addTipDaily = async () => {
   ) {
     addJournalEntry({
       id: 'tip-of-the-day',
-      text: tips[Math.floor(Math.random() * tips.length)],
+      classes: 'tip-of-the-day',
+      text: `<strong>Tip of the day!</strong><p>${tips[Math.floor(Math.random() * tips.length)]}`,
       noDate: true,
     });
 
