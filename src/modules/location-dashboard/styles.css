@@ -4,10 +4,6 @@
   display: none;
 }
 
-.mousehuntHeaderView .menuItem.dropdown.dashboard {
-  cursor: initial;
-}
-
 .mousehuntHeaderView .dashboard .dropdownContent {
   width: 420px;
   border-radius: 0;

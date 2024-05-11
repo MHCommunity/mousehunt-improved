@@ -498,19 +498,6 @@ input.itemView-action-convert-quantity {
   height: 25px;
 }
 
-.mousehuntHud-gameInfo {
-  border: 1px solid #ccc;
-  border-top: none;
-}
-
-.mousehuntHeaderView-gameTabs {
-  border-bottom: 1px solid #ccc;
-}
-
-.huntersHornView {
-  border-right: 1px solid #ccc;
-}
-
 .mousehuntHeaderView .menuItem.first {
   border-left: none;
 }
@@ -529,4 +516,8 @@ input.itemView-action-convert-quantity {
 
 .inventoryPage-confirmPopup-itemRow.small {
   min-height: 35px;
+}
+
+.mousehuntHeaderView .menuItem.new:hover {
+  background-image: url(https://i.mouse.rip/inbox_new.png) !important;
 }

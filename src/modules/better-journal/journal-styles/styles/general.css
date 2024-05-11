@@ -124,10 +124,6 @@ a.journal-detailLink.full::after {
   border: none;
 }
 
-.jsingle .journalEntries {
-  padding-top: 1px;
-}
-
 .journal .content .entry a:hover img {
   border: 1px solid #6db8ca;
   outline: 1px solid #90d3e4;

@@ -676,12 +676,13 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapView-block-search {
-  right: 10px;
-  bottom: 17px;
+  right: 0;
+  bottom: 13px;
 }
 
 .treasureMapInventoryView .treasureMapView-block-title,
 .treasureMapShopsView .treasureMapView-block-title {
+  height: 0;
   margin-bottom: 0;
   visibility: hidden;
 }
@@ -976,7 +977,7 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapShopsView .treasureMapView-block-search {
-  bottom: 20px;
+  bottom: 10px;
 }
 
 .treasureMapTooltipView-hunterText-state.captain {

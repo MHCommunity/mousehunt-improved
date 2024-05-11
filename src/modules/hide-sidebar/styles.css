@@ -14,10 +14,6 @@
   display: none;
 }
 
-.mousehuntHeaderView .menuItem.sidebar.dropdown {
-  cursor: unset;
-}
-
 .mousehuntHeaderView .menuItem.sidebar .dropdownContent {
   width: 365px;
 

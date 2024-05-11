@@ -8,3 +8,7 @@
   z-index: 0;
   border-top-right-radius: 20px;
 }
+
+.PageNews {
+  background-size: cover;
+}
