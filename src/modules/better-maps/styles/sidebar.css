@@ -4,7 +4,11 @@
 }
 
 .pageFrameView-column.right {
-  border-left-width: 15px;
+  border-left-width: 10px;
+}
+
+.pageFrameView-column.left {
+  border-right-width: 10px;
 }
 
 .pageFrameView {
