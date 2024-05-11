@@ -1,5 +1,6 @@
 import { getSetting } from '@utils';
 
+import betterUiBetaStyles from './modules/better-ui-beta-styles';
 import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
 import delayedMenus from './modules/delayed-menus';
@@ -8,7 +9,6 @@ import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
 import replaceFavicon from './modules/replace-favicon';
 import shieldGoesToCamp from './modules/shield-goes-to-camp';
-import someStyles from './modules/some-styles';
 import stickyPopups from './modules/sticky-popups';
 import trollMode from './modules/troll-mode';
 import uniqueLootCount from './modules/unique-loot-count';
@@ -48,11 +48,6 @@ const experiments = [
     load: raffle,
   },
   {
-    id: 'experiments.some-styles',
-    title: 'Some Styles',
-    load: someStyles,
-  },
-  {
     id: 'experiments.sticky-popups',
     title: 'Sticky Popups',
     load: stickyPopups,
@@ -66,6 +61,11 @@ const experiments = [
     id: 'experiments.unique-loot-count',
     title: 'Unique loot count in progress log',
     load: uniqueLootCount,
+  },
+  {
+    id: 'experiments.some-styles',
+    title: 'Better UI: Beta Styles',
+    load: betterUiBetaStyles,
   },
   {
     id: 'better-journal.journal-tags',

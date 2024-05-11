@@ -3,5 +3,5 @@ import { addStyles } from '@utils';
 import styles from './styles.css';
 
 export default async () => {
-  addStyles(styles, 'some-styles');
+  addStyles(styles, 'better-ui-beta-styles');
 };

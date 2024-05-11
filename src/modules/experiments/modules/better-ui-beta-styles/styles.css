@@ -29,6 +29,10 @@
   margin-top: 0;
 }
 
+#overlayContainer {
+  padding-top: 0;
+}
+
 #overlayBg {
   top: -5px;
 }
