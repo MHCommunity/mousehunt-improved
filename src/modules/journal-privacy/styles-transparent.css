@@ -5,8 +5,8 @@
 .mh-journal-privacy-enabled #journalContainer .journal__hunter-name,
 .mh-journal-privacy-enabled .mh-journal-privacy-name {
   display: inline-block;
-  filter: blur(5px);
-  transition: all 0.3s;
+  color: transparent;
+  transition: color 0.3s;
 }
 
 .mh-journal-privacy-enabled #journalContainer .entry:not(.badge) #friend-data-wrapper a[href*="profile.php"] {
@@ -25,5 +25,5 @@
 .mh-journal-privacy-enabled .mh-journal-privacy-name:hover,
 .mh-journal-privacy-enabled .mh-journal-privacy-name:focus {
   display: inline;
-  filter: initial;
+  color: #3b5998;
 }
