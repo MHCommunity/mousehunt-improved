@@ -25,7 +25,7 @@
   { "id": "frosted-orchid", "name": "Frosted Orchid", "css": "linear-gradient(#ecadaf 0%, #e0b6a5 13.54%, #dc8b9d 30.21%, #c05ac9 44.27%, #b865cf 57.81%, #c3a7d9 71.87%, #c5c1e2 84.9%, #c6d8e4 100%)" },
   { "id": "galactic-dusk", "name": "Galactic Dusk", "css": "linear-gradient(220.55deg, #4063bc 0%, #6b0013 100%)" },
   { "id": "glacial-gleam", "name": "Glacial Gleam", "css": "linear-gradient(220.55deg, #c5edf5 0%, #4a879a 100%)" },
-  { "id": "groovy-green", "name": "Groovy Green", "css": "url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/pattern.png) repeat-y bottom center / cover"},
+  { "id": "groovy-green", "name": "Groovy Green", "css": "url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/pattern.png) repeat bottom center / 200px"},
   { "id": "lavender-lustre", "name": "Lavender Lustre", "css": "linear-gradient(#de97f9, #9157ff)" },
   { "id": "mint-surf", "name": "Mint Surf", "css": "linear-gradient(0deg, #08aeea 0%, #2af598 100%)" },
   { "id": "neon-nights", "name": "Neon Nights", "css": "linear-gradient(#f3b167, #ec38bc, #7303c0, #03001e)" },
