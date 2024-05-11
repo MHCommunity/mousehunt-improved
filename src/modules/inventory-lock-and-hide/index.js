@@ -3,10 +3,12 @@ import {
   addStyles,
   getCurrentPage,
   getCurrentTab,
+  getData,
   getSetting,
   makeElement,
   onEvent,
   onNavigation,
+  onRequest,
   saveSetting
 } from '@utils';
 
@@ -359,40 +361,6 @@ const addLockAndHideControls = () => {
   container.prepend(controlsWrapper);
 };
 
-const hideItemsInTrapBrowser = async () => {
-  const items = document.querySelectorAll('.campPage-trap-itemBrowser-item');
-  if (! items) {
-    return;
-  }
-
-  itemSettings = getSettings();
-
-  items.forEach((item) => {
-    let id = item.getAttribute('data-item-id');
-    id = Number.parseInt(id, 10);
-
-    if (! id) {
-      return;
-    }
-
-    if (itemSettings.hidden.includes(id)) {
-      item.classList.add('hidden');
-    }
-
-    if (itemSettings.locked.includes(id)) {
-      item.classList.add('locked');
-    }
-  });
-};
-
-let itemSettings;
-const main = async () => {
-  itemSettings = getSettings();
-
-  maybeLockOrHideItems();
-  addLockAndHideControls();
-};
-
 const toggleControls = () => {
   const button = document.querySelector('.mhui-inventory-lock-and-hide-controls');
   if (button) {
@@ -405,11 +373,94 @@ const onSetPage = () => {
   addEvent('ajax_request', main, { removeAfterFire: true, id: 'inventory-lock-and-hide' });
 };
 
+// TODO: this doesn't take owned items into for the category hiding
+const addHideStyles = (items) => {
+  if (! items || ! items.components) {
+    return;
+  }
+
+  const classifications = ['base', 'weapon', 'bait', 'trinket'];
+
+  const tagsToHide = {
+    base: [],
+    weapon: [],
+    bait: [],
+    trinket: [],
+  };
+
+  // Initialize an object to store items by tags
+  const itemsByTags = {
+    base: {},
+    weapon: {},
+    bait: {},
+    trinket: {},
+  };
+
+  // Group items by their tags
+  items.components.forEach((item) => {
+    if (! item.tag_types || ! item.classification) {
+      return;
+    }
+
+    // if the item.classification is not in the classifications array, skip it
+    if (! classifications.includes(item.classification)) {
+      return;
+    }
+
+    item.tag_types.forEach((tag) => {
+      if (! itemsByTags[item.classification][tag]) {
+        itemsByTags[item.classification][tag] = new Set();
+      }
+
+      itemsByTags[item.classification][tag].add(item.item_id);
+    });
+  });
+
+  // Get the tags to hide
+  classifications.forEach((classification) => {
+    const tags = Object.keys(itemsByTags[classification]);
+    tags.forEach((tag) => {
+      // if itemSettings.hidden includes all items in this tag, hide the tag
+      if ([...itemsByTags[classification][tag]].every((id) => itemSettings.hidden.includes(id))) {
+        tagsToHide[classification].push(tag);
+      }
+    });
+  });
+
+  // Generate styles to hide tags and items
+  const hideTagsStyles = classifications.flatMap((classification) =>
+    tagsToHide[classification].map((tag) => `.${classification} .campPage-trap-itemBrowser-tagGroup.${tag}`)
+  ).join(',');
+
+  const hideItemsStyles = itemSettings.hidden.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
+
+  // Add styles to hide tags and items
+  addStyles(`${hideTagsStyles}, ${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
+};
+
+const hideItemsInTrapBrowser = () => {
+  const hideItemsStyles = itemSettings.hidden.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
+
+  // Add styles to hide tags and items
+  addStyles(`${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
+};
+
+const main = async () => {
+  itemSettings = getSettings();
+  mhItems = await getData('items');
+
+  maybeLockOrHideItems();
+  addLockAndHideControls();
+};
+
 /**
  * Initialize the module.
  */
+let itemSettings;
 const init = async () => {
   addStyles(styles, 'inventory-lock-and-hide');
+
+  itemSettings = getSettings();
 
   main();
   onNavigation(onSetPage, {
@@ -418,8 +469,13 @@ const init = async () => {
     anySubTab: true,
   });
 
-  onEvent('camp_page_toggle_blueprint', hideItemsInTrapBrowser);
-  onEvent('mh-improved-toggle-inventory-lock', toggleControls);
+  hideItemsInTrapBrowser();
+  onEvent('mh-improved-toggle-inventory-lock', () => {
+    toggleControls();
+    hideItemsInTrapBrowser();
+  });
+
+  // onRequest('users/gettrapcomponents.php', addHideStyles);
 };
 
 export default {
