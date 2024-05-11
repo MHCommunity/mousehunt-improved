@@ -102,14 +102,14 @@ const addPreview = () => {
   addPreviewCallback({
     id: 'custom-background',
     selector: '.mh-improved-custom-bg-preview',
-    input: '#mousehunt-improved-settings-design-custom-background select',
+    inputSelector: '#mousehunt-improved-settings-design-custom-background select',
     previewCallback: (selected) => addBodyClass(selected),
   });
 
   addPreviewCallback({
     id: 'custom-hud',
     selector: '.mh-improved-custom-hud-preview',
-    input: '#mousehunt-improved-settings-design-custom-hud select',
+    inputSelector: '#mousehunt-improved-settings-design-custom-hud select',
     preview: false
   });
 };

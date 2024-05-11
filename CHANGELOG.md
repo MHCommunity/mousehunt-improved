@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.44.1
+
+- Minor background fixes
+
 ## Version 0.44.0
 
 ### Added

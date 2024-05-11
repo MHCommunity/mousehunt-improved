@@ -99,7 +99,6 @@ body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
   font-size: 18px;
 }
 
-.mh-improved-custom-hud-preview .mh-improved-custom-bg-action-button,
-.mh-improved-custom-bg-preview .mh-improved-custom-bg-action-button {
+.mh-improved-custom-background-gradient-preview .mh-improved-custom-bg-action-button {
   margin: 0 3px;
 }
