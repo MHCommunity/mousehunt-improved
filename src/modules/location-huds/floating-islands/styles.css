@@ -360,6 +360,7 @@ a.floatingIslandsHUD-islandLoot:focus {
   width: 30px;
   height: 30px;
   margin: 0;
+  visibility: visible;
   opacity: 0.5;
 }
 
