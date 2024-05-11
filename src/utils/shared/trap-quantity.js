@@ -5,8 +5,10 @@ import {
   getUserItems,
   makeElement,
   onEvent,
+  onNavigation,
   onRequest,
-  onTurn
+  onTurn,
+  sleep
 } from '@utils';
 
 /**
@@ -26,49 +28,51 @@ const getIdSelector = (itemId, bases) => {
 
 /**
  * Add the quantity to the display.
- *
- * @param {string} itemId The item ID.
- * @param {Array}  bases  The base IDs.
  */
-const addQuantityToDisplay = async (itemId, bases) => {
-  if ('camp' !== getCurrentPage() || ! itemId || ! bases) {
-    return;
-  }
+const addQuantityToDisplay = async () => {
+  options.forEach(async (opts) => {
+    let bases = opts.baseIds;
+    const itemId = opts.itemId;
 
-  const selector = getIdSelector(itemId, bases);
+    if ('camp' !== getCurrentPage()) {
+      return;
+    }
 
-  const existingCounter = document.querySelector(`.${selector}`);
-  if (existingCounter) {
-    existingCounter.remove();
-  }
+    const selector = getIdSelector(itemId, bases);
 
-  bases = bases.map((base) => Number.parseInt(base, 10));
-  const userBase = Number.parseInt(user.base_item_id, 10);
+    const existingCounter = document.querySelector(`.${selector}`);
+    if (existingCounter) {
+      existingCounter.remove();
+    }
 
-  if (! bases.includes(userBase)) {
-    return;
-  }
+    bases = bases.map((base) => Number.parseInt(base, 10));
+    const userBase = Number.parseInt(user.base_item_id, 10);
 
-  const details = await getUserItems([itemId], true);
-  const amount = details[0]?.quantity || 0;
+    if (! bases.includes(userBase)) {
+      return;
+    }
 
-  cacheSet(`${itemId}-quantity`, amount);
+    const details = await getUserItems([itemId], true);
+    const amount = details[0]?.quantity || 0;
 
-  const counter = document.querySelector(`.${selector}-text`);
-  if (counter) {
-    counter.textContent = amount;
-    return;
-  }
+    cacheSet(`${itemId}-quantity`, amount);
 
-  const trapContainer = document.querySelector('.trapSelectorView__armedItem[data-item-classification="base"] .trapSelectorView__armedItemImage');
-  if (! trapContainer) {
-    return;
-  }
+    const counter = document.querySelector(`.${selector}-text`);
+    if (counter) {
+      counter.textContent = amount;
+      return;
+    }
 
-  const newCounter = makeElement('div', ['trapSelectorView__armedItemQuantity', selector]);
-  makeElement('span', `${selector}-text`, amount.toLocaleString(), newCounter);
+    const trapContainer = document.querySelector('.trapSelectorView__armedItem[data-item-classification="base"] .trapSelectorView__armedItemImage');
+    if (! trapContainer) {
+      return;
+    }
 
-  trapContainer.append(newCounter);
+    const newCounter = makeElement('div', ['trapSelectorView__armedItemQuantity', selector, 'mh-improved-trap-quantity']);
+    makeElement('span', `${selector}-text`, amount.toLocaleString(), newCounter);
+
+    trapContainer.append(newCounter);
+  });
 };
 
 /**
@@ -100,38 +104,73 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
   el.append(counter);
 };
 
-/**
- * Add the quantity to the trap browser.
- *
- * @param {string} tab          The tab to add the quantity to.
- * @param {Object} opts         The options for the trap.
- * @param {string} opts.itemId  The item ID.
- * @param {Array}  opts.baseIds The base IDs.
- */
-const addQtyToTrapBrowser = async (tab, opts) => {
-  if ('item_browser' !== tab || ! opts.itemId || ! opts.baseSlugs) {
-    return;
-  }
+const addToTrapBrowserForSlugs = async () => {
+  options.forEach(async (opts) => {
+    opts.baseSlugs.forEach(async (base) => {
+      const el = document.querySelector(`.campPage-trap-itemBrowser-item-image[data-item-type="${base}"]`);
+      if (! el) {
+        return;
+      }
 
-  opts.baseSlugs.forEach(async (base) => {
-    const el = document.querySelector(`.campPage-trap-itemBrowser-item-image[data-item-type="${base}"]`);
-    if (! el) {
-      return;
-    }
-
-    addQuantityToTrapBrowserItem(el, opts.itemId, base);
-  });
-
-  opts.baseIds.forEach(async (base) => {
-    const faveEl = document.querySelector(`.campPage-trap-itemBrowser-favorite-item-image[data-item-id="${base}"]`);
-    if (! faveEl) {
-      return;
-    }
-
-    addQuantityToTrapBrowserItem(faveEl, opts.itemId, base);
+      addQuantityToTrapBrowserItem(el, opts.itemId, base);
+    });
   });
 };
 
+const addToTrapBrowserForIds = async () => {
+  options.forEach(async (opts) => {
+    opts.baseIds.forEach(async (base) => {
+      const faveEl = document.querySelector(`.campPage-trap-itemBrowser-favorite-item-image[data-item-id="${base}"]`);
+      if (! faveEl) {
+        return;
+      }
+
+      addQuantityToTrapBrowserItem(faveEl, opts.itemId, base);
+    });
+  });
+};
+
+const addToTrapBrowserForBases = async () => {
+  addToTrapBrowserForSlugs();
+  addToTrapBrowserForIds();
+};
+
+/**
+ * Add the quantity to the trap browser.
+ *
+ * @param {string} tab The tab to add the quantity to.
+ */
+const addQtyToTrapBrowser = async (tab) => {
+  if ('item_browser' !== tab) {
+    return;
+  }
+
+  onRequest('users/gettrapcomponents.php', addToTrapBrowserForBases);
+
+  await sleep(1000);
+
+  addToTrapBrowserForBases();
+
+  // add a listener for changes to campPage-trap-itemBrowser-items to re-run when a search or filter is applied. remove the listener when the element is removed
+  const trapItems = document.querySelector('.campPage-trap-itemBrowser-items');
+  if (! trapItems) {
+    return;
+  }
+
+  const observer = new MutationObserver(addToTrapBrowserForBases);
+  observer.observe(trapItems, { childList: true, attributes: true, subtree: true });
+};
+
+const onChangeTrap = () => {
+  const trapSelector = document.querySelector('.trapSelectorView__blueprint.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent--items[data-blueprint-type="base"]');
+  if (trapSelector) {
+    options.forEach(async (opts) => {
+      addQtyToTrapBrowser('item_browser', opts);
+    });
+  }
+};
+
+const options = [];
 /**
  * Add the quantity to the trap.
  *
@@ -140,24 +179,18 @@ const addQtyToTrapBrowser = async (tab, opts) => {
  * @param {Array}  opts.baseIds The base IDs.
  */
 const addTrapQuantity = async (opts) => {
-  const run = () => {
-    addQuantityToDisplay(opts.itemId, opts.baseIds);
-  };
+  if (! opts.itemId || ! opts.baseIds) {
+    return;
+  }
 
-  run();
-  onRequest('users/changetrap.php', () => {
-    run();
-    setTimeout(run, 500);
+  options.push(opts);
 
-    const trapSelector = document.querySelector('.trapSelectorView__blueprint.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent--items[data-blueprint-type="base"]');
-    if (trapSelector) {
-      addQtyToTrapBrowser('item_browser', opts);
-    }
-  });
+  onRequest('users/changetrap.php', onChangeTrap);
+  onEvent('camp_page_toggle_blueprint', async (tab) => addQtyToTrapBrowser(tab));
 
-  onTurn(run, 150);
-
-  onEvent('camp_page_toggle_blueprint', async (tab) => addQtyToTrapBrowser(tab, opts));
+  addQuantityToDisplay();
+  onNavigation(addQuantityToDisplay, { page: 'camp' });
+  onTurn(addQuantityToDisplay, 150);
 };
 
 export {
