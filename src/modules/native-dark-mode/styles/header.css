@@ -52,9 +52,9 @@
 }
 
 .mh-dark .mousehuntHud-environmentName {
-  color: #d6c8a2;
+  color: #000;
   text-shadow: none;
-  filter: drop-shadow(0 1px 1px #554825) drop-shadow(0 2px 1px #554825);
+  filter: drop-shadow(0 1px 1px #aea384) drop-shadow(0 2px 1px #aea384);
 }
 
 .mh-dark .huntersHornView__messageContainer {
