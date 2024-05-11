@@ -144,7 +144,7 @@ let isPrivacyEnabled = true;
  */
 const init = async () => {
   addStyles([
-    getFlag('journal-privacy-transparent') ? stylesTransparent : styles,
+    getSetting('journal-privacy.transparent', false) ? stylesTransparent : styles,
     iconStyles
   ], 'journal-privacy');
 

@@ -10,5 +10,10 @@ export default async () => {
       title: 'Show toggle icon in top menu',
       default: true,
     },
+    {
+      id: 'journal-privacy.transparent',
+      title: 'Make text transparent, rather than blurred',
+      default: false,
+    }
   ];
 };
