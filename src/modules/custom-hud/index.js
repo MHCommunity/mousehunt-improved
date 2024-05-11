@@ -21,9 +21,8 @@ const addStyleEl = () => {
 
   // eslint-disable-next-line unicorn/prefer-ternary
   const gradient = gradients.find((g) => g.id === setting);
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (gradient) {
-    console.log(gradient);
-
     styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
       background: url(https://i.mouse.rip/mousehuntHudPedestal.png) -46px 0 no-repeat, url(https://i.mouse.rip/mousehuntHudPedestal.png) 731px 0 no-repeat, ${gradient.css};
     }`;

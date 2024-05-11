@@ -475,7 +475,7 @@ const init = async () => {
     hideItemsInTrapBrowser();
   });
 
-  // onRequest('users/gettrapcomponents.php', addHideStyles);
+  onRequest('users/gettrapcomponents.php', addHideStyles);
 };
 
 export default {

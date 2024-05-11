@@ -1,4 +1,4 @@
-import { addStyles, getFlag, getSetting } from '@utils';
+import { addStyles, getSetting } from '@utils';
 
 import journalGoldAndPoints from './journal-gold-and-points';
 import journalHistory from './journal-history';

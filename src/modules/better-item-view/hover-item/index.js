@@ -5,8 +5,8 @@ import {
   getSetting,
   makeElement,
   onEvent,
-  sleep,
-  onRequest
+  onRequest,
+  sleep
 } from '@utils';
 
 import styles from './styles.css';

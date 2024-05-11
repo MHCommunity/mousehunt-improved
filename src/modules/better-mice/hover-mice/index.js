@@ -3,13 +3,11 @@ import {
   debounce,
   doRequest,
   getSetting,
-  sleep,
-
   makeElement,
-  onRequest
+  onRequest,
+  sleep
 } from '@utils';
 import styles from './styles.css';
-
 
 const fetchAndFillMouseData = async (mouseId) => {
   if (isLoading) {
