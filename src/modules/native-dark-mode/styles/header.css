@@ -3,33 +3,31 @@
   border-right: none;
 }
 
-.mh-dark div#envHeaderImg::before {
-  position: absolute;
-  inset: 0;
-  content: "";
-  background-image: url(https://i.mouse.rip/dark/envHeaderImg.png?a);
-  opacity: 0.7;
-}
-
 .mh-dark .mousehuntHud-menu ul li a {
   height: 25px;
   color: var(--d-border);
   text-shadow: none;
 }
 
+.mh-dark .mousehuntHud-menu.default,
+.mh-dark .mousehuntHud-shield.title,
+.mh-dark .mousehuntHud-shield.golden.title,
 .mh-dark .mousehunt-improved-lgs-reminder-new,
-.mh-dark .huntersHornView__timer {
+.mh-dark .huntersHornView {
   filter: brightness(0.8);
-}
-
-.mh-dark .mousehuntHud-environmentIconWrapper,
-.mh-dark .huntersHornView__backdrop {
-  filter: brightness(0.6);
 }
 
 .mh-dark .mousehuntHud-menu.default {
   z-index: 90;
-  filter: brightness(0.8);
+}
+
+.mh-dark .mousehuntHud-marbleDrawer {
+  background-blend-mode: exclusion;
+}
+
+.mh-dark .huntersHornView__backdrop {
+  background: transparent;
+  opacity: 1;
 }
 
 .mh-dark a.mousehuntHud-shield.golden.default {
@@ -42,11 +40,15 @@
   text-shadow: none;
 }
 
-body.mh-dark .mousehuntHud-marbleDrawer {
-  background:
-    url(https://i.mouse.rip/dark/mousehuntHudPedestal.png) -46px 0 no-repeat,
-    url(https://i.mouse.rip/dark/mousehuntHudPedestal.png) 731px 0 no-repeat,
-    url(https://i.mouse.rip/mh-improved/custom-hud/hud-blueprint.png) repeat-y top center !important;
+.mh-dark .mousehuntHeaderView .menuItem.dropdown:hover .arrow {
+  border-top-color: transparent;
+  border-bottom-color: #ededed;
+}
+
+.mh-dark .mousehuntHeaderView .menuItem.dropdown.expanded .arrow,
+.mh-dark .mousehuntHeaderView .menuItem.dropdown.expanded:hover .arrow {
+  border-top-color: #999;
+  border-bottom-color: transparent;
 }
 
 .mh-dark .mousehuntHud-environmentName {
@@ -71,4 +73,18 @@ body.mh-dark .mousehuntHud-marbleDrawer {
 .mh-dark .mousehuntHeaderView .menuItem {
   color: var(--d-text);
   border-color: var(--d-border);
+}
+
+.mh-dark .mousehunt-improved-favorite-setups-icon::before,
+.mh-dark .mousehunt-improved-journal-privacy-icon::before {
+  filter: invert(1);
+}
+
+.mh-dark .mousehuntHud-gameInfo a {
+  color: var(--d-link);
+}
+
+.mh-dark .mousehuntHeaderView .menuItem.new {
+  color: var(--d-black);
+  filter: brightness(1.2);
 }

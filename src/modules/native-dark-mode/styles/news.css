@@ -1,0 +1,11 @@
+.mh-dark .mousehuntHeaderView-newsTicker {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mousehuntHeaderView-newsTicker a {
+  color: var(--d-link);
+}
+
+.mh-dark .mousehuntHeaderView-newsTicker .label {
+  color: var(--d-text);
+}

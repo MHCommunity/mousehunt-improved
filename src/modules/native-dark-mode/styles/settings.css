@@ -74,3 +74,7 @@
   color: var(--d-text-dark);
   background-color: var(--d-yellow);
 }
+
+.mh-dark .mousehuntHud-page-tabContent.game_settings a {
+  color: var(--d-link);
+}

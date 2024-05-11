@@ -77,3 +77,8 @@
   border-color: var(--d-border);
   border-width: 1px;
 }
+
+.mh-dark #overlayPopup.floatingIslandsDialog .jsDialogContainer .content {
+  color: var(--d-text-dark);
+  background-color: transparent;
+}

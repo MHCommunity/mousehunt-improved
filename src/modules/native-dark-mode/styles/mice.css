@@ -62,6 +62,7 @@
 
 .mh-dark .mouseListView-categoryContent-filter-option {
   margin-left: 1px;
+  color: var(--d-link);
   background-color: var(--d);
   border: 1px solid var(--d-border);
 }

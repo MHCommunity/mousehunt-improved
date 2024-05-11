@@ -161,16 +161,6 @@
   color: var(--d-text-muted);
 }
 
-.mh-dark .mousehuntPage-content select,
-.mh-dark .mousehuntPage-content textarea,
-.mh-dark .mousehuntPage-content input,
-.mh-dark #mousehunt-improved-settings-advanced-override-flags input,
-.mh-dark #mousehunt-improved-settings-advanced-override-styles textarea {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-  border-color: var(--d-border);
-}
-
 .mh-dark .campPage-trap-itemBrowser-item-statContainer {
   background-color: transparent;
   box-shadow: none;
@@ -332,7 +322,15 @@
 }
 
 .mh-dark #mh-improved-cre thead {
-  box-shadow: 0 -1px var(--d-border) inset;
+  box-shadow: 0 -1px var(--d-transparent-10) inset;
+}
+
+.mh-dark .mh-improved-cre-data-bad {
+  color: var(--d-red);
+}
+
+.mh-dark .mh-improved-cre-data-good {
+  color: var(--d-green);
 }
 
 .mh-dark .mh-improved-cre-name a {

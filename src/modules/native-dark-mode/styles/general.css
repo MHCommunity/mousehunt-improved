@@ -24,10 +24,21 @@ body.mh-dark {
 .mh-dark .journal .entry .journaltext input.quickSendInput,
 .mh-dark .mousehuntPage-content input.quickSendInput,
 .mh-dark .quickSendInput,
+.mh-dark input.treasureMapView-block-search-text,
 .mh-dark .mh-improved-favorite-setups-component-picker-popup-search input {
   color: var(--d-text);
   background-color: var(--d-bg);
   border: 1px solid var(--d-border);
+}
+
+.mh-dark .mousehuntPage-content select,
+.mh-dark .mousehuntPage-content textarea,
+.mh-dark .mousehuntPage-content input,
+.mh-dark #mousehunt-improved-settings-advanced-override-flags input,
+.mh-dark #mousehunt-improved-settings-advanced-override-styles textarea {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
 }
 
 .mh-dark .huntersHornView__hornImage {
@@ -51,7 +62,11 @@ body.mh-dark {
   color: #000;
 }
 
-.travelPage-map-message {
+.mh-dark .travelPage-map-message {
   top: 375px;
   color: #000;
+}
+
+.mh-dark #mhhh_flash_message_div {
+  color: var(--d-text-dark);
 }

@@ -287,3 +287,20 @@
 .mh-dark .treasureMapPopup-mapInvite .treasureMapInventoryView-scrollCase {
   background-color: transparent;
 }
+
+.mh-dark .treasureMapListingsTableView th {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .treasureMapListingsTableView tbody tr:nth-child(even) {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .treasureMapListingsTableView-mapPreviewButton,
+.mh-dark .treasureMapListingsTableView tbody tr {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-improved-map-listing-last-active {
+  color: var(--d-text-muted);
+}

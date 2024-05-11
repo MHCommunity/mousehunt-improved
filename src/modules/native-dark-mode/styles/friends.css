@@ -31,11 +31,6 @@
   background-color: var(--d);
 }
 
-.mh-dark .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader {
-  border-bottom: none;
-  box-shadow: -1px 1px 1px #a59f8e;
-}
-
 .mh-dark .hunterProfileItemsView-content-padding {
   color: var(--d-text);
   background-color: var(--d-bg);
