@@ -1,16 +1,15 @@
 import {
   addStyles,
+  debounce,
   doRequest,
   getSetting,
-  makeElement,
-  onRequest,
-  onTurn,
-  sessionGet,
-  sessionSet,
-  sessionsDelete
-} from '@utils';
+  sleep,
 
+  makeElement,
+  onRequest
+} from '@utils';
 import styles from './styles.css';
+
 
 const fetchAndFillMouseData = async (mouseId) => {
   if (isLoading) {
@@ -19,25 +18,19 @@ const fetchAndFillMouseData = async (mouseId) => {
 
   isLoading = true;
 
-  let mouse;
+  // Artificial delay to prevent spamming the server when the user is quickly moving the mouse.
+  await sleep(500);
 
-  const cachedMouseData = sessionGet(`better-mice-hover-mice-${mouseId}`, false);
-  if (cachedMouseData) {
-    mouse = cachedMouseData;
-  } else {
-    const mouseDataRequest = await doRequest('managers/ajax/mice/getstat.php', {
-      action: 'get_mice',
-      'mouse_types[]': mouseId,
-    });
+  const mouseDataRequest = await doRequest('managers/ajax/mice/getstat.php', {
+    action: 'get_mice',
+    'mouse_types[]': mouseId,
+  });
 
-    if (! mouseDataRequest?.mice?.length) {
-      return;
-    }
-
-    mouse = mouseDataRequest?.mice[0];
-
-    sessionSet(`better-mice-hover-mice-${mouseId}`, mouse);
+  if (! mouseDataRequest?.mice?.length) {
+    return;
   }
+
+  const mouse = mouseDataRequest?.mice[0];
 
   const mouseData = makeElement('div', 'mouse-data');
   if (mouse.crown && 'none' !== mouse.crown) {
@@ -127,15 +120,15 @@ const main = () => {
     const mouseType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
 
-    link.addEventListener('mouseover', (e) => {
+    link.addEventListener('mouseover', debounce((e) => {
       makeMouseMarkup(mouseType, e);
-    });
+    }));
 
-    link.addEventListener('mouseout', () => {
+    link.addEventListener('mouseout', debounce(() => {
       if (mouseDataWrapper) {
         mouseDataWrapper.remove();
       }
-    });
+    }));
   });
 };
 
@@ -148,10 +141,6 @@ const hoverMice = () => {
   onRequest('*', () => {
     setTimeout(main, 1000);
   });
-
-  onTurn(() => {
-    sessionsDelete('better-mice-hover-mice-');
-  }, 1000);
 };
 
 export default hoverMice;
