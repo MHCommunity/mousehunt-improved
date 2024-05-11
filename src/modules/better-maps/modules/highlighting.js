@@ -124,8 +124,7 @@ const addProfilePicToCurrentFloor = async () => {
 
   const styleElement = document.createElement('style');
   styleElement.id = 'mh-mapper-current-floor-profile-pic';
-  styleElement.innerHTML = `.mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::after,
-  .mouse-subcategory-wrapper.mouse-subcategory-current-floor .mouse-subcategory-header::after {
+  styleElement.innerHTML = `.mouse-category-wrapper.mouse-category-current-floor .mouse-category-header::after {
     background-image: url(${profPic});
   }`;
   document.body.append(styleElement);
