@@ -98,3 +98,8 @@ body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
 .mh-improved-custom-preview-popup-custom-hud .mh-improved-custom-background-gradient-preview .name {
   font-size: 18px;
 }
+
+.mh-improved-custom-hud-preview .mh-improved-custom-bg-action-button,
+.mh-improved-custom-bg-preview .mh-improved-custom-bg-action-button {
+  margin: 0 3px;
+}
