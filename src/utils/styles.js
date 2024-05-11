@@ -131,7 +131,7 @@ const removeStyles = (module = false, identifier = 'mh-improved-styles') => {
  * @param {string|Array} styles CSS to add to the page.
  */
 const addHudStyles = async (styles) => {
-  addStyles(styles, 'mh-improved-styles-location-hud', true);
+  addStyles(styles, 'mh-improved-styles-location-hud');
 };
 
 /**
@@ -163,7 +163,7 @@ const addExternalStyles = async (url) => {
   const style = document.createElement('link');
   style.id = `${identifier}-external`;
   style.rel = 'stylesheet';
-  style.href = `${url}?v=${mhImprovedVersion}-external`;
+  style.href = `${url}?v=${mhImprovedVersion}`;
 
   document.head.append(style);
 

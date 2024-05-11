@@ -174,10 +174,11 @@ const requests = {};
  * @param {string}  url        The url to post to, not including the base url.
  * @param {Object}  formData   The form data to post.
  * @param {boolean} skipChecks Whether to skip the checks for an existing request.
+ * @param {Object}  skipOpts   Options to skip certain form data.
  *
  * @return {Promise} The response.
  */
-const doRequest = async (url, formData = {}, skipChecks = false) => {
+const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) => {
   if (! isLoggedIn()) {
     return;
   }
@@ -236,10 +237,21 @@ const doRequest = async (url, formData = {}, skipChecks = false) => {
 
   // Build the form for the request.
   const form = new FormData();
-  form.append('sn', 'Hitgrab');
-  form.append('hg_is_ajax', 1);
-  form.append('last_read_journal_entry_id', lastReadJournalEntryId ?? 0);
-  form.append('uh', user?.unique_hash ?? '');
+  if (! skipOpts.skipSn) {
+    form.append('sn', 'Hitgrab');
+  }
+
+  if (! skipOpts.skipHgIsAjax) {
+    form.append('hg_is_ajax', 1);
+  }
+
+  if (! skipOpts.skipLastReadJournalEntryId) {
+    form.append('last_read_journal_entry_id', lastReadJournalEntryId ?? 0);
+  }
+
+  if (! skipOpts.skipUh) {
+    form.append('uh', user?.unique_hash ?? '');
+  }
 
   // Add in the passed in form data.
   for (const key in formData) {
@@ -397,7 +409,15 @@ const refreshPage = (delay = 0) => {
   }, delay);
 };
 
-const debounce = (func, delay) => {
+/**
+ * Debounce a function.
+ *
+ * @param {Function} func  The function to debounce.
+ * @param {number}   delay The delay to debounce by.
+ *
+ * @return {Function} The debounced function.
+ */
+const debounce = (func, delay = 100) => {
   let timeout;
   return async (...args) => {
     clearTimeout(timeout);
