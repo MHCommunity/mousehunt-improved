@@ -2,7 +2,6 @@ import {
   addBodyClass,
   addIconToMenu,
   addStyles,
-  getFlag,
   getSetting,
   onActivation,
   onDeactivation,
