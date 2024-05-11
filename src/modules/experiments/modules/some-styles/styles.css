@@ -1,0 +1,38 @@
+.pageFrameView-contentContainer {
+  padding-bottom: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.pageFrameView-content {
+  margin: 0 -10px;
+  background-color: transparent;
+  border: 10px solid #fff;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px 1px #333;
+}
+
+.pageFrameView-column.left,
+.pageFrameView-column.right {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.mousehuntHeaderView {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+#overlayContainer {
+  padding-top: 0;
+}
+/*
+#overlayBg.active {
+  top: 27px;
+}
+
+#messengerUINotification.recede {
+  z-index: 90;
+  margin-top: -2px;
+}
+ */
