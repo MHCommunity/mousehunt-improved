@@ -4,8 +4,10 @@ import {
   dbGetAll,
   dbSet,
   doEvent,
+  getCurrentPage,
   getData,
   makeElement,
+  onNavigation,
   onRequest
 } from '@utils';
 
@@ -134,7 +136,12 @@ const saveToDatabase = async (entry) => {
   await dbSet('journal', journalData);
 };
 
+let perPage;
 const doJournalHistory = async () => {
+  if (! perPage) {
+    perPage = ('journal' === getCurrentPage()) ? 12 : 24;
+  }
+
   if (! pager) {
     const journalPageLink = document.querySelector('.pagerView-nextPageLink.pagerView-link');
     if (! journalPageLink) {
@@ -146,7 +153,7 @@ const doJournalHistory = async () => {
 
   journalEntries = journalEntries.length ? journalEntries : await getAllEntries();
 
-  totalPages = Math.ceil(journalEntries.length / 12);
+  totalPages = Math.ceil(journalEntries.length / perPage);
   pager.setTotalItems(journalEntries.length);
   pager.enable();
   pager.render();
@@ -160,14 +167,29 @@ const doJournalHistoryRequest = () => {
   }
 };
 
+const doDelayedJournalHistory = () => {
+  setTimeout(doJournalHistory, 1000);
+};
+
+const maybeDoJournalHistory = () => {
+  pager = null;
+
+  if ('camp' === getCurrentPage() || 'journal' === getCurrentPage()) {
+    doDelayedJournalHistory();
+  }
+
+  addEvent('ajax_response', doDelayedJournalHistory, { removeAfterFire: true });
+};
+
 let pager;
 let journalEntries = [];
 let miceThumbs = [];
 export default async (enabled) => {
   miceThumbs = await getData('mice-thumbnails');
   if (enabled) {
-    doJournalHistory();
+    doDelayedJournalHistory();
     onRequest('pages/journal.php', doJournalHistoryRequest);
+    onNavigation(maybeDoJournalHistory);
   }
 
   addEvent('journal-entry', saveToDatabase, { weight: 1, id: 'better-journal-history' });
