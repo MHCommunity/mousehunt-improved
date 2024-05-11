@@ -9,7 +9,7 @@ export default async () => {
     return;
   }
 
-  addExternalStyles('https://api.mouse.rip/journal-icons.css');
+  addExternalStyles('https://static.mouse.rip/journal-icons.css');
 
   addStyles([styles, minimalStyles], 'better-journal-icons');
 };

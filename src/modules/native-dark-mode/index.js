@@ -5,7 +5,7 @@ const styles = imported;
 
 const init = async () => {
   addStyles(styles, 'native-dark-mode');
-  addExternalStyles('https://api.mouse.rip/dark-mode-mice-images.css');
+  addExternalStyles('https://static.mouse.rip/dark-mode-mice-images.css');
 
   addBodyClass('mh-dark');
 };
