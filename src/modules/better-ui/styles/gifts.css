@@ -89,3 +89,7 @@
 #overlayPopup.dailyRewardPopup .closed .status {
   filter: opacity(0.5);
 }
+
+#giftSelectorView-inbox {
+  margin-top: -7px;
+}
