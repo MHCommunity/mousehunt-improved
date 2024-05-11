@@ -1,4 +1,4 @@
-import gradients from '../gradients.json';
+import gradients from '@data/backgrounds.json';
 
 /**
  * Add settings for the module.
@@ -39,7 +39,7 @@ export default async () => {
       ],
     },
     {
-      name: 'Gradients',
+      name: 'Other',
       value: 'group',
       options: gradientOptions,
     },
@@ -47,7 +47,7 @@ export default async () => {
 
   return [{
     id: 'custom-background',
-    title: 'Custom Background <a class="mh-improved-custom-bg-preview hidden">Preview</a>',
+    title: 'Custom Background <a class="mh-improved-custom-bg-preview hidden">Preview choices</a>',
     default: [options[0]],
     description: 'Change the background to an event background, a color, or a gradient.',
     settings: {

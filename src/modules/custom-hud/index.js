@@ -2,10 +2,7 @@ import { getSetting, onNavigation } from '@utils';
 
 import settings from './settings';
 
-import blueprint from './styles/blueprint.css';
-import groovyGreen from './styles/groovy-green.css';
-import midnight from './styles/midnight.css';
-import suede from './styles/suede.css';
+import gradients from '@data/backgrounds.json';
 
 const addStyleEl = () => {
   const setting = getSetting('custom-hud-0', 'default');
@@ -19,19 +16,17 @@ const addStyleEl = () => {
     return;
   }
 
-  const mapping = {
-    'hud-blueprint': blueprint,
-    'hud-suede': suede,
-    'hud-groovy-green': groovyGreen,
-    'hud-midnight': midnight,
-  };
-
   const styleEl = document.createElement('style');
   styleEl.id = 'mh-improved-custom-hud-style';
 
   // eslint-disable-next-line unicorn/prefer-ternary
-  if (mapping[setting]) {
-    styleEl.innerHTML = mapping[setting];
+  const gradient = gradients.find((g) => g.id === setting);
+  if (gradient) {
+    console.log(gradient);
+
+    styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
+      background: url(https://i.mouse.rip/mousehuntHudPedestal.png) -46px 0 no-repeat, url(https://i.mouse.rip/mousehuntHudPedestal.png) 731px 0 no-repeat, ${gradient.css};
+    }`;
   } else {
     styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
       background: url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat, url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat, url(https://i.mouse.rip/mh-improved/marble-shadow.png) 6px 0 no-repeat, url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;

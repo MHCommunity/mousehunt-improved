@@ -1,6 +1,6 @@
 import { addStyles, createPopup, getSetting, onNavigation } from '@utils';
 
-import gradients from './gradients.json';
+import gradients from '@data/backgrounds.json';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -99,7 +99,23 @@ const listenForPreferenceChanges = () => {
 };
 
 const addPreview = () => {
-  const previewLink = document.querySelector('.mh-improved-custom-bg-preview');
+  addPreviewCallback({
+    id: 'custom-background',
+    selector: '.mh-improved-custom-bg-preview',
+    input: '#mousehunt-improved-settings-design-custom-background select',
+    previewCallback: (selected) => addBodyClass(selected),
+  });
+
+  addPreviewCallback({
+    id: 'custom-hud',
+    selector: '.mh-improved-custom-hud-preview',
+    input: '#mousehunt-improved-settings-design-custom-hud select',
+    preview: false
+  });
+};
+
+const addPreviewCallback = ({ id, selector, inputSelector, preview = true, previewCallback = () => {} }) => {
+  const previewLink = document.querySelector(selector);
   if (! previewLink) {
     return;
   }
@@ -112,16 +128,19 @@ const addPreview = () => {
     gradients.forEach((gradient) => {
       content += `<div class="gradient" style="background: ${gradient.css}">
         <div class="name">${gradient.name}</div>
-        <div class="controls">
-          <div class="mousehuntActionButton lightBlue mh-improved-custom-bg-action-button" data-gradient="${gradient.id}" data-action="preview"><span>Preview</span></div>
-          <div class="mousehuntActionButton mh-improved-custom-bg-action-button" data-gradient="${gradient.id}" data-action="use"><span>Use</span></div>
+        <div class="controls">`;
+      if (preview) {
+        content += `<div class="mousehuntActionButton lightBlue mh-improved-custom-bg-action-button" data-gradient="${gradient.id}" data-action="preview"><span>Preview</span></div>`;
+      }
+
+      content += `<div class="mousehuntActionButton mh-improved-custom-bg-action-button ${preview ? 'normal' : 'small'}" data-gradient="${gradient.id}" data-action="use"><span>Use</span></div>
           </div>
       </div>`;
     });
 
     const popup = createPopup({
       title: '',
-      className: 'mh-improved-custom-background-gradient-preview-popup',
+      className: `mh-improved-custom-background-gradient-preview-popup mh-improved-custom-preview-popup-${id}`,
       content: `<div class="mh-improved-custom-background-gradient-preview">${content}</div>`,
       show: false,
     });
@@ -137,9 +156,9 @@ const addPreview = () => {
         evt.preventDefault();
 
         if ('preview' === actionType) {
-          addBodyClass(gradient);
+          previewCallback(gradient);
         } else if ('use' === actionType) {
-          const input = document.querySelector('#mousehunt-improved-settings-design-custom-background select');
+          const input = document.querySelector(inputSelector);
           if (input) {
             input.value = gradient;
             input.dispatchEvent(new Event('change'));

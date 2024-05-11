@@ -46,10 +46,12 @@ body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
   filter: sepia(1);
 }
 
+#mousehunt-improved-settings-feature-custom-hud .PagePreferences__settingLabel,
 #mousehunt-improved-settings-feature-custom-background .PagePreferences__settingLabel {
   position: relative;
 }
 
+.mh-improved-custom-hud-preview,
 .mh-improved-custom-bg-preview {
   position: absolute;
   top: 0;
@@ -87,4 +89,12 @@ body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
   font-weight: 900;
   color: #fff;
   text-shadow: 0 1px 2px #000;
+}
+
+.mh-improved-custom-preview-popup-custom-hud .mh-improved-custom-background-gradient-preview .gradient {
+  height: 55px;
+}
+
+.mh-improved-custom-preview-popup-custom-hud .mh-improved-custom-background-gradient-preview .name {
+  font-size: 18px;
 }
