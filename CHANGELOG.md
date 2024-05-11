@@ -1,5 +1,30 @@
 # Changelog
 
+## Version 0.44.0
+
+### Added
+
+- Added 45 new Custom HUDs options
+- Added 7 new Custom Backgrounds options
+- Added a 'Better UI: Beta Styles' experiment to test new styles
+
+### Changed
+
+- Updated Native Dark Mode styles
+- Updated Journal Privacy Module to use blur with a setting for using transparency
+- Removed triggering horn when clicking 'Resume' after a King's Reward
+- Updated various styles
+- Miscellaneous improvements
+
+### Fixed
+
+- Fixed issues with Journal History not consistently loading
+- Fixed conflict between Open All But One and Only Open Multiple
+- Fixed an issue with some MHC links not working
+- Fixed issues with mobile camp view
+- Fixed issues with base quantity counter modules not showing correctly
+- Various other bug fixes
+
 ## Version 0.43.3
 
 - Fixed Clear Cached Data button refreshing before clearing
