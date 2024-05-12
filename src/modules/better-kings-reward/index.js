@@ -23,6 +23,15 @@ const startKingsReward = () => {
   }, 500);
 };
 
+const continueOnKingsReward = (req) => {
+  if (req.success && req.puzzle_reward) {
+    const resume = document.querySelector('.puzzleView__resumeButton');
+    if (resume) {
+      resume.click();
+    }
+  }
+};
+
 /**
  * Initialize the module.
  */
@@ -30,6 +39,7 @@ const init = async () => {
   addStyles(styles, 'better-kings-reward');
 
   onRequest('turns/activeturn.php', initiateKingsReward, true);
+  onRequest('users/puzzle.php', continueOnKingsReward, true);
 
   onRequest('*', startKingsReward);
   startKingsReward();
