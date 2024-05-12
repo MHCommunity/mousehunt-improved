@@ -439,10 +439,12 @@ const addHideStyles = (items) => {
 };
 
 const hideItemsInTrapBrowser = () => {
-  const hideItemsStyles = itemSettings.hidden.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
+  if (itemSettings?.hidden && itemSettings.hidden.length > 0) {
+    const hideItemsStyles = itemSettings.hidden.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
 
-  // Add styles to hide tags and items
-  addStyles(`${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
+    // Add styles to hide tags and items
+    addStyles(`${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
+  }
 };
 
 const main = async () => {

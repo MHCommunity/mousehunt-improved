@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.44.2
+
+- Fixes Inventory Lock and Hide displaying an error
+
 ## Version 0.44.1
 
 - Minor background fixes
