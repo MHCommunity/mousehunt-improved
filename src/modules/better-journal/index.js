@@ -29,7 +29,7 @@ const init = async () => {
     goldAndPoints: getSetting('better-journal.gold-and-points', true),
     itemColors: getSetting('better-journal.item-colors', true),
     progressLog: getSetting('better-journal.progress-log', true),
-    history: getSetting('better-journal.history', true),
+    history: getSetting('better-journal.journal-history', true),
   };
 
   if (enabled.styles) {

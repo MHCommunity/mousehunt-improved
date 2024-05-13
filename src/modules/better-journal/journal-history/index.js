@@ -138,6 +138,10 @@ const saveToDatabase = async (entry) => {
 
 let perPage;
 const doJournalHistory = async () => {
+  if (! ('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
+    return;
+  }
+
   if (! perPage) {
     perPage = ('journal' === getCurrentPage()) ? 12 : 24;
   }
