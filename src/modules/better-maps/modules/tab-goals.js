@@ -12,12 +12,12 @@ import {
 import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';
 
-const getLinkMarkup = (name) => {
+const getLinkMarkup = (name, mouseType) => {
   name = name.replaceAll(' ', '_');
 
   const nameMouse = `${name}_Mouse`.replaceAll('_Mouse_Mouse', '_Mouse');
 
-  return makeLink('MHCT AR', `https://www.mhct.win/attractions.php?mouse=${name}`, true) +
+  return makeLink('MHCT AR', `https://api.mouse.rip/mhct-redirect/${mouseType}`) +
     makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${nameMouse}`) +
     makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${nameMouse}`);
 };
@@ -94,7 +94,7 @@ const addMouseLinksToMap = async () => {
       if ('mouse' === type) {
         const div = makeElement('div', 'mh-ui-mouse-links-map');
         div.id = `mh-ui-mouse-links-map-${mouseType}-${type}`;
-        div.innerHTML = getLinkMarkup(title.innerText);
+        div.innerHTML = getLinkMarkup(title.innerText, mouseType);
 
         const envs = document.querySelector('.treasureMapView-highlight-environments');
         if (envs) {
