@@ -20,6 +20,7 @@ const validDataFiles = new Set([
   'ultimate-checkmark',
   'upscaled-images',
   'wisdom',
+  'items',
 ]);
 
 /**
