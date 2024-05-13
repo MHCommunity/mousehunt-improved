@@ -1,48 +1,11 @@
 {
-  "summary": "This release adds a ton of new options for customizing your HUD and background, lots of Native Dark Mode updates, and tons of bug fixes and improvements.",
+  "summary": "",
   "details": [
     {
-      "title": "Added",
+      "title": "",
       "items": [
-        "Added 45 new Custom HUDs options",
-        "Added 7 new Custom Backgrounds options",
-        "Added a 'Better UI: Beta Styles' experiment to test new styles"
-      ]
-    },
-    {
-      "title": "Changed",
-      "items": [
-        "Updated Native Dark Mode styles",
-        "Updated Journal Privacy Module to use blur with a setting for using transparency",
-        "Removed triggering horn when clicking 'Resume' after a King's Reward",
-        "Updated various styles",
-        "Miscellaneous improvements"
-      ]
-    },
-    {
-      "title": "Fixed",
-      "items": [
-        "Fixed issues with Journal History not consistently loading",
-        "Fixed conflict between Open All But One and Only Open Multiple",
-        "Fixed an issue with some MHC links not working",
-        "Fixed issues with mobile camp view",
-        "Fixed issues with base quantity counter modules not showing correctly",
-        "Various other bug fixes"
-      ]
-    },
-    {
-      "title": "Changes",
-      "items": [
-        "Miscellaneous style changes",
-        "Fixed Prelude map grouping",
-        "Fixed Hidden Depths length offset in Icerberg Location HUD",
-        "Fixed title percent being truncated in Legacy HUD",
-        "Fixed trap skin images not showing when equipping",
-        "Fixed Favorite Setups slow loading and editing",
-        "Fixed mouse and item MHCT link destinations",
-        "Fixed localized tournament times not correctly displaying",
-        "Fixed Bountiful Beanstalk Location HUD not showing the correct crafting amounts",
-        "Fixed Clear Cached Data button refreshing before clearing"
+        "Fixed errors in Journal History saving/loading",
+        "Fixed 'Show available mice in sidebar' setting not working"
       ]
     }
   ]

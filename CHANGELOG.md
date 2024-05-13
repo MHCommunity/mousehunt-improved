@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.44.3
+
+- Fixed errors in Journal History saving/loading
+- Fixed 'Show available mice in sidebar' setting not working
+
 ## Version 0.44.2
 
 - Fixed Inventory Lock and Hide displaying an error
