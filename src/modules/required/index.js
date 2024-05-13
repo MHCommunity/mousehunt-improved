@@ -67,7 +67,7 @@ const addEvents = () => {
 
 let isJournalProcessing = false;
 const processEntries = async () => {
-  if (! ('camp' === getCurrentPage() || 'hunterprofile' === getCurrentPage() || 'journal' === getCurrentPage())) {
+  if (! ('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
     return;
   }
 
