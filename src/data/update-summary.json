@@ -2,8 +2,9 @@
   "summary": "",
   "details": [
     {
-      "title": "",
+      "title": "Changes",
       "items": [
+        "Fixed Journal History saving other hunter's journals",
         "Fixed errors in Journal History saving/loading",
         "Fixed 'Show available mice in sidebar' setting not working"
       ]

@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.44.4
+
+- Fixed Journal History saving other hunter's journals
+
 ## Version 0.44.3
 
 - Fixed errors in Journal History saving/loading
