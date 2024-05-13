@@ -136,15 +136,13 @@ const saveToDatabase = async (entry) => {
   await dbSet('journal', journalData);
 };
 
-let perPage;
 const doJournalHistory = async () => {
-  if (! ('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
+  if ('camp' !== getCurrentPage()) {
     return;
   }
 
-  if (! perPage) {
-    perPage = ('journal' === getCurrentPage()) ? 12 : 24;
-  }
+  const perPage = ('journal' === getCurrentPage()) ? 24 : 12;
+  const defaultPages = ('journal' === getCurrentPage()) ? 3 : 6;
 
   if (! pager) {
     const journalPageLink = document.querySelector('.pagerView-nextPageLink.pagerView-link');
@@ -158,7 +156,12 @@ const doJournalHistory = async () => {
   journalEntries = journalEntries.length ? journalEntries : await getAllEntries();
 
   totalPages = Math.ceil(journalEntries.length / perPage);
-  pager.setTotalItems(journalEntries.length);
+  totalPages = totalPages <= defaultPages ? defaultPages : totalPages;
+  if (totalPages < 6) {
+    return;
+  }
+
+  pager.setTotalItems(totalPages * perPage);
   pager.enable();
   pager.render();
 };
@@ -166,23 +169,32 @@ const doJournalHistory = async () => {
 const doJournalHistoryRequest = () => {
   doJournalHistory();
 
+  console.log('pager', pager); // eslint-disable-line no-console
+  if (! pager) {
+    doJournalHistory();
+  }
+
+  if (! pager) {
+    return;
+  }
+
   if (pager.getCurrentPage() > 6) {
     doPageStuff(pager.getCurrentPage());
   }
 };
 
 const doDelayedJournalHistory = () => {
+  setTimeout(doJournalHistory, 500);
   setTimeout(doJournalHistory, 1000);
 };
 
 const maybeDoJournalHistory = () => {
   pager = null;
 
-  if ('camp' === getCurrentPage() || 'journal' === getCurrentPage()) {
+  if ('camp' === getCurrentPage()) {
     doDelayedJournalHistory();
+    addEvent('ajax_response', doDelayedJournalHistory, { removeAfterFire: true });
   }
-
-  addEvent('ajax_response', doDelayedJournalHistory, { removeAfterFire: true });
 };
 
 let pager;
