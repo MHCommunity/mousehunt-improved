@@ -29,11 +29,11 @@
 }
 
 .folkloreForestRegionView-dialogContainer {
-  box-shadow: 10px 10px 4px 1px #000333 inset; /* was #00033 */
+  box-shadow: 10px 10px 4px 1px rgb(0 0 0 / 20%) inset; /* was #00033 */
 }
 
 .folkloreForestRegionView-boost {
-  box-shadow: 2px 2px 2px #333111; /* was #33311 */
+  box-shadow: 2px 2px 2px rgb(51 51 51 / 7%); /* was #33311 */
 }
 
 .MHCheckout-featuredItemTransparent.small .MHCheckout-featuredItemTransparent-backlight {

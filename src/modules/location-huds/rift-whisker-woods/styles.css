@@ -179,3 +179,21 @@ span.riftWhiskerWoodsHUD-zone-rageMax {
   color: #ffb4b4;
   background-color: #992023;
 }
+
+@keyframes mhui-glow-eyes {
+  0% {
+    filter: saturate(1);
+  }
+
+  40% {
+    filter: saturate(2.5);
+  }
+
+  100% {
+    filter: saturate(1);
+  }
+}
+
+.riftWhiskerWoodsHUD.boss_bait .riftWhiskerWoodsHUD-boss {
+  animation: mhui-glow-eyes 30s ease-in-out infinite;
+}

@@ -119,7 +119,7 @@ a.moussuPicchuHUD-footer-item-action.mousehuntArmNowButton {
 .moussuPicchuHUD-powerType.wind.active,
 .moussuPicchuHUD-powerType.rain,
 .moussuPicchuHUD-powerType.rain.active {
-  filter: hue-rotate(90deg) opacity(0.6);
+  filter: hue-rotate(60deg) opacity(0.8);
   background-position: center;
   box-shadow: none;
 }
@@ -138,10 +138,50 @@ a.moussuPicchuHUD-footer-item-action.mousehuntArmNowButton {
   filter: opacity(0.8);
 }
 
+a.moussuPicchuHUD-powerType {
+  transition: transform 0.2s ease-out;
+  transform: scale(1.2);
+}
+
 a.moussuPicchuHUD-powerType:hover {
   transform: scale(1.5);
 }
 
-a.moussuPicchuHUD-powerType {
-  transition: transform 0.2s ease-out;
+.moussuPicchuHUD-element-status.max {
+  filter: hue-rotate(50deg);
+}
+
+.moussuPicchuHUD {
+  border-radius: 10px 10px 5px 5px;
+  box-shadow:
+    inset -10px 5px 0 0 #2c181a,
+    inset 10px 5px 0 1px #2c181a,
+    inset -10px 5px 0 0 #2c181a,
+    0 13px 0 0 #2c181a,
+    0 -3px 0 0 #2c181a;
+}
+
+.moussuPicchuHUD .mousehuntItem.potion .mousehuntItem-image,
+.moussuPicchuHUD .mousehuntItem-image {
+  margin-top: -2px;
+  background-color: #783642;
+  border: none;
+  box-shadow: none;
+}
+
+.moussuPicchuHUD .mousehuntItem-image::after {
+  inset: -1px;
+}
+
+.moussuPicchuHUD .mousehuntItem.crafting_item .mousehuntItem-image,
+.moussuPicchuHUD .mousehuntItem.potion .mousehuntItem-image {
+  width: 33px;
+  height: 33px;
+  margin-top: -3px;
+  background-position: center;
+  background-size: 30px;
+}
+
+.moussuPicchuHUD .mousehuntItem.active .mousehuntItem-quantity.quantity {
+  background-color: #9ee184;
 }

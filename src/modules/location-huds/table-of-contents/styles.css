@@ -194,3 +194,51 @@ a.tableOfContentsProgressView-claimButton.reveal {
     0 0 0 4px #48762a,
     inset 0 -1px 3px 1px #d7a086;
 }
+
+.tableOfContentsView-wordMeterContainer {
+  margin-right: -15px;
+}
+
+.tableOfContentsView-wordMeter-label {
+  width: 50px;
+}
+
+.folkloreForestRegionView-baitTOCCraftableContainer .folkloreForestRegionView-bait-image {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 40px;
+  height: 40px;
+}
+
+.folkloreForestRegionView-bait-image:hover {
+  background-size: 100%;
+  transform: scale(1.2);
+}
+
+a.folkloreForestRegionView-bait-image {
+  transition: 0.2s ease-in;
+}
+
+.folkloreForestRegionView-bait-range {
+  padding-top: 5px;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.folkloreForestRegionView-baitTOCCraftableContainer .mousehuntTooltip {
+  right: -40px;
+  left: -40px;
+  text-align: center;
+}
+
+.folkloreForestRegionView-baitTOCCraftableContainer[data-item-type="thousandth_draft_derby_cheese"] .mousehuntTooltip {
+  right: -55px;
+  left: -55px;
+}
+
+.folkloreForestRegionView-baitTOCCraftableContainer .mousehuntTooltip b {
+  font-size: 12px;
+  line-height: 18px;
+}

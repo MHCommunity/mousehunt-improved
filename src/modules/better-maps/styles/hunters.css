@@ -167,3 +167,7 @@ span.treasureMapView-shareLinkInputStatus {
   padding-top: 20px;
   margin-top: -10px;
 }
+
+.mh-mapper-invite-request-action {
+  padding: 0 10px;
+}

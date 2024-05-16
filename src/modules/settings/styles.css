@@ -20,6 +20,7 @@
 
 .mousehunt-improved-settings .PagePreferences__settingNameText {
   color: #000;
+  cursor: default;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingNameText:hover {
