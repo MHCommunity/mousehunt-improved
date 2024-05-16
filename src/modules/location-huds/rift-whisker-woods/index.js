@@ -21,7 +21,7 @@ const showTauntingWarning = () => {
   // clone the existing warning
   const warning = baitWarning.cloneNode(true);
   warning.classList.add('mhui-taunting-warning', 'active');
-  warning.innerHTML = 'You don\'t have a Taunting Charm equipped! You will reset your rage!';
+  warning.innerHTML = 'You don\'t have a Taunting Charm equipped! You may reset your rage!';
 
   const warningClose = makeElement('div', 'mhui-taunting-warning-close');
   warningClose.innerHTML = '×';
@@ -42,18 +42,21 @@ const checkAndWarnWhenNoTauntingCharm = () => {
     return;
   }
 
-  const rage = {
-    clearing: user.quests?.QuestRiftWhiskerWoods?.zones?.clearing?.level || 0,
-    lagoon: user.quests?.QuestRiftWhiskerWoods?.zones?.lagoon?.level || 0,
-    tree: user.quests?.QuestRiftWhiskerWoods?.zones?.tree?.level || 0,
-  };
+  const rage = [
+    user.quests?.QuestRiftWhiskerWoods?.zones?.clearing?.level || 0,
+    user.quests?.QuestRiftWhiskerWoods?.zones?.lagoon?.level || 0,
+    user.quests?.QuestRiftWhiskerWoods?.zones?.tree?.level || 0,
+  ];
+
+  const rage48 = rage.filter((val) => val >= 48).length;
+  const rage49 = rage.filter((val) => val >= 49).length;
+  const rage50 = rage.filter((val) => val >= 50).length;
 
   if (
-    rage.clearing > 48 ||
-    rage.lagoon > 48 ||
-    rage.tree > 48 ||
-    // eslint-disable-next-line eqeqeq
-    '1646' == user.bait_item_id // LLC
+    rage48 === 3 || // If all 3 are 48.
+    rage49 === 2 || // If 2 are 49.
+    rage50 === 1 || // If 1 is 50.
+    user.bait_item_id == '1646' // eslint-disable-line eqeqeq
   ) {
     showTauntingWarning();
   }
