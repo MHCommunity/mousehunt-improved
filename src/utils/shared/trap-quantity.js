@@ -197,12 +197,16 @@ const addTrapQuantity = async (opts) => {
 
   options.push(opts);
 
-  onRequest('users/changetrap.php', onChangeTrap);
+  onRequest('users/changetrap.php', () => {
+    onChangeTrap();
+    addQuantityToDisplay();
+    setTimeout(addQuantityToDisplay, 250);
+  });
   onEvent('camp_page_toggle_blueprint', async (tab) => addQtyToTrapBrowser(tab));
 
   addQuantityToDisplay();
   onNavigation(addQuantityToDisplay, { page: 'camp' });
-  onTurn(addQuantityToDisplay, 150);
+  onTurn(addQuantityToDisplay, 250);
 };
 
 export {
