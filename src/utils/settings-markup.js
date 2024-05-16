@@ -134,7 +134,6 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
  *
  * @return {Object} The setting.
  */
-// const addSetting = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settings = null) => {
 const addSetting = (options) => {
   onNavigation(() => addSettingOnce(options), {
     page: 'preferences',

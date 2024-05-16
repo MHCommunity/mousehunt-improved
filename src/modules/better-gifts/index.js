@@ -80,10 +80,7 @@ const claimGifts = async (send = false, retries = 0) => {
   });
 
   for (const gift of gifts) {
-    let verb = send ? 'return' : 'claim';
-    if (send && sendLimit > 0 && gift.is_returnable) {
-      verb = 'return';
-    }
+    const verb = send && sendLimit > 0 && gift.is_returnable ? 'return' : 'claim';
 
     const giftEl = document.querySelector(`.giftSelectorView-friendRow[data-gift-id="${gift.gift_id}"] .giftSelectorView-friendRow-action.${verb}`);
     if (! giftEl) {
@@ -249,9 +246,7 @@ const makeButtons = () => {
  */
 const getLimit = () => {
   const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
-  limit = limitEl ? Number.parseInt(limitEl.innerText, 10) : 0;
-
-  return limit;
+  return limitEl ? Number.parseInt(limitEl.innerText, 10) : 0;
 };
 
 /**
@@ -323,8 +318,7 @@ const addSendButton = (className, text, selector, buttonContainer) => {
   const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons', `mh-gift-buttons-send-${className}`]);
   makeElement('span', 'mousehuntActionButton-text', text, sendButton);
 
-  const limit = getLimit();
-  if (limit && limit < 1) {
+  if (getLimit() < 1) {
     sendButton.classList.add('disabled');
   }
 

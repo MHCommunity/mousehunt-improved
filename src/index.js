@@ -53,9 +53,7 @@ const loadModules = async () => {
       return;
     }
 
-    if (! category.modules) {
-      category.modules = [];
-    }
+    category.modules = category.modules || [];
 
     category.modules.push(m);
   });

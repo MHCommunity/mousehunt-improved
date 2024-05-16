@@ -117,22 +117,19 @@ const addJournalProcessingEvents = async () => {
 const addDialogListeners = () => {
   let currentDialog = null;
   onEvent('js_dialog_hide', () => {
-    console.log('dialog-hide', `dialog-hide-${currentDialog}`); // eslint-disable-line no-console
     doEvent('dialog-hide', currentDialog);
     doEvent(`dialog-hide-${currentDialog}`);
   });
 
   onDialogShow('all', () => {
     currentDialog = getCurrentDialog();
-    console.log('dialog-show', `dialog-show-${currentDialog}`); // eslint-disable-line no-console
     doEvent('dialog-show', currentDialog);
     doEvent(`dialog-show-${currentDialog}`);
   });
 };
 
 const checkForMHCT = () => {
-  const hasMhct = document.querySelector('#mhhh_version');
-  console.log(hasMhct ? 'MHCT is installed' : 'MHCT is not installed'); // eslint-disable-line no-console
+  return document.querySelector('#mhhh_version');
   // todo: add a popup to inform the user that they should install MHCT.
 };
 
