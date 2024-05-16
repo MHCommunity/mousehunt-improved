@@ -249,3 +249,7 @@ input.itemView-action-convert-quantity {
   gap: 20px;
   width: 100%;
 }
+
+.itemView-obtainHint {
+  margin-left: 190px;
+}
