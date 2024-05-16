@@ -79,7 +79,7 @@ const openTravelWindow = async () => {
 
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());
 
-  const locationsToRemove = ['forbidden_grove'];
+  const locationsToRemove = ['acolyte_realm'];
 
   environments = environments.map((env) => {
     if (! isUserTitleAtLeast(env.title)) {
