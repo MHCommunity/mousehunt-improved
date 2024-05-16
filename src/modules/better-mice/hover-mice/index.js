@@ -1,34 +1,25 @@
 import {
   addStyles,
-  debounce,
   doRequest,
-  getSetting,
   makeElement,
   onRequest,
-  sleep
+  onTurn
 } from '@utils';
 import styles from './styles.css';
 
-const fetchAndFillMouseData = async (mouseId) => {
-  if (isLoading) {
-    return;
-  }
-
-  isLoading = true;
-
-  // Artificial delay to prevent spamming the server when the user is quickly moving the mouse.
-  await sleep(500);
-
+const fetchMouseData = async (mouseId) => {
   const mouseDataRequest = await doRequest('managers/ajax/mice/getstat.php', {
     action: 'get_mice',
     'mouse_types[]': mouseId,
   });
 
-  if (! mouseDataRequest?.mice?.length) {
+  return mouseDataRequest?.mice?.[0];
+};
+
+const makeMouseMarkup = (mouse) => {
+  if (! mouse) {
     return;
   }
-
-  const mouse = mouseDataRequest?.mice[0];
 
   const mouseData = makeElement('div', 'mouse-data');
   if (mouse.crown && 'none' !== mouse.crown) {
@@ -36,46 +27,46 @@ const fetchAndFillMouseData = async (mouseId) => {
   }
 
   const mouseImage = makeElement('img', 'mouse-image');
-  mouseImage.src = mouse.square;
+  if (mouse.square) {
+    mouseImage.src = mouse.square;
+  }
   mouseData.append(mouseImage);
 
   const mouseText = makeElement('div', 'mouse-text');
-  makeElement('div', 'mouse-name', mouse.name, mouseText);
+
+  if (mouse.name) {
+    makeElement('div', 'mouse-name', mouse.name, mouseText);
+  }
 
   const catchStats = makeElement('div', 'mouse-catch-stats');
+
   const catches = makeElement('div', 'mouse-catches');
   makeElement('span', '', 'Catches: ', catches);
-  makeElement('span', '', mouse.num_catches_formatted, catches);
+  makeElement('span', '', mouse.num_catches_formatted || 0, catches);
   catchStats.append(catches);
 
   const avgWeight = makeElement('div', 'mouse-avg-weight');
   makeElement('span', '', 'Avg: ', avgWeight);
-  makeElement('span', '', mouse.avg_weight, avgWeight);
+  makeElement('span', '', mouse.avg_weight || '0z', avgWeight);
   catchStats.append(avgWeight);
 
   const misses = makeElement('div', 'mouse-misses');
   makeElement('span', '', 'Misses: ', misses);
-  makeElement('span', '', mouse.num_misses_formatted, misses);
+  makeElement('span', '', mouse.num_misses_formatted || 0, misses);
   catchStats.append(misses);
 
   const heaviest = makeElement('div', 'mouse-heaviest');
   makeElement('span', '', 'Heaviest: ', heaviest);
-  makeElement('span', '', mouse.heaviest_catch, heaviest);
+  makeElement('span', '', mouse.heaviest_catch || '0z', heaviest);
   catchStats.append(heaviest);
 
   mouseText.append(catchStats);
-
   mouseData.append(mouseText);
 
-  mouseDataWrapper.innerHTML = mouseData.outerHTML;
-
-  isLoading = false;
+  return mouseData;
 };
 
-let debugPopup = false;
-let mouseDataWrapper;
-let isLoading = false;
-const makeMouseMarkup = async (mouseId, e) => {
+const makeLoadingMarkup = (e) => {
   if (mouseDataWrapper) {
     mouseDataWrapper.remove();
   }
@@ -84,9 +75,8 @@ const makeMouseMarkup = async (mouseId, e) => {
   mouseDataWrapper.id = 'mouse-data-wrapper';
   mouseDataWrapper.innerHTML = '<span class="mouse-data-wrapper-loading">Loading...</span>';
 
-  fetchAndFillMouseData(mouseId);
-
   document.body.append(mouseDataWrapper);
+
   const rect = e.target.getBoundingClientRect();
   const top = rect.top + window.scrollY;
   const left = rect.left + window.scrollX;
@@ -99,15 +89,27 @@ const makeMouseMarkup = async (mouseId, e) => {
   mouseDataWrapper.style.top = `${tooltipTop}px`;
   mouseDataWrapper.style.left = `${left - (mouseDataWrapper.offsetWidth / 2) + (rect.width / 2)}px`;
 
-  if (e.target && ! debugPopup) {
-    e.target.addEventListener('mouseleave', () => {
-      if (mouseDataWrapper) {
-        mouseDataWrapper.remove();
-      }
-    });
-  }
+  return mouseDataWrapper;
 };
 
+const getMouseData = async (mouseType) => {
+  let mouse;
+  if (cachedMouseData[mouseType]) {
+    mouse = cachedMouseData[mouseType];
+  } else {
+    mouse = await fetchMouseData(mouseType);
+    cachedMouseData[mouseType] = mouse;
+
+    setTimeout(() => {
+      delete cachedMouseData[mouseType];
+    }, 60 * 1000);
+  }
+
+  return mouse;
+};
+
+let mouseDataWrapper;
+let cachedMouseData = {};
 const main = () => {
   const miceLinks = document.querySelectorAll('.journal .content .entry .journaltext a[onclick*="MouseView.show"]');
   if (! miceLinks) {
@@ -118,27 +120,53 @@ const main = () => {
     const mouseType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
 
-    link.addEventListener('mouseover', debounce((e) => {
-      makeMouseMarkup(mouseType, e);
-    }));
+    let timeoutId = null;
+    let isMouseOver = false;
 
-    link.addEventListener('mouseout', debounce(() => {
+    link.addEventListener('mouseenter', async (e) => {
+      isMouseOver = true;
+
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      timeoutId = setTimeout(async () => {
+        if (! isMouseOver) {
+          return;
+        }
+
+        makeLoadingMarkup(e);
+        const mouseData = await getMouseData(mouseType);
+        if (mouseData && mouseDataWrapper && isMouseOver) {
+          const markup = makeMouseMarkup(mouseData);
+          mouseDataWrapper.innerHTML = markup.outerHTML;
+        }
+      }, 500);
+    });
+
+    link.addEventListener('mouseleave', () => {
+      isMouseOver = false;
+
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
       if (mouseDataWrapper) {
         mouseDataWrapper.remove();
       }
-    }));
+    });
   });
 };
 
 const hoverMice = () => {
   addStyles(styles, 'better-mice-hover-mice');
 
-  debugPopup = getSetting('debug.hover-popups', false);
-
   setTimeout(main, 500);
   onRequest('*', () => {
     setTimeout(main, 1000);
   });
+
+  onTurn(() => cachedMouseData = {});
 };
 
 export default hoverMice;
