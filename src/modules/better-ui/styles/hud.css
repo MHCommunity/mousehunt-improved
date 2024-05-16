@@ -91,3 +91,7 @@
   height: 27px;
   background-size: 26px;
 }
+
+.mousehuntHud-menu .free_gifts .icon {
+  background-image: url(https://i.mouse.rip/icons/gift.png);
+}

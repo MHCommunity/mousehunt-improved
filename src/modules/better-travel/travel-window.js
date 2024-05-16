@@ -272,7 +272,7 @@ const makeMenuItem = () => {
     id: 'mh-improved-travel-window',
     menu: 'travel',
     label: 'Travel Window',
-    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/special.png',
+    icon: 'https://i.mouse.rip/icons/tiles.png',
     callback: () => {
       openTravelWindow();
     },

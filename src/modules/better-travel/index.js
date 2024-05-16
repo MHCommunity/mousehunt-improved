@@ -333,7 +333,7 @@ const addToTravelDropdown = async () => {
     addSubmenuItem({
       menu: 'travel',
       label: `Back to ${previousLocation.name}`,
-      icon: 'https://www.mousehuntgame.com/images/ui/puzzle/refresh.png',
+      icon: 'https://i.mouse.rip/icons/back.png',
       callback: goToPreviousLocation,
       class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-previous-location',
     });
