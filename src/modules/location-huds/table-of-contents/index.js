@@ -1,5 +1,6 @@
 import { addHudStyles, onRequest, onTurn } from '@utils';
 import folkloreForest from '../shared/folklore-forest';
+import keepInventoryToggled from '../shared/folklore-forest/keep-inventory-open';
 
 import regionStyles from '../shared/folklore-forest/styles.css';
 import styles from './styles.css';
@@ -44,5 +45,13 @@ export default async () => {
     updateNextWordCount();
     setTimeout(updateNextWordCount, 500);
     setTimeout(updateNextWordCount, 1000);
+  });
+
+  keepInventoryToggled({
+    setting: 'location-huds.table-of-contents-inventory-toggled',
+    buttonSelector: '.folkloreForestRegionView-environmentInventory-expandButton',
+    inventorySelector: '.folkloreForestRegionView-environmentInventoryContainer',
+    inventoryOpenClass: 'expanded',
+    buttonOpenClass: 'expanded',
   });
 };

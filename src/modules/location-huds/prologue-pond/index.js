@@ -1,5 +1,6 @@
 import { addHudStyles, onRequest } from '@utils';
 import folkloreForest from '../shared/folklore-forest';
+import keepInventoryToggled from '../shared/folklore-forest/keep-inventory-open';
 
 import regionStyles from '../shared/folklore-forest/styles.css';
 import styles from './styles.css';
@@ -52,4 +53,12 @@ export default async () => {
 
   updatePondLootQuantity();
   onRequest('environment/prologue_pond.php', updatePondLootQuantity);
+
+  keepInventoryToggled({
+    setting: 'location-huds.prologue-pond-inventory-toggled',
+    buttonSelector: '.folkloreForestRegionView-environmentInventory-expandButton',
+    inventorySelector: '.folkloreForestRegionView-environmentInventoryContainer',
+    inventoryOpenClass: 'expanded',
+    buttonOpenClass: 'expanded',
+  });
 };
