@@ -9,46 +9,11 @@ import {
   saveSetting
 } from '@utils';
 
+import keepInventoryToggled from '../shared/folklore-forest/keep-inventory-open';
+
 import regionStyles from '../shared/folklore-forest/styles.css';
 import smallInvStyles from './small-inv.css';
 import styles from './styles.css';
-
-const keepInventoryToggled = async () => {
-  const toggleButton = document.querySelector('.headsUpDisplayBountifulBeanstalk__inventoryContainer .headsUpDisplayBountifulBeanstalk__inventoryContainerButton');
-  if (! toggleButton) {
-    return;
-  }
-
-  const inventory = document.querySelector('.headsUpDisplayBountifulBeanstalk__inventoryContainer .headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent');
-  if (! inventory) {
-    return;
-  }
-
-  let isSetOpen = getSetting('location-huds.bountiful-beanstalk-inventory-toggled', 'not-set');
-  if (isSetOpen) {
-    inventory.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open');
-    toggleButton.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open');
-  } else if (isSetOpen === 'not-set') {
-    isSetOpen = false;
-  }
-
-  toggleButton.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    // Longer than a simple ternary and a toggle to make it more readable.
-    if (isSetOpen) {
-      isSetOpen = false;
-      inventory.classList.remove('headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open');
-      toggleButton.classList.remove('headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open');
-    } else {
-      isSetOpen = true;
-      inventory.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open');
-      toggleButton.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open');
-    }
-
-    saveSetting('location-huds.bountiful-beanstalk-inventory-toggled', isSetOpen);
-  });
-};
 
 const keepRoomDataToggled = async () => {
   const roomData = document.querySelector('.headsUpDisplayBountifulBeanstalkView__lootMultiplierContainer');
@@ -316,7 +281,13 @@ export default async () => {
 
   addHudStyles(stylesToAdd);
 
-  keepInventoryToggled();
+  keepInventoryToggled({
+    setting: 'location-huds.bountiful-beanstalk-inventory-toggled',
+    buttonSelector: '.headsUpDisplayBountifulBeanstalk__inventoryContainer .headsUpDisplayBountifulBeanstalk__inventoryContainerButton',
+    inventorySelector: '.headsUpDisplayBountifulBeanstalk__inventoryContainer .headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent',
+    inventoryOpenClass: 'headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open',
+    buttonOpenClass: 'headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open',
+  });
   keepRoomDataToggled();
   keepTooltipToggled();
   makeGiantMoreVisible();
