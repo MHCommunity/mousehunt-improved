@@ -20,7 +20,7 @@ const addFlrtButtonToConvertible = async (response) => {
 
   const items = [];
 
-  const tradableItems = await getData('type');
+  const tradableItems = await getData('items-tradable');
 
   // Convert the items into a format that flrtPopup can use.
   for (const element of response.convertible_open.items) {
