@@ -159,17 +159,33 @@ const initMapper = (map) => {
   addBlockClasses();
 };
 
-const intercept = () => {
-  const parentShowMap = hg.controllers.TreasureMapController.showMap;
-  hg.controllers.TreasureMapController.showMap = (id = false) => {
-    parentShowMap(id);
-    const intercepted = interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
+const interceptFromController = (id = false) => {
+  const intercepted = interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
+  if (! intercepted) {
     setTimeout(() => {
-      if (! intercepted) {
-        interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
-      }
+      interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
     }, 1000);
-  };
+  }
+};
+
+let _TreasureMapControllerShow;
+let _TreasureMapControllerShowMap;
+const intercept = () => {
+  if (! _TreasureMapControllerShow) {
+    _TreasureMapControllerShow = hg.controllers.TreasureMapController.show;
+    hg.controllers.TreasureMapController.show = (id = false) => {
+      _TreasureMapControllerShow();
+      interceptFromController(id);
+    };
+  }
+
+  if (! _TreasureMapControllerShowMap) {
+    _TreasureMapControllerShowMap = hg.controllers.TreasureMapController.showMap;
+    hg.controllers.TreasureMapController.showMap = (id = false) => {
+      _TreasureMapControllerShowMap(id);
+      interceptFromController(id);
+    };
+  }
 
   onRequest('users/treasuremap.php', (data) => {
     if (data.treasure_map && data.treasure_map.map_id) {
@@ -275,6 +291,30 @@ const relicHunterUpdate = () => {
   };
 };
 
+const addClearCacheTimeout = () => {
+  let clearCacheTimeout;
+  onDialogShow('map', async () => {
+    const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
+    tabs.forEach((tab) => {
+      const classes = [...tab.classList];
+
+      if (classes.includes('active')) {
+        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item').trim());
+      }
+
+      tab.addEventListener('click', () => {
+        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
+      });
+    });
+
+    // Clear the map cache after 30 seconds so that we always fetch the latest map data when opening the map.
+    clearCacheTimeout = setTimeout(() => {
+      clearTimeout(clearCacheTimeout);
+      hg.controllers.TreasureMapController.clearMapCache();
+    }, 30 * 1000);
+  });
+};
+
 /**
  * Initialize the module.
  */
@@ -311,27 +351,7 @@ const init = async () => {
     sidebar();
   }
 
-  let clearCacheTimeout;
-  onDialogShow('map', async () => {
-    const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
-    tabs.forEach((tab) => {
-      const classes = [...tab.classList];
-
-      if (classes.includes('active')) {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item').trim());
-      }
-
-      tab.addEventListener('click', () => {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
-      });
-    });
-
-    // Clear the map cache after 10 seconds so that we always fetch the latest map data when opening the map.
-    clearCacheTimeout = setTimeout(() => {
-      clearTimeout(clearCacheTimeout);
-      hg.controllers.TreasureMapController.clearMapCache();
-    }, 10 * 1000); // 10 seconds.
-  });
+  addClearCacheTimeout();
 
   onEvent('map_navigation_tab_click', () => {
     addBlockClasses();
