@@ -27,6 +27,13 @@ const database = async (databaseName) => {
   });
 };
 
+/**
+ * Deletes an IndexedDB database with the given name.
+ *
+ * @param {string} databaseName The name of the database to be deleted.
+ *
+ * @return {Promise} Promise that resolves with the result of the delete operation.
+ */
 const databaseDelete = async (databaseName) => {
   databaseName = `mh-improved-${databaseName}`;
 

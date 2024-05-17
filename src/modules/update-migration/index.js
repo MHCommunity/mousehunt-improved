@@ -15,6 +15,9 @@ import { isVersionBefore, restoreSettingsBackup, saveSettingsBackup } from './ut
 import * as imported from './versions/*.js'; // eslint-disable-line import/no-unresolved
 const versionUpdates = imported;
 
+/**
+ * Run the version updates if needed.
+ */
 const doVersionUpdates = async () => {
   if ('0.0.0' === previousVersion) {
     return;
@@ -33,6 +36,9 @@ const doVersionUpdates = async () => {
   }
 };
 
+/**
+ * Run the update migration.
+ */
 const update = async () => {
   debuglog('update-migration', `Updating from ${previousVersion} to ${mhImprovedVersion}`);
 

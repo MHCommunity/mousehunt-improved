@@ -219,7 +219,14 @@ const addSubmenuDivider = (menu, className = '') => {
 /**
  * Add the icon to the menu.
  *
- * @param {Object} opts The options for the menu item.
+ * @param {Object}   opts           The options for the menu item.
+ * @param {string}   opts.id        The id for the menu item.
+ * @param {string}   opts.classname The class for the menu item.
+ * @param {string}   opts.href      The href for the menu item.
+ * @param {string}   opts.title     The title for the menu item.
+ * @param {string}   opts.text      The text for the menu item.
+ * @param {Function} opts.action    The action for the menu item.
+ * @param {string}   opts.position  The position for the menu item.
  */
 const addIconToMenu = (opts) => {
   const menu = document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');

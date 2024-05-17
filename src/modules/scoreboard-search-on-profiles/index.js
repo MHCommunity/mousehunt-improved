@@ -8,6 +8,9 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Main function.
+ */
 const main = async () => {
   const achievementsBlock = document.querySelector('.hunterInfoView-achievementsBlock');
   if (! achievementsBlock) {
@@ -129,6 +132,9 @@ const main = async () => {
   achievementsBlock.setAttribute('data-added-scoreboard', 'true');
 };
 
+/**
+ * Initialize the module.
+ */
 const init = async () => {
   addStyles(styles, 'profile-scoreboard-search');
 

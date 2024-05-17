@@ -1,7 +1,7 @@
 /**
  * Get the current page slug.
  *
- * @return {string} The page slug.
+ * @return {string|null} The page slug or null if not found.
  */
 const getCurrentPage = () => {
   if (! hg?.utils?.PageUtil?.getCurrentPage) {
@@ -25,7 +25,7 @@ const getCurrentPage = () => {
  * Go to the specified page.
  *
  * @param {string} page The page to go to.
- * @param {Array}  args The arguments to pass to the page.
+ * @param {...any} args The arguments to pass to the page.
  */
 const setPage = (page, ...args) => {
   if ('wiki' === page.toLowerCase()) {
@@ -45,7 +45,7 @@ const setPage = (page, ...args) => {
  * Set the current page tab.
  *
  * @param {string} tab  The tab to set.
- * @param {Array}  args The arguments to pass to the tab.
+ * @param {...any} args The arguments to pass to the tab.
  */
 const setTab = (tab, ...args) => {
   if (hg?.utils?.PageUtil?.setPageTab) {

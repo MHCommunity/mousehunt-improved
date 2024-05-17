@@ -280,14 +280,19 @@ const addAdvancedSettingsButtons = () => {
   }
 };
 
+/**
+ * Highlight the current location in the location hud settings.
+ */
 const highlightLocationHud = () => {
-  // highlight the current location in the location hud settings
   const locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-location-huds-enabled-${getCurrentLocation()}`);
   if (locationHudSettings) {
     locationHudSettings.classList.add('highlight');
   }
 };
 
+/**
+ * Add toggles to the settings page headers.
+ */
 const addTogglesToSettings = () => {
   const settingsPage = document.querySelectorAll('.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__section');
   if (! settingsPage) {
@@ -378,6 +383,11 @@ const addMhImprovedIconToMenu = () => {
   });
 };
 
+/**
+ * Make the module icon styles.
+ *
+ * @return {string} The module icon styles.
+ */
 const makeModuleIconStyles = () => {
   const icons = settingsData.icons || [];
   if (! icons.length) {
@@ -395,6 +405,9 @@ const makeModuleIconStyles = () => {
   return returnString;
 };
 
+/**
+ * Link the version number to the update summary.
+ */
 const linkVersionNumber = () => {
   const version = document.querySelector('#mousehunt-improved-settings-better .PagePreferences__title .version');
   if (! version) {

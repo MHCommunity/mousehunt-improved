@@ -12,6 +12,9 @@ import {
   setMultipleTimeout
 } from '@utils';
 
+/**
+ * Check for the auto horn.
+ */
 const checkForAutoHorn = () => {
   const storageKeys = new Set(['NOB-huntsLeft', 'HornTimeDelayMax', 'AutoSolveKR', 'TrapCheckTimeDelayMax', 'TrapCheckTimeOffset', 'TrapCheckTimeDelayMin', 'AutoSolveKRDelayMin', 'AutoSolveKRDelayMax', 'SaveKRImage', 'autoPopupKR', 'AggressiveMode', 'HornTimeDelayMin']);
   if (! Object.keys(localStorage).filter((key) => storageKeys.has(key)).length) {
@@ -66,6 +69,10 @@ const addEvents = () => {
 };
 
 let isJournalProcessing = false;
+
+/**
+ * Process the journal entries.
+ */
 const processEntries = async () => {
   if (! ('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
     return;
@@ -100,6 +107,9 @@ const processSingleEntries = async () => {
   isJournalProcessing = false;
 };
 
+/**
+ * Add journal processing events.
+ */
 const addJournalProcessingEvents = async () => {
   setMultipleTimeout(processEntries, [100, 500, 1000]);
 
@@ -128,11 +138,19 @@ const addDialogListeners = () => {
   });
 };
 
+/**
+ * Check for MHCT.
+ *
+ * @return {boolean} Whether MHCT is installed or not.
+ */
 const checkForMHCT = () => {
   return document.querySelector('#mhhh_version');
   // todo: add a popup to inform the user that they should install MHCT.
 };
 
+/**
+ * Add a support link to the support dialog.
+ */
 const addSupportLink = () => {
   const description = document.querySelector('#overlayPopup .jsDialogContainer .contactUsForm .description');
   if (! description) {

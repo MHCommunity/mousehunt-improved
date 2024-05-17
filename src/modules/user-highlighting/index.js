@@ -38,6 +38,9 @@ const getUserHighlightingShield = (type) => {
   return wrapper;
 };
 
+/**
+ * Highlight users on the profile page.
+ */
 const highlightUsers = async () => {
   const existing = document.querySelectorAll('.mh-improved-user-shield');
   if (existing) {

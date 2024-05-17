@@ -5,14 +5,17 @@ import { makeElement } from './elements';
  *
  * Type can be one of these: bait_empty unknown_error bait_disarmed recent_turn recent_linked_turn puzzle.
  *
- * @param {Object}   options           Options for the message.
- * @param {string}   options.title     Title of the message. Keep it under 50 characters.
- * @param {string}   options.text      Text of the message. Keep it under 90 characters.
- * @param {string}   options.button    Text of the button.
- * @param {Function} options.action    Callback for the button.
- * @param {number}   options.dismiss   Time to dismiss the message.
- * @param {string}   options.type      Type of the message.
- * @param {string}   options.classname Classname of the message.
+ * @param {Object}   options               Options for the message.
+ * @param {string}   options.title         Title of the message. Keep it under 50 characters.
+ * @param {string}   options.text          Text of the message. Keep it under 90 characters.
+ * @param {string}   options.button        Text of the button.
+ * @param {Function} options.action        Callback for the button.
+ * @param {number}   options.dismiss       Time to dismiss the message.
+ * @param {string}   options.type          Type of the message.
+ * @param {string}   options.classname     Classname of the message.
+ * @param {string}   options.image         URL of the image to display.
+ * @param {string}   options.imageLink     URL for the image link.
+ * @param {Function} options.imageCallback Callback for the image click.
  */
 const showHornMessage = (options) => {
   const huntersHornView = document.querySelector('.huntersHornView__messageContainer');

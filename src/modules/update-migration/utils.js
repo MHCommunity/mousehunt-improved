@@ -6,6 +6,14 @@ import {
   saveSetting
 } from '@utils';
 
+/**
+ * Check if a version is before another version.
+ *
+ * @param {string} version The version to check.
+ * @param {string} compare The version to compare.
+ *
+ * @return {boolean} Whether the version is before the compare version.
+ */
 const isVersionBefore = (version, compare) => {
   if (! version || ! compare) {
     return false;
@@ -27,10 +35,16 @@ const isVersionBefore = (version, compare) => {
   return false;
 };
 
+/**
+ * Save the settings backup.
+ */
 const saveSettingsBackup = () => {
   localStorage.setItem('mousehunt-improved-settings-backup', localStorage.getItem('mousehunt-improved-settings'));
 };
 
+/**
+ * Restore the settings backup.
+ */
 const restoreSettingsBackup = () => {
   const backedUpSettings = localStorage.getItem('mousehunt-improved-settings-backup');
   if (backedUpSettings) {
@@ -74,6 +88,13 @@ const moveSetting = (settingKey) => {
   }
 };
 
+/**
+ * Move a flag to a setting.
+ *
+ * @param {Object} flag      The flag to move.
+ * @param {string} flag.from The flag to move from.
+ * @param {string} flag.to   The setting to move to.
+ */
 const moveFlagToSetting = (flag) => {
   if (! flag.from || ! flag.to) {
     return;

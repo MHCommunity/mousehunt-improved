@@ -31,6 +31,13 @@ const humanizer = humanizeDuration.humanizer({
   },
 });
 
+/**
+ * Get the expiry formatted.
+ *
+ * @param {number} time The time.
+ *
+ * @return {string} The formatted expiry.
+ */
 const getExpiryFormatted = (time) => {
   const date = new Date(time);
   return date.toLocaleDateString(new Intl.DateTimeFormat('en', {
@@ -39,6 +46,13 @@ const getExpiryFormatted = (time) => {
   }));
 };
 
+/**
+ * Get the expiry remaining formatted.
+ *
+ * @param {number} time The time.
+ *
+ * @return {string} The formatted expiry remaining.
+ */
 const getExpiryRemainingFormatted = (time) => {
   const units = ['d', 'h'];
 
@@ -52,6 +66,9 @@ const getExpiryRemainingFormatted = (time) => {
   return duration;
 };
 
+/**
+ * Add the expiry warning.
+ */
 const addExpiryWarning = () => {
   // if any of the auras are expiring soon, show a notification
   // const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24);
@@ -145,6 +162,9 @@ const addTrapBlock = () => {
   isAppending = false;
 };
 
+/**
+ * Get the auras.
+ */
 const getAuras = () => {
   if ('camp' !== getCurrentPage()) {
     return;
@@ -216,6 +236,9 @@ const main = () => {
   }, 1000);
 };
 
+/**
+ * Initialize the module.
+ */
 const init = async () => {
   const stylesToUse = [styles];
   if (getSetting('show-auras.icons')) {
