@@ -144,7 +144,7 @@ const addDialogListeners = () => {
  * @return {boolean} Whether MHCT is installed or not.
  */
 const checkForMHCT = () => {
-  return document.querySelector('#mhhh_version');
+  return !! document.querySelector('#mhhh_version');
   // todo: add a popup to inform the user that they should install MHCT.
 };
 

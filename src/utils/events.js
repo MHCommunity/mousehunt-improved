@@ -155,46 +155,9 @@ const onOverlayChange = (callbacks) => {
   // TODO: rewrite this.
   // Track the different overlay states.
   let overlayData = {
-    map: {
-      isVisible: false,
-      selector: 'treasureMapPopup',
-    },
-    item: {
-      isVisible: false,
-      selector: 'itemViewPopup',
-    },
-    mouse: {
-      isVisible: false,
-      selector: 'mouseViewPopup',
-    },
-    image: {
-      isVisible: false,
-      selector: 'largerImage',
-    },
-    convertible: {
-      isVisible: false,
-      selector: 'convertibleOpenViewPopup',
-    },
-    adventureBook: {
-      isVisible: false,
-      selector: 'adventureBookPopup',
-    },
-    marketplace: {
-      isVisible: false,
-      selector: 'marketplaceViewPopup',
-    },
-    gifts: {
-      isVisible: false,
-      selector: 'giftSelectorViewPopup',
-    },
-    support: {
-      isVisible: false,
-      selector: 'supportPageContactUsForm',
-    },
-    premiumShop: {
-      isVisible: false,
-      selector: 'MHCheckout',
-    },
+    item: { isVisible: false, selector: 'itemViewPopup' },
+    mouse: { isVisible: false, selector: 'mouseViewPopup' },
+    marketplace: { isVisible: false, selector: 'marketplaceViewPopup' },
   };
 
   overlayCallbacks.push(callbacks);
@@ -377,23 +340,7 @@ let pageChangeObserver = null;
 const onPageChange = (callbacks) => {
   // Track our page tab states.
   let tabData = {
-    blueprint: { isVisible: null, selector: 'showBlueprint' },
-    tem: { isVisible: false, selector: 'showTrapEffectiveness' },
-    trap: { isVisible: false, selector: 'editTrap' },
-    camp: { isVisible: false, selector: 'PageCamp' },
     travel: { isVisible: false, selector: 'PageTravel' },
-    inventory: { isVisible: false, selector: 'PageInventory' },
-    shop: { isVisible: false, selector: 'PageShops' },
-    mice: { isVisible: false, selector: 'PageAdversaries' },
-    friends: { isVisible: false, selector: 'PageFriends' },
-    sendSupplies: { isVisible: false, selector: 'PageSupplyTransfer' },
-    team: { isVisible: false, selector: 'PageTeam' },
-    tournament: { isVisible: false, selector: 'PageTournament' },
-    news: { isVisible: false, selector: 'PageNews' },
-    scoreboards: { isVisible: false, selector: 'PageScoreboards' },
-    discord: { isVisible: false, selector: 'PageJoinDiscord' },
-    preferences: { isVisible: false, selector: 'PagePreferences' },
-    profile: { isVisible: false, selector: 'HunterProfile' },
   };
 
   pageChangeCallbacks.push(callbacks);

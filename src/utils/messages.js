@@ -110,6 +110,7 @@ const showLoadingError = (e) => {
 
   const errorStylesEl = makeElement('style', 'mh-improved-error-styles', errorStyles);
   document.head.append(errorStylesEl);
+  hadAddedErrorStyles = true;
 };
 
 const maybeDoMaintenance = () => {

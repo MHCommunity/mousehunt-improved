@@ -36,9 +36,7 @@ const setPage = (page, ...args) => {
   // Uppercase the first letter of the page.
   page = page.charAt(0).toUpperCase() + page.slice(1);
 
-  if (hg?.utils?.PageUtil?.setPage) {
-    hg.utils.PageUtil.setPage(page, ...args);
-  }
+  hg?.utils?.PageUtil?.setPage?.(page, ...args);
 };
 
 /**
@@ -48,9 +46,7 @@ const setPage = (page, ...args) => {
  * @param {...any} args The arguments to pass to the tab.
  */
 const setTab = (tab, ...args) => {
-  if (hg?.utils?.PageUtil?.setPageTab) {
-    hg.utils.PageUtil.setPageTab(tab, ...args);
-  }
+  hg?.utils?.PageUtil?.setPageTab?.(tab, ...args);
 };
 
 /**
@@ -97,32 +93,27 @@ const getCurrentDialog = () => {
     return null;
   }
 
-  let overlayType = overlay.classList.value;
-  overlayType = overlayType.replace('jsDialogFixed', '');
-  overlayType = overlayType.replace('default', '');
-  overlayType = overlayType.replace('wide', '');
-  overlayType = overlayType.replace('ajax', '');
-  overlayType = overlayType.replace('overlay', '');
+  const replaceMap = {
+    jsDialogFixed: '',
+    default: '',
+    wide: '',
+    ajax: '',
+    overlay: '',
+    treasureMapPopup: 'map',
+    itemViewPopup: 'item',
+    mouseViewPopup: 'mouse',
+    largerImage: 'image',
+    convertibleOpenViewPopup: 'convertible',
+    adventureBookPopup: 'adventureBook',
+    marketplaceViewPopup: 'marketplace',
+    giftSelectorViewPopup: 'gifts',
+    supportPageContactUsForm: 'support',
+    MHCheckout: 'premiumShop',
+  };
 
-  // Replace some overlay types with more readable names.
-  overlayType = overlayType.replace('treasureMapPopup', 'map');
-  overlayType = overlayType.replace('itemViewPopup', 'item');
-  overlayType = overlayType.replace('mouseViewPopup', 'mouse');
-  overlayType = overlayType.replace('largerImage', 'image');
-  overlayType = overlayType.replace('convertibleOpenViewPopup', 'convertible');
-  overlayType = overlayType.replace('adventureBookPopup', 'adventureBook');
-  overlayType = overlayType.replace('marketplaceViewPopup', 'marketplace');
-  overlayType = overlayType.replace('giftSelectorViewPopup', 'gifts');
-  overlayType = overlayType.replace('supportPageContactUsForm', 'support');
-  overlayType = overlayType.replace('MHCheckout', 'premiumShop');
+  overlayType = overlay.classList.value.split(' ').map((cls) => replaceMap[cls] || cls).join(' ').trim();
 
-  overlayType = overlayType.trim();
-
-  if ('Popup' === overlayType) {
-    return false;
-  }
-
-  return overlayType;
+  return 'Popup' === overlayType ? false : overlayType;
 };
 
 /**
@@ -137,7 +128,14 @@ const getCurrentDialog = () => {
  *
  * @return {boolean} True if the page matches, false otherwise.
  */
-const isCurrentPage = (targetPage = null, targetTab = null, targetSubtab = null, forceCurrentPage = null, forceCurrentTab = null, forceCurrentSubtab = null) => {
+const isCurrentPage = (
+  targetPage = null,
+  targetTab = null,
+  targetSubtab = null,
+  forceCurrentPage = null,
+  forceCurrentTab = null,
+  forceCurrentSubtab = null
+) => {
   if (! targetPage) {
     return false;
   }

@@ -228,13 +228,6 @@ const getAuras = () => {
 };
 
 let aurasExpiry = [];
-const main = () => {
-  setTimeout(() => {
-    getAuras();
-    addExpiryWarning();
-    addTrapBlock();
-  }, 1000);
-};
 
 /**
  * Initialize the module.
@@ -251,7 +244,13 @@ const init = async () => {
 
   addStyles(stylesToUse, 'show-auras');
 
-  onNavigation(main, { page: 'camp' });
+  onNavigation(() => {
+    setTimeout(() => {
+      getAuras();
+      addExpiryWarning();
+      addTrapBlock();
+    }, 1000);
+  }, { page: 'camp' });
 };
 
 export default {
