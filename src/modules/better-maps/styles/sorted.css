@@ -113,7 +113,7 @@
   height: 35px;
   margin: 5px;
   border-radius: 3px;
-  outline: 1px solid #989898;
+  outline: 1px solid rgb(0 0 0 / 25%);
 }
 
 #sorted-mice-container .scavenger-sorted-page .mouse-image {
