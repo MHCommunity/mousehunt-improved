@@ -137,7 +137,7 @@ const saveToDatabase = async (entry) => {
 };
 
 const doJournalHistory = async () => {
-  if ('camp' !== getCurrentPage()) {
+  if (! ('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
     return;
   }
 
@@ -191,7 +191,7 @@ const doDelayedJournalHistory = () => {
 const maybeDoJournalHistory = () => {
   pager = null;
 
-  if ('camp' === getCurrentPage()) {
+  if ('camp' === getCurrentPage() || 'journal' === getCurrentPage()) {
     doDelayedJournalHistory();
     addEvent('ajax_response', doDelayedJournalHistory, { removeAfterFire: true });
   }

@@ -42,7 +42,7 @@ export default async () => {
     {
       id: 'better-journal.journal-history',
       title: 'Journal History',
-      default: getSetting('experiments.journal-history', true),
+      default: true,
     },
   ];
 };
