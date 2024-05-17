@@ -1363,5 +1363,33 @@
       { "id": "royal", "name": "Royal Beanster" },
       { "id": "boss", "name": "Boss" }
     ]
+  },
+  "m1k_solo": {
+    "categories": [
+      {
+        "name": "Folklore Forest",
+        "id": "folklore-forest",
+        "color": "#98dca4",
+        "mice": ["architeuthulhu_of_the_abyss", "monstrous_midge", "mythweaver"]
+      },
+      {
+        "name": "Rift",
+        "id": "rift",
+        "color": "#98ccdc",
+        "mice": ["rift_hapless", "rift_big_bad_burroughs", "rift_black_widow"]
+      },
+      {
+        "name": "Queso",
+        "id": "queso",
+        "color": "#ffa123",
+        "mice": ["geyser_eruption_dragon_wildfire", "queso_river_boss"]
+      },
+      {
+        "name": "Other",
+        "id": "other",
+        "color": "#dc98bf",
+        "mice": ["crystal_behemoth", "ful_mina_mountain_queen"]
+      }
+    ]
   }
 }
