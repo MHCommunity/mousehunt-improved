@@ -33,8 +33,16 @@ const wrapGoldAndPoints = (entry) => {
   }
 };
 
-export default async () => {
+/**
+ * Main function.
+ */
+const main = async () => {
   addStyles(styles, 'better-journal-gold-and-points');
 
-  addEvent('journal-entry', wrapGoldAndPoints, { weight: 2000, id: 'better-journal-gold-and-points' });
+  addEvent('journal-entry', wrapGoldAndPoints, {
+    weight: 2000,
+    id: 'better-journal-gold-and-points'
+  });
 };
+
+export default main;
