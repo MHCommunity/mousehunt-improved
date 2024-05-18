@@ -146,14 +146,8 @@ const replaceInEntry = (entry) => {
       return;
     }
 
-    if (string.length === 3) {
-      if (string[2].includes('!') && entry.classList.contains(string[2])) {
-        return;
-      }
-
-      if (! entry.classList.contains(string[2])) {
-        return;
-      }
+    if (string.length === 3 && string[2].includes('!') && entry.classList.contains(string[2].replace('!', ''))) {
+      return;
     }
 
     const oldText = element.innerHTML;
