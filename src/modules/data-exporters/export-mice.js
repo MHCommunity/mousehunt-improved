@@ -79,7 +79,7 @@ const getDataForRegion = async (region) => {
   });
 
   // concat the miceData.mouse_list_category.subgroups array
-  const mice = miceData.mouse_list_category.subgroups.reduce((acc, cur) => {
+  const mice = miceData?.mouse_list_category?.subgroups?.reduce((acc, cur) => {
     return [...acc, ...cur.mice];
   }, []);
 

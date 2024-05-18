@@ -421,7 +421,7 @@ const addHideStyles = (items) => {
     const tags = Object.keys(itemsByTags[classification]);
     tags.forEach((tag) => {
       // if itemSettings.hidden includes all items in this tag, hide the tag
-      if ([...itemsByTags[classification][tag]].every((id) => itemSettings.hidden.includes(id))) {
+      if ([...itemsByTags[classification][tag]].every((id) => itemSettings?.hidden?.includes(id))) {
         tagsToHide[classification].push(tag);
       }
     });
@@ -432,15 +432,15 @@ const addHideStyles = (items) => {
     tagsToHide[classification].map((tag) => `.${classification} .campPage-trap-itemBrowser-tagGroup.${tag}`)
   ).join(',');
 
-  const hideItemsStyles = itemSettings.hidden.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
+  const hideItemsStyles = itemSettings?.hidden?.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
 
   // Add styles to hide tags and items
   addStyles(`${hideTagsStyles}, ${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
 };
 
 const hideItemsInTrapBrowser = () => {
-  if (itemSettings?.hidden && itemSettings.hidden.length > 0) {
-    const hideItemsStyles = itemSettings.hidden.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
+  if (itemSettings?.hidden && itemSettings?.hidden?.length > 0) {
+    const hideItemsStyles = itemSettings?.hidden?.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
 
     // Add styles to hide tags and items
     addStyles(`${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
