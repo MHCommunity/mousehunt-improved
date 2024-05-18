@@ -262,12 +262,20 @@ const makeMenuItem = () => {
     menu: 'camp',
     label: `<span class="title">${user?.quests?.QuestRelicHunter?.label}</span><span class="subtitle">${user?.quests?.QuestRelicHunter?.value}</span>`,
     icon: user?.quests?.QuestRelicHunter?.image || 'https://www.mousehuntgame.com/images/items/convertibles/large/bfca4a1c658e49903654d0a84f52c9fd.png',
-    callback: () => {
-      openMiniMap(mapId);
-    },
+    /**
+     * Open the mini map.
+     *
+     * @param {Number} mapId The map ID.
+     *
+     * @return {Promise<void>} A promise that resolves when the mini map is opened.
+     */
+    callback: () => openMiniMap(mapId),
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   makeMenuItem();
   onRequest('*', makeMenuItem);
