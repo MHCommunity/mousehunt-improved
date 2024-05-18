@@ -1,5 +1,3 @@
-import { getSetting } from '@utils';
-
 /**
  * Add settings for the module.
  *
