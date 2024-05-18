@@ -483,9 +483,7 @@ const hud = () => {
   run();
 
   showBWReminder();
-  onTravel(() => {
-    setTimeout(showBWReminder, 1500);
-  });
+  onTravel(() => setTimeout(showBWReminder, 1500));
 
   onEvent('ajax_response', run);
 
@@ -502,6 +500,8 @@ const hud = () => {
         showBWReminder();
       }, 2000);
     }
+
+    setTimeout(() => run(), 2000);
   });
 };
 

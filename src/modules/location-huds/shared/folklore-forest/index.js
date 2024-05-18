@@ -4,6 +4,7 @@ import {
   onDialogHide,
   onDialogShow,
   onRequest,
+  onTurn,
   saveSetting
 } from '@utils';
 
@@ -185,9 +186,9 @@ let hasAddedUpgradeVisibilityToggles = false;
  * Initialize the module.
  */
 export default async () => {
+  toggleAllVisibility();
   onDialogShow('fabledForestDialog', addUpgradeVisibilityToggles);
   onDialogHide(() => (hasAddedUpgradeVisibilityToggles = false));
-
-  toggleAllVisibility();
+  onTurn(addUpgradeVisibilityToggles, 500);
   onRequest('*', toggleAllVisibility);
 };

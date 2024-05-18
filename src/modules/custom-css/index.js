@@ -2,18 +2,16 @@ import { addStyles, getSetting, onEvent } from '@utils';
 
 import settings from './settings';
 
-const loadStyleOverrides = () => {
-  const customStyles = getSetting('override-styles');
-  if (customStyles) {
-    addStyles(customStyles, 'mousehunt-improved-override-styles');
-  }
-};
-
 /**
  * Load the custom CSS.
  */
 const init = async () => {
-  onEvent('mh-improved-loaded', loadStyleOverrides);
+  onEvent('mh-improved-loaded', () => {
+    const customStyles = getSetting('override-styles');
+    if (customStyles) {
+      addStyles(customStyles, 'mousehunt-improved-override-styles');
+    }
+  });
 };
 
 /**

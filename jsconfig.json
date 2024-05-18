@@ -18,15 +18,15 @@
       "@/*": ["./modules/*"],
       "@utils/*": ["./utils/"],
       "@utils": ["./utils/index.js"],
-      "@data/*": ["./data/*"],
+      "@data/*": ["./data/*"]
     }
   },
   "include": [
-    "src/**/*",
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
     "scripts",
-    "dist",
-  ],
+    "dist"
+  ]
 }
