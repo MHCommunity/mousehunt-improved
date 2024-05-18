@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 const MousePool = {
   PreEncyclopedia: {
     Grammarian: 1,
@@ -72,10 +72,14 @@ const simulate = (options) => {
   const minVolume = volumesWritten.at(0);
   const maxVolume = volumesWritten.at(-1);
   /** @type {EncySimResults} */
-  const results = {};
+  const results = {
+    chances: [],
+    mean: {},
+  };
 
   let cumulativeChance = 1;
   let mean = 0;
+
   for (let volume = minVolume; volume <= maxVolume; volume++) {
     if (! volumeCountByVolume[volume]) {
       continue;
@@ -86,29 +90,54 @@ const simulate = (options) => {
 
     mean += (volume * chance);
 
-    if (cumulativeChance >= 0.75) {
-      results.unlucky = {
-        volume,
-        gnawbels: volume * 54
-      };
-    } else if (cumulativeChance >= 0.5) {
-      results.median = {
-        volume,
-        gnawbels: volume * 54
-      };
-    } else if (cumulativeChance >= 0.25) {
-      results.lucky = {
-        volume,
-        gnawbels: volume * 54
-      };
-    }
+    console.log('volume', volume, 'chance', chance);
+
+    // if (cumulativeChance >= 0.99) {
+    //   results.beyondUnlucky = {
+    //     volume: volume,
+    //     gnawbels: volume * 54,
+    //     words: volume * 4000,
+    //   };
+    // } else if (cumulativeChance >= 0.75) {
+    //   results.unlucky = {
+    //     volume: volume,
+    //     gnawbels: volume * 54,
+    //     words: volume * 4000,
+    //   };
+    // } else if (cumulativeChance >= 0.5) {
+    //   results.median = {
+    //     volume: volume,
+    //     gnawbels: volume * 54,
+    //     words: volume * 4000,
+    //   };
+    // } else if (cumulativeChance >= 0.25) {
+    //   results.lucky = {
+    //     volume: volume,
+    //     gnawbels: volume * 54,
+    //     words: volume * 4000,
+    //   };
+    // } else if (cumulativeChance >= 0.02) {
+    //   results.beyondLucky = {
+    //     volume: volume,
+    //     gnawbels: volume * 54,
+    //     words: volume * 4000,
+    //   };
+    // }
+
+    results.chances.push({
+      volume,
+      gnawbels: volume * 54,
+      words: volume * 4000,
+      chance,
+      cumulativeChance,
+    });
   }
 
-  // to two decimal places
   mean = Math.round(mean * 100) / 100;
   results.mean = {
     volume: mean,
-    gnawbels: mean * 54
+    gnawbels: mean * 54,
+    words: mean * 4000,
   };
 
   return results;

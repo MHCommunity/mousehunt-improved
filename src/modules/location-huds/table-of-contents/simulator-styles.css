@@ -1,0 +1,206 @@
+#overlayPopup.mh-toc-popup .jsDialogContainer {
+  background: linear-gradient(#2b622e, #000, #2b622e);
+  outline: 1px solid #2b622e;
+}
+
+#overlayPopup.mh-toc-popup .jsDialogContainer .content {
+  padding: 10px 0 20px;
+}
+
+#overlayPopup.mh-toc-popup .title {
+  position: relative;
+  padding: 5px;
+  padding-left: 45px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.mh-toc-sim-results {
+  display: grid;
+  grid-template-columns: 40% 40%;
+  justify-content: space-evenly;
+  justify-items: stretch;
+  margin: 0 1em;
+  color: #fff;
+}
+
+.mh-toc-sim-results .stats {
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.mh-toc-sim-results .stats .group {
+  display: grid;
+  gap: 1em;
+}
+
+.mh-toc-sim-results .result {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1em;
+  place-items: stretch;
+  align-items: center;
+}
+
+.mh-toc-sim-results .label {
+  padding-left: 10px;
+  font-size: 13px;
+  line-height: 30px;
+  background-color: rgb(195 195 195 / 10%);
+  border-radius: 5px;
+}
+
+.mh-toc-sim-results .value {
+  position: relative;
+  left: -5px;
+  font-size: 14px;
+  line-height: 30px;
+  color: #eaeaea;
+  text-align: center;
+  background: linear-gradient(#146114, #59ac3b);
+  border: 1px solid #123d1c;
+  border-radius: 5px;
+}
+
+.mh-toc-sim-results .percents {
+  padding-top: 5px;
+  font-size: 13px;
+  background-color: rgb(195 195 195 / 10%);
+  border-radius: 5px;
+}
+
+.mh-toc-sim-results ol {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+  max-height: 250px;
+  overflow-x: auto;
+  font-size: 13px;
+  color: #d2e5d2;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.mh-toc-sim-results .percents li {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  padding: 3px;
+  margin-bottom: 0.25em;
+  text-align: right;
+}
+
+.mh-toc-sim-results .percents h3 {
+  padding-bottom: 11px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.mh-toc-sim-results .percents .header {
+  padding: 0 0 3px;
+  font-size: 13px;
+  color: #c4c4c4;
+  border-bottom: 1px solid rgb(150 150 150 / 35%);
+}
+
+.mh-toc-sim-results .percents li:nth-child(odd) {
+  background-color: rgb(195 195 195 / 20%);
+}
+
+.mh-toc-sim-results .percents li.header:nth-child(odd) {
+  background-color: transparent;
+}
+
+.mh-toc-sim-results .percents .guaranteed .number,
+.mh-toc-sim-results .percents .guaranteed .volume {
+  color: #9ff593;
+}
+
+.mh-toc-sim-results .percents .good .number,
+.mh-toc-sim-results .percents .good .volume {
+  color: #7ebe7e;
+}
+
+.mh-toc-sim-results .percents .maybe .number,
+.mh-toc-sim-results .percents .maybe .volume {
+  color: #faee9e;
+}
+
+.mh-toc-sim-results .percents .bad .number,
+.mh-toc-sim-results .percents .bad .volume {
+  color: #fcd6b6;
+}
+
+.mh-toc-sim-results .percents .worst .number,
+.mh-toc-sim-results .percents .worst .volume {
+  color: #ff8181;
+}
+
+.mh-toc-sim-results .percents li.result .volume {
+  font-size: 16px;
+}
+
+.mh-toc-sim-results .percents .words,
+.mh-toc-sim-results .percents .gnawbels {
+  font-size: 12px;
+}
+
+.mh-toc-sim-results .percents .words {
+  justify-self: flex-end;
+}
+
+.mh-toc-sim-results .percents .header .words {
+  justify-self: center;
+}
+
+#overlayPopup.mh-toc-popup .title::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 35px;
+  height: 35px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/folklore_forest_upgrades/leather_cover_thumb.png) no-repeat 0 0 / cover;
+  opacity: 0.8;
+}
+
+a.mh-toc-sim-link {
+  position: absolute;
+  right: 20px;
+  bottom: 95px;
+  width: 40px;
+  height: 40px;
+  color: transparent;
+  background: url(https://i.mouse.rip/toc-sim.png) no-repeat bottom center / 40px;
+  background-blend-mode: multiply;
+  border-radius: 50%;
+}
+
+a.mh-toc-sim-link:hover {
+  background: url(https://i.mouse.rip/toc-sim.png) no-repeat top center / 40px;
+}
+
+a.mh-toc-sim-link .mousehuntTooltip {
+  top: 120%;
+  right: -15px;
+  width: 60px;
+  text-align: center;
+}
+
+.tableOfContentsView-libraryButton {
+  bottom: 6px;
+}
+
+.tableOfContentsView-disarmPreferenceButton {
+  bottom: 50px;
+}
