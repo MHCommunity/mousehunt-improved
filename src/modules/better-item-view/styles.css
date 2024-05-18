@@ -185,8 +185,17 @@
   margin-left: 70px;
 }
 
-.itemView-thumbnail.large {
+.itemView-thumbnail {
+  width: 200px;
+  height: 200px;
   margin-left: -15px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+}
+
+.itemView-thumbnail.large {
+  background-size: 100%;
 }
 
 input.itemView-action-convert-quantity {
@@ -252,4 +261,8 @@ input.itemView-action-convert-quantity {
 
 .itemView-obtainHint {
   margin-left: 190px;
+}
+
+.itemViewContainer iframe.socialLink-facebookLike {
+  margin-right: 5px;
 }
