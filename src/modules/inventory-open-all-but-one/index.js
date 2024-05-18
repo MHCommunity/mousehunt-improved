@@ -64,6 +64,19 @@ const addOpenAllButOneButton = () => {
       return;
     }
 
+    const itemType = item.getAttribute('data-item-type');
+    if (! itemType) {
+      return;
+    }
+
+    const itemsToSkip = new Set([
+      'kilohertz_processor_convertible',
+    ]);
+
+    if (itemsToSkip.has(itemType)) {
+      return;
+    }
+
     const newButton = button.cloneNode(true);
     newButton.classList.add('open-all-but-one');
     newButton.textContent = 'All but One';
