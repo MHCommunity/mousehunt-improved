@@ -3,6 +3,11 @@ import { addEvent, addStyles } from '@utils';
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
+/**
+ * Add a class to show the badge type.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const addBadgeClass = (entry) => {
   if (! entry) {
     return;

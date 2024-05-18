@@ -1,5 +1,12 @@
 import { makeElement, mapper } from '@utils';
 
+/**
+ * Make the loading markup for the hunters.
+ *
+ * @param {string}      id       The ID of the hunters.
+ * @param {string}      title    The title of the hunters.
+ * @param {HTMLElement} appendTo The element to append to.
+ */
 const makeUserTableLoading = (id, title, appendTo) => {
   const wrapper = makeElement('div', 'treasureMapView-block-title', title);
   wrapper.id = `hunters-loading-${id}-title`;
@@ -17,6 +24,14 @@ const makeUserTableLoading = (id, title, appendTo) => {
   appendTo.append(loading);
 };
 
+/**
+ * Make the user table.
+ *
+ * @param {Array}       hunters  The hunters.
+ * @param {string}      id       The ID of the hunters.
+ * @param {string}      title    The title of the hunters.
+ * @param {HTMLElement} appendTo The element to append to.
+ */
 const makeUserTable = async (hunters, id, title, appendTo) => {
   const loadingTitle = document.querySelector(`#hunters-loading-${id}-title`);
   const loadingBlock = document.querySelector(`#hunters-loading-${id}-block`);
@@ -104,6 +119,13 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
   }
 };
 
+/**
+ * Get the invited hunter data.
+ *
+ * @param {Array} invited The invited hunters.
+ *
+ * @return {Promise} The invited hunter data.
+ */
 const getInvitedHunterData = async (invited) => {
   if (invited.length === 0) {
     return [];
@@ -130,6 +152,13 @@ const getInvitedHunterData = async (invited) => {
   return hunters;
 };
 
+/**
+ * Get the user data for the hunter.
+ *
+ * @param {number} userId The user ID.
+ *
+ * @return {Array} The user data.
+ */
 const getUserData = async (userId) => {
   return new Promise((resolve) => {
     hg.utils.User.getUserData(
@@ -155,6 +184,9 @@ const getUserData = async (userId) => {
   });
 };
 
+/**
+ * Remove empty hunter slots from the list.
+ */
 const removeEmptyHunterSlotsFromList = async () => {
   const emptySlots = document.querySelectorAll('.treasureMapView-allyCell.name');
   if (emptySlots.length) {
@@ -172,6 +204,13 @@ const removeEmptyHunterSlotsFromList = async () => {
   }
 };
 
+/**
+ * Get the hunters that have left the map.
+ *
+ * @param {Object} mapData The map data.
+ *
+ * @return {Array} The hunters that have left the map.
+ */
 const getLeftHunters = (mapData) => {
   const huntersLeft = [];
   mapData.hunters.forEach((hunter) => {
@@ -183,6 +222,9 @@ const getLeftHunters = (mapData) => {
   return huntersLeft;
 };
 
+/**
+ * Modify the buttons.
+ */
 const modifyButtons = () => {
   const buttons = [
     {
@@ -215,6 +257,9 @@ const modifyButtons = () => {
   });
 };
 
+/**
+ * Fix the typo for plural invites.
+ */
 const fixPluralInvites = () => {
   const invitesEl = document.querySelector('.treasureMapView-numInvitesSent');
   if (invitesEl && invitesEl.textContent === '1 invites sent.') {
@@ -222,6 +267,11 @@ const fixPluralInvites = () => {
   }
 };
 
+/**
+ * Actions the fire when the hunters tab is shown.
+ *
+ * @param {Object} mapData The map data.
+ */
 const showHuntersTab = async (mapData) => {
   modifyButtons();
   removeEmptyHunterSlotsFromList();

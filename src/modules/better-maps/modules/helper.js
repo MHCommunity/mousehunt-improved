@@ -6,6 +6,11 @@ import {
   removeSubmenuItem
 } from '@utils';
 
+/**
+ * Open the mini map.
+ *
+ * @param {number} mapId The map ID.
+ */
 const openMiniMap = async (mapId) => {
   const mapData = await doRequest('managers/ajax/users/treasuremap.php', {
     action: 'map_info',
@@ -241,6 +246,9 @@ const openMiniMap = async (mapId) => {
   });
 };
 
+/**
+ * Make the menu item.
+ */
 const makeMenuItem = () => {
   removeSubmenuItem('mh-improved-map-helper');
 

@@ -2,6 +2,11 @@ import { addEvent, addStyles } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Wrap the points and gold in spans.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const wrapGoldAndPoints = (entry) => {
   // if it has the pointsGold attribute, it's already been wrapped
   if (entry.getAttribute('data-modified-points-gold')) {

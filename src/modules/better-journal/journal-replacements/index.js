@@ -129,6 +129,11 @@ const replacements = [
   ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found another '],
 ];
 
+/**
+ * Replace text in a journal entry.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const replaceInEntry = (entry) => {
   if (entry.getAttribute('data-replaced')) {
     return;
@@ -161,6 +166,11 @@ const replaceInEntry = (entry) => {
   entry.setAttribute('data-replaced', 'true');
 };
 
+/**
+ * Update the progress log link.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const updateLog = (entry) => {
   if (! entry.classList.contains('log_summary')) {
     return;
@@ -179,6 +189,11 @@ const updateLog = (entry) => {
   link.append(span);
 };
 
+/**
+ * Update the mouse image links.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const updateMouseImageLinks = (entry) => {
   const mouseType = entry.getAttribute('data-mouse-type');
   if (! mouseType) {
@@ -199,6 +214,11 @@ const updateMouseImageLinks = (entry) => {
   entry.setAttribute('data-mouse-image-updated', 'true');
 };
 
+/**
+ * Update the item links.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const updateItemLinks = (entry) => {
   if (! entry.classList.contains('iceberg_defeated')) {
     return;
@@ -220,6 +240,13 @@ const updateItemLinks = (entry) => {
   });
 };
 
+/**
+ * Check if we should skip an entry.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ *
+ * @return {boolean} Whether to skip the entry.
+ */
 const shouldSkip = (entry) => {
   const keepOriginalClasses = new Set([
     'lunar_lantern',

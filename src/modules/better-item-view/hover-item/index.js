@@ -10,6 +10,13 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Fetch the item data.
+ *
+ * @param {string} itemId The item ID.
+ *
+ * @return {Promise} The item data.
+ */
 const fetchItemData = async (itemId) => {
   const itemDataRequest = await doRequest('managers/ajax/users/userInventory.php', {
     action: 'get_items',
@@ -19,6 +26,13 @@ const fetchItemData = async (itemId) => {
   return itemDataRequest?.items?.[0];
 };
 
+/**
+ * Generate the markup for an item.
+ *
+ * @param {Object} item The item data.
+ *
+ * @return {HTMLElement} The item markup.
+ */
 const makeItemMarkup = (item) => {
   const itemData = makeElement('div', 'item-data');
 
@@ -45,6 +59,13 @@ const makeItemMarkup = (item) => {
   return itemData;
 };
 
+/**
+ * Generate the markup for the loading state.
+ *
+ * @param {Event} e The event.
+ *
+ * @return {HTMLElement} The loading markup.
+ */
 const makeLoadingMarkup = (e) => {
   if (itemDataWrapper) {
     itemDataWrapper.remove();
@@ -70,6 +91,13 @@ const makeLoadingMarkup = (e) => {
   return itemDataWrapper;
 };
 
+/**
+ * Get the item data.
+ *
+ * @param {string} itemType The item type.
+ *
+ * @return {Promise} The item data.
+ */
 const getItemData = async (itemType) => {
   let item;
   if (cachedItemData[itemType]) {
@@ -93,6 +121,10 @@ const getItemData = async (itemType) => {
 
 let itemDataWrapper;
 let cachedItemData = {};
+
+/**
+ * Do the hover mice stuff.
+ */
 const main = () => {
   const itemLinks = document.querySelectorAll('.journal .content .entry .journaltext a[href*="https://www.mousehuntgame.com/item.php?item_type="]');
   if (! itemLinks) {
@@ -141,6 +173,9 @@ const main = () => {
   });
 };
 
+/**
+ * Attach the hover mice functionality.
+ */
 const hoverMice = () => {
   addStyles(styles, 'better-item-view-hover-mice');
 

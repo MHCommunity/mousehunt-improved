@@ -12,6 +12,14 @@ import {
 import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';
 
+/**
+ * Get the link markup for a mouse.
+ *
+ * @param {string} name      The mouse name.
+ * @param {string} mouseType The mouse type.
+ *
+ * @return {string} The link markup.
+ */
 const getLinkMarkup = (name, mouseType) => {
   name = name.replaceAll(' ', '_');
 
@@ -142,6 +150,11 @@ const addMouseLinksToMap = async () => {
   });
 };
 
+/**
+ * Add classes to the groups based on completion status.
+ *
+ * @param {Object} mapData The map data.
+ */
 const addClassesToGroups = (mapData) => {
   const groups = document.querySelectorAll('.treasureMapView-goals-groups');
   groups.forEach((group) => {
@@ -239,6 +252,9 @@ const addClassesToGroups = (mapData) => {
   });
 };
 
+/**
+ * Move the leave map button to the actions group.
+ */
 const moveLeaveButton = async () => {
   const leaveButton = document.querySelector('.treasureMapView-mapLeaveContainer .treasureMapView-leaveMapButton');
   if (! leaveButton) {
@@ -267,6 +283,11 @@ const moveLeaveButton = async () => {
   actions.insertBefore(clone, actions.firstChild);
 };
 
+/**
+ * Add a quick invite field to the map sidebar.
+ *
+ * @param {Object} mapData The map data.
+ */
 const addQuickInvite = async (mapData) => {
   const sidebar = document.querySelector('.treasureMapView-rightBlock.treasureMapView-goalSidebar');
   if (! sidebar) {
@@ -422,6 +443,9 @@ const addQuickInvite = async (mapData) => {
   sidebar.insertBefore(inviteWrapper, sidebar.firstChild);
 };
 
+/**
+ * Add a sidebar toggle.
+ */
 const addSidebarToggle = async () => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
@@ -495,6 +519,11 @@ const addSidebarToggle = async () => {
   leftBlock.append(toggle);
 };
 
+/**
+ * Fire the actions when the goals tab is shown.
+ *
+ * @param {Object} mapData The map data.
+ */
 const showGoalsTab = async (mapData) => {
   addArToggle();
   addMouseLinksToMap();
@@ -505,6 +534,9 @@ const showGoalsTab = async (mapData) => {
   addSidebarToggle();
 };
 
+/**
+ * Fire the actions when the goals tab is hidden.
+ */
 const hideGoalsTab = () => {
   removeArToggle();
 };

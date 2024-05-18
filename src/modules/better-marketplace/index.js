@@ -13,6 +13,11 @@ import settings from './settings';
 import smallImageStyles from './styles/small-images.css';
 import styles from './styles/styles.css';
 
+/**
+ * Update the quantity buttons.
+ *
+ * @param {Element} searchInputDOM The search input DOM element.
+ */
 const initSearch = (searchInputDOM) => {
   // add one blank one to the start
   const blankOpt = document.createElement('option');
@@ -47,6 +52,11 @@ const initSearch = (searchInputDOM) => {
     });
 };
 
+/**
+ * Modify the search options.
+ *
+ * @param {Array} opts The options to modify.
+ */
 const modifySearch = async (opts) => {
   const searchContainer = document.querySelector('.marketplaceView-header-searchContainer');
   if (! searchContainer) {
@@ -294,6 +304,9 @@ const init = async () => {
 
   onOverlayChange({
     marketplace: {
+      /**
+       * Run when the marketplace is shown.
+       */
       show: () => {
         waitForSearchReady();
         overloadShowItem();

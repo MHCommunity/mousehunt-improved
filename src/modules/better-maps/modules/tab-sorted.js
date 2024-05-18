@@ -17,6 +17,14 @@ import doHighlighting from './highlighting';
 
 import mouseGroups from '@data/map-groups.json';
 
+/**
+ * Get the mouse data for the map.
+ *
+ * @param {Object} currentMapData The current map data.
+ * @param {string} type           The type of data to get.
+ *
+ * @return {Object} The mouse data.
+ */
 const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   // Get the unsorted mice.
   let unsortedMice = [];
@@ -55,6 +63,14 @@ const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   };
 };
 
+/**
+ * Generate the markup for a mouse.
+ *
+ * @param {Object} mouse The mouse data.
+ * @param {string} type  The type of mouse.
+ *
+ * @return {HTMLElement} The mouse element.
+ */
 const makeMouseDiv = async (mouse, type = 'mouse') => {
   // Wrapper.
   const mouseDiv = makeElement('div', 'mouse-container');
@@ -180,6 +196,11 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
   return mouseDiv;
 };
 
+/**
+ * Make the sorted page wrapper.
+ *
+ * @return {HTMLElement} The sorted page wrapper.
+ */
 const makeSortedPageWrapper = () => {
   const sortedPage = makeElement('div', 'sorted-page');
   makeElement('div', ['sorted-loading', 'mousehuntPage-loading', 'active'], '', sortedPage);
@@ -188,6 +209,9 @@ const makeSortedPageWrapper = () => {
   return sortedPage;
 };
 
+/**
+ * Make the sorted mice list HTML.
+ */
 const makeSortedMiceList = async () => {
   // Get the current map data.
   const currentMapData = getMapData(mapData().map_id);

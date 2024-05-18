@@ -1,5 +1,10 @@
 import { getArEl, makeElement, mapper } from '@utils';
 
+/**
+ * Add AR data to the map.
+ *
+ * @param {Object} mapData The map data.
+ */
 const addArDataToMap = async (mapData) => {
   let type = 'mouse';
   if (mapData?.goals?.mouse.length === 0) {
@@ -62,6 +67,9 @@ const addArDataToMap = async (mapData) => {
   });
 };
 
+/**
+ * Toggle AR data on the map.
+ */
 const toggleAr = async () => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
@@ -107,6 +115,9 @@ const toggleAr = async () => {
   toggle.classList.remove('disabled');
 };
 
+/**
+ * Force click the AR toggle button.
+ */
 const clickArToggle = () => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
@@ -121,6 +132,9 @@ const clickArToggle = () => {
   toggle.click();
 };
 
+/**
+ * Maybe click the AR toggle button.
+ */
 const maybeClickArToggle = () => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
@@ -146,6 +160,12 @@ const maybeClickArToggle = () => {
 };
 
 let isAdding = false;
+
+/**
+ * Add the AR toggle button to the map.
+ *
+ * @param {string} tab The current tab.
+ */
 const addArToggle = async (tab = 'goals') => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
@@ -200,6 +220,9 @@ const addArToggle = async (tab = 'goals') => {
   isAdding = false;
 };
 
+/**
+ * Remove the AR toggle button.
+ */
 const removeArToggle = () => {
   const toggle = document.querySelector('.mh-ui-toggle-ar-button');
   if (toggle) {

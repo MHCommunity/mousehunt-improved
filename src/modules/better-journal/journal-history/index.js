@@ -11,6 +11,13 @@ import {
   onRequest
 } from '@utils';
 
+/**
+ * Make the markup for the journal entries.
+ *
+ * @param {Array} entries The journal entries.
+ *
+ * @return {string} The markup.
+ */
 const makeEntriesMarkup = (entries) => {
   return entries.map((entry) => {
     if (entry.data) {
@@ -60,6 +67,12 @@ const makeEntriesMarkup = (entries) => {
   }).join('');
 };
 
+/**
+ * Handle actions for a journal page.
+ *
+ * @param {number} page  The page number to handle.
+ * @param {Event}  event The event that triggered the function, if any.
+ */
 const doPageStuff = (page, event = null) => {
   if (page <= 6 || page > totalPages) {
     return;
@@ -81,6 +94,11 @@ const doPageStuff = (page, event = null) => {
   doEvent('journal-history-entry-added', journalEntryContainer);
 };
 
+/**
+ * Retrieve all journal entries from the database.
+ *
+ * @return {Promise<Array>} Journal entries.
+ */
 const getAllEntries = async () => {
   if (! journalEntries.length) {
     journalEntries = await dbGetAll('journal');
@@ -97,6 +115,12 @@ const getAllEntries = async () => {
 };
 
 let lastDate = '';
+
+/**
+ * Save a journal entry to the database.
+ *
+ * @param {HTMLElement} entry The journal entry element to save.
+ */
 const saveToDatabase = async (entry) => {
   const entryId = Number.parseInt(entry.getAttribute('data-entry-id'), 10);
   if (! entryId) {
@@ -136,6 +160,9 @@ const saveToDatabase = async (entry) => {
   await dbSet('journal', journalData);
 };
 
+/**
+ * Handle the journal history.
+ */
 const doJournalHistory = async () => {
   if (! ('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
     return;
@@ -153,6 +180,10 @@ const doJournalHistory = async () => {
     pager = hg.views.JournalView.getPager(journalPageLink);
   }
 
+  if (! pager) {
+    return;
+  }
+
   journalEntries = journalEntries.length ? journalEntries : await getAllEntries();
 
   totalPages = Math.ceil(journalEntries.length / perPage);
@@ -166,10 +197,12 @@ const doJournalHistory = async () => {
   pager.render();
 };
 
+/**
+ * Wrapper for doPageStuff to use with events.
+ */
 const doJournalHistoryRequest = () => {
   doJournalHistory();
 
-  console.log('pager', pager); // eslint-disable-line no-console
   if (! pager) {
     doJournalHistory();
   }
@@ -183,11 +216,17 @@ const doJournalHistoryRequest = () => {
   }
 };
 
+/**
+ * Delay the journal history handling.
+ */
 const doDelayedJournalHistory = () => {
   setTimeout(doJournalHistory, 500);
   setTimeout(doJournalHistory, 1000);
 };
 
+/**
+ * Conditionally handle the journal history based on the current page.
+ */
 const maybeDoJournalHistory = () => {
   pager = null;
 
