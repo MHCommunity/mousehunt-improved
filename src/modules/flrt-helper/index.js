@@ -200,6 +200,9 @@ const init = async () => {
   onRequest('users/useconvertible.php', addFlrtButtonToConvertible);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'flrt-helper',
   name: 'FLRT Helper',

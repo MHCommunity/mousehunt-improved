@@ -23,6 +23,11 @@ const CSSMinifyTextPlugin = {
 
 const ImportGlobPlugin = {
   name: 'ImportGlobPlugin',
+  /**
+   * Setup the plugin.
+   *
+   * @param {Object} build The build object.
+   */
   setup(build) {
     build.onLoad({ filter: /\.js$/ }, async (args) => {
       let contents = fs.readFileSync(args.path, 'utf8');

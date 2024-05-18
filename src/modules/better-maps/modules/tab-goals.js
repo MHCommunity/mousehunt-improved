@@ -30,6 +30,13 @@ const getLinkMarkup = (name, mouseType) => {
     makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${nameMouse}`);
 };
 
+/**
+ * Get the link markup for an item.
+ *
+ * @param {string} name The item name.
+ *
+ * @return {string} The link markup.
+ */
 const getItemLinkMarkup = (name) => {
   name = name.replace(' ', '_');
   return makeLink('MHCT DR', `https://www.mhct.win/loot.php?item=${name}`, true) +
@@ -328,6 +335,13 @@ const addQuickInvite = async (mapData) => {
 
   inviteWrapper.append(indicators);
 
+  /**
+   * Handle an error when inviting a hunter.
+   *
+   * @param {string} message The error message.
+   *
+   * @return {boolean} False.
+   */
   const inviteError = (message) => {
     debuglog('better-maps', `Invite error: ${message}`);
 
@@ -344,6 +358,11 @@ const addQuickInvite = async (mapData) => {
     return false;
   };
 
+  /**
+   * Handle the invite action.
+   *
+   * @return {boolean} False.
+   */
   const inviteAction = async () => {
     if (inviteButton.classList.contains('disabled')) {
       return;

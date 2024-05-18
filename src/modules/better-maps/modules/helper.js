@@ -265,9 +265,7 @@ const makeMenuItem = () => {
     /**
      * Open the mini map.
      *
-     * @param {Number} mapId The map ID.
-     *
-     * @return {Promise<void>} A promise that resolves when the mini map is opened.
+     * @return {void}
      */
     callback: () => openMiniMap(mapId),
   });

@@ -8,10 +8,25 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Update the sidebar list from the mice effectiveness page.
+ *
+ * @param {Object} data The data from the request.
+ *
+ * @return {Promise} Results of the update.
+ */
 const updateSidebarListFromMiceEff = async (data) => {
   return await updateSidebarList(data, true);
 };
 
+/**
+ * Update the sidebar list.
+ *
+ * @param {Object}  data          The data from the request.
+ * @param {boolean} isFromMiceEff Whether the request is from the mice effectiveness page.
+ *
+ * @return {Promise} Results of the update.
+ */
 const updateSidebarList = async (data = null, isFromMiceEff = false) => {
   const sidebar = document.querySelector('.pageSidebarView .pageSidebarView-block');
   if (! sidebar) {
@@ -79,6 +94,9 @@ const updateSidebarList = async (data = null, isFromMiceEff = false) => {
   sidebar.append(miceSidebar);
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   if (getSetting('no-sidebar')) {
     return;

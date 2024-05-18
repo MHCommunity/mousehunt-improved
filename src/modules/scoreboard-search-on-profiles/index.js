@@ -143,6 +143,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'profile-scoreboard-search',
   name: 'Scoreboard Search on Profiles',

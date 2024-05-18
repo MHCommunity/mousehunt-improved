@@ -239,6 +239,12 @@ const maybeDoJournalHistory = () => {
 let pager;
 let journalEntries = [];
 let miceThumbs = [];
+
+/**
+ * Initialize the module.
+ *
+ * @param {boolean} enabled Whether the module is enabled.
+ */
 export default async (enabled) => {
   miceThumbs = await getData('mice-thumbnails');
   if (enabled) {

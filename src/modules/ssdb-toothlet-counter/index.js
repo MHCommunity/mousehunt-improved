@@ -1,7 +1,7 @@
 import { addTrapQuantity } from '@utils';
 
 /**
- * Initialize the module.
+ * Add the trap quantity.
  */
 const init = async () => {
   addTrapQuantity({
@@ -11,6 +11,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'ssdb-teeth-counter',
   name: 'SSDB Toothlet Counter',

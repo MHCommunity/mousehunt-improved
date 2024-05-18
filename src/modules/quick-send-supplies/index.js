@@ -255,6 +255,9 @@ const init = async () => {
   onEvent('map_tab_click', addToMapUsers);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'quick-send-supplies',
   name: 'Quick Send Supplies',

@@ -956,6 +956,9 @@ const init = async () => {
   onEvent('mh-improved-toggle-favorite-setups', toggleFavoriteSetups);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'favorite-setups',
   name: 'Favorite Setups',

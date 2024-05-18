@@ -51,6 +51,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'links',
   type: 'required',

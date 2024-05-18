@@ -171,6 +171,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'journal-privacy',
   name: 'Journal Privacy',

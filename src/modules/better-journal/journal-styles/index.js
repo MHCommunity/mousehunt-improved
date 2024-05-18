@@ -43,6 +43,9 @@ const addBadgeClass = (entry) => {
     .trim();
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   addStyles(styles, 'better-journal-styles');
 

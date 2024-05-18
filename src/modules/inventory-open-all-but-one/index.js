@@ -91,6 +91,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'open-all-but-one',
   name: 'Inventory - Open All but One',

@@ -9,6 +9,8 @@ import path from 'node:path';
  *
  * @param {string}  platform The platform to build for.
  * @param {boolean} watch    Whether to watch for changes.
+ *
+ * @return {Promise<void>} Esbuild build result.
  */
 const buildExtension = async (platform, watch = false) => {
   fs.mkdirSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });

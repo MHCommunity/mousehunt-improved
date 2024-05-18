@@ -69,6 +69,9 @@ const init = async () => {
   onDeactivation('inline-wiki', removeMenuListener);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'inline-wiki',
   name: 'Inline Wiki',

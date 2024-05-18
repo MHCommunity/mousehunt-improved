@@ -1,5 +1,8 @@
 import { addTrapQuantity } from '@utils';
 
+/**
+ * Add the trap quantity.
+ */
 const init = async () => {
   addTrapQuantity({
     baseIds: [3628, 3683],
@@ -8,6 +11,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'printing-press-paper-counter',
   name: 'Printing Press Paper Counter',

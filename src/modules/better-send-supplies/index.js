@@ -301,6 +301,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-send-supplies',
   name: 'Better Send Supplies',

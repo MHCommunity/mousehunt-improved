@@ -113,6 +113,9 @@ const init = async () => {
   onRequest('*', removeDailyDrawNotifications);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'hide-daily-draw',
   name: 'Hide Daily Draw',

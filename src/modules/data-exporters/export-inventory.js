@@ -17,6 +17,14 @@ const itemCategories = [
   { id: 'adventure', name: 'Adventure Items' },
 ];
 
+// eslint-disable-next-line jsdoc/require-returns
+/**
+ * Get the data for the given classification.
+ *
+ * @param {Object} classification The classification object.
+ *
+ * @return {Object} The data for the classification.
+ */
 const getData = async (classification) => {
   const regionEl = document.querySelector(`.item-wrapper[data-region="${classification.id}"]`);
 
@@ -59,6 +67,9 @@ const getData = async (classification) => {
   };
 };
 
+/**
+ * Export the inventory.
+ */
 const exportInventory = () => {
   let inventoryMarkup = '';
   itemCategories.forEach((region) => {
@@ -74,6 +85,11 @@ const exportInventory = () => {
     headerMarkup: '<div class="region-name">Category</div><div class="total-items">Items</div>',
     itemsMarkup: inventoryMarkup,
     footerMarkup: '<div class="region-name">Total</div><div class="total-items">0</div>',
+    /**
+     * Fetch the data for the inventory.
+     *
+     * @return {Promise} The promise that resolves when the data is fetched.
+     */
     fetch: () => recursiveFetch(itemCategories, getData),
     updateSingleTotal: true,
     download: {

@@ -9,6 +9,9 @@ import groovyGreen from './styles/groovy-green.css';
 import midnight from './styles/midnight.css';
 import suede from './styles/suede.css';
 
+/**
+ * Add the custom HUD style element.
+ */
 const addStyleEl = () => {
   const setting = getSetting('custom-hud-0', 'default');
 
@@ -54,6 +57,9 @@ const addStyleEl = () => {
   document.head.append(styleEl);
 };
 
+/**
+ * Watch for preference changes.
+ */
 const listenForPreferenceChanges = () => {
   const input = document.querySelector('#mousehunt-improved-settings-design-custom-hud select');
   if (! input) {
@@ -65,6 +71,9 @@ const listenForPreferenceChanges = () => {
   });
 };
 
+/**
+ * Persist the styles on navigation.
+ */
 const persistBackground = () => {
   addStyleEl();
   onNavigation(listenForPreferenceChanges, {
@@ -80,6 +89,9 @@ const init = async () => {
   persistBackground();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'custom-hud',
   type: 'design',

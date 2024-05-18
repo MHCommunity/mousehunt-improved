@@ -208,6 +208,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'location-huds',
   type: 'location-hud',

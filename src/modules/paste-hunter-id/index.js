@@ -1,3 +1,8 @@
+/**
+ * Process a pasted string to see if it's a hunter ID, and if so, redirect to that hunter's profile.
+ *
+ * @param {string} text The pasted text.
+ */
 const maybeRedirectToHunterProfile = (text) => {
   if (text.length > 30) {
     return;
@@ -31,8 +36,10 @@ const maybeRedirectToHunterProfile = (text) => {
   });
 };
 
+/**
+ * Listen for the user hitting the paste shortcut and maybe redirect to the hunter's profile.
+ */
 const listenForIDPaste = () => {
-  // listen for the user hitting the paste shortcut.
   window.addEventListener('paste', (e) => {
     // if we're currently focused in an input, then don't do anything
     if (
@@ -56,6 +63,9 @@ const init = async () => {
   listenForIDPaste();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'paste-hunter-id',
   name: 'Paste Hunter ID',

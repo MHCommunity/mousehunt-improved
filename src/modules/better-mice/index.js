@@ -423,6 +423,9 @@ const init = async () => {
   replaceShowMouseImage();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-mice',
   name: 'Better Mice',

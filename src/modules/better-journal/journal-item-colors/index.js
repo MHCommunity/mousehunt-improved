@@ -17,6 +17,9 @@ const makeStyles = () => {
   return styles;
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   addStyles(makeStyles(), 'better-journal-link-colors');
 };

@@ -253,6 +253,9 @@ const init = async () => {
   }, { page: 'camp' });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'show-auras',
   name: 'Show Auras',

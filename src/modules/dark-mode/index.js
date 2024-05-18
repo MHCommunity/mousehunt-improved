@@ -11,6 +11,11 @@ const isDarkMode = () => {
   return !! getComputedStyle(document.documentElement).getPropertyValue('--mhdm-white');
 };
 
+/**
+ * Check if dark mode is enabled and add the body class if it is.
+ *
+ * @return {boolean} Whether the body class was added.
+ */
 const checkForDarkModeAndAddBodyClass = () => {
   if (! isDarkMode()) {
     return false;
@@ -21,6 +26,9 @@ const checkForDarkModeAndAddBodyClass = () => {
   return true;
 };
 
+/**
+ * Add the dark mode body class.
+ */
 const addDarkModeBodyClass = () => {
   let added = checkForDarkModeAndAddBodyClass();
   // add a delay to make sure the body class is added before the styles are applied.
@@ -48,6 +56,9 @@ const init = async () => {
   onRequest('*', addDarkModeBodyClass);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'dark-mode',
   name: 'Dark Mode Updates & Tweaks',

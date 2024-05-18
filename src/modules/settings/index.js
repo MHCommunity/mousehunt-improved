@@ -102,6 +102,12 @@ const addExportSettings = () => {
 
       const file = dropevent.dataTransfer.files[0];
       const reader = new FileReader();
+
+      /**
+       * When the file is loaded, set the textarea value to the file contents.
+       *
+       * @param {Event} loadEvent The load event.
+       */
       reader.onload = (loadEvent) => {
         textarea.value = loadEvent.target.result;
       };
@@ -124,6 +130,12 @@ const addExportSettings = () => {
 
         const file = changeEvent.target.files[0];
         const reader = new FileReader();
+
+        /**
+         * When the file is loaded, set the textarea value to the file contents.
+         *
+         * @param {Event} loadEvent The load event.
+         */
         reader.onload = (loadEvent) => {
           textarea.value = loadEvent.target.result;
         };
@@ -351,6 +363,9 @@ const addTogglesToSettings = () => {
   });
 };
 
+/**
+ * Move the tab to the end.
+ */
 const moveTabToEnd = () => {
   const mhImprovedTab = document.querySelector('#mousehunt-improved-settings');
   if (! mhImprovedTab) {
@@ -374,6 +389,12 @@ const addMhImprovedIconToMenu = () => {
     href: 'https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings',
     title: 'MouseHunt Improved Settings',
     position: 'append',
+
+    /**
+     * The action to perform when the icon is clicked.
+     *
+     * @param {Event} e The event.
+     */
     action: (e) => {
       if ('preferences' === getCurrentPage() && 'mousehunt-improved-settings' === getCurrentTab()) {
         e.preventDefault();
@@ -448,6 +469,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: '_settings',
   type: 'advanced',

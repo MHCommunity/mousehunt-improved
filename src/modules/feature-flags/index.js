@@ -18,6 +18,9 @@ const init = async () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'feature-flags',
   type: 'advanced',

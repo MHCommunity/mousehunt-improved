@@ -10,6 +10,9 @@ const init = async () => {
   addStyles(styles, 'global-styles');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'global-styles',
   type: 'required',

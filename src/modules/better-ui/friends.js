@@ -1,5 +1,8 @@
 import { getCurrentPage, onNavigation } from '@utils';
 
+/**
+ * Reorder the blocks on the friends page.
+ */
 const reorderBlocks = () => {
   if ('friends' !== getCurrentPage()) {
     return;
@@ -31,6 +34,9 @@ const reorderBlocks = () => {
   reordered.setAttribute('data-reordered', 'true');
 };
 
+/**
+ * Autofocus the ID search input.
+ */
 const autofocusIdSearch = () => {
   const input = document.querySelector('.friendsPage-community-hunterIdForm-input');
   if (! input) {

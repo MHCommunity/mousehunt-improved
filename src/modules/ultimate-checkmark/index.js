@@ -329,6 +329,11 @@ const addCategoryAndItems = async (required, type, subtype, key, name) => {
   return true;
 };
 
+/**
+ * Check if the profile is the user's own profile.
+ *
+ * @return {boolean} If the profile is the user's own profile.
+ */
 const isOwnProfile = () => {
   if (! hg?.utils?.PageUtil?.getQueryParams) {
     return false;
@@ -379,6 +384,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'ultimate-checkmark',
   type: 'feature',

@@ -229,6 +229,9 @@ const init = async () => {
   onRequest('users/changetrap.php', run);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'prestige-base-stats',
   name: 'Prestige Base Stats',

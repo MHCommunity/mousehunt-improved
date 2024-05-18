@@ -143,6 +143,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'wisdom-in-stat-bar',
   name: 'Wisdom in Stat Bar',

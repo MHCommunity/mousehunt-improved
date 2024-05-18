@@ -257,6 +257,9 @@ const init = async () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'image-upscaling',
   name: 'Image Upscaling & Transparency',

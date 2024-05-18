@@ -56,6 +56,9 @@ const init = async () => {
   startKingsReward();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-kings-reward',
   name: 'Better King\'s Reward',

@@ -128,6 +128,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'data-exporters',
   name: 'Data Exporters',

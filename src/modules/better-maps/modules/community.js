@@ -156,6 +156,9 @@ const debug = async (response, data) => {
   hideMhct.remove();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onRequest('users/treasuremap.php', debug);
 };

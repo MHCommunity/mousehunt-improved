@@ -1,5 +1,15 @@
 import { getSetting, saveSetting } from '@utils';
 
+/**
+ * Keep the inventory open or closed based on a setting.
+ *
+ * @param {Object} opts                    Options for the function.
+ * @param {string} opts.setting            The setting key to use.
+ * @param {string} opts.buttonSelector     The button selector.
+ * @param {string} opts.inventorySelector  The inventory selector.
+ * @param {string} opts.inventoryOpenClass The class to add to the inventory when open.
+ * @param {string} opts.buttonOpenClass    The class to add to the button when open.
+ */
 const keepInventoryToggled = async (opts) => {
   const {
     setting,

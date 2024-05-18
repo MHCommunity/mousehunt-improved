@@ -9,6 +9,9 @@ const init = async () => {
   addStyles(styles, 'no-share');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'no-share',
   name: 'Hide Share Buttons',

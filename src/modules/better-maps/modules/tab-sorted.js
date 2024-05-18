@@ -387,6 +387,12 @@ const makeSortedMiceList = async () => {
   target.append(categoriesWrapper);
 };
 
+/**
+ * Make the scavenger sorted page.
+ *
+ * @param {boolean}     isNormal Is this a normal map?
+ * @param {HTMLElement} target   The target element.
+ */
 const makeScavengerSortedPage = async (isNormal, target) => {
   target.classList.add('scavenger-sorted-page');
   target.classList.add('treasureMapView-block');
@@ -394,6 +400,11 @@ const makeScavengerSortedPage = async (isNormal, target) => {
   target.setAttribute('data-scavenger-sorted-by', 'none');
   target.setAttribute('data-scavenger-sort-direction', 'descending');
 
+  /**
+   * Sort the mice by the AR.
+   *
+   * @param {string} direction The direction to sort in.
+   */
   const sortMice = (direction = 'descending') => {
     const container = target.querySelector('.sorted-page-content');
     if (! container) {
@@ -449,6 +460,11 @@ const makeScavengerSortedPage = async (isNormal, target) => {
     return;
   }
 
+  /**
+   * Sort the mice into locations.
+   *
+   * @param {string} direction The direction to sort in.
+   */
   const sortMiceIntoLocations = async (direction = 'descending') => {
     const container = target.querySelector('.sorted-page-content');
     if (! container) {
@@ -546,6 +562,9 @@ const makeScavengerSortedPage = async (isNormal, target) => {
     });
   };
 
+  /**
+   * Toggle the sort direction.
+   */
   const toggleSortDirection = async () => {
     const currentDirection = target.getAttribute('data-scavenger-sort-direction');
     const currentSort = target.getAttribute('data-scavenger-sorted-by');
@@ -559,6 +578,9 @@ const makeScavengerSortedPage = async (isNormal, target) => {
     }
   };
 
+  /**
+   * Toggle the sort type.
+   */
   const toggleSortType = async () => {
     const currentSort = target.getAttribute('data-scavenger-sorted-by');
     const currentDirection = target.getAttribute('data-scavenger-sort-direction');
@@ -612,6 +634,12 @@ const makeScavengerSortedPage = async (isNormal, target) => {
   await toggleSortType();
 };
 
+/**
+ * Make the generic sorted page.
+ *
+ * @param {boolean}     isNormal   Is this a normal map?
+ * @param {HTMLElement} sortedPage The sorted page element.
+ */
 const makeGenericSortedPage = async (isNormal, sortedPage) => {
   const target = document.querySelector('.sorted-page-content');
   if (! target) {
@@ -652,6 +680,9 @@ const makeGenericSortedPage = async (isNormal, sortedPage) => {
   await makeScavengerSortedPage(isNormal, sortedPage);
 };
 
+/**
+ * Move the sorted tab to the body.
+ */
 const moveTabToBody = () => {
   const sortedMiceContainer = document.querySelector('#sorted-mice-container');
   if (! sortedMiceContainer) {
@@ -666,6 +697,9 @@ const moveTabToBody = () => {
   body.append(sortedMiceContainer);
 };
 
+/**
+ * Process the sorted tab click.
+ */
 const processSortedTabClick = async () => {
   const currentlyActive = document.querySelector('.treasureMapRootView-subTab.sorted-map-tab.active');
   if (currentlyActive) {
@@ -745,6 +779,11 @@ const processSortedTabClick = async () => {
   doHighlighting();
 };
 
+/**
+ * Add the sorted map tab.
+ *
+ * @return {boolean} Whether the tab was added.
+ */
 const addSortedMapTab = () => {
   const mapTabs = document.querySelector('.treasureMapRootView-subTabContainer');
   if (! mapTabs || mapTabs.length <= 0) {
@@ -769,11 +808,17 @@ const addSortedMapTab = () => {
   return true;
 };
 
+/**
+ * Fire the actions when the sorted tab is clicked.
+ */
 const showSortedTab = () => {
   processSortedTabClick();
   addArToggle('sorted');
 };
 
+/**
+ * Fire the actions when the sorted tab is hidden.
+ */
 const hideSortedTab = () => {
   removeArToggle();
 };

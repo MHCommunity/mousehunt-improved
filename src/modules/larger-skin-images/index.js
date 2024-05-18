@@ -135,6 +135,9 @@ const init = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'larger-skin-images',
   name: 'Larger Skin Images',

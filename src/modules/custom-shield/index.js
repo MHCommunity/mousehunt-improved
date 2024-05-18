@@ -152,6 +152,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'custom-shield',
   type: 'design',

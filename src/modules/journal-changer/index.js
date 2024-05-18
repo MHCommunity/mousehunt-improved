@@ -225,6 +225,9 @@ const init = async () => {
   onThemeSelectorChange();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'journal-changer',
   name: 'Journal Theme Changer',

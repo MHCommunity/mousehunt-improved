@@ -120,6 +120,9 @@ const init = async () => {
   persistHornClass();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'custom-horn',
   type: 'design',

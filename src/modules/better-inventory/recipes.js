@@ -244,6 +244,11 @@ const moveRecipe = (type, recipesContainer) => {
   }
 };
 
+/**
+ * Update the recipes on the page.
+ *
+ * @param {string} type The type of recipe.
+ */
 const updateRecipesOnPage = async (type) => {
   if (! recipesToReorder[type] || 'recommended' === type) {
     return;

@@ -197,6 +197,9 @@ const init = async () => {
   persistBackground();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'custom-background',
   type: 'design',

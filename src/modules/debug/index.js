@@ -126,6 +126,9 @@ const init = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'debug',
   name: 'Debug',

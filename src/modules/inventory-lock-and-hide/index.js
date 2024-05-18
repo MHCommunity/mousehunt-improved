@@ -480,6 +480,9 @@ const init = async () => {
   onRequest('users/gettrapcomponents.php', addHideStyles);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'inventory-lock-and-hide',
   name: 'Inventory - Lock and Hide',

@@ -103,6 +103,11 @@ const main = async () => {
   console.log('Done!');
 };
 
+/**
+ * Get the replacement mice names and types.
+ *
+ * @return {Array} The replacement mice names and types.
+ */
 const getReplacements = async () => {
   // Check if we have a replacements.json file saved in a tmp folder.
   const tmpPath = os.tmpdir();

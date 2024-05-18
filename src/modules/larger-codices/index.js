@@ -9,6 +9,9 @@ const init = () => {
   addStyles(styles, 'larger-codices');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'larger-codices',
   name: 'Larger Codices',

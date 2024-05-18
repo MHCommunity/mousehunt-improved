@@ -18,6 +18,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'no-footer',
   name: 'Hide Footer',

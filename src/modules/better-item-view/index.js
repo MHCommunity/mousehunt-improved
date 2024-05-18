@@ -200,6 +200,9 @@ const init = async () => {
   onOverlayChange({ item: { show: updateItemView } });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-item-view',
   name: 'Better Items',

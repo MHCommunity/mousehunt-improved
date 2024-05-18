@@ -435,6 +435,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-maps',
   name: 'Better Maps',

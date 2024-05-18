@@ -103,6 +103,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'highlight-users',
   type: 'required',

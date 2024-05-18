@@ -219,6 +219,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'lgs-reminder',
   name: `${getSetting('experiments.new-settings-styles-columns', false) ? 'LGS' : 'Lucky Golden Shield'} Duration & Reminder`,

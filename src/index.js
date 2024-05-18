@@ -185,7 +185,15 @@ const init = async () => {
           id: await getAnonymousUserHash()
         },
       },
-      beforeSend(event, hint) { // eslint-disable-line no-unused-vars
+
+      /**
+       * Before sending the event to Sentry, check if it should be sent.
+       *
+       * @param {Event} event The event object.
+       *
+       * @return {Event|null} The event to send, or null to skip.
+       */
+      beforeSend(event) {
         const file = event.exception?.values?.[0]?.stacktrace?.frames?.[0]?.filename;
         if (
           file && (

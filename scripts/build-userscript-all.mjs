@@ -5,6 +5,18 @@ import * as esbuild from 'esbuild';
 
 import { CSSMinifyTextPlugin, ImportGlobPlugin } from './shared.mjs';
 
+/**
+ * Main build function.
+ *
+ * @param {string} entryfile   The entry file to build.
+ * @param {string} outfile     The output file.
+ * @param {string} name        The name of the userscript.
+ * @param {string} description The description of the userscript.
+ * @param {string} version     The version of the userscript.
+ * @param {string} url         The URL of the userscript.
+ *
+ * @return {Promise<void>} Esbuild build result.
+ */
 const build = async (entryfile, outfile, name, description, version, url) => {
   const header = `// ==UserScript==
 // @name        🐭️ MouseHunt - @replacement.name
@@ -66,6 +78,9 @@ const build = async (entryfile, outfile, name, description, version, url) => {
   return await esbuild.build(options);
 };
 
+/**
+ * Main build function.
+ */
 const main = async () => {
   const userscriptsToBuild = JSON.parse(fs.readFileSync(
     path.join(process.cwd(), 'src/data/userscripts.json')

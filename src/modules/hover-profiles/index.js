@@ -260,6 +260,9 @@ const init = async () => {
   onInboxOpen(main);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'hover-profiles',
   name: 'Hover Profiles',

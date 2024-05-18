@@ -97,6 +97,9 @@ const init = async () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'update-migration',
   type: 'required',

@@ -181,6 +181,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'location-catch-stats',
   name: 'Location Catch Stats',

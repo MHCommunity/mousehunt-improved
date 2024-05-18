@@ -2,6 +2,14 @@ import { addStyles, makeElement, onEvent, onRequest } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Add an element to the quick links.
+ *
+ * @param {Object}  link     The link object.
+ * @param {Element} appendTo The element to append to.
+ * @param {string}  filter   The filter type.
+ * @param {Element} input    The input element.
+ */
 const addItemToQuickLinks = (link, appendTo, filter) => {
   const existing = document.querySelector(`.campPage-trap-itemBrowser-favorite-item.quicklinks-filter.quicklinks-filter-${filter}-${link.id}`);
   if (existing) {
@@ -243,6 +251,9 @@ const init = async () => {
   onEvent('camp_page_toggle_blueprint', addQuickLinksToTrap);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'quick-filters-and-sort',
   name: 'Quick Filters and Sort',

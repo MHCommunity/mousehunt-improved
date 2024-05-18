@@ -28,6 +28,9 @@ const init = async () => {
   onRequest('*', hidePopup);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'hide-daily-reward-popup',
   name: 'Hide Daily Reward Popup',

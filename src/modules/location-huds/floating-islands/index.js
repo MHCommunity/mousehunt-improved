@@ -19,6 +19,7 @@ const humanizer = humanizeDuration.humanizer({
   language: 'shortEn',
   languages: {
     shortEn: {
+      /* eslint-disable jsdoc/require-jsdoc */
       y: () => 'y',
       mo: () => 'mo',
       w: () => 'w',
@@ -27,10 +28,17 @@ const humanizer = humanizeDuration.humanizer({
       m: () => 'm',
       s: () => 's',
       ms: () => 'ms',
+      /* eslint-enable jsdoc/require-jsdoc */
     },
   },
 });
 
+/**
+ * Toggle the fuel button class.
+ *
+ * @param {Element} fuelCount The fuel count element.
+ * @param {boolean} isActive  Whether the fuel is active.
+ */
 const toggleFuelClass = (fuelCount, isActive) => {
   if (isActive) {
     fuelCount.classList.remove('active');
@@ -39,6 +47,11 @@ const toggleFuelClass = (fuelCount, isActive) => {
   }
 };
 
+/**
+ * Toggle the fuel button.
+ *
+ * @param {boolean} skip Whether to skip the toggle.
+ */
 const toggleFuel = (skip = false) => {
   const fuel = document.querySelector('.floatingIslandsHUD-fuel-button');
   if (! fuel) {
@@ -67,6 +80,9 @@ const toggleFuel = (skip = false) => {
   });
 };
 
+/**
+ * Add the boss countdown.
+ */
 const addBossCountdown = async () => {
   const existing = document.querySelector('.mh-ui-fi-enemy-countdown');
   if (existing) {
@@ -119,6 +135,9 @@ const addBossCountdown = async () => {
   }, 1000 * tries);
 };
 
+/**
+ * Add the enemy class to the HUD.
+ */
 const addEnemyClass = async () => {
   const name = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy?.name || false;
   const type = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.enemy?.type || false;
@@ -139,6 +158,13 @@ const addEnemyClass = async () => {
   }
 };
 
+/**
+ * Get the next Oculus upgrade cost.
+ *
+ * @param {number} ocLevel The current Oculus level.
+ *
+ * @return {string|boolean} The next Oculus upgrade cost or false.
+ */
 const getNextOcUpgradeCost = (ocLevel) => {
   switch (Number.parseInt(ocLevel, 10)) {
   case 1:
@@ -162,6 +188,9 @@ const getNextOcUpgradeCost = (ocLevel) => {
   }
 };
 
+/**
+ * Make the elements for the glore progress.
+ */
 const showGloreProgress = async () => {
   const items = await getUserItems(['floating_islands_cloud_gem_stat_item', 'floating_islands_sky_ore_stat_item']);
   if (! (items && items.length)) {
@@ -194,6 +223,9 @@ const showGloreProgress = async () => {
   ore.classList.add('show-progress');
 };
 
+/**
+ * Fire actions when the Sky Map is shown.
+ */
 const onSkyMapShow = () => {
   const roll = document.querySelector('.floatingIslandsAdventureBoardSkyMap-rerollButton');
   if (! roll) {
@@ -211,6 +243,9 @@ const onSkyMapShow = () => {
   });
 };
 
+/**
+ * Show a reminder to activate Bottled Wind.
+ */
 const showBWReminder = () => {
   const isStart = user.enviroment_atts?.hunting_site_atts?.hunts_remaining === 75 && user.enviroment_atts?.on_island;
   const bwOff = ! user.enviroment_atts?.hunting_site_atts?.is_fuel_enabled;
@@ -222,6 +257,9 @@ const showBWReminder = () => {
       title: 'Bottled Wind Reminder',
       text: 'Don\'t forget to activate your Bottled Wind!',
       button: 'Activate',
+      /**
+       * Action to click the Bottled Wind button.
+       */
       action: () => {
         setTimeout(() => {
           const button = document.querySelector('.floatingIslandsHUD-fuel-button');
@@ -236,6 +274,9 @@ const showBWReminder = () => {
   }
 };
 
+/**
+ * Update the power type warning.
+ */
 const maybeChangeWarning = async () => {
   const isLAI = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.is_low_tier_island;
   const isAtBoss = user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_encountered_enemy && ! user?.quests?.QuestFloatingIslands?.hunting_site_atts?.has_defeated_enemy;
@@ -252,6 +293,9 @@ const maybeChangeWarning = async () => {
   }
 };
 
+/**
+ * Update the Jetstream time element.
+ */
 const updateJetstreamTime = async () => {
   const container = document.querySelector('.floatingIslandsHUD-jetstream-time');
   if (! container) {
@@ -311,6 +355,10 @@ const updateJetstreamTime = async () => {
 };
 
 let jsClone;
+
+/**
+ * Show the Jetstream aura indicator.
+ */
 const showJetstream = async () => {
   const exists = document.querySelector('.floatingIslandsHUD-jetstream');
   if (exists) {
@@ -366,6 +414,9 @@ const showJetstream = async () => {
   updateJetstreamTime();
 };
 
+/**
+ * Make the airship draggable.
+ */
 const makeAirshipDraggable = () => {
   const airship = document.querySelector('.floatingIslandsHUD.island .floatingIslandsHUD-airshipContainer');
   if (! airship) {
@@ -375,7 +426,11 @@ const makeAirshipDraggable = () => {
   let isDragging = false;
   let startX, startY, startTop, startLeft;
 
-  // Function to update the position of the airship
+  /**
+   * Update the position of the airship.
+   *
+   * @param {MouseEvent} e The mouse event.
+   */
   const moveAirship = (e) => {
     if (! isDragging) {
       return;
@@ -408,6 +463,9 @@ const makeAirshipDraggable = () => {
   });
 };
 
+/**
+ * Helper to do all the things.
+ */
 const run = async () => {
   await showJetstream();
   await addEnemyClass();
@@ -415,6 +473,9 @@ const run = async () => {
   await maybeChangeWarning();
 };
 
+/**
+ * Initialize the HUD changes.
+ */
 const hud = () => {
   toggleFuel();
   showGloreProgress();

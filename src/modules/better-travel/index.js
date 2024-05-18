@@ -629,6 +629,9 @@ const init = async () => {
   main();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-travel',
   name: 'Better Travel',

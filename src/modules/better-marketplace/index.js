@@ -322,6 +322,9 @@ const init = async () => {
   onRequest('users/marketplace.php', waitForFooterReady, true);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-marketplace',
   name: 'Better Marketplace',

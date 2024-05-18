@@ -9,6 +9,9 @@ const init = async () => {
   addStyles(styles, 'hide-codices');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'hide-codices',
   name: 'Hide Codices',

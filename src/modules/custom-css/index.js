@@ -9,10 +9,16 @@ const loadStyleOverrides = () => {
   }
 };
 
+/**
+ * Load the custom CSS.
+ */
 const init = async () => {
   onEvent('mh-improved-loaded', loadStyleOverrides);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'custom-css',
   type: 'advanced',

@@ -260,6 +260,9 @@ const init = async () => {
   onRequest('pages/scoreboards.php', updateScoreboard);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-tournaments',
   name: 'Better Tournaments',

@@ -94,6 +94,9 @@ const processEntries = async () => {
   isJournalProcessing = false;
 };
 
+/**
+ * Process the single journal entries.
+ */
 const processSingleEntries = async () => {
   if (isJournalProcessing) {
     return;
@@ -124,6 +127,9 @@ const addJournalProcessingEvents = async () => {
   onEvent('journal-history-entry-added', processEntries);
 };
 
+/**
+ * Add dialog listeners for dialog events.
+ */
 const addDialogListeners = () => {
   let currentDialog = null;
   onEvent('js_dialog_hide', () => {
@@ -187,6 +193,9 @@ const init = async () => {
   onEvent('dialog-show-support', addSupportLink);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: '_required',
   type: 'required',

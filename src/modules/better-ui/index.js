@@ -141,6 +141,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-ui',
   name: 'Better UI',

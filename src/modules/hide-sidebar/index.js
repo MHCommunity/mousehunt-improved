@@ -83,6 +83,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'no-sidebar',
   name: 'Hide Sidebar',

@@ -64,9 +64,19 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
   }
 
   const req = XMLHttpRequest.prototype.open;
+  /**
+   * Override the open method on the XMLHttpRequest prototype.
+   */
   XMLHttpRequest.prototype.open = function () {
     const send = XMLHttpRequest.prototype.send;
 
+    /**
+     * Override the send method on the XMLHttpRequest prototype.
+     *
+     * @param {string} data The data to send.
+     *
+     * @return {Object} The response.
+     */
     XMLHttpRequest.prototype.send = function (data) {
       const params = new URLSearchParams(data);
       this._data = Object.fromEntries(params);
@@ -426,6 +436,9 @@ const onTravelCallback = (location, options) => {
   }
 };
 
+const callbacks = [];
+let hasAddedNavigationListener = false;
+
 /**
  * Do something when the user navigates to a page, optionally checking the tab and subtab.
  *
@@ -455,8 +468,6 @@ const onTravelCallback = (location, options) => {
  * @param {string}   options.subtab The subtab to watch for.
  * @param {boolean}  options.onLoad Whether or not to run the callback on load.
  */
-const callbacks = [];
-let hasAddedNavigationListener = false;
 const onNavigation = (callback, options = {}) => {
   const defaults = {
     page: false,
@@ -495,6 +506,9 @@ const onNavigation = (callback, options = {}) => {
   }
 };
 
+/**
+ * Add the navigation listeners.
+ */
 const addNavigationListeners = () => {
   eventRegistry.addEventListener('set_page', (e) => {
     const tabs = e?.data?.tabs || {};

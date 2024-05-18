@@ -494,6 +494,9 @@ const init = async () => {
   makeDashboardTab();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'location-dashboard',
   name: 'Location Dashboard',

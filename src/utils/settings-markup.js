@@ -312,12 +312,13 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
 
     settingRowInputDropdown.append(settingRowInputDropdownSelect);
 
+    let timeout = null;
+
     /**
      * Event listener for when the setting is clicked.
      *
      * @param {Event} event The event.
      */
-    let timeout = null;
     settingRowInputDropdownSelect.onchange = (event) => {
       const parent = settingRowInputDropdownSelect.parentNode.parentNode.parentNode;
       parent.classList.add('inputDropdownWrapper');

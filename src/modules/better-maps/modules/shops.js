@@ -40,6 +40,12 @@ const updateShopsMarkup = async () => {
  */
 const updateFromClick = async () => {
   const _showShops = hg.controllers.TreasureMapController.showShops;
+
+  /**
+   * Show the shops.
+   *
+   * @param {Object} data The data.
+   */
   hg.controllers.TreasureMapController.showShops = (data) => {
     _showShops(data);
     updateShopsMarkup();
@@ -60,6 +66,9 @@ const updateFromRequest = (response, data) => {
   updateShopsMarkup();
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   updateFromClick();
   onRequest('users/treasuremap.php', updateFromRequest);

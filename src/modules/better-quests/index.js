@@ -382,6 +382,9 @@ const init = async () => {
   main();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-quests',
   name: 'Better Quests',

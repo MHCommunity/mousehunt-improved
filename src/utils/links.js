@@ -57,6 +57,13 @@ const addItemToGameInfoBar = (options) => {
   menu.insertBefore(item, menu.firstChild);
 };
 
+/**
+ * Sanitize a label for a submenu item.
+ *
+ * @param {string} label The label to sanitize.
+ *
+ * @return {string} The sanitized label.
+ */
 const getCleanSubmenuLabel = (label) => {
   return label.toLowerCase().replaceAll(/[^\da-z]/g, '-');
 };

@@ -253,6 +253,9 @@ const init = async () => {
   addStyles(stylesToAdd, 'legacy-hud');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'legacy-hud',
   name: 'Legacy HUD & Legacy HUD Tweaks',
