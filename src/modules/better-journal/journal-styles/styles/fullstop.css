@@ -17,6 +17,7 @@
 .journal .content .entry.floatingIslands.fullyExplored .journaltext br,
 .journal .content .entry.floatingIslands.defeatedEnemy .journaltext br,
 .journal .content .entry.folkloreForest-plantClaimed .journaltext br,
+.journal .content .entry.folkloreForest-lootFuelBoost .journaltext br,
 .journal .content .entry.relicHunter_complete .journaltext br:first-of-type,
 .journal .content .entry.harbour br {
   display: block;
