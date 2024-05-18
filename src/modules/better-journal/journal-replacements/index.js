@@ -258,6 +258,11 @@ const shouldSkip = (entry) => {
   return (classList.some((c) => keepOriginalClasses.has(c)));
 };
 
+/**
+ * Process a journal entry.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const processEntry = async (entry) => {
   if (shouldSkip(entry)) {
     return;
