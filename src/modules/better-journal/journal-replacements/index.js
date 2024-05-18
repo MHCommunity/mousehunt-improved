@@ -103,6 +103,7 @@ const replacements = [
   ['<br><p>', '<p>'],
   [/<p class="mhi-x-entry"><span class="dot"> • <\/span>/g, '', '!shop_purchase'],
   [/(\d+?) x /gi, '<p class="mhi-x-entry"><span class="dot"> • </span>$1 x ', '!shop_purchase'],
+  ['My Condensed Creativity created an additional ', 'My Condensed Creativity created an additional: '],
 
   [/<p><\/p>/g, ''],
   ['I can view other recipe', '<p class="double">I can view other recipe'],
@@ -123,7 +124,7 @@ const replacements = [
 
   ['Here is the loot summary from my infiltration of', 'I looted the following from'],
   ['Trove. and received', 'Trove and received'],
-  ['Lucky me, a prize mouse wandered by and fell for my trap!', '🎉️ A prize mouse fell into my trap!'],
+  ['Lucky me, a prize mouse wandered by and fell for my trap!', 'A prize mouse fell into my trap!'],
   [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
   ['In a flash of light my', 'My'],
   ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found another '],
