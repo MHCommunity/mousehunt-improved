@@ -67,11 +67,9 @@ const getIconSettings = async () => {
   };
 };
 
-const addToggleIcon = async () => {
 /**
  * Add the toggle icon to the menu.
  */
+export default async () => {
   addIconToMenu(await getIconSettings());
 };
-
-export default addToggleIcon;

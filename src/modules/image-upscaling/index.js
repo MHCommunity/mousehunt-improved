@@ -75,12 +75,12 @@ class ImageUpscaler {
    */
   getMappedUrl(strippedUrl) {
     if (! strippedUrl) {
-      return;
+      return '';
     }
 
     const mappedUrl = this.mapping[strippedUrl];
     if (! mappedUrl) {
-      return;
+      return '';
     }
 
     if (mappedUrl.includes('https://')) {

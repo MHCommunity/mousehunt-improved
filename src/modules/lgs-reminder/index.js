@@ -32,7 +32,7 @@ const isExact = () => {
 const getShieldEndDateTime = () => {
   const shieldExpiry = user.shield_expiry;
   if (! shieldExpiry) {
-    return;
+    return new Date(Date.now() - (60 * 1000)); // 1 minute ago to make it expired.
   }
 
   // make a new date object

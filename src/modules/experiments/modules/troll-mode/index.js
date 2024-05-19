@@ -24,12 +24,8 @@ const trollEm = () => {
         bottom: 1,
       },
       css_class: 'larryCircle',
-      on_show_callback: () => {
-        app.views.OnboardingTutorialView.tutorial.showBouncyArrow(domQuery, 'top');
-      },
-      on_close_callback: () => {
-        app.views.OnboardingTutorialView.tutorial.hideBouncyArrow();
-      },
+      on_show_callback: () => app.views.OnboardingTutorialView.tutorial.showBouncyArrow(domQuery, 'top'),
+      on_close_callback: () => app.views.OnboardingTutorialView.tutorial.hideBouncyArrow(),
       show_overlay: true,
     });
     hg.views.MessengerView.go();

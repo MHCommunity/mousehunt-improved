@@ -149,15 +149,11 @@ const addMoreCharms = async () => {
   }
 };
 
-const hud = () => {
-  updateHudImages();
-  addMoreCharms();
-};
-
 /**
  * Initialize the module.
  */
 export default async () => {
   addHudStyles(styles);
-  hud();
+  updateHudImages();
+  addMoreCharms();
 };

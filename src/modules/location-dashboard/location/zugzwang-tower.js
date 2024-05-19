@@ -38,7 +38,7 @@ const getChessProgress = (pieces) => {
  */
 const getZugzwangTowerText = (quests) => {
   if (! quests.QuestZugzwangTower) {
-    return;
+    return '';
   }
 
   const returnText = `${quests.QuestZugzwangTower.amp || 0}%`;

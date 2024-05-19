@@ -319,7 +319,7 @@ const maybeHideAdventCalendarInMenu = () => {
   // If it's not December, then hide the advent calendar in the menu.
   const now = new Date();
   if (now.getMonth() !== 11) {
-    // return '.mousehuntHeaderView-gameTabs .menuItem.adventCalendar { display: none; }';
+    return '.mousehuntHeaderView-gameTabs .menuItem.adventCalendar { display: none; }';
   }
 
   return '';

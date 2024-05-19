@@ -25,12 +25,7 @@ const openWiki = () => {
  * @return {HTMLElement|null} The wiki link or null.
  */
 const getLink = () => {
-  const wikiLink = document.querySelector('.mousehuntHud-menu ul li ul li.wiki a');
-  if (wikiLink) {
-    return wikiLink;
-  }
-
-  return null;
+  return document.querySelector('.mousehuntHud-menu ul li ul li.wiki a');
 };
 
 /**

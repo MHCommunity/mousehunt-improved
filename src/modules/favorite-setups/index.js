@@ -439,7 +439,7 @@ const armItem = async (items) => {
  */
 const makeBlueprintRow = async (setup, isCurrent = false) => {
   if (! setup) {
-    return;
+    return false;
   }
 
   const setupContainer = makeElement('div', ['row']);
@@ -1005,11 +1005,9 @@ const getNameOfCurrentSetup = () => {
  */
 const updateFavoriteSetupName = () => {
   const label = document.querySelector('.mh-improved-favorite-setups-button-label');
-  if (! label) {
-    return;
+  if (label) {
+    label.innerHTML = getNameOfCurrentSetup() || '';
   }
-
-  label.innerHTML = getNameOfCurrentSetup() || '';
 };
 
 /**

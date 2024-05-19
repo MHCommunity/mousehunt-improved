@@ -519,10 +519,11 @@ const main = async () => {
   addLockAndHideControls();
 };
 
+let itemSettings;
+
 /**
  * Initialize the module.
  */
-let itemSettings;
 const init = async () => {
   addStyles(styles, 'inventory-lock-and-hide');
 

@@ -32,7 +32,7 @@ const fetchMouseData = async (mouseId) => {
  */
 const makeMouseMarkup = (mouse) => {
   if (! mouse) {
-    return;
+    return false;
   }
 
   const mouseData = makeElement('div', 'mouse-data');
@@ -190,10 +190,10 @@ const main = () => {
   });
 };
 
-const hoverMice = () => {
 /**
  * Initialize the module.
  */
+export default () => {
   addStyles(styles, 'better-mice-hover-mice');
 
   setTimeout(main, 500);
@@ -203,5 +203,3 @@ const hoverMice = () => {
 
   onTurn(() => cachedMouseData = {});
 };
-
-export default hoverMice;

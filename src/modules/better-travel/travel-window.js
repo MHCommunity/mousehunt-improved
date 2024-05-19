@@ -306,9 +306,7 @@ const makeMenuItem = () => {
     menu: 'travel',
     label: 'Travel Window',
     icon: 'https://i.mouse.rip/icons/tiles.png',
-    callback: () => {
-      openTravelWindow();
-    },
+    callback: () => openTravelWindow(),
   });
 };
 

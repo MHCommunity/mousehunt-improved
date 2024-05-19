@@ -7,16 +7,10 @@ import styles from './styles.css';
  */
 const moveCodex = async () => {
   const codex = document.querySelector('.trapSelectorView__activeCodexContainer');
-  if (! codex) {
-    return;
-  }
-
   const statsContainer = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
-  if (! statsContainer) {
-    return;
+  if (codex && statsContainer) {
+    statsContainer.append(codex);
   }
-
-  statsContainer.append(codex);
 };
 
 /**

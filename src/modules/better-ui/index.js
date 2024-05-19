@@ -85,10 +85,10 @@ const addUserscriptStyles = async () => {
   });
 };
 
-const addMaintenceClasses = () => {
 /**
  * Add the maintenance banner classes.
  */
+const addMaintenanceClasses = () => {
   const banner = document.querySelector('div[style="background: #f2f27c; border:1px solid #555; border-radius: 3px; text-align: center; font-size: 12px; padding: 6px 3px"]');
   if (! banner) {
     return;
@@ -138,7 +138,7 @@ const init = async () => {
     addStyles(legacyStyles, 'better-ui-legacy');
   }
 
-  addMaintenceClasses();
+  addMaintenanceClasses();
   addUserscriptStyles();
   friends();
   hud();
@@ -146,7 +146,7 @@ const init = async () => {
   onRequest('*', addAdventureBookClass);
   onRequest('users/dailyreward.php', kingsPromoTextChange);
   onNavigation(() => {
-    addMaintenceClasses();
+    addMaintenanceClasses();
     addAdventureBookClass();
   }, {
     page: 'camp',

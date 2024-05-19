@@ -56,12 +56,12 @@ const makeTooltip = (text, direction = 'top', customClass = []) => {
 const updateNightBar = () => {
   const bar = document.querySelector('.fortRoxHUD-timeline-phases');
   if (! bar) {
-    return false;
+    return;
   }
 
   const phaseBars = bar.querySelectorAll('.fortRoxHUD-timeline-phase-marker');
   if (! phaseBars.length) {
-    return false;
+    return;
   }
 
   phaseBars.forEach((phaseBar) => {
@@ -100,7 +100,7 @@ const updateNightBar = () => {
 const updateUpgradeTooltips = () => {
   const upgradeTooltips = document.querySelectorAll('.fortRoxHUD-fort-upgrade-boundingBox');
   if (! upgradeTooltips.length) {
-    return false;
+    return;
   }
 
   const upgradeInfo = document.querySelectorAll('.fortRoxHUD-fort-upgrade-level-info');
@@ -148,7 +148,7 @@ const updateWallHP = () => {
 
   const hpBox = document.querySelector('.fortRoxHUD-hp');
   if (! hpBox) {
-    return false;
+    return;
   }
 
   const wallPercent = user.quests.QuestFortRox.hp_percent.toFixed(0);
@@ -185,7 +185,7 @@ const updateWallHP = () => {
 const addPortalClass = () => {
   const portal = document.querySelector('.fortRoxHUD.dawn .fortRoxHUD-enterLairButton');
   if (! portal) {
-    return false;
+    return;
   }
 
   portal.classList.remove('frox-no-portal', 'frox-has-portal');
@@ -194,17 +194,13 @@ const addPortalClass = () => {
   portal.classList.add(hasPortal ? 'frox-has-portal' : 'frox-no-portal');
 };
 
-const hud = () => {
-  updateNightBar();
-  updateUpgradeTooltips();
-  updateWallHP();
-  addPortalClass();
-};
-
 /**
  * Initialize the module.
  */
 export default async () => {
   addHudStyles(styles);
-  hud();
+  updateNightBar();
+  updateUpgradeTooltips();
+  updateWallHP();
+  addPortalClass();
 };

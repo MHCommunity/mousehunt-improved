@@ -138,10 +138,6 @@ const replaceCampShowTab = () => {
 export default (location, cheeses) => {
   replaceCampShowTab();
 
-  const main = () => {
-    makeCheeseSelector(location, getCheeses(cheeses));
-  };
-
-  main();
-  onRequest('*', main);
+  makeCheeseSelector(location, getCheeses(cheeses));
+  onRequest('*', () => makeCheeseSelector(location, getCheeses(cheeses)));
 };
