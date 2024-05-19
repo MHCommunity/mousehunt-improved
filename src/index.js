@@ -7,6 +7,7 @@ import {
   debuglog,
   doEvent,
   getAnonymousUserHash,
+  getCurrentPage,
   getFlag,
   getGlobal,
   getSetting,
@@ -14,6 +15,7 @@ import {
   isUnsupportedFile,
   isiFrame,
   maybeDoMaintenance,
+  onNavigation,
   setGlobal,
   showLoadingError
 } from '@utils';
@@ -75,8 +77,13 @@ const loadModules = async () => {
 
   // Add the settings for each module.
   for (const module of categories) {
-    await addSettingForModule(module);
-    doEvent('mh-improved-settings-added', { module });
+    if ('preferences' === getCurrentPage()) {
+      await addSettingForModule(module);
+    } else {
+      onNavigation(() => addSettingForModule(module), {
+        page: 'preferences',
+      });
+    }
   }
 
   // Track modules to load.

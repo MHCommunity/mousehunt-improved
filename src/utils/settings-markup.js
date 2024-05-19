@@ -822,6 +822,8 @@ const addSettingForModule = async (module) => {
         }
       }
     }
+
+    doEvent('mh-improved-settings-added', { module });
   }
 };
 
