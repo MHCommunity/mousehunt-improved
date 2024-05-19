@@ -78,9 +78,9 @@ const addQuantityToDisplay = async () => {
 /**
  * Add the quantity to the trap browser.
  *
- * @param {string} el     The element to add the quantity to.
- * @param {string} itemId The item ID.
- * @param {string} base   The base ID.
+ * @param {Element} el     The element to add the quantity to.
+ * @param {string}  itemId The item ID.
+ * @param {string}  base   The base ID.
  */
 const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
   if (! el || ! itemId || ! base) {
@@ -104,6 +104,9 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
   el.append(counter);
 };
 
+/**
+ * Add the quantity to the trap browser for slugs.
+ */
 const addToTrapBrowserForSlugs = async () => {
   options.forEach(async (opts) => {
     opts.baseSlugs.forEach(async (base) => {
@@ -117,6 +120,9 @@ const addToTrapBrowserForSlugs = async () => {
   });
 };
 
+/**
+ * Add the quantity to the trap browser for IDs.
+ */
 const addToTrapBrowserForIds = async () => {
   options.forEach(async (opts) => {
     opts.baseIds.forEach(async (base) => {
@@ -130,6 +136,9 @@ const addToTrapBrowserForIds = async () => {
   });
 };
 
+/**
+ * Add the quantity to the trap browser for bases.
+ */
 const addToTrapBrowserForBases = async () => {
   addToTrapBrowserForSlugs();
   addToTrapBrowserForIds();
@@ -161,6 +170,9 @@ const addQtyToTrapBrowser = async (tab) => {
   observer.observe(trapItems, { childList: true, attributes: true, subtree: true });
 };
 
+/**
+ * Handle change trap events.
+ */
 const onChangeTrap = () => {
   const trapSelector = document.querySelector('.trapSelectorView__blueprint.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent--items[data-blueprint-type="base"]');
   if (trapSelector) {
@@ -185,12 +197,16 @@ const addTrapQuantity = async (opts) => {
 
   options.push(opts);
 
-  onRequest('users/changetrap.php', onChangeTrap);
+  onRequest('users/changetrap.php', () => {
+    onChangeTrap();
+    addQuantityToDisplay();
+    setTimeout(addQuantityToDisplay, 250);
+  });
   onEvent('camp_page_toggle_blueprint', async (tab) => addQtyToTrapBrowser(tab));
 
   addQuantityToDisplay();
   onNavigation(addQuantityToDisplay, { page: 'camp' });
-  onTurn(addQuantityToDisplay, 150);
+  onTurn(addQuantityToDisplay, 250);
 };
 
 export {

@@ -8,6 +8,9 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Open the wiki in an iframe.
+ */
 const openWiki = () => {
   const iframe = document.createElement('iframe');
   iframe.id = 'wiki-iframe';
@@ -16,20 +19,28 @@ const openWiki = () => {
   makePage(iframe);
 };
 
+/**
+ * Get the wiki link from the menu.
+ *
+ * @return {HTMLElement|null} The wiki link or null.
+ */
 const getLink = () => {
-  const wikiLink = document.querySelector('.mousehuntHud-menu ul li ul li.wiki a');
-  if (wikiLink) {
-    return wikiLink;
-  }
-
-  return null;
+  return document.querySelector('.mousehuntHud-menu ul li ul li.wiki a');
 };
 
+/**
+ * Open the wiki in an iframe.
+ *
+ * @param {Event} e The event.
+ */
 const wikiListener = (e) => {
   e.preventDefault();
   openWiki();
 };
 
+/**
+ * Add the click listener to the wiki link in the menu.
+ */
 const addMenuListener = () => {
   const wikiLink = getLink();
   if (wikiLink && ! listener) {
@@ -37,6 +48,9 @@ const addMenuListener = () => {
   }
 };
 
+/**
+ * Remove the click listener from the wiki link in the menu.
+ */
 const removeMenuListener = () => {
   const wikiLink = getLink();
   if (wikiLink && listener) {
@@ -45,6 +59,9 @@ const removeMenuListener = () => {
   }
 };
 
+/**
+ * Click the wiki link in the menu.
+ */
 const clickWiki = () => {
   const wikiLink = getLink();
   if (wikiLink) {
@@ -53,6 +70,10 @@ const clickWiki = () => {
 };
 
 let listener = null;
+
+/**
+ * The main function.
+ */
 const main = () => {
   addMenuListener();
   onEvent('mh-improved-open-wiki', clickWiki);
@@ -69,6 +90,9 @@ const init = async () => {
   onDeactivation('inline-wiki', removeMenuListener);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'inline-wiki',
   name: 'Inline Wiki',

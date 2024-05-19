@@ -65,6 +65,9 @@ const init = async () => {
   journalHistory(enabled.history);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-journal',
   name: 'Better Journal',

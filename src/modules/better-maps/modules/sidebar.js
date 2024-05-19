@@ -8,6 +8,11 @@ import {
   setMapData
 } from '@utils';
 
+/**
+ * Get the completed goals.
+ *
+ * @return {Array} The completed goals.
+ */
 const getCompletedGoals = () => {
   let goals = mapData?.is_scavenger_hunt ? mapData?.goals?.item : mapData?.goals?.mouse;
   if (! goals) {
@@ -30,6 +35,9 @@ const getCompletedGoals = () => {
   return goals;
 };
 
+/**
+ * Add the map to the sidebar.
+ */
 const addMapToSidebar = async () => {
   const sidebar = document.querySelector('.pageSidebarView .pageSidebarView-block');
   if (! sidebar) {
@@ -107,6 +115,11 @@ const addMapToSidebar = async () => {
   }
 };
 
+/**
+ * Refresh the map data.
+ *
+ * @return {Promise} The refreshed map data.
+ */
 const refreshMap = async () => {
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
 
@@ -142,6 +155,9 @@ const refreshMap = async () => {
   return newMapData;
 };
 
+/**
+ * Refresh the sidebar.
+ */
 const refreshSidebar = async () => {
   const refreshed = await refreshMap();
   if (! refreshed) {
@@ -155,6 +171,10 @@ const refreshSidebar = async () => {
 let shouldRefresh = true;
 let timeoutFive;
 let timeoutTen;
+
+/**
+ * Refresh the sidebar after a turn.
+ */
 const refreshSidebarAfterTurn = () => {
   clearTimeout(timeoutFive);
   clearTimeout(timeoutTen);
@@ -168,6 +188,10 @@ const refreshSidebarAfterTurn = () => {
 let mapData;
 let miceThumbs;
 let itemThumbs;
+
+/**
+ * Initialize the sidebar module.
+ */
 export default async () => {
   miceThumbs = await getData('mice-thumbnails');
   itemThumbs = await getData('item-thumbnails');

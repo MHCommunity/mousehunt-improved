@@ -13,6 +13,11 @@ import settings from './settings';
 import smallImageStyles from './styles/small-images.css';
 import styles from './styles/styles.css';
 
+/**
+ * Update the quantity buttons.
+ *
+ * @param {Element} searchInputDOM The search input DOM element.
+ */
 const initSearch = (searchInputDOM) => {
   // add one blank one to the start
   const blankOpt = document.createElement('option');
@@ -47,6 +52,11 @@ const initSearch = (searchInputDOM) => {
     });
 };
 
+/**
+ * Modify the search options.
+ *
+ * @param {Array} opts The options to modify.
+ */
 const modifySearch = async (opts) => {
   const searchContainer = document.querySelector('.marketplaceView-header-searchContainer');
   if (! searchContainer) {
@@ -121,6 +131,11 @@ const modifySearch = async (opts) => {
   searchContainer.append(label);
 };
 
+/**
+ * Wait for the search to be ready before modifying it.
+ *
+ * @param {number} attempts The number of attempts made.
+ */
 const waitForSearchReady = (attempts = 0) => {
   const opts = document.querySelectorAll('.marketplaceView-header-search option');
   let timeoutPending = false;
@@ -144,6 +159,11 @@ const waitForSearchReady = (attempts = 0) => {
   }, 300);
 };
 
+/**
+ * Close the claim dialog after a successful claim.
+ *
+ * @param {Object} resp The response from the claim request.
+ */
 const autocloseClaim = (resp) => {
   if (! (resp && resp.success)) {
     return;
@@ -172,9 +192,21 @@ const getLinkMarkup = (name, id) => {
     makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
 };
 
+/**
+ * Replace the showItem function to add additional functionality.
+ */
 const overloadShowItem = () => {
   const originalShowItem = hg.views.MarketplaceView.showItem;
 
+  /**
+   * Show the item with additional functionality.
+   *
+   * @param {string}  itemId                     The ID of the item.
+   * @param {string}  action                     The action to take.
+   * @param {number}  defaultQuantity            The default quantity.
+   * @param {number}  defaultUnitPriceWithTariff The default unit price with tariff.
+   * @param {boolean} force                      Whether to force the action.
+   */
   hg.views.MarketplaceView.showItem = (itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force) => {
     // allow toggling of buy/sell
     const actionButton = document.querySelector('.marketplaceView-item-actionType .marketplaceView-listingType');
@@ -205,6 +237,11 @@ const overloadShowItem = () => {
   };
 };
 
+/**
+ * Wait for the footer to be ready before modifying it.
+ *
+ * @param {number} attempts The number of attempts made.
+ */
 const waitForFooterReady = (attempts = 0) => {
   const opts = document.querySelectorAll('.marketplaceView-table-listing-quantity');
   let timeoutPending = false;
@@ -233,6 +270,9 @@ const waitForFooterReady = (attempts = 0) => {
   }, 300);
 };
 
+/**
+ * Add chart images to the categories.
+ */
 const addChartToCategories = async () => {
   const items = document.querySelectorAll('.marketplaceView-table tr');
   items.forEach((item) => {
@@ -259,18 +299,34 @@ const addChartToCategories = async () => {
 
 let _showBrowseCategory = null;
 let _showBrowser = null;
+
+/**
+ * Replace the showBrowseCategory function to add additional functionality.
+ */
 const replaceShowBrowseCategory = () => {
   if (_showBrowseCategory) {
     return;
   }
 
   _showBrowseCategory = hg.views.MarketplaceView.showBrowseCategory;
+
+  /**
+   * Show the browse category with additional functionality.
+   *
+   * @param {string} category The category to show.
+   */
   hg.views.MarketplaceView.showBrowseCategory = (category) => {
     _showBrowseCategory(category);
     addChartToCategories();
   };
 
   _showBrowser = hg.views.MarketplaceView.showBrowser;
+
+  /**
+   * Show the browser with additional functionality.
+   *
+   * @param {string} category The category to show.
+   */
   hg.views.MarketplaceView.showBrowser = (category) => {
     _showBrowser(category);
     addChartToCategories();
@@ -294,6 +350,9 @@ const init = async () => {
 
   onOverlayChange({
     marketplace: {
+      /**
+       * Run when the marketplace is shown.
+       */
       show: () => {
         waitForSearchReady();
         overloadShowItem();
@@ -309,6 +368,9 @@ const init = async () => {
   onRequest('users/marketplace.php', waitForFooterReady, true);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-marketplace',
   name: 'Better Marketplace',

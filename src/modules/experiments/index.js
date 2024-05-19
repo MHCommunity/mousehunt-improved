@@ -105,6 +105,9 @@ const experiments = [
   },
 ];
 
+/**
+ * Load the experiments.
+ */
 const init = async () => {
   // Not every experiment has a load function, because most of them are used by
   // checking for the setting in their respective modules. These ones aren't contained
@@ -116,6 +119,9 @@ const init = async () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'experiments',
   name: 'Experiments',

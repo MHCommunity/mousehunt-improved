@@ -31,29 +31,16 @@ const addItemToGameInfoBar = (options) => {
     return;
   }
 
-  const item = document.createElement('a');
+  const item = makeElement('a', ['mousehuntHud-gameInfo-item', 'mousehuntHud-custom-menu-item']);
   item.id = `mh-custom-topmenu-${safeLabel}`;
-  item.classList.add('mousehuntHud-gameInfo-item');
-  item.classList.add('mousehuntHud-custom-menu-item');
   item.title = settings.title || settings.label;
 
   item.href = settings.href || '#';
 
-  const name = document.createElement('div');
-  name.classList.add('name');
-
-  if (settings.label) {
-    name.innerText = settings.label;
-  }
-
-  item.append(name);
+  makeElement('div', 'name', settings.label ?? '', item);
 
   if (settings.class) {
     item.classList.add(settings.class);
-  }
-
-  if (settings.href) {
-    item.href = settings.href;
   }
 
   if (settings.callback) {
@@ -61,19 +48,22 @@ const addItemToGameInfoBar = (options) => {
   }
 
   if (settings.external) {
-    const externalLinkIconWrapper = document.createElement('div');
-    externalLinkIconWrapper.classList.add('mousehuntHud-menu');
+    const externalLinkIconWrapper = makeElement('div', 'mousehuntHud-menu');
+    makeElement('div', 'external_icon', '', externalLinkIconWrapper);
 
-    const externalLinkIcon = document.createElement('div');
-    externalLinkIcon.classList.add('external_icon');
-
-    externalLinkIconWrapper.append(externalLinkIcon);
     item.append(externalLinkIconWrapper);
   }
 
   menu.insertBefore(item, menu.firstChild);
 };
 
+/**
+ * Sanitize a label for a submenu item.
+ *
+ * @param {string} label The label to sanitize.
+ *
+ * @return {string} The sanitized label.
+ */
 const getCleanSubmenuLabel = (label) => {
   return label.toLowerCase().replaceAll(/[^\da-z]/g, '-');
 };
@@ -122,8 +112,7 @@ const addSubmenuItem = (options) => {
   }
 
   // Create the item.
-  const item = document.createElement('li');
-  item.classList.add('custom-submenu-item');
+  const item = makeElement('li', 'custom-submenu-item');
   const label = settings.label.length > 0 ? settings.label : settings.id;
   const cleanLabel = getCleanSubmenuLabel(label);
 
@@ -151,24 +140,16 @@ const addSubmenuItem = (options) => {
   }
 
   // Create the icon.
-  const icon = document.createElement('div');
-  icon.classList.add('icon');
+  const icon = makeElement('div', 'icon');
   icon.style = `background-image: url(${settings.icon});`;
+  link.append(icon);
 
   // Create the label.
-  const name = document.createElement('div');
-  name.classList.add('name');
-  name.innerHTML = settings.label;
-
-  // Add the icon and label to the link.
-  link.append(icon);
-  link.append(name);
+  makeElement('div', 'name', settings.label, link);
 
   // If it's an external link, also add the icon for it.
   if (settings.external) {
-    const externalLinkIcon = document.createElement('div');
-    externalLinkIcon.classList.add('external_icon');
-    link.append(externalLinkIcon);
+    makeElement('div', 'external_icon', '', link);
 
     // Set the target to _blank so it opens in a new tab.
     link.target = '_blank';
@@ -192,8 +173,7 @@ const addSubmenuItem = (options) => {
  * @param {string} id The id of the submenu item to remove.
  */
 const removeSubmenuItem = (id) => {
-  id = getCleanSubmenuLabel(id);
-  const item = document.querySelector(`#custom-submenu-item-${id}`);
+  const item = document.querySelector(`#custom-submenu-item-${getCleanSubmenuLabel(id)}`);
   if (item) {
     item.remove();
   }
@@ -219,7 +199,14 @@ const addSubmenuDivider = (menu, className = '') => {
 /**
  * Add the icon to the menu.
  *
- * @param {Object} opts The options for the menu item.
+ * @param {Object}   opts           The options for the menu item.
+ * @param {string}   opts.id        The id for the menu item.
+ * @param {string}   opts.classname The class for the menu item.
+ * @param {string}   opts.href      The href for the menu item.
+ * @param {string}   opts.title     The title for the menu item.
+ * @param {string}   opts.text      The text for the menu item.
+ * @param {Function} opts.action    The action for the menu item.
+ * @param {string}   opts.position  The position for the menu item.
  */
 const addIconToMenu = (opts) => {
   const menu = document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');

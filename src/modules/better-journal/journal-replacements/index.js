@@ -103,6 +103,7 @@ const replacements = [
   ['<br><p>', '<p>'],
   [/<p class="mhi-x-entry"><span class="dot"> • <\/span>/g, '', '!shop_purchase'],
   [/(\d+?) x /gi, '<p class="mhi-x-entry"><span class="dot"> • </span>$1 x ', '!shop_purchase'],
+  ['My Condensed Creativity created an additional ', 'My Condensed Creativity created an additional: '],
 
   [/<p><\/p>/g, ''],
   ['I can view other recipe', '<p class="double">I can view other recipe'],
@@ -123,12 +124,17 @@ const replacements = [
 
   ['Here is the loot summary from my infiltration of', 'I looted the following from'],
   ['Trove. and received', 'Trove and received'],
-  ['Lucky me, a prize mouse wandered by and fell for my trap!', '🎉️ A prize mouse fell into my trap!'],
+  ['Lucky me, a prize mouse wandered by and fell for my trap!', 'A prize mouse fell into my trap!'],
   [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
   ['In a flash of light my', 'My'],
   ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found another '],
 ];
 
+/**
+ * Replace text in a journal entry.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const replaceInEntry = (entry) => {
   if (entry.getAttribute('data-replaced')) {
     return;
@@ -141,14 +147,8 @@ const replaceInEntry = (entry) => {
       return;
     }
 
-    if (string.length === 3) {
-      if (string[2].includes('!') && entry.classList.contains(string[2])) {
-        return;
-      }
-
-      if (! entry.classList.contains(string[2])) {
-        return;
-      }
+    if (string.length === 3 && string[2].includes('!') && entry.classList.contains(string[2].replace('!', ''))) {
+      return;
     }
 
     const oldText = element.innerHTML;
@@ -161,6 +161,11 @@ const replaceInEntry = (entry) => {
   entry.setAttribute('data-replaced', 'true');
 };
 
+/**
+ * Update the progress log link.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const updateLog = (entry) => {
   if (! entry.classList.contains('log_summary')) {
     return;
@@ -179,6 +184,11 @@ const updateLog = (entry) => {
   link.append(span);
 };
 
+/**
+ * Update the mouse image links.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const updateMouseImageLinks = (entry) => {
   const mouseType = entry.getAttribute('data-mouse-type');
   if (! mouseType) {
@@ -199,6 +209,11 @@ const updateMouseImageLinks = (entry) => {
   entry.setAttribute('data-mouse-image-updated', 'true');
 };
 
+/**
+ * Update the item links.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const updateItemLinks = (entry) => {
   if (! entry.classList.contains('iceberg_defeated')) {
     return;
@@ -220,12 +235,20 @@ const updateItemLinks = (entry) => {
   });
 };
 
+/**
+ * Check if we should skip an entry.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ *
+ * @return {boolean} Whether to skip the entry.
+ */
 const shouldSkip = (entry) => {
   const keepOriginalClasses = new Set([
     'lunar_lantern',
     'valentines_matchmaker',
     'vending_machine_purchase',
-    'fullyExplored'
+    'fullyExplored',
+    'folkloreForest-plantClaimed',
   ]);
 
   if (! entry.classList) {
@@ -236,6 +259,11 @@ const shouldSkip = (entry) => {
   return (classList.some((c) => keepOriginalClasses.has(c)));
 };
 
+/**
+ * Process a journal entry.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
 const processEntry = async (entry) => {
   if (shouldSkip(entry)) {
     return;

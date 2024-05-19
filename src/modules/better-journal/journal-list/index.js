@@ -2,6 +2,13 @@ import { addEvent, addStyles, makeElement } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Create a list of items.
+ *
+ * @param {Array} itemList The list of items.
+ *
+ * @return {HTMLElement} The list.
+ */
 const makeListItems = (itemList) => {
   const list = makeElement('ul', 'better-journal-list');
   if (0 === itemList.length) {
@@ -15,11 +22,26 @@ const makeListItems = (itemList) => {
   return list;
 };
 
+/**
+ * Split the text into items.
+ *
+ * @param {string} text The text to split.
+ *
+ * @return {Array} The list of items.
+ */
 const splitText = (text) => {
   const items = text.split(/, (?=\d)| and (?=\d)/);
   return items.map((item) => item.trim()).filter(Boolean);
 };
 
+/**
+ * Get the items from the text.
+ *
+ * @param {string}      type The type of journal entry.
+ * @param {HTMLElement} text The text element.
+ *
+ * @return {Object} The items and the new text.
+ */
 const getItemsFromText = (type, text) => {
   let items;
   if ('loot' === type) {

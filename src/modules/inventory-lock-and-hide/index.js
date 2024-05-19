@@ -14,6 +14,11 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Save the locked and hidden items.
+ *
+ * @param {boolean} shouldUpdateTitles Should update the group titles.
+ */
 const saveSettings = (shouldUpdateTitles = true) => {
   saveSetting('inventory-lock-and-hide.items', itemSettings);
   if (shouldUpdateTitles) {
@@ -21,6 +26,11 @@ const saveSettings = (shouldUpdateTitles = true) => {
   }
 };
 
+/**
+ * Get the locked and hidden items.
+ *
+ * @return {Object} The locked and hidden items.
+ */
 const getSettings = () => {
   return getSetting('inventory-lock-and-hide.items', {
     locked: [],
@@ -28,10 +38,20 @@ const getSettings = () => {
   });
 };
 
+/**
+ * Check if the buttons should be added.
+ *
+ * @param {string} currentTab The current tab.
+ *
+ * @return {boolean} If the buttons should be added.
+ */
 const shouldAddLocks = (currentTab) => {
   return 'collectibles' !== currentTab || 'bait' !== currentTab;
 };
 
+/**
+ * Add the lock and hide controls to the page.
+ */
 const addControlsToItems = async () => {
   const items = document.querySelectorAll('.inventoryPage-item');
   if (! items) {
@@ -62,6 +82,11 @@ const addControlsToItems = async () => {
       const lockText = makeElement('span', '', isLocked ? 'Unlock' : 'Lock');
       lock.append(lockText);
 
+      /**
+       * When the lock button is clicked.
+       *
+       * @param {Event} e The click event.
+       */
       const clickLock = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -96,6 +121,11 @@ const addControlsToItems = async () => {
     const hideText = makeElement('span', '', isHidden ? 'Show' : 'Hide');
     hide.append(hideText);
 
+    /**
+     * When the hide button is clicked.
+     *
+     * @param {Event} e The click event.
+     */
     const clickHide = (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -132,6 +162,9 @@ const addControlsToItems = async () => {
   });
 };
 
+/**
+ * Update the item group titles.
+ */
 const updateGroupTitles = () => {
   const container = getCurrentTabContainer();
   if (! container) {
@@ -168,6 +201,9 @@ const updateGroupTitles = () => {
   });
 };
 
+/**
+ * Add the locked and hidden classes to the items.
+ */
 const maybeLockOrHideItems = async () => {
   const items = document.querySelectorAll('.inventoryPage-item');
   if (! items) {
@@ -193,6 +229,9 @@ const maybeLockOrHideItems = async () => {
   updateGroupTitles();
 };
 
+/**
+ * Add the lock all and unlock all buttons to the groups.
+ */
 const addBulkControls = () => {
   if (! shouldAddLocks(getCurrentTab())) {
     return;
@@ -299,6 +338,11 @@ const addBulkControls = () => {
   });
 };
 
+/**
+ * Get the current tab container.
+ *
+ * @return {HTMLElement} The current tab container.
+ */
 const getCurrentTabContainer = () => {
   let currentTab = getCurrentTab();
   if (! currentTab || 'inventory' === currentTab) {
@@ -308,6 +352,9 @@ const getCurrentTabContainer = () => {
   return document.querySelector(`.mousehuntHud-page-tabContent.${currentTab} .mousehuntHud-page-subTabContent.active`);
 };
 
+/**
+ * Add the lock and hide controls to the inventory.
+ */
 const addLockAndHideControls = () => {
   if ('inventory' !== getCurrentPage()) {
     return;
@@ -361,6 +408,9 @@ const addLockAndHideControls = () => {
   container.prepend(controlsWrapper);
 };
 
+/**
+ * Toggles the controls.
+ */
 const toggleControls = () => {
   const button = document.querySelector('.mhui-inventory-lock-and-hide-controls');
   if (button) {
@@ -368,13 +418,21 @@ const toggleControls = () => {
   }
 };
 
+/**
+ * Fires when the page is set.
+ */
 const onSetPage = () => {
   main();
   addEvent('ajax_request', main, { removeAfterFire: true, id: 'inventory-lock-and-hide' });
 };
 
-// TODO: this doesn't take owned items into for the category hiding
+/**
+ * Add styles to hide tags and items.
+ *
+ * @param {Object} items The items data.
+ */
 const addHideStyles = (items) => {
+  // TODO: this doesn't take owned items into for the category hiding
   if (! items || ! items.components) {
     return;
   }
@@ -421,7 +479,7 @@ const addHideStyles = (items) => {
     const tags = Object.keys(itemsByTags[classification]);
     tags.forEach((tag) => {
       // if itemSettings.hidden includes all items in this tag, hide the tag
-      if ([...itemsByTags[classification][tag]].every((id) => itemSettings.hidden.includes(id))) {
+      if ([...itemsByTags[classification][tag]].every((id) => itemSettings?.hidden?.includes(id))) {
         tagsToHide[classification].push(tag);
       }
     });
@@ -432,21 +490,27 @@ const addHideStyles = (items) => {
     tagsToHide[classification].map((tag) => `.${classification} .campPage-trap-itemBrowser-tagGroup.${tag}`)
   ).join(',');
 
-  const hideItemsStyles = itemSettings.hidden.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
+  const hideItemsStyles = itemSettings?.hidden?.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
 
   // Add styles to hide tags and items
   addStyles(`${hideTagsStyles}, ${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
 };
 
+/**
+ * Hide items in the trap browser.
+ */
 const hideItemsInTrapBrowser = () => {
-  if (itemSettings?.hidden && itemSettings.hidden.length > 0) {
-    const hideItemsStyles = itemSettings.hidden.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
+  if (itemSettings?.hidden && itemSettings?.hidden?.length > 0) {
+    const hideItemsStyles = itemSettings?.hidden?.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(',');
 
     // Add styles to hide tags and items
     addStyles(`${hideItemsStyles} { display: none; }`, 'inventory-lock-and-hide-hide-styles');
   }
 };
 
+/**
+ * The main function of the module.
+ */
 const main = async () => {
   itemSettings = getSettings();
   mhItems = await getData('items');
@@ -455,10 +519,11 @@ const main = async () => {
   addLockAndHideControls();
 };
 
+let itemSettings;
+
 /**
  * Initialize the module.
  */
-let itemSettings;
 const init = async () => {
   addStyles(styles, 'inventory-lock-and-hide');
 
@@ -480,6 +545,9 @@ const init = async () => {
   onRequest('users/gettrapcomponents.php', addHideStyles);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'inventory-lock-and-hide',
   name: 'Inventory - Lock and Hide',

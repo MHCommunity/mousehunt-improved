@@ -88,6 +88,9 @@ const init = async () => {
   // Your module code here.
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'my-module',
   name: 'My Module',
@@ -122,6 +125,9 @@ const settings = () => {
   ];
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'my-module',
   name: 'My Module',

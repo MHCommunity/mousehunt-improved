@@ -31,7 +31,12 @@ const toggleBlueprint = (id, content) => {
     existing.remove();
   }
 
-  const wrapper = makeElement('div', ['trapSelectorView__browserState', 'trapSelectorView__browserContainer', 'mh-improved-blueprint', `mh-improved-blueprint--${id}`]);
+  const wrapper = makeElement('div', [
+    'trapSelectorView__browserState',
+    'trapSelectorView__browserContainer',
+    'mh-improved-blueprint',
+    `mh-improved-blueprint--${id}`
+  ]);
   wrapper.id = `mh-improved-blueprint--${id}`;
   const inner = makeElement('div', 'trapSelectorView__outerBlock');
 

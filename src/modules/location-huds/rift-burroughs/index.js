@@ -5,6 +5,17 @@ import styles from './styles.css';
 import areaMice from './area-mice.json';
 import miceNameImages from './mice-name-images.json';
 
+/**
+ * Create a list of mice.
+ *
+ * @param {string}      type        The type of mice.
+ * @param {string}      title       The title of the mice.
+ * @param {string[]}    mice        The mice.
+ * @param {string}      currentType The current type.
+ * @param {HTMLElement} appendTo    The element to append to.
+ *
+ * @return {HTMLElement} The wrapper element.
+ */
 const makeMiceList = (type, title, mice, currentType, appendTo) => {
   const wrapper = makeElement('div', ['mouse-type', type]);
   if (currentType === type) {
@@ -52,6 +63,9 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
   return wrapper;
 };
 
+/**
+ * Update the HUD.
+ */
 const hud = () => {
   if (! user?.quests?.QuestRiftBurroughs) {
     return;

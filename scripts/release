@@ -14,7 +14,10 @@ bun run build:extension:chrome
 bun run build:extension:firefox
 
 bun run sentry-cli sourcemaps inject dist
-bun run sentry-cli sourcemaps upload --release="mousehunt-improved@$version" dist
+bun run sentry-cli sourcemaps upload --release="$version" dist
+bun run sentry-cli releases new "$version"
+bun run sentry-cli releases finalize "$version"
+
 
 bun run build:zips
 

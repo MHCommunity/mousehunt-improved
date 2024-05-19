@@ -9,6 +9,9 @@ const init = async () => {
   addStyles(styles, 'only-open-multiple');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'only-open-multiple',
   name: 'Inventory - Only Open Multiple',

@@ -6,6 +6,11 @@ import {
   removeSubmenuItem
 } from '@utils';
 
+/**
+ * Open the mini map.
+ *
+ * @param {number} mapId The map ID.
+ */
 const openMiniMap = async (mapId) => {
   const mapData = await doRequest('managers/ajax/users/treasuremap.php', {
     action: 'map_info',
@@ -241,6 +246,9 @@ const openMiniMap = async (mapId) => {
   });
 };
 
+/**
+ * Make the menu item.
+ */
 const makeMenuItem = () => {
   removeSubmenuItem('mh-improved-map-helper');
 
@@ -254,12 +262,18 @@ const makeMenuItem = () => {
     menu: 'camp',
     label: `<span class="title">${user?.quests?.QuestRelicHunter?.label}</span><span class="subtitle">${user?.quests?.QuestRelicHunter?.value}</span>`,
     icon: user?.quests?.QuestRelicHunter?.image || 'https://www.mousehuntgame.com/images/items/convertibles/large/bfca4a1c658e49903654d0a84f52c9fd.png',
-    callback: () => {
-      openMiniMap(mapId);
-    },
+    /**
+     * Open the mini map.
+     *
+     * @return {void}
+     */
+    callback: () => openMiniMap(mapId),
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   makeMenuItem();
   onRequest('*', makeMenuItem);

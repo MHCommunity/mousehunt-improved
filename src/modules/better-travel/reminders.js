@@ -1,5 +1,8 @@
 import { getCurrentLocation, showHornMessage } from '@utils';
 
+/**
+ * Add reminders to the horn when traveling.
+ */
 const addReminders = () => {
   const reminderOpts = {
     title: 'Travel Reminder',
@@ -12,6 +15,9 @@ const addReminders = () => {
       reminderOpts.text = 'Champion\'s Fire is active.';
       reminderOpts.image = 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/6622efd1db7028b30f48b15771138720.png';
       reminderOpts.button = 'Deactivate';
+      /**
+       * Toggle the fuel.
+       */
       reminderOpts.action = () => {
         const button = document.querySelector('.valourRiftHUD-fuelContainer-armButton');
         if (button) {
@@ -31,6 +37,9 @@ const addReminders = () => {
       reminderOpts.text = 'Wild Tonic is active.';
       reminderOpts.image = 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/b6b9f97a1ee3692fdff0b5a206adf7e1.png';
       reminderOpts.button = 'Deactivate';
+      /**
+       * Toggle the fuel.
+       */
       reminderOpts.action = () => {
         const button = document.querySelector('.quesoHUD-wildTonic-button');
         if (button) {
@@ -54,6 +63,9 @@ const addReminders = () => {
       reminderOpts.text = 'Bottled Wind is <strong>not</strong> active.';
       reminderOpts.image = 'https://www.mousehuntgame.com/images/ui/hud/floating_islands/items/bottled_wind_stat_item.png';
       reminderOpts.button = 'Activate';
+      /**
+       * Toggle the fuel.
+       */
       reminderOpts.action = () => {
         const button = document.querySelector('.floatingIslandsHUD-fuel-button');
         if (button) {
@@ -96,6 +108,9 @@ const addReminders = () => {
     }
 
     reminderOpts.image = 'https://www.mousehuntgame.com/images/items/stats/large/cda292833fce3b65b7a6a38c000e8620.png';
+    /**
+     * Toggle the fuel.
+     */
     reminderOpts.action = () => {
       const toggle = document.querySelector('.headsUpDisplayWinterHuntRegionView__fuelButton');
       if (toggle) {

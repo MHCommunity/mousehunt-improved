@@ -1,5 +1,10 @@
 import { doEvent, hasMiniCRE, setPage } from '@utils';
 
+/**
+ * Get the keyboard shortcuts.
+ *
+ * @return {Array} The keyboard shortcuts.
+ */
 export default () => {
   const shortcuts = [
     {
@@ -143,6 +148,9 @@ export default () => {
       id: 'show-tem',
       key: 'e',
       description: 'Show the <abbr title="Trap Effectiveness Meter">TEM</abbr>',
+      /**
+       * Show the TEM.
+       */
       action: () => {
         const tem = document.querySelector('button.campPage-trap-trapEffectiveness.campPage-trap-statsContainer');
         if (tem) {
@@ -188,6 +196,9 @@ export default () => {
       id: 'show-mini-cre',
       key: 'l',
       description: 'Open Mini CRE',
+      /**
+       * Show the Mini CRE.
+       */
       action: () => {
         const minluckButton = document.querySelector('.min-luck-button');
         if (minluckButton) {

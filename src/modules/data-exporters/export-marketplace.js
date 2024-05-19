@@ -3,6 +3,13 @@ import { doRequest } from '@utils';
 
 import { exportPopup } from './exporter';
 
+/**
+ * Fetch a page of transactions.
+ *
+ * @param {number} page The page number to fetch.
+ *
+ * @return {Promise<Array>} The transactions.
+ */
 const fetchPage = async (page) => {
   const response = await doRequest('managers/ajax/users/marketplace.php', {
     action: 'get_my_history',
@@ -12,6 +19,11 @@ const fetchPage = async (page) => {
   return response?.marketplace_history || [];
 };
 
+/**
+ * Fetch the transactions.
+ *
+ * @return {Promise<Array>} The transactions.
+ */
 const fetchTransactions = async () => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
   totalItemsEl.textContent = '…';
@@ -68,6 +80,9 @@ const fetchTransactions = async () => {
   return transactions;
 };
 
+/**
+ * Export the marketplace transactions.
+ */
 const exportMarketplace = () => {
   exportPopup({
     type: 'marketplace-transactions',

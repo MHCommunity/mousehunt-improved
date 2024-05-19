@@ -134,7 +134,6 @@ const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscri
  *
  * @return {Object} The setting.
  */
-// const addSetting = (name, key, defaultValue = true, description = '', section = {}, tab = 'userscript-settings', settings = null) => {
 const addSetting = (options) => {
   onNavigation(() => addSettingOnce(options), {
     page: 'preferences',
@@ -313,12 +312,13 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
 
     settingRowInputDropdown.append(settingRowInputDropdownSelect);
 
+    let timeout = null;
+
     /**
      * Event listener for when the setting is clicked.
      *
      * @param {Event} event The event.
      */
-    let timeout = null;
     settingRowInputDropdownSelect.onchange = (event) => {
       const parent = settingRowInputDropdownSelect.parentNode.parentNode.parentNode;
       parent.classList.add('inputDropdownWrapper');
@@ -822,6 +822,8 @@ const addSettingForModule = async (module) => {
         }
       }
     }
+
+    doEvent('mh-improved-settings-added', { module });
   }
 };
 

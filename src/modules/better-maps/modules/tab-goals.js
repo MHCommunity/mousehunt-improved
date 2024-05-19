@@ -12,6 +12,14 @@ import {
 import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';
 
+/**
+ * Get the link markup for a mouse.
+ *
+ * @param {string} name      The mouse name.
+ * @param {string} mouseType The mouse type.
+ *
+ * @return {string} The link markup.
+ */
 const getLinkMarkup = (name, mouseType) => {
   name = name.replaceAll(' ', '_');
 
@@ -22,6 +30,13 @@ const getLinkMarkup = (name, mouseType) => {
     makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${nameMouse}`);
 };
 
+/**
+ * Get the link markup for an item.
+ *
+ * @param {string} name The item name.
+ *
+ * @return {string} The link markup.
+ */
 const getItemLinkMarkup = (name) => {
   name = name.replace(' ', '_');
   return makeLink('MHCT DR', `https://www.mhct.win/loot.php?item=${name}`, true) +
@@ -142,6 +157,11 @@ const addMouseLinksToMap = async () => {
   });
 };
 
+/**
+ * Add classes to the groups based on completion status.
+ *
+ * @param {Object} mapData The map data.
+ */
 const addClassesToGroups = (mapData) => {
   const groups = document.querySelectorAll('.treasureMapView-goals-groups');
   groups.forEach((group) => {
@@ -239,6 +259,9 @@ const addClassesToGroups = (mapData) => {
   });
 };
 
+/**
+ * Move the leave map button to the actions group.
+ */
 const moveLeaveButton = async () => {
   const leaveButton = document.querySelector('.treasureMapView-mapLeaveContainer .treasureMapView-leaveMapButton');
   if (! leaveButton) {
@@ -267,6 +290,11 @@ const moveLeaveButton = async () => {
   actions.insertBefore(clone, actions.firstChild);
 };
 
+/**
+ * Add a quick invite field to the map sidebar.
+ *
+ * @param {Object} mapData The map data.
+ */
 const addQuickInvite = async (mapData) => {
   const sidebar = document.querySelector('.treasureMapView-rightBlock.treasureMapView-goalSidebar');
   if (! sidebar) {
@@ -307,6 +335,13 @@ const addQuickInvite = async (mapData) => {
 
   inviteWrapper.append(indicators);
 
+  /**
+   * Handle an error when inviting a hunter.
+   *
+   * @param {string} message The error message.
+   *
+   * @return {boolean} False.
+   */
   const inviteError = (message) => {
     debuglog('better-maps', `Invite error: ${message}`);
 
@@ -323,6 +358,11 @@ const addQuickInvite = async (mapData) => {
     return false;
   };
 
+  /**
+   * Handle the invite action.
+   *
+   * @return {boolean} False.
+   */
   const inviteAction = async () => {
     if (inviteButton.classList.contains('disabled')) {
       return;
@@ -422,6 +462,9 @@ const addQuickInvite = async (mapData) => {
   sidebar.insertBefore(inviteWrapper, sidebar.firstChild);
 };
 
+/**
+ * Add a sidebar toggle.
+ */
 const addSidebarToggle = async () => {
   const mapView = document.querySelector('.treasureMapView');
   if (! mapView) {
@@ -495,6 +538,11 @@ const addSidebarToggle = async () => {
   leftBlock.append(toggle);
 };
 
+/**
+ * Fire the actions when the goals tab is shown.
+ *
+ * @param {Object} mapData The map data.
+ */
 const showGoalsTab = async (mapData) => {
   addArToggle();
   addMouseLinksToMap();
@@ -505,6 +553,9 @@ const showGoalsTab = async (mapData) => {
   addSidebarToggle();
 };
 
+/**
+ * Fire the actions when the goals tab is hidden.
+ */
 const hideGoalsTab = () => {
   removeArToggle();
 };

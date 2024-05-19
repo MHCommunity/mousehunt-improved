@@ -14,6 +14,14 @@ import {
 import settings from './settings';
 import styles from './styles.css';
 
+/**
+ * Make the markup for an item.
+ *
+ * @param {string}      name     The name of the item.
+ * @param {string}      type     The type of the item.
+ * @param {string}      image    The image of the item.
+ * @param {HTMLElement} appendTo The element to append to.
+ */
 const makeItem = (name, type, image, appendTo) => {
   const item = makeElement('div', 'quickSendItem');
   item.title = name;
@@ -45,6 +53,14 @@ const makeItem = (name, type, image, appendTo) => {
   appendTo.append(item);
 };
 
+/**
+ * Create the button to send supplies.
+ *
+ * @param {HTMLElement} btn   The button to append to.
+ * @param {string}      snuid The SN User ID of the recipient.
+ *
+ * @return {HTMLElement|boolean} The quick send link wrapper or false.
+ */
 const makeSendSuppliesButton = async (btn, snuid) => {
   if (snuid === user.sn_user_id) {
     return false;
@@ -80,6 +96,9 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
   const quickSendButton = makeElement('div', ['quickSendButton', 'mousehuntActionButton', 'tiny'], '<span>Send</span>');
 
+  /**
+   * Send the supplies.
+   */
   const sendIt = async () => {
     if (quickSendButton.classList.contains('disabled')) {
       return;
@@ -166,6 +185,9 @@ const makeSendSuppliesButton = async (btn, snuid) => {
   return quickSendLinkWrapper;
 };
 
+/**
+ * Main function.
+ */
 const main = async () => {
   const sendSupplies = document.querySelectorAll('.userInteractionButtonsView-button.sendSupplies');
   if (! sendSupplies) {
@@ -203,6 +225,11 @@ const main = async () => {
   }
 };
 
+/**
+ * Add the quick send supplies popup to the users on a map.
+ *
+ * @param {number} attempts The number of attempts.
+ */
 const addToMapUsers = async (attempts = 0) => {
   const mapUsers = document.querySelectorAll('.treasureMapView-hunter-wrapper.mousehuntTooltipParent');
   if (! mapUsers || ! mapUsers.length) {
@@ -255,6 +282,9 @@ const init = async () => {
   onEvent('map_tab_click', addToMapUsers);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'quick-send-supplies',
   name: 'Quick Send Supplies',

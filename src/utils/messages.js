@@ -110,8 +110,12 @@ const showLoadingError = (e) => {
 
   const errorStylesEl = makeElement('style', 'mh-improved-error-styles', errorStyles);
   document.head.append(errorStylesEl);
+  hadAddedErrorStyles = true;
 };
 
+/**
+ * Check if the page is in maintenance mode or an error page and apply styles.
+ */
 const maybeDoMaintenance = () => {
   const maintenance = document.querySelector('body.PageMaintenance');
   if (maintenance) {
@@ -162,9 +166,24 @@ const showLoadingPopup = (title) => {
       popup,
       title: null,
       text: null,
+      /**
+       * Set the text of the loading popup.
+       */
       setText: () => {},
+
+      /**
+       * Set the title of the loading popup.
+       */
       setTitle: () => {},
+
+      /**
+       * Show the loading popup.
+       */
       show: () => {},
+
+      /**
+       * Hide the loading popup.
+       */
       hide: () => {},
     };
   }
@@ -177,15 +196,35 @@ const showLoadingPopup = (title) => {
     popup,
     title: element,
     text: loadingText,
+
+    /**
+     * Set the text of the loading popup.
+     *
+     * @param {string} newText The new text to set.
+     */
     setText: (newText) => {
       loadingText.textContent = newText;
     },
+
+    /**
+     * Set the title of the loading popup.
+     *
+     * @param {string} newTitle The new title to set.
+     */
     setTitle: (newTitle) => {
       element.textContent = newTitle;
     },
+
+    /**
+     * Show the loading popup.
+     */
     show: () => {
       popup.show();
     },
+
+    /**
+     * Hide the loading popup.
+     */
     hide: () => {
       popup.hide();
     },

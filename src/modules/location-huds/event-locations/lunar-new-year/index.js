@@ -10,6 +10,9 @@ import styles from './styles.css';
 
 let startY, initialTranslateY;
 
+/**
+ * Allow the map in the popup to be dragged.
+ */
 const dragMapPopup = async () => {
   const map = document.querySelector('.lunarNewYearCampPopupContainer .lunarNewYearCampHUD-window-background');
   if (! map) {
@@ -19,6 +22,9 @@ const dragMapPopup = async () => {
   dragMap({ map, maxHeight: 2300 });
 };
 
+/**
+ * Allow the map in the camp hud to be dragged.
+ */
 const dragMapCamp = async () => {
   const map = document.querySelector('.lunarNewYearCampHUD-window .lunarNewYearCampHUD-window-background');
   if (! map) {
@@ -28,6 +34,13 @@ const dragMapCamp = async () => {
   dragMap({ map, maxHeight: 1881 });
 };
 
+/**
+ * Drag the map.
+ *
+ * @param {Object}      args           The arguments.
+ * @param {HTMLElement} args.map       The map element.
+ * @param {number}      args.maxHeight The maximum height to drag the map.
+ */
 const dragMap = async (args) => {
   const { map, maxHeight } = args;
 
@@ -35,6 +48,11 @@ const dragMap = async (args) => {
     return;
   }
 
+  /**
+   * Handle the drag event.
+   *
+   * @param {Event} event The event object.
+   */
   const onDrag = (event) => {
     const deltaY = event.clientY - startY;
     let newTranslateY = initialTranslateY + deltaY;
@@ -87,6 +105,9 @@ const dragMap = async (args) => {
   });
 };
 
+/**
+ * Add a button to launch the fireworks.
+ */
 const triggerFireworks = () => {
   const existing = document.querySelector('.launch-the-fireworks-please');
   if (existing) {

@@ -9,47 +9,15 @@ import {
   saveSetting
 } from '@utils';
 
+import keepInventoryToggled from '../shared/folklore-forest/keep-inventory-open';
+
 import regionStyles from '../shared/folklore-forest/styles.css';
 import smallInvStyles from './small-inv.css';
 import styles from './styles.css';
 
-const keepInventoryToggled = async () => {
-  const toggleButton = document.querySelector('.headsUpDisplayBountifulBeanstalk__inventoryContainer .headsUpDisplayBountifulBeanstalk__inventoryContainerButton');
-  if (! toggleButton) {
-    return;
-  }
-
-  const inventory = document.querySelector('.headsUpDisplayBountifulBeanstalk__inventoryContainer .headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent');
-  if (! inventory) {
-    return;
-  }
-
-  let isSetOpen = getSetting('location-huds.bountiful-beanstalk-inventory-toggled', 'not-set');
-  if (isSetOpen) {
-    inventory.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open');
-    toggleButton.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open');
-  } else if (isSetOpen === 'not-set') {
-    isSetOpen = false;
-  }
-
-  toggleButton.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    // Longer than a simple ternary and a toggle to make it more readable.
-    if (isSetOpen) {
-      isSetOpen = false;
-      inventory.classList.remove('headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open');
-      toggleButton.classList.remove('headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open');
-    } else {
-      isSetOpen = true;
-      inventory.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open');
-      toggleButton.classList.add('headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open');
-    }
-
-    saveSetting('location-huds.bountiful-beanstalk-inventory-toggled', isSetOpen);
-  });
-};
-
+/**
+ * Expand the room data when clicked and keep it open.
+ */
 const keepRoomDataToggled = async () => {
   const roomData = document.querySelector('.headsUpDisplayBountifulBeanstalkView__lootMultiplierContainer');
   if (! roomData) {
@@ -78,6 +46,9 @@ const keepRoomDataToggled = async () => {
   });
 };
 
+/**
+ * Expand the tooltip when clicked and keep it open.
+ */
 const keepTooltipToggled = async () => {
   const tooltip = document.querySelector('.bountifulBeanstalkCastleView__plinthOverlay.mousehuntTooltipParent .mousehuntTooltip');
   if (! tooltip) {
@@ -91,6 +62,9 @@ const keepTooltipToggled = async () => {
   });
 };
 
+/**
+ * Add an easter egg to the noise meter.
+ */
 const funTime = async () => {
   const meter = document.querySelector('.bountifulBeanstalkCastleView__noiseMeterFrame');
   if (! meter) {
@@ -112,6 +86,9 @@ const funTime = async () => {
   });
 };
 
+/**
+ * Add a class to make the giant more visible when chasing.
+ */
 const makeGiantMoreVisible = async () => {
   const background = document.querySelector('.bountifulBeanstalkCastleView__background');
   if (! background) {
@@ -126,6 +103,9 @@ const makeGiantMoreVisible = async () => {
   }
 };
 
+/**
+ * Click the fuel toggle button when the fuel icon is clicked.
+ */
 const toggleFuelWithIcon = async () => {
   const icon = document.querySelector('.headsUpDisplayBountifulBeanstalkView__fuelContainer');
   if (! icon) {
@@ -142,6 +122,9 @@ const toggleFuelWithIcon = async () => {
   });
 };
 
+/**
+ * Modify the loot text to not wrap.
+ */
 const updateLootText = async () => {
   const ccLoot = document.querySelector('.headsUpDisplayBountifulBeanstalkView__multiplier.headsUpDisplayBountifulBeanstalkView__multiplier--condensed_creativity div');
   if (ccLoot) {
@@ -174,12 +157,24 @@ const baitAmounts = {
   }
 };
 
+/**
+ * Add crafting buttons to the baits.
+ */
 const addCraftingButtons = async () => {
   const baits = document.querySelectorAll('.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer');
   if (! baits) {
     return;
   }
 
+  /**
+   * Purchase bait from the shop.
+   *
+   * @param {string}  shopItem The shop item to purchase.
+   * @param {number}  quantity The quantity to purchase.
+   * @param {Element} popup    The popup element.
+   *
+   * @return {boolean} True if the purchase was successful.
+   */
   const purchaseBait = async (shopItem, quantity, popup) => {
     popup.classList.add('loading');
 
@@ -190,8 +185,8 @@ const addCraftingButtons = async () => {
       is_kings_cart_item: 0,
     });
 
-    results.inventory = results.inventory || {};
-    results.items = results.items || {};
+    results.inventory = results?.inventory || {};
+    results.items = results?.items || {};
 
     const newInventoryQuantities = Object.keys(results.inventory).reduce((acc, key) => {
       acc[key] = results.inventory[key].quantity;
@@ -283,6 +278,9 @@ const addCraftingButtons = async () => {
         className,
         title,
         size: 'tiny',
+        /**
+         * Button action.
+         */
         callback: () => {
           purchaseBait(type, qty, popup);
         },
@@ -316,7 +314,13 @@ export default async () => {
 
   addHudStyles(stylesToAdd);
 
-  keepInventoryToggled();
+  keepInventoryToggled({
+    setting: 'location-huds.bountiful-beanstalk-inventory-toggled',
+    buttonSelector: '.headsUpDisplayBountifulBeanstalk__inventoryContainer .headsUpDisplayBountifulBeanstalk__inventoryContainerButton',
+    inventorySelector: '.headsUpDisplayBountifulBeanstalk__inventoryContainer .headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent',
+    inventoryOpenClass: 'headsUpDisplayBountifulBeanstalk__inventoryContainerBlockContent--open',
+    buttonOpenClass: 'headsUpDisplayBountifulBeanstalk__inventoryContainerButton--open',
+  });
   keepRoomDataToggled();
   keepTooltipToggled();
   makeGiantMoreVisible();

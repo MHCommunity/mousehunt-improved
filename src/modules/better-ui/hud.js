@@ -1,5 +1,8 @@
 import { getFlag, onTurn } from '@utils';
 
+/**
+ * Show the full title percent on hover.
+ */
 const showFullTitlePercent = async () => {
   const title = document.querySelector('.mousehuntHud-userStat.title');
   if (! title) {
@@ -27,12 +30,18 @@ const showFullTitlePercent = async () => {
   });
 };
 
+/**
+ * Replace the close button in the inbox.
+ */
 const replaceInboxClose = async () => {
   const template = hg.utils.TemplateUtil.getTemplate('ViewMousehuntHeader_inbox')
     .replace('<a class="messengerUINotificationClose" href="#">X', '<a class="messengerUINotificationClose" href="#">✕');
   hg.utils.TemplateUtil.addTemplate('ViewMousehuntHeader_inbox', template);
 };
 
+/**
+ * Replace the kingdom link in the HUD.
+ */
 const replaceKingdomLink = async () => {
   const kingdomLink = document.querySelector('.mousehuntHud-menu .kingdom a[href="https://www.mousehuntgame.com/forum.php"]');
   if (! kingdomLink) {

@@ -2,13 +2,26 @@ import { getGlobal } from './global';
 import { getSetting } from './settings';
 
 /**
+ * Helper function to determine if debug logs should be displayed.
+ *
+ * @param {string} context The context to check for debug settings.
+ * @return {boolean} Whether debug logs should be displayed.
+ */
+const shouldLogDebug = (context) => {
+  return getSetting('debug.all', false) ||
+         getSetting(`debug.${context}`, false) ||
+         getGlobal('mh-improved-updating') ||
+         getGlobal('mh-improved-debug');
+};
+
+/**
  * Helper function to log a debug message.
  *
  * @param {string} message Message to log.
  * @param {any}    args    Additional arguments to log.
  */
 const debug = (message, ...args) => {
-  if (getSetting('debug.module', false) || getGlobal('mh-improved-updating') || getGlobal('mh-improved-debug')) {
+  if (shouldLogDebug('module')) {
     // eslint-disable-next-line no-console
     console.log(
       `%cMH Improved%c: ${message}`,
@@ -27,7 +40,7 @@ const debug = (message, ...args) => {
  * @param {any}    args    Additional arguments to log.
  */
 const debuglog = (module, message, ...args) => {
-  if (getSetting('debug.all', false) || getSetting(`debug.${module}`, false) || getGlobal('mh-improved-updating')) {
+  if (shouldLogDebug(module)) {
     // eslint-disable-next-line no-console
     console.log(
       `%cMH Improved %c${module}%c ${message}`,

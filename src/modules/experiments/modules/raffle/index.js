@@ -253,6 +253,14 @@ const replaceInboxMethods = () => {
   }
 
   _inboxOpen = messenger.UI.notification.showTab;
+
+  /**
+   * Replace inbox open method.
+   *
+   * @param {string} tab The tab to open.
+   *
+   * @return {Object} The inbox open response.
+   */
   messenger.UI.notification.showTab = (tab) => {
     const toReturn = _inboxOpen(tab);
     if (tab === 'daily_draw') {
@@ -267,6 +275,14 @@ const replaceInboxMethods = () => {
   }
 
   const _inboxPopup = messenger.UI.notification.togglePopup;
+
+  /**
+   * Replace inbox popup method.
+   *
+   * @param {Event} e The event.
+   *
+   * @return {Object} The inbox popup response.
+   */
   messenger.UI.notification.togglePopup = (e) => {
     const toReturn = _inboxPopup(e);
     onEvent('ajax_response', () => {

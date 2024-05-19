@@ -1,5 +1,8 @@
 import { getCurrentLocation, getUserItems, onTravel } from '@utils';
 
+/**
+ * Fix the tooltip quantities for Gnawnia Rift.
+ */
 const fixRiftTooltipQuantities = async () => {
   if ('rift_gnawnia' !== getCurrentLocation()) {
     return;
@@ -21,6 +24,9 @@ const fixRiftTooltipQuantities = async () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   fixRiftTooltipQuantities();
   onTravel('rift_gnawnia', {

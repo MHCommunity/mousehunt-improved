@@ -1,5 +1,10 @@
 import { doRequest, getCurrentLocation, mapData } from '@utils';
 
+/**
+ * Highlight the current area in the map for Valour Rift.
+ *
+ * @return {boolean} Was the area highlighted?
+ */
 const areaHighlightingVrift = () => {
   if ('rift_valour' !== getCurrentLocation()) {
     return false;
@@ -27,6 +32,11 @@ const areaHighlightingVrift = () => {
   return true;
 };
 
+/**
+ * Highlight the current area in the map for Fort Rox.
+ *
+ * @return {boolean} Was the area highlighted?
+ */
 const areaHighlightingFrox = () => {
   if ('fort_rox' !== getCurrentLocation()) {
     return false;
@@ -59,6 +69,11 @@ const areaHighlightingFrox = () => {
   return true;
 };
 
+/**
+ * Highlight the current area in the map for Floating Islands.
+ *
+ * @return {boolean} Was the area highlighted?
+ */
 const areaHighlightingFloatingIslands = () => {
   if ('floating_islands' !== getCurrentLocation()) {
     return false;
@@ -101,10 +116,13 @@ const areaHighlightingFloatingIslands = () => {
   }
 
   return true;
-
-  // mouse-category-esp-shadow
 };
 
+/**
+ * Get the user's profile picture.
+ *
+ * @return {Promise} The user's profile picture.
+ */
 const getProfilePic = async () => {
   const userData = await doRequest('managers/ajax/pages/friends.php', {
     action: 'get_friends_by_snuids',
@@ -114,6 +132,9 @@ const getProfilePic = async () => {
   return userData?.friends?.[0]?.profile_pic || 'https://www.mousehuntgame.com//images/ui/friends/anonymous_user.png';
 };
 
+/**
+ * Add the user's profile picture to the current floor.
+ */
 const addProfilePicToCurrentFloor = async () => {
   const existing = document.querySelector('#mh-mapper-current-floor-profile-pic');
   if (existing) {
@@ -130,6 +151,9 @@ const addProfilePicToCurrentFloor = async () => {
   document.body.append(styleElement);
 };
 
+/**
+ * Highlight the current area in the map.
+ */
 export default () => {
   const data = mapData();
   if (! data) {

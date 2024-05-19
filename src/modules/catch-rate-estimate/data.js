@@ -4,6 +4,11 @@ import { getData } from '@utils/data';
 let miceEffs;
 let hasGottenEffs = false;
 
+/**
+ * Get the mice eff values.
+ *
+ * @return {Array} The mice eff values.
+ */
 const getMiceEffectiveness = async () => {
   if (! hasGottenEffs) {
     miceEffs = await getData('effs');
@@ -15,6 +20,13 @@ const getMiceEffectiveness = async () => {
   return response?.effectiveness;
 };
 
+/**
+ * Get the mouse data.
+ *
+ * @param {string} mouseId The mouse ID.
+ *
+ * @return {Object} The mouse data.
+ */
 const getMouse = async (mouseId) => {
   if (! miceEffs || ! hasGottenEffs) {
     miceEffs = await getData('effs');
@@ -27,6 +39,13 @@ const getMouse = async (mouseId) => {
   return mouse;
 };
 
+/**
+ * Get the mouse power.
+ *
+ * @param {string} mouseId The mouse ID.
+ *
+ * @return {number} The mouse power.
+ */
 const getMousePower = async (mouseId) => {
   const mouse = await getMouse(mouseId);
   if (! mouse || ! mouse.effectivenesses) {
@@ -36,6 +55,13 @@ const getMousePower = async (mouseId) => {
   return mouse?.effectivenesses?.power;
 };
 
+/**
+ * Get the mouse effectiveness.
+ *
+ * @param {string} mouseId The mouse ID.
+ *
+ * @return {number} The mouse effectiveness.
+ */
 const getMouseEffectiveness = async (mouseId) => {
   const mouse = await getMouse(mouseId);
   if (! mouse || ! mouse.effectivenesses) {
@@ -45,6 +71,14 @@ const getMouseEffectiveness = async (mouseId) => {
   return mouse.effectivenesses[user.trap_power_type_name.toLowerCase()];
 };
 
+/**
+ * Get the minluck based on the mouse power and effectiveness.
+ *
+ * @param {number} mousePower    The mouse power.
+ * @param {number} effectiveness The mouse effectiveness.
+ *
+ * @return {number} The minluck.
+ */
 const getMinluck = async (mousePower, effectiveness) => {
   if (effectiveness === 0) {
     return '∞';
@@ -61,6 +95,13 @@ const getMinluck = async (mousePower, effectiveness) => {
   return checkCatchRate.rate === 1 ? minluck : minluck + 1;
 };
 
+/**
+ * Convert a rate to a percentage.
+ *
+ * @param {number} rate The rate.
+ *
+ * @return {string} The percentage.
+ */
 const getPercent = (rate) => {
   if (rate === 1) {
     return '100%';
@@ -71,6 +112,16 @@ const getPercent = (rate) => {
   return `${percent}%`;
 };
 
+/**
+ * Get the catch rate.
+ *
+ * @param {number} mousePower    The mouse power.
+ * @param {number} effectiveness The mouse effectiveness.
+ * @param {number} power         The trap power.
+ * @param {number} luck          The trap luck.
+ *
+ * @return {Object} The catch rate.
+ */
 const getCatchRate = (mousePower, effectiveness, power = null, luck = null) => {
   effectiveness = effectiveness / 100;
 

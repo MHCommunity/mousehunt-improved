@@ -12,6 +12,13 @@ import {
 import bobIceberg from './styles/bob-iceberg.css';
 import styles from './styles/styles.css';
 
+/**
+ * Get the sections of the iceberg.
+ *
+ * @param {Object} quest The quest data.
+ *
+ * @return {Array} The sections.
+ */
 const getSections = (quest) => {
   const sections = [
     {
@@ -58,24 +65,78 @@ const getSections = (quest) => {
   return sections;
 };
 
+/**
+ * Calculate the remaining distance.
+ *
+ * @param    {number} depth        The current depth.
+ * @param    {number} stageStart   The start of the stage.
+ * @param    {number} stageEnd     The end of the stage.
+ *
+ * @return {Object} The remaining distance.
+ * @property {number} stage        The remaining distance.
+ * @property {number} stagePercent The percentage of the stage completed.
+ */
 const calculateRemaining = (depth, stageStart, stageEnd) => {
   const stage = stageEnd - depth;
   const stagePercent = (stage / (stageEnd - stageStart)) * 100;
   return { stage, stagePercent };
 };
 
+/**
+ * Calculate the completion of the stages.
+ *
+ * @param {number} depth  The current depth.
+ * @param {Array}  stages The stages.
+ *
+ * @return {Array} The completion of the stages.
+ */
 const calculateCompletion = (depth, stages) => {
   return stages.map((stageEnd) => depth >= stageEnd);
 };
 
+/**
+ * Calculate the average distance per hunt.
+ *
+ * @param {number}  progress The current progress.
+ * @param {number}  hunts    The number of hunts.
+ * @param {boolean} isDeep   If the hunter is in the Hidden Depths.
+ * @param {number}  depth    The current depth.
+ *
+ * @return {number} The average distance per hunt.
+ */
 const calculateAverage = (progress, hunts, isDeep, depth) => {
   return isDeep ? (depth + 1800) / hunts : progress / hunts;
 };
 
+/**
+ * Calculate the number of hunts needed to reach the next stage.
+ *
+ * @param {number} stage The remaining distance.
+ * @param {number} avg   The average distance per hunt.
+ *
+ * @return {number} The number of hunts needed to reach the next stage.
+ */
 const calculateStageHunts = (stage, avg) => {
   return Math.ceil(stage / avg);
 };
 
+/**
+ * Get the quest progress.
+ *
+ * @return {Object} The quest progress.
+ * @property {number}  progress     The current progress.
+ * @property {number}  hunts        The number of hunts.
+ * @property {Array}   chests       The chests.
+ * @property {boolean} isDeep       If the hunter is in the Hidden Depths.
+ * @property {number}  stage        The remaining distance.
+ * @property {number}  stagePercent The percentage of the stage completed.
+ * @property {number}  total        The total distance.
+ * @property {number}  totalPercent The percentage of the total distance completed.
+ * @property {Object}  complete     The completion of the stages.
+ * @property {boolean} isLair       If the hunter is in Icewing's Lair.
+ * @property {number}  avg          The average distance per hunt.
+ * @property {number}  stageHunts   The number of hunts needed to reach the next stage.
+ */
 const getQuestProgress = () => {
   const quest = user?.quests?.QuestIceberg;
   if (! quest) {
@@ -117,6 +178,13 @@ const getQuestProgress = () => {
   return { ...data, ...remaining };
 };
 
+/**
+ * Round the progress to two decimal places.
+ *
+ * @param {number} progress The progress.
+ *
+ * @return {string} The rounded progress.
+ */
 const roundProgress = (progress) => {
   if (Number.isNaN(progress) || progress <= 0) {
     return '0';
@@ -129,6 +197,13 @@ const roundProgress = (progress) => {
   return Number(progress.toFixed(2)).toString();
 };
 
+/**
+ * Get the progress display markup.
+ *
+ * @param {Object} quest The quest data.
+ *
+ * @return {HTMLElement} The progress display markup.
+ */
 const getTooltipText = (quest) => {
   const wrapper = makeElement('div', 'mousehuntTooltip-content');
   const progress = makeElement('div', 'hunts-wrapper');
@@ -180,6 +255,9 @@ const getTooltipText = (quest) => {
   return wrapper;
 };
 
+/**
+ * Add a warning to equip the right bases.
+ */
 const addDeepWarning = async () => {
   const equippedBase = Number.parseInt(user.base_item_id) || 0;
 
@@ -249,6 +327,9 @@ const addDeepWarning = async () => {
   }
 };
 
+/**
+ * Update the HUD.
+ */
 const hud = async () => {
   if ('iceberg' !== getCurrentLocation()) {
     return;
@@ -345,6 +426,9 @@ const hud = async () => {
   }
 };
 
+/**
+ * Allow the user to keep the tooltip always visible.
+ */
 const makeTooltipSticky = () => {
   const tooltip = document.querySelector('.icebergStatusTooltip');
   if (! tooltip) {

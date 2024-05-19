@@ -2,6 +2,9 @@ import { addHudStyles, addStyles } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Add userscript styles.
+ */
 const maybeAddUserscriptStyles = () => {
   const check = document.querySelector('.riftBristleWoodsHUD .item_container .item-Btn');
   if (! check) {

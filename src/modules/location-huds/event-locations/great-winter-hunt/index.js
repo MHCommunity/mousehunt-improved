@@ -12,6 +12,9 @@ import { getData } from '@utils/data';
 import styles from './styles.css';
 import stylesGlobal from './global.css';
 
+/**
+ * Update the footer with the possible golems that can be made.
+ */
 const updateGolemFooter = () => {
   const footer = document.querySelector('.greatWinterHuntDialogView__inventoryFooter');
   if (! footer) {
@@ -54,6 +57,13 @@ const updateGolemFooter = () => {
   footer.insertBefore(possibleWrapper, footer.children[3]);
 };
 
+/**
+ * Get the fraction character for the limb count.
+ *
+ * @param {number} num The number of limbs.
+ *
+ * @return {string} The fraction.
+ */
 const getFraction = (num) => {
   switch (num) {
   case 1:
@@ -67,6 +77,9 @@ const getFraction = (num) => {
   }
 };
 
+/**
+ * Update the golem parts quantity.
+ */
 const updateGolemPartsQuantity = () => {
   const limbs = document.querySelector('.greatWinterHuntRecycleDialogView__itemQuantity.quantity[data-item-type="golem_part_limb_stat_item"]');
   if (! limbs) {
@@ -92,6 +105,9 @@ const updateGolemPartsQuantity = () => {
   limbs.append(newLimbsEl, newLimbsSetEl);
 };
 
+/**
+ * Update the golem travel count.
+ */
 const updateGolemTravelCount = async () => {
   const title = document.querySelector('.greatWinterHuntGolemManagerTabView__destinationHeader');
   if (! title) {
@@ -122,6 +138,9 @@ const updateGolemTravelCount = async () => {
   name.append(countEl);
 };
 
+/**
+ * Fire the golem switch event when a golem is clicked in the dialog.
+ */
 const updateGolemPopup = () => {
   setTimeout(() => {
     const golems = document.querySelectorAll('.greatWinterHuntGolemManagerDialogView__golem');
@@ -139,6 +158,9 @@ const updateGolemPopup = () => {
   }, 250);
 };
 
+/**
+ * Make the golems dance when the progress bar is clicked.
+ */
 const golemDance = () => {
   const trigger = document.querySelector('.greatWinterHuntRewardTrackView__progress');
   if (! trigger) {
@@ -162,6 +184,11 @@ const golemDance = () => {
   });
 };
 
+/**
+ * Helper function to get the current quest.
+ *
+ * @return {Object} The quest object.
+ */
 const getQuest = () => {
   if ('winter_hunt_grove' === getCurrentLocation()) {
     return user.quests.QuestCinnamonTreeGrove;
@@ -174,6 +201,9 @@ const getQuest = () => {
   return {};
 };
 
+/**
+ * Show the current animated snow count.
+ */
 const expandAnimatedSnowCount = () => {
   const limbEl = document.querySelector('.headsUpDisplayWinterHuntRegionView__golemPartQuantity.quantity[data-item-type="animate_snow_stat_item"]');
   if (! limbEl) {
@@ -183,6 +213,9 @@ const expandAnimatedSnowCount = () => {
   limbEl.textContent = getQuest()?.items?.animate_snow_stat_item.quantity_formatted || 0;
 };
 
+/**
+ * Show the possible snowball showdown dust count.
+ */
 const showPossibleSnowballShowdownDustCount = () => {
   // 175 for each dust.
   const showdownItems = document.querySelector('.campHudSnowballShowdownView__itemsContainer');
@@ -221,6 +254,11 @@ const showPossibleSnowballShowdownDustCount = () => {
   }
 };
 
+/**
+ * Get the golem counts for the current quest.
+ *
+ * @return {Object} The golem counts.
+ */
 const getGolemCounts = () => {
   const golemCounts = {};
   const destinations = getQuest()?.destinations || {};
@@ -233,6 +271,9 @@ const getGolemCounts = () => {
   return golemCounts;
 };
 
+/**
+ * Modify the advent calendar popup to allow for spoilers.
+ */
 const adventCalendarPopup = () => {
   const suffix = document.querySelector('#overlayPopup .suffix');
   if (! suffix) {
@@ -269,11 +310,16 @@ const adventCalendarPopup = () => {
   suffix.append(toggleBtn);
 };
 
+/**
+ * Hide the advent calendar in the menu after December.
+ *
+ * @return {string} The CSS to hide the advent calendar.
+ */
 const maybeHideAdventCalendarInMenu = () => {
   // If it's not December, then hide the advent calendar in the menu.
   const now = new Date();
   if (now.getMonth() !== 11) {
-    // return '.mousehuntHeaderView-gameTabs .menuItem.adventCalendar { display: none; }';
+    return '.mousehuntHeaderView-gameTabs .menuItem.adventCalendar { display: none; }';
   }
 
   return '';

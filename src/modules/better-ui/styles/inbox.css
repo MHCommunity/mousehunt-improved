@@ -269,5 +269,6 @@ div#messengerUINotification {
 }
 
 #messengerUINotification {
+  margin-top: -3px;
   box-shadow: 0 3px 6px -3px #3e3e3e;
 }

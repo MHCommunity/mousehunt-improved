@@ -70,6 +70,13 @@ const saveSettingDirect = (key, value, identifier = 'mousehunt-improved-settings
   localStorage.setItem(identifier, JSON.stringify(settings));
 };
 
+/**
+ * Get the group and key from a composite key.
+ *
+ * @param {string} key The composite key.
+ *
+ * @return {Object} The group and key.
+ */
 const getGroupAndKey = (key) => {
   const split = key.split('.');
 

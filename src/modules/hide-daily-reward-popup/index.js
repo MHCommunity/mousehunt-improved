@@ -1,5 +1,8 @@
 import { onDialogShow, onRequest } from '@utils';
 
+/**
+ * Hide the daily reward popup.
+ */
 const hidePopup = () => {
   if (activejsDialog) {
     const attrs = activejsDialog.getAttributes();
@@ -28,6 +31,9 @@ const init = async () => {
   onRequest('*', hidePopup);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'hide-daily-reward-popup',
   name: 'Hide Daily Reward Popup',

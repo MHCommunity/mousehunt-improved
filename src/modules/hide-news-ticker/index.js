@@ -8,6 +8,9 @@ const init = async () => {
   addStyles(styles, 'hide-news-ticker');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'hide-news-ticker',
   name: 'Hide News Ticker',

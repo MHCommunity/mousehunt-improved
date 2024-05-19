@@ -231,11 +231,21 @@ const sessionGet = (key, defaultValue = false) => {
   return JSON.parse(value);
 };
 
+/**
+ * Delete a session value.
+ *
+ * @param {string} key Key to delete the value for.
+ */
 const sessionDelete = (key) => {
   key = `mh-improved-${key}`;
   sessionStorage.removeItem(key);
 };
 
+/**
+ * Delete multiple session values with a given prefix.
+ *
+ * @param {string} prefix Prefix to match.
+ */
 const sessionsDelete = (prefix) => {
   for (const key of Object.keys(sessionStorage)) {
     if (key.startsWith(prefix)) {
@@ -254,10 +264,25 @@ const cacheSet = (key, value) => {
   dbSet('cache', { id: key, value });
 };
 
+/**
+ * Set a data cache value.
+ *
+ * @param {string} key   Key to set the value for.
+ * @param {Object} value Value to set.
+ */
 const dataCacheSet = (key, value) => {
   dbSet('data', { id: key, value });
 };
 
+/**
+ * Helper function to get a cache value.
+ *
+ * @param {string} key          Key to get the value for.
+ * @param {Object} defaultValue Default value to return if the key doesn't exist.
+ * @param {string} db           The database to get the value from.
+ *
+ * @return {Object} The cache value.
+ */
 const cacheGetHelper = async (key, defaultValue = false, db = 'cache') => {
   const cached = await dbGet(db, key);
   if (! cached?.data?.value) {
@@ -279,6 +304,14 @@ const cacheGet = async (key, defaultValue = false) => {
   return await cacheGetHelper(key, defaultValue, 'cache');
 };
 
+/**
+ * Get a data cache value.
+ *
+ * @param {string} key          Key to get the value for.
+ * @param {Object} defaultValue Default value to return if the key doesn't exist.
+ *
+ * @return {Object} The cache value.
+ */
 const dataCacheGet = async (key, defaultValue = false) => {
   return await cacheGetHelper(key, defaultValue, 'data');
 };

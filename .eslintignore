@@ -1,9 +1,1 @@
-/*
-!/docs
-!/src
-!/test
-!/scripts
-!*.md
-!package.json
-
-/src/modules/location-hud/rift-valour/simulator.js
+/dist

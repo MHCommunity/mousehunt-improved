@@ -38,16 +38,16 @@ const getUserSetupDetails = () => {
       cheeseEffect: userObj.trap_cheese_effect,
     },
     bait: {
-      id: Number.parseInt(userObj.bait_item_id),
+      id: Number.parseInt(userObj.bait_item_id, 10),
       name: userObj.bait_name,
-      quantity: Number.parseInt(userObj.bait_quantity),
+      quantity: Number.parseInt(userObj.bait_quantity, 10),
       power: 0,
       powerBonus: 0,
       luck: 0,
       attractionBonus: 0,
     },
     base: {
-      id: Number.parseInt(userObj.base_item_id),
+      id: Number.parseInt(userObj.base_item_id, 10),
       name: userObj.base_name,
       power: 0,
       powerBonus: 0,
@@ -55,16 +55,16 @@ const getUserSetupDetails = () => {
       attractionBonus: 0,
     },
     charm: {
-      id: Number.parseInt(userObj.trinket_item_id),
+      id: Number.parseInt(userObj.trinket_item_id, 10),
       name: userObj.trinket_name,
-      quantity: Number.parseInt(userObj.trinket_quantity),
+      quantity: Number.parseInt(userObj.trinket_quantity, 10),
       power: 0,
       powerBonus: 0,
       luck: 0,
       attractionBonus: 0,
     },
     weapon: {
-      id: Number.parseInt(userObj.weapon_item_id),
+      id: Number.parseInt(userObj.weapon_item_id, 10),
       name: userObj.weapon_name,
       power: 0,
       powerBonus: 0,
@@ -72,48 +72,13 @@ const getUserSetupDetails = () => {
       attractionBonus: 0,
     },
     aura: {
-      lgs: {
-        active: false,
-        power: 0,
-        powerBonus: 0,
-        luck: 0,
-      },
-      lightning: {
-        active: false,
-        power: 0,
-        powerBonus: 0,
-        luck: 0,
-      },
-      chrome: {
-        active: false,
-        power: 0,
-        powerBonus: 0,
-        luck: 0,
-      },
-      slayer: {
-        active: false,
-        power: 0,
-        powerBonus: 0,
-        luck: 0,
-      },
-      festive: {
-        active: false,
-        power: 0,
-        powerBonus: 0,
-        luck: 0,
-      },
-      luckycodex: {
-        active: false,
-        power: 0,
-        powerBonus: 0,
-        luck: 0,
-      },
-      riftstalker: {
-        active: false,
-        power: 0,
-        powerBonus: 0,
-        luck: 0,
-      },
+      lgs: { active: false, power: 0, powerBonus: 0, luck: 0 },
+      lightning: { active: false, power: 0, powerBonus: 0, luck: 0 },
+      chrome: { active: false, power: 0, powerBonus: 0, luck: 0 },
+      slayer: { active: false, power: 0, powerBonus: 0, luck: 0 },
+      festive: { active: false, power: 0, powerBonus: 0, luck: 0 },
+      luckycodex: { active: false, power: 0, powerBonus: 0, luck: 0 },
+      riftstalker: { active: false, power: 0, powerBonus: 0, luck: 0 },
     },
     location: {
       name: userObj.environment_name,
@@ -147,15 +112,12 @@ const getUserSetupDetails = () => {
         return;
       }
 
-      let value = row.querySelector('.campPage-trap-trapStat-mathRow-value');
-      let name = row.querySelector('.campPage-trap-trapStat-mathRow-name');
+      let value = row.querySelector('.campPage-trap-trapStat-mathRow-value')?.innerText || '0';
+      const name = row.querySelector('.campPage-trap-trapStat-mathRow-name')?.innerText;
 
-      if (! value || ! name || ! name.innerText) {
+      if (! name) {
         return;
       }
-
-      name = name.innerText;
-      value = value.innerText || '0';
 
       let tempType = type;
       let isBonus = false;
@@ -236,11 +198,7 @@ const getUserSetupDetails = () => {
  * @return {string} The normalized title.
  */
 const normalizeTitle = (title = '') => {
-  if (! title) {
-    return '';
-  }
-
-  const normalizedTitle = title
+  return title
     .toLowerCase()
     .replaceAll(' ', '')
     .replaceAll('/', '_')
@@ -263,8 +221,6 @@ const normalizeTitle = (title = '') => {
     .replaceAll('/', '')
     .replaceAll(' ', '')
     .toLowerCase();
-
-  return normalizedTitle;
 };
 
 /**
@@ -310,7 +266,7 @@ const isUserTitleAtLeast = (title) => {
  * @return {string} The user's hash.
  */
 const getAnonymousUserHash = async () => {
-  if (typeof user === 'undefined' || ! user?.user_id) {
+  if (! user?.user_id) {
     return '';
   }
 
@@ -318,9 +274,7 @@ const getAnonymousUserHash = async () => {
   const msgUint8 = new TextEncoder().encode(user.user_id.toString().trim());
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
   const hashArray = [...new Uint8Array(hashBuffer)];
-  userHash = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
-
-  return userHash;
+  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
 };
 
 /**
@@ -335,7 +289,8 @@ const getUserTitle = () => {
     title = title.split('/')[0];
   }
 
-  return title.toLowerCase()
+  return title
+    .toLowerCase()
     .replaceAll('lady', 'lord')
     .replace('wo', '')
     .replace('ess', '')

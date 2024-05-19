@@ -9,6 +9,9 @@ const init = async () => {
   addStyles(styles, 'taller-windows');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'taller-windows',
   name: 'Taller Windows',

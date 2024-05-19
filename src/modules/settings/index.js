@@ -102,6 +102,12 @@ const addExportSettings = () => {
 
       const file = dropevent.dataTransfer.files[0];
       const reader = new FileReader();
+
+      /**
+       * When the file is loaded, set the textarea value to the file contents.
+       *
+       * @param {Event} loadEvent The load event.
+       */
       reader.onload = (loadEvent) => {
         textarea.value = loadEvent.target.result;
       };
@@ -124,6 +130,12 @@ const addExportSettings = () => {
 
         const file = changeEvent.target.files[0];
         const reader = new FileReader();
+
+        /**
+         * When the file is loaded, set the textarea value to the file contents.
+         *
+         * @param {Event} loadEvent The load event.
+         */
         reader.onload = (loadEvent) => {
           textarea.value = loadEvent.target.result;
         };
@@ -280,14 +292,19 @@ const addAdvancedSettingsButtons = () => {
   }
 };
 
+/**
+ * Highlight the current location in the location hud settings.
+ */
 const highlightLocationHud = () => {
-  // highlight the current location in the location hud settings
   const locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-location-huds-enabled-${getCurrentLocation()}`);
   if (locationHudSettings) {
     locationHudSettings.classList.add('highlight');
   }
 };
 
+/**
+ * Add toggles to the settings page headers.
+ */
 const addTogglesToSettings = () => {
   const settingsPage = document.querySelectorAll('.PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__section');
   if (! settingsPage) {
@@ -346,6 +363,9 @@ const addTogglesToSettings = () => {
   });
 };
 
+/**
+ * Move the tab to the end.
+ */
 const moveTabToEnd = () => {
   const mhImprovedTab = document.querySelector('#mousehunt-improved-settings');
   if (! mhImprovedTab) {
@@ -369,6 +389,12 @@ const addMhImprovedIconToMenu = () => {
     href: 'https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings',
     title: 'MouseHunt Improved Settings',
     position: 'append',
+
+    /**
+     * The action to perform when the icon is clicked.
+     *
+     * @param {Event} e The event.
+     */
     action: (e) => {
       if ('preferences' === getCurrentPage() && 'mousehunt-improved-settings' === getCurrentTab()) {
         e.preventDefault();
@@ -378,6 +404,11 @@ const addMhImprovedIconToMenu = () => {
   });
 };
 
+/**
+ * Make the module icon styles.
+ *
+ * @return {string} The module icon styles.
+ */
 const makeModuleIconStyles = () => {
   const icons = settingsData.icons || [];
   if (! icons.length) {
@@ -395,6 +426,9 @@ const makeModuleIconStyles = () => {
   return returnString;
 };
 
+/**
+ * Link the version number to the update summary.
+ */
 const linkVersionNumber = () => {
   const version = document.querySelector('#mousehunt-improved-settings-better .PagePreferences__title .version');
   if (! version) {
@@ -435,6 +469,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: '_settings',
   type: 'advanced',

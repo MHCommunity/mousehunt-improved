@@ -3,6 +3,10 @@ import { addHudStyles } from '@utils';
 import styles from './styles.css';
 
 let start;
+
+/**
+ * Spin the windmill needle when it's clicked.
+ */
 const spinNeedle = () => {
   const needle = document.querySelector('.windmillHud-needle');
   if (! needle) {

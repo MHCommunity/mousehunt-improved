@@ -1,10 +1,18 @@
 import { onDialogShow, onRequest } from '@utils';
 
+// eslint-disable-next-line jsdoc/require-returns
+/**
+ * Convert imperial to metric.
+ *
+ * @param {string} text The text to convert.
+ *
+ * @return {string} The converted text.
+ */
 const imperialToMetric = (text) => {
   const lb = text.match(/(\d+? )lb./i);
   const oz = text.match(/(\d+? )oz./i);
   if (! (lb || oz)) {
-    return;
+    return text;
   }
 
   // Convert the lb. and oz. values to metric.
@@ -17,6 +25,9 @@ const imperialToMetric = (text) => {
   return text.replace(/(\d+? lb.\s)?(\d+? oz.)/i, totalWeightMetric + ' kg. ');
 };
 
+/**
+ * Convert the imperial units to metric units in the dialog.
+ */
 const convertInDialog = () => {
   const mouseViewWeights = document.querySelectorAll('.mouseView-statsContainer .mouseView-statsContainer-block-padding table tbody tr');
   if (mouseViewWeights.length) {
@@ -34,6 +45,9 @@ const convertInDialog = () => {
   }
 };
 
+/**
+ * Convert the imperial units to metric units on the page.
+ */
 const replaceInJournal = () => {
   const entries = document.querySelectorAll('.journal .entry .journalbody .journaltext');
   if (! entries.length) {
@@ -48,6 +62,9 @@ const replaceInJournal = () => {
   });
 };
 
+/**
+ * Convert the imperial units to metric units on the page.
+ */
 const replaceOnMousePage = () => {
   // Check for the mouse page stats.
   const mouseWeightsStats = document.querySelectorAll('.mouseListView-categoryContent-subgroupContainer .mouseListView-categoryContent-subgroup-mouse-stats');
@@ -66,6 +83,9 @@ const replaceOnMousePage = () => {
   });
 };
 
+/**
+ * Convert the imperial units to metric units on the page.
+ */
 const convertOnPage = () => {
   replaceOnMousePage();
   replaceInJournal();
@@ -81,6 +101,9 @@ const init = async () => {
   convertOnPage();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'metric',
   name: 'Metric Units',

@@ -2,6 +2,12 @@ import * as Utils from '@utils';
 
 import settings from './settings';
 
+/**
+ * Log a message to the console with a prefix.
+ *
+ * @param {string} message The message to log.
+ * @param {any[]}  args    Additional arguments to log.
+ */
 const debug = (message, ...args) => {
   const textMessages = [];
   const objectMessages = [];
@@ -24,6 +30,9 @@ const debug = (message, ...args) => {
   );
 };
 
+/**
+ * Main function.
+ */
 const main = () => {
   // Add all the stuff from Utils to be accessible in the console as 'app.mhutils'
   window.app = window.app || {};
@@ -117,6 +126,9 @@ const main = () => {
   }
 };
 
+/**
+ * Start the module.
+ */
 const init = () => {
   main();
 
@@ -126,6 +138,9 @@ const init = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'debug',
   name: 'Debug',

@@ -100,6 +100,13 @@ const regionMapping = [
   },
 ];
 
+/**
+ * Standardize the location name.
+ *
+ * @param {string} location The location name.
+ *
+ * @return {string} The normalized location name.
+ */
 const normalizeCurrentLocation = (location) => {
   const region = regionMapping.find((regionMap) => regionMap.locations.includes(location));
   if (region) {
@@ -109,6 +116,9 @@ const normalizeCurrentLocation = (location) => {
   return location;
 };
 
+/**
+ * Main function.
+ */
 const main = () => {
   removeHudStyles();
 
@@ -208,6 +218,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'location-huds',
   type: 'location-hud',

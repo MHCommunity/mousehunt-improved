@@ -8,6 +8,14 @@ import {
   sleep
 } from '@utils';
 
+/**
+ * Get the map data.
+ *
+ * @param {number}  mapId       The map ID.
+ * @param {boolean} forceUpdate Whether to force an update.
+ *
+ * @return {Promise} The map data.
+ */
 const getMapData = async (mapId, forceUpdate = false) => {
   return new Promise((resolve) => {
     hg.utils.TreasureMapUtil.getMapInfo(mapId, (resp) => {
@@ -18,6 +26,11 @@ const getMapData = async (mapId, forceUpdate = false) => {
   });
 };
 
+/**
+ * Update a map listing.
+ *
+ * @param {number} mapId The map ID.
+ */
 const updateListing = async (mapId) => {
   let mapData;
 
@@ -116,6 +129,12 @@ const updateListing = async (mapId) => {
   mapEl.classList.remove('mh-improved-map-listing-highlight');
 };
 
+/**
+ * Debug the community maps.
+ *
+ * @param {Object} response The response.
+ * @param {Object} data     The data.
+ */
 const debug = async (response, data) => {
   if ('get_listings' !== data.action) {
     return;
@@ -137,6 +156,9 @@ const debug = async (response, data) => {
   hideMhct.remove();
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   onRequest('users/treasuremap.php', debug);
 };

@@ -4,6 +4,11 @@ import styles from './styles.css';
 
 import addCheeseSelector from '../shared/cheese-selectors';
 
+/**
+ * Update the closing time text.
+ *
+ * @return {HTMLDivElement} The time left element.
+ */
 const updateClosingTime = () => {
   let timeLeftText = '';
 
@@ -28,6 +33,9 @@ const updateClosingTime = () => {
   return timeLeftEl;
 };
 
+/**
+ * Update the HUD.
+ */
 const hud = () => {
   if ('forbidden_grove' !== getCurrentLocation()) {
     return;

@@ -1,5 +1,13 @@
 import { createPopup, doEvent } from '@utils';
 
+/**
+ * Fetch data recursively.
+ *
+ * @param {Array}    data          The data to fetch.
+ * @param {Function} callbackToRun The callback function to run.
+ *
+ * @return {Promise<Array>} Resolves with the results.
+ */
 const recursiveFetch = (data, callbackToRun) => {
   return data.reduce((promiseChain, item) => {
     return promiseChain.then((chainResults) => {
@@ -14,6 +22,16 @@ const recursiveFetch = (data, callbackToRun) => {
   }, Promise.resolve([]));
 };
 
+/**
+ * Add a download button to the page.
+ *
+ * @param {Object}   opts                The options object.
+ * @param {string}   opts.buttonSelector The selector for the button.
+ * @param {Array}    opts.results        The results to download.
+ * @param {string}   opts.filename       The filename to use.
+ * @param {Function} opts.beforeDownload The function to run before downloading.
+ * @param {Function} callback            The callback function to run.
+ */
 const addDownloadToButton = (opts, callback) => {
   let { buttonSelector, results, filename, beforeDownload } = opts;
 
@@ -30,6 +48,15 @@ const addDownloadToButton = (opts, callback) => {
   });
 };
 
+/**
+ * Add a JSON download to the button.
+ *
+ * @param {Object}   opts                The options object.
+ * @param {string}   opts.buttonSelector The selector for the button.
+ * @param {Array}    opts.results        The results to download.
+ * @param {string}   opts.filename       The filename to use.
+ * @param {Function} opts.beforeDownload The function to run before downloading.
+ */
 const addJsonDownloadToButton = (opts) => {
   addDownloadToButton(opts, (results, filename) => {
     const data = JSON.stringify({
@@ -50,6 +77,16 @@ const addJsonDownloadToButton = (opts) => {
   });
 };
 
+/**
+ * Add a CSV download to the button.
+ *
+ * @param {Object}   opts                The options object.
+ * @param {string}   opts.buttonSelector The selector for the button.
+ * @param {Array}    opts.results        The results to download.
+ * @param {string}   opts.filename       The filename to use.
+ * @param {Array}    opts.headers        The headers for the CSV.
+ * @param {Function} opts.reduceResults  The function to reduce the results.
+ */
 const addCsvDownloadToButton = (opts) => {
   addDownloadToButton(opts, (results, filename) => {
     // reduce the results if needed
@@ -81,11 +118,25 @@ const addCsvDownloadToButton = (opts) => {
   });
 };
 
+/**
+ * Get the formatted date.
+ *
+ * @return {string} The formatted date.
+ */
 const getFormattedDate = () => {
   const date = new Date();
   return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 };
 
+/**
+ * Add download buttons to the page.
+ *
+ * @param {Object}   opts               The options object.
+ * @param {string}   opts.type          The type of data.
+ * @param {Array}    opts.results       The results to download.
+ * @param {Array}    opts.headers       The headers for the CSV.
+ * @param {Function} opts.reduceResults The function to reduce the results.
+ */
 const addDownloadButtons = (opts) => {
   const { type, results, headers, reduceResults } = opts;
 
@@ -108,6 +159,13 @@ const addDownloadButtons = (opts) => {
   });
 };
 
+/**
+ * Reduce the results.
+ *
+ * @param {Array} results The results to reduce.
+ *
+ * @return {Array} The reduced results.
+ */
 const resultReducer = (results) => {
   return results.reduce((acc, { category, items }) => {
     items.forEach((data) => {
@@ -121,6 +179,11 @@ const resultReducer = (results) => {
   }, []);
 };
 
+/**
+ * Update the total items count.
+ *
+ * @param {Array} results The results to process.
+ */
 const updateSingleTotalEl = (results) => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
   if (! totalItemsEl) {
@@ -135,6 +198,21 @@ const updateSingleTotalEl = (results) => {
   totalItemsEl.textContent = totalItems.toLocaleString();
 };
 
+/**
+ * Show the export popup.
+ *
+ * @param {Object}   opts                   The options object.
+ * @param {string}   opts.type              The type of data.
+ * @param {string}   opts.text              The text to display.
+ * @param {string}   opts.headerMarkup      The header markup.
+ * @param {string}   opts.itemsMarkup       The items markup.
+ * @param {string}   opts.footerMarkup      The footer markup.
+ * @param {Function} opts.fetch             The fetch function.
+ * @param {Function} opts.afterFetch        Function to run after fetching.
+ * @param {Function} opts.download          Function to download the data.
+ * @param {Function} opts.updateSingleTotal The update single total function.
+ * @param {boolean}  opts.dataIsAvailable   If the data is available.
+ */
 const exportPopup = (opts) => {
   const {
     type,

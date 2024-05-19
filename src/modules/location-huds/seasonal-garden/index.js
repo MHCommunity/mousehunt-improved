@@ -2,6 +2,9 @@ import { addHudStyles } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Make the progress bar draggable.
+ */
 const makeProgressDraggable = () => {
   const progressBar = document.querySelector('.seasonalGardenHUD-amplifierProgress');
   if (! progressBar) {
@@ -40,6 +43,9 @@ const makeProgressDraggable = () => {
   });
 };
 
+/**
+ * Change the color of the progress bar when the bar is clicked.
+ */
 const changeBarColor = () => {
   const trigger = document.querySelector('.seasonalGardenHUD-season');
   if (! trigger) {

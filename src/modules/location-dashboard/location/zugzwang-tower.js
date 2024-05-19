@@ -29,9 +29,16 @@ const getChessProgress = (pieces) => {
   return 'King';
 };
 
+/**
+ * Get the Zugzwang Tower text.
+ *
+ * @param {Object} quests The quests object.
+ *
+ * @return {string} The Zugzwang Tower text.
+ */
 const getZugzwangTowerText = (quests) => {
   if (! quests.QuestZugzwangTower) {
-    return;
+    return '';
   }
 
   const returnText = `${quests.QuestZugzwangTower.amp || 0}%`;

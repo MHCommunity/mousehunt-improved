@@ -12,6 +12,9 @@ import {
   setMultipleTimeout
 } from '@utils';
 
+/**
+ * Check for the auto horn.
+ */
 const checkForAutoHorn = () => {
   const storageKeys = new Set(['NOB-huntsLeft', 'HornTimeDelayMax', 'AutoSolveKR', 'TrapCheckTimeDelayMax', 'TrapCheckTimeOffset', 'TrapCheckTimeDelayMin', 'AutoSolveKRDelayMin', 'AutoSolveKRDelayMax', 'SaveKRImage', 'autoPopupKR', 'AggressiveMode', 'HornTimeDelayMin']);
   if (! Object.keys(localStorage).filter((key) => storageKeys.has(key)).length) {
@@ -66,6 +69,10 @@ const addEvents = () => {
 };
 
 let isJournalProcessing = false;
+
+/**
+ * Process the journal entries.
+ */
 const processEntries = async () => {
   if (! ('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
     return;
@@ -87,6 +94,9 @@ const processEntries = async () => {
   isJournalProcessing = false;
 };
 
+/**
+ * Process the single journal entries.
+ */
 const processSingleEntries = async () => {
   if (isJournalProcessing) {
     return;
@@ -100,6 +110,9 @@ const processSingleEntries = async () => {
   isJournalProcessing = false;
 };
 
+/**
+ * Add journal processing events.
+ */
 const addJournalProcessingEvents = async () => {
   setMultipleTimeout(processEntries, [100, 500, 1000]);
 
@@ -114,28 +127,36 @@ const addJournalProcessingEvents = async () => {
   onEvent('journal-history-entry-added', processEntries);
 };
 
+/**
+ * Add dialog listeners for dialog events.
+ */
 const addDialogListeners = () => {
   let currentDialog = null;
   onEvent('js_dialog_hide', () => {
-    console.log('dialog-hide', `dialog-hide-${currentDialog}`); // eslint-disable-line no-console
     doEvent('dialog-hide', currentDialog);
     doEvent(`dialog-hide-${currentDialog}`);
   });
 
   onDialogShow('all', () => {
     currentDialog = getCurrentDialog();
-    console.log('dialog-show', `dialog-show-${currentDialog}`); // eslint-disable-line no-console
     doEvent('dialog-show', currentDialog);
     doEvent(`dialog-show-${currentDialog}`);
   });
 };
 
+/**
+ * Check for MHCT.
+ *
+ * @return {boolean} Whether MHCT is installed or not.
+ */
 const checkForMHCT = () => {
-  const hasMhct = document.querySelector('#mhhh_version');
-  console.log(hasMhct ? 'MHCT is installed' : 'MHCT is not installed'); // eslint-disable-line no-console
+  return !! document.querySelector('#mhhh_version');
   // todo: add a popup to inform the user that they should install MHCT.
 };
 
+/**
+ * Add a support link to the support dialog.
+ */
 const addSupportLink = () => {
   const description = document.querySelector('#overlayPopup .jsDialogContainer .contactUsForm .description');
   if (! description) {
@@ -172,6 +193,9 @@ const init = async () => {
   onEvent('dialog-show-support', addSupportLink);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: '_required',
   type: 'required',

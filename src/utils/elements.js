@@ -306,6 +306,9 @@ const makeTooltip = (options) => {
  * @param {string|HTMLElement|Function} content The content for the page.
  */
 const makePage = (content) => {
+  /**
+   * Set the content of the page being created.
+   */
   const setContent = () => {
     const pageContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
     if (! pageContainer) {
@@ -356,6 +359,11 @@ const makeMathButton = (amount, opts) => {
   const minusText = amount > 0 ? `-${amount}` : amount;
   const buttonText = makeElement('span', '', plusText);
 
+  /**
+   * Update the button text based on the shift key.
+   *
+   * @param {Event} e The event object.
+   */
   const updateButtonText = (e) => {
     const currentText = buttonText.innerText;
 

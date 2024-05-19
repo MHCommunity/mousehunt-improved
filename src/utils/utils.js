@@ -51,15 +51,7 @@ const isiFrame = () => {
  * @return {boolean} Whether the legacy HUD is enabled.
  */
 const isLegacyHUD = () => {
-  if (getFlag('legacy-hud')) {
-    return true;
-  }
-
-  if (! hg?.utils?.PageUtil?.isLegacy) {
-    return false;
-  }
-
-  return hg.utils.PageUtil.isLegacy();
+  return getFlag('legacy-hud') || hg?.utils?.PageUtil?.isLegacy?.();
 };
 
 /**
@@ -77,11 +69,7 @@ const isLoggedIn = () => {
  * @return {boolean} True if the overlay is visible, false otherwise.
  */
 const isOverlayVisible = () => {
-  if ('undefined' === typeof activejsDialog) {
-    return false;
-  }
-
-  return activejsDialog && activejsDialog.isVisible();
+  return typeof activejsDialog !== 'undefined' && activejsDialog?.isVisible();
 };
 
 const bodyClasses = { added: [], removed: [] };
@@ -145,25 +133,16 @@ const removeBodyClass = (className) => {
  */
 const getTradableItems = async (valueKey = 'all') => {
   const tradableItems = await getData('items-tradable');
-
-  // sort the items by name
-  tradableItems.sort((a, b) => {
-    return a.name.localeCompare(b.name);
-  });
+  tradableItems.sort((a, b) => a.name.localeCompare(b.name));
 
   if ('all' === valueKey) {
     return tradableItems;
   }
 
-  const returnItems = [];
-  for (const item of tradableItems) {
-    returnItems.push({
-      name: item.name,
-      value: item[valueKey],
-    });
-  }
-
-  return returnItems;
+  return tradableItems.map((item) => ({
+    name: item.name,
+    value: item[valueKey],
+  }));
 };
 
 const requests = {};
@@ -254,9 +233,7 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
   }
 
   // Add in the passed in form data.
-  for (const key in formData) {
-    form.append(key, formData[key]);
-  }
+  Object.keys(formData).forEach((key) => form.append(key, formData[key]));
 
   // Convert the form to a URL encoded string for the body.
   const requestBody = new URLSearchParams(form).toString();
@@ -267,16 +244,13 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
 
   while (! response && attempts < 3) {
     try {
-      response = await fetch(
-        callbackurl ? callbackurl + url : 'https://www.mousehuntgame.com/' + url,
-        {
-          method: 'POST',
-          body: requestBody,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        }
-      );
+      response = await fetch(callbackurl ? `${callbackurl}${url}` : `https://www.mousehuntgame.com/${url}`, {
+        method: 'POST',
+        body: requestBody,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
     } catch (error) {
       attempts++;
       console.error(`Attempt ${attempts} failed. Retrying...`, error); // eslint-disable-line no-console
@@ -316,11 +290,7 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
  * @return {Promise} A promise that resolves after the sleep.
  */
 const sleep = async (ms, elapsed = 0) => {
-  if (elapsed) {
-    ms -= elapsed;
-  }
-
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms - elapsed));
 };
 
 /**
@@ -350,8 +320,7 @@ function isAppleOS(_window = null) {
  * @return {boolean} True if the user has the mini CRE; false otherwise.
  */
 const hasMiniCRE = () => {
-  const hasMiniCre = sessionGet('has-mini-cre');
-  if (hasMiniCre) {
+  if (sessionGet('has-mini-cre')) {
     return true;
   }
 
@@ -360,14 +329,9 @@ const hasMiniCRE = () => {
   }
 
   const cre = document.querySelector('.min-luck-button');
-  if (! cre) {
-    sessionSet('has-mini-cre', false);
-    return false;
-  }
+  sessionSet('has-mini-cre', !! cre);
 
-  sessionSet('has-mini-cre', true);
-
-  return true;
+  return !! cre;
 };
 
 /**
@@ -388,14 +352,7 @@ const uppercaseFirstLetter = (string) => {
  * @param {Array|number} ms The milliseconds to wait.
  */
 const setMultipleTimeout = (fn, ms) => {
-  // If ms isn't an array, make it one.
-  if (! Array.isArray(ms)) {
-    ms = [ms];
-  }
-
-  ms.forEach((time) => {
-    setTimeout(fn, time);
-  });
+  (Array.isArray(ms) ? ms : [ms]).forEach((time) => setTimeout(fn, time));
 };
 
 /**
@@ -419,9 +376,9 @@ const refreshPage = (delay = 0) => {
  */
 const debounce = (func, delay = 100) => {
   let timeout;
-  return async (...args) => {
+  return (...args) => {
     clearTimeout(timeout);
-    timeout = setTimeout(async () => await func(...args), delay);
+    timeout = setTimeout(() => func(...args), delay);
   };
 };
 

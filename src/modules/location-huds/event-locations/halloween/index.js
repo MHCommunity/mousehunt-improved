@@ -2,6 +2,9 @@ import { addHudStyles, onRequest } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Remove the disabled class from the cheese.
+ */
 const unDisableCheese = () => {
   const armButtons = document.querySelectorAll('.halloweenBoilingCauldronHUD-bait');
   armButtons.forEach((armButton) => {

@@ -28,6 +28,9 @@ import sidebar from './modules/sidebar';
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
+/**
+ * Update the map classes.
+ */
 const updateMapClasses = () => {
   const map = document.querySelector('.treasureMapRootView');
   if (map && map.classList) {
@@ -39,6 +42,12 @@ const updateMapClasses = () => {
   }
 };
 
+/**
+ * Update the block content.
+ *
+ * @param {Element} block The block element.
+ * @param {string}  type  The type of block.
+ */
 const updateBlockContent = (block, type) => {
   if ('environments' === type) {
     const environments = block.querySelectorAll('.treasureMapView-environment');
@@ -49,6 +58,9 @@ const updateBlockContent = (block, type) => {
   }
 };
 
+/**
+ * Add block classes to the map.
+ */
 const addBlockClasses = () => {
   const rightBlocks = document.querySelectorAll('.treasureMapView-rightBlock > div');
   const leftBlocks = document.querySelectorAll('.treasureMapView-leftBlock > div');
@@ -75,6 +87,13 @@ const addBlockClasses = () => {
   });
 };
 
+/**
+ * Intercept the map request.
+ *
+ * @param {number} mapId The map ID.
+ *
+ * @return {boolean} If the map was intercepted.
+ */
 const interceptMapRequest = (mapId) => {
   sessionSet('map-refreshed', Date.now());
 
@@ -83,6 +102,13 @@ const interceptMapRequest = (mapId) => {
     return false;
   }
 
+  /**
+   * Set the mapper global and fire the mapper loaded event.
+   *
+   * @param {Object} mapData The map data.
+   *
+   * @return {Object} The map data.
+   */
   const init = (mapData) => {
     setGlobal('mapper', {
       mapData,
@@ -101,6 +127,11 @@ const interceptMapRequest = (mapId) => {
   return false;
 };
 
+/**
+ * Initialize the mapper.
+ *
+ * @param {Object} map The map data.
+ */
 const initMapper = (map) => {
   if (! map || ! map.map_id || ! map.map_type) {
     return;
@@ -159,17 +190,54 @@ const initMapper = (map) => {
   addBlockClasses();
 };
 
-const intercept = () => {
-  const parentShowMap = hg.controllers.TreasureMapController.showMap;
-  hg.controllers.TreasureMapController.showMap = (id = false) => {
-    parentShowMap(id);
-    const intercepted = interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
+/**
+ * Intercept the map request from the controller.
+ *
+ * @param {number} id The map ID.
+ */
+const interceptFromController = (id = false) => {
+  const intercepted = interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
+  if (! intercepted) {
     setTimeout(() => {
-      if (! intercepted) {
-        interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
-      }
+      interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
     }, 1000);
-  };
+  }
+};
+
+let _TreasureMapControllerShow;
+let _TreasureMapControllerShowMap;
+
+/**
+ * Intercept the map request.
+ */
+const intercept = () => {
+  if (! _TreasureMapControllerShow) {
+    _TreasureMapControllerShow = hg.controllers.TreasureMapController.show;
+
+    /**
+     * Intercept the map request.
+     *
+     * @param {number} id The map ID.
+     */
+    hg.controllers.TreasureMapController.show = (id = false) => {
+      _TreasureMapControllerShow();
+      interceptFromController(id);
+    };
+  }
+
+  if (! _TreasureMapControllerShowMap) {
+    _TreasureMapControllerShowMap = hg.controllers.TreasureMapController.showMap;
+
+    /**
+     * Intercept the map request.
+     *
+     * @param {number} id The map ID.
+     */
+    hg.controllers.TreasureMapController.showMap = (id = false) => {
+      _TreasureMapControllerShowMap(id);
+      interceptFromController(id);
+    };
+  }
 
   onRequest('users/treasuremap.php', (data) => {
     if (data.treasure_map && data.treasure_map.map_id) {
@@ -184,6 +252,9 @@ const intercept = () => {
   }, true);
 };
 
+/**
+ * Clear the sticky mouse.
+ */
 const clearStickyMouse = () => {
   const sticky = document.querySelector('.treasureMapView-highlight');
   if (sticky) {
@@ -199,6 +270,11 @@ const clearStickyMouse = () => {
   }
 };
 
+/**
+ * Add the info and travel button to the relic hunter hint.
+ *
+ * @return {boolean} If the relic hunter hint was updated.
+ */
 const updateRelicHunterHint = async () => {
   const relicHunter = document.querySelector('.treasureMapInventoryView-relicHunter-hint');
   if (! relicHunter) {
@@ -255,12 +331,20 @@ const updateRelicHunterHint = async () => {
 };
 
 let _showInventory;
+
+/**
+ * Update the relic hunter hint.
+ */
 const relicHunterUpdate = () => {
   if (_showInventory) {
     return;
   }
 
   _showInventory = hg.controllers.TreasureMapController.showInventory;
+
+  /**
+   * Show the inventory.
+   */
   hg.controllers.TreasureMapController.showInventory = () => {
     _showInventory();
 
@@ -273,6 +357,33 @@ const relicHunterUpdate = () => {
       }
     }, 250);
   };
+};
+
+/**
+ * Clear the cache of the map after 30 seconds.
+ */
+const addClearCacheTimeout = () => {
+  let clearCacheTimeout;
+  onDialogShow('map', async () => {
+    const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
+    tabs.forEach((tab) => {
+      const classes = [...tab.classList];
+
+      if (classes.includes('active')) {
+        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item').trim());
+      }
+
+      tab.addEventListener('click', () => {
+        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
+      });
+    });
+
+    // Clear the map cache after 30 seconds so that we always fetch the latest map data when opening the map.
+    clearCacheTimeout = setTimeout(() => {
+      clearTimeout(clearCacheTimeout);
+      hg.controllers.TreasureMapController.clearMapCache();
+    }, 30 * 1000);
+  });
 };
 
 /**
@@ -311,27 +422,7 @@ const init = async () => {
     sidebar();
   }
 
-  let clearCacheTimeout;
-  onDialogShow('map', async () => {
-    const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
-    tabs.forEach((tab) => {
-      const classes = [...tab.classList];
-
-      if (classes.includes('active')) {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item').trim());
-      }
-
-      tab.addEventListener('click', () => {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
-      });
-    });
-
-    // Clear the map cache after 10 seconds so that we always fetch the latest map data when opening the map.
-    clearCacheTimeout = setTimeout(() => {
-      clearTimeout(clearCacheTimeout);
-      hg.controllers.TreasureMapController.clearMapCache();
-    }, 10 * 1000); // 10 seconds.
-  });
+  addClearCacheTimeout();
 
   onEvent('map_navigation_tab_click', () => {
     addBlockClasses();
@@ -344,6 +435,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-maps',
   name: 'Better Maps',

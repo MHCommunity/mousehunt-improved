@@ -42,6 +42,9 @@ import getValourRiftText from './location/rift-valour';
 import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
 import getZokorText from './location/ancient-city';
 
+/**
+ * Cache the location data for the current location.
+ */
 const cacheLocationData = async () => {
   if (! user.environment_type || ! user.quests) {
     return;
@@ -89,6 +92,13 @@ const cacheLocationData = async () => {
   }
 };
 
+/**
+ * Travel to a location and wait for the travel to complete.
+ *
+ * @param {string} environment The environment to travel to.
+ *
+ * @return {Promise} A promise that resolves when the travel is complete.
+ */
 const waitForTravel = async (environment) => {
   return new Promise((resolve) => {
     hg.utils.User.travel(
@@ -107,6 +117,11 @@ const waitForTravel = async (environment) => {
   });
 };
 
+/**
+ * Disarm the bait.
+ *
+ * @return {Promise} A promise that resolves when the bait is disarmed.
+ */
 const disarmBait = async () => {
   return new Promise((resolve) => {
     hg.utils.TrapControl.disarmBait().go(() => {
@@ -117,6 +132,9 @@ const disarmBait = async () => {
   });
 };
 
+/**
+ * Refresh the location data.
+ */
 const doLocationRefresh = async () => {
   // Show a popup that shows the progress.
   // Travel to each location.
@@ -259,6 +277,9 @@ const doLocationRefresh = async () => {
   doEvent('travel_complete');
 };
 
+/**
+ * Build the dashboard tab.
+ */
 const makeDashboardTab = () => {
   const tabsContainer = document.querySelector('.mousehuntHeaderView-dropdownContainer');
   if (! tabsContainer) {
@@ -342,6 +363,13 @@ const makeDashboardTab = () => {
   tabsContainer.insertBefore(menuTab, tabsContainer.lastChild);
 };
 
+/**
+ * Create the markup for a region for the dashboard.
+ *
+ * @param {string}  name         The name of the region.
+ * @param {Element} childContent The child content.
+ * @param {Element} appendTo     The element to append to.
+ */
 const makeRegionMarkup = (name, childContent, appendTo) => {
   // find the child of the first div
   const firstChild = childContent.firstChild;
@@ -361,6 +389,15 @@ const makeRegionMarkup = (name, childContent, appendTo) => {
   appendTo.append(regionWrapper);
 };
 
+/**
+ * Build the markup for a location.
+ *
+ * @param {string}   id       The location ID.
+ * @param {string}   name     The location name.
+ * @param {Function} progress The progress function.
+ * @param {Element}  appendTo The element to append to.
+ * @param {Object}   quests   The quests object.
+ */
 const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
   const markup = progress(quests);
 
@@ -402,6 +439,11 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
   appendTo.append(locationWrapper);
 };
 
+/**
+ * Get the dashboard contents.
+ *
+ * @return {Element} The dashboard contents.
+ */
 const getDashboardContents = async () => {
   const quests = await cacheGet('quests', {});
 
@@ -494,6 +536,9 @@ const init = async () => {
   makeDashboardTab();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'location-dashboard',
   name: 'Location Dashboard',

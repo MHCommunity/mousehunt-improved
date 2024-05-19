@@ -95,6 +95,12 @@ const updateItemView = async () => {
     }
   }
 
+  const obtainHint = document.querySelector('.itemView-obtainHint');
+  const description = document.querySelector('.itemView-description');
+  if (obtainHint && description) {
+    description.after(obtainHint);
+  }
+
   addLinks(itemId);
 
   if (! getSetting('better-item-view.show-drop-rates', true)) {
@@ -138,7 +144,7 @@ const updateItemView = async () => {
   });
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
-  link.href = `https://www.mhct.win/loot.php?item=${itemId}`;
+  link.href = `https://api.mouse.rip/mhct-redirect-item/${itemId}`;
   link.target = '_mhct';
   title.append(link);
 
@@ -194,6 +200,9 @@ const init = async () => {
   onOverlayChange({ item: { show: updateItemView } });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-item-view',
   name: 'Better Items',

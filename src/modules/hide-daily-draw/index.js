@@ -9,6 +9,10 @@ import {
 import styles from './styles.css';
 
 let _togglePopup;
+
+/**
+ * Replace the inbox open function.
+ */
 const replaceInboxOpen = () => {
   if (! messenger || ! messenger?.UI?.notification?.togglePopup) {
     return;
@@ -18,6 +22,9 @@ const replaceInboxOpen = () => {
     _togglePopup = messenger.UI.notification.togglePopup;
   }
 
+  /**
+   * Show the notification popup.
+   */
   messenger.UI.notification.togglePopup = () => {
     messenger.UI.notification.showPopup();
 
@@ -32,6 +39,12 @@ const replaceInboxOpen = () => {
 };
 
 let isSelfRequest = false;
+
+/**
+ * Remove the daily draw notifications.
+ *
+ * @param {Object} data The data from the request.
+ */
 const removeDailyDrawNotifications = async (data) => {
   if (isSelfRequest) {
     return;
@@ -113,6 +126,9 @@ const init = async () => {
   onRequest('*', removeDailyDrawNotifications);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'hide-daily-draw',
   name: 'Hide Daily Draw',

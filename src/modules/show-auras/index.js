@@ -1,11 +1,10 @@
-import humanizeDuration from 'humanize-duration';
-
 import {
   addStyles,
   getCurrentPage,
   getSetting,
   makeElement,
-  onNavigation
+  onNavigation,
+  setupHumanizer
 } from '@utils';
 
 import settings from './settings';
@@ -15,22 +14,15 @@ import listStyles from './list.css';
 import onlyIconsStyles from './icons.css';
 import styles from './styles.css';
 
-const humanizer = humanizeDuration.humanizer({
-  language: 'shortEn',
-  languages: {
-    shortEn: {
-      y: () => 'y',
-      mo: () => 'mo',
-      w: () => 'w',
-      d: () => 'd',
-      h: () => 'h',
-      m: () => 'm',
-      s: () => 's',
-      ms: () => 'ms',
-    },
-  },
-});
+const humanizer = setupHumanizer();
 
+/**
+ * Get the expiry formatted.
+ *
+ * @param {number} time The time.
+ *
+ * @return {string} The formatted expiry.
+ */
 const getExpiryFormatted = (time) => {
   const date = new Date(time);
   return date.toLocaleDateString(new Intl.DateTimeFormat('en', {
@@ -39,6 +31,13 @@ const getExpiryFormatted = (time) => {
   }));
 };
 
+/**
+ * Get the expiry remaining formatted.
+ *
+ * @param {number} time The time.
+ *
+ * @return {string} The formatted expiry remaining.
+ */
 const getExpiryRemainingFormatted = (time) => {
   const units = ['d', 'h'];
 
@@ -52,6 +51,9 @@ const getExpiryRemainingFormatted = (time) => {
   return duration;
 };
 
+/**
+ * Add the expiry warning.
+ */
 const addExpiryWarning = () => {
   // if any of the auras are expiring soon, show a notification
   // const soon = aurasExpiry.filter((aura) => aura.time < 60 * 60 * 24);
@@ -65,6 +67,10 @@ const addExpiryWarning = () => {
 };
 
 let isAppending = false;
+
+/**
+ * Add the aura block to the trap stats.
+ */
 const addTrapBlock = () => {
   if (isAppending) {
     return;
@@ -145,6 +151,9 @@ const addTrapBlock = () => {
   isAppending = false;
 };
 
+/**
+ * Get the auras.
+ */
 const getAuras = () => {
   if ('camp' !== getCurrentPage()) {
     return;
@@ -208,14 +217,10 @@ const getAuras = () => {
 };
 
 let aurasExpiry = [];
-const main = () => {
-  setTimeout(() => {
-    getAuras();
-    addExpiryWarning();
-    addTrapBlock();
-  }, 1000);
-};
 
+/**
+ * Initialize the module.
+ */
 const init = async () => {
   const stylesToUse = [styles];
   if (getSetting('show-auras.icons')) {
@@ -228,9 +233,18 @@ const init = async () => {
 
   addStyles(stylesToUse, 'show-auras');
 
-  onNavigation(main, { page: 'camp' });
+  onNavigation(() => {
+    setTimeout(() => {
+      getAuras();
+      addExpiryWarning();
+      addTrapBlock();
+    }, 1000);
+  }, { page: 'camp' });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'show-auras',
   name: 'Show Auras',

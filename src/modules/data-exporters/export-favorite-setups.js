@@ -1,6 +1,11 @@
 import { exportPopup } from './exporter';
 import { getSetting } from '@utils';
 
+/**
+ * Fetch the favorite setups.
+ *
+ * @return {Array} The favorite setups.
+ */
 const fetch = async () => {
   const setups = getSetting('favorite-setups.setups');
 
@@ -19,11 +24,19 @@ const fetch = async () => {
   });
 };
 
+/**
+ * Update the total items count.
+ *
+ * @param {Array} data The data.
+ */
 const afterFetch = (data) => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
   totalItemsEl.textContent = data.length.toLocaleString();
 };
 
+/**
+ * Export the favorite setups.
+ */
 const exportFavoriteSetups = () => {
   exportPopup({
     type: 'favorite-setups',

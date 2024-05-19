@@ -20,6 +20,11 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Get the favorite setups.
+ *
+ * @return {Array} The favorite setups.
+ */
 const getFavoriteSetups = () => {
   const faves = getSetting('favorite-setups.setups', []);
 
@@ -31,6 +36,13 @@ const getFavoriteSetups = () => {
   return faves.filter(Boolean);
 };
 
+/**
+ * Generate a name for the setup.
+ *
+ * @param {Object} setup The setup to generate a name for.
+ *
+ * @return {Promise<string>} The generated name.
+ */
 const getGeneratedName = async (setup) => {
   const response = await fetch('https://setup-namer.mouse.rip', {
     method: 'POST',
@@ -46,6 +58,14 @@ const getGeneratedName = async (setup) => {
   return await response.json();
 };
 
+/**
+ * Save a favorite setup.
+ *
+ * @param {Object}  setup            The setup to save.
+ * @param {boolean} useGeneratedName Whether to use a generated name for the setup.
+ *
+ * @return {Object} The saved setup.
+ */
 const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   let setups = getFavoriteSetups();
 
@@ -87,15 +107,25 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   return normalizedSetup;
 };
 
+/**
+ * Normalize the setup by forcing everything to be a string.
+ *
+ * @param {Object} setup The setup to normalize.
+ *
+ * @return {Object} The normalized setup.
+ */
 const normalizeSetup = (setup) => {
-  // normalize the setup by forcing everything to be a string.
-  // normalize the setup by forcing everything to be a string.
   return Object.keys(setup).reduce((acc, key) => {
     acc[key] = setup[key] ? setup[key].toString() : '';
     return acc;
   }, {});
 };
 
+/**
+ * Get the current setup.
+ *
+ * @return {Object} The current setup.
+ */
 const getCurrentSetup = () => {
   return normalizeSetup({
     id: 'current',
@@ -110,6 +140,14 @@ const getCurrentSetup = () => {
 };
 
 let itemThumbs;
+
+/**
+ * Add an image to the favorite setups list.
+ *
+ * @param {string}  type     The type of item.
+ * @param {string}  id       The item ID.
+ * @param {Element} appendTo The element to append the image to.
+ */
 const addImage = async (type, id, appendTo) => {
   const wrapper = makeElement('div', 'campPage-trap-itemBrowser-favorite-item');
   wrapper.setAttribute('data-item-id', id);
@@ -131,6 +169,16 @@ const addImage = async (type, id, appendTo) => {
   appendTo.append(wrapper);
 };
 
+/**
+ * Make a button.
+ *
+ * @param {Object}   button           The button to make.
+ * @param {string}   button.text      The text of the button.
+ * @param {Array}    button.className The class names to add to the button.
+ * @param {Function} button.callback  The callback to run when the button is clicked.
+ *
+ * @return {Element} The button element.
+ */
 const makeButton = (button) => {
   const buttonElement = makeElement('a', ['mousehuntActionButton', 'action', ...button.className]);
   makeElement('span', '', button.text, buttonElement);
@@ -140,6 +188,13 @@ const makeButton = (button) => {
   return buttonElement;
 };
 
+/**
+ * Map the cheese effect to a number.
+ *
+ * @param {string} textValue The text value to map.
+ *
+ * @return {number} The mapped value.
+ */
 const getCheeseEffect = (textValue) => {
   const data = {
     'Uber Fresh': 13,
@@ -160,6 +215,13 @@ const getCheeseEffect = (textValue) => {
   return data[textValue];
 };
 
+/**
+ * Get the power type ID.
+ *
+ * @param {string} powerType The power type.
+ *
+ * @return {string} The power type ID.
+ */
 const getPowerTypeId = (powerType) => {
   const data = {
     arcane: 'arcn',
@@ -177,6 +239,14 @@ const getPowerTypeId = (powerType) => {
   return data[powerType] || powerType;
 };
 
+/**
+ * Make the component picker for editing a setup.
+ *
+ * @param {string}   setupId   The setup ID.
+ * @param {string}   type      The type of item.
+ * @param {string}   currentId The current item ID.
+ * @param {Function} callback  The callback to run when an item is selected.
+ */
 const makeImagePicker = async (setupId, type, currentId, callback) => {
   let components;
   const cached = sessionGet('mh-improved-favorite-setups-components');
@@ -213,6 +283,16 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
   content += '</div>';
   content += '<div class="mh-improved-favorite-setups-component-picker-popup-body-items">';
   for (const item of items) {
+    /**
+     * Get the markup for a stat row.
+     *
+     * @param {string} stat      The stat to get the row for.
+     * @param {string} title     The title of the stat.
+     * @param {string} formatted The formatted value of the stat.
+     * @param {number} compare   The value to compare the stat to.
+     *
+     * @return {string} The stat row markup.
+     */
     const getStatRow = (stat, title, formatted, compare) => {
       let compareStat = item[stat];
       if ('cheese_effect' === stat) {
@@ -332,6 +412,13 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
   });
 };
 
+/**
+ * Equip items.
+ *
+ * @param {Array} items The items to arm.
+ *
+ * @return {Promise} Resolves when the items are armed.
+ */
 const armItem = async (items) => {
   return new Promise((resolve, reject) => {
     items.forEach(({ id, type }) => {
@@ -342,9 +429,17 @@ const armItem = async (items) => {
   });
 };
 
+/**
+ * Make a single favorite setup row.
+ *
+ * @param {Object}  setup     The setup to make a row for.
+ * @param {boolean} isCurrent Whether the setup is the current setup.
+ *
+ * @return {Element|boolean} The setup row element.
+ */
 const makeBlueprintRow = async (setup, isCurrent = false) => {
   if (! setup) {
-    return;
+    return false;
   }
 
   const setupContainer = makeElement('div', ['row']);
@@ -358,6 +453,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     buttonWrapper.append(makeButton({
       text: 'Save',
       className: ['save', 'lightBlue'],
+      /**
+       * Save the current setup as a favorite setup.
+       */
       callback: async () => {
         // Save the current setup, using the current location as the name.
         let currentSetup = getCurrentSetup();
@@ -413,6 +511,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     const armButton = makeButton({
       text: 'Arm',
       className: ['arm'],
+      /**
+       * Arm the setup.
+       */
       callback: async () => {
         armButton.classList.add('loading');
 
@@ -475,6 +576,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     buttonWrapper.append(makeButton({
       text: 'Edit',
       className: ['edit-setup'],
+      /**
+       * Edit the setup.
+       */
       callback: () => {
         const setupId = setupContainer.getAttribute('data-setup-id');
         debuglog('favorite-setups', `Editing setup ${setupId}`);
@@ -613,6 +717,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       }
     }));
 
+    /**
+     * Stop editing the setup.
+     */
     const stopEditing = () => {
       // Remove the event listeners from the images.
       editClickables.forEach(({ image, event }) => {
@@ -626,6 +733,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     buttonWrapper.append(makeButton({
       text: 'Save',
       className: ['save-setup'],
+      /**
+       * Save the edited setup.
+       */
       callback: () => {
         const setupId = setupContainer.getAttribute('data-setup-id');
         debuglog('favorite-setups', `Saving setup ${setupId}`);
@@ -702,6 +812,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     buttonWrapper.append(makeButton({
       text: 'Cancel',
       className: ['cancel-setup'],
+      /**
+       * Cancel editing the setup.
+       */
       callback: () => {
         setupContainer.classList.remove('editing');
         // When cancel is clicked, revert the changes.
@@ -737,6 +850,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     buttonWrapper.append(makeButton({
       text: 'Delete',
       className: ['delete', 'danger'],
+      /**
+       * Delete the setup.
+       */
       callback: () => {
         const setupId = setupContainer.getAttribute('data-setup-id');
         debuglog('favorite-setups', `Deleting setup ${setupId}`);
@@ -782,6 +898,11 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   return setupContainer;
 };
 
+/**
+ * Create the favorite setups container.
+ *
+ * @return {Promise<HTMLElement>} The favorite setups container.
+ */
 const makeBlueprintContainer = async () => {
   const existing = document.querySelector('.mh-improved-favorite-setups-blueprint-container');
   if (existing) {
@@ -850,6 +971,11 @@ const makeBlueprintContainer = async () => {
   return container;
 };
 
+/**
+ * Get the name of the current setup.
+ *
+ * @return {string} The name of the current setup.
+ */
 const getNameOfCurrentSetup = () => {
   const setups = getFavoriteSetups();
 
@@ -874,15 +1000,19 @@ const getNameOfCurrentSetup = () => {
   return '';
 };
 
+/**
+ * Update the name of the current setup in the trap UI.
+ */
 const updateFavoriteSetupName = () => {
   const label = document.querySelector('.mh-improved-favorite-setups-button-label');
-  if (! label) {
-    return;
+  if (label) {
+    label.innerHTML = getNameOfCurrentSetup() || '';
   }
-
-  label.innerHTML = getNameOfCurrentSetup() || '';
 };
 
+/**
+ * Add a button to the camp page to toggle the favorite setups.
+ */
 const addFavoriteSetupsButton = () => {
   if ('camp' !== getCurrentPage()) {
     return;
@@ -911,11 +1041,17 @@ const addFavoriteSetupsButton = () => {
   appendTo.append(button);
 };
 
+/**
+ * Show or hide the favorite setups.
+ */
 const toggleFavoriteSetups = async () => {
   const content = await makeBlueprintContainer();
   toggleBlueprint('favorite-setups', content);
 };
 
+/**
+ * Add an icon to the menu.
+ */
 const addIcon = () => {
   addIconToMenu({
     id: 'favorite-setups',
@@ -956,6 +1092,9 @@ const init = async () => {
   onEvent('mh-improved-toggle-favorite-setups', toggleFavoriteSetups);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'favorite-setups',
   name: 'Favorite Setups',

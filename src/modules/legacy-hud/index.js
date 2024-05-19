@@ -7,6 +7,11 @@ import menuStyles from './menu.css';
 import statsStyles from './stats.css';
 import tweaksStyles from './tweaks.css';
 
+/**
+ * Get the map text.
+ *
+ * @return {string} The map text.
+ */
 const getMapText = () => {
   if (user?.quests?.QuestRelicHunter?.maps?.length) {
     return user.quests.QuestRelicHunter.label.replace('Treasure Map', '').trim();
@@ -21,6 +26,17 @@ const getMapText = () => {
   return 'Start new';
 };
 
+/**
+ * Get the markup for a stat.
+ *
+ * @param {string} type     The type of stat.
+ * @param {string} label    The label for the stat.
+ * @param {string} id       The ID of the item.
+ * @param {string} name     The name of the item.
+ * @param {number} quantity The quantity of the item.
+ *
+ * @return {string} The markup for the stat.
+ */
 const getEquippedStat = (type, label, id, name, quantity) => {
   return `<li class="mousehuntHud-userStat ${type}" data-item-id="${id}" data-itemId="${id}">
     <span class="hudstatlabel">${label}:</span>
@@ -33,6 +49,15 @@ const getEquippedStat = (type, label, id, name, quantity) => {
   </li>`;
 };
 
+/**
+ * Get the markup for a stat.
+ *
+ * @param {string} type  The type of stat.
+ * @param {string} label The label for the stat.
+ * @param {string} value The value of the stat.
+ *
+ * @return {string} The markup for the stat.
+ */
 const getStat = (type, label, value) => {
   return `<li>
     <span class="hudstatlabel">${label}:</span>
@@ -40,6 +65,11 @@ const getStat = (type, label, value) => {
   </li>`;
 };
 
+/**
+ * Get the markup for the legacy HUD.
+ *
+ * @return {string} The markup for the legacy HUD.
+ */
 const getLegacyHudHtml = () => {
   return `<div id="#legacy-hud" class="headsup">
     <div class="shieldped">
@@ -120,6 +150,9 @@ const getLegacyHudHtml = () => {
   </div>`;
 };
 
+/**
+ * Replace the menu bar markup.
+ */
 const replaceMenuBar = () => {
   const body = document.querySelector('body');
   if (! body) {
@@ -132,6 +165,12 @@ const replaceMenuBar = () => {
     if (! existingOldCampButton) {
       const oldCampButton = makeElement('a', ['mousehuntHud-campButton', 'mh-legacy-mode-camp-button']);
       oldCampButton.href = 'https://www.mousehuntgame.com/';
+
+      /**
+       * Go to the camp page when the button is clicked.
+       *
+       * @return {boolean} False.
+       */
       oldCampButton.onclick = () => {
         hg.utils.PageUtil.setPage('Camp');
         return false;
@@ -176,6 +215,9 @@ const replaceMenuBar = () => {
   }
 };
 
+/**
+ * Replace the stats bar markup.
+ */
 const replaceStatsBar = () => {
   const hudStats = document.querySelector('.headsUpDisplayView-stats');
   if (hudStats) {
@@ -193,6 +235,11 @@ const replaceStatsBar = () => {
   }
 };
 
+/**
+ * Get the user shield image.
+ *
+ * @return {string} The user shield image.
+ */
 const getUserShield = () => {
   const titleImgs = {
     novice: '84bc1109b5cd7aa8c24d195bc8207c38.png',
@@ -253,6 +300,9 @@ const init = async () => {
   addStyles(stylesToAdd, 'legacy-hud');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'legacy-hud',
   name: 'Legacy HUD & Legacy HUD Tweaks',

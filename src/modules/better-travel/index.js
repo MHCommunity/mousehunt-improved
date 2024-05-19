@@ -85,6 +85,11 @@ const expandTravelRegions = () => {
   }
 };
 
+/**
+ * Travel to a location when clicking on a link.
+ *
+ * @param {Event} event The click event.
+ */
 const travelClickHandler = (event) => {
   if (app?.pages?.TravelPage?.travel) {
     travelTo(event.target.getAttribute('data-environment'));
@@ -92,10 +97,15 @@ const travelClickHandler = (event) => {
   }
 };
 
+/**
+ * Clone the region menu and add click handlers to the links.
+ *
+ * @return {Element|false} The cloned region menu.
+ */
 const cloneRegionMenu = () => {
   const regionMenu = document.querySelector('.travelPage-regionMenu');
   if (! regionMenu) {
-    return;
+    return false;
   }
 
   const regionMenuClone = regionMenu.cloneNode(true);
@@ -111,6 +121,12 @@ const cloneRegionMenu = () => {
   return regionMenuClone;
 };
 
+/**
+ * Add a tab to the travel page.
+ *
+ * @param {string} id    The ID of the tab.
+ * @param {string} label The label for the tab.
+ */
 const addTab = (id, label) => {
   if ('travel' !== getCurrentPage()) {
     return;
@@ -136,6 +152,12 @@ const addTab = (id, label) => {
   tabContainer.append(tab);
 };
 
+/**
+ * Add the page content to the travel page.
+ *
+ * @param {string}  id      The ID of the page.
+ * @param {Element} content The content to add to the page.
+ */
 const addPage = (id, content) => {
   if ('travel' !== getCurrentPage()) {
     return;
@@ -165,6 +187,13 @@ const addPage = (id, content) => {
   pageContainer.append(page);
 };
 
+/**
+ * Add an alphabetized list of locations to the simple travel page.
+ *
+ * @param {Element} regionMenu The region menu to clone.
+ *
+ * @return {Element} The alphabetized list.
+ */
 const addAlphabetizedList = (regionMenu) => {
   const alphaWrapper = makeElement('div', 'travelPage-alpha-wrapper');
 
@@ -232,6 +261,9 @@ const addAlphabetizedList = (regionMenu) => {
   return alphaWrapper;
 };
 
+/**
+ * Add the Simple Travel page.
+ */
 const addSimpleTravelPage = () => {
   expandTravelRegions();
   const wrapper = makeElement('div', 'travelPage-wrapper');
@@ -264,6 +296,11 @@ const addSimpleTravel = () => {
   addSimpleTravelPage();
 };
 
+/**
+ * Get the previous location.
+ *
+ * @return {Object|boolean} The previous location object or false.
+ */
 const getPreviousLocation = () => {
   const previousLocation = getSetting('better-travel.previous-location', false);
   if (previousLocation && previousLocation !== getCurrentLocation()) {
@@ -275,6 +312,9 @@ const getPreviousLocation = () => {
   return false;
 };
 
+/**
+ * Travel to the previous location.
+ */
 const goToPreviousLocation = () => {
   const previousLocation = getPreviousLocation();
   if (previousLocation) {
@@ -282,6 +322,9 @@ const goToPreviousLocation = () => {
   }
 };
 
+/**
+ * Add the current region locations to the travel dropdown.
+ */
 const addToTravelDropdown = async () => {
   const currentLocation = getCurrentLocation();
 
@@ -333,7 +376,7 @@ const addToTravelDropdown = async () => {
     addSubmenuItem({
       menu: 'travel',
       label: `Back to ${previousLocation.name}`,
-      icon: 'https://www.mousehuntgame.com/images/ui/puzzle/refresh.png',
+      icon: 'https://i.mouse.rip/icons/back.png',
       callback: goToPreviousLocation,
       class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-previous-location',
     });
@@ -349,9 +392,7 @@ const addToTravelDropdown = async () => {
       menu: 'travel',
       label: region.name,
       icon: region.image,
-      callback: () => {
-        travelTo(region.id);
-      },
+      callback: () => travelTo(region.id),
       class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-region-location',
     });
   });
@@ -370,9 +411,7 @@ const addToTravelDropdown = async () => {
           menu: 'travel',
           label: favoriteRegion.name,
           icon: favoriteRegion.image,
-          callback: () => {
-            travelTo(favoriteRegion.id);
-          },
+          callback: () => travelTo(favoriteRegion.id),
           class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-favorite-location',
         });
       }
@@ -380,6 +419,9 @@ const addToTravelDropdown = async () => {
   }
 };
 
+/**
+ * Add a reminder to the travel page.
+ */
 const onTravelComplete = () => {
   onEvent('travel_complete', () => {
     saveTravelLocation();
@@ -394,6 +436,9 @@ const onTravelComplete = () => {
   });
 };
 
+/**
+ * Initialize the Simple Travel tab.
+ */
 const initSimpleTab = () => {
   if ('simple-travel' === getCurrentTab()) {
     const isActive = document.querySelector('.mousehuntHud-page-tabContent.simple-travel');
@@ -405,6 +450,9 @@ const initSimpleTab = () => {
   }
 };
 
+/**
+ * Change the tab to Simple Travel if the setting is enabled.
+ */
 const maybeSetTab = () => {
   if ('travel' !== getCurrentPage()) {
     return;
@@ -423,6 +471,9 @@ const maybeSetTab = () => {
   setTab('simple-travel');
 };
 
+/**
+ * Highlight the region where the Relic Hunter is.
+ */
 const addRhToSimpleTravel = async () => {
   const location = await getRelicHunterLocation();
   if (! location) {
@@ -440,6 +491,9 @@ const addRhToSimpleTravel = async () => {
   });
 };
 
+/**
+ * Add the Relic Hunter to the map.
+ */
 const addRhToMap = async () => {
   const location = await getRelicHunterLocation();
   if (! location) {
@@ -456,6 +510,9 @@ const addRhToMap = async () => {
   mapLocation.append(rh);
 };
 
+/**
+ * Update the map view of the travel page.
+ */
 const maybeDoMapView = () => {
   if ('travel' !== getCurrentPage()) {
     return;
@@ -470,6 +527,10 @@ const maybeDoMapView = () => {
 };
 
 let _tabHandler = null;
+
+/**
+ * Listen for tab changes and update the map view.
+ */
 const listenTabChange = () => {
   if (_tabHandler) {
     return;
@@ -480,13 +541,21 @@ const listenTabChange = () => {
   }
 
   _tabHandler = hg.utils.PageUtil.onclickPageTabHandler;
+
+  /**
+   * Handle tab changes.
+   *
+   * @param {string} tab The tab to switch to.
+   */
   hg.utils.PageUtil.onclickPageTabHandler = (tab) => {
     _tabHandler(tab);
-
     maybeDoMapView();
   };
 };
 
+/**
+ * Save the current location so that we can reference it later as the previous location.
+ */
 const saveTravelLocation = () => {
   const isLocationDashboardRefreshing = sessionGet('doing-location-refresh', false);
   if (isLocationDashboardRefreshing) {
@@ -506,19 +575,40 @@ const saveTravelLocation = () => {
   saveTravelSetting('current-location', currentLocation);
 };
 
+/**
+ * Get the travel favorites.
+ *
+ * @return {Array} The travel favorites.
+ */
 const getLocationFavorites = () => {
-  const faves = getSetting('better-travel.favorites', []);
-  return faves;
+  return getSetting('better-travel.favorites', []);
 };
 
+/**
+ * Check if a location is a favorite.
+ *
+ * @param {string} type The location type.
+ *
+ * @return {boolean} Whether or not the location is a favorite.
+ */
 const isLocationFavorite = (type) => {
   return getLocationFavorites().includes(type);
 };
 
+/**
+ * Save the travel favorites.
+ *
+ * @param {Array} favorites The travel favorites.
+ */
 const saveLocationFavorites = (favorites) => {
   saveTravelSetting('favorites', favorites);
 };
 
+/**
+ * Add a location to the favorites.
+ *
+ * @param {string} type The location type.
+ */
 const addToLocationFavorites = (type) => {
   if (! isLocationFavorite(type)) {
     const faves = getLocationFavorites();
@@ -527,6 +617,11 @@ const addToLocationFavorites = (type) => {
   }
 };
 
+/**
+ * Remove a location from the favorites.
+ *
+ * @param {string} type The location type.
+ */
 const removeFromLocationFavorites = (type) => {
   if (getLocationFavorites()) {
     const faves = getLocationFavorites();
@@ -535,6 +630,9 @@ const removeFromLocationFavorites = (type) => {
   }
 };
 
+/**
+ * Add favorite buttons to the travel page for each location.
+ */
 const addFavoriteButtonsToTravelPage = async () => {
   const locations = document.querySelectorAll('.travelPage-map-environment-detailContainer .travelPage-map-environment-detail');
   if (! locations) {
@@ -566,10 +664,16 @@ const addFavoriteButtonsToTravelPage = async () => {
       state: isFavorite,
       isSetting: false,
       defaultState: false,
+      /**
+       * Callback for when the favorite button is clicked.
+       */
       onActivate: () => {
         addToLocationFavorites(type);
         addToTravelDropdown();
       },
+      /**
+       * Callback for when the favorite button is deactivated.
+       */
       onDeactivate: () => {
         removeFromLocationFavorites(type);
         removeSubmenuItem(type);
@@ -578,6 +682,9 @@ const addFavoriteButtonsToTravelPage = async () => {
   });
 };
 
+/**
+ * Main function.
+ */
 const main = () => {
   if (getSetting('better-travel.travel-window', true)) {
     travelWindow();
@@ -629,6 +736,9 @@ const init = async () => {
   main();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-travel',
   name: 'Better Travel',

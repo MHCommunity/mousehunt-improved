@@ -1,5 +1,8 @@
 import { getCurrentPage, onNavigation } from '@utils';
 
+/**
+ * Fix the item page.
+ */
 const fixItemPage = () => {
   if ('item' !== getCurrentPage()) {
     return;
@@ -61,6 +64,9 @@ const fixItemPage = () => {
   window.location = url;
 };
 
+/**
+ * When the inventory page loads, check for the item ID in the query string and show the item.
+ */
 const fixItemPageReceiver = () => {
   // check for the item id in the query string
   const itemId = window.location.href.match(/viewing-item-id=(.+)/);
@@ -71,6 +77,9 @@ const fixItemPageReceiver = () => {
   hg.views.ItemView.show(itemId[1]);
 };
 
+/**
+ * Initialize the item page fixes.
+ */
 export default async () => {
   if ('item' === getCurrentPage()) {
     fixItemPage();

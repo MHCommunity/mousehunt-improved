@@ -64,10 +64,7 @@
 }
 
 .quesoCanyonHUD-pump-nachore-padding span.quantity {
-  padding: 3px;
   font-size: 12px;
-  background: #4d8d4a;
-  border-radius: 10px;
 }
 
 .quesoGeyserHUD-block-title.quesoGeyserHUD-stateName {
@@ -143,4 +140,128 @@
 .quesoHUD-crafting-recipe-part .itemImage {
   background-color: transparent;
   box-shadow: none;
+}
+
+.quesoCanyonHUD-basicBait-item .mousehuntItem.hidden {
+  display: block;
+  margin: 0 auto;
+}
+
+.quesoCanyonHUD-basicBait-item .mousehuntItem,
+.quesoCanyonHUD-basicBait-item .mousehuntItem.hidden {
+  margin-bottom: 10px;
+}
+
+.quesoCanyonHUD-basicBait-item .mousehuntItem-boundingBox.hidden {
+  display: block;
+}
+
+.quesoCanyonHUD-basicBait-item .mousehuntItem,
+.quesoCanyonHUD-basicBait-item .mousehuntItem-image {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.quesoCanyonHUD-basicBait-item .mousehuntItem-image::after {
+  border: none;
+}
+
+.mousehuntItem-quantity.quantity {
+  padding: 2px;
+  font-size: 10px;
+  box-shadow:
+    0 0 100px #fff inset,
+    0 0 2px #333;
+}
+
+.quesoHUD-crafting-recipe-actionContainer .mousehuntActionButton {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.quesoHUD-crafting-recipe.queso_river_boss_cheese .quesoHUD-crafting-recipe-actionContainer .mousehuntActionButton {
+  margin-right: -7px;
+  margin-left: -7px;
+}
+
+.quesoCanyonHUD-basicBait-item .mousehuntItem-boundingBox.hidden::after {
+  position: absolute;
+  top: -10px;
+  content: "Arm";
+}
+
+.quesoHUD-crafting-recipe {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 145px;
+}
+
+.quesoHUD-crafting-recipe-actionContainer {
+  align-self: center;
+}
+
+.quesoHUD-crafting-recipe.queso_river_boss_cheese .quesoHUD-crafting-recipe-part {
+  width: 18%;
+}
+
+.quesoHUD-crafting-recipe.queso_river_boss_cheese .quesoHUD-crafting-recipe-actionContainer {
+  width: 28%;
+}
+
+.quesoCanyonHUD-pump-level {
+  font-size: 14px;
+  text-shadow: -1px 1px 1px #000;
+}
+
+.quesoHUD-crafting-recipe.queso_river_boss_cheese .quesoHUD-crafting-recipe-part .itemImage {
+  width: 75px;
+  height: 75px;
+}
+
+.quesoHUD-crafting-recipe-action-quantity {
+  font-size: 9px;
+}
+
+.quesoHUD-crafting-recipe-action-quantity span {
+  font-size: 13px;
+}
+
+.quesoHUD-crafting-recipe-quantity {
+  padding: 1px 8px;
+}
+
+.quesoCanyonHUD-basicBait-item .mousehuntItem-boundingBox::after {
+  position: absolute;
+  bottom: -40px;
+  display: flex;
+  align-items: center;
+  width: 53px;
+  height: 17px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/hud/train_station/phasetab_button.png) 0 0 no-repeat;
+}
+
+.quesoCanyonHUD-basicBait-item .mousehuntItem-boundingBox:hover::after {
+  background-position: 0 -17px;
+}
+
+.quesoCanyonHUD-basicBait-item .active .mousehuntItem-boundingBox::after {
+  filter: hue-rotate(131deg);
+  background-position: 0 -34px;
+}
+
+.quesoCanyonHUD-basicBait-item-name {
+  padding-bottom: 15px;
+}
+
+.quesoHUD-warning.quesoHUD-powerTypeWarning {
+  left: 286px;
+}
+
+.quesoHUD-warning {
+  font-size: 12px;
+  background-color: #ffc5c5;
+  border-color: #992023;
 }

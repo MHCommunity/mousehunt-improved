@@ -12,10 +12,24 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Clean the ID string.
+ *
+ * @param {string} id The ID to clean.
+ *
+ * @return {string} The cleaned ID.
+ */
 const cleanId = (id) => {
   return id.replaceAll('#', '');
 };
 
+/**
+ * Get the friend ID from the target.
+ *
+ * @param {HTMLElement} target The target element.
+ *
+ * @return {string|boolean} The friend ID or false.
+ */
 const getFriendId = async (target) => {
   // if there is a data-snuid attribute, use that
   if (target.getAttribute('data-snuid')) {
@@ -63,6 +77,15 @@ const getFriendId = async (target) => {
 };
 
 let friendDataWrapper;
+
+/**
+ * Create the friend markup.
+ *
+ * @param {string}  friendId  The friend ID.
+ * @param {Object}  data      The friend data.
+ * @param {boolean} skipCache Skip the cache.
+ * @param {Event}   e         The event.
+ */
 const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
   if (! skipCache) {
     sessionSet(`mh-improved-cache-friend-${friendId}`, data);
@@ -126,6 +149,11 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
   doEvent('profile_hover');
 };
 
+/**
+ * Handle the friend link hover.
+ *
+ * @param {Event} e The event.
+ */
 const onFriendLinkHover = async (e) => {
   const friendId = await getFriendId(e.target);
   if (! friendId || friendId == user.sn_user_id) { // eslint-disable-line eqeqeq
@@ -168,6 +196,11 @@ const onFriendLinkHover = async (e) => {
   }
 };
 
+/**
+ * Add click event listeners to friend links.
+ *
+ * @param {string} selector The selector to use.
+ */
 const addFriendLinkEventListener = (selector) => {
   const friendLinks = document.querySelectorAll(selector);
   if (! friendLinks || ! friendLinks.length) {
@@ -191,6 +224,12 @@ const addFriendLinkEventListener = (selector) => {
   });
 };
 
+/**
+ * Function to handle tab changes.
+ *
+ * @param {Function} callback The callback function.
+ * @param {number}   attempts The number of attempts.
+ */
 const onTabChangeCallback = (callback, attempts = 0) => {
   const tabs = document.querySelectorAll('.notificationHeader .tabs a');
   if (! tabs || tabs.length === 0) {
@@ -211,12 +250,22 @@ const onTabChangeCallback = (callback, attempts = 0) => {
   });
 };
 
+/**
+ * When the tab changes, wait for the ajax call and then run the callback.
+ *
+ * @param {Function} callback The callback function.
+ */
 const onTabChange = (callback) => {
   onEvent('ajax_response', () => {
     onTabChangeCallback(callback);
   });
 };
 
+/**
+ * Call the callback when the inbox is opened.
+ *
+ * @param {Function} callback The callback function.
+ */
 const onInboxOpen = (callback) => {
   const inboxBtn = document.querySelector('#hgbar_messages');
   if (! inboxBtn) {
@@ -228,6 +277,9 @@ const onInboxOpen = (callback) => {
   });
 };
 
+/**
+ * The main function.
+ */
 const main = () => {
   const selectors = [
     'a[href*="https://www.mousehuntgame.com/hunterprofile.php"]',
@@ -260,6 +312,9 @@ const init = async () => {
   onInboxOpen(main);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'hover-profiles',
   name: 'Hover Profiles',

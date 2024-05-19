@@ -2,20 +2,20 @@ import { addStyles, onEvent, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Move the codex to the bottom of the trap selector.
+ */
 const moveCodex = async () => {
   const codex = document.querySelector('.trapSelectorView__activeCodexContainer');
-  if (! codex) {
-    return;
-  }
-
   const statsContainer = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
-  if (! statsContainer) {
-    return;
+  if (codex && statsContainer) {
+    statsContainer.append(codex);
   }
-
-  statsContainer.append(codex);
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   addStyles(styles, 'codex-at-bottom');
   moveCodex();

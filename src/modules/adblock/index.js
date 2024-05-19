@@ -9,6 +9,9 @@ const init = async () => {
   addStyles(styles, 'adblock');
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'adblock',
   name: 'Adblock',

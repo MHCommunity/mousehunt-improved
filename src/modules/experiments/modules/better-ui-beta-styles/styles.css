@@ -12,6 +12,12 @@
   box-shadow: 0 2px 4px -2px #000;
 }
 
+@media only screen and (max-width: 810px) {
+  body.noSidebar .pageFrameView {
+    background: transparent !important;
+  }
+}
+
 .mh-dark .pageFrameView-content {
   border-color: var(--d);
 }

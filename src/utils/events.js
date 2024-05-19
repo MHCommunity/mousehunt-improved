@@ -64,9 +64,19 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
   }
 
   const req = XMLHttpRequest.prototype.open;
+  /**
+   * Override the open method on the XMLHttpRequest prototype.
+   */
   XMLHttpRequest.prototype.open = function () {
     const send = XMLHttpRequest.prototype.send;
 
+    /**
+     * Override the send method on the XMLHttpRequest prototype.
+     *
+     * @param {string} data The data to send.
+     *
+     * @return {Object} The response.
+     */
     XMLHttpRequest.prototype.send = function (data) {
       const params = new URLSearchParams(data);
       this._data = Object.fromEntries(params);
@@ -155,46 +165,9 @@ const onOverlayChange = (callbacks) => {
   // TODO: rewrite this.
   // Track the different overlay states.
   let overlayData = {
-    map: {
-      isVisible: false,
-      selector: 'treasureMapPopup',
-    },
-    item: {
-      isVisible: false,
-      selector: 'itemViewPopup',
-    },
-    mouse: {
-      isVisible: false,
-      selector: 'mouseViewPopup',
-    },
-    image: {
-      isVisible: false,
-      selector: 'largerImage',
-    },
-    convertible: {
-      isVisible: false,
-      selector: 'convertibleOpenViewPopup',
-    },
-    adventureBook: {
-      isVisible: false,
-      selector: 'adventureBookPopup',
-    },
-    marketplace: {
-      isVisible: false,
-      selector: 'marketplaceViewPopup',
-    },
-    gifts: {
-      isVisible: false,
-      selector: 'giftSelectorViewPopup',
-    },
-    support: {
-      isVisible: false,
-      selector: 'supportPageContactUsForm',
-    },
-    premiumShop: {
-      isVisible: false,
-      selector: 'MHCheckout',
-    },
+    item: { isVisible: false, selector: 'itemViewPopup' },
+    mouse: { isVisible: false, selector: 'mouseViewPopup' },
+    marketplace: { isVisible: false, selector: 'marketplaceViewPopup' },
   };
 
   overlayCallbacks.push(callbacks);
@@ -377,23 +350,7 @@ let pageChangeObserver = null;
 const onPageChange = (callbacks) => {
   // Track our page tab states.
   let tabData = {
-    blueprint: { isVisible: null, selector: 'showBlueprint' },
-    tem: { isVisible: false, selector: 'showTrapEffectiveness' },
-    trap: { isVisible: false, selector: 'editTrap' },
-    camp: { isVisible: false, selector: 'PageCamp' },
     travel: { isVisible: false, selector: 'PageTravel' },
-    inventory: { isVisible: false, selector: 'PageInventory' },
-    shop: { isVisible: false, selector: 'PageShops' },
-    mice: { isVisible: false, selector: 'PageAdversaries' },
-    friends: { isVisible: false, selector: 'PageFriends' },
-    sendSupplies: { isVisible: false, selector: 'PageSupplyTransfer' },
-    team: { isVisible: false, selector: 'PageTeam' },
-    tournament: { isVisible: false, selector: 'PageTournament' },
-    news: { isVisible: false, selector: 'PageNews' },
-    scoreboards: { isVisible: false, selector: 'PageScoreboards' },
-    discord: { isVisible: false, selector: 'PageJoinDiscord' },
-    preferences: { isVisible: false, selector: 'PagePreferences' },
-    profile: { isVisible: false, selector: 'HunterProfile' },
   };
 
   pageChangeCallbacks.push(callbacks);
@@ -479,6 +436,9 @@ const onTravelCallback = (location, options) => {
   }
 };
 
+const callbacks = [];
+let hasAddedNavigationListener = false;
+
 /**
  * Do something when the user navigates to a page, optionally checking the tab and subtab.
  *
@@ -508,8 +468,6 @@ const onTravelCallback = (location, options) => {
  * @param {string}   options.subtab The subtab to watch for.
  * @param {boolean}  options.onLoad Whether or not to run the callback on load.
  */
-const callbacks = [];
-let hasAddedNavigationListener = false;
 const onNavigation = (callback, options = {}) => {
   const defaults = {
     page: false,
@@ -548,6 +506,9 @@ const onNavigation = (callback, options = {}) => {
   }
 };
 
+/**
+ * Add the navigation listeners.
+ */
 const addNavigationListeners = () => {
   eventRegistry.addEventListener('set_page', (e) => {
     const tabs = e?.data?.tabs || {};

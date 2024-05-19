@@ -25,6 +25,15 @@ const phaseLengths = {
   },
 };
 
+/**
+ * Make a tooltip.
+ *
+ * @param {string}   text        The text to display.
+ * @param {string}   direction   The direction to display the tooltip.
+ * @param {string[]} customClass Any custom classes to add.
+ *
+ * @return {Element} The tooltip element.
+ */
 const makeTooltip = (text, direction = 'top', customClass = []) => {
   const existing = document.querySelectorAll('.added-frox-tooltip');
   if (existing.length) {
@@ -40,15 +49,19 @@ const makeTooltip = (text, direction = 'top', customClass = []) => {
   return tooltip;
 };
 
+/**
+ * Update the night bar.
+ *
+ */
 const updateNightBar = () => {
   const bar = document.querySelector('.fortRoxHUD-timeline-phases');
   if (! bar) {
-    return false;
+    return;
   }
 
   const phaseBars = bar.querySelectorAll('.fortRoxHUD-timeline-phase-marker');
   if (! phaseBars.length) {
-    return false;
+    return;
   }
 
   phaseBars.forEach((phaseBar) => {
@@ -81,10 +94,13 @@ const updateNightBar = () => {
   });
 };
 
+/**
+ * Update the upgrade tooltips.
+ */
 const updateUpgradeTooltips = () => {
   const upgradeTooltips = document.querySelectorAll('.fortRoxHUD-fort-upgrade-boundingBox');
   if (! upgradeTooltips.length) {
-    return false;
+    return;
   }
 
   const upgradeInfo = document.querySelectorAll('.fortRoxHUD-fort-upgrade-level-info');
@@ -121,6 +137,9 @@ const updateUpgradeTooltips = () => {
   });
 };
 
+/**
+ * Update the wall HP.
+ */
 const updateWallHP = () => {
   const exists = document.querySelector('.mh-frox-wall-hp');
   if (exists) {
@@ -129,7 +148,7 @@ const updateWallHP = () => {
 
   const hpBox = document.querySelector('.fortRoxHUD-hp');
   if (! hpBox) {
-    return false;
+    return;
   }
 
   const wallPercent = user.quests.QuestFortRox.hp_percent.toFixed(0);
@@ -160,10 +179,13 @@ const updateWallHP = () => {
   }
 };
 
+/**
+ * Add a class to the portal button.
+ */
 const addPortalClass = () => {
   const portal = document.querySelector('.fortRoxHUD.dawn .fortRoxHUD-enterLairButton');
   if (! portal) {
-    return false;
+    return;
   }
 
   portal.classList.remove('frox-no-portal', 'frox-has-portal');
@@ -172,17 +194,13 @@ const addPortalClass = () => {
   portal.classList.add(hasPortal ? 'frox-has-portal' : 'frox-no-portal');
 };
 
-const hud = () => {
-  updateNightBar();
-  updateUpgradeTooltips();
-  updateWallHP();
-  addPortalClass();
-};
-
 /**
  * Initialize the module.
  */
 export default async () => {
   addHudStyles(styles);
-  hud();
+  updateNightBar();
+  updateUpgradeTooltips();
+  updateWallHP();
+  addPortalClass();
 };

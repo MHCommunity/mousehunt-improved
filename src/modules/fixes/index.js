@@ -20,6 +20,9 @@ const init = async () => {
   riftTooltipQuantities();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'fixes',
   name: 'Fixes',

@@ -2,6 +2,9 @@ import { addStyles, onRequest } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Initiates the King's Reward.
+ */
 const initiateKingsReward = () => {
   const reward = document.querySelector('.huntersHornMessageView huntersHornMessageView--puzzle .huntersHornMessageView__action');
   if (reward) {
@@ -9,6 +12,9 @@ const initiateKingsReward = () => {
   }
 };
 
+/**
+ * Starts the King's Reward and focuses the puzzle input.
+ */
 const startKingsReward = () => {
   const rewardStart = document.querySelector('.huntersHornMessageView--puzzle .huntersHornMessageView__action');
   if (rewardStart) {
@@ -23,6 +29,11 @@ const startKingsReward = () => {
   }, 500);
 };
 
+/**
+ * Clicks the resume button if the King's Reward was successful.
+ *
+ * @param {Object} req The request object.
+ */
 const continueOnKingsReward = (req) => {
   if (req.success && req.puzzle_reward) {
     const resume = document.querySelector('.puzzleView__resumeButton');
@@ -45,6 +56,9 @@ const init = async () => {
   startKingsReward();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-kings-reward',
   name: 'Better King\'s Reward',

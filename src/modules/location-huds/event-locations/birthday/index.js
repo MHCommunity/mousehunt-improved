@@ -4,6 +4,9 @@ import { updateDateDates, updateDateTooltip } from '../shared';
 
 import styles from './styles.css';
 
+/**
+ * Update the hud.
+ */
 const changeColors = () => {
   const popup = document.querySelector('.superBrieFactoryVendingMachinePopup');
   if (! popup) {
@@ -11,6 +14,10 @@ const changeColors = () => {
   }
 
   const can = makeElement('div', 'vending-machine-can');
+
+  /**
+   * Update the color of the can.
+   */
   const updateColor = () => {
     const hue = Math.floor(Math.random() * 360);
     can.style.filter = `hue-rotate(${hue}deg)`;

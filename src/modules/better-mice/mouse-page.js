@@ -10,16 +10,20 @@ import {
   sessionSet
 } from '@utils';
 
+/**
+ * Make the King's Crowns tab.
+ *
+ * @return {Element} The King's Crowns tab.
+ */
 const makeKingsCrownsTab = () => {
-  // Add king's crowns tab;
   const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
   if (! tabContainer) {
-    return;
+    return false;
   }
 
   const existingTab = document.querySelector('.mousehuntHud-page-tabHeader.kings-crowns-tab');
   if (existingTab) {
-    return;
+    return existingTab;
   }
 
   const kingsCrownsTab = makeElement('a', ['mousehuntHud-page-tabHeader', 'groups', 'kings-crowns-tab']);
@@ -34,6 +38,9 @@ const makeKingsCrownsTab = () => {
   return kingsCrownsTab;
 };
 
+/**
+ * Make the King's Crowns tab content.
+ */
 const makeKingsCrownsTabContentContent = () => {
   const tabContentContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
   if (! tabContentContainer) {
@@ -59,6 +66,16 @@ const makeKingsCrownsTabContentContent = () => {
   tabContentContainer.append(tabContent);
 };
 
+/**
+ * Create a mouse crown section.
+ *
+ * @param {string} type      The type of the section.
+ * @param {Array}  mice      The mice to display.
+ * @param {string} header    The header for the section.
+ * @param {string} subheader The subheader for the section.
+ *
+ * @return {Element} The mouse crown section.
+ */
 const makeMouseCrownSection = (type, mice, header = false, subheader = false) => {
   const wrapper = makeElement('div', ['kings-crown-section', 'mouseCrownsView-group', type]);
 
@@ -130,6 +147,9 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
   return wrapper;
 };
 
+/**
+ * Make the King's Crowns tab content.
+ */
 const makeKingsCrownsTabContent = async () => {
   makeKingsCrownsTabContentContent();
 
@@ -191,11 +211,21 @@ const makeKingsCrownsTabContent = async () => {
   });
 };
 
+/**
+ * Add the King's Crowns to the mice page.
+ */
 const addKingsCrownsToMicePage = async () => {
   makeKingsCrownsTab();
   makeKingsCrownsTabContent();
 };
 
+/**
+ * Parse the imperial weight.
+ *
+ * @param {Element} weightText The weight text element.
+ *
+ * @return {number} The weight in ounces.
+ */
 const parseImperialWeight = (weightText) => {
   // Imperial.
   const lbsSplit = weightText.innerText.split('lb.');
@@ -207,6 +237,14 @@ const parseImperialWeight = (weightText) => {
   return (Number.parseInt(lbs) * 16) + Number.parseInt(oz);
 };
 
+/**
+ * Get the value of a row.
+ *
+ * @param {Element} row  The row to get the value for.
+ * @param {string}  type The type of value to get.
+ *
+ * @return {number} The value of the row.
+ */
 const getSetRowValue = (row, type) => {
   let value = 0;
   value = row.getAttribute(`data-sort-value-${type}`);
@@ -236,6 +274,12 @@ const getSetRowValue = (row, type) => {
   return Number.parseInt(value);
 };
 
+/**
+ * Sort the stats.
+ *
+ * @param {string}  type    The type of stat to sort by.
+ * @param {boolean} reverse If the sort should be reversed.
+ */
 const sortStats = (type, reverse = false) => {
   reverse = ! reverse;
 
@@ -294,6 +338,12 @@ const sortStats = (type, reverse = false) => {
   });
 };
 
+/**
+ * Add a sort button to the elements.
+ *
+ * @param {NodeList} elements The elements to add the sort button to.
+ * @param {string}   type     The type of sort button to add.
+ */
 const addSortButton = (elements, type) => {
   elements.forEach((el) => {
     const sortButton = makeElement('div', ['sort-button', 'unsorted'], '');
@@ -328,6 +378,11 @@ const addSortButton = (elements, type) => {
   });
 };
 
+/**
+ * Get the selector prefix based on the current tab and subtab.
+ *
+ * @return {string} The selector prefix.
+ */
 const getSelectorPrefix = () => {
   const currentTab = getCurrentTab();
   let currentSubtab = getCurrentSubtab();
@@ -338,6 +393,12 @@ const getSelectorPrefix = () => {
   return `.mousehuntHud-page-subTabContent.active${currentSubtab ? `.${currentSubtab}` : ''}`;
 };
 
+/**
+ * Add sorting to the category.
+ *
+ * @param {string} cat     The category to add sorting to.
+ * @param {number} retries The number of retries.
+ */
 const addSortingToCat = (cat, retries = 0) => {
   const cats = [
     'name',
@@ -402,6 +463,10 @@ const addSortingToCat = (cat, retries = 0) => {
 };
 
 let hasAddedSortingTabClickListeners = false;
+
+/**
+ * Add click listeners to the sorting tabs.
+ */
 const addSortingTabClickListeners = () => {
   if (hasAddedSortingTabClickListeners) {
     return;
@@ -409,12 +474,21 @@ const addSortingTabClickListeners = () => {
 
   hasAddedSortingTabClickListeners = true;
   const _categoryClickHandler = hg.views.MouseListView.categoryClickHandler;
+
+  /**
+   * The category click handler.
+   *
+   * @param {Element} el The element clicked.
+   */
   hg.views.MouseListView.categoryClickHandler = (el) => {
     _categoryClickHandler(el);
     addSortingToCat(el.getAttribute('data-category'));
   };
 };
 
+/**
+ * Click the current tab.
+ */
 const clickCurrentTab = () => {
   const activeTab = document.querySelector('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabContent.active .mouseListView-categoryContainer.active a');
   if (! activeTab) {
@@ -426,6 +500,9 @@ const clickCurrentTab = () => {
   hg.views.MouseListView.categoryClickHandler(activeTab);
 };
 
+/**
+ * Add sorting to the stats page.
+ */
 const addSortingToStatsPage = () => {
   addSortingTabClickListeners();
   clickCurrentTab();

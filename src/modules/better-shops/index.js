@@ -16,6 +16,9 @@ import maxOwnedHide from './max-owned-hide.css';
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
+/**
+ * Update the input field placeholder, add qty buttons, and listen for the enter key.
+ */
 const updateInputField = async () => {
   const purchaseBlocks = document.querySelectorAll('.itemPurchaseView-action-state.view');
   if (! purchaseBlocks) {
@@ -69,6 +72,9 @@ const updateInputField = async () => {
   });
 };
 
+/**
+ * Main function.
+ */
 const main = () => {
   const body = document.querySelector('body');
   if (! body) {
@@ -194,6 +200,9 @@ const init = async () => {
   onRequest('purchases/itempurchase.php', updateInputField);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-shops',
   name: 'Better Shops',

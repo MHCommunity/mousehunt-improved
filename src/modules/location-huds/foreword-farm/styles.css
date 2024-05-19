@@ -35,7 +35,7 @@ span.forewordFarmPlotView-plot-progress-catchText {
 .forewordFarmView-harvestBin-quantity {
   top: -12px;
   padding: 2px;
-  font-size: 23px;
+  font-size: 20px;
 }
 
 .forewordFarmView-harvestBin-claimButton-label {
@@ -48,6 +48,10 @@ span.forewordFarmPlotView-plot-progress-catchText {
 .forewordFarmPlotView-plot-queue-item-spacer {
   height: 15px;
   background-color: #ccc;
+}
+
+.forewordFarmPlotView-plot-queue-name {
+  height: 40px;
 }
 
 .forewordFarmPlotView-plot-queue-name.active {
@@ -184,4 +188,40 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 
 .forewordFarmHarvestBin-itemImage .quantity {
   font-size: 16px;
+}
+
+.folkloreForestRegionView-dialog-block-name {
+  justify-content: center;
+  padding: 0;
+  text-align: center;
+}
+
+.folkloreForestRegionView-dialog-title {
+  padding-top: 5px;
+}
+
+.forewordFarmPlantDialogView-plant-header .folkloreForestRegionView-dialog-block-icon {
+  width: 32px;
+  height: 32px;
+  margin-top: 4px;
+  margin-left: 5px;
+  border: 1px solid #897225;
+  box-shadow: none;
+}
+
+.folkloreForestRegionView-button.disabled {
+  opacity: 0.5;
+}
+
+.forewordFarmPlantDialogView-plant:hover .folkloreForestRegionView-button.disabled {
+  opacity: 1;
+}
+
+.forewordFarmPlantDialogView-plant-costContainer .folkloreForestRegionView-dialog-block-item-image {
+  background-color: transparent;
+  border: none;
+}
+
+.forewordFarmHarvestBin {
+  filter: drop-shadow(0 3px 5px #161616);
 }

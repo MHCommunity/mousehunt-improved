@@ -55,6 +55,9 @@ const applyClassToNames = () => {
   });
 };
 
+/**
+ * Remove the privacy class from names in the journal.
+ */
 const removeClassFromNames = () => {
   if (isPrivacyEnabled) {
     return;
@@ -83,18 +86,27 @@ const removeClassFromNames = () => {
   });
 };
 
+/**
+ * Enable privacy in the journal.
+ */
 const enablePrivacy = () => {
   addBodyClass('mh-journal-privacy-enabled', true);
   removeBodyClass('mh-journal-privacy-disabled');
   applyClassToNames();
 };
 
+/**
+ * Disable privacy in the journal.
+ */
 const disablePrivacy = () => {
   removeBodyClass('mh-journal-privacy-enabled');
   addBodyClass('mh-journal-privacy-disabled', true);
   removeClassFromNames();
 };
 
+/**
+ * Add the toggle icon to the menu.
+ */
 const addIcon = () => {
   if (! getSetting('journal-privacy.show-toggle-icon', false)) {
     return;
@@ -112,6 +124,9 @@ const addIcon = () => {
     classname: 'mousehunt-improved-journal-privacy-icon',
     title: 'Toggle Journal Privacy',
     position: 'prepend',
+    /**
+     * Toggle the privacy.
+     */
     action: () => {
       isPrivacyEnabled = ! isPrivacyEnabled;
 
@@ -124,6 +139,9 @@ const addIcon = () => {
   });
 };
 
+/**
+ * Remove the toggle icon from the menu.
+ */
 const removeIcon = () => {
   if (getSetting('journal-privacy.show-toggle-icon', false)) {
     return;
@@ -171,6 +189,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'journal-privacy',
   name: 'Journal Privacy',

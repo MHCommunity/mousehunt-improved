@@ -265,3 +265,16 @@ a.folkloreForestRegionView-travelButton {
 a.folkloreForestRegionView-travelButton:hover {
   opacity: 1;
 }
+
+.folkloreForestRegionView-dialog-blockContainer.basicBaits .folkloreForestRegionView-dialog-block-description {
+  background-color: #668d53;
+  border-top: 1px solid #143708;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.travel .folkloreForestRegionView-dialog-block {
+  background-color: #668d53;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.travel .folkloreForestRegionView-dialog-block-description {
+  border-top: 1px solid #143708;
+}

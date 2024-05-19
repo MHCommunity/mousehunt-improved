@@ -24,29 +24,6 @@
     0 2px 6px 0 #5b5d5d;
 }
 
-/* .brift-ui .mist-display::after {
-  position: absolute;
-  right: 0;
-  bottom: 3px;
-  left: 0;
-  font-size: 18px;
-  font-weight: 900;
-  color: #0c899a;
-  text-align: center;
-  content: "↓";
-}
-
-.is_misting .brift-ui .mist-display::after {
-  top: 5px;
-  bottom: unset;
-  color: #8e7ebd;
-  content: "↑";
-} */
-
-.brift-ui {
-  z-index: 1;
-}
-
 .riftBurroughsHud .mistContainer {
   width: 100px;
 }
@@ -187,12 +164,6 @@
   box-shadow: 0 0 10px 3px #4d4a4a;
 }
 
-.is_misting .mist-display::after {
-  top: 9px;
-  bottom: unset;
-  content: "↑";
-}
-
 .mist-display::after {
   position: absolute;
   right: 0;
@@ -204,17 +175,91 @@
   content: "↓";
 }
 
-.riftBurroughsHud .mistButton {
-  filter: hue-rotate(258deg) brightness(0.9);
+.is_misting .mist-display::after {
+  top: 9px;
+  bottom: unset;
+  content: "↑";
 }
 
-.riftBurroughsHud.is_misting .mistButton {
-  filter: hue-rotate(319deg) brightness(1.3);
+.is_misting .mist-display.state-red::after {
+  content: "";
 }
 
 .riftBurroughsHud .mistQuantity {
-  font-size: 12px;
+  left: -7px;
+  font-size: 11px;
+  letter-spacing: -1px;
+}
+
+.riftBurroughsHud {
+  border-radius: 10px;
+  box-shadow: 6px 7px 5px -1px #161616;
+}
+
+.riftBurroughsHud .mistMeter .mistStatus {
+  top: 20px;
+}
+
+.riftBurroughsHud .mistMeter .mistWrapper span {
+  filter: hue-rotate(60deg);
+}
+
+.riftBurroughsHud .baitContainer .baitOption .itemImage {
+  background: url(https://www.mousehuntgame.com/images/ui/hud/rift_burroughs/mist_meter.png) -5px -15px no-repeat;
+  box-shadow: inset 0 0 3px 0 #cbdde0;
+}
+
+.riftBurroughsHud .baitContainer .baitOption:hover .itemImage {
+  box-shadow: inset 0 0 3px 2px #cbdde0;
+}
+
+.riftBurroughsHud .mistCanisters.itemImage {
+  margin-top: -2px;
+  margin-left: -3px;
+}
+
+.riftBurroughsHud .mistCanisters.itemImage,
+.riftBurroughsHud .mistCanisters.itemImage img {
+  width: 55px;
+  height: 55px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 3px 0 #171717;
+}
+
+/* New misting button */
+.riftBurroughsHud .mistButton {
+  background: none;
+}
+
+.riftBurroughsHud .mistButton::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
   font-weight: 900;
-  color: #3d3d3d;
-  text-shadow: 1px 1px 2px #f4f4f4;
+  text-shadow: 1px 1px #000;
+  text-transform: uppercase;
+  content: "Mist";
+  background: #24cde6;
+  border-radius: 3px;
+  box-shadow: inset 0 0 4px 1px #067a90;
+  transition: 0.15s ease-in;
+}
+
+.riftBurroughsHud.is_misting .mistButton::after {
+  letter-spacing: -0.25px;
+  content: "Misting";
+  background: #967fbb;
+  box-shadow: inset 0 0 4px 1px #644e88;
+}
+
+.riftBurroughsHud .mistButton:hover::after {
+  background: #08adc6;
+  box-shadow: inset 0 0 4px 1px #067a90;
+}
+
+.riftBurroughsHud .mistButton:hover {
+  box-shadow: none;
 }

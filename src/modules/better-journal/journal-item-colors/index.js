@@ -2,6 +2,11 @@ import { addStyles } from '@utils';
 
 import colors from './colors.json';
 
+/**
+ * Make the styles for the colors.
+ *
+ * @return {string} The styles.
+ */
 const makeStyles = () => {
   let styles = '';
 
@@ -12,6 +17,9 @@ const makeStyles = () => {
   return styles;
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   addStyles(makeStyles(), 'better-journal-link-colors');
 };

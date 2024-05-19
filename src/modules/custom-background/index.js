@@ -6,6 +6,12 @@ import settings from './settings';
 import styles from './styles.css';
 
 let addedClass = '';
+
+/**
+ * Add a class to the body.
+ *
+ * @param {boolean} preview Whether or not this is a preview.
+ */
 const addBodyClass = (preview = false) => {
   const body = document.querySelector('body');
   if (! body) {
@@ -87,6 +93,9 @@ const addBodyClass = (preview = false) => {
   document.head.append(gradientStyle);
 };
 
+/**
+ * Listen for changes to the preference.
+ */
 const listenForPreferenceChanges = () => {
   const input = document.querySelector('#mousehunt-improved-settings-design-custom-background select');
   if (! input) {
@@ -98,6 +107,9 @@ const listenForPreferenceChanges = () => {
   });
 };
 
+/**
+ * Add a preview link to show the background options.
+ */
 const addPreview = () => {
   addPreviewCallback({
     id: 'custom-background',
@@ -114,6 +126,16 @@ const addPreview = () => {
   });
 };
 
+/**
+ * Add a preview link to show the background options.
+ *
+ * @param {Object}   options                 The options for the preview.
+ * @param {string}   options.id              The ID of the preview.
+ * @param {string}   options.selector        The selector for the preview link.
+ * @param {string}   options.inputSelector   The selector for the input.
+ * @param {boolean}  options.preview         Whether or not to show the preview button.
+ * @param {Function} options.previewCallback The callback function to run when previewing.
+ */
 const addPreviewCallback = ({ id, selector, inputSelector, preview = true, previewCallback = () => {} }) => {
   const previewLink = document.querySelector(selector);
   if (! previewLink) {
@@ -171,6 +193,9 @@ const addPreviewCallback = ({ id, selector, inputSelector, preview = true, previ
   });
 };
 
+/**
+ * Persist the background class.
+ */
 const persistBackground = () => {
   addBodyClass();
   onNavigation(() => {
@@ -197,6 +222,9 @@ const init = async () => {
   persistBackground();
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'custom-background',
   type: 'design',

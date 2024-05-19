@@ -6,6 +6,11 @@ import updateSummary from '@data/update-summary.json';
 
 const github = 'https://github.com/MHCommunity/mousehunt-improved';
 
+/**
+ * Get the appropriate extension link based on the platform.
+ *
+ * @return {string} The extension link.
+ */
 const getExtensionLink = () => {
   if ('chrome' === mhImprovedPlatform) {
     return 'https://chromewebstore.google.com/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm';
@@ -22,6 +27,14 @@ const getExtensionLink = () => {
   return github;
 };
 
+/**
+ * Generate HTML markup for a list of items with a given title.
+ *
+ * @param {string}   title The title of the list section.
+ * @param {string[]} items The list of items to include.
+ *
+ * @return {string} The generated markup.
+ */
 const makeList = (title, items) => {
   if (! items || ! items.length) {
     return '';
@@ -36,6 +49,11 @@ const makeList = (title, items) => {
   return markup;
 };
 
+/**
+ * Show the update summary popup.
+ *
+ * @param {boolean} force Whether to force the popup to show.
+ */
 const showUpdateSummary = async (force = false) => {
   const update = {
     summary: updateSummary.summary || '',
@@ -125,6 +143,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'update-notifications',
   type: 'required',

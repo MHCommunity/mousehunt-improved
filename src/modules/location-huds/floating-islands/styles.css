@@ -25,19 +25,27 @@ a.floatingIslandsHUD-islandLoot {
 .floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.fog_shrine:first-child,
 .floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.frost_shrine:first-child,
 .floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.rain_shrine:first-child,
-.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.wind_shrine:first-child {
-  background-position-y: 0;
-  border-radius: 3px;
-  box-shadow: 0 0 13px 3px #ffd700 inset;
-}
-
+.floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.wind_shrine:first-child,
 .floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.paragon_cache_a:first-child,
 .floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.paragon_cache_b:first-child,
 .floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.paragon_cache_c:first-child,
 .floatingIslandsAdventureBoardSkyMap-islandMod .floatingIslandsHUD-mod.paragon_cache_d:first-child {
   background-position-y: 0;
   border-radius: 3px;
-  box-shadow: 0 0 13px 3px #ffd700 inset;
+  box-shadow:
+    inset 0 0 13px 3px #ffd700,
+    2px 0 1px 0 #ffd700;
+}
+
+.floatingIslandsAdventureBoardSkyMap-horizontalPowerTypes .floatingIslandsHUD-powerType.active::before {
+  border-radius: 5px 5px 50px 50px;
+  box-shadow: 0 0 20px #ffd700 inset;
+}
+
+.floatingIslandsAdventureBoardSkyMap-verticalPowerTypes .floatingIslandsHUD-powerType.active::before {
+  top: 1px;
+  border-radius: 50px 5px 5px 50px;
+  box-shadow: 0 0 20px #ffd700 inset;
 }
 
 .floatingIslandsHUD-modPanel.fog_shrine:hover::before,
@@ -740,4 +748,23 @@ a.floatingIslandsHUD-bait-image:hover {
 
 .complete .floatingIslandsHUD-modPanel-progress-pip::before {
   visibility: hidden;
+}
+
+.floatingIslandsAdventureBoardSkyMap-rerollImage::after {
+  top: 3px;
+  background-image: url(https://i.mouse.rip/cyclone-stone.png);
+}
+
+.floatingIslandsAdventureBoardSkyMap-rerollButton:hover {
+  border-radius: 5px;
+  box-shadow: inset 0 0 2px 1px #587565;
+}
+
+.floatingIslandsAdventureBoardSkyMap-verticalPowerTypes .floatingIslandsHUD-powerType.active::after,
+.floatingIslandsAdventureBoardSkyMap-horizontalPowerTypes .floatingIslandsHUD-powerType.active::after {
+  border-color: transparent;
+}
+
+.floatingIslandsHUD-enemy-wardenProgress {
+  top: -11px;
 }

@@ -15,7 +15,7 @@ export default async () => {
       title: 'Show mice details on hover (in journal)',
     },
     {
-      id: 'better-mice.show-siebar',
+      id: 'better-mice.show-sidebar',
       title: 'Show available mice in sidebar',
       default: true,
     }

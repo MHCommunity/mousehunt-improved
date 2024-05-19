@@ -11,6 +11,11 @@ const getCurrentLocation = () => {
   return location.toLowerCase();
 };
 
+/**
+ * Get the current location name.
+ *
+ * @return {string} The current location name.
+ */
 const getCurrentLocationName = () => {
   return user?.environment_name || getCurrentLocation();
 };

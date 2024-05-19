@@ -22,6 +22,10 @@ import styles from './styles.css';
 let lastStats = [];
 let effectiveness = null;
 let isUpdating = false;
+
+/**
+ * Update the minluck list.
+ */
 const updateMinLucks = async () => {
   if ('camp' !== getCurrentPage()) {
     return;
@@ -87,6 +91,11 @@ const updateMinLucks = async () => {
   isUpdating = false;
 };
 
+/**
+ * Render the minluck list.
+ *
+ * @param {Array} list The list of mice.
+ */
 const renderList = async (list) => {
   let minluckList = document.querySelector('#mh-improved-cre');
   if (! minluckList) {
@@ -184,6 +193,9 @@ const renderList = async (list) => {
   minluckList.append(table);
 };
 
+/**
+ * Main function.
+ */
 const main = async () => {
   onNavigation(updateMinLucks, {
     page: 'camp',
@@ -207,6 +219,9 @@ const init = async () => {
   setTimeout(main, 240);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'catch-rate-estimate',
   name: 'Catch Rate Estimator & Minlucks',

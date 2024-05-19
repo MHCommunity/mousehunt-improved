@@ -1,5 +1,8 @@
 import { onRequest } from '@utils';
 
+/**
+ * Update the shops markup.
+ */
 const updateShopsMarkup = async () => {
   const shops = document.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop');
   if (! shops.length) {
@@ -32,14 +35,29 @@ const updateShopsMarkup = async () => {
   });
 };
 
+/**
+ * Update the shops markup from a click.
+ */
 const updateFromClick = async () => {
   const _showShops = hg.controllers.TreasureMapController.showShops;
+
+  /**
+   * Show the shops.
+   *
+   * @param {Object} data The data.
+   */
   hg.controllers.TreasureMapController.showShops = (data) => {
     _showShops(data);
     updateShopsMarkup();
   };
 };
 
+/**
+ * Update the shops from a request.
+ *
+ * @param {Object} response The response.
+ * @param {Object} data     The data.
+ */
 const updateFromRequest = (response, data) => {
   if (data?.action !== 'get_shops') {
     return;
@@ -48,6 +66,9 @@ const updateFromRequest = (response, data) => {
   updateShopsMarkup();
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   updateFromClick();
   onRequest('users/treasuremap.php', updateFromRequest);

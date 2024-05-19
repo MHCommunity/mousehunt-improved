@@ -252,7 +252,14 @@ a.adventureBookPopup-title.active {
 }
 
 .adventureBookPopup-adventureContainer.claimed .adventureBookPopup-adventure-footer-claim.adventureBookPopup-adventure-button {
+  background-color: #35751a;
   border: 1px solid #158f00;
+  box-shadow: none;
+}
+
+.adventureBookPopup-adventureContainer.claimed .adventureBookPopup-adventure-image-status {
+  background-color: transparent;
+  filter: drop-shadow(2px 2px 4px #94ff65);
   box-shadow: none;
 }
 
@@ -270,6 +277,8 @@ a.adventureBookPopup-title.active {
 
 .adventureBookPopup-adventure-header-accordion {
   top: 14px;
+  filter: brightness(0.4);
+  opacity: 0.6;
 }
 
 .adventureBookPopup-adventureContainer.available .adventureBookPopup-adventure-favorite {

@@ -1,6 +1,11 @@
 import { dbGetAll } from '@utils';
 import { exportPopup } from './exporter';
 
+/**
+ * Fetch the journal entries.
+ *
+ * @return {Promise<Array>} The journal entries.
+ */
 const fetch = async () => {
   const journalEntries = await dbGetAll('journal');
 
@@ -19,11 +24,19 @@ const fetch = async () => {
   });
 };
 
+/**
+ * Function to run after fetching.
+ *
+ * @param {Array} data The data.
+ */
 const afterFetch = (data) => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
   totalItemsEl.textContent = data.length.toLocaleString();
 };
 
+/**
+ * Export the journal entries.
+ */
 const exportJournalEntries = () => {
   exportPopup({
     type: 'journal-entries',

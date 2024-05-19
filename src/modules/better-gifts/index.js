@@ -80,10 +80,7 @@ const claimGifts = async (send = false, retries = 0) => {
   });
 
   for (const gift of gifts) {
-    let verb = send ? 'return' : 'claim';
-    if (send && sendLimit > 0 && gift.is_returnable) {
-      verb = 'return';
-    }
+    const verb = send && sendLimit > 0 && gift.is_returnable ? 'return' : 'claim';
 
     const giftEl = document.querySelector(`.giftSelectorView-friendRow[data-gift-id="${gift.gift_id}"] .giftSelectorView-friendRow-action.${verb}`);
     if (! giftEl) {
@@ -249,9 +246,7 @@ const makeButtons = () => {
  */
 const getLimit = () => {
   const limitEl = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-actionLimit.giftSelectorView-numSendActionsRemaining');
-  limit = limitEl ? Number.parseInt(limitEl.innerText, 10) : 0;
-
-  return limit;
+  return limitEl ? Number.parseInt(limitEl.innerText, 10) : 0;
 };
 
 /**
@@ -323,8 +318,7 @@ const addSendButton = (className, text, selector, buttonContainer) => {
   const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons', `mh-gift-buttons-send-${className}`]);
   makeElement('span', 'mousehuntActionButton-text', text, sendButton);
 
-  const limit = getLimit();
-  if (limit && limit < 1) {
+  if (getLimit() < 1) {
     sendButton.classList.add('disabled');
   }
 
@@ -363,6 +357,14 @@ const addSendButton = (className, text, selector, buttonContainer) => {
  */
 const addRandomSendButton = () => {
   const _selectGift = hg.views.GiftSelectorView.selectGift;
+
+  /**
+   * Select a gift.
+   *
+   * @param {Object} gift The gift to select.
+   *
+   * @return {boolean} Returns true if the gift is successfully selected, false otherwise.
+   */
   hg.views.GiftSelectorView.selectGift = (gift) => {
     _selectGift(gift);
 
@@ -373,6 +375,8 @@ const addRandomSendButton = () => {
 
     addSendButton('random', 'Select Random Friends', '.giftSelectorView-tabContent.active .giftSelectorView-friend:not(.disabled, .selected)', title);
     addSendButton('faves', 'Select Frequent Gifters', '.giftSelectorView-tabContent.active .giftSelectorView-friend-group.favorite .giftSelectorView-friend:not(.disabled, .selected)', title);
+
+    return true;
   };
 };
 
@@ -392,9 +396,24 @@ const addGiftSwitcher = () => {
   _selectGift = hg.views.GiftSelectorView.selectGift;
   _updateGiftMultiplierQuantity = hg.views.GiftSelectorView.updateGiftMultiplierQuantity;
 
+  /**
+   * Show a tab in the gift selector.
+   *
+   * @param {string}  tabType           The type of tab to show.
+   * @param {string}  viewState         The view state to show.
+   * @param {boolean} preserveVariables Whether to preserve the variables.
+   * @param {boolean} preserveActions   Whether to preserve the actions.
+   */
   hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
     _showTab(tabType, viewState, preserveVariables, preserveActions);
 
+    /**
+     * Update the gift multiplier quantity.
+     *
+     * @param {HTMLElement} input The input element.
+     *
+     * @return {boolean} Returns true if the quantity was updated, false otherwise.
+     */
     hg.views.GiftSelectorView.updateGiftMultiplierQuantity = (input) => {
       // Remove the maxlength attribute so that we can send more than 99 gifts.
       if (input && input.hasAttribute('maxlength')) {
@@ -404,8 +423,14 @@ const addGiftSwitcher = () => {
       return _updateGiftMultiplierQuantity(input);
     };
 
-    // We need to clone the nodes and wait until the selectGift function is called and then
-    // we append the cloned nodes to the gift container.
+    /**
+     * Clone the nodes and wait until the selectGift function is called and
+     * then we append the cloned nodes to the gift container.
+     *
+     * @param {Object} gift The gift to select.
+     *
+     * @return {boolean} Returns true if the gift was selected, false otherwise.
+     */
     hg.views.GiftSelectorView.selectGift = (gift) => {
       _selectGift(gift);
 
@@ -423,7 +448,7 @@ const addGiftSwitcher = () => {
 
       const gifts = document.querySelectorAll(`.active .selectGift .giftSelectorView-scroller.giftSelectorView-giftContainer .giftSelectorView-gift.sendable.${giftType}`);
       if (! gifts.length) {
-        return;
+        return false;
       }
 
       const cloneWrapper = makeElement('div', 'mh-gift-buttons-clone-wrapper');
@@ -446,6 +471,8 @@ const addGiftSwitcher = () => {
       });
 
       giftContainer.append(cloneWrapper);
+
+      return true;
     };
   };
 };
@@ -512,6 +539,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-gifts',
   name: 'Better Gifts',

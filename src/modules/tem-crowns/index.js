@@ -112,6 +112,9 @@ const init = async () => {
   onEvent('camp_page_toggle_blueprint', addCrownsToTEM);
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'tem-crowns',
   name: 'TEM Crowns',

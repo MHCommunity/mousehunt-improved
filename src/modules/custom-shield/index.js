@@ -11,6 +11,13 @@ import styles from './styles.css';
 
 import cottonCandyStyles from './cotton-candy.css';
 
+/**
+ * Add or remove a class from an element.
+ *
+ * @param {Element} el          The element to add the class to.
+ * @param {string}  shieldClass The class to add.
+ * @param {string}  verb        The action to take.
+ */
 const doClass = (el, shieldClass, verb) => {
   // if shieldClass is an array, join it.
   if (Array.isArray(shieldClass)) {
@@ -39,15 +46,31 @@ const doClass = (el, shieldClass, verb) => {
   });
 };
 
+/**
+ * Add a class from an element.
+ *
+ * @param {Element} el          The element to add the class to.
+ * @param {string}  shieldClass The class to add.
+ */
 const addClass = (el, shieldClass) => {
   doClass(el, shieldClass, 'add');
 };
 
+/**
+ * Remove a class from an element.
+ *
+ * @param {Element} el          The element to remove the class from.
+ * @param {string}  shieldClass The class to remove.
+ */
 const removeClass = (el, shieldClass) => {
   doClass(el, shieldClass, 'remove');
 };
 
 let lastShield = '';
+
+/**
+ * Change the shield based on the user's preference.
+ */
 const changeShield = () => {
   const shieldEl = document.querySelector('.mousehuntHud-shield');
   if (! shieldEl) {
@@ -125,6 +148,9 @@ const changeShield = () => {
   addClass(shieldEl, shield);
 };
 
+/**
+ * Listen for preference changes to update the shield.
+ */
 const watchForPreferenceChanges = () => {
   const input = document.querySelector('#mousehunt-improved-settings-design-custom-shield select');
   if (! input) {
@@ -152,6 +178,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'custom-shield',
   type: 'design',

@@ -9,6 +9,9 @@ import {
 import settings from './settings';
 import styles from './styles.css';
 
+/**
+ * Process the search input.
+ */
 const processSearch = () => {
   const currentValue = document.querySelector('#mhui-supply-search-input');
   if (! currentValue.value) {
@@ -29,6 +32,9 @@ const processSearch = () => {
   });
 };
 
+/**
+ * Add the search input to the page.
+ */
 const addSearch = () => {
   const existing = document.querySelector('.mhui-supply-search-wrapper');
   if (existing) {
@@ -70,11 +76,23 @@ const addSearch = () => {
   }, 100);
 };
 
+/**
+ * Convert a string to a number.
+ *
+ * @param {string} number The number to convert.
+ *
+ * @return {number} The number.
+ */
 const asNum = (number) => {
   // remove any commas, parse as int
   return Number.parseInt(number.replace(',', ''));
 };
 
+/**
+ * Resort the items based on the sort type.
+ *
+ * @param {string} sortType The type of sort to apply.
+ */
 const resortItems = (sortType = 'alpha') => {
   // sort items by the text in the details element
   const container = document.querySelector('#supplytransfer .tabContent.item .listContainer');
@@ -120,6 +138,9 @@ const resortItems = (sortType = 'alpha') => {
   currentSort = sortType;
 };
 
+/**
+ * Add the sort buttons to the page.
+ */
 const addSortButtons = () => {
   const existing = document.querySelector('.mhui-supply-sort-wrapper');
   if (existing) {
@@ -155,6 +176,9 @@ const addSortButtons = () => {
   container.insertBefore(sortWrapper, container.childNodes[1]);
 };
 
+/**
+ * Highlight the favorited items.
+ */
 const highlightFavoritedItems = () => {
   const itemsToPin = new Set([
     getSetting('better-send-supplies.pinned-items-0', 'SUPER|brie+'),
@@ -173,6 +197,9 @@ const highlightFavoritedItems = () => {
   }
 };
 
+/**
+ * Add the quick quantity buttons to the page.
+ */
 const addQuickQuantityButtons = () => {
   const input = document.querySelector('#supplytransfer-confirm-text input');
   if (! input) {
@@ -225,6 +252,11 @@ const addQuickQuantityButtons = () => {
 let items = [];
 let currentSort = null;
 
+/**
+ * Upgrade the Send Supplies page.
+ *
+ * @param {boolean} initial If this is the initial upgrade.
+ */
 const upgradeSendSupplies = (initial = false) => {
   const sendTo = document.querySelector('#supplytransfer .drawer .tabContent.recipient');
   const isChoosingUser = sendTo && sendTo.style.display !== 'none';
@@ -286,6 +318,10 @@ const upgradeSendSupplies = (initial = false) => {
 };
 
 let hasSorted = false;
+
+/**
+ * The main function.
+ */
 const main = () => {
   addSearch();
   upgradeSendSupplies(true);
@@ -301,6 +337,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'better-send-supplies',
   name: 'Better Send Supplies',

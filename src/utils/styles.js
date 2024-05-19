@@ -67,11 +67,7 @@ const addModuleStyles = (styles, identifier = 'mh-improved-styles', replace = fa
   styles = Array.isArray(styles) ? styles.join('\n') : styles;
 
   if (existingStyles) {
-    if (replace) {
-      existingStyles.innerHTML = styles;
-    } else {
-      existingStyles.innerHTML += styles;
-    }
+    existingStyles.innerHTML = replace ? styles : existingStyles.innerHTML + styles;
 
     return existingStyles;
   }
@@ -113,6 +109,12 @@ const addStyles = (styles, module = false, identifier = 'mh-improved-styles') =>
   return stylesEl;
 };
 
+/**
+ * Remove custom styles from the page for a specific module.
+ *
+ * @param {string} module     The module ID whose styles should be removed.
+ * @param {string} identifier Identifier used for the styles.
+ */
 const removeStyles = (module = false, identifier = 'mh-improved-styles') => {
   if (! module) {
     throw new Error('Module ID is required for adding module styles.', module);
@@ -126,7 +128,7 @@ const removeStyles = (module = false, identifier = 'mh-improved-styles') => {
 };
 
 /**
- * Add custom styles specific for a location hud.
+ * Add custom styles specific for a location HUD.
  *
  * @param {string|Array} styles CSS to add to the page.
  */

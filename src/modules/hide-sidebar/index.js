@@ -2,7 +2,9 @@ import { addBodyClass, addStyles, onDeactivation } from '@utils';
 
 import styles from './styles.css';
 
-// Move sidebar into menu tab.
+/**
+ * Move sidebar into menu tab.
+ */
 const moveSidebar = () => {
   // Create menu tab.
   const menuTab = document.createElement('div');
@@ -83,6 +85,9 @@ const init = async () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'no-sidebar',
   name: 'Hide Sidebar',
