@@ -74,8 +74,19 @@
     "jsdoc/require-asterisk-prefix": "warn",
     "jsdoc/require-description-complete-sentence": "warn",
     "jsdoc/require-description": "warn",
-    "jsdoc/require-jsdoc": "off",
     "jsdoc/require-hyphen-before-param-description": ["warn", "never"],
+    "jsdoc/require-jsdoc": ["warn", {
+      "require": {
+        "ArrowFunctionExpression": true,
+        "ClassDeclaration":  true,
+        "ClassExpression": true,
+        "FunctionDeclaration":  true,
+        "FunctionExpression":  true,
+        "MethodDefinition":  true
+      },
+      "enableFixer": false,
+      "minLineCount": 2
+    }],
     "jsdoc/require-param-description": "warn",
     "jsdoc/require-param-name": "warn",
     "jsdoc/require-param-type": "warn",
