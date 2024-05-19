@@ -1,5 +1,10 @@
 import { doEvent, hasMiniCRE, setPage } from '@utils';
 
+/**
+ * Get the keyboard shortcuts.
+ *
+ * @return {Array} The keyboard shortcuts.
+ */
 export default () => {
   const shortcuts = [
     {

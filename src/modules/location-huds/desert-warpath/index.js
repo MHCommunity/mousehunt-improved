@@ -3,6 +3,10 @@ import { addHudStyles, makeElement } from '@utils';
 import styles from './styles.css';
 
 let engaged = false;
+
+/**
+ * Add the missle mini-game to the HUD.
+ */
 const addMissiles = () => {
   const container = document.querySelector('.warpathHUD-waveContainer');
   if (! container) {
@@ -22,6 +26,11 @@ const addMissiles = () => {
     }
   });
 
+  /**
+   * Launch a missile.
+   *
+   * @param {Event} event The click event.
+   */
   const launchMissile = (event) => {
     if (! container.classList.contains('warpathHUD-engaged')) {
       return;

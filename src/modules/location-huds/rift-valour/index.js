@@ -4,6 +4,13 @@ import styles from './styles.css';
 
 import simulate from './simulator';
 
+/**
+ * Display the results of the simulation.
+ *
+ * @param {Object} results The results.
+ *
+ * @return {string} The results as HTML.
+ */
 const displayResults = (results) => {
   let eclipseText = '';
   results.eclipses.forEach((eclipse) => {
@@ -63,6 +70,11 @@ const displayResults = (results) => {
   </div>`;
 };
 
+/**
+ * Run the simulation when the user clicks on the target.
+ *
+ * @param {string} selector The selector to listen for clicks on.
+ */
 const doSimulation = (selector) => {
   const simPopup = document.querySelector(selector);
   if (! simPopup) {
@@ -82,6 +94,9 @@ const doSimulation = (selector) => {
   });
 };
 
+/**
+ * Add the UI changes.
+ */
 const addUIComponents = () => {
   const existing = document.querySelector('#mh-vrift-floor-name');
   if (existing) {
@@ -126,6 +141,9 @@ const addUIComponents = () => {
   makeElement('div', 'mh-vrift-steps-remaining', stepsRemaining.textContent, floorBar);
 };
 
+/**
+ * Modify the player icon so that it spins when clicked.
+ */
 const modifyPlayerIcon = () => {
   const playerIcon = document.querySelector('.valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image');
   if (! playerIcon) {
@@ -149,6 +167,9 @@ const modifyPlayerIcon = () => {
   });
 };
 
+/**
+ * Add the simulator click events.
+ */
 const addSimulatorEvents = () => {
   doSimulation('.valourRiftHUD-floorProgress-barContainer');
 
@@ -170,6 +191,9 @@ const addSimulatorEvents = () => {
   doSimulation('.mh-vrift-sim-link');
 };
 
+/**
+ * Remove the warning if an Ultimate Charm is equipped.
+ */
 const removeWarningIfUcEquipped = () => {
   const warningContainer = document.querySelector('.valourRiftHUD-warningContainer.active');
   if (! warningContainer) {
@@ -191,6 +215,9 @@ const removeWarningIfUcEquipped = () => {
   }
 };
 
+/**
+ * Highlight quantities if an Ultimate Charm is equipped.
+ */
 const highlightQuantitiesIfUcEquipped = async () => {
   const selectors = [
     '.valourRiftHUD-gauntletBait-quantity.quantity',
@@ -214,6 +241,9 @@ const highlightQuantitiesIfUcEquipped = async () => {
   });
 };
 
+/**
+ * Actions to take if an Ultimate Charm is equipped.
+ */
 const ifUcEquipped = () => {
   removeWarningIfUcEquipped();
   highlightQuantitiesIfUcEquipped();

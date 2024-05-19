@@ -2,6 +2,9 @@ import { addHudStyles, getUserItems, makeElement } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Update the HUD images.
+ */
 const updateHudImages = () => {
   const upscaleMapping = {
     '/crafting_items/thumbnails/1a7897042ba8f3fa31fa6805404456d6.gif': '/crafting_items/transparent_thumb/9197ccdec26278bfb07ab7846b1a2648.png', // damaged coral.
@@ -12,6 +15,11 @@ const updateHudImages = () => {
     '/trinkets/5f56cb017ff9414e584ced35b2491aef.gif': '/trinkets/transparent_thumb/2dc6b3e505fd1eaac8c6069937490386.png', // water jet.
   };
 
+  /**
+   * Normalize the image URL and upscale it.
+   *
+   * @param {Element} image The image element.
+   */
   const upscaleImage = (image) => {
     const normalizedImage = image.src
       .replace('https://www.mousehuntgame.com/images/items', '')
@@ -43,6 +51,12 @@ const updateHudImages = () => {
   });
 };
 
+/**
+ * Create a charm element.
+ *
+ * @param {Object}  charm    The charm object.
+ * @param {Element} appendTo The element to append to.
+ */
 const makeCharmElement = (charm, appendTo) => {
   // Remove the old one.
   const existing = document.querySelector(`.mhui-sunken-charm[data-item-type="${charm.type}"]`);
@@ -94,6 +108,9 @@ const makeCharmElement = (charm, appendTo) => {
   appendTo.append(wrapper);
 };
 
+/**
+ * Add more charms to the HUD.
+ */
 const addMoreCharms = async () => {
   const charmsWrapper = document.querySelector('.sunkenCityHud .sunkenCharms');
   if (! charmsWrapper) {

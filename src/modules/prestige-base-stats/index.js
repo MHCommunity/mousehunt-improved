@@ -7,6 +7,12 @@ import {
   onRequest
 } from '@utils';
 
+/**
+ * Update the stats display.
+ *
+ * @param {Element} selector The element to update.
+ * @param {Object}  pbStats  The stats to update with.
+ */
 const updateStats = (selector, pbStats) => {
   const stats = selector.querySelector('.campPage-trap-itemBrowser-item-statContainer');
   if (! stats) {
@@ -48,6 +54,9 @@ const updateStats = (selector, pbStats) => {
   }
 };
 
+/**
+ * Update the Prestige Base stats display.
+ */
 const setPrestigeStats = async () => {
   const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
   if (! prestige) {
@@ -78,6 +87,12 @@ const setPrestigeStats = async () => {
 };
 
 let isModifying = false;
+
+/**
+ * Modify the Prestige Base in the base selector.
+ *
+ * @param {Object} opts The options object.
+ */
 const modifyPB = async (opts) => {
   if (isModifying) {
     return;
@@ -141,6 +156,10 @@ const modifyPB = async (opts) => {
 };
 
 let isSaving = false;
+
+/**
+ * Save the Prestige Base stats.
+ */
 const savePbStats = () => {
   if (isSaving) {
     return;
@@ -216,6 +235,9 @@ const savePbStats = () => {
   isSaving = false;
 };
 
+/**
+ * Helper function to run the module.
+ */
 const run = async () => {
   modifyPB();
   savePbStats();

@@ -6,6 +6,13 @@ import {
   onRequest
 } from '@utils';
 
+/**
+ * Makes the cheese selector element.
+ *
+ * @param {Array} cheesesToUse Array of cheese types to use.
+ *
+ * @return {HTMLElement} The cheese selector element.
+ */
 const makeCheeseSelectorElement = async (cheesesToUse) => {
   const wrapper = makeElement('div', ['townOfGnawniaHUD', 'allBountiesComplete', 'mh-ui-cheese-selector-wrapper']);
   const cheesesContainer = makeElement('div', ['townOfGnawniaHUD-baitContainer', 'mh-ui-cheese-selector']);
@@ -73,6 +80,13 @@ const makeCheeseSelector = async (location, cheesesToUse) => {
   doEvent('mh-improved-cheese-selector-added', location, cheesesToUse);
 };
 
+/**
+ * Get the cheeses to use, filling in with defaults if needed.
+ *
+ * @param {Array} cheeses Array of cheese types to use.
+ *
+ * @return {Array} Array of cheese types to use.
+ */
 const getCheeses = (cheeses) => {
   const defaultCheeses = [
     'cheddar_cheese',
@@ -91,6 +105,10 @@ const getCheeses = (cheeses) => {
 };
 
 let replaced = false;
+
+/**
+ * Replace the camp showTab function to trigger an event.
+ */
 const replaceCampShowTab = () => {
   if (replaced) {
     return;
@@ -99,6 +117,12 @@ const replaceCampShowTab = () => {
   replaced = true;
 
   const _original = app.pages.CampPage.showTab;
+
+  /**
+   * Replacement for the showTab function.
+   *
+   * @param {any} args Arguments passed to the original function.
+   */
   app.pages.CampPage.showTab = (...args) => {
     _original(...args);
     doEvent('set_camp_tab', ...args);

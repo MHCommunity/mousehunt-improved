@@ -6,7 +6,12 @@ import { readFile } from 'node:fs/promises';
 
 const CSSMinifyTextPlugin = {
   name: 'CSSMinifyTextPlugin',
-  setup(build) { // eslint-disable-line jsdoc/require-jsdoc
+  /**
+   * Setup the plugin.
+   *
+   * @param {Object} build The build object.
+   */
+  setup(build) {
     build.onLoad({ filter: /\.css$/ }, async (args) => {
       const f = await readFile(args.path);
       const css = await esbuild.transform(f, {

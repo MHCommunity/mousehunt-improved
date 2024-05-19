@@ -20,6 +20,11 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Get the favorite setups.
+ *
+ * @return {Array} The favorite setups.
+ */
 const getFavoriteSetups = () => {
   const faves = getSetting('favorite-setups.setups', []);
 
@@ -31,6 +36,13 @@ const getFavoriteSetups = () => {
   return faves.filter(Boolean);
 };
 
+/**
+ * Generate a name for the setup.
+ *
+ * @param {Object} setup The setup to generate a name for.
+ *
+ * @return {Promise<string>} The generated name.
+ */
 const getGeneratedName = async (setup) => {
   const response = await fetch('https://setup-namer.mouse.rip', {
     method: 'POST',
@@ -46,6 +58,14 @@ const getGeneratedName = async (setup) => {
   return await response.json();
 };
 
+/**
+ * Save a favorite setup.
+ *
+ * @param {Object}  setup            The setup to save.
+ * @param {boolean} useGeneratedName Whether to use a generated name for the setup.
+ *
+ * @return {Object} The saved setup.
+ */
 const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   let setups = getFavoriteSetups();
 

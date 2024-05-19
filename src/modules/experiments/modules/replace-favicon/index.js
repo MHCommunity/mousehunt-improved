@@ -1,5 +1,8 @@
 import { onTurn, setMultipleTimeout } from '@utils';
 
+/**
+ * Replace the favicon.
+ */
 const replace = () => {
   const favicon = document.querySelector('#favicon');
   if (favicon) {
@@ -7,6 +10,9 @@ const replace = () => {
   }
 };
 
+/**
+ * Add additional favicons.
+ */
 const add = () => {
   const icons = [
     { rel: 'apple-touch-icon', sizes: '180x180', href: 'https://i.mouse.rip/mh-icons/apple-touch-icon.png' },
@@ -24,6 +30,9 @@ const add = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   add();
   replace();

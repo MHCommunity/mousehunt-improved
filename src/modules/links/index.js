@@ -1,5 +1,8 @@
 import { addSubmenuItem, makeElement } from '@utils';
 
+/**
+ * Add help links to the support dropdown.
+ */
 const addHelpLinks = () => {
   const supportDropdown = document.querySelector('.menuItem.dropdown.support .dropdownContent');
   if (! supportDropdown) {

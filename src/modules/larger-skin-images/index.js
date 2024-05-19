@@ -13,6 +13,13 @@ import styles from './styles.css';
 
 const skinImages = {};
 let isAdding = false;
+
+/**
+ * Add skin images to the trap selector.
+ *
+ * @param {string}  panel The panel to add the skin images to.
+ * @param {boolean} force Whether to force add the skin images.
+ */
 const addSkinImages = async (panel, force = false) => {
   if ('item_browser' !== panel) {
     return;
@@ -99,6 +106,9 @@ const addSkinImages = async (panel, force = false) => {
   isAdding = false;
 };
 
+/**
+ * Re-add skin images when the skin tab is clicked.
+ */
 const triggerFromClick = () => {
   const button = document.querySelector('.trapSelectorView__armedItem[data-item-classification=skin]');
   if (button) {

@@ -8,6 +8,12 @@ import {
   saveSetting
 } from '@utils';
 
+/**
+ * Save the hidden state of an upgrade.
+ *
+ * @param {string}  upgradeId The ID of the upgrade.
+ * @param {boolean} isHidden  The hidden state.
+ */
 const saveHidden = (upgradeId, isHidden) => {
   const upgradeIds = getSetting('location-huds.folklore-forest-visibility-toggles', {});
   upgradeIds[upgradeId] = isHidden;
@@ -15,11 +21,23 @@ const saveHidden = (upgradeId, isHidden) => {
   saveSetting('location-huds.folklore-forest-visibility-toggles', upgradeIds);
 };
 
+/**
+ * Check if an upgrade is hidden.
+ *
+ * @param {string} upgradeId The ID of the upgrade.
+ *
+ * @return {boolean} If the upgrade is hidden.
+ */
 const isHidden = (upgradeId) => {
   const setting = getSetting('location-huds.folklore-forest-visibility-toggles', {});
   return setting[upgradeId] || false;
 };
 
+/**
+ * Get the visibility mapping for the upgrades.
+ *
+ * @return {Object} The visibility mapping.
+ */
 const getToggleVisibilityMapping = () => {
   return {
     tackle_box: '.prologuePondView-fishingBoat-paperDoll-layer.tackle_box',
@@ -37,6 +55,9 @@ const getToggleVisibilityMapping = () => {
   };
 };
 
+/**
+ * Toggle the visibility of all upgrades.
+ */
 const toggleAllVisibility = () => {
   const mapping = getToggleVisibilityMapping();
   const upgradeIds = Object.keys(mapping);
@@ -50,6 +71,13 @@ const toggleAllVisibility = () => {
   });
 };
 
+/**
+ * Check if an upgrade is unlocked.
+ *
+ * @param {string} upgradeId The ID of the upgrade.
+ *
+ * @return {boolean} If the upgrade is unlocked.
+ */
 const isUnlocked = (upgradeId) => {
   let userQuest;
 
@@ -75,6 +103,12 @@ const isUnlocked = (upgradeId) => {
   return upgrade.is_unlocked;
 };
 
+/**
+ * Hide or show an upgrade block.
+ *
+ * @param {string}  blockId        The ID of the block.
+ * @param {boolean} isBlockToggled If the block is toggled.
+ */
 const hideOrShowBlock = (blockId, isBlockToggled) => {
   const mapping = getToggleVisibilityMapping();
 
@@ -118,6 +152,11 @@ const hideOrShowBlock = (blockId, isBlockToggled) => {
   element.classList.toggle('active', ! isBlockToggled);
 };
 
+/**
+ * Add a toggle to an upgrade block.
+ *
+ * @param {HTMLElement} upgradeBlock The upgrade block.
+ */
 const addToggle = (upgradeBlock) => {
   if (upgradeBlock.classList.contains('toggle-added')) {
     return;
@@ -157,6 +196,9 @@ const addToggle = (upgradeBlock) => {
   upgradeBlock.classList.add(isBlockToggled ? 'toggle-is-hidden' : 'toggle-is-visible');
 };
 
+/**
+ * Add the upgrade visibility toggles.
+ */
 const addUpgradeVisibilityToggles = () => {
   if (hasAddedUpgradeVisibilityToggles) {
     return;

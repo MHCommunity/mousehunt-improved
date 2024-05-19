@@ -2,6 +2,11 @@ import { addStyles, onNavigation } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Get the quantity input element.
+ *
+ * @return {Element|boolean} The quantity input element or false.
+ */
 const getQuantityInput = () => {
   const quantity = document.querySelector('.itemView-action-convert-quantity');
   if (! quantity) {
@@ -11,8 +16,17 @@ const getQuantityInput = () => {
   return quantity;
 };
 
+/**
+ * Replace the convertible open action.
+ */
 const replaceOpenAction = () => {
   const _original = app.pages.InventoryPage.useConvertible;
+
+  /**
+   * Use the convertible item.
+   *
+   * @param {Element} element The element to use.
+   */
   app.pages.InventoryPage.useConvertible = (element) => {
     if (element.getAttribute('data-item-action') === 'all-but-one') {
       const itemType = element.getAttribute('data-item-type');
@@ -46,6 +60,9 @@ const replaceOpenAction = () => {
   };
 };
 
+/**
+ * Add the 'Open All but One' buttons to convertible items.
+ */
 const addOpenAllButOneButton = () => {
   const convertibleItems = document.querySelectorAll('.inventoryPage-item.convertible[data-item-classification="convertible"]');
   if (! convertibleItems.length) {

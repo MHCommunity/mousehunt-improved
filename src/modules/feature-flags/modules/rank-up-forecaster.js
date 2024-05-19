@@ -53,6 +53,9 @@ const exportRankupForecasterDataAsCsv = () => {
   link.click();
 };
 
+/**
+ * Import the rank-up forecaster data.
+ */
 const importRankupForecassterData = () => {
   const input = document.createElement('input');
   input.type = 'file';
@@ -65,6 +68,12 @@ const importRankupForecassterData = () => {
     }
 
     const reader = new FileReader();
+
+    /**
+     * Handle the file read.
+     *
+     * @param {Event} re The event.
+     */
     reader.onload = (re) => {
       const contents = re.target.result;
       const data = JSON.parse(contents);

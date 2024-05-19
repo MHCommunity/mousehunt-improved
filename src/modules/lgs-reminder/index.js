@@ -15,10 +15,20 @@ import styles from './styles.css';
 
 const humanizer = setupHumanizer();
 
+/**
+ * Check if the time should be exact seconds.
+ *
+ * @return {boolean} If the time should be exact.
+ */
 const isExact = () => {
   return getSetting('lgs-reminder.show-seconds');
 };
 
+/**
+ * Get the shield end date time.
+ *
+ * @return {Date} The shield end date time.
+ */
 const getShieldEndDateTime = () => {
   const shieldExpiry = user.shield_expiry;
   if (! shieldExpiry) {
@@ -34,6 +44,11 @@ const getShieldEndDateTime = () => {
   return new Date(realExpiry);
 };
 
+/**
+ * Get the remaining shield time.
+ *
+ * @return {number} The time in seconds.
+ */
 const getShieldTime = () => {
   const expiry = getShieldEndDateTime();
   const now = new Date();
@@ -42,6 +57,11 @@ const getShieldTime = () => {
   return Math.floor((expiry - now));
 };
 
+/**
+ * Get the formatted shield time.
+ *
+ * @return {string} The formatted shield time.
+ */
 const getShieldTimeFormatted = () => {
   const time = getShieldTime();
   if (! time) {
@@ -68,6 +88,11 @@ const getShieldTimeFormatted = () => {
   return duration;
 };
 
+/**
+ * Update the LGS reminder.
+ *
+ * @param {HTMLElement} el The reminder element.
+ */
 const updateLgsReminder = (el) => {
   const time = getShieldTime();
 
@@ -84,6 +109,9 @@ const updateLgsReminder = (el) => {
   el.innerText = getShieldTimeFormatted();
 };
 
+/**
+ * Main function.
+ */
 const main = () => {
   startingTime = getShieldTime();
 
@@ -152,6 +180,9 @@ const main = () => {
   }
 };
 
+/**
+ * Set the offset for the shield time.
+ */
 const setOffset = () => {
   const userShieldExpiry = new Date(Date.parse(user.shield_expiry));
   const userShieldSeconds = new Date(new Date().setSeconds(new Date().getSeconds() + user.shield_seconds));

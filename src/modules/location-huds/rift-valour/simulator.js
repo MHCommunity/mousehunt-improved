@@ -6,6 +6,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-var */
+/* eslint-disable jsdoc/require-jsdoc */
 // This is all borrowed from the original sim script while it's being rewritten.
 // Sets the display for the percentages
 // Set to true or false depending on which display you want
@@ -549,3 +550,4 @@ export default simulate;
 /* eslint-enable no-shadow */
 /* eslint-enable no-unused-vars */
 /* eslint-enable no-var */
+/* eslint-enable jsdoc/require-jsdoc */

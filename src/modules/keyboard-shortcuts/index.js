@@ -14,6 +14,11 @@ import actions from './actions';
 
 import styles from './styles.css';
 
+/**
+ * Get the default shortcuts.
+ *
+ * @return {Array} The default shortcuts.
+ */
 const getBaseShortcuts = () => {
   return [
     {
@@ -28,6 +33,10 @@ const getBaseShortcuts = () => {
       id: 'close-popup',
       key: 'Escape',
       description: 'Close the current popup',
+
+      /**
+       * Close the current popup.
+       */
       action: () => {
         if (activejsDialog && activejsDialog.hide) {
           activejsDialog.hide();
@@ -39,6 +48,11 @@ const getBaseShortcuts = () => {
   ];
 };
 
+/**
+ * Get the shortcuts.
+ *
+ * @return {Array} The shortcuts.
+ */
 const getShortcuts = () => {
   const shortcuts = getBaseShortcuts();
 
@@ -64,6 +78,12 @@ const getShortcuts = () => {
   return shortcuts;
 };
 
+/**
+ * Save a shortcut.
+ *
+ * @param {string} shortcutId  The ID of the shortcut.
+ * @param {Object} shortcutKey The key combination.
+ */
 const saveShortcut = (shortcutId, shortcutKey) => {
   let saved = getSetting('keyboard-shortcuts.shortcuts', []);
 
@@ -106,6 +126,13 @@ const saveShortcut = (shortcutId, shortcutKey) => {
   }
 };
 
+/**
+ * Get the key combination to show in the popup.
+ *
+ * @param {Object} keyEvent The key event.
+ *
+ * @return {string} The key combination.
+ */
 const getKeyForDisplay = (keyEvent) => {
   let keyString = '';
 
@@ -163,6 +190,11 @@ const getKeyForDisplay = (keyEvent) => {
   return keyString;
 };
 
+/**
+ * Check if the help popup is open.
+ *
+ * @return {boolean} Whether the help popup is open.
+ */
 const isHelpPopupOpen = () => {
   const overlay = getCurrentDialog();
   if (! overlay) {
@@ -172,6 +204,9 @@ const isHelpPopupOpen = () => {
   return 'mh-ui-keyboard-shortcuts-popup' === overlay;
 };
 
+/**
+ * Show the help popup.
+ */
 const showHelpPopup = () => {
   if (activejsDialog && activejsDialog.hide) {
     // If the popup is already open, close it.
@@ -279,6 +314,9 @@ const showHelpPopup = () => {
 
     const kbd = shortcut.querySelector('kbd');
 
+    /**
+     * Start editing a shortcut.
+     */
     const startEditing = () => {
       isEditing = true;
       editButton.innerText = 'Cancel';
@@ -287,6 +325,12 @@ const showHelpPopup = () => {
       document.addEventListener('keydown', keypressListener);
     };
 
+    /**
+     * Finish editing a shortcut.
+     *
+     * @param {string} id  The ID of the shortcut.
+     * @param {Object} key The key combination.
+     */
     const finishEditing = (id = false, key = false) => {
       isEditing = false;
       editButton.innerText = 'Edit';
@@ -302,6 +346,11 @@ const showHelpPopup = () => {
       kbd.innerHTML = getKeyForDisplay(key);
     };
 
+    /**
+     * Listen for keypresses and save the shortcut.
+     *
+     * @param {Object} event The key event.
+     */
     const keypressListener = (event) => {
       // if the key is alt, shift, ctrl, or meta, by itself, don't do anything, because that's not a valid shortcut by itself.
       // if the key matches the key of another shortcut, show an error message for a second.
@@ -377,6 +426,10 @@ const showHelpPopup = () => {
 };
 
 let isEditing = false;
+
+/**
+ * Listen for keypresses and check if they match a shortcut.
+ */
 const listenForKeypresses = () => {
   // If the help popup is closed, then listen for keypresses, unless it's inside an input or textarea or something like that. When a key is pressed, check if it's one of the shortcuts and if so, run the action.
   document.addEventListener('keydown', (event) => {
@@ -414,6 +467,9 @@ const listenForKeypresses = () => {
   });
 };
 
+/**
+ * Check if the user is on the preferences page and open the help popup if they are.
+ */
 const openFromSettings = () => {
   if ('preferences' !== getCurrentPage()) {
     return;

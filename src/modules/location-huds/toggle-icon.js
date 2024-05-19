@@ -6,6 +6,11 @@ import {
   saveSetting
 } from '@utils';
 
+/**
+ * Get the current location.
+ *
+ * @return {Promise<string>} The current location.
+ */
 const getCurrentLocationForSettings = async () => {
   const currentLocation = getCurrentLocation();
 
@@ -20,6 +25,11 @@ const getCurrentLocationForSettings = async () => {
   return currentLocation;
 };
 
+/**
+ * Get the icon settings.
+ *
+ * @return {Promise<Object>} The icon settings.
+ */
 const getIconSettings = async () => {
   let key = await getCurrentLocationForSettings();
   key = `location-huds-enabled.${key}`;
@@ -31,6 +41,13 @@ const getIconSettings = async () => {
     classname: 'mousehunt-improved-location-huds-icon',
     text: value ? 'Disable HUD' : 'Enable HUD',
     position: 'prepend',
+
+    /**
+     * The action to perform when the icon is clicked.
+     *
+     * @param {Event}   e    The event object.
+     * @param {Element} icon The icon element.
+     */
     action: (e, icon) => {
       value = getSetting(key, true);
       saveSetting(key, ! value);
@@ -51,6 +68,9 @@ const getIconSettings = async () => {
 };
 
 const addToggleIcon = async () => {
+/**
+ * Add the toggle icon to the menu.
+ */
   addIconToMenu(await getIconSettings());
 };
 

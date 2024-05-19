@@ -17,6 +17,11 @@ import styles from './styles.css';
 
 let themes = [];
 
+/**
+ * Get the journal themes.
+ *
+ * @return {Promise<Array>} The journal themes.
+ */
 const getJournalThemes = async () => {
   const req = await doRequest('managers/ajax/users/journal_theme.php', {
     action: 'get_themes',
@@ -29,6 +34,13 @@ const getJournalThemes = async () => {
   return req.journal_themes.theme_list.filter((theme) => theme.can_equip === true);
 };
 
+/**
+ * Set the journal theme.
+ *
+ * @param {string} theme The theme to set.
+ *
+ * @return {Promise<boolean>} The result of the request.
+ */
 const updateJournalTheme = async (theme) => {
   const current = getCurrentJournalTheme();
 
@@ -58,6 +70,11 @@ const updateJournalTheme = async (theme) => {
   return req;
 };
 
+/**
+ * Get the current journal theme.
+ *
+ * @return {string|boolean} The current journal theme or false.
+ */
 const getCurrentJournalTheme = () => {
   const journal = document.querySelector('#journalContainer');
   if (! journal) {
@@ -67,6 +84,11 @@ const getCurrentJournalTheme = () => {
   return [...journal.classList].find((cls) => cls.startsWith('theme_'));
 };
 
+/**
+ * Get the journal theme for the current location.
+ *
+ * @return {string|boolean} The journal theme or false.
+ */
 const getJournalThemeForLocation = () => {
   const location = getCurrentLocation();
   const journalTheme = journals.find((j) => j.environments.includes(location));
@@ -82,6 +104,9 @@ const getJournalThemeForLocation = () => {
   return journalTheme.type;
 };
 
+/**
+ * Revert to the saved theme if it's not the current theme.
+ */
 const revertToSavedTheme = () => {
   const chosenTheme = getSetting('journal-changer.chosen-theme', false);
   if (getCurrentJournalTheme() !== chosenTheme) {
@@ -89,6 +114,9 @@ const revertToSavedTheme = () => {
   }
 };
 
+/**
+ * Update the journal theme based on the current location.
+ */
 const changeForLocation = async () => {
   const newTheme = getJournalThemeForLocation();
   if (! newTheme) {
@@ -125,6 +153,13 @@ const changeForLocation = async () => {
   }
 };
 
+/**
+ * Randomize the journal theme.
+ *
+ * @param {string} skip The theme to skip.
+ *
+ * @return {Promise<string|boolean>} The new theme or false.
+ */
 const randomizeTheme = async (skip = false) => {
   if (themes.length === 0) {
     themes = await getJournalThemes();
@@ -151,6 +186,9 @@ const randomizeTheme = async (skip = false) => {
   return theme.type;
 };
 
+/**
+ * Add the randomize button to the journal.
+ */
 const addRandomButton = () => {
   const journal = document.querySelector('#journalContainer .top');
   if (! journal) {
@@ -163,6 +201,9 @@ const addRandomButton = () => {
   journal.append(button);
 };
 
+/**
+ * Change the journal theme daily.
+ */
 const changeJournalDaily = async () => {
   const lastChangeValue = getSetting('journal-changer.last-change', 0);
   const lastChange = new Date(Number.parseInt(lastChangeValue, 10));
@@ -185,12 +226,20 @@ const changeJournalDaily = async () => {
 
 let _themeSelector;
 let shouldListen = true;
+
+/**
+ * Listen for the theme selector change.
+ */
 const onThemeSelectorChange = () => {
   if (_themeSelector) {
     return;
   }
 
   _themeSelector = hg.views.JournalThemeSelectorView.show;
+
+  /**
+   * Override the theme selector view.
+   */
   hg.views.JournalThemeSelectorView.show = async () => {
     _themeSelector();
 

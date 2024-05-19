@@ -1,3 +1,6 @@
+/**
+ * Social noop module.
+ */
 export default () => {
   window.twttr = {
     widgets: {
@@ -10,6 +13,11 @@ export default () => {
    * Social link class.
    */
   class SocialLink {
+    /**
+     * Noop constructor.
+     *
+     * @param {string} url The URL.
+     */
     constructor(url) {
       this.url = url;
     }

@@ -49,9 +49,15 @@ const buildExtension = async (platform, watch = false) => {
       copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
         src: 'src/extension',
         dest: `dist/${platform}`,
-        filter: (file) => { // eslint-disable-line jsdoc/require-jsdoc
-          // Don't copy the screenshots dir or any dotfiles. We don't copy the manifest
-          // because we're copying a modified version of it above.
+        /**
+         * Don't copy the screenshots dir or any dotfiles.
+         * We don't copy the manifest because we're copying a modified version of it above.
+         *
+         * @param {string} file The file to filter.
+         *
+         * @return {boolean} Whether to filter the file.
+         */
+        filter: (file) => {
           return (
             ! file.startsWith('screenshots') &&
             ! file.startsWith('.') &&

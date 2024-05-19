@@ -7,6 +7,11 @@ import {
   travelTo
 } from '@utils';
 
+/**
+ * Add a button to travel to the next step in the M400 quest.
+ *
+ * @param {string} location The location to travel to.
+ */
 const renderButton = (location) => {
   const title = document.querySelector('.campPage-quests-title');
   if (! title) {
@@ -47,6 +52,9 @@ const renderButton = (location) => {
   title.append(button);
 };
 
+/**
+ * Main function.
+ */
 const main = async () => {
   const questTitle = document.querySelector('.campPage-quests-title');
   if (! questTitle) {

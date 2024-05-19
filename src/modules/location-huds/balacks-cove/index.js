@@ -4,6 +4,16 @@ import styles from './styles.css';
 
 import addCheeseSelector from '../shared/cheese-selectors';
 
+/**
+ * Get the closing text.
+ *
+ * @param {number} closes                 The number of hours until the tide closes.
+ * @param {string} stage                  The current tide stage.
+ * @param {number} nextStageOffsetMinutes The number of minutes until the next stage.
+ * @param {string} nextStageText          The next tide stage.
+ *
+ * @return {string} The closing text.
+ */
 const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) => {
   const hours = Math.floor(closes);
   const minutes = Math.ceil((closes - Math.floor(closes)) * 60);
@@ -18,6 +28,9 @@ const getClosingText = (closes, stage, nextStageOffsetMinutes, nextStageText) =>
   return timeLeftText;
 };
 
+/**
+ * Update the closing time text.
+ */
 const updateClosingTime = () => {
   const hudBar = document.querySelector('.balacksCoveHUD-tideContainer');
   if (! hudBar) {

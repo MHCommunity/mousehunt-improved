@@ -3,6 +3,9 @@ import { addStyles, isLegacyHUD } from '@utils';
 import legacyStyles from './legacy-styles.css';
 import styles from './styles.css';
 
+/**
+ * Toggle the big timer when clicked.
+ */
 const toggleBigTimer = () => {
   const timer = document.querySelector('.huntersHornView__timer');
   if (! timer) {
@@ -16,6 +19,9 @@ const toggleBigTimer = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   addStyles([
     styles,

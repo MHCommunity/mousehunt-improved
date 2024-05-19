@@ -8,7 +8,6 @@ import styles from './styles.css';
  * @param {Object}  link     The link object.
  * @param {Element} appendTo The element to append to.
  * @param {string}  filter   The filter type.
- * @param {Element} input    The input element.
  */
 const addItemToQuickLinks = (link, appendTo, filter) => {
   const existing = document.querySelector(`.campPage-trap-itemBrowser-favorite-item.quicklinks-filter.quicklinks-filter-${filter}-${link.id}`);
@@ -81,6 +80,9 @@ const addItemToQuickLinks = (link, appendTo, filter) => {
   appendTo.append(item);
 };
 
+/**
+ * Add quick links to the trap selector.
+ */
 const addQuickLinksToTrap = async () => {
   const itemBrowser = document.querySelector('.trapSelectorView__itemBrowserContainer');
   if (! itemBrowser) {

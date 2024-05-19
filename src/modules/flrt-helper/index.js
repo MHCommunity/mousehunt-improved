@@ -13,6 +13,11 @@ import { getData } from '@utils/data';
 
 import styles from './styles.css';
 
+/**
+ * Add the "Return to Maptain" button to the convertible dialog.
+ *
+ * @param {Object} response The response from the request.
+ */
 const addFlrtButtonToConvertible = async (response) => {
   if (! (response.convertible_open && response.convertible_open.name && response.convertible_open.items)) {
     return;
@@ -62,6 +67,12 @@ const addFlrtButtonToConvertible = async (response) => {
   buttons.prepend(flrtBtn);
 };
 
+/**
+ * Send the items to the Maptain.
+ *
+ * @param {string} snuid The SN User ID of the Maptain.
+ * @param {Array}  items The items to send.
+ */
 const sendItemsToMaptain = async (snuid, items) => {
   for (const item of items) {
     item.element.classList.add('flrt-item-sending');
@@ -82,6 +93,11 @@ const sendItemsToMaptain = async (snuid, items) => {
   }
 };
 
+/**
+ * Show the popup to send the items to the Maptain.
+ *
+ * @param {Array} items The items to send.
+ */
 const flrtPopup = (items) => {
   const lastMaptain = getLastMaptain();
 
@@ -127,6 +143,9 @@ const flrtPopup = (items) => {
   flrtItems.forEach((item) => {
     const checkbox = item.querySelector('input[type="checkbox"]');
 
+    /**
+     * Toggle the checkbox and item.
+     */
     const toggle = () => {
       checkbox.checked = ! checkbox.checked;
       item.classList.toggle('flrt-item-disabled', ! checkbox.checked);

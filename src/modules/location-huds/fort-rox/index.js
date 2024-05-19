@@ -25,6 +25,15 @@ const phaseLengths = {
   },
 };
 
+/**
+ * Make a tooltip.
+ *
+ * @param {string}   text        The text to display.
+ * @param {string}   direction   The direction to display the tooltip.
+ * @param {string[]} customClass Any custom classes to add.
+ *
+ * @return {Element} The tooltip element.
+ */
 const makeTooltip = (text, direction = 'top', customClass = []) => {
   const existing = document.querySelectorAll('.added-frox-tooltip');
   if (existing.length) {
@@ -40,6 +49,10 @@ const makeTooltip = (text, direction = 'top', customClass = []) => {
   return tooltip;
 };
 
+/**
+ * Update the night bar.
+ *
+ */
 const updateNightBar = () => {
   const bar = document.querySelector('.fortRoxHUD-timeline-phases');
   if (! bar) {
@@ -81,6 +94,9 @@ const updateNightBar = () => {
   });
 };
 
+/**
+ * Update the upgrade tooltips.
+ */
 const updateUpgradeTooltips = () => {
   const upgradeTooltips = document.querySelectorAll('.fortRoxHUD-fort-upgrade-boundingBox');
   if (! upgradeTooltips.length) {
@@ -121,6 +137,9 @@ const updateUpgradeTooltips = () => {
   });
 };
 
+/**
+ * Update the wall HP.
+ */
 const updateWallHP = () => {
   const exists = document.querySelector('.mh-frox-wall-hp');
   if (exists) {
@@ -160,6 +179,9 @@ const updateWallHP = () => {
   }
 };
 
+/**
+ * Add a class to the portal button.
+ */
 const addPortalClass = () => {
   const portal = document.querySelector('.fortRoxHUD.dawn .fortRoxHUD-enterLairButton');
   if (! portal) {

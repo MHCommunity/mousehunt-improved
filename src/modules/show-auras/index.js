@@ -67,6 +67,10 @@ const addExpiryWarning = () => {
 };
 
 let isAppending = false;
+
+/**
+ * Add the aura block to the trap stats.
+ */
 const addTrapBlock = () => {
   if (isAppending) {
     return;

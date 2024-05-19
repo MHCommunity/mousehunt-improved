@@ -1,5 +1,8 @@
 import { onNavigation } from '@utils';
 
+/**
+ * Fix the passing parcel message item markup.
+ */
 const fixPassingParcel = () => {
   const passingParcel = document.querySelector('.inventoryPage-item[data-item-type="passing_parcel_message_item"]');
   if (! passingParcel) {
@@ -45,6 +48,9 @@ const fixPassingParcel = () => {
   });
 };
 
+/**
+ * Initialize the passing parcel fix.
+ */
 export default async () => {
   onNavigation(fixPassingParcel, {
     page: 'inventory',

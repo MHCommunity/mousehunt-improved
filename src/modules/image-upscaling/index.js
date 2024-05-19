@@ -13,7 +13,13 @@ import pathsToSkip from './paths-to-skip.json';
 import styles from './styles.css';
 import viewsStyles from './views.css';
 
+/**
+ * The ImageUpscaler class.
+ */
 class ImageUpscaler {
+  /**
+   * Create a new ImageUpscaler.
+   */
   constructor() {
     this.mapping = [];
     this.unupscaledImages = new Set();
@@ -28,6 +34,13 @@ class ImageUpscaler {
     this.handleUpscalingImages = this.handleUpscalingImages.bind(this);
   }
 
+  /**
+   * Strip the URL of any unnecessary parts.
+   *
+   * @param {string} url The URL to strip.
+   *
+   * @return {string} The stripped URL.
+   */
   stripUrl(url) {
     const replacements = [
       ['//images', '/images'],
@@ -53,6 +66,13 @@ class ImageUpscaler {
     return replacements.reduce((replacedUrl, [from, to]) => replacedUrl.replaceAll(from, to), url);
   }
 
+  /**
+   * Get the mapped URL for an image.
+   *
+   * @param {string} strippedUrl The stripped URL.
+   *
+   * @return {string} The mapped URL.
+   */
   getMappedUrl(strippedUrl) {
     if (! strippedUrl) {
       return;
@@ -74,6 +94,13 @@ class ImageUpscaler {
     return `https://www.mousehuntgame.com/images/${mappedUrl}`;
   }
 
+  /**
+   * Check if the image elements should be skipped.
+   *
+   * @param {NodeList} items The image elements.
+   *
+   * @return {boolean} If the update should be skipped.
+   */
   shouldSkipUpdate(items) {
     const itemHash = [...items]
       .map((item) => item.getAttribute('src') || '')
@@ -85,6 +112,13 @@ class ImageUpscaler {
     return shouldSkip;
   }
 
+  /**
+   * Check if the URL should be skipped.
+   *
+   * @param {string} url The URL to check.
+   *
+   * @return {boolean} If the URL should be skipped.
+   */
   shouldSkipUrl(url) {
     if (
       this.unupscaledImages.has(url) || // Don't re-upscale images that have already been upscaled.
@@ -108,6 +142,9 @@ class ImageUpscaler {
     });
   }
 
+  /**
+   * Upscale the image elements.
+   */
   upscaleImageElements() {
     const images = document.querySelectorAll('img');
     if (! images) {
@@ -133,6 +170,9 @@ class ImageUpscaler {
     });
   }
 
+  /**
+   * Start the observer.
+   */
   startObserver() {
     if (this.observer) {
       this.observer.disconnect();
@@ -145,6 +185,9 @@ class ImageUpscaler {
     this.observer.observe(document.body, this.observerOptions);
   }
 
+  /**
+   * Upscale the images.
+   */
   async upscaleImages() {
     if (this.isUpscaling) {
       return;
@@ -161,10 +204,16 @@ class ImageUpscaler {
     this.isUpscaling = false;
   }
 
+  /**
+   * Fetch the mapping for the upscaled images.
+   */
   async fetchMapping() {
     this.mapping = await getData('upscaled-images');
   }
 
+  /**
+   * Start the image upscaler observer.
+   */
   async start() {
     if (this.observer) {
       return;
@@ -225,6 +274,9 @@ class ImageUpscaler {
     this.observer.observe(document, this.observerOptions);
   }
 
+  /**
+   * Handle upscaling images.
+   */
   async handleUpscalingImages() {
     try {
       if (! this.observer) {
@@ -240,6 +292,9 @@ class ImageUpscaler {
   }
 }
 
+/**
+ * The ImageUpscaler instance.
+ */
 const init = async () => {
   addExternalStyles('https://static.mouse.rip/upscaled-images.css?');
   addStyles([styles, viewsStyles], 'image-upscaling');

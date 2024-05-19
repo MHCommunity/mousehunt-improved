@@ -2,6 +2,9 @@ import { addHudStyles } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Add click event to charms to equip them.
+ */
 const clickCharmsToEquip = () => {
   const charms = document.querySelectorAll('.livingGardenHud .minigameContainer .curseContainer .curse.active');
   const charmMap = {

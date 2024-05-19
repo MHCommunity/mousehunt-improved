@@ -3,6 +3,10 @@ import { addHudStyles, makeElement, onRequest } from '@utils';
 import styles from './styles.css';
 
 let hasHiddenTauntingWarning = false;
+
+/**
+ * Show a warning when the user doesn't have a Taunting Charm equipped.
+ */
 const showTauntingWarning = () => {
   const existing = document.querySelector('.mhui-taunting-warning');
   if (existing) {
@@ -25,6 +29,12 @@ const showTauntingWarning = () => {
 
   const warningClose = makeElement('div', 'mhui-taunting-warning-close');
   warningClose.innerHTML = '×';
+
+  /**
+   * Close the warning.
+   *
+   * @param {MouseEvent} e The click event.
+   */
   warningClose.onclick = (e) => {
     e.preventDefault();
     hasHiddenTauntingWarning = true;
@@ -35,6 +45,9 @@ const showTauntingWarning = () => {
   baitWarning.after(warning);
 };
 
+/**
+ * Check and warn when no Taunting Charm is equipped.
+ */
 const checkAndWarnWhenNoTauntingCharm = () => {
   // Bail if taunting is equipped.
   // eslint-disable-next-line eqeqeq

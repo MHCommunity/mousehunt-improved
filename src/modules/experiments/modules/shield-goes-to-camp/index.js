@@ -1,5 +1,8 @@
 import { getCurrentPage, onNavigation } from '@utils';
 
+/**
+ * Toggle the destination when clicking the shield.
+ */
 const campToggle = () => {
   const shield = document.querySelector('.mousehuntHud-shield');
   if (shield) {
@@ -11,6 +14,9 @@ const campToggle = () => {
   }
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   onNavigation(campToggle);
 };

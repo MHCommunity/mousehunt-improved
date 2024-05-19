@@ -30,6 +30,9 @@ const addUniqueLootCount = async () => {
   sections.forEach((section) => updateSection(section));
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   addStyles(styles, 'unique-loot-count');
 

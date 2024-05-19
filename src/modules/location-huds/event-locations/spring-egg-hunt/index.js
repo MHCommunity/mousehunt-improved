@@ -11,6 +11,9 @@ import { updateDateDates } from '../shared';
 
 import styles from './styles.css';
 
+/**
+ * Add a button to highlight missing eggs.
+ */
 const addUnfoundEggHighlight = () => {
   const tabContent = document.querySelector('.springHuntHUD-popup-tabContentContainer');
   if (! tabContent) {
@@ -41,12 +44,18 @@ const addUnfoundEggHighlight = () => {
   stats.append(highlightEl);
 };
 
+/**
+ * Run the addUnfoundEggHighlight function multiple times with a timeout.
+ */
 const addUnfoundEggHighlightWithTimeout = () => {
   setMultipleTimeout(() => {
     addUnfoundEggHighlight();
   }, [10, 500, 1000]);
 };
 
+/**
+ * Add an event listener to each space and if it is right-clicked, toggle the class on the parent.
+ */
 const rightclickToFlag = () => {
   const board = document.querySelector('.eggSweeper');
   if (! board) {

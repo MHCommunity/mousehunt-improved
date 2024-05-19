@@ -2,6 +2,11 @@ import { addHudStyles, makeElement, onTurn } from '@utils';
 
 import styles from './styles.css';
 
+/**
+ * Get the droid and enerchi stats.
+ *
+ * @return {Object} The stats.
+ */
 const getEnergyStats = () => {
   const droid = Number.parseInt(`${user?.quests?.QuestRiftFuroma?.droid?.remaining_energy || 0}`.replaceAll(',', ''));
   const lost = Number.parseInt(`${user?.quests?.QuestRiftFuroma?.droid?.energy_lost || 0}`.replaceAll(',', ''));
@@ -17,6 +22,9 @@ const getEnergyStats = () => {
   };
 };
 
+/**
+ * Add the recall stats to the HUD.
+ */
 const addRecallCaclulation = () => {
   const { recall, afterRecall } = getEnergyStats();
 
