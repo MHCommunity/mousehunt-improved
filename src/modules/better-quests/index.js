@@ -141,6 +141,9 @@ const addResearchSmashWarning = () => {
   confirm.insertBefore(warningText, confirm.firstChild);
 };
 
+/**
+ * Move the error text to the title bar.
+ */
 const moveErrorText = () => {
   const errorTextEl = document.querySelectorAll('.questLink .requirements .error');
   if (! errorTextEl) {
@@ -173,6 +176,9 @@ const moveErrorText = () => {
   titleBar.parentNode.insertBefore(titleError, titleBar.nextSibling);
 };
 
+/**
+ * Hide the smash quest text.
+ */
 const removeSmashText = () => {
   const smashText = document.querySelector('.smashQuest');
   if (smashText) {
@@ -239,11 +245,21 @@ const assignments = [
   },
 ];
 
+/**
+ * Get the extra text for the assignment.
+ *
+ * @param {Object} assignment The assignment.
+ *
+ * @return {string} The extra text.
+ */
 const getAssignmentMeta = (assignment) => {
   const wikiLink = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replaceAll(' ', '_')}`;
   return `<a href="${wikiLink}" target="_blank" rel="noopener noreferrer">Wiki</a> | Requires: ${assignment.cost} | Reward: ${assignment.reward}`;
 };
 
+/**
+ * Update the assignments list.
+ */
 const updateAssignmentList = () => {
   const assignmentList = document.querySelectorAll('#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink');
   if (! assignmentList) {
@@ -300,6 +316,9 @@ const updateAssignmentList = () => {
   });
 };
 
+/**
+ * Update the assignment list in the popup.
+ */
 const modifyAvailableQuestsPopup = () => {
   if (! document.querySelector('#overlayPopup.zugzwangsLibraryQuestShopPopup')) {
     return;
@@ -314,6 +333,9 @@ const modifyAvailableQuestsPopup = () => {
   }
 };
 
+/**
+ * Check if we're on the hunter's hammer page with the smashQuest hash.
+ */
 const checkForQuestSmash = () => {
   if (! window.location.hash || '#smashQuest' !== window.location.hash) {
     return;
@@ -331,20 +353,27 @@ const checkForQuestSmash = () => {
   app.pages.InventoryPage.useItem(assignment);
 };
 
+/**
+ * Run the M400 helper if enabled.
+ */
 const m400IfEnabled = () => {
-  if (! getSetting('better-quests.m400-helper', true)) {
-    return;
+  if (getSetting('better-quests.m400-helper', true)) {
+    m400();
   }
-
-  m400();
 };
 
+/**
+ * The main function of the module.
+ */
 const main = () => {
   // Don't run if we're not at least a lord.
   if (! isUserTitleAtLeast('lord')) {
     return;
   }
 
+  /**
+   * Activate the module.
+   */
   const activate = () => {
     addQuestTabEventListener();
     addQuestsTab();
@@ -367,6 +396,9 @@ const main = () => {
   });
 
   onOverlayChange({
+    /**
+     * When the overlay is shown.
+     */
     show: () => {
       addResearchSmashWarning();
       modifyAvailableQuestsPopup();

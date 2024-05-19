@@ -8,6 +8,9 @@ import {
 
 import styles from './styles.css';
 
+/**
+ * Highlight doors based on the best clue.
+ */
 const highlightDoors = () => {
   if ('intersection' !== user?.quests?.QuestLabyrinth?.status) {
     return;
@@ -45,6 +48,9 @@ const highlightDoors = () => {
   }
 };
 
+/**
+ * Enhance the scramble gems feature.
+ */
 const scrambleGems = () => {
   const gems = document.querySelectorAll('.labyrinthHUD-scrambleGem');
   if (! gems) {
@@ -62,6 +68,9 @@ const scrambleGems = () => {
   });
 };
 
+/**
+ * Expand the clues bar with count.
+ */
 const expandClueBar = () => {
   const clueProgresses = document.querySelectorAll('.mh-ui-labyrinth-clue-count');
   if (clueProgresses) {
@@ -91,6 +100,9 @@ const expandClueBar = () => {
   }
 };
 
+/**
+ * Add a reminder to light the lantern during specific conditions.
+ */
 const addLanternReminder = () => {
   if ('inactive' === user?.quests?.QuestLabyrinth?.lantern_status && user?.quests?.QuestLabyrinth?.hallway_tier >= 2) {
     setTimeout(() => {
@@ -109,6 +121,9 @@ const addLanternReminder = () => {
   }
 };
 
+/**
+ * Update the door text with the current hallway status.
+ */
 const updateDoorText = () => {
   const doorTextExisting = document.querySelector('.mh-ui-labyrinth-door-text');
   if (doorTextExisting) {
@@ -189,6 +204,9 @@ const updateDoorText = () => {
   }
 };
 
+/**
+ * Highlight the clues bar when the user has 100 clues.
+ */
 const highlight100Clues = () => {
   const clues = document.querySelector('.labyrinthHUD-clueBar-totalContainer');
   if (! clues) {
@@ -202,6 +220,11 @@ const highlight100Clues = () => {
   }
 };
 
+/**
+ * Add a highlight effect to the tiles when the user clicks on them.
+ *
+ * @param {HTMLElement} tile The tile to highlight.
+ */
 const highlightTileForMinigame = (tile) => {
   tile.classList.add('mh-ui-labyrinth-tile-clicked');
 
@@ -226,6 +249,9 @@ const highlightTileForMinigame = (tile) => {
   }, 510);
 };
 
+/**
+ * Add an easter egg minigame to the labyrinth HUD.
+ */
 const minigame = async () => {
   // whenever a user clicks on a .labyrinthHUD-hallway-tile.locked, change it to a random color for 2 seconds
   const tiles = document.querySelectorAll('.labyrinthHUD-hallway-tile');
@@ -248,6 +274,9 @@ const minigame = async () => {
   });
 };
 
+/**
+ * Refresh the HUD.
+ */
 const refreshHud = async () => {
   if ('labyrinth' !== getCurrentLocation()) {
     return;
