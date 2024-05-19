@@ -1,5 +1,3 @@
-import humanizeDuration from 'humanize-duration';
-
 import {
   addHudStyles,
   getCurrentPage,
@@ -10,28 +8,13 @@ import {
   onEvent,
   onRequest,
   onTravel,
+  setupHumanizer,
   showHornMessage
 } from '@utils';
 
 import styles from './styles.css';
 
-const humanizer = humanizeDuration.humanizer({
-  language: 'shortEn',
-  languages: {
-    shortEn: {
-      /* eslint-disable jsdoc/require-jsdoc */
-      y: () => 'y',
-      mo: () => 'mo',
-      w: () => 'w',
-      d: () => 'd',
-      h: () => 'h',
-      m: () => 'm',
-      s: () => 's',
-      ms: () => 'ms',
-      /* eslint-enable jsdoc/require-jsdoc */
-    },
-  },
-});
+const humanizer = setupHumanizer();
 
 /**
  * Toggle the fuel button class.

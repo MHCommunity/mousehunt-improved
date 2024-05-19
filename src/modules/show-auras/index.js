@@ -1,11 +1,10 @@
-import humanizeDuration from 'humanize-duration';
-
 import {
   addStyles,
   getCurrentPage,
   getSetting,
   makeElement,
-  onNavigation
+  onNavigation,
+  setupHumanizer
 } from '@utils';
 
 import settings from './settings';
@@ -15,21 +14,7 @@ import listStyles from './list.css';
 import onlyIconsStyles from './icons.css';
 import styles from './styles.css';
 
-const humanizer = humanizeDuration.humanizer({
-  language: 'shortEn',
-  languages: {
-    shortEn: {
-      y: () => 'y',
-      mo: () => 'mo',
-      w: () => 'w',
-      d: () => 'd',
-      h: () => 'h',
-      m: () => 'm',
-      s: () => 's',
-      ms: () => 'ms',
-    },
-  },
-});
+const humanizer = setupHumanizer();
 
 /**
  * Get the expiry formatted.

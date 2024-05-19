@@ -1,5 +1,3 @@
-import humanizeDuration from 'humanize-duration';
-
 import {
   addStyles,
   getSetting,
@@ -8,27 +6,14 @@ import {
   onDeactivation,
   onEvent,
   onSettingsChange,
+  setupHumanizer,
   sleep
 } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
 
-const humanizer = humanizeDuration.humanizer({
-  language: 'shortEn',
-  languages: {
-    shortEn: {
-      y: () => 'y',
-      mo: () => 'mo',
-      w: () => 'w',
-      d: () => 'd',
-      h: () => 'h',
-      m: () => 'm',
-      s: () => 's',
-      ms: () => 'ms',
-    },
-  },
-});
+const humanizer = setupHumanizer();
 
 const isExact = () => {
   return getSetting('lgs-reminder.show-seconds');
