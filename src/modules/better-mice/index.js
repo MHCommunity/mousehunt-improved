@@ -64,6 +64,13 @@ const addLinks = (id) => {
   }
 };
 
+/**
+ * Check if the mouse is a favorite.
+ *
+ * @param {string} mouseId The ID of the mouse.
+ *
+ * @return {boolean} Whether the mouse is a favorite.
+ */
 const isFavorite = async (mouseId) => {
   const favorites = await doRequest('managers/ajax/pages/page.php', {
     page_class: 'HunterProfile',
@@ -82,6 +89,12 @@ const isFavorite = async (mouseId) => {
   });
 };
 
+/**
+ * Add the favorite button to the mouse view.
+ *
+ * @param {string}      mouseId   The ID of the mouse.
+ * @param {HTMLElement} mouseView The mouse view element.
+ */
 const addFavoriteButton = async (mouseId, mouseView) => {
   const state = await isFavorite(mouseId);
 
@@ -90,6 +103,9 @@ const addFavoriteButton = async (mouseId, mouseView) => {
     size: 'large',
     isSetting: false,
     state,
+    /**
+     * Save the favorite state when the button is clicked.
+     */
     onChange: () => {
       doRequest('managers/ajax/mice/mouse_crowns.php', {
         action: 'toggle_favourite',
@@ -107,6 +123,12 @@ const addFavoriteButton = async (mouseId, mouseView) => {
   }
 };
 
+/**
+ * Add the minluck to the mouse view.
+ *
+ * @param {string}      mouseId   The ID of the mouse.
+ * @param {HTMLElement} mouseView The mouse view element.
+ */
 const addMinluck = async (mouseId, mouseView) => {
   // get the description container
   const appendTo = mouseView.querySelector('.mouseView-contentContainer');
@@ -154,6 +176,12 @@ const addMinluck = async (mouseId, mouseView) => {
   appendTo.append(minluckContainer);
 };
 
+/**
+ * Add the wisdom to the mouse view.
+ *
+ * @param {string}      mouseId   The ID of the mouse.
+ * @param {HTMLElement} mouseView The mouse view element.
+ */
 const addWisdom = async (mouseId, mouseView) => {
   const values = mouseView.querySelector('.mouseView-values');
   if (! values) {
@@ -173,6 +201,9 @@ const addWisdom = async (mouseId, mouseView) => {
   makeElement('span', 'wisdom-container', ` / ${wisdom} Wisdom`, values);
 };
 
+/**
+ * Update the mouse view.
+ */
 const updateMouseView = async () => {
   const mouseView = document.querySelector('#overlayPopup .mouseView');
   if (! mouseView) {
@@ -349,6 +380,10 @@ const updateMouseView = async () => {
 };
 
 let _original;
+
+/**
+ * Replace the showMouseImage function to show the mouse view.
+ */
 const replaceShowMouseImage = () => {
   if (_original) {
     return;
@@ -356,6 +391,11 @@ const replaceShowMouseImage = () => {
 
   _original = hg.views.MouseCrownsView.showMouseImage;
 
+  /**
+   * Show the mouse view.
+   *
+   * @param {HTMLElement} element The element that was clicked.
+   */
   hg.views.MouseCrownsView.showMouseImage = (element) => {
     const type = element.getAttribute('data-mouse-type');
     if (type) {
@@ -367,6 +407,9 @@ const replaceShowMouseImage = () => {
   };
 };
 
+/**
+ * Run the module.
+ */
 const main = async () => {
   onOverlayChange({ mouse: { show: updateMouseView } });
 

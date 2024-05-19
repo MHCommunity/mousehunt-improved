@@ -2,6 +2,11 @@ import { addStyles, makeElement, onDialogShow, setMultipleTimeout } from '@utils
 
 import styles from './styles.css';
 
+/**
+ * Update the section with the unique loot count.
+ *
+ * @param {string} selector The selector for the section.
+ */
 const updateSection = async (selector) => {
   const section = document.querySelector(`#overlayPopup.hunting_summary .${selector}`);
   if (! section) {
@@ -20,6 +25,9 @@ const updateSection = async (selector) => {
   header.append(count);
 };
 
+/**
+ * Add the unique loot count to the sections.
+ */
 const addUniqueLootCount = async () => {
   const sections = [
     'environmentContainer',

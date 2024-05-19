@@ -3,6 +3,15 @@ import { getData } from '@utils/data';
 
 import { exportPopup, recursiveFetch } from './exporter';
 
+/**
+ * Get the scoreboard data.
+ *
+ * @param {Object}  scoreboard     The scoreboard to get the data for.
+ * @param {boolean} useWeekly      Whether to use the weekly scoreboards.
+ * @param {boolean} useFriendsOnly Whether to use the friends-only scoreboards.
+ *
+ * @return {Promise<Object>} The data for the scoreboard.
+ */
 const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly = false) => {
   const totalItemsEl = document.querySelector(`.item-wrapper[data-region="${scoreboard.id}"] .total-items`);
   if (totalItemsEl) {
@@ -54,6 +63,13 @@ const getScoreboardData = async (scoreboard, useWeekly = false, useFriendsOnly =
   };
 };
 
+/**
+ * Export the scoreboards.
+ *
+ * @param {Object}  options                The options for the export.
+ * @param {boolean} options.useWeekly      Whether to use the weekly scoreboards.
+ * @param {boolean} options.useFriendsOnly Whether to use the friends-only scoreboards.
+ */
 const exportScoreboards = async ({ useWeekly = false, useFriendsOnly = false } = {}) => {
   let inventoryMarkup = '';
 

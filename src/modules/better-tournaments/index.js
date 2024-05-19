@@ -11,6 +11,9 @@ import {
 import settings from './settings';
 import styles from './styles.css';
 
+/**
+ * Update the tournament HUD.
+ */
 const updateTournamentHud = async () => {
   const activeTourney = document.querySelector('#tournamentStatusHud > a.name');
   if (! activeTourney) {
@@ -139,6 +142,9 @@ const updateTournamentHud = async () => {
   }
 };
 
+/**
+ * Update the tournament list.
+ */
 const updateTournamentList = async () => {
   const beginsRows = document.querySelectorAll('.tournamentPage-tournamentRow.tournamentPage-tournamentData .tournamentPage-tournament-column.value:nth-child(3)');
   if (! beginsRows.length) {
@@ -217,6 +223,9 @@ const updateTournamentList = async () => {
   });
 };
 
+/**
+ * Update the scoreboard.
+ */
 const updateScoreboard = () => {
   const getRanks = document.querySelectorAll('.tournament-team-rank:not(.updated)');
   getRanks.forEach((rank) => {

@@ -4,6 +4,12 @@ import settings from './settings';
 import styles from './styles.css';
 
 let addedClass = '';
+
+/**
+ * Add a class to the horn view.
+ *
+ * @param {boolean} preview Whether or not this is a preview.
+ */
 const addHornClass = (preview = false) => {
   const hornView = document.querySelector('.huntersHornView');
   if (! hornView) {
@@ -34,6 +40,9 @@ const addHornClass = (preview = false) => {
   }
 };
 
+/**
+ * Listen for changes to the preference.
+ */
 const listenForPreferenceChanges = () => {
   const input = document.querySelector('#mousehunt-improved-settings-design-custom-horn select');
   if (! input) {
@@ -45,6 +54,9 @@ const listenForPreferenceChanges = () => {
   });
 };
 
+/**
+ * Add a preview link to show the horn.
+ */
 const addPreview = () => {
   const previewLink = document.querySelector('.mh-improved-custom-horn-show-horn');
   if (! previewLink) {
@@ -96,6 +108,9 @@ const addPreview = () => {
   });
 };
 
+/**
+ * Persist the horn class changes when navigating.
+ */
 const persistHornClass = () => {
   addHornClass();
   onNavigation(() => {

@@ -5,6 +5,13 @@ import { exportPopup, recursiveFetch } from './exporter';
 
 let seenMice = [];
 
+/**
+ * Get the weight of a mouse.
+ *
+ * @param {string} weight The weight of the mouse.
+ *
+ * @return {number} The weight of the mouse in ounces.
+ */
 const getWeight = (weight) => {
   weight = weight.toString().replaceAll(',', '').trim();
   // the weight will either be a string like "3 oz.", "1 lb." or 1 lb. 5 oz". we want to convert it to a number of ounces
@@ -29,6 +36,13 @@ const getWeight = (weight) => {
   return weightOz;
 };
 
+/**
+ * Get the weight of a mouse formatted.
+ *
+ * @param {string} weight The weight of the mouse.
+ *
+ * @return {string} The weight of the mouse formatted.
+ */
 const getWeightFormatted = (weight) => {
   const weightOz = getWeight(weight);
 
@@ -42,6 +56,13 @@ const getWeightFormatted = (weight) => {
   return `${weightOzRemainder} oz.`;
 };
 
+/**
+ * Get the data for a region.
+ *
+ * @param {Object} region The region to get the data for.
+ *
+ * @return {Promise<object>} The data for the region.
+ */
 const getDataForRegion = async (region) => {
   const regionEl = document.querySelector(`.item-wrapper[data-region="${region.id}"]`);
   if (regionEl) {
@@ -144,6 +165,11 @@ const getDataForRegion = async (region) => {
   };
 };
 
+/**
+ * Process the weights of the results.
+ *
+ * @param {Array<object>} results The results to process.
+ */
 const processWeights = (results) => {
   seenMice = [];
 
@@ -177,6 +203,10 @@ const processWeights = (results) => {
 
 let groups = [];
 let regions = [];
+
+/**
+ * Show the export popup for the mice data.
+ */
 const exportMicePopup = () => {
   let itemTypes;
   let title;
@@ -236,6 +266,11 @@ const exportMicePopup = () => {
 
 let exportType;
 
+/**
+ * Export the mice data.
+ *
+ * @param {string} type The type of data to export.
+ */
 const exportMice = async (type) => {
   exportType = type;
 

@@ -1,9 +1,19 @@
 import { exportPopup } from './exporter';
 
+/**
+ * Check if the favorite setups userscript is available.
+ *
+ * @return {boolean} If the favorite setups userscript is available.
+ */
 const hasFavoriteSetupsUserscript = () => {
   return localStorage.getItem('favorite-setups-saved');
 };
 
+/**
+ * Fetch the favorite setups.
+ *
+ * @return {Array} The favorite setups.
+ */
 const fetch = async () => {
   const setups = JSON.parse(localStorage.getItem('favorite-setups-saved'));
 
@@ -26,11 +36,19 @@ const fetch = async () => {
   return flattenedSetups;
 };
 
+/**
+ * Update the total items count.
+ *
+ * @param {Array} data The data.
+ */
 const afterFetch = (data) => {
   const totalItemsEl = document.querySelector('.export-items-footer .total-items');
   totalItemsEl.textContent = data.length.toLocaleString();
 };
 
+/**
+ * Export the favorite setups userscript.
+ */
 const exportFavoriteSetupsUserscript = () => {
   exportPopup({
     type: 'favorite-setups-saved',

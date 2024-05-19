@@ -30,6 +30,9 @@ import legacyStyles from './legacy-styles.css';
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
+/**
+ * Change the text in the Kings Calibrator promo.
+ */
 const kingsPromoTextChange = () => {
   const kingsPromo = document.querySelector('.shopsPage-kingsCalibratorPromo');
   if (kingsPromo) {
@@ -37,6 +40,9 @@ const kingsPromoTextChange = () => {
   }
 };
 
+/**
+ * Add the adventure book class to the adventure book banner.
+ */
 const addAdventureBookClass = () => {
   if (! user?.quests?.QuestAdventureBook?.adventure?.can_claim || ! getCurrentPage('camp')) {
     return;
@@ -50,6 +56,9 @@ const addAdventureBookClass = () => {
   adventureBook.classList.add('adventureBookBanner-complete');
 };
 
+/**
+ * Add the userscript styles.
+ */
 const addUserscriptStyles = async () => {
   const userscriptStyles = [
     { id: 'userscript-styles-no-any-trap-any-skin-styles', styles: anyTrapAnySkinStyles },
@@ -77,6 +86,9 @@ const addUserscriptStyles = async () => {
 };
 
 const addMaintenceClasses = () => {
+/**
+ * Add the maintenance banner classes.
+ */
   const banner = document.querySelector('div[style="background: #f2f27c; border:1px solid #555; border-radius: 3px; text-align: center; font-size: 12px; padding: 6px 3px"]');
   if (! banner) {
     return;

@@ -211,6 +211,9 @@ const addSimulatorIcon = () => {
   bookHud.append(simLink);
 };
 
+/**
+ * Updates the word loot quantity in the HUD.
+ */
 const updateWordLootQuantity = () => {
   const lootSpan = document.querySelector('.tableOfContentsView-wordMeter-value');
   if (! lootSpan) {
@@ -226,6 +229,9 @@ const updateWordLootQuantity = () => {
   }
 };
 
+/**
+ * Updates the words required for the next book in the HUD.
+ */
 const updateNextWordCount = () => {
   const wordsRequired = document.querySelector('.tableOfContentsProgressView-nextBook-wordsRequired');
   if (! wordsRequired) {

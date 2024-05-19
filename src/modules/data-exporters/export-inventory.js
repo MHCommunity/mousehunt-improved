@@ -17,7 +17,6 @@ const itemCategories = [
   { id: 'adventure', name: 'Adventure Items' },
 ];
 
-// eslint-disable-next-line jsdoc/require-returns
 /**
  * Get the data for the given classification.
  *

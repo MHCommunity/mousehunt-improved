@@ -7,6 +7,13 @@ import {
 } from '@utils';
 import styles from './styles.css';
 
+/**
+ * Fetch the mouse data.
+ *
+ * @param {string} mouseId The mouse ID.
+ *
+ * @return {Promise<Object>} The mouse data.
+ */
 const fetchMouseData = async (mouseId) => {
   const mouseDataRequest = await doRequest('managers/ajax/mice/getstat.php', {
     action: 'get_mice',
@@ -16,6 +23,13 @@ const fetchMouseData = async (mouseId) => {
   return mouseDataRequest?.mice?.[0];
 };
 
+/**
+ * Create the markup for the mouse data.
+ *
+ * @param {Object} mouse The mouse data.
+ *
+ * @return {HTMLElement|boolean} The mouse data markup or false.
+ */
 const makeMouseMarkup = (mouse) => {
   if (! mouse) {
     return;
@@ -66,6 +80,13 @@ const makeMouseMarkup = (mouse) => {
   return mouseData;
 };
 
+/**
+ * Create the loading markup.
+ *
+ * @param {Event} e The event.
+ *
+ * @return {HTMLElement} The loading markup.
+ */
 const makeLoadingMarkup = (e) => {
   if (mouseDataWrapper) {
     mouseDataWrapper.remove();
@@ -92,6 +113,13 @@ const makeLoadingMarkup = (e) => {
   return mouseDataWrapper;
 };
 
+/**
+ * Get the mouse data.
+ *
+ * @param {string} mouseType The mouse type.
+ *
+ * @return {Promise<Object>} The mouse data.
+ */
 const getMouseData = async (mouseType) => {
   let mouse;
   if (cachedMouseData[mouseType]) {
@@ -110,6 +138,10 @@ const getMouseData = async (mouseType) => {
 
 let mouseDataWrapper;
 let cachedMouseData = {};
+
+/**
+ * The main function.
+ */
 const main = () => {
   const miceLinks = document.querySelectorAll('.journal .content .entry .journaltext a[onclick*="MouseView.show"]');
   if (! miceLinks) {
@@ -159,6 +191,9 @@ const main = () => {
 };
 
 const hoverMice = () => {
+/**
+ * Initialize the module.
+ */
   addStyles(styles, 'better-mice-hover-mice');
 
   setTimeout(main, 500);

@@ -10,6 +10,9 @@ import {
   sessionSet
 } from '@utils';
 
+/**
+ * Make the King's Crowns tab.
+ */
 const makeKingsCrownsTab = () => {
   // Add king's crowns tab;
   const tabContainer = document.querySelector('.mousehuntHud-page-tabHeader-container');
@@ -34,6 +37,9 @@ const makeKingsCrownsTab = () => {
   return kingsCrownsTab;
 };
 
+/**
+ * Make the King's Crowns tab content.
+ */
 const makeKingsCrownsTabContentContent = () => {
   const tabContentContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
   if (! tabContentContainer) {

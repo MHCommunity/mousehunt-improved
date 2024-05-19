@@ -17,10 +17,20 @@ import { getTravelSetting, saveTravelSetting } from './travel-utils';
 
 import styles from './travel-menu.css';
 
+/**
+ * Get the hidden locations.
+ *
+ * @return {string[]} The hidden locations.
+ */
 const getHiddenLocations = () => {
   return getTravelSetting('travel-window-hidden-locations', []);
 };
 
+/**
+ * Toggle hiding a location.
+ *
+ * @param {string} location The location to toggle.
+ */
 const toggleLocation = (location) => {
   if (isLocationHidden(location)) {
     unhideLocation(location);
@@ -29,6 +39,11 @@ const toggleLocation = (location) => {
   }
 };
 
+/**
+ * Hide a location.
+ *
+ * @param {string} location The location to hide.
+ */
 const hideLocation = (location) => {
   const hiddenLocations = getHiddenLocations();
   if (hiddenLocations.includes(location)) {
@@ -39,6 +54,11 @@ const hideLocation = (location) => {
   saveTravelSetting('travel-window-hidden-locations', hiddenLocations);
 };
 
+/**
+ * Unhide a location.
+ *
+ * @param {string} location The location to unhide.
+ */
 const unhideLocation = (location) => {
   const hiddenLocations = getHiddenLocations();
   if (! hiddenLocations.includes(location)) {
@@ -49,11 +69,21 @@ const unhideLocation = (location) => {
   saveTravelSetting('travel-window-hidden-locations', hiddenLocations);
 };
 
+/**
+ * Check if a location is hidden.
+ *
+ * @param {string} location The location to check.
+ *
+ * @return {boolean} True if the location is hidden.
+ */
 const isLocationHidden = (location) => {
   const hiddenLocations = getHiddenLocations();
   return hiddenLocations.includes(location);
 };
 
+/**
+ * Open the travel window.
+ */
 const openTravelWindow = async () => {
   debug('Opening travel window');
   const regions = [
@@ -267,6 +297,9 @@ const openTravelWindow = async () => {
 let isEditing = false;
 let environments = [];
 
+/**
+ * Add the travel window to the menu.
+ */
 const makeMenuItem = () => {
   addSubmenuItem({
     id: 'mh-improved-travel-window',
@@ -279,6 +312,9 @@ const makeMenuItem = () => {
   });
 };
 
+/**
+ * Add a listener to the environment icon to open the travel window.
+ */
 const addEnvironmentIconListener = () => {
   const environmentIcon = document.querySelector('.mousehuntHud-environmentIcon');
   if (! environmentIcon) {
@@ -293,6 +329,9 @@ const addEnvironmentIconListener = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default async () => {
   addStyles(styles, 'better-travel-travel-window');
   makeMenuItem();
