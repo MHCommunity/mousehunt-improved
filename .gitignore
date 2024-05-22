@@ -2,9 +2,7 @@ node_modules
 *.log
 /dist
 notes.md
-
-# Sentry Config File
-.env.sentry-build-plugin
+.stylelintcache
 
 # Sentry Config File
 .env.sentry-build-plugin
