@@ -52,10 +52,14 @@ const addQuantityToDisplay = async () => {
       return;
     }
 
-    const details = await getUserItems([itemId], true);
-    const amount = details[0]?.quantity || 0;
+    let amount = await cacheGet(`${itemId}-quantity`, false);
+    if (false === cached) {
+      const details = await getUserItems([itemId], true);
+      amount = details[0]?.quantity || 0;
 
-    cacheSet(`${itemId}-quantity`, amount);
+
+      cacheSet(`${itemId}-quantity`, amount);
+    }
 
     const counter = document.querySelector(`.${selector}-text`);
     if (counter) {
@@ -89,7 +93,16 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
 
   const selector = getIdSelector(itemId, base);
 
-  let qty = await cacheGet(`${itemId}-quantity`, 0);
+  let qty = await cacheGet(`${itemId}-quantity`, false);
+
+  if (false === qty) {
+    const details = await getUserItems([itemId], true);
+    qty = details[0]?.quantity || 0;
+
+
+    cacheSet(`${itemId}-quantity`, qty);
+  }
+
   qty = Number.parseInt(qty, 10);
 
   const exists = document.querySelector(`.${selector}-blueprint`);
