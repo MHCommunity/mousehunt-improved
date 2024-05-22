@@ -169,7 +169,7 @@ const triggerSimPopup = () => {
     show: false,
   });
 
-  popup.setAttributes({ className: 'mh-toc-popup jsDialogFixed' });
+  popup.setAttributes({ className: 'mh-toc-popup' });
   popup.show();
 };
 
