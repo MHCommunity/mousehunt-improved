@@ -84,6 +84,9 @@ const modifySearch = async (opts) => {
   initSearch(searchInputDOM);
 
   newSelect = document.querySelector('select.marketplaceView-header-search');
+  if (! newSelect) {
+    return;
+  }
 
   // make a checkbox to toggle the search
   const toggleSearch = makeElement('input', 'mhui-marketplace-search-toggle');

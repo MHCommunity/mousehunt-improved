@@ -280,7 +280,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
 
     mhctRow.addEventListener('click', () => {
       // if we're in the right location, then equip the right cheese, otherwise show the travel dialog)
-      if (environment.id === getCurrentLocation() && app?.pages?.CampPage?.showTrapSelector) {
+      if (environment && environment.id === getCurrentLocation() && app?.pages?.CampPage?.showTrapSelector) {
         app.pages.CampPage.showTrapSelector('bait');
         jsDialog().hide();
         return;
