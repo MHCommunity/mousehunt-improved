@@ -81,7 +81,7 @@ const getShieldTimeFormatted = () => {
   const duration = humanizer(time, {
     round: true,
     units,
-    spacer: '',
+    spacer: ' ',
     delimiter: ' ',
   });
 
