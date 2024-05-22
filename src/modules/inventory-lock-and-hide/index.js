@@ -14,12 +14,30 @@ import {
 
 import styles from './styles.css';
 
+let items;
+
 /**
  * Save the locked and hidden items.
  *
  * @param {boolean} shouldUpdateTitles Should update the group titles.
  */
 const saveSettings = (shouldUpdateTitles = true) => {
+  // We also want to save the settings as types, so we can easily filter them later.
+  itemSettings.locked = itemSettings.locked.map((i) => Number.parseInt(i, 10));
+  itemSettings.hidden = itemSettings.hidden.map((i) => Number.parseInt(i, 10));
+
+
+  if (! items) {
+    items = getData('items');
+  }
+
+  const itemSettings = {
+    locked: itemSettings.locked,
+    hidden: itemSettings.hidden,
+    lockedTypes: itemSettings.locked.map((id) => items.find((item) => item.item_id === id).type),
+    hiddenTypes: itemSettings.hidden.map((id) => items.find((item) => item.item_id === id).type),
+  };
+
   saveSetting('inventory-lock-and-hide.items', itemSettings);
   if (shouldUpdateTitles) {
     updateGroupTitles();
@@ -35,6 +53,8 @@ const getSettings = () => {
   return getSetting('inventory-lock-and-hide.items', {
     locked: [],
     hidden: [],
+    lockedTypes: [],
+    hiddenTypes: [],
   });
 };
 
