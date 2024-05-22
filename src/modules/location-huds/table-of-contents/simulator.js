@@ -90,8 +90,6 @@ const simulate = (options) => {
 
     mean += (volume * chance);
 
-    console.log('volume', volume, 'chance', chance);
-
     // if (cumulativeChance >= 0.99) {
     //   results.beyondUnlucky = {
     //     volume: volume,

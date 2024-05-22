@@ -1,8 +1,8 @@
 import { addStyles } from '@utils';
 
+import journalIcons from './journal-icons.css';
 import minimalStyles from '../journal-icons-minimal/styles.css';
 import styles from './styles.css';
-import journalIcons from './journal-icons.css';
 
 /**
  * Initialize the module.

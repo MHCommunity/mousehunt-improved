@@ -1,15 +1,15 @@
-import { getCurrentLocation, makeElement, onRequest } from '@utils';
+import { getCurrentLocation, onRequest } from '@utils';
 
 /**
  * Update the shops markup.
  */
 const updateShopsMarkup = async () => {
   const shopsNodeList = document.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop');
-  if (!shopsNodeList.length) {
+  if (! shopsNodeList.length) {
     return;
   }
 
-  let shops = Array.from(shopsNodeList);
+  let shops = [...shopsNodeList];
 
   shops.sort((a, b) => {
     const aName = a.querySelector('.treasureMapPopup-shop-environment').textContent.trim().toLowerCase();
@@ -25,11 +25,11 @@ const updateShopsMarkup = async () => {
 
   const shopContainer = document.querySelector('.treasureMapShopsView-shopItems');
   while (shopContainer.firstChild) {
-    shopContainer.removeChild(shopContainer.firstChild);
+    shopContainer.firstChild.remove();
   }
 
   shops.forEach((shop) => {
-    shopContainer.appendChild(shop);
+    shopContainer.append(shop);
 
     const environmentEl = shop.querySelector('.treasureMapPopup-shop-environment');
     if (! environmentEl) {
@@ -75,6 +75,7 @@ const updateShopsMarkup = async () => {
         return;
       }
 
+      console.log(mapType); // eslint-disable-line no-console
       // todo: do something with the scrolls here.
     });
   });

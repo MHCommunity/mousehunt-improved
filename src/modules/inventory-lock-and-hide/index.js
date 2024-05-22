@@ -26,7 +26,6 @@ const saveSettings = (shouldUpdateTitles = true) => {
   itemSettings.locked = itemSettings.locked.map((i) => Number.parseInt(i, 10));
   itemSettings.hidden = itemSettings.hidden.map((i) => Number.parseInt(i, 10));
 
-
   if (! items) {
     items = getData('items');
   }
@@ -73,14 +72,14 @@ const shouldAddLocks = (currentTab) => {
  * Add the lock and hide controls to the page.
  */
 const addControlsToItems = async () => {
-  const items = document.querySelectorAll('.inventoryPage-item');
-  if (! items) {
+  const itemsEl = document.querySelectorAll('.inventoryPage-item');
+  if (! itemsEl) {
     return;
   }
 
   const currentTab = getCurrentTab();
 
-  items.forEach((item) => {
+  itemsEl.forEach((item) => {
     let id = item.getAttribute('data-item-id');
     id = Number.parseInt(id, 10);
     if (! id) {
@@ -326,12 +325,12 @@ const addBulkControls = () => {
       e.preventDefault();
       e.stopPropagation();
 
-      const items = group.querySelectorAll('.inventoryPage-item');
-      if (! items) {
+      const itemsEl = group.querySelectorAll('.inventoryPage-item');
+      if (! itemsEl) {
         return;
       }
 
-      items.forEach((item) => {
+      itemsEl.forEach((item) => {
         const id = item.getAttribute('data-item-id');
         if (! id) {
           return;

@@ -57,7 +57,6 @@ const addQuantityToDisplay = async () => {
       const details = await getUserItems([itemId], true);
       amount = details[0]?.quantity || 0;
 
-
       cacheSet(`${itemId}-quantity`, amount);
     }
 
@@ -98,7 +97,6 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
   if (false === qty) {
     const details = await getUserItems([itemId], true);
     qty = details[0]?.quantity || 0;
-
 
     cacheSet(`${itemId}-quantity`, qty);
   }

@@ -1,8 +1,4 @@
-import {
-  getSetting,
-  makeElement,
-  onRequest
-} from '@utils';
+import { getSetting, makeElement, onRequest } from '@utils';
 
 /**
  * Update the scroll content.
@@ -16,55 +12,54 @@ const updateScrollContent = (scroll) => {
   }
 
   // Replace the bold loot list with a comma separated list.
-  let matches = content.innerHTML.match(/<b>• (.*?)<\/b>/g);
+  const matches = content.innerHTML.match(/<b>• (.*?)<\/b>/g);
   if (matches && matches.length > 1) {
-    let replacements = matches.map(match => match.replace(/<b>• (.*?)<\/b>/g, '$1'));
-    let last = replacements.pop();
+    let replacements = matches.map((match) => match.replaceAll(/<b>• (.*?)<\/b>/g, '$1'));
+    const last = replacements.pop();
     replacements = replacements.map((replacement, index) => index < replacements.length - 1 ? replacement + ',' : replacement + ', and');
     replacements.push(last);
 
     let replacementIndex = 0;
-    content.innerHTML = content.innerHTML.replace(/<b>• (.*?)<\/b>/g, () => replacements[replacementIndex++]);
+    content.innerHTML = content.innerHTML.replaceAll(/<b>• (.*?)<\/b>/g, () => replacements[replacementIndex++]);
   }
 
   let auras = [];
 
   const aurasEl = content.querySelectorAll('.treasureMapInventoryView-scrollCase-aura');
   if (aurasEl.length) {
-    auras = Array.from(aurasEl);
+    auras = [...aurasEl];
   }
 
   // The content is the name div, the text content, and then the aura divs. We want to wrap the text content and aura divs in a div, so we can apply a class to the text content.
   // Create new divs for the text and the auras
-  let textDiv = makeElement('div', 'scroll-text');
-  let aurasDiv = makeElement('div', 'scroll-auras');
+  const textDiv = makeElement('div', 'scroll-text');
+  const aurasDiv = makeElement('div', 'scroll-auras');
 
   // Iterate over the child nodes of the content element
-  Array.from(content.childNodes).forEach((node) => {
+  [...content.childNodes].forEach((node) => {
     if (node.nodeType === Node.TEXT_NODE || node.tagName === 'B' || node.tagName === 'BR') {
-      textDiv.appendChild(node);
+      textDiv.append(node);
     } else if (auras.includes(node)) {
-      aurasDiv.appendChild(node);
+      aurasDiv.append(node);
     }
   });
 
-  content.appendChild(textDiv);
-  content.appendChild(aurasDiv);
-
+  content.append(textDiv);
+  content.append(aurasDiv);
 
   // Simplify the aura text.
   if (aurasEl.length) {
     aurasEl.forEach((aura) => {
       const title = aura.querySelector('b');
       if (title) {
-        title.textContent = title.textContent.replace('Opening this map\'s reward will give hunters ', 'This map\'s reward gives you ')
+        title.textContent = title.textContent.replace('Opening this map\'s reward will give hunters ', 'This map\'s reward gives you ');
       }
 
       aura.innerHTML = aura.innerHTML
         .replace('This special Trap Aura', 'This ')
         .replace('with the chance at the following additional loot:', 'with the chance of ')
         .replace('- Chrome Theme Scrap II', 'Chrome Theme Scrap II')
-        .replace('- Chrome Charms', ' and Chrome Charms.')
+        .replace('- Chrome Charms', ' and Chrome Charms.');
     });
   }
 };
@@ -73,7 +68,7 @@ const updateScrollContent = (scroll) => {
  * Check if we need to lock or hide the scroll from the inventory lock and hide module.
  *
  * @param {Element} scroll     The scroll element.
- * @param {String}  scrollType The scroll type.
+ * @param {string}  scrollType The scroll type.
  */
 const maybeLockAndHide = (scroll, scrollType) => {
   let lockAndHide = getSetting('inventory-lock-and-hide.items', {});
@@ -137,7 +132,6 @@ const updateFromClick = async () => {
    * @param {Object} data The data.
    */
   hg.controllers.TreasureMapController.showInventory = (data) => {
-    console.log('Showing inventory', data);
     _showInventory(data);
     updateScrollsMarkup();
   };

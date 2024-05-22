@@ -19,7 +19,7 @@ const update = async () => {
   };
 
   saveSetting('inventory-lock-and-hide.items', itemSettings);
-}
+};
 
 export default {
   id: '0.45.0',
