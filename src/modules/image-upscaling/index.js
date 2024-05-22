@@ -13,7 +13,7 @@ import styles from './styles.css';
 import viewsStyles from './views.css';
 
 import upscaledImages from './upscaled-images.css';
-import journalThemes from './journal-themes.css';
+import journalThemes from './upscaled-journal-theme-images.css';
 
 /**
  * The ImageUpscaler class.
