@@ -75,7 +75,7 @@
     "jsdoc/require-description-complete-sentence": "warn",
     "jsdoc/require-description": "warn",
     "jsdoc/require-hyphen-before-param-description": ["warn", "never"],
-    "jsdoc/require-jsdoc": ["warn", {
+    "jsdoc/require-jsdoc": ["off", {
       "require": {
         "ArrowFunctionExpression": true,
         "ClassDeclaration":  true,
