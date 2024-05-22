@@ -122,7 +122,7 @@ const addJournalProcessingEvents = async () => {
     if (data.journal_markup && data.journal_markup.length > 0) {
       processSingleEntries(data.journal_markup);
     }
-  });
+  }, true);
 
   onEvent('journal-history-entry-added', processEntries);
 };
