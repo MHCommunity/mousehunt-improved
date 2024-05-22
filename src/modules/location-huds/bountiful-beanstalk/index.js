@@ -270,11 +270,11 @@ const addCraftingButtons = async () => {
       }
 
       const className = isNormal ? 'mh-crafting-action' : 'mh-crafting-action lightBlue';
-      const title = isNormal ? `Craft ${amount}` : `Craft ${amount} using Magic Essence`;
+      const title = isNormal ? `Craft ${amount.toString().replace('-normal', '')}` : `Craft ${amount} using Magic Essence`;
       const type = isNormal ? baitAmounts[baitType].shopNormal : baitAmounts[baitType].shop;
 
       makeMhButton({
-        text: `Craft ${amount}`,
+        text: `Craft ${amount.toString().replace('-normal', '')}`,
         className,
         title,
         size: 'tiny',
