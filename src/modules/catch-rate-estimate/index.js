@@ -139,14 +139,26 @@ const renderList = async (list) => {
     const catchRate = await getCatchRate(mousePower, mouseEffectiveness);
 
     const crClass = ['mh-improved-cre-data'];
+    const minluckClass = ['mh-improved-cre-data'];
+
     if (catchRate.rate * 100 >= 100) {
       crClass.push('mh-improved-cre-data-good');
+      minluckClass.push('mh-improved-cre-data-good');
     } else if (catchRate.rate * 100 <= 60) {
       crClass.push('mh-improved-cre-data-bad');
+      minluckClass.push('mh-improved-cre-data-bad');
     }
 
     if (user.trap_luck >= minluck) {
       crClass.push('mh-improved-cre-data-minlucked');
+      minluckClass.push('mh-improved-cre-data-minlucked');
+    }
+
+    // Ultimate charm.
+    if (1075 == user.trinket_item_id) { // eslint-disable-line eqeqeq
+      crClass.push('mh-improved-cre-data-ultimate');
+      catchRate.rate = 1;
+      catchRate.percent = '100%';
     }
 
     rows.push({
@@ -156,6 +168,7 @@ const renderList = async (list) => {
       catchRateValue: catchRate.rate,
       catchRate: catchRate.percent,
       crClass,
+      minluckClass,
     });
   }
 
@@ -173,7 +186,7 @@ const renderList = async (list) => {
     return;
   }
 
-  rows.forEach(({ mouse, type, minluck, catchRate, crClass }) => {
+  rows.forEach(({ mouse, type, minluck, catchRate, crClass, minluckClass }) => {
     const row = makeElement('tr', 'mh-improved-cre-row');
     const name = makeElement('td', 'mh-improved-cre-name');
     const nameLink = makeElement('a', '', mouse);
@@ -184,7 +197,7 @@ const renderList = async (list) => {
     name.append(nameLink);
     row.append(name);
 
-    makeElement('td', crClass, minluck, row);
+    makeElement('td', minluckClass, minluck, row);
     makeElement('td', crClass, catchRate, row);
 
     table.append(row);
