@@ -4,6 +4,11 @@ import {
   onRequest
 } from '@utils';
 
+/**
+ * Update the scroll content.
+ *
+ * @param {Element} scroll The scroll element.
+ */
 const updateScrollContent = (scroll) => {
   const content = scroll.querySelector('.treasureMapInventoryView-scrollCase-content');
   if (! content) {
@@ -64,19 +69,24 @@ const updateScrollContent = (scroll) => {
   }
 };
 
+/**
+ * Check if we need to lock or hide the scroll from the inventory lock and hide module.
+ *
+ * @param {Element} scroll     The scroll element.
+ * @param {String}  scrollType The scroll type.
+ */
 const maybeLockAndHide = (scroll, scrollType) => {
-  // Check if we need to lock or hide the scroll from the inventory lock and hide module.
-  const lockAndHide = getSetting('inventory-lock-and-hide.items', {
+  let lockAndHide = getSetting('inventory-lock-and-hide.items', {});
+  lockAndHide = {
     locked: [],
     hidden: [],
     lockedTypes: [],
-    hiddenTypes: []
-  });
+    hiddenTypes: [],
+    ...lockAndHide
+  };
 
-  console.log(lockAndHide);
-
-  const locked = lockAndHide.lockedTypes.includes(scrollType);
-  const hidden = lockAndHide.hiddenTypes.includes(scrollType);
+  const locked = lockAndHide?.lockedTypes?.includes(scrollType);
+  const hidden = lockAndHide?.hiddenTypes?.includes(scrollType);
 
   if (locked) {
     scroll.classList.add('locked');
@@ -88,17 +98,9 @@ const maybeLockAndHide = (scroll, scrollType) => {
   }
 };
 
-const addMHCTLink = (action, scrollType) => {
-  const miceLink = makeElement('a', 'map-link', 'Mice List');
-  // TODO: convert the scrollType to the MHCT numeric ID.
-  miceLink.href = `https://mhct.win/mapper.php?item=${scrollType}`;
-  miceLink.target = '_blank';
-  miceLink.rel = 'noopener noreferrer';
-
-  action.appendChild(miceLink);
-  action.classList.add('has-link');
-};
-
+/**
+ * Update the scrolls markup and reorganize the content.
+ */
 const updateScrollsMarkup = () => {
   const scrolls = document.querySelectorAll('.treasureMapInventoryView-scrollCase');
   if (! scrolls.length) {
@@ -116,7 +118,6 @@ const updateScrollsMarkup = () => {
       const scrollType = button.getAttribute('data-item-type');
       if (scrollType) {
         maybeLockAndHide(scroll, scrollType);
-        addMHCTLink(action, scrollType);
       }
     }
 

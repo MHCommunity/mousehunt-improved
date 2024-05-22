@@ -1,16 +1,5 @@
 import { getCurrentLocation, makeElement, onRequest } from '@utils';
 
-const addMHCTLink = (action, scrollType) => {
-  const miceLink = makeElement('a', 'map-link', 'Mice List');
-  // TODO: convert the scrollType to the MHCT numeric ID.
-  miceLink.href = `https://mhct.win/mapper.php?item=${scrollType}`;
-  miceLink.target = '_blank';
-  miceLink.rel = 'noopener noreferrer';
-
-  action.appendChild(miceLink);
-  action.classList.add('has-link');
-};
-
 /**
  * Update the shops markup.
  */
@@ -86,7 +75,7 @@ const updateShopsMarkup = async () => {
         return;
       }
 
-      addMHCTLink(action, mapType);
+      // todo: do something with the scrolls here.
     });
   });
 };
