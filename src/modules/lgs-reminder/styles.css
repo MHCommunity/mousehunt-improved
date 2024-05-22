@@ -61,7 +61,6 @@
   bottom: 0;
   left: 15px;
   font-size: 9px;
-  white-space: nowrap;
 }
 
 .mousehunt-improved-lgs-reminder-new {
@@ -69,6 +68,7 @@
   align-items: center;
   justify-content: center;
   padding: 2px 5px;
+  text-align: center;
   background: linear-gradient(#fff 45%, #f8e7bb 55%);
   border: 1px solid #d4af37;
   border-bottom: none;

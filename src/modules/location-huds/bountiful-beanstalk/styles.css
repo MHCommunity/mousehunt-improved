@@ -408,3 +408,17 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 .folkloreForestRegionView-trapWarningContainer.active {
   z-index: 35;
 }
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlock--disabled {
+  display: block;
+  background: #11250e;
+  opacity: 0.3;
+}
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlock--disabled:hover {
+  opacity: 1;
+}
+
+.headsUpDisplayBountifulBeanstalk__embellishmentBlock--disabled .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
+  opacity: 0.3;
+}

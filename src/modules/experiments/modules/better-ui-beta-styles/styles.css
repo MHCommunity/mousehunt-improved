@@ -2,11 +2,11 @@
   padding-bottom: 0;
   margin-top: 10px;
   margin-bottom: 10px;
+  background-color: transparent;
 }
 
 .pageFrameView-content {
   margin: 0 -10px;
-  background-color: transparent;
   border: 10px solid #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px -2px #000;
