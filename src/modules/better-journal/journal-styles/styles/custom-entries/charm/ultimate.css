@@ -8,12 +8,12 @@
 .journal .content .ultimate_pop::before,
 .journal .content .ultimate_intact::before {
   position: absolute;
-  top: 25px;
+  top: 12px;
   left: 10px;
-  width: 56px;
-  height: 56px;
+  width: 53px;
+  height: 53px;
   content: "";
-  border: 2px solid #49eec2;
+  border: 5px solid #49eec2;
 }
 
 .journal .content .ultimate_intact {
