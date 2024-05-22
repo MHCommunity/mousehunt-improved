@@ -22,6 +22,7 @@ import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
 
 import community from './modules/community';
+import scrolls from './modules/scrolls';
 import shops from './modules/shops';
 import sidebar from './modules/sidebar';
 
@@ -408,6 +409,7 @@ const init = async () => {
   intercept();
 
   relicHunterUpdate();
+  scrolls();
   shops();
 
   if (getSetting('better-maps.community')) {
