@@ -146,38 +146,11 @@ const removeHudStyles = () => {
   });
 };
 
-/**
- * Add external styles to the page.
- *
- * @param {string} url The URL of the external styles.
- *
- * @return {Element} The style element.
- */
-const addExternalStyles = async (url) => {
-  const identifier = url.split('/').pop().split('.').shift();
-
-  const existingStyles = document.querySelector(`#${identifier}-external`);
-
-  if (existingStyles) {
-    return existingStyles;
-  }
-
-  const style = document.createElement('link');
-  style.id = `${identifier}-external`;
-  style.rel = 'stylesheet';
-  style.href = `${url}?v=${mhImprovedVersion}`;
-
-  document.head.append(style);
-
-  return style;
-};
-
 export {
   addStylesDirect,
   addHudStyles,
   addModuleStyles,
   addStyles,
   removeHudStyles,
-  removeStyles,
-  addExternalStyles
+  removeStyles
 };

@@ -1,5 +1,4 @@
 import {
-  addExternalStyles,
   addStyles,
   getData,
   getFlag,
@@ -12,6 +11,9 @@ import pathsToSkip from './paths-to-skip.json';
 
 import styles from './styles.css';
 import viewsStyles from './views.css';
+
+import upscaledImages from './upscaled-images.css';
+import journalThemes from './journal-themes.css';
 
 /**
  * The ImageUpscaler class.
@@ -296,8 +298,7 @@ class ImageUpscaler {
  * The ImageUpscaler instance.
  */
 const init = async () => {
-  addExternalStyles('https://static.mouse.rip/upscaled-images.css?');
-  addStyles([styles, viewsStyles], 'image-upscaling');
+  addStyles([upscaledImages, styles, viewsStyles], 'image-upscaling');
 
   imageUpscaler = new ImageUpscaler();
   imageUpscaler.handleUpscalingImages();
@@ -308,7 +309,7 @@ const init = async () => {
   onDialogShow('all', imageUpscaler.handleUpscalingImages);
 
   if (! getFlag('no-image-upscaling-journal-themes')) {
-    addExternalStyles('https://static.mouse.rip/upscaled-journal-theme-images.css');
+    addStyles(journalThemes, 'image-upscaling-journal-themes');
   }
 };
 

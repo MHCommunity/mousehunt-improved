@@ -21,6 +21,7 @@
     "dev:chrome": "node scripts/build-extension.mjs chrome watch",
     "dev:firefox": "node scripts/build-extension.mjs firefox watch",
     "dev": "node scripts/build-extension.mjs chrome watch",
+    "get-css": "./scripts/get-css",
     "fix-map-groups": "node scripts/fix-map-groups.mjs",
     "lint:css:fix": "stylelint 'src/**/*.css' --fix",
     "lint:css": "stylelint 'src/**/*.css'",

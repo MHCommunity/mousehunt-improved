@@ -1,7 +1,8 @@
-import { addExternalStyles, addStyles } from '@utils';
+import { addStyles } from '@utils';
 
 import minimalStyles from '../journal-icons-minimal/styles.css';
 import styles from './styles.css';
+import journalIcons from './journal-icons.css';
 
 /**
  * Initialize the module.
@@ -12,7 +13,5 @@ export default async () => {
     return;
   }
 
-  addExternalStyles('https://static.mouse.rip/journal-icons.css');
-
-  addStyles([styles, minimalStyles], 'better-journal-icons');
+  addStyles([journalIcons, styles, minimalStyles], 'better-journal-icons');
 };
