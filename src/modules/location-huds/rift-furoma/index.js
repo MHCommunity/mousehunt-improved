@@ -31,8 +31,19 @@ const addRecallCaclulation = () => {
   const statBlocks = document.querySelector('.riftFuromaHUD-droid-details .riftFuromaHUD-chargeLevel-stat.droid_energy');
   if (statBlocks) {
     const existingRecall = document.querySelector('.mh-improved-recall');
-
     const afterRecallEl = makeElement('div', 'mh-improved-recall');
+
+    if ('---' === user.quests.QuestRiftFuroma.droid.remaining_energy) {
+      if (existingRecall) {
+        existingRecall.remove();
+      }
+
+      if (afterRecallEl) {
+        afterRecallEl.remove();
+      }
+
+      return;
+    }
 
     makeElement('div', 'riftFuromaHUD-chargeLevel-stat-label', 'After Recall', afterRecallEl);
     makeElement('div', 'riftFuromaHUD-chargeLevel-stat-value', afterRecall.toLocaleString(), afterRecallEl);
