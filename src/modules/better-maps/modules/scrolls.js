@@ -70,7 +70,7 @@ const updateScrollContent = (scroll) => {
  * @param {Element} scroll     The scroll element.
  * @param {string}  scrollType The scroll type.
  */
-const maybeLockAndHide = (scroll, scrollType) => {
+const maybeLockAndHide = (scroll, action, scrollType) => {
   let lockAndHide = getSetting('inventory-lock-and-hide.items', {});
   lockAndHide = {
     locked: [],
@@ -112,7 +112,7 @@ const updateScrollsMarkup = () => {
     if (button) {
       const scrollType = button.getAttribute('data-item-type');
       if (scrollType) {
-        maybeLockAndHide(scroll, scrollType);
+        maybeLockAndHide(scroll, action, scrollType);
       }
     }
 
