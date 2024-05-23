@@ -1,4 +1,4 @@
-import { addEvent, addStyles } from '@utils';
+import { addEvent, addStyles, getUserTitle, getUserTitleShield } from '@utils';
 
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -44,10 +44,34 @@ const addBadgeClass = (entry) => {
 };
 
 /**
+ * Replace the rank up icon with the user's title shield.
+ *
+ * @param {HTMLElement} entry The journal entry.
+ */
+const updateRankUpIcon = (entry) => {
+  if (! entry.classList.contains('titlechange')) {
+    return;
+  }
+
+  const rankUp = entry.querySelector('.journalimage img');
+  if (! rankUp) {
+    return;
+  }
+
+  const shield = getUserTitleShield(getUserTitle());
+  if (! shield) {
+    return;
+  }
+
+  rankUp.src = shield;
+};
+
+/**
  * Initialize the module.
  */
 export default async () => {
   addStyles(styles, 'better-journal-styles');
 
   addEvent('journal-entry', addBadgeClass, { id: 'better-journal-styles-badge' });
+  addEvent('journal-entry', updateRankUpIcon, { id: 'better-journal-styles-rank-up' });
 };

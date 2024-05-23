@@ -298,10 +298,52 @@ const getUserTitle = () => {
     .trim();
 };
 
+/**
+ * Get the user's title shield.
+ *
+ * @param {string} titleId The title ID.
+ *
+ * @return {string|boolean} The title shield URL or false if not found.
+ */
+const getUserTitleShield = (titleId = null) => {
+  if (! titleId) {
+    titleId = getUserTitle();
+  }
+
+  const shields = {
+    recruit: 'https://www.mousehuntgame.com/images/titles/3f1e44bbaa7138da4c326819e9f3f0a8.png',
+    apprentice: 'https://www.mousehuntgame.com/images/titles/6f4673dd2d9d1e98b4569667d702a775.png',
+    initiate: 'https://www.mousehuntgame.com/images/titles/e96387f7261b95c0eeab9291e4e594e1.png',
+    journeyman: 'https://www.mousehuntgame.com/images/titles/ad6875955f541159133c6d3798519f81.png',
+    master: 'https://www.mousehuntgame.com/images/titles/35ee6056a09037fb13a9195881875045.png',
+    grandmaster: 'https://www.mousehuntgame.com/images/titles/0da3761747914f497c16dc2051ba132d.png',
+    legendary: 'https://www.mousehuntgame.com/images/titles/fca35751046f4bcc972716ca484b6d61.png',
+    hero: 'https://www.mousehuntgame.com/images/titles/0567284d6e12aaaed35ca5912007e070.png',
+    knight: 'https://www.mousehuntgame.com/images/titles/398dca9a8c7703de969769491622ca32.png',
+    lord: 'https://www.mousehuntgame.com/images/titles/9a6acd429a9a3a4849ed13901288b0b8.png',
+    baron: 'https://www.mousehuntgame.com/images/titles/ea9c0ec2e6d3d81c14e61f5ce924d0e1.png',
+    count: 'https://www.mousehuntgame.com/images/titles/dd11711a25b80db90e0306193f2e8d78.png',
+    duke: 'https://www.mousehuntgame.com/images/titles/eb46ac1e8197b13299ab860f07d963db.png',
+    grand_duke: 'https://www.mousehuntgame.com/images/titles/87937fa96bbb3b2dd3225df883002642.png',
+    archduke: 'https://www.mousehuntgame.com/images/titles/043efe31de4f0f2e0ddca590fe829032.png',
+    viceroy: 'https://www.mousehuntgame.com/images/titles/e2e79f6f9201a4d4e7a89684fbb5356f.png',
+    elder: 'https://www.mousehuntgame.com/images/titles/0f3cf224bf98457f6b5bad91ab1c7bd2.png',
+    sage: 'https://www.mousehuntgame.com/images/titles/cb49e43c5e4460da7c09fe28ca4f44ce.png',
+    fabled: 'https://www.mousehuntgame.com/images/titles/5daba92a8d609834aa8b789f37544e08.png',
+  };
+
+  if (titleId in shields) {
+    return shields[titleId];
+  }
+
+  return false;
+};
+
 export {
   getUserItems,
   getAnonymousUserHash,
   getUserSetupDetails,
   isUserTitleAtLeast,
-  getUserTitle
+  getUserTitle,
+  getUserTitleShield
 };
