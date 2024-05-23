@@ -99,6 +99,10 @@ const experiments = [
     title: 'Location HUDs - Floating Islands: Make airship draggable',
   },
   {
+    id: 'experiments.prologue-pond-wood-boat',
+    title: 'Location HUDs - Prologue Pond: Normal boat color',
+  },
+  {
     id: 'experiments.new-settings-styles-columns',
     title: 'Settings: Columns',
     load: newSettingsStylesColumns,

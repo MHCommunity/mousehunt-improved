@@ -1,7 +1,8 @@
-import { addHudStyles, onRequest } from '@utils';
+import { addHudStyles, getSetting, onRequest } from '@utils';
 import folkloreForest from '../shared/folklore-forest';
 import keepInventoryToggled from '../shared/folklore-forest/keep-inventory-open';
 
+import boatStyles from './boats.css';
 import regionStyles from '../shared/folklore-forest/styles.css';
 import styles from './styles.css';
 
@@ -44,7 +45,13 @@ const updatePondLootQuantity = () => {
  * Initialize the module.
  */
 export default async () => {
-  addHudStyles([regionStyles, styles]);
+  const stylesToAdd = [regionStyles, styles];
+
+  if (getSetting('experiments.prologue-pond-wood-boat', false)) {
+    stylesToAdd.push(boatStyles);
+  }
+
+  addHudStyles(stylesToAdd);
 
   folkloreForest();
 
