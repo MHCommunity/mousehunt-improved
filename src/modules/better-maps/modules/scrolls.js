@@ -68,6 +68,7 @@ const updateScrollContent = (scroll) => {
  * Check if we need to lock or hide the scroll from the inventory lock and hide module.
  *
  * @param {Element} scroll     The scroll element.
+ * @param {Element} action     The action element.
  * @param {string}  scrollType The scroll type.
  */
 const maybeLockAndHide = (scroll, action, scrollType) => {
