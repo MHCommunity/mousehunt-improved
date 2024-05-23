@@ -224,12 +224,12 @@ const updateGroupTitles = () => {
  * Add the locked and hidden classes to the items.
  */
 const maybeLockOrHideItems = async () => {
-  const items = document.querySelectorAll('.inventoryPage-item');
-  if (! items) {
+  const itemsEl = document.querySelectorAll('.inventoryPage-item');
+  if (! itemsEl) {
     return;
   }
 
-  for (const item of items) {
+  for (const item of itemsEl) {
     let id = item.getAttribute('data-item-id');
     id = Number.parseInt(id, 10);
     if (! id) {
@@ -288,12 +288,12 @@ const addBulkControls = () => {
       e.preventDefault();
       e.stopPropagation();
 
-      const items = group.querySelectorAll('.inventoryPage-item');
-      if (! items) {
+      const itemsEl = group.querySelectorAll('.inventoryPage-item');
+      if (! itemsEl) {
         return;
       }
 
-      items.forEach((item) => {
+      itemsEl.forEach((item) => {
         const id = item.getAttribute('data-item-id');
         if (! id) {
           return;
@@ -448,11 +448,11 @@ const onSetPage = () => {
 /**
  * Add styles to hide tags and items.
  *
- * @param {Object} items The items data.
+ * @param {Object} theItems The items data.
  */
-const addHideStyles = (items) => {
+const addHideStyles = (theItems) => {
   // TODO: this doesn't take owned items into for the category hiding
-  if (! items || ! items.components) {
+  if (! theItems || ! theItems.components) {
     return;
   }
 
@@ -474,7 +474,7 @@ const addHideStyles = (items) => {
   };
 
   // Group items by their tags
-  items.components.forEach((item) => {
+  theItems.components.forEach((item) => {
     if (! item.tag_types || ! item.classification) {
       return;
     }
