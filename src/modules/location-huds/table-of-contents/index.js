@@ -25,6 +25,8 @@ import styles from './styles.css';
  */
 const displayResults = (results) => {
   const currentVolume = user?.quests?.QuestTableOfContents?.current_book?.volume || 0;
+  const currentWordCount = user?.quests?.QuestTableOfContents?.current_book?.word_count || 0;
+
   let text = `<div class="mh-toc-sim-results">
   <div class="stats">
     <div class="group current">
@@ -34,23 +36,23 @@ const displayResults = (results) => {
       </div>
       <div class="result">
         <div class="label">Current Words</div>
-        <div class="value">${user?.quests?.QuestTableOfContents?.current_book?.word_count?.toLocaleString()}</div>
+        <div class="value">${currentWordCount?.toLocaleString()}</div>
       </div>
     </div>
     <div class="group mean">
       <div class="result">
-        <div class="label">Average Volume</div>
-        <div class="value">${results?.mean?.volume}</div>
+        <div class="label">Expected Volume</div>
+        <div class="value">${results?.mostLikely?.volume.toLocaleString()}</div>
       </div>
       <div class="result">
-        <div class="label">Average Words</div>
-        <div class="value">${results?.mean?.words?.toLocaleString()}</div>
+        <div class="label">Expected Words</div>
+        <div class="value">${results?.mostLikely?.words?.toLocaleString()}</div>
       </div>
     </div>
     <div class="group gnawbels">
       <div class="result">
-        <div class="label">Average Gnawbels</div>
-        <div class="value">${results?.mean?.gnawbels?.toLocaleString()}</div>
+        <div class="label">Expected Gnawbels</div>
+        <div class="value">${results?.mostLikely?.gnawbels?.toLocaleString()}</div>
       </div>
     </div>
   </div>
@@ -58,14 +60,14 @@ const displayResults = (results) => {
   <div class="percents">
     <ol>
       <li class="header">
-        <span class="number">Chance</span>
         <span class="percent">Volume</span>
-        <span class="words">Words</span>
+        <span class="number">Chance</span>
+        <span class="words">Words Remaining</span>
         <span class="gnabels">Gnawbels</span>
       </li>`;
 
   for (const chance of results?.chances || []) {
-    const chancePercent = Math.floor(chance.chance * 1000) / 10;
+    const chancePercent = Math.floor(chance.cumulativeChance * 1000) / 10;
 
     if (chancePercent < 1) {
       continue;
@@ -94,52 +96,28 @@ const displayResults = (results) => {
       break;
     }
 
+    let wordsToGo = chance.words - currentWordCount;
+    if (wordsToGo < 0) {
+      wordsToGo = 0;
+    }
+
     text += `<li class="result ${classname}">
-      <span class="number">${chancePercent}%</span>
       <span class="volume">${chance.volume}</span>
-      <span class="words">${chance.words?.toLocaleString()}</span>
+      <span class="number">${chancePercent.toFixed(1)}%</span>
+      <span class="words">${wordsToGo?.toLocaleString()}</span>
       <span class="gnawbels">${chance.gnawbels?.toLocaleString()}</span>
     </li>`;
   }
 
-  // <li class="result guaranteed">
-  //   <span class="number">99%</span>
-  //   <span class="volume">${results?.beyondUnlucky?.volume}</span>
-  //   <span class="words">${results?.beyondUnlucky?.words?.toLocaleString()}</span>
-  //   <span class="gnawbels">${results?.beyondUnlucky?.gnawbels?.toLocaleString()}</span>
-  // </li>
-  // <li class="result good">
-  //   <span class="number">75%</span>
-  //   <span class="volume">${results?.unlucky?.volume}</span>
-  //   <span class="words">${results?.unlucky?.words?.toLocaleString()}</span>
-  //   <span class="gnawbels">${results?.unlucky?.gnawbels?.toLocaleString()}</span>
-  // </li>
-  // <li class="result maybe">
-  //   <span class="number">50%</span>
-  //   <span class="volume">${results?.median?.volume}</span>
-  //   <span class="words">${results?.median?.words?.toLocaleString()}</span>
-  //   <span class="gnawbels">${results?.median?.gnawbels?.toLocaleString()}</span>
-  // </li>
-  // <li class="result bad">
-  //   <span class="number">25%</span>
-  //   <span class="volume">${results?.lucky?.volume}</span>
-  //   <span class="words">${results?.lucky?.words?.toLocaleString()}</span>
-  //   <span class="gnawbels">${results?.lucky?.gnawbels?.toLocaleString()}</span>
-  // </li>
-  // <li class="result worst">
-  //   <span class="number">1%</span>
-  //   <span class="volume">${results?.beyondLucky?.volume}</span>
-  //   <span class="words">${results?.beyondLucky?.words?.toLocaleString()}</span>
-  //   <span class="cumulative">${results?.beyondLucky?.gnawbels?.toLocaleString()}</span>
-  // </li>
-
   text += '</ol></div></div>';
+  text += `<div class="info">Based on ${getOptions().TotalSimulations.toLocaleString()} simulations with Final Draft Derby equipped.</div>`;
 
   return text;
 };
 
 /**
  * Creates simulator options.
+ *
  * @return {EncySimOptions} Sim options.
  */
 const getOptions = () => {
@@ -161,6 +139,9 @@ const getOptions = () => {
   };
 };
 
+/**
+ * Get the data and display the sim popup.
+ */
 const triggerSimPopup = () => {
   const data = simulate(getOptions());
   const popup = createPopup({
@@ -173,6 +154,11 @@ const triggerSimPopup = () => {
   popup.show();
 };
 
+/**
+ * Helper to attach the sim to click events.
+ *
+ * @param {string} selector The selector to attach to.
+ */
 const doSimulation = (selector) => {
   const simPopup = document.querySelector(selector);
   if (! simPopup) {
@@ -182,11 +168,17 @@ const doSimulation = (selector) => {
   simPopup.addEventListener('click', triggerSimPopup);
 };
 
+/**
+ * Attach the simulator events to the HUD.
+ */
 const addSimulatorEvents = () => {
   doSimulation('.tableOfContentsProgressView-book-wordCount');
   doSimulation('.tableOfContentsProgressView-book-huntsRemaining');
 };
 
+/**
+ * Adds the simulator icon to the HUD.
+ */
 const addSimulatorIcon = () => {
   const bookHud = document.querySelector('.folkloreForestRegionView-environmentHud');
   if (! bookHud) {

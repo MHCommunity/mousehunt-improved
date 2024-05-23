@@ -67,6 +67,7 @@
 
 .mh-toc-sim-results .percents {
   padding-top: 5px;
+  margin-top: -25px;
   font-size: 13px;
   background-color: rgb(195 195 195 / 10%);
   border-radius: 5px;
@@ -77,7 +78,7 @@
   flex-direction: column;
   align-items: stretch;
   height: 100%;
-  max-height: 250px;
+  max-height: 290px;
   overflow-x: auto;
   font-size: 13px;
   color: #d2e5d2;
@@ -93,7 +94,7 @@
 .mh-toc-sim-results .percents li {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  justify-items: center;
+  place-items: center;
   padding: 3px;
   margin-bottom: 0.25em;
   text-align: right;
@@ -160,6 +161,8 @@
 
 .mh-toc-sim-results .percents .header .words {
   justify-self: center;
+  font-size: 10px;
+  text-align: center;
 }
 
 #overlayPopup.mh-toc-popup .title::before {
@@ -203,4 +206,13 @@ a.mh-toc-sim-link .mousehuntTooltip {
 
 .tableOfContentsView-disarmPreferenceButton {
   bottom: 50px;
+}
+
+.mh-toc-popup .info {
+  position: absolute;
+  bottom: 30px;
+  left: 20px;
+  margin: 0;
+  font-size: 10px;
+  color: #000;
 }

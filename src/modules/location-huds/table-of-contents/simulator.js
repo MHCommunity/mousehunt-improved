@@ -1,3 +1,5 @@
+import { debuglog } from "@utils";
+
 // @ts-nocheck
 const MousePool = {
   PreEncyclopedia: {
@@ -27,15 +29,20 @@ const MouseStats = {
 
 /**
  * Run the ToC simulation!
+ *
  * @param {EncySimOptions} options Simulator options.
+ *
  * @return {EncySimResults} Results of the simulation.
  */
 const simulate = (options) => {
   updateWords(options.Upgrades);
   updateCR(options.TrapPower, options.TrapLuck);
 
+  let debug = {};
+
   /** @type {Object<number, number>} */
   const volumeCountByVolume = {};
+  const huntsByVolume = {};
   for (let i = 0; i < options.TotalSimulations; i++) {
     let wordCount = options.WritingSession.WordsWritten;
     let huntsRemaining = options.WritingSession.HuntsRemaining;
@@ -63,7 +70,22 @@ const simulate = (options) => {
     }
 
     volumeCountByVolume[totalVolumes] += 1;
+
+    if (! huntsByVolume[totalVolumes]) {
+      huntsByVolume[totalVolumes] = 0;
+    }
+
+    if (! debug[totalVolumes]) {
+      debug[totalVolumes] = [];
+    }
+
+    debug[totalVolumes].push({
+      wordCount,
+      totalVolumes,
+    });
   }
+
+  console.log(debug)
 
   const volumesWritten = Object.keys(volumeCountByVolume).map(Number);
   // javascript is maximum dumb
@@ -90,38 +112,6 @@ const simulate = (options) => {
 
     mean += (volume * chance);
 
-    // if (cumulativeChance >= 0.99) {
-    //   results.beyondUnlucky = {
-    //     volume: volume,
-    //     gnawbels: volume * 54,
-    //     words: volume * 4000,
-    //   };
-    // } else if (cumulativeChance >= 0.75) {
-    //   results.unlucky = {
-    //     volume: volume,
-    //     gnawbels: volume * 54,
-    //     words: volume * 4000,
-    //   };
-    // } else if (cumulativeChance >= 0.5) {
-    //   results.median = {
-    //     volume: volume,
-    //     gnawbels: volume * 54,
-    //     words: volume * 4000,
-    //   };
-    // } else if (cumulativeChance >= 0.25) {
-    //   results.lucky = {
-    //     volume: volume,
-    //     gnawbels: volume * 54,
-    //     words: volume * 4000,
-    //   };
-    // } else if (cumulativeChance >= 0.02) {
-    //   results.beyondLucky = {
-    //     volume: volume,
-    //     gnawbels: volume * 54,
-    //     words: volume * 4000,
-    //   };
-    // }
-
     results.chances.push({
       volume,
       gnawbels: volume * 54,
@@ -131,16 +121,24 @@ const simulate = (options) => {
     });
   }
 
-  mean = Math.round(mean * 100) / 100;
-  results.mean = {
-    volume: mean,
-    gnawbels: mean * 54,
-    words: mean * 4000,
+  const mostLikelyVolume = Number(Object.keys(volumeCountByVolume).reduce((a, b) => volumeCountByVolume[a] > volumeCountByVolume[b] ? a : b));
+
+  results.mostLikely = {
+    volume: mostLikelyVolume,
+    gnawbels: mostLikelyVolume * 54,
+    words: mostLikelyVolume * 4000,
   };
+
+  debuglog('location-huds-table-of-contents', `Simulated ${options.TotalSimulations} ToC runs.`, results);
 
   return results;
 };
 
+/**
+ * Update the words written by the user.
+ *
+ * @param {Upgrades} upgrades User upgrades.
+ */
 const updateWords = (/** @type {Upgrades} */ upgrades) => {
   Object.entries(MouseStats).forEach(([key, mouseStats]) => {
     let words = mouseStats.Points / 1000;
@@ -157,12 +155,28 @@ const updateWords = (/** @type {Upgrades} */ upgrades) => {
   });
 };
 
+/**
+ * Update the catch rate of the mice.
+ *
+ * @param {number} power Total trap power.
+ * @param {number} luck  Total trap luck.
+ */
 const updateCR = (/** @type {number} */ power, /** @type {number} */ luck) => {
   Object.entries(MouseStats).forEach(([key, mouseStats]) => {
     MouseStats[key].CatchRate = getCatchRate(mouseStats.Power, mouseStats.Eff, power, luck);
   });
 };
 
+/**
+ * Get the catch rate of the mouse.
+ *
+ * @param {number} mousePower    The power of the mouse.
+ * @param {number} effectiveness The effectiveness of the trap.
+ * @param {number} power         The power of the trap.
+ * @param {number} luck          The luck of the trap.
+ *
+ * @return {number} The catch rate.
+ */
 const getCatchRate = (mousePower, effectiveness, power, luck) => {
   const rate = Math.min(1,
     ((effectiveness * power) + (
@@ -173,6 +187,13 @@ const getCatchRate = (mousePower, effectiveness, power, luck) => {
   return rate;
 };
 
+/**
+ * Get the encountered mouse.
+ *
+ * @param {string} stage The stage of the simulation.
+ *
+ * @return {string} The encountered mouse.
+ */
 const getEncounteredMouse = (stage) => {
   let totalWeight = 0;
   let selected = '';
