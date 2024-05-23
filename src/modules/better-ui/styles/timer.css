@@ -8,3 +8,7 @@
   content: "Next Hunt";
   background: linear-gradient(180deg, #fef2b8 0%, #ecdfae 100%);
 }
+
+.huntersHornMessageView--bait_disarmed .huntersHornMessageView__content::before {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hunters_horn/sandwich_board/icons/bait_empty.png);
+}

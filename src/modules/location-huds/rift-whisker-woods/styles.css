@@ -72,6 +72,7 @@ span.riftWhiskerWoodsHUD-zone-rageMax {
   grid-template-columns: 1fr 1fr;
   gap: 3px;
   align-items: end;
+  font-size: 10px;
 }
 
 .riftWhiskerWoodsHUD-zone-charm-craftingItem-quantity br {
@@ -196,4 +197,14 @@ span.riftWhiskerWoodsHUD-zone-rageMax {
 
 .riftWhiskerWoodsHUD.boss_bait .riftWhiskerWoodsHUD-boss {
   animation: mhui-glow-eyes 30s ease-in-out infinite;
+}
+
+.riftWhiskerWoodsHUD-zone-charm-image-container {
+  top: -5px;
+  width: 32px;
+  height: 32px;
+}
+
+.clearing .riftWhiskerWoodsHUD-zone-charm-image-container {
+  top: -6px;
 }

@@ -5,17 +5,6 @@
   background-size: 60px;
 }
 
-.journal .content .ultimate_pop::before,
-.journal .content .ultimate_intact::before {
-  position: absolute;
-  top: 12px;
-  left: 10px;
-  width: 53px;
-  height: 53px;
-  content: "";
-  border: 5px solid #49eec2;
-}
-
 .journal .content .ultimate_intact {
   animation: mh-improved-glow 0.8s ease-in-out 1;
 }

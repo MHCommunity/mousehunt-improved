@@ -7,6 +7,10 @@
 }
 
 .journal .content .entry.badge:hover {
+  z-index: 99;
+  background-blend-mode: luminosity;
+  border: 1px solid #5b5b5b;
+  box-shadow: 0 5px 5px -5px #000;
   transform: scale(1.1);
 }
 
@@ -24,10 +28,6 @@
 .journal .content .entry.badge .journalimage img {
   width: 65px;
   transition: 0.3s ease-in-out;
-}
-
-.journal .content .entry.badge:hover .journalimage img {
-  transform: rotate(-10deg);
 }
 
 @media (prefers-reduced-motion: reduce) {

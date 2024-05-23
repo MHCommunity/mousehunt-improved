@@ -434,13 +434,18 @@ img.memberImage {
   background-color: #e5e0de;
 }
 
+.scoreRow:last-child {
+  margin-bottom: 0;
+}
+
 .scoreIcon {
   position: relative;
   width: 20px;
   height: 20px;
   margin-right: 5px;
   overflow: hidden;
-  border-radius: 7px;
+  border: 1px solid #c2b384;
+  border-radius: 3px;
 }
 
 .scoreIcon div {
@@ -464,7 +469,10 @@ img.memberImage {
 
 .pointsRow {
   width: 150px;
+  padding-top: 3px;
   border: 1px solid #cbc6bb;
+  border-top: none;
+  border-left: none;
 }
 
 img.pointsMouseIcon {
@@ -515,17 +523,11 @@ img.pointsMouseIcon {
 
 .tournamentStatusHud .timer,
 .tournamentStatusHud.pending .timer {
-  top: 0;
-  left: 241px;
-  width: auto;
-  padding-top: 3px;
-  padding-right: 10px;
-  font-size: 11px;
-  line-height: initial;
-  color: #000;
-  background: linear-gradient(166deg, #b4d3da 0%, #acc3ca 50%, #b4d3da 96%);
-  background-color: #acc3ca;
-  border-top-right-radius: 15px;
+  top: 2px;
+  left: 160px;
+  width: 220px;
+  font-size: 12px;
+  text-align: center;
 }
 
 .tournamentStatusHud .title {
@@ -663,4 +665,96 @@ tr.scoreboardTableView-row.highlight {
 
 .scoreboardTableView-row-rank {
   position: relative;
+}
+
+.tournamentStatusHud a.name,
+.tournamentStatusHud a.teamMembers,
+.tournamentStatusHud a.friendsOnline,
+.tournamentStatusHud .help,
+.tournamentStatusHud .tournamentInviteTeamMembers,
+.tournamentStatusHud .tournamentInviteFriends {
+  transition: 0.2s;
+}
+
+.tournamentStatusHud a.name {
+  border-radius: 23px 20px 20px 29px;
+}
+
+.tournamentStatusHud a.name:hover {
+  width: 221px;
+  padding-left: 10px;
+  margin-left: 5px;
+  background-color: rgb(230 88 19 / 50%);
+}
+
+.tournamentStatusHud.pending a.name:hover {
+  width: 324px;
+  padding-left: 11px;
+  margin-left: 4px;
+}
+
+.tournamentStatusHud a.teamMembers {
+  border-radius: 20px;
+}
+
+.tournamentStatusHud a.teamMembers:hover {
+  background-color: rgb(200 0 255 / 50%);
+}
+
+.tournamentStatusHud a.friendsOnline {
+  border-radius: 0% 100% 100% 0% / 0% 100% 100% 100%;
+}
+
+.tournamentStatusHud a.friendsOnline:hover {
+  background-color: rgb(167 222 111 / 50%);
+}
+
+.tournamentStatusHud a.friendsOnline,
+.tournamentStatusHud a.friendsOnline:visited,
+.tournamentStatusHud a.friendsOnline:hover {
+  left: 693px;
+  font-size: 14px;
+}
+
+.tournamentStatusHud .help:hover {
+  filter: brightness(1.1);
+}
+
+.tournamentStatusHud .tournamentInviteTeamMembers {
+  border-radius: 5px 5px 5px 8px;
+}
+
+.tournamentStatusHud .tournamentInviteFriends {
+  width: 63px;
+  margin-left: 1px;
+  border-radius: 5px 5px 7px 6px;
+}
+
+.tournamentStatusHud .tournamentInviteTeamMembers:hover,
+.tournamentStatusHud .tournamentInviteFriends:hover {
+  padding: 2px 0;
+  margin-top: -2px;
+  background: rgb(232 227 160 / 50%);
+}
+
+.tournamentStatusHud .rank::after,
+.tournamentStatusHud .score::after {
+  position: absolute;
+  inset: 8px 9px 7px 4px;
+  content: "";
+  border-radius: 15px 3px 3px 15px;
+  transition: 0.2s;
+}
+
+.tournamentStatusHud .score::after {
+  inset: 9px -21px 10px 10px;
+  border-radius: 2px 18px 18px 3px;
+}
+
+.tournamentStatusHud .score:hover::after {
+  background: rgb(232 227 160 / 50%);
+}
+
+.tournamentStatusHud .rank:hover::after {
+  background-color: rgb(200 0 255 / 50%);
 }

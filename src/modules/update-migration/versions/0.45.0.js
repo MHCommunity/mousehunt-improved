@@ -1,5 +1,8 @@
 import { getData, getSetting, saveSetting } from '@utils';
 
+/**
+ * Migrate the item settings.
+ */
 const update = async () => {
   const items = await getData('items');
 

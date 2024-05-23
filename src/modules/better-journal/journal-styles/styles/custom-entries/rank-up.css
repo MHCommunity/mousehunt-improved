@@ -1,8 +1,31 @@
 .journal .entry.titlechange {
+  overflow: hidden;
   background-image: url(https://www.mousehuntgame.com/images/ui/hud/camp/re_engagement/popup/rank_up_icon.png);
   background-repeat: no-repeat;
   background-position: right center;
   background-size: contain;
+  background-blend-mode: luminosity;
+  transition: 0.3s ease-in;
+}
+
+.journal .content .titlechange .titlechangeheader {
+  border-bottom: none;
+}
+
+.journal .entry.titlechange .journalbody .journaldate {
+  width: auto;
+  max-width: 185px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.journal .entry.titlechange:hover {
+  z-index: 99;
+  background-blend-mode: luminosity;
+  border: 1px solid #5b5b5b;
+  box-shadow: 0 5px 5px -5px #000;
+  transform: scale(1.1);
 }
 
 .journal .entry.titlechange::after {
@@ -24,7 +47,13 @@
 
 .journal .content .titlechange .journalimage img,
 .journal .content .titlechange .journalimage {
-  width: 75px;
+  width: 60px;
+  filter: drop-shadow(0 1px 2px #3e93a3);
+}
+
+.journal .content .titlechange .journalimage {
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .journal .entry.titlechange .journalbody {
