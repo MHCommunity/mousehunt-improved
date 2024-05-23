@@ -13,16 +13,16 @@
 .prologuePondView-fishingBoat {
   top: 30px;
   transition: 0.4s;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .prologuePondView-fishingBoat:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.1);
 }
 
 .prologuePondView-background-layer.water {
   top: 19px;
-  filter: brightness(0.7);
+  filter: brightness(0.9);
   opacity: 0.6;
 }
 
@@ -134,10 +134,12 @@
 }
 
 .prologuePondView-chumDooberContainer .prologuePondView-chumDoober:nth-child(2) {
+  left: 180px;
   animation-delay: 6s;
 }
 
 .prologuePondView-chumDooberContainer .prologuePondView-chumDoober:nth-child(3) {
+  left: 180px;
   animation-delay: 2s;
 }
 
