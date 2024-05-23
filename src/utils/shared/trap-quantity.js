@@ -53,7 +53,7 @@ const addQuantityToDisplay = async () => {
     }
 
     let amount = await cacheGet(`${itemId}-quantity`, false);
-    if (false === cached) {
+    if (false === amount) {
       const details = await getUserItems([itemId], true);
       amount = details[0]?.quantity || 0;
 
