@@ -123,6 +123,10 @@ const addMapToSidebar = async () => {
 const refreshMap = async () => {
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
 
+  if (! mapId) {
+    return false;
+  }
+
   let newMapData;
   try {
     newMapData = await doRequest('managers/ajax/users/treasuremap.php', {
