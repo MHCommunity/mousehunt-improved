@@ -9,7 +9,7 @@ const replaceInTemplate = (templateId, replacements) => {
 
   const replacementsObject = Object.fromEntries(replacements);
 
-  templateContent = templateContent.replace(new RegExp(Object.keys(replacementsObject).join('|'), 'g'), (matched) => {
+  templateContent = templateContent.replaceAll(new RegExp(Object.keys(replacementsObject).join('|'), 'g'), (matched) => {
     return replacementsObject[matched];
   });
 

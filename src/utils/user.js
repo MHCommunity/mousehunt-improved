@@ -19,9 +19,9 @@ const getUserItems = async (items, forceUpdate = false) => {
         console.error('Error getting user items:', items, err); // eslint-disable-line no-console
         reject(err);
       }, forceUpdate);
-    } catch (ex) {
-      console.error('Error getting user items:', items, ex); // eslint-disable-line no-console
-      reject(ex);
+    } catch (error) {
+      console.error('Error getting user items:', items, error); // eslint-disable-line no-console
+      reject(error);
     }
   });
 };
@@ -281,9 +281,9 @@ const getAnonymousUserHash = async () => {
     const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
     const hashArray = [...new Uint8Array(hashBuffer)];
     return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
-  } catch (ex) {
-    console.error('Error getting user hash:', ex); // eslint-disable-line no-console
-    throw ex;
+  } catch (error) {
+    console.error('Error getting user hash:', error); // eslint-disable-line no-console
+    throw error;
   }
 };
 

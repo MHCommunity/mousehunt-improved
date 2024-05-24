@@ -1,7 +1,7 @@
 import { getSetting } from './settings';
 
 let flags = null;
-let settings = {};
+const settings = {};
 
 /**
  * Check if the given flag is enabled.
