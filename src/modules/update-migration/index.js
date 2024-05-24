@@ -2,8 +2,8 @@ import {
   addBodyClass,
   debuglog,
   doEvent,
-  getGlobal,
   getSetting,
+  refreshPage,
   saveSetting,
   setGlobal,
   showLoadingPopup,
@@ -16,6 +16,24 @@ import * as imported from './versions/*.js'; // eslint-disable-line import/no-un
 const versionUpdates = imported;
 
 /**
+ * Get the version update routines.
+ *
+ * @return {Object} The version update routines.
+ */
+const getVersionUpdates = () => {
+  const updates = {};
+
+  for (const version in versionUpdates) {
+    const currentVersion = versionUpdates[version];
+    if (isVersionBefore(previousVersion, currentVersion.id)) {
+      updates[currentVersion.id] = currentVersion;
+    }
+  }
+
+  return updates;
+};
+
+/**
  * Run the version updates if needed.
  */
 const doVersionUpdates = async () => {
@@ -23,15 +41,15 @@ const doVersionUpdates = async () => {
     return;
   }
 
-  for (const version in versionUpdates) {
-    const currentVersion = versionUpdates[version];
-    if (isVersionBefore(previousVersion, currentVersion.id)) {
-      try {
-        await currentVersion.update();
-      } catch (error) {
-        debuglog('update-migration', `Error updating to ${currentVersion.id}:`, error);
-        throw error;
-      }
+  const updates = getVersionUpdates();
+  for (const version in updates) {
+    const update = updates[version];
+    try {
+      debuglog('update-migration', `Running update for ${version}`);
+      await update.run();
+    } catch (error) {
+      debuglog('update-migration', `Error updating to ${version}:`, error);
+      throw error;
     }
   }
 };
@@ -41,6 +59,9 @@ const doVersionUpdates = async () => {
  */
 const update = async () => {
   debuglog('update-migration', `Updating from ${previousVersion} to ${mhImprovedVersion}`);
+
+  const updates = getVersionUpdates();
+  const needsMigration = Object.keys(updates).length > 0;
 
   const showPopup = setTimeout(() => {
     showLoadingPopup(`Updating MouseHunt Improved to v${mhImprovedVersion}...`);
@@ -59,8 +80,9 @@ const update = async () => {
 
     clearTimeout(showPopup);
 
-    if (getGlobal('mh-improved-update-needs-refresh')) {
+    if (needsMigration) {
       showLoadingPopup('MouseHunt Improved has been updated. Please refresh the page.');
+      setTimeout(refreshPage, 3000);
     } else if (activejsDialog && activejsDialog?.hide) {
       activejsDialog.hide();
     }
