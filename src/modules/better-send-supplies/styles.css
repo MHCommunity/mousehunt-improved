@@ -51,7 +51,6 @@
 }
 
 #supplytransfer .categoryMenu {
-  position: fixed;
   width: 90px;
   background: none;
 }
@@ -214,8 +213,13 @@
   border: none;
 }
 
+#supplytransfer {
+  position: relative;
+}
+
 #supplytransfer .tabs {
-  position: fixed;
+  position: sticky;
+  top: 50px;
   z-index: 1;
   width: auto;
   padding: 10px 10px 0;
@@ -291,4 +295,11 @@ span.mhui-supply-sort-label {
 
 #supplytransfer .listContainer a.element.item.pinned .itemImage .quantity {
   background-color: rgb(174 245 247 / 60%);
+}
+
+.mousehuntPage-content #supplytransfer .drawer .listContainer,
+.mousehuntPage-content #supplytransfer .drawer .tabContent,
+.mousehuntPage-content #supplytransfer .drawer {
+  height: auto;
+  max-height: unset;
 }
