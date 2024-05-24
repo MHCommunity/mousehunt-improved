@@ -14,6 +14,10 @@ export default async () => {
       title: 'Log events'
     },
     {
+      id: 'debug.all-events',
+      title: 'Log all events'
+    },
+    {
       id: 'debug.dialog',
       title: 'Log IDs of opening and closing dialogs/popups'
     },

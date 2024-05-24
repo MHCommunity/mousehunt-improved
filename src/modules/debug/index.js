@@ -71,7 +71,10 @@ const main = () => {
     });
   }
 
-  if (Utils.getSetting('debug.events', false)) {
+  const debugAllEvents = Utils.getSetting('debug.all-events', false);
+  const debugEvents = Utils.getSetting('debug.events', false);
+
+  if (debugEvents && ! debugAllEvents) {
     let events = [
       'camp_page_arm_item',
       'camp_page_toggle_blueprint',
@@ -123,6 +126,29 @@ const main = () => {
         debug(`onEvent: ${event}`, data);
       });
     });
+  }
+
+  if (debugAllEvents) {
+    const _doEvent = eventRegistry.doEvent;
+
+    /**
+     * Override the doEvent function to log all events.
+     *
+     * @param {string} eventName   The name of the event to fire.
+     * @param {Object} eventParams The parameters to pass to the event.
+     */
+    eventRegistry.doEvent = function (eventName, eventParams) {
+      const skipEvents = [
+        'journal-entry',
+        'journal-entries',
+      ];
+
+      if (! skipEvents.includes(eventName)) {
+        debug(`doEvent: ${eventName}`, eventParams);
+      }
+
+      Reflect.apply(_doEvent, this, arguments);
+    };
   }
 };
 
