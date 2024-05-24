@@ -1,4 +1,4 @@
-import { debuglog } from "@utils";
+import { debuglog } from '@utils';
 
 // @ts-nocheck
 const MousePool = {
@@ -37,8 +37,6 @@ const MouseStats = {
 const simulate = (options) => {
   updateWords(options.Upgrades);
   updateCR(options.TrapPower, options.TrapLuck);
-
-  let debug = {};
 
   /** @type {Object<number, number>} */
   const volumeCountByVolume = {};
@@ -85,8 +83,6 @@ const simulate = (options) => {
     });
   }
 
-  console.log(debug)
-
   const volumesWritten = Object.keys(volumeCountByVolume).map(Number);
   // javascript is maximum dumb
   volumesWritten.sort((a, b) => a - b);
@@ -100,7 +96,6 @@ const simulate = (options) => {
   };
 
   let cumulativeChance = 1;
-  let mean = 0;
 
   for (let volume = minVolume; volume <= maxVolume; volume++) {
     if (! volumeCountByVolume[volume]) {
@@ -109,8 +104,6 @@ const simulate = (options) => {
 
     const chance = volumeCountByVolume[volume] / options.TotalSimulations;
     cumulativeChance -= chance;
-
-    mean += (volume * chance);
 
     results.chances.push({
       volume,
