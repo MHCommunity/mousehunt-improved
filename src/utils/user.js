@@ -11,13 +11,18 @@ import { getCurrentPage } from './page';
  * @return {Array} The item data.
  */
 const getUserItems = async (items, forceUpdate = false) => {
-  return new Promise((resolve) => {
-    hg.utils.UserInventory.getItems(items, (resp) => {
-      resolve(resp);
-    }, (err) => {
-      console.error('Error getting user items:', items, err); // eslint-disable-line no-console
-      resolve([]);
-    }, forceUpdate);
+  return new Promise((resolve, reject) => {
+    try {
+      hg.utils.UserInventory.getItems(items, (resp) => {
+        resolve(resp);
+      }, (err) => {
+        console.error('Error getting user items:', items, err); // eslint-disable-line no-console
+        reject(err);
+      }, forceUpdate);
+    } catch (ex) {
+      console.error('Error getting user items:', items, ex); // eslint-disable-line no-console
+      reject(ex);
+    }
   });
 };
 
@@ -270,11 +275,16 @@ const getAnonymousUserHash = async () => {
     return '';
   }
 
-  // Used to generate a unique hash for the user that doesn't change but is unique and anonymous. props MHCT.
-  const msgUint8 = new TextEncoder().encode(user.user_id.toString().trim());
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
-  const hashArray = [...new Uint8Array(hashBuffer)];
-  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+  try {
+    // Used to generate a unique hash for the user that doesn't change but is unique and anonymous. props MHCT.
+    const msgUint8 = new TextEncoder().encode(user.user_id.toString().trim());
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);
+    const hashArray = [...new Uint8Array(hashBuffer)];
+    return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+  } catch (ex) {
+    console.error('Error getting user hash:', ex); // eslint-disable-line no-console
+    throw ex;
+  }
 };
 
 /**

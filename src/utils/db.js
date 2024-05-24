@@ -9,23 +9,8 @@ const database = async (databaseName) => {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(`mh-improved-${databaseName}`, 7);
 
-    /**
-     * On error event.
-     *
-     * @param {Event} event The event object.
-     */
-    request.onerror = (event) => {
-      reject(event.target.error);
-    };
-
-    /**
-     * On success event.
-     *
-     * @param {Event} event The event object.
-     */
-    request.onsuccess = (event) => {
-      resolve(event.target.result);
-    };
+    request.onerror = (event) => reject(event.target.error);
+    request.onsuccess = (event) => resolve(event.target.result);
 
     /**
      * On upgrade needed event.
@@ -54,24 +39,8 @@ const databaseDelete = async (databaseName) => {
 
   return new Promise((resolve, reject) => {
     const request = indexedDB.deleteDatabase(databaseName);
-
-    /**
-     * On error event.
-     *
-     * @param {Event} event The event object.
-     */
-    request.onerror = (event) => {
-      reject(event.target.error);
-    };
-
-    /**
-     * On success event.
-     *
-     * @param {Event} event The event object.
-     */
-    request.onsuccess = (event) => {
-      resolve(event.target.result);
-    };
+    request.onerror = (event) => reject(event.target.error);
+    request.onsuccess = (event) => resolve(event.target.result);
   });
 };
 
@@ -101,26 +70,9 @@ const dbGet = async (databaseName, id) => {
   const request = objectStore.get(id);
 
   return new Promise((resolve, reject) => {
-    /**
-     * On success event.
-     */
-    request.onsuccess = () => {
-      resolve(request.result);
-    };
-
-    /**
-     * On error event.
-     */
-    request.onerror = () => {
-      reject(request.error);
-    };
-
-    /**
-     * On complete event.
-     */
-    transaction.oncomplete = () => {
-      db.close();
-    };
+    request.onsuccess = (event) => resolve(event.target.result);
+    request.onerror = (event) => reject(event.target.error);
+    transaction.oncomplete = () => db.close();
   });
 };
 
@@ -146,26 +98,9 @@ const dbSet = async (databaseName, data) => {
   const request = objectStore.put(data);
 
   return new Promise((resolve, reject) => {
-    /**
-     * On success event.
-     */
-    request.onsuccess = () => {
-      resolve(request.result);
-    };
-
-    /**
-     * On error event.
-     */
-    request.onerror = () => {
-      reject(request.error);
-    };
-
-    /**
-     * On complete event.
-     */
-    transaction.oncomplete = () => {
-      db.close();
-    };
+    request.onsuccess = (event) => resolve(event.target.result);
+    request.onerror = (event) => reject(event.target.error);
+    transaction.oncomplete = () => db.close();
   });
 };
 
@@ -186,26 +121,9 @@ const dbDelete = async (databaseName, id) => {
   const request = objectStore.delete(id);
 
   return new Promise((resolve, reject) => {
-    /**
-     * On success event.
-     */
-    request.onsuccess = () => {
-      resolve(request.result);
-    };
-
-    /**
-     * On error event.
-     */
-    request.onerror = () => {
-      reject(request.error);
-    };
-
-    /**
-     * On complete event.
-     */
-    transaction.oncomplete = () => {
-      db.close();
-    };
+    request.onsuccess = (event) => resolve(event.target.result);
+    request.onerror = (event) => reject(event.target.error);
+    transaction.oncomplete = () => db.close();
   });
 };
 
@@ -225,26 +143,9 @@ const dbGetAll = async (databaseName) => {
   const request = objectStore.getAll();
 
   return new Promise((resolve, reject) => {
-    /**
-     * On success event.
-     */
-    request.onsuccess = () => {
-      resolve(request.result);
-    };
-
-    /**
-     * On error event.
-     */
-    request.onerror = () => {
-      reject(request.error);
-    };
-
-    /**
-     * On complete event.
-     */
-    transaction.oncomplete = () => {
-      db.close();
-    };
+    request.onsuccess = (event) => resolve(event.target.result);
+    request.onerror = (event) => reject(event.target.error);
+    transaction.oncomplete = () => db.close();
   });
 };
 
@@ -264,26 +165,9 @@ const dbDeleteAll = async (databaseName) => {
   const request = objectStore.clear();
 
   return new Promise((resolve, reject) => {
-    /**
-     * On success event.
-     */
-    request.onsuccess = () => {
-      resolve(request.result);
-    };
-
-    /**
-     * On error event.
-     */
-    request.onerror = () => {
-      reject(request.error);
-    };
-
-    /**
-     * On complete event.
-     */
-    transaction.oncomplete = () => {
-      db.close();
-    };
+    request.onsuccess = (event) => resolve(event.target.result);
+    request.onerror = (event) => reject(event.target.error);
+    transaction.oncomplete = () => db.close();
   });
 };
 

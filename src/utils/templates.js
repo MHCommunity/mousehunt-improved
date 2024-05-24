@@ -7,8 +7,10 @@
 const replaceInTemplate = (templateId, replacements) => {
   let templateContent = hg.utils.TemplateUtil.getTemplate(templateId);
 
-  replacements.forEach(([find, replace]) => {
-    templateContent = templateContent.replace(find, replace);
+  const replacementsObject = Object.fromEntries(replacements);
+
+  templateContent = templateContent.replace(new RegExp(Object.keys(replacementsObject).join('|'), 'g'), (matched) => {
+    return replacementsObject[matched];
   });
 
   hg.utils.TemplateUtil.addTemplate(templateId, templateContent);

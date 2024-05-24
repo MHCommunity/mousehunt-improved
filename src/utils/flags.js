@@ -1,5 +1,8 @@
 import { getSetting } from './settings';
 
+let flags = null;
+let settings = {};
+
 /**
  * Check if the given flag is enabled.
  *
@@ -8,7 +11,13 @@ import { getSetting } from './settings';
  * @return {boolean} Whether the flag is enabled.
  */
 const getFlag = (flag) => {
-  return getSetting(`experiments.${flag}`, getFlags().includes(flag));
+  if (flag in settings) {
+    return settings[flag];
+  }
+
+  const value = getSetting(`experiments.${flag}`, getFlags().includes(flag));
+  settings[flag] = value;
+  return value;
 };
 
 /**
@@ -17,7 +26,11 @@ const getFlag = (flag) => {
  * @return {Array} List of enabled flags.
  */
 const getFlags = () => {
-  return getSetting('override-flags', '').toLowerCase().replaceAll(' ', '').split(',');
+  if (! flags) {
+    flags = getSetting('override-flags', '').toLowerCase().replaceAll(' ', '').split(',');
+  }
+
+  return flags;
 };
 
 export {

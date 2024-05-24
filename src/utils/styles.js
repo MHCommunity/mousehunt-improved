@@ -103,6 +103,7 @@ const addStyles = (styles, module = false, identifier = 'mh-improved-styles') =>
       stylesEl = addModuleStyles(styles, key, true);
     } else if (stylesEl) {
       stylesEl.remove();
+      stylesEl = null;
     }
   });
 
@@ -133,6 +134,7 @@ const removeStyles = (module = false, identifier = 'mh-improved-styles') => {
  * @param {string|Array} styles CSS to add to the page.
  */
 const addHudStyles = async (styles) => {
+  removeHudStyles();
   addStyles(styles, 'mh-improved-styles-location-hud');
 };
 
