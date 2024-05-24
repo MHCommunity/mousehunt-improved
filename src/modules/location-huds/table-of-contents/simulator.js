@@ -98,7 +98,6 @@ const simulate = (options) => {
   };
 
   let cumulativeChance = 1;
-  let mean = 0;
 
   for (let volume = minVolume; volume <= maxVolume; volume++) {
     if (! volumeCountByVolume[volume]) {
