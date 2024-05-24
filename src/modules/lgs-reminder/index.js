@@ -6,8 +6,7 @@ import {
   onDeactivation,
   onEvent,
   onSettingsChange,
-  setupHumanizer,
-  sleep
+  setupHumanizer
 } from '@utils';
 
 import settings from './settings';
@@ -168,16 +167,9 @@ const main = () => {
 
   updateLgsReminder(reminder);
 
-  if (isExact()) {
-    onEvent('horn-countdown-tick', async () => {
-      await sleep(500);
-      updateLgsReminder(reminder);
-    });
-  } else {
-    onEvent('horn-countdown-tick-minute', () => {
-      updateLgsReminder(reminder);
-    });
-  }
+  onEvent('horn-countdown-tick-minute', () => {
+    updateLgsReminder(reminder);
+  });
 };
 
 /**

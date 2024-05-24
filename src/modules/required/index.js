@@ -52,12 +52,8 @@ const addEvents = () => {
   if (hunterHornTimer) {
     // Add a mutation observer to check when the innerText changes and when it does, start an interval where we fire an event every second.
     const observer = new MutationObserver(() => {
-      // After the mutation, start the interval and then stop watching for mutations.
       setInterval(() => {
         doEvent('horn-countdown-tick', hunterHornTimer.innerText);
-      }, 1000);
-
-      setInterval(() => {
         doEvent('horn-countdown-tick-minute', hunterHornTimer.innerText);
       }, 60 * 1000);
 
