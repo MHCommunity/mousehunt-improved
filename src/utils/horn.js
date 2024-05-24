@@ -47,6 +47,8 @@ const showHornMessage = (options) => {
     gameInfo.classList.add('blur');
   }
 
+  const fragment = document.createDocumentFragment();
+
   const messageWrapper = makeElement('div', ['huntersHornView__message huntersHornView__message--active', settings.classname]);
   const message = makeElement('div', ['huntersHornMessageView', `huntersHornMessageView--${settings.type}`]);
   makeElement('div', 'huntersHornMessageView__title', settings.title, message);
@@ -118,7 +120,9 @@ const showHornMessage = (options) => {
     existingMessages.remove();
   }
 
-  huntersHornView.append(messageWrapper);
+  fragment.append(messageWrapper);
+
+  huntersHornView.append(fragment);
 
   if (settings.dismiss) {
     setTimeout(() => {
