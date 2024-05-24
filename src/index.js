@@ -220,12 +220,16 @@ const init = async () => {
   // Time to load the modules.
   try {
     await loadModules();
-  } catch (error) {
-    showLoadingError(error);
-  } finally {
+
     // Add the version and loaded flag to the global scope.
     setGlobal('version', mhImprovedVersion);
     setGlobal('loaded', true);
+
+    // Fire the events to signal that the script has been loaded.
+    doEvent('mh-improved-loaded', {
+      version: mhImprovedVersion,
+      modules: getGlobal('modules'),
+    });
 
     // Welcome message.
     // eslint-disable-next-line no-console
@@ -235,14 +239,10 @@ const init = async () => {
       'color: inherit; font-weight: inherit; font-size: inherit'
     );
 
-    // Fire the events to signal that the script has been loaded.
-    doEvent('mh-improved-loaded', {
-      version: mhImprovedVersion,
-      modules: getGlobal('modules'),
-    });
+    doEvent('mh-improved-init');
+  } catch (error) {
+    showLoadingError(error);
   }
-
-  doEvent('mh-improved-init');
 };
 
 init(); // eslint-disable-line unicorn/prefer-top-level-await
