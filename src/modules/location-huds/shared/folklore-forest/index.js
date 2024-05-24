@@ -231,6 +231,6 @@ export default async () => {
   toggleAllVisibility();
   onDialogShow('fabledForestDialog', addUpgradeVisibilityToggles);
   onDialogHide(() => (hasAddedUpgradeVisibilityToggles = false));
-  onTurn(addUpgradeVisibilityToggles, 500);
+  onTurn(toggleAllVisibility, 500);
   onRequest('*', toggleAllVisibility);
 };
