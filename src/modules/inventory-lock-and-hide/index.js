@@ -532,7 +532,7 @@ const hideItemsInTrapBrowser = () => {
  */
 const main = async () => {
   itemSettings = getSettings();
-  mhItems = await getData('items');
+  items = await getData('items');
 
   maybeLockOrHideItems();
   addLockAndHideControls();
