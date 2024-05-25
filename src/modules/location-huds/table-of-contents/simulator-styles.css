@@ -1,5 +1,5 @@
 #overlayPopup.mh-toc-popup .jsDialogContainer {
-  background: linear-gradient(#2b622e, #000, #2b622e);
+  background: linear-gradient(#2b622e, #142e16, #2b622e);
   outline: 1px solid #2b622e;
 }
 
@@ -17,7 +17,7 @@
 
 .mh-toc-sim-results {
   display: grid;
-  grid-template-columns: 40% 40%;
+  grid-template-columns: 40% 45%;
   justify-content: space-evenly;
   justify-items: stretch;
   margin: 0 1em;
@@ -60,17 +60,13 @@
   line-height: 30px;
   color: #eaeaea;
   text-align: center;
-  background: linear-gradient(#146114, #59ac3b);
+  background: linear-gradient(#146114, #549241);
   border: 1px solid #123d1c;
   border-radius: 5px;
 }
 
 .mh-toc-sim-results .percents {
-  padding-top: 5px;
-  margin-top: -25px;
-  font-size: 13px;
-  background-color: rgb(195 195 195 / 10%);
-  border-radius: 5px;
+  margin-top: -30px;
 }
 
 .mh-toc-sim-results ol {
@@ -82,6 +78,8 @@
   overflow-x: auto;
   font-size: 13px;
   color: #d2e5d2;
+  background-color: rgb(195 195 195 / 10%);
+  border-radius: 3px;
 
   ::-webkit-scrollbar {
     display: none;
@@ -107,18 +105,17 @@
 }
 
 .mh-toc-sim-results .percents .header {
-  padding: 0 0 3px;
+  position: sticky;
+  top: 0;
+  padding: 3px 0;
   font-size: 13px;
   color: #c4c4c4;
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid rgb(150 150 150 / 35%);
 }
 
 .mh-toc-sim-results .percents li:nth-child(odd) {
   background-color: rgb(195 195 195 / 20%);
-}
-
-.mh-toc-sim-results .percents li.header:nth-child(odd) {
-  background-color: transparent;
 }
 
 .mh-toc-sim-results .percents .guaranteed .number,
@@ -146,6 +143,10 @@
   color: #ff8181;
 }
 
+.mh-toc-sim-results .percents li.expected {
+  background-color: rgb(43 161 199 / 70%);
+}
+
 .mh-toc-sim-results .percents li.result .volume {
   font-size: 16px;
 }
@@ -153,10 +154,6 @@
 .mh-toc-sim-results .percents .words,
 .mh-toc-sim-results .percents .gnawbels {
   font-size: 12px;
-}
-
-.mh-toc-sim-results .percents .words {
-  justify-self: flex-end;
 }
 
 .mh-toc-sim-results .percents .header .words {

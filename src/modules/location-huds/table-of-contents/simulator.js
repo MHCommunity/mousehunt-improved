@@ -94,7 +94,7 @@ const simulate = (options) => {
   /** @type {EncySimResults} */
   const results = {
     chances: [],
-    mean: {},
+    mostLikely: {},
   };
 
   let cumulativeChance = 1;

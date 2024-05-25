@@ -23,9 +23,12 @@ import styles from './styles.css';
  * @param {EncySimResults} results The sim results.
  * @return {string} Results as HTML.
  */
-const displayResults = (results) => {
+const displayResults = (results, timeTaken) => {
   const currentVolume = user?.quests?.QuestTableOfContents?.current_book?.volume || 0;
   const currentWordCount = user?.quests?.QuestTableOfContents?.current_book?.word_count || 0;
+
+  const expectedVolume = results?.mostLikely?.volume < currentVolume ? currentVolume : results?.mostLikely?.volume;
+  const expectedWords = results?.mostLikely?.words < currentWordCount ? currentWordCount : results?.mostLikely?.words;
 
   let text = `<div class="mh-toc-sim-results">
   <div class="stats">
@@ -42,11 +45,11 @@ const displayResults = (results) => {
     <div class="group mean">
       <div class="result">
         <div class="label">Expected Volume</div>
-        <div class="value">${results?.mostLikely?.volume.toLocaleString()}</div>
+        <div class="value">${expectedVolume.toLocaleString()}</div>
       </div>
       <div class="result">
         <div class="label">Expected Words</div>
-        <div class="value">${results?.mostLikely?.words?.toLocaleString()}</div>
+        <div class="value">${expectedWords?.toLocaleString()}</div>
       </div>
     </div>
     <div class="group gnawbels">
@@ -67,7 +70,13 @@ const displayResults = (results) => {
       </li>`;
 
   for (const chance of results?.chances || []) {
+    if (chance.cumulativeChance >= 0.999) {
+      chance.cumulativeChance = 1;
+    }
+
     const chancePercent = Math.floor(chance.cumulativeChance * 1000) / 10;
+
+    console.log(`volume: ${chance.volume}, chance: ${chancePercent}%`);
 
     if (chancePercent < 1) {
       continue;
@@ -96,6 +105,10 @@ const displayResults = (results) => {
       break;
     }
 
+    if (chance.volume === expectedVolume) {
+      classname += ' expected';
+    }
+
     let wordsToGo = chance.words - currentWordCount;
     if (wordsToGo < 0) {
       wordsToGo = 0;
@@ -110,7 +123,7 @@ const displayResults = (results) => {
   }
 
   text += '</ol></div></div>';
-  text += `<div class="info">Based on ${getOptions().TotalSimulations.toLocaleString()} simulations with Final Draft Derby equipped.</div>`;
+  text += `<div class="info">Simulated ${getOptions().TotalSimulations.toLocaleString()} writing sessions with Final Draft Derby equipped in ${(timeTaken/1000).toFixed(3)}s.</div>`;
 
   return text;
 };
@@ -122,7 +135,7 @@ const displayResults = (results) => {
  */
 const getOptions = () => {
   return {
-    TotalSimulations: 10_000,
+    TotalSimulations: 100_000,
     TrapPower: user?.trap_power || 0,
     TrapLuck: user?.trap_luck || 0,
     Upgrades: {
@@ -143,10 +156,15 @@ const getOptions = () => {
  * Get the data and display the sim popup.
  */
 const triggerSimPopup = () => {
+  const startTimestamp = Date.now();
   const data = simulate(getOptions());
+  const endTimestamp = Date.now();
+
+  const timeTaken = endTimestamp - startTimestamp;
+
   const popup = createPopup({
     title: 'Encyclopedia Simulation',
-    content: displayResults(data),
+    content: displayResults(data, timeTaken),
     show: false,
   });
 
