@@ -111,6 +111,13 @@ const renderList = async (list) => {
     doEvent('mh-improved-cre-list-rendered');
   }
 
+  const existing = document.querySelector('#mh-improved-cre-table');
+  if (existing) {
+    existing.remove();
+  }
+
+  minluckList.classList.remove('cre-loading');
+
   const table = makeElement('table');
   table.id = 'mh-improved-cre-table';
 
@@ -196,14 +203,7 @@ const renderList = async (list) => {
     table.append(row);
   });
 
-  minluckList.classList.remove('cre-loading');
-
-  const existing = document.querySelector('#mh-improved-cre-table');
-  if (existing) {
-    existing.replaceWith(table);
-  } else {
-    minluckList.append(table);
-  }
+  minluckList.append(table);
 };
 
 /**
