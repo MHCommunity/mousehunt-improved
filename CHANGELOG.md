@@ -1,5 +1,139 @@
 # Changelog
 
+## Version 0.45.0
+
+### Better Gifts
+
+- Close button on popup is now always clickable
+
+### Better Inventory
+
+- Moved obtain hint to after description
+- Updated image size so that all popups are the same size
+- Fixed MHCT link
+
+### Better Items
+
+- Optimized performance of item-hover display
+
+### Better Journal
+
+- Added more journal text replacements
+- Fixed bug in replacements not applying to all entries
+- Updated rank-up entry to show new shield
+- Added styles to more entries
+
+### Better Maps
+
+- Added M1k Solo to sorted maps
+- Updated scroll shop display to make it more readable
+- Updated scroll inventory to hide and lock scrolls that are locked or hidden with Inventory Lock and Hide
+- Updated various styles
+
+
+### Better Mice
+
+- Optimized performance of mouse-hover display
+- Fixed issue with 'Show available mice in sidebar' setting not working
+
+### Better Send Supplies
+
+- Fixed minor display issues
+
+### Better Tournaments
+
+- Added hover states to tournament bar sections
+- Various style updates
+
+### Better Travel
+
+- Added Forbidden Grove to Travel Window
+- Removed Acolyte Realm from Travel Window
+- Updated menu icons
+
+### Better UI
+
+- Added more Adventure Book styles
+- Updated Gifts menu icon
+- Updated bait disarmed horn message icon
+
+### Catch Rate Estimator
+
+- Catch rates are now shown as 100% when an Ultimate Charm is equipped
+
+### Debug
+
+- Added 'Log all events' setting to log all eventRegistry events
+
+### Experiments
+
+"Added 'Location HUDs - Prologue Pond: Normal boat color' setting to change the color of the boat - nPrologue Pond
+
+### FLRT Helper
+
+- Fixed bug where all items where shown and not just tradeable items
+
+### Inventory - Open All but One
+
+- Removed button from Kilohertz Processors to avoid accidental use
+
+### Lucky Golden Shield Duration & Reminder
+
+- Removed 'Show exact time, including seconds' setting
+- Fixed display alignment
+
+### Location HUDs - Bountiful Beanstalk
+
+- Fixed display of quick craft buttons
+- Updated various styles
+
+### Location HUDs - Floating Islands
+
+- Updated various styles
+
+### Location HUDs - Foreword Farm
+
+- Added inventory toggle persistence
+- Updated various styles
+
+### Location HUDs - Fungal Cavern
+
+- Updated various styles
+
+### Location HUDs - Moussu Picchu
+
+- Updated various styles
+
+### Location HUDs - Queso Region
+
+- Updated various styles
+
+### Location HUDs - Burroughs Rift
+
+- Updated various styles
+
+### Location HUDs - Furoma Rift
+
+- Fixed issues with recall data showing NaN and not updating properly
+- Updated various styles
+
+### Location HUDs - Whisker Woods Rift
+
+- Fixed Taunting charm warning displaying too early
+- Added easter egg where Black Widow's eyes will glow sometimes
+- Updated various styles
+
+### Location HUDs - Table of Contents
+
+- Added writing simulator. This will simulate multiple writing sessions and show the results
+- Updated various styles
+
+### Other
+
+- Optimized performance and memory usage
+- Moved all external styles to be bundled with the extension
+- Removed left over debugging code
+
 ## Version 0.44.4
 
 - Fixed Journal History saving other hunter's journals

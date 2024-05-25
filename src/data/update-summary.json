@@ -2,11 +2,189 @@
   "summary": "",
   "details": [
     {
-      "title": "Changes",
+      "title": "Better Gifts",
       "items": [
-        "Fixed Journal History saving other hunter's journals",
-        "Fixed errors in Journal History saving/loading",
-        "Fixed 'Show available mice in sidebar' setting not working"
+        "Close button on popup is now always clickable"
+      ]
+    },
+    {
+      "title": "Better Inventory",
+      "items": [
+        "Moved obtain hint to after description",
+        "Updated image size so that all popups are the same size",
+        "Fixed MHCT link"
+      ]
+    },
+    {
+      "title": "Better Items",
+      "items": [
+        "Optimized performance of item-hover display"
+      ]
+    },
+    {
+      "title": "Better Journal",
+      "items": [
+        "Added more journal text replacements",
+        "Fixed bug in replacements not applying to all entries",
+        "Updated rank-up entry to show new shield",
+        "Added styles to more entries"
+      ]
+    },
+    {
+      "title": "Better Maps",
+      "items": [
+        "Added M1k Solo to sorted maps",
+        "Updated scroll shop display to make it more readable",
+        "Updated scroll inventory to hide and lock scrolls that are locked or hidden with Inventory Lock and Hide",
+        "Updated various styles"
+
+      ]
+    },
+    {
+      "title": "Better Mice",
+      "items": [
+        "Optimized performance of mouse-hover display",
+        "Fixed issue with 'Show available mice in sidebar' setting not working"
+      ]
+    },
+    {
+      "title": "Better Send Supplies",
+      "items": [
+        "Fixed minor display issues"
+      ]
+    },
+    {
+      "title": "Better Tournaments",
+      "items": [
+        "Added hover states to tournament bar sections",
+        "Various style updates"
+      ]
+    },
+    {
+      "title": "Better Travel",
+      "items": [
+        "Added Forbidden Grove to Travel Window",
+        "Removed Acolyte Realm from Travel Window",
+        "Updated menu icons"
+      ]
+    },
+    {
+      "title": "Better UI",
+      "items": [
+        "Added more Adventure Book styles",
+        "Updated Gifts menu icon",
+        "Updated bait disarmed horn message icon"
+      ]
+    },
+    {
+      "title": "Catch Rate Estimator",
+      "items": [
+        "Catch rates are now shown as 100% when an Ultimate Charm is equipped"
+      ]
+    },
+    {
+      "title": "Debug",
+      "items": [
+        "Added 'Log all events' setting to log all eventRegistry events"
+      ]
+    },
+    {
+      "title": "Experiments",
+      "items": [
+        "Added 'Location HUDs - Prologue Pond: Normal boat color' setting to change the color of the boat in Prologue Pond"
+      ]
+    },
+    {
+      "title": "FLRT Helper",
+      "items": [
+        "Fixed bug where all items where shown and not just tradeable items"
+      ]
+    },
+    {
+      "title": "Inventory - Open All but One",
+      "items": [
+        "Removed button from Kilohertz Processors to avoid accidental use"
+      ]
+    },
+    {
+      "title": "Lucky Golden Shield Duration & Reminder",
+      "items": [
+        "Removed 'Show exact time, including seconds' setting",
+        "Fixed display alignment"
+      ]
+    },
+    {
+      "title": "Location HUDs - Bountiful Beanstalk",
+      "items": [
+        "Fixed display of quick craft buttons",
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Floating Islands",
+      "items": [
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Foreword Farm",
+      "items": [
+        "Added inventory toggle persistence",
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Fungal Cavern",
+      "items": [
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Moussu Picchu",
+      "items": [
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Queso Region",
+      "items": [
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Burroughs Rift",
+      "items": [
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Furoma Rift",
+      "items": [
+        "Fixed issues with recall data showing NaN and not updating properly",
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Whisker Woods Rift",
+      "items": [
+        "Fixed Taunting charm warning displaying too early",
+        "Added easter egg where Black Widow's eyes will glow sometimes",
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Table of Contents",
+      "items": [
+        "Added writing simulator. This will simulate multiple writing sessions and show the results",
+        "Updated various styles"
+      ]
+    },
+    {
+      "title": "Other",
+      "items": [
+        "Optimized performance and memory usage",
+        "Moved all external styles to be bundled with the extension",
+        "Removed left over debugging code"
       ]
     }
   ]
