@@ -20,7 +20,9 @@ import styles from './styles.css';
 
 /**
  * Formats the results.
- * @param {EncySimResults} results The sim results.
+ * @param {EncySimResults} results   The sim results.
+ * @param {number}         timeTaken The time taken.
+ *
  * @return {string} Results as HTML.
  */
 const displayResults = (results, timeTaken) => {
@@ -76,8 +78,6 @@ const displayResults = (results, timeTaken) => {
 
     const chancePercent = Math.floor(chance.cumulativeChance * 1000) / 10;
 
-    console.log(`volume: ${chance.volume}, chance: ${chancePercent}%`);
-
     if (chancePercent < 1) {
       continue;
     }
@@ -123,7 +123,7 @@ const displayResults = (results, timeTaken) => {
   }
 
   text += '</ol></div></div>';
-  text += `<div class="info">Simulated ${getOptions().TotalSimulations.toLocaleString()} writing sessions with Final Draft Derby equipped in ${(timeTaken/1000).toFixed(3)}s.</div>`;
+  text += `<div class="info">Simulated ${getOptions().TotalSimulations.toLocaleString()} writing sessions with Final Draft Derby equipped in ${(timeTaken / 1000).toFixed(3)}s.</div>`;
 
   return text;
 };
