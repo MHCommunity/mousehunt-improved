@@ -1,6 +1,8 @@
 import * as esbuild from 'esbuild';
 
-import { CSSMinifyTextPlugin, ImportGlobPlugin } from './shared.mjs';
+import { CSSMinifyTextPlugin, ImportGlobPlugin, parseArgs } from './shared.mjs';
+
+const argv = await parseArgs(process.argv);
 
 await esbuild.build({
   entryPoints: ['src/index.js'],
@@ -40,4 +42,7 @@ await esbuild.build({
       'const mhImprovedPlatform = \'userscript\';',
     ].join('\n'),
   },
+  define: {
+    __SENTRY_DSN__: JSON.stringify(argv.release ? 'https://a677b0fe4d2fbc3a7db7410353d91f39@o4506582061875200.ingest.sentry.io/4506781071835136' : ''),
+  }
 });

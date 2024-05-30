@@ -1,8 +1,10 @@
 import * as esbuild from 'esbuild';
 import FastGlob from 'fast-glob';
 import fs from 'node:fs';
+import { hideBin } from 'yargs/helpers';
 import path from 'node:path';
 import { readFile } from 'node:fs/promises';
+import yargs from 'yargs';
 
 const CSSMinifyTextPlugin = {
   name: 'CSSMinifyTextPlugin',
@@ -67,7 +69,24 @@ const ImportGlobPlugin = {
   },
 };
 
+const parseArgs = async (args) => {
+  return await yargs(hideBin(args))
+    .option('platform', {
+      type: 'string',
+      choices: ['chrome', 'firefox', 'userscript'],
+      demandOption: true,
+    })
+    .option('watch', {
+      type: 'boolean',
+    })
+    .option('release', {
+      type: 'boolean',
+    })
+    .parseAsync();
+};
+
 export {
   CSSMinifyTextPlugin,
-  ImportGlobPlugin
+  ImportGlobPlugin,
+  parseArgs
 };

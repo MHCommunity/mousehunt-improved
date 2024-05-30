@@ -3,7 +3,9 @@ import path from 'node:path';
 
 import * as esbuild from 'esbuild';
 
-import { CSSMinifyTextPlugin, ImportGlobPlugin } from './shared.mjs';
+import { CSSMinifyTextPlugin, ImportGlobPlugin, parseArgs } from './shared.mjs';
+
+const argv = await parseArgs(process.argv);
 
 /**
  * Main build function.
@@ -61,6 +63,9 @@ const build = async (entryfile, outfile, name, description, version, url) => {
         .replaceAll('@replacement.name', name)
         .replaceAll('@replacement.description', description)
         .replaceAll('@replacement.version', version)
+    },
+    define: {
+      __SENTRY_DSN__: JSON.stringify(argv.release ? 'https://a677b0fe4d2fbc3a7db7410353d91f39@o4506582061875200.ingest.sentry.io/4506781071835136' : ''),
     }
   };
 
