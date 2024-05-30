@@ -1,7 +1,5 @@
-/**
- * Hide the body, load the script, then show the body again to avoid flickering.
- */
-window.addEventListener('DOMContentLoaded', () => {
+const injectMain = () => {
+  // Hide the body, load the script, then show the body again to avoid flickering.
   document.body.style.visibility = 'hidden';
 
   const injectedScript = document.createElement('script');
@@ -15,4 +13,15 @@ window.addEventListener('DOMContentLoaded', () => {
   injectedScript.onload = () => {
     document.body.style.visibility = 'visible';
   };
-});
+};
+
+/**
+ * If the user elects to run the extension for this visit, then
+ * DOMContentLoaded has probably alredy fired. In that case, just
+ * go ahead and inject the main script if the document is ready.
+ */
+if (document.readyState === 'complete') {
+  injectMain();
+} else {
+  window.addEventListener('DOMContentLoaded', injectMain);
+}
