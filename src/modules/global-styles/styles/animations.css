@@ -153,6 +153,16 @@
   100% { pointer-events: all; opacity: 1; }
 }
 
+@keyframes mh-improved-background-to-right {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+@keyframes mh-improved-background-to-left {
+  0% { background-position: 50px 50px; }
+  100% { background-position: 0 0; }
+}
+
 /* stylelint-enable rule-empty-line-before */
 /* stylelint-enable prettier/prettier */
 /* stylelint-enable stylistic/block-opening-brace-space-before */
