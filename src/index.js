@@ -142,9 +142,6 @@ const loadModules = async () => {
 
   // Add the loaded modules to the global scope.
   setGlobal('modules', allLoadedModules);
-
-  // Fire the event to signal that all modules have been loaded.
-  doEvent('mh-improved-modules-loaded');
 };
 
 /**
@@ -239,7 +236,7 @@ const init = async () => {
       'color: inherit; font-weight: inherit; font-size: inherit'
     );
 
-    doEvent('mh-improved-init');
+    doEvent('mh-improved-init', mhImprovedVersion);
   } catch (error) {
     showLoadingError(error);
   }
