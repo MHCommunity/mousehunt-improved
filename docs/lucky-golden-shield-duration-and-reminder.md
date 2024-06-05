@@ -5,3 +5,4 @@ Shows the time remaining on your Lucky Golden Shield in the HUD.
 ## Options
 
 - **Use "new" style**: Will display with a slightly different style.
+- **Convert weeks and months to days**: Will show days remaining, instead of weeks or months.

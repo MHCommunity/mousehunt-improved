@@ -9,40 +9,41 @@ Change the shield to an event shield, a color, a title shield, or a silly shield
 
 ### Events
 
+- Birthday (Generic)
 - Birthday (Year 10)
 - Birthday (Year 11)
 - Birthday (Year 12)
 - Birthday (Year 13)
 - Birthday (Year 14)
 - Birthday (Year 15)
-- Birthday
+- Birthday (Year 16)
 - Great Winter Hunt
 - Halloween
 - Larry's Football Challenge
 - Pride
 - Remembrance Day
 - Spring Egg Hunt
-- Spring Egg Hunt Alt
+- Spring Egg Hunt Alternate
 - Valentine's
 
 ### Color
 
 - Blue
-- Blue with matching timer
 - Cyan
-- Cyan with matching timer
 - Green
-- Green with matching timer
 - Pink
-- Pink with matching timer
 - Purple
-- Purple with matching timer
 - Red
-- Red with matching timer
 - Faded
 - Rainbow
-- Rainbow with matching timer
 - Cotton Candy
+- Blue with matching timer
+- Cyan with matching timer
+- Green with matching timer
+- Pink with matching timer
+- Purple with matching timer
+- Red with matching timer
+- Rainbow with matching timer
 
 ### Title
 

@@ -9,31 +9,34 @@ Press `?` to see the list of available shortcuts.
 | Description | Default Key |
 | --- | --- |
 |Show the list of available shortcuts|`?`|
+
 |Go to the Travel page|`t`|
 |Go to the Camp page|`j`|
 |Go to the Friends page|`f`|
 |Go to the Shops page|`s`|
-|Go to your Hunter Profile page|`p`|
-|Go to the Send Supplies page||
-|Go to the Scoreboards page||
-|Go to your Team page||
-|Go to the Tournaments page||
-|Go to the Wiki page||
-|Open the Marketplace||
-|Open the Inbox||
-|Open the Gifts popup||
+|Go to the Your Hunter Profile page|`p`|
+|Go to the Send Supplies page| |
+|Go to the Scoreboards page| |
+|Go to the Team page| |
+|Go to the Tournaments page| |
+|Go to the Wiki page| |
+|Open the Marketplace| |
+|Open the Inbox| |
+|Open the Gifts popup| |
 |Open your Map|`m`|
 |Open your Map Invites|`i`|
-|Open the Travel Window*||
+|Open the Travel Window| |
 |Change Weapon|`w`|
 |Change Base|`b`|
 |Change Charm|`r`|
 |Change Cheese|`c`|
-|Change Trap Skin||
+|Change Trap Skin| |
 |Show the Trap Effectiveness Meter|`e`|
-|Disarm your Cheese||
-|Disarm your Charm||
-|Travel to previous location*||
+|Disarm your Cheese| |
+|Disarm your Charm| |
+|Travel to previous location*| |
+|Toggle Inventory Lock & Hide*| |
+|Open Favorite Setups*| |
 |Open [Mini CRE](https://greasyfork.org/en/scripts/447193-mh-minluck-cre-tool-v2-0-new)*|`l`|
 
 * _These shortcuts require the related feature module to be enabled._

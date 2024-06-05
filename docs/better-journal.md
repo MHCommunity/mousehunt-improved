@@ -10,8 +10,11 @@
 
 ## Options
 
-- **Journal styles**: TODO:
-- **Journal replacements**: TODO:
-- **Show loot icons**: TODO:
-- **Show loot icons (minimal)**: TODO:
-- **Show loot as list**: TODO:
+- **Journal styles**: Updates the journal UI and entry styles and display.
+- **Journal text replacements**: Updates the journal text to be more clear and concise.
+- **Show loot icons**: Shows a small icon next to loot entries.
+- **Show loot icons (minimal)**: Shows a small icon next to loot entries, but only for some items.
+- **Show loot as list**: Displays loot entries as a list rather than in the text.
+- **Show gold and points icons**: Shows a small icon next to the gold and points in the journal.
+- **Unique item colors (Map clues, Ful'Mina's gifts, etc.)**: Colors unique items differently in the journal.
+- **Journal History**: Saves your journal history and lets you browse entries past page 6.

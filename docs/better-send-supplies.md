@@ -8,4 +8,4 @@
 
 ## Options
 
-- **Pinned Items**:
+- **Pinned Items**: Four items that will be pinned to the top of the list.

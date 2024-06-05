@@ -13,6 +13,8 @@ Currently, the following data exporters are available:
 - Scoreboard Rankings (Weekly)
 - Scoreboard Rankings (Friends)
 - Scoreboard Rankings (Weekly, Friends)
+- Journal Entries
+- Favorite Setups
 
 If you have [MH - Rank-up Forecaster (v2.0)](https://greasyfork.org/en/scripts/428461-mh-rank-up-forecaster-v2-0) installed, you can also export that data.
 

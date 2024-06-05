@@ -1,6 +1,6 @@
 # [Custom Background](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-design-custom-background)
 
-Change the page background to an event backround, a color, or a gradient.
+Change the page background to an event background, a color, or a gradient.
 
 ## Options
 
@@ -23,42 +23,49 @@ Change the page background to an event backround, a color, or a gradient.
 - Red
 - Faded
 
-### Gradients
+### Other
 
-- Midnight
-- Night in Salem
-- Cosmic Twilight
-- Galactic Dusk
-- Emerald Lagoon
-- Aurora
 - Amber Sunrise
-- Warm Glow
 - Aqua Depths
+- Aurora
+- Camo
+- Canary Shine
+- Candy Cane Breeze
+- Candy Clouds
+- Celestial Dreamscape
 - Cobalt Mist
+- Cold Breeze
+- Cosmic Twilight
+- Cotton Candy Shores
 - Crimson Blush
+- Cyberpop
+- Dark
+- Dark Digital
+- Dreamy Hues
+- Electric Hexes
 - Emerald Forest
+- Emerald Lagoon
 - Flamingo Fling
+- Flowers
+- Frosted Orchid
+- Galactic Dusk
 - Glacial Gleam
+- Groovy Green
 - Lavender Lustre
+- Midnight
 - Mint Surf
+- Neon Nights
+- Night in Salem
+- Oahu Sunset
 - Orange Coral
+- Pastel Daydream
+- Polaroid Memories
 - Radiant Rouge
+- Rainbow
+- Rainbow's Embrace
 - Sangria Solstice
 - Sea Sky
 - Skyline Whisper
-- Cotton Candy Shores
-- Canary Shine
-- Oahu Sunset
-- Polaroid Memories
-- Neon Nights
 - Soft Metal
-- Frosted Orchid
 - Spectral Summer
-- Cold Breeze
-- Cyberpop
-- Rainbow
-- Candy Cane Breeze
-- Celestial Dreamscape
-- Dreamy Hues
-- Pastel Daydream
-- Rainbow's Embrace
+- Warm Glow

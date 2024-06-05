@@ -7,5 +7,5 @@
 
 ## Options
 
-- **Default to showing all items in search**:
-- **Smaller images**
+- **Default to showing all items in search**: Automatically selects the 'Search all items' checkbox when opening the search.
+- **Smaller images**: Makes the images in the Browse tab smaller to match the other tabs.

@@ -4,6 +4,11 @@ Adds a "Dashboard" menu to the top menu bar that will show you the important det
 
 ## Supported Locations
 
+- Bountiful Beanstalk
+  - Current room type
+  - Embellishments
+  - Noise
+  - Hunts remaining
 - Bristle Woods Rift
   - Current room
   - Loot progress

@@ -7,3 +7,9 @@
 - Adds a favorite button to the mouse view to toggle the mouse as a favorite.
 - Adds King's Crowns as a tab on the mice page.
 - Adds Groups, Regions, Your Stats, and King's Crowns to the mice menu dropdown.
+
+## Options
+
+- **Show attraction rates**: Whether to show attraction rates from MHCT directly in the mouse view.
+- **Show mouse details on hover (in journal)**: Hovering over a mouse in the journal will show a small popup with the mouse's name, image, and quantity caught.
+- **Show available mice in sidebar**: Adds a sidebar block with the available mice.

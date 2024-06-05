@@ -1,6 +1,7 @@
 # [Location HUDS](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-location-hud)
 
-- **[Event Locations](event-locations.md)**
+## Locations
+
 - **[Acolyte Realm](acolyte-realm.md)**
 - **[Balack's Cove](balacks-cove.md)**
 - **[Bazaar](bazaar.md)**
@@ -23,7 +24,9 @@
 - **[Fungal Cavern](fungal-cavern.md)**
 - **[Furoma Rift](furoma-rift.md)**
 - **[Gnawnia Express Station](gnawnia-express-station.md)**
+- **[Gnawnia Rift](gnawnia-rift.md)**
 - **[Great Gnarled Tree](great-gnarled-tree.md)**
+- **[Harbour](harbour.md)**
 - **[Iceberg](iceberg.md)**
 - **[Jungle of Dread](jungle-of-dread.md)**
 - **[King's Arms](kings-arms.md)**
@@ -39,8 +42,7 @@
 - **[Nerg Plains](nerg-plains.md)**
 - **[Pinnacle Chamber](pinnacle-chamber.md)**
 - **[Prologue Pond](prologue-pond.md)**
-- **[Region: Living Garden](region-living-garden.md)**
-- **[Region: Queso Canyon](queso-canyon.md)**
+- **[School of Sorcery](school-of-sorcery.md)**
 - **[Seasonal Garden](seasonal-garden.md)**
 - **[Slushy Shoreline](slushy-shoreline.md)**
 - **[S.S. Huntington IV](ss-huntington-iv.md)**
@@ -55,3 +57,12 @@
 - **[Windmill](windmill.md)**
 - **[Zokor](zokor.md)**
 - **[Zuzwang's Tower](zuzwangs-tower.md)**
+
+### Regions
+
+- **[Region: Living Garden](region-living-garden.md)**
+- **[Region: Queso Canyon](queso-canyon.md)**
+
+### Other
+
+- **[Event Locations](event-locations.md)**

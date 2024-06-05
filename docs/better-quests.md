@@ -7,4 +7,4 @@
 
 ## Options
 
-- **M400 Helper**:
+- **M400 Helper**: Adds a "Travel to next step" button to the M400 assignment.
