@@ -338,7 +338,6 @@ const updateMouseView = async () => {
   });
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
-
   link.href = `https://api.mouse.rip/mhct-redirect/${mouseId}`;
   link.target = '_mhct';
   title.append(link);
