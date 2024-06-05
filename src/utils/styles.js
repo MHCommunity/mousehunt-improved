@@ -56,34 +56,6 @@ const addStylesDirect = (styles, identifier = 'mh-utils-custom-styles', once = f
  * Add custom styles to the page.
  *
  * @param {string|Array} styles     CSS to add to the page.
- * @param {string}       identifier Identifier to use for the styles.
- * @param {boolean}      replace    Whether to replace the existing styles.
- *
- * @return {Element} The style element.
- */
-const addModuleStyles = (styles, identifier = 'mh-improved-styles', replace = false) => {
-  const existingStyles = document.querySelector(`#${identifier}`);
-
-  styles = Array.isArray(styles) ? styles.join('\n') : styles;
-
-  if (existingStyles) {
-    existingStyles.innerHTML = replace ? styles : existingStyles.innerHTML + styles;
-
-    return existingStyles;
-  }
-
-  const style = document.createElement('style');
-  style.id = identifier;
-  style.innerHTML = styles;
-  document.head.append(style);
-
-  return style;
-};
-
-/**
- * Add custom styles to the page.
- *
- * @param {string|Array} styles     CSS to add to the page.
  * @param {string}       module     The module ID to add the styles to.
  * @param {string}       identifier Identifier to use for the styles.
  *
@@ -108,6 +80,34 @@ const addStyles = (styles, module = false, identifier = 'mh-improved-styles') =>
   });
 
   return stylesEl;
+};
+
+/**
+ * Add custom styles to the page.
+ *
+ * @param {string|Array} styles     CSS to add to the page.
+ * @param {string}       identifier Identifier to use for the styles.
+ * @param {boolean}      replace    Whether to replace the existing styles.
+ *
+ * @return {Element} The style element.
+ */
+const addModuleStyles = (styles, identifier = 'mh-improved-styles', replace = false) => {
+  const existingStyles = document.querySelector(`#${identifier}`);
+
+  styles = Array.isArray(styles) ? styles.join('\n') : styles;
+
+  if (existingStyles) {
+    existingStyles.innerHTML = replace ? styles : existingStyles.innerHTML + styles;
+
+    return existingStyles;
+  }
+
+  const style = document.createElement('style');
+  style.id = identifier;
+  style.innerHTML = styles;
+  document.head.append(style);
+
+  return style;
 };
 
 /**
@@ -151,7 +151,6 @@ const removeHudStyles = () => {
 export {
   addStylesDirect,
   addHudStyles,
-  addModuleStyles,
   addStyles,
   removeHudStyles,
   removeStyles
