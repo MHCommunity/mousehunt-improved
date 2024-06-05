@@ -19,7 +19,6 @@ Change the marbled HUD background to a different color or pattern.
 
 - Blueprint
 
-
 ### Other
 
 - Amber Sunrise
