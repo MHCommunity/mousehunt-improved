@@ -75,8 +75,13 @@ const addOpenAllButOneButton = () => {
     button.remove();
   });
 
+  const existingAllButtons = document.querySelectorAll('.open-all');
+  existingAllButtons.forEach((button) => {
+    button.remove();
+  });
+
   convertibleItems.forEach((item) => {
-    const button = item.querySelector('.inventoryPage-item-button[data-item-action="all"]');
+    const button = item.querySelector('.inventoryPage-item-button[data-item-action="single"]');
     if (! button) {
       return;
     }
@@ -94,6 +99,15 @@ const addOpenAllButOneButton = () => {
       return;
     }
 
+    const quantity = item.querySelector('.quantity');
+    if (! quantity) {
+      return;
+    }
+
+    if (quantity.textContent === '1') {
+      return;
+    }
+
     const newButton = button.cloneNode(true);
     newButton.classList.add('open-all-but-one');
     newButton.textContent = 'All but One';
@@ -101,6 +115,14 @@ const addOpenAllButOneButton = () => {
     newButton.setAttribute('data-item-action', 'all-but-one');
 
     button.parentNode.insertBefore(newButton, button.nextSibling);
+
+    const newAllButton = button.cloneNode(true);
+    newAllButton.classList.add('open-all');
+    newAllButton.textContent = 'All';
+    newAllButton.value = 'All';
+    newAllButton.setAttribute('data-item-action', 'all');
+
+    button.parentNode.insertBefore(newAllButton, button.nextSibling);
   });
 };
 
