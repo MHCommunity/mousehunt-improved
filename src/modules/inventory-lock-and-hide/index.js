@@ -79,6 +79,9 @@ const addControlsToItems = async () => {
 
   const currentTab = getCurrentTab();
 
+  const locked = itemSettings?.locked || [];
+  const hidden = itemSettings?.hidden || [];
+
   itemsEl.forEach((item) => {
     let id = item.getAttribute('data-item-id');
     id = Number.parseInt(id, 10);
@@ -91,8 +94,8 @@ const addControlsToItems = async () => {
       return;
     }
 
-    let isLocked = itemSettings?.locked ? itemSettings.locked.includes(id) : false;
-    let isHidden = itemSettings?.hidden ? itemSettings.hidden.includes(id) : false;
+    let isLocked = itemSettings?.locked ? locked.includes(id) : false;
+    let isHidden = itemSettings?.hidden ? hidden.includes(id) : false;
 
     const controls = makeElement('div', 'mhui-inventory-lock-and-hide-item-controls');
 

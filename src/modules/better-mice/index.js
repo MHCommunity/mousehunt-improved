@@ -149,6 +149,10 @@ const addMinluck = async (mouseId, mouseView) => {
   // foreach minluck, output the power type and the minluck
   const minluckList = makeElement('ul', 'minluck-list');
 
+  if (! minlucks) {
+    minlucks = await getData('minlucks');
+  }
+
   // find the mouse in the minlucks data by id
   const minluck = minlucks.find((m) => m.id === Number.parseInt(mouseId, 10));
   const mouseMinlucks = minluck?.minlucks || {};

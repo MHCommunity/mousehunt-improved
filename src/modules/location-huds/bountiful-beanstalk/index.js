@@ -204,6 +204,10 @@ const addCraftingButtons = async () => {
       return false;
     }
 
+    if (! results.inventory || ! results.items) {
+      return false;
+    }
+
     results.inventory = results?.inventory || {};
     results.items = results?.items || {};
 

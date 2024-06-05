@@ -181,7 +181,7 @@ const doJournalHistory = async () => {
     pager = hg.views.JournalView.getPager(journalPageLink);
   }
 
-  if (! pager) {
+  if (! pager || ! pager.getTotalItems()) {
     return;
   }
 

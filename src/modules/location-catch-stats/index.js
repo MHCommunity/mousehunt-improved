@@ -19,6 +19,10 @@ const getMouseStats = async () => {
   // Grab the data from the response.
   const mouseData = data?.mouse_list_category?.subgroups[0]?.mice;
 
+  if (! mouseData) {
+    return [];
+  }
+
   // Reorder by the num_catches key.
   mouseData.sort((a, b) => {
     return b.num_catches - a.num_catches;
