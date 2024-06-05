@@ -71,13 +71,21 @@ const funTime = async () => {
     return;
   }
 
+  let isRotating = false;
   meter.addEventListener('click', () => {
+    if (isRotating) {
+      return;
+    }
+
+    isRotating = true;
+
     const time = 1000;
 
     let hue = 0;
     const interval = setInterval(() => {
       if (hue >= 360) {
         clearInterval(interval);
+        isRotating = false;
       }
 
       hue += 1;
@@ -184,6 +192,17 @@ const addCraftingButtons = async () => {
       buy: 1,
       is_kings_cart_item: 0,
     });
+
+    if (! results || ! results.success) {
+      popup.classList.remove('loading');
+      popup.classList.add('error');
+
+      setTimeout(() => {
+        popup.classList.remove('error');
+      }, 1000);
+
+      return false;
+    }
 
     results.inventory = results?.inventory || {};
     results.items = results?.items || {};
