@@ -9,11 +9,29 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |Flag|Description|
 |---|---|
 |`social-noop`|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
-|`no-onboarding`|Disables the MouseHunt Improved tutorial from Larry.|
 |`no-kingdom-link-replacement`|Makes the Kingdom link to go the forums, rather than the News page.|
+
+### Module Flags
+
+#### Better Travel
+
+|Flag|Description|
+|---|---|
+|`better-travel-no-reminder-champions-fire`|Disables the reminder about Champion's Fire.|
+|`better-travel-no-reminder-wild-tonic`|Disables the reminder about Wild Tonic.|
+|`better-travel-no-reminder-bottled-wind`|Disables the reminder about Bottled Wind.|
+|`better-travel-no-reminder-condensed-creativity`|Disables the reminder about Condensed Creativity.|
+|`better-travel-no-reminder-festive-spirit`|Disables the reminder about Festive Spirit.|
+
+#### Catch Rate Estimator & Minlucks
+
+|Flag|Description|
+|---|---|
 |`catch-rate-estimate-more-refresh`|Restores previous behavior of the Catch Rate Estimator module where it refreshes more often.|
 
-The [debug logging](./debug-logging.md) module also is configured using feature flags.
+### Debug Logging
+
+See [Debug Logging](./debug-logging.md) for configuration options.
 
 ### Userscript Integrations
 
@@ -30,15 +48,16 @@ The [debug logging](./debug-logging.md) module also is configured using feature 
 |[Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)|`userscript-styles-no-tsitu-supply-search-styles`|[Better UI](./better-ui.md)|
 |[Hyperspeed Travel](https://greasyfork.org/en/scripts/448542-mousehunt-hyperspeed-travel)|`userscript-styles-no-hyperspeed-travel-styles`|[Better Travel](./better-travel.md)|
 
+* _not a userscript, but uses the same flag for consistency_
+
 ### Disable Modules
 
 You can force-disable modules using the `no-<module-id>` feature flag. This is the same as having the module turned off in the options, but can also disable features that are not usually toggle-able.
 
 |Flag|Module|
 |---|---|
-|`no-global-styles`|Disables MH Improved's global styles.|
+|`no-global-styles`|Disables added global styles. _Warning: This may cause issues with other modules._|
 |`no-highlight-users`|Disables the added badge on MouseHunt Improved developer and contributor hunter profiles.|
 |`no-links`|Disables the added links to the Support and Kingdom menus.|
-|`no-onboarding`|Disables the MouseHunt Improved tutorial from Larry.|
-|`no-update-migration`|Disables migrating settings from old options to new options on update.|
+|`no-update-migration`|Disables migrating settings from old options to new options on update. _Warning: This may cause issues with other modules._|
 |`no-update-notifications`|Disables update notifications.|

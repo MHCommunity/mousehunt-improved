@@ -1,4 +1,15 @@
-import { getCurrentLocation, showHornMessage } from '@utils';
+import { getCurrentLocation, getFlag, showHornMessage } from '@utils';
+
+/**
+ * Allow the user to disable reminder for specific items.
+ *
+ * @param {string} item The item to disable the reminder for.
+ *
+ * @return {boolean} True if the reminder was disabled.
+ */
+const hasDisabledReminder = (item) => {
+  return getFlag(`better-travel-no-reminder-${item}`);
+};
 
 /**
  * Add reminders to the horn when traveling.
@@ -11,6 +22,10 @@ const addReminders = () => {
 
   switch (getCurrentLocation()) {
   case 'rift_valour':
+    if (hasDisabledReminder('champions-fire')) {
+      break;
+    }
+
     if (user.quests?.QuestRiftValour?.is_fuel_enabled) {
       reminderOpts.text = 'Champion\'s Fire is active.';
       reminderOpts.image = 'https://www.mousehuntgame.com/images/items/stats/transparent_thumb/6622efd1db7028b30f48b15771138720.png';
@@ -30,6 +45,10 @@ const addReminders = () => {
   case 'queso_plains':
   case 'queso_quarry':
   case 'queso_geyser':
+    if (hasDisabledReminder('wild-tonic')) {
+      break;
+    }
+
     if (
       user.quests?.QuestQuesoCanyon?.is_wild_tonic_active ||
       user.quests?.QuestQuesoGeyser?.is_wild_tonic_enabled
@@ -49,6 +68,10 @@ const addReminders = () => {
     }
     break;
   case 'floating_islands':
+    if (hasDisabledReminder('bottled-wind')) {
+      break;
+    }
+
     if ('launch_pad_island' === user.quests?.QuestFloatingIslands?.hunting_site_atts?.island_power_type) {
       break;
     }
@@ -74,10 +97,16 @@ const addReminders = () => {
       };
     }
     break;
+  case 'bountiful_beanstalk':
   case 'foreword_farm':
   case 'prologue_pond':
   case 'table_of_contents':
+    if (hasDisabledReminder('condensed-creativity')) {
+      break;
+    }
+
     if (
+      user.quests.QuestBountifulBeanstalk.is_fuel_enabled ||
       user.quests?.QuestProloguePond?.is_fuel_enabled ||
       user.quests?.QuestForewordFarm?.is_fuel_enabled ||
       user.quests?.QuestTableOfContents?.is_fuel_enabled
@@ -95,6 +124,10 @@ const addReminders = () => {
   case 'winter_hunt_grove':
   case 'winter_hunt_workshop':
   case 'winter_hunt_fortress':
+    if (hasDisabledReminder('festive-spirit')) {
+      break;
+    }
+
     if (
       user.quests?.QuestCinnamonTreeGrove?.is_fuel_enabled ||
       user.quests?.QuestGolemWorkshop?.is_fuel_enabled ||
