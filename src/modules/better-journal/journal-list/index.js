@@ -1,4 +1,5 @@
-import { addEvent, addStyles, makeElement } from '@utils';
+import { addStyles, makeElement } from '@utils';
+import onJournalEntry from '../journal-event';
 
 import styles from './styles.css';
 
@@ -174,5 +175,5 @@ const formatAsList = async (entry) => {
 export default async () => {
   addStyles(styles, 'better-journal-list');
 
-  addEvent('journal-entry', formatAsList, { weight: 3000, id: 'better-journal-list' });
+  onJournalEntry(formatAsList, 3000);
 };

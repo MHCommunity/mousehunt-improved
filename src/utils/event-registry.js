@@ -34,6 +34,16 @@ const doEvent = (eventName, params) => {
   eventRegistry.doEvent(eventName, params);
 };
 
+/**
+ * Fire an internal event.
+ *
+ * @param {string} eventName The name of the event to fire.
+ * @param {Object} params    The parameters to pass to the event.
+ */
+const doInternalEvent = (eventName, params) => {
+  document.dispatchEvent(new CustomEvent(eventName, { detail: params }));
+};
+
 const eventsAdded = {};
 /**
  * Add something to the event registry.
@@ -86,6 +96,7 @@ const onSettingsChange = (key, callback) => {
 export {
   addEvent,
   doEvent,
+  doInternalEvent,
   onEvent,
   onSettingsChange
 };

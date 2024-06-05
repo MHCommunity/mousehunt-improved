@@ -1,4 +1,5 @@
-import { addEvent, addStyles } from '@utils';
+import { addStyles } from '@utils';
+import onJournalEntry from '../journal-event';
 
 import styles from './styles.css';
 
@@ -281,10 +282,5 @@ const processEntry = async (entry) => {
 export default async () => {
   addStyles(styles, 'better-journal-replacements');
 
-  addEvent('journal-entry', (entry) => {
-    processEntry(entry);
-    setTimeout(() => {
-      processEntry(entry);
-    }, 500);
-  }, { weight: 1000, id: 'better-journal-replacements' });
+  onJournalEntry(processEntry, 500);
 };

@@ -1,4 +1,5 @@
 import { addEvent, addStyles, getUserTitle, getUserTitleShield } from '@utils';
+import onJournalEntry from '../journal-event';
 
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -72,6 +73,6 @@ const updateRankUpIcon = (entry) => {
 export default async () => {
   addStyles(styles, 'better-journal-styles');
 
-  addEvent('journal-entry', addBadgeClass, { id: 'better-journal-styles-badge' });
-  addEvent('journal-entry', updateRankUpIcon, { id: 'better-journal-styles-rank-up' });
+  onJournalEntry(addBadgeClass, 4000);
+  onJournalEntry(updateRankUpIcon, 4000);
 };

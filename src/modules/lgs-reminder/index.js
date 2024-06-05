@@ -167,9 +167,7 @@ const main = () => {
 
   updateLgsReminder(reminder);
 
-  onEvent('horn-countdown-tick-minute', () => {
-    updateLgsReminder(reminder);
-  });
+  document.addEventListener('horn-countdown-tick-minute', () => updateLgsReminder(reminder));
 };
 
 /**

@@ -470,7 +470,7 @@ const hud = () => {
 
   onEvent('ajax_response', run);
 
-  onEvent('horn-countdown-tick-minute', updateJetstreamTime);
+  document.addEventListener('horn-countdown-tick-minute', updateJetstreamTime);
   onDialogShow('floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace', onSkyMapShow);
 
   onRequest('environment/floating_islands.php', (request, data) => {

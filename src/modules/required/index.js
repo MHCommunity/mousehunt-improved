@@ -1,13 +1,17 @@
 import {
   doEvent,
+  doInternalEvent,
   getCurrentDialog,
+  getCurrentLocation,
   getCurrentPage,
   getFlag,
   getHeaders,
+  getSetting,
   makeElement,
   onDialogShow,
   onEvent,
   onRequest,
+  onTravel,
   onTurn,
   setMultipleTimeout
 } from '@utils';
@@ -44,17 +48,28 @@ const checkForAutoHorn = () => {
   }
 };
 
+let hasAddedHornCountdownEvents = false;
+
 /**
- * Add events that we can listen for.
+ * Add the horn countdown events.
  */
-const addEvents = () => {
+const addHornCountdownEvents = () => {
+  // Only run the horn countdown events on certain locations and if a module needs it.
+  const locations = ['balacks_cove', 'floating_islands'];
+  if (! getSetting('lgs-reminder', false) && ! locations.includes(getCurrentLocation())) {
+    return;
+  }
+
+  if (hasAddedHornCountdownEvents) {
+    return;
+  }
+
   const hunterHornTimer = document.querySelector('.huntersHornView__timerState');
   if (hunterHornTimer) {
     // Add a mutation observer to check when the innerText changes and when it does, start an interval where we fire an event every second.
     const observer = new MutationObserver(() => {
       setInterval(() => {
-        doEvent('horn-countdown-tick', hunterHornTimer.innerText);
-        doEvent('horn-countdown-tick-minute', hunterHornTimer.innerText);
+        doInternalEvent('horn-countdown-tick-minute', hunterHornTimer.innerText);
       }, 60 * 1000);
 
       observer.disconnect();
@@ -62,6 +77,15 @@ const addEvents = () => {
 
     observer.observe(hunterHornTimer, { childList: true });
   }
+
+  hasAddedHornCountdownEvents = true;
+};
+
+/**
+ * Add events that we can listen for.
+ */
+const addEvents = () => {
+  addHornCountdownEvents();
 };
 
 let isJournalProcessing = false;
@@ -82,10 +106,8 @@ const processEntries = async () => {
 
   const entries = document.querySelectorAll('.journal .entry');
   for (const entry of entries) {
-    doEvent('journal-entry', entry);
+    doInternalEvent('journal-entry', entry);
   }
-
-  doEvent('journal-entries', entries);
 
   isJournalProcessing = false;
 };
@@ -101,8 +123,9 @@ const processSingleEntries = async () => {
   isJournalProcessing = true;
   const entriesEl = document.querySelectorAll('.jsingle .entry');
   for (const entry of entriesEl) {
-    doEvent('journal-entry', entry);
+    doInternalEvent('journal-entry', entry);
   }
+
   isJournalProcessing = false;
 };
 
@@ -110,6 +133,19 @@ const processSingleEntries = async () => {
  * Add journal processing events.
  */
 const addJournalProcessingEvents = async () => {
+  const settings = [
+    'better-journal.styles',
+    'better-journal.replacements',
+    'better-journal.list',
+    'better-journal.gold-and-points',
+    'better-journal.journal-history',
+  ];
+
+  // If any of the settings are enabled, then we'll process the journal entries, otherwise we can skip it.
+  if (! settings.some((setting) => getSetting(setting))) {
+    return;
+  }
+
   setMultipleTimeout(processEntries, [100, 500, 1000]);
 
   onRequest('*', (data) => {
@@ -187,6 +223,8 @@ const init = async () => {
   checkForMHCT();
 
   onEvent('dialog-show-support', addSupportLink);
+
+  onTravel(null, { callback: addEvents });
 };
 
 /**

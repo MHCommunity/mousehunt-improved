@@ -10,6 +10,7 @@ import {
   onNavigation,
   onRequest
 } from '@utils';
+import onJournalEntry from '../journal-event';
 
 /**
  * Make the markup for the journal entries.
@@ -253,5 +254,5 @@ export default async (enabled) => {
     onNavigation(maybeDoJournalHistory);
   }
 
-  addEvent('journal-entry', saveToDatabase, { weight: 1, id: 'better-journal-history' });
+  onJournalEntry(saveToDatabase, 1);
 };

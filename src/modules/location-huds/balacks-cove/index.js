@@ -77,5 +77,5 @@ export default async () => {
   ]);
 
   updateClosingTime();
-  onEvent('horn-countdown-tick-minute', updateClosingTime);
+  document.addEventListener('horn-countdown-tick-minute', updateClosingTime);
 };

@@ -124,8 +124,8 @@ const addJournalEntry = async (opts = {}) => {
     await dbSet('data', data);
   }
 
-  onEvent('journal-entry', (entry) => {
-    if (entry && entry.getAttribute('data-entry-id') === previousEntryId) {
+  document.addEventListener('journal-entry', (e) => {
+    if (e.detail && e.detail.getAttribute('data-entry-id') === previousEntryId) {
       const existingEntry = document.querySelector(`.journalEntries .entry[data-entry-id="journal-entry-${opts.id}"]`);
       if (existingEntry) {
         return;

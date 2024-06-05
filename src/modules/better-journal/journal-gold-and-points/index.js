@@ -1,4 +1,5 @@
-import { addEvent, addStyles } from '@utils';
+import { addStyles } from '@utils';
+import onJournalEntry from '../journal-event';
 
 import styles from './styles.css';
 
@@ -39,10 +40,7 @@ const wrapGoldAndPoints = (entry) => {
 const main = async () => {
   addStyles(styles, 'better-journal-gold-and-points');
 
-  addEvent('journal-entry', wrapGoldAndPoints, {
-    weight: 2000,
-    id: 'better-journal-gold-and-points'
-  });
+  onJournalEntry(wrapGoldAndPoints, 2000);
 };
 
 export default main;
