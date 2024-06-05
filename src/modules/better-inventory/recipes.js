@@ -47,6 +47,17 @@ const cleanUpRecipeBook = () => {
       }
     });
   });
+
+  const recipes = document.querySelectorAll('.inventoryPage-item.recipe');
+  recipes.forEach((recipe) => {
+    // todo: finish this.
+    const pinButton = makeElement('div', 'pin-button', '📌');
+    pinButton.addEventListener('click', () => {
+      recipe.classList.toggle('pinned');
+    });
+
+    recipe.append(pinButton);
+  });
 };
 
 /**
