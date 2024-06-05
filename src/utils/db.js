@@ -70,9 +70,12 @@ const dbGet = async (databaseName, id) => {
   const request = objectStore.get(id);
 
   return new Promise((resolve, reject) => {
-    request.onsuccess = (event) => resolve(event.target.result);
+    request.onsuccess = (event) => {
+      db.close();
+      resolve(event.target.result);
+    };
+
     request.onerror = (event) => reject(event.target.error);
-    transaction.oncomplete = () => db.close();
   });
 };
 
