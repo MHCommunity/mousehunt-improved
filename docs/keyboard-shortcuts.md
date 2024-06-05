@@ -36,4 +36,4 @@ Press `?` to see the list of available shortcuts.
 |Travel to previous location*||
 |Open [Mini CRE](https://greasyfork.org/en/scripts/447193-mh-minluck-cre-tool-v2-0-new)*|`l`|
 
-\* These shortcuts require the related feature module to be enabled.
+* _These shortcuts require the related feature module to be enabled._
