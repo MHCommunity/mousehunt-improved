@@ -147,6 +147,7 @@
 
 #overlayPopup.itemViewPopup #jsDialogClose {
   z-index: 1;
+  border-top-right-radius: 10px;
 }
 
 #overlayPopup.itemViewPopup .itemView-header-classification {

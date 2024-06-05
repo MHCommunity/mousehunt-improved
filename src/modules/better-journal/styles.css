@@ -2,10 +2,6 @@
   margin: 0;
 }
 
-.journal .content .entry .journaltext .better-journal-list {
-  margin-top: 5px;
-}
-
 .journaltext .lucky::after {
   width: 14px;
   height: 14px;
