@@ -39,14 +39,14 @@ const updateMinLucks = async () => {
 
   let minluckList = document.querySelector('#mh-improved-cre');
   if (! minluckList) {
-    minluckList = makeElement('div', ['campPage-trap-trapEffectiveness', 'cre-loading']);
-    minluckList.id = 'mh-improved-cre';
-
     const statsContainer = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
     if (! statsContainer) {
       isUpdating = false;
       return;
     }
+
+    minluckList = makeElement('div', ['mh-cre-table', 'campPage-trap-trapEffectiveness', 'cre-loading']);
+    minluckList.id = 'mh-improved-cre';
 
     statsContainer.append(minluckList);
   }
