@@ -12,7 +12,7 @@ export default async () => {
     },
     {
       id: 'journal-privacy.transparent',
-      title: 'Make text transparent, rather than blurred',
+      title: 'Hide text, rather than blur',
       default: false,
     }
   ];
