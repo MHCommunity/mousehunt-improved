@@ -19,11 +19,12 @@
 .journal .content .entry.folkloreForest-plantClaimed .journaltext br,
 .journal .content .entry.folkloreForest-lootFuelBoost .journaltext br,
 .journal .content .entry.relicHunter_complete .journaltext br:first-of-type,
+.journal .content .entry.folkloreForest-bookClaimed .journaltext br:first-of-type,
+.journal .content .entry.folkloreForest-bookClaimed .journaltext br:last-of-type,
 .journal .content .entry.harbour br {
   display: block;
 }
 
-.journal .content .entry.folkloreForest-plantClaimed .journaltext br:first-of-type,
 .journal .content .entry.floatingIslands.fullyExplored .journaltext br:first-of-type {
   display: none;
 }
@@ -63,12 +64,12 @@
 .journaltext .better-journal-list a.loot:last-of-type::after,
 .entry.alchemists_cookbook_base_bonus .journaltext .loot:last-of-type::after,
 .entry.short.dailyreward a:last-of-type::after,
-.entry.folkloreForest-plantStarted,
 .entry.short.log_summary.stats .journaltext .loot:last-of-type::after,
 .entry.convertible_open .journaltext .item:last-of-type::after,
 .entry.short.craft.convertible_open .journaltext .item:last-of-type::after,
 .entry.short.supplytransferitem .journaltext #friend-data-wrapper a::after,
 .entry.folkloreForest-plantClaimed .journaltext a:last-of-type::after,
+.entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
 .entry.short.craft.convertible_open a.item::after {
   display: none;
   content: "";

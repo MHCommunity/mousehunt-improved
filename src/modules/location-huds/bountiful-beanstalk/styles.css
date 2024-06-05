@@ -115,12 +115,8 @@
   animation: mh-improved-shake 0.5s infinite;
 }
 
-.bountifulBeanstalkCastleView__content:active .bountifulBeanstalkCastleView__bossMarker {
-  animation: mh-improved-shake-scaled 0.5s infinite;
-}
-
 .bountifulBeanstalkCastleView__content:hover .bountifulBeanstalkCastleView__bossMarker {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -134,12 +130,11 @@
     animation: none;
   }
 
-  .bountifulBeanstalkCastleView__content:active .bountifulBeanstalkCastleView__bossMarker,
   .headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
     animation: none;
   }
 
-  .bountifulBeanstalkCastleView__content:hover .bountifulBeanstalkCastleView__bossMarker {
+  .bountifulBeanstalkCastleView__bossMarker:hover {
     transform: none;
   }
 
@@ -163,10 +158,6 @@
   z-index: 31;
 }
 
-.bountifulBeanstalkCastleView__content {
-  z-index: 27;
-}
-
 .headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying:hover .headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonHarpImage {
   transform: scale(1.1) rotate(3deg) translateX(5px);
 }
@@ -175,11 +166,15 @@
   background: rgb(255 255 255 / 75%);
 }
 
-.bountifulBeanstalkCastleView__bossMarker {
-  filter: drop-shadow(2px -1px 4px #000);
-  transition: 0.4s;
-  transform: scale(1.1);
+.bountifulBeanstalkCastleView__content:hover .bountifulBeanstalkCastleView__bos {
+  filter: drop-shadow(1px -1px 2px #63496a);
+  transition: 0.3s ease-in-out;
   transform-origin: bottom;
+}
+
+/* Make the shadow be beneath the marker */
+.bountifulBeanstalkCastleView__step--chase_past .bountifulBeanstalkCastleView__stepImage {
+  z-index: 2;
 }
 
 .headsUpDisplayBountifulBeanstalkView__climbNextRoomText,
@@ -189,10 +184,6 @@
 
 .bountifulBeanstalkCastleView__background {
   transition: opacity 0.3s;
-}
-
-.bountifulBeanstalkCastleView__background.is-boss-chase {
-  opacity: 0.7;
 }
 
 .headsUpDisplayBountifulBeanstalk__inventoryBlockImage {
@@ -279,8 +270,8 @@
 
 .folkloreForestRegionView-dialog-help .beanstalkHelp__section {
   flex-wrap: wrap;
-  padding-top: 30px;
-  margin-bottom: 30px;
+  padding-top: 20px;
+  margin-bottom: 10px;
   border-top: 1px solid #487426;
 }
 
@@ -384,6 +375,7 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 }
 
 .mh-crafting-popup.loading::after,
+.mh-crafting-popup.error::after,
 .mh-crafting-popup.success::after {
   position: absolute;
   right: 0;
@@ -395,12 +387,18 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
   background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif) center no-repeat;
 }
 
+.mh-crafting-popup.error::after {
+  background: url(https://www.mousehuntgame.com/images/icons/bad_idea.png) center no-repeat;
+  background-size: contain;
+}
+
 .mh-crafting-popup.success::after {
   background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png) center no-repeat;
   background-size: contain;
 }
 
 .loading .mh-crafting-actions,
+.error .mh-crafting-actions,
 .success .mh-crafting-actions {
   opacity: 0.1;
 }
@@ -420,5 +418,66 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 }
 
 .headsUpDisplayBountifulBeanstalk__embellishmentBlock--disabled .headsUpDisplayBountifulBeanstalk__embellishmentBlockImage {
+  width: 25px;
+  height: 25px;
   opacity: 0.3;
+}
+
+.bountifulBeanstalkPlayHarpDialogView__pointerLabel {
+  padding: 5px;
+  margin: 3px 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px -1px #ccc;
+}
+
+.bountifulBeanstalkPlayHarpDialogView__input {
+  padding: 2px;
+  border: 1px solid #000;
+}
+
+.bountifulBeanstalkPlayHarpDialogView__room {
+  border-radius: 5px;
+}
+
+/* Make the BB tabs match the styles we did for the other dialog tabs */
+.bountifulBeanstalkPlayHarpDialogView__tabButtonContainer {
+  padding: 0 20px;
+  margin-right: -5px;
+  margin-left: -5px;
+  border-bottom: 1px solid #416f2a;
+}
+
+.bountifulBeanstalkPlayHarpDialogView__tabButton {
+  background-color: #4d3d00;
+  border: 1px solid #416f2a;
+  border-bottom: none;
+}
+
+/* Affordance for dragging the noise indicator */
+.bountifulBeanstalkPlayHarpDialogView__pointerIcon:hover {
+  cursor: ew-resize;
+}
+
+.bountifulBeanstalkPlayHarpDialogView__noiseMeterLabel {
+  user-select: none;
+}
+
+/* Tooltips on the noise meter */
+.bountifulBeanstalkCastleView__noiseMeter:hover .bountifulBeanstalkCastleView__noiseMeterBar.bountifulBeanstalkCastleView__noiseMeterBar--min::before {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  bottom: 0;
+  align-self: center;
+  content: "Miss";
+}
+
+.bountifulBeanstalkCastleView__noiseMeter:hover .bountifulBeanstalkCastleView__noiseMeterBar.bountifulBeanstalkCastleView__noiseMeterBar--max::before {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  bottom: 0;
+  align-self: center;
+  content: "Catch";
 }

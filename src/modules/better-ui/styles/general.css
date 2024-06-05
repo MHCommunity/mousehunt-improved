@@ -495,7 +495,8 @@ input.itemView-action-convert-quantity {
 }
 
 .mousehuntHud-menu-item.root {
-  height: 25px;
+  height: 24px;
+  margin-top: 1px;
 }
 
 .mousehuntHeaderView .menuItem.first {

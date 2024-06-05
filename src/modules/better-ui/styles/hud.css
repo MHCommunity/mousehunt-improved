@@ -95,3 +95,7 @@
 .mousehuntHud-menu .free_gifts .icon {
   background-image: url(https://i.mouse.rip/icons/gift.png);
 }
+
+.mousehuntHeaderView .menuItem.dropdown.last .arrow {
+  pointer-events: none;
+}

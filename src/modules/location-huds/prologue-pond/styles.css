@@ -160,3 +160,7 @@
 .prologuePondView-chumButton.active::after {
   background-image: url(https://i.mouse.rip/mh-improved/chum-lightning.png);
 }
+
+.folkloreForestRegionView-dialog-recipeResult-content {
+  max-height: unset;
+}

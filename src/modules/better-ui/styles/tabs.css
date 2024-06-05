@@ -138,6 +138,7 @@ div#dailyRewardTimer {
 }
 
 img.campPage-daily-draw-prize-image {
+  max-width: 80px;
   padding: 0;
   background: none;
 }

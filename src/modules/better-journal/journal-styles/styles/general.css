@@ -9,7 +9,7 @@
 .journal .content .entry .journalbody {
   margin-top: 3px;
   margin-bottom: 3px;
-  margin-left: 85px;
+  margin-left: 75px;
 }
 
 .journal .content .entry.minimalJournal .journalbody {
@@ -33,7 +33,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 60px;
+  width: 55px;
   height: auto;
   margin: 10px 0 0 10px;
 }

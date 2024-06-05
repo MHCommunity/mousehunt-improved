@@ -1,3 +1,5 @@
+import { addStyles } from '@utils';
+
 /**
  * Social noop module.
  */
@@ -30,4 +32,6 @@ export default () => {
   }
 
   hg.classes.SocialLink = SocialLink;
+
+  addStyles('a[onclick="SocialFramework.shareToFeedButton(this); return false;"] { filter: grayscale(1) opacity(0.5); cursor: not-allowed;}', 'social-noop');
 };
