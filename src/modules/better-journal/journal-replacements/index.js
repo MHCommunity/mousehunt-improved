@@ -85,13 +85,13 @@ const replacements = [
   ['before it could even touch my cheese!', ''],
   ['The mouse dropped the following prize', 'that dropped'],
   ['My Unstable Charm turned into', 'My Unstable Charm became'],
-  ['•&nbsp;', ' '],
   ['My Condensed Creativity created additional loot:', 'My Condensed Creativity created an additional '],
   ['The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case', 'The mouse stole an Ancient Relic and dropped a Relic Hunter Scroll Case!'],
   ['*BLING*', '<span class="decoration"></span>'],
   ['Aura helped me find', 'Aura found'],
   ['processed  added', 'processed and added'],
   ['I have started a', 'I started a'],
+  ['Loyalty Chest! Inside my chest was', 'Loyalty Chest and received:'],
 
   // Event stuff
   // SEH
@@ -129,6 +129,8 @@ const replacements = [
   [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
   ['In a flash of light my', 'My'],
   ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found another '],
+  ['I opened my harvest bin and retrieved the following yield: <br><br>From ', 'I opened my harvest bin and retrieved the following yield from '],
+  ['My Slayer Aura found 1 extra ', 'My Slayer Aura found an extra '],
 ];
 
 /**
@@ -142,20 +144,31 @@ const replaceInEntry = (entry) => {
   }
 
   const element = entry.querySelector('.journalbody .journaltext');
+  const startingText = element.innerHTML;
+  let oldText = startingText;
 
-  replacements.forEach(async (string) => {
-    if (! Array.isArray(string)) {
+  replacements.forEach(async (replacement) => {
+    // If we have bad data, skip it.
+    if (! Array.isArray(replacement) || replacement.length < 2) {
       return;
     }
 
-    if (string.length === 3 && string[2].includes('!') && entry.classList.contains(string[2].replace('!', ''))) {
-      return;
+    // If the replacement has a length of 3, we have a class we either want to skip or match.
+    if (replacement.length === 3) {
+      // If it has a !, we want to skip it, otherwise we want to match it.
+      if (replacement[2].includes('!')) {
+        if (entry.classList.contains(replacement[2].replace('!', ''))) {
+          return;
+        }
+      } else if (! entry.classList.contains(replacement[2])) {
+        return;
+      }
     }
 
-    const oldText = element.innerHTML;
-    const newText = oldText.replace(string[0], string[1]);
+    const newText = oldText.replace(replacement[0], replacement[1]);
     if (oldText !== newText) {
       element.innerHTML = newText;
+      oldText = newText;
     }
   });
 
@@ -249,7 +262,8 @@ const shouldSkip = (entry) => {
     'valentines_matchmaker',
     'vending_machine_purchase',
     'fullyExplored',
-    'folkloreForest-plantClaimed',
+    // 'folkloreForest-plantClaimed',
+    'folkloreForest-bookClaimed',
   ]);
 
   if (! entry.classList) {

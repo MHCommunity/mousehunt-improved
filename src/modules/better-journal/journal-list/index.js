@@ -43,76 +43,60 @@ const splitText = (text) => {
  *
  * @return {Object} The items and the new text.
  */
+const otherStrings = [
+  'the following loot</b>',
+  'Inside my chest was',
+  'Loyalty Chest and received:',
+];
+
 const getItemsFromText = (type, text) => {
+  const innerHTML = text.innerHTML;
   let items;
+  let list;
+  let newText;
+
+  // If it's a loot list, the items are after "that dropped".
   if ('loot' === type) {
-    items = text.innerHTML.split(' that dropped ');
-    if (items.length < 2) {
-      return {
-        list: [],
-        newText: text.innerHTML,
-      };
+    items = innerHTML.split(' that dropped ');
+    if (items.length >= 2) {
+      list = splitText(items[1]);
+      newText = `${items[0]} that dropped:`;
     }
+  } else if ('convertible' === type) {
+    // A convertible item is opened and the items are after "I opened".
+    items = innerHTML.split('I received ');
 
-    return {
-      items,
-      list: splitText(items[1]),
-      newText: `${items[0]} that dropped:`,
-    };
-  }
+    if (items.length >= 2) {
+      const suffix = items[1].split(' from ');
+      let suffixString = suffix[1];
+      if (suffix.length >= 2) {
+        // remove the trailing . if it exists
+        if (suffixString.endsWith('.')) {
+          suffixString = suffixString.slice(0, -1);
+        }
 
-  if ('convertible' === type) {
-    items = text.innerHTML.split('I received ');
-    if (items.length < 2) {
-      return {
-        list: [],
-        newText: text.innerHTML,
-      };
+        list = splitText(suffix[0]);
+        newText = `I opened ${suffixString} and received:`;
+      } else {
+        list = splitText(items[1]);
+        newText = 'I received: ';
+      }
     }
-
-    // if it's a convertible, we want to get the "from X gifts" part as well
-    const suffix = items[1].split(' from ');
-    if (suffix.length < 2) {
-      return {
-        list: splitText(items[1]),
-        newText: 'I received: ',
-      };
+  } else {
+    for (const string of otherStrings) {
+      // If it's an "other" type, the items are after a specific string.
+      if (innerHTML.includes(string)) {
+        items = innerHTML.split(string);
+        list = splitText(items[1]);
+        newText = `${items[0]} ${string}: `;
+        break;
+      }
     }
-
-    let suffixString = suffix[1];
-    // remove the trailing . if it exists
-    if (suffixString.endsWith('.')) {
-      suffixString = suffixString.slice(0, -1);
-    }
-
-    return {
-      list: splitText(suffix[0]),
-      newText: `I opened ${suffixString} and received:`,
-    };
-  }
-
-  // if the text contains "the following loot</b>", we want to split it there
-  // if the text contains "Inside my chest was", we want to split it there
-
-  if (text.innerHTML.includes('the following loot</b>')) {
-    items = text.innerHTML.split('the following loot</b>');
-    return {
-      list: splitText(items[1]),
-      newText: `${items[0]} the following loot</b>: `,
-    };
-  }
-
-  if (text.innerHTML.includes('Inside my chest was')) {
-    items = text.innerHTML.split('Inside my chest was');
-    return {
-      list: splitText(items[1]),
-      newText: `${items[0]} Inside my chest was: `,
-    };
   }
 
   return {
-    list: [],
-    newText: text.innerHTML,
+    list: list || [],
+    newText: newText || innerHTML,
   };
 };
 
@@ -144,6 +128,10 @@ const formatAsList = async (entry) => {
     'dailyreward',
   ];
 
+  const updateClassesForClasses = [
+    'folkloreForest-bookClaimed',
+  ];
+
   const classes = new Set(entry.classList);
 
   let type;
@@ -155,6 +143,8 @@ const formatAsList = async (entry) => {
     type = 'convertible';
   } else if (otherClassesToCheck.some((c) => classes.has(c))) {
     type = 'other';
+  } else if (updateClassesForClasses.some((c) => classes.has(c))) {
+    type = 'update';
   } else {
     return;
   }
@@ -163,10 +153,21 @@ const formatAsList = async (entry) => {
 
   const text = entry.querySelector('.journalbody .journaltext');
 
-  const { newText, list } = getItemsFromText(type, text);
+  if ('update' === type) {
+    // Find the ul and add the class to it and the li elements
+    const list = text.querySelector('ul');
+    if (list) {
+      list.classList.add('better-journal-list');
+      list.querySelectorAll('li').forEach((li) => {
+        li.classList.add('better-journal-list-item');
+      });
+    }
+  } else {
+    const { newText, list } = getItemsFromText(type, text);
 
-  text.innerHTML = newText;
-  text.append(makeListItems(list));
+    text.innerHTML = newText;
+    text.append(makeListItems(list));
+  }
 };
 
 /**
