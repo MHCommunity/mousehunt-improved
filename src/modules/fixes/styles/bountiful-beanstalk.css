@@ -1,0 +1,4 @@
+/* Fix volume buttons repeating */
+.bountifulBeanstalkPlayHarpDialogView__volumeIcon {
+  background-repeat: no-repeat;
+}
