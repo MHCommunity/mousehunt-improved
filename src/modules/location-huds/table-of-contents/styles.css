@@ -242,3 +242,25 @@ a.folkloreForestRegionView-bait-image {
   font-size: 12px;
   line-height: 18px;
 }
+
+/* Make the little inventory window less wide for table of contents */
+.folkloreForestRegionView-environmentInventory-blockContainer {
+  width: auto;
+}
+
+.expanded .folkloreForestRegionView-environmentInventory-blockContainer {
+  width: 110px;
+}
+
+.folkloreForestRegionView.table_of_contents .folkloreForestRegionView-environmentInventory.table_of_contents {
+  width: 80px;
+}
+
+.folkloreForestRegionView.table_of_contents .expanded .folkloreForestRegionView-environmentInventory.table_of_contents {
+  width: auto;
+}
+
+.folkloreForestRegionView-environmentInventory-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
