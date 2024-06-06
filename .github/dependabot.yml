@@ -12,5 +12,5 @@ updates:
         patterns:
           - "*"
     ignore:
-      - dependency-name: "stylelint"
-      - dependency-name: "eslint"
+      - dependency-name: "stylelint*"
+      - dependency-name: "eslint*"
