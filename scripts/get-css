@@ -15,6 +15,6 @@ echo -n "upscaled-journal-icons.css"
 curl --silent https://api.mouse.rip/journal-icons.css --output src/modules/better-journal/modules/journal-icons/journal-icons.css
 echo " ✓"
 
-echo -n "upscaled-journal-icons.css"
+echo -n "dark-mode-mice-images.css"
 curl --silent https://api.mouse.rip/dark-mode-mice-images.css --output src/modules/native-dark-mode/styles/dark-mode-mice-images.css
 echo " ✓"
