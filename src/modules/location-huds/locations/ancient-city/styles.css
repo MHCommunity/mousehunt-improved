@@ -89,7 +89,7 @@ span.ancientCityHUD-alertLevel {
   text-shadow: 0 1px 1px #3d3d3d;
 }
 
-.ancientCityHUD.secret .ancientCityHUD-bossContainer:hover {
+.ancientCityHUD.secret .ancientCityHUD-bossContainer:active {
   background-position: 0 0;
 }
 
