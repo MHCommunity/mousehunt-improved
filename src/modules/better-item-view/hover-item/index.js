@@ -125,7 +125,9 @@ const main = () => {
     });
 
     link.addEventListener('mouseout', () => {
-      itemDataWrapper.remove();
+      if (itemDataWrapper) {
+        itemDataWrapper.remove();
+      }
     });
   });
 };
