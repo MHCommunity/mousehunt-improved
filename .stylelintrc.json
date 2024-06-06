@@ -9,7 +9,7 @@
     "dist/**/*",
     "src/modules/image-upscaling/upscaled-images.css",
     "src/modules/image-upscaling/upscaled-journal-theme-images.css",
-    "src/modules/better-journal/journal-icons/journal-icons.css",
+    "src/modules/better-journal/modules/journal-icons/journal-icons.css",
     "src/modules/native-dark-mode/styles/dark-mode-mice-images.css"
   ],
   "rules": {

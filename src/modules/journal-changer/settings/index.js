@@ -9,13 +9,11 @@ export default async () => {
       id: 'journal-changer.change-daily',
       title: 'Randomize daily',
       default: false,
-      description: '',
     },
     {
       id: 'journal-changer.change-location',
       title: 'Change based on location',
       default: false,
-      description: '',
     },
   ];
 };

@@ -1,6 +1,5 @@
 import { getSetting } from '@utils';
 
-import betterUiBetaStyles from './modules/better-ui-beta-styles';
 import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
 import delayedMenus from './modules/delayed-menus';
@@ -17,12 +16,13 @@ const experiments = [
   {
     id: 'experiments.big-timer',
     title: 'Big Timer',
-    description: 'Click the timer to toggle between big and small.',
+    description: 'Click the timer to toggle between a large and small timer',
     load: bigTimer,
   },
   {
     id: 'experiments.shield-goes-to-camp',
     title: 'Clicking shield goes to camp if not already there',
+    description: 'On any page that isn\'t the Camp page, clicking the shield will take you to the Camp page, otherwise it will take your to your Hunter Profile',
     load: shieldGoesToCamp
   },
   {
@@ -34,53 +34,53 @@ const experiments = [
   {
     id: 'experiments.delayed-menus',
     title: 'Delayed Menus',
+    description: 'Adds a short delay to the menu dropdowns to prevent accidental clicks',
     load: delayedMenus,
   },
   {
     id: 'experiments.replace-favicon',
     title: 'Replace Favicon',
-    description: 'Changes the favicon to a golden shield.',
+    description: 'Changes the favicon to a more fitting one',
     load: replaceFavicon,
   },
   {
     id: 'experiments.raffle',
     title: 'Return Raffles button',
+    description: 'Adds a button to return all raffle tickets to the Inbox. Use at your own risk',
     load: raffle,
   },
   {
     id: 'experiments.sticky-popups',
     title: 'Sticky Popups',
+    description: 'Makes popups sticky so they don\'t disappear when you scroll',
     load: stickyPopups,
   },
   {
     id: 'experiments.lol-gottem',
     title: 'Troll mode',
+    description: 'lol',
     load: trollMode,
   },
   {
     id: 'experiments.unique-loot-count',
     title: 'Unique loot count in progress log',
+    description: 'Shows the number of unique loot items in the progress log',
     load: uniqueLootCount,
-  },
-  {
-    id: 'experiments.some-styles',
-    title: 'Better UI: Beta Styles',
-    load: betterUiBetaStyles,
   },
   {
     id: 'better-journal.journal-tags',
     title: 'Better Journal: Journal Tags',
-    description: 'Shows entry type when hovering over journal entries.',
+    description: 'Shows entry type when hovering over journal entries',
     load: journalTags,
   },
   {
     id: 'better-maps.community',
     title: 'Better Maps: Community maps information',
-    description: 'Shows last active time on community maps. Hides old maps.',
+    description: 'Shows last active time on community maps and hides old maps',
   },
   {
     id: 'better-marketplace.show-chart-images',
-    title: 'Better Marketplace: Show charts on category pages',
+    title: 'Better Marketplace: Show sales price history charts on category pages',
   },
   {
     id: 'experiments.favorite-setups-toggle',

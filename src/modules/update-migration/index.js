@@ -81,7 +81,7 @@ const update = async () => {
     clearTimeout(showPopup);
 
     if (needsMigration) {
-      showLoadingPopup('MouseHunt Improved has been updated. Please refresh the page.');
+      showLoadingPopup('MouseHunt Improved has been updated. Refresh the page to continue.');
       setTimeout(refreshPage, 3000);
     } else if (activejsDialog && activejsDialog?.hide) {
       activejsDialog.hide();

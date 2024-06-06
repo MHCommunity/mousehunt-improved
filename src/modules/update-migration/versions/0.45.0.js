@@ -1,9 +1,6 @@
 import { getData, getSetting, saveSetting } from '@utils';
 
-/**
- * Migrate the item settings.
- */
-const update = async () => {
+const migrateInventoryLockAndHide = async () => {
   const items = await getData('items');
 
   let itemSettings = getSetting('inventory-lock-and-hide.items', {
@@ -22,6 +19,28 @@ const update = async () => {
   };
 
   saveSetting('inventory-lock-and-hide.items', itemSettings);
+};
+
+const migrateLegacyHud = async () => {
+  if ('not-set' !== getSetting('legacy-hud.menu', 'not-set')) {
+    saveSetting('legacy-hud.menu', getSetting('experiments.legacy-hud-only-menu', false));
+  }
+
+  if ('not-set' !== getSetting('legacy-hud.stats', 'not-set')) {
+    saveSetting('legacy-hud.stats', getSetting('experiments.legacy-hud-only-stats', false));
+  }
+
+  if ('not-set' === getSetting('legacy-hud.tweaks', 'not-set')) {
+    saveSetting('legacy-hud.tweaks', getSetting('experiments.legacy-hud-tweaks', true));
+  }
+};
+
+/**
+ * Migrate the item settings.
+ */
+const update = async () => {
+  await migrateInventoryLockAndHide();
+  await migrateLegacyHud();
 };
 
 export default {
