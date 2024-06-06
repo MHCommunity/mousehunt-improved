@@ -39,5 +39,5 @@ await esbuild.build({
       `const mhImprovedVersion = '${process.env.npm_package_version}';`,
       'const mhImprovedPlatform = \'userscript\';',
     ].join('\n'),
-  },
+  }
 });
