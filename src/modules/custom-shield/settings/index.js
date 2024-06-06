@@ -127,7 +127,7 @@ export default async () => {
     id: 'custom-shield',
     title: 'Custom Shield',
     default: [options[0]],
-    description: 'Change the shield to an event shield, a color, a title shield, or a silly shield.',
+    description: 'Change the shield to an event shield, a color, a title shield, or a silly shield',
     settings: {
       type: 'multi-select',
       number: 1,

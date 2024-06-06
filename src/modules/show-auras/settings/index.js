@@ -9,13 +9,11 @@ export default async () => {
       id: 'show-auras.list',
       title: 'Show auras as a list',
       default: false,
-      description: '',
     },
     {
       id: 'show-auras.icons',
       title: 'Only show icons',
       default: false,
-      description: '',
     },
   ];
 };

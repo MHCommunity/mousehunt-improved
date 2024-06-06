@@ -8,6 +8,5 @@ export default async () => {
     id: 'wisdom-in-stat-bar-auto-refresh',
     title: 'Update automatically',
     default: true,
-    description: '',
   }];
 };

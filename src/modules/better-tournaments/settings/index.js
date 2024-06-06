@@ -6,8 +6,7 @@
 export default async () => {
   return [{
     id: 'better-tournaments.time-inline',
-    title: 'Display localized times inline',
+    title: 'Display localized times inline, rather than on hover',
     default: false,
-    description: 'Display localized tournament times inline, rather than on hover.',
   }];
 };

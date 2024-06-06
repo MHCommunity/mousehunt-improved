@@ -53,7 +53,8 @@ export default async () => {
     {
       id: 'debug.utils',
       title: 'Add utils to window',
-      description: 'Access utils in the console as <code>app.mhutils</code>'
+      description: 'Access utils in the console as <code>app.mhutils</code>',
+      default: true,
     }
   ];
 };

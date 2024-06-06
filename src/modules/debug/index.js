@@ -172,7 +172,6 @@ const init = () => {
 export default {
   id: 'debug',
   name: 'Debug',
-  description: 'Adds all utility functions to <code>app.mhutils</code>, adds debug logs, and other development tools.',
   type: 'advanced',
   default: false,
   order: 900,

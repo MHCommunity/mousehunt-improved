@@ -31,7 +31,6 @@ export default async () => {
         value: 'rift_torn_roots_crafting_item',
       },
     ],
-    description: '',
     settings: {
       type: 'multi-select',
       number: 4,

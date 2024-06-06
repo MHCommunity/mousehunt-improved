@@ -15,9 +15,9 @@ Beta features and other features that may not be fully tested or supported.
 - **Unique loot count in progress log**: Shows the number of unique loot items in the progress log.
 - **Better UI: Beta Styles**: Upcoming changes to Better UI.
 - **Better Journal: Journal Tags**: Shows entry type when hovering over journal entries.
-- **Better Maps: Community maps information**: Shows last active time on community maps. Hides old maps.
+- **Better Maps: Community maps information**: Shows last active time on community maps and hides old maps.
 - **Better Marketplace: Show charts on category pages**: Shows sales price history charts on category pages.
-- **Favorite Setups: Add toggle button to top menu**: Adds a toggle button to the top menu to show or hide favorite setups.
+- **Favorite Setups: Add toggle button to top menu**: Adds a toggle button to the top menu to show or hide the Favorite Setups menu.
 - **Location HUDs: Add toggle button to top menu**: Adds a toggle button to the top menu to show or hide location HUDs.
 - **Location HUDs - Bountiful Beanstalk: Inventory box in one row**: Changes the inventory box to be in one row.
 - **Location HUDs - Floating Islands: Make airship draggable**: Makes the airship draggable.
