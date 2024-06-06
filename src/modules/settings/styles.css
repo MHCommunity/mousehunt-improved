@@ -70,6 +70,7 @@
   border-left: none;
 }
 
+#mousehunt-improved-settings-beta-experiments,
 #mousehunt-improved-settings-advanced .PagePreferences__settingsList,
 #mousehunt-improved-settings-design .PagePreferences__settingsList,
 #mousehunt-improved-settings-element-hiding .PagePreferences__settingsList {
@@ -477,6 +478,7 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
 }
 
 #mousehunt-improved-settings-beta .PagePreferences__settingDescription,
+#mousehunt-improved-settings-advanced-debug .PagePreferences__subSetting .PagePreferences__settingDescription,
 #mousehunt-improved-settings-feature .PagePreferences__settingsList:hover .PagePreferences__settingDescription {
   display: block;
 }
