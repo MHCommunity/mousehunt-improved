@@ -12,7 +12,7 @@ curl --silent https://api.mouse.rip/upscaled-journal-theme-images.css --output s
 echo " ✓"
 
 echo -n "upscaled-journal-icons.css"
-curl --silent https://api.mouse.rip/journal-icons.css --output src/modules/better-journal/journal-icons/journal-icons.css
+curl --silent https://api.mouse.rip/journal-icons.css --output src/modules/better-journal/modules/journal-icons/journal-icons.css
 echo " ✓"
 
 echo -n "upscaled-journal-icons.css"
