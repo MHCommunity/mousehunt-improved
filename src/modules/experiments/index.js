@@ -1,6 +1,5 @@
 import { getSetting } from '@utils';
 
-import betterUiBetaStyles from './modules/better-ui-beta-styles';
 import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
 import delayedMenus from './modules/delayed-menus';
@@ -61,11 +60,6 @@ const experiments = [
     id: 'experiments.unique-loot-count',
     title: 'Unique loot count in progress log',
     load: uniqueLootCount,
-  },
-  {
-    id: 'experiments.some-styles',
-    title: 'Better UI: Beta Styles',
-    load: betterUiBetaStyles,
   },
   {
     id: 'better-journal.journal-tags',
