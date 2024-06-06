@@ -1,6 +1,5 @@
 import { dbGet, dbSet } from './db';
 import { getCurrentLocationName } from './location';
-import { onEvent } from './event-registry';
 
 /**
  * Replace a journal entry with new content.

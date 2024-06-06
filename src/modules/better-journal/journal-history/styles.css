@@ -1,0 +1,30 @@
+.journal .content .entry .journalbody .journaldate {
+  display: flex;
+  justify-content: space-between;
+}
+
+.history-timestamp {
+  text-align: right;
+}
+
+.journal-history-page-selector {
+  position: absolute;
+  top: 28px;
+  right: -50px;
+  background-color: #eee;
+  border-radius: 0 0 10px 10px;
+  padding: 5px 10px;
+  border: 1px solid #5b5b5b;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pagerView-section.current.page-selector {
+  position: relative;
+}
+
+.journal-history-page-selector .page-input {
+  width: 40px;
+  text-align: center;
+}

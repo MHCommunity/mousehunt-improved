@@ -94,11 +94,13 @@ let isJournalProcessing = false;
  * Process the journal entries.
  */
 const processEntries = async () => {
-  if (! ('camp' === getCurrentPage() || 'journal' === getCurrentPage())) {
-    return;
-  }
-
-  if (isJournalProcessing) {
+  if (
+    isJournalProcessing || ! (
+      'journal' === getCurrentPage() ||
+      'camp' === getCurrentPage() ||
+      'hunterprofile' === getCurrentPage()
+    )
+  ) {
     return;
   }
 

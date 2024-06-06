@@ -1,5 +1,6 @@
 import {
   addEvent,
+  addStyles,
   dbGet,
   dbGetAll,
   dbSet,
@@ -11,6 +12,8 @@ import {
   onRequest
 } from '@utils';
 import onJournalEntry from '../journal-event';
+
+import styles from './styles.css';
 
 /**
  * Make the markup for the journal entries.
@@ -27,6 +30,7 @@ const makeEntriesMarkup = (entries) => {
 
     entry = {
       id: entry?.id || 0,
+      timestamp: entry?.timestamp || 0,
       date: entry?.date || '0:00',
       location: entry?.location || '',
       text: entry?.text || '',
@@ -62,7 +66,17 @@ const makeEntriesMarkup = (entries) => {
       html += `<div class="journalimage">${entry.image}</div>`;
     }
 
-    html += `<div class="journalbody"><div class="journalactions"></a></div><div class="journaldate">${entry.date} - ${entry.location}</div><div class="journaltext">${entry.text}</div></div></div></div>`;
+    let timestamp = '';
+    if (entry.timestamp) {
+      timestamp = new Date(entry.timestamp).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    html += `<div class="journalbody">
+        <div class="journalactions"></div>
+        <div class="journaldate">${entry.date} - ${entry.location}<span class="history-timestamp">${timestamp}</span></div>
+        <div class="journaltext">${entry.text}</div>
+      </div>
+    </div>`;
 
     return html;
   }).join('');
@@ -109,8 +123,18 @@ const getAllEntries = async () => {
     return [];
   }
 
-  // sort the entries by id, with the newest first
-  journalEntries.sort((a, b) => b.id - a.id);
+  // sort the entries by id, with the newest first. if timestamp exists, sort those first.
+  journalEntries = journalEntries.sort((a, b) => {
+    if (a.timestamp && b.timestamp) {
+      return b.timestamp - a.timestamp;
+    }
+
+    if (a.id && b.id) {
+      return b.id - a.id;
+    }
+
+    return 0;
+  });
 
   return journalEntries;
 };
@@ -123,6 +147,10 @@ let lastDate = '';
  * @param {HTMLElement} entry The journal entry element to save.
  */
 const saveToDatabase = async (entry) => {
+  if ('camp' !== getCurrentPage() && 'journal' !== getCurrentPage()) {
+    return;
+  }
+
   const entryId = Number.parseInt(entry.getAttribute('data-entry-id'), 10);
   if (! entryId) {
     return;
@@ -150,6 +178,7 @@ const saveToDatabase = async (entry) => {
 
   const journalData = {
     id: entryId,
+    timestamp: Date.now(),
     date: date[0] ? date[0].trim() : '0:00',
     location: date[1] ? date[1].trim() : 'Unknown',
     text: entryText.innerHTML,
@@ -159,6 +188,88 @@ const saveToDatabase = async (entry) => {
   };
 
   await dbSet('journal', journalData);
+};
+
+const addPageSelector = () => {
+  const current = document.querySelector('.pagerView-section.current');
+  if (! current) {
+    return;
+  }
+
+  // if it has the page selector class, it's already been added
+  if (current.classList.contains('page-selector')) {
+    return;
+  }
+
+  current.classList.add('page-selector');
+
+  let isShowing = false;
+  current.addEventListener('click', (event) => {
+    if (isShowing) {
+      if (event.target.classList.contains('page-selector')) {
+        const pageSelector = document.querySelector('.journal-history-page-selector');
+        if (pageSelector) {
+          pageSelector.remove();
+        }
+      }
+
+      return;
+    }
+
+    isShowing = true;
+
+    const target = event.target;
+    const pageSelector = makeElement('div', 'journal-history-page-selector');
+    const pageInputLabel = makeElement('label', 'page-input-label', 'Go to page:');
+    pageInputLabel.htmlFor = 'page-input';
+    pageSelector.append(pageInputLabel);
+
+    const pageInput = makeElement('input', 'page-input');
+    pageInput.type = 'number';
+    pageInput.min = 1;
+    pageInput.max = totalPages;
+
+    const pageSubmit = makeElement('button', 'page-submit', 'Go');
+    pageSubmit.type = 'submit';
+
+    /**
+     * Show the selected page.
+     */
+    const showPage = () => {
+      // Refresh the pager.
+      getPager();
+
+      pager.showPage(Number.parseInt(pageInput.value, 10));
+
+      setTimeout(() => {
+        pageSelector.remove();
+        isShowing = false;
+      }, 500);
+    };
+
+    pageSubmit.addEventListener('click', showPage);
+    pageInput.addEventListener('keydown', (evt) => {
+      if (13 === evt.key) {
+        showPage();
+      }
+    });
+
+    pageSelector.append(pageInput, pageSubmit);
+    target.append(pageSelector);
+
+    pageInput.focus();
+  });
+};
+
+const getPager = () => {
+  const journalPageLink = document.querySelector('.pagerView-nextPageLink.pagerView-link');
+  if (! journalPageLink) {
+    return;
+  }
+
+  pager = hg.views.JournalView.getPager(journalPageLink);
+
+  return pager;
 };
 
 /**
@@ -173,12 +284,7 @@ const doJournalHistory = async () => {
   const defaultPages = ('journal' === getCurrentPage()) ? 3 : 6;
 
   if (! pager) {
-    const journalPageLink = document.querySelector('.pagerView-nextPageLink.pagerView-link');
-    if (! journalPageLink) {
-      return;
-    }
-
-    pager = hg.views.JournalView.getPager(journalPageLink);
+    getPager();
   }
 
   if (! pager || ! pager.getTotalItems()) {
@@ -192,6 +298,8 @@ const doJournalHistory = async () => {
   if (totalPages < 6) {
     return;
   }
+
+  addPageSelector();
 
   pager.setTotalItems(totalPages * perPage);
   pager.enable();
@@ -243,16 +351,15 @@ let miceThumbs = [];
 
 /**
  * Initialize the module.
- *
- * @param {boolean} enabled Whether the module is enabled.
  */
-export default async (enabled) => {
+export default async () => {
+  addStyles(styles, 'better-journal-journal-history');
+
   miceThumbs = await getData('mice-thumbnails');
-  if (enabled) {
-    doDelayedJournalHistory();
-    onRequest('pages/journal.php', doJournalHistoryRequest);
-    onNavigation(maybeDoJournalHistory);
-  }
+
+  doDelayedJournalHistory();
+  onRequest('pages/journal.php', doJournalHistoryRequest);
+  onNavigation(maybeDoJournalHistory);
 
   onJournalEntry(saveToDatabase, 1);
 };
