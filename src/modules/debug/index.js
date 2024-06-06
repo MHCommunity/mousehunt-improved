@@ -35,8 +35,10 @@ const debug = (message, ...args) => {
  */
 const main = () => {
   // Add all the stuff from Utils to be accessible in the console as 'app.mhutils'
-  window.app = window.app || {};
-  window.app.mhutils = Utils;
+  if (Utils.getSetting('debug.utils', true)) {
+    window.app = window.app || {};
+    window.app.mhutils = Utils;
+  }
 
   // To enable, either add `debug-all` or one of the following: debug-dialog, debug-navigation, debug-request, debug-events.
   if (Utils.getSetting('debug.dialog', false)) {
