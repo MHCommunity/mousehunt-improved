@@ -72,5 +72,11 @@
       "prologue_pond",
       "foreword_farm"
     ]
+  },
+  {
+    "type": "school_of_sorcery",
+    "environments": [
+      "school_of_sorcery"
+    ]
   }
 ]
