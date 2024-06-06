@@ -30,7 +30,6 @@
 - Updated scroll inventory to hide and lock scrolls that are locked or hidden with Inventory Lock and Hide
 - Updated various styles
 
-
 ### Better Mice
 
 - Optimized performance of mouse-hover display
