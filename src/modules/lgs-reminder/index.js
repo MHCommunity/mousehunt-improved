@@ -4,7 +4,6 @@ import {
   makeElement,
   onActivation,
   onDeactivation,
-  onEvent,
   onSettingsChange,
   setupHumanizer
 } from '@utils';

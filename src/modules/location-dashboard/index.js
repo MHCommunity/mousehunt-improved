@@ -17,30 +17,30 @@ import { getData } from '@utils/data';
 
 import styles from './styles.css';
 
-import { getFieryWarpathText, setFieryWarpathData } from './location/desert-warpath';
-import { getSeasonalGardenText, setSeasonalGardenData } from './location/seasonal-garden';
-import { getZugzwangTowerText, setZugzwangTowerData } from './location/zugzwang-tower';
-import getBountifulBeanstalkText from './location/bountiful-beanstalk';
-import getBristleWoodsRiftText from './location/rift-bristle-woods';
-import getBurroughsRiftText from './location/rift-burroughs';
-import getFloatingIslandsText from './location/floating-islands';
-import getForewordFarmText from './location/foreword-farm';
-import getFortRoxText from './location/fort-rox';
-import getFuromaRiftText from './location/rift-furoma';
-import getIcebergText from './location/iceberg';
-import getLabyrinthText from './location/labyrinth';
-import getLivingGardenText from './location/desert-oasis';
-import getLostCityText from './location/lost-city';
-import getMousoleumText from './location/mousoleum';
-import getMoussuPicchuText from './location/moussu-picchu';
-import getQuesoGeyserText from './location/queso-geyser';
-import getSandDunesText from './location/sand-dunes';
-import getSunkenCityText from './location/sunken-city';
-import getTableOfContentsText from './location/table-of-contents';
-import getToxicSpillText from './location/pollution-outbreak';
-import getValourRiftText from './location/rift-valour';
-import getWhiskerWoodsRiftText from './location/whisker-woods-rift';
-import getZokorText from './location/ancient-city';
+import { getFieryWarpathText, setFieryWarpathData } from './locations/desert-warpath';
+import { getSeasonalGardenText, setSeasonalGardenData } from './locations/seasonal-garden';
+import { getZugzwangTowerText, setZugzwangTowerData } from './locations/zugzwang-tower';
+import getBountifulBeanstalkText from './locations/bountiful-beanstalk';
+import getBristleWoodsRiftText from './locations/rift-bristle-woods';
+import getBurroughsRiftText from './locations/rift-burroughs';
+import getFloatingIslandsText from './locations/floating-islands';
+import getForewordFarmText from './locations/foreword-farm';
+import getFortRoxText from './locations/fort-rox';
+import getFuromaRiftText from './locations/rift-furoma';
+import getIcebergText from './locations/iceberg';
+import getLabyrinthText from './locations/labyrinth';
+import getLivingGardenText from './locations/desert-oasis';
+import getLostCityText from './locations/lost-city';
+import getMousoleumText from './locations/mousoleum';
+import getMoussuPicchuText from './locations/moussu-picchu';
+import getQuesoGeyserText from './locations/queso-geyser';
+import getSandDunesText from './locations/sand-dunes';
+import getSunkenCityText from './locations/sunken-city';
+import getTableOfContentsText from './locations/table-of-contents';
+import getToxicSpillText from './locations/pollution-outbreak';
+import getValourRiftText from './locations/rift-valour';
+import getWhiskerWoodsRiftText from './locations/whisker-woods-rift';
+import getZokorText from './locations/ancient-city';
 
 /**
  * Cache the location data for the current location.

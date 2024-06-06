@@ -2,10 +2,10 @@ import { addStyles, getSetting, getUserTitle, makeElement } from '@utils';
 
 import settings from './settings';
 
-import generalStyles from './styles.css';
-import menuStyles from './menu.css';
-import statsStyles from './stats.css';
-import tweaksStyles from './tweaks.css';
+import generalStyles from './styles/styles.css';
+import menuStyles from './styles/menu.css';
+import statsStyles from './styles/stats.css';
+import tweaksStyles from './styles/tweaks.css';
 
 /**
  * Get the map text.

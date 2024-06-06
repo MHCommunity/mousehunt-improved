@@ -267,3 +267,8 @@ input.itemView-action-convert-quantity {
 .itemViewContainer iframe.socialLink-facebookLike {
   margin-right: 5px;
 }
+
+.convertibleOpenView-itemContainer {
+  padding-top: 10px;
+  margin-top: 0;
+}

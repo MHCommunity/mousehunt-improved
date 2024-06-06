@@ -10,7 +10,7 @@ import {
   onOverlayChange
 } from '@utils';
 
-import recipes from './recipes';
+import recipes from './modules/recipes';
 import settings from './settings';
 
 import doubleWidthStyles from './styles/double-width-item.css';

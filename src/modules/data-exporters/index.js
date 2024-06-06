@@ -1,14 +1,14 @@
 import { addStyles, addSubmenuItem, createPopup, onEvent } from '@utils';
 
-import { exportFavoriteSetupsUserscript, hasFavoriteSetupsUserscript } from './export-favorite-setups-userscript';
-import { exportRankupForecaster, hasRankupForecaster } from './export-rankup-forecaster';
+import { exportFavoriteSetupsUserscript, hasFavoriteSetupsUserscript } from './exporters/export-favorite-setups-userscript';
+import { exportRankupForecaster, hasRankupForecaster } from './exporters/export-rankup-forecaster';
 
-import exportFavoriteSetups from './export-favorite-setups';
-import exportInventory from './export-inventory';
-import exportJournalEntries from './export-journal-entries';
-import exportMarketplace from './export-marketplace';
-import exportMice from './export-mice';
-import exportScoreboards from './export-scoreboards';
+import exportFavoriteSetups from './exporters/export-favorite-setups';
+import exportInventory from './exporters/export-inventory';
+import exportJournalEntries from './exporters/export-journal-entries';
+import exportMarketplace from './exporters/export-marketplace';
+import exportMice from './exporters/export-mice';
+import exportScoreboards from './exporters/export-scoreboards';
 
 import styles from './styles.css';
 

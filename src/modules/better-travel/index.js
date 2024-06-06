@@ -23,8 +23,8 @@ import {
 
 import { getTravelSetting, saveTravelSetting } from './travel-utils';
 
-import addReminders from './reminders';
-import travelWindow from './travel-window';
+import addReminders from './modules/reminders';
+import travelWindow from './modules/travel-window';
 
 import settings from './settings';
 import styles from './styles.css';

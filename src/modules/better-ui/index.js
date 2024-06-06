@@ -10,20 +10,20 @@ import {
   sessionSet
 } from '@utils';
 
-import friends from './friends';
-import hud from './hud';
+import friends from './modules/friends';
+import hud from './modules/hud';
 
-import anyTrapAnySkinStyles from './userscript-styles/any-trap-any-skin.css';
-import favoriteSetupsStyles from './userscript-styles/favorite-setups.css';
-import journalHistorianStyles from './userscript-styles/journal-historian.css';
-import lgsReminderStyles from './userscript-styles/lgs-reminder.css';
-import mhctStyles from './userscript-styles/mhct.css';
-import profilePlusStyles from './userscript-styles/profile-plus.css';
-import springEggHuntHelperStyles from './userscript-styles/spring-egg-hunt-helper.css';
-import tsituAutoloaderStyles from './userscript-styles/tsitu-autoloader.css';
-import tsituLocationCatchStatsStyles from './userscript-styles/tsitu-location-catch-stats.css';
-import tsituQolStyles from './userscript-styles/tsitu-qol.css';
-import tsituSupplySearchStyles from './userscript-styles/tsitu-supply-search.css';
+import anyTrapAnySkinStyles from './modules/userscript-styles/any-trap-any-skin.css';
+import favoriteSetupsStyles from './modules/userscript-styles/favorite-setups.css';
+import journalHistorianStyles from './modules/userscript-styles/journal-historian.css';
+import lgsReminderStyles from './modules/userscript-styles/lgs-reminder.css';
+import mhctStyles from './modules/userscript-styles/mhct.css';
+import profilePlusStyles from './modules/userscript-styles/profile-plus.css';
+import springEggHuntHelperStyles from './modules/userscript-styles/spring-egg-hunt-helper.css';
+import tsituAutoloaderStyles from './modules/userscript-styles/tsitu-autoloader.css';
+import tsituLocationCatchStatsStyles from './modules/userscript-styles/tsitu-location-catch-stats.css';
+import tsituQolStyles from './modules/userscript-styles/tsitu-qol.css';
+import tsituSupplySearchStyles from './modules/userscript-styles/tsitu-supply-search.css';
 
 import legacyStyles from './legacy-styles.css';
 

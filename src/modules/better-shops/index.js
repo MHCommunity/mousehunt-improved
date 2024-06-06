@@ -8,10 +8,10 @@ import {
 
 import settings from './settings';
 
-import qtyButtons from './qty-buttons';
-import qtyButtonsStyles from './qty-buttons.css';
+import qtyButtons from './modules/quantity-buttons';
+import qtyButtonsStyles from './modules/quantity-buttons/styles.css';
 
-import maxOwnedHide from './max-owned-hide.css';
+import maxOwnedHide from './modules/hide-max-owned/styles.css';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;

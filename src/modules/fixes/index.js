@@ -1,9 +1,9 @@
 import { addStyles } from '@utils';
 
-import itemPage from './fixes/item-page';
-import marketplaceBuyButton from './fixes/marketplace-buy-button';
-import passingParcel from './fixes/passing-parcel';
-import riftTooltipQuantities from './fixes/rift-tooltip-quantities';
+import itemPage from './modules/item-page';
+import marketplaceBuyButton from './modules/marketplace-buy-button';
+import passingParcel from './modules/passing-parcel';
+import riftTooltipQuantities from './modules/rift-tooltip-quantities';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;

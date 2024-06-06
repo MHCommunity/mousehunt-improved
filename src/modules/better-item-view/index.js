@@ -8,7 +8,7 @@ import {
   onOverlayChange
 } from '@utils';
 
-import hoverItem from './hover-item';
+import hoverItem from './modules/hover-item';
 import settings from './settings';
 
 import styles from './styles.css';

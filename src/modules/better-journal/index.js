@@ -1,13 +1,13 @@
 import { addStyles, getSetting } from '@utils';
 
-import journalGoldAndPoints from './journal-gold-and-points';
-import journalHistory from './journal-history';
-import journalIcons from './journal-icons';
-import journalIconsMinimal from './journal-icons-minimal';
-import journalItemColors from './journal-item-colors';
-import journalList from './journal-list';
-import journalReplacements from './journal-replacements';
-import journalStyles from './journal-styles';
+import journalGoldAndPoints from './modules/journal-gold-and-points';
+import journalHistory from './modules/journal-history';
+import journalIcons from './modules/journal-icons';
+import journalIconsMinimal from './modules/journal-icons-minimal';
+import journalItemColors from './modules/journal-item-colors';
+import journalList from './modules/journal-list';
+import journalReplacements from './modules/journal-replacements';
+import journalStyles from './modules/journal-styles';
 
 import listAndIconsStyles from './list-and-icons.css';
 import styles from './styles.css';

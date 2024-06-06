@@ -12,9 +12,9 @@ import {
 
 import settings from './settings';
 
-import iconStyles from './icon.css';
-import styles from './styles.css';
-import stylesTransparent from './styles-transparent.css';
+import iconStyles from './styles/icon.css';
+import styles from './styles/styles.css';
+import stylesTransparent from './styles/transparent.css';
 
 /**
  * Apply a class to names in the journal.

@@ -11,7 +11,7 @@ import {
 
 import settings from './settings';
 
-import m400 from './m400';
+import m400 from './modules/m400';
 import styles from './styles.css';
 
 /**

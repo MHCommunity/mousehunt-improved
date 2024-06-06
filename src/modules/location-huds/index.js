@@ -16,69 +16,69 @@ import styles from './styles.css';
 
 // Locations
 /* eslint-disable camelcase */
-import acolyte_realm from './acolyte-realm';
-import ancient_city from './ancient-city';
-import balacks_cove from './balacks-cove';
-import bazaar from './bazaar';
-import bountiful_beanstalk from './bountiful-beanstalk';
-import calm_clearing from './calm-clearing';
-import cape_clawed from './cape-clawed';
-import catacombs from './catacombs';
-import clawshot_city from './claw-shot-city';
-import derr_dunes from './derr-dunes';
-import desert_city from './desert-city'; // Muridae Market.
-import desert_warpath from './desert-warpath'; // Fiery Warpath.
-import dojo from './dojo';
-import dracano from './dracano';
-import elub_shore from './elub-shore';
-import floating_islands from './floating-islands';
-import forbidden_grove from './forbidden-grove';
-import foreword_farm from './foreword-farm';
-import fort_rox from './fort-rox';
-import fungal_cavern from './fungal-cavern';
-import great_gnarled_tree from './great-gnarled-tree';
-import harbour from './harbour';
-import iceberg from './iceberg';
-import jungle_of_dread from './jungle-of-dread';
-import kings_arms from './kings-arms';
-import kings_gauntlet from './kings-gauntlet';
-import laboratory from './laboratory';
-import labyrinth from './labyrinth';
-import lagoon from './lagoon';
-import meditation_room from './meditation-room';
-import mountain from './mountain';
-import mousoleum from './mousoleum';
-import moussu_picchu from './moussu-picchu';
-import nerg_plains from './nerg-plains';
-import pinnacle_chamber from './pinnacle-chamber';
-import pollution_outbreak from './pollution-outbreak'; // Toxic Spill.
-import prologue_pond from './prologue-pond';
-import rift_bristle_woods from './rift-bristle-woods';
-import rift_burroughs from './rift-burroughs';
-import rift_furoma from './rift-furoma';
-import rift_gnawnia from './rift-gnawnia';
-import rift_valour from './rift-valour';
-import rift_whisker_woods from './rift-whisker-woods';
-import school_of_sorcery from './school-of-sorcery';
-import seasonal_garden from './seasonal-garden';
-import slushy_shoreline from './slushy-shoreline';
-import ss_huntington_ii from './ss-huntington-ii';
-import sunken_city from './sunken-city';
-import table_of_contents from './table-of-contents';
-import tournament_hall from './tournament-hall';
-import town_of_digby from './town-of-digby';
-import town_of_gnawnia from './town-of-gnawnia';
-import train_station from './train-station';
-import windmill from './windmill';
-import zugzwang_tower from './zugzwang-tower';
+import acolyte_realm from './locations/acolyte-realm';
+import ancient_city from './locations/ancient-city';
+import balacks_cove from './locations/balacks-cove';
+import bazaar from './locations/bazaar';
+import bountiful_beanstalk from './locations/bountiful-beanstalk';
+import calm_clearing from './locations/calm-clearing';
+import cape_clawed from './locations/cape-clawed';
+import catacombs from './locations/catacombs';
+import clawshot_city from './locations/claw-shot-city';
+import derr_dunes from './locations/derr-dunes';
+import desert_city from './locations/desert-city'; // Muridae Market.
+import desert_warpath from './locations/desert-warpath'; // Fiery Warpath.
+import dojo from './locations/dojo';
+import dracano from './locations/dracano';
+import elub_shore from './locations/elub-shore';
+import floating_islands from './locations/floating-islands';
+import forbidden_grove from './locations/forbidden-grove';
+import foreword_farm from './locations/foreword-farm';
+import fort_rox from './locations/fort-rox';
+import fungal_cavern from './locations/fungal-cavern';
+import great_gnarled_tree from './locations/great-gnarled-tree';
+import harbour from './locations/harbour';
+import iceberg from './locations/iceberg';
+import jungle_of_dread from './locations/jungle-of-dread';
+import kings_arms from './locations/kings-arms';
+import kings_gauntlet from './locations/kings-gauntlet';
+import laboratory from './locations/laboratory';
+import labyrinth from './locations/labyrinth';
+import lagoon from './locations/lagoon';
+import meditation_room from './locations/meditation-room';
+import mountain from './locations/mountain';
+import mousoleum from './locations/mousoleum';
+import moussu_picchu from './locations/moussu-picchu';
+import nerg_plains from './locations/nerg-plains';
+import pinnacle_chamber from './locations/pinnacle-chamber';
+import pollution_outbreak from './locations/pollution-outbreak'; // Toxic Spill.
+import prologue_pond from './locations/prologue-pond';
+import rift_bristle_woods from './locations/rift-bristle-woods';
+import rift_burroughs from './locations/rift-burroughs';
+import rift_furoma from './locations/rift-furoma';
+import rift_gnawnia from './locations/rift-gnawnia';
+import rift_valour from './locations/rift-valour';
+import rift_whisker_woods from './locations/rift-whisker-woods';
+import school_of_sorcery from './locations/school-of-sorcery';
+import seasonal_garden from './locations/seasonal-garden';
+import slushy_shoreline from './locations/slushy-shoreline';
+import ss_huntington_ii from './locations/ss-huntington-ii';
+import sunken_city from './locations/sunken-city';
+import table_of_contents from './locations/table-of-contents';
+import tournament_hall from './locations/tournament-hall';
+import town_of_digby from './locations/town-of-digby';
+import town_of_gnawnia from './locations/town-of-gnawnia';
+import train_station from './locations/train-station';
+import windmill from './locations/windmill';
+import zugzwang_tower from './locations/zugzwang-tower';
 /* eslint-enable camelcase */
 
 // Regions
-import regionLivingGarden from './region-living-garden';
-import regionQueso from './region-queso';
+import regionLivingGarden from './locations/region-living-garden';
+import regionQueso from './locations/region-queso';
 
 // Events
-import eventLocations from './event-locations';
+import eventLocations from './locations/event-locations';
 
 const regionMapping = [
   {

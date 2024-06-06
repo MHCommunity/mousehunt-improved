@@ -14,10 +14,10 @@ import {
   setPage
 } from '@utils';
 
-import hoverMice from './hover-mice';
-import mousePage from './mouse-page';
+import hoverMice from './modules/hover-mice';
+import mousePage from './modules/mouse-page';
 import settings from './settings';
-import sidebar from './sidebar';
+import sidebar from './modules/sidebar';
 
 import styles from './styles.css';
 
