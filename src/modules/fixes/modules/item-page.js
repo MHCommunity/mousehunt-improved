@@ -1,4 +1,4 @@
-import { getCurrentPage, onNavigation } from '@utils';
+import { getCurrentPage, onDialogShow, onNavigation, setMultipleTimeout } from '@utils';
 
 /**
  * Fix the item page.
@@ -61,20 +61,20 @@ const fixItemPage = () => {
   url += `&viewing-item-id=${itemType}`;
 
   // Redirect away from the item page.
-  window.location = url;
+  // window.location = url;
+  console.log(url);
 };
 
 /**
  * When the inventory page loads, check for the item ID in the query string and show the item.
  */
 const fixItemPageReceiver = () => {
-  // check for the item id in the query string
-  const itemId = window.location.href.match(/viewing-item-id=(.+)/);
-  if (! itemId || ! itemId[1]) {
-    return;
-  }
+  const params = new URLSearchParams(window.location.search);
+  const itemId = params.get('viewing-item-id');
 
-  hg.views.ItemView.show(itemId[1]);
+  if (! itemId) {
+    hg.views.ItemView.show(itemId);
+  }
 };
 
 /**
@@ -93,5 +93,15 @@ export default async () => {
   onNavigation(fixItemPageReceiver, {
     page: 'inventory',
     onLoad: true,
+  });
+
+  onDialogShow('item', () => {
+    const currentHref = window.location.href;
+
+    setMultipleTimeout(() => {
+      if (currentHref !== window.location.href) {
+        window.history.replaceState(null, '', currentHref);
+      }
+    }, [10, 100, 500, 1000]);
   });
 };
