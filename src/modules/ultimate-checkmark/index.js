@@ -6,15 +6,13 @@ import {
   getData,
   getSetting,
   makeElement,
-  onNavigation,
-  sessionGet,
-  sessionSet
+  onNavigation
 } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
 
-let categories;
+import categories from '@data/ultimate-checkmark.json';
 
 /**
  * Get the items for a category.
@@ -27,30 +25,14 @@ let categories;
  * @return {Array} The items.
  */
 const getItems = async (required, queryTab, queryTag, allItems = []) => {
+  console.log('getItems', 'required', required, 'queryTab', queryTab, 'queryTag', queryTag, 'allItems', allItems);
   if (! allItems.length) {
-    // cache the data for a minute
-
-    const cachedData = sessionGet('ultimate-checkmark') || '{}';
-
-    let inventoryData = cachedData[queryTab]?.data || null;
-    const lastCachedTime = cachedData[queryTab]?.time || 0;
-
-    // Cache the data for 5 minutes.
-    if (! inventoryData || Date.now() - lastCachedTime > 5 * 60 * 1000) {
-      inventoryData = await doRequest('managers/ajax/pages/page.php', {
-        page_class: 'Inventory',
-        'page_arguments[legacyMode]': '',
-        'page_arguments[tab]': queryTab,
-        'page_arguments[sub_tab]': 'false',
-      });
-
-      cachedData[queryTab] = {
-        data: inventoryData,
-        time: Date.now(),
-      };
-
-      sessionSet('ultimate-checkmark', cachedData);
-    }
+    const inventoryData = await doRequest('managers/ajax/pages/page.php', {
+      page_class: 'Inventory',
+      'page_arguments[legacyMode]': '',
+      'page_arguments[tab]': queryTab,
+      'page_arguments[sub_tab]': 'false',
+    });
 
     // Find the inventoryData.page.tabs array item that has type=special
     const tabs = inventoryData?.page?.tabs || [];
@@ -67,16 +49,34 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
     allItems = owned[0].items;
   }
 
+  console.log('allItems', allItems);
+
   // Merge the required allItems with the owned allItems
   required.forEach((requiredItem) => {
-    const ownedItem = allItems.find((i) => i.type === requiredItem.type);
+    const ownedItem = allItems.find((i) => i.type === requiredItem);
     if (! ownedItem) {
-      allItems.push(requiredItem);
+      const itemToAdd = items.find((i) => i.type === requiredItem);
+      if (! itemToAdd) {
+        console.log('itemToAdd not found', requiredItem);
+        return;
+      }
+
+      allItems.push({
+        name: itemToAdd.name,
+        name_formatted: itemToAdd.name,
+        type: itemToAdd.type,
+        item_id: itemToAdd.id,
+        quantity: 0,
+        quantity_formatted: '0',
+        thumbnail: itemToAdd.images.thumbnail,
+      });
     }
   });
 
   allItems = allItems.map((item) => {
-    const requiredItem = required.find((i) => i.type === item.type);
+    if (! item.item_id) { // eslint-disable-line camelcase
+      item = items.find((i) => i.type === item.type);
+    }
 
     return {
       item_id: item.item_id,
@@ -85,7 +85,7 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
       thumbnail: item.thumbnail_gray || item.thumbnail,
       quantity: item.quantity || 0,
       quantity_formatted: item.quantity_formatted || '0',
-      le: ! requiredItem,
+      le: ! required.includes(item.type),
     };
   });
 
@@ -203,7 +203,6 @@ const makeCategory = (category, name, progress) => {
  * @param {string}  item.type               The item type.
  * @param {string}  item.name               The item name.
  * @param {string}  item.thumbnail          The item thumbnail.
- * @param {string}  item.thumbnail_gray     The item gray thumbnail.
  * @param {number}  item.quantity           The item quantity.
  * @param {string}  item.quantity_formatted The item formatted quantity.
  * @param {boolean} item.le                 If the item is limited edition.
@@ -211,7 +210,7 @@ const makeCategory = (category, name, progress) => {
  * @return {HTMLElement} The item div.
  */
 const makeItem = (item) => {
-  const { item_id, type, name, thumbnail, thumbnail_gray, quantity, quantity_formatted, le } = item; // eslint-disable-line camelcase
+  const { item_id, type, name, thumbnail, quantity, quantity_formatted, le } = item; // eslint-disable-line camelcase
 
   const itemDiv = makeElement('div', 'hunterProfileItemsView-categoryContent-item');
   if (quantity > 0) {
@@ -233,7 +232,7 @@ const makeItem = (item) => {
   });
 
   const itemImage = makeElement('div', 'itemImage');
-  itemImage.style.backgroundImage = (quantity > 0 && thumbnail_gray) ? `url(${thumbnail_gray})` : `url(${thumbnail})`; // eslint-disable-line camelcase
+  itemImage.style.backgroundImage = `url(${thumbnail})`;
 
   if (quantity > 0) {
     makeElement('div', 'quantity', quantity_formatted, itemImage);
@@ -317,7 +316,7 @@ const makeContent = (id, name, items, completed) => {
 const addCategoryAndItems = async (required, type, subtype, key, name) => {
   const exists = document.querySelector(`.hunterProfileItemsView-category[data-category="${key}"]`);
   if (exists) {
-    return;
+    return false;
   }
 
   const items = await getItems(required, type, subtype);
@@ -347,20 +346,18 @@ const isOwnProfile = () => {
   return params.snuid === user.sn_user_id;
 };
 
+let items;
+
 /**
  * Run the module.
  */
 const run = async () => {
-  if (! categories) {
-    categories = await getData('ultimate-checkmark');
-  }
-
-  if (! ('hunterprofile' === getCurrentPage() && 'items' === getCurrentTab() && isOwnProfile())) {
+  if ('hunterprofile' !== getCurrentPage() || 'items' !== getCurrentTab() || ! isOwnProfile()) {
     return;
   }
 
-  if (! hg?.utils?.PageUtil?.getQueryParams) {
-    return;
+  if (! items) {
+    items = await getData('items');
   }
 
   for (const category of categories) {
@@ -381,6 +378,7 @@ const init = async () => {
   onNavigation(run, {
     page: 'hunterprofile',
     tab: 'items',
+    onLoad: true,
   });
 };
 
