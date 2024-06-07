@@ -110,8 +110,8 @@ const addOpenAllButOneButton = () => {
 
     const newButton = button.cloneNode(true);
     newButton.classList.add('open-all-but-one');
-    newButton.textContent = 'All but One';
-    newButton.value = 'All but One';
+    newButton.textContent = 'All But One';
+    newButton.value = 'All But One';
     newButton.setAttribute('data-item-action', 'all-but-one');
 
     button.parentNode.insertBefore(newButton, button.nextSibling);

@@ -272,3 +272,7 @@ input.itemView-action-convert-quantity {
   padding-top: 10px;
   margin-top: 0;
 }
+
+.itemViewContainer.skin .itemView-thumbnail {
+  background-size: cover;
+}

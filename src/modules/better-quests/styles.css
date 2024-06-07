@@ -53,17 +53,16 @@
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image {
-  width: 57px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50px;
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image img {
   width: 40px;
   height: 40px;
   margin: 0;
-}
-
-#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .actions {
-  margin-left: -19px;
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content b {
@@ -93,8 +92,11 @@
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr;
+  justify-items: center;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:hover,
@@ -111,4 +113,98 @@
 .mh-m400-quest .campPage-quests-objective-progress,
 .mh-m400-quest .campPage-quests-objective-progressBar {
   display: none;
+}
+
+.mh-ui-assignment-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mh-ui-assignment-price {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mh-ui-assignment-meta-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  align-items: stretch;
+  justify-items: center;
+}
+
+.mh-ui-assignment-wiki-button {
+  grid-column: span 2;
+}
+
+.mh-ui-assignment-price-value {
+  font-weight: 900;
+  font-size: 13px;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources {
+  padding: 5px 0;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image img.disabled[src=""] {
+  display: none;
+}
+
+.questLink .mousehuntActionButton.lightBlue {
+  font-size: 12px;
+  padding: 2px 8px;
+  font-weight: 100;
+  margin-left: -4px; /* make it look more visually centered */
+}
+
+.mh-ui-assignment-price-label {
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+}
+
+.mh-ui-assignment-details-summary {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #000;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources .mh-ui-quest-resources:hover {
+  cursor: pointer;
+  background-color: #dfdfdf;
+  border-radius: 6px;
+  box-shadow: -1px 1px 0 3px #dfdfdf;
+}
+
+h4.mh-ui-assignment-details-title {
+  padding: 3px 0;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+ul.mh-ui-assignment-details-task-list {
+  margin-left: 20px;
+  list-style: disc;
+  line-height: 1.5;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content {
+  width: auto;
+  display: block;
+  margin-left: 10px;
+  padding: 0;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
+  align-items: start;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image,
+.mh-ui-assignment-meta-wrapper {
+  margin-top: 10px;
+}
+
+.mh-ui-assignment-details-task-title {
+  margin: 3px 0;
 }

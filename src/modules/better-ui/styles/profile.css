@@ -416,12 +416,11 @@ a.friendsProfileView-randomFriend {
 
 .eggMasterIcon {
   position: absolute;
-  top: 0;
-  right: -10px;
+  top: 15px;
+  right: -12px;
   float: none !important;
-  width: 40px !important;
-  height: 40px !important;
-  filter: drop-shadow(2px 2px 2px #e9e1c6);
+  width: 30px !important;
+  height: 30px !important;
   background-size: cover !important;
 }
 
@@ -723,4 +722,31 @@ a.friendsProfileView-randomFriend {
   height: 50px;
   background: url(https://www.mousehuntgame.com/images/ui/backgrounds/trap_image_limited_edition_badge.png) no-repeat top right / 90px;
   filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
+}
+
+.hunterProfileItemsView-directory {
+  border: none;
+}
+
+.hunterProfileItemsView-content::before {
+  background-color: #ccc;
+  border-radius: 0;
+  width: 1px;
+  left: 0;
+}
+
+.mouseListView-categoryContent:before {
+  background-color: #ccc;
+  border-radius: 0;
+  width: 1px;
+  left: 0;
+}
+
+.mouseListView-categoryDirectory {
+  border-right: none;
+}
+
+.mouseListView-categoryContent-subgroup-miceContainer {
+  border: 1px solid #dfe5f1;
+  border-radius: 11px;
 }

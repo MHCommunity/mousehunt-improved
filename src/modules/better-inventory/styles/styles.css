@@ -5,11 +5,13 @@
 }
 
 .inventoryPage-item-content-action {
-  margin-top: 10px 0;
+  margin: 10px 0;
 }
 
 .inventoryPage-item-content-description {
   height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .inventoryPage-item.torn_page .inventoryPage-item-name,
@@ -65,6 +67,7 @@
   flex-wrap: wrap;
   place-content: center flex-start;
   align-items: stretch;
+  gap: 5px 3px;
 }
 
 .mousehuntHud-page-subTabContent.hammer .mousehuntHud-page-subTabContent.hammer .inventoryPage-item {
@@ -265,7 +268,9 @@ input.inventoryPage-tagDirectory-searchBar-input {
 .inventoryPage-item.torn_page .inventoryPage-item-content-action div {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   margin-right: 15px;
+  height: 40px;
 }
 
 .inventoryPage-item.torn_page .inventoryPage-item-content-description {
@@ -570,12 +575,12 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 
 .new-tooltip-loading::after {
   position: absolute;
-  inset: 0 0 10px;
+  inset: 1px;
   content: "";
   background:
     url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif) center no-repeat,
     url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) 0 0 repeat;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .inventoryPage-item.small .tooltip {
@@ -638,4 +643,12 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 
 .inventoryPage-item.small:hover .tooltip .inventoryPage-item-button {
   margin-top: 10px;
+}
+
+.inventoryPage-shieldExpiry {
+  display: none;
+}
+
+.search .inventoryPage-tagContent-tagTitle .inventoryPage-tagContent-name {
+  padding-right: 5px;
 }

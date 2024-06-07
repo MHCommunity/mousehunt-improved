@@ -1,15 +1,3 @@
-.pageFrameView-column.left {
-  box-shadow: inset -10px 0 10px -10px #333;
-}
-
-.pageFrameView-column.right {
-  box-shadow: inset 10px 0 10px -10px #333;
-}
-
-.pageFrameView .pageFrameView-column::before {
-  background: transparent;
-}
-
 /* color backgrounds */
 body.mh-improved-bg-background-color-blue .pageFrameView-column.right,
 body.mh-improved-bg-background-color-blue .pageFrameView-column.left {

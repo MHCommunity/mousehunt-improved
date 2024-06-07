@@ -464,6 +464,7 @@ a.pollutionOutbreakHUD-refineButton:hover {
   background-size: 50px 50px;
   opacity: 0;
   transition: opacity 0.5s;
+  pointer-events: none;
 }
 
 .pollutionOutbreakHUD.rising:hover .pollutionOutbreakHUD-pollution-title-blockContainer::after,

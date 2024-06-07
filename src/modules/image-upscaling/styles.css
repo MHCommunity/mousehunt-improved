@@ -190,3 +190,7 @@
 .journal .content .travel {
   background-image: url(https://i.mouse.rip/travel.png);
 }
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .requirements img {
+  max-width: 14px;
+}

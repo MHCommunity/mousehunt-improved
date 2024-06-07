@@ -9,7 +9,7 @@
   margin: 0 -10px;
   border: 10px solid #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 4px -2px #000;
+  box-shadow: 0 2px 4px #000;
 }
 
 @media only screen and (max-width: 810px) {
@@ -45,4 +45,9 @@
 
 .mousehuntHeaderView .menuItem.first {
   border-radius: 9px 0 0;
+}
+
+.pageFrameView-column.left,
+.pageFrameView-column.right {
+  box-shadow: none;
 }

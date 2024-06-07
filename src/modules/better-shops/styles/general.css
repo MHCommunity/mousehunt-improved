@@ -584,6 +584,11 @@ a.itemPurchaseView-action-buySuperBrie {
   order: 5;
 }
 
+.itemViewContainer .itemViewStatBlock.trinket .itemViewStatBlock-stat.empty {
+  display: flex;
+  opacity: 0.6;
+}
+
 .itemViewPopup .itemView-thumbnailContainer a {
   display: flex;
   justify-content: center;
