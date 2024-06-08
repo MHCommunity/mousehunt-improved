@@ -10,8 +10,10 @@ import {
 
 import settings from './settings';
 
-import smallImageStyles from './styles/small-images.css';
-import styles from './styles/styles.css';
+import favorites from './favorites';
+import smallImages from './small-images';
+
+import styles from './styles.css';
 
 /**
  * Update the quantity buttons.
@@ -343,13 +345,13 @@ let newSelect = null;
  * Initialize the module.
  */
 const init = async () => {
-  const stylesToUse = [styles];
+  addStyles(styles, 'better-marketplace');
 
   if (getSetting('better-marketplace.small-images')) {
-    stylesToUse.push(smallImageStyles);
+    smallImages();
   }
 
-  addStyles(stylesToUse, 'better-marketplace');
+  favorites();
 
   onOverlayChange({
     marketplace: {

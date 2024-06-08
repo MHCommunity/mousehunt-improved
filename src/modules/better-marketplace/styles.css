@@ -157,3 +157,7 @@ td.marketplaceView-table-name {
   display: block;
   vertical-align: middle;
 }
+
+.marketplaceView h1 {
+  border: none;
+}
