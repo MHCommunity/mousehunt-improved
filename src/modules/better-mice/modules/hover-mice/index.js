@@ -1,10 +1,4 @@
-import {
-  addStyles,
-  doRequest,
-  makeElement,
-  onRequest,
-  onTurn
-} from '@utils';
+import { addStyles, doRequest, makeElement, onRequest } from '@utils';
 import styles from './styles.css';
 
 /**
@@ -113,31 +107,7 @@ const makeLoadingMarkup = (e) => {
   return mouseDataWrapper;
 };
 
-/**
- * Get the mouse data.
- *
- * @param {string} mouseType The mouse type.
- *
- * @return {Promise<Object>} The mouse data.
- */
-const getMouseData = async (mouseType) => {
-  let mouse;
-  if (cachedMouseData[mouseType]) {
-    mouse = cachedMouseData[mouseType];
-  } else {
-    mouse = await fetchMouseData(mouseType);
-    cachedMouseData[mouseType] = mouse;
-
-    setTimeout(() => {
-      delete cachedMouseData[mouseType];
-    }, 60 * 1000);
-  }
-
-  return mouse;
-};
-
 let mouseDataWrapper;
-let cachedMouseData = {};
 
 /**
  * The main function.
@@ -168,7 +138,7 @@ const main = () => {
         }
 
         makeLoadingMarkup(e);
-        const mouseData = await getMouseData(mouseType);
+        const mouseData = await fetchMouseData(mouseType);
         if (mouseData && mouseDataWrapper && isMouseOver) {
           const markup = makeMouseMarkup(mouseData);
           mouseDataWrapper.innerHTML = markup.outerHTML;
@@ -200,6 +170,4 @@ export default () => {
   onRequest('*', () => {
     setTimeout(main, 1000);
   });
-
-  onTurn(() => cachedMouseData = {});
 };

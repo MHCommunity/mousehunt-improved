@@ -1,45 +1,32 @@
-import {
-  addStyles,
-  doRequest,
-  getSetting,
-  makeElement,
-  onEvent,
-  onRequest
-} from '@utils';
-
+import { addStyles, doRequest, makeElement, onRequest } from '@utils';
 import styles from './styles.css';
 
-let lastItem;
-let lastItemId;
+/**
+ * Fetch the item data.
+ *
+ * @param {string} itemId The item ID.
+ *
+ * @return {Promise<Object>} The item data.
+ */
+const fetchItemData = async (itemId) => {
+  const itemDataRequest = await doRequest('managers/ajax/users/userInventory.php', {
+    action: 'get_items',
+    'item_types[]': itemId,
+  });
+
+  return itemDataRequest?.items?.[0];
+};
 
 /**
- * Fetches the item data and fills the item data wrapper with the item data.
+ * Create the markup for the item data.
  *
- * @param {string} itemId Item ID to fetch data for.
+ * @param {Object} item The item data.
+ *
+ * @return {HTMLElement|boolean} The item data markup or false.
  */
-const fetchAndFillItemData = async (itemId) => {
-  if (isLoading) {
-    return;
-  }
-
-  isLoading = true;
-
-  let item;
-  if (lastItemId === itemId) {
-    item = lastItem;
-  } else {
-    const itemDataRequest = await doRequest('managers/ajax/users/userInventory.php', {
-      action: 'get_items',
-      'item_types[]': itemId,
-    });
-
-    if (! itemDataRequest?.items?.length) {
-      return;
-    }
-
-    item = itemDataRequest?.items[0];
-    lastItem = item;
-    lastItemId = itemId;
+const makeItemMarkup = (item) => {
+  if (! item) {
+    return false;
   }
 
   const itemData = makeElement('div', 'item-data');
@@ -64,22 +51,17 @@ const fetchAndFillItemData = async (itemId) => {
 
   itemData.append(itemText);
 
-  itemDataWrapper.innerHTML = itemData.outerHTML;
-
-  isLoading = false;
+  return itemData;
 };
 
-let debugPopup = false;
-let itemDataWrapper;
-let isLoading = false;
-
 /**
- * Makes the markup for the item data wrapper and appends it to the body.
+ * Create the loading markup.
  *
- * @param {string} itemId Item ID to fetch data for.
- * @param {Event}  e      Event object.
+ * @param {Event} e The event.
+ *
+ * @return {HTMLElement} The loading markup.
  */
-const makeItemMarkup = async (itemId, e) => {
+const makeLoadingMarkup = (e) => {
   if (itemDataWrapper) {
     itemDataWrapper.remove();
   }
@@ -88,9 +70,8 @@ const makeItemMarkup = async (itemId, e) => {
   itemDataWrapper.id = 'item-data-wrapper';
   itemDataWrapper.innerHTML = '<span class="item-data-wrapper-loading">Loading...</span>';
 
-  fetchAndFillItemData(itemId);
-
   document.body.append(itemDataWrapper);
+
   const rect = e.target.getBoundingClientRect();
   const top = rect.top + window.scrollY;
   const left = rect.left + window.scrollX;
@@ -103,13 +84,14 @@ const makeItemMarkup = async (itemId, e) => {
   itemDataWrapper.style.top = `${tooltipTop}px`;
   itemDataWrapper.style.left = `${left - (itemDataWrapper.offsetWidth / 2) + (rect.width / 2)}px`;
 
-  if (e.target && ! debugPopup) {
-    e.target.addEventListener('mouseleave', () => {
-      itemDataWrapper.remove();
-    });
-  }
+  return itemDataWrapper;
 };
 
+let itemDataWrapper;
+
+/**
+ * The main function.
+ */
 const main = () => {
   const itemLinks = document.querySelectorAll('.journal .content .entry .journaltext a[onclick*="ItemView.show"]');
   if (! itemLinks) {
@@ -120,11 +102,37 @@ const main = () => {
     const itemType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.ItemView.show('${itemType}'); return false;`);
 
-    link.addEventListener('mouseover', (e) => {
-      makeItemMarkup(itemType, e);
+    let timeoutId = null;
+    let isMouseOver = false;
+
+    link.addEventListener('mouseenter', async (e) => {
+      isMouseOver = true;
+
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      timeoutId = setTimeout(async () => {
+        if (! isMouseOver) {
+          return;
+        }
+
+        makeLoadingMarkup(e);
+        const itemData = await fetchItemData(itemType);
+        if (itemData && itemDataWrapper && isMouseOver) {
+          const markup = makeItemMarkup(itemData);
+          itemDataWrapper.innerHTML = markup.outerHTML;
+        }
+      }, 500);
     });
 
-    link.addEventListener('mouseout', () => {
+    link.addEventListener('mouseleave', () => {
+      isMouseOver = false;
+
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
       if (itemDataWrapper) {
         itemDataWrapper.remove();
       }
@@ -132,20 +140,14 @@ const main = () => {
   });
 };
 
+/**
+ * Initialize the module.
+ */
 export default () => {
   addStyles(styles, 'better-item-view-hover-item');
-
-  debugPopup = getSetting('debug.hover-popups', false);
 
   setTimeout(main, 500);
   onRequest('*', () => {
     setTimeout(main, 1000);
-  });
-
-  onEvent('dialog-show-item', () => {
-    const hoverItem = document.querySelector('#item-data-wrapper');
-    if (hoverItem) {
-      hoverItem.remove();
-    }
   });
 };
