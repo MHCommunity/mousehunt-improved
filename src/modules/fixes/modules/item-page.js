@@ -61,8 +61,7 @@ const fixItemPage = () => {
   url += `&viewing-item-id=${itemType}`;
 
   // Redirect away from the item page.
-  // window.location = url;
-  console.log(url);
+  window.location = url;
 };
 
 /**

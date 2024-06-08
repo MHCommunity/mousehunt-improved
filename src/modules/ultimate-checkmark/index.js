@@ -25,7 +25,6 @@ import categories from '@data/ultimate-checkmark.json';
  * @return {Array} The items.
  */
 const getItems = async (required, queryTab, queryTag, allItems = []) => {
-  console.log('getItems', 'required', required, 'queryTab', queryTab, 'queryTag', queryTag, 'allItems', allItems);
   if (! allItems.length) {
     const inventoryData = await doRequest('managers/ajax/pages/page.php', {
       page_class: 'Inventory',
@@ -49,15 +48,12 @@ const getItems = async (required, queryTab, queryTag, allItems = []) => {
     allItems = owned[0].items;
   }
 
-  console.log('allItems', allItems);
-
   // Merge the required allItems with the owned allItems
   required.forEach((requiredItem) => {
     const ownedItem = allItems.find((i) => i.type === requiredItem);
     if (! ownedItem) {
       const itemToAdd = items.find((i) => i.type === requiredItem);
       if (! itemToAdd) {
-        console.log('itemToAdd not found', requiredItem);
         return;
       }
 
