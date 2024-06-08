@@ -2385,5 +2385,118 @@
         ]
       }
     ]
+  },
+  "school_of_sorcery": {
+    "categories": [
+      {
+        "name": "Arcane SB",
+        "id": "sos-arcane",
+        "icon": "/powertypes/arcane.png",
+        "color": "#b4ffff",
+        "mice": [
+          "perpetual_detention",
+          "broomstick_bungler",
+          "misfortune_teller",
+          {
+            "mouse": "sleep_starved_scholar",
+            "subcategory": "final"
+          }
+        ]
+      },
+      {
+        "name": "Arcane AAC",
+        "id": "sos-arcane",
+        "icon": "/powertypes/arcane.png",
+        "color": "#b4ffff",
+        "mice": [
+          "arcana_overachiever",
+          "invisible_fashionista",
+          "enchanted_chess_club_champion",
+          {
+            "mouse": "class_clown",
+            "subcategory": "final"
+          }
+        ]
+      },
+      {
+        "name": "Arcane MMC",
+        "id": "sos-arcane",
+        "icon": "/powertypes/arcane.png",
+        "color": "#b4ffff",
+        "mice": [
+          "illustrious_illusionist",
+          "featherlight",
+          "constructively_critical_artist",
+          {
+            "mouse": "tyrannical_thaumaturge",
+            "subcategory": "final"
+          }
+        ]
+      },
+      {
+        "name": "Shadow SB",
+        "id": "sos-shadow",
+        "icon": "/powertypes/shadow.png",
+        "color": "#b4ffff",
+        "mice": [
+          "mixing_mishap",
+          "uncoordinated_cauldron_carrier",
+          "bookworm",
+          {
+            "mouse": "cheat_sheet_conjurer",
+            "subcategory": "final"
+          }
+        ]
+      },
+      {
+        "name": "Shadow AAC",
+        "id": "sos-shadow",
+        "icon": "/powertypes/shadow.png",
+        "color": "#b4ffff",
+        "mice": [
+          "classroom_keener",
+          "audacious_alchemist",
+          "prestigious_prestidigitator",
+          {
+            "mouse": "celestial_summoner",
+            "subcategory": "final"
+          }
+        ]
+      },
+      {
+        "name": "Shadow MMC",
+        "id": "sos-shadow",
+        "icon": "/powertypes/shadow.png",
+        "color": "#b4ffff",
+        "mice": [
+          "classroom_disrupter",
+          "teleporting_truant",
+          "magical_multitasker",
+          {
+            "mouse": "data_devourer",
+            "subcategory": "final"
+          }
+        ]
+      },
+      {
+        "name": "Boss",
+        "id": "sos-boss",
+        "color": "#b4ffff",
+        "mice": [
+          "arcane_sorcerer",
+          "shadow_sorcerer",
+          {
+            "mouse": "mythical_master_sorcerer",
+            "subcategory": "final"
+          }
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "final",
+        "name": "Final Exam"
+      }
+    ]
   }
 }
