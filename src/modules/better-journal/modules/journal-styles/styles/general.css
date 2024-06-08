@@ -114,13 +114,13 @@ a.journal-detailLink.full::after {
   content: " →";
 }
 
-.pagerView-container {
+.journalContainer .pagerView-container {
   border: 1px solid #5b5b5b;
   border-right: none;
   border-left: none;
 }
 
-.pagerView-link {
+.journalContainer .pagerView-link {
   border: none;
 }
 
