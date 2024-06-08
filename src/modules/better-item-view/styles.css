@@ -24,17 +24,19 @@
   font-weight: 400;
 }
 
-.itemView-has-mhct .mouse-ar-wrapper {
+.mouseview-has-mhct .mouse-ar-wrapper {
   display: grid;
-  grid-template-columns: 150px auto 50px;
+  grid-template-columns: 1fr 1fr 50px;
+  gap: 10px;
   place-items: center stretch;
+  width: 100%;
   padding: 5px;
   margin: 5px 0;
   font-size: 12px;
 }
 
-.itemView-has-mhct .has-stages .mouse-ar-wrapper {
-  grid-template-columns: 110px 140px auto 50px;
+.mouseview-has-mhct .has-stages .mouse-ar-wrapper {
+  grid-template-columns: 1fr 1fr 1fr 50px;
 }
 
 .itemView-has-mhct .mouse-ar-wrapper div {

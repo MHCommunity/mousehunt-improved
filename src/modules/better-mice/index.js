@@ -367,7 +367,7 @@ const updateMouseView = async () => {
     makeElement('div', 'location', mouseAr.location, mouseArWrapper);
 
     if (hasStages) {
-      makeElement('div', 'stage', mouseAr.stage, mouseArWrapper);
+      makeElement('div', 'stage', mouseAr.stage ? mouseAr.stage.replace('/', ' / ').replace('  /  ', ' / ') : '', mouseArWrapper);
     }
 
     makeElement('div', 'cheese', mouseAr.cheese, mouseArWrapper);
