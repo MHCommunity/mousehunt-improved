@@ -218,7 +218,6 @@ const resortInventoryAddAllGroup = () => {
   const listing = makeElement('div', 'inventoryPage-tagContent-listing');
 
   let isToggled = getSetting('better-inventory.show-all-group-is-toggled', false);
-  console.log('isToggled', isToggled);
   title.addEventListener('click', () => {
     listing.classList.toggle('hidden');
     allGroup.classList.toggle('toggled');
@@ -289,13 +288,14 @@ const resortInventoryAddAllGroup = () => {
     const actionContainer = makeElement('div', 'tiny-item-action');
 
     const callbacks = {
-      bait: { text: 'Use', callback: () => console.log('use', itemType) },
-      weapon: { text: 'Arm', callback: () => console.log('arm', itemType) },
-      base: { text: 'Arm', callback: () => console.log('arm', itemType) },
-      trinket: { text: 'Arm', callback: () => console.log('arm', itemType) },
-      potion: { text: 'Brew', callback: () => console.log('brew', itemType) },
-      recipe: { text: 'Craft', callback: () => console.log('craft', itemType) },
-      convertible: { text: 'Open', callback: () => console.log('open', itemType) },
+      // Todo: implement these callbacks.
+      bait: { text: 'Use', callback: () => {} },
+      weapon: { text: 'Arm', callback: () => {} },
+      base: { text: 'Arm', callback: () => {} },
+      trinket: { text: 'Arm', callback: () => {} },
+      potion: { text: 'Brew', callback: () => {} },
+      recipe: { text: 'Craft', callback: () => {} },
+      convertible: { text: 'Open', callback: () => {} },
     };
 
     if (callbacks[classification]) {
