@@ -349,11 +349,17 @@ const getUserTitleShield = (titleId = null) => {
   return false;
 };
 
+const getUserData = async () => {
+  const data = await fetch('https://www.mousehuntgame.com/api/action/passiveturn');
+  return data.json();
+};
+
 export {
   getUserItems,
   getAnonymousUserHash,
   getUserSetupDetails,
   isUserTitleAtLeast,
   getUserTitle,
-  getUserTitleShield
+  getUserTitleShield,
+  getUserData
 };

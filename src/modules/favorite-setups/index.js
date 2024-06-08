@@ -9,6 +9,7 @@ import {
   getData,
   getHeaders,
   getSetting,
+  getUserData,
   makeElement,
   onEvent,
   onNavigation,
@@ -25,8 +26,32 @@ import styles from './styles.css';
  *
  * @return {Array} The favorite setups.
  */
-const getFavoriteSetups = () => {
-  const faves = getSetting('favorite-setups.setups', []);
+const getFavoriteSetups = async () => {
+  let faves = getSetting('favorite-setups.setups', []);
+
+  if (getSetting('favorite-setups.use-mobile-favorites', true)) {
+    const userData = await getUserData();
+    const mobileFavorites = userData?.user?.trap_favourite?.favourite_traps || [];
+    if (mobileFavorites?.length) {
+      const newFaves = [];
+      for (const favorite of mobileFavorites) {
+        const newFavorite = {
+          id: `mobile-${favorite?.bait_id}-${favorite?.base_id}-${favorite?.weapon_id}-${favorite?.trinket_id}`,
+          name: favorite?.name,
+          bait_id: favorite?.bait_id,
+          base_id: favorite?.base_id,
+          weapon_id: favorite?.weapon_id,
+          trinket_id: favorite?.trinket_id,
+          power_type: null, // todo: add this.
+          is_mobile: true, // todo: add a check for this when editing.
+        };
+
+        newFaves.push(newFavorite);
+      }
+
+      faves = [...faves, ...newFaves];
+    }
+  }
 
   if (! faves || ! Array.isArray(faves) || ! faves.length) {
     return [];
@@ -67,7 +92,7 @@ const getGeneratedName = async (setup) => {
  * @return {Object} The saved setup.
  */
 const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
-  let setups = getFavoriteSetups();
+  let setups = await getFavoriteSetups();
 
   if (! setups.length) {
     setups = [];
@@ -461,7 +486,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         let currentSetup = getCurrentSetup();
 
         // if the setup already exists, then just alert the user.
-        const setups = getFavoriteSetups();
+        const setups = await getFavoriteSetups();
 
         if (setups.length) {
           // check if the setup has a matching bait, base, weapon, and trinket.
@@ -522,7 +547,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         debuglog('favorite-setups', `Arming setup ${setupId}`);
 
         // get the setup.
-        const setups = getFavoriteSetups();
+        const setups = await getFavoriteSetups();
         if (! setups.length) {
           return;
         }
@@ -661,10 +686,10 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         // Also add move up and move down buttons.
         const moveUpButton = makeElement('a', ['move-up']);
-        moveUpButton.addEventListener('click', (event) => {
+        moveUpButton.addEventListener('click', async (event) => {
           const previous = event.target.closest('.row').previousElementSibling;
           if (previous) {
-            const setups = getFavoriteSetups();
+            const setups = await getFavoriteSetups();
             if (! setups.length) {
               return;
             }
@@ -685,12 +710,12 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         });
 
         const moveDownButton = makeElement('a', ['move-down']);
-        moveDownButton.addEventListener('click', (event) => {
+        moveDownButton.addEventListener('click', async (event) => {
           // Get the element after this one.
           const next = event.target.closest('.row').nextElementSibling;
           if (next) {
             // move the setup down and resave the setups.
-            const setups = getFavoriteSetups();
+            const setups = await getFavoriteSetups();
             if (! setups.length) {
               return;
             }
@@ -736,7 +761,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       /**
        * Save the edited setup.
        */
-      callback: () => {
+      callback: async () => {
         const setupId = setupContainer.getAttribute('data-setup-id');
         debuglog('favorite-setups', `Saving setup ${setupId}`);
 
@@ -788,7 +813,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           image.removeAttribute('data-old-image-url');
         });
 
-        let setups = getFavoriteSetups();
+        let setups = await getFavoriteSetups();
         if (! setups.length) {
           setups = [];
         }
@@ -853,7 +878,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       /**
        * Delete the setup.
        */
-      callback: () => {
+      callback: async () => {
         const setupId = setupContainer.getAttribute('data-setup-id');
         debuglog('favorite-setups', `Deleting setup ${setupId}`);
 
@@ -864,7 +889,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         }
 
         // remove the setup from the list.
-        let setups = getFavoriteSetups();
+        let setups = await getFavoriteSetups();
         if (! setups.length) {
           setups = [];
         }
@@ -922,7 +947,7 @@ const makeBlueprintContainer = async () => {
   currentSetupRow.classList.add('current-setup');
   body.append(currentSetupRow);
 
-  const setups = getFavoriteSetups();
+  const setups = await getFavoriteSetups();
   if (setups.length) {
     const locationFavorites = [];
 
@@ -976,8 +1001,8 @@ const makeBlueprintContainer = async () => {
  *
  * @return {string} The name of the current setup.
  */
-const getNameOfCurrentSetup = () => {
-  const setups = getFavoriteSetups();
+const getNameOfCurrentSetup = async () => {
+  const setups = await getFavoriteSetups();
 
   if (! setups.length) {
     return '';
@@ -1003,17 +1028,17 @@ const getNameOfCurrentSetup = () => {
 /**
  * Update the name of the current setup in the trap UI.
  */
-const updateFavoriteSetupName = () => {
+const updateFavoriteSetupName = async () => {
   const label = document.querySelector('.mh-improved-favorite-setups-button-label');
   if (label) {
-    label.innerHTML = getNameOfCurrentSetup() || '';
+    label.innerHTML = await getNameOfCurrentSetup() || '';
   }
 };
 
 /**
  * Add a button to the camp page to toggle the favorite setups.
  */
-const addFavoriteSetupsButton = () => {
+const addFavoriteSetupsButton = async () => {
   if ('camp' !== getCurrentPage()) {
     return;
   }
@@ -1032,7 +1057,7 @@ const addFavoriteSetupsButton = () => {
   makeElement('div', ['mh-improved-favorite-setups-button-text'], 'Favorite Setups', button);
   const label = makeElement('div', ['mh-improved-favorite-setups-button-label']);
 
-  label.innerHTML = getNameOfCurrentSetup();
+  label.innerHTML = await getNameOfCurrentSetup();
   button.append(label);
 
   button.addEventListener('click', toggleFavoriteSetups);
@@ -1067,8 +1092,6 @@ const addIcon = () => {
  */
 const init = async () => {
   addStyles(styles, 'favorite-setups');
-
-  addFavoriteSetupsButton();
 
   onNavigation(addFavoriteSetupsButton, {
     page: 'camp',
