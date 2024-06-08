@@ -135,7 +135,7 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   z-index: 1;
   content: "";
   border-radius: 10px 0 0 10px;
-  box-shadow: 0 4px 4px -3px #666;
+  box-shadow: -1px 4px 4px -3px #666;
 }
 
 .giftSelectorView-content-leftBar > .giftSelectorView-content-leftBar-highlightBlock {
@@ -246,6 +246,8 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 }
 
 .giftSelectorView-content-subtitle {
+  display: inline-block;
+  width: auto;
   border-bottom: none;
 }
 
@@ -464,4 +466,39 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 
 #overlayPopup.giftSelectorViewPopup #jsDialogClose {
   z-index: 10;
+}
+
+.giftSelectorView-friend-search {
+  display: inline-block;
+  width: auto;
+}
+
+.giftSelectorView-friend-search-label {
+  display: none;
+}
+
+input.giftSelectorView-friend-search-input {
+  max-width: 130px;
+}
+
+.giftSelectorView-content-viewState.selectFriends {
+  position: relative;
+}
+
+.giftSelectorView-tabContent[data-tab="friends"] .giftSelectorView-content-viewState .giftSelectorView-friend-search {
+  position: absolute;
+  top: -30px;
+  right: 20px;
+}
+
+.giftSelectorView-friend-group.favorite .giftSelectorView-friend-group-title {
+  display: none;
+}
+
+.giftSelectorView-hiddenFriendsContainer {
+  margin-right: 2px;
+}
+
+.giftSelectorView-tabContent[data-tab="friends"] .giftSelectorView-content-rightBar-padding {
+  padding-bottom: 0;
 }
