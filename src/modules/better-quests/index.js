@@ -3,16 +3,44 @@ import {
   getCurrentSubtab,
   getCurrentTab,
   getSetting,
+  getUserItems,
   isUserTitleAtLeast,
   makeElement,
   onNavigation,
-  onOverlayChange
+  onOverlayChange,
+  onRequest
 } from '@utils';
 
 import settings from './settings';
 
 import m400 from './modules/m400';
 import styles from './styles.css';
+
+import assignmentDetails from './assignments.json';
+
+const questAssignments = new Set([
+  'charming_study_hween2014_assignment_quest_item',
+  'double_run_advanced_research_quest',
+  'extra_spooky_hween2014_assignment_quest_item',
+  'furoma_research_quest_item',
+  'hg_letter_research_quest_item',
+  'lab_monster_1_quest_item',
+  'library_adv_hween2013_research_quest_item',
+  'library_catalog_quest_item',
+  'library_hween2013_research_quest_item',
+  'library_m400_bait_research_quest_item',
+  'library_m400_research_quest_item',
+  'library_mice_research_quest_item',
+  'library_power_type_research_quest_item',
+  'mystic_advanced_research_quest_item',
+  'mystickingresearch_quest_item',
+  'pagoda_advanced_research_quest_item',
+  'pagoda_research_quest_item',
+  'seasonalgardenresearch_quest_item',
+  'tech_advanced_research_quest_item',
+  'techkingresearch_quest_item',
+  'zurreal_trap_research_quest_item',
+]);
 
 /**
  * Update the text (and fix the link) for the 'smash this assignment' text.
@@ -26,6 +54,27 @@ const updateObjectiveFooterDisplay = () => {
   const newHref = footerText.getAttribute('href').replace('subtab', 'sub_tab');
   footerText.setAttribute('href', `${newHref}#smashQuest`);
   footerText.innerHTML = footerText.innerHTML.replace('Don\'t like an assignment? Cancel it by smashing the assignment ', 'Cancel this assignment by smashing it ');
+
+  footerText.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Search through all the user.quests objects to find one that has is_assignment = true and a type that ends with _quest_item.
+    const assignment = Object.values(user.quests).find((quest) => {
+      return quest.is_assignment && quest.type.endsWith('_quest_item');
+    });
+
+    if (! assignment) {
+      return;
+    }
+
+    e.target.classList.add('inventoryPage-item');
+    e.target.setAttribute('data-item-type', assignment.type);
+    e.target.setAttribute('data-produced-item', 'nothing_stat_item');
+
+    app.pages.InventoryPage.showConfirmPopup(e.target, 'hammer');
+
+    e.target.classList.remove('inventoryPage-item');
+  });
 };
 
 /**
@@ -45,9 +94,7 @@ const addQuestsTab = () => {
   }
 
   // Make the new tab.
-  const newQuestsButton = document.createElement('a');
-  newQuestsButton.classList.add('campPage-tabs-tabHeader');
-  newQuestsButton.classList.add('quests');
+  const newQuestsButton = makeElement('a', ['campPage-tabs-tabHeader', 'quests']);
   newQuestsButton.setAttribute('data-tab', 'quests');
 
   // Fire the popup when the tab is clicked.
@@ -55,10 +102,7 @@ const addQuestsTab = () => {
     hg.views.HeadsUpDisplayZugswangLibraryView.showPopup();
   });
 
-  const newQuestsButtonText = document.createElement('span');
-  newQuestsButtonText.innerText = 'Quests';
-
-  newQuestsButton.append(newQuestsButtonText);
+  makeElement('span', '', 'Quests', newQuestsButton);
 
   tabs.insertBefore(newQuestsButton, tabs.lastChild);
 };
@@ -105,31 +149,7 @@ const addResearchSmashWarning = () => {
     return;
   }
 
-  const assignments = [
-    'charming_study_hween2014_assignment_quest_item',
-    'double_run_advanced_research_quest',
-    'extra_spooky_hween2014_assignment_quest_item',
-    'furoma_research_quest_item',
-    'hg_letter_research_quest_item',
-    'lab_monster_1_quest_item',
-    'library_adv_hween2013_research_quest_item',
-    'library_catalog_quest_item',
-    'library_hween2013_research_quest_item',
-    'library_m400_bait_research_quest_item',
-    'library_m400_research_quest_item',
-    'library_mice_research_quest_item',
-    'library_power_type_research_quest_item',
-    'mystic_advanced_research_quest_item',
-    'mystickingresearch_quest_item',
-    'pagoda_advanced_research_quest_item',
-    'pagoda_research_quest_item',
-    'seasonalgardenresearch_quest_item',
-    'tech_advanced_research_quest_item',
-    'techkingresearch_quest_item',
-    'zurreal_trap_research_quest_item',
-  ];
-
-  if (! assignments.includes(type)) {
+  if (! questAssignments.has(type)) {
     return;
   }
 
@@ -186,134 +206,154 @@ const removeSmashText = () => {
   }
 };
 
-const assignments = [
-  {
-    id: 'library_intro_research_assignment_convertible',
-    name: 'Catalog Library Mice',
-    cost: 0,
-    reward: 20,
-    rank: false,
-  },
-  {
-    id: '',
-    name: 'Library Research',
-    cost: 20,
-    reward: 30,
-    rank: false,
-  },
-  {
-    id: 'zugzwang_research_assignment_convertible',
-    name: 'Zugzwang Research',
-    cost: 50,
-    reward: 80,
-    rank: false,
-  },
-  {
-    id: 'furoma_research_assignment_convertible',
-    name: 'Furoma Research',
-    cost: 130,
-    reward: 90,
-    rank: false,
-  },
-  {
-    id: 'adv_zugzwang_research_assignment_convertible',
-    name: 'Advanced Zugzwang Research',
-    cost: 150,
-    reward: 150,
-    rank: false,
-  },
-  {
-    id: 'zurreal_trap_research_convertible',
-    name: 'Zurreal Trap Research',
-    cost: 900,
-    reward: 400,
-    rank: false,
-  },
-  {
-    id: 'library_m400_bait_assignment_convertible',
-    name: 'M400 Bait Research Assignment',
-    cost: 1500,
-    reward: 200,
-    rank: true,
-  },
-  {
-    id: 'library_m400_assignment_convertible',
-    name: 'M400 Hunting Research Assignment',
-    cost: 1900,
-    reward: 300,
-    rank: true,
-  },
-];
-
-/**
- * Get the extra text for the assignment.
- *
- * @param {Object} assignment The assignment.
- *
- * @return {string} The extra text.
- */
-const getAssignmentMeta = (assignment) => {
-  const wikiLink = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replaceAll(' ', '_')}`;
-  return `<a href="${wikiLink}" target="_blank" rel="noopener noreferrer">Wiki</a> | Requires: ${assignment.cost} | Reward: ${assignment.reward}`;
-};
-
 /**
  * Update the assignments list.
  */
-const updateAssignmentList = () => {
+const updateAssignmentList = async () => {
   const assignmentList = document.querySelectorAll('#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink');
   if (! assignmentList) {
     return;
   }
 
-  assignmentList.forEach((outerEl) => {
-    const el = outerEl.querySelector('.content b');
-    if (! el) {
+  assignmentList.forEach((questLink) => {
+    let type = questLink.getAttribute('data-quest-type');
+    if (! type) {
+      // Get the details about the assignment.
+      const onclickAttr = questLink.getAttribute('onclick') || '';
+      if (! onclickAttr.includes('hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm')) {
+        return;
+      }
+
+      type = onclickAttr.replace('hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm(\'', '').replace('\'); return false;', '');
+      if (! type) {
+        return;
+      }
+    }
+
+    const content = questLink.querySelector('.content');
+    if (! content) {
       return;
     }
 
-    // Get the assignment name.
-    const assignmentName = el.innerText;
-
-    // get the assignment from the list.
-    const assignment = assignments.find((a) => a.name === assignmentName);
-    if (! assignment) {
+    const name = content.querySelector('b');
+    if (! name) {
       return;
     }
 
-    const requirements = el.parentNode.parentNode.querySelector('.requirements');
-    if (! requirements) {
-      return;
+    // Set the attribute because we blank the onclick later.
+    questLink.setAttribute('data-quest-type', type);
+
+    const assignment = assignmentDetails[type];
+
+    // Remove the requirements as we're going to replace them.
+    const requirements = questLink.querySelector('.requirements');
+    if (requirements) {
+      requirements.remove();
     }
 
     const metaWrapper = makeElement('div', 'mh-ui-assignment-meta-wrapper');
-    makeElement('div', 'mh-ui-assignment-meta', getAssignmentMeta(assignment), metaWrapper);
 
-    requirements.parentNode.insertBefore(metaWrapper, requirements.nextSibling);
-    // remove the requirements.
-    requirements.remove();
+    const cost = makeElement('div', ['mh-ui-assignment-price', 'mh-ui-assignment-cost']);
+    makeElement('span', 'mh-ui-assignment-price-label', 'Requires', cost);
+    makeElement('strong', 'mh-ui-assignment-price-value', assignment.cost, cost);
+    metaWrapper.append(cost);
 
-    if ('M400 Hunting Research Assignment' === assignmentName) {
+    const reward = makeElement('div', ['mh-ui-assignment-price', 'mh-ui-assignment-reward']);
+    makeElement('span', 'mh-ui-assignment-price-label', 'Reward', reward);
+    makeElement('strong', 'mh-ui-assignment-price-value', assignment.rewardPoints, reward);
+    metaWrapper.append(reward);
+
+    const wiki = makeElement('a', 'mh-ui-assignment-wiki-button', 'View on Wiki →');
+    wiki.href = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replaceAll(' ', '_')}`;
+    wiki.target = '_blank';
+    wiki.rel = 'noopener noreferrer';
+    metaWrapper.append(wiki);
+
+    // Insert it after the content.
+    content.after(metaWrapper);
+
+    if ('M400 Hunting Research Assignment' === assignment.name) {
       const m400Wrapper = makeElement('div', ['content', 'mh-ui-m400-wrapper']);
-      makeElement('b', 'mh-ui-m400-title', assignmentName, m400Wrapper); // b tag just to match.
+      makeElement('b', 'mh-ui-m400-title', assignment.name, m400Wrapper); // b tag just to match.
       makeElement('span', 'mh-ui-m400-content', 'This envelope contains a Research Assignment that will have you looking for the elusive M400 prototype.', m400Wrapper);
 
       // replace the .content with our new content.
-      el.parentNode.parentNode.querySelector('.content').replaceWith(m400Wrapper);
+      content.replaceWith(m400Wrapper);
     }
 
-    // remove the onclick.
-    outerEl.removeAttribute('onclick');
+    const assigmentDetails = makeElement('details', 'mh-ui-assignment-details');
+    makeElement('summary', 'mh-ui-assignment-details-summary', 'Assignment Details', assigmentDetails);
 
-    const button = outerEl.querySelector('.actions .mousehuntActionButton');
-    if (! button) {
-      return;
+    if (assignment.assignments) {
+      for (const singleAssignment of assignment.assignments) {
+        const assignmentWrapper = makeElement('div', 'mh-ui-assignment-details-wrapper');
+        makeElement('h4', 'mh-ui-assignment-details-title', singleAssignment.name, assignmentWrapper);
+
+        const singleAssignmentTasks = singleAssignment.tasks || [];
+        for (const task of singleAssignmentTasks) {
+          // Title.
+          const taskEl = makeElement('div', 'mh-ui-assignment-details-task');
+          makeElement('h5', 'mh-ui-assignment-details-task-title', task.title, taskEl);
+
+          // Tasks.
+          const taskList = makeElement('ul', 'mh-ui-assignment-details-task-list');
+          for (const taskItem of task.text) {
+            makeElement('li', 'mh-ui-assignment-details-task-item', taskItem, taskList);
+          }
+
+          taskEl.append(taskList);
+          assignmentWrapper.append(taskEl);
+        }
+
+        assigmentDetails.append(assignmentWrapper);
+      }
     }
 
-    button.addEventListener('click', () => {
-      hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm(assignment.id);
-    });
+    content.append(assigmentDetails);
   });
+
+  // Add our wisdom tomes to the sidebar too.
+  const resources = document.querySelector('#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources');
+  if (! resources) {
+    return;
+  }
+
+  const tomeDetails = await getUserItems([
+    'library_boss_trinket', // not a tome but we want it here.
+    'tome_of_wisdom_yellow_convertible',
+    'tome_of_wisdom_green_convertible',
+    'tome_of_wisdom_blue_convertible',
+    'tome_of_wisdom_convertible', // purple.
+    'tome_of_wisdom_red_convertible',
+    'tome_of_wisdom_white_convertible' // silver.
+  ]);
+
+  if (tomeDetails) {
+    for (const tome of tomeDetails) {
+      if (! tome.type) {
+        continue;
+      }
+
+      const tomeEl = makeElement('div', ['item', 'mh-ui-quest-resources']);
+      const imageEl = makeElement('div', 'itemImage');
+
+      const image = makeElement('img');
+      image.src = tome.thumbnail_transparent || tome.thumbnail || tome.image || '';
+      imageEl.append(image);
+
+      makeElement('div', 'quantity', tome.quantity || 0, imageEl);
+
+      tomeEl.append(imageEl);
+
+      makeElement('span', 'itemName', tome.name || '', tomeEl);
+
+      tomeEl.addEventListener('click', () => {
+        hg.views.ItemView.show(tome.type);
+      });
+
+      resources.append(tomeEl);
+    }
+  }
 };
 
 /**
@@ -354,12 +394,34 @@ const checkForQuestSmash = () => {
 };
 
 /**
+ * Reset the quests tab after smashing a quest.
+ *
+ * @param {Object} request The request object.
+ * @param {Object} data    The data object.
+ */
+const restoreQuestTabAfterSmash = (request, data) => {
+  if (! (data && data.item_type && questAssignments.has(data.item_type))) {
+    return;
+  }
+
+  const questsTab = document.querySelector('.campPage-tabs-tabHeader.quests');
+  if (! questsTab) {
+    return;
+  }
+
+  questsTab.remove();
+  addQuestsTab();
+};
+
+/**
  * Run the M400 helper if enabled.
  */
 const m400IfEnabled = () => {
-  if (getSetting('better-quests.m400-helper', true)) {
-    m400();
+  if (! getSetting('better-quests.m400-helper', true)) {
+    return;
   }
+
+  m400();
 };
 
 /**
@@ -404,6 +466,8 @@ const main = () => {
       modifyAvailableQuestsPopup();
     },
   });
+
+  onRequest('users/usehammer.php', restoreQuestTabAfterSmash);
 };
 
 /**

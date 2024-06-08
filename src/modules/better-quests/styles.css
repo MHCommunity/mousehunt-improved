@@ -73,6 +73,10 @@
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content {
+  display: block;
+  width: auto;
+  padding: 0;
+  margin-left: 10px;
   color: #909090;
 }
 
@@ -94,8 +98,8 @@
 #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
   display: grid;
   grid-template-columns: 1fr 5fr 2fr;
-  justify-items: center;
-  align-items: center;
+  place-items: center;
+  align-items: start;
   padding-bottom: 10px;
 }
 
@@ -123,16 +127,15 @@
 
 .mh-ui-assignment-price {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 }
 
 .mh-ui-assignment-meta-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 9px;
-  align-items: stretch;
-  justify-items: center;
+  place-items: center stretch;
 }
 
 .mh-ui-assignment-wiki-button {
@@ -140,8 +143,8 @@
 }
 
 .mh-ui-assignment-price-value {
-  font-weight: 900;
   font-size: 13px;
+  font-weight: 900;
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questResources {
@@ -153,10 +156,10 @@
 }
 
 .questLink .mousehuntActionButton.lightBlue {
-  font-size: 12px;
   padding: 2px 8px;
-  font-weight: 100;
   margin-left: -4px; /* make it look more visually centered */
+  font-size: 12px;
+  font-weight: 100;
 }
 
 .mh-ui-assignment-price-label {
@@ -185,19 +188,8 @@ h4.mh-ui-assignment-details-title {
 
 ul.mh-ui-assignment-details-task-list {
   margin-left: 20px;
-  list-style: disc;
   line-height: 1.5;
-}
-
-#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content {
-  width: auto;
-  display: block;
-  margin-left: 10px;
-  padding: 0;
-}
-
-#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
-  align-items: start;
+  list-style: disc;
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image,

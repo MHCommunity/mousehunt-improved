@@ -1,0 +1,681 @@
+{
+  "library_intro_research_assignment_convertible": {
+    "name": "Catalog Library Mice",
+    "cost": 0,
+    "rewardPoints": 20,
+    "rewards": ["Yellow Tome of Wisdom", "Wealth Charms"],
+    "assignments": [
+      {
+        "name": "Catalog Library Assignment",
+        "tasks": [
+          {
+            "title": "All seven of the following:",
+            "text": [
+              "1 Bookborn Mouse",
+              "1 Effervescent Mouse",
+              "1 Explorator Mouse",
+              "1 Flutterby Mouse",
+              "1 Infiltrator Mouse",
+              "1 Pocketwatch Mouse",
+              "1 Walker Mouse"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "library_research_assignment_convertible": {
+    "name": "Library Research",
+    "cost": 20,
+    "rewardPoints": 30,
+    "rewards": ["Yellow Tome of Wisdom", "Green Tome of Wisdom", "Purple Tome of Wisdom", "Wealth Charms"],
+    "assignments": [
+      {
+        "name": "Library Mice Assignment",
+        "tasks": [
+          {
+            "title": "Two of the following:",
+            "text": [
+              "1 Bookborn Mouse",
+              "1 Flutterby Mouse",
+              "1 Steam Grip Mouse",
+              "1 Tome Sprite Mouse",
+              "1 Scribe Mouse"
+            ]
+          },
+          {
+            "title": "Three of the following:",
+            "text": [
+              "2 Effervescent Mice",
+              "2 Explorator Mice",
+              "2 Infiltrator Mice",
+              "2 Pocketwatch Mice",
+              "2 Walker Mice"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Library Power Type Assignment",
+        "tasks": [
+          {
+            "title": "Three of the following:, with at least one task for both trap power types",
+            "text": [
+              "1 Effervescent Mouse using a Physical trap",
+              "1 Infiltrator Mouse using a Physical trap",
+              "1 Scribe Mouse using a Physical trap",
+              "1 Steam Grip Mouse using a Physical trap",
+              "1 Walker Mouse using a Physical trap",
+              "3 Explorator Mice using a Physical trap",
+              "3 Pocketwatch Mice using a Physical trap",
+              "1 Bookborn Mouse using a Tactical trap",
+              "1 Flutterby Mouse using a Tactical trap",
+              "2 Effervescent Mice using a Tactical trap",
+              "2 Infiltrator Mice using a Tactical trap",
+              "2 Walker Mice using a Tactical trap"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "zugzwang_research_assignment_convertible": {
+    "name": "Zugzwang Research",
+    "cost": 50,
+    "rewardPoints": 80,
+    "rewards": [
+      "Blue Tome of Wisdom",
+      "Wealth Charms",
+      "Amplifier Charms",
+      "Rook Crumble Charms",
+      "Spellbook Charms",
+      "Mystic Curd",
+      "Technic Cheese Mould"
+    ],
+    "assignments": [
+      {
+        "name": "Seasonal Garden Assignment",
+        "tasks": [
+          {
+            "title": "Two of the following:",
+            "text": [
+              "10 mice in the Seasonal Garden using a Tactical trap",
+              "10 mice in the Seasonal Garden using Luck Charm",
+              "20 mice in the Seasonal Garden",
+              "20 mice in the Seasonal Garden using Power Charm",
+              "30 mice in the Seasonal Garden using Lucky Power Charm",
+              "30 mice in the Seasonal Garden using Bamboozler Base",
+              "40 mice in the Seasonal Garden"
+            ]
+          },
+          {
+            "title": "Three of the following: (Winter)",
+            "text": [
+              "1 Winter Mage Mouse using Ancient Spear Gun",
+              "2 Frostbite Mice",
+              "3 Penguin Mice using a Hydro trap"
+            ]
+          },
+          {
+            "title": "Three of the following: (Spring)",
+            "text": [
+              "1 Derpicorn Mice using a Tactical trap",
+              "1 Vinetail Mouse",
+              "3 Hydrophobe Mice using Aqua Base",
+              "3 Tanglefoot Mice using a Physical trap"
+            ]
+          },
+          {
+            "title": "Three of the following: (Summer)",
+            "text": [
+              "1 Summer Mage Mouse",
+              "3 Firefly Mice using Horrific Venus Mouse Trap",
+              "3 Monarch Mice using a Tactical trap",
+              "3 Stinger Mice"
+            ]
+          },
+          {
+            "title": "Three of the following: (Fall)",
+            "text": [
+              "1 Fall Familiar Mouse",
+              "1 Harvester Mouse",
+              "1 Whirleygig Mice using a Tactical trap",
+              "1 Fall Familiar Mouse",
+              "1 Harvester Mouse",
+              "1 Whirleygig Mice using a Tactical trap",
+              "4 Harvest Harrier Mice",
+              "4 Pumpkin Head Mice using a Shadow trap"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Mystic King Assignment",
+        "tasks": [
+          {
+            "title": "One of the following:",
+            "text": ["10 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden"]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "1 Mouse in the Seasonal Garden using Zugzwang's First Move",
+              "10 Mice in the Seasonal Garden using the Bamboozler Base",
+              "10 Mice in the Seasonal Garden using Zugzwang's Last Move"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": ["8 Mystic Pawns", "8 Mystic Pawns using Wooden Base with Target"]
+          },
+          {
+            "title": "One of the following:",
+            "text": ["2 Mystic Knight Mice", "2 Mystic Bishop Mice"]
+          },
+          {
+            "title": "",
+            "text": ["1 Mystic King Mouse"]
+          }
+        ]
+      },
+      {
+        "name": "Technic King Assignment",
+        "tasks": [
+          {
+            "title": "One of the following:",
+            "text": ["10 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden"]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "1 Mouse in the Seasonal Garden using Zugzwang's First Move",
+              "10 Mice in the Seasonal Garden using the Bamboozler Base",
+              "10 Mice in the Seasonal Garden using Zugzwang's Last Move"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": ["8 Technic Pawns", "8 Technic Pawns using Wooden Base with Target"]
+          },
+          {
+            "title": "One of the following:",
+            "text": ["2 Technic Knight Mice", "2 Technic Bishop Mice"]
+          },
+          {
+            "text": ["1 Technic King Mouse"]
+          }
+        ]
+      }
+    ]
+  },
+  "furoma_research_assignment_convertible": {
+    "name": "Furoma Research",
+    "cost": 130,
+    "rewardPoints": 90,
+    "rewards": [
+      "Purple Tome of Wisdom",
+      "Wealth Charms",
+      "Token of the Cheese Belt",
+      "Token of the Cheese Claw",
+      "Token of the Cheese Fang",
+      "Master Belt Shard",
+      "Master Claw Shard",
+      "Master Fang Shard",
+      "Rumble Cheese",
+      "Maki Cheese",
+      "Onyx Stone"
+    ],
+    "assignments": [
+      {
+        "name": "Furoma Assignment",
+        "tasks": [
+          {
+            "title": "One of the following:",
+            "text": [
+              "3 Mice in the Training Grounds using Zugzwang's Last Move",
+              "15 Archer Mice in the Training Grounds",
+              "40 Mice in the Training Grounds using Bamboozler Base",
+              "50 Mice using a Tactical trap"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": ["3 Kung Fu Mice in the Dojo", "3 Ninja Mice in the Dojo", "3 Samurai Mice in the Dojo"]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "1 Diamond Mice in the Dojo using Power Charm",
+              "1 Gold Mouse in the Dojo using Luck Charm",
+              "1 Hapless Mouse in the Dojo",
+              "10 Hapless Mice",
+              "10 Hapless Mice using Bamboozler Base"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "1 Student of the Cheese Belt Mouse using Maki Cheese",
+              "1 Student of the Cheese Fang Mouse using Maki Cheese",
+              "1 Student of the Cheese Claw Mouse using Maki Cheese",
+              "3 Students of the Cheese Belt Mouse",
+              "3 Students of the Cheese Fang Mouse",
+              "3 Students of the Cheese Claw Mouse",
+              "1 Master of the Dojo Mouse"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Pagoda Assignment",
+        "tasks": [
+          {
+            "title": "One of the following:",
+            "text": [
+              "6 Students of the Cheese Belt Mouse",
+              "1 Students of the Cheese Belt Mouse using Zugzwang's Last Move"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "6 Students of the Cheese Fang Mice",
+              "1 Students of the Cheese Fang Mice using Zugzwang's Last Move"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "6 Students of the Cheese Claw Mouse",
+              "1 Students of the Cheese Claw Mice using Zugzwang's Last Move"
+            ]
+          },
+          { "text": ["1 Masters of the Cheese Belt Mouse"] },
+          { "text": ["1 Masters of the Cheese Fang Mouse"] },
+          { "text": ["1 Masters of the Cheese Claw Mouse"] },
+          {
+            "title": "One of the following:",
+            "text": [
+              "1 Master of the Dojo Mouse",
+              "1 Master of the Dojo Mouse using Ambush (Ninja Ambush Trap cannot be used to complete this task)",
+              "1 Master of the Dojo Mouse using Zugzwang's First Move"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Dojo Sensei Assignment",
+        "tasks": [
+          {
+            "title": "One of the following:",
+            "text": [
+              "2 Students of the Cheese Belt Mouse using Onyx Mallet",
+              "2 Students of the Cheese Fang Mouse using Onyx Mallet",
+              "2 Students of the Cheese Claw Mouse using Onyx Mallet"
+            ]
+          },
+          { "text": ["8 Masters of the Cheese Belt Mouse"] },
+          { "text": ["8 Masters of the Cheese Fang Mouse"] },
+          { "text": ["8 Masters of the Cheese Claw Mouse"] },
+          {
+            "title": "One of the following:",
+            "text": [
+              "2 Masters of the Dojo Mouse",
+              "2 Masters of the Dojo Mouse using Ambush (Ninja Ambush Trap cannot be used to complete this task)",
+              "2 Masters of the Dojo Mouse using Zugzwang's First Move"
+            ]
+          },
+          { "text": ["1 Dojo Sensei"] }
+        ]
+      }
+    ]
+  },
+  "adv_zugzwang_research_assignment_convertible": {
+    "name": "Advanced Zugzwang Research",
+    "cost": 150,
+    "rewardPoints": 150,
+    "rewards": [
+      "Purple Tome of Wisdom",
+      "Wealth Charms",
+      "Amplifier Charms",
+      "Rook Crumble Charms",
+      "Spellbook Charms",
+      "Checkmate cheese",
+      "Mystic Curd",
+      "Technic Cheese Mould"
+    ],
+    "assignments": [
+      {
+        "name": "Mystic Amplifier Assignment",
+        "tasks": [
+          {
+            "title": "One of the following:",
+            "text": [
+              "30 Mice in the Seasonal Garden using a Tactical trap",
+              "30 Mice in the Seasonal Garden using Zugzwang's First Move",
+              "8 Mystic Pawns using Mystic Pawn Pincher"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": ["1 Mystic Queen using Checkmate Cheese", "1 Mystic King using Checkmate Cheese", "1 Chess Master"]
+          }
+        ],
+        "info": "More Info: MouseHunt Info Page"
+      },
+      {
+        "name": "Technic Amplifier Assignment",
+        "tasks": [
+          {
+            "title": "One of the following:",
+            "text": [
+              "30 Mice in the Seasonal Garden using a Tactical trap",
+              "30 Mice in the Seasonal Garden using Zugzwang's First Move",
+              "8 Technic Pawns using Technic Pawn Pincher"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "1 Technic Queen using Checkmate Cheese",
+              "1 Technic King using Checkmate Cheese",
+              "1 Chess Master"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Advanced Amplifier Assignment",
+        "tasks": [
+          {
+            "title": "One of the following:",
+            "text": [
+              "30 Mice in the Seasonal Garden using Spellbook Base",
+              "30 Mice in the Seasonal Garden using Zugzwang's First Move"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "1 Mystic King Mouse using Checkmate Cheese",
+              "1 Mystic King Mouse using Blackstone Pass Trap and Checkmate Cheese"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "1 Technic King Mouse using Checkmate Cheese",
+              "1 Technic King Mouse using Obvious Ambush Trap and Checkmate Cheese",
+              "1 Chess Master"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "zurreal_trap_research_convertible": {
+    "name": "Zurreal Trap Research",
+    "cost": 900,
+    "rewardPoints": 400,
+    "assignments": [
+      {
+        "name": "",
+        "tasks": [
+          {
+            "title": "All ten of the following:",
+            "text": [
+              "Collect 1 Desert Travel Almanac from Centaur Mice (in the Great Gnarled Tree or Lagoon)",
+              "Collect 1 Encyclopedia Gnawnia from Master Burglar Mice in the Town of Gnawnia",
+              "Collect 6 Luscious Lumbers in the Training Grounds (from Kung Fu, Monk, and Samurai mouse)",
+              "Collect 1 Mesh Netting in S.S. Huntington IV (from Leviathan and Squeaken mouse)",
+              "Collect 3 Ectoplasmic Essence from Ghost Mice in the Mousoleum",
+              "Collect 3 Warp Nails from Realm Rippers (in the Forbidden Grove)",
+              "Collect 3 Runestones from Stonework Warrior Mice (in the Jungle of Dread with Magical Havarti)",
+              "Collect 1 Draconic Book from Whelpling Mice (in Dracano)",
+              "Collect 1 Lich Jewel in the Balack's Cove (from Balack the Banished, Derr Lich, Elub Lich and Nerg Lich mouse)",
+              "Craft 1 Zurreal's Folly"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "library_m400_bait_assignment_convertible": {
+    "name": "M400 Bait Research Assignment",
+    "cost": 1500,
+    "rewardPoints": 200,
+    "assignments": [
+      {
+        "name": "",
+        "tasks": [
+          {
+            "title": "Collect 2 Aged Grape Juice from one of the following:",
+            "text": [
+              "Derr Lich Mice",
+              "Dojo Sensei Mice",
+              "Draconic Warden Mice",
+              "Elub Lich Mice",
+              "Ethereal Librarian Mice",
+              "Gate Guardian Mice",
+              "Keeper Mice",
+              "Market Guard Mice",
+              "Market Thief Mice",
+              "Master Burglar Mice",
+              "Mystic Bishop Mice",
+              "Nerg Lich Mice",
+              "Pie Thief Mice",
+              "Prospector Mice",
+              "Pygmy Wrangler Mice",
+              "Ruffian Mice",
+              "Saloon Gal Mice",
+              "Strawberry Hotcakes Mice",
+              "Swarm of Pygmy Mice",
+              "Technic Bishop Mice",
+              "Terra Mice"
+            ]
+          },
+          {
+            "title": "Collect 3 Cheddar Powder from one of the following:",
+            "text": [
+              "Burglar Mice",
+              "Calalilly Mice",
+              "Effervescent Mice",
+              "Ethereal Thief Mice",
+              "Granite Mice",
+              "Lasso Cowgirl Mice",
+              "Lumberjack Mice",
+              "Master of the Cheese Belt Mice",
+              "Polar Bear Mice",
+              "Quesodillo Mice",
+              "Snow Slinger Mice"
+            ]
+          },
+          {
+            "title": "Collect 3 Gooey Gruyere Curds from one of the following:",
+            "text": [
+              "Ethereal Enchanter Mice",
+              "Glass Blower Mice",
+              "Kung Fu Mice",
+              "Master of the Cheese Claw Mice",
+              "Samurai Mice",
+              "Sand Pilgrim Mice",
+              "Shopkeeper Mice",
+              "Snow Soldier Mice",
+              "Thistle Mice",
+              "Walker Mice",
+              "Zombie Mice"
+            ]
+          },
+          {
+            "title": "Collect 3 Microchip Curds from one of the following:",
+            "text": [
+              "Archer Mice",
+              "Bark Mice",
+              "Bionic Mice",
+              "Ethereal Engineer Mice",
+              "Knight Mice",
+              "Limestone Miner Mice",
+              "Master of the Cheese Fang Mice",
+              "Page Mice",
+              "Phalanx Mice",
+              "Pocketwatch Mice",
+              "Ravenous Zombie Mice",
+              "Spiky Devil Mice",
+              "Stealth Mice",
+              "Tumbleweed Mice"
+            ]
+          },
+          {
+            "title": "Collect 1 Nuclear Garlic from one of the following:",
+            "text": [
+              "Blacksmith Mice",
+              "Dunehopper Mice",
+              "Gorgon Mice",
+              "Lambent Crystal Mice",
+              "Lycan Mice",
+              "Mage Weaver Mice",
+              "Master of the Dojo Mice",
+              "Monster Mice",
+              "Pyrite Mice",
+              "Realm Ripper Mice",
+              "Shroom Mice",
+              "Tome Sprite Mice",
+              "Whelpling Mice"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "library_m400_assignment_convertible": {
+    "name": "M400 Hunting Research Assignment",
+    "cost": 1900,
+    "rewardPoints": 300,
+    "assignments": [
+      {
+        "name": "",
+        "tasks": [
+          {
+            "title": "One of the following:",
+            "text": [
+              "Collect intel from Grunt Mice in the Derr Dunes",
+              "Collect intel from Guardian Mice in the Derr Dunes",
+              "Collect intel from Lycan Mice in the Catacombs",
+              "Collect intel from Renegade Mice in the Derr Dunes",
+              "Collect intel from Seer Mice in the Derr Dunes",
+              "Collect intel from Terror Knight Mice in the Catacombs",
+              "Collect intel from Trailblazer Mice in the Derr Dunes",
+              "Collect intel in the Seasonal Garden"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "Collect intel from Prospector Mice in the Claw Shot City",
+              "Collect intel from Ruffian Mice in the Claw Shot City",
+              "Collect intel from Sand Colossus Mice in the Sand Crypts",
+              "Collect intel from Scarab Mice in the Sand Crypts",
+              "Collect intel from Serpentine Mice in the Sand Crypts",
+              "Collect intel in the Iceberg"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "Collect intel from Conjurer Mice in the Nerg Plains",
+              "Collect intel from Conqueror Mice in the Nerg Plains",
+              "Collect intel from Defender Mice in the Nerg Plains",
+              "Collect intel from Finder Mice in the Nerg Plains",
+              "Collect intel from Master of the Cheese Belt Mice in the Meditation Room",
+              "Collect intel from Master of the Cheese Claw Mice in the Meditation Room",
+              "Collect intel from Master of the Cheese Fang Mice in the Meditation Room",
+              "Collect intel from Mystic Mice in the Elub Shore",
+              "Collect intel from Pack Mice in the Elub Shore",
+              "Collect intel from Pathfinder Mice in the Nerg Plains",
+              "Collect intel from Protector Mice in the Elub Shore",
+              "Collect intel from Scout Mice in the Elub Shore",
+              "Collect intel from Vanquisher Mice in the Elub Shore"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "Collect intel from Buccaneer Mice in the S.S. Huntington IV",
+              "Collect intel from Captain Mice in the S.S. Huntington IV",
+              "Collect intel from Ninja Mice in the Training Grounds",
+              "Collect intel in the Fiery Warpath"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "Collect intel from Cavalier Mice in the King's Gauntlet",
+              "Collect intel from Chipper Mice in the Slushy Shoreline",
+              "Collect intel from Master Burglar Mice in the Bazaar",
+              "Collect intel from Snow Slinger Mice in the Slushy Shoreline",
+              "Collect intel from Snow Sniper Mice in the Slushy Shoreline",
+              "Collect intel from Snow Soldier Mice in the Slushy Shoreline",
+              "Collect intel from Yeti Mice in the Slushy Shoreline"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "Collect intel from Grubling Herder Mice in the Sand Dunes",
+              "Collect intel from Magma Carrier Mice in the Jungle of Dread",
+              "Collect intel from Primal Mice in the Jungle of Dread",
+              "Collect intel from Sand Pilgrim Mice in the Sand Dunes",
+              "Collect intel from Stonework Warrior Mice in the Jungle of Dread"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "Collect intel from Barkshell Mice in the Twisted Garden",
+              "Collect intel from Camofusion Mice in the Twisted Garden",
+              "Collect intel from Cursed Librarian Mice in the Cursed City",
+              "Collect intel from Cursed Enchanter Mice in the Cursed City",
+              "Collect intel from Essence Collector Mice in the Lost City",
+              "Collect intel from Essence Guardian Mice in the Cursed City",
+              "Collect intel from Ethereal Enchanter Mice in the Lost City",
+              "Collect intel from Ethereal Librarian Mice in the Lost City",
+              "Collect intel from Thorn Mice in the Twisted Garden",
+              "Collect intel from Twisted Hotcakes Mice in the Twisted Garden"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "Collect intel from Bark Mice in the Living Garden",
+              "Collect intel from Blacksmith Mice in the Muridae Market",
+              "Collect intel from Camoflower Mice in the Living Garden",
+              "Collect intel from Mage Weaver Mice in the Muridae Market",
+              "Collect intel from Market Guard Mice in the Muridae Market",
+              "Collect intel from Realm Ripper Mice in the Forbidden Grove",
+              "Collect intel from Spice Merchant Mice in the Muridae Market",
+              "Collect intel from Strawberry Hotcakes Mice in the Living Garden",
+              "Collect intel from Thistle Mice in the Living Garden"
+            ]
+          },
+          {
+            "title": "One of the following:",
+            "text": [
+              "Collect intel from Bionic Mice in the Meadow",
+              "Collect intel from Derr Lich Mice in the Balack's Cove",
+              "Collect intel from Draconic Warden Mice in the Dracano",
+              "Collect intel from Elub Lich Mice in the Balack's Cove",
+              "Collect intel from Gate Guardian Mice in the Acolyte Realm",
+              "Collect intel from Master of the Dojo Mice in the Pinnacle Chamber",
+              "Collect intel from Mystic Knight Mice in the Zugzwang’s Tower",
+              "Collect intel from Sorcerer Mice in the Acolyte Realm",
+              "Collect intel from Technic Knight Mice in the Zugzwang’s Tower"
+            ]
+          },
+          {
+            "title": "1 M400 using Fusion Fondue"
+          }
+        ]
+      }
+    ]
+  }
+}
