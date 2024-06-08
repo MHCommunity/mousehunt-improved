@@ -10,8 +10,7 @@
 
 .inventoryPage-item-content-description {
   height: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
 }
 
 .inventoryPage-item.torn_page .inventoryPage-item-name,
@@ -65,9 +64,9 @@
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-tagContent-listing {
   display: flex;
   flex-wrap: wrap;
+  gap: 5px 3px;
   place-content: center flex-start;
   align-items: stretch;
-  gap: 5px 3px;
 }
 
 .mousehuntHud-page-subTabContent.hammer .mousehuntHud-page-subTabContent.hammer .inventoryPage-item {
@@ -267,10 +266,10 @@ input.inventoryPage-tagDirectory-searchBar-input {
 
 .inventoryPage-item.torn_page .inventoryPage-item-content-action div {
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  margin-right: 15px;
+  justify-content: space-around;
   height: 40px;
+  margin-right: 15px;
 }
 
 .inventoryPage-item.torn_page .inventoryPage-item-content-description {

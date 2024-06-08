@@ -43,3 +43,8 @@ code {
   font-size: 16px;
   font-weight: 900;
 }
+
+input[type="text"] {
+  padding: 2px 1px;
+  border: 1px solid #767676;
+}

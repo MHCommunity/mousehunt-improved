@@ -83,3 +83,12 @@
 .friendsPage-friendRow-stat.map {
   width: 28%;
 }
+
+.friendsPage-friendList-content .friendsPage-friendRow-content {
+  width: calc(100% - 125px);
+}
+
+'.friendsPage-list-filter[data-filter="environment_id"] .friendsPage-list-filter-label,
+'.friendsPage-list-filter[data-filter="snuid"] .friendsPage-list-filter-label {
+  user-select: none;
+}

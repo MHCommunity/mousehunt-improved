@@ -1,10 +1,8 @@
-.select2-result-sub .select2-result-label {
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  place-items: center start;
+.MHCheckoutSearchView-dropdown .select2-search {
+  padding-top: 5px;
 }
 
-.select2-results li.select2-result-with-children > .select2-result-label {
+.PageFriends .select2-results li.select2-result-with-children > .select2-result-label {
   padding: 3px;
   font-size: 12px;
 }

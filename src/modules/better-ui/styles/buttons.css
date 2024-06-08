@@ -1,0 +1,91 @@
+.mousehuntArmNowButton {
+  box-sizing: border-box;
+  background: #8bb139;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px 2px #778e3a;
+}
+
+.mousehuntArmNowButton:hover {
+  background: #a4d044;
+  box-shadow: inset 0 0 5px 2px #8da746;
+}
+
+.mousehuntArmNowButton::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  color: #f0f4e7;
+  text-align: center;
+  text-shadow: 0 1px 2px #000;
+  text-transform: uppercase;
+  content: "Arm";
+}
+
+.mousehuntArmNowButton:hover::after {
+  color: #fff;
+}
+
+.mousehuntArmNowButton.active {
+  background: #50b0be;
+  box-shadow: inset 0 0 5px 2px #368591;
+}
+
+.mousehuntArmNowButton.active:hover {
+  background: #5ffcff;
+  box-shadow: inset 0 0 5px 2px #5accdb;
+}
+
+.mousehuntArmNowButton.active::after {
+  color: #fff;
+  content: "Armed";
+}
+
+.mousehuntArmNowButton.disabled {
+  filter: grayscale(1);
+}
+
+/* trap selector buttons */
+a.campPage-trap-itemBrowser-item-disarmButton,
+a.campPage-trap-itemBrowser-item-armButton {
+  height: unset;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 19px;
+  color: #fff;
+  text-shadow: 0 1px 2px #000;
+  text-transform: uppercase;
+  background: #8bb139;
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px 2px #778e3a;
+}
+
+a.campPage-trap-itemBrowser-item-disarmButton {
+  background: #ff9800;
+  box-shadow: inset 0 0 5px 2px #cc7a00;
+}
+
+.armed .campPage-trap-itemBrowser-item-armButton {
+  background: #50b0be;
+  box-shadow: inset 0 0 5px 2px #368591;
+}
+
+.campPage-trap-itemBrowser-item-armButton:hover {
+  background: #a4d044;
+  box-shadow: inset 0 0 5px 2px #8da746;
+}
+
+.armed.canDisarm .campPage-trap-itemBrowser-item-armButton:hover {
+  background: #5ffcff;
+  border-color: #000;
+  box-shadow: inset 0 0 5px 2px #5accdb;
+}
+
+a.campPage-trap-itemBrowser-item-disarmButton:hover {
+  background: #ffc266;
+  box-shadow: inset 0 0 5px 2px #f90;
+}

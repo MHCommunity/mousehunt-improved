@@ -359,3 +359,7 @@ ul.minluck-list {
 .mouseView .mouseView-imageContainer:hover a.custom-favorite-button {
   opacity: 1;
 }
+
+.mouseListView-category-name {
+  padding-left: 20px;
+}

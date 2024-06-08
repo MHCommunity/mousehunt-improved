@@ -1,3 +1,8 @@
+.pollutionOutbreakHUD {
+  z-index: 1;
+  filter: drop-shadow(0 2px 1px #000);
+}
+
 /* cheese/charm icons */
 .pollutionOutbreakHUD-item-image {
   height: 30px;
@@ -18,22 +23,22 @@
 .pollutionOutbreakHUD-timer {
   top: 2px;
   bottom: unset;
-  left: 17px;
+  left: 18px;
   z-index: 29;
   padding: 2px 7px 2px 3px;
   font-size: 12px;
   border-top: 1px solid #999;
-  border-radius: 5px 0 10px 4px;
+  border-radius: 5px 0 10px;
 }
 
 .pollutionOutbreakHUD-totalPollution-direction-status {
-  max-width: 375px;
+  font-size: 10px;
 }
 
 /* move the 'hunters cleaning' to the top right */
 .pollutionOutbreakHUD-hunters {
-  top: 4px;
-  right: 144px;
+  top: 5px;
+  right: 145px;
   left: unset;
   padding: 2px 5px;
   font-size: 12px;
@@ -101,10 +106,10 @@
 
 /* rank text */
 .pollutionOutbreakHUD-pollution-title-block-name {
-  right: 3px;
+  right: 0;
   left: 16px;
   font-size: 11px;
-  line-height: 19px;
+  line-height: 21px;
   text-align: center;
 }
 
@@ -181,7 +186,7 @@
 .pollutionOutbreakHUD-pollutinumContainer.active .pollutionOutbreakHUD-refineQuantityContainer,
 .pollutionOutbreakHUD-refineQuantityContainer {
   display: inline-block;
-  width: 21px;
+  width: 23px;
   margin-right: 0;
   line-height: 17px;
   vertical-align: middle;
@@ -281,13 +286,13 @@ a.pollutionOutbreakHUD-refineButton:hover {
 
 .pollutionOutbreakHUD-totalPollution-direction .mousehuntTooltip {
   bottom: 24px;
-  left: 3px;
+  left: 4px;
   display: block;
   width: auto;
   padding: 2px 5px;
   font-size: 12px;
   background: url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) top right;
-  background-color: transparent;
+  background-color: rgb(244 244 244 / 80%);
   border-top: 1px solid #999;
   border-right: 1px solid #999;
   border-bottom: 1px solid #999;
@@ -459,12 +464,12 @@ a.pollutionOutbreakHUD-refineButton:hover {
 .pollutionOutbreakHUD.falling .pollutionOutbreakHUD-pollution-title-blockContainer::after {
   position: absolute;
   inset: 5px 0 0 25px;
+  pointer-events: none;
   content: "";
   background-image: linear-gradient(-45deg, rgb(255 255 255 / 25%) 25%, transparent 25%, transparent 50%, rgb(255 255 255 / 25%) 50%, rgb(255 255 255 / 25%) 75%, transparent 75%, transparent);
   background-size: 50px 50px;
   opacity: 0;
   transition: opacity 0.5s;
-  pointer-events: none;
 }
 
 .pollutionOutbreakHUD.rising:hover .pollutionOutbreakHUD-pollution-title-blockContainer::after,

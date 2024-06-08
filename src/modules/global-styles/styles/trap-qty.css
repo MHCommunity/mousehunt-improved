@@ -8,7 +8,7 @@
 
 .campPage-trap-itemBrowser-favorites .campPage-trap-itemBrowser-favorite-item-quantity span.campPage-trap-baitQuantity,
 .campPage-trap-itemBrowser-item-leftBar span.campPage-trap-baitQuantity {
-  right: 1px;
+  right: 0;
   bottom: 1px;
   left: 1px;
   padding: 3px;
@@ -19,8 +19,12 @@
 }
 
 .campPage-trap-itemBrowser-favorites .campPage-trap-itemBrowser-favorite-item-quantity span.campPage-trap-baitQuantity {
-  right: -1px;
   bottom: -1px;
   left: -1px;
   border: 1px solid #4e2e0b;
+}
+
+.campPage-trap-itemBrowser-item-leftBar span.campPage-trap-baitQuantity {
+  bottom: 0;
+  left: 0;
 }

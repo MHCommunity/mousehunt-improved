@@ -154,23 +154,6 @@ a.mousehuntHud-page-subTabContent-prefix-filter-option {
   width: auto;
 }
 
-/* make armed cheese button more visible */
-.mousehuntArmNowButton.active {
-  filter: hue-rotate(104deg);
-}
-
-.mousehuntArmNowButton.active:hover {
-  filter: hue-rotate(104deg) brightness(1.2);
-}
-
-.mousehuntArmNowButton {
-  filter: brightness(1);
-}
-
-.mousehuntArmNowButton:hover {
-  filter: brightness(1.2);
-}
-
 /* make menu sb bold */
 .mousehuntHeaderView a.superBrie .quantity {
   font-weight: 600;
@@ -263,6 +246,7 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 
 /* fix zoom button position */
 a.trapImageView-zoomButton {
+  border: 1px solid rgb(189 180 166 / 80%);
   border-radius: 50%;
 }
 

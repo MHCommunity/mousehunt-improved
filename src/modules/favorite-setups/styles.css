@@ -407,15 +407,13 @@ a.random-title.loading::after {
   display: none;
 }
 
-.campPage-trap-itemBrowser-favorite-item.loading .campPage-trap-itemBrowser-favorite-item-image::after,
-.mousehuntActionButton.loading::after {
+.campPage-trap-itemBrowser-favorite-item.loading .campPage-trap-itemBrowser-favorite-item-image::after {
   position: absolute;
   inset: 0;
   content: "";
   background:
     center / 15px no-repeat url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif),
     center / contain repeat url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png);
-  border-radius: 5px;
 }
 
 .row .campPage-trap-itemBrowser-favorite-item {

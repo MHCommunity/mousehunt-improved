@@ -119,7 +119,7 @@
 }
 
 .campPage-trap {
-  border: 1px solid #9d917f;
+  border: 1px solid #ceb7a6;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -305,7 +305,8 @@ span.campPage-trap-armedItem-skin-description-content br {
 }
 
 .campPage-trap-trapStat.power .value b {
-  line-height: 17px;
+  margin-bottom: -2px;
+  line-height: 18px;
 }
 
 .itembrowser-skin-image-wrapper {
@@ -337,7 +338,7 @@ img.itembrowser-skin-image {
 }
 
 .campPage-trap-trapStat .value span {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .campPage-trap-trapStat.cheese_effect .value span {
@@ -390,22 +391,6 @@ img.itembrowser-skin-image {
   font-variant: none;
   color: #671d1d;
   background: #e3d4d1;
-}
-
-.campPage-trap-itemBrowser-item-disarmButton {
-  width: 100px;
-  margin-top: 10px;
-  color: #000;
-  background-color: #ffbfbf;
-  box-shadow:
-    0 -20px 5px #ffbfbf inset,
-    1px 1px 1px #671d1d;
-}
-
-a.campPage-trap-itemBrowser-item-disarmButton:hover {
-  box-shadow:
-    0 -20px 5px #cc8b8b inset,
-    1px 1px 1px #671d1d;
 }
 
 .campPage-trap-armedItem.bait.empty .campPage-trap-armedItem-image {

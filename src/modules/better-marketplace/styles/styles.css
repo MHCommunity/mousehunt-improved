@@ -69,6 +69,30 @@ label.mhui-marketplace-search-toggle {
   right: 5px;
 }
 
+.marketplaceHome-blockItem.small .marketplaceView-favouriteButton:hover {
+  right: 3px;
+  bottom: -6px;
+}
+
+.marketplaceView-item-imageContainer .marketplaceView-favouriteButton:hover,
+.marketplaceView-table-image .marketplaceView-favouriteButton:hover {
+  right: 1px;
+  bottom: -4px;
+  border: none;
+  outline: 2px solid #ccc;
+}
+
+.marketplaceHome-block.favourites .marketplaceView-favouriteButton:hover {
+  right: 5px;
+  bottom: -4px;
+  border: none;
+  outline: 2px solid #ccc;
+}
+
+.marketplaceView-item-imageContainer:hover .marketplaceView-favouriteButton.disabled {
+  display: none;
+}
+
 tr.open td.marketplaceView-table-name {
   white-space: nowrap;
 }
@@ -116,4 +140,20 @@ tr.open td.marketplaceView-table-name {
 
 td.marketplaceView-table-name {
   position: relative;
+}
+
+.marketplaceView-header-search-dropdown .select2-search {
+  margin-top: 5px;
+}
+
+.marketplaceHome-block-statTitle {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.marketplaceHome-block-statTitle .marketplaceHome-block-viewAll {
+  top: unset;
+  display: block;
+  vertical-align: middle;
 }

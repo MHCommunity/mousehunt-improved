@@ -728,18 +728,12 @@ a.friendsProfileView-randomFriend {
   border: none;
 }
 
-.hunterProfileItemsView-content::before {
+.hunterProfileItemsView-content::before,
+.mouseListView-categoryContent::before {
+  left: 0;
+  width: 1px;
   background-color: #ccc;
   border-radius: 0;
-  width: 1px;
-  left: 0;
-}
-
-.mouseListView-categoryContent:before {
-  background-color: #ccc;
-  border-radius: 0;
-  width: 1px;
-  left: 0;
 }
 
 .mouseListView-categoryDirectory {

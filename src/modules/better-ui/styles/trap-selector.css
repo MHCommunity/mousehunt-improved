@@ -17,12 +17,13 @@
 .campPage-trap-itemBrowser-item-favorite {
   position: absolute;
   top: 0;
-  right: 0;
-  width: 30px;
-  height: 30px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
   padding: 5px;
   margin-top: 0;
   background-color: #fff;
+  background-size: 15px;
   border-radius: 50%;
   opacity: 0;
   transition: 0.2s ease-in;
@@ -30,27 +31,6 @@
 
 .campPage-trap-itemBrowser-item:hover .campPage-trap-itemBrowser-item-favorite {
   opacity: 1;
-}
-
-.campPage-trap-itemBrowser-item-armButton {
-  height: 25px;
-  line-height: 25px;
-  color: #fff;
-  background-color: #40f446;
-  box-shadow: 0 -13px 11px 2px #22b227 inset;
-}
-
-.campPage-trap-itemBrowser-item-armButton:hover {
-  background-color: #00e608;
-  box-shadow: 0 0 1px #26d42c inset;
-}
-
-.armed .campPage-trap-itemBrowser-item-armButton {
-  box-shadow: 0 -13px 7px #d57229 inset;
-}
-
-.armed.canDisarm .campPage-trap-itemBrowser-item-armButton:hover {
-  box-shadow: 0 -13px 7px #e87c2d inset;
 }
 
 .campPage-trap-itemBrowser-item {
@@ -84,19 +64,46 @@
   align-items: flex-start;
 }
 
-a.campPage-trap-itemBrowser-item-disarmButton {
-  position: absolute;
-  top: 50px;
-  left: -85px;
-  width: 74px;
-  font-weight: 400;
-  line-height: 20px;
-  color: #fff;
-  background-color: #ff6161;
-  border: 1px solid #666;
-  box-shadow: 0 -13px 7px #b30000 inset;
+.campPage-trap-itemBrowser-item-stat.power,
+.campPage-trap-itemBrowser-item-stat.powerBonus,
+.campPage-trap-itemBrowser-item-stat.luck,
+.campPage-trap-itemBrowser-item-stat.attraction_bonus,
+.campPage-trap-itemBrowser-item-stat.cheese_effect {
+  background-size: 28px;
 }
 
-a.campPage-trap-itemBrowser-item-disarmButton:hover {
-  box-shadow: 0 -20px 5px #ff7070 inset;
+.campPage-trap-itemBrowser-item-stat .value {
+  height: 30px;
+}
+
+.campPage-trap-itemBrowser-item-statContainer {
+  border-radius: 2px;
+}
+
+.campPage-trap-itemBrowser-items {
+  right: 5px;
+  padding-right: 2px;
+}
+
+.campPage-trap-itemBrowser-item-stat.cheese_effect span {
+  font-size: 8px;
+}
+
+.campPage-trap-itemBrowser-item-powerType {
+  width: 18%;
+  margin-right: 2px;
+}
+
+.campPage-trap-itemBrowser-item-image {
+  width: 49px;
+  height: 49px;
+}
+
+.mousehuntActionButton.loading::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    center / 15px no-repeat url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif),
+    center / contain repeat url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png);
 }
