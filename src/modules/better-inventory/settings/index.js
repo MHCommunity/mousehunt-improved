@@ -14,6 +14,11 @@ export default async () => {
       id: 'better-inventory.larger-images',
       title: 'Show larger images',
       default: true,
-    }
+    },
+    {
+      id: 'better-inventory.sort-inventory',
+      title: 'Sort inventory alphabetically',
+      default: true,
+    },
   ];
 };

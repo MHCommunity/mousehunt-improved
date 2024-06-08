@@ -68,6 +68,10 @@ const experiments = [
     load: uniqueLootCount,
   },
   {
+    id: 'better-inventory.show-all-group',
+    title: 'Better Inventory: Add list of all items to top of inventory pages',
+  },
+  {
     id: 'better-journal.journal-tags',
     title: 'Better Journal: Journal Tags',
     description: 'Shows entry type when hovering over journal entries',
