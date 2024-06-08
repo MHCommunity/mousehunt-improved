@@ -4,6 +4,7 @@ import {
   doRequest,
   getArForMouse,
   getData,
+  getFlag,
   getRelicHunterLocation,
   getSetting,
   makeElement,
@@ -361,8 +362,97 @@ const updateMouseView = async () => {
     miceArWrapper.classList.add('has-stages');
   }
 
+  const calculateWidths = (weights) => {
+    weights = {
+      average: 0.8,
+      median: 0.5,
+      max: 0.4,
+      shortest: 0.9,
+      location: 0.4,
+      stage: 0.6,
+      cheese: 0.6,
+      keyWidth: 10,
+      ...weights
+    };
+
+    const availableWidth = 450 - 50 - 10 - (10 * 3) - (hasStages ? 10 : 0);
+
+    const calculateLengths = (key) => {
+      const keyLengths = mhctJson.map((mouseAr) => mouseAr[key]?.length || 0).filter((l) => l > 0);
+      keyLengths.sort((a, b) => a - b);
+
+      const totalLength = keyLengths.reduce((a, b) => a + b, 0);
+      const avgLength = totalLength / keyLengths.length;
+      const medianLength = keyLengths.length % 2 === 0
+        ? (keyLengths[(keyLengths.length / 2) - 1] + keyLengths[keyLengths.length / 2]) / 2
+        : keyLengths[Math.floor(keyLengths.length / 2)];
+
+      return {
+        avg: avgLength * weights.keyWidth,
+        median: medianLength * weights.keyWidth,
+        max: Math.max(...keyLengths) * weights.keyWidth,
+        shortest: Math.min(...keyLengths) * weights.keyWidth,
+      };
+    };
+
+    const lengths = {
+      location: calculateLengths('location'),
+      stage: hasStages ? calculateLengths('stage') : { avg: 1, median: 1, max: 1, shortest: 1 },
+      cheese: calculateLengths('cheese'),
+    };
+
+    const weightedWidths = {
+      location: (
+        (lengths.location.avg * weights.average) +
+        (lengths.location.max * weights.max) +
+        (lengths.location.median * weights.median) +
+        (lengths.location.shortest * weights.shortest)
+      ) * weights.location,
+
+      stage: hasStages ? (
+        (lengths.stage.avg * weights.average) +
+        (lengths.stage.max * weights.max) +
+        (lengths.stage.median * weights.median) +
+        (lengths.stage.shortest * weights.shortest)
+      ) * weights.stage : 0,
+
+      cheese: (
+        (lengths.cheese.avg * weights.average) +
+        (lengths.cheese.max * weights.max) +
+        (lengths.cheese.median * weights.median) +
+        (lengths.cheese.shortest * weights.shortest)
+      ) * weights.cheese,
+    };
+
+    const totalWeightedWidth = weightedWidths.location + weightedWidths.stage + weightedWidths.cheese;
+
+    const calculateOptimalWidth = (key) => {
+      const optimalWidth = (weightedWidths[key] / totalWeightedWidth) * availableWidth;
+      return Math.floor(optimalWidth);
+    };
+
+    return {
+      locationWidth: calculateOptimalWidth('location'),
+      stageWidth: hasStages ? calculateOptimalWidth('stage') : 0,
+      cheeseWidth: calculateOptimalWidth('cheese'),
+    };
+  };
+
+  let locationWidth, stageWidth, cheeseWidth;
+  if (! getFlag('better-mice.new-ar-widths')) {
+    const widths = calculateWidths();
+    locationWidth = widths.locationWidth;
+    stageWidth = widths.stageWidth;
+    cheeseWidth = widths.cheeseWidth;
+  }
+
   mhctJson.forEach((mouseAr) => {
     const mouseArWrapper = makeElement('div', 'mouse-ar-wrapper');
+    if (! getFlag('better-mice.new-ar-widths')) {
+      mouseArWrapper.style.gridTemplateColumns = hasStages
+        ? `${locationWidth}px ${stageWidth}px ${cheeseWidth}px 50px`
+        : `${locationWidth}px ${cheeseWidth}px 50px`;
+    }
 
     makeElement('div', 'location', mouseAr.location, mouseArWrapper);
 
