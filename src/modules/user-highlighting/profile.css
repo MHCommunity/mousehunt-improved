@@ -68,6 +68,7 @@
 }
 
 /* corkboard */
+.mh-improved-fancy-profile .hunterInfoView-wrapper div .pagerView-container,
 .mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message,
 .mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message.new {
   background: #f8eff6;

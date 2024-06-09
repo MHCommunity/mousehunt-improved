@@ -132,7 +132,6 @@
   margin: 3px;
   background-color: rgb(255 255 255 / 60%);
   border: 1px solid rgb(0 0 0 / 60%);
-  box-shadow: inset 1px 1px 2px -1px rgb(0 0 0 / 60%);
 }
 
 #sorted-mice-container .mouse-subcategory-header {
@@ -230,7 +229,7 @@
 #sorted-mice-container .mouse-subcategory-wrapper .mouse-subcategory-header {
   margin-bottom: 3px;
   background-color: rgb(255 255 255 / 75%);
-  border-bottom: 1px solid #070707;
+  border-bottom: 1px solid rgb(0 0 0 / 60%);
 }
 
 .mhct-row.mhct-row-no-env {
