@@ -430,6 +430,72 @@ const makeMathButtons = (amounts, opts) => {
   return returnVal;
 };
 
+/**
+ * Escape JSON for use in HTML.
+ *
+ * @param {Object} obj The object to escape.
+ *
+ * @return {string} The escaped JSON.
+ */
+const toEscapedJSON = (obj) => {
+  return JSON.stringify(obj).replaceAll('"', '&quot;');
+};
+
+/**
+ * Create a progress log link.
+ *
+ * @param {Object}   opts                       The options for generating the link.
+ * @param {string}   opts.time                  The time duration for the progress log.
+ * @param {Object[]} opts.catches               The array of catches.
+ * @param {number}   opts.catches[].id          The ID of the mouse caught.
+ * @param {number}   opts.catches[].caught      The number of times caught.
+ * @param {number}   opts.catches[].environment The environment ID where caught.
+ * @param {Object[]} opts.baits                 The array of baits used.
+ * @param {number}   opts.baits[].id            The ID of the bait.
+ * @param {number}   opts.baits[].used          The number of times the bait was used.
+ * @param {number}   opts.baits[].catches       The number of catches made with the bait.
+ * @param {number}   opts.baits[].fta           The number of times the bait failed to attract.
+ * @param {number}   opts.baits[].ftc           The number of times the bait failed to catch.
+ * @param {number}   opts.baits[].stale         The number of times the bait went stale.
+ * @param {number}   opts.baits[].stolen        The number of times the bait was stolen.
+ * @param {Object[]} opts.loots                 The array of loots collected.
+ * @param {number}   opts.loots[].id            The ID of the loot.
+ * @param {number}   opts.loots[].quantity      The quantity of the loot collected.
+ *
+ * @return {string} The generated progress log link.
+ */
+const makeProgressLogLink = (opts = {}) => {
+  const progress = {
+    time: opts.time || '1 day, 12 hours',
+    catches: opts.catches || [],
+    baits: opts.baits || [],
+    loots: opts.loots || [],
+  };
+
+  const catches = {};
+  const baits = {};
+  const loots = {};
+
+  progress.catches.forEach((mouse) => {
+    catches[`${mouse.environment}_${mouse.id}`] = mouse.caught;
+  });
+
+  progress.baits.forEach((bait) => {
+    baits[`${bait.id}_bu`] = bait.used || bait.catches + bait.fta + bait.ftc;
+    baits[`${bait.id}_c`] = bait.catches;
+    baits[`${bait.id}_m`] = bait.ftc;
+    baits[`${bait.id}_af`] = bait.fta;
+    baits[`${bait.id}_bs`] = bait.stale;
+    baits[`${bait.id}_bl`] = bait.stolen;
+  });
+
+  progress.loots.forEach((loot) => {
+    loots[loot.id] = loot.quantity;
+  });
+
+  return `<a href="#" onclick="app.views.HeadsUpDisplayView.hud.showLogSummary('${progress.time}', ${toEscapedJSON(catches)}, ${toEscapedJSON(baits)}, ${toEscapedJSON(loots)}); return false;" class="mh-ui-progress-log-link mousehuntActionButton small lightBlue"><span>${opts.text || 'View Progress Log'}</span></a>`;
+};
+
 export {
   createPopup,
   makeButton,
@@ -440,5 +506,7 @@ export {
   makePage,
   makeMhButton,
   makeMathButton,
-  makeMathButtons
+  makeMathButtons,
+  toEscapedJSON,
+  makeProgressLogLink
 };
