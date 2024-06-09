@@ -4,49 +4,24 @@ import styles from './styles.css';
 
 import updateSummary from '@data/update-summary.json';
 
-const github = 'https://github.com/MHCommunity/mousehunt-improved';
-
 /**
- * Get the appropriate extension link based on the platform.
+ * Make the markup for the update summary for the modules.
  *
- * @return {string} The extension link.
+ * @param {Array}  modules         The module details.
+ * @param {string} modules[].title The title of the module.
+ * @param {Array}  modules[].items The items of the module.
+ *
+ * @return {string} The markup.
  */
-const getExtensionLink = () => {
-  if ('chrome' === mhImprovedPlatform) {
-    return 'https://chromewebstore.google.com/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm';
-  }
-
-  if ('firefox' === mhImprovedPlatform) {
-    return 'https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/';
-  }
-
-  if ('userscript' === mhImprovedPlatform) {
-    return 'https://greasyfork.org/en/scripts/465139-mousehunt-improved';
-  }
-
-  return github;
-};
-
-/**
- * Generate HTML markup for a list of items with a given title.
- *
- * @param {string}   title The title of the list section.
- * @param {string[]} items The list of items to include.
- *
- * @return {string} The generated markup.
- */
-const makeList = (title, items) => {
-  if (! items || ! items.length) {
-    return '';
-  }
-
-  let markup = `<div class="update-list-section"><h2>${title}</h2><ul>`;
-  for (const item of items) {
-    markup += `<li>${item}</li>`;
-  }
-  markup += '</ul></div>';
-
-  return markup;
+const makeDetailsList = (modules) => {
+  return modules.map((module) =>
+    `<div class="update-list-section">
+      <h2>${module.title}</h2>
+      <ul>
+        ${module.items.map((item) => `<li>${item}</li>`).join('')}
+      </ul>
+    </div>`
+  ).join('');
 };
 
 /**
@@ -55,53 +30,19 @@ const makeList = (title, items) => {
  * @param {boolean} force Whether to force the popup to show.
  */
 const showUpdateSummary = async (force = false) => {
-  const update = {
-    summary: updateSummary.summary || '',
-    details: updateSummary.details || [],
-  };
-
-  let lists = '';
-
-  for (const list of update.details) {
-    lists += makeList(list.title, list.items);
+  const missingSummaryOrDetails = ! updateSummary.summary.length || ! updateSummary.details.length;
+  if (missingSummaryOrDetails && ! force) {
+    return;
   }
-
-  let noChanges = '';
-  if (! update.summary.length && ! update.details.length) {
-    if (! force) {
-      return;
-    }
-
-    noChanges = ' no-changes';
-    lists = '<p><a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noopener noreferrer">Check out the latest release notes</a> for more information.</p>';
-  }
-
-  const links = [
-    '<a href="https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings">Settings</a>',
-    `<a href="${getExtensionLink()}" target="_blank" rel="noopener noreferrer">Leave a review</a>`,
-    // '<a href="#">Support on Patreon</a>',
-    `<a href="${github}/issues">Report an issue</a>`,
-  ];
 
   const markup = `<div class="mh-improved-update-summary-wrapper">
-	<h1 class="mh-improved-update-summary-title">MouseHunt Improved v${mhImprovedVersion}</h1>
-	<div class="mh-improved-update-summary-content">
-		<p>${update.summary || ''}</p>
-	</div>
-	<div class="mh-improved-update-summary-body">
-		<div class="mh-improved-update-summary-changes${noChanges}">
-      ${lists}
+	  <h1 class="mh-improved-update-summary-title">MouseHunt Improved v${mhImprovedVersion}</h1>
+    <p class="mh-improved-update-summary-content">${updateSummary.summary || ''}</p>
+    <div class="mh-improved-update-summary-lists>${missingSummaryOrDetails ? '<p><a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noopener noreferrer">Check out the latest release notes</a> for more information.</p>' : makeDetailsList(updateSummary.details)}</div>
+    <div class="mh-improved-update-summary-buttons">
+      <a href="#" id="mh-improved-dismiss-popup" class="button">Continue</a>
     </div>
-    <div class="mh-improved-update-summary-links">
-      ${makeList('Links', links)}
-      <div class="mh-improved-update-summary-misc">
-        Want to contribute to MouseHunt Improved? Check out our <a href="${github}" target="_blank" rel="noopener noreferrer">GitHub</a>.
-      </div>
-      <div class="mh-improved-update-summary-buttons">
-        <a href="#" id="mh-improved-dismiss-popup" class="button">Continue</a>
-      </div>
-    </div>
-	</div>
+  </div>
 </div>`;
 
   // Initiate the popup.
