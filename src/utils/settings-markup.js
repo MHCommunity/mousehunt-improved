@@ -5,7 +5,24 @@ import { makeElement } from './elements';
 import { onNavigation } from './events';
 import { showSuccessMessage } from './messages';
 
-import settingsData from '@data/settings.json';
+// Settings to not show the refresh reminder for.
+const noReminders = new Set([
+  'better-gifts.ignore-bad-gifts',
+  'better-gifts.send-order',
+  'better-item-view.show-drop-rates',
+  'better-marketplace.search-all',
+  'better-marketplace.show-chart-images',
+  'better-mice.show-attraction-rates',
+  'better-quests.m400-helper',
+  'better-send-supplies.pinned-items',
+  'better-tournaments.time-inline',
+  'better-travel.default-to-simple-travel',
+  'better-travel.show-alphabetized-list',
+  'error-reporting',
+  'hide-daily-reward-popup',
+  'quick-send-supplies.items',
+  'ultimate-checkmark.show'
+]);
 
 /**
  * Save a setting and toggle the class in the settings UI.
@@ -742,8 +759,7 @@ let removeTimeout = null;
  * @param {string} key The setting key.
  */
 const addSettingRefreshReminder = (key) => {
-  const noReminder = settingsData['no-reminders'] || [];
-  if (noReminder.includes(key)) {
+  if (noReminders.has(key)) {
     return;
   }
 

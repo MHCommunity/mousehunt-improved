@@ -1,5 +1,5 @@
 import { addStyles } from '@utils';
-import onJournalEntry from '../../journal-event';
+import onJournalEntry from '../../utils';
 
 import styles from './styles.css';
 

@@ -16,7 +16,7 @@ import settings from './settings';
 import m400 from './modules/m400';
 import styles from './styles.css';
 
-import assignmentDetails from './assignments.json';
+import assignmentDetails from '@data/library-assignments.json';
 
 const questAssignments = new Set([
   'charming_study_hween2014_assignment_quest_item',

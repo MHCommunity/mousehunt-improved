@@ -9,10 +9,10 @@ import {
 
 import settings from './settings';
 
-import gridStyles from './grid.css';
-import listStyles from './list.css';
-import onlyIconsStyles from './icons.css';
-import styles from './styles.css';
+import gridStyles from './styles/grid.css';
+import listStyles from './styles/list.css';
+import onlyIconsStyles from './styles/icons.css';
+import styles from './styles/styles.css';
 
 const humanizer = setupHumanizer();
 

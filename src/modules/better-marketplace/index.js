@@ -10,8 +10,8 @@ import {
 
 import settings from './settings';
 
-import favorites from './favorites';
-import smallImages from './small-images';
+import favorites from './modules/favorites';
+import smallImages from './modules/small-images';
 
 import styles from './styles.css';
 

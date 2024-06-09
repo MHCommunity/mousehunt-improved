@@ -16,7 +16,7 @@ import {
   showSuccessMessage
 } from '@utils';
 
-import settingsData from '@data/settings.json';
+import settingsIcons from '@data/settings-icons.json';
 
 import settingsSettings from './settings';
 
@@ -410,20 +410,13 @@ const addMhImprovedIconToMenu = () => {
  * @return {string} The module icon styles.
  */
 const makeModuleIconStyles = () => {
-  const icons = settingsData.icons || [];
-  if (! icons.length) {
-    return '';
-  }
-
-  let returnString = '';
-
-  icons.forEach((icon) => {
-    returnString += `#mousehunt-improved-settings-${icon.category}-${icon.id}::before {
-      background-image: url('${icon.icon.replaceAll('\'', '"')}');
-    }`;
-  });
-
-  return returnString;
+  return Object.entries(settingsIcons).map(([category, icons]) =>
+    icons.map((icon) =>
+      `#mousehunt-improved-settings-${category}-${icon.id}::before {
+        background-image: url('${icon.icon.replaceAll('\'', '"')}');
+      }`
+    ).join('')
+  ).join('');
 };
 
 /**

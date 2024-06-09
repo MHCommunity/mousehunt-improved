@@ -20,7 +20,7 @@ Thank you for your interest in contributing to MouseHunt Improved! We welcome co
   - [Code Style](#code-style)
   - [Building](#building)
   - [Testing](#testing)
-  - [Updating data files](#updating-data-files)
+  - [Data files](#data-files)
   - [Adding a map to the map sorter/categorizer](#adding-a-map-to-the-map-sortercategorizer)
 
 ## Getting Started
@@ -190,11 +190,24 @@ For the userscript, you can use [Violentmonkey](https://violentmonkey.github.io/
 
 _For Chrome or Firefox you can reload the extension by clicking the reload button on the extension card if your aren't seeing your changes._
 
-## Updating data files
+## Data files
 
 The `src/data/` folder contains JSON data files that are used by the extension and may need to be updated from time to time.
 
-- `map-groups.json` Map groups for the map sorter/categorizer.
+- `backgrounds.json` - Used by Custom Background and Custom HUD to provide a list of available backgrounds.
+  - The format is an array of objects with the following properties:
+    - `id` - A unique ID for the background.
+    - `name` - The name of the background.
+    - `css` - The CSS value to use for the background. This should be a valid CSS `background` value.
+  - Examples:
+    - `{ "id": "my-background", "name": "My Background", "css": "url(https://example.com/background.png) top center / 200px" }`
+    - `{ "id": "a-gradient", "name": "A Gradient", "css": "linear-gradient(90deg, #ff0000, #00ff00)" }`
+- `journal-item-colors.json` - Used by Better Journal's 'Unique item colors' setting to color code journal items.
+- `library-assignments.json` - Used by Better Quests to enhance the Library Assignments popup.
+- `map-groups.json` - Used by Better Maps to categorize mice on the Sorted map tab.
+- `settings-icons.json` - Used by the settings page to provide icons for each module.
+- `ultimate-checkmark.json` - Used by Ultimate Checkmark to populate the list of items for each category.
+- `update-summary.json` - Used to provide a summary of the changes with each update.
 
 ## Adding a map to the map sorter/categorizer
 

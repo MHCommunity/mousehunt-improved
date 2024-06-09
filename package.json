@@ -13,7 +13,6 @@
     "build:extension:chrome": "node scripts/build-extension.mjs --platform=chrome",
     "build:extension:firefox": "node scripts/build-extension.mjs --platform=firefox",
     "build:extension": "concurrently \"bun:build:extension:*\"",
-    "build:userscript:all": "node scripts/build-userscript-all.mjs --platform=userscript",
     "build:userscript": "node scripts/build-userscript.mjs --platform=userscript",
     "build:zips": "node scripts/build-zips.mjs",
     "build": "concurrently \"bun:build:extension:chrome\" \"bun:build:extension:firefox\" \"bun:build:archive\" \"bun:build:userscript\" \"bun:build:zips\"",

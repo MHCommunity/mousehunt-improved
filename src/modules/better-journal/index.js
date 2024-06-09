@@ -9,8 +9,8 @@ import journalList from './modules/journal-list';
 import journalReplacements from './modules/journal-replacements';
 import journalStyles from './modules/journal-styles';
 
-import listAndIconsStyles from './list-and-icons.css';
-import styles from './styles.css';
+import listAndIconsStyles from './styles/list-and-icons.css';
+import styles from './styles/styles.css';
 
 import settings from './settings';
 

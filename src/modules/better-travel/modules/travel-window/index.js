@@ -13,7 +13,7 @@ import {
   travelTo
 } from '@utils';
 
-import { getTravelSetting, saveTravelSetting } from '../../travel-utils';
+import { getTravelSetting, saveTravelSetting } from '../../utils';
 
 import styles from './styles.css';
 

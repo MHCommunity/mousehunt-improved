@@ -21,14 +21,14 @@ import {
   travelTo
 } from '@utils';
 
-import { getTravelSetting, saveTravelSetting } from './travel-utils';
+import { getTravelSetting, saveTravelSetting } from './utils';
 
 import addReminders from './modules/reminders';
 import travelWindow from './modules/travel-window';
 
 import settings from './settings';
-import styles from './styles.css';
-import travelMenuHidingStyles from './travel-menu-hiding.css';
+import styles from './styles/styles.css';
+import travelMenuHidingStyles from './styles/travel-menu-hiding.css';
 
 /**
  * Expand the travel regions and zoom the map.
