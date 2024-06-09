@@ -118,6 +118,10 @@ const revertToSavedTheme = () => {
  * Update the journal theme based on the current location.
  */
 const changeForLocation = async () => {
+  if ('camp' !== getCurrentLocation()) {
+    return;
+  }
+
   const newTheme = getJournalThemeForLocation();
   if (! newTheme) {
     revertToSavedTheme();
@@ -205,6 +209,10 @@ const addRandomButton = () => {
  * Change the journal theme daily.
  */
 const changeJournalDaily = async () => {
+  if ('camp' !== getCurrentLocation()) {
+    return;
+  }
+
   const lastChangeValue = getSetting('journal-changer.last-change', 0);
   const lastChange = new Date(Number.parseInt(lastChangeValue, 10));
   const now = new Date();
