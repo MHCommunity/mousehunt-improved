@@ -34,8 +34,8 @@ const loadModules = async () => {
     { id: 'design', name: 'Design' },
     { id: 'element-hiding', name: 'Hide Page Elements' },
     { id: 'location-hud', name: 'Location HUDs' },
+    { id: 'beta', name: 'Beta Features' },
     { id: 'advanced', name: 'Advanced' },
-    { id: 'beta', name: 'Beta Features' }
   ];
 
   // Don't load if already loaded.
