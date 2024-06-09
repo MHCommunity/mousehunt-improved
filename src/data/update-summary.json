@@ -1,6 +1,16 @@
 {
-  "summary": "",
+  "summary": "Welcome to version 0.45.0 of MouseHunt Improved! This update has been a long time coming and has a lot of changes. There has been a ton of work done to improve performance and memory usage. There are also quite a few new features and updates to existing features. There are also a lot of bug fixes and style updates. Enjoy!",
   "details": [
+    {
+      "title": "New feature modules",
+      "items": [
+        "Big Timer - Click the timer to toggle between normal and big sizes.",
+        "Delayed Menus - Adds a short delay to the menu dropdowns to prevent accidental clicks",
+        "Codex at Bottom - Move the codex to the bottom of the trap selector.",
+        "Replace Favicon - Replace the favicon with a more fitting one",
+        "Shield Goes to Camp - On any page that isn't the Camp page, clicking the shield will take you to the Camp page, otherwise it will take your to your Hunter Profile"
+      ]
+    },
     {
       "title": "Better Gifts",
       "items": [

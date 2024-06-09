@@ -12,7 +12,7 @@ const init = async () => {
 export default {
   id: 'delayed-menus',
   name: 'Delayed Menus',
-  type: 'beta',
+  type: 'feature',
   default: false,
   description: 'Adds a short delay to the menu dropdowns to prevent accidental clicks',
   load: init,

@@ -44,7 +44,7 @@ const init = async () => {
 export default {
   id: 'replace-favicon',
   name: 'Replace Favicon',
-  type: 'beta',
+  type: 'feature',
   default: false,
   description: 'Replace the favicon with a more fitting one',
   load: init,

@@ -27,8 +27,8 @@ const init = async () => {
 
 export default {
   id: 'codex-at-bottom',
-  name: 'Move Codex to Bottom',
-  type: 'beta',
+  name: 'Codex at Bottom',
+  type: 'feature',
   default: false,
   description: 'Move the codex to the bottom of the trap selector.',
   load: init,

@@ -35,7 +35,7 @@ const init = async () => {
 export default {
   id: 'big-timer',
   name: 'Big Timer',
-  type: 'beta',
+  type: 'feature',
   default: false,
   description: 'Click the timer to toggle between normal and big sizes.',
   load: init,
