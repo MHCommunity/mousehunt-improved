@@ -41,8 +41,17 @@ const addUniqueLootCount = async () => {
 /**
  * Initialize the module.
  */
-export default async () => {
+const init = async () => {
   addStyles(styles, 'unique-loot-count');
 
   onDialogShow('hunting_summary', () => setMultipleTimeout(addUniqueLootCount, 500, 1000, 3000));
+};
+
+export default {
+  id: 'unique-loot-count',
+  name: 'Unique loot count in progress log',
+  type: 'beta',
+  default: false,
+  description: 'Shows the number of unique loot items in the progress log',
+  load: init,
 };

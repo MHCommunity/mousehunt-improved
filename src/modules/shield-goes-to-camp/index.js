@@ -17,6 +17,15 @@ const campToggle = () => {
 /**
  * Initialize the module.
  */
-export default async () => {
+const init = async () => {
   onNavigation(campToggle);
+};
+
+export default {
+  id: 'shield-goes-to-camp',
+  name: 'Shield Goes to Camp',
+  type: 'beta',
+  default: false,
+  description: 'On any page that isn\'t the Camp page, clicking the shield will take you to the Camp page, otherwise it will take your to your Hunter Profile',
+  load: init,
 };

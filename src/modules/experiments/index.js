@@ -1,54 +1,16 @@
 import { getSetting } from '@utils';
 
-import bigTimer from './modules/big-timer';
-import codexAtBottom from './modules/codex-at-bottom';
-import delayedMenus from './modules/delayed-menus';
 import emotes from './modules/emotes';
-import journalTags from './modules/journal-tags';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
-import replaceFavicon from './modules/replace-favicon';
-import shieldGoesToCamp from './modules/shield-goes-to-camp';
-import stickyPopups from './modules/sticky-popups';
 import trollMode from './modules/troll-mode';
-import uniqueLootCount from './modules/unique-loot-count';
 
 const experiments = [
-  {
-    id: 'experiments.big-timer',
-    title: 'Big Timer',
-    description: 'Click the timer to toggle between a large and small timer',
-    load: bigTimer,
-  },
-  {
-    id: 'experiments.shield-goes-to-camp',
-    title: 'Clicking shield goes to camp if not already there',
-    description: 'On any page that isn\'t the Camp page, clicking the shield will take you to the Camp page, otherwise it will take your to your Hunter Profile',
-    load: shieldGoesToCamp
-  },
-  {
-    id: 'experiments.codex-at-bottom',
-    title: 'Codex at bottom',
-    description: 'Moves the Codex section to the bottom of the trap selector',
-    load: codexAtBottom,
-  },
-  {
-    id: 'experiments.delayed-menus',
-    title: 'Delayed Menus',
-    description: 'Adds a short delay to the menu dropdowns to prevent accidental clicks',
-    load: delayedMenus,
-  },
   {
     id: 'experiments.emotes',
     title: 'Emotes in corkboard',
     description: 'Replaces discord-style emotes in the corkboard like :jerry: with the actual image',
     load: emotes,
-  },
-  {
-    id: 'experiments.replace-favicon',
-    title: 'Replace Favicon',
-    description: 'Changes the favicon to a more fitting one',
-    load: replaceFavicon,
   },
   {
     id: 'experiments.raffle',
@@ -57,32 +19,14 @@ const experiments = [
     load: raffle,
   },
   {
-    id: 'experiments.sticky-popups',
-    title: 'Sticky Popups',
-    description: 'Makes popups sticky so they don\'t disappear when you scroll',
-    load: stickyPopups,
-  },
-  {
     id: 'experiments.lol-gottem',
     title: 'Troll mode',
     description: 'lol',
     load: trollMode,
   },
   {
-    id: 'experiments.unique-loot-count',
-    title: 'Unique loot count in progress log',
-    description: 'Shows the number of unique loot items in the progress log',
-    load: uniqueLootCount,
-  },
-  {
     id: 'better-inventory.show-all-group',
     title: 'Better Inventory: Add list of all items to top of inventory pages',
-  },
-  {
-    id: 'better-journal.journal-tags',
-    title: 'Better Journal: Journal Tags',
-    description: 'Shows entry type when hovering over journal entries',
-    load: journalTags,
   },
   {
     id: 'better-maps.community',

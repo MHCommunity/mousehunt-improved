@@ -38,6 +38,11 @@ export default async () => {
       default: true,
     },
     {
+      id: 'better-journal.journal-tags',
+      title: 'Show hunt type on hover',
+      default: false
+    },
+    {
       id: 'better-journal.journal-history',
       title: 'Journal History',
       default: true,

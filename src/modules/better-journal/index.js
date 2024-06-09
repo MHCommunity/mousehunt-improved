@@ -8,6 +8,7 @@ import journalItemColors from './modules/journal-item-colors';
 import journalList from './modules/journal-list';
 import journalReplacements from './modules/journal-replacements';
 import journalStyles from './modules/journal-styles';
+import journalTags from './modules/journal-tags';
 
 import listAndIconsStyles from './styles/list-and-icons.css';
 import styles from './styles/styles.css';
@@ -29,6 +30,7 @@ const init = async () => {
     goldAndPoints: getSetting('better-journal.gold-and-points', true),
     itemColors: getSetting('better-journal.item-colors', true),
     history: getSetting('better-journal.journal-history', true),
+    tags: getSetting('better-journal.journal-tags', true),
   };
 
   const modules = [
@@ -52,6 +54,7 @@ const init = async () => {
     { enabled: enabled.goldAndPoints, load: journalGoldAndPoints },
     { enabled: enabled.itemColors, load: journalItemColors },
     { enabled: enabled.history, load: journalHistory },
+    { enabled: enabled.tags, load: journalTags },
   ];
 
   for (const module of modules) {

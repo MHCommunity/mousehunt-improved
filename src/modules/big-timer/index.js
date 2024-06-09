@@ -22,7 +22,7 @@ const toggleBigTimer = () => {
 /**
  * Initialize the module.
  */
-export default async () => {
+const init = async () => {
   addStyles([
     styles,
     isLegacyHUD() ? legacyStyles : '',
@@ -30,4 +30,13 @@ export default async () => {
 
   toggleBigTimer();
   setTimeout(toggleBigTimer, 1000);
+};
+
+export default {
+  id: 'big-timer',
+  name: 'Big Timer',
+  type: 'beta',
+  default: false,
+  description: 'Click the timer to toggle between normal and big sizes.',
+  load: init,
 };

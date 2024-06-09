@@ -16,11 +16,20 @@ const moveCodex = async () => {
 /**
  * Initialize the module.
  */
-export default async () => {
+const init = async () => {
   addStyles(styles, 'codex-at-bottom');
   moveCodex();
   onNavigation(moveCodex, {
     page: 'camp',
   });
   onEvent('mh-improved-cre-list-rendered', moveCodex);
+};
+
+export default {
+  id: 'codex-at-bottom',
+  name: 'Move Codex to Bottom',
+  type: 'beta',
+  default: false,
+  description: 'Move the codex to the bottom of the trap selector.',
+  load: init,
 };

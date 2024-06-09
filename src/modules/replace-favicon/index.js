@@ -33,10 +33,19 @@ const add = () => {
 /**
  * Initialize the module.
  */
-export default async () => {
+const init = async () => {
   add();
   replace();
   onTurn(() => {
     setMultipleTimeout(replace, [1000, 2000, 3000, 4000, 5000]);
   });
+};
+
+export default {
+  id: 'replace-favicon',
+  name: 'Replace Favicon',
+  type: 'beta',
+  default: false,
+  description: 'Replace the favicon with a more fitting one',
+  load: init,
 };
