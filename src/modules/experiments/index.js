@@ -3,6 +3,7 @@ import { getSetting } from '@utils';
 import bigTimer from './modules/big-timer';
 import codexAtBottom from './modules/codex-at-bottom';
 import delayedMenus from './modules/delayed-menus';
+import emotes from './modules/emotes';
 import journalTags from './modules/journal-tags';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
@@ -36,6 +37,12 @@ const experiments = [
     title: 'Delayed Menus',
     description: 'Adds a short delay to the menu dropdowns to prevent accidental clicks',
     load: delayedMenus,
+  },
+  {
+    id: 'experiments.emotes',
+    title: 'Emotes in corkboard',
+    description: 'Replaces discord-style emotes in the corkboard like :jerry: with the actual image',
+    load: emotes,
   },
   {
     id: 'experiments.replace-favicon',
