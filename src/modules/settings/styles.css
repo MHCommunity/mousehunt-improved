@@ -471,3 +471,9 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
 .mousehunt-improved-settings em {
   font-style: italic;
 }
+
+.mousehunt-improved-advanced-buttons {
+  display: flex;
+  padding: 10px 0 5px 5px;
+  border-top: 1px solid #f2ebde;
+}

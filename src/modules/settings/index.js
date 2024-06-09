@@ -3,6 +3,7 @@ import {
   addStyles,
   clearCaches,
   createPopup,
+  dbDelete,
   doEvent,
   getCurrentLocation,
   getCurrentPage,
@@ -10,6 +11,7 @@ import {
   getSetting,
   getSettings,
   makeElement,
+  makeMhButton,
   onNavigation,
   saveSetting,
   setPage,
@@ -25,9 +27,11 @@ import styles from './styles.css';
 /**
  * Add the export settings button.
  *
+ * @param {HTMLElement} append The element to append to.
+ *
  * @return {HTMLElement} The export settings button.
  */
-const addExportSettings = () => {
+const addExportSettings = (append) => {
   const existing = document.querySelector('.mousehunt-improved-export-settings');
   if (existing) {
     existing.remove();
@@ -227,49 +231,44 @@ const addExportSettings = () => {
     });
   });
 
+  append.append(exportSettings);
+
   return exportSettings;
 };
 
 /**
  * Add the clear cache button.
  *
- * @return {HTMLElement} The clear cache button.
+ * @param {HTMLElement} append The element to append to.
  */
-const addClearCache = () => {
+const addClearCache = (append) => {
   const existing = document.querySelector('.mousehunt-improved-clear-cache');
   if (existing) {
     existing.remove();
   }
 
-  const clearCache = makeElement('div', ['mousehunt-improved-clear-cache', 'mousehuntActionButton', 'tiny']);
-  makeElement('span', '', 'Clear Cached Data', clearCache);
+  makeMhButton({
+    text: 'Clear Cached Data',
+    size: 'tiny',
+    className: 'mousehunt-improved-clear-cache',
+    appendTo: append,
+    callback: async () => {
+      if (window.confirm('Are you sure you want to clear the cached data?')) { // eslint-disable-line no-alert
+        await clearCaches();
 
-  clearCache.addEventListener('click', async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+        // Delete all the mh-improved keys that are in session storage.
+        for (const key of Object.keys(sessionStorage)) {
+          if (key.startsWith('mh-improved')) {
+            sessionStorage.removeItem(key);
+          }
+        }
 
-    // Clear the data-caches.
-    // Confirm the clear
-    const confirm = window.confirm('Are you sure you want to clear the cached data?'); // eslint-disable-line no-alert
-    if (! confirm) {
-      return;
-    }
-
-    await clearCaches();
-
-    // Delete all the mh-improved keys that are in session storage.
-    for (const key of Object.keys(sessionStorage)) {
-      if (key.startsWith('mh-improved')) {
-        sessionStorage.removeItem(key);
+        // Clear the ar
+        localStorage.removeItem(`mh-improved-cached-ar-v${mhImprovedVersion}`);
+        window.location.reload();
       }
     }
-
-    // Clear the ar
-    localStorage.removeItem(`mh-improved-cached-ar-v${mhImprovedVersion}`);
-    window.location.reload();
   });
-
-  return clearCache;
 };
 
 /**
@@ -277,19 +276,35 @@ const addClearCache = () => {
  */
 const addAdvancedSettingsButtons = () => {
   const settingInput = document.querySelector('#mousehunt-improved-settings-advanced-mh-improved-advanced-settings .PagePreferences__setting');
-  if (! settingInput) {
+  if (settingInput) {
+    addExportSettings(settingInput);
+    addClearCache(settingInput);
+  }
+
+  const settingWrapper = document.querySelector('#mousehunt-improved-settings-advanced-wrapper');
+  if (! settingWrapper) {
     return;
   }
 
-  const exportSettings = addExportSettings();
-  if (exportSettings) {
-    settingInput.append(exportSettings);
+  const existing = document.querySelector('.mousehunt-improved-advanced-buttons');
+  if (existing) {
+    existing.remove();
   }
 
-  const clearCache = addClearCache();
-  if (clearCache) {
-    settingInput.append(clearCache);
-  }
+  const buttonsWrapper = makeElement('div', 'mousehunt-improved-advanced-buttons');
+
+  const resetJournalLink = makeElement('a', 'reset-journal-link', 'Reset Journal History');
+  resetJournalLink.href = '#';
+  resetJournalLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (window.confirm('Are you sure you want to reset your journal history?')) { // eslint-disable-line no-alert
+      await dbDelete('journal');
+      window.location.reload();
+    }
+  });
+  buttonsWrapper.append(resetJournalLink);
+
+  settingWrapper.append(buttonsWrapper);
 };
 
 /**
