@@ -1,5 +1,21 @@
 #overlayPopup {
   position: sticky;
   top: 10vh !important;
-  overflow: hidden;
+}
+
+#overlayPopup.mh-improved-update-summary {
+  position: absolute;
+}
+
+#overlayPopup .jsDialog.top {
+  top: -10px;
+}
+
+#overlayPopup .jsDialog.bottom {
+  bottom: -10px;
+}
+
+#overlayPopup #jsDialogClose {
+  top: -3px;
+  right: 6px;
 }
