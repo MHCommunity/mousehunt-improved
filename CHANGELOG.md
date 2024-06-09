@@ -2,6 +2,18 @@
 
 ## Version 0.45.0
 
+### New Features
+
+- Moved Big Timer from experiments to main feature
+- Moved Delayed Menus from experiments to main feature
+- Moved Codex at Bottom from experiments to main feature
+- Moved Replace Favicon from experiments to main feature
+- Moved Shield Goes to Camp from experiments to main feature
+- Moved Sticky Popups from experiments to beta feature
+- Moved Unique Loot Count from experiments to main feature
+- Added 'Emotes in Corkboard' experimental feature
+- Added 'Location HUDs - Prologue Pond: Normal boat color' experimental feature
+
 ### Better Gifts
 
 - Close button on popup is now always clickable
@@ -18,14 +30,19 @@
 
 ### Better Journal
 
+- Moved 'Journal tags' from experiments to an option
 - Added more journal text replacements
+- Added a number of new item colors
 - Fixed bug in replacements not applying to all entries
 - Updated rank-up entry to show new shield
 - Added styles to more entries
+- Improved performance of journal replacements
+- Added 'Delete Journal History' button in advanced settings
 
 ### Better Maps
 
-- Added M1k Solo to sorted maps
+- Added M1K Solo to sorted maps
+- Added School of Sorcery to sorted maps
 - Updated scroll shop display to make it more readable
 - Updated scroll inventory to hide and lock scrolls that are locked or hidden with Inventory Lock and Hide
 - Updated various styles
@@ -63,10 +80,6 @@
 ### Debug
 
 - Added 'Log all events' setting to log all eventRegistry events
-
-### Experiments
-
-"Added 'Location HUDs - Prologue Pond: Normal boat color' setting to change the color of the boat - nPrologue Pond
 
 ### FLRT Helper
 
