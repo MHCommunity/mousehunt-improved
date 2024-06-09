@@ -35,12 +35,31 @@ const migrateLegacyHud = async () => {
   }
 };
 
+const migrateExperimentsToBeta = async () => {
+  const settings = [
+    { from: 'experiments.big-timer', to: 'big-timer' },
+    { from: 'experiments.shield-goes-to-camp', to: 'shield-goes-to-camp' },
+    { from: 'experiments.codex-at-bottom', to: 'codex-at-bottom' },
+    { from: 'experiments.delayed-menus', to: 'delayed-menus' },
+    { from: 'experiments.replace-favicon', to: 'replace-favicon' },
+    { from: 'experiments.sticky-popups', to: 'sticky-popups' },
+    { from: 'experiments.unique-loot-count', to: 'unique-loot-count' },
+  ];
+
+  settings.forEach((setting) => {
+    if (getSetting(setting.from, false)) {
+      saveSetting(setting.to, true);
+    }
+  });
+};
+
 /**
  * Migrate the item settings.
  */
 const update = async () => {
   await migrateInventoryLockAndHide();
   await migrateLegacyHud();
+  await migrateExperimentsToBeta();
 };
 
 export default {

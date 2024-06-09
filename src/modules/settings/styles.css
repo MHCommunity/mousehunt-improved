@@ -124,6 +124,11 @@
   font-weight: 400;
 }
 
+#mousehunt-improved-settings-design .PagePreferences__settingDescription,
+#mousehunt-improved-settings-element-hiding .PagePreferences__settingDescription {
+  display: none;
+}
+
 .mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingDescription {
   padding-bottom: 0;
 }

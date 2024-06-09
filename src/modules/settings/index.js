@@ -428,7 +428,7 @@ const makeModuleIconStyles = () => {
   return Object.entries(settingsIcons).map(([category, icons]) =>
     icons.map((icon) =>
       `#mousehunt-improved-settings-${category}-${icon.id}::before {
-        background-image: url('${icon.icon.replaceAll('\'', '"')}');
+        background-image: url('data:image/svg+xml,${icon.icon.replaceAll('\'', '"')}');
       }`
     ).join('')
   ).join('');

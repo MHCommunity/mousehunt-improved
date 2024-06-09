@@ -38,7 +38,7 @@ const showUpdateSummary = async (force = false) => {
   const markup = `<div class="mh-improved-update-summary-wrapper">
 	  <h1 class="mh-improved-update-summary-title">MouseHunt Improved v${mhImprovedVersion}</h1>
     <p class="mh-improved-update-summary-content">${updateSummary.summary || ''}</p>
-    <div class="mh-improved-update-summary-lists>${missingSummaryOrDetails ? '<p><a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noopener noreferrer">Check out the latest release notes</a> for more information.</p>' : makeDetailsList(updateSummary.details)}</div>
+    <div class="mh-improved-update-summary-lists">${missingSummaryOrDetails ? '<p><a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noopener noreferrer">Check out the latest release notes</a> for more information.</p>' : makeDetailsList(updateSummary.details)}</div>
     <div class="mh-improved-update-summary-buttons">
       <a href="#" id="mh-improved-dismiss-popup" class="button">Continue</a>
     </div>

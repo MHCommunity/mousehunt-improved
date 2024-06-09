@@ -46,7 +46,7 @@ const doVersionUpdates = async () => {
     const update = updates[version];
     try {
       debuglog('update-migration', `Running update for ${version}`);
-      await update.run();
+      await update.update();
     } catch (error) {
       debuglog('update-migration', `Error updating to ${version}:`, error);
       throw error;
