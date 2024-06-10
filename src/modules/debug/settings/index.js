@@ -49,12 +49,6 @@ export default async () => {
       id: 'debug.disable-cache',
       title: 'Disable caching',
       description: 'Disable caching of data and settings'
-    },
-    {
-      id: 'debug.utils',
-      title: 'Add utils to window',
-      description: 'Access utils in the console as <code>app.mhutils</code>',
-      default: true,
     }
   ];
 };
