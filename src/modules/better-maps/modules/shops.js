@@ -1,4 +1,4 @@
-import { getCurrentLocation, onRequest } from '@utils';
+import { debug, getCurrentLocation, onRequest } from '@utils';
 
 /**
  * Update the shops markup.
@@ -75,8 +75,7 @@ const updateShopsMarkup = async () => {
         return;
       }
 
-      console.log(mapType); // eslint-disable-line no-console
-      // todo: do something with the scrolls here.
+      debug('mapType', mapType); // todo: do something with the scrolls here.
     });
   });
 };

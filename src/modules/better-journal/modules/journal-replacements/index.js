@@ -262,7 +262,6 @@ const shouldSkip = (entry) => {
     'valentines_matchmaker',
     'vending_machine_purchase',
     'fullyExplored',
-    // 'folkloreForest-plantClaimed',
     'folkloreForest-bookClaimed',
   ]);
 
