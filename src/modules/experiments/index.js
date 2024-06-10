@@ -42,6 +42,10 @@ const experiments = [
     title: 'Favorite Setups: Add toggle button to top menu',
   },
   {
+    id: 'favorite-setups.show-mobile-favorites',
+    title: 'Favorite Setups: Include mobile favorites',
+  },
+  {
     id: 'experiments.location-hud-toggle',
     title: 'Location HUDs: Add toggle button to top menu',
   },
