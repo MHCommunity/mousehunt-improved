@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.7",
-    "@sentry/browser": "^8.7.0",
+    "@sentry/browser": "^8.8.0",
     "humanize-duration": "^3.32.1"
   },
   "devDependencies": {
@@ -48,7 +48,7 @@
     "archiver": "^7.0.1",
     "concurrently": "^8.2.2",
     "del-cli": "^5.1.0",
-    "esbuild": "^0.21.4",
+    "esbuild": "^0.21.5",
     "eslint": "8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
