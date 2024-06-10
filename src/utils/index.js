@@ -23,3 +23,4 @@ export * from './templates';
 export * from './user';
 export * from './utils';
 export * from './shared/trap-quantity';
+export * from './shared/open-all';

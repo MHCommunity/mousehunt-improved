@@ -4,10 +4,10 @@ import { initOpenButtons } from '@utils';
  * Initialize the module.
  */
 export default {
-  id: 'open-all-but-one',
-  name: 'Inventory - Open All but One',
+  id: 'open-all',
+  name: 'Inventory - Open All',
   type: 'feature',
   default: true,
-  description: 'Adds \'Open All But One\' button to convertible items in your inventory.',
+  description: 'Adds an \'Open All\' button to convertible items in your inventory',
   load: initOpenButtons,
 };
