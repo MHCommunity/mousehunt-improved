@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
 
-source .env
+if [ -f .env ]; then
+  source .env
+fi
 
 version=$(jq -r .version package.json)
 
@@ -18,11 +20,8 @@ bun run sentry-cli sourcemaps upload --release="$version" dist
 bun run sentry-cli releases new "$version"
 bun run sentry-cli releases finalize "$version"
 
-
 bun run build:zips
-
 bun run build:userscript
-
 bun run build:archive
 
 gh release create "v$version" --title "MouseHunt Improved $version" --draft dist/chrome.zip dist/firefox.zip dist/*.user.js
