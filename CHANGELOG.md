@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.45.1
+
+- Fixed issue with settings not updating during migration
+
 ## Version 0.45.0
 
 ### New Features

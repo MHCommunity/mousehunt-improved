@@ -9,14 +9,14 @@ const migrateInventoryLockAndHide = async () => {
     hidden: [],
   });
 
-  itemSettings.locked = itemSettings.locked.map((i) => Number.parseInt(i, 10));
-  itemSettings.hidden = itemSettings.hidden.map((i) => Number.parseInt(i, 10));
+  itemSettings.locked = itemSettings?.locked?.map((i) => Number.parseInt(i, 10));
+  itemSettings.hidden = itemSettings?.hidden?.map((i) => Number.parseInt(i, 10));
 
   itemSettings = {
     locked: itemSettings.locked,
     hidden: itemSettings.hidden,
-    lockedTypes: itemSettings.locked.map((id) => items.find((item) => item.id === id)?.type),
-    hiddenTypes: itemSettings.hidden.map((id) => items.find((item) => item.id === id)?.type),
+    lockedTypes: itemSettings?.locked.map((id) => items.find((item) => item.id === id)?.type),
+    hiddenTypes: itemSettings?.hidden.map((id) => items.find((item) => item.id === id)?.type),
   };
 
   saveSetting('inventory-lock-and-hide.items', itemSettings);
