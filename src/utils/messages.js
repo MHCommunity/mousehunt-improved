@@ -88,7 +88,7 @@ const showLoadingError = (e) => {
   const errorElement = makeElement('div', 'mousehunt-improved-error');
   makeElement('h1', 'mousehunt-improved-error-title', 'Error loading MouseHunt Improved', errorElement);
 
-  if (e.message) {
+  if (e && e.message && e.stack) {
     const errorText = makeElement('textarea', 'mousehunt-improved-error-message');
     errorText.value = `${e.message}\n\n${e.stack}`;
     errorElement.append(errorText);

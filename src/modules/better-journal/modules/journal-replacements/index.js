@@ -262,6 +262,7 @@ const shouldSkip = (entry) => {
     'vending_machine_purchase',
     'fullyExplored',
     'folkloreForest-bookClaimed',
+    'claimBooty',
   ]);
 
   if (! entry.classList) {

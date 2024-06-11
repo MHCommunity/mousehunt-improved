@@ -171,3 +171,8 @@ span.treasureMapView-shareLinkInputStatus {
 .mh-mapper-invite-request-action {
   padding: 0 10px;
 }
+
+.treasureMapView-hunter-image-wrapper {
+  min-width: 44px;
+  min-height: 44px;
+}

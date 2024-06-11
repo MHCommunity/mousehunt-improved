@@ -642,7 +642,7 @@ tbody tr.scoreboardTableView-row-separator:nth-child(5) {
 tr.scoreboardTableView-row.viewer,
 tr.scoreboardTableView-row.highlight {
   background-color: #fdfbcc;
-  border-radius: 10px;
+  border-radius: 11px;
   outline: 2px solid #fc6;
   box-shadow: none;
 }

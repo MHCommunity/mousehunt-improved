@@ -225,7 +225,7 @@ const addQuickQuantityButtons = () => {
     appendTo: wrapper,
     input,
     maxQty,
-    classNames: ['mhui-supply-quick-quantity', 'gray', 'small'],
+    classNames: ['mhui-supply-quick-quantity', 'small'],
   });
 
   const max = makeElement('button', ['mousehuntActionButton', 'lightBlue', 'small', 'mhui-supply-quick-quantity', 'mhui-supply-quick-quantity-max']);
