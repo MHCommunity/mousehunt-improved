@@ -9,8 +9,8 @@ const migrateInventoryLockAndHide = async () => {
     hidden: [],
   });
 
-  itemSettings.locked = itemSettings?.locked?.map((i) => Number.parseInt(i, 10));
-  itemSettings.hidden = itemSettings?.hidden?.map((i) => Number.parseInt(i, 10));
+  itemSettings.locked = itemSettings?.locked?.map((i) => Number.parseInt(i, 10)) ?? [];
+  itemSettings.hidden = itemSettings?.hidden?.map((i) => Number.parseInt(i, 10)) ?? [];
 
   itemSettings = {
     locked: itemSettings.locked,
