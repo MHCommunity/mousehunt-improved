@@ -49,7 +49,10 @@ const migrateExperimentsToBeta = async () => {
 
   settings.forEach((setting) => {
     if (getSetting(setting.from, false)) {
-      moveSetting(setting.from, setting.to);
+      moveSetting({
+        from: setting.from,
+        to: setting.to
+      });
     }
   });
 };
