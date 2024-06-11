@@ -4,12 +4,12 @@
 
 ### New Features
 
+- Added 'Inventory - Open All' feature module
 - Moved Big Timer from experiments to main feature
 - Moved Delayed Menus from experiments to main feature
 - Moved Codex at Bottom from experiments to main feature
 - Moved Replace Favicon from experiments to main feature
 - Moved Shield Goes to Camp from experiments to main feature
-- Moved Sticky Popups from experiments to beta feature
 - Moved Unique Loot Count from experiments to main feature
 - Added 'Emotes in Corkboard' experimental feature
 - Added 'Location HUDs - Prologue Pond: Normal boat color' experimental feature
@@ -17,16 +17,21 @@
 ### Better Gifts
 
 - Close button on popup is now always clickable
+- Updated styles
 
 ### Better Inventory
 
-- Moved obtain hint to after description
-- Updated image size so that all popups are the same size
-- Fixed MHCT link
+- Added 'Sort inventory alphabetically' option
+- Added 'Better Inventory: Add list of all items to top of inventory pages' to experimental settings
+- Updated styles
 
 ### Better Items
 
-- Optimized performance of item-hover display
+- Improved performance of item details display on hover
+- Moved obtain hint to after description in item details
+- Updated image size so that all popups are the same size
+- Fixed MHCT links in item views
+- Updated styles
 
 ### Better Journal
 
@@ -36,21 +41,42 @@
 - Fixed bug in replacements not applying to all entries
 - Updated rank-up entry to show new shield
 - Added styles to more entries
-- Improved performance of journal replacements
+- Improved performance of text replacements
 - Added 'Delete Journal History' button in advanced settings
+- Fixed Loot list not working correctly for some entries
+- Updated rank up entry to include the user's new shield
+- Added date to historical journal entries
+- Added ability to select page by clicking on the '1 out of X' text
+- Fixed issues with ordering and incorrect saving of journal entries
 
 ### Better Maps
 
-- Added M1K Solo to sorted maps
 - Added School of Sorcery to sorted maps
+- Added M1K Solo to sorted maps
 - Updated scroll shop display to make it more readable
 - Updated scroll inventory to hide and lock scrolls that are locked or hidden with Inventory Lock and Hide
+- Updated scroll inventory UI, updating text and display
+- Maps will now automatically update map data when opening
 - Updated various styles
+
+### Better Marketplace
+
+- Added 'View All' button to favorites
+- Added functionality to support saving unlimited favorites in the future
+- Updated styles
 
 ### Better Mice
 
-- Optimized performance of mouse-hover display
+- Optimized performance of mouse hover display
 - Fixed issue with 'Show available mice in sidebar' setting not working
+- Attraction rate list is now dynamically styled to be the most readable
+
+### Better Quests
+
+- Update library assignment window to show details and summary of each assigment
+- Added Scholar Charm and Wisdom tome owned amounts to the library assignment window
+- Updated smash assignment link to automatically open Hunter's Hammer rather than linking to the page
+- Updated styles
 
 ### Better Send Supplies
 
@@ -66,12 +92,17 @@
 - Added Forbidden Grove to Travel Window
 - Removed Acolyte Realm from Travel Window
 - Updated menu icons
+- Added Bountiful Beanstalk travel reminder
+- Added School of Sorcery travel reminder
+- Added Feature Flags to disabled specific travel reminders
 
 ### Better UI
 
+- Added ability to toggle Select2 dropdowns on Friends page by clicking on the label
 - Added more Adventure Book styles
 - Updated Gifts menu icon
 - Updated bait disarmed horn message icon
+- Updated various styles
 
 ### Catch Rate Estimator
 
@@ -81,6 +112,22 @@
 
 - Added 'Log all events' setting to log all eventRegistry events
 
+### Experiments
+
+- Added 'Emotes in Corkboard' setting to replace Discord emote text with actual emotes, currently only works with :jerry:
+- Added 'Location HUDs - Prologue Pond: Normal boat color' setting to change the color of the boat in Prologue Pond
+- Added 'Favorite Setups - Include mobile favorites'
+
+### Favorite Setups
+
+- Added 'Include mobile favorites' experimental setting
+
+### Fixes
+
+- Improved item view URL redirection handling
+- Fixed School of Sorcery button text shadow color
+- Fixed School of Sorcery Drop out button height
+
 ### FLRT Helper
 
 - Fixed bug where all items where shown and not just tradeable items
@@ -89,14 +136,24 @@
 
 - Removed button from Kilohertz Processors to avoid accidental use
 
-### Lucky Golden Shield Duration & Reminder
+### Inventory Lock and Hide
 
-- Removed 'Show exact time, including seconds' setting
-- Fixed display alignment
+- Hidden items are now hidden in the trap selector
+- Locked and Hidden items are now locked and hidden in the map scroll inventory
+
+### Journal Changer
+
+- Fixed issue where journal would be changed on other people's profiles
+- Added School of Sorcery
 
 ### Location HUDs - Bountiful Beanstalk
 
 - Fixed display of quick craft buttons
+- Fixed quick craft buttons showing success when not successful
+- Updated various styles
+
+### Location HUDs - Burroughs Rift
+
 - Updated various styles
 
 ### Location HUDs - Floating Islands
@@ -112,21 +169,31 @@
 
 - Updated various styles
 
+### Location HUDs - Furoma Rift
+
+- Fixed issues with recall data showing NaN and not updating properly
+- Updated various styles
+
 ### Location HUDs - Moussu Picchu
 
+- Updated various styles
+
+### Location HUDs - Prologue Pond
+
+- Added 'Normal boat color' experimental setting to change the color of the boat
 - Updated various styles
 
 ### Location HUDs - Queso Region
 
 - Updated various styles
 
-### Location HUDs - Burroughs Rift
+### Location HUDs - Table of Contents
 
+- Added writing simulator. This will simulate multiple writing sessions and show the results
 - Updated various styles
 
-### Location HUDs - Furoma Rift
+### Location HUDs - Toxic Spill
 
-- Fixed issues with recall data showing NaN and not updating properly
 - Updated various styles
 
 ### Location HUDs - Whisker Woods Rift
@@ -135,10 +202,18 @@
 - Added easter egg where Black Widow's eyes will glow sometimes
 - Updated various styles
 
-### Location HUDs - Table of Contents
+### Lucky Golden Shield Duration & Reminder
 
-- Added writing simulator. This will simulate multiple writing sessions and show the results
-- Updated various styles
+- Removed 'Show exact time, including seconds' setting
+- Fixed display alignment
+
+### Native Dark Mode
+
+- Updated styles
+
+### Ultimate Checkmark
+
+- Updated item lists
 
 ### Other
 
