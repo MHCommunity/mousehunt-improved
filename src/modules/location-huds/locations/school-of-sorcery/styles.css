@@ -1,3 +1,27 @@
 .folkloreForestRegionView-trapWarningContainer {
   top: 40%;
 }
+
+.headsUpDisplaySchoolOfSorceryView .folkloreForestRegionView-trapWarningContainer {
+  right: 160px;
+  left: 160px;
+  padding: 5px;
+}
+
+.schoolOfSorceryCourseView__powerTypeWarningIcon {
+  background-image: url(https://i.mouse.rip/map-marker.png);
+}
+
+.folkloreForestRegionView-warning {
+  border: none;
+}
+
+.schoolOfSorceryCourseView__dropOutButton {
+  height: 19px;
+}
+
+.schoolOfSorceryTranscriptDialogView__courseSummaryIcon {
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+}

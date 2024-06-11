@@ -9,7 +9,7 @@ const experiments = [
   {
     id: 'experiments.emotes',
     title: 'Emotes in corkboard',
-    description: 'Replaces discord-style emotes in the corkboard like :jerry: with the actual image',
+    description: 'Replaces discord-style emotes on corkboards like :jerry: with the actual image',
     load: emotes,
   },
   {

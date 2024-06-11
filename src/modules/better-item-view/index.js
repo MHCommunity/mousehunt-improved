@@ -5,7 +5,9 @@ import {
   makeElement,
   makeLink,
   makeTooltip,
-  onOverlayChange
+  onNavigation,
+  onOverlayChange,
+  onRender
 } from '@utils';
 
 import hoverItem from './modules/hover-item';
@@ -23,7 +25,7 @@ import styles from './styles.css';
  */
 const getLinkMarkup = (name, id) => {
   return makeLink('MHCT', `https://api.mouse.rip/mhct-redirect-item/${id}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
 };
 
 /**
@@ -187,6 +189,23 @@ const updateItemView = async () => {
   }
 };
 
+const shortenRecipeGoldHint = () => {
+  const layouts = ['layout', 'content', 'actions'];
+
+  layouts.forEach((layout) => {
+    onRender({
+      group: 'ItemView',
+      layout,
+      after: true,
+      callback: (data, results) => {
+        return results
+          .replaceAll('gold per piece', 'gold each')
+          .replaceAll('One potion converts ', '');
+      }
+    });
+  });
+};
+
 /**
  * Initialize the module.
  */
@@ -196,6 +215,12 @@ const init = async () => {
   if (getSetting('better-item-view.show-item-hover', true)) {
     excludeFromStandaloneUserscript: hoverItem();
   }
+
+  shortenRecipeGoldHint();
+  onNavigation(shortenRecipeGoldHint, {
+    page: 'inventory',
+    tab: 'potions'
+  });
 
   onOverlayChange({ item: { show: updateItemView } });
 };

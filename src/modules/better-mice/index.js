@@ -32,7 +32,7 @@ import styles from './styles.css';
  */
 const getLinkMarkup = (name, id) => {
   return makeLink('MHCT AR', `https://api.mouse.rip/mhct-redirect/${id}`) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
+  makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
 };
 
 /**

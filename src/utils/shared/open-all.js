@@ -62,23 +62,16 @@ const replaceOpenAction = () => {
  * Add the 'Open All but One' buttons to convertible items.
  */
 const addOpenAllButOneButton = () => {
-  const convertibleItems = document.querySelectorAll('.inventoryPage-item.convertible[data-item-classification="convertible"]');
-  if (! convertibleItems.length) {
-    return;
-  }
+  const allItems = [
+    document.querySelectorAll('.inventoryPage-tagContent-tagGroup[data-tag="convertibles"] .inventoryPage-item.convertible[data-item-classification="convertible"]'),
+    document.querySelectorAll('.inventoryPage-tagContent-tagGroup[data-tag="treasure_chests"] .inventoryPage-item.convertible[data-item-classification="convertible"]')
+  ];
 
-  // Remove the existing open all but one buttons.
-  const existingButtons = document.querySelectorAll('.open-all-but-one');
-  existingButtons.forEach((button) => {
-    button.remove();
-  });
+  allItems.forEach((item) => {
+    if (! item) {
+      return;
+    }
 
-  const existingAllButtons = document.querySelectorAll('.open-all');
-  existingAllButtons.forEach((button) => {
-    button.remove();
-  });
-
-  convertibleItems.forEach((item) => {
     const button = item.querySelector('.inventoryPage-item-button[data-item-action="single"]');
     if (! button) {
       return;
@@ -102,39 +95,40 @@ const addOpenAllButOneButton = () => {
       return;
     }
 
-    if (quantity.textContent === '1') {
-      return;
-    }
-
-    if (getSetting('open-all-but-one', true)) {
+    if (openAllButOneSetting && quantity.textContent !== '1' && ! item.querySelector('.inventoryPage-item-button[data-item-action="all-but-one"]')) {
       const newButton = button.cloneNode(true);
       newButton.classList.add('open-all-but-one');
       newButton.textContent = 'All But One';
       newButton.value = 'All But One';
       newButton.setAttribute('data-item-action', 'all-but-one');
 
-      button.parentNode.insertBefore(newButton, button.nextSibling);
+      button.after(newButton);
     }
 
-    if (getSetting('open-all', true)) {
+    if (openAllSetting && ! item.querySelector('.inventoryPage-item-button[data-item-action="all"]')) {
       const newAllButton = button.cloneNode(true);
       newAllButton.classList.add('open-all');
       newAllButton.textContent = 'All';
       newAllButton.value = 'All';
       newAllButton.setAttribute('data-item-action', 'all');
 
-      button.parentNode.insertBefore(newAllButton, button.nextSibling);
+      button.after(newAllButton);
     }
   });
 };
 
 let hasInitialized = false;
+let openAllButOneSetting = true;
+let openAllSetting = true;
 
 /**
  * Initialize the module.
  */
 const initOpenButtons = () => {
-  if (! (getSetting('open-all-but-one', true) || getSetting('open-all', true))) {
+  openAllButOneSetting = getSetting('open-all-but-one', true);
+  openAllSetting = getSetting('open-all', true);
+
+  if (! (openAllButOneSetting || openAllSetting)) {
     return;
   }
 
@@ -145,11 +139,9 @@ const initOpenButtons = () => {
   hasInitialized = true;
 
   replaceOpenAction();
-  addOpenAllButOneButton();
-  onNavigation(() => {
-    addOpenAllButOneButton();
-  }, {
+  onNavigation(addOpenAllButOneButton, {
     page: 'inventory',
+    tab: 'special'
   });
 };
 

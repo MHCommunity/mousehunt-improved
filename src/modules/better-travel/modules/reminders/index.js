@@ -101,6 +101,7 @@ const addReminders = () => {
   case 'foreword_farm':
   case 'prologue_pond':
   case 'table_of_contents':
+  case 'school_of_sorcerey':
     if (hasDisabledReminder('condensed-creativity')) {
       break;
     }
@@ -109,7 +110,8 @@ const addReminders = () => {
       user.quests.QuestBountifulBeanstalk.is_fuel_enabled ||
       user.quests?.QuestProloguePond?.is_fuel_enabled ||
       user.quests?.QuestForewordFarm?.is_fuel_enabled ||
-      user.quests?.QuestTableOfContents?.is_fuel_enabled
+      user.quests?.QuestTableOfContents?.is_fuel_enabled ||
+      user.quests?.QuestSchoolOfSorcery.is_fuel_enabled
     ) {
       reminderOpts.text = 'Condensed Creativity is active.';
       reminderOpts.button = 'Deactivate';

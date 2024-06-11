@@ -4,6 +4,7 @@
     {
       "title": "New feature modules",
       "items": [
+        "Inventory - Open All - Restores the 'Open All' buttons to the inventory page",
         "Big Timer - Click the timer to toggle between normal and big sizes.",
         "Delayed Menus - Adds a short delay to the menu dropdowns to prevent accidental clicks",
         "Codex at Bottom - Move the codex to the bottom of the trap selector.",
@@ -11,24 +12,23 @@
         "Shield Goes to Camp - On any page that isn't the Camp page, clicking the shield will take you to the Camp page, otherwise it will take your to your Hunter Profile"
       ]
     },
-    {
-      "title": "Better Gifts",
-      "items": [
-        "Close button on popup is now always clickable"
-      ]
-    },
+    { "title": "Better Gifts", "items": ["Close button on popup is now always clickable", "Updated styles"] },
     {
       "title": "Better Inventory",
       "items": [
-        "Moved obtain hint to after description",
-        "Updated image size so that all popups are the same size",
-        "Fixed MHCT link"
+        "Added 'Sort inventory alphabetically' option",
+        "Added 'Better Inventory: Add list of all items to top of inventory pages' to experimental settings",
+        "Updated styles"
       ]
     },
     {
       "title": "Better Items",
       "items": [
-        "Optimized performance of item-hover display"
+        "Improved performance of item details display on hover",
+        "Moved obtain hint to after description in item details",
+        "Updated image size so that all popups are the same size",
+        "Fixed MHCT links in item views",
+        "Updated styles"
       ]
     },
     {
@@ -40,146 +40,152 @@
         "Fixed bug in replacements not applying to all entries",
         "Updated rank-up entry to show new shield",
         "Added styles to more entries",
-        "Improved performance of journal replacements",
-        "Added 'Delete Journal History' button in advanced settings"
+        "Improved performance of text replacements",
+        "Added 'Delete Journal History' button in advanced settings",
+        "Fixed Loot list not working correctly for some entries",
+        "Updated rank up entry to include the user's new shield",
+        "Added date to historical journal entries",
+        "Added ability to select page by clicking on the '1 out of X' text",
+        "Fixed issues with ordering and incorrect saving of journal entries"
       ]
     },
     {
       "title": "Better Maps",
       "items": [
-        "Added M1K Solo to sorted maps",
         "Added School of Sorcery to sorted maps",
+        "Added M1K Solo to sorted maps",
         "Updated scroll shop display to make it more readable",
         "Updated scroll inventory to hide and lock scrolls that are locked or hidden with Inventory Lock and Hide",
+        "Updated scroll inventory UI, updating text and display",
+        "Maps will now automatically update map data when opening",
         "Updated various styles"
-
+      ]
+    },
+    {
+      "title": "Better Marketplace",
+      "items": [
+        "Added 'View All' button to favorites",
+        "Added functionality to support saving unlimited favorites in the future",
+        "Updated styles"
       ]
     },
     {
       "title": "Better Mice",
       "items": [
-        "Optimized performance of mouse-hover display",
-        "Fixed issue with 'Show available mice in sidebar' setting not working"
+        "Optimized performance of mouse hover display",
+        "Fixed issue with 'Show available mice in sidebar' setting not working",
+        "Attraction rate list is now dynamically styled to be the most readable"
       ]
     },
     {
-      "title": "Better Send Supplies",
+      "title": "Better Quests",
       "items": [
-        "Fixed minor display issues"
+        "Update library assignment window to show details and summary of each assigment",
+        "Added Scholar Charm and Wisdom tome owned amounts to the library assignment window",
+        "Updated smash assignment link to automatically open Hunter's Hammer rather than linking to the page",
+        "Updated styles"
       ]
     },
+    { "title": "Better Send Supplies", "items": ["Fixed minor display issues"] },
     {
       "title": "Better Tournaments",
-      "items": [
-        "Added hover states to tournament bar sections",
-        "Various style updates"
-      ]
+      "items": ["Added hover states to tournament bar sections", "Various style updates"]
     },
     {
       "title": "Better Travel",
       "items": [
         "Added Forbidden Grove to Travel Window",
         "Removed Acolyte Realm from Travel Window",
-        "Updated menu icons"
+        "Updated menu icons",
+        "Added Bountiful Beanstalk travel reminder",
+        "Added School of Sorcery travel reminder",
+        "Added Feature Flags to disabled specific travel reminders"
       ]
     },
     {
       "title": "Better UI",
       "items": [
+        "Added ability to toggle Select2 dropdowns on Friends page by clicking on the label",
         "Added more Adventure Book styles",
         "Updated Gifts menu icon",
-        "Updated bait disarmed horn message icon"
+        "Updated bait disarmed horn message icon",
+        "Updated various styles"
       ]
     },
     {
       "title": "Catch Rate Estimator",
-      "items": [
-        "Catch rates are now shown as 100% when an Ultimate Charm is equipped"
-      ]
+      "items": ["Catch rates are now shown as 100% when an Ultimate Charm is equipped"]
     },
-    {
-      "title": "Debug",
-      "items": [
-        "Added 'Log all events' setting to log all eventRegistry events"
-      ]
-    },
+    { "title": "Debug", "items": ["Added 'Log all events' setting to log all eventRegistry events"] },
     {
       "title": "Experiments",
       "items": [
         "Added 'Emotes in Corkboard' setting to replace Discord emote text with actual emotes, currently only works with :jerry:",
-        "Added 'Location HUDs - Prologue Pond: Normal boat color' setting to change the color of the boat in Prologue Pond"
+        "Added 'Location HUDs - Prologue Pond: Normal boat color' setting to change the color of the boat in Prologue Pond",
+        "Added 'Favorite Setups - Include mobile favorites'"
       ]
     },
+    { "title": "Favorite Setups", "items": ["Added 'Include mobile favorites' experimental setting"] },
     {
-      "title": "FLRT Helper",
+      "title": "Fixes",
       "items": [
-        "Fixed bug where all items where shown and not just tradeable items"
+        "Improved item view URL redirection handling",
+        "Fixed School of Sorcery button text shadow color",
+        "Fixed School of Sorcery Drop out button height"
       ]
     },
+    { "title": "FLRT Helper", "items": ["Fixed bug where all items where shown and not just tradeable items"] },
     {
       "title": "Inventory - Open All but One",
+      "items": ["Removed button from Kilohertz Processors to avoid accidental use"]
+    },
+    {
+      "title": "Inventory Lock and Hide",
       "items": [
-        "Removed button from Kilohertz Processors to avoid accidental use"
+        "Hidden items are now hidden in the trap selector",
+        "Locked and Hidden items are now locked and hidden in the map scroll inventory"
       ]
     },
     {
-      "title": "Lucky Golden Shield Duration & Reminder",
-      "items": [
-        "Removed 'Show exact time, including seconds' setting",
-        "Fixed display alignment"
-      ]
+      "title": "Journal Changer",
+      "items": ["Fixed issue where journal would be changed on other people's profiles", "Added School of Sorcery"]
     },
     {
       "title": "Location HUDs - Bountiful Beanstalk",
       "items": [
         "Fixed display of quick craft buttons",
+        "Fixed quick craft buttons showing success when not successful",
         "Updated various styles"
       ]
     },
-    {
-      "title": "Location HUDs - Floating Islands",
-      "items": [
-        "Updated various styles"
-      ]
-    },
+    { "title": "Location HUDs - Burroughs Rift", "items": ["Updated various styles"] },
+    { "title": "Location HUDs - Floating Islands", "items": ["Updated various styles"] },
     {
       "title": "Location HUDs - Foreword Farm",
-      "items": [
-        "Added inventory toggle persistence",
-        "Updated various styles"
-      ]
+      "items": ["Added inventory toggle persistence", "Updated various styles"]
     },
-    {
-      "title": "Location HUDs - Fungal Cavern",
-      "items": [
-        "Updated various styles"
-      ]
-    },
-    {
-      "title": "Location HUDs - Moussu Picchu",
-      "items": [
-        "Updated various styles"
-      ]
-    },
-    {
-      "title": "Location HUDs - Queso Region",
-      "items": [
-        "Updated various styles"
-      ]
-    },
-    {
-      "title": "Location HUDs - Burroughs Rift",
-      "items": [
-        "Updated various styles"
-      ]
-    },
+    { "title": "Location HUDs - Fungal Cavern", "items": ["Updated various styles"] },
     {
       "title": "Location HUDs - Furoma Rift",
+      "items": ["Fixed issues with recall data showing NaN and not updating properly", "Updated various styles"]
+    },
+    { "title": "Location HUDs - Moussu Picchu", "items": ["Updated various styles"] },
+    {
+      "title": "Location HUDs - Prologue Pond",
       "items": [
-        "Fixed issues with recall data showing NaN and not updating properly",
+        "Added 'Normal boat color' experimental setting to change the color of the boat",
         "Updated various styles"
       ]
     },
+    { "title": "Location HUDs - Queso Region", "items": ["Updated various styles"] },
+    {
+      "title": "Location HUDs - Table of Contents",
+      "items": [
+        "Added writing simulator. This will simulate multiple writing sessions and show the results",
+        "Updated various styles"
+      ]
+    },
+    { "title": "Location HUDs - Toxic Spill", "items": ["Updated various styles"] },
     {
       "title": "Location HUDs - Whisker Woods Rift",
       "items": [
@@ -189,12 +195,11 @@
       ]
     },
     {
-      "title": "Location HUDs - Table of Contents",
-      "items": [
-        "Added writing simulator. This will simulate multiple writing sessions and show the results",
-        "Updated various styles"
-      ]
+      "title": "Lucky Golden Shield Duration & Reminder",
+      "items": ["Removed 'Show exact time, including seconds' setting", "Fixed display alignment"]
     },
+    { "title": "Native Dark Mode", "items": ["Updated styles"] },
+    { "title": "Ultimate Checkmark", "items": ["Updated item lists"] },
     {
       "title": "Other",
       "items": [

@@ -140,6 +140,7 @@
 
 .mh-ui-assignment-wiki-button {
   grid-column: span 2;
+  text-align: center;
 }
 
 .mh-ui-assignment-price-value {
@@ -199,4 +200,8 @@ ul.mh-ui-assignment-details-task-list {
 
 .mh-ui-assignment-details-task-title {
   margin: 3px 0;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup #jsDialogAjaxPrefix {
+  border: none;
 }

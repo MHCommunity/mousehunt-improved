@@ -1,23 +1,5 @@
-.mh-improved-has-update .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu::before {
-  position: absolute;
-  top: -12px;
-  right: 4px;
-  z-index: 2;
-  width: 36px;
-  height: 25px;
-  content: "";
-  background-image: url(https://www.mousehuntgame.com/images/ui/events/halloween_boiling_cauldron/book/new.png);
-  filter: drop-shadow(-1px 0 5px #fff) hue-rotate(200deg);
-  background-repeat: no-repeat;
-  background-size: 36px 25px;
-  animation: dirigibleFloat ease-in-out 0.4s 3;
-  animation-delay: 2s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mh-improved-has-update .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu::before {
-    animation: none;
-  }
+#overlayPopup.mh-improved-update-summary {
+  margin-top: 30px;
 }
 
 #overlayPopup.mh-improved-update-summary .jsDialog.top,
@@ -113,11 +95,8 @@
 
 .mh-improved-update-summary-buttons {
   display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 10px;
-  justify-content: flex-end;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .mh-improved-update-summary-links ul {
@@ -132,4 +111,28 @@
 .mh-improved-update-summary-content p,
 p.mh-improved-update-summary-content {
   font-size: 12px;
+}
+
+.mh-improved-update-summary-lists {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 10px;
+  justify-items: stretch;
+  max-height: 55vh;
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow: auto;
+  background:
+    linear-gradient(#e9d5a2 30%, rgb(0 0 0 / 0%)) center top,
+    linear-gradient(rgb(0 0 0 / 0%), #e9d5a2 70%) center bottom,
+    radial-gradient(farthest-side at 50% 0, rgb(0 0 0 / 40%), rgb(0 0 0 / 0%)) center top,
+    radial-gradient(farthest-side at 50% 100%, rgb(0 0 0 / 40%), rgb(0 0 0 / 0%)) center bottom;
+  background-repeat: no-repeat;
+  background-attachment: local, local, scroll, scroll;
+  background-size:
+    100% 50px,
+    100% 50px,
+    100% 15px,
+    100% 15px;
+  border: 1px solid #b07842;
 }

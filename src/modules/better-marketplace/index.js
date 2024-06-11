@@ -194,7 +194,7 @@ const autocloseClaim = (resp) => {
  */
 const getLinkMarkup = (name, id) => {
   return makeLink('MHCT', `https://www.mhct.win/loot.php?item=${id}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
 };
 
 /**

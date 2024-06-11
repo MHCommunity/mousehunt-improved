@@ -9,7 +9,8 @@ import {
   onEvent,
   onNavigation,
   onOverlayChange,
-  onRequest
+  onRequest,
+  saveSetting
 } from '@utils';
 
 import recipes from './modules/recipes';
@@ -180,7 +181,7 @@ const resortInventory = () => {
 
   lists.forEach((list) => {
     const items = list.querySelectorAll('.inventoryPage-item');
-    sortInventoryItemsByName(items);
+    sortedItems = sortInventoryItemsByName(items);
 
     sortedItems.forEach((item) => {
       // While we're here, update the name so its not truncated.

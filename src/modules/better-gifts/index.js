@@ -4,6 +4,7 @@ import {
   makeElement,
   onDeactivation,
   onDialogShow,
+  onRender,
   onRequest,
   replaceInTemplate
 } from '@utils';
@@ -169,16 +170,14 @@ const makeReturnButton = (buttonContainer, isTiny = false) => {
  * Fix typos in the gift selector.
  */
 const fixTypo = () => {
-  replaceInTemplate('ViewGiftSelector', [
-    [
-      'You can send 1 free gifts',
-      'You can send 1 free gift'
-    ],
-    [
-      '<b>1</b> free gifts',
-      '<b>1</b> free gift'
-    ],
-  ]);
+  onRender({
+    group: 'GiftSelectorView',
+    callback: (data, results) => {
+      return results
+        .replaceAll('You can send 1 free gifts', 'You can send 1 free gift')
+        .replaceAll('<b>1</b> free gifts', '<b>1</b> free gift');
+    }
+  });
 };
 
 /**

@@ -1,4 +1,5 @@
 import { getData, getSetting, saveSetting } from '@utils';
+import { moveSetting } from '../utils';
 
 const migrateInventoryLockAndHide = async () => {
   const items = await getData('items');
@@ -48,7 +49,7 @@ const migrateExperimentsToBeta = async () => {
 
   settings.forEach((setting) => {
     if (getSetting(setting.from, false)) {
-      saveSetting(setting.to, true);
+      moveSetting(setting.from, setting.to);
     }
   });
 };

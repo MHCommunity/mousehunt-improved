@@ -95,7 +95,7 @@
   grid-template-columns: 1fr 1fr 50px;
   gap: 10px;
   place-items: center stretch;
-  width: 100%;
+  width: auto;
   padding: 5px;
   margin: 5px 0;
   font-size: 12px;
@@ -362,4 +362,8 @@ ul.minluck-list {
 
 .mouseListView-category-name {
   padding-left: 20px;
+}
+
+#overlayPopup.mouseViewPopup #jsDialogClose {
+  right: 6px;
 }

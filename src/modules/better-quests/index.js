@@ -230,6 +230,12 @@ const updateAssignmentList = async () => {
       }
     }
 
+    questLink.removeAttribute('onclick');
+    const actionButton = questLink.querySelector('.actions .mousehuntActionButton');
+    if (actionButton) {
+      actionButton.setAttribute('onclick', `hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm('${type}'); return false;`);
+    }
+
     const content = questLink.querySelector('.content');
     if (! content) {
       return;
@@ -281,10 +287,10 @@ const updateAssignmentList = async () => {
       content.replaceWith(m400Wrapper);
     }
 
-    const assigmentDetails = makeElement('details', 'mh-ui-assignment-details');
-    makeElement('summary', 'mh-ui-assignment-details-summary', 'Assignment Details', assigmentDetails);
-
     if (assignment.assignments) {
+      const assigmentDetails = makeElement('details', 'mh-ui-assignment-details');
+      makeElement('summary', 'mh-ui-assignment-details-summary', 'Assignment Details', assigmentDetails);
+
       for (const singleAssignment of assignment.assignments) {
         const assignmentWrapper = makeElement('div', 'mh-ui-assignment-details-wrapper');
         makeElement('h4', 'mh-ui-assignment-details-title', singleAssignment.name, assignmentWrapper);
@@ -297,8 +303,12 @@ const updateAssignmentList = async () => {
 
           // Tasks.
           const taskList = makeElement('ul', 'mh-ui-assignment-details-task-list');
-          for (const taskItem of task.text) {
-            makeElement('li', 'mh-ui-assignment-details-task-item', taskItem, taskList);
+          if (Array.isArray(task.text)) {
+            for (const taskItem of task.text) {
+              makeElement('li', 'mh-ui-assignment-details-task-item', taskItem, taskList);
+            }
+          } else {
+            makeElement('li', 'mh-ui-assignment-details-task-item', task.text, taskList);
           }
 
           taskEl.append(taskList);
@@ -307,9 +317,23 @@ const updateAssignmentList = async () => {
 
         assigmentDetails.append(assignmentWrapper);
       }
+
+      content.append(assigmentDetails);
     }
 
-    content.append(assigmentDetails);
+    if (assignment.rewards) {
+      const rewardsWrapper = makeElement('details', 'mh-ui-assignment-details-wrapper');
+      makeElement('summary', 'mh-ui-assignment-details-summary', 'Rewards', rewardsWrapper);
+
+      const rewardsList = makeElement('ul', 'mh-ui-assignment-details-task-list');
+      for (const singleReward of assignment.rewards) {
+        makeElement('li', 'mh-ui-assignment-details-task-item', singleReward, rewardsList);
+      }
+
+      rewardsWrapper.append(rewardsList);
+
+      content.append(rewardsWrapper);
+    }
   });
 
   // Add our wisdom tomes to the sidebar too.

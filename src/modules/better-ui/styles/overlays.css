@@ -239,7 +239,8 @@ span.kingsGiveawayCalibratorPopup-upgrade-action-cost {
 
 .kingsGiveawayCalibratorPopup-upgrade-name span {
   display: inline-block;
-  font-size: 12px;
+  margin: 0 1px;
+  font-size: 10px;
 }
 
 .upgrade_gifts .kingsGiveawayCalibratorPopup-upgrade-description {

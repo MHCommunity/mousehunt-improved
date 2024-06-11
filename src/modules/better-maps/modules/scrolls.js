@@ -87,6 +87,11 @@ const maybeLockAndHide = (scroll, action, scrollType) => {
   if (locked) {
     scroll.classList.add('locked');
     action.classList.add('disabled');
+
+    const actionButton = action.querySelector('.mousehuntActionButton');
+    if (actionButton) {
+      actionButton.classList.add('disabled');
+    }
   }
 
   if (hidden) {

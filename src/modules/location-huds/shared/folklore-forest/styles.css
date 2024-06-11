@@ -278,3 +278,7 @@ a.folkloreForestRegionView-travelButton:hover {
 .folkloreForestRegionView-dialog-blockContainer.travel .folkloreForestRegionView-dialog-block-description {
   border-top: 1px solid #143708;
 }
+
+.folkloreForestRegionView-dialog-recipeResult-content {
+  max-height: 110px;
+}

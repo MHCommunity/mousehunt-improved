@@ -26,8 +26,7 @@ const getLinkMarkup = (name, mouseType) => {
   const nameMouse = `${name}_Mouse`.replaceAll('_Mouse_Mouse', '_Mouse');
 
   return makeLink('MHCT AR', `https://api.mouse.rip/mhct-redirect/${mouseType}`) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${nameMouse}`) +
-    makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${nameMouse}`);
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(nameMouse.replaceAll(' ', '_'))}`, true);
 };
 
 /**
@@ -39,9 +38,8 @@ const getLinkMarkup = (name, mouseType) => {
  */
 const getItemLinkMarkup = (name) => {
   name = name.replace(' ', '_');
-  return makeLink('MHCT DR', `https://www.mhct.win/loot.php?item=${name}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`) +
-    makeLink('mhdb', `https://dbgames.info/mousehunt/mice/${name}`);
+  return makeLink('MHCT DR', `hhttps://api.mouse.rip/mhct-redirect-item/${name}`, true) +
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
 };
 
 /**

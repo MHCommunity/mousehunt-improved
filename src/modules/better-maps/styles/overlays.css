@@ -1,0 +1,15 @@
+#overlayPopup.treasureMapPopup .jsDialog.top {
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogWideTop.png);
+}
+
+#overlayPopup.treasureMapPopup .jsDialog.background {
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogWideContent.png);
+}
+
+#overlayPopup.treasureMapPopup .jsDialog.bottom {
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogWideBottom.png);
+}
+
+.treasureMapDialogView {
+  left: 49%;
+}

@@ -29,7 +29,7 @@
   grid-template-columns: 1fr 1fr 50px;
   gap: 10px;
   place-items: center stretch;
-  width: 100%;
+  width: auto;
   padding: 5px;
   margin: 5px 0;
   font-size: 12px;
@@ -148,6 +148,7 @@
 }
 
 #overlayPopup.itemViewPopup #jsDialogClose {
+  right: 6px;
   z-index: 1;
   border-top-right-radius: 10px;
 }

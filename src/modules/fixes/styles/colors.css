@@ -63,3 +63,7 @@
 .eggSweeper-viewAllRewardsButton:hover {
   background-color: #228b22; /* was 'forest' */
 }
+
+.schoolOfSorceryHallwayView__startCourse.schoolOfSorceryHallwayView__startCourse {
+  text-shadow: 1px 2px 2px #000aad; /* was #000ad */
+}
