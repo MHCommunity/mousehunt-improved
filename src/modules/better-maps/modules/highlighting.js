@@ -118,6 +118,38 @@ const areaHighlightingFloatingIslands = () => {
   return true;
 };
 
+const areaHighlightingSchoolOfSorcery = () => {
+  if ('school_of_sorcery' !== getCurrentLocation()) {
+    return false;
+  }
+
+  if (! user?.quests?.QuestSchoolOfSorcery?.in_course) {
+    return false;
+  }
+
+  const powerType = user?.quests?.QuestSchoolOfSorcery?.current_course?.power_type || '';
+  const bait = user.bait_item_id || 0;
+
+  const baitIds = {
+    114: 'sb',
+    3703: 'aac',
+    3704: 'mmc',
+  };
+
+  if (! powerType || ! baitIds[bait]) {
+    return false;
+  }
+
+  const floorCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-sos-${powerType}-${baitIds[bait]}`);
+  if (! floorCategory) {
+    return false;
+  }
+
+  floorCategory.classList.add('mouse-category-current-floor');
+
+  return true;
+};
+
 /**
  * Get the user's profile picture.
  *
@@ -177,6 +209,9 @@ export default () => {
     break;
   case 'valour_rift':
     added = areaHighlightingVrift();
+    break;
+  case 'school_of_sorcery':
+    added = areaHighlightingSchoolOfSorcery();
     break;
   default:
     break;

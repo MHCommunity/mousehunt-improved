@@ -236,7 +236,7 @@ const makeSortedMiceList = async () => {
     const categoryHeader = makeElement('div', 'mouse-category-header');
 
     if (category.color) {
-      categoryWrapper.style.backgroundColor = category.color;
+      categoryWrapper.style.background = category.color;
     }
 
     // Icon, title, and subtitle wrapper.

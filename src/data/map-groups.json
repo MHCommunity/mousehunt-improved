@@ -2390,9 +2390,9 @@
     "categories": [
       {
         "name": "Arcane SB",
-        "id": "sos-arcane",
+        "id": "sos-arcane-sb",
         "icon": "/powertypes/arcane.png",
-        "color": "#b4ffff",
+        "color": "#16dfad",
         "mice": [
           "perpetual_detention",
           "broomstick_bungler",
@@ -2405,9 +2405,9 @@
       },
       {
         "name": "Arcane AAC",
-        "id": "sos-arcane",
-        "icon": "/powertypes/arcane.png",
-        "color": "#b4ffff",
+        "id": "sos-arcane-aac",
+        "icon": "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png",
+        "color": "#16dfad",
         "mice": [
           "arcana_overachiever",
           "invisible_fashionista",
@@ -2420,9 +2420,9 @@
       },
       {
         "name": "Arcane MMC",
-        "id": "sos-arcane",
-        "icon": "/powertypes/arcane.png",
-        "color": "#b4ffff",
+        "id": "sos-arcane-mmc",
+        "icon": "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png",
+        "color": "#16dfad",
         "mice": [
           "illustrious_illusionist",
           "featherlight",
@@ -2435,9 +2435,9 @@
       },
       {
         "name": "Shadow SB",
-        "id": "sos-shadow",
+        "id": "sos-shadow-sb",
         "icon": "/powertypes/shadow.png",
-        "color": "#b4ffff",
+        "color": "#c7abde",
         "mice": [
           "mixing_mishap",
           "uncoordinated_cauldron_carrier",
@@ -2450,9 +2450,9 @@
       },
       {
         "name": "Shadow AAC",
-        "id": "sos-shadow",
-        "icon": "/powertypes/shadow.png",
-        "color": "#b4ffff",
+        "id": "sos-shadow-aac",
+        "icon": "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png",
+        "color": "#c7abde",
         "mice": [
           "classroom_keener",
           "audacious_alchemist",
@@ -2465,9 +2465,9 @@
       },
       {
         "name": "Shadow MMC",
-        "id": "sos-shadow",
-        "icon": "/powertypes/shadow.png",
-        "color": "#b4ffff",
+        "id": "sos-shadow-mmc",
+        "icon": "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png",
+        "color": "#c7abde",
         "mice": [
           "classroom_disrupter",
           "teleporting_truant",
@@ -2481,7 +2481,8 @@
       {
         "name": "Boss",
         "id": "sos-boss",
-        "color": "#b4ffff",
+        "icon": "/ui/hud/school_of_sorcery/exam_icon.png",
+        "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
         "mice": [
           "arcane_sorcerer",
           "shadow_sorcerer",
