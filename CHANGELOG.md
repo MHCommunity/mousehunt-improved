@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.45.3
+
+- Added Medium Slayer to Ultimate Checkmark
+
 ## Version 0.45.2
 
 - Fixed issue with Better Inventory experimental setting defaulting to enabled

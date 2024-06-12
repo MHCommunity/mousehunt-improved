@@ -102,5 +102,5 @@
 
 .mh-dark .mh-ui-assignment-details-task-title,
 .mh-dark .mh-ui-assignment-details-title {
-    color: var(--d-text-muted)
+  color: var(--d-text-muted);
 }

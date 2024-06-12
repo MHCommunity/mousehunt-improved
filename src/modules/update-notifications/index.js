@@ -27,7 +27,8 @@ const makeDetailsList = (modules) => {
 /**
  * Show the update summary popup.
  *
- * @param {string} from The version we're updating from.
+ * @param {string}  from  The version we're updating from.
+ * @param {boolean} force Whether to force the popup to show.
  */
 const showUpdateSummary = async (from, force = false) => {
   if (! force && (('0.45.0' === from || '0.45.1' === from || '0.45.2' === from))) {
