@@ -68,22 +68,6 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
    * Override the open method on the XMLHttpRequest prototype.
    */
   XMLHttpRequest.prototype.open = function () {
-    const send = XMLHttpRequest.prototype.send;
-
-    /**
-     * Override the send method on the XMLHttpRequest prototype.
-     *
-     * @param {string} data The data to send.
-     *
-     * @return {Object} The response.
-     */
-    XMLHttpRequest.prototype.send = function (data) {
-      const params = new URLSearchParams(data);
-      this._data = Object.fromEntries(params);
-
-      return Reflect.apply(send, this, arguments);
-    };
-
     this.addEventListener('load', function () {
       if (this.responseText) {
         let response = {};
@@ -106,6 +90,21 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
     });
 
     Reflect.apply(req, this, arguments);
+  };
+
+  const send = XMLHttpRequest.prototype.send;
+  /**
+   * Override the send method on the XMLHttpRequest prototype.
+   *
+   * @param {string} data The data to send.
+   *
+   * @return {Object} The response.
+   */
+  XMLHttpRequest.prototype.send = function (data) {
+    const params = new URLSearchParams(data);
+    this._data = Object.fromEntries(params);
+
+    return Reflect.apply(send, this, arguments);
   };
 
   onRequestHolder = true;
