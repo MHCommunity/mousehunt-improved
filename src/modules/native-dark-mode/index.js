@@ -1,4 +1,4 @@
-import { addBodyClass, addStyles } from '@utils';
+import { addBodyClass, addExternalStyles, addStyles } from '@utils';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
@@ -8,6 +8,7 @@ const styles = imported;
  */
 const init = async () => {
   addStyles(styles, 'native-dark-mode');
+  addExternalStyles('https://static.mouse.rip/dark-mode-mice-images.css');
 
   addBodyClass('mh-dark');
 };

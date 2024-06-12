@@ -6,6 +6,7 @@
   margin-left: 0;
 }
 
+.mh-dark .itemPurchaseView-container.donation .itemPurchaseView-action-container,
 .mh-dark .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container,
 .mh-dark .itemPurchaseView-container:hover .itemPurchaseView-margin,
 .mh-dark .itemPurchaseView-container:hover .itemPurchaseView-image-container,
@@ -78,4 +79,8 @@
 .mh-dark .shopsPage-otherEnvironment {
   background-color: var(--d-bg);
   border-color: var(--d-border);
+}
+
+.mh-dark .itemPurchaseView-action-marketplace a {
+  color: var(--d-link);
 }

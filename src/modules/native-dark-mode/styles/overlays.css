@@ -9,7 +9,7 @@
 }
 
 .mh-dark #overlayBg {
-  background: var(--d-transparent-30);
+  background: var(--d-transparent-70);
 }
 
 .mh-dark #overlayPopup .jsDialog.bottom {
@@ -81,4 +81,26 @@
 .mh-dark #overlayPopup.floatingIslandsDialog .jsDialogContainer .content {
   color: var(--d-text-dark);
   background-color: transparent;
+}
+
+.mh-dark .itemView-loading {
+  background: none;
+  box-shadow: none;
+}
+
+.mh-dark .mh-ui-assignment-meta-wrapper {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-ui-assignment-wiki-button {
+  color: var(--d-link);
+}
+
+.mh-dark .mh-ui-assignment-details-summary {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-ui-assignment-details-task-title,
+.mh-dark .mh-ui-assignment-details-title {
+    color: var(--d-text-muted)
 }

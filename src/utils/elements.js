@@ -80,7 +80,7 @@ const makeMhButton = (opts) => {
   button.title = opts.title || text;
 
   button.addEventListener('click', () => {
-    callback();
+    callback(button);
   });
 
   if (appendTo) {

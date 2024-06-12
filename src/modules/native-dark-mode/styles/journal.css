@@ -14,6 +14,7 @@
   color: var(--d-text) !important;
   background-color: var(--d);
   background-blend-mode: soft-light;
+  border-color: var(--d-border);
 }
 
 .mh-dark .journal .content .entry.catchsuccessloot {
@@ -40,33 +41,46 @@
 .mh-dark .journal .content .supplytransfergold,
 .mh-dark .journal .content .marketplacesale,
 .mh-dark .entry.short.supplytransfergold {
+  background-color: var(--d-purple-dark);
   background-image: url(https://i.mouse.rip/gold-journal.png);
   background-blend-mode: normal;
 }
 
+.mh-dark .journal .content .entry.marketplace.marketplace_create_listing,
+.mh-dark .journal .content .entry.marketplace.marketplace_complete_listing,
+.mh-dark .journal .content .entry.marketplace.marketplace_claim_listing,
+.mh-dark .journal .content .entry.marketplace.marketplace_cancel_listing {
+  background-color: var(--d-purple-dark);
+  background-blend-mode: normal;
+}
+
 .mh-dark .entry.short.travel {
+  background-color: var(--d-yellow-dark);
   background-image: url(https://i.mouse.rip/travel-journal.png);
   background-blend-mode: normal;
 }
 
-.journal .content .attractionfailurestale {
+.mh-dark .journal .content .attractionfailurestale {
   background-image: url(https://i.mouse.rip/stale.png);
   background-blend-mode: normal;
 }
 
-.journal .content .captchasolved {
+.mh-dark .journal .content .captchasolved {
+  background-color: var(--d-blue-dark);
   background-image: url(https://i.mouse.rip/journal_puzzle_reward.png);
   background-blend-mode: normal;
 }
 
-.journal .content .attractionfailure,
-.journal .content .outofsuperbrie,
-.journal .content .catchfailure {
+.mh-dark .journal .content .attractionfailure,
+.mh-dark .journal .content .outofsuperbrie,
+.mh-dark .journal .content .catchfailure {
+  background-color: var(--d-red-dark);
   background-image: url(https://i.mouse.rip/steal.png);
   background-blend-mode: normal;
 }
 
-.journal .content .catchfailuredamage {
+.mh-dark .journal .content .catchfailuredamage {
+  background-color: var(--d-red-dark);
   background-image: url(https://i.mouse.rip/pillage.png);
   background-blend-mode: normal;
 }
@@ -97,4 +111,32 @@
 .mh-dark .pagerView-section.previous.active .pagerView-link,
 .mh-dark .pagerView-section.next.active .pagerView-link {
   color: var(--d-text-muted);
+}
+
+.journal-history-page-selector {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  border-top: none;
+}
+
+.journal-history-page-selector label {
+  color: var(--d-text-muted);
+}
+
+.journal-history-page-selector button {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .journal .content .entry.custom.refine_pollutinum {
+  background-color: var(--d-green-dark);
+}
+
+.mh-dark .journal .content .entry.relicHunter_slayer_aura_relic_bonus {
+  background-color: var(--d);
+  background-blend-mode: difference;
+}
+
+.mh-dark .journal .entry.socialGift.socialGift-send .journalbody .journaltext {
+  box-shadow: inset 0 -20px 15px -16px #151515;
 }

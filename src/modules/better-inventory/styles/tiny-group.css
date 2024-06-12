@@ -24,7 +24,8 @@
   border-radius: 5px;
 }
 
-.tiny-item:hover {
+.tiny-item:hover,
+.tiny-item:nth-child(even):hover {
   background-color: #d8f0ff;
   border-radius: 5px;
 }
@@ -36,9 +37,11 @@
 }
 
 .tiny-item-action {
+  position: relative;
   display: none;
   gap: 5px;
   justify-self: center;
+  margin-bottom: 0;
 }
 
 .tiny-item:hover .tiny-item-action {
@@ -47,6 +50,11 @@
 
 .mousehuntActionButton.tiny.tiny-item-view {
   padding: 1px 5px;
+  margin-bottom: 0;
+}
+
+.inventoryPage-item .mousehuntActionButton.tiny.tiny-item-view {
+  margin: 0 !important;
 }
 
 .all-group .inventoryPage-tagContent-tagTitle::after {
@@ -62,4 +70,14 @@
 
 .all-group.toggled .inventoryPage-tagContent-tagTitle::after {
   transform: rotate(-180deg);
+}
+
+.tiny-item-action.busy::after {
+  position: absolute;
+  inset: 0;
+  display: block;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif) center no-repeat;
+  background-color: rgb(255 255 255 / 50%);
+  border-radius: 4px;
 }

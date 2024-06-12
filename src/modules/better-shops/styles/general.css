@@ -635,3 +635,7 @@ a.itemPurchaseView-action-buySuperBrie {
   color: #3b3b3b;
   content: "(Limit " attr(data-max-inventory-quantity) ")";
 }
+
+.itemPurchaseView-action-buySuperBrie {
+  border-radius: 7px;
+}

@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.45.2
+
+- Fixed issue with Better Inventory experimental setting defaulting to enabled
+- Added Native Dark Mode styles
+- Fixed external styles loading
+- Miscellaneous update fixes
+
 ## Version 0.45.1
 
 - Fixed issue with settings not updating during migration
@@ -16,7 +23,7 @@
 - Moved Shield Goes to Camp from experiments to main feature
 - Moved Unique Loot Count from experiments to main feature
 - Added 'Emotes in Corkboard' experimental feature
-- Added 'Location HUDs - Prologue Pond: Normal boat color' experimental feature
+- Added 'Location HUDs - Prologue Pond: Normalq  boat color' experimental feature
 
 ### Better Gifts
 

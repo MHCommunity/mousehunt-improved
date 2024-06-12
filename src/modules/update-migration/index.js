@@ -87,7 +87,7 @@ const update = async () => {
       activejsDialog.hide();
     }
 
-    doEvent('mh-improved-updated', mhImprovedVersion);
+    doEvent('mh-improved-updated', previousVersion);
   } catch (error) {
     // If something goes wrong, restore the settings from the backup
     restoreSettingsBackup();

@@ -103,6 +103,22 @@ const updateItemView = async () => {
     description.after(obtainHint);
   }
 
+  if (itemView.classList.contains('base') || itemView.classList.contains('weapon') || itemView.classList.contains('skin')) {
+    // Replace the image with the full size image.
+    const thumbnailContainer = itemView.querySelector('.itemView-thumbnailContainer');
+    if (thumbnailContainer) {
+      const thumbnail = thumbnailContainer.querySelector('.itemView-thumbnail');
+      const fullSize = thumbnailContainer.querySelector('a');
+      if (thumbnail && fullSize && fullSize.getAttribute('data-image')) {
+        thumbnail.style.backgroundImage = `url(${fullSize.getAttribute('data-image')})`;
+        thumbnail.style.backgroundSize = 'contain';
+        if (itemView.classList.contains('base')) {
+          thumbnail.style.backgroundPositionY = '-100px';
+        }
+      }
+    }
+  }
+
   addLinks(itemId);
 
   if (! getSetting('better-item-view.show-drop-rates', true)) {

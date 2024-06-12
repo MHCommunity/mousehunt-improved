@@ -77,6 +77,7 @@
 .mousehuntHud-userStat .miceWarning {
   top: -1px;
   left: 11px;
+  z-index: 0;
   width: 21px;
   height: 21px;
   background: url(https://i.mouse.rip/map-marker.png) 0 -26px no-repeat;
@@ -98,4 +99,8 @@
 
 .mousehuntHeaderView .menuItem.dropdown.last .arrow {
   pointer-events: none;
+}
+
+.mousehuntHud-titleProgressBar {
+  height: 13px;
 }

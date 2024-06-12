@@ -251,6 +251,10 @@ a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryCont
   transform: scale(0.95);
 }
 
+.mouseViewPopup .showLargeImage .mouseView-image:hover {
+  transform: scale(1);
+}
+
 .mouseViewPopup .mouseView-image {
   margin-bottom: 10px;
   transition: 0.2s ease-in;

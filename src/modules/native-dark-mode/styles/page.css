@@ -10,9 +10,3 @@
   background: var(--d);
   box-shadow: none;
 }
-
-.mh-dark .pageFrameView-column.left,
-.mh-dark .pageFrameView-column.right {
-  background: var(--d-bg);
-  border-color: var(--d);
-}

@@ -222,7 +222,7 @@
 
 .mh-dark .treasureMapInventoryView-itemList .treasureMapInventoryView-scrollCase {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d);
 }
 
 .mh-dark .treasureMapView-block.noBorder {

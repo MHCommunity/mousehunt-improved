@@ -8,6 +8,7 @@ import {
   getCurrentPage,
   getData,
   makeElement,
+  makeMhButton,
   onNavigation,
   onRequest
 } from '@utils';
@@ -229,9 +230,6 @@ const addPageSelector = () => {
     pageInput.min = 1;
     pageInput.max = totalPages;
 
-    const pageSubmit = makeElement('button', 'page-submit', 'Go');
-    pageSubmit.type = 'submit';
-
     /**
      * Show the selected page.
      */
@@ -247,11 +245,18 @@ const addPageSelector = () => {
       }, 500);
     };
 
-    pageSubmit.addEventListener('click', showPage);
     pageInput.addEventListener('keydown', (evt) => {
       if (13 === evt.key) {
         showPage();
       }
+    });
+
+    const pageSubmit = makeMhButton({
+      text: 'Go',
+      size: 'tiny',
+      className: 'page-submit',
+      callback: showPage,
+      appendTo: pageSelector,
     });
 
     pageSelector.append(pageInput, pageSubmit);

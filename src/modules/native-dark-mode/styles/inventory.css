@@ -12,8 +12,13 @@
 }
 
 .mh-dark a.inventoryPage-tagDirectory-tag {
+  color: var(--d-text);
   background-color: var(--d-bg);
   border-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-item-name abbr {
+  color: var(--d-text);
 }
 
 .mh-dark .inventoryPage-tagDirectory {
@@ -162,4 +167,13 @@
 
 .mh-dark .inventoryPage-item-content-description-consumedItem.error {
   color: var(--d-red-dark);
+}
+
+.mh-dark .tiny-item:nth-child(even) {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .tiny-item:hover,
+.mh-dark .tiny-item:nth-child(even):hover {
+  background-color: var(--d-bg-alt);
 }

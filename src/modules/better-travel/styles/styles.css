@@ -15,7 +15,8 @@
   width: 78%;
 }
 
-.travelPage-regionMenu-environmentLink.active {
+.travelPage-regionMenu-environmentLink.active,
+.travelPage-regionMenu-environmentLink.current {
   color: #000;
   background: #a4cafc;
 }
@@ -132,7 +133,8 @@
   overflow: visible !important;
 }
 
-#mh-simple-travel-page .travelPage-regionMenu-environmentLink.active {
+#mh-simple-travel-page .travelPage-regionMenu-environmentLink.active,
+#mh-simple-travel-page .travelPage-regionMenu-environmentLink.current {
   color: #4e6081;
 }
 
@@ -181,12 +183,14 @@
   height: 22px;
 }
 
-#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight {
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight,
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.current.highlight {
   margin-right: -3px;
   border-right: 1px solid #4c71b4;
 }
 
-#mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.active.highlight {
+#mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.active.highlight,
+#mh-simple-travel-page .travelPage-alpha-wrapper .travelPage-regionMenu-environmentLink.current.highlight {
   margin-right: 0;
   border-right: none;
   border-radius: 3px;
@@ -263,11 +267,13 @@
 }
 
 #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location,
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.current.highlight.event-location,
 #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location {
   color: #c01dff;
 }
 
 #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location::after,
+#mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.current.highlight.event-location::after,
 #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location::after {
   position: absolute;
   top: 1px;

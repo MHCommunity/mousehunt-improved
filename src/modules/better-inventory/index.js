@@ -245,7 +245,6 @@ const resortInventoryAddAllGroup = () => {
   const sortedItems = sortInventoryItemsByName(items);
   for (const item of sortedItems) {
     const newItem = makeElement('div', 'tiny-item');
-    newItem.addEventListener('click', () => hg.views.ItemView.show(itemType));
 
     const classification = item.getAttribute('data-item-classification');
     newItem.setAttribute('data-item-classification', classification);
@@ -260,7 +259,9 @@ const resortInventoryAddAllGroup = () => {
       newItem.append(newImg);
     }
 
-    makeElement('div', 'tiny-item-name', item.getAttribute('data-name'), newItem);
+    const name = makeElement('div', 'tiny-item-name', item.getAttribute('data-name'));
+    name.addEventListener('click', () => hg.views.ItemView.show(itemType));
+    newItem.append(name);
 
     if ('weapon' === classification || 'base' === classification) {
       const hasStats = item.querySelector('.itemViewStatBlock-stat');
@@ -288,31 +289,6 @@ const resortInventoryAddAllGroup = () => {
 
     const actionContainer = makeElement('div', 'tiny-item-action');
 
-    const callbacks = {
-      // Todo: implement these callbacks.
-      bait: { text: 'Use', callback: () => {} },
-      weapon: { text: 'Arm', callback: () => {} },
-      base: { text: 'Arm', callback: () => {} },
-      trinket: { text: 'Arm', callback: () => {} },
-      potion: { text: 'Brew', callback: () => {} },
-      recipe: { text: 'Craft', callback: () => {} },
-      convertible: { text: 'Open', callback: () => {} },
-    };
-
-    if (callbacks[classification]) {
-      makeMhButton({
-        text: callbacks[classification] ? callbacks[classification].text : 'View',
-        size: 'tiny',
-        className: 'tiny-item-view',
-        appendTo: actionContainer,
-        callback: () => {
-          if (callbacks[classification].callback) {
-            callbacks[classification].callback(itemType);
-          }
-        }
-      });
-    }
-
     makeMhButton({
       text: 'View',
       size: 'tiny',
@@ -332,7 +308,7 @@ const resortInventoryAddAllGroup = () => {
 };
 
 const runResortInventory = () => {
-  const func = getSetting('better-inventory.show-all-group', true) ? resortInventoryAddAllGroup : resortInventory;
+  const func = getSetting('better-inventory.show-all-group', false) ? resortInventoryAddAllGroup : resortInventory;
   setTimeout(func, 250);
 };
 

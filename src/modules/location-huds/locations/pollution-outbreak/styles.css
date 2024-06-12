@@ -180,6 +180,7 @@
 }
 
 .pollutionOutbreakHUD-refineQuantityContainer {
+  margin-top: -1px;
   font-weight: 900;
 }
 

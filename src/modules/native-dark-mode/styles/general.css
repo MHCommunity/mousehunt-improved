@@ -70,3 +70,30 @@ body.mh-dark {
 .mh-dark #mhhh_flash_message_div {
   color: var(--d-text-dark);
 }
+
+.mh-dark .notificationMessageList .message .clear-block {
+  color: var(--d-text-dark);
+}
+
+.mh-dark code {
+  background-color: var(--d-alt);
+}
+
+.mh-dark #overlayPopup.mh-improved-update-summary .jsDialogContainer .content {
+  color: #000;
+  background-color: transparent;
+}
+
+.mh-dark #overlayPopup.mh-improved-update-summary .jsDialog.bottom {
+  background-color: transparent;
+}
+
+.mh-dark #overlayPopup.mh-improved-update-summary .jsDialogContainer .content h2 {
+  color: #000;
+}
+
+.mh-dark #overlayPopup.loading.mh-improved-loading .jsDialogContainer .suffix {
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);
+  background-position: 98% 10px;
+  background-size: 110px;
+}

@@ -1074,3 +1074,11 @@ input.treasureMapView-block-search-text {
 #overlayPopup.treasureMapPopup #jsDialogClose {
   z-index: 12;
 }
+
+.treasureMapTooltipView.active::after {
+  bottom: -19px;
+}
+
+.treasureMapTooltipView.active::before {
+  bottom: -20px;
+}

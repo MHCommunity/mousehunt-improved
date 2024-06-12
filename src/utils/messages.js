@@ -157,7 +157,7 @@ const showLoadingPopupError = (options) => {
 const showLoadingPopup = (title) => {
   const popup = new jsDialog();
   popup.setTemplate('loading');
-  popup.setAttributes({ className: 'loading' });
+  popup.setAttributes({ className: 'loading mh-improved-loading' });
   popup.show();
 
   const element = document.querySelector('#overlayPopup .jsDialog .title');

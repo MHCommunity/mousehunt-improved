@@ -27,9 +27,13 @@ const makeDetailsList = (modules) => {
 /**
  * Show the update summary popup.
  *
- * @param {boolean} force Whether to force the popup to show.
+ * @param {string} from The version we're updating from.
  */
-const showUpdateSummary = async (force = false) => {
+const showUpdateSummary = async (from, force = false) => {
+  if (! force && (('0.45.0' === from || '0.45.1' === from || '0.45.2' === from))) {
+    return;
+  }
+
   const missingSummaryOrDetails = ! updateSummary.summary.length || ! updateSummary.details.length;
   if (missingSummaryOrDetails && ! force) {
     return;
@@ -80,7 +84,7 @@ const init = async () => {
 
   onEvent('mh-improved-updated', showUpdateSummary);
   onEvent('mh-improved-show-update-summary', () => {
-    showUpdateSummary(true);
+    showUpdateSummary(mhImprovedVersion, true);
   });
 };
 

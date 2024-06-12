@@ -91,7 +91,6 @@ const replacements = [
   ['Aura helped me find', 'Aura found'],
   ['processed  added', 'processed and added'],
   ['I have started a', 'I started a'],
-  ['Loyalty Chest! Inside my chest was', 'Loyalty Chest and received:'],
 
   // Event stuff
   // SEH
@@ -128,7 +127,7 @@ const replacements = [
   ['Lucky me, a prize mouse wandered by and fell for my trap!', 'A prize mouse fell into my trap!'],
   [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
   ['In a flash of light my', 'My'],
-  ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found another '],
+  ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found an extra '],
   ['I opened my harvest bin and retrieved the following yield: <br><br>From ', 'I opened my harvest bin and retrieved the following yield from '],
   ['My Slayer Aura found 1 extra ', 'My Slayer Aura found an extra '],
 ];
