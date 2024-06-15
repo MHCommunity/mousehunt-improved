@@ -306,6 +306,10 @@ const doJournalHistory = async () => {
 
   addPageSelector();
 
+  if (! pager || ! pager.setTotalItems) {
+    return;
+  }
+
   pager.setTotalItems(totalPages * perPage);
   pager.enable();
   pager.render();

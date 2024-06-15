@@ -42,6 +42,11 @@ const makeKingsCrownsTab = () => {
  * Make the King's Crowns tab content.
  */
 const makeKingsCrownsTabContentContent = () => {
+  const existingTabContent = document.querySelector('.mousehuntHud-page-tabContent.kings_crowns');
+  if (existingTabContent) {
+    return;
+  }
+
   const tabContentContainer = document.querySelector('.mousehuntHud-page-tabContentContainer');
   if (! tabContentContainer) {
     return;

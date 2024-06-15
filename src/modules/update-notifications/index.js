@@ -73,7 +73,7 @@ const showUpdateSummary = async (from, force = false) => {
 
   dismiss.addEventListener('click', (e) => {
     e.preventDefault();
-    popup.hide(); // TODO: maybe refresh the page here if the update needs it?
+    popup.hide();
   });
 };
 

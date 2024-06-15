@@ -53,9 +53,6 @@ const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-util
   setTimeout(() => {
     node.parentNode.parentNode.classList.remove('completed');
   }, 1000);
-
-  // TODO: remove this or hook it to the event.
-  addSettingRefreshReminder(key);
 };
 
 /**

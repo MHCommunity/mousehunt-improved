@@ -65,7 +65,7 @@ const getCurrentTab = () => {
     return getCurrentPage();
   }
 
-  return tab ? tab.toLowerCase() : getCurrentPage();
+  return tab ? tab?.toLowerCase() : getCurrentPage();
 };
 
 /**
@@ -79,7 +79,7 @@ const getCurrentSubtab = () => {
     return getCurrentTab();
   }
 
-  return subtab ? subtab.toLowerCase() : getCurrentTab();
+  return subtab ? subtab?.toLowerCase() : getCurrentTab();
 };
 
 /**
