@@ -130,3 +130,11 @@ span.ancientCityHUD-alertLevel {
 .ancientCityHUD-districtName-t .ancientCityHUD-bossName {
   color: #ffe400;
 }
+
+.huntersHornView__message.huntersHornView__message--active.oil-charm-warning .huntersHornMessageView--unknown_error .huntersHornMessageView__content::before {
+  display: none;
+}
+
+.huntersHornView__message.huntersHornView__message--active.oil-charm-warning .huntersHornMessageView--unknown_error {
+  border-image-source: url(https://i.mouse.rip/horn-message-blank-pink.png);
+}
