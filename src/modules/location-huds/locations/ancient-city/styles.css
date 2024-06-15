@@ -23,18 +23,22 @@
 }
 
 .ancientCityHUD-progress {
-  margin-left: 2px;
-  background: #cfc634;
+  margin-left: 1px;
+  background: #e8da17;
+  border-radius: 1px;
 }
 
 span.ancientCityHUD-alertLevel {
   position: absolute;
   bottom: 1px;
-  left: 4px;
+  left: 3px;
   text-shadow: 1px 1px 2px #171717;
 }
 
 .ancientCityHUD-districtName {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   font-size: 13px;
   color: #c6c6c6;
 }
@@ -96,4 +100,33 @@ span.ancientCityHUD-alertLevel {
 
 .ancientCityHUD {
   filter: drop-shadow(0 3px 5px #0a0803);
+}
+
+.ancientCityHUD-bossContainer.active .ancientCityHUD-bossLabel.active,
+.ancientCityHUD-bossContainer.defeated .ancientCityHUD-bossLabel.defeated {
+  top: 20px;
+  left: 46px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.ancientCityHUD-districtName-f .ancientCityHUD-bossName {
+  color: #11f400;
+}
+
+.ancientCityHUD-districtName-h .ancientCityHUD-bossName {
+  color: #21e2ff;
+}
+
+.ancientCityHUD-districtName-s .ancientCityHUD-bossName {
+  color: #e96300;
+}
+
+.ancientCityHUD-districtName-y .ancientCityHUD-bossName {
+  color: #d851ff;
+}
+
+.ancientCityHUD-districtName-t .ancientCityHUD-bossName {
+  color: #ffe400;
 }

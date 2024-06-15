@@ -1,4 +1,4 @@
-import { addHudStyles } from '@utils';
+import { addHudStyles, makeElement } from '@utils';
 
 import styles from './styles.css';
 
@@ -26,9 +26,14 @@ const addBossName = () => {
   }
 
   hudText.setAttribute('data-boss-name', true);
-  const bossText = ` - ${types[type]}`;
-  hudText.textContent = `${hudText.textContent}${bossText}`;
-  hudText.textContent = hudText.textContent.replaceAll(`${bossText}${bossText}`, bossText); // Prevent duplicate text.
+  hudText.classList.add(`ancientCityHUD-districtName-${type}`);
+
+  const existing = document.querySelector('.ancientCityHUD-bossName');
+  if (existing) {
+    existing.remove();
+  }
+
+  makeElement('div', 'ancientCityHUD-bossName', types[type], hudText);
 };
 
 /**
