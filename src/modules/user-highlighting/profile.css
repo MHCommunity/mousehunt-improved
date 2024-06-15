@@ -69,7 +69,9 @@
 
 /* corkboard */
 .mh-improved-fancy-profile .hunterInfoView-wrapper div .pagerView-container,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper div .pagerView-container,
 .mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message,
 .mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message.new {
   background: #f8eff6;
   border-color: #de72ba !important;
@@ -105,10 +107,23 @@
   overflow: hidden;
 }
 
-.mh-improved-fancy-profile .journal .content .entry,
-.mh-improved-fancy-profile .journal .content .entry:last-child {
+.mh-improved-fancy-profile .journal .content .entry {
   background-color: #f0dfee;
   border-color: #de72ba;
+}
+
+.mh-dark .mh-improved-fancy-profile .journal .content .entry {
+  background-color: #f0dfee !important;
+  border-color: #de72ba !important;
+}
+
+.mh-dark .mh-improved-fancy-profile .journal .content .entry .journaldate,
+.mh-dark .mh-improved-fancy-profile .journal .content .entry .journalbody {
+  color: #363636 !important;
+}
+
+.mh-dark .mh-improved-fancy-profile .journal .content .entry .journalbody .journaldate {
+  border-bottom: 1px solid rgb(0 0 0 / 30%);
 }
 
 .mh-improved-fancy-profile .journal .content .entry.short.travel {
@@ -260,6 +275,7 @@
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .mousehuntTabHeader span,
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-header,
 .mh-improved-fancy-profile .hunterInfoView-wrapper .messageBoardView-title,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper .messageBoardView-title,
 .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-header,
 .mh-improved-fancy-profile .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader,
 .mh-improved-fancy-profile .hunterInfoView-achievementsBlock .mousehuntTabHeaderContainer .mousehuntTabHeader.active {

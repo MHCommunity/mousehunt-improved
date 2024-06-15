@@ -222,10 +222,6 @@ a.itemPurchaseView-content-skin-link {
   display: block !important;
 }
 
-.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-goldGost {
-  opacity: 0.4;
-}
-
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity {
   display: block;
   width: auto;
@@ -625,6 +621,14 @@ a.itemPurchaseView-action-buySuperBrie {
 
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details {
   height: auto;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.itemPurchaseView-container.kingsCartItem.expanded .itemPurchaseView-content-details {
+  height: 100%;
+  max-height: unset;
+  overflow-y: visible;
 }
 
 .itemPurchaseView-container[data-max-inventory-quantity="1"]::after {

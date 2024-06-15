@@ -279,3 +279,17 @@ input.itemView-action-convert-quantity {
 .itemViewContainer.skin .itemView-thumbnail {
   background-size: cover;
 }
+
+.inventoryPage-item.trinket .itemViewStatBlock.trinket .itemViewStatBlock-padding {
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.inventoryPage-item.trinket .itemViewStatBlock.trinket {
+  border-top: none;
+}
+
+.inventoryPage-item.trinket .itemViewStatBlock-stat {
+  border-top: 1px solid #ccc;
+  border-bottom: none;
+}

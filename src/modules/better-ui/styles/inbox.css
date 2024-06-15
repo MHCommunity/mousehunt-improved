@@ -259,11 +259,6 @@ div#messengerUINotification {
   background-color: #fdf5bf;
 }
 
-.notificationMessageList .tab[data-tab="news"] .message:hover input[type="button"] {
-  background-color: #fff600;
-  box-shadow: inset 0 0 16px 2px #fffaab;
-}
-
 #messengerUINotification .bumper {
   display: none;
 }

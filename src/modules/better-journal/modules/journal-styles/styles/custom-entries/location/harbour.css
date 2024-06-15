@@ -1,3 +1,11 @@
 .entry.harbour.catch {
   background-color: #d2ba96;
 }
+
+.journal .content .entry.harbour .journaltext b {
+  display: block;
+}
+
+.mh-dark .journal .content .entry.harbour.claimBooty br {
+  display: none;
+}

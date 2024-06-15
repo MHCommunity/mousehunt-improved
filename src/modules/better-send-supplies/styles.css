@@ -288,9 +288,13 @@ span.mhui-supply-sort-label {
 }
 
 #supplytransfer .itemImage .quantity {
-  right: -5px;
-  bottom: -1px;
+  right: 0;
+  bottom: 0;
   background-color: rgb(255 255 255 / 60%);
+}
+
+#supplytransfer .tab .itemImage .quantity {
+  bottom: 10px;
 }
 
 #supplytransfer .listContainer a.element.item.pinned .itemImage .quantity {

@@ -46,13 +46,6 @@
   height: 50px;
 }
 
-.campPage-trap-itemBrowser-armed-item.trinket .campPage-trap-itemBrowser-item-statContainer {
-  position: absolute;
-  top: 20px;
-  left: 60px;
-  display: block;
-}
-
 .campPage-trap-itemBrowser-armed-item-content {
   position: relative;
   height: auto;
