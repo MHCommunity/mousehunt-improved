@@ -10,7 +10,6 @@ import {
 
 import settings from './settings';
 
-import favorites from './modules/favorites';
 import smallImages from './modules/small-images';
 
 import styles from './styles.css';
@@ -179,8 +178,12 @@ const autocloseClaim = (resp) => {
     return;
   }
 
-  if (journalEntry.includes('marketplace_claim_listing') || journalEntry.includes('marketplace_complete_listing')) {
-    setTimeout(() => hg.views.MarketplaceView.hideDialog(), 250);
+  if (
+    journalEntry.includes('marketplace_claim_listing') ||
+    journalEntry.includes('marketplace_complete_listing') ||
+    journalEntry.includes('marketplace_cancel_listing')
+  ) {
+    setTimeout(() => hg.views.MarketplaceView.hideDialog(), 0);
   }
 };
 
@@ -350,8 +353,6 @@ const init = async () => {
   if (getSetting('better-marketplace.small-images')) {
     smallImages();
   }
-
-  favorites();
 
   onOverlayChange({
     marketplace: {

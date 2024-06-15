@@ -25,10 +25,6 @@ const experiments = [
     load: trollMode,
   },
   {
-    id: 'better-inventory.show-all-group',
-    title: 'Better Inventory: Add list of all items to top of inventory pages',
-  },
-  {
     id: 'better-maps.community',
     title: 'Better Maps: Community maps information',
     description: 'Shows last active time on community maps and hides old maps',
