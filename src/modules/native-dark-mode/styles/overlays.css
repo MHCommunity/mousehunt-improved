@@ -3,6 +3,10 @@
   background-color: var(--d-bg);
 }
 
+.mh-dark #overlayPopup .jsDialogContainer {
+  background-color: var(--d-bg);
+}
+
 .mh-dark #overlayPopup .jsDialogContainer .suffix {
   background-color: var(--d-alt);
   border-color: var(--d-border);
@@ -31,11 +35,12 @@
 .mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment {
   background-color: var(--d-bg-alt);
   border-color: var(--d-border);
+  border-radius: 0;
   box-shadow: none;
 }
 
 .mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:hover .greatWinterHuntGolemDestinationView__environmentName,
-.mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:focus .greatWinterHuntGolemDestinationView__environmentName {
+.mh-dark .mh-improved-travel-window .greatWinterHuntGolemDestinationView__environment:focus .greatWinterHuntGolemDestinationView__environmentName {
   background-color: var(--d-action);
 }
 
@@ -103,4 +108,24 @@
 .mh-dark .mh-ui-assignment-details-task-title,
 .mh-dark .mh-ui-assignment-details-title {
   color: var(--d-text-muted);
+}
+
+.mh-dark #overlayPopup .img .name {
+  color: var(--d-text);
+}
+
+.mh-dark .mousehuntCharacterGuideBox-content {
+  background-color: var(--d-yellow-dark);
+}
+
+.mh-dark #overlayPopup.loading .jsDialogContainer .suffix {
+  background-blend-mode: darken;
+}
+
+.mh-dark .convertibleOpenView-header {
+  background-color: var(--d);
+}
+
+.mh-dark .convertibleOpenView-header a {
+  color: var(--d-link);
 }

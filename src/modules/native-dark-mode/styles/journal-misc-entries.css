@@ -1,20 +1,5 @@
-.mh-dark .journalContainer .top a {
-  color: var(--d-text-dark);
-}
-
-.mh-dark .journal a {
-  color: var(--d-link);
-}
-
 .mh-dark .entry.short.misc.custom.unstable_charm_trigger {
-  background-color: var(--d-blue);
-}
-
-.mh-dark .journal .content .entry {
-  color: var(--d-text) !important;
-  background-color: var(--d);
-  background-blend-mode: soft-light;
-  border-color: var(--d-border);
+  background-color: var(--d-blue-dark);
 }
 
 .mh-dark .journal .content .entry.catchsuccessloot {
@@ -27,10 +12,6 @@
 
 .mh-dark .journal .content .entry.short.misc.custom.chesla_trap_trigger {
   background-color: var(--d-purple);
-}
-
-.mh-dark .journal .content .entry a {
-  color: var(--d-link);
 }
 
 .mh-dark .entry.short.relicHunter_complete,
@@ -74,58 +55,15 @@
 .mh-dark .journal .content .attractionfailure,
 .mh-dark .journal .content .outofsuperbrie,
 .mh-dark .journal .content .catchfailure {
-  background-color: var(--d-red-dark);
+  background-color: var(--d-red-darker);
   background-image: url(https://i.mouse.rip/steal.png);
   background-blend-mode: normal;
 }
 
 .mh-dark .journal .content .catchfailuredamage {
-  background-color: var(--d-red-dark);
+  background-color: var(--d-red-darker);
   background-image: url(https://i.mouse.rip/pillage.png);
   background-blend-mode: normal;
-}
-
-.mh-dark .journal .content .entry .journalbody .journaldate {
-  color: var(--d-text-muted);
-  border-bottom: 1px solid rgb(255 255 255 / 30%);
-}
-
-.mh-dark .pagerView-container {
-  background-color: var(--d-bg);
-  border-color: var(--d-border);
-}
-
-.mh-dark .journal .content .entry:last-child {
-  border-bottom-color: #5b5b5b;
-}
-
-.mh-dark .campPage-quests-objective-container.complete .campPage-quests-objective {
-  color: var(--d-text);
-}
-
-.mh-dark .campPage-quests-objective-container.complete {
-  background-color: var(--d-green-dark);
-  border-color: transparent;
-}
-
-.mh-dark .pagerView-section.previous.active .pagerView-link,
-.mh-dark .pagerView-section.next.active .pagerView-link {
-  color: var(--d-text-muted);
-}
-
-.journal-history-page-selector {
-  background-color: var(--d-bg);
-  border-color: var(--d-border);
-  border-top: none;
-}
-
-.journal-history-page-selector label {
-  color: var(--d-text-muted);
-}
-
-.journal-history-page-selector button {
-  color: var(--d-text-muted);
-  background-color: var(--d-bg);
 }
 
 .mh-dark .journal .content .entry.custom.refine_pollutinum {
@@ -139,4 +77,20 @@
 
 .mh-dark .journal .entry.socialGift.socialGift-send .journalbody .journaltext {
   box-shadow: inset 0 -20px 15px -16px #151515;
+}
+
+.mh-dark .journal .content .entry.harbour {
+  background-color: var(--d-yellow-dark);
+}
+
+.mh-dark .journal .content .entry.labyrinthSmall.labyrinth-clue {
+  background-color: var(--d-yellow-dark);
+  background-blend-mode: luminosity;
+}
+
+.mh-dark .journal .content .entry.super_rift_vacuum_trigger,
+.mh-dark .journal .content .entry.rift-bristlewoods-lootBooster,
+.mh-dark .journal .content .entry.short.relicHunter_catch {
+  background-color: var(--d-purple-alt);
+  background-blend-mode: normal;
 }

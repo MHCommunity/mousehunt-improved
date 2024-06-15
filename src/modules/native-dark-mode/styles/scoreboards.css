@@ -6,6 +6,8 @@
 
 .mh-dark .scoreboardTableView-table th {
   color: var(--d-text);
+  border-color: var(--d-border);
+  border-width: 1px;
 }
 
 .mh-dark .scoreboardTableView-filters label {
@@ -14,6 +16,14 @@
 
 .mh-dark tr.scoreboardTableView-row.viewer,
 .mh-dark tr.scoreboardTableView-row.highlight {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .scoreboardTableView-table a {
+  color: var(--d-link);
+}
+
+.mh-dark .scoreboardTableView-table .highlight a {
   color: var(--d-text-dark);
 }
 
@@ -39,8 +49,8 @@
 }
 
 .mh-dark .scoreboardTableView-separator hr {
-  background-color: transparent;
-  border-color: var(--d-border);
+  background-color: var(--d-border);
+  border: none;
 }
 
 .mh-dark .tournamentPage-tournamentHeader {
@@ -49,4 +59,8 @@
   background-color: var(--d-bg);
   border-color: var(--d-border);
   box-shadow: none;
+}
+
+.mh-dark .scoreboardTableView-tournament {
+  background-color: var(--d-yellow);
 }

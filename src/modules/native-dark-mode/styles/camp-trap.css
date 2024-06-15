@@ -238,7 +238,8 @@
 
 .mh-dark a.campPage-trap-itemBrowser-item-armButton,
 .mh-dark .armed a.campPage-trap-itemBrowser-item-armButton {
-  color: var(--d-black);
+  color: var(--d-text-dark);
+  text-shadow: none;
 }
 
 .mh-dark .armed a.campPage-trap-itemBrowser-item-armButton {
@@ -339,4 +340,10 @@
 
 .mh-dark .campPage-trap-trapEffectiveness-mouse-name {
   color: var(--d-text);
+}
+
+.mh-dark .campPage-trap-itemBrowser-favorites .campPage-trap-itemBrowser-favorite-item-quantity span.campPage-trap-baitQuantity,
+.mh-dark .campPage-trap-itemBrowser-item-leftBar span.campPage-trap-baitQuantity {
+  background-color: var(--d-transparent-90);
+  border-color: var(--d-border);
 }

@@ -1,0 +1,190 @@
+.mh-dark .giftSelectorView-content-rightBar {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .giftSelectorView-claimableGift.accordion_disabled,
+.mh-dark .giftSelectorView-claimableGift.expanded {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .giftSelectorView-claimableGift-titleContainer {
+  color: var(--d-text);
+}
+
+.mh-dark a.giftSelectorView-friendRow-action.ignore {
+  color: var(--d-text);
+  background-color: var(--d);
+  outline-color: var(--d-border);
+}
+
+.mh-dark a.giftSelectorView-friendRow-action.ignore:hover {
+  background-color: var(--d-bg);
+  outline-color: var(--d);
+}
+
+.mh-dark .giftSelectorView-friendRow:hover {
+  outline-color: var(--d);
+}
+
+.mh-dark .giftSelectorView-claimableGift::after {
+  box-shadow:
+    0 -1px 1px #434651 inset,
+    0 -20px 50px #434651 inset;
+}
+
+.mh-dark .giftSelectorView-tabHeader:hover span,
+.mh-dark .giftSelectorView-tabHeader.active span {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .giftSelectorView-tabHeader span {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .giftSelectorView-gift .giftSelectorView-gift-padding {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding {
+  color: var(--d-text);
+  background-color: var(--d-blue);
+}
+
+.mh-dark .giftSelectorView-friend-padding,
+.mh-dark .giftSelectorView-confirmPopup-block-actionItem .giftSelectorView-friend:hover .giftSelectorView-friend-padding {
+  color: var(--d-link);
+  background-color: var(--d-alt);
+}
+
+.mh-dark .giftSelectorView-friend:hover .giftSelectorView-friend-padding {
+  background-color: var(--d);
+  box-shadow: none;
+}
+
+.mh-dark .giftSelectorView-friend.selected:hover .giftSelectorView-friend-padding {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .giftSelectorView-actionContainer,
+.mh-dark .giftSelectorView-headerContainer {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark input.giftSelectorView-friend-search-input {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .giftSelectorView-friend-search-clear {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .giftSelectorView-friend.favorite .giftSelectorView-friend-padding {
+  box-shadow: none;
+}
+
+.mh-dark .giftSelectorView-tabContent {
+  background-color: var(--d);
+}
+
+.mh-dark .mh-gift-buttons-clone-wrapper .giftSelectorView-content-leftBar-highlightBlock {
+  background-color: var(--d);
+}
+
+.mh-dark .giftSelectorView-content-leftBar-highlightBlock {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .giftSelectorView-content-leftBar > .giftSelectorView-content-leftBar-highlightBlock::before {
+  box-shadow: none;
+}
+
+.mh-dark .mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .mh-gift-buttons-clone-wrapper .giftSelectorView-gift.gift_of_the_day:hover .giftSelectorView-gift-padding,
+.mh-dark .giftSelectorView-gift.active .giftSelectorView-gift-padding,
+.mh-dark .giftSelectorView-gift:hover .giftSelectorView-gift-padding {
+  color: var(--d-text);
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .giftSelectorView-confirmPopup-content {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .giftSelectorView-confirmPopup-content a {
+  color: var(--d-link);
+}
+
+.mh-dark .giftSelectorView-confirmPopup-padding {
+  box-shadow: 0 0 10px var(--d-black);
+}
+
+.mh-dark .giftSelectorView-friend.complete .giftSelectorView-friend-padding {
+  color: var(--d-text);
+  background-color: var(--d-green-dark);
+}
+
+.mh-dark .giftSelectorView-inbox-footer {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark #giftSelectorView-inbox {
+  border-color: var(--d-border);
+}
+
+.mh-dark a.giftSelectorView-inboxHeader-closeButton {
+  color: var(--d-text-muted);
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
+.mh-dark .giftSelectorView-inboxHeader {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .giftSelectorView-inboxGiftOfTheDay {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .giftSelectorView-inboxGiftOfTheDay-label {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .giftSelectorView-inbox-giftContainer {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .giftSelectorView-inbox-gift-details {
+  color: var(--d-text);
+}
+
+.mh-dark .giftSelectorView-inbox-gift-details a {
+  color: var(--d-link);
+}
+
+.mh-dark .giftSelectorView-inbox-gift-sent {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .giftSelectorView-inbox-giftRow:nth-child(even) {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .giftSelectorView-inbox-giftRow {
+  border-color: var(--d-border);
+}

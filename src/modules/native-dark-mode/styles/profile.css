@@ -14,7 +14,7 @@
 }
 
 .mh-dark .teamPage-messageBoard-corkboard .messageBoardView-message.new,
-.hunterInfoView-corkBoardBlock div.messageBoardView-message.new {
+.mh-dark .hunterInfoView-corkBoardBlock div.messageBoardView-message.new {
   background-color: transparent;
   border-color: transparent !important;
 }
@@ -147,4 +147,56 @@
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-achievementsBlock .mousehuntTabHeader.active {
   background: var(--d-bg-alt);
+}
+
+.mh-dark .hunterInfoView-wrapper .messageBoardView .pagerView-container {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .hunterInfoView-wrapper .messageBoardView .pagerView-link {
+  border: none;
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamName span {
+  color: var(--d-link);
+}
+
+.mh-dark .mh-improved-fancy-profile .mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-statsContainer .friendsPage-friendRow-stat-value,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamInfo-container::before,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamInfo-container,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats-huntingSince,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats-horn-container,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-titleBar-titleDetail,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-stat .friendsPage-friendRow-stat-value,
+.mh-dark .mh-improved-fancy-profile .hunterInfoView-corkBoardBlock .messageBoardView-message-body {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-mouseLabel {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-tabDot {
+  background-color: var(--d-alt);
+  border-color: var(--d-bg);
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-tabDot.active {
+  background-color: var(--d-orange-dark);
+  border-color: var(--d-orange);
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-container-arrow-icon.right {
+  border-left-color: var(--d-text-muted);
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-content-container-arrow-icon.left {
+  border-right-color: var(--d-text-muted);
+}
+
+.mh-dark a.hunterInfoView-playerActionsBlock-item-text {
+  color: var(--d-link);
 }

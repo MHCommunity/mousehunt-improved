@@ -250,8 +250,8 @@
 }
 
 .mh-dark .treasureMapRootView-tab.active,
-.treasureMapRootView-tab:hover {
-  background-color: var(--d);
+.mh-dark .treasureMapRootView-tab:hover {
+  background-color: var(--d-bg);
 }
 
 .mh-dark .treasureMapRootView-tab {
@@ -303,4 +303,34 @@
 
 .mh-dark .mh-improved-map-listing-last-active {
   color: var(--d-text-muted);
+}
+
+.mh-dark .treasureMapRootView-header-navigation-item {
+  border-color: var(--d-purple-dark);
+}
+
+.mh-dark .treasureMapRootView-tabContainer.hasTabs {
+  background-color: var(--d-purple);
+}
+
+.mh-dark .treasureMapRootView-footer {
+  border-top: 1px solid var(--d-border);
+}
+
+.mh-dark .treasureMapView-environment.active .treasureMapView-environment-title {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .treasureMapView-goals-group-goal:hover::before {
+  background-color: var(--d-bg-alt);
+  outline-color: var(--d-border);
+}
+
+.mh-dark a.treasureMapDialogView-close {
+  color: var(--d);
+}
+
+.mh-dark .treasureMapListingsTableView tr.selected,
+.mh-dark .treasureMapListingsTableView tr.selected:nth-child(even) {
+  background-color: var(--d-bg);
 }

@@ -1,4 +1,8 @@
-.mh-dark #supplytransfer .categoryMenu a,
+.mh-dark #supplytransfer .categoryMenu a {
+  color: var(--d-link);
+  background-color: var(--d);
+}
+
 .mh-dark #supplytransfer .drawer {
   background-color: var(--d);
 }
@@ -31,10 +35,17 @@
 .mh-dark #supplytransfer .tabs .tab .image:hover,
 .mh-dark #supplytransfer .tabs .tab .image.empty:hover {
   color: var(--d-text-dark);
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark #supplytransfer .tabs .tab .image:hover,
+.mh-dark #supplytransfer .tabs .tab .image.empty:hover {
+  color: var(--d-link);
 }
 
 .mh-dark #supplytransfer .listContainer a.element.item:hover {
-  background-color: #d8f0ff;
+  background-color: var(--d-blue-dark);
 }
 
 .mh-dark #supplytransfer .listContainer a.element.recipient {
@@ -44,4 +55,34 @@
 
 .mh-dark #supplytransfer .drawer .tabContent .summary .box {
   background-color: var(--d-bg);
+}
+
+.mh-dark #supplytransfer .tabContent.recipient .listContainer span.content {
+  color: var(--d-link);
+}
+
+.mh-dark #supplytransfer .listContainer a.element .details {
+  color: var(--d-text);
+}
+
+.mh-dark #supplytransfer .drawer .tabContent a {
+  color: var(--d-link);
+}
+
+.mh-dark #supplytransfer .drawer .tabContent.confirm #supplytransfer-confirm-send:hover {
+  color: var(--d-text);
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark #supplytransfer .tabs {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark #supplytransfer .friendList.listContainer {
+  border-top: none;
+}
+
+.mh-dark #supplytransfer .listContainer.friendList label {
+  color: var(--d-text-muted);
 }

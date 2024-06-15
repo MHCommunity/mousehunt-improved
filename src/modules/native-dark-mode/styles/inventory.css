@@ -86,7 +86,7 @@
 }
 
 .mh-dark .itemViewStatBlock-stat-value {
-  background-color: var(--d-bg-alt);
+  background-color: transparent;
 }
 
 .mh-dark .itemViewStatBlock {
@@ -176,4 +176,36 @@
 .mh-dark .tiny-item:hover,
 .mh-dark .tiny-item:nth-child(even):hover {
   background-color: var(--d-bg-alt);
+}
+
+.mh-dark .inventoryPage-craftingTable-slot-item .itemImage {
+  box-shadow: none;
+}
+
+.mh-dark .inventoryPage-craftingTable-slot-item-controls {
+  border-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-craftingTable-slot-item-controls a {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+}
+
+.mh-dark .inventoryPage-craftingTable-slot-item-controls input[type="text"]:hover {
+  border-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-craftingTable-slot-item-controls a:hover {
+  color: var(--d-text-muted);
+  background-color: var(--d);
+}
+
+.mh-dark .inventoryPage-craftingTable-slot-item[data-owned="1"] .inventoryPage-craftingTable-slot-item-controls-increment {
+  color: var(--d-text-muted);
+  background-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-item.trinket .itemViewStatBlock-stat,
+.mh-dark .itemViewStatBlock-stat {
+  border-color: var(--d-border);
 }

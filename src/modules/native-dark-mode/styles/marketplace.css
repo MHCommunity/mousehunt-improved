@@ -1,9 +1,219 @@
-.mh-dark .marketplaceView-table,
-.mh-dark a.marketplaceView-header-tabHeader,
-.mh-dark .marketplaceView-browse-sidebar-link {
-  color: var(--d-text-dark);
+.mh-dark .mh-dark .marketplaceView-browse-sidebar-link.active {
+  color: var(--d-text);
 }
 
-.mh-dark .marketplaceView-browse-sidebar-link.active {
+.mh-dark .marketplaceHome {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .marketplaceView .marketplaceContentContainer {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .marketplaceView h1,
+.mh-dark .marketplaceView-goldValue,
+.mh-dark .marketplaceHome-blockItem-name span {
   color: var(--d-text);
+}
+
+.mh-dark a.marketplaceView-moreLink,
+.mh-dark .marketplaceHome-block-viewAll {
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark a.marketplaceView-moreLink:hover,
+.mh-dark a.marketplaceHome-block-viewAll:hover {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .marketplaceView-table tr {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .marketplaceView-table tr:nth-child(odd) {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+}
+
+.mh-dark .marketplaceView-table tr.empty {
+  background-color: var(--d-alt) !important;
+}
+
+.mh-dark .marketplaceView-itemImage.favourite {
+  box-shadow: none;
+}
+
+.marketplaceHome-blockMenu.active,
+.mh-dark .marketplaceHome-blockMenu:hover {
+  color: var(--d-link);
+  border-color: var(--d-purple);
+}
+
+.mh-dark .marketplaceView-header-tabHeader {
+  background-color: var(--d-border);
+}
+
+.mh-dark .marketplaceView-header-tabHeader:hover,
+.mh-dark .marketplaceView-header-tabHeader.active {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .marketplaceView-table,
+.mh-dark a.marketplaceView-header-tabHeader,
+.mh-dark .mh-dark .marketplaceView-browse-sidebar-link {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .marketplaceView-item-footer {
+  background-color: var(--d);
+}
+
+.mh-dark .marketplaceView-item-footer .marketplaceView-table {
+  border-radius: 7px;
+}
+
+.mh-dark .marketplaceView-table tr:hover {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .marketplaceView-listing-progressBar-padding {
+  background-color: var(--d);
+}
+
+.mh-dark .marketplaceView-table-name a,
+.mh-dark .marketplaceView-table-name a:hover {
+  color: var(--d-text);
+}
+
+.mh-dark .marketplaceView-browse-sidebar-link {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark .marketplaceView-browse-sidebar-link.active,
+.mh-dark .marketplaceView-browse-sidebar-link:hover {
+  color: var(--d-text);
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .marketplaceView-browse-filter label {
+  color: var(--d-text);
+}
+
+.mh-dark .marketplaceView-browse-sidebar::after {
+  background-color: var(--d);
+}
+
+.mh-dark .marketplaceView-item-leftBlock .marketplaceHome-block-viewAll,
+.mh-dark a.marketplaceHome-block-viewAll {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark a.marketplaceHome-block-viewAll:hover {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .marketplaceView-breadcrumb {
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-border);
+  border-width: 1px;
+}
+
+.mh-dark a.marketplaceView-breadcrumb:hover {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .marketplaceView-listingBody {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .marketplaceView-item-quickListings a.marketplaceView-goldValue {
+  color: var(--d-text);
+}
+
+.mh-dark .marketplaceView-item-quickListings th {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .marketplaceView-listingFooter {
+  background-color: var(--d-purple-dark);
+}
+
+.mh-dark .marketplaceView-item-descriptionContainer {
+  border-top: none;
+}
+
+.mh-dark #chartArea {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+.mh-dark #markethuntInfobox,
+.mh-dark #markethuntInfobox .marketplaceView-goldValue {
+  color: #000;
+}
+
+.mh-dark .marketplaceView-trendContainer {
+  color: var(--d-text-muted);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .marketplaceView-floatingTooltip {
+  color: var(--d-text-muted);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .marketplaceView-floatingTooltip::after {
+  border-top-color: var(--d-border);
+}
+
+.mh-dark .marketplaceView-item-graphTable .marketplaceView-trendContainer {
+  color: var(--d-text-muted);
+  background-color: transparent;
+  border: none;
+}
+
+.mh-dark .marketplaceHome-blockMenu {
+  border-color: var(--d-transparent-10);
+}
+
+.mh-dark .marketplaceView-item.view .mousehuntCharacterGuideBox,
+.mh-dark .marketplaceListing .mousehuntCharacterGuideBox {
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px var(--d-yellow-dark));
+}
+
+.mh-dark .marketplaceView-item-input-suggested a {
+  color: var(--d-link);
+}
+
+.mh-dark .marketplaceView-item-cancelButton {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .marketplaceView-dialog {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .marketplaceView-item-image {
+  border: none;
+}
+
+.mh-dark .marketplaceView-dialog-footer {
+  background-color: var(--d-purple);
+}
+
+.mh-dark .marketplaceView-dialog-header {
+  background-color: var(--d-purple);
 }

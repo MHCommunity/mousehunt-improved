@@ -1,10 +1,9 @@
 .mh-dark .campPage-tabs-tabHeader span,
-.mh-dark .campPage-tabs-tabHeader.active span,
 .mh-dark .campPage-tabs-tabHeader:hover span,
 .mh-dark .campPage-tabs-tabHeader:focus span,
-.campPage-tabs-tabHeader.active span,
-.campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span,
-.campPage-tabs-tabRow a.campPage-tabs-tabHeader:focus span {
+.mh-dark .campPage-tabs-tabHeader.active span,
+.mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:hover span,
+.mh-dark .campPage-tabs-tabRow a.campPage-tabs-tabHeader:focus span {
   color: var(--d-text);
   background-color: var(--d-bg-alt);
   border-color: var(--d-border);

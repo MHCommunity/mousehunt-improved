@@ -9,3 +9,23 @@
 .mh-dark .mousehuntHeaderView-newsTicker .label {
   color: var(--d-text);
 }
+
+.mh-dark #mousehuntContainer.PageNewsPost,
+.mh-dark #mousehuntContainer.PageNews,
+.mh-dark #mousehuntContainer .PageNews {
+  background: transparent;
+}
+
+.mh-dark .newsArchivesListView-post {
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .newsArchivesListView-post a {
+  color: var(--d-link);
+}
+
+.mh-dark .newsArchivesListView.loading .newsArchivesListView-page::before {
+  background: none;
+}

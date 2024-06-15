@@ -29,7 +29,6 @@
 }
 
 .mh-dark .huntersHornView__backdrop {
-  background: transparent;
   filter: brightness(0.8);
   opacity: 1;
 }
