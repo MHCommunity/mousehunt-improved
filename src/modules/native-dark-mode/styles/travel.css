@@ -72,3 +72,10 @@
 .mh-dark .travelPage-map-pieces-row a {
   color: var(--d-link);
 }
+
+.mh-dark input.mh-improved-travel-window-search-input[type="text"] {
+  padding: 10px;
+  color: var(--d-text);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}

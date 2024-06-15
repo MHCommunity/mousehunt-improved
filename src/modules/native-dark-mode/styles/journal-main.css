@@ -1,0 +1,61 @@
+.mh-dark .journalContainer .top a {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .journal a {
+  color: var(--d-link);
+}
+
+.mh-dark .journal .content .entry {
+  color: var(--d-text) !important;
+  background-color: var(--d);
+  background-blend-mode: soft-light;
+  border-color: var(--d-border);
+}
+
+.mh-dark .journal .content .entry a {
+  color: var(--d-link);
+}
+
+.mh-dark .journal .content .entry .journalbody .journaldate {
+  color: var(--d-text);
+  border-bottom: 1px solid rgb(255 255 255 / 30%);
+}
+
+.mh-dark .pagerView-container {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .journal .content .entry:last-child {
+  border-bottom-color: #5b5b5b;
+}
+
+.mh-dark .campPage-quests-objective-container.complete .campPage-quests-objective {
+  color: var(--d-text);
+}
+
+.mh-dark .campPage-quests-objective-container.complete {
+  background-color: var(--d-green-dark);
+  border-color: transparent;
+}
+
+.mh-dark .pagerView-section.previous.active .pagerView-link,
+.mh-dark .pagerView-section.next.active .pagerView-link {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .journal-history-page-selector {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  border-top: none;
+}
+
+.mh-dark .journal-history-page-selector label {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .journal-history-page-selector button {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg);
+}

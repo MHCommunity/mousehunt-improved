@@ -1,0 +1,7 @@
+.mh-dark a.MHCheckoutRootView-viewTOSButton {
+  color: var(--d-link);
+}
+
+.mh-dark #overlayPopup.MHCheckout .jsDialogContainer .content {
+  color: #000;
+}

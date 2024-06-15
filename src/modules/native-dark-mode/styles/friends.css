@@ -33,7 +33,7 @@
 
 .mh-dark .hunterProfileItemsView-content-padding {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: transparent;
 }
 
 .mh-dark .hunterProfileItemsView-categoryContent-name {
@@ -55,4 +55,54 @@
 .mh-dark .hunterProfileItemsView-categoryContent-item-padding {
   background-color: var(--d-bg-alt);
   border-color: var(--d-border);
+}
+
+.mh-dark .friendsPage-list-header {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .friendsPage-list-header label {
+  color: var(--d-text);
+}
+
+.mh-dark .friendsPage-community-channel {
+  background-color: var(--d-bg);
+  border: 1px solid var(--d-border);
+}
+
+.mh-dark .friendsPage-community-channel h2 {
+  color: var(--d-text);
+}
+
+.mh-dark .friendsPage-community-channel.friends-page-id-search {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .hunterProfileItemsView-content::before {
+  background-color: var(--d-alt);
+}
+
+.mh-dark .campPage-trap-friendContainer-environment a {
+  color: var(--d-link);
+}
+
+.mh-dark .friendsPage-friendRow {
+  color: var(--d-text);
+  background: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .friendsPage-friendRow-statsContainer {
+  color: var(--d-text);
+  background: var(--d-bg-alt);
+  box-shadow: 0 10px 30px var(--d-bg-alt);
+}
+
+.mh-dark .friendsPage-friendRow-stat span,
+.mh-dark .friendsPage-friendRow-stat a {
+  color: var(--d-text);
 }

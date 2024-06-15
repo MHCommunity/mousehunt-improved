@@ -97,3 +97,50 @@ body.mh-dark {
   background-position: 98% 10px;
   background-size: 110px;
 }
+
+.mh-dark #mousehuntContainer.PageNewsPost {
+  background: transparent;
+}
+
+.mh-dark .flexibleDialogWarmBrown.shopDescription b {
+  color: #fc6;
+  text-shadow: none;
+}
+
+.mh-dark .drawPage-ballot .entries,
+.mh-dark .recentWinners,
+.mh-dark .socialBallots,
+.mh-dark .drawPage-ballot,
+.mh-dark .ballotEntry {
+  color: #000;
+  background-color: #fff;
+}
+
+.mh-dark .hunterTitle .titles h1 {
+  color: var(--d-text);
+}
+
+.mh-dark .hunterTitle .titles .userLevel {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .harbourHUD-area-title {
+  color: #000;
+}
+
+.mh-dark #chro-minluck-table {
+  color: var(--d-text);
+}
+
+.mh-dark #minluck-list {
+  color: var(--d-text-muted);
+  background-color: var(--d);
+}
+
+.mh-dark .chro-minluck-overall-cr.bad-minluck {
+  color: var(--d-red);
+}
+
+.mh-dark .chro-minluck-overall-cr.good-minluck {
+  color: var(--d-green);
+}

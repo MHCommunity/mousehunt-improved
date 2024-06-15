@@ -51,6 +51,10 @@
   color: var(--d-text);
 }
 
+.mh-dark .error .itemPurchaseView-action-itemCost-table-cell.owned {
+  color: var(--d-red-dark);
+}
+
 .mh-dark.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.title,
 .mh-dark .itemPurchaseView-container .itemViewStatBlock-stat.powerType,
 .mh-dark.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat {
@@ -81,6 +85,29 @@
   border-color: var(--d-border);
 }
 
-.mh-dark .itemPurchaseView-action-marketplace a {
+.mh-dark .itemPurchaseView-action-marketplace a,
+.mh-dark .itemPurchaseView-content-description a,
+.mh-dark a.itemPurchaseView-content-skin-link {
   color: var(--d-link);
+}
+
+.mh-dark .shopCustomization .PageShops .itemViewStatBlock-stat {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .shopsPage-compareEquipment {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .itemPurchaseView-action-confirm-button-row a {
+  color: var(--d-link);
+}
+
+.mh-dark .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-complete-title,
+.mh-dark .itemPurchaseView-container .itemPurchaseView-action-complete-title,
+.mh-dark .itemPurchaseView-action-complete-title,
+.mh-dark .itemPurchaseView-action-armed-title,
+.mh-dark span.itemPurchaseView-action-confirm-refund.noRefund::after {
+  color: var(--d-text);
 }

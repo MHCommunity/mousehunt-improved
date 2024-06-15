@@ -44,3 +44,13 @@
 .mh-dark .adventureBookPopup-title-margin {
   color: var(--d-text-dark);
 }
+
+.mh-dark .adventureBookPopup-adventure-header-title,
+.mh-dark .adventureBookPopup-adventure-header-duration {
+  color: var(--d-text-dark);
+  text-shadow: none;
+}
+
+.mh-dark a.adventureBookPopup-title.active .adventureBookPopup-title-margin {
+  color: var(--d-text-muted);
+}

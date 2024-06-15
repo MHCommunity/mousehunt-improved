@@ -1,6 +1,6 @@
 .mh-dark .pageFrameView-content,
 .mh-dark .mousehuntHeaderView,
-.mh-dark .pageFrameView-contentContainer,
+.mh-dark #mousehuntContainer,
 .mh-dark .pageSidebarView,
 .mh-dark .bg-color {
   background-color: var(--d);

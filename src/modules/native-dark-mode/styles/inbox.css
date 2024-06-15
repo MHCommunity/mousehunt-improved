@@ -1,0 +1,75 @@
+.mh-dark #messengerUINotification {
+  background-color: var(--d-bg) !important;
+  border-color: var(--d-border);
+}
+
+.mh-dark #messengerUINotification .tabs a.active {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark #messengerUINotification .notificationHeader {
+  background-color: var(--d-bg);
+}
+
+.mh-dark #messengerUINotification .tabs a,
+.mh-dark #messengerUINotification .tabs a:hover,
+.mh-dark #messengerUINotification .tabs a:visited {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark #messengerUINotification .tabs a:hover,
+.mh-dark #messengerUINotification .tabs a.active {
+  background-color: var(--d-alt);
+}
+
+.mh-dark #messengerUINotification .tabs a.active .arrow {
+  border-left-color: var(--d-alt);
+}
+
+.mh-dark .notificationMessageList .message:nth-child(even) {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .notificationMessageList .message:nth-child(odd) {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .notificationMessageList .message .clear-block {
+  color: var(--d-text);
+}
+
+.mh-dark .notificationMessageList .message a {
+  color: var(--d-link);
+}
+
+.mh-dark .notificationMessageList .message .date {
+  color: var(--d-text-muted);
+}
+
+.mh-dark #messengerUINotification .tabs a.active .arrowShadow {
+  border-left-color: var(--d-border);
+}
+
+.mh-dark .notificationMessageList .tab[data-tab="news"] .message {
+  background-color: var(--d-yellow);
+}
+
+.mh-dark .notificationMessageList .tab[data-tab="news"] .message .clear-block {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .notificationMessageList .tab[data-tab="news"] .message .date {
+  color: var(--d-text-dark);
+}
+
+.mh-dark #messengerUINotification .messengerUINotificationClose {
+  color: var(--d-text-muted);
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
