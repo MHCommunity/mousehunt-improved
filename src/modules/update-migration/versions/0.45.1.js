@@ -1,26 +1,5 @@
-import { getData, getSetting, saveSetting } from '@utils';
+import { getSetting, saveSetting } from '@utils';
 import { moveSetting } from '../utils';
-
-const migrateInventoryLockAndHide = async () => {
-  const items = await getData('items');
-
-  let itemSettings = getSetting('inventory-lock-and-hide.items', {
-    locked: [],
-    hidden: [],
-  });
-
-  itemSettings.locked = itemSettings?.locked?.map((i) => Number.parseInt(i, 10)) ?? [];
-  itemSettings.hidden = itemSettings?.hidden?.map((i) => Number.parseInt(i, 10)) ?? [];
-
-  itemSettings = {
-    locked: itemSettings.locked,
-    hidden: itemSettings.hidden,
-    lockedTypes: itemSettings?.locked.map((id) => items.find((item) => item.id === id)?.type),
-    hiddenTypes: itemSettings?.hidden.map((id) => items.find((item) => item.id === id)?.type),
-  };
-
-  saveSetting('inventory-lock-and-hide.items', itemSettings);
-};
 
 const migrateLegacyHud = async () => {
   if ('not-set' !== getSetting('legacy-hud.menu', 'not-set')) {
@@ -49,10 +28,7 @@ const migrateExperimentsToBeta = async () => {
 
   settings.forEach((setting) => {
     if (getSetting(setting.from, false)) {
-      moveSetting({
-        from: setting.from,
-        to: setting.to
-      });
+      moveSetting(setting);
     }
   });
 };
@@ -61,7 +37,6 @@ const migrateExperimentsToBeta = async () => {
  * Migrate the item settings.
  */
 const update = async () => {
-  await migrateInventoryLockAndHide();
   await migrateLegacyHud();
   await migrateExperimentsToBeta();
 };
