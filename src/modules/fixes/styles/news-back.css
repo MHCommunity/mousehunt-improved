@@ -1,0 +1,17 @@
+/* the .MHCheckout-button-arrow class is used, but that's not a defined class */
+.PageNewsPost .MHCheckout-button-arrow {
+  position: relative;
+}
+
+.PageNewsPost .MHCheckout-button-arrow::before {
+  position: absolute;
+  top: 2px;
+  bottom: 10px;
+  left: 0;
+  width: 0;
+  height: 0;
+  content: "";
+  border-top: 6px solid transparent;
+  border-right: 10px solid #000;
+  border-bottom: 6px solid transparent;
+}
