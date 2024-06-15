@@ -363,3 +363,11 @@
   width: 70px;
   height: 70px;
 }
+
+.huntersHornView__message.huntersHornView__message--active.travel-reminder .huntersHornMessageView--unknown_error .huntersHornMessageView__content::before {
+  display: none;
+}
+
+.huntersHornView__message.huntersHornView__message--active.travel-reminder .huntersHornMessageView--unknown_error {
+  border-image-source: url(https://i.mouse.rip/horn-message-blank-pink.png);
+}

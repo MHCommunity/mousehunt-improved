@@ -17,7 +17,8 @@ const hasDisabledReminder = (item) => {
 const addReminders = () => {
   const reminderOpts = {
     title: 'Travel Reminder',
-    dismiss: 4000,
+    dismiss: 6000,
+    classname: 'travel-reminder',
   };
 
   switch (getCurrentLocation()) {
