@@ -261,3 +261,12 @@ a.riftBristleWoodsHUD-acolyteChamber-retreat.mousehuntActionButton.tiny.cancel:h
 .riftBristleWoodsHUD-chamberDetails-image:nth-last-child(3) ~ .riftBristleWoodsHUD-chamberDetails-image {
   width: auto;
 }
+
+a.riftBristleWoodsHUD-portal.timewarp_chamber {
+  filter: drop-shadow(0 1px 4px #fbd400);
+}
+
+.riftBristleWoodsHUD-portal-name span {
+  font-size: 11px;
+  text-shadow: 0 2px #000;
+}

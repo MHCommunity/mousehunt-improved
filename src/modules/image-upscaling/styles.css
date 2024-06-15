@@ -13,6 +13,7 @@
 .forewordFarmHarvestBin-itemImage.itemImage,
 .lunarNewYearCampPopup-content-block-image,
 .superBrieFactoryVendingMachineView-item-imageContainer,
+.fortRoxHUD-dialog-requiredItem .itemImage,
 .campPage-trap-armedItem-empty {
   box-shadow: none;
 }

@@ -96,6 +96,11 @@ a.fortRoxHUD-retreat {
   font-size: 12px;
 }
 
+.fortRoxHUD-lairBaitContainer .fortRoxHUD .quantity {
+  padding: 0;
+  font-size: 14px;
+}
+
 .fortRoxHUD-dialog-craftingItem-quantity {
   top: 5px;
 }

@@ -138,7 +138,8 @@
   animation: none;
 }
 
-.wave_4 .warpathHud-missle-activate {
+.wave_4 .warpathHud-missle-activate,
+.wave_portal .warpathHud-missle-activate {
   left: -26px;
 }
 

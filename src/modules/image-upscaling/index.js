@@ -12,6 +12,7 @@ import pathsToSkip from './paths-to-skip.json';
 
 import styles from './styles.css';
 import viewsStyles from './views.css';
+import journalStyles from './journals.css';
 
 /**
  * The ImageUpscaler class.
@@ -308,6 +309,7 @@ const init = async () => {
   onDialogShow('all', imageUpscaler.handleUpscalingImages);
 
   if (! getFlag('no-image-upscaling-journal-themes')) {
+    addStyles(journalStyles, 'image-upscaling-journal');
     addExternalStyles('https://static.mouse.rip/upscaled-journal-theme-images.css');
   }
 };
