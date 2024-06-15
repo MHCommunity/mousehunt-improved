@@ -1,0 +1,72 @@
+{
+  "dragon": [
+    "dragon",
+    "drag_goon",
+    "ful_mina_mountain_queen",
+    "thunderstriker",
+    "thundering_watcher",
+    "thunderlord",
+    "violet_thunderling",
+    "geyser_cork_dropper_bland",
+    "geyser_cork_dropper_mild",
+    "geyser_cork_dropper_medium",
+    "geyser_cork_dropper_rare",
+    "geyser_cork_dropper_hot",
+    "geyser_cork_dropper_flaming",
+    "geyser_cork_dropper_wildfire",
+    "geyser_pressure_builder_mild",
+    "geyser_pressure_builder_medium",
+    "geyser_pressure_builder_hot",
+    "geyser_pressure_builder_flaming",
+    "geyser_pressure_builder_wildfire",
+    "geyser_eruption_dragon_mild",
+    "geyser_eruption_dragon_small",
+    "geyser_eruption_dragon_medium_spice",
+    "geyser_eruption_dragon_medium",
+    "geyser_eruption_dragon_hot",
+    "geyser_eruption_dragon_large",
+    "geyser_eruption_dragon_flaming",
+    "geyser_eruption_dragon_epic",
+    "geyser_eruption_dragon_wildfire",
+    "tiny_dragonfly",
+    "dragon_lancer",
+    "dragon_breather",
+    "regal_spearman",
+    "draconic_paragon",
+    "empyrean_draconic_mouse"
+  ],
+  "fort_rox": {
+    "cosmic": [
+      "moonstone_slinger",
+      "arcane_summoner",
+      "night_watcher",
+      "cursed_taskmaster",
+      "moonstone_golem",
+      "moonstone_mystic"
+    ],
+    "weremice": [
+      "good_supply_night",
+      "werehauler",
+      "wealthy_werewarrior",
+      "mischievous_wereminer",
+      "were_alpha",
+      "reveling_lycanthrope",
+      "wereminer"
+    ]
+  },
+  "fiery_warpath": {
+    "archers": ["desert_archer_weak", "desert_archer", "desert_archer_epic"],
+    "cavalry": ["desert_cavalry", "desert_cavalry_strong"],
+    "mages": ["desert_mage", "desert_mage_strong"],
+    "scouts": ["desert_scout_weak", "desert_scout", "desert_scout_epic"],
+    "warriors": ["desert_warrior_weak", "desert_warrior", "desert_warrior_epic"],
+    "commanders": ["desert_general"]
+  },
+  "sand_dunes": ["king_grub", "king_scarab"],
+  "rift_whisker_woods": ["rift_cyclops", "rift_centaur", "rift_hydra", "rift_black_widow"],
+  "zugzwang_tower": {
+    "mystic": ["mystic_bishop", "mystic_king", "mystic_knight", "mystic_pawn", "mystic_queen", "mystic_rook"],
+    "technic": ["tech_bishop", "tech_king", "tech_knight", "tech_pawn", "tech_queen", "tech_rook"],
+    "rooks": ["mystic_rook", "technic_rook"]
+  }
+}

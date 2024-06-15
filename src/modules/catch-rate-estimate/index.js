@@ -1,6 +1,7 @@
 import {
   addStyles,
   doEvent,
+  getCurrentLocation,
   getCurrentPage,
   getFlag,
   makeElement,
@@ -22,6 +23,55 @@ import styles from './styles.css';
 let lastStats = [];
 let effectiveness = null;
 let isUpdating = false;
+
+let hasRiftstalkerCodex = false;
+let riftSetCount = 0;
+let trapPower;
+let trapPowerBonus;
+
+const updateStats = () => {
+  trapPower = 0;
+  trapPowerBonus = 0;
+  trapLuck = user.trap_luck;
+
+  const riftStalkerCodex = document.querySelector('.campPage-trap-trapStat-mathRow.special .campPage-trap-trapStat-mathRow-name');
+  if (riftStalkerCodex && riftStalkerCodex.innerText.includes('Riftstalker')) {
+    hasRiftstalkerCodex = true;
+    riftSetCount = Number.parseInt(riftStalkerCodex.innerText.replace('Riftstalker Set Bonus (', '').replace(' pieces)', '') || 0, 10);
+  }
+
+  if ('zugzwang_tower' !== getCurrentLocation()) {
+    trapPower = user.trap_power;
+    trapPowerBonus = user.trap_power_bonus;
+
+    return;
+  }
+
+  const trapMath = document.querySelectorAll('.campPage-trap-trapStat.power .campPage-trap-trapStat-mathRow');
+
+  trapMath.forEach((mathRow) => {
+    const row = mathRow.querySelector('.campPage-trap-trapStat-mathRow-value');
+    if (! row.textContent) {
+      return;
+    }
+
+    const label = mathRow.querySelector('.campPage-trap-trapStat-mathRow-name');
+    if (label && label.textContent.includes('Your trap is receiving a boost!')) {
+      return;
+    }
+
+    const value = Number.parseInt(row.textContent.replaceAll(',', '').replace('%', '') || 0, 10);
+    if (! value) {
+      return;
+    }
+
+    if (row.innerText.includes('%')) {
+      trapPowerBonus += value;
+    } else {
+      trapPower += value;
+    }
+  });
+};
 
 /**
  * Update the minluck list.
@@ -70,6 +120,8 @@ const updateMinLucks = async () => {
   if (currentStats !== lastStats) {
     effectiveness = await getMiceEffectiveness();
     lastStats = currentStats;
+
+    updateStats();
   }
 
   if (! effectiveness) {
@@ -135,8 +187,19 @@ const renderList = async (list) => {
     const mousePower = await getMousePower(mouse.type);
     const mouseEffectiveness = await getMouseEffectiveness(mouse.type);
 
-    const minluck = await getMinluck(mousePower, mouseEffectiveness);
-    const catchRate = await getCatchRate(mousePower, mouseEffectiveness);
+    const options = {
+      mouseType: mouse.type,
+      mousePower,
+      effectiveness: mouseEffectiveness / 100,
+      trapPower,
+      trapLuck,
+      trapPowerBonus,
+      hasRiftstalkerCodex,
+      riftSetCount,
+    };
+
+    const minluck = await getMinluck(options);
+    const catchRate = await getCatchRate(options);
 
     const crClass = ['mh-improved-cre-data'];
     const minluckClass = ['mh-improved-cre-data'];
