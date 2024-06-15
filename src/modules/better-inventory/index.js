@@ -5,12 +5,10 @@ import {
   getCurrentTab,
   getSetting,
   makeElement,
-  makeMhButton,
   onEvent,
   onNavigation,
   onOverlayChange,
-  onRequest,
-  saveSetting
+  onRequest
 } from '@utils';
 
 import recipes from './modules/recipes';
@@ -196,124 +194,10 @@ const resortInventory = () => {
   });
 };
 
-const resortInventoryAddAllGroup = () => {
-  const tagContent = document.querySelector('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabContent.active .inventoryPage-tagContent');
-  if (! tagContent) {
-    return;
-  }
-
-  const searchGroup = tagContent.querySelector('.inventoryPage-tagContent-tagGroup.search');
-  if (! searchGroup) {
-    return;
-  }
-
-  const existingAllGroup = tagContent.querySelector('.inventoryPage-tagContent-tagGroup.all-group');
-  if (existingAllGroup) {
-    existingAllGroup.remove();
-  }
-
-  const allGroup = makeElement('div', ['inventoryPage-tagContent-tagGroup', 'all-group']);
-
-  const title = makeElement('div', 'inventoryPage-tagContent-tagTitle', 'All');
-
-  const listing = makeElement('div', 'inventoryPage-tagContent-listing');
-
-  let isToggled = getSetting('better-inventory.show-all-group-is-toggled', false);
-  title.addEventListener('click', () => {
-    listing.classList.toggle('hidden');
-    allGroup.classList.toggle('toggled');
-
-    isToggled = ! isToggled;
-    saveSetting('better-inventory.show-all-group-is-toggled', isToggled);
-  });
-
-  if (isToggled) {
-    listing.classList.add('hidden');
-    allGroup.classList.add('toggled');
-  }
-
-  allGroup.append(title);
-
-  // Append to tagContent as the second child if searchGroup is the first child
-  if (searchGroup === tagContent.firstChild) {
-    tagContent.insertBefore(allGroup, searchGroup.nextSibling);
-  } else {
-    searchGroup.before(allGroup);
-  }
-
-  const items = document.querySelectorAll('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabContent.active .inventoryPage-tagContent-listing .inventoryPage-item');
-  const sortedItems = sortInventoryItemsByName(items);
-  for (const item of sortedItems) {
-    const newItem = makeElement('div', 'tiny-item');
-
-    const classification = item.getAttribute('data-item-classification');
-    newItem.setAttribute('data-item-classification', classification);
-
-    const itemType = item.getAttribute('data-item-type');
-    newItem.setAttribute('data-item-type', itemType);
-
-    const existingImage = item.querySelector('.inventoryPage-item-imageContainer .itemImage img');
-    if (existingImage && existingImage.src) {
-      const newImg = makeElement('img', 'tiny-item-image');
-      newImg.src = existingImage.src;
-      newItem.append(newImg);
-    }
-
-    const name = makeElement('div', 'tiny-item-name', item.getAttribute('data-name'));
-    name.addEventListener('click', () => hg.views.ItemView.show(itemType));
-    newItem.append(name);
-
-    if ('weapon' === classification || 'base' === classification) {
-      const hasStats = item.querySelector('.itemViewStatBlock-stat');
-      if (hasStats) {
-        const statTypes = [
-          'powerType',
-          'power',
-          'powerBonus',
-          'luck',
-        ];
-
-        const statsWrapper = makeElement('div', 'tiny-item-stats');
-
-        for (const statType of statTypes) {
-          const el = item.querySelector(`.itemViewStatBlock-stat.${statType} .itemViewStatBlock-stat-value span`);
-          makeElement('div', `tiny-item-${statType}`, el ? el.innerHTML : '', statsWrapper);
-        }
-
-        newItem.append(statsWrapper);
-      }
-    } else {
-      const quantityEl = item.querySelector('.inventoryPage-item-imageContainer .itemImage .quantity');
-      makeElement('div', 'tiny-item-quantity', quantityEl ? quantityEl.innerText : '', newItem);
-    }
-
-    const actionContainer = makeElement('div', 'tiny-item-action');
-
-    makeMhButton({
-      text: 'View',
-      size: 'tiny',
-      className: 'tiny-item-view',
-      appendTo: actionContainer,
-      callback: () => hg.views.ItemView.show(itemType),
-    });
-
-    // todo: add open all and all but one buttons and stuff here too,
-
-    newItem.append(actionContainer);
-
-    listing.append(newItem);
-  }
-
-  allGroup.append(listing);
-};
-
-const runResortInventory = () => {
-  const func = getSetting('better-inventory.show-all-group', false) ? resortInventoryAddAllGroup : resortInventory;
-  setTimeout(func, 250);
-};
-
 const addResortInventory = () => {
-  onNavigation(runResortInventory, {
+  onNavigation(() => {
+    setTimeout(resortInventory, 250);
+  }, {
     page: 'inventory',
     anyTab: true,
     anySubtab: true,
@@ -321,7 +205,7 @@ const addResortInventory = () => {
 
   onRequest('pages/page.php', (response, data) => {
     if ('Inventory' === data.page_class) {
-      runResortInventory();
+      setTimeout(resortInventory, 250);
     }
   });
 };
