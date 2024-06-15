@@ -15,6 +15,7 @@ import {
 import styles from './styles.css';
 
 let items;
+let itemSettings = {};
 
 /**
  * Save the locked and hidden items.
@@ -30,7 +31,7 @@ const saveSettings = (shouldUpdateTitles = true) => {
     items = getData('items');
   }
 
-  const itemSettings = {
+  itemSettings = {
     locked: itemSettings.locked,
     hidden: itemSettings.hidden,
     lockedTypes: itemSettings.locked.map((id) => items.find((item) => item.item_id === id).type),
@@ -239,11 +240,11 @@ const maybeLockOrHideItems = async () => {
       return;
     }
 
-    if (itemSettings?.locked?.length > 0 && itemSettings.locked.includes(id)) {
+    if (itemSettings?.locked?.length > 0 && itemSettings?.locked?.includes(id)) {
       item.classList.add('locked');
     }
 
-    if (itemSettings?.hidden?.length > 0 && itemSettings.hidden.includes(id)) {
+    if (itemSettings?.hidden?.length > 0 && itemSettings?.hidden?.includes(id)) {
       item.classList.add('hidden');
     }
   }
@@ -540,8 +541,6 @@ const main = async () => {
   maybeLockOrHideItems();
   addLockAndHideControls();
 };
-
-let itemSettings;
 
 /**
  * Initialize the module.
