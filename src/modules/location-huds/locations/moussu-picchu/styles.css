@@ -1,14 +1,19 @@
 .moussuPicchuHUD-torchQuantity.quantity {
+  width: 35px;
   font-size: 12px;
-  background-color: #fff;
+  color: #fff;
+  background-color: #320918;
   border-radius: 4px;
 }
 
 .moussuPicchuHUD .mousehuntItem-quantity.quantity {
-  right: 0;
-  bottom: -8px;
-  left: 0;
-  font-size: 11px;
+  right: 1px;
+  bottom: -10px;
+  left: 1px;
+  font-size: 10px;
+  color: #fff;
+  background-color: #8d3f4d;
+  box-shadow: none;
 }
 
 .moussuPicchuHUD-itemContainer {
@@ -182,6 +187,56 @@ a.moussuPicchuHUD-powerType:hover {
   background-size: 30px;
 }
 
+.moussuPicchuHUD .mousehuntItem.potion .mousehuntItem-image {
+  width: 32px;
+  height: 32px;
+}
+
 .moussuPicchuHUD .mousehuntItem.active .mousehuntItem-quantity.quantity {
+  right: -1px;
+  left: -1px;
+  color: #000;
   background-color: #9ee184;
+}
+
+.moussuPicchuHUD-elementContainer.wind .moussuPicchuHUD-element-progressBarContainer span[style="width:100%;"]::after,
+.moussuPicchuHUD-elementContainer.rain .moussuPicchuHUD-element-progressBarContainer span[style="width:100%;"]::after {
+  border: none;
+  border-radius: 0;
+}
+
+.moussuPicchuHUD-elementContainer.wind .moussuPicchuHUD-element-progressBarContainer,
+.moussuPicchuHUD-elementContainer.rain .moussuPicchuHUD-element-progressBarContainer,
+.moussuPicchuHUD-element-progressBarContainer {
+  overflow: hidden;
+  border-color: #978787;
+  border-radius: 3px;
+}
+
+.moussuPicchuHUD-elementContainer.rain .moussuPicchuHUD-element-progressBarContainer span,
+.moussuPicchuHUD-elementContainer.wind .moussuPicchuHUD-element-progressBarContainer span {
+  border-radius: 2px;
+}
+
+.moussuPicchuHUD-torchButton.selected::after {
+  filter: drop-shadow(0 -2px 5px #f5a8fc);
+}
+
+.moussuPicchuHUD .mousehuntItem:hover .mousehuntItem-quantity.quantity {
+  right: -1px;
+  left: -1px;
+}
+
+.moussuPicchuHUD .mousehuntItem:hover .mousehuntItem-quantity.quantity::after {
+  position: absolute;
+  inset: 0;
+  bottom: -1px;
+  content: "";
+  border: 2px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+
+.moussuPicchuHUD .mousehuntItem.active:hover .mousehuntItem-quantity.quantity::after {
+  border: none;
 }
