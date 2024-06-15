@@ -1,3 +1,4 @@
+import { getSetting } from './settings';
 import { onEvent } from './event-registry';
 
 /**
@@ -168,6 +169,9 @@ const addExternalStyles = async (url) => {
   style.id = `${identifier}-external`;
   style.rel = 'stylesheet';
   style.href = `${url}?v=${mhImprovedVersion}-external`;
+  if (getSetting('debug.disable-cache')) {
+    style.href = `${style.href.replace('static.mouse.rip', 'api.mouse.rip')}&${Date.now()}`;
+  }
 
   document.head.append(style);
 
