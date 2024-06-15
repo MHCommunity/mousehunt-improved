@@ -203,7 +203,7 @@ const getAmplifier = () => {
 /**
  * Get the catch rate.
  *
- * Props Maidenless @ github.com/MaidenlessINC/Maidenless-INC
+ * Props Maidenless @ github.com/MaidenlessINC/Maidenless-INC.
  *
  * @param {Object}  options                     The options.
  * @param {string}  options.mouseType           The mouse type.
