@@ -4,7 +4,8 @@ import { onEvent } from './event-registry';
 import { showHornMessage } from './horn';
 
 const requestCallbacks = {};
-let onRequestHolder = null;
+let onRequestHolder = false;
+
 /**
  * Do something when ajax requests are completed.
  *
@@ -33,6 +34,44 @@ let onRequestHolder = null;
  * @param {boolean}  priority    Whether or not to run the callback first.
  */
 const onRequest = (url = null, callback = null, skipSuccess = false, ignore = [], priority = false) => {
+  if (! onRequestHolder) {
+    const req = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function () {
+      this.addEventListener('load', function () {
+        if (this.responseText) {
+          let response = {};
+          try {
+            response = JSON.parse(this.responseText);
+          } catch {
+            return;
+          }
+
+          Object.keys(requestCallbacks).forEach((key) => {
+            if ('*' === key || this.responseURL.includes(key)) {
+              requestCallbacks[key].forEach((item) => {
+                if (item.callback && typeof item.callback === 'function' && (item.skipSuccess || response?.success)) {
+                  item.callback(response, this._data);
+                }
+              });
+            }
+          });
+        }
+      });
+
+      Reflect.apply(req, this, arguments);
+    };
+
+    const send = XMLHttpRequest.prototype.send;
+    XMLHttpRequest.prototype.send = function (data) {
+      const params = new URLSearchParams(data);
+      this._data = Object.fromEntries(params);
+
+      return Reflect.apply(send, this, arguments);
+    };
+
+    onRequestHolder = true;
+  }
+
   url = '*' === url ? '*' : `managers/ajax/${url}`;
 
   if (ignore.includes(url)) {
@@ -58,57 +97,6 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
       skipSuccess,
     });
   }
-
-  if (onRequestHolder) {
-    return;
-  }
-
-  const req = XMLHttpRequest.prototype.open;
-  /**
-   * Override the open method on the XMLHttpRequest prototype.
-   */
-  XMLHttpRequest.prototype.open = function () {
-    const send = XMLHttpRequest.prototype.send;
-
-    /**
-     * Override the send method on the XMLHttpRequest prototype.
-     *
-     * @param {string} data The data to send.
-     *
-     * @return {Object} The response.
-     */
-    XMLHttpRequest.prototype.send = function (data) {
-      const params = new URLSearchParams(data);
-      this._data = Object.fromEntries(params);
-
-      return Reflect.apply(send, this, arguments);
-    };
-
-    this.addEventListener('load', function () {
-      if (this.responseText) {
-        let response = {};
-        try {
-          response = JSON.parse(this.responseText);
-        } catch {
-          return;
-        }
-
-        Object.keys(requestCallbacks).forEach((key) => {
-          if ('*' === key || this.responseURL.includes(key)) {
-            requestCallbacks[key].forEach((item) => {
-              if (item.callback && typeof item.callback === 'function' && (item.skipSuccess || response?.success)) {
-                item.callback(response, this._data);
-              }
-            });
-          }
-        });
-      }
-    });
-
-    Reflect.apply(req, this, arguments);
-  };
-
-  onRequestHolder = true;
 };
 
 /**
