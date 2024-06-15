@@ -1,5 +1,44 @@
 # Changelog
 
+## Version 0.46.0
+
+### Better Journal
+
+- Minor style updates
+
+### Better Send Supplies
+
+- Minor style updates
+
+### Better Shops
+
+- Minor style updates
+
+### Catch Rate Estimator & Minlucks
+
+- Added support for special catch rate modifiers, such as Dragonbane Charms, different locations, and more
+
+### Location Dashboards
+
+- Updated text of Fiery Warpath and Fort Rox to support portals
+
+### Location HUDs
+
+- Updated Fiery Warpath styles
+- Updated Harbour styles
+- Updated Fort Rox styles
+- Updated Moussu Picchstyles
+- Updated Bristle Woods Rift styles
+
+### Native Dark Mode
+
+- Added styling for many pages and elements
+
+### Other
+
+- Optimized performance and memory usage of requests
+- Removed 'Better Inventory: Add list of all items to top of inventory pages' experiment
+
 ## Version 0.45.3
 
 - Added Medium Slayer to Ultimate Checkmark
