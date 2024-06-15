@@ -10,9 +10,9 @@ import {
 
 import pathsToSkip from './paths-to-skip.json';
 
+import journalStyles from './journals.css';
 import styles from './styles.css';
 import viewsStyles from './views.css';
-import journalStyles from './journals.css';
 
 /**
  * The ImageUpscaler class.
