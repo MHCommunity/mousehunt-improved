@@ -29,6 +29,10 @@ export default (quests) => {
     stage_five: 'First Light',
   };
 
+  if (quests.is_lair) {
+    return 'In Lair';
+  }
+
   phase = quest.is_dawn ? 'Dawn' : phases[quest.stage];
 
   return `${phase}: ${quest.hp}/${quest.max_hp} HP`;

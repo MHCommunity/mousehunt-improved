@@ -24,6 +24,10 @@ const getFieryWarpathText = (quests) => {
     streakText = ` · ${quest.streak} streak`;
   }
 
+  if ('portal' === quest.wave) {
+    return `Portal: ${Math.max(0, quest.remaining - 1)} guards remaining `;
+  }
+
   return `Wave ${quest.wave}: ${100 - quest.percent}% remaining${streakText} `;
 };
 
@@ -40,21 +44,21 @@ const setFieryWarpathData = () => {
   let wave = 0;
   let streak = 'No Streak';
   let remaining = 0;
-  let percent = 100;
+  let percent = 0;
 
   const waveEl = document.querySelector('.warpathHUD.showPortal');
   if (waveEl) {
     // get the classlist and find the one that starts with 'wave'
     const waveClass = [...waveEl.classList].find((className) => className.startsWith('wave'));
-    wave = Number.parseInt(waveClass.replace('wave', '').replace('_', ''));
+    wave = waveClass.replace('wave', '').replace('_', '');
   }
 
   const streakEl = document.querySelector('.warpathHUD-streakBoundingBox');
   if (streakEl) {
-    streak = Number.parseInt(streakEl.innerText.replaceAll('\n', ' ').replace(' 0', '').trim());
+    streak = Number.parseInt(streakEl.innerText.replaceAll('\n', ' ').replace(' 0', '').trim()) || 0;
   }
 
-  const remainingEl = document.querySelectorAll('.warpathHUD-wave-mouse-population');
+  const remainingEl = document.querySelectorAll(`.warpathHUD-wave.wave_${wave} .warpathHUD-wave-mouse-population`);
   if (remainingEl.length) {
     // sum all the values that have an innerText
     remaining = [...remainingEl].reduce((sum, el) => {
@@ -63,9 +67,6 @@ const setFieryWarpathData = () => {
       }
       return sum;
     }, 0);
-
-    // subtract 2 for the commander and guard.
-    remaining = remaining - 2;
   }
 
   const percentEl = document.querySelector('.warpathHUD-moraleBar span');

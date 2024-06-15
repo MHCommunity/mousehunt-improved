@@ -13,6 +13,11 @@ const addMissiles = () => {
     return;
   }
 
+  const existing = container.querySelector('.warpathHud-missle-activate');
+  if (existing) {
+    return;
+  }
+
   const trigger = makeElement('div', ['warpathHud-missle-activate', 'warpathHUD-missile']); /* cspell: disable-line */
   container.append(trigger);
 
