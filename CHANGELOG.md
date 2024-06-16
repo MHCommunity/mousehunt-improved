@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.46.1
+## Version 0.47.0
 
 - Updated Better Travel Reminders delay before automatically dismissing to 6 seconds
 - Updated Better Travel Reminders to use a custom design to stand out slightly more
