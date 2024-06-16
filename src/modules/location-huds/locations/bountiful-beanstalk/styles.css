@@ -254,6 +254,12 @@
   opacity: 1;
 }
 
+.folkloreForestRegionView-helpButton:active {
+  filter: grayscale(1);
+  background-position-y: center;
+  opacity: 1;
+}
+
 .headsUpDisplayBountifulBeanstalk__embellishmentBlock .mousehuntTooltip {
   right: -70px;
   bottom: 50px;
@@ -480,4 +486,36 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
   bottom: 0;
   align-self: center;
   content: "Catch";
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleNextRoomLevel.headsUpDisplayBountifulBeanstalkView__chevron {
+  position: relative;
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleChevronContainer:hover .headsUpDisplayBountifulBeanstalkView__chevron::after {
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+  left: 0;
+  font-size: 11px;
+  font-weight: 900;
+  color: #e1dacd;
+  text-align: center;
+  content: "";
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleChevronContainer:hover .headsUpDisplayBountifulBeanstalkView__chevron--standard::after {
+  content: "x1";
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleChevronContainer:hover .headsUpDisplayBountifulBeanstalkView__chevron--super::after {
+  content: "x2";
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleChevronContainer:hover .headsUpDisplayBountifulBeanstalkView__chevron--extreme::after {
+  content: "x4";
+}
+
+.headsUpDisplayBountifulBeanstalkView__castleChevronContainer:hover .headsUpDisplayBountifulBeanstalkView__chevron--ultimate::after {
+  content: "x8";
 }
