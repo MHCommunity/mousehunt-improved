@@ -6,6 +6,7 @@ import {
   getSetting,
   onEvent,
   onNavigation,
+  onRequest,
   removeHudStyles
 } from '@utils';
 
@@ -215,6 +216,19 @@ const init = async () => {
   onNavigation(main);
   onEvent('travel_complete', () => {
     setTimeout(main, 1000);
+  });
+
+  // Going to Zokor from Labyrinth and vice versa doesn't trigger a navigation event.
+  onRequest('environment/labyrinth.php', (data, request) => {
+    if ('make_intersection_choice' === request.action) {
+      setTimeout(main, 1000);
+    }
+  });
+
+  onRequest('environment/ancient_city.php', (data, request) => {
+    if ('retreat' === request.action) {
+      setTimeout(main, 1000);
+    }
   });
 };
 
