@@ -196,7 +196,7 @@ const autocloseClaim = (resp) => {
  * @return {string} The markup for the mouse links.
  */
 const getLinkMarkup = (name, id) => {
-  return makeLink('MHCT', `https://www.mhct.win/loot.php?item=${id}`, true) +
+  return makeLink('MHCT', `https://api.mouse.rip/mhct-redirect-item/${id}`, true) +
     makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
 };
 
