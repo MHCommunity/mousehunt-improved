@@ -16,7 +16,7 @@ import updateSummary from '@data/update-summary.json';
 const makeDetailsList = (modules) => {
   return modules.map((module) =>
     `<div class="update-list-section">
-      <h2>${module.title}</h2>
+      ${module.title ? `<h2>${module.title}</h2>` : ''}
       <ul>
         ${module.items.map((item) => `<li>${item}</li>`).join('')}
       </ul>
@@ -35,15 +35,15 @@ const showUpdateSummary = async (from, force = false) => {
     return;
   }
 
-  const missingSummaryOrDetails = ! updateSummary.summary.length || ! updateSummary.details.length;
+  const missingSummaryOrDetails = ! (updateSummary.summary.length || updateSummary.details.length);
   if (missingSummaryOrDetails && ! force) {
     return;
   }
 
   const markup = `<div class="mh-improved-update-summary-wrapper">
 	  <h1 class="mh-improved-update-summary-title">MouseHunt Improved v${mhImprovedVersion}</h1>
-    <p class="mh-improved-update-summary-content">${updateSummary.summary || ''}</p>
-    <div class="mh-improved-update-summary-lists">${missingSummaryOrDetails ? '<p><a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noopener noreferrer">Check out the latest release notes</a> for more information.</p>' : makeDetailsList(updateSummary.details)}</div>
+    <p class="mh-improved-update-summary-content">${updateSummary.summary || '<p><a href="https://github.com/MHCommunity/mousehunt-improved/releases" target="_blank" rel="noopener noreferrer">Check out the latest release notes</a> for more information.</p>'}</p>
+    <div class="mh-improved-update-summary-lists">${missingSummaryOrDetails ? '' : makeDetailsList(updateSummary.details)}</div>
     <div class="mh-improved-update-summary-buttons">
       <a href="#" id="mh-improved-dismiss-popup" class="button">Continue</a>
     </div>
