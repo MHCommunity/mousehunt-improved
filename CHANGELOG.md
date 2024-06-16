@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.47.1
+
+- Fixed Catch Rate Estimator breaking in Bristle Woods Rift
+- Updated Bountiful Beanstalk Location HUD styles
+
 ## Version 0.47.0
 
 - Updated Better Travel Reminders delay before automatically dismissing to 6 seconds
