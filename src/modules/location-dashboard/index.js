@@ -4,6 +4,7 @@ import {
   cacheSet,
   createPopup,
   debug,
+  debuglog,
   doEvent,
   isUserTitleAtLeast,
   makeElement,
@@ -446,6 +447,8 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
  */
 const getDashboardContents = async () => {
   const quests = await cacheGet('quests', {});
+
+  debuglog('location-dashboard:quests', quests);
 
   const contentsWrapper = document.createElement('div');
   contentsWrapper.classList.add('dashboardContents');

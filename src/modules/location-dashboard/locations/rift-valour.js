@@ -19,11 +19,12 @@ export default (quests) => {
     speed: quests?.QuestRiftValour?.power_up_data?.long_stride?.current_level + 1 || 1,
     sync: quests?.QuestRiftValour?.power_up_data?.hunt_limit?.current_level + 1 || 1,
     siphon: quests?.QuestRiftValour?.power_up_data?.boss_extension?.current_level + 1 || 1,
+    uu: quests?.QuestRiftValour?.is_eclipse_mode || false,
   };
 
   let text = '';
 
   text = quest.floor === 0 ? 'Outside' : `Floor ${quest.floor} (${quest.floor_name}) · ${quest.hunts_remaining} hunts remaining`;
 
-  return `${text} <div class="stats">Speed ${quest.speed} · Sync ${quest.sync} · Siphon ${quest.siphon}</div>`;
+  return `<div>${quest.uu ? 'Ultimate Umbra' : ''}</div> ${text} <div class="stats">Speed ${quest.speed} · Sync ${quest.sync} · Siphon ${quest.siphon}</div>`;
 };

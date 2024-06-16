@@ -8,6 +8,7 @@
 - Added the boss name to the Zokor Location HUD
 - Fixed MHCT links in the Marketplace
 - Updated Location HUDs to refresh when moving from Labyrinth to Zokor and vice versa
+- Added Ultimate Umbra indication to Valour Rift Location Dashboard
 - Updated styles for Better UI, Better Maps, Better Marketplace, Labyrinth Location HUD, and Zokor Location HUD
 
 ## Version 0.46.0
