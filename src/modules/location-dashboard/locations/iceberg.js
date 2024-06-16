@@ -10,11 +10,7 @@ export default (quests) => {
     return '';
   }
 
-  const quest = {
-    phase: quests.QuestIceberg.current_phase || 'Iceberg',
-    progress: quests.QuestIceberg.user_progress || 0,
-    hunts: quests.QuestIceberg.turns_taken || 0,
-  };
+  const quest = quests.QuestIceberg;
 
-  return `${quest.phase}: ${quest.progress} ft.<div class="stats">Hunt #${quest.hunts}</div>`;
+  return `${quest.current_phase || 'Iceberg'}: ${quest.user_progress || 0} ft.<div class="stats">Hunt #${quest.turns_taken || 0}</div>`;
 };

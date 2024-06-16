@@ -10,9 +10,5 @@ export default (quests) => {
     return '';
   }
 
-  const quest = {
-    mist_released: quests?.QuestRiftBurroughs?.mist_released || null,
-  };
-
-  return `Mist: ${quest.mist_released} / 20`;
+  return `Mist: ${quests.QuestRiftBurroughs?.mist_released || 0} / 20`;
 };

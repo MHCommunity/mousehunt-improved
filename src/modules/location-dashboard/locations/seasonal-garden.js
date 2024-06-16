@@ -10,12 +10,10 @@ const getSeasonalGardenText = (quests) => {
     return '';
   }
 
-  const quest = {
-    amp: quests?.QuestSeasonalGarden?.amp || 0,
-    max: quests?.QuestSeasonalGarden?.max || 0,
-  };
+  const amp = quests.QuestSeasonalGarden?.amp || 0;
+  const max = quests.QuestSeasonalGarden?.max || 0;
 
-  return `Amp: ${quest.amp}% / ${quest.max}%`;
+  return (amp === 0 && max === 0) ? 'Amp: 0%' : `Amp: ${amp}% / ${max}%`;
 };
 
 /**

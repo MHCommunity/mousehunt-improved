@@ -10,15 +10,16 @@ export default (quests) => {
     return '';
   }
 
-  const oxygen = quests.QuestSunkenCity.items?.oxygen_stat_item || 0;
+  const quest = quests.QuestSunkenCity;
+  const oxygen = quest?.items?.oxygen_stat_item || 0;
 
-  if (! quests.QuestSunkenCity.is_diving) {
-    const canDive = quests.QuestSunkenCity.can_dive ? 'can dive' : 'cannot dive';
+  if (! quest?.is_diving) {
+    const canDive = quest?.can_dive ? 'can dive' : 'cannot dive';
     return `Docked (${canDive}), ${oxygen} O₂`;
   }
 
-  const zone = quests.QuestSunkenCity.zone_name;
-  const depth = quests.QuestSunkenCity.distance;
+  const zone = quest?.zone_name || '';
+  const depth = quest?.distance || 0;
 
   return `${zone}, ${depth}m, ${oxygen} O₂`;
 };

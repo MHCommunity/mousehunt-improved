@@ -10,16 +10,11 @@ export default (quests) => {
     return '';
   }
 
-  const quest = {
-    has_wall: quests?.QuestMousoleum?.has_wall || false,
-    wall_health: quests?.QuestMousoleum?.wall_health || 0,
-    max_wall_health: quests?.QuestMousoleum?.max_wall_health || 0,
-    planks: quests?.QuestMousoleum?.wall_materials || 0,
-  };
+  const quest = quests.QuestMousoleum;
 
-  if (quest.has_wall) {
-    return `Wall · ${quest.wall_health}/${quest.max_wall_health} HP`;
+  if (quest?.has_wall) {
+    return `Wall · ${quest?.wall_health || 0}/${quest?.max_wall_health || 0} HP`;
   }
 
-  return `No Wall · ${quest.planks} planks`;
+  return `No Wall · ${quest?.wall_materials || 0} planks`;
 };

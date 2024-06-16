@@ -11,7 +11,6 @@ export default (quests) => {
   }
 
   const quest = quests.QuestLostCity;
-
   const twistedText = quest.is_normal ? 'Not twisted' : 'Twisted';
 
   if (! quest?.minigame?.is_cursed) {

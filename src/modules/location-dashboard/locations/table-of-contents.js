@@ -12,9 +12,9 @@ export default (quests) => {
 
   const q = quests.QuestTableOfContents;
 
-  if (! q.is_writing) {
+  if (! q?.is_writing) {
     return 'Not writing';
   }
 
-  return `Writing: ${q.current_book.name} (${q.current_book.percent}%) <div class="stats">${q.current_book.word_count_formatted} words · ${q.current_book.hunts_remaining} hunts remaining</div>`;
+  return `Writing: ${q?.current_book.name || ''} (${q?.current_book.percent || 0}%) <div class="stats">${q?.current_book.word_count_formatted || 0} words · ${q?.current_book.hunts_remaining || 0} hunts remaining</div>`;
 };

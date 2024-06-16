@@ -10,10 +10,7 @@ export default (quests) => {
     return '';
   }
 
-  const quest = {
-    state_name: quests?.QuestQuesoGeyser?.state_name || 'Cork Gathering', // add check for pressure building here
-    hunts_remaining: quests?.QuestQuesoGeyser?.hunts_remaining || 0,
-  };
+  const quest = quests.QuestQuesoGeyser;
 
-  return `${quest.state_name}: ${quest.hunts_remaining} hunts remaining`;
+  return `${quest?.state_name || 'Cork Gathering'}: ${quest?.hunts_remaining || 0} hunts remaining`;
 };

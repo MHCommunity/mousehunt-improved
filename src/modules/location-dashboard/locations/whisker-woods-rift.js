@@ -10,11 +10,6 @@ export default (quests) => {
     return '';
   }
 
-  const quest = {
-    clearing: quests?.QuestRiftWhiskerWoods?.zones?.clearing?.level || 0,
-    lagoon: quests?.QuestRiftWhiskerWoods?.zones?.lagoon?.level || 0,
-    tree: quests?.QuestRiftWhiskerWoods?.zones?.tree?.level || 0,
-  };
-
-  return `Rage: ${quest.clearing} / ${quest.lagoon} / ${quest.tree}`;
+  const zones = quests.QuestRiftWhiskerWoods.zones || {};
+  return `Rage: ${zones?.clearing?.level || 0} / ${zones?.lagoon?.level || 0} / ${zones?.tree?.level || 0}`;
 };

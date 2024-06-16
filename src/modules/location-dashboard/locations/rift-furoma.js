@@ -31,7 +31,7 @@ export default (quests) => {
     const droidLevel = map[q.droid.charge_level.split('_')[2]];
     const batteryPercent = Math.floor(q.batteries[q.droid.charge_level].percent);
 
-    return `Pagoda · Battery ${droidLevel} (${batteryPercent}%) · ${q.droid.remaining_energy} Enerchi`;
+    return `Pagoda · Battery ${droidLevel} (${batteryPercent}%)<div class="stats">${q.droid.remaining_energy} Enerchi</div>`;
   }
 
   // find the highest battery that has unlocked in its status
@@ -46,5 +46,5 @@ export default (quests) => {
   }, 0);
 
   // Outside.
-  return `Outside · Battery ${highestBattery} · ${q.items.combat_energy_stat_item.quantity} Enerchi`;
+  return `Outside · Battery ${highestBattery}<div class="stats">${q.items.combat_energy_stat_item.quantity} Enerchi</div>`;
 };

@@ -11,7 +11,6 @@ export default (quests) => {
   }
 
   const quest = quests.QuestSandDunes;
-
   const twistedText = quest.is_normal ? 'Not twisted' : 'Twisted';
 
   if (quest?.is_normal) {
