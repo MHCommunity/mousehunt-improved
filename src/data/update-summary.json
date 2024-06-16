@@ -1,37 +1,16 @@
 {
-  "summary": "This version updates the Catch Rate Estimator & Minlucks to support special catch rate modifiers and updates Native Dark Mode styling coverage.",
+  "summary": "",
   "details": [
     {
-      "title": "Better Journal",
-      "items": ["Minor style updates"]
-    },
-    {
-      "title": "Better Send Supplies",
-      "items": ["Minor style updates"]
-    },
-    {
-      "title": "Better Shops",
-      "items": ["Minor style updates"]
-    },
-    {
-      "title": "Catch Rate Estimator & Minlucks",
-      "items": ["Added support for special catch rate modifiers, such as Dragonbane Charms, different locations, and more"]
-    },
-    {
-      "title": "Location Dashboards",
-      "items": ["Updated text of Fiery Warpath and Fort Rox to support portals"]
-    },
-    {
-      "title": "Location HUDs",
-      "items": ["Updated Fiery Warpath styles","Updated Harbour styles","Updated Fort Rox styles","Updated Moussu Picchu styles","Updated Bristle Woods Rift styles"]
-    },
-    {
-      "title": "Native Dark Mode",
-      "items": ["Added styling for many pages and elements"]
-    },
-    {
-      "title": "Other",
-      "items": ["Optimized performance and memory usage of requests", "Removed 'Better Inventory: Add list of all items to top of inventory pages' experiment"]
+      "items": [
+        "Updated Better Travel Reminders delay before automatically dismissing to 6 seconds",
+        "Updated Better Travel Reminders to use a custom design to stand out slightly more",
+        "Added a reminder to Zokor Location HUD if you have a Lantern Oil Charm or Super Lantern Oil Cbarm equipped",
+        "Added the boss name to the Zokor Location HUD",
+        "Fixed MHCT links in the Marketplace",
+        "Updated Location HUDs to refresh when moving from Labyrinth to Zokor and vice versa",
+        "Updated styles for Better UI, Better Maps, Better Marketplace, Labyrinth Location HUD, and Zokor Location HUD"
+      ]
     }
   ]
 }

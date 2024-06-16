@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.46.1
+
+- Updated Better Travel Reminders delay before automatically dismissing to 6 seconds
+- Updated Better Travel Reminders to use a custom design to stand out slightly more
+- Added a reminder to Zokor Location HUD if you have a Lantern Oil Charm or Super Lantern Oil Cbarm equipped
+- Added the boss name to the Zokor Location HUD
+- Fixed MHCT links in the Marketplace
+- Updated Location HUDs to refresh when moving from Labyrinth to Zokor and vice versa
+- Updated styles for Better UI, Better Maps, Better Marketplace, Labyrinth Location HUD, and Zokor Location HUD
+
 ## Version 0.46.0
 
 ### Better Journal
