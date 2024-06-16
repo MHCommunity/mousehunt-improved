@@ -306,7 +306,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     break;
   case 'rift_bristle_woods':
     // if AA and has more than 0 sand, 0 effectiveness.
-    if ('rift_acolyte' === mouseType && user?.quests?.QuestRiftBristleWoods?.QuestRiftBristleWoods.acolyte_sand > 0) {
+    if ('rift_acolyte' === mouseType && (user?.quests?.QuestRiftBristleWoods?.QuestRiftBristleWoods?.acolyte_sand || 0) > 0) {
       effectiveness = 0;
     }
     break;
