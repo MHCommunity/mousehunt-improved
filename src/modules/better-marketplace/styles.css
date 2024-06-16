@@ -166,3 +166,7 @@ td.marketplaceView-table-name {
   display: flex;
   align-items: center;
 }
+
+.marketplaceView-item-rightBlock .mousehuntCharacterGuideBox-content li {
+  background-position-y: -2px;
+}
