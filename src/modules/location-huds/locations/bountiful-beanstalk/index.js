@@ -6,7 +6,8 @@ import {
   makeElement,
   makeMhButton,
   onTurn,
-  saveSetting
+  saveSetting,
+  setMultipleTimeout
 } from '@utils';
 
 import keepInventoryToggled from '../../shared/folklore-forest/keep-inventory-open';
@@ -321,6 +322,17 @@ const addCraftingButtons = async () => {
   });
 };
 
+const addCommaToNoiseMeter = async () => {
+  const noise = document.querySelector('.bountifulBeanstalkCastleView__noiseLevel');
+  if (noise && noise.innerText && Number.parseInt(noise.innerText) > 999) {
+    noise.innerText = Number.parseInt(noise.innerText).toLocaleString();
+  }
+};
+
+const addCommaToNoiseMeterTimeout = async () => {
+  setMultipleTimeout(addCommaToNoiseMeter, [0, 500, 1000]);
+};
+
 /**
  * Initialize the module.
  */
@@ -350,8 +362,12 @@ export default async () => {
   toggleFuelWithIcon();
   updateLootText();
   addCraftingButtons();
+  addCommaToNoiseMeterTimeout();
 
   funTime();
 
-  onTurn(makeGiantMoreVisible, 1000);
+  onTurn(() => {
+    makeGiantMoreVisible();
+    addCommaToNoiseMeterTimeout();
+  }, 1000);
 };
