@@ -1,28 +1,9 @@
+import { doEvent, onEvent } from './event-registry';
 import { getCurrentPage, getCurrentTab } from './page';
 import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
-import { doEvent } from './event-registry';
 import { makeElement } from './elements';
 import { onNavigation } from './events';
 import { showSuccessMessage } from './messages';
-
-// Settings to not show the refresh reminder for.
-const noReminders = new Set([
-  'better-gifts.ignore-bad-gifts',
-  'better-gifts.send-order',
-  'better-item-view.show-drop-rates',
-  'better-marketplace.search-all',
-  'better-marketplace.show-chart-images',
-  'better-mice.show-attraction-rates',
-  'better-quests.m400-helper',
-  'better-send-supplies.pinned-items',
-  'better-tournaments.time-inline',
-  'better-travel.default-to-simple-travel',
-  'better-travel.show-alphabetized-list',
-  'error-reporting',
-  'hide-daily-reward-popup',
-  'quick-send-supplies.items',
-  'ultimate-checkmark.show'
-]);
 
 /**
  * Save a setting and toggle the class in the settings UI.
@@ -410,8 +391,6 @@ const makeSettingInput = ({ key, tab, defaultValue }) => {
     timeout = setTimeout(() => {
       parent.classList.remove('completed');
     }, 1000);
-
-    addSettingRefreshReminder(key);
   });
 
   settingRowInput.classList.add('inputText');
@@ -752,14 +731,8 @@ let removeTimeout = null;
 
 /**
  * Add a refresh reminder to the settings page.
- *
- * @param {string} key The setting key.
  */
-const addSettingRefreshReminder = (key) => {
-  if (noReminders.has(key)) {
-    return;
-  }
-
+const addSettingRefreshReminder = () => {
   let refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
   if (! refreshMessage) {
     const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'Refresh the page to apply your changes.');
@@ -788,6 +761,8 @@ const addSettingRefreshReminder = (key) => {
     refreshMessage.remove();
   }, 5000);
 };
+
+onEvent('mh-improved-settings-changed', addSettingRefreshReminder);
 
 /**
  * Add the settings for a module.

@@ -479,6 +479,12 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
 
 .mousehunt-improved-advanced-buttons {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 10px 0 5px 5px;
   border-top: 1px solid #f2ebde;
+}
+
+a.reset-link {
+  color: #f30000;
 }

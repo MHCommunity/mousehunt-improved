@@ -172,7 +172,7 @@ const addDialogListeners = () => {
   });
 
   onDialogShow('all', () => {
-    currentDialog = getCurrentDialog();
+    currentDialog = getCurrentDialog().replaceAll(' ', '-').toLowerCase();
     doEvent('dialog-show', currentDialog);
     doEvent(`dialog-show-${currentDialog}`);
   });

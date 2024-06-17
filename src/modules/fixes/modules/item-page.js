@@ -72,7 +72,14 @@ const fixItemPageReceiver = () => {
   const itemId = params.get('viewing-item-id');
 
   if (! itemId) {
-    hg.views.ItemView.show(itemId);
+    return;
+  }
+
+  hg.views.ItemView.show(itemId);
+
+  const item = document.querySelector(`.inventoryPage-item[data-item-type="${itemId}"]`);
+  if (item) {
+    item.scrollIntoView();
   }
 };
 
@@ -91,6 +98,8 @@ export default async () => {
 
   onNavigation(fixItemPageReceiver, {
     page: 'inventory',
+    anyTab: true,
+    anySubtab: true,
     onLoad: true,
   });
 

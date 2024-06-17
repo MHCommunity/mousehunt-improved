@@ -1,9 +1,10 @@
 import {
   addIconToMenu,
   addStyles,
+  cacheSet,
   clearCaches,
   createPopup,
-  dbDelete,
+  dbDeleteAll,
   doEvent,
   getCurrentLocation,
   getCurrentPage,
@@ -293,16 +294,27 @@ const addAdvancedSettingsButtons = () => {
 
   const buttonsWrapper = makeElement('div', 'mousehunt-improved-advanced-buttons');
 
-  const resetJournalLink = makeElement('a', 'reset-journal-link', 'Reset Journal History');
+  const resetJournalLink = makeElement('a', 'reset-link', 'Reset Journal History');
   resetJournalLink.href = '#';
   resetJournalLink.addEventListener('click', async (e) => {
     e.preventDefault();
     if (window.confirm('Are you sure you want to reset your journal history?')) { // eslint-disable-line no-alert
-      await dbDelete('journal');
+      await dbDeleteAll('journal');
       window.location.reload();
     }
   });
   buttonsWrapper.append(resetJournalLink);
+
+  const resetDashboardLink = makeElement('a', 'reset-link', 'Reset Location Dashboard');
+  resetDashboardLink.href = '#';
+  resetDashboardLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (window.confirm('Are you sure you want to reset your dashboard data?')) { // eslint-disable-line no-alert
+      await cacheSet('quests', {});
+      window.location.reload();
+    }
+  });
+  buttonsWrapper.append(resetDashboardLink);
 
   settingWrapper.append(buttonsWrapper);
 };

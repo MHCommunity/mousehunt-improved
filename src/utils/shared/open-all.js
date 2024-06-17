@@ -1,71 +1,49 @@
 import { getSetting, onNavigation } from '@utils';
 
 /**
- * Get the quantity input element.
- *
- * @return {Element|boolean} The quantity input element or false.
- */
-const getQuantityInput = () => {
-  const quantity = document.querySelector('.itemView-action-convert-quantity');
-  if (! quantity) {
-    return false;
-  }
-
-  return quantity;
-};
-
-/**
  * Replace the convertible open action.
+ *
+ * @param {HTMLElement} element The element.
  */
-const replaceOpenAction = () => {
-  const _original = app.pages.InventoryPage.useConvertible;
+const useConvertible = (element) => {
+  if ((element.getAttribute('data-item-action') !== 'all-but-one') && (element.getAttribute('data-item-action') !== 'all')) {
+    return;
+  }
+  const itemType = element.getAttribute('data-item-type');
 
-  /**
-   * Use the convertible item.
-   *
-   * @param {Element} element The element to use.
-   */
-  app.pages.InventoryPage.useConvertible = (element) => {
-    if (element.getAttribute('data-item-action') === 'all-but-one') {
-      const itemType = element.getAttribute('data-item-type');
+  hg.views.ItemView.show(itemType);
 
-      hg.views.ItemView.show(itemType);
-
-      // wait for the item view to load
-      const interval = setInterval(() => {
-        const quantityEl = document.querySelector('.itemView-action-convertForm');
-        let maxQuantity = 0;
-        if (quantityEl && quantityEl.innerText.includes('/')) {
-          maxQuantity = Number.parseInt(quantityEl.innerText.split('/')[1].trim(), 10);
-        }
-
-        const quantity = maxQuantity > 200 ? 200 : maxQuantity - 1;
-
-        const quantityInput = getQuantityInput();
-        if (quantityInput) {
-          clearInterval(interval);
-          quantityInput.value = quantity;
-
-          const useButton = document.querySelector('.itemView-action-convert-actionButton');
-          if (useButton) {
-            useButton.click();
-          }
-        }
-      }, 100);
-    } else {
-      _original(element);
+  // wait for the item view to load
+  const interval = setInterval(() => {
+    const quantityEl = document.querySelector('.itemView-action-convertForm');
+    let maxQuantity = 1;
+    if (quantityEl && quantityEl.innerText.includes('/')) {
+      maxQuantity = Number.parseInt(quantityEl.innerText.split('/')[1].trim(), 10);
     }
-  };
+
+    const quantity = maxQuantity > 200 ? 200 : maxQuantity;
+
+    const quantityInput = document.querySelector('.itemView-action-convert-quantity');
+    if (quantityInput) {
+      clearInterval(interval);
+      quantityInput.value = quantity;
+
+      const useButton = document.querySelector('.itemView-action-convert-actionButton');
+      if (useButton) {
+        useButton.click();
+      }
+    }
+  }, 100);
 };
 
 /**
  * Add the 'Open All but One' buttons to convertible items.
  */
 const addOpenAllButOneButton = () => {
-  const allItems = [
-    document.querySelectorAll('.inventoryPage-tagContent-tagGroup[data-tag="convertibles"] .inventoryPage-item.convertible[data-item-classification="convertible"]'),
-    document.querySelectorAll('.inventoryPage-tagContent-tagGroup[data-tag="treasure_chests"] .inventoryPage-item.convertible[data-item-classification="convertible"]')
-  ];
+  const convertibles = document.querySelectorAll('.inventoryPage-tagContent-tagGroup[data-tag="convertibles"] .inventoryPage-item.convertible[data-item-classification="convertible"]');
+  const chests = document.querySelectorAll('.inventoryPage-tagContent-tagGroup[data-tag="treasure_chests"] .inventoryPage-item.convertible[data-item-classification="convertible"]');
+
+  const allItems = [...convertibles, ...chests];
 
   allItems.forEach((item) => {
     if (! item) {
@@ -102,6 +80,10 @@ const addOpenAllButOneButton = () => {
       newButton.value = 'All But One';
       newButton.setAttribute('data-item-action', 'all-but-one');
 
+      newButton.addEventListener('click', (event) => {
+        useConvertible(event.target);
+      });
+
       button.after(newButton);
     }
 
@@ -111,6 +93,10 @@ const addOpenAllButOneButton = () => {
       newAllButton.textContent = 'All';
       newAllButton.value = 'All';
       newAllButton.setAttribute('data-item-action', 'all');
+
+      newAllButton.addEventListener('click', (event) => {
+        useConvertible(event.target);
+      });
 
       button.after(newAllButton);
     }
@@ -138,10 +124,10 @@ const initOpenButtons = () => {
 
   hasInitialized = true;
 
-  replaceOpenAction();
   onNavigation(addOpenAllButOneButton, {
     page: 'inventory',
-    tab: 'special'
+    tab: 'special',
+    anySubTab: true,
   });
 };
 

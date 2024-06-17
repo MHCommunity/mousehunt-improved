@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.47.2
+
+- Fixed Reset Journal history link
+- Added Reset Location Dashboard link
+- Fixed error when navigating to Inventory pages
+- Fixed issue with Open all & Open All but One buttons only opening the item view
+- Updated Dark Mode styles
+
 ## Version 0.47.1
 
 - Fixed Catch Rate Estimator breaking in Bristle Woods Rift

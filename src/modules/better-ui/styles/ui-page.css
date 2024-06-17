@@ -1,8 +1,12 @@
 .pageFrameView-contentContainer {
+  padding-top: 10px;
   padding-bottom: 0;
-  margin-top: 10px;
   margin-bottom: 10px;
   background-color: transparent;
+}
+
+.mh-dark-mode .pageFrameView-contentContainer {
+  margin-bottom: 0;
 }
 
 .pageFrameView-content {
@@ -10,6 +14,11 @@
   border: 10px solid #fff;
   border-radius: 10px;
   box-shadow: 0 2px 4px #000;
+}
+
+.mh-dark-mode .pageFrameView-content {
+  margin: 0;
+  border: none;
 }
 
 @media only screen and (max-width: 810px) {

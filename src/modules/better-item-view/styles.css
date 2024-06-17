@@ -195,7 +195,7 @@
   margin-left: -15px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: auto;
+  background-size: contain;
 }
 
 .itemView-thumbnail.large {

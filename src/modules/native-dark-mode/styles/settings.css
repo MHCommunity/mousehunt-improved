@@ -83,3 +83,11 @@
 .mh-dark .mousehunt-improved-settings-export-details a {
   color: var(--d-link);
 }
+
+.mh-dark .mousehunt-improved-advanced-buttons {
+  border-color: var(--d-border);
+}
+
+.mh-dark .mousehuntHud-page-tabContent.game_settings a.reset-link {
+  color: var(--d-red);
+}

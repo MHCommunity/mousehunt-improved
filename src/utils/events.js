@@ -449,12 +449,14 @@ let hasAddedNavigationListener = false;
  * });
  *```
  *
- * @param {Function} callback       The callback to run when the user navigates to the page.
- * @param {Object}   options        The options.
- * @param {string}   options.page   The page to watch for.
- * @param {string}   options.tab    The tab to watch for.
- * @param {string}   options.subtab The subtab to watch for.
- * @param {boolean}  options.onLoad Whether or not to run the callback on load.
+ * @param {Function} callback          The callback to run when the user navigates to the page.
+ * @param {Object}   options           The options.
+ * @param {string}   options.page      The page to watch for.
+ * @param {string}   options.tab       The tab to watch for.
+ * @param {string}   options.subtab    The subtab to watch for.
+ * @param {boolean}  options.anyTab    Whether or not to run the callback on any tab.
+ * @param {boolean}  options.anySubtab Whether or not to run the callback on any subtab.
+ * @param {boolean}  options.onLoad    Whether or not to run the callback on load.
  */
 const onNavigation = (callback, options = {}) => {
   const defaults = {
