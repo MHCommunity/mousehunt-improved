@@ -138,7 +138,7 @@ const getPercent = (rate) => {
  * @return {boolean} If the wave has remaining mice.
  */
 const isWaveAndHasRemaining = (waveToCheck) => {
-  const waveClass = [...waveEl.classList].find((className) => className.startsWith('wave'));
+  const waveClass = [...waveToCheck.classList].find((className) => className.startsWith('wave'));
   const wave = waveClass.replace('wave', '').replace('_', '');
 
   if (waveToCheck !== wave) {
@@ -267,7 +267,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
       (miceGroups.fiery_warpath.warriors.includes(mouseType) && 'super_flame_march_warrior_trinket' === charm) ||
       (miceGroups.fiery_warpath.commanders.includes(mouseType) && 'super_flame_march_commander_trinket' === charm)
     ) {
-      powerBonus += 50;
+      trapPowerBonus += 50;
     }
 
     if ('desert_boss' === mouseType && isWaveAndHasRemaining('4')) {
@@ -314,7 +314,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     // Taunting charm.
     if (miceGroups.rift_whisker_woods.includes(mouseType) && 'calming_trinket' === charm) {
       if (1 === riftSetCount) {
-        powerBonus += hasRiftstalkerCodex ? 40 : 20;
+        trapPowerBonus += hasRiftstalkerCodex ? 40 : 20;
       } else if (2 === riftSetCount) {
         trapLuck += hasRiftstalkerCodex ? 10 : 5;
       }

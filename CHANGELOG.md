@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.48.1
+
+- Catch Rate Estimator: Fixed issue calculating power bonus in Fiery Warpath
+
 ## Version 0.48.0
 
 - Better Inventory: Updated message item indicator
