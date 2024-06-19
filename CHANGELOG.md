@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 0.48.0
+
+- Better Inventory: Updated message item indicator
+- Better Journal: Updated King's Giveaway entry styles
+- Better UI: Updated King's Giveaway styles
+- Inventory Lock and Hide: Added Hide/Show All buttons
+- Inventory Lock and Hide: Fixed issue with Lock/Unlock All buttons not working
+- Inventory Lock and Hide: Updated styles
+- Native Dark Mode: Updated styles
+- Toxic Spill Location HUD: Added barrel fill percentage indicator
+- Ultimate Checkmark: Added Regal Codex"
+
 ## Version 0.47.2
 
 - Fixed Reset Journal history link

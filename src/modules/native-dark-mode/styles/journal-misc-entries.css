@@ -10,6 +10,10 @@
   background-color: var(--d-red-dark);
 }
 
+.mh-dark .journal .content .entry.catchsuccessprize {
+  background-color: var(--d-green-dark);
+}
+
 .mh-dark .journal .content .entry.short.misc.custom.chesla_trap_trigger {
   background-color: var(--d-purple);
 }
@@ -68,6 +72,8 @@
 
 .mh-dark .journal .content .entry.custom.refine_pollutinum {
   background-color: var(--d-green-dark);
+  background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/af9ffb2d0655dbf62a5e4a086515bb23.png);
+  background-blend-mode: normal;
 }
 
 .mh-dark .journal .content .entry.relicHunter_slayer_aura_relic_bonus {

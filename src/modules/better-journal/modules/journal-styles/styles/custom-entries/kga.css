@@ -1,0 +1,16 @@
+.journal .content .entry.kings_giveaway_bonus_prize_entry .journalimage,
+.journal .content .entry.kings_giveaway_vault_prize_entry .journalimage {
+  height: 60px;
+  margin-top: 30px;
+  background: none;
+  border: none;
+}
+
+.journal .content .entry.kings_giveaway_vault_prize_entry {
+  background: linear-gradient(180deg, #ebaff8, #edd1f3, #ebaff8);
+}
+
+.journal .content .entry.kings_giveaway_vault_prize_entry br:nth-of-type(3),
+.journal .content .entry.kings_giveaway_vault_prize_entry br:nth-of-type(4) {
+  display: none;
+}

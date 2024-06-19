@@ -15,7 +15,6 @@ const replacements = [
   ['<br><b>The mouse also dropped the following loot:</b>', '==DROPREPLACE=='],
   ['.<br>==DROPREPLACE==<br>', ' that dropped '],
   ['<br>==DROPREPLACE==<br>', ' that dropped '],
-  ['I caught an', 'I caught a'],
   ['I caught a', '<p>I caught a'],
   ['found that I had caught a mouse! I', ''],
   ['found that I had caught a mouse! <p>I', ''],
@@ -91,22 +90,28 @@ const replacements = [
   ['Aura helped me find', 'Aura found'],
   ['processed  added', 'processed and added'],
   ['I have started a', 'I started a'],
-
-  // Event stuff
-  // SEH
-  [/was.+chocolatonium.+trap!/i, ''],
-
-  // Halloween
   [/an additional:<br>/i, 'an additional '],
-
   ['<br></p><p>', '<p>'],
   ['<br><p>', '<p>'],
   [/<p class="mhi-x-entry"><span class="dot"> • <\/span>/g, '', '!shop_purchase'],
   [/(\d+?) x /gi, '<p class="mhi-x-entry"><span class="dot"> • </span>$1 x ', '!shop_purchase'],
   ['My Condensed Creativity created an additional ', 'My Condensed Creativity created an additional: '],
-
   [/<p><\/p>/g, ''],
   ['I can view other recipe', '<p class="double">I can view other recipe'],
+  ['Here is the loot summary from my infiltration of', 'I looted the following from'],
+  ['Trove. and received', 'Trove and received'],
+  ['Lucky me, a prize mouse wandered by and fell for my trap!', 'A prize mouse fell into my trap!'],
+  [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
+  ['In a flash of light my', 'My'],
+  ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found an extra '],
+  ['I opened my harvest bin and retrieved the following yield: <br><br>From ', 'I opened my harvest bin and retrieved the following yield from '],
+  ['My Slayer Aura found 1 extra ', 'My Slayer Aura found an extra '],
+  ['Inside, I found', 'I found'],
+  ['Inside I found', 'I found'],
+
+  // Event stuff
+  // SEH
+  [/was.+chocolatonium.+trap!/i, ''],
 
   // SEH.
   ['A chocoholic', 'I caught a bonus'],
@@ -122,14 +127,8 @@ const replacements = [
   ['Eggstra Fondue extracted', 'My Eggstra Fondue extracted'],
   ['Additionally my Eggstra Fondue also extracted', 'And'],
 
-  ['Here is the loot summary from my infiltration of', 'I looted the following from'],
-  ['Trove. and received', 'Trove and received'],
-  ['Lucky me, a prize mouse wandered by and fell for my trap!', 'A prize mouse fell into my trap!'],
-  [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
-  ['In a flash of light my', 'My'],
-  ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found an extra '],
-  ['I opened my harvest bin and retrieved the following yield: <br><br>From ', 'I opened my harvest bin and retrieved the following yield from '],
-  ['My Slayer Aura found 1 extra ', 'My Slayer Aura found an extra '],
+  // KGA.
+  ['Prize Pack!<br><br><b>', 'Prize Pack!<b>'],
 ];
 
 /**

@@ -12,8 +12,8 @@
 
 .mhui-inventory-lock-and-hide-bulk-controls {
   display: none;
-  gap: 10px;
-  margin-left: 10px;
+  gap: 3px;
+  margin-left: 3px;
 }
 
 .mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-bulk-controls {
@@ -115,4 +115,17 @@ span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible button {
 
 .mhui-inventory-lock-and-hide-controls-hide {
   min-width: 25px;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked.hidden .inventoryPage-item-margin {
+  background-color: #e78932;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked .inventoryPage-item-recipeOptions li,
+.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden .inventoryPage-item-recipeOptions li {
+  opacity: 0.3;
+}
+
+.inventory-lock-and-hide-all-hidden {
+  display: none;
 }

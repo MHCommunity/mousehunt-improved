@@ -13,6 +13,7 @@
 .mh-dark #mousehunt-improved-settings-design-custom-horn,
 .mh-dark #mousehunt-improved-settings-design-custom-shield,
 .mh-dark #mousehunt-improved-settings-feature-ultimate-checkmark-categories,
+.mh-dark #mousehunt-improved-settings-feature-ultimate-checkmark-show,
 .mh-dark .mousehunt-improved-settings .PagePreferences__settingsList,
 .mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting {
   border-color: var(--d-border);
@@ -90,4 +91,8 @@
 
 .mh-dark .mousehuntHud-page-tabContent.game_settings a.reset-link {
   color: var(--d-red);
+}
+
+.mh-dark .mh-utils-settings-refresh-message {
+  color: var(--d-text-dark);
 }

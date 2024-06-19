@@ -738,6 +738,10 @@ const addSettingRefreshReminder = () => {
     const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'Refresh the page to apply your changes.');
     newMessageEl.id = 'mh-utils-settings-refresh-message';
 
+    newMessageEl.addEventListener('click', () => {
+      window.location.reload();
+    });
+
     const body = document.querySelector('body');
     body.append(newMessageEl);
 

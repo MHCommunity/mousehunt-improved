@@ -2,6 +2,7 @@ import {
   addStyles,
   doRequest,
   getCurrentLocation,
+  getCurrentPage,
   getSetting,
   makeElement,
   onEvent,
@@ -118,7 +119,7 @@ const revertToSavedTheme = () => {
  * Update the journal theme based on the current location.
  */
 const changeForLocation = async () => {
-  if ('camp' !== getCurrentLocation()) {
+  if ('camp' !== getCurrentPage()) {
     return;
   }
 

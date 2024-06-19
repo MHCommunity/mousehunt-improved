@@ -200,6 +200,7 @@
 .pollutionOutbreakHUD-scumContainer {
   padding-right: 10px;
   padding-left: 5px;
+  overflow: hidden;
   background-color: #2a2a2a;
 }
 
@@ -210,6 +211,7 @@
 .pollutionOutbreakHUD-scumContainer .quantity,
 .pollutionOutbreakHUD-scumContainer .maxQuantity {
   font-size: 12px;
+  line-height: 17px;
 }
 
 span.pollutionOutbreakHUD-refineQuantity {
@@ -488,4 +490,15 @@ a.pollutionOutbreakHUD-refineButton:hover {
   .pollutionOutbreakHUD.falling:hover .pollutionOutbreakHUD-pollution-title-blockContainer::after {
     animation: none;
   }
+}
+
+.pollutionOutbreakHUD-scumContainer::before {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: var(--pollution-outbreak-width, 0%);
+  height: 5px;
+  content: "";
+  background-color: #418132;
 }

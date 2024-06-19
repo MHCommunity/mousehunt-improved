@@ -6,3 +6,81 @@
   padding: 10px;
   color: #939393;
 }
+
+.QuestKingsGiveawayCampHUD__dialogItem .quantity {
+  color: #000;
+}
+
+.QuestKingsGiveawayCampHUD__dialogItem .itemImage {
+  border: none;
+}
+
+.QuestKingsGiveawayCampHUD__dialog {
+  color: #fff;
+  background: #7e35c2;
+}
+
+.QuestKingsGiveawayCampHUD__tabContent {
+  height: auto;
+  min-height: 515px;
+  max-height: 765px;
+}
+
+.QuestKingsGiveawayCampHUD__scoreboard table {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.QuestKingsGiveawayCampHUD__scoreboard tbody td:last-child {
+  font-size: 13px;
+}
+
+.QuestKingsGiveawayCampHUD__scoreboard tbody td {
+  font-size: 12px;
+}
+
+.QuestKingsGiveawayCampHUD__scoreboardTitle.Recruit::after {
+  display: none;
+}
+
+.QuestKingsGiveawayCampHUD__scoreboard thead th img {
+  width: 50px;
+  margin-bottom: 5px;
+}
+
+.QuestKingsGiveawayCampHUD__prizeKeyQuantity {
+  font-size: 15px;
+}
+
+.QuestKingsGiveawayCampHUD__vaultInfoThumbnail {
+  width: 75px;
+  height: 75px;
+}
+
+.QuestKingsGiveawayCampHUD__tabButton span {
+  opacity: 0.8;
+}
+
+.QuestKingsGiveawayCampHUD__vaultPrizeButton:nth-child(1):hover {
+  filter: drop-shadow(-5px 0 5px #7b67aa);
+}
+
+.QuestKingsGiveawayCampHUD__vaultPrizeButton:nth-child(3):hover {
+  filter: drop-shadow(5px 0 5px #7b67aa);
+}
+
+.QuestKingsGiveawayCampHUD__vaultPrizeButton:nth-child(1),
+.QuestKingsGiveawayCampHUD__vaultPrizeButton:nth-child(3) {
+  transform-origin: center;
+}
+
+.QuestKingsGiveawayCampHUD__vaultPrizeButton--selected {
+  z-index: 1;
+  background-color: #0ffd59;
+  filter: drop-shadow(0 2px 5px #7b67aa);
+  transform: scale(1.2);
+}
+
+.QuestKingsGiveawayCampHUD__claimVaultPrizeButton {
+  margin-top: 10px;
+}

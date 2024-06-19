@@ -424,16 +424,13 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
   right: 0;
 }
 
-/* Mark items that have an action with a little dot */
-.inventoryPage-item.small.message_item .inventoryPage-item-content-name::after {
-  position: absolute;
-  top: 5px;
-  right: 2px;
-  width: 10px;
-  height: 10px;
-  content: "";
-  background-color: #8bf4ed;
-  border-radius: 50%;
+/* Mark items that have an action with a different color */
+.inventoryPage-item.small.message_item .inventoryPage-item-margin {
+  border-color: #48b0a9;
+}
+
+.inventoryPage-item.small.message_item .inventoryPage-item-content-name {
+  color: #368f89;
 }
 
 .mhui-craft-warning-tooltip {

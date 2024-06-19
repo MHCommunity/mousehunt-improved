@@ -17,25 +17,34 @@ import styles from './styles.css';
 let items;
 let itemSettings = {};
 
+const getType = async (itemsToType) => {
+  if (! items) {
+    items = await getData('items');
+  }
+
+  const types = itemsToType.map((item) => {
+    const foundItem = items.find((i) => i.id === item);
+    return foundItem ? foundItem.type : undefined;
+  }).filter(Boolean);
+
+  return types;
+};
+
 /**
  * Save the locked and hidden items.
  *
  * @param {boolean} shouldUpdateTitles Should update the group titles.
  */
-const saveSettings = (shouldUpdateTitles = true) => {
+const saveSettings = async (shouldUpdateTitles = true) => {
   // We also want to save the settings as types, so we can easily filter them later.
   itemSettings.locked = itemSettings.locked.map((i) => Number.parseInt(i, 10));
   itemSettings.hidden = itemSettings.hidden.map((i) => Number.parseInt(i, 10));
 
-  if (! items) {
-    items = getData('items');
-  }
-
   itemSettings = {
     locked: itemSettings.locked,
     hidden: itemSettings.hidden,
-    lockedTypes: itemSettings.locked.map((id) => items.find((item) => item.item_id === id).type),
-    hiddenTypes: itemSettings.hidden.map((id) => items.find((item) => item.item_id === id).type),
+    lockedTypes: await getType(itemSettings.locked),
+    hiddenTypes: await getType(itemSettings.hidden),
   };
 
   saveSetting('inventory-lock-and-hide.items', itemSettings);
@@ -90,7 +99,7 @@ const addControlsToItems = async () => {
       return;
     }
 
-    const hasControls = item.querySelector('.mhui-inventory-lock-and-hide-item-controls');
+    const hasControls = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-item-controls');
     if (hasControls) {
       return;
     }
@@ -221,6 +230,15 @@ const updateGroupTitles = () => {
     }
 
     makeElement('span', 'mhui-inventory-lock-and-hide-hidden-count', ` (${hiddenItems.length} hidden)`, title);
+
+    const listings = group.querySelectorAll('.inventoryPage-tagContent-listing .inventoryPage-item');
+    if (! listings) {
+      return;
+    }
+
+    if (listings.length === hiddenItems.length) {
+      group.classList.add('inventory-lock-and-hide-all-hidden');
+    }
   });
 };
 
@@ -284,79 +302,121 @@ const addBulkControls = () => {
 
     const controls = makeElement('div', 'mhui-inventory-lock-and-hide-bulk-controls');
 
+    // Lock all button.
     const lock = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-inventory-lock-and-hide-controls-lock']);
-    const lockText = makeElement('span', '', 'Lock All');
-    lock.append(lockText);
+    makeElement('span', '', 'Lock All', lock);
 
     lock.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
 
       const itemsEl = group.querySelectorAll('.inventoryPage-item');
-      if (! itemsEl) {
-        return;
+      if (itemsEl) {
+        itemsEl.forEach((item) => {
+          const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
+          if (id && ! itemSettings.locked.includes(id)) {
+            itemSettings.locked.push(id);
+            item.classList.add('locked');
+            const lockButtonText = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-controls-lock span');
+            if (lockButtonText) {
+              lockButtonText.innerText = 'Unlock';
+            }
+          }
+        });
       }
-
-      itemsEl.forEach((item) => {
-        const id = item.getAttribute('data-item-id');
-        if (! id) {
-          return;
-        }
-
-        if (itemSettings.locked.includes(id)) {
-          return;
-        }
-
-        itemSettings.locked.push(id);
-        item.classList.add('locked');
-
-        const lockButtonText = item.querySelector('.mhui-inventory-lock-and-hide-controls-lock span');
-        if (lockButtonText) {
-          lockButtonText.innerText = 'Unlock';
-        }
-      });
 
       saveSettings(false);
     });
 
     controls.append(lock);
 
+    // Unlock all button.
     const unlock = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-inventory-lock-and-hide-controls-lock']);
-    const unlockText = makeElement('span', '', 'Unlock All');
-    unlock.append(unlockText);
+    makeElement('span', '', 'Unlock All', unlock);
 
     unlock.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
 
       const itemsEl = group.querySelectorAll('.inventoryPage-item');
-      if (! itemsEl) {
-        return;
+      if (itemsEl) {
+        itemsEl.forEach((item) => {
+          const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
+          if (id && itemSettings.locked.includes(id)) {
+            itemSettings.locked = itemSettings.locked.filter((i) => i !== id);
+            item.classList.remove('locked');
+
+            const lockButtonText = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-controls-lock span');
+            if (lockButtonText) {
+              lockButtonText.innerText = 'Lock';
+            }
+          }
+        });
       }
 
-      itemsEl.forEach((item) => {
-        const id = item.getAttribute('data-item-id');
-        if (! id) {
-          return;
-        }
-
-        if (! itemSettings.locked.includes(id)) {
-          return;
-        }
-
-        itemSettings.locked = itemSettings.locked.filter((i) => i !== id);
-        item.classList.remove('locked');
-
-        const lockButtonText = item.querySelector('.mhui-inventory-lock-and-hide-controls-lock span');
-        if (lockButtonText) {
-          lockButtonText.innerText = 'Lock';
-        }
-      });
-
-      saveSettings();
+      saveSettings(false);
     });
 
     controls.append(unlock);
+
+    // Hide all button.
+    const hide = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-inventory-lock-and-hide-controls-hide']);
+    makeElement('span', '', 'Hide All', hide);
+
+    hide.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const itemsEl = group.querySelectorAll('.inventoryPage-item');
+      if (itemsEl) {
+        itemsEl.forEach((item) => {
+          const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
+          if (id && ! itemSettings.hidden.includes(id)) {
+            itemSettings.hidden.push(id);
+            item.classList.add('hidden');
+
+            const hideButtonText = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-controls-hide span');
+            if (hideButtonText) {
+              hideButtonText.innerText = 'Show';
+            }
+          }
+        });
+      }
+
+      saveSettings(false);
+    });
+
+    controls.append(hide);
+
+    // Show all button.
+    const show = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-inventory-lock-and-hide-controls-hide']);
+    makeElement('span', '', 'Show All', show);
+
+    show.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const itemsEl = group.querySelectorAll('.inventoryPage-item');
+      if (itemsEl) {
+        itemsEl.forEach((item) => {
+          const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
+          if (id && itemSettings.hidden.includes(id)) {
+            itemSettings.hidden = itemSettings.hidden.filter((i) => i !== id);
+            item.classList.remove('hidden');
+
+            const hideButtonText = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-controls-hide span');
+            if (hideButtonText) {
+              hideButtonText.innerText = 'Hide';
+            }
+          }
+        });
+      }
+
+      saveSettings(false);
+    });
+
+    controls.append(show);
+
     title.append(controls);
   });
 };
@@ -408,7 +468,7 @@ const addLockAndHideControls = () => {
 
   const controlsWrapper = makeElement('div', 'mhui-inventory-lock-and-hide-controls-wrapper');
 
-  const controls = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-inventory-lock-and-hide-controls']);
+  const controls = makeElement('div', ['mousehuntActionButton', 'tiny', 'lightBlue', 'mhui-inventory-lock-and-hide-controls']);
   const text = makeElement('span', '', 'Toggle Lock/Hide');
   controls.append(text);
 

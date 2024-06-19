@@ -177,7 +177,7 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
 }
 
 .giftSelectorView-gift .itemImage {
-  width: 100%;
+  width: 80px;
   height: 80px;
 }
 
