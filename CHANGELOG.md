@@ -10,7 +10,7 @@
 - Inventory Lock and Hide: Updated styles
 - Native Dark Mode: Updated styles
 - Toxic Spill Location HUD: Added barrel fill percentage indicator
-- Ultimate Checkmark: Added Regal Codex"
+- Ultimate Checkmark: Added Regal Codex
 
 ## Version 0.47.2
 
