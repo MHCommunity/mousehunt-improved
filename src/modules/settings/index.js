@@ -12,7 +12,6 @@ import {
   getSetting,
   getSettings,
   makeElement,
-  makeMhButton,
   onNavigation,
   saveSetting,
   setPage,
@@ -238,48 +237,12 @@ const addExportSettings = (append) => {
 };
 
 /**
- * Add the clear cache button.
- *
- * @param {HTMLElement} append The element to append to.
- */
-const addClearCache = (append) => {
-  const existing = document.querySelector('.mousehunt-improved-clear-cache');
-  if (existing) {
-    existing.remove();
-  }
-
-  makeMhButton({
-    text: 'Clear Cached Data',
-    size: 'tiny',
-    className: 'mousehunt-improved-clear-cache',
-    appendTo: append,
-    callback: async () => {
-      if (window.confirm('Are you sure you want to clear the cached data?')) { // eslint-disable-line no-alert
-        await clearCaches();
-
-        // Delete all the mh-improved keys that are in session storage.
-        for (const key of Object.keys(sessionStorage)) {
-          if (key.startsWith('mh-improved')) {
-            sessionStorage.removeItem(key);
-          }
-        }
-
-        // Clear the ar
-        localStorage.removeItem(`mh-improved-cached-ar-v${mhImprovedVersion}`);
-        window.location.reload();
-      }
-    }
-  });
-};
-
-/**
  * Add the advanced settings buttons.
  */
 const addAdvancedSettingsButtons = () => {
   const settingInput = document.querySelector('#mousehunt-improved-settings-advanced-mh-improved-advanced-settings .PagePreferences__setting');
   if (settingInput) {
     addExportSettings(settingInput);
-    addClearCache(settingInput);
   }
 
   const settingWrapper = document.querySelector('#mousehunt-improved-settings-advanced-wrapper');
@@ -293,6 +256,28 @@ const addAdvancedSettingsButtons = () => {
   }
 
   const buttonsWrapper = makeElement('div', 'mousehunt-improved-advanced-buttons');
+
+  const clearCachedDataLink = makeElement('a', 'clear-cache-link', 'Clear Cached Data');
+  clearCachedDataLink.href = '#';
+  clearCachedDataLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    if (window.confirm('Are you sure you want to clear the cached data?')) { // eslint-disable-line no-alert
+      await clearCaches();
+
+      // Delete all the mh-improved keys that are in session storage.
+      for (const key of Object.keys(sessionStorage)) {
+        if (key.startsWith('mh-improved')) {
+          sessionStorage.removeItem(key);
+        }
+      }
+
+      // Clear the ar
+      localStorage.removeItem(`mh-improved-cached-ar-v${mhImprovedVersion}`);
+
+      window.location.reload();
+    }
+  });
+  buttonsWrapper.append(clearCachedDataLink);
 
   const resetJournalLink = makeElement('a', 'reset-link', 'Reset Journal History');
   resetJournalLink.href = '#';

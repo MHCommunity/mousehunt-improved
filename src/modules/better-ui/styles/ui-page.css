@@ -1,7 +1,6 @@
 .pageFrameView-contentContainer {
   padding-top: 10px;
-  padding-bottom: 0;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   background-color: transparent;
 }
 
@@ -35,8 +34,8 @@
 .mh-dark .pageFrameView-column.right,
 .pageFrameView-column.left,
 .pageFrameView-column.right {
-  border-color: transparent;
-  box-shadow: none;
+  background: #bad4ed;
+  border-color: #bad4ed;
 }
 
 .mousehuntHeaderView {
@@ -59,4 +58,88 @@
 .pageFrameView-column.left,
 .pageFrameView-column.right {
   box-shadow: none;
+}
+
+/* Fixes for top of page gap */
+body .pageFrameView-contentContainer {
+  background-color: #bad4ed;
+}
+
+body.mh-improved-custom-background .pageFrameView-contentContainer {
+  background-color: transparent;
+}
+
+body.mh-improved-custom-background.mh-dark .pageFrameView-column.left,
+body.mh-improved-custom-background.mh-dark .pageFrameView-column.right,
+body.mh-improved-custom-background .pageFrameView-column.left,
+body.mh-improved-custom-background .pageFrameView-column.right {
+  border-color: transparent;
+}
+
+body.kings_giveaway .pageFrameView-contentContainer {
+  background-color: #7b67aa;
+}
+
+body.kings_giveaway .pageFrameView-column.right,
+body.kings_giveaway .pageFrameView-column.left {
+  background: #7b67aa;
+  border-color: #7b67aa;
+}
+
+body.mh-improved-bg-birthday .pageFrameView-column.left,
+body.mh-improved-bg-birthday .pageFrameView-column.right {
+  border: none;
+}
+
+.mh-improved-bg-birthday .pageFrameView-contentContainer {
+  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/birthday/left.png), url(https://www.mousehuntgame.com/images/ui/backgrounds/events/birthday/right.png);
+  background-color: #bad4ed;
+  background-repeat: repeat-x;
+}
+
+body.great_winter_hunt .pageFrameView-contentContainer {
+  background-image: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/great_winter_hunt/right.jpg);
+}
+
+body.great_winter_hunt .pageFrameView-column.left,
+body.great_winter_hunt .pageFrameView-column.right {
+  border-color: #b9d3ec;
+}
+
+body.halloween .pageFrameView-contentContainer {
+  background: url(https://www.mousehuntgame.com/images/ui/backgrounds/events/halloween/right.png), url(https://www.mousehuntgame.com/images/ui/backgrounds/events/halloween/left.png);
+  background-color: #e87e33;
+  background-repeat: repeat-x;
+}
+
+body.halloween .pageFrameView-column.left,
+body.halloween .pageFrameView-column.right {
+  border-color: #e87e33;
+}
+
+body.lunar_new_year .pageFrameView-contentContainer {
+  background-color: #7f071c;
+}
+
+body.lunar_new_year .pageFrameView-column.left,
+body.lunar_new_year .pageFrameView-column.right {
+  border-color: #7f071c;
+}
+
+body.spring_hunt .pageFrameView-contentContainer {
+  background-color: #86ce5b;
+}
+
+body.spring_hunt .pageFrameView-column.left,
+body.spring_hunt .pageFrameView-column.right {
+  border-color: #86ce5b;
+}
+
+body.valentines .pageFrameView-contentContainer {
+  background-color: #f69898;
+}
+
+body.valentines .pageFrameView-column.left,
+body.valentines .pageFrameView-column.right {
+  border-color: #f69898;
 }

@@ -648,3 +648,9 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 .search .inventoryPage-tagContent-tagTitle .inventoryPage-tagContent-name {
   padding-right: 5px;
 }
+
+.inventoryPage-item.small.armed .inventoryPage-item-margin {
+  background-color: #ffeaea;
+  border-color: #ff8585;
+  box-shadow: 0 0 5px #ffeaea;
+}

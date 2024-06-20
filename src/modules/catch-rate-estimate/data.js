@@ -138,6 +138,10 @@ const getPercent = (rate) => {
  * @return {boolean} If the wave has remaining mice.
  */
 const isWaveAndHasRemaining = (waveToCheck) => {
+  if (! waveToCheck || ! waveToCheck.classList) {
+    return false;
+  }
+
   const waveClass = [...waveToCheck.classList].find((className) => className.startsWith('wave'));
   const wave = waveClass.replace('wave', '').replace('_', '');
 
@@ -233,8 +237,9 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     riftSetCount,
   } = options;
 
-  const weapon = items.find((item) => item.id === Number.parseInt(user?.weapon_item_id))?.type;
   const charm = items.find((item) => item.id === Number.parseInt(user?.trinket_item_id))?.type;
+  const weapon = items.find((item) => item.id === Number.parseInt(user?.weapon_item_id))?.type;
+  const trapPowerType = user.trap_power_type_name.toLowerCase();
   const location = getCurrentLocation();
 
   // Location specific
@@ -242,15 +247,17 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
   case 'ancient_city':
     if ('retired_minotaur' === mouseType) {
       mousePower = mousePower * (user?.quests?.QuestAncientCity?.width || 100) / 100;
-    } else if ('defeated' === user.quests.QuestAncientCity.boss && 'forgotten' === user.trap_power_type_name.toLowerCase()) {
+    } else if ('defeated' === user.quests.QuestAncientCity.boss && 'forgotten' === trapPowerType) {
       effectiveness = 1;
     }
+
     break;
   case 'claw_shot_city': // Using a Sheriff's Badge charm against the Bounty Hunter in Claw Shot City.
     if ('bounty_hunter' === mouseType && 'sheriff_badge_trinket' === charm) {
       mousePower = 0;
       effectiveness = 1;
     }
+
     break;
   case 'crystal_library': // Zurreal the Enternal and not using Zurreal's Folly in the Crystal Library.
     if ('library_boss' === mouseType && 'zurreals_folly_weapon' !== weapon) {
@@ -309,6 +316,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     if ('rift_acolyte' === mouseType && (user?.quests?.QuestRiftBristleWoods?.QuestRiftBristleWoods?.acolyte_sand || 0) > 0) {
       effectiveness = 0;
     }
+
     break;
   case 'rift_whisker_woods':
     // Taunting charm.
@@ -319,6 +327,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
         trapLuck += hasRiftstalkerCodex ? 10 : 5;
       }
     }
+
     break;
   case 'sand_dunes': // Calculate power when salted in the Sand Crypts.
     if (miceGroups.sand_dunes.includes(mouseType) && ! user?.quests?.QuestSandDunes?.is_normal) {
@@ -331,6 +340,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
       mousePower = 0;
       effectiveness = 1;
     }
+
     break;
   case 'zugzwang_tower': // Chess pieces.
     // Obvious Ambush & Blackstone Pass - each give +1800 Power on corresponding side, -2400 Power on opposite side.
@@ -361,7 +371,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
       trapLuck -= 0.05;
     }
     // Rook Crumble Charm.
-    if ('rook_crumble_trinket' === charm && miceGroups.zugzwang_tower.rook.includes(mouseType)) {
+    if ('rook_crumble_trinket' === charm && miceGroups.zugzwang_tower.rooks.includes(mouseType)) {
       trapPowerBonus += 300;
     }
 
@@ -389,7 +399,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
   // Calculate the catch rate before we apply the weapon effects.
   let catchRate = calculateCatchRate(mousePower, effectiveness, power, trapLuck);
 
-  // Weapons that modify the catch rate directly.
+  // Weapons that modify the catch rate directly after the catch rate is calculated.
   if (
     ('zugzwang_ultimate_move_weapon' === weapon) &&
     ('zugzwang_tower' === location || 'seasonal_garden' === location) &&

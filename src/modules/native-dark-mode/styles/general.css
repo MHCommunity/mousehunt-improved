@@ -144,3 +144,8 @@ body.mh-dark {
 .mh-dark .chro-minluck-overall-cr.good-minluck {
   color: var(--d-green);
 }
+
+.mh-dark .QuestKingsGiveawayCampHUD__footer,
+.mh-dark .QuestKingsGiveawayCampHUD-quantity {
+  color: var(--d-text-dark);
+}

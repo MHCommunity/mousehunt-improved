@@ -63,7 +63,7 @@ const makeListItems = (itemList) => {
  * @return {Array} The list of items.
  */
 const splitText = (text) => {
-  const items = text.split(/, (?=\d)| and (?=\d)/);
+  const items = text.split(/<br>|, (?=\d)| and (?=\d)/);
   return items.map((item) => item.trim()).filter(Boolean);
 };
 

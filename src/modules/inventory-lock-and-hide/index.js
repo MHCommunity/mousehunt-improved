@@ -99,7 +99,7 @@ const addControlsToItems = async () => {
       return;
     }
 
-    const hasControls = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-item-controls');
+    const hasControls = item.querySelector('.mhui-inventory-lock-and-hide-item-controls');
     if (hasControls) {
       return;
     }

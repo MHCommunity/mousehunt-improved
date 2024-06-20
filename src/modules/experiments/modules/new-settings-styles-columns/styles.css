@@ -19,18 +19,19 @@
 
 .two-column.mousehunt-improved-settings #mousehunt-improved-settings-design-wrapper .PagePreferences__setting {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  margin: 0;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .two-column.mousehunt-improved-settings .mh-improved-custom-bg-preview,
-.two-column.mousehunt-improved-settings .mh-improved-custom-horn-show-horn {
-  top: 10px;
-  right: 0;
+.two-column.mousehunt-improved-settings .mh-improved-custom-horn-show-horn,
+.two-column.mousehunt-improved-settings .mh-improved-custom-hud-preview {
+  top: 20px;
+  left: 10px;
+  font-size: 11px;
 }
 
-#mousehunt-improved-settings-design .PagePreferences__settingAction {
+.two-column #mousehunt-improved-settings-design .PagePreferences__settingAction {
   max-width: 200px;
 }
 
@@ -69,14 +70,9 @@
 }
 
 .two-column.mousehunt-improved-settings #mousehunt-improved-settings-advanced-mh-improved-advanced-settings {
-  position: relative;
-  top: unset;
-  right: unset;
-  display: flex;
-  align-items: flex-start;
-  padding: 0 0 10px;
-  margin: 0 0 10px;
-  border-bottom: 1px solid #e0cfb4;
+  position: absolute;
+  top: 15px;
+  right: 10px;
 }
 
 .two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-quick-send-supplies-items .inputBoxContainer.multiSelect {
@@ -110,9 +106,9 @@
 
 .two-column #mousehunt-improved-settings-location-hud-wrapper {
   gap: 0;
-  height: 725px;
+  height: 750px;
   padding: 10px 0 0;
-  margin: 0 -11px;
+  margin: -10px -11px 0;
   border-left: 1px solid #e0cfb4;
 }
 
@@ -164,4 +160,27 @@
 .two-column .mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingName {
   font-size: 11px;
   line-height: 1.5;
+}
+
+.two-column #mousehunt-improved-settings-feature-quick-send-supplies-items .PagePreferences__setting {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.two-column #mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBox.multiSelect {
+  max-width: 140px;
+}
+
+.two-column #mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBoxContainer.multiSelect {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.two-column .mousehunt-improved-settings .PagePreferences__settingNameText {
+  line-height: 1.5;
+}
+
+.two-column .mousehunt-improved-settings .mousehunt-improved-settings-design-wrapper .PagePreferences__settingNameText {
+  line-height: 1;
 }

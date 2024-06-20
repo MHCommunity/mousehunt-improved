@@ -574,11 +574,11 @@ const addSettingOnce = (options) => {
     case 'design':
     case 'element-hiding':
     case 'advanced':
+    case 'beta':
       container = leftSide;
       break;
     case 'feature':
     case 'location-hud':
-    case 'beta':
       container = rightSide;
       break;
     default:

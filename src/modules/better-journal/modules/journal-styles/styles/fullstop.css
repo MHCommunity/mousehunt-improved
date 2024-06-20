@@ -25,6 +25,7 @@
   display: block;
 }
 
+.journal .content .entry.kings_giveaway_bonus_prize_entry .journaltext > br + br:last-of-type,
 .journal .content .entry.floatingIslands.fullyExplored .journaltext br:first-of-type {
   display: none;
 }

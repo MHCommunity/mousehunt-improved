@@ -9,7 +9,7 @@
   { "id": "candy-clouds", "name": "Candy Clouds", "css": "url(https://i.mouse.rip/mh-improved/custom-hud/hud-candy-clouds.png) repeat top center / contain"},
   { "id": "celestial-dreamscape", "name": "Celestial Dreamscape", "css": "radial-gradient(18% 28% at 24% 50%, #cefaff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 18% 71%, rgba(255, 255, 255, 0.35) 6%, rgba(7, 58, 255, 0) 100%), radial-gradient(70% 53% at 36% 76%, #73f2ff 0%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 15% 94%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 34% 72%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 35% 87%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(31% 43% at 7% 98%, #ffffff 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(21% 37% at 72% 23%, rgba(211, 255, 109, 0.61) 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(35% 56% at 91% 74%, rgba(138, 79, 255, 0.96) 9%, rgba(7, 58, 255, 0) 100%), radial-gradient(74% 86% at 67% 38%, rgba(109, 255, 174, 0.96) 24%, rgba(7, 58, 255, 0) 100%), linear-gradient(125deg, #4eb5ff 1%, #4c00fc 100%)" },
   { "id": "cobalt-mist", "name": "Cobalt Mist", "css": "linear-gradient(#3951c6, #8896dd)" },
-  { "id": "cold-breeze", "name": "Cold Breeze", "css": "conic-gradient(at center bottom, #ffffff, #0ea5e9, #0ea5e9)" },
+  { "id": "cold-breeze", "name": "Cold Breeze", "css": "conic-gradient(at center top, #ffffff, #0ea5e9, #0ea5e9)" },
   { "id": "cosmic-twilight", "name": "Cosmic Twilight", "css": "linear-gradient(to right, #0f172a, #581c87, #0f172a)" },
   { "id": "cotton-candy-shores", "name": "Cotton Candy Shores", "css": "linear-gradient(#32c7e5, #f078d5)" },
   { "id": "crimson-blush", "name": "Crimson Blush", "css": "linear-gradient(#b9466c, #e3b5c4)" },

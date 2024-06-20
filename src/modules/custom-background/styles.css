@@ -1,39 +1,75 @@
 /* color backgrounds */
+body.mh-improved-bg-background-color-blue .pageFrameView-contentContainer {
+  background-color: #bad4ed;
+}
+
 body.mh-improved-bg-background-color-blue .pageFrameView-column.right,
 body.mh-improved-bg-background-color-blue .pageFrameView-column.left {
-  filter: none;
+  background: #bad4ed;
+  border: none;
+}
+
+body.mh-improved-bg-background-color-cyan .pageFrameView-contentContainer {
+  background-color: #abdbd3;
 }
 
 body.mh-improved-bg-background-color-cyan .pageFrameView-column.right,
 body.mh-improved-bg-background-color-cyan .pageFrameView-column.left {
-  filter: hue-rotate(312deg);
+  background: #e8c6eb;
+  border: none;
+}
+
+body.mh-improved-bg-background-color-green .pageFrameView-contentContainer {
+  background-color: #b4dbb8;
 }
 
 body.mh-improved-bg-background-color-green .pageFrameView-column.right,
 body.mh-improved-bg-background-color-green .pageFrameView-column.left {
-  filter: hue-rotate(266deg);
+  background: #b4dbb8;
+  border: none;
+}
+
+body.mh-improved-bg-background-color-pink .pageFrameView-contentContainer {
+  background-color: #e8c6eb;
 }
 
 body.mh-improved-bg-background-color-pink .pageFrameView-column.right,
 body.mh-improved-bg-background-color-pink .pageFrameView-column.left {
-  filter: hue-rotate(80deg);
+  background: #e8c6eb;
+  border: none;
+}
+
+body.mh-improved-bg-background-color-purple .pageFrameView-contentContainer {
+  background-color: #d8caf3;
 }
 
 body.mh-improved-bg-background-color-purple .pageFrameView-column.right,
 body.mh-improved-bg-background-color-purple .pageFrameView-column.left {
-  filter: hue-rotate(51deg);
+  background: #d8caf3;
+  border: none;
+}
+
+body.mh-improved-bg-background-color-red .pageFrameView-contentContainer {
+  background-color: #f2c7c5;
 }
 
 body.mh-improved-bg-background-color-red .pageFrameView-column.right,
 body.mh-improved-bg-background-color-red .pageFrameView-column.left {
-  filter: hue-rotate(146deg);
+  background: #f2c7c5;
+  border: none;
+}
+
+body.mh-improved-bg-background-color-faded .pageFrameView-contentContainer {
+  background-color: #fff4c5;
 }
 
 body.mh-improved-bg-background-color-faded .pageFrameView-column.right,
 body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
-  filter: sepia(1);
+  background: #fff4c5;
+  border: none;
 }
 
+/* Settings & Preview */
 #mousehunt-improved-settings-feature-custom-hud .PagePreferences__settingLabel,
 #mousehunt-improved-settings-feature-custom-background .PagePreferences__settingLabel {
   position: relative;

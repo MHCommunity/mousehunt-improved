@@ -84,3 +84,21 @@
 .QuestKingsGiveawayCampHUD__claimVaultPrizeButton {
   margin-top: 10px;
 }
+
+.QuestKingsGiveawayCampHUD-dateCountdownMiniContainer {
+  top: -5px;
+  right: 65px;
+  left: unset;
+}
+
+.QuestKingsGiveawayCampHUD__vaultDoor {
+  transition: 0.3s ease-out;
+}
+
+.QuestKingsGiveawayCampHUD__vaultDoor:hover {
+  transform: translate(-50%, -50%) rotate(3deg);
+}
+
+.QuestKingsGiveawayCampHUD__vaultDoor:active {
+  transform: translate(-50%, -50%) rotate(10deg);
+}

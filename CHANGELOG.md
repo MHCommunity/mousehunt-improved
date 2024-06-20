@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 0.49.0
+
+- Added King's Giveaway as Custom Background option
+- Fixed background style conflicting with other styles
+- Fixed Catch Rate Estimator not correctly calculating Zugzwang's Tower catch rates for Rooks
+- Fixed Catch Rate Estimator not correctly checking wave number in Fiery Warpath
+- Fixed Inventory Lock and Hide button layout
+- Fixed Inventory Lock and Hide only showing buttons on first item
+- Fixed King's Giveaway list not showing bullets for all items
+- Fixed weird line break in Prize mouse catch entry
+- Moved Clear Cached Data button in Advanced Settings
+- Updated Better Inventory styles
+- Updated Better Maps Styles
+- Updated Better UI with King's Giveaway styles
+
 ## Version 0.48.1
 
 - Catch Rate Estimator: Fixed issue calculating power bonus in Fiery Warpath

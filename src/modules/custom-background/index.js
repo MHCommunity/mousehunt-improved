@@ -49,6 +49,8 @@ const addBodyClass = (preview = false) => {
 
   const background = `mh-improved-bg-${setting}`;
 
+  body.classList.remove('kings_giveaway');
+
   body.classList.add(background, setting);
   addedClass = [background, setting];
 
@@ -66,6 +68,8 @@ const addBodyClass = (preview = false) => {
   if (! gradient) {
     return;
   }
+
+  body.classList.add('mh-improved-custom-background');
 
   const gradientStyle = document.createElement('style');
   gradientStyle.id = 'mh-improved-custom-background-style';

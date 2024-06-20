@@ -100,3 +100,7 @@
   background-color: var(--d-purple-alt);
   background-blend-mode: normal;
 }
+
+.mh-dark .journal .content .entry.kings_giveaway_bonus_prize_entry {
+  background-color: var(--d-purple-dark);
+}

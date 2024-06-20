@@ -20,6 +20,7 @@ export default async () => {
         { name: 'Birthday', value: 'birthday' },
         { name: 'Great Winter Hunt', value: 'great_winter_hunt' },
         { name: 'Halloween', value: 'halloween' },
+        { name: 'King\'s Giveaway', value: 'kings_giveaway' },
         { name: 'Lunar New Year', value: 'lunar_new_year' },
         { name: 'Spring Egg Hunt', value: 'spring_hunt' },
         { name: 'Valentine\'s', value: 'valentines' },

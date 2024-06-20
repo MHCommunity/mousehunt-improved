@@ -1,5 +1,10 @@
+.journal .entry .journalbody .journaltext {
+  font-size: 11px;
+}
+
 .journal .entry .journalbody .journaltext p {
   margin: 0;
+  font-size: 11px;
 }
 
 .journaltext .lucky::after {

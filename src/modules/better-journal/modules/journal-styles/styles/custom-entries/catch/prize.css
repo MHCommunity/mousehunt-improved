@@ -2,3 +2,7 @@
 .journal .content .catchsuccessprize {
   background-color: #7dea7d;
 }
+
+.journal .content .catchsuccessprize br {
+  display: none;
+}

@@ -81,7 +81,7 @@ const addPreview = () => {
 
     if (isShowing) {
       isShowing = false;
-      previewLink.textContent = 'Show Horn';
+      previewLink.textContent = 'Preview Horn';
 
       clearTimeout(timeout);
 

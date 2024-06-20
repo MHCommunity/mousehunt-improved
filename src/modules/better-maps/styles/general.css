@@ -1082,3 +1082,7 @@ input.treasureMapView-block-search-text {
 .treasureMapTooltipView.active::before {
   bottom: -20px;
 }
+
+.treasureMapView-consolationPrizeButton {
+  margin-bottom: 5px;
+}

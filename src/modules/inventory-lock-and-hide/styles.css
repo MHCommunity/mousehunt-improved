@@ -36,7 +36,11 @@
 }
 
 .mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-item-controls {
+  z-index: 2;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden {
@@ -128,4 +132,12 @@ span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible button {
 
 .inventory-lock-and-hide-all-hidden {
   display: none;
+}
+
+.mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-hidden-count {
+  display: none;
+}
+
+.search_match .campPage-trap-itemBrowser-item.loaded {
+  display: block !important;
 }
