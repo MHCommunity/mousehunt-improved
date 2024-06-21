@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.49.4
+
+- Fix Catch Rate Estimator not correctly calculating Fort Rox catch rates
+
 ## Version 0.49.3
 
 - Updated Better UI styles
