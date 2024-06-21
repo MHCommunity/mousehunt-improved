@@ -29,6 +29,13 @@ const humanizer = (time, options) => {
   return thehumanizer(time);
 };
 
+const plainHumanizer = (time, options) => {
+  const thehumanizer = humanizeDuration.humanizer(options);
+
+  return thehumanizer(time);
+};
+
 export {
-  humanizer
+  humanizer,
+  plainHumanizer
 };

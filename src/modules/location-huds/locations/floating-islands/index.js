@@ -3,12 +3,12 @@ import {
   getCurrentPage,
   getSetting,
   getUserItems,
-  humanizer,
   makeElement,
   onDialogShow,
   onEvent,
   onRequest,
   onTravel,
+  plainHumanizer,
   showHornMessage
 } from '@utils';
 
@@ -321,7 +321,7 @@ const updateJetstreamTime = async () => {
   const now = new Date();
   const timeRemaining = expiryDate - now;
 
-  const duration = humanizer(timeRemaining, {
+  const duration = plainHumanizer(timeRemaining, {
     round: true,
     units: ['d', 'h', 'm'],
     spacer: '',

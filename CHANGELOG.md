@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.49.2
+
+- Fixed display of humanized time
+
 ## Version 0.49.1
 
 - Better Journal: Updated styles
