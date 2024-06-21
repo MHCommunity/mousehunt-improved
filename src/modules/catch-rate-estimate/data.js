@@ -246,9 +246,9 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
   switch (location) {
   case 'ancient_city':
     if ('retired_minotaur' === mouseType) {
-      mousePower = mousePower * (user?.quests?.QuestAncientCity?.width || 100) / 100;
+      mousePower *= (user?.quests?.QuestAncientCity?.width || 100) / 100;
     } else if ('defeated' === user.quests.QuestAncientCity.boss && 'forgotten' === trapPowerType) {
-      effectiveness = 1;
+      effectiveness += 1;
     }
 
     break;
@@ -289,12 +289,12 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
   case 'fort_rox':
     // By default the values in the sheet we use are set to balista level 1, so we want to reset them.
     if (
-      (miceGroups.fort_rox.weremice.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level) > 0) ||
-      (miceGroups.fort_rox.cosmic.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level) > 0)
+      (miceGroups.fort_rox.weremice.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level) === 0) ||
+      (miceGroups.fort_rox.cosmic.includes(mouseType) && Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level) === 0)
     ) {
       mousePower *= 2;
     } else if (
-      ('nightmancer' === mouseType && Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level) === 3) ||
+      ('nightmancer' === mouseType && Number.parseInt(user?.quests?.QuestFortRox?.fort?.b?.level) === 3) ||
       ('nightfire' === mouseType && Number.parseInt(user?.quests?.QuestFortRox?.fort?.c?.level) === 3)
     ) {
       mousePower = 0;
