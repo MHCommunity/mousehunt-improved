@@ -23,9 +23,10 @@ const humanizer = (time, options) => {
         ms: () => 'ms',
       },
     },
+    ...options,
   });
 
-  return thehumanizer(time, options);
+  return thehumanizer(time);
 };
 
 export {

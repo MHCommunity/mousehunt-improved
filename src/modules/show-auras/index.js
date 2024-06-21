@@ -37,11 +37,9 @@ const getExpiryFormatted = (time) => {
  * @return {string} The formatted expiry remaining.
  */
 const getExpiryRemainingFormatted = (time) => {
-  const units = ['d', 'h'];
-
   const duration = humanizer(time, {
     round: true,
-    units,
+    units: ['d', 'h'],
     spacer: ' ',
     delimiter: '<br>',
   });
