@@ -101,7 +101,7 @@ const getJournalThemeForLocation = () => {
     return journals[location];
   }
 
-  return journalTheme.type;
+  return false;
 };
 
 /**
