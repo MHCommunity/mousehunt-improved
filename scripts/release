@@ -34,21 +34,31 @@ bun run sentry-cli releases finalize "$version" --project="mh-improved"
 bun run build:zips
 bun run build:archive
 
-# Build the userscript.
-bun run build:userscript
-
 # Create a GitHub release.
-gh release create "v$version" --title "MouseHunt Improved $version" --draft dist/chrome.zip dist/firefox.zip dist/*.user.js
+gh release create "v$version" --title "MouseHunt Improved $version" dist/chrome.zip dist/firefox.zip dist/*.user.js
 
 # Upload to Chrome Web Store.
-webstore upload --file dist/chrome.zip --auto-publish --extension-id "$CHROME_EXTENSION_ID" --client-id "$CHROME_CLIENT_ID" --client-secret "$CHROME_CLIENT_SECRET" --refresh-token "$CHROME_REFRESH_TOKEN"
+bun run chrome-webstore-upload upload \
+  --source dist/chrome.zip \
+  --auto-publish \
+  --extension-id "$CHROME_EXTENSION_ID" \
+  --client-id "$CHROME_CLIENT_ID" \
+  --client-secret "$CHROME_CLIENT_SECRET" \
+  --refresh-token "$CHROME_REFRESH_TOKEN"
 
 # Upload to Firefox Add-ons.
-web-ext sign --source-dir dist/firefox --upload-source-code dist/archive.zip --api-key "$FIREFOX_JWT_ISSUER" --api-secret "$FIREFOX_JWT_SECRET" --channel "listed"
+bun run web-ext sign \
+  --source-dir dist/firefox \
+  --upload-source-code dist/archive.zip \
+  --api-key "$FIREFOX_JWT_ISSUER" \
+  --api-secret "$FIREFOX_JWT_SECRET" \
+  --channel "listed" & # Send to background because we need to wait for the approval.
 
 # Build the userscript and push to a branch.
+bun run build:userscript
+
 cp dist/mousehunt-improved.user.js /tmp
-git checkout --orphan userscript-build
+git checkout userscript-build || exit 1
 git rm -rf .
 mkdir -p dist
 mv /tmp/mousehunt-improved.user.js dist/
