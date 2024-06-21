@@ -299,8 +299,6 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     ) {
       mousePower = 0;
       effectiveness = 1;
-      mousePower = 0;
-      effectiveness = 1;
     } else if ('battering_ram_night' === mouseType && 'battering_ram_buster_weapon' === weapon) {
       // Battering Ram Buster weapon against Battering Ram mice.
       mousePower = 0;
