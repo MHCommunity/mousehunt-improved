@@ -1,8 +1,9 @@
 import * as esbuild from 'esbuild';
-import { CSSMinifyTextPlugin, ImportGlobPlugin, parseArgs } from './shared.mjs';
 import copyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line import/default
 import fs from 'node:fs';
 import path from 'node:path';
+
+import { CSSMinifyTextPlugin, ImportGlobPlugin, parseArgs } from './shared.mjs';
 
 const argv = await parseArgs(process.argv);
 

@@ -69,6 +69,13 @@ const ImportGlobPlugin = {
   },
 };
 
+/**
+ * Parse the command line arguments.
+ *
+ * @param {Array} args The command line arguments.
+ *
+ * @return {Object} The parsed arguments.
+ */
 const parseArgs = async (args) => {
   return await yargs(hideBin(args))
     .option('platform', {
