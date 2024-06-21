@@ -16,9 +16,9 @@ bun run build:extension:chrome --release
 bun run build:extension:firefox --release
 
 bun run sentry-cli sourcemaps inject dist
-bun run sentry-cli sourcemaps upload --release="$version" dist
-bun run sentry-cli releases new "$version"
-bun run sentry-cli releases finalize "$version"
+bun run sentry-cli sourcemaps upload --release="$version" --project="mh-improved" dist
+bun run sentry-cli releases new "$version" --project="mh-improved"
+bun run sentry-cli releases finalize "$version" --project="mh-improved"
 
 bun run build:zips
 bun run build:userscript
