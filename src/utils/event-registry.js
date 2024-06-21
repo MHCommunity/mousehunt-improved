@@ -27,7 +27,7 @@ const addEvent = (eventName, eventCallback, args) => {
  * @param {Object} params    The parameters to pass to the event.
  */
 const doEvent = (eventName, params) => {
-  if (! eventRegistry) {
+  if (! window.eventRegistry) {
     return;
   }
 
@@ -53,7 +53,7 @@ const eventsAdded = {};
  * @param {boolean}  remove   Whether or not to remove the event listener after it's fired.
  */
 const onEvent = (event, callback, remove = false) => {
-  if (! eventRegistry) {
+  if (! window.eventRegistry) {
     return;
   }
 
