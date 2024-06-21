@@ -3,10 +3,13 @@ import humanizeDuration from 'humanize-duration';
 /**
  * Humanize duration setup helper.
  *
+ * @param {number} time    The time in milliseconds.
+ * @param {Object} options The humanize duration options.
+ *
  * @return {Object} The humanize duration object.
  */
-const setupHumanizer = () => {
-  humanizeDuration.humanizer({
+const humanizer = (time, options) => {
+  const thehumanizer = humanizeDuration.humanizer({
     language: 'shortEn',
     languages: {
       shortEn: {
@@ -22,9 +25,9 @@ const setupHumanizer = () => {
     },
   });
 
-  return humanizeDuration;
+  return thehumanizer(time, options);
 };
 
 export {
-  setupHumanizer
+  humanizer
 };

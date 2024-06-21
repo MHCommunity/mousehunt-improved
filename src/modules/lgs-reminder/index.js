@@ -1,17 +1,15 @@
 import {
   addStyles,
   getSetting,
+  humanizer,
   makeElement,
   onActivation,
   onDeactivation,
-  onSettingsChange,
-  setupHumanizer
+  onSettingsChange
 } from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
-
-const humanizer = setupHumanizer();
 
 /**
  * Check if the time should be exact seconds.

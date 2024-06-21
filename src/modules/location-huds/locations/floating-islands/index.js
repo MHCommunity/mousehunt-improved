@@ -3,18 +3,16 @@ import {
   getCurrentPage,
   getSetting,
   getUserItems,
+  humanizer,
   makeElement,
   onDialogShow,
   onEvent,
   onRequest,
   onTravel,
-  setupHumanizer,
   showHornMessage
 } from '@utils';
 
 import styles from './styles.css';
-
-const humanizer = setupHumanizer();
 
 /**
  * Toggle the fuel button class.
