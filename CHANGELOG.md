@@ -8,6 +8,7 @@
 - Better Shops: Fixed a bug where some max quantity owned items were not being following the hide setting
 - Better UI: Updated styles
 - Location HUD: Muridae Market: Updated styles
+- Lucky Golden Shield Duration & Reminder: Fixed issue with the reminder not abbreviating measurements
 
 ## Version 0.49.0
 

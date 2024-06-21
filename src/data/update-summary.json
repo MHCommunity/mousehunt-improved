@@ -3,15 +3,11 @@
   "details": [
     {
       "title": "Better UI",
-      "items": [
-        "Updated styles"
-      ]
+      "items": ["Updated styles"]
     },
     {
       "title": "Better Journal",
-      "items": [
-        "Updated styles"
-      ]
+      "items": ["Updated styles"]
     },
     {
       "title": "Better Maps",
@@ -22,15 +18,15 @@
     },
     {
       "title": "Better Shops",
-      "items": [
-        "Fixed a bug where some max quantity owned items were not following the hide setting"
-      ]
+      "items": ["Fixed a bug where some max quantity owned items were not following the hide setting"]
     },
     {
       "title": "Location HUD: Muridae Market",
-      "items": [
-        "Updated styles"
-      ]
+      "items": ["Updated styles"]
+    },
+    {
+      "title": "Lucky Golden Shield Duration & Reminder",
+      "items": ["Fixed issue with the reminder not abbreviating measurements"]
     }
   ]
 }

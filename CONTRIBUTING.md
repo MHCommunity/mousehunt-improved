@@ -203,9 +203,11 @@ The `src/data/` folder contains JSON data files that are used by the extension a
     - `{ "id": "my-background", "name": "My Background", "css": "url(https://example.com/background.png) top center / 200px" }`
     - `{ "id": "a-gradient", "name": "A Gradient", "css": "linear-gradient(90deg, #ff0000, #00ff00)" }`
 - `journal-item-colors.json` - Used by Better Journal's 'Unique item colors' setting to color code journal items.
+- `journal-environment-mapping.json` - Used by Journal Changer to map environments to the corresponding journal theme.
+- `journal-events.json` - Used by Journal Changer to categorize the event journal themes.
 - `library-assignments.json` - Used by Better Quests to enhance the Library Assignments popup.
+- `magic-essence-potions.json` - Used by Better Inventory to show warnings on potions that are a bad use of Magic Essence.
 - `map-groups.json` - Used by Better Maps to categorize mice on the Sorted map tab.
-- `settings-icons.json` - Used by the settings page to provide icons for each module.
 - `ultimate-checkmark.json` - Used by Ultimate Checkmark to populate the list of items for each category.
 - `update-summary.json` - Used to provide a summary of the changes with each update.
 
