@@ -246,9 +246,9 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
   switch (location) {
   case 'ancient_city':
     if ('retired_minotaur' === mouseType) {
-      mousePower = mousePower * (user?.quests?.QuestAncientCity?.width || 100) / 100;
+      mousePower *= (user?.quests?.QuestAncientCity?.width || 100) / 100;
     } else if ('defeated' === user.quests.QuestAncientCity.boss && 'forgotten' === trapPowerType) {
-      effectiveness = 1;
+      effectiveness += 1;
     }
 
     break;
