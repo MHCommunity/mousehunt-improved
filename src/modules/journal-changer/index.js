@@ -11,7 +11,7 @@ import {
   saveSetting
 } from '@utils';
 
-import journals from './journals.json';
+import journals from '@data/journals-environment-mapping.json';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -92,14 +92,13 @@ const getCurrentJournalTheme = () => {
  */
 const getJournalThemeForLocation = () => {
   const location = getCurrentLocation();
-  const journalTheme = journals.find((j) => j.environments.includes(location));
-  if (! journalTheme) {
+  if (! journals[location]) {
     return false;
   }
 
   // check if the theme is available
-  if (themes.some((t) => t.type === journalTheme.type)) {
-    return journalTheme.type;
+  if (themes.some((t) => t.type === journals[location])) {
+    return journals[location];
   }
 
   return journalTheme.type;

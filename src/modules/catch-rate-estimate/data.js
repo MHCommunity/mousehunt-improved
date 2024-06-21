@@ -1,7 +1,7 @@
 import { doRequest, getCurrentLocation } from '@utils';
 import { getData } from '@utils/data';
 
-import miceGroups from './mice-groups.json';
+import miceGroups from '@data/cre-mice-groups.json';
 
 let miceEffs;
 let hasGottenEffs = false;

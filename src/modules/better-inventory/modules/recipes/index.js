@@ -12,8 +12,8 @@ import {
 
 import styles from './styles.css';
 
-import recipesMeConversion from './recipes-me-conversion.json';
-import recipesToReorder from './recipes-to-reorder.json';
+import recipesMeConversion from '@data/magic-essence-potions.json';
+import recipesToReorder from '@data/crafting-recipe-mapping.json';
 
 /**
  * Clean up the recipe book.

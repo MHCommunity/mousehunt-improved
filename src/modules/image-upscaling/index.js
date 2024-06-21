@@ -8,7 +8,7 @@ import {
   onRequest
 } from '@utils';
 
-import pathsToSkip from './paths-to-skip.json';
+import pathsToSkip from '@data/image-upscaling-paths-to-skip.json';
 
 import journalStyles from './journals.css';
 import styles from './styles.css';

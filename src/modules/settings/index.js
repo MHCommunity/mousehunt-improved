@@ -18,10 +18,9 @@ import {
   showSuccessMessage
 } from '@utils';
 
-import settingsIcons from '@data/settings-icons.json';
-
 import settingsSettings from './settings';
 
+import icons from './icons.css';
 import styles from './styles.css';
 
 /**
@@ -417,21 +416,6 @@ const addMhImprovedIconToMenu = () => {
 };
 
 /**
- * Make the module icon styles.
- *
- * @return {string} The module icon styles.
- */
-const makeModuleIconStyles = () => {
-  return Object.entries(settingsIcons).map(([category, icons]) =>
-    icons.map((icon) =>
-      `#mousehunt-improved-settings-${category}-${icon.id}::before {
-        background-image: url('data:image/svg+xml,${icon.icon.replaceAll('\'', '"')}');
-      }`
-    ).join('')
-  ).join('');
-};
-
-/**
  * Link the version number to the update summary.
  */
 const linkVersionNumber = () => {
@@ -455,7 +439,7 @@ const linkVersionNumber = () => {
 const init = async () => {
   addStyles([
     styles,
-    makeModuleIconStyles(),
+    icons,
   ], 'mousehunt-improved-settings');
 
   addMhImprovedIconToMenu();

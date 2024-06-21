@@ -55,18 +55,63 @@
     ]
   },
   "fiery_warpath": {
-    "archers": ["desert_archer_weak", "desert_archer", "desert_archer_epic"],
-    "cavalry": ["desert_cavalry", "desert_cavalry_strong"],
-    "mages": ["desert_mage", "desert_mage_strong"],
-    "scouts": ["desert_scout_weak", "desert_scout", "desert_scout_epic"],
-    "warriors": ["desert_warrior_weak", "desert_warrior", "desert_warrior_epic"],
-    "commanders": ["desert_general"]
+    "archers": [
+      "desert_archer_weak",
+      "desert_archer",
+      "desert_archer_epic"
+    ],
+    "cavalry": [
+      "desert_cavalry",
+      "desert_cavalry_strong"
+    ],
+    "mages": [
+      "desert_mage",
+      "desert_mage_strong"
+    ],
+    "scouts": [
+      "desert_scout_weak",
+      "desert_scout",
+      "desert_scout_epic"
+    ],
+    "warriors": [
+      "desert_warrior_weak",
+      "desert_warrior",
+      "desert_warrior_epic"
+    ],
+    "commanders": [
+      "desert_general"
+    ]
   },
-  "sand_dunes": ["king_grub", "king_scarab"],
-  "rift_whisker_woods": ["rift_cyclops", "rift_centaur", "rift_hydra", "rift_black_widow"],
+  "sand_dunes": [
+    "king_grub",
+    "king_scarab"
+  ],
+  "rift_whisker_woods": [
+    "rift_cyclops",
+    "rift_centaur",
+    "rift_hydra",
+    "rift_black_widow"
+  ],
   "zugzwang_tower": {
-    "mystic": ["mystic_bishop", "mystic_king", "mystic_knight", "mystic_pawn", "mystic_queen", "mystic_rook"],
-    "technic": ["tech_bishop", "tech_king", "tech_knight", "tech_pawn", "tech_queen", "tech_rook"],
-    "rooks": ["mystic_rook", "technic_rook"]
+    "mystic": [
+      "mystic_bishop",
+      "mystic_king",
+      "mystic_knight",
+      "mystic_pawn",
+      "mystic_queen",
+      "mystic_rook"
+    ],
+    "technic": [
+      "tech_bishop",
+      "tech_king",
+      "tech_knight",
+      "tech_pawn",
+      "tech_queen",
+      "tech_rook"
+    ],
+    "rooks": [
+      "mystic_rook",
+      "technic_rook"
+    ]
   }
 }

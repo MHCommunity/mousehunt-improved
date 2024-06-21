@@ -1,0 +1,22 @@
+{
+  "ancient_city": "theme_labyrinth",
+  "bountiful_beanstalk": "theme_bountiful_beanstalk",
+  "claw_shot_city": "theme_western",
+  "desert_oasis": "theme_living_garden",
+  "foreword_farm": "theme_table_of_contents",
+  "fungal_cavern": "theme_fungal",
+  "labyrinth": "theme_labyrinth",
+  "lost_city": "theme_living_garden",
+  "moussu_picchu": "theme_moussu_picchu",
+  "pollution_outbreak": "theme_polluted",
+  "prologue_pond": "theme_table_of_contents",
+  "queso_geyser": "theme_queso_canyon",
+  "queso_plains": "theme_queso_canyon",
+  "queso_quarry": "theme_queso_canyon",
+  "queso_river": "theme_queso_canyon",
+  "rift_bristle_woods": "theme_bristle_woods_rift",
+  "rift_burroughs": "theme_burroughs_rift",
+  "sand_dunes": "theme_living_garden",
+  "school_of_sorcery": "school_of_sorcery",
+  "table_of_contents": "theme_table_of_contents"
+}

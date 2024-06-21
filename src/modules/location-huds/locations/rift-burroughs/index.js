@@ -2,8 +2,7 @@ import { addHudStyles, makeElement, onRequest } from '@utils';
 
 import styles from './styles.css';
 
-import areaMice from './area-mice.json';
-import miceNameImages from './mice-name-images.json';
+import areaMice from '@data/brift-mice-per-mist-level.json';
 
 /**
  * Create a list of mice.
@@ -43,15 +42,15 @@ const makeMiceList = (type, title, mice, currentType, appendTo) => {
     const mouseWrapper = makeElement('div', 'mouse-type-mouse');
     const mouseLink = makeElement('a', 'mouse-type-mouse-link');
     mouseLink.addEventListener('click', (e) => {
-      hg.views.MouseView.show(mouse);
+      hg.views.MouseView.show(mouse.id);
       e.preventDefault();
     });
 
     const mouseImage = makeElement('img', 'mouse-type-mouse-image');
-    mouseImage.src = `https://www.mousehuntgame.com/images/mice/thumb/${miceNameImages[mouse].image}`;
+    mouseImage.src = `https://www.mousehuntgame.com/images/mice/thumb/${mouse.image}`;
     mouseLink.append(mouseImage);
 
-    makeElement('div', 'mouse-type-mouse-name', miceNameImages[mouse].name, mouseLink);
+    makeElement('div', 'mouse-type-mouse-name', mouse.name, mouseLink);
 
     mouseWrapper.append(mouseLink);
     miceWrapper.append(mouseWrapper);
