@@ -15,8 +15,6 @@ import {
 
 import settings from './settings';
 
-import helper from './modules/helper';
-
 import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { showHuntersTab } from './modules/tab-hunters';
@@ -377,10 +375,6 @@ const init = async () => {
 
   if (getSetting('better-maps.community')) {
     community();
-  }
-
-  if (getSetting('experiments.better-maps-helper')) {
-    helper();
   }
 
   if (! getSetting('no-sidebar') && getSetting('better-maps.show-sidebar-goals', true)) {
