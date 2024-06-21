@@ -69,6 +69,43 @@ const ImportGlobPlugin = {
   },
 };
 
+const JSONMinifyPlugin = {
+  name: 'json-minify',
+  /**
+   * Setup the plugin.
+   *
+   * @param {Object} build The build object.
+   */
+  setup(build) {
+    build.onLoad({ filter: /\.json$/ }, async (args) => {
+      const fileContents = await fs.promises.readFile(args.path, 'utf8');
+      const json = JSON.parse(fileContents);
+      const minifiedJson = JSON.stringify(json);
+      return { contents: minifiedJson, loader: 'json' };
+    });
+  },
+};
+
+/**
+ * Minify JSON files in the data folder and write them to data/dist.
+ */
+const minifyAllJsonFiles = async () => {
+  const files = fs.readdirSync('./src/data');
+  for (const file of files) {
+    if (! file.endsWith('.json')) {
+      continue;
+    }
+
+    const data = fs.readFileSync(`./src/data/${file}`, 'utf8');
+    const json = JSON.parse(data);
+    const minified = JSON.stringify(json);
+
+    fs.mkdirSync('./dist/data', { recursive: true });
+
+    fs.writeFileSync(`./dist/data/${file}`, minified);
+  }
+};
+
 /**
  * Parse the command line arguments.
  *
@@ -94,6 +131,8 @@ const parseArgs = async (args) => {
 
 export {
   CSSMinifyTextPlugin,
+  JSONMinifyPlugin,
   ImportGlobPlugin,
-  parseArgs
+  parseArgs,
+  minifyAllJsonFiles
 };

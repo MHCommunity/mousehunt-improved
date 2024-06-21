@@ -3,7 +3,13 @@ import copyPlugin from '@sprout2000/esbuild-copy-plugin'; // eslint-disable-line
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { CSSMinifyTextPlugin, ImportGlobPlugin, parseArgs } from './shared.mjs';
+import {
+  CSSMinifyTextPlugin,
+  ImportGlobPlugin,
+  JSONMinifyPlugin,
+  minifyAllJsonFiles,
+  parseArgs
+} from './shared.mjs';
 
 const argv = await parseArgs(process.argv);
 
@@ -32,13 +38,15 @@ const buildExtension = async (platform, watch = false, release = false) => {
     }, null, 2)
   );
 
+  minifyAllJsonFiles();
+
   const opts = {
     entryPoints: ['src/index.js'],
     platform: 'browser',
     format: 'iife',
     globalName: 'mhui',
     bundle: true,
-    minify: false,
+    minify: true,
     metafile: true,
     sourcemap: true,
     target: [
@@ -46,10 +54,14 @@ const buildExtension = async (platform, watch = false, release = false) => {
       'chrome58',
       'firefox57'
     ],
+    alias: {
+      '@data': path.resolve(process.cwd(), 'dist/data'),
+    },
     outfile: `dist/${platform}/main.js`,
     plugins: [
       ImportGlobPlugin,
       CSSMinifyTextPlugin,
+      JSONMinifyPlugin,
       copyPlugin.copyPlugin({ // eslint-disable-line import/no-named-as-default-member
         src: 'src/extension',
         dest: `dist/${platform}`,
