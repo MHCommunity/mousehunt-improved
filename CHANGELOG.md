@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.49.3
+
+- Updated Better UI styles
+
 ## Version 0.49.2
 
 - Fixed display of humanized time
