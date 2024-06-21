@@ -34,8 +34,10 @@ bun run sentry-cli releases finalize "$version" --project="mh-improved"
 bun run build:zips
 bun run build:archive
 
+bun run build:userscript
+
 # Create a GitHub release.
-gh release create "v$version" --title "MouseHunt Improved $version" dist/chrome.zip dist/firefox.zip dist/*.user.js
+gh release create "v$version" --title "MouseHunt Improved $version" dist/chrome.zip dist/firefox.zip dist/mousehunt-improved.user.js dist/archive.zip
 
 # Upload to Chrome Web Store.
 bun run chrome-webstore-upload upload \
@@ -55,8 +57,6 @@ bun run web-ext sign \
   --channel "listed" & # Send to background because we need to wait for the approval.
 
 # Build the userscript and push to a branch.
-bun run build:userscript
-
 cp dist/mousehunt-improved.user.js /tmp
 git checkout userscript-build || exit 1
 git rm -rf .
