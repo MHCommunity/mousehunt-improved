@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MouseHunt Improved",
-  "version": "EXT_VERSION",
+  "version": "0.50.0",
   "author": "bradp <brad@bradparbs.com>",
   "description": "Improve your MouseHunt experience",
   "homepage_url": "https://mouse.rip",
@@ -14,16 +14,27 @@
   },
   "content_scripts": [
     {
-      "js": ["content.js"],
-      "matches": ["https://*.mousehuntgame.com/*"],
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "https://*.mousehuntgame.com/*"
+      ],
       "run_at": "document_start"
     }
   ],
-  "host_permissions": ["https://*.mousehuntgame.com/*"],
+  "host_permissions": [
+    "https://*.mousehuntgame.com/*"
+  ],
   "web_accessible_resources": [
     {
-      "resources": ["main.js"],
-      "matches": ["https://*.mousehuntgame.com/*"]
+      "resources": [
+        "main.js",
+        "main.js.map"
+      ],
+      "matches": [
+        "https://*.mousehuntgame.com/*"
+      ]
     }
   ],
   "action": {

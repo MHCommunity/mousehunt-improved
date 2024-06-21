@@ -26,17 +26,10 @@ const buildExtension = async (platform, watch = false, release = false) => {
   fs.mkdirSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });
 
   // Copy manifest.json and inject the version number.
-  const manifest = JSON.parse(fs.readFileSync(
-    path.join(process.cwd(), `src/extension/manifest-${platform}.json`), 'utf8'
-  ));
-
-  fs.writeFileSync(
-    path.join(process.cwd(), `dist/${platform}/manifest.json`),
-    JSON.stringify({
-      ...manifest,
-      version: process.env.npm_package_version,
-    }, null, 2)
-  );
+  const manifestPath = path.join(process.cwd(), 'src/extension/manifest.json');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  manifest.version = process.env.npm_package_version;
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
 
   minifyAllJsonFiles();
 
@@ -77,7 +70,7 @@ const buildExtension = async (platform, watch = false, release = false) => {
           return (
             ! file.startsWith('screenshots') &&
             ! file.startsWith('.') &&
-            ! file.startsWith('manifest-')
+            ! file.startsWith('manifest')
           );
         }
       }),
