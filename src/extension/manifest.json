@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MouseHunt Improved",
-  "version": "0.50.0",
+  "version": "EXT_VERSION",
   "author": "bradp <brad@bradparbs.com>",
   "description": "Improve your MouseHunt experience",
   "homepage_url": "https://mouse.rip",

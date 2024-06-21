@@ -26,10 +26,17 @@ const buildExtension = async (platform, watch = false, release = false) => {
   fs.mkdirSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });
 
   // Copy manifest.json and inject the version number.
-  const manifestPath = path.join(process.cwd(), 'src/extension/manifest.json');
-  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-  manifest.version = process.env.npm_package_version;
-  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+  const manifest = JSON.parse(fs.readFileSync(
+    path.join(process.cwd(), 'src/extension/manifest.json'), 'utf8'
+  ));
+
+  fs.writeFileSync(
+    path.join(process.cwd(), `dist/${platform}/manifest.json`),
+    JSON.stringify({
+      ...manifest,
+      version: process.env.npm_package_version,
+    }, null, 2)
+  );
 
   minifyAllJsonFiles();
 
@@ -68,9 +75,10 @@ const buildExtension = async (platform, watch = false, release = false) => {
          */
         filter: (file) => {
           return (
-            ! file.startsWith('screenshots') &&
-            ! file.startsWith('.') &&
-            ! file.startsWith('manifest')
+            ! file.startsWith('src/extension/screenshots') &&
+            ! file.startsWith('src/extension/.') &&
+            ! file.startsWith('src/extension/manifest') &&
+            ! file.startsWith('src/extension/content.js')
           );
         }
       }),
@@ -93,7 +101,22 @@ const buildExtension = async (platform, watch = false, release = false) => {
     return await ctx.watch();
   }
 
-  return await esbuild.build(opts);
+  await esbuild.build({
+    entryPoints: ['src/extension/content.js'],
+    platform: 'browser',
+    bundle: true,
+    minify: false,
+    sourcemap: true,
+    target: [
+      'es6',
+      'chrome58',
+      'firefox57'
+    ],
+    outfile: `dist/${platform}/content.js`,
+  });
+
+  const result = await esbuild.build(opts);
+  fs.writeFileSync(`dist/metafile-${platform}.json`, JSON.stringify(result.metafile, null, 2));
 };
 
 await buildExtension(argv.platform, argv.watch, argv.release);
