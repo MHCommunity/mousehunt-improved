@@ -11,17 +11,40 @@ git tag -a "v$version" -m "Release v$version" || exit 1
 git push origin main
 git push origin "v$version"
 
+# Build the extension.
 bun run clean
 bun run build:extension:chrome --release
 bun run build:extension:firefox --release
 
+# Upload debug symbols to Sentry.
 bun run sentry-cli sourcemaps inject dist
 bun run sentry-cli sourcemaps upload --release="$version" --project="mh-improved" dist
 bun run sentry-cli releases new "$version" --project="mh-improved"
 bun run sentry-cli releases finalize "$version" --project="mh-improved"
 
+# Build the extra files.
 bun run build:zips
-bun run build:userscript
 bun run build:archive
 
+# Build the userscript.
+bun run build:userscript
+
+# Create a GitHub release.
 gh release create "v$version" --title "MouseHunt Improved $version" --draft dist/chrome.zip dist/firefox.zip dist/*.user.js
+
+# Upload to Chrome Web Store.
+webstore upload --file dist/chrome.zip --auto-publish --extension-id "$CHROME_EXTENSION_ID" --client-id "$CHROME_CLIENT_ID" --client-secret "$CHROME_CLIENT_SECRET" --refresh-token "$CHROME_REFRESH_TOKEN"
+
+# Upload to Firefox Add-ons.
+web-ext sign --source-dir dist/firefox --upload-source-code dist/archive.zip --api-key "$FIREFOX_JWT_ISSUER" --api-secret "$FIREFOX_JWT_SECRET" --channel "listed"
+
+# Build the userscript and push to a branch.
+cp dist/mousehunt-improved.user.js /tmp
+git checkout --orphan userscript-build
+git rm -rf .
+mkdir -p dist
+mv /tmp/mousehunt-improved.user.js dist/
+git add dist/mousehunt-improved.user.js
+git commit -m "Userscript v$version"
+git push origin userscript-build
+git checkout main
