@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 0.49.1
+
+- Better Journal: Updated styles
+- Better Maps: Fixed sorted map group name typo
+- Better Maps: Updated styles
+- Better Shops: Fixed a bug where some max quantity owned items were not being following the hide setting
+- Better UI: Updated styles
+- Location HUD: Muridae Market: Updated styles
+
 ## Version 0.49.0
 
 - Added King's Giveaway as Custom Background option

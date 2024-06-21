@@ -61,10 +61,16 @@
 }
 
 .mh-improved-cre-name {
+  max-width: 170px;
   padding-left: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.mh-improved-cre-name:hover {
+  overflow: visible;
+  text-overflow: revert;
 }
 
 .mh-improved-cre-name a {

@@ -1,3 +1,10 @@
 .mousehuntHud-page-subTabContent.hasShop.active .itemPurchaseView-container.own_max {
   display: none !important;
 }
+
+/* limit one items */
+.itemPurchaseView-container.marketplace_buy_regal_stool_collectible.kingsCartItem.cannot_sell.own_max,
+.itemPurchaseView-container.marketplace_sell_regal_display_case_collectible.kingsCartItem.cannot_sell.own_max,
+.itemPurchaseView-container.kings_calibrator_message_item.kingsCartItem.cannot_sell.own_max {
+  display: none !important;
+}

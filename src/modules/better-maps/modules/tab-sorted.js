@@ -187,6 +187,11 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
       });
     }
 
+    // Position the mouseExtraInfoWrapper div so that its positioned absolute to the mouseDiv
+    const rect = mouseDiv.getBoundingClientRect();
+    mouseExtraInfoWrapper.style.top = `${rect.top + 50}px`;
+    mouseExtraInfoWrapper.style.left = `${rect.left}px`;
+
     // Except this one if it's not selected.
     if (addClass) {
       mouseDiv.classList.add('mouse-container-selected');

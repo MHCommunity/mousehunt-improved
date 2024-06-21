@@ -3,12 +3,11 @@
   margin-bottom: -1px;
   background: linear-gradient(135deg, #eee 0%, #c6d8ee 50%);
   border: 1px solid #5b5b5b;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.15s ease-in-out;
 }
 
 .journal .content .entry.badge:hover {
   z-index: 99;
-  background-blend-mode: luminosity;
   border: 1px solid #5b5b5b;
   box-shadow: 0 5px 5px -5px #000;
   transform: scale(1.1);

@@ -93,3 +93,16 @@
 #giftSelectorView-inbox {
   margin-top: -7px;
 }
+
+.claimGiftPage__larryHorns::before,
+.claimGiftPage__larryHorns::after {
+  transition: 0.3s;
+}
+
+.claimGiftPage__larryHorns:hover::before {
+  transform: translateX(-65%) rotate(-9deg);
+}
+
+.claimGiftPage__larryHorns:hover::after {
+  transform: translateX(-30%) rotate(9deg) scaleX(-1);
+}

@@ -80,7 +80,6 @@
 #sorted-mice-container .mouse-container-selected,
 #sorted-mice-container .mouse-container:hover,
 #sorted-mice-container .mouse-container:focus {
-  position: relative;
   background: rgb(255 255 255 / 50%);
   outline: 1px solid rgb(25 25 25 / 35%);
 }
@@ -90,13 +89,11 @@
   z-index: 10;
   display: block;
   width: 350px;
-  padding: 10px 5px;
-  margin: -5px -10px;
   background-color: #eaeaea;
   border: 1px solid #a8a8a8;
   border-radius: 3px;
   box-shadow: 0 10px 15px 0 rgb(0 0 0 / 50%);
-  transform: translate(calc((200px - 350px) / 2), -5px);
+  transform: translate(-75px);
 }
 
 #sorted-mice-container .mouse-subcategory-mice .mouse-container-selected .mouse-mhct-extra-info-wrapper {
@@ -161,6 +158,7 @@
 }
 
 #sorted-mice-container .location-text-wrapper {
+  padding-top: 10px;
   text-align: center;
 }
 
@@ -302,4 +300,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0 30px;
+}
+
+#sorted-mice-container .mhct-row {
+  padding: 5px;
+}
+
+#sorted-mice-container .mhct-data {
+  padding-bottom: 5px;
 }
