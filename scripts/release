@@ -53,7 +53,7 @@ bun run web-ext sign \
   --upload-source-code dist/archive.zip \
   --api-key "$FIREFOX_JWT_ISSUER" \
   --api-secret "$FIREFOX_JWT_SECRET" \
-  --channel "listed" && rm web-ext-artifacts/*.xpi && rmdir web-ext-artifacts && echo "Uploaded to Firefox Add-ons" &
+  --channel "listed" > /dev/null 2>&1 && rm web-ext-artifacts/*.xpi > /dev/null 2>&1 && rmdir web-ext-artifacts > /dev/null 2>&1 &
 
 # Build the userscript and push to a branch.
 cp dist/mousehunt-improved.user.js /tmp
