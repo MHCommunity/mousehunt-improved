@@ -265,6 +265,16 @@ const cacheSet = (key, value) => {
 };
 
 /**
+ * Set a cache value.
+ *
+ * @param {string} key   Key to set the value for.
+ * @param {Object} value Value to set.
+ */
+const cacheSetAsync = async (key, value) => {
+  await dbSet('cache', { id: key, value });
+};
+
+/**
  * Set a data cache value.
  *
  * @param {string} key   Key to set the value for.
@@ -329,6 +339,7 @@ export {
   cacheDelete,
   cacheGet,
   cacheSet,
+  cacheSetAsync,
   clearCaches,
   getData,
   getHeaders,

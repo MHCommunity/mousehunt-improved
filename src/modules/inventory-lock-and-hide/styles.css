@@ -130,10 +130,6 @@ span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible button {
   opacity: 0.3;
 }
 
-.inventory-lock-and-hide-all-hidden {
-  display: none;
-}
-
 .mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-hidden-count {
   display: none;
 }

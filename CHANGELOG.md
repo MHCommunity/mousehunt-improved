@@ -1,6 +1,13 @@
 # Changelog
 
-## Version 0.50.0
+## Version 0.49.6
+
+- Fixed Inventory Lock and Hide hiding entire categories when all items are hidden
+- Fixed Inventory Lock and Hide not updating (X hidden) count
+- Fixed SSDB Toothlet Counter not showing correct count
+- Fixed Printing Press Paper Counter not showing correct count
+
+## Version 0.49.5
 
 - Fixed trap selector opening when clicking on a mouse in Catch Rate Estimator
 - Updated Mousoleum Location HUD styles

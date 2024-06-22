@@ -343,7 +343,9 @@
 }
 
 .mh-dark .campPage-trap-itemBrowser-favorites .campPage-trap-itemBrowser-favorite-item-quantity span.campPage-trap-baitQuantity,
-.mh-dark .campPage-trap-itemBrowser-item-leftBar span.campPage-trap-baitQuantity {
+.mh-dark .campPage-trap-itemBrowser-item-leftBar span.campPage-trap-baitQuantity,
+.mh-dark .campPage-trap-itemBrowser-favorites .campPage-trap-itemBrowser-favorite-item-quantity span.campPage-trap-baseQuantity,
+.mh-dark .campPage-trap-itemBrowser-item-leftBar span.campPage-trap-baseQuantity {
   background-color: var(--d-transparent-90);
   border-color: var(--d-border);
 }

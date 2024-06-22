@@ -485,6 +485,9 @@ const addLockAndHideControls = () => {
     container.setAttribute('mhui-inventory-lock-and-hide-controls-active', isEditing);
 
     container.classList.toggle('mhui-inventory-lock-and-hide-controls-active');
+
+    // Update the group titles.
+    updateGroupTitles();
   });
 
   controlsWrapper.append(controls);

@@ -1,6 +1,6 @@
 import {
   cacheGet,
-  cacheSet,
+  cacheSetAsync,
   getCurrentPage,
   getUserItems,
   makeElement,
@@ -26,17 +26,21 @@ const getIdSelector = (itemId, bases) => {
   return `mh-improved-${itemId}-${bases}-counter`;
 };
 
+const getQuantity = async (itemId) => {
+  return await cacheGet(`${itemId}-quantity`, 0);
+};
+
 /**
  * Add the quantity to the display.
  */
 const addQuantityToDisplay = async () => {
-  options.forEach(async (opts) => {
+  if ('camp' !== getCurrentPage()) {
+    return;
+  }
+
+  for (const opts of options) {
     let bases = opts.baseIds;
     const itemId = opts.itemId;
-
-    if ('camp' !== getCurrentPage()) {
-      return;
-    }
 
     const selector = getIdSelector(itemId, bases);
 
@@ -49,33 +53,27 @@ const addQuantityToDisplay = async () => {
     const userBase = Number.parseInt(user.base_item_id, 10);
 
     if (! bases.includes(userBase)) {
-      return;
+      continue;
     }
 
-    let amount = await cacheGet(`${itemId}-quantity`, false);
-    if (false === amount) {
-      const details = await getUserItems([itemId], true);
-      amount = details[0]?.quantity || 0;
-
-      cacheSet(`${itemId}-quantity`, amount);
-    }
+    const amount = await getQuantity(itemId);
 
     const counter = document.querySelector(`.${selector}-text`);
     if (counter) {
       counter.textContent = amount;
-      return;
+      continue;
     }
 
     const trapContainer = document.querySelector('.trapSelectorView__armedItem[data-item-classification="base"] .trapSelectorView__armedItemImage');
     if (! trapContainer) {
-      return;
+      continue;
     }
 
     const newCounter = makeElement('div', ['trapSelectorView__armedItemQuantity', selector, 'mh-improved-trap-quantity']);
     makeElement('span', `${selector}-text`, amount.toLocaleString(), newCounter);
 
     trapContainer.append(newCounter);
-  });
+  }
 };
 
 /**
@@ -92,25 +90,18 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
 
   const selector = getIdSelector(itemId, base);
 
-  let qty = await cacheGet(`${itemId}-quantity`, false);
-
-  if (false === qty) {
-    const details = await getUserItems([itemId], true);
-    qty = details[0]?.quantity || 0;
-
-    cacheSet(`${itemId}-quantity`, qty);
-  }
-
-  qty = Number.parseInt(qty, 10);
-
   const exists = document.querySelector(`.${selector}-blueprint`);
   if (exists) {
+    const qty = await getQuantity(itemId);
+
     exists.textContent = qty.toLocaleString();
     return;
   }
 
+  const qty = await getQuantity(itemId);
+
   const counter = makeElement('div', 'campPage-trap-itemBrowser-favorite-item-quantity');
-  makeElement('span', ['campPage-trap-baitQuantity', `${selector}-blueprint`], qty.toLocaleString(), counter);
+  makeElement('span', ['campPage-trap-baseQuantity', `${selector}-blueprint`], qty.toLocaleString(), counter);
 
   el.append(counter);
 };
@@ -120,39 +111,20 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
  */
 const addToTrapBrowserForSlugs = async () => {
   options.forEach(async (opts) => {
-    opts.baseSlugs.forEach(async (base) => {
+    for (const base of opts.baseSlugs) {
       const el = document.querySelector(`.campPage-trap-itemBrowser-item-image[data-item-type="${base}"]`);
-      if (! el) {
-        return;
+      if (el) {
+        await addQuantityToTrapBrowserItem(el, opts.itemId, base);
       }
+    }
 
-      addQuantityToTrapBrowserItem(el, opts.itemId, base);
-    });
-  });
-};
-
-/**
- * Add the quantity to the trap browser for IDs.
- */
-const addToTrapBrowserForIds = async () => {
-  options.forEach(async (opts) => {
-    opts.baseIds.forEach(async (base) => {
-      const faveEl = document.querySelector(`.campPage-trap-itemBrowser-favorite-item-image[data-item-id="${base}"]`);
-      if (! faveEl) {
-        return;
+    for (const base of opts.baseIds) {
+      const favoriteEl = document.querySelector(`.campPage-trap-itemBrowser-favorite-item-image[data-item-id="${base}"]`);
+      if (favoriteEl) {
+        await addQuantityToTrapBrowserItem(favoriteEl, opts.itemId, base);
       }
-
-      addQuantityToTrapBrowserItem(faveEl, opts.itemId, base);
-    });
+    }
   });
-};
-
-/**
- * Add the quantity to the trap browser for bases.
- */
-const addToTrapBrowserForBases = async () => {
-  addToTrapBrowserForSlugs();
-  addToTrapBrowserForIds();
 };
 
 /**
@@ -165,35 +137,73 @@ const addQtyToTrapBrowser = async (tab) => {
     return;
   }
 
-  onRequest('users/gettrapcomponents.php', addToTrapBrowserForBases);
-
-  await sleep(1000);
-
-  addToTrapBrowserForBases();
-
-  // add a listener for changes to campPage-trap-itemBrowser-items to re-run when a search or filter is applied. remove the listener when the element is removed
-  const trapItems = document.querySelector('.campPage-trap-itemBrowser-items');
-  if (! trapItems) {
-    return;
-  }
-
-  const observer = new MutationObserver(addToTrapBrowserForBases);
-  observer.observe(trapItems, { childList: true, attributes: true, subtree: true });
+  await addToTrapBrowserForSlugs();
 };
 
 /**
  * Handle change trap events.
  */
-const onChangeTrap = () => {
+const onChangeTrap = async () => {
   const trapSelector = document.querySelector('.trapSelectorView__blueprint.trapSelectorView__blueprint--active .trapSelectorView__browserStateParent--items[data-blueprint-type="base"]');
   if (trapSelector) {
-    options.forEach(async (opts) => {
-      addQtyToTrapBrowser('item_browser', opts);
-    });
+    for (const opts of options) {
+      await addQtyToTrapBrowser('item_browser', opts);
+    }
   }
 };
 
+let allItems = [];
+const maybeClearCache = async () => {
+  sleep(250);
+
+  const currentBase = Number.parseInt(user.base_item_id, 10);
+
+  for (const opts of options) {
+    if (opts.baseIds.includes(currentBase)) {
+      allItems.push(opts.itemId);
+    }
+  }
+
+  allItems = [...new Set(allItems)];
+
+  if (! allItems.length) {
+    return;
+  }
+
+  const details = await getUserItems(allItems, true);
+  for (const itemId in details) {
+    const qty = Number.parseInt(details[itemId]?.quantity) || 0;
+
+    await cacheSetAsync(`${details[itemId].type}-quantity`, qty);
+  }
+};
+
+const addEvents = () => {
+  setTimeout(async () => {
+    await maybeClearCache();
+    addQuantityToDisplay();
+  }, 250);
+  onNavigation(addQuantityToDisplay, { page: 'camp' });
+
+  onRequest('users/changetrap.php', async () => {
+    await maybeClearCache();
+    await onChangeTrap();
+    addQuantityToDisplay();
+  });
+
+  onEvent('camp_page_toggle_blueprint', async (tab) => {
+    await addQtyToTrapBrowser(tab);
+  });
+
+  onTurn(async () => {
+    await maybeClearCache();
+    setTimeout(addQuantityToDisplay, 250);
+  }, 250);
+};
+
 const options = [];
+let hasAddedEvents = false;
+
 /**
  * Add the quantity to the trap.
  *
@@ -208,16 +218,10 @@ const addTrapQuantity = async (opts) => {
 
   options.push(opts);
 
-  onRequest('users/changetrap.php', () => {
-    onChangeTrap();
-    addQuantityToDisplay();
-    setTimeout(addQuantityToDisplay, 250);
-  });
-  onEvent('camp_page_toggle_blueprint', async (tab) => addQtyToTrapBrowser(tab));
-
-  addQuantityToDisplay();
-  onNavigation(addQuantityToDisplay, { page: 'camp' });
-  onTurn(addQuantityToDisplay, 250);
+  if (! hasAddedEvents) {
+    hasAddedEvents = true;
+    addEvents();
+  }
 };
 
 export {
