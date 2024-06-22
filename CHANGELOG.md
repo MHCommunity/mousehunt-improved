@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.49.9
+
+- Updated King's Giveaway styles
+
 ## Version 0.49.8
 
 - Fixed favorited locations not showing in Better Travel quick travel list

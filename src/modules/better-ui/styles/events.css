@@ -102,3 +102,103 @@
 .QuestKingsGiveawayCampHUD__vaultDoor:active {
   transform: translate(-50%, -50%) rotate(10deg);
 }
+
+.QuestKingsGiveawayCampHUD::after {
+  background-image: url(https://i.mouse.rip/kings_giveaway-journal_buttons.png);
+}
+
+.QuestKingsGiveawayCampHUD {
+  background-image: url(https://i.mouse.rip/kings_giveaway-journal_background.png);
+}
+
+.QuestKingsGiveawayCampHUD::before {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/large/6391b886b424174996329aa1eb186a10.png);
+  transform-origin: center;
+}
+
+.QuestKingsGiveawayCampHUD__icon {
+  background-image: url(https://i.mouse.rip/kings_giveaway_vault-icon.png);
+}
+
+.QuestKingsGiveawayCampHUD__title {
+  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
+  font-weight: 900;
+  text-shadow:
+    0 0 1px #000,
+    0 0 1px #fede92;
+  filter: saturate(0.1);
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel.canClaim .QuestKingsGiveawayCampHUD__tile {
+  filter: none;
+}
+
+.QuestKingsGiveawayCampHUD__openSinglePrizePackButton.mousehuntActionButton.small {
+  top: 49%;
+  padding: 10px;
+  font-weight: 900;
+}
+
+.QuestKingsGiveawayCampHUD__prizeWheel {
+  background: #463519;
+  border-radius: 50%;
+  box-shadow: 0 5px 9px 10px #000;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(1) .QuestKingsGiveawayCampHUD__icon {
+  top: -13px;
+  left: -2px;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(2) .QuestKingsGiveawayCampHUD__icon {
+  top: -13px;
+  left: -3px;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(3) .QuestKingsGiveawayCampHUD__icon {
+  top: -14px;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(4) .QuestKingsGiveawayCampHUD__icon {
+  top: -7px;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(5) .QuestKingsGiveawayCampHUD__icon {
+  top: -4px;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(6) .QuestKingsGiveawayCampHUD__icon {
+  top: 10px;
+  left: -2px;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(7) .QuestKingsGiveawayCampHUD__icon {
+  top: 1px;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(8) .QuestKingsGiveawayCampHUD__icon {
+  top: -7px;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(9) .QuestKingsGiveawayCampHUD__icon {
+  top: -10px;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:nth-child(10) .QuestKingsGiveawayCampHUD__icon {
+  top: -13px;
+}
+
+.QuestKingsGiveawayCampHUD:hover::before {
+  animation: 0.4s mh-improved-shake 1;
+}
+
+.QuestKingsGiveawayCampHUD__prizePixel:hover {
+  animation: 1.4s mh-improved-glow infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .QuestKingsGiveawayCampHUD:hover::before,
+  .QuestKingsGiveawayCampHUD__prizePixel:hover {
+    animation: none;
+  }
+}
