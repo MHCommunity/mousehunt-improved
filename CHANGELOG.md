@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.49.7
+
+- Fixed SSDB Toothlet Counter and Printing Press Paper Counter adding quantity element twice
+
 ## Version 0.49.6
 
 - Fixed Inventory Lock and Hide hiding entire categories when all items are hidden

@@ -90,7 +90,7 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
 
   const selector = getIdSelector(itemId, base);
 
-  const exists = document.querySelector(`.${selector}-blueprint`);
+  const exists = document.querySelector(`.campPage-trap-itemBrowser-favorite-item-quantity .quantity-${itemId}-wrapper .${selector}-blueprint`);
   if (exists) {
     const qty = await getQuantity(itemId);
 
@@ -100,7 +100,7 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
 
   const qty = await getQuantity(itemId);
 
-  const counter = makeElement('div', 'campPage-trap-itemBrowser-favorite-item-quantity');
+  const counter = makeElement('div', ['campPage-trap-itemBrowser-favorite-item-quantity', `quantity-${itemId}-wrapper`]);
   makeElement('span', ['campPage-trap-baseQuantity', `${selector}-blueprint`], qty.toLocaleString(), counter);
 
   el.append(counter);
