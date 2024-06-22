@@ -1,8 +1,16 @@
 # Changelog
 
+## Version 0.50.0
+
+- Fixed trap selector opening when clicking on a mouse in Catch Rate Estimator
+- Updated Mousoleum Location HUD styles
+- Update Fungal Cavern Location HUD styles
+- Added Prize mouse highlighting to progress log
+- Added Regal Codex pages to journal item colors
+
 ## Version 0.49.4
 
-- Fix Catch Rate Estimator not correctly calculating Fort Rox catch rates
+- Fixed Catch Rate Estimator not correctly calculating Fort Rox catch rates
 
 ## Version 0.49.3
 

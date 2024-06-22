@@ -177,3 +177,21 @@
 .journal .content .entry.log_summary .journaltext > table {
   line-height: initial;
 }
+
+/* stylelint-disable */
+#overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=snooty"],
+#overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=mobster"],
+#overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=leprechaun"],
+#overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=treasurer"],
+#overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=high_roller"] {
+  background-color: #ddffd6;
+}
+
+.mh-dark #overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=snooty"],
+.mh-dark #overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=mobster"],
+.mh-dark #overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=leprechaun"],
+.mh-dark #overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=treasurer"],
+.mh-dark #overlayPopup.hunting_summary .miceContainer a[href="https://www.mousehuntgame.com/adversaries.php?mouse=high_roller"] {
+  background-color: var(--d-green-dark);
+}
+/* stylelint-enable */

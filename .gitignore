@@ -5,3 +5,4 @@ src/data/dist/
 notes.md
 .stylelintcache
 .env.sentry-build-plugin
+web-ext-artifacts/

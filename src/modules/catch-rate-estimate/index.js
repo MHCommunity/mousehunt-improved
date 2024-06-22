@@ -255,6 +255,7 @@ const renderList = async (list) => {
     const nameLink = makeElement('a', '', mouse);
     nameLink.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       hg.views.MouseView.show(type);
     });
     name.append(nameLink);

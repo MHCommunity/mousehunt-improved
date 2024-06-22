@@ -67,3 +67,11 @@ span.fungalCavernHUD-background-title-zone {
 .fungalCavernHUD-zoneHelpContainer {
   font-size: 12px;
 }
+
+.fungalCavernHUD-bait-tooltip-recipe-result-quantity span {
+  font-size: 11px;
+}
+
+.fungalCavernHUD-bait-tooltip-craftingItem-image {
+  box-shadow: none;
+}
