@@ -354,6 +354,10 @@ const addToTravelDropdown = async () => {
       return false;
     }
 
+    if ('acolyte_realm' === environment.id) {
+      return false;
+    }
+
     return environment.region === currentRegion.region;
   });
 
@@ -389,6 +393,7 @@ const addToTravelDropdown = async () => {
     }
 
     addSubmenuItem({
+      id: `better-travel-${region.id}`,
       menu: 'travel',
       label: region.name,
       icon: region.image,
@@ -408,6 +413,7 @@ const addToTravelDropdown = async () => {
 
       if (favoriteRegion) {
         addSubmenuItem({
+          id: `better-travel-favorite-${favorite}`,
           menu: 'travel',
           label: favoriteRegion.name,
           icon: favoriteRegion.image,

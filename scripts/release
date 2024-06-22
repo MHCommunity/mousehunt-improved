@@ -4,6 +4,48 @@ if [ -f .env ]; then
   source .env
 fi
 
+# Helpers for Chrome Publishing.
+#!/bin/bash
+
+if [ -f .env ]; then
+  source .env
+fi
+
+publish_chrome_extension() {
+  bun run chrome-webstore-upload publish \
+    --source dist/chrome.zip \
+    --extension-id "$CHROME_EXTENSION_ID" \
+    --client-id "$CHROME_CLIENT_ID" \
+    --client-secret "$CHROME_CLIENT_SECRET" \
+    --refresh-token "$CHROME_REFRESH_TOKEN"
+}
+
+check_for_review_error() {
+  echo "$1" | grep -q "You may not edit or publish an item that is in review"
+}
+
+# If we get a 'publish' argument, try to publish the extension rather than building it.
+if [ "$1" == "publish" ]; then
+    chromeStatus=$(publish_chrome_extension)
+
+  retry_count=0
+
+  while check_for_review_error "$chromeStatus" && [ $retry_count -lt 12 ]; do
+    echo "Extension is in review. Retrying in 5 minutes..."
+    sleep 300
+    chromeStatus=$(upload_to_chrome_webstore)
+    ((retry_count++))
+  done
+
+  if check_for_review_error "$chromeStatus"; then
+    echo "Failed to publish extension after multiple attempts. Extension is still in review."
+  else
+    echo "Extension published successfully."
+  fi
+
+  exit 0
+fi
+
 # Make sure the working directory is clean.
 if [ -n "$(git status --porcelain)" ]; then
   echo "Working directory is not clean, commit the changes first."

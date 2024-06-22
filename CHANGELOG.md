@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.49.8
+
+- Fixed favorited locations not showing in Better Travel quick travel list
+- Removed Acolyte Realm from Better Travel quick travel list
+
 ## Version 0.49.7
 
 - Fixed SSDB Toothlet Counter and Printing Press Paper Counter adding quantity element twice
