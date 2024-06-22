@@ -33,7 +33,7 @@ if [ "$1" == "publish" ]; then
   while check_for_review_error "$chromeStatus" && [ $retry_count -lt 12 ]; do
     echo "Extension is in review. Retrying in 5 minutes..."
     sleep 300
-    chromeStatus=$(upload_to_chrome_webstore)
+    chromeStatus=$(publish_chrome_extension)
     ((retry_count++))
   done
 
