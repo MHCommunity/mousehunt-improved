@@ -256,7 +256,7 @@ const isUserTitleAtLeast = (title) => {
     'viceroy',
     'elder',
     'sage',
-    'fable',
+    'fabled',
   ];
 
   const titleIndex = titles.indexOf(normalizeTitle(user.title_name));
