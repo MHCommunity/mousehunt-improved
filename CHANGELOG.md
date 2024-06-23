@@ -1,5 +1,9 @@
 # Changelog
 
+## Next Version
+
+- Updated Ultimate charm journal entry images
+
 ## Version 0.49.9
 
 - Updated King's Giveaway styles
