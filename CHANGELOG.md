@@ -1,6 +1,6 @@
 # Changelog
 
-## Next Version
+## Version 0.49.10
 
 - Updated Ultimate charm journal entry images
 - Updated SSDB Toothlet Counter and Printing Press Paper Counter display in trap selector to match other quantity counters
