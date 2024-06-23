@@ -100,3 +100,7 @@
     center / 15px no-repeat url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif),
     center / contain repeat url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png);
 }
+
+.campPage-trap-itemBrowser-item.codex.unowned .trapSelectorView__obtainHint {
+  display: block;
+}

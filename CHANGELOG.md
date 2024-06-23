@@ -6,6 +6,7 @@
 - Updated SSDB Toothlet Counter and Printing Press Paper Counter display in trap selector to match other quantity counters
 - Updated Native Dark Mode trap selector styles
 - Updated Fiery Warpath Location HUD styles
+- Updated Better UI styles
 
 ## Version 0.49.9
 
