@@ -1,4 +1,7 @@
 import { $ } from 'bun';
+import archiver from 'archiver';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const buildArchive = async () => {
   console.log('Building archive...'); // eslint-disable-line no-console
@@ -38,7 +41,6 @@ const buildZip = async (platform) => {
 
 const buildZips = async () => {
   console.log('Zipping extensions...'); // eslint-disable-line no-console
-  await $`bun run scripts/build-zips.mjs`;
 
   await Promise.all([
     buildZip('chrome'),
