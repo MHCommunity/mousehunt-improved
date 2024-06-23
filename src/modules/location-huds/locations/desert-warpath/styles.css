@@ -200,3 +200,9 @@
     animation: none;
   }
 }
+
+.warpathHUD-dialog-padding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
