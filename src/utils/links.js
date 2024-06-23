@@ -71,6 +71,13 @@ const getCleanSubmenuLabel = (label) => {
 /**
  * Add a submenu item to a menu.
  *
+ * Custom icons are available via https://i.mouse.rip/icons/<icon>.png:
+ * airplane, atom, back, bolt, bookmark, book, briefcase, calendar, card,
+ * chart, clock, cloud, compass, deal, diamond, down, envelope, file, film,
+ * flag, folder, game, gift, help, hourglass, left, light-bulb, list, lock,
+ * moon, music, page, paint, phone, puzzle, return, right, sun, tablet, tag,
+ * target, ticket, tiles4, tiles, todo, trash, tv, up.
+ *
  * @param {Object}   options          The options for the submenu item.
  * @param {string}   options.menu     The menu to add the submenu item to.
  * @param {string}   options.label    The label for the submenu item.
