@@ -1,4 +1,10 @@
-import { getCurrentLocation } from '@utils';
+import {
+  getCurrentLocation,
+  getFieryWarpathPercent,
+  getFieryWarpathRemainingInWave,
+  getFieryWarpathStreak,
+  getFieryWarpathWave
+} from '@utils';
 
 /**
  * Dashboard output.
@@ -41,48 +47,13 @@ const setFieryWarpathData = () => {
     return false;
   }
 
-  let wave = 0;
-  let streak = 'No Streak';
-  let remaining = 0;
-  let percent = 0;
-
-  const waveEl = document.querySelector('.warpathHUD.showPortal');
-  if (waveEl) {
-    // get the classlist and find the one that starts with 'wave'
-    const waveClass = [...waveEl.classList].find((className) => className.startsWith('wave'));
-    wave = waveClass.replace('wave', '').replace('_', '');
-  }
-
-  const streakEl = document.querySelector('.warpathHUD-streakBoundingBox');
-  if (streakEl) {
-    streak = Number.parseInt(streakEl.innerText.replaceAll('\n', ' ').replace(' 0', '').trim()) || 0;
-  }
-
-  const remainingEl = document.querySelectorAll(`.warpathHUD-wave.wave_${wave} .warpathHUD-wave-mouse-population`);
-  if (remainingEl.length) {
-    // sum all the values that have an innerText
-    remaining = [...remainingEl].reduce((sum, el) => {
-      if (el.innerText) {
-        sum += Number.parseInt(el.innerText);
-      }
-      return sum;
-    }, 0);
-  }
-
-  const percentEl = document.querySelector('.warpathHUD-moraleBar span');
-  if (percentEl) {
-    // get the style attribute and parse the width value.
-    const style = percentEl.getAttribute('style');
-    if (style) {
-      percent = Number.parseInt(style.replace('width:', '').replace('%;', ''));
-    }
-  }
+  const wave = getFieryWarpathWave();
 
   return {
     wave,
-    streak,
-    remaining,
-    percent,
+    streak: getFieryWarpathStreak(),
+    remaining: getFieryWarpathRemainingInWave(wave),
+    percent: getFieryWarpathPercent()
   };
 };
 

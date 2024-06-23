@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.49.11
+
+- Updated Fiery Warpath Location HUD styles
+- Added mice remaing in wave to the Fiery Warpath Location HUD commander bar
+
 ## Version 0.49.10
 
 - Updated Ultimate charm journal entry images

@@ -64,7 +64,7 @@
   width: 70px;
   height: 25px;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 23px;
   background: url(https://www.mousehuntgame.com/images/ui/hud/desert_warpath/desert_warpath_opponent.png) no-repeat bottom center / 75px;
   border-radius: 20px;
 }
@@ -105,8 +105,7 @@
 }
 
 .warpathHUD-streakContainer::before {
-  background: linear-gradient(0deg, #2ffd2d 50%, #f7f718 75%, #c32222 100%);
-  filter: brightness(0.8);
+  background-image: url(https://i.mouse.rip/desert_warpath_streak_bar.png);
 }
 
 .warpathHUD-streak-image-empty {
@@ -133,7 +132,7 @@
   left: -150px;
   cursor: pointer;
   opacity: 0.4;
-  transition: 0.3s;
+  transition: transform 0.3s;
   transform: rotate(270deg) scale(0.8);
   animation: none;
 }
@@ -149,7 +148,7 @@
 }
 
 .warpathHUD-engaged .warpathHud-missle-activate {
-  filter: hue-rotate(281deg);
+  filter: hue-rotate(270deg) scale(0.9);
   opacity: 0.9;
 }
 
@@ -201,8 +200,74 @@
   }
 }
 
+.warpathHUD-dialog-image .itemImage {
+  border: none;
+}
+
 .warpathHUD-dialog-padding {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.warpathHUD-dialog-title {
+  margin-bottom: 5px;
+}
+
+.warpathHUD-moraleBar.warpathHUD-panicMeter-wave-stats {
+  font-size: 10px;
+  text-align: center;
+}
+
+.warpathHUD-wave-stats {
+  position: absolute;
+  inset: 0;
+  display: inline;
+  color: #d9ac8c;
+  text-shadow:
+    0 1px #50301f,
+    1px 0 #50301f,
+    -1px 0 #50301f,
+    0 -1px #50301f;
+}
+
+.warpathHUD-moraleBar span {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.warpathHUD-moraleBar {
+  height: 12px;
+  border-color: #3e291e;
+}
+
+.warpathHUD-message {
+  background-image: url(https://i.mouse.rip/desert_warpath_messages.png);
+}
+
+.warpathHUD-message.caught {
+  left: 6px;
+  width: 52px;
+}
+
+.warpathHUD-message.reinforced {
+  left: -2px;
+  width: 66px;
+  border-color: #8a3200;
+}
+
+.warpathHUD-message.streak.broken {
+  left: -9px;
+  width: 83px;
+  border-color: #8a3200;
+}
+
+.warpathHUD-streakContainer {
+  background-image: url(https://i.mouse.rip/desert_warpath_streakometer.png);
+}
+
+.warpathHUD-wave-mouse .mousehuntTooltip {
+  left: -110px;
+  width: 260px;
 }
