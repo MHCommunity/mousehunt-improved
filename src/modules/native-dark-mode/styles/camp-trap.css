@@ -162,8 +162,10 @@
 }
 
 .mh-dark .campPage-trap-itemBrowser-item-statContainer {
-  background-color: transparent;
-  box-shadow: none;
+  background-color: var(--d-alt);
+  box-shadow:
+    0 0 1px var(--d-black),
+    0 1px 30px var(--d) inset;
 }
 
 .mh-dark .campPage-trap-itemBrowser-item-stat .value span {
@@ -194,15 +196,10 @@
 }
 
 .mh-dark .campPage-trap-itemBrowser-favorite-item-image-quantity {
-  right: 1px;
-  bottom: 0;
   box-sizing: content-box;
   color: var(--d-text);
   background: var(--d-bg);
   border-color: var(--d-border);
-  border-right: none;
-  border-bottom: none;
-  border-bottom-right-radius: 2px;
 }
 
 .mh-dark .campPage-trap-itemBrowser-item-powerType::before {
@@ -251,8 +248,8 @@
 }
 
 .mh-dark .campPage-trap-itemBrowser-item-image::after {
-  border-color: transparent;
-  box-shadow: none;
+  border-color: var(--d-border);
+  box-shadow: 2px 2px 3px -1px var(--d) inset;
 }
 
 .mh-dark .campPage-trap-trapEffectivenessContainer .loading,

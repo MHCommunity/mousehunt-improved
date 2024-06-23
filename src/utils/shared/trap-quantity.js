@@ -101,7 +101,7 @@ const addQuantityToTrapBrowserItem = async (el, itemId, base) => {
   const qty = await getQuantity(itemId);
 
   const counter = makeElement('div', ['campPage-trap-itemBrowser-favorite-item-quantity', `quantity-${itemId}-wrapper`]);
-  makeElement('span', ['campPage-trap-baseQuantity', `${selector}-blueprint`], qty.toLocaleString(), counter);
+  makeElement('span', ['campPage-trap-itemBrowser-favorite-item-image-quantity', 'base-quantity', `${selector}-blueprint`], qty.toLocaleString(), counter);
 
   el.append(counter);
 };
