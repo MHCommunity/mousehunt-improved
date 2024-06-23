@@ -25,21 +25,20 @@ const updateInputField = async () => {
     return;
   }
 
+  const addQuantityButtons = getSetting('better-shops.show-qty-buttons', true);
+
   purchaseBlocks.forEach((block) => {
     const qty = block.querySelector('.itemPurchaseView-action-maxPurchases');
     if (! qty) {
       return;
     }
 
-    let maxQty = qty.innerText;
-    if (maxQty.includes('Inventory max')) {
-      maxQty = 0;
-    }
-
     const input = block.querySelector('input');
     if (! input) {
       return;
     }
+
+    const maxQty = qty.innerText.replace(' (Inventory max)', '') || 0;
 
     input.setAttribute('placeholder', maxQty);
 
@@ -66,7 +65,7 @@ const updateInputField = async () => {
       });
     }
 
-    if (getSetting('better-shops.show-qty-buttons', true)) {
+    if (addQuantityButtons) {
       qtyButtons(block, input, maxQty);
     }
   });
@@ -93,6 +92,7 @@ const main = () => {
   if (golds) {
     golds.forEach((gold) => {
       gold.innerText = gold.innerText.replace('Cost:', '');
+      gold.innerText = gold.innerText.length ? gold.innerText : '0 gold';
     });
   }
 

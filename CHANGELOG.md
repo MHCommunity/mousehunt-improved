@@ -3,6 +3,8 @@
 ## Version 0.49.9
 
 - Updated King's Giveaway styles
+- Fixed Better Shops quantity buttons not working on inventory limited items
+- Fixed gold cost not showing for some 0 gold cost King's Cart items
 
 ## Version 0.49.8
 
