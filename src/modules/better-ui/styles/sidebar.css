@@ -5,3 +5,11 @@
 .pageSidebarView-block-description {
   display: none;
 }
+
+.pageSidebarView {
+  padding: 0;
+  margin: 10px -20px 10px 20px;
+  border: 10px solid #fff;
+  border-radius: 10px 10px 4px 4px;
+  box-shadow: 0 2px 4px -1px #000;
+}

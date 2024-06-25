@@ -1,9 +1,9 @@
 /* Progress log */
-.journal .entry.log_summary .journalbody {
+.journal .content .entry.log_summary .journalbody {
   margin-left: 10px;
 }
 
-.journal .entry.log_summary .journaltext b {
+.journal .content .entry.log_summary .journaltext b {
   display: block;
   width: 30%;
   padding-top: 0.5em;
@@ -11,6 +11,10 @@
   margin: 0 auto;
   font-weight: 900;
   border-bottom: 1px solid #c6c6c6;
+}
+
+.journal .content .entry.log_summary .journalimage {
+  display: none;
 }
 
 /* Progress log */

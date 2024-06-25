@@ -4,6 +4,8 @@
 
 - Updated Fiery Warpath Location HUD styles
 - Added mice remaing in wave to the Fiery Warpath Location HUD commander bar
+- Update Better UI styles
+- Updated Better Journal styles
 
 ## Version 0.49.10
 

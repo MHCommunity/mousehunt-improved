@@ -1,7 +1,15 @@
+.journal .content .entry.short.rift-whisker-woods-increase {
+  padding: 6px 0;
+}
+
 .journal .content .entry.short.rift-whisker-woods-increase .journalbody {
   margin: 0 30px;
   font-size: 10px;
   text-align: center;
+}
+
+.journal .content .entry.short.rift-whisker-woods-increase .journalbody br {
+  display: block;
 }
 
 .journal .content .entry.rift-whisker-woods-catch-miniboss {
