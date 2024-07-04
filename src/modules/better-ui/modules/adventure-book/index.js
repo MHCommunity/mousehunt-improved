@@ -1,4 +1,4 @@
-import { getCurrentPage, onRequest, onNavigation } from '@utils';
+import { getCurrentPage, onNavigation, onRequest } from '@utils';
 
 /**
  * Add the adventure book class to the adventure book banner.

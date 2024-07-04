@@ -1,4 +1,4 @@
-import { onRequest } from "@utils";
+import { onRequest } from '@utils';
 
 /**
  * Change the text in the Kings Calibrator promo.

@@ -265,11 +265,7 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
   let data;
 
   try {
-    if (skipOpts.skipJson) {
-      data = await response.text();
-    } else {
-      data = await response.json();
-    }
+    data = await (skipOpts.skipJson ? response.text() : response.json());
   } catch (error) {
     console.error(`Error parsing response for ${url}:`, error, url, formData, response); // eslint-disable-line no-console
 
