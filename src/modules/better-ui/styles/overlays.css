@@ -254,3 +254,7 @@ span.kingsGiveawayCalibratorPopup-upgrade-action-cost {
 #messengerUINotification .tabs a.active .arrowShadow {
   right: -20px;
 }
+
+.closeOverlay.jsDialogClose {
+  margin-bottom: 10px;
+}

@@ -1,132 +1,16 @@
-import {
-  addStyles,
-  getCurrentPage,
-  getFlag,
-  isLegacyHUD,
-  makeElement,
-  onNavigation,
-  onRequest,
-  sessionGet,
-  sessionSet
-} from '@utils';
+import { addStyles } from '@utils';
 
+import adventurebook from './modules/adventure-book';
+import dailyDraw from './modules/daily-draw';
 import friends from './modules/friends';
 import hud from './modules/hud';
-
-import anyTrapAnySkinStyles from './modules/userscript-styles/any-trap-any-skin.css';
-import favoriteSetupsStyles from './modules/userscript-styles/favorite-setups.css';
-import journalHistorianStyles from './modules/userscript-styles/journal-historian.css';
-import lgsReminderStyles from './modules/userscript-styles/lgs-reminder.css';
-import mhctStyles from './modules/userscript-styles/mhct.css';
-import profilePlusStyles from './modules/userscript-styles/profile-plus.css';
-import springEggHuntHelperStyles from './modules/userscript-styles/spring-egg-hunt-helper.css';
-import tsituAutoloaderStyles from './modules/userscript-styles/tsitu-autoloader.css';
-import tsituLocationCatchStatsStyles from './modules/userscript-styles/tsitu-location-catch-stats.css';
-import tsituQolStyles from './modules/userscript-styles/tsitu-qol.css';
-import tsituSupplySearchStyles from './modules/userscript-styles/tsitu-supply-search.css';
-
-import legacyStyles from './legacy-styles.css';
+import kingsPromo from './modules/kings-promo';
+import legacyStyles from './modules/legacy-styles';
+import maintenance from './modules/maintenance';
+import userscriptStyles from './modules/userscripts-styles';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
-
-/**
- * Change the text in the Kings Calibrator promo.
- */
-const kingsPromoTextChange = () => {
-  const kingsPromo = document.querySelector('.shopsPage-kingsCalibratorPromo');
-  if (kingsPromo) {
-    kingsPromo.innerHTML = kingsPromo.innerHTML.replace('and even', 'and');
-  }
-};
-
-/**
- * Add the adventure book class to the adventure book banner.
- */
-const addAdventureBookClass = () => {
-  if (! user?.quests?.QuestAdventureBook?.adventure?.can_claim || ! getCurrentPage('camp')) {
-    return;
-  }
-
-  const adventureBook = document.querySelector('.adventureBookBanner');
-  if (! adventureBook) {
-    return;
-  }
-
-  adventureBook.classList.add('adventureBookBanner-complete');
-};
-
-/**
- * Add the userscript styles.
- */
-const addUserscriptStyles = async () => {
-  const userscriptStyles = [
-    { id: 'userscript-styles-no-any-trap-any-skin-styles', styles: anyTrapAnySkinStyles },
-    { id: 'userscript-styles-no-mhct-styles', styles: mhctStyles },
-    { id: 'userscript-styles-no-tsitu-qol-styles', styles: tsituQolStyles },
-    { id: 'userscript-styles-no-profile-plus-styles', styles: profilePlusStyles },
-    { id: 'userscript-styles-no-spring-egg-hunt-helper-styles', styles: springEggHuntHelperStyles },
-    { id: 'userscript-styles-no-lgs-reminder-styles', styles: lgsReminderStyles },
-    { id: 'userscript-styles-no-favorite-setups-styles', styles: favoriteSetupsStyles },
-    { id: 'userscript-styles-no-tsitu-autoloader-styles', styles: tsituAutoloaderStyles },
-    { id: 'userscript-styles-no-journal-historian-styles', styles: journalHistorianStyles },
-    { id: 'userscript-styles-no-tsitu-supply-search-styles', styles: tsituSupplySearchStyles },
-    { id: 'userscript-styles-no-tsitu-location-catch-stats-styles', styles: tsituLocationCatchStatsStyles },
-  ];
-
-  if (getFlag('no-userscript-styles')) {
-    return;
-  }
-
-  userscriptStyles.forEach((userscript) => {
-    if (! getFlag(userscript.id)) {
-      addStyles(userscript.styles, userscript.id);
-    }
-  });
-};
-
-/**
- * Add the maintenance banner classes.
- */
-const addMaintenanceClasses = () => {
-  const banner = document.querySelector('div[style="background: #f2f27c; border:1px solid #555; border-radius: 3px; text-align: center; font-size: 12px; padding: 6px 3px"]');
-  if (! banner) {
-    return;
-  }
-
-  const isHidden = sessionGet('maintenance-banner-hidden');
-  if (isHidden) {
-    banner.classList.add('hidden');
-    return;
-  }
-
-  banner.classList.add('maintenance-banner', 'mh-ui-fade', 'mh-ui-fade-in');
-
-  const existingClose = banner.querySelector('.close');
-  if (existingClose) {
-    return;
-  }
-
-  banner.childNodes.forEach((node) => {
-    if (node.nodeType === Node.ELEMENT_NODE) {
-      node.innerHTML = `${node.innerHTML}.`;
-    } else if (node.nodeType === Node.TEXT_NODE) {
-      node.textContent = `${node.textContent}.`;
-    }
-  });
-
-  const close = makeElement('div', 'close', '✕');
-  close.addEventListener('click', () => {
-    banner.classList.add('mh-ui-fade-out');
-
-    setTimeout(() => {
-      banner.classList.add('hidden');
-      sessionSet('maintenance-banner-hidden', true);
-    }, 350);
-  });
-
-  banner.append(close);
-};
 
 /**
  * Initialize the module.
@@ -134,23 +18,14 @@ const addMaintenanceClasses = () => {
 const init = async () => {
   addStyles(styles, 'better-ui');
 
-  if (isLegacyHUD()) {
-    addStyles(legacyStyles, 'better-ui-legacy');
-  }
-
-  addMaintenanceClasses();
-  addUserscriptStyles();
+  adventurebook();
+  dailyDraw();
   friends();
   hud();
-
-  onRequest('*', addAdventureBookClass);
-  onRequest('users/dailyreward.php', kingsPromoTextChange);
-  onNavigation(() => {
-    addMaintenanceClasses();
-    addAdventureBookClass();
-  }, {
-    page: 'camp',
-  });
+  kingsPromo();
+  maintenance();
+  userscriptStyles();
+  legacyStyles();
 };
 
 /**

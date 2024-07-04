@@ -1,5 +1,5 @@
 .journal .entry.fortRox-nightJournal,
 .journal .entry.fortRox-nightDone {
-  max-height: 100px;
+  max-height: 120px;
   overflow-y: auto;
 }

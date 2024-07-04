@@ -31,13 +31,27 @@
   border-bottom-color: #5b5b5b;
 }
 
+.mh-dark .campPage-quests-objective-container {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .campPage-quests-objective {
+  color: var(--d-text);
+}
+
+.mh-dark .campPage-quests-objective-container.locked {
+  background-color: var(--d-alt);
+  box-shadow: none;
+}
+
 .mh-dark .campPage-quests-objective-container.complete .campPage-quests-objective {
   color: var(--d-text);
 }
 
 .mh-dark .campPage-quests-objective-container.complete {
   background-color: var(--d-green-dark);
-  border-color: transparent;
+  border-color: var(--d-border);
 }
 
 .mh-dark .pagerView-section.previous.active .pagerView-link,

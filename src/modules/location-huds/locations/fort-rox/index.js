@@ -1,4 +1,4 @@
-import { addHudStyles, makeElement } from '@utils';
+import { addHudStyles, makeElement, onTurn } from '@utils';
 
 import styles from './styles.css';
 
@@ -195,6 +195,34 @@ const addPortalClass = () => {
 };
 
 /**
+ * Add the boss HP as a visible number and fix the bar width not actually showing the correct width.
+ */
+const addBossHp = () => {
+  if (user?.quests?.QuestFortRox?.current_phase !== 'lair') {
+    return;
+  }
+
+  const bossHpBox = document.querySelector('.fortRoxHUD-lairBossProgress');
+  if (! bossHpBox) {
+    return;
+  }
+
+  const bossHp = user?.quests?.QuestFortRox?.lair_width || 100;
+
+  const existing = document.querySelector('.frox-boss-hp');
+  if (existing) {
+    existing.textContent = `${bossHp}%`;
+  } else {
+    makeElement('div', 'frox-boss-hp', `${bossHp}%`, bossHpBox);
+  }
+
+  const bossHpSpan = bossHpBox.querySelector('span');
+  if (bossHpSpan) {
+    bossHpSpan.style.width = `${bossHp}%`;
+  }
+};
+
+/**
  * Initialize the module.
  */
 export default async () => {
@@ -203,4 +231,13 @@ export default async () => {
   updateUpgradeTooltips();
   updateWallHP();
   addPortalClass();
+  addBossHp();
+
+  onTurn(() => {
+    updateNightBar();
+    updateUpgradeTooltips();
+    updateWallHP();
+    addPortalClass();
+    addBossHp();
+  }, 250);
 };

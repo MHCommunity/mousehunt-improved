@@ -48,7 +48,6 @@
 }
 
 /* gotta love !important */
-.journal .content .entry.minimalJournalImage,
 .journal .content .entry.labyrinthSmall.labyrinth-clue,
 .journal .content .entry.winterTaiga {
   background-position: 10px center !important;

@@ -9,10 +9,6 @@ body.mh-dark {
   border-color: var(--d-border);
 }
 
-.mh-dark .puzzleView {
-  filter: brightness(0.7);
-}
-
 .mh-dark .mousehuntActionButton.lightBlue {
   box-shadow: 1px 1px 1px var(--d-blue-dark);
 }
@@ -25,20 +21,19 @@ body.mh-dark {
 .mh-dark .mousehuntPage-content input.quickSendInput,
 .mh-dark .quickSendInput,
 .mh-dark input.treasureMapView-block-search-text,
-.mh-dark .mh-improved-favorite-setups-component-picker-popup-search input {
-  color: var(--d-text);
-  background-color: var(--d-bg);
-  border: 1px solid var(--d-border);
-}
-
+.mh-dark .mh-improved-favorite-setups-component-picker-popup-search input,
 .mh-dark .mousehuntPage-content select,
 .mh-dark .mousehuntPage-content textarea,
 .mh-dark .mousehuntPage-content input,
 .mh-dark #mousehunt-improved-settings-advanced-override-flags input,
 .mh-dark #mousehunt-improved-settings-advanced-override-styles textarea {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d);
   border-color: var(--d-border);
+}
+
+.mh-dark .journal-history-page-selector .page-input {
+  border: 1px solid var(--d-border);
 }
 
 .mh-dark .huntersHornView__hornImage {
@@ -148,4 +143,18 @@ body.mh-dark {
 .mh-dark .QuestKingsGiveawayCampHUD__footer,
 .mh-dark .QuestKingsGiveawayCampHUD-quantity {
   color: var(--d-text-dark);
+}
+
+.mh-dark #mh-improved-cre.cre-loading::after {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .pagerView-link {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  border-style: solid;
+}
+
+.mh-dark .pagerView-link:hover {
+  background-color: var(--d);
 }

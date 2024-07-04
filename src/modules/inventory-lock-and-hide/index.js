@@ -314,7 +314,7 @@ const addBulkControls = () => {
       if (itemsEl) {
         itemsEl.forEach((item) => {
           const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
-          if (id && ! itemSettings.locked.includes(id)) {
+          if (id) {
             itemSettings.locked.push(id);
             item.classList.add('locked');
             const lockButtonText = item.parentElement.querySelector('.mhui-inventory-lock-and-hide-controls-lock span');
@@ -342,7 +342,7 @@ const addBulkControls = () => {
       if (itemsEl) {
         itemsEl.forEach((item) => {
           const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
-          if (id && itemSettings.locked.includes(id)) {
+          if (id) {
             itemSettings.locked = itemSettings.locked.filter((i) => i !== id);
             item.classList.remove('locked');
 
@@ -371,7 +371,7 @@ const addBulkControls = () => {
       if (itemsEl) {
         itemsEl.forEach((item) => {
           const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
-          if (id && ! itemSettings.hidden.includes(id)) {
+          if (id) {
             itemSettings.hidden.push(id);
             item.classList.add('hidden');
 
@@ -400,7 +400,7 @@ const addBulkControls = () => {
       if (itemsEl) {
         itemsEl.forEach((item) => {
           const id = Number.parseInt(item.getAttribute('data-item-id'), 10);
-          if (id && itemSettings.hidden.includes(id)) {
+          if (id) {
             itemSettings.hidden = itemSettings.hidden.filter((i) => i !== id);
             item.classList.remove('hidden');
 

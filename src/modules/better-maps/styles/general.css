@@ -488,6 +488,7 @@ img.mh-mapper-consolation-prize {
 
 input.treasureMapView-block-search-text {
   height: 18px;
+  margin-right: 7px;
   font-size: 12px;
   border: 1px solid #ccc;
 }
@@ -1085,4 +1086,10 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-consolationPrizeButton {
   margin-bottom: 5px;
+}
+
+.treasureMapView-block-search-clear {
+  top: 0;
+  right: 5px;
+  border-left: none;
 }

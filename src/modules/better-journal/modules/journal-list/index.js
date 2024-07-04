@@ -33,6 +33,11 @@ const otherStrings = [
   'I found</b>',
   'Inside, I found</b>',
   'Loyalty Chest and received:',
+  'I sifted through my Dragon Nest and found</b>',
+];
+
+const classesToSkip = [
+  'mountain-boulderLooted',
 ];
 
 /**
@@ -158,6 +163,10 @@ const formatAsList = async (entry) => {
   let type;
 
   entry.setAttribute('data-better-journal-processed', 'true');
+
+  if (classesToSkip.some((c) => classes.has(c))) {
+    return;
+  }
 
   const text = entry.querySelector('.journalbody .journaltext');
   if (! text) {

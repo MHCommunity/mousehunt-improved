@@ -262,16 +262,16 @@ const getSetRowValue = (row, type) => {
   // for weight, we need to parse the text to get the number
   if (type === 'average_weight' || type === 'heaviest_catch') {
     // Check if it contains 'lb' or 'oz', then we can parse it as imperial. if it contains 'kg', then we can parse it as metric.
-    if (valueText.innerText.includes('lb') || valueText.innerText.includes('oz')) {
+    if (valueText?.innerText && (valueText.innerText.includes('lb') || valueText.innerText.includes('oz'))) {
       value = parseImperialWeight(valueText);
-    } else if (valueText.innerText.includes('kg')) {
+    } else if (valueText?.innerText && valueText.innerText.includes('kg')) {
       // If we have kilograms, then we can just remove the kg and parse it as a number.
-      value = valueText.innerText.replace('kg.', '');
+      value = valueText?.innerText.replace('kg.', '');
     } else {
       value = 0;
     }
   } else {
-    value = valueText.innerText ? valueText.innerText.replaceAll(',', '') || 0 : 0;
+    value = valueText.innerText ? valueText?.innerText.replaceAll(',', '') || 0 : 0;
   }
 
   row.setAttribute(`data-sort-value-${type}`, value);

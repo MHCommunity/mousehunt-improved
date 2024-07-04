@@ -1,3 +1,4 @@
+#!/usr/bin/env bun
 import { $ } from 'bun';
 import archiver from 'archiver';
 import fs from 'node:fs';
@@ -7,19 +8,19 @@ const buildArchive = async () => {
   console.log('Building archive...'); // eslint-disable-line no-console
   await $`mkdir -p dist`;
   await $`git archive --format zip --output dist/archive.zip HEAD`;
-  console.log('Archive built.'); // eslint-disable-line no-console
+  console.log('Archive built'); // eslint-disable-line no-console
 };
 
 const buildExtension = async (platform) => {
   console.log(`Building extension for ${platform}...`); // eslint-disable-line no-console
   await $`bun run scripts/build-extension.mjs --platform=${platform}`;
-  console.log(`Extension for ${platform} built.`); // eslint-disable-line no-console
+  console.log(`Extension for ${platform} built`); // eslint-disable-line no-console
 };
 
 const buildUserscript = async () => {
   console.log('Building userscript...'); // eslint-disable-line no-console
   await $`bun run scripts/build-userscript.mjs --platform=userscript`;
-  console.log('Userscript built.'); // eslint-disable-line no-console
+  console.log('Userscript built'); // eslint-disable-line no-console
 };
 
 const buildZip = async (platform) => {

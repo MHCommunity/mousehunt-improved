@@ -28,11 +28,6 @@
   background-blend-mode: exclusion;
 }
 
-.mh-dark .huntersHornView__backdrop {
-  filter: brightness(0.8);
-  opacity: 1;
-}
-
 .mh-dark a.mousehuntHud-shield.golden.default {
   filter: drop-shadow(0 0 5px rgb(92 77 30 / 50%)) brightness(0.9);
 }

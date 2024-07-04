@@ -38,12 +38,14 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Image Upscaling and Transparency](docs/image-upscaling-and-transparency.md)**: High-resolution images with transparency for the entire MH interface.
 - **[Inline Wiki](docs/inline-wiki.md)**: Access the MH Wiki directly on the page.
 - **[Inventory - Lock and Hide](docs/inventory-lock-and-hide.md)**: Lock and hide items in your inventory.
+- **[Inventory - Open All](docs/inventory-open-all.md)**: Restores the Open All buttons to the inventory.
 - **[Inventory - Only Open Multiple](docs/inventory-only-open-multiple.md)**: Open all but one buttons for collectors.
 - **[Inventory - Open All but One](docs/inventory-open-all-but-one.md)**: For collectors, open multiple items while saving one.
 - **[Journal Theme Changer](docs/journal-theme-changer.md)**: Randomize your journal theme with a click, randomize it daily, or automatically change it to a location when traveling.
 - **[Keyboard Shortcuts](docs/keyboard-shortcuts.md)**: Handy shortcuts for quick actions.
 - **[Larger Codices](docs/larger-codices.md)**: Larger images for codices in the trap selector.
 - **[Larger Skin Images](docs/larger-skin-images.md)**: Larger skin images in the trap selector.
+- **[Legacy HUD](docs/legacy-hud.md)**: Allows you to use only the old HUD menu, the old HUD stats bar, or both. Also allows you to enable tweaks for the old HUD.
 - **[Location Catch Stats](docs/location-catch-stats.md)**: View catch stats for the current location.
 - **[Location Dashboard](docs/location-dashboard.md)**: HUD information for various locations in a dashboard view, easily accessible from the top menu bar.
 - **[Lucky Golden Shield Duration & Reminder](docs/lucky-golden-shield-duration-and-reminder.md)**: Shows your remaining LGS time below your shield.
@@ -70,7 +72,9 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 
 - **[Adblock](docs/adblock.md)**: Hides advertisements for Feedback Friday, mobile apps, news ticker, etc.
 - **[Hide Codices](docs/hide-codices.md)**: Hide the codex section in the trap selector.
+- **[Hide Daily Draw](docs/hide-daily-draw.md)**: Hide the Daily Draw notifications in the inbox.
 - **[Hide Footer](docs/hide-footer.md)**: Clean up the page by hiding the footer.
+- **[Hide News Ticker](docs/hide-news-ticker.md)**: Hide the news ticker.
 - **[Hide Share Buttons](docs/hide-share-buttons.md)**: Remove social share buttons for a cleaner interface.
 - **[Hide Sidebar](docs/hide-sidebar.md)**: Hide the sidebar for a cleaner interface.
 - **[Journal Privacy](docs/journal-privacy.md)**: Hides player names in the journal. Good for screenshots that won't dox them.
@@ -120,6 +124,7 @@ See [Location HUDs](docs/location-huds/README.md) for a list of changes and feat
 - **[Prologue Pond](docs/location-huds/prologue-pond.md)**
 - **[Region: Living Garden](docs/location-huds/region-living-garden.md)**
 - **[Region: Queso Canyon](docs/location-huds/queso-canyon.md)**
+- **[School of Sorcery](docs/location-huds/school-of-sorcery.md)**
 - **[Seasonal Garden](docs/location-huds/seasonal-garden.md)**
 - **[Slushy Shoreline](docs/location-huds/slushy-shoreline.md)**
 - **[S.S. Huntington IV](docs/location-huds/ss-huntington-iv.md)**

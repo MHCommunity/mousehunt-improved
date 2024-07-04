@@ -37,6 +37,7 @@
   content: "";
 }
 
+.entry.queso_geyser.eruption_started .journaltext b::after,
 .entry.torch_charm_event .journaltext a:last-of-type::after,
 .unstable_charm_trigger .journaltext a:last-of-type::after,
 .journaltext .loot:last-of-type::after,
@@ -71,6 +72,7 @@
 .entry.short.supplytransferitem .journaltext #friend-data-wrapper a::after,
 .entry.folkloreForest-plantClaimed .journaltext a:last-of-type::after,
 .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
+.entry.mountain-boulderLooted a:last-of-type::after,
 .entry.short.craft.convertible_open a.item::after {
   display: none;
   content: "";

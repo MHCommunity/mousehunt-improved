@@ -64,12 +64,12 @@
 }
 
 .quesoCanyonHUD-pump-nachore-padding span.quantity {
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .quesoGeyserHUD-block-title.quesoGeyserHUD-stateName {
   margin: 2px 8px 1px;
-  font-size: 13px;
+  font-size: 12px;
   background-color: #723b14;
   box-shadow: 0 0 5px -1px inset #90542a;
 }
@@ -112,7 +112,7 @@
 .quesoGeyserHUD .quesoHUD-bait-group.bland_queso_cheese .quesoHUD-bait-group-baitQuantity {
   top: 18px;
   padding-left: 3px;
-  background-color: #723b14;
+  background-color: #634736;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   box-shadow: 0 0 5px -1px inset #90542a;
@@ -264,4 +264,95 @@
   font-size: 12px;
   background-color: #ffc5c5;
   border-color: #992023;
+}
+
+.quesoGeyserHUD-claim-dustQuantity.quantity {
+  top: 40px;
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.quesoGeyserPopup-mouse-loot-item .itemImage {
+  box-shadow: none;
+}
+
+.quesoGeyserHUD-cork-requirement-imagePadding {
+  overflow: hidden;
+  border-color: #f5bea1;
+  border-radius: 0;
+}
+
+.quesoGeyserHUD-cork-requirement-quantityContainer {
+  height: 26px;
+  font-size: 11px;
+  box-shadow: none;
+}
+
+.quesoGeyserHUD-cork-requirement.hasEnough .quesoGeyserHUD-cork-requirement-quantityContainer {
+  box-shadow: none;
+}
+
+.quesoHUD-confirm-content-tabWrapper {
+  min-height: 210px;
+}
+
+.quesoGeyserHUD-help-image {
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
+}
+
+.quesoGeyserHUD-help-title {
+  margin-bottom: 5px;
+}
+
+.quesoGeyserHUD-help-mouse .quesoGeyserHUD-help-image {
+  border: 1px solid #000;
+  box-shadow: none;
+}
+
+.quesoGeyserHUD-craftingItem:hover .quesoGeyserHUD-craftingItem-image {
+  background-color: transparent;
+  filter: brightness(1.2);
+  transform: scale(1.1);
+}
+
+.quesoGeyserHUD-craftingItem-name {
+  font-size: 10px;
+  background-color: rgb(0 0 0 / 50%);
+  border-top: none;
+}
+
+.medium_queso_cheese .quesoHUD-bait-group-tooltip {
+  right: -5px;
+  left: -5px;
+}
+
+.quesoHUD-warning.quesoHUD-baitWarning {
+  top: 50px;
+  width: auto;
+}
+
+.quesoGeyserHUD-craftingItem-image {
+  width: 31px;
+  height: 25px;
+  background-color: #ab826e;
+  background-size: cover;
+}
+
+.highlight .quesoGeyserHUD-craftingItem-quantity.quantity {
+  color: #b9ff5f;
+}
+
+.error .quesoGeyserHUD-craftingItem-quantity.quantity {
+  color: #ffacac;
+}
+
+.quesoGeyserHUD-craftingItem.highlight .quesoGeyserHUD-craftingItem-image {
+  background-size: cover;
+}
+
+.quesoGeyserHUD-block-huntsRemaining-label {
+  font-size: 9px;
 }

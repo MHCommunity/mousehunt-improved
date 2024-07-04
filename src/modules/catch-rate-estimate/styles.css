@@ -84,10 +84,10 @@
   height: 100%;
   min-height: 50px;
   padding: 20px 0;
-  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif);
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);
   background-repeat: no-repeat;
-  background-position: center 10px;
-  background-size: 55px;
+  background-position: center;
+  background-size: auto;
 }
 
 #mh-improved-cre.cre-loading::after {

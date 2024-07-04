@@ -216,19 +216,19 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
 
   // Build the form for the request.
   const form = new FormData();
-  if (! skipOpts.skipSn) {
+  if (! skipOpts.skipSn && ! skipOpts.skipAll) {
     form.append('sn', 'Hitgrab');
   }
 
-  if (! skipOpts.skipHgIsAjax) {
+  if (! skipOpts.skipHgIsAjax && ! skipOpts.skipAll) {
     form.append('hg_is_ajax', 1);
   }
 
-  if (! skipOpts.skipLastReadJournalEntryId) {
+  if (! skipOpts.skipLastReadJournalEntryId && ! skipOpts.skipAll) {
     form.append('last_read_journal_entry_id', lastReadJournalEntryId ?? 0);
   }
 
-  if (! skipOpts.skipUh) {
+  if (! skipOpts.skipUh && ! skipOpts.skipAll) {
     form.append('uh', user?.unique_hash ?? '');
   }
 
@@ -265,7 +265,11 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
   let data;
 
   try {
-    data = await response.json();
+    if (skipOpts.skipJson) {
+      data = await response.text();
+    } else {
+      data = await response.json();
+    }
   } catch (error) {
     console.error(`Error parsing response for ${url}:`, error, url, formData, response); // eslint-disable-line no-console
 

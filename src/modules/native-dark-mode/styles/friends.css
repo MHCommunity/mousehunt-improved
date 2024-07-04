@@ -106,3 +106,12 @@
 .mh-dark .friendsPage-friendRow-stat a {
   color: var(--d-text);
 }
+
+.mh-dark .friendsPage-friendRow-stat.hasHover:hover {
+  background-color: transparent;
+}
+
+.mh-dark .friendsPage-friendRow-stat:hover .friendsPage-friendRow-stat-fullValue {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}

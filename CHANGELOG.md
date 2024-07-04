@@ -1,5 +1,89 @@
 # Changelog
 
+## Version 0.50.0
+
+### Better Item View
+
+- Updated styles
+
+### Better Journal
+
+- Added more custom entry styles
+- Added more journal list support
+- Updated styles
+
+### Better Maps
+
+- Updated styles
+
+### Better Marketplace
+
+- Updated styles
+
+### Better Mice
+
+- Updated styles
+
+### Better Travel
+
+- Fixed Relic Hunter display on map when in School of Sorcery
+
+### Better UI
+
+- Added ability to toggle trap math display for each stat
+- Updated Daily Draw purchase to keep you on the same page
+- Updated styles
+
+### Catch Rate Estimator & Minlucks
+
+- Updated loading styles
+
+### Experiments - Emotes
+
+- Added confused_cat, facepalm, jerrypog, kek, kekd, kekl, kekwait, mhwiki, notlikeduck, peepoheart, pikaoh, pog, redcard, rip, sadcat, thumbsupcar, tom, and ty emotes
+
+### Image Upscaling & Transparency
+
+- Added a check for '?no-image-upscaling' query parameter to temporarily disable
+
+### Inventory Lock And Hide
+
+- Fixed Lock/Unlock All buttons not updating item buttons
+
+### Location HUD - Fort Rox
+
+- Fixed Heart of the Meteor power not correctly displaying
+- Added more visible Heart of the Meteor power display
+- Updated styles
+
+### Location HUD - Gnawnia Rift
+
+- Updated styles
+
+### Location HUD - Living Garden Region
+
+- Updated styles
+
+### Location HUD - Mountain
+
+- Updated styles
+
+### Location HUD - Queso Region
+
+- Updated styles
+
+### Location HUD - Sunken City
+
+- Updated styles
+
+### Lucky Golden Shield Duration & Reminder
+
+- Fixed spacing
+
+### Native Dark Mode
+
+- Updated styles
+
 ## Version 0.49.11
 
 - Updated Fiery Warpath Location HUD styles

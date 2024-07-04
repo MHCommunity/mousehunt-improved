@@ -19,6 +19,7 @@
   color: var(--d-text-muted);
   background-color: var(--d-bg);
   border-color: var(--d-border);
+  border-right: none;
 }
 
 .mh-dark #messengerUINotification .tabs a:hover,
@@ -72,4 +73,12 @@
   color: var(--d-text-muted);
   background-color: var(--d-action);
   border-color: var(--d-border);
+}
+
+.mh-dark .notificationMessageList .message .messageText {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .notificationMessageList .news.message .messageText {
+  color: var(--d-text-dark);
 }

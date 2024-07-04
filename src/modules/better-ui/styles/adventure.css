@@ -225,7 +225,6 @@ a.adventureBookPopup-title:hover {
 }
 
 a.adventureBookPopup-title.active {
-  margin-left: 2px;
   color: #fff;
   background: #354661;
 }

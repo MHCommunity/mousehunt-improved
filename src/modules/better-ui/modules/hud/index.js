@@ -1,4 +1,4 @@
-import { getFlag, onTurn } from '@utils';
+import { getFlag, onNavigation, onTurn } from '@utils';
 
 /**
  * Show the full title percent on hover.
@@ -53,11 +53,29 @@ const replaceKingdomLink = async () => {
 };
 
 /**
+ * Allow clicking on trap stats to toggle the math display.
+ */
+const allowTrapMathToggle = async () => {
+  setTimeout(() => {
+    const trapStats = document.querySelectorAll('.trapSelectorView__trapStatSummary .campPage-trap-trapStat');
+    trapStats.forEach((stat) => {
+      stat.addEventListener('click', () => {
+        stat.classList.toggle('show-math');
+      });
+    });
+  }, 500);
+};
+
+/**
  * Initialize the module.
  */
 export default async () => {
   showFullTitlePercent();
   replaceInboxClose();
+
+  onNavigation(allowTrapMathToggle, {
+    page: 'camp',
+  });
 
   if (! getFlag('no-kingdom-link-replacement')) {
     replaceKingdomLink();

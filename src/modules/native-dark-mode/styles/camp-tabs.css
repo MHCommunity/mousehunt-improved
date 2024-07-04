@@ -31,6 +31,7 @@
   color: var(--d-text);
   background-color: var(--d-bg);
   border-color: var(--d-border);
+  border-top-color: var(--d-bg);
   box-shadow: 1px 1px 1px var(--d-border);
 }
 
@@ -61,12 +62,9 @@
   color: var(--d-text-dark);
 }
 
-.mh-dark .campPage-quests-objective {
-  color: var(--d-text-dark);
-}
-
 .mh-dark .campPage-quests-footer-smash {
-  background-color: var(--d-bg);
+  color: var(--d-link);
+  background-color: var(--d-alt);
   border-color: var(--d-border);
 }
 

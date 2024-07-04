@@ -48,3 +48,8 @@ input[type="text"] {
   padding: 2px 1px;
   border: 1px solid #767676;
 }
+
+input.mh-improved-disabled {
+  pointer-events: none;
+  filter: grayscale(1);
+}

@@ -303,11 +303,15 @@
 }
 
 .livingGardenHud .minigameContainer .minigameHelp {
-  bottom: 25px;
+  bottom: 5px;
   font-size: 11px;
   line-height: 1.5;
 }
 
 .livingGardenHud.lost_city.corrupted .minigameContainer.blessed {
   visibility: visible;
+}
+
+.livingGardenHud.desert_oasis.normal .minigameContainer.drops .itemImage img {
+  background-color: rgb(95 175 175 / 50%);
 }

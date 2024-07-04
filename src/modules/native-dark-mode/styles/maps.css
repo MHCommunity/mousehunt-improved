@@ -33,6 +33,10 @@
   border-color: var(--d-border);
 }
 
+.mh-dark .treasureMapRootView .messageBoardView div.messageBoardView-message-container {
+  border-bottom-color: var(--d-bg);
+}
+
 .mh-dark .treasureMapRootView .messageBoardView .messageBoardView-message,
 .mh-dark .teamPage-messageBoard-corkboard .messageBoardView-message,
 .mh-dark .hunterInfoView-corkBoardBlock .messageBoardView-message {
@@ -52,6 +56,10 @@
 
 .mh-dark .treasureMapView-environment.complete .treasureMapView-environment-title {
   color: var(--d-text-dark);
+}
+
+.mh-dark .treasureMapView-environment.active .treasureMapView-environment-title a {
+  color: var(--d-link);
 }
 
 .mh-dark .treasureMapView-mapWarning.treasureMapRootView-padding {
@@ -109,17 +117,14 @@
   background-color: var(--d);
 }
 
-.mh-dark .treasureMapView-highlight-name.mh-ui-mouse-links-map-name {
-  color: var(--d-blue);
+.mh-dark .treasureMapView-highlight-name.mh-ui-mouse-links-map-name,
+.mh-dark .treasureMapView-highlight a {
+  color: var(--d-link);
 }
 
 .mh-dark .mh-ui-mouse-links-map-ars .mhct-data {
   color: var(--d-text-muted);
   background-color: var(--d);
-}
-
-.mh-dark .mhct-row {
-  color: var(--d-text-muted);
 }
 
 .mh-dark .mh-ui-mouse-links-map-ars .mhct-row:nth-child(odd) {
@@ -333,4 +338,80 @@
 .mh-dark .treasureMapListingsTableView tr.selected,
 .mh-dark .treasureMapListingsTableView tr.selected:nth-child(even) {
   background-color: var(--d-bg);
+}
+
+.mh-dark .treasureMapView-highlight a {
+  color: var(--d-link);
+}
+
+.mh-dark .treasureMapView-highlight.sticky .treasureMapView-highlight-close {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .treasureMapView-block-search-label {
+  color: transparent;
+}
+
+.mh-dark .treasureMapView-goals-group-goal:hover::before,
+.mh-dark .treasureMapView-goals-group-goal.sticky::before {
+  background-color: var(--d);
+  outline-color: var(--d-border);
+}
+
+.mh-dark .treasureMapView-goals-group-goal:hover .treasureMapView-goals-group-goal-image {
+  mix-blend-mode: normal;
+}
+
+.mh-dark .mhct-stage {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mhct-location-text {
+  color: var(--d-text);
+}
+
+.mh-dark .treasureMapView-hunter.captain .treasureMapView-hunter-image {
+  box-shadow: 0 0 3px 4px var(--d-bg);
+}
+
+.mh-dark #sorted-mice-container .mouse-container-selected,
+.mh-dark #sorted-mice-container .mouse-container:hover,
+.mh-dark #sorted-mice-container .mouse-container:focus {
+  background: rgb(0 0 0 / 30%);
+  outline: 1px solid rgb(0 0 0 / 95%);
+}
+
+.mh-dark #sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper {
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark #sorted-mice-container .mouse-container-selected .mouse-mhct-extra-info-wrapper a {
+  color: var(--d-link);
+}
+
+.mh-dark .mhct-row {
+  color: var(--d-text-muted);
+  background-color: var(--d);
+}
+
+.mh-dark .mhct-row:nth-child(odd) {
+  background-color: var(--d-bg);
+}
+
+.mh-dark input.mh-ui-quick-invite-input {
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapListingsTableView-filterMessage {
+  color: var(--d-text-muted);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapListingsTableView th.sortable:hover {
+  background-color: var(--d-action);
 }

@@ -16,3 +16,13 @@
   width: 50px;
   padding-left: 0;
 }
+
+.journal .entry.queso_geyser.pressure_increased {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+}
+
+.entry.queso_geyser.eruption_started .journaltext b {
+  font-weight: 900;
+}

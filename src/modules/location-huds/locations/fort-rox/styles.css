@@ -229,3 +229,29 @@ a.fortRoxHUD-spellTowerButton.normal.inactive {
 .complete .fortRoxHUD-dialog-upgrade-costContainer .mousehuntTooltipParent .mousehuntTooltip {
   display: none;
 }
+
+.frox-boss-hp {
+  position: absolute;
+  inset: 0 0 0 10px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: #000;
+  text-shadow: 1px 1px #ffc407;
+}
+
+.fortRoxHUD-lairBaitQuantity {
+  padding: 1px;
+  font-size: 16px;
+}
+
+.fortRoxHUD-lairBossProgress span {
+  height: 19px;
+  margin-top: 3px;
+}
+
+.fortRoxHUD-itemContainer .fortRoxHUD-item .mousehuntTooltip::before {
+  font-style: italic;
+  color: #aaa;
+}

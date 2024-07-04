@@ -107,10 +107,6 @@
   background-image: url(https://i.mouse.rip/kings_giveaway-journal_buttons.png);
 }
 
-.QuestKingsGiveawayCampHUD {
-  background-image: url(https://i.mouse.rip/kings_giveaway-journal_background.png);
-}
-
 .QuestKingsGiveawayCampHUD::before {
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/6391b886b424174996329aa1eb186a10.png);
   transform-origin: center;

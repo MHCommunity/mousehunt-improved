@@ -27,6 +27,7 @@
 .journal-history-page-selector .page-input {
   width: 40px;
   text-align: center;
+  border: 1px solid #5b5b5b;
 }
 
 .history-timestamp::after {

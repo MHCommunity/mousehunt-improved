@@ -39,10 +39,13 @@
 .mh-dark input.messageBoardView-message-submit,
 .mh-dark input.messageBoardView-message-submit[type="submit"],
 .mh-dark .hunterInfoView-wrapper .friendsProfileView-container a.friendsProfileView-randomFriend {
-  color: var(--d-text);
+  color: var(--d-text-dark);
   text-shadow: none;
-  background-color: var(--d-bg-alt);
+  background-color: var(--d-orange);
   border-color: var(--d-border);
+  box-shadow:
+    0 -5px 8px -2px var(--d-orange-dark) inset,
+    1px 1px 1px var(--d-alt);
 }
 
 .mh-dark .hunterInfoView-wrapper .hunterInfoView-favoritesBlock-header {

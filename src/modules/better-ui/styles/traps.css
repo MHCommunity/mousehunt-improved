@@ -324,13 +324,25 @@ img.itembrowser-skin-image {
 }
 
 .campPage-trap-trapStat-mathRow.label {
-  font-size: 17px;
+  padding-bottom: 2px;
+  margin-bottom: 5px;
+  font-size: 18px;
 }
 
 .campPage-trap-trapStat .math {
   bottom: 90px;
-  left: -18px;
-  width: 337px;
+  left: -23px;
+  width: 346px;
+}
+
+.campPage-trap-trapStat-mathRow-icon {
+  width: 25px;
+  height: 25px;
+}
+
+.campPage-trap-trapStat-mathRow-thumb {
+  width: 24px;
+  height: 24px;
 }
 
 .campPage-trap-trapStat .math .arrow {
@@ -614,4 +626,13 @@ input.trapSelectorView__codexListSearch {
 
 .trapSelectorView__blueprint.trapSelectorView__blueprint--active {
   background: url(https://www.mousehuntgame.com/images/ui/hud/blueprint_tile.png) repeat;
+}
+
+.campPage-trap-trapStat.show-math .math {
+  display: block;
+}
+
+.campPage-trap-trapStat:hover .value,
+.campPage-trap-trapStat.show-math .value {
+  filter: brightness(1.3);
 }

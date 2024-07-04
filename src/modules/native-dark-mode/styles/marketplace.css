@@ -33,6 +33,10 @@
   background-color: var(--d-bg);
 }
 
+.mh-dark .marketplaceView-table-empty {
+  background-color: var(--d-bg);
+}
+
 .mh-dark .marketplaceView-table tr:nth-child(odd) {
   color: var(--d-text);
   background-color: var(--d-alt);

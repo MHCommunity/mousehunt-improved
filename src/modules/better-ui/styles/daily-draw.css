@@ -127,17 +127,22 @@ div#ballotPurchase input:focus {
 
 div#ballotConfirm input {
   height: 25px;
-  margin-left: 10px !important;
+  margin-left: 5px !important;
 }
 
 div#ballotConfirm {
   position: relative;
+  display: block !important;
 }
 
 div#ballotConfirm a {
   position: absolute;
   top: 5px;
-  right: -25px;
+  right: -20px;
+}
+
+div#ballotPurchase {
+  display: none !important;
 }
 
 div#ballotPurchase,

@@ -297,6 +297,11 @@ class ImageUpscaler {
  * The ImageUpscaler instance.
  */
 const init = async () => {
+  // Check for a ?no-image-upscaling query parameter to disable the image upscaling.
+  if (window.location.search.includes('no-image-upscaling')) {
+    return;
+  }
+
   addStyles([styles, viewsStyles], 'image-upscaling');
   addExternalStyles('https://static.mouse.rip/upscaled-images.css');
 

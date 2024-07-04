@@ -510,3 +510,32 @@ input.itemView-action-convert-quantity {
   display: flex;
   align-items: center;
 }
+
+#mousehuntContainer.PageNewsPost,
+#mousehuntContainer.PageNews,
+.PageNews {
+  background: transparent;
+}
+
+.newsPage-container {
+  margin: 0;
+  border-color: #a17f36;
+  box-shadow: none;
+}
+
+.newsPostBody #news-post-responsive,
+.PageNewsPostEdit #news-post-responsive {
+  box-shadow: inset 0 0 4px 1px #aa6b36;
+}
+
+.pagerView-link {
+  border-style: solid;
+}
+
+#newsPost .newsPostHeader {
+  background: transparent;
+}
+
+.newsPostBody {
+  background: transparent;
+}

@@ -1,0 +1,4 @@
+/* was margin-right: none; */
+.quesoGeyserHUD-craftingItem:nth-child(even) {
+  margin-right: 0;
+}

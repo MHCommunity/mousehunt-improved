@@ -1,13 +1,22 @@
+.mh-dark .adventureBookPopup-adventure-details {
+  background-color: var(--d);
+}
+
+.mh-dark .adventureBookPopup-adventure-details a {
+  color: var(--d-link);
+}
+
 .mh-dark .adventureBookPopup-adventure-details-block-goalGroup.visible {
-  background-color: var(--d-alt);
-  box-shadow: -1px -1px 1px var(--d-border) inset;
+  background-color: var(--d-bg);
+  border: 1px solid var(--d-border);
+  box-shadow: none;
 }
 
 .mh-dark .adventureBookPopup-adventure-details-powerTypeContainer {
-  margin-right: revert-layer;
+  margin-right: 0;
   margin-left: 0;
   background-color: var(--d-alt);
-  border-color: var(--d);
+  border-color: var(--d-border);
 }
 
 .mh-dark .adventureBookPopup-adventure-footer {
@@ -20,8 +29,15 @@
   background-color: var(--d-orange);
 }
 
+.mh-dark a.adventureBookPopup-title,
 .mh-dark a.adventureBookPopup-title.complete {
-  color: var(--d-text-dark);
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark a.adventureBookPopup-title.complete {
+  background-color: var(--d-alt);
 }
 
 .mh-dark .adventureBookPopup-adventure-details-block-step.multi_choice {
@@ -42,15 +58,33 @@
 }
 
 .mh-dark .adventureBookPopup-title-margin {
-  color: var(--d-text-dark);
+  color: var(--d-text);
 }
 
 .mh-dark .adventureBookPopup-adventure-header-title,
 .mh-dark .adventureBookPopup-adventure-header-duration {
-  color: var(--d-text-dark);
+  color: var(--d-black);
   text-shadow: none;
 }
 
 .mh-dark a.adventureBookPopup-title.active .adventureBookPopup-title-margin {
   color: var(--d-text-muted);
+}
+
+.mh-dark .adventureBookPopup-adventureContainer {
+  border-color: var(--d-border);
+}
+
+.mh-dark .adventureBookPopup-adventure-details-block-goalGroup-container {
+  border-color: var(--d-border);
+}
+
+.mh-dark .claimed .adventureBookPopup-adventure-header,
+.mh-dark .adventureBookPopup-adventureContainer.canClaim .adventureBookPopup-adventure-footer,
+.mh-dark .adventureBookPopup-adventureContainer.claimed .adventureBookPopup-adventure-footer {
+  background-color: var(--d-green);
+}
+
+.mh-dark a.adventureBookPopup-adventure-button {
+  color: var(--d-text-dark);
 }

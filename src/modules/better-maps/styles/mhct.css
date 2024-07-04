@@ -46,6 +46,10 @@
   color: #a7a7a7;
 }
 
+.mhct-bait {
+  align-self: center;
+}
+
 .mhct-rate {
   font-family: monospace;
   font-size: 13px;

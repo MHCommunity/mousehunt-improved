@@ -64,7 +64,7 @@ const getShieldTimeFormatted = () => {
     return '';
   }
 
-  let units = ['y', 'mo', 'w', 'd', 'h', 'm'];
+  let units = ['y', 'mo', 'w', 'd', 'h'];
 
   if (getSetting('lgs-reminder.days-and-lower')) {
     units = ['d', 'h', 'm'];
@@ -77,7 +77,7 @@ const getShieldTimeFormatted = () => {
   const duration = humanizer(time, {
     round: true,
     units,
-    spacer: ' ',
+    spacer: '',
     delimiter: ' ',
   });
 

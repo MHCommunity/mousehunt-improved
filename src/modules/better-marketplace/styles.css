@@ -170,3 +170,7 @@ td.marketplaceView-table-name {
 .marketplaceView-item-rightBlock .mousehuntCharacterGuideBox-content li {
   background-position-y: -2px;
 }
+
+.marketplaceView-item-input input {
+  padding: 4px;
+}

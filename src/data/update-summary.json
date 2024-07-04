@@ -1,4 +1,68 @@
 {
   "summary": "",
-  "details": []
+  "details": [
+    { "title": "Better Item View", "items": [
+      "Updated styles"
+    ] },
+    { "title": "Better Journal", "items": [
+      "Added more custom entry styles",
+      "Added more journal list support",
+      "Updated styles"
+    ] },
+    { "title": "Better Maps", "items": [
+      "Updated styles"
+    ] },
+    { "title": "Better Marketplace", "items": [
+      "Updated styles"
+    ] },
+    { "title": "Better Mice", "items": [
+      "Updated styles"
+    ] },
+    { "title": "Better Travel", "items": [
+      "Fixed Relic Hunter display on map when in School of Sorcery"
+    ] },
+    { "title": "Better UI", "items": [
+      "Added ability to toggle trap math display for each stat",
+      "Updated Daily Draw purchase to keep you on the same page",
+      "Updated styles"
+    ] },
+    { "title": "Catch Rate Estimator & Minlucks", "items": [
+      "Updated loading styles"
+    ] },
+    { "title": "Experiments - Emotes", "items": [
+      "Added confused_cat, facepalm, jerrypog, kek, kekd, kekl, kekwait, mhwiki, notlikeduck, peepoheart, pikaoh, pog, redcard, rip, sadcat, thumbsupcar, tom, and ty emotes"
+    ] },
+    { "title": "Image Upscaling & Transparency", "items": [
+      "Added a check for '?no-image-upscaling' query parameter to temporarily disable"
+    ] },
+    { "title": "Inventory Lock And Hide", "items": [
+      "Fixed Lock/Unlock All buttons not updating item buttons"
+    ] },
+    { "title": "Location HUD - Fort Rox", "items": [
+      "Fixed Heart of the Meteor power not correctly displaying",
+      "Added more visible Heart of the Meteor power display",
+      "Updated styles"
+    ] },
+    { "title": "Location HUD - Gnawnia Rift", "items": [
+      "Updated styles"
+    ] },
+    { "title": "Location HUD - Living Garden Region", "items": [
+      "Updated styles"
+    ] },
+    { "title": "Location HUD - Mountain", "items": [
+      "Updated styles"
+    ] },
+    { "title": "Location HUD - Queso Region", "items": [
+      "Updated styles"
+    ] },
+    { "title": "Location HUD - Sunken City", "items": [
+      "Updated styles"
+    ] },
+    { "title": "Lucky Golden Shield Duration & Reminder", "items": [
+      "Fixed spacing"
+    ] },
+    { "title": "Native Dark Mode", "items": [
+      "Updated styles"
+    ] }
+  ]
 }

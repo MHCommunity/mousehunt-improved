@@ -33,7 +33,7 @@
 
 .mountainHUD-conduit-charm .mousehuntItem-image {
   background-color: #835327;
-  background-size: 80px;
+  background-size: cover;
   border-radius: 0;
   box-shadow: -1px -1px 0 0 #835327;
 }
