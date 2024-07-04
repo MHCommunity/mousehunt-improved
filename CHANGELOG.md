@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.50.4
+
+- Fixed missing borders on mice category pages
+
 ## Version 0.50.3
 
 - Fixed bug in Better Maps data interaction
