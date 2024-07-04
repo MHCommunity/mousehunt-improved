@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.50.3
+
+- Fixed bug in Better Maps data interaction
+
 ## Version 0.50.2
 
 - Fixed Better Journal list breaking Zokor entrance entry

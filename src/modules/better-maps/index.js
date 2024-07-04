@@ -8,7 +8,6 @@ import {
   onDialogShow,
   onEvent,
   onRequest,
-  onTurn,
   sessionSet,
   setGlobal,
   setMapData
@@ -368,7 +367,6 @@ const init = async () => {
   eventRegistry.addEventListener('mapper_loaded', initMapper);
 
   intercept();
-  onTurn(intercept, 300);
 
   addClearCacheTimeout();
   relicHunterUpdate();
