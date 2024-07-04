@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.50.1
+
+- Fixed Ultimate Checkmark list
+
 ## Version 0.50.0
 
 ### Better Item View
