@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.50.2
+
+- Fixed Better Journal list breaking Zokor entrance entry
+
 ## Version 0.50.1
 
 - Fixed Ultimate Checkmark list

@@ -38,6 +38,7 @@ const otherStrings = [
 
 const classesToSkip = [
   'mountain-boulderLooted',
+  'labyrinth-exitMaze',
 ];
 
 /**
