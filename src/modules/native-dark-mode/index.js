@@ -1,4 +1,4 @@
-import { onNavigation, addBodyClass, addExternalStyles, addStyles } from '@utils';
+import { addBodyClass, addExternalStyles, addStyles, onNavigation } from '@utils';
 
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;

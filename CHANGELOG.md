@@ -2,7 +2,6 @@
 
 ## Version 0.51.0
 
-
 ### Better Gifts
 
 - Fixed Better Gifts Taller Window heights applying without Taller Windows enabled
