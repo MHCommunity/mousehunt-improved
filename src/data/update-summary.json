@@ -3,9 +3,16 @@
   "details": [
     {
       "title": "Better Gifts",
-      "items": ["Fixed Better Gifts Taller Window heights applying without Taller Windows enabled"]
+      "items": [
+        "Fixed Better Gifts Taller Window heights applying without Taller Windows enabled"
+      ]
     },
-    { "title": "Better Journal", "items": ["Fixed Journal tags showing when setting isn't enabled"] },
+    {
+      "title": "Better Journal",
+      "items": [
+        "Fixed Journal tags showing when setting isn't enabled"
+      ]
+    },
     {
       "title": "Better Maps",
       "items": [
@@ -17,11 +24,60 @@
         "Fixed Relic Hunter location not showing for School of Sorcery"
       ]
     },
-    { "title": "Better Tournaments", "items": ["Fixed alignment of upcoming tournament time display"] },
-    { "title": "Catch Rate Estimator & Minlucks", "items": ["Fixed issue where negative catch rates were displayed"] },
-    { "title": "Favorite Setups", "items": ["Fixed issue with mobile setups being duplicated"] },
-    { "title": "Location HUDs - Moussu Picchu", "items": ["Updated styles"]},
-    { "title": "Ultimate Checkmark", "items": ["Fixed uncollected codices not showing in grayscale"] },
-    { "title": "Other", "items": ["Made use of colors more consistent in various modules"] }
+    {
+      "title": "Better Mice",
+      "items": [
+        "Fixed mice images in journal entries not showing mouse view popup"
+      ]
+    },
+    {
+      "title": "Better Tournaments",
+      "items": [
+        "Fixed alignment of upcoming tournament time display"
+      ]
+    },
+    {
+      "title": "Catch Rate Estimator & Minlucks",
+      "items": [
+        "Fixed issue where negative catch rates were displayed"
+      ]
+    },
+    {
+      "title": "Favorite Setups",
+      "items": [
+        "Fixed issue with mobile setups being duplicated"
+      ]
+    },
+    {
+      "title": "Location HUDs - Moussu Picchu",
+      "items": [
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Ultimate Checkmark",
+      "items": [
+        "Fixed uncollected codices not showing in grayscale"
+      ]
+    },
+    {
+      "title": "Unique loot count in progress log",
+      "items": [
+        "Moved from beta to stable"
+      ]
+    },
+    {
+      "title": "Emotes",
+      "items": [
+        "Moved from experimental to stable",
+        "Added new emotes"
+      ]
+    },
+    {
+      "title": "Other",
+      "items": [
+        "Updated various modules to use more consistent colors"
+      ]
+    }
   ]
 }

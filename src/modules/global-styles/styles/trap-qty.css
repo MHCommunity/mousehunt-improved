@@ -16,7 +16,7 @@
   font-weight: 400;
   line-height: 11px;
   text-align: right;
-  background-color: #ffffffb3;
+  background-color: rgb(255 255 255 / 70%);
   border: 1px solid #9d917f;
   border-right: none;
   border-bottom: none;
@@ -29,7 +29,7 @@
   padding: 3px;
   font-size: 13px;
   text-align: center;
-  background-color: #fffc;
+  background-color: rgb(255 255 255 / 80%);
   border-radius: 0 0 3px 3px;
 }
 

@@ -83,7 +83,7 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   padding: 5px 10px 0;
   margin-top: -23px;
   margin-right: -1px;
-  background: radial-gradient(circle, #fdf9bd 0%, #fefdd6 50%, #fdf9bd 100%);
+  background: radial-gradient(circle, #fdf9bd 0%, #fff9dc 50%, #fdf9bd 100%);
   border: none;
   border-radius: 4px 5px 0 0;
 }

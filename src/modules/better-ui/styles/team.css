@@ -47,7 +47,7 @@
 }
 
 .teamPageConfirm-dialog a.userSelectorView-filter-clear.active:hover::after {
-  color: #f55;
+  color: #ff4d4d;
 }
 
 .teamPageConfirm-dialog a.userSelectorView-filter-clear.active::after {

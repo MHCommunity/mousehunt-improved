@@ -1,17 +1,10 @@
 import { getSetting } from '@utils';
 
-import emotes from './modules/emotes';
 import newSettingsStylesColumns from './modules/new-settings-styles-columns';
 import raffle from './modules/raffle';
 import trollMode from './modules/troll-mode';
 
 const experiments = [
-  {
-    id: 'experiments.emotes',
-    title: 'Emotes in corkboard',
-    description: 'Replaces discord-style emotes on corkboards like :jerry: with the actual image',
-    load: emotes,
-  },
   {
     id: 'experiments.raffle',
     title: 'Return Raffles button',

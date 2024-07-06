@@ -20,7 +20,7 @@
 }
 
 .mh-dark-mode .entry.short.supplytransferitem a {
-  color: #0c5271;
+  color: #0c5168;
 }
 
 .mh-dark-mode .itemPurchaseView-action-goldGost {
@@ -125,11 +125,11 @@
 }
 
 .mh-dark-mode.shopCustomization .itemViewStatBlock-stat {
-  border-color: #404040;
+  border-color: #424242;
 }
 
 .mh-dark-mode .journal .entry.larryGift {
-  background: #deffc7;
+  background: #d9ffbf;
 }
 
 .mh-dark-mode .pageFrameView .mousehuntHeaderView .menuItem:hover {

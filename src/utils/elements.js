@@ -501,10 +501,11 @@ const makeProgressLogLink = (opts = {}) => {
  * it returns a Promise that resolves with the found element(s). If the element is not found within the maximum number of attempts,
  * the function will return `undefined`.
  *
- * @param {string} selector The CSS selector of the element to wait for.
- * @param {Object} options The options for the function.
- * @param {number} options.maxAttempts The maximum number of attempts to wait for the element.
- * @param {number} options.delay The delay between attempts.
+ * @param {string}  selector            The CSS selector of the element to wait for.
+ * @param {Object}  options             The options for the function.
+ * @param {number}  options.maxAttempts The maximum number of attempts to wait for the element.
+ * @param {number}  options.delay       The delay between attempts.
+ * @param {boolean} options.single      Whether or not to return a single element or an array of elements.
  * @return {Promise<HTMLElement|false>} The found element(s) or `false` if the element was not found.
  */
 const waitForElement = async (selector, { single = true, maxAttempts = 10, delay = 300 } = {}) => {
@@ -514,7 +515,7 @@ const waitForElement = async (selector, { single = true, maxAttempts = 10, delay
       return element;
     }
 
-    await new Promise(resolve => setTimeout(resolve, delay));
+    await new Promise((resolve) => setTimeout(resolve, delay));
   }
 
   return false;
@@ -533,5 +534,5 @@ export {
   makeMathButtons,
   toEscapedJSON,
   makeProgressLogLink,
-  waitForElement,
+  waitForElement
 };

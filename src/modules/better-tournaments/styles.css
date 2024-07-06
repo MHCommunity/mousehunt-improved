@@ -427,11 +427,11 @@ img.memberImage {
 }
 
 .memberRow:nth-child(even) {
-  background-color: #e8e4d6;
+  background-color: #e9e6df;
 }
 
 .scoreRow:nth-child(even) {
-  background-color: #e5e0de;
+  background-color: #dfdfdf;
 }
 
 .scoreRow:last-child {
@@ -583,7 +583,7 @@ img.pointsMouseIcon {
 }
 
 .tournamentPage-tournamentRow.tournamentPage-tournamentData.signed_up:hover {
-  background-color: #ffda2f;
+  background-color: #ffde2f;
 }
 
 .tournamentPage-tournamentRow.empty .tournamentPage-tournament-empty {

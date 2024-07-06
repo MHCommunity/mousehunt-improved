@@ -12,6 +12,7 @@ import {
   makeLink,
   makeTooltip,
   onOverlayChange,
+  onTurn,
   setPage
 } from '@utils';
 
@@ -500,6 +501,27 @@ const replaceShowMouseImage = () => {
   };
 };
 
+const addShowMouseToNewJournalEntries = () => {
+  const newEntries = document.querySelectorAll('.newEntry');
+  if (! newEntries.length) {
+    return;
+  }
+
+  newEntries.forEach((entry) => {
+    const mouseType = entry.getAttribute('data-mouse-type');
+    const journalImageLink = entry.querySelector('.journalimage a');
+
+    if (! mouseType || ! journalImageLink) {
+      return;
+    }
+
+    journalImageLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      hg.views.MouseView.show(mouseType);
+    });
+  });
+};
+
 /**
  * Run the module.
  */
@@ -557,6 +579,8 @@ const init = async () => {
   }
 
   replaceShowMouseImage();
+
+  onTurn(addShowMouseToNewJournalEntries, 100);
 };
 
 /**

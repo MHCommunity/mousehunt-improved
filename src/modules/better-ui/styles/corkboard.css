@@ -129,7 +129,7 @@ input.messageBoardView-message-submit[type="submit"]:focus {
 .treasureMapRootView .messageBoardView .pagerView-section.previous .pagerView-link,
 .teamPage-messageBoard-corkboard .pagerView-section.previous .pagerView-link,
 .hunterInfoView-corkBoardBlock .pagerView-section.previous .pagerView-link {
-  color: #525252;
+  color: #535151;
 }
 
 a.messageBoardView-message-image {

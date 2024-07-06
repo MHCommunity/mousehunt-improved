@@ -30,8 +30,8 @@
 textarea.mousehunt-improved-error-message {
   min-height: 50px;
   font-size: 11px;
-  background-color: #f2c4c4;
-  border-color: #cf7676;
+  background-color: #ffbfbf;
+  border-color: #dc7878;
 }
 
 .mousehunt-improved-error-close {
@@ -46,5 +46,5 @@ textarea.mousehunt-improved-error-message {
 
 .mousehunt-improved-error-close:hover,
 .mousehunt-improved-error-close:focus {
-  background-color: #c22;
+  background-color: #e03a3a;
 }

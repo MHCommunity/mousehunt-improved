@@ -1,4 +1,4 @@
-import { makeElement, waitForElement } from "@utils";
+import { makeElement, waitForElement } from '@utils';
 
 const addSubTabListeners = () => {
   const inviteTabs = document.querySelectorAll('.treasureMapRootView-tabRow .treasureMapRootView-tab');
@@ -7,7 +7,7 @@ const addSubTabListeners = () => {
   }
 
   inviteTabs.forEach((tab) => {
-    tab.removeEventListener('click', () => {});
+    tab.removeEventListener('click', maybeShowInvitesTab);
     tab.addEventListener('click', maybeShowInvitesTab);
   });
 };
@@ -29,7 +29,7 @@ const maybeShowInvitesTab = async () => {
 
 const onInvitesTab = () => {
   const title = document.querySelector('.treasureMapInvitesView .treasureMapView-title');
-  if (!title) {
+  if (! title) {
     return;
   }
 
@@ -45,20 +45,20 @@ const onInvitesTab = () => {
     refreshButton.classList.add('loading');
 
     e.preventDefault();
-    hg.utils.TreasureMapUtil.getInvites((data) => {
+    hg.utils.TreasureMapUtil.getInvites(() => {
       const inviteTab = document.querySelector('.treasureMapRootView-tabRow .treasureMapRootView-tab[data-type="show_invites"]');
       if (inviteTab) {
         inviteTab.click();
       }
-https://www.mousehuntgame.com/camp.php#
+      https:// www.mousehuntgame.com/camp.php#
       refreshButton.classList.remove('loading');
       maybeShowInvitesTab();
-    }, (error) => {
+    }, () => {
       refreshButton.classList.remove('loading');
       maybeShowInvitesTab();
     });
   });
-  title.appendChild(refreshButton);
+  title.append(refreshButton);
 };
 
 export {

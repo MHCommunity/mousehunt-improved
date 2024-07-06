@@ -5,8 +5,7 @@ import {
   makeElement,
   makeLink,
   onOverlayChange,
-  onRequest,
-  waitForElement
+  onRequest
 } from '@utils';
 
 import settings from './settings';
@@ -251,16 +250,38 @@ const overloadShowItem = () => {
   };
 };
 
-const updateFooterWhenReady = async () => {
-  const orders = await waitForElement('marketplaceView-table-listing-quantity', { single: false });
+/**
+ * Wait for the footer to be ready before modifying it.
+ *
+ * @param {number} attempts The number of attempts made.
+ */
+const waitForFooterReady = (attempts = 0) => {
+  const opts = document.querySelectorAll('.marketplaceView-table-listing-quantity');
+  let timeoutPending = false;
 
-  orders.forEach((order) => {
-    order.addEventListener('click', () => {
-      const quantity = order.textContent.trim();
-      hg.views.MarketplaceView.setOrderQuantity(quantity);
+  // if there are no options, try again
+  if (! (opts && opts.length > 0)) {
+    if (attempts < 10) {
+      timeoutPending = setTimeout(() => updateQuantityButtons(attempts + 1), 300);
+    }
+    return;
+  }
+
+  // if we have a timeout pending, clear it
+  if (timeoutPending) {
+    clearTimeout(timeoutPending);
+  }
+
+  // wait another 300ms to make sure it's ready
+  setTimeout(() => {
+    opts.forEach((order) => {
+      order.addEventListener('click', () => {
+        const quantity = order.textContent.trim();
+        hg.views.MarketplaceView.setOrderQuantity(quantity);
+      });
     });
-  });
-}
+  }, 300);
+};
 
 /**
  * Add chart images to the categories.
@@ -343,8 +364,8 @@ const init = async () => {
       /**
        * Run when the marketplace is shown.
        */
-      show: async () => {
-        await waitForElement('.marketplaceView-header-search');
+      show: () => {
+        waitForSearchReady();
         overloadShowItem();
 
         if (getSetting('better-marketplace.show-chart-images')) {
@@ -355,7 +376,7 @@ const init = async () => {
   });
 
   onRequest('users/marketplace.php', autocloseClaim);
-  onRequest('users/marketplace.php', updateFooterWhenReady, true);
+  onRequest('users/marketplace.php', waitForFooterReady, true);
 };
 
 /**

@@ -1,5 +1,62 @@
 # Changelog
 
+## Version 0.51.0
+
+
+### Better Gifts
+
+- Fixed Better Gifts Taller Window heights applying without Taller Windows enabled
+
+### Better Journal
+
+- Fixed Journal tags showing when setting isn't enabled
+
+### Better Maps
+
+- Fixed Bountiful Beanstalk Lavish subgroup not showing in sorted tab
+- Added refresh button to invites list
+- Fixed issue where map data cache was being cleared too often
+- Fixed issue with sorted tab showing on completed maps
+- Updated styles
+- Fixed Relic Hunter location not showing for School of Sorcery
+
+### Better Mice
+
+- Fixed mice images in journal entries not showing mouse view popup
+
+### Better Tournaments
+
+- Fixed alignment of upcoming tournament time display
+
+### Catch Rate Estimator & Minlucks
+
+- Fixed issue where negative catch rates were displayed
+
+### Favorite Setups
+
+- Fixed issue with mobile setups being duplicated
+
+### Location HUDs - Moussu Picchu
+
+- Updated styles
+
+### Ultimate Checkmark
+
+- Fixed uncollected codices not showing in grayscale
+
+### Unique loot count in progress log
+
+- Moved from beta to stable
+
+### Emotes
+
+- Moved from experimental to stable
+- Added new emotes
+
+### Other
+
+- Updated various modules to use more consistent colors
+
 ## Version 0.50.4
 
 - Fixed missing borders on mice category pages

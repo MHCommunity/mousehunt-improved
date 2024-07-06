@@ -15,14 +15,17 @@ const replaceInText = (text) => {
     // If it's only an emote in the text, make it bigger.
     const size = text === `:${emote}:` ? 60 : 20;
 
-    return `<img class="emote" src="${emotes[emote]}" alt="${emote}" title="${emote}" width="${size}" height="${size}">`;
+    return `<img class="emote" src="${emotes[emote]}" alt=":${emote}:" title=":${emote}:" width="${size}" height="${size}">`;
   });
 
   return text;
 };
 
-export default () => {
-  addStyles('.emote { vertical-align: bottom; }', 'emote-styles');
+/**
+ * Initialize the module.
+ */
+const init = async () => {
+  addStyles('.emote { vertical-align: bottom; }', 'emotes');
 
   onRender({
     group: 'MessageBoardView',
@@ -41,4 +44,13 @@ export default () => {
   }, {
     page: 'hunterprofile',
   });
+};
+
+export default {
+  id: 'emotes',
+  name: 'Emotes',
+  type: 'feature',
+  default: true,
+  description: 'Replaces Discord-style emotes on corkboards like :jerry: with the actual image in map and profile corkboard messages',
+  load: init,
 };

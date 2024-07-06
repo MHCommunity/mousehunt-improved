@@ -638,7 +638,7 @@ a.floatingIslandsHUD-bait-image:hover {
 }
 
 .floatingIslandsHUD-modPanel.highlight::after {
-  border: 1px solid #f5d98d;
+  border: 1px solid #f1dc8a;
   box-shadow: 0 0 3px 3px #ffdcbe inset;
 }
 

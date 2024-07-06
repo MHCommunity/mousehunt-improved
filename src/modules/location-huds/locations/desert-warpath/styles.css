@@ -119,7 +119,7 @@
 
 .warpathHUD-waveContainer.warpathHUD-engaged .warpathHUD-wave {
   border-radius: 5px;
-  box-shadow: inset 0 0 10px 4px #fc4848;
+  box-shadow: inset 0 0 10px 4px #ff4d4d;
 }
 
 .warpathHUD-engaged .warpathHUD-wave-mouse .mousehuntTooltip.tight.top {

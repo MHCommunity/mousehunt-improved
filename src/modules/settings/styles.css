@@ -307,7 +307,7 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight {
-  background-color: #7af7f8;
+  background-color: #8bf7f5;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting {
@@ -382,7 +382,7 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
   padding: 10px;
   font-family: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   font-size: 12px;
-  background-color: #f6f6f6;
+  background-color: #f9f9f9;
   border: 1px solid #b3b3b3;
 }
 
@@ -431,9 +431,9 @@ div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living
 }
 
 .mousehunt-improved-settings-export-popup-content .dragover {
-  background-color: #f0f0f0;
-  border-color: #ffb503;
-  box-shadow: inset 0 0 6px 0 #f4e82f;
+  background-color: #f2f2f2;
+  border-color: #ffb40c;
+  box-shadow: inset 0 0 6px 0 #f4e830;
 }
 
 .mousehunt-improved-settings-export-popup .suffix {

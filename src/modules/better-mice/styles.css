@@ -165,7 +165,7 @@
 }
 
 .mouseView-image:hover {
-  box-shadow: 1px 1px 2px 0 #e70;
+  box-shadow: 1px 1px 2px 0 #e96300;
 }
 
 .mouseView a.custom-favorite-button,
@@ -343,7 +343,7 @@ ul.minluck-list {
 
 .mouseListView-categoryContent-filter-option:hover {
   color: #fff;
-  background: #344562;
+  background: #354661;
 }
 
 .mouseListView-categoryContent-filter-option {

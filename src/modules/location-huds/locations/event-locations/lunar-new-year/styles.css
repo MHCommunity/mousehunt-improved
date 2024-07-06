@@ -10,7 +10,7 @@
 .lunarNewYearCampHUD-window-row-reward::after {
   top: 1px;
   background-color: #9b2034;
-  border-color: #ef617e;
+  border-color: #f3577c;
 }
 
 .lunarNewYearCampHUD-window-row:nth-child(even) .lunarNewYearCampHUD-window-row-reward::after {

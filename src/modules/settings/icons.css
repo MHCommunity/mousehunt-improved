@@ -234,6 +234,10 @@
   background-image: url(https://i.mouse.rip/s/native-dark-mode.svg);
 }
 
-#mousehunt-improved-settings-beta-unique-loot-count::before {
+#mousehunt-improved-settings-feature-unique-loot-count::before {
   background-image: url(https://i.mouse.rip/s/unique-loot-count.svg);
+}
+
+#mousehunt-improved-settings-feature-emotes::before {
+  background-image: url(https://i.mouse.rip/s/emotes.svg);
 }
