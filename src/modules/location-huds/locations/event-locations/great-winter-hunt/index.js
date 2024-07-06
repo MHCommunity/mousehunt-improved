@@ -2,12 +2,12 @@ import {
   addHudStyles,
   addStyles,
   getCurrentLocation,
+  getData,
   makeElement,
   onDialogShow,
   onEvent,
   onRequest
 } from '@utils';
-import { getData } from '@utils/data';
 
 import styles from './styles.css';
 import stylesGlobal from './global.css';

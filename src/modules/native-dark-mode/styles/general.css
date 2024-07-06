@@ -158,3 +158,15 @@ body.mh-dark {
 .mh-dark .pagerView-link:hover {
   background-color: var(--d);
 }
+
+.mh-dark .mousehuntPage-content input[type="text"]:hover,
+.mh-dark .mousehuntPage-content input[type="password"]:hover,
+.mh-dark .mousehuntPage-content input[type="input"]:hover,
+.mh-dark .mousehuntPage-content select:hover,
+.mh-dark .mousehuntPage-content textarea:hover {
+  border-color: var(--d-yellow-dark);
+}
+
+.mh-dark .mousehunt-improved-error p {
+  color: var(--d-red-dark);
+}

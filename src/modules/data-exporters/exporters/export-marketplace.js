@@ -1,5 +1,4 @@
-import { getData, sessionGet, sessionSet } from '@utils/data';
-import { doRequest } from '@utils';
+import { doRequest, getData, sessionGet, sessionSet } from '@utils';
 
 import { exportPopup } from '../utils';
 

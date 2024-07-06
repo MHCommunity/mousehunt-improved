@@ -9,6 +9,7 @@ import {
   onRequest,
   onTravel,
   plainHumanizer,
+  setMultipleTimeout,
   showHornMessage
 } from '@utils';
 
@@ -289,7 +290,7 @@ const updateJetstreamTime = async () => {
   }
 
   const expiry = document.querySelector('.floatingIslandsHUD-jetstream .trapImageView-tooltip-trapAura-expiry span');
-  if (! expiry) {
+  if (! expiry || ! expiry.innerText) {
     container.innerHTML = '';
     return;
   }
@@ -324,7 +325,7 @@ const updateJetstreamTime = async () => {
   const duration = plainHumanizer(timeRemaining, {
     round: true,
     units: ['d', 'h', 'm'],
-    spacer: '',
+    spacer: ' ',
     delimiter: ' ',
   });
 
@@ -333,6 +334,7 @@ const updateJetstreamTime = async () => {
   }
 
   container.innerText = duration;
+  container.title = `Jetstream aura will expire on ${expiry.innerText}`;
 };
 
 let jsClone;
@@ -476,10 +478,10 @@ const hud = () => {
     toggleFuel(true);
 
     if (data?.action === 'launch') {
-      setTimeout(() => {
+      setMultipleTimeout(() => {
         run();
         showBWReminder();
-      }, 2000);
+      }, [1000, 2000, 3000, 4000, 5000]);
     }
 
     setTimeout(() => run(), 2000);

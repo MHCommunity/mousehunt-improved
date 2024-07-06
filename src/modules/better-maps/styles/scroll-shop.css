@@ -52,32 +52,3 @@ b[style="color:red; font-size: 14px;"],
 b[style="color:red; font-size: 14px;"] + br {
   display: none;
 }
-
-/*
-.map-shop-environment-title {
-  list-style: none;
-  display: flex;
-  align-items: center;
-}
-
-.map-shop-environment-title::marker {
-    display: none
-}
-
-.map-shop-environment-title::after {
-  content: '';
-  position: absolute;
-    top: 15px;
-    right: 20px;
-    width: 0;
-    height: 0;
-    border-right: 6px solid transparent;
-    border-bottom: 9px solid #555;
-    border-left: 6px solid transparent;
-    transition: transform .15s;
-}
-
-details[open] summary.map-shop-environment-title:after {
-  content: "";
-  transform: rotate(-180deg);
-} */

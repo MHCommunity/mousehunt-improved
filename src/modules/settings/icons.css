@@ -51,7 +51,7 @@
 }
 
 #mousehunt-improved-settings-better-better-ui::before {
-  background-image: url(https://i.mouse.rip/s/better-ui.svg);
+  background-image: url(https://i.mouse.rip/s/better-ui.svg?2);
 }
 
 #mousehunt-improved-settings-design-custom-background::before {
@@ -147,7 +147,7 @@
 }
 
 #mousehunt-improved-settings-feature-legacy-hud::before {
-  background-image: url(https://i.mouse.rip/s/legacy-hud.svg);
+  background-image: url(https://i.mouse.rip/s/legacy-hud.svg?2);
 }
 
 #mousehunt-improved-settings-feature-lgs-reminder::before {
@@ -168,6 +168,10 @@
 
 #mousehunt-improved-settings-feature-only-open-multiple::before {
   background-image: url(https://i.mouse.rip/s/only-open-multiple.svg);
+}
+
+#mousehunt-improved-settings-feature-open-all::before {
+  background-image: url(https://i.mouse.rip/s/open-all-but-one.svg);
 }
 
 #mousehunt-improved-settings-feature-open-all-but-one::before {
@@ -227,7 +231,7 @@
 }
 
 #mousehunt-improved-settings-feature-wisdom-in-stat-bar::before {
-  background-image: url(https://i.mouse.rip/s/wisdom-in-stat-bar.svg);
+  background-image: url(https://i.mouse.rip/s/wisdom-in-stat-bar.svg?2);
 }
 
 #mousehunt-improved-settings-beta-native-dark-mode::before {
@@ -240,4 +244,8 @@
 
 #mousehunt-improved-settings-feature-emotes::before {
   background-image: url(https://i.mouse.rip/s/emotes.svg);
+}
+
+#mousehunt-improved-settings-beta-experiments::before {
+  background-image: url(https://i.mouse.rip/s/experiments.svg);
 }

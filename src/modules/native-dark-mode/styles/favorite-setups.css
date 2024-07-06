@@ -1,8 +1,12 @@
 .mh-improved-favorite-setups-blueprint-container .row.location-favorite {
-  color: var(--d-text-dark);
+  color: var(--d);
   background-color: var(--d-yellow);
 }
 
 .mh-dark .row.location-favorite .campPage-trap-itemBrowser-item-powerType::after {
   color: var(--d-text-dark);
+}
+
+.mh-dark .mh-improved-favorite-setups-button-label {
+  color: var(--d-text-muted);
 }

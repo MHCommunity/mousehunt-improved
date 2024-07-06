@@ -17,4 +17,5 @@
 - **Show loot as list**: Displays loot entries as a list rather than in the text.
 - **Show gold and points icons**: Shows a small icon next to the gold and points in the journal.
 - **Unique item colors (Map clues, Ful'Mina's gifts, etc.)**: Colors unique items differently in the journal.
+- **Show hunt type on hover**: Adds a little indicator to show the hunt type when hovering over the entry.
 - **Journal History**: Saves your journal history and lets you browse entries past page 6.

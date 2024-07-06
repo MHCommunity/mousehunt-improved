@@ -177,13 +177,10 @@ const initMapper = (map) => {
     });
   });
 
-  if (getSetting('better-maps.default-to-sorted', false)) {
-    if (map.can_claim_reward || map.is_complete) {
-      // Fire the goals click because we default to that tab.
-      doEvent('map_show_goals_tab_click', map);
-    } else {
-      doEvent('map_sorted_tab_click', map);
-    }
+  doEvent('map_show_goals_tab_click', map);
+
+  if (getSetting('better-maps.default-to-sorted', false) && ! map.is_complete) {
+    doEvent('map_sorted_tab_click', map);
   }
 
   // Add the block classes.
@@ -369,6 +366,41 @@ const clearMapCache = () => {
   });
 };
 
+const addInfoClasses = (mapData) => {
+  const mapRoot = document.querySelector('.treasureMapRootView-content .treasureMapView');
+  if (! mapRoot) {
+    return;
+  }
+
+  if (mapData?.is_complete) {
+    mapRoot.classList.add('mh-ui-map-completed');
+  }
+
+  if (mapData?.is_upgradeable) {
+    mapRoot.classList.add('mh-ui-map-upgradeable');
+  }
+
+  if (mapData?.is_upgraded) {
+    mapRoot.classList.add('mh-ui-map-upgraded');
+  }
+
+  if (mapData?.can_claim_reward) {
+    mapRoot.classList.add('mh-ui-map-claimable');
+  }
+
+  if (mapData?.can_send_invites) {
+    mapRoot.classList.add('mh-ui-map-can-invite');
+  }
+
+  if (mapData?.viewing_user_is_on_map) {
+    mapRoot.classList.add('mh-ui-user-on-map');
+  }
+
+  if (mapData?.is_owner) {
+    mapRoot.classList.add('mh-ui-user-is-owner');
+  }
+};
+
 /**
  * Initialize the module.
  */
@@ -376,13 +408,23 @@ const init = async () => {
   addStyles(styles, 'better-maps');
 
   // Fire the different tab clicks.
-  eventRegistry.addEventListener('map_sorted_tab_click', showSortedTab);
-  eventRegistry.addEventListener('map_show_goals_tab_click', showGoalsTab);
-  eventRegistry.addEventListener('map_manage_allies_tab_click', showHuntersTab);
+  eventRegistry.addEventListener('map_sorted_tab_click', (map) => {
+    addInfoClasses(map);
+    showSortedTab(map);
+  });
+  eventRegistry.addEventListener('map_show_goals_tab_click', (map) => {
+    addInfoClasses(map);
+    showGoalsTab(map);
+  });
+  eventRegistry.addEventListener('map_manage_allies_tab_click', (map) => {
+    addInfoClasses(map);
+    showHuntersTab(map);
+  });
   eventRegistry.addEventListener('map_tab_click', (map) => {
     hideGoalsTab(map);
     hideSortedTab(map);
     clearStickyMouse();
+    addInfoClasses(map);
   });
 
   // Initialize the mapper.

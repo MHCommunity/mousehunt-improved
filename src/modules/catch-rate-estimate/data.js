@@ -1,5 +1,4 @@
-import { doRequest, getCurrentLocation } from '@utils';
-import { getData } from '@utils/data';
+import { doRequest, getCurrentLocation, getData } from '@utils';
 
 import miceGroups from '@data/cre-mice-groups.json';
 

@@ -440,7 +440,7 @@ const updateMouseView = async () => {
   };
 
   let locationWidth, stageWidth, cheeseWidth;
-  if (! getFlag('better-mice.new-ar-widths')) {
+  if (! getFlag('better-mice-no-new-ar-widths')) {
     const widths = calculateWidths();
     locationWidth = widths.locationWidth;
     stageWidth = widths.stageWidth;
@@ -449,7 +449,7 @@ const updateMouseView = async () => {
 
   mhctJson.forEach((mouseAr) => {
     const mouseArWrapper = makeElement('div', 'mouse-ar-wrapper');
-    if (! getFlag('better-mice.new-ar-widths')) {
+    if (! getFlag('better-mice-no-new-ar-widths')) {
       mouseArWrapper.style.gridTemplateColumns = hasStages
         ? `${locationWidth}px ${stageWidth}px ${cheeseWidth}px 50px`
         : `${locationWidth}px ${cheeseWidth}px 50px`;

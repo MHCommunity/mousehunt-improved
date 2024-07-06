@@ -21,6 +21,8 @@ import {
 
 import styles from './styles.css';
 
+import settings from './settings';
+
 /**
  * Get the favorite setups.
  *
@@ -1134,4 +1136,5 @@ export default {
   default: false,
   description: 'Save your favorite setups and arm them with a single click.',
   load: init,
+  settings,
 };

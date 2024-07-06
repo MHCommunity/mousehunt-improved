@@ -12,3 +12,4 @@
 
 - **Show one item per row**: Makes each item in the inventory take up the full width of the inventory, rather than two items per row.
 - **Show larger images**: Makes the images in the inventory larger.
+- **Sort inventory alphabetically**: Sorts the inventory alphabetically.

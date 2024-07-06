@@ -1,4 +1,4 @@
-import { getSetting, makeElement, onRequest } from '@utils';
+import { getSetting, makeElement, onRequest, waitForElement } from '@utils';
 
 /**
  * Update the scroll content.
@@ -139,8 +139,25 @@ const updateFromClick = async () => {
    */
   hg.controllers.TreasureMapController.showInventory = (data) => {
     _showInventory(data);
+    updateSubTabListeners();
     updateScrollsMarkup();
   };
+};
+
+const updateSubTabListeners = async () => {
+  await waitForElement('.treasureMapRootView-subTabContainer .treasureMapRootView-subTab');
+  const subtabs = document.querySelectorAll('.treasureMapRootView-subTabContainer .treasureMapRootView-subTab');
+  subtabs.forEach((subtab) => {
+    subtab.addEventListener('click', () => {
+      setTimeout(() => {
+        subtabs.forEach((st) => {
+          st.classList.remove('active');
+        });
+
+        subtab.classList.add('active');
+      }, 100);
+    });
+  });
 };
 
 /**

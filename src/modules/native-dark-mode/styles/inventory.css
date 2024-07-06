@@ -98,7 +98,11 @@
 }
 
 .mh-dark .inventoryPage-item-content-description-text {
-  color: var(--d-text-muted);
+  color: var(--d-text);
+}
+
+.mh-dark .inventoryPage-item-content-description-text a {
+  color: var(--d-link);
 }
 
 .mh-dark .mousehuntHud-page-tabContent-loading {

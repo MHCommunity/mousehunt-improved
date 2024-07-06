@@ -226,11 +226,11 @@ const overloadShowItem = () => {
     if (actionButton) {
       actionButton.addEventListener('click', () => {
         const actionType = actionButton.classList.contains('buy') ? 'sell' : 'buy';
-        originalShowItem(itemId, actionType, defaultQuantity, defaultUnitPriceWithTariff, force);
+        _originalShowItem(itemId, actionType, defaultQuantity, defaultUnitPriceWithTariff, force);
       });
     }
 
-    originalShowItem(itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force);
+    _originalShowItem(itemId, action, defaultQuantity, defaultUnitPriceWithTariff, force);
 
     const actions = document.querySelector('.marketplaceView-item-titleActions');
     if (! actions) {

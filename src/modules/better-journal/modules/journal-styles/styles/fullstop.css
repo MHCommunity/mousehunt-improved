@@ -19,6 +19,7 @@
 .journal .content .entry.folkloreForest-plantClaimed .journaltext br,
 .journal .content .entry.folkloreForest-lootFuelBoost .journaltext br,
 .journal .content .entry.relicHunter_complete .journaltext br:first-of-type,
+.journal .content .entry.wanted_poster-complete .journaltext br:first-of-type,
 .journal .content .entry.folkloreForest-bookClaimed .journaltext br:first-of-type,
 .journal .content .entry.folkloreForest-bookClaimed .journaltext br:last-of-type,
 .journal .content .entry.harbour br {
@@ -26,6 +27,8 @@
 }
 
 .journal .content .entry.kings_giveaway_bonus_prize_entry .journaltext > br + br:last-of-type,
+.journal .content .entry.floatingIslands.discoveredMod .journaltext br:last-of-type,
+.journal .content .entry.wanted_poster-complete .journaltext br:last-of-type,
 .journal .content .entry.floatingIslands.fullyExplored .journaltext br:first-of-type {
   display: none;
 }
@@ -37,6 +40,7 @@
   content: "";
 }
 
+.entry.socialGift-send .journaltext a:last-of-type::after,
 .entry.queso_geyser.eruption_started .journaltext b::after,
 .entry.torch_charm_event .journaltext a:last-of-type::after,
 .unstable_charm_trigger .journaltext a:last-of-type::after,
@@ -46,6 +50,7 @@
 .entry.short.supplytransferitem .journaltext a::after,
 .entry.gloomyGreenwood-incense .journaltext::after,
 .journal .entry.relicHunter_complete .journaltext b:last-of-type::after,
+.journal .entry.wanted_poster-complete .journaltext b:last-of-type::after,
 .entry.halloween_boiling_cauldron.brew_finished a:last-of-type::after,
 .entry.halloween_boiling_cauldron.brew_removed a:last-of-type::after,
 .entry.folkloreForest-farmToTable .journaltext a:last-of-type::after,

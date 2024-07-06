@@ -1,4 +1,4 @@
-import { getData } from '@utils/data';
+import { getData, getSetting } from '@utils';
 
 /**
  * Add settings for the module.
@@ -21,6 +21,13 @@ export default async () => {
   ]);
 
   const locationsToAdd = [
+    {
+      name: '',
+      id: 'region-seperator',
+      settings: {
+        type: 'blank',
+      }
+    },
     {
       name: 'Region: Living Garden',
       id: 'region-living-garden',
@@ -77,8 +84,42 @@ export default async () => {
       title: location.name,
       default: true,
       description: location.description,
+      settings: location.settings || {},
     });
   }
+
+  optionsToReturn.push(
+    {
+      name: '',
+      id: 'option-seperator',
+      settings: {
+        type: 'blank',
+      }
+    },
+    {
+      id: 'location-huds.location-hud-toggle',
+      title: 'Add toggle button to top menu',
+    },
+    {
+      id: 'location-huds.bountiful-beanstalk-flip-avatar',
+      title: 'Bountiful Beanstalk: Mirror avatar (to face the other direction)',
+    },
+    {
+      id: 'location-huds.bountiful-beanstalk-inventory-in-one-row',
+      title: 'Bountiful Beanstalk: Show Inventory box in one row',
+      default: getSetting('location-huds.bountiful-beanstalk-inventory-in-one-row', false),
+    },
+    {
+      id: 'location-huds.fi-draggable-airship',
+      title: 'Floating Islands: Make airship draggable',
+      default: getSetting('experiments.fi-draggable-airship', false),
+    },
+    {
+      id: 'location-huds.prologue-pond-wood-boat',
+      title: 'Prologue Pond: Normal boat color',
+      default: getSetting('experiments.prologue-pond-wood-boat', false),
+    }
+  );
 
   return optionsToReturn;
 };

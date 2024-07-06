@@ -71,8 +71,15 @@ const trollem2 = () => {
 /**
  * Initialize the module.
  */
-export default async () => {
+const init = async () => {
   trollEm();
   onTurn(trollEm, 1000);
   trollem2();
+};
+
+export default {
+  id: 'experiments.lol-gottem',
+  name: 'Troll mode',
+  description: 'lol',
+  load: init,
 };

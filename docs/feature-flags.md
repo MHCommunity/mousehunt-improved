@@ -13,6 +13,12 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 
 ### Module Flags
 
+#### Better Mice
+
+|Flag|Description|
+|---|---|
+|`better-mice-no-new-ar-widths`|Reverts the column widths of the attraction rate table to the old widths.|
+
 #### Better Travel
 
 |Flag|Description|
@@ -23,17 +29,7 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |`better-travel-no-reminder-condensed-creativity`|Disables the reminder about Condensed Creativity.|
 |`better-travel-no-reminder-festive-spirit`|Disables the reminder about Festive Spirit.|
 
-#### Catch Rate Estimator & Minlucks
-
-|Flag|Description|
-|---|---|
-|`catch-rate-estimate-more-refresh`|Restores previous behavior of the Catch Rate Estimator module where it refreshes more often.|
-
-### Debug Logging
-
-See [Debug Logging](./debug-logging.md) for configuration options.
-
-### Userscript Integrations
+#### Better UI Userscript Integrations
 
 |Userscript|Flag|Required Module|
 |---|---|--|
@@ -49,6 +45,22 @@ See [Debug Logging](./debug-logging.md) for configuration options.
 |[Hyperspeed Travel](https://greasyfork.org/en/scripts/448542-mousehunt-hyperspeed-travel)|`userscript-styles-no-hyperspeed-travel-styles`|[Better Travel](./better-travel.md)|
 
 * _not a userscript, but uses the same flag for consistency_
+
+#### Catch Rate Estimator & Minlucks
+
+|Flag|Description|
+|---|---|
+|`catch-rate-estimate-more-refresh`|Restores previous behavior of the Catch Rate Estimator module where it refreshes more often.|
+
+### Debug Logging
+
+See [Debug Logging](./debug-logging.md) for configuration options.
+
+#### Location HUDs
+
+|Flag|Description|
+|---|---|
+|`location-hud-fiery-warpath-no-command-bar-stats`|Hides the remaining mice text when in Fiery Warpath.|
 
 ### Disable Modules
 

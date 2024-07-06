@@ -125,9 +125,9 @@ a.journal-detailLink.full::after {
 }
 
 .journal .content .entry a:hover img {
-  border: 1px solid #6db8ca;
+  padding: 1px;
+  border: none;
   outline: 1px solid #90d3e4;
-  box-shadow: 0 0 6px -2px #e3e31f;
 }
 
 .journal .content .entry .journaltext p:last-of-type {

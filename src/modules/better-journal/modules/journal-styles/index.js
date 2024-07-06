@@ -1,5 +1,4 @@
-import { addStyles, getUserTitle, getUserTitleShield } from '@utils';
-import onJournalEntry from '../../utils';
+import { addStyles, getUserTitle, getUserTitleShield, onJournalEntry } from '@utils';
 
 import * as imported from './styles/**/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;

@@ -9,12 +9,6 @@
   text-shadow: none;
 }
 
-.mh-dark .mousehuntHud-shield.title,
-.mh-dark .mousehuntHud-shield.golden.title,
-.mh-dark .mousehunt-improved-lgs-reminder-new {
-  filter: brightness(0.8);
-}
-
 .mh-dark .mousehuntHud-menu.default,
 .mh-dark .huntersHornView .huntersHornView__timer {
   filter: brightness(0.9);

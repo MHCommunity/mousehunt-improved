@@ -9,16 +9,15 @@
 
 .journal .content .entry.riftFuroma-energyLost .journalbody::before {
   position: absolute;
-  top: -12px;
-  left: -96px;
+  top: -15px;
+  left: -95px;
   display: block;
   width: 75px;
   height: 80px;
   content: "";
   background-image: url(https://www.mousehuntgame.com/images/ui/hud/rift_furoma/droid.png);
-  filter: grayscale(1);
   background-repeat: no-repeat;
-  background-position: 0 -100px;
+  background-position: 0 -190px;
   background-size: 110%;
   mix-blend-mode: luminosity;
 }

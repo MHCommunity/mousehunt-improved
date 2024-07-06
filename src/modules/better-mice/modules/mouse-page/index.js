@@ -4,10 +4,10 @@ import {
   getCurrentSubtab,
   getCurrentTab,
   makeElement,
-  onEvent,
   onNavigation,
   sessionGet,
-  sessionSet
+  sessionSet,
+  waitForElement
 } from '@utils';
 
 /**
@@ -467,18 +467,17 @@ const addSortingToCat = (cat, retries = 0) => {
   });
 };
 
-let hasAddedSortingTabClickListeners = false;
+let _categoryClickHandler = null;
 
 /**
  * Add click listeners to the sorting tabs.
  */
 const addSortingTabClickListeners = () => {
-  if (hasAddedSortingTabClickListeners) {
+  if (_categoryClickHandler) {
     return;
   }
 
-  hasAddedSortingTabClickListeners = true;
-  const _categoryClickHandler = hg.views.MouseListView.categoryClickHandler;
+  _categoryClickHandler = hg.views.MouseListView.categoryClickHandler;
 
   /**
    * The category click handler.
@@ -494,15 +493,22 @@ const addSortingTabClickListeners = () => {
 /**
  * Click the current tab.
  */
-const clickCurrentTab = () => {
-  const activeTab = document.querySelector('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabContent.active .mouseListView-categoryContainer.active a');
-  if (! activeTab) {
-    setTimeout(clickCurrentTab, 250);
+const clickCurrentTab = async () => {
+  const currentCategoryTab = await waitForElement('.mousehuntHud-page-tabContent.active .mousehuntHud-page-subTabContent.active .mouseListView-categoryContainer.active a');
+  if (! currentCategoryTab) {
     return;
   }
 
-  addSortingToCat(activeTab.getAttribute('data-category'));
-  hg.views.MouseListView.categoryClickHandler(activeTab);
+  const category = currentCategoryTab.getAttribute('data-category');
+
+  addSortingToCat(category);
+
+  if ('your_stats' === getCurrentSubtab()) {
+    const activeTab = await waitForElement('.mousehuntHud-page-subTabHeader.active[data-tab="your_stats"]');
+    if (activeTab) {
+      activeTab.click();
+    }
+  }
 };
 
 /**
@@ -510,7 +516,7 @@ const clickCurrentTab = () => {
  */
 const addSortingToStatsPage = () => {
   addSortingTabClickListeners();
-  clickCurrentTab();
+  setTimeout(clickCurrentTab, 250);
 };
 
 /**
@@ -533,30 +539,17 @@ export default async () => {
   onNavigation(addSortingToStatsPage, {
     page: 'adversaries',
     tab: 'your_stats',
-    subtab: 'group',
   });
 
   onNavigation(addSortingToStatsPage, {
     page: 'adversaries',
     tab: 'your_stats',
-    subtab: 'location',
-  });
-
-  onEvent('set_tab', () => {
-    if ('your_stats' === getCurrentTab()) {
-      addSortingToStatsPage();
-    }
+    anySubtab: true,
   });
 
   onNavigation(addSortingToStatsPage, {
     page: 'hunterprofile',
     tab: 'mice',
-    subtab: 'group',
-  });
-
-  onNavigation(addSortingToStatsPage, {
-    page: 'hunterprofile',
-    tab: 'mice',
-    subtab: 'location',
+    anySubtab: true,
   });
 };

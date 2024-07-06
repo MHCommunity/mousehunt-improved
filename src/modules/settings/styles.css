@@ -70,7 +70,6 @@
   border-left: none;
 }
 
-#mousehunt-improved-settings-beta-experiments,
 #mousehunt-improved-settings-advanced .PagePreferences__settingsList,
 #mousehunt-improved-settings-design .PagePreferences__settingsList,
 #mousehunt-improved-settings-element-hiding .PagePreferences__settingsList {
@@ -282,41 +281,67 @@
 
 /* Location HUD */
 #mousehunt-improved-settings-location-hud-wrapper {
-  display: flex;
-  flex-flow: column wrap;
-  gap: 0 5px;
-  place-content: center start;
-  align-content: stretch;
-  align-items: stretch;
-  height: 375px;
-}
-
-div#mousehunt-improved-settings-location-hud-location-huds-enabled-region-living-garden {
-  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  justify-items: stretch;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList {
+  grid-column: span 4;
   padding: 0 5px 0 10px;
   margin-left: 0;
   background-color: inherit;
   border: none;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(2n) {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList[id*="mousehunt-improved-settings-location-hud-location-huds-enabled"] {
+  grid-column: span 1;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-enabled-region-seperator,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle {
+  grid-column: 1 / 5;
+  background-color: transparent;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-enabled-region-seperator {
+  height: 10px;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-option-seperator {
+  height: 10px;
+  background-color: transparent;
+  border-bottom: 1px solid #f2ebde;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 1),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 2),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 3),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 4),
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-flip-avatar.PagePreferences__settingsList,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-fi-draggable-airship.PagePreferences__settingsList {
   background-color: #eee;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-inventory-in-one-row.PagePreferences__settingsList,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle.PagePreferences__settingsList,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-prologue-pond-wood-boat.PagePreferences__settingsList {
+  background-color: transparent;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight {
   background-color: #8bf7f5;
 }
 
+/*
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting {
   display: flex;
   gap: 0;
   height: 25px;
   padding: 0;
   margin: 0;
-}
+} */
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingName {
   font-size: 11px;

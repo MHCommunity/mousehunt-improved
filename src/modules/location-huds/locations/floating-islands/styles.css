@@ -388,7 +388,7 @@ a.floatingIslandsHUD-islandLoot:focus {
   top: -20px;
   right: 0;
   width: auto;
-  min-width: 100px;
+  min-width: 250px;
   font-size: 13px;
   color: #71d0ff;
   text-align: right;

@@ -6,6 +6,7 @@ import {
   debug,
   debuglog,
   doEvent,
+  getData,
   isUserTitleAtLeast,
   makeElement,
   onEvent,
@@ -13,8 +14,6 @@ import {
   sessionSet,
   travelTo
 } from '@utils';
-
-import { getData } from '@utils/data';
 
 import styles from './styles.css';
 

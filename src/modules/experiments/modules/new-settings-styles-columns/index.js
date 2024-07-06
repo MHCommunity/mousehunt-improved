@@ -5,7 +5,7 @@ import styles from './styles.css';
 /**
  * Initialize the module.
  */
-export default async () => {
+const init = async () => {
   addStyles(styles, 'new-settings-styles-columns');
 
   onNavigation(async () => {
@@ -18,4 +18,10 @@ export default async () => {
   }, {
     page: 'preferences',
   });
+};
+
+export default {
+  id: 'experiments.new-settings-styles-columns',
+  name: 'Settings: Columns',
+  load: init,
 };

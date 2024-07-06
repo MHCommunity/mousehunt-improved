@@ -3,13 +3,12 @@ import {
   cacheFinishedMap,
   createPopup,
   doRequest,
+  getData,
   getLastMaptain,
   makeElement,
   onDialogShow,
   onRequest
 } from '@utils';
-
-import { getData } from '@utils/data';
 
 import styles from './styles.css';
 

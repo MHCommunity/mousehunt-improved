@@ -235,7 +235,7 @@
 
 .mh-dark a.campPage-trap-itemBrowser-item-armButton,
 .mh-dark .armed a.campPage-trap-itemBrowser-item-armButton {
-  color: var(--d-text-dark);
+  color: var(--d);
   text-shadow: none;
 }
 

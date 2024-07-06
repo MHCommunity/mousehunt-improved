@@ -1,7 +1,6 @@
 import {
   addHudStyles,
   doRequest,
-  getFlag,
   getSetting,
   makeElement,
   makeMhButton,
@@ -339,11 +338,11 @@ const addCommaToNoiseMeterTimeout = async () => {
 export default async () => {
   const stylesToAdd = [regionStyles, styles];
 
-  if (getFlag('flip-bountiful-beanstalk-avatar')) {
+  if (getSetting('location-huds.bountiful-beanstalk-flip-avatar', false)) {
     stylesToAdd.push('.bountifulBeanstalkCastleView__playerMarkerUserThumb { transform: scaleX(-1); }');
   }
 
-  if (getSetting('location-huds.bountiful-beanstalk-invetory-in-one-row', false)) {
+  if (getSetting('location-huds.bountiful-beanstalk-inventory-in-one-row', false)) {
     stylesToAdd.push(smallInvStyles);
   }
 

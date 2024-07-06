@@ -12,7 +12,7 @@ export default async () => {
     },
     {
       id: 'better-travel.show-alphabetized-list',
-      title: 'Show alphabetized list on Simple Travel',
+      title: 'Show alphabetized list on Simple Travel tab',
       default: false,
     },
     {

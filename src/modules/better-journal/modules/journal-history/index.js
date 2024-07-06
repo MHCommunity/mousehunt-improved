@@ -9,10 +9,10 @@ import {
   getData,
   makeElement,
   makeMhButton,
+  onJournalEntry,
   onNavigation,
   onRequest
 } from '@utils';
-import onJournalEntry from '../../utils';
 
 import styles from './styles.css';
 
@@ -55,7 +55,7 @@ const makeEntriesMarkup = (entries) => {
       }
     }
 
-    let html = `<div class="${entry.type.join(' ')}" data-entry-id="${entry.id}" data-mouse-type="${entry.mouse || ''}">`;
+    let html = `<div class="${entry.type.filter((cls) => ! ['newEntry', 'animate'].includes(cls)).join(' ')}" data-entry-id="${entry.id}" data-mouse-type="${entry.mouse || ''}">`;
     if (entry.mouse) {
       const mouseImages = miceThumbs.find((mouse) => mouse.type === entry.mouse);
       if (mouseImages) {
@@ -183,7 +183,7 @@ const saveToDatabase = async (entry) => {
     date: date[0] ? date[0].trim() : '0:00',
     location: date[1] ? date[1].trim() : 'Unknown',
     text: entryText.innerHTML,
-    type: [...entry.classList],
+    type: [...entry.classList].filter((cls) => ! ['newEntry', 'animate'].includes(cls)),
     mouse: entry.getAttribute('data-mouse-type') || null,
     image: entryImage ? entryImage.innerHTML : null,
   };

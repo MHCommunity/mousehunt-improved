@@ -49,7 +49,7 @@ const init = async () => {
 
 export default {
   id: 'unique-loot-count',
-  name: 'Unique loot count in progress log',
+  name: 'Unique Loot Count',
   type: 'feature',
   default: true,
   description: 'Shows the number of unique loot items in the progress log',

@@ -487,6 +487,7 @@ img.mh-mapper-consolation-prize {
 }
 
 input.treasureMapView-block-search-text {
+  width: 80px;
   height: 18px;
   margin-right: 7px;
   font-size: 12px;
@@ -695,7 +696,11 @@ input.treasureMapView-block-search-text {
 
 .treasureMapInventoryView .treasureMapView-block-search {
   right: 10px;
-  bottom: -40px;
+  bottom: 2px;
+}
+
+.treasureMapInventoryView .treasureMapView-block-search .treasureMapView-block-search-label {
+  display: none;
 }
 
 .treasureMapInventoryView .treasureMapRootView-subTabRow {
@@ -728,6 +733,10 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapView-mapMenu.treasureMapRootView-padding {
+  margin-bottom: 20px;
+}
+
+.mh-ui-map-completed .treasureMapView-mapMenu.treasureMapRootView-padding {
   margin-bottom: 40px;
 }
 
@@ -1103,4 +1112,38 @@ input.treasureMapView-block-search-text {
   top: 0;
   right: 5px;
   border-left: none;
+}
+
+.treasureMapView.poster .treasureMapView-goals-group-goal.complete .treasureMapView-goals-group-goal-name {
+  background: #949494;
+  box-shadow:
+    1px 1px 1px #fff inset,
+    3px 3px 30px #786d64 inset,
+    0 0 2px #9c9c9c inset,
+    2px 2px 2px #000;
+}
+
+.treasureMapView.poster .treasureMapView-goals-group-goal.complete .treasureMapView-goals-group-goal-name span {
+  color: #e5e0d6;
+  text-decoration: none;
+}
+
+.treasureMapRootView-subTabContainer:hover .treasureMapRootView-subTab.active,
+.treasureMapRootView-subTab.active,
+.treasureMapRootView-subTabContainer:hover .treasureMapRootView-subTab:hover {
+  border-color: #999;
+}
+
+.treasureMapRootView-subTabContainer:hover .treasureMapRootView-subTab.active,
+.treasureMapRootView-subTab.active {
+  color: #000;
+  border-color: #333;
+}
+
+.treasureMapView-environment {
+  border-radius: 3px;
+}
+
+.treasureMapView-environment:last-child {
+  margin-bottom: 0;
 }

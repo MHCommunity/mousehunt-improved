@@ -1,5 +1,4 @@
-import { doRequest } from '@utils';
-import { getData } from '@utils/data';
+import { doRequest, getData } from '@utils';
 
 import { exportPopup, recursiveFetch } from '../utils';
 

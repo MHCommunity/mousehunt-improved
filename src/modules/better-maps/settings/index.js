@@ -13,5 +13,11 @@ export default async () => {
       id: 'better-maps.show-sidebar-goals',
       title: 'Show map goals in sidebar',
     },
+    {
+      id: 'better-maps.community',
+      title: 'Show Community Maps information',
+      description: 'Show last active time on community maps and hides old maps',
+      default: false,
+    }
   ];
 };

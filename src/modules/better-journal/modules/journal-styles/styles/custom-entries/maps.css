@@ -1,3 +1,8 @@
+.journal .entry.wanted_poster-complete .journaltext b,
 .journal .entry.relicHunter_complete .journaltext b {
   font-weight: 700;
+}
+
+.journal .entry.wanted_poster-complete .journaltext b:first-of-type {
+  font-weight: 400;
 }

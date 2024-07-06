@@ -17,12 +17,15 @@
 - Added refresh button to invites list
 - Fixed issue where map data cache was being cleared too often
 - Fixed issue with sorted tab showing on completed maps
+- Added more replacements
 - Updated styles
+- Added 'Show Community Maps information' option
 - Fixed Relic Hunter location not showing for School of Sorcery
 
 ### Better Mice
 
 - Fixed mice images in journal entries not showing mouse view popup
+- Fixed issue with stat sorting buttons not showing on first click of the stats tab
 
 ### Better Tournaments
 
@@ -32,11 +35,25 @@
 
 - Fixed issue where negative catch rates were displayed
 
+### Emotes
+
+- Moved from experimental to stable
+- Added new emotes
+
 ### Favorite Setups
 
+- Added 'Include mobile setups' option
 - Fixed issue with mobile setups being duplicated
 
-### Location HUDs - Moussu Picchu
+### Location HUDs
+
+- Added 'Add toggle button to top menu' option
+- Added 'Bountiful Beanstalk: Mirror avatar (to face the other direction)' option
+- Added 'Bountiful Beanstalk: Show Inventory box in one row' option
+- Added 'Prologue Pond: Normal boat color' option
+- Updated styles for Floating Islands and Moussu Picchu
+
+### Native Dark Mode
 
 - Updated styles
 
@@ -44,14 +61,9 @@
 
 - Fixed uncollected codices not showing in grayscale
 
-### Unique loot count in progress log
+### Unique Loot Count
 
 - Moved from beta to stable
-
-### Emotes
-
-- Moved from experimental to stable
-- Added new emotes
 
 ### Other
 

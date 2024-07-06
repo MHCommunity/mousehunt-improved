@@ -7,6 +7,8 @@ import styles from './styles.css';
  */
 const init = async () => {
   addStyles(styles, 'no-share');
+
+  SocialFramework.isFriendStreamPostsEnabled = () => false;
 };
 
 /**

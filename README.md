@@ -15,7 +15,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Better UI](docs/better-ui.md)**: Comprehensive UI updates for a smoother experience.
 - **[Better Gifts](docs/better-gifts.md)**: Enhanced gift management with 'Accept All' and gift selector improvements.
 - **[Better Inventory](docs/better-inventory.md)**: Modernized inventory with quick set max quantities and previews.
-- **[Better Item View](docs/better-item-view.md)**: Direct links to MHCT and MHWiki, plus item drop rates.
+- **[Better Items](docs/better-items.md)**: Adds drop rates, links to MHCT and MH Wiki, and more to item views.
 - **[Better Journal](docs/better-journal.md)**: Streamlined and modernized journal interface.
 - **[Better King's Reward](docs/better-kings-teward.md)**: Improved King's Reward UI with auto-close for success messages.
 - **[Better Maps](docs/better-maps.md)**: Added features for an enhanced mapping experience.

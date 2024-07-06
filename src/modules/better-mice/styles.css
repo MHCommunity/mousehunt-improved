@@ -375,3 +375,7 @@ ul.minluck-list {
   font-size: 12px;
   border-radius: 5px;
 }
+
+.mouseListView-categoryContent-subgroup-mouse.stats.header {
+  border-radius: 5px;
+}

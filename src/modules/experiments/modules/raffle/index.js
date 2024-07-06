@@ -301,7 +301,7 @@ const replaceInboxMethods = () => {
 /**
  * Initialize the module.
  */
-export default async () => {
+const init = async () => {
   if (getSetting('hide-daily-draw', false)) {
     return;
   }
@@ -309,4 +309,11 @@ export default async () => {
   addStyles(styles, 'feature-flags-raffle');
 
   replaceInboxMethods();
+};
+
+export default {
+  id: 'experiments.raffle',
+  name: 'Return Raffles button',
+  description: 'Adds a button to return all raffle tickets to the Inbox. Use at your own risk.',
+  load: init,
 };

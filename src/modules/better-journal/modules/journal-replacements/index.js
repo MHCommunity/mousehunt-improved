@@ -1,5 +1,4 @@
-import { addStyles } from '@utils';
-import onJournalEntry from '../../utils';
+import { addStyles, onJournalEntry } from '@utils';
 
 import styles from './styles.css';
 
@@ -37,6 +36,9 @@ const replacements = [
   ['now!', ''],
   [', ending the hunt!', '.'],
   ['View Map Summary', ''],
+  ['Poster!  The Marshall granted us our ', 'Poster gave me one '],
+  [/ for turning in this lawless gang of the .+?\. time to find another <b>wanted poster<\/b>/i, ''],
+  [' caught ', ' caught the final ', 'wanted_poster-complete'],
 
   // Other
   ['I should hunt and catch a Relic Hunter or visit a Cartographer to obtain a new Treasure Map!', ''],
@@ -108,6 +110,7 @@ const replacements = [
   ['My Slayer Aura found 1 extra ', 'My Slayer Aura found an extra '],
   ['Inside, I found', 'I found'],
   ['Inside I found', 'I found'],
+  [/i earned some extra loot:<br>• (\d+?) <(.+?)>enerchi<\/a> from my (.+?)<br>/i, 'My $3 gave me an additional $1<a href="https://www.mousehuntgame.com/item.php?item_type=combat_energy_stat_item" onclick="hg.views.ItemView.show(\'combat_energy_stat_item\'); return false;">Enerchi</a>.'],
 
   // Event stuff
   // SEH

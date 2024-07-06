@@ -174,3 +174,25 @@ td.marketplaceView-table-name {
 .marketplaceView-item-input input {
   padding: 4px;
 }
+
+.marketplaceView-itemImage.favourite {
+  box-shadow: none;
+}
+
+.marketplaceView-table tr.empty {
+  background: #f9f9f9 !important;
+}
+
+.marketplaceView-browse-sidebar-link:hover {
+  padding-right: 9px;
+  margin-right: 1px;
+}
+
+.marketplaceView-browse-sidebar-link {
+  border-top-left-radius: 11px;
+  border-bottom-left-radius: 11px;
+}
+
+.marketplaceHome-block-viewAll {
+  border-color: #000;
+}

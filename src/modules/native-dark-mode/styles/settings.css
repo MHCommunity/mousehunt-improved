@@ -20,7 +20,7 @@
 }
 
 .mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting:nth-child(odd) {
-  background-color: var(--d-alt);
+  background-color: var(--d);
 }
 
 .mh-dark .mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting {
@@ -51,8 +51,21 @@
   color: var(--d-text-muted);
 }
 
-.mh-dark #mousehunt-improved-settings-location-hud .PagePreferences__settingsList:nth-child(2n) {
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 1),
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 2),
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 3),
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 4),
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-flip-avatar.PagePreferences__settingsList,
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-fi-draggable-airship.PagePreferences__settingsList {
   background-color: var(--d);
+}
+
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-option-seperator {
+  border-color: var(--d-border);
+}
+
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight {
+  background-color: var(--d-blue-dark);
 }
 
 .mh-dark #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-styles textarea,
