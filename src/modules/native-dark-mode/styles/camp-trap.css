@@ -252,6 +252,10 @@
   box-shadow: 2px 2px 3px -1px var(--d) inset;
 }
 
+.mh-dark .trapSelectorView__codexList .campPage-trap-itemBrowser-item-image::after {
+  box-shadow: none;
+}
+
 .mh-dark .campPage-trap-trapEffectivenessContainer .loading,
 .mh-dark .campPage-trap-itemBrowser-items .loading {
   background-color: var(--d-bg);
