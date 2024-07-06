@@ -80,10 +80,6 @@
   background-color: #0090ff;
 }
 
-body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
-  min-height: unset;
-}
-
 .giftSelectorView-friend.complete .giftSelectorView-friend-padding::before {
   bottom: 9px;
   left: 10px;
@@ -453,10 +449,6 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 .complete .giftSelectorView-inbox-gift-details {
   margin-right: 150px;
   margin-left: 0;
-}
-
-.giftSelectorView-scroller {
-  height: 100%;
 }
 
 .giftSelectorView-inbox-footer-label {

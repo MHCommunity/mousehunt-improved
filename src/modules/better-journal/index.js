@@ -30,7 +30,7 @@ const init = async () => {
     goldAndPoints: getSetting('better-journal.gold-and-points', true),
     itemColors: getSetting('better-journal.item-colors', true),
     history: getSetting('better-journal.journal-history', true),
-    tags: getSetting('better-journal.journal-tags', true),
+    tags: getSetting('better-journal.journal-tags', false),
   };
 
   const modules = [

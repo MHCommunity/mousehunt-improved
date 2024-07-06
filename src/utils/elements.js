@@ -496,6 +496,30 @@ const makeProgressLogLink = (opts = {}) => {
   return `<a href="#" onclick="app.views.HeadsUpDisplayView.hud.showLogSummary('${progress.time}', ${toEscapedJSON(catches)}, ${toEscapedJSON(baits)}, ${toEscapedJSON(loots)}); return false;" class="mh-ui-progress-log-link mousehuntActionButton small lightBlue"><span>${opts.text || 'View Progress Log'}</span></a>`;
 };
 
+/**
+ * This function waits for an element to appear in the DOM. If the element is found within the maximum number of attempts,
+ * it returns a Promise that resolves with the found element(s). If the element is not found within the maximum number of attempts,
+ * the function will return `undefined`.
+ *
+ * @param {string} selector The CSS selector of the element to wait for.
+ * @param {Object} options The options for the function.
+ * @param {number} options.maxAttempts The maximum number of attempts to wait for the element.
+ * @param {number} options.delay The delay between attempts.
+ * @return {Promise<HTMLElement|false>} The found element(s) or `false` if the element was not found.
+ */
+const waitForElement = async (selector, { single = true, maxAttempts = 10, delay = 300 } = {}) => {
+  for (let attempts = 0; attempts < maxAttempts; attempts++) {
+    const element = single ? document.querySelector(selector) : document.querySelectorAll(selector);
+    if (element && (single ? element : element.length > 0)) {
+      return element;
+    }
+
+    await new Promise(resolve => setTimeout(resolve, delay));
+  }
+
+  return false;
+};
+
 export {
   createPopup,
   makeButton,
@@ -508,5 +532,6 @@ export {
   makeMathButton,
   makeMathButtons,
   toEscapedJSON,
-  makeProgressLogLink
+  makeProgressLogLink,
+  waitForElement,
 };

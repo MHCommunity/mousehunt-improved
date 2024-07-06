@@ -8,7 +8,7 @@
   align-items: stretch;
   max-width: 375px;
   padding: 10px 20px;
-  background-color: #febebe;
+  background-color: #ffbfbf;
   border: 1px solid #4e2727;
   border-radius: 6px;
   box-shadow: 0 0 10px 1px #bc7b7b;
@@ -18,7 +18,7 @@
   margin: 0 0 0.75em;
   font-size: 1.3em;
   font-weight: 900;
-  color: #9f2323;
+  color: #9f2223;
 }
 
 .mousehunt-improved-error p {

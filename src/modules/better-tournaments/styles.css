@@ -80,7 +80,7 @@
   color: #474747;
   background-color: #e5e5e5;
   border-radius: 50%;
-  box-shadow: 1px 1px 1px 0 #c7c7c7;
+  box-shadow: 1px 1px 1px 0 #c6c6c6;
 }
 
 .tournamentPage-tournament-column.members_5 .tournamentPage-tournament-teamMember.empty:last-child::before {
@@ -523,10 +523,11 @@ img.pointsMouseIcon {
 
 .tournamentStatusHud .timer,
 .tournamentStatusHud.pending .timer {
-  top: 2px;
+  top: -4px;
   left: 160px;
   width: 220px;
   font-size: 12px;
+  color: #000;
   text-align: center;
 }
 

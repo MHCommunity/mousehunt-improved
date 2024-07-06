@@ -44,6 +44,10 @@
   max-height: 65vh;
 }
 
+body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
+  min-height: unset;
+}
+
 #overlayPopup.giftSelectorViewPopup {
   top: 50px !important;
 }

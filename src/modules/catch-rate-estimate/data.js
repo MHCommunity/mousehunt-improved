@@ -103,14 +103,7 @@ const getMinluck = async (options) => {
     Math.ceil(Math.sqrt(mousePower / 2)) / Math.min((effectiveness / 100), 1.4)
   );
 
-  // If we don't get 100% catch rate at minluck, bump it up by 1.
-  // const checkCatchRate = await getCatchRate({
-  //   ...options,
-  //   trapLuck: minluck
-  // });
-
   return minluck;
-  // return checkCatchRate.rate === 1 ? minluck : minluck + 1;
 };
 
 /**
@@ -125,9 +118,7 @@ const getPercent = (rate) => {
     return '100%';
   }
 
-  const percent = (rate * 100).toFixed(2);
-
-  return `${percent}%`;
+  return `${Math.max(0, rate * 100).toFixed(2)}%`;
 };
 
 /**

@@ -3,6 +3,7 @@ import {
   doEvent,
   getData,
   getMapData,
+  getRelicHunterLocation,
   getSetting,
   makeElement,
   onDialogShow,
@@ -17,6 +18,7 @@ import settings from './settings';
 
 import { addSortedMapTab, hideSortedTab, showSortedTab } from './modules/tab-sorted';
 import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
+import { maybeShowInvitesTab } from './modules/tab-invites';
 import { showHuntersTab } from './modules/tab-hunters';
 
 import community from './modules/community';
@@ -176,26 +178,31 @@ const initMapper = (map) => {
   });
 
   if (getSetting('better-maps.default-to-sorted', false)) {
-    // check if the map is completed, and if so don't click the sorted tab
-    if (! (map.can_claim_reward || map.is_complete)) {
+    if (map.can_claim_reward || map.is_complete) {
+      // Fire the goals click because we default to that tab.
+      doEvent('map_show_goals_tab_click', map);
+    } else {
       doEvent('map_sorted_tab_click', map);
     }
-  } else {
-    // Fire the goals click because we default to that tab.
-    doEvent('map_show_goals_tab_click', map);
   }
 
   // Add the block classes.
   addBlockClasses();
 };
 
+let parentShowMap;
 /**
  * Intercept the map request from the controller.
  */
 const intercept = () => {
-  const parentShowMap = hg.controllers.TreasureMapController.showMap;
+  if (parentShowMap) {
+    return;
+  }
+
+  parentShowMap = hg.controllers.TreasureMapController.showMap;
   hg.controllers.TreasureMapController.showMap = (id = false) => {
     parentShowMap(id);
+
     const intercepted = interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
     setTimeout(() => {
       if (! intercepted) {
@@ -250,28 +257,16 @@ const updateRelicHunterHint = async () => {
     return true;
   }
 
-  relicHunter.setAttribute('data-travel-button-added', true);
-
-  const hint = relicHunter.innerText.trim();
-
-  const relicHunterHints = await getData('relic-hunter-hints');
-  // relicHunterHints is an object with each key having an array of hints.
-  // Find the key that has the hint we're looking for.
-  let key = false;
-  Object.keys(relicHunterHints).forEach((k) => {
-    if (relicHunterHints[k].includes(hint)) {
-      key = k;
-    }
-  });
-
-  // Returning true to make sure we don't keep trying to update the hint.
-  if (! key) {
-    return true;
+  const relicHunterLocation = await getRelicHunterLocation();
+  if (! relicHunterLocation || ! relicHunterLocation.id) {
+    return false;
   }
+
+  relicHunter.setAttribute('data-travel-button-added', true);
 
   // Find the environment that matches the key.
   environments = await getData('environments');
-  const environment = environments.find((e) => e.id === key);
+  const environment = environments.find((e) => e.id === relicHunterLocation.id);
   if (! environment) {
     return true;
   }
@@ -348,6 +343,33 @@ const addClearCacheTimeout = () => {
 };
 
 /**
+ * Clear the map cache after 10 seconds.
+ */
+const clearMapCache = () => {
+  let clearCacheTimeout;
+  onDialogShow('map', async () => {
+    const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
+    tabs.forEach((tab) => {
+      const classes = [...tab.classList];
+
+      if (classes.includes('active')) {
+        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item').trim());
+      }
+
+      tab.addEventListener('click', () => {
+        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
+      });
+    });
+
+    // Clear the map cache after 10 seconds so that we always fetch the latest map data when opening the map.
+    clearTimeout(clearCacheTimeout);
+    clearCacheTimeout = setTimeout(() => {
+      hg.controllers.TreasureMapController.clearMapCache();
+    }, 30 * 1000); // 10 seconds.
+  });
+};
+
+/**
  * Initialize the module.
  */
 const init = async () => {
@@ -381,31 +403,12 @@ const init = async () => {
     sidebar();
   }
 
-  let clearCacheTimeout;
-  onDialogShow('map', async () => {
-    const tabs = document.querySelectorAll('.treasureMapRootView-header-navigation-item');
-    tabs.forEach((tab) => {
-      const classes = [...tab.classList];
+  clearMapCache();
 
-      if (classes.includes('active')) {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item').trim());
-      }
-
-      tab.addEventListener('click', () => {
-        doEvent('map_navigation_tab_click', classes.find((c) => c !== 'treasureMapRootView-header-navigation-item' && c !== 'active').trim());
-      });
-    });
-
-    // Clear the map cache after 10 seconds so that we always fetch the latest map data when opening the map.
-    clearCacheTimeout = setTimeout(() => {
-      clearTimeout(clearCacheTimeout);
-      hg.controllers.TreasureMapController.clearMapCache();
-    }, 10 * 1000); // 10 seconds.
-  });
-
-  onEvent('map_navigation_tab_click', () => {
+  onEvent('map_navigation_tab_click', (tab) => {
     addBlockClasses();
     updateMapClasses();
+    maybeShowInvitesTab(tab);
   });
 
   onRequest('users/treasuremap.php', () => {

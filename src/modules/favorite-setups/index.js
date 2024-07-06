@@ -42,11 +42,18 @@ const getFavoriteSetups = async () => {
           base_id: favorite?.base_id,
           weapon_id: favorite?.weapon_id,
           trinket_id: favorite?.trinket_id,
-          power_type: null, // todo: add this.
-          is_mobile: true, // todo: add a check for this when editing.
+          power_type: null, // TODO: add this.
+          is_mobile: true, // TODO: add a check for this when editing.
         };
 
-        newFaves.push(newFavorite);
+        // Check if the setup already exists.
+        const existingSetup = faves.find((s) => {
+          return s?.id === newFavorite.id;
+        });
+
+        if (! existingSetup) {
+          newFaves.push(newFavorite);
+        }
       }
 
       faves = [...faves, ...newFaves];

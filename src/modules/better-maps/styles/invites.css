@@ -1,0 +1,32 @@
+a.mh-ui-invite-refresh-button {
+  position: relative;
+}
+
+a.mh-ui-invite-refresh-button::after {
+  position: absolute;
+  top: 3px;
+  right: -20px;
+  box-sizing: border-box;
+  display: block;
+  width: 18px;
+  height: 18px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/puzzle/refresh.png) no-repeat center center / contain;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+a.mh-ui-invite-refresh-button:hover::after {
+  background-color: #ddd;
+  opacity: 0.9;
+}
+
+a.mh-ui-invite-refresh-button.loading::after {
+  animation: mh-improved-spin 1s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.mh-ui-invite-refresh-button.loading::after {
+    animation: none;
+  }
+}
