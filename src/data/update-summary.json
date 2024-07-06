@@ -10,7 +10,9 @@
     {
       "title": "Better Journal",
       "items": [
-        "Fixed Journal tags showing when setting isn't enabled"
+        "Fixed Journal tags showing when setting isn't enabled",
+        "Added more replacements",
+        "Updated styles"
       ]
     },
     {
@@ -20,7 +22,6 @@
         "Added refresh button to invites list",
         "Fixed issue where map data cache was being cleared too often",
         "Fixed issue with sorted tab showing on completed maps",
-        "Added more replacements",
         "Updated styles",
         "Added 'Show Community Maps information' option",
         "Fixed Relic Hunter location not showing for School of Sorcery"
