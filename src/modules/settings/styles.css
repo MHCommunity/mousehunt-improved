@@ -364,6 +364,7 @@
 #mousehunt-improved-settings-feature-quick-send-supplies-items .inputBoxContainer .multiSelect {
   max-width: 150px;
   margin-right: 4px;
+  margin-bottom: 4px;
 }
 
 #mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBoxContainer.multiSelect {

@@ -51,6 +51,6 @@ export default {
   name: 'Emotes',
   type: 'feature',
   default: true,
-  description: 'Replaces Discord-style emotes on corkboards like :jerry: with the actual image in map and profile corkboard messages',
+  description: 'Replaces Discord-style emotes on corkboards like :jerry: with the actual image in map and profile corkboard messages. <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/emotes.md" target="_blank" rel="noopener noreferrer">View the list of supported emotes</a>',
   load: init,
 };
