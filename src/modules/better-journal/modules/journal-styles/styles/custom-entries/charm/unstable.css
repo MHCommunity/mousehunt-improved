@@ -12,9 +12,6 @@
 .journal .entry.short.misc.custom.unstable_charm_trigger .journaltext {
   max-width: 265px;
   margin-left: -10px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .jsingle.journal .entry.short.misc.custom.unstable_charm_trigger .journaltext {

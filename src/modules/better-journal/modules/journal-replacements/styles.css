@@ -9,3 +9,9 @@
 .entry.short.relicHunter_catch br {
   display: none;
 }
+
+.journal .entry.short.misc.custom.unstable_charm_trigger .journaltext {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
