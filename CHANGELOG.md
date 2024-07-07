@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.51.3
+
+- Added 'Valour Rift: Mirror avatar (to face the other direction)' option to Location HUDs
+- Improved behavior of Floating Islands draggable airship. Position is now saved (you can reset by clicking the island)
+- Updated Dark Mode tweaks styles
+
 ## Version 0.51.2
 
 - Fixed Sunken City charms not showing equipped status
@@ -62,6 +68,7 @@
 - Added 'Bountiful Beanstalk: Mirror avatar (to face the other direction)' option
 - Added 'Bountiful Beanstalk: Show Inventory box in one row' option
 - Added 'Prologue Pond: Normal boat color' option
+- Added 'Floating Islands: Make airship draggable' option
 - Updated styles for Floating Islands and Moussu Picchu
 
 ### Native Dark Mode
