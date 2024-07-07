@@ -121,7 +121,7 @@ span.floatingIslandsHUD-huntsRemaining {
 .floatingIslandsHUD.island .floatingIslandsHUD-airshipContainer {
   top: 70px;
   left: 524px;
-  z-index: 3;
+  z-index: 13;
   filter: drop-shadow(0 0 6px #fbe7a4);
   transform: scale(2);
 }

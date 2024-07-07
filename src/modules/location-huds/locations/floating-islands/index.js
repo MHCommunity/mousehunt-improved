@@ -406,44 +406,59 @@ const makeAirshipDraggable = () => {
     return;
   }
 
+  const airshipBox = airship.querySelector('.floatingIslandsHUD-airship-boundingBox');
+  if (! airshipBox) {
+    return;
+  }
+
+  airshipBox.removeAttribute('onclick');
+
   let isDragging = false;
   let startX, startY, startTop, startLeft;
+  let hasMoved = false; // Flag to check if the airship has been dragged more than 5 pixels
 
-  /**
-   * Update the position of the airship.
-   *
-   * @param {MouseEvent} e The mouse event.
-   */
-  const moveAirship = (e) => {
+  // Define the event handlers as named functions to reference them later for removal
+  const mousemove = (e) => {
     if (! isDragging) {
       return;
     }
-    // Calculate the new position
     const dx = e.clientX - startX;
     const dy = e.clientY - startY;
-    // Update the position of the airship
+    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) {
+      hasMoved = true;
+    }
     airship.style.top = `${startTop + dy}px`;
     airship.style.left = `${startLeft + dx}px`;
   };
 
-  // Mouse down event to start dragging
-  airship.addEventListener('mousedown', (e) => {
-    e.preventDefault();
+  const mouseup = () => {
+    isDragging = false;
+    document.removeEventListener('mouseup', mouseup);
+    document.removeEventListener('mousemove', mousemove);
+    if (! hasMoved) {
+      hg.views.FloatingIslandsWorkshopView.show('customize');
+    }
+  };
 
+  const mousedown = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     isDragging = true;
+    hasMoved = false;
     startX = e.clientX;
     startY = e.clientY;
     startTop = airship.offsetTop;
     startLeft = airship.offsetLeft;
 
-    // When dragging starts, listen for mouse movement and release
-    document.addEventListener('mousemove', moveAirship);
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      // Remove the event listeners when dragging is finished
-      document.removeEventListener('mousemove', moveAirship);
-    }, { once: true });
-  });
+    document.removeEventListener('mouseup', mouseup);
+    document.removeEventListener('mousemove', mousemove);
+
+    document.addEventListener('mouseup', mouseup);
+    document.addEventListener('mousemove', mousemove);
+  };
+
+  airship.removeEventListener('mousedown', mousedown);
+  airship.addEventListener('mousedown', mousedown);
 };
 
 /**
