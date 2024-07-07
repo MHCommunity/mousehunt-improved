@@ -79,7 +79,9 @@ const addExportSettings = (append) => {
     /* eslint-enable @wordpress/no-unused-vars-before-return */
 
     // Save the current settings to the backup.
-    localStorage.setItem('mousehunt-improved-settings-backup', JSON.stringify(getSettings()));
+    if (! window.location.search.includes('safe-mode')) {
+      localStorage.setItem('mousehunt-improved-settings-backup', JSON.stringify(getSettings()));
+    }
 
     const popupElement = document.querySelector('.mousehunt-improved-settings-export-popup');
     if (! popupElement) {

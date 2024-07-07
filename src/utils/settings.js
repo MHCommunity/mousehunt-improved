@@ -1,4 +1,12 @@
-let skipLoadingSettings = null;
+let inSafeMode = null;
+
+const isSafeMode = () => {
+  if (null === inSafeMode) {
+    inSafeMode = window.location.search.includes('safe-mode');
+  }
+
+  return inSafeMode;
+};
 
 /**
  * Get the saved settings.
@@ -10,11 +18,7 @@ let skipLoadingSettings = null;
  * @return {Object} The saved settings.
  */
 const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehunt-improved-settings') => {
-  if (null === skipLoadingSettings) {
-    skipLoadingSettings = window.location.search.includes('safe-mode');
-  }
-
-  if (skipLoadingSettings) {
+  if (isSafeMode()) {
     return defaultValue;
   }
 
@@ -62,6 +66,10 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
  * @param {string}  identifier The identifier for the settings.
  */
 const saveSettingDirect = (key, value, identifier = 'mousehunt-improved-settings') => {
+  if (isSafeMode()) {
+    return;
+  }
+
   // Grab all the settings, set the new one, and save them.
   const settings = getSettingDirect(null, {}, identifier);
 
@@ -151,11 +159,7 @@ const deleteSetting = (key) => {
  * @return {Object} The saved settings.
  */
 const getSettings = () => {
-  if (null === skipLoadingSettings) {
-    skipLoadingSettings = window.location.search.includes('safe-mode');
-  }
-
-  if (skipLoadingSettings) {
+  if (isSafeMode()) {
     return {};
   }
 
