@@ -530,6 +530,10 @@ const hud = () => {
       }, [1000, 2000, 3000, 4000, 5000]);
     }
 
+    if (data?.action === 'retreat') {
+      saveSetting('location-huds.fi-draggable-airship-position', {});
+    }
+
     setTimeout(() => run(), 2000);
   });
 };
