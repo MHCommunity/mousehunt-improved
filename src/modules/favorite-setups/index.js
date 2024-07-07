@@ -911,6 +911,12 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         // remove the setup from the list.
         setupContainer.remove();
+
+        // Also remove from the location-favorite list if it's there.
+        const locationFavorite = document.querySelector(`.location-favorite[data-setup-id="${setupId}"]`);
+        if (locationFavorite) {
+          locationFavorite.remove();
+        }
       }
     }));
   }
