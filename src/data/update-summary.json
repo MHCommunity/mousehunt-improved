@@ -98,7 +98,10 @@
     {
       "title": "Other",
       "items": [
-        "Updated various modules to use more consistent colors"
+        "Updated various modules to use more consistent colors",
+        "Added 'safe-mode' query param to load default settings",
+        "Added 'no-custom-styles' query param to load without styles",
+        "Optimized module loading and settings page initialization"
       ]
     }
   ]

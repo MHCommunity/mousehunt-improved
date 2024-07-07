@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.51.4
+
+- Added 'safe-mode' query param to load default settings
+- Added 'no-custom-styles' query param to load without styles
+- Optimized module loading and settings page initialization
+- Resets Floating Islands airship position on island retreat
+- Fixed Unstable charm text not visible when Journal styles is enabled but not Journal text replacements
+
 ## Version 0.51.3
 
 - Added 'Valour Rift: Mirror avatar (to face the other direction)' option to Location HUDs
