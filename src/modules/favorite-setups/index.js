@@ -1139,7 +1139,7 @@ export default {
   id: 'favorite-setups',
   name: 'Favorite Setups',
   type: 'feature',
-  default: false,
+  default: true,
   description: 'Save your favorite setups and arm them with a single click.',
   load: init,
   settings,
