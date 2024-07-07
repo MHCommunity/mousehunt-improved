@@ -776,3 +776,7 @@ a.floatingIslandsHUD-bait-image:hover {
 .floatingIslandsHUD-inventoryBagButton:hover {
   background-position-y: -1%;
 }
+
+.floatingIslandsHUD-modPanelTooltipContainer.active {
+  z-index: 17;
+}
