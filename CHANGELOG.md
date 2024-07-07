@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.51.1
+
+- Added Royal Loot Crate and SUPER|brie+ Supply Pack to ignored MHCT items
+- Added M400 to ignored MHCT mice
+- Updated dark mode styles
+
 ## Version 0.51.0
 
 ### Better Gifts

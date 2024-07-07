@@ -134,6 +134,8 @@ const updateItemView = async () => {
     420, // king's credits
     1980, // king's keys
     585, // scrambles
+    412, // sb supply pack
+    2541, // RLC
   ];
 
   if (ignored.includes(id)) {

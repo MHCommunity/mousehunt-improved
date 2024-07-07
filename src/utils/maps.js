@@ -430,6 +430,11 @@ const getArForMouse = async (id, type = 'mouse') => {
     url = `https://api.mouse.rip/${mhctPath}/${id}-hlw_22`;
   }
 
+  // No sense in fetching the data for the m400 mouse.
+  if (! isItem && id === 'm400') {
+    return [];
+  }
+
   try {
     mhctData = await fetch(url, { headers: getHeaders() });
   } catch (error) {
