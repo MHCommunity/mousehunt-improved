@@ -1,4 +1,4 @@
-import { getGlobal } from './global';
+let skipLoadingSettings = null;
 
 /**
  * Get the saved settings.
@@ -10,6 +10,14 @@ import { getGlobal } from './global';
  * @return {Object} The saved settings.
  */
 const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehunt-improved-settings') => {
+  if (null === skipLoadingSettings) {
+    skipLoadingSettings = window.location.search.includes('safe-mode');
+  }
+
+  if (skipLoadingSettings) {
+    return defaultValue;
+  }
+
   // Grab the local storage data.
   const settings = JSON.parse(localStorage.getItem(identifier)) || {};
 
@@ -137,7 +145,6 @@ const deleteSetting = (key) => {
   localStorage.setItem('mousehunt-improved-settings', JSON.stringify(settings));
 };
 
-let skipLoadingSettings = null;
 /**
  * Get the saved settings.
  *
@@ -145,7 +152,7 @@ let skipLoadingSettings = null;
  */
 const getSettings = () => {
   if (null === skipLoadingSettings) {
-    skipLoadingSettings = ! getGlobal('query-params').includes('safe-mode');
+    skipLoadingSettings = window.location.search.includes('safe-mode');
   }
 
   if (skipLoadingSettings) {

@@ -204,14 +204,11 @@ const init = async () => {
 
   // Time to load the modules.
   try {
-    setGlobal('query-params', window.location.search);
-
     await loadModules();
 
     // Add the version and loaded flag to the global scope.
     setGlobal('version', mhImprovedVersion);
     setGlobal('loaded', true);
-    setGlobal('query-params', window.location.search);
 
     // Fire the events to signal that the script has been loaded.
     doEvent('mh-improved-loaded', {
@@ -236,6 +233,7 @@ const init = async () => {
       }
     }, {
       page: 'preferences',
+      tab: 'mousehunt-improved-settings',
     });
   } catch (error) {
     showLoadingError(error);

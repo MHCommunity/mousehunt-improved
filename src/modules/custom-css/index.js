@@ -1,4 +1,4 @@
-import { addStyles, getGlobal, getSetting, onEvent } from '@utils';
+import { addStyles, getSetting, onEvent } from '@utils';
 
 import settings from './settings';
 
@@ -7,8 +7,7 @@ import settings from './settings';
  */
 const init = async () => {
   onEvent('mh-improved-loaded', () => {
-    const queryParams = getGlobal('query-params');
-    if (queryParams && queryParams.includes('no-custom-styles')) {
+    if (window.location.search.includes('no-custom-styles')) {
       return;
     }
 

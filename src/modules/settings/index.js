@@ -12,7 +12,7 @@ import {
   getSetting,
   getSettings,
   makeElement,
-  onNavigation,
+  onEvent,
   saveSetting,
   setPage,
   showErrorMessage,
@@ -461,18 +461,17 @@ const init = async () => {
   ], 'mousehunt-improved-settings');
 
   addMhImprovedIconToMenu();
-  onNavigation(() => {
-    moveTabToEnd();
-    highlightLocationHud();
-    addAdvancedSettingsButtons();
-    linkVersionNumber();
+  onEvent('mh-improved-setting-added-to-page', (module) => {
+    if (module?.key === 'error-reporting') {
+      moveTabToEnd();
+      highlightLocationHud();
+      addAdvancedSettingsButtons();
+      linkVersionNumber();
 
-    if (! getSetting('experiments.new-settings-styles-columns', false)) {
-      addTogglesToSettings();
+      if (! getSetting('experiments.new-settings-styles-columns', false)) {
+        addTogglesToSettings();
+      }
     }
-  }, {
-    page: 'preferences',
-    tab: 'mousehunt-improved-settings',
   });
 };
 
