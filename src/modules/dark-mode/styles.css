@@ -385,3 +385,7 @@
   border: 1px solid #5c5c5c;
   box-shadow: 1px 1px 1px #535151;
 }
+
+.mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .journal .content .journalbody .journaltext {
+  font-size: 11px;
+}
