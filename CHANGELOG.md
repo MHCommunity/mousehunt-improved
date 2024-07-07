@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.51.2
+
+- Fixed Sunken City charms not showing equipped status
+- Added "Show number of misses" option to Location Catch Stats
+
 ## Version 0.51.1
 
 - Added Royal Loot Crate and SUPER|brie+ Supply Pack to ignored MHCT items

@@ -61,6 +61,12 @@
       ]
     },
     {
+      "title": "Location Catch Stats",
+      "items": [
+        "Added 'Show number of misses' option"
+      ]
+    },
+    {
       "title": "Location HUDs",
       "items": [
         "Added 'Add toggle button to top menu' option",

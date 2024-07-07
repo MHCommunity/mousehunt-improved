@@ -2,7 +2,7 @@
   position: absolute;
   top: 25px;
   left: 25px;
-  z-index: 50;
+  z-index: 150;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {

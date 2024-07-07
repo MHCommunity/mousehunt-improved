@@ -1,6 +1,14 @@
-import { addStyles, addSubmenuItem, doRequest, makeElementDraggable } from '@utils';
+import {
+  addStyles,
+  addSubmenuItem,
+  doRequest,
+  getSetting,
+  makeElement
+} from '@utils';
 
 import styles from './styles.css';
+
+import settings from './settings';
 
 /**
  * Get the mouse stats.
@@ -81,13 +89,18 @@ const buildMouseMarkup = (mouseData) => {
   const imageNameContainer = document.createElement('div');
   imageNameContainer.append(image);
   imageNameContainer.append(name);
+  mouseEl.append(imageNameContainer);
 
   // Create the catches element.
   const catches = document.createElement('div');
   catches.classList.add('mh-catch-stats-catches');
-  catches.innerText = mouse.num_catches;
 
-  mouseEl.append(imageNameContainer);
+  catches.innerText = mouse.num_catches;
+  if (showMisses) {
+    makeElement('span', 'mh-catch-stats-separator', '/', catches);
+    makeElement('span', 'mh-catch-stats-misses', mouse.num_misses, catches);
+  }
+
   mouseEl.append(catches);
 
   return mouseEl;
@@ -97,6 +110,8 @@ const buildMouseMarkup = (mouseData) => {
  * Show the stat modal.
  */
 const showModal = async () => {
+  showMisses = getSetting('location-catch-stats.show-misses', false);
+
   // Remove the existing modal.
   const existing = document.querySelector('#mh-catch-stats');
   if (existing) {
@@ -171,6 +186,8 @@ const showModal = async () => {
   makeElementDraggable('#mh-catch-stats', '.mh-catch-stats-header', 25, 25, 'mh-catch-stats-position');
 };
 
+let showMisses = false;
+
 /**
  * Initialize the module.
  */
@@ -195,4 +212,5 @@ export default {
   default: true,
   description: 'Adds a "Location Catch Stats" to the Mice menu to see your catch stats for the current location.',
   load: init,
+  settings,
 };
