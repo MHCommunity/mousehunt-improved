@@ -19,6 +19,6 @@ export default {
   name: 'SSDB Toothlet Counter',
   type: 'feature',
   default: true,
-  description: 'Shows the number of toothlets you have when SSDB is equipped.',
+  description: 'Show the number of toothlets you have when SSDB is equipped.',
   load: init,
 };

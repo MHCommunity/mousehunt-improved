@@ -251,7 +251,7 @@ export default {
   name: 'Better Items',
   type: 'better',
   default: true,
-  description: 'Updates the styles and shows drop rates, links to MHCT, and MH Wiki.',
+  description: 'Update the styles, show drop rates, and provide links to MHCT and MH Wiki.',
   load: init,
   settings,
 };

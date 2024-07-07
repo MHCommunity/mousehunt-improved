@@ -64,6 +64,6 @@ export default {
   name: 'Better King\'s Reward',
   type: 'better',
   default: true,
-  description: 'Updates the style of the King\'s Reward slightly, automatically closes the success message',
+  description: 'Update the style of the King’s Reward and automatically close the success message.',
   load: init,
 };

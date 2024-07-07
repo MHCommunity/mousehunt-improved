@@ -86,7 +86,7 @@ export default {
   name: 'Copy ID Button',
   type: 'feature',
   default: true,
-  description: 'Hover over your profile picture in the HUD for a quick \'Copy ID to clipboard\' button.',
+  description: 'Hover over your profile picture in the HUD for a quick “Copy ID to clipboard” button.',
   load: init,
   settings,
 };

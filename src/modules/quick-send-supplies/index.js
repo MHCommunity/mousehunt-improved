@@ -290,7 +290,7 @@ export default {
   name: 'Quick Send Supplies',
   type: 'feature',
   default: true,
-  description: 'Hover over the Send Supplies button on someone\'s profile or hover-profile to easily send any quantity an item.',
+  description: 'Hover over the Send Supplies button on someone’s profile or hover-profile to easily send any quantity of an item.',
   load: init,
   settings,
 };

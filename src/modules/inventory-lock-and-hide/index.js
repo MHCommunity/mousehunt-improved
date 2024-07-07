@@ -637,6 +637,6 @@ export default {
   name: 'Inventory - Lock and Hide',
   type: 'feature',
   default: true,
-  description: 'Lock and hide items in your inventory. Will also hide items in the trap browser.',
+  description: 'Lock and hide items in your inventory. Also hide items in the trap browser.',
   load: init,
 };

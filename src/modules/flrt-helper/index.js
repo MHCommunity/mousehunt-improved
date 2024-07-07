@@ -226,6 +226,6 @@ export default {
   name: 'FLRT Helper',
   type: 'feature',
   default: false,
-  description: 'When opening a chest from a map, adds a "Return to Maptain" button that will let you choose which tradable items to send directly to the Maptain.',
+  description: 'Add a “Return to Maptain” button when opening a chest from a map, allowing you to choose which tradable items to send directly to the Maptain.',
   load: init,
 };

@@ -153,6 +153,6 @@ export default {
   name: 'Larger Skin Images',
   type: 'feature',
   default: true,
-  description: 'Shows larger images for skins in the trap selector.',
+  description: 'Show larger images for skins in the trap selector.',
   load: init,
 };

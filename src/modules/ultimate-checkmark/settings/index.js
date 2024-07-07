@@ -31,7 +31,7 @@ export default async () => {
     id: 'ultimate-checkmark.show',
     title: 'Ultimate Checkmark',
     default: [],
-    description: 'Adds more things collect on your Hunter profile.',
+    description: 'Add more items to collect on your Hunter profile.',
     settings: {
       type: 'multi-toggle',
       options,

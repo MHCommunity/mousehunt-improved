@@ -510,7 +510,7 @@ export default {
   name: 'Better Quests',
   type: 'better',
   default: true,
-  description: 'Allows you to open the assignments popup anywhere, improves the UI of the quests tab, and adds a helper for the M400 assignments.',
+  description: 'Allow opening the assignments popup anywhere, improve the UI of the quests tab, and add a helper for the M400 assignments.',
   load: init,
   settings,
 };

@@ -546,7 +546,7 @@ export default {
   name: 'Better Gifts',
   type: 'better',
   default: true,
-  description: 'Quickly accept and return all your gifts as well as picking random friends to send to.',
+  description: 'Quickly accept and return all your gifts, and pick random friends to send to.',
   load: init,
   settings,
 };

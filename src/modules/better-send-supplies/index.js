@@ -345,7 +345,7 @@ export default {
   name: 'Better Send Supplies',
   type: 'better',
   default: true,
-  description: 'Adds pinned items, search, and sorting to the Send Supplies page.',
+  description: 'Add pinned items, search, and sorting to the Send Supplies page.',
   load: init,
   settings,
 };

@@ -36,7 +36,7 @@ export default {
   name: 'Better UI',
   type: 'better',
   default: true,
-  description: 'Updates the MH interface with a variety of UI and style changes.',
+  description: 'Update the MH interface with various UI and style changes.',
   order: -1,
   load: init,
 };

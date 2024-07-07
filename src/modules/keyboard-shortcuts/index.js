@@ -512,6 +512,6 @@ export default {
   name: 'Keyboard Shortcuts',
   type: 'feature',
   default: true,
-  description: 'Press \'?\' to see and edit the keyboard shortcuts. You can also <a href="#" class="mh-ui-keyboard-shortcuts-edit">edit them here</a>.',
+  description: 'Press “?” to see and edit keyboard shortcuts. You can also edit them [here](#).',
   load: init,
 };

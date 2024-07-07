@@ -8,6 +8,6 @@ export default {
   name: 'Inventory - Open All but One',
   type: 'feature',
   default: true,
-  description: 'Adds \'Open All But One\' button to convertible items in your inventory.',
+  description: 'Add an “Open All But One” button to convertible items in your inventory.',
   load: initOpenButtons,
 };

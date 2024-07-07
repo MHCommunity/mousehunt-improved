@@ -26,6 +26,6 @@ export default {
   name: 'Hide Footer',
   type: 'element-hiding',
   default: false,
-  description: 'Hides the footer.',
+  description: 'Hide the footer.',
   load: init,
 };

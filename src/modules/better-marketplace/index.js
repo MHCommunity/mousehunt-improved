@@ -387,7 +387,7 @@ export default {
   name: 'Better Marketplace',
   type: 'better',
   default: true,
-  description: 'Updates the marketplace layout and appearance and adds a variety of small features, like being able to click the "Buying" or "Selling" text to toggle between the two.',
+  description: 'Update the styles, and add small features like toggling between “Buying” and “Selling” by clicking the text.',
   load: init,
   settings,
 };

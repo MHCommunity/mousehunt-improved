@@ -229,7 +229,7 @@ export default {
   id: 'lgs-reminder',
   name: `${getSetting('experiments.new-settings-styles-columns', false) ? 'LGS' : 'Lucky Golden Shield'} Duration & Reminder`,
   type: 'feature',
-  description: 'Show your LGS duration in the HUD and warn you when it\'s about to expire.',
+  description: 'Show your LGS duration in the HUD and warn you when it’s about to expire.',
   default: false,
   load: init,
   settings,

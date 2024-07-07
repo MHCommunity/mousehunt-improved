@@ -16,6 +16,6 @@ export default {
   name: 'Hide News Ticker',
   type: 'element-hiding',
   default: true,
-  description: 'Hides the news ticker in the header.',
+  description: 'Hide the news ticker in the header.',
   load: init,
 };

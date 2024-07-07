@@ -26,11 +26,15 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Better Shops](docs/better-shops.md)**: Updated shop layout for better readability and navigation.
 - **[Better Tournaments](docs/better-tournaments.md)**: Enhanced tournament page UI.
 - **[Better Travel](docs/better-travel.md)**: Improved travel interface with reminders and location highlights.
+- **[Big Timer](docs/big-timer.md)**: Click the timer to toggle between a large and small size.
 - **[Catch Rate Estimator & Minlucks](docs/catch-rate-estimator-and-minlucks.md)**: Display estimated catch rates and minluck on the Camp page.
+- **[Codex at Bottom](docs/codex-at-bottom.md)**: Move the codex to the bottom of the trap selector.
 - **[Copy ID Button](docs/copy-id-button.md)**: Hover over your profile picture and copy your user ID with one click.
 - **[Dark Mode Updates & Tweaks](docs/dark-mode-updates-and-tweaks.md)**: Adjustments for a better dark mode experience. Requires Dark Mode to be enabled in [MHCT](https://mhct.win/).
 - **[Data Exporters](docs/data-exporters.md)**: Export game data to JSON or CSV files.
+- **[Delayed Menus](docs/delayed-menus.md)**: Adds a short delay to the menu dropdowns to prevent accidental clicks.
 - **[Delayed Tooltips](docs/delayed-tooltips.md)**: Tooltip delay for improved interface interaction.
+- **[Emotes](docs/emotes.md)**: Replaces Discord-style emotes on corkboards like :jerry: with the actual image in map and profile corkboard messages.
 - **[Favorite Setups](docs/favorite-setups.md)**: Save and load favorite trap setups easily.
 - **[Fixes](docs/fixes.md)**: Various fixes for game bugs and issues.
 - **[FLRT Helper](docs/flrt-helper.md)**: When opening a chest from a map, adds a "Return to Maptain" button that will let you choose which tradable items to send directly to the Maptain.
@@ -55,6 +59,10 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Printing Press Paper Counter](docs/printing-press-paper-counter.md)**: Shows the number of Prolific Printing Papers you have when Naughty List Printing Press Base is equipped.
 - **[Quick Filters and Sort](docs/quick-filters-and-sort.md)**: One-click filters and sorting for traps, bases, and charms.
 - **[Quick Send Supplies](docs/quick-send-supplies.md)**: Quickly pick and send supplies directly from the HUD.
+- **[Replace Favicon](docs/replace-favicon.md)**: Replace the favicon with a more fitting one.
+- **[Scoreboard Search on Profiles](docs/scoreboard-search-on-profiles.md)**: Easily search scoreboards for a user from their profile page.
+- **[Shield Goes to Camp](docs/shield-goes-to-camp.md)**: When clicking the shield, it will take you to the Camp page, unless you're in the Camp page, then it will take you to your profile.
+- **[Show Auras](docs/show-auras.md)**: Show auras and their expiry time below the trap stats.
 - **[SSDB Toothlet Counter](docs/ssdb-toothlet-counter.md)**: Shows the number of toothlets you have when SSDB is equipped.
 - **[Taller Windows](docs/taller-windows.md)**: Increase the height of various windows for better readability.
 - **[TEM Crowns](docs/tem-crowns.md)**: Easily see your mouse crowns and number of catches in the Trap Effectiveness view.
@@ -71,13 +79,14 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 ### 🛑 Element Hiding
 
 - **[Adblock](docs/adblock.md)**: Hides advertisements for Feedback Friday, mobile apps, news ticker, etc.
-- **[Hide Codices](docs/hide-codices.md)**: Hide the codex section in the trap selector.
-- **[Hide Daily Draw](docs/hide-daily-draw.md)**: Hide the Daily Draw notifications in the inbox.
-- **[Hide Footer](docs/hide-footer.md)**: Clean up the page by hiding the footer.
-- **[Hide News Ticker](docs/hide-news-ticker.md)**: Hide the news ticker.
+- **[Hide Codices](docs/hide-codices.md)**: Hides the codex section in the trap selector.
+- **[Hide Daily Draw](docs/hide-daily-draw.md)**: Hides the Daily Draw notifications in the inbox.
+- **[Hide Daily Reward Popup](docs/hide-daily-reward-popup.md)**: Hides the Daily Reward popup.
+- **[Hide Footer](docs/hide-footer.md)**: Hides the footer.
+- **[Hide News Ticker](docs/hide-news-ticker.md)**: Hides the news ticker.
 - **[Hide Share Buttons](docs/hide-share-buttons.md)**: Remove social share buttons for a cleaner interface.
-- **[Hide Sidebar](docs/hide-sidebar.md)**: Hide the sidebar for a cleaner interface.
-- **[Journal Privacy](docs/journal-privacy.md)**: Hides player names in the journal. Good for screenshots that won't dox them.
+- **[Hide Sidebar](docs/hide-sidebar.md)**: Hides the sidebar and adds a 'Sidebar' dropdown in the top menu.
+- **[Journal Privacy](docs/journal-privacy.md)**: Hides player names in the journal. Good for screenshots that maintain privacy.
 
 ### 📍 Location HUDs
 
@@ -106,7 +115,9 @@ See [Location HUDs](docs/location-huds/README.md) for a list of changes and feat
 - **[Fungal Cavern](docs/location-huds/fungal-cavern.md)**
 - **[Furoma Rift](docs/location-huds/furoma-rift.md)**
 - **[Gnawnia Express Station](docs/location-huds/gnawnia-express-station.md)**
+- **[Gnawnia Rift](docs/location-huds/gnawnia-rift.md)**
 - **[Great Gnarled Tree](docs/location-huds/great-gnarled-tree.md)**
+- **[Harbour](docs/location-huds/harbour.md)**
 - **[Iceberg](docs/location-huds/iceberg.md)**
 - **[Jungle of Dread](docs/location-huds/jungle-of-dread.md)**
 - **[King's Arms](docs/location-huds/kings-arms.md)**

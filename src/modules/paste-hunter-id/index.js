@@ -71,6 +71,6 @@ export default {
   name: 'Paste Hunter ID',
   type: 'feature',
   default: true,
-  description: 'Copy a Hunter ID to your clipboard and then press Ctrl/Cmd+v anywhere to go directly to that hunter\'s profile.',
+  description: 'Copy a Hunter ID to your clipboard and press Ctrl/Cmd+V anywhere to go directly to that hunter’s profile.',
   load: init,
 };

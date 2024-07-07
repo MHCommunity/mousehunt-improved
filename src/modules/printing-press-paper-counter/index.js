@@ -19,6 +19,6 @@ export default {
   name: 'Printing Press Paper Counter',
   type: 'feature',
   default: true,
-  description: 'Shows the number of Prolific Printing Papers you have for the Printing Press bases.',
+  description: 'Show the number of Prolific Printing Papers you have for the Printing Press bases.',
   load: init,
 };

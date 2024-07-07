@@ -259,6 +259,6 @@ export default {
   name: 'Prestige Base Stats',
   type: 'feature',
   default: true,
-  description: 'Shows the correct stats for the Prestige Base in the base selector.',
+  description: 'Show the correct stats for the Prestige Base in the base selector.',
   load: init,
 };

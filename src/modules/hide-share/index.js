@@ -19,6 +19,6 @@ export default {
   name: 'Hide Share Buttons',
   type: 'element-hiding',
   default: true,
-  description: 'Hides the share buttons.',
+  description: 'Hide the share buttons.',
   load: init,
 };

@@ -277,7 +277,7 @@ export default {
   name: 'Better Tournaments',
   type: 'better',
   default: true,
-  description: 'Updates the Tournaments UI to show information on hover and a variety of small interface tweaks.',
+  description: 'Update the Tournaments UI to show information on hover and make various small interface tweaks.',
   load: init,
   settings
 };

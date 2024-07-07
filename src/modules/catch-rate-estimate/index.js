@@ -304,6 +304,6 @@ export default {
   name: 'Catch Rate Estimator & Minlucks',
   type: 'feature',
   default: true,
-  description: 'Minluck and catch rate estimates.',
+  description: 'Display Minluck and catch rate estimates on the Camp page.',
   load: init,
 };

@@ -48,7 +48,7 @@ export default async () => {
     {
       id: 'debug.disable-cache',
       title: 'Disable caching',
-      description: 'Disable caching of data and settings'
+      description: 'Disable caching of data and settings.',
     }
   ];
 };

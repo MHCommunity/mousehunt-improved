@@ -467,7 +467,7 @@ export default {
   name: 'Better Maps',
   type: 'better',
   default: true,
-  description: 'Adds a number of features to maps, including showing attracting rates, a sorted tab that categorizes a variety of maps, and showing more information on the Hunters tab.',
+  description: 'Add features to maps such as updated styles, attraction rates, a sorted tab categorizing various maps, and displaying more information on the various tabs.',
   load: init,
   settings
 };

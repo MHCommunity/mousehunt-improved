@@ -52,6 +52,6 @@ export default {
   name: 'Unique Loot Count',
   type: 'feature',
   default: true,
-  description: 'Shows the number of unique loot items in the progress log',
+  description: 'Show the number of unique loot items in the progress log.',
   load: init,
 };

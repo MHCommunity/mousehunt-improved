@@ -134,6 +134,6 @@ export default {
   name: 'Hide Daily Draw',
   type: 'element-hiding',
   default: false,
-  description: 'Hides the Daily Draw inbox tab and notifications.',
+  description: 'Hide the Daily Draw inbox tab and notifications.',
   load: init,
 };

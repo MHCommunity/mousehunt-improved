@@ -39,7 +39,7 @@ export default async () => {
     id: 'custom-hud',
     title: 'Custom HUD background <a class="mh-improved-custom-hud-preview hidden">Preview choices</a>',
     default: [options[0]],
-    description: 'Change the marbled HUD background',
+    description: 'Change the marbled HUD background.',
     settings: {
       type: 'multi-select',
       number: 1,

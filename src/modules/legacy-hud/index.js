@@ -308,7 +308,7 @@ export default {
   name: 'Legacy HUD & Legacy HUD Tweaks',
   type: 'feature',
   default: false,
-  description: 'Enable the legacy HUD or tweaks to it.',
+  description: 'Enable the legacy HUD or make tweaks to it.',
   load: init,
   settings,
 };

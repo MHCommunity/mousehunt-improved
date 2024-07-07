@@ -314,6 +314,6 @@ const init = async () => {
 export default {
   id: 'experiments.raffle',
   name: 'Return Raffles button',
-  description: 'Adds a button to return all raffle tickets to the Inbox. Use at your own risk.',
+  description: 'Add a button to return all raffle tickets to the Inbox. Use at your own risk.',
   load: init,
 };

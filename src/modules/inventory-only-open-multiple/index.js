@@ -17,6 +17,6 @@ export default {
   name: 'Inventory - Only Open Multiple',
   type: 'feature',
   default: false,
-  description: 'Lock opening things in your inventory unless you have multiple of them.',
+  description: 'Lock opening items in your inventory unless you have multiples of them.',
   load: init,
 };

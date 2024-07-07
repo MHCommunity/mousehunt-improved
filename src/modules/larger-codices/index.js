@@ -17,6 +17,6 @@ export default {
   name: 'Larger Codices',
   type: 'feature',
   default: true,
-  description: 'Shows larger images for codices in the trap selector.',
+  description: 'Show larger images for codices in the trap selector.',
   load: init,
 };

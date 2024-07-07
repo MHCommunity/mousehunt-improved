@@ -50,7 +50,7 @@ export default async () => {
     id: 'custom-background',
     title: 'Custom Background <a class="mh-improved-custom-bg-preview hidden">Preview choices</a>',
     default: [options[0]],
-    description: 'Change the background to an event background, a color, or a gradient',
+    description: 'Change the background to an event background, color, or gradient.',
     settings: {
       type: 'multi-select',
       number: 1,

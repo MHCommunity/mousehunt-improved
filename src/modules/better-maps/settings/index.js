@@ -16,7 +16,7 @@ export default async () => {
     {
       id: 'better-maps.community',
       title: 'Show Community Maps information',
-      description: 'Show last active time on community maps and hides old maps',
+      description: 'Show last active time on community maps and hide old maps.',
       default: false,
     }
   ];

@@ -14,6 +14,6 @@ export default {
   name: 'Delayed Menus',
   type: 'feature',
   default: false,
-  description: 'Adds a short delay to the menu dropdowns to prevent accidental clicks',
+  description: 'Add a short delay to the menu dropdowns to prevent accidental clicks.',
   load: init,
 };

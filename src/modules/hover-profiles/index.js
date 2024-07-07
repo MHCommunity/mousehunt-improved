@@ -320,6 +320,6 @@ export default {
   name: 'Hover Profiles',
   type: 'feature',
   default: true,
-  description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere and get a mini-profile popup.',
+  description: 'Hover over a friend’s name in your journal, inbox, or elsewhere to get a mini-profile popup.',
   load: init,
 };

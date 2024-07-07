@@ -591,7 +591,7 @@ export default {
   name: 'Better Mice',
   type: 'better',
   default: true,
-  description: 'Adds attraction rate stats and links to MHWiki and MHCT to mouse dialogs. Adds sorting to the mouse stats pages, and adds the King\'s Crown tab to the mouse pages.',
+  description: 'Add attraction rate stats and links to MH Wiki and MHCT to mouse dialogs. Sort the mouse stats pages and add the King’s Crown tab to the mouse pages.',
   load: init,
   settings,
 };

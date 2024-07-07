@@ -8,7 +8,7 @@ export default async () => {
     id: 'override-styles',
     title: 'Custom Styles',
     default: '',
-    description: '<a href="https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS" target="_blank" rel="noopener noreferrer">Custom CSS</a> to apply',
+    description: 'Apply <a href="https://github.com/MHCommunity/mousehunt-improved/wiki/Custom-CSS" target="_blank" rel="noopener noreferrer">Custom CSS</a>.',
     settings: {
       type: 'textarea',
     },

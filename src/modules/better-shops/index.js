@@ -208,7 +208,7 @@ export default {
   name: 'Better Shops',
   type: 'better',
   default: true,
-  description: 'Updates the Shop layout and appearance, minimizes owned items that have an inventory limit of 1, and more.',
+  description: 'Update the shop layout and appearance, minimize owned items with an inventory limit of 1, and more.',
   load: init,
   settings,
 };

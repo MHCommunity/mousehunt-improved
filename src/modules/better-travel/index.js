@@ -750,7 +750,7 @@ export default {
   name: 'Better Travel',
   type: 'better',
   default: true,
-  description: 'Adds locations in the current region to the Travel dropdown menu, a "Simple Travel" tab with a grid of locations, an optional alphabetized list, an indicator for where the Relic Hunter is.',
+  description: 'Add locations in the current region to the Travel dropdown menu, include a “Simple Travel” tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.',
   load: init,
   settings,
 };

@@ -120,6 +120,6 @@ export default {
   name: 'TEM Crowns',
   type: 'feature',
   default: true,
-  description: 'Adds crowns and catches to the the Trap Effectiveness Meter.',
+  description: 'Add crowns and catches to the Trap Effectiveness Meter.',
   load: init,
 };
