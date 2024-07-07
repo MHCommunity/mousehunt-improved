@@ -1,3 +1,5 @@
+import { getGlobal } from './global';
+
 /**
  * Get the saved settings.
  *
@@ -135,18 +137,32 @@ const deleteSetting = (key) => {
   localStorage.setItem('mousehunt-improved-settings', JSON.stringify(settings));
 };
 
+let skipLoadingSettings = null;
 /**
  * Get the saved settings.
  *
  * @return {Object} The saved settings.
  */
 const getSettings = () => {
+  if (null === skipLoadingSettings) {
+    skipLoadingSettings = ! getGlobal('query-params').includes('safe-mode');
+  }
+
+  if (skipLoadingSettings) {
+    return {};
+  }
+
   const settings = localStorage.getItem('mousehunt-improved-settings');
   if (! settings) {
     return {};
   }
 
-  return JSON.parse(settings);
+  try {
+    return JSON.parse(settings);
+  } catch (error) {
+    console.error('Error parsing settings:', error); // eslint-disable-line no-console
+    return {};
+  }
 };
 
 /**

@@ -5,9 +5,11 @@
  * @param {any}    value Value to add.
  */
 const setGlobal = (key, value) => {
-  window.mhui = window.mhui || {};
-  window.mhui[key] = value;
-  app.mhui = window.mhui;
+  if (! app.mhui) {
+    app.mhui = {};
+  }
+
+  app.mhui[key] = value;
 };
 
 /**
@@ -18,10 +20,15 @@ const setGlobal = (key, value) => {
  * @return {any|boolean} Value of the key or false if not found.
  */
 const getGlobal = (key) => {
-  if (window?.mhui) {
-    return window.mhui[key] || false;
+  if (app?.mhui && app.mhui[key]) {
+    return app.mhui[key];
   }
-  return app?.mhui?.[key] || false;
+
+  if (window?.mhui && window.mhui[key]) {
+    return window.mhui[key];
+  }
+
+  return false;
 };
 
 export {

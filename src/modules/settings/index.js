@@ -15,6 +15,7 @@ import {
   onNavigation,
   saveSetting,
   setPage,
+  showErrorMessage,
   showSuccessMessage
 } from '@utils';
 
@@ -188,6 +189,23 @@ const addExportSettings = (append) => {
     const saveButton = popupElement.querySelector('.mousehuntActionButton.save');
     saveButton.addEventListener('click', () => {
       const newSettings = textarea.value;
+
+      // Verify that the settings are valid JSON
+      try {
+        JSON.parse(newSettings);
+      } catch (error) {
+        showErrorMessage({
+          message: 'Invalid JSON. Settings not saved.',
+          append: saveButton,
+          after: true,
+          classname: 'settings-export-save-error',
+        });
+
+        console.error(error); // eslint-disable-line no-console
+
+        return;
+      }
+
       localStorage.setItem('mousehunt-improved-settings-backup', localStorage.getItem('mousehunt-improved-settings'));
       localStorage.setItem('mousehunt-improved-settings', newSettings);
 

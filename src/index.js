@@ -7,7 +7,6 @@ import {
   debuglog,
   doEvent,
   getAnonymousUserHash,
-  getCurrentPage,
   getFlag,
   getGlobal,
   getSetting,
@@ -23,21 +22,21 @@ import {
 import * as imported from './modules/*/index.js'; // eslint-disable-line import/no-unresolved
 const modules = imported;
 
+const categories = [
+  { id: 'required', name: 'Always Loaded' },
+  { id: 'better', name: `MouseHunt Improved <a class="version">v${mhImprovedVersion}</a>` },
+  { id: 'feature', name: 'Features' },
+  { id: 'design', name: 'Design' },
+  { id: 'element-hiding', name: 'Hide Page Elements' },
+  { id: 'location-hud', name: 'Location HUDs' },
+  { id: 'beta', name: 'Beta Features' },
+  { id: 'advanced', name: 'Advanced' },
+];
+
 /**
  * Load all the modules.
  */
 const loadModules = async () => {
-  const categories = [
-    { id: 'required', name: 'Always Loaded' },
-    { id: 'better', name: `MouseHunt Improved <a class="version">v${mhImprovedVersion}</a>` },
-    { id: 'feature', name: 'Features' },
-    { id: 'design', name: 'Design' },
-    { id: 'element-hiding', name: 'Hide Page Elements' },
-    { id: 'location-hud', name: 'Location HUDs' },
-    { id: 'beta', name: 'Beta Features' },
-    { id: 'advanced', name: 'Advanced' },
-  ];
-
   // Don't load if already loaded.
   if (getGlobal('loaded')) {
     debug('Already loaded, exiting.');
@@ -73,17 +72,6 @@ const loadModules = async () => {
       // If order is the same, sort by name.
       return (a.name || a.id).localeCompare(b.name || b.id);
     });
-  }
-
-  // Add the settings for each module.
-  for (const module of categories) {
-    if ('preferences' === getCurrentPage()) {
-      await addSettingForModule(module);
-    } else {
-      onNavigation(() => addSettingForModule(module), {
-        page: 'preferences',
-      });
-    }
   }
 
   // Track modules to load.
@@ -216,11 +204,14 @@ const init = async () => {
 
   // Time to load the modules.
   try {
+    setGlobal('query-params', window.location.search);
+
     await loadModules();
 
     // Add the version and loaded flag to the global scope.
     setGlobal('version', mhImprovedVersion);
     setGlobal('loaded', true);
+    setGlobal('query-params', window.location.search);
 
     // Fire the events to signal that the script has been loaded.
     doEvent('mh-improved-loaded', {
@@ -237,6 +228,15 @@ const init = async () => {
     );
 
     doEvent('mh-improved-init', mhImprovedVersion);
+
+    // Add the settings for each module.
+    onNavigation(async () => {
+      for (const module of categories) {
+        await addSettingForModule(module);
+      }
+    }, {
+      page: 'preferences',
+    });
   } catch (error) {
     showLoadingError(error);
   }
