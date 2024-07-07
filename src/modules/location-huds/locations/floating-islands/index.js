@@ -9,6 +9,7 @@ import {
   onRequest,
   onTravel,
   plainHumanizer,
+  saveSetting,
   setMultipleTimeout,
   showHornMessage
 } from '@utils';
@@ -413,6 +414,15 @@ const makeAirshipDraggable = () => {
 
   airshipBox.removeAttribute('onclick');
 
+  const startingPosition = getSetting('location-huds.fi-draggable-airship-position', {});
+  if (startingPosition.top) {
+    airship.style.top = `${startingPosition.top}px`;
+  }
+
+  if (startingPosition.left) {
+    airship.style.left = `${startingPosition.left}px`;
+  }
+
   let isDragging = false;
   let startX, startY, startTop, startLeft;
   let hasMoved = false; // Flag to check if the airship has been dragged more than 5 pixels
@@ -435,7 +445,9 @@ const makeAirshipDraggable = () => {
     isDragging = false;
     document.removeEventListener('mouseup', mouseup);
     document.removeEventListener('mousemove', mousemove);
-    if (! hasMoved) {
+    if (hasMoved) {
+      saveSetting('location-huds.fi-draggable-airship-position', { top: airship.offsetTop, left: airship.offsetLeft });
+    } else {
       hg.views.FloatingIslandsWorkshopView.show('customize');
     }
   };
@@ -459,16 +471,35 @@ const makeAirshipDraggable = () => {
 
   airship.removeEventListener('mousedown', mousedown);
   airship.addEventListener('mousedown', mousedown);
+
+  const islandContainer = document.querySelector('.floatingIslandPaperDoll');
+  if (islandContainer) {
+    islandContainer.addEventListener('click', () => {
+      // Reset the airship position when clicking on the island.
+      saveSetting('location-huds.fi-draggable-airship-position', {});
+
+      airship.style.transition = 'top 0.5s, left 0.5s';
+      airship.style.top = '';
+      airship.style.left = '';
+      setTimeout(() => {
+        airship.style.transition = '';
+      }, 500);
+    });
+  }
 };
 
 /**
  * Helper to do all the things.
  */
 const run = async () => {
-  await showJetstream();
+  showJetstream();
   await addEnemyClass();
   await addBossCountdown();
   await maybeChangeWarning();
+
+  if (getSetting('location-huds.fi-draggable-airship')) {
+    makeAirshipDraggable();
+  }
 };
 
 /**
@@ -509,8 +540,4 @@ const hud = () => {
 export default async () => {
   addHudStyles(styles);
   hud();
-
-  if (getSetting('experiments.fi-draggable-airship')) {
-    makeAirshipDraggable();
-  }
 };

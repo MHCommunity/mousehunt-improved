@@ -121,7 +121,7 @@ span.floatingIslandsHUD-huntsRemaining {
 .floatingIslandsHUD.island .floatingIslandsHUD-airshipContainer {
   top: 70px;
   left: 524px;
-  z-index: 13;
+  z-index: 16;
   filter: drop-shadow(0 0 6px #fbe7a4);
   transform: scale(2);
 }
@@ -357,6 +357,10 @@ a.floatingIslandsHUD-islandLoot:focus {
   z-index: 10;
   width: 30px;
   height: 30px;
+}
+
+.floatingIslandsHUD-jetstream .mousehuntTooltip {
+  z-index: 20;
 }
 
 .launch_pad_island .floatingIslandsHUD-jetstream {
@@ -767,4 +771,8 @@ a.floatingIslandsHUD-bait-image:hover {
 
 .floatingIslandsHUD-enemy-wardenProgress {
   top: -11px;
+}
+
+.floatingIslandsHUD-inventoryBagButton:hover {
+  background-position-y: -1%;
 }
