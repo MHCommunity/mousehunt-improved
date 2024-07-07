@@ -1,5 +1,12 @@
-import { addHudStyles, createPopup, makeElement, onTrapChange } from '@utils';
+import {
+  addHudStyles,
+  createPopup,
+  getSetting,
+  makeElement,
+  onTrapChange
+} from '@utils';
 
+import flippedAvatarStyles from './flipped-avatar.css';
 import styles from './styles.css';
 
 import simulate from './simulator';
@@ -253,7 +260,10 @@ const ifUcEquipped = () => {
  * Initialize the module.
  */
 export default async () => {
-  addHudStyles(styles);
+  addHudStyles([
+    styles,
+    getSetting('location-huds.valour-rift-flip-avatar', false) ? flippedAvatarStyles : '',
+  ]);
 
   addUIComponents();
   addSimulatorEvents();

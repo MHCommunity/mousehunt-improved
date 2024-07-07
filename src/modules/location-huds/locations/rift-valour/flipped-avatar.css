@@ -1,0 +1,15 @@
+.valourRiftHUD-tower-sprite.player .valourRiftHUD-tower-sprite-image {
+  transform: scaleX(-1);
+}
+
+.valourRiftHUD-tower-sprite.player.flipped .valourRiftHUD-tower-sprite-image {
+  transform: scaleX(1);
+}
+
+.valourRiftHUD-tower-sprite.player:hover .valourRiftHUD-tower-sprite-image {
+  transform: scaleX(-1.5) scaleY(1.5);
+}
+
+.valourRiftHUD-tower-sprite.player.flipped:hover .valourRiftHUD-tower-sprite-image {
+  transform: scaleX(1.5) scaleY(1.5);
+}

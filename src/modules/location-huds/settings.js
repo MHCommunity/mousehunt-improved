@@ -118,6 +118,11 @@ export default async () => {
       id: 'location-huds.prologue-pond-wood-boat',
       title: 'Prologue Pond: Normal boat color',
       default: getSetting('experiments.prologue-pond-wood-boat', false),
+    },
+    {
+      id: 'location-huds.valour-rift-flip-avatar',
+      title: 'Valour Rift: Mirror avatar (to face the other direction)',
+      default: getSetting('location-huds.valour-rift-flip-avatar', false),
     }
   );
 
