@@ -494,6 +494,7 @@ a.floatingIslandsHUD-islandLoot:focus {
 
 .floatingIslandsHUD-inventoryBagButton {
   right: 110px;
+  background-image: url(https://i.mouse.rip/fi-bag.png);
 }
 
 .floatingIslandsHUD-statItem.active {
