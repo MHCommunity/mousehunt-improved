@@ -147,6 +147,18 @@ const addMoreCharms = async () => {
   for (const item of itemsData) {
     makeCharmElement(item, charmsWrapper);
   }
+
+  const charms = document.querySelectorAll('.sunkenCityHud .sunkenCharms a');
+  charms.forEach((charm) => {
+    charm.addEventListener('click', () => {
+      const active = document.querySelectorAll('.sunkenCityHud .sunkenCharms a.active');
+      active.forEach((item) => {
+        item.classList.remove('active');
+      });
+
+      charm.classList.toggle('active');
+    });
+  });
 };
 
 /**
