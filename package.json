@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.7",
-    "@sentry/browser": "^8.13.0",
+    "@sentry/browser": "^8.15.0",
     "humanize-duration": "^3.32.1",
     "json2csv": "^6.0.0-alpha.2"
   },
@@ -50,7 +50,7 @@
     "chrome-webstore-upload-cli": "^3.3.0",
     "concurrently": "^8.2.2",
     "del-cli": "^5.1.0",
-    "esbuild": "^0.22.0",
+    "esbuild": "^0.23.0",
     "eslint": "8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
