@@ -13,7 +13,7 @@ const buildArchive = async () => {
 
 const buildExtension = async (platform) => {
   console.log(`Building extension for ${platform}...`); // eslint-disable-line no-console
-  await $`bun run scripts/build-extension.mjs --platform=${platform}`;
+  await $`bun run scripts/build-extension.mjs --platform=${platform} ${isRelease ? '--release' : ''}`;
   console.log(`Extension for ${platform} built`); // eslint-disable-line no-console
 };
 
@@ -52,6 +52,7 @@ const buildZips = async () => {
 };
 
 const type = process.argv[2];
+const isRelease = process.argv[3] === '--release';
 
 if (type === 'archive') {
   await buildArchive();

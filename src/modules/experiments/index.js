@@ -30,8 +30,8 @@ export default {
   load: init,
   settings: () => {
     return modules.map((module) => ({
-      id: module.id,
-      title: module.name,
+      id: module.id || module.name,
+      title: module.name || module.id,
       description: module.description || '',
       default: module.default || false,
     }));

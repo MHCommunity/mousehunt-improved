@@ -31,12 +31,9 @@ const makeDetailsList = (modules) => {
  * @param {boolean} force Whether to force the popup to show.
  */
 const showUpdateSummary = async (from, force = false) => {
-  if (! force && (('0.45.0' === from || '0.45.1' === from || '0.45.2' === from))) {
-    return;
-  }
-
+  const isMinor = from.split('.').slice(0, 2).join('.') === mhImprovedVersion.split('.').slice(0, 2).join('.');
   const missingSummaryOrDetails = ! (updateSummary.summary.length || updateSummary.details.length);
-  if (missingSummaryOrDetails && ! force) {
+  if ((isMinor || missingSummaryOrDetails) && ! force) {
     return;
   }
 

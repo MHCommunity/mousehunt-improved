@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.51.5
+
+- Fixed debug logging not being added to the build
+- Updated Floating Islands Location HUD styles
+- Update notifications now will only show for major and minor updates
+
 ## Version 0.51.4
 
 - Added 'safe-mode' query param to load default settings

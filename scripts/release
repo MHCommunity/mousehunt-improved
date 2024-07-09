@@ -58,9 +58,6 @@ version=$(jq -r .version package.json)
 
 git tag -a "v$version" -m "Release v$version" || exit 1
 
-git push origin main
-git push origin "v$version"
-
 # Build the extension.
 bun run clean
 bun run build:extension:chrome --release
@@ -77,8 +74,16 @@ bun run build:archive
 
 bun run build:userscript
 
+# Get the changelog for the release.
+changelog=$(awk "/## Version/{flag++; if(flag==2) exit} flag" CHANGELOG.md | sed '1,2d')
+
+git push origin main
+git push origin "v$version"
+
 # Create a GitHub release.
-gh release create "v$version" --title "MouseHunt Improved $version" dist/chrome.zip dist/firefox.zip dist/mousehunt-improved.user.js dist/archive.zip
+gh release create "v$version" dist/chrome.zip dist/firefox.zip dist/mousehunt-improved.user.js dist/archive.zip \
+  --title "MouseHunt Improved $version" \
+  --notes "$changelog"
 
 # Upload to Chrome Web Store.
 bun run chrome-webstore-upload upload \
