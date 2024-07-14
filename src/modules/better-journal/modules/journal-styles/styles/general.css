@@ -120,10 +120,6 @@ a.journal-detailLink.full::after {
   border-left: none;
 }
 
-.journalContainer .pagerView-link {
-  border: none;
-}
-
 .journal .content .entry a:hover img {
   padding: 1px;
   border: none;

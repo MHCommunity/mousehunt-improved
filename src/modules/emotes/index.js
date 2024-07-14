@@ -12,9 +12,7 @@ import emotes from '@data/emotes.json';
 const replaceInText = (text) => {
   const regex = new RegExp(`:(${Object.keys(emotes).join('|')}):`, 'g');
   text = text.replace(regex, (match, emote) => {
-    const size = 20;
-
-    return `<img class="emote" src="${emotes[emote]}" alt=":${emote}:" title=":${emote}:" width="${size}" height="${size}">`;
+    return `<img class="emote" src="${emotes[emote]}" alt=":${emote}:" title=":${emote}:" width="20" height="20">`;
   });
 
   return text;

@@ -1,0 +1,9 @@
+.treasureMapView-hunter-image,
+.treasureMapView-block-content-heading-image,
+.treasureMapListingsTableView-profilePic {
+  border-radius: 4px;
+}
+
+.treasureMapView-block-content-heading-image {
+  box-shadow: 0 0 1px 1px #999;
+}

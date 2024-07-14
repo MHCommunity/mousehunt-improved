@@ -90,7 +90,7 @@ const getCurrentSubtab = () => {
 const getCurrentDialog = () => {
   const overlay = document.querySelector('#overlayPopup');
   if (! overlay || ! overlay.classList || overlay.classList.length <= 0) {
-    return null;
+    return '';
   }
 
   const replaceMap = {
@@ -113,7 +113,7 @@ const getCurrentDialog = () => {
 
   overlayType = overlay.classList.value.split(' ').map((cls) => replaceMap[cls] || cls).join(' ').trim();
 
-  return 'Popup' === overlayType ? false : overlayType;
+  return 'Popup' === overlayType ? '' : overlayType;
 };
 
 /**

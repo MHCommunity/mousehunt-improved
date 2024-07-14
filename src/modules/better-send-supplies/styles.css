@@ -307,3 +307,7 @@ span.mhui-supply-sort-label {
   height: auto;
   max-height: unset;
 }
+
+.mh-improved-math-button.mhui-supply-quick-quantity {
+  font-family: inherit;
+}

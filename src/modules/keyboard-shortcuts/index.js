@@ -196,12 +196,7 @@ const getKeyForDisplay = (keyEvent) => {
  * @return {boolean} Whether the help popup is open.
  */
 const isHelpPopupOpen = () => {
-  const overlay = getCurrentDialog();
-  if (! overlay) {
-    return false;
-  }
-
-  return 'mh-ui-keyboard-shortcuts-popup' === overlay;
+  return 'mh-ui-keyboard-shortcuts-popup' === getCurrentDialog();
 };
 
 /**

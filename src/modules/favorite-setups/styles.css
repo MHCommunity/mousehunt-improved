@@ -423,3 +423,7 @@ a.random-title.loading::after {
 .row.editing .campPage-trap-itemBrowser-favorite-item.clickable {
   pointer-events: auto;
 }
+
+.row.mobile-setup {
+  background-color: #d1ebed;
+}

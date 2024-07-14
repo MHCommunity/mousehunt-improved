@@ -72,7 +72,7 @@ input.treasureMapView-shareLinkInput {
 .rewards .treasureMapView-mapMenu-auraIcon {
   width: 33px;
   height: 33px;
-  margin-top: -10px;
+  margin-right: 5px;
 }
 
 .treasureMapView-mapMenu.max_hunters_8 .treasureMapView-mapMenu-auraIcon,
@@ -346,8 +346,15 @@ img.treasureMapView-reward-chestIcon {
   display: none;
 }
 
+.treasureMapView-hunter-image {
+  width: 90%;
+}
+
+.treasureMapListingsTableView-profilePic {
+  box-shadow: 0 0 1px 1px #999;
+}
+
 .treasureMapView-hunter.empty img.treasureMapView-hunter-image {
-  border: 1px solid #aaa;
   opacity: 0.4;
 }
 
@@ -697,10 +704,6 @@ input.treasureMapView-block-search-text {
 .treasureMapInventoryView .treasureMapView-block-search {
   right: 10px;
   bottom: 2px;
-}
-
-.treasureMapInventoryView .treasureMapView-block-search .treasureMapView-block-search-label {
-  display: none;
 }
 
 .treasureMapInventoryView .treasureMapRootView-subTabRow {
@@ -1146,4 +1149,11 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-environment:last-child {
   margin-bottom: 0;
+}
+
+.treasureMapRootView-subTab,
+.treasureMapRootView-subTabContainer:hover .treasureMapRootView-subTab.active,
+.treasureMapRootView-subTab.active,
+.treasureMapRootView-subTabContainer:hover .treasureMapRootView-subTab:hover {
+  padding: 0 16px;
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-import { $ } from 'bun';
+import { $ } from 'bun'; // eslint-disable-line import/no-unresolved
 import archiver from 'archiver';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,7 +12,7 @@ const buildArchive = async () => {
 };
 
 const buildExtension = async (platform) => {
-  console.log(`Building extension for ${platform}...`); // eslint-disable-line no-console
+  console.log(`Building extension for ${platform} ${isRelease ? '(release)' : '...'}`); // eslint-disable-line no-console
   await $`bun run scripts/build-extension.mjs --platform=${platform} ${isRelease ? '--release' : ''}`;
   console.log(`Extension for ${platform} built`); // eslint-disable-line no-console
 };

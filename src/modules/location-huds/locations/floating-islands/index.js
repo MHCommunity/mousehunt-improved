@@ -492,7 +492,7 @@ const makeAirshipDraggable = () => {
  * Helper to do all the things.
  */
 const run = async () => {
-  showJetstream();
+  await showJetstream();
   await addEnemyClass();
   await addBossCountdown();
   await maybeChangeWarning();
@@ -514,7 +514,9 @@ const hud = () => {
   showBWReminder();
   onTravel(() => setTimeout(showBWReminder, 1500));
 
-  onEvent('ajax_response', run);
+  onEvent('ajax_response', () => {
+    setTimeout(run, 300);
+  });
 
   document.addEventListener('horn-countdown-tick-minute', updateJetstreamTime);
   onDialogShow('floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace', onSkyMapShow);

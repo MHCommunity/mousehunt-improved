@@ -234,10 +234,10 @@
 
 .travelPage-map-image-environment .map-relic-hunter-is-here-image {
   position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 60px;
-  height: 60px;
+  top: 7px;
+  left: 7px;
+  width: 68px;
+  height: 68px;
   overflow: hidden;
   background: url(https://www.mousehuntgame.com/images/mice/thumb/d6980f1b00ff8ec688804706cba9370c.gif);
   filter: hue-rotate(-326deg);
@@ -353,7 +353,7 @@
   top: 5px;
   left: 29px;
   width: 140px;
-  height: 116px;
+  height: 112px;
   background-size: cover;
 }
 

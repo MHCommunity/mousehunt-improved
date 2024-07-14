@@ -634,5 +634,5 @@ input.trapSelectorView__codexListSearch {
 
 .campPage-trap-trapStat:hover .value,
 .campPage-trap-trapStat.show-math .value {
-  filter: brightness(1.3);
+  background-color: #e5dbd4;
 }

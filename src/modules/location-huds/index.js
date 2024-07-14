@@ -1,5 +1,6 @@
 // Location HUD improvements.
 import {
+  addBodyClass,
   addStyles,
   debuglog,
   getCurrentLocation,
@@ -7,6 +8,7 @@ import {
   onEvent,
   onNavigation,
   onRequest,
+  removeBodyClassByPrefix,
   removeHudStyles
 } from '@utils';
 
@@ -135,6 +137,9 @@ const main = () => {
   if (! getSetting(`location-huds-enabled.${location}`, true)) {
     return;
   }
+
+  removeBodyClassByPrefix('mh-improved-location-');
+  addBodyClass(`mh-improved-location-${location}`);
 
   /* eslint-disable camelcase */
   const locationHandlers = {

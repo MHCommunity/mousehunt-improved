@@ -2,106 +2,28 @@
   "summary": "",
   "details": [
     {
-      "title": "Better Gifts",
+      "title": "",
       "items": [
-        "Fixed Better Gifts Taller Window heights applying without Taller Windows enabled"
-      ]
-    },
-    {
-      "title": "Better Journal",
-      "items": [
-        "Fixed Journal tags showing when setting isn't enabled",
-        "Added more replacements",
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Better Maps",
-      "items": [
-        "Fixed Bountiful Beanstalk Lavish subgroup not showing in sorted tab",
-        "Added refresh button to invites list",
-        "Fixed issue where map data cache was being cleared too often",
-        "Fixed issue with sorted tab showing on completed maps",
-        "Updated styles",
-        "Added 'Show Community Maps information' option",
-        "Fixed Relic Hunter location not showing for School of Sorcery"
-      ]
-    },
-    {
-      "title": "Better Mice",
-      "items": [
-        "Fixed mice images in journal entries not showing mouse view popup",
-        "Fixed issue with stat sorting buttons not showing on first click of the stats tab"
-      ]
-    },
-    {
-      "title": "Better Tournaments",
-      "items": [
-        "Fixed alignment of upcoming tournament time display"
-      ]
-    },
-    {
-      "title": "Catch Rate Estimator & Minlucks",
-      "items": [
-        "Fixed issue where negative catch rates were displayed"
-      ]
-    },
-    {
-      "title": "Emotes",
-      "items": [
-        "Moved from experimental to stable",
-        "Added new emotes"
-      ]
-    },
-    {
-      "title": "Favorite Setups",
-      "items": [
-        "Added 'Include mobile setups' option",
-        "Fixed issue with mobile setups being duplicated"
-      ]
-    },
-    {
-      "title": "Location Catch Stats",
-      "items": [
-        "Added 'Show number of misses' option"
-      ]
-    },
-    {
-      "title": "Location HUDs",
-      "items": [
-        "Added 'Add toggle button to top menu' option",
-        "Added 'Bountiful Beanstalk: Mirror avatar (to face the other direction)' option",
-        "Added 'Bountiful Beanstalk: Show Inventory box in one row' option",
-        "Added 'Prologue Pond: Normal boat color' option",
-        "Added 'Floating Islands: Make airship draggable' option",
-        "Updated styles for Floating Islands and Moussu Picchu"
-      ]
-    },
-    {
-      "title": "Native Dark Mode",
-      "items": [
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Ultimate Checkmark",
-      "items": [
-        "Fixed uncollected codices not showing in grayscale"
-      ]
-    },
-    {
-      "title": "Unique Loot Count",
-      "items": [
-        "Moved from beta to stable"
-      ]
-    },
-    {
-      "title": "Other",
-      "items": [
-        "Updated various modules to use more consistent colors",
-        "Added 'safe-mode' query param to load default settings",
-        "Added 'no-custom-styles' query param to load without styles",
-        "Optimized module loading and settings page initialization"
+        "Added 'Add an indicator to items in the trap selector that have special effects' experimental feature",
+        "Added Chrome Bits to Better Journal: Unique item colors",
+        "Added highlighting to mobile Favorite Setups",
+        "Fixed aura tooltip sizing in Better UI",
+        "Fixed Better Tournaments not showing full tournament name before tournament starts",
+        "Fixed issue with crafting popups not showing correctly",
+        "Fixed long costs being unreadable in Better Shops",
+        "Fixed mobile setups being duplicated in Favorite Setups",
+        "Fixed Relic Hunter map indicator alignment and sizing in Better Travel",
+        "Fixed sizing of Emotes",
+        "Updated Mice Category styles in Better Mice",
+        "Updated Better UI styles",
+        "Updated Better Maps styles",
+        "Updated Better Gifts styles",
+        "Updated Better Journal styles",
+        "Updated Better Tournaments styles",
+        "Updated Better Send Supplies styles",
+        "Updated Floating Islands Location HUD styles",
+        "Updated Floating Islands Location HUD styles",
+        "Updated Furoma Rift Location HUD styles"
       ]
     }
   ]

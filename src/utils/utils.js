@@ -125,6 +125,20 @@ const removeBodyClass = (className) => {
 };
 
 /**
+ * Remove a body class by prefix, useful for removing all classes that start with a certain string.
+ *
+ * @param {string} prefix The prefix to remove.
+ */
+const removeBodyClassByPrefix = (prefix) => {
+  bodyClasses.added = bodyClasses.added.filter((c) => ! c.startsWith(prefix));
+  bodyClasses.removed.push(prefix);
+  document.body.className = document.body.className
+    .split(' ')
+    .filter((c) => ! c.startsWith(prefix))
+    .join(' ');
+};
+
+/**
  * Get the tradable items.
  *
  * @param {string} valueKey Which key to use for the value. 'all' will return the entire object.
@@ -393,6 +407,7 @@ export {
   isOverlayVisible,
   addBodyClass,
   removeBodyClass,
+  removeBodyClassByPrefix,
   isAppleOS,
   hasMiniCRE,
   sleep,

@@ -40,6 +40,11 @@
   content: "";
 }
 
+.journal .content .entry.catchsuccessloot .journaltext > br:last-of-type,
+.journal .content .entry.luckycatchsuccess .journaltext > br:last-of-type {
+  display: block;
+}
+
 .entry.socialGift-send .journaltext a:last-of-type::after,
 .entry.queso_geyser.eruption_started .journaltext b::after,
 .entry.torch_charm_event .journaltext a:last-of-type::after,

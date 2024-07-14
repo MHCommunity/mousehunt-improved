@@ -1,3 +1,5 @@
+.riftFuromaHUD-craftingPopup-recipe-part .itemImage,
+.floatingIslandsHUD .upsellItemActionView-cost-image,
 .giftSelectorView-inbox-gift-thumb .itemImage,
 .giftSelectorView-inbox-giftRow.paidgift .giftSelectorView-inbox-gift-thumb .itemImage,
 .giftSelectorView-claimableGift-itemContainer .itemImage,
@@ -18,6 +20,7 @@
   box-shadow: none;
 }
 
+.floatingIslandsHUD-dialog-state.craftExtraRichSkyCheese .floatingIslandsHUD-dialog-image,
 .springHuntHUD-dialog-item-image .itemImage.large,
 .springHuntHUD-dialog-item-image .floatingIslandsAirship,
 .MiniEventBigJackPopup-block-item-image,
@@ -64,6 +67,9 @@
   background-size: 100%;
 }
 
+.riftFuromaHUD-craftingPopup-recipe-part .itemImage,
+.floatingIslandsHUD-dialog-state.craftExtraRichSkyCheese .floatingIslandsHUD-dialog-image,
+.floatingIslandsHUD .upsellItemActionView-cost-image,
 .treasureMapOpenChestView-chestImage,
 .campPage-trap-armedItem.bait .campPage-trap-armedItem-image,
 .campPage-trap-armedItem-image {
@@ -93,16 +99,6 @@
 
 .treasureMapView-allyCell {
   padding: 5px 2px;
-}
-
-.treasureMapView-allyCell .treasureMapView-componentContainer {
-  width: 170px;
-  background: none;
-}
-
-.treasureMapView-allyCell .treasureMapView-componentThumb {
-  width: 40px;
-  height: 40px;
 }
 
 .treasureMapRootView-footer-item-thumb {

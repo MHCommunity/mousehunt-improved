@@ -48,6 +48,9 @@ const getFavoriteSetups = async () => {
           is_mobile: true, // TODO: add a check for this when editing.
         };
 
+        // Remove any existing mobile setups.
+        faves = faves.filter((s) => ! s.is_mobile || (s.is_mobile && ! s.id.startsWith('mobile-')));
+
         // Check if the setup already exists.
         const existingSetup = faves.find((s) => {
           return s?.id === newFavorite.id;
@@ -135,6 +138,11 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
       setups = [normalizedSetup];
     }
   }
+
+  // Remove all the mobile setups.
+  setups = setups.filter((s) => ! s ||
+    ! s.is_mobile ||
+    (s.is_mobile && ! s.id.startsWith('mobile-')));
 
   saveSetting('favorite-setups.setups', setups);
 
@@ -607,151 +615,160 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     buttonWrapper.append(armButton);
 
     let editClickables = [];
-    if (! setup.id.startsWith('mobile-')) {
-      buttonWrapper.append(makeButton({
-        text: 'Edit',
-        className: ['edit-setup'],
-        /**
-         * Edit the setup.
-         */
-        callback: () => {
-          const setupId = setupContainer.getAttribute('data-setup-id');
-          debuglog('favorite-setups', `Editing setup ${setupId}`);
+    const editButton = makeButton({
+      text: 'Edit',
+      className: ['edit-setup'],
+      /**
+       * Edit the setup.
+       */
+      callback: () => {
+        if (setup.id.startsWith('mobile-')) {
+          return;
+        }
 
-          setupContainer.classList.add('editing');
+        const setupId = setupContainer.getAttribute('data-setup-id');
+        debuglog('favorite-setups', `Editing setup ${setupId}`);
 
-          // Update the setup title to be an input.
-          const title = setupContainer.querySelector('.label');
+        setupContainer.classList.add('editing');
 
-          const randomTitleButton = makeElement('a', 'random-title');
-          randomTitleButton.setAttribute('title', 'Generate a random name for this setup');
+        // Update the setup title to be an input.
+        const title = setupContainer.querySelector('.label');
 
-          randomTitleButton.addEventListener('click', async (e) => {
-            e.preventDefault();
+        const randomTitleButton = makeElement('a', 'random-title');
+        randomTitleButton.setAttribute('title', 'Generate a random name for this setup');
 
-            e.target.classList.add('loading');
+        randomTitleButton.addEventListener('click', async (e) => {
+          e.preventDefault();
 
-            const setupNameData = await getGeneratedName(setup);
+          e.target.classList.add('loading');
 
-            if (setupNameData.name) {
-              title.querySelector('input').value = setupNameData.name;
-            }
+          const setupNameData = await getGeneratedName(setup);
 
-            e.target.classList.remove('loading');
-          });
-
-          const titleInput = document.createElement('input');
-          titleInput.value = title.textContent;
-          title.textContent = '';
-          title.append(titleInput);
-
-          title.prepend(randomTitleButton);
-
-          const powerTypeInput = makeElement('input', ['hidden', 'power-type-input']);
-          powerTypeInput.setAttribute('data-the-power-type', setup.power_type);
-          title.append(powerTypeInput);
-
-          // Update the setup images to be clickable.
-          const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
-          images.forEach((image) => {
-            image.classList.add('clickable');
-            const eventListenerClickable = image.addEventListener('click', async () => {
-              image.classList.add('loading');
-
-              // Handle image click
-              const itemType = image.getAttribute('data-item-type');
-              const itemId = image.getAttribute('data-item-id');
-              const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
-              await makeImagePicker(setupId, itemType, itemId, (newItemId, newItemType, newItemImageUrl, newItemPowerType) => {
-                if (itemType !== newItemType) {
-                  return;
-                }
-
-                if (itemId == newItemId) { // eslint-disable-line eqeqeq
-                  return;
-                }
-
-                image.setAttribute('data-new-item-id', newItemId);
-                image.setAttribute('data-new-item-image', newItemImageUrl);
-                image.setAttribute('data-old-image-url', imageDisplay.style.backgroundImage);
-
-                if (newItemPowerType && 'undefined' !== newItemPowerType) {
-                  const ptInput = setupContainer.querySelector('.power-type-input');
-                  ptInput.setAttribute('data-power-type', newItemPowerType);
-                }
-
-                imageDisplay.style.backgroundImage = `url(${newItemImageUrl})`;
-              });
-
-              image.classList.remove('loading');
-            });
-
-            editClickables.push({ image, event: eventListenerClickable });
-          });
-
-          const existing = setupContainer.querySelector('.move-buttons');
-          if (existing) {
-            existing.remove();
+          if (setupNameData.name) {
+            title.querySelector('input').value = setupNameData.name;
           }
 
-          // Also add move up and move down buttons.
-          const moveUpButton = makeElement('a', ['move-up']);
-          moveUpButton.addEventListener('click', async (event) => {
-            const previous = event.target.closest('.row').previousElementSibling;
-            if (previous) {
-              const setups = await getFavoriteSetups();
-              if (! setups.length) {
+          e.target.classList.remove('loading');
+        });
+
+        const titleInput = document.createElement('input');
+        titleInput.value = title.textContent;
+        title.textContent = '';
+        title.append(titleInput);
+
+        title.prepend(randomTitleButton);
+
+        const powerTypeInput = makeElement('input', ['hidden', 'power-type-input']);
+        powerTypeInput.setAttribute('data-the-power-type', setup.power_type);
+        title.append(powerTypeInput);
+
+        // Update the setup images to be clickable.
+        const images = setupContainer.querySelectorAll('.campPage-trap-itemBrowser-favorite-item');
+        images.forEach((image) => {
+          image.classList.add('clickable');
+          const eventListenerClickable = image.addEventListener('click', async () => {
+            image.classList.add('loading');
+
+            // Handle image click
+            const itemType = image.getAttribute('data-item-type');
+            const itemId = image.getAttribute('data-item-id');
+            const imageDisplay = image.querySelector('.campPage-trap-itemBrowser-favorite-item-image');
+            await makeImagePicker(setupId, itemType, itemId, (newItemId, newItemType, newItemImageUrl, newItemPowerType) => {
+              if (itemType !== newItemType) {
                 return;
               }
 
-              // Swap the setups.
-              const index = setups.findIndex((s) => s?.id && (s.id === setupId));
-              const previousIndex = setups.findIndex((s) => s?.id === previous.getAttribute('data-setup-id'));
-
-              const temp = setups[index];
-              setups[index] = setups[previousIndex];
-              setups[previousIndex] = temp;
-
-              saveSetting('favorite-setups.setups', setups);
-
-              // move the row up.
-              previous.before(setupContainer);
-            }
-          });
-
-          const moveDownButton = makeElement('a', ['move-down']);
-          moveDownButton.addEventListener('click', async (event) => {
-            // Get the element after this one.
-            const next = event.target.closest('.row').nextElementSibling;
-            if (next) {
-              // move the setup down and resave the setups.
-              const setups = await getFavoriteSetups();
-              if (! setups.length) {
+              if (itemId == newItemId) { // eslint-disable-line eqeqeq
                 return;
               }
 
-              // Swap the setups.
-              const index = setups.findIndex((s) => s?.id && (s.id === setupId));
-              const nextIndex = setups.findIndex((s) => s?.id && (s.id === next.getAttribute('data-setup-id')));
+              image.setAttribute('data-new-item-id', newItemId);
+              image.setAttribute('data-new-item-image', newItemImageUrl);
+              image.setAttribute('data-old-image-url', imageDisplay.style.backgroundImage);
 
-              const temp = setups[index];
-              setups[index] = setups[nextIndex];
-              setups[nextIndex] = temp;
+              if (newItemPowerType && 'undefined' !== newItemPowerType) {
+                const ptInput = setupContainer.querySelector('.power-type-input');
+                ptInput.setAttribute('data-power-type', newItemPowerType);
+              }
 
-              saveSetting('favorite-setups.setups', setups);
+              imageDisplay.style.backgroundImage = `url(${newItemImageUrl})`;
+            });
 
-              next.after(setupContainer);
-            }
+            image.classList.remove('loading');
           });
 
-          const moveButtons = makeElement('div', ['move-buttons']);
-          moveButtons.append(moveUpButton);
-          moveButtons.append(moveDownButton);
+          editClickables.push({ image, event: eventListenerClickable });
+        });
 
-          controls.append(moveButtons);
+        const existing = setupContainer.querySelector('.move-buttons');
+        if (existing) {
+          existing.remove();
         }
-      }));
+
+        // Also add move up and move down buttons.
+        const moveUpButton = makeElement('a', ['move-up']);
+        moveUpButton.addEventListener('click', async (event) => {
+          const previous = event.target.closest('.row').previousElementSibling;
+          if (previous) {
+            const setups = await getFavoriteSetups();
+            if (! setups.length) {
+              return;
+            }
+
+            // Swap the setups.
+            const index = setups.findIndex((s) => s?.id && (s.id === setupId));
+            const previousIndex = setups.findIndex((s) => s?.id === previous.getAttribute('data-setup-id'));
+
+            const temp = setups[index];
+            setups[index] = setups[previousIndex];
+            setups[previousIndex] = temp;
+
+            saveSetting('favorite-setups.setups', setups);
+
+            // move the row up.
+            previous.before(setupContainer);
+          }
+        });
+
+        const moveDownButton = makeElement('a', ['move-down']);
+        moveDownButton.addEventListener('click', async (event) => {
+          // Get the element after this one.
+          const next = event.target.closest('.row').nextElementSibling;
+          if (next) {
+            // move the setup down and resave the setups.
+            const setups = await getFavoriteSetups();
+            if (! setups.length) {
+              return;
+            }
+
+            // Swap the setups.
+            const index = setups.findIndex((s) => s?.id && (s.id === setupId));
+            const nextIndex = setups.findIndex((s) => s?.id && (s.id === next.getAttribute('data-setup-id')));
+
+            const temp = setups[index];
+            setups[index] = setups[nextIndex];
+            setups[nextIndex] = temp;
+
+            saveSetting('favorite-setups.setups', setups);
+
+            next.after(setupContainer);
+          }
+        });
+
+        const moveButtons = makeElement('div', ['move-buttons']);
+        moveButtons.append(moveUpButton);
+        moveButtons.append(moveDownButton);
+
+        controls.append(moveButtons);
+      }
+    });
+
+    if (setup.id.startsWith('mobile-')) {
+      editButton.classList.add('disabled');
+      editButton.setAttribute('title', 'Edit mobile setups in the mobile app.');
     }
+
+    buttonWrapper.append(editButton);
 
     /**
      * Stop editing the setup.
@@ -1003,6 +1020,10 @@ const makeBlueprintContainer = async () => {
 
       const setupContainer = await makeBlueprintRow(setup);
       setupContainer.setAttribute('data-setup-id', setup.id);
+
+      if (setup.id.startsWith('mobile-')) {
+        setupContainer.classList.add('mobile-setup');
+      }
 
       body.append(setupContainer);
     }

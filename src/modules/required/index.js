@@ -172,9 +172,12 @@ const addDialogListeners = () => {
   });
 
   onDialogShow('all', () => {
-    currentDialog = getCurrentDialog().replaceAll(' ', '-').toLowerCase();
-    doEvent('dialog-show', currentDialog);
-    doEvent(`dialog-show-${currentDialog}`);
+    currentDialog = getCurrentDialog();
+    if (currentDialog && currentDialog.length > 0) {
+      currentDialog = currentDialog.replaceAll(' ', '-').toLowerCase();
+      doEvent('dialog-show', currentDialog);
+      doEvent(`dialog-show-${currentDialog}`);
+    }
   });
 };
 

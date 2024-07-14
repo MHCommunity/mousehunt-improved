@@ -399,13 +399,16 @@ a.floatingIslandsHUD-islandLoot:focus {
   text-shadow: 1px 1px 0 rgb(0 0 0 / 50%);
 }
 
+.launch_pad_island .floatingIslandsHUD-jetstream-time {
+  right: -30px;
+}
+
 .floatingIslandsHUD-inventoryBag-item .floatingIslandsHUD-item-image,
 .floatingIslandsHUD-inventoryBag-item.active .floatingIslandsHUD-item-image {
   height: 50px;
   background-color: transparent;
   border: none;
   box-shadow: none;
-  transition: 0.2s ease-in;
 }
 
 .floatingIslandsHUD-inventoryBag-item:hover .floatingIslandsHUD-item-image {
@@ -599,7 +602,7 @@ a.floatingIslandsHUD-bait-image:hover {
 }
 
 .floatingIslandsHUD .floatingIslandsHUD-enemyContainer.hasEnemy .floatingIslandsHUD-enemy-thumb {
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 
 .floatingIslandsHUD-modPanelTooltip-islandEffects.active .floatingIslandsHUD-modPanelTooltip-effectContainer.specialEffect::after,

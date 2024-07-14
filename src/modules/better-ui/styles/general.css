@@ -229,12 +229,18 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 
 .trapImageView .trapImageView-trapAura {
   z-index: 1;
+  border-radius: 50%;
   transition: 0.4s;
 }
 
 .trapImageView .trapImageView-trapAura:hover {
   z-index: 2;
-  transform: scale(1.25);
+  outline: 2px solid #aaa;
+  transition: none;
+}
+
+.trapImageView-trapAuraContainer {
+  z-index: 41;
 }
 
 .trapImageView-trapAura.active.expiring-soon {
@@ -411,6 +417,10 @@ input.itemView-action-convert-quantity {
   justify-content: space-evenly;
 }
 
+.newsPostBodyContainer {
+  padding-top: 10px;
+}
+
 .newsPostBody #news-post-responsive .flexCenter img {
   max-width: 100px;
   transition: 0.2s ease-in;
@@ -529,7 +539,16 @@ input.itemView-action-convert-quantity {
 }
 
 .pagerView-link {
+  border-color: #bdbdbd;
   border-style: solid;
+}
+
+.messageBoardView-message-container .pagerView-link {
+  border-color: #bea87b;
+}
+
+.jpagecontrols .pagerView-link {
+  border-color: transparent;
 }
 
 #newsPost .newsPostHeader {
@@ -538,4 +557,30 @@ input.itemView-action-convert-quantity {
 
 .newsPostBody {
   background: transparent;
+}
+
+.pagerView-container {
+  border-radius: 3px;
+}
+
+.journal .pagerView-container {
+  border-radius: 0;
+}
+
+.pagerView-section.current {
+  width: 15%;
+  text-align: center;
+}
+
+.pagerView-section.next {
+  text-align: right;
+}
+
+.pagerView-section.previous {
+  text-align: left;
+}
+
+.PageJournal .pagerView-section.next,
+.PageJournal .pagerView-section.previous {
+  text-align: center;
 }

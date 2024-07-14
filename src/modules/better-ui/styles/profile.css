@@ -694,6 +694,11 @@ a.friendsProfileView-randomFriend {
   box-shadow: inset 0 0 0 2px #eae1c6;
 }
 
+.teamPage-table .userInteractionButtonsView-button {
+  border-radius: 5px;
+  box-shadow: none;
+}
+
 .hunterInfoView-wrapper .friendsPage-friendRow-titleBar-titleDetail {
   top: 22px;
   font-size: 13px;
@@ -753,4 +758,8 @@ a.friendsProfileView-randomFriend {
 .mouseListView-categoryContent-subgroup-miceContainer {
   border: 1px solid #dfe5f1;
   border-radius: 11px;
+}
+
+.hunterInfoView-wrapper .hunterInfoView-idCardTooltipBox-content {
+  min-width: 85px;
 }

@@ -181,7 +181,6 @@
 }
 
 .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-idCardBlock {
-  z-index: 0;
   height: 220px;
 }
 
@@ -202,15 +201,18 @@
   filter: hue-rotate(148deg);
 }
 
-.mh-improved-fancy-profile .loyaltyBadgeView-years-text::before {
-  content: "4";
-}
-
 .mh-improved-fancy-profile .loyaltyBadgeView .loyaltyBadgeView-years-text {
-  top: 6px;
-  font-size: 20px;
+  top: 9px;
+  font-size: 0;
   color: #4b5554;
   text-shadow: 0 0 0 #969696;
+  visibility: hidden;
+}
+
+.mh-improved-fancy-profile .loyaltyBadgeView-years-text::before {
+  font-size: 16px;
+  visibility: visible;
+  content: "1000";
 }
 
 .mh-improved-fancy-profile .loyaltyBadgeView {
@@ -245,8 +247,8 @@
   background-color: #93c9db;
 }
 
-.mh-improved-fancy-profile .campPage-trap-trapStat.luck .value span::after {
-  content: "0";
+.mh-improved-fancy-profile .campPage-trap-trapStat.luck .value span::before {
+  content: "-";
 }
 
 .mh-improved-fancy-profile .trapImageView-tooltip-trapAura-expiry::after {
@@ -341,4 +343,18 @@
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-favoritesBlock {
   border-color: #de72ba;
   box-shadow: none;
+}
+
+.mh-improved-fancy-profile .mousehuntPage-content select.mh-improved-scoreboard-dropdown {
+  background-color: #d2c0ec;
+  border-color: #99448e;
+}
+
+.mh-improved-fancy-profile .pagerView-link {
+  background-color: #f0dfee;
+  border-color: #de72ba;
+}
+
+.mh-improved-fancy-profile .hunterInfoView-wrapper div .pagerView-container {
+  border: none;
 }

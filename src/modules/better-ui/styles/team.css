@@ -159,3 +159,15 @@
   white-space: nowrap;
   content: attr(title) "    ";
 }
+
+.teamPage-memberRow:nth-child(odd) {
+  background-color: #eee;
+}
+
+.teamPage-memberRow.self {
+  background-color: #fdfbcc;
+}
+
+.tournamentPage-tournament-column.teamMembers .tournament-team-rank {
+  padding: 0 10px;
+}

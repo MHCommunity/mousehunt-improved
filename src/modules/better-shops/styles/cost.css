@@ -103,3 +103,7 @@ a.itemPurchaseView-action-form-button.sell {
   margin-bottom: 5px;
   font-size: 11px;
 }
+
+.itemPurchaseView-action-itemCost-table-cell.cost {
+  z-index: 1;
+}

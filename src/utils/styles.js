@@ -182,6 +182,7 @@ export {
   addStylesDirect,
   addHudStyles,
   addStyles,
+  addModuleStyles,
   removeHudStyles,
   removeStyles,
   addExternalStyles

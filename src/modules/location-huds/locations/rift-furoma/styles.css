@@ -209,3 +209,25 @@ a.riftFuromaHUD-battery[data-type="charge_level_ten"]::before {
 .riftFuromaHUD-item .itemImage {
   background-color: #fff;
 }
+
+.riftFuromaHUD-craftingPopup-recipe-actionGroup {
+  box-shadow:
+    8px 5px 21px -3px #fff inset,
+    1px 0 1px -1px #000;
+}
+
+.riftFuromaHUD-craftingPopup-subtabHeader.can_craft .riftFuromaHUD-craftingPopup-subtabHeader-padding::before {
+  display: none;
+}
+
+.riftFuromaHUD-craftingPopup-subtabHeader.can_craft .riftFuromaHUD-craftingPopup-subtabHeader-padding {
+  background-color: #00acc7;
+}
+
+.riftFuromaHUD-craftingPopup-subtabHeader.can_craft.active .riftFuromaHUD-craftingPopup-subtabHeader-padding {
+  background-color: #51dff5;
+}
+
+.riftFuromaHUD-craftingPopup-recipe-actionGroup:first-child {
+  margin-left: 5px;
+}

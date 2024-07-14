@@ -238,7 +238,26 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
 }
 
 a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
+  background-size: 130px;
+}
+
+a.mouseListView-categoryContent-subgroup-mouse.landscape:hover .mouseListView-categoryContent-subgroup-mouse-margin {
+  background-size: 300px;
+}
+
+a.mouseListView-categoryContent-subgroup-mouse.landscape .mouseListView-categoryContent-subgroup-mouse-margin {
   background-size: contain;
+}
+
+.mouseListView-categoryContent-subgroup-mouse-margin {
+  border: 1px solid #e6e6e6;
+  box-shadow: none;
+}
+
+.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
+  border-color: #cdcdcd;
+  box-shadow: none;
+  transition: none;
 }
 
 .mouseViewPopup .mouseView-image:hover {
@@ -378,4 +397,17 @@ ul.minluck-list {
 
 .mouseListView-categoryContent-subgroup-mouse.stats.header {
   border-radius: 5px;
+}
+
+.mouseListView-subcategory,
+.mouseListView-subcategory:last-child {
+  border-color: #ccc;
+}
+
+.mouseListView-categoryContent-subgroup-mouse-numCatches.bronze::before,
+.mouseListView-categoryContent-subgroup-mouse-numCatches.silver::before,
+.mouseListView-categoryContent-subgroup-mouse-numCatches.gold::before,
+.mouseListView-categoryContent-subgroup-mouse-numCatches.platinum::before,
+.mouseListView-categoryContent-subgroup-mouse-numCatches.diamond::before {
+  opacity: 0.5;
 }

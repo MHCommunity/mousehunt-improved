@@ -1,5 +1,28 @@
 # Changelog
 
+## Version 0.52.0
+
+- Added 'Add an indicator to items in the trap selector that have special effects' experimental feature
+- Added Chrome Bits to Better Journal: Unique item colors
+- Added highlighting to mobile Favorite Setups
+- Fixed aura tooltip sizing in Better UI
+- Fixed Better Tournaments not showing full tournament name before tournament starts
+- Fixed issue with crafting popups not showing correctly
+- Fixed long costs being unreadable in Better Shops
+- Fixed mobile setups being duplicated in Favorite Setups
+- Fixed Relic Hunter map indicator alignment and sizing in Better Travel
+- Fixed sizing of Emotes
+- Updated Mice Category styles in Better Mice
+- Updated Better UI styles
+- Updated Better Maps styles
+- Updated Better Gifts styles
+- Updated Better Journal styles
+- Updated Better Tournaments styles
+- Updated Better Send Supplies styles
+- Updated Floating Islands Location HUD styles
+- Updated Floating Islands Location HUD styles
+- Updated Furoma Rift Location HUD styles
+
 ## Version 0.51.5
 
 - Fixed debug logging not being added to the build

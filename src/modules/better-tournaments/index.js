@@ -35,12 +35,11 @@ const updateTournamentHud = async () => {
     return;
   }
 
-  if (tourneyData.page?.is_active) {
-    const name = tourneyData?.page?.name;
-    if (name) {
-      activeTourney.innerText = name;
-    }
+  if (tourneyData?.page?.name) {
+    activeTourney.innerText = tourneyData?.page?.name;
+  }
 
+  if (tourneyData.page?.is_active) {
     const rank = document.querySelector('.tournamentStatusHud .rank');
     if (rank) {
       const scoreHover = document.createElement('div');
@@ -255,7 +254,7 @@ const updateScoreboard = () => {
  */
 const init = async () => {
   addStyles(styles, 'better-tournaments');
-  updateTournamentHud();
+  setTimeout(updateTournamentHud, 1000);
 
   onEvent('tournament_status_change', updateTournamentHud);
   onNavigation(updateTournamentList, {
