@@ -2,6 +2,10 @@
 
 ## Version 0.52.0
 
+- Updated Sunken City Location HUD styles
+
+## Version 0.52.0
+
 - Added 'Add an indicator to items in the trap selector that have special effects' experimental feature
 - Added Chrome Bits to Better Journal: Unique item colors
 - Added highlighting to mobile Favorite Setups

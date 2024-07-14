@@ -156,7 +156,7 @@
 }
 
 .sunkenCityHud .sidebarTitle {
-  font-size: 14px;
+  font-size: 11px;
   letter-spacing: 3px;
   background-color: #474747;
   border: none;
@@ -165,14 +165,8 @@
 .sunkenCityHud .sidebarContent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 39px;
+  justify-content: flex-start;
   border: none;
-}
-
-.sunkenCityHud .sidebarContent .zoneName {
-  padding-top: 0;
-  line-height: 0.9;
 }
 
 .sunkenCityHud .diveControls {
