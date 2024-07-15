@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.52.2
+
+- Fixed z-index issues with trap view
+
 ## Version 0.52.1
 
 - Updated Sunken City Location HUD styles

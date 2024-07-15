@@ -239,10 +239,6 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
   transition: none;
 }
 
-.trapImageView-trapAuraContainer {
-  z-index: 41;
-}
-
 .trapImageView-trapAura.active.expiring-soon {
   visibility: visible;
   border-radius: 50%;
