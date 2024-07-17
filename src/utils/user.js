@@ -349,8 +349,17 @@ const getUserTitleShield = (titleId = null) => {
   return false;
 };
 
-const getUserData = async () => {
-  const data = await fetch('https://www.mousehuntgame.com/api/action/passiveturn');
+/**
+ * Get the user's data.
+ *
+ * @param {string[]} fields The user fields to get.
+ * @param {string}   userId The user ID. If empty, get the current user.
+ *
+ * @return {Promise<any>} The user data.
+ */
+const getUserData = async (fields = [], userId = 'me') => {
+  const queryParams = fields.join(',');
+  const data = await fetch(`https://www.mousehuntgame.com/api/get/user/${userId}/${queryParams}`);
   return data.json();
 };
 

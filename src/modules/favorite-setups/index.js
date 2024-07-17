@@ -24,21 +24,37 @@ import styles from './styles.css';
 import settings from './settings';
 
 /**
+ * @typedef {Object} FavoriteSetup
+ * @property {string}              id         The setup ID.
+ * @property {string | null}       name       The name of the setup.
+ * @property {string | null}       bait_id    The bait item ID.
+ * @property {string | null}       base_id    The base item ID.
+ * @property {string | null}       weapon_id  The weapon item ID.
+ * @property {string | null}       trinket_id The trinket item ID.
+ * @property {string | null}       power_type The power type of the setup.
+ * @property {string | undefined}  location   The location of the setup.
+ * @property {boolean | undefined} is_mobile  Whether the setup is a mobile setup.
+ */
+
+/**
  * Get the favorite setups.
  *
- * @return {Array} The favorite setups.
+ * @return {Promise<FavoriteSetup[]>} The favorite setups.
  */
 const getFavoriteSetups = async () => {
+  /** @type {FavoriteSetup[]} */
   let faves = getSetting('favorite-setups.setups', []);
 
   if (getSetting('favorite-setups.show-mobile-favorites', false)) {
-    const userData = await getUserData();
-    const mobileFavorites = userData?.user?.trap_favourite?.favourite_traps || [];
+    const userData = await getUserData(['trap_favourite']);
+    const mobileFavorites = userData?.trap_favourite?.favourite_traps || [];
     if (mobileFavorites?.length) {
+      /** @type {FavoriteSetup[]} */
       const newFaves = [];
-      for (const favorite of mobileFavorites) {
+      for (const [slot, favorite] of mobileFavorites.entries()) {
+        /** @type {FavoriteSetup} */
         const newFavorite = {
-          id: `mobile-${favorite?.bait_id}-${favorite?.base_id}-${favorite?.weapon_id}-${favorite?.trinket_id}`,
+          id: `mobile-${slot}`,
           name: favorite?.name,
           bait_id: favorite?.bait_id,
           base_id: favorite?.base_id,
@@ -98,10 +114,10 @@ const getGeneratedName = async (setup) => {
 /**
  * Save a favorite setup.
  *
- * @param {Object}  setup            The setup to save.
- * @param {boolean} useGeneratedName Whether to use a generated name for the setup.
+ * @param {FavoriteSetup} setup            The setup to save.
+ * @param {boolean}       useGeneratedName Whether to use a generated name for the setup.
  *
- * @return {Object} The saved setup.
+ * @return {Promise<FavoriteSetup>} The saved setup.
  */
 const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   let setups = await getFavoriteSetups();
@@ -139,14 +155,22 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
     }
   }
 
-  // Remove all the mobile setups.
-  setups = setups.filter((s) => ! s ||
-    ! s.is_mobile ||
-    (s.is_mobile && ! s.id.startsWith('mobile-')));
+  setups = removeMobileSetups(setups);
 
   saveSetting('favorite-setups.setups', setups);
 
   return normalizedSetup;
+};
+
+/**
+ * Filters out mobile setups from the array.
+ * @param {FavoriteSetup[]} setups The setups to filter.
+ * @return {FavoriteSetup[]} The setups without mobile setups.
+ */
+const removeMobileSetups = (setups) => {
+  return setups.filter((s) => ! s ||
+    ! s.is_mobile ||
+   (s.is_mobile && ! s.id.startsWith('mobile-')));
 };
 
 /**
@@ -166,7 +190,7 @@ const normalizeSetup = (setup) => {
 /**
  * Get the current setup.
  *
- * @return {Object} The current setup.
+ * @return {FavoriteSetup} The current setup.
  */
 const getCurrentSetup = () => {
   return normalizeSetup({
@@ -477,7 +501,7 @@ const armItem = async (items) => {
  * @param {Object}  setup     The setup to make a row for.
  * @param {boolean} isCurrent Whether the setup is the current setup.
  *
- * @return {Element|boolean} The setup row element.
+ * @return {Promise<Element|boolean>} The setup row element.
  */
 const makeBlueprintRow = async (setup, isCurrent = false) => {
   if (! setup) {
@@ -485,6 +509,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   }
 
   const setupContainer = makeElement('div', ['row']);
+  setupContainer.setAttribute('data-setup-id', setup.id);
 
   const controls = makeElement('div', ['controls']);
   makeElement('div', ['label'], setup?.name || '', controls);
@@ -507,11 +532,12 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         if (setups.length) {
           // check if the setup has a matching bait, base, weapon, and trinket.
-          const existingSetup = setups.find((s) => {
+          const existingSetup = removeMobileSetups(setups).find((s) => {
             return s?.bait_id === currentSetup.bait_id &&
               s?.base_id === currentSetup.base_id &&
               s?.weapon_id === currentSetup.weapon_id &&
-              s?.trinket_id === currentSetup.trinket_id;
+              s?.trinket_id === currentSetup.trinket_id &&
+              s?.location === currentSetup.location;
           });
 
           if (existingSetup && ! hasHighlighted) {
@@ -541,10 +567,15 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         // append the new setup to the list.
         const setupRow = await makeBlueprintRow(currentSetup);
-        setupRow.setAttribute('data-setup-id', currentSetup.id);
 
-        const body = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content');
-        body.append(setupRow);
+        // If there are mobile rows, then insert the new row before the first.
+        const mobileRow = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content .row.mobile-setup');
+        if (mobileRow) {
+          mobileRow.before(setupRow);
+        } else {
+          const content = document.querySelector('.mh-improved-favorite-setups-blueprint-container .content');
+          content.append(setupRow);
+        }
 
         updateFavoriteSetupName();
       }
@@ -606,6 +637,11 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           await armItem(toArm);
         }
 
+        const currentSetupRow = document.querySelector('.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="current"]');
+        if (currentSetupRow) {
+          currentSetupRow.replaceWith(await makeBlueprintRow(getCurrentSetup(), true));
+        }
+
         armButton.classList.remove('loading');
 
         updateFavoriteSetupName();
@@ -615,17 +651,13 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     buttonWrapper.append(armButton);
 
     let editClickables = [];
-    const editButton = makeButton({
+    buttonWrapper.append(makeButton({
       text: 'Edit',
       className: ['edit-setup'],
       /**
        * Edit the setup.
        */
       callback: () => {
-        if (setup.id.startsWith('mobile-')) {
-          return;
-        }
-
         const setupId = setupContainer.getAttribute('data-setup-id');
         debuglog('favorite-setups', `Editing setup ${setupId}`);
 
@@ -759,16 +791,13 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
         moveButtons.append(moveUpButton);
         moveButtons.append(moveDownButton);
 
+        if (setupId.startsWith('mobile-')) {
+          return;
+        }
+
         controls.append(moveButtons);
       }
-    });
-
-    if (setup.id.startsWith('mobile-')) {
-      editButton.classList.add('disabled');
-      editButton.setAttribute('title', 'Edit mobile setups in the mobile app.');
-    }
-
-    buttonWrapper.append(editButton);
+    }));
 
     /**
      * Stop editing the setup.
@@ -782,6 +811,56 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
       editClickables = [];
     };
+
+    if (! setup.id.startsWith('mobile-')) {
+      const mobileButton = makeButton({
+        text: '📱',
+        className: ['send-mobile'],
+        callback: async () => {
+          const setupId = setupContainer.getAttribute('data-setup-id');
+          debuglog('favorite-setups', `Sending setup ${setupId} to mobile`);
+
+          // get the setup.
+          const setups = await getFavoriteSetups();
+          if (! setups.length) {
+            return;
+          }
+
+          if (! setupId) {
+            return;
+          }
+
+          const index = setups.findIndex((s) => s?.id && (s.id === setupId));
+
+          const thisSetup = setups[index];
+          if (! thisSetup) {
+            return;
+          }
+
+          const maxMobileSlots = setups.filter((s) => s?.is_mobile ?? false).length;
+          const slot = +prompt(`Enter a slot number for this setup (1-${maxMobileSlots}):`) - 1; // eslint-disable-line no-alert
+          // check if 0 indexed slot is valid number and within range.
+          if (Number.isNaN(slot) || slot < 0 || slot >= maxMobileSlots) {
+            return;
+          }
+
+          const resp = await setMobileFavourite(slot, thisSetup);
+          debuglog('favorite-setups', resp);
+
+          // convert the setup to a mobile setup.
+          thisSetup.id = `mobile-${slot}`;
+          thisSetup.is_mobile = true;
+
+          const newContainer = await makeBlueprintRow(thisSetup, false);
+
+          const mobileRow = document.querySelector(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${thisSetup.id}"]`);
+          mobileRow.replaceWith(newContainer);
+        }
+      });
+      mobileButton.setAttribute('title', 'Send to mobile app');
+
+      buttonWrapper.append(mobileButton);
+    }
 
     buttonWrapper.append(makeButton({
       text: 'Save',
@@ -850,7 +929,12 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         // replace the setup in the list.
         setups[index] = newSetup;
-        saveSetting('favorite-setups.setups', setups);
+        saveSetting('favorite-setups.setups', removeMobileSetups(setups));
+
+        if (setupId.startsWith('mobile-')) {
+          const mobileIndex = setups.filter((s) => s?.is_mobile ?? false).findIndex((s) => s.id === setupId);
+          await setMobileFavourite(mobileIndex, newSetup);
+        }
 
         // Update the setup title to be a div.
         title.textContent = newSetup.name;
@@ -922,17 +1006,28 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           setups = [];
         }
 
-        const index = setups.findIndex((s) => s?.id && (s.id === setupId));
-        setups.splice(index, 1);
-        saveSetting('favorite-setups.setups', setups);
+        if (setupId.startsWith('mobile-')) {
+          const mobileIndex = setups.filter((s) => s?.is_mobile ?? false).findIndex((s) => s.id === setupId);
+          await deleteMobileFavourite(mobileIndex);
 
-        // remove the setup from the list.
-        setupContainer.remove();
+          const newContainer = await makeBlueprintRow({
+            id: `mobile-${mobileIndex}`,
+            is_mobile: true,
+          });
+          setupContainer.replaceWith(newContainer);
+        } else {
+          const index = setups.findIndex((s) => s?.id && (s.id === setupId));
+          setups.splice(index, 1);
+          saveSetting('favorite-setups.setups', removeMobileSetups(setups));
 
-        // Also remove from the location-favorite list if it's there.
-        const locationFavorite = document.querySelector(`.location-favorite[data-setup-id="${setupId}"]`);
-        if (locationFavorite) {
-          locationFavorite.remove();
+          // remove the setup from the list.
+          setupContainer.remove();
+
+          // Also remove from the location-favorite list if it's there.
+          const locationFavorite = document.querySelector(`.location-favorite[data-setup-id="${setupId}"]`);
+          if (locationFavorite) {
+            locationFavorite.remove();
+          }
         }
       }
     }));
@@ -953,6 +1048,10 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   await addImage('base', setup.base_id, setupContainer);
   await addImage('weapon', setup.weapon_id, setupContainer);
   await addImage('trinket', setup.trinket_id, setupContainer);
+
+  if (setup?.is_mobile) {
+    setupContainer.classList.add('mobile-setup');
+  }
 
   return setupContainer;
 };
@@ -978,7 +1077,6 @@ const makeBlueprintContainer = async () => {
   const body = makeElement('div', ['content']);
 
   const currentSetupRow = await makeBlueprintRow(getCurrentSetup(), true);
-  currentSetupRow.classList.add('current-setup');
   body.append(currentSetupRow);
 
   const setups = await getFavoriteSetups();
@@ -1004,7 +1102,6 @@ const makeBlueprintContainer = async () => {
         }
 
         const setupContainer = await makeBlueprintRow(setup);
-        setupContainer.setAttribute('data-setup-id', setup.id);
         setupContainer.classList.add('location-favorite');
 
         locationWrapper.append(setupContainer);
@@ -1019,7 +1116,6 @@ const makeBlueprintContainer = async () => {
       }
 
       const setupContainer = await makeBlueprintRow(setup);
-      setupContainer.setAttribute('data-setup-id', setup.id);
 
       if (setup.id.startsWith('mobile-')) {
         setupContainer.classList.add('mobile-setup');
@@ -1037,7 +1133,7 @@ const makeBlueprintContainer = async () => {
 /**
  * Get the name of the current setup.
  *
- * @return {string} The name of the current setup.
+ * @return {Promise<string>} The name of the current setup.
  */
 const getNameOfCurrentSetup = async () => {
   const setups = await getFavoriteSetups();
@@ -1071,6 +1167,55 @@ const updateFavoriteSetupName = async () => {
   if (label) {
     label.innerHTML = await getNameOfCurrentSetup() || '';
   }
+};
+
+/**
+ * Send a setup to the mobile app.
+ * @param {number}        slot  The slot to send the setup to.
+ * @param {FavoriteSetup} setup The setup to send.
+ * @return {Promise<Object>} The response from the server.
+ */
+const setMobileFavourite = async (slot, setup) => {
+  const response = await postMobileTrapAction('set', {
+    slot,
+    weapon_id: setup.weapon_id ?? '',
+    base_id: setup.base_id ?? '',
+    trinket_id: setup.trinket_id ?? '',
+    skin_id: '',
+    bait_id: setup.bait_id ?? '',
+    name: setup.name.slice(0, 20) ?? '',
+    is_current_favourite: false,
+  });
+
+  return response;
+};
+
+/**
+ * Delete a mobile favourite setup.
+ * @param {*} slot The slot to delete.
+ * @return {Promise<Object>} The response from the server.
+ */
+const deleteMobileFavourite = async (slot) => {
+  const response = await postMobileTrapAction('delete', {
+    slot,
+  });
+
+  return response;
+};
+
+/**
+ * Send a favorite setup action.
+ * @param {string} action The action to send.
+ * @param {Object} data   The data to send.
+ * @return {Promise<Object>} The user data.
+ */
+const postMobileTrapAction = async (action, data) => {
+  const response = await doRequest('api/action/trapfavourite', {
+    ...data,
+    action,
+  });
+
+  return response.user;
 };
 
 /**
