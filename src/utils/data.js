@@ -42,7 +42,7 @@ const isValidDataFile = (file) => {
  * @return {Promise<number>} The cache expiration in milliseconds since epoch.
  */
 const getCacheExpiration = async (key = null) => {
-  return await cacheGet(`expiration-${key}`, false);
+  return await cacheGet(`expiration-${key}`, 0);
 };
 
 /**
@@ -70,7 +70,7 @@ const isCacheExpired = async (key) => {
     return true;
   }
 
-  return expiration.date < Date.now();
+  return expiration < Date.now();
 };
 
 /**
