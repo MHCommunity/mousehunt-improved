@@ -812,7 +812,8 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       editClickables = [];
     };
 
-    if (! setup.id.startsWith('mobile-')) {
+    const showMobile = getSetting('favorite-setups.show-mobile-favorites', false);
+    if (showMobile && ! setup.id.startsWith('mobile-')) {
       const mobileButton = makeButton({
         text: '📱',
         className: ['send-mobile'],
