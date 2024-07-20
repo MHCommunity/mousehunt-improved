@@ -4,27 +4,19 @@
     {
       "title": "",
       "items": [
-        "Added 'Add an indicator to items in the trap selector that have special effects' experimental feature",
-        "Added Chrome Bits to Better Journal: Unique item colors",
-        "Added highlighting to mobile Favorite Setups",
-        "Fixed aura tooltip sizing in Better UI",
-        "Fixed Better Tournaments not showing full tournament name before tournament starts",
-        "Fixed issue with crafting popups not showing correctly",
-        "Fixed long costs being unreadable in Better Shops",
-        "Fixed mobile setups being duplicated in Favorite Setups",
-        "Fixed Relic Hunter map indicator alignment and sizing in Better Travel",
-        "Fixed sizing of Emotes",
-        "Updated Mice Category styles in Better Mice",
-        "Updated Better UI styles",
+        "Added Adorned Empyrean Refractor Base, Royal Ruby Refractor Base, and Sorcerer's Sapphire Refractor Base to special effects highlighting",
+        "Added Better Journal styles for Refactor base entries",
+        "Added Better Journal replacements for Refractor base entries",
+        "Added Better Journal loot list support for Refactor base entries",
+        "Added 'Better Journal List: Link all items' experimental feature",
+        "Updated Catch Rate Estimator styles",
+        "Updated Better Shops styles",
         "Updated Better Maps styles",
-        "Updated Better Gifts styles",
-        "Updated Better Journal styles",
-        "Updated Better Tournaments styles",
-        "Updated Better Send Supplies styles",
-        "Updated Floating Islands Location HUD styles",
-        "Updated Floating Islands Location HUD styles",
-        "Updated Furoma Rift Location HUD styles",
-        "Updated Sunken City Location HUD styles"
+        "Fixed location indicator for Empyrean Sky Palace maps when in Sky Palace",
+        "Fixed Better Journal tags not showing correctly when Better Journal styles is disabled",
+        "Fixed sticky trap math stats not correctly un-sticking after selecting a different stat",
+        "Fixed Open all but One opening all items in some cases",
+        "Fixed updates not refreshing data"
       ]
     }
   ]

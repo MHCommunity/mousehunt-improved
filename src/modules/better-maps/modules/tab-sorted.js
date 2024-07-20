@@ -132,35 +132,6 @@ const makeMouseDiv = async (mouse, type = 'mouse') => {
     mouseExtraInfo.append(locationText);
   }
 
-  // Mouse weakness.
-  if (mouse.weaknesses) {
-    const weakness = makeElement('div', 'mouse-weakness');
-
-    mouse.weaknesses.forEach((weaknessType) => {
-      if (weaknessType.power_types.length === 0) {
-        return;
-      }
-
-      // Weakness wrapper.
-      const weaknessTypeDiv = makeElement('div', 'weakness-type');
-      makeElement('div', 'weakness-name', weaknessType.name, weaknessTypeDiv);
-
-      const powerTypes = makeElement('div', 'power-types');
-      weaknessType.power_types.forEach((pType) => {
-        const powerType = document.createElement('img');
-        powerType.src = `https://www.mousehuntgame.com/images/powertypes/${pType.name}.png`;
-        powerTypes.append(powerType);
-      });
-
-      // Weakness wrapper close.
-      weaknessTypeDiv.append(powerTypes);
-      weakness.append(weaknessTypeDiv);
-    });
-
-    // Mouse weakness close.
-    mouseExtraInfo.append(weakness);
-  }
-
   // Mouse extra info close.
   mouseExtraInfoWrapper.append(mouseExtraInfo);
   mouseDiv.append(mouseExtraInfoWrapper);

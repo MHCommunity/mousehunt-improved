@@ -12,6 +12,7 @@
   padding: 3px;
   font-size: 10px;
   color: #000;
+  border: 1px solid #000;
   border-radius: 4px;
 }
 
@@ -34,12 +35,12 @@
 
 .mh-ui-ar-guaranteed {
   background-color: #0ef;
-  border-color: #8fb1b3;
+  border-color: #638f92;
 }
 
 .mh-ui-ar-super-easy {
   background-color: #8ffaab;
-  border-color: #73b484;
+  border-color: #427b51;
 }
 
 .mh-ui-ar-easy {
@@ -49,7 +50,7 @@
 
 .mh-ui-ar-medium {
   background-color: #ffdab9;
-  border-color: #c5a381;
+  border-color: #b78c62;
 }
 
 .mh-ui-ar-hard {

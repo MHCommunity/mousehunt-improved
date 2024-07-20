@@ -294,8 +294,10 @@ span.mh-ui-fi-enemy-countdown-hunts {
 .floatingIslandsAdventureBoardSkyMap-fuel-quantity {
   padding: 2px;
   margin-top: -2px;
+  margin-left: -2px;
   font-size: 13px;
   background-color: #302636;
+  border-radius: 3px;
 }
 
 .floatingIslandsAdventureBoard-paragonItem.mousehuntTooltipParent {

@@ -296,6 +296,10 @@
   box-shadow: -1px 1px 3px var(--d-bg) inset;
 }
 
+.mh-dark .mh-improved-cre-row:hover {
+  background-color: var(--d-bg);
+}
+
 .mh-dark .campPage-trap-baitName {
   box-shadow: none;
 }

@@ -1,5 +1,21 @@
 # Changelog
 
+## Version 0.53.0
+
+- Added Adorned Empyrean Refractor Base, Royal Ruby Refractor Base, and Sorcerer's Sapphire Refractor Base to special effects highlighting
+- Added Better Journal styles for Refactor base entries
+- Added Better Journal replacements for Refractor base entries
+- Added Better Journal loot list support for Refactor base entries
+- Added 'Better Journal List: Link all items' experimental feature
+- Updated Catch Rate Estimator styles
+- Updated Better Shops styles
+- Updated Better Maps styles
+- Fixed location indicator for Empyrean Sky Palace maps when in Sky Palace
+- Fixed Better Journal tags not showing correctly when Better Journal styles is disabled
+- Fixed sticky trap math stats not correctly un-sticking after selecting a different stat
+- Fixed Open all but One opening all items in some cases
+- Fixed updates not refreshing data
+
 ## Version 0.52.2
 
 - Fixed z-index issues with trap view

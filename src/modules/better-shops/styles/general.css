@@ -338,6 +338,7 @@ span.itemPurchaseView-action-confirm-refund.noRefund::after {
 .itemPurchaseView-image-container .itemViewStatBlock-stat-icon {
   width: 20px;
   height: 17px;
+  background-size: 85%;
 }
 
 .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon {

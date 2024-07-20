@@ -64,7 +64,8 @@ const update = async () => {
   const needsMigration = Object.keys(updates).length > 0;
 
   const showPopup = setTimeout(() => {
-    showLoadingPopup(`Updating MouseHunt Improved to v${mhImprovedVersion}...`);
+    showLoadingPopup('0.0.0' === previousVersion ? 'Installing MouseHunt Improved …' : `Updating MouseHunt Improved to v${mhImprovedVersion}…`);
+
     addBodyClass('mh-improved-updating');
     setGlobal('mh-improved-updating', true);
 
@@ -108,10 +109,6 @@ let previousVersion = null;
  */
 const init = async () => {
   previousVersion = getSetting('mh-improved-version', '0.0.0');
-  if ('0.0.0' === previousVersion) {
-    return;
-  }
-
   if (previousVersion !== mhImprovedVersion) {
     debuglog('update-migration', `Previous version: ${previousVersion}`);
     await update();
