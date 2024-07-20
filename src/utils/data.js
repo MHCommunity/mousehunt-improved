@@ -39,10 +39,10 @@ const isValidDataFile = (file) => {
  *
  * @param {string} key Key to get the expiration for.
  *
- * @return {Object} The cache expiration.
+ * @return {Promise<number>} The cache expiration in milliseconds since epoch.
  */
 const getCacheExpiration = async (key = null) => {
-  return await cacheGet(`expiration-${key}`, false);
+  return await cacheGet(`expiration-${key}`, 0);
 };
 
 /**
@@ -61,7 +61,7 @@ const setCacheExpiration = async (key) => {
  *
  * @param {string} key Key to check.
  *
- * @return {boolean} Whether the cache is expired.
+ * @return {Promise<boolean>} Whether the cache is expired.
  */
 const isCacheExpired = async (key) => {
   const expiration = await getCacheExpiration(key);
@@ -70,7 +70,7 @@ const isCacheExpired = async (key) => {
     return true;
   }
 
-  return expiration.date < Date.now();
+  return expiration < Date.now();
 };
 
 /**
@@ -79,7 +79,7 @@ const isCacheExpired = async (key) => {
  * @param {string} key     Key to fetch.
  * @param {number} retries Number of retries.
  *
- * @return {Object} The fetched data.
+ * @return {Promise<Object>} The fetched data.
  */
 const fetchData = async (key, retries = 0) => {
   try {
@@ -287,11 +287,12 @@ const dataCacheSet = (key, value) => {
 /**
  * Helper function to get a cache value.
  *
+ * @template T
  * @param {string} key          Key to get the value for.
- * @param {Object} defaultValue Default value to return if the key doesn't exist.
+ * @param {T}      defaultValue Default value to return if the key doesn't exist.
  * @param {string} db           The database to get the value from.
  *
- * @return {Object} The cache value.
+ * @return {Promise<T>} The cache value.
  */
 const cacheGetHelper = async (key, defaultValue = false, db = 'cache') => {
   const cached = await dbGet(db, key);
@@ -305,10 +306,11 @@ const cacheGetHelper = async (key, defaultValue = false, db = 'cache') => {
 /**
  * Get a cache value.
  *
+ * @template T
  * @param {string} key          Key to get the value for.
- * @param {Object} defaultValue Default value to return if the key doesn't exist.
+ * @param {T}      defaultValue Default value to return if the key doesn't exist.
  *
- * @return {Object} The cache value.
+ * @return {Promise<T>} The cache value.
  */
 const cacheGet = async (key, defaultValue = false) => {
   return await cacheGetHelper(key, defaultValue, 'cache');
@@ -317,10 +319,11 @@ const cacheGet = async (key, defaultValue = false) => {
 /**
  * Get a data cache value.
  *
+ * @template T
  * @param {string} key          Key to get the value for.
- * @param {Object} defaultValue Default value to return if the key doesn't exist.
+ * @param {T}      defaultValue Default value to return if the key doesn't exist.
  *
- * @return {Object} The cache value.
+ * @return {Promise<T>} The cache value.
  */
 const dataCacheGet = async (key, defaultValue = false) => {
   return await cacheGetHelper(key, defaultValue, 'data');
