@@ -103,16 +103,7 @@ const areaHighlightingFloatingIslands = () => {
 
   const islandPowerType = powerTypeMappings[fiAtts.island_power_type] || '';
 
-  let floorCategory;
-
-  console.log(islandType, islandPowerType);
-
-  if ('sp' === islandType) {
-    floorCategory = document.querySelector('.mouse-category-wrapper.mouse-category-esp-sky_palace');
-  } else {
-    floorCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-esp-${islandPowerType}`);
-  }
-
+  const floorCategory = 'sp' === islandType ? document.querySelector('.mouse-category-wrapper.mouse-category-esp-sky_palace') : document.querySelector(`.mouse-category-wrapper.mouse-category-esp-${islandPowerType}`);
   if (! floorCategory) {
     return false;
   }

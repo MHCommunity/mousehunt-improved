@@ -1,4 +1,10 @@
-import { addStyles, getData, getSetting, makeElement, onJournalEntry } from '@utils';
+import {
+  addStyles,
+  getData,
+  getSetting,
+  makeElement,
+  onJournalEntry
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -33,8 +39,8 @@ const otherStrings = [
   'Inside, I found</b>',
   'Loyalty Chest and received:',
   'I sifted through my Dragon Nest and found</b>',
-  "my Skyfarer's Oculus and discovered the following loot:",
-  "my Skyfarer's Oculus and discovered:",
+  'my Skyfarer\'s Oculus and discovered the following loot:',
+  'my Skyfarer\'s Oculus and discovered:',
 ];
 
 const classesToSkip = [
@@ -63,6 +69,7 @@ const makeListItems = (itemList) => {
 };
 
 let allItems = null;
+let linkItems = null;
 /**
  * Split the text into items.
  *
@@ -72,34 +79,21 @@ let allItems = null;
  */
 const splitText = async (text) => {
   const items = text.split(/<br>|, (?=\d)| and (?=\d)/);
-  let itemsToReturn = items;
 
   if (! allItems) {
     allItems = await getData('items');
   }
 
-  if (getSetting('better-journal-list.link-all-items')) {
-    itemsToReturn = items.map((item) => {
-      // If it's a link, return it as is.
-      if (item.includes('<a')) {
-        return item.trim();
-      }
-
-      console.log(`looking up "${item.trim()}"`);
-
+  return items.map((item) => {
+    if (linkItems) {
       const itemData = allItems.find((i) => i.name === item.trim().replace(/^\d+ /, ''));
-
-      if (! itemData) {
-        return item.trim();
+      if (itemData) {
+        return `<a class="loot" title="" href="https://www.mousehuntgame.com/item.php?item_type=${itemData.type}" onclick="hg.views.ItemView.show('${itemData.type}'); return false;">${item}</a>`;
       }
+    }
 
-      return `<a class="loot" title="" href="https://www.mousehuntgame.com/item.php?item_type=${itemData.type}" onclick="hg.views.ItemView.show('${itemData.type}'); return false;">${item}</a>`;
-    }).filter(Boolean);
-  } else {
-    itemsToReturn = items.map((item) => item.trim()).filter(Boolean);
-  }
-
-  return itemsToReturn;
+    return item.trim();
+  }).filter(Boolean);
 };
 
 /**
@@ -228,6 +222,8 @@ const formatAsList = async (entry) => {
  */
 export default async () => {
   addStyles(styles, 'better-journal-list');
+
+  linkItems = getSetting('better-journal-list.link-all-items');
 
   onJournalEntry(formatAsList, 3000);
 };

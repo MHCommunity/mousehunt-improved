@@ -3,7 +3,8 @@ import { getSetting, onNavigation, waitForElement } from '@utils';
 /**
  * Replace the convertible open action.
  *
- * @param {HTMLElement} element The element.
+ * @param {HTMLElement} element   The element.
+ * @param {boolean}     allButOne If all but one should be opened.
  */
 const useConvertible = async (element, allButOne = false) => {
   if ((element.getAttribute('data-item-action') !== 'all-but-one') && (element.getAttribute('data-item-action') !== 'all')) {
