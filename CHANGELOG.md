@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.53.1
+
+- Updated Sunken City Location HUD styles
+
 ## Version 0.53.0
 
 - Added Adorned Empyrean Refractor Base, Royal Ruby Refractor Base, and Sorcerer's Sapphire Refractor Base to special effects highlighting
