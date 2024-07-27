@@ -91,8 +91,20 @@ const main = () => {
   const golds = document.querySelectorAll('.itemPurchaseView-action-goldGost');
   if (golds) {
     golds.forEach((gold) => {
-      gold.innerText = gold.innerText.replace('Cost:', '');
-      gold.innerText = gold.innerText.length ? gold.innerText : '0 gold';
+      if (gold.innerText.includes('Cost:')) {
+        gold.innerText = gold.innerText.replace('Cost:', '');
+      }
+
+      if (! gold.innerText.length) {
+        // get the the nearest parent element with the class 'itemPurchaseView-container'
+        const container = gold.closest('.itemPurchaseView-container');
+        if (container) {
+          const goldCost = container.getAttribute('data-gold-cost');
+          if (goldCost) {
+            gold.innerText = `${Number.parseInt(goldCost).toLocaleString()} gold`;
+          }
+        }
+      }
     });
   }
 

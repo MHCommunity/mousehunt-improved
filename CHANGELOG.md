@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.54.1
+
+- Fixed missing gold costs in Better Shops
+
 ## Version 0.54.0
 
 - Added onboarding & tutorial tips
