@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.54.2
+
+- Fixed Ronza Traveling Shoppe shop colors applying to King's Cart items
+
 ## Version 0.54.1
 
 - Fixed missing gold costs in Better Shops
