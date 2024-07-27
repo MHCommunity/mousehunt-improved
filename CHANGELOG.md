@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.54.0
+
+- Added onboarding & tutorial tips
+- Added quantity buttons in item views for Better Items
+- Added Ronza's Traveling Shoppe HUD tweaks to Location HUDs.
+- Added confirmation if using userscript
+- Fixed Better Journal breaking Unstable Charm text
+- Updated Better Maps styles
+- Updated Better Shops styles
+- Updated Better UI styles
+
 ## Version 0.53.1
 
 - Updated Sunken City Location HUD styles

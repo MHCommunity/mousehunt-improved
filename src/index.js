@@ -163,7 +163,7 @@ const init = async () => {
 
   excludeFromUserscript: if (getSetting('error-reporting', true)) {
     Sentry.init({
-      dsn: __SENTRY_DSN__,
+      dsn: 'https://a677b0fe4d2fbc3a7db7410353d91f39@o4506582061875200.ingest.sentry.io/4506781071835136',
       maxBreadcrumbs: 50,
       debug: ! getSetting('debug.sentry'),
       release: `mousehunt-improved@${mhImprovedVersion}`,

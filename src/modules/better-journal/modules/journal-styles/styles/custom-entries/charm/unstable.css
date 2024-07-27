@@ -10,7 +10,6 @@
 
 /* force unstable charm entries to always be one line */
 .journal .entry.short.misc.custom.unstable_charm_trigger .journaltext {
-  max-width: 265px;
   margin-left: -10px;
 }
 

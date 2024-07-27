@@ -44,7 +44,6 @@
 }
 
 .mountainHUD-conduit-charm:hover .mousehuntItem-image {
-  background-size: 100px;
   transform: rotate(5deg);
 }
 

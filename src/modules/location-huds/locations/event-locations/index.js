@@ -1,6 +1,7 @@
 import { birthdayGlobal, birthdayLocation } from './birthday';
 import { greatWinterHuntGlobal, greatWinterHuntLocation } from './great-winter-hunt';
 import { halloweenGlobal, halloweenLocation } from './halloween';
+import { ronzaGlobal, ronzaLocation } from './ronza';
 import { lunarNewYearGlobal } from './lunar-new-year';
 import { springEggHuntGlobal } from './spring-egg-hunt';
 
@@ -22,6 +23,9 @@ export default async (location) => {
   case 'super_brie_factory':
     birthdayLocation();
     break;
+  case 'ronzas_traveling_shoppe':
+    ronzaLocation();
+    break;
   default:
     break;
   }
@@ -33,8 +37,8 @@ export default async (location) => {
     3: [springEggHuntGlobal], // April.
     4: [], // May.
     5: [], // June.
-    6: [], // July.
-    7: [], // August.
+    6: [ronzaGlobal], // July.
+    7: [ronzaGlobal], // August.
     8: [], // September.
     9: [halloweenGlobal], // October.
     10: [halloweenGlobal, greatWinterHuntGlobal], // November.

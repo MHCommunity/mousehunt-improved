@@ -4,6 +4,7 @@ import {
   getSetting,
   makeElement,
   makeLink,
+  makeMathButtons,
   makeTooltip,
   onNavigation,
   onOverlayChange,
@@ -58,6 +59,55 @@ const addLinks = (itemId) => {
   }
 };
 
+const addQuantityButtons = (itemView) => {
+  const quantityForm = itemView.querySelector('.itemView-action-convertForm');
+  if (! quantityForm) {
+    return;
+  }
+
+  const input = quantityForm.querySelector('.itemView-action-convert-quantity');
+  if (! input) {
+    return;
+  }
+
+  const quantity = quantityForm.innerText.split('/');
+  if (! quantity || quantity.length !== 2) {
+    return;
+  }
+
+  const maxQty = Number.parseInt(quantity[1].trim(), 10);
+
+  const openControls = makeElement('div', ['mh-improved-item-open-controls']);
+
+  makeMathButtons([1, 3, 5, 10], {
+    appendTo: openControls,
+    input,
+    maxQty,
+    classNames: ['mh-improved-item-qty', 'tiny', 'gray'],
+  });
+
+  const openMaxButton = makeElement('a', ['mousehuntActionButton', 'lightBlue', 'tiny', 'mh-improved-shop-buy-max']);
+  const openMaxButtonText = makeElement('span', '', 'Max');
+  openMaxButton.append(openMaxButtonText);
+
+  let hasMaxed = false;
+  openMaxButton.addEventListener('click', () => {
+    if (hasMaxed) {
+      input.value = 0;
+      openMaxButtonText.innerText = 'Max';
+    } else {
+      input.value = maxQty;
+      openMaxButtonText.innerText = 'Reset';
+    }
+
+    hasMaxed = ! hasMaxed;
+  });
+
+  openControls.append(openMaxButton);
+
+  quantityForm.append(openControls);
+};
+
 /**
  * Update the item view.
  */
@@ -83,16 +133,14 @@ const updateItemView = async () => {
     if (smashing) {
       sidebar.append(smashing);
 
-      if (smashing.getAttribute('data-has-changed-title')) {
-        return;
-      }
+      if (! smashing.getAttribute('data-has-changed-title')) {
+        const smashingTitle = smashing.querySelector('b');
+        if (smashingTitle) {
+          smashingTitle.innerText = 'Hunter\'s Hammer to get:';
+          smashing.setAttribute('data-has-changed-title', 'true');
 
-      const smashingTitle = smashing.querySelector('b');
-      if (smashingTitle) {
-        smashingTitle.innerText = 'Hunter\'s Hammer to get:';
-        smashing.setAttribute('data-has-changed-title', 'true');
-
-        smashing.innerHtml = smashing.innerHTML.replace('If you smash it, you\'ll get:', '');
+          smashing.innerHtml = smashing.innerHTML.replace('If you smash it, you\'ll get:', '');
+        }
       }
     }
   }
@@ -121,6 +169,8 @@ const updateItemView = async () => {
 
   addLinks(itemId);
 
+  addQuantityButtons(itemView);
+
   if (! getSetting('better-item-view.show-drop-rates', true)) {
     return;
   }
@@ -138,7 +188,7 @@ const updateItemView = async () => {
     2541, // RLC
   ];
 
-  if (ignored.includes(id)) {
+  if (! ignored.includes(id)) {
     return;
   }
 

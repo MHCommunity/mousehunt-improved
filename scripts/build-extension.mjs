@@ -18,11 +18,10 @@ const argv = await parseArgs(process.argv);
  *
  * @param {string}  platform The platform to build for.
  * @param {boolean} watch    Whether to watch for changes.
- * @param {string}  release  Whether building for release.
  *
  * @return {Promise<void>} Esbuild build result.
  */
-const buildExtension = async (platform, watch = false, release = false) => {
+const buildExtension = async (platform, watch = false) => {
   fs.mkdirSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });
 
   // Copy manifest.json and inject the version number.
@@ -89,9 +88,6 @@ const buildExtension = async (platform, watch = false, release = false) => {
         `const mhImprovedPlatform = '${platform}';`,
       ].join('\n'),
     },
-    define: {
-      __SENTRY_DSN__: JSON.stringify(release ? 'https://a677b0fe4d2fbc3a7db7410353d91f39@o4506582061875200.ingest.sentry.io/4506781071835136' : ''),
-    }
   };
 
   console.log(watch ? 'Watching for changes...' : 'Building extension...'); // eslint-disable-line no-console

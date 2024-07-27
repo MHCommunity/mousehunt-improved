@@ -55,7 +55,6 @@
 }
 
 .adventureBookBanner-adventureImage {
-  height: 45px;
   background-image: none !important;
 }
 
@@ -76,6 +75,7 @@
 .adventureBookBanner-goalName {
   width: auto;
   height: auto;
+  max-height: 35px;
 }
 
 .adventureBookBanner-goalEnvironment {
@@ -89,7 +89,7 @@
 .adventureBookBanner-moreInfo {
   position: absolute;
   right: 5px;
-  bottom: -6px;
+  bottom: -10px;
   display: inline-block;
   width: auto;
   height: auto;

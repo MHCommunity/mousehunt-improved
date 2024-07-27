@@ -107,3 +107,9 @@ a.itemPurchaseView-action-form-button.sell {
 .itemPurchaseView-action-itemCost-table-cell.cost {
   z-index: 1;
 }
+
+.mh-improved-location-ronzas_traveling_shoppe .itemPurchaseView-container.no_gold_cost .itemPurchaseView-action-goldGost,
+.itemPurchaseView-container.chrome .itemPurchaseView-action-container .itemPurchaseView-action-goldGost {
+  background-color: #274167;
+  border-color: #3b619b;
+}

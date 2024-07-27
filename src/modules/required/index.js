@@ -1,4 +1,5 @@
 import {
+  createPopup,
   doEvent,
   doInternalEvent,
   getCurrentDialog,
@@ -212,6 +213,51 @@ const addSupportLink = () => {
 };
 
 /**
+ * Add a confirmation popup if the user is using the userscript.
+ */
+const addUserscriptConfirmation = () => {
+  // Only show the popup if we're on a userscript.
+  if ('userscript' !== mhImprovedPlatform) {
+    return;
+  }
+
+  // Don't show the popup if the user has already confirmed it.
+  if ('confirmed' === localStorage.getItem('mousehunt-improved-userscript-confirmation')) {
+    return;
+  }
+
+  // Don't show the popup on iOS devices, as we only support the userscript there.
+  if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+    return;
+  }
+
+  const popup = createPopup({
+    title: 'Important MouseHunt Improved Userscript information',
+    content: `<p>
+      You are currently using MouseHunt Improved as a userscript. It is recommended to install the browser extension instead for a better, faster, and more stable experience.
+      <div class="mh-improved-userscript-popup-actions">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/" title="View on Firefox Add-ons">
+          <img src="https://i.mouse.rip/firefox.svg" alt="View on Firefox Add-ons" />
+        </a>
+        <a href=https://chrome.google.com/webstore/detail/mousehunt-improved/mbkpejkkhmebmdjokdplhkljgkcfhjol" title="View on Chrome Web Store">
+          <img src="https://i.mouse.rip/chrome.svg" alt="View on Chrome Web Store" />
+        </a>
+      </div>
+      <button class="mh-improved-userscript-popup-confirm mousehuntActionButton small gray"><span>
+        I understand, don't show this again
+      </span></button>
+    </p>`,
+    className: 'mh-improved-userscript-popup',
+  });
+
+  const confirmButton = document.querySelector('.mh-improved-userscript-popup-confirm');
+  confirmButton.addEventListener('click', () => {
+    localStorage.setItem('mousehunt-improved-userscript-confirmation', 'confirmed');
+    popup.hide();
+  });
+};
+
+/**
  * Initialize the module.
  */
 const init = async () => {
@@ -226,6 +272,7 @@ const init = async () => {
   addJournalProcessingEvents();
 
   checkForMHCT();
+  addUserscriptConfirmation();
 
   onEvent('dialog-show-support', addSupportLink);
 

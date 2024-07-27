@@ -580,3 +580,7 @@ input.itemView-action-convert-quantity {
 .PageJournal .pagerView-section.previous {
   text-align: center;
 }
+
+.dateCountdown {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
+}

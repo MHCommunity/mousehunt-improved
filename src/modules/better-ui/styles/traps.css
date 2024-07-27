@@ -528,6 +528,7 @@ img.itembrowser-skin-image {
 .trapSelectorView__armedItem[data-item-classification="skin"] .trapSelectorView__armedItemImage,
 .trapSelectorView__armedItemImage {
   width: 65px;
+  height: 70px;
 }
 
 .trapSelectorView__trap {
@@ -635,4 +636,8 @@ input.trapSelectorView__codexListSearch {
 .campPage-trap-trapStat:hover .value,
 .campPage-trap-trapStat.show-math .value {
   background-color: #e5dbd4;
+}
+
+.campPage-trap-itemBrowser-item.loaded.skin.cannotArm.cannotDisarm {
+  filter: grayscale(1);
 }
