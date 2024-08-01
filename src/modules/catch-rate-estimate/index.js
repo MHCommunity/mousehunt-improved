@@ -204,8 +204,8 @@ const renderList = async (list) => {
       catchRate = {
         rate: 0,
         percent: '0%',
-      }
-    };
+      };
+    }
 
     const crClass = ['mh-improved-cre-data'];
     const minluckClass = ['mh-improved-cre-data'];

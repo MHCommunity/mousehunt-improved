@@ -313,7 +313,6 @@ const init = async () => {
   onDialogShow('all', imageUpscaler.handleUpscalingImages);
 
   if (! getFlag('no-image-upscaling-journal-themes')) {
-    addStyles(journalStyles, 'image-upscaling-journal');
     addExternalStyles('https://static.mouse.rip/upscaled-journal-theme-images.css');
   }
 };

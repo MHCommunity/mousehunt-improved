@@ -5,6 +5,7 @@
 - Fixed error with Location Catch Stats not being draggable
 - Fixed error getting Fiery Warpath wave in Location Dashboard
 - Fixed Catch Rate Estimator showing NaN for some mice
+- Fixed bait not changing when clicking on Ronza miniview items
 - Updated Catch Rate Estimator mice list
 
 ## Version 0.54.2

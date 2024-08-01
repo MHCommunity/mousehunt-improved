@@ -77,6 +77,11 @@ const reformatRonzaView = (wrapper) => {
   });
 
   main.prepend(newContainer);
+
+  const clonedButtons = document.querySelectorAll('.ronza-miniview__item .headsUpDisplayRonzasTravelingShoppeView__baitImage:not(.disabled)');
+  clonedButtons.forEach((button) => {
+    button.setAttribute('onclick', 'hg.utils.TrapControl.toggleItem(this)');
+  });
 };
 
 const ronzaGlobal = async () => {
