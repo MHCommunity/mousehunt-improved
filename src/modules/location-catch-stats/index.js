@@ -3,6 +3,7 @@ import {
   addSubmenuItem,
   doRequest,
   getSetting,
+  makeElementDraggable,
   makeElement
 } from '@utils';
 

@@ -24,7 +24,7 @@ const getFieryWarpathStreak = () => {
 
 const getFieryWarpathRemainingInWave = (wave) => {
   if (! wave) {
-    wave = getWave();
+    wave = getFieryWarpathWave();
   }
 
   let remaining = 0;

@@ -200,6 +200,12 @@ const renderList = async (list) => {
 
     const minluck = await getMinluck(options);
     const catchRate = await getCatchRate(options);
+    if (Number.isNaN(catchRate.rate)) {
+      catchRate = {
+        rate: 0,
+        percent: '0%',
+      }
+    }
 
     const crClass = ['mh-improved-cre-data'];
     const minluckClass = ['mh-improved-cre-data'];

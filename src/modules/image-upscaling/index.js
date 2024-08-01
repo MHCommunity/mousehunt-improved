@@ -10,7 +10,6 @@ import {
 
 import pathsToSkip from '@data/image-upscaling-paths-to-skip.json';
 
-import journalStyles from './journals.css';
 import styles from './styles.css';
 import viewsStyles from './views.css';
 

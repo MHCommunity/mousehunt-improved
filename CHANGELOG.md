@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.54.3
+
+- Fixed error with Location Catch Stats not being draggable
+- Fixed error getting Fiery Warpath wave in Location Dashboard
+- Fixed Catch Rate Estimator showing NaN for some mice
+- Updated Catch Rate Estimator mice list
+
 ## Version 0.54.2
 
 - Fixed Ronza Traveling Shoppe shop colors applying to King's Cart items
