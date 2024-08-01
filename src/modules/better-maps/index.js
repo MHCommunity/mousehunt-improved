@@ -298,7 +298,7 @@ const relicHunterUpdate = async () => {
   /**
    * Show the inventory.
    */
-  hg.controllers.TreasureMapController.showInventory = () => {
+  hg.controllers.TreasureMapController.showInventory = async () => {
     _showInventory();
 
     // Call updateRelicHunterHint, but if it fails, try again in 250ms, but stop after 5 tries.

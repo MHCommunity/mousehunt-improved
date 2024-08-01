@@ -3,8 +3,8 @@ import {
   addSubmenuItem,
   doRequest,
   getSetting,
-  makeElementDraggable,
-  makeElement
+  makeElement,
+  makeElementDraggable
 } from '@utils';
 
 import styles from './styles.css';
