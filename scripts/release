@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
 if [ -f .env ]; then
+  # shellcheck disable=SC1091
   source .env
 fi
 
