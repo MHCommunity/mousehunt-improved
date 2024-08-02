@@ -50,7 +50,7 @@ const checkForAutoHorn = () => {
         username: user.username,
       }),
     });
-  } catch (error) {
+  } catch {
     // Don't do anything with the error, as it's not important.
     hasFailedFetch = true;
   }
