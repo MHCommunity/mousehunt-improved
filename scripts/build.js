@@ -1,4 +1,3 @@
-#!/usr/bin/env bun
 import { $ } from 'bun'; // eslint-disable-line import/no-unresolved
 import archiver from 'archiver';
 import fs from 'node:fs';
