@@ -4,13 +4,6 @@ if [ -f .env ]; then
   source .env
 fi
 
-# Helpers for Chrome Publishing.
-#!/bin/bash
-
-if [ -f .env ]; then
-  source .env
-fi
-
 publish_chrome_extension() {
   bun run chrome-webstore-upload publish \
     --source dist/chrome.zip \
@@ -113,3 +106,8 @@ git add dist/mousehunt-improved.user.js
 git commit -m "Userscript v$version"
 git push origin userscript-build
 git checkout main
+
+# Update static.mouse.rip if the _update_static_mouse_rip command is available.
+if [ -n "$UPDATE_STATIC_MOUSE_RIP" ]; then
+  $UPDATE_STATIC_MOUSE_RIP
+fi
