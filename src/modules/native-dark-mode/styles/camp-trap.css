@@ -261,6 +261,18 @@
   box-shadow: 2px 2px 3px -1px var(--d) inset;
 }
 
+.mh-dark .trapSelectorView__codexFilterGroup {
+  border-color: var(--d-border);
+}
+
+.mh-dark .trapSelectorView__codexFilterButton {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .trapSelectorView__codexFilterButton.active {
+  border-color: var(--d-border);
+}
+
 .mh-dark .trapSelectorView__codexList .campPage-trap-itemBrowser-item-image::after {
   box-shadow: none;
 }
@@ -303,6 +315,11 @@
   background-color: var(--d);
   border-color: var(--d-border);
   box-shadow: -1px 1px 3px var(--d-bg) inset;
+}
+
+.mh-dark .trapSelectorView__innerBlock {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
 }
 
 .mh-dark .mh-improved-cre-row:hover {
