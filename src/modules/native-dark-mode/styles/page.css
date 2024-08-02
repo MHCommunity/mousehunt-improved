@@ -6,7 +6,24 @@
   background-color: var(--d);
 }
 
+.mh-dark .pageFrameView-column.left,
+.mh-dark .pageFrameView-column.right {
+  background-color: var(--d-black);
+  background-image: none;
+  border-color: var(--d-border);
+}
+
 .mh-dark #mousehuntContainer.PageCamp {
   background: var(--d);
   box-shadow: none;
+}
+
+body.halloween .pageFrameView-column,
+body.great_winter_hunt .pageFrameView-column,
+body.lunar_new_year .pageFrameView-column,
+body.birthday .pageFrameView-column,
+body.valentines .pageFrameView-column,
+body.spring_hunt .pageFrameView-column,
+body.kings_giveaway .pageFrameView-column {
+  filter: brightness(50%);
 }
