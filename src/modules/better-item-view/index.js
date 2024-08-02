@@ -186,9 +186,10 @@ const updateItemView = async () => {
     585, // scrambles
     412, // sb supply pack
     2541, // RLC
+    2863, // Chrome bits.
   ];
 
-  if (! ignored.includes(id)) {
+  if (ignored.includes(id)) {
     return;
   }
 

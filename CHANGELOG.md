@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.54.4
+
+- Updated Better UI styles
+- Updated Better Travel styles
+- Updated Better Shops styles
+
 ## Version 0.54.3
 
 - Fixed error with Location Catch Stats not being draggable

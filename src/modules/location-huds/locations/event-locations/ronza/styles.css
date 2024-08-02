@@ -35,6 +35,7 @@
   z-index: 3;
 }
 
+.QuestRonzaPopup-items .QuestRonzaPopup-item-costContainer,
 .QuestRonzaPopup-trapsmith .QuestRonzaPopup-item-costContainer {
   padding-left: 4px;
   background-color: #a3ccf0;

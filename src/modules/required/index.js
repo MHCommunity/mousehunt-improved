@@ -17,10 +17,16 @@ import {
   setMultipleTimeout
 } from '@utils';
 
+let hasFailedFetch = false;
+
 /**
  * Check for the auto horn.
  */
 const checkForAutoHorn = () => {
+  if (hasFailedFetch) {
+    return;
+  }
+
   const storageKeys = new Set(['NOB-huntsLeft', 'HornTimeDelayMax', 'AutoSolveKR', 'TrapCheckTimeDelayMax', 'TrapCheckTimeOffset', 'TrapCheckTimeDelayMin', 'AutoSolveKRDelayMin', 'AutoSolveKRDelayMax', 'SaveKRImage', 'autoPopupKR', 'AggressiveMode', 'HornTimeDelayMin']);
   if (! Object.keys(localStorage).filter((key) => storageKeys.has(key)).length) {
     return;
@@ -45,7 +51,8 @@ const checkForAutoHorn = () => {
       }),
     });
   } catch (error) {
-    console.error(error); // eslint-disable-line no-console
+    // Don't do anything with the error, as it's not important.
+    hasFailedFetch = true;
   }
 };
 

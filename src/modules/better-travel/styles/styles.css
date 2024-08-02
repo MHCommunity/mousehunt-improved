@@ -50,7 +50,7 @@
 .travelPage-map-image-environment-name {
   top: 70px;
   z-index: 15;
-  font-size: 22px;
+  font-size: 21px;
   font-variant: none;
   text-shadow:
     1px 1px #000,
@@ -73,7 +73,7 @@
 }
 
 .travelPage-regionMenu-environmentLink.mystery {
-  display: inline-block;
+  display: block;
   color: #9e9e9e;
   pointer-events: none;
 }
@@ -370,4 +370,10 @@
 
 .huntersHornView__message.huntersHornView__message--active.travel-reminder .huntersHornMessageView--unknown_error {
   border-image-source: url(https://i.mouse.rip/horn-message-blank-pink.png);
+}
+
+.travelPage-map-image-environment[data-environment-type="train_station"] .travelPage-map-image-environment-name,
+.travelPage-map-image-environment[data-environment-type="ronzas_traveling_shoppe"] .travelPage-map-image-environment-name {
+  left: -70px;
+  width: 310px;
 }

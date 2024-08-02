@@ -6,3 +6,6 @@ notes.md
 .stylelintcache
 .env.sentry-build-plugin
 web-ext-artifacts/
+
+# Sentry Config File
+.sentryclirc

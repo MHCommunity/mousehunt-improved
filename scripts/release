@@ -57,10 +57,9 @@ bun run build:extension:chrome --release
 bun run build:extension:firefox --release
 
 # Upload debug symbols to Sentry.
-bun run sentry-cli releases new "mousehunt-improved@$version" --project="mh-improved"
-bun run sentry-cli sourcemaps inject dist
-bun run sentry-cli sourcemaps upload --release="$version" --project="mh-improved" dist
-bun run sentry-cli sourcemaps upload --release="mousehunt-improved@$version" --project="mh-improved" dist
+bun run sentry-cli releases new --org mousehunt --project mh-improved "mousehunt-improved@$version"
+bun run sentry-cli sourcemaps inject --org mousehunt --project mh-improved ./dist --release "mousehunt-improved@$version"
+bun run sentry-cli sourcemaps upload --org mousehunt --project mh-improved ./dist --release "mousehunt-improved@$version"
 
 # Build the extra files.
 bun run build:zips

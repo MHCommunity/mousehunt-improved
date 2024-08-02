@@ -225,7 +225,6 @@ const init = async () => {
     );
 
     doEvent('mh-improved-init', mhImprovedVersion);
-
     // Add the settings for each module.
     onNavigation(async () => {
       for (const module of categories) {
