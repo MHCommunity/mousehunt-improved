@@ -41,9 +41,18 @@
   color: var(--d-text);
 }
 
+.mh-dark .campPage-trap-baitLabel {
+  color: var(--d-text-muted);
+}
+
 .mh-dark .campPage-trap-baitName,
 .mh-dark .campPage-trap-baitQuantity {
   color: var(--d-text);
+  text-shadow: none;
+}
+
+.mh-dark .campPage-trap-baitDetails {
+  color: var(--d-text-muted);
   text-shadow: none;
 }
 
