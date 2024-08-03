@@ -13,5 +13,5 @@ export default async () => {
   }
 
   addStyles([styles, minimalStyles], 'better-journal-icons');
-  addExternalStyles('https://static.mouse.rip/journal-icons.css');
+  addExternalStyles('journal-icons.css');
 };

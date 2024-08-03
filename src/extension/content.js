@@ -3,8 +3,10 @@ const injectMain = () => {
   document.body.style.visibility = 'hidden';
 
   const injectedScript = document.createElement('script');
+  injectedScript.setAttribute('id', 'mousehunt-improved-script');
   injectedScript.setAttribute('type', 'text/javascript');
   injectedScript.setAttribute('src', chrome.runtime.getURL('main.js'));
+  injectedScript.setAttribute('data-baseurl', chrome.runtime.getURL('/'));
   document.body.append(injectedScript);
 
   /**

@@ -16,8 +16,9 @@ const argv = await parseArgs(process.argv);
 /**
  * Main build function.
  *
- * @param {string}  platform The platform to build for.
- * @param {boolean} watch    Whether to watch for changes.
+ * @param {string}  platform  The platform to build for.
+ * @param {boolean} watch     Whether to watch for changes.
+ * @param {boolean} isRelease Whether this is a release build.
  *
  * @return {Promise<void>} Esbuild build result.
  */
@@ -56,6 +57,7 @@ const buildExtension = async (platform, watch = false, isRelease = false) => {
     alias: {
       '@data': path.resolve(process.cwd(), 'dist/data'),
     },
+    dropLabels: ['excludeFromExtension'],
     outfile: `dist/${platform}/main.js`,
     plugins: [
       ImportGlobPlugin,

@@ -54,6 +54,10 @@ git tag -a "v$version" -m "Release v$version" || exit 1
 
 # Build the extension.
 bun run clean
+
+# Pull down the external CSS files and add them to the extension folder.
+bun run build:css
+
 bun run build:extension:chrome --release
 bun run build:extension:firefox --release
 

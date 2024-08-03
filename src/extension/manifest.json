@@ -30,7 +30,8 @@
     {
       "resources": [
         "main.js",
-        "main.js.map"
+        "main.js.map",
+        "static/*.css"
       ],
       "matches": [
         "https://*.mousehuntgame.com/*"
