@@ -12,12 +12,10 @@ const main = async (onlyIfMissing = false) => {
   fs.mkdirSync(path.join(process.cwd(), 'src/extension/static'), { recursive: true });
 
   for (const file of filesToFetch) {
-
     if (onlyIfMissing && fs.existsSync(path.join(process.cwd(), 'src/extension/static', file))) {
       continue;
     }
 
-    console.log(` Fetching ${file}...`); // eslint-disable-line no-console
     const res = await fetch(`https://api.mouse.rip/${file}`);
     const text = await res.text();
 
