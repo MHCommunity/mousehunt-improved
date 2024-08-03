@@ -3,7 +3,6 @@ import {
   debuglog,
   doEvent,
   getSetting,
-  refreshPage,
   saveSetting,
   setGlobal,
   showLoadingPopup,
@@ -63,6 +62,14 @@ const update = async () => {
   const updates = getVersionUpdates();
   const needsMigration = Object.keys(updates).length > 0;
 
+  // If we dont' have settings to migrate, just save the new version and return.
+  if (! needsMigration) {
+    saveSetting('mh-improved-version', mhImprovedVersion);
+    updateCaches();
+    doEvent('mh-improved-updated', previousVersion);
+    return;
+  }
+
   const showPopup = setTimeout(() => {
     showLoadingPopup('0.0.0' === previousVersion ? 'Installing MouseHunt Improved …' : `Updating MouseHunt Improved to v${mhImprovedVersion}…`);
 
@@ -81,12 +88,7 @@ const update = async () => {
 
     clearTimeout(showPopup);
 
-    if (needsMigration) {
-      showLoadingPopup('MouseHunt Improved has been updated. Refresh the page to continue.');
-      setTimeout(refreshPage, 3000);
-    } else if (activejsDialog && activejsDialog?.hide) {
-      activejsDialog.hide();
-    }
+    showLoadingPopup('MouseHunt Improved has been updated. Refresh the page to continue.');
 
     doEvent('mh-improved-updated', previousVersion);
   } catch (error) {
