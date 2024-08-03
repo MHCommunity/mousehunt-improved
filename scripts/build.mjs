@@ -1,25 +1,41 @@
 import { $ } from 'bun'; // eslint-disable-line import/no-unresolved
 import archiver from 'archiver';
+import chalk from 'chalk';
 import fs from 'node:fs';
 import path from 'node:path';
+
+const check = chalk.green('✔');
 
 const buildArchive = async () => {
   console.log('Building archive...'); // eslint-disable-line no-console
   await $`mkdir -p dist`;
   await $`git archive --format zip --output dist/archive.zip HEAD`;
-  console.log('Archive built'); // eslint-disable-line no-console
+  console.log(`${check} Archive built`); // eslint-disable-line no-console
+};
+
+const builCss = async (onlyIfMissing = false) => {
+  if (! onlyIfMissing) {
+    console.log('Fetching external CSS...'); // eslint-disable-line no-console
+  }
+
+  await $`bun run scripts/fetch-external-css.mjs ${onlyIfMissing ? '--only-if-missing' : ''}`;
+
+  if (! onlyIfMissing) {
+    console.log(`${check} External CSS fetched`); // eslint-disable-line no-console
+  }
 };
 
 const buildExtension = async (platform) => {
+  await builCss(true);
   console.log(`Building extension for ${platform} ${isRelease ? '(release)' : '...'}`); // eslint-disable-line no-console
   await $`bun run scripts/build-extension.mjs --platform=${platform} ${isRelease ? '--release' : ''}`;
-  console.log(`Extension for ${platform} built`); // eslint-disable-line no-console
+  console.log(`${check} Extension for ${platform} built`); // eslint-disable-line no-console
 };
 
 const buildUserscript = async () => {
   console.log('Building userscript...'); // eslint-disable-line no-console
   await $`bun run scripts/build-userscript.mjs --platform=userscript`;
-  console.log('Userscript built'); // eslint-disable-line no-console
+  console.log(`${check} Userscript built`); // eslint-disable-line no-console
 };
 
 const buildZip = async (platform) => {
@@ -47,7 +63,7 @@ const buildZips = async () => {
     buildZip('firefox'),
   ]);
 
-  console.log('Extensions zipped.'); // eslint-disable-line no-console
+  console.log(`${check} Extensions zipped`); // eslint-disable-line no-console
 };
 
 const type = process.argv[2];
@@ -69,13 +85,12 @@ if (type === 'archive') {
 } else if (type === 'zips') {
   await buildZips();
 } else {
+  await builCss();
   await Promise.all([
-    await Promise.all([
-      buildArchive(),
-      buildExtension('chrome'),
-      buildExtension('firefox'),
-      buildUserscript(),
-    ]),
-    await buildZips(),
-  ]);
+    buildArchive(),
+    buildExtension('chrome'),
+    buildExtension('firefox'),
+    buildUserscript(),
+  ]),
+  await buildZips();
 }

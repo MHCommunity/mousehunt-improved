@@ -302,7 +302,7 @@ const init = async () => {
   }
 
   addStyles([styles, viewsStyles], 'image-upscaling');
-  addExternalStyles('https://static.mouse.rip/upscaled-images.css');
+  addExternalStyles('upscaled-images.css');
 
   imageUpscaler = new ImageUpscaler();
   imageUpscaler.handleUpscalingImages();
@@ -313,7 +313,7 @@ const init = async () => {
   onDialogShow('all', imageUpscaler.handleUpscalingImages);
 
   if (! getFlag('no-image-upscaling-journal-themes')) {
-    addExternalStyles('https://static.mouse.rip/upscaled-journal-theme-images.css');
+    addExternalStyles('upscaled-journal-theme-images.css');
   }
 };
 
