@@ -95,8 +95,8 @@ const buildExtension = async (platform, watch = false, isRelease = false) => {
     }
   };
 
-  console.log(watch ? 'Watching for changes...' : 'Building extension...'); // eslint-disable-line no-console
   if (watch) {
+    console.log(' Watching for changes...'); // eslint-disable-line no-console
     opts.logLevel = 'info';
     const ctx = await esbuild.context(opts);
     return await ctx.watch();

@@ -8,17 +8,21 @@ const filesToFetch = [
   'journal-icons.css',
 ];
 
-const main = async () => {
+const main = async (onlyIfMissing = false) => {
+  fs.mkdirSync(path.join(process.cwd(), 'src/extension/static'), { recursive: true });
+
   for (const file of filesToFetch) {
-    console.log(`Fetching ${file}...`); // eslint-disable-line no-console
+
+    if (onlyIfMissing && fs.existsSync(path.join(process.cwd(), 'src/extension/static', file))) {
+      continue;
+    }
+
+    console.log(` Fetching ${file}...`); // eslint-disable-line no-console
     const res = await fetch(`https://api.mouse.rip/${file}`);
     const text = await res.text();
-
-    // Make sure the directory exists.
-    fs.mkdirSync(path.join(process.cwd(), 'src/extension/static'), { recursive: true });
 
     fs.writeFileSync(path.join(process.cwd(), 'src/extension/static', file), text);
   }
 };
 
-await main();
+await main(process.argv[2] === '--only-if-missing');
