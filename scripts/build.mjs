@@ -86,11 +86,13 @@ if (type === 'archive') {
   await buildZips();
 } else {
   await builCss();
+
   await Promise.all([
     buildArchive(),
     buildExtension('chrome'),
     buildExtension('firefox'),
     buildUserscript(),
-  ]),
+  ]);
+
   await buildZips();
 }

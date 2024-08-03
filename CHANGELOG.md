@@ -5,6 +5,7 @@
 - Updated Better UI styles
 - Updated Better Travel styles
 - Updated Better Shops styles
+- Packaged external static.mouse.rip CSS files into the extension
 
 ## Version 0.54.3
 

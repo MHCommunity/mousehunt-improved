@@ -4,10 +4,22 @@
     {
       "title": "",
       "items": [
-        "Fixed error with Location Catch Stats not being draggable",
-        "Fixed error getting Fiery Warpath wave in Location Dashboard",
-        "Fixed Catch Rate Estimator showing NaN for some mice",
+        "Added confirmation if using userscript",
+        "Added onboarding & tutorial tips",
+        "Added quantity buttons in item views for Better Items",
+        "Added Ronza's Traveling Shoppe HUD tweaks to Location HUDs.",
         "Fixed bait not changing when clicking on Ronza miniview items",
+        "Fixed Better Journal breaking Unstable Charm text",
+        "Fixed Catch Rate Estimator showing NaN for some mice",
+        "Fixed error getting Fiery Warpath wave in Location Dashboard",
+        "Fixed error with Location Catch Stats not being draggable",
+        "Fixed missing gold costs in Better Shops",
+        "Fixed Ronza Traveling Shoppe shop colors applying to King's Cart items",
+        "Packaged external static.mouse.rip CSS files into the extension",
+        "Updated Better Maps styles",
+        "Updated Better Shops styles",
+        "Updated Better Travel styles",
+        "Updated Better UI styles",
         "Updated Catch Rate Estimator mice list"
       ]
     }
