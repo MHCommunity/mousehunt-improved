@@ -189,7 +189,9 @@ const addExternalStyles = async (filename) => {
   style.href = getSetting('debug.disable-cache') ? `https://api.mouse.rip/${filename}` : `https://static.mouse.rip/${filename}`;
 
   // If we're in an extension, then we can use the extension base URL.
-  excludeFromUserScript: style.href = `${getExtensionBaseUrl()}static/${filename}`;
+  if ('userscript' !== mhImprovedPlatform) {
+    style.href = `${getExtensionBaseUrl()}static/${filename}`;
+  }
 
   document.head.append(style);
 
