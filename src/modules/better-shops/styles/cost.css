@@ -112,3 +112,20 @@ a.itemPurchaseView-action-form-button.sell {
   background-color: #274167;
   border-color: #3b619b;
 }
+
+.itemPurchaseView-container.chrome .mousehuntActionButton.mh-improved-math-button.mh-improved-shop-qty:nth-child(4),
+.itemPurchaseView-container.chrome .mousehuntActionButton.mh-improved-math-button.mh-improved-shop-qty:nth-child(5) {
+  display: none;
+}
+
+.itemPurchaseView-container.chrome:not(.own_max) {
+  min-height: 120px;
+}
+
+.itemPurchaseView-action-chromeCost-image {
+  box-shadow: none;
+}
+
+.itemPurchaseView-container.chrome .itemPurchaseView-action-quantity input {
+  width: 80px;
+}

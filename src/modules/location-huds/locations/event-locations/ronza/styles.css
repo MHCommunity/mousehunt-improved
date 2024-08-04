@@ -137,3 +137,8 @@
   right: -40px;
   left: -2px;
 }
+
+.chrome.itemPurchaseView-container.airship_rocket_fuel_stat_item.stat.view .itemPurchaseView-content-description::after {
+  font-weight: 900;
+  content: " Please don't spend your bits on this.";
+}
