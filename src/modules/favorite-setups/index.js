@@ -812,57 +812,6 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       editClickables = [];
     };
 
-    const showMobile = getSetting('favorite-setups.show-mobile-favorites', false);
-    if (showMobile && ! setup.id.startsWith('mobile-')) {
-      const mobileButton = makeButton({
-        text: '📱',
-        className: ['send-mobile'],
-        callback: async () => {
-          const setupId = setupContainer.getAttribute('data-setup-id');
-          debuglog('favorite-setups', `Sending setup ${setupId} to mobile`);
-
-          // get the setup.
-          const setups = await getFavoriteSetups();
-          if (! setups.length) {
-            return;
-          }
-
-          if (! setupId) {
-            return;
-          }
-
-          const index = setups.findIndex((s) => s?.id && (s.id === setupId));
-
-          const thisSetup = setups[index];
-          if (! thisSetup) {
-            return;
-          }
-
-          const maxMobileSlots = setups.filter((s) => s?.is_mobile ?? false).length;
-          const slot = +prompt(`Enter a slot number for this setup (1-${maxMobileSlots}):`) - 1; // eslint-disable-line no-alert
-          // check if 0 indexed slot is valid number and within range.
-          if (Number.isNaN(slot) || slot < 0 || slot >= maxMobileSlots) {
-            return;
-          }
-
-          const resp = await setMobileFavourite(slot, thisSetup);
-          debuglog('favorite-setups', resp);
-
-          // convert the setup to a mobile setup.
-          thisSetup.id = `mobile-${slot}`;
-          thisSetup.is_mobile = true;
-
-          const newContainer = await makeBlueprintRow(thisSetup, false);
-
-          const mobileRow = document.querySelector(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${thisSetup.id}"]`);
-          mobileRow.replaceWith(newContainer);
-        }
-      });
-      mobileButton.setAttribute('title', 'Send to mobile app');
-
-      buttonWrapper.append(mobileButton);
-    }
-
     buttonWrapper.append(makeButton({
       text: 'Save',
       className: ['save-setup'],
@@ -921,6 +870,10 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           image.removeAttribute('data-old-image-url');
         });
 
+        // Update the setup title to be a div.
+        title.textContent = newSetup.name;
+        titleInput.remove();
+
         let setups = await getFavoriteSetups();
         if (! setups.length) {
           setups = [];
@@ -936,10 +889,6 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
           const mobileIndex = setups.filter((s) => s?.is_mobile ?? false).findIndex((s) => s.id === setupId);
           await setMobileFavourite(mobileIndex, newSetup);
         }
-
-        // Update the setup title to be a div.
-        title.textContent = newSetup.name;
-        titleInput.remove();
 
         updateFavoriteSetupName();
 
