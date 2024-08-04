@@ -126,6 +126,7 @@ const getDataForRegion = async (region) => {
     totalWeight += avgWeight * mouse.num_catches;
 
     const mouseWeight = {
+      groupName: region.name,
       name: mouse.name,
       type: mouse.type,
       crown: mouse.crown,
@@ -247,6 +248,7 @@ const exportMicePopup = () => {
     afterFetch: processWeights,
     download: {
       headers: [
+        `${title} ID`,
         title,
         'Name',
         'Type',
