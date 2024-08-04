@@ -288,6 +288,38 @@ const replaceIconInMenu = (id, opts) => {
   addIconToMenu(opts);
 };
 
+const getExtensionLink = () => {
+  if ('chrome' === mhImprovedPlatform) {
+    return 'https://chromewebstore.google.com/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm';
+  }
+
+  if ('firefox' === mhImprovedPlatform) {
+    return 'https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/';
+  }
+
+  if ('userscript' === mhImprovedPlatform) {
+    return 'https://greasyfork.org/en/scripts/465139-mousehunt-improved';
+  }
+
+  return github;
+};
+
+const getExtensionLinkText = () => {
+  if ('chrome' === mhImprovedPlatform) {
+    return 'View on Chrome Web Store';
+  }
+
+  if ('firefox' === mhImprovedPlatform) {
+    return 'View on Firefox Add-ons';
+  }
+
+  if ('userscript' === mhImprovedPlatform) {
+    return 'View on Greasy Fork';
+  }
+
+  return 'View on GitHub';
+};
+
 export {
   addItemToGameInfoBar,
   addSubmenuItem,
@@ -295,5 +327,7 @@ export {
   removeSubmenuItem,
   addIconToMenu,
   removeIconFromMenu,
-  replaceIconInMenu
+  replaceIconInMenu,
+  getExtensionLink,
+  getExtensionLinkText
 };

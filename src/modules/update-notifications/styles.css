@@ -1,3 +1,46 @@
+.mhui-update-banner {
+  position: absolute;
+  top: 10px;
+  z-index: 11;
+  width: 352px;
+  padding: 10px;
+  margin: 10px 3px;
+  background: linear-gradient(320deg, #e1fae9 0%, #b0f5c6 100%);
+  background-color: #e1fae9;
+  border: 1px solid #6e7d73;
+  border-radius: 5px;
+  box-shadow:
+    1px 0 3px -1px #3d3d3d,
+    0 2px 5px 1px #111;
+}
+
+.mhui-update-banner-text {
+  margin: 10px 0 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.mhui-update-banner-buttons {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+a.mhui-update-banner-button {
+  border: 1px solid #000;
+}
+
+.banner-fade {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.banner-fade-out {
+  opacity: 0;
+}
+
 #overlayPopup.mh-improved-update-summary {
   margin-top: 30px;
 }
