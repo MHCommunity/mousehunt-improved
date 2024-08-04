@@ -4,23 +4,13 @@
     {
       "title": "",
       "items": [
-        "Added confirmation if using userscript",
-        "Added onboarding & tutorial tips",
-        "Added quantity buttons in item views for Better Items",
-        "Added Ronza's Traveling Shoppe HUD tweaks to Location HUDs.",
-        "Fixed bait not changing when clicking on Ronza miniview items",
-        "Fixed Better Journal breaking Unstable Charm text",
-        "Fixed Catch Rate Estimator showing NaN for some mice",
-        "Fixed error getting Fiery Warpath wave in Location Dashboard",
-        "Fixed error with Location Catch Stats not being draggable",
-        "Fixed missing gold costs in Better Shops",
-        "Fixed Ronza Traveling Shoppe shop colors applying to King's Cart items",
-        "Packaged external static.mouse.rip CSS files into the extension",
-        "Updated Better Maps styles",
+        "Added notification banner above the journal when a new extension version is available",
+        "Added readable location/group names to mice Data Exporters",
+        "Fixed Favorite Setups random name button not working 100% of the time",
+        "Renamed 'Inventory - Only Open Multiple' to 'Inventory - Only Open Extras'",
         "Updated Better Shops styles",
-        "Updated Better Travel styles",
-        "Updated Better UI styles",
-        "Updated Catch Rate Estimator mice list"
+        "Updated Favorite Setups mobile favorites to allow saving",
+        "Updated School of Sorcery Location HUD styles"
       ]
     }
   ]

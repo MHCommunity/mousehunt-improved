@@ -6,6 +6,7 @@
 - Added readable location/group names to mice Data Exporters
 - Fixed Favorite Setups random name button not working 100% of the time
 - Renamed 'Inventory - Only Open Multiple' to 'Inventory - Only Open Extras'
+- Updated Better Shops styles
 - Updated Favorite Setups mobile favorites to allow saving
 - Updated School of Sorcery Location HUD styles
 
