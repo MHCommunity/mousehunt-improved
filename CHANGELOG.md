@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 0.55.0
+
+- Added notification banner above the journal when a new extension version is available
+- Added readable location/group names to mice Data Exporters
+- Fixed Favorite Setups random name button not working 100% of the time
+- Renamed 'Inventory - Only Open Multiple' to 'Inventory - Only Open Extras'
+- Updated Favorite Setups mobile favorites to allow saving
+- Updated School of Sorcery Location HUD styles
+
 ## Version 0.54.4
 
 - Updated Better UI styles
