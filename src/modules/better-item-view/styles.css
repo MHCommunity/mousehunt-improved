@@ -241,6 +241,7 @@ input.itemView-action-convert-quantity {
 .itemView-sidebar-checklistItem {
   background: url(https://www.mousehuntgame.com/images/icons/bad_idea.png) 1px 4px no-repeat;
   background-size: 14px;
+  opacity: 0.8;
 }
 
 .itemView-partsContainer {
@@ -291,4 +292,23 @@ input.itemView-action-convert-quantity {
 .inventoryPage-item.trinket .itemViewStatBlock-stat {
   border-top: 1px solid #ccc;
   border-bottom: none;
+}
+
+.itemView-action-convertForm {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.mh-improved-item-open-controls {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: row wrap;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 7px;
 }

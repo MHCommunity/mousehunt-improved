@@ -29,11 +29,11 @@ export default async () => {
       }
     },
     {
-      name: 'Region: Living Garden',
+      name: 'Living Garden Region',
       id: 'region-living-garden',
     },
     {
-      name: 'Region: Queso Canyon',
+      name: 'Queso Canyon Region',
       id: 'region-queso',
     },
     {

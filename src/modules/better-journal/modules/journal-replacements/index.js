@@ -111,6 +111,8 @@ const replacements = [
   ['Inside, I found', 'I found'],
   ['Inside I found', 'I found'],
   [/i earned some extra loot:<br>• (\d+?) <(.+?)>enerchi<\/a> from my (.+?)<br>/i, 'My $3 gave me an additional $1<a href="https://www.mousehuntgame.com/item.php?item_type=combat_energy_stat_item" onclick="hg.views.ItemView.show(\'combat_energy_stat_item\'); return false;">Enerchi</a>.'],
+  ['my Skyfarer\'s Oculus and discovered the following loot:', 'my Skyfarer\'s Oculus and discovered: '],
+  ['focussed the light from my ', 'focused the light from my '],
 
   // Event stuff
   // SEH

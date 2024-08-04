@@ -479,6 +479,15 @@ input.itemView-action-convert-quantity {
   padding: 5px 10px;
 }
 
+.travelPage-map-pieces-row.locked .travelPage-map-pieces-detail-image {
+  filter: grayscale(1);
+  opacity: 0.8;
+}
+
+.travelPage-map-pieces-detail-environment-title {
+  border-bottom: none;
+}
+
 .mouseListView-categoryContent-category {
   padding-right: 5px;
 }
@@ -579,4 +588,8 @@ input.itemView-action-convert-quantity {
 .PageJournal .pagerView-section.next,
 .PageJournal .pagerView-section.previous {
   text-align: center;
+}
+
+.dateCountdown {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
 }

@@ -8,10 +8,6 @@
   padding: 5px;
 }
 
-.schoolOfSorceryCourseView__powerTypeWarningIcon {
-  background-image: url(https://i.mouse.rip/map-marker.png);
-}
-
 .folkloreForestRegionView-warning {
   border: none;
 }
@@ -24,4 +20,75 @@
   width: 30px;
   height: 30px;
   background-size: cover;
+}
+
+.schoolOfSorceryCourseView__magicProgressBarLabel {
+  top: 48px;
+  left: 30%;
+  padding: 3px;
+  color: #fff;
+  background-color: #3c3c3c;
+  border: 1px solid #6b6b6b;
+  box-shadow: 0 1px 1px -1px #b0b0b0;
+}
+
+.schoolOfSorceryCourseView__content:hover .schoolOfSorceryCourseView__stream--short,
+.schoolOfSorceryCourseView__content:hover .schoolOfSorceryCourseView__glow,
+.schoolOfSorceryCourseView__content:hover .schoolOfSorceryCourseView__explosion {
+  animation-play-state: unset;
+}
+
+.schoolOfSorceryCourseView__explosion {
+  animation-timing-function: unset;
+}
+
+.schoolOfSorceryCourseView__powerTypeRecommendationText.schoolOfSorceryCourseView__powerTypeRecommendationText--usingCorrectPowerType {
+  position: relative;
+  width: 0;
+  color: transparent;
+  visibility: hidden;
+}
+
+.schoolOfSorceryCourseView__powerTypeRecommendationText.schoolOfSorceryCourseView__powerTypeRecommendationText--usingCorrectPowerType::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2px;
+  width: 13px;
+  height: 13px;
+  color: #70e923;
+  visibility: visible;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.schoolOfSorceryCourseView__powerTypeRecommendationContainer.schoolOfSorceryCourseView__powerTypeRecommendationContainer--.schoolOfSorceryCourseView__powerTypeRecommendationContainer--arcane {
+  top: 130px;
+}
+
+.schoolOfSorceryCourseView__powerTypeIcon {
+  filter: drop-shadow(0 2px 2px #000);
+}
+
+.schoolOfSorceryCourseView__powerTypeWarningIcon {
+  top: 6px;
+  width: 20px;
+  height: 19px;
+  background-image: url(https://i.mouse.rip/map-marker.png);
+  filter: hue-rotate(320deg);
+  background-position: 50% -3px;
+  background-size: 20px;
+  border-radius: 50%;
+}
+
+.headsUpDisplaySchoolOfSorceryView__wandQuantity.quantity {
+  top: 7px;
+  font-size: 12px;
+}
+
+.schoolOfSorceryCourseView__huntsRemainingContainer {
+  font-size: 17px;
+  opacity: 0.8;
 }

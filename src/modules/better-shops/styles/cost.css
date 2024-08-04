@@ -107,3 +107,8 @@ a.itemPurchaseView-action-form-button.sell {
 .itemPurchaseView-action-itemCost-table-cell.cost {
   z-index: 1;
 }
+
+.itemPurchaseView-container.chrome .itemPurchaseView-action-container .itemPurchaseView-action-goldGost {
+  background-color: #274167;
+  border-color: #3b619b;
+}

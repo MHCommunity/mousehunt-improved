@@ -149,15 +149,33 @@ const removeHudStyles = () => {
   });
 };
 
+let extensionBaseUrl;
+
+/**
+ * Helper function to get the extension base URL.
+ *
+ * @return {string} The extension base URL.
+ */
+const getExtensionBaseUrl = () => {
+  if (! extensionBaseUrl) {
+    const baseScript = document.querySelector('#mousehunt-improved-script');
+    if (baseScript && baseScript.getAttribute('data-baseurl')) {
+      extensionBaseUrl = baseScript.getAttribute('data-baseurl');
+    }
+  }
+
+  return extensionBaseUrl;
+};
+
 /**
  * Add external styles to the page.
  *
- * @param {string} url The URL of the external styles.
+ * @param {string} filename The filename of the external styles from the static server.
  *
  * @return {Element} The style element.
  */
-const addExternalStyles = async (url) => {
-  const identifier = url.split('/').pop().split('.').shift();
+const addExternalStyles = async (filename) => {
+  const identifier = filename.split('.').shift();
 
   const existingStyles = document.querySelector(`#${identifier}-external`);
 
@@ -166,11 +184,13 @@ const addExternalStyles = async (url) => {
   }
 
   const style = document.createElement('link');
-  style.id = `${identifier}-external`;
   style.rel = 'stylesheet';
-  style.href = `${url}?v=${mhImprovedVersion}-external`;
-  if (getSetting('debug.disable-cache')) {
-    style.href = `${style.href.replace('static.mouse.rip', 'api.mouse.rip')}&${Date.now()}`;
+  style.id = `${identifier}-external`;
+  style.href = getSetting('debug.disable-cache') ? `https://api.mouse.rip/${filename}` : `https://static.mouse.rip/${filename}`;
+
+  // If we're in an extension, then we can use the extension base URL.
+  if ('userscript' !== mhImprovedPlatform) {
+    style.href = `${getExtensionBaseUrl()}static/${filename}`;
   }
 
   document.head.append(style);

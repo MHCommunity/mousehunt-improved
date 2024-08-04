@@ -5,3 +5,7 @@
 #sorted-mice-container .mouse-category-first-light-utter-darkness .mouse-category-title {
   font-size: 12px;
 }
+
+#sorted-mice-container .mouse-subcategory-wrapper.mouse-subcategory-sp {
+  background-color: rgb(175 203 255 / 75%);
+}

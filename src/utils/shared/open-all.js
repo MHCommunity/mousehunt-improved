@@ -1,11 +1,12 @@
-import { getSetting, onNavigation } from '@utils';
+import { getSetting, onNavigation, waitForElement } from '@utils';
 
 /**
  * Replace the convertible open action.
  *
- * @param {HTMLElement} element The element.
+ * @param {HTMLElement} element   The element.
+ * @param {boolean}     allButOne If all but one should be opened.
  */
-const useConvertible = (element) => {
+const useConvertible = async (element, allButOne = false) => {
   if ((element.getAttribute('data-item-action') !== 'all-but-one') && (element.getAttribute('data-item-action') !== 'all')) {
     return;
   }
@@ -14,26 +15,27 @@ const useConvertible = (element) => {
   hg.views.ItemView.show(itemType);
 
   // wait for the item view to load
-  const interval = setInterval(() => {
-    const quantityEl = document.querySelector('.itemView-action-convertForm');
-    let maxQuantity = 1;
-    if (quantityEl && quantityEl.innerText.includes('/')) {
-      maxQuantity = Number.parseInt(quantityEl.innerText.split('/')[1].trim(), 10);
+  const quantityEl = await waitForElement('.itemView-action-convertForm');
+  let maxQuantity = 1;
+  if (quantityEl && quantityEl.innerText.includes('/')) {
+    maxQuantity = Number.parseInt(quantityEl.innerText.split('/')[1].trim(), 10);
+  }
+
+  let quantity = maxQuantity > 200 ? 200 : maxQuantity;
+
+  if (allButOne) {
+    quantity = maxQuantity - 1;
+  }
+
+  const quantityInput = document.querySelector('.itemView-action-convert-quantity');
+  if (quantityInput) {
+    quantityInput.value = quantity;
+
+    const useButton = document.querySelector('.itemView-action-convert-actionButton');
+    if (useButton) {
+      useButton.click();
     }
-
-    const quantity = maxQuantity > 200 ? 200 : maxQuantity;
-
-    const quantityInput = document.querySelector('.itemView-action-convert-quantity');
-    if (quantityInput) {
-      clearInterval(interval);
-      quantityInput.value = quantity;
-
-      const useButton = document.querySelector('.itemView-action-convert-actionButton');
-      if (useButton) {
-        useButton.click();
-      }
-    }
-  }, 100);
+  }
 };
 
 /**
@@ -81,7 +83,7 @@ const addOpenAllButOneButton = () => {
       newButton.setAttribute('data-item-action', 'all-but-one');
 
       newButton.addEventListener('click', (event) => {
-        useConvertible(event.target);
+        useConvertible(event.target, true);
       });
 
       button.after(newButton);

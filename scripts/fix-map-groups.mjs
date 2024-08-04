@@ -52,7 +52,7 @@ const main = async () => {
     return;
   }
 
-  console.log(`Checking ${groups.length} maps …`);
+  console.log(`Checking ${groups.length} maps...`);
 
   groups.forEach((key) => {
     const categories = mapGroups[key].categories;
@@ -114,11 +114,11 @@ const getReplacements = async () => {
   const replacementsPath = path.resolve(tmpPath, 'mh-improved-replacements.json');
 
   if (fs.existsSync(replacementsPath)) {
-    console.log('Using cached replacements.json …');
+    console.log('Using cached replacements.json...');
     return loadFile(replacementsPath);
   }
 
-  console.log('Getting mice list from api.mouse.rip …');
+  console.log('Getting mice list from api.mouse.rip...');
 
   // For replacements, grab the file from api.mouse.rip/mice and then make a new array thats just [ { name, type} ].
   const replacementsData = await fetch('https://api.mouse.rip/mice');
@@ -132,7 +132,7 @@ const getReplacements = async () => {
   });
 
   // Save the file to a tmp folder.
-  console.log('Saving replacements.json to tmp folder …');
+  console.log('Saving replacements.json to tmp folder...');
   fs.writeFileSync(replacementsPath, JSON.stringify(replacements, null, 2));
 
   return replacements;

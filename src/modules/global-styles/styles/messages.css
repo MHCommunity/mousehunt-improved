@@ -14,3 +14,33 @@
   background-color: #a3ea85;
   border: 1px solid #3e803e;
 }
+
+.mh-improved-userscript-popup .content {
+  text-align: center;
+}
+
+.mh-improved-userscript-popup .jsDialogContainer {
+  color: #160404;
+  background-color: #f5b9b9;
+}
+
+.mh-improved-userscript-popup .mh-improved-userscript-popup-actions {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+  margin: 1em;
+}
+
+.mh-improved-userscript-popup .mh-improved-userscript-popup-actions img {
+  height: 30px;
+}
+
+.mh-improved-userscript-popup .mh-improved-userscript-popup-actions img:hover {
+  filter: brightness(1.1);
+}
+
+.mh-improved-userscript-popup .content p {
+  font-size: 14px;
+  line-height: 2;
+}

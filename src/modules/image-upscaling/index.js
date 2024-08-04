@@ -10,7 +10,6 @@ import {
 
 import pathsToSkip from '@data/image-upscaling-paths-to-skip.json';
 
-import journalStyles from './journals.css';
 import styles from './styles.css';
 import viewsStyles from './views.css';
 
@@ -303,7 +302,7 @@ const init = async () => {
   }
 
   addStyles([styles, viewsStyles], 'image-upscaling');
-  addExternalStyles('https://static.mouse.rip/upscaled-images.css');
+  addExternalStyles('upscaled-images.css');
 
   imageUpscaler = new ImageUpscaler();
   imageUpscaler.handleUpscalingImages();
@@ -314,8 +313,7 @@ const init = async () => {
   onDialogShow('all', imageUpscaler.handleUpscalingImages);
 
   if (! getFlag('no-image-upscaling-journal-themes')) {
-    addStyles(journalStyles, 'image-upscaling-journal');
-    addExternalStyles('https://static.mouse.rip/upscaled-journal-theme-images.css');
+    addExternalStyles('upscaled-journal-theme-images.css');
   }
 };
 

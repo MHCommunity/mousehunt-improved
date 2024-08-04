@@ -1,5 +1,59 @@
 # Changelog
 
+## Version 0.54.4
+
+- Updated Better UI styles
+- Updated Better Travel styles
+- Updated Better Shops styles
+- Packaged external static.mouse.rip CSS files into the extension
+
+## Version 0.54.3
+
+- Fixed error with Location Catch Stats not being draggable
+- Fixed error getting Fiery Warpath wave in Location Dashboard
+- Fixed Catch Rate Estimator showing NaN for some mice
+- Fixed bait not changing when clicking on Ronza miniview items
+- Updated Catch Rate Estimator mice list
+
+## Version 0.54.2
+
+- Fixed Ronza Traveling Shoppe shop colors applying to King's Cart items
+
+## Version 0.54.1
+
+- Fixed missing gold costs in Better Shops
+
+## Version 0.54.0
+
+- Added onboarding & tutorial tips
+- Added quantity buttons in item views for Better Items
+- Added Ronza's Traveling Shoppe HUD tweaks to Location HUDs.
+- Added confirmation if using userscript
+- Fixed Better Journal breaking Unstable Charm text
+- Updated Better Maps styles
+- Updated Better Shops styles
+- Updated Better UI styles
+
+## Version 0.53.1
+
+- Updated Sunken City Location HUD styles
+
+## Version 0.53.0
+
+- Added Adorned Empyrean Refractor Base, Royal Ruby Refractor Base, and Sorcerer's Sapphire Refractor Base to special effects highlighting
+- Added Better Journal styles for Refactor base entries
+- Added Better Journal replacements for Refractor base entries
+- Added Better Journal loot list support for Refactor base entries
+- Added 'Better Journal List: Link all items' experimental feature
+- Updated Catch Rate Estimator styles
+- Updated Better Shops styles
+- Updated Better Maps styles
+- Fixed location indicator for Empyrean Sky Palace maps when in Sky Palace
+- Fixed Better Journal tags not showing correctly when Better Journal styles is disabled
+- Fixed sticky trap math stats not correctly un-sticking after selecting a different stat
+- Fixed Open all but One opening all items in some cases
+- Fixed updates not refreshing data
+
 ## Version 0.52.2
 
 - Fixed z-index issues with trap view

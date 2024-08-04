@@ -104,3 +104,7 @@
 span.mh-improved-cre-no-mice {
   font-size: 12px;
 }
+
+.mh-improved-cre-row:hover {
+  background-color: #eee7e2;
+}

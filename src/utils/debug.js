@@ -8,10 +8,14 @@ import { getSetting } from './settings';
  * @return {boolean} Whether debug logs should be displayed.
  */
 const shouldLogDebug = (context) => {
+  if (! getSetting('debug', false)) {
+    return false;
+  }
+
   return getSetting('debug.all', false) ||
-         getSetting(`debug.${context}`, false) ||
-         getGlobal('mh-improved-updating') ||
-         getGlobal('mh-improved-debug');
+    getSetting(`debug.${context}`, false) ||
+    getGlobal('mh-improved-updating') ||
+    getGlobal('mh-improved-debug');
 };
 
 /**

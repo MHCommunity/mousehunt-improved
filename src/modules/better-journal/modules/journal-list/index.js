@@ -1,4 +1,10 @@
-import { addStyles, makeElement, onJournalEntry } from '@utils';
+import {
+  addStyles,
+  getData,
+  getSetting,
+  makeElement,
+  onJournalEntry
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -33,6 +39,8 @@ const otherStrings = [
   'Inside, I found</b>',
   'Loyalty Chest and received:',
   'I sifted through my Dragon Nest and found</b>',
+  'my Skyfarer\'s Oculus and discovered the following loot:',
+  'my Skyfarer\'s Oculus and discovered:',
 ];
 
 const classesToSkip = [
@@ -60,6 +68,8 @@ const makeListItems = (itemList) => {
   return list;
 };
 
+let allItems = null;
+let linkItems = null;
 /**
  * Split the text into items.
  *
@@ -67,9 +77,23 @@ const makeListItems = (itemList) => {
  *
  * @return {Array} The list of items.
  */
-const splitText = (text) => {
+const splitText = async (text) => {
   const items = text.split(/<br>|, (?=\d)| and (?=\d)/);
-  return items.map((item) => item.trim()).filter(Boolean);
+
+  if (! allItems) {
+    allItems = await getData('items');
+  }
+
+  return items.map((item) => {
+    if (linkItems) {
+      const itemData = allItems.find((i) => i.name === item.trim().replace(/^\d+ /, ''));
+      if (itemData) {
+        return `<a class="loot" title="" href="https://www.mousehuntgame.com/item.php?item_type=${itemData.type}" onclick="hg.views.ItemView.show('${itemData.type}'); return false;">${item}</a>`;
+      }
+    }
+
+    return item.trim();
+  }).filter(Boolean);
 };
 
 /**
@@ -80,7 +104,7 @@ const splitText = (text) => {
  *
  * @return {Object} The items and the new text.
  */
-const getItemsFromText = (type, text) => {
+const getItemsFromText = async (type, text) => {
   const innerHTML = text.innerHTML;
   let items;
   let list;
@@ -90,12 +114,12 @@ const getItemsFromText = (type, text) => {
   if ('loot' === type) {
     items = innerHTML.split(' that dropped ');
     if (items.length >= 2) {
-      list = splitText(items[1]);
+      list = await splitText(items[1]);
       newText = `${items[0]} that dropped:`;
     } else {
       items = innerHTML.split('<b>that dropped</b> ');
       if (items.length >= 2) {
-        list = splitText(items[1]);
+        list = await splitText(items[1]);
         newText = `${items[0]} that dropped:`;
       }
     }
@@ -112,10 +136,10 @@ const getItemsFromText = (type, text) => {
           suffixString = suffixString.slice(0, -1);
         }
 
-        list = splitText(suffix[0]);
+        list = await splitText(suffix[0]);
         newText = `I opened ${suffixString} and received:`;
       } else {
-        list = splitText(items[1]);
+        list = await splitText(items[1]);
         newText = 'I received: ';
       }
     }
@@ -124,8 +148,8 @@ const getItemsFromText = (type, text) => {
       // If it's an "other" type, the items are after a specific string.
       if (innerHTML.includes(string)) {
         items = innerHTML.split(string);
-        list = splitText(items[1]);
-        newText = `${items[0]} ${string}: `;
+        list = await splitText(items[1]);
+        newText = `${items[0]} ${string}: `.replace('::', ':');
         break;
       }
     }
@@ -186,7 +210,7 @@ const formatAsList = async (entry) => {
     return;
   }
 
-  const { newText, list } = getItemsFromText(type, text);
+  const { newText, list } = await getItemsFromText(type, text);
   if (list.length > 0 && newText !== text.innerHTML) {
     text.innerHTML = newText;
     text.append(makeListItems(list));
@@ -198,6 +222,8 @@ const formatAsList = async (entry) => {
  */
 export default async () => {
   addStyles(styles, 'better-journal-list');
+
+  linkItems = getSetting('better-journal-list.link-all-items');
 
   onJournalEntry(formatAsList, 3000);
 };

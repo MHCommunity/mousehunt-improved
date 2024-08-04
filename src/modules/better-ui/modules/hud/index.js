@@ -61,6 +61,11 @@ const allowTrapMathToggle = async () => {
     trapStats.forEach((stat) => {
       stat.addEventListener('click', () => {
         stat.classList.toggle('show-math');
+        trapStats.forEach((otherStat) => {
+          if (otherStat !== stat) {
+            otherStat.classList.remove('show-math');
+          }
+        });
       });
     });
   }, 500);

@@ -69,7 +69,7 @@
   text-align: left;
 }
 
-.item-wrapper:nth-last-child(2) {
+.item-wrapper:last-child {
   margin-bottom: 0;
 }
 

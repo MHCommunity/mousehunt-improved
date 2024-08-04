@@ -38,6 +38,11 @@ const main = () => {
   window.app = window.app || {};
   window.app.mhutils = Utils;
 
+  // If debug is not enabled, return.
+  if (! Utils.getSetting('debug', false)) {
+    return;
+  }
+
   // To enable, either add `debug-all` or one of the following: debug-dialog, debug-navigation, debug-request, debug-events.
   if (Utils.getSetting('debug.dialog', false)) {
     let currentDialog = null;

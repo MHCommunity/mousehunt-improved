@@ -15,6 +15,7 @@ export * from './links';
 export * from './location';
 export * from './maps';
 export * from './messages';
+export * from './onboarding';
 export * from './page';
 export * from './settings';
 export * from './settings-markup';

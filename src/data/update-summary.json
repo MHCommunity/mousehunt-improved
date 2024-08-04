@@ -4,27 +4,23 @@
     {
       "title": "",
       "items": [
-        "Added 'Add an indicator to items in the trap selector that have special effects' experimental feature",
-        "Added Chrome Bits to Better Journal: Unique item colors",
-        "Added highlighting to mobile Favorite Setups",
-        "Fixed aura tooltip sizing in Better UI",
-        "Fixed Better Tournaments not showing full tournament name before tournament starts",
-        "Fixed issue with crafting popups not showing correctly",
-        "Fixed long costs being unreadable in Better Shops",
-        "Fixed mobile setups being duplicated in Favorite Setups",
-        "Fixed Relic Hunter map indicator alignment and sizing in Better Travel",
-        "Fixed sizing of Emotes",
-        "Updated Mice Category styles in Better Mice",
-        "Updated Better UI styles",
+        "Added confirmation if using userscript",
+        "Added onboarding & tutorial tips",
+        "Added quantity buttons in item views for Better Items",
+        "Added Ronza's Traveling Shoppe HUD tweaks to Location HUDs.",
+        "Fixed bait not changing when clicking on Ronza miniview items",
+        "Fixed Better Journal breaking Unstable Charm text",
+        "Fixed Catch Rate Estimator showing NaN for some mice",
+        "Fixed error getting Fiery Warpath wave in Location Dashboard",
+        "Fixed error with Location Catch Stats not being draggable",
+        "Fixed missing gold costs in Better Shops",
+        "Fixed Ronza Traveling Shoppe shop colors applying to King's Cart items",
+        "Packaged external static.mouse.rip CSS files into the extension",
         "Updated Better Maps styles",
-        "Updated Better Gifts styles",
-        "Updated Better Journal styles",
-        "Updated Better Tournaments styles",
-        "Updated Better Send Supplies styles",
-        "Updated Floating Islands Location HUD styles",
-        "Updated Floating Islands Location HUD styles",
-        "Updated Furoma Rift Location HUD styles",
-        "Updated Sunken City Location HUD styles"
+        "Updated Better Shops styles",
+        "Updated Better Travel styles",
+        "Updated Better UI styles",
+        "Updated Catch Rate Estimator mice list"
       ]
     }
   ]

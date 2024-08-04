@@ -1,0 +1,139 @@
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--closed .headsUpDisplayRonzasTravelingShoppeView__mainHudContainer {
+  top: -2px;
+  width: 230px;
+  height: 2px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-image: url(https://i.mouse.rip/ronza-button.png);
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--closed.headsUpDisplayRonzasTravelingShoppeView {
+  height: auto;
+  min-height: 40px;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer {
+  background-image: url(https://i.mouse.rip/ronza-short.png);
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__baitInfoContainer {
+  display: none;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView {
+  height: 190px;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__baitContainer:hover .headsUpDisplayRonzasTravelingShoppeView__baitInfoContainer {
+  z-index: 2;
+  display: block;
+  box-shadow: 0 2px 2px #3a3a3a;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__baitQuantity,
+.headsUpDisplayRonzasTravelingShoppeView__itemQuantity {
+  z-index: 3;
+}
+
+.QuestRonzaPopup-items .QuestRonzaPopup-item-costContainer,
+.QuestRonzaPopup-trapsmith .QuestRonzaPopup-item-costContainer {
+  padding-left: 4px;
+  background-color: #a3ccf0;
+  border-radius: 5px;
+}
+
+.QuestRonzaPopup-bucketContainer {
+  overflow: hidden;
+}
+
+.QuestRonzaCampHUD-completeQuantity.QuestRonzaCampHUD-chromeBitQuantity {
+  font-size: 13px;
+}
+
+.QuestRonzaPopup-container .mousehuntActionButton {
+  width: 50px;
+  margin-right: -30px;
+}
+
+.QuestRonzaPopup-bucket .rewards .chromeTicket {
+  background-size: 57px;
+}
+
+.QuestRonzaCampHUD-goal {
+  z-index: 1;
+}
+
+.QuestRonzaPopup-bucket .rewardDescription b {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+#overlayPopup.QuestRonzaPopup #jsDialogClose {
+  z-index: 2;
+}
+
+.voucherImage,
+.chromeBitImage {
+  width: 19px;
+  height: 19px;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__inventoryBlockQuantity {
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.QuestRonzaPopup-shopTabButton.bits {
+  padding-left: 0;
+  margin-left: 5px;
+}
+
+.QuestRonzaPopup-shopTabButton.voucher {
+  margin-right: 5px;
+}
+
+/* Mini view toggle */
+.ronza-miniview {
+  display: none;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .headsUpDisplayRonzasTravelingShoppeView__footerContainer,
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .headsUpDisplayRonzasTravelingShoppeView__primaryContent,
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .headsUpDisplayRonzasTravelingShoppeView__secondaryContent {
+  display: none;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview.headsUpDisplayRonzasTravelingShoppeView {
+  height: 90px;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .headsUpDisplayRonzasTravelingShoppeView__mainHudContainer {
+  background-image: url(https://i.mouse.rip/ronza-mini.png);
+  background-position: top;
+  border-radius: 10px;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .ronza-miniview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -3px;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .headsUpDisplayRonzasTravelingShoppeView__inventoryBlock.dragonbane_trinket {
+  margin-right: 20px;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .headsUpDisplayRonzasTravelingShoppeView__baitContainer {
+  width: 80px;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .headsUpDisplayRonzasTravelingShoppeView__baitQuantity,
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .headsUpDisplayRonzasTravelingShoppeView__itemQuantity {
+  width: 40px;
+}
+
+.headsUpDisplayRonzasTravelingShoppeView__mainHudContainer--miniview .headsUpDisplayRonzasTravelingShoppeView__baitContainer:hover .headsUpDisplayRonzasTravelingShoppeView__baitInfoContainer {
+  right: -40px;
+  left: -2px;
+}
