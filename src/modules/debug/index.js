@@ -146,6 +146,8 @@ const main = () => {
       const skipEvents = [
         'journal-entry',
         'journal-entries',
+        'mh-improved-settings-added',
+        'mh-improved-setting-added-to-page',
       ];
 
       if (! skipEvents.includes(eventName)) {
