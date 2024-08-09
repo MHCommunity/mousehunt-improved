@@ -71,6 +71,8 @@ const isRelease = process.argv[3] === '--release';
 
 if (type === 'archive') {
   await buildArchive();
+} else if (type === 'css') {
+  await builCss();
 } if (type === 'extension') {
   await Promise.all([
     buildExtension('chrome'),

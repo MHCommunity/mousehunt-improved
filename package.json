@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build:archive": "bun run scripts/build.mjs archive",
-    "build:css": "bun run scripts/build-css.mjs",
+    "build:css": "bun run scripts/build.mjs css",
     "build:extension:chrome": "bun run scripts/build.mjs chrome",
     "build:extension:firefox": "bun run scripts/build.mjs firefox",
     "build:extension": "bun run scripts/build.mjs extension",
