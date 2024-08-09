@@ -7,3 +7,7 @@
 .treasureMapView-block-content-heading-image {
   box-shadow: 0 0 1px 1px #999;
 }
+
+.treasureMapListingsTableView-owner {
+  margin-top: 5px;
+}

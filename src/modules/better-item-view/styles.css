@@ -34,6 +34,10 @@
   font-size: 12px;
 }
 
+.itemViewPopup .mouseview-has-mhct .mouse-ar-wrapper {
+  padding: 5px 7px 5px 5px;
+}
+
 .mouseview-has-mhct .has-stages .mouse-ar-wrapper {
   grid-template-columns: 1fr 1fr 1fr 50px;
 }

@@ -65,7 +65,13 @@ label.mhui-marketplace-search-toggle {
   width: auto;
 }
 
+.marketplaceView-favouriteButton {
+  top: -4px;
+  bottom: unset;
+}
+
 .marketplaceHome-blockItem.small .marketplaceView-favouriteButton {
+  top: -14px;
   right: 5px;
 }
 

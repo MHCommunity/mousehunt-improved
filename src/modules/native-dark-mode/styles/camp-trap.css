@@ -327,6 +327,7 @@
   color: var(--d-text-muted);
 }
 
+.mh-improved-cre-row:hover,
 .mh-dark #mh-improved-cre thead {
   box-shadow: 0 -1px var(--d-transparent-10) inset;
 }

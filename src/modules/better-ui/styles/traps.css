@@ -120,6 +120,7 @@
 
 .campPage-trap {
   border: 1px solid #ceb7a6;
+  border-right: none;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -619,10 +620,6 @@ input.trapSelectorView__codexListSearch {
   width: 70px;
   content: "";
   background: url(https://www.mousehuntgame.com/images/ui/hunters_horn/sandwich_board/icons/bait_empty.png) no-repeat 50% 50% / contain;
-}
-
-#mousehuntContainer.PageCamp.showBlueprint {
-  background: url(https://i.mouse.rip/bg-wood.png);
 }
 
 .trapSelectorView__blueprint.trapSelectorView__blueprint--active {
