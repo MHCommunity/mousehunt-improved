@@ -41,6 +41,7 @@ const updateListing = async (mapId) => {
 
   mapEl.classList.add('mh-improved-map-listing-highlight');
 
+  await sleep(500);
   const mapsData = await getData('community-map-data');
   let oldIds = new Set();
 

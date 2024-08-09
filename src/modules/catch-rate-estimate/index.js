@@ -88,7 +88,9 @@ const updateMinLucks = async () => {
   isUpdating = true;
 
   let minluckList = document.querySelector('#mh-improved-cre');
-  if (! minluckList) {
+  if (minluckList) {
+    minluckList.classList.add('cre-refreshing');
+  } else {
     const statsContainer = document.querySelector('.trapSelectorView__trapStatSummaryContainer');
     if (! statsContainer) {
       isUpdating = false;
@@ -103,8 +105,6 @@ const updateMinLucks = async () => {
     });
 
     statsContainer.append(minluckList);
-  } else {
-    minluckList.classList.add('cre-refreshing');
   }
 
   const currentStats = [

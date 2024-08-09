@@ -2,13 +2,23 @@
 
 ## Version 0.55.0
 
+- Added Custom Camp Background feature
 - Added notification banner above the journal when a new extension version is available
 - Added readable location/group names to mice Data Exporters
+- Fixed Catch Rate Estimator & Minlucks refreshing opening the TEM
 - Fixed Favorite Setups random name button not working 100% of the time
+- Fixed Legacy HUD showing error when not on a team
 - Renamed 'Inventory - Only Open Multiple' to 'Inventory - Only Open Extras'
+- Updated Better Items styles
+- Updated Better Marketplace styles
+- Updated Better Mice styles
 - Updated Better Shops styles
+- Updated Better UI styles
+- Updated Catch Rate Estimator & Minlucks styles
 - Updated Favorite Setups mobile favorites to allow saving
+- Updated Native Dark Mode styles
 - Updated School of Sorcery Location HUD styles
+- Updated Square Profile Pics Experiment styles
 
 ## Version 0.54.4
 
