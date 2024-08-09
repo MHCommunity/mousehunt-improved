@@ -128,6 +128,13 @@ const addPreview = () => {
     inputSelector: '#mousehunt-improved-settings-design-custom-hud select',
     preview: false
   });
+
+  addPreviewCallback({
+    id: 'custom-camp-background',
+    selector: '.mh-improved-custom-camp-bg-preview',
+    inputSelector: '#mousehunt-improved-settings-design-custom-camp-background select',
+    preview: false,
+  });
 };
 
 /**
@@ -209,8 +216,10 @@ const persistBackground = () => {
   });
 
   onNavigation(() => {
-    listenForPreferenceChanges();
-    addPreview();
+    setTimeout(() => {
+      listenForPreferenceChanges();
+      addPreview();
+    }, 1000);
   }, {
     page: 'preferences',
     onLoad: true,

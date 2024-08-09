@@ -1,9 +1,3 @@
-/* General styles */
-#mousehuntContainer.PageCamp {
-  background: url(https://i.mouse.rip/bg-wood.png);
-  box-shadow: inset 0 0 8px 0 #755e40;
-}
-
 .campPage-trap-friendList.full,
 .campPage-trap-itemStats,
 .campPage-trap-trapEffectiveness,
