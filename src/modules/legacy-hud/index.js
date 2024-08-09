@@ -129,10 +129,10 @@ const getLegacyHudHtml = () => {
         <li>
           <span class="hudstatlabel">Team:</span>
           <span id="hud_team">
-            <a href="https://www.mousehuntgame.com/team.php?team_id=${user?.team.id}" class="hud_team_name hudstatvalue" onclick="app.pages.TeamPage.showUserTeamPage(); return false;">
-              ${user?.team.name}
+            <a href="https://www.mousehuntgame.com/team.php?team_id=${user?.team?.id}" class="hud_team_name hudstatvalue" onclick="app.pages.TeamPage.showUserTeamPage(); return false;">
+              ${user?.team?.name}
             </a>
-            <div class="corkboardUpdate ${user?.team.new_chat ? 'active' : ''}"></div>
+            <div class="corkboardUpdate ${user?.team?.new_chat ? 'active' : ''}"></div>
           </span>
         </li>
         <a class="mousehuntHud-userStat treasureMap ${user?.quests?.QuestRelicHunter?.maps?.length ? 'active' : 'empty'}" onclick="hg.controllers.TreasureMapController.show();return false;" href="#">
