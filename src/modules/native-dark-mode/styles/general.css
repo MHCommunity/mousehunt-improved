@@ -170,3 +170,8 @@ body.mh-dark {
 .mh-dark .mousehunt-improved-error p {
   color: var(--d-red-dark);
 }
+
+.claimGiftPage__giftQuantity,
+.claimGiftPage__giftDescription {
+  color: var(--d-text-dark);
+}
