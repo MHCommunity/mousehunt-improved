@@ -97,8 +97,14 @@ const updateMinLucks = async () => {
 
     minluckList = makeElement('div', ['mh-cre-table', 'campPage-trap-trapEffectiveness', 'cre-loading']);
     minluckList.id = 'mh-improved-cre';
+    minluckList.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
 
     statsContainer.append(minluckList);
+  } else {
+    minluckList.classList.add('cre-refreshing');
   }
 
   const currentStats = [
@@ -141,6 +147,7 @@ const updateMinLucks = async () => {
   await renderList(miceIds);
 
   isUpdating = false;
+  minluckList.classList.remove('cre-refreshing');
 };
 
 /**

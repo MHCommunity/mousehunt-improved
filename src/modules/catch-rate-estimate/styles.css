@@ -77,18 +77,22 @@
   color: inherit;
 }
 
+#mh-improved-cre.cre-refreshing,
 #mh-improved-cre.cre-loading {
   display: flex;
   align-items: flex-end;
   justify-content: center;
   height: 100%;
   min-height: 50px;
-  padding: 20px 0;
   background-image: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
   background-blend-mode: luminosity;
+}
+
+#mh-improved-cre.cre-loading {
+  padding: 20px 0;
 }
 
 #mh-improved-cre.cre-loading::after {
@@ -100,6 +104,10 @@
   color: #926944;
   text-align: center;
   content: "Loading Catch Rate Estimator…";
+}
+
+#mh-improved-cre.cre-refreshing #mh-improved-cre-table {
+  opacity: 0.5;
 }
 
 span.mh-improved-cre-no-mice {
