@@ -129,3 +129,7 @@ a.itemPurchaseView-action-form-button.sell {
 .itemPurchaseView-container.chrome .itemPurchaseView-action-quantity input {
   width: 80px;
 }
+
+.chrome .itemPurchaseView-action-complete-title {
+  color: #fff;
+}
