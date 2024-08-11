@@ -120,6 +120,11 @@ export default async () => {
       default: getSetting('experiments.prologue-pond-wood-boat', false),
     },
     {
+      id: 'location-huds.school-of-sorcery-clean-chalkboard',
+      title: 'School of Sorcery: Clean chalkboard',
+      default: false,
+    },
+    {
       id: 'location-huds.valour-rift-flip-avatar',
       title: 'Valour Rift: Mirror avatar (to face the other direction)',
       default: getSetting('location-huds.valour-rift-flip-avatar', false),

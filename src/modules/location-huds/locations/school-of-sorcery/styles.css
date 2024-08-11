@@ -26,6 +26,7 @@
   top: 48px;
   left: 30%;
   padding: 3px;
+  font-size: 13px;
   color: #fff;
   background-color: #3c3c3c;
   border: 1px solid #6b6b6b;
@@ -69,7 +70,7 @@
 }
 
 .schoolOfSorceryCourseView__powerTypeIcon {
-  filter: drop-shadow(0 2px 2px #000);
+  filter: drop-shadow(-1px -1px 2px #000);
 }
 
 .schoolOfSorceryCourseView__powerTypeWarningIcon {
@@ -91,4 +92,83 @@
 .schoolOfSorceryCourseView__huntsRemainingContainer {
   font-size: 17px;
   opacity: 0.8;
+}
+
+.schoolOfSorceryCourseView__magicProgressBarLabel .schoolOfSorceryCourseView__magicProgressValue--overcharged {
+  color: #74f623;
+}
+
+.schoolOfSorceryCourseView__spellforceQuanitity {
+  font-size: 16px;
+  text-shadow:
+    0 0 0 #444,
+    1px 0 0 #444,
+    0 1px 0 #444,
+    -1px 0 0 #444,
+    0 -1px 0 #444,
+    -1px -1px 0 #444,
+    1px -1px 0 #444,
+    -1px 1px 0 #444,
+    1px 1px 0 #444;
+  filter: none;
+}
+
+.schoolOfSorceryCourseView__dropOutButton,
+.headsUpDisplaySchoolOfSorceryView__disarmPreferenceButton,
+.headsUpDisplaySchoolOfSorceryView__viewTranscriptButton {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.schoolOfSorceryCourseView__dropOutButton:hover,
+.headsUpDisplaySchoolOfSorceryView__disarmPreferenceButton:hover,
+.headsUpDisplaySchoolOfSorceryView__viewTranscriptButton:hover {
+  filter: none;
+  opacity: 1;
+}
+
+.headsUpDisplaySchoolOfSorcery__inventoryBlock::before,
+.headsUpDisplaySchoolOfSorcery__inventoryBlockQuantity {
+  background-color: #0b4e7f;
+  border-color: #008cf3;
+}
+
+.headsUpDisplaySchoolOfSorceryView__disarmPreferenceButton,
+.headsUpDisplaySchoolOfSorceryView__viewTranscriptButton,
+.headsUpDisplaySchoolOfSorceryView__baitCraftableContainer {
+  filter: hue-rotate(125deg);
+}
+
+.headsUpDisplaySchoolOfSorceryView__baitImage,
+.headsUpDisplaySchoolOfSorceryView__baitIngredientImage,
+.headsUpDisplaySchoolOfSorceryView__baitBuyButton {
+  filter: hue-rotate(-125deg);
+}
+
+.headsUpDisplaySchoolOfSorceryView__baitImage:hover,
+.headsUpDisplaySchoolOfSorceryView__baitIngredientImage:hover,
+.headsUpDisplaySchoolOfSorceryView__baitBuyButton:hover {
+  filter: hue-rotate(-125deg) brightness(1.2);
+}
+
+.folkloreForestRegionView-basicBaitContainer {
+  filter: hue-rotate(170deg);
+}
+
+.folkloreForestRegionView-basicBait .folkloreForestRegionView-bait-image {
+  filter: hue-rotate(-170deg);
+}
+
+.folkloreForestRegionView-basicBaitContainer:hover {
+  filter: hue-rotate(170deg) brightness(1.1);
+}
+
+.schoolOfSorceryCourseView__huntRemainingText--highlight {
+  font-size: 22px;
+  text-shadow: none;
+  vertical-align: bottom;
+}
+
+.schoolOfSorceryCourseView__magicProgressBarLabel--bossMode {
+  left: -52%;
 }

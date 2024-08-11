@@ -321,6 +321,7 @@
   background-color: #eee;
 }
 
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:last-child,
 #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-inventory-in-one-row.PagePreferences__settingsList,
 #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle.PagePreferences__settingsList,
 #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-prologue-pond-wood-boat.PagePreferences__settingsList {
@@ -330,15 +331,6 @@
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight {
   background-color: #8bf7f5;
 }
-
-/*
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__setting {
-  display: flex;
-  gap: 0;
-  height: 25px;
-  padding: 0;
-  margin: 0;
-} */
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingName {
   font-size: 11px;

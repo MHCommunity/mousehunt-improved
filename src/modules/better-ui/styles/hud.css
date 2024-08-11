@@ -17,6 +17,12 @@
   margin-top: 14px;
 }
 
+.mousehuntHud-environmentIcon {
+  box-shadow:
+    1px 2px 2px #e5dac0 inset,
+    0 -1px 2px #9f9171 inset;
+}
+
 .mousehuntHud-environmentName {
   width: auto;
   overflow: visible;

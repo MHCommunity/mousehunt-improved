@@ -282,3 +282,9 @@ a.folkloreForestRegionView-travelButton:hover {
 .folkloreForestRegionView-dialog-recipeResult-content {
   max-height: 110px;
 }
+
+.folkloreForestRegionView-travelButton:active,
+.folkloreForestRegionView-helpButton:active {
+  background-position-y: 50%;
+  opacity: 0.9;
+}

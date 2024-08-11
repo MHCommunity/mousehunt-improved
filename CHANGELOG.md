@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.56.0
+
+- Added 'School of Sorcery: Clean chalkboard' location HUD option
+- Updated Better UI styles
+- Updated School of Sorcery Location HUD styles
+
 ## Version 0.55.0
 
 - Added Custom Camp Background feature
