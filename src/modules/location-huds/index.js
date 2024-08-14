@@ -218,21 +218,24 @@ const init = async () => {
     addToggleIcon();
   }
 
-  onNavigation(main);
-  onEvent('travel_complete', () => {
+  const delayedMain = () => {
     setTimeout(main, 1000);
-  });
+  };
+
+  onNavigation(main);
+  onEvent('travel_complete', delayedMain);
+  onEvent('camp_page_toggle_blueprint', delayedMain);
 
   // Going to Zokor from Labyrinth and vice versa doesn't trigger a navigation event.
   onRequest('environment/labyrinth.php', (data, request) => {
     if ('make_intersection_choice' === request.action) {
-      setTimeout(main, 1000);
+      delayedMain();
     }
   });
 
   onRequest('environment/ancient_city.php', (data, request) => {
     if ('retreat' === request.action) {
-      setTimeout(main, 1000);
+      delayedMain();
     }
   });
 };

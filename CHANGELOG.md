@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.57.0
+
+- Updated Ultimate Checkmark
+- Updated Bountiful Beanstalk Location HUD
+
 ## Version 0.56.0
 
 - Added 'School of Sorcery: Clean chalkboard' location HUD option

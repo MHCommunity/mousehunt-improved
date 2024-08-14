@@ -16,7 +16,7 @@
 }
 
 .bountifulBeanstalkCastleView__noiseMeterLabel {
-  color: #ffefc7;
+  color: #fffdfa;
   text-shadow: 0 0 1px #5b4200;
   filter: drop-shadow(1px 1px 1px #000);
 }
@@ -518,4 +518,15 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 
 .headsUpDisplayBountifulBeanstalkView__castleChevronContainer:hover .headsUpDisplayBountifulBeanstalkView__chevron--ultimate::after {
   content: "x8";
+}
+
+.bountifulBeanstalkPlayHarpDialogView__noiseMeterBarNoisePreviewBar--plus {
+  background-color: #e02b56;
+}
+
+.beanstalkHelp__image.beanstalkHelp__image--castleGiantChase,
+.beanstalkHelp__image.beanstalkHelp__image--castleCheese,
+.beanstalkHelp__image.beanstalkHelp__image--castleNoise {
+  border-radius: 13px;
+  box-shadow: inset 0 0 1px 1px #0a1d0e;
 }
