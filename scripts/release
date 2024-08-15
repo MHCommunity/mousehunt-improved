@@ -46,7 +46,10 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
-bun run lint || exit 1
+# If we pass in the --no-lint flag, skip the linting step.
+if [ "$1" != "--no-lint" ]; then
+  bun run lint || exit 1
+fi
 
 version=$(jq -r .version package.json)
 
