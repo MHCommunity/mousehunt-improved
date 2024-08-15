@@ -5,6 +5,7 @@ import {
   getExtensionLink,
   getExtensionLinkText,
   getSetting,
+  isVersionHigher,
   makeElement,
   onEvent,
   removeBodyClass,
@@ -145,7 +146,7 @@ const checkForUpdates = async () => {
   const latestRelease = await fetch('https://api.mouse.rip/mousehunt-improved-version');
   const latestReleaseData = await latestRelease.json();
 
-  if (latestReleaseData.version && latestReleaseData.version !== mhImprovedVersion) {
+  if (isVersionHigher(latestReleaseData.version, mhImprovedVersion)) {
     addBanner(`MouseHunt Improved v${latestReleaseData.version} is now available!`);
   }
 };

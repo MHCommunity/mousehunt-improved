@@ -396,6 +396,29 @@ const debounce = (func, delay = 100) => {
   };
 };
 
+/**
+ * Check if the version is higher.
+ *
+ * @param {string} version1 The first version.
+ * @param {string} version2 The second version.
+ *
+ * @return {boolean} True if version1 is higher than version2; false otherwise.
+ */
+function isVersionHigher(version1, version2) {
+  const version1Parts = version1.split('.').map(Number);
+  const version2Parts = version2.split('.').map(Number);
+
+  for (const [i, version1Part] of version1Parts.entries()) {
+    if (version1Part > version2Parts[i]) {
+      return true;
+    } else if (version1Part < version2Parts[i]) {
+      return false;
+    }
+  }
+
+  return false;
+}
+
 export {
   doRequest,
   getTradableItems,
@@ -414,5 +437,6 @@ export {
   uppercaseFirstLetter,
   setMultipleTimeout,
   refreshPage,
-  debounce
+  debounce,
+  isVersionHigher
 };
