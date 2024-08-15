@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.57.1
+
+- Updated Catch Rate Estimator & Minlucks Dragonbane charm mice list
+
 ## Version 0.57.0
 
 - Updated Ultimate Checkmark
