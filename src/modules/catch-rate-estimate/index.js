@@ -20,7 +20,7 @@ import {
 
 import styles from './styles.css';
 
-let lastStats = [];
+let lastStats = '';
 let effectiveness = null;
 let isUpdating = false;
 
@@ -107,21 +107,23 @@ const updateMinLucks = async () => {
     statsContainer.append(minluckList);
   }
 
-  const currentStats = [
-    user.trap_power,
-    user.trap_luck,
-    user.trap_attraction_bonus,
-    user.trap_cheese_effect,
-    user.trap_luck,
-    user.trap_power,
-    user.trap_power_bonus,
-    user.trap_power_type_name,
-    user.trinket_item_id,
-    user.base_item_id,
-    user.weapon_item_id,
-    user.bait_item_id,
-    user.environment_id,
-  ];
+  const currentStats = `
+    ${user.trap_power}
+    ${user.trap_luck}
+    ${user.trap_attraction_bonus}
+    ${user.trap_cheese_effect}
+    ${user.trap_luck}
+    ${user.trap_power}
+    ${user.trap_power_bonus}
+    ${user.trap_power_type_name}
+    ${user.trinket_item_id}
+    ${user.trinket_quantity}
+    ${user.base_item_id}
+    ${user.weapon_item_id}
+    ${user.bait_item_id}
+    ${user.bait_quantity}
+    ${user.environment_id}
+  `;
 
   if (currentStats !== lastStats) {
     effectiveness = await getMiceEffectiveness();
