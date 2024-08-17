@@ -76,17 +76,11 @@ const getMouseEffectiveness = async (mouseId) => {
 /**
  * Get the minluck based on the mouse power and effectiveness.
  *
- * @param {Object}  options                     The options.
- * @param {string}  options.mouseType           The mouse type.
- * @param {number}  options.mousePower          The mouse power.
- * @param {number}  options.effectiveness       The mouse effectiveness.
- * @param {number}  options.trapPower           The trap power.
- * @param {number}  options.trapLuck            The trap luck.
- * @param {number}  options.trapPowerBonus      The trap power bonus.
- * @param {boolean} options.hasRiftstalkerCodex If the user has the Riftstalker Codex.
- * @param {number}  options.riftSetCount        The rift set count.
+ * @param {Object} options               The options.
+ * @param {number} options.mousePower    The mouse power.
+ * @param {number} options.effectiveness The mouse effectiveness.
  *
- * @return {Promise<number>} The minluck.
+ * @return {Promise<number | '∞'>} The minluck.
  */
 const getMinluck = async (options) => {
   let { mousePower, effectiveness } = options;
@@ -189,9 +183,7 @@ const calculatePowerWhenSalted = (power, salt, mousetype) => {
  * @return {number} The amplifier value.
  */
 const getAmplifier = () => {
-  const selector = 'seasonal_garden' === location ? '.seasonalGardenHUD-currentAmplifier-value' : '.zuzwangsTowerHUD-currentAmplifier span';
-  const ampEl = document.querySelector(selector);
-  return ampEl ? Number.parseInt(ampEl.textContent, 10) : 0;
+  return user.viewing_atts?.zzt_amplifier ?? 0;
 };
 
 /**
@@ -199,15 +191,13 @@ const getAmplifier = () => {
  *
  * Props Maidenless @ github.com/MaidenlessINC/Maidenless-INC.
  *
- * @param {Object}  options                     The options.
- * @param {string}  options.mouseType           The mouse type.
- * @param {number}  options.mousePower          The mouse power.
- * @param {number}  options.effectiveness       The mouse effectiveness.
- * @param {number}  options.power               The trap power.
- * @param {number}  options.luck                The trap luck.
- * @param {number}  options.powerBonus          The trap power bonus.
- * @param {boolean} options.hasRiftstalkerCodex If the user has the Riftstalker Codex.
- * @param {number}  options.riftSetCount        The rift set count.
+ * @param {Object} options                The options.
+ * @param {string} options.mouseType      The mouse type.
+ * @param {number} options.mousePower     The mouse power.
+ * @param {number} options.effectiveness  The mouse effectiveness.
+ * @param {number} options.trapPower      The trap power.
+ * @param {number} options.trapLuck       The trap luck.
+ * @param {number} options.trapPowerBonus The trap power bonus.
  *
  * @return {Promise<number>} The catch rate.
  */
@@ -223,8 +213,6 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     trapPower,
     trapLuck,
     trapPowerBonus,
-    hasRiftstalkerCodex,
-    riftSetCount,
   } = options;
 
   const charm = items.find((item) => item.id === Number.parseInt(user?.trinket_item_id))?.type;
@@ -304,18 +292,6 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     if ('rift_acolyte' === mouseType && (user?.quests?.QuestRiftBristleWoods?.QuestRiftBristleWoods?.acolyte_sand || 0) > 0) {
       effectiveness = 0;
     }
-
-    break;
-  case 'rift_whisker_woods':
-    // Taunting charm.
-    if (miceGroups.rift_whisker_woods.includes(mouseType) && 'calming_trinket' === charm) {
-      if (1 === riftSetCount) {
-        trapPowerBonus += hasRiftstalkerCodex ? 40 : 20;
-      } else if (2 === riftSetCount) {
-        trapLuck += hasRiftstalkerCodex ? 10 : 5;
-      }
-    }
-
     break;
   case 'sand_dunes': // Calculate power when salted in the Sand Crypts.
     if (miceGroups.sand_dunes.includes(mouseType) && ! user?.quests?.QuestSandDunes?.is_normal) {
@@ -393,7 +369,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     ('zugzwang_tower' === location || 'seasonal_garden' === location) &&
     getAmplifier() > 0
   ) {
-    catchRate += (1 - catchRate) * 0.1;
+    catchRate += (1 - catchRate) * 0.5;
   } else if (
     ('anniversary_acronym_weapon' === weapon) ||
     ('anniversary_ambush_weapon' === weapon) ||
@@ -444,15 +420,13 @@ const calculateCatchRate = (mousePower, effectiveness, power, luck) => {
 /**
  * Get the catch rate.
  *
- * @param {Object}  options                     The options.
- * @param {string}  options.mouseType           The mouse type.
- * @param {number}  options.mousePower          The mouse power.
- * @param {number}  options.effectiveness       The mouse effectiveness.
- * @param {number}  options.power               The trap power.
- * @param {number}  options.luck                The trap luck.
- * @param {number}  options.powerBonus          The trap power bonus.
- * @param {boolean} options.hasRiftstalkerCodex If the user has the Riftstalker Codex.
- * @param {number}  options.riftSetCount        The rift set count.
+ * @param {Object} options                The options.
+ * @param {string} options.mouseType      The mouse type.
+ * @param {number} options.mousePower     The mouse power.
+ * @param {number} options.effectiveness  The mouse effectiveness.
+ * @param {number} options.trapPower      The trap power.
+ * @param {number} options.trapLuck       The trap luck.
+ * @param {number} options.trapPowerBonus The trap power bonus.
  *
  * @return {Promise<Object>} The catch rate.
  */
