@@ -46,12 +46,6 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 
 * _not a userscript, but uses the same flag for consistency_
 
-#### Catch Rate Estimator & Minlucks
-
-|Flag|Description|
-|---|---|
-|`catch-rate-estimate-more-refresh`|Restores previous behavior of the Catch Rate Estimator module where it refreshes more often.|
-
 ### Debug Logging
 
 See [Debug Logging](./debug-logging.md) for configuration options.

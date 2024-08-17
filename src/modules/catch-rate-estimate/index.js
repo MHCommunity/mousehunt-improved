@@ -1,13 +1,10 @@
 import {
   addStyles,
   doEvent,
-  getCurrentLocation,
   getCurrentPage,
-  getFlag,
   makeElement,
   onNavigation,
-  onRequest,
-  onTravel
+  onRequest
 } from '@utils';
 
 import {
@@ -293,13 +290,7 @@ const main = async () => {
     page: 'camp',
   });
 
-  if (getFlag('catch-rate-estimate-more-refresh')) {
-    onRequest('*', updateMinLucks);
-  } else {
-    onRequest('users/changetrap.php', updateMinLucks);
-  }
-
-  onTravel(null, { callback: updateMinLucks });
+  onRequest('*', updateMinLucks);
 };
 
 /**
