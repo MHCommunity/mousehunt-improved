@@ -153,7 +153,7 @@ const updateMinLucks = async () => {
 /**
  * Render the minluck list.
  *
- * @param {Array} list The list of mice.
+ * @param {Promise<Array>} list The list of mice.
  */
 const renderList = async (list) => {
   let minluckList = document.querySelector('#mh-improved-cre');

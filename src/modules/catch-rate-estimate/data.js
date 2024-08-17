@@ -9,7 +9,7 @@ let items = null;
 /**
  * Get the mice eff values.
  *
- * @return {Array} The mice eff values.
+ * @return {Promise<Array>} The mice eff values.
  */
 const getMiceEffectiveness = async () => {
   if (! hasGottenEffs) {
@@ -27,7 +27,7 @@ const getMiceEffectiveness = async () => {
  *
  * @param {string} mouseId The mouse ID.
  *
- * @return {Object} The mouse data.
+ * @return {Promise<Object>} The mouse data.
  */
 const getMouse = async (mouseId) => {
   if (! miceEffs || ! hasGottenEffs) {
@@ -46,7 +46,7 @@ const getMouse = async (mouseId) => {
  *
  * @param {string} mouseId The mouse ID.
  *
- * @return {number} The mouse power.
+ * @return {Promise<number>} The mouse power.
  */
 const getMousePower = async (mouseId) => {
   const mouse = await getMouse(mouseId);
@@ -62,7 +62,7 @@ const getMousePower = async (mouseId) => {
  *
  * @param {string} mouseId The mouse ID.
  *
- * @return {number} The mouse effectiveness.
+ * @return {Promise<number>} The mouse effectiveness.
  */
 const getMouseEffectiveness = async (mouseId) => {
   const mouse = await getMouse(mouseId);
@@ -86,7 +86,7 @@ const getMouseEffectiveness = async (mouseId) => {
  * @param {boolean} options.hasRiftstalkerCodex If the user has the Riftstalker Codex.
  * @param {number}  options.riftSetCount        The rift set count.
  *
- * @return {number} The minluck.
+ * @return {Promise<number>} The minluck.
  */
 const getMinluck = async (options) => {
   let { mousePower, effectiveness } = options;
@@ -209,7 +209,7 @@ const getAmplifier = () => {
  * @param {boolean} options.hasRiftstalkerCodex If the user has the Riftstalker Codex.
  * @param {number}  options.riftSetCount        The rift set count.
  *
- * @return {number} The catch rate.
+ * @return {Promise<number>} The catch rate.
  */
 const applySpecialEffectsAndGetCatchRate = async (options) => {
   if (! items) {
@@ -454,7 +454,7 @@ const calculateCatchRate = (mousePower, effectiveness, power, luck) => {
  * @param {boolean} options.hasRiftstalkerCodex If the user has the Riftstalker Codex.
  * @param {number}  options.riftSetCount        The rift set count.
  *
- * @return {Object} The catch rate.
+ * @return {Promise<Object>} The catch rate.
  */
 const getCatchRate = async (options) => {
   const rate = await applySpecialEffectsAndGetCatchRate(options);
