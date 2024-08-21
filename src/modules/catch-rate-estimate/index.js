@@ -1,13 +1,10 @@
 import {
   addStyles,
   doEvent,
-  getCurrentLocation,
   getCurrentPage,
-  getFlag,
   makeElement,
   onNavigation,
-  onRequest,
-  onTravel
+  onRequest
 } from '@utils';
 
 import {
@@ -20,32 +17,18 @@ import {
 
 import styles from './styles.css';
 
-let lastStats = [];
+let lastStats = '';
 let effectiveness = null;
 let isUpdating = false;
 
-let hasRiftstalkerCodex = false;
-let riftSetCount = 0;
 let trapPower;
 let trapPowerBonus;
+let trapLuck;
 
 const updateStats = () => {
   trapPower = 0;
   trapPowerBonus = 0;
   trapLuck = user.trap_luck;
-
-  const riftStalkerCodex = document.querySelector('.campPage-trap-trapStat-mathRow.special .campPage-trap-trapStat-mathRow-name');
-  if (riftStalkerCodex && riftStalkerCodex.innerText.includes('Riftstalker')) {
-    hasRiftstalkerCodex = true;
-    riftSetCount = Number.parseInt(riftStalkerCodex.innerText.replace('Riftstalker Set Bonus (', '').replace(' pieces)', '') || 0, 10);
-  }
-
-  if ('zugzwang_tower' !== getCurrentLocation()) {
-    trapPower = user.trap_power;
-    trapPowerBonus = user.trap_power_bonus;
-
-    return;
-  }
 
   const trapMath = document.querySelectorAll('.campPage-trap-trapStat.power .campPage-trap-trapStat-mathRow');
 
@@ -56,16 +39,18 @@ const updateStats = () => {
     }
 
     const label = mathRow.querySelector('.campPage-trap-trapStat-mathRow-name');
-    if (label && label.textContent.includes('Your trap is receiving a boost!')) {
+    // Skip Zugzwang's Tower effects. Calc'd later.
+    // "Your trap is weakened!", "Your trap is receiving a boost!"
+    if (label && label.textContent.includes('Your trap is')) {
       return;
     }
 
-    const value = Number.parseInt(row.textContent.replaceAll(',', '').replace('%', '') || 0, 10);
+    const value = Number.parseInt(row.textContent.replaceAll(',', '').replace('%', '') || '0', 10);
     if (! value) {
       return;
     }
 
-    if (row.innerText.includes('%')) {
+    if (row.textContent.includes('%')) {
       trapPowerBonus += value;
     } else {
       trapPower += value;
@@ -107,21 +92,23 @@ const updateMinLucks = async () => {
     statsContainer.append(minluckList);
   }
 
-  const currentStats = [
-    user.trap_power,
-    user.trap_luck,
-    user.trap_attraction_bonus,
-    user.trap_cheese_effect,
-    user.trap_luck,
-    user.trap_power,
-    user.trap_power_bonus,
-    user.trap_power_type_name,
-    user.trinket_item_id,
-    user.base_item_id,
-    user.weapon_item_id,
-    user.bait_item_id,
-    user.environment_id,
-  ];
+  const currentStats = `
+    ${user.trap_power}
+    ${user.trap_luck}
+    ${user.trap_attraction_bonus}
+    ${user.trap_cheese_effect}
+    ${user.trap_luck}
+    ${user.trap_power}
+    ${user.trap_power_bonus}
+    ${user.trap_power_type_name}
+    ${user.trinket_item_id}
+    ${user.trinket_quantity}
+    ${user.base_item_id}
+    ${user.weapon_item_id}
+    ${user.bait_item_id}
+    ${user.bait_quantity}
+    ${user.environment_id}
+  `;
 
   if (currentStats !== lastStats) {
     effectiveness = await getMiceEffectiveness();
@@ -153,7 +140,7 @@ const updateMinLucks = async () => {
 /**
  * Render the minluck list.
  *
- * @param {Array} list The list of mice.
+ * @param {Promise<Array>} list The list of mice.
  */
 const renderList = async (list) => {
   let minluckList = document.querySelector('#mh-improved-cre');
@@ -201,8 +188,6 @@ const renderList = async (list) => {
       trapPower,
       trapLuck,
       trapPowerBonus,
-      hasRiftstalkerCodex,
-      riftSetCount,
     };
 
     const minluck = await getMinluck(options);
@@ -291,13 +276,7 @@ const main = async () => {
     page: 'camp',
   });
 
-  if (getFlag('catch-rate-estimate-more-refresh')) {
-    onRequest('*', updateMinLucks);
-  } else {
-    onRequest('users/changetrap.php', updateMinLucks);
-  }
-
-  onTravel(null, { callback: updateMinLucks });
+  onRequest('*', updateMinLucks);
 };
 
 /**
