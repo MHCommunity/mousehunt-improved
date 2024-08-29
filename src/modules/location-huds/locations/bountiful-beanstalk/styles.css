@@ -530,3 +530,9 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
   border-radius: 13px;
   box-shadow: inset 0 0 1px 1px #0a1d0e;
 }
+
+.bountifulBeanstalkPlantVineDialogView__vineError,
+.bountifulBeanstalkPlantVineDialogView__embellishmentError,
+.bountifulBeanstalkPlantVineDialogView__embellishment.headsUpDisplayBountifulBeanstalkView__dialogOption--error .bountifulBeanstalkPlantVineDialogView__embellishmentCostQuantity {
+  color: #950808;
+}

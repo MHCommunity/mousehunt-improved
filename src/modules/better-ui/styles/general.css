@@ -403,36 +403,6 @@ input.itemView-action-convert-quantity {
   line-height: 14px;
 }
 
-.newsPostBody .flexCenter {
-  justify-content: space-evenly;
-}
-
-.newsPostBodyContainer {
-  padding-top: 10px;
-}
-
-.newsPostBody #news-post-responsive .flexCenter img {
-  max-width: 100px;
-  transition: 0.2s ease-in;
-}
-
-.newsPostBody #news-post-responsive .flexCenter img.huge {
-  max-width: 100%;
-}
-
-.newsPostBody #news-post-responsive img.huge:hover,
-.newsPostBody #news-post-responsive img[style*="width:100%"]:hover {
-  transform: none;
-}
-
-.newsPostBody #news-post-responsive img {
-  transition: 0.2s ease-in;
-}
-
-.newsPostBody #news-post-responsive img:hover {
-  transform: rotate(4deg) scale(1.1);
-}
-
 #overlayPopup {
   animation: MHCheckoutDialogView-frameReveal 0.2s ease-out;
 }
@@ -520,23 +490,6 @@ input.itemView-action-convert-quantity {
   align-items: center;
 }
 
-#mousehuntContainer.PageNewsPost,
-#mousehuntContainer.PageNews,
-.PageNews {
-  background: transparent;
-}
-
-.newsPage-container {
-  margin: 0;
-  border-color: #a17f36;
-  box-shadow: none;
-}
-
-.newsPostBody #news-post-responsive,
-.PageNewsPostEdit #news-post-responsive {
-  box-shadow: inset 0 0 4px 1px #aa6b36;
-}
-
 .pagerView-link {
   border-color: #bdbdbd;
   border-style: solid;
@@ -548,14 +501,6 @@ input.itemView-action-convert-quantity {
 
 .jpagecontrols .pagerView-link {
   border-color: transparent;
-}
-
-#newsPost .newsPostHeader {
-  background: transparent;
-}
-
-.newsPostBody {
-  background: transparent;
 }
 
 .pagerView-container {

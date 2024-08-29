@@ -4,10 +4,13 @@
     {
       "title": "",
       "items": [
-        "Updated Ultimate Checkmark",
-        "Updated data files",
-        "Updated Bountiful Beanstalk Location HUD",
-        "Updated Catch Rate Estimator & Minlucks Dragonbane charm mice list"
+        "Updated Catch Rate Estimator & Minlucks calculations",
+        "Updated Better Journal styles",
+        "Updated Better Maps styles",
+        "Updated Better UI styles",
+        "Updated Bountiful Beanstalk Location HUDs styles",
+        "Updated Valour Rift Location HUDs styles",
+        "Updated Whisker Woods Rift Location HUDs styles"
       ]
     }
   ]

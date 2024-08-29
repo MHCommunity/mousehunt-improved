@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.58.0
+
+- Updated Catch Rate Estimator & Minlucks calculations
+- Updated Better Journal styles
+- Updated Better Maps styles
+- Updated Better UI styles
+- Updated Bountiful Beanstalk Location HUDs styles
+- Updated Valour Rift Location HUDs styles
+- Updated Whisker Woods Rift Location HUDs styles
+
 ## Version 0.57.1
 
 - Updated Catch Rate Estimator & Minlucks Dragonbane charm mice list

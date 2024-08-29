@@ -3,7 +3,7 @@
 }
 
 .journal .content .entry.short.rift-whisker-woods-increase .journalbody {
-  margin: 0 30px;
+  margin: 0 15px;
   font-size: 10px;
   text-align: center;
 }
@@ -26,4 +26,8 @@
 
 .journal .content .entry.rift-whisker-woods-increase-miniboss {
   background-color: #ffba4e;
+}
+
+.journal .content .entry.short.rift-whisker-woods-increase .journaltext b {
+  font-weight: 900;
 }

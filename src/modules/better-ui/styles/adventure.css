@@ -284,7 +284,8 @@ a.adventureBookPopup-title.active {
   top: 6px;
 }
 
-.adventureBookPopup-adventure-details-block-step.multi_choice {
+.adventureBookPopup-adventure-details-block-step.multi_choice,
+.adventureBookPopup-adventure-details-block-step.powerCharm {
   background-color: #ffc20a;
 }
 
@@ -326,4 +327,20 @@ a.adventureBookPopup-title.active {
 
 .adventureBookPopup-adventure-header-duration {
   font-size: 13px;
+}
+
+.adventureBookPopup-adventure-details-description-reason {
+  display: none;
+}
+
+.adventureBookPopup-adventure-details-block-step-name {
+  padding-right: 5px;
+}
+
+.adventureBookPopup-adventure-details-powerType.physical:nth-child(2) {
+  padding-left: 20px;
+}
+
+.adventureBookPopup-adventure-footer-claim-reward-image {
+  filter: drop-shadow(0 1px 0 #478b2a);
 }

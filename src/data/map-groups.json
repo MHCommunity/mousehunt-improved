@@ -494,9 +494,9 @@
     "categories": [
       {
         "name": "Puppetry",
-        "subtitle": "Floors 1, 9, 17, 25",
+        "subtitle": "Floors 1, 9, 17, 25, 33",
         "id": "vrift-1",
-        "color": "#EAF2D3",
+        "color": "#eaf2d3",
         "mice": [
           "rift_gaunt_puppet",
           "rift_gaunt_puppet_champ"
@@ -504,7 +504,7 @@
       },
       {
         "name": "Thievery",
-        "subtitle": "Floors 2, 10, 18, 26",
+        "subtitle": "Floors 2, 10, 18, 26, 34",
         "id": "vrift-2",
         "color": "#acf28d",
         "mice": [
@@ -514,9 +514,9 @@
       },
       {
         "name": "Melee",
-        "subtitle": "Floors 3, 11, 19, 27",
+        "subtitle": "Floors 3, 11, 19, 27, 35",
         "id": "vrift-3",
-        "color": "#FCE5CD",
+        "color": "#fce5cd",
         "mice": [
           "rift_gaunt_melee",
           "rift_gaunt_melee_champ"
@@ -524,9 +524,9 @@
       },
       {
         "name": "Bard",
-        "subtitle": "Floors 4, 12, 20, 28",
+        "subtitle": "Floors 4, 12, 20, 28, 36",
         "id": "vrift-4",
-        "color": "#F6B26B",
+        "color": "#f6b26b",
         "mice": [
           "rift_gaunt_bard",
           "rift_gaunt_bard_champ"
@@ -534,9 +534,9 @@
       },
       {
         "name": "Magic",
-        "subtitle": "Floors 5, 13, 21, 29",
+        "subtitle": "Floors 5, 13, 21, 29, 37",
         "id": "vrift-5",
-        "color": "#F9CB9C",
+        "color": "#f9cb9c",
         "mice": [
           "rift_gaunt_magic",
           "rift_gaunt_magic_champ"
@@ -544,9 +544,9 @@
       },
       {
         "name": "Noble",
-        "subtitle": "Floors 6, 14, 22, 30",
+        "subtitle": "Floors 6, 14, 22, 30, 38",
         "id": "vrift-6",
-        "color": "#F4CCCC",
+        "color": "#f4cccc",
         "mice": [
           "rift_gaunt_noble",
           "rift_gaunt_noble_champ"
@@ -554,9 +554,9 @@
       },
       {
         "name": "Dusty",
-        "subtitle": "Floors 7, 15, 23, 31",
+        "subtitle": "Floors 7, 15, 23, 31, 39",
         "id": "vrift-7",
-        "color": "#E06666",
+        "color": "#ff9c9c",
         "mice": [
           "rift_gaunt_dust",
           "rift_gaunt_dust_champ"
@@ -565,7 +565,7 @@
       {
         "name": "Non-UU",
         "id": "vrift-eclipse",
-        "color": "#EA9999",
+        "color": "#ea9999",
         "mice": [
           "rift_gaunt_eclipse"
         ]
@@ -573,7 +573,7 @@
       {
         "name": "Ultimate Umbra",
         "id": "vrift-eclipse-uu",
-        "color": "#ff8181",
+        "color": "#ff81d7",
         "mice": [
           "rift_gaunt_monster",
           "rift_gaunt_final_eclipse"
@@ -582,7 +582,7 @@
       {
         "name": "Other",
         "id": "vrift-other",
-        "color": "#B6D7A8",
+        "color": "#b6d7a8",
         "mice": [
           "rift_gaunt_generic_one",
           "rift_gaunt_generic_three",
@@ -596,7 +596,6 @@
       {
         "name": "Outside",
         "id": "vrift-outside",
-        "icon": "",
         "color": "#d0def7",
         "mice": [
           "rift_gaunt_elixir_one",
@@ -2495,6 +2494,88 @@
       {
         "id": "final",
         "name": "Final Exam"
+      }
+    ]
+  },
+  "whisker_woods_rift": {
+    "categories": [
+      {
+        "name": "Crazed Clearing",
+        "subtitle": "Cherry Charm",
+        "id": "crazed-clearing",
+        "color": "#ff909d",
+        "icon": "/ui/hud/rift_whiskerwoods/cherry_charm.png",
+        "mice": [
+          "rift_cherry",
+          "rift_sylvan",
+          "rift_wiggler",
+          "rift_moosker",
+          "rift_eagle_owl",
+          "rift_foxy",
+          "rift_elven_princess",
+          {
+            "mouse": "rift_cyclops",
+            "subcategory": "boss"
+          }
+        ]
+      },
+      {
+        "name": "Gigantic Gnarled Tree",
+        "subtitle": "Gnarled Charm",
+        "id": "gigantic-gnarled-tree",
+        "color": "#d9f720",
+        "icon": "/ui/hud/rift_whiskerwoods/gnarled_charm.png",
+        "mice": [
+          "rift_curious_chemist",
+          "rift_frog",
+          "rift_chameleon",
+          "rift_nomad",
+          "rift_bear",
+          "rift_tiger",
+          "rift_fairy",
+          {
+            "mouse": "rift_centaur",
+            "subcategory": "boss"
+          }
+        ]
+      },
+      {
+        "name": "Deep Lagoon",
+        "subtitle": "Stagnant Charm",
+        "id": "deep-lagoon",
+        "color": "#91f5ff",
+        "icon": "/ui/hud/rift_whiskerwoods/wicked_gnarly_charm.png",
+        "mice": [
+          "rift_silth",
+          "rift_goblin",
+          "rift_shaman",
+          "rift_troll",
+          "rift_treant",
+          "rift_water_nymph",
+          "rift_harpy",
+          {
+            "mouse": "rift_hydra",
+            "subcategory": "boss"
+          }
+        ]
+      },
+      {
+        "name": "Misc",
+        "id": "misc",
+        "color": "#e9d2ff",
+        "mice": [
+          "rift_goldleaf",
+          {
+            "mouse": "rift_black_widow",
+            "subcategory": "boss"
+          }
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "boss",
+        "name": "Boss"
       }
     ]
   }

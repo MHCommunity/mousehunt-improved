@@ -1,0 +1,105 @@
+.newsPostBody .flexCenter {
+  justify-content: space-evenly;
+}
+
+.newsPostBodyContainer {
+  padding-top: 10px;
+}
+
+.newsPostBody #news-post-responsive .flexCenter img {
+  max-width: 100px;
+  transition: 0.2s ease-in;
+}
+
+.newsPostBody #news-post-responsive .flexCenter img.huge {
+  max-width: 100%;
+}
+
+.newsPostBody #news-post-responsive img.huge:hover,
+.newsPostBody #news-post-responsive img[style*="width:100%"]:hover {
+  transform: none;
+}
+
+.newsPostBody #news-post-responsive img {
+  transition: 0.2s ease-in;
+}
+
+.newsPostBody #news-post-responsive img:hover {
+  transform: rotate(4deg) scale(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .newsPostBody #news-post-responsive img:hover {
+    transform: none;
+  }
+}
+
+#mousehuntContainer.PageNewsPost,
+#mousehuntContainer.PageNews,
+.PageNews {
+  background: transparent;
+}
+
+.newsPage-container {
+  margin: 0;
+  border-color: #a17f36;
+  box-shadow: none;
+}
+
+.newsPostBody #news-post-responsive,
+.PageNewsPostEdit #news-post-responsive {
+  box-shadow: inset 0 0 4px 1px #aa6b36;
+}
+
+#newsPost .newsPostHeader {
+  background: transparent;
+}
+
+.newsPostBody {
+  background: transparent;
+}
+
+.newsPage-container .newsPage-post-current-container .newsPage-post-current-ribbon {
+  background-color: #4591bd !important;
+}
+
+.newsPostBody #news-post-responsive .feature-card img {
+  border: none !important;
+}
+
+.newsPage-container .newsPage-archiveButton,
+.newsPage-container .newsPage-post-item-postedBy .text {
+  color: #424242;
+}
+
+.newsPage-header,
+.newsPage-container .newsPage-list-side-header {
+  text-decoration: none;
+  text-transform: none;
+}
+
+.newsPage-inner-container {
+  position: relative;
+}
+
+.newsPage-container .newsPage-list-side {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  margin-top: 30px;
+}
+
+.newsArchivesListView-post {
+  background-color: #fefad6;
+  border: 1px solid #bf833e;
+}
+
+.mousehuntPage-content .newsArchivesListView h1 {
+  font-size: 25px;
+  font-weight: 700;
+  color: #4d2f0f;
+}
+
+.newsArchivesListView-post-details {
+  color: #424242;
+}

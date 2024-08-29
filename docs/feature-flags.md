@@ -38,14 +38,31 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |[Favorite Setups](https://greasyfork.org/en/scripts/443164-mousehunt-favorite-setups)|`userscript-styles-no-favorite-setups-styles`|[Better UI](./better-ui.md)|
 |[Journal Historian](https://greasyfork.org/en/scripts/454968-mousehunt-journal-historian)|`userscript-styles-no-journal-historian-styles`|[Better UI](./better-ui.md)|
 |[LGS Duration Indicator & Warning](https://greasyfork.org/en/scripts/410966-mousehunt-lucky-golden-shield-duration-indicator-warning)|`userscript-styles-no-lgs-reminder-styles`|[Better UI](./better-ui.md)|
-|[MHCT](https://www.mhct.win/)*|`userscript-styles-no-mhct-styles`|[Better UI](./better-ui.md)|
 |[Location Catch Stats](https://greasyfork.org/en/scripts/381438-mousehunt-location-catch-stats)|`userscript-styles-no-tsitu-location-catch-stats-styles`|[Better UI](./better-ui.md)|
 |[QoL Utilities](https://greasyfork.org/en/scripts/405334-mousehunt-qol-utilities)|`userscript-styles-no-tsitu-qol-styles`|[Better UI](./better-ui.md)|
 |[Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)|`userscript-styles-no-tsitu-supply-search-styles`|[Better UI](./better-ui.md)|
 |[Hyperspeed Travel](https://greasyfork.org/en/scripts/448542-mousehunt-hyperspeed-travel)|`userscript-styles-no-hyperspeed-travel-styles`|[Better Travel](./better-travel.md)|
 
+<<<<<<< HEAD
 * _not a userscript, but uses the same flag for consistency_
 
+||||||| parent of 1bd4cd70c4ed (-0.58.0)
+* _not a userscript, but uses the same flag for consistency_
+
+#### Catch Rate Estimator & Minlucks
+
+|Flag|Description|
+|---|---|
+|`catch-rate-estimate-more-refresh`|Restores previous behavior of the Catch Rate Estimator module where it refreshes more often.|
+
+=======
+#### Catch Rate Estimator & Minlucks
+
+|Flag|Description|
+|---|---|
+|`catch-rate-estimate-more-refresh`|Restores previous behavior of the Catch Rate Estimator module where it refreshes more often.|
+
+>>>>>>> 1bd4cd70c4ed (-0.58.0)
 ### Debug Logging
 
 See [Debug Logging](./debug-logging.md) for configuration options.

@@ -208,3 +208,7 @@ span.riftWhiskerWoodsHUD-zone-rageMax {
 .clearing .riftWhiskerWoodsHUD-zone-charm-image-container {
   top: -6px;
 }
+
+.riftWhiskerWoodsHUD-zone.low .riftWhiskerWoodsHUD-zone-progress {
+  background-position: 95% 0;
+}

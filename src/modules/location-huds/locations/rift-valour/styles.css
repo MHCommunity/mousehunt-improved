@@ -112,7 +112,7 @@
 span.valourRiftHUD-towerUpgrade-currentValue {
   font-size: 13px;
   font-weight: 900;
-  line-height: 20px;
+  line-height: 19px;
   color: #fff;
   background-color: #282659;
 }
@@ -604,6 +604,7 @@ a.valourRiftHUD-gauntletBait-image.active {
 }
 
 .valourRiftHUD {
+  z-index: 1;
   filter: drop-shadow(0 2px 1px #25266a);
 }
 
@@ -624,4 +625,20 @@ a.valourRiftHUD-gauntletBait-image.active {
 .uc-text-highlight,
 .valourRiftHUD-powerUp-currentLevel.uc-text-highlight {
   color: #90ffe1;
+}
+
+.valourRiftHUD-towerUpgrade-allLevels {
+  outline: 1px solid #333;
+}
+
+.valourRiftHUD-towerUpgrade-level.active {
+  border-right: 1px solid #333;
+}
+
+.valourRiftHUD-towerUpgrade-level.active:last-of-type {
+  border: none;
+}
+
+a.valourRiftHUD-dialog-closeButton {
+  padding: 5px 9px;
 }
