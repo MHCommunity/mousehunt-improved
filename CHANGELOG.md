@@ -2,6 +2,7 @@
 
 ## Version 0.58.0
 
+- Fixed scavenger map MHCT drop rates link
 - Updated Catch Rate Estimator & Minlucks calculations
 - Updated Better Journal styles
 - Updated Better Maps styles

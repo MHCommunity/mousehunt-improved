@@ -38,7 +38,7 @@ const getLinkMarkup = (name, mouseType) => {
  */
 const getItemLinkMarkup = (name) => {
   name = name.replace(' ', '_');
-  return makeLink('MHCT DR', `hhttps://api.mouse.rip/mhct-redirect-item/${name}`, true) +
+  return makeLink('MHCT DR', `https://api.mouse.rip/mhct-redirect-item/${name}`, true) +
     makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
 };
 
