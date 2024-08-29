@@ -43,12 +43,6 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |[Send Supplies Search Bar](https://greasyfork.org/en/scripts/396714-mousehunt-send-supplies-search-bar)|`userscript-styles-no-tsitu-supply-search-styles`|[Better UI](./better-ui.md)|
 |[Hyperspeed Travel](https://greasyfork.org/en/scripts/448542-mousehunt-hyperspeed-travel)|`userscript-styles-no-hyperspeed-travel-styles`|[Better Travel](./better-travel.md)|
 
-<<<<<<< HEAD
-* _not a userscript, but uses the same flag for consistency_
-
-||||||| parent of 1bd4cd70c4ed (-0.58.0)
-* _not a userscript, but uses the same flag for consistency_
-
 #### Catch Rate Estimator & Minlucks
 
 |Flag|Description|
