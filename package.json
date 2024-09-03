@@ -36,13 +36,13 @@
     "release": "./scripts/release"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.4",
-    "@sentry/browser": "^8.26.0",
+    "@babel/runtime": "^7.25.6",
+    "@sentry/browser": "^8.27.0",
     "humanize-duration": "^3.32.1",
     "json2csv": "^6.0.0-alpha.2"
   },
   "devDependencies": {
-    "@sentry/cli": "^2.33.1",
+    "@sentry/cli": "^2.34.1",
     "@sprout2000/esbuild-copy-plugin": "^1.1.15",
     "@wordpress/eslint-plugin": "^20.3.0",
     "archiver": "^7.0.1",
