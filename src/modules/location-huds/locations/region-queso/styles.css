@@ -356,3 +356,7 @@
 .quesoGeyserHUD-block-huntsRemaining-label {
   font-size: 9px;
 }
+
+.quesoHUD-bait-group-tooltip {
+  border-radius: 10px;
+}
