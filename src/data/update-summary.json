@@ -4,13 +4,8 @@
     {
       "title": "",
       "items": [
-        "Updated Catch Rate Estimator & Minlucks calculations",
-        "Updated Better Journal styles",
-        "Updated Better Maps styles",
-        "Updated Better UI styles",
-        "Updated Bountiful Beanstalk Location HUDs styles",
-        "Updated Valour Rift Location HUDs styles",
-        "Updated Whisker Woods Rift Location HUDs styles"
+        "Removed update notifications",
+        "Updated Queso Region Location HUD styles"
       ]
     }
   ]

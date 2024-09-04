@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.59.0
+
+- Removed update notifications
+- Updated Queso Region Location HUD styles
+
 ## Version 0.58.0
 
 - Fixed scavenger map MHCT drop rates link
