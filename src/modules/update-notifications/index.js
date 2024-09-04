@@ -1,16 +1,4 @@
-import {
-  addStyles,
-  createPopup,
-  getCurrentPage,
-  getExtensionLink,
-  getExtensionLinkText,
-  getSetting,
-  isVersionHigher,
-  makeElement,
-  onEvent,
-  removeBodyClass,
-  saveSetting
-} from '@utils';
+import { addStyles, createPopup, onEvent } from '@utils';
 
 import styles from './styles.css';
 
@@ -86,71 +74,6 @@ const showUpdateSummary = async (from, force = false) => {
   });
 };
 
-const addBanner = () => {
-  // Don't show except on the camp page.
-  if ('camp' !== getCurrentPage()) {
-    return;
-  }
-
-  // Only show the banner once.
-  if (getSetting('updates.banner', false) === mhImprovedVersion) {
-    removeBodyClass('mh-improved-has-update');
-
-    return;
-  }
-
-  const banner = document.querySelector('.campPage-tabs .campPage-banner');
-
-  const bannerWrapper = makeElement('div', ['mhui-update-banner', 'banner-fade']);
-  const bannerContent = makeElement('div', 'mhui-update-banner-content');
-  makeElement('div', 'mhui-update-banner-text', 'MouseHunt Improved update available!', bannerContent);
-
-  const buttonWrapper = makeElement('div', 'mhui-update-banner-buttons', '');
-
-  const closeButton = makeElement('a', ['mhui-update-banner-close', 'mousehuntActionButton', 'small', 'cancel']);
-  makeElement('span', '', 'Dismiss', closeButton);
-  closeButton.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    bannerWrapper.classList.add('banner-fade-out');
-    saveSetting('updates.banner', mhImprovedVersion);
-
-    removeBodyClass('mh-improved-has-update');
-
-    setTimeout(() => {
-      bannerWrapper.remove();
-    }, 1000);
-  });
-
-  buttonWrapper.append(closeButton);
-
-  const button = makeElement('a', ['mhui-update-banner-button', 'mousehuntActionButton', 'small', 'lightBlue']);
-  makeElement('span', '', getExtensionLinkText(), button);
-  button.href = getExtensionLink();
-  button.target = '_blank';
-  buttonWrapper.append(button);
-
-  bannerContent.append(buttonWrapper);
-  bannerWrapper.append(bannerContent);
-
-  banner.append(bannerWrapper);
-
-  banner.classList.remove('hidden');
-
-  setTimeout(() => {
-    bannerWrapper.classList.add('banner-fade-in');
-  }, 1000);
-};
-
-const checkForUpdates = async () => {
-  const latestRelease = await fetch('https://api.mouse.rip/mousehunt-improved-version');
-  const latestReleaseData = await latestRelease.json();
-
-  if (isVersionHigher(latestReleaseData.version, mhImprovedVersion)) {
-    addBanner(`MouseHunt Improved v${latestReleaseData.version} is now available!`);
-  }
-};
-
 /**
  * Initialize the module.
  */
@@ -161,8 +84,6 @@ const init = async () => {
   onEvent('mh-improved-show-update-summary', () => {
     showUpdateSummary(mhImprovedVersion, true);
   });
-
-  checkForUpdates();
 };
 
 /**
