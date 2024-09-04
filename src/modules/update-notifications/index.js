@@ -80,7 +80,7 @@ const showUpdateSummary = async (from, force = false) => {
 const init = async () => {
   addStyles(styles, 'update-notifications');
 
-  onEvent('mh-improved-updated', showUpdateSummary);
+  // onEvent('mh-improved-updated', showUpdateSummary);
   onEvent('mh-improved-show-update-summary', () => {
     showUpdateSummary(mhImprovedVersion, true);
   });
