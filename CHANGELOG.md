@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.60.1
+
+- Fixed issue with Inventory Open All not correctly parsing item quantities
+
 ## Version 0.60.0
 
 - Updated Queso Region Location HUD styles

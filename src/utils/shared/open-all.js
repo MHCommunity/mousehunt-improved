@@ -18,7 +18,7 @@ const useConvertible = async (element, allButOne = false) => {
   const quantityEl = await waitForElement('.itemView-action-convertForm');
   let maxQuantity = 1;
   if (quantityEl && quantityEl.innerText.includes('/')) {
-    maxQuantity = Number.parseInt(quantityEl.innerText.split('/')[1].trim(), 10);
+    maxQuantity = Number.parseInt(quantityEl.innerText.split('/')[1].replaceAll(',', '').trim(), 10);
   }
 
   let quantity = maxQuantity > 200 ? 200 : maxQuantity;
