@@ -105,6 +105,7 @@ const replacements = [
   ['Lucky me, a prize mouse wandered by and fell for my trap!', 'A prize mouse fell into my trap!'],
   [/(\d+?,?\d*?) x /gi, ' $1 ', 'shop_purchase'],
   ['In a flash of light my', 'My'],
+  ['Chrome Dragon Slayer Cannon</a> found an additional ', 'Chome Dragon Slayer Cannon</a> found a '],
   ['Dragon Slayer Cannon</a> found an additional ', 'Dragon Slayer Cannon</a> found an extra '],
   ['I opened my harvest bin and retrieved the following yield: <br><br>From ', 'I opened my harvest bin and retrieved the following yield from '],
   ['My Slayer Aura found 1 extra ', 'My Slayer Aura found an extra '],
@@ -113,6 +114,9 @@ const replacements = [
   [/i earned some extra loot:<br>• (\d+?) <(.+?)>enerchi<\/a> from my (.+?)<br>/i, 'My $3 gave me an additional $1<a href="https://www.mousehuntgame.com/item.php?item_type=combat_energy_stat_item" onclick="hg.views.ItemView.show(\'combat_energy_stat_item\'); return false;">Enerchi</a>.'],
   ['my Skyfarer\'s Oculus and discovered the following loot:', 'my Skyfarer\'s Oculus and discovered: '],
   ['focussed the light from my ', 'focused the light from my '],
+  ['Queso Cannonstorm Base</a> blasted 5 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item" onclick="hg.views.ItemView.show(\'amber_queso_stat_item\'); return false;">Solidified Amber Queso</a> to smithereens, revealing', 'Queso Cannonstorm Base</a> revealed'],
+  ['Queso Cannonstorm Base</a> blasted 5 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item" onclick="hg.views.ItemView.show(\'amber_queso_stat_item\'); return false;">Solidified Amber Queso</a> but nothing was found', 'Queso Cannonstorm Base</a> revealed nothing'],
+  ['within the rubble!'], [''],
 
   // Event stuff
   // SEH
