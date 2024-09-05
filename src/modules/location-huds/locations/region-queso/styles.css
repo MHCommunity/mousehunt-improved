@@ -360,3 +360,7 @@
 .quesoHUD-bait-group-tooltip {
   border-radius: 10px;
 }
+
+.quesoHUD-warning.quesoHUD-baitWarning .quesoHUD-trapSelectorLink::after {
+  top: 0;
+}
