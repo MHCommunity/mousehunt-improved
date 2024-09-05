@@ -276,7 +276,7 @@ const main = async () => {
     page: 'camp',
   });
 
-  onRequest('*', updateMinLucks);
+  onRequest('*', updateMinLucks, true, ['users/getmiceeffectiveness.php']);
 };
 
 /**
