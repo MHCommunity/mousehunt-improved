@@ -4,8 +4,12 @@
     {
       "title": "",
       "items": [
-        "Removed update notifications",
-        "Updated Queso Region Location HUD styles"
+        "Updated Queso Region Location HUD styles",
+        "Updated School of Sorcery Location HUD styles",
+        "Updated Better Journal styles",
+        "Updated Better Journal replacements",
+        "Updated Adblock styles",
+        "Removed Draconic Depths worms from Ultimate Checkmark"
       ]
     }
   ]

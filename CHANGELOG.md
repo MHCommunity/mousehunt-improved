@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 0.60.0
+
+- Updated Queso Region Location HUD styles
+- Updated School of Sorcery Location HUD styles
+- Updated Better Journal styles
+- Updated Better Journal replacements
+- Updated Adblock styles
+- Removed Draconic Depths worms from Ultimate Checkmark
+
 ## Version 0.59.0
 
 - Removed update notifications
