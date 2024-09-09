@@ -196,6 +196,7 @@ const getAmplifier = () => {
  * @param {number} options.mousePower     The mouse power.
  * @param {number} options.effectiveness  The mouse effectiveness.
  * @param {number} options.trapPower      The trap power.
+ * @param {number} options.trapPowerBoost The trap power boost.
  * @param {number} options.trapLuck       The trap luck.
  * @param {number} options.trapPowerBonus The trap power bonus.
  *
@@ -211,6 +212,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     mousePower,
     effectiveness,
     trapPower,
+    trapPowerBoost,
     trapLuck,
     trapPowerBonus,
   } = options;
@@ -355,7 +357,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     }
   }
 
-  let power = Math.ceil(trapPower + (trapPower * (trapPowerBonus / 100)));
+  let power = Math.ceil(trapPower + (trapPower * (trapPowerBonus / 100)) + trapPowerBoost);
   if ('zugzwang_tower' === location) {
     power = Math.ceil(power * getAmplifier() / 100);
   }
@@ -425,6 +427,7 @@ const calculateCatchRate = (mousePower, effectiveness, power, luck) => {
  * @param {number} options.mousePower     The mouse power.
  * @param {number} options.effectiveness  The mouse effectiveness.
  * @param {number} options.trapPower      The trap power.
+ * @param {number} options.trapPowerBoost The trap power boost.
  * @param {number} options.trapLuck       The trap luck.
  * @param {number} options.trapPowerBonus The trap power bonus.
  *
