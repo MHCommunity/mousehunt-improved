@@ -22,11 +22,13 @@ let effectiveness = null;
 let isUpdating = false;
 
 let trapPower;
+let trapPowerBoost;
 let trapPowerBonus;
 let trapLuck;
 
 const updateStats = () => {
   trapPower = 0;
+  trapPowerBoost = 0;
   trapPowerBonus = 0;
   trapLuck = user.trap_luck;
 
@@ -38,15 +40,19 @@ const updateStats = () => {
       return;
     }
 
-    const label = mathRow.querySelector('.campPage-trap-trapStat-mathRow-name');
-    // Skip Zugzwang's Tower effects. Calc'd later.
-    // "Your trap is weakened!", "Your trap is receiving a boost!"
-    if (label && label.textContent.includes('Your trap is')) {
+    const value = Number.parseInt(row.textContent.replaceAll(',', '').replace('%', '') || '0', 10);
+    if (! value) {
       return;
     }
 
-    const value = Number.parseInt(row.textContent.replaceAll(',', '').replace('%', '') || '0', 10);
-    if (! value) {
+    const label = mathRow.querySelector('.campPage-trap-trapStat-mathRow-name');
+    // "Your trap is weakened!", "Your trap is receiving a boost!"
+    if (label && label.textContent.includes('Your trap is')) {
+      // Skip Zugzwang's Tower effects. Calc'd later.
+      if (user.environment_name !== 'Zugzwang\'s Tower') {
+        const sign = label.textContent.includes('weakened') ? -1 : 1;
+        trapPowerBoost += (sign * value);
+      }
       return;
     }
 
@@ -186,6 +192,7 @@ const renderList = async (list) => {
       mousePower,
       effectiveness: mouseEffectiveness / 100,
       trapPower,
+      trapPowerBoost,
       trapLuck,
       trapPowerBonus,
     };
