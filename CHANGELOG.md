@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.61.0
+
+- Fixed Friends page erroring out
+- Fixed Catch Rate Estimator calculations
+
 ## Version 0.60.1
 
 - Fixed issue with Inventory Open All not correctly parsing item quantities

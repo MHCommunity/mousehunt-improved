@@ -4,13 +4,8 @@
     {
       "title": "",
       "items": [
-        "Updated Queso Region Location HUD styles",
-        "Updated School of Sorcery Location HUD styles",
-        "Updated Better Journal styles",
-        "Updated Better Journal replacements",
-        "Updated Adblock styles",
-        "Removed Draconic Depths worms from Ultimate Checkmark",
-        "Fixed issue with Inventory Open All not correctly parsing item quantities"
+        "Fixed Friends page erroring out",
+        "Fixed Catch Rate Estimator calculations"
       ]
     }
   ]
