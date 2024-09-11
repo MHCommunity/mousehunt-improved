@@ -34,43 +34,6 @@ const reorderBlocks = () => {
   reordered.setAttribute('data-reordered', 'true');
 };
 
-const addSelect2Toggles = () => {
-  const environmentToggle = document.querySelector('.friendsPage-list-filter[data-filter="environment_id"] .friendsPage-list-filter-label');
-  if (environmentToggle) {
-    environmentToggle.addEventListener('click', () => toggleSelect2('.friendsPage-environment-filter'));
-  }
-
-  const friendToggle = document.querySelector('.friendsPage-list-filter[data-filter="snuid"] .friendsPage-list-filter-label');
-  if (friendToggle) {
-    friendToggle.addEventListener('click', () => toggleSelect2('.active .friendsPage-list-search'));
-  }
-};
-
-const toggleSelect2 = (className) => {
-  const select2 = document.querySelector(`${className}.select2-container`);
-  if (! select2) {
-    return;
-  }
-
-  let original = document.querySelector(`${className}.select2-offscreen`);
-  if (! original) {
-    original = document.querySelector(`${className}.select2-onscreen-now`);
-    if (! original) {
-      return;
-    }
-  }
-
-  const select2Hidden = select2.style.display === 'none';
-  select2.style.display = select2Hidden ? '' : 'none';
-  if (select2Hidden) {
-    original.classList.add('select2-offscreen');
-    original.classList.remove('select2-onscreen-now');
-  } else {
-    original.classList.remove('select2-offscreen');
-    original.classList.add('select2-onscreen-now');
-  }
-};
-
 /**
  * Autofocus the ID search input.
  */
@@ -89,12 +52,6 @@ const autofocusIdSearch = () => {
 export default async () => {
   onNavigation(reorderBlocks, {
     page: 'friends',
-  });
-
-  onNavigation(addSelect2Toggles, {
-    page: 'friends',
-    anyTab: true,
-    anySubtab: true,
   });
 
   onNavigation(autofocusIdSearch, {
