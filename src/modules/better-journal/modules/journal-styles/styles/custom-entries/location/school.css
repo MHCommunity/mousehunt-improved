@@ -1,0 +1,10 @@
+.entry.schoolOfSorcery-wandUsed {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/b7f8c1eba68c2d1c139f6b48aeb5831d.png);
+  background-repeat: no-repeat;
+}
+
+.journal .content .entry.minimalJournal.schoolOfSorcery-wandUsed .journalbody {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 75px;
+}

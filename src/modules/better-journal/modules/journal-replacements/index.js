@@ -116,7 +116,8 @@ const replacements = [
   ['focussed the light from my ', 'focused the light from my '],
   ['Queso Cannonstorm Base</a> blasted 5 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item" onclick="hg.views.ItemView.show(\'amber_queso_stat_item\'); return false;">Solidified Amber Queso</a> to smithereens, revealing', 'Queso Cannonstorm Base</a> revealed'],
   ['Queso Cannonstorm Base</a> blasted 5 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item" onclick="hg.views.ItemView.show(\'amber_queso_stat_item\'); return false;">Solidified Amber Queso</a> but nothing was found', 'Queso Cannonstorm Base</a> revealed nothing'],
-  ['within the rubble!'], [''],
+  ['within the rubble!', ''],
+  ['shatter brilliantly! I have', 'shatter brilliantly! <p>I have'],
 
   // Event stuff
   // SEH

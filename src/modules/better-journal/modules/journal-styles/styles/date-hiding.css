@@ -29,6 +29,7 @@
 .journal .content .entry.harbour .journalbody .journaldate,
 .journal .content .entry.iceberg_drill .journalbody .journaldate,
 .journal .content .entry.short.desertstreak .journalbody .journaldate,
+.journal .content .entry.schoolOfSorcery-wandUsed .journalbody .journaldate,
 .journal .content .entry.short.rift-whisker-woods-increase .journalbody .journaldate {
   display: none;
 }

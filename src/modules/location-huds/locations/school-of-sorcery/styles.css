@@ -172,3 +172,37 @@
 .schoolOfSorceryCourseView__magicProgressBarLabel--bossMode {
   left: -52%;
 }
+
+.headsUpDisplaySchoolOfSorcery__inventoryBlock.highlight::before,
+.headsUpDisplaySchoolOfSorcery__inventoryBlock.highlight .headsUpDisplaySchoolOfSorcery__inventoryBlockQuantity {
+  background-color: #3ecb9e;
+}
+
+.schoolOfSorceryTranscriptDialogView__courseSummaryNumberBlock {
+  padding-right: 4px;
+  font-size: 15px;
+}
+
+.schoolOfSorceryTranscriptDialogView__courseSummaryHeader .schoolOfSorceryTranscriptDialogView__courseSummaryNumberBlock {
+  font-size: 13px;
+}
+
+.schoolOfSorceryTranscriptDialogView__courseSummaryName {
+  width: 140px;
+  margin-left: -100px;
+  font-size: 13px;
+}
+
+.schoolOfSorceryTranscriptDialogView__courseSummaryHeader .schoolOfSorceryTranscriptDialogView__courseSummaryName {
+  margin-right: -55px;
+}
+
+.headsUpDisplaySchoolOfSorceryView__fuelQuantity.quantity {
+  font-weight: 900;
+  color: #fff;
+  background-color: rgb(100 200 125 / 30%);
+}
+
+.schoolOfSorceryCourseView__spellforceAvatar {
+  filter: drop-shadow(0 10px 1px #000);
+}
