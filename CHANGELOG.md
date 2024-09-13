@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.62.0
+
+- Fixed Bountiful Beanstalk map categories
+- Updated School of Sorcery Location HUD styles
+- Updated Better Journal styles
+- Updated Better Journal replacements
+
 ## Version 0.61.0
 
 - Fixed Friends page erroring out

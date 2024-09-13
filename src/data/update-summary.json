@@ -4,8 +4,10 @@
     {
       "title": "",
       "items": [
-        "Fixed Friends page erroring out",
-        "Fixed Catch Rate Estimator calculations"
+        "Fixed Bountiful Beanstalk map categories",
+        "Updated School of Sorcery Location HUD styles",
+        "Updated Better Journal styles",
+        "Updated Better Journal replacements"
       ]
     }
   ]
