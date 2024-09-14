@@ -230,6 +230,30 @@
   mix-blend-mode: color-burn;
 }
 
+.huntersHornView__timer--legacy.color-blue .huntersHornView__timerState {
+  color: #1875af;
+}
+
+.huntersHornView__timer--legacy.color-cyan .huntersHornView__timerState {
+  color: #18825f;
+}
+
+.huntersHornView__timer--legacy.color-green .huntersHornView__timerState {
+  color: #3b7523;
+}
+
+.huntersHornView__timer--legacy.color-pink .huntersHornView__timerState {
+  color: #ae5385;
+}
+
+.huntersHornView__timer--legacy.color-purple .huntersHornView__timerState {
+  color: #596eb7;
+}
+
+.huntersHornView__timer--legacy.color-red .huntersHornView__timerState {
+  color: #a95354;
+}
+
 @keyframes mh-improved-shield-hue-rotate {
   0% {
     filter: hue-rotate(0deg) drop-shadow(0 0 5px #e8dbb8);
@@ -244,8 +268,13 @@
   }
 }
 
+.huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState {
+  color: #625901;
+}
+
 .mousehunt-improved-lgs-reminder-new.color-rainbow,
 .huntersHornView__timer--default.color-rainbow,
+.huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState,
 .mousehuntHud-shield.golden.color-rainbow,
 .mousehuntHud-shield.golden.color-rainbow2 {
   animation: mh-improved-shield-hue-rotate 30s infinite;
@@ -254,6 +283,7 @@
 @media (prefers-reduced-motion: reduce) {
   .mousehunt-improved-lgs-reminder-new.color-rainbow,
   .huntersHornView__timer--default.color-rainbow,
+  .huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState,
   .mousehuntHud-shield.golden.color-rainbow,
   .mousehuntHud-shield.golden.color-rainbow2 {
     animation: none;
