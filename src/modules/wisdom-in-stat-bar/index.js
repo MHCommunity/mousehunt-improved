@@ -142,7 +142,7 @@ const init = async () => {
 
   const legacyMenu = getSetting('legacy-hud.menu', false);
   const legacyHud = getSetting('legacy-hud.stats', false);
-  legacyHudMenu = legacyHud || (getSetting('legacy-hud', false) && legacyMenu === legacyHud);
+  legacyHudMenu = getSetting('legacy-hud', false) && (legacyHud || legacyMenu === legacyHud);
 
   await updateWisdom();
   addRefreshListener();
