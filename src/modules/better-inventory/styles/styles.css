@@ -302,11 +302,6 @@ input.inventoryPage-tagDirectory-searchBar-input {
   box-shadow: inset -1px 1px 3px 0 #d3cecb;
 }
 
-.mousehuntHud-page-subTabContent.crafting_table .inventoryPage-item.small .itemImage img {
-  width: 70px;
-  height: 70px;
-}
-
 .mousehuntHud-page-subTabContent.crafting_table .mousehuntHud-page-subTabContent-margin {
   width: 78%;
 }
