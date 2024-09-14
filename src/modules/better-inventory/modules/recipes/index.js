@@ -206,9 +206,8 @@ const modifySmashableTooltip = async () => {
           quantity = quantityInt >= 1000000 ? `${Math.floor(quantityInt / 100000) / 10}m` : quantity.toLocaleString();
         }
 
-        // const itemTooltip = makeElement('div', 'new-tooltip-item');
         makeElement('div', ['new-tooltip-item', 'inventoryPage-item'], `
-        <div class="inventoryPage-item-margin clear-block">
+        <div class="inventoryPage-item-margin clear-block hidden">
           <div class="inventoryPage-item-imageContainer">
             <div class="itemImage"><img src="${thumb}">
               <div class="quantity">${quantity}</div>
