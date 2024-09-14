@@ -183,6 +183,7 @@
 }
 
 .schoolOfSorceryTranscriptDialogView__courseSummaryNumberBlock {
+  justify-self: center;
   padding-right: 4px;
   font-size: 15px;
 }
@@ -192,8 +193,8 @@
 }
 
 .schoolOfSorceryTranscriptDialogView__courseSummaryName {
-  width: 140px;
-  margin-left: -100px;
+  width: unset;
+  margin-left: 0;
   font-size: 13px;
 }
 
@@ -435,4 +436,46 @@
 .schoolOfSorceryCourseView__streamContainer--player {
   border-top-left-radius: 60%;
   border-bottom-left-radius: 60%;
+}
+
+.schoolOfSorceryTranscriptDialogView__courseSummaryRow {
+  display: grid;
+  grid-template-columns: 70px 1fr 1fr 1fr;
+  justify-items: stretch;
+}
+
+.schoolOfSorceryTranscriptDialogView__courseSummaryRow.schoolOfSorceryTranscriptDialogView__courseSummaryHeader .schoolOfSorceryTranscriptDialogView__courseSummaryName {
+  grid-column: span 2;
+  margin-right: 0;
+  margin-left: 50px;
+}
+
+.headsUpDisplaySchoolOfSorceryView__standardBaitTooltip.mousehuntTooltip {
+  width: 120px;
+}
+
+.headsUpDisplaySchoolOfSorceryView__baitCraftableContainer .mousehuntTooltip {
+  right: -25px;
+  left: -25px;
+}
+
+.schoolOfSorceryCourseView__courseName.schoolOfSorceryCourseView__courseName--highest {
+  color: #954f2d;
+}
+
+.schoolOfSorceryCourseView__highestMarker {
+  position: absolute;
+  top: 0;
+  right: 24px;
+  width: 20px;
+  height: 20px;
+  filter: hue-rotate(160deg);
+  opacity: 0.6;
+}
+
+.schoolOfSorceryCourseView__highestMarker:hover,
+.schoolOfSorceryCourseView__highestMarker:focus {
+  cursor: pointer;
+  filter: hue-rotate(300deg);
+  opacity: 1;
 }
