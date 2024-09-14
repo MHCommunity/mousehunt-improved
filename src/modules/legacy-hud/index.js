@@ -71,7 +71,7 @@ const getStat = (type, label, value) => {
  * @return {string} The markup for the legacy HUD.
  */
 const getLegacyHudHtml = () => {
-  return `<div id="#legacy-hud" class="headsup">
+  return `<div id="legacy-hud" class="headsup">
     <div class="shieldped">
       <div class="titleicon">
         <a href="#" onclick="hg.utils.PageUtil.setPage('Title'); return false;">
@@ -141,7 +141,7 @@ const getLegacyHudHtml = () => {
             <div class="corkboardUpdate ${user?.quests?.QuestRelicHunter?.new_chat ? 'active' : ''}"></div>
             <div class="miceWarning ${user?.quests?.QuestRelicHunter?.mice_warning ? 'active' : ''}"></div>
           </div>
-          <span class="label">Treasure Maps</span>
+          <span class="label">Treasure Map${user?.quests?.QuestRelicHunter?.maps?.length > 1 ? 's' : ''}</span>
           <span class="value">${getMapText()}</span>
         </a>
       </ul>

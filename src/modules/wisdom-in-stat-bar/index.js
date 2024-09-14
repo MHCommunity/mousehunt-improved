@@ -3,6 +3,7 @@ import {
   cacheSet,
   getSetting,
   getUserItems,
+  isLegacyHUD,
   makeElement,
   onDeactivation,
   onTurn
@@ -71,7 +72,8 @@ const getWisdomFormatted = async () => {
  * @param {string} wisdom The wisdom to add.
  */
 const addWisdomToStatBar = (wisdom) => {
-  const existingWisdom = document.querySelector('.mousehuntHud-userStat-row.wisdom .value.hud_wisdom');
+  const existingWisdom = document.querySelector('.mousehuntHud-userStat-row.wisdom .hud_wisdom');
+
   if (existingWisdom) {
     existingWisdom.textContent = wisdom;
     if ('undefined' !== typeof blinkText) {
@@ -81,14 +83,20 @@ const addWisdomToStatBar = (wisdom) => {
     return;
   }
 
-  const pointsRow = document.querySelector('.mousehuntHud-userStat-row.points');
+  let pointsRow;
+  if (legacyHudMenu) {
+    pointsRow = document.querySelector('.headsup > div:nth-child(5) ul li:nth-child(2)');
+  } else {
+    pointsRow = document.querySelector('.mousehuntHud-userStat-row.points');
+  }
+
   if (! pointsRow) {
     return;
   }
 
-  const wisdomRow = makeElement('div', ['mousehuntHud-userStat-row', 'wisdom']);
-  makeElement('span', 'label', 'Wisdom', wisdomRow);
-  makeElement('span', 'value hud_wisdom', wisdom, wisdomRow);
+  const wisdomRow = makeElement(legacyHudMenu ? 'li' : 'div', ['mousehuntHud-userStat-row', 'wisdom']);
+  makeElement('span', legacyHudMenu ? 'hudstatlabel' : 'label', 'Wisdom', wisdomRow);
+  makeElement('span', legacyHudMenu ? 'hudstatvalue hud_wisdom' : 'value hud_wisdom', wisdom, wisdomRow);
   wisdomRow.setAttribute('title', 'Click to refresh wisdom');
   pointsRow.after(wisdomRow);
 };
@@ -105,7 +113,7 @@ const updateWisdom = async () => {
  * Add the click listener to refresh the wisdom.
  */
 const addRefreshListener = () => {
-  const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
+  let wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
   if (! wisdomRow) {
     return;
   }
@@ -122,7 +130,7 @@ const addRefreshListener = () => {
 };
 
 let useCachedWisdom = false;
-
+let legacyHudMenu = false;
 /**
  * Initialize the module.
  */
@@ -131,6 +139,10 @@ const init = async () => {
     useCachedWisdom = false;
     onTurn(updateWisdom);
   }
+
+  const legacyMenu = getSetting('legacy-hud.menu', false);
+  const legacyHud = getSetting('legacy-hud.stats', false);
+  legacyHudMenu = legacyHud || (getSetting('legacy-hud', false) && legacyMenu === legacyHud);
 
   await updateWisdom();
   addRefreshListener();

@@ -53,3 +53,8 @@
 .mousehuntHud-marbleDrawer #hudLocationContent {
   margin-top: 0;
 }
+
+.mousehuntHud-userStat.treasureMap .value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
