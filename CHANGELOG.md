@@ -6,6 +6,7 @@
 - Fixed Custom Shield not showing when using Legacy HUD
 - Fixed Better Inventory showing extra item in Hunter's Hammer after switching tabs
 - Fixed Better Inventory showing too large of item images in Crafting Table
+- Fixed Wisdom in Stat Bar not working when using Legacy HUD
 - Updated School of Sorcery Location HUD styles
 - Updated Better Journal styles
 - Updated Better Journal replacements

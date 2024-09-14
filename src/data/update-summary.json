@@ -9,6 +9,7 @@
         "Fixed Bountiful Beanstalk map categories",
         "Fixed Custom Shield not showing when using Legacy HUD",
         "Fixed time parsing logic for AM/PM in Show Auras",
+        "Fixed Wisdom in Stat Bar not working when using Legacy HUD",
         "Updated Better Journal replacements",
         "Updated Better Journal styles",
         "Updated School of Sorcery Location HUD styles"
