@@ -188,9 +188,14 @@ const getAuras = () => {
 
       const timeParts = time.split(':');
       let hours = Number.parseInt(timeParts[0], 10);
-      hours = timeParts[1].includes('pm') ? hours + 12 : hours;
+      const minutes = timeParts[1].replace(/(am|pm)/i, '').trim();
+      const isPM = timeParts[1].toLowerCase().includes('pm');
 
-      const minutes = timeParts[1].replaceAll('pm', '').replaceAll('am', '').trim();
+      if (hours === 12 && ! isPM) {
+        hours = 0; // 12 AM.
+      } else if (hours !== 12 && isPM) {
+        hours += 12; // PM.
+      }
 
       expiryText = `${expiryText} ${hours}:${minutes}`;
     }
