@@ -78,8 +78,6 @@ const changeShield = () => {
     return;
   }
 
-  console.log('Changing shield');
-
   let timer = document.querySelector('.huntersHornView__timer--default');
   if (! timer) {
     timer = document.querySelector('.huntersHornView__timer--legacy');
@@ -87,8 +85,6 @@ const changeShield = () => {
       return;
     }
   }
-
-  console.log('Changing shield 2');
 
   // Remove the old shield class.
   if (lastShield) {
@@ -170,7 +166,7 @@ const watchForPreferenceChanges = () => {
     input.removeEventListener('change', inputListener);
   }
 
-  input.addEventListener('change', () => {
+  inputListener = input.addEventListener('change', () => {
     changeShield();
   });
 };
