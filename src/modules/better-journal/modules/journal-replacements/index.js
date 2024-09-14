@@ -118,6 +118,9 @@ const replacements = [
   ['Queso Cannonstorm Base</a> blasted 5 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item" onclick="hg.views.ItemView.show(\'amber_queso_stat_item\'); return false;">Solidified Amber Queso</a> but nothing was found', 'Queso Cannonstorm Base</a> revealed nothing'],
   ['within the rubble!', ''],
   ['shatter brilliantly! I have', 'shatter brilliantly! <p>I have'],
+  ['I used a Master Magus Wand to DOUBLE my Spell Force which caused it to shatter brilliantly!', 'I used a Master Magus Wand to double my Spell Force! It shattered in a brilliant explosion of light!'],
+  ['times.I can', 'times. I can'],
+  ['Here is the summary of loot that I earned during my studies:<br><br>', 'I earned the following loot during my studies:'],
 
   // Event stuff
   // SEH

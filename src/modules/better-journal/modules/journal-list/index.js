@@ -27,6 +27,7 @@ const classesToCheck = {
   ],
   hasListNeedsClasses: [
     'folkloreForest-bookClaimed',
+    'schoolOfSorcery-completed'
   ],
 };
 
@@ -143,6 +144,14 @@ const getItemsFromText = async (type, text) => {
         newText = 'I received: ';
       }
     }
+  } else if ('hasListNeedsClasses' === type) {
+    // It's a <ul> list. split it by <li> and dont remove any items.
+    const ul = text.querySelector('ul');
+    ul.classList.add('better-journal-list');
+
+    ul.querySelectorAll('li').forEach((li) => {
+      li.classList.add('better-journal-list-item');
+    });
   } else {
     for (const string of otherStrings) {
       // If it's an "other" type, the items are after a specific string.
@@ -213,7 +222,9 @@ const formatAsList = async (entry) => {
   const { newText, list } = await getItemsFromText(type, text);
   if (list.length > 0 && newText !== text.innerHTML) {
     text.innerHTML = newText;
-    text.append(makeListItems(list));
+    if ('hasListNeedsClasses' !== type) {
+      text.append(makeListItems(list));
+    }
   }
 };
 

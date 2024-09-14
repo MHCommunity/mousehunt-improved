@@ -173,9 +173,13 @@
   left: -52%;
 }
 
-.headsUpDisplaySchoolOfSorcery__inventoryBlock.highlight::before,
-.headsUpDisplaySchoolOfSorcery__inventoryBlock.highlight .headsUpDisplaySchoolOfSorcery__inventoryBlockQuantity {
+.headsUpDisplaySchoolOfSorcery__inventoryBlock.highlight::before {
   background-color: #3ecb9e;
+}
+
+.headsUpDisplaySchoolOfSorcery__inventoryBlock.highlight .headsUpDisplaySchoolOfSorcery__inventoryBlockQuantity {
+  background-color: #276f91;
+  border-color: #1e6571;
 }
 
 .schoolOfSorceryTranscriptDialogView__courseSummaryNumberBlock {
@@ -205,4 +209,230 @@
 
 .schoolOfSorceryCourseView__spellforceAvatar {
   filter: drop-shadow(0 10px 1px #000);
+}
+
+/* Make the 'Loot per Catch' tooltip always visible and aligned to the number */
+.headsUpDisplaySchoolOfSorceryView__lootPerCatchItem .mousehuntTooltip {
+  inset: 0 -100px 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 0;
+  color: #fff;
+  vertical-align: middle;
+  background-color: #000;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  box-shadow:
+    -1px 0 0 0 #000,
+    0 0 1px 0 #85d523;
+}
+
+.headsUpDisplaySchoolOfSorceryView__lootPerCatchItem .mousehuntTooltip .mousehuntTooltip-arrow {
+  display: none;
+}
+
+.headsUpDisplaySchoolOfSorceryView__lootPerCatchItem .mousehuntTooltip b {
+  max-width: 118px;
+  height: 13px;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+
+.headsUpDisplaySchoolOfSorceryView__lootPerCatchItemQuantity {
+  width: 40px;
+  font-weight: 900;
+}
+
+.headsUpDisplaySchoolOfSorceryView__lootPerCatchItem.mousehuntTooltipParent:hover > .mousehuntTooltip {
+  display: flex;
+  animation: none;
+}
+
+.headsUpDisplaySchoolOfSorceryView__lootPerCatchItemImage {
+  width: 25px;
+  height: 25px;
+  margin-top: -2px;
+  filter: drop-shadow(-1px 2px 2px #000);
+}
+
+.headsUpDisplaySchoolOfSorceryView__lootPerCatchItemText {
+  margin-left: 55px;
+  color: #90dd31;
+  text-shadow: 1px 1px #000;
+}
+
+/* Correctly align the bait switching loading spinner */
+.headsUpDisplaySchoolOfSorceryView__baitImage.busy::after {
+  top: calc(50% - 1px);
+  left: calc(50% - 1px);
+}
+
+/* Better buttons */
+.headsUpDisplaySchoolOfSorceryView__wandButton {
+  font-weight: 900;
+  text-shadow: 1px 1px 1px #a8c3fa;
+}
+
+.schoolOfSorceryCourseView__dropOutButton,
+.headsUpDisplaySchoolOfSorceryView__fuelToggleButton::before {
+  font-weight: 900;
+  text-shadow: 1px 1px 1px #b5f1bc;
+}
+
+/* Better doors */
+.schoolOfSorceryHallwayView__startCourse--disabled {
+  color: #fff;
+  filter: grayscale(1);
+  background-position-y: unset;
+  opacity: 0.6;
+}
+
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--arcane_101_course,
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--shadow_101_course,
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--exam_course {
+  position: relative;
+}
+
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--arcane_101_course::before,
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--shadow_101_course::before,
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--exam_course::before {
+  position: absolute;
+  top: 1px;
+  left: 55px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/powertypes/arcane.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--shadow_101_course::before {
+  background-image: url(https://www.mousehuntgame.com/images/powertypes/shadow.png);
+}
+
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--exam_course::before {
+  background-image: url(https://www.mousehuntgame.com//images/ui/hud/school_of_sorcery/exam_icon.png);
+}
+
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--arcane_101_course .schoolOfSorceryHallwayView__startCourse,
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--shadow_101_course .schoolOfSorceryHallwayView__startCourse,
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--exam_course .schoolOfSorceryHallwayView__startCourse {
+  top: 120px;
+}
+
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--arcane_101_course .schoolOfSorceryHallwayView__entryCostItemImage,
+.schoolOfSorceryHallwayView__courseSelectionContainer.schoolOfSorceryHallwayView__courseSelectionContainer--shadow_101_course .schoolOfSorceryHallwayView__entryCostItemImage {
+  margin-left: 3px;
+}
+
+.schoolOfSorceryHallwayView__entryCostItemQuantity {
+  font-weight: 900;
+}
+
+.schoolOfSorceryHallwayView__entryCost {
+  filter: drop-shadow(1px 1px 1px #000);
+}
+
+.schoolOfSorceryEnrollCourseDialogView__courseBossDrop {
+  bottom: 5px;
+}
+
+.schoolOfSorceryEnrollCourseDialogView__courseInfoContainer {
+  padding-top: 10px;
+}
+
+.schoolOfSorceryEnrollCourseDialogView__course {
+  height: 160px;
+  background-color: #fff5dd;
+}
+
+.schoolOfSorceryEnrollCourseDialogView__courseStats {
+  padding-top: 5px;
+}
+
+.schoolOfSorceryEnrollCourseDialogView__course--exam_course .schoolOfSorceryEnrollCourseDialogView__examPowerTypeSwitchWarning {
+  top: unset;
+  bottom: 10px;
+}
+
+.schoolOfSorceryEnrollCourseDialogView__courseStat {
+  background-color: #fbe3a7;
+}
+
+.schoolOfSorceryEnrollCourseDialogView__course:hover::after,
+.schoolOfSorceryEnrollCourseDialogView__course--active::after {
+  position: absolute;
+  inset: -2px;
+  content: "";
+  border: 2px solid #008cf3;
+  border-radius: 6px;
+}
+
+.schoolOfSorceryEnrollCourseDialogView__course--active::after {
+  outline: 2px solid #5fb4f1;
+}
+
+.schoolOfSorceryEnrollCourseDialogView__course.schoolOfSorceryEnrollCourseDialogView__course--disabled:hover::after {
+  border: none;
+}
+
+.schoolOfSorceryCourseView__beam--enemy::after {
+  position: absolute;
+  top: -13px;
+  right: -14px;
+  width: 60px;
+  height: 70px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/school_of_sorcery/course/beam/wand_glow_arcane.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  border-radius: 0;
+  transform: scaleX(-1);
+}
+
+.schoolOfSorceryCourseView__beam--shadow.schoolOfSorceryCourseView__beam--enemy::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/school_of_sorcery/course/beam/wand_glow_shadow.png);
+}
+
+.schoolOfSorceryCourseView__beam--exam_course.schoolOfSorceryCourseView__beam--arcane.schoolOfSorceryCourseView__beam--enemy::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/school_of_sorcery/course/beam/glow_boss_arcane.png);
+}
+
+.schoolOfSorceryCourseView__beam--exam_course.schoolOfSorceryCourseView__beam--shadow.schoolOfSorceryCourseView__beam--enemy::after {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/school_of_sorcery/course/beam/glow_boss_shadow.png);
+}
+
+.schoolOfSorceryCourseView__beam--player::after {
+  position: absolute;
+  top: -10px;
+  left: -13px;
+  width: 60px;
+  height: 70px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/school_of_sorcery/course/beam/glow_player.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  border-radius: 0;
+}
+
+.schoolOfSorceryCourseView__streamContainer.schoolOfSorceryCourseView__streamContainer--player {
+  margin-top: -3px;
+}
+
+.schoolOfSorceryCourseView__streamContainer.schoolOfSorceryCourseView__streamContainer--enemy {
+  margin-top: -2px;
+}
+
+.schoolOfSorceryCourseView__beamIntersection.schoolOfSorceryCourseView__beamIntersection--arcane {
+  margin-top: -8px;
+}
+
+.schoolOfSorceryCourseView__streamContainer--player {
+  border-top-left-radius: 60%;
+  border-bottom-left-radius: 60%;
 }

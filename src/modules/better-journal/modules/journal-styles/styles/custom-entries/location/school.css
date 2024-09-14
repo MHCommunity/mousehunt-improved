@@ -8,3 +8,7 @@
   margin-bottom: 3px;
   margin-left: 75px;
 }
+
+.journal .entry.schoolOfSorcery-completed {
+  background-color: #e59de7;
+}
