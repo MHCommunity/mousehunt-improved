@@ -3,7 +3,8 @@ import {
   getSetting,
   getUserTitle,
   makeElement,
-  onNavigation
+  onNavigation,
+  setMultipleTimeout
 } from '@utils';
 
 import settings from './settings';
@@ -77,10 +78,17 @@ const changeShield = () => {
     return;
   }
 
-  const timer = document.querySelector('.huntersHornView__timer--default');
+  console.log('Changing shield');
+
+  let timer = document.querySelector('.huntersHornView__timer--default');
   if (! timer) {
-    return;
+    timer = document.querySelector('.huntersHornView__timer--legacy');
+    if (! timer) {
+      return;
+    }
   }
+
+  console.log('Changing shield 2');
 
   // Remove the old shield class.
   if (lastShield) {
@@ -148,6 +156,7 @@ const changeShield = () => {
   addClass(shieldEl, shield);
 };
 
+let inputListener = null;
 /**
  * Listen for preference changes to update the shield.
  */
@@ -155,6 +164,10 @@ const watchForPreferenceChanges = () => {
   const input = document.querySelector('#mousehunt-improved-settings-design-custom-shield select');
   if (! input) {
     return;
+  }
+
+  if (inputListener) {
+    input.removeEventListener('change', inputListener);
   }
 
   input.addEventListener('change', () => {
@@ -172,7 +185,9 @@ const init = async () => {
 
   changeShield();
 
-  onNavigation(watchForPreferenceChanges, {
+  onNavigation(() => {
+    setMultipleTimeout(watchForPreferenceChanges, [100, 1000, 2000, 5000]);
+  }, {
     page: 'preferences',
     onLoad: true,
   });
