@@ -10,3 +10,8 @@
   width: 80px;
   height: 80px;
 }
+
+.mousehuntHud-page-subTabContent.crafting_table .inventoryPage-item.small .itemImage img {
+  width: 70px;
+  height: 70px;
+}
