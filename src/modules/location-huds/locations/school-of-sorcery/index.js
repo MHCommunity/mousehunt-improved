@@ -1,4 +1,4 @@
-import { addHudStyles, getSetting, makeElement, onRequest, onTurn } from '@utils';
+import { addHudStyles, getSetting, makeElement, onRequest } from '@utils';
 
 import cleanChalkboard from './clean-chalkboard.css';
 import regionStyles from '../../shared/folklore-forest/styles.css';
@@ -13,7 +13,7 @@ const highlightIfHighest = () => {
     return;
   }
 
-  const courseTranscript = transcripts.find(({ course_type }) => course_type === currentCourse);
+  const courseTranscript = transcripts.find(({ courseType }) => courseType === currentCourse);
   const highestScore = courseTranscript?.highest_level || 0;
 
   if (! courseTranscript) {
@@ -53,7 +53,7 @@ const highlightIfHighest = () => {
     }
   });
 
-  title.appendChild(highestMarker);
+  title.append(highestMarker);
 };
 
 /**

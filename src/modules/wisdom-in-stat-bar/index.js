@@ -83,13 +83,7 @@ const addWisdomToStatBar = (wisdom) => {
     return;
   }
 
-  let pointsRow;
-  if (legacyHudMenu) {
-    pointsRow = document.querySelector('.headsup > div:nth-child(5) ul li:nth-child(2)');
-  } else {
-    pointsRow = document.querySelector('.mousehuntHud-userStat-row.points');
-  }
-
+  const pointsRow = document.querySelector(legacyHudMenu ? '.headsup > div:nth-child(5) ul li:nth-child(2)' : '.mousehuntHud-userStat-row.points');
   if (! pointsRow) {
     return;
   }
@@ -113,7 +107,7 @@ const updateWisdom = async () => {
  * Add the click listener to refresh the wisdom.
  */
 const addRefreshListener = () => {
-  let wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
+  const wisdomRow = document.querySelector('.mousehuntHud-userStat-row.wisdom');
   if (! wisdomRow) {
     return;
   }
@@ -142,7 +136,7 @@ const init = async () => {
 
   const legacyMenu = getSetting('legacy-hud.menu', false);
   const legacyHud = getSetting('legacy-hud.stats', false);
-  legacyHudMenu = getSetting('legacy-hud', false) && (legacyHud || legacyMenu === legacyHud);
+  legacyHudMenu = (getSetting('legacy-hud', false) && (legacyHud || legacyMenu === legacyHud)) || isLegacyHUD();
 
   await updateWisdom();
   addRefreshListener();
