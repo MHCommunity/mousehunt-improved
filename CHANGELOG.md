@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.63.0
+
+- Fixed time parsing logic for AM/PM in Show Auras
+- Fixed Custom Shield not showing when using Legacy HUD
+- Fixed Better Inventory showing extra item in Hunter's Hammer after switching tabs
+- Fixed Better Inventory showing too large of item images in Crafting Table
+- Updated School of Sorcery Location HUD styles
+- Updated Better Journal styles
+- Updated Better Journal replacements
+
 ## Version 0.62.0
 
 - Fixed Bountiful Beanstalk map categories
