@@ -23,14 +23,12 @@
 }
 
 .schoolOfSorceryCourseView__magicProgressBarLabel {
-  top: 48px;
+  top: 45px;
   left: 30%;
   padding: 3px;
-  font-size: 13px;
-  color: #fff;
+  color: #ddd;
   background-color: #3c3c3c;
-  border: 1px solid #6b6b6b;
-  box-shadow: 0 1px 1px -1px #b0b0b0;
+  border: 1px solid #1f1f1f;
 }
 
 .schoolOfSorceryCourseView__content:hover .schoolOfSorceryCourseView__stream--short,
@@ -91,6 +89,7 @@
 
 .schoolOfSorceryCourseView__huntsRemainingContainer {
   font-size: 17px;
+  color: #ddd;
   opacity: 0.9;
 }
 
@@ -386,6 +385,7 @@
   position: absolute;
   top: -13px;
   right: -14px;
+  z-index: 10;
   width: 60px;
   height: 70px;
   content: "";
@@ -393,6 +393,7 @@
   background-repeat: no-repeat;
   background-position: left;
   border-radius: 0;
+  opacity: 0.6;
   transform: scaleX(-1);
 }
 
@@ -412,6 +413,7 @@
   position: absolute;
   top: -10px;
   left: -13px;
+  z-index: 10;
   width: 60px;
   height: 70px;
   content: "";
@@ -419,6 +421,7 @@
   background-repeat: no-repeat;
   background-position: left;
   border-radius: 0;
+  opacity: 0.6;
 }
 
 .schoolOfSorceryCourseView__streamContainer.schoolOfSorceryCourseView__streamContainer--player {
@@ -478,4 +481,19 @@
   cursor: pointer;
   filter: hue-rotate(300deg);
   opacity: 1;
+}
+
+.schoolOfSorceryCourseView__powerTypeRecommendation {
+  color: #ccc;
+}
+
+.schoolOfSorceryCourseView__powerTypeText {
+  margin-right: -10px;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #ddd;
+}
+
+.schoolOfSorceryCourseView__powerTypeText b {
+  font-size: 16px;
 }
