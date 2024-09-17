@@ -12,3 +12,7 @@
 .journal .entry.schoolOfSorcery-completed {
   background-color: #e59de7;
 }
+
+.journal .entry.schoolOfSorcery-droppedOut {
+  background-color: #ffacc4;
+}
