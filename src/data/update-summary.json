@@ -4,15 +4,11 @@
     {
       "title": "",
       "items": [
-        "Fixed Better Inventory showing extra item in Hunter's Hammer after switching tabs",
-        "Fixed Better Inventory showing too large of item images in Crafting Table",
-        "Fixed Bountiful Beanstalk map categories",
-        "Fixed Custom Shield not showing when using Legacy HUD",
-        "Fixed time parsing logic for AM/PM in Show Auras",
-        "Fixed Wisdom in Stat Bar not working when using Legacy HUD",
-        "Updated Better Journal replacements",
+        "Added School of Sorcery location to Location Dashboard",
+        "Better Journal - Journal Styles: When hovering over a journal entry with an animated image, the animation will now play",
         "Updated Better Journal styles",
-        "Updated School of Sorcery Location HUD styles"
+        "Updated School of Sorcery Location HUD styles",
+        "Updated Custom Shield matching timer styles"
       ]
     }
   ]
