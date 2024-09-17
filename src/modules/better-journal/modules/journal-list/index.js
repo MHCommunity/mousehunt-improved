@@ -27,7 +27,8 @@ const classesToCheck = {
   ],
   hasListNeedsClasses: [
     'folkloreForest-bookClaimed',
-    'schoolOfSorcery-completed'
+    'schoolOfSorcery-completed',
+    'schoolOfSorcery-droppedOut',
   ],
 };
 
