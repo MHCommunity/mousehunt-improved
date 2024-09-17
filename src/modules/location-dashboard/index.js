@@ -35,6 +35,7 @@ import getMousoleumText from './locations/mousoleum';
 import getMoussuPicchuText from './locations/moussu-picchu';
 import getQuesoGeyserText from './locations/queso-geyser';
 import getSandDunesText from './locations/sand-dunes';
+import getSchoolOfSorceryText from './locations/school-of-sorcery';
 import getSunkenCityText from './locations/sunken-city';
 import getTableOfContentsText from './locations/table-of-contents';
 import getToxicSpillText from './locations/pollution-outbreak';
@@ -168,6 +169,7 @@ const doLocationRefresh = async () => {
     'rift_valour',
     'rift_whisker_woods',
     'sand_dunes',
+    'school_of_sorcery',
     'seasonal_garden',
     'sunken_city',
     'table_of_contents',
@@ -490,6 +492,7 @@ const getDashboardContents = async () => {
   makeLocationMarkup('bountiful_beanstalk', 'Bountiful Beanstalk', getBountifulBeanstalkText, folkloreForest, quests);
   makeLocationMarkup('foreword_farm', 'Foreword Farm', getForewordFarmText, folkloreForest, quests);
   makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest, quests);
+  makeLocationMarkup('school_of_sorcery', 'School of Sorcery', getSchoolOfSorceryText, folkloreForest, quests);
   makeRegionMarkup('Folklore Forest', folkloreForest, contentsWrapper);
 
   const rift = document.createElement('div');
