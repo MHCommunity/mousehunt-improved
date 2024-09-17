@@ -227,7 +227,7 @@
 .huntersHornView__timer--default.color-pink .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,
 .huntersHornView__timer--default.color-purple .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,
 .huntersHornView__timer--default.color-red .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown {
-  mix-blend-mode: color-burn;
+  mix-blend-mode: hard-light;
 }
 
 .huntersHornView__timer--legacy.color-blue .huntersHornView__timerState {
