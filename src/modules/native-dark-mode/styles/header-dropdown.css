@@ -52,3 +52,7 @@
   color: var(--d-text-dark);
   background-color: var(--d-yellow);
 }
+
+.mh-dark .scoreboardRelativeRankingTableView-table tr.highlight a {
+  color: var(--d-purple-dark);
+}
