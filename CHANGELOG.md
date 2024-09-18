@@ -11,7 +11,6 @@
 - Updated Native Dark Mode styles
 - Updated School of Sorcery Location HUD styles
 
-
 ## Version 0.63.0
 
 - Fixed time parsing logic for AM/PM in Show Auras

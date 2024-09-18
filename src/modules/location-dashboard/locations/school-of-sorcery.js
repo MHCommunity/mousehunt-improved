@@ -17,14 +17,13 @@ export default (quests) => {
 
   const courseName = currentCourse?.course_name;
   const courseType = currentCourse?.course_type;
-  const powerType = currentCourse?.power_type == 'arcane' ? 'Arcane' : 'Shadow';
+  const powerType = currentCourse?.power_type === 'arcane' ? 'Arcane' : 'Shadow';
   const isBoss = currentCourse?.is_boss_encounter;
 
   let examText = '';
   if ('exam_course' === courseType) {
     examText = `${powerType}, ${currentCourse?.power_type_hunts_remaining} hunts until ${powerType === 'Arcane' ? 'Shadow' : 'Arcane'}`;
   }
-
 
   return `${courseName} · ${currentCourse?.hunts_remaining || 0} hunts remaining<div class="stats">${examText}${isBoss ? ' At Boss' : ''}</div>`;
 };
