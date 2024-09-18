@@ -3,6 +3,10 @@
   box-shadow: inset 0 0 0 1px var(--d-border);
 }
 
+.mh-dark .mh-improved-map-sidebar-goal-active {
+  background-color: var(--d);
+}
+
 .mh-dark .mh-improved-map-sidebar-goal:hover,
 .mh-dark .mh-improved-mice-sidebar-mouse:hover {
   background-color: var(--d-bg);
@@ -26,8 +30,23 @@
 
 .mh-dark .scoreboardRelativeRankingTableView tr {
   color: var(--d-text);
+  background-color: var(--d);
 }
 
 .mh-dark .scoreboardRelativeRankingTableView th {
-  color: var(--d-text-dark);
+  color: var(--d-text-muted);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-map-sidebar-title::after {
+  filter: invert(1);
+}
+
+.mh-dark .pageSidebarView-user a {
+  color: var(--d-link);
+}
+
+.mh-dark .scoreboardRelativeRankingTableView-table a {
+  color: var(--d-link);
 }

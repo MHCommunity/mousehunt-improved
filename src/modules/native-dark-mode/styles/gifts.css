@@ -188,3 +188,7 @@
 .mh-dark .giftSelectorView-inbox-giftRow {
   border-color: var(--d-border);
 }
+
+.giftSelectorView-inbox-giftRow.paidgift {
+  background-color: var(--d-yellow-dark);
+}

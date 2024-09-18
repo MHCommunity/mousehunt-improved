@@ -4,6 +4,7 @@
 .mh-dark .pageSidebarView,
 .mh-dark .bg-color {
   background-color: var(--d);
+  border-color: var(--d);
 }
 
 .mh-dark #mousehuntContainer.PageCamp {

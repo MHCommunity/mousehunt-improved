@@ -42,7 +42,3 @@
   overflow: hidden;
   border-radius: 0;
 }
-
-.mh-dark .mouseView-imageContainer .mouseView-image::after {
-  filter: brightness(0.8);
-}
