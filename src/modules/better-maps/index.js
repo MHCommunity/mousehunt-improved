@@ -302,15 +302,19 @@ const relicHunterUpdate = async () => {
     _showInventory();
 
     // Call updateRelicHunterHint, but if it fails, try again in 250ms, but stop after 5 tries.
-    if (! await updateRelicHunterHint()) {
-      let tries = 0;
-      const interval = setInterval(async () => {
-        tries++;
-        if (await updateRelicHunterHint() || tries > 5) {
-          clearInterval(interval);
-        }
-      }, 250);
+    let didRelicHunter = await updateRelicHunterHint();
+    if (didRelicHunter) {
+      return;
     }
+
+    let tries = 0;
+    const interval = setInterval(async () => {
+      tries++;
+      didRelicHunter = await updateRelicHunterHint();
+      if (didRelicHunter || tries >= 5) {
+        clearInterval(interval);
+      }
+    }, 500);
   };
 };
 
