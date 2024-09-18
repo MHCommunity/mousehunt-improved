@@ -5,8 +5,12 @@
 - Added School of Sorcery location to Location Dashboard
 - Better Journal - Journal Styles: When hovering over a journal entry with an animated image, the animation will now play
 - Updated Better Journal styles
-- Updated School of Sorcery Location HUD styles
+- Updated Better Maps styles
+- Updated Better UI styles
 - Updated Custom Shield matching timer styles
+- Updated Native Dark Mode styles
+- Updated School of Sorcery Location HUD styles
+
 
 ## Version 0.63.0
 
