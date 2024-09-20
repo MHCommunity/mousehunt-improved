@@ -2578,5 +2578,163 @@
         "name": "Boss"
       }
     ]
+  },
+  "draconic_depths": {
+    "categories": [
+      {
+        "name": "Ice",
+        "id": "ice",
+        "mice": [
+          {
+            "mouse": "frostnip_icebound",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "blizzara_winterosa",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "iciclesius_the_defender",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "rimeus_polarblast",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "frigidocius_coldshot",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "chillandria_permafrost",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "avalancheus_the_glacial",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "arcticus_the_biting_frost",
+            "subcategory": "cavern-750+-loot"
+          }
+        ]
+      },
+      {
+        "name": "Fire",
+        "id": "fire",
+        "mice": [
+          {
+            "mouse": "squire_sizzleton",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "torchbearer_tinderhelm",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "colonel_crisp",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "crematio_scorchworth",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "flamina_cinderbreath",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "combustius_furnaceheart",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "incendarius_the_unquenchable",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "sulfurious_the_raging_inferno",
+            "subcategory": "cavern-750+-loot"
+          }
+        ]
+      },
+      {
+        "name": "Poison",
+        "id": "poison",
+        "mice": [
+          {
+            "mouse": "goopus_dredgemore",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "noxio_sludgewell",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "dreck_grimehaven",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "malignus_vilestrom",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "venomona_festerbloom",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "belchazar_banewright",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "pestilentia_the_putrid",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "corrupticus_the_blight_baron",
+            "subcategory": "cavern-750+-loot"
+          }
+        ]
+      },
+      {
+        "name": "Elemental",
+        "id": "elemental",
+        "mice": [
+          {
+            "mouse": "tranquilia_protecticus",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "supremia_magnificus",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "threeimat",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "mythical_dragon_emperor",
+            "subcategory": "cavern-750+-loot"
+          }
+        ]
+      }
+    ],
+    "subcategories": [
+      {
+        "id": "surface",
+        "name": "Surface"
+      },
+      {
+        "id": "cavern-0-750-loot",
+        "name": "Cavern 0-750 Loot"
+      },
+      {
+        "id": "cavern-100+-loot",
+        "name": "Cavern 100+ Loot"
+      },
+      {
+        "id": "cavern-750+-loot",
+        "name": "Cavern 750+ Loot"
+      }
+    ]
   }
 }
