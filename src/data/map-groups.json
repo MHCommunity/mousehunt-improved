@@ -2690,7 +2690,7 @@
           },
           {
             "mouse": "thundering_watcher",
-            "subcategory": "storm-high"
+            "subcategory": "storm-med-high"
           },
           {
             "mouse": "thunderlord",
@@ -2807,6 +2807,10 @@
       {
         "id": "storm-high",
         "name": "High Storm 80-99%"
+      },
+      {
+        "id": "storm-med-high",
+        "name": "Med-High Storm 35-99%"
       },
       {
         "id": "storm-med",
