@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.64.1
+
+- Removed playing animation when hovering over Mythweaver journal images
+
 ## Version 0.64.0
 
 - Added School of Sorcery location to Location Dashboard
