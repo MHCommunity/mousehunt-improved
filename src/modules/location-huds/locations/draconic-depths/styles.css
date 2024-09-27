@@ -1,0 +1,60 @@
+.draconicDepthsCavernView__maxhuntsRemainingQuantity {
+  margin-left: 2px;
+  font-size: 15px;
+  color: #fff;
+}
+
+.draconicDepthsCavernView__huntsRemainingContainer {
+  font-size: 10px;
+  color: #b5b5b5;
+}
+
+.draconicDepthsCavernView__duplicatorChestQuantity {
+  left: 52px;
+  margin-bottom: -2px;
+  font-size: 13px;
+}
+
+.headsUpDisplayDraconicDepthsView__baitCraftableContainer .mousehuntTooltip {
+  text-align: center;
+}
+
+.draconicDepthsCavernView__titleRod {
+  width: 10px;
+  height: 12px;
+  filter: drop-shadow(1px 1px 0 #666);
+}
+
+.draconicDepthsCrucibleView__crucibleProgressText {
+  font-size: 14px;
+  text-shadow:
+    0 0 0 rgb(0 0 0 / 75%),
+    1px 0 0 #000,
+    0 1px 0 #000,
+    -1px 0 0 #000,
+    0 -1px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.draconicDepthsCrucibleView__crucibleProgress::before {
+  filter: drop-shadow(1px 1px 1px #000) drop-shadow(1px 1px 2px #000);
+}
+
+.draconicDepthsCrucibleView__rerollButton {
+  width: 22px;
+  height: 22px;
+  margin: 2px;
+  margin-left: 7px;
+}
+
+.draconicDepthsForgeView__enterCavernMessage {
+  font-size: 13px;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.folkloreForestRegionView-dialog-help .draconicDepthsHelp__image {
+  outline: 2px solid #447228;
+}

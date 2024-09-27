@@ -33,6 +33,7 @@ import desert_city from './locations/desert-city'; // Muridae Market.
 import desert_warpath from './locations/desert-warpath'; // Fiery Warpath.
 import dojo from './locations/dojo';
 import dracano from './locations/dracano';
+import draconic_depths from './locations/draconic-depths';
 import elub_shore from './locations/elub-shore';
 import floating_islands from './locations/floating-islands';
 import forbidden_grove from './locations/forbidden-grove';
@@ -156,6 +157,7 @@ const main = () => {
     desert_city,
     desert_warpath,
     dojo,
+    draconic_depths,
     dracano,
     elub_shore,
     floating_islands,
