@@ -3,6 +3,7 @@
 ## Version 0.65.0
 
 - Added Draconic Depths Location HUD
+- Added Draconic Depths Maps to sorted maps
 
 ## Version 0.64.2
 
