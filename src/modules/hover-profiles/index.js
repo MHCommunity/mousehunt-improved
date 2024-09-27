@@ -212,6 +212,12 @@ const addFriendLinkEventListener = (selector) => {
       return;
     }
 
+    if (friendLink.getAttribute('data-friend-hover')) {
+      return;
+    }
+
+    friendLink.setAttribute('data-friend-hover', true);
+
     let timer;
     friendLink.addEventListener('mouseover', (e) => {
       clearTimeout(timer);

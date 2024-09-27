@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.64.2
+
+- Fixed Hover Profiles performing too many requests
+
 ## Version 0.64.1
 
 - Removed playing animation when hovering over Mythweaver journal images
