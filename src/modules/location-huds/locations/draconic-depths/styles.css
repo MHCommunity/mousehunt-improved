@@ -56,5 +56,18 @@
 }
 
 .folkloreForestRegionView-dialog-help .draconicDepthsHelp__image {
+  background-color: #447228;
   outline: 2px solid #447228;
+}
+
+.draconicDepthsCrucibleView__droid {
+  animation: mh-improved-glow 1s infinite;
+}
+
+.draconicDepthsForgeView__cruciblesContainer .draconicDepthsCrucibleView_crucibleView:nth-child(2) .draconicDepthsCrucibleView__droid {
+  animation-delay: 0.3s;
+}
+
+.draconicDepthsForgeView__cruciblesContainer .draconicDepthsCrucibleView_crucibleView:nth-child(3) .draconicDepthsCrucibleView__droid {
+  animation-delay: 0.6s;
 }
