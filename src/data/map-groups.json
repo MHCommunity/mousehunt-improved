@@ -702,8 +702,8 @@
       {
         "name": "KSS",
         "id": "kss",
-        "color": "#96b9dc",
         "icon": "/powertypes/draconic.png",
+        "color": "#96b9dc",
         "mice": [
           "geyser_eruption_dragon_wildfire",
           "geyser_eruption_dragon_epic"
@@ -712,8 +712,8 @@
       {
         "name": "Cinder-Brut",
         "id": "cinder-brut",
-        "color": "#7fff66",
         "icon": "/powertypes/draconic.png",
+        "color": "#7fff66",
         "mice": [
           "geyser_eruption_dragon_large",
           "geyser_eruption_dragon_flaming"
@@ -722,8 +722,8 @@
       {
         "name": "BE Trio",
         "id": "be-trio",
-        "color": "#ffb1b1",
         "icon": "/powertypes/draconic.png",
+        "color": "#ffb1b1",
         "mice": [
           "geyser_eruption_dragon_hot",
           "geyser_eruption_dragon_medium",
@@ -733,8 +733,8 @@
       {
         "name": "Sizzle Mild",
         "id": "sizzle-mild",
-        "color": "#ffc816",
         "icon": "/powertypes/draconic.png",
+        "color": "#ffc816",
         "mice": [
           "geyser_eruption_dragon_small",
           "geyser_eruption_dragon_mild"
@@ -743,8 +743,8 @@
       {
         "name": "Pressure Set",
         "id": "pressure-set",
-        "color": "#dcb8ff",
         "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png",
+        "color": "#dcb8ff",
         "mice": [
           "geyser_pressure_builder_hot",
           "geyser_pressure_builder_medium",
@@ -755,8 +755,8 @@
       {
         "name": "Corky & Friends",
         "id": "corky-friends",
-        "color": "#f4c47e",
         "icon": "/items/crafting_items/transparent_thumb/17907f705fe8e7fa8f7b94f058e11ae5.png",
+        "color": "#f4c47e",
         "mice": [
           "geyser_cork_dropper_bland",
           "geyser_cork_dropper_medium",
@@ -769,8 +769,8 @@
       {
         "name": "Queso River",
         "id": "queso-river",
-        "color": "#89e8a9",
         "icon": "/powertypes/law.png",
+        "color": "#89e8a9",
         "mice": [
           "croquet_crusher",
           "pump_raider",
@@ -781,8 +781,8 @@
       {
         "name": "Prickly Plains",
         "id": "prickly-plains",
-        "color": "#cddb75",
         "icon": "/powertypes/arcane.png",
+        "color": "#cddb75",
         "mice": [
           {
             "mouse": "spice_grower",
@@ -821,8 +821,8 @@
       {
         "name": "Cantera Quarry",
         "id": "cantera-quarry",
-        "color": "#e9b2db",
         "icon": "/powertypes/shadow.png",
+        "color": "#e9b2db",
         "mice": [
           {
             "mouse": "chip_chiseler",
@@ -883,8 +883,8 @@
       {
         "name": "Night",
         "id": "night",
-        "color": "#d0d0d0",
         "icon": "",
+        "color": "#d0d0d0",
         "mice": [
           "were_alpha",
           "moonstone_slinger",
@@ -895,8 +895,8 @@
       {
         "name": "First Light / Utter Darkness",
         "id": "first-light-utter-darkness",
-        "color": "#dc8ec7",
         "icon": "/powertypes/arcane.png",
+        "color": "#dc8ec7",
         "mice": [
           "arcane_summoner",
           "cursed_taskmaster",
@@ -909,8 +909,8 @@
       {
         "name": "Twilight, Midnight, Pitch",
         "id": "twilight-midnight-pitch",
-        "color": "#84c3ff",
         "icon": "/powertypes/shadow.png",
+        "color": "#84c3ff",
         "mice": [
           "good_supply_night",
           "nightmancer",
@@ -922,8 +922,8 @@
       {
         "name": "Dawn",
         "id": "dawn",
-        "color": "#f9d65a",
         "icon": "/powertypes/arcane.png",
+        "color": "#f9d65a",
         "mice": [
           "dawn_guardian",
           "monster_of_the_meteor"
@@ -932,8 +932,8 @@
       {
         "name": "Day",
         "id": "day",
-        "color": "#ffdb9c",
         "icon": "/powertypes/law.png",
+        "color": "#ffdb9c",
         "mice": [
           "hardworking_hauler",
           "moonstone_snacker",
