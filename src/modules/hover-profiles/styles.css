@@ -241,3 +241,7 @@
 .friendsPage-friendRow.loading .friendsPage-friendRow-image {
   inset: 7px;
 }
+
+#friend-data-wrapper .friendsPage-friendRow-image {
+  inset: 5px;
+}

@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.65.1
+
+- Fixed Hover Profiles image size
+
 ## Version 0.65.0
 
 - Added Draconic Depths Location HUD
