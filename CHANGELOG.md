@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.65.2
+
+- Fixed Hover Profiles not hiding
+
 ## Version 0.65.1
 
 - Fixed Hover Profiles image size

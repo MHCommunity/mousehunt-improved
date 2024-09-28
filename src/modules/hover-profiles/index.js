@@ -130,6 +130,7 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
 
   friendDataWrapper.style.top = `${tooltipTop}px`;
   friendDataWrapper.style.left = `${left - (friendDataWrapper.offsetWidth / 2) + (rect.width / 2)}px`;
+
   let timeoutId;
 
   // add a mouseleave event to remove it
@@ -138,7 +139,15 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
       if (! debugPopup) {
         friendDataWrapper.remove();
       }
-    }, 250); // delay in milliseconds
+    }, 350); // delay in milliseconds
+  });
+
+  e.target.addEventListener('mouseleave', () => {
+    timeoutId = setTimeout(() => {
+      if (! debugPopup) {
+        friendDataWrapper.remove();
+      }
+    }, 1000);
   });
 
   // cancel the removal if the mouse enters the tooltip
