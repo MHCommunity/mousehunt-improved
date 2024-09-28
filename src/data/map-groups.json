@@ -2779,7 +2779,7 @@
         "name": "Queso Geyser",
         "subtitle": "Pressure Set",
         "id": "pressure-set",
-        "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png", // TODO: update icon
+        "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png",
         "color": "#d3ba7a",
         "mice": [
           "geyser_pressure_builder_hot",
