@@ -2666,8 +2666,8 @@
       {
         "name": "Floating Islands",
         "id": "esp-draconic",
-        "icon": "/powertypes/draconic.png",
-        "color": "#cf9e64",
+        "icon": "/environments/0fb181c7f216be2d5bde0475ab46f8c5.jpg",
+        "color": "#64cf78",
         "mice": [
           "dragon_breather",
           "dragon_lancer",
@@ -2689,6 +2689,8 @@
       {
         "name": "Moussu Picchu",
         "id": "mopi",
+        "icon": "/environments/438e2879c8c1e468f7e7eee169e289b6.jpg",
+        "color": "#cb8bec",
         "mice": [
           "ful_mina_mountain_queen",
           {
@@ -2717,7 +2719,8 @@
         "name": "Queso Geyser",
         "subtitle": "Corky & Friends",
         "id": "corky-friends",
-        "icon": "/items/crafting_items/transparent_thumb/17907f705fe8e7fa8f7b94f058e11ae5.png",
+        "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+        "color": "#d3ba7a",
         "mice": [
           "geyser_cork_dropper_bland",
           "geyser_cork_dropper_medium",
@@ -2731,8 +2734,8 @@
         "name": "Queso Geyser",
         "subtitle": "KSS",
         "id": "kss",
-        "color": "#96b9dc",
-        "icon": "/powertypes/draconic.png",
+        "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+        "color": "#d3ba7a",
         "mice": [
           "geyser_eruption_dragon_wildfire",
           "geyser_eruption_dragon_epic"
@@ -2742,8 +2745,8 @@
         "name": "Queso Geyser",
         "subtitle": "Cinder-Brut",
         "id": "cinder-brut",
-        "color": "#7fff66",
-        "icon": "/powertypes/draconic.png",
+        "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+        "color": "#d3ba7a",
         "mice": [
           "geyser_eruption_dragon_large",
           "geyser_eruption_dragon_flaming"
@@ -2753,8 +2756,8 @@
         "name": "Queso Geyser",
         "subtitle": "BE Trio",
         "id": "be-trio",
-        "color": "#ffb1b1",
-        "icon": "/powertypes/draconic.png",
+        "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+        "color": "#d3ba7a",
         "mice": [
           "geyser_eruption_dragon_hot",
           "geyser_eruption_dragon_medium",
@@ -2765,8 +2768,8 @@
         "name": "Queso Geyser",
         "subtitle": "Sizzle Mild",
         "id": "sizzle-mild",
-        "color": "#ffc816",
-        "icon": "/powertypes/draconic.png",
+        "icon": "/environments/d0046f985528496b0d638c04f35270bc.jpg",
+        "color": "#d3ba7a",
         "mice": [
           "geyser_eruption_dragon_small",
           "geyser_eruption_dragon_mild"
@@ -2776,8 +2779,8 @@
         "name": "Queso Geyser",
         "subtitle": "Pressure Set",
         "id": "pressure-set",
-        "color": "#dcb8ff",
-        "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png",
+        "icon": "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png", // TODO: update icon
+        "color": "#d3ba7a",
         "mice": [
           "geyser_pressure_builder_hot",
           "geyser_pressure_builder_medium",
