@@ -1,15 +1,9 @@
 // ==UserScript==
-// @name        🐭️ MouseHunt Improved
 // @description Improve your MouseHunt experience. Please only use this when the extension is not available.
-// @version     0.65.1
 // @license     MIT
-// @author      bradp
 // @namespace   bradp
-// @match       https://www.mousehuntgame.com/*
 // @icon        https://i.mouse.rip/mh-improved/icon-64.png
-// @run-at      document-end
 // @grant       none
-// ==/UserScript==
 const mhImprovedVersion = '0.65.1';
 const mhImprovedPlatform = 'userscript';
 var mhui = (() => {
@@ -39,9 +33,7 @@ var mhui = (() => {
     return to;
   };
   var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-    // If the importer is in node compatibility mode or this is not an ESM
     // file that has been converted to a CommonJS file using a Babel-
-    // compatible transform (i.e. "__esModule" has not been set), then set
     // "default" to the CommonJS "module.exports" for node compatibility.
     isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: !0 }) : target,
     mod
@@ -152,7 +144,6 @@ var mhui = (() => {
   function addNonEnumerableProperty(obj, name, value) {
     try {
       Object.defineProperty(obj, name, {
-        // enumerable: false, // the default, so we can save on bundle size by not explicitly setting it
         value,
         writable: !0,
         configurable: !0
@@ -206,7 +197,6 @@ var mhui = (() => {
     return ("10000000100040008000" + 1e11).replace(
       /[018]/g,
       (c) => (
-        // eslint-disable-next-line no-bitwise
         (c ^ (getRandomByte() & 15) >> c / 4).toString(16)
       )
     );
@@ -311,7 +301,6 @@ var mhui = (() => {
         /** Request Mode Session Status */
         /** The client on this scope */
         /** Contains the last event id of a captured event.  */
-        // NOTE: Any field which gets added here should get added not only to the constructor but also to the `clone` method.
         constructor() {
           this._notifyingListeners = !1, this._scopeListeners = [], this._eventProcessors = [], this._breadcrumbs = [], this._attachments = [], this._user = {}, this._tags = {}, this._extra = {}, this._contexts = {}, this._sdkProcessingMetadata = {}, this._propagationContext = generatePropagationContext();
         }
@@ -4531,232 +4520,25 @@ ${e.stack}`, errorElement.append(errorText);
       init_fiery_warpath();
     }
   });
-  var settings_default, init_settings2 = __esm({
-    "src/modules/settings/settings/index.js"() {
-      settings_default = () => __async(void 0, null, function* () {
-        return [{
-          id: "mh-improved-advanced-settings",
-          title: "",
-          default: !0,
-          description: "",
-          settings: {
-            type: "blank"
-          }
-        }];
-      });
-    }
-  });
-  var icons_default, init_icons = __esm({
-    "src/modules/settings/icons.css"() {
-      icons_default = `#mousehunt-improved-settings-better-better-gifts:before{background-image:url(https://i.mouse.rip/s/better-gifts.svg)}#mousehunt-improved-settings-better-better-inventory:before{background-image:url(https://i.mouse.rip/s/better-inventory.svg)}#mousehunt-improved-settings-better-better-item-view:before{background-image:url(https://i.mouse.rip/s/better-item-view.svg)}#mousehunt-improved-settings-better-better-journal:before{background-image:url(https://i.mouse.rip/s/better-journal.svg)}#mousehunt-improved-settings-better-better-kings-reward:before{background-image:url(https://i.mouse.rip/s/better-kings-reward.svg)}#mousehunt-improved-settings-better-better-maps:before{background-image:url(https://i.mouse.rip/s/better-maps.svg)}#mousehunt-improved-settings-better-better-marketplace:before{background-image:url(https://i.mouse.rip/s/better-marketplace.svg)}#mousehunt-improved-settings-better-better-mice:before{background-image:url(https://i.mouse.rip/s/better-mice.svg)}#mousehunt-improved-settings-better-better-quests:before{background-image:url(https://i.mouse.rip/s/better-quests.svg)}#mousehunt-improved-settings-better-better-send-supplies:before{background-image:url(https://i.mouse.rip/s/better-send-supplies.svg)}#mousehunt-improved-settings-better-better-shops:before{background-image:url(https://i.mouse.rip/s/better-shops.svg)}#mousehunt-improved-settings-better-better-tournaments:before{background-image:url(https://i.mouse.rip/s/better-tournaments.svg)}#mousehunt-improved-settings-better-better-travel:before{background-image:url(https://i.mouse.rip/s/better-travel.svg)}#mousehunt-improved-settings-better-better-ui:before{background-image:url(https://i.mouse.rip/s/better-ui.svg?2)}#mousehunt-improved-settings-design-custom-background:before{background-image:url(https://i.mouse.rip/s/custom-background.svg)}#mousehunt-improved-settings-design-custom-horn:before{background-image:url(https://i.mouse.rip/s/custom-horn.svg)}#mousehunt-improved-settings-design-custom-hud:before{background-image:url(https://i.mouse.rip/s/custom-hud.svg)}#mousehunt-improved-settings-design-custom-shield:before{background-image:url(https://i.mouse.rip/s/custom-shield.svg)}#mousehunt-improved-settings-feature-big-timer:before{background-image:url(https://i.mouse.rip/s/big-timer.svg)}#mousehunt-improved-settings-feature-catch-rate-estimate:before{background-image:url(https://i.mouse.rip/s/catch-rate-estimate.svg)}#mousehunt-improved-settings-feature-codex-at-bottom:before{background-image:url(https://i.mouse.rip/s/codex-at-bottom.svg)}#mousehunt-improved-settings-feature-copy-id:before{background-image:url(https://i.mouse.rip/s/copy-id.svg)}#mousehunt-improved-settings-feature-dark-mode:before{background-image:url(https://i.mouse.rip/s/dark-mode.svg)}#mousehunt-improved-settings-feature-data-exporters:before{background-image:url(https://i.mouse.rip/s/data-exporters.svg)}#mousehunt-improved-settings-feature-delayed-menus:before{background-image:url(https://i.mouse.rip/s/delayed-menus.svg)}#mousehunt-improved-settings-feature-delayed-tooltips:before{background-image:url(https://i.mouse.rip/s/delayed-tooltips.svg)}#mousehunt-improved-settings-feature-favorite-setups:before{background-image:url(https://i.mouse.rip/s/favorite-setups.svg)}#mousehunt-improved-settings-feature-fixes:before{background-image:url(https://i.mouse.rip/s/fixes.svg)}#mousehunt-improved-settings-feature-flrt-helper:before{background-image:url(https://i.mouse.rip/s/flrt-helper.svg)}#mousehunt-improved-settings-feature-hover-profiles:before{background-image:url(https://i.mouse.rip/s/hover-profiles.svg)}#mousehunt-improved-settings-feature-image-upscaling:before{background-image:url(https://i.mouse.rip/s/image-upscaling.svg)}#mousehunt-improved-settings-feature-inline-wiki:before{background-image:url(https://i.mouse.rip/s/inline-wiki.svg)}#mousehunt-improved-settings-feature-inventory-lock-and-hide:before{background-image:url(https://i.mouse.rip/s/inventory-lock-and-hide.svg)}#mousehunt-improved-settings-feature-journal-changer:before{background-image:url(https://i.mouse.rip/s/journal-changer.svg)}#mousehunt-improved-settings-feature-keyboard-shortcuts:before{background-image:url(https://i.mouse.rip/s/keyboard-shortcuts.svg)}#mousehunt-improved-settings-feature-larger-codices:before{background-image:url(https://i.mouse.rip/s/larger-codices.svg)}#mousehunt-improved-settings-feature-larger-skin-images:before{background-image:url(https://i.mouse.rip/s/larger-skin-images.svg)}#mousehunt-improved-settings-feature-legacy-hud:before{background-image:url(https://i.mouse.rip/s/legacy-hud.svg?2)}#mousehunt-improved-settings-feature-lgs-reminder:before{background-image:url(https://i.mouse.rip/s/lgs-reminder.svg)}#mousehunt-improved-settings-feature-location-catch-stats:before{background-image:url(https://i.mouse.rip/s/location-catch-stats.svg)}#mousehunt-improved-settings-feature-location-dashboard:before{background-image:url(https://i.mouse.rip/s/location-dashboard.svg)}#mousehunt-improved-settings-feature-metric:before{background-image:url(https://i.mouse.rip/s/metric.svg)}#mousehunt-improved-settings-feature-only-open-multiple:before{background-image:url(https://i.mouse.rip/s/only-open-multiple.svg)}#mousehunt-improved-settings-feature-open-all:before{background-image:url(https://i.mouse.rip/s/open-all-but-one.svg)}#mousehunt-improved-settings-feature-open-all-but-one:before{background-image:url(https://i.mouse.rip/s/open-all-but-one.svg)}#mousehunt-improved-settings-feature-paste-hunter-id:before{background-image:url(https://i.mouse.rip/s/paste-hunter-id.svg)}#mousehunt-improved-settings-feature-prestige-base-stats:before{background-image:url(https://i.mouse.rip/s/prestige-base-stats.svg)}#mousehunt-improved-settings-feature-printing-press-paper-counter:before{background-image:url(https://i.mouse.rip/s/printing-press-paper-counter.svg)}#mousehunt-improved-settings-feature-profile-scoreboard-search:before{background-image:url(https://i.mouse.rip/s/profile-scoreboard-search.svg)}#mousehunt-improved-settings-feature-quick-filters-and-sort:before{background-image:url(https://i.mouse.rip/s/quick-filters-and-sort.svg)}#mousehunt-improved-settings-feature-quick-send-supplies:before{background-image:url(https://i.mouse.rip/s/quick-send-supplies.svg)}#mousehunt-improved-settings-feature-replace-favicon:before{background-image:url(https://i.mouse.rip/s/replace-favicon.svg)}#mousehunt-improved-settings-feature-shield-goes-to-camp:before{background-image:url(https://i.mouse.rip/s/shield-goes-to-camp.svg)}#mousehunt-improved-settings-feature-show-auras:before{background-image:url(https://i.mouse.rip/s/show-auras.svg)}#mousehunt-improved-settings-feature-ssdb-teeth-counter:before{background-image:url(https://i.mouse.rip/s/ssdb-teeth-counter.svg)}#mousehunt-improved-settings-feature-taller-windows:before{background-image:url(https://i.mouse.rip/s/taller-windows.svg)}#mousehunt-improved-settings-feature-tem-crowns:before{background-image:url(https://i.mouse.rip/s/tem-crowns.svg)}#mousehunt-improved-settings-feature-ultimate-checkmark-show:before{background-image:url(https://i.mouse.rip/s/ultimate-checkmark-show.svg)}#mousehunt-improved-settings-feature-wisdom-in-stat-bar:before{background-image:url(https://i.mouse.rip/s/wisdom-in-stat-bar.svg?2)}#mousehunt-improved-settings-beta-native-dark-mode:before{background-image:url(https://i.mouse.rip/s/native-dark-mode.svg)}#mousehunt-improved-settings-feature-unique-loot-count:before{background-image:url(https://i.mouse.rip/s/unique-loot-count.svg)}#mousehunt-improved-settings-feature-emotes:before{background-image:url(https://i.mouse.rip/s/emotes.svg)}#mousehunt-improved-settings-beta-experiments:before{background-image:url(https://i.mouse.rip/s/experiments.svg)}
-`;
-    }
-  });
   var styles_default, init_styles2 = __esm({
-    "src/modules/settings/styles.css"() {
-      styles_default = `.mousehunt-improved-settings .PagePreferences__section{padding:10px;margin:10px 0;border:1px solid #e0cfb4}.mousehunt-improved-settings .PagePreferences__title{padding-bottom:10px;margin:0}.mousehunt-improved-settings .PagePreferences__titleText{position:relative;display:flex;gap:10px;justify-content:flex-start;font-family:system-ui,sans-serif;font-weight:200}.mousehunt-improved-settings .PagePreferences__settingNameText{color:#000;cursor:default}.mousehunt-improved-settings .PagePreferences__settingNameText:hover{text-decoration:none}.mousehunt-improved-settings .mhui-setting-toggle{position:absolute;top:10px;right:15px;width:0;height:0;border-right:6px solid transparent;border-bottom:9px solid #999;border-left:6px solid transparent;transition:transform .15s}.mousehunt-improved-settings .mhui-setting-toggle.toggled{transform:rotate(-180deg)}.mousehunt-improved-settings .toggled .PagePreferences__titleText,.mousehunt-improved-settings .toggled .PagePreferences__title{padding:0}.mousehunt-improved-settings .toggled .PagePreferences__separator,.mousehunt-improved-settings .toggled .PagePreferences__sectionWrapper,.mousehunt-improved-settings .toggled #mousehunt-improved-settings-location-hud-wrapper{height:0;overflow:hidden;visibility:hidden}#mousehunt-improved-settings-design-custom-background,#mousehunt-improved-settings-design-custom-hud,#mousehunt-improved-settings-design-custom-horn,#mousehunt-improved-settings-design-custom-shield,#mousehunt-improved-settings-feature-ultimate-checkmark-show,.mousehunt-improved-settings .PagePreferences__settingsList{position:relative;gap:0;padding:5px 0 5px 45px;border-color:#f2ebde;border-top:1px solid #f2ebde;border-left:none}#mousehunt-improved-settings-advanced .PagePreferences__settingsList,#mousehunt-improved-settings-design .PagePreferences__settingsList,#mousehunt-improved-settings-element-hiding .PagePreferences__settingsList{padding-left:10px}.mousehunt-improved-settings .PagePreferences__settingsList:not(.PagePreferences__subSetting):before,#mousehunt-improved-settings-feature-ultimate-checkmark-show:before{position:absolute;top:0;bottom:0;left:5px;width:25px;height:auto;content:"";background-repeat:no-repeat;background-position:center;background-size:25px;opacity:.4;transition:opacity .1s ease-out;will-change:transform}.mousehunt-improved-settings .PagePreferences__setting{gap:5px;align-items:center;padding-right:5px;margin:3px 0}.mousehunt-improved-settings .PagePreferences__setting .PagePreferences__settingAction{margin-bottom:0}.mousehunt-improved-settings .PagePreferences__settingDefault,#mousehunt-improved-settings-beta-experiments>.PagePreferences__setting .PagePreferences__settingAction,#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingDescription,#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingDefault{display:none}.mousehunt-improved-settings .PagePreferences__settingName{font-family:system-ui,sans-serif;font-weight:400}.mousehunt-improved-settings .PagePreferences__settingDescription{max-width:550px;padding:5px 0;font-family:system-ui,sans-serif;font-weight:400}#mousehunt-improved-settings-design .PagePreferences__settingDescription,#mousehunt-improved-settings-element-hiding .PagePreferences__settingDescription{display:none}.mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingDescription{padding-bottom:0}.mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingDescription.empty-description,.mousehunt-improved-settings .PagePreferences__settingDescription.empty-description{padding:0}.mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__subSetting{display:none;padding:5px 10px 5px 5px;margin-left:5px;border-top:none;border-left:1px solid #f2ebde}#mousehunt-improved-settings-location-hud .PagePreferences__title{margin-bottom:5px;border-bottom:1px solid #f2ebde}#mousehunt-improved-settings-advanced.toggled .PagePreferences__title,#mousehunt-improved-settings-location-hud.toggled .PagePreferences__title{margin-bottom:0;border:none}.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting{display:block}.mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__subSetting:nth-child(odd){background-color:#f4f4f4}.PagePreferences__subSetting .PagePreferences__settingName{font-size:12px;line-height:1}.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting .PagePreferences__setting{display:flex;padding:0;margin:0}.mousehunt-improved-settings .active.highlight .mousehuntSettingSlider:before{box-shadow:0 0 3px #0ac2c2 inset}.mousehunt-improved-settings .inputBoxContainer.multiSelect{display:flex;flex-flow:row wrap;justify-content:flex-end;max-width:400px}.mousehunt-improved-settings .inputBox.multiSelect{margin-right:4px;font-size:11px}#mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBox.multiSelect{max-width:160px}#mousehunt-improved-settings-design .inputBox.multiSelect{width:200px}.mousehunt-improved-settings .PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName{font-size:10px;line-height:1.75}.mousehunt-improved-settings .PagePreferences__settingsList.multi-toggle-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 15px;place-items:end end;padding:0;border:none}.mousehunt-improved-settings .PagePreferences__settingsList .multi-toggle-row .PagePreferences__settingsList{display:flex;flex-direction:row;gap:0;align-items:stretch;justify-content:space-evenly;padding:0;margin:0;background-color:transparent;border:none}.mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider{display:block;width:40px;height:16px}.mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider:after{width:14px;height:14px}.mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider.active:after{left:calc(100% - 14px)}.mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,.mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting{display:grid;grid-template-columns:1fr 400px}.mousehunt-improved-settings input,.mousehunt-improved-settings textarea{width:100%;font-family:monospace;font-size:12px;background-color:#eee;border:1px solid #ccc}.mousehunt-improved-settings textarea{min-height:45px}#mousehunt-improved-settings-design-custom-background>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-design-custom-camp-background>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-design-custom-hud>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-design-custom-horn>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-design-custom-shield>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-feature-ultimate-checkmark-show>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-advanced-override-flags>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-advanced-override-styles>div>div>.PagePreferences__settingName{font-size:15px;line-height:1}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingAction,.mousehunt-improved-settings .multi-toggle .mousehuntSettingSlider{display:block;transform:scale(.75)}#mousehunt-improved-settings-location-hud-wrapper{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;justify-content:center;justify-items:stretch}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList{grid-column:span 4;padding:0 5px 0 10px;margin-left:0;background-color:inherit;border:none}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList[id*=mousehunt-improved-settings-location-hud-location-huds-enabled]{grid-column:span 1}#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-enabled-region-seperator,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle{grid-column:1 / 5;background-color:transparent}#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-option-seperator{height:10px;background-color:transparent;border-bottom:1px solid #f2ebde}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n+1),#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n+2),#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n+3),#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n+4),#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-flip-avatar.PagePreferences__settingsList,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-fi-draggable-airship.PagePreferences__settingsList{background-color:#eee}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:last-child,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-inventory-in-one-row.PagePreferences__settingsList,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle.PagePreferences__settingsList,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-prologue-pond-wood-boat.PagePreferences__settingsList{background-color:transparent}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight{background-color:#8bf7f5}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingName{font-size:11px}#mousehunt-improved-settings-advanced{position:relative}#mousehunt-improved-settings-advanced-mh-improved-advanced-settings{position:absolute;top:13px;right:50px;padding:0;visibility:visible;border:none}#mousehunt-improved-settings-feature-quick-send-supplies-items .inputBoxContainer .multiSelect{max-width:150px;margin-right:4px;margin-bottom:4px}#mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBoxContainer.multiSelect{max-width:550px}#mousehunt-improved-settings-feature-quick-send-supplies-items .multiSelect{width:375px}.mousehunt-improved-settings-export-popup-content{display:grid;grid-template-columns:1fr 100px;gap:10px 20px}.mousehunt-improved-settings-export-popup-tip{display:flex;grid-column:1 / 3;align-items:center}.mousehunt-improved-settings-export-popup-buttons-buttons,.mousehunt-improved-settings-export-popup-buttons{position:relative;display:flex;flex-direction:column;gap:10px;align-items:stretch;justify-content:flex-end}.mousehunt-improved-settings-export-popup-left{align-items:stretch}.mousehunt-improved-settings-export-popup-content textarea{height:90%;min-height:400px;padding:10px;font-family:ui-monospace,Menlo,Monaco,Cascadia Mono,Segoe UI Mono,Roboto Mono,Oxygen Mono,"Ubuntu Monospace",Source Code Pro,Fira Mono,Droid Sans Mono,Courier New,monospace;font-size:12px;background-color:#f9f9f9;border:1px solid #b3b3b3}.mousehunt-improved-settings-export-details{display:flex;flex-direction:column;gap:10px;margin-bottom:auto}.mousehunt-improved-settings-export-details .export-reset{color:#ff4242}.mousehunt-improved-settings-export-details hr{width:100%;height:1px;background-color:#b3b3b3;border:none}.mousehunt-improved-settings-export-details code{padding:3px}.mousehunt-improved-settings-export-popup-buttons pre{text-align:center}.mh-ui-success-message.settings-export-save-success,.mh-ui-success-message.settings-export-copy-success{position:absolute;right:-25px;bottom:50px;left:-25px;padding:4px}.mh-ui-success-message.settings-export-copy-success{top:25px;bottom:unset}.mh-ui-success-message.settings-export-save-success{bottom:100px}.mousehunt-improved-settings-export-popup-content .dragover{background-color:#f2f2f2;border-color:#ffb40c;box-shadow:inset 0 0 6px #f4e830}.mousehunt-improved-settings-export-popup .suffix{display:none}.pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu{width:20px;padding:0 5px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFX0lEQVRoge3XbYgdVx3H8e85Z87cp7kPc+/u3rvZZDfZPJLEVpI+pQklBWvSSIxWQkFfKCjoiyq+ExXpFoIIPiD6SgT7QgSRglCkSqUkVhu0aWtMW+OSTdJ0H9jsZu/u3se5d2bO8cVa6SuJWNgrzOfVmXe/HzPn/M9AIpFIJBKJRCKxWcRmB7hbUx+tjgz5uU83W0GjvrT+wncvtRcB1GYHuxvnzm4dO/OFE78cKRa+WMnFZ7aOFffsTS09d+EdjNzscHfjwJGjnyzvOPLAG395i7C5Tj4jP7Zt8sApAGezw/0nUyAXDw8/NVLd+/TcTCej6gu0TYpeq6WiqHQOeH4g98CPvvx4amJLdr+Io28eeujeTxV3PsJzP/ges396EYNE5xQinaXTN5MD9QZ+/52zRW+09HChWHi8UCp/olCb2JYdmmB57jY3r0zTaliQMQSGtX6L++4tf2gQCoifPvXI9v33THxmtFZ6ojBUm8jVdpfdygFIu8QLv2HtZoP6wgphTzA6DH4eKkISGTHu/OosavTw4TEh0qvHvvZK838JMgXiAsjh/chcBzlUqCpvLK92TJa1V/TddDbn1mq+brYCv9Vs3zMynDs0VMkfKVVHDmYrW7Su7EYWJsEtY6MuUeMSt/8+zepcm26vR0padEoyUlZsG8kzt2yGnX2nHztRmnjwh8uLnbf/+Oyj00YKq4QkDg1KK1zXwRhAghJIIYWKolBLqZSjpBJSOtbaVBzHrsQ6p6VSUkppLHWtlHbS6Yx2HU9KfClVOZVJFXekdDmXz0snnUek8ljhgNRgoN+4TdS6Qn/lFrTeZfrKDTCadmBY7cL27Qq/lMIrZ3DyxSHHV+qJaPby7urogzu9clWAwGKxBiwgxPumnbXwr2cLGGMIw1jEscF1HRydBqkQxMioASYC2wYs2qsgUyWkzmKNIQ7atFfnEWGLuNei1wvohyHtO0uUs33ml5rIMKBHil69jrEGLaDiKYb9NBnfI5PbWnZm3rwVdtod+ulZk/McEQd9jLEb4S3IKETEESY2CEBYi2VjbexGXYOwza6Je5G1UgphrJBhZKWVQiklyaQcelayFghCJI4jkUKgHIe4H9NuR/iVIrWax+WLV6kMuSihaPQsuw9OMnNtAT8vqY4qtoyk8fJZdNplbXVeOb5XenZ83/DOO+8Eb0ibvxzJwCqtAA3K3ZjVMUgVGSsdixHWYKRCYTDSRkZZYVQpjh1lrTY21FEUuTYOU3EcZWNjM7ExXmxF2VNU+pEpakXNYKph2NTNTpeoG7JyY4l3/yFZXOhw/boBo+gruNMOkY0mtYpke9FQq2XJFnJoP0/GmjVhLeL175+uLN2Kmqd+/NveB3Ow/PuLExeeOa4AJ0PGdTzHDVqBa4NuOlK27Ep5ECEfjvr9E1G/MZ5WHbp9Q7cbcX22y+J6nzVdZEsqJh2uc6AmmdhTxS+kkUMVZpeDpwdikL32k8Oa+rZH47D1ea3aD5XG86M2CnR7tcX0vGZ5qcnKwhz37/PYNV6i6OcQ5RI3Z9a/NBAF3nN+6rhTdIt7QtM7mSvrJ9O+PBQJ6cxfa3Ll9Tc5et8I42MeupjFqVV5+9X1kwNV4D0WxKVzZ7ZKHX3OEDzTMWlx49oMx45UGd5ZxQro2wIvv3x9dCALvN+lb3/8aNf1fn5t+uqOk0/upbJ3F4gPM/fSL17a9dlff2Tgr9P3f+P5V7SX//pY1V+/eH6GXlfQWvhrd6V++1tszNfBF5nmi4VS/EI2jrj6uz/Yub9d/NkDX734Z/6ffinPTx13nFxwTAunWXfzb536ygd75CcSiUQikUgkEv+9fwI8xC/BC1L8/wAAAABJRU5ErkJggg==);background-repeat:no-repeat;background-position:bottom;background-size:contain}.pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover{width:20px;padding:0 5px;overflow:visible;cursor:pointer;background:url(https://www.mousehuntgame.com/images/ui/hgbar/menuItem.png) 0 -30px repeat-x;border-top-right-radius:10px}.pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover:after{position:absolute;inset:0;content:"";background:url(https://i.mouse.rip/mh-improved/icon.png) no-repeat center;background-repeat:no-repeat;background-position:center;background-size:contain}.mh-dark-mode .pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover{background:#000}.mousehunt-improved-settings em{font-style:italic}.mousehunt-improved-advanced-buttons{display:flex;flex-direction:column;gap:10px;padding:10px 0 5px 5px;border-top:1px solid #f2ebde}a.reset-link{color:#f30000}
+    "src/modules/taller-windows/styles.css"() {
+      styles_default = `.springHuntHUD-popup-allEggs,.adventureBookPopup-titleContent,.convertibleOpenView-itemContainer,.marketplaceView-browse-content,.MHCheckoutAllRewardsPageView,.treasureMapView-block-content.tall,.treasureMapView-blockWrapper.tall .treasureMapView-block-content,#messengerUINotification .notificationHeader,#supplytransfer .drawer .listContainer,#supplytransfer .drawer .tabContent,#supplytransfer .drawer{height:auto;max-height:75vh}#messengerUINotification .notificationMessageList,.treasureMapView-block-content,.treasureMapView-block-content.halfHeight{height:auto;max-height:55vh}#supplytransfer .drawer{padding-bottom:75px}.adventureBookPopup-titleContent{max-height:unset}.treasureMapDialogView.limitHeight .treasureMapView-block-content{max-height:75vh}.treasureMapDialogView.wide.limitHeight.confirm .treasureMapView,.treasureMapDialogView.limitHeight .treasureMapDialogView-content{max-height:500px}.giftSelectorView-inbox-giftContainer,#overlayPopup .giftSelectorView-scroller{height:auto;min-height:300px;max-height:65vh}body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer{min-height:unset}#overlayPopup.giftSelectorViewPopup{top:50px!important}.springHuntHUD-popup-regionContainer{display:contents}#overlayPopup .imgArray{min-height:105px;max-height:500px}.floatingIslandsWorkshop-partsContainer{top:263px;left:113px;width:533px;height:auto;background-image:url(https://i.mouse.rip/fi-airships-middle.png);background-size:contain;border-radius:12px}.floatingIslandsWorkshop-parts-content{position:relative;height:100%;max-height:60vh}.floatingIslandsWorkshop-parts-title{padding:5px 10px 0;margin-top:-23px;margin-right:-1px;background:radial-gradient(circle,#fdf9bd,#fff9dc,#fdf9bd);border:none;border-radius:4px 5px 0 0}.floatingIslandsWorkshop-partsContainer:after{position:absolute;bottom:-3px;left:0;width:533px;height:30px;content:"";background-image:url(https://i.mouse.rip/fi-airships-bottom-2.png);background-position:bottom}.floatingIslandsWorkshop-stabilizer{position:absolute;top:250px;left:430px}.select2-results{max-height:50vh}.giftSelectorView-scroller{height:auto}.mh-gift-buttons-clone-wrapper{max-height:calc(75vh - 175px)}.mh-ui-goals-block .treasureMapView-block-content{max-height:unset}.mh-ui-environments-block{max-height:unset;overflow-y:auto}.treasureMapView-block-content{height:unset}.treasureMapView-blockWrapper.tall .treasureMapView-block-content.treasureMapShopsView-shopItems{height:100%;max-height:unset;overflow-x:hidden}
 `;
     }
   });
-  var addExportSettings, addAdvancedSettingsButtons, highlightLocationHud, addTogglesToSettings, moveTabToEnd, addMhImprovedIconToMenu, linkVersionNumber, init, settings_default2, init_settings3 = __esm({
-    "src/modules/settings/index.js"() {
+  var init, taller_windows_default, init_taller_windows = __esm({
+    "src/modules/taller-windows/index.js"() {
       init_utils2();
-      init_settings2();
-      init_icons();
       init_styles2();
-      addExportSettings = (append) => {
-        let existing = document.querySelector(".mousehunt-improved-export-settings");
-        existing && existing.remove();
-        let exportSettings = makeElement("div", ["mousehunt-improved-export-settings", "mousehuntActionButton", "tiny"]);
-        return makeElement("span", "", "Import / Export Settings", exportSettings), exportSettings.addEventListener("click", (e) => {
-          e.preventDefault(), e.stopPropagation();
-          let settings2 = JSON.stringify(JSON.parse(localStorage.getItem("mousehunt-improved-settings")), null, 2), content = `<div class="mousehunt-improved-settings-export-popup-content">
-    <div class="mousehunt-improved-settings-export-popup-tip">
-      To import settings, drag and drop the file into the box below, or paste the text in the box.
-    </div>
-    <textarea id="mousehunt-improved-settings-text" spellcheck="false">${settings2}</textarea>
-    <div class="mousehunt-improved-settings-export-popup-buttons">
-      <div class="mousehunt-improved-settings-export-details">
-        <a href="#" class="export-copy">Copy to clipboard</a>
-        <a href="#" class="export-download">Download file</a>
-        <hr>
-        <a href="#" class="export-upload">Upload file</a>
-        <a href="#" class="export-format">Format</a>
-        <a href="#" class="export-reset">Reset to default</a>
-      </div>
-      <div class="mousehunt-improved-settings-export-popup-buttons-buttons">
-        <div class="mousehuntActionButton save">
-          <span>Save</span>
-        </div>
-        <div class="mousehuntActionButton cancel">
-          <span>Cancel</span>
-        </div>
-      </div>
-    </div>`, popup = createPopup({
-            title: `MouseHunt Improved Settings <code>v${mhImprovedVersion}</code>`,
-            content,
-            className: "mousehunt-improved-settings-export-popup",
-            show: !0
-          });
-          window.location.search.includes("safe-mode") || localStorage.setItem("mousehunt-improved-settings-backup", JSON.stringify(getSettings()));
-          let popupElement = document.querySelector(".mousehunt-improved-settings-export-popup");
-          if (!popupElement)
-            return;
-          let textarea = popupElement.querySelector("textarea");
-          textarea.addEventListener("dragover", (dragevent) => {
-            dragevent.preventDefault(), textarea.classList.add("dragover");
-          }), textarea.addEventListener("drop", (dropevent) => {
-            var _a, _b;
-            if (dropevent.preventDefault(), textarea.classList.remove("dragover"), !((_b = (_a = dropevent.dataTransfer) == null ? void 0 : _a.files) != null && _b.length))
-              return;
-            let file = dropevent.dataTransfer.files[0], reader = new FileReader();
-            reader.onload = (loadEvent) => {
-              textarea.value = loadEvent.target.result;
-            }, reader.readAsText(file);
-          }), document.querySelector(".export-upload").addEventListener("click", (evt) => {
-            evt.preventDefault();
-            let input = document.createElement("input");
-            input.type = "file", input.accept = ".json", input.addEventListener("change", (changeEvent) => {
-              var _a, _b;
-              if (!((_b = (_a = changeEvent == null ? void 0 : changeEvent.target) == null ? void 0 : _a.files) != null && _b.length))
-                return;
-              let file = changeEvent.target.files[0], reader = new FileReader();
-              reader.onload = (loadEvent) => {
-                textarea.value = loadEvent.target.result;
-              }, reader.readAsText(file);
-            }), input.click();
-          }), document.querySelector(".export-reset").addEventListener("click", (evt) => {
-            evt.preventDefault(), textarea.value = JSON.stringify({
-              "mh-improved-platform": mhImprovedPlatform,
-              "mh-improved-version": mhImprovedVersion
-            }, null, 2);
-          }), document.querySelector(".export-format").addEventListener("click", (evt) => {
-            evt.preventDefault();
-            let currentSettings = JSON.parse(textarea.value), sorted = Object.keys(currentSettings).sort((a, b) => a.startsWith("mh-improved") && !b.startsWith("mh-improved") ? -1 : b.startsWith("mh-improved") && !a.startsWith("mh-improved") ? 1 : a.localeCompare(b)), newSettings = {};
-            sorted.forEach((key) => {
-              newSettings[key] = currentSettings[key];
-            }), textarea.value = JSON.stringify(newSettings, null, 2);
-          });
-          let saveButton = popupElement.querySelector(".mousehuntActionButton.save");
-          saveButton.addEventListener("click", () => {
-            let newSettings = textarea.value;
-            try {
-              JSON.parse(newSettings);
-            } catch (error) {
-              showErrorMessage({
-                message: "Invalid JSON. Settings not saved.",
-                append: saveButton,
-                after: !0,
-                classname: "settings-export-save-error"
-              }), console.error(error);
-              return;
-            }
-            localStorage.setItem("mousehunt-improved-settings-backup", localStorage.getItem("mousehunt-improved-settings")), localStorage.setItem("mousehunt-improved-settings", newSettings), showSuccessMessage({
-              message: "Settings saved. Refreshing\u2026",
-              append: saveButton,
-              after: !0,
-              classname: "settings-export-save-success"
-            }), setTimeout(() => {
-              window.location.reload();
-            });
-          });
-          let copyButton = popupElement.querySelector(".export-copy");
-          copyButton.addEventListener("click", (evt) => {
-            evt.preventDefault(), navigator.clipboard.writeText(textarea.value), showSuccessMessage({
-              message: "Settings copied to clipboard.",
-              append: copyButton,
-              after: !0,
-              classname: "settings-export-copy-success"
-            });
-          }), popupElement.querySelector(".export-download").addEventListener("click", (evt) => {
-            evt.preventDefault();
-            let link = document.createElement("a");
-            link.download = "mousehunt-improved-settings.json", link.href = `data:application/json;base64,${btoa(settings2)}`, link.click();
-          }), popupElement.querySelector(".mousehuntActionButton.cancel").addEventListener("click", () => {
-            popup.hide();
-          });
-        }), append.append(exportSettings), exportSettings;
-      }, addAdvancedSettingsButtons = () => {
-        let settingInput = document.querySelector("#mousehunt-improved-settings-advanced-mh-improved-advanced-settings .PagePreferences__setting");
-        settingInput && addExportSettings(settingInput);
-        let settingWrapper = document.querySelector("#mousehunt-improved-settings-advanced-wrapper");
-        if (!settingWrapper)
-          return;
-        let existing = document.querySelector(".mousehunt-improved-advanced-buttons");
-        existing && existing.remove();
-        let buttonsWrapper = makeElement("div", "mousehunt-improved-advanced-buttons"), clearCachedDataLink = makeElement("a", "clear-cache-link", "Clear Cached Data");
-        clearCachedDataLink.href = "#", clearCachedDataLink.addEventListener("click", (e) => __async(void 0, null, function* () {
-          if (e.preventDefault(), window.confirm("Are you sure you want to clear the cached data?")) {
-            yield clearCaches();
-            for (let key of Object.keys(sessionStorage))
-              key.startsWith("mh-improved") && sessionStorage.removeItem(key);
-            localStorage.removeItem(`mh-improved-cached-ar-v${mhImprovedVersion}`), window.location.reload();
-          }
-        })), buttonsWrapper.append(clearCachedDataLink);
-        let resetJournalLink = makeElement("a", "reset-link", "Reset Journal History");
-        resetJournalLink.href = "#", resetJournalLink.addEventListener("click", (e) => __async(void 0, null, function* () {
-          e.preventDefault(), window.confirm("Are you sure you want to reset your journal history?") && (yield dbDeleteAll("journal"), window.location.reload());
-        })), buttonsWrapper.append(resetJournalLink);
-        let resetDashboardLink = makeElement("a", "reset-link", "Reset Location Dashboard");
-        resetDashboardLink.href = "#", resetDashboardLink.addEventListener("click", (e) => __async(void 0, null, function* () {
-          e.preventDefault(), window.confirm("Are you sure you want to reset your dashboard data?") && (yield cacheSet("quests", {}), window.location.reload());
-        })), buttonsWrapper.append(resetDashboardLink), settingWrapper.append(buttonsWrapper);
-      }, highlightLocationHud = () => {
-        let locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-location-huds-enabled-${getCurrentLocation()}`);
-        locationHudSettings && locationHudSettings.classList.add("highlight");
-      }, addTogglesToSettings = () => {
-        let settingsPage = document.querySelectorAll(".PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__section");
-        if (!settingsPage)
-          return;
-        document.querySelectorAll(".mhui-setting-toggle").forEach((toggle) => {
-          toggle.remove();
-        });
-        let toggledSections = getSetting("settings.toggled-sections", ["mousehunt-improved-settings-beta", "mousehunt-improved-settings-advanced"]);
-        settingsPage.forEach((setting) => {
-          let toggle = makeElement("div", "mhui-setting-toggle"), titleText = setting.querySelector(".PagePreferences__titleText");
-          titleText.childNodes.length > 1 ? titleText.insertBefore(toggle, titleText.childNodes[1]) : titleText.append(toggle), titleText.addEventListener("click", (event) => {
-            event.preventDefault(), toggledSections = getSetting("settings.toggled-sections", ["mousehunt-improved-settings-beta", "mousehunt-improved-settings-advanced"]), setting.classList.contains("toggled") ? (setting.classList.remove("toggled"), toggle.classList.remove("toggled"), toggledSections = toggledSections.filter((section) => section !== setting.id)) : (setting.classList.add("toggled"), toggle.classList.add("toggled"), toggledSections.push(setting.id)), saveSetting("settings.toggled-sections", toggledSections);
-          }), toggledSections.includes(setting.id) ? (setting.classList.add("toggled"), toggle.classList.add("toggled")) : (setting.classList.remove("toggled"), toggle.classList.remove("toggled"));
-        });
-      }, moveTabToEnd = () => {
-        let mhImprovedTab = document.querySelector("#mousehunt-improved-settings");
-        if (!mhImprovedTab)
-          return;
-        let userscriptTab = document.querySelector("#userscript-settings");
-        userscriptTab && userscriptTab.after(mhImprovedTab);
-      }, addMhImprovedIconToMenu = () => {
-        addIconToMenu({
-          id: "mousehunt-improved-icon-menu",
-          href: "https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings",
-          title: "MouseHunt Improved Settings",
-          position: "append",
-          /**
-           * The action to perform when the icon is clicked.
-           *
-           * @param {Event} e The event.
-           */
-          action: (e) => {
-            getCurrentPage() === "preferences" && getCurrentTab() === "mousehunt-improved-settings" && (e.preventDefault(), setPage("Camp"));
-          }
-        });
-      }, linkVersionNumber = () => {
-        let version = document.querySelector("#mousehunt-improved-settings-better .PagePreferences__title .version");
-        version && (version.addEventListener("click", (e) => {
-          e.preventDefault(), e.stopPropagation(), doEvent2("mh-improved-show-update-summary");
-        }), version.title = "Click to view the update summary");
-      }, init = () => __async(void 0, null, function* () {
-        addStyles([
-          styles_default,
-          icons_default
-        ], "mousehunt-improved-settings"), addMhImprovedIconToMenu(), onEvent("mh-improved-setting-added-to-page", (module) => {
-          (module == null ? void 0 : module.key) === "error-reporting" && (moveTabToEnd(), highlightLocationHud(), addAdvancedSettingsButtons(), linkVersionNumber(), getSetting("experiments.new-settings-styles-columns", !1) || addTogglesToSettings());
-        });
-      }), settings_default2 = {
-        id: "_settings",
-        type: "advanced",
-        alwaysLoad: !0,
-        load: init,
-        settings: settings_default
+      init = () => __async(void 0, null, function* () {
+        addStyles(styles_default, "taller-windows");
+      }), taller_windows_default = {
+        id: "taller-windows",
+        name: "Taller Windows",
+        type: "feature",
+        default: !0,
+        description: "Make popup and dialog windows taller.",
+        load: init
       };
     }
   });
@@ -5090,15 +4872,41 @@ ${e.stack}`, errorElement.append(errorText);
     }
   });
   var styles_default2, init_styles3 = __esm({
-    "src/modules/hide-sidebar/styles.css"() {
-      styles_default2 = `.pageFrameView{-ms-grid-columns:[first] auto [content-start] 760px [content-end] auto [last];grid-template-columns:[first] auto [content-start] 760px [content-end] auto [last]}.pageFrameView .pageSidebarView-user{padding:0 0 10px;border-bottom:none}.pageSidebarView{display:none}.mousehuntHeaderView .menuItem.sidebar .dropdownContent{width:365px;padding:10px}.mousehuntHeaderView .menuItem.sidebar .dropdownContent a{display:unset;height:auto;padding:0;font-variant:none;border-bottom:none}.mousehuntHeaderView .menuItem.sidebar .dropdownContent a:hover,.mousehuntHeaderView .menuItem.sidebar .dropdownContent a:focus{text-decoration:underline;background-color:unset}.mousehuntHeaderView .menuItem.sidebar .dropdownContent a.pageSidebarView-user-image{width:30px;height:30px;padding:0;background-repeat:no-repeat;background-position:50% 50%;background-size:contain;border:1px solid #808080}.mousehuntHeaderView .menuItem.sidebar .dropdownContent .pageSidebarView-user a:nth-child(2){display:inline;padding:0;font-size:inherit;font-variant:none;color:#3b5998;border-bottom:none}.mousehuntHeaderView .menuItem.sidebar .dropdownContent .pageSidebarView-user br{display:none}.mousehuntHeaderView .menuItem.sidebar .dropdownContent a.pageSidebarView-user-logout{display:inline-block;float:right;height:auto;padding:5px 0;margin-right:10px;font-size:inherit;font-variant:none;color:#3b5998;border-bottom:none;border-radius:0}.scoreboardRankingsWrapper{display:grid;grid-template-columns:1fr 1fr;grid-gap:5px;line-height:14px}.scoreboardRelativeRankingTableView-table{padding-top:5px;background:#fff}.mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a{font-size:9px;color:#3b5998;text-decoration:none;vertical-align:middle;border-radius:0}.mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a:hover,.mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a:focus,.mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a:active{text-decoration:underline}
+    "src/modules/delayed-tooltips/styles.css"() {
+      styles_default2 = `.mousehuntTooltipParent>.mousehuntTooltip{will-change:transform}.mousehuntTooltipParent:hover>.mousehuntTooltip{animation:mh-improved-in-scale .35s 1 forwards cubic-bezier(.4,0,1,1) 0s}.PageHunterProfile .userInteractionButtonsView-button .mousehuntTooltip,.no-delayed-tooltips .mousehuntTooltip{animation:none!important}
 `;
     }
   });
-  var moveSidebar, init3, hide_sidebar_default, init_hide_sidebar = __esm({
-    "src/modules/hide-sidebar/index.js"() {
+  var init3, delayed_tooltips_default, init_delayed_tooltips = __esm({
+    "src/modules/delayed-tooltips/index.js"() {
       init_utils2();
       init_styles3();
+      init3 = () => __async(void 0, null, function* () {
+        addStyles(styles_default2, "delayed-tooltips"), document.addEventListener("keydown", (e) => {
+          e.shiftKey && document.body.classList.add("no-delayed-tooltips");
+        }), document.addEventListener("keyup", (e) => {
+          e.shiftKey || document.body.classList.remove("no-delayed-tooltips");
+        });
+      }), delayed_tooltips_default = {
+        id: "delayed-tooltips",
+        name: "Delayed Tooltips",
+        type: "feature",
+        default: !1,
+        description: "Delay the display of tooltips when you mouse over something. Hold down the shift key to display tooltips immediately.",
+        load: init3
+      };
+    }
+  });
+  var styles_default3, init_styles4 = __esm({
+    "src/modules/hide-sidebar/styles.css"() {
+      styles_default3 = `.pageFrameView{-ms-grid-columns:[first] auto [content-start] 760px [content-end] auto [last];grid-template-columns:[first] auto [content-start] 760px [content-end] auto [last]}.pageFrameView .pageSidebarView-user{padding:0 0 10px;border-bottom:none}.pageSidebarView{display:none}.mousehuntHeaderView .menuItem.sidebar .dropdownContent{width:365px;padding:10px}.mousehuntHeaderView .menuItem.sidebar .dropdownContent a{display:unset;height:auto;padding:0;font-variant:none;border-bottom:none}.mousehuntHeaderView .menuItem.sidebar .dropdownContent a:hover,.mousehuntHeaderView .menuItem.sidebar .dropdownContent a:focus{text-decoration:underline;background-color:unset}.mousehuntHeaderView .menuItem.sidebar .dropdownContent a.pageSidebarView-user-image{width:30px;height:30px;padding:0;background-repeat:no-repeat;background-position:50% 50%;background-size:contain;border:1px solid #808080}.mousehuntHeaderView .menuItem.sidebar .dropdownContent .pageSidebarView-user a:nth-child(2){display:inline;padding:0;font-size:inherit;font-variant:none;color:#3b5998;border-bottom:none}.mousehuntHeaderView .menuItem.sidebar .dropdownContent .pageSidebarView-user br{display:none}.mousehuntHeaderView .menuItem.sidebar .dropdownContent a.pageSidebarView-user-logout{display:inline-block;float:right;height:auto;padding:5px 0;margin-right:10px;font-size:inherit;font-variant:none;color:#3b5998;border-bottom:none;border-radius:0}.scoreboardRankingsWrapper{display:grid;grid-template-columns:1fr 1fr;grid-gap:5px;line-height:14px}.scoreboardRelativeRankingTableView-table{padding-top:5px;background:#fff}.mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a{font-size:9px;color:#3b5998;text-decoration:none;vertical-align:middle;border-radius:0}.mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a:hover,.mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a:focus,.mousehuntHeaderView .menuItem.sidebar .dropdownContent .scoreboardRankingsWrapper a:active{text-decoration:underline}
+`;
+    }
+  });
+  var moveSidebar, init4, hide_sidebar_default, init_hide_sidebar = __esm({
+    "src/modules/hide-sidebar/index.js"() {
+      init_utils2();
+      init_styles4();
       moveSidebar = () => {
         let menuTab = document.createElement("div");
         menuTab.classList.add("menuItem"), menuTab.classList.add("dropdown"), menuTab.classList.add("sidebar"), menuTab.addEventListener("click", () => {
@@ -5126,8 +4934,8 @@ ${e.stack}`, errorElement.append(errorText);
         menuTab.append(menuTabTitle), menuTab.append(menuTabArrow), menuTab.append(dropdownContent);
         let tabsContainer = document.querySelector(".mousehuntHeaderView-dropdownContainer");
         tabsContainer && tabsContainer.insertBefore(menuTab, tabsContainer.lastChild);
-      }, init3 = () => __async(void 0, null, function* () {
-        addStyles(styles_default2, "no-sidebar"), addBodyClass("no-sidebar"), moveSidebar(), hg.views.PageFrameView.setShowSidebar(!1), onDeactivation("no-sidebar", () => {
+      }, init4 = () => __async(void 0, null, function* () {
+        addStyles(styles_default3, "no-sidebar"), addBodyClass("no-sidebar"), moveSidebar(), hg.views.PageFrameView.setShowSidebar(!1), onDeactivation("no-sidebar", () => {
           hg.views.PageFrameView.setShowSidebar(!0);
           let menuTab = document.querySelector(".menuItem.sidebar");
           menuTab && menuTab.remove();
@@ -5138,29 +4946,280 @@ ${e.stack}`, errorElement.append(errorText);
         type: "element-hiding",
         default: !0,
         description: "Hide the sidebar and add a \u201CSidebar\u201D dropdown in the top menu.",
-        load: init3
+        load: init4
       };
     }
   });
-  var styles_default3, init_styles4 = __esm({
-    "src/modules/adblock/styles.css"() {
-      styles_default3 = `.actionportfolio,.canShare .larryTip,.canShare,.communityGroupView-ad,.journalactions a.actionportfolio,.journalactions a[data-share-type=journal],.journalactions a[data-type=journal],.mousehuntHeaderView-gameBanner,.pageSidebarView .fb-page,.socialLink,.newsPostFacebookContainer,.travelShortcut.QuestSuperBrieFactory,.travelShortcut.QuestSchoolOfSorcery,.travelShortcut.QuestDraconicDepths,*[src="https://www.mousehuntgame.com//images/ui/buttons/share_green.gif"],*[src="https://www.mousehuntgame.com/images/promo/fbf_live.jpg"],*[src="https://www.mousehuntgame.com/images/promo/fbf_soon.jpg"],a[onclick="hg.utils.PageUtil.setPage('JoinDiscord'); return false;"],a[href="https://www.facebook.com/groups/103701656374148/"],.pageSidebarView-mobileApps,.pageSidebarView-title,.pageSidebarView-block-description #jsDialog-publishToOwnWall,.communityGroupView-thinHeader,.nestLootShareButton,.travelShortcut.QuestHailstoneGolems{display:none}#OnboardArrow.onboardPopup.canShare .closeButton{left:0}
+  var settings_default, init_settings2 = __esm({
+    "src/modules/settings/settings/index.js"() {
+      settings_default = () => __async(void 0, null, function* () {
+        return [{
+          id: "mh-improved-advanced-settings",
+          title: "",
+          default: !0,
+          description: "",
+          settings: {
+            type: "blank"
+          }
+        }];
+      });
+    }
+  });
+  var icons_default, init_icons = __esm({
+    "src/modules/settings/icons.css"() {
+      icons_default = `#mousehunt-improved-settings-better-better-gifts:before{background-image:url(https://i.mouse.rip/s/better-gifts.svg)}#mousehunt-improved-settings-better-better-inventory:before{background-image:url(https://i.mouse.rip/s/better-inventory.svg)}#mousehunt-improved-settings-better-better-item-view:before{background-image:url(https://i.mouse.rip/s/better-item-view.svg)}#mousehunt-improved-settings-better-better-journal:before{background-image:url(https://i.mouse.rip/s/better-journal.svg)}#mousehunt-improved-settings-better-better-kings-reward:before{background-image:url(https://i.mouse.rip/s/better-kings-reward.svg)}#mousehunt-improved-settings-better-better-maps:before{background-image:url(https://i.mouse.rip/s/better-maps.svg)}#mousehunt-improved-settings-better-better-marketplace:before{background-image:url(https://i.mouse.rip/s/better-marketplace.svg)}#mousehunt-improved-settings-better-better-mice:before{background-image:url(https://i.mouse.rip/s/better-mice.svg)}#mousehunt-improved-settings-better-better-quests:before{background-image:url(https://i.mouse.rip/s/better-quests.svg)}#mousehunt-improved-settings-better-better-send-supplies:before{background-image:url(https://i.mouse.rip/s/better-send-supplies.svg)}#mousehunt-improved-settings-better-better-shops:before{background-image:url(https://i.mouse.rip/s/better-shops.svg)}#mousehunt-improved-settings-better-better-tournaments:before{background-image:url(https://i.mouse.rip/s/better-tournaments.svg)}#mousehunt-improved-settings-better-better-travel:before{background-image:url(https://i.mouse.rip/s/better-travel.svg)}#mousehunt-improved-settings-better-better-ui:before{background-image:url(https://i.mouse.rip/s/better-ui.svg?2)}#mousehunt-improved-settings-design-custom-background:before{background-image:url(https://i.mouse.rip/s/custom-background.svg)}#mousehunt-improved-settings-design-custom-horn:before{background-image:url(https://i.mouse.rip/s/custom-horn.svg)}#mousehunt-improved-settings-design-custom-hud:before{background-image:url(https://i.mouse.rip/s/custom-hud.svg)}#mousehunt-improved-settings-design-custom-shield:before{background-image:url(https://i.mouse.rip/s/custom-shield.svg)}#mousehunt-improved-settings-feature-big-timer:before{background-image:url(https://i.mouse.rip/s/big-timer.svg)}#mousehunt-improved-settings-feature-catch-rate-estimate:before{background-image:url(https://i.mouse.rip/s/catch-rate-estimate.svg)}#mousehunt-improved-settings-feature-codex-at-bottom:before{background-image:url(https://i.mouse.rip/s/codex-at-bottom.svg)}#mousehunt-improved-settings-feature-copy-id:before{background-image:url(https://i.mouse.rip/s/copy-id.svg)}#mousehunt-improved-settings-feature-dark-mode:before{background-image:url(https://i.mouse.rip/s/dark-mode.svg)}#mousehunt-improved-settings-feature-data-exporters:before{background-image:url(https://i.mouse.rip/s/data-exporters.svg)}#mousehunt-improved-settings-feature-delayed-menus:before{background-image:url(https://i.mouse.rip/s/delayed-menus.svg)}#mousehunt-improved-settings-feature-delayed-tooltips:before{background-image:url(https://i.mouse.rip/s/delayed-tooltips.svg)}#mousehunt-improved-settings-feature-favorite-setups:before{background-image:url(https://i.mouse.rip/s/favorite-setups.svg)}#mousehunt-improved-settings-feature-fixes:before{background-image:url(https://i.mouse.rip/s/fixes.svg)}#mousehunt-improved-settings-feature-flrt-helper:before{background-image:url(https://i.mouse.rip/s/flrt-helper.svg)}#mousehunt-improved-settings-feature-hover-profiles:before{background-image:url(https://i.mouse.rip/s/hover-profiles.svg)}#mousehunt-improved-settings-feature-image-upscaling:before{background-image:url(https://i.mouse.rip/s/image-upscaling.svg)}#mousehunt-improved-settings-feature-inline-wiki:before{background-image:url(https://i.mouse.rip/s/inline-wiki.svg)}#mousehunt-improved-settings-feature-inventory-lock-and-hide:before{background-image:url(https://i.mouse.rip/s/inventory-lock-and-hide.svg)}#mousehunt-improved-settings-feature-journal-changer:before{background-image:url(https://i.mouse.rip/s/journal-changer.svg)}#mousehunt-improved-settings-feature-keyboard-shortcuts:before{background-image:url(https://i.mouse.rip/s/keyboard-shortcuts.svg)}#mousehunt-improved-settings-feature-larger-codices:before{background-image:url(https://i.mouse.rip/s/larger-codices.svg)}#mousehunt-improved-settings-feature-larger-skin-images:before{background-image:url(https://i.mouse.rip/s/larger-skin-images.svg)}#mousehunt-improved-settings-feature-legacy-hud:before{background-image:url(https://i.mouse.rip/s/legacy-hud.svg?2)}#mousehunt-improved-settings-feature-lgs-reminder:before{background-image:url(https://i.mouse.rip/s/lgs-reminder.svg)}#mousehunt-improved-settings-feature-location-catch-stats:before{background-image:url(https://i.mouse.rip/s/location-catch-stats.svg)}#mousehunt-improved-settings-feature-location-dashboard:before{background-image:url(https://i.mouse.rip/s/location-dashboard.svg)}#mousehunt-improved-settings-feature-metric:before{background-image:url(https://i.mouse.rip/s/metric.svg)}#mousehunt-improved-settings-feature-only-open-multiple:before{background-image:url(https://i.mouse.rip/s/only-open-multiple.svg)}#mousehunt-improved-settings-feature-open-all:before{background-image:url(https://i.mouse.rip/s/open-all-but-one.svg)}#mousehunt-improved-settings-feature-open-all-but-one:before{background-image:url(https://i.mouse.rip/s/open-all-but-one.svg)}#mousehunt-improved-settings-feature-paste-hunter-id:before{background-image:url(https://i.mouse.rip/s/paste-hunter-id.svg)}#mousehunt-improved-settings-feature-prestige-base-stats:before{background-image:url(https://i.mouse.rip/s/prestige-base-stats.svg)}#mousehunt-improved-settings-feature-printing-press-paper-counter:before{background-image:url(https://i.mouse.rip/s/printing-press-paper-counter.svg)}#mousehunt-improved-settings-feature-profile-scoreboard-search:before{background-image:url(https://i.mouse.rip/s/profile-scoreboard-search.svg)}#mousehunt-improved-settings-feature-quick-filters-and-sort:before{background-image:url(https://i.mouse.rip/s/quick-filters-and-sort.svg)}#mousehunt-improved-settings-feature-quick-send-supplies:before{background-image:url(https://i.mouse.rip/s/quick-send-supplies.svg)}#mousehunt-improved-settings-feature-replace-favicon:before{background-image:url(https://i.mouse.rip/s/replace-favicon.svg)}#mousehunt-improved-settings-feature-shield-goes-to-camp:before{background-image:url(https://i.mouse.rip/s/shield-goes-to-camp.svg)}#mousehunt-improved-settings-feature-show-auras:before{background-image:url(https://i.mouse.rip/s/show-auras.svg)}#mousehunt-improved-settings-feature-ssdb-teeth-counter:before{background-image:url(https://i.mouse.rip/s/ssdb-teeth-counter.svg)}#mousehunt-improved-settings-feature-taller-windows:before{background-image:url(https://i.mouse.rip/s/taller-windows.svg)}#mousehunt-improved-settings-feature-tem-crowns:before{background-image:url(https://i.mouse.rip/s/tem-crowns.svg)}#mousehunt-improved-settings-feature-ultimate-checkmark-show:before{background-image:url(https://i.mouse.rip/s/ultimate-checkmark-show.svg)}#mousehunt-improved-settings-feature-wisdom-in-stat-bar:before{background-image:url(https://i.mouse.rip/s/wisdom-in-stat-bar.svg?2)}#mousehunt-improved-settings-beta-native-dark-mode:before{background-image:url(https://i.mouse.rip/s/native-dark-mode.svg)}#mousehunt-improved-settings-feature-unique-loot-count:before{background-image:url(https://i.mouse.rip/s/unique-loot-count.svg)}#mousehunt-improved-settings-feature-emotes:before{background-image:url(https://i.mouse.rip/s/emotes.svg)}#mousehunt-improved-settings-beta-experiments:before{background-image:url(https://i.mouse.rip/s/experiments.svg)}
 `;
     }
   });
-  var init4, adblock_default, init_adblock = __esm({
+  var styles_default4, init_styles5 = __esm({
+    "src/modules/settings/styles.css"() {
+      styles_default4 = `.mousehunt-improved-settings .PagePreferences__section{padding:10px;margin:10px 0;border:1px solid #e0cfb4}.mousehunt-improved-settings .PagePreferences__title{padding-bottom:10px;margin:0}.mousehunt-improved-settings .PagePreferences__titleText{position:relative;display:flex;gap:10px;justify-content:flex-start;font-family:system-ui,sans-serif;font-weight:200}.mousehunt-improved-settings .PagePreferences__settingNameText{color:#000;cursor:default}.mousehunt-improved-settings .PagePreferences__settingNameText:hover{text-decoration:none}.mousehunt-improved-settings .mhui-setting-toggle{position:absolute;top:10px;right:15px;width:0;height:0;border-right:6px solid transparent;border-bottom:9px solid #999;border-left:6px solid transparent;transition:transform .15s}.mousehunt-improved-settings .mhui-setting-toggle.toggled{transform:rotate(-180deg)}.mousehunt-improved-settings .toggled .PagePreferences__titleText,.mousehunt-improved-settings .toggled .PagePreferences__title{padding:0}.mousehunt-improved-settings .toggled .PagePreferences__separator,.mousehunt-improved-settings .toggled .PagePreferences__sectionWrapper,.mousehunt-improved-settings .toggled #mousehunt-improved-settings-location-hud-wrapper{height:0;overflow:hidden;visibility:hidden}#mousehunt-improved-settings-design-custom-background,#mousehunt-improved-settings-design-custom-hud,#mousehunt-improved-settings-design-custom-horn,#mousehunt-improved-settings-design-custom-shield,#mousehunt-improved-settings-feature-ultimate-checkmark-show,.mousehunt-improved-settings .PagePreferences__settingsList{position:relative;gap:0;padding:5px 0 5px 45px;border-color:#f2ebde;border-top:1px solid #f2ebde;border-left:none}#mousehunt-improved-settings-advanced .PagePreferences__settingsList,#mousehunt-improved-settings-design .PagePreferences__settingsList,#mousehunt-improved-settings-element-hiding .PagePreferences__settingsList{padding-left:10px}.mousehunt-improved-settings .PagePreferences__settingsList:not(.PagePreferences__subSetting):before,#mousehunt-improved-settings-feature-ultimate-checkmark-show:before{position:absolute;top:0;bottom:0;left:5px;width:25px;height:auto;content:"";background-repeat:no-repeat;background-position:center;background-size:25px;opacity:.4;transition:opacity .1s ease-out;will-change:transform}.mousehunt-improved-settings .PagePreferences__setting{gap:5px;align-items:center;padding-right:5px;margin:3px 0}.mousehunt-improved-settings .PagePreferences__setting .PagePreferences__settingAction{margin-bottom:0}.mousehunt-improved-settings .PagePreferences__settingDefault,#mousehunt-improved-settings-beta-experiments>.PagePreferences__setting .PagePreferences__settingAction,#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingDescription,#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingDefault{display:none}.mousehunt-improved-settings .PagePreferences__settingName{font-family:system-ui,sans-serif;font-weight:400}.mousehunt-improved-settings .PagePreferences__settingDescription{max-width:550px;padding:5px 0;font-family:system-ui,sans-serif;font-weight:400}#mousehunt-improved-settings-design .PagePreferences__settingDescription,#mousehunt-improved-settings-element-hiding .PagePreferences__settingDescription{display:none}.mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingDescription{padding-bottom:0}.mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingDescription.empty-description,.mousehunt-improved-settings .PagePreferences__settingDescription.empty-description{padding:0}.mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__subSetting{display:none;padding:5px 10px 5px 5px;margin-left:5px;border-top:none;border-left:1px solid #f2ebde}#mousehunt-improved-settings-location-hud .PagePreferences__title{margin-bottom:5px;border-bottom:1px solid #f2ebde}#mousehunt-improved-settings-advanced.toggled .PagePreferences__title,#mousehunt-improved-settings-location-hud.toggled .PagePreferences__title{margin-bottom:0;border:none}.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting{display:block}.mousehunt-improved-settings .PagePreferences__settingsList .PagePreferences__subSetting:nth-child(odd){background-color:#f4f4f4}.PagePreferences__subSetting .PagePreferences__settingName{font-size:12px;line-height:1}.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting .PagePreferences__setting{display:flex;padding:0;margin:0}.mousehunt-improved-settings .active.highlight .mousehuntSettingSlider:before{box-shadow:0 0 3px #0ac2c2 inset}.mousehunt-improved-settings .inputBoxContainer.multiSelect{display:flex;flex-flow:row wrap;justify-content:flex-end;max-width:400px}.mousehunt-improved-settings .inputBox.multiSelect{margin-right:4px;font-size:11px}#mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBox.multiSelect{max-width:160px}#mousehunt-improved-settings-design .inputBox.multiSelect{width:200px}.mousehunt-improved-settings .PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName{font-size:10px;line-height:1.75}.mousehunt-improved-settings .PagePreferences__settingsList.multi-toggle-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 15px;place-items:end end;padding:0;border:none}.mousehunt-improved-settings .PagePreferences__settingsList .multi-toggle-row .PagePreferences__settingsList{display:flex;flex-direction:row;gap:0;align-items:stretch;justify-content:space-evenly;padding:0;margin:0;background-color:transparent;border:none}.mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider{display:block;width:40px;height:16px}.mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider:after{width:14px;height:14px}.mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider.active:after{left:calc(100% - 14px)}.mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,.mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting{display:grid;grid-template-columns:1fr 400px}.mousehunt-improved-settings input,.mousehunt-improved-settings textarea{width:100%;font-family:monospace;font-size:12px;background-color:#eee;border:1px solid #ccc}.mousehunt-improved-settings textarea{min-height:45px}#mousehunt-improved-settings-design-custom-background>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-design-custom-camp-background>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-design-custom-hud>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-design-custom-horn>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-design-custom-shield>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-feature-ultimate-checkmark-show>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-advanced-override-flags>div>div>.PagePreferences__settingName,#mousehunt-improved-settings-advanced-override-styles>div>div>.PagePreferences__settingName{font-size:15px;line-height:1}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingAction,.mousehunt-improved-settings .multi-toggle .mousehuntSettingSlider{display:block;transform:scale(.75)}#mousehunt-improved-settings-location-hud-wrapper{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;justify-content:center;justify-items:stretch}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList{grid-column:span 4;padding:0 5px 0 10px;margin-left:0;background-color:inherit;border:none}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList[id*=mousehunt-improved-settings-location-hud-location-huds-enabled]{grid-column:span 1}#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-enabled-region-seperator,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle{grid-column:1 / 5;background-color:transparent}#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-option-seperator{height:10px;background-color:transparent;border-bottom:1px solid #f2ebde}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n+1),#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n+2),#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n+3),#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n+4),#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-flip-avatar.PagePreferences__settingsList,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-fi-draggable-airship.PagePreferences__settingsList{background-color:#eee}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:last-child,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-inventory-in-one-row.PagePreferences__settingsList,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle.PagePreferences__settingsList,#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-prologue-pond-wood-boat.PagePreferences__settingsList{background-color:transparent}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight{background-color:#8bf7f5}#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingName{font-size:11px}#mousehunt-improved-settings-advanced{position:relative}#mousehunt-improved-settings-advanced-mh-improved-advanced-settings{position:absolute;top:13px;right:50px;padding:0;visibility:visible;border:none}#mousehunt-improved-settings-feature-quick-send-supplies-items .inputBoxContainer .multiSelect{max-width:150px;margin-right:4px;margin-bottom:4px}#mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBoxContainer.multiSelect{max-width:550px}#mousehunt-improved-settings-feature-quick-send-supplies-items .multiSelect{width:375px}.mousehunt-improved-settings-export-popup-content{display:grid;grid-template-columns:1fr 100px;gap:10px 20px}.mousehunt-improved-settings-export-popup-tip{display:flex;grid-column:1 / 3;align-items:center}.mousehunt-improved-settings-export-popup-buttons-buttons,.mousehunt-improved-settings-export-popup-buttons{position:relative;display:flex;flex-direction:column;gap:10px;align-items:stretch;justify-content:flex-end}.mousehunt-improved-settings-export-popup-left{align-items:stretch}.mousehunt-improved-settings-export-popup-content textarea{height:90%;min-height:400px;padding:10px;font-family:ui-monospace,Menlo,Monaco,Cascadia Mono,Segoe UI Mono,Roboto Mono,Oxygen Mono,"Ubuntu Monospace",Source Code Pro,Fira Mono,Droid Sans Mono,Courier New,monospace;font-size:12px;background-color:#f9f9f9;border:1px solid #b3b3b3}.mousehunt-improved-settings-export-details{display:flex;flex-direction:column;gap:10px;margin-bottom:auto}.mousehunt-improved-settings-export-details .export-reset{color:#ff4242}.mousehunt-improved-settings-export-details hr{width:100%;height:1px;background-color:#b3b3b3;border:none}.mousehunt-improved-settings-export-details code{padding:3px}.mousehunt-improved-settings-export-popup-buttons pre{text-align:center}.mh-ui-success-message.settings-export-save-success,.mh-ui-success-message.settings-export-copy-success{position:absolute;right:-25px;bottom:50px;left:-25px;padding:4px}.mh-ui-success-message.settings-export-copy-success{top:25px;bottom:unset}.mh-ui-success-message.settings-export-save-success{bottom:100px}.mousehunt-improved-settings-export-popup-content .dragover{background-color:#f2f2f2;border-color:#ffb40c;box-shadow:inset 0 0 6px #f4e830}.mousehunt-improved-settings-export-popup .suffix{display:none}.pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu{width:20px;padding:0 5px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFX0lEQVRoge3XbYgdVx3H8e85Z87cp7kPc+/u3rvZZDfZPJLEVpI+pQklBWvSSIxWQkFfKCjoiyq+ExXpFoIIPiD6SgT7QgSRglCkSqUkVhu0aWtMW+OSTdJ0H9jsZu/u3se5d2bO8cVa6SuJWNgrzOfVmXe/HzPn/M9AIpFIJBKJRCKxWcRmB7hbUx+tjgz5uU83W0GjvrT+wncvtRcB1GYHuxvnzm4dO/OFE78cKRa+WMnFZ7aOFffsTS09d+EdjNzscHfjwJGjnyzvOPLAG395i7C5Tj4jP7Zt8sApAGezw/0nUyAXDw8/NVLd+/TcTCej6gu0TYpeq6WiqHQOeH4g98CPvvx4amJLdr+Io28eeujeTxV3PsJzP/ges396EYNE5xQinaXTN5MD9QZ+/52zRW+09HChWHi8UCp/olCb2JYdmmB57jY3r0zTaliQMQSGtX6L++4tf2gQCoifPvXI9v33THxmtFZ6ojBUm8jVdpfdygFIu8QLv2HtZoP6wgphTzA6DH4eKkISGTHu/OosavTw4TEh0qvHvvZK838JMgXiAsjh/chcBzlUqCpvLK92TJa1V/TddDbn1mq+brYCv9Vs3zMynDs0VMkfKVVHDmYrW7Su7EYWJsEtY6MuUeMSt/8+zepcm26vR0padEoyUlZsG8kzt2yGnX2nHztRmnjwh8uLnbf/+Oyj00YKq4QkDg1KK1zXwRhAghJIIYWKolBLqZSjpBJSOtbaVBzHrsQ6p6VSUkppLHWtlHbS6Yx2HU9KfClVOZVJFXekdDmXz0snnUek8ljhgNRgoN+4TdS6Qn/lFrTeZfrKDTCadmBY7cL27Qq/lMIrZ3DyxSHHV+qJaPby7urogzu9clWAwGKxBiwgxPumnbXwr2cLGGMIw1jEscF1HRydBqkQxMioASYC2wYs2qsgUyWkzmKNIQ7atFfnEWGLuNei1wvohyHtO0uUs33ml5rIMKBHil69jrEGLaDiKYb9NBnfI5PbWnZm3rwVdtod+ulZk/McEQd9jLEb4S3IKETEESY2CEBYi2VjbexGXYOwza6Je5G1UgphrJBhZKWVQiklyaQcelayFghCJI4jkUKgHIe4H9NuR/iVIrWax+WLV6kMuSihaPQsuw9OMnNtAT8vqY4qtoyk8fJZdNplbXVeOb5XenZ83/DOO+8Eb0ibvxzJwCqtAA3K3ZjVMUgVGSsdixHWYKRCYTDSRkZZYVQpjh1lrTY21FEUuTYOU3EcZWNjM7ExXmxF2VNU+pEpakXNYKph2NTNTpeoG7JyY4l3/yFZXOhw/boBo+gruNMOkY0mtYpke9FQq2XJFnJoP0/GmjVhLeL175+uLN2Kmqd+/NveB3Ow/PuLExeeOa4AJ0PGdTzHDVqBa4NuOlK27Ep5ECEfjvr9E1G/MZ5WHbp9Q7cbcX22y+J6nzVdZEsqJh2uc6AmmdhTxS+kkUMVZpeDpwdikL32k8Oa+rZH47D1ea3aD5XG86M2CnR7tcX0vGZ5qcnKwhz37/PYNV6i6OcQ5RI3Z9a/NBAF3nN+6rhTdIt7QtM7mSvrJ9O+PBQJ6cxfa3Ll9Tc5et8I42MeupjFqVV5+9X1kwNV4D0WxKVzZ7ZKHX3OEDzTMWlx49oMx45UGd5ZxQro2wIvv3x9dCALvN+lb3/8aNf1fn5t+uqOk0/upbJ3F4gPM/fSL17a9dlff2Tgr9P3f+P5V7SX//pY1V+/eH6GXlfQWvhrd6V++1tszNfBF5nmi4VS/EI2jrj6uz/Yub9d/NkDX734Z/6ffinPTx13nFxwTAunWXfzb536ygd75CcSiUQikUgkEv+9fwI8xC/BC1L8/wAAAABJRU5ErkJggg==);background-repeat:no-repeat;background-position:bottom;background-size:contain}.pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover{width:20px;padding:0 5px;overflow:visible;cursor:pointer;background:url(https://www.mousehuntgame.com/images/ui/hgbar/menuItem.png) 0 -30px repeat-x;border-top-right-radius:10px}.pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover:after{position:absolute;inset:0;content:"";background:url(https://i.mouse.rip/mh-improved/icon.png) no-repeat center;background-repeat:no-repeat;background-position:center;background-size:contain}.mh-dark-mode .pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover{background:#000}.mousehunt-improved-settings em{font-style:italic}.mousehunt-improved-advanced-buttons{display:flex;flex-direction:column;gap:10px;padding:10px 0 5px 5px;border-top:1px solid #f2ebde}a.reset-link{color:#f30000}
+`;
+    }
+  });
+  var addExportSettings, addAdvancedSettingsButtons, highlightLocationHud, addTogglesToSettings, moveTabToEnd, addMhImprovedIconToMenu, linkVersionNumber, init5, settings_default2, init_settings3 = __esm({
+    "src/modules/settings/index.js"() {
+      init_utils2();
+      init_settings2();
+      init_icons();
+      init_styles5();
+      addExportSettings = (append) => {
+        let existing = document.querySelector(".mousehunt-improved-export-settings");
+        existing && existing.remove();
+        let exportSettings = makeElement("div", ["mousehunt-improved-export-settings", "mousehuntActionButton", "tiny"]);
+        return makeElement("span", "", "Import / Export Settings", exportSettings), exportSettings.addEventListener("click", (e) => {
+          e.preventDefault(), e.stopPropagation();
+          let settings2 = JSON.stringify(JSON.parse(localStorage.getItem("mousehunt-improved-settings")), null, 2), content = `<div class="mousehunt-improved-settings-export-popup-content">
+    <div class="mousehunt-improved-settings-export-popup-tip">
+      To import settings, drag and drop the file into the box below, or paste the text in the box.
+    </div>
+    <textarea id="mousehunt-improved-settings-text" spellcheck="false">${settings2}</textarea>
+    <div class="mousehunt-improved-settings-export-popup-buttons">
+      <div class="mousehunt-improved-settings-export-details">
+        <a href="#" class="export-copy">Copy to clipboard</a>
+        <a href="#" class="export-download">Download file</a>
+        <hr>
+        <a href="#" class="export-upload">Upload file</a>
+        <a href="#" class="export-format">Format</a>
+        <a href="#" class="export-reset">Reset to default</a>
+      </div>
+      <div class="mousehunt-improved-settings-export-popup-buttons-buttons">
+        <div class="mousehuntActionButton save">
+          <span>Save</span>
+        </div>
+        <div class="mousehuntActionButton cancel">
+          <span>Cancel</span>
+        </div>
+      </div>
+    </div>`, popup = createPopup({
+            title: `MouseHunt Improved Settings <code>v${mhImprovedVersion}</code>`,
+            content,
+            className: "mousehunt-improved-settings-export-popup",
+            show: !0
+          });
+          window.location.search.includes("safe-mode") || localStorage.setItem("mousehunt-improved-settings-backup", JSON.stringify(getSettings()));
+          let popupElement = document.querySelector(".mousehunt-improved-settings-export-popup");
+          if (!popupElement)
+            return;
+          let textarea = popupElement.querySelector("textarea");
+          textarea.addEventListener("dragover", (dragevent) => {
+            dragevent.preventDefault(), textarea.classList.add("dragover");
+          }), textarea.addEventListener("drop", (dropevent) => {
+            var _a, _b;
+            if (dropevent.preventDefault(), textarea.classList.remove("dragover"), !((_b = (_a = dropevent.dataTransfer) == null ? void 0 : _a.files) != null && _b.length))
+              return;
+            let file = dropevent.dataTransfer.files[0], reader = new FileReader();
+            reader.onload = (loadEvent) => {
+              textarea.value = loadEvent.target.result;
+            }, reader.readAsText(file);
+          }), document.querySelector(".export-upload").addEventListener("click", (evt) => {
+            evt.preventDefault();
+            let input = document.createElement("input");
+            input.type = "file", input.accept = ".json", input.addEventListener("change", (changeEvent) => {
+              var _a, _b;
+              if (!((_b = (_a = changeEvent == null ? void 0 : changeEvent.target) == null ? void 0 : _a.files) != null && _b.length))
+                return;
+              let file = changeEvent.target.files[0], reader = new FileReader();
+              reader.onload = (loadEvent) => {
+                textarea.value = loadEvent.target.result;
+              }, reader.readAsText(file);
+            }), input.click();
+          }), document.querySelector(".export-reset").addEventListener("click", (evt) => {
+            evt.preventDefault(), textarea.value = JSON.stringify({
+              "mh-improved-platform": mhImprovedPlatform,
+              "mh-improved-version": mhImprovedVersion
+            }, null, 2);
+          }), document.querySelector(".export-format").addEventListener("click", (evt) => {
+            evt.preventDefault();
+            let currentSettings = JSON.parse(textarea.value), sorted = Object.keys(currentSettings).sort((a, b) => a.startsWith("mh-improved") && !b.startsWith("mh-improved") ? -1 : b.startsWith("mh-improved") && !a.startsWith("mh-improved") ? 1 : a.localeCompare(b)), newSettings = {};
+            sorted.forEach((key) => {
+              newSettings[key] = currentSettings[key];
+            }), textarea.value = JSON.stringify(newSettings, null, 2);
+          });
+          let saveButton = popupElement.querySelector(".mousehuntActionButton.save");
+          saveButton.addEventListener("click", () => {
+            let newSettings = textarea.value;
+            try {
+              JSON.parse(newSettings);
+            } catch (error) {
+              showErrorMessage({
+                message: "Invalid JSON. Settings not saved.",
+                append: saveButton,
+                after: !0,
+                classname: "settings-export-save-error"
+              }), console.error(error);
+              return;
+            }
+            localStorage.setItem("mousehunt-improved-settings-backup", localStorage.getItem("mousehunt-improved-settings")), localStorage.setItem("mousehunt-improved-settings", newSettings), showSuccessMessage({
+              message: "Settings saved. Refreshing\u2026",
+              append: saveButton,
+              after: !0,
+              classname: "settings-export-save-success"
+            }), setTimeout(() => {
+              window.location.reload();
+            });
+          });
+          let copyButton = popupElement.querySelector(".export-copy");
+          copyButton.addEventListener("click", (evt) => {
+            evt.preventDefault(), navigator.clipboard.writeText(textarea.value), showSuccessMessage({
+              message: "Settings copied to clipboard.",
+              append: copyButton,
+              after: !0,
+              classname: "settings-export-copy-success"
+            });
+          }), popupElement.querySelector(".export-download").addEventListener("click", (evt) => {
+            evt.preventDefault();
+            let link = document.createElement("a");
+            link.download = "mousehunt-improved-settings.json", link.href = `data:application/json;base64,${btoa(settings2)}`, link.click();
+          }), popupElement.querySelector(".mousehuntActionButton.cancel").addEventListener("click", () => {
+            popup.hide();
+          });
+        }), append.append(exportSettings), exportSettings;
+      }, addAdvancedSettingsButtons = () => {
+        let settingInput = document.querySelector("#mousehunt-improved-settings-advanced-mh-improved-advanced-settings .PagePreferences__setting");
+        settingInput && addExportSettings(settingInput);
+        let settingWrapper = document.querySelector("#mousehunt-improved-settings-advanced-wrapper");
+        if (!settingWrapper)
+          return;
+        let existing = document.querySelector(".mousehunt-improved-advanced-buttons");
+        existing && existing.remove();
+        let buttonsWrapper = makeElement("div", "mousehunt-improved-advanced-buttons"), clearCachedDataLink = makeElement("a", "clear-cache-link", "Clear Cached Data");
+        clearCachedDataLink.href = "#", clearCachedDataLink.addEventListener("click", (e) => __async(void 0, null, function* () {
+          if (e.preventDefault(), window.confirm("Are you sure you want to clear the cached data?")) {
+            yield clearCaches();
+            for (let key of Object.keys(sessionStorage))
+              key.startsWith("mh-improved") && sessionStorage.removeItem(key);
+            localStorage.removeItem(`mh-improved-cached-ar-v${mhImprovedVersion}`), window.location.reload();
+          }
+        })), buttonsWrapper.append(clearCachedDataLink);
+        let resetJournalLink = makeElement("a", "reset-link", "Reset Journal History");
+        resetJournalLink.href = "#", resetJournalLink.addEventListener("click", (e) => __async(void 0, null, function* () {
+          e.preventDefault(), window.confirm("Are you sure you want to reset your journal history?") && (yield dbDeleteAll("journal"), window.location.reload());
+        })), buttonsWrapper.append(resetJournalLink);
+        let resetDashboardLink = makeElement("a", "reset-link", "Reset Location Dashboard");
+        resetDashboardLink.href = "#", resetDashboardLink.addEventListener("click", (e) => __async(void 0, null, function* () {
+          e.preventDefault(), window.confirm("Are you sure you want to reset your dashboard data?") && (yield cacheSet("quests", {}), window.location.reload());
+        })), buttonsWrapper.append(resetDashboardLink), settingWrapper.append(buttonsWrapper);
+      }, highlightLocationHud = () => {
+        let locationHudSettings = document.querySelector(`#mousehunt-improved-settings-location-hud-location-huds-enabled-${getCurrentLocation()}`);
+        locationHudSettings && locationHudSettings.classList.add("highlight");
+      }, addTogglesToSettings = () => {
+        let settingsPage = document.querySelectorAll(".PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .PagePreferences__section");
+        if (!settingsPage)
+          return;
+        document.querySelectorAll(".mhui-setting-toggle").forEach((toggle) => {
+          toggle.remove();
+        });
+        let toggledSections = getSetting("settings.toggled-sections", ["mousehunt-improved-settings-beta", "mousehunt-improved-settings-advanced"]);
+        settingsPage.forEach((setting) => {
+          let toggle = makeElement("div", "mhui-setting-toggle"), titleText = setting.querySelector(".PagePreferences__titleText");
+          titleText.childNodes.length > 1 ? titleText.insertBefore(toggle, titleText.childNodes[1]) : titleText.append(toggle), titleText.addEventListener("click", (event) => {
+            event.preventDefault(), toggledSections = getSetting("settings.toggled-sections", ["mousehunt-improved-settings-beta", "mousehunt-improved-settings-advanced"]), setting.classList.contains("toggled") ? (setting.classList.remove("toggled"), toggle.classList.remove("toggled"), toggledSections = toggledSections.filter((section) => section !== setting.id)) : (setting.classList.add("toggled"), toggle.classList.add("toggled"), toggledSections.push(setting.id)), saveSetting("settings.toggled-sections", toggledSections);
+          }), toggledSections.includes(setting.id) ? (setting.classList.add("toggled"), toggle.classList.add("toggled")) : (setting.classList.remove("toggled"), toggle.classList.remove("toggled"));
+        });
+      }, moveTabToEnd = () => {
+        let mhImprovedTab = document.querySelector("#mousehunt-improved-settings");
+        if (!mhImprovedTab)
+          return;
+        let userscriptTab = document.querySelector("#userscript-settings");
+        userscriptTab && userscriptTab.after(mhImprovedTab);
+      }, addMhImprovedIconToMenu = () => {
+        addIconToMenu({
+          id: "mousehunt-improved-icon-menu",
+          href: "https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings",
+          title: "MouseHunt Improved Settings",
+          position: "append",
+          /**
+           * The action to perform when the icon is clicked.
+           *
+           * @param {Event} e The event.
+           */
+          action: (e) => {
+            getCurrentPage() === "preferences" && getCurrentTab() === "mousehunt-improved-settings" && (e.preventDefault(), setPage("Camp"));
+          }
+        });
+      }, linkVersionNumber = () => {
+        let version = document.querySelector("#mousehunt-improved-settings-better .PagePreferences__title .version");
+        version && (version.addEventListener("click", (e) => {
+          e.preventDefault(), e.stopPropagation(), doEvent2("mh-improved-show-update-summary");
+        }), version.title = "Click to view the update summary");
+      }, init5 = () => __async(void 0, null, function* () {
+        addStyles([
+          styles_default4,
+          icons_default
+        ], "mousehunt-improved-settings"), addMhImprovedIconToMenu(), onEvent("mh-improved-setting-added-to-page", (module) => {
+          (module == null ? void 0 : module.key) === "error-reporting" && (moveTabToEnd(), highlightLocationHud(), addAdvancedSettingsButtons(), linkVersionNumber(), getSetting("experiments.new-settings-styles-columns", !1) || addTogglesToSettings());
+        });
+      }), settings_default2 = {
+        id: "_settings",
+        type: "advanced",
+        alwaysLoad: !0,
+        load: init5,
+        settings: settings_default
+      };
+    }
+  });
+  var styles_default5, init_styles6 = __esm({
+    "src/modules/adblock/styles.css"() {
+      styles_default5 = `.actionportfolio,.canShare .larryTip,.canShare,.communityGroupView-ad,.journalactions a.actionportfolio,.journalactions a[data-share-type=journal],.journalactions a[data-type=journal],.mousehuntHeaderView-gameBanner,.pageSidebarView .fb-page,.socialLink,.newsPostFacebookContainer,.travelShortcut.QuestSuperBrieFactory,.travelShortcut.QuestSchoolOfSorcery,.travelShortcut.QuestDraconicDepths,*[src="https://www.mousehuntgame.com//images/ui/buttons/share_green.gif"],*[src="https://www.mousehuntgame.com/images/promo/fbf_live.jpg"],*[src="https://www.mousehuntgame.com/images/promo/fbf_soon.jpg"],a[onclick="hg.utils.PageUtil.setPage('JoinDiscord'); return false;"],a[href="https://www.facebook.com/groups/103701656374148/"],.pageSidebarView-mobileApps,.pageSidebarView-title,.pageSidebarView-block-description #jsDialog-publishToOwnWall,.communityGroupView-thinHeader,.nestLootShareButton,.travelShortcut.QuestHailstoneGolems{display:none}#OnboardArrow.onboardPopup.canShare .closeButton{left:0}
+`;
+    }
+  });
+  var init6, adblock_default, init_adblock = __esm({
     "src/modules/adblock/index.js"() {
       init_utils2();
-      init_styles4();
-      init4 = () => __async(void 0, null, function* () {
-        addStyles(styles_default3, "adblock");
+      init_styles6();
+      init6 = () => __async(void 0, null, function* () {
+        addStyles(styles_default5, "adblock");
       }), adblock_default = {
         id: "adblock",
         name: "Adblock",
         type: "element-hiding",
         default: !1,
         description: "Hide advertisements for Feedback Friday, mobile apps, news ticker, etc.",
-        load: init4
+        load: init6
+      };
+    }
+  });
+  var styles_default6, init_styles7 = __esm({
+    "src/modules/larger-codices/styles.css"() {
+      styles_default6 = `.campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-leftBar,.campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-content{display:block;width:auto}.campPage-trap-itemBrowser-item.codex{position:relative;display:flex;flex-direction:column;align-items:center}.campPage-trap-itemBrowser-item.codex a.campPage-trap-itemBrowser-item-image{width:125px;height:125px}.campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-description{position:absolute;inset:-10px 0 0;padding:15px;overflow-y:scroll;background-color:#fffc;opacity:0;transition:.5s}.campPage-trap-itemBrowser-item.codex:hover .campPage-trap-itemBrowser-item-description{opacity:1}.mh-dark-mode .campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-description{background-color:#000c}.codex .campPage-trap-itemBrowser-item-image:after{border:none;box-shadow:none}
+`;
+    }
+  });
+  var init7, larger_codices_default, init_larger_codices = __esm({
+    "src/modules/larger-codices/index.js"() {
+      init_utils2();
+      init_styles7();
+      init7 = () => {
+        addStyles(styles_default6, "larger-codices");
+      }, larger_codices_default = {
+        id: "larger-codices",
+        name: "Larger Codices",
+        type: "feature",
+        default: !0,
+        description: "Show larger images for codices in the trap selector.",
+        load: init7
       };
     }
   });
@@ -5188,9 +5247,9 @@ ${e.stack}`, errorElement.append(errorText);
 `;
     }
   });
-  var styles_default4, init_styles5 = __esm({
+  var styles_default7, init_styles8 = __esm({
     "src/modules/journal-privacy/styles/styles.css"() {
-      styles_default4 = `.mh-journal-privacy-enabled #journalContainer .entry:not(.badge) a[href*="profile.php"],.mh-journal-privacy-enabled #journalContainer .entry.socialGift .journaltext a,.mh-journal-privacy-enabled #journalContainer .relicHunter_complete>.journalbody>.journaltext>b:nth-child(6),.mh-journal-privacy-enabled #journalContainer .wanted_poster-complete>.journalbody>.journaltext>b:nth-child(8),.mh-journal-privacy-enabled #journalContainer .journal__hunter-name,.mh-journal-privacy-enabled .mh-journal-privacy-name{display:inline-block;filter:blur(5px);transition:all .3s}.mh-journal-privacy-enabled #journalContainer .entry:not(.badge) #friend-data-wrapper a[href*="profile.php"]{color:#000}.mh-journal-privacy-enabled #journalContainer .entry:not(.badge) a[href*="profile.php"]:hover,.mh-journal-privacy-enabled #journalContainer .entry:not(.badge) a[href*="profile.php"]:focus,.mh-journal-privacy-enabled #journalContainer .entry.socialGift .journaltext a:hover,.mh-journal-privacy-enabled #journalContainer .entry.socialGift .journaltext a:focus,.mh-journal-privacy-enabled #journalContainer .relicHunter_complete>.journalbody>.journaltext>b:nth-child(6):hover,.mh-journal-privacy-enabled #journalContainer .relicHunter_complete>.journalbody>.journaltext>b:nth-child(6):focus,.mh-journal-privacy-enabled #journalContainer .wanted_poster-complete>.journalbody>.journaltext>b:nth-child(8):hover,.mh-journal-privacy-enabled #journalContainer .wanted_poster-complete>.journalbody>.journaltext>b:nth-child(8):focus #journalContainer .journal__hunter-name:hover,.mh-journal-privacy-enabled #journalContainer .journal__hunter-name:focus,.mh-journal-privacy-enabled .mh-journal-privacy-name:hover,.mh-journal-privacy-enabled .mh-journal-privacy-name:focus{display:inline;filter:initial}
+      styles_default7 = `.mh-journal-privacy-enabled #journalContainer .entry:not(.badge) a[href*="profile.php"],.mh-journal-privacy-enabled #journalContainer .entry.socialGift .journaltext a,.mh-journal-privacy-enabled #journalContainer .relicHunter_complete>.journalbody>.journaltext>b:nth-child(6),.mh-journal-privacy-enabled #journalContainer .wanted_poster-complete>.journalbody>.journaltext>b:nth-child(8),.mh-journal-privacy-enabled #journalContainer .journal__hunter-name,.mh-journal-privacy-enabled .mh-journal-privacy-name{display:inline-block;filter:blur(5px);transition:all .3s}.mh-journal-privacy-enabled #journalContainer .entry:not(.badge) #friend-data-wrapper a[href*="profile.php"]{color:#000}.mh-journal-privacy-enabled #journalContainer .entry:not(.badge) a[href*="profile.php"]:hover,.mh-journal-privacy-enabled #journalContainer .entry:not(.badge) a[href*="profile.php"]:focus,.mh-journal-privacy-enabled #journalContainer .entry.socialGift .journaltext a:hover,.mh-journal-privacy-enabled #journalContainer .entry.socialGift .journaltext a:focus,.mh-journal-privacy-enabled #journalContainer .relicHunter_complete>.journalbody>.journaltext>b:nth-child(6):hover,.mh-journal-privacy-enabled #journalContainer .relicHunter_complete>.journalbody>.journaltext>b:nth-child(6):focus,.mh-journal-privacy-enabled #journalContainer .wanted_poster-complete>.journalbody>.journaltext>b:nth-child(8):hover,.mh-journal-privacy-enabled #journalContainer .wanted_poster-complete>.journalbody>.journaltext>b:nth-child(8):focus #journalContainer .journal__hunter-name:hover,.mh-journal-privacy-enabled #journalContainer .journal__hunter-name:focus,.mh-journal-privacy-enabled .mh-journal-privacy-name:hover,.mh-journal-privacy-enabled .mh-journal-privacy-name:focus{display:inline;filter:initial}
 `;
     }
   });
@@ -5200,12 +5259,12 @@ ${e.stack}`, errorElement.append(errorText);
 `;
     }
   });
-  var applyClassToNames, removeClassFromNames, enablePrivacy, disablePrivacy, addIcon, removeIcon, isPrivacyEnabled, init5, journal_privacy_default, init_journal_privacy = __esm({
+  var applyClassToNames, removeClassFromNames, enablePrivacy, disablePrivacy, addIcon, removeIcon, isPrivacyEnabled, init8, journal_privacy_default, init_journal_privacy = __esm({
     "src/modules/journal-privacy/index.js"() {
       init_utils2();
       init_settings4();
       init_icon();
-      init_styles5();
+      init_styles8();
       init_transparent();
       applyClassToNames = () => {
         if (!isPrivacyEnabled)
@@ -5259,9 +5318,9 @@ ${e.stack}`, errorElement.append(errorText);
           return;
         let icon = document.querySelector("#mousehunt-improved-journal-privacy");
         icon && (icon.style.display = "none", icon.style.visibility = "hidden");
-      }, isPrivacyEnabled = !0, init5 = () => __async(void 0, null, function* () {
+      }, isPrivacyEnabled = !0, init8 = () => __async(void 0, null, function* () {
         addStyles([
-          getSetting("journal-privacy.transparent", !1) ? transparent_default : styles_default4,
+          getSetting("journal-privacy.transparent", !1) ? transparent_default : styles_default7,
           icon_default
         ], "journal-privacy"), enablePrivacy(), getSetting("journal-privacy.show-toggle-icon", !1) && (addIcon(), disablePrivacy()), onRequest("pages/journal.php", applyClassToNames), onActivation(() => {
           addIcon(), enablePrivacy();
@@ -5277,78 +5336,8 @@ ${e.stack}`, errorElement.append(errorText);
         type: "element-hiding",
         default: !1,
         description: "Hide player names in the journal. Good for screenshots that maintain privacy.",
-        load: init5,
+        load: init8,
         settings: settings_default3
-      };
-    }
-  });
-  var styles_default5, init_styles6 = __esm({
-    "src/modules/delayed-tooltips/styles.css"() {
-      styles_default5 = `.mousehuntTooltipParent>.mousehuntTooltip{will-change:transform}.mousehuntTooltipParent:hover>.mousehuntTooltip{animation:mh-improved-in-scale .35s 1 forwards cubic-bezier(.4,0,1,1) 0s}.PageHunterProfile .userInteractionButtonsView-button .mousehuntTooltip,.no-delayed-tooltips .mousehuntTooltip{animation:none!important}
-`;
-    }
-  });
-  var init6, delayed_tooltips_default, init_delayed_tooltips = __esm({
-    "src/modules/delayed-tooltips/index.js"() {
-      init_utils2();
-      init_styles6();
-      init6 = () => __async(void 0, null, function* () {
-        addStyles(styles_default5, "delayed-tooltips"), document.addEventListener("keydown", (e) => {
-          e.shiftKey && document.body.classList.add("no-delayed-tooltips");
-        }), document.addEventListener("keyup", (e) => {
-          e.shiftKey || document.body.classList.remove("no-delayed-tooltips");
-        });
-      }), delayed_tooltips_default = {
-        id: "delayed-tooltips",
-        name: "Delayed Tooltips",
-        type: "feature",
-        default: !1,
-        description: "Delay the display of tooltips when you mouse over something. Hold down the shift key to display tooltips immediately.",
-        load: init6
-      };
-    }
-  });
-  var styles_default6, init_styles7 = __esm({
-    "src/modules/taller-windows/styles.css"() {
-      styles_default6 = `.springHuntHUD-popup-allEggs,.adventureBookPopup-titleContent,.convertibleOpenView-itemContainer,.marketplaceView-browse-content,.MHCheckoutAllRewardsPageView,.treasureMapView-block-content.tall,.treasureMapView-blockWrapper.tall .treasureMapView-block-content,#messengerUINotification .notificationHeader,#supplytransfer .drawer .listContainer,#supplytransfer .drawer .tabContent,#supplytransfer .drawer{height:auto;max-height:75vh}#messengerUINotification .notificationMessageList,.treasureMapView-block-content,.treasureMapView-block-content.halfHeight{height:auto;max-height:55vh}#supplytransfer .drawer{padding-bottom:75px}.adventureBookPopup-titleContent{max-height:unset}.treasureMapDialogView.limitHeight .treasureMapView-block-content{max-height:75vh}.treasureMapDialogView.wide.limitHeight.confirm .treasureMapView,.treasureMapDialogView.limitHeight .treasureMapDialogView-content{max-height:500px}.giftSelectorView-inbox-giftContainer,#overlayPopup .giftSelectorView-scroller{height:auto;min-height:300px;max-height:65vh}body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer{min-height:unset}#overlayPopup.giftSelectorViewPopup{top:50px!important}.springHuntHUD-popup-regionContainer{display:contents}#overlayPopup .imgArray{min-height:105px;max-height:500px}.floatingIslandsWorkshop-partsContainer{top:263px;left:113px;width:533px;height:auto;background-image:url(https://i.mouse.rip/fi-airships-middle.png);background-size:contain;border-radius:12px}.floatingIslandsWorkshop-parts-content{position:relative;height:100%;max-height:60vh}.floatingIslandsWorkshop-parts-title{padding:5px 10px 0;margin-top:-23px;margin-right:-1px;background:radial-gradient(circle,#fdf9bd,#fff9dc,#fdf9bd);border:none;border-radius:4px 5px 0 0}.floatingIslandsWorkshop-partsContainer:after{position:absolute;bottom:-3px;left:0;width:533px;height:30px;content:"";background-image:url(https://i.mouse.rip/fi-airships-bottom-2.png);background-position:bottom}.floatingIslandsWorkshop-stabilizer{position:absolute;top:250px;left:430px}.select2-results{max-height:50vh}.giftSelectorView-scroller{height:auto}.mh-gift-buttons-clone-wrapper{max-height:calc(75vh - 175px)}.mh-ui-goals-block .treasureMapView-block-content{max-height:unset}.mh-ui-environments-block{max-height:unset;overflow-y:auto}.treasureMapView-block-content{height:unset}.treasureMapView-blockWrapper.tall .treasureMapView-block-content.treasureMapShopsView-shopItems{height:100%;max-height:unset;overflow-x:hidden}
-`;
-    }
-  });
-  var init7, taller_windows_default, init_taller_windows = __esm({
-    "src/modules/taller-windows/index.js"() {
-      init_utils2();
-      init_styles7();
-      init7 = () => __async(void 0, null, function* () {
-        addStyles(styles_default6, "taller-windows");
-      }), taller_windows_default = {
-        id: "taller-windows",
-        name: "Taller Windows",
-        type: "feature",
-        default: !0,
-        description: "Make popup and dialog windows taller.",
-        load: init7
-      };
-    }
-  });
-  var styles_default7, init_styles8 = __esm({
-    "src/modules/larger-codices/styles.css"() {
-      styles_default7 = `.campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-leftBar,.campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-content{display:block;width:auto}.campPage-trap-itemBrowser-item.codex{position:relative;display:flex;flex-direction:column;align-items:center}.campPage-trap-itemBrowser-item.codex a.campPage-trap-itemBrowser-item-image{width:125px;height:125px}.campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-description{position:absolute;inset:-10px 0 0;padding:15px;overflow-y:scroll;background-color:#fffc;opacity:0;transition:.5s}.campPage-trap-itemBrowser-item.codex:hover .campPage-trap-itemBrowser-item-description{opacity:1}.mh-dark-mode .campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-description{background-color:#000c}.codex .campPage-trap-itemBrowser-item-image:after{border:none;box-shadow:none}
-`;
-    }
-  });
-  var init8, larger_codices_default, init_larger_codices = __esm({
-    "src/modules/larger-codices/index.js"() {
-      init_utils2();
-      init_styles8();
-      init8 = () => {
-        addStyles(styles_default7, "larger-codices");
-      }, larger_codices_default = {
-        id: "larger-codices",
-        name: "Larger Codices",
-        type: "feature",
-        default: !0,
-        description: "Show larger images for codices in the trap selector.",
-        load: init8
       };
     }
   });
@@ -6072,35 +6061,245 @@ ${e.stack}`, errorElement.append(errorText);
     }
   });
   var styles_default13, init_styles14 = __esm({
-    "src/modules/better-journal/modules/journal-gold-and-points/styles.css"() {
-      styles_default13 = `.mh-ui-gold,.mh-ui-points{position:relative;margin-left:20px}.mh-ui-gold:after,.mh-ui-points:after{position:absolute;inset:-2px 0 0 -20px;width:18px;height:18px;content:"";background-image:url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/dccbaeebbdfa745340ff9363749f35ba.png);background-position:center;background-size:contain}.mh-ui-points:after{background-image:url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/eeebc1c32b4242b95f75041be7275980.png)}
+    "src/modules/better-item-view/modules/hover-item/styles.css"() {
+      styles_default13 = `#item-data-wrapper{position:absolute;z-index:999999;box-sizing:border-box;display:block;width:300px;height:100px;background:linear-gradient(#decebb 5%,#f0eddf 50%);border:1px solid #9a8872;border-radius:10px;box-shadow:0 1px 5px -1px #5e5e5e}.item-data-wrapper-loading{display:flex;align-items:flex-end;justify-content:center;height:90%;background-image:url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif);background-repeat:no-repeat;background-position:center;background-size:55px}#item-data-wrapper .item-data{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:center;height:95px}#item-data-wrapper .item-image{height:80px;margin-left:10px;background-color:#fff;border:1px solid #25211e;border-radius:5px}#item-data-wrapper .item-text{display:flex;flex-direction:column;justify-content:space-around;height:80px;margin-right:10px}#item-data-wrapper .item-name{width:160px;font-size:12px;font-weight:900}
 `;
     }
   });
-  var wrapGoldAndPoints, main2, journal_gold_and_points_default, init_journal_gold_and_points = __esm({
-    "src/modules/better-journal/modules/journal-gold-and-points/index.js"() {
+  var fetchItemData, makeItemMarkup, makeLoadingMarkup, itemDataWrapper, main2, hover_item_default, init_hover_item = __esm({
+    "src/modules/better-item-view/modules/hover-item/index.js"() {
       init_utils2();
       init_styles14();
+      fetchItemData = (itemId) => __async(void 0, null, function* () {
+        var _a;
+        let itemDataRequest = yield doRequest("managers/ajax/users/userInventory.php", {
+          action: "get_items",
+          "item_types[]": itemId
+        });
+        return (_a = itemDataRequest == null ? void 0 : itemDataRequest.items) == null ? void 0 : _a[0];
+      }), makeItemMarkup = (item) => {
+        if (!item)
+          return !1;
+        let itemData = makeElement("div", "item-data"), itemImage = makeElement("img", "item-image");
+        itemImage.src = item.thumbnail, itemData.append(itemImage);
+        let itemText = makeElement("div", "item-text");
+        makeElement("div", "item-name", item.name, itemText);
+        let quantity = makeElement("div", "item-quanity");
+        makeElement("span", "", "You own: ", quantity), makeElement("span", "", item.quantity.toLocaleString(), quantity), itemText.append(quantity);
+        let description = makeElement("div", "item-description"), firstSentence = item.description.match(/[^!.?]+[!.?]/);
+        return makeElement("div", "item-description-text", firstSentence ? firstSentence[0] : item.description, description), itemData.append(itemText), itemData;
+      }, makeLoadingMarkup = (e) => {
+        itemDataWrapper && itemDataWrapper.remove(), itemDataWrapper = makeElement("div", "item-data-wrapper"), itemDataWrapper.id = "item-data-wrapper", itemDataWrapper.innerHTML = '<span class="item-data-wrapper-loading">Loading...</span>', document.body.append(itemDataWrapper);
+        let rect = e.target.getBoundingClientRect(), top = rect.top + window.scrollY, left = rect.left + window.scrollX, tooltipTop = top - itemDataWrapper.offsetHeight - 10;
+        return tooltipTop < 0 && (tooltipTop = top + rect.height + 10), itemDataWrapper.style.top = `${tooltipTop}px`, itemDataWrapper.style.left = `${left - itemDataWrapper.offsetWidth / 2 + rect.width / 2}px`, itemDataWrapper;
+      }, main2 = () => {
+        let itemLinks = document.querySelectorAll('.journal .content .entry .journaltext a[onclick*="ItemView.show"]');
+        itemLinks && itemLinks.forEach((link) => {
+          let itemType = link.getAttribute("onclick").match(/'([^']+)'/)[1];
+          link.setAttribute("onclick", `hg.views.ItemView.show('${itemType}'); return false;`);
+          let timeoutId = null, isMouseOver = !1;
+          link.addEventListener("mouseenter", (e) => __async(void 0, null, function* () {
+            isMouseOver = !0, timeoutId && clearTimeout(timeoutId), timeoutId = setTimeout(() => __async(void 0, null, function* () {
+              if (!isMouseOver)
+                return;
+              makeLoadingMarkup(e);
+              let itemData = yield fetchItemData(itemType);
+              if (itemData && itemDataWrapper && isMouseOver) {
+                let markup = makeItemMarkup(itemData);
+                itemDataWrapper.innerHTML = markup.outerHTML;
+              }
+            }), 500);
+          })), link.addEventListener("mouseleave", () => {
+            isMouseOver = !1, timeoutId && clearTimeout(timeoutId), itemDataWrapper && itemDataWrapper.remove();
+          });
+        });
+      }, hover_item_default = () => {
+        addStyles(styles_default13, "better-item-view-hover-item"), setTimeout(main2, 500), onRequest("*", () => {
+          setTimeout(main2, 1e3);
+        });
+      };
+    }
+  });
+  var settings_default6, init_settings7 = __esm({
+    "src/modules/better-item-view/settings/index.js"() {
+      settings_default6 = () => __async(void 0, null, function* () {
+        return [
+          {
+            id: "better-item-view.show-drop-rates",
+            title: "Show drop rates",
+            default: !0
+          },
+          {
+            id: "better-item-view.show-item-hover",
+            title: "Show item details on hover (in journal)",
+            default: !0
+          }
+        ];
+      });
+    }
+  });
+  var styles_default14, init_styles15 = __esm({
+    "src/modules/better-item-view/styles.css"() {
+      styles_default14 = `.itemView-titleContainer{height:26px}.itemView-header-name{display:flex;align-items:center;justify-content:space-between}.mh-item-links{display:flex;justify-content:flex-end;margin-right:-10px}.mh-item-links a{margin-right:5px}.itemView-header-name .mh-item-links span{display:inline-block;font-size:11px;font-weight:400}.mouseview-has-mhct .mouse-ar-wrapper{display:grid;grid-template-columns:1fr 1fr 50px;gap:10px;place-items:center stretch;width:auto;padding:5px;font-size:12px}.itemViewPopup .mouseview-has-mhct .mouse-ar-wrapper{padding:5px 7px 5px 5px}.mouseview-has-mhct .has-stages .mouse-ar-wrapper{grid-template-columns:1fr 1fr 1fr 50px}.itemView-has-mhct .mouse-ar-wrapper div{padding:0 2px}.itemView-has-mhct .mice-ar-wrapper{margin-right:10px}.mouse-ar-wrapper .stage{font-size:10px}.mouse-ar-wrapper .cheese{font-size:11px}.itemView-has-mhct .ar-header{display:flex;align-items:center;justify-content:space-between;height:26px;padding-bottom:2px;margin-top:10px;margin-bottom:10px;font-size:12px;font-weight:900;border-bottom:1px solid #ccc}.itemView-has-mhct .ar-link{font-size:9px}.itemView-has-mhct .rate{text-align:right}.itemView-has-mhct .mouse-ar-wrapper:nth-child(odd){background-color:#e7e7e7}.itemView-has-mhct .itemView-description{font-weight:500;line-height:19px}.itemView-action.crafting_item b{display:none}.itemView-action.crafting_item:before{content:"This can be used to craft other items!"}.itemViewContainer.map_piece .itemView-action-text.map_piece,.itemViewContainer.base .itemView-action-text.base,.itemViewContainer.weapon .itemView-actio-textn.weapon,.itemViewContainer.bait .itemView-action-text.bait,.itemViewContainer.trinket .itemView-action-text.trinket,.itemViewContainer.potion .itemView-action-text.potion,.itemViewContainer.readiness_item .itemView-action-text.readiness_item,.itemViewContainer.convertible .itemView-action-text.convertible,.itemViewContainer.torn_page .itemView-action-text.torn_page,.itemViewContainer.crafting_item .itemView-action-text.crafting_item,.itemViewContainer.collectible .itemView-action-text.collectible,.itemViewContainer.message_item .itemView-action-text.message_item,.itemViewContainer.bonus_loot .itemView-action-text.bonus_loot,.itemViewContainer.stat .itemView-action-text.stat,.itemViewContainer.quest .itemView-action-text.quest,.itemViewContainer.skin .itemView-action-text.skin{display:none!important}.itemViewContainer .shopCustomization .itemViewStatBlock-stat{display:flex;flex-direction:column;align-items:center}.itemViewContainer .itemViewStatBlock-stat{display:flex;flex-direction:row;align-items:center;justify-content:flex-start}.itemViewContainer .itemViewStatBlock-stat-value{flex:1;text-align:left}.itemViewContainer .itemViewStatBlock-stat.cheeseEffect{font-size:9px;text-align:center}.itemViewContainer .itemViewStatBlock.trinket .itemViewStatBlock-padding{display:flex;flex-direction:column;align-items:stretch;width:100px}.itemViewContainer .itemViewStatBlock.trinket{width:100px;font-size:13px}#overlayPopup.itemViewPopup #jsDialogClose{right:6px;z-index:1;border-top-right-radius:10px}#overlayPopup.itemViewPopup .itemView-header-classification{right:25px}.itemView-actionContainer{display:flex;flex-wrap:wrap;gap:10px}.itemView-action{border-top:none}.itemViewContainer.potion .inventoryPage-item-recipeOptions li{width:365px}.itemView-character-image{width:auto;height:84px;margin-top:-15px;margin-left:-9px}.itemView-character-name{left:-11px;width:75px;font-size:15px}.itemView-padding{margin-left:70px}.itemView-thumbnail{width:200px;height:200px;margin-left:-15px;background-repeat:no-repeat;background-position:center;background-size:contain}.itemView-thumbnail.large{background-size:100%}input.itemView-action-convert-quantity{width:50px}.itemViewPopup .itemViewStatBlock-padding{flex-direction:column}.itemView-character .itemView-character-image{transition:all .4s ease-out;transform-origin:bottom}.itemView-character:hover .itemView-character-image{transform:scale(1.2) rotate(-10deg) translate(5px)}.itemView-header-classification{visibility:hidden}.itemView-header-classification span{visibility:visible}.itemViewStatBlock-stat{display:flex;align-items:center}.itemView-sidebar-checklistItem:nth-child(1),.itemView-sidebar-checklistItem:nth-child(2),.itemView-sidebar-checklistItem.checked{display:block}.itemView-sidebar-checklistItem{background:url(https://www.mousehuntgame.com/images/icons/bad_idea.png) 1px 4px no-repeat;background-size:14px;opacity:.8}.itemView-partsContainer{display:flex;flex-direction:column;align-items:stretch;padding-top:15px;padding-bottom:10px;margin-top:15px;border-top:1px solid #666}.convertibleOpenView-item-imageContainer{margin-right:auto}.convertibleOpenView-itemContainer.num_items_1 .convertibleOpenView-item{gap:20px;width:100%}.itemView-obtainHint{margin-left:190px}.itemViewContainer iframe.socialLink-facebookLike{margin-right:5px}.convertibleOpenView-itemContainer{padding-top:10px;margin-top:0}.itemViewContainer.skin .itemView-thumbnail{background-size:cover}.inventoryPage-item.trinket .itemViewStatBlock.trinket .itemViewStatBlock-padding{overflow:hidden;border-radius:3px}.inventoryPage-item.trinket .itemViewStatBlock.trinket{border-top:none}.inventoryPage-item.trinket .itemViewStatBlock-stat{border-top:1px solid #ccc;border-bottom:none}.itemView-action-convertForm{position:relative;padding-bottom:20px}.mh-improved-item-open-controls{position:absolute;top:30px;right:0;left:0;display:flex;flex:1 1 100%;flex-flow:row wrap;gap:5px;align-items:center;justify-content:center;margin-top:7px}
+`;
+    }
+  });
+  var getLinkMarkup, addLinks, addQuantityButtons, updateItemView, shortenRecipeGoldHint, init14, better_item_view_default, init_better_item_view = __esm({
+    "src/modules/better-item-view/index.js"() {
+      init_utils2();
+      init_hover_item();
+      init_settings7();
+      init_styles15();
+      getLinkMarkup = (name, id) => makeLink("MHCT", `https://api.mouse.rip/mhct-redirect-item/${id}`, !0) + makeLink("Wiki", `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(" ", "_"))}`, !0), addLinks = (itemId) => {
+        let title = document.querySelector(".itemView-header-name");
+        if (!title)
+          return;
+        let currentLinks = document.querySelector(".mh-item-links");
+        currentLinks && currentLinks.remove();
+        let div = document.createElement("div");
+        div.classList.add("mh-item-links"), div.innerHTML = getLinkMarkup(title.innerText, itemId), title.append(div);
+        let values = document.querySelector(".mouseView-values"), desc = document.querySelector(".mouseView-descriptionContainer");
+        values && desc && desc.insertBefore(values, desc.firstChild);
+      }, addQuantityButtons = (itemView) => {
+        let quantityForm = itemView.querySelector(".itemView-action-convertForm");
+        if (!quantityForm)
+          return;
+        let input = quantityForm.querySelector(".itemView-action-convert-quantity");
+        if (!input)
+          return;
+        let quantity = quantityForm.innerText.split("/");
+        if (!quantity || quantity.length !== 2)
+          return;
+        let maxQty = Number.parseInt(quantity[1].trim(), 10), openControls = makeElement("div", ["mh-improved-item-open-controls"]);
+        makeMathButtons([1, 3, 5, 10], {
+          appendTo: openControls,
+          input,
+          maxQty,
+          classNames: ["mh-improved-item-qty", "tiny", "gray"]
+        });
+        let openMaxButton = makeElement("a", ["mousehuntActionButton", "lightBlue", "tiny", "mh-improved-shop-buy-max"]), openMaxButtonText = makeElement("span", "", "Max");
+        openMaxButton.append(openMaxButtonText);
+        let hasMaxed = !1;
+        openMaxButton.addEventListener("click", () => {
+          hasMaxed ? (input.value = 0, openMaxButtonText.innerText = "Max") : (input.value = maxQty, openMaxButtonText.innerText = "Reset"), hasMaxed = !hasMaxed;
+        }), openControls.append(openMaxButton), quantityForm.append(openControls);
+      }, updateItemView = () => __async(void 0, null, function* () {
+        let itemView = document.querySelector(".itemViewContainer");
+        if (!itemView)
+          return;
+        let itemId = itemView.getAttribute("data-item-id");
+        if (!itemId)
+          return;
+        let sidebar = document.querySelector(".itemView-sidebar");
+        if (sidebar) {
+          let crafting = document.querySelector(".itemView-action.crafting_item");
+          crafting && sidebar.append(crafting);
+          let smashing = document.querySelector(".itemView-partsContainer");
+          if (smashing && (sidebar.append(smashing), !smashing.getAttribute("data-has-changed-title"))) {
+            let smashingTitle = smashing.querySelector("b");
+            smashingTitle && (smashingTitle.innerText = "Hunter's Hammer to get:", smashing.setAttribute("data-has-changed-title", "true"), smashing.innerHtml = smashing.innerHTML.replace("If you smash it, you'll get:", ""));
+          }
+        }
+        let obtainHint = document.querySelector(".itemView-obtainHint"), description = document.querySelector(".itemView-description");
+        if (obtainHint && description && description.after(obtainHint), itemView.classList.contains("base") || itemView.classList.contains("weapon") || itemView.classList.contains("skin")) {
+          let thumbnailContainer = itemView.querySelector(".itemView-thumbnailContainer");
+          if (thumbnailContainer) {
+            let thumbnail = thumbnailContainer.querySelector(".itemView-thumbnail"), fullSize = thumbnailContainer.querySelector("a");
+            thumbnail && fullSize && fullSize.getAttribute("data-image") && (thumbnail.style.backgroundImage = `url(${fullSize.getAttribute("data-image")})`, thumbnail.style.backgroundSize = "contain", itemView.classList.contains("base") && (thumbnail.style.backgroundPositionY = "-100px"));
+          }
+        }
+        if (addLinks(itemId), addQuantityButtons(itemView), !getSetting("better-item-view.show-drop-rates", !0))
+          return;
+        let id = Number.parseInt(itemId, 10);
+        if ([
+          2473,
+          823,
+          803,
+          420,
+          1980,
+          585,
+          412,
+          2541,
+          2863
+        ].includes(id))
+          return;
+        let mhctJson = yield getArForMouse(itemId, "item");
+        if (!mhctJson || mhctJson === void 0)
+          return;
+        itemView.classList.add("mouseview-has-mhct");
+        let container = itemView.querySelector(".itemView-padding");
+        if (!container)
+          return;
+        let arWrapper = makeElement("div", "ar-wrapper"), title = makeElement("div", "ar-header"), titleText = makeElement("div", "ar-title", "Drop Rates", title);
+        makeTooltip({
+          appendTo: titleText,
+          text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noopener noreferrer">MHCT</a>.'
+        });
+        let link = makeElement("a", "ar-link", "View on MHCT \u2192");
+        link.href = `https://api.mouse.rip/mhct-redirect-item/${itemId}`, link.target = "_mhct", title.append(link), arWrapper.append(title);
+        let itemsArWrapper = makeElement("div", "item-ar-wrapper"), hasStages = mhctJson.some((itemAr) => itemAr.stage);
+        hasStages && itemsArWrapper.classList.add("has-stages"), mhctJson = mhctJson.filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0).slice(0, 10), mhctJson.forEach((itemAr) => {
+          let dropPercent = Number.parseInt(itemAr.drop_pct, 10).toFixed(2);
+          if (dropPercent !== "0.00") {
+            let itemArWrapper = makeElement("div", "mouse-ar-wrapper");
+            makeElement("div", "location", itemAr.location, itemArWrapper), hasStages && makeElement("div", "stage", itemAr.stage, itemArWrapper), makeElement("div", "cheese", itemAr.cheese, itemArWrapper), makeElement("div", "rate", `${dropPercent}%`, itemArWrapper), itemsArWrapper.append(itemArWrapper);
+          }
+        }), mhctJson.length > 0 && (arWrapper.append(itemsArWrapper), container.append(arWrapper));
+      }), shortenRecipeGoldHint = () => {
+        ["layout", "content", "actions"].forEach((layout) => {
+          onRender({
+            group: "ItemView",
+            layout,
+            after: !0,
+            callback: (data, results) => results.replaceAll("gold per piece", "gold each").replaceAll("One potion converts ", "")
+          });
+        });
+      }, init14 = () => __async(void 0, null, function* () {
+        addStyles(styles_default14, "better-item-view"), getSetting("better-item-view.show-item-hover", !0) && hover_item_default(), shortenRecipeGoldHint(), onNavigation(shortenRecipeGoldHint, {
+          page: "inventory",
+          tab: "potions"
+        }), onOverlayChange({ item: { show: updateItemView } });
+      }), better_item_view_default = {
+        id: "better-item-view",
+        name: "Better Items",
+        type: "better",
+        default: !0,
+        description: "Update the styles, show drop rates, and provide links to MHCT and MH Wiki.",
+        load: init14,
+        settings: settings_default6
+      };
+    }
+  });
+  var styles_default15, init_styles16 = __esm({
+    "src/modules/better-journal/modules/journal-gold-and-points/styles.css"() {
+      styles_default15 = `.mh-ui-gold,.mh-ui-points{position:relative;margin-left:20px}.mh-ui-gold:after,.mh-ui-points:after{position:absolute;inset:-2px 0 0 -20px;width:18px;height:18px;content:"";background-image:url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/dccbaeebbdfa745340ff9363749f35ba.png);background-position:center;background-size:contain}.mh-ui-points:after{background-image:url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/eeebc1c32b4242b95f75041be7275980.png)}
+`;
+    }
+  });
+  var wrapGoldAndPoints, main3, journal_gold_and_points_default, init_journal_gold_and_points = __esm({
+    "src/modules/better-journal/modules/journal-gold-and-points/index.js"() {
+      init_utils2();
+      init_styles16();
       wrapGoldAndPoints = (entry) => {
         if (entry.getAttribute("data-modified-points-gold") || (entry.setAttribute("data-modified-points-gold", !0), entry.querySelector(".mh-ui-points") || entry.querySelector(".mh-ui-gold")))
           return;
         let points = entry.innerHTML.match(/worth (.+?) points/i), gold = entry.innerHTML.match(/points and (.+?) gold/i);
         points && (entry.innerHTML = entry.innerHTML.replace(points[0], `worth <span class="mh-ui-points">${points[1]}</span> points`)), gold && (entry.innerHTML = entry.innerHTML.replace(gold[0], `points and <span class="mh-ui-gold">${gold[1]}</span> gold`));
-      }, main2 = () => __async(void 0, null, function* () {
-        addStyles(styles_default13, "better-journal-gold-and-points"), onJournalEntry(wrapGoldAndPoints, 2e3);
-      }), journal_gold_and_points_default = main2;
+      }, main3 = () => __async(void 0, null, function* () {
+        addStyles(styles_default15, "better-journal-gold-and-points"), onJournalEntry(wrapGoldAndPoints, 2e3);
+      }), journal_gold_and_points_default = main3;
     }
   });
-  var styles_default14, init_styles15 = __esm({
+  var styles_default16, init_styles17 = __esm({
     "src/modules/better-journal/modules/journal-history/styles.css"() {
-      styles_default14 = `.journal .content .entry .journalbody .journaldate{display:flex;justify-content:space-between}.history-timestamp{text-align:right}.journal-history-page-selector{position:absolute;top:30px;right:-50px;display:flex;gap:5px;align-items:center;padding:5px 10px;background-color:#eee;border:1px solid #5b5b5b;border-radius:0 0 10px 10px}.pagerView-section.current.page-selector{position:relative}.journal-history-page-selector .page-input{width:40px;text-align:center;border:1px solid #5b5b5b}.history-timestamp:after{display:none}
+      styles_default16 = `.journal .content .entry .journalbody .journaldate{display:flex;justify-content:space-between}.history-timestamp{text-align:right}.journal-history-page-selector{position:absolute;top:30px;right:-50px;display:flex;gap:5px;align-items:center;padding:5px 10px;background-color:#eee;border:1px solid #5b5b5b;border-radius:0 0 10px 10px}.pagerView-section.current.page-selector{position:relative}.journal-history-page-selector .page-input{width:40px;text-align:center;border:1px solid #5b5b5b}.history-timestamp:after{display:none}
 `;
     }
   });
   var makeEntriesMarkup, doPageStuff, getAllEntries, lastDate, saveToDatabase, addPageSelector, getPager, doJournalHistory, doJournalHistoryRequest, doDelayedJournalHistory, maybeDoJournalHistory, pager, journalEntries, miceThumbs, journal_history_default, init_journal_history = __esm({
     "src/modules/better-journal/modules/journal-history/index.js"() {
       init_utils2();
-      init_styles15();
+      init_styles17();
       makeEntriesMarkup = (entries) => entries.map((entry) => {
         if (entry.data && (entry = entry.data), entry = {
           id: (entry == null ? void 0 : entry.id) || 0,
@@ -6213,42 +6412,41 @@ ${e.stack}`, errorElement.append(errorText);
       }, maybeDoJournalHistory = () => {
         pager = null, (getCurrentPage() === "camp" || getCurrentPage() === "journal") && (doDelayedJournalHistory(), addEvent("ajax_response", doDelayedJournalHistory, { removeAfterFire: !0 }));
       }, journalEntries = [], miceThumbs = [], journal_history_default = () => __async(void 0, null, function* () {
-        addStyles(styles_default14, "better-journal-journal-history"), miceThumbs = yield getData("mice-thumbnails"), doDelayedJournalHistory(), onRequest("pages/journal.php", doJournalHistoryRequest), onNavigation(maybeDoJournalHistory), onJournalEntry(saveToDatabase, 1);
+        addStyles(styles_default16, "better-journal-journal-history"), miceThumbs = yield getData("mice-thumbnails"), doDelayedJournalHistory(), onRequest("pages/journal.php", doJournalHistoryRequest), onNavigation(maybeDoJournalHistory), onJournalEntry(saveToDatabase, 1);
       });
     }
   });
-  var styles_default15, init_styles16 = __esm({
+  var styles_default17, init_styles18 = __esm({
     "src/modules/better-journal/modules/journal-icons-minimal/styles.css"() {
-      styles_default15 = `.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=super_brie_cheese"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chrome_trinket"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=snowball_trinket"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]{position:relative;padding-left:20px;white-space:nowrap}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=super_brie_cheese"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chrome_trinket"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=snowball_trinket"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:before{position:absolute;top:-3px;left:-2px;display:inline-block;width:19px;height:19px;content:"";background-repeat:no-repeat;background-size:contain}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=super_brie_cheese"]:before{background-image:url(https://www.mousehuntgame.com/images/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png)}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chrome_trinket"]:before{top:-4px;left:-3px;background-image:url(https://i.mouse.rip/upscaled/7d9f0e220db8280b84b8bffe39cd803e.png);background-size:22px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"]{padding-left:20px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"]:before{left:-4px;background-image:url(https://i.mouse.rip/upscaled/8331fe131377c15fcf5c4773bde1fd8f.png)}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=snowball_trinket"]:before{top:-2px;background-image:url(https://www.mousehuntgame.com/images/items/trinkets/large/36d3d62f27e2b76944591f86229bc2f0.png)}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]{padding-left:17px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:before{left:-3px;background-image:url(https://www.mousehuntgame.com/images/items/stats/large/5da5d920ba95f944d4e5b37ae235685e.png)}.journal .entry.unstable_charm_trigger a[href*="https://www.mousehuntgame.com/item.php?item_type="]:before{display:none}.journal .entry.unstable_charm_trigger .journaltext a{padding-left:unset}
+      styles_default17 = `.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=super_brie_cheese"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chrome_trinket"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=snowball_trinket"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]{position:relative;padding-left:20px;white-space:nowrap}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=super_brie_cheese"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chrome_trinket"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=snowball_trinket"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:before{position:absolute;top:-3px;left:-2px;display:inline-block;width:19px;height:19px;content:"";background-repeat:no-repeat;background-size:contain}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=super_brie_cheese"]:before{background-image:url(https://www.mousehuntgame.com/images/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png)}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chrome_trinket"]:before{top:-4px;left:-3px;background-image:url(https://i.mouse.rip/upscaled/7d9f0e220db8280b84b8bffe39cd803e.png);background-size:22px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"]{padding-left:20px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=party_trinket"]:before{left:-4px;background-image:url(https://i.mouse.rip/upscaled/8331fe131377c15fcf5c4773bde1fd8f.png)}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=snowball_trinket"]:before{top:-2px;background-image:url(https://www.mousehuntgame.com/images/items/trinkets/large/36d3d62f27e2b76944591f86229bc2f0.png)}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"],.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]{padding-left:17px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=scavenger_hunt_hint_stat_item"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:before{left:-3px;background-image:url(https://www.mousehuntgame.com/images/items/stats/large/5da5d920ba95f944d4e5b37ae235685e.png)}.journal .entry.unstable_charm_trigger a[href*="https://www.mousehuntgame.com/item.php?item_type="]:before{display:none}.journal .entry.unstable_charm_trigger .journaltext a{padding-left:unset}
 `;
     }
   });
-  var styles_default16, init_styles17 = __esm({
+  var styles_default18, init_styles19 = __esm({
     "src/modules/better-journal/modules/journal-icons/styles.css"() {
-      styles_default16 = `.entry.short.misc.custom.refine_pollutinum .journaltext a:before{display:none}.entry.short.misc.custom.refine_pollutinum .journaltext a{padding:0}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:before{left:1px}.spring_hunt_charge_trinket_effect .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chocolatium_stat_item"]:before,.spring_hunt_relic_hunter_egg_drop .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=relic_hunter_egg_convertible"]:before{display:none}.spring_hunt_charge_trinket_effect .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chocolatium_stat_item"],.spring_hunt_relic_hunter_egg_drop .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=relic_hunter_egg_convertible"]{padding-left:unset}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=storm_egg_convertible"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=prize_credit_stat_item"]:before{left:0}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"]{padding-left:22px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item"]{position:relative;padding-left:15px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item"]:before{left:0}
+      styles_default18 = `.entry.short.misc.custom.refine_pollutinum .journaltext a:before{display:none}.entry.short.misc.custom.refine_pollutinum .journaltext a{padding:0}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=map_clue_stat_item"]:before{left:1px}.spring_hunt_charge_trinket_effect .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chocolatium_stat_item"]:before,.spring_hunt_relic_hunter_egg_drop .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=relic_hunter_egg_convertible"]:before{display:none}.spring_hunt_charge_trinket_effect .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=chocolatium_stat_item"],.spring_hunt_relic_hunter_egg_drop .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=relic_hunter_egg_convertible"]{padding-left:unset}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=storm_egg_convertible"]:before,.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=prize_credit_stat_item"]:before{left:0}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"]{padding-left:22px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item"]{position:relative;padding-left:15px}.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item"]:before{left:0}
 `;
     }
   });
   var journal_icons_default, init_journal_icons = __esm({
     "src/modules/better-journal/modules/journal-icons/index.js"() {
       init_utils2();
-      init_styles16();
-      init_styles17();
+      init_styles18();
+      init_styles19();
       journal_icons_default = () => __async(void 0, null, function* () {
-        document.querySelector("#better-journal-icons") || (addStyles([styles_default16, styles_default15], "better-journal-icons"), addExternalStyles("journal-icons.css"));
+        document.querySelector("#better-journal-icons") || (addStyles([styles_default18, styles_default17], "better-journal-icons"), addExternalStyles("journal-icons.css"));
       });
     }
   });
   var journal_icons_minimal_default, init_journal_icons_minimal = __esm({
     "src/modules/better-journal/modules/journal-icons-minimal/index.js"() {
       init_utils2();
-      init_styles16();
+      init_styles18();
       journal_icons_minimal_default = () => __async(void 0, null, function* () {
-        addStyles(styles_default15, "better-journal-icons-minimal");
+        addStyles(styles_default17, "better-journal-icons-minimal");
       });
     }
   });
-  // dist/data/journal-item-colors.json
   var journal_item_colors_default, init_journal_item_colors = __esm({
     "dist/data/journal-item-colors.json"() {
       journal_item_colors_default = { scavenger_hunt_hint_stat_item: "#1e831e", map_clue_stat_item: "#1e831e", fulminas_gift_convertible: "#a012a0", chrome_trinket: "#8b9ec8", snowball_trinket: "#1f719e", ultimate_trinket: "#068987", front_cover_torn_page: "#7a5b2d", back_cover_torn_page: "#7a5b2d", gnawnia_torn_page: "#7a5b2d", dojo_torn_page: "#7a5b2d", deep_mouse_torn_page: "#7a5b2d", rift_notes_1_torn_page: "#7a5b2d", rift_notes_2_torn_page: "#7a5b2d", rift_notes_3_torn_page: "#7a5b2d", whisker_woods_rift_torn_page: "#7a5b2d", dark_magi_torn_page: "#7a5b2d", king_scarab_torn_page: "#7a5b2d", shattered_carmine_1_torn_page: "#7a5b2d", shattered_carmine_2_torn_page: "#7a5b2d", soapy_oasis_pattern_crafting_item: "#7a5b2d", soapy_phantasmic_pattern_crafting_item: "#7a5b2d", polluted_chrome_monstrobot_pattern_crafting_item: "#7a5b2d", noxious_school_of_sharks_pattern_crafting_item: "#7a5b2d", cursed_gold_stat_item: "#4d631a", temporal_plate_crafting_item: "#a66bc5", draconic_geyser_trap_crafting_item: "#ea4224", golden_goose_stat_item: "#e27a11", zugzwang_sock_collectible: "#493fac", washboard_base_blueprints_crafting_item: "#5792c0", repear_perch_blueprint_crafting_item: "#5792c0", polluted_base_blueprints_crafting_item: "#5792c0", summer_key_shard_crafting_item: "#388d18", spring_key_shard_crafting_item: "#a39600", winter_key_shard_crafting_item: "#51b2db", fall_key_shard_crafting_item: "#fc6617", minuscule_photo_album_message_item: "#af8146", frozen_sealed_bottle_message_item: "#7db9c8", corrupt_trident_collectible: "#f46a4f", ancient_amulet_collectible: "#fb9231", zugzwangs_leftover_rock: "#0cc1e8", ascended_elder_glasses_collectible: "#986787", contaminated_crumb_cake_collectible: "#a39800", red_button_collectible: "#eb1b22", rift_valour_supply_kit_convertible: "#03bfbf", crystallized_fossil_collectible: "#3f5edc", shufflers_kit_convertible: "#839a38", optic_receiver_collectible: "#020202", rare_map_dust_stat_item: "#8e8e48", calming_trinket: "#cc3015", baitkeep_trinket: "#50929c", teddy_bear_message_item: "#976d51", sandblasted_metal_crafting_item: "#af8146", valour_rift_tower_collectible: "#bc8625", folklore_companion_vol_1_3_collectible: "#a5b138", enchanted_page_collectible: "#83be89", fulmina_tooth_crafting_item: "#c598dc", bristle_woods_rift_theme_scrap_I_crafting_item: "#0060ff", bristle_woods_rift_theme_scrap_II_crafting_item: "#0060ff", bristle_woods_rift_theme_scrap_III_crafting_item: "#0060ff", burroughs_rift_theme_scrap_1_crafting_item: "#0060ff", burroughs_rift_theme_scrap_2_crafting_item: "#0060ff", burroughs_rift_theme_scrap_3_crafting_item: "#0060ff", chrome_theme_scrap_1_crafting_item: "#0060ff", chrome_theme_scrap_2_crafting_item: "#0060ff", chrome_theme_scrap_3_crafting_item: "#0060ff", labyrinth_theme_scrap_1_crafting_item: "#0060ff", labyrinth_theme_scrap_2_crafting_item: "#0060ff", labyrinth_theme_scrap_3_crafting_item: "#0060ff", labyrinth_theme_scrap_4_crafting_item: "#0060ff", labyrinth_theme_scrap_5_crafting_item: "#0060ff", labyrinth_theme_scrap_6_crafting_item: "#0060ff", lightning_slayer_theme_scrap_1_crafting_item: "#0060ff", lightning_slayer_theme_scrap_2_crafting_item: "#0060ff", lightning_slayer_theme_scrap_3_crafting_item: "#0060ff", living_garden_theme_scrap_1_crafting_item: "#0060ff", living_garden_theme_scrap_2_crafting_item: "#0060ff", living_garden_theme_scrap_3_crafting_item: "#0060ff", moussu_picchu_theme_scrap_1_crafting_item: "#0060ff", moussu_picchu_theme_scrap_2_crafting_item: "#0060ff", moussu_picchu_theme_scrap_3_crafting_item: "#0060ff", polluted_theme_scrap_1_crafting_item: "#0060ff", polluted_theme_scrap_2_crafting_item: "#0060ff", polluted_theme_scrap_3_crafting_item: "#0060ff", queso_theme_scrap_i_crafting_item: "#0060ff", queso_theme_scrap_ii_crafting_item: "#0060ff", queso_theme_scrap_iii_crafting_item: "#0060ff", regal_theme_half_one_crafting_item: "#0060ff", regal_theme_half_two_crafting_item: "#0060ff", relic_hunter_theme_scrap_1_crafting_item: "#0060ff", relic_hunter_theme_scrap_2_crafting_item: "#0060ff", relic_hunter_theme_scrap_3_crafting_item: "#0060ff", relic_hunter_theme_scrap_4_crafting_item: "#0060ff", relic_hunter_theme_scrap_9_crafting_item: "#0060ff", relic_hunter_theme_scrap_5_crafting_item: "#0060ff", relic_hunter_theme_scrap_6_crafting_item: "#0060ff", relic_hunter_theme_scrap_7_crafting_item: "#0060ff", relic_hunter_theme_scrap_8_crafting_item: "#0060ff", ggg_theme_scrap_2_crafting_item: "#0060ff", ggg_theme_scrap_3_crafting_item: "#0060ff", ggg_theme_scrap_1_crafting_item: "#0060ff", regal_codex_page_stat_item: "#6b0b6b", chrome_bit_stat_item: "#6590e2" };
@@ -6263,16 +6461,16 @@ ${e.stack}`, errorElement.append(errorText);
       });
     }
   });
-  var styles_default17, init_styles18 = __esm({
+  var styles_default19, init_styles20 = __esm({
     "src/modules/better-journal/modules/journal-list/styles.css"() {
-      styles_default17 = `ul.better-journal-list{margin-left:15px;list-style:disc}.better-journal-list a:after{content:""!important}.journal .content .entry .journaltext .better-journal-list{line-height:16px}.journal .content .entry.bountifulBeanstalk-defeatedGiant .journaltext ul{margin-top:-15px;line-height:21px;list-style:disc}.journal .content .entry.bountifulBeanstalk-defeatedGiant .journaltext li{margin-left:20px}
+      styles_default19 = `ul.better-journal-list{margin-left:15px;list-style:disc}.better-journal-list a:after{content:""!important}.journal .content .entry .journaltext .better-journal-list{line-height:16px}.journal .content .entry.bountifulBeanstalk-defeatedGiant .journaltext ul{margin-top:-15px;line-height:21px;list-style:disc}.journal .content .entry.bountifulBeanstalk-defeatedGiant .journaltext li{margin-left:20px}
 `;
     }
   });
   var classesToCheck, otherStrings, classesToSkip, makeListItems, allItems2, linkItems, splitText, getItemsFromText, addClassesToLiAndUl, formatAsList, journal_list_default, init_journal_list = __esm({
     "src/modules/better-journal/modules/journal-list/index.js"() {
       init_utils2();
-      init_styles18();
+      init_styles20();
       classesToCheck = {
         loot: [
           "bonuscatchsuccess",
@@ -6374,22 +6572,21 @@ ${e.stack}`, errorElement.append(errorText);
         let { newText, list } = yield getItemsFromText(type, text);
         list.length > 0 && newText !== text.innerHTML && (text.innerHTML = newText, type !== "hasListNeedsClasses" && text.append(makeListItems(list)));
       }), journal_list_default = () => __async(void 0, null, function* () {
-        addStyles(styles_default17, "better-journal-list"), linkItems = getSetting("better-journal-list.link-all-items"), onJournalEntry(formatAsList, 3e3);
+        addStyles(styles_default19, "better-journal-list"), linkItems = getSetting("better-journal-list.link-all-items"), onJournalEntry(formatAsList, 3e3);
       });
     }
   });
-  var styles_default18, init_styles19 = __esm({
+  var styles_default20, init_styles21 = __esm({
     "src/modules/better-journal/modules/journal-replacements/styles.css"() {
-      styles_default18 = `.itemtransaction p.mhi-x-entry{display:inline}.itemtransaction p.mhi-x-entry .dot,.entry.short.relicHunter_catch br{display:none}
+      styles_default20 = `.itemtransaction p.mhi-x-entry{display:inline}.itemtransaction p.mhi-x-entry .dot,.entry.short.relicHunter_catch br{display:none}
 `;
     }
   });
   var replacements, replaceInEntry, updateLog, updateMouseImageLinks, updateItemLinks, shouldSkip, processEntry, journal_replacements_default, init_journal_replacements = __esm({
     "src/modules/better-journal/modules/journal-replacements/index.js"() {
       init_utils2();
-      init_styles19();
+      init_styles21();
       replacements = [
-        // Hunt entries
         ["I sounded the Hunter's Horn and was successful in the hunt!", ""],
         ["where I was successful in my hunt! I", "and"],
         ["I went on a hunt with", "I hunted with"],
@@ -6412,7 +6609,6 @@ ${e.stack}`, errorElement.append(errorText);
         ["trap.<br><br>Additionally, the fiend pillaged", "trap, and stealing"],
         ["gold from me!", "gold."],
         ["trap.<br><br>Additionally, the power of this mouse crippled my courage, setting me back", "trap and I lost"],
-        // Map entries
         ["I successfully completed ", "Completing "],
         ["! Everyone who helped has been rewarded with", " gave me"],
         [" each!", ", I can "],
@@ -6423,7 +6619,6 @@ ${e.stack}`, errorElement.append(errorText);
         ["Poster!  The Marshall granted us our ", "Poster gave me one "],
         [/ for turning in this lawless gang of the .+?\. time to find another <b>wanted poster<\/b>/i, ""],
         [" caught ", " caught the final ", "wanted_poster-complete"],
-        // Other
         ["I should hunt and catch a Relic Hunter or visit a Cartographer to obtain a new Treasure Map!", ""],
         ["hunt and catch a Relic Hunter or ", "I can "],
         ["Treasure Map!", "Treasure Map."],
@@ -6504,10 +6699,8 @@ ${e.stack}`, errorElement.append(errorText);
         ["I used a Master Magus Wand to DOUBLE my Spell Force which caused it to shatter brilliantly!", "I used a Master Magus Wand to double my Spell Force! It shattered in a brilliant explosion of light!"],
         ["times.I can", "times. I can"],
         ["Here is the summary of loot that I earned during my studies:<br><br>", "I earned the following loot during my studies:"],
-        // Event stuff
         // SEH
         [/was.+chocolatonium.+trap!/i, ""],
-        // SEH.
         ["A chocoholic", "I caught a bonus"],
         ["A chocolate-crazed", "I caught a bonus"],
         ["A voracious", "I caught a bonus"],
@@ -6520,7 +6713,6 @@ ${e.stack}`, errorElement.append(errorText);
         ["A sugar-induced", "I caught a bonus"],
         ["Eggstra Fondue extracted", "My Eggstra Fondue extracted"],
         ["Additionally my Eggstra Fondue also extracted", "And"],
-        // KGA.
         ["Prize Pack!<br><br><b>", "Prize Pack!<b>"]
       ], replaceInEntry = (entry) => {
         if (entry.getAttribute("data-replaced"))
@@ -6577,7 +6769,7 @@ ${e.stack}`, errorElement.append(errorText);
       }, processEntry = (entry) => __async(void 0, null, function* () {
         shouldSkip(entry) || (replaceInEntry(entry), updateLog(entry), updateMouseImageLinks(entry), updateItemLinks(entry));
       }), journal_replacements_default = () => __async(void 0, null, function* () {
-        addStyles(styles_default18, "better-journal-replacements"), onJournalEntry(processEntry, 500);
+        addStyles(styles_default20, "better-journal-replacements"), onJournalEntry(processEntry, 500);
       });
     }
   });
@@ -6797,6 +6989,24 @@ ${e.stack}`, errorElement.append(errorText);
 `;
     }
   });
+  var ssdb_default, init_ssdb = __esm({
+    "src/modules/better-journal/modules/journal-styles/styles/custom-entries/base/ssdb.css"() {
+      ssdb_default = `.journal .content .entry.short.misc.custom.denture_base_decay_trigger{background-blend-mode:lighten}
+`;
+    }
+  });
+  var gem_default, init_gem = __esm({
+    "src/modules/better-journal/modules/journal-styles/styles/custom-entries/base/gem.css"() {
+      gem_default = `.journal .entry.refractorBaseEffect-empyrean_jewel_base{background-color:#16f99b7f;background-image:url(https://i.mouse.rip/upscaled/bases/0314ad5d2428777c9ff0e91bdc803218.png);background-size:50px}.journal .entry.refractorBaseEffect-royal_ruby_refractor_base{background-color:#f44b917f;background-image:url(https://i.mouse.rip/upscaled/bases/24e306ffd63ef1c14412597ed995f2ca.png);background-size:50px}.journal .entry.refractorBaseEffect-sorcerers_sapphire_refractor_base{background-color:#72d5ff7f;background-image:url(https://i.mouse.rip/upscaled/bases/5686d2d3f6106d95ce2966db6400c639.png);background-size:50px}.journal .entry.refractorBaseEffect-dragons_breath_opal_refractor_base{background-color:#d89bca7f;background-image:url(https://www.mousehuntgame.com/images/newsposts/2024/jewel_bases/new_refractor_base_thumbnail.gif);background-size:50px}.journal .entry.refractorBaseEffect-empyrean_jewel_base .journaltext,.journal .entry.refractorBaseEffect-royal_ruby_refractor_base .journaltext,.journal .entry.refractorBaseEffect-sorcerers_sapphire_refractor_base .journaltext,.journal .entry.refractorBaseEffect-dragons_breath_opal_refractor_base .journaltext{margin-left:60px}
+`;
+    }
+  });
+  var alchemist_cookbook_default, init_alchemist_cookbook = __esm({
+    "src/modules/better-journal/modules/journal-styles/styles/custom-entries/base/alchemist-cookbook.css"() {
+      alchemist_cookbook_default = `.journal .content .entry.alchemists_cookbook_base_bonus .journalbody{margin-left:80px}.journal .entry.alchemists_cookbook_base_bonus{background-position:5px;box-shadow:inset 0 0 20px #ae3fa4}
+`;
+    }
+  });
   var torch_default, init_torch = __esm({
     "src/modules/better-journal/modules/journal-styles/styles/custom-entries/charm/torch.css"() {
       torch_default = `.entry.short.misc.custom.torch_charm_event{display:flex;align-items:center;min-height:35px;padding-left:5px;font-size:10px;line-height:15px;background-color:#dcf7ff}.entry.short.misc.custom.torch_charm_event .journalimage{width:55px}.entry.short.misc.custom.torch_charm_event .journalimage img{width:45px;height:45px}
@@ -6848,24 +7058,6 @@ ${e.stack}`, errorElement.append(errorText);
   var prize_default, init_prize = __esm({
     "src/modules/better-journal/modules/journal-styles/styles/custom-entries/catch/prize.css"() {
       prize_default = `.journal .content .catchsuccessprize{background-color:#7dea7d}.journal .content .catchsuccessprize br{display:none}
-`;
-    }
-  });
-  var ssdb_default, init_ssdb = __esm({
-    "src/modules/better-journal/modules/journal-styles/styles/custom-entries/base/ssdb.css"() {
-      ssdb_default = `.journal .content .entry.short.misc.custom.denture_base_decay_trigger{background-blend-mode:lighten}
-`;
-    }
-  });
-  var gem_default, init_gem = __esm({
-    "src/modules/better-journal/modules/journal-styles/styles/custom-entries/base/gem.css"() {
-      gem_default = `.journal .entry.refractorBaseEffect-empyrean_jewel_base{background-color:#16f99b7f;background-image:url(https://i.mouse.rip/upscaled/bases/0314ad5d2428777c9ff0e91bdc803218.png);background-size:50px}.journal .entry.refractorBaseEffect-royal_ruby_refractor_base{background-color:#f44b917f;background-image:url(https://i.mouse.rip/upscaled/bases/24e306ffd63ef1c14412597ed995f2ca.png);background-size:50px}.journal .entry.refractorBaseEffect-sorcerers_sapphire_refractor_base{background-color:#72d5ff7f;background-image:url(https://i.mouse.rip/upscaled/bases/5686d2d3f6106d95ce2966db6400c639.png);background-size:50px}.journal .entry.refractorBaseEffect-dragons_breath_opal_refractor_base{background-color:#d89bca7f;background-image:url(https://www.mousehuntgame.com/images/newsposts/2024/jewel_bases/new_refractor_base_thumbnail.gif);background-size:50px}.journal .entry.refractorBaseEffect-empyrean_jewel_base .journaltext,.journal .entry.refractorBaseEffect-royal_ruby_refractor_base .journaltext,.journal .entry.refractorBaseEffect-sorcerers_sapphire_refractor_base .journaltext,.journal .entry.refractorBaseEffect-dragons_breath_opal_refractor_base .journaltext{margin-left:60px}
-`;
-    }
-  });
-  var alchemist_cookbook_default, init_alchemist_cookbook = __esm({
-    "src/modules/better-journal/modules/journal-styles/styles/custom-entries/base/alchemist-cookbook.css"() {
-      alchemist_cookbook_default = `.journal .content .entry.alchemists_cookbook_base_bonus .journalbody{margin-left:80px}.journal .entry.alchemists_cookbook_base_bonus{background-position:5px;box-shadow:inset 0 0 20px #ae3fa4}
 `;
     }
   });
@@ -6926,6 +7118,9 @@ ${e.stack}`, errorElement.append(errorText);
       init_vrift();
       init_iceberg();
       init_bwrift();
+      init_ssdb();
+      init_gem();
+      init_alchemist_cookbook();
       init_torch();
       init_unstable();
       init_rift_vacuum();
@@ -6935,13 +7130,10 @@ ${e.stack}`, errorElement.append(errorText);
       init_failure();
       init_lucky();
       init_prize();
-      init_ssdb();
-      init_gem();
-      init_alchemist_cookbook();
       init_stuck_snowball();
       init_valentines();
       init_glazy();
-      imported3 = [fullstop_default, backgrounds_default2, progress_log_default, general_default2, date_hiding_default, events_default, draw_winner_default, kga_default, rank_up_default, ultimate_default, badge_default, larry_gift_default, maps_default2, tournaments_default, popup_default, social_gift_default, other_default2, aura_default, floating_islands_default, labyrinth_default2, frift_default, halloween_default, frox_default, folklore_forest_default, toxic_spill_default, school_default, mousoleum_default, queso_default2, wwrift_default, birthday_default, garden_default, brift_default, harbour_default, vrift_default, iceberg_default, bwrift_default, torch_default, unstable_default, rift_vacuum_default, gilded_default, ultimate_default2, bonus_default, failure_default, lucky_default, prize_default, ssdb_default, gem_default, alchemist_cookbook_default, stuck_snowball_default, valentines_default, glazy_default], styles3 = imported3, addBadgeClass = (entry) => {
+      imported3 = [fullstop_default, backgrounds_default2, progress_log_default, general_default2, date_hiding_default, events_default, draw_winner_default, kga_default, rank_up_default, ultimate_default, badge_default, larry_gift_default, maps_default2, tournaments_default, popup_default, social_gift_default, other_default2, aura_default, floating_islands_default, labyrinth_default2, frift_default, halloween_default, frox_default, folklore_forest_default, toxic_spill_default, school_default, mousoleum_default, queso_default2, wwrift_default, birthday_default, garden_default, brift_default, harbour_default, vrift_default, iceberg_default, bwrift_default, ssdb_default, gem_default, alchemist_cookbook_default, torch_default, unstable_default, rift_vacuum_default, gilded_default, ultimate_default2, bonus_default, failure_default, lucky_default, prize_default, stuck_snowball_default, valentines_default, glazy_default], styles3 = imported3, addBadgeClass = (entry) => {
         if (!entry || !entry.classList.contains("badge"))
           return;
         let badgeType = entry.querySelector(".journalimage img");
@@ -6964,18 +7156,18 @@ ${e.stack}`, errorElement.append(errorText);
       });
     }
   });
-  var styles_default19, init_styles20 = __esm({
+  var styles_default21, init_styles22 = __esm({
     "src/modules/better-journal/modules/journal-tags/styles.css"() {
-      styles_default19 = `.journal .content .catchsuccessloot,.journal .content .attractionfailure,.journal .content .catchfailure,.journal .content .luckycatchsuccess,.journal .content .passive,.journal .content .linked{position:relative}.journal .content .catchsuccessloot:after,.journal .content .attractionfailure:after,.journal .content .catchfailure:after,.journal .content .luckycatchsuccess:after,.journal .content .passive:after,.journal .content .linked:after{position:absolute;top:10px;right:12px;left:unset;z-index:1;padding:1px 3px;font-size:9px;font-weight:700;line-height:11px;color:#fff;text-transform:uppercase;content:"";background:#53891b;border-radius:3px;opacity:0;transition:.2s}.journal .content .catchsuccessloot:hover:after,.journal .content .attractionfailure:hover:after,.journal .content .catchfailure:hover:after,.journal .content .luckycatchsuccess:hover:after,.journal .content .passive:hover:after,.journal .content .linked:hover:after{opacity:1}.journal .content .bonuscatchsuccess:after,.journal .content .bonuscatchfailure:after{opacity:0;transition:opacity .3s}.journal .content .bonuscatchsuccess:hover:after,.journal .content .bonuscatchfailure:hover:after{opacity:1}.journal .content .catchsuccessloot:after{content:"Catch";background:#53891b}.journal .content .catchfailure:after{content:"FTC";background:#891b1b}.journal .content .linked:after{content:"Friend"}.journal .content .luckycatchsuccess:after{content:"Lucky";background-color:#4ac338}.journal .content .passive:after{content:"Trap Check"}.journal .content .attractionfailure:after{content:"FTA";background:#959595}.journal .content .linked.attractionfailure:after{content:"Friend \\b7  FTA"}.journal .content .linked.catchfailure:after{content:"Friend \\b7  FTC"}.journal .content .linked.luckycatchsuccess:after{content:"Friend \\b7  Lucky"}.journal .content .passive.attractionfailure:after{content:"Trap Check \\b7  FTA"}.journal .content .passive.catchfailure:after{content:"Trap Check \\b7  FTC"}
+      styles_default21 = `.journal .content .catchsuccessloot,.journal .content .attractionfailure,.journal .content .catchfailure,.journal .content .luckycatchsuccess,.journal .content .passive,.journal .content .linked{position:relative}.journal .content .catchsuccessloot:after,.journal .content .attractionfailure:after,.journal .content .catchfailure:after,.journal .content .luckycatchsuccess:after,.journal .content .passive:after,.journal .content .linked:after{position:absolute;top:10px;right:12px;left:unset;z-index:1;padding:1px 3px;font-size:9px;font-weight:700;line-height:11px;color:#fff;text-transform:uppercase;content:"";background:#53891b;border-radius:3px;opacity:0;transition:.2s}.journal .content .catchsuccessloot:hover:after,.journal .content .attractionfailure:hover:after,.journal .content .catchfailure:hover:after,.journal .content .luckycatchsuccess:hover:after,.journal .content .passive:hover:after,.journal .content .linked:hover:after{opacity:1}.journal .content .bonuscatchsuccess:after,.journal .content .bonuscatchfailure:after{opacity:0;transition:opacity .3s}.journal .content .bonuscatchsuccess:hover:after,.journal .content .bonuscatchfailure:hover:after{opacity:1}.journal .content .catchsuccessloot:after{content:"Catch";background:#53891b}.journal .content .catchfailure:after{content:"FTC";background:#891b1b}.journal .content .linked:after{content:"Friend"}.journal .content .luckycatchsuccess:after{content:"Lucky";background-color:#4ac338}.journal .content .passive:after{content:"Trap Check"}.journal .content .attractionfailure:after{content:"FTA";background:#959595}.journal .content .linked.attractionfailure:after{content:"Friend \\b7  FTA"}.journal .content .linked.catchfailure:after{content:"Friend \\b7  FTC"}.journal .content .linked.luckycatchsuccess:after{content:"Friend \\b7  Lucky"}.journal .content .passive.attractionfailure:after{content:"Trap Check \\b7  FTA"}.journal .content .passive.catchfailure:after{content:"Trap Check \\b7  FTC"}
 `;
     }
   });
   var journal_tags_default, init_journal_tags = __esm({
     "src/modules/better-journal/modules/journal-tags/index.js"() {
       init_utils2();
-      init_styles20();
+      init_styles22();
       journal_tags_default = () => __async(void 0, null, function* () {
-        addStyles(styles_default19, "journal-tags");
+        addStyles(styles_default21, "journal-tags");
       });
     }
   });
@@ -6985,15 +7177,15 @@ ${e.stack}`, errorElement.append(errorText);
 `;
     }
   });
-  var styles_default20, init_styles21 = __esm({
+  var styles_default22, init_styles23 = __esm({
     "src/modules/better-journal/styles/styles.css"() {
-      styles_default20 = `.journal .entry .journalbody .journaltext{font-size:11px}.journal .entry .journalbody .journaltext p{margin:0;font-size:11px}.journaltext .lucky:after{width:14px;height:14px;background-image:url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png);background-size:cover}
+      styles_default22 = `.journal .entry .journalbody .journaltext{font-size:11px}.journal .entry .journalbody .journaltext p{margin:0;font-size:11px}.journaltext .lucky:after{width:14px;height:14px;background-image:url(https://www.mousehuntgame.com/images/ui/camp/trap/stat_luck.png);background-size:cover}
 `;
     }
   });
-  var settings_default6, init_settings7 = __esm({
+  var settings_default7, init_settings8 = __esm({
     "src/modules/better-journal/settings/index.js"() {
-      settings_default6 = () => __async(void 0, null, function* () {
+      settings_default7 = () => __async(void 0, null, function* () {
         return [
           {
             id: "better-journal.styles",
@@ -7041,7 +7233,7 @@ ${e.stack}`, errorElement.append(errorText);
       });
     }
   });
-  var init14, better_journal_default, init_better_journal = __esm({
+  var init15, better_journal_default, init_better_journal = __esm({
     "src/modules/better-journal/index.js"() {
       init_utils2();
       init_journal_gold_and_points();
@@ -7054,10 +7246,10 @@ ${e.stack}`, errorElement.append(errorText);
       init_journal_styles();
       init_journal_tags();
       init_list_and_icons();
-      init_styles21();
-      init_settings7();
-      init14 = () => __async(void 0, null, function* () {
-        addStyles(styles_default20, "better-journal");
+      init_styles23();
+      init_settings8();
+      init15 = () => __async(void 0, null, function* () {
+        addStyles(styles_default22, "better-journal");
         let enabled = {
           styles: getSetting("better-journal.styles", !0),
           list: getSetting("better-journal.list", !1),
@@ -7093,239 +7285,6 @@ ${e.stack}`, errorElement.append(errorText);
         type: "better",
         default: !0,
         description: "Modify the journal text, layout, and styling.",
-        load: init14,
-        settings: settings_default6
-      };
-    }
-  });
-  var error_reporting_default, init_error_reporting = __esm({
-    "src/modules/error-reporting/index.js"() {
-      error_reporting_default = {
-        id: "error-reporting",
-        name: "Error Reporting",
-        type: "advanced",
-        description: "Send anonymous error reports to the developers.",
-        default: !0,
-        order: 1e3,
-        load: () => {
-        }
-      };
-    }
-  });
-  var styles_default21, init_styles22 = __esm({
-    "src/modules/better-item-view/modules/hover-item/styles.css"() {
-      styles_default21 = `#item-data-wrapper{position:absolute;z-index:999999;box-sizing:border-box;display:block;width:300px;height:100px;background:linear-gradient(#decebb 5%,#f0eddf 50%);border:1px solid #9a8872;border-radius:10px;box-shadow:0 1px 5px -1px #5e5e5e}.item-data-wrapper-loading{display:flex;align-items:flex-end;justify-content:center;height:90%;background-image:url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif);background-repeat:no-repeat;background-position:center;background-size:55px}#item-data-wrapper .item-data{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:center;height:95px}#item-data-wrapper .item-image{height:80px;margin-left:10px;background-color:#fff;border:1px solid #25211e;border-radius:5px}#item-data-wrapper .item-text{display:flex;flex-direction:column;justify-content:space-around;height:80px;margin-right:10px}#item-data-wrapper .item-name{width:160px;font-size:12px;font-weight:900}
-`;
-    }
-  });
-  var fetchItemData, makeItemMarkup, makeLoadingMarkup, itemDataWrapper, main3, hover_item_default, init_hover_item = __esm({
-    "src/modules/better-item-view/modules/hover-item/index.js"() {
-      init_utils2();
-      init_styles22();
-      fetchItemData = (itemId) => __async(void 0, null, function* () {
-        var _a;
-        let itemDataRequest = yield doRequest("managers/ajax/users/userInventory.php", {
-          action: "get_items",
-          "item_types[]": itemId
-        });
-        return (_a = itemDataRequest == null ? void 0 : itemDataRequest.items) == null ? void 0 : _a[0];
-      }), makeItemMarkup = (item) => {
-        if (!item)
-          return !1;
-        let itemData = makeElement("div", "item-data"), itemImage = makeElement("img", "item-image");
-        itemImage.src = item.thumbnail, itemData.append(itemImage);
-        let itemText = makeElement("div", "item-text");
-        makeElement("div", "item-name", item.name, itemText);
-        let quantity = makeElement("div", "item-quanity");
-        makeElement("span", "", "You own: ", quantity), makeElement("span", "", item.quantity.toLocaleString(), quantity), itemText.append(quantity);
-        let description = makeElement("div", "item-description"), firstSentence = item.description.match(/[^!.?]+[!.?]/);
-        return makeElement("div", "item-description-text", firstSentence ? firstSentence[0] : item.description, description), itemData.append(itemText), itemData;
-      }, makeLoadingMarkup = (e) => {
-        itemDataWrapper && itemDataWrapper.remove(), itemDataWrapper = makeElement("div", "item-data-wrapper"), itemDataWrapper.id = "item-data-wrapper", itemDataWrapper.innerHTML = '<span class="item-data-wrapper-loading">Loading...</span>', document.body.append(itemDataWrapper);
-        let rect = e.target.getBoundingClientRect(), top = rect.top + window.scrollY, left = rect.left + window.scrollX, tooltipTop = top - itemDataWrapper.offsetHeight - 10;
-        return tooltipTop < 0 && (tooltipTop = top + rect.height + 10), itemDataWrapper.style.top = `${tooltipTop}px`, itemDataWrapper.style.left = `${left - itemDataWrapper.offsetWidth / 2 + rect.width / 2}px`, itemDataWrapper;
-      }, main3 = () => {
-        let itemLinks = document.querySelectorAll('.journal .content .entry .journaltext a[onclick*="ItemView.show"]');
-        itemLinks && itemLinks.forEach((link) => {
-          let itemType = link.getAttribute("onclick").match(/'([^']+)'/)[1];
-          link.setAttribute("onclick", `hg.views.ItemView.show('${itemType}'); return false;`);
-          let timeoutId = null, isMouseOver = !1;
-          link.addEventListener("mouseenter", (e) => __async(void 0, null, function* () {
-            isMouseOver = !0, timeoutId && clearTimeout(timeoutId), timeoutId = setTimeout(() => __async(void 0, null, function* () {
-              if (!isMouseOver)
-                return;
-              makeLoadingMarkup(e);
-              let itemData = yield fetchItemData(itemType);
-              if (itemData && itemDataWrapper && isMouseOver) {
-                let markup = makeItemMarkup(itemData);
-                itemDataWrapper.innerHTML = markup.outerHTML;
-              }
-            }), 500);
-          })), link.addEventListener("mouseleave", () => {
-            isMouseOver = !1, timeoutId && clearTimeout(timeoutId), itemDataWrapper && itemDataWrapper.remove();
-          });
-        });
-      }, hover_item_default = () => {
-        addStyles(styles_default21, "better-item-view-hover-item"), setTimeout(main3, 500), onRequest("*", () => {
-          setTimeout(main3, 1e3);
-        });
-      };
-    }
-  });
-  var settings_default7, init_settings8 = __esm({
-    "src/modules/better-item-view/settings/index.js"() {
-      settings_default7 = () => __async(void 0, null, function* () {
-        return [
-          {
-            id: "better-item-view.show-drop-rates",
-            title: "Show drop rates",
-            default: !0
-          },
-          {
-            id: "better-item-view.show-item-hover",
-            title: "Show item details on hover (in journal)",
-            default: !0
-          }
-        ];
-      });
-    }
-  });
-  var styles_default22, init_styles23 = __esm({
-    "src/modules/better-item-view/styles.css"() {
-      styles_default22 = `.itemView-titleContainer{height:26px}.itemView-header-name{display:flex;align-items:center;justify-content:space-between}.mh-item-links{display:flex;justify-content:flex-end;margin-right:-10px}.mh-item-links a{margin-right:5px}.itemView-header-name .mh-item-links span{display:inline-block;font-size:11px;font-weight:400}.mouseview-has-mhct .mouse-ar-wrapper{display:grid;grid-template-columns:1fr 1fr 50px;gap:10px;place-items:center stretch;width:auto;padding:5px;font-size:12px}.itemViewPopup .mouseview-has-mhct .mouse-ar-wrapper{padding:5px 7px 5px 5px}.mouseview-has-mhct .has-stages .mouse-ar-wrapper{grid-template-columns:1fr 1fr 1fr 50px}.itemView-has-mhct .mouse-ar-wrapper div{padding:0 2px}.itemView-has-mhct .mice-ar-wrapper{margin-right:10px}.mouse-ar-wrapper .stage{font-size:10px}.mouse-ar-wrapper .cheese{font-size:11px}.itemView-has-mhct .ar-header{display:flex;align-items:center;justify-content:space-between;height:26px;padding-bottom:2px;margin-top:10px;margin-bottom:10px;font-size:12px;font-weight:900;border-bottom:1px solid #ccc}.itemView-has-mhct .ar-link{font-size:9px}.itemView-has-mhct .rate{text-align:right}.itemView-has-mhct .mouse-ar-wrapper:nth-child(odd){background-color:#e7e7e7}.itemView-has-mhct .itemView-description{font-weight:500;line-height:19px}.itemView-action.crafting_item b{display:none}.itemView-action.crafting_item:before{content:"This can be used to craft other items!"}.itemViewContainer.map_piece .itemView-action-text.map_piece,.itemViewContainer.base .itemView-action-text.base,.itemViewContainer.weapon .itemView-actio-textn.weapon,.itemViewContainer.bait .itemView-action-text.bait,.itemViewContainer.trinket .itemView-action-text.trinket,.itemViewContainer.potion .itemView-action-text.potion,.itemViewContainer.readiness_item .itemView-action-text.readiness_item,.itemViewContainer.convertible .itemView-action-text.convertible,.itemViewContainer.torn_page .itemView-action-text.torn_page,.itemViewContainer.crafting_item .itemView-action-text.crafting_item,.itemViewContainer.collectible .itemView-action-text.collectible,.itemViewContainer.message_item .itemView-action-text.message_item,.itemViewContainer.bonus_loot .itemView-action-text.bonus_loot,.itemViewContainer.stat .itemView-action-text.stat,.itemViewContainer.quest .itemView-action-text.quest,.itemViewContainer.skin .itemView-action-text.skin{display:none!important}.itemViewContainer .shopCustomization .itemViewStatBlock-stat{display:flex;flex-direction:column;align-items:center}.itemViewContainer .itemViewStatBlock-stat{display:flex;flex-direction:row;align-items:center;justify-content:flex-start}.itemViewContainer .itemViewStatBlock-stat-value{flex:1;text-align:left}.itemViewContainer .itemViewStatBlock-stat.cheeseEffect{font-size:9px;text-align:center}.itemViewContainer .itemViewStatBlock.trinket .itemViewStatBlock-padding{display:flex;flex-direction:column;align-items:stretch;width:100px}.itemViewContainer .itemViewStatBlock.trinket{width:100px;font-size:13px}#overlayPopup.itemViewPopup #jsDialogClose{right:6px;z-index:1;border-top-right-radius:10px}#overlayPopup.itemViewPopup .itemView-header-classification{right:25px}.itemView-actionContainer{display:flex;flex-wrap:wrap;gap:10px}.itemView-action{border-top:none}.itemViewContainer.potion .inventoryPage-item-recipeOptions li{width:365px}.itemView-character-image{width:auto;height:84px;margin-top:-15px;margin-left:-9px}.itemView-character-name{left:-11px;width:75px;font-size:15px}.itemView-padding{margin-left:70px}.itemView-thumbnail{width:200px;height:200px;margin-left:-15px;background-repeat:no-repeat;background-position:center;background-size:contain}.itemView-thumbnail.large{background-size:100%}input.itemView-action-convert-quantity{width:50px}.itemViewPopup .itemViewStatBlock-padding{flex-direction:column}.itemView-character .itemView-character-image{transition:all .4s ease-out;transform-origin:bottom}.itemView-character:hover .itemView-character-image{transform:scale(1.2) rotate(-10deg) translate(5px)}.itemView-header-classification{visibility:hidden}.itemView-header-classification span{visibility:visible}.itemViewStatBlock-stat{display:flex;align-items:center}.itemView-sidebar-checklistItem:nth-child(1),.itemView-sidebar-checklistItem:nth-child(2),.itemView-sidebar-checklistItem.checked{display:block}.itemView-sidebar-checklistItem{background:url(https://www.mousehuntgame.com/images/icons/bad_idea.png) 1px 4px no-repeat;background-size:14px;opacity:.8}.itemView-partsContainer{display:flex;flex-direction:column;align-items:stretch;padding-top:15px;padding-bottom:10px;margin-top:15px;border-top:1px solid #666}.convertibleOpenView-item-imageContainer{margin-right:auto}.convertibleOpenView-itemContainer.num_items_1 .convertibleOpenView-item{gap:20px;width:100%}.itemView-obtainHint{margin-left:190px}.itemViewContainer iframe.socialLink-facebookLike{margin-right:5px}.convertibleOpenView-itemContainer{padding-top:10px;margin-top:0}.itemViewContainer.skin .itemView-thumbnail{background-size:cover}.inventoryPage-item.trinket .itemViewStatBlock.trinket .itemViewStatBlock-padding{overflow:hidden;border-radius:3px}.inventoryPage-item.trinket .itemViewStatBlock.trinket{border-top:none}.inventoryPage-item.trinket .itemViewStatBlock-stat{border-top:1px solid #ccc;border-bottom:none}.itemView-action-convertForm{position:relative;padding-bottom:20px}.mh-improved-item-open-controls{position:absolute;top:30px;right:0;left:0;display:flex;flex:1 1 100%;flex-flow:row wrap;gap:5px;align-items:center;justify-content:center;margin-top:7px}
-`;
-    }
-  });
-  var getLinkMarkup, addLinks, addQuantityButtons, updateItemView, shortenRecipeGoldHint, init15, better_item_view_default, init_better_item_view = __esm({
-    "src/modules/better-item-view/index.js"() {
-      init_utils2();
-      init_hover_item();
-      init_settings8();
-      init_styles23();
-      getLinkMarkup = (name, id) => makeLink("MHCT", `https://api.mouse.rip/mhct-redirect-item/${id}`, !0) + makeLink("Wiki", `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(" ", "_"))}`, !0), addLinks = (itemId) => {
-        let title = document.querySelector(".itemView-header-name");
-        if (!title)
-          return;
-        let currentLinks = document.querySelector(".mh-item-links");
-        currentLinks && currentLinks.remove();
-        let div = document.createElement("div");
-        div.classList.add("mh-item-links"), div.innerHTML = getLinkMarkup(title.innerText, itemId), title.append(div);
-        let values = document.querySelector(".mouseView-values"), desc = document.querySelector(".mouseView-descriptionContainer");
-        values && desc && desc.insertBefore(values, desc.firstChild);
-      }, addQuantityButtons = (itemView) => {
-        let quantityForm = itemView.querySelector(".itemView-action-convertForm");
-        if (!quantityForm)
-          return;
-        let input = quantityForm.querySelector(".itemView-action-convert-quantity");
-        if (!input)
-          return;
-        let quantity = quantityForm.innerText.split("/");
-        if (!quantity || quantity.length !== 2)
-          return;
-        let maxQty = Number.parseInt(quantity[1].trim(), 10), openControls = makeElement("div", ["mh-improved-item-open-controls"]);
-        makeMathButtons([1, 3, 5, 10], {
-          appendTo: openControls,
-          input,
-          maxQty,
-          classNames: ["mh-improved-item-qty", "tiny", "gray"]
-        });
-        let openMaxButton = makeElement("a", ["mousehuntActionButton", "lightBlue", "tiny", "mh-improved-shop-buy-max"]), openMaxButtonText = makeElement("span", "", "Max");
-        openMaxButton.append(openMaxButtonText);
-        let hasMaxed = !1;
-        openMaxButton.addEventListener("click", () => {
-          hasMaxed ? (input.value = 0, openMaxButtonText.innerText = "Max") : (input.value = maxQty, openMaxButtonText.innerText = "Reset"), hasMaxed = !hasMaxed;
-        }), openControls.append(openMaxButton), quantityForm.append(openControls);
-      }, updateItemView = () => __async(void 0, null, function* () {
-        let itemView = document.querySelector(".itemViewContainer");
-        if (!itemView)
-          return;
-        let itemId = itemView.getAttribute("data-item-id");
-        if (!itemId)
-          return;
-        let sidebar = document.querySelector(".itemView-sidebar");
-        if (sidebar) {
-          let crafting = document.querySelector(".itemView-action.crafting_item");
-          crafting && sidebar.append(crafting);
-          let smashing = document.querySelector(".itemView-partsContainer");
-          if (smashing && (sidebar.append(smashing), !smashing.getAttribute("data-has-changed-title"))) {
-            let smashingTitle = smashing.querySelector("b");
-            smashingTitle && (smashingTitle.innerText = "Hunter's Hammer to get:", smashing.setAttribute("data-has-changed-title", "true"), smashing.innerHtml = smashing.innerHTML.replace("If you smash it, you'll get:", ""));
-          }
-        }
-        let obtainHint = document.querySelector(".itemView-obtainHint"), description = document.querySelector(".itemView-description");
-        if (obtainHint && description && description.after(obtainHint), itemView.classList.contains("base") || itemView.classList.contains("weapon") || itemView.classList.contains("skin")) {
-          let thumbnailContainer = itemView.querySelector(".itemView-thumbnailContainer");
-          if (thumbnailContainer) {
-            let thumbnail = thumbnailContainer.querySelector(".itemView-thumbnail"), fullSize = thumbnailContainer.querySelector("a");
-            thumbnail && fullSize && fullSize.getAttribute("data-image") && (thumbnail.style.backgroundImage = `url(${fullSize.getAttribute("data-image")})`, thumbnail.style.backgroundSize = "contain", itemView.classList.contains("base") && (thumbnail.style.backgroundPositionY = "-100px"));
-          }
-        }
-        if (addLinks(itemId), addQuantityButtons(itemView), !getSetting("better-item-view.show-drop-rates", !0))
-          return;
-        let id = Number.parseInt(itemId, 10);
-        if ([
-          2473,
-          // Mina's gift
-          823,
-          // party charm
-          803,
-          // chrome charm
-          420,
-          // king's credits
-          1980,
-          // king's keys
-          585,
-          // scrambles
-          412,
-          // sb supply pack
-          2541,
-          // RLC
-          2863
-          // Chrome bits.
-        ].includes(id))
-          return;
-        let mhctJson = yield getArForMouse(itemId, "item");
-        if (!mhctJson || mhctJson === void 0)
-          return;
-        itemView.classList.add("mouseview-has-mhct");
-        let container = itemView.querySelector(".itemView-padding");
-        if (!container)
-          return;
-        let arWrapper = makeElement("div", "ar-wrapper"), title = makeElement("div", "ar-header"), titleText = makeElement("div", "ar-title", "Drop Rates", title);
-        makeTooltip({
-          appendTo: titleText,
-          text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noopener noreferrer">MHCT</a>.'
-        });
-        let link = makeElement("a", "ar-link", "View on MHCT \u2192");
-        link.href = `https://api.mouse.rip/mhct-redirect-item/${itemId}`, link.target = "_mhct", title.append(link), arWrapper.append(title);
-        let itemsArWrapper = makeElement("div", "item-ar-wrapper"), hasStages = mhctJson.some((itemAr) => itemAr.stage);
-        hasStages && itemsArWrapper.classList.add("has-stages"), mhctJson = mhctJson.filter((itemAr) => Number.parseInt(itemAr.drop_pct, 10) > 0).slice(0, 10), mhctJson.forEach((itemAr) => {
-          let dropPercent = Number.parseInt(itemAr.drop_pct, 10).toFixed(2);
-          if (dropPercent !== "0.00") {
-            let itemArWrapper = makeElement("div", "mouse-ar-wrapper");
-            makeElement("div", "location", itemAr.location, itemArWrapper), hasStages && makeElement("div", "stage", itemAr.stage, itemArWrapper), makeElement("div", "cheese", itemAr.cheese, itemArWrapper), makeElement("div", "rate", `${dropPercent}%`, itemArWrapper), itemsArWrapper.append(itemArWrapper);
-          }
-        }), mhctJson.length > 0 && (arWrapper.append(itemsArWrapper), container.append(arWrapper));
-      }), shortenRecipeGoldHint = () => {
-        ["layout", "content", "actions"].forEach((layout) => {
-          onRender({
-            group: "ItemView",
-            layout,
-            after: !0,
-            callback: (data, results) => results.replaceAll("gold per piece", "gold each").replaceAll("One potion converts ", "")
-          });
-        });
-      }, init15 = () => __async(void 0, null, function* () {
-        addStyles(styles_default22, "better-item-view"), getSetting("better-item-view.show-item-hover", !0) && hover_item_default(), shortenRecipeGoldHint(), onNavigation(shortenRecipeGoldHint, {
-          page: "inventory",
-          tab: "potions"
-        }), onOverlayChange({ item: { show: updateItemView } });
-      }), better_item_view_default = {
-        id: "better-item-view",
-        name: "Better Items",
-        type: "better",
-        default: !0,
-        description: "Update the styles, show drop rates, and provide links to MHCT and MH Wiki.",
         load: init15,
         settings: settings_default7
       };
@@ -7904,6 +7863,20 @@ ${e.stack}`, errorElement.append(errorText);
       };
     }
   });
+  var error_reporting_default, init_error_reporting = __esm({
+    "src/modules/error-reporting/index.js"() {
+      error_reporting_default = {
+        id: "error-reporting",
+        name: "Error Reporting",
+        type: "advanced",
+        description: "Send anonymous error reports to the developers.",
+        default: !0,
+        order: 1e3,
+        load: () => {
+        }
+      };
+    }
+  });
   var styles_default26, init_styles27 = __esm({
     "src/modules/experiments/modules/square-profile-pics/styles.css"() {
       styles_default26 = `.treasureMapView-hunter-image,.treasureMapView-block-content-heading-image,.treasureMapListingsTableView-profilePic{border-radius:3px}.treasureMapView-block-content-heading-image{box-shadow:0 0 1px 1px #999}.treasureMapListingsTableView-owner{margin-top:5px}
@@ -7923,18 +7896,115 @@ ${e.stack}`, errorElement.append(errorText);
       };
     }
   });
+  var trap_special_effects_default, init_trap_special_effects = __esm({
+    "dist/data/trap-special-effects.json"() {
+      trap_special_effects_default = { all: ["alchemists_cookbook_base", "ancient_booster_base", "black_widow_base", "chocolate_bar_base", "competitors_bronze_base", "challengers_silver_base", "champions_gold_base", "condemned_base", "cupcake_birthday_base", "cupcake_2016_birthday_base", "cupcake_2017_birthday_base", "denture_base", "elixir_exchanger_base", "furoma_rift_energy_base", "furoma_rift_energy_upgraded_base", "gift_of_the_day_base", "seasonal_gift_of_the_day_base", "icy_melty_base", "living_grove_base", "new_years_2024_base", "physical_enhancement_base", "polluted_base", "refined_pollutinum_base", "rift_mist_diffuser_base", "skelloton_base", "snow_golem_base", "soiled_base", "spellbook_base", "upgraded_denture_base", "valour_rift_prestige_base", "empyrean_jewel_base", "royal_ruby_refractor_base", "sorcerers_sapphire_refractor_base", "admirals_galleon_weapon", "anniversary_acronym_weapon", "anniversary_ambush_weapon", "anniversary_ancient_box_trap_weapon", "anniversary_mouse_deathbot_weapon", "anniversary_reaper_perch_weapon", "biomolecular_reatomizer_weapon", "boiling_cauldron_weapon", "chrome_drillbot_weapon", "chrono_gwh_weapon", "digby_drillbot_weapon", "glacier_gatler_weapon", "haunting_house_weapon", "holiday_express_weapon", "ice_blaster_weapon", "pirate_sleigh_weapon", "rift_glacier_gatler_weapon", "bday_2012_weapon", "bday_candle_kaboom_weapon", "bubbles_party_crasher_weapon", "cupcake_bot_weapon", "forgotten_art_of_dance_weapon", "partybot_weapon", "queso_factory_weapon", "sprinkley_cupcake_surprise_weapon", "ultra_megamouser_mechabot_weapon", "wacky_inflatable_party_people_weapon", "brain_extractor_upgrade_weapon", "brain_extractor_weapon", "cackle_lantern_weapon", "candy_crusher_weapon", "cemetery_gate_grappler_weapon", "halloween_haunted_shipwreck_weapon", "hween_2011_upgraded_weapon", "hween_2011_weapon", "pumpkin_pummeler_weapon", "sandcastle_shard_weapon", "terrifying_spider_weapon", "christmas_cactus_weapon", "christmas_cracker_trap_weapon", "christmas_crystalabra_weapon", "clockapult_of_winter_past_weapon", "double_diamond_toboggan_adventure_weapon", "explosive_toboggan_ride_weapon", "gingerbread_house_surprise_weapon", "goldfrost_crossbow_weapon", "great_winter_event_horizon_weapon", "harrowing_holiday_harp_weapon", "nutcracker_winter_weapon", "snow_barrage_weapon", "snowglobe_trap_weapon", "winter_hunt_2012_weapon", "xmas_2016_forgotten_weapon", "xmas_2016_hydro_weapon_weapon", "derelict_airship_weapon"], meadow: [], town_of_gnawnia: [], windmill: [], harbour: [], mountain: [], kings_arms: [], tournament_hall: [], kings_gauntlet: ["ancient_gauntlet_weapon"], calm_clearing: [], great_gnarled_tree: [], lagoon: [], laboratory: [], mousoleum: ["creepy_coffin_weapon"], town_of_digby: [], bazaar: [], pollution_outbreak: ["washboard_base", "super_scum_scrubber_weapon"], training_grounds: [], dojo: ["furoma_base"], meditation_room: [], pinnacle_chamber: [], catacombs: [], forbidden_grove: ["runic_base"], acolyte_realm: ["runic_base"], cape_clawed: ["tribal_kaboom_base"], elub_shore: ["tiki_base", "tribal_base", "vegetation_base", "tribal_kaboom_base"], nerg_plains: ["tiki_base", "tribal_base", "vegetation_base", "tribal_kaboom_base"], derr_dunes: ["tiki_base", "tribal_base", "vegetation_base", "tribal_kaboom_base"], jungle_of_dread: ["tribal_kaboom_base", "cackle_lantern_weapon", "dreaded_totem_weapon"], dracano: ["tribal_kaboom_base"], balacks_cove: ["nutcracker_winter_weapon"], claw_shot_city: ["claw_shot_base", "slac_spring_weapon", "slac_ii_sling_weapon"], train_station: ["supply_grabber_weapon", "bandit_deflector_weapon", "engine_doubler_weapon"], fort_rox: ["electromagnet_meteorite_base", "battering_ram_buster_weapon"], desert_warpath: ["desert_heater_base", "warpath_thrasher_weapon", "warden_slayer_weapon"], desert_city: ["desert_heater_base"], desert_oasis: ["aurora_base", "hothouse_base", "living_base", "desert_heater_base"], lost_city: ["aurora_base", "curse_breaker_base", "hothouse_base", "living_base", "desert_heater_base"], sand_dunes: ["aurora_base", "hothouse_base", "living_base", "smelly_sodium_base", "desert_heater_base"], ss_huntington_ii: [], seasonal_garden: ["seasonal_base", "sandcastle_shard_weapon", "zugzwang_ultimate_move_weapon", "cheslas_revenge_weapon"], zugzwang_tower: ["blackstone_pass_weapon", "mystic_low_weapon", "obvious_ambush_weapon", "technic_low_weapon", "zugzwang_ultimate_move_weapon"], zugzwang_library: [], slushy_shoreline: ["steam_laser_mk_i_weapon", "steam_laser_mk_ii_weapon", "steam_laser_mk_iii_weapon"], iceberg: ["deep_freeze_base", "hearthstone_base", "magnet_base", "remote_detonator_base", "spiked_base", "iceberg_boiler_base", "ultimate_iceberg_base", "steam_laser_mk_i_weapon", "steam_laser_mk_ii_weapon", "steam_laser_mk_iii_weapon"], sunken_city: ["depth_charge_base", "bubbles_party_crasher_weapon"], queso_river: ["queso_canyon_base", "queso_factory_weapon"], queso_plains: ["queso_cannonstorm_base"], queso_quarry: ["queso_cannonstorm_base"], queso_geyser: ["queso_cannonstorm_base"], fungal_cavern: ["gemology_base", "living_grove_base", "crystal_mineral_crusher_weapon"], labyrinth: ["compass_magnet_base", "labyrinth_base", "minotaur_base", "treasure_gwh_base"], ancient_city: ["thief_base"], moussu_picchu: ["forecaster_base", "storm_wrought_ballista_weapon", "chrome_storm_wrought_ballista_weapon", "geyser_draconic_weapon"], foreword_farm: ["folklore_printing_press_base", "naughty_list_printing_press_base"], prologue_pond: ["folklore_printing_press_base", "naughty_list_printing_press_base"], table_of_contents: ["folklore_printing_press_base", "naughty_list_printing_press_base"], bountiful_beanstalk: ["folklore_printing_press_base", "naughty_list_printing_press_base"], school_of_sorcery: ["folklore_printing_press_base", "naughty_list_printing_press_base"], rift_burroughs: ["mist_meter_regulator_base", "christmas_crystalabra_weapon"], rift_whisker_woods: ["dark_chocolate_bunny_weapon", "christmas_crystalabra_weapon"], rift_furoma: ["furoma_base", "christmas_crystalabra_weapon"], rift_gnawnia: ["christmas_crystalabra_weapon"], rift_bristle_woods: ["christmas_crystalabra_weapon"], rift_valour: ["christmas_crystalabra_weapon"] };
+    }
+  });
+  var addSpecialEffectsStyles, init18, trap_selector_special_effects_default, init_trap_selector_special_effects = __esm({
+    "src/modules/experiments/modules/trap-selector-special-effects/index.js"() {
+      init_utils2();
+      init_trap_special_effects();
+      addSpecialEffectsStyles = () => __async(void 0, null, function* () {
+        let styles8 = [];
+        trap_special_effects_default.all.forEach((item) => {
+          styles8.push(`.campPage-trap-itemBrowser-item.${item}`);
+        });
+        let currentLocation = getCurrentLocation();
+        trap_special_effects_default[currentLocation] && trap_special_effects_default[currentLocation].forEach((item) => {
+          styles8.push(`.mh-improved-location-${currentLocation} .campPage-trap-itemBrowser-item.${item}`);
+        }), addModuleStyles(`${styles8.join(" .campPage-trap-itemBrowser-item-name::after,")}
+.mh-improved-special-effects-highlight {
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  content: "";
+  background-color: #48b0a9;
+  border-radius: 50%;
+}`, "mh-improved-trap-selector-special-effects", !0);
+      });
+      hasAddedSpecialEffectsStyles = !1;
+      init18 = () => __async(void 0, null, function* () {
+        onEvent("camp_page_toggle_blueprint", () => {
+          hasAddedSpecialEffectsStyles || (addSpecialEffectsStyles(), hasAddedSpecialEffectsStyles = !0);
+        }), onTravel(() => {
+          hasAddedSpecialEffectsStyles = !1;
+        });
+      }), trap_selector_special_effects_default = {
+        id: "trap-selector-special-effects",
+        name: "Add an indicator to items in the trap selector that have special effects",
+        description: "",
+        load: init18
+      };
+    }
+  });
   var styles_default27, init_styles28 = __esm({
-    "src/modules/experiments/modules/new-settings-styles-columns/styles.css"() {
-      styles_default27 = `.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active.two-column{display:grid;grid-template-columns:49% 49%;justify-content:space-between}.two-column.mousehunt-improved-settings .PagePreferences__title{max-width:350px}.two-column.mousehunt-improved-settings .PagePreferences__setting{flex-wrap:wrap}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-design-wrapper .PagePreferences__setting{display:flex;flex-direction:row;align-items:flex-start}.two-column.mousehunt-improved-settings .mh-improved-custom-bg-preview,.two-column.mousehunt-improved-settings .mh-improved-custom-horn-show-horn,.two-column.mousehunt-improved-settings .mh-improved-custom-hud-preview{top:20px;left:10px;font-size:11px}.two-column #mousehunt-improved-settings-design .PagePreferences__settingAction{max-width:200px}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-ultimate-checkmark-show.PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName{max-width:65px;padding:0;overflow:hidden;line-height:14px;text-overflow:ellipsis;white-space:nowrap}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-ultimate-checkmark-show.PagePreferences__subSetting .multi-toggle-row{gap:0;justify-items:stretch}.two-column.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__subSetting{margin-left:5px}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting{padding:0 5px;background-color:transparent;border-right:1px solid #e0cfb4;border-radius:0}.two-column.mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,.two-column.mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting{display:flex;flex-direction:column;gap:0;align-items:stretch;padding:0;margin:0}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-advanced-mh-improved-advanced-settings{position:absolute;top:15px;right:10px}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-quick-send-supplies-items .inputBoxContainer.multiSelect{display:grid;grid-template-columns:1fr 1fr}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-quick-send-supplies-items .multiSelect{width:auto;max-width:140px}.two-column #mousehunt-improved-settings-better-better-gifts-ignore-bad-gifts select.inputBox.multiSelect{max-width:200px}.two-column select.inputBox.multiSelect{max-width:140px;margin:0}.two-column .inputBoxContainer.multiSelect{gap:5px 10px;justify-content:flex-start;margin-top:5px}.two-column #mousehunt-improved-settings-location-hud-wrapper{grid-template-columns:1fr 1fr;padding:10px 0 0;margin:-10px -11px 0;border-left:1px solid #e0cfb4}.two-column #mousehunt-improved-settings-location-hud .PagePreferences__title{border-bottom:1px solid #f2ebde}.two-column.mousehunt-improved-settings .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle,.PagePreferences .mousehuntHud-page-tabContent.game_settings.two-column.mousehunt-improved-settings .mhui-setting-toggle,.two-column #mousehunt-improved-settings-feature-quick-send-supplies-items .PagePreferences__settingLabel{display:none}.two-column #mousehunt-improved-settings-better-better-send-supplies-pinned-items .settingRow-action-inputContainer{width:300px}.two-column #mousehunt-improved-settings-advanced-override-styles,.two-column #mousehunt-improved-settings-advanced-override-flags{margin-left:0}.two-column #mousehunt-improved-settings-advanced-override-styles .PagePreferences__settingName,.two-column #mousehunt-improved-settings-advanced-override-flags .PagePreferences__settingName{margin-bottom:10px}.two-column .PagePreferences__settingsList .PagePreferences__subSetting{opacity:.4}.two-column .PagePreferences__settingsList:hover .PagePreferences__subSetting{opacity:1}.two-column .mousehunt-improved-settings .PagePreferences__titleText{padding-bottom:0}.two-column .mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,.two-column .mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting{gap:5px}.two-column .mousehunt-improved-settings .PagePreferences__settingDescription{display:none}.two-column .mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingName{font-size:11px;line-height:1.5}.two-column #mousehunt-improved-settings-feature-quick-send-supplies-items .PagePreferences__setting{display:flex;flex-direction:column;align-items:flex-end}.two-column #mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBox.multiSelect{max-width:140px}.two-column #mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBoxContainer.multiSelect{display:grid;grid-template-columns:1fr 1fr}.two-column .mousehunt-improved-settings .PagePreferences__settingNameText{line-height:1.5}.two-column .mousehunt-improved-settings .mousehunt-improved-settings-design-wrapper .PagePreferences__settingNameText{line-height:1}.two-column #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList{grid-column:span 2}.two-column #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-enabled-region-seperator,.two-column #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle{grid-column:1 / 3}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting:nth-child(4n+3),.two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting:nth-child(4n+4){background-color:#eee}.two-column #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingNameText{line-height:1.5}
+    "src/modules/experiments/modules/troll-mode/styles.css"() {
+      styles_default27 = `*+*{transition:.3s}*+*+*{filter:hue-rotate(90deg);transform:rotate(.5deg)}*+*+*+*{transform:rotate(-.6deg)}*+*>*{transform:rotate(-.1deg)}*+*+*>*{transform:rotate(.2deg)}div+div+div{filter:hue-rotate(90deg)}*>*>*>*>*>*>*>*>*>*>*{transition:.9s}*>*>*>*>*>*>*>*>*>*:hover *{transform:rotateX(20deg)}*>*>*>*>*>*>*>*>*>*>*:hover{transform:rotateX(-20deg)}.lolspin{animation:mh-improved-spin 1s linear infinite}@media (prefers-reduced-motion: reduce){.lolspin{animation:none}}
 `;
     }
   });
-  var init18, new_settings_styles_columns_default, init_new_settings_styles_columns = __esm({
-    "src/modules/experiments/modules/new-settings-styles-columns/index.js"() {
+  var trollEm, trollem2, init19, troll_mode_default, init_troll_mode = __esm({
+    "src/modules/experiments/modules/troll-mode/index.js"() {
       init_utils2();
       init_styles28();
-      init18 = () => __async(void 0, null, function* () {
-        addStyles(styles_default27, "new-settings-styles-columns"), onNavigation(() => __async(void 0, null, function* () {
+      trollEm = () => {
+        let domQuery = "#journallatestentry", lastCatch = document.querySelector(domQuery);
+        lastCatch && ["attractionfailure", "catchfailure", "catchfailuredamage"].some((s) => lastCatch.classList.contains(s)) && (hg.views.MessengerView.addMessage({
+          content: {
+            body: app.views.OnboardingTutorialView.tutorial.wrapInfoArrow(`wow you really are an amazing mousehunter ${user.username}`, "lol")
+          },
+          highlight_dom: domQuery,
+          highlight_padding: {
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 1
+          },
+          css_class: "larryCircle",
+          on_show_callback: () => app.views.OnboardingTutorialView.tutorial.showBouncyArrow(domQuery, "top"),
+          on_close_callback: () => app.views.OnboardingTutorialView.tutorial.hideBouncyArrow(),
+          show_overlay: !0
+        }), hg.views.MessengerView.go());
+      }, trollem2 = () => {
+        let banner = document.querySelector(".campPage-banner");
+        if (!banner)
+          return;
+        let bannerLink = document.createElement("a"), newbieImg = document.createElement("img");
+        newbieImg.src = "https://www.mousehuntgame.com/images/promo/campbanners/groups/newbie.png", bannerLink.append(newbieImg), bannerLink.addEventListener("click", () => {
+          addStyles(styles_default27, "troll-mode"), banner.classList.add("lolspin"), setTimeout(() => {
+            banner.classList.remove("lolspin");
+          }, 1e3);
+          let elements = document.querySelectorAll("body * *");
+          elements[Math.floor(Math.random() * elements.length)].classList.add("lolspin"), setInterval(() => {
+            elements[Math.floor(Math.random() * elements.length)].classList.add("lolspin");
+          }, 500);
+        }), banner.append(bannerLink), banner.classList.remove("hidden");
+      }, init19 = () => __async(void 0, null, function* () {
+        trollEm(), onTurn(trollEm, 1e3), trollem2();
+      }), troll_mode_default = {
+        id: "experiments.lol-gottem",
+        name: "Troll mode",
+        description: "lol",
+        load: init19
+      };
+    }
+  });
+  var styles_default28, init_styles29 = __esm({
+    "src/modules/experiments/modules/new-settings-styles-columns/styles.css"() {
+      styles_default28 = `.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active.two-column{display:grid;grid-template-columns:49% 49%;justify-content:space-between}.two-column.mousehunt-improved-settings .PagePreferences__title{max-width:350px}.two-column.mousehunt-improved-settings .PagePreferences__setting{flex-wrap:wrap}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-design-wrapper .PagePreferences__setting{display:flex;flex-direction:row;align-items:flex-start}.two-column.mousehunt-improved-settings .mh-improved-custom-bg-preview,.two-column.mousehunt-improved-settings .mh-improved-custom-horn-show-horn,.two-column.mousehunt-improved-settings .mh-improved-custom-hud-preview{top:20px;left:10px;font-size:11px}.two-column #mousehunt-improved-settings-design .PagePreferences__settingAction{max-width:200px}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-ultimate-checkmark-show.PagePreferences__subSetting .multi-toggle-row .PagePreferences__settingName{max-width:65px;padding:0;overflow:hidden;line-height:14px;text-overflow:ellipsis;white-space:nowrap}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-ultimate-checkmark-show.PagePreferences__subSetting .multi-toggle-row{gap:0;justify-items:stretch}.two-column.mousehunt-improved-settings .PagePreferences__settingsList.PagePreferences__subSetting{margin-left:5px}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting{padding:0 5px;background-color:transparent;border-right:1px solid #e0cfb4;border-radius:0}.two-column.mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,.two-column.mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting{display:flex;flex-direction:column;gap:0;align-items:stretch;padding:0;margin:0}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-advanced-mh-improved-advanced-settings{position:absolute;top:15px;right:10px}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-quick-send-supplies-items .inputBoxContainer.multiSelect{display:grid;grid-template-columns:1fr 1fr}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-feature-quick-send-supplies-items .multiSelect{width:auto;max-width:140px}.two-column #mousehunt-improved-settings-better-better-gifts-ignore-bad-gifts select.inputBox.multiSelect{max-width:200px}.two-column select.inputBox.multiSelect{max-width:140px;margin:0}.two-column .inputBoxContainer.multiSelect{gap:5px 10px;justify-content:flex-start;margin-top:5px}.two-column #mousehunt-improved-settings-location-hud-wrapper{grid-template-columns:1fr 1fr;padding:10px 0 0;margin:-10px -11px 0;border-left:1px solid #e0cfb4}.two-column #mousehunt-improved-settings-location-hud .PagePreferences__title{border-bottom:1px solid #f2ebde}.two-column.mousehunt-improved-settings .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle,.PagePreferences .mousehuntHud-page-tabContent.game_settings.two-column.mousehunt-improved-settings .mhui-setting-toggle,.two-column #mousehunt-improved-settings-feature-quick-send-supplies-items .PagePreferences__settingLabel{display:none}.two-column #mousehunt-improved-settings-better-better-send-supplies-pinned-items .settingRow-action-inputContainer{width:300px}.two-column #mousehunt-improved-settings-advanced-override-styles,.two-column #mousehunt-improved-settings-advanced-override-flags{margin-left:0}.two-column #mousehunt-improved-settings-advanced-override-styles .PagePreferences__settingName,.two-column #mousehunt-improved-settings-advanced-override-flags .PagePreferences__settingName{margin-bottom:10px}.two-column .PagePreferences__settingsList .PagePreferences__subSetting{opacity:.4}.two-column .PagePreferences__settingsList:hover .PagePreferences__subSetting{opacity:1}.two-column .mousehunt-improved-settings .PagePreferences__titleText{padding-bottom:0}.two-column .mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,.two-column .mousehunt-improved-settings .PagePreferences__settingsList-input .PagePreferences__setting{gap:5px}.two-column .mousehunt-improved-settings .PagePreferences__settingDescription{display:none}.two-column .mousehunt-improved-settings .PagePreferences__subSetting .PagePreferences__settingName{font-size:11px;line-height:1.5}.two-column #mousehunt-improved-settings-feature-quick-send-supplies-items .PagePreferences__setting{display:flex;flex-direction:column;align-items:flex-end}.two-column #mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBox.multiSelect{max-width:140px}.two-column #mousehunt-improved-settings-better-better-send-supplies-pinned-items .inputBoxContainer.multiSelect{display:grid;grid-template-columns:1fr 1fr}.two-column .mousehunt-improved-settings .PagePreferences__settingNameText{line-height:1.5}.two-column .mousehunt-improved-settings .mousehunt-improved-settings-design-wrapper .PagePreferences__settingNameText{line-height:1}.two-column #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList{grid-column:span 2}.two-column #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-enabled-region-seperator,.two-column #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle{grid-column:1 / 3}.two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting:nth-child(4n+3),.two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting:nth-child(4n+4){background-color:#eee}.two-column #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingNameText{line-height:1.5}
+`;
+    }
+  });
+  var init20, new_settings_styles_columns_default, init_new_settings_styles_columns = __esm({
+    "src/modules/experiments/modules/new-settings-styles-columns/index.js"() {
+      init_utils2();
+      init_styles29();
+      init20 = () => __async(void 0, null, function* () {
+        addStyles(styles_default28, "new-settings-styles-columns"), onNavigation(() => __async(void 0, null, function* () {
           document.querySelectorAll(".PagePreferences__settingsWrapper > .PagePreferences__settingsList").forEach((setting) => {
             setting.addEventListener("click", () => {
               setting.classList.toggle("hover");
@@ -7946,7 +8016,7 @@ ${e.stack}`, errorElement.append(errorText);
       }), new_settings_styles_columns_default = {
         id: "experiments.new-settings-styles-columns",
         name: "Settings: Columns",
-        load: init18
+        load: init20
       };
     }
   });
@@ -7956,7 +8026,7 @@ ${e.stack}`, errorElement.append(errorText);
 `;
     }
   });
-  var getBallotsToSend, getSavedSentBallots, getSavedSentBallot, saveSentBallot, sendBallot, returnRaffles, _inboxOpen, replaceInboxMethods, init19, raffle_default2, init_raffle2 = __esm({
+  var getBallotsToSend, getSavedSentBallots, getSavedSentBallot, saveSentBallot, sendBallot, returnRaffles, _inboxOpen, replaceInboxMethods, init21, raffle_default2, init_raffle2 = __esm({
     "src/modules/experiments/modules/raffle/index.js"() {
       init_utils2();
       init_raffle();
@@ -8058,110 +8128,12 @@ ${e.stack}`, errorElement.append(errorText);
             }, 100);
           }, !0), toReturn;
         };
-      }, init19 = () => __async(void 0, null, function* () {
+      }, init21 = () => __async(void 0, null, function* () {
         getSetting("hide-daily-draw", !1) || (addStyles(raffle_default, "feature-flags-raffle"), replaceInboxMethods());
       }), raffle_default2 = {
         id: "experiments.raffle",
         name: "Return Raffles button",
         description: "Add a button to return all raffle tickets to the Inbox. Use at your own risk.",
-        load: init19
-      };
-    }
-  });
-  var styles_default28, init_styles29 = __esm({
-    "src/modules/experiments/modules/troll-mode/styles.css"() {
-      styles_default28 = `*+*{transition:.3s}*+*+*{filter:hue-rotate(90deg);transform:rotate(.5deg)}*+*+*+*{transform:rotate(-.6deg)}*+*>*{transform:rotate(-.1deg)}*+*+*>*{transform:rotate(.2deg)}div+div+div{filter:hue-rotate(90deg)}*>*>*>*>*>*>*>*>*>*>*{transition:.9s}*>*>*>*>*>*>*>*>*>*:hover *{transform:rotateX(20deg)}*>*>*>*>*>*>*>*>*>*>*:hover{transform:rotateX(-20deg)}.lolspin{animation:mh-improved-spin 1s linear infinite}@media (prefers-reduced-motion: reduce){.lolspin{animation:none}}
-`;
-    }
-  });
-  var trollEm, trollem2, init20, troll_mode_default, init_troll_mode = __esm({
-    "src/modules/experiments/modules/troll-mode/index.js"() {
-      init_utils2();
-      init_styles29();
-      trollEm = () => {
-        let domQuery = "#journallatestentry", lastCatch = document.querySelector(domQuery);
-        lastCatch && ["attractionfailure", "catchfailure", "catchfailuredamage"].some((s) => lastCatch.classList.contains(s)) && (hg.views.MessengerView.addMessage({
-          content: {
-            body: app.views.OnboardingTutorialView.tutorial.wrapInfoArrow(`wow you really are an amazing mousehunter ${user.username}`, "lol")
-          },
-          highlight_dom: domQuery,
-          highlight_padding: {
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 1
-          },
-          css_class: "larryCircle",
-          on_show_callback: () => app.views.OnboardingTutorialView.tutorial.showBouncyArrow(domQuery, "top"),
-          on_close_callback: () => app.views.OnboardingTutorialView.tutorial.hideBouncyArrow(),
-          show_overlay: !0
-        }), hg.views.MessengerView.go());
-      }, trollem2 = () => {
-        let banner = document.querySelector(".campPage-banner");
-        if (!banner)
-          return;
-        let bannerLink = document.createElement("a"), newbieImg = document.createElement("img");
-        newbieImg.src = "https://www.mousehuntgame.com/images/promo/campbanners/groups/newbie.png", bannerLink.append(newbieImg), bannerLink.addEventListener("click", () => {
-          addStyles(styles_default28, "troll-mode"), banner.classList.add("lolspin"), setTimeout(() => {
-            banner.classList.remove("lolspin");
-          }, 1e3);
-          let elements = document.querySelectorAll("body * *");
-          elements[Math.floor(Math.random() * elements.length)].classList.add("lolspin"), setInterval(() => {
-            elements[Math.floor(Math.random() * elements.length)].classList.add("lolspin");
-          }, 500);
-        }), banner.append(bannerLink), banner.classList.remove("hidden");
-      }, init20 = () => __async(void 0, null, function* () {
-        trollEm(), onTurn(trollEm, 1e3), trollem2();
-      }), troll_mode_default = {
-        id: "experiments.lol-gottem",
-        name: "Troll mode",
-        description: "lol",
-        load: init20
-      };
-    }
-  });
-  // dist/data/trap-special-effects.json
-  var trap_special_effects_default, init_trap_special_effects = __esm({
-    "dist/data/trap-special-effects.json"() {
-      trap_special_effects_default = { all: ["alchemists_cookbook_base", "ancient_booster_base", "black_widow_base", "chocolate_bar_base", "competitors_bronze_base", "challengers_silver_base", "champions_gold_base", "condemned_base", "cupcake_birthday_base", "cupcake_2016_birthday_base", "cupcake_2017_birthday_base", "denture_base", "elixir_exchanger_base", "furoma_rift_energy_base", "furoma_rift_energy_upgraded_base", "gift_of_the_day_base", "seasonal_gift_of_the_day_base", "icy_melty_base", "living_grove_base", "new_years_2024_base", "physical_enhancement_base", "polluted_base", "refined_pollutinum_base", "rift_mist_diffuser_base", "skelloton_base", "snow_golem_base", "soiled_base", "spellbook_base", "upgraded_denture_base", "valour_rift_prestige_base", "empyrean_jewel_base", "royal_ruby_refractor_base", "sorcerers_sapphire_refractor_base", "admirals_galleon_weapon", "anniversary_acronym_weapon", "anniversary_ambush_weapon", "anniversary_ancient_box_trap_weapon", "anniversary_mouse_deathbot_weapon", "anniversary_reaper_perch_weapon", "biomolecular_reatomizer_weapon", "boiling_cauldron_weapon", "chrome_drillbot_weapon", "chrono_gwh_weapon", "digby_drillbot_weapon", "glacier_gatler_weapon", "haunting_house_weapon", "holiday_express_weapon", "ice_blaster_weapon", "pirate_sleigh_weapon", "rift_glacier_gatler_weapon", "bday_2012_weapon", "bday_candle_kaboom_weapon", "bubbles_party_crasher_weapon", "cupcake_bot_weapon", "forgotten_art_of_dance_weapon", "partybot_weapon", "queso_factory_weapon", "sprinkley_cupcake_surprise_weapon", "ultra_megamouser_mechabot_weapon", "wacky_inflatable_party_people_weapon", "brain_extractor_upgrade_weapon", "brain_extractor_weapon", "cackle_lantern_weapon", "candy_crusher_weapon", "cemetery_gate_grappler_weapon", "halloween_haunted_shipwreck_weapon", "hween_2011_upgraded_weapon", "hween_2011_weapon", "pumpkin_pummeler_weapon", "sandcastle_shard_weapon", "terrifying_spider_weapon", "christmas_cactus_weapon", "christmas_cracker_trap_weapon", "christmas_crystalabra_weapon", "clockapult_of_winter_past_weapon", "double_diamond_toboggan_adventure_weapon", "explosive_toboggan_ride_weapon", "gingerbread_house_surprise_weapon", "goldfrost_crossbow_weapon", "great_winter_event_horizon_weapon", "harrowing_holiday_harp_weapon", "nutcracker_winter_weapon", "snow_barrage_weapon", "snowglobe_trap_weapon", "winter_hunt_2012_weapon", "xmas_2016_forgotten_weapon", "xmas_2016_hydro_weapon_weapon", "derelict_airship_weapon"], meadow: [], town_of_gnawnia: [], windmill: [], harbour: [], mountain: [], kings_arms: [], tournament_hall: [], kings_gauntlet: ["ancient_gauntlet_weapon"], calm_clearing: [], great_gnarled_tree: [], lagoon: [], laboratory: [], mousoleum: ["creepy_coffin_weapon"], town_of_digby: [], bazaar: [], pollution_outbreak: ["washboard_base", "super_scum_scrubber_weapon"], training_grounds: [], dojo: ["furoma_base"], meditation_room: [], pinnacle_chamber: [], catacombs: [], forbidden_grove: ["runic_base"], acolyte_realm: ["runic_base"], cape_clawed: ["tribal_kaboom_base"], elub_shore: ["tiki_base", "tribal_base", "vegetation_base", "tribal_kaboom_base"], nerg_plains: ["tiki_base", "tribal_base", "vegetation_base", "tribal_kaboom_base"], derr_dunes: ["tiki_base", "tribal_base", "vegetation_base", "tribal_kaboom_base"], jungle_of_dread: ["tribal_kaboom_base", "cackle_lantern_weapon", "dreaded_totem_weapon"], dracano: ["tribal_kaboom_base"], balacks_cove: ["nutcracker_winter_weapon"], claw_shot_city: ["claw_shot_base", "slac_spring_weapon", "slac_ii_sling_weapon"], train_station: ["supply_grabber_weapon", "bandit_deflector_weapon", "engine_doubler_weapon"], fort_rox: ["electromagnet_meteorite_base", "battering_ram_buster_weapon"], desert_warpath: ["desert_heater_base", "warpath_thrasher_weapon", "warden_slayer_weapon"], desert_city: ["desert_heater_base"], desert_oasis: ["aurora_base", "hothouse_base", "living_base", "desert_heater_base"], lost_city: ["aurora_base", "curse_breaker_base", "hothouse_base", "living_base", "desert_heater_base"], sand_dunes: ["aurora_base", "hothouse_base", "living_base", "smelly_sodium_base", "desert_heater_base"], ss_huntington_ii: [], seasonal_garden: ["seasonal_base", "sandcastle_shard_weapon", "zugzwang_ultimate_move_weapon", "cheslas_revenge_weapon"], zugzwang_tower: ["blackstone_pass_weapon", "mystic_low_weapon", "obvious_ambush_weapon", "technic_low_weapon", "zugzwang_ultimate_move_weapon"], zugzwang_library: [], slushy_shoreline: ["steam_laser_mk_i_weapon", "steam_laser_mk_ii_weapon", "steam_laser_mk_iii_weapon"], iceberg: ["deep_freeze_base", "hearthstone_base", "magnet_base", "remote_detonator_base", "spiked_base", "iceberg_boiler_base", "ultimate_iceberg_base", "steam_laser_mk_i_weapon", "steam_laser_mk_ii_weapon", "steam_laser_mk_iii_weapon"], sunken_city: ["depth_charge_base", "bubbles_party_crasher_weapon"], queso_river: ["queso_canyon_base", "queso_factory_weapon"], queso_plains: ["queso_cannonstorm_base"], queso_quarry: ["queso_cannonstorm_base"], queso_geyser: ["queso_cannonstorm_base"], fungal_cavern: ["gemology_base", "living_grove_base", "crystal_mineral_crusher_weapon"], labyrinth: ["compass_magnet_base", "labyrinth_base", "minotaur_base", "treasure_gwh_base"], ancient_city: ["thief_base"], moussu_picchu: ["forecaster_base", "storm_wrought_ballista_weapon", "chrome_storm_wrought_ballista_weapon", "geyser_draconic_weapon"], foreword_farm: ["folklore_printing_press_base", "naughty_list_printing_press_base"], prologue_pond: ["folklore_printing_press_base", "naughty_list_printing_press_base"], table_of_contents: ["folklore_printing_press_base", "naughty_list_printing_press_base"], bountiful_beanstalk: ["folklore_printing_press_base", "naughty_list_printing_press_base"], school_of_sorcery: ["folklore_printing_press_base", "naughty_list_printing_press_base"], rift_burroughs: ["mist_meter_regulator_base", "christmas_crystalabra_weapon"], rift_whisker_woods: ["dark_chocolate_bunny_weapon", "christmas_crystalabra_weapon"], rift_furoma: ["furoma_base", "christmas_crystalabra_weapon"], rift_gnawnia: ["christmas_crystalabra_weapon"], rift_bristle_woods: ["christmas_crystalabra_weapon"], rift_valour: ["christmas_crystalabra_weapon"] };
-    }
-  });
-  var addSpecialEffectsStyles, init21, trap_selector_special_effects_default, init_trap_selector_special_effects = __esm({
-    "src/modules/experiments/modules/trap-selector-special-effects/index.js"() {
-      init_utils2();
-      init_trap_special_effects();
-      addSpecialEffectsStyles = () => __async(void 0, null, function* () {
-        let styles8 = [];
-        trap_special_effects_default.all.forEach((item) => {
-          styles8.push(`.campPage-trap-itemBrowser-item.${item}`);
-        });
-        let currentLocation = getCurrentLocation();
-        trap_special_effects_default[currentLocation] && trap_special_effects_default[currentLocation].forEach((item) => {
-          styles8.push(`.mh-improved-location-${currentLocation} .campPage-trap-itemBrowser-item.${item}`);
-        }), addModuleStyles(`${styles8.join(" .campPage-trap-itemBrowser-item-name::after,")}
-.mh-improved-special-effects-highlight {
-  position: absolute;
-  top: 4px;
-  right: 3px;
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  content: "";
-  background-color: #48b0a9;
-  border-radius: 50%;
-}`, "mh-improved-trap-selector-special-effects", !0);
-      });
-      hasAddedSpecialEffectsStyles = !1;
-      init21 = () => __async(void 0, null, function* () {
-        onEvent("camp_page_toggle_blueprint", () => {
-          hasAddedSpecialEffectsStyles || (addSpecialEffectsStyles(), hasAddedSpecialEffectsStyles = !0);
-        }), onTravel(() => {
-          hasAddedSpecialEffectsStyles = !1;
-        });
-      }), trap_selector_special_effects_default = {
-        id: "trap-selector-special-effects",
-        name: "Add an indicator to items in the trap selector that have special effects",
-        description: "",
         load: init21
       };
     }
@@ -8170,11 +8142,11 @@ ${e.stack}`, errorElement.append(errorText);
     "src/modules/experiments/index.js"() {
       init_utils2();
       init_square_profile_pics();
+      init_trap_selector_special_effects();
+      init_troll_mode();
       init_new_settings_styles_columns();
       init_raffle2();
-      init_troll_mode();
-      init_trap_selector_special_effects();
-      imported4 = [square_profile_pics_default, new_settings_styles_columns_default, raffle_default2, troll_mode_default, trap_selector_special_effects_default], modules = imported4, init22 = () => __async(void 0, null, function* () {
+      imported4 = [square_profile_pics_default, trap_selector_special_effects_default, troll_mode_default, new_settings_styles_columns_default, raffle_default2], modules = imported4, init22 = () => __async(void 0, null, function* () {
         [
           {
             id: "better-marketplace.show-chart-images",
@@ -8211,135 +8183,7 @@ ${e.stack}`, errorElement.append(errorText);
       };
     }
   });
-  // dist/data/backgrounds.json
-  var backgrounds_default3, init_backgrounds3 = __esm({
-    "dist/data/backgrounds.json"() {
-      backgrounds_default3 = [{ id: "midnight", name: "Midnight", css: "linear-gradient(220.55deg, #565656 0%, #181818 100%)" }, { id: "amber-sunrise", name: "Amber Sunrise", css: "radial-gradient(circle at center top, #b45309, #fdba74, #9f1239)" }, { id: "aqua-depths", name: "Aqua Depths", css: "linear-gradient(220.55deg, #24cfc5 0%, #001c63 100%)" }, { id: "aurora", name: "Aurora", css: "radial-gradient(65% 100% at 50% 0%, #00ff94 0%, rgba(0, 255, 148, 0.25) 100%), linear-gradient(230deg, #000000 25%, #170059 100%), linear-gradient(215deg, #ffebb9 10%, #19004e 80%), radial-gradient(100% 245% at 100% 100%, #ffffff 0%, #000353 100%), linear-gradient(125deg, #1400ff 0%, #3a0000 100%), linear-gradient(225deg, #00ebfc 3.7%, #00f0ff 11.4%, #000b6f 55.3%, #001676 64.1%, #001676 75%, #00e1f6 100%, #00ecfd 100%, #001676 100%), linear-gradient(135deg, #00f0ff 0%, #000b6f 2.4%, #00ebfc 20.5%, #001676 35%, #00e1f6 47.2%, #001676 66.8%, #00ecfd 84.9%, #001676 100%)" }, { id: "camo", name: "Camo", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-camo.png) top center / 200px" }, { id: "canary-shine", name: "Canary Shine", css: "linear-gradient(220.55deg, #fff500 0%, #ffb800 100%)" }, { id: "candy-cane-breeze", name: "Candy Cane Breeze", css: "radial-gradient(at 30% -5%, #92f2f2, #d6cff1, rgba(255, 255, 255, 0) 25%), radial-gradient(at 50% 70%, #c4f2e5, rgba(255, 255, 255, 0) 30%), radial-gradient(at 70% 0%, #d6cff1, rgba(255, 255, 255, 0) 20%), linear-gradient(75deg, #92f2f2 5%, rgba(255, 255, 255, 0), #a8d0f0, rgba(255, 255, 255, 0), #eed5f2, rgba(255, 255, 255, 0), #d6cff1, rgba(255, 255, 255, 0), #c4f2e5 90%), radial-gradient(at 30% 50%, #92f2f2, rgba(255, 255, 255, 0) 30%), radial-gradient(at 30% 50%, #9cb9fc, rgba(255, 255, 255, 0) 30%), radial-gradient(at 100% 50%, #92f2f2, #c2dcf2, rgba(255, 255, 255, 0) 50%), linear-gradient(115deg, #92f2f2 5%, #a8d0f0 10%, #d6cff1, #eed5f2 20%, #a8d0f0, #a8d0f0 30%, #d6cff1, #c2dcf2 40%, #92f2f2, #a8d0f0 70%)" }, { id: "candy-clouds", name: "Candy Clouds", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-candy-clouds.png) repeat top center / contain" }, { id: "celestial-dreamscape", name: "Celestial Dreamscape", css: "radial-gradient(18% 28% at 24% 50%, #cefaff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 18% 71%, rgba(255, 255, 255, 0.35) 6%, rgba(7, 58, 255, 0) 100%), radial-gradient(70% 53% at 36% 76%, #73f2ff 0%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 15% 94%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 34% 72%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 35% 87%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(31% 43% at 7% 98%, #ffffff 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(21% 37% at 72% 23%, rgba(211, 255, 109, 0.61) 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(35% 56% at 91% 74%, rgba(138, 79, 255, 0.96) 9%, rgba(7, 58, 255, 0) 100%), radial-gradient(74% 86% at 67% 38%, rgba(109, 255, 174, 0.96) 24%, rgba(7, 58, 255, 0) 100%), linear-gradient(125deg, #4eb5ff 1%, #4c00fc 100%)" }, { id: "cobalt-mist", name: "Cobalt Mist", css: "linear-gradient(#3951c6, #8896dd)" }, { id: "cold-breeze", name: "Cold Breeze", css: "conic-gradient(at center top, #ffffff, #0ea5e9, #0ea5e9)" }, { id: "cosmic-twilight", name: "Cosmic Twilight", css: "linear-gradient(to right, #0f172a, #581c87, #0f172a)" }, { id: "cotton-candy-shores", name: "Cotton Candy Shores", css: "linear-gradient(#32c7e5, #f078d5)" }, { id: "crimson-blush", name: "Crimson Blush", css: "linear-gradient(#b9466c, #e3b5c4)" }, { id: "cyberpop", name: "Cyberpop", css: "linear-gradient(135deg, #0e0220 0%, #000000 6px, #e40475 24.8%, #0e0220 35%, #48e0e4 56.3%, #48e0e4 62.4%, #ff00c8 72.9%, rgba(0, 0, 0, 0.86) 78.5%, #48e0e4 100%)" }, { id: "dark-digital", name: "Dark Digital", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-dark-digital.png) top left / 230px" }, { id: "dark", name: "Dark", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-dark.png) top left / 200px" }, { id: "dreamy-hues", name: "Dreamy Hues", css: "linear-gradient(97.92deg, #bc97c6 0%, #f6d2c8 6.33%, #f5e2c8 12.2%, #bde8d9 21.5%, #e8dfc6 34.83%, #edc7c6 44.22%, #e6bdcf 52.26%, #c7b2e5 60.55%, #b8bfe7 70.29%, #c3e1d3 79.4%, #eedfc5 89.06%, #e5b0c9 94.93%, #b495c5 100.7%)" }, { id: "electric-hexes", name: "Electric Hexes", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-electric-hexes.png) top left / 550px" }, { id: "emerald-forest", name: "Emerald Forest", css: "linear-gradient(#43ac20, #76df53)" }, { id: "emerald-lagoon", name: "Emerald Lagoon", css: "radial-gradient(80.99% 100% at 50% 0%, #00ff0a 0%, #36008e 100%), radial-gradient(50% 123.47% at 50% 50%, #efe7c8 0%, #36008e 100%), linear-gradient(301.28deg, #ff006b 0%, #48dd9e 100%), linear-gradient(294.84deg, #5a60e4 0%, #d30000 100%), linear-gradient(52.29deg, #000000 0%, #00ff85 100%), radial-gradient(100% 138.69% at 100% 0%, #0007a5 0%, #ff7a00 100%), radial-gradient(70.41% 100% at 50% 0%, #d5b300 0%, #2200aa 100%)" }, { id: "flamingo-fling", name: "Flamingo Fling", css: "linear-gradient(#e84a8c, #f3a5c5)" }, { id: "flowers", name: "Flowers", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-flowers.png) left center / 300px" }, { id: "frosted-orchid", name: "Frosted Orchid", css: "linear-gradient(#ecadaf 0%, #e0b6a5 13.54%, #dc8b9d 30.21%, #c05ac9 44.27%, #b865cf 57.81%, #c3a7d9 71.87%, #c5c1e2 84.9%, #c6d8e4 100%)" }, { id: "galactic-dusk", name: "Galactic Dusk", css: "linear-gradient(220.55deg, #4063bc 0%, #6b0013 100%)" }, { id: "glacial-gleam", name: "Glacial Gleam", css: "linear-gradient(220.55deg, #c5edf5 0%, #4a879a 100%)" }, { id: "groovy-green", name: "Groovy Green", css: "url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/pattern.png) repeat bottom center / 200px" }, { id: "lavender-lustre", name: "Lavender Lustre", css: "linear-gradient(#de97f9, #9157ff)" }, { id: "mint-surf", name: "Mint Surf", css: "linear-gradient(0deg, #08aeea 0%, #2af598 100%)" }, { id: "neon-nights", name: "Neon Nights", css: "linear-gradient(#f3b167, #ec38bc, #7303c0, #03001e)" }, { id: "night-in-salem", name: "Night in Salem", css: "linear-gradient(#111827, #581c87, #7c3aed)" }, { id: "oahu-sunset", name: "Oahu Sunset", css: "linear-gradient(to top, #fb923c, #38bdf8)" }, { id: "orange-coral", name: "Orange Coral", css: "linear-gradient(to top, #fb923c, #fb7185)" }, { id: "pastel-daydream", name: "Pastel Daydream", css: "radial-gradient(at 40% 20%, #ffb87a 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 80% 0%, #1fddff 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 50%, #fcdee1 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 73% 51%, #ff85ad 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 100%, #ffb58a 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 80% 100%, #6b66ff 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 0%, #ff85a7 0px, rgba(0, 0, 0, 0) 50%)" }, { id: "polaroid-memories", name: "Polaroid Memories", css: "linear-gradient(to top, #040308, #ad4a28, #dd723c, #fc7001, #dcb697, #9ba5ae, #3e5879, #020b1a)" }, { id: "radiant-rouge", name: "Radiant Rouge", css: "linear-gradient(161.15deg, #ffa492 12.73%, #ff2c55 72.95%)" }, { id: "rainbow", name: "Rainbow", css: "linear-gradient(#e02020 0%, #fa6400 17%, #f7b500 33%, #6dd400 50%, #0091ff 67%, #6236ff 83%, #b620e0 100%)" }, { id: "rainbows-embrace", name: "Rainbow's Embrace", css: "radial-gradient(50% 100% at left -10% top 80%, #db0072, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 25% top 60%, #ffe53e, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 55% top 40%, #00ffe4, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 90% top 20%, #d150ff, rgba(0, 0, 0, 0))" }, { id: "sangria-solstice", name: "Sangria Solstice", css: "linear-gradient(181deg, #770738, #ddbb90)" }, { id: "sea-sky", name: "Sea Sky", css: "linear-gradient(to top, #38bdf8, #312e81)" }, { id: "skyline-whisper", name: "Skyline Whisper", css: "linear-gradient(#53a5df, #a9d2ef)" }, { id: "soft-metal", name: "Soft Metal", css: "conic-gradient(at right top, rgb(199, 210, 254), rgb(71, 85, 105), rgb(199, 210, 254))" }, { id: "spectral-summer", name: "Spectral Summer", css: "linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%)" }, { id: "warm-glow", name: "Warm Glow", css: "radial-gradient(at center top, #d1d5db, #c026d3, #ea580c)" }];
-    }
-  });
-  var settings_default9, init_settings10 = __esm({
-    "src/modules/custom-hud/settings/index.js"() {
-      init_backgrounds3();
-      settings_default9 = () => __async(void 0, null, function* () {
-        let gradientOptions = backgrounds_default3.map((gradient) => ({
-          name: gradient.name,
-          value: gradient.id
-        })), options2 = [
-          { name: "Default", value: "default" },
-          {
-            name: "Color",
-            value: "group",
-            options: [
-              { name: "Cyan", value: "hud-cyan" },
-              { name: "Green", value: "hud-green" },
-              { name: "Pink", value: "hud-pink" },
-              { name: "Purple", value: "hud-purple" },
-              { name: "Red", value: "hud-red" },
-              { name: "Teal", value: "hud-teal" },
-              { name: "Faded", value: "hud-faded" },
-              { name: "Gray", value: "hud-gray" }
-            ]
-          },
-          { name: "Blueprint", value: "hud-blueprint" },
-          {
-            name: "Other",
-            value: "group",
-            options: gradientOptions
-          }
-        ];
-        return [{
-          id: "custom-hud",
-          title: 'Custom HUD background <a class="mh-improved-custom-hud-preview hidden">Preview choices</a>',
-          default: [options2[0]],
-          description: "Change the marbled HUD background.",
-          settings: {
-            type: "multi-select",
-            number: 1,
-            options: options2
-          }
-        }];
-      });
-    }
-  });
-  var blueprint_default2, init_blueprint3 = __esm({
-    "src/modules/custom-hud/styles/blueprint.css"() {
-      blueprint_default2 = `body .mousehuntHud-marbleDrawer{background:url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat,url(https://i.mouse.rip/mh-improved/custom-hud/hud-blueprint.png) repeat-y top center}
-`;
-    }
-  });
-  var groovy_green_default, init_groovy_green = __esm({
-    "src/modules/custom-hud/styles/groovy-green.css"() {
-      groovy_green_default = `body .mousehuntHud-marbleDrawer{background:url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/pattern.png) repeat-y bottom center/cover}
-`;
-    }
-  });
-  var midnight_default, init_midnight = __esm({
-    "src/modules/custom-hud/styles/midnight.css"() {
-      midnight_default = `.pageFrameView #mousehuntContainer.PageCamp .gameHeader:before,.pageFrameView #mousehuntContainer.PageJournal .gameHeader:before{background:transparent}.pageFrameView #mousehuntContainer.PageCamp,.pageFrameView #mousehuntContainer.PageJournal{background-color:#383e49}body .mousehuntHud-marbleDrawer{background:url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat;background-color:#383e49}.pageFrameView .pageFrameView-contentContainer,.pageFrameView .pageFrameView-column.right,.pageFrameView .pageFrameView-column.left{background-color:#111;border-color:#111}
-`;
-    }
-  });
-  var suede_default, init_suede = __esm({
-    "src/modules/custom-hud/styles/suede.css"() {
-      suede_default = `.mousehuntHud-marbleDrawer{background:url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -51px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 736px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg) repeat bottom left/760px}#mousehuntContainer.PageCamp{background:url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg) repeat-y}
-`;
-    }
-  });
-  var addStyleEl, listenForPreferenceChanges, persistBackground, init23, custom_hud_default, init_custom_hud = __esm({
-    "src/modules/custom-hud/index.js"() {
-      init_utils2();
-      init_settings10();
-      init_backgrounds3();
-      init_blueprint3();
-      init_groovy_green();
-      init_midnight();
-      init_suede();
-      addStyleEl = () => {
-        let setting = getSetting("custom-hud-0", "default"), stylesEl = document.querySelector("#mh-improved-custom-hud-style");
-        if (stylesEl && stylesEl.remove(), setting === "default")
-          return;
-        let mapping = {
-          "hud-blueprint": blueprint_default2,
-          "hud-suede": suede_default,
-          "hud-groovy-green": groovy_green_default,
-          "hud-midnight": midnight_default
-        }, styleEl = document.createElement("style");
-        if (styleEl.id = "mh-improved-custom-hud-style", mapping[setting])
-          styleEl.innerHTML = mapping[setting];
-        else {
-          let gradient = backgrounds_default3.find((g) => g.id === setting);
-          gradient ? styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
-        background: url(https://i.mouse.rip/mousehuntHudPedestal.png) -46px 0 no-repeat, url(https://i.mouse.rip/mousehuntHudPedestal.png) 731px 0 no-repeat, ${gradient.css};
-      }` : styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
-        background: url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat, url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat, url(https://i.mouse.rip/mh-improved/marble-shadow.png) 6px 0 no-repeat, url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
-      }
-      .mousehuntHud-titleProgressBar {
-        mix-blend-mode: luminosity;
-      }`;
-        }
-        document.head.append(styleEl);
-      }, listenForPreferenceChanges = () => {
-        let input = document.querySelector("#mousehunt-improved-settings-design-custom-hud select");
-        input && input.addEventListener("change", () => {
-          addStyleEl();
-        });
-      }, persistBackground = () => {
-        addStyleEl(), onNavigation(listenForPreferenceChanges, {
-          page: "preferences",
-          onLoad: !0
-        });
-      }, init23 = () => __async(void 0, null, function* () {
-        persistBackground();
-      }), custom_hud_default = {
-        id: "custom-hud",
-        type: "design",
-        alwaysLoad: !0,
-        load: init23,
-        settings: settings_default9
-      };
-    }
-  });
-  var replace, add, init24, replace_favicon_default, init_replace_favicon = __esm({
+  var replace, add, init23, replace_favicon_default, init_replace_favicon = __esm({
     "src/modules/replace-favicon/index.js"() {
       init_utils2();
       replace = () => {
@@ -8357,7 +8201,7 @@ ${e.stack}`, errorElement.append(errorText);
             link.setAttribute(key, icon[key]);
           document.head.append(link);
         });
-      }, init24 = () => __async(void 0, null, function* () {
+      }, init23 = () => __async(void 0, null, function* () {
         add(), replace(), onTurn(() => {
           setMultipleTimeout(replace, [1e3, 2e3, 3e3, 4e3, 5e3]);
         });
@@ -8367,7 +8211,7 @@ ${e.stack}`, errorElement.append(errorText);
         type: "feature",
         default: !1,
         description: "Replace the favicon with a more fitting one.",
-        load: init24
+        load: init23
       };
     }
   });
@@ -8377,7 +8221,7 @@ ${e.stack}`, errorElement.append(errorText);
 `;
     }
   });
-  var isDarkMode, checkForDarkModeAndAddBodyClass, addDarkModeBodyClass, init25, dark_mode_default, init_dark_mode = __esm({
+  var isDarkMode, checkForDarkModeAndAddBodyClass, addDarkModeBodyClass, init24, dark_mode_default, init_dark_mode = __esm({
     "src/modules/dark-mode/index.js"() {
       init_utils2();
       init_styles30();
@@ -8388,7 +8232,7 @@ ${e.stack}`, errorElement.append(errorText);
             checkForDarkModeAndAddBodyClass();
           }, 1e3);
         }, 500);
-      }, init25 = () => __async(void 0, null, function* () {
+      }, init24 = () => __async(void 0, null, function* () {
         addStyles(styles_default29, "dark-mode"), addDarkModeBodyClass(), onNavigation(addDarkModeBodyClass), onRequest("*", addDarkModeBodyClass);
       }), dark_mode_default = {
         id: "dark-mode",
@@ -8396,7 +8240,7 @@ ${e.stack}`, errorElement.append(errorText);
         type: "feature",
         default: !0,
         description: "Improve and tweak dark mode. Requires either the standalone extension or enabling the setting in MHCT.",
-        load: init25
+        load: init24
       };
     }
   });
@@ -8498,9 +8342,9 @@ ${e.stack}`, errorElement.append(errorText);
       };
     }
   });
-  var settings_default10, init_settings11 = __esm({
+  var settings_default9, init_settings10 = __esm({
     "src/modules/feature-flags/settings/index.js"() {
-      settings_default10 = () => __async(void 0, null, function* () {
+      settings_default9 = () => __async(void 0, null, function* () {
         return [{
           id: "override-flags",
           title: "Feature Flags",
@@ -8513,21 +8357,148 @@ ${e.stack}`, errorElement.append(errorText);
       });
     }
   });
-  var init26, feature_flags_default, init_feature_flags = __esm({
+  var init25, feature_flags_default, init_feature_flags = __esm({
     "src/modules/feature-flags/index.js"() {
       init_utils2();
       init_rank_up_forecaster();
       init_social();
-      init_settings11();
-      init26 = () => __async(void 0, null, function* () {
+      init_settings10();
+      init25 = () => __async(void 0, null, function* () {
         (getFlag("social-noop") || getFlag("twitter")) && social_default(), getFlag("rankup-forecaster") || rank_up_forecaster_default();
       }), feature_flags_default = {
         id: "feature-flags",
         type: "advanced",
         alwaysLoad: !0,
-        load: init26,
-        settings: settings_default10,
+        load: init25,
+        settings: settings_default9,
         order: 200
+      };
+    }
+  });
+  var backgrounds_default3, init_backgrounds3 = __esm({
+    "dist/data/backgrounds.json"() {
+      backgrounds_default3 = [{ id: "midnight", name: "Midnight", css: "linear-gradient(220.55deg, #565656 0%, #181818 100%)" }, { id: "amber-sunrise", name: "Amber Sunrise", css: "radial-gradient(circle at center top, #b45309, #fdba74, #9f1239)" }, { id: "aqua-depths", name: "Aqua Depths", css: "linear-gradient(220.55deg, #24cfc5 0%, #001c63 100%)" }, { id: "aurora", name: "Aurora", css: "radial-gradient(65% 100% at 50% 0%, #00ff94 0%, rgba(0, 255, 148, 0.25) 100%), linear-gradient(230deg, #000000 25%, #170059 100%), linear-gradient(215deg, #ffebb9 10%, #19004e 80%), radial-gradient(100% 245% at 100% 100%, #ffffff 0%, #000353 100%), linear-gradient(125deg, #1400ff 0%, #3a0000 100%), linear-gradient(225deg, #00ebfc 3.7%, #00f0ff 11.4%, #000b6f 55.3%, #001676 64.1%, #001676 75%, #00e1f6 100%, #00ecfd 100%, #001676 100%), linear-gradient(135deg, #00f0ff 0%, #000b6f 2.4%, #00ebfc 20.5%, #001676 35%, #00e1f6 47.2%, #001676 66.8%, #00ecfd 84.9%, #001676 100%)" }, { id: "camo", name: "Camo", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-camo.png) top center / 200px" }, { id: "canary-shine", name: "Canary Shine", css: "linear-gradient(220.55deg, #fff500 0%, #ffb800 100%)" }, { id: "candy-cane-breeze", name: "Candy Cane Breeze", css: "radial-gradient(at 30% -5%, #92f2f2, #d6cff1, rgba(255, 255, 255, 0) 25%), radial-gradient(at 50% 70%, #c4f2e5, rgba(255, 255, 255, 0) 30%), radial-gradient(at 70% 0%, #d6cff1, rgba(255, 255, 255, 0) 20%), linear-gradient(75deg, #92f2f2 5%, rgba(255, 255, 255, 0), #a8d0f0, rgba(255, 255, 255, 0), #eed5f2, rgba(255, 255, 255, 0), #d6cff1, rgba(255, 255, 255, 0), #c4f2e5 90%), radial-gradient(at 30% 50%, #92f2f2, rgba(255, 255, 255, 0) 30%), radial-gradient(at 30% 50%, #9cb9fc, rgba(255, 255, 255, 0) 30%), radial-gradient(at 100% 50%, #92f2f2, #c2dcf2, rgba(255, 255, 255, 0) 50%), linear-gradient(115deg, #92f2f2 5%, #a8d0f0 10%, #d6cff1, #eed5f2 20%, #a8d0f0, #a8d0f0 30%, #d6cff1, #c2dcf2 40%, #92f2f2, #a8d0f0 70%)" }, { id: "candy-clouds", name: "Candy Clouds", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-candy-clouds.png) repeat top center / contain" }, { id: "celestial-dreamscape", name: "Celestial Dreamscape", css: "radial-gradient(18% 28% at 24% 50%, #cefaff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 18% 71%, rgba(255, 255, 255, 0.35) 6%, rgba(7, 58, 255, 0) 100%), radial-gradient(70% 53% at 36% 76%, #73f2ff 0%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 15% 94%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(42% 53% at 34% 72%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(18% 28% at 35% 87%, #ffffff 7%, rgba(7, 58, 255, 0) 100%), radial-gradient(31% 43% at 7% 98%, #ffffff 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(21% 37% at 72% 23%, rgba(211, 255, 109, 0.61) 24%, rgba(7, 58, 255, 0) 100%), radial-gradient(35% 56% at 91% 74%, rgba(138, 79, 255, 0.96) 9%, rgba(7, 58, 255, 0) 100%), radial-gradient(74% 86% at 67% 38%, rgba(109, 255, 174, 0.96) 24%, rgba(7, 58, 255, 0) 100%), linear-gradient(125deg, #4eb5ff 1%, #4c00fc 100%)" }, { id: "cobalt-mist", name: "Cobalt Mist", css: "linear-gradient(#3951c6, #8896dd)" }, { id: "cold-breeze", name: "Cold Breeze", css: "conic-gradient(at center top, #ffffff, #0ea5e9, #0ea5e9)" }, { id: "cosmic-twilight", name: "Cosmic Twilight", css: "linear-gradient(to right, #0f172a, #581c87, #0f172a)" }, { id: "cotton-candy-shores", name: "Cotton Candy Shores", css: "linear-gradient(#32c7e5, #f078d5)" }, { id: "crimson-blush", name: "Crimson Blush", css: "linear-gradient(#b9466c, #e3b5c4)" }, { id: "cyberpop", name: "Cyberpop", css: "linear-gradient(135deg, #0e0220 0%, #000000 6px, #e40475 24.8%, #0e0220 35%, #48e0e4 56.3%, #48e0e4 62.4%, #ff00c8 72.9%, rgba(0, 0, 0, 0.86) 78.5%, #48e0e4 100%)" }, { id: "dark-digital", name: "Dark Digital", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-dark-digital.png) top left / 230px" }, { id: "dark", name: "Dark", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-dark.png) top left / 200px" }, { id: "dreamy-hues", name: "Dreamy Hues", css: "linear-gradient(97.92deg, #bc97c6 0%, #f6d2c8 6.33%, #f5e2c8 12.2%, #bde8d9 21.5%, #e8dfc6 34.83%, #edc7c6 44.22%, #e6bdcf 52.26%, #c7b2e5 60.55%, #b8bfe7 70.29%, #c3e1d3 79.4%, #eedfc5 89.06%, #e5b0c9 94.93%, #b495c5 100.7%)" }, { id: "electric-hexes", name: "Electric Hexes", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-electric-hexes.png) top left / 550px" }, { id: "emerald-forest", name: "Emerald Forest", css: "linear-gradient(#43ac20, #76df53)" }, { id: "emerald-lagoon", name: "Emerald Lagoon", css: "radial-gradient(80.99% 100% at 50% 0%, #00ff0a 0%, #36008e 100%), radial-gradient(50% 123.47% at 50% 50%, #efe7c8 0%, #36008e 100%), linear-gradient(301.28deg, #ff006b 0%, #48dd9e 100%), linear-gradient(294.84deg, #5a60e4 0%, #d30000 100%), linear-gradient(52.29deg, #000000 0%, #00ff85 100%), radial-gradient(100% 138.69% at 100% 0%, #0007a5 0%, #ff7a00 100%), radial-gradient(70.41% 100% at 50% 0%, #d5b300 0%, #2200aa 100%)" }, { id: "flamingo-fling", name: "Flamingo Fling", css: "linear-gradient(#e84a8c, #f3a5c5)" }, { id: "flowers", name: "Flowers", css: "url(https://i.mouse.rip/mh-improved/custom-hud/hud-flowers.png) left center / 300px" }, { id: "frosted-orchid", name: "Frosted Orchid", css: "linear-gradient(#ecadaf 0%, #e0b6a5 13.54%, #dc8b9d 30.21%, #c05ac9 44.27%, #b865cf 57.81%, #c3a7d9 71.87%, #c5c1e2 84.9%, #c6d8e4 100%)" }, { id: "galactic-dusk", name: "Galactic Dusk", css: "linear-gradient(220.55deg, #4063bc 0%, #6b0013 100%)" }, { id: "glacial-gleam", name: "Glacial Gleam", css: "linear-gradient(220.55deg, #c5edf5 0%, #4a879a 100%)" }, { id: "groovy-green", name: "Groovy Green", css: "url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/pattern.png) repeat bottom center / 200px" }, { id: "lavender-lustre", name: "Lavender Lustre", css: "linear-gradient(#de97f9, #9157ff)" }, { id: "mint-surf", name: "Mint Surf", css: "linear-gradient(0deg, #08aeea 0%, #2af598 100%)" }, { id: "neon-nights", name: "Neon Nights", css: "linear-gradient(#f3b167, #ec38bc, #7303c0, #03001e)" }, { id: "night-in-salem", name: "Night in Salem", css: "linear-gradient(#111827, #581c87, #7c3aed)" }, { id: "oahu-sunset", name: "Oahu Sunset", css: "linear-gradient(to top, #fb923c, #38bdf8)" }, { id: "orange-coral", name: "Orange Coral", css: "linear-gradient(to top, #fb923c, #fb7185)" }, { id: "pastel-daydream", name: "Pastel Daydream", css: "radial-gradient(at 40% 20%, #ffb87a 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 80% 0%, #1fddff 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 50%, #fcdee1 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 73% 51%, #ff85ad 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 100%, #ffb58a 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 80% 100%, #6b66ff 0px, rgba(0, 0, 0, 0) 50%), radial-gradient(at 0% 0%, #ff85a7 0px, rgba(0, 0, 0, 0) 50%)" }, { id: "polaroid-memories", name: "Polaroid Memories", css: "linear-gradient(to top, #040308, #ad4a28, #dd723c, #fc7001, #dcb697, #9ba5ae, #3e5879, #020b1a)" }, { id: "radiant-rouge", name: "Radiant Rouge", css: "linear-gradient(161.15deg, #ffa492 12.73%, #ff2c55 72.95%)" }, { id: "rainbow", name: "Rainbow", css: "linear-gradient(#e02020 0%, #fa6400 17%, #f7b500 33%, #6dd400 50%, #0091ff 67%, #6236ff 83%, #b620e0 100%)" }, { id: "rainbows-embrace", name: "Rainbow's Embrace", css: "radial-gradient(50% 100% at left -10% top 80%, #db0072, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 25% top 60%, #ffe53e, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 55% top 40%, #00ffe4, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 90% top 20%, #d150ff, rgba(0, 0, 0, 0))" }, { id: "sangria-solstice", name: "Sangria Solstice", css: "linear-gradient(181deg, #770738, #ddbb90)" }, { id: "sea-sky", name: "Sea Sky", css: "linear-gradient(to top, #38bdf8, #312e81)" }, { id: "skyline-whisper", name: "Skyline Whisper", css: "linear-gradient(#53a5df, #a9d2ef)" }, { id: "soft-metal", name: "Soft Metal", css: "conic-gradient(at right top, rgb(199, 210, 254), rgb(71, 85, 105), rgb(199, 210, 254))" }, { id: "spectral-summer", name: "Spectral Summer", css: "linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%)" }, { id: "warm-glow", name: "Warm Glow", css: "radial-gradient(at center top, #d1d5db, #c026d3, #ea580c)" }];
+    }
+  });
+  var settings_default10, init_settings11 = __esm({
+    "src/modules/custom-hud/settings/index.js"() {
+      init_backgrounds3();
+      settings_default10 = () => __async(void 0, null, function* () {
+        let gradientOptions = backgrounds_default3.map((gradient) => ({
+          name: gradient.name,
+          value: gradient.id
+        })), options2 = [
+          { name: "Default", value: "default" },
+          {
+            name: "Color",
+            value: "group",
+            options: [
+              { name: "Cyan", value: "hud-cyan" },
+              { name: "Green", value: "hud-green" },
+              { name: "Pink", value: "hud-pink" },
+              { name: "Purple", value: "hud-purple" },
+              { name: "Red", value: "hud-red" },
+              { name: "Teal", value: "hud-teal" },
+              { name: "Faded", value: "hud-faded" },
+              { name: "Gray", value: "hud-gray" }
+            ]
+          },
+          { name: "Blueprint", value: "hud-blueprint" },
+          {
+            name: "Other",
+            value: "group",
+            options: gradientOptions
+          }
+        ];
+        return [{
+          id: "custom-hud",
+          title: 'Custom HUD background <a class="mh-improved-custom-hud-preview hidden">Preview choices</a>',
+          default: [options2[0]],
+          description: "Change the marbled HUD background.",
+          settings: {
+            type: "multi-select",
+            number: 1,
+            options: options2
+          }
+        }];
+      });
+    }
+  });
+  var blueprint_default2, init_blueprint3 = __esm({
+    "src/modules/custom-hud/styles/blueprint.css"() {
+      blueprint_default2 = `body .mousehuntHud-marbleDrawer{background:url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat,url(https://i.mouse.rip/mh-improved/custom-hud/hud-blueprint.png) repeat-y top center}
+`;
+    }
+  });
+  var groovy_green_default, init_groovy_green = __esm({
+    "src/modules/custom-hud/styles/groovy-green.css"() {
+      groovy_green_default = `body .mousehuntHud-marbleDrawer{background:url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/pattern.png) repeat-y bottom center/cover}
+`;
+    }
+  });
+  var midnight_default, init_midnight = __esm({
+    "src/modules/custom-hud/styles/midnight.css"() {
+      midnight_default = `.pageFrameView #mousehuntContainer.PageCamp .gameHeader:before,.pageFrameView #mousehuntContainer.PageJournal .gameHeader:before{background:transparent}.pageFrameView #mousehuntContainer.PageCamp,.pageFrameView #mousehuntContainer.PageJournal{background-color:#383e49}body .mousehuntHud-marbleDrawer{background:url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat;background-color:#383e49}.pageFrameView .pageFrameView-contentContainer,.pageFrameView .pageFrameView-column.right,.pageFrameView .pageFrameView-column.left{background-color:#111;border-color:#111}
+`;
+    }
+  });
+  var suede_default, init_suede = __esm({
+    "src/modules/custom-hud/styles/suede.css"() {
+      suede_default = `.mousehuntHud-marbleDrawer{background:url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -51px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 736px 0 no-repeat,url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg) repeat bottom left/760px}#mousehuntContainer.PageCamp{background:url(https://www.mousehuntgame.com/images/ui/hud/suede.jpg) repeat-y}
+`;
+    }
+  });
+  var addStyleEl, listenForPreferenceChanges, persistBackground, init26, custom_hud_default, init_custom_hud = __esm({
+    "src/modules/custom-hud/index.js"() {
+      init_utils2();
+      init_settings11();
+      init_backgrounds3();
+      init_blueprint3();
+      init_groovy_green();
+      init_midnight();
+      init_suede();
+      addStyleEl = () => {
+        let setting = getSetting("custom-hud-0", "default"), stylesEl = document.querySelector("#mh-improved-custom-hud-style");
+        if (stylesEl && stylesEl.remove(), setting === "default")
+          return;
+        let mapping = {
+          "hud-blueprint": blueprint_default2,
+          "hud-suede": suede_default,
+          "hud-groovy-green": groovy_green_default,
+          "hud-midnight": midnight_default
+        }, styleEl = document.createElement("style");
+        if (styleEl.id = "mh-improved-custom-hud-style", mapping[setting])
+          styleEl.innerHTML = mapping[setting];
+        else {
+          let gradient = backgrounds_default3.find((g) => g.id === setting);
+          gradient ? styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
+        background: url(https://i.mouse.rip/mousehuntHudPedestal.png) -46px 0 no-repeat, url(https://i.mouse.rip/mousehuntHudPedestal.png) 731px 0 no-repeat, ${gradient.css};
+      }` : styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
+        background: url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat, url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat, url(https://i.mouse.rip/mh-improved/marble-shadow.png) 6px 0 no-repeat, url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
+      }
+      .mousehuntHud-titleProgressBar {
+        mix-blend-mode: luminosity;
+      }`;
+        }
+        document.head.append(styleEl);
+      }, listenForPreferenceChanges = () => {
+        let input = document.querySelector("#mousehunt-improved-settings-design-custom-hud select");
+        input && input.addEventListener("change", () => {
+          addStyleEl();
+        });
+      }, persistBackground = () => {
+        addStyleEl(), onNavigation(listenForPreferenceChanges, {
+          page: "preferences",
+          onLoad: !0
+        });
+      }, init26 = () => __async(void 0, null, function* () {
+        persistBackground();
+      }), custom_hud_default = {
+        id: "custom-hud",
+        type: "design",
+        alwaysLoad: !0,
+        load: init26,
+        settings: settings_default10
       };
     }
   });
@@ -8841,7 +8812,6 @@ ${e.stack}`, errorElement.append(errorText);
       };
     }
   });
-  // dist/data/journals-environment-mapping.json
   var journals_environment_mapping_default, init_journals_environment_mapping = __esm({
     "dist/data/journals-environment-mapping.json"() {
       journals_environment_mapping_default = { ancient_city: "theme_labyrinth", bountiful_beanstalk: "theme_bountiful_beanstalk", claw_shot_city: "theme_western", desert_oasis: "theme_living_garden", foreword_farm: "theme_table_of_contents", fungal_cavern: "theme_fungal", labyrinth: "theme_labyrinth", lost_city: "theme_living_garden", moussu_picchu: "theme_moussu_picchu", pollution_outbreak: "theme_polluted", prologue_pond: "theme_table_of_contents", queso_geyser: "theme_queso_canyon", queso_plains: "theme_queso_canyon", queso_quarry: "theme_queso_canyon", queso_river: "theme_queso_canyon", rift_bristle_woods: "theme_bristle_woods_rift", rift_burroughs: "theme_burroughs_rift", sand_dunes: "theme_living_garden", school_of_sorcery: "school_of_sorcery", table_of_contents: "theme_table_of_contents" };
@@ -9095,207 +9065,6 @@ ${e.stack}`, errorElement.append(errorText);
       };
     }
   });
-  var settings_default14, init_settings15 = __esm({
-    "src/modules/custom-shield/settings/index.js"() {
-      settings_default14 = () => __async(void 0, null, function* () {
-        let options2 = [
-          { name: "Default", value: "default" },
-          { name: "Default (normal resolution)", value: "default-normal" },
-          {
-            name: "Events",
-            value: "group",
-            options: [
-              { name: "Birthday (Generic)", value: "birthday" },
-              { name: "Birthday (Year 10)", value: "birthday.year10" },
-              { name: "Birthday (Year 11)", value: "birthday.year11" },
-              { name: "Birthday (Year 12)", value: "birthday.year12" },
-              { name: "Birthday (Year 13)", value: "birthday.year13" },
-              { name: "Birthday (Year 14)", value: "birthday.year14" },
-              { name: "Birthday (Year 15)", value: "birthday.year15" },
-              { name: "Birthday (Year 16)", value: "birthday.year16" },
-              { name: "Great Winter Hunt", value: "winter_hunt" },
-              { name: "Halloween", value: "halloween" },
-              { name: "Larry's Football Challenge", value: "larrys_football_challenge" },
-              { name: "Pride (LGS Required)", value: "pride" },
-              { name: "Remembrance Day", value: "remembrance_day" },
-              { name: "Spring Egg Hunt (LGS Required)", value: "spring-egg-hunt" },
-              { name: "Spring Egg Hunt Alt (LGS Required)", value: "spring-egg-hunt-alt" },
-              { name: "Valentine's", value: "valentines" }
-            ]
-          },
-          {
-            name: "Color (LGS required)",
-            value: "group",
-            options: [
-              { name: "Blue", value: "color-blue" },
-              { name: "Cyan", value: "color-cyan" },
-              { name: "Green", value: "color-green" },
-              { name: "Pink", value: "color-pink" },
-              { name: "Purple", value: "color-purple" },
-              { name: "Red", value: "color-red" },
-              { name: "Faded", value: "color-faded" },
-              { name: "Rainbow", value: "color-rainbow" },
-              { name: "Cotton Candy", value: "color-cotton-candy" },
-              { seperator: !0 },
-              { name: "Blue with matching timer", value: "color-blue-timer" },
-              { name: "Cyan with matching timer", value: "color-cyan-timer" },
-              { name: "Green with matching timer", value: "color-green-timer" },
-              { name: "Pink with matching timer", value: "color-pink-timer" },
-              { name: "Purple with matching timer", value: "color-purple-timer" },
-              { name: "Red with matching timer", value: "color-red-timer" },
-              { name: "Rainbow with matching timer", value: "color-rainbow-timer" }
-            ]
-          },
-          {
-            name: "Title Shields",
-            value: "group",
-            options: [
-              { name: "Current Title ", value: "title" },
-              { seperator: !0 },
-              { name: "Novice", value: "title.novice" },
-              { name: "Recruit", value: "title.recruit" },
-              { name: "Apprentice", value: "title.apprentice" },
-              { name: "Initiate", value: "title.initiate" },
-              { name: "Journeyman / Journeywoman", value: "title.journeyman" },
-              { name: "Master", value: "title.master" },
-              { name: "Grandmaster", value: "title.grandmaster" },
-              { name: "Legendary", value: "title.legendary" },
-              { name: "Hero", value: "title.hero" },
-              { name: "Knight", value: "title.knight" },
-              { name: "Lord / Lady", value: "title.lord" },
-              { name: "Baron / Baroness", value: "title.baron" },
-              { name: "Count / Countess", value: "title.count" },
-              { name: "Duke / Duchess", value: "title.duke" },
-              { name: "Grand Duke / Duchess", value: "title.grandduke" },
-              { name: "Archduke / Archduchess", value: "title.archduke" },
-              { name: "Viceroy", value: "title.viceroy" },
-              { name: "Elder", value: "title.elder" },
-              { name: "Sage", value: "title.sage" },
-              { name: "Fabled", value: "title.fabled" }
-            ]
-          },
-          {
-            name: "Silly",
-            value: "group",
-            options: [
-              { name: "Scrambles ", value: "scrambles" },
-              { name: "Jerry ", value: "jerry" },
-              { name: "Romeno ", value: "romeno" }
-            ]
-          }
-        ];
-        if (!user.has_shield) {
-          let toDisable = /* @__PURE__ */ new Set([
-            "pride",
-            "spring-egg-hunt",
-            "spring-egg-hunt-alt",
-            "Color (LGS required)"
-          ]);
-          options2 = options2.map((option) => {
-            if (option.value === "group") {
-              let disabledParent = toDisable.has(option.name) || toDisable.has(option.value);
-              disabledParent && (option.disabled = !0), option.options = option.options.map((groupOption) => ((toDisable.has(groupOption.value) || disabledParent) && (groupOption.disabled = !0), groupOption));
-            }
-            return option;
-          });
-        }
-        return [{
-          id: "custom-shield",
-          title: "Custom Shield",
-          default: [options2[0]],
-          description: "Change the shield to an event shield, color, title shield, or silly shield.",
-          settings: {
-            type: "multi-select",
-            number: 1,
-            options: options2
-          }
-        }];
-      });
-    }
-  });
-  var styles_default33, init_styles34 = __esm({
-    "src/modules/custom-shield/styles.css"() {
-      styles_default33 = `.mousehuntHud-shield.golden.default{top:2px;left:10px;background-image:url(https://www.mousehuntgame.com/images/mousehunt_gold_logo.png);filter:drop-shadow(0 0 5px #e8dbb8);background-size:contain;transition:opacity .3s ease-in-out}.mousehuntHud-shield.golden.default-normal{top:unset;left:unset;background-image:url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif);filter:none}.mousehuntHud-shield.golden.default-fancy:hover,.mousehuntHud-shield.golden.default-fancy:focus{opacity:.9}.mousehuntHud-shield.mhui-custom-shield.pride,.mousehuntHud-shield.golden.mhui-custom-shield.pride{background:url(https://i.mouse.rip/shield-pride.png) 0 0/105%}.mousehuntHud-shield.scrambles{background-image:url(https://i.mouse.rip/shield-scrambles-bawk.png)}.mousehuntHud-shield.golden.scrambles{background-image:url(https://i.mouse.rip/shield-scrambles-bawk.png),url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif)}.mousehuntHud-shield.jerry{background-image:url(https://i.mouse.rip/shield-jerry.png)}.mousehuntHud-shield.golden.jerry{background-image:url(https://i.mouse.rip/shield-jerry.png),url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif)}.mousehuntHud-shield.golden.spring-egg-hunt{background:url(https://i.mouse.rip/shield-seh.png) 1px 1px/104%}.mousehuntHud-shield.golden.spring-egg-hunt-alt{background:url(https://i.mouse.rip/shield-seh-alt.png) 1px 1px/104%}.mousehuntHud-shield.romeno:after{position:absolute;bottom:0;left:-69px;z-index:1;width:140px;height:140px;content:"";background-image:url(https://i.mouse.rip/shield-romeno.png);filter:drop-shadow(6px 0 14px #fff);background-repeat:no-repeat;background-size:contain}.mousehuntHud-shield.title,.mousehuntHud-shield.golden.title{top:2px;left:2px;background:url(https://i.mouse.rip/shield-blank-2.png) 0 0 / contain no-repeat}.mousehuntHud-shield.title:after{position:absolute;inset:0;content:"";filter:drop-shadow(0 0 10px #e8dbb8);background-repeat:no-repeat;background-position:center;background-size:105px;transition:background-image .5s}.mousehuntHud-shield.title.novice:after,.mousehuntHud-shield.golden.title.novice:after{background-image:url(https://www.mousehuntgame.com/images/titles/84bc1109b5cd7aa8c24d195bc8207c38.png)}.mousehuntHud-shield.title.recruit:after,.mousehuntHud-shield.golden.title.recruit:after{background-image:url(https://www.mousehuntgame.com/images/titles/3f1e44bbaa7138da4c326819e9f3f0a8.png)}.mousehuntHud-shield.title.apprentice:after,.mousehuntHud-shield.golden.title.apprentice:after{background-image:url(https://www.mousehuntgame.com/images/titles/6f4673dd2d9d1e98b4569667d702a775.png)}.mousehuntHud-shield.title.initiate:after,.mousehuntHud-shield.golden.title.initiate:after{background-image:url(https://www.mousehuntgame.com/images/titles/e96387f7261b95c0eeab9291e4e594e1.png)}.mousehuntHud-shield.title.journeyman:after,.mousehuntHud-shield.golden.title.journeyman:after{background-image:url(https://www.mousehuntgame.com/images/titles/ad6875955f541159133c6d3798519f81.png)}.mousehuntHud-shield.title.master:after,.mousehuntHud-shield.golden.title.master:after{background-image:url(https://www.mousehuntgame.com/images/titles/35ee6056a09037fb13a9195881875045.png)}.mousehuntHud-shield.title.grandmaster:after,.mousehuntHud-shield.golden.title.grandmaster:after{background-image:url(https://www.mousehuntgame.com/images/titles/0da3761747914f497c16dc2051ba132d.png)}.mousehuntHud-shield.title.legendary:after,.mousehuntHud-shield.golden.title.legendary:after{background-image:url(https://www.mousehuntgame.com/images/titles/fca35751046f4bcc972716ca484b6d61.png)}.mousehuntHud-shield.title.hero:after,.mousehuntHud-shield.golden.title.hero:after{background-image:url(https://www.mousehuntgame.com/images/titles/0567284d6e12aaaed35ca5912007e070.png)}.mousehuntHud-shield.title.knight:after,.mousehuntHud-shield.golden.title.knight:after{background-image:url(https://www.mousehuntgame.com/images/titles/398dca9a8c7703de969769491622ca32.png)}.mousehuntHud-shield.title.lord:after,.mousehuntHud-shield.golden.title.lord:after{background-image:url(https://www.mousehuntgame.com/images/titles/9a6acd429a9a3a4849ed13901288b0b8.png)}.mousehuntHud-shield.title.baron:after,.mousehuntHud-shield.golden.title.baron:after{background-image:url(https://www.mousehuntgame.com/images/titles/ea9c0ec2e6d3d81c14e61f5ce924d0e1.png)}.mousehuntHud-shield.title.count:after,.mousehuntHud-shield.golden.title.count:after{background-image:url(https://www.mousehuntgame.com/images/titles/dd11711a25b80db90e0306193f2e8d78.png)}.mousehuntHud-shield.title.duke:after,.mousehuntHud-shield.golden.title.duke:after{background-image:url(https://www.mousehuntgame.com/images/titles/eb46ac1e8197b13299ab860f07d963db.png)}.mousehuntHud-shield.title.grandduke:after,.mousehuntHud-shield.golden.title.grandduke:after{background-image:url(https://www.mousehuntgame.com/images/titles/87937fa96bbb3b2dd3225df883002642.png)}.mousehuntHud-shield.title.archduke:after,.mousehuntHud-shield.golden.title.archduke:after{background-image:url(https://www.mousehuntgame.com/images/titles/043efe31de4f0f2e0ddca590fe829032.png)}.mousehuntHud-shield.title.viceroy:after,.mousehuntHud-shield.golden.title.viceroy:after{background-image:url(https://www.mousehuntgame.com/images/titles/e2e79f6f9201a4d4e7a89684fbb5356f.png)}.mousehuntHud-shield.title.elder:after,.mousehuntHud-shield.golden.title.elder:after{background-image:url(https://www.mousehuntgame.com/images/titles/0f3cf224bf98457f6b5bad91ab1c7bd2.png)}.mousehuntHud-shield.title.sage:after,.mousehuntHud-shield.golden.title.sage:after{background-image:url(https://www.mousehuntgame.com/images/titles/cb49e43c5e4460da7c09fe28ca4f44ce.png)}.mousehuntHud-shield.title.fabled:after,.mousehuntHud-shield.golden.title.fabled:after{background-image:url(https://www.mousehuntgame.com/images/titles/5daba92a8d609834aa8b789f37544e08.png)}.mousehunt-improved-lgs-reminder-new.color-blue,.huntersHornView__timer--default.color-blue,.mousehuntHud-shield.golden.color-blue{filter:hue-rotate(158deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-cyan,.huntersHornView__timer--default.color-cyan,.mousehuntHud-shield.golden.color-cyan{filter:hue-rotate(112deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-green,.huntersHornView__timer--default.color-green,.mousehuntHud-shield.golden.color-green{filter:hue-rotate(66deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-pink,.huntersHornView__timer--default.color-pink,.mousehuntHud-shield.golden.color-pink{filter:hue-rotate(280deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-purple,.huntersHornView__timer--default.color-purple,.mousehuntHud-shield.golden.color-purple{filter:hue-rotate(195deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-red,.huntersHornView__timer--default.color-red,.mousehuntHud-shield.golden.color-red{filter:hue-rotate(317deg) saturate(1.6) drop-shadow(0 0 5px #e8dbb8)}.mousehuntHud-shield.golden.color-faded{filter:sepia(1) drop-shadow(0 0 5px #e8dbb8)}.huntersHornView__timer--default.color-blue .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-cyan .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-green .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-pink .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-purple .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-red .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown{mix-blend-mode:hard-light}.huntersHornView__timer--legacy.color-blue .huntersHornView__timerState{color:#1875af}.huntersHornView__timer--legacy.color-cyan .huntersHornView__timerState{color:#18825f}.huntersHornView__timer--legacy.color-green .huntersHornView__timerState{color:#3b7523}.huntersHornView__timer--legacy.color-pink .huntersHornView__timerState{color:#ae5385}.huntersHornView__timer--legacy.color-purple .huntersHornView__timerState{color:#596eb7}.huntersHornView__timer--legacy.color-red .huntersHornView__timerState{color:#a95354}@keyframes mh-improved-shield-hue-rotate{0%{filter:hue-rotate(0deg) drop-shadow(0 0 5px #e8dbb8)}50%{filter:hue-rotate(360deg) drop-shadow(0 0 5px #e8dbb8)}to{filter:hue-rotate(0deg) drop-shadow(0 0 5px #e8dbb8)}}.huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState{color:#625901}.mousehunt-improved-lgs-reminder-new.color-rainbow,.huntersHornView__timer--default.color-rainbow,.huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState,.mousehuntHud-shield.golden.color-rainbow,.mousehuntHud-shield.golden.color-rainbow2{animation:mh-improved-shield-hue-rotate 30s infinite}@media (prefers-reduced-motion: reduce){.mousehunt-improved-lgs-reminder-new.color-rainbow,.huntersHornView__timer--default.color-rainbow,.huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState,.mousehuntHud-shield.golden.color-rainbow,.mousehuntHud-shield.golden.color-rainbow2{animation:none}}
-`;
-    }
-  });
-  var cotton_candy_default, init_cotton_candy = __esm({
-    "src/modules/custom-shield/cotton-candy.css"() {
-      cotton_candy_default = `.huntersHornView__backdrop{filter:hue-rotate(180deg);opacity:1;transition:none}.huntersHornView__horn--ready{filter:hue-rotate(275deg);transition:none}.huntersHornMessageView{filter:hue-rotate(200deg)}.mousehuntHud-menu.default>ul li a{filter:hue-rotate(298deg);backdrop-filter:hue-rotate(245deg)}.mousehuntHud-environmentName{text-shadow:0 0 1px #eab9cd,1px 1px #ffe1f5}.mousehuntHud-environmentIcon{box-shadow:2px 2px 2px #ffe1f5 inset,-2px -2px 2px #eab9cd inset}.mousehuntHud-menu ul li.active .mousehuntHud-menu-item.root,.mousehuntHud-menu ul li:hover .mousehuntHud-menu-item.root{background:url(https://www.mousehuntgame.com/images/ui/hud/menu/menu_seperator.png) 100% 0 no-repeat;filter:hue-rotate(328deg);backdrop-filter:hue-rotate(292deg)}
-`;
-    }
-  });
-  var doClass, addClass, removeClass, lastShield, changeShield, inputListener, watchForPreferenceChanges, init32, custom_shield_default, init_custom_shield = __esm({
-    "src/modules/custom-shield/index.js"() {
-      init_utils2();
-      init_settings15();
-      init_styles34();
-      init_cotton_candy();
-      doClass = (el, shieldClass, verb) => {
-        if (Array.isArray(shieldClass) && (shieldClass = shieldClass.join(" ")), !shieldClass)
-          return;
-        let classToAdd = shieldClass.replace(".", " ");
-        classToAdd = classToAdd.split(" "), Array.isArray(classToAdd) || (classToAdd = [classToAdd]), classToAdd.forEach((className) => {
-          if (el && el.classList && el.classList[verb]) {
-            if (verb === "remove" && !el.classList.contains(className))
-              return;
-            el.classList[verb](className);
-          }
-        });
-      }, addClass = (el, shieldClass) => {
-        doClass(el, shieldClass, "add");
-      }, removeClass = (el, shieldClass) => {
-        doClass(el, shieldClass, "remove");
-      }, lastShield = "", changeShield = () => {
-        let shieldEl = document.querySelector(".mousehuntHud-shield");
-        if (!shieldEl)
-          return;
-        let timer = document.querySelector(".huntersHornView__timer--default");
-        if (!timer && (timer = document.querySelector(".huntersHornView__timer--legacy"), !timer))
-          return;
-        lastShield && [
-          ...lastShield,
-          "mhui-custom-shield"
-        ].forEach((className) => {
-          removeClass(shieldEl, className), timer.classList.remove(className);
-        });
-        let shield = getSetting("custom-shield-0", "default");
-        if (shield === "default") {
-          shieldEl.classList.add("default", "default-fancy"), lastShield = ["default", "default-fancy"];
-          return;
-        }
-        if (shield === "color-cotton-candy")
-          makeElement("style", "mh-improved-cotton-candy-style", cotton_candy_default, document.head), shield = "color-pink-timer";
-        else {
-          let cottonCandyStyle = document.querySelector(".mh-improved-cotton-candy-style");
-          cottonCandyStyle && cottonCandyStyle.remove();
-        }
-        if (lastShield = [shield], shield.startsWith("color-") && (shieldEl.classList.add("default"), shieldEl.classList.add("color"), lastShield.push("color")), shield.endsWith("-timer") && (shield = shield.replace("-timer", ""), timer.classList.add(shield), lastShield.push(shield)), shield.endsWith("-alt")) {
-          let altClass = shield.replace("-alt", "");
-          shieldEl.classList.add(altClass, "alt"), lastShield.push(altClass, "alt");
-        }
-        shield.includes("title") && (shieldEl.classList.add("title"), shield = shield === "title" ? getUserTitle() : shield, lastShield.push("title", shield)), shieldEl.classList.add("mhui-custom-shield"), addClass(shieldEl, shield);
-      }, inputListener = null, watchForPreferenceChanges = () => {
-        let input = document.querySelector("#mousehunt-improved-settings-design-custom-shield select");
-        input && (inputListener && input.removeEventListener("change", inputListener), inputListener = input.addEventListener("change", () => {
-          changeShield();
-        }));
-      }, init32 = () => __async(void 0, null, function* () {
-        addStyles(styles_default33, "custom-shield"), lastShield = getSetting("custom-shield-0", "default"), changeShield(), onNavigation(() => {
-          setMultipleTimeout(watchForPreferenceChanges, [100, 1e3, 2e3, 5e3]);
-        }, {
-          page: "preferences",
-          onLoad: !0
-        });
-      }), custom_shield_default = {
-        id: "custom-shield",
-        type: "design",
-        alwaysLoad: !0,
-        load: init32,
-        settings: settings_default14
-      };
-    }
-  });
   var addAdventureBookClass, adventure_book_default, init_adventure_book = __esm({
     "src/modules/better-ui/modules/adventure-book/index.js"() {
       init_utils2();
@@ -9433,18 +9202,18 @@ ${e.stack}`, errorElement.append(errorText);
       });
     }
   });
-  var styles_default34, init_styles35 = __esm({
+  var styles_default33, init_styles34 = __esm({
     "src/modules/better-ui/modules/legacy-styles/styles.css"() {
-      styles_default34 = `.huntersHornView__timer.huntersHornView__timer.countdown:after{content:""}.mousehuntHud-userStat .icon{width:26px;height:26px;border:1px solid #c2b384;box-shadow:1px 1px 1px #7d6027}.mousehuntHud-userStat.bait:hover .value,.mousehuntHud-userStat.trinket:hover .value,.mousehuntHud-userStat.treasureMap:hover .value{margin:0}#mh-custom-icon-egg img{filter:none}
+      styles_default33 = `.huntersHornView__timer.huntersHornView__timer.countdown:after{content:""}.mousehuntHud-userStat .icon{width:26px;height:26px;border:1px solid #c2b384;box-shadow:1px 1px 1px #7d6027}.mousehuntHud-userStat.bait:hover .value,.mousehuntHud-userStat.trinket:hover .value,.mousehuntHud-userStat.treasureMap:hover .value{margin:0}#mh-custom-icon-egg img{filter:none}
 `;
     }
   });
   var legacy_styles_default, init_legacy_styles = __esm({
     "src/modules/better-ui/modules/legacy-styles/index.js"() {
       init_utils2();
-      init_styles35();
+      init_styles34();
       legacy_styles_default = () => __async(void 0, null, function* () {
-        isLegacyHUD() && addStyles(styles_default34, "better-ui-legacy");
+        isLegacyHUD() && addStyles(styles_default33, "better-ui-legacy");
       });
     }
   });
@@ -9641,9 +9410,9 @@ ${e.stack}`, errorElement.append(errorText);
 `;
     }
   });
-  var settings_default15, init_settings16 = __esm({
+  var settings_default14, init_settings15 = __esm({
     "src/modules/better-ui/styles/settings.css"() {
-      settings_default15 = `.PagePreferences__section{padding:10px;margin:10px 0;border:1px solid #e0cfb4}.PreferencesPage__formInputDescription{position:relative}.PagePreferences__profilePicContainer{padding-top:10px}.PagePreferences__settingDefault{display:none}.PagePreferences__title{padding-bottom:10px;margin:0}
+      settings_default14 = `.PagePreferences__section{padding:10px;margin:10px 0;border:1px solid #e0cfb4}.PreferencesPage__formInputDescription{position:relative}.PagePreferences__profilePicContainer{padding-top:10px}.PagePreferences__settingDefault{display:none}.PagePreferences__title{padding-bottom:10px;margin:0}
 `;
     }
   });
@@ -9763,7 +9532,7 @@ user-select: none; }{}
 `;
     }
   });
-  var imported6, styles5, init33, better_ui_default, init_better_ui = __esm({
+  var imported6, styles5, init32, better_ui_default, init_better_ui = __esm({
     "src/modules/better-ui/index.js"() {
       init_utils2();
       init_adventure_book();
@@ -9786,7 +9555,7 @@ user-select: none; }{}
       init_tabs3();
       init_trap_selector();
       init_login();
-      init_settings16();
+      init_settings15();
       init_overlays2();
       init_gifts2();
       init_le();
@@ -9806,7 +9575,7 @@ user-select: none; }{}
       init_footer2();
       init_daily_draw2();
       init_profile2();
-      imported6 = [inbox_default2, scrambles_default, events_default2, skins_default, tutorial_default, adventure_default2, team_default2, news_default2, hud_default2, tabs_default3, trap_selector_default, login_default, settings_default15, overlays_default2, gifts_default2, le_default, traps_default, maintence_default, general_default4, corkboard_default, mobile_camp_default, select2_default, sidebar_default3, legacy_default, friends_default3, buttons_default3, scoreboards_default2, timer_default, ui_page_default, footer_default2, daily_draw_default2, profile_default2], styles5 = imported6, init33 = () => __async(void 0, null, function* () {
+      imported6 = [inbox_default2, scrambles_default, events_default2, skins_default, tutorial_default, adventure_default2, team_default2, news_default2, hud_default2, tabs_default3, trap_selector_default, login_default, settings_default14, overlays_default2, gifts_default2, le_default, traps_default, maintence_default, general_default4, corkboard_default, mobile_camp_default, select2_default, sidebar_default3, legacy_default, friends_default3, buttons_default3, scoreboards_default2, timer_default, ui_page_default, footer_default2, daily_draw_default2, profile_default2], styles5 = imported6, init32 = () => __async(void 0, null, function* () {
         addStyles(styles5, "better-ui"), adventure_book_default(), daily_draw_default(), friends_default2(), hud_default(), kings_promo_default(), maintenance_default(), userscripts_styles_default(), legacy_styles_default();
       }), better_ui_default = {
         id: "better-ui",
@@ -9815,7 +9584,208 @@ user-select: none; }{}
         default: !0,
         description: "Update the MH interface with various UI and style changes.",
         order: -1,
-        load: init33
+        load: init32
+      };
+    }
+  });
+  var settings_default15, init_settings16 = __esm({
+    "src/modules/custom-shield/settings/index.js"() {
+      settings_default15 = () => __async(void 0, null, function* () {
+        let options2 = [
+          { name: "Default", value: "default" },
+          { name: "Default (normal resolution)", value: "default-normal" },
+          {
+            name: "Events",
+            value: "group",
+            options: [
+              { name: "Birthday (Generic)", value: "birthday" },
+              { name: "Birthday (Year 10)", value: "birthday.year10" },
+              { name: "Birthday (Year 11)", value: "birthday.year11" },
+              { name: "Birthday (Year 12)", value: "birthday.year12" },
+              { name: "Birthday (Year 13)", value: "birthday.year13" },
+              { name: "Birthday (Year 14)", value: "birthday.year14" },
+              { name: "Birthday (Year 15)", value: "birthday.year15" },
+              { name: "Birthday (Year 16)", value: "birthday.year16" },
+              { name: "Great Winter Hunt", value: "winter_hunt" },
+              { name: "Halloween", value: "halloween" },
+              { name: "Larry's Football Challenge", value: "larrys_football_challenge" },
+              { name: "Pride (LGS Required)", value: "pride" },
+              { name: "Remembrance Day", value: "remembrance_day" },
+              { name: "Spring Egg Hunt (LGS Required)", value: "spring-egg-hunt" },
+              { name: "Spring Egg Hunt Alt (LGS Required)", value: "spring-egg-hunt-alt" },
+              { name: "Valentine's", value: "valentines" }
+            ]
+          },
+          {
+            name: "Color (LGS required)",
+            value: "group",
+            options: [
+              { name: "Blue", value: "color-blue" },
+              { name: "Cyan", value: "color-cyan" },
+              { name: "Green", value: "color-green" },
+              { name: "Pink", value: "color-pink" },
+              { name: "Purple", value: "color-purple" },
+              { name: "Red", value: "color-red" },
+              { name: "Faded", value: "color-faded" },
+              { name: "Rainbow", value: "color-rainbow" },
+              { name: "Cotton Candy", value: "color-cotton-candy" },
+              { seperator: !0 },
+              { name: "Blue with matching timer", value: "color-blue-timer" },
+              { name: "Cyan with matching timer", value: "color-cyan-timer" },
+              { name: "Green with matching timer", value: "color-green-timer" },
+              { name: "Pink with matching timer", value: "color-pink-timer" },
+              { name: "Purple with matching timer", value: "color-purple-timer" },
+              { name: "Red with matching timer", value: "color-red-timer" },
+              { name: "Rainbow with matching timer", value: "color-rainbow-timer" }
+            ]
+          },
+          {
+            name: "Title Shields",
+            value: "group",
+            options: [
+              { name: "Current Title ", value: "title" },
+              { seperator: !0 },
+              { name: "Novice", value: "title.novice" },
+              { name: "Recruit", value: "title.recruit" },
+              { name: "Apprentice", value: "title.apprentice" },
+              { name: "Initiate", value: "title.initiate" },
+              { name: "Journeyman / Journeywoman", value: "title.journeyman" },
+              { name: "Master", value: "title.master" },
+              { name: "Grandmaster", value: "title.grandmaster" },
+              { name: "Legendary", value: "title.legendary" },
+              { name: "Hero", value: "title.hero" },
+              { name: "Knight", value: "title.knight" },
+              { name: "Lord / Lady", value: "title.lord" },
+              { name: "Baron / Baroness", value: "title.baron" },
+              { name: "Count / Countess", value: "title.count" },
+              { name: "Duke / Duchess", value: "title.duke" },
+              { name: "Grand Duke / Duchess", value: "title.grandduke" },
+              { name: "Archduke / Archduchess", value: "title.archduke" },
+              { name: "Viceroy", value: "title.viceroy" },
+              { name: "Elder", value: "title.elder" },
+              { name: "Sage", value: "title.sage" },
+              { name: "Fabled", value: "title.fabled" }
+            ]
+          },
+          {
+            name: "Silly",
+            value: "group",
+            options: [
+              { name: "Scrambles ", value: "scrambles" },
+              { name: "Jerry ", value: "jerry" },
+              { name: "Romeno ", value: "romeno" }
+            ]
+          }
+        ];
+        if (!user.has_shield) {
+          let toDisable = /* @__PURE__ */ new Set([
+            "pride",
+            "spring-egg-hunt",
+            "spring-egg-hunt-alt",
+            "Color (LGS required)"
+          ]);
+          options2 = options2.map((option) => {
+            if (option.value === "group") {
+              let disabledParent = toDisable.has(option.name) || toDisable.has(option.value);
+              disabledParent && (option.disabled = !0), option.options = option.options.map((groupOption) => ((toDisable.has(groupOption.value) || disabledParent) && (groupOption.disabled = !0), groupOption));
+            }
+            return option;
+          });
+        }
+        return [{
+          id: "custom-shield",
+          title: "Custom Shield",
+          default: [options2[0]],
+          description: "Change the shield to an event shield, color, title shield, or silly shield.",
+          settings: {
+            type: "multi-select",
+            number: 1,
+            options: options2
+          }
+        }];
+      });
+    }
+  });
+  var styles_default34, init_styles35 = __esm({
+    "src/modules/custom-shield/styles.css"() {
+      styles_default34 = `.mousehuntHud-shield.golden.default{top:2px;left:10px;background-image:url(https://www.mousehuntgame.com/images/mousehunt_gold_logo.png);filter:drop-shadow(0 0 5px #e8dbb8);background-size:contain;transition:opacity .3s ease-in-out}.mousehuntHud-shield.golden.default-normal{top:unset;left:unset;background-image:url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif);filter:none}.mousehuntHud-shield.golden.default-fancy:hover,.mousehuntHud-shield.golden.default-fancy:focus{opacity:.9}.mousehuntHud-shield.mhui-custom-shield.pride,.mousehuntHud-shield.golden.mhui-custom-shield.pride{background:url(https://i.mouse.rip/shield-pride.png) 0 0/105%}.mousehuntHud-shield.scrambles{background-image:url(https://i.mouse.rip/shield-scrambles-bawk.png)}.mousehuntHud-shield.golden.scrambles{background-image:url(https://i.mouse.rip/shield-scrambles-bawk.png),url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif)}.mousehuntHud-shield.jerry{background-image:url(https://i.mouse.rip/shield-jerry.png)}.mousehuntHud-shield.golden.jerry{background-image:url(https://i.mouse.rip/shield-jerry.png),url(https://www.mousehuntgame.com/images/ui/elements/header_golden_shield.gif)}.mousehuntHud-shield.golden.spring-egg-hunt{background:url(https://i.mouse.rip/shield-seh.png) 1px 1px/104%}.mousehuntHud-shield.golden.spring-egg-hunt-alt{background:url(https://i.mouse.rip/shield-seh-alt.png) 1px 1px/104%}.mousehuntHud-shield.romeno:after{position:absolute;bottom:0;left:-69px;z-index:1;width:140px;height:140px;content:"";background-image:url(https://i.mouse.rip/shield-romeno.png);filter:drop-shadow(6px 0 14px #fff);background-repeat:no-repeat;background-size:contain}.mousehuntHud-shield.title,.mousehuntHud-shield.golden.title{top:2px;left:2px;background:url(https://i.mouse.rip/shield-blank-2.png) 0 0 / contain no-repeat}.mousehuntHud-shield.title:after{position:absolute;inset:0;content:"";filter:drop-shadow(0 0 10px #e8dbb8);background-repeat:no-repeat;background-position:center;background-size:105px;transition:background-image .5s}.mousehuntHud-shield.title.novice:after,.mousehuntHud-shield.golden.title.novice:after{background-image:url(https://www.mousehuntgame.com/images/titles/84bc1109b5cd7aa8c24d195bc8207c38.png)}.mousehuntHud-shield.title.recruit:after,.mousehuntHud-shield.golden.title.recruit:after{background-image:url(https://www.mousehuntgame.com/images/titles/3f1e44bbaa7138da4c326819e9f3f0a8.png)}.mousehuntHud-shield.title.apprentice:after,.mousehuntHud-shield.golden.title.apprentice:after{background-image:url(https://www.mousehuntgame.com/images/titles/6f4673dd2d9d1e98b4569667d702a775.png)}.mousehuntHud-shield.title.initiate:after,.mousehuntHud-shield.golden.title.initiate:after{background-image:url(https://www.mousehuntgame.com/images/titles/e96387f7261b95c0eeab9291e4e594e1.png)}.mousehuntHud-shield.title.journeyman:after,.mousehuntHud-shield.golden.title.journeyman:after{background-image:url(https://www.mousehuntgame.com/images/titles/ad6875955f541159133c6d3798519f81.png)}.mousehuntHud-shield.title.master:after,.mousehuntHud-shield.golden.title.master:after{background-image:url(https://www.mousehuntgame.com/images/titles/35ee6056a09037fb13a9195881875045.png)}.mousehuntHud-shield.title.grandmaster:after,.mousehuntHud-shield.golden.title.grandmaster:after{background-image:url(https://www.mousehuntgame.com/images/titles/0da3761747914f497c16dc2051ba132d.png)}.mousehuntHud-shield.title.legendary:after,.mousehuntHud-shield.golden.title.legendary:after{background-image:url(https://www.mousehuntgame.com/images/titles/fca35751046f4bcc972716ca484b6d61.png)}.mousehuntHud-shield.title.hero:after,.mousehuntHud-shield.golden.title.hero:after{background-image:url(https://www.mousehuntgame.com/images/titles/0567284d6e12aaaed35ca5912007e070.png)}.mousehuntHud-shield.title.knight:after,.mousehuntHud-shield.golden.title.knight:after{background-image:url(https://www.mousehuntgame.com/images/titles/398dca9a8c7703de969769491622ca32.png)}.mousehuntHud-shield.title.lord:after,.mousehuntHud-shield.golden.title.lord:after{background-image:url(https://www.mousehuntgame.com/images/titles/9a6acd429a9a3a4849ed13901288b0b8.png)}.mousehuntHud-shield.title.baron:after,.mousehuntHud-shield.golden.title.baron:after{background-image:url(https://www.mousehuntgame.com/images/titles/ea9c0ec2e6d3d81c14e61f5ce924d0e1.png)}.mousehuntHud-shield.title.count:after,.mousehuntHud-shield.golden.title.count:after{background-image:url(https://www.mousehuntgame.com/images/titles/dd11711a25b80db90e0306193f2e8d78.png)}.mousehuntHud-shield.title.duke:after,.mousehuntHud-shield.golden.title.duke:after{background-image:url(https://www.mousehuntgame.com/images/titles/eb46ac1e8197b13299ab860f07d963db.png)}.mousehuntHud-shield.title.grandduke:after,.mousehuntHud-shield.golden.title.grandduke:after{background-image:url(https://www.mousehuntgame.com/images/titles/87937fa96bbb3b2dd3225df883002642.png)}.mousehuntHud-shield.title.archduke:after,.mousehuntHud-shield.golden.title.archduke:after{background-image:url(https://www.mousehuntgame.com/images/titles/043efe31de4f0f2e0ddca590fe829032.png)}.mousehuntHud-shield.title.viceroy:after,.mousehuntHud-shield.golden.title.viceroy:after{background-image:url(https://www.mousehuntgame.com/images/titles/e2e79f6f9201a4d4e7a89684fbb5356f.png)}.mousehuntHud-shield.title.elder:after,.mousehuntHud-shield.golden.title.elder:after{background-image:url(https://www.mousehuntgame.com/images/titles/0f3cf224bf98457f6b5bad91ab1c7bd2.png)}.mousehuntHud-shield.title.sage:after,.mousehuntHud-shield.golden.title.sage:after{background-image:url(https://www.mousehuntgame.com/images/titles/cb49e43c5e4460da7c09fe28ca4f44ce.png)}.mousehuntHud-shield.title.fabled:after,.mousehuntHud-shield.golden.title.fabled:after{background-image:url(https://www.mousehuntgame.com/images/titles/5daba92a8d609834aa8b789f37544e08.png)}.mousehunt-improved-lgs-reminder-new.color-blue,.huntersHornView__timer--default.color-blue,.mousehuntHud-shield.golden.color-blue{filter:hue-rotate(158deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-cyan,.huntersHornView__timer--default.color-cyan,.mousehuntHud-shield.golden.color-cyan{filter:hue-rotate(112deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-green,.huntersHornView__timer--default.color-green,.mousehuntHud-shield.golden.color-green{filter:hue-rotate(66deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-pink,.huntersHornView__timer--default.color-pink,.mousehuntHud-shield.golden.color-pink{filter:hue-rotate(280deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-purple,.huntersHornView__timer--default.color-purple,.mousehuntHud-shield.golden.color-purple{filter:hue-rotate(195deg) drop-shadow(0 0 5px #e8dbb8)}.mousehunt-improved-lgs-reminder-new.color-red,.huntersHornView__timer--default.color-red,.mousehuntHud-shield.golden.color-red{filter:hue-rotate(317deg) saturate(1.6) drop-shadow(0 0 5px #e8dbb8)}.mousehuntHud-shield.golden.color-faded{filter:sepia(1) drop-shadow(0 0 5px #e8dbb8)}.huntersHornView__timer--default.color-blue .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-cyan .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-green .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-pink .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-purple .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown,.huntersHornView__timer--default.color-red .huntersHornView__timerState.huntersHornView__timerState--type-countdown.huntersHornView__countdown{mix-blend-mode:hard-light}.huntersHornView__timer--legacy.color-blue .huntersHornView__timerState{color:#1875af}.huntersHornView__timer--legacy.color-cyan .huntersHornView__timerState{color:#18825f}.huntersHornView__timer--legacy.color-green .huntersHornView__timerState{color:#3b7523}.huntersHornView__timer--legacy.color-pink .huntersHornView__timerState{color:#ae5385}.huntersHornView__timer--legacy.color-purple .huntersHornView__timerState{color:#596eb7}.huntersHornView__timer--legacy.color-red .huntersHornView__timerState{color:#a95354}@keyframes mh-improved-shield-hue-rotate{0%{filter:hue-rotate(0deg) drop-shadow(0 0 5px #e8dbb8)}50%{filter:hue-rotate(360deg) drop-shadow(0 0 5px #e8dbb8)}to{filter:hue-rotate(0deg) drop-shadow(0 0 5px #e8dbb8)}}.huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState{color:#625901}.mousehunt-improved-lgs-reminder-new.color-rainbow,.huntersHornView__timer--default.color-rainbow,.huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState,.mousehuntHud-shield.golden.color-rainbow,.mousehuntHud-shield.golden.color-rainbow2{animation:mh-improved-shield-hue-rotate 30s infinite}@media (prefers-reduced-motion: reduce){.mousehunt-improved-lgs-reminder-new.color-rainbow,.huntersHornView__timer--default.color-rainbow,.huntersHornView__timer--legacy.color-rainbow .huntersHornView__timerState,.mousehuntHud-shield.golden.color-rainbow,.mousehuntHud-shield.golden.color-rainbow2{animation:none}}
+`;
+    }
+  });
+  var cotton_candy_default, init_cotton_candy = __esm({
+    "src/modules/custom-shield/cotton-candy.css"() {
+      cotton_candy_default = `.huntersHornView__backdrop{filter:hue-rotate(180deg);opacity:1;transition:none}.huntersHornView__horn--ready{filter:hue-rotate(275deg);transition:none}.huntersHornMessageView{filter:hue-rotate(200deg)}.mousehuntHud-menu.default>ul li a{filter:hue-rotate(298deg);backdrop-filter:hue-rotate(245deg)}.mousehuntHud-environmentName{text-shadow:0 0 1px #eab9cd,1px 1px #ffe1f5}.mousehuntHud-environmentIcon{box-shadow:2px 2px 2px #ffe1f5 inset,-2px -2px 2px #eab9cd inset}.mousehuntHud-menu ul li.active .mousehuntHud-menu-item.root,.mousehuntHud-menu ul li:hover .mousehuntHud-menu-item.root{background:url(https://www.mousehuntgame.com/images/ui/hud/menu/menu_seperator.png) 100% 0 no-repeat;filter:hue-rotate(328deg);backdrop-filter:hue-rotate(292deg)}
+`;
+    }
+  });
+  var doClass, addClass, removeClass, lastShield, changeShield, inputListener, watchForPreferenceChanges, init33, custom_shield_default, init_custom_shield = __esm({
+    "src/modules/custom-shield/index.js"() {
+      init_utils2();
+      init_settings16();
+      init_styles35();
+      init_cotton_candy();
+      doClass = (el, shieldClass, verb) => {
+        if (Array.isArray(shieldClass) && (shieldClass = shieldClass.join(" ")), !shieldClass)
+          return;
+        let classToAdd = shieldClass.replace(".", " ");
+        classToAdd = classToAdd.split(" "), Array.isArray(classToAdd) || (classToAdd = [classToAdd]), classToAdd.forEach((className) => {
+          if (el && el.classList && el.classList[verb]) {
+            if (verb === "remove" && !el.classList.contains(className))
+              return;
+            el.classList[verb](className);
+          }
+        });
+      }, addClass = (el, shieldClass) => {
+        doClass(el, shieldClass, "add");
+      }, removeClass = (el, shieldClass) => {
+        doClass(el, shieldClass, "remove");
+      }, lastShield = "", changeShield = () => {
+        let shieldEl = document.querySelector(".mousehuntHud-shield");
+        if (!shieldEl)
+          return;
+        let timer = document.querySelector(".huntersHornView__timer--default");
+        if (!timer && (timer = document.querySelector(".huntersHornView__timer--legacy"), !timer))
+          return;
+        lastShield && [
+          ...lastShield,
+          "mhui-custom-shield"
+        ].forEach((className) => {
+          removeClass(shieldEl, className), timer.classList.remove(className);
+        });
+        let shield = getSetting("custom-shield-0", "default");
+        if (shield === "default") {
+          shieldEl.classList.add("default", "default-fancy"), lastShield = ["default", "default-fancy"];
+          return;
+        }
+        if (shield === "color-cotton-candy")
+          makeElement("style", "mh-improved-cotton-candy-style", cotton_candy_default, document.head), shield = "color-pink-timer";
+        else {
+          let cottonCandyStyle = document.querySelector(".mh-improved-cotton-candy-style");
+          cottonCandyStyle && cottonCandyStyle.remove();
+        }
+        if (lastShield = [shield], shield.startsWith("color-") && (shieldEl.classList.add("default"), shieldEl.classList.add("color"), lastShield.push("color")), shield.endsWith("-timer") && (shield = shield.replace("-timer", ""), timer.classList.add(shield), lastShield.push(shield)), shield.endsWith("-alt")) {
+          let altClass = shield.replace("-alt", "");
+          shieldEl.classList.add(altClass, "alt"), lastShield.push(altClass, "alt");
+        }
+        shield.includes("title") && (shieldEl.classList.add("title"), shield = shield === "title" ? getUserTitle() : shield, lastShield.push("title", shield)), shieldEl.classList.add("mhui-custom-shield"), addClass(shieldEl, shield);
+      }, inputListener = null, watchForPreferenceChanges = () => {
+        let input = document.querySelector("#mousehunt-improved-settings-design-custom-shield select");
+        input && (inputListener && input.removeEventListener("change", inputListener), inputListener = input.addEventListener("change", () => {
+          changeShield();
+        }));
+      }, init33 = () => __async(void 0, null, function* () {
+        addStyles(styles_default34, "custom-shield"), lastShield = getSetting("custom-shield-0", "default"), changeShield(), onNavigation(() => {
+          setMultipleTimeout(watchForPreferenceChanges, [100, 1e3, 2e3, 5e3]);
+        }, {
+          page: "preferences",
+          onLoad: !0
+        });
+      }), custom_shield_default = {
+        id: "custom-shield",
+        type: "design",
+        alwaysLoad: !0,
+        load: init33,
+        settings: settings_default15
       };
     }
   });
@@ -9933,7 +9903,6 @@ user-select: none; }{}
       };
     }
   });
-  // dist/data/image-upscaling-paths-to-skip.json
   var image_upscaling_paths_to_skip_default, init_image_upscaling_paths_to_skip = __esm({
     "dist/data/image-upscaling-paths-to-skip.json"() {
       image_upscaling_paths_to_skip_default = ["mice/*", "ui/auras/*", "ui/hud/menu/*", "ui/crowns/*", "ui/camp/*", "ui/hunters_horn/*", "items/skins/*", "items/weapons/*", "powertypes/*", "teams/*", "environments/*", "folklore_forest_upgrades/*", "promo/page_banners/*", "grouplogos/*", "ui/adventure_book/*", "map/dynamic/*", "io_appstore_button.png", "google-play-badge.png", "icons/externalLink.png", "buttons/discord.png", "hg_logo.png", "payment/thumb/logo_paypal.png"];
@@ -10080,14 +10049,12 @@ user-select: none; }{}
                 "mousehuntHeaderView-menu-notification",
                 "mousehunt-improved-lgs-reminder-new",
                 "mousehunt-improved-lgs-reminder",
-                // Select2, search boxes on marketplace and friends list..
                 "select2-chosen",
                 "select2-offscreen",
                 "select2-container",
                 "select2-search",
                 "select2-drop",
                 "marketplaceView-header-searchContainer",
-                // Markethunt.
                 "highcharts-tracker",
                 "highcharts-grid",
                 "highcharts-axis",
@@ -10605,7 +10572,6 @@ user-select: none; }{}
       };
     }
   });
-  // dist/data/map-groups.json
   var map_groups_default, init_map_groups = __esm({
     "dist/data/map-groups.json"() {
       map_groups_default = { sky_palace: { categories: [{ name: "Arcane", id: "esp-arcane", icon: "/powertypes/arcane.png", color: "#b4ffff", mice: ["sky_dancer", "sky_glass_glazier", "sky_glass_sorcerer", { mouse: "arcane_paragon", subcategory: "hai" }, { mouse: "sky_highborne", subcategory: "hai" }, { mouse: "empyrean_arcane_mouse", subcategory: "sp" }] }, { name: "Draconic", id: "esp-draconic", icon: "/powertypes/draconic.png", color: "#cf9e64", mice: ["dragon_breather", "dragon_lancer", "tiny_dragonfly", { mouse: "draconic_paragon", subcategory: "hai" }, { mouse: "regal_spearman", subcategory: "hai" }, { mouse: "empyrean_draconic_mouse", subcategory: "sp" }] }, { name: "Forgotten", id: "esp-forgotten", icon: "/powertypes/forgotten.png", color: "#c37aa1", mice: ["cumulost", "spry_sky_explorer", "spry_sky_seer", { mouse: "forgotten_paragon", subcategory: "hai" }, { mouse: "spheric_diviner", subcategory: "hai" }, { mouse: "empyrean_forgotten_mouse", subcategory: "sp" }] }, { name: "Hydro", id: "esp-hydro", icon: "/powertypes/hydro.png", color: "#a0dcff", mice: ["cute_cloud_conjurer", "nimbomancer", "sky_surfer", { mouse: "hydro_paragon", subcategory: "hai" }, { mouse: "mist_maker", subcategory: "hai" }, { mouse: "empyrean_hydro_mouse", subcategory: "sp" }] }, { name: "Law", id: "esp-law", icon: "/powertypes/law.png", color: "#efcf86", mice: ["devious_gentleman", "lawbender", "stack_of_thieves", { mouse: "law_paragon", subcategory: "hai" }, { mouse: "agent_m", subcategory: "hai" }, { mouse: "empyrean_law_mouse", subcategory: "sp" }] }, { name: "Physical", id: "esp-physical", icon: "/powertypes/physical.png", color: "#d98181", mice: ["ground_gavaleer", "heracles", "sky_swordsman", { mouse: "physical_paragon", subcategory: "hai" }, { mouse: "sky_squire", subcategory: "hai" }, { mouse: "empyrean_physical_mouse", subcategory: "sp" }] }, { name: "Shadow", id: "esp-shadow", icon: "/powertypes/shadow.png", color: "#a4c0c1", mice: ["astrological_astronomer", "overcaster", "stratocaster", { mouse: "shadow_paragon", subcategory: "hai" }, { mouse: "shadow_sage", subcategory: "hai" }, { mouse: "empyrean_shadow_mouse", subcategory: "sp" }] }, { name: "Tactical", id: "esp-tactical", icon: "/powertypes/tactical.png", color: "#cc8282", mice: ["gyrologer", "seasoned_islandographer", "worried_wayfinder", { mouse: "tactical_paragon", subcategory: "hai" }, { mouse: "captain_cloudkicker", subcategory: "hai" }, { mouse: "empyrean_tactical_mouse", subcategory: "sp" }] }, { name: "Sky Palace", id: "esp-sky_palace", icon: "/items/stats/large/dd362c178b67d5e45fda7b2da273e7d6.png", color: "#a3fec4", mice: ["empyrean_charm_hoarder", "empyrean_oreglass_miner", "empyrean_cloudstone_miner", "empyrean_treasure_guardian"] }, { name: "Pirates", id: "esp-pirates", icon: "/items/bait/large/1e7bf5043a13043d8f1d05a752d55469.png", color: "#f173bf", mice: ["admiral_cloudbeard", "cutthroat_cannoneer", "cutthroat_pirate", "mairitime_pirate", "empyrean_pirate", "scarlet_revenger", "suave_pirate"] }, { name: "Other", icon: "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png", color: "#", mice: ["daydreamer", "kite_flyer", "richard_rich", "empyrean_loot_cache_guardian"] }, { name: "Wardens", id: "esp-wardens", icon: "/items/convertibles/large/017121852a8cc100b40bdaeae01485db.png", color: "#d3bdd3", mice: ["fog_warden", "frost_warden", "rain_warden", "wind_warden"] }, { name: "Launchpad", id: "esp-launchpad", icon: "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png", color: "#c2c2c2", mice: ["cloud_miner", "launchpad_labourer", "sky_greaser", "skydiver"] }], subcategories: [{ id: "hai", name: "High Altitude Island" }, { id: "sp", name: "Sky Palace" }] }, farming_and_fishing: { categories: [{ name: "Farm", id: "fofo-farm", icon: "/folklore_forest_upgrades/farm_plot_2_thumb.png", color: "#d7b18b", mice: ["angry_aphid", "grit_grifter", "mighty_mite", "root_rummager", "wily_weevil", { mouse: "crazed_cultivator", subcategory: "sb" }, { mouse: "land_loafer", subcategory: "zero-plants" }, { mouse: "loathsome_locust", subcategory: "three-papyrus" }] }, { name: "Prologue Pond", id: "fofo-pond", icon: "/folklore_forest_upgrades/tackle_box_thumb.png", color: "#c3def5", mice: ["beachcomber", "sand_sifter", "tackle_tracker", { mouse: "covetous_coastguard", subcategory: "sb" }] }, { name: "Prologue Pond", subtitle: "Grubbeen", icon: "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png", color: "#fbc3fa", mice: ["pompous_perch", "careless_catfish", "melodramatic_minnow"] }, { name: "Prologue Pond", subtitle: "Clamembert", icon: "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png", color: "#f3e0ff", mice: ["nefarious_nautilus", "vicious_vampire_squid", "sinister_squid"] }, { name: "Bosses", id: "fofo-bosses", icon: "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png", color: "#fde671", mice: ["monstrous_midge", "architeuthulhu_of_the_abyss"] }], subcategories: [{ id: "sb", name: "SUPER|brie+" }, { id: "zero-plants", name: "Zero Plants" }, { id: "three-papyrus", name: "Three Papyrus Plants" }] }, folklore_forest_prelude: { categories: [{ name: "Farm", id: "fofo-farm", icon: "/folklore_forest_upgrades/farm_plot_2_thumb.png", color: "#d7b18b", mice: ["angry_aphid", "root_rummager", "grit_grifter", "mighty_mite", "wily_weevil", { mouse: "crazed_cultivator", subcategory: "sb" }, { mouse: "land_loafer", subcategory: "zero-plants" }, { mouse: "loathsome_locust", subcategory: "three-papyrus" }] }, { name: "Prologue Pond", id: "fofo-pond", icon: "/folklore_forest_upgrades/tackle_box_thumb.png", color: "#c3def5", mice: ["beachcomber", "sand_sifter", "tackle_tracker", { mouse: "covetous_coastguard", subcategory: "sb" }] }, { name: "Prologue Pond", subtitle: "Grubbeen", icon: "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png", color: "#fbc3fa", mice: ["pompous_perch", "careless_catfish", "melodramatic_minnow"] }, { name: "Prologue Pond", subtitle: "Clamembert", icon: "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png", color: "#f3e0ff", mice: ["nefarious_nautilus", "vicious_vampire_squid", "sinister_squid"] }, { name: "Table of Contents", subtitle: "Not Writing", id: "fofo-toc-not-writing", icon: "/folklore_forest_upgrades/silver_quill_thumb.png", mice: ["brothers_grimmaus", "hans_cheesetian_squeakersen", "madame_dormouse", { mouse: "matriarch_gander", subcategory: "sb" }] }, { name: "Table of Contents", subtitle: "Writing", id: "fofo-toc-writing", icon: "/folklore_forest_upgrades/golden_quill_thumb.png", color: "#e9c390", mice: ["humphrey_dumphrey", "little_bo_squeak", "little_miss_fluffet"] }, { name: "Table of Contents", subtitle: "Writing - First Draft", id: "fofo-toc-first-draft", icon: "/items/bait/large/9782ba50ed4c64f8f8412563cf2ce709.png", mice: ["fibbocchio", "pinkielina", "princess_and_the_olive"] }, { name: "Table of Contents", subtitle: "Writing - Second Draft", id: "fofo-toc-second-draft", icon: "/items/bait/large/e0cb22771eba37bf047a801edbf7f91e.png", mice: ["flamboyant_flautist", "greenbeard", "ice_regent"] }, { name: "Bosses", id: "fofo-bosses", icon: "/items/stats/large/262ee00dd81b7fbdf7a5a88b347e7847.png", color: "#fde671", mice: ["bitter_grammarian", "mythweaver", "monstrous_midge", "architeuthulhu_of_the_abyss"] }], subcategories: [{ id: "sb", name: "SUPER|brie+" }, { id: "zero-plants", name: "Zero Plants" }, { id: "three-papyrus", name: "Three Papyrus Plants" }] }, valour_rift: { categories: [{ name: "Puppetry", subtitle: "Floors 1, 9, 17, 25, 33", id: "vrift-1", color: "#eaf2d3", mice: ["rift_gaunt_puppet", "rift_gaunt_puppet_champ"] }, { name: "Thievery", subtitle: "Floors 2, 10, 18, 26, 34", id: "vrift-2", color: "#acf28d", mice: ["rift_gaunt_thief", "rift_gaunt_thief_champ"] }, { name: "Melee", subtitle: "Floors 3, 11, 19, 27, 35", id: "vrift-3", color: "#fce5cd", mice: ["rift_gaunt_melee", "rift_gaunt_melee_champ"] }, { name: "Bard", subtitle: "Floors 4, 12, 20, 28, 36", id: "vrift-4", color: "#f6b26b", mice: ["rift_gaunt_bard", "rift_gaunt_bard_champ"] }, { name: "Magic", subtitle: "Floors 5, 13, 21, 29, 37", id: "vrift-5", color: "#f9cb9c", mice: ["rift_gaunt_magic", "rift_gaunt_magic_champ"] }, { name: "Noble", subtitle: "Floors 6, 14, 22, 30, 38", id: "vrift-6", color: "#f4cccc", mice: ["rift_gaunt_noble", "rift_gaunt_noble_champ"] }, { name: "Dusty", subtitle: "Floors 7, 15, 23, 31, 39", id: "vrift-7", color: "#ff9c9c", mice: ["rift_gaunt_dust", "rift_gaunt_dust_champ"] }, { name: "Non-UU", id: "vrift-eclipse", color: "#ea9999", mice: ["rift_gaunt_eclipse"] }, { name: "Ultimate Umbra", id: "vrift-eclipse-uu", color: "#ff81d7", mice: ["rift_gaunt_monster", "rift_gaunt_final_eclipse"] }, { name: "Other", id: "vrift-other", color: "#b6d7a8", mice: ["rift_gaunt_generic_one", "rift_gaunt_generic_three", "rift_gaunt_generic_two", "rift_gaunt_prestige_low", "rift_gaunt_prestige_med", "rift_gaunt_prestige_high", "rift_gaunt_rare"] }, { name: "Outside", id: "vrift-outside", color: "#d0def7", mice: ["rift_gaunt_elixir_one", "rift_gaunt_elixir_two"] }], subcategories: [] }, rift_stalkers: { categories: [{ name: "Gnawnia Rift", color: "#f7e8f9", mice: ["rift_white", "rift_dwarf", "rift_diamond", "rift_gold"] }, { name: "Furoma Rift", subtitle: "Training Grounds", color: "#e5a571", mice: ["rift_samurai", "rift_kung_fu", "rift_worker", "rift_ninja", "rift_dumpling_chef", "rift_archer"] }, { name: "Furoma Rift", subtitle: "Pagoda", color: "#cb7136", mice: ["rift_assassin", "rift_monk", "rift_fang_student", "rift_belt_student", "rift_claw_student", "rift_dojo_sensei", "rift_fang_master", "rift_claw_master", "rift_belt_master", "rift_dojo_master"] }, { name: "Bristle Woods Rift", mice: ["rift_acolyte", "rift_chrono", "rift_gargoyle", "rift_golem", "rift_gorgon", "rift_keeper", "rift_keepers_assistant", "rift_lich", "rift_ooze", "rift_reaper", "rift_scavenger", "rift_skeleton", "rift_sorcerer", "rift_spectre", "rift_spider", "rift_terror_knight", "rift_wight"] }] }, rift_walkers: { categories: [{ name: "Gnawnia Rift", color: "#f7e8f9", mice: ["rift_field", "rift_bionic", "rift_granite", "rift_steel", "rift_white", "rift_grey", "rift_brown", "rift_lightning", "rift_dwarf", "rift_tiny", "rift_cowardly", "rift_spotted", "rift_flying", "rift_mole", "rift_diamond", "rift_gold"] }] }, queso_canyon_grand_tour: { categories: [{ name: "KSS", id: "kss", icon: "/powertypes/draconic.png", color: "#96b9dc", mice: ["geyser_eruption_dragon_wildfire", "geyser_eruption_dragon_epic"] }, { name: "Cinder-Brut", id: "cinder-brut", icon: "/powertypes/draconic.png", color: "#7fff66", mice: ["geyser_eruption_dragon_large", "geyser_eruption_dragon_flaming"] }, { name: "BE Trio", id: "be-trio", icon: "/powertypes/draconic.png", color: "#ffb1b1", mice: ["geyser_eruption_dragon_hot", "geyser_eruption_dragon_medium", "geyser_eruption_dragon_medium_spice"] }, { name: "Sizzle Mild", id: "sizzle-mild", icon: "/powertypes/draconic.png", color: "#ffc816", mice: ["geyser_eruption_dragon_small", "geyser_eruption_dragon_mild"] }, { name: "Pressure Set", id: "pressure-set", icon: "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png", color: "#dcb8ff", mice: ["geyser_pressure_builder_hot", "geyser_pressure_builder_medium", "geyser_pressure_builder_mild", "geyser_pressure_builder_flaming"] }, { name: "Corky & Friends", id: "corky-friends", icon: "/items/crafting_items/transparent_thumb/17907f705fe8e7fa8f7b94f058e11ae5.png", color: "#f4c47e", mice: ["geyser_cork_dropper_bland", "geyser_cork_dropper_medium", "geyser_cork_dropper_mild", "geyser_cork_dropper_hot", "geyser_cork_dropper_rare", "geyser_cork_dropper_flaming"] }, { name: "Queso River", id: "queso-river", icon: "/powertypes/law.png", color: "#89e8a9", mice: ["croquet_crusher", "pump_raider", "sleepy_merchant", "tiny_saboteur"] }, { name: "Prickly Plains", id: "prickly-plains", icon: "/powertypes/arcane.png", color: "#cddb75", mice: [{ mouse: "spice_grower", subcategory: "mild" }, { mouse: "spice_collector", subcategory: "bland" }, { mouse: "spice_farmer", subcategory: "mild" }, { mouse: "spice_finder", subcategory: "medium" }, { mouse: "spice_raider", subcategory: "hot" }, { mouse: "spice_reaper", subcategory: "hot" }, { mouse: "spice_seer", subcategory: "bland" }, { mouse: "spice_sovereign", subcategory: "medium" }] }, { name: "Cantera Quarry", id: "cantera-quarry", icon: "/powertypes/shadow.png", color: "#e9b2db", mice: [{ mouse: "chip_chiseler", subcategory: "bland" }, { mouse: "fiery_crusher", subcategory: "hot" }, { mouse: "grampa_golem", subcategory: "hot" }, { mouse: "nachore_golem", subcategory: "medium" }, { mouse: "ore_chipper", subcategory: "mild" }, { mouse: "rubble_rouser", subcategory: "medium" }, { mouse: "rubble_rummager", subcategory: "mild" }, { mouse: "tiny_toppler", subcategory: "bland" }] }], subcategories: [{ id: "bland", name: "Bland Queso" }, { id: "medium", name: "Medium Queso" }, { id: "mild", name: "Mild Queso" }, { id: "hot", name: "Hot Queso" }] }, fort_rox: { categories: [{ name: "Night", id: "night", icon: "", color: "#d0d0d0", mice: ["were_alpha", "moonstone_slinger", "mischievous_wereminer", "wealthy_werewarrior"] }, { name: "First Light / Utter Darkness", id: "first-light-utter-darkness", icon: "/powertypes/arcane.png", color: "#dc8ec7", mice: ["arcane_summoner", "cursed_taskmaster", "moonstone_golem", "moonstone_mystic", "night_watcher", "nightfire_wallbreak"] }, { name: "Twilight, Midnight, Pitch", id: "twilight-midnight-pitch", icon: "/powertypes/shadow.png", color: "#84c3ff", mice: ["good_supply_night", "nightmancer", "reveling_lycanthrope", "werehauler", "wereminer"] }, { name: "Dawn", id: "dawn", icon: "/powertypes/arcane.png", color: "#f9d65a", mice: ["dawn_guardian", "monster_of_the_meteor"] }, { name: "Day", id: "day", icon: "/powertypes/law.png", color: "#ffdb9c", mice: ["hardworking_hauler", "moonstone_snacker", "moonstone_miner", "good_supply_day", "mischievous_moonstone_miner"] }] }, warpath: { categories: [{ name: "Wave 1", color: "#f1d16f", mice: ["desert_scout_weak", "desert_warrior_weak", "desert_archer_weak"] }, { name: "Wave 2", color: "#ea947b", mice: ["desert_mage", "desert_archer", "desert_warrior", "desert_scout", "desert_cavalry"] }, { name: "Wave 3", color: "#ff7249", mice: ["desert_artillery", "desert_mage_strong", "desert_scout_epic", "desert_archer_epic", "desert_cavalry_strong", "desert_warrior_epic"] }, { name: "Wave 4", color: "#ffad49", mice: ["desert_elite_gaurd", "desert_boss"] }, { name: "Any wave", color: "#fffcb2", mice: ["desert_beast", "desert_supply", "desert_general"] }] }, halloween_treat_2021: { categories: [{ name: "Standard", id: "standard", icon: "/items/bait/large/bb0fe6fa6f55e5ccb1f98dea058409e0.png", color: "#fefa76", mice: ["grey_recluse", "hween_cobweb", "vampira", "zombot_unipire", "candy_cat", "candy_goblin", "shortcut", "tricky_witch", "sweet_tooth"] }, { name: "Monterey Jack-O-Lantern", id: "monterey-Jack", icon: "/items/bait/large/65fd19bf5b16dcaa6b3cfebd2f55348c.png", color: "#f9a645", mice: ["sprit_light", "gordborg", "pumpkin_hoarder", "trick", "treat", "chainsaw", "maize_harvester"] }] }, halloween_trick_2021: { categories: [{ name: "Bonefort", id: "bonefort", icon: "/items/bait/large/e6ac92f19a6ac930aad02e317cf8e6e8.png", color: "#bfbfbf", mice: ["creepy_marionette", "dire_lycan", "grave_digger", "hollowhead", "hween_2014_boss", "hween_2016_boss", "hween_2013_boss", "rift_grave_digger"] }, { name: "Polter-Geitost", id: "polter-geitost", icon: "/items/bait/large/04d69ccc7a5b1578cdf90b9651fb2315.png", color: "#84bde6", mice: ["hween_2018_boss", "hween_2017_boss", "rift_ghost_pirate", "gourd_ghoul", "scorned_pirate", "spectral_butler", "spectral_swashbuckler"] }, { name: "Scream", id: "scream", icon: "/items/bait/large/fe9d538d1a811bdb787b78aa1526ee50.png", color: "#86dd6c", mice: ["hween_2021_boss", "hween_2015_boss", "hollowed_demon", "hollowed_minion", "hween_2012_boss"] }] }, naughty_f_list: { categories: [{ name: "Anywhere", id: "anywhere", icon: "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png", color: "#3f8bae", mice: ["hoarder", { mouse: "winter_hunt_toy_strong", subcategory: "pp" }, { mouse: "stuck_snowball", subcategory: "pp" }, { mouse: "glazed", subcategory: "pp" }, { mouse: "joy", subcategory: "gpp" }] }, { name: "Cinnamon Hill", id: "cinnamon_hill", icon: "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg", color: "#c76e39", mice: ["candy_cane", "nice_knitting", "winter_boss_2019", "snow_scavenger", "toboggan_technician", "green_circle_boss", { mouse: "triple_lutz", subcategory: "pp" }, { mouse: "black_diamond_racer", subcategory: "pp" }, { mouse: "double_black_diamond", subcategory: "pp" }, { mouse: "free_skiing", subcategory: "pp" }, { mouse: "winter_boss_2020", subcategory: "pp" }, { mouse: "nitro_racer", subcategory: "pp" }, { mouse: "winter_boss_2021", subcategory: "pp" }, { mouse: "winter_boss_2015", subcategory: "pp" }, { mouse: "snowball_general_one", subcategory: "pp" }, { mouse: "golem_jockey", subcategory: "pp" }, { mouse: "snowball_hoarder", subcategory: "pp" }, { mouse: "sporty_ski_instructor", subcategory: "pp" }, { mouse: "wreath_thief", subcategory: "pp" }, { mouse: "new_year_flight", subcategory: "pp" }] }, { name: "Golem Workshop", id: "golem_workshop", icon: "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg", color: "#9ab1b4", mice: ["gingerbread", "greedy_al", "winter_future", "winter_past", "winter_present", { mouse: "scrooge", subcategory: "sb" }, { mouse: "ribbon", subcategory: "pp" }, { mouse: "christmas_tree", subcategory: "pp" }, { mouse: "winter_hunt_toy", subcategory: "pp" }, { mouse: "elf", subcategory: "pp" }, { mouse: "mad_elf", subcategory: "pp" }, { mouse: "nutcracker", subcategory: "pp" }, { mouse: "ornament", subcategory: "pp" }, { mouse: "present", subcategory: "pp" }, { mouse: "ridiculous_sweater", subcategory: "pp" }, { mouse: "snowman_architect", subcategory: "pp" }, { mouse: "stocking", subcategory: "pp" }, { mouse: "toy", subcategory: "pp" }, { mouse: "toy_builder", subcategory: "pp" }, { mouse: "disco_ball_head", subcategory: "pp" }] }, { name: "Ice Fortress", id: "ice_fortress", icon: "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg", color: "#cc85fe", mice: ["confused_courier", "frigid_foreman", "miser", "missle_toe", "snowblower", "snowglobe", "builder", { mouse: "builder", subcategory: "pp" }, { mouse: "winter_boss_2014", subcategory: "pp" }, { mouse: "glacia_ice_fist", subcategory: "pp" }, { mouse: "winter_boss_2016", subcategory: "pp" }, { mouse: "winter_boss_2018", subcategory: "pp" }, { mouse: "winter_boss_2017", subcategory: "pp" }, { mouse: "snowball_general_two", subcategory: "pp" }, { mouse: "snowball_bully", subcategory: "pp" }, { mouse: "slay", subcategory: "pp" }, { mouse: "snow_fort", subcategory: "pp" }, { mouse: "snowball_general_three", subcategory: "pp" }, { mouse: "squeaker_claws", subcategory: "pp" }, { mouse: "tundra_huntress", subcategory: "pp" }, { mouse: "new_years", subcategory: "pp" }, { mouse: "winter_boss_2022", subcategory: "boss" }] }], subcategories: [{ id: "pp", name: "Pecan Pecorino" }, { id: "gpp", name: "Glazed Pecan Pecorino" }, { id: "sb", name: "SUPER|brie+" }, { id: "boss", name: "Boss" }] }, nice_f_list: { categories: [{ name: "Anywhere", id: "anywhere", icon: "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png", color: "#3f8bae", mice: ["hoarder", { mouse: "winter_hunt_toy_strong", subcategory: "pp" }, { mouse: "stuck_snowball", subcategory: "pp" }, { mouse: "glazed", subcategory: "pp" }, { mouse: "joy", subcategory: "gpp" }] }, { name: "Cinnamon Hill", id: "cinnamon_hill", icon: "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg", color: "#c76e39", mice: ["candy_cane", "nice_knitting", "winter_boss_2019", "snow_scavenger", "toboggan_technician", "green_circle_boss", { mouse: "triple_lutz", subcategory: "pp" }, { mouse: "black_diamond_racer", subcategory: "pp" }, { mouse: "double_black_diamond", subcategory: "pp" }, { mouse: "free_skiing", subcategory: "pp" }, { mouse: "winter_boss_2020", subcategory: "pp" }, { mouse: "nitro_racer", subcategory: "pp" }, { mouse: "winter_boss_2021", subcategory: "pp" }, { mouse: "winter_boss_2015", subcategory: "pp" }, { mouse: "snowball_general_one", subcategory: "pp" }, { mouse: "golem_jockey", subcategory: "pp" }, { mouse: "snowball_hoarder", subcategory: "pp" }, { mouse: "sporty_ski_instructor", subcategory: "pp" }, { mouse: "wreath_thief", subcategory: "pp" }, { mouse: "new_year_flight", subcategory: "pp" }] }, { name: "Golem Workshop", id: "golem_workshop", icon: "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg", color: "#9ab1b4", mice: ["gingerbread", "greedy_al", "winter_future", "winter_past", "winter_present", { mouse: "scrooge", subcategory: "sb" }, { mouse: "ribbon", subcategory: "pp" }, { mouse: "christmas_tree", subcategory: "pp" }, { mouse: "winter_hunt_toy", subcategory: "pp" }, { mouse: "elf", subcategory: "pp" }, { mouse: "mad_elf", subcategory: "pp" }, { mouse: "nutcracker", subcategory: "pp" }, { mouse: "ornament", subcategory: "pp" }, { mouse: "present", subcategory: "pp" }, { mouse: "ridiculous_sweater", subcategory: "pp" }, { mouse: "snowman_architect", subcategory: "pp" }, { mouse: "stocking", subcategory: "pp" }, { mouse: "toy", subcategory: "pp" }, { mouse: "toy_builder", subcategory: "pp" }, { mouse: "disco_ball_head", subcategory: "pp" }] }, { name: "Ice Fortress", id: "ice_fortress", icon: "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg", color: "#cc85fe", mice: ["confused_courier", "frigid_foreman", "miser", "missle_toe", "snowblower", "snowglobe", "builder", { mouse: "builder", subcategory: "pp" }, { mouse: "winter_boss_2014", subcategory: "pp" }, { mouse: "glacia_ice_fist", subcategory: "pp" }, { mouse: "winter_boss_2016", subcategory: "pp" }, { mouse: "winter_boss_2018", subcategory: "pp" }, { mouse: "winter_boss_2017", subcategory: "pp" }, { mouse: "snowball_general_two", subcategory: "pp" }, { mouse: "snowball_bully", subcategory: "pp" }, { mouse: "slay", subcategory: "pp" }, { mouse: "snow_fort", subcategory: "pp" }, { mouse: "snowball_general_three", subcategory: "pp" }, { mouse: "squeaker_claws", subcategory: "pp" }, { mouse: "tundra_huntress", subcategory: "pp" }, { mouse: "new_years", subcategory: "pp" }, { mouse: "winter_boss_2022", subcategory: "boss" }] }], subcategories: [{ id: "pp", name: "Pecan Pecorino" }, { id: "gpp", name: "Glazed Pecan Pecorino" }, { id: "sb", name: "SUPER|brie+" }, { id: "boss", name: "Boss" }] }, new_years: { categories: [{ name: "Anywhere", id: "anywhere", icon: "/items/stats/large/680f6a68612ca9181a90b5719b20ef78.png", color: "#3f8bae", mice: ["hoarder", { mouse: "winter_hunt_toy_strong", subcategory: "pp" }, { mouse: "stuck_snowball", subcategory: "pp" }, { mouse: "glazed", subcategory: "pp" }, { mouse: "joy", subcategory: "gpp" }] }, { name: "Cinnamon Hill", id: "cinnamon_hill", icon: "/environments/9116f87ec4f9ef3be13a1a833a61aec4.jpg", color: "#c76e39", mice: ["candy_cane", "nice_knitting", "winter_boss_2019", "snow_scavenger", "toboggan_technician", "green_circle_boss", { mouse: "triple_lutz", subcategory: "pp" }, { mouse: "black_diamond_racer", subcategory: "pp" }, { mouse: "double_black_diamond", subcategory: "pp" }, { mouse: "free_skiing", subcategory: "pp" }, { mouse: "winter_boss_2020", subcategory: "pp" }, { mouse: "nitro_racer", subcategory: "pp" }, { mouse: "winter_boss_2021", subcategory: "pp" }, { mouse: "winter_boss_2015", subcategory: "pp" }, { mouse: "snowball_general_one", subcategory: "pp" }, { mouse: "golem_jockey", subcategory: "pp" }, { mouse: "snowball_hoarder", subcategory: "pp" }, { mouse: "sporty_ski_instructor", subcategory: "pp" }, { mouse: "wreath_thief", subcategory: "pp" }, { mouse: "new_year_flight", subcategory: "pp" }] }, { name: "Golem Workshop", id: "golem_workshop", icon: "/environments/bbd5eeca404e57ec2ffb9d9a108361a2.jpg", color: "#9ab1b4", mice: ["gingerbread", "greedy_al", "winter_future", "winter_past", "winter_present", { mouse: "scrooge", subcategory: "sb" }, { mouse: "ribbon", subcategory: "pp" }, { mouse: "christmas_tree", subcategory: "pp" }, { mouse: "winter_hunt_toy", subcategory: "pp" }, { mouse: "elf", subcategory: "pp" }, { mouse: "mad_elf", subcategory: "pp" }, { mouse: "nutcracker", subcategory: "pp" }, { mouse: "ornament", subcategory: "pp" }, { mouse: "present", subcategory: "pp" }, { mouse: "ridiculous_sweater", subcategory: "pp" }, { mouse: "snowman_architect", subcategory: "pp" }, { mouse: "stocking", subcategory: "pp" }, { mouse: "toy", subcategory: "pp" }, { mouse: "toy_builder", subcategory: "pp" }, { mouse: "disco_ball_head", subcategory: "pp" }] }, { name: "Ice Fortress", id: "ice_fortress", icon: "/environments/15d8d9d837b22b31707d06f412b78e0d.jpg", color: "#cc85fe", mice: ["confused_courier", "frigid_foreman", "miser", "missle_toe", "snowblower", "snowglobe", "builder", { mouse: "builder", subcategory: "pp" }, { mouse: "winter_boss_2014", subcategory: "pp" }, { mouse: "glacia_ice_fist", subcategory: "pp" }, { mouse: "winter_boss_2016", subcategory: "pp" }, { mouse: "winter_boss_2018", subcategory: "pp" }, { mouse: "winter_boss_2017", subcategory: "pp" }, { mouse: "snowball_general_two", subcategory: "pp" }, { mouse: "snowball_bully", subcategory: "pp" }, { mouse: "slay", subcategory: "pp" }, { mouse: "snow_fort", subcategory: "pp" }, { mouse: "snowball_general_three", subcategory: "pp" }, { mouse: "squeaker_claws", subcategory: "pp" }, { mouse: "tundra_huntress", subcategory: "pp" }, { mouse: "new_years", subcategory: "pp" }, { mouse: "winter_boss_2022", subcategory: "boss" }] }], subcategories: [{ id: "pp", name: "Pecan Pecorino" }, { id: "gpp", name: "Glazed Pecan Pecorino" }, { id: "sb", name: "SUPER|brie+" }, { id: "boss", name: "Boss" }] }, lunar_new_year_list: { categories: [{ name: "Standard", id: "anywhere", icon: "/items/stats/large/2b92cfc72df4733942a9d7f63d1f3378.png", color: "#b9d1ff", mice: ["costumed_dog", "costumed_dragon", "costumed_horse", "costumed_monkey", "costumed_ox", "costumed_pig", "costumed_rabbit", "costumed_rat", "costumed_rooster", "costumed_sheep", "costumed_snake", "costumed_tiger"] }, { name: "Dumpling", id: "dumpling", icon: "/items/bait/large/f4c3ee4bb9aba29938223172a791650b.png", color: "#ffefb9", mice: ["calligraphy", "dumpling_chef", "red_envelope"] }, { name: "Nian Gao'da", id: "ngd", icon: "/items/bait/large/d4813a69fff0b714f79976a726b7ce66.png", color: "#ffa4a4", mice: ["red_candle"] }] }, birthday_f_list: { categories: [{ name: "Mixing Room", id: "mixing-room", icon: "/ui/events/birthday_factory/item_mixing_rod.png", color: "#0aebdd", mice: ["force_fighter_blue", "force_fighter_green", "force_fighter_pink", "force_fighter_red", "force_fighter_yellow", "super_fighterbot_megasupreme"] }, { name: "Pumping Room", id: "pumping-room", icon: "/ui/events/birthday_factory/item_pressurized_pump.png", color: "#fca00a", mice: ["reality_restitch", "time_punk", "time_tailor", "time_thief", "time_plumber"] }, { name: "Break Room", id: "break-room", icon: "/ui/events/birthday_factory/item_circuit_breaker.png", color: "#ea8cab", mice: ["breakdancer", "fromager_mouse", "dance_party", "dance_boss", "para_para_dancer"] }, { name: "QA Room", id: "qa-room", icon: "/ui/events/birthday_factory/item_quality_cog.png", color: "#fbabff", mice: ["cupcake_candle_thief", "cupcake_cutie", "sprinkley_sweet", "cupcake_camo", "cupcake_runner"] }, { name: "Any Room", id: "any-room", icon: "/items/bait/large/39a63a48084383a7eb07d64c74357544.png", color: "#ffeeca", mice: ["buckethead", "present", "pintail", "dinosuit", "sleepwalker", "terrible_twos", { mouse: "factory_technician", subcategory: "frc" }, { mouse: "cheesy_party", subcategory: "sb" }] }], subcategories: [{ id: "frc", name: "Factory Repair Charm" }, { id: "sb", name: "SUPER|brie+" }] }, birthday_2019_gilded: { categories: [{ name: "Mixing Room", id: "mixing-room", icon: "/ui/events/birthday_factory/item_mixing_rod.png", color: "#0aebdd", mice: ["force_fighter_blue", "force_fighter_green", "force_fighter_pink", "force_fighter_red", "force_fighter_yellow", "super_fighterbot_megasupreme"] }, { name: "Pumping Room", id: "pumping-room", icon: "/ui/events/birthday_factory/item_pressurized_pump.png", color: "#fca00a", mice: ["reality_restitch", "time_punk", "time_tailor", "time_thief", "time_plumber"] }, { name: "Break Room", id: "break-room", icon: "/ui/events/birthday_factory/item_circuit_breaker.png", color: "#ea8cab", mice: ["breakdancer", "fromager_mouse", "dance_party", "dance_boss", "para_para_dancer"] }, { name: "QA Room", id: "qa-room", icon: "/ui/events/birthday_factory/item_quality_cog.png", color: "#fbabff", mice: ["cupcake_candle_thief", "cupcake_cutie", "sprinkley_sweet", "cupcake_camo", "cupcake_runner"] }, { name: "Any Room", id: "any-room", icon: "/items/bait/large/39a63a48084383a7eb07d64c74357544.png", color: "#ffeeca", mice: ["buckethead", "present", "pintail", "dinosuit", "sleepwalker", "terrible_twos", { mouse: "factory_technician", subcategory: "frc" }, { mouse: "cheesy_party", subcategory: "sb" }] }], subcategories: [{ id: "frc", name: "Factory Repair Charm" }, { id: "sb", name: "SUPER|brie+" }] }, birthday_2021_gilded_party_size: { categories: [{ name: "Mixing Room", id: "mixing-room", icon: "/ui/events/birthday_factory/item_mixing_rod.png", color: "#0aebdd", mice: ["force_fighter_blue", "force_fighter_green", "force_fighter_pink", "force_fighter_red", "force_fighter_yellow", "super_fighterbot_megasupreme"] }, { name: "Pumping Room", id: "pumping-room", icon: "/ui/events/birthday_factory/item_pressurized_pump.png", color: "#fca00a", mice: ["reality_restitch", "time_punk", "time_tailor", "time_thief", "time_plumber"] }, { name: "Break Room", id: "break-room", icon: "/ui/events/birthday_factory/item_circuit_breaker.png", color: "#ea8cab", mice: ["breakdancer", "fromager_mouse", "dance_party", "dance_boss", "para_para_dancer"] }, { name: "QA Room", id: "qa-room", icon: "/ui/events/birthday_factory/item_quality_cog.png", color: "#fbabff", mice: ["cupcake_candle_thief", "cupcake_cutie", "sprinkley_sweet", "cupcake_camo", "cupcake_runner"] }, { name: "Any Room", id: "any-room", icon: "/items/bait/large/39a63a48084383a7eb07d64c74357544.png", color: "#ffeeca", mice: ["buckethead", "present", "pintail", "dinosuit", "sleepwalker", "terrible_twos", { mouse: "factory_technician", subcategory: "frc" }, { mouse: "cheesy_party", subcategory: "sb" }] }], subcategories: [{ id: "frc", name: "Factory Repair Charm" }, { id: "sb", name: "SUPER|brie+" }] }, bountiful_beanstalk: { categories: [{ name: "Beanstalk", id: "beanstalk", icon: "", color: "#45890e", mice: ["budrich_thornborn", "leafton_beanwell", "herbaceous_bravestalk", { mouse: "vinneus_stalkhome", subcategory: "boss" }] }, { name: "Dungeon", id: "dungeon", icon: "", color: "#919ac7", mice: ["peaceful_prisoner", "diminutive_detainee", "smug_smuggler", { mouse: "cell_sweeper", subcategory: "beanster" }, { mouse: "jovial_jailor", subcategory: "beanster" }, { mouse: "lethargic_guard", subcategory: "beanster" }, { mouse: "gate_keeper", subcategory: "lavish" }, { mouse: "key_master", subcategory: "lavish" }, { mouse: "wrathful_warden", subcategory: "royal" }, { mouse: "dungeon_master", subcategory: "boss" }] }, { name: "Ballroom", id: "ballroom", icon: "", color: "#e0b1b2", mice: ["whimsical_waltzer", "sassy_salsa_dancer", "baroque_dancer", { mouse: "obstinate_oboist", subcategory: "beanster" }, { mouse: "peevish_piccoloist", subcategory: "beanster" }, { mouse: "sultry_saxophonist", subcategory: "beanster" }, { mouse: "violent_violinist", subcategory: "lavish" }, { mouse: "chafed_cellist", subcategory: "lavish" }, { mouse: "treacherous_tubaist", subcategory: "royal" }, { mouse: "malevolent_maestro", subcategory: "boss" }] }, { name: "Great Hall", id: "great-hall", icon: "", color: "#d68d0a", mice: ["clumsy_cupbearer", "plotting_page", "scheming_squire", { mouse: "vindictive_viscount", subcategory: "beanster" }, { mouse: "baroness_von_bean", subcategory: "beanster" }, { mouse: "cagey_countess", subcategory: "beanster" }, { mouse: "dastardly_duchess", subcategory: "lavish" }, { mouse: "malicious_marquis", subcategory: "lavish" }, { mouse: "pernicious_prince", subcategory: "royal" }, { mouse: "mythical_giant_king", subcategory: "boss" }] }], subcategories: [{ id: "beanster", name: "Beanster" }, { id: "lavish", name: "Lavish Beanster" }, { id: "royal", name: "Royal Beanster" }, { id: "boss", name: "Boss" }] }, m1k_solo: { categories: [{ name: "Folklore Forest", id: "folklore-forest", color: "#98dca4", mice: ["architeuthulhu_of_the_abyss", "monstrous_midge", "mythweaver"] }, { name: "Rift", id: "rift", color: "#98ccdc", mice: ["rift_hapless", "rift_big_bad_burroughs", "rift_black_widow"] }, { name: "Queso", id: "queso", color: "#ffa123", mice: ["geyser_eruption_dragon_wildfire", "queso_river_boss"] }, { name: "Other", id: "other", color: "#dc98bf", mice: ["crystal_behemoth", "ful_mina_mountain_queen"] }] }, school_of_sorcery: { categories: [{ name: "Arcane SB", id: "sos-arcane-sb", icon: "/powertypes/arcane.png", color: "#16dfad", mice: ["perpetual_detention", "broomstick_bungler", "misfortune_teller", { mouse: "sleep_starved_scholar", subcategory: "final" }] }, { name: "Arcane AAC", id: "sos-arcane-aac", icon: "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png", color: "#16dfad", mice: ["arcana_overachiever", "invisible_fashionista", "enchanted_chess_club_champion", { mouse: "class_clown", subcategory: "final" }] }, { name: "Arcane MMC", id: "sos-arcane-mmc", icon: "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png", color: "#16dfad", mice: ["illustrious_illusionist", "featherlight", "constructively_critical_artist", { mouse: "tyrannical_thaumaturge", subcategory: "final" }] }, { name: "Shadow SB", id: "sos-shadow-sb", icon: "/powertypes/shadow.png", color: "#c7abde", mice: ["mixing_mishap", "uncoordinated_cauldron_carrier", "bookworm", { mouse: "cheat_sheet_conjurer", subcategory: "final" }] }, { name: "Shadow AAC", id: "sos-shadow-aac", icon: "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png", color: "#c7abde", mice: ["classroom_keener", "audacious_alchemist", "prestigious_prestidigitator", { mouse: "celestial_summoner", subcategory: "final" }] }, { name: "Shadow MMC", id: "sos-shadow-mmc", icon: "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png", color: "#c7abde", mice: ["classroom_disrupter", "teleporting_truant", "magical_multitasker", { mouse: "data_devourer", subcategory: "final" }] }, { name: "Boss", id: "sos-boss", icon: "/ui/hud/school_of_sorcery/exam_icon.png", color: "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)", mice: ["arcane_sorcerer", "shadow_sorcerer", { mouse: "mythical_master_sorcerer", subcategory: "final" }] }], subcategories: [{ id: "final", name: "Final Exam" }] }, origin_of_dragons: { categories: [{ name: "Draconic Depths", subtitle: "Ice", id: "ice", icon: "/items/stats/transparent_thumb/22e16f7fc2b4612924f8fd24f70be595.png", color: "#49ffff", mice: [{ mouse: "frostnip_icebound", subcategory: "surface" }, { mouse: "blizzara_winterosa", subcategory: "surface" }, { mouse: "iciclesius_the_defender", subcategory: "surface" }, { mouse: "rimeus_polarblast", subcategory: "cavern-0-750-loot" }, { mouse: "frigidocius_coldshot", subcategory: "cavern-0-750-loot" }, { mouse: "chillandria_permafrost", subcategory: "cavern-100+-loot" }, { mouse: "avalancheus_the_glacial", subcategory: "cavern-100+-loot" }, { mouse: "arcticus_the_biting_frost", subcategory: "cavern-750+-loot" }] }, { name: "Draconic Depths", subtitle: "Fire", id: "fire", icon: "/items/stats/transparent_thumb/fdd6e3aa9d1f5831fc397237db581d81.png", color: "#ffa920", mice: [{ mouse: "squire_sizzleton", subcategory: "surface" }, { mouse: "torchbearer_tinderhelm", subcategory: "surface" }, { mouse: "colonel_crisp", subcategory: "surface" }, { mouse: "crematio_scorchworth", subcategory: "cavern-0-750-loot" }, { mouse: "flamina_cinderbreath", subcategory: "cavern-0-750-loot" }, { mouse: "combustius_furnaceheart", subcategory: "cavern-100+-loot" }, { mouse: "incendarius_the_unquenchable", subcategory: "cavern-100+-loot" }, { mouse: "sulfurious_the_raging_inferno", subcategory: "cavern-750+-loot" }] }, { name: "Draconic Depths", subtitle: "Poison", id: "poison", icon: "/items/stats/transparent_thumb/521595717cfe3af1dee6253f2f553b7f.png", color: "#7fff3c", mice: [{ mouse: "goopus_dredgemore", subcategory: "surface" }, { mouse: "noxio_sludgewell", subcategory: "surface" }, { mouse: "dreck_grimehaven", subcategory: "surface" }, { mouse: "malignus_vilestrom", subcategory: "cavern-0-750-loot" }, { mouse: "venomona_festerbloom", subcategory: "cavern-0-750-loot" }, { mouse: "belchazar_banewright", subcategory: "cavern-100+-loot" }, { mouse: "pestilentia_the_putrid", subcategory: "cavern-100+-loot" }, { mouse: "corrupticus_the_blight_baron", subcategory: "cavern-750+-loot" }] }, { name: "Draconic Depths", subtitle: "Elemental", id: "elemental", mice: [{ mouse: "tranquilia_protecticus", subcategory: "surface" }, { mouse: "absolutia_harmonius", subcategory: "cavern-0-750-loot" }, { mouse: "magnatius_majestica", subcategory: "cavern-0-750-loot" }, { mouse: "supremia_magnificus", subcategory: "cavern-100+-loot" }, { mouse: "threeimat", subcategory: "cavern-100+-loot" }, { mouse: "mythical_dragon_emperor", subcategory: "cavern-750+-loot" }] }, { name: "Dracano", id: "dracano", color: "#ff3c3c", mice: ["dragon", "whelpling", "draconic_warden"] }, { name: "Floating Islands", id: "esp-draconic", icon: "/environments/0fb181c7f216be2d5bde0475ab46f8c5.jpg", color: "#64cf78", mice: ["dragon_breather", "dragon_lancer", "tiny_dragonfly", { mouse: "draconic_paragon", subcategory: "hai" }, { mouse: "regal_spearman", subcategory: "hai" }, { mouse: "empyrean_draconic_mouse", subcategory: "sp" }] }, { name: "Moussu Picchu", id: "mopi", icon: "/environments/438e2879c8c1e468f7e7eee169e289b6.jpg", color: "#cb8bec", mice: ["ful_mina_mountain_queen", { mouse: "drag_goon", subcategory: "storm-high" }, { mouse: "thundering_watcher", subcategory: "storm-med-high" }, { mouse: "thunderlord", subcategory: "storm-med" }, { mouse: "violet_thunderling", subcategory: "storm-low" }, { mouse: "thunderstriker", subcategory: "storm-low" }] }, { name: "Queso Geyser", subtitle: "Corky & Friends", id: "corky-friends", icon: "/environments/d0046f985528496b0d638c04f35270bc.jpg", color: "#d3ba7a", mice: ["geyser_cork_dropper_bland", "geyser_cork_dropper_medium", "geyser_cork_dropper_mild", "geyser_cork_dropper_hot", "geyser_cork_dropper_rare", "geyser_cork_dropper_flaming"] }, { name: "Queso Geyser", subtitle: "KSS", id: "kss", icon: "/environments/d0046f985528496b0d638c04f35270bc.jpg", color: "#d3ba7a", mice: ["geyser_eruption_dragon_wildfire", "geyser_eruption_dragon_epic"] }, { name: "Queso Geyser", subtitle: "Cinder-Brut", id: "cinder-brut", icon: "/environments/d0046f985528496b0d638c04f35270bc.jpg", color: "#d3ba7a", mice: ["geyser_eruption_dragon_large", "geyser_eruption_dragon_flaming"] }, { name: "Queso Geyser", subtitle: "BE Trio", id: "be-trio", icon: "/environments/d0046f985528496b0d638c04f35270bc.jpg", color: "#d3ba7a", mice: ["geyser_eruption_dragon_hot", "geyser_eruption_dragon_medium", "geyser_eruption_dragon_medium_spice"] }, { name: "Queso Geyser", subtitle: "Sizzle Mild", id: "sizzle-mild", icon: "/environments/d0046f985528496b0d638c04f35270bc.jpg", color: "#d3ba7a", mice: ["geyser_eruption_dragon_small", "geyser_eruption_dragon_mild"] }, { name: "Queso Geyser", subtitle: "Pressure Set", id: "pressure-set", icon: "/items/stats/transparent_thumb/209ca347c42ff56071ddd50f087a5bb8.png", color: "#d3ba7a", mice: ["geyser_pressure_builder_hot", "geyser_pressure_builder_medium", "geyser_pressure_builder_mild", "geyser_pressure_builder_flaming"] }], subcategories: [{ id: "surface", name: "Surface" }, { id: "cavern-0-750-loot", name: "Cavern 0-750 Loot" }, { id: "cavern-100+-loot", name: "Cavern 100+ Loot" }, { id: "cavern-750+-loot", name: "Cavern 750+ Loot" }, { id: "hai", name: "High Altitude Island" }, { id: "sp", name: "Sky Palace" }, { id: "storm-high", name: "High Storm 80-99%" }, { id: "storm-med-high", name: "Med-High Storm 35-99%" }, { id: "storm-med", name: "Medium Storm 35-79%" }, { id: "storm-low", name: "Low Storm 0-34%" }] }, whisker_woods_rift: { categories: [{ name: "Crazed Clearing", subtitle: "Cherry Charm", id: "crazed-clearing", icon: "/ui/hud/rift_whiskerwoods/cherry_charm.png", color: "#ff909d", mice: ["rift_cherry", "rift_sylvan", "rift_wiggler", "rift_moosker", "rift_eagle_owl", "rift_foxy", "rift_elven_princess", { mouse: "rift_cyclops", subcategory: "boss" }] }, { name: "Gigantic Gnarled Tree", subtitle: "Gnarled Charm", id: "gigantic-gnarled-tree", icon: "/ui/hud/rift_whiskerwoods/gnarled_charm.png", color: "#d9f720", mice: ["rift_curious_chemist", "rift_frog", "rift_chameleon", "rift_nomad", "rift_bear", "rift_tiger", "rift_fairy", { mouse: "rift_centaur", subcategory: "boss" }] }, { name: "Deep Lagoon", subtitle: "Stagnant Charm", id: "deep-lagoon", icon: "/ui/hud/rift_whiskerwoods/wicked_gnarly_charm.png", color: "#91f5ff", mice: ["rift_silth", "rift_goblin", "rift_shaman", "rift_troll", "rift_treant", "rift_water_nymph", "rift_harpy", { mouse: "rift_hydra", subcategory: "boss" }] }, { name: "Misc", id: "misc", color: "#e9d2ff", mice: ["rift_goldleaf", { mouse: "rift_black_widow", subcategory: "boss" }] }], subcategories: [{ id: "boss", name: "Boss" }] }, draconic_depths: { categories: [{ name: "Ice", id: "ice", icon: "/items/stats/transparent_thumb/22e16f7fc2b4612924f8fd24f70be595.png", color: "#49ffff", mice: [{ mouse: "frostnip_icebound", subcategory: "surface" }, { mouse: "blizzara_winterosa", subcategory: "surface" }, { mouse: "iciclesius_the_defender", subcategory: "surface" }, { mouse: "rimeus_polarblast", subcategory: "cavern-0-750-loot" }, { mouse: "frigidocius_coldshot", subcategory: "cavern-0-750-loot" }, { mouse: "chillandria_permafrost", subcategory: "cavern-100+-loot" }, { mouse: "avalancheus_the_glacial", subcategory: "cavern-100+-loot" }, { mouse: "arcticus_the_biting_frost", subcategory: "cavern-750+-loot" }] }, { name: "Fire", id: "fire", icon: "/items/stats/transparent_thumb/fdd6e3aa9d1f5831fc397237db581d81.png", color: "#ffa920", mice: [{ mouse: "squire_sizzleton", subcategory: "surface" }, { mouse: "torchbearer_tinderhelm", subcategory: "surface" }, { mouse: "colonel_crisp", subcategory: "surface" }, { mouse: "crematio_scorchworth", subcategory: "cavern-0-750-loot" }, { mouse: "flamina_cinderbreath", subcategory: "cavern-0-750-loot" }, { mouse: "combustius_furnaceheart", subcategory: "cavern-100+-loot" }, { mouse: "incendarius_the_unquenchable", subcategory: "cavern-100+-loot" }, { mouse: "sulfurious_the_raging_inferno", subcategory: "cavern-750+-loot" }] }, { name: "Poison", id: "poison", icon: "/items/stats/transparent_thumb/521595717cfe3af1dee6253f2f553b7f.png", color: "#7fff3c", mice: [{ mouse: "goopus_dredgemore", subcategory: "surface" }, { mouse: "noxio_sludgewell", subcategory: "surface" }, { mouse: "dreck_grimehaven", subcategory: "surface" }, { mouse: "malignus_vilestrom", subcategory: "cavern-0-750-loot" }, { mouse: "venomona_festerbloom", subcategory: "cavern-0-750-loot" }, { mouse: "belchazar_banewright", subcategory: "cavern-100+-loot" }, { mouse: "pestilentia_the_putrid", subcategory: "cavern-100+-loot" }, { mouse: "corrupticus_the_blight_baron", subcategory: "cavern-750+-loot" }] }, { name: "Elemental", id: "elemental", icon: "/items/bait/transparent_thumb/a0958278e0a2a22b4954051824d177d3.png", color: "#ff3cd7", mice: [{ mouse: "tranquilia_protecticus", subcategory: "surface" }, { mouse: "supremia_magnificus", subcategory: "cavern-100+-loot" }, { mouse: "threeimat", subcategory: "cavern-100+-loot" }, { mouse: "mythical_dragon_emperor", subcategory: "cavern-750+-loot" }] }], subcategories: [{ id: "surface", name: "Surface" }, { id: "cavern-0-750-loot", name: "Cavern 0-750 Loot" }, { id: "cavern-100+-loot", name: "Cavern 100+ Loot" }, { id: "cavern-750+-loot", name: "Cavern 750+ Loot" }] } };
@@ -12672,7 +12638,6 @@ ${csv}`);
 `;
     }
   });
-  // dist/data/update-summary.json
   var update_summary_default, init_update_summary = __esm({
     "dist/data/update-summary.json"() {
       update_summary_default = { summary: "", details: [{ title: "", items: ["Added Draconic Depths Location HUD", "Added Draconic Depths Maps to sorted maps", "Updated Upscaled Images", "Fixed attraction rates not showing for newer mice", "Fixed Hover Profiles image size"] }] };
@@ -12959,7 +12924,6 @@ ${csv}`);
             id: "mouserip",
             class: "rules",
             title: "MOUSE.RIP",
-            // caps to look better
             href: "https://mouse.rip",
             text: "MH guides, tools, and more."
           },
@@ -13307,13 +13271,11 @@ ${csv}`);
 `;
     }
   });
-  // dist/data/magic-essence-potions.json
   var magic_essence_potions_default, init_magic_essence_potions = __esm({
     "dist/data/magic-essence-potions.json"() {
       magic_essence_potions_default = { no: ["abominable_asiago_cheese_magic", "ancient_cheese_6_pieces", "ancient_cheese_potion", "cherry_potion", "corrupted_radioactive_blue_cheese_potion", "gnarled_cheese_potion", "greater_radioactive_blue_cheese_potion", "limelight_cheese_6", "radioactive_blue_cheese_potion", "runic_cheese_2_pieces", "runic_cheese_potion"], maybe: ["ancient_string_cheese_potion", "crimson_cheese_magic_essence_recipe", "gauntlet_potion_2", "gauntlet_potion_3", "gauntlet_potion_4", "glowing_gruyere_cheese_5_pieces", "greater_wicked_gnarly_potion", "rain_cheese_potion", "vengeful_vanilla_stilton_magic_essence", "wicked_gnarly_potion", "wind_cheese_potion"] };
     }
   });
-  // dist/data/crafting-recipe-mapping.json
   var crafting_recipe_mapping_default, init_crafting_recipe_mapping = __esm({
     "dist/data/crafting-recipe-mapping.json"() {
       crafting_recipe_mapping_default = { base: { living_grove_base_recipe: "living_grove_base", polluted_base_rebuild: "polluted_base", soiled_base_rebuild_recipe: "soiled_base", tribal_base: "tribal_base", tiki_base: "tiki_base" }, collectible: { admirals_ship_journal_theme_recipe: "admirals_ship_journal_theme_collectible", bristle_woods_rift_journal_theme_recipe: "bristle_woods_rift_journal_theme_collectible", burroughs_rift_journal_theme_recipe: "burroughs_rift_journal_theme_collectible", chrome_journal_theme_recipe: "chrome_journal_theme_collectible", gnawnian_games_journal_theme_recipe: "gnawnian_games_theme_collectible", labyrinth_journal_theme_recipe: "labyrinth_journal_theme_collectible", lightning_slayer_journal_theme_recipe: "lightning_slayer_journal_theme_collectible", living_garden_theme_recipe: "living_garden_theme_collectible", moussu_picchu_journal_theme_recipe: "moussu_picchu_journal_theme_collectible", polluted_theme_recipe: "completed_polluted_journal_theme_collectible", queso_journal_theme_recipe: "queso_canyon_theme_collectible", regal_theme_recipe: "completed_regal_theme_collectible", relic_hunter_journal_theme_recipe: "relic_hunter_journal_theme_collectible" }, crafting_item: { geyser_draconic_chassis_recipe: "draconic_geyser_chassis_crafting_item", geyser_draconic_chassis_i_recipe: "draconic_geyser_chassis_i_crafting_item", christened_ship: "huntington_map_piece", s_s__huntington_ii: "huntington_map_piece" }, map_piece: { unchristened_ship: "unchristened_ship_craft_item", balacks_lantern: "balack_lantern_map_piece", ocean_navigation_kit: "ocean_navigation_map_piece", zzt_key_1: "zzt_key", repaired_oculus_recipe: "high_altitude_license_stat_item" }, weapon: { chrome_floating_arcane_upgraded_recipe: "chrome_floating_arcane_upgraded_weapon", chrome_monstrobot_recipe: "chrome_monstrobot_weapon", chrome_oasis_water_node_recipe: "chrome_oasis_water_node_weapon", chrome_phantasmic_oasis_recipe: "chrome_phantasmic_oasis_weapon", chrome_school_of_sharks_recipe: "chrome_school_of_sharks_weapon", chrome_sphynx_recipe: "chrome_sphynx_weapon", chrome_storm_wrought_ballista_recipe: "chrome_storm_wrought_ballista_weapon", chrome_temporal_turbine_recipe: "chrome_temporal_turbine_weapon", chrome_thought_obliterator_recipe: "chrome_floating_forgotten_upgraded_weapon", clockapult_of_winter_past: "clockapult_of_winter_past_weapon", geyser_draconic_weapon_recipe: "geyser_draconic_weapon", fluffy_deathbot_weapon: "fluffy_deathbot_weapon", grungy_deathbot_weapon: "grungy_deathbot_weapon", icy_rhinobot: "icy_rhinobot_weapon", ninja_ambush_weapon: "ninja_ambush_weapon", regrown_thorned_venus_mouse_trap: "throned_venus_mouse_trap_weapon", acronym_recipe: "acronym_weapon", ambush_trap_rebuild: "ambush_weapon", rebuild_celestial_dissonance_recipe: "celestial_dissonance_weapon", rebuild_chrome_storm_wrought_ballista_recipe: "chrome_storm_wrought_ballista_weapon", clockapult_of_time_rebuild: "clockapult_of_time_weapon", rebuild_crystal_tower_recipe: "crystal_tower_weapon", digby_drillbot: "digby_drillbot_weapon", dragon_ballista_rebuild: "dragonvine_ballista_weapon", endless_labyrinth_trap_rebuild_recipe: "endless_labyrinth_weapon", event_horizon_recipe: "event_horizon_weapon", harpoon_gun: "harpoon_gun_weapon", rebuild_high_tension_recipe: "high_tension_spring_weapon", ice_blaster_trap_rebuild: "ice_blaster_weapon", wolfsbane_rebuild_recipe: "wolfsbane_weapon", mouse_deathbot: "mouse_deathbot_weapon", net_cannon: "net_cannon_weapon", oasis_water_node_recipe: "oasis_water_node_weapon", obelisk_of_slumber: "obelisk_of_slumber_weapon", rebuild_phantasmic_oasis_recipe: "phantasmic_oasis_weapon", rhinobot_rebuild: "rhinobot_weapon", sandstorm_monstrobot_recipe: "sandstormbot_weapon", rebuild_upgraded_rune_shark_weapon_recipe: "upgraded_rune_shark_weapon", scum_scrubber_trap_rebuild_recipe: "scum_scrubber_weapon", soul_catcher_rebuild: "hween_2011_weapon", sphynx_weapon_recipe: "sphynx_weapon", steam_laser_mk_i_rebuild: "steam_laser_mk_i_weapon", storm_wrought_ballista_recipe: "storm_wrought_ballista_weapon", temporal_turbine_recipe: "temporal_turbine", zugzwangs_last_move: "zugzwangs_last_move_weapon", rebuild_floating_arcane_upgraded_recipe: "floating_arcane_upgraded_weapon", rebuild_thought_obliterator_recipe: "floating_forgotten_upgraded_weapon", venus_mouse_trap: "venus_mouse_trap_weapon" } };
@@ -13653,9 +13615,7 @@ ${csv}`);
                 weapon_id: favorite == null ? void 0 : favorite.weapon_id,
                 trinket_id: favorite == null ? void 0 : favorite.trinket_id,
                 power_type: null,
-                // TODO: add this.
                 is_mobile: !0
-                // TODO: add a check for this when editing.
               };
               faves = faves.filter((s) => !s.is_mobile || s.is_mobile && !s.id.startsWith("mobile-")), faves.find((s) => (s == null ? void 0 : s.id) === newFavorite.id) || newFaves.push(newFavorite);
             }
@@ -14115,41 +14075,15 @@ ${csv}`);
     }
   });
   var styles_default51, init_styles52 = __esm({
-    "src/modules/hide-footer/styles.css"() {
-      styles_default51 = `.pageFrameView-footer,.mousehuntFooter{display:none}.no-footer .pageFrameView-column.left,.no-footer .pageFrameView-column.right{margin-bottom:0}
-`;
-    }
-  });
-  var init56, hide_footer_default, init_hide_footer = __esm({
-    "src/modules/hide-footer/index.js"() {
-      init_utils2();
-      init_styles52();
-      init56 = () => __async(void 0, null, function* () {
-        addStyles(styles_default51, "no-footer"), addBodyClass("no-footer"), onActivation("no-footer", () => {
-          addBodyClass("no-footer");
-        }), onActivation("no-footer", () => {
-          removeBodyClass("no-footer");
-        });
-      }), hide_footer_default = {
-        id: "no-footer",
-        name: "Hide Footer",
-        type: "element-hiding",
-        default: !1,
-        description: "Hide the footer.",
-        load: init56
-      };
-    }
-  });
-  var styles_default52, init_styles53 = __esm({
     "src/modules/hover-profiles/styles.css"() {
-      styles_default52 = `.message .messageText,.journal .entry .journalbody{position:relative}#friend-data-wrapper{position:absolute;top:-125px;z-index:999999;box-sizing:border-box;display:block;width:325px;height:125px;background:linear-gradient(#decebb 5%,#f0eddf 50%);border:1px solid #9a8872;border-radius:10px;box-shadow:0 1px 5px -1px #5e5e5e}.treasureMapTooltipView #friend-data-wrapper{display:none}[data-friend-hover]:hover #friend-data-wrapper,[data-friend-hover]:focus #friend-data-wrapper,#friend-data-wrapper:hover,#friend-data-wrapper:focus{display:block}#friend-data-wrapper .friendsPage-friendRow{position:relative;box-sizing:border-box;height:100%;padding-top:3px;margin:0;border:none}#friend-data-wrapper .friendsPage-friendRow-imageContainer{position:relative;display:inline-block;width:65px;height:65px;margin-left:5px;vertical-align:top}#friend-data-wrapper .friendsPage-friendRow-content{box-sizing:border-box;width:245px}#friend-data-wrapper .friendsPage-friendRow-titleBar{position:relative;box-sizing:border-box;padding-left:20px;margin-right:-8px;margin-bottom:5px;margin-left:-15px;line-height:20px}#friend-data-wrapper .friendsPage-friendRow-titleBar-titleDetail{display:none}#friend-data-wrapper .friendsPage-friendRow-titleBar-icon{left:0;width:35px;height:35px}#friend-data-wrapper .friendsPage-friendRow-titleBar-name{display:block;margin-left:20px;overflow:hidden;font-size:14px;color:#000;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}#friend-data-wrapper .friendsPage-friendRow-environment-icon{width:27px;height:27px;margin-right:3px}#friend-data-wrapper .friendsPage-friendRow-environment-name{width:140px;font-size:11px;line-height:14px}#friend-data-wrapper .friendsPage-friendRow .friendsPage-friendRow-actions{position:absolute;top:35px;right:2px}#friend-data-wrapper .friendsPage-friendRow-actionsContainer{top:0}#friend-data-wrapper .friendsPage-friendRow-actions-interactionButtons{padding-right:0}#friend-data-wrapper .userInteractionButtonsView-button{width:38px;height:38px;background-size:38px}#friend-data-wrapper .userInteractionButtonsView-button.sendTicket,#friend-data-wrapper .userInteractionButtonsView-button.sendTournamentInvite{display:none}#friend-data-wrapper .mousehuntTooltip{opacity:0;animation:none}#friend-data-wrapper .friendsPage-friendRow-environment{box-sizing:border-box;display:flex;align-items:center;height:40px;margin-left:-10px}#friend-data-wrapper .friendsPage-friendRow-statsContainer{position:relative;box-sizing:border-box;display:grid;grid-template-columns:repeat(3,1fr);place-items:center center;align-content:stretch;width:100%;height:auto;padding:2px;margin:0}#friend-data-wrapper .friendsPage-friendRow-stat{display:flex!important;align-items:center;width:auto;margin:0;font-size:10px}#friend-data-wrapper .friendsPage-friendRow-stat-icon{width:15px;height:15px;margin-left:5px}#friend-data-wrapper .friendsPage-friendRow-stat.map .friendsPage-friendRow-stat-icon,#friend-data-wrapper .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-icon{margin-right:3px}#friend-data-wrapper .friendsPage-friendRow-stat-value{font-size:10px;font-weight:400}#friend-data-wrapper .friendsPage-friendRow-stat-label{display:none}#friend-data-wrapper .friendsPage-friendRow-stat.map{grid-column:span 2}#friend-data-wrapper .friendsPage-friendRow-stat.map .friendsPage-friendRow-stat-value span,#friend-data-wrapper .friendsPage-friendRow-stat.online span{width:auto;max-width:190px}#friend-data-wrapper .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-value a{width:auto;max-width:70px}#friend-data-wrapper .friendsPage-friendRow-stat:hover .friendsPage-friendRow-stat-fullValue{display:none}#friend-data-wrapper .friendsPage-friendRow-stat.hasHover:hover{text-decoration:underline;background:unset}.mh-dark-mode #friend-data-wrapper .friendsPage-friendRow{color:#87270e;background:linear-gradient(#decebb 5%,#f0eddf 50%)}.mh-dark-mode #friend-data-wrapper .friendsPage-friendRow-statsContainer{color:#87270e;box-shadow:0 10px 30px #cdb495 inset}.mh-dark-mode #friend-data-wrapper .friendsPage-friendRow-stat-value a{color:#87270e}.friend-data-wrapper-loading{display:flex;align-items:flex-end;justify-content:center;height:90%;background-image:url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif);background-repeat:no-repeat;background-position:center;background-size:55px}.friendsPage-friendRow.loading .friendsPage-friendRow-titleBar-icon:after{top:2px;left:2px;width:30px;height:30px;background:#eee;border:2px solid #7b7b7b}.friendsPage-friendRow.loading .friendsPage-friendRow-image,.friendsPage-friendRow.loading .friendsPage-friendRow-environment-icon{background:#eee;box-shadow:none}.friendsPage-friendRow.loading .friendsPage-friendRow-image{inset:7px}#friend-data-wrapper .friendsPage-friendRow-image{inset:5px}
+      styles_default51 = `.message .messageText,.journal .entry .journalbody{position:relative}#friend-data-wrapper{position:absolute;top:-125px;z-index:999999;box-sizing:border-box;display:block;width:325px;height:125px;background:linear-gradient(#decebb 5%,#f0eddf 50%);border:1px solid #9a8872;border-radius:10px;box-shadow:0 1px 5px -1px #5e5e5e}.treasureMapTooltipView #friend-data-wrapper{display:none}[data-friend-hover]:hover #friend-data-wrapper,[data-friend-hover]:focus #friend-data-wrapper,#friend-data-wrapper:hover,#friend-data-wrapper:focus{display:block}#friend-data-wrapper .friendsPage-friendRow{position:relative;box-sizing:border-box;height:100%;padding-top:3px;margin:0;border:none}#friend-data-wrapper .friendsPage-friendRow-imageContainer{position:relative;display:inline-block;width:65px;height:65px;margin-left:5px;vertical-align:top}#friend-data-wrapper .friendsPage-friendRow-content{box-sizing:border-box;width:245px}#friend-data-wrapper .friendsPage-friendRow-titleBar{position:relative;box-sizing:border-box;padding-left:20px;margin-right:-8px;margin-bottom:5px;margin-left:-15px;line-height:20px}#friend-data-wrapper .friendsPage-friendRow-titleBar-titleDetail{display:none}#friend-data-wrapper .friendsPage-friendRow-titleBar-icon{left:0;width:35px;height:35px}#friend-data-wrapper .friendsPage-friendRow-titleBar-name{display:block;margin-left:20px;overflow:hidden;font-size:14px;color:#000;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}#friend-data-wrapper .friendsPage-friendRow-environment-icon{width:27px;height:27px;margin-right:3px}#friend-data-wrapper .friendsPage-friendRow-environment-name{width:140px;font-size:11px;line-height:14px}#friend-data-wrapper .friendsPage-friendRow .friendsPage-friendRow-actions{position:absolute;top:35px;right:2px}#friend-data-wrapper .friendsPage-friendRow-actionsContainer{top:0}#friend-data-wrapper .friendsPage-friendRow-actions-interactionButtons{padding-right:0}#friend-data-wrapper .userInteractionButtonsView-button{width:38px;height:38px;background-size:38px}#friend-data-wrapper .userInteractionButtonsView-button.sendTicket,#friend-data-wrapper .userInteractionButtonsView-button.sendTournamentInvite{display:none}#friend-data-wrapper .mousehuntTooltip{opacity:0;animation:none}#friend-data-wrapper .friendsPage-friendRow-environment{box-sizing:border-box;display:flex;align-items:center;height:40px;margin-left:-10px}#friend-data-wrapper .friendsPage-friendRow-statsContainer{position:relative;box-sizing:border-box;display:grid;grid-template-columns:repeat(3,1fr);place-items:center center;align-content:stretch;width:100%;height:auto;padding:2px;margin:0}#friend-data-wrapper .friendsPage-friendRow-stat{display:flex!important;align-items:center;width:auto;margin:0;font-size:10px}#friend-data-wrapper .friendsPage-friendRow-stat-icon{width:15px;height:15px;margin-left:5px}#friend-data-wrapper .friendsPage-friendRow-stat.map .friendsPage-friendRow-stat-icon,#friend-data-wrapper .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-icon{margin-right:3px}#friend-data-wrapper .friendsPage-friendRow-stat-value{font-size:10px;font-weight:400}#friend-data-wrapper .friendsPage-friendRow-stat-label{display:none}#friend-data-wrapper .friendsPage-friendRow-stat.map{grid-column:span 2}#friend-data-wrapper .friendsPage-friendRow-stat.map .friendsPage-friendRow-stat-value span,#friend-data-wrapper .friendsPage-friendRow-stat.online span{width:auto;max-width:190px}#friend-data-wrapper .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-value a{width:auto;max-width:70px}#friend-data-wrapper .friendsPage-friendRow-stat:hover .friendsPage-friendRow-stat-fullValue{display:none}#friend-data-wrapper .friendsPage-friendRow-stat.hasHover:hover{text-decoration:underline;background:unset}.mh-dark-mode #friend-data-wrapper .friendsPage-friendRow{color:#87270e;background:linear-gradient(#decebb 5%,#f0eddf 50%)}.mh-dark-mode #friend-data-wrapper .friendsPage-friendRow-statsContainer{color:#87270e;box-shadow:0 10px 30px #cdb495 inset}.mh-dark-mode #friend-data-wrapper .friendsPage-friendRow-stat-value a{color:#87270e}.friend-data-wrapper-loading{display:flex;align-items:flex-end;justify-content:center;height:90%;background-image:url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif);background-repeat:no-repeat;background-position:center;background-size:55px}.friendsPage-friendRow.loading .friendsPage-friendRow-titleBar-icon:after{top:2px;left:2px;width:30px;height:30px;background:#eee;border:2px solid #7b7b7b}.friendsPage-friendRow.loading .friendsPage-friendRow-image,.friendsPage-friendRow.loading .friendsPage-friendRow-environment-icon{background:#eee;box-shadow:none}.friendsPage-friendRow.loading .friendsPage-friendRow-image{inset:7px}#friend-data-wrapper .friendsPage-friendRow-image{inset:5px}
 `;
     }
   });
-  var cleanId, getFriendId, friendDataWrapper, makeFriendMarkup, onFriendLinkHover, addFriendLinkEventListener, onTabChangeCallback, onTabChange, onInboxOpen, main9, debugPopup, init57, hover_profiles_default, init_hover_profiles = __esm({
+  var cleanId, getFriendId, friendDataWrapper, makeFriendMarkup, onFriendLinkHover, addFriendLinkEventListener, onTabChangeCallback, onTabChange, onInboxOpen, main9, debugPopup, init56, hover_profiles_default, init_hover_profiles = __esm({
     "src/modules/hover-profiles/index.js"() {
       init_utils2();
-      init_styles53();
+      init_styles52();
       cleanId = (id) => id.replaceAll("#", ""), getFriendId = (target) => __async(void 0, null, function* () {
         var _a;
         if (target.getAttribute("data-snuid"))
@@ -14264,8 +14198,8 @@ ${csv}`);
         ].forEach((selector) => {
           addFriendLinkEventListener(selector);
         });
-      }, debugPopup = !1, init57 = () => __async(void 0, null, function* () {
-        addStyles(styles_default52, "hover-profiles"), debugPopup = getSetting("debug.hover-popups", !1), setTimeout(main9, 500), onRequest("*", () => {
+      }, debugPopup = !1, init56 = () => __async(void 0, null, function* () {
+        addStyles(styles_default51, "hover-profiles"), debugPopup = getSetting("debug.hover-popups", !1), setTimeout(main9, 500), onRequest("*", () => {
           setTimeout(main9, 1e3);
         }), onInboxOpen(main9);
       }), hover_profiles_default = {
@@ -14274,20 +14208,374 @@ ${csv}`);
         type: "feature",
         default: !0,
         description: "Hover over a friend\u2019s name in your journal, inbox, or elsewhere to get a mini-profile popup.",
+        load: init56
+      };
+    }
+  });
+  var styles_default52, init_styles53 = __esm({
+    "src/modules/hide-footer/styles.css"() {
+      styles_default52 = `.pageFrameView-footer,.mousehuntFooter{display:none}.no-footer .pageFrameView-column.left,.no-footer .pageFrameView-column.right{margin-bottom:0}
+`;
+    }
+  });
+  var init57, hide_footer_default, init_hide_footer = __esm({
+    "src/modules/hide-footer/index.js"() {
+      init_utils2();
+      init_styles53();
+      init57 = () => __async(void 0, null, function* () {
+        addStyles(styles_default52, "no-footer"), addBodyClass("no-footer"), onActivation("no-footer", () => {
+          addBodyClass("no-footer");
+        }), onActivation("no-footer", () => {
+          removeBodyClass("no-footer");
+        });
+      }), hide_footer_default = {
+        id: "no-footer",
+        name: "Hide Footer",
+        type: "element-hiding",
+        default: !1,
+        description: "Hide the footer.",
         load: init57
       };
     }
   });
+  var inventory_open_all_but_one_default, init_inventory_open_all_but_one = __esm({
+    "src/modules/inventory-open-all-but-one/index.js"() {
+      init_utils2();
+      inventory_open_all_but_one_default = {
+        id: "open-all-but-one",
+        name: "Inventory - Open All but One",
+        type: "feature",
+        default: !0,
+        description: "Add an \u201COpen All But One\u201D button to convertible items in your inventory.",
+        load: initOpenButtons
+      };
+    }
+  });
+  var settings_default23, init_settings24 = __esm({
+    "src/modules/better-quests/settings/index.js"() {
+      settings_default23 = () => __async(void 0, null, function* () {
+        return [{
+          id: "better-quests.m400-helper",
+          title: "M400 Helper",
+          default: !0,
+          description: "Add a \u201CTravel to next step\u201D button to the M400 quest."
+        }];
+      });
+    }
+  });
+  var renderButton, main10, m400_default, init_m400 = __esm({
+    "src/modules/better-quests/modules/m400/index.js"() {
+      init_utils2();
+      renderButton = (location) => {
+        let title = document.querySelector(".campPage-quests-title");
+        if (!title)
+          return;
+        let existingButton = document.querySelector("#mh-improved-m400-travel");
+        existingButton && existingButton.remove();
+        let button = makeElement("div", ["mousehuntActionButton", "tiny", "mh-m400-travel", `mh-m400-travel-${location}`]);
+        button.id = "mh-improved-m400-travel", location === getCurrentLocation() && button.classList.add("disabled"), makeElement("span", "mousehuntActionButton-text", "Travel to next step", button), button.setAttribute("data-location", location), button.addEventListener("click", (e) => {
+          let clickedLocation = e.target.getAttribute("data-location");
+          if (!clickedLocation) {
+            let parent = e.target.parentElement;
+            if (!parent)
+              return;
+            clickedLocation = parent.getAttribute("data-location");
+          }
+          travelTo(clickedLocation), setPage("Camp", null, () => {
+          });
+        }), title.append(button);
+      }, main10 = () => __async(void 0, null, function* () {
+        var _a, _b, _c;
+        if (!document.querySelector(".campPage-quests-title") || !(((_b = (_a = user.quests) == null ? void 0 : _a.QuestLibraryM400Research) == null ? void 0 : _b.is_assignment) || ((_c = user.quests.QuestLibraryM400Research) == null ? void 0 : _c.is_bait_assignment)))
+          return;
+        let container = document.querySelector(".campPage-quests-container");
+        if (!container)
+          return;
+        container.classList.add("mh-m400-quest");
+        let allTasks = document.querySelectorAll(".campPage-quests-objective-container");
+        if (!allTasks)
+          return;
+        let taskNames = document.querySelectorAll(".campPage-quests-objective-task");
+        taskNames && taskNames.forEach((task) => {
+          let newText = task.innerText.replaceAll("Collect 1 Piece of M400 Intel", "Collect Intel");
+          task.innerText = newText;
+        });
+        let last = [...allTasks].reverse().find((task) => !task.classList.contains("locked") && !task.classList.contains("complete"));
+        if (!last)
+          return;
+        let objective = last.querySelector(".campPage-quests-objective-task");
+        if (!objective)
+          return;
+        let location = objective.innerText.split(" in ");
+        if (location.length === 1 && (location = objective.innerText.split(" from ")), location.length === 1)
+          return;
+        location = location[1].replace("Mice", "").replace("the ", "").trim();
+        let locations = yield getData("m400-locations"), locationKey = Object.keys(locations).find((key) => locations[key].includes(location));
+        locationKey && renderButton(locationKey);
+      }), m400_default = () => __async(void 0, null, function* () {
+        main10(), onNavigation(main10, {
+          page: "camp"
+        });
+      });
+    }
+  });
   var styles_default53, init_styles54 = __esm({
-    "src/modules/quick-filters-and-sort/styles.css"() {
-      styles_default53 = `.campPage-trap-itemBrowser-filter input[data-filter=search]{width:315px;padding:10px}.campPage-trap-itemBrowser-filter:first-child{flex:0 0 100%;margin-bottom:5px}.campPage-trap-itemBrowser-filterContainer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-evenly}.campPage-trap-itemBrowser-favorites{margin-top:10px}.campPage-trap-itemBrowser .campPage-trap-itemBrowser-filter select{width:100px}.campPage-trap-itemBrowser.weapon .campPage-trap-itemBrowser-filter select{width:75px}.campPage-trap-itemBrowser-quickLinks{z-index:1;display:flex;justify-content:space-evenly;padding:5px 10px;background-color:#f6f3eb}.mh-dark-mode .pageFrameView .campPage-trap-itemBrowser-favorites,.mh-dark-mode .campPage-trap-itemBrowser-quickLinks{background-color:#424242}.campPage-trap-itemBrowser-quickLinks-power{padding:10px 15px}.campPage-trap-itemBrowser-quickLinks-header{position:absolute;left:0;padding:5px;margin-top:10px;color:#96704b;text-align:center;transform:rotate(-90deg)}.campPage-trap-itemBrowser-quickLinks-header.filter-header{left:-2px;margin-top:5px}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image{width:40px;height:40px;background-position:center}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image-frame{width:40px;height:40px}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item-image{width:31px;height:30px;background-position:50%;background-size:25px}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item-image-frame{width:31px;height:30px}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover,.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:focus{background-color:#cac0b2}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover .campPage-trap-itemBrowser-favorite-item-image-frame,.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:focus .campPage-trap-itemBrowser-favorite-item-image-frame{box-shadow:none}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item{width:auto}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item{margin:0 2px}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item:first-child{margin-left:0}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item:last-child{margin-right:0}.quicklinks-filter-sortBy-name .campPage-trap-itemBrowser-favorite-item-image{background-position:center;background-size:30px}.weapon .campPage-trap-itemBrowser-items{top:250px}.campPage-trap-itemBrowser-items{top:200px}.campPage-wrapper[data-blueprint-type=weapon] .campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents,.campPage-wrapper[data-blueprint-type=base] .campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents{margin-top:170px}.campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents{margin-top:125px}.mh-dark-mode .quicklinks-filter-sortBy-name a,.mh-dark-mode .quicklinks-filter-sortBy-quantity a{background-color:#f2f2f2}.trapSelectorView__browserStateParent--items[data-blueprint-type=skin] .campPage-trap-itemBrowser-quickLinks{display:none}.campPage-trap-itemBrowser-favorite-item.quicklinks-filter.quicklinks-filter-sortBy-name a{background-position:5px 4px}
+    "src/modules/better-quests/styles.css"() {
+      styles_default53 = `#mh-improved-m400-travel{left:15px;cursor:pointer}.m400-helper-hidden,.campPage-quests-objective-container.locked .campPage-quests-objective-content,.campPage-quests-footer-smash-icon,.campPage-quests-footer-smash-warning{display:none}.campPage-quests-objective-container .campPage-quests-objective-thumb{width:35px;height:25px}.campPage-quests-objective-content{width:calc(100% - 35px)}.campPage-quests-objective-container.locked .campPage-quests-objective-thumb{width:100%;margin:0 auto;opacity:.4}.campPage-quests-footer-smash{display:flex;flex-direction:row;place-content:center center;align-items:center;padding:4px;font-size:9.75px;text-decoration:underline;border-radius:3px;box-shadow:none}#mh-research-smash-warning{position:absolute;bottom:28px;left:30px;display:block;max-width:250px;line-height:16px;text-align:left}#overlayPopup.zugzwangsLibraryQuestShopPopup .errorText{padding:10px 0;color:#da1717}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image{display:flex;flex-direction:column;align-items:center;width:50px}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image img{width:40px;height:40px;margin:0}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content b{display:block;padding:5px 0;font-size:12px;color:#000}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content{display:block;width:auto;padding:0;margin-left:10px;color:#909090}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .requirements b{display:inline-block;padding:7px}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .item img,#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink br{display:none}#overlayPopup.zugzwangsLibraryQuestShopPopup .questContainer{height:auto;overflow-y:visible}#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink{display:grid;grid-template-columns:1fr 5fr 2fr;place-items:center;align-items:start;padding-bottom:10px}#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:hover,#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:focus,#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:active{cursor:default}.mh-m400-travel{margin-top:-2px;margin-left:10px}.mh-m400-quest .campPage-quests-objective-progress,.mh-m400-quest .campPage-quests-objective-progressBar{display:none}.mh-ui-assignment-meta,.mh-ui-assignment-price{display:flex;flex-direction:column;align-items:center}.mh-ui-assignment-meta-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:9px;place-items:center stretch}.mh-ui-assignment-wiki-button{grid-column:span 2;text-align:center}.mh-ui-assignment-price-value{font-size:13px;font-weight:900}#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources{padding:5px 0}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image img.disabled[src=""]{display:none}.questLink .mousehuntActionButton.lightBlue{padding:2px 8px;margin-left:-4px;font-size:12px;font-weight:100}.mh-ui-assignment-price-label{text-decoration:underline;text-decoration-color:#ccc}.mh-ui-assignment-details-summary{padding:5px 0;font-size:12px;color:#000}#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources .mh-ui-quest-resources:hover{cursor:pointer;background-color:#dfdfdf;border-radius:6px;box-shadow:-1px 1px 0 3px #dfdfdf}h4.mh-ui-assignment-details-title{padding:3px 0;font-size:13px;text-decoration:underline}ul.mh-ui-assignment-details-task-list{margin-left:20px;line-height:1.5;list-style:disc}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image,.mh-ui-assignment-meta-wrapper{margin-top:10px}.mh-ui-assignment-details-task-title{margin:3px 0}#overlayPopup.zugzwangsLibraryQuestShopPopup #jsDialogAjaxPrefix{border:none}
 `;
     }
   });
-  var addItemToQuickLinks, addQuickLinksToTrap, init58, quick_filters_and_sort_default, init_quick_filters_and_sort = __esm({
+  var library_assignments_default, init_library_assignments = __esm({
+    "dist/data/library-assignments.json"() {
+      library_assignments_default = { library_intro_research_assignment_convertible: { name: "Catalog Library Mice", cost: 0, rewardPoints: 20, rewards: ["Yellow Tome of Wisdom", "Wealth Charms"], assignments: [{ name: "Catalog Library Assignment", tasks: [{ title: "All seven of the following:", text: ["1 Bookborn Mouse", "1 Effervescent Mouse", "1 Explorator Mouse", "1 Flutterby Mouse", "1 Infiltrator Mouse", "1 Pocketwatch Mouse", "1 Walker Mouse"] }] }] }, library_research_assignment_convertible: { name: "Library Research", cost: 20, rewardPoints: 30, rewards: ["Yellow Tome of Wisdom", "Green Tome of Wisdom", "Purple Tome of Wisdom", "Wealth Charms"], assignments: [{ name: "Library Mice Assignment", tasks: [{ title: "Two of the following:", text: ["1 Bookborn Mouse", "1 Flutterby Mouse", "1 Steam Grip Mouse", "1 Tome Sprite Mouse", "1 Scribe Mouse"] }, { title: "Three of the following:", text: ["2 Effervescent Mice", "2 Explorator Mice", "2 Infiltrator Mice", "2 Pocketwatch Mice", "2 Walker Mice"] }] }, { name: "Library Power Type Assignment", tasks: [{ title: "Three of the following:, with at least one task for both trap power types", text: ["1 Effervescent Mouse using a Physical trap", "1 Infiltrator Mouse using a Physical trap", "1 Scribe Mouse using a Physical trap", "1 Steam Grip Mouse using a Physical trap", "1 Walker Mouse using a Physical trap", "3 Explorator Mice using a Physical trap", "3 Pocketwatch Mice using a Physical trap", "1 Bookborn Mouse using a Tactical trap", "1 Flutterby Mouse using a Tactical trap", "2 Effervescent Mice using a Tactical trap", "2 Infiltrator Mice using a Tactical trap", "2 Walker Mice using a Tactical trap"] }] }] }, zugzwang_research_assignment_convertible: { name: "Zugzwang Research", cost: 50, rewardPoints: 80, rewards: ["Blue Tome of Wisdom", "Wealth Charms", "Amplifier Charms", "Rook Crumble Charms", "Spellbook Charms", "Mystic Curd", "Technic Cheese Mould"], assignments: [{ name: "Seasonal Garden Assignment", tasks: [{ title: "Two of the following:", text: ["10 mice in the Seasonal Garden using a Tactical trap", "10 mice in the Seasonal Garden using Luck Charm", "20 mice in the Seasonal Garden", "20 mice in the Seasonal Garden using Power Charm", "30 mice in the Seasonal Garden using Lucky Power Charm", "30 mice in the Seasonal Garden using Bamboozler Base", "40 mice in the Seasonal Garden"] }, { title: "Three of the following: (Winter)", text: ["1 Winter Mage Mouse using Ancient Spear Gun", "2 Frostbite Mice", "3 Penguin Mice using a Hydro trap"] }, { title: "Three of the following: (Spring)", text: ["1 Derpicorn Mice using a Tactical trap", "1 Vinetail Mouse", "3 Hydrophobe Mice using Aqua Base", "3 Tanglefoot Mice using a Physical trap"] }, { title: "Three of the following: (Summer)", text: ["1 Summer Mage Mouse", "3 Firefly Mice using Horrific Venus Mouse Trap", "3 Monarch Mice using a Tactical trap", "3 Stinger Mice"] }, { title: "Three of the following: (Fall)", text: ["1 Fall Familiar Mouse", "1 Harvester Mouse", "1 Whirleygig Mice using a Tactical trap", "1 Fall Familiar Mouse", "1 Harvester Mouse", "1 Whirleygig Mice using a Tactical trap", "4 Harvest Harrier Mice", "4 Pumpkin Head Mice using a Shadow trap"] }] }, { name: "Mystic King Assignment", tasks: [{ title: "One of the following:", text: ["10 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden"] }, { title: "One of the following:", text: ["1 Mouse in the Seasonal Garden using Zugzwang's First Move", "10 Mice in the Seasonal Garden using the Bamboozler Base", "10 Mice in the Seasonal Garden using Zugzwang's Last Move"] }, { title: "One of the following:", text: ["8 Mystic Pawns", "8 Mystic Pawns using Wooden Base with Target"] }, { title: "One of the following:", text: ["2 Mystic Knight Mice", "2 Mystic Bishop Mice"] }, { title: "", text: ["1 Mystic King Mouse"] }] }, { name: "Technic King Assignment", tasks: [{ title: "One of the following:", text: ["10 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden"] }, { title: "One of the following:", text: ["1 Mouse in the Seasonal Garden using Zugzwang's First Move", "10 Mice in the Seasonal Garden using the Bamboozler Base", "10 Mice in the Seasonal Garden using Zugzwang's Last Move"] }, { title: "One of the following:", text: ["8 Technic Pawns", "8 Technic Pawns using Wooden Base with Target"] }, { title: "One of the following:", text: ["2 Technic Knight Mice", "2 Technic Bishop Mice"] }, { text: ["1 Technic King Mouse"] }] }] }, furoma_research_assignment_convertible: { name: "Furoma Research", cost: 130, rewardPoints: 90, rewards: ["Purple Tome of Wisdom", "Wealth Charms", "Token of the Cheese Belt", "Token of the Cheese Claw", "Token of the Cheese Fang", "Master Belt Shard", "Master Claw Shard", "Master Fang Shard", "Rumble Cheese", "Maki Cheese", "Onyx Stone"], assignments: [{ name: "Furoma Assignment", tasks: [{ title: "One of the following:", text: ["3 Mice in the Training Grounds using Zugzwang's Last Move", "15 Archer Mice in the Training Grounds", "40 Mice in the Training Grounds using Bamboozler Base", "50 Mice using a Tactical trap"] }, { title: "One of the following:", text: ["3 Kung Fu Mice in the Dojo", "3 Ninja Mice in the Dojo", "3 Samurai Mice in the Dojo"] }, { title: "One of the following:", text: ["1 Diamond Mice in the Dojo using Power Charm", "1 Gold Mouse in the Dojo using Luck Charm", "1 Hapless Mouse in the Dojo", "10 Hapless Mice", "10 Hapless Mice using Bamboozler Base"] }, { title: "One of the following:", text: ["1 Student of the Cheese Belt Mouse using Maki Cheese", "1 Student of the Cheese Fang Mouse using Maki Cheese", "1 Student of the Cheese Claw Mouse using Maki Cheese", "3 Students of the Cheese Belt Mouse", "3 Students of the Cheese Fang Mouse", "3 Students of the Cheese Claw Mouse", "1 Master of the Dojo Mouse"] }] }, { name: "Pagoda Assignment", tasks: [{ title: "One of the following:", text: ["6 Students of the Cheese Belt Mouse", "1 Students of the Cheese Belt Mouse using Zugzwang's Last Move"] }, { title: "One of the following:", text: ["6 Students of the Cheese Fang Mice", "1 Students of the Cheese Fang Mice using Zugzwang's Last Move"] }, { title: "One of the following:", text: ["6 Students of the Cheese Claw Mouse", "1 Students of the Cheese Claw Mice using Zugzwang's Last Move"] }, { text: ["1 Masters of the Cheese Belt Mouse"] }, { text: ["1 Masters of the Cheese Fang Mouse"] }, { text: ["1 Masters of the Cheese Claw Mouse"] }, { title: "One of the following:", text: ["1 Master of the Dojo Mouse", "1 Master of the Dojo Mouse using Ambush (Ninja Ambush Trap cannot be used to complete this task)", "1 Master of the Dojo Mouse using Zugzwang's First Move"] }] }, { name: "Dojo Sensei Assignment", tasks: [{ title: "One of the following:", text: ["2 Students of the Cheese Belt Mouse using Onyx Mallet", "2 Students of the Cheese Fang Mouse using Onyx Mallet", "2 Students of the Cheese Claw Mouse using Onyx Mallet"] }, { text: ["8 Masters of the Cheese Belt Mouse"] }, { text: ["8 Masters of the Cheese Fang Mouse"] }, { text: ["8 Masters of the Cheese Claw Mouse"] }, { title: "One of the following:", text: ["2 Masters of the Dojo Mouse", "2 Masters of the Dojo Mouse using Ambush (Ninja Ambush Trap cannot be used to complete this task)", "2 Masters of the Dojo Mouse using Zugzwang's First Move"] }, { text: ["1 Dojo Sensei"] }] }] }, adv_zugzwang_research_assignment_convertible: { name: "Advanced Zugzwang Research", cost: 150, rewardPoints: 150, rewards: ["Purple Tome of Wisdom", "Wealth Charms", "Amplifier Charms", "Rook Crumble Charms", "Spellbook Charms", "Checkmate cheese", "Mystic Curd", "Technic Cheese Mould"], assignments: [{ name: "Mystic Amplifier Assignment", tasks: [{ title: "One of the following:", text: ["30 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden using Zugzwang's First Move", "8 Mystic Pawns using Mystic Pawn Pincher"] }, { title: "One of the following:", text: ["1 Mystic Queen using Checkmate Cheese", "1 Mystic King using Checkmate Cheese", "1 Chess Master"] }], info: "More Info: MouseHunt Info Page" }, { name: "Technic Amplifier Assignment", tasks: [{ title: "One of the following:", text: ["30 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden using Zugzwang's First Move", "8 Technic Pawns using Technic Pawn Pincher"] }, { title: "One of the following:", text: ["1 Technic Queen using Checkmate Cheese", "1 Technic King using Checkmate Cheese", "1 Chess Master"] }] }, { name: "Advanced Amplifier Assignment", tasks: [{ title: "One of the following:", text: ["30 Mice in the Seasonal Garden using Spellbook Base", "30 Mice in the Seasonal Garden using Zugzwang's First Move"] }, { title: "One of the following:", text: ["1 Mystic King Mouse using Checkmate Cheese", "1 Mystic King Mouse using Blackstone Pass Trap and Checkmate Cheese"] }, { title: "One of the following:", text: ["1 Technic King Mouse using Checkmate Cheese", "1 Technic King Mouse using Obvious Ambush Trap and Checkmate Cheese", "1 Chess Master"] }] }] }, zurreal_trap_research_convertible: { name: "Zurreal Trap Research", cost: 900, rewardPoints: 400, assignments: [{ name: "", tasks: [{ title: "All ten of the following:", text: ["Collect 1 Desert Travel Almanac from Centaur Mice (in the Great Gnarled Tree or Lagoon)", "Collect 1 Encyclopedia Gnawnia from Master Burglar Mice in the Town of Gnawnia", "Collect 6 Luscious Lumbers in the Training Grounds (from Kung Fu, Monk, and Samurai mouse)", "Collect 1 Mesh Netting in S.S. Huntington IV (from Leviathan and Squeaken mouse)", "Collect 3 Ectoplasmic Essence from Ghost Mice in the Mousoleum", "Collect 3 Warp Nails from Realm Rippers (in the Forbidden Grove)", "Collect 3 Runestones from Stonework Warrior Mice (in the Jungle of Dread with Magical Havarti)", "Collect 1 Draconic Book from Whelpling Mice (in Dracano)", "Collect 1 Lich Jewel in the Balack's Cove (from Balack the Banished, Derr Lich, Elub Lich and Nerg Lich mouse)", "Craft 1 Zurreal's Folly"] }] }] }, library_m400_bait_assignment_convertible: { name: "M400 Bait Research Assignment", cost: 1500, rewardPoints: 200, assignments: [{ name: "", tasks: [{ title: "Collect 2 Aged Grape Juice from one of the following:", text: ["Derr Lich Mice", "Dojo Sensei Mice", "Draconic Warden Mice", "Elub Lich Mice", "Ethereal Librarian Mice", "Gate Guardian Mice", "Keeper Mice", "Market Guard Mice", "Market Thief Mice", "Master Burglar Mice", "Mystic Bishop Mice", "Nerg Lich Mice", "Pie Thief Mice", "Prospector Mice", "Pygmy Wrangler Mice", "Ruffian Mice", "Saloon Gal Mice", "Strawberry Hotcakes Mice", "Swarm of Pygmy Mice", "Technic Bishop Mice", "Terra Mice"] }, { title: "Collect 3 Cheddar Powder from one of the following:", text: ["Burglar Mice", "Calalilly Mice", "Effervescent Mice", "Ethereal Thief Mice", "Granite Mice", "Lasso Cowgirl Mice", "Lumberjack Mice", "Master of the Cheese Belt Mice", "Polar Bear Mice", "Quesodillo Mice", "Snow Slinger Mice"] }, { title: "Collect 3 Gooey Gruyere Curds from one of the following:", text: ["Ethereal Enchanter Mice", "Glass Blower Mice", "Kung Fu Mice", "Master of the Cheese Claw Mice", "Samurai Mice", "Sand Pilgrim Mice", "Shopkeeper Mice", "Snow Soldier Mice", "Thistle Mice", "Walker Mice", "Zombie Mice"] }, { title: "Collect 3 Microchip Curds from one of the following:", text: ["Archer Mice", "Bark Mice", "Bionic Mice", "Ethereal Engineer Mice", "Knight Mice", "Limestone Miner Mice", "Master of the Cheese Fang Mice", "Page Mice", "Phalanx Mice", "Pocketwatch Mice", "Ravenous Zombie Mice", "Spiky Devil Mice", "Stealth Mice", "Tumbleweed Mice"] }, { title: "Collect 1 Nuclear Garlic from one of the following:", text: ["Blacksmith Mice", "Dunehopper Mice", "Gorgon Mice", "Lambent Crystal Mice", "Lycan Mice", "Mage Weaver Mice", "Master of the Dojo Mice", "Monster Mice", "Pyrite Mice", "Realm Ripper Mice", "Shroom Mice", "Tome Sprite Mice", "Whelpling Mice"] }] }] }, library_m400_assignment_convertible: { name: "M400 Hunting Research Assignment", cost: 1900, rewardPoints: 300, assignments: [{ name: "", tasks: [{ title: "One of the following:", text: ["Collect intel from Grunt Mice in the Derr Dunes", "Collect intel from Guardian Mice in the Derr Dunes", "Collect intel from Lycan Mice in the Catacombs", "Collect intel from Renegade Mice in the Derr Dunes", "Collect intel from Seer Mice in the Derr Dunes", "Collect intel from Terror Knight Mice in the Catacombs", "Collect intel from Trailblazer Mice in the Derr Dunes", "Collect intel in the Seasonal Garden"] }, { title: "One of the following:", text: ["Collect intel from Prospector Mice in the Claw Shot City", "Collect intel from Ruffian Mice in the Claw Shot City", "Collect intel from Sand Colossus Mice in the Sand Crypts", "Collect intel from Scarab Mice in the Sand Crypts", "Collect intel from Serpentine Mice in the Sand Crypts", "Collect intel in the Iceberg"] }, { title: "One of the following:", text: ["Collect intel from Conjurer Mice in the Nerg Plains", "Collect intel from Conqueror Mice in the Nerg Plains", "Collect intel from Defender Mice in the Nerg Plains", "Collect intel from Finder Mice in the Nerg Plains", "Collect intel from Master of the Cheese Belt Mice in the Meditation Room", "Collect intel from Master of the Cheese Claw Mice in the Meditation Room", "Collect intel from Master of the Cheese Fang Mice in the Meditation Room", "Collect intel from Mystic Mice in the Elub Shore", "Collect intel from Pack Mice in the Elub Shore", "Collect intel from Pathfinder Mice in the Nerg Plains", "Collect intel from Protector Mice in the Elub Shore", "Collect intel from Scout Mice in the Elub Shore", "Collect intel from Vanquisher Mice in the Elub Shore"] }, { title: "One of the following:", text: ["Collect intel from Buccaneer Mice in the S.S. Huntington IV", "Collect intel from Captain Mice in the S.S. Huntington IV", "Collect intel from Ninja Mice in the Training Grounds", "Collect intel in the Fiery Warpath"] }, { title: "One of the following:", text: ["Collect intel from Cavalier Mice in the King's Gauntlet", "Collect intel from Chipper Mice in the Slushy Shoreline", "Collect intel from Master Burglar Mice in the Bazaar", "Collect intel from Snow Slinger Mice in the Slushy Shoreline", "Collect intel from Snow Sniper Mice in the Slushy Shoreline", "Collect intel from Snow Soldier Mice in the Slushy Shoreline", "Collect intel from Yeti Mice in the Slushy Shoreline"] }, { title: "One of the following:", text: ["Collect intel from Grubling Herder Mice in the Sand Dunes", "Collect intel from Magma Carrier Mice in the Jungle of Dread", "Collect intel from Primal Mice in the Jungle of Dread", "Collect intel from Sand Pilgrim Mice in the Sand Dunes", "Collect intel from Stonework Warrior Mice in the Jungle of Dread"] }, { title: "One of the following:", text: ["Collect intel from Barkshell Mice in the Twisted Garden", "Collect intel from Camofusion Mice in the Twisted Garden", "Collect intel from Cursed Librarian Mice in the Cursed City", "Collect intel from Cursed Enchanter Mice in the Cursed City", "Collect intel from Essence Collector Mice in the Lost City", "Collect intel from Essence Guardian Mice in the Cursed City", "Collect intel from Ethereal Enchanter Mice in the Lost City", "Collect intel from Ethereal Librarian Mice in the Lost City", "Collect intel from Thorn Mice in the Twisted Garden", "Collect intel from Twisted Hotcakes Mice in the Twisted Garden"] }, { title: "One of the following:", text: ["Collect intel from Bark Mice in the Living Garden", "Collect intel from Blacksmith Mice in the Muridae Market", "Collect intel from Camoflower Mice in the Living Garden", "Collect intel from Mage Weaver Mice in the Muridae Market", "Collect intel from Market Guard Mice in the Muridae Market", "Collect intel from Realm Ripper Mice in the Forbidden Grove", "Collect intel from Spice Merchant Mice in the Muridae Market", "Collect intel from Strawberry Hotcakes Mice in the Living Garden", "Collect intel from Thistle Mice in the Living Garden"] }, { title: "One of the following:", text: ["Collect intel from Bionic Mice in the Meadow", "Collect intel from Derr Lich Mice in the Balack's Cove", "Collect intel from Draconic Warden Mice in the Dracano", "Collect intel from Elub Lich Mice in the Balack's Cove", "Collect intel from Gate Guardian Mice in the Acolyte Realm", "Collect intel from Master of the Dojo Mice in the Pinnacle Chamber", "Collect intel from Mystic Knight Mice in the Zugzwang\u2019s Tower", "Collect intel from Sorcerer Mice in the Acolyte Realm", "Collect intel from Technic Knight Mice in the Zugzwang\u2019s Tower"] }, { title: "1 M400 using Fusion Fondue" }] }] } };
+    }
+  });
+  var questAssignments, updateObjectiveFooterDisplay, addQuestsTab, addQuestTabEventListener, addResearchSmashWarning, moveErrorText, removeSmashText, updateAssignmentList, modifyAvailableQuestsPopup, checkForQuestSmash, restoreQuestTabAfterSmash, m400IfEnabled, main11, init58, better_quests_default, init_better_quests = __esm({
+    "src/modules/better-quests/index.js"() {
+      init_utils2();
+      init_settings24();
+      init_m400();
+      init_styles54();
+      init_library_assignments();
+      questAssignments = /* @__PURE__ */ new Set([
+        "charming_study_hween2014_assignment_quest_item",
+        "double_run_advanced_research_quest",
+        "extra_spooky_hween2014_assignment_quest_item",
+        "furoma_research_quest_item",
+        "hg_letter_research_quest_item",
+        "lab_monster_1_quest_item",
+        "library_adv_hween2013_research_quest_item",
+        "library_catalog_quest_item",
+        "library_hween2013_research_quest_item",
+        "library_m400_bait_research_quest_item",
+        "library_m400_research_quest_item",
+        "library_mice_research_quest_item",
+        "library_power_type_research_quest_item",
+        "mystic_advanced_research_quest_item",
+        "mystickingresearch_quest_item",
+        "pagoda_advanced_research_quest_item",
+        "pagoda_research_quest_item",
+        "seasonalgardenresearch_quest_item",
+        "tech_advanced_research_quest_item",
+        "techkingresearch_quest_item",
+        "zurreal_trap_research_quest_item"
+      ]), updateObjectiveFooterDisplay = () => {
+        let footerText = document.querySelector(".campPage-quests-footer-smash");
+        if (!footerText)
+          return;
+        let newHref = footerText.getAttribute("href").replace("subtab", "sub_tab");
+        footerText.setAttribute("href", `${newHref}#smashQuest`), footerText.innerHTML = footerText.innerHTML.replace("Don't like an assignment? Cancel it by smashing the assignment ", "Cancel this assignment by smashing it "), footerText.addEventListener("click", (e) => {
+          e.preventDefault();
+          let assignment = Object.values(user.quests).find((quest) => quest.is_assignment && quest.type.endsWith("_quest_item"));
+          assignment && (e.target.classList.add("inventoryPage-item"), e.target.setAttribute("data-item-type", assignment.type), e.target.setAttribute("data-produced-item", "nothing_stat_item"), app.pages.InventoryPage.showConfirmPopup(e.target, "hammer"), e.target.classList.remove("inventoryPage-item"));
+        });
+      }, addQuestsTab = () => {
+        let tabs = document.querySelector(".campPage-tabs-tabRow");
+        if (!tabs || tabs.querySelector('a[data-tab="quests"]'))
+          return;
+        let newQuestsButton = makeElement("a", ["campPage-tabs-tabHeader", "quests"]);
+        newQuestsButton.setAttribute("data-tab", "quests"), newQuestsButton.addEventListener("click", () => {
+          hg.views.HeadsUpDisplayZugswangLibraryView.showPopup();
+        }), makeElement("span", "", "Quests", newQuestsButton), tabs.insertBefore(newQuestsButton, tabs.lastChild);
+      }, addQuestTabEventListener = () => {
+        let questTabContent = document.querySelector('.campPage-tabs-tabContent[data-tab="quests"]');
+        if (!questTabContent)
+          return;
+        new MutationObserver(() => {
+          updateObjectiveFooterDisplay(), m400IfEnabled();
+        }).observe(questTabContent, { childList: !0 });
+      }, addResearchSmashWarning = () => {
+        let existing = document.querySelector("#mh-research-smash-warning");
+        if (existing && existing.remove(), getCurrentSubtab() !== "hammer")
+          return;
+        let confirm2 = document.querySelector(".inventoryPage-confirmPopup");
+        if (!confirm2)
+          return;
+        let type = confirm2.getAttribute("data-item-type");
+        if (!type || !questAssignments.has(type))
+          return;
+        let warningText = document.createElement("div");
+        warningText.id = "mh-research-smash-warning", warningText.innerText = "If you smash an assignment, you will have to wait 1 hour until you can get a new one.", confirm2.insertBefore(warningText, confirm2.firstChild);
+      }, moveErrorText = () => {
+        let errorTextEl = document.querySelectorAll(".questLink .requirements .error");
+        if (!errorTextEl)
+          return;
+        let errorText = "";
+        if (errorTextEl.forEach((el) => {
+          el.innerText && (errorText = el.innerText), el.classList.add("hidden");
+        }), !errorText)
+          return;
+        errorText = errorText.replace(/ \d\d seconds/, "").replace(" before taking", " for");
+        let titleBar = document.querySelector("#jsDialogAjaxPrefix h2");
+        if (!titleBar)
+          return;
+        let titleError = makeElement("h3", "errorText", errorText);
+        titleBar.parentNode.insertBefore(titleError, titleBar.nextSibling);
+      }, removeSmashText = () => {
+        let smashText = document.querySelector(".smashQuest");
+        smashText && smashText.classList.add("hidden");
+      }, updateAssignmentList = () => __async(void 0, null, function* () {
+        let assignmentList = document.querySelectorAll("#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink");
+        if (!assignmentList)
+          return;
+        assignmentList.forEach((questLink) => {
+          let type = questLink.getAttribute("data-quest-type");
+          if (!type) {
+            let onclickAttr = questLink.getAttribute("onclick") || "";
+            if (!onclickAttr.includes("hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm") || (type = onclickAttr.replace("hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm('", "").replace("'); return false;", ""), !type))
+              return;
+          }
+          questLink.removeAttribute("onclick");
+          let actionButton = questLink.querySelector(".actions .mousehuntActionButton");
+          actionButton && actionButton.setAttribute("onclick", `hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm('${type}'); return false;`);
+          let content = questLink.querySelector(".content");
+          if (!content || !content.querySelector("b"))
+            return;
+          questLink.setAttribute("data-quest-type", type);
+          let assignment = library_assignments_default[type], requirements = questLink.querySelector(".requirements");
+          requirements && requirements.remove();
+          let metaWrapper = makeElement("div", "mh-ui-assignment-meta-wrapper"), cost = makeElement("div", ["mh-ui-assignment-price", "mh-ui-assignment-cost"]);
+          makeElement("span", "mh-ui-assignment-price-label", "Requires", cost), makeElement("strong", "mh-ui-assignment-price-value", assignment.cost, cost), metaWrapper.append(cost);
+          let reward = makeElement("div", ["mh-ui-assignment-price", "mh-ui-assignment-reward"]);
+          makeElement("span", "mh-ui-assignment-price-label", "Reward", reward), makeElement("strong", "mh-ui-assignment-price-value", assignment.rewardPoints, reward), metaWrapper.append(reward);
+          let wiki = makeElement("a", "mh-ui-assignment-wiki-button", "View on Wiki \u2192");
+          if (wiki.href = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replaceAll(" ", "_")}`, wiki.target = "_blank", wiki.rel = "noopener noreferrer", metaWrapper.append(wiki), content.after(metaWrapper), assignment.name === "M400 Hunting Research Assignment") {
+            let m400Wrapper = makeElement("div", ["content", "mh-ui-m400-wrapper"]);
+            makeElement("b", "mh-ui-m400-title", assignment.name, m400Wrapper), makeElement("span", "mh-ui-m400-content", "This envelope contains a Research Assignment that will have you looking for the elusive M400 prototype.", m400Wrapper), content.replaceWith(m400Wrapper);
+          }
+          if (assignment.assignments) {
+            let assigmentDetails = makeElement("details", "mh-ui-assignment-details");
+            makeElement("summary", "mh-ui-assignment-details-summary", "Assignment Details", assigmentDetails);
+            for (let singleAssignment of assignment.assignments) {
+              let assignmentWrapper = makeElement("div", "mh-ui-assignment-details-wrapper");
+              makeElement("h4", "mh-ui-assignment-details-title", singleAssignment.name, assignmentWrapper);
+              let singleAssignmentTasks = singleAssignment.tasks || [];
+              for (let task of singleAssignmentTasks) {
+                let taskEl = makeElement("div", "mh-ui-assignment-details-task");
+                makeElement("h5", "mh-ui-assignment-details-task-title", task.title, taskEl);
+                let taskList = makeElement("ul", "mh-ui-assignment-details-task-list");
+                if (Array.isArray(task.text))
+                  for (let taskItem of task.text)
+                    makeElement("li", "mh-ui-assignment-details-task-item", taskItem, taskList);
+                else
+                  makeElement("li", "mh-ui-assignment-details-task-item", task.text, taskList);
+                taskEl.append(taskList), assignmentWrapper.append(taskEl);
+              }
+              assigmentDetails.append(assignmentWrapper);
+            }
+            content.append(assigmentDetails);
+          }
+          if (assignment.rewards) {
+            let rewardsWrapper = makeElement("details", "mh-ui-assignment-details-wrapper");
+            makeElement("summary", "mh-ui-assignment-details-summary", "Rewards", rewardsWrapper);
+            let rewardsList = makeElement("ul", "mh-ui-assignment-details-task-list");
+            for (let singleReward of assignment.rewards)
+              makeElement("li", "mh-ui-assignment-details-task-item", singleReward, rewardsList);
+            rewardsWrapper.append(rewardsList), content.append(rewardsWrapper);
+          }
+        });
+        let resources = document.querySelector("#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources");
+        if (!resources)
+          return;
+        let tomeDetails = yield getUserItems([
+          "library_boss_trinket",
+          "tome_of_wisdom_yellow_convertible",
+          "tome_of_wisdom_green_convertible",
+          "tome_of_wisdom_blue_convertible",
+          "tome_of_wisdom_convertible",
+          "tome_of_wisdom_red_convertible",
+          "tome_of_wisdom_white_convertible"
+        ]);
+        if (tomeDetails)
+          for (let tome of tomeDetails) {
+            if (!tome.type)
+              continue;
+            let tomeEl = makeElement("div", ["item", "mh-ui-quest-resources"]), imageEl = makeElement("div", "itemImage"), image = makeElement("img");
+            image.src = tome.thumbnail_transparent || tome.thumbnail || tome.image || "", imageEl.append(image), makeElement("div", "quantity", tome.quantity || 0, imageEl), tomeEl.append(imageEl), makeElement("span", "itemName", tome.name || "", tomeEl), tomeEl.addEventListener("click", () => {
+              hg.views.ItemView.show(tome.type);
+            }), resources.append(tomeEl);
+          }
+      }), modifyAvailableQuestsPopup = () => {
+        if (!document.querySelector("#overlayPopup.zugzwangsLibraryQuestShopPopup"))
+          return;
+        updateAssignmentList(), document.querySelector(".questLink .requirements .error") && (moveErrorText(), removeSmashText());
+      }, checkForQuestSmash = () => {
+        if (!window.location.hash || window.location.hash !== "#smashQuest" || getCurrentTab() !== "crafting" || getCurrentSubtab() !== "hammer")
+          return;
+        let assignment = document.querySelector('.inventoryPage-item.quest[data-produced-item="nothing_stat_item"]');
+        assignment && app.pages.InventoryPage.useItem(assignment);
+      }, restoreQuestTabAfterSmash = (request, data) => {
+        if (!(data && data.item_type && questAssignments.has(data.item_type)))
+          return;
+        let questsTab = document.querySelector(".campPage-tabs-tabHeader.quests");
+        questsTab && (questsTab.remove(), addQuestsTab());
+      }, m400IfEnabled = () => {
+        getSetting("better-quests.m400-helper", !0) && m400_default();
+      }, main11 = () => {
+        if (!isUserTitleAtLeast("lord"))
+          return;
+        let activate = () => {
+          addQuestTabEventListener(), addQuestsTab(), checkForQuestSmash();
+        };
+        m400IfEnabled(), activate(), onNavigation(activate, {
+          page: "camp"
+        }), onNavigation(checkForQuestSmash, {
+          page: "inventory",
+          tab: "crafting",
+          subtab: "hammer"
+        }), onOverlayChange({
+          /**
+           * When the overlay is shown.
+           */
+          show: () => {
+            addResearchSmashWarning(), modifyAvailableQuestsPopup();
+          }
+        }), onRequest("users/usehammer.php", restoreQuestTabAfterSmash);
+      }, init58 = () => __async(void 0, null, function* () {
+        addStyles(styles_default53, "better-quests"), main11();
+      }), better_quests_default = {
+        id: "better-quests",
+        name: "Better Quests",
+        type: "better",
+        default: !0,
+        description: "Allow opening the assignments popup anywhere, improve the UI of the quests tab, and add a helper for the M400 assignments.",
+        load: init58,
+        settings: settings_default23
+      };
+    }
+  });
+  var styles_default54, init_styles55 = __esm({
+    "src/modules/inventory-only-open-multiple/styles.css"() {
+      styles_default54 = `.inventoryPage-item.convertible .inventoryPage-item-content-action input.button:first-of-type:not(:only-of-type){pointer-events:all;filter:grayscale(0)}.inventoryPage-item.convertible .inventoryPage-item-content-action input[data-item-action=all],.inventoryPage-item.convertible .inventoryPage-item-content-action input[data-item-action=single]{pointer-events:none;filter:grayscale(1)}.inventoryPage-item.convertible .inventoryPage-item-content-action input.allButOne{pointer-events:all;filter:none}.inventoryPage-item.convertible .inventoryPage-item-content-action input:first-of-type:not(:only-of-type),.inventoryPage-item.convertible .inventoryPage-item-content-action input.allButOne{pointer-events:none}
+`;
+    }
+  });
+  var init59, inventory_only_open_multiple_default, init_inventory_only_open_multiple = __esm({
+    "src/modules/inventory-only-open-multiple/index.js"() {
+      init_utils2();
+      init_styles55();
+      init59 = () => __async(void 0, null, function* () {
+        addStyles(styles_default54, "only-open-multiple");
+      }), inventory_only_open_multiple_default = {
+        id: "only-open-multiple",
+        name: "Inventory - Only Open Extras",
+        type: "feature",
+        default: !1,
+        description: "Lock opening items in your inventory unless you have multiples of them.",
+        load: init59
+      };
+    }
+  });
+  var styles_default55, init_styles56 = __esm({
+    "src/modules/quick-filters-and-sort/styles.css"() {
+      styles_default55 = `.campPage-trap-itemBrowser-filter input[data-filter=search]{width:315px;padding:10px}.campPage-trap-itemBrowser-filter:first-child{flex:0 0 100%;margin-bottom:5px}.campPage-trap-itemBrowser-filterContainer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-evenly}.campPage-trap-itemBrowser-favorites{margin-top:10px}.campPage-trap-itemBrowser .campPage-trap-itemBrowser-filter select{width:100px}.campPage-trap-itemBrowser.weapon .campPage-trap-itemBrowser-filter select{width:75px}.campPage-trap-itemBrowser-quickLinks{z-index:1;display:flex;justify-content:space-evenly;padding:5px 10px;background-color:#f6f3eb}.mh-dark-mode .pageFrameView .campPage-trap-itemBrowser-favorites,.mh-dark-mode .campPage-trap-itemBrowser-quickLinks{background-color:#424242}.campPage-trap-itemBrowser-quickLinks-power{padding:10px 15px}.campPage-trap-itemBrowser-quickLinks-header{position:absolute;left:0;padding:5px;margin-top:10px;color:#96704b;text-align:center;transform:rotate(-90deg)}.campPage-trap-itemBrowser-quickLinks-header.filter-header{left:-2px;margin-top:5px}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image{width:40px;height:40px;background-position:center}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image-frame{width:40px;height:40px}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item-image{width:31px;height:30px;background-position:50%;background-size:25px}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item-image-frame{width:31px;height:30px}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover,.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:focus{background-color:#cac0b2}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover .campPage-trap-itemBrowser-favorite-item-image-frame,.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:focus .campPage-trap-itemBrowser-favorite-item-image-frame{box-shadow:none}.campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item{width:auto}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item{margin:0 2px}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item:first-child{margin-left:0}.campPage-trap-itemBrowser-quickLinks-power .campPage-trap-itemBrowser-favorite-item:last-child{margin-right:0}.quicklinks-filter-sortBy-name .campPage-trap-itemBrowser-favorite-item-image{background-position:center;background-size:30px}.weapon .campPage-trap-itemBrowser-items{top:250px}.campPage-trap-itemBrowser-items{top:200px}.campPage-wrapper[data-blueprint-type=weapon] .campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents,.campPage-wrapper[data-blueprint-type=base] .campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents{margin-top:170px}.campPage-trap-itemBrowser-itemDescriptionHover.mousehuntTooltip.tight.left.noEvents{margin-top:125px}.mh-dark-mode .quicklinks-filter-sortBy-name a,.mh-dark-mode .quicklinks-filter-sortBy-quantity a{background-color:#f2f2f2}.trapSelectorView__browserStateParent--items[data-blueprint-type=skin] .campPage-trap-itemBrowser-quickLinks{display:none}.campPage-trap-itemBrowser-favorite-item.quicklinks-filter.quicklinks-filter-sortBy-name a{background-position:5px 4px}
+`;
+    }
+  });
+  var addItemToQuickLinks, addQuickLinksToTrap, init60, quick_filters_and_sort_default, init_quick_filters_and_sort = __esm({
     "src/modules/quick-filters-and-sort/index.js"() {
       init_utils2();
-      init_styles54();
+      init_styles56();
       addItemToQuickLinks = (link, appendTo, filter) => {
         let existing = document.querySelector(`.campPage-trap-itemBrowser-favorite-item.quicklinks-filter.quicklinks-filter-${filter}-${link.id}`);
         existing && existing.remove();
@@ -14414,25 +14702,359 @@ ${csv}`);
           let powerQuickLinks = document.querySelector(".campPage-trap-itemBrowser-quickLinks-power");
           powerQuickLinks && powerQuickLinks.remove();
         }
-      }), init58 = () => __async(void 0, null, function* () {
-        addStyles(styles_default53, "quick-filters-and-sort"), onRequest("users/gettrapcomponents.php", addQuickLinksToTrap), onEvent("camp_page_toggle_blueprint", addQuickLinksToTrap);
+      }), init60 = () => __async(void 0, null, function* () {
+        addStyles(styles_default55, "quick-filters-and-sort"), onRequest("users/gettrapcomponents.php", addQuickLinksToTrap), onEvent("camp_page_toggle_blueprint", addQuickLinksToTrap);
       }), quick_filters_and_sort_default = {
         id: "quick-filters-and-sort",
         name: "Quick Filters and Sort",
         type: "feature",
         default: !0,
         description: "Add quick filters and sorting to the trap, base, charm, and cheese selectors.",
-        load: init58
+        load: init60
       };
     }
   });
-  var campToggle, init59, shield_goes_to_camp_default, init_shield_goes_to_camp = __esm({
+  var settings_default24, init_settings25 = __esm({
+    "src/modules/lgs-reminder/settings/index.js"() {
+      settings_default24 = () => __async(void 0, null, function* () {
+        return [
+          {
+            id: "lgs-reminder.new-style",
+            title: 'Use "new" style'
+          },
+          {
+            id: "lgs-reminder.days-and-lower",
+            title: "Convert weeks and months to days"
+          }
+        ];
+      });
+    }
+  });
+  var styles_default56, init_styles57 = __esm({
+    "src/modules/lgs-reminder/styles.css"() {
+      styles_default56 = `.mousehunt-improved-lgs-reminder,.default.mhui-custom-shield .mousehunt-improved-lgs-reminder{position:absolute;right:8px;bottom:4px;left:13px;z-index:1;font-size:11px;color:#684434;text-align:center;background-color:#ddcda2d9;border:1px solid #9d9a91;border-radius:5px}.default .mousehunt-improved-lgs-reminder{left:-5px}.default-fancy .mousehunt-improved-lgs-reminder{right:15px}.mousehuntHud-shield.color .mousehunt-improved-lgs-reminder{right:20px;left:0}.mhui-custom-shield .mousehunt-improved-lgs-reminder.exact{font-size:10px}.mousehunt-improved-lgs-reminder-new.lgs-warning,.mousehunt-improved-lgs-reminder.lgs-warning,.default.mhui-custom-shield .mousehunt-improved-lgs-reminder.lgs-warning{background-color:#ffbfbf}.mousehunt-improved-lgs-reminder-new.lgs-danger,.mousehunt-improved-lgs-reminder.lgs-danger,.default.mhui-custom-shield .mousehunt-improved-lgs-reminder.lgs-danger{color:#f1d7d7;background-color:#b32d26;border-color:#af8080;transition:1.75s;animation:mh-improved-fade-slightly 1.75s infinite}@media (prefers-reduced-motion: reduce){.mousehunt-improved-lgs-reminder-new.lgs-danger,.mousehunt-improved-lgs-reminder.lgs-danger,.default.mhui-custom-shield .mousehunt-improved-lgs-reminder-new.lgs-danger{animation:none}}.mousehunt-improved-lgs-reminder-wrapper{position:absolute;right:642px;bottom:0;left:15px;font-size:9px}.mousehunt-improved-lgs-reminder-new{display:flex;align-items:center;justify-content:center;padding:2px 5px;text-align:center;background:linear-gradient(#fff 45%,#f8e7bb 55%);border:1px solid #d4af37;border-bottom:none;border-radius:6px 6px 0 0}.mousehunt-improved-lgs-reminder-new.lgs-warning{background:linear-gradient(#fff,#ffbfbf)}.mousehunt-improved-lgs-reminder-new.lgs-danger{background:#b32d26;border:none}
+`;
+    }
+  });
+  var isExact, getShieldEndDateTime, getShieldTime, getShieldTimeFormatted, updateLgsReminder, main12, setOffset, offset, init61, lgs_reminder_default2, init_lgs_reminder2 = __esm({
+    "src/modules/lgs-reminder/index.js"() {
+      init_utils2();
+      init_settings25();
+      init_styles57();
+      isExact = () => getSetting("lgs-reminder.show-seconds"), getShieldEndDateTime = () => {
+        let shieldExpiry = user.shield_expiry;
+        if (!shieldExpiry)
+          return new Date(Date.now() - 60 * 1e3);
+        let realExpiry = Date.parse(shieldExpiry) - offset;
+        return new Date(realExpiry);
+      }, getShieldTime = () => {
+        let expiry = getShieldEndDateTime();
+        return Math.floor(expiry - /* @__PURE__ */ new Date());
+      }, getShieldTimeFormatted = () => {
+        let time = getShieldTime();
+        if (!time)
+          return "";
+        let units = ["y", "mo", "w", "d", "h"];
+        return getSetting("lgs-reminder.days-and-lower") && (units = ["d", "h", "m"]), isExact() && units.push("s"), humanizer(time, {
+          round: !0,
+          units,
+          spacer: "",
+          delimiter: " "
+        });
+      }, updateLgsReminder = (el) => {
+        let time = getShieldTime();
+        time <= 60 * 60 * 24 * 2 && el.classList.add("lgs-warning"), time <= 60 * 60 && el.classList.add("lgs-danger"), el.innerText = getShieldTimeFormatted();
+      }, main12 = () => {
+        startingTime = getShieldTime();
+        let shieldEl = document.querySelector(".mousehuntHud-shield.golden");
+        if (!shieldEl)
+          return;
+        let newStyle = getSetting("lgs-reminder.new-style", !1), wrapper, reminder;
+        newStyle ? (wrapper = makeElement("div", "mousehunt-improved-lgs-reminder-wrapper"), reminder = makeElement("div", "mousehunt-improved-lgs-reminder-new")) : reminder = makeElement("div", "mousehunt-improved-lgs-reminder"), isExact() && reminder.classList.add("exact");
+        let endDate = getShieldEndDateTime().toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric"
+        });
+        if (reminder.title = `LGS Expires on ${endDate} (${getShieldTimeFormatted()} remaining)`, newStyle) {
+          let existing = document.querySelector(".mousehunt-improved-lgs-reminder-wrapper");
+          existing && existing.remove(), wrapper.append(reminder), shieldEl.after(wrapper);
+        } else {
+          let existing = document.querySelector(".mousehunt-improved-lgs-reminder");
+          existing && existing.remove(), shieldEl.append(reminder);
+        }
+        updateLgsReminder(reminder), document.addEventListener("horn-countdown-tick-minute", () => updateLgsReminder(reminder));
+      }, setOffset = () => {
+        let userShieldExpiry = new Date(Date.parse(user.shield_expiry)), userShieldSeconds = new Date((/* @__PURE__ */ new Date()).setSeconds((/* @__PURE__ */ new Date()).getSeconds() + user.shield_seconds)), difference = userShieldExpiry - userShieldSeconds;
+        offset = Math.round(difference / 1e3) * 1e3;
+      }, init61 = () => __async(void 0, null, function* () {
+        user.has_shield && (setOffset(), addStyles(styles_default56, "lgs-reminder"), main12(), onSettingsChange("lgs-reminder.new-style", () => {
+          [
+            ".mousehunt-improved-lgs-reminder",
+            ".mousehunt-improved-lgs-reminder-new",
+            ".mousehunt-improved-lgs-reminder-wrapper"
+          ].forEach((selector) => {
+            let el = document.querySelector(selector);
+            el && el.remove();
+          }), main12();
+        }), onActivation("lgs-reminder", main12), onDeactivation("lgs-reminder", () => {
+          let reminder = document.querySelector(".mousehunt-improved-lgs-reminder");
+          reminder && reminder.remove();
+        }));
+      }), lgs_reminder_default2 = {
+        id: "lgs-reminder",
+        name: `${getSetting("experiments.new-settings-styles-columns", !1) ? "LGS" : "Lucky Golden Shield"} Duration & Reminder`,
+        type: "feature",
+        description: "Show your LGS duration in the HUD and warn you when it\u2019s about to expire.",
+        default: !1,
+        load: init61,
+        settings: settings_default24
+      };
+    }
+  });
+  var styles_default57, init_styles58 = __esm({
+    "src/modules/inventory-lock-and-hide/styles.css"() {
+      styles_default57 = `.mhui-inventory-lock-and-hide-controls-wrapper{position:absolute;top:0;right:10px;display:flex;gap:10px}.mousehuntHud-page-tabContent.traps .mhui-inventory-lock-and-hide-controls-wrapper{top:-30px}.mhui-inventory-lock-and-hide-bulk-controls{display:none;gap:3px;margin-left:3px}.mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-bulk-controls{display:inline-flex}.inventoryPage-tagContent.mhui-inventory-lock-and-hide-controls-active{border-radius:5px;outline:3px solid #f37c7c}.mhui-inventory-lock-and-hide-item-controls{position:absolute;inset:0;display:none;flex-flow:row nowrap;align-items:flex-start;justify-content:space-evenly;background-color:#ffffff7f}.mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-item-controls{z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden{display:inline-block}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden .inventoryPage-item-margin{background-color:#939393}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked{display:inline-block}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked .inventoryPage-item-margin{background-color:#ff7b00}.mhui-inventory-lock-and-hide-controls-active .locked.message_item.inventoryPage-item.small,.mhui-inventory-lock-and-hide-controls-active .locked.bait.inventoryPage-item.small{pointer-events:auto}.mhui-inventory-lock-and-hide-controls-active .tooltip{display:none;visibility:hidden;opacity:0}.locked .inventoryPage-item-content-action,.locked.message_item.inventoryPage-item.small .inventoryPage-item-button,.locked.bait.inventoryPage-item.small .inventoryPage-item-button,.locked .inventoryPage-item-recipeOptions,.locked .campPage-trap-itemBrowser-item-armButton,.locked .inventoryPage-item-imageContainer-action{pointer-events:none;filter:grayscale(1)}.locked.message_item.inventoryPage-item.small,.locked.bait.inventoryPage-item.small{pointer-events:none}.mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix{display:none}.inventoryPage-tagContent-tagTitle{display:flex;align-items:center;padding:0 5px 10px;margin:0;font-size:1.4em;border:none}span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible{top:-5px;right:110px;font-size:.75em}span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible button{padding:2px;font-size:1em}.mhui-inventory-lock-and-hide-hidden-count{margin-left:5px}.mhui-inventory-lock-and-hide-controls-lock{min-width:35px}.mhui-inventory-lock-and-hide-controls-hide{min-width:25px}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked.hidden .inventoryPage-item-margin{background-color:#e78932}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked .inventoryPage-item-recipeOptions li,.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden .inventoryPage-item-recipeOptions li{opacity:.3}.mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-hidden-count{display:none}.search_match .campPage-trap-itemBrowser-item.loaded{display:block!important}
+`;
+    }
+  });
+  var items, itemSettings, getType, saveSettings, getSettings2, shouldAddLocks, addControlsToItems, updateGroupTitles, maybeLockOrHideItems, addBulkControls, getCurrentTabContainer, addLockAndHideControls, toggleControls, onSetPage, addHideStyles, hideItemsInTrapBrowser, main13, init62, inventory_lock_and_hide_default, init_inventory_lock_and_hide = __esm({
+    "src/modules/inventory-lock-and-hide/index.js"() {
+      init_utils2();
+      init_styles58();
+      itemSettings = {}, getType = (itemsToType) => __async(void 0, null, function* () {
+        return items || (items = yield getData("items")), itemsToType.map((item) => {
+          let foundItem = items.find((i) => i.id === item);
+          return foundItem ? foundItem.type : void 0;
+        }).filter(Boolean);
+      }), saveSettings = (shouldUpdateTitles = !0) => __async(void 0, null, function* () {
+        itemSettings.locked = itemSettings.locked.map((i) => Number.parseInt(i, 10)), itemSettings.hidden = itemSettings.hidden.map((i) => Number.parseInt(i, 10)), itemSettings = {
+          locked: itemSettings.locked,
+          hidden: itemSettings.hidden,
+          lockedTypes: yield getType(itemSettings.locked),
+          hiddenTypes: yield getType(itemSettings.hidden)
+        }, saveSetting("inventory-lock-and-hide.items", itemSettings), shouldUpdateTitles && updateGroupTitles();
+      }), getSettings2 = () => getSetting("inventory-lock-and-hide.items", {
+        locked: [],
+        hidden: [],
+        lockedTypes: [],
+        hiddenTypes: []
+      }), shouldAddLocks = (currentTab) => currentTab !== "collectibles" || currentTab !== "bait", addControlsToItems = () => __async(void 0, null, function* () {
+        let itemsEl = document.querySelectorAll(".inventoryPage-item");
+        if (!itemsEl)
+          return;
+        let currentTab = getCurrentTab(), locked = (itemSettings == null ? void 0 : itemSettings.locked) || [], hidden = (itemSettings == null ? void 0 : itemSettings.hidden) || [];
+        itemsEl.forEach((item) => {
+          let id = item.getAttribute("data-item-id");
+          if (id = Number.parseInt(id, 10), !id || item.querySelector(".mhui-inventory-lock-and-hide-item-controls"))
+            return;
+          let isLocked = itemSettings != null && itemSettings.locked ? locked.includes(id) : !1, isHidden2 = itemSettings != null && itemSettings.hidden ? hidden.includes(id) : !1, controls = makeElement("div", "mhui-inventory-lock-and-hide-item-controls");
+          if (shouldAddLocks(currentTab)) {
+            let lock = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-lock"]), lockText = makeElement("span", "", isLocked ? "Unlock" : "Lock");
+            lock.append(lockText);
+            let clickLock = (e) => {
+              e.preventDefault(), e.stopPropagation(), isLocked ? (itemSettings.locked = itemSettings.locked.filter((i) => i !== id), lockText.innerText = "Lock", isLocked = !1, item.classList.remove("locked")) : (itemSettings.locked.push(id), lockText.innerText = "Unlock", isLocked = !0, item.classList.add("locked")), saveSettings();
+            };
+            lock.addEventListener("click", clickLock), controls.addEventListener("click", (e) => {
+              (e.altKey && e.shiftKey || e.metaKey) && clickLock(e);
+            }), controls.append(lock);
+          }
+          let hide = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-hide"]), hideText = makeElement("span", "", isHidden2 ? "Show" : "Hide");
+          hide.append(hideText);
+          let clickHide = (e) => {
+            e.preventDefault(), e.stopPropagation(), isHidden2 ? (itemSettings.hidden = itemSettings.hidden.filter((i) => i !== id), hideText.innerText = "Hide", isHidden2 = !1, item.classList.remove("hidden")) : (itemSettings.hidden.push(id), hideText.innerText = "Show", isHidden2 = !0, item.classList.add("hidden")), saveSettings();
+          };
+          hide.addEventListener("click", clickHide), controls.addEventListener("click", (e) => {
+            e.preventDefault(), e.stopPropagation(), e.altKey && !e.shiftKey && clickHide(e);
+          }), controls.append(hide), item.append(controls);
+        });
+      }), updateGroupTitles = () => {
+        let container = getCurrentTabContainer();
+        if (!container)
+          return;
+        let groups2 = container.querySelectorAll(".inventoryPage-tagContent-tagGroup");
+        groups2 && groups2.forEach((group) => {
+          let title = group.querySelector(".inventoryPage-tagContent-tagTitle");
+          if (!title)
+            return;
+          let hiddenItems = group.querySelectorAll(".inventoryPage-item.hidden");
+          if (!hiddenItems)
+            return;
+          let existingCount = title.querySelector(".mhui-inventory-lock-and-hide-hidden-count");
+          if (existingCount && existingCount.remove(), hiddenItems.length === 0)
+            return;
+          makeElement("span", "mhui-inventory-lock-and-hide-hidden-count", ` (${hiddenItems.length} hidden)`, title);
+          let listings = group.querySelectorAll(".inventoryPage-tagContent-listing .inventoryPage-item");
+          listings && listings.length === hiddenItems.length && group.classList.add("inventory-lock-and-hide-all-hidden");
+        });
+      }, maybeLockOrHideItems = () => __async(void 0, null, function* () {
+        var _a, _b, _c, _d;
+        let itemsEl = document.querySelectorAll(".inventoryPage-item");
+        if (itemsEl) {
+          for (let item of itemsEl) {
+            let id = item.getAttribute("data-item-id");
+            if (id = Number.parseInt(id, 10), !id)
+              return;
+            ((_a = itemSettings == null ? void 0 : itemSettings.locked) == null ? void 0 : _a.length) > 0 && ((_b = itemSettings == null ? void 0 : itemSettings.locked) != null && _b.includes(id)) && item.classList.add("locked"), ((_c = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _c.length) > 0 && ((_d = itemSettings == null ? void 0 : itemSettings.hidden) != null && _d.includes(id)) && item.classList.add("hidden");
+          }
+          updateGroupTitles();
+        }
+      }), addBulkControls = () => {
+        if (!shouldAddLocks(getCurrentTab()))
+          return;
+        let container = getCurrentTabContainer();
+        if (!container)
+          return;
+        let groups2 = container.querySelectorAll(".inventoryPage-tagContent-tagGroup");
+        groups2 && groups2.forEach((group) => {
+          let title = group.querySelector(".inventoryPage-tagContent-tagTitle");
+          if (!title || title.querySelector(".mhui-inventory-lock-and-hide-bulk-controls"))
+            return;
+          let controls = makeElement("div", "mhui-inventory-lock-and-hide-bulk-controls"), lock = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-lock"]);
+          makeElement("span", "", "Lock All", lock), lock.addEventListener("click", (e) => {
+            e.preventDefault(), e.stopPropagation();
+            let itemsEl = group.querySelectorAll(".inventoryPage-item");
+            itemsEl && itemsEl.forEach((item) => {
+              let id = Number.parseInt(item.getAttribute("data-item-id"), 10);
+              if (id) {
+                itemSettings.locked.push(id), item.classList.add("locked");
+                let lockButtonText = item.parentElement.querySelector(".mhui-inventory-lock-and-hide-controls-lock span");
+                lockButtonText && (lockButtonText.innerText = "Unlock");
+              }
+            }), saveSettings(!1);
+          }), controls.append(lock);
+          let unlock = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-lock"]);
+          makeElement("span", "", "Unlock All", unlock), unlock.addEventListener("click", (e) => {
+            e.preventDefault(), e.stopPropagation();
+            let itemsEl = group.querySelectorAll(".inventoryPage-item");
+            itemsEl && itemsEl.forEach((item) => {
+              let id = Number.parseInt(item.getAttribute("data-item-id"), 10);
+              if (id) {
+                itemSettings.locked = itemSettings.locked.filter((i) => i !== id), item.classList.remove("locked");
+                let lockButtonText = item.parentElement.querySelector(".mhui-inventory-lock-and-hide-controls-lock span");
+                lockButtonText && (lockButtonText.innerText = "Lock");
+              }
+            }), saveSettings(!1);
+          }), controls.append(unlock);
+          let hide = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-hide"]);
+          makeElement("span", "", "Hide All", hide), hide.addEventListener("click", (e) => {
+            e.preventDefault(), e.stopPropagation();
+            let itemsEl = group.querySelectorAll(".inventoryPage-item");
+            itemsEl && itemsEl.forEach((item) => {
+              let id = Number.parseInt(item.getAttribute("data-item-id"), 10);
+              if (id) {
+                itemSettings.hidden.push(id), item.classList.add("hidden");
+                let hideButtonText = item.parentElement.querySelector(".mhui-inventory-lock-and-hide-controls-hide span");
+                hideButtonText && (hideButtonText.innerText = "Show");
+              }
+            }), saveSettings(!1);
+          }), controls.append(hide);
+          let show = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-hide"]);
+          makeElement("span", "", "Show All", show), show.addEventListener("click", (e) => {
+            e.preventDefault(), e.stopPropagation();
+            let itemsEl = group.querySelectorAll(".inventoryPage-item");
+            itemsEl && itemsEl.forEach((item) => {
+              let id = Number.parseInt(item.getAttribute("data-item-id"), 10);
+              if (id) {
+                itemSettings.hidden = itemSettings.hidden.filter((i) => i !== id), item.classList.remove("hidden");
+                let hideButtonText = item.parentElement.querySelector(".mhui-inventory-lock-and-hide-controls-hide span");
+                hideButtonText && (hideButtonText.innerText = "Hide");
+              }
+            }), saveSettings(!1);
+          }), controls.append(show), title.append(controls);
+        });
+      }, getCurrentTabContainer = () => {
+        let currentTab = getCurrentTab();
+        return (!currentTab || currentTab === "inventory") && (currentTab = "cheese"), document.querySelector(`.mousehuntHud-page-tabContent.${currentTab} .mousehuntHud-page-subTabContent.active`);
+      }, addLockAndHideControls = () => {
+        if (getCurrentPage() !== "inventory")
+          return;
+        let currentTab = getCurrentTab();
+        if ((!currentTab || currentTab === "inventory") && (currentTab = "cheese"), currentTab === "crafting" || currentTab === "plankrun")
+          return;
+        let container = getCurrentTabContainer();
+        if (!container || container.hasAttribute("mh-improved-inventory-lock-and-hide"))
+          return;
+        container.setAttribute("mh-improved-inventory-lock-and-hide", !0);
+        let controlsWrapper = makeElement("div", "mhui-inventory-lock-and-hide-controls-wrapper"), controls = makeElement("div", ["mousehuntActionButton", "tiny", "lightBlue", "mhui-inventory-lock-and-hide-controls"]), text = makeElement("span", "", "Toggle Lock/Hide");
+        controls.append(text);
+        let isEditing3 = !1;
+        controls.addEventListener("click", (e) => {
+          e.preventDefault(), e.stopPropagation(), addBulkControls(), addControlsToItems(), isEditing3 = !isEditing3, container.setAttribute("mhui-inventory-lock-and-hide-controls-active", isEditing3), container.classList.toggle("mhui-inventory-lock-and-hide-controls-active"), updateGroupTitles();
+        }), controlsWrapper.append(controls), container.prepend(controlsWrapper);
+      }, toggleControls = () => {
+        let button = document.querySelector(".mhui-inventory-lock-and-hide-controls");
+        button && button.click();
+      }, onSetPage = () => {
+        main13(), addEvent("ajax_request", main13, { removeAfterFire: !0, id: "inventory-lock-and-hide" });
+      }, addHideStyles = (theItems) => {
+        var _a;
+        if (!theItems || !theItems.components)
+          return;
+        let classifications = ["base", "weapon", "bait", "trinket"], tagsToHide = {
+          base: [],
+          weapon: [],
+          bait: [],
+          trinket: []
+        }, itemsByTags = {
+          base: {},
+          weapon: {},
+          bait: {},
+          trinket: {}
+        };
+        theItems.components.forEach((item) => {
+          !item.tag_types || !item.classification || classifications.includes(item.classification) && item.tag_types.forEach((tag) => {
+            itemsByTags[item.classification][tag] || (itemsByTags[item.classification][tag] = /* @__PURE__ */ new Set()), itemsByTags[item.classification][tag].add(item.item_id);
+          });
+        }), classifications.forEach((classification) => {
+          Object.keys(itemsByTags[classification]).forEach((tag) => {
+            [...itemsByTags[classification][tag]].every((id) => {
+              var _a2;
+              return (_a2 = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _a2.includes(id);
+            }) && tagsToHide[classification].push(tag);
+          });
+        });
+        let hideTagsStyles = classifications.flatMap(
+          (classification) => tagsToHide[classification].map((tag) => `.${classification} .campPage-trap-itemBrowser-tagGroup.${tag}`)
+        ).join(","), hideItemsStyles = (_a = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _a.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(",");
+        addStyles(`${hideTagsStyles}, ${hideItemsStyles} { display: none; }`, "inventory-lock-and-hide-hide-styles");
+      }, hideItemsInTrapBrowser = () => {
+        var _a, _b;
+        if (itemSettings != null && itemSettings.hidden && ((_a = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _a.length) > 0) {
+          let hideItemsStyles = (_b = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _b.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(",");
+          addStyles(`${hideItemsStyles} { display: none; }`, "inventory-lock-and-hide-hide-styles");
+        }
+      }, main13 = () => __async(void 0, null, function* () {
+        itemSettings = getSettings2(), items = yield getData("items"), maybeLockOrHideItems(), addLockAndHideControls();
+      }), init62 = () => __async(void 0, null, function* () {
+        addStyles(styles_default57, "inventory-lock-and-hide"), itemSettings = getSettings2(), main13(), onNavigation(onSetPage, {
+          page: "inventory",
+          anyTab: !0,
+          anySubTab: !0
+        }), hideItemsInTrapBrowser(), onEvent("mh-improved-toggle-inventory-lock", () => {
+          toggleControls(), hideItemsInTrapBrowser();
+        }), onRequest("users/gettrapcomponents.php", addHideStyles);
+      }), inventory_lock_and_hide_default = {
+        id: "inventory-lock-and-hide",
+        name: "Inventory - Lock and Hide",
+        type: "feature",
+        default: !0,
+        description: "Lock and hide items in your inventory. Also hide items in the trap browser.",
+        load: init62
+      };
+    }
+  });
+  var campToggle, init63, shield_goes_to_camp_default, init_shield_goes_to_camp = __esm({
     "src/modules/shield-goes-to-camp/index.js"() {
       init_utils2();
       campToggle = () => {
         let shield = document.querySelector(".mousehuntHud-shield");
         shield && (getCurrentPage() === "camp" ? shield.setAttribute("onclick", "hg.utils.PageUtil.showHunterProfile()") : shield.setAttribute("onclick", 'hg.utils.PageUtil.setPage("camp")'));
-      }, init59 = () => __async(void 0, null, function* () {
+      }, init63 = () => __async(void 0, null, function* () {
         onNavigation(campToggle);
       }), shield_goes_to_camp_default = {
         id: "shield-goes-to-camp",
@@ -14440,13 +15062,257 @@ ${csv}`);
         type: "feature",
         default: !1,
         description: "Click the shield to go to the Camp page if you\u2019re not already there, otherwise, it will take you to your Hunter Profile.",
-        load: init59
+        load: init63
       };
     }
   });
-  var styles_default54, init_styles55 = __esm({
+  var inventory_open_all_default, init_inventory_open_all = __esm({
+    "src/modules/inventory-open-all/index.js"() {
+      init_utils2();
+      inventory_open_all_default = {
+        id: "open-all",
+        name: "Inventory - Open All",
+        type: "feature",
+        default: !0,
+        description: "Add an \u201COpen All\u201D button to convertible items in your inventory.",
+        load: initOpenButtons
+      };
+    }
+  });
+  var settings_default25, init_settings26 = __esm({
+    "src/modules/quick-send-supplies/settings/index.js"() {
+      init_utils2();
+      settings_default25 = () => __async(void 0, null, function* () {
+        let tradableItems = yield getTradableItems("type");
+        return tradableItems.unshift({ name: "None", value: "none" }, { seperator: !0 }), [{
+          id: "quick-send-supplies.items",
+          title: "Items shown in popup",
+          default: [
+            {
+              name: "SUPER|brie+",
+              value: "super_brie_cheese"
+            },
+            {
+              name: "Rare Map Dust",
+              value: "rare_map_dust_stat_item"
+            },
+            {
+              name: "Adorned Empyrean Jewel",
+              value: "floating_trap_upgrade_stat_item"
+            },
+            {
+              name: "Rift-torn Roots",
+              value: "rift_torn_roots_crafting_item"
+            }
+          ],
+          settings: {
+            type: "multi-select",
+            number: 4,
+            options: tradableItems
+          }
+        }];
+      });
+    }
+  });
+  var styles_default58, init_styles59 = __esm({
+    "src/modules/quick-send-supplies/styles.css"() {
+      styles_default58 = `.userInteractionButtonsView-buttonGroup{position:relative}.quickSendWrapper{position:absolute;top:-50px;left:60px;z-index:10;display:none;min-width:130px;padding:7px 4px;font-size:10px;color:#000;text-align:center;background:#fff;border:2px solid #000;border-radius:10px;box-shadow:2px 3px 4px #666;transform:translate(-50%)}.treasureMapView-hunter-wrapper .quickSendWrapper{top:60px!important}.userInteractionButtonsView-buttonGroup:hover .quickSendWrapper,.quickSendWrapper:hover{display:block}.treasureMapView-hunter-wrapper:hover .quickSendWrapper{top:30px;display:block}.journal .entry .journaltext input.quickSendInput,.mousehuntPage-content input.quickSendInput,.quickSendInput{width:65px;padding:1px;font-size:12px}.quickSendButton{cursor:pointer}.journal .entry a .quickSendWrapper img,.quickSendWrapper img{width:25px;height:auto;border:none}.quickSendGoWrapper{display:flex;align-items:center;justify-content:space-evenly}.itemsWrapper{display:flex;align-items:center;justify-content:center;margin-bottom:5px}.quickSendItemRadio{display:none}.quickSendItem{margin:0 2px;cursor:pointer;opacity:.5}.quickSendItem.selected{border-radius:10px;box-shadow:0 0 0 2px #fff,0 0 2px 4px #7dea7d;opacity:1}.quickSendItem:hover,.quickSendItem:focus{opacity:1}.quickSendItem:focus,.quickSendItem:hover img{transform:scale(1.3)}.quickSendItem.selected:focus,.quickSendItem.selected:hover img,.quickSendItem.selected:focus img{transform:scale(1)}.quickSendmessage{position:absolute;bottom:30px;display:inline-flex;align-items:center;padding:10px;pointer-events:none;background-color:#ffa;border-radius:3px;box-shadow:1px 1px 3px #000;opacity:0;transition:opacity .5s}.teamPage-memberRow-actions .quickSendButton.mousehuntActionButton.tiny{max-width:30px!important;margin:0}.mh-ui-quick-send-error,.mh-ui-quick-send-success{position:absolute;bottom:-30px}.friendsPage-community-hunterResult .quickSendWrapper{top:-55px;left:35px}
+`;
+    }
+  });
+  var makeItem, makeSendSuppliesButton, main14, addToMapUsers, init64, quick_send_supplies_default, init_quick_send_supplies = __esm({
+    "src/modules/quick-send-supplies/index.js"() {
+      init_utils2();
+      init_settings26();
+      init_styles59();
+      makeItem = (name, type, image, appendTo) => {
+        let item = makeElement("div", "quickSendItem");
+        item.title = name;
+        let itemImage = document.createElement("img");
+        itemImage.setAttribute("src", image), itemImage.setAttribute("alt", name);
+        let selected = makeElement("input", "quickSendItemRadio");
+        selected.setAttribute("type", "radio"), selected.setAttribute("name", "item"), selected.setAttribute("value", type), selected.setAttribute("data-name", name), item.addEventListener("click", () => {
+          selected.checked = !0, document.querySelectorAll(".quickSendItem").forEach((i) => {
+            i.classList.remove("selected");
+          }), item.classList.add("selected");
+        }), item.append(selected), item.append(itemImage), appendTo.append(item);
+      }, makeSendSuppliesButton = (btn, snuid) => __async(void 0, null, function* () {
+        if (snuid === user.sn_user_id)
+          return !1;
+        btn.setAttribute("data-quick-send", "true");
+        let quickSendLinkWrapper = makeElement("form", ["quickSendWrapper", "hidden"]), itemsWrapper = makeElement("div", "itemsWrapper"), itemOptions = [
+          getSetting("quick-send-supplies.items-0", "super_brie_cheese"),
+          getSetting("quick-send-supplies.items-1", "rare_map_dust_stat_item"),
+          getSetting("quick-send-supplies.items-2", "floating_trap_upgrade_stat_item"),
+          getSetting("quick-send-supplies.items-3", "rift_torn_roots_crafting_item")
+        ], allTradableItems = yield getTradableItems("all");
+        for (let item of itemOptions) {
+          let tradableItem = allTradableItems.find((i) => i.type === item);
+          tradableItem && makeItem(tradableItem.name, tradableItem.type, tradableItem.image, itemsWrapper);
+        }
+        quickSendLinkWrapper.append(itemsWrapper);
+        let quickSendGoWrapper = makeElement("div", "quickSendGoWrapper"), quickSendInput = makeElement("input", "quickSendInput");
+        quickSendInput.setAttribute("type", "number"), quickSendInput.setAttribute("placeholder", "Quantity");
+        let quickSendButton = makeElement("div", ["quickSendButton", "mousehuntActionButton", "tiny"], "<span>Send</span>"), sendIt = () => __async(void 0, null, function* () {
+          if (quickSendButton.classList.contains("disabled"))
+            return;
+          let errorMessageOpts = {
+            message: "There was an error sending supplies",
+            append: quickSendGoWrapper,
+            classname: "mh-ui-quick-send-error"
+          }, qty = quickSendInput.value;
+          if (!qty) {
+            errorMessageOpts.message = "Quantity is required", showErrorMessage(errorMessageOpts);
+            return;
+          }
+          let selected = document.querySelector(".quickSendItem.selected");
+          if (!selected) {
+            errorMessageOpts.message = "Item is required", showErrorMessage(errorMessageOpts);
+            return;
+          }
+          let item = selected.querySelector(".quickSendItemRadio");
+          if (!item) {
+            errorMessageOpts.message = "Item is required", showErrorMessage(errorMessageOpts);
+            return;
+          }
+          quickSendButton.classList.add("disabled");
+          let itemType = item.getAttribute("value"), itemName = item.getAttribute("data-name"), url = `https://www.mousehuntgame.com/managers/ajax/users/supplytransfer.php?sn=Hitgrab&hg_is_ajax=1&receiver=${snuid}&uh=${user.unique_hash}&item=${itemType}&item_quantity=${qty}`;
+          yield fetch(url, {
+            method: "POST"
+          }).then((response) => {
+            response.status === 200 && (quickSendInput.value = "", quickSendButton.classList.remove("disabled"), showSuccessMessage({
+              message: `Sent ${qty} ${itemName}!`,
+              append: quickSendGoWrapper,
+              classname: "mh-ui-quick-send-success"
+            }));
+          }).catch(() => {
+            quickSendButton.classList.remove("disabled"), showErrorMessage({
+              message: "There was an error sending supplies",
+              append: quickSendGoWrapper,
+              classname: "mh-ui-quick-send-error"
+            });
+          });
+        });
+        return quickSendButton.addEventListener("click", sendIt), quickSendInput.addEventListener("keydown", (event) => {
+          event.key === "Enter" && sendIt();
+        }), quickSendInput.addEventListener("keydown", (event) => {
+          event.key === "Enter" && sendIt();
+        }), quickSendGoWrapper.append(quickSendInput), quickSendGoWrapper.append(quickSendButton), quickSendLinkWrapper.append(quickSendGoWrapper), quickSendLinkWrapper;
+      }), main14 = () => __async(void 0, null, function* () {
+        let sendSupplies = document.querySelectorAll(".userInteractionButtonsView-button.sendSupplies");
+        if (sendSupplies)
+          for (let btn of sendSupplies) {
+            if (btn.classList.contains("disabled") || btn.getAttribute("data-quick-send"))
+              return;
+            let snuid = btn.parentNode.parentNode.getAttribute("data-recipient-snuid");
+            if (!snuid)
+              return;
+            let quickSendLinkWrapper = yield makeSendSuppliesButton(btn, snuid);
+            quickSendLinkWrapper && (btn.parentNode ? btn.nextSibling ? btn.parentNode.insertBefore(quickSendLinkWrapper, btn.nextSibling) : btn.parentNode.append(quickSendLinkWrapper) : btn.append(quickSendLinkWrapper));
+          }
+      }), addToMapUsers = (attempts = 0) => __async(void 0, null, function* () {
+        let mapUsers = document.querySelectorAll(".treasureMapView-hunter-wrapper.mousehuntTooltipParent");
+        if (!mapUsers || !mapUsers.length) {
+          attempts < 10 && setTimeout(() => {
+            addToMapUsers(attempts + 1);
+          }, 500 * (attempts + 1));
+          return;
+        }
+        mapUsers.forEach((btn) => __async(void 0, null, function* () {
+          if (btn.getAttribute("data-quick-send"))
+            return;
+          let snuid = btn.getAttribute("data-snuid");
+          if (!snuid)
+            return;
+          let quickSendLinkWrapper = yield makeSendSuppliesButton(btn, snuid);
+          quickSendLinkWrapper && btn.append(quickSendLinkWrapper);
+        }));
+      }), init64 = () => __async(void 0, null, function* () {
+        addStyles(styles_default58, "quick-send-supplies"), main14(), onNavigation(main14), onRequest("*", () => {
+          setTimeout(main14, 500);
+        }), onEvent("profile_hover", main14), onDialogShow("map", addToMapUsers), onEvent("map_show_goals_tab_click", addToMapUsers), onEvent("map_tab_click", addToMapUsers);
+      }), quick_send_supplies_default = {
+        id: "quick-send-supplies",
+        name: "Quick Send Supplies",
+        type: "feature",
+        default: !0,
+        description: "Hover over the Send Supplies button on someone\u2019s profile or hover-profile to easily send any quantity of an item.",
+        load: init64,
+        settings: settings_default25
+      };
+    }
+  });
+  var settings_default26, init_settings27 = __esm({
+    "src/modules/wisdom-in-stat-bar/settings/index.js"() {
+      settings_default26 = () => __async(void 0, null, function* () {
+        return [{
+          id: "wisdom-in-stat-bar-auto-refresh",
+          title: "Update automatically",
+          default: !0
+        }];
+      });
+    }
+  });
+  var getWisdomSetting, saveWisdomSetting, getWisdom, getWisdomFormatted, addWisdomToStatBar, updateWisdom, addRefreshListener, useCachedWisdom, legacyHudMenu, init65, wisdom_in_stat_bar_default, init_wisdom_in_stat_bar = __esm({
+    "src/modules/wisdom-in-stat-bar/index.js"() {
+      init_utils2();
+      init_settings27();
+      getWisdomSetting = (key) => __async(void 0, null, function* () {
+        return yield cacheGet(`wisdom-stat-${key}`);
+      }), saveWisdomSetting = (key, value) => {
+        cacheSet(`wisdom-stat-${key}`, value);
+      }, getWisdom = () => __async(void 0, null, function* () {
+        var _a;
+        let wisdom = 0;
+        if (useCachedWisdom) {
+          let cachedWisdom = yield getWisdomSetting("value");
+          if (cachedWisdom)
+            return cachedWisdom;
+        }
+        return wisdom = yield getUserItems(["wisdom_stat_item"], !0), wisdom = ((_a = wisdom[0]) == null ? void 0 : _a.quantity) || 0, saveWisdomSetting("value", wisdom), saveWisdomSetting("last-updated", Date.now()), wisdom;
+      }), getWisdomFormatted = () => __async(void 0, null, function* () {
+        return (yield getWisdom()).toLocaleString();
+      }), addWisdomToStatBar = (wisdom) => {
+        let existingWisdom = document.querySelector(".mousehuntHud-userStat-row.wisdom .hud_wisdom");
+        if (existingWisdom) {
+          existingWisdom.textContent = wisdom, typeof blinkText != "undefined" && blinkText(existingWisdom, "#59f659", "#fff", 0.7);
+          return;
+        }
+        let pointsRow = document.querySelector(legacyHudMenu ? ".headsup > div:nth-child(5) ul li:nth-child(2)" : ".mousehuntHud-userStat-row.points");
+        if (!pointsRow)
+          return;
+        let wisdomRow = makeElement(legacyHudMenu ? "li" : "div", ["mousehuntHud-userStat-row", "wisdom"]);
+        makeElement("span", legacyHudMenu ? "hudstatlabel" : "label", "Wisdom", wisdomRow), makeElement("span", legacyHudMenu ? "hudstatvalue hud_wisdom" : "value hud_wisdom", wisdom, wisdomRow), wisdomRow.setAttribute("title", "Click to refresh wisdom"), pointsRow.after(wisdomRow);
+      }, updateWisdom = () => __async(void 0, null, function* () {
+        let wisdom = yield getWisdomFormatted();
+        addWisdomToStatBar(wisdom);
+      }), addRefreshListener = () => {
+        let wisdomRow = document.querySelector(".mousehuntHud-userStat-row.wisdom");
+        wisdomRow && wisdomRow.addEventListener("click", () => {
+          let cachedWisdomSetting = useCachedWisdom;
+          useCachedWisdom = !1, updateWisdom(), useCachedWisdom = cachedWisdomSetting;
+        });
+      }, useCachedWisdom = !1, legacyHudMenu = !1, init65 = () => __async(void 0, null, function* () {
+        getSetting("wisdom-in-stat-bar.auto-refresh", !0) && (useCachedWisdom = !1, onTurn(updateWisdom));
+        let legacyMenu = getSetting("legacy-hud.menu", !1), legacyHud = getSetting("legacy-hud.stats", !1);
+        legacyHudMenu = getSetting("legacy-hud", !1) && (legacyHud || legacyMenu === legacyHud) || isLegacyHUD(), yield updateWisdom(), addRefreshListener(), onDeactivation(() => {
+          let wisdomRow = document.querySelector(".mousehuntHud-userStat-row.wisdom");
+          wisdomRow && wisdomRow.remove();
+        });
+      }), wisdom_in_stat_bar_default = {
+        id: "wisdom-in-stat-bar",
+        name: "Wisdom in Stat Bar",
+        type: "feature",
+        default: !1,
+        description: "Show wisdom in the stat bar.",
+        load: init65,
+        settings: settings_default26
+      };
+    }
+  });
+  var styles_default59, init_styles60 = __esm({
     "src/modules/location-dashboard/styles.css"() {
-      styles_default54 = `.mousehuntHeaderView-gameTabs .menuItem.chat,.mousehuntHeaderView-gameTabs .community{display:none}.mousehuntHeaderView .dashboard .dropdownContent{width:420px;border-radius:0}.dashboardWrapper{max-height:60vh;padding:5px;overflow:hidden auto;border:1px solid #d7e2f1;box-shadow:0 5px 10px #8f8f8f}.dashboardRefresh{display:block;margin:10px auto}.regionWrapper{margin-bottom:5px;border:1px solid #c6c6c6}.regionName{padding:3px 0 2px 5px;margin-top:10px;font-size:12px;font-weight:900;background-color:#f4f7fc;border-bottom:1px solid #c6c6c6}.regionName:first-child{margin-top:0}.locationWrapper{display:flex;flex-direction:row;align-items:center;justify-content:space-between;height:26px;padding:9px 5px;background-color:#fff}.locationWrapper.locationWrapper-rift_valour{height:35px}.locationWrapper:nth-child(2n){background-color:#eee}.locationImageWrapper{display:inline-flex;flex:0}img.locationImage{width:28px;height:28px;border-radius:3px;outline:1px solid #838282}.locationName{position:relative;flex-grow:1;min-width:105px;padding-left:10px;font-size:12px}.locationProgress p{margin:0;line-height:1;text-align:right}.locationProgress{font-size:11px;line-height:17px;text-align:right;white-space:pre-line}.locationProgress .stats{text-align:right}.noLocationData{font-size:12px;text-align:center}.dashboard-fi-tiles span{display:inline-block;width:18px;height:24px;color:transparent;background-image:url(https://www.mousehuntgame.com/images/ui/hud/floating_islands/mods.png);background-position-x:354px;background-size:354px}.dashboard-fi-tiles .glass,.dashboard-fi-tiles .gem_bonus{background-position-x:0}.dashboard-fi-tiles .ore,.dashboard-fi-tiles .ore_bonus{background-position-x:6.6%}.dashboard-fi-tiles .curd,.dashboard-fi-tiles .sky_cheese{background-position-x:13.3%}.dashboard-fi-tiles .pirate,.dashboard-fi-tiles .sky_pirates{background-position-x:20%}.dashboard-fi-tiles .key,.dashboard-fi-tiles .loot_cache{background-position-x:26.6%}.dashboard-fi-tiles .warden-wind,.dashboard-fi-tiles .wind_shrine{background-position-x:33.3%}.dashboard-fi-tiles .warden-rain,.dashboard-fi-tiles .rain_shrine{background-position-x:40%}.dashboard-fi-tiles .warden-frost,.dashboard-fi-tiles .frost_shrine{background-position-x:46.6%}.dashboard-fi-tiles .warden-fog,.dashboard-fi-tiles .fog_shrine{background-position-x:53.3%}.dashboard-fi-tiles .sprocket,.dashboard-fi-tiles .paragon_cache_a{background-position-x:60%}.dashboard-fi-tiles .bangle,.dashboard-fi-tiles .paragon_cache_d{background-position-x:66.6%}.dashboard-fi-tiles .wing,.dashboard-fi-tiles .paragon_cache_c{background-position-x:73.3%}.dashboard-fi-tiles .silk,.dashboard-fi-tiles .paragon_cache_b{background-position-x:80%}.dashboard-fi-tiles .glore,.dashboard-fi-tiles .ore_gem_bonus{background-position-x:86.6%}.dashboard-fi-tiles .seal,.dashboard-fi-tiles .cloudstone_bonus{background-position-x:93.3%}.dashboard-fi-tiles .jade,.dashboard-fi-tiles .charm_bonus{background-position-x:100%}.location-refresh-item{display:flex;align-items:stretch;border:1px solid #ccc;border-radius:5px;box-shadow:0 1px 1px -1px #7e7e7e}.mh-improved-location-refresh-popup-progress{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.location-refresh-item.done{background-color:#3fcd84;border-color:#adadad}.location-refresh-item .locationName{position:relative;display:flex;align-items:center;overflow:hidden}.location-refresh-item .locationName .name{z-index:1}.location-refresh-item.traveling .locationName .progress:after{position:absolute;top:0;right:100%;bottom:0;width:100%;content:"";background:#f3c019;animation:mh-improved-right-to-left 1s linear forwards}@media (prefers-reduced-motion: reduce){.location-refresh-item.traveling .locationName .progress:after{animation:none}}.mh-improved-location-refresh-confirm-popup #overlayPopup .jsDialogContainer .suffix{display:none}.mh-improved-location-refresh-confirm-popup-buttons{display:flex;align-items:center;justify-content:space-around;margin-top:30px}.dashboard-fi-tiles{vertical-align:middle}.dashboard-fi-wrap{display:flex;flex-direction:row;gap:5px;justify-content:flex-end;margin-bottom:-5px}.dashboard-bb-wrap .tile{display:inline-block;width:20px;height:20px;color:transparent;background-image:url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/chevrons.png);background-size:100%}.dashboard-bb-wrap .tile.standard{background-position-y:0%}.dashboard-bb-wrap .tile.super{background-position-y:34%}.dashboard-bb-wrap .tile.extreme{background-position-y:67%}.dashboard-bb-wrap .tile.ultimate{background-position-y:100%}.dashboard-bb-wrap.room-name{display:flex;gap:5px;align-items:center;justify-content:flex-end}.dashboard-bb-wrap.embellishments .tile{display:inline-block;width:20px;height:20px;color:transparent}.dashboard-bb-wrap.embellishments .tile.golden_key{background-image:url(https://www.mousehuntgame.com/images/items/stats/large/d855937c33e0fc0db25fbdf1aea70aa2.png)}.dashboard-bb-wrap.embellishments .tile.golden_feather{background-image:url(https://www.mousehuntgame.com/images/items/stats/large/654d4e0c8308c3ab0ee99d32503bf82a.png)}.dashboard-bb-wrap.embellishments .tile.ruby_remover{background-image:url(https://www.mousehuntgame.com/images/items/stats/large/6753553ca41cb4754fba0ebf7600378b.png)}.locationImageWrapper:hover,.locationName:hover{text-decoration:underline;cursor:pointer}
+      styles_default59 = `.mousehuntHeaderView-gameTabs .menuItem.chat,.mousehuntHeaderView-gameTabs .community{display:none}.mousehuntHeaderView .dashboard .dropdownContent{width:420px;border-radius:0}.dashboardWrapper{max-height:60vh;padding:5px;overflow:hidden auto;border:1px solid #d7e2f1;box-shadow:0 5px 10px #8f8f8f}.dashboardRefresh{display:block;margin:10px auto}.regionWrapper{margin-bottom:5px;border:1px solid #c6c6c6}.regionName{padding:3px 0 2px 5px;margin-top:10px;font-size:12px;font-weight:900;background-color:#f4f7fc;border-bottom:1px solid #c6c6c6}.regionName:first-child{margin-top:0}.locationWrapper{display:flex;flex-direction:row;align-items:center;justify-content:space-between;height:26px;padding:9px 5px;background-color:#fff}.locationWrapper.locationWrapper-rift_valour{height:35px}.locationWrapper:nth-child(2n){background-color:#eee}.locationImageWrapper{display:inline-flex;flex:0}img.locationImage{width:28px;height:28px;border-radius:3px;outline:1px solid #838282}.locationName{position:relative;flex-grow:1;min-width:105px;padding-left:10px;font-size:12px}.locationProgress p{margin:0;line-height:1;text-align:right}.locationProgress{font-size:11px;line-height:17px;text-align:right;white-space:pre-line}.locationProgress .stats{text-align:right}.noLocationData{font-size:12px;text-align:center}.dashboard-fi-tiles span{display:inline-block;width:18px;height:24px;color:transparent;background-image:url(https://www.mousehuntgame.com/images/ui/hud/floating_islands/mods.png);background-position-x:354px;background-size:354px}.dashboard-fi-tiles .glass,.dashboard-fi-tiles .gem_bonus{background-position-x:0}.dashboard-fi-tiles .ore,.dashboard-fi-tiles .ore_bonus{background-position-x:6.6%}.dashboard-fi-tiles .curd,.dashboard-fi-tiles .sky_cheese{background-position-x:13.3%}.dashboard-fi-tiles .pirate,.dashboard-fi-tiles .sky_pirates{background-position-x:20%}.dashboard-fi-tiles .key,.dashboard-fi-tiles .loot_cache{background-position-x:26.6%}.dashboard-fi-tiles .warden-wind,.dashboard-fi-tiles .wind_shrine{background-position-x:33.3%}.dashboard-fi-tiles .warden-rain,.dashboard-fi-tiles .rain_shrine{background-position-x:40%}.dashboard-fi-tiles .warden-frost,.dashboard-fi-tiles .frost_shrine{background-position-x:46.6%}.dashboard-fi-tiles .warden-fog,.dashboard-fi-tiles .fog_shrine{background-position-x:53.3%}.dashboard-fi-tiles .sprocket,.dashboard-fi-tiles .paragon_cache_a{background-position-x:60%}.dashboard-fi-tiles .bangle,.dashboard-fi-tiles .paragon_cache_d{background-position-x:66.6%}.dashboard-fi-tiles .wing,.dashboard-fi-tiles .paragon_cache_c{background-position-x:73.3%}.dashboard-fi-tiles .silk,.dashboard-fi-tiles .paragon_cache_b{background-position-x:80%}.dashboard-fi-tiles .glore,.dashboard-fi-tiles .ore_gem_bonus{background-position-x:86.6%}.dashboard-fi-tiles .seal,.dashboard-fi-tiles .cloudstone_bonus{background-position-x:93.3%}.dashboard-fi-tiles .jade,.dashboard-fi-tiles .charm_bonus{background-position-x:100%}.location-refresh-item{display:flex;align-items:stretch;border:1px solid #ccc;border-radius:5px;box-shadow:0 1px 1px -1px #7e7e7e}.mh-improved-location-refresh-popup-progress{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.location-refresh-item.done{background-color:#3fcd84;border-color:#adadad}.location-refresh-item .locationName{position:relative;display:flex;align-items:center;overflow:hidden}.location-refresh-item .locationName .name{z-index:1}.location-refresh-item.traveling .locationName .progress:after{position:absolute;top:0;right:100%;bottom:0;width:100%;content:"";background:#f3c019;animation:mh-improved-right-to-left 1s linear forwards}@media (prefers-reduced-motion: reduce){.location-refresh-item.traveling .locationName .progress:after{animation:none}}.mh-improved-location-refresh-confirm-popup #overlayPopup .jsDialogContainer .suffix{display:none}.mh-improved-location-refresh-confirm-popup-buttons{display:flex;align-items:center;justify-content:space-around;margin-top:30px}.dashboard-fi-tiles{vertical-align:middle}.dashboard-fi-wrap{display:flex;flex-direction:row;gap:5px;justify-content:flex-end;margin-bottom:-5px}.dashboard-bb-wrap .tile{display:inline-block;width:20px;height:20px;color:transparent;background-image:url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/chevrons.png);background-size:100%}.dashboard-bb-wrap .tile.standard{background-position-y:0%}.dashboard-bb-wrap .tile.super{background-position-y:34%}.dashboard-bb-wrap .tile.extreme{background-position-y:67%}.dashboard-bb-wrap .tile.ultimate{background-position-y:100%}.dashboard-bb-wrap.room-name{display:flex;gap:5px;align-items:center;justify-content:flex-end}.dashboard-bb-wrap.embellishments .tile{display:inline-block;width:20px;height:20px;color:transparent}.dashboard-bb-wrap.embellishments .tile.golden_key{background-image:url(https://www.mousehuntgame.com/images/items/stats/large/d855937c33e0fc0db25fbdf1aea70aa2.png)}.dashboard-bb-wrap.embellishments .tile.golden_feather{background-image:url(https://www.mousehuntgame.com/images/items/stats/large/654d4e0c8308c3ab0ee99d32503bf82a.png)}.dashboard-bb-wrap.embellishments .tile.ruby_remover{background-image:url(https://www.mousehuntgame.com/images/items/stats/large/6753553ca41cb4754fba0ebf7600378b.png)}.locationImageWrapper:hover,.locationName:hover{text-decoration:underline;cursor:pointer}
 `;
     }
   });
@@ -14873,10 +15739,10 @@ ${csv}`);
       };
     }
   });
-  var cacheLocationData, waitForTravel, disarmBait, doLocationRefresh, makeDashboardTab, makeRegionMarkup, makeLocationMarkup, getDashboardContents, environments4, init60, location_dashboard_default, init_location_dashboard = __esm({
+  var cacheLocationData, waitForTravel, disarmBait, doLocationRefresh, makeDashboardTab, makeRegionMarkup, makeLocationMarkup, getDashboardContents, environments4, init66, location_dashboard_default, init_location_dashboard = __esm({
     "src/modules/location-dashboard/index.js"() {
       init_utils2();
-      init_styles55();
+      init_styles60();
       init_desert_warpath();
       init_seasonal_garden();
       init_zugzwang_tower();
@@ -15107,1044 +15973,60 @@ ${csv}`);
           makeElement("div", "noLocationData", "No location data found. Refresh data to populate the dashboard.", noLocation), contentsWrapper.append(noLocation);
         }
         return contentsWrapper;
-      }), environments4 = [], init60 = () => __async(void 0, null, function* () {
-        addStyles(styles_default54, "location-dashboard"), environments4 = yield getData("environments"), sessionSet("doing-location-refresh", !1), cacheLocationData(), onEvent("travel_complete", cacheLocationData), onRequest("*", cacheLocationData), makeDashboardTab();
+      }), environments4 = [], init66 = () => __async(void 0, null, function* () {
+        addStyles(styles_default59, "location-dashboard"), environments4 = yield getData("environments"), sessionSet("doing-location-refresh", !1), cacheLocationData(), onEvent("travel_complete", cacheLocationData), onRequest("*", cacheLocationData), makeDashboardTab();
       }), location_dashboard_default = {
         id: "location-dashboard",
         name: "Location Dashboard",
         type: "feature",
         default: !0,
         description: "View location HUD information in a dashboard available in the top dropdown menu.",
-        load: init60
+        load: init66
       };
     }
   });
-  var inventory_open_all_but_one_default, init_inventory_open_all_but_one = __esm({
-    "src/modules/inventory-open-all-but-one/index.js"() {
+  var imperialToMetric, convertInDialog, replaceInJournal, replaceOnMousePage, convertOnPage, init67, metric_default, init_metric = __esm({
+    "src/modules/metric/index.js"() {
       init_utils2();
-      inventory_open_all_but_one_default = {
-        id: "open-all-but-one",
-        name: "Inventory - Open All but One",
-        type: "feature",
-        default: !0,
-        description: "Add an \u201COpen All But One\u201D button to convertible items in your inventory.",
-        load: initOpenButtons
-      };
-    }
-  });
-  var settings_default23, init_settings24 = __esm({
-    "src/modules/better-quests/settings/index.js"() {
-      settings_default23 = () => __async(void 0, null, function* () {
-        return [{
-          id: "better-quests.m400-helper",
-          title: "M400 Helper",
-          default: !0,
-          description: "Add a \u201CTravel to next step\u201D button to the M400 quest."
-        }];
-      });
-    }
-  });
-  var renderButton, main10, m400_default, init_m400 = __esm({
-    "src/modules/better-quests/modules/m400/index.js"() {
-      init_utils2();
-      renderButton = (location) => {
-        let title = document.querySelector(".campPage-quests-title");
-        if (!title)
-          return;
-        let existingButton = document.querySelector("#mh-improved-m400-travel");
-        existingButton && existingButton.remove();
-        let button = makeElement("div", ["mousehuntActionButton", "tiny", "mh-m400-travel", `mh-m400-travel-${location}`]);
-        button.id = "mh-improved-m400-travel", location === getCurrentLocation() && button.classList.add("disabled"), makeElement("span", "mousehuntActionButton-text", "Travel to next step", button), button.setAttribute("data-location", location), button.addEventListener("click", (e) => {
-          let clickedLocation = e.target.getAttribute("data-location");
-          if (!clickedLocation) {
-            let parent = e.target.parentElement;
-            if (!parent)
-              return;
-            clickedLocation = parent.getAttribute("data-location");
-          }
-          travelTo(clickedLocation), setPage("Camp", null, () => {
-          });
-        }), title.append(button);
-      }, main10 = () => __async(void 0, null, function* () {
-        var _a, _b, _c;
-        if (!document.querySelector(".campPage-quests-title") || !(((_b = (_a = user.quests) == null ? void 0 : _a.QuestLibraryM400Research) == null ? void 0 : _b.is_assignment) || ((_c = user.quests.QuestLibraryM400Research) == null ? void 0 : _c.is_bait_assignment)))
-          return;
-        let container = document.querySelector(".campPage-quests-container");
-        if (!container)
-          return;
-        container.classList.add("mh-m400-quest");
-        let allTasks = document.querySelectorAll(".campPage-quests-objective-container");
-        if (!allTasks)
-          return;
-        let taskNames = document.querySelectorAll(".campPage-quests-objective-task");
-        taskNames && taskNames.forEach((task) => {
-          let newText = task.innerText.replaceAll("Collect 1 Piece of M400 Intel", "Collect Intel");
-          task.innerText = newText;
-        });
-        let last = [...allTasks].reverse().find((task) => !task.classList.contains("locked") && !task.classList.contains("complete"));
-        if (!last)
-          return;
-        let objective = last.querySelector(".campPage-quests-objective-task");
-        if (!objective)
-          return;
-        let location = objective.innerText.split(" in ");
-        if (location.length === 1 && (location = objective.innerText.split(" from ")), location.length === 1)
-          return;
-        location = location[1].replace("Mice", "").replace("the ", "").trim();
-        let locations = yield getData("m400-locations"), locationKey = Object.keys(locations).find((key) => locations[key].includes(location));
-        locationKey && renderButton(locationKey);
-      }), m400_default = () => __async(void 0, null, function* () {
-        main10(), onNavigation(main10, {
-          page: "camp"
-        });
-      });
-    }
-  });
-  var styles_default55, init_styles56 = __esm({
-    "src/modules/better-quests/styles.css"() {
-      styles_default55 = `#mh-improved-m400-travel{left:15px;cursor:pointer}.m400-helper-hidden,.campPage-quests-objective-container.locked .campPage-quests-objective-content,.campPage-quests-footer-smash-icon,.campPage-quests-footer-smash-warning{display:none}.campPage-quests-objective-container .campPage-quests-objective-thumb{width:35px;height:25px}.campPage-quests-objective-content{width:calc(100% - 35px)}.campPage-quests-objective-container.locked .campPage-quests-objective-thumb{width:100%;margin:0 auto;opacity:.4}.campPage-quests-footer-smash{display:flex;flex-direction:row;place-content:center center;align-items:center;padding:4px;font-size:9.75px;text-decoration:underline;border-radius:3px;box-shadow:none}#mh-research-smash-warning{position:absolute;bottom:28px;left:30px;display:block;max-width:250px;line-height:16px;text-align:left}#overlayPopup.zugzwangsLibraryQuestShopPopup .errorText{padding:10px 0;color:#da1717}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image{display:flex;flex-direction:column;align-items:center;width:50px}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image img{width:40px;height:40px;margin:0}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content b{display:block;padding:5px 0;font-size:12px;color:#000}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content{display:block;width:auto;padding:0;margin-left:10px;color:#909090}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .requirements b{display:inline-block;padding:7px}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .item img,#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink br{display:none}#overlayPopup.zugzwangsLibraryQuestShopPopup .questContainer{height:auto;overflow-y:visible}#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink{display:grid;grid-template-columns:1fr 5fr 2fr;place-items:center;align-items:start;padding-bottom:10px}#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:hover,#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:focus,#overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:active{cursor:default}.mh-m400-travel{margin-top:-2px;margin-left:10px}.mh-m400-quest .campPage-quests-objective-progress,.mh-m400-quest .campPage-quests-objective-progressBar{display:none}.mh-ui-assignment-meta,.mh-ui-assignment-price{display:flex;flex-direction:column;align-items:center}.mh-ui-assignment-meta-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:9px;place-items:center stretch}.mh-ui-assignment-wiki-button{grid-column:span 2;text-align:center}.mh-ui-assignment-price-value{font-size:13px;font-weight:900}#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources{padding:5px 0}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image img.disabled[src=""]{display:none}.questLink .mousehuntActionButton.lightBlue{padding:2px 8px;margin-left:-4px;font-size:12px;font-weight:100}.mh-ui-assignment-price-label{text-decoration:underline;text-decoration-color:#ccc}.mh-ui-assignment-details-summary{padding:5px 0;font-size:12px;color:#000}#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources .mh-ui-quest-resources:hover{cursor:pointer;background-color:#dfdfdf;border-radius:6px;box-shadow:-1px 1px 0 3px #dfdfdf}h4.mh-ui-assignment-details-title{padding:3px 0;font-size:13px;text-decoration:underline}ul.mh-ui-assignment-details-task-list{margin-left:20px;line-height:1.5;list-style:disc}#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .image,.mh-ui-assignment-meta-wrapper{margin-top:10px}.mh-ui-assignment-details-task-title{margin:3px 0}#overlayPopup.zugzwangsLibraryQuestShopPopup #jsDialogAjaxPrefix{border:none}
-`;
-    }
-  });
-  // dist/data/library-assignments.json
-  var library_assignments_default, init_library_assignments = __esm({
-    "dist/data/library-assignments.json"() {
-      library_assignments_default = { library_intro_research_assignment_convertible: { name: "Catalog Library Mice", cost: 0, rewardPoints: 20, rewards: ["Yellow Tome of Wisdom", "Wealth Charms"], assignments: [{ name: "Catalog Library Assignment", tasks: [{ title: "All seven of the following:", text: ["1 Bookborn Mouse", "1 Effervescent Mouse", "1 Explorator Mouse", "1 Flutterby Mouse", "1 Infiltrator Mouse", "1 Pocketwatch Mouse", "1 Walker Mouse"] }] }] }, library_research_assignment_convertible: { name: "Library Research", cost: 20, rewardPoints: 30, rewards: ["Yellow Tome of Wisdom", "Green Tome of Wisdom", "Purple Tome of Wisdom", "Wealth Charms"], assignments: [{ name: "Library Mice Assignment", tasks: [{ title: "Two of the following:", text: ["1 Bookborn Mouse", "1 Flutterby Mouse", "1 Steam Grip Mouse", "1 Tome Sprite Mouse", "1 Scribe Mouse"] }, { title: "Three of the following:", text: ["2 Effervescent Mice", "2 Explorator Mice", "2 Infiltrator Mice", "2 Pocketwatch Mice", "2 Walker Mice"] }] }, { name: "Library Power Type Assignment", tasks: [{ title: "Three of the following:, with at least one task for both trap power types", text: ["1 Effervescent Mouse using a Physical trap", "1 Infiltrator Mouse using a Physical trap", "1 Scribe Mouse using a Physical trap", "1 Steam Grip Mouse using a Physical trap", "1 Walker Mouse using a Physical trap", "3 Explorator Mice using a Physical trap", "3 Pocketwatch Mice using a Physical trap", "1 Bookborn Mouse using a Tactical trap", "1 Flutterby Mouse using a Tactical trap", "2 Effervescent Mice using a Tactical trap", "2 Infiltrator Mice using a Tactical trap", "2 Walker Mice using a Tactical trap"] }] }] }, zugzwang_research_assignment_convertible: { name: "Zugzwang Research", cost: 50, rewardPoints: 80, rewards: ["Blue Tome of Wisdom", "Wealth Charms", "Amplifier Charms", "Rook Crumble Charms", "Spellbook Charms", "Mystic Curd", "Technic Cheese Mould"], assignments: [{ name: "Seasonal Garden Assignment", tasks: [{ title: "Two of the following:", text: ["10 mice in the Seasonal Garden using a Tactical trap", "10 mice in the Seasonal Garden using Luck Charm", "20 mice in the Seasonal Garden", "20 mice in the Seasonal Garden using Power Charm", "30 mice in the Seasonal Garden using Lucky Power Charm", "30 mice in the Seasonal Garden using Bamboozler Base", "40 mice in the Seasonal Garden"] }, { title: "Three of the following: (Winter)", text: ["1 Winter Mage Mouse using Ancient Spear Gun", "2 Frostbite Mice", "3 Penguin Mice using a Hydro trap"] }, { title: "Three of the following: (Spring)", text: ["1 Derpicorn Mice using a Tactical trap", "1 Vinetail Mouse", "3 Hydrophobe Mice using Aqua Base", "3 Tanglefoot Mice using a Physical trap"] }, { title: "Three of the following: (Summer)", text: ["1 Summer Mage Mouse", "3 Firefly Mice using Horrific Venus Mouse Trap", "3 Monarch Mice using a Tactical trap", "3 Stinger Mice"] }, { title: "Three of the following: (Fall)", text: ["1 Fall Familiar Mouse", "1 Harvester Mouse", "1 Whirleygig Mice using a Tactical trap", "1 Fall Familiar Mouse", "1 Harvester Mouse", "1 Whirleygig Mice using a Tactical trap", "4 Harvest Harrier Mice", "4 Pumpkin Head Mice using a Shadow trap"] }] }, { name: "Mystic King Assignment", tasks: [{ title: "One of the following:", text: ["10 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden"] }, { title: "One of the following:", text: ["1 Mouse in the Seasonal Garden using Zugzwang's First Move", "10 Mice in the Seasonal Garden using the Bamboozler Base", "10 Mice in the Seasonal Garden using Zugzwang's Last Move"] }, { title: "One of the following:", text: ["8 Mystic Pawns", "8 Mystic Pawns using Wooden Base with Target"] }, { title: "One of the following:", text: ["2 Mystic Knight Mice", "2 Mystic Bishop Mice"] }, { title: "", text: ["1 Mystic King Mouse"] }] }, { name: "Technic King Assignment", tasks: [{ title: "One of the following:", text: ["10 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden"] }, { title: "One of the following:", text: ["1 Mouse in the Seasonal Garden using Zugzwang's First Move", "10 Mice in the Seasonal Garden using the Bamboozler Base", "10 Mice in the Seasonal Garden using Zugzwang's Last Move"] }, { title: "One of the following:", text: ["8 Technic Pawns", "8 Technic Pawns using Wooden Base with Target"] }, { title: "One of the following:", text: ["2 Technic Knight Mice", "2 Technic Bishop Mice"] }, { text: ["1 Technic King Mouse"] }] }] }, furoma_research_assignment_convertible: { name: "Furoma Research", cost: 130, rewardPoints: 90, rewards: ["Purple Tome of Wisdom", "Wealth Charms", "Token of the Cheese Belt", "Token of the Cheese Claw", "Token of the Cheese Fang", "Master Belt Shard", "Master Claw Shard", "Master Fang Shard", "Rumble Cheese", "Maki Cheese", "Onyx Stone"], assignments: [{ name: "Furoma Assignment", tasks: [{ title: "One of the following:", text: ["3 Mice in the Training Grounds using Zugzwang's Last Move", "15 Archer Mice in the Training Grounds", "40 Mice in the Training Grounds using Bamboozler Base", "50 Mice using a Tactical trap"] }, { title: "One of the following:", text: ["3 Kung Fu Mice in the Dojo", "3 Ninja Mice in the Dojo", "3 Samurai Mice in the Dojo"] }, { title: "One of the following:", text: ["1 Diamond Mice in the Dojo using Power Charm", "1 Gold Mouse in the Dojo using Luck Charm", "1 Hapless Mouse in the Dojo", "10 Hapless Mice", "10 Hapless Mice using Bamboozler Base"] }, { title: "One of the following:", text: ["1 Student of the Cheese Belt Mouse using Maki Cheese", "1 Student of the Cheese Fang Mouse using Maki Cheese", "1 Student of the Cheese Claw Mouse using Maki Cheese", "3 Students of the Cheese Belt Mouse", "3 Students of the Cheese Fang Mouse", "3 Students of the Cheese Claw Mouse", "1 Master of the Dojo Mouse"] }] }, { name: "Pagoda Assignment", tasks: [{ title: "One of the following:", text: ["6 Students of the Cheese Belt Mouse", "1 Students of the Cheese Belt Mouse using Zugzwang's Last Move"] }, { title: "One of the following:", text: ["6 Students of the Cheese Fang Mice", "1 Students of the Cheese Fang Mice using Zugzwang's Last Move"] }, { title: "One of the following:", text: ["6 Students of the Cheese Claw Mouse", "1 Students of the Cheese Claw Mice using Zugzwang's Last Move"] }, { text: ["1 Masters of the Cheese Belt Mouse"] }, { text: ["1 Masters of the Cheese Fang Mouse"] }, { text: ["1 Masters of the Cheese Claw Mouse"] }, { title: "One of the following:", text: ["1 Master of the Dojo Mouse", "1 Master of the Dojo Mouse using Ambush (Ninja Ambush Trap cannot be used to complete this task)", "1 Master of the Dojo Mouse using Zugzwang's First Move"] }] }, { name: "Dojo Sensei Assignment", tasks: [{ title: "One of the following:", text: ["2 Students of the Cheese Belt Mouse using Onyx Mallet", "2 Students of the Cheese Fang Mouse using Onyx Mallet", "2 Students of the Cheese Claw Mouse using Onyx Mallet"] }, { text: ["8 Masters of the Cheese Belt Mouse"] }, { text: ["8 Masters of the Cheese Fang Mouse"] }, { text: ["8 Masters of the Cheese Claw Mouse"] }, { title: "One of the following:", text: ["2 Masters of the Dojo Mouse", "2 Masters of the Dojo Mouse using Ambush (Ninja Ambush Trap cannot be used to complete this task)", "2 Masters of the Dojo Mouse using Zugzwang's First Move"] }, { text: ["1 Dojo Sensei"] }] }] }, adv_zugzwang_research_assignment_convertible: { name: "Advanced Zugzwang Research", cost: 150, rewardPoints: 150, rewards: ["Purple Tome of Wisdom", "Wealth Charms", "Amplifier Charms", "Rook Crumble Charms", "Spellbook Charms", "Checkmate cheese", "Mystic Curd", "Technic Cheese Mould"], assignments: [{ name: "Mystic Amplifier Assignment", tasks: [{ title: "One of the following:", text: ["30 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden using Zugzwang's First Move", "8 Mystic Pawns using Mystic Pawn Pincher"] }, { title: "One of the following:", text: ["1 Mystic Queen using Checkmate Cheese", "1 Mystic King using Checkmate Cheese", "1 Chess Master"] }], info: "More Info: MouseHunt Info Page" }, { name: "Technic Amplifier Assignment", tasks: [{ title: "One of the following:", text: ["30 Mice in the Seasonal Garden using a Tactical trap", "30 Mice in the Seasonal Garden using Zugzwang's First Move", "8 Technic Pawns using Technic Pawn Pincher"] }, { title: "One of the following:", text: ["1 Technic Queen using Checkmate Cheese", "1 Technic King using Checkmate Cheese", "1 Chess Master"] }] }, { name: "Advanced Amplifier Assignment", tasks: [{ title: "One of the following:", text: ["30 Mice in the Seasonal Garden using Spellbook Base", "30 Mice in the Seasonal Garden using Zugzwang's First Move"] }, { title: "One of the following:", text: ["1 Mystic King Mouse using Checkmate Cheese", "1 Mystic King Mouse using Blackstone Pass Trap and Checkmate Cheese"] }, { title: "One of the following:", text: ["1 Technic King Mouse using Checkmate Cheese", "1 Technic King Mouse using Obvious Ambush Trap and Checkmate Cheese", "1 Chess Master"] }] }] }, zurreal_trap_research_convertible: { name: "Zurreal Trap Research", cost: 900, rewardPoints: 400, assignments: [{ name: "", tasks: [{ title: "All ten of the following:", text: ["Collect 1 Desert Travel Almanac from Centaur Mice (in the Great Gnarled Tree or Lagoon)", "Collect 1 Encyclopedia Gnawnia from Master Burglar Mice in the Town of Gnawnia", "Collect 6 Luscious Lumbers in the Training Grounds (from Kung Fu, Monk, and Samurai mouse)", "Collect 1 Mesh Netting in S.S. Huntington IV (from Leviathan and Squeaken mouse)", "Collect 3 Ectoplasmic Essence from Ghost Mice in the Mousoleum", "Collect 3 Warp Nails from Realm Rippers (in the Forbidden Grove)", "Collect 3 Runestones from Stonework Warrior Mice (in the Jungle of Dread with Magical Havarti)", "Collect 1 Draconic Book from Whelpling Mice (in Dracano)", "Collect 1 Lich Jewel in the Balack's Cove (from Balack the Banished, Derr Lich, Elub Lich and Nerg Lich mouse)", "Craft 1 Zurreal's Folly"] }] }] }, library_m400_bait_assignment_convertible: { name: "M400 Bait Research Assignment", cost: 1500, rewardPoints: 200, assignments: [{ name: "", tasks: [{ title: "Collect 2 Aged Grape Juice from one of the following:", text: ["Derr Lich Mice", "Dojo Sensei Mice", "Draconic Warden Mice", "Elub Lich Mice", "Ethereal Librarian Mice", "Gate Guardian Mice", "Keeper Mice", "Market Guard Mice", "Market Thief Mice", "Master Burglar Mice", "Mystic Bishop Mice", "Nerg Lich Mice", "Pie Thief Mice", "Prospector Mice", "Pygmy Wrangler Mice", "Ruffian Mice", "Saloon Gal Mice", "Strawberry Hotcakes Mice", "Swarm of Pygmy Mice", "Technic Bishop Mice", "Terra Mice"] }, { title: "Collect 3 Cheddar Powder from one of the following:", text: ["Burglar Mice", "Calalilly Mice", "Effervescent Mice", "Ethereal Thief Mice", "Granite Mice", "Lasso Cowgirl Mice", "Lumberjack Mice", "Master of the Cheese Belt Mice", "Polar Bear Mice", "Quesodillo Mice", "Snow Slinger Mice"] }, { title: "Collect 3 Gooey Gruyere Curds from one of the following:", text: ["Ethereal Enchanter Mice", "Glass Blower Mice", "Kung Fu Mice", "Master of the Cheese Claw Mice", "Samurai Mice", "Sand Pilgrim Mice", "Shopkeeper Mice", "Snow Soldier Mice", "Thistle Mice", "Walker Mice", "Zombie Mice"] }, { title: "Collect 3 Microchip Curds from one of the following:", text: ["Archer Mice", "Bark Mice", "Bionic Mice", "Ethereal Engineer Mice", "Knight Mice", "Limestone Miner Mice", "Master of the Cheese Fang Mice", "Page Mice", "Phalanx Mice", "Pocketwatch Mice", "Ravenous Zombie Mice", "Spiky Devil Mice", "Stealth Mice", "Tumbleweed Mice"] }, { title: "Collect 1 Nuclear Garlic from one of the following:", text: ["Blacksmith Mice", "Dunehopper Mice", "Gorgon Mice", "Lambent Crystal Mice", "Lycan Mice", "Mage Weaver Mice", "Master of the Dojo Mice", "Monster Mice", "Pyrite Mice", "Realm Ripper Mice", "Shroom Mice", "Tome Sprite Mice", "Whelpling Mice"] }] }] }, library_m400_assignment_convertible: { name: "M400 Hunting Research Assignment", cost: 1900, rewardPoints: 300, assignments: [{ name: "", tasks: [{ title: "One of the following:", text: ["Collect intel from Grunt Mice in the Derr Dunes", "Collect intel from Guardian Mice in the Derr Dunes", "Collect intel from Lycan Mice in the Catacombs", "Collect intel from Renegade Mice in the Derr Dunes", "Collect intel from Seer Mice in the Derr Dunes", "Collect intel from Terror Knight Mice in the Catacombs", "Collect intel from Trailblazer Mice in the Derr Dunes", "Collect intel in the Seasonal Garden"] }, { title: "One of the following:", text: ["Collect intel from Prospector Mice in the Claw Shot City", "Collect intel from Ruffian Mice in the Claw Shot City", "Collect intel from Sand Colossus Mice in the Sand Crypts", "Collect intel from Scarab Mice in the Sand Crypts", "Collect intel from Serpentine Mice in the Sand Crypts", "Collect intel in the Iceberg"] }, { title: "One of the following:", text: ["Collect intel from Conjurer Mice in the Nerg Plains", "Collect intel from Conqueror Mice in the Nerg Plains", "Collect intel from Defender Mice in the Nerg Plains", "Collect intel from Finder Mice in the Nerg Plains", "Collect intel from Master of the Cheese Belt Mice in the Meditation Room", "Collect intel from Master of the Cheese Claw Mice in the Meditation Room", "Collect intel from Master of the Cheese Fang Mice in the Meditation Room", "Collect intel from Mystic Mice in the Elub Shore", "Collect intel from Pack Mice in the Elub Shore", "Collect intel from Pathfinder Mice in the Nerg Plains", "Collect intel from Protector Mice in the Elub Shore", "Collect intel from Scout Mice in the Elub Shore", "Collect intel from Vanquisher Mice in the Elub Shore"] }, { title: "One of the following:", text: ["Collect intel from Buccaneer Mice in the S.S. Huntington IV", "Collect intel from Captain Mice in the S.S. Huntington IV", "Collect intel from Ninja Mice in the Training Grounds", "Collect intel in the Fiery Warpath"] }, { title: "One of the following:", text: ["Collect intel from Cavalier Mice in the King's Gauntlet", "Collect intel from Chipper Mice in the Slushy Shoreline", "Collect intel from Master Burglar Mice in the Bazaar", "Collect intel from Snow Slinger Mice in the Slushy Shoreline", "Collect intel from Snow Sniper Mice in the Slushy Shoreline", "Collect intel from Snow Soldier Mice in the Slushy Shoreline", "Collect intel from Yeti Mice in the Slushy Shoreline"] }, { title: "One of the following:", text: ["Collect intel from Grubling Herder Mice in the Sand Dunes", "Collect intel from Magma Carrier Mice in the Jungle of Dread", "Collect intel from Primal Mice in the Jungle of Dread", "Collect intel from Sand Pilgrim Mice in the Sand Dunes", "Collect intel from Stonework Warrior Mice in the Jungle of Dread"] }, { title: "One of the following:", text: ["Collect intel from Barkshell Mice in the Twisted Garden", "Collect intel from Camofusion Mice in the Twisted Garden", "Collect intel from Cursed Librarian Mice in the Cursed City", "Collect intel from Cursed Enchanter Mice in the Cursed City", "Collect intel from Essence Collector Mice in the Lost City", "Collect intel from Essence Guardian Mice in the Cursed City", "Collect intel from Ethereal Enchanter Mice in the Lost City", "Collect intel from Ethereal Librarian Mice in the Lost City", "Collect intel from Thorn Mice in the Twisted Garden", "Collect intel from Twisted Hotcakes Mice in the Twisted Garden"] }, { title: "One of the following:", text: ["Collect intel from Bark Mice in the Living Garden", "Collect intel from Blacksmith Mice in the Muridae Market", "Collect intel from Camoflower Mice in the Living Garden", "Collect intel from Mage Weaver Mice in the Muridae Market", "Collect intel from Market Guard Mice in the Muridae Market", "Collect intel from Realm Ripper Mice in the Forbidden Grove", "Collect intel from Spice Merchant Mice in the Muridae Market", "Collect intel from Strawberry Hotcakes Mice in the Living Garden", "Collect intel from Thistle Mice in the Living Garden"] }, { title: "One of the following:", text: ["Collect intel from Bionic Mice in the Meadow", "Collect intel from Derr Lich Mice in the Balack's Cove", "Collect intel from Draconic Warden Mice in the Dracano", "Collect intel from Elub Lich Mice in the Balack's Cove", "Collect intel from Gate Guardian Mice in the Acolyte Realm", "Collect intel from Master of the Dojo Mice in the Pinnacle Chamber", "Collect intel from Mystic Knight Mice in the Zugzwang\u2019s Tower", "Collect intel from Sorcerer Mice in the Acolyte Realm", "Collect intel from Technic Knight Mice in the Zugzwang\u2019s Tower"] }, { title: "1 M400 using Fusion Fondue" }] }] } };
-    }
-  });
-  var questAssignments, updateObjectiveFooterDisplay, addQuestsTab, addQuestTabEventListener, addResearchSmashWarning, moveErrorText, removeSmashText, updateAssignmentList, modifyAvailableQuestsPopup, checkForQuestSmash, restoreQuestTabAfterSmash, m400IfEnabled, main11, init61, better_quests_default, init_better_quests = __esm({
-    "src/modules/better-quests/index.js"() {
-      init_utils2();
-      init_settings24();
-      init_m400();
-      init_styles56();
-      init_library_assignments();
-      questAssignments = /* @__PURE__ */ new Set([
-        "charming_study_hween2014_assignment_quest_item",
-        "double_run_advanced_research_quest",
-        "extra_spooky_hween2014_assignment_quest_item",
-        "furoma_research_quest_item",
-        "hg_letter_research_quest_item",
-        "lab_monster_1_quest_item",
-        "library_adv_hween2013_research_quest_item",
-        "library_catalog_quest_item",
-        "library_hween2013_research_quest_item",
-        "library_m400_bait_research_quest_item",
-        "library_m400_research_quest_item",
-        "library_mice_research_quest_item",
-        "library_power_type_research_quest_item",
-        "mystic_advanced_research_quest_item",
-        "mystickingresearch_quest_item",
-        "pagoda_advanced_research_quest_item",
-        "pagoda_research_quest_item",
-        "seasonalgardenresearch_quest_item",
-        "tech_advanced_research_quest_item",
-        "techkingresearch_quest_item",
-        "zurreal_trap_research_quest_item"
-      ]), updateObjectiveFooterDisplay = () => {
-        let footerText = document.querySelector(".campPage-quests-footer-smash");
-        if (!footerText)
-          return;
-        let newHref = footerText.getAttribute("href").replace("subtab", "sub_tab");
-        footerText.setAttribute("href", `${newHref}#smashQuest`), footerText.innerHTML = footerText.innerHTML.replace("Don't like an assignment? Cancel it by smashing the assignment ", "Cancel this assignment by smashing it "), footerText.addEventListener("click", (e) => {
-          e.preventDefault();
-          let assignment = Object.values(user.quests).find((quest) => quest.is_assignment && quest.type.endsWith("_quest_item"));
-          assignment && (e.target.classList.add("inventoryPage-item"), e.target.setAttribute("data-item-type", assignment.type), e.target.setAttribute("data-produced-item", "nothing_stat_item"), app.pages.InventoryPage.showConfirmPopup(e.target, "hammer"), e.target.classList.remove("inventoryPage-item"));
-        });
-      }, addQuestsTab = () => {
-        let tabs = document.querySelector(".campPage-tabs-tabRow");
-        if (!tabs || tabs.querySelector('a[data-tab="quests"]'))
-          return;
-        let newQuestsButton = makeElement("a", ["campPage-tabs-tabHeader", "quests"]);
-        newQuestsButton.setAttribute("data-tab", "quests"), newQuestsButton.addEventListener("click", () => {
-          hg.views.HeadsUpDisplayZugswangLibraryView.showPopup();
-        }), makeElement("span", "", "Quests", newQuestsButton), tabs.insertBefore(newQuestsButton, tabs.lastChild);
-      }, addQuestTabEventListener = () => {
-        let questTabContent = document.querySelector('.campPage-tabs-tabContent[data-tab="quests"]');
-        if (!questTabContent)
-          return;
-        new MutationObserver(() => {
-          updateObjectiveFooterDisplay(), m400IfEnabled();
-        }).observe(questTabContent, { childList: !0 });
-      }, addResearchSmashWarning = () => {
-        let existing = document.querySelector("#mh-research-smash-warning");
-        if (existing && existing.remove(), getCurrentSubtab() !== "hammer")
-          return;
-        let confirm2 = document.querySelector(".inventoryPage-confirmPopup");
-        if (!confirm2)
-          return;
-        let type = confirm2.getAttribute("data-item-type");
-        if (!type || !questAssignments.has(type))
-          return;
-        let warningText = document.createElement("div");
-        warningText.id = "mh-research-smash-warning", warningText.innerText = "If you smash an assignment, you will have to wait 1 hour until you can get a new one.", confirm2.insertBefore(warningText, confirm2.firstChild);
-      }, moveErrorText = () => {
-        let errorTextEl = document.querySelectorAll(".questLink .requirements .error");
-        if (!errorTextEl)
-          return;
-        let errorText = "";
-        if (errorTextEl.forEach((el) => {
-          el.innerText && (errorText = el.innerText), el.classList.add("hidden");
-        }), !errorText)
-          return;
-        errorText = errorText.replace(/ \d\d seconds/, "").replace(" before taking", " for");
-        let titleBar = document.querySelector("#jsDialogAjaxPrefix h2");
-        if (!titleBar)
-          return;
-        let titleError = makeElement("h3", "errorText", errorText);
-        titleBar.parentNode.insertBefore(titleError, titleBar.nextSibling);
-      }, removeSmashText = () => {
-        let smashText = document.querySelector(".smashQuest");
-        smashText && smashText.classList.add("hidden");
-      }, updateAssignmentList = () => __async(void 0, null, function* () {
-        let assignmentList = document.querySelectorAll("#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink");
-        if (!assignmentList)
-          return;
-        assignmentList.forEach((questLink) => {
-          let type = questLink.getAttribute("data-quest-type");
-          if (!type) {
-            let onclickAttr = questLink.getAttribute("onclick") || "";
-            if (!onclickAttr.includes("hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm") || (type = onclickAttr.replace("hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm('", "").replace("'); return false;", ""), !type))
-              return;
-          }
-          questLink.removeAttribute("onclick");
-          let actionButton = questLink.querySelector(".actions .mousehuntActionButton");
-          actionButton && actionButton.setAttribute("onclick", `hg.views.HeadsUpDisplayZugswangLibraryView.showConfirm('${type}'); return false;`);
-          let content = questLink.querySelector(".content");
-          if (!content || !content.querySelector("b"))
-            return;
-          questLink.setAttribute("data-quest-type", type);
-          let assignment = library_assignments_default[type], requirements = questLink.querySelector(".requirements");
-          requirements && requirements.remove();
-          let metaWrapper = makeElement("div", "mh-ui-assignment-meta-wrapper"), cost = makeElement("div", ["mh-ui-assignment-price", "mh-ui-assignment-cost"]);
-          makeElement("span", "mh-ui-assignment-price-label", "Requires", cost), makeElement("strong", "mh-ui-assignment-price-value", assignment.cost, cost), metaWrapper.append(cost);
-          let reward = makeElement("div", ["mh-ui-assignment-price", "mh-ui-assignment-reward"]);
-          makeElement("span", "mh-ui-assignment-price-label", "Reward", reward), makeElement("strong", "mh-ui-assignment-price-value", assignment.rewardPoints, reward), metaWrapper.append(reward);
-          let wiki = makeElement("a", "mh-ui-assignment-wiki-button", "View on Wiki \u2192");
-          if (wiki.href = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replaceAll(" ", "_")}`, wiki.target = "_blank", wiki.rel = "noopener noreferrer", metaWrapper.append(wiki), content.after(metaWrapper), assignment.name === "M400 Hunting Research Assignment") {
-            let m400Wrapper = makeElement("div", ["content", "mh-ui-m400-wrapper"]);
-            makeElement("b", "mh-ui-m400-title", assignment.name, m400Wrapper), makeElement("span", "mh-ui-m400-content", "This envelope contains a Research Assignment that will have you looking for the elusive M400 prototype.", m400Wrapper), content.replaceWith(m400Wrapper);
-          }
-          if (assignment.assignments) {
-            let assigmentDetails = makeElement("details", "mh-ui-assignment-details");
-            makeElement("summary", "mh-ui-assignment-details-summary", "Assignment Details", assigmentDetails);
-            for (let singleAssignment of assignment.assignments) {
-              let assignmentWrapper = makeElement("div", "mh-ui-assignment-details-wrapper");
-              makeElement("h4", "mh-ui-assignment-details-title", singleAssignment.name, assignmentWrapper);
-              let singleAssignmentTasks = singleAssignment.tasks || [];
-              for (let task of singleAssignmentTasks) {
-                let taskEl = makeElement("div", "mh-ui-assignment-details-task");
-                makeElement("h5", "mh-ui-assignment-details-task-title", task.title, taskEl);
-                let taskList = makeElement("ul", "mh-ui-assignment-details-task-list");
-                if (Array.isArray(task.text))
-                  for (let taskItem of task.text)
-                    makeElement("li", "mh-ui-assignment-details-task-item", taskItem, taskList);
-                else
-                  makeElement("li", "mh-ui-assignment-details-task-item", task.text, taskList);
-                taskEl.append(taskList), assignmentWrapper.append(taskEl);
-              }
-              assigmentDetails.append(assignmentWrapper);
-            }
-            content.append(assigmentDetails);
-          }
-          if (assignment.rewards) {
-            let rewardsWrapper = makeElement("details", "mh-ui-assignment-details-wrapper");
-            makeElement("summary", "mh-ui-assignment-details-summary", "Rewards", rewardsWrapper);
-            let rewardsList = makeElement("ul", "mh-ui-assignment-details-task-list");
-            for (let singleReward of assignment.rewards)
-              makeElement("li", "mh-ui-assignment-details-task-item", singleReward, rewardsList);
-            rewardsWrapper.append(rewardsList), content.append(rewardsWrapper);
+      imperialToMetric = (text) => {
+        let lb = text.match(/(\d+? )lb./i), oz = text.match(/(\d+? )oz./i);
+        if (!(lb || oz))
+          return text;
+        let lbValue = lb ? lb[1] : 0, ozValue = oz ? oz[1] : 0, totalWeight = Number.parseInt(lbValue) + Number.parseInt(ozValue) / 16, totalWeightMetric = (Math.round(totalWeight * 0.45359237 * 100) / 100).toString();
+        return text.replace(/(\d+? lb.\s)?(\d+? oz.)/i, totalWeightMetric + " kg. ");
+      }, convertInDialog = () => {
+        let mouseViewWeights = document.querySelectorAll(".mouseView-statsContainer .mouseView-statsContainer-block-padding table tbody tr");
+        mouseViewWeights.length && mouseViewWeights.forEach((row) => {
+          let firstCell = row.querySelector("td"), secondCell = firstCell.nextSibling;
+          if (firstCell.innerText === "Avg. Weight:" || firstCell.innerText === "Heaviest:") {
+            let converted = imperialToMetric(secondCell.innerText);
+            converted && (secondCell.innerText = converted);
           }
         });
-        let resources = document.querySelector("#overlayPopup.zugzwangsLibraryQuestShopPopup .questResources");
-        if (!resources)
-          return;
-        let tomeDetails = yield getUserItems([
-          "library_boss_trinket",
-          // not a tome but we want it here.
-          "tome_of_wisdom_yellow_convertible",
-          "tome_of_wisdom_green_convertible",
-          "tome_of_wisdom_blue_convertible",
-          "tome_of_wisdom_convertible",
-          // purple.
-          "tome_of_wisdom_red_convertible",
-          "tome_of_wisdom_white_convertible"
-          // silver.
-        ]);
-        if (tomeDetails)
-          for (let tome of tomeDetails) {
-            if (!tome.type)
-              continue;
-            let tomeEl = makeElement("div", ["item", "mh-ui-quest-resources"]), imageEl = makeElement("div", "itemImage"), image = makeElement("img");
-            image.src = tome.thumbnail_transparent || tome.thumbnail || tome.image || "", imageEl.append(image), makeElement("div", "quantity", tome.quantity || 0, imageEl), tomeEl.append(imageEl), makeElement("span", "itemName", tome.name || "", tomeEl), tomeEl.addEventListener("click", () => {
-              hg.views.ItemView.show(tome.type);
-            }), resources.append(tomeEl);
+      }, replaceInJournal = () => {
+        let entries = document.querySelectorAll(".journal .entry .journalbody .journaltext");
+        entries.length && entries.forEach((entry) => {
+          let converted = imperialToMetric(entry.innerHTML);
+          converted && (entry.innerHTML = converted);
+        });
+      }, replaceOnMousePage = () => {
+        let mouseWeightsStats = document.querySelectorAll(".mouseListView-categoryContent-subgroupContainer .mouseListView-categoryContent-subgroup-mouse-stats");
+        mouseWeightsStats.length && mouseWeightsStats.forEach((stat) => {
+          if (stat.classList.contains("average_weight") || stat.classList.contains("heaviest_catch")) {
+            let converted = imperialToMetric(stat.innerText);
+            converted && (stat.innerText = converted);
           }
-      }), modifyAvailableQuestsPopup = () => {
-        if (!document.querySelector("#overlayPopup.zugzwangsLibraryQuestShopPopup"))
-          return;
-        updateAssignmentList(), document.querySelector(".questLink .requirements .error") && (moveErrorText(), removeSmashText());
-      }, checkForQuestSmash = () => {
-        if (!window.location.hash || window.location.hash !== "#smashQuest" || getCurrentTab() !== "crafting" || getCurrentSubtab() !== "hammer")
-          return;
-        let assignment = document.querySelector('.inventoryPage-item.quest[data-produced-item="nothing_stat_item"]');
-        assignment && app.pages.InventoryPage.useItem(assignment);
-      }, restoreQuestTabAfterSmash = (request, data) => {
-        if (!(data && data.item_type && questAssignments.has(data.item_type)))
-          return;
-        let questsTab = document.querySelector(".campPage-tabs-tabHeader.quests");
-        questsTab && (questsTab.remove(), addQuestsTab());
-      }, m400IfEnabled = () => {
-        getSetting("better-quests.m400-helper", !0) && m400_default();
-      }, main11 = () => {
-        if (!isUserTitleAtLeast("lord"))
-          return;
-        let activate = () => {
-          addQuestTabEventListener(), addQuestsTab(), checkForQuestSmash();
-        };
-        m400IfEnabled(), activate(), onNavigation(activate, {
-          page: "camp"
-        }), onNavigation(checkForQuestSmash, {
-          page: "inventory",
-          tab: "crafting",
-          subtab: "hammer"
-        }), onOverlayChange({
-          /**
-           * When the overlay is shown.
-           */
-          show: () => {
-            addResearchSmashWarning(), modifyAvailableQuestsPopup();
-          }
-        }), onRequest("users/usehammer.php", restoreQuestTabAfterSmash);
-      }, init61 = () => __async(void 0, null, function* () {
-        addStyles(styles_default55, "better-quests"), main11();
-      }), better_quests_default = {
-        id: "better-quests",
-        name: "Better Quests",
-        type: "better",
-        default: !0,
-        description: "Allow opening the assignments popup anywhere, improve the UI of the quests tab, and add a helper for the M400 assignments.",
-        load: init61,
-        settings: settings_default23
-      };
-    }
-  });
-  var settings_default24, init_settings25 = __esm({
-    "src/modules/quick-send-supplies/settings/index.js"() {
-      init_utils2();
-      settings_default24 = () => __async(void 0, null, function* () {
-        let tradableItems = yield getTradableItems("type");
-        return tradableItems.unshift({ name: "None", value: "none" }, { seperator: !0 }), [{
-          id: "quick-send-supplies.items",
-          title: "Items shown in popup",
-          default: [
-            {
-              name: "SUPER|brie+",
-              value: "super_brie_cheese"
-            },
-            {
-              name: "Rare Map Dust",
-              value: "rare_map_dust_stat_item"
-            },
-            {
-              name: "Adorned Empyrean Jewel",
-              value: "floating_trap_upgrade_stat_item"
-            },
-            {
-              name: "Rift-torn Roots",
-              value: "rift_torn_roots_crafting_item"
-            }
-          ],
-          settings: {
-            type: "multi-select",
-            number: 4,
-            options: tradableItems
-          }
-        }];
-      });
-    }
-  });
-  var styles_default56, init_styles57 = __esm({
-    "src/modules/quick-send-supplies/styles.css"() {
-      styles_default56 = `.userInteractionButtonsView-buttonGroup{position:relative}.quickSendWrapper{position:absolute;top:-50px;left:60px;z-index:10;display:none;min-width:130px;padding:7px 4px;font-size:10px;color:#000;text-align:center;background:#fff;border:2px solid #000;border-radius:10px;box-shadow:2px 3px 4px #666;transform:translate(-50%)}.treasureMapView-hunter-wrapper .quickSendWrapper{top:60px!important}.userInteractionButtonsView-buttonGroup:hover .quickSendWrapper,.quickSendWrapper:hover{display:block}.treasureMapView-hunter-wrapper:hover .quickSendWrapper{top:30px;display:block}.journal .entry .journaltext input.quickSendInput,.mousehuntPage-content input.quickSendInput,.quickSendInput{width:65px;padding:1px;font-size:12px}.quickSendButton{cursor:pointer}.journal .entry a .quickSendWrapper img,.quickSendWrapper img{width:25px;height:auto;border:none}.quickSendGoWrapper{display:flex;align-items:center;justify-content:space-evenly}.itemsWrapper{display:flex;align-items:center;justify-content:center;margin-bottom:5px}.quickSendItemRadio{display:none}.quickSendItem{margin:0 2px;cursor:pointer;opacity:.5}.quickSendItem.selected{border-radius:10px;box-shadow:0 0 0 2px #fff,0 0 2px 4px #7dea7d;opacity:1}.quickSendItem:hover,.quickSendItem:focus{opacity:1}.quickSendItem:focus,.quickSendItem:hover img{transform:scale(1.3)}.quickSendItem.selected:focus,.quickSendItem.selected:hover img,.quickSendItem.selected:focus img{transform:scale(1)}.quickSendmessage{position:absolute;bottom:30px;display:inline-flex;align-items:center;padding:10px;pointer-events:none;background-color:#ffa;border-radius:3px;box-shadow:1px 1px 3px #000;opacity:0;transition:opacity .5s}.teamPage-memberRow-actions .quickSendButton.mousehuntActionButton.tiny{max-width:30px!important;margin:0}.mh-ui-quick-send-error,.mh-ui-quick-send-success{position:absolute;bottom:-30px}.friendsPage-community-hunterResult .quickSendWrapper{top:-55px;left:35px}
-`;
-    }
-  });
-  var makeItem, makeSendSuppliesButton, main12, addToMapUsers, init62, quick_send_supplies_default, init_quick_send_supplies = __esm({
-    "src/modules/quick-send-supplies/index.js"() {
-      init_utils2();
-      init_settings25();
-      init_styles57();
-      makeItem = (name, type, image, appendTo) => {
-        let item = makeElement("div", "quickSendItem");
-        item.title = name;
-        let itemImage = document.createElement("img");
-        itemImage.setAttribute("src", image), itemImage.setAttribute("alt", name);
-        let selected = makeElement("input", "quickSendItemRadio");
-        selected.setAttribute("type", "radio"), selected.setAttribute("name", "item"), selected.setAttribute("value", type), selected.setAttribute("data-name", name), item.addEventListener("click", () => {
-          selected.checked = !0, document.querySelectorAll(".quickSendItem").forEach((i) => {
-            i.classList.remove("selected");
-          }), item.classList.add("selected");
-        }), item.append(selected), item.append(itemImage), appendTo.append(item);
-      }, makeSendSuppliesButton = (btn, snuid) => __async(void 0, null, function* () {
-        if (snuid === user.sn_user_id)
-          return !1;
-        btn.setAttribute("data-quick-send", "true");
-        let quickSendLinkWrapper = makeElement("form", ["quickSendWrapper", "hidden"]), itemsWrapper = makeElement("div", "itemsWrapper"), itemOptions = [
-          getSetting("quick-send-supplies.items-0", "super_brie_cheese"),
-          getSetting("quick-send-supplies.items-1", "rare_map_dust_stat_item"),
-          getSetting("quick-send-supplies.items-2", "floating_trap_upgrade_stat_item"),
-          getSetting("quick-send-supplies.items-3", "rift_torn_roots_crafting_item")
-        ], allTradableItems = yield getTradableItems("all");
-        for (let item of itemOptions) {
-          let tradableItem = allTradableItems.find((i) => i.type === item);
-          tradableItem && makeItem(tradableItem.name, tradableItem.type, tradableItem.image, itemsWrapper);
-        }
-        quickSendLinkWrapper.append(itemsWrapper);
-        let quickSendGoWrapper = makeElement("div", "quickSendGoWrapper"), quickSendInput = makeElement("input", "quickSendInput");
-        quickSendInput.setAttribute("type", "number"), quickSendInput.setAttribute("placeholder", "Quantity");
-        let quickSendButton = makeElement("div", ["quickSendButton", "mousehuntActionButton", "tiny"], "<span>Send</span>"), sendIt = () => __async(void 0, null, function* () {
-          if (quickSendButton.classList.contains("disabled"))
-            return;
-          let errorMessageOpts = {
-            message: "There was an error sending supplies",
-            append: quickSendGoWrapper,
-            classname: "mh-ui-quick-send-error"
-          }, qty = quickSendInput.value;
-          if (!qty) {
-            errorMessageOpts.message = "Quantity is required", showErrorMessage(errorMessageOpts);
-            return;
-          }
-          let selected = document.querySelector(".quickSendItem.selected");
-          if (!selected) {
-            errorMessageOpts.message = "Item is required", showErrorMessage(errorMessageOpts);
-            return;
-          }
-          let item = selected.querySelector(".quickSendItemRadio");
-          if (!item) {
-            errorMessageOpts.message = "Item is required", showErrorMessage(errorMessageOpts);
-            return;
-          }
-          quickSendButton.classList.add("disabled");
-          let itemType = item.getAttribute("value"), itemName = item.getAttribute("data-name"), url = `https://www.mousehuntgame.com/managers/ajax/users/supplytransfer.php?sn=Hitgrab&hg_is_ajax=1&receiver=${snuid}&uh=${user.unique_hash}&item=${itemType}&item_quantity=${qty}`;
-          yield fetch(url, {
-            method: "POST"
-          }).then((response) => {
-            response.status === 200 && (quickSendInput.value = "", quickSendButton.classList.remove("disabled"), showSuccessMessage({
-              message: `Sent ${qty} ${itemName}!`,
-              append: quickSendGoWrapper,
-              classname: "mh-ui-quick-send-success"
-            }));
-          }).catch(() => {
-            quickSendButton.classList.remove("disabled"), showErrorMessage({
-              message: "There was an error sending supplies",
-              append: quickSendGoWrapper,
-              classname: "mh-ui-quick-send-error"
-            });
-          });
         });
-        return quickSendButton.addEventListener("click", sendIt), quickSendInput.addEventListener("keydown", (event) => {
-          event.key === "Enter" && sendIt();
-        }), quickSendInput.addEventListener("keydown", (event) => {
-          event.key === "Enter" && sendIt();
-        }), quickSendGoWrapper.append(quickSendInput), quickSendGoWrapper.append(quickSendButton), quickSendLinkWrapper.append(quickSendGoWrapper), quickSendLinkWrapper;
-      }), main12 = () => __async(void 0, null, function* () {
-        let sendSupplies = document.querySelectorAll(".userInteractionButtonsView-button.sendSupplies");
-        if (sendSupplies)
-          for (let btn of sendSupplies) {
-            if (btn.classList.contains("disabled") || btn.getAttribute("data-quick-send"))
-              return;
-            let snuid = btn.parentNode.parentNode.getAttribute("data-recipient-snuid");
-            if (!snuid)
-              return;
-            let quickSendLinkWrapper = yield makeSendSuppliesButton(btn, snuid);
-            quickSendLinkWrapper && (btn.parentNode ? btn.nextSibling ? btn.parentNode.insertBefore(quickSendLinkWrapper, btn.nextSibling) : btn.parentNode.append(quickSendLinkWrapper) : btn.append(quickSendLinkWrapper));
-          }
-      }), addToMapUsers = (attempts = 0) => __async(void 0, null, function* () {
-        let mapUsers = document.querySelectorAll(".treasureMapView-hunter-wrapper.mousehuntTooltipParent");
-        if (!mapUsers || !mapUsers.length) {
-          attempts < 10 && setTimeout(() => {
-            addToMapUsers(attempts + 1);
-          }, 500 * (attempts + 1));
-          return;
-        }
-        mapUsers.forEach((btn) => __async(void 0, null, function* () {
-          if (btn.getAttribute("data-quick-send"))
-            return;
-          let snuid = btn.getAttribute("data-snuid");
-          if (!snuid)
-            return;
-          let quickSendLinkWrapper = yield makeSendSuppliesButton(btn, snuid);
-          quickSendLinkWrapper && btn.append(quickSendLinkWrapper);
-        }));
-      }), init62 = () => __async(void 0, null, function* () {
-        addStyles(styles_default56, "quick-send-supplies"), main12(), onNavigation(main12), onRequest("*", () => {
-          setTimeout(main12, 500);
-        }), onEvent("profile_hover", main12), onDialogShow("map", addToMapUsers), onEvent("map_show_goals_tab_click", addToMapUsers), onEvent("map_tab_click", addToMapUsers);
-      }), quick_send_supplies_default = {
-        id: "quick-send-supplies",
-        name: "Quick Send Supplies",
-        type: "feature",
-        default: !0,
-        description: "Hover over the Send Supplies button on someone\u2019s profile or hover-profile to easily send any quantity of an item.",
-        load: init62,
-        settings: settings_default24
-      };
-    }
-  });
-  var styles_default57, init_styles58 = __esm({
-    "src/modules/inventory-lock-and-hide/styles.css"() {
-      styles_default57 = `.mhui-inventory-lock-and-hide-controls-wrapper{position:absolute;top:0;right:10px;display:flex;gap:10px}.mousehuntHud-page-tabContent.traps .mhui-inventory-lock-and-hide-controls-wrapper{top:-30px}.mhui-inventory-lock-and-hide-bulk-controls{display:none;gap:3px;margin-left:3px}.mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-bulk-controls{display:inline-flex}.inventoryPage-tagContent.mhui-inventory-lock-and-hide-controls-active{border-radius:5px;outline:3px solid #f37c7c}.mhui-inventory-lock-and-hide-item-controls{position:absolute;inset:0;display:none;flex-flow:row nowrap;align-items:flex-start;justify-content:space-evenly;background-color:#ffffff7f}.mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-item-controls{z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden{display:inline-block}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden .inventoryPage-item-margin{background-color:#939393}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked{display:inline-block}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked .inventoryPage-item-margin{background-color:#ff7b00}.mhui-inventory-lock-and-hide-controls-active .locked.message_item.inventoryPage-item.small,.mhui-inventory-lock-and-hide-controls-active .locked.bait.inventoryPage-item.small{pointer-events:auto}.mhui-inventory-lock-and-hide-controls-active .tooltip{display:none;visibility:hidden;opacity:0}.locked .inventoryPage-item-content-action,.locked.message_item.inventoryPage-item.small .inventoryPage-item-button,.locked.bait.inventoryPage-item.small .inventoryPage-item-button,.locked .inventoryPage-item-recipeOptions,.locked .campPage-trap-itemBrowser-item-armButton,.locked .inventoryPage-item-imageContainer-action{pointer-events:none;filter:grayscale(1)}.locked.message_item.inventoryPage-item.small,.locked.bait.inventoryPage-item.small{pointer-events:none}.mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix{display:none}.inventoryPage-tagContent-tagTitle{display:flex;align-items:center;padding:0 5px 10px;margin:0;font-size:1.4em;border:none}span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible{top:-5px;right:110px;font-size:.75em}span.inventoryPage-tagContent-tagTitle.tsitu-lock-convertible button{padding:2px;font-size:1em}.mhui-inventory-lock-and-hide-hidden-count{margin-left:5px}.mhui-inventory-lock-and-hide-controls-lock{min-width:35px}.mhui-inventory-lock-and-hide-controls-hide{min-width:25px}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked.hidden .inventoryPage-item-margin{background-color:#e78932}.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.locked .inventoryPage-item-recipeOptions li,.mhui-inventory-lock-and-hide-controls-active .inventoryPage-item.hidden .inventoryPage-item-recipeOptions li{opacity:.3}.mhui-inventory-lock-and-hide-controls-active .mhui-inventory-lock-and-hide-hidden-count{display:none}.search_match .campPage-trap-itemBrowser-item.loaded{display:block!important}
-`;
-    }
-  });
-  var items, itemSettings, getType, saveSettings, getSettings2, shouldAddLocks, addControlsToItems, updateGroupTitles, maybeLockOrHideItems, addBulkControls, getCurrentTabContainer, addLockAndHideControls, toggleControls, onSetPage, addHideStyles, hideItemsInTrapBrowser, main13, init63, inventory_lock_and_hide_default, init_inventory_lock_and_hide = __esm({
-    "src/modules/inventory-lock-and-hide/index.js"() {
-      init_utils2();
-      init_styles58();
-      itemSettings = {}, getType = (itemsToType) => __async(void 0, null, function* () {
-        return items || (items = yield getData("items")), itemsToType.map((item) => {
-          let foundItem = items.find((i) => i.id === item);
-          return foundItem ? foundItem.type : void 0;
-        }).filter(Boolean);
-      }), saveSettings = (shouldUpdateTitles = !0) => __async(void 0, null, function* () {
-        itemSettings.locked = itemSettings.locked.map((i) => Number.parseInt(i, 10)), itemSettings.hidden = itemSettings.hidden.map((i) => Number.parseInt(i, 10)), itemSettings = {
-          locked: itemSettings.locked,
-          hidden: itemSettings.hidden,
-          lockedTypes: yield getType(itemSettings.locked),
-          hiddenTypes: yield getType(itemSettings.hidden)
-        }, saveSetting("inventory-lock-and-hide.items", itemSettings), shouldUpdateTitles && updateGroupTitles();
-      }), getSettings2 = () => getSetting("inventory-lock-and-hide.items", {
-        locked: [],
-        hidden: [],
-        lockedTypes: [],
-        hiddenTypes: []
-      }), shouldAddLocks = (currentTab) => currentTab !== "collectibles" || currentTab !== "bait", addControlsToItems = () => __async(void 0, null, function* () {
-        let itemsEl = document.querySelectorAll(".inventoryPage-item");
-        if (!itemsEl)
-          return;
-        let currentTab = getCurrentTab(), locked = (itemSettings == null ? void 0 : itemSettings.locked) || [], hidden = (itemSettings == null ? void 0 : itemSettings.hidden) || [];
-        itemsEl.forEach((item) => {
-          let id = item.getAttribute("data-item-id");
-          if (id = Number.parseInt(id, 10), !id || item.querySelector(".mhui-inventory-lock-and-hide-item-controls"))
-            return;
-          let isLocked = itemSettings != null && itemSettings.locked ? locked.includes(id) : !1, isHidden2 = itemSettings != null && itemSettings.hidden ? hidden.includes(id) : !1, controls = makeElement("div", "mhui-inventory-lock-and-hide-item-controls");
-          if (shouldAddLocks(currentTab)) {
-            let lock = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-lock"]), lockText = makeElement("span", "", isLocked ? "Unlock" : "Lock");
-            lock.append(lockText);
-            let clickLock = (e) => {
-              e.preventDefault(), e.stopPropagation(), isLocked ? (itemSettings.locked = itemSettings.locked.filter((i) => i !== id), lockText.innerText = "Lock", isLocked = !1, item.classList.remove("locked")) : (itemSettings.locked.push(id), lockText.innerText = "Unlock", isLocked = !0, item.classList.add("locked")), saveSettings();
-            };
-            lock.addEventListener("click", clickLock), controls.addEventListener("click", (e) => {
-              (e.altKey && e.shiftKey || e.metaKey) && clickLock(e);
-            }), controls.append(lock);
-          }
-          let hide = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-hide"]), hideText = makeElement("span", "", isHidden2 ? "Show" : "Hide");
-          hide.append(hideText);
-          let clickHide = (e) => {
-            e.preventDefault(), e.stopPropagation(), isHidden2 ? (itemSettings.hidden = itemSettings.hidden.filter((i) => i !== id), hideText.innerText = "Hide", isHidden2 = !1, item.classList.remove("hidden")) : (itemSettings.hidden.push(id), hideText.innerText = "Show", isHidden2 = !0, item.classList.add("hidden")), saveSettings();
-          };
-          hide.addEventListener("click", clickHide), controls.addEventListener("click", (e) => {
-            e.preventDefault(), e.stopPropagation(), e.altKey && !e.shiftKey && clickHide(e);
-          }), controls.append(hide), item.append(controls);
-        });
-      }), updateGroupTitles = () => {
-        let container = getCurrentTabContainer();
-        if (!container)
-          return;
-        let groups2 = container.querySelectorAll(".inventoryPage-tagContent-tagGroup");
-        groups2 && groups2.forEach((group) => {
-          let title = group.querySelector(".inventoryPage-tagContent-tagTitle");
-          if (!title)
-            return;
-          let hiddenItems = group.querySelectorAll(".inventoryPage-item.hidden");
-          if (!hiddenItems)
-            return;
-          let existingCount = title.querySelector(".mhui-inventory-lock-and-hide-hidden-count");
-          if (existingCount && existingCount.remove(), hiddenItems.length === 0)
-            return;
-          makeElement("span", "mhui-inventory-lock-and-hide-hidden-count", ` (${hiddenItems.length} hidden)`, title);
-          let listings = group.querySelectorAll(".inventoryPage-tagContent-listing .inventoryPage-item");
-          listings && listings.length === hiddenItems.length && group.classList.add("inventory-lock-and-hide-all-hidden");
-        });
-      }, maybeLockOrHideItems = () => __async(void 0, null, function* () {
-        var _a, _b, _c, _d;
-        let itemsEl = document.querySelectorAll(".inventoryPage-item");
-        if (itemsEl) {
-          for (let item of itemsEl) {
-            let id = item.getAttribute("data-item-id");
-            if (id = Number.parseInt(id, 10), !id)
-              return;
-            ((_a = itemSettings == null ? void 0 : itemSettings.locked) == null ? void 0 : _a.length) > 0 && ((_b = itemSettings == null ? void 0 : itemSettings.locked) != null && _b.includes(id)) && item.classList.add("locked"), ((_c = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _c.length) > 0 && ((_d = itemSettings == null ? void 0 : itemSettings.hidden) != null && _d.includes(id)) && item.classList.add("hidden");
-          }
-          updateGroupTitles();
-        }
-      }), addBulkControls = () => {
-        if (!shouldAddLocks(getCurrentTab()))
-          return;
-        let container = getCurrentTabContainer();
-        if (!container)
-          return;
-        let groups2 = container.querySelectorAll(".inventoryPage-tagContent-tagGroup");
-        groups2 && groups2.forEach((group) => {
-          let title = group.querySelector(".inventoryPage-tagContent-tagTitle");
-          if (!title || title.querySelector(".mhui-inventory-lock-and-hide-bulk-controls"))
-            return;
-          let controls = makeElement("div", "mhui-inventory-lock-and-hide-bulk-controls"), lock = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-lock"]);
-          makeElement("span", "", "Lock All", lock), lock.addEventListener("click", (e) => {
-            e.preventDefault(), e.stopPropagation();
-            let itemsEl = group.querySelectorAll(".inventoryPage-item");
-            itemsEl && itemsEl.forEach((item) => {
-              let id = Number.parseInt(item.getAttribute("data-item-id"), 10);
-              if (id) {
-                itemSettings.locked.push(id), item.classList.add("locked");
-                let lockButtonText = item.parentElement.querySelector(".mhui-inventory-lock-and-hide-controls-lock span");
-                lockButtonText && (lockButtonText.innerText = "Unlock");
-              }
-            }), saveSettings(!1);
-          }), controls.append(lock);
-          let unlock = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-lock"]);
-          makeElement("span", "", "Unlock All", unlock), unlock.addEventListener("click", (e) => {
-            e.preventDefault(), e.stopPropagation();
-            let itemsEl = group.querySelectorAll(".inventoryPage-item");
-            itemsEl && itemsEl.forEach((item) => {
-              let id = Number.parseInt(item.getAttribute("data-item-id"), 10);
-              if (id) {
-                itemSettings.locked = itemSettings.locked.filter((i) => i !== id), item.classList.remove("locked");
-                let lockButtonText = item.parentElement.querySelector(".mhui-inventory-lock-and-hide-controls-lock span");
-                lockButtonText && (lockButtonText.innerText = "Lock");
-              }
-            }), saveSettings(!1);
-          }), controls.append(unlock);
-          let hide = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-hide"]);
-          makeElement("span", "", "Hide All", hide), hide.addEventListener("click", (e) => {
-            e.preventDefault(), e.stopPropagation();
-            let itemsEl = group.querySelectorAll(".inventoryPage-item");
-            itemsEl && itemsEl.forEach((item) => {
-              let id = Number.parseInt(item.getAttribute("data-item-id"), 10);
-              if (id) {
-                itemSettings.hidden.push(id), item.classList.add("hidden");
-                let hideButtonText = item.parentElement.querySelector(".mhui-inventory-lock-and-hide-controls-hide span");
-                hideButtonText && (hideButtonText.innerText = "Show");
-              }
-            }), saveSettings(!1);
-          }), controls.append(hide);
-          let show = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-inventory-lock-and-hide-controls-hide"]);
-          makeElement("span", "", "Show All", show), show.addEventListener("click", (e) => {
-            e.preventDefault(), e.stopPropagation();
-            let itemsEl = group.querySelectorAll(".inventoryPage-item");
-            itemsEl && itemsEl.forEach((item) => {
-              let id = Number.parseInt(item.getAttribute("data-item-id"), 10);
-              if (id) {
-                itemSettings.hidden = itemSettings.hidden.filter((i) => i !== id), item.classList.remove("hidden");
-                let hideButtonText = item.parentElement.querySelector(".mhui-inventory-lock-and-hide-controls-hide span");
-                hideButtonText && (hideButtonText.innerText = "Hide");
-              }
-            }), saveSettings(!1);
-          }), controls.append(show), title.append(controls);
-        });
-      }, getCurrentTabContainer = () => {
-        let currentTab = getCurrentTab();
-        return (!currentTab || currentTab === "inventory") && (currentTab = "cheese"), document.querySelector(`.mousehuntHud-page-tabContent.${currentTab} .mousehuntHud-page-subTabContent.active`);
-      }, addLockAndHideControls = () => {
-        if (getCurrentPage() !== "inventory")
-          return;
-        let currentTab = getCurrentTab();
-        if ((!currentTab || currentTab === "inventory") && (currentTab = "cheese"), currentTab === "crafting" || currentTab === "plankrun")
-          return;
-        let container = getCurrentTabContainer();
-        if (!container || container.hasAttribute("mh-improved-inventory-lock-and-hide"))
-          return;
-        container.setAttribute("mh-improved-inventory-lock-and-hide", !0);
-        let controlsWrapper = makeElement("div", "mhui-inventory-lock-and-hide-controls-wrapper"), controls = makeElement("div", ["mousehuntActionButton", "tiny", "lightBlue", "mhui-inventory-lock-and-hide-controls"]), text = makeElement("span", "", "Toggle Lock/Hide");
-        controls.append(text);
-        let isEditing3 = !1;
-        controls.addEventListener("click", (e) => {
-          e.preventDefault(), e.stopPropagation(), addBulkControls(), addControlsToItems(), isEditing3 = !isEditing3, container.setAttribute("mhui-inventory-lock-and-hide-controls-active", isEditing3), container.classList.toggle("mhui-inventory-lock-and-hide-controls-active"), updateGroupTitles();
-        }), controlsWrapper.append(controls), container.prepend(controlsWrapper);
-      }, toggleControls = () => {
-        let button = document.querySelector(".mhui-inventory-lock-and-hide-controls");
-        button && button.click();
-      }, onSetPage = () => {
-        main13(), addEvent("ajax_request", main13, { removeAfterFire: !0, id: "inventory-lock-and-hide" });
-      }, addHideStyles = (theItems) => {
-        var _a;
-        if (!theItems || !theItems.components)
-          return;
-        let classifications = ["base", "weapon", "bait", "trinket"], tagsToHide = {
-          base: [],
-          weapon: [],
-          bait: [],
-          trinket: []
-        }, itemsByTags = {
-          base: {},
-          weapon: {},
-          bait: {},
-          trinket: {}
-        };
-        theItems.components.forEach((item) => {
-          !item.tag_types || !item.classification || classifications.includes(item.classification) && item.tag_types.forEach((tag) => {
-            itemsByTags[item.classification][tag] || (itemsByTags[item.classification][tag] = /* @__PURE__ */ new Set()), itemsByTags[item.classification][tag].add(item.item_id);
-          });
-        }), classifications.forEach((classification) => {
-          Object.keys(itemsByTags[classification]).forEach((tag) => {
-            [...itemsByTags[classification][tag]].every((id) => {
-              var _a2;
-              return (_a2 = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _a2.includes(id);
-            }) && tagsToHide[classification].push(tag);
-          });
-        });
-        let hideTagsStyles = classifications.flatMap(
-          (classification) => tagsToHide[classification].map((tag) => `.${classification} .campPage-trap-itemBrowser-tagGroup.${tag}`)
-        ).join(","), hideItemsStyles = (_a = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _a.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(",");
-        addStyles(`${hideTagsStyles}, ${hideItemsStyles} { display: none; }`, "inventory-lock-and-hide-hide-styles");
-      }, hideItemsInTrapBrowser = () => {
-        var _a, _b;
-        if (itemSettings != null && itemSettings.hidden && ((_a = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _a.length) > 0) {
-          let hideItemsStyles = (_b = itemSettings == null ? void 0 : itemSettings.hidden) == null ? void 0 : _b.map((id) => `.campPage-trap-itemBrowser-items .campPage-trap-itemBrowser-item[data-item-id="${id}"]`).join(",");
-          addStyles(`${hideItemsStyles} { display: none; }`, "inventory-lock-and-hide-hide-styles");
-        }
-      }, main13 = () => __async(void 0, null, function* () {
-        itemSettings = getSettings2(), items = yield getData("items"), maybeLockOrHideItems(), addLockAndHideControls();
-      }), init63 = () => __async(void 0, null, function* () {
-        addStyles(styles_default57, "inventory-lock-and-hide"), itemSettings = getSettings2(), main13(), onNavigation(onSetPage, {
-          page: "inventory",
-          anyTab: !0,
-          anySubTab: !0
-        }), hideItemsInTrapBrowser(), onEvent("mh-improved-toggle-inventory-lock", () => {
-          toggleControls(), hideItemsInTrapBrowser();
-        }), onRequest("users/gettrapcomponents.php", addHideStyles);
-      }), inventory_lock_and_hide_default = {
-        id: "inventory-lock-and-hide",
-        name: "Inventory - Lock and Hide",
-        type: "feature",
-        default: !0,
-        description: "Lock and hide items in your inventory. Also hide items in the trap browser.",
-        load: init63
-      };
-    }
-  });
-  var styles_default58, init_styles59 = __esm({
-    "src/modules/inventory-only-open-multiple/styles.css"() {
-      styles_default58 = `.inventoryPage-item.convertible .inventoryPage-item-content-action input.button:first-of-type:not(:only-of-type){pointer-events:all;filter:grayscale(0)}.inventoryPage-item.convertible .inventoryPage-item-content-action input[data-item-action=all],.inventoryPage-item.convertible .inventoryPage-item-content-action input[data-item-action=single]{pointer-events:none;filter:grayscale(1)}.inventoryPage-item.convertible .inventoryPage-item-content-action input.allButOne{pointer-events:all;filter:none}.inventoryPage-item.convertible .inventoryPage-item-content-action input:first-of-type:not(:only-of-type),.inventoryPage-item.convertible .inventoryPage-item-content-action input.allButOne{pointer-events:none}
-`;
-    }
-  });
-  var init64, inventory_only_open_multiple_default, init_inventory_only_open_multiple = __esm({
-    "src/modules/inventory-only-open-multiple/index.js"() {
-      init_utils2();
-      init_styles59();
-      init64 = () => __async(void 0, null, function* () {
-        addStyles(styles_default58, "only-open-multiple");
-      }), inventory_only_open_multiple_default = {
-        id: "only-open-multiple",
-        name: "Inventory - Only Open Extras",
-        type: "feature",
-        default: !1,
-        description: "Lock opening items in your inventory unless you have multiples of them.",
-        load: init64
-      };
-    }
-  });
-  var inventory_open_all_default, init_inventory_open_all = __esm({
-    "src/modules/inventory-open-all/index.js"() {
-      init_utils2();
-      inventory_open_all_default = {
-        id: "open-all",
-        name: "Inventory - Open All",
-        type: "feature",
-        default: !0,
-        description: "Add an \u201COpen All\u201D button to convertible items in your inventory.",
-        load: initOpenButtons
-      };
-    }
-  });
-  var settings_default25, init_settings26 = __esm({
-    "src/modules/lgs-reminder/settings/index.js"() {
-      settings_default25 = () => __async(void 0, null, function* () {
-        return [
-          {
-            id: "lgs-reminder.new-style",
-            title: 'Use "new" style'
-          },
-          {
-            id: "lgs-reminder.days-and-lower",
-            title: "Convert weeks and months to days"
-          }
-        ];
-      });
-    }
-  });
-  var styles_default59, init_styles60 = __esm({
-    "src/modules/lgs-reminder/styles.css"() {
-      styles_default59 = `.mousehunt-improved-lgs-reminder,.default.mhui-custom-shield .mousehunt-improved-lgs-reminder{position:absolute;right:8px;bottom:4px;left:13px;z-index:1;font-size:11px;color:#684434;text-align:center;background-color:#ddcda2d9;border:1px solid #9d9a91;border-radius:5px}.default .mousehunt-improved-lgs-reminder{left:-5px}.default-fancy .mousehunt-improved-lgs-reminder{right:15px}.mousehuntHud-shield.color .mousehunt-improved-lgs-reminder{right:20px;left:0}.mhui-custom-shield .mousehunt-improved-lgs-reminder.exact{font-size:10px}.mousehunt-improved-lgs-reminder-new.lgs-warning,.mousehunt-improved-lgs-reminder.lgs-warning,.default.mhui-custom-shield .mousehunt-improved-lgs-reminder.lgs-warning{background-color:#ffbfbf}.mousehunt-improved-lgs-reminder-new.lgs-danger,.mousehunt-improved-lgs-reminder.lgs-danger,.default.mhui-custom-shield .mousehunt-improved-lgs-reminder.lgs-danger{color:#f1d7d7;background-color:#b32d26;border-color:#af8080;transition:1.75s;animation:mh-improved-fade-slightly 1.75s infinite}@media (prefers-reduced-motion: reduce){.mousehunt-improved-lgs-reminder-new.lgs-danger,.mousehunt-improved-lgs-reminder.lgs-danger,.default.mhui-custom-shield .mousehunt-improved-lgs-reminder-new.lgs-danger{animation:none}}.mousehunt-improved-lgs-reminder-wrapper{position:absolute;right:642px;bottom:0;left:15px;font-size:9px}.mousehunt-improved-lgs-reminder-new{display:flex;align-items:center;justify-content:center;padding:2px 5px;text-align:center;background:linear-gradient(#fff 45%,#f8e7bb 55%);border:1px solid #d4af37;border-bottom:none;border-radius:6px 6px 0 0}.mousehunt-improved-lgs-reminder-new.lgs-warning{background:linear-gradient(#fff,#ffbfbf)}.mousehunt-improved-lgs-reminder-new.lgs-danger{background:#b32d26;border:none}
-`;
-    }
-  });
-  var isExact, getShieldEndDateTime, getShieldTime, getShieldTimeFormatted, updateLgsReminder, main14, setOffset, offset, init65, lgs_reminder_default2, init_lgs_reminder2 = __esm({
-    "src/modules/lgs-reminder/index.js"() {
-      init_utils2();
-      init_settings26();
-      init_styles60();
-      isExact = () => getSetting("lgs-reminder.show-seconds"), getShieldEndDateTime = () => {
-        let shieldExpiry = user.shield_expiry;
-        if (!shieldExpiry)
-          return new Date(Date.now() - 60 * 1e3);
-        let realExpiry = Date.parse(shieldExpiry) - offset;
-        return new Date(realExpiry);
-      }, getShieldTime = () => {
-        let expiry = getShieldEndDateTime();
-        return Math.floor(expiry - /* @__PURE__ */ new Date());
-      }, getShieldTimeFormatted = () => {
-        let time = getShieldTime();
-        if (!time)
-          return "";
-        let units = ["y", "mo", "w", "d", "h"];
-        return getSetting("lgs-reminder.days-and-lower") && (units = ["d", "h", "m"]), isExact() && units.push("s"), humanizer(time, {
-          round: !0,
-          units,
-          spacer: "",
-          delimiter: " "
-        });
-      }, updateLgsReminder = (el) => {
-        let time = getShieldTime();
-        time <= 60 * 60 * 24 * 2 && el.classList.add("lgs-warning"), time <= 60 * 60 && el.classList.add("lgs-danger"), el.innerText = getShieldTimeFormatted();
-      }, main14 = () => {
-        startingTime = getShieldTime();
-        let shieldEl = document.querySelector(".mousehuntHud-shield.golden");
-        if (!shieldEl)
-          return;
-        let newStyle = getSetting("lgs-reminder.new-style", !1), wrapper, reminder;
-        newStyle ? (wrapper = makeElement("div", "mousehunt-improved-lgs-reminder-wrapper"), reminder = makeElement("div", "mousehunt-improved-lgs-reminder-new")) : reminder = makeElement("div", "mousehunt-improved-lgs-reminder"), isExact() && reminder.classList.add("exact");
-        let endDate = getShieldEndDateTime().toLocaleDateString("en-US", {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "numeric",
-          minute: "numeric",
-          second: "numeric"
-        });
-        if (reminder.title = `LGS Expires on ${endDate} (${getShieldTimeFormatted()} remaining)`, newStyle) {
-          let existing = document.querySelector(".mousehunt-improved-lgs-reminder-wrapper");
-          existing && existing.remove(), wrapper.append(reminder), shieldEl.after(wrapper);
-        } else {
-          let existing = document.querySelector(".mousehunt-improved-lgs-reminder");
-          existing && existing.remove(), shieldEl.append(reminder);
-        }
-        updateLgsReminder(reminder), document.addEventListener("horn-countdown-tick-minute", () => updateLgsReminder(reminder));
-      }, setOffset = () => {
-        let userShieldExpiry = new Date(Date.parse(user.shield_expiry)), userShieldSeconds = new Date((/* @__PURE__ */ new Date()).setSeconds((/* @__PURE__ */ new Date()).getSeconds() + user.shield_seconds)), difference = userShieldExpiry - userShieldSeconds;
-        offset = Math.round(difference / 1e3) * 1e3;
-      }, init65 = () => __async(void 0, null, function* () {
-        user.has_shield && (setOffset(), addStyles(styles_default59, "lgs-reminder"), main14(), onSettingsChange("lgs-reminder.new-style", () => {
-          [
-            ".mousehunt-improved-lgs-reminder",
-            ".mousehunt-improved-lgs-reminder-new",
-            ".mousehunt-improved-lgs-reminder-wrapper"
-          ].forEach((selector) => {
-            let el = document.querySelector(selector);
-            el && el.remove();
-          }), main14();
-        }), onActivation("lgs-reminder", main14), onDeactivation("lgs-reminder", () => {
-          let reminder = document.querySelector(".mousehunt-improved-lgs-reminder");
-          reminder && reminder.remove();
-        }));
-      }), lgs_reminder_default2 = {
-        id: "lgs-reminder",
-        name: `${getSetting("experiments.new-settings-styles-columns", !1) ? "LGS" : "Lucky Golden Shield"} Duration & Reminder`,
-        type: "feature",
-        description: "Show your LGS duration in the HUD and warn you when it\u2019s about to expire.",
-        default: !1,
-        load: init65,
-        settings: settings_default25
-      };
-    }
-  });
-  var settings_default26, init_settings27 = __esm({
-    "src/modules/wisdom-in-stat-bar/settings/index.js"() {
-      settings_default26 = () => __async(void 0, null, function* () {
-        return [{
-          id: "wisdom-in-stat-bar-auto-refresh",
-          title: "Update automatically",
-          default: !0
-        }];
-      });
-    }
-  });
-  var getWisdomSetting, saveWisdomSetting, getWisdom, getWisdomFormatted, addWisdomToStatBar, updateWisdom, addRefreshListener, useCachedWisdom, legacyHudMenu, init66, wisdom_in_stat_bar_default, init_wisdom_in_stat_bar = __esm({
-    "src/modules/wisdom-in-stat-bar/index.js"() {
-      init_utils2();
-      init_settings27();
-      getWisdomSetting = (key) => __async(void 0, null, function* () {
-        return yield cacheGet(`wisdom-stat-${key}`);
-      }), saveWisdomSetting = (key, value) => {
-        cacheSet(`wisdom-stat-${key}`, value);
-      }, getWisdom = () => __async(void 0, null, function* () {
-        var _a;
-        let wisdom = 0;
-        if (useCachedWisdom) {
-          let cachedWisdom = yield getWisdomSetting("value");
-          if (cachedWisdom)
-            return cachedWisdom;
-        }
-        return wisdom = yield getUserItems(["wisdom_stat_item"], !0), wisdom = ((_a = wisdom[0]) == null ? void 0 : _a.quantity) || 0, saveWisdomSetting("value", wisdom), saveWisdomSetting("last-updated", Date.now()), wisdom;
-      }), getWisdomFormatted = () => __async(void 0, null, function* () {
-        return (yield getWisdom()).toLocaleString();
-      }), addWisdomToStatBar = (wisdom) => {
-        let existingWisdom = document.querySelector(".mousehuntHud-userStat-row.wisdom .hud_wisdom");
-        if (existingWisdom) {
-          existingWisdom.textContent = wisdom, typeof blinkText != "undefined" && blinkText(existingWisdom, "#59f659", "#fff", 0.7);
-          return;
-        }
-        let pointsRow = document.querySelector(legacyHudMenu ? ".headsup > div:nth-child(5) ul li:nth-child(2)" : ".mousehuntHud-userStat-row.points");
-        if (!pointsRow)
-          return;
-        let wisdomRow = makeElement(legacyHudMenu ? "li" : "div", ["mousehuntHud-userStat-row", "wisdom"]);
-        makeElement("span", legacyHudMenu ? "hudstatlabel" : "label", "Wisdom", wisdomRow), makeElement("span", legacyHudMenu ? "hudstatvalue hud_wisdom" : "value hud_wisdom", wisdom, wisdomRow), wisdomRow.setAttribute("title", "Click to refresh wisdom"), pointsRow.after(wisdomRow);
-      }, updateWisdom = () => __async(void 0, null, function* () {
-        let wisdom = yield getWisdomFormatted();
-        addWisdomToStatBar(wisdom);
-      }), addRefreshListener = () => {
-        let wisdomRow = document.querySelector(".mousehuntHud-userStat-row.wisdom");
-        wisdomRow && wisdomRow.addEventListener("click", () => {
-          let cachedWisdomSetting = useCachedWisdom;
-          useCachedWisdom = !1, updateWisdom(), useCachedWisdom = cachedWisdomSetting;
-        });
-      }, useCachedWisdom = !1, legacyHudMenu = !1, init66 = () => __async(void 0, null, function* () {
-        getSetting("wisdom-in-stat-bar.auto-refresh", !0) && (useCachedWisdom = !1, onTurn(updateWisdom));
-        let legacyMenu = getSetting("legacy-hud.menu", !1), legacyHud = getSetting("legacy-hud.stats", !1);
-        legacyHudMenu = getSetting("legacy-hud", !1) && (legacyHud || legacyMenu === legacyHud) || isLegacyHUD(), yield updateWisdom(), addRefreshListener(), onDeactivation(() => {
-          let wisdomRow = document.querySelector(".mousehuntHud-userStat-row.wisdom");
-          wisdomRow && wisdomRow.remove();
-        });
-      }), wisdom_in_stat_bar_default = {
-        id: "wisdom-in-stat-bar",
-        name: "Wisdom in Stat Bar",
-        type: "feature",
-        default: !1,
-        description: "Show wisdom in the stat bar.",
-        load: init66,
-        settings: settings_default26
-      };
-    }
-  });
-  var styles_default60, init_styles61 = __esm({
-    "src/modules/flrt-helper/styles.css"() {
-      styles_default60 = `.mh-improved-flrt-helper-popup{display:grid;grid-template-columns:1fr 1fr;justify-items:center}.mh-improved-flrt-helper-popup .flrt-search-form{display:flex;align-items:center;justify-content:space-around;padding:10px;background-color:#dcf7ff;border:1px solid #a1a1a1;border-radius:5px;box-shadow:0 1px 2px -1px #b5b5b5}.mh-improved-flrt-helper-popup .flrt-friend-finder{display:flex;flex-direction:column}.mh-improved-flrt-helper-popup .friendsPage-friendRow.friendsPage-requestRow{border-radius:5px;box-shadow:1px 1px 4px #cdb495}.mh-improved-flrt-helper-popup .friendsPage-friendRow-imageContainer{width:75px;height:75px;margin-left:3px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-content{max-width:226px;min-height:75px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar-icon{top:-10px;left:0;height:35px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar-name{padding-left:15px;font-size:14px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar{padding-left:20px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar-titleDetail{left:7px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-environment{position:relative;margin-left:-10px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-environment-icon{position:absolute;top:-5px;left:0;width:20px;height:20px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-environment-name{position:absolute;left:25px;font-size:10px;vertical-align:top}.mh-improved-flrt-helper-popup .friendsPage-friendRow .friendsPage-friendRow-actions{top:40px;right:0}.mh-improved-flrt-helper-popup .friendsPage-friendRow-actions-interactionButtons{padding-right:0}.mh-improved-flrt-helper-popup .friendsPage-friendRow-actions .mousehuntTooltip,.mh-improved-flrt-helper-popup .friendsPage-requestRow-actionStatus.accepted,.mh-improved-flrt-helper-popup .userInteractionButtonsView-action[data-action=send_daily_gift],.mh-improved-flrt-helper-popup .userInteractionButtonsView-action[data-action=send_draw_ballot]{display:none!important}.mh-improved-flrt-helper-popup .userInteractionButtonsView-button{width:45px;height:45px;background-size:45px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-statsContainer{border-radius:0}.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat.map,.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat.team,.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat-label{display:none!important}.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat.online span{width:auto}.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat{width:auto;margin-right:10px}.mh-improved-flrt-helper-popup .instructions{padding:10px;margin-top:auto;font-style:italic}.mh-improved-flrt-helper-popup .flrt-items-to-send{min-width:80%}.mh-improved-flrt-helper-popup .flrt-item{display:flex;flex-direction:row;align-items:center;width:100%;padding:5px;margin-bottom:5px;cursor:pointer;background-color:#eee;border:1px solid #ddd;border-radius:5px;box-shadow:0 1px 2px -1px #b5b5b5}.mh-improved-flrt-helper-popup .flrt-item .itemImage,.mh-improved-flrt-helper-popup .flrt-item .itemImage img{width:45px;height:45px}.mh-improved-flrt-helper-popup .flrt-item-info{display:flex;align-items:center;margin-left:5px}.mh-improved-flrt-helper-popup .flrt-item-name{font-weight:900;vertical-align:top}.mh-improved-flrt-helper-popup .flrt-item-disabled .itemImage{filter:grayscale(1);opacity:.5}.mh-improved-flrt-helper-popup .flrt-item-info input[type=checkbox]:disabled{opacity:0}.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sending{background-color:#f3c019}.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent{position:relative;background-color:#3fcd84}.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent:after{position:absolute;right:0;display:inline-block;width:25px;height:25px;margin-right:5px;margin-bottom:-2px;vertical-align:middle;content:"";background-image:url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png);background-repeat:no-repeat;background-size:100%}
-`;
-    }
-  });
-  var addFlrtButtonToConvertible, sendItemsToMaptain, flrtPopup, init67, flrt_helper_default, init_flrt_helper = __esm({
-    "src/modules/flrt-helper/index.js"() {
-      init_utils2();
-      init_styles61();
-      addFlrtButtonToConvertible = (response) => __async(void 0, null, function* () {
-        if (!(response.convertible_open && response.convertible_open.name && response.convertible_open.items))
-          return;
-        let items5 = [], tradableItems = yield getData("items-tradable");
-        for (let element of response.convertible_open.items) {
-          let itemData = {
-            type: element.type,
-            name: element.name,
-            image: element.thumb,
-            quantity: element.quantity
-          };
-          tradableItems ? tradableItems.find((tradableItem) => tradableItem.type === element.type) && items5.push(itemData) : items5.push(itemData);
-        }
-        let buttons = document.querySelector(".jsDialogContainer .suffix");
-        if (!buttons)
-          return;
-        let flrtBtn = makeElement("button", ["mousehuntActionButton", "small", "button"]);
-        makeElement("span", [], "Return to Maptain", flrtBtn), flrtBtn.addEventListener("click", () => {
-          flrtPopup(items5);
-        }), buttons.prepend(flrtBtn);
-      }), sendItemsToMaptain = (snuid, items5) => __async(void 0, null, function* () {
-        for (let item of items5)
-          item.element.classList.add("flrt-item-sending"), yield doRequest("managers/ajax/users/supplytransfer.php", {
-            item: item.type,
-            item_quantity: item.quantity,
-            receiver: snuid
-          }), item.element.classList.remove("flrt-item-sending"), item.element.classList.add("flrt-item-sent");
-        let sendButton = document.querySelector(".flrt-send-items");
-        sendButton && (sendButton.outerHTML = '<input type="submit" value="Continue" class="jsDialogClose button">');
-      }), flrtPopup = (items5) => {
-        let lastMaptain = getLastMaptain(), itemContent = "";
-        items5.forEach((item) => {
-          itemContent += `<div class="flrt-item" data-item-type="${item.type}" data-item-quantity="${item.quantity}">
-      <div class="itemImage">
-        <img src="${item.image}">
-        <div class="quantity">${item.quantity}</div>
-      </div>
-      <div class="flrt-item-info">
-        <input type="checkbox" checked data-item-type="${item.type}">
-        <span class="flrt-item-name">${item.name}</span>
-      </div>
-    </div>`;
-        });
-        let popup = createPopup({
-          template: "ajax",
-          title: "Send tradables to Maptain",
-          content: `<div class="mh-improved-flrt-helper-popup">
-      <div class="flrt-friend-finder">
-          <form action="https://www.mousehuntgame.com/friends.php?tab=requests&amp;sub_tab=community" method="post" class="flrt-search-form friends-page-id-search friendsPage-community-hunterIdForm" onsubmit="app.pages.FriendsPage.submitHunterIdForm(this); return false;">
-            <input type="number" value="${lastMaptain || ""}" name="user_id" maxlength="10" class="friendsPage-community-hunterIdForm-input">
-            <a class="mousehuntActionButton small search-for-hunter" href="#" onclick="app.pages.FriendsPage.triggerHunterForm(this); return false;"><span>Search</span></a>
-          </form>
-        <div class="friendsPage-community-hunterResult"></div>
-        <div class="instructions">
-          Select the tradable items you want to send.
-        </div>
-      </div>
-      <div class="flrt-items-to-send">
-        ${itemContent}
-      </div>
-    </div>`
-        });
-        if (popup.addToken("{*prefix*}", '<h2 class="title">Send tradable items</h2>'), popup.addToken("{*suffix*}", '<div class="mousehuntActionButton flrt-send-items"><span>Send items to Maptain</span></div>'), popup.show(), document.querySelectorAll(".flrt-item").forEach((item) => {
-          let checkbox = item.querySelector('input[type="checkbox"]'), toggle = () => {
-            checkbox.checked = !checkbox.checked, item.classList.toggle("flrt-item-disabled", !checkbox.checked);
-          };
-          item.addEventListener("click", toggle);
-        }), lastMaptain) {
-          let search = document.querySelector(".search-for-hunter");
-          search && app.pages.FriendsPage.triggerHunterForm(search);
-        }
-        let sendBtn = document.querySelector(".flrt-send-items");
-        sendBtn && sendBtn.addEventListener("click", () => {
-          sendBtn.disabled = !0, sendBtn.classList.add("disabled");
-          let id = document.querySelector(".friendsPage-community-hunterIdForm-input");
-          if (!id)
-            return;
-          let sendingItems = document.querySelectorAll(".flrt-item"), itemsToSend = [];
-          sendingItems.forEach((item) => {
-            let checkbox = item.querySelector('input[type="checkbox"]');
-            if (checkbox) {
-              if (checkbox.checked) {
-                let itemData = {
-                  type: item.getAttribute("data-item-type"),
-                  quantity: Number.parseInt(item.getAttribute("data-item-quantity"), 10),
-                  element: item
-                };
-                itemsToSend.push(itemData);
-              }
-              checkbox.disabled = !0;
-            }
-          });
-          let row = document.querySelector(".friendsPage-friendRow.friendsPage-requestRow");
-          if (!row)
-            return;
-          let snuid = row.getAttribute("data-snuid") || id.value;
-          sendItemsToMaptain(snuid, itemsToSend);
-        });
+      }, convertOnPage = () => {
+        replaceOnMousePage(), replaceInJournal();
       }, init67 = () => __async(void 0, null, function* () {
-        addStyles(styles_default60, "flrt-helper"), onDialogShow("treasureMapPopup", cacheFinishedMap), onRequest("users/useconvertible.php", addFlrtButtonToConvertible);
-      }), flrt_helper_default = {
-        id: "flrt-helper",
-        name: "FLRT Helper",
+        onDialogShow("all", convertInDialog), onRequest("*", convertOnPage), convertOnPage();
+      }), metric_default = {
+        id: "metric",
+        name: "Metric Units",
         type: "feature",
         default: !1,
-        description: "Add a \u201CReturn to Maptain\u201D button when opening a chest from a map, allowing you to choose which tradable items to send directly to the Maptain.",
+        description: "Use metric units instead of imperial units.",
         load: init67
       };
     }
@@ -16167,24 +16049,24 @@ ${csv}`);
       });
     }
   });
-  var styles_default61, init_styles62 = __esm({
+  var styles_default60, init_styles61 = __esm({
     "src/modules/better-marketplace/modules/small-images/styles.css"() {
-      styles_default61 = `.marketplaceView-table-image .marketplaceView-itemImage{width:40px;height:40px;min-height:unset}
+      styles_default60 = `.marketplaceView-table-image .marketplaceView-itemImage{width:40px;height:40px;min-height:unset}
 `;
     }
   });
   var small_images_default, init_small_images = __esm({
     "src/modules/better-marketplace/modules/small-images/index.js"() {
       init_utils2();
-      init_styles62();
+      init_styles61();
       small_images_default = () => __async(void 0, null, function* () {
-        addStyles(styles_default61, "better-marketplace-small-images");
+        addStyles(styles_default60, "better-marketplace-small-images");
       });
     }
   });
-  var styles_default62, init_styles63 = __esm({
+  var styles_default61, init_styles62 = __esm({
     "src/modules/better-marketplace/styles.css"() {
-      styles_default62 = `div#select2-drop.marketplaceView-header-search-dropdown .select2-result-label{white-space:nowrap}div#select2-drop.marketplaceView-header-search-dropdown .select2-result-sub .select2-result-label{display:grid;grid-template-columns:30px 4fr 1fr;place-items:center start;padding-left:10px}div#select2-drop.marketplaceView-header-search-dropdown .friendsPage-filter-environment-thumb{width:25px;height:25px;border-radius:0;box-shadow:none}.marketplaceView-item-quickListings .marketplaceView-table-listing-quantity:hover,.marketplaceView-item-quickListings .marketplaceView-table-listing-quantity:focus{text-decoration:underline}a.marketplaceView-goldValue.marketplaceView-quantityNotGold:after{display:none;background-image:none}label.mhui-marketplace-search-toggle{display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;border-radius:10px}.marketplaceView-header-searchContainer{top:5px;right:30px!important;height:70px}.marketplaceView-header-search-title{margin-bottom:2px}.marketplaceView-item-leftBlock{margin-top:20px}.marketplaceView-itemImage .limitedEdition{display:none}.marketplaceHome-blockItem.small .marketplaceView-itemImage{width:70px;height:70px;padding-bottom:0;margin-bottom:10px}.marketplaceHome-blockItem.small .marketplaceView-item-imageContainer{width:auto}.marketplaceView-favouriteButton{top:-4px;bottom:unset}.marketplaceHome-blockItem.small .marketplaceView-favouriteButton{top:-14px;right:5px}.marketplaceHome-blockItem.small .marketplaceView-favouriteButton:hover{right:3px;bottom:-6px}.marketplaceView-item-imageContainer .marketplaceView-favouriteButton:hover,.marketplaceView-table-image .marketplaceView-favouriteButton:hover{right:1px;bottom:-4px;border:none;outline:2px solid #ccc}.marketplaceHome-block.favourites .marketplaceView-favouriteButton:hover{right:5px;bottom:-4px;border:none;outline:2px solid #ccc}.marketplaceView-item-imageContainer:hover .marketplaceView-favouriteButton.disabled{display:none}tr.open td.marketplaceView-table-name{white-space:nowrap}.marketplaceListing .marketplaceView-itemImage.favourite{border:none;box-shadow:none}.marketplaceView-item h1{display:flex;align-items:center;justify-content:flex-start}.mh-improved-marketplace-item-title-actions{display:inline-flex;flex-grow:1;gap:5px;justify-content:end;margin-right:5px}.marketplaceView-item.view .mousehuntCharacterGuideBox .mousehuntCharacterGuideBox-content{margin-left:80px}.marketplaceView-item-averagePrice,.marketplaceView-item-averagePrice span{font-size:12px}.marketplaceView-table-chartImage{position:absolute;top:0;right:-30px;bottom:0;height:49px;opacity:.5}.marketplaceView-table-name:hover .marketplaceView-table-chartImage{opacity:1}td.marketplaceView-table-name{position:relative}.marketplaceView-header-search-dropdown .select2-search{margin-top:5px}.marketplaceHome-block-statTitle{display:flex;gap:3px;align-items:center}.marketplaceHome-block-statTitle .marketplaceHome-block-viewAll{top:unset;display:block;vertical-align:middle}.marketplaceView h1{border:none}.marketplaceView-browse-filter label{display:flex;align-items:center}.marketplaceView-item-rightBlock .mousehuntCharacterGuideBox-content li{background-position-y:-2px}.marketplaceView-item-input input{padding:4px}.marketplaceView-itemImage.favourite{box-shadow:none}.marketplaceView-table tr.empty{background:#f9f9f9!important}.marketplaceView-browse-sidebar-link:hover{padding-right:9px;margin-right:1px}.marketplaceView-browse-sidebar-link{border-top-left-radius:11px;border-bottom-left-radius:11px}.marketplaceHome-block-viewAll{border-color:#000}
+      styles_default61 = `div#select2-drop.marketplaceView-header-search-dropdown .select2-result-label{white-space:nowrap}div#select2-drop.marketplaceView-header-search-dropdown .select2-result-sub .select2-result-label{display:grid;grid-template-columns:30px 4fr 1fr;place-items:center start;padding-left:10px}div#select2-drop.marketplaceView-header-search-dropdown .friendsPage-filter-environment-thumb{width:25px;height:25px;border-radius:0;box-shadow:none}.marketplaceView-item-quickListings .marketplaceView-table-listing-quantity:hover,.marketplaceView-item-quickListings .marketplaceView-table-listing-quantity:focus{text-decoration:underline}a.marketplaceView-goldValue.marketplaceView-quantityNotGold:after{display:none;background-image:none}label.mhui-marketplace-search-toggle{display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;border-radius:10px}.marketplaceView-header-searchContainer{top:5px;right:30px!important;height:70px}.marketplaceView-header-search-title{margin-bottom:2px}.marketplaceView-item-leftBlock{margin-top:20px}.marketplaceView-itemImage .limitedEdition{display:none}.marketplaceHome-blockItem.small .marketplaceView-itemImage{width:70px;height:70px;padding-bottom:0;margin-bottom:10px}.marketplaceHome-blockItem.small .marketplaceView-item-imageContainer{width:auto}.marketplaceView-favouriteButton{top:-4px;bottom:unset}.marketplaceHome-blockItem.small .marketplaceView-favouriteButton{top:-14px;right:5px}.marketplaceHome-blockItem.small .marketplaceView-favouriteButton:hover{right:3px;bottom:-6px}.marketplaceView-item-imageContainer .marketplaceView-favouriteButton:hover,.marketplaceView-table-image .marketplaceView-favouriteButton:hover{right:1px;bottom:-4px;border:none;outline:2px solid #ccc}.marketplaceHome-block.favourites .marketplaceView-favouriteButton:hover{right:5px;bottom:-4px;border:none;outline:2px solid #ccc}.marketplaceView-item-imageContainer:hover .marketplaceView-favouriteButton.disabled{display:none}tr.open td.marketplaceView-table-name{white-space:nowrap}.marketplaceListing .marketplaceView-itemImage.favourite{border:none;box-shadow:none}.marketplaceView-item h1{display:flex;align-items:center;justify-content:flex-start}.mh-improved-marketplace-item-title-actions{display:inline-flex;flex-grow:1;gap:5px;justify-content:end;margin-right:5px}.marketplaceView-item.view .mousehuntCharacterGuideBox .mousehuntCharacterGuideBox-content{margin-left:80px}.marketplaceView-item-averagePrice,.marketplaceView-item-averagePrice span{font-size:12px}.marketplaceView-table-chartImage{position:absolute;top:0;right:-30px;bottom:0;height:49px;opacity:.5}.marketplaceView-table-name:hover .marketplaceView-table-chartImage{opacity:1}td.marketplaceView-table-name{position:relative}.marketplaceView-header-search-dropdown .select2-search{margin-top:5px}.marketplaceHome-block-statTitle{display:flex;gap:3px;align-items:center}.marketplaceHome-block-statTitle .marketplaceHome-block-viewAll{top:unset;display:block;vertical-align:middle}.marketplaceView h1{border:none}.marketplaceView-browse-filter label{display:flex;align-items:center}.marketplaceView-item-rightBlock .mousehuntCharacterGuideBox-content li{background-position-y:-2px}.marketplaceView-item-input input{padding:4px}.marketplaceView-itemImage.favourite{box-shadow:none}.marketplaceView-table tr.empty{background:#f9f9f9!important}.marketplaceView-browse-sidebar-link:hover{padding-right:9px;margin-right:1px}.marketplaceView-browse-sidebar-link{border-top-left-radius:11px;border-bottom-left-radius:11px}.marketplaceHome-block-viewAll{border-color:#000}
 `;
     }
   });
@@ -16193,7 +16075,7 @@ ${csv}`);
       init_utils2();
       init_settings28();
       init_small_images();
-      init_styles63();
+      init_styles62();
       initSearch = (searchInputDOM) => {
         let blankOpt = document.createElement("option");
         blankOpt.value = "", blankOpt.text = "", blankOpt.disabled = !0, blankOpt.selected = !0, blankOpt.hidden = !0, searchInputDOM.prepend(blankOpt), searchInputDOM = $(".marketplaceView-header-search"), searchInputDOM.select2({
@@ -16300,7 +16182,7 @@ ${csv}`);
           _showBrowser(category), addChartToCategories();
         });
       }, originalSelect = null, newSelect = null, init68 = () => __async(void 0, null, function* () {
-        addStyles(styles_default62, "better-marketplace"), getSetting("better-marketplace.small-images") && small_images_default(), onOverlayChange({
+        addStyles(styles_default61, "better-marketplace"), getSetting("better-marketplace.small-images") && small_images_default(), onOverlayChange({
           marketplace: {
             /**
              * Run when the marketplace is shown.
@@ -16321,20 +16203,139 @@ ${csv}`);
       };
     }
   });
-  // dist/data/emotes.json
+  var styles_default62, init_styles63 = __esm({
+    "src/modules/flrt-helper/styles.css"() {
+      styles_default62 = `.mh-improved-flrt-helper-popup{display:grid;grid-template-columns:1fr 1fr;justify-items:center}.mh-improved-flrt-helper-popup .flrt-search-form{display:flex;align-items:center;justify-content:space-around;padding:10px;background-color:#dcf7ff;border:1px solid #a1a1a1;border-radius:5px;box-shadow:0 1px 2px -1px #b5b5b5}.mh-improved-flrt-helper-popup .flrt-friend-finder{display:flex;flex-direction:column}.mh-improved-flrt-helper-popup .friendsPage-friendRow.friendsPage-requestRow{border-radius:5px;box-shadow:1px 1px 4px #cdb495}.mh-improved-flrt-helper-popup .friendsPage-friendRow-imageContainer{width:75px;height:75px;margin-left:3px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-content{max-width:226px;min-height:75px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar-icon{top:-10px;left:0;height:35px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar-name{padding-left:15px;font-size:14px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar{padding-left:20px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-titleBar-titleDetail{left:7px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-environment{position:relative;margin-left:-10px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-environment-icon{position:absolute;top:-5px;left:0;width:20px;height:20px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-environment-name{position:absolute;left:25px;font-size:10px;vertical-align:top}.mh-improved-flrt-helper-popup .friendsPage-friendRow .friendsPage-friendRow-actions{top:40px;right:0}.mh-improved-flrt-helper-popup .friendsPage-friendRow-actions-interactionButtons{padding-right:0}.mh-improved-flrt-helper-popup .friendsPage-friendRow-actions .mousehuntTooltip,.mh-improved-flrt-helper-popup .friendsPage-requestRow-actionStatus.accepted,.mh-improved-flrt-helper-popup .userInteractionButtonsView-action[data-action=send_daily_gift],.mh-improved-flrt-helper-popup .userInteractionButtonsView-action[data-action=send_draw_ballot]{display:none!important}.mh-improved-flrt-helper-popup .userInteractionButtonsView-button{width:45px;height:45px;background-size:45px}.mh-improved-flrt-helper-popup .friendsPage-friendRow-statsContainer{border-radius:0}.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat.map,.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat.team,.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat-label{display:none!important}.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat.online span{width:auto}.mh-improved-flrt-helper-popup .friendsPage-friendRow-stat{width:auto;margin-right:10px}.mh-improved-flrt-helper-popup .instructions{padding:10px;margin-top:auto;font-style:italic}.mh-improved-flrt-helper-popup .flrt-items-to-send{min-width:80%}.mh-improved-flrt-helper-popup .flrt-item{display:flex;flex-direction:row;align-items:center;width:100%;padding:5px;margin-bottom:5px;cursor:pointer;background-color:#eee;border:1px solid #ddd;border-radius:5px;box-shadow:0 1px 2px -1px #b5b5b5}.mh-improved-flrt-helper-popup .flrt-item .itemImage,.mh-improved-flrt-helper-popup .flrt-item .itemImage img{width:45px;height:45px}.mh-improved-flrt-helper-popup .flrt-item-info{display:flex;align-items:center;margin-left:5px}.mh-improved-flrt-helper-popup .flrt-item-name{font-weight:900;vertical-align:top}.mh-improved-flrt-helper-popup .flrt-item-disabled .itemImage{filter:grayscale(1);opacity:.5}.mh-improved-flrt-helper-popup .flrt-item-info input[type=checkbox]:disabled{opacity:0}.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sending{background-color:#f3c019}.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent{position:relative;background-color:#3fcd84}.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent:after{position:absolute;right:0;display:inline-block;width:25px;height:25px;margin-right:5px;margin-bottom:-2px;vertical-align:middle;content:"";background-image:url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png);background-repeat:no-repeat;background-size:100%}
+`;
+    }
+  });
+  var addFlrtButtonToConvertible, sendItemsToMaptain, flrtPopup, init69, flrt_helper_default, init_flrt_helper = __esm({
+    "src/modules/flrt-helper/index.js"() {
+      init_utils2();
+      init_styles63();
+      addFlrtButtonToConvertible = (response) => __async(void 0, null, function* () {
+        if (!(response.convertible_open && response.convertible_open.name && response.convertible_open.items))
+          return;
+        let items5 = [], tradableItems = yield getData("items-tradable");
+        for (let element of response.convertible_open.items) {
+          let itemData = {
+            type: element.type,
+            name: element.name,
+            image: element.thumb,
+            quantity: element.quantity
+          };
+          tradableItems ? tradableItems.find((tradableItem) => tradableItem.type === element.type) && items5.push(itemData) : items5.push(itemData);
+        }
+        let buttons = document.querySelector(".jsDialogContainer .suffix");
+        if (!buttons)
+          return;
+        let flrtBtn = makeElement("button", ["mousehuntActionButton", "small", "button"]);
+        makeElement("span", [], "Return to Maptain", flrtBtn), flrtBtn.addEventListener("click", () => {
+          flrtPopup(items5);
+        }), buttons.prepend(flrtBtn);
+      }), sendItemsToMaptain = (snuid, items5) => __async(void 0, null, function* () {
+        for (let item of items5)
+          item.element.classList.add("flrt-item-sending"), yield doRequest("managers/ajax/users/supplytransfer.php", {
+            item: item.type,
+            item_quantity: item.quantity,
+            receiver: snuid
+          }), item.element.classList.remove("flrt-item-sending"), item.element.classList.add("flrt-item-sent");
+        let sendButton = document.querySelector(".flrt-send-items");
+        sendButton && (sendButton.outerHTML = '<input type="submit" value="Continue" class="jsDialogClose button">');
+      }), flrtPopup = (items5) => {
+        let lastMaptain = getLastMaptain(), itemContent = "";
+        items5.forEach((item) => {
+          itemContent += `<div class="flrt-item" data-item-type="${item.type}" data-item-quantity="${item.quantity}">
+      <div class="itemImage">
+        <img src="${item.image}">
+        <div class="quantity">${item.quantity}</div>
+      </div>
+      <div class="flrt-item-info">
+        <input type="checkbox" checked data-item-type="${item.type}">
+        <span class="flrt-item-name">${item.name}</span>
+      </div>
+    </div>`;
+        });
+        let popup = createPopup({
+          template: "ajax",
+          title: "Send tradables to Maptain",
+          content: `<div class="mh-improved-flrt-helper-popup">
+      <div class="flrt-friend-finder">
+          <form action="https://www.mousehuntgame.com/friends.php?tab=requests&amp;sub_tab=community" method="post" class="flrt-search-form friends-page-id-search friendsPage-community-hunterIdForm" onsubmit="app.pages.FriendsPage.submitHunterIdForm(this); return false;">
+            <input type="number" value="${lastMaptain || ""}" name="user_id" maxlength="10" class="friendsPage-community-hunterIdForm-input">
+            <a class="mousehuntActionButton small search-for-hunter" href="#" onclick="app.pages.FriendsPage.triggerHunterForm(this); return false;"><span>Search</span></a>
+          </form>
+        <div class="friendsPage-community-hunterResult"></div>
+        <div class="instructions">
+          Select the tradable items you want to send.
+        </div>
+      </div>
+      <div class="flrt-items-to-send">
+        ${itemContent}
+      </div>
+    </div>`
+        });
+        if (popup.addToken("{*prefix*}", '<h2 class="title">Send tradable items</h2>'), popup.addToken("{*suffix*}", '<div class="mousehuntActionButton flrt-send-items"><span>Send items to Maptain</span></div>'), popup.show(), document.querySelectorAll(".flrt-item").forEach((item) => {
+          let checkbox = item.querySelector('input[type="checkbox"]'), toggle = () => {
+            checkbox.checked = !checkbox.checked, item.classList.toggle("flrt-item-disabled", !checkbox.checked);
+          };
+          item.addEventListener("click", toggle);
+        }), lastMaptain) {
+          let search = document.querySelector(".search-for-hunter");
+          search && app.pages.FriendsPage.triggerHunterForm(search);
+        }
+        let sendBtn = document.querySelector(".flrt-send-items");
+        sendBtn && sendBtn.addEventListener("click", () => {
+          sendBtn.disabled = !0, sendBtn.classList.add("disabled");
+          let id = document.querySelector(".friendsPage-community-hunterIdForm-input");
+          if (!id)
+            return;
+          let sendingItems = document.querySelectorAll(".flrt-item"), itemsToSend = [];
+          sendingItems.forEach((item) => {
+            let checkbox = item.querySelector('input[type="checkbox"]');
+            if (checkbox) {
+              if (checkbox.checked) {
+                let itemData = {
+                  type: item.getAttribute("data-item-type"),
+                  quantity: Number.parseInt(item.getAttribute("data-item-quantity"), 10),
+                  element: item
+                };
+                itemsToSend.push(itemData);
+              }
+              checkbox.disabled = !0;
+            }
+          });
+          let row = document.querySelector(".friendsPage-friendRow.friendsPage-requestRow");
+          if (!row)
+            return;
+          let snuid = row.getAttribute("data-snuid") || id.value;
+          sendItemsToMaptain(snuid, itemsToSend);
+        });
+      }, init69 = () => __async(void 0, null, function* () {
+        addStyles(styles_default62, "flrt-helper"), onDialogShow("treasureMapPopup", cacheFinishedMap), onRequest("users/useconvertible.php", addFlrtButtonToConvertible);
+      }), flrt_helper_default = {
+        id: "flrt-helper",
+        name: "FLRT Helper",
+        type: "feature",
+        default: !1,
+        description: "Add a \u201CReturn to Maptain\u201D button when opening a chest from a map, allowing you to choose which tradable items to send directly to the Maptain.",
+        load: init69
+      };
+    }
+  });
   var emotes_default, init_emotes = __esm({
     "dist/data/emotes.json"() {
       emotes_default = { confused_cat: "https://i.mouse.rip/emotes/confused_cat.png", facepalm: "https://i.mouse.rip/emotes/facepalm.png", jerry: "https://i.mouse.rip/emotes/jerry.png", jerrypog: "https://i.mouse.rip/emotes/jerrypog.png", kek: "https://i.mouse.rip/emotes/kek.png", kekd: "https://i.mouse.rip/emotes/kekd.png", kekl: "https://i.mouse.rip/emotes/kekl.png", kekwait: "https://i.mouse.rip/emotes/kekwait.png", mhwiki: "https://i.mouse.rip/emotes/mhwiki.png", notlikeduck: "https://i.mouse.rip/emotes/notlikeduck.png", ohnoes: "https://i.mouse.rip/emotes/ohnoes.png", peepoheart: "https://i.mouse.rip/emotes/peepoheart.png", pikaoh: "https://i.mouse.rip/emotes/pikaoh.png", pog: "https://i.mouse.rip/emotes/pog.png", redcard: "https://i.mouse.rip/emotes/redcard.png", rip: "https://i.mouse.rip/emotes/rip.png", sadcat: "https://i.mouse.rip/emotes/sadcat.png", squirtlepizza: "https://i.mouse.rip/emotes/squirtlepizza.png", thumbsupcar: "https://i.mouse.rip/emotes/thumbsupcar.png", tom: "https://i.mouse.rip/emotes/tom.png", ty: "https://i.mouse.rip/emotes/ty.png", woohoo: "https://i.mouse.rip/emotes/woohoo.png", wesmart: "https://i.mouse.rip/emotes/wesmart.png", yes: "https://i.mouse.rip/emotes/yes.png", yelling_woman: "https://i.mouse.rip/emotes/yelling_woman.png", swagdoge: "https://i.mouse.rip/emotes/swagdoge.png", rlc: "https://i.mouse.rip/emotes/rlc.png", plusone: "https://i.mouse.rip/emotes/plusone.png", offtopic: "https://i.mouse.rip/emotes/offtopic.png", nani: "https://i.mouse.rip/emotes/nani.png", oof: "https://i.mouse.rip/emotes/oof.png", pikaSad: "https://i.mouse.rip/emotes/pikaSad.png", jacobFace: "https://i.mouse.rip/emotes/jacobFace.png", checkthepins: "https://i.mouse.rip/emotes/checkthepins.png", checkthenews: "https://i.mouse.rip/emotes/checkthenews.png", fakenews: "https://i.mouse.rip/emotes/fakenews.png", dlu: "https://i.mouse.rip/emotes/dlu.png", dhu: "https://i.mouse.rip/emotes/dhu.png", cre: "https://i.mouse.rip/emotes/cre.png", beermouse: "https://i.mouse.rip/emotes/beermouse.png", auraBirthday: "https://i.mouse.rip/emotes/auraBirthday.png", auraChrome: "https://i.mouse.rip/emotes/auraChrome.png", auraCursed: "https://i.mouse.rip/emotes/auraCursed.png", auraLightning: "https://i.mouse.rip/emotes/auraLightning.png", auraSlayer: "https://i.mouse.rip/emotes/auraSlayer.png", auraWinter: "https://i.mouse.rip/emotes/auraWinter.png", crownBronze: "https://i.mouse.rip/emotes/crownBronze.png", crownDiamond: "https://i.mouse.rip/emotes/crownDiamond.png", crownGold: "https://i.mouse.rip/emotes/crownGold.png", crownPlatinum: "https://i.mouse.rip/emotes/crownPlatinum.png", crownSilver: "https://i.mouse.rip/emotes/crownSilver.png", fta: "https://i.mouse.rip/emotes/fta.png", ftc: "https://i.mouse.rip/emotes/ftc.png", mod: "https://i.mouse.rip/emotes/mod.png", powerTypeArcane: "https://i.mouse.rip/emotes/powerTypeArcane.png", powerTypeDraconic: "https://i.mouse.rip/emotes/powerTypeDraconic.png", powerTypeForgotten: "https://i.mouse.rip/emotes/powerTypeForgotten.png", powerTypeHydro: "https://i.mouse.rip/emotes/powerTypeHydro.png", powerTypeLaw: "https://i.mouse.rip/emotes/powerTypeLaw.png", powerTypePhysical: "https://i.mouse.rip/emotes/powerTypePhysical.png", powerTypeRift: "https://i.mouse.rip/emotes/powerTypeRift.png", powerTypeShadow: "https://i.mouse.rip/emotes/powerTypeShadow.png", powerTypeTactical: "https://i.mouse.rip/emotes/powerTypeTactical.png", profileFriend: "https://i.mouse.rip/emotes/profileFriend.png", profileFriendAdd: "https://i.mouse.rip/emotes/profileFriendAdd.png", profileFriendDelete: "https://i.mouse.rip/emotes/profileFriendDelete.png", profileFriendPending: "https://i.mouse.rip/emotes/profileFriendPending.png", profileGift: "https://i.mouse.rip/emotes/profileGift.png", profileMap: "https://i.mouse.rip/emotes/profileMap.png", profileMapAdd: "https://i.mouse.rip/emotes/profileMapAdd.png", profileMapInvite: "https://i.mouse.rip/emotes/profileMapInvite.png", profileSupples: "https://i.mouse.rip/emotes/profileSupples.png", profileTicket: "https://i.mouse.rip/emotes/profileTicket.png", question: "https://i.mouse.rip/emotes/question.png", rankApprentice: "https://i.mouse.rip/emotes/rankApprentice.png", rankArchduke: "https://i.mouse.rip/emotes/rankArchduke.png", rankBaron: "https://i.mouse.rip/emotes/rankBaron.png", rankCount: "https://i.mouse.rip/emotes/rankCount.png", rankDuke: "https://i.mouse.rip/emotes/rankDuke.png", rankElder: "https://i.mouse.rip/emotes/rankElder.png", rankFabled: "https://i.mouse.rip/emotes/rankFabled.png", rankGrandduke: "https://i.mouse.rip/emotes/rankGrandduke.png", rankGrandmaster: "https://i.mouse.rip/emotes/rankGrandmaster.png", rankHero: "https://i.mouse.rip/emotes/rankHero.png", rankInitiate: "https://i.mouse.rip/emotes/rankInitiate.png", rankJourney: "https://i.mouse.rip/emotes/rankJourney.png", rankKnight: "https://i.mouse.rip/emotes/rankKnight.png", rankLegendary: "https://i.mouse.rip/emotes/rankLegendary.png", rankLordLady: "https://i.mouse.rip/emotes/rankLordLady.png", rankMaster: "https://i.mouse.rip/emotes/rankMaster.png", rankNovice: "https://i.mouse.rip/emotes/rankNovice.png", rankRecruit: "https://i.mouse.rip/emotes/rankRecruit.png", rankSage: "https://i.mouse.rip/emotes/rankSage.png", rankViceroy: "https://i.mouse.rip/emotes/rankViceroy.png", statAttraction: "https://i.mouse.rip/emotes/statAttraction.png", statCheese: "https://i.mouse.rip/emotes/statCheese.png", statLuck: "https://i.mouse.rip/emotes/statLuck.png", statPower: "https://i.mouse.rip/emotes/statPower.png", statPowerBonus: "https://i.mouse.rip/emotes/statPowerBonus.png", trophyBronze: "https://i.mouse.rip/emotes/trophyBronze.png", trophyChallenger: "https://i.mouse.rip/emotes/trophyChallenger.png", trophyCompetitor: "https://i.mouse.rip/emotes/trophyCompetitor.png", trophyGold: "https://i.mouse.rip/emotes/trophyGold.png", trophyParticipant: "https://i.mouse.rip/emotes/trophyParticipant.png", trophySilver: "https://i.mouse.rip/emotes/trophySilver.png" };
     }
   });
-  var replaceInText, init69, emotes_default2, init_emotes2 = __esm({
+  var replaceInText, init70, emotes_default2, init_emotes2 = __esm({
     "src/modules/emotes/index.js"() {
       init_utils2();
       init_emotes();
       replaceInText = (text) => {
         let regex = new RegExp(`:(${Object.keys(emotes_default).join("|")}):`, "g");
         return text = text.replace(regex, (match, emote) => `<img class="emote" src="${emotes_default[emote]}" alt=":${emote}:" title=":${emote}:" width="20" height="20">`), text;
-      }, init69 = () => __async(void 0, null, function* () {
+      }, init70 = () => __async(void 0, null, function* () {
         addStyles(".emote { vertical-align: bottom; }", "emotes"), onRender({
           group: "MessageBoardView",
           layout: "layout",
@@ -16353,7 +16354,7 @@ ${csv}`);
         type: "feature",
         default: !0,
         description: 'Replace Discord-style emotes on corkboards (e.g., :jerry:) with actual images in map and profile corkboard messages. <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/emotes.md" target="_blank" rel="noopener noreferrer">View the list of supported emotes</a>',
-        load: init69
+        load: init70
       };
     }
   });
@@ -16439,7 +16440,7 @@ ${csv}`);
 `;
     }
   });
-  var getIgnoredGifts, claimGifts, makeAcceptButton, makeReturnButton, fixTypo, lineBreakGiftFooter, getButtons, makeButtons, getLimit, pickFriends, addSendButton, addRandomSendButton, _showTab, _selectGift, _updateGiftMultiplierQuantity, addGiftSwitcher, addButtonsToDropdown, addButtonsToPopup, main15, init70, better_gifts_default, init_better_gifts = __esm({
+  var getIgnoredGifts, claimGifts, makeAcceptButton, makeReturnButton, fixTypo, lineBreakGiftFooter, getButtons, makeButtons, getLimit, pickFriends, addSendButton, addRandomSendButton, _showTab, _selectGift, _updateGiftMultiplierQuantity, addGiftSwitcher, addButtonsToDropdown, addButtonsToPopup, main15, init71, better_gifts_default, init_better_gifts = __esm({
     "src/modules/better-gifts/index.js"() {
       init_utils2();
       init_settings29();
@@ -16608,7 +16609,7 @@ ${csv}`);
         actionRow.insertBefore(buttons, actionRow.firstChild);
       }, main15 = () => {
         onRequest("users/socialGift.php", makeButtons), addButtonsToDropdown(), onDialogShow("giftSelectorViewPopup", addButtonsToPopup), addRandomSendButton(), addGiftSwitcher(), fixTypo(), lineBreakGiftFooter();
-      }, init70 = () => __async(void 0, null, function* () {
+      }, init71 = () => __async(void 0, null, function* () {
         addStyles(styles_default63, "better-gifts"), main15(), onDeactivation("better-gifts", () => {
           document.querySelectorAll(".mh-gift-buttons").forEach((button) => {
             button.remove();
@@ -16620,15 +16621,15 @@ ${csv}`);
         type: "better",
         default: !0,
         description: "Quickly accept and return all your gifts, and pick random friends to send to.",
-        load: init70,
+        load: init71,
         settings: settings_default28
       };
     }
   });
-  var init71, ssdb_toothlet_counter_default, init_ssdb_toothlet_counter = __esm({
+  var init72, ssdb_toothlet_counter_default, init_ssdb_toothlet_counter = __esm({
     "src/modules/ssdb-toothlet-counter/index.js"() {
       init_utils2();
-      init71 = () => __async(void 0, null, function* () {
+      init72 = () => __async(void 0, null, function* () {
         addTrapQuantity({
           baseIds: [3023, 2647],
           baseSlugs: ["upgraded_denture_base", "denture_base"],
@@ -16640,53 +16641,29 @@ ${csv}`);
         type: "feature",
         default: !0,
         description: "Show the number of toothlets you have when SSDB is equipped.",
-        load: init71
+        load: init72
       };
     }
   });
-  var imperialToMetric, convertInDialog, replaceInJournal, replaceOnMousePage, convertOnPage, init72, metric_default, init_metric = __esm({
-    "src/modules/metric/index.js"() {
+  var styles_default64, init_styles65 = __esm({
+    "src/modules/hide-codices/styles.css"() {
+      styles_default64 = `.trapSelectorView__activeCodexContainer,.trapSelectorView__activeCodexContainer--visible{display:none}
+`;
+    }
+  });
+  var init73, hide_codices_default, init_hide_codices = __esm({
+    "src/modules/hide-codices/index.js"() {
       init_utils2();
-      imperialToMetric = (text) => {
-        let lb = text.match(/(\d+? )lb./i), oz = text.match(/(\d+? )oz./i);
-        if (!(lb || oz))
-          return text;
-        let lbValue = lb ? lb[1] : 0, ozValue = oz ? oz[1] : 0, totalWeight = Number.parseInt(lbValue) + Number.parseInt(ozValue) / 16, totalWeightMetric = (Math.round(totalWeight * 0.45359237 * 100) / 100).toString();
-        return text.replace(/(\d+? lb.\s)?(\d+? oz.)/i, totalWeightMetric + " kg. ");
-      }, convertInDialog = () => {
-        let mouseViewWeights = document.querySelectorAll(".mouseView-statsContainer .mouseView-statsContainer-block-padding table tbody tr");
-        mouseViewWeights.length && mouseViewWeights.forEach((row) => {
-          let firstCell = row.querySelector("td"), secondCell = firstCell.nextSibling;
-          if (firstCell.innerText === "Avg. Weight:" || firstCell.innerText === "Heaviest:") {
-            let converted = imperialToMetric(secondCell.innerText);
-            converted && (secondCell.innerText = converted);
-          }
-        });
-      }, replaceInJournal = () => {
-        let entries = document.querySelectorAll(".journal .entry .journalbody .journaltext");
-        entries.length && entries.forEach((entry) => {
-          let converted = imperialToMetric(entry.innerHTML);
-          converted && (entry.innerHTML = converted);
-        });
-      }, replaceOnMousePage = () => {
-        let mouseWeightsStats = document.querySelectorAll(".mouseListView-categoryContent-subgroupContainer .mouseListView-categoryContent-subgroup-mouse-stats");
-        mouseWeightsStats.length && mouseWeightsStats.forEach((stat) => {
-          if (stat.classList.contains("average_weight") || stat.classList.contains("heaviest_catch")) {
-            let converted = imperialToMetric(stat.innerText);
-            converted && (stat.innerText = converted);
-          }
-        });
-      }, convertOnPage = () => {
-        replaceOnMousePage(), replaceInJournal();
-      }, init72 = () => __async(void 0, null, function* () {
-        onDialogShow("all", convertInDialog), onRequest("*", convertOnPage), convertOnPage();
-      }), metric_default = {
-        id: "metric",
-        name: "Metric Units",
-        type: "feature",
+      init_styles65();
+      init73 = () => __async(void 0, null, function* () {
+        addStyles(styles_default64, "hide-codices");
+      }), hide_codices_default = {
+        id: "hide-codices",
+        name: "Hide Codices",
+        type: "element-hiding",
         default: !1,
-        description: "Use metric units instead of imperial units.",
-        load: init72
+        description: "Hide the codices on the trap selector.",
+        load: init73
       };
     }
   });
@@ -16714,23 +16691,22 @@ ${csv}`);
       });
     }
   });
-  var styles_default64, init_styles65 = __esm({
+  var styles_default65, init_styles66 = __esm({
     "src/modules/ultimate-checkmark/styles.css"() {
-      styles_default64 = `.hunterProfileItemsView-categoryContent[data-category=codex] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=chest] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=airships] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=currency] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=equipment] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=plankrun] .hunterProfileItemsView-categoryContent-item.uncollected{filter:grayscale(100%)}.hunterProfileItemsView-categoryContent[data-category=chest] .hunterProfileItemsView-categoryContent-item-padding .itemImage{background-size:contain}
+      styles_default65 = `.hunterProfileItemsView-categoryContent[data-category=codex] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=chest] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=airships] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=currency] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=equipment] .hunterProfileItemsView-categoryContent-item.uncollected,.hunterProfileItemsView-categoryContent[data-category=plankrun] .hunterProfileItemsView-categoryContent-item.uncollected{filter:grayscale(100%)}.hunterProfileItemsView-categoryContent[data-category=chest] .hunterProfileItemsView-categoryContent-item-padding .itemImage{background-size:contain}
 `;
     }
   });
-  // dist/data/ultimate-checkmark.json
   var ultimate_checkmark_default, init_ultimate_checkmark = __esm({
     "dist/data/ultimate-checkmark.json"() {
       ultimate_checkmark_default = [{ id: "treasure_chests", name: "Treasure Chests", type: "special", subtype: "treasure_chests", key: "chests", items: ["beanstalk_treasure_chest_convertible", "rare_beanstalk_treasure_chest_convertible", "boss_arduous_treasure_chest_convertible", "rare_boss_arduous_treasure_chest_convertible", "boss_easy_treasure_chest_convertible", "rare_boss_easy_treasure_chest_convertible", "boss_elaborate_treasure_chest_convertible", "rare_boss_elaborate_treasure_chest_convertible", "boss_elite_2021_treasure_chest_convertible", "rare_boss_elite_2021_treasure_chest_convertible", "boss_hard_treasure_chest_convertible", "rare_boss_hard_treasure_chest_convertible", "rare_boss_medium_treasure_chest_convertible", "boss_medium_treasure_chest_convertible", "bounty_reward_f_convertible", "rare_bounty_reward_f_convertible", "bristle_woods_rift_treasure_chest_convertible", "rare_bristle_woods_rift_treasure_chest_convertible", "burroughs_rift_treasure_chest_convertible", "rare_burroughs_rift_treasure_chest_convertible", "catacombs_treasure_chest_convertible", "rare_catacombs_treasure_chest_convertible", "chrome_arduous_treasure_chest_convertible", "rare_chrome_arduous_treasure_chest_convertible", "chrome_boss_easy_treasure_chest_convertible", "rare_c_boss_easy_treasure_chest_convertible", "chrome_boss_arduous_treasure_chest_convertible", "rare_c_boss_arduous_treasure_chest_convertible", "chrome_boss_elaborate_treasure_chest_convertible", "rare_c_boss_elaborate_treasure_chest_convertible", "chrome_boss_elite_treasure_chest_convertible", "rare_c_boss_elite_treasure_chest_convertible", "chrome_boss_hard_treasure_chest_convertible", "rare_c_boss_hard_treasure_chest_convertible", "chrome_boss_medium_treasure_chest_convertible", "rare_c_boss_medium_treasure_chest_convertible", "chrome_easy_treasure_chest_convertible", "rare_chrome_easy_treasure_chest_convertible", "chrome_elaborate_treasure_chest_convertible", "rare_chrome_elaborate_treasure_chest_convertible", "chrome_elite_treasure_chest_convertible", "rare_chrome_elite_treasure_chest_convertible", "chrome_hard_treasure_chest_convertible", "rare_chrome_hard_treasure_chest_convertible", "chrome_medium_treasure_chest_convertible", "rare_chrome_medium_treasure_chest_convertible", "digby_treasure_chest_convertible", "rare_digby_treasure_chest_convertible", "farming_fishing_treasure_chest_convertible", "rare_farming_fishing_treasure_chest_convertible", "ff_prelude_treasure_chest_convertible", "rare_ff_prelude_treasure_chest_convertible", "fort_rox_treasure_chest_convertible", "rare_fort_rox_treasure_chest_convertible", "fungal_cavern_treasure_chest_convertible", "rare_fungal_cavern_treasure_chest_convertible", "furoma_rift_treasure_chest_convertible", "rare_furoma_rift_treasure_chest_convertible", "geyser_dweller_treasure_chest_convertible", "rare_geyser_dweller_treasure_chest_convertible", "giant_rainbow_treasure_chest_convertible", "rare_giant_rainbow_treasure_chest_convertible", "gilded_coin_treasure_chest_convertible", "rare_gilded_coin_treasure_chest_convertible", "gnawnia_rift_treasure_chest_convertible", "rare_gnawnia_rift_treasure_chest_convertible", "gnawnia_treasure_chest_convertible", "rare_gnawnia_treasure_chest_convertible", "icebreaker_treasure_chest_convertible", "rare_icebreaker_treasure_chest_convertible", "isles_treasure_chest_convertible", "rare_isles_treasure_chest_convertible", "labyrinth_treasure_chest_convertible", "rare_labyrinth_treasure_chest_convertible", "large_rainbow_treasure_chest_convertible", "rare_large_rainbow_treasure_chest_convertible", "lightning_slayer_chest_convertible", "rare_lightning_slayer_chest_convertible", "living_garden_treasure_chest_f_convertible", "rare_living_garden_treasure_chest_f_convertible", "m1k_solo_treasure_chest_convertible", "rare_m1k_solo_treasure_chest_convertible", "m1k_team_treasure_chest_convertible", "rare_m1k_team_treasure_chest_convertible", "moussu_picchu_treasure_chest_convertible", "rare_moussu_picchu_treasure_chest_convertible", "muridae_treasure_chest_convertible", "rare_muridae_treasure_chest_convertible", "queso_canyon_tour_treasure_chest_convertible", "rare_queso_canyon_tour_treasure_chest_convertible", "queso_canyoneer_treasure_chest_convertible", "rare_queso_canyoneer_treasure_chest_convertible", "relic_treasure_chest_convertible", "rare_relic_treasure_chest_convertible", "riftstalker_treasure_chest_convertible", "rare_riftstalker_treasure_chest_convertible", "riftwalker_treasure_chest_convertible", "rare_riftwalker_treasure_chest_convertible", "school_of_sorcery_treasure_chest_convertible", "rare_school_of_sorcery_treasure_chest_convertible", "shelder_treasure_chest_convertible", "rare_shelder_treasure_chest_convertible", "sky_palace_treasure_chest_convertible", "rare_sky_palace_treasure_chest_convertible", "sky_pirate_treasure_chest_convertible", "rare_sky_pirate_treasure_chest_convertible", "small_rainbow_treasure_chest_convertible", "rare_small_rainbow_treasure_chest_convertible", "sunken_city_treasure_chest_convertible", "rare_sunken_city_treasure_chest_convertible", "toxic_arduous_treasure_chest_convertible", "rare_toxic_arduous_treasure_chest_convertible", "toxic_easy_treasure_chest_convertible", "rare_toxic_easy_treasure_chest_convertible", "toxic_elaborate_treasure_chest_convertible", "rare_toxic_elaborate_treasure_chest_convertible", "toxic_elite_treasure_chest_convertible", "rare_toxic_elite_treasure_chest_convertible", "toxic_hard_treasure_chest_convertible", "rare_toxic_hard_treasure_chest_convertible", "toxic_medium_treasure_chest_convertible", "rare_toxic_medium_treasure_chest_convertible", "undead_treasure_chest_convertible", "rare_undead_treasure_chest_convertible", "valour_rift_treasure_chest_convertible", "rare_valour_rift_treasure_chest_convertible", "valour_treasure_chest_convertible", "rare_valour_treasure_chest_convertible", "warpath_treasure_chest_convertible", "rare_warpath_treasure_chest_convertible", "whisker_woods_rift_treasure_chest_convertible", "rare_whisker_woods_rift_treasure_chest_convertible", "whisker_woods_treasure_chest_convertible", "rare_whisker_woods_treasure_chest_convertible", "zugzwang_treasure_chest_convertible", "rare_zugzwang_treasure_chest_convertible", "light_floating_loot_cache_convertible", "heavy_floating_loot_cache_convertible", "empyrean_floating_loot_cache_convertible"] }, { id: "airships", name: "Airships", type: "special", subtype: "cosmetics", key: "airships", items: ["airship_balloon_astral_stat_item", "airship_balloon_birthday_stat_item", "airship_balloon_bookmobile_stat_item", "airship_balloon_chrome_stat_item", "airship_balloon_cloud_stat_item", "airship_balloon_deluxe_stat_item", "airship_balloon_empyrean_stat_item", "airship_balloon_factory_stat_item", "airship_balloon_ghost_ship_stat_item", "airship_balloon_gilded_stat_item", "airship_balloon_gloomy_galleon_stat_item", "airship_balloon_holiday_express_stat_item", "airship_balloon_lny_ox_stat_item", "airship_balloon_lny_stat_item", "airship_balloon_marzipan_stat_item", "airship_balloon_mineral_stat_item", "airship_balloon_new_years_stat_item", "airship_balloon_pirate_stat_item", "airship_balloon_plant_stat_item", "airship_balloon_porcelain_stat_item", "airship_balloon_spring_stat_item", "airship_balloon_tiger_stat_item", "airship_balloon_vrift_stat_item", "airship_balloon_winter_stat_item", "airship_hull_astral_stat_item", "airship_hull_birthday_stat_item", "airship_hull_bookmobile_stat_item", "airship_hull_chrome_stat_item", "airship_hull_cloud_stat_item", "airship_hull_deluxe_stat_item", "airship_hull_empyrean_stat_item", "airship_hull_factory_stat_item", "airship_hull_ghost_ship_stat_item", "airship_hull_gilded_stat_item", "airship_hull_gloomy_galleon_stat_item", "airship_hull_holiday_express_stat_item", "airship_hull_lny_ox_stat_item", "airship_hull_lny_stat_item", "airship_hull_marzipan_stat_item", "airship_hull_mineral_stat_item", "airship_hull_new_years_stat_item", "airship_hull_pirate_stat_item", "airship_hull_plant_stat_item", "airship_hull_porcelain_stat_item", "airship_hull_spring_stat_item", "airship_hull_tiger_stat_item", "airship_hull_vrift_stat_item", "airship_hull_winter_stat_item", "airship_sail_astral_stat_item", "airship_sail_birthday_stat_item", "airship_sail_bookmobile_stat_item", "airship_sail_chrome_stat_item", "airship_sail_cloud_stat_item", "airship_sail_deluxe_stat_item", "airship_sail_empyrean_stat_item", "airship_sail_factory_stat_item", "airship_sail_ghost_ship_stat_item", "airship_sail_gilded_stat_item", "airship_sail_gloomy_galleon_stat_item", "airship_sail_holiday_express_stat_item", "airship_sail_lny_ox_stat_item", "airship_sail_lny_stat_item", "airship_sail_marzipan_stat_item", "airship_sail_mineral_stat_item", "airship_sail_new_years_stat_item", "airship_sail_pirate_stat_item", "airship_sail_plant_stat_item", "airship_sail_porcelain_stat_item", "airship_sail_spring_stat_item", "airship_sail_tiger_stat_item", "airship_sail_vrift_stat_item", "airship_sail_winter_stat_item"] }, { id: "codex", name: "Codex", type: "special", subtype: "codex", key: "codex", items: ["chrome_codex_stat_item", "codex_of_valor_bard_page_stat_item", "codex_of_valor_dust_page_stat_item", "codex_of_valor_eclipse_page_stat_item", "codex_of_valor_magic_page_stat_item", "codex_of_valor_melee_page_stat_item", "codex_of_valor_nobility_page_stat_item", "codex_of_valor_puppetry_page_stat_item", "codex_of_valor_thievery_page_stat_item", "codex_of_valour_stat_item", "empyrean_codex_stat_item", "folklore_motif_index_arcane_luck_stat_item", "folklore_motif_index_arcane_power_stat_item", "folklore_motif_index_draconic_luck_stat_item", "folklore_motif_index_draconic_power_stat_item", "folklore_motif_index_forgotten_luck_stat_item", "folklore_motif_index_forgotten_power_stat_item", "folklore_motif_index_physical_luck_stat_item", "folklore_motif_index_physical_power_stat_item", "folklore_motif_index_shadow_luck_stat_item", "folklore_motif_index_shadow_power_stat_item", "regal_charm_codex_stat_item", "rift_luck_codex_stat_item"] }, { id: "equipment", name: "Equipment", type: "special", subtype: "equipment", key: "equipment", items: ["desert_warpath_victory_stat_item", "high_altitude_license_stat_item", "iceberg_drill_level_four_stat_item", "iceberg_drill_level_one_stat_item", "iceberg_drill_level_three_stat_item", "iceberg_drill_level_two_stat_item", "labyrinth_lantern", "large_waste_barrel_stat_item", "marketplace_buy_regal_stool_collectible", "marketplace_sell_regal_display_case_collectible", "moussu_picchu_fealty_stat_item", "moussu_picchu_scholar_stat_item", "moussu_picchu_tech_stat_item", "null_gauntlet_stat_item", "rift_chronometer_stat_item"] }, { id: "currency", name: "Currency", type: "special", subtype: "currency", key: "currency", items: ["amber_queso_stat_item", "ancient_relic_collectible", "arcane_sunstone_stat_item", "blood_stone_stat_item", "cloudstone_bangle_stat_item", "crop_coin_stat_item", "cursed_gold_stat_item", "dawn_dust_stat_item", "diamond_ice_drill_tip_stat_item", "dragonhide_sliver_stat_item", "dragons_breath_opal_stat_item", "droid_bird_stat_item", "empyrean_seal_stat_item", "enchanted_wing_stat_item", "floating_trap_upgrade_stat_item", "flour_stat_item", "fools_gold_stat_item", "gauntlet_elixir_stat_item", "gilded_coin_stat_item", "gnawbel_prize_stat_item", "golden_goose_egg_stat_item", "golden_goose_stat_item", "howlite_stat_item", "hydro_geyser_trap_stat_item", "magic_cork_dust_stat_item", "meteoric_core_fragments_stat_item", "mythical_dragon_heart_stat_item", "nachore_stat_item", "physical_geyser_trap_stat_item", "pond_penny_stat_item", "prize_credit_stat_item", "raw_ancient_jade_stat_item", "raw_rift_crystal_stat_item", "rift_circuitry_stat_item", "rift_clockwork_cog_stat_item", "rift_gaunt_upgrade_a_stat_item", "rift_gaunt_upgrade_b_stat_item", "rift_sprocket_stat_item", "sand_dollar_stat_item", "shade_eclipse_resource_stat_item", "shadow_moonstone_stat_item", "silver_bolt_stat_item", "sky_pirate_seal_stat_item", "sky_sprocket_stat_item", "skysoft_silk_stat_item", "sorcerers_sapphire_stat_item", "tactical_geyser_trap_stat_item", "tattered_celestial_skin_pattern_stat_item", "temporal_rune_stat_item", "total_eclipse_resource_stat_item", "tournament_token_mega_stat_item", "tournament_token_stat_item", "war_scrap_stat_item"] }, { id: "plankrun", name: "Plankrun Pages", type: "plankrun", subtype: "general", key: "plankrun", items: ["rift_notes_1_torn_page", "dojo_torn_page", "back_cover_torn_page", "dark_magi_torn_page", "deep_mouse_torn_page", "king_scarab_torn_page", "shattered_carmine_2_torn_page", "shattered_carmine_1_torn_page", "rift_notes_2_torn_page", "whisker_woods_rift_torn_page", "rift_notes_3_torn_page", "gnawnia_torn_page", "front_cover_torn_page"] }];
     }
   });
-  var getItems, getProgress, makeProgressString, makeCategory, makeItem2, makeContent, addCategoryAndItems, isOwnProfile, items2, run, init73, ultimate_checkmark_default2, init_ultimate_checkmark2 = __esm({
+  var getItems, getProgress, makeProgressString, makeCategory, makeItem2, makeContent, addCategoryAndItems, isOwnProfile, items2, run, init74, ultimate_checkmark_default2, init_ultimate_checkmark2 = __esm({
     "src/modules/ultimate-checkmark/index.js"() {
       init_utils2();
       init_settings30();
-      init_styles65();
+      init_styles66();
       init_ultimate_checkmark();
       getItems = (_0, _1, _2, ..._3) => __async(void 0, [_0, _1, _2, ..._3], function* (required, queryTab, queryTag, allItems3 = []) {
         var _a;
@@ -16833,8 +16809,8 @@ ${csv}`);
           for (let category of ultimate_checkmark_default)
             getSetting(`ultimate-checkmark.show-${category.id}`, !0) && (yield addCategoryAndItems(category.items, category.type, category.subtype, category.key, category.name));
         }
-      }), init73 = () => __async(void 0, null, function* () {
-        addStyles(styles_default64, "ultimate-checkmark"), onNavigation(run, {
+      }), init74 = () => __async(void 0, null, function* () {
+        addStyles(styles_default65, "ultimate-checkmark"), onNavigation(run, {
           page: "hunterprofile",
           tab: "items",
           onLoad: !0
@@ -16843,231 +16819,15 @@ ${csv}`);
         id: "ultimate-checkmark",
         type: "feature",
         alwaysLoad: !0,
-        load: init73,
+        load: init74,
         settings: settings_default29
       };
     }
   });
-  var legacy_styles_default2, init_legacy_styles2 = __esm({
-    "src/modules/big-timer/legacy-styles.css"() {
-      legacy_styles_default2 = `.big-timer.huntersHornView__timer.huntersHornView__timer.countdown:after{content:""}.big-timer.huntersHornView__timer.huntersHornView__timer--legacy.countdown .huntersHornView__timerState--type-countdown:before{content:""}.big-timer.huntersHornView__timer.huntersHornView__timer.countdown{position:absolute;top:60px;left:270px;z-index:100;padding:2px;background-color:#d9c9a0;border-radius:5px;box-shadow:0 -1px #ded9c3;transform:scale(2.6)}
-`;
-    }
-  });
-  var styles_default65, init_styles66 = __esm({
-    "src/modules/big-timer/styles.css"() {
-      styles_default65 = `.big-timer.huntersHornView__timer.huntersHornView__timer.countdown{position:absolute;top:40px;left:185px;z-index:100;transform:scale(2.2)}.big-timer.huntersHornView__timer.huntersHornView__timer.countdown:after{position:absolute;top:6px;right:5px;left:5px;font-size:14px;text-align:center;content:"Next Hunt";background:linear-gradient(180deg,#fef2b8,#ecdfae)}
-`;
-    }
-  });
-  var toggleBigTimer, init74, big_timer_default, init_big_timer = __esm({
-    "src/modules/big-timer/index.js"() {
-      init_utils2();
-      init_legacy_styles2();
-      init_styles66();
-      toggleBigTimer = () => {
-        let timer = document.querySelector(".huntersHornView__timer");
-        if (!timer)
-          return;
-        let isBigTimer = timer.classList.contains("big-timer");
-        timer.addEventListener("click", () => {
-          isBigTimer = !isBigTimer, timer.classList.toggle("big-timer", isBigTimer);
-        });
-      }, init74 = () => __async(void 0, null, function* () {
-        addStyles([
-          styles_default65,
-          isLegacyHUD() ? legacy_styles_default2 : ""
-        ], "experiment-big-timer"), toggleBigTimer(), setTimeout(toggleBigTimer, 1e3);
-      }), big_timer_default = {
-        id: "big-timer",
-        name: "Big Timer",
-        type: "feature",
-        default: !1,
-        description: "Click the timer to toggle between normal and big sizes.",
-        load: init74
-      };
-    }
-  });
-  var styles_default66, init_styles67 = __esm({
-    "src/modules/hide-codices/styles.css"() {
-      styles_default66 = `.trapSelectorView__activeCodexContainer,.trapSelectorView__activeCodexContainer--visible{display:none}
-`;
-    }
-  });
-  var init75, hide_codices_default, init_hide_codices = __esm({
-    "src/modules/hide-codices/index.js"() {
-      init_utils2();
-      init_styles67();
-      init75 = () => __async(void 0, null, function* () {
-        addStyles(styles_default66, "hide-codices");
-      }), hide_codices_default = {
-        id: "hide-codices",
-        name: "Hide Codices",
-        type: "element-hiding",
-        default: !1,
-        description: "Hide the codices on the trap selector.",
-        load: init75
-      };
-    }
-  });
-  var init76, onboarding_default, init_onboarding2 = __esm({
-    "src/modules/onboarding/index.js"() {
-      init_utils2();
-      init76 = () => __async(void 0, null, function* () {
-        addOnboardingMessage({
-          step: "mh-improved-onboarding-1",
-          page: "camp",
-          highlightSelector: ".mousehunt-improved-icon-menu",
-          content: "Welcome to MouseHunt Improved! You can quickly get to the settings using this icon.",
-          direction: "bottom",
-          showOverlay: !0
-        }), addOnboardingMessage({
-          step: "mh-improved-onboarding-2",
-          page: "preferences",
-          highlightSelector: "#mousehunt-improved-settings-better",
-          content: "Here you can toggle features and customize things to your liking.",
-          direction: "top",
-          showOverlay: !0
-        });
-      }), onboarding_default = {
-        id: "onboarding",
-        type: "required",
-        alwaysLoad: !0,
-        load: init76
-      };
-    }
-  });
   var settings_default30, init_settings31 = __esm({
-    "src/modules/custom-horn/settings/index.js"() {
-      settings_default30 = () => __async(void 0, null, function* () {
-        let options2 = [
-          { name: "Default", value: "default" },
-          { name: "Tournament Horn", value: "huntersHornView__horn--tournament" },
-          {
-            name: "Events",
-            value: "group",
-            options: [
-              { name: "Birthday", value: "huntersHornView--seasonalEvent-birthday" },
-              {
-                name: "Great Winter Hunt",
-                value: "huntersHornView--seasonalEvent-greatWinterHunt"
-              },
-              {
-                name: "Halloween",
-                value: "huntersHornView--seasonalEvent-halloween"
-              },
-              {
-                name: "Lunar New Year",
-                value: "huntersHornView--seasonalEvent-lunarNewYear"
-              },
-              {
-                name: "Spring Egg Hunt",
-                value: "huntersHornView--seasonalEvent-springEggHunt"
-              }
-            ]
-          },
-          {
-            name: "Color",
-            value: "group",
-            options: [
-              { name: "Blue", value: "horn-color-blue" },
-              { name: "Cyan", value: "horn-color-cyan" },
-              { name: "Green", value: "horn-color-green" },
-              { name: "Pink", value: "horn-color-pink" },
-              { name: "Purple", value: "horn-color-purple" },
-              { name: "Red", value: "horn-color-red" },
-              { name: "Faded", value: "horn-color-faded" },
-              { name: "Rainbow", value: "horn-color-rainbow" }
-            ]
-          }
-        ];
-        return [{
-          id: "custom-horn",
-          title: 'Custom Horn <a class="mh-improved-custom-horn-show-horn">Show Horn</a>',
-          default: [options2[0]],
-          description: "Change the horn to an event horn or a different color.",
-          settings: {
-            type: "multi-select",
-            number: 1,
-            options: options2
-          }
-        }];
-      });
-    }
-  });
-  var styles_default67, init_styles68 = __esm({
-    "src/modules/custom-horn/styles.css"() {
-      styles_default67 = `.huntersHornView.horn-color-blue .huntersHornView__horn{filter:hue-rotate(158deg)}.huntersHornView.horn-color-cyan .huntersHornView__horn{filter:hue-rotate(112deg)}.huntersHornView.horn-color-green .huntersHornView__horn{filter:hue-rotate(66deg)}.huntersHornView.horn-color-pink .huntersHornView__horn{filter:hue-rotate(280deg)}.huntersHornView.horn-color-purple .huntersHornView__horn{filter:hue-rotate(195deg)}.huntersHornView.horn-color-red .huntersHornView__horn{filter:hue-rotate(317deg) saturate(1.6)}.huntersHornView.horn-color-faded .huntersHornView__horn{filter:sepia(1)}.huntersHornView.horn-color-rainbow .huntersHornView__horn{animation:mh-improved-hue-rotate 30s infinite}@media (prefers-reduced-motion: reduce){.huntersHornView.horn-color-rainbow .huntersHornView__horn{animation:none}}.mh-improved-custom-horn-show-horn{position:absolute;top:0;right:225px;bottom:0;display:flex;align-items:center;font-size:12px}
-`;
-    }
-  });
-  var addedClass, addHornClass, listenForPreferenceChanges2, addPreview, persistHornClass, init77, custom_horn_default, init_custom_horn = __esm({
-    "src/modules/custom-horn/index.js"() {
-      init_utils2();
-      init_settings31();
-      init_styles68();
-      addedClass = "", addHornClass = (preview = !1) => {
-        let hornView = document.querySelector(".huntersHornView");
-        if (!hornView)
-          return;
-        let horn = document.querySelector(".huntersHornView__horn");
-        if (!horn)
-          return;
-        horn.classList.add("huntersHornView__horn--default");
-        let setting = getSetting("custom-horn-0", "default");
-        preview && (setting = preview), hornView.classList.add(), addedClass && hornView.classList.remove(addedClass), setting !== "default" && (hornView.classList.add(setting), addedClass = setting);
-      }, listenForPreferenceChanges2 = () => {
-        let input = document.querySelector("#mousehunt-improved-settings-design-custom-horn select");
-        input && input.addEventListener("change", () => {
-          addHornClass();
-        });
-      }, addPreview = () => {
-        let previewLink = document.querySelector(".mh-improved-custom-horn-show-horn");
-        if (!previewLink)
-          return;
-        let isShowing = !1, timeout = null;
-        previewLink.addEventListener("click", (e) => {
-          e.preventDefault(), e.stopPropagation();
-          let horn = document.querySelector(".huntersHornView__horn");
-          if (!horn)
-            return;
-          let backdrop = document.querySelector(".huntersHornView__backdrop");
-          if (backdrop) {
-            if (isShowing) {
-              isShowing = !1, previewLink.textContent = "Preview Horn", clearTimeout(timeout), horn.classList.add("huntersHornView__horn--reveal"), horn.classList.remove("huntersHornView__horn--ready"), setTimeout(() => {
-                backdrop.classList.remove("huntersHornView__backdrop--active");
-              }, 400), timeout = setTimeout(() => {
-                horn.classList.remove("huntersHornView__horn--reveal");
-              }, 1e3);
-              return;
-            }
-            isShowing = !0, previewLink.textContent = "Hide Horn", backdrop.classList.add("huntersHornView__backdrop--active"), horn.classList.add("huntersHornView__horn--ready", "huntersHornView__horn--reveal"), clearTimeout(timeout);
-          }
-        });
-      }, persistHornClass = () => {
-        addHornClass(), onNavigation(() => {
-          setTimeout(addHornClass, 1e3);
-        }), onNavigation(() => {
-          listenForPreferenceChanges2(), addPreview();
-        }, {
-          page: "preferences",
-          onLoad: !0
-        });
-      }, init77 = () => __async(void 0, null, function* () {
-        addStyles(styles_default67, "custom-horn"), persistHornClass();
-      }), custom_horn_default = {
-        id: "custom-horn",
-        type: "design",
-        alwaysLoad: !0,
-        load: init77,
-        settings: settings_default30
-      };
-    }
-  });
-  var settings_default31, init_settings32 = __esm({
     "src/modules/custom-background/settings/index.js"() {
       init_backgrounds3();
-      settings_default31 = () => __async(void 0, null, function* () {
+      settings_default30 = () => __async(void 0, null, function* () {
         let gradientOptions = backgrounds_default3.map((gradient) => ({
           name: gradient.name,
           value: gradient.id
@@ -17119,31 +16879,31 @@ ${csv}`);
       });
     }
   });
-  var styles_default68, init_styles69 = __esm({
+  var styles_default66, init_styles67 = __esm({
     "src/modules/custom-background/styles.css"() {
-      styles_default68 = `body.mh-improved-bg-background-color-blue .pageFrameView-contentContainer{background-color:#bad4ed}body.mh-improved-bg-background-color-blue .pageFrameView-column.right,body.mh-improved-bg-background-color-blue .pageFrameView-column.left{background:#bad4ed;border:none}body.mh-improved-bg-background-color-cyan .pageFrameView-contentContainer{background-color:#abdbd3}body.mh-improved-bg-background-color-cyan .pageFrameView-column.right,body.mh-improved-bg-background-color-cyan .pageFrameView-column.left{background:#e8c6eb;border:none}body.mh-improved-bg-background-color-green .pageFrameView-contentContainer{background-color:#b4dbb8}body.mh-improved-bg-background-color-green .pageFrameView-column.right,body.mh-improved-bg-background-color-green .pageFrameView-column.left{background:#b4dbb8;border:none}body.mh-improved-bg-background-color-pink .pageFrameView-contentContainer{background-color:#e8c6eb}body.mh-improved-bg-background-color-pink .pageFrameView-column.right,body.mh-improved-bg-background-color-pink .pageFrameView-column.left{background:#e8c6eb;border:none}body.mh-improved-bg-background-color-purple .pageFrameView-contentContainer{background-color:#d8caf3}body.mh-improved-bg-background-color-purple .pageFrameView-column.right,body.mh-improved-bg-background-color-purple .pageFrameView-column.left{background:#d8caf3;border:none}body.mh-improved-bg-background-color-red .pageFrameView-contentContainer{background-color:#f2c7c5}body.mh-improved-bg-background-color-red .pageFrameView-column.right,body.mh-improved-bg-background-color-red .pageFrameView-column.left{background:#f2c7c5;border:none}body.mh-improved-bg-background-color-faded .pageFrameView-contentContainer{background-color:#fff4c5}body.mh-improved-bg-background-color-faded .pageFrameView-column.right,body.mh-improved-bg-background-color-faded .pageFrameView-column.left{background:#fff4c5;border:none}#mousehunt-improved-settings-feature-custom-hud .PagePreferences__settingLabel,#mousehunt-improved-settings-feature-custom-background .PagePreferences__settingLabel{position:relative}.mh-improved-custom-hud-preview,.mh-improved-custom-camp-bg-preview,.mh-improved-custom-bg-preview{position:absolute;top:0;right:225px;bottom:0;display:flex;align-items:center;font-size:12px}.mh-improved-custom-background-gradient-preview{display:grid;grid-template-columns:1fr 1fr;gap:20px;height:80vh;padding-right:10px;margin-right:-10px;overflow:auto}.mh-improved-custom-background-gradient-preview .gradient{display:flex;flex-direction:column;place-content:center space-between;align-items:center;width:100%;height:200px;padding:10px 0;border:1px solid #626262;border-radius:5px}.mh-improved-custom-background-gradient-preview .name{font-size:22px;font-weight:900;color:#fff;text-shadow:0 1px 2px #000}.mh-improved-custom-preview-popup-custom-hud .mh-improved-custom-background-gradient-preview .gradient{height:55px}.mh-improved-custom-preview-popup-custom-hud .mh-improved-custom-background-gradient-preview .name{font-size:18px}.mh-improved-custom-background-gradient-preview .mh-improved-custom-bg-action-button{margin:0 3px}
+      styles_default66 = `body.mh-improved-bg-background-color-blue .pageFrameView-contentContainer{background-color:#bad4ed}body.mh-improved-bg-background-color-blue .pageFrameView-column.right,body.mh-improved-bg-background-color-blue .pageFrameView-column.left{background:#bad4ed;border:none}body.mh-improved-bg-background-color-cyan .pageFrameView-contentContainer{background-color:#abdbd3}body.mh-improved-bg-background-color-cyan .pageFrameView-column.right,body.mh-improved-bg-background-color-cyan .pageFrameView-column.left{background:#e8c6eb;border:none}body.mh-improved-bg-background-color-green .pageFrameView-contentContainer{background-color:#b4dbb8}body.mh-improved-bg-background-color-green .pageFrameView-column.right,body.mh-improved-bg-background-color-green .pageFrameView-column.left{background:#b4dbb8;border:none}body.mh-improved-bg-background-color-pink .pageFrameView-contentContainer{background-color:#e8c6eb}body.mh-improved-bg-background-color-pink .pageFrameView-column.right,body.mh-improved-bg-background-color-pink .pageFrameView-column.left{background:#e8c6eb;border:none}body.mh-improved-bg-background-color-purple .pageFrameView-contentContainer{background-color:#d8caf3}body.mh-improved-bg-background-color-purple .pageFrameView-column.right,body.mh-improved-bg-background-color-purple .pageFrameView-column.left{background:#d8caf3;border:none}body.mh-improved-bg-background-color-red .pageFrameView-contentContainer{background-color:#f2c7c5}body.mh-improved-bg-background-color-red .pageFrameView-column.right,body.mh-improved-bg-background-color-red .pageFrameView-column.left{background:#f2c7c5;border:none}body.mh-improved-bg-background-color-faded .pageFrameView-contentContainer{background-color:#fff4c5}body.mh-improved-bg-background-color-faded .pageFrameView-column.right,body.mh-improved-bg-background-color-faded .pageFrameView-column.left{background:#fff4c5;border:none}#mousehunt-improved-settings-feature-custom-hud .PagePreferences__settingLabel,#mousehunt-improved-settings-feature-custom-background .PagePreferences__settingLabel{position:relative}.mh-improved-custom-hud-preview,.mh-improved-custom-camp-bg-preview,.mh-improved-custom-bg-preview{position:absolute;top:0;right:225px;bottom:0;display:flex;align-items:center;font-size:12px}.mh-improved-custom-background-gradient-preview{display:grid;grid-template-columns:1fr 1fr;gap:20px;height:80vh;padding-right:10px;margin-right:-10px;overflow:auto}.mh-improved-custom-background-gradient-preview .gradient{display:flex;flex-direction:column;place-content:center space-between;align-items:center;width:100%;height:200px;padding:10px 0;border:1px solid #626262;border-radius:5px}.mh-improved-custom-background-gradient-preview .name{font-size:22px;font-weight:900;color:#fff;text-shadow:0 1px 2px #000}.mh-improved-custom-preview-popup-custom-hud .mh-improved-custom-background-gradient-preview .gradient{height:55px}.mh-improved-custom-preview-popup-custom-hud .mh-improved-custom-background-gradient-preview .name{font-size:18px}.mh-improved-custom-background-gradient-preview .mh-improved-custom-bg-action-button{margin:0 3px}
 `;
     }
   });
-  var addedClass2, addBodyClass2, listenForPreferenceChanges3, addPreview2, addPreviewCallback, persistBackground2, init78, custom_background_default, init_custom_background = __esm({
+  var addedClass, addBodyClass2, listenForPreferenceChanges2, addPreview, addPreviewCallback, persistBackground2, init75, custom_background_default, init_custom_background = __esm({
     "src/modules/custom-background/index.js"() {
       init_utils2();
       init_backgrounds3();
-      init_settings32();
-      init_styles69();
-      addedClass2 = "", addBodyClass2 = (preview = !1) => {
+      init_settings31();
+      init_styles67();
+      addedClass = "", addBodyClass2 = (preview = !1) => {
         let body = document.querySelector("body");
         if (!body)
           return;
         let setting = getSetting("custom-background-0", "default");
-        preview && (setting = preview), addedClass2 && (Array.isArray(addedClass2) ? addedClass2.forEach((cls) => {
+        preview && (setting = preview), addedClass && (Array.isArray(addedClass) ? addedClass.forEach((cls) => {
           body.classList.remove(cls);
-        }) : body.classList.remove(addedClass2), addedClass2 = "");
+        }) : body.classList.remove(addedClass), addedClass = "");
         let style = document.querySelector("#mh-improved-custom-background-style");
         if (style && style.remove(), setting === "default")
           return;
         let background = `mh-improved-bg-${setting}`;
-        if (body.classList.remove("kings_giveaway"), body.classList.add(background, setting), addedClass2 = [background, setting], setting.startsWith("background-color-") && (body.classList.remove(setting), body.classList.add(background), addedClass2 = background), !backgrounds_default3)
+        if (body.classList.remove("kings_giveaway"), body.classList.add(background, setting), addedClass = [background, setting], setting.startsWith("background-color-") && (body.classList.remove(setting), body.classList.add(background), addedClass = background), !backgrounds_default3)
           return;
         let gradient = backgrounds_default3.find((g) => g.id === setting);
         if (!gradient)
@@ -17168,12 +16928,12 @@ ${csv}`);
     background: ${gradient.css};
     background-attachment: fixed;
   }`, document.head.append(gradientStyle);
-      }, listenForPreferenceChanges3 = () => {
+      }, listenForPreferenceChanges2 = () => {
         let input = document.querySelector("#mousehunt-improved-settings-design-custom-background select");
         input && input.addEventListener("change", () => {
           addBodyClass2();
         });
-      }, addPreview2 = () => {
+      }, addPreview = () => {
         addPreviewCallback({
           id: "custom-background",
           selector: ".mh-improved-custom-bg-preview",
@@ -17226,20 +16986,87 @@ ${csv}`);
           addBodyClass2(), setTimeout(addBodyClass2, 250), setTimeout(addBodyClass2, 500);
         }), onNavigation(() => {
           setTimeout(() => {
-            listenForPreferenceChanges3(), addPreview2();
+            listenForPreferenceChanges2(), addPreview();
           }, 1e3);
         }, {
           page: "preferences",
           onLoad: !0
         });
-      }, init78 = () => __async(void 0, null, function* () {
-        addStyles(styles_default68, "custom-background"), persistBackground2();
+      }, init75 = () => __async(void 0, null, function* () {
+        addStyles(styles_default66, "custom-background"), persistBackground2();
       }), custom_background_default = {
         id: "custom-background",
         type: "design",
         alwaysLoad: !0,
-        load: init78,
-        settings: settings_default31
+        load: init75,
+        settings: settings_default30
+      };
+    }
+  });
+  var legacy_styles_default2, init_legacy_styles2 = __esm({
+    "src/modules/big-timer/legacy-styles.css"() {
+      legacy_styles_default2 = `.big-timer.huntersHornView__timer.huntersHornView__timer.countdown:after{content:""}.big-timer.huntersHornView__timer.huntersHornView__timer--legacy.countdown .huntersHornView__timerState--type-countdown:before{content:""}.big-timer.huntersHornView__timer.huntersHornView__timer.countdown{position:absolute;top:60px;left:270px;z-index:100;padding:2px;background-color:#d9c9a0;border-radius:5px;box-shadow:0 -1px #ded9c3;transform:scale(2.6)}
+`;
+    }
+  });
+  var styles_default67, init_styles68 = __esm({
+    "src/modules/big-timer/styles.css"() {
+      styles_default67 = `.big-timer.huntersHornView__timer.huntersHornView__timer.countdown{position:absolute;top:40px;left:185px;z-index:100;transform:scale(2.2)}.big-timer.huntersHornView__timer.huntersHornView__timer.countdown:after{position:absolute;top:6px;right:5px;left:5px;font-size:14px;text-align:center;content:"Next Hunt";background:linear-gradient(180deg,#fef2b8,#ecdfae)}
+`;
+    }
+  });
+  var toggleBigTimer, init76, big_timer_default, init_big_timer = __esm({
+    "src/modules/big-timer/index.js"() {
+      init_utils2();
+      init_legacy_styles2();
+      init_styles68();
+      toggleBigTimer = () => {
+        let timer = document.querySelector(".huntersHornView__timer");
+        if (!timer)
+          return;
+        let isBigTimer = timer.classList.contains("big-timer");
+        timer.addEventListener("click", () => {
+          isBigTimer = !isBigTimer, timer.classList.toggle("big-timer", isBigTimer);
+        });
+      }, init76 = () => __async(void 0, null, function* () {
+        addStyles([
+          styles_default67,
+          isLegacyHUD() ? legacy_styles_default2 : ""
+        ], "experiment-big-timer"), toggleBigTimer(), setTimeout(toggleBigTimer, 1e3);
+      }), big_timer_default = {
+        id: "big-timer",
+        name: "Big Timer",
+        type: "feature",
+        default: !1,
+        description: "Click the timer to toggle between normal and big sizes.",
+        load: init76
+      };
+    }
+  });
+  var init77, onboarding_default, init_onboarding2 = __esm({
+    "src/modules/onboarding/index.js"() {
+      init_utils2();
+      init77 = () => __async(void 0, null, function* () {
+        addOnboardingMessage({
+          step: "mh-improved-onboarding-1",
+          page: "camp",
+          highlightSelector: ".mousehunt-improved-icon-menu",
+          content: "Welcome to MouseHunt Improved! You can quickly get to the settings using this icon.",
+          direction: "bottom",
+          showOverlay: !0
+        }), addOnboardingMessage({
+          step: "mh-improved-onboarding-2",
+          page: "preferences",
+          highlightSelector: "#mousehunt-improved-settings-better",
+          content: "Here you can toggle features and customize things to your liking.",
+          direction: "top",
+          showOverlay: !0
+        });
+      }), onboarding_default = {
+        id: "onboarding",
+        type: "required",
+        alwaysLoad: !0,
+        load: init77
       };
     }
   });
@@ -17466,17 +17293,17 @@ ${csv}`);
       };
     }
   });
-  var styles_default69, init_styles70 = __esm({
+  var styles_default68, init_styles69 = __esm({
     "src/modules/keyboard-shortcuts/styles.css"() {
-      styles_default69 = `.mh-ui-keyboard-shortcuts-popup-content h2{margin-bottom:10px}.mh-ui-keyboard-shortcut{display:flex;align-items:center;justify-content:space-between;padding:5px;font-size:12px;border-bottom:1px solid #ccc}.mh-ui-keyboard-shortcut:last-child{border-bottom:none}.mh-ui-keyboard-shortcut .description{flex-grow:1;font-size:11px}.mh-ui-keyboard-shortcut kbd{width:175px;height:11px;padding:3px;font-family:monospace;font-size:12px;text-align:center;white-space:nowrap;background-color:#f9f9f9;border:1px solid #ccc;border-radius:4px;box-shadow:0 1px #0003,0 0 0 2px #fff inset}.mh-ui-keyboard-shortcut .edit-controls{margin-right:10px}.mh-ui-keyboard-shortcut .edit-controls a{display:none}.mh-ui-keyboard-shortcut .edit-controls .edit,.mh-ui-keyboard-shortcuts-popup-content.editing .mh-ui-keyboard-shortcut.editing .edit-controls a,.mh-ui-keyboard-shortcut:focus .edit-controls .reset,.mh-ui-keyboard-shortcut:active .edit-controls .reset,.mh-ui-keyboard-shortcut:focus .edit-controls .edit,.mh-ui-keyboard-shortcut:active .edit-controls .edit,.mh-ui-keyboard-shortcut:focus .edit-controls .clear,.mh-ui-keyboard-shortcut:active .edit-controls .clear,.mh-ui-keyboard-shortcut.editing .edit-controls .edit{display:inline-block;margin-left:10px}.mh-ui-keyboard-shortcuts-popup-content.editing .mh-ui-keyboard-shortcut .edit-controls a{display:none}.mh-ui-keyboard-shortcut.saved kbd{background-color:#baf3ba;box-shadow:0 1px #0003,0 0 0 2px #daffda inset}.mh-ui-keyboard-shortcut.error kbd{background-color:#fda0a0;box-shadow:0 1px #0003,0 0 0 2px #ff8e8e inset}.mh-ui-keyboard-shortcut.editing kbd{background-color:#cce8ff;box-shadow:0 1px #0003,0 0 0 2px #acd9ff inset}.mh-ui-keyboard-shortcut.editing .description{color:#3b5998}.mh-ui-keyboard-shortcut.editing{background-color:#eff8ff}.mh-ui-keyboard-shortcuts-popup-content-category summary{padding:10px;font-size:14px;background-color:#eee}.mh-ui-keyboard-shortcuts-popup-content-category{margin:10px 0;border:1px solid #929292}.mh-ui-keyboard-shortcut:nth-child(2n){background-color:#eee}.mh-ui-keyboard-shortcuts-popup-content-category-list{border-top:1px solid #929292}
+      styles_default68 = `.mh-ui-keyboard-shortcuts-popup-content h2{margin-bottom:10px}.mh-ui-keyboard-shortcut{display:flex;align-items:center;justify-content:space-between;padding:5px;font-size:12px;border-bottom:1px solid #ccc}.mh-ui-keyboard-shortcut:last-child{border-bottom:none}.mh-ui-keyboard-shortcut .description{flex-grow:1;font-size:11px}.mh-ui-keyboard-shortcut kbd{width:175px;height:11px;padding:3px;font-family:monospace;font-size:12px;text-align:center;white-space:nowrap;background-color:#f9f9f9;border:1px solid #ccc;border-radius:4px;box-shadow:0 1px #0003,0 0 0 2px #fff inset}.mh-ui-keyboard-shortcut .edit-controls{margin-right:10px}.mh-ui-keyboard-shortcut .edit-controls a{display:none}.mh-ui-keyboard-shortcut .edit-controls .edit,.mh-ui-keyboard-shortcuts-popup-content.editing .mh-ui-keyboard-shortcut.editing .edit-controls a,.mh-ui-keyboard-shortcut:focus .edit-controls .reset,.mh-ui-keyboard-shortcut:active .edit-controls .reset,.mh-ui-keyboard-shortcut:focus .edit-controls .edit,.mh-ui-keyboard-shortcut:active .edit-controls .edit,.mh-ui-keyboard-shortcut:focus .edit-controls .clear,.mh-ui-keyboard-shortcut:active .edit-controls .clear,.mh-ui-keyboard-shortcut.editing .edit-controls .edit{display:inline-block;margin-left:10px}.mh-ui-keyboard-shortcuts-popup-content.editing .mh-ui-keyboard-shortcut .edit-controls a{display:none}.mh-ui-keyboard-shortcut.saved kbd{background-color:#baf3ba;box-shadow:0 1px #0003,0 0 0 2px #daffda inset}.mh-ui-keyboard-shortcut.error kbd{background-color:#fda0a0;box-shadow:0 1px #0003,0 0 0 2px #ff8e8e inset}.mh-ui-keyboard-shortcut.editing kbd{background-color:#cce8ff;box-shadow:0 1px #0003,0 0 0 2px #acd9ff inset}.mh-ui-keyboard-shortcut.editing .description{color:#3b5998}.mh-ui-keyboard-shortcut.editing{background-color:#eff8ff}.mh-ui-keyboard-shortcuts-popup-content-category summary{padding:10px;font-size:14px;background-color:#eee}.mh-ui-keyboard-shortcuts-popup-content-category{margin:10px 0;border:1px solid #929292}.mh-ui-keyboard-shortcut:nth-child(2n){background-color:#eee}.mh-ui-keyboard-shortcuts-popup-content-category-list{border-top:1px solid #929292}
 `;
     }
   });
-  var getBaseShortcuts, getShortcuts, saveShortcut, getKeyForDisplay, isHelpPopupOpen, showHelpPopup, isEditing2, listenForKeypresses, openFromSettings, init79, keyboard_shortcuts_default, init_keyboard_shortcuts = __esm({
+  var getBaseShortcuts, getShortcuts, saveShortcut, getKeyForDisplay, isHelpPopupOpen, showHelpPopup, isEditing2, listenForKeypresses, openFromSettings, init78, keyboard_shortcuts_default, init_keyboard_shortcuts = __esm({
     "src/modules/keyboard-shortcuts/index.js"() {
       init_utils2();
       init_actions();
-      init_styles70();
+      init_styles69();
       getBaseShortcuts = () => [
         {
           id: "help",
@@ -17670,8 +17497,8 @@ ${csv}`);
         openLink && openLink.addEventListener("click", (event) => {
           event.preventDefault(), showHelpPopup();
         });
-      }, init79 = () => __async(void 0, null, function* () {
-        addStyles(styles_default69, "keyboard-shortcuts"), listenForKeypresses(), onNavigation(hasMiniCRE, {
+      }, init78 = () => __async(void 0, null, function* () {
+        addStyles(styles_default68, "keyboard-shortcuts"), listenForKeypresses(), onNavigation(hasMiniCRE, {
           page: "camp"
         }), onNavigation(openFromSettings, {
           page: "preferences",
@@ -17683,19 +17510,19 @@ ${csv}`);
         type: "feature",
         default: !0,
         description: "Press \u201C?\u201D to see and edit keyboard shortcuts. You can also edit them [here](#).",
-        load: init79
+        load: init78
       };
     }
   });
-  var styles_default70, init_styles71 = __esm({
+  var styles_default69, init_styles70 = __esm({
     "src/modules/location-catch-stats/styles.css"() {
-      styles_default70 = `#mh-catch-stats{position:absolute;top:25px;left:25px;z-index:150}@media screen and (prefers-reduced-motion: reduce){.mh-catch-stats-wrapper{transition:none}}.mh-catch-stats-wrapper{width:275px;background:#f6f3eb;border:1px solid #534022;box-shadow:1px 1px 1px #9d917f,1px 3px 5px #6a6969;transition:box-shadow .25s}.mh-is-dragging .mh-catch-stats-wrapper{box-shadow:1px 1px 1px #9d917f,0 7px 9px 2px #6a6969}.mh-catch-stats-header{display:flex;align-items:center;justify-content:space-between;padding:10px;color:#f6f3eb;cursor:grab;background-color:#926944;border-bottom:1px solid #ceb7a6}.mh-catch-stats-header h1{color:#f6f3eb}.mh-catch-stats-close{cursor:pointer}.mh-catch-stats-close:hover,.mh-catch-stats-close:focus{color:#926944;background-color:#eee;border-radius:50%;outline:1px solid #ccc}.mh-catch-stats-body{max-height:90vh;overflow:hidden auto}.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd){background-color:#e8e3d7}.mh-catch-stats{display:flex;align-items:center;justify-content:space-between;padding:10px;color:#000}.mh-catch-stats:hover,.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):hover,.mh-catch-stats:focus,.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):focus{color:#665f5f;text-decoration:none;background-color:#eee;outline:1px solid #ccc}.mh-catch-stats-image{position:relative;display:inline-block;width:40px;height:40px;vertical-align:middle;background-repeat:no-repeat;background-size:contain;border-radius:2px;box-shadow:1px 1px 1px #999}.mh-catch-stats-crown{position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;background-color:#fff;background-repeat:no-repeat;background-position:50% 50%;background-size:80%;border:1px solid #333;border-radius:50%}.mh-catch-stats-name{display:inline-block;padding-left:10px;vertical-align:middle}.mh-catch-stats-catches{padding-right:5px}
+      styles_default69 = `#mh-catch-stats{position:absolute;top:25px;left:25px;z-index:150}@media screen and (prefers-reduced-motion: reduce){.mh-catch-stats-wrapper{transition:none}}.mh-catch-stats-wrapper{width:275px;background:#f6f3eb;border:1px solid #534022;box-shadow:1px 1px 1px #9d917f,1px 3px 5px #6a6969;transition:box-shadow .25s}.mh-is-dragging .mh-catch-stats-wrapper{box-shadow:1px 1px 1px #9d917f,0 7px 9px 2px #6a6969}.mh-catch-stats-header{display:flex;align-items:center;justify-content:space-between;padding:10px;color:#f6f3eb;cursor:grab;background-color:#926944;border-bottom:1px solid #ceb7a6}.mh-catch-stats-header h1{color:#f6f3eb}.mh-catch-stats-close{cursor:pointer}.mh-catch-stats-close:hover,.mh-catch-stats-close:focus{color:#926944;background-color:#eee;border-radius:50%;outline:1px solid #ccc}.mh-catch-stats-body{max-height:90vh;overflow:hidden auto}.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd){background-color:#e8e3d7}.mh-catch-stats{display:flex;align-items:center;justify-content:space-between;padding:10px;color:#000}.mh-catch-stats:hover,.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):hover,.mh-catch-stats:focus,.mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):focus{color:#665f5f;text-decoration:none;background-color:#eee;outline:1px solid #ccc}.mh-catch-stats-image{position:relative;display:inline-block;width:40px;height:40px;vertical-align:middle;background-repeat:no-repeat;background-size:contain;border-radius:2px;box-shadow:1px 1px 1px #999}.mh-catch-stats-crown{position:absolute;right:-5px;bottom:-5px;width:20px;height:20px;background-color:#fff;background-repeat:no-repeat;background-position:50% 50%;background-size:80%;border:1px solid #333;border-radius:50%}.mh-catch-stats-name{display:inline-block;padding-left:10px;vertical-align:middle}.mh-catch-stats-catches{padding-right:5px}
 `;
     }
   });
-  var settings_default32, init_settings33 = __esm({
+  var settings_default31, init_settings32 = __esm({
     "src/modules/location-catch-stats/settings/index.js"() {
-      settings_default32 = () => __async(void 0, null, function* () {
+      settings_default31 = () => __async(void 0, null, function* () {
         return [
           {
             id: "location-catch-stats.show-misses",
@@ -17705,11 +17532,11 @@ ${csv}`);
       });
     }
   });
-  var getMouseStats, buildMouseMarkup, showModal, showMisses, init80, location_catch_stats_default, init_location_catch_stats = __esm({
+  var getMouseStats, buildMouseMarkup, showModal, showMisses, init79, location_catch_stats_default, init_location_catch_stats = __esm({
     "src/modules/location-catch-stats/index.js"() {
       init_utils2();
-      init_styles71();
-      init_settings33();
+      init_styles70();
+      init_settings32();
       getMouseStats = () => __async(void 0, null, function* () {
         var _a, _b;
         let data = yield doRequest("managers/ajax/mice/mouse_list.php", {
@@ -17765,8 +17592,8 @@ ${csv}`);
         mouseBody.classList.add("mh-catch-stats-body"), (yield getMouseStats()).forEach((mouseData) => {
           mouseBody.append(buildMouseMarkup(mouseData, mouseBody));
         }), modal.append(mouseBody), modalWrapper.append(modal), document.body.append(modalWrapper), makeElementDraggable("#mh-catch-stats", ".mh-catch-stats-header", 25, 25, "mh-catch-stats-position");
-      }), showMisses = !1, init80 = () => __async(void 0, null, function* () {
-        addStyles(styles_default70, "location-catch-stats"), addSubmenuItem({
+      }), showMisses = !1, init79 = () => __async(void 0, null, function* () {
+        addStyles(styles_default69, "location-catch-stats"), addSubmenuItem({
           menu: "mice",
           label: "Location Catch Stats",
           icon: "https://www.mousehuntgame.com/images/ui/hud/menu/prize_shoppe.png?",
@@ -17778,125 +17605,135 @@ ${csv}`);
         type: "feature",
         default: !0,
         description: "Add a \u201CLocation Catch Stats\u201D option to the Mice menu to see your catch stats for the current location.",
-        load: init80,
-        settings: settings_default32
+        load: init79,
+        settings: settings_default31
       };
     }
   });
-  var updateStats, setPrestigeStats, isModifying, modifyPB, isSaving, savePbStats, run2, init81, prestige_base_stats_default, init_prestige_base_stats = __esm({
-    "src/modules/prestige-base-stats/index.js"() {
+  var settings_default32, init_settings33 = __esm({
+    "src/modules/custom-horn/settings/index.js"() {
+      settings_default32 = () => __async(void 0, null, function* () {
+        let options2 = [
+          { name: "Default", value: "default" },
+          { name: "Tournament Horn", value: "huntersHornView__horn--tournament" },
+          {
+            name: "Events",
+            value: "group",
+            options: [
+              { name: "Birthday", value: "huntersHornView--seasonalEvent-birthday" },
+              {
+                name: "Great Winter Hunt",
+                value: "huntersHornView--seasonalEvent-greatWinterHunt"
+              },
+              {
+                name: "Halloween",
+                value: "huntersHornView--seasonalEvent-halloween"
+              },
+              {
+                name: "Lunar New Year",
+                value: "huntersHornView--seasonalEvent-lunarNewYear"
+              },
+              {
+                name: "Spring Egg Hunt",
+                value: "huntersHornView--seasonalEvent-springEggHunt"
+              }
+            ]
+          },
+          {
+            name: "Color",
+            value: "group",
+            options: [
+              { name: "Blue", value: "horn-color-blue" },
+              { name: "Cyan", value: "horn-color-cyan" },
+              { name: "Green", value: "horn-color-green" },
+              { name: "Pink", value: "horn-color-pink" },
+              { name: "Purple", value: "horn-color-purple" },
+              { name: "Red", value: "horn-color-red" },
+              { name: "Faded", value: "horn-color-faded" },
+              { name: "Rainbow", value: "horn-color-rainbow" }
+            ]
+          }
+        ];
+        return [{
+          id: "custom-horn",
+          title: 'Custom Horn <a class="mh-improved-custom-horn-show-horn">Show Horn</a>',
+          default: [options2[0]],
+          description: "Change the horn to an event horn or a different color.",
+          settings: {
+            type: "multi-select",
+            number: 1,
+            options: options2
+          }
+        }];
+      });
+    }
+  });
+  var styles_default70, init_styles71 = __esm({
+    "src/modules/custom-horn/styles.css"() {
+      styles_default70 = `.huntersHornView.horn-color-blue .huntersHornView__horn{filter:hue-rotate(158deg)}.huntersHornView.horn-color-cyan .huntersHornView__horn{filter:hue-rotate(112deg)}.huntersHornView.horn-color-green .huntersHornView__horn{filter:hue-rotate(66deg)}.huntersHornView.horn-color-pink .huntersHornView__horn{filter:hue-rotate(280deg)}.huntersHornView.horn-color-purple .huntersHornView__horn{filter:hue-rotate(195deg)}.huntersHornView.horn-color-red .huntersHornView__horn{filter:hue-rotate(317deg) saturate(1.6)}.huntersHornView.horn-color-faded .huntersHornView__horn{filter:sepia(1)}.huntersHornView.horn-color-rainbow .huntersHornView__horn{animation:mh-improved-hue-rotate 30s infinite}@media (prefers-reduced-motion: reduce){.huntersHornView.horn-color-rainbow .huntersHornView__horn{animation:none}}.mh-improved-custom-horn-show-horn{position:absolute;top:0;right:225px;bottom:0;display:flex;align-items:center;font-size:12px}
+`;
+    }
+  });
+  var addedClass2, addHornClass, listenForPreferenceChanges3, addPreview2, persistHornClass, init80, custom_horn_default, init_custom_horn = __esm({
+    "src/modules/custom-horn/index.js"() {
       init_utils2();
-      updateStats = (selector, pbStats) => {
-        let stats = selector.querySelector(".campPage-trap-itemBrowser-item-statContainer");
-        if (!stats)
+      init_settings33();
+      init_styles71();
+      addedClass2 = "", addHornClass = (preview = !1) => {
+        let hornView = document.querySelector(".huntersHornView");
+        if (!hornView)
           return;
-        let currentSetup = getUserSetupDetails(), power = stats.querySelector(".campPage-trap-itemBrowser-item-stat.power");
-        if (power) {
-          let powerValue = power.querySelector(".value span");
-          powerValue && (powerValue.innerText = pbStats.power, power.classList.remove("better", "worse"), currentSetup.base.power < pbStats.power ? power.classList.add("better") : currentSetup.base.power > pbStats.power && power.classList.add("worse"));
-        }
-        let luck = stats.querySelector(".campPage-trap-itemBrowser-item-stat.luck");
-        if (luck) {
-          let luckValue = luck.querySelector(".value span");
-          luckValue && (luckValue.innerText = pbStats.luck, luck.classList.remove("better", "worse"), currentSetup.base.luck < pbStats.luck ? luck.classList.add("better") : currentSetup.base.luck > pbStats.luck && luck.classList.add("worse"));
-        }
-      }, setPrestigeStats = () => __async(void 0, null, function* () {
-        let prestige = document.querySelector(".campPage-trap-itemBrowser-item.base.valour_rift_prestige_base");
-        if (!prestige)
+        let horn = document.querySelector(".huntersHornView__horn");
+        if (!horn)
           return;
-        let pbStats = yield cacheGet("pb-stats", !1);
-        if (!pbStats)
+        horn.classList.add("huntersHornView__horn--default");
+        let setting = getSetting("custom-horn-0", "default");
+        preview && (setting = preview), hornView.classList.add(), addedClass2 && hornView.classList.remove(addedClass2), setting !== "default" && (hornView.classList.add(setting), addedClass2 = setting);
+      }, listenForPreferenceChanges3 = () => {
+        let input = document.querySelector("#mousehunt-improved-settings-design-custom-horn select");
+        input && input.addEventListener("change", () => {
+          addHornClass();
+        });
+      }, addPreview2 = () => {
+        let previewLink = document.querySelector(".mh-improved-custom-horn-show-horn");
+        if (!previewLink)
           return;
-        updateStats(prestige, pbStats);
-        let armed = document.querySelector(".campPage-trap-itemBrowser-armed-item.base");
-        if (!armed)
-          return;
-        let name = armed.querySelector(".campPage-trap-itemBrowser-item-name");
-        name && name.innerText.includes("Prestige Base") && updateStats(armed, pbStats);
-      }), isModifying = !1, modifyPB = (opts) => __async(void 0, null, function* () {
-        if (isModifying)
-          return;
-        isModifying = !0;
-        let activeBp = document.querySelector(".trapSelectorView__blueprint--active .trapSelectorView__browserStateParent");
-        if (!activeBp) {
-          isModifying = !1;
-          return;
-        }
-        let bpType = activeBp.getAttribute("data-blueprint-type");
-        if (!bpType || bpType !== "base") {
-          isModifying = !1;
-          return;
-        }
-        let { retryPrestige } = opts || {}, savedStats = yield cacheGet("pb-stats", !1);
-        if (debuglog("prestige-base-stats", "Saved Prestige Base stats:", savedStats), !savedStats) {
-          isModifying = !1;
-          return;
-        }
-        let prestige = document.querySelector(".campPage-trap-itemBrowser-item.base.valour_rift_prestige_base");
-        if (!prestige) {
-          retryPrestige || setTimeout(() => {
-            modifyPB({ retryPrestige: !0 });
-          }, 500), isModifying = !1;
-          return;
-        }
-        if (prestige.getAttribute("data-pinned")) {
-          isModifying = !1;
-          return;
-        }
-        let recommended = document.querySelector('.trapSelectorView__browserStateParent--items[data-blueprint-type="base"] .recommended');
-        if (!recommended) {
-          isModifying = !1;
-          return;
-        }
-        let header = recommended.querySelector(".campPage-trap-itemBrowser-tagGroup-name");
-        header && header.after(prestige), prestige.setAttribute("data-pinned", !0), setPrestigeStats(), isModifying = !1;
-      }), isSaving = !1, savePbStats = () => {
-        if (isSaving)
-          return;
-        if (isSaving = !0, getUserSetupDetails().base.id !== 2904) {
-          isSaving = !1;
-          return;
-        }
-        debuglog("prestige-base-stats", "Saving Prestige Base stats\u2026");
-        let trapMath = document.querySelectorAll(".campPage-trap-trapStat-mathRow");
-        if (!trapMath.length) {
-          isSaving = !1;
-          return;
-        }
-        let stats = {};
-        if (trapMath.forEach((row) => {
-          let stat = row.querySelector(".campPage-trap-trapStat-mathRow-name");
-          if (!stat) {
-            isSaving = !1;
+        let isShowing = !1, timeout = null;
+        previewLink.addEventListener("click", (e) => {
+          e.preventDefault(), e.stopPropagation();
+          let horn = document.querySelector(".huntersHornView__horn");
+          if (!horn)
             return;
+          let backdrop = document.querySelector(".huntersHornView__backdrop");
+          if (backdrop) {
+            if (isShowing) {
+              isShowing = !1, previewLink.textContent = "Preview Horn", clearTimeout(timeout), horn.classList.add("huntersHornView__horn--reveal"), horn.classList.remove("huntersHornView__horn--ready"), setTimeout(() => {
+                backdrop.classList.remove("huntersHornView__backdrop--active");
+              }, 400), timeout = setTimeout(() => {
+                horn.classList.remove("huntersHornView__horn--reveal");
+              }, 1e3);
+              return;
+            }
+            isShowing = !0, previewLink.textContent = "Hide Horn", backdrop.classList.add("huntersHornView__backdrop--active"), horn.classList.add("huntersHornView__horn--ready", "huntersHornView__horn--reveal"), clearTimeout(timeout);
           }
-          if (!stat.innerText.includes("Prestige Base")) {
-            isSaving = !1;
-            return;
-          }
-          let value = row.querySelector(".campPage-trap-trapStat-mathRow-value");
-          if (!value) {
-            isSaving = !1;
-            return;
-          }
-          let parsedValue = Number.parseInt(value.innerText.replaceAll(",", ""), 10), typeClass = row.parentElement.parentElement.className.replace("campPage-trap-trapStat", "").trim();
-          typeClass === "power" ? parsedValue = parsedValue + 490 : typeClass === "luck" && (parsedValue = parsedValue + 5), stats[typeClass] = parsedValue;
-        }), !stats.power || !stats.luck) {
-          isSaving = !1;
-          return;
-        }
-        debuglog("prestige-base-stats", "Prestige Base stats:", stats), cacheSet("pb-stats", stats), isSaving = !1;
-      }, run2 = () => __async(void 0, null, function* () {
-        modifyPB(), savePbStats();
-      }), init81 = () => __async(void 0, null, function* () {
-        onEvent("camp_page_toggle_blueprint", run2), onRequest("users/changetrap.php", run2);
-      }), prestige_base_stats_default = {
-        id: "prestige-base-stats",
-        name: "Prestige Base Stats",
-        type: "feature",
-        default: !0,
-        description: "Show the correct stats for the Prestige Base in the base selector.",
-        load: init81
+        });
+      }, persistHornClass = () => {
+        addHornClass(), onNavigation(() => {
+          setTimeout(addHornClass, 1e3);
+        }), onNavigation(() => {
+          listenForPreferenceChanges3(), addPreview2();
+        }, {
+          page: "preferences",
+          onLoad: !0
+        });
+      }, init80 = () => __async(void 0, null, function* () {
+        addStyles(styles_default70, "custom-horn"), persistHornClass();
+      }), custom_horn_default = {
+        id: "custom-horn",
+        type: "design",
+        alwaysLoad: !0,
+        load: init80,
+        settings: settings_default32
       };
     }
   });
@@ -17942,7 +17779,6 @@ ${csv}`);
           "queso_plains",
           "queso_quarry",
           "queso_river",
-          // Don't have HUD changes for these.
           "meadow",
           "training_grounds",
           "zugzwang_library"
@@ -18105,15 +17941,10 @@ ${csv}`);
         var _a, _b;
         let types = {
           y: "Paladin Weapon Master",
-          // Fealty
           h: "Manaforge Smith",
-          // Tech
           s: "Soul Binder",
-          // Scholar
           t: "Molten Midas",
-          // Treasury
           f: ""
-          // Farming
         }, type = (_b = (_a = user == null ? void 0 : user.quests) == null ? void 0 : _a.QuestAncientCity) == null ? void 0 : _b.district_type;
         if (!type || !types[type])
           return;
@@ -18572,7 +18403,7 @@ ${csv}`);
 `;
     }
   });
-  var toggleFuelClass, toggleFuel, addBossCountdown, addEnemyClass, getNextOcUpgradeCost, showGloreProgress, onSkyMapShow, showBWReminder, maybeChangeWarning, updateJetstreamTime, jsClone, showJetstream, makeAirshipDraggable, run3, hud, floating_islands_default3, init_floating_islands3 = __esm({
+  var toggleFuelClass, toggleFuel, addBossCountdown, addEnemyClass, getNextOcUpgradeCost, showGloreProgress, onSkyMapShow, showBWReminder, maybeChangeWarning, updateJetstreamTime, jsClone, showJetstream, makeAirshipDraggable, run2, hud, floating_islands_default3, init_floating_islands3 = __esm({
     "src/modules/location-huds/locations/floating-islands/index.js"() {
       init_utils2();
       init_styles81();
@@ -18771,15 +18602,15 @@ ${csv}`);
             airship.style.transition = "";
           }, 500);
         });
-      }, run3 = () => __async(void 0, null, function* () {
+      }, run2 = () => __async(void 0, null, function* () {
         yield showJetstream(), yield addEnemyClass(), yield addBossCountdown(), yield maybeChangeWarning(), getSetting("location-huds.fi-draggable-airship") && makeAirshipDraggable();
       }), hud = () => {
-        toggleFuel(), showGloreProgress(), run3(), showBWReminder(), onTravel(() => setTimeout(showBWReminder, 1500)), onEvent("ajax_response", () => {
-          setTimeout(run3, 300);
+        toggleFuel(), showGloreProgress(), run2(), showBWReminder(), onTravel(() => setTimeout(showBWReminder, 1500)), onEvent("ajax_response", () => {
+          setTimeout(run2, 300);
         }), document.addEventListener("horn-countdown-tick-minute", updateJetstreamTime), onDialogShow("floatingIslandsAdventureBoard.floatingIslandsDialog.skyPalace", onSkyMapShow), onRequest("environment/floating_islands.php", (request, data) => {
-          run3(), toggleFuel(!0), (data == null ? void 0 : data.action) === "launch" && setMultipleTimeout(() => {
-            run3(), showBWReminder();
-          }, [1e3, 2e3, 3e3, 4e3, 5e3]), (data == null ? void 0 : data.action) === "retreat" && saveSetting("location-huds.fi-draggable-airship-position", {}), setTimeout(() => run3(), 2e3);
+          run2(), toggleFuel(!0), (data == null ? void 0 : data.action) === "launch" && setMultipleTimeout(() => {
+            run2(), showBWReminder();
+          }, [1e3, 2e3, 3e3, 4e3, 5e3]), (data == null ? void 0 : data.action) === "retreat" && saveSetting("location-huds.fi-draggable-airship-position", {}), setTimeout(() => run2(), 2e3);
         });
       }, floating_islands_default3 = () => __async(void 0, null, function* () {
         addHudStyles(styles_default80), hud();
@@ -19623,7 +19454,6 @@ ${csv}`);
 `;
     }
   });
-  // dist/data/brift-mice-per-mist-level.json
   var brift_mice_per_mist_level_default, init_brift_mice_per_mist_level = __esm({
     "dist/data/brift-mice-per-mist-level.json"() {
       brift_mice_per_mist_level_default = { tier_0: { string: [{ id: "rift_amplified_brown", name: "Amplified Brown Mouse", image: "9547c50891ce66c00188a0ce278cd9e0.gif" }, { id: "rift_amplified_grey", name: "Amplified Grey Mouse", image: "b6a9a248439e08367139cba601583781.gif" }, { id: "rift_amplified_white", name: "Amplified White Mouse", image: "877fd4f1831f1ffd76e6ab9334e96efc.gif" }, { id: "rift_automated_sentry", name: "Automated Sentry Mouse", image: "d57b33cdbb0d14bb138fe91c166325fa.gif" }, { id: "rift_cybernetic_specialist", name: "Cybernetic Specialist Mouse", image: "5a0d95f2211444717f29f74959b89366.gif" }, { id: "rift_doktor", name: "Doktor Mouse", image: "a44277c1d72f76fb507df2a7a4938542.gif" }, { id: "rift_evil_scientist", name: "Evil Scientist Mouse", image: "fc4030fcea4bb7e0118aa4d46705f37e.gif" }, { id: "rift_portable_generator", name: "Portable Generator Mouse", image: "f0437620c8c86379e6f8fefb9e82d2c3.gif" }, { id: "rift_bio_engineer", name: "Rift Bio Engineer", image: "1d91dc3220b096af75ca0423a77ccc83.gif" }, { id: "rift_surgeon_bot", name: "Surgeon Bot Mouse", image: "6678f8a7003093b081c941a3d571abb8.gif" }], terra: [], polluted: [] }, tier_1: { string: [{ id: "rift_count_vampire", name: "Count Vampire Mouse", image: "851f1d4c760d0f263a38d0fa28bbf2fa.gif" }, { id: "rift_phase_zombie", name: "Phase Zombie", image: "c9675fb32b01e91d43f5ebbbf3bf8f02.gif" }, { id: "rift_prototype", name: "Prototype Mouse", image: "8be0e48b2fa241e65312726433612871.gif" }, { id: "rift_robat", name: "Robat Mouse", image: "fa345c83ff784adfbe79230f279be2c6.gif" }, { id: "rift_tech_ravenous_zombie", name: "Tech Ravenous Zombie", image: "6249796e35d572687db2aa4a4e391335.gif" }], terra: [{ id: "rift_clump", name: "Clump Mouse", image: "a901fe9feea2e04ca1da1a3769dd7f77.gif" }, { id: "rift_cyber_miner", name: "Cyber Miner Mouse", image: "b3768e070c9b40fdfbfef4f39025acc3.gif" }, { id: "rift_itty_bitty_burroughs", name: "Itty Bitty Rifty Burroughs Mouse", image: "723735735fcbc38d75c5d980b454dc4e.gif" }, { id: "rift_pneumatic_dirt_displacement", name: "Pneumatic Dirt Displacement Mouse", image: "70bc4cb7409df8be9e1942e27b75c05f.gif" }, { id: "rift_rifterranian", name: "Rifterranian Mouse", image: "7abd07fac15972db28231f80fd03c075.gif" }], polluted: [{ id: "rift_mecha_tail", name: "Mecha Tail Mouse", image: "e329e623c6ff501d03c7077b8ecfabf9.gif" }, { id: "rift_spore", name: "Radioactive Ooze Mouse", image: "f037c2df0d654caaadfe4c8a58a13431.gif" }, { id: "rift_toxikinetic", name: "Toxikinetic Mouse", image: "bae7062027162025735a5ccbcaf58e5f.gif" }] }, tier_2: { string: [{ id: "rift_count_vampire", name: "Count Vampire Mouse", image: "851f1d4c760d0f263a38d0fa28bbf2fa.gif" }, { id: "rift_lycan", name: "Lycanoid", image: "18c987fe4ec5ee678114cb748dedfb6d.gif" }, { id: "rift_phase_zombie", name: "Phase Zombie", image: "c9675fb32b01e91d43f5ebbbf3bf8f02.gif" }, { id: "rift_prototype", name: "Prototype Mouse", image: "8be0e48b2fa241e65312726433612871.gif" }, { id: "rift_revenant", name: "Revenant Mouse", image: "a0060e929e11030025f6609a5cb81c51.gif" }, { id: "rift_robat", name: "Robat Mouse", image: "fa345c83ff784adfbe79230f279be2c6.gif" }, { id: "rift_tech_ravenous_zombie", name: "Tech Ravenous Zombie", image: "6249796e35d572687db2aa4a4e391335.gif" }, { id: "rift_zombot_unipire", name: "Zombot Unipire the Third", image: "95be1a40ec7cf3868fb9041bf43658a8.gif" }], terra: [{ id: "rift_boulder_biter", name: "Boulder Biter Mouse", image: "7da77ad10f719afce4f17453cb964f40.gif" }, { id: "rift_clump", name: "Clump Mouse", image: "a901fe9feea2e04ca1da1a3769dd7f77.gif" }, { id: "rift_cyber_miner", name: "Cyber Miner Mouse", image: "b3768e070c9b40fdfbfef4f39025acc3.gif" }, { id: "rift_itty_bitty_burroughs", name: "Itty Bitty Rifty Burroughs Mouse", image: "723735735fcbc38d75c5d980b454dc4e.gif" }, { id: "rift_lambent", name: "Lambent Mouse", image: "b301f96263690c2a3dc02a4625aa1c9b.gif" }, { id: "rift_master_exploder", name: "Master Exploder Mouse", image: "6d04a2ec4e21296272e080df7033a29a.gif" }, { id: "rift_pneumatic_dirt_displacement", name: "Pneumatic Dirt Displacement Mouse", image: "70bc4cb7409df8be9e1942e27b75c05f.gif" }, { id: "rift_rifterranian", name: "Rifterranian Mouse", image: "7abd07fac15972db28231f80fd03c075.gif" }], polluted: [{ id: "rift_mecha_tail", name: "Mecha Tail Mouse", image: "e329e623c6ff501d03c7077b8ecfabf9.gif" }, { id: "rift_spore", name: "Radioactive Ooze Mouse", image: "f037c2df0d654caaadfe4c8a58a13431.gif" }, { id: "rift_rancid_bog_beast", name: "Rancid Bog Beast Mouse", image: "5a7f8551ed42a6344e7948b18687e97d.gif" }, { id: "rift_radioactive_gold", name: "Super Mega Mecha Ultra RoboGold Mouse", image: "022763eaba9d7f6fdbd5cddb3813d6b8.gif" }, { id: "rift_toxic_avenger", name: "Toxic Avenger Mouse", image: "74891cb924851366d67a3632ed56fa6b.gif" }, { id: "rift_toxikinetic", name: "Toxikinetic Mouse", image: "bae7062027162025735a5ccbcaf58e5f.gif" }] }, tier_3: { string: [{ id: "rift_monstrous_abomination", name: "Monstrous Abomination Mouse", image: "12dc2f226fd5e26144deb154d293e6db.gif" }], terra: [{ id: "rift_big_bad_burroughs", name: "Big Bad Behemoth Burroughs Mouse", image: "dfb15f35c1fe4bb07e2b276071a7c439.gif" }], polluted: [{ id: "rift_assassin_beast", name: "Assassin Beast Mouse", image: "ddb77d3c8cad610f4270f6d1b401602c.gif" }, { id: "rift_menace", name: "Menace of the Rift Mouse", image: "a286833ada1c4718096e30db734514a2.gif" }, { id: "rift_plutonium_tentacle", name: "Plutonium Tentacle Mouse", image: "97c996e63dab24de6ed6a089f318012e.gif" }, { id: "rift_rancid_bog_beast", name: "Rancid Bog Beast Mouse", image: "5a7f8551ed42a6344e7948b18687e97d.gif" }, { id: "rift_radioactive_gold", name: "Super Mega Mecha Ultra RoboGold Mouse", image: "022763eaba9d7f6fdbd5cddb3813d6b8.gif" }, { id: "rift_toxic_avenger", name: "Toxic Avenger Mouse", image: "74891cb924851366d67a3632ed56fa6b.gif" }] } };
@@ -20399,17 +20229,11 @@ ${csv}`);
       updateHudImages = () => {
         let upscaleMapping = {
           "/crafting_items/thumbnails/1a7897042ba8f3fa31fa6805404456d6.gif": "/crafting_items/transparent_thumb/9197ccdec26278bfb07ab7846b1a2648.png",
-          // damaged coral.
           "/crafting_items/thumbnails/4aaa6478c10308ac865507e4d7915b3c.gif": "/crafting_items/transparent_thumb/d7f3f77c87ea7849a2ec8bc3f7d05b74.png",
-          // mouse scale.
           "/crafting_items/thumbnails/e12ed1306d81665278952d4b4349b495.gif": "/crafting_items/transparent_thumb/5057d634368131d5ab4ad62bf0963800.png",
-          // barnacle.
           "/bait/1f6237cebe21954e53d6586b2cbdfe39.gif": "/bait/transparent_thumb/0d27e0c72c3cbdc8e9fe06fb7bdaa56d.png",
-          // fishy fromage.
           "/trinkets/555bb67ba245aaf2b05db070d2b4cfcb.gif": "/trinkets/transparent_thumb/be6749a947b746fbece2754d9bd02f74.png",
-          // anchor.
           "/trinkets/5f56cb017ff9414e584ced35b2491aef.gif": "/trinkets/transparent_thumb/2dc6b3e505fd1eaac8c6069937490386.png"
-          // water jet.
         }, upscaleImage = (image) => {
           let normalizedImage = image.src.replace("https://www.mousehuntgame.com/images/items", "").replace("?cv=1", "").replace("?cv=2", "").replace("?cv=3", "").replace("?v=1", "").replace("?v=2", "").replace("?v=3", "");
           upscaleMapping[normalizedImage] && (image.src = `https://www.mousehuntgame.com/images/items/${upscaleMapping[normalizedImage]}`);
@@ -21094,15 +20918,10 @@ ${csv}`);
         let newContainer = makeElement("div", "ronza-miniview");
         [
           wrapper.querySelector(".headsUpDisplayRonzasTravelingShoppeView__inventoryBlock.icy_isabirra_ingredient_stat_item"),
-          // Ice Worm.
           wrapper.querySelector(".headsUpDisplayRonzasTravelingShoppeView__inventoryBlock.poisonous_provolone_ingredient_stat_item"),
-          // Poison Worm.
           wrapper.querySelector(".headsUpDisplayRonzasTravelingShoppeView__inventoryBlock.fiery_fontina_ingredient_stat_item"),
-          // Fire Worm.
           wrapper.querySelector(".headsUpDisplayRonzasTravelingShoppeView__inventoryBlock.dragonbane_trinket"),
-          // Dragonbane Charms.
           wrapper.querySelector('.headsUpDisplayRonzasTravelingShoppeView__altInventoryBlock[data-item-type="dragonhide_sliver_stat_item"]'),
-          // Slivers.
           ...baits
         ].forEach((item) => {
           if (item && !item.classList.contains("ronza-miniview__item")) {
@@ -21267,29 +21086,17 @@ ${csv}`);
         }
         let events = {
           0: [greatWinterHuntGlobal],
-          // January.
           1: [birthdayGlobal, lunarNewYearGlobal],
-          // February.
           2: [birthdayGlobal, springEggHuntGlobal],
-          // March.
           3: [springEggHuntGlobal],
-          // April.
           4: [],
-          // May.
           5: [],
-          // June.
           6: [ronzaGlobal],
-          // July.
           7: [ronzaGlobal],
-          // August.
           8: [],
-          // September.
           9: [halloweenGlobal],
-          // October.
           10: [halloweenGlobal, greatWinterHuntGlobal],
-          // November.
           11: [greatWinterHuntGlobal]
-          // December.
         }, month = (/* @__PURE__ */ new Date()).getMonth();
         events[month].forEach((event) => {
           event();
@@ -21297,7 +21104,7 @@ ${csv}`);
       });
     }
   });
-  var regionMapping, normalizeCurrentLocation, main16, init82, location_huds_default, init_location_huds = __esm({
+  var regionMapping, normalizeCurrentLocation, main16, init81, location_huds_default, init_location_huds = __esm({
     "src/modules/location-huds/index.js"() {
       init_utils2();
       init_toggle_icon();
@@ -21450,7 +21257,7 @@ ${csv}`);
           "region-queso": region_queso_default
         };
         locationHandlers[location] && locationHandlers[location]();
-      }, init82 = () => __async(void 0, null, function* () {
+      }, init81 = () => __async(void 0, null, function* () {
         addStyles(styles_default71, "location-huds"), getSetting("experiments.location-hud-toggle") && toggle_icon_default();
         let delayedMain = () => {
           setTimeout(main16, 1e3);
@@ -21464,261 +21271,219 @@ ${csv}`);
         id: "location-huds",
         type: "location-hud",
         alwaysLoad: !0,
-        load: init82,
+        load: init81,
         settings: settings_default33
       };
     }
   });
   var settings_default34, init_settings35 = __esm({
-    "src/modules/better-send-supplies/settings/index.js"() {
-      init_utils2();
+    "src/modules/better-shops/settings/index.js"() {
       settings_default34 = () => __async(void 0, null, function* () {
-        let tradableItems = yield getTradableItems("truncated_name");
-        return tradableItems.unshift({ name: "None", value: "none" }, { seperator: !0 }), [{
-          id: "better-send-supplies.pinned-items",
-          title: "Pinned items",
-          default: [
-            {
-              name: "SUPER|brie+",
-              value: "SUPER|brie+"
-            },
-            {
-              name: "Empowered SUPER|brie+",
-              value: "Empowered SUPER|b..."
-            },
-            {
-              name: "Rift Cherries",
-              value: "Rift Cherries"
-            },
-            {
-              name: "Rift-torn Roots",
-              value: "Rift-torn Roots"
-            },
-            {
-              name: "Sap-filled Thorns",
-              value: "Sap-filled Thorns"
-            }
-          ],
-          description: "Pin items at the top of the Send Supplies page.",
-          settings: {
-            type: "multi-select",
-            number: 5,
-            options: tradableItems
+        return [
+          {
+            id: "better-shops.hide-max-owned",
+            title: "Hide items with maximum quantity owned",
+            default: !1
+          },
+          {
+            id: "better-shop.qty-buttons",
+            title: "Show quantity buttons",
+            default: !0
           }
-        }];
+        ];
+      });
+    }
+  });
+  var quantity_buttons_default, init_quantity_buttons = __esm({
+    "src/modules/better-shops/modules/quantity-buttons/index.js"() {
+      init_utils2();
+      quantity_buttons_default = (block, input, maxQty) => __async(void 0, null, function* () {
+        if (block.querySelector(".mh-improved-shop-buy-controls"))
+          return;
+        maxQty = `${maxQty}`.replaceAll(",", "");
+        let buyControls = makeElement("div", ["mh-improved-shop-buy-controls"]);
+        makeMathButtons([1, 10, 50, 100, 1e3], {
+          appendTo: buyControls,
+          input,
+          maxQty,
+          classNames: ["mh-improved-shop-qty", "tiny", "gray"]
+        });
+        let buyMaxButton = makeElement("a", ["mousehuntActionButton", "lightBlue", "tiny", "mh-improved-shop-buy-max"]), buyMaxButtonText = makeElement("span", "", "Max");
+        buyMaxButton.append(buyMaxButtonText);
+        let hasMaxed = !1;
+        buyMaxButton.addEventListener("click", () => {
+          hasMaxed ? (input.value = 0, buyMaxButtonText.innerText = "Max") : (input.value = maxQty, buyMaxButtonText.innerText = "Reset"), hasMaxed = !hasMaxed;
+        }), buyControls.append(buyMaxButton);
+        let form = block.querySelector(".itemPurchaseView-action-form");
+        form ? form.append(buyControls) : block.append(buyControls);
       });
     }
   });
   var styles_default116, init_styles117 = __esm({
-    "src/modules/better-send-supplies/styles.css"() {
-      styles_default116 = `#supplytransfer .tabContent.recipient .listContainer .actions{display:none}#supplytransfer .listContainer a.element.recipient{width:auto;height:120px;white-space:nowrap;background-color:#fff}#supplytransfer .tabContent.recipient .listContainer span.content{font-size:12px}#supplytransfer .listContainer a.element.item{display:grid;grid-template-rows:1fr 1fr;align-items:center;width:auto;height:100px;padding:0;margin:0;overflow:hidden}#supplytransfer .listContainer a.element.item,#supplytransfer .listContainer a.element.recipient{border-radius:5px;box-shadow:0 1px 2px -2px #1f1f1f}#supplytransfer .listContainer a.element:hover,#supplytransfer .listContainer a.element.recipient:hover,#supplytransfer .listContainer a.element.item.pinned:hover,#supplytransfer .tabs .tab .image:hover,#supplytransfer .tabs .tab .image.empty:hover{color:#3b5998;background-color:#d8f0ff;border-color:#ccc}#supplytransfer .tabContent.item .listContainer{grid-template-columns:repeat(5,1fr);gap:5px;width:550px;height:100%;max-height:80vh;margin-bottom:0;margin-left:90px}#supplytransfer .categoryMenu{width:90px;background:none}#supplytransfer .categoryMenu a{margin-bottom:1px;font-size:12px;text-align:left}#supplytransfer .itemList .element .itemImage img{width:60px;height:60px}#supplytransfer .listContainer a.element .details{width:90px;margin:0 auto;font-size:11px;text-align:center}#supplytransfer .categoryMenu a:hover,#supplytransfer .categoryMenu a:focus,#supplytransfer .categoryMenu a:active{padding-left:5px;margin-left:-5px;text-decoration:none;background-color:#d8f0ff}.mhui-supply-search{display:flex;align-items:center;padding-bottom:5px;margin:5px 5px 15px;border-bottom:1px solid #ccc}#supplytransfer .drawer .tabContent .searchContainer{position:absolute;top:-5px;right:0}#supplytransfer .drawer .tabContent h2{padding:0;margin:0 auto 0 0;font-size:14px;border:none}#supplytransfer .listContainer a.element.item.hidden{display:none}.mhui-supply-sort-wrapper a,.mhui-supply-sort-wrapper img{width:35px;height:20px}.mhui-supply-sort-wrapper{display:flex;flex-direction:row;gap:5px;align-items:center;margin-right:10px}.mhui-supply-sort-wrapper a{margin:0 4px;line-height:20px;text-align:center;text-decoration:none;border:1px solid #ccc;border-radius:3px;box-shadow:2px 2px 3px #cdc9c6 inset}.mhui-supply-sort-wrapper a:hover,.mhui-supply-sort-wrapper a.focus{background-color:#cac0b2}#supplytransfer .listContainer a.element.item.pinned{background-color:#aef5f7}.mhui-supply-quick-quantity-wrapper{display:flex;gap:10px;align-items:center;justify-content:center;margin:10px auto}.mhui-supply-quick-quantity-max{width:53px}#supplytransfer .friendList.listContainer{padding-top:10px;margin-top:10px;border-top:1px solid #ccc}#supplytransfer .tabs .tab.recipient .image.empty:after,#supplytransfer .tabs .tab.item .image.empty:after{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#3b5998;cursor:pointer;content:""}#supplytransfer .tabs .tab.recipient .image.empty:after{content:"Select Friend"}#supplytransfer .tabs .tab.item .image.empty:after{content:"Select Item"}#supplytransfer .drawer .tabContent.confirm #supplytransfer-confirm-text{padding:0}#supplytransfer .tabs .tab.confirm{display:none}#supplytransfer .tabs .tab.recipient .image.empty,#supplytransfer .tabs .tab.item .image.empty{position:relative;margin-bottom:-20px;background-image:none}#supplytransfer .tabs .tab .image{background:#ccc;border:1px solid #eee}.PageSupplyTransfer .flexibleDialogWarmBrown{padding:0;background:none;box-shadow:none}#supplytransfer .drawer{width:unset;height:100%;max-height:unset;padding:5px;border:none}#supplytransfer{position:relative}#supplytransfer .tabs{position:sticky;top:50px;z-index:1;width:auto;padding:10px 10px 0;margin-top:35px;border:1px solid #ccc;border-radius:5px;box-shadow:0 1px 2px -2px #1f1f1f}#supplytransfer .tabs .tab .image,#supplytransfer .tabs .tab .image.empty{background-color:#eee;border:1px solid #ccc;border-radius:5px}#supplytransfer .drawer .listContainer{display:grid;grid-template-columns:repeat(6,1fr);gap:5px 0}#supplytransfer .listContainer.friendList img{width:85px;height:85px;padding-bottom:5px;border:none;border-radius:3px}#supplytransfer .tabs .tab:hover{background:transparent}#supplytransfer .tabContent.item{margin:-5px}span.mhui-supply-sort-label{color:#000}#supplytransfer .itemList a.element .itemImage{width:60px;height:60px;padding:5px;overflow:visible}#supplytransfer .drawer .tabContent{position:relative;height:100%;max-height:unset}#supplytransfer .tabs .tab .image .img,#supplytransfer .tabs .tab .image{width:80px;height:80px}#supplytransfer .tabs .tab{display:flex;flex-direction:column;align-items:center}#supplytransfer .itemImage .quantity{right:0;bottom:0;background-color:#fff9}#supplytransfer .tab .itemImage .quantity{bottom:10px}#supplytransfer .listContainer a.element.item.pinned .itemImage .quantity{background-color:#aef5f799}.mousehuntPage-content #supplytransfer .drawer .listContainer,.mousehuntPage-content #supplytransfer .drawer .tabContent,.mousehuntPage-content #supplytransfer .drawer{height:auto;max-height:unset}.mh-improved-math-button.mhui-supply-quick-quantity{font-family:inherit}
+    "src/modules/better-shops/modules/quantity-buttons/styles.css"() {
+      styles_default116 = `.mh-improved-shop-buy-controls{position:absolute;top:25px;right:0;left:0;display:flex;flex:1 1 100%;flex-flow:row wrap;gap:5px;align-items:center;justify-content:flex-start;margin-top:7px;margin-left:10px}.itemPurchaseView-action-form.clear-block{position:relative;margin-bottom:40px}.mousehuntActionButton.mh-improved-shop-qty{font-family:monospace;font-size:11px}.mh-improved-shop-buy-max{min-width:25px}.mh-improved-shop-qty,.mh-improved-shop-buy-max{user-select:none}.mousehuntActionButton.mh-improved-shop-buy-max{max-width:30px}
 `;
     }
   });
-  var processSearch, addSearch, asNum, resortItems, addSortButtons, highlightFavoritedItems, addQuickQuantityButtons, items3, currentSort, upgradeSendSupplies, hasSorted, main17, init83, better_send_supplies_default, init_better_send_supplies = __esm({
-    "src/modules/better-send-supplies/index.js"() {
+  var styles_default117, init_styles118 = __esm({
+    "src/modules/better-shops/modules/hide-max-owned/styles.css"() {
+      styles_default117 = `.mousehuntHud-page-subTabContent.hasShop.active .itemPurchaseView-container.own_max,.itemPurchaseView-container.marketplace_buy_regal_stool_collectible.kingsCartItem.cannot_sell.own_max,.itemPurchaseView-container.marketplace_sell_regal_display_case_collectible.kingsCartItem.cannot_sell.own_max,.itemPurchaseView-container.kings_calibrator_message_item.kingsCartItem.cannot_sell.own_max{display:none!important}
+`;
+    }
+  });
+  var order_default, init_order = __esm({
+    "src/modules/better-shops/styles/order.css"() {
+      order_default = `.itemViewStatBlock.trinket{order:3}.itemPurchaseView-content-container{display:flex;flex-direction:column}.itemPurchaseView-content-name{order:1}.itemPurchaseView-content-details{display:flex;order:4}.itemPurchaseView-content-description{order:2}
+`;
+    }
+  });
+  var retired_default, init_retired = __esm({
+    "src/modules/better-shops/styles/retired.css"() {
+      retired_default = `.kings_cart .hasShop .cannot_buy.super_dragonbane_trinket,.kings_cart .hasShop .cannot_buy.extrme_dragonbane_trinket,.kings_cart .hasShop .cannot_buy.wild_tonic_remote_pumping_trinket,.kings_cart .hasShop .cannot_buy.hot_spice_crafting_item,.kings_cart .hasShop .cannot_buy.flaming_spice_crafting_item,.kings_cart .hasShop .cannot_buy.dragonshard_sparkling_nest_convertible,.itemPurchaseView-container.eggstra_trinket.cannot_buy.no_gold_cost,.itemPurchaseView-container.eggstra_charge_trinket.cannot_buy.no_gold_cost{display:none!important}
+`;
+    }
+  });
+  var general_default6, init_general6 = __esm({
+    "src/modules/better-shops/styles/general.css"() {
+      general_default6 = `.shopsPage-header-container,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-accordion,.itemPurchaseView-action-itemCost.required .itemPurchaseView-action-itemCost-table-cell.owned,.itemPurchaseView-container.flaming_spice_crafting_item.kingsCartItem,.itemPurchaseView-container.dragonshard_sparkling_nest_convertible.kingsCartItem,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-description,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-title{display:none!important}.itemPurchaseView-action-form.clear-block,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-form{display:flex;justify-content:center;margin:1em 0}.itemPurchaseView-container.own_max:hover,.itemPurchaseView-container.own_max:focus{opacity:1}.itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemPurchaseView-content-description{overflow-y:auto}.itemPurchaseView-action-quantity span,.itemPurchaseView-action-purchaseHelper-maxPurchases-container,.itemPurchaseView-content-accordion,.itemPurchaseView-action-kingsCreditCostContainer,.itemPurchaseView-container.own_max .itemPurchaseView-action-purchaseHelper-maxPurchasesLimitReached,.shopCustomization .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemViewStatBlock,.shopCustomization .itemPurchaseView-container.own_max .itemViewStatBlock-stat.title,.shopCustomization .itemPurchaseView-container.own_max .itemViewStatBlock-stat.powerType,.itemPurchaseView-content-skin b,a.itemPurchaseView-image-trapPreview-link,.itemPurchaseView-action-itemCost-title,.itemPurchaseView-action-itemCost-description{display:none}.itemPurchaseView-content-skin{margin-top:-10px;margin-bottom:5px}.itemPurchaseView-content-description{padding-right:5px;padding-bottom:10px;margin-top:0;margin-bottom:0;overflow-y:auto;color:#626262}.itemPurchaseView-action-itemCost-table{width:250px;padding:0;margin-right:-10px;margin-left:-10px;background:#f9f9f9;border-right:none;border-left:none}.itemPurchaseView-action-itemCost-table-cell.cost{padding-left:11px;background-position:0 0;background-size:10px}.itemPurchaseView-action-itemCost-table-row.error{background-color:#ffadad8c}.mh-dark-mode .itemPurchaseView-action-itemCost-table-row.error{background-color:#802d2d8c}.mh-dark-mode .itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.cost{color:#f66060}.itemPurchaseView-container.own_max .itemPurchaseView-action-container{display:none}.itemPurchaseView-container{width:calc(100% - 1px)}.itemPurchaseView-action-container{padding:8px 0 0;border-right:1px solid #ccc}#overlayPopup .marketplaceView input.button:first-child{position:absolute;top:-3px!important;right:-10px!important;display:block;width:28px;height:27px;padding:0;overflow:hidden;text-align:center;text-indent:34px;background-image:url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png);background-repeat:no-repeat;border:none;border-bottom:0;border-left:0;box-shadow:none}#overlayPopup .marketplaceView input.button:first-child:hover,#overlayPopup .marketplaceView input.button:first-child:focus{background-color:transparent;background-image:url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png);background-repeat:no-repeat;background-position:0 -27px;border-bottom:none;border-left:none}a.itemPurchaseView-content-skin-link{display:flex;align-items:center;min-height:25px;padding-left:30px;line-height:unset;background-size:25px}#overlayPopup.marketplaceViewPopup .suffix{display:none}.shopCustomization .PageShops .itemViewStatBlock-padding{display:flex;align-items:center}.shopCustomization .PageShops .itemViewStatBlock,.shopCustomization .PageShops .itemViewStatBlock-stat{margin-top:10px;border:none}.shopCustomization .PageShops .itemViewStatBlock-stat{padding:2px 4px 2px 2px;margin-top:3px;margin-right:5px;border:1px solid #ccc;border-radius:5px}.shopCustomization .PageShops .itemViewStatBlock-stat-helper{right:unset;left:unset;white-space:nowrap}.shopCustomization .PageShops .itemViewStatBlock-stat-label{margin-right:0;background:none}.shopCustomization .PageShops .itemViewStatBlock-stat-value{max-width:unset;background:none;border-radius:0}.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect{width:auto;border-bottom:1px solid #ccc}.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value{width:auto;max-width:150px}.item_set,.mh-dark-mode .item_set{background-color:#eeab2a45;border:none}.itemPurchaseView-container.kingsCartItem{cursor:initial}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container{display:table-cell;width:250px;min-height:unset;color:#000;background:#eee;box-shadow:none}.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container{color:#fff;background-color:#242424}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-state.view{padding-top:unset}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost.consumed,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-goldGost,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-marketplace,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-refund-container{display:block!important}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity{display:block;width:auto}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity input{width:100%;margin-top:0}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details:after{display:none}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-button-row a,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-complete-title{color:#3b5998}span.itemPurchaseView-action-confirm-refund.noRefund{position:relative;display:block;color:transparent}span.itemPurchaseView-action-confirm-refund.noRefund:after{position:absolute;top:10px;right:0;left:0;height:10px;color:#000;content:"Cannot be refunded."}.itemPurchaseView-container.has_refund_value .itemPurchaseView-action-confirm-refund.hasRefund{margin-top:20px}.itemPurchaseView-action-confirm-title{margin-bottom:10px;font-style:normal;font-weight:400}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-complete-title,.itemPurchaseView-container .itemPurchaseView-action-complete-title,.itemPurchaseView-action-complete-title,.itemPurchaseView-action-armed-title{margin:10px;font-weight:400;color:#000}.itemPurchaseView-container .itemPurchaseView-action-state.complete a.itemPurchaseView-action-complete-return{position:relative;display:block;float:none;margin:0;color:transparent}.itemPurchaseView-container .itemPurchaseView-action-state.complete a.itemPurchaseView-action-complete-return:after{position:absolute;top:10px;right:78px;left:78px;padding:10px 15px;line-height:10px;color:#000;text-shadow:0 0 1px #fff;content:"Continue";background-color:#fff600;border:1px solid #000;border-radius:5px;box-shadow:inset 0 0 5px #fff,1px 1px 1px #fff}.itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.cost{color:#a21010}.mh-dark-mode .itemPurchaseView-action-goldGost{background-color:#0e0e0e;border-color:#242424}.itemPurchaseView-content-details{display:flex;flex-direction:column;align-items:stretch;padding-bottom:10px}.itemPurchaseView-content-container .itemViewStatBlock.horizontal.base,.itemPurchaseView-content-container .itemViewStatBlock.horizontal.weapon{width:auto;margin-bottom:10px;margin-left:0}.shopCustomization .PageShops .itemPurchaseView-container .title .itemViewStatBlock-stat-value span a{max-width:60px;font-size:10px;text-overflow:ellipsis}.itemPurchaseView-image-container .itemViewStatBlock-stat.title.error{background-color:#ffc9c9}.itemPurchaseView-image-container .itemViewStatBlock-stat-icon{width:20px;height:20px;background-size:90%}.itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon{width:26px;height:24px}.itemViewStatBlock.horizontal .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon{height:30px}.itemViewStatBlock-stat.title .itemPurchaseView-image-container .itemViewStatBlock-stat-icon{background-size:100%}.itemViewStatBlock-stat.error .itemViewStatBlock-stat-value{background-color:unset}a.shopsPage-kingsCalibratorPromo{display:flex;align-items:center;justify-content:center;padding:0;font-size:12px}.shopsPage-kingsCalibratorPromo-button{top:unset}.shopsPage-kingsCalibratorPromo br{display:none}.shopsPage-compareEquipment-stats{width:auto}.shopsPage-compareEquipment-stats .itemViewStatBlock.horizontal.weapon{float:none;width:auto;margin-left:0}.shopsPage-compareEquipment-stats .itemPurchaseView-content-name{display:flex;gap:5px;justify-content:flex-start}.shopsPage-compareEquipment{background-color:#dbe9ff}.itemPurchaseView-container.own_max{display:block!important;height:25px;overflow:hidden;opacity:.3;transition:.4s}.hasShop .itemPurchaseView-container.donation .itemPurchaseView-content-container,.itemPurchaseView-container.own_max .itemPurchaseView-content-container{width:calc(100% - 10px)}.mh-dark-mode .itemPurchaseView-container.own_max{background-color:#000}.itemPurchaseView-container.own_max:hover{display:table!important;height:unset;overflow-y:visible}.itemPurchaseView-container.own_max:hover .itemPurchaseView-action-container{display:table-cell}.mh-dark-mode .itemPurchaseView-container.own_max .itemPurchaseView-content-container{border-color:transparent}.itemPurchaseView-container.own_max .itemPurchaseView-content-name b:after{font-size:10px;content:" (maximum owned)"}.mh-dark-mode .shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect,.mh-dark-mode .shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat{background-color:#3d3d3d;border-color:#606060}.shopCustomization .shopCustomization .itemViewStatBlock-stat.powerType{position:absolute;color:#000;background-color:#e6e6e6}.shopCustomization .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-value{display:none}.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.title,.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType{background-color:#3d3d3d;border-color:#606060}.mh-dark-mode .itemPurchaseView-container .itemPurchaseView-image-container .itemViewStatBlock-stat.powerType{background-color:transparent;border:none}.itemPurchaseView-container.new .itemPurchaseView-margin:after{top:5px}.itemPurchaseView-action-marketplace b,.itemPurchaseView-action-marketplace br{display:none}.itemPurchaseView-action-marketplace a:last-of-type:after{content:" in the Marketplace"}.itemPurchaseView-action-marketplace{padding:5px 0}a.itemPurchaseView-action-buySuperBrie{display:inline-block;margin:0 auto}.super_brie_cheese .itemPurchaseView-action-purchaseHelper{display:block}.donation .itemPurchaseView-action-itemCost-table-row{display:flex;justify-content:center;font-size:15px}.itemPurchaseView-container.donation .itemPurchaseView-action-container,.itemPurchaseView-container.donation .itemPurchaseView-action-itemCost-table{border-top-color:#ffc62b;border-bottom-color:#c7991c}.mh-dark-mode .itemPurchaseView-container.donation .itemPurchaseView-action-container{background-color:#e6b963}.mh-dark-mode .itemPurchaseView-container.donation .itemPurchaseView-action-itemCost-table{background-color:#f4eeca}.itemPurchaseView-container:hover .itemPurchaseView-margin,.itemPurchaseView-container:hover .itemPurchaseView-image-container,.itemPurchaseView-container:hover .itemPurchaseView-content-container{background-color:#f9f9f9}.mh-dark-mode .itemPurchaseView-container:hover .itemPurchaseView-margin,.mh-dark-mode .itemPurchaseView-container:hover .itemPurchaseView-image-container,.mh-dark-mode .itemPurchaseView-container:hover .itemPurchaseView-content-container{background-color:#242424}.itemPurchaseView-container.trinket .itemViewStatBlock{margin-top:0;margin-bottom:10px}.itemViewStatBlock-stat-helper{padding:10px;font-size:10px;color:#fff;text-align:center;background:#000;border:none;border-radius:10px}.itemViewStatBlock-stat-helper-arrow:after{border-top:10px solid #000}.itemPurchaseView-container .itemPurchaseView-action-form{min-height:50px}.itemPurchaseView-action-confirm-button:focus,.itemPurchaseView-action-confirm-button:hover{filter:hue-rotate(50deg)}.shopsPageTrapPreview .trapImageView-layerWrapper{top:10px}.shopsPageTrapPreview .trapImageView{height:370px}.itemViewPopup .itemViewStatBlock-stat.title{order:1}.itemViewPopup .itemViewStatBlock-stat.powerType{order:2}.itemViewPopup .itemViewStatBlock-stat.points{order:3}.itemViewPopup .itemViewStatBlock-stat.power,.itemViewPopup .itemViewStatBlock-stat.luck,.itemViewPopup .itemViewStatBlock-stat.powerBonus,.itemViewPopup .itemViewStatBlock-stat.attraction{order:4}.itemViewPopup .itemViewStatBlock-stat.cheeseEffect{order:5}.itemViewContainer .itemViewStatBlock.trinket .itemViewStatBlock-stat.empty{display:flex;opacity:.6}.itemViewPopup .itemView-thumbnailContainer a{display:flex;justify-content:center;padding-top:5px}.itemViewPopup .itemViewStatBlock-stat:last-child .itemViewStatBlock-stat-label{border-radius:0 0 0 5px}.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon:after{position:absolute;top:0;bottom:0;left:26px;display:flex;align-items:center;justify-content:center;width:115px;font-weight:900;content:""}.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-label{position:relative;width:26px}.itemViewPopup .itemViewStatBlock-stat-value{display:flex;align-items:center;justify-content:center}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details{height:auto;max-height:180px;overflow-y:auto}.itemPurchaseView-container.kingsCartItem.expanded .itemPurchaseView-content-details{height:100%;max-height:unset;overflow-y:visible}.itemPurchaseView-container[data-max-inventory-quantity="1"]:after{position:absolute;top:17px;right:5px;z-index:1;color:#3b3b3b;content:"(Limit " attr(data-max-inventory-quantity) ")"}.itemPurchaseView-action-buySuperBrie{border-radius:7px}
+`;
+    }
+  });
+  var cost_default, init_cost = __esm({
+    "src/modules/better-shops/styles/cost.css"() {
+      cost_default = `.itemPurchaseView-action-itemCost-table-row{display:grid;grid-template-columns:1fr 15fr 1fr;place-items:center stretch;width:97%;padding:2px 5px 2px 2px;margin:0}.itemPurchaseView-action-goldGost{padding:5px 5px 5px 20px;font-size:1.3em;font-weight:400;text-align:left;background:#f9f9f9;border:1px solid #ccc;border-right:none;border-left:none}.mh-dark-mode .itemPurchaseView-content-container{border-color:#242424}.itemPurchaseView-image-container,.itemPurchaseView-content-container{background-color:#fff}.itemPurchaseView-action-quantity{flex-grow:1;width:auto;margin:0 5px 0 10px}.itemPurchaseView-action-quantity input{width:100%;padding:3px;margin:0}a.itemPurchaseView-action-form-button.buy,a.itemPurchaseView-action-form-button.sell{width:auto;height:21px;margin-top:0;font-weight:400;line-height:21px}a.itemPurchaseView-action-form-button.buy{height:21px;margin-left:7px;background:#f4e830}a.itemPurchaseView-action-form-button.sell{margin-left:7px;background:#b3edff}.itemPurchaseView-container.cannot_sell .itemPurchaseView-action-form-button.sell,.itemPurchaseView-container.cannot_buy .itemPurchaseView-action-form-button.buy{filter:grayscale(1) opacity(.75)}.itemPurchaseView-action-purchaseHelper{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;margin:0}.itemPurchaseView-container.no_gold_cost .itemPurchaseView-action-goldGost{display:block}.itemPurchaseView-content-name{display:flex;align-items:center;justify-content:space-between;margin-top:6px;margin-bottom:4px}.itemPurchaseView-action-purchaseHelper-owned{padding:4px;margin-right:10px;font-size:11px;white-space:nowrap;background-color:#eee;border:1px solid #ccc;border-radius:5px}.itemPurchaseView-action-purchaseHelper-error{height:auto}.itemPurchaseView-action-purchaseHelper-maxPurchasesLimitReached{margin-bottom:5px;font-size:11px}.itemPurchaseView-action-itemCost-table-cell.cost{z-index:1}.itemPurchaseView-container.chrome .itemPurchaseView-action-container .itemPurchaseView-action-goldGost{background-color:#274167;border-color:#3b619b}.itemPurchaseView-container.chrome .mousehuntActionButton.mh-improved-math-button.mh-improved-shop-qty:nth-child(4),.itemPurchaseView-container.chrome .mousehuntActionButton.mh-improved-math-button.mh-improved-shop-qty:nth-child(5){display:none}.itemPurchaseView-container.chrome:not(.own_max){min-height:120px}.itemPurchaseView-action-chromeCost-image{box-shadow:none}.itemPurchaseView-container.chrome .itemPurchaseView-action-quantity input{width:80px}.chrome .itemPurchaseView-action-complete-title{color:#fff}
+`;
+    }
+  });
+  var stats_default2, init_stats2 = __esm({
+    "src/modules/better-shops/styles/stats.css"() {
+      stats_default2 = `.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-padding{display:flex;flex-flow:row wrap;row-gap:5px;align-items:center;justify-content:flex-start}.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.title,.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect{width:70px}.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.title,.itemPurchaseView-container .itemViewStatBlock-stat.powerType{display:flex;align-items:center;justify-content:space-evenly;width:auto;line-height:14px;border:1px solid #ccc}.mh-dark-mode .shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.title,.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType{border-color:#606060}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat-label{display:inline-block;padding:0}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value{display:inline-flex;align-items:center;justify-content:center;margin-right:3px}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat{display:flex;align-items:center;justify-content:space-around;min-width:55px;padding:2px;margin:0 5px 0 0;background-color:#f9f9f9;border:1px solid #ccc;border-radius:5px}.mh-dark-mode.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat{background-color:#333;border-color:#606060}.mh-dark-mode.shopCustomization .PageShops .pageFrameView .itemViewStatBlock .itemViewStatBlock-stat-value{background-color:transparent}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value span{display:inline-block;padding:0}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value{font-size:9px}
+`;
+    }
+  });
+  var riftstalker_default, init_riftstalker = __esm({
+    "src/modules/better-shops/styles/riftstalker.css"() {
+      riftstalker_default = `ul.set_bonus_effects{display:inline-block;flex-wrap:nowrap}.item_set .set_bonus_effects li{display:inline;margin:0}.item_set .set_bonus_level{width:40%}.item_set{display:flex;flex-flow:row wrap;align-items:center}.item_set .set_bonus_effects li:after{content:", "}.item_set .set_bonus_effects li:last-of-type:after{content:""}.item_set>b{display:none}.item_set .set_name>img{right:30px;display:none}.item_set .set_name{margin:0;font-size:11px}.item_set .set_name:after{margin-right:5px;margin-left:10px;font-weight:400;content:" Requires: "}
+`;
+    }
+  });
+  var imported9, styles7, updateInputField, main17, init82, better_shops_default, init_better_shops = __esm({
+    "src/modules/better-shops/index.js"() {
       init_utils2();
       init_settings35();
+      init_quantity_buttons();
       init_styles117();
-      processSearch = () => {
-        let currentValue = document.querySelector("#mhui-supply-search-input");
-        currentValue.value || items3.forEach((item) => {
-          item.classList.remove("hidden");
-        }), items3.forEach((item) => {
-          item.textContent.toLowerCase().includes(currentValue.value.toLowerCase()) ? item.classList.remove("hidden") : item.classList.add("hidden");
+      init_styles118();
+      init_order();
+      init_retired();
+      init_general6();
+      init_cost();
+      init_stats2();
+      init_riftstalker();
+      imported9 = [order_default, retired_default, general_default6, cost_default, stats_default2, riftstalker_default], styles7 = imported9, updateInputField = () => __async(void 0, null, function* () {
+        let purchaseBlocks = document.querySelectorAll(".itemPurchaseView-action-state.view");
+        if (!purchaseBlocks)
+          return;
+        let addQuantityButtons2 = getSetting("better-shops.show-qty-buttons", !0);
+        purchaseBlocks.forEach((block) => {
+          let qty = block.querySelector(".itemPurchaseView-action-maxPurchases");
+          if (!qty)
+            return;
+          let input = block.querySelector("input");
+          if (!input)
+            return;
+          let maxQty = qty.innerText.replace(" (Inventory max)", "") || 0;
+          input.setAttribute("placeholder", maxQty);
+          let buyButton = block.querySelector(".itemPurchaseView-action-form-button.buy");
+          buyButton && input.addEventListener("focus", () => {
+            let enterEvt = input.addEventListener("keydown", (e) => {
+              e.key === "Enter" && (buyButton.click(), setTimeout(() => {
+                let confirmButton = document.querySelector(".itemPurchaseView-container.confirmPurchase .itemPurchaseView-action-confirm-button");
+                confirmButton && confirmButton.focus();
+              }, 200));
+            });
+            input.addEventListener("blur", () => {
+              input.removeEventListener("keydown", enterEvt);
+            });
+          }), addQuantityButtons2 && quantity_buttons_default(block, input, maxQty);
         });
-      }, addSearch = () => {
-        if (document.querySelector(".mhui-supply-search-wrapper"))
+      }), main17 = () => {
+        let body = document.querySelector("body");
+        if (!body)
           return;
-        let container = document.querySelector("#supplytransfer .tabContent.item");
-        if (!container)
+        if (getCurrentPage() === "item") {
+          body.classList.remove("shopCustomization");
           return;
-        let form = makeElement("form", "mhui-supply-search-form"), label = makeElement("label", ["mhui-supply-search-label"]);
-        label.setAttribute("for", "mhui-supply-search-input"), makeElement("span", "", "Search: ", label);
-        let input = makeElement("input", "mhui-supply-search-input");
-        input.setAttribute("type", "text"), input.setAttribute("id", "mhui-supply-search-input"), input.setAttribute("autocomplete", "off"), input.addEventListener("keyup", processSearch), label.append(input), form.append(label);
-        let titleWrapper = makeElement("div", "mhui-supply-search"), title = container.querySelector("h2");
-        title.textContent = "Send Supplies", titleWrapper.append(title), titleWrapper.append(form), container.insertBefore(titleWrapper, container.firstChild), setTimeout(() => {
-          input.focus();
-        }, 100);
-      }, asNum = (number) => Number.parseInt(number.replace(",", "")), resortItems = (sortType = "alpha") => {
-        let container = document.querySelector("#supplytransfer .tabContent.item .listContainer"), items5 = container.querySelectorAll(".item"), sortSelector = ".quantity";
-        (sortType === "alpha" || sortType === "alpha-reverse") && (sortSelector = ".details");
-        let sorted = [...items5].sort((a, b) => {
-          let aText = a.querySelector(sortSelector).textContent, bText = b.querySelector(sortSelector).textContent;
-          switch (sortType) {
-            case "alpha":
-              return aText.localeCompare(bText);
-            case "alpha-reverse":
-              return bText.localeCompare(aText);
-            case "qty":
-              return asNum(bText) - asNum(aText);
-            case "qty-reverse":
-              return asNum(aText) - asNum(bText);
-          }
-          return 0;
-        });
-        for (let item of sorted)
-          item.classList.contains("pinned") || container.append(item);
-        currentSort = sortType;
-      }, addSortButtons = () => {
-        if (document.querySelector(".mhui-supply-sort-wrapper"))
-          return;
-        let container = document.querySelector(".mhui-supply-search");
-        if (!container)
-          return;
-        let sortWrapper = makeElement("div", "mhui-supply-sort-wrapper");
-        makeElement("span", "mhui-supply-sort-label", "Sort by:", sortWrapper);
-        let alphaSortButton = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-supply-sort-alphabetic"]);
-        makeElement("span", "mousehuntActionButton-text", "Name", alphaSortButton), alphaSortButton.addEventListener("click", () => {
-          resortItems(currentSort === "alpha" ? "alpha-reverse" : "alpha");
-        }), sortWrapper.append(alphaSortButton);
-        let sortQtyButton = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-supply-sort-quantity"]);
-        makeElement("span", "mousehuntActionButton-text", "Quantity", sortQtyButton), sortQtyButton.addEventListener("click", () => {
-          resortItems(currentSort === "qty" ? "qty-reverse" : "qty");
-        }), sortWrapper.append(sortQtyButton), container.insertBefore(sortWrapper, container.childNodes[1]);
-      }, highlightFavoritedItems = () => {
-        let itemsToPin = /* @__PURE__ */ new Set([
-          getSetting("better-send-supplies.pinned-items-0", "SUPER|brie+"),
-          getSetting("better-send-supplies.pinned-items-1", "Empowered SUPER|b..."),
-          getSetting("better-send-supplies.pinned-items-2", "Rift Cherries"),
-          getSetting("better-send-supplies.pinned-items-3", "Rift-torn Roots"),
-          getSetting("better-send-supplies.pinned-items-4", "Sap-filled Thorns")
-        ]);
-        for (let item of items3) {
-          let details = item.querySelector(".details");
-          itemsToPin.has(details.textContent) && item.classList.add("pinned");
         }
-      }, addQuickQuantityButtons = () => {
-        let input = document.querySelector("#supplytransfer-confirm-text input");
-        if (!input)
-          return;
-        let maxquantity = document.querySelector("#supplytransfer-confirm-text .userQuantity");
-        if (!maxquantity)
-          return;
-        let existing = document.querySelector(".mhui-supply-quick-quantity-wrapper");
-        existing && existing.remove();
-        let maxQty = Number.parseInt(maxquantity.textContent.split("You can send up to: ")[1].split(" ")[0].replace(",", "")), wrapper = makeElement("div", "mhui-supply-quick-quantity-wrapper");
-        makeMathButtons([1, 5, 10, 100], {
-          appendTo: wrapper,
-          input,
-          maxQty,
-          classNames: ["mhui-supply-quick-quantity", "small"]
-        });
-        let max = makeElement("button", ["mousehuntActionButton", "lightBlue", "small", "mhui-supply-quick-quantity", "mhui-supply-quick-quantity-max"]), maxText = makeElement("span", "", "Max");
-        max.addEventListener("click", () => {
-          maxText.textContent === "Reset" ? (input.value = 0, maxText.textContent = "Max") : (input.value = maxQty, maxText.textContent = "Reset");
-        }), max.append(maxText), wrapper.append(max), input.parentNode.insertBefore(wrapper, input.nextSibling);
-      }, items3 = [], currentSort = null, upgradeSendSupplies = (initial = !1) => {
-        let sendTo = document.querySelector("#supplytransfer .drawer .tabContent.recipient"), isChoosingUser = sendTo && sendTo.style.display !== "none", sending = document.querySelector("#supplytransfer .drawer .tabContent.item"), isChoosingItem = sending && sending.style.display !== "none";
-        if (isChoosingUser) {
-          let users = document.querySelectorAll("#supplytransfer .friendList .element.recipient");
-          for (let user2 of users) {
-            user2.addEventListener("click", () => {
-              upgradeSendSupplies();
-            }, { once: !0 });
-            let search = document.querySelector(".searchContainer input");
-            search && search.focus();
+        body.classList.add("shopCustomization");
+        let golds = document.querySelectorAll(".itemPurchaseView-action-goldGost");
+        golds && golds.forEach((gold) => {
+          if (gold.innerText.includes("Cost:") && (gold.innerText = gold.innerText.replace("Cost:", "")), !gold.innerText.length) {
+            let container = gold.closest(".itemPurchaseView-container");
+            if (container) {
+              let goldCost = container.getAttribute("data-gold-cost");
+              goldCost && (gold.innerText = `${Number.parseInt(goldCost).toLocaleString()} gold`);
+            }
           }
-        } else if (isChoosingItem) {
-          items3 = document.querySelectorAll("#supplytransfer .tabContent.item .listContainer .item"), highlightFavoritedItems(), (initial || !hasSorted) && (hasSorted = !0, resortItems("alpha")), addSortButtons();
-          let itemSearch = document.querySelector(".mhui-supply-search-input");
-          itemSearch && itemSearch.focus();
-        } else {
-          addQuickQuantityButtons();
-          let inputVal = document.querySelector("#supplytransfer-confirm-text input");
-          inputVal && inputVal.focus();
-        }
-        let categories = document.querySelectorAll("#supplytransfer .categoryMenu a");
-        for (let category of categories)
-          category.addEventListener("click", () => {
-            highlightFavoritedItems();
-          }, { once: !0 });
-        sendTo.addEventListener("click", () => {
-          upgradeSendSupplies();
-        }, { once: !0 }), sending.addEventListener("click", () => {
-          upgradeSendSupplies();
-        }, { once: !0 });
-      }, hasSorted = !1, main17 = () => {
-        addSearch(), upgradeSendSupplies(!0);
-      }, init83 = () => __async(void 0, null, function* () {
-        addStyles(styles_default116, "better-send-supplies"), onNavigation(main17, {
-          page: "supplytransfer"
         });
-      }), better_send_supplies_default = {
-        id: "better-send-supplies",
-        name: "Better Send Supplies",
+        let buyBtns = document.querySelectorAll(".itemPurchaseView-action-form-button.buy");
+        buyBtns && buyBtns.forEach((btn) => {
+          btn.classList.add("mousehuntActionButton"), btn.innerHTML = "<span>Buy</span>";
+        });
+        let sellBtns = document.querySelectorAll(".itemPurchaseView-action-form-button.sell");
+        sellBtns && sellBtns.forEach((btn) => {
+          btn.classList.add("mousehuntActionButton"), btn.classList.add("lightBlue"), btn.innerHTML = "<span>Sell</span>";
+        }), updateInputField();
+        let owned = document.querySelectorAll(".itemPurchaseView-action-purchaseHelper-owned");
+        owned && owned.forEach((ownedItem) => {
+          if (ownedItem.getAttribute("moved-to-title"))
+            return;
+          let nameEl = ownedItem.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".itemPurchaseView-content-name");
+          ownedItem.setAttribute("moved-to-title", "true"), nameEl.append(ownedItem);
+        });
+        let kingsCart = document.querySelectorAll(".itemPurchaseView-container.kingsCartItem");
+        kingsCart && kingsCart.forEach((cart) => {
+          cart.querySelector("input").value = "";
+        });
+        let shopQty = document.querySelectorAll(".itemPurchaseView-action-quantity input");
+        if (!shopQty)
+          return;
+        shopQty.forEach((qty) => {
+          qty.setAttribute("maxlength", "100");
+        });
+        let itemStats = document.querySelectorAll(".itemViewStatBlock");
+        itemStats && itemStats.forEach((stat) => {
+          if (stat.classList.contains("horizontal"))
+            return;
+          let contentSection = stat.parentNode.parentNode.querySelector(".itemPurchaseView-content-container");
+          contentSection && contentSection.append(stat);
+        });
+        let itemStatsTitle = document.querySelectorAll(".itemViewStatBlock.horizontal .itemViewStatBlock-stat");
+        itemStatsTitle && itemStatsTitle.forEach((title) => {
+          if (title.classList.contains("title") || title.classList.contains("powerType")) {
+            let imageContainer = title.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".itemPurchaseView-image-container");
+            imageContainer && imageContainer.append(title);
+          }
+        });
+      }, init82 = () => __async(void 0, null, function* () {
+        let stylesToAdd = [...styles7];
+        getSetting("better-shops.hide-max-owned", !1) && stylesToAdd.push(styles_default117), getSetting("better-shops.show-qty-buttons", !0) && stylesToAdd.push(styles_default116), addStyles(stylesToAdd, "better-shops"), onNavigation(main17, {
+          page: "shops"
+        }), onRequest("purchases/itempurchase.php", updateInputField);
+      }), better_shops_default = {
+        id: "better-shops",
+        name: "Better Shops",
         type: "better",
         default: !0,
-        description: "Add pinned items, search, and sorting to the Send Supplies page.",
-        load: init83,
+        description: "Update the shop layout and appearance, minimize owned items with an inventory limit of 1, and more.",
+        load: init82,
         settings: settings_default34
       };
     }
   });
   var settings_default35, init_settings36 = __esm({
-    "src/modules/copy-id/settings/index.js"() {
-      settings_default35 = () => __async(void 0, null, function* () {
-        return [{
-          id: "copy-id-button.hide-button",
-          title: "Hide button",
-          description: "Click your profile picture to copy ID.",
-          default: !1
-        }];
-      });
-    }
-  });
-  var styles_default117, init_styles118 = __esm({
-    "src/modules/copy-id/styles.css"() {
-      styles_default117 = `.mousehuntHud-userStatBar .profileImage{position:relative}.mh-copy-id-button{position:absolute;top:30px;left:3px;z-index:10;display:none;padding:2px 4px;font-size:9px;cursor:pointer}.mh-copy-id-success-message{position:absolute;top:32px;left:60px;z-index:10;font-weight:900;color:#fff;text-shadow:1px 1px 1px #000;opacity:0;transition:opacity .2s ease-in-out}
-`;
-    }
-  });
-  var main18, init84, copy_id_default, init_copy_id = __esm({
-    "src/modules/copy-id/index.js"() {
-      init_utils2();
-      init_settings36();
-      init_styles118();
-      main18 = () => {
-        let profilePic = document.querySelector(".mousehuntHud-userStatBar .mousehuntHud-profilePic");
-        if (!profilePic)
-          return;
-        let copyIdButton = makeElement("div", ["mh-copy-id-button", "mousehuntActionButton", "tiny"]), hidebutton = getSetting("copy-id-button.hide-button");
-        hidebutton && copyIdButton.classList.add("hidden"), makeElement("span", "mh-copy-id-button-text", "Copy ID", copyIdButton), profilePic.parentNode.insertBefore(copyIdButton, profilePic.nextSibling);
-        let successMessage = makeElement("div", "mh-copy-id-success-message", "Copied!");
-        successMessage.style.opacity = 0, copyIdButton.parentNode.insertBefore(successMessage, copyIdButton.nextSibling);
-        let clickAction = (e) => {
-          e.preventDefault();
-          let Id = user.user_id;
-          navigator.clipboard.writeText(Id), successMessage.style.opacity = 1, setTimeout(() => {
-            successMessage.style.opacity = 0;
-          }, 1e3);
-        };
-        copyIdButton.addEventListener("click", clickAction), hidebutton ? (profilePic.setAttribute("onclick", ""), profilePic.addEventListener("click", clickAction)) : (profilePic.addEventListener("mouseenter", () => {
-          copyIdButton.style.display = "block";
-        }), profilePic.addEventListener("mouseleave", () => {
-          copyIdButton.style.display = "none";
-        }), copyIdButton.addEventListener("mouseenter", () => {
-          copyIdButton.style.display = "block";
-        }), copyIdButton.addEventListener("mouseleave", () => {
-          copyIdButton.style.display = "none";
-        }));
-      }, init84 = () => __async(void 0, null, function* () {
-        addStyles(styles_default117, "copy-id"), main18();
-      }), copy_id_default = {
-        id: "copy-id",
-        name: "Copy ID Button",
-        type: "feature",
-        default: !0,
-        description: "Hover over your profile picture in the HUD for a quick \u201CCopy ID to clipboard\u201D button.",
-        load: init84,
-        settings: settings_default35
-      };
-    }
-  });
-  var settings_default36, init_settings37 = __esm({
     "src/modules/debug/settings/index.js"() {
-      settings_default36 = () => __async(void 0, null, function* () {
+      settings_default35 = () => __async(void 0, null, function* () {
         return [
           {
             id: "debug.utils-data",
@@ -21769,10 +21534,10 @@ ${csv}`);
       });
     }
   });
-  var debug3, main19, init85, debug_default, init_debug2 = __esm({
+  var debug3, main18, init83, debug_default, init_debug2 = __esm({
     "src/modules/debug/index.js"() {
       init_utils2();
-      init_settings37();
+      init_settings36();
       debug3 = (message, ...args) => {
         let textMessages = [], objectMessages = [];
         for (let arg of args)
@@ -21784,7 +21549,7 @@ ${csv}`);
           ...textMessages,
           ...objectMessages
         );
-      }, main19 = () => {
+      }, main18 = () => {
         if (window.app = window.app || {}, window.app.mhutils = utils_exports, !getSetting("debug", !1))
           return;
         if (getSetting("debug.dialog", !1)) {
@@ -21855,8 +21620,8 @@ ${csv}`);
             ].includes(eventName) || debug3(`doEvent: ${eventName}`, eventParams), Reflect.apply(_doEvent, this, arguments);
           };
         }
-      }, init85 = () => {
-        main19(), onActivation("dev", main19), onDeactivation("dev", () => {
+      }, init83 = () => {
+        main18(), onActivation("dev", main18), onDeactivation("dev", () => {
           window.location.reload();
         });
       }, debug_default = {
@@ -21865,277 +21630,138 @@ ${csv}`);
         type: "advanced",
         default: !1,
         order: 900,
-        load: init85,
-        settings: settings_default36
+        load: init83,
+        settings: settings_default35
       };
     }
   });
-  var settings_default37, init_settings38 = __esm({
-    "src/modules/better-shops/settings/index.js"() {
-      settings_default37 = () => __async(void 0, null, function* () {
-        return [
-          {
-            id: "better-shops.hide-max-owned",
-            title: "Hide items with maximum quantity owned",
-            default: !1
-          },
-          {
-            id: "better-shop.qty-buttons",
-            title: "Show quantity buttons",
-            default: !0
-          }
-        ];
-      });
-    }
-  });
-  var quantity_buttons_default, init_quantity_buttons = __esm({
-    "src/modules/better-shops/modules/quantity-buttons/index.js"() {
+  var updateStats, setPrestigeStats, isModifying, modifyPB, isSaving, savePbStats, run3, init84, prestige_base_stats_default, init_prestige_base_stats = __esm({
+    "src/modules/prestige-base-stats/index.js"() {
       init_utils2();
-      quantity_buttons_default = (block, input, maxQty) => __async(void 0, null, function* () {
-        if (block.querySelector(".mh-improved-shop-buy-controls"))
+      updateStats = (selector, pbStats) => {
+        let stats = selector.querySelector(".campPage-trap-itemBrowser-item-statContainer");
+        if (!stats)
           return;
-        maxQty = `${maxQty}`.replaceAll(",", "");
-        let buyControls = makeElement("div", ["mh-improved-shop-buy-controls"]);
-        makeMathButtons([1, 10, 50, 100, 1e3], {
-          appendTo: buyControls,
-          input,
-          maxQty,
-          classNames: ["mh-improved-shop-qty", "tiny", "gray"]
-        });
-        let buyMaxButton = makeElement("a", ["mousehuntActionButton", "lightBlue", "tiny", "mh-improved-shop-buy-max"]), buyMaxButtonText = makeElement("span", "", "Max");
-        buyMaxButton.append(buyMaxButtonText);
-        let hasMaxed = !1;
-        buyMaxButton.addEventListener("click", () => {
-          hasMaxed ? (input.value = 0, buyMaxButtonText.innerText = "Max") : (input.value = maxQty, buyMaxButtonText.innerText = "Reset"), hasMaxed = !hasMaxed;
-        }), buyControls.append(buyMaxButton);
-        let form = block.querySelector(".itemPurchaseView-action-form");
-        form ? form.append(buyControls) : block.append(buyControls);
-      });
-    }
-  });
-  var styles_default118, init_styles119 = __esm({
-    "src/modules/better-shops/modules/quantity-buttons/styles.css"() {
-      styles_default118 = `.mh-improved-shop-buy-controls{position:absolute;top:25px;right:0;left:0;display:flex;flex:1 1 100%;flex-flow:row wrap;gap:5px;align-items:center;justify-content:flex-start;margin-top:7px;margin-left:10px}.itemPurchaseView-action-form.clear-block{position:relative;margin-bottom:40px}.mousehuntActionButton.mh-improved-shop-qty{font-family:monospace;font-size:11px}.mh-improved-shop-buy-max{min-width:25px}.mh-improved-shop-qty,.mh-improved-shop-buy-max{user-select:none}.mousehuntActionButton.mh-improved-shop-buy-max{max-width:30px}
-`;
-    }
-  });
-  var styles_default119, init_styles120 = __esm({
-    "src/modules/better-shops/modules/hide-max-owned/styles.css"() {
-      styles_default119 = `.mousehuntHud-page-subTabContent.hasShop.active .itemPurchaseView-container.own_max,.itemPurchaseView-container.marketplace_buy_regal_stool_collectible.kingsCartItem.cannot_sell.own_max,.itemPurchaseView-container.marketplace_sell_regal_display_case_collectible.kingsCartItem.cannot_sell.own_max,.itemPurchaseView-container.kings_calibrator_message_item.kingsCartItem.cannot_sell.own_max{display:none!important}
-`;
-    }
-  });
-  var order_default, init_order = __esm({
-    "src/modules/better-shops/styles/order.css"() {
-      order_default = `.itemViewStatBlock.trinket{order:3}.itemPurchaseView-content-container{display:flex;flex-direction:column}.itemPurchaseView-content-name{order:1}.itemPurchaseView-content-details{display:flex;order:4}.itemPurchaseView-content-description{order:2}
-`;
-    }
-  });
-  var retired_default, init_retired = __esm({
-    "src/modules/better-shops/styles/retired.css"() {
-      retired_default = `.kings_cart .hasShop .cannot_buy.super_dragonbane_trinket,.kings_cart .hasShop .cannot_buy.extrme_dragonbane_trinket,.kings_cart .hasShop .cannot_buy.wild_tonic_remote_pumping_trinket,.kings_cart .hasShop .cannot_buy.hot_spice_crafting_item,.kings_cart .hasShop .cannot_buy.flaming_spice_crafting_item,.kings_cart .hasShop .cannot_buy.dragonshard_sparkling_nest_convertible,.itemPurchaseView-container.eggstra_trinket.cannot_buy.no_gold_cost,.itemPurchaseView-container.eggstra_charge_trinket.cannot_buy.no_gold_cost{display:none!important}
-`;
-    }
-  });
-  var general_default6, init_general6 = __esm({
-    "src/modules/better-shops/styles/general.css"() {
-      general_default6 = `.shopsPage-header-container,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-accordion,.itemPurchaseView-action-itemCost.required .itemPurchaseView-action-itemCost-table-cell.owned,.itemPurchaseView-container.flaming_spice_crafting_item.kingsCartItem,.itemPurchaseView-container.dragonshard_sparkling_nest_convertible.kingsCartItem,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-description,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost-title{display:none!important}.itemPurchaseView-action-form.clear-block,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-form{display:flex;justify-content:center;margin:1em 0}.itemPurchaseView-container.own_max:hover,.itemPurchaseView-container.own_max:focus{opacity:1}.itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemPurchaseView-content-description{overflow-y:auto}.itemPurchaseView-action-quantity span,.itemPurchaseView-action-purchaseHelper-maxPurchases-container,.itemPurchaseView-content-accordion,.itemPurchaseView-action-kingsCreditCostContainer,.itemPurchaseView-container.own_max .itemPurchaseView-action-purchaseHelper-maxPurchasesLimitReached,.shopCustomization .itemPurchaseView-container.own_max .itemPurchaseView-content-container .itemViewStatBlock,.shopCustomization .itemPurchaseView-container.own_max .itemViewStatBlock-stat.title,.shopCustomization .itemPurchaseView-container.own_max .itemViewStatBlock-stat.powerType,.itemPurchaseView-content-skin b,a.itemPurchaseView-image-trapPreview-link,.itemPurchaseView-action-itemCost-title,.itemPurchaseView-action-itemCost-description{display:none}.itemPurchaseView-content-skin{margin-top:-10px;margin-bottom:5px}.itemPurchaseView-content-description{padding-right:5px;padding-bottom:10px;margin-top:0;margin-bottom:0;overflow-y:auto;color:#626262}.itemPurchaseView-action-itemCost-table{width:250px;padding:0;margin-right:-10px;margin-left:-10px;background:#f9f9f9;border-right:none;border-left:none}.itemPurchaseView-action-itemCost-table-cell.cost{padding-left:11px;background-position:0 0;background-size:10px}.itemPurchaseView-action-itemCost-table-row.error{background-color:#ffadad8c}.mh-dark-mode .itemPurchaseView-action-itemCost-table-row.error{background-color:#802d2d8c}.mh-dark-mode .itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.cost{color:#f66060}.itemPurchaseView-container.own_max .itemPurchaseView-action-container{display:none}.itemPurchaseView-container{width:calc(100% - 1px)}.itemPurchaseView-action-container{padding:8px 0 0;border-right:1px solid #ccc}#overlayPopup .marketplaceView input.button:first-child{position:absolute;top:-3px!important;right:-10px!important;display:block;width:28px;height:27px;padding:0;overflow:hidden;text-align:center;text-indent:34px;background-image:url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png);background-repeat:no-repeat;border:none;border-bottom:0;border-left:0;box-shadow:none}#overlayPopup .marketplaceView input.button:first-child:hover,#overlayPopup .marketplaceView input.button:first-child:focus{background-color:transparent;background-image:url(https://www.mousehuntgame.com/images/ui/backgrounds/jsDialogCloseButton.png);background-repeat:no-repeat;background-position:0 -27px;border-bottom:none;border-left:none}a.itemPurchaseView-content-skin-link{display:flex;align-items:center;min-height:25px;padding-left:30px;line-height:unset;background-size:25px}#overlayPopup.marketplaceViewPopup .suffix{display:none}.shopCustomization .PageShops .itemViewStatBlock-padding{display:flex;align-items:center}.shopCustomization .PageShops .itemViewStatBlock,.shopCustomization .PageShops .itemViewStatBlock-stat{margin-top:10px;border:none}.shopCustomization .PageShops .itemViewStatBlock-stat{padding:2px 4px 2px 2px;margin-top:3px;margin-right:5px;border:1px solid #ccc;border-radius:5px}.shopCustomization .PageShops .itemViewStatBlock-stat-helper{right:unset;left:unset;white-space:nowrap}.shopCustomization .PageShops .itemViewStatBlock-stat-label{margin-right:0;background:none}.shopCustomization .PageShops .itemViewStatBlock-stat-value{max-width:unset;background:none;border-radius:0}.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect{width:auto;border-bottom:1px solid #ccc}.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value{width:auto;max-width:150px}.item_set,.mh-dark-mode .item_set{background-color:#eeab2a45;border:none}.itemPurchaseView-container.kingsCartItem{cursor:initial}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container{display:table-cell;width:250px;min-height:unset;color:#000;background:#eee;box-shadow:none}.mh-dark-mode .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-container{color:#fff;background-color:#242424}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-state.view{padding-top:unset}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-itemCost.consumed,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-goldGost,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-marketplace,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-refund-container{display:block!important}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity{display:block;width:auto}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-quantity input{width:100%;margin-top:0}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details:after{display:none}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-button-row a,.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-complete-title{color:#3b5998}span.itemPurchaseView-action-confirm-refund.noRefund{position:relative;display:block;color:transparent}span.itemPurchaseView-action-confirm-refund.noRefund:after{position:absolute;top:10px;right:0;left:0;height:10px;color:#000;content:"Cannot be refunded."}.itemPurchaseView-container.has_refund_value .itemPurchaseView-action-confirm-refund.hasRefund{margin-top:20px}.itemPurchaseView-action-confirm-title{margin-bottom:10px;font-style:normal;font-weight:400}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-complete-title,.itemPurchaseView-container .itemPurchaseView-action-complete-title,.itemPurchaseView-action-complete-title,.itemPurchaseView-action-armed-title{margin:10px;font-weight:400;color:#000}.itemPurchaseView-container .itemPurchaseView-action-state.complete a.itemPurchaseView-action-complete-return{position:relative;display:block;float:none;margin:0;color:transparent}.itemPurchaseView-container .itemPurchaseView-action-state.complete a.itemPurchaseView-action-complete-return:after{position:absolute;top:10px;right:78px;left:78px;padding:10px 15px;line-height:10px;color:#000;text-shadow:0 0 1px #fff;content:"Continue";background-color:#fff600;border:1px solid #000;border-radius:5px;box-shadow:inset 0 0 5px #fff,1px 1px 1px #fff}.itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.cost{color:#a21010}.mh-dark-mode .itemPurchaseView-action-goldGost{background-color:#0e0e0e;border-color:#242424}.itemPurchaseView-content-details{display:flex;flex-direction:column;align-items:stretch;padding-bottom:10px}.itemPurchaseView-content-container .itemViewStatBlock.horizontal.base,.itemPurchaseView-content-container .itemViewStatBlock.horizontal.weapon{width:auto;margin-bottom:10px;margin-left:0}.shopCustomization .PageShops .itemPurchaseView-container .title .itemViewStatBlock-stat-value span a{max-width:60px;font-size:10px;text-overflow:ellipsis}.itemPurchaseView-image-container .itemViewStatBlock-stat.title.error{background-color:#ffc9c9}.itemPurchaseView-image-container .itemViewStatBlock-stat-icon{width:20px;height:20px;background-size:90%}.itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon{width:26px;height:24px}.itemViewStatBlock.horizontal .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon{height:30px}.itemViewStatBlock-stat.title .itemPurchaseView-image-container .itemViewStatBlock-stat-icon{background-size:100%}.itemViewStatBlock-stat.error .itemViewStatBlock-stat-value{background-color:unset}a.shopsPage-kingsCalibratorPromo{display:flex;align-items:center;justify-content:center;padding:0;font-size:12px}.shopsPage-kingsCalibratorPromo-button{top:unset}.shopsPage-kingsCalibratorPromo br{display:none}.shopsPage-compareEquipment-stats{width:auto}.shopsPage-compareEquipment-stats .itemViewStatBlock.horizontal.weapon{float:none;width:auto;margin-left:0}.shopsPage-compareEquipment-stats .itemPurchaseView-content-name{display:flex;gap:5px;justify-content:flex-start}.shopsPage-compareEquipment{background-color:#dbe9ff}.itemPurchaseView-container.own_max{display:block!important;height:25px;overflow:hidden;opacity:.3;transition:.4s}.hasShop .itemPurchaseView-container.donation .itemPurchaseView-content-container,.itemPurchaseView-container.own_max .itemPurchaseView-content-container{width:calc(100% - 10px)}.mh-dark-mode .itemPurchaseView-container.own_max{background-color:#000}.itemPurchaseView-container.own_max:hover{display:table!important;height:unset;overflow-y:visible}.itemPurchaseView-container.own_max:hover .itemPurchaseView-action-container{display:table-cell}.mh-dark-mode .itemPurchaseView-container.own_max .itemPurchaseView-content-container{border-color:transparent}.itemPurchaseView-container.own_max .itemPurchaseView-content-name b:after{font-size:10px;content:" (maximum owned)"}.mh-dark-mode .shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat.cheeseEffect,.mh-dark-mode .shopCustomization .itemPurchaseView-container .itemViewStatBlock-stat{background-color:#3d3d3d;border-color:#606060}.shopCustomization .shopCustomization .itemViewStatBlock-stat.powerType{position:absolute;color:#000;background-color:#e6e6e6}.shopCustomization .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-value{display:none}.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.title,.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType{background-color:#3d3d3d;border-color:#606060}.mh-dark-mode .itemPurchaseView-container .itemPurchaseView-image-container .itemViewStatBlock-stat.powerType{background-color:transparent;border:none}.itemPurchaseView-container.new .itemPurchaseView-margin:after{top:5px}.itemPurchaseView-action-marketplace b,.itemPurchaseView-action-marketplace br{display:none}.itemPurchaseView-action-marketplace a:last-of-type:after{content:" in the Marketplace"}.itemPurchaseView-action-marketplace{padding:5px 0}a.itemPurchaseView-action-buySuperBrie{display:inline-block;margin:0 auto}.super_brie_cheese .itemPurchaseView-action-purchaseHelper{display:block}.donation .itemPurchaseView-action-itemCost-table-row{display:flex;justify-content:center;font-size:15px}.itemPurchaseView-container.donation .itemPurchaseView-action-container,.itemPurchaseView-container.donation .itemPurchaseView-action-itemCost-table{border-top-color:#ffc62b;border-bottom-color:#c7991c}.mh-dark-mode .itemPurchaseView-container.donation .itemPurchaseView-action-container{background-color:#e6b963}.mh-dark-mode .itemPurchaseView-container.donation .itemPurchaseView-action-itemCost-table{background-color:#f4eeca}.itemPurchaseView-container:hover .itemPurchaseView-margin,.itemPurchaseView-container:hover .itemPurchaseView-image-container,.itemPurchaseView-container:hover .itemPurchaseView-content-container{background-color:#f9f9f9}.mh-dark-mode .itemPurchaseView-container:hover .itemPurchaseView-margin,.mh-dark-mode .itemPurchaseView-container:hover .itemPurchaseView-image-container,.mh-dark-mode .itemPurchaseView-container:hover .itemPurchaseView-content-container{background-color:#242424}.itemPurchaseView-container.trinket .itemViewStatBlock{margin-top:0;margin-bottom:10px}.itemViewStatBlock-stat-helper{padding:10px;font-size:10px;color:#fff;text-align:center;background:#000;border:none;border-radius:10px}.itemViewStatBlock-stat-helper-arrow:after{border-top:10px solid #000}.itemPurchaseView-container .itemPurchaseView-action-form{min-height:50px}.itemPurchaseView-action-confirm-button:focus,.itemPurchaseView-action-confirm-button:hover{filter:hue-rotate(50deg)}.shopsPageTrapPreview .trapImageView-layerWrapper{top:10px}.shopsPageTrapPreview .trapImageView{height:370px}.itemViewPopup .itemViewStatBlock-stat.title{order:1}.itemViewPopup .itemViewStatBlock-stat.powerType{order:2}.itemViewPopup .itemViewStatBlock-stat.points{order:3}.itemViewPopup .itemViewStatBlock-stat.power,.itemViewPopup .itemViewStatBlock-stat.luck,.itemViewPopup .itemViewStatBlock-stat.powerBonus,.itemViewPopup .itemViewStatBlock-stat.attraction{order:4}.itemViewPopup .itemViewStatBlock-stat.cheeseEffect{order:5}.itemViewContainer .itemViewStatBlock.trinket .itemViewStatBlock-stat.empty{display:flex;opacity:.6}.itemViewPopup .itemView-thumbnailContainer a{display:flex;justify-content:center;padding-top:5px}.itemViewPopup .itemViewStatBlock-stat:last-child .itemViewStatBlock-stat-label{border-radius:0 0 0 5px}.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-icon:after{position:absolute;top:0;bottom:0;left:26px;display:flex;align-items:center;justify-content:center;width:115px;font-weight:900;content:""}.itemViewPopup .itemViewStatBlock-stat.powerType .itemViewStatBlock-stat-label{position:relative;width:26px}.itemViewPopup .itemViewStatBlock-stat-value{display:flex;align-items:center;justify-content:center}.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details{height:auto;max-height:180px;overflow-y:auto}.itemPurchaseView-container.kingsCartItem.expanded .itemPurchaseView-content-details{height:100%;max-height:unset;overflow-y:visible}.itemPurchaseView-container[data-max-inventory-quantity="1"]:after{position:absolute;top:17px;right:5px;z-index:1;color:#3b3b3b;content:"(Limit " attr(data-max-inventory-quantity) ")"}.itemPurchaseView-action-buySuperBrie{border-radius:7px}
-`;
-    }
-  });
-  var cost_default, init_cost = __esm({
-    "src/modules/better-shops/styles/cost.css"() {
-      cost_default = `.itemPurchaseView-action-itemCost-table-row{display:grid;grid-template-columns:1fr 15fr 1fr;place-items:center stretch;width:97%;padding:2px 5px 2px 2px;margin:0}.itemPurchaseView-action-goldGost{padding:5px 5px 5px 20px;font-size:1.3em;font-weight:400;text-align:left;background:#f9f9f9;border:1px solid #ccc;border-right:none;border-left:none}.mh-dark-mode .itemPurchaseView-content-container{border-color:#242424}.itemPurchaseView-image-container,.itemPurchaseView-content-container{background-color:#fff}.itemPurchaseView-action-quantity{flex-grow:1;width:auto;margin:0 5px 0 10px}.itemPurchaseView-action-quantity input{width:100%;padding:3px;margin:0}a.itemPurchaseView-action-form-button.buy,a.itemPurchaseView-action-form-button.sell{width:auto;height:21px;margin-top:0;font-weight:400;line-height:21px}a.itemPurchaseView-action-form-button.buy{height:21px;margin-left:7px;background:#f4e830}a.itemPurchaseView-action-form-button.sell{margin-left:7px;background:#b3edff}.itemPurchaseView-container.cannot_sell .itemPurchaseView-action-form-button.sell,.itemPurchaseView-container.cannot_buy .itemPurchaseView-action-form-button.buy{filter:grayscale(1) opacity(.75)}.itemPurchaseView-action-purchaseHelper{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;margin:0}.itemPurchaseView-container.no_gold_cost .itemPurchaseView-action-goldGost{display:block}.itemPurchaseView-content-name{display:flex;align-items:center;justify-content:space-between;margin-top:6px;margin-bottom:4px}.itemPurchaseView-action-purchaseHelper-owned{padding:4px;margin-right:10px;font-size:11px;white-space:nowrap;background-color:#eee;border:1px solid #ccc;border-radius:5px}.itemPurchaseView-action-purchaseHelper-error{height:auto}.itemPurchaseView-action-purchaseHelper-maxPurchasesLimitReached{margin-bottom:5px;font-size:11px}.itemPurchaseView-action-itemCost-table-cell.cost{z-index:1}.itemPurchaseView-container.chrome .itemPurchaseView-action-container .itemPurchaseView-action-goldGost{background-color:#274167;border-color:#3b619b}.itemPurchaseView-container.chrome .mousehuntActionButton.mh-improved-math-button.mh-improved-shop-qty:nth-child(4),.itemPurchaseView-container.chrome .mousehuntActionButton.mh-improved-math-button.mh-improved-shop-qty:nth-child(5){display:none}.itemPurchaseView-container.chrome:not(.own_max){min-height:120px}.itemPurchaseView-action-chromeCost-image{box-shadow:none}.itemPurchaseView-container.chrome .itemPurchaseView-action-quantity input{width:80px}.chrome .itemPurchaseView-action-complete-title{color:#fff}
-`;
-    }
-  });
-  var stats_default2, init_stats2 = __esm({
-    "src/modules/better-shops/styles/stats.css"() {
-      stats_default2 = `.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-padding{display:flex;flex-flow:row wrap;row-gap:5px;align-items:center;justify-content:flex-start}.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.title,.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect{width:70px}.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.title,.itemPurchaseView-container .itemViewStatBlock-stat.powerType{display:flex;align-items:center;justify-content:space-evenly;width:auto;line-height:14px;border:1px solid #ccc}.mh-dark-mode .shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.title,.mh-dark-mode .itemPurchaseView-container .itemViewStatBlock-stat.powerType{border-color:#606060}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat-label{display:inline-block;padding:0}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value{display:inline-flex;align-items:center;justify-content:center;margin-right:3px}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat{display:flex;align-items:center;justify-content:space-around;min-width:55px;padding:2px;margin:0 5px 0 0;background-color:#f9f9f9;border:1px solid #ccc;border-radius:5px}.mh-dark-mode.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat{background-color:#333;border-color:#606060}.mh-dark-mode.shopCustomization .PageShops .pageFrameView .itemViewStatBlock .itemViewStatBlock-stat-value{background-color:transparent}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat-value span{display:inline-block;padding:0}.shopCustomization .PageShops .itemViewStatBlock.horizontal .itemViewStatBlock-stat.cheeseEffect .itemViewStatBlock-stat-value{font-size:9px}
-`;
-    }
-  });
-  var riftstalker_default, init_riftstalker = __esm({
-    "src/modules/better-shops/styles/riftstalker.css"() {
-      riftstalker_default = `ul.set_bonus_effects{display:inline-block;flex-wrap:nowrap}.item_set .set_bonus_effects li{display:inline;margin:0}.item_set .set_bonus_level{width:40%}.item_set{display:flex;flex-flow:row wrap;align-items:center}.item_set .set_bonus_effects li:after{content:", "}.item_set .set_bonus_effects li:last-of-type:after{content:""}.item_set>b{display:none}.item_set .set_name>img{right:30px;display:none}.item_set .set_name{margin:0;font-size:11px}.item_set .set_name:after{margin-right:5px;margin-left:10px;font-weight:400;content:" Requires: "}
-`;
-    }
-  });
-  var imported9, styles7, updateInputField, main20, init86, better_shops_default, init_better_shops = __esm({
-    "src/modules/better-shops/index.js"() {
-      init_utils2();
-      init_settings38();
-      init_quantity_buttons();
-      init_styles119();
-      init_styles120();
-      init_order();
-      init_retired();
-      init_general6();
-      init_cost();
-      init_stats2();
-      init_riftstalker();
-      imported9 = [order_default, retired_default, general_default6, cost_default, stats_default2, riftstalker_default], styles7 = imported9, updateInputField = () => __async(void 0, null, function* () {
-        let purchaseBlocks = document.querySelectorAll(".itemPurchaseView-action-state.view");
-        if (!purchaseBlocks)
+        let currentSetup = getUserSetupDetails(), power = stats.querySelector(".campPage-trap-itemBrowser-item-stat.power");
+        if (power) {
+          let powerValue = power.querySelector(".value span");
+          powerValue && (powerValue.innerText = pbStats.power, power.classList.remove("better", "worse"), currentSetup.base.power < pbStats.power ? power.classList.add("better") : currentSetup.base.power > pbStats.power && power.classList.add("worse"));
+        }
+        let luck = stats.querySelector(".campPage-trap-itemBrowser-item-stat.luck");
+        if (luck) {
+          let luckValue = luck.querySelector(".value span");
+          luckValue && (luckValue.innerText = pbStats.luck, luck.classList.remove("better", "worse"), currentSetup.base.luck < pbStats.luck ? luck.classList.add("better") : currentSetup.base.luck > pbStats.luck && luck.classList.add("worse"));
+        }
+      }, setPrestigeStats = () => __async(void 0, null, function* () {
+        let prestige = document.querySelector(".campPage-trap-itemBrowser-item.base.valour_rift_prestige_base");
+        if (!prestige)
           return;
-        let addQuantityButtons2 = getSetting("better-shops.show-qty-buttons", !0);
-        purchaseBlocks.forEach((block) => {
-          let qty = block.querySelector(".itemPurchaseView-action-maxPurchases");
-          if (!qty)
-            return;
-          let input = block.querySelector("input");
-          if (!input)
-            return;
-          let maxQty = qty.innerText.replace(" (Inventory max)", "") || 0;
-          input.setAttribute("placeholder", maxQty);
-          let buyButton = block.querySelector(".itemPurchaseView-action-form-button.buy");
-          buyButton && input.addEventListener("focus", () => {
-            let enterEvt = input.addEventListener("keydown", (e) => {
-              e.key === "Enter" && (buyButton.click(), setTimeout(() => {
-                let confirmButton = document.querySelector(".itemPurchaseView-container.confirmPurchase .itemPurchaseView-action-confirm-button");
-                confirmButton && confirmButton.focus();
-              }, 200));
-            });
-            input.addEventListener("blur", () => {
-              input.removeEventListener("keydown", enterEvt);
-            });
-          }), addQuantityButtons2 && quantity_buttons_default(block, input, maxQty);
-        });
-      }), main20 = () => {
-        let body = document.querySelector("body");
-        if (!body)
+        let pbStats = yield cacheGet("pb-stats", !1);
+        if (!pbStats)
           return;
-        if (getCurrentPage() === "item") {
-          body.classList.remove("shopCustomization");
+        updateStats(prestige, pbStats);
+        let armed = document.querySelector(".campPage-trap-itemBrowser-armed-item.base");
+        if (!armed)
+          return;
+        let name = armed.querySelector(".campPage-trap-itemBrowser-item-name");
+        name && name.innerText.includes("Prestige Base") && updateStats(armed, pbStats);
+      }), isModifying = !1, modifyPB = (opts) => __async(void 0, null, function* () {
+        if (isModifying)
+          return;
+        isModifying = !0;
+        let activeBp = document.querySelector(".trapSelectorView__blueprint--active .trapSelectorView__browserStateParent");
+        if (!activeBp) {
+          isModifying = !1;
           return;
         }
-        body.classList.add("shopCustomization");
-        let golds = document.querySelectorAll(".itemPurchaseView-action-goldGost");
-        golds && golds.forEach((gold) => {
-          if (gold.innerText.includes("Cost:") && (gold.innerText = gold.innerText.replace("Cost:", "")), !gold.innerText.length) {
-            let container = gold.closest(".itemPurchaseView-container");
-            if (container) {
-              let goldCost = container.getAttribute("data-gold-cost");
-              goldCost && (gold.innerText = `${Number.parseInt(goldCost).toLocaleString()} gold`);
-            }
+        let bpType = activeBp.getAttribute("data-blueprint-type");
+        if (!bpType || bpType !== "base") {
+          isModifying = !1;
+          return;
+        }
+        let { retryPrestige } = opts || {}, savedStats = yield cacheGet("pb-stats", !1);
+        if (debuglog("prestige-base-stats", "Saved Prestige Base stats:", savedStats), !savedStats) {
+          isModifying = !1;
+          return;
+        }
+        let prestige = document.querySelector(".campPage-trap-itemBrowser-item.base.valour_rift_prestige_base");
+        if (!prestige) {
+          retryPrestige || setTimeout(() => {
+            modifyPB({ retryPrestige: !0 });
+          }, 500), isModifying = !1;
+          return;
+        }
+        if (prestige.getAttribute("data-pinned")) {
+          isModifying = !1;
+          return;
+        }
+        let recommended = document.querySelector('.trapSelectorView__browserStateParent--items[data-blueprint-type="base"] .recommended');
+        if (!recommended) {
+          isModifying = !1;
+          return;
+        }
+        let header = recommended.querySelector(".campPage-trap-itemBrowser-tagGroup-name");
+        header && header.after(prestige), prestige.setAttribute("data-pinned", !0), setPrestigeStats(), isModifying = !1;
+      }), isSaving = !1, savePbStats = () => {
+        if (isSaving)
+          return;
+        if (isSaving = !0, getUserSetupDetails().base.id !== 2904) {
+          isSaving = !1;
+          return;
+        }
+        debuglog("prestige-base-stats", "Saving Prestige Base stats\u2026");
+        let trapMath = document.querySelectorAll(".campPage-trap-trapStat-mathRow");
+        if (!trapMath.length) {
+          isSaving = !1;
+          return;
+        }
+        let stats = {};
+        if (trapMath.forEach((row) => {
+          let stat = row.querySelector(".campPage-trap-trapStat-mathRow-name");
+          if (!stat) {
+            isSaving = !1;
+            return;
           }
-        });
-        let buyBtns = document.querySelectorAll(".itemPurchaseView-action-form-button.buy");
-        buyBtns && buyBtns.forEach((btn) => {
-          btn.classList.add("mousehuntActionButton"), btn.innerHTML = "<span>Buy</span>";
-        });
-        let sellBtns = document.querySelectorAll(".itemPurchaseView-action-form-button.sell");
-        sellBtns && sellBtns.forEach((btn) => {
-          btn.classList.add("mousehuntActionButton"), btn.classList.add("lightBlue"), btn.innerHTML = "<span>Sell</span>";
-        }), updateInputField();
-        let owned = document.querySelectorAll(".itemPurchaseView-action-purchaseHelper-owned");
-        owned && owned.forEach((ownedItem) => {
-          if (ownedItem.getAttribute("moved-to-title"))
+          if (!stat.innerText.includes("Prestige Base")) {
+            isSaving = !1;
             return;
-          let nameEl = ownedItem.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".itemPurchaseView-content-name");
-          ownedItem.setAttribute("moved-to-title", "true"), nameEl.append(ownedItem);
-        });
-        let kingsCart = document.querySelectorAll(".itemPurchaseView-container.kingsCartItem");
-        kingsCart && kingsCart.forEach((cart) => {
-          cart.querySelector("input").value = "";
-        });
-        let shopQty = document.querySelectorAll(".itemPurchaseView-action-quantity input");
-        if (!shopQty)
-          return;
-        shopQty.forEach((qty) => {
-          qty.setAttribute("maxlength", "100");
-        });
-        let itemStats = document.querySelectorAll(".itemViewStatBlock");
-        itemStats && itemStats.forEach((stat) => {
-          if (stat.classList.contains("horizontal"))
-            return;
-          let contentSection = stat.parentNode.parentNode.querySelector(".itemPurchaseView-content-container");
-          contentSection && contentSection.append(stat);
-        });
-        let itemStatsTitle = document.querySelectorAll(".itemViewStatBlock.horizontal .itemViewStatBlock-stat");
-        itemStatsTitle && itemStatsTitle.forEach((title) => {
-          if (title.classList.contains("title") || title.classList.contains("powerType")) {
-            let imageContainer = title.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector(".itemPurchaseView-image-container");
-            imageContainer && imageContainer.append(title);
           }
-        });
-      }, init86 = () => __async(void 0, null, function* () {
-        let stylesToAdd = [...styles7];
-        getSetting("better-shops.hide-max-owned", !1) && stylesToAdd.push(styles_default119), getSetting("better-shops.show-qty-buttons", !0) && stylesToAdd.push(styles_default118), addStyles(stylesToAdd, "better-shops"), onNavigation(main20, {
-          page: "shops"
-        }), onRequest("purchases/itempurchase.php", updateInputField);
-      }), better_shops_default = {
-        id: "better-shops",
-        name: "Better Shops",
-        type: "better",
-        default: !0,
-        description: "Update the shop layout and appearance, minimize owned items with an inventory limit of 1, and more.",
-        load: init86,
-        settings: settings_default37
-      };
-    }
-  });
-  var styles_default120, init_styles121 = __esm({
-    "src/modules/tem-crowns/styles.css"() {
-      styles_default120 = `.campPage-trap-trapEffectiveness-mouse-name{display:inline-flex;flex-flow:column wrap;place-content:flex-start space-around;align-items:flex-start;justify-content:flex-start;width:100px;padding-left:0;margin-top:-10px}.campPage-trap-trapEffectiveness-mouse:hover,.campPage-trap-trapEffectiveness-mouse:focus,.campPage-trap-trapEffectiveness-mouse:active{border:none;outline:1px solid #ccc}.campPage-trap-trapEffectiveness-content{overflow:visible}.mh-ui-tem-crown.mousebox{position:relative;float:none;margin:0;border:none}img.mh-ui-tem-crown-icon{position:absolute;top:-1px;right:-5px;z-index:2;box-sizing:border-box;width:22px;height:22px;vertical-align:middle;background-color:#f4f4f4;border:1px solid #8d8282;border-right:none;border-radius:50% 0 0 50%}span.mh-ui-tem-crown-text{position:absolute;top:-1px;left:1px;z-index:1;box-sizing:border-box;display:inline-block;width:auto;height:22px;padding:3px 4px 3px 20px;font-size:12px;font-weight:900;color:#926944;background-color:#f4f4f4;border:1px solid #8d8282}.mh-ui-tem-crown-wrapper{position:absolute;bottom:0;left:45px}.campPage-trap-trapEffectiveness-mouse-chance{display:block;margin-top:5px;color:#628ea9}.campPage-trap-trapEffectiveness-mouse-powerType{right:28px;bottom:-9px;background-color:#f4f4f4;background-size:70%;border-color:#8d8282}.campPage-trap-trapEffectiveness span{font-size:14px;vertical-align:bottom}.campPage-trap-trapEffectiveness-difficultyGroup.clear-block{display:grid;grid-template-columns:1fr 1fr;place-items:center stretch;padding-left:10px}.campPage-trap-trapEffectiveness-mouse{width:unset;margin:10px 0;overflow:visible;border:none}.campPage-trap-trapEffectiveness-difficultyGroup-label{grid-column:span 2;font-weight:400;text-align:center;border:none}
-`;
-    }
-  });
-  var getCrownType, addCrownsToTEM, init87, tem_crowns_default, init_tem_crowns = __esm({
-    "src/modules/tem-crowns/index.js"() {
-      init_utils2();
-      init_styles121();
-      getCrownType = (catches) => catches < 10 ? "none" : catches < 100 ? "bronze" : catches < 500 ? "silver" : catches < 1e3 ? "gold" : catches < 2500 ? "platinum" : "diamond", addCrownsToTEM = (panel) => __async(void 0, null, function* () {
-        if (panel !== "trap_effectiveness")
+          let value = row.querySelector(".campPage-trap-trapStat-mathRow-value");
+          if (!value) {
+            isSaving = !1;
+            return;
+          }
+          let parsedValue = Number.parseInt(value.innerText.replaceAll(",", ""), 10), typeClass = row.parentElement.parentElement.className.replace("campPage-trap-trapStat", "").trim();
+          typeClass === "power" ? parsedValue = parsedValue + 490 : typeClass === "luck" && (parsedValue = parsedValue + 5), stats[typeClass] = parsedValue;
+        }), !stats.power || !stats.luck) {
+          isSaving = !1;
           return;
-        let crowns = yield doRequest("managers/ajax/mice/getstat.php", {
-          action: "get_hunting_stats"
-        });
-        if (!(crowns != null && crowns.hunting_stats && (crowns == null ? void 0 : crowns.hunting_stats.length) > 0))
-          return;
-        huntingStats = crowns == null ? void 0 : crowns.hunting_stats;
-        let temMice = document.querySelectorAll(".campPage-trap-trapEffectiveness-mouse");
-        !temMice || !temMice.length || temMice.forEach((mouse) => __async(void 0, null, function* () {
-          if (mouse.getAttribute("data-mh-ui-tem-crown"))
-            return;
-          let type = mouse.getAttribute("data-mouse");
-          if (!type)
-            return;
-          mouse.setAttribute("data-mh-ui-tem-crown", !0);
-          let mouseStats2 = huntingStats.find((m) => m.type === type);
-          if (!mouseStats2)
-            return;
-          let name = mouse.querySelector(".campPage-trap-trapEffectiveness-mouse-name");
-          if (!name)
-            return;
-          let catches = mouseStats2.num_catches, crownType = getCrownType(catches), crownWrapper = makeElement("div", "mh-ui-tem-crown-wrapper"), crown = document.createElement("span");
-          crown.classList.add("mh-ui-tem-crown", "mousebox");
-          let crownIcon = document.createElement("img");
-          crownIcon.classList.add("mh-ui-tem-crown-icon"), crownIcon.src = `https://www.mousehuntgame.com/images/ui/crowns/crown_${crownType}.png`, crown.append(crownIcon), makeElement("span", "mh-ui-tem-crown-text", catches, crown), crownWrapper.append(crown), name.append(crownWrapper);
-        }));
-      }), init87 = () => __async(void 0, null, function* () {
-        addStyles(styles_default120, "tem-crowns"), onEvent("camp_page_toggle_blueprint", addCrownsToTEM);
-      }), tem_crowns_default = {
-        id: "tem-crowns",
-        name: "TEM Crowns",
+        }
+        debuglog("prestige-base-stats", "Prestige Base stats:", stats), cacheSet("pb-stats", stats), isSaving = !1;
+      }, run3 = () => __async(void 0, null, function* () {
+        modifyPB(), savePbStats();
+      }), init84 = () => __async(void 0, null, function* () {
+        onEvent("camp_page_toggle_blueprint", run3), onRequest("users/changetrap.php", run3);
+      }), prestige_base_stats_default = {
+        id: "prestige-base-stats",
+        name: "Prestige Base Stats",
         type: "feature",
         default: !0,
-        description: "Add crowns and catches to the Trap Effectiveness Meter.",
-        load: init87
+        description: "Show the correct stats for the Prestige Base in the base selector.",
+        load: init84
       };
     }
   });
-  // dist/data/cre-mice-groups.json
   var cre_mice_groups_default, init_cre_mice_groups = __esm({
     "dist/data/cre-mice-groups.json"() {
       cre_mice_groups_default = { dragon: ["dragon", "icewing", "drag_goon", "ful_mina_mountain_queen", "thunderstriker", "thundering_watcher", "thunderlord", "violet_thunderling", "geyser_cork_dropper_bland", "geyser_cork_dropper_mild", "geyser_cork_dropper_medium", "geyser_cork_dropper_rare", "geyser_cork_dropper_hot", "geyser_cork_dropper_flaming", "geyser_cork_dropper_wildfire", "geyser_pressure_builder_mild", "geyser_pressure_builder_medium", "geyser_pressure_builder_hot", "geyser_pressure_builder_flaming", "geyser_pressure_builder_wildfire", "geyser_eruption_dragon_mild", "geyser_eruption_dragon_small", "geyser_eruption_dragon_medium_spice", "geyser_eruption_dragon_medium", "geyser_eruption_dragon_hot", "geyser_eruption_dragon_large", "geyser_eruption_dragon_flaming", "geyser_eruption_dragon_epic", "geyser_eruption_dragon_wildfire", "tiny_dragonfly", "dragon_lancer", "dragon_breather", "regal_spearman", "draconic_paragon", "empyrean_draconic_mouse", "crematio_scorchworth", "malignus_vilestrom", "rimeus_polarblast", "absolutia_harmonius", "arcticus_the_biting_frost", "avalancheus_the_glacial", "belchazar_banewright", "blizzara_winterosa", "chillandria_permafrost", "colonel_crisp", "combustius_furnaceheart", "corrupticus_the_blight_baron", "dreck_grimehaven", "flamina_cinderbreath", "frigidocius_coldshot", "frostnip_icebound", "goopus_dredgemore", "iciclesius_the_defender", "incendarius_the_unquenchable", "magnatius_majestica", "mythical_dragon_emperor", "noxio_sludgewell", "pestilentia_the_putrid", "squire_sizzleton", "sulfurious_the_raging_inferno", "supremia_magnificus", "threeimat", "torchbearer_tinderhelm", "tranquilia_protecticus", "venomona_festerbloom"], fort_rox: { cosmic: ["moonstone_slinger", "arcane_summoner", "night_watcher", "cursed_taskmaster", "moonstone_golem", "moonstone_mystic"], weremice: ["good_supply_night", "werehauler", "wealthy_werewarrior", "mischievous_wereminer", "were_alpha", "reveling_lycanthrope", "wereminer"] }, fiery_warpath: { archers: ["desert_archer_weak", "desert_archer", "desert_archer_epic"], cavalry: ["desert_cavalry", "desert_cavalry_strong"], mages: ["desert_mage", "desert_mage_strong"], scouts: ["desert_scout_weak", "desert_scout", "desert_scout_epic"], warriors: ["desert_warrior_weak", "desert_warrior", "desert_warrior_epic"], commanders: ["desert_general"] }, sand_dunes: ["king_grub", "king_scarab"], rift_whisker_woods: ["rift_cyclops", "rift_centaur", "rift_hydra", "rift_black_widow"], zugzwang_tower: { mystic: ["mystic_bishop", "mystic_king", "mystic_knight", "mystic_pawn", "mystic_queen", "mystic_rook"], technic: ["tech_bishop", "tech_king", "tech_knight", "tech_pawn", "tech_queen", "tech_rook"], rooks: ["mystic_rook", "technic_rook"] } };
     }
   });
-  var miceEffs, hasGottenEffs, items4, getMiceEffectiveness, getMouse, getMousePower, getMouseEffectiveness, getMinluck, getPercent, isWaveAndHasRemaining, kingScarabThresholds, kingScarabCoefficients, defaultThresholds, defaultCoefficients, calculatePowerWhenSalted, getAmplifier, applySpecialEffectsAndGetCatchRate, calculateCatchRate, getCatchRate2, init_data2 = __esm({
+  var miceEffs, hasGottenEffs, items3, getMiceEffectiveness, getMouse, getMousePower, getMouseEffectiveness, getMinluck, getPercent, isWaveAndHasRemaining, kingScarabThresholds, kingScarabCoefficients, defaultThresholds, defaultCoefficients, calculatePowerWhenSalted, getAmplifier, applySpecialEffectsAndGetCatchRate, calculateCatchRate, getCatchRate2, init_data2 = __esm({
     "src/modules/catch-rate-estimate/data.js"() {
       init_utils2();
       init_cre_mice_groups();
-      hasGottenEffs = !1, items4 = null, getMiceEffectiveness = () => __async(void 0, null, function* () {
+      hasGottenEffs = !1, items3 = null, getMiceEffectiveness = () => __async(void 0, null, function* () {
         hasGottenEffs || (miceEffs = yield getData("effs"), hasGottenEffs = !0);
         let response = yield doRequest("managers/ajax/users/getmiceeffectiveness.php");
         return response == null ? void 0 : response.effectiveness;
@@ -22173,7 +21799,7 @@ ${csv}`);
         return (_b = (_a = user.viewing_atts) == null ? void 0 : _a.zzt_amplifier) != null ? _b : 0;
       }, applySpecialEffectsAndGetCatchRate = (options2) => __async(void 0, null, function* () {
         var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R, _S, _T;
-        items4 || (items4 = yield getData("items"));
+        items3 || (items3 = yield getData("items"));
         let {
           mouseType,
           mousePower,
@@ -22182,7 +21808,7 @@ ${csv}`);
           trapPowerBoost: trapPowerBoost2,
           trapLuck: trapLuck2,
           trapPowerBonus: trapPowerBonus2
-        } = options2, charm = (_a = items4.find((item) => item.id === Number.parseInt(user == null ? void 0 : user.trinket_item_id))) == null ? void 0 : _a.type, weapon = (_b = items4.find((item) => item.id === Number.parseInt(user == null ? void 0 : user.weapon_item_id))) == null ? void 0 : _b.type, trapPowerType = user.trap_power_type_name.toLowerCase(), location = getCurrentLocation();
+        } = options2, charm = (_a = items3.find((item) => item.id === Number.parseInt(user == null ? void 0 : user.trinket_item_id))) == null ? void 0 : _a.type, weapon = (_b = items3.find((item) => item.id === Number.parseInt(user == null ? void 0 : user.weapon_item_id))) == null ? void 0 : _b.type, trapPowerType = user.trap_power_type_name.toLowerCase(), location = getCurrentLocation();
         switch (location) {
           case "ancient_city":
             mouseType === "retired_minotaur" ? mousePower *= (((_d = (_c = user == null ? void 0 : user.quests) == null ? void 0 : _c.QuestAncientCity) == null ? void 0 : _d.width) || 100) / 100 : user.quests.QuestAncientCity.boss === "defeated" && trapPowerType === "forgotten" && (effectiveness2 += 1);
@@ -22231,17 +21857,17 @@ ${csv}`);
       });
     }
   });
-  var styles_default121, init_styles122 = __esm({
+  var styles_default118, init_styles119 = __esm({
     "src/modules/catch-rate-estimate/styles.css"() {
-      styles_default121 = `#mh-improved-cre{padding:3px 0;margin:5px 0;cursor:default}#mh-improved-cre table{width:100%}#mh-improved-cre thead{box-shadow:0 -1px #d3cecb inset}.mh-dark-mode #mh-improved-cre thead{box-shadow:0 -1px #5c5c5c inset}#mh-improved-cre table th{font-weight:700;text-align:center}#mh-improved-cre table th.name{padding-left:8px;text-align:left}#mh-improved-cre table th:last-of-type{padding-right:5px}#mh-improved-cre table:first-child{text-align:left}.mh-improved-cre-data{min-width:70px;font-size:12px;text-align:center}.mh-improved-cre-data-good{color:#138f13}.mh-dark-mode .mh-improved-cre-data-good{color:#4fe54f}.mh-improved-cre-data-bad{color:#bb4646}.mh-dark-mode .mh-improved-cre-data-bad{color:#fb9b9b}.mh-improved-cre-data-ultimate{color:#0fa4bd}.mh-improved-cre-name{max-width:170px;padding-left:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mh-improved-cre-name:hover{overflow:visible;text-overflow:revert}.mh-improved-cre-name a{color:inherit}#mh-improved-cre.cre-refreshing,#mh-improved-cre.cre-loading{display:flex;align-items:flex-end;justify-content:center;height:100%;min-height:50px;background-image:url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);background-repeat:no-repeat;background-position:center;background-size:auto;background-blend-mode:luminosity}#mh-improved-cre.cre-loading{padding:20px 0}#mh-improved-cre.cre-loading:after{position:absolute;right:0;bottom:-5px;left:0;font-weight:400;color:#926944;text-align:center;content:"Loading Catch Rate Estimator\\2026"}#mh-improved-cre.cre-refreshing #mh-improved-cre-table{opacity:.5}span.mh-improved-cre-no-mice{font-size:12px}.mh-improved-cre-row:hover{background-color:#eee7e2;box-shadow:-1px 1px 3px #d3cecb inset}
+      styles_default118 = `#mh-improved-cre{padding:3px 0;margin:5px 0;cursor:default}#mh-improved-cre table{width:100%}#mh-improved-cre thead{box-shadow:0 -1px #d3cecb inset}.mh-dark-mode #mh-improved-cre thead{box-shadow:0 -1px #5c5c5c inset}#mh-improved-cre table th{font-weight:700;text-align:center}#mh-improved-cre table th.name{padding-left:8px;text-align:left}#mh-improved-cre table th:last-of-type{padding-right:5px}#mh-improved-cre table:first-child{text-align:left}.mh-improved-cre-data{min-width:70px;font-size:12px;text-align:center}.mh-improved-cre-data-good{color:#138f13}.mh-dark-mode .mh-improved-cre-data-good{color:#4fe54f}.mh-improved-cre-data-bad{color:#bb4646}.mh-dark-mode .mh-improved-cre-data-bad{color:#fb9b9b}.mh-improved-cre-data-ultimate{color:#0fa4bd}.mh-improved-cre-name{max-width:170px;padding-left:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mh-improved-cre-name:hover{overflow:visible;text-overflow:revert}.mh-improved-cre-name a{color:inherit}#mh-improved-cre.cre-refreshing,#mh-improved-cre.cre-loading{display:flex;align-items:flex-end;justify-content:center;height:100%;min-height:50px;background-image:url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);background-repeat:no-repeat;background-position:center;background-size:auto;background-blend-mode:luminosity}#mh-improved-cre.cre-loading{padding:20px 0}#mh-improved-cre.cre-loading:after{position:absolute;right:0;bottom:-5px;left:0;font-weight:400;color:#926944;text-align:center;content:"Loading Catch Rate Estimator\\2026"}#mh-improved-cre.cre-refreshing #mh-improved-cre-table{opacity:.5}span.mh-improved-cre-no-mice{font-size:12px}.mh-improved-cre-row:hover{background-color:#eee7e2;box-shadow:-1px 1px 3px #d3cecb inset}
 `;
     }
   });
-  var lastStats, effectiveness, isUpdating, trapPower, trapPowerBoost, trapPowerBonus, trapLuck, updateStats2, updateMinLucks, renderList, main21, init88, catch_rate_estimate_default, init_catch_rate_estimate = __esm({
+  var lastStats, effectiveness, isUpdating, trapPower, trapPowerBoost, trapPowerBonus, trapLuck, updateStats2, updateMinLucks, renderList, main19, init85, catch_rate_estimate_default, init_catch_rate_estimate = __esm({
     "src/modules/catch-rate-estimate/index.js"() {
       init_utils2();
       init_data2();
-      init_styles122();
+      init_styles119();
       lastStats = "", effectiveness = null, isUpdating = !1, updateStats2 = () => {
         trapPower = 0, trapPowerBoost = 0, trapPowerBonus = 0, trapLuck = user.trap_luck, document.querySelectorAll(".campPage-trap-trapStat.power .campPage-trap-trapStat-mathRow").forEach((mathRow) => {
           let row = mathRow.querySelector(".campPage-trap-trapStat-mathRow-value");
@@ -22354,19 +21980,316 @@ ${csv}`);
             e.preventDefault(), e.stopPropagation(), hg.views.MouseView.show(type);
           }), name.append(nameLink), row.append(name), makeElement("td", minluckClass, minluck, row), makeElement("td", crClass, catchRate, row), table.append(row);
         }), minluckList.append(table);
-      }), main21 = () => __async(void 0, null, function* () {
+      }), main19 = () => __async(void 0, null, function* () {
         onNavigation(updateMinLucks, {
           page: "camp"
         }), onRequest("*", updateMinLucks, !0, ["users/getmiceeffectiveness.php"]);
-      }), init88 = () => __async(void 0, null, function* () {
-        addStyles(styles_default121, "catch-rate-estimate"), setTimeout(main21, 240);
+      }), init85 = () => __async(void 0, null, function* () {
+        addStyles(styles_default118, "catch-rate-estimate"), setTimeout(main19, 240);
       }), catch_rate_estimate_default = {
         id: "catch-rate-estimate",
         name: "Catch Rate Estimator & Minlucks",
         type: "feature",
         default: !0,
         description: "Display Minluck and catch rate estimates on the Camp page.",
-        load: init88
+        load: init85
+      };
+    }
+  });
+  var settings_default36, init_settings37 = __esm({
+    "src/modules/better-send-supplies/settings/index.js"() {
+      init_utils2();
+      settings_default36 = () => __async(void 0, null, function* () {
+        let tradableItems = yield getTradableItems("truncated_name");
+        return tradableItems.unshift({ name: "None", value: "none" }, { seperator: !0 }), [{
+          id: "better-send-supplies.pinned-items",
+          title: "Pinned items",
+          default: [
+            {
+              name: "SUPER|brie+",
+              value: "SUPER|brie+"
+            },
+            {
+              name: "Empowered SUPER|brie+",
+              value: "Empowered SUPER|b..."
+            },
+            {
+              name: "Rift Cherries",
+              value: "Rift Cherries"
+            },
+            {
+              name: "Rift-torn Roots",
+              value: "Rift-torn Roots"
+            },
+            {
+              name: "Sap-filled Thorns",
+              value: "Sap-filled Thorns"
+            }
+          ],
+          description: "Pin items at the top of the Send Supplies page.",
+          settings: {
+            type: "multi-select",
+            number: 5,
+            options: tradableItems
+          }
+        }];
+      });
+    }
+  });
+  var styles_default119, init_styles120 = __esm({
+    "src/modules/better-send-supplies/styles.css"() {
+      styles_default119 = `#supplytransfer .tabContent.recipient .listContainer .actions{display:none}#supplytransfer .listContainer a.element.recipient{width:auto;height:120px;white-space:nowrap;background-color:#fff}#supplytransfer .tabContent.recipient .listContainer span.content{font-size:12px}#supplytransfer .listContainer a.element.item{display:grid;grid-template-rows:1fr 1fr;align-items:center;width:auto;height:100px;padding:0;margin:0;overflow:hidden}#supplytransfer .listContainer a.element.item,#supplytransfer .listContainer a.element.recipient{border-radius:5px;box-shadow:0 1px 2px -2px #1f1f1f}#supplytransfer .listContainer a.element:hover,#supplytransfer .listContainer a.element.recipient:hover,#supplytransfer .listContainer a.element.item.pinned:hover,#supplytransfer .tabs .tab .image:hover,#supplytransfer .tabs .tab .image.empty:hover{color:#3b5998;background-color:#d8f0ff;border-color:#ccc}#supplytransfer .tabContent.item .listContainer{grid-template-columns:repeat(5,1fr);gap:5px;width:550px;height:100%;max-height:80vh;margin-bottom:0;margin-left:90px}#supplytransfer .categoryMenu{width:90px;background:none}#supplytransfer .categoryMenu a{margin-bottom:1px;font-size:12px;text-align:left}#supplytransfer .itemList .element .itemImage img{width:60px;height:60px}#supplytransfer .listContainer a.element .details{width:90px;margin:0 auto;font-size:11px;text-align:center}#supplytransfer .categoryMenu a:hover,#supplytransfer .categoryMenu a:focus,#supplytransfer .categoryMenu a:active{padding-left:5px;margin-left:-5px;text-decoration:none;background-color:#d8f0ff}.mhui-supply-search{display:flex;align-items:center;padding-bottom:5px;margin:5px 5px 15px;border-bottom:1px solid #ccc}#supplytransfer .drawer .tabContent .searchContainer{position:absolute;top:-5px;right:0}#supplytransfer .drawer .tabContent h2{padding:0;margin:0 auto 0 0;font-size:14px;border:none}#supplytransfer .listContainer a.element.item.hidden{display:none}.mhui-supply-sort-wrapper a,.mhui-supply-sort-wrapper img{width:35px;height:20px}.mhui-supply-sort-wrapper{display:flex;flex-direction:row;gap:5px;align-items:center;margin-right:10px}.mhui-supply-sort-wrapper a{margin:0 4px;line-height:20px;text-align:center;text-decoration:none;border:1px solid #ccc;border-radius:3px;box-shadow:2px 2px 3px #cdc9c6 inset}.mhui-supply-sort-wrapper a:hover,.mhui-supply-sort-wrapper a.focus{background-color:#cac0b2}#supplytransfer .listContainer a.element.item.pinned{background-color:#aef5f7}.mhui-supply-quick-quantity-wrapper{display:flex;gap:10px;align-items:center;justify-content:center;margin:10px auto}.mhui-supply-quick-quantity-max{width:53px}#supplytransfer .friendList.listContainer{padding-top:10px;margin-top:10px;border-top:1px solid #ccc}#supplytransfer .tabs .tab.recipient .image.empty:after,#supplytransfer .tabs .tab.item .image.empty:after{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#3b5998;cursor:pointer;content:""}#supplytransfer .tabs .tab.recipient .image.empty:after{content:"Select Friend"}#supplytransfer .tabs .tab.item .image.empty:after{content:"Select Item"}#supplytransfer .drawer .tabContent.confirm #supplytransfer-confirm-text{padding:0}#supplytransfer .tabs .tab.confirm{display:none}#supplytransfer .tabs .tab.recipient .image.empty,#supplytransfer .tabs .tab.item .image.empty{position:relative;margin-bottom:-20px;background-image:none}#supplytransfer .tabs .tab .image{background:#ccc;border:1px solid #eee}.PageSupplyTransfer .flexibleDialogWarmBrown{padding:0;background:none;box-shadow:none}#supplytransfer .drawer{width:unset;height:100%;max-height:unset;padding:5px;border:none}#supplytransfer{position:relative}#supplytransfer .tabs{position:sticky;top:50px;z-index:1;width:auto;padding:10px 10px 0;margin-top:35px;border:1px solid #ccc;border-radius:5px;box-shadow:0 1px 2px -2px #1f1f1f}#supplytransfer .tabs .tab .image,#supplytransfer .tabs .tab .image.empty{background-color:#eee;border:1px solid #ccc;border-radius:5px}#supplytransfer .drawer .listContainer{display:grid;grid-template-columns:repeat(6,1fr);gap:5px 0}#supplytransfer .listContainer.friendList img{width:85px;height:85px;padding-bottom:5px;border:none;border-radius:3px}#supplytransfer .tabs .tab:hover{background:transparent}#supplytransfer .tabContent.item{margin:-5px}span.mhui-supply-sort-label{color:#000}#supplytransfer .itemList a.element .itemImage{width:60px;height:60px;padding:5px;overflow:visible}#supplytransfer .drawer .tabContent{position:relative;height:100%;max-height:unset}#supplytransfer .tabs .tab .image .img,#supplytransfer .tabs .tab .image{width:80px;height:80px}#supplytransfer .tabs .tab{display:flex;flex-direction:column;align-items:center}#supplytransfer .itemImage .quantity{right:0;bottom:0;background-color:#fff9}#supplytransfer .tab .itemImage .quantity{bottom:10px}#supplytransfer .listContainer a.element.item.pinned .itemImage .quantity{background-color:#aef5f799}.mousehuntPage-content #supplytransfer .drawer .listContainer,.mousehuntPage-content #supplytransfer .drawer .tabContent,.mousehuntPage-content #supplytransfer .drawer{height:auto;max-height:unset}.mh-improved-math-button.mhui-supply-quick-quantity{font-family:inherit}
+`;
+    }
+  });
+  var processSearch, addSearch, asNum, resortItems, addSortButtons, highlightFavoritedItems, addQuickQuantityButtons, items4, currentSort, upgradeSendSupplies, hasSorted, main20, init86, better_send_supplies_default, init_better_send_supplies = __esm({
+    "src/modules/better-send-supplies/index.js"() {
+      init_utils2();
+      init_settings37();
+      init_styles120();
+      processSearch = () => {
+        let currentValue = document.querySelector("#mhui-supply-search-input");
+        currentValue.value || items4.forEach((item) => {
+          item.classList.remove("hidden");
+        }), items4.forEach((item) => {
+          item.textContent.toLowerCase().includes(currentValue.value.toLowerCase()) ? item.classList.remove("hidden") : item.classList.add("hidden");
+        });
+      }, addSearch = () => {
+        if (document.querySelector(".mhui-supply-search-wrapper"))
+          return;
+        let container = document.querySelector("#supplytransfer .tabContent.item");
+        if (!container)
+          return;
+        let form = makeElement("form", "mhui-supply-search-form"), label = makeElement("label", ["mhui-supply-search-label"]);
+        label.setAttribute("for", "mhui-supply-search-input"), makeElement("span", "", "Search: ", label);
+        let input = makeElement("input", "mhui-supply-search-input");
+        input.setAttribute("type", "text"), input.setAttribute("id", "mhui-supply-search-input"), input.setAttribute("autocomplete", "off"), input.addEventListener("keyup", processSearch), label.append(input), form.append(label);
+        let titleWrapper = makeElement("div", "mhui-supply-search"), title = container.querySelector("h2");
+        title.textContent = "Send Supplies", titleWrapper.append(title), titleWrapper.append(form), container.insertBefore(titleWrapper, container.firstChild), setTimeout(() => {
+          input.focus();
+        }, 100);
+      }, asNum = (number) => Number.parseInt(number.replace(",", "")), resortItems = (sortType = "alpha") => {
+        let container = document.querySelector("#supplytransfer .tabContent.item .listContainer"), items5 = container.querySelectorAll(".item"), sortSelector = ".quantity";
+        (sortType === "alpha" || sortType === "alpha-reverse") && (sortSelector = ".details");
+        let sorted = [...items5].sort((a, b) => {
+          let aText = a.querySelector(sortSelector).textContent, bText = b.querySelector(sortSelector).textContent;
+          switch (sortType) {
+            case "alpha":
+              return aText.localeCompare(bText);
+            case "alpha-reverse":
+              return bText.localeCompare(aText);
+            case "qty":
+              return asNum(bText) - asNum(aText);
+            case "qty-reverse":
+              return asNum(aText) - asNum(bText);
+          }
+          return 0;
+        });
+        for (let item of sorted)
+          item.classList.contains("pinned") || container.append(item);
+        currentSort = sortType;
+      }, addSortButtons = () => {
+        if (document.querySelector(".mhui-supply-sort-wrapper"))
+          return;
+        let container = document.querySelector(".mhui-supply-search");
+        if (!container)
+          return;
+        let sortWrapper = makeElement("div", "mhui-supply-sort-wrapper");
+        makeElement("span", "mhui-supply-sort-label", "Sort by:", sortWrapper);
+        let alphaSortButton = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-supply-sort-alphabetic"]);
+        makeElement("span", "mousehuntActionButton-text", "Name", alphaSortButton), alphaSortButton.addEventListener("click", () => {
+          resortItems(currentSort === "alpha" ? "alpha-reverse" : "alpha");
+        }), sortWrapper.append(alphaSortButton);
+        let sortQtyButton = makeElement("div", ["mousehuntActionButton", "tiny", "mhui-supply-sort-quantity"]);
+        makeElement("span", "mousehuntActionButton-text", "Quantity", sortQtyButton), sortQtyButton.addEventListener("click", () => {
+          resortItems(currentSort === "qty" ? "qty-reverse" : "qty");
+        }), sortWrapper.append(sortQtyButton), container.insertBefore(sortWrapper, container.childNodes[1]);
+      }, highlightFavoritedItems = () => {
+        let itemsToPin = /* @__PURE__ */ new Set([
+          getSetting("better-send-supplies.pinned-items-0", "SUPER|brie+"),
+          getSetting("better-send-supplies.pinned-items-1", "Empowered SUPER|b..."),
+          getSetting("better-send-supplies.pinned-items-2", "Rift Cherries"),
+          getSetting("better-send-supplies.pinned-items-3", "Rift-torn Roots"),
+          getSetting("better-send-supplies.pinned-items-4", "Sap-filled Thorns")
+        ]);
+        for (let item of items4) {
+          let details = item.querySelector(".details");
+          itemsToPin.has(details.textContent) && item.classList.add("pinned");
+        }
+      }, addQuickQuantityButtons = () => {
+        let input = document.querySelector("#supplytransfer-confirm-text input");
+        if (!input)
+          return;
+        let maxquantity = document.querySelector("#supplytransfer-confirm-text .userQuantity");
+        if (!maxquantity)
+          return;
+        let existing = document.querySelector(".mhui-supply-quick-quantity-wrapper");
+        existing && existing.remove();
+        let maxQty = Number.parseInt(maxquantity.textContent.split("You can send up to: ")[1].split(" ")[0].replace(",", "")), wrapper = makeElement("div", "mhui-supply-quick-quantity-wrapper");
+        makeMathButtons([1, 5, 10, 100], {
+          appendTo: wrapper,
+          input,
+          maxQty,
+          classNames: ["mhui-supply-quick-quantity", "small"]
+        });
+        let max = makeElement("button", ["mousehuntActionButton", "lightBlue", "small", "mhui-supply-quick-quantity", "mhui-supply-quick-quantity-max"]), maxText = makeElement("span", "", "Max");
+        max.addEventListener("click", () => {
+          maxText.textContent === "Reset" ? (input.value = 0, maxText.textContent = "Max") : (input.value = maxQty, maxText.textContent = "Reset");
+        }), max.append(maxText), wrapper.append(max), input.parentNode.insertBefore(wrapper, input.nextSibling);
+      }, items4 = [], currentSort = null, upgradeSendSupplies = (initial = !1) => {
+        let sendTo = document.querySelector("#supplytransfer .drawer .tabContent.recipient"), isChoosingUser = sendTo && sendTo.style.display !== "none", sending = document.querySelector("#supplytransfer .drawer .tabContent.item"), isChoosingItem = sending && sending.style.display !== "none";
+        if (isChoosingUser) {
+          let users = document.querySelectorAll("#supplytransfer .friendList .element.recipient");
+          for (let user2 of users) {
+            user2.addEventListener("click", () => {
+              upgradeSendSupplies();
+            }, { once: !0 });
+            let search = document.querySelector(".searchContainer input");
+            search && search.focus();
+          }
+        } else if (isChoosingItem) {
+          items4 = document.querySelectorAll("#supplytransfer .tabContent.item .listContainer .item"), highlightFavoritedItems(), (initial || !hasSorted) && (hasSorted = !0, resortItems("alpha")), addSortButtons();
+          let itemSearch = document.querySelector(".mhui-supply-search-input");
+          itemSearch && itemSearch.focus();
+        } else {
+          addQuickQuantityButtons();
+          let inputVal = document.querySelector("#supplytransfer-confirm-text input");
+          inputVal && inputVal.focus();
+        }
+        let categories = document.querySelectorAll("#supplytransfer .categoryMenu a");
+        for (let category of categories)
+          category.addEventListener("click", () => {
+            highlightFavoritedItems();
+          }, { once: !0 });
+        sendTo.addEventListener("click", () => {
+          upgradeSendSupplies();
+        }, { once: !0 }), sending.addEventListener("click", () => {
+          upgradeSendSupplies();
+        }, { once: !0 });
+      }, hasSorted = !1, main20 = () => {
+        addSearch(), upgradeSendSupplies(!0);
+      }, init86 = () => __async(void 0, null, function* () {
+        addStyles(styles_default119, "better-send-supplies"), onNavigation(main20, {
+          page: "supplytransfer"
+        });
+      }), better_send_supplies_default = {
+        id: "better-send-supplies",
+        name: "Better Send Supplies",
+        type: "better",
+        default: !0,
+        description: "Add pinned items, search, and sorting to the Send Supplies page.",
+        load: init86,
+        settings: settings_default36
+      };
+    }
+  });
+  var styles_default120, init_styles121 = __esm({
+    "src/modules/tem-crowns/styles.css"() {
+      styles_default120 = `.campPage-trap-trapEffectiveness-mouse-name{display:inline-flex;flex-flow:column wrap;place-content:flex-start space-around;align-items:flex-start;justify-content:flex-start;width:100px;padding-left:0;margin-top:-10px}.campPage-trap-trapEffectiveness-mouse:hover,.campPage-trap-trapEffectiveness-mouse:focus,.campPage-trap-trapEffectiveness-mouse:active{border:none;outline:1px solid #ccc}.campPage-trap-trapEffectiveness-content{overflow:visible}.mh-ui-tem-crown.mousebox{position:relative;float:none;margin:0;border:none}img.mh-ui-tem-crown-icon{position:absolute;top:-1px;right:-5px;z-index:2;box-sizing:border-box;width:22px;height:22px;vertical-align:middle;background-color:#f4f4f4;border:1px solid #8d8282;border-right:none;border-radius:50% 0 0 50%}span.mh-ui-tem-crown-text{position:absolute;top:-1px;left:1px;z-index:1;box-sizing:border-box;display:inline-block;width:auto;height:22px;padding:3px 4px 3px 20px;font-size:12px;font-weight:900;color:#926944;background-color:#f4f4f4;border:1px solid #8d8282}.mh-ui-tem-crown-wrapper{position:absolute;bottom:0;left:45px}.campPage-trap-trapEffectiveness-mouse-chance{display:block;margin-top:5px;color:#628ea9}.campPage-trap-trapEffectiveness-mouse-powerType{right:28px;bottom:-9px;background-color:#f4f4f4;background-size:70%;border-color:#8d8282}.campPage-trap-trapEffectiveness span{font-size:14px;vertical-align:bottom}.campPage-trap-trapEffectiveness-difficultyGroup.clear-block{display:grid;grid-template-columns:1fr 1fr;place-items:center stretch;padding-left:10px}.campPage-trap-trapEffectiveness-mouse{width:unset;margin:10px 0;overflow:visible;border:none}.campPage-trap-trapEffectiveness-difficultyGroup-label{grid-column:span 2;font-weight:400;text-align:center;border:none}
+`;
+    }
+  });
+  var getCrownType, addCrownsToTEM, init87, tem_crowns_default, init_tem_crowns = __esm({
+    "src/modules/tem-crowns/index.js"() {
+      init_utils2();
+      init_styles121();
+      getCrownType = (catches) => catches < 10 ? "none" : catches < 100 ? "bronze" : catches < 500 ? "silver" : catches < 1e3 ? "gold" : catches < 2500 ? "platinum" : "diamond", addCrownsToTEM = (panel) => __async(void 0, null, function* () {
+        if (panel !== "trap_effectiveness")
+          return;
+        let crowns = yield doRequest("managers/ajax/mice/getstat.php", {
+          action: "get_hunting_stats"
+        });
+        if (!(crowns != null && crowns.hunting_stats && (crowns == null ? void 0 : crowns.hunting_stats.length) > 0))
+          return;
+        huntingStats = crowns == null ? void 0 : crowns.hunting_stats;
+        let temMice = document.querySelectorAll(".campPage-trap-trapEffectiveness-mouse");
+        !temMice || !temMice.length || temMice.forEach((mouse) => __async(void 0, null, function* () {
+          if (mouse.getAttribute("data-mh-ui-tem-crown"))
+            return;
+          let type = mouse.getAttribute("data-mouse");
+          if (!type)
+            return;
+          mouse.setAttribute("data-mh-ui-tem-crown", !0);
+          let mouseStats2 = huntingStats.find((m) => m.type === type);
+          if (!mouseStats2)
+            return;
+          let name = mouse.querySelector(".campPage-trap-trapEffectiveness-mouse-name");
+          if (!name)
+            return;
+          let catches = mouseStats2.num_catches, crownType = getCrownType(catches), crownWrapper = makeElement("div", "mh-ui-tem-crown-wrapper"), crown = document.createElement("span");
+          crown.classList.add("mh-ui-tem-crown", "mousebox");
+          let crownIcon = document.createElement("img");
+          crownIcon.classList.add("mh-ui-tem-crown-icon"), crownIcon.src = `https://www.mousehuntgame.com/images/ui/crowns/crown_${crownType}.png`, crown.append(crownIcon), makeElement("span", "mh-ui-tem-crown-text", catches, crown), crownWrapper.append(crown), name.append(crownWrapper);
+        }));
+      }), init87 = () => __async(void 0, null, function* () {
+        addStyles(styles_default120, "tem-crowns"), onEvent("camp_page_toggle_blueprint", addCrownsToTEM);
+      }), tem_crowns_default = {
+        id: "tem-crowns",
+        name: "TEM Crowns",
+        type: "feature",
+        default: !0,
+        description: "Add crowns and catches to the Trap Effectiveness Meter.",
+        load: init87
+      };
+    }
+  });
+  var settings_default37, init_settings38 = __esm({
+    "src/modules/copy-id/settings/index.js"() {
+      settings_default37 = () => __async(void 0, null, function* () {
+        return [{
+          id: "copy-id-button.hide-button",
+          title: "Hide button",
+          description: "Click your profile picture to copy ID.",
+          default: !1
+        }];
+      });
+    }
+  });
+  var styles_default121, init_styles122 = __esm({
+    "src/modules/copy-id/styles.css"() {
+      styles_default121 = `.mousehuntHud-userStatBar .profileImage{position:relative}.mh-copy-id-button{position:absolute;top:30px;left:3px;z-index:10;display:none;padding:2px 4px;font-size:9px;cursor:pointer}.mh-copy-id-success-message{position:absolute;top:32px;left:60px;z-index:10;font-weight:900;color:#fff;text-shadow:1px 1px 1px #000;opacity:0;transition:opacity .2s ease-in-out}
+`;
+    }
+  });
+  var main21, init88, copy_id_default, init_copy_id = __esm({
+    "src/modules/copy-id/index.js"() {
+      init_utils2();
+      init_settings38();
+      init_styles122();
+      main21 = () => {
+        let profilePic = document.querySelector(".mousehuntHud-userStatBar .mousehuntHud-profilePic");
+        if (!profilePic)
+          return;
+        let copyIdButton = makeElement("div", ["mh-copy-id-button", "mousehuntActionButton", "tiny"]), hidebutton = getSetting("copy-id-button.hide-button");
+        hidebutton && copyIdButton.classList.add("hidden"), makeElement("span", "mh-copy-id-button-text", "Copy ID", copyIdButton), profilePic.parentNode.insertBefore(copyIdButton, profilePic.nextSibling);
+        let successMessage = makeElement("div", "mh-copy-id-success-message", "Copied!");
+        successMessage.style.opacity = 0, copyIdButton.parentNode.insertBefore(successMessage, copyIdButton.nextSibling);
+        let clickAction = (e) => {
+          e.preventDefault();
+          let Id = user.user_id;
+          navigator.clipboard.writeText(Id), successMessage.style.opacity = 1, setTimeout(() => {
+            successMessage.style.opacity = 0;
+          }, 1e3);
+        };
+        copyIdButton.addEventListener("click", clickAction), hidebutton ? (profilePic.setAttribute("onclick", ""), profilePic.addEventListener("click", clickAction)) : (profilePic.addEventListener("mouseenter", () => {
+          copyIdButton.style.display = "block";
+        }), profilePic.addEventListener("mouseleave", () => {
+          copyIdButton.style.display = "none";
+        }), copyIdButton.addEventListener("mouseenter", () => {
+          copyIdButton.style.display = "block";
+        }), copyIdButton.addEventListener("mouseleave", () => {
+          copyIdButton.style.display = "none";
+        }));
+      }, init88 = () => __async(void 0, null, function* () {
+        addStyles(styles_default121, "copy-id"), main21();
+      }), copy_id_default = {
+        id: "copy-id",
+        name: "Copy ID Button",
+        type: "feature",
+        default: !0,
+        description: "Hover over your profile picture in the HUD for a quick \u201CCopy ID to clipboard\u201D button.",
+        load: init88,
+        settings: settings_default37
       };
     }
   });
@@ -22374,35 +22297,35 @@ ${csv}`);
     "src/index.js"(exports) {
       init_esm3();
       init_utils2();
-      init_settings3();
-      init_fixes();
-      init_hide_sidebar();
-      init_adblock();
-      init_journal_privacy();
-      init_delayed_tooltips();
       init_taller_windows();
+      init_fixes();
+      init_delayed_tooltips();
+      init_hide_sidebar();
+      init_settings3();
+      init_adblock();
       init_larger_codices();
+      init_journal_privacy();
       init_global_styles();
       init_codex_at_bottom();
       init_better_travel();
       init_delayed_menus();
       init_larger_skin_images();
-      init_better_journal();
-      init_error_reporting();
       init_better_item_view();
+      init_better_journal();
       init_better_mice();
+      init_error_reporting();
       init_experiments();
-      init_custom_hud();
       init_replace_favicon();
       init_dark_mode();
       init_feature_flags();
+      init_custom_hud();
       init_hide_news_ticker();
       init_native_dark_mode();
       init_printing_press_paper_counter();
       init_journal_changer();
       init_better_tournaments();
-      init_custom_shield();
       init_better_ui();
+      init_custom_shield();
       init_hide_daily_reward_popup();
       init_scoreboard_search_on_profiles();
       init_image_upscaling();
@@ -22425,42 +22348,42 @@ ${csv}`);
       init_inline_wiki();
       init_better_inventory();
       init_favorite_setups3();
-      init_hide_footer();
       init_hover_profiles();
-      init_quick_filters_and_sort();
-      init_shield_goes_to_camp();
-      init_location_dashboard();
+      init_hide_footer();
       init_inventory_open_all_but_one();
       init_better_quests();
-      init_quick_send_supplies();
-      init_inventory_lock_and_hide();
       init_inventory_only_open_multiple();
-      init_inventory_open_all();
+      init_quick_filters_and_sort();
       init_lgs_reminder2();
+      init_inventory_lock_and_hide();
+      init_shield_goes_to_camp();
+      init_inventory_open_all();
+      init_quick_send_supplies();
       init_wisdom_in_stat_bar();
-      init_flrt_helper();
+      init_location_dashboard();
+      init_metric();
       init_better_marketplace();
+      init_flrt_helper();
       init_emotes2();
       init_better_gifts();
       init_ssdb_toothlet_counter();
-      init_metric();
-      init_ultimate_checkmark2();
-      init_big_timer();
       init_hide_codices();
-      init_onboarding2();
-      init_custom_horn();
+      init_ultimate_checkmark2();
       init_custom_background();
+      init_big_timer();
+      init_onboarding2();
       init_keyboard_shortcuts();
       init_location_catch_stats();
-      init_prestige_base_stats();
+      init_custom_horn();
       init_location_huds();
-      init_better_send_supplies();
-      init_copy_id();
-      init_debug2();
       init_better_shops();
-      init_tem_crowns();
+      init_debug2();
+      init_prestige_base_stats();
       init_catch_rate_estimate();
-      var imported10 = [settings_default2, fixes_default, hide_sidebar_default, adblock_default, journal_privacy_default, delayed_tooltips_default, taller_windows_default, larger_codices_default, global_styles_default, codex_at_bottom_default, better_travel_default, delayed_menus_default, larger_skin_images_default, better_journal_default, error_reporting_default, better_item_view_default, better_mice_default, experiments_default, custom_hud_default, replace_favicon_default, dark_mode_default, feature_flags_default, hide_news_ticker_default, native_dark_mode_default, printing_press_paper_counter_default, journal_changer_default, better_tournaments_default, custom_shield_default, better_ui_default, hide_daily_reward_popup_default, scoreboard_search_on_profiles_default, image_upscaling_default, update_migration_default, custom_camp_background_default, required_default, better_maps_default, unique_loot_count_default, custom_css_default, hide_daily_draw_default, data_exporters_default, hide_share_default, update_notifications_default, legacy_hud_default, links_default, show_auras_default, better_kings_reward_default, paste_hunter_id_default, user_highlighting_default, inline_wiki_default, better_inventory_default, favorite_setups_default3, hide_footer_default, hover_profiles_default, quick_filters_and_sort_default, shield_goes_to_camp_default, location_dashboard_default, inventory_open_all_but_one_default, better_quests_default, quick_send_supplies_default, inventory_lock_and_hide_default, inventory_only_open_multiple_default, inventory_open_all_default, lgs_reminder_default2, wisdom_in_stat_bar_default, flrt_helper_default, better_marketplace_default, emotes_default2, better_gifts_default, ssdb_toothlet_counter_default, metric_default, ultimate_checkmark_default2, big_timer_default, hide_codices_default, onboarding_default, custom_horn_default, custom_background_default, keyboard_shortcuts_default, location_catch_stats_default, prestige_base_stats_default, location_huds_default, better_send_supplies_default, copy_id_default, debug_default, better_shops_default, tem_crowns_default, catch_rate_estimate_default], modules2 = imported10, categories = [
+      init_better_send_supplies();
+      init_tem_crowns();
+      init_copy_id();
+      var imported10 = [taller_windows_default, fixes_default, delayed_tooltips_default, hide_sidebar_default, settings_default2, adblock_default, larger_codices_default, journal_privacy_default, global_styles_default, codex_at_bottom_default, better_travel_default, delayed_menus_default, larger_skin_images_default, better_item_view_default, better_journal_default, better_mice_default, error_reporting_default, experiments_default, replace_favicon_default, dark_mode_default, feature_flags_default, custom_hud_default, hide_news_ticker_default, native_dark_mode_default, printing_press_paper_counter_default, journal_changer_default, better_tournaments_default, better_ui_default, custom_shield_default, hide_daily_reward_popup_default, scoreboard_search_on_profiles_default, image_upscaling_default, update_migration_default, custom_camp_background_default, required_default, better_maps_default, unique_loot_count_default, custom_css_default, hide_daily_draw_default, data_exporters_default, hide_share_default, update_notifications_default, legacy_hud_default, links_default, show_auras_default, better_kings_reward_default, paste_hunter_id_default, user_highlighting_default, inline_wiki_default, better_inventory_default, favorite_setups_default3, hover_profiles_default, hide_footer_default, inventory_open_all_but_one_default, better_quests_default, inventory_only_open_multiple_default, quick_filters_and_sort_default, lgs_reminder_default2, inventory_lock_and_hide_default, shield_goes_to_camp_default, inventory_open_all_default, quick_send_supplies_default, wisdom_in_stat_bar_default, location_dashboard_default, metric_default, better_marketplace_default, flrt_helper_default, emotes_default2, better_gifts_default, ssdb_toothlet_counter_default, hide_codices_default, ultimate_checkmark_default2, custom_background_default, big_timer_default, onboarding_default, keyboard_shortcuts_default, location_catch_stats_default, custom_horn_default, location_huds_default, better_shops_default, debug_default, prestige_base_stats_default, catch_rate_estimate_default, better_send_supplies_default, tem_crowns_default, copy_id_default], modules2 = imported10, categories = [
         { id: "required", name: "Always Loaded" },
         { id: "better", name: `MouseHunt Improved <a class="version">v${mhImprovedVersion}</a>` },
         { id: "feature", name: "Features" },
