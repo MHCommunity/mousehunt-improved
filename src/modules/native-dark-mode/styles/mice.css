@@ -11,15 +11,15 @@
   border-radius: 10px 0 0 10px;
 }
 
-.mh-dark .mouseListView-categoryContent-subgroupContainer,
+.mh-dark .mouseListView-categoryContent-subgroupContainer {
+  background-color: var(--d-alt);
+  border-radius: 5px 5px 10px 10px;
+}
+
 .mh-dark .mouseListView-categoryContent-subgroup-name,
 .mh-dark .mouseListView-categoryContent-weaknessesContainer {
   background-color: var(--d-alt);
   border: 1px solid var(--d-border);
-}
-
-.mh-dark .mouseListView-categoryContent-subgroupContainer {
-  border-radius: 10px;
 }
 
 .mh-dark .mouseListView-categoryContent-subgroup-name {
@@ -45,6 +45,8 @@
 
 .mh-dark .mouseListView-categoryContent-subgroup-mouse-margin {
   color: var(--d-text);
+  background-color: #2e2e2e;
+  border-color: var(--d-border);
 }
 
 .mh-dark .adversariesPage-list-header {

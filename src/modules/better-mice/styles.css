@@ -236,18 +236,6 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
   transform: scale(1.2);
 }
 
-a.mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
-  background-size: 130px;
-}
-
-a.mouseListView-categoryContent-subgroup-mouse.landscape:hover .mouseListView-categoryContent-subgroup-mouse-margin {
-  background-size: 300px;
-}
-
-a.mouseListView-categoryContent-subgroup-mouse.landscape .mouseListView-categoryContent-subgroup-mouse-margin {
-  background-size: contain;
-}
-
 .mouseListView-categoryContent-subgroup-mouse-margin {
   border: 1px solid #e6e6e6;
   box-shadow: none;

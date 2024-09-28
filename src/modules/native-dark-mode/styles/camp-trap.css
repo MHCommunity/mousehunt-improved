@@ -273,6 +273,11 @@
   border-color: var(--d-border);
 }
 
+.mh-dark .campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover,
+.mh-dark .campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:focus {
+  background-color: var(--d);
+}
+
 .mh-dark .trapSelectorView__codexList .campPage-trap-itemBrowser-item-image::after {
   box-shadow: none;
 }
