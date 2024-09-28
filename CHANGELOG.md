@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.65.3
+
+- Updated Draconic Depths Location HUD styles
+- Updated Native Dark Mode styles
+- Fixed Native Dark Mode mice images
+
 ## Version 0.65.2
 
 - Fixed Hover Profiles not hiding
@@ -10,7 +16,6 @@
 
 ## Version 0.65.0
 
-- Added Draconic Depths Location HUD
 - Added Draconic Depths Location HUD
 - Added Draconic Depths Maps to sorted maps
 - Updated Upscaled Images

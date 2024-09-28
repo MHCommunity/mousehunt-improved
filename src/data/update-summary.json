@@ -6,10 +6,13 @@
       "items": [
         "Added Draconic Depths Location HUD",
         "Added Draconic Depths Maps to sorted maps",
-        "Updated Upscaled Images",
         "Fixed attraction rates not showing for newer mice",
         "Fixed Hover Profiles image size",
-        "Fixed Hover Profiles not hiding"
+        "Fixed Hover Profiles not hiding",
+        "Fixed Native Dark Mode mice images",
+        "Updated Draconic Depths Location HUD styles",
+        "Updated Native Dark Mode styles",
+        "Updated Upscaled Images"
       ]
     }
   ]
