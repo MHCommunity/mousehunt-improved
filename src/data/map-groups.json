@@ -2501,39 +2501,10 @@
     "categories": [
       {
         "name": "Draconic Depths",
-        "subtitle": "Elemental",
-        "id": "elemental",
-        "mice": [
-          {
-            "mouse": "tranquilia_protecticus",
-            "subcategory": "surface"
-          },
-          {
-            "mouse": "absolutia_harmonius",
-            "subcategory": "cavern-0-750-loot"
-          },
-          {
-            "mouse": "magnatius_majestica",
-            "subcategory": "cavern-0-750-loot"
-          },
-          {
-            "mouse": "supremia_magnificus",
-            "subcategory": "cavern-100+-loot"
-          },
-          {
-            "mouse": "threeimat",
-            "subcategory": "cavern-100+-loot"
-          },
-          {
-            "mouse": "mythical_dragon_emperor",
-            "subcategory": "cavern-750+-loot"
-          }
-        ]
-      },
-      {
-        "name": "Draconic Depths",
         "subtitle": "Ice",
         "id": "ice",
+        "icon": "/items/stats/transparent_thumb/22e16f7fc2b4612924f8fd24f70be595.png",
+        "color": "#49ffff",
         "mice": [
           {
             "mouse": "frostnip_icebound",
@@ -2573,6 +2544,8 @@
         "name": "Draconic Depths",
         "subtitle": "Fire",
         "id": "fire",
+        "icon": "/items/stats/transparent_thumb/fdd6e3aa9d1f5831fc397237db581d81.png",
+        "color": "#ffa920",
         "mice": [
           {
             "mouse": "squire_sizzleton",
@@ -2612,6 +2585,8 @@
         "name": "Draconic Depths",
         "subtitle": "Poison",
         "id": "poison",
+        "icon": "/items/stats/transparent_thumb/521595717cfe3af1dee6253f2f553b7f.png",
+        "color": "#7fff3c",
         "mice": [
           {
             "mouse": "goopus_dredgemore",
@@ -2648,8 +2623,40 @@
         ]
       },
       {
+        "name": "Draconic Depths",
+        "subtitle": "Elemental",
+        "id": "elemental",
+        "mice": [
+          {
+            "mouse": "tranquilia_protecticus",
+            "subcategory": "surface"
+          },
+          {
+            "mouse": "absolutia_harmonius",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "magnatius_majestica",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "supremia_magnificus",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "threeimat",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "mythical_dragon_emperor",
+            "subcategory": "cavern-750+-loot"
+          }
+        ]
+      },
+      {
         "name": "Dracano",
         "id": "dracano",
+        "color": "#ff3c3c",
         "mice": [
           "dragon",
           "whelpling",
@@ -2909,6 +2916,8 @@
       {
         "name": "Ice",
         "id": "ice",
+        "icon": "/items/stats/transparent_thumb/22e16f7fc2b4612924f8fd24f70be595.png",
+        "color": "#49ffff",
         "mice": [
           {
             "mouse": "frostnip_icebound",
@@ -2947,6 +2956,8 @@
       {
         "name": "Fire",
         "id": "fire",
+        "icon": "/items/stats/transparent_thumb/fdd6e3aa9d1f5831fc397237db581d81.png",
+        "color": "#ffa920",
         "mice": [
           {
             "mouse": "squire_sizzleton",
@@ -2985,6 +2996,8 @@
       {
         "name": "Poison",
         "id": "poison",
+        "icon": "/items/stats/transparent_thumb/521595717cfe3af1dee6253f2f553b7f.png",
+        "color": "#7fff3c",
         "mice": [
           {
             "mouse": "goopus_dredgemore",
@@ -3023,6 +3036,8 @@
       {
         "name": "Elemental",
         "id": "elemental",
+        "icon": "/items/bait/transparent_thumb/a0958278e0a2a22b4954051824d177d3.png",
+        "color": "#ff3cd7",
         "mice": [
           {
             "mouse": "tranquilia_protecticus",
