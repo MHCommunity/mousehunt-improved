@@ -2835,8 +2835,8 @@
         "name": "Crazed Clearing",
         "subtitle": "Cherry Charm",
         "id": "crazed-clearing",
-        "color": "#ff909d",
         "icon": "/ui/hud/rift_whiskerwoods/cherry_charm.png",
+        "color": "#ff909d",
         "mice": [
           "rift_cherry",
           "rift_sylvan",
@@ -2855,8 +2855,8 @@
         "name": "Gigantic Gnarled Tree",
         "subtitle": "Gnarled Charm",
         "id": "gigantic-gnarled-tree",
-        "color": "#d9f720",
         "icon": "/ui/hud/rift_whiskerwoods/gnarled_charm.png",
+        "color": "#d9f720",
         "mice": [
           "rift_curious_chemist",
           "rift_frog",
@@ -2875,8 +2875,8 @@
         "name": "Deep Lagoon",
         "subtitle": "Stagnant Charm",
         "id": "deep-lagoon",
-        "color": "#91f5ff",
         "icon": "/ui/hud/rift_whiskerwoods/wicked_gnarly_charm.png",
+        "color": "#91f5ff",
         "mice": [
           "rift_silth",
           "rift_goblin",
