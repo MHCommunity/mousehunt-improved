@@ -163,6 +163,12 @@
   100% { background-position: 0 0; }
 }
 
+@keyframes mh-improved-rotate-slightly {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
 /* stylelint-enable rule-empty-line-before */
 /* stylelint-enable prettier/prettier */
 /* stylelint-enable stylistic/block-opening-brace-space-before */
