@@ -1,4 +1,10 @@
-import { addStyles, getSetting, isDarkMode, onNavigation, onRequest } from '@utils';
+import {
+  addStyles,
+  getSetting,
+  isDarkMode,
+  onNavigation,
+  onRequest
+} from '@utils';
 
 import styles from './styles.css';
 

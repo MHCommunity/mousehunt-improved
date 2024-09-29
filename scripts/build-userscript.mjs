@@ -57,7 +57,7 @@ const file = fs.readFileSync(path.resolve(process.cwd(), 'dist/mousehunt-improve
 // Remove any comment lines that start with `// node_modules` or `// src` (they may start with a space or tab).
 const cleaned = file
   .replaceAll(/\s*\/\/\s*(node_modules|src).*/g, '')
-  .replaceAll(/^\s+/gm, '')
+  .replaceAll(/^\s+/gm, '');
 
 // write the cleaned file back to disk
 fs.writeFileSync(path.resolve(process.cwd(), 'dist/mousehunt-improved.user.js'), cleaned);

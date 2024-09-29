@@ -35,7 +35,7 @@ const getCompletedGoals = () => {
   return {
     type: mapData.is_scavenger_hunt ? 'item' : 'mouse',
     goals,
-  }
+  };
 };
 
 /**
