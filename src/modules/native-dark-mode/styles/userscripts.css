@@ -1,0 +1,38 @@
+.mh-dark .hd-popup {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .hd-popup h1,
+.mh-dark .hd-popup h2,
+.mh-dark .hd-popup h3,
+.mh-dark .hd-popup h4 {
+  color: var(--d-text);
+}
+
+.mh-dark .hd-popup a {
+  color: var(--d-link);
+}
+
+.mh-dark a.hd-button,
+.mh-dark .hd-button {
+  color: var(--d-black);
+}
+
+.mh-dark .hd-table .hd-table-heading {
+  color: var(--d-text-dark);
+  background-color: var(--d-yellow);
+  border-color: var(--d-border);
+}
+
+.mh-dark .hd-table tr:nth-child(even) {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .hd-table .hd-table-td {
+  border-color: var(--d-border);
+}
+
+.hd-table .hd-table-footer-tr {
+  background-color: var(--d-yellow) !important;
+}

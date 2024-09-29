@@ -118,7 +118,7 @@
 }
 
 .mh-dark .giftSelectorView-confirmPopup-content {
-  background-color: var(--d-bg);
+  background-color: var(--d-blue-darker);
 }
 
 .mh-dark .giftSelectorView-confirmPopup-content a {
@@ -191,4 +191,9 @@
 
 .giftSelectorView-inbox-giftRow.paidgift {
   background-color: var(--d-yellow-dark);
+}
+
+.mh-dark .giftSelectorView-tabHeader.highlight span {
+  color: var(--d-text-dark);
+  background-color: var(--d-yellow);
 }

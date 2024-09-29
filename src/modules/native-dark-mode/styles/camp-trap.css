@@ -62,8 +62,8 @@
   right: -5px;
   bottom: 4px;
   color: var(--d-text);
-  background-color: var(--d);
-  border-color: var(--d-action);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
   box-shadow: -1px -1px 1px var(--d-bg) inset;
 }
 

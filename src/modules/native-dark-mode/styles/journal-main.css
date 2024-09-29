@@ -21,6 +21,8 @@
   border-bottom: 1px solid var(--d-transparent-30);
 }
 
+.mh-dark .journal .content .entry.kings_giveaway_vault_prize_entry,
+.mh-dark .journal .content .entry.kings_giveaway_vault_prize_entry .journaldate,
 .mh-dark .journal .content .entry.badge,
 .mh-dark .journal .content .entry.badge .journalbody .journaldate {
   color: var(--d-text-dark) !important;

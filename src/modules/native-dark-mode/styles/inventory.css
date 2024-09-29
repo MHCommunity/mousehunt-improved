@@ -28,7 +28,7 @@
 .mh-dark .inventoryPage-tagDirectory-tag.active,
 .mh-dark .inventoryPage-tagDirectory-tag:hover {
   color: var(--d-text-muted);
-  background-color: var(--d-blue-extra-dark);
+  background-color: var(--d-blue-darker);
 }
 
 .mh-dark .inventoryPage-item.small .tooltip {

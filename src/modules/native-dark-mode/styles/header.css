@@ -51,7 +51,7 @@
 
 .mh-dark .mousehuntHeaderView-gameTabs,
 .mh-dark .mousehuntHeaderView .menuItem {
-  background: url(https://i.mouse.rip/dark/menuItem.png?d) 0 0 repeat-x;
+  background: url(https://i.mouse.rip/dark/menuItem.png) 0 0 repeat-x;
 }
 
 .mh-dark .mousehuntHeaderView-gameTabs {
@@ -76,4 +76,18 @@
   color: #fff;
   text-shadow: 1px 1px var(--d-black);
   filter: brightness(1.2);
+}
+
+.mh-dark .mousehuntHeaderView .menuItem:hover {
+  background-position: 0 -40px;
+}
+
+.mh-dark .pageFrameView .mousehuntHeaderView .menuItem.mousehunt-improved-icon-menu:hover {
+  background-image: url(https://i.mouse.rip/dark/menuItem.png);
+  background-position-y: -40px;
+}
+
+.mh-dark .mousehuntHeaderView a.superBrie .getMore {
+  background-color: var(--d-blue-dark);
+  outline: 1px solid var(--d-blue);
 }

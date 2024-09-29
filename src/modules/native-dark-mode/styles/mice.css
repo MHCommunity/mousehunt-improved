@@ -86,7 +86,7 @@
 .mh-dark .mouseListView-category:hover .mouseListView-category-margin,
 .mh-dark .mouseListView-categoryContainer.active .mouseListView-category .mouseListView-category-margin {
   color: var(--d-text-muted);
-  background-color: var(--d-blue-extra-dark);
+  background-color: var(--d-blue-darker);
 }
 
 .mh-dark .mouseListView-category {
@@ -116,7 +116,7 @@
 
 .mh-dark .mouseListView-categoryContainer.active .mouseListView-subcategory:hover {
   color: var(--d-text-muted);
-  background-color: var(--d-blue-extra-dark);
+  background-color: var(--d-blue-darker);
 }
 
 .mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .content {
@@ -155,7 +155,7 @@
 }
 
 .mh-dark .mouseCrownsView-group.diamond {
-  background-color: var(--d-blue-extra-dark);
+  background-color: var(--d-blue-darker);
   box-shadow: 0 0 1px 1px var(--d-blue-dark);
 }
 
