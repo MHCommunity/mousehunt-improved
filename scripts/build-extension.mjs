@@ -91,7 +91,7 @@ const buildExtension = async (platform, watch = false, isRelease = false) => {
       ].join('\n'),
     },
     define: {
-      __SENTRY_DSN__: JSON.stringify(isRelease ? 'https://a677b0fe4d2fbc3a7db7410353d91f39@o4506582061875200.ingest.sentry.io/4506781071835136' : ''),
+      __SENTRY_DSN__: JSON.stringify(isRelease ? 'https://850af0a4f96b32d673a133c9353a3622@o4506583858348032.ingest.us.sentry.io/4506781071835136' : ''),
     }
   };
 
