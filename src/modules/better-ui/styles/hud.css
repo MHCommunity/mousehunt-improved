@@ -110,3 +110,8 @@
 .mousehuntHud-titleProgressBar {
   height: 13px;
 }
+
+.mousehuntHeaderView .menuItem.new,
+.mousehuntHeaderView-menu-notification {
+  text-shadow: 1px 1px #666;
+}

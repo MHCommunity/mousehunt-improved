@@ -81,6 +81,7 @@
 }
 
 .mh-dark .mousehuntHeaderView .menuItem.new {
-  color: var(--d-black);
+  color: #fff;
+  text-shadow: 1px 1px var(--d-black);
   filter: brightness(1.2);
 }
