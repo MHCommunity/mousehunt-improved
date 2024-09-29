@@ -23,7 +23,6 @@ const classesToCheck = {
   other: [
     'iceberg_defeated',
     'dailyreward',
-    'kings_giveaway_bonus_prize_entry',
   ],
   hasListNeedsClasses: [
     'folkloreForest-bookClaimed',
