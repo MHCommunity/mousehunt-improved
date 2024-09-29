@@ -9,10 +9,7 @@
   background-color: var(--d-green-darker);
 }
 
-.mh-dark .journal .content .entry.catchfailure {
-  background-color: var(--d-red-dark);
-}
-
+.mh-dark .journal .content .entry.catchfailure,
 .mh-dark .journal .content .entry.attractionfailure {
   background-color: var(--d-red-darker);
 }
