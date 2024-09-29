@@ -1,15 +1,6 @@
-import { addStyles, onNavigation, onRequest } from '@utils';
+import { addStyles, isDarkMode, onNavigation, onRequest } from '@utils';
 
 import styles from './styles.css';
-
-/**
- * Check if dark mode is enabled.
- *
- * @return {boolean} True if dark mode is enabled, false otherwise.
- */
-const isDarkMode = () => {
-  return !! getComputedStyle(document.documentElement).getPropertyValue('--mhdm-white');
-};
 
 /**
  * Check if dark mode is enabled and add the body class if it is.
