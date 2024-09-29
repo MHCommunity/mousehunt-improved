@@ -1,4 +1,4 @@
-import { addStyles, isDarkMode, onNavigation, onRequest } from '@utils';
+import { addStyles, getSetting, isDarkMode, onNavigation, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -39,6 +39,10 @@ const addDarkModeBodyClass = () => {
  * Initialize the module.
  */
 const init = async () => {
+  if (getSetting('native-dark-mode', false)) {
+    return;
+  }
+
   addStyles(styles, 'dark-mode');
 
   addDarkModeBodyClass();
@@ -52,9 +56,9 @@ const init = async () => {
  */
 export default {
   id: 'dark-mode',
-  name: 'Dark Mode Updates & Tweaks',
+  name: 'Dark Mode Updates & Tweaks (MHCT/Dark Mode Extension)',
   type: 'feature',
   default: true,
-  description: 'Improve and tweak dark mode. Requires either the standalone extension or enabling the setting in MHCT.',
+  description: 'Updates and tweaks to the MHCT/Dark Mode Extension dark mode.',
   load: init,
 };
