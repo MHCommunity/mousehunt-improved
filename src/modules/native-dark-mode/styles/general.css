@@ -32,6 +32,10 @@ body.mh-dark {
   border-color: var(--d-border);
 }
 
+.mh-dark .mousehuntPage-content select {
+  background-color: var(--d);
+}
+
 .mh-dark .journal-history-page-selector .page-input {
   border: 1px solid var(--d-border);
 }

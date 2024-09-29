@@ -18,18 +18,20 @@ const maybeShowDarkModeConflictWarning = () => {
     content: `<p>${isMHCT() ?
       `You have enabled both the MouseHunt Improved Dark Mode and the MHCT dark mode. This will cause conflicts and result in a broken experience. Please disable the MHCT setting.` :
       `You have enabled both the MouseHunt Improved Dark Mode and the dark mode extension. This will cause conflicts and result in a broken experience. Please disable the dark mode extension.`}
-      ${getSetting('native-dark-mode.seenWarning', false) ? '' : `<button class="mh-improved-darkmode-conflict-popup-confirm mousehuntActionButton small gray"><span>I understand, don't show this again</span></button>`}
+      ${getSetting('native-dark-mode.has-seen-warning', false) ? `<button class="mh-improved-darkmode-conflict-popup-confirm mousehuntActionButton small gray"><span>I understand, don't show this again</span></button>` : ''}
     </p>`,
     className: 'mh-improved-darkmode-conflict-popup',
   });
 
-  saveSetting('native-dark-mode.seenWarning', true);
+  saveSetting('native-dark-mode.has-seen-warning', true);
 
   const confirmButton = document.querySelector('.mh-improved-darkmode-conflict-popup-confirm');
-  confirmButton.addEventListener('click', () => {
-    saveSetting('native-dark-mode.confirmed', true);
-    popup.hide();
-  });
+  if (confirmButton) {
+    confirmButton.addEventListener('click', () => {
+      saveSetting('native-dark-mode.confirmed', true);
+      popup.hide();
+    });
+  }
 };
 
 /**

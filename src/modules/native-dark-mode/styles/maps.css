@@ -358,12 +358,9 @@
   color: var(--d-link);
 }
 
+.mh-dark .treasureMapView-block-search-label,
 .mh-dark .treasureMapView-highlight.sticky .treasureMapView-highlight-close {
   color: var(--d-text-muted);
-}
-
-.mh-dark .treasureMapView-block-search-label {
-  color: transparent;
 }
 
 .mh-dark .treasureMapView-goals-group-goal:hover::before,
@@ -453,4 +450,22 @@
 .mh-dark a.messageBoardView-message-delete:hover::after,
 .mh-dark a.messageBoardView-message-delete:focus::after {
   color: var(--d-red);
+}
+
+.mh-dark .mh-improved-map-sidebar-mouse .mh-improved-map-sidebar-goal .mh-improved-map-sidebar-goal-name {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .mh-improved-map-sidebar-goal.mh-improved-map-sidebar-goal-active .mh-improved-map-sidebar-goal-name,
+.mh-dark .mh-improved-map-sidebar-goal:hover .mh-improved-map-sidebar-goal-name {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-improved-map-sidebar-mouse .mh-improved-map-sidebar-goal .mh-improved-map-sidebar-goal-image {
+  opacity: 0.5;
+}
+
+.mh-dark .mh-improved-map-sidebar-goal.mh-improved-map-sidebar-goal-active .mh-improved-map-sidebar-goal-image,
+.mh-dark .mh-improved-map-sidebar-goal:hover .mh-improved-map-sidebar-goal-image {
+  opacity: 1;
 }
