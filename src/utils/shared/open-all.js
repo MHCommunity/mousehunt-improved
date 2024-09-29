@@ -64,6 +64,8 @@ const addOpenAllButOneButton = () => {
 
     const itemsToSkip = new Set([
       'kilohertz_processor_convertible',
+      'dragon_skull_convertible',
+      'cursed_skull_convertible',
     ]);
 
     if (itemsToSkip.has(itemType)) {
