@@ -195,5 +195,61 @@
 }
 
 .marketplaceView-goldValue::after {
-  background-image: url(https://i.mouse.rip/upscaled/mp-gold.png);
+  background-image: url(https://i.mouse.rip/mp-gold.png);
+}
+
+.floatingIslandPaperDoll-base,
+.floatingIslandsHUD-mod,
+.journal .content .entry,
+.trapImageView-trapAura,
+.mousehuntHud-marketPlace {
+  image-rendering: pixelated;
+}
+
+.springHuntHUD-popup-tabContentContainer.loading::after,
+.eggSweeper-layer.loading::after,
+.giftSelectorView-friendContainer.loading,
+.itemPurchaseView-container.loading .itemPurchaseView-action-state.loading,
+.itemView-loading::after,
+.journalContainer.loading .journalEntries::after,
+.MHCheckoutReviewCartPageView-paymentLoader::after,
+.MHCheckoutTermsOfServicePageView,
+.messageBoardView-loader,
+.mouseListView-categoryContent-loading,
+.mouseView-image.loading,
+.newsArchivesListView.loading .newsArchivesListView-page::after,
+.scoreboardTableView.loading .scoreboardTableView-results::after,
+.halloweenMemoryGame-content.loading,
+.trapSelectorView__codexBrowser .loading,
+.treasureMapDialogView.loading .treasureMapDialogView-content,
+.treasureMapListingsTableView-loading-mouse,
+.treasureMapRootView-content.loading,
+.treasureMapView-block-content.loading::after,
+.userSelector-table tr.loading td,
+.mousehuntHud-page-tabContent-loading,
+.mousehuntHud-page-subTabContent-loading,
+.mousehuntPage-loading,
+.adversariesPage-categoryContent-loading,
+.campPage-trap-itemBrowser-items .loading,
+.campPage-trap-trapEffectivenessContainer .loading,
+.campPage-tabs-tabContent-loading,
+.friendsPage-friendList-content.busy::after,
+.tournamentPage-tournamentRow-loading,
+.adventCalendarView-gift.busy::after,
+.springHuntHUD-dialog-loading,
+.giftSelectorView-content-selectedFriend-loading,
+.giftSelectorView-confirmOverlay.loading .giftSelectorView-confirmPopup-content,
+.giftSelectorView-inbox-loading,
+.riftFuromaHUD-craftingPopup-padding-loading,
+.marketplaceView-item-image,
+.campPage-trap-friendList.loading .campPage-trap-friendList-loading,
+.campPage-trap-itemBrowser-armed .loading,
+.teamPage-acivity-loading {
+  background-image: url(https://i.mouse.rip/mouse-loading.gif);
+}
+
+div.userSelectorView-userList.loading::after {
+  background:
+    url(https://i.mouse.rip/mouse-loading.gif) 50% 50% no-repeat,
+    url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) 0 0 repeat;
 }
