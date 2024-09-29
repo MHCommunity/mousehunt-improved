@@ -4,18 +4,15 @@
 
 .mh-dark .journal .content .entry.catchsuccessloot,
 .mh-dark .journal .content .entry.luckycatchsuccess,
+.mh-dark .journal .content .entry.catchsuccessprize,
 .mh-dark .journal .content .entry.passive,
 .mh-dark .journal .content .entry.linked {
-  background-color: var(--d-green-darker);
+  background-color: var(--d-alt);
 }
 
 .mh-dark .journal .content .entry.catchfailure,
 .mh-dark .journal .content .entry.attractionfailure {
   background-color: var(--d-red-darker);
-}
-
-.mh-dark .journal .content .entry.catchsuccessprize {
-  background-color: var(--d-green-dark);
 }
 
 .mh-dark .journal .content .entry.short.misc.custom.chesla_trap_trigger {
