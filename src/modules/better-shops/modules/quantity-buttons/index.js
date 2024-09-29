@@ -22,7 +22,7 @@ export default async (block, input, maxQty) => {
     appendTo: buyControls,
     input,
     maxQty,
-    classNames: ['mh-improved-shop-qty', 'tiny', 'gray'],
+    classNames: ['mh-improved-shop-qty', 'tiny'],
   });
 
   const buyMaxButton = makeElement('a', ['mousehuntActionButton', 'lightBlue', 'tiny', 'mh-improved-shop-buy-max']);
