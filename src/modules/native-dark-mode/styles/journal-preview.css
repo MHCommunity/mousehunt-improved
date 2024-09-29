@@ -1,0 +1,37 @@
+.mh-dark .mousehuntTabContentContainer-padding {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .journalThemeSelectorView-category-description {
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mh-dark .journalThemeSelectorView-theme-image {
+  border: none;
+}
+
+.mh-dark .journalThemeSelectorView-theme {
+  color: var(--d-text);
+}
+
+.mh-dark .journalThemeSelectorView-tag-name {
+  border-color: var(--d-border);
+}
+
+.mh-dark .journalThemeSelectorView-theme.active {
+  color: var(--d-text);
+  background-color: var(--d-blue);
+}
+
+.mh-dark .journalThemeSelectorView-theme:hover {
+  color: var(--d-text);
+  background-color: var(--d-action);
+}
+
+.mh-dark .journalThemeSelectorView-theme.disabled {
+  color: var(--d-text-muted);
+}

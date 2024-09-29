@@ -387,11 +387,19 @@ input.itemView-action-convert-quantity {
 }
 
 .journalThemeSelectorView-preview .journal > .content {
-  padding: 5px 10px !important;
+  padding: 0 5px !important;
+}
+
+.journalThemeSelectorView-preview .content .entry {
+  opacity: 1;
 }
 
 .mousehuntHud-page-subTabContent.trinket .mousehuntHud-page-subTabContent-prefix {
   display: none;
+}
+
+.journalThemeSelectorView-theme-image {
+  border: none;
 }
 
 .mousehuntHud-userStat-row {
