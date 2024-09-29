@@ -79,3 +79,14 @@
   color: var(--d-text-muted);
   background-color: var(--d-bg);
 }
+
+.mh-dark .journal.jsingle .close a:after {
+  border-color: var(--d-border);
+  background-color: var(--d-alt);
+  color: var(--d-red);
+}
+
+.mh-dark .journal.jsingle .close a:hover:after {
+  color: var(--d-red);
+  background-color: var(--d-bg);
+}
