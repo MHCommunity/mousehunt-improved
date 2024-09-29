@@ -9,7 +9,6 @@
 .mh-dark .journal .content .entry {
   color: var(--d-text) !important;
   background-color: var(--d);
-  background-blend-mode: soft-light;
   border-color: var(--d-border);
 }
 
