@@ -5,7 +5,6 @@ import {
   clearCaches,
   createPopup,
   dbDeleteAll,
-  doEvent,
   getCurrentLocation,
   getCurrentPage,
   getCurrentTab,
@@ -362,6 +361,10 @@ const addTogglesToSettings = () => {
 
     // add the event listener to toggle the class
     titleText.addEventListener('click', (event) => {
+      if (event.target.tagName === 'A') {
+        return;
+      }
+
       event.preventDefault();
 
       toggledSections = getSetting('settings.toggled-sections', ['mousehunt-improved-settings-beta', 'mousehunt-improved-settings-advanced']);
@@ -436,24 +439,6 @@ const addMhImprovedIconToMenu = () => {
 };
 
 /**
- * Link the version number to the update summary.
- */
-const linkVersionNumber = () => {
-  const version = document.querySelector('#mousehunt-improved-settings-better .PagePreferences__title .version');
-  if (! version) {
-    return;
-  }
-
-  version.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    doEvent('mh-improved-show-update-summary');
-  });
-
-  version.title = 'Click to view the update summary';
-};
-
-/**
  * Initialize the module.
  */
 const init = async () => {
@@ -468,7 +453,6 @@ const init = async () => {
       moveTabToEnd();
       highlightLocationHud();
       addAdvancedSettingsButtons();
-      linkVersionNumber();
 
       if (! getSetting('experiments.new-settings-styles-columns', false)) {
         addTogglesToSettings();
