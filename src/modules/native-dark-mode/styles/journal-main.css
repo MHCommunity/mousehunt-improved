@@ -18,7 +18,12 @@
 
 .mh-dark .journal .content .entry .journalbody .journaldate {
   color: var(--d-text);
-  border-bottom: 1px solid rgb(255 255 255 / 30%);
+  border-bottom: 1px solid var(--d-transparent-30);
+}
+
+.mh-dark .journal .content .entry.badge,
+.mh-dark .journal .content .entry.badge .journalbody .journaldate {
+  color: var(--d-text-dark) !important;
 }
 
 .mh-dark .pagerView-container {

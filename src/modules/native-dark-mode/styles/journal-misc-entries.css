@@ -2,10 +2,14 @@
   background-color: var(--d-blue-dark);
 }
 
-.mh-dark .journal .content .entry.catchsuccessloot {
-  background-color: var(--d-alt);
+.mh-dark .journal .content .entry.catchsuccessloot,
+.mh-dark .journal .content .entry.luckycatchsuccess,
+.mh-dark .journal .content .entry.passive,
+.mh-dark .journal .content .entry.linked {
+  background-color: var(--d-green-darker);
 }
 
+.mh-dark .journal .content .entry.attractionfailure,
 .mh-dark .journal .content .entry.catchfailure {
   background-color: var(--d-red-dark);
 }
