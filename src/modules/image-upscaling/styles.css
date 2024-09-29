@@ -193,3 +193,7 @@
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .requirements img {
   max-width: 14px;
 }
+
+.marketplaceView-goldValue::after {
+  background-image: url(https://i.mouse.rip/upscaled/mp-gold.png);
+}
