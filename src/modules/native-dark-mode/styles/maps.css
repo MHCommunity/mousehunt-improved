@@ -90,7 +90,8 @@
 }
 
 .mh-dark .treasureMapView-block-row.active {
-  background-color: var(--d-yellow-dark);
+  color: var(--d-purple-dark);
+  background-color: var(--d-yellow);
 }
 
 .mh-dark .treasureMapInventoryView .treasureMapView-blockWrapper .treasureMapView-leftBlock .treasureMapView-block-content {
@@ -148,7 +149,11 @@
 }
 
 .mh-dark .treasureMapView-environment.wrong .treasureMapView-environment-title {
-  color: var(--d-text-dark);
+  background-color: var(--d-red-darker);
+}
+
+.mh-dark .treasureMapView-environment.wrong .treasureMapView-environment-title a {
+  color: var(--d-text);
 }
 
 .mh-dark .treasureMapView-consolationPrize-message {
@@ -249,6 +254,14 @@
   background-color: var(--d-bg);
 }
 
+.mh-dark .treasureMapView-scoreboard-table .treasureMapView-block-row.active:hover {
+  background-color: var(--d-yellow);
+}
+
+.mh-dark .treasureMapView-scoreboard-table .treasureMapView-block-row.active:hover .treasureMapView-block-cell-name-cutoff {
+  text-decoration: underline;
+}
+
 .mh-dark .treasureMapInvitesView-mapImageContainer:hover::before {
   background-color: transparent;
   box-shadow: none;
@@ -319,6 +332,7 @@
 }
 
 .mh-dark .treasureMapRootView-footer {
+  background-color: var(--d-bg-alt);
   border-top: 1px solid var(--d-border);
 }
 
@@ -414,4 +428,29 @@
 
 .mh-dark .treasureMapListingsTableView th.sortable:hover {
   background-color: var(--d-action);
+}
+
+.mh-dark .treasureMapListingsTableView th.sortable.active {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark a.mh-ui-invite-refresh-button:hover::after {
+  filter: invert(1);
+}
+
+.mh-dark .treasureMapListingsTableView-loading::before {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .messageBoardView-message-body {
+  border-color: var(--d-border);
+}
+
+.mh-dark a.messageBoardView-message-delete::after {
+  color: var(--d-red-dark);
+}
+
+.mh-dark a.messageBoardView-message-delete:hover::after,
+.mh-dark a.messageBoardView-message-delete:focus::after {
+  color: var(--d-red);
 }

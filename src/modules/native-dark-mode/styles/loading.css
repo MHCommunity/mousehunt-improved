@@ -1,0 +1,46 @@
+.mh-dark .springHuntHUD-popup-tabContentContainer.loading::after,
+.mh-dark .eggSweeper-layer.loading::after,
+.mh-dark .giftSelectorView-friendContainer.loading,
+.mh-dark .itemPurchaseView-container.loading .itemPurchaseView-action-state.loading,
+.mh-dark .itemView-loading::after,
+.mh-dark .journalContainer.loading .journalEntries::after,
+.mh-dark .MHCheckoutReviewCartPageView-paymentLoader::after,
+.mh-dark .MHCheckoutTermsOfServicePageView,
+.mh-dark .messageBoardView-loader,
+.mh-dark .mouseListView-categoryContent-loading,
+.mh-dark .mouseView-image.loading,
+.mh-dark .newsArchivesListView.loading .newsArchivesListView-page::after,
+.mh-dark .scoreboardTableView.loading .scoreboardTableView-results::after,
+.mh-dark .halloweenMemoryGame-content.loading,
+.mh-dark .trapSelectorView__codexBrowser .loading,
+.mh-dark .treasureMapDialogView.loading .treasureMapDialogView-content,
+.mh-dark .treasureMapListingsTableView-loading-mouse,
+.mh-dark .treasureMapRootView-content.loading,
+.mh-dark .treasureMapView-block-content.loading::after,
+.mh-dark .userSelector-table tr.loading td,
+.mh-dark .mousehuntHud-page-tabContent-loading,
+.mh-dark .mousehuntHud-page-subTabContent-loading,
+.mh-dark .mousehuntPage-loading,
+.mh-dark .adversariesPage-categoryContent-loading,
+.mh-dark .campPage-trap-itemBrowser-items .loading,
+.mh-dark .campPage-trap-trapEffectivenessContainer .loading,
+.mh-dark .campPage-tabs-tabContent-loading,
+.mh-dark .friendsPage-friendList-content.busy::after,
+.mh-dark .tournamentPage-tournamentRow-loading,
+.mh-dark .adventCalendarView-gift.busy::after,
+.mh-dark .springHuntHUD-dialog-loading,
+.mh-dark .giftSelectorView-content-selectedFriend-loading,
+.mh-dark .giftSelectorView-confirmOverlay.loading .giftSelectorView-confirmPopup-content,
+.mh-dark .giftSelectorView-inbox-loading,
+.mh-dark .riftFuromaHUD-craftingPopup-padding-loading,
+.mh-dark .marketplaceView-item-image,
+.mh-dark .campPage-trap-friendList.loading .campPage-trap-friendList-loading,
+.mh-dark .campPage-trap-itemBrowser-armed .loading,
+.mh-dark .teamPage-acivity-loading {
+  background-image: url(https://i.mouse.rip/mouse-loading.gif);
+  opacity: 0.7;
+}
+
+.treasureMapView-block-content.loading::after {
+  background-color: transparent;
+}

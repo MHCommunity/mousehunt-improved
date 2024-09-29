@@ -558,7 +558,7 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapView-goals-group-goal.notAvailable {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .treasureMapView-goals-group-goal.notAvailable.m400.mouse,
@@ -703,15 +703,6 @@ input.treasureMapView-block-search-text {
 .treasureMapInventoryView .treasureMapView-block-search,
 .treasureMapShopsView .treasureMapView-block-search {
   visibility: visible;
-}
-
-.treasureMapInventoryView .treasureMapView-block-search {
-  right: 10px;
-  bottom: 2px;
-}
-
-.treasureMapInventoryView .treasureMapRootView-subTabRow {
-  margin-bottom: 0;
 }
 
 .treasureMapRootView-footer .treasureMapRootView-footer-item {

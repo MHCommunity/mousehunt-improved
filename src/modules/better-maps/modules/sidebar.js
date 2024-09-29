@@ -32,7 +32,10 @@ const getCompletedGoals = () => {
   // filter out completed goals and sort by name
   goals = goals.filter((goal) => ! completedGoals.includes(goal.unique_id)).sort((a, b) => a.name.localeCompare(b.name));
 
-  return goals;
+  return {
+    type: mapData.is_scavenger_hunt ? 'item' : 'mouse',
+    goals,
+  }
 };
 
 /**
@@ -69,7 +72,10 @@ const addMapToSidebar = async () => {
 
   mapSidebar.append(title);
 
-  const goals = getCompletedGoals(mapData);
+  const mapGoals = getCompletedGoals(mapData);
+  const goals = mapGoals.goals;
+
+  mapSidebar.classList.add(`mh-improved-map-sidebar-${mapGoals.type}`);
 
   const goalsEl = makeElement('div', 'mh-improved-map-sidebar-goals');
 

@@ -3,6 +3,10 @@
   box-shadow: inset 0 0 0 1px var(--d-border);
 }
 
+.mh-dark .mh-improved-map-sidebar-item .mh-improved-map-sidebar-goal-image {
+  box-shadow: none;
+}
+
 .mh-dark .mh-improved-map-sidebar-goal-active {
   background-color: var(--d);
 }
