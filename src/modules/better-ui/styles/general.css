@@ -365,11 +365,6 @@ input.itemView-action-convert-quantity {
   padding-left: 12px;
 }
 
-/* vertically align the sb get more button */
-.mousehuntHeaderView a.superBrie .getMore {
-  top: 4px;
-}
-
 .mousehuntPage-loading {
   position: absolute;
   right: 0;
