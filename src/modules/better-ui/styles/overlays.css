@@ -258,3 +258,13 @@ span.kingsGiveawayCalibratorPopup-upgrade-action-cost {
 .closeOverlay.jsDialogClose {
   margin-bottom: 10px;
 }
+
+.MHCheckoutPageView-tabContainer {
+  padding-top: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.MHCheckout-title {
+  padding-bottom: 10px;
+}
