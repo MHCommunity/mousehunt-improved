@@ -83,7 +83,7 @@ const addQuantityButtons = (itemView) => {
     appendTo: openControls,
     input,
     maxQty,
-    classNames: ['mh-improved-item-qty', 'tiny'],
+    classNames: ['mh-improved-item-qty', 'tiny', 'lightBlue'],
   });
 
   const openMaxButton = makeElement('a', ['mousehuntActionButton', 'lightBlue', 'tiny', 'mh-improved-shop-buy-max']);
