@@ -119,10 +119,6 @@
   background-color: var(--d-blue-darker);
 }
 
-.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .content {
-  background-color: #333;
-}
-
 .mh-dark .mouseCrownsView-group {
   background-color: var(--d-bg);
   border-color: var(--d-border);
