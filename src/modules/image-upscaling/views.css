@@ -235,3 +235,36 @@
 .journal .entry.ronza_chrome_voucher_claim {
   background-image: url(https://www.mousehuntgame.com/images/items/stats/large/a3be8c11176c289f6c79068cbe813968.png);
 }
+
+.scoreboardTableView-trophy.trophy_1 {
+  background-image: url(https://i.mouse.rip/upscaled/6d1c8f4454bed17ffbb6715553d8cdb0.png);
+}
+
+.scoreboardTableView-trophy.trophy_2 {
+  background-image: url(https://i.mouse.rip/upscaled/bfd35c3fbf21b9dbdb39e9c42ba0dff1.png);
+}
+
+.scoreboardTableView-trophy.trophy_3 {
+  background-image: url(https://i.mouse.rip/upscaled/aec8ef247426f3560899d7ebafbb2ac5.png);
+}
+
+.scoreboardTableView-trophy.challenger {
+  background-image: url(https://i.mouse.rip/upscaled/ae4ad0511280558471d441bba366feed.png);
+}
+
+.scoreboardTableView-trophy.competitor {
+  background-image: url(https://i.mouse.rip/upscaled/eef1baf8f611341524de5af052e06a05.png);
+}
+
+.scoreboardTableView-trophy.participant {
+  background-image: url(https://i.mouse.rip/upscaled/b45427f87d198fade78866bfa7d5010e.png);
+}
+
+.scoreboardTableView-trophy.trophy_1,
+.scoreboardTableView-trophy.trophy_2,
+.scoreboardTableView-trophy.trophy_3,
+.scoreboardTableView-trophy.challenger,
+.scoreboardTableView-trophy.competitor,
+.scoreboardTableView-trophy.participant {
+  background-size: contain;
+}
