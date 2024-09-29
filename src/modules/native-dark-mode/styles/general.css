@@ -28,7 +28,7 @@ body.mh-dark {
 .mh-dark #mousehunt-improved-settings-advanced-override-flags input,
 .mh-dark #mousehunt-improved-settings-advanced-override-styles textarea {
   color: var(--d-text);
-  background-color: var(--d);
+  background-color: var(--d-alt);
   border-color: var(--d-border);
 }
 

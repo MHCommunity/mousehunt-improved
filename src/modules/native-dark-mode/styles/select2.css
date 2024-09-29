@@ -1,0 +1,37 @@
+.mh-dark .select2-container .select2-choice {
+  background-image: linear-gradient(to top, var(--d-alt) 0%, var(--d-alt) 50%);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark .select2-container .select2-choice .select2-arrow {
+  background-image: linear-gradient(to top, var(--d-alt) 0%, var(--d-alt) 60%);
+  border-color: var(--d-border);
+}
+
+.mh-dark .select2-drop {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .select2-results .select2-no-results,
+.mh-dark .select2-results .select2-searching,
+.mh-dark .select2-results .select2-selection-limit {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg);
+}
+
+.mh-dark input[type="text"] {
+  border-color: var(--d-border);
+}
+
+.mh-dark .select2-drop-active {
+  border-color: var(--d-action);
+}
+
+.mh-dark .select2-drop-auto-width {
+  border-top-color: var(--d-action);
+}
+
+.mh-dark .select2-chosen {
+  color: var(--d-text-muted);
+}

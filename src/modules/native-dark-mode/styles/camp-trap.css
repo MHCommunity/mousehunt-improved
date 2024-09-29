@@ -386,3 +386,12 @@
   background-color: var(--d-transparent-90);
   border-color: var(--d-border);
 }
+
+.mh-dark .campPage-trap-trapEffectivenessBar {
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-aura-view .time {
+  color: var(--d-text-muted);
+}
