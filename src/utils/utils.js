@@ -64,6 +64,24 @@ const isLoggedIn = () => {
 };
 
 /**
+ * Check if dark mode is enabled.
+ *
+ * @return {boolean} True if dark mode is enabled, false otherwise.
+ */
+const isDarkMode = () => {
+  return !! getComputedStyle(document.documentElement).getPropertyValue('--mhdm-white');
+};
+
+/**
+ * Check for MHCT.
+ *
+ * @return {boolean} Whether MHCT is installed or not.
+ */
+const isMHCT = () => {
+  return !! document.querySelector('#mhhh_version');
+};
+
+/**
  * Check if the overlay is visible.
  *
  * @return {boolean} True if the overlay is visible, false otherwise.
@@ -427,6 +445,8 @@ export {
   isUnsupportedFile,
   isLegacyHUD,
   isLoggedIn,
+  isDarkMode,
+  isMHCT,
   isOverlayVisible,
   addBodyClass,
   removeBodyClass,

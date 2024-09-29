@@ -190,16 +190,6 @@ const addDialogListeners = () => {
 };
 
 /**
- * Check for MHCT.
- *
- * @return {boolean} Whether MHCT is installed or not.
- */
-const checkForMHCT = () => {
-  return !! document.querySelector('#mhhh_version');
-  // todo: add a popup to inform the user that they should install MHCT.
-};
-
-/**
  * Add a support link to the support dialog.
  */
 const addSupportLink = () => {
@@ -277,8 +267,6 @@ const init = async () => {
   addEvents();
   addDialogListeners();
   addJournalProcessingEvents();
-
-  checkForMHCT();
   addUserscriptConfirmation();
 
   onEvent('dialog-show-support', addSupportLink);

@@ -1,0 +1,39 @@
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup .jsDialog.top,
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup .jsDialog.background {
+  background: var(--d-red-dark);
+}
+
+.mh-dark .pageFrameView #overlayPopup.mh-improved-darkmode-conflict-popup .jsDialogContainer .suffix {
+  background-color: var(--d-red-dark);
+  border: none;
+}
+
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup .jsDialog.bottom,
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup .jsDialog.top {
+  background: none;
+}
+
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup .jsDialog.bottom,
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup #jsDialogClose {
+  display: none;
+}
+
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup .jsDialogContainer .prefix {
+  padding: 10px 0 10px 5px;
+  background-color: var(--d-red-dark);
+}
+
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup h2,
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup h3,
+#overlayPopup.mh-improved-darkmode-conflict-popup .title {
+  font-size: 18px;
+  color: var(--d-text);
+}
+
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup .jsDialogContainer .content {
+  background-color: var(--d-red-darker);
+}
+
+.mh-dark #overlayPopup.mh-improved-darkmode-conflict-popup .jsDialog.background {
+  border-radius: 10px;
+}

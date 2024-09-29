@@ -15,10 +15,12 @@
   border: 1px solid #3e803e;
 }
 
+.mh-improved-darkmode-conflict-popup .content,
 .mh-improved-userscript-popup .content {
   text-align: center;
 }
 
+.mh-improved-darkmode-conflict-popup .jsDialogContainer,
 .mh-improved-userscript-popup .jsDialogContainer {
   color: #160404;
   background-color: #f5b9b9;
@@ -40,6 +42,7 @@
   filter: brightness(1.1);
 }
 
+.mh-improved-darkmode-conflict-popup .content p,
 .mh-improved-userscript-popup .content p {
   font-size: 14px;
   line-height: 2;
