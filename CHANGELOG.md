@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Moved "Native Dark Mode" to normal feature and renamed to "Dark Mode"
+- Updated Dark Mode styles
+- Updated Better UI styles
+
 ## Version 0.66.0
 
 - Fixed Native Dark Mode mice images
@@ -7,7 +13,7 @@
 - Updated Better UI styles
 - Updated Draconic Depths Location HUD styles
 - Updated Native Dark Mode styles
-- Updates Image Upscaling & Transparency styles
+- Updated Image Upscaling & Transparency styles
 
 ## Version 0.65.2
 
