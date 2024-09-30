@@ -80,13 +80,13 @@
   background-color: var(--d-bg);
 }
 
-.mh-dark .journal.jsingle .close a:after {
-  border-color: var(--d-border);
-  background-color: var(--d-alt);
+.mh-dark .journal.jsingle .close a::after {
   color: var(--d-red);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
 }
 
-.mh-dark .journal.jsingle .close a:hover:after {
+.mh-dark .journal.jsingle .close a:hover::after {
   color: var(--d-red);
   background-color: var(--d-bg);
 }

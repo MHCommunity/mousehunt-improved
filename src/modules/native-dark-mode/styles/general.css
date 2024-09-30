@@ -111,8 +111,13 @@ body.mh-dark {
 .mh-dark .socialBallots,
 .mh-dark .drawPage-ballot,
 .mh-dark .ballotEntry {
-  color: #000;
-  background-color: #fff;
+  color: var(--d-black);
+  background-color: var(--d-yellow);
+}
+
+.mh-dark input#ballot_qty {
+  color: var(--d-text-dark);
+  background-color: var(--d-transparent-20);
 }
 
 .mh-dark .hunterTitle .titles h1 {
