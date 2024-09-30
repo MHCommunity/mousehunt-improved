@@ -209,24 +209,25 @@ const renderList = async (list) => {
     const crClass = ['mh-improved-cre-data'];
     const minluckClass = ['mh-improved-cre-data'];
 
-    if (catchRate.rate * 100 >= 100) {
-      crClass.push('mh-improved-cre-data-good');
-      minluckClass.push('mh-improved-cre-data-good');
-    } else if (catchRate.rate * 100 <= 60) {
-      crClass.push('mh-improved-cre-data-bad');
-      minluckClass.push('mh-improved-cre-data-bad');
-    }
-
-    if (user.trap_luck >= minluck) {
-      crClass.push('mh-improved-cre-data-minlucked');
-      minluckClass.push('mh-improved-cre-data-minlucked');
-    }
-
     // Ultimate charm.
     if (1075 == user.trinket_item_id) { // eslint-disable-line eqeqeq
       crClass.push('mh-improved-cre-data-ultimate');
+      minluckClass.push('mh-improved-cre-data-ultimate');
       catchRate.rate = 1;
       catchRate.percent = '100%';
+    } else {
+      if (catchRate.rate * 100 >= 100) {
+        crClass.push('mh-improved-cre-data-good');
+        minluckClass.push('mh-improved-cre-data-good');
+      } else if (catchRate.rate * 100 <= 60) {
+        crClass.push('mh-improved-cre-data-bad');
+        minluckClass.push('mh-improved-cre-data-bad');
+      }
+
+      if (user.trap_luck >= minluck) {
+        crClass.push('mh-improved-cre-data-minlucked');
+        minluckClass.push('mh-improved-cre-data-minlucked');
+      }
     }
 
     rows.push({

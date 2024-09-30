@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.67.3
+
+- Fixed Catch Rate Estimator not showing Ultimate Charm coloring
+
 ## Version 0.67.2
 
 - Updated Dark Mode styles
