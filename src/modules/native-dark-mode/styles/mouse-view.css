@@ -11,8 +11,8 @@
   background-color: var(--d-bg);
 }
 
-.mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(odd) {
-  background-color: var(--d);
+.mh-dark .mouseview-has-mhct .mouse-ar-wrapper:nth-child(even) {
+  background-color: var(--d-bg-alt);
 }
 
 .mh-dark li.minluck-item {
@@ -25,7 +25,7 @@
 }
 
 .mh-dark .mouseView-statsContainer-block {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-bg-alt);
 }
 
 .mh-dark .minluck-title,

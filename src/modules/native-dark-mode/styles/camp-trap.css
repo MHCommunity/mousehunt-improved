@@ -244,8 +244,11 @@
 
 .mh-dark a.campPage-trap-itemBrowser-item-armButton,
 .mh-dark .armed a.campPage-trap-itemBrowser-item-armButton {
-  color: var(--d);
-  text-shadow: none;
+  color: #fff;
+}
+
+.mh-dark a.campPage-trap-itemBrowser-item-armButton {
+  background-color: #6a8b23;
 }
 
 .mh-dark .armed a.campPage-trap-itemBrowser-item-armButton {

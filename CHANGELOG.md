@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.67.2
+
+- Updated Dark Mode styles
+
 ## Version 0.67.1
 
 - Updated Better Maps styles
