@@ -18,7 +18,7 @@
 
 .mh-dark .journal .content .entry .journalbody .journaldate {
   color: var(--d-text);
-  border-bottom: 1px solid var(--d-transparent-30);
+  border-bottom: 1px solid var(--d-transparent-10);
 }
 
 .mh-dark .journal .content .entry.kings_giveaway_vault_prize_entry,
