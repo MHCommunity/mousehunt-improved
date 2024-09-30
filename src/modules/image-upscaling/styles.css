@@ -198,14 +198,6 @@
   background-image: url(https://i.mouse.rip/mp-gold.png);
 }
 
-.floatingIslandPaperDoll-base,
-.floatingIslandsHUD-mod,
-.journal .content .entry,
-.trapImageView-trapAura,
-.mousehuntHud-marketPlace {
-  image-rendering: pixelated;
-}
-
 .springHuntHUD-popup-tabContentContainer.loading::after,
 .eggSweeper-layer.loading::after,
 .giftSelectorView-friendContainer.loading,
