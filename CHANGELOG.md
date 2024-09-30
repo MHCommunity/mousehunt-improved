@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.67.1
+
+- Updated Better Maps styles
+
 ## Version 0.67.0
 
 - Moved "Native Dark Mode" to normal feature and renamed to "Dark Mode"
