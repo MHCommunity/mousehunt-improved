@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## Version 0.67.0
 
 - Moved "Native Dark Mode" to normal feature and renamed to "Dark Mode"
 - Updated Dark Mode styles
