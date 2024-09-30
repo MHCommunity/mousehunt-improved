@@ -3,6 +3,7 @@
 ## Version 0.67.1
 
 - Updated Better Maps styles
+- Updated Dark Mode styles
 
 ## Version 0.67.0
 
