@@ -89,9 +89,6 @@ const buildExtension = async (platform, watch = false, isRelease = false) => {
         `const mhImprovedVersion = '${process.env.npm_package_version}';`,
         `const mhImprovedPlatform = '${platform}';`,
       ].join('\n'),
-    },
-    define: {
-      __SENTRY_DSN__: JSON.stringify(isRelease ? 'https://850af0a4f96b32d673a133c9353a3622@o4506583858348032.ingest.us.sentry.io/4506781071835136' : ''),
     }
   };
 
