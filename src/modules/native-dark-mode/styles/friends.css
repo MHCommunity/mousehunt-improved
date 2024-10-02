@@ -9,7 +9,7 @@
 .mh-dark .teamPage-messageBoard-corkboard .messageBoardView-message,
 .mh-dark .hunterInfoView-corkBoardBlock .messageBoardView-message {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d);
 }
 
 .mh-dark .teamPage-messageBoard-corkboard .messageBoardView-message-body,
@@ -114,4 +114,71 @@
 .mh-dark .friendsPage-friendRow-stat:hover .friendsPage-friendRow-stat-fullValue {
   background-color: var(--d);
   border-color: var(--d-border);
+}
+
+.mh-dark .userInteractionButtonsView-button {
+  box-shadow: none;
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-idCardBlock-stats-horn-image {
+  background-image: url(https://i.mouse.rip/dark-horn_temp.png);
+}
+
+.mh-dark .mh-improved-scoreboard-dropdown,
+.mh-dark .mousehuntPage-content select.mh-improved-scoreboard-dropdown {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .userInteractionButtonsView-button.sendMapInvite {
+  background-image: url(https://i.mouse.rip/buttons/send_map_invite.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.sendGift {
+  background-image: url(https://i.mouse.rip/buttons/send_gift.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.sendSupplies {
+  background-image: url(https://i.mouse.rip/buttons/send_supplies.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.sendTournamentInvite {
+  background-image: url(https://i.mouse.rip/buttons/send_tournament_invite.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.sendTicket {
+  background-image: url(https://i.mouse.rip/buttons/send_ticket.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.canAccept,
+.mh-dark .userInteractionButtonsView-button.sendRequest {
+  background-image: url(https://i.mouse.rip/buttons/send_request.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.accepted {
+  background-image: url(https://i.mouse.rip/buttons/friends.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.requestSent {
+  background-image: url(https://i.mouse.rip/buttons/request_sent.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.ignored {
+  background-image: url(https://i.mouse.rip/buttons/unfriend.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.requestMapInvite {
+  background-image: url(https://i.mouse.rip/buttons/request_map_invite.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.self {
+  background-image: url(https://i.mouse.rip/buttons/friends.png);
+}
+
+.mh-dark .friendsPage-permissionBlock {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .friendsPage-community-profileLinkInput input {
+  border: 1px solid var(--d-border);
 }

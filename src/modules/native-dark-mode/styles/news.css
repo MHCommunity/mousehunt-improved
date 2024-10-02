@@ -29,3 +29,12 @@
 .mh-dark .newsArchivesListView.loading .newsArchivesListView-page::before {
   background: none;
 }
+
+.mh-dark .newsArchivesListView-post-details,
+.mh-dark .mousehuntPage-content .newsArchivesListView h1 {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .newsPostBody {
+  color: var(--d-text);
+}

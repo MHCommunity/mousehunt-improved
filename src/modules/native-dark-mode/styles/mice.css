@@ -12,7 +12,6 @@
 }
 
 .mh-dark .mouseListView-categoryContent-subgroupContainer {
-  background-color: var(--d-alt);
   border-radius: 5px 5px 10px 10px;
 }
 
@@ -24,9 +23,7 @@
 
 .mh-dark .mouseListView-categoryContent-subgroup-name {
   margin: 0;
-  background-color: #3a3a3a;
   border: none;
-  border-bottom: 1px solid var(--d-border);
 }
 
 .mh-dark .mouseListView-categoryContent::before {
@@ -45,7 +42,7 @@
 
 .mh-dark .mouseListView-categoryContent-subgroup-mouse-margin {
   color: var(--d-text);
-  background-color: #2e2e2e;
+  background-color: var(--d-bg-alt);
   border-color: var(--d-border);
 }
 
@@ -60,13 +57,18 @@
 }
 
 .mh-dark .mouseListView-categoryContent-subgroup-mouse.stats:nth-child(odd) {
+  background-color: transparent;
+}
+
+.mh-dark .mouseListView-categoryContent-subgroup-mouse:hover .mouseListView-categoryContent-subgroup-mouse-margin {
   background-color: var(--d-bg);
+  border-color: var(--d-action);
 }
 
 .mh-dark .mouseListView-categoryContent-filter-option {
   margin-left: 1px;
-  color: var(--d-link);
-  background-color: var(--d);
+  color: var(--d-text);
+  background-color: var(--d-bg-alt);
   border: 1px solid var(--d-border);
 }
 
@@ -184,4 +186,9 @@
 
 .mh-dark .mouseListView-categoryContent-weaknesses-label {
   border-right-color: var(--d);
+}
+
+.mh-dark .mouseListView-categoryContent-subgroup-mouse.stats.header .mouseListView-categoryContent-subgroup-mouse-margin {
+  padding: 8px 5px;
+  margin: 0;
 }

@@ -76,6 +76,6 @@
 .mh-dark input.mh-improved-travel-window-search-input[type="text"] {
   padding: 10px;
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-action);
   border-color: var(--d-border);
 }

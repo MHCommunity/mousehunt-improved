@@ -469,3 +469,12 @@
 .mh-dark .mh-improved-map-sidebar-goal:hover .mh-improved-map-sidebar-goal-image {
   opacity: 1;
 }
+
+.mh-dark .treasureMapDialogView-chest-item-padding::before {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .treasureMapDialogView-chest-item-padding {
+  background-color: var(--d-bg);
+  border-color: var(--d-bg);
+}

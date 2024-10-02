@@ -43,16 +43,13 @@
 }
 
 .mh-dark .itemPurchaseView-action-itemCost-table-row.error .itemPurchaseView-action-itemCost-table-cell.cost,
-.mh-dark .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-row.error a {
+.mh-dark .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-row.error a,
+.mh-dark .error .itemPurchaseView-action-itemCost-table-cell.owned {
   color: var(--d-red-darker);
 }
 
 .mh-dark .itemPurchaseView-action-itemCost-table-cell.owned {
   color: var(--d-text);
-}
-
-.mh-dark .error .itemPurchaseView-action-itemCost-table-cell.owned {
-  color: var(--d-red-dark);
 }
 
 .mh-dark.shopCustomization .PageShops .itemPurchaseView-container .itemViewStatBlock-stat.title,
@@ -91,7 +88,7 @@
   color: var(--d-link);
 }
 
-.mh-dark .shopCustomization .PageShops .itemViewStatBlock-stat {
+.mh-dark.shopCustomization .PageShops .itemViewStatBlock-stat {
   background-color: var(--d-alt);
   border-color: var(--d-border);
 }

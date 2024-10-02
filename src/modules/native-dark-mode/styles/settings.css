@@ -71,7 +71,7 @@
 .mh-dark #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-styles textarea,
 .mh-dark #mousehunt-improved-settings-mousehunt-improved-settings-overrides-override-flags input {
   color: var(--d-text);
-  background-color: var(--d-bg);
+  background-color: var(--d-action);
   border-color: var(--d-border);
 }
 

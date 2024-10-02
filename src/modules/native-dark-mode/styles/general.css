@@ -17,23 +17,30 @@ body.mh-dark {
   color: var(--d-text-dark);
 }
 
+.mh-dark .mousehuntPage-content select,
 .mh-dark .journal .entry .journaltext input.quickSendInput,
 .mh-dark .mousehuntPage-content input.quickSendInput,
 .mh-dark .quickSendInput,
 .mh-dark input.treasureMapView-block-search-text,
 .mh-dark .mh-improved-favorite-setups-component-picker-popup-search input,
-.mh-dark .mousehuntPage-content select,
 .mh-dark .mousehuntPage-content textarea,
 .mh-dark .mousehuntPage-content input,
 .mh-dark #mousehunt-improved-settings-advanced-override-flags input,
 .mh-dark #mousehunt-improved-settings-advanced-override-styles textarea {
   color: var(--d-text);
-  background-color: var(--d-alt);
+  background-color: var(--d-action);
   border-color: var(--d-border);
 }
 
+/* change the placeholder color */
+.mh-dark .mousehuntPage-content input::placeholder,
+.mh-dark .mousehuntPage-content select::placeholder,
+.mh-dark .mousehuntPage-content textarea::placeholder {
+  color: var(--d-text-muted);
+}
+
 .mh-dark .mousehuntPage-content select {
-  background-color: var(--d);
+  background-color: var(--d-alt);
 }
 
 .mh-dark .journal-history-page-selector .page-input {
@@ -183,4 +190,8 @@ body.mh-dark {
 .claimGiftPage__giftQuantity,
 .claimGiftPage__giftDescription {
   color: var(--d-text-dark);
+}
+
+.mh-dark .inventoryPage-confirmPopup-suffix-quantityContainer-setMax {
+  color: var(--d-link);
 }

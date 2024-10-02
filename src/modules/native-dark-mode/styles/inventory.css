@@ -63,8 +63,8 @@
 .mh-dark .mousehuntHud-page-subTabHeader.active span,
 .mh-dark .mousehuntHud-page-subTabHeader:hover span,
 .mh-dark .mousehuntHud-page-subTabHeader:focus span {
-  color: #fff;
-  background-color: #8595b0;
+  color: var(--d-text-muted);
+  background-color: var(--d-blue-darker);
 }
 
 .mh-dark .mousehuntHud-page-subTabContent-prefix-filter-options {
@@ -122,13 +122,13 @@
 
 .mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="submit"],
 .mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="button"] {
-  color: #000;
+  color: var(--d-black);
   background-color: #fc6;
 }
 
 .mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="submit"]:hover,
 .mh-dark .mousehuntPage-content input.inventoryPage-item-button[type="button"]:hover {
-  color: #000;
+  color: var(--d-black);
   background-color: #fc9;
 }
 
@@ -212,4 +212,8 @@
 .mh-dark .inventoryPage-item.trinket .itemViewStatBlock-stat,
 .mh-dark .itemViewStatBlock-stat {
   border-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-item.small.message_item .inventoryPage-item-content-name {
+  color: var(--d-green);
 }

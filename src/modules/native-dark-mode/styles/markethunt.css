@@ -1,0 +1,33 @@
+.mh-dark .marketplaceContentContainer #chartArea,
+.mh-dark .marketplaceContentContainer #stockChartContainer {
+  background-color: #2d2d2d !important;
+}
+
+.mh-dark .marketplaceContentContainer #chartArea svg.highcharts-root,
+.mh-dark .marketplaceContentContainer #chartArea .highcharts-series,
+.mh-dark .marketplaceContentContainer #chartArea .highcharts-markers,
+.mh-dark .marketplaceContentContainer #chartArea .highcharts-legend-item path,
+.mh-dark .marketplaceContentContainer #chartArea .highcharts-legend-item rect {
+  filter: invert(1);
+}
+
+.marketplaceView-item-averagePrice.infobox-stat img {
+  display: none;
+}
+
+.marketplaceView-item-averagePrice.infobox-stat #infoboxSbPrice::after {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: bottom;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.mh-dark .marketplaceContentContainer #chartArea .cl-switch .label,
+.mh-dark .marketplaceContentContainer #chartArea #markethuntInfobox,
+.mh-dark .marketplaceContentContainer #chartArea #markethuntInfobox .marketplaceView-goldValue {
+  color: var(--d-text-muted);
+}

@@ -1,12 +1,16 @@
 .mh-dark .select2-container .select2-choice {
-  background-image: linear-gradient(to top, var(--d-alt) 0%, var(--d-alt) 50%);
+  background: var(--d-alt);
   border-color: var(--d-border);
   box-shadow: none;
 }
 
 .mh-dark .select2-container .select2-choice .select2-arrow {
-  background-image: linear-gradient(to top, var(--d-alt) 0%, var(--d-alt) 60%);
+  background: var(--d-alt);
   border-color: var(--d-border);
+}
+
+.mh-dark .friendsPage-list-filter.active {
+  background-color: var(--d);
 }
 
 .mh-dark .select2-drop {
@@ -34,4 +38,27 @@
 
 .mh-dark .select2-chosen {
   color: var(--d-text-muted);
+}
+
+.mh-dark .select2-results .select2-result-label {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .PageAdversaries #select2-drop li,
+.mh-dark .PageFriends #select2-drop li {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .PageAdversaries #select2-drop li:nth-child(even) {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .select2-drop li.select2-highlighted {
+  background-color: var(--d-action);
+}
+
+.mh-dark .select2-search input {
+  color: var(--d-text);
+  background: var(--d-action);
 }
