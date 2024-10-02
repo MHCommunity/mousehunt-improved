@@ -1,4 +1,11 @@
-import { addHudStyles, getSetting, makeElement, onRequest } from '@utils';
+import {
+  addHudStyles,
+  getSetting,
+  makeElement,
+  onRequest,
+  onTurn,
+  showHornMessage
+} from '@utils';
 
 import cleanChalkboard from './clean-chalkboard.css';
 import regionStyles from '../../shared/folklore-forest/styles.css';
@@ -56,6 +63,34 @@ const highlightIfHighest = () => {
   title.append(highestMarker);
 };
 
+const showPowerTypeReminder = () => {
+  const courseType = user?.quests?.QuestSchoolOfSorcery?.current_course?.course_type;
+  if ('exam_course' !== courseType) {
+    return;
+  }
+
+  if (user?.quests?.QuestSchoolOfSorcery?.current_course?.using_correct_power_type) {
+    return;
+  }
+
+  const powerType = user?.quests?.QuestSchoolOfSorcery?.current_course?.power_type;
+
+  showHornMessage({
+    title: 'Power Type Reminder',
+    text: `The recommended power type for this course is ${powerType.charAt(0).toUpperCase() + powerType.slice(1)}.`,
+    image: `https://www.mousehuntgame.com/images/powertypes/${powerType}.png`,
+    type: 'error',
+    button: 'Switch',
+    action: () => {
+      const trapSelector = document.querySelector('.campPage-trap-armedItem.weapon');
+      if (trapSelector) {
+        trapSelector.click();
+      }
+    },
+    dismiss: 600090,
+  });
+};
+
 /**
  * Initialize the module.
  */
@@ -68,4 +103,7 @@ export default async () => {
 
   highlightIfHighest();
   onRequest('*', highlightIfHighest);
+
+  showPowerTypeReminder();
+  onTurn(showPowerTypeReminder, 3000);
 };
