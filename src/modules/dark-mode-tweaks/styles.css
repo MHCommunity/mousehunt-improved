@@ -389,3 +389,13 @@
 .mh-dark-mode .pageFrameView #mousehuntContainer.PageCamp .journal .content .journalbody .journaltext {
   font-size: 11px;
 }
+
+.mh-dark-mode .pageFrameView .pageSidebarView {
+  margin-right: 0;
+  margin-left: 10px;
+  border-color: #242424;
+}
+
+.mh-dark-mode .mh-improved-map-sidebar-goal-active {
+  background-color: #383e49;
+}
