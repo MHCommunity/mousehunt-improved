@@ -39,7 +39,7 @@ const replaceInboxOpen = () => {
 };
 
 let isSelfRequest = false;
-
+let lastRequest;
 /**
  * Remove the daily draw notifications.
  *
@@ -50,9 +50,16 @@ const removeDailyDrawNotifications = async (data) => {
     return;
   }
 
+  // if the last request was less than 2 seconds ago, ignore it.
+  if (lastRequest && Date.now() - lastRequest < 2000) {
+    return;
+  }
+
   if (! data?.messageData || ! data?.messageData?.notification) {
     return;
   }
+
+  lastRequest = Date.now();
 
   const messageBar = document.querySelector('#hgbar_messages');
   if (! messageBar) {
