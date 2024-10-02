@@ -1,0 +1,61 @@
+.huntersHornMessageView--bait_empty .huntersHornMessageView__content.huntersHornMessageView__content--image::before,
+.huntersHornMessageView--bait_disarmed .huntersHornMessageView__content.huntersHornMessageView__content--image::before,
+.huntersHornMessageView--unknown_error .huntersHornMessageView__content.huntersHornMessageView__content--image::before {
+  background-image: var(--bg-image);
+}
+
+.huntersHornView__message .huntersHornMessageView--shadow {
+  filter: drop-shadow(0 2px 3px #333);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-blue {
+  border-image-source: url(https://i.mouse.rip/horn-message/blue.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-cyan-alt {
+  border-image-source: url(https://i.mouse.rip/horn-message/cyan-alt.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-cyan {
+  border-image-source: url(https://i.mouse.rip/horn-message/cyan.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-green-alt {
+  border-image-source: url(https://i.mouse.rip/horn-message/green-alt.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-green {
+  border-image-source: url(https://i.mouse.rip/horn-message/green.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-grey {
+  border-image-source: url(https://i.mouse.rip/horn-message/grey.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-orange-alt {
+  border-image-source: url(https://i.mouse.rip/horn-message/orange-alt.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-orange {
+  border-image-source: url(https://i.mouse.rip/horn-message/orange.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-pink {
+  border-image-source: url(https://i.mouse.rip/horn-message/pink.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-purple {
+  border-image-source: url(https://i.mouse.rip/horn-message/purple.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-red-alt {
+  border-image-source: url(https://i.mouse.rip/horn-message/red-alt.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-red {
+  border-image-source: url(https://i.mouse.rip/horn-message/red.png);
+}
+
+.huntersHornView__message .huntersHornMessageView--color-yellow {
+  border-image-source: url(https://i.mouse.rip/horn-message/yellow.png);
+}

@@ -369,7 +369,7 @@
 }
 
 .huntersHornView__message.huntersHornView__message--active.travel-reminder .huntersHornMessageView--unknown_error {
-  border-image-source: url(https://i.mouse.rip/horn-message-blank-pink.png);
+  border-image-source: url(https://i.mouse.rip/horn-message/pink.png);
 }
 
 .travelPage-map-image-environment[data-environment-type="train_station"] .travelPage-map-image-environment-name,
