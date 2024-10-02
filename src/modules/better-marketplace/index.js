@@ -10,8 +10,7 @@ import {
 
 import settings from './settings';
 
-import smallImages from './modules/small-images';
-
+import smallImages from './small-images.css';
 import styles from './styles.css';
 
 /**
@@ -353,11 +352,10 @@ let newSelect = null;
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles, 'better-marketplace');
-
-  if (getSetting('better-marketplace.small-images')) {
-    smallImages();
-  }
+  addStyles([
+    styles,
+    getSetting('better-marketplace.small-images') ? smallImages : '',
+  ], 'better-marketplace');
 
   onOverlayChange({
     marketplace: {
