@@ -139,6 +139,10 @@ const hideOrShowBlock = (blockId, isBlockToggled) => {
     return;
   }
 
+  if (! isUnlocked(blockId)) {
+    return;
+  }
+
   const selector = mapping[blockId];
   if (! selector) {
     return;
