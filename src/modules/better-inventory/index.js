@@ -210,6 +210,70 @@ const addResortInventory = () => {
   });
 };
 
+let _InventoryPageuseItem;
+const replaceInventoryView = () => {
+  if (_InventoryPageuseItem) {
+    return;
+  }
+
+  _InventoryPageuseItem = app.pages.InventoryPage.useItem;
+
+  app.pages.InventoryPage.useItem = function (target) {
+    const itemClassification = target.getAttribute('data-item-classification');
+    if (! itemClassification) {
+      return _InventoryPageuseItem(element);
+    }
+
+    const container = target.closest('.mousehuntHud-page-subTabContent');
+    if (! container) {
+      return _InventoryPageuseItem(target);
+    }
+
+    if (container.classList.contains('hammer')) {
+      return this.showConfirmPopup(target, 'hammer');
+    }
+
+    if ('recipe' === itemClassification) {
+      const element = document.elementFromPoint(window.event.clientX, window.event.clientY);
+      const closest = element.closest('[data-item-type]');
+      if (closest) {
+        hg.views.ItemView.show(closest.getAttribute('data-item-type'));
+      }
+
+      return;
+    }
+
+    const itemType = target.getAttribute('data-item-type');
+
+    if ('crafting_item' === itemClassification) {
+      // If the user is holding shift, then show the item view.
+      if (window.event && window.event.shiftKey) {
+        return hg.views.ItemView.show(itemType);
+      }
+
+      return this.toggleCraftingTableItem(target);
+    }
+
+    if ('message_item' === itemClassification) {
+      return this.useMessageItem(target);
+    }
+
+    if ('bait' === itemClassification) {
+      return this.armItem(target);
+    }
+
+    if (! itemType) {
+      return;
+    }
+
+    if ('eggstreme_eggscavation_upgrade_stat_item' === itemType || 'eggstreme_eggscavation_shovel_stat_item' === itemType) {
+      return hg.views.EggstremeEggscavationView.show();
+    }
+
+    hg.views.ItemView.show(itemType);
+  };
+};
+
 /**
  * Main function.
  */
@@ -219,15 +283,16 @@ const main = () => {
     setOpenQuantityOnClick();
   }
 
-  addOpenAllToConvertible();
-  updateCollectibles();
-  addArmButtonToCharms();
-
-  onNavigation(() => {
+  const go = () => {
     addOpenAllToConvertible();
     updateCollectibles();
     addArmButtonToCharms();
-  }, {
+    replaceInventoryView();
+  };
+
+  go();
+
+  onNavigation(go, {
     page: 'inventory',
   });
 
