@@ -316,3 +316,35 @@ input.itemView-action-convert-quantity {
   justify-content: center;
   margin-top: 7px;
 }
+
+.mh-improved-airship-part-container {
+  position: relative;
+  background-image: none !important;
+}
+
+.mh-improved-airship-part {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.mh-improved-airship-part.balloon {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/floating_islands/airship/balloon/silhouette.png);
+}
+
+.mh-improved-airship-part.sail {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/floating_islands/airship/sail/silhouette.png);
+}
+
+.mh-improved-airship-part.hull {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/floating_islands/airship/hull/silhouette.png);
+}
+
+.mh-improved-airship-part-container .mh-improved-airship-part.silhouette {
+  transition: opacity 0.3s;
+}
+
+.mh-improved-airship-part-container:hover .mh-improved-airship-part.silhouette {
+  opacity: 0.1;
+}

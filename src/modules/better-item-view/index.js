@@ -1,6 +1,7 @@
 import {
   addStyles,
   getArForMouse,
+  getData,
   getSetting,
   makeElement,
   makeLink,
@@ -13,7 +14,6 @@ import {
 
 import hoverItem from './modules/hover-item';
 import settings from './settings';
-
 import styles from './styles.css';
 
 /**
@@ -58,6 +58,38 @@ const addLinks = (itemId) => {
     desc.insertBefore(values, desc.firstChild);
   }
 };
+
+let items;
+const updateForAirshipParts = async (itemId, itemView) => {
+  if (! items ) {
+    items = await getData('items');
+  }
+
+  const item = items.find((item) => item.id === Number.parseInt(itemId, 10));
+  if (! item || ! item.is_airship_part || ! item.airship_part_type) {
+    return;
+  }
+
+  const thumbnail = itemView.querySelector('.itemView-thumbnail');
+  if (! thumbnail) {
+    return;
+  }
+
+  thumbnail.classList.add('mh-improved-airship-part-container');
+
+  const els = {
+    hull: makeElement('div', ['mh-improved-airship-part', 'hull', 'silhouette']),
+    sail: makeElement('div', ['mh-improved-airship-part', 'sail', 'silhouette']),
+    balloon: makeElement('div', ['mh-improved-airship-part', 'balloon', 'silhouette']),
+  };
+
+  els[item.airship_part_type].classList.remove('silhouette');
+  els[item.airship_part_type].style.backgroundImage = `url(${item.images.large})`;
+
+  thumbnail.append(els.hull);
+  thumbnail.append(els.sail);
+  thumbnail.append(els.balloon);
+}
 
 const addQuantityButtons = (itemView) => {
   const quantityForm = itemView.querySelector('.itemView-action-convertForm');
@@ -108,73 +140,7 @@ const addQuantityButtons = (itemView) => {
   quantityForm.append(openControls);
 };
 
-/**
- * Update the item view.
- */
-const updateItemView = async () => {
-  const itemView = document.querySelector('.itemViewContainer');
-  if (! itemView) {
-    return;
-  }
-
-  const itemId = itemView.getAttribute('data-item-id');
-  if (! itemId) {
-    return;
-  }
-
-  const sidebar = document.querySelector('.itemView-sidebar');
-  if (sidebar) {
-    const crafting = document.querySelector('.itemView-action.crafting_item');
-    if (crafting) {
-      sidebar.append(crafting);
-    }
-
-    const smashing = document.querySelector('.itemView-partsContainer');
-    if (smashing) {
-      sidebar.append(smashing);
-
-      if (! smashing.getAttribute('data-has-changed-title')) {
-        const smashingTitle = smashing.querySelector('b');
-        if (smashingTitle) {
-          smashingTitle.innerText = 'Hunter\'s Hammer to get:';
-          smashing.setAttribute('data-has-changed-title', 'true');
-
-          smashing.innerHtml = smashing.innerHTML.replace('If you smash it, you\'ll get:', '');
-        }
-      }
-    }
-  }
-
-  const obtainHint = document.querySelector('.itemView-obtainHint');
-  const description = document.querySelector('.itemView-description');
-  if (obtainHint && description) {
-    description.after(obtainHint);
-  }
-
-  if (itemView.classList.contains('base') || itemView.classList.contains('weapon') || itemView.classList.contains('skin')) {
-    // Replace the image with the full size image.
-    const thumbnailContainer = itemView.querySelector('.itemView-thumbnailContainer');
-    if (thumbnailContainer) {
-      const thumbnail = thumbnailContainer.querySelector('.itemView-thumbnail');
-      const fullSize = thumbnailContainer.querySelector('a');
-      if (thumbnail && fullSize && fullSize.getAttribute('data-image')) {
-        thumbnail.style.backgroundImage = `url(${fullSize.getAttribute('data-image')})`;
-        thumbnail.style.backgroundSize = 'contain';
-        if (itemView.classList.contains('base')) {
-          thumbnail.style.backgroundPositionY = '-100px';
-        }
-      }
-    }
-  }
-
-  addLinks(itemId);
-
-  addQuantityButtons(itemView);
-
-  if (! getSetting('better-item-view.show-drop-rates', true)) {
-    return;
-  }
-
+const showDropRates = async (itemId, itemView) => {
   // don't show drop rates for items that aren't consistent.
   const id = Number.parseInt(itemId, 10);
   const ignored = [
@@ -255,6 +221,74 @@ const updateItemView = async () => {
   if (mhctJson.length > 0) {
     arWrapper.append(itemsArWrapper);
     container.append(arWrapper);
+  }
+};
+
+/**
+ * Update the item view.
+ */
+const updateItemView = async () => {
+  const itemView = document.querySelector('.itemViewContainer');
+  if (! itemView) {
+    return;
+  }
+
+  const itemId = itemView.getAttribute('data-item-id');
+  if (! itemId) {
+    return;
+  }
+
+  const sidebar = document.querySelector('.itemView-sidebar');
+  if (sidebar) {
+    const crafting = document.querySelector('.itemView-action.crafting_item');
+    if (crafting) {
+      sidebar.append(crafting);
+    }
+
+    const smashing = document.querySelector('.itemView-partsContainer');
+    if (smashing) {
+      sidebar.append(smashing);
+
+      if (! smashing.getAttribute('data-has-changed-title')) {
+        const smashingTitle = smashing.querySelector('b');
+        if (smashingTitle) {
+          smashingTitle.innerText = 'Hunter\'s Hammer to get:';
+          smashing.setAttribute('data-has-changed-title', 'true');
+
+          smashing.innerHtml = smashing.innerHTML.replace('If you smash it, you\'ll get:', '');
+        }
+      }
+    }
+  }
+
+  const obtainHint = document.querySelector('.itemView-obtainHint');
+  const description = document.querySelector('.itemView-description');
+  if (obtainHint && description) {
+    description.after(obtainHint);
+  }
+
+  if (itemView.classList.contains('base') || itemView.classList.contains('weapon') || itemView.classList.contains('skin')) {
+    // Replace the image with the full size image.
+    const thumbnailContainer = itemView.querySelector('.itemView-thumbnailContainer');
+    if (thumbnailContainer) {
+      const thumbnail = thumbnailContainer.querySelector('.itemView-thumbnail');
+      const fullSize = thumbnailContainer.querySelector('a');
+      if (thumbnail && fullSize && fullSize.getAttribute('data-image')) {
+        thumbnail.style.backgroundImage = `url(${fullSize.getAttribute('data-image')})`;
+        thumbnail.style.backgroundSize = 'contain';
+        if (itemView.classList.contains('base')) {
+          thumbnail.style.backgroundPositionY = '-100px';
+        }
+      }
+    }
+  }
+
+  addLinks(itemId);
+  addQuantityButtons(itemView);
+  updateForAirshipParts(itemId, itemView);
+
+  if (getSetting('better-item-view.show-drop-rates', true)) {
+    showDropRates(itemId, itemView);
   }
 };
 
