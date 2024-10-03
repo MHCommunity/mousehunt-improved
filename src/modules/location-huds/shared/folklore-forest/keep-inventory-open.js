@@ -1,5 +1,27 @@
 import { getSetting, saveSetting } from '@utils';
 
+const createToggleInventory = (setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass) => {
+  return (e) => {
+    e.preventDefault();
+
+    let isSetOpen = getSetting(setting, false);
+
+    if (isSetOpen) {
+      isSetOpen = false;
+      inventory.classList.remove(inventoryOpenClass);
+      toggleButton.classList.remove(buttonOpenClass);
+    } else {
+      isSetOpen = true;
+      inventory.classList.add(inventoryOpenClass);
+      toggleButton.classList.add(buttonOpenClass);
+    }
+
+    saveSetting(setting, isSetOpen);
+  };
+};
+
+let toggleInventory;
+
 /**
  * Keep the inventory open or closed based on a setting.
  *
@@ -10,7 +32,7 @@ import { getSetting, saveSetting } from '@utils';
  * @param {string} opts.inventoryOpenClass The class to add to the inventory when open.
  * @param {string} opts.buttonOpenClass    The class to add to the button when open.
  */
-const keepInventoryToggled = async (opts) => {
+const keepInventoryToggled = (opts) => {
   const {
     setting,
     buttonSelector,
@@ -29,30 +51,12 @@ const keepInventoryToggled = async (opts) => {
     return;
   }
 
-  let isSetOpen = getSetting(setting, 'not-set');
-  if (isSetOpen) {
-    inventory.classList.add(inventoryOpenClass);
-    toggleButton.classList.add(buttonOpenClass);
-  } else if (isSetOpen === 'not-set') {
-    isSetOpen = false;
+  if (toggleInventory) {
+    toggleButton.removeEventListener('click', toggleInventory);
   }
 
-  toggleButton.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    // Longer than a simple ternary and a toggle to make it more readable.
-    if (isSetOpen) {
-      isSetOpen = false;
-      inventory.classList.remove(inventoryOpenClass);
-      toggleButton.classList.remove(buttonOpenClass);
-    } else {
-      isSetOpen = true;
-      inventory.classList.add(inventoryOpenClass);
-      toggleButton.classList.add(buttonOpenClass);
-    }
-
-    saveSetting(setting, isSetOpen);
-  });
+  toggleInventory = createToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass);
+  toggleButton.addEventListener('click', toggleInventory);
 };
 
 export default keepInventoryToggled;
