@@ -2626,6 +2626,8 @@
         "name": "Draconic Depths",
         "subtitle": "Elemental",
         "id": "elemental",
+        "icon": "/items/bait/transparent_thumb/a0958278e0a2a22b4954051824d177d3.png",
+        "color": "#ff3cd7",
         "mice": [
           {
             "mouse": "tranquilia_protecticus",
