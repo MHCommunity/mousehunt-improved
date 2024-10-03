@@ -270,6 +270,10 @@
   box-shadow: 0 10px 30px #cdb495 inset;
 }
 
+.mh-dark .hunterInfoView-treasureMaps-left-currentMap-content-title {
+  color: #615d5d;
+}
+
 .mh-dark-mode .mh-improved-fancy-profile .hunterInfoView-wrapper .friendsPage-friendRow-titleBar-titleDetail {
   color: #8e5d8b;
 }

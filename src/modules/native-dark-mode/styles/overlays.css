@@ -1,24 +1,89 @@
-.mh-dark #overlayPopup .jsDialogContainer .content {
+.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer .content,
+.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer .content,
+.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .content,
+.mh-dark #overlayPopup.largerImage .jsDialogContainer .content,
+.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer .content,
+.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .content,
+.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .content,
+.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .content,
+.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .content {
   color: var(--d-text);
   background-color: var(--d-bg);
 }
 
-.mh-dark #overlayPopup .jsDialogContainer {
+.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer,
+.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer,
+.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer,
+.mh-dark #overlayPopup.largerImage .jsDialogContainer,
+.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer,
+.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer,
+.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer,
+.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer,
+.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer {
   background-color: var(--d-bg);
 }
 
-.mh-dark #overlayPopup .jsDialogContainer .suffix {
+.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer .suffix,
+.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer .suffix,
+.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .suffix,
+.mh-dark #overlayPopup.largerImage .jsDialogContainer .suffix,
+.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer .suffix,
+.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .suffix,
+.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .suffix,
+.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .suffix,
+.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .suffix {
   background-color: var(--d-alt);
   border-color: var(--d-border);
 }
 
-.mh-dark #overlayBg {
-  background: var(--d-transparent-70);
+.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer .prefix,
+.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer .prefix,
+.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .prefix,
+.mh-dark #overlayPopup.largerImage .jsDialogContainer .prefix,
+.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer .prefix,
+.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .prefix,
+.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .prefix,
+.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .prefix,
+.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .prefix {
+  background-color: var(--d-bg);
 }
 
-.mh-dark #overlayPopup .jsDialog.bottom {
+.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer .jsDialog.bottom,
+.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer .jsDialog.bottom,
+.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer .jsDialog.bottom,
+.mh-dark #overlayPopup.largerImage .jsDialogContainer .jsDialog.bottom,
+.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer .jsDialog.bottom,
+.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer .jsDialog.bottom,
+.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer .jsDialog.bottom,
+.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer .jsDialog.bottom,
+.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer .jsDialog.bottom {
   background-color: var(--d-alt);
   border-radius: 0 0 15px 15px;
+}
+
+.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer h2,
+.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer h2,
+.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer h2,
+.mh-dark #overlayPopup.largerImage .jsDialogContainer h2,
+.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer h2,
+.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer h2,
+.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer h2,
+.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer h2,
+.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer h2,
+.mh-dark #overlayPopup.treasureMapPopup .jsDialogContainer h3,
+.mh-dark #overlayPopup.itemViewPopup .jsDialogContainer h3,
+.mh-dark #overlayPopup.mouseViewPopup .jsDialogContainer h3,
+.mh-dark #overlayPopup.largerImage .jsDialogContainer h3,
+.mh-dark #overlayPopup.convertibleOpenViewPopup .jsDialogContainer h3,
+.mh-dark #overlayPopup.adventureBookPopup .jsDialogContainer h3,
+.mh-dark #overlayPopup.marketplaceViewPopup .jsDialogContainer h3,
+.mh-dark #overlayPopup.giftSelectorViewPopup .jsDialogContainer h3,
+.mh-dark #overlayPopup.supportPageContactUsForm .jsDialogContainer h3 {
+  color: var(--d-text);
+}
+
+.mh-dark #overlayBg {
+  background: var(--d-transparent-70);
 }
 
 .mh-dark .mh-improved-travel-window.greatWinterHuntGolemDestinationView {
@@ -51,17 +116,8 @@
   box-shadow: 0 -5px 8px -2px #ffae00 inset;
 }
 
-.mh-dark #overlayPopup h2,
-.mh-dark #overlayPopup h3 {
-  color: var(--d-text);
-}
-
 .mh-dark #overlayPopup.tornPage .tornPageText p {
   color: var(--d-text-muted);
-}
-
-.mh-dark #overlayPopup .jsDialogContainer .prefix {
-  background-color: var(--d-bg);
 }
 
 .mh-dark .inventoryPage-confirmPopup-itemContainer {

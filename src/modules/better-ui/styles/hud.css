@@ -113,6 +113,7 @@
 
 .mousehuntHeaderView .menuItem.new,
 .mousehuntHud-userStat .notification,
+.marketplaceView-header-notification,
 .treasureMapRootView-header-navigation-item-notification.active,
 .mousehuntHeaderView-menu-notification {
   text-shadow: 1px 1px #666;

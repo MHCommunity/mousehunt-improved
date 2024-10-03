@@ -1,0 +1,19 @@
+.treasureMapDialogView-chestPreview.rare .treasureMapDialogView-chest-item.doubled .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.very_likely .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.common .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.uncommon .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.rare .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.very_rare .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.extremely_rare .treasureMapDialogView-chest-item-padding::before {
+  display: none;
+}
+
+.treasureMapDialogView-chestPreview.rare .treasureMapDialogView-chest-item.doubled:hover .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.very_likely:hover .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.common:hover .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.uncommon:hover .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.rare:hover .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.very_rare:hover .treasureMapDialogView-chest-item-padding::before,
+.treasureMapDialogView-chest-item.extremely_rare:hover .treasureMapDialogView-chest-item-padding::before {
+  display: block;
+}

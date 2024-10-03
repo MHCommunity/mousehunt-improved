@@ -194,6 +194,7 @@
   max-width: 14px;
 }
 
+.friendsPage-friendRow-stat.gold .friendsPage-friendRow-stat-icon,
 .marketplaceView-goldValue::after {
   background-image: url(https://i.mouse.rip/mp-gold.png);
 }
@@ -244,4 +245,8 @@ div.userSelectorView-userList.loading::after {
   background:
     url(https://i.mouse.rip/mouse-loading.gif) 50% 50% no-repeat,
     url(https://www.mousehuntgame.com/images/ui/backgrounds/overlay.png) 0 0 repeat;
+}
+
+.mousehuntCharacterGuideBox {
+  background-image: url(https://i.mouse.rip/larry_circle_large.png);
 }

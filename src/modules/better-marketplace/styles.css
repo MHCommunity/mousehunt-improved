@@ -202,3 +202,23 @@ td.marketplaceView-table-name {
 .marketplaceHome-block-viewAll {
   border-color: #000;
 }
+
+#markethuntInfobox #infoboxSbPrice {
+  margin-right: 4px;
+}
+
+.marketplaceHome-blockItem-status.recommended {
+  background-image: url(https://i.mouse.rip/mp/recommended.png);
+}
+
+.marketplaceHome-blockItem-status.expensive {
+  background-image: url(https://i.mouse.rip/mp/high_value.png);
+}
+
+.marketplaceView-trendIcon.up {
+  background-image: url(https://i.mouse.rip/mp/price_up.png);
+}
+
+.marketplaceView-trendIcon.rising {
+  background-image: url(https://i.mouse.rip/mp/price_rising.png);
+}

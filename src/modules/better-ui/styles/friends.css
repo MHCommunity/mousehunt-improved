@@ -88,7 +88,58 @@
   width: calc(100% - 125px);
 }
 
-'.friendsPage-list-filter[data-filter="environment_id"] .friendsPage-list-filter-label,
-'.friendsPage-list-filter[data-filter="snuid"] .friendsPage-list-filter-label {
+.friendsPage-list-filter[data-filter="environment_id"] .friendsPage-list-filter-label,
+.friendsPage-list-filter[data-filter="snuid"] .friendsPage-list-filter-label {
   user-select: none;
+}
+
+.mh-dark .userInteractionButtonsView-button.sendMapInvite {
+  background-image: url(https://i.mouse.rip/buttons/send_map_invite.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.sendGift {
+  background-image: url(https://i.mouse.rip/buttons/send_gift.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.sendSupplies {
+  background-image: url(https://i.mouse.rip/buttons/send_supplies.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.sendTournamentInvite {
+  background-image: url(https://i.mouse.rip/buttons/send_tournament_invite.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.sendTicket {
+  background-image: url(https://i.mouse.rip/buttons/send_ticket.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.canAccept,
+.mh-dark .userInteractionButtonsView-button.sendRequest {
+  background-image: url(https://i.mouse.rip/buttons/send_request.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.accepted {
+  background-image: url(https://i.mouse.rip/buttons/friends.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.requestSent {
+  background-image: url(https://i.mouse.rip/buttons/request_sent.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.ignored {
+  background-image: url(https://i.mouse.rip/buttons/unfriend.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.requestMapInvite {
+  background-image: url(https://i.mouse.rip/buttons/request_map_invite.png);
+}
+
+.mh-dark .userInteractionButtonsView-button.self {
+  background-image: url(https://i.mouse.rip/buttons/friends.png);
+}
+
+.mousehuntHud-page-subTabContent.community .mousehuntCharacterGuideBox {
+  background-image: url(https://www.mousehuntgame.com/images/ui/onboarding/info_arrow_larry.png);
+  background-position: center top;
+  background-size: 140px;
 }
