@@ -18,11 +18,10 @@ const argv = await parseArgs(process.argv);
  *
  * @param {string}  platform  The platform to build for.
  * @param {boolean} watch     Whether to watch for changes.
- * @param {boolean} isRelease Whether this is a release build.
  *
  * @return {Promise<void>} Esbuild build result.
  */
-const buildExtension = async (platform, watch = false, isRelease = false) => {
+const buildExtension = async (platform, watch = false) => {
   fs.mkdirSync(path.join(process.cwd(), `dist/${platform}`), { recursive: true });
 
   // Copy manifest.json and inject the version number.

@@ -61,11 +61,11 @@ const addLinks = (itemId) => {
 
 let items;
 const updateForAirshipParts = async (itemId, itemView) => {
-  if (! items ) {
+  if (! items) {
     items = await getData('items');
   }
 
-  const item = items.find((item) => item.id === Number.parseInt(itemId, 10));
+  const item = items.find((i) => i.id === Number.parseInt(itemId, 10));
   if (! item || ! item.is_airship_part || ! item.airship_part_type) {
     return;
   }
@@ -89,7 +89,7 @@ const updateForAirshipParts = async (itemId, itemView) => {
   thumbnail.append(els.hull);
   thumbnail.append(els.sail);
   thumbnail.append(els.balloon);
-}
+};
 
 const addQuantityButtons = (itemView) => {
   const quantityForm = itemView.querySelector('.itemView-action-convertForm');
