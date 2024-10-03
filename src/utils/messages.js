@@ -129,6 +129,24 @@ const maybeDoMaintenance = () => {
     const errorPageStylesEl = makeElement('style', 'mh-improved-error-page-styles', errorPageStyles);
     document.head.append(errorPageStylesEl);
   }
+
+  if (! (maintenance || errorLockPage || errorPage)) {
+    return;
+  }
+
+  const backgrounds = [
+    'https://www.mousehuntgame.com/images/map/login-page/standard/2.jpg',
+    'https://www.mousehuntgame.com/images/map/login-page/standard/3.jpg',
+    'https://www.mousehuntgame.com/images/map/login-page/standard/4.jpg',
+    'https://www.mousehuntgame.com/images/map/login-page/standard/5.jpg',
+    'https://www.mousehuntgame.com/images/map/login-page/promo/bountiful_beanstalk.jpg',
+    'https://www.mousehuntgame.com/images/map/login-page/promo/school_of_sorcery.jpg',
+    'https://www.mousehuntgame.com/images/map/login-page/promo/draconic_depths.jpg',
+  ];
+
+  // pick a random background
+  const background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+  document.body.style.backgroundImage = `url(${background})`;
 };
 
 /**

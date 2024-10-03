@@ -19,6 +19,9 @@ body.PageLockError .pageFrameView-column.left {
 body.PageError,
 body.PageLockError {
   background: url(https://www.mousehuntgame.com/images/map/login-page/standard/1.jpg) no-repeat top center;
+  background-position: center center;
+  background-size: cover;
+  transition: 5s ease-in-out;
 }
 
 body.PageError .pageFrameView-content,
@@ -109,6 +112,7 @@ div[style*="float:left"] {
   width: 230px;
   height: 230px;
   background-image: url(https://i.mouse.rip/error-mouse.png);
+  transition: 0.3s ease-in-out;
 }
 
 div[style*="float:left"] img {
