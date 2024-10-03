@@ -1,4 +1,4 @@
-import { addStyles, getSetting, onNavigation } from '@utils';
+import { addSettingPreview, addStyles, getSetting, onNavigation } from '@utils';
 
 import gradients from '@data/backgrounds.json';
 
@@ -38,6 +38,19 @@ const init = async () => {
   addStyles(styles, 'custom-camp-background');
 
   onNavigation(addCampBackground, { page: 'camp' });
+
+  onNavigation(() => {
+    addSettingPreview({
+      id: 'custom-camp-background',
+      selector: '.mh-improved-custom-camp-bg-preview',
+      inputSelector: '#mousehunt-improved-settings-design-custom-camp-background select',
+      preview: false,
+      items: gradients,
+    });
+  }, {
+    page: 'preferences',
+    onLoad: true,
+  });
 };
 
 /**

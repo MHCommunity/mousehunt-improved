@@ -1,4 +1,10 @@
-import { addStyles, createPopup, getSetting, onNavigation } from '@utils';
+import {
+  addSettingPreview,
+  addStyles,
+  getSetting,
+  onNavigation,
+  setMultipleTimeout
+} from '@utils';
 
 import gradients from '@data/backgrounds.json';
 
@@ -111,96 +117,13 @@ const listenForPreferenceChanges = () => {
   });
 };
 
-/**
- * Add a preview link to show the background options.
- */
 const addPreview = () => {
-  addPreviewCallback({
+  addSettingPreview({
     id: 'custom-background',
     selector: '.mh-improved-custom-bg-preview',
     inputSelector: '#mousehunt-improved-settings-design-custom-background select',
+    items: gradients,
     previewCallback: (selected) => addBodyClass(selected),
-  });
-
-  addPreviewCallback({
-    id: 'custom-hud',
-    selector: '.mh-improved-custom-hud-preview',
-    inputSelector: '#mousehunt-improved-settings-design-custom-hud select',
-    preview: false
-  });
-
-  addPreviewCallback({
-    id: 'custom-camp-background',
-    selector: '.mh-improved-custom-camp-bg-preview',
-    inputSelector: '#mousehunt-improved-settings-design-custom-camp-background select',
-    preview: false,
-  });
-};
-
-/**
- * Add a preview link to show the background options.
- *
- * @param {Object}   options                 The options for the preview.
- * @param {string}   options.id              The ID of the preview.
- * @param {string}   options.selector        The selector for the preview link.
- * @param {string}   options.inputSelector   The selector for the input.
- * @param {boolean}  options.preview         Whether or not to show the preview button.
- * @param {Function} options.previewCallback The callback function to run when previewing.
- */
-const addPreviewCallback = ({ id, selector, inputSelector, preview = true, previewCallback = () => {} }) => {
-  const previewLink = document.querySelector(selector);
-  if (! previewLink) {
-    return;
-  }
-
-  previewLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    let content = '';
-    gradients.forEach((gradient) => {
-      content += `<div class="gradient" style="background: ${gradient.css}">
-        <div class="name">${gradient.name}</div>
-        <div class="controls">`;
-      if (preview) {
-        content += `<div class="mousehuntActionButton lightBlue mh-improved-custom-bg-action-button" data-gradient="${gradient.id}" data-action="preview"><span>Preview</span></div>`;
-      }
-
-      content += `<div class="mousehuntActionButton mh-improved-custom-bg-action-button ${preview ? 'normal' : 'small'}" data-gradient="${gradient.id}" data-action="use"><span>Use</span></div>
-          </div>
-      </div>`;
-    });
-
-    const popup = createPopup({
-      title: '',
-      className: `mh-improved-custom-background-gradient-preview-popup mh-improved-custom-preview-popup-${id}`,
-      content: `<div class="mh-improved-custom-background-gradient-preview">${content}</div>`,
-      show: false,
-    });
-
-    popup.show();
-
-    const previewActions = document.querySelectorAll('.mh-improved-custom-bg-action-button');
-    previewActions.forEach((action) => {
-      const gradient = action.getAttribute('data-gradient');
-      const actionType = action.getAttribute('data-action');
-
-      action.addEventListener('click', (evt) => {
-        evt.preventDefault();
-
-        if ('preview' === actionType) {
-          previewCallback(gradient);
-        } else if ('use' === actionType) {
-          const input = document.querySelector(inputSelector);
-          if (input) {
-            input.value = gradient;
-            input.dispatchEvent(new Event('change'));
-          }
-
-          popup.hide();
-        }
-      });
-    });
   });
 };
 
@@ -215,15 +138,11 @@ const persistBackground = () => {
     setTimeout(addBodyClass, 500);
   });
 
+  addPreview();
   onNavigation(() => {
-    setTimeout(() => {
-      listenForPreferenceChanges();
-      addPreview();
-    }, 1000);
-  }, {
-    page: 'preferences',
-    onLoad: true,
-  });
+    setMultipleTimeout(listenForPreferenceChanges, [250, 500, 1000, 2000, 5000]);
+    addPreview();
+  }, { page: 'preferences' });
 };
 
 /**

@@ -1,4 +1,5 @@
 import {
+  addSettingPreview,
   addStyles,
   getSetting,
   getUserTitle,
@@ -171,6 +172,36 @@ const watchForPreferenceChanges = () => {
   });
 };
 
+const shieldPreview = (shield) => {
+  const shieldClass = shield.id.replaceAll('-color', ' color').replaceAll('-alt', ' alt').replaceAll('.', ' ');
+  return `<div class="mh-improved-custom-shield-item-preview ${shield.id}"><a class="mousehuntHud-shield golden ${shieldClass}"></a>
+</div>`;
+};
+
+const getShieldSettingsValues = async () => {
+  const settingsValues = await settings();
+  const shields = settingsValues[0].settings.options.reduce((acc, option) => {
+    if (option.options) {
+      return [...acc, ...option.options];
+    }
+
+    return [...acc, ...option];
+  }, []).filter((option) => {
+    if (! option?.value || 'title' === option.value || 'default-normal' === option.value || 'color-cotton-candy' === option.value) {
+      return false;
+    }
+
+    return ! option.value.includes('-timer');
+  }).map((option) => {
+    return {
+      id: option.value,
+      name: option.name.replaceAll('(LGS Required)', ''),
+    };
+  });
+
+  return shields;
+};
+
 /**
  * Initialize the module.
  */
@@ -181,8 +212,18 @@ const init = async () => {
 
   changeShield();
 
-  onNavigation(() => {
+  onNavigation(async () => {
     setMultipleTimeout(watchForPreferenceChanges, [100, 1000, 2000, 5000]);
+
+    const shields = await getShieldSettingsValues();
+    addSettingPreview({
+      id: 'custom-shield',
+      selector: '.mh-improved-custom-shield-preview',
+      inputSelector: '#mousehunt-improved-settings-design-custom-shield select',
+      preview: false,
+      items: shields,
+      itemPreviewCallback: shieldPreview,
+    });
   }, {
     page: 'preferences',
     onLoad: true,

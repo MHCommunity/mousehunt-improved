@@ -1,4 +1,4 @@
-import { getSetting, onNavigation } from '@utils';
+import { addSettingPreview, getSetting, onNavigation, setMultipleTimeout } from '@utils';
 
 import settings from './settings';
 
@@ -11,9 +11,10 @@ import suede from './styles/suede.css';
 
 /**
  * Add the custom HUD style element.
+ * @param selectedPreview
  */
-const addStyleEl = () => {
-  const setting = getSetting('custom-hud-0', 'default');
+const addStyleEl = (selectedPreview = false) => {
+  const setting = selectedPreview || getSetting('custom-hud-0', 'default');
 
   const stylesEl = document.querySelector('#mh-improved-custom-hud-style');
   if (stylesEl) {
@@ -77,6 +78,20 @@ const listenForPreferenceChanges = () => {
 const persistBackground = () => {
   addStyleEl();
   onNavigation(listenForPreferenceChanges, {
+    page: 'preferences',
+    onLoad: true,
+  });
+
+  onNavigation(() => {
+    setMultipleTimeout(listenForPreferenceChanges, [250, 500, 1000, 2000, 5000]);
+    addSettingPreview({
+      id: 'custom-hud',
+      selector: '.mh-improved-custom-hud-preview',
+      inputSelector: '#mousehunt-improved-settings-design-custom-hud select',
+      items: gradients,
+      previewCallback: (selected) => addStyleEl(selected),
+    });
+  }, {
     page: 'preferences',
     onLoad: true,
   });

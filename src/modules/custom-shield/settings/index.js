@@ -7,6 +7,8 @@ export default async () => {
   let options = [
     { name: 'Default', value: 'default' },
     { name: 'Default (normal resolution)', value: 'default-normal' },
+    { name: 'Default (no LGS)', value: 'default-no-lgs' },
+    { name: 'Glazy', value: 'glazy' },
     {
       name: 'Events',
       value: 'group',
@@ -21,6 +23,7 @@ export default async () => {
         { name: 'Birthday (Year 16)', value: 'birthday.year16' },
         { name: 'Great Winter Hunt', value: 'winter_hunt' },
         { name: 'Halloween', value: 'halloween' },
+        { name: 'Halloween (Pumpkins)', value: 'halloween-text' },
         { name: 'Larry\'s Football Challenge', value: 'larrys_football_challenge' },
         { name: 'Pride (LGS Required)', value: 'pride' },
         { name: 'Remembrance Day', value: 'remembrance_day' },
@@ -94,6 +97,7 @@ export default async () => {
   if (! user.has_shield) {
     // If the user doesn't have LGS, they can't do the pride or SEH shields.
     const toDisable = new Set([
+      'default-no-lgs',
       'pride',
       'spring-egg-hunt',
       'spring-egg-hunt-alt',
@@ -125,7 +129,7 @@ export default async () => {
 
   return [{
     id: 'custom-shield',
-    title: 'Custom Shield',
+    title: 'Custom Shield <a class="mh-improved-custom-shield-preview">Preview choices</a>',
     default: [options[0]],
     description: 'Change the shield to an event shield, color, title shield, or silly shield.',
     settings: {

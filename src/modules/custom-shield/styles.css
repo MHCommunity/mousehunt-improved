@@ -1,4 +1,15 @@
 /* Lets make that shield look great */
+.mousehuntHud-shield.default,
+.mousehuntHud-shield.golden.default-no-lgs,
+.mousehuntHud-shield.default.golden.default-no-lgs {
+  top: 2px;
+  left: 10px;
+  background-image: url(https://i.mouse.rip/shield-no-lgs.png);
+  filter: drop-shadow(0 0 5px #e8dbb8);
+  background-size: contain;
+  transition: opacity 0.3s ease-in-out;
+}
+
 .mousehuntHud-shield.golden.default {
   top: 2px;
   left: 10px;
@@ -6,6 +17,13 @@
   filter: drop-shadow(0 0 5px #e8dbb8);
   background-size: contain;
   transition: opacity 0.3s ease-in-out;
+}
+
+.mousehuntHud-shield.default-normal {
+  top: unset;
+  left: unset;
+  background-image: none;
+  filter: none;
 }
 
 .mousehuntHud-shield.golden.default-normal {
@@ -18,6 +36,22 @@
 .mousehuntHud-shield.golden.default-fancy:hover,
 .mousehuntHud-shield.golden.default-fancy:focus {
   opacity: 0.9;
+}
+
+.mousehuntHud-shield.glazy {
+  top: 2px;
+  left: 10px;
+  background-image: url(https://i.mouse.rip/shield-glazy.png);
+  filter: drop-shadow(0 0 5px #e8dbb8);
+  background-size: contain;
+}
+
+.mousehuntHud-shield.halloween-text {
+  top: 2px;
+  left: 1px;
+  background-image: url(https://i.mouse.rip/shield-halloween-text.png);
+  filter: drop-shadow(0 0 5px #e8dbb8);
+  background-size: contain;
 }
 
 .mousehuntHud-shield.mhui-custom-shield.pride,
@@ -288,4 +322,47 @@
   .mousehuntHud-shield.golden.color-rainbow2 {
     animation: none;
   }
+}
+
+.mh-improved-custom-shield-preview {
+  position: absolute;
+  top: 0;
+  right: 225px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.custom-shield.custom-preview {
+  position: relative;
+}
+
+.mh-improved-custom-shield-item-preview img {
+  width: 110px;
+  height: auto;
+}
+
+.mh-improved-custom-background-gradient-preview .custom-shield.custom-preview {
+  position: relative;
+  background-color: #ddd0ad;
+  background-image: url(https://www.mousehuntgame.com/images/environments/6ef3ffe2f90a79250807b46105e77b68.jpg);
+  background-repeat: no-repeat;
+  background-position: -5px 0;
+}
+
+.mh-improved-custom-background-gradient-preview .custom-shield {
+  height: 185px;
+}
+
+.mh-improved-custom-background-gradient-preview .custom-shield .name {
+  margin-top: 125px;
+  font-size: 20px;
+}
+
+.mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.remembrance_day,
+.mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.halloween,
+.mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.spring-egg-hunt,
+.mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.spring-egg-hunt-alt {
+  left: -5px;
 }

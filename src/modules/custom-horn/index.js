@@ -1,4 +1,10 @@
-import { addStyles, getSetting, onNavigation } from '@utils';
+import {
+  addSettingPreview,
+  addStyles,
+  getSetting,
+  onNavigation,
+  setMultipleTimeout
+} from '@utils';
 
 import settings from './settings';
 import styles from './styles.css';
@@ -57,7 +63,7 @@ const listenForPreferenceChanges = () => {
 /**
  * Add a preview link to show the horn.
  */
-const addPreview = () => {
+const addShowHorn = () => {
   const previewLink = document.querySelector('.mh-improved-custom-horn-show-horn');
   if (! previewLink) {
     return;
@@ -116,14 +122,43 @@ const persistHornClass = () => {
   onNavigation(() => {
     setTimeout(addHornClass, 1000);
   });
+};
 
-  onNavigation(() => {
-    listenForPreferenceChanges();
-    addPreview();
-  }, {
-    page: 'preferences',
-    onLoad: true,
+const hornPreview = (horn) => {
+  return `<div class="mh-improved-custom-horn-preview ${horn.id}">
+  <a class="huntersHornView__horn huntersHornView__horn--default huntersHornView__horn--reveal huntersHornView__horn--ready">
+    <div class="huntersHornView__hornImage">
+      <div class="huntersHornView__hornForeground"></div>
+      <div class="huntersHornView__hornGlint">
+        <div class="huntersHornView__hornGlintImage"></div>
+        <img class="huntersHornView__hornGlintAnimatedGif">
+      </div>
+    </div>
+    <div class="huntersHornView__hornBanner">
+      <div class="huntersHornView__hornBannerTranslate">
+        <div class="huntersHornView__hornBannerImage"></div>
+      </div>
+    </div>
+  </a>
+</div>`;
+};
+
+const getHornSettingsValues = async () => {
+  const settingsValues = await settings();
+  const horns = settingsValues[0].settings.options.reduce((acc, option) => {
+    if (option.options) {
+      return [...acc, ...option.options];
+    }
+
+    return [...acc, ...option];
+  }, []).map((option) => {
+    return {
+      id: option.value,
+      name: option.name,
+    };
   });
+
+  return horns;
 };
 
 /**
@@ -133,6 +168,26 @@ const init = async () => {
   addStyles(styles, 'custom-horn');
 
   persistHornClass();
+
+  onNavigation(async () => {
+    setMultipleTimeout(() => {
+      listenForPreferenceChanges();
+      addShowHorn();
+    }, [250, 500, 1000, 2000, 5000]);
+
+    const horns = await getHornSettingsValues();
+    addSettingPreview({
+      id: 'custom-horn',
+      selector: '.mh-improved-custom-horn-preview',
+      inputSelector: '#mousehunt-improved-settings-design-custom-horn select',
+      preview: false,
+      items: horns,
+      itemPreviewCallback: hornPreview,
+    });
+  }, {
+    page: 'preferences',
+    onLoad: true,
+  });
 };
 
 /**

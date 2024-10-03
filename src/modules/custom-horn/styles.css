@@ -1,42 +1,51 @@
+.mh-improved-custom-horn-preview.horn-color-blue .huntersHornView__horn,
 .huntersHornView.horn-color-blue .huntersHornView__horn {
   filter: hue-rotate(158deg);
 }
 
+.mh-improved-custom-horn-preview.horn-color-cyan .huntersHornView__horn,
 .huntersHornView.horn-color-cyan .huntersHornView__horn {
   filter: hue-rotate(112deg);
 }
 
+.mh-improved-custom-horn-preview.horn-color-green .huntersHornView__horn,
 .huntersHornView.horn-color-green .huntersHornView__horn {
   filter: hue-rotate(66deg);
 }
 
+.mh-improved-custom-horn-preview.horn-color-pink .huntersHornView__horn,
 .huntersHornView.horn-color-pink .huntersHornView__horn {
   filter: hue-rotate(280deg);
 }
 
+.mh-improved-custom-horn-preview.horn-color-purple .huntersHornView__horn,
 .huntersHornView.horn-color-purple .huntersHornView__horn {
   filter: hue-rotate(195deg);
 }
 
+.mh-improved-custom-horn-preview.horn-color-red .huntersHornView__horn,
 .huntersHornView.horn-color-red .huntersHornView__horn {
   filter: hue-rotate(317deg) saturate(1.6);
 }
 
+.mh-improved-custom-horn-preview.horn-color-faded .huntersHornView__horn,
 .huntersHornView.horn-color-faded .huntersHornView__horn {
   filter: sepia(1);
 }
 
+.mh-improved-custom-horn-preview.horn-color-rainbow .huntersHornView__horn,
 .huntersHornView.horn-color-rainbow .huntersHornView__horn {
   animation: mh-improved-hue-rotate 30s infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .mh-improved-custom-horn-preview.horn-color-rainbow .huntersHornView__horn,
   .huntersHornView.horn-color-rainbow .huntersHornView__horn {
     animation: none;
   }
 }
 
-.mh-improved-custom-horn-show-horn {
+.mh-improved-custom-horn-links {
   position: absolute;
   top: 0;
   right: 225px;
@@ -44,4 +53,59 @@
   display: flex;
   align-items: center;
   font-size: 12px;
+}
+
+.mh-improved-custom-horn-links .seperator {
+  width: 20px;
+  text-align: center;
+}
+
+.mh-improved-custom-horn-preview .huntersHornView__horn {
+  top: unset;
+  left: unset;
+}
+
+.custom-horn .mh-improved-custom-horn-preview {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mh-improved-custom-background-gradient-preview .custom-horn.custom-preview {
+  height: 125px;
+}
+
+.mh-improved-custom-background-gradient-preview .custom-horn.custom-preview {
+  position: relative;
+  background-color: #a9a9a9;
+  background-image: url(https://www.mousehuntgame.com/images/environments/6ef3ffe2f90a79250807b46105e77b68.jpg);
+  background-repeat: no-repeat;
+  background-position: -305px 0;
+}
+
+.mh-improved-custom-background-gradient-preview .custom-horn.custom-preview .controls {
+  z-index: 1;
+  align-self: flex-start;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+
+.mh-improved-custom-background-gradient-preview .custom-horn.custom-preview::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/ui/hunters_horn/backdrop.png);
+  background-position: -305px 0;
+  opacity: 0.7;
+}
+
+.mh-improved-custom-background-gradient-preview .custom-horn .name {
+  z-index: 1;
+  font-size: 22px;
+  font-weight: 900;
+  color: #000;
+  text-align: center;
+  text-shadow: 0 1px 2px #fff;
 }

@@ -113,6 +113,7 @@ body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
   font-size: 22px;
   font-weight: 900;
   color: #fff;
+  text-align: center;
   text-shadow: 0 1px 2px #000;
 }
 
@@ -126,4 +127,8 @@ body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
 
 .mh-improved-custom-background-gradient-preview .mh-improved-custom-bg-action-button {
   margin: 0 3px;
+}
+
+.mh-improved-custom-background-gradient-preview .gradient.custom-preview {
+  background-color: #a9a9a9;
 }
