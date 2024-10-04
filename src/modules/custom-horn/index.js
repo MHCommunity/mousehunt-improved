@@ -146,11 +146,15 @@ const hornPreview = (horn) => {
 const getHornSettingsValues = async () => {
   const settingsValues = await settings();
   const horns = settingsValues[0].settings.options.reduce((acc, option) => {
-    if (option?.options && Array.isArray(option?.options)) {
+    if (option.options && Array.isArray(option.options)) {
       return [...acc, ...option.options];
     }
 
-    return Array.isArray(option) ? [...acc, ...option] : [...acc];
+    if (option.value && option.name) {
+      return [...acc, option];
+    }
+
+    return acc;
   }, []).map((option) => {
     return {
       id: option.value,
