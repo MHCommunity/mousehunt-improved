@@ -32,7 +32,7 @@
   color: var(--d-text);
 }
 
-.mh-dark .mh-dark .hunterInfoView-corkBoardBlock .messageBoardView-message {
+.mh-dark .hunterInfoView-corkBoardBlock .messageBoardView-message {
   background-color: var(--d);
 }
 
@@ -202,4 +202,9 @@
 
 .mh-dark a.hunterInfoView-playerActionsBlock-item-text {
   color: var(--d-link);
+}
+
+.mh-dark .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamName.noTeam,
+.mh-dark .hunterInfoView-treasureMaps-left-currentMap-content-title {
+  color: var(--d-text-muted);
 }

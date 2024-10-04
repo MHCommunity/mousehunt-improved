@@ -478,3 +478,12 @@
   background-color: var(--d-bg);
   border-color: var(--d-bg);
 }
+
+.mh-dark .mh-ui-no-ar {
+  color: var(--d-text-muted);
+  border-color: var(--d-text-muted);
+}
+
+.mh-dark .treasureMapView-block-content-heading-image {
+  box-shadow: 0 0 1px 1px var(--d);
+}

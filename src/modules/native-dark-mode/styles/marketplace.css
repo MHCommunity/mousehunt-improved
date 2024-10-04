@@ -231,6 +231,10 @@
   background-color: var(--d-purple);
 }
 
+.mh-dark .marketplaceView-listingType {
+  background-color: var(--d-purple);
+}
+
 .mh-dark .marketplaceView-listingType.buy {
   background-color: var(--d-blue-dark);
 }
