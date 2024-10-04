@@ -820,7 +820,7 @@ const addSettingForModule = async (module) => {
   }
 };
 
-const run = ({ id, selector, inputSelector, items = [], preview = true, previewCallback = () => {}, itemPreviewCallback = null }) => {
+const doAddSettingPreview = ({ id, selector, inputSelector, items = [], preview = true, previewCallback = () => {}, itemPreviewCallback = null }) => {
   const previewLink = document.querySelector(selector);
   if (! previewLink) {
     return;
@@ -840,7 +840,7 @@ const run = ({ id, selector, inputSelector, items = [], preview = true, previewC
     const hasItemPreview = !! itemPreviewCallback;
 
     const content = items.map((gradient) => `
-      <div class="gradient ${id}${hasItemPreview ? ' custom-preview' : ''}"${gradient.css ? ` style="background: ${gradient.css}"` : ''}>
+      <div class="gradient ${id}${gradient?.id ? ` ${gradient.id}` : '' }${hasItemPreview ? ' custom-preview' : ''}"${gradient.css ? ` style="background: ${gradient.css}"` : ''}>
         <div class="name">${gradient.name}</div>
         ${hasItemPreview ? itemPreviewCallback(gradient) : ''}
         <div class="controls">
@@ -896,7 +896,7 @@ const run = ({ id, selector, inputSelector, items = [], preview = true, previewC
  * @param {Function} options.previewCallback The callback function to run when previewing.
  */
 const addSettingPreview = (options) => {
-  setMultipleTimeout(() => run(options), [10, 250, 500, 1000, 2000, 5000]);
+  setMultipleTimeout(() => doAddSettingPreview(options), [10, 250, 500, 1000, 2000, 5000]);
 };
 
 export {
