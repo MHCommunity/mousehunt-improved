@@ -356,9 +356,13 @@ a.floatingIslandsHUD-islandLoot:focus {
   position: absolute;
   top: 15px;
   right: 15px;
-  z-index: 10;
+  z-index: 15;
   width: 30px;
   height: 30px;
+}
+
+.floatingIslandsHUD.island .floatingIslandsHUD-airship-animationBoundary {
+  z-index: 14;
 }
 
 .floatingIslandsHUD-jetstream .mousehuntTooltip {
