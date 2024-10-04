@@ -1156,3 +1156,7 @@ input.treasureMapView-block-search-text {
 .treasureMapRootView-subTabContainer:hover .treasureMapRootView-subTab:hover {
   padding: 0 16px;
 }
+
+.treasureMapView-goals-group-goal.complete .treasureMapView-goals-group-goal-image {
+  background-size: cover;
+}
