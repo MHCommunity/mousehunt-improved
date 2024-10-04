@@ -118,6 +118,10 @@ const highlightSkyMap = async () => {
 
     const powerType = mouse.type.replaceAll('_paragon', '');
     if (powerType && mapByPowerType[powerType]) {
+      if (! mapByPowerType[powerType].edge) {
+        return;
+      }
+
       mapByPowerType[powerType].edge.classList.add('highlight-for-map');
       mapByPowerType[powerType].edge.classList.remove('lowlight-for-map');
 
