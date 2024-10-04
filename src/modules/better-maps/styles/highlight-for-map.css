@@ -1,0 +1,19 @@
+.floatingIslandsHUD-powerType.lowlight-for-map,
+.floatingIslandsAdventureBoardSkyMap-islandMod.lowlight-for-map {
+  opacity: 0.5;
+}
+
+.floatingIslandsHUD-powerType.highlight-for-map,
+.floatingIslandsAdventureBoardSkyMap-islandMod.highlight-for-map {
+  opacity: 1;
+}
+
+.floatingIslandsAdventureBoardSkyMap-islandMod.extra-highlight-for-map .floatingIslandsHUD-mod {
+  background-color: rgb(55 200 255 / 55%);
+  border-radius: 5px;
+}
+
+.floatingIslandsHUD-powerType.extra-highlight-for-map {
+  background-color: rgb(55 200 255 / 75%);
+  border-radius: 50%;
+}

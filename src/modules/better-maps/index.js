@@ -22,6 +22,7 @@ import { maybeShowInvitesTab } from './modules/tab-invites';
 import { showHuntersTab } from './modules/tab-hunters';
 
 import community from './modules/community';
+import floatingIslands from './modules/floating-islands';
 import scrolls from './modules/scrolls';
 import shops from './modules/shops';
 import sidebar from './modules/sidebar';
@@ -463,6 +464,8 @@ const init = async () => {
     addBlockClasses();
     updateMapClasses();
   });
+
+  floatingIslands();
 };
 
 /**
