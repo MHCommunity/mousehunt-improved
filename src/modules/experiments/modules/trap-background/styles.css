@@ -4,3 +4,7 @@
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
 }
+
+.itembrowser-skin-image-wrapper {
+  background: url(https://www.mousehuntgame.com/images/items/bases/trap_small/a44d6a59ca9c0d11224bb36fd4e16378.png), linear-gradient(0deg, #eee2b4 0%, #b1e0d1 100%);
+}
