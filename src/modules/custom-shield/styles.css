@@ -55,7 +55,7 @@
 }
 
 .mousehuntHud-shield.mhui-custom-shield.pride,
-.mousehuntHud-shield.golden.mhui-custom-shield.pride {
+.mousehuntHud-shield.golden.pride {
   background: url(https://i.mouse.rip/shield-pride.png) 0 0/105%;
 }
 
@@ -365,4 +365,16 @@
 .mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.spring-egg-hunt,
 .mh-improved-custom-background-gradient-preview .custom-shield .mousehuntHud-shield.spring-egg-hunt-alt {
   left: -5px;
+}
+
+.mh-improved-custom-shield-item-preview .mousehuntHud-shield.pride {
+  left: -4px;
+}
+
+.custom-shield.custom-preview.romeno {
+  background-position-x: 20px;
+}
+
+.mh-improved-custom-shield-item-preview .mousehuntHud-shield.romeno {
+  left: 20px;
 }

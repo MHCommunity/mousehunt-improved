@@ -173,7 +173,11 @@ const watchForPreferenceChanges = () => {
 };
 
 const shieldPreview = (shield) => {
-  const shieldClass = shield.id.replaceAll('-color', ' color').replaceAll('-alt', ' alt').replaceAll('.', ' ');
+  const shieldClass = shield.id
+    .replaceAll('color-', ' default color-')
+    .replaceAll('-alt', ' alt')
+    .replaceAll('.', ' ');
+
   return `<div class="mh-improved-custom-shield-item-preview ${shield.id}"><a class="mousehuntHud-shield golden ${shieldClass}"></a>
 </div>`;
 };
@@ -185,7 +189,11 @@ const getShieldSettingsValues = async () => {
       return [...acc, ...option.options];
     }
 
-    return Array.isArray(option) ? [...acc, ...option] : [...acc];
+    if (option.value && option.name) {
+      return [...acc, option];
+    }
+
+    return acc;
   }, []).filter((option) => {
     if (! option?.value || 'title' === option.value || 'default-normal' === option.value || 'color-cotton-candy' === option.value) {
       return false;

@@ -75,7 +75,7 @@
 
 .mh-improved-custom-background-gradient-preview .custom-horn.custom-preview {
   position: relative;
-  height: 125px;
+  height: 105px;
   background-color: #a9a9a9;
   background-image: url(https://www.mousehuntgame.com/images/environments/6ef3ffe2f90a79250807b46105e77b68.jpg);
   background-repeat: no-repeat;
@@ -85,7 +85,6 @@
 .mh-improved-custom-background-gradient-preview .custom-horn.custom-preview .controls {
   z-index: 1;
   align-self: flex-start;
-  margin-bottom: 10px;
   margin-left: 5px;
 }
 
