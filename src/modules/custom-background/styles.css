@@ -93,6 +93,7 @@ body.mh-improved-bg-background-color-faded .pageFrameView-column.left {
   gap: 20px;
   height: 80vh;
   padding-right: 10px;
+  margin-top: 20px;
   margin-right: -10px;
   overflow: auto;
 }
