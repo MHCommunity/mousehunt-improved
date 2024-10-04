@@ -93,6 +93,7 @@ const makeSendSuppliesButton = async (btn, snuid) => {
   const quickSendInput = makeElement('input', 'quickSendInput');
   quickSendInput.setAttribute('type', 'number');
   quickSendInput.setAttribute('placeholder', 'Quantity');
+  quickSendInput.setAttribute('min', 0);
 
   const quickSendButton = makeElement('div', ['quickSendButton', 'mousehuntActionButton', 'tiny'], '<span>Send</span>');
 
