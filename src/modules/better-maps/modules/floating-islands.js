@@ -142,8 +142,6 @@ const highlightSkyMap = async () => {
       });
     }
   });
-
-  // TODO: update this to also highlight wardens.
 };
 
 const main = async () => {

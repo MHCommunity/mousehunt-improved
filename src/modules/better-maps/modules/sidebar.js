@@ -6,7 +6,7 @@ import {
   sessionGet
 } from '@utils';
 
-import { refreshMap, getCompletedGoals } from '../utils';
+import { getCompletedGoals, refreshMap } from '../utils';
 
 /**
  * Add the map to the sidebar.

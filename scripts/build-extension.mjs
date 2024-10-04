@@ -16,8 +16,8 @@ const argv = await parseArgs(process.argv);
 /**
  * Main build function.
  *
- * @param {string}  platform  The platform to build for.
- * @param {boolean} watch     Whether to watch for changes.
+ * @param {string}  platform The platform to build for.
+ * @param {boolean} watch    Whether to watch for changes.
  *
  * @return {Promise<void>} Esbuild build result.
  */

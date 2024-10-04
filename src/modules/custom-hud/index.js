@@ -11,7 +11,8 @@ import suede from './styles/suede.css';
 
 /**
  * Add the custom HUD style element.
- * @param selectedPreview
+ *
+ * @param {string} selectedPreview The selected preview.
  */
 const addStyleEl = (selectedPreview = false) => {
   const setting = selectedPreview || getSetting('custom-hud-0', 'default');
