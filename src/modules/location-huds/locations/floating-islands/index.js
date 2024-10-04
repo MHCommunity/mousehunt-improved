@@ -402,9 +402,14 @@ const showJetstream = async () => {
  * Make the airship draggable.
  */
 const makeAirshipDraggable = () => {
-  const airship = document.querySelector('.floatingIslandsHUD.island .floatingIslandsHUD-airshipContainer');
+  const airship = document.querySelector('.floatingIslandsHUD-airshipContainer');
   if (! airship) {
     return;
+  }
+
+  if (airship.classList.contains('landOnLaunchPad')) {
+    airship.style.top = '';
+    airship.style.left = '';
   }
 
   const airshipBox = airship.querySelector('.floatingIslandsHUD-airship-boundingBox');
@@ -462,19 +467,27 @@ const makeAirshipDraggable = () => {
     startTop = airship.offsetTop;
     startLeft = airship.offsetLeft;
 
-    document.removeEventListener('mouseup', mouseup);
-    document.removeEventListener('mousemove', mousemove);
-
     document.addEventListener('mouseup', mouseup);
     document.addEventListener('mousemove', mousemove);
   };
 
-  airship.removeEventListener('mousedown', mousedown);
+  // Remove existing event listeners if they exist
+  airship.removeEventListener('mousedown', airship._mousedownHandler);
+  document.removeEventListener('mouseup', airship._mouseupHandler);
+  document.removeEventListener('mousemove', airship._mousemoveHandler);
+
+  // Attach new event listeners and store references to them
+  airship._mousedownHandler = mousedown;
+  airship._mouseupHandler = mouseup;
+  airship._mousemoveHandler = mousemove;
+
   airship.addEventListener('mousedown', mousedown);
 
   const islandContainer = document.querySelector('.floatingIslandPaperDoll');
   if (islandContainer) {
-    islandContainer.addEventListener('click', () => {
+    islandContainer.removeEventListener('click', islandContainer._clickHandler);
+
+    islandContainer._clickHandler = () => {
       // Reset the airship position when clicking on the island.
       saveSetting('location-huds.fi-draggable-airship-position', {});
 
@@ -484,10 +497,11 @@ const makeAirshipDraggable = () => {
       setTimeout(() => {
         airship.style.transition = '';
       }, 500);
-    });
+    };
+
+    islandContainer.addEventListener('click', islandContainer._clickHandler);
   }
 };
-
 /**
  * Helper to do all the things.
  */
@@ -498,7 +512,7 @@ const run = async () => {
   await maybeChangeWarning();
 
   if (getSetting('location-huds.fi-draggable-airship')) {
-    makeAirshipDraggable();
+    setTimeout(makeAirshipDraggable, 500);
   }
 };
 
