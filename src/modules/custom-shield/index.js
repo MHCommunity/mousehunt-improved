@@ -181,11 +181,11 @@ const shieldPreview = (shield) => {
 const getShieldSettingsValues = async () => {
   const settingsValues = await settings();
   const shields = settingsValues[0].settings.options.reduce((acc, option) => {
-    if (option.options) {
+    if (option.options && Array.isArray(option.options)) {
       return [...acc, ...option.options];
     }
 
-    return [...acc, ...option];
+    return Array.isArray(option) ? [...acc, ...option] : [...acc];
   }, []).filter((option) => {
     if (! option?.value || 'title' === option.value || 'default-normal' === option.value || 'color-cotton-candy' === option.value) {
       return false;
