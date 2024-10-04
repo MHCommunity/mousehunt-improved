@@ -431,7 +431,7 @@ const getArForMouse = async (id, type = 'mouse') => {
   }
 
   // No sense in fetching the data for the m400 mouse.
-  if (! isItem && id === 'm400') {
+  if (! isItem && (id === 'm400' || id == 547)) { // eslint-disable-line eqeqeq
     return [];
   }
 
