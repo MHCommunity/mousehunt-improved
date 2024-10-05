@@ -14,17 +14,17 @@
 }
 
 /* first dropdown on the friends page - this is the search by friend name */
-.PageAdversaries #select2-drop li,
-.PageFriends #select2-drop li {
+.PageAdversaries .adversariesPage-list-filter #select2-drop li,
+.PageFriends .adversariesPage-list-filter #select2-drop li {
   padding: 3px;
   font-size: 12px;
 }
 
-.PageAdversaries #select2-drop li:nth-child(even) {
+.PageAdversaries .adversariesPage-list-filter #select2-drop li:nth-child(even) {
   background-color: #eae9e9;
 }
 
-.PageAdversaries #select2-drop li:nth-child(even).select2-highlighted {
+.PageAdversaries .adversariesPage-list-filter #select2-drop li:nth-child(even).select2-highlighted {
   background-color: #3875d7;
 }
 

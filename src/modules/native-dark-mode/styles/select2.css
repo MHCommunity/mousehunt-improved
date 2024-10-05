@@ -45,17 +45,18 @@
   background-color: var(--d-bg);
 }
 
-.mh-dark .PageAdversaries #select2-drop li,
-.mh-dark .PageFriends #select2-drop li {
+.mh-dark .PageAdversaries .adversariesPage-list-filter #select2-drop li,
+.mh-dark .PageFriends .adversariesPage-list-filter #select2-drop li {
   background-color: var(--d-bg);
 }
 
-.mh-dark .PageAdversaries #select2-drop li:nth-child(even) {
+.mh-dark .PageAdversaries .adversariesPage-list-filter #select2-drop li:nth-child(even) {
   background-color: var(--d-bg-alt);
 }
 
-.mh-dark .select2-drop li.select2-highlighted {
-  background-color: var(--d-action);
+.mh-dark .select2-drop li.select2-highlighted,
+.mh-dark .select2-results .select2-highlighted .select2-result-label {
+  background-color: var(--d-blue-dark);
 }
 
 .mh-dark .select2-search input {
