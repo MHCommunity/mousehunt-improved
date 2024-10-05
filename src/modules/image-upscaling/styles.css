@@ -250,3 +250,7 @@ div.userSelectorView-userList.loading::after {
 .mousehuntCharacterGuideBox {
   background-image: url(https://i.mouse.rip/larry_circle_large.png);
 }
+
+.friendsPage-friendRow-stat.points .friendsPage-friendRow-stat-icon {
+  background-image: url(https://www.mousehuntgame.com/images/items/stats/transparent_thumb/eeebc1c32b4242b95f75041be7275980.png);
+}
