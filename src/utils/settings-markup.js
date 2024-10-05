@@ -840,7 +840,7 @@ const doAddSettingPreview = ({ id, selector, inputSelector, items = [], preview 
     const hasItemPreview = !! itemPreviewCallback;
 
     const content = items.map((gradient) => `
-      <div class="gradient ${id}${gradient?.id ? ` ${gradient.id}` : '' }${hasItemPreview ? ' custom-preview' : ''}"${gradient.css ? ` style="background: ${gradient.css}"` : ''}>
+      <div class="gradient ${id}${gradient?.id ? ` ${gradient.id}` : ''}${hasItemPreview ? ' custom-preview' : ''}"${gradient.css ? ` style="background: ${gradient.css}"` : ''}>
         <div class="name">${gradient.name}</div>
         ${hasItemPreview ? itemPreviewCallback(gradient) : ''}
         <div class="controls">
