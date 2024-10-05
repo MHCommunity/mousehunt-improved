@@ -6,7 +6,7 @@ div#select2-drop.marketplaceView-header-search-dropdown .select2-result-sub .sel
   display: grid;
   grid-template-columns: 30px 4fr 1fr;
   place-items: center start;
-  padding-left: 10px;
+  padding-left: 1px;
 }
 
 div#select2-drop.marketplaceView-header-search-dropdown .friendsPage-filter-environment-thumb {
@@ -221,4 +221,16 @@ td.marketplaceView-table-name {
 
 .marketplaceView-trendIcon.rising {
   background-image: url(https://i.mouse.rip/mp/price_rising.png);
+}
+
+.marketplaceView-header-search-dropdown {
+  width: 225px !important;
+}
+
+.marketplaceView-header-search-dropdown .select2-results {
+  width: 210px;
+}
+
+.marketplaceView-header-search-dropdown .select2-result-unselectable.select2-disabled {
+  display: none;
 }
