@@ -17,6 +17,7 @@ const validDataFiles = new Set([
   'minlucks',
   'relic-hunter-hints',
   'scoreboards',
+  'scrolls-to-maps',
   'ultimate-checkmark',
   'upscaled-images',
   'wisdom',

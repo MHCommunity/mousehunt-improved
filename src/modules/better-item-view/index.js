@@ -224,6 +224,110 @@ const showDropRates = async (itemId, itemView) => {
   }
 };
 
+const maybeShowMiceOnMapLink = async (itemId, itemView) => {
+  if (! items) {
+    items = await getData('items');
+  }
+
+  const item = items.find((i) => i.id === Number.parseInt(itemId, 10));
+  console.log('item', item);
+  if (! (item && 'convertible' === item?.classification && item?.tags?.includes('scroll_case'))) {
+    return;
+  }
+
+  const scrollsToMaps = await getData('scrolls-to-maps');
+  console.log('scrollsToMaps[item.type]', scrollsToMaps[item.type]);
+  console.log('scrollsToMaps[item.type].length', scrollsToMaps[item.type].length);
+  if (! scrollsToMaps || ! scrollsToMaps[item.type] || ! scrollsToMaps[item.type].length) {
+    return;
+  }
+
+  const itemViewDescription = itemView.querySelector('.itemView-description');
+  console.log('itemViewDescription', itemViewDescription);
+  if (! itemViewDescription) {
+    return;
+  }
+
+  const mapLink = makeElement('div', 'mh-improved-scroll-to-map');
+  const singleMap = scrollsToMaps[item.type].length === 1;
+
+  if (singleMap) {
+    const map = scrollsToMaps[item.type][0];
+    if (! map.name || ! map.mhctId) {
+      mapLink.remove();
+      return;
+    }
+  }
+
+  const title = makeElement('div', 'mh-improved-scroll-to-map-multiple');
+  makeElement('strong', 'mh-improved-scroll-to-map-title-text', 'Maps for this scroll case:', title);
+
+  const tooltip = makeElement('div', ['PreferencesPage__blackTooltip', 'mh-improved-tooltip']);
+  makeElement('span', 'PreferencesPage__blackTooltipText', 'Click the map to view the possible mice on MHCT.', tooltip);
+  title.append(tooltip);
+
+  mapLink.append(title);
+
+  // these have multiple but are based on rank, so we only want to show the correct one.
+  // chrome_boss_scroll_case_convertible
+  // rainbow_scroll_case_convertible
+  // party_size_rainbow_scroll_case_convertible
+  // toxic_scroll_case_convertible
+
+  const mapList = makeElement('ul', 'mh-improved-scroll-to-map-multiple-list');
+  let hasShownMaps = false;
+  scrollsToMaps[item.type].forEach((map) => {
+    if (! map.name || ! map.mhctId) {
+      return;
+    }
+
+    hasShownMaps = true;
+
+    const listItem = makeElement('li', 'mh-improved-scroll-to-map-multiple-list-item');
+    const link = makeElement('a', 'mh-improved-scroll-to-map-link', map.name);
+    link.href = `https://www.mhct.win/mapper.php?item=${map.mhctId}`;
+    link.target = '_mhct';
+    listItem.append(link);
+    mapList.append(listItem);
+  });
+
+  if (! hasShownMaps) {
+    mapLink.remove();
+    return;
+  }
+
+  mapLink.append(mapList);
+
+  itemViewDescription.append(mapLink);
+};
+
+const updateDescription = (itemView) => {
+  const toTruncate = [
+    ['Upon opening this scroll case and completing the Gilded', '<b>A great way to share the Lucky Golden Shield with friends!</b>'],
+    ['Upon opening this case and completing the Chrome Treasure Map', '<b>• Chrome Journal Theme Scrap</b><br>'],
+  ];
+
+  const description = itemView.querySelector('.itemView-description');
+  if (! description) {
+    return;
+  }
+
+  let text = description.innerHTML;
+
+  toTruncate.forEach(([start, end]) => {
+    const startIndex = text.indexOf(start);
+    const endIndex = text.indexOf(end);
+
+    // Ensure both start and end are found and end appears after start
+    if (startIndex !== -1 && endIndex !== -1 && endIndex > startIndex) {
+      // Remove the text between start and end, including the start and end text
+      text = text.slice(0, Math.max(0, startIndex)) + text.slice(Math.max(0, endIndex + end.length));
+    }
+  });
+
+  // Update the description content with the modified text
+  description.innerHTML = text;
+};
 /**
  * Update the item view.
  */
@@ -283,6 +387,8 @@ const updateItemView = async () => {
     }
   }
 
+  updateDescription(itemView);
+
   addLinks(itemId);
   addQuantityButtons(itemView);
   updateForAirshipParts(itemId, itemView);
@@ -290,6 +396,8 @@ const updateItemView = async () => {
   if (getSetting('better-item-view.show-drop-rates', true)) {
     showDropRates(itemId, itemView);
   }
+
+  await maybeShowMiceOnMapLink(itemId, itemView);
 };
 
 const shortenRecipeGoldHint = () => {

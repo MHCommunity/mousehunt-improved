@@ -348,3 +348,51 @@ input.itemView-action-convert-quantity {
 .mh-improved-airship-part-container:hover .mh-improved-airship-part.silhouette {
   opacity: 0.1;
 }
+
+.mh-improved-scroll-to-map {
+  margin-top: 10px;
+}
+
+.mh-improved-scroll-to-map strong {
+  font-weight: 900;
+}
+
+ul.mh-improved-scroll-to-map-multiple-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  list-style-type: disc;
+  background-color: #eee;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.mh-improved-scroll-to-map-multiple {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  margin-top: 10px;
+  background-color: #eee;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.mh-improved-scroll-to-map-title-text {
+  font-size: 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.mh-improved-scroll-to-map .PreferencesPage__blackTooltip.mh-improved-tooltip {
+  margin-right: 5px;
+}
+
+.mh-improved-scroll-to-map-multiple-list li {
+  line-height: 1.5;
+}
