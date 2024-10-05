@@ -98,3 +98,15 @@
   background-position: center top;
   background-size: 140px;
 }
+
+.campPage-trap-friendContainer-environment-title[data-number-of-friends]::after {
+  content: " (" attr(data-number-of-friends) ")";
+}
+
+.campPage-trap-friendContainer-environment-title.friends-hidden::after {
+  content: " (" attr(data-number-of-friends) " hidden)";
+}
+
+.campPage-trap-friendContainer-environment a.friends-hidden {
+  display: none;
+}
