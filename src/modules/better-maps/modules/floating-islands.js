@@ -53,6 +53,20 @@ const highlightSkyMap = async () => {
   const edge = [...document.querySelectorAll('.floatingIslandsAdventureBoardSkyMap-powerTypes .floatingIslandsHUD-powerType')];
   const grid = [...document.querySelectorAll('.floatingIslandsAdventureBoardSkyMap-islandModContainer .floatingIslandsAdventureBoardSkyMap-islandMod')];
 
+  // if any of the grid doesnt include the paragon tiles, return.
+  if (! grid.some((tile) => {
+    if (tile.classList.contains('paragon_cache_a') ||
+      tile.classList.contains('paragon_cache_b') ||
+      tile.classList.contains('paragon_cache_c') ||
+      tile.classList.contains('paragon_cache_d')) {
+      return true;
+    }
+
+    return false;
+  })) {
+    return;
+  }
+
   /**
    * The grid is laid out like so:
    * <arcane>        [ ]    [ ]    [ ]     [ ]
