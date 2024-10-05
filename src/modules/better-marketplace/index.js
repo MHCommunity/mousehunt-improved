@@ -275,7 +275,15 @@ const waitForFooterReady = (attempts = 0) => {
   setTimeout(() => {
     opts.forEach((order) => {
       order.addEventListener('click', () => {
-        const quantity = order.textContent.trim();
+        let quantity = order.innerHTML;
+
+        // Marketplace tweaks adds content to the element so we need to remove it.
+        const brIndex = quantity.indexOf('<br>');
+        quantity = Number.parseInt(brIndex === -1 ? quantity.trim() : quantity.slice(0, Math.max(0, brIndex)).trim(), 10);
+        if (! quantity || Number.isNaN(quantity)) {
+          return;
+        }
+
         hg.views.MarketplaceView.setOrderQuantity(quantity);
       });
     });
