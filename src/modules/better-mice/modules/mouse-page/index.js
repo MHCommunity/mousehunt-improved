@@ -352,7 +352,7 @@ const sortStats = (type, reverse = false) => {
 const addSortButton = (elements, type) => {
   elements.forEach((el) => {
     const sortButton = makeElement('div', ['sort-button', 'unsorted'], '');
-    el.addEventListener('click', (e) => {
+    el.addEventListener('click', () => {
       const otherSortButtons = el.parentNode.querySelectorAll('.sort-button');
       otherSortButtons.forEach((button) => {
         if (button !== sortButton) {
