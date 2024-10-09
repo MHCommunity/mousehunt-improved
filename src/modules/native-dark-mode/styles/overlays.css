@@ -185,3 +185,16 @@
 .mh-dark .convertibleOpenView-header a {
   color: var(--d-link);
 }
+
+.mh-dark #overlayPopup.hunting_summary .jsDialogContainer {
+  background-color: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.hunting_summary .title {
+  color: var(--d-text);
+}
+
+.mh-dark #overlayPopup.hunting_summary .jsDialogContainer .suffix {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+}

@@ -91,3 +91,7 @@
   background-color: var(--d-blue-dark);
   outline: 1px solid var(--d-blue);
 }
+
+.mh-dark .huntersHornView__timerState {
+  color: var(--d-black);
+}
