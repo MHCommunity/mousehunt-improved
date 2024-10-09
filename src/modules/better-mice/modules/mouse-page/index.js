@@ -352,7 +352,7 @@ const sortStats = (type, reverse = false) => {
 const addSortButton = (elements, type) => {
   elements.forEach((el) => {
     const sortButton = makeElement('div', ['sort-button', 'unsorted'], '');
-    el.addEventListener('click', () => {
+    el.addEventListener('click', (e) => {
       // make sure all other sort buttons are unsorted
       const otherSortButtons = el.parentNode.querySelectorAll('.sort-button');
       otherSortButtons.forEach((button) => {
@@ -404,7 +404,7 @@ const getSelectorPrefix = () => {
  * @param {string} cat     The category to add sorting to.
  * @param {number} retries The number of retries.
  */
-const addSortingToCat = (cat, retries = 0) => {
+const addSortingToCat = async (cat, retries = 0) => {
   const cats = [
     'name',
     'catches',
@@ -414,6 +414,9 @@ const addSortingToCat = (cat, retries = 0) => {
   ];
 
   const selector = `${getSelectorPrefix()} .mouseListView-categoryContent-category[data-category="${cat}"]`;
+
+  await waitForElement(selector);
+
   const category = document.querySelector(selector);
   // if the category has the loading class, then we wait for the content to load
   if (! category || (category && category.classList.contains('loading'))) {
