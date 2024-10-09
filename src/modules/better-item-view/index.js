@@ -230,20 +230,16 @@ const maybeShowMiceOnMapLink = async (itemId, itemView) => {
   }
 
   const item = items.find((i) => i.id === Number.parseInt(itemId, 10));
-  console.log('item', item);
   if (! (item && 'convertible' === item?.classification && item?.tags?.includes('scroll_case'))) {
     return;
   }
 
   const scrollsToMaps = await getData('scrolls-to-maps');
-  console.log('scrollsToMaps[item.type]', scrollsToMaps[item.type]);
-  console.log('scrollsToMaps[item.type].length', scrollsToMaps[item.type].length);
   if (! scrollsToMaps || ! scrollsToMaps[item.type] || ! scrollsToMaps[item.type].length) {
     return;
   }
 
   const itemViewDescription = itemView.querySelector('.itemView-description');
-  console.log('itemViewDescription', itemViewDescription);
   if (! itemViewDescription) {
     return;
   }
@@ -268,6 +264,7 @@ const maybeShowMiceOnMapLink = async (itemId, itemView) => {
 
   mapLink.append(title);
 
+  // TODO: update these.
   // these have multiple but are based on rank, so we only want to show the correct one.
   // chrome_boss_scroll_case_convertible
   // rainbow_scroll_case_convertible
