@@ -74,7 +74,7 @@ const travelTo = (location) => {
     } catch (error) {
       console.error(error); // eslint-disable-line no-console
     } finally {
-      location.reload();
+      window.location.reload();
     }
   }
 };

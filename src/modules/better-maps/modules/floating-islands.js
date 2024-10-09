@@ -43,6 +43,7 @@ const highlightSkyMap = async () => {
   await waitForElement('floatingIslandsAdventureBoardSkyMap', { maxAttempts: 100, delay: 100 });
   if (! mapGoals) {
     main();
+    return;
   }
 
   // check if any of the goals on the map are paragons and if not, return.
