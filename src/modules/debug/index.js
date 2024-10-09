@@ -132,31 +132,6 @@ const main = () => {
       });
     });
   }
-
-  if (debugAllEvents) {
-    const _doEvent = eventRegistry.doEvent;
-
-    /**
-     * Override the doEvent function to log all events.
-     *
-     * @param {string} eventName   The name of the event to fire.
-     * @param {Object} eventParams The parameters to pass to the event.
-     */
-    eventRegistry.doEvent = function (eventName, eventParams) {
-      const skipEvents = [
-        'journal-entry',
-        'journal-entries',
-        'mh-improved-settings-added',
-        'mh-improved-setting-added-to-page',
-      ];
-
-      if (! skipEvents.includes(eventName)) {
-        debug(`doEvent: ${eventName}`, eventParams);
-      }
-
-      Reflect.apply(_doEvent, this, arguments);
-    };
-  }
 };
 
 /**
