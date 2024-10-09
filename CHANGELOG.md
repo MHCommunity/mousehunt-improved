@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.68.1
+
+- Fixed Show Auras breaking with new aura
+- Fixed travel window reload on travel
+
 ## Version 0.68.0
 
 ### Better Inventory
