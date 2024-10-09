@@ -3,7 +3,8 @@ import {
   makeElement,
   onTravel,
   onTurn,
-  sessionGet
+  sessionGet,
+  sleep
 } from '@utils';
 
 import { getCompletedGoals, refreshMap } from '../utils';
@@ -45,6 +46,14 @@ const addMapToSidebar = async () => {
   const goals = mapGoals.goals;
 
   mapSidebar.classList.add(`mh-improved-map-sidebar-${mapGoals.type}`);
+
+  // make sure goals is iterable
+  if (! goals || ! goals.length) {
+    await sleep(1000);
+    mapSidebar.remove();
+    addMapToSidebar();
+    return;
+  }
 
   const goalsEl = makeElement('div', 'mh-improved-map-sidebar-goals');
 
