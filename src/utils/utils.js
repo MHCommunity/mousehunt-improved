@@ -178,6 +178,7 @@ const getTradableItems = async (valueKey = 'all') => {
 };
 
 const requests = {};
+let lastRequest = 0;
 /**
  * POST a request to the server and return the response.
  *
@@ -202,6 +203,14 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
   // If our needed params are empty, bail.
   if (! lastReadJournalEntryId || ! user || ! user?.unique_hash) {
     return;
+  }
+
+  // Make sure we don't make too many requests by waiting a bit if we just made one.
+  const now = Date.now();
+  if (now - lastRequest < 100) {
+    await sleep(100 - (now - lastRequest));
+
+    lastRequest = Date.now();
   }
 
   const requestKey = Object.keys(formData).length ? `${url}-${JSON.stringify(formData)}` : url;
