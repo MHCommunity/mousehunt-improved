@@ -69,7 +69,13 @@ const travelTo = (location) => {
   }
 
   if (app?.pages?.TravelPage?.travel) {
-    app.pages.TravelPage.travel(location);
+    try {
+      app.pages.TravelPage.travel(location);
+    } catch (error) {
+      console.error(error); // eslint-disable-line no-console
+    } finally {
+      location.reload();
+    }
   }
 };
 
