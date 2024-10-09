@@ -1,15 +1,126 @@
 {
-  "summary": "",
+  "summary": "Welcome to version 0.68.0 of MouseHunt Improved! There are quite a bug fixes and improvements in this release. Custom Horn and Custom Shield have been given some fancy new preview functionality, mice images are now upscaled, and Dark Mode has also been updated with many new styles, so please check it out if you haven't already. Happy hunting!",
   "details": [
     {
-      "title": "",
+      "title": "Better Inventory",
       "items": [
-        "Fixed Native Dark Mode mice images",
-        "Updated Better Mice styles",
-        "Updated Better UI styles",
-        "Updated Draconic Depths Location HUD styles",
-        "Updated Native Dark Mode styles",
-        "Updates Image Upscaling & Transparency styles"
+        "Added ability to click on items in inventory to see item view for all items. Holding shift will open for crafting table ingredients"
+      ]
+    },
+    {
+      "title": "Better Items",
+      "items": [
+        "Updated item view popup for Airship parts to show airship silhouette and format image correctly",
+        "Added details for what map a scroll is opened to along with links to MHCT mapper",
+        "Updated long descriptions for some items to remove unnecessary information",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Better Maps",
+      "items": [
+        "Added highlighting to Floating Islands Sky Map when a paragon is on the map",
+        "Fixed issues with 'Show map goals in sidebar' not correctly refreshing",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Better Marketplace",
+      "items": [
+        "Fixed conflict with Marketplace UI Tweaks userscript and ability to click on a quantity to fill input field",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Better Mice",
+      "items": [
+        "Fixed sorting on mouse stats page conflicting with Native Dark Mode"
+      ]
+    },
+    {
+      "title": "Better UI",
+      "items": [
+        "Added ability to toggle locations on Camp page friends list",
+        "Fixed issues with Friends page not loading past the first page sometimes",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Custom Horn",
+      "items": [
+        "Added better preview functionality"
+      ]
+    },
+    {
+      "title": "Custom Shield",
+      "items": [
+        "Added better preview functionality",
+        "Added Glazy shield"
+      ]
+    },
+    {
+      "title": "Error Reporting",
+      "items": [
+        "Fixed debug information not being sent"
+      ]
+    },
+    {
+      "title": "Experiments",
+      "items": [
+        "Added 'Add background gradient to trap' experiment to apply a gradient background to the trap view",
+        "Added 'Use Prestige Base in skin previews' experiment to use Prestige Base in skin previews"
+      ]
+    },
+    {
+      "title": "Hide Daily Draw",
+      "items": [
+        "Fixed issue with requests failing"
+      ]
+    },
+    {
+      "title": "Image Upscaling & Transparency",
+      "items": [
+        "Mice images are now upscaled to higher quality",
+        "Added more images to be replaced"
+      ]
+    },
+    {
+      "title": "Location Catch Stats",
+      "items": [
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Location HUD: Floating Islands",
+      "items": [
+        "Updated draggable airship to return to center when on the launch pad",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Location HUD: School of Sorcery",
+      "items": [
+        "Added power type warning for Final Exam",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Location HUD: Folklore Forest",
+      "items": [
+        "Fixed sticky inventory toggle not correctly saving",
+        "Fixed visibility toggles showing items that are not unlocked"
+      ]
+    },
+    {
+      "title": "Native Dark Mode",
+      "items": [
+        "Updated many styles"
+      ]
+    },
+    {
+      "title": "Show Auras",
+      "items": [
+        "Fixed issue with auras not showing correctly"
       ]
     }
   ]

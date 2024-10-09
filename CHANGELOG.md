@@ -1,5 +1,93 @@
 # Changelog
 
+## Version 0.68.0
+
+### Better Inventory
+
+- Added ability to click on items in inventory to see item view for all items. Holding shift will open for crafting table ingredients
+
+### Better Items
+
+- Updated item view popup for Airship parts to show airship silhouette and format image correctly
+- Added details for what map a scroll is opened to along with links to MHCT mapper
+- Updated long descriptions for some items to remove unnecessary information
+- Updated styles
+
+### Better Maps
+
+- Added highlighting to Floating Islands Sky Map when a paragon is on the map
+- Fixed issues with "Show map goals in sidebar" not correctly refreshing
+- Updated styles
+
+### Better Marketplace
+
+- Fixed conflict with Marketplace UI Tweaks userscript and ability to click on a quantity to fill input field
+- Updated styles
+
+### Better Mice
+
+- Fixed sorting on mouse stats page conflicting with Native Dark Mode
+
+### Better UI
+
+- Added ability to toggle locations on Camp page friends list
+- Fixed issues with Friends page not loading past the first page sometimes
+- Updated styles
+
+### Custom Horn
+
+- Added better preview functionality
+
+### Custom Shield
+
+- Added better preview functionality
+- Added Glazy shield
+
+### Error Reporting
+
+- Fixed debug information not being sent
+
+### Experiments
+
+- Added 'Add background gradient to trap' experiment to apply a gradient background to the trap view
+- Added 'Use Prestige Base in skin previews' experiment to use Prestige Base in skin previews
+
+### Hide Daily Draw
+
+- Fixed issue with requests failing
+
+### Image Upscaling & Transparency
+
+- Mice images are now upscaled to higher quality
+- Added more images to be replaced
+
+### Location Catch Stats
+
+- Updated styles
+
+### Location HUD: Floating Islands
+
+- Updated styles
+- Made draggable airship return to center when on the launch pad
+
+### Location HUD: School of Sorcery
+
+- Added power type warning for Final Exam
+- Updated styles
+
+### Location HUD: Folklore Forest
+
+- Fixed sticky inventory toggle not correctly saving
+- Fixed visibility toggles showing items that are not unlocked
+
+### Native Dark Mode
+
+- Updated many styles
+
+### Show Auras
+
+- Fixed issue with auras not showing correctly
+
 ## Version 0.67.4
 
 - Updated Dark Mode styles
