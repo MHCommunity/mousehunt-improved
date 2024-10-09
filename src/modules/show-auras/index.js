@@ -88,7 +88,7 @@ const addTrapBlock = () => {
   auraTrapBlock.id = 'mh-improved-aura-view';
 
   aurasExpiry.forEach((aura) => {
-    const auraKey = `mh-aura-${aura.type.toLowerCase().replaceAll(' ', '-').replaceAll('!', '')}`;
+    const auraKey = `mh-aura-${aura.type.toLowerCase().replaceAll(' ', '-').replaceAll('!', '').replaceAll('(', '').replaceAll(')', '')}`;
     const existingAura = document.querySelector(`#${auraKey}`);
     if (existingAura) {
       return;
