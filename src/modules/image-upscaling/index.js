@@ -303,6 +303,7 @@ const init = async () => {
 
   addStyles([styles, viewsStyles], 'image-upscaling');
   addExternalStyles('upscaled-images.css');
+  addExternalStyles('upscaled-mice-images.css');
 
   imageUpscaler = new ImageUpscaler();
   imageUpscaler.handleUpscalingImages();

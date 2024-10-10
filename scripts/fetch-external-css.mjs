@@ -3,9 +3,10 @@ import path from 'node:path';
 
 const filesToFetch = [
   'dark-mode-mice-images.css',
+  'journal-icons.css',
   'upscaled-images.css',
   'upscaled-journal-theme-images.css',
-  'journal-icons.css',
+  'upscaled-mice-images.css',
 ];
 
 const main = async (onlyIfMissing = false) => {
@@ -16,7 +17,7 @@ const main = async (onlyIfMissing = false) => {
       continue;
     }
 
-    const res = await fetch(`https://api.mouse.rip/${file}`);
+    const res = await fetch(`https://api.mouse.rip/${file}?cache=${Date.now()}`);
     const text = await res.text();
 
     fs.writeFileSync(path.join(process.cwd(), 'src/extension/static', file), text);

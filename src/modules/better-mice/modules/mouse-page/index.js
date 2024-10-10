@@ -118,7 +118,7 @@ const makeMouseCrownSection = (type, mice, header = false, subheader = false) =>
 
     const innerWrapper = makeElement('div', 'mouseCrownsView-group-mouse-padding');
     const image = makeElement('div', ['mouseCrownsView-group-mouse-image', mouse.type]);
-    image.setAttribute('data-image', mouse.image);
+    image.setAttribute('data-image', mouse.large || mouse.image);
     image.setAttribute('data-loader', 'mouse');
     image.setAttribute('style', `background-image: url("${mouse.image}");`);
 
