@@ -98,7 +98,7 @@ const updateSidebarList = async (data = null, isFromMiceEff = false) => {
  * Initialize the module.
  */
 export default async () => {
-  if (getSetting('no-sidebar')) {
+  if (getSetting('no-sidebar', true)) {
     return;
   }
 
