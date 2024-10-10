@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.68.2
+
+- Fixed upscaled mice CSS not being loaded
+- Fixed Show Available Mice in Sidebar making requests if the setting was never toggled once
+
 ## Version 0.68.1
 
 - Fixed Show Auras breaking with new aura
