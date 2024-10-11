@@ -1,7 +1,7 @@
 import { dbGet, dbSet } from './db';
 import { getData, getHeaders, sessionGet, sessionSet } from './data';
 
-import { getCurrentLocation } from './location';
+import { getCurrentLocation } from './location-current';
 import { getGlobal } from './global';
 import { makeElement } from './elements';
 

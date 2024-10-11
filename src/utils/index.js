@@ -13,6 +13,7 @@ export * from './humanizer';
 export * from './journal';
 export * from './links';
 export * from './location';
+export * from './location-current';
 export * from './maps';
 export * from './messages';
 export * from './onboarding';

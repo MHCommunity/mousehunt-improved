@@ -1,5 +1,5 @@
 import { dbGet, dbSet } from './db';
-import { getCurrentLocationName } from './location';
+import { getCurrentLocationName } from './location-current';
 
 /**
  * Replace a journal entry with new content.

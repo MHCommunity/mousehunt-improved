@@ -1,5 +1,5 @@
 import { getCurrentPage, getCurrentSubtab, getCurrentTab, isCurrentPage } from './page';
-import { getCurrentLocation } from './location';
+import { getCurrentLocation } from './location-current';
 import { onEvent } from './event-registry';
 import { showHornMessage } from './horn';
 
