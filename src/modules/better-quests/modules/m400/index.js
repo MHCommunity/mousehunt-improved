@@ -3,7 +3,6 @@ import {
   getData,
   makeElement,
   onNavigation,
-  setPage,
   travelTo
 } from '@utils';
 
@@ -46,7 +45,6 @@ const renderButton = (location) => {
     }
 
     travelTo(clickedLocation);
-    setPage('Camp', null, () => {});
   });
 
   title.append(button);

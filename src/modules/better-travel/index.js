@@ -16,7 +16,6 @@ import {
   onPageChange,
   removeSubmenuItem,
   sessionGet,
-  setPage,
   setTab,
   travelTo
 } from '@utils';
@@ -93,7 +92,6 @@ const expandTravelRegions = () => {
 const travelClickHandler = (event) => {
   if (app?.pages?.TravelPage?.travel) {
     travelTo(event.target.getAttribute('data-environment'));
-    setPage('Camp');
   }
 };
 

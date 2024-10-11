@@ -9,7 +9,6 @@ import {
   isUserTitleAtLeast,
   onDialogHide,
   onEvent,
-  setPage,
   travelTo
 } from '@utils';
 
@@ -248,14 +247,13 @@ const openTravelWindow = async () => {
   environmentButtons.forEach((button) => {
     const environmentType = button.getAttribute('data-environment-type');
 
-    button.addEventListener('click', () => {
+    button.addEventListener('click', async () => {
       if (isEditing) {
         toggleLocation(environmentType);
         button.classList.toggle('mh-improved-travel-window-hidden');
       } else {
         debug(`Traveling to ${environmentType}`);
-        travelTo(environmentType);
-        setPage('Camp');
+        await travelTo(environmentType);
         popup.hide();
       }
     });

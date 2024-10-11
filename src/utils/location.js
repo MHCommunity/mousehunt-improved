@@ -1,5 +1,6 @@
 import { getHeaders, sessionGet, sessionSet } from './data';
 import { makeElement } from './elements';
+import { doRequest } from './utils';
 
 /**
  * Get the current location.
@@ -57,25 +58,43 @@ const getRelicHunterLocation = () => {
  *
  * @param {string} location The location to travel to.
  */
-const travelTo = (location) => {
-  const header = document.querySelector('.mousehuntHeaderView');
-  if (header) {
-    const existing = header.querySelector('.mh-improved-travel-message');
-    if (existing) {
-      existing.remove();
-    }
-
-    makeElement('div', ['mh-improved-travel-message', 'travelPage-map-message'], 'Traveling...', header);
+const travelTo = async (location) => {
+  if (! app?.pages?.TravelPage?.travel) {
+    return;
   }
 
-  if (app?.pages?.TravelPage?.travel) {
-    try {
-      app.pages.TravelPage.travel(location);
-    } catch (error) {
-      console.error(error); // eslint-disable-line no-console
-    } finally {
-      window.location.reload();
-    }
+  const header = document.querySelector('.mousehuntHeaderView');
+  if (! header) {
+    return;
+  }
+
+  const existing = header.querySelector('.mh-improved-travel-message');
+  if (existing) {
+    existing.remove();
+  }
+
+  const travelMessage = makeElement('div', ['mh-improved-travel-message', 'travelPage-map-message'], 'Traveling...');
+  header.append(travelMessage);
+
+  app.pages.TravelPage.travel(location);
+
+  // Wait and see if it worked. If it failed, then directly call the API and then refresh the page.
+  await sleep(1000);
+  const currentLocation = getCurrentLocation();
+  if (currentLocation === location) {
+    travelMessage.remove();
+    return;
+  }
+
+  const travelRequest = await doRequest('managers/ajax/users/changeenvironment.php', {
+    destination: location,
+  });
+
+  if (travelRequest?.success) {
+    location.reload();
+  } else {
+    travelMessage.textContent = 'Failed to travel. Please try again.';
+    travelMessage.classList.add('error');
   }
 };
 
