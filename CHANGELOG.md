@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.68.3
+
+- Fixed travel not correctly working and add fallback for when travel fails
+- Fixed Hunter title being clipped in stats bar
+
 ## Version 0.68.2
 
 - Fixed upscaled mice CSS not being loaded
