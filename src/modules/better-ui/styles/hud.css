@@ -56,10 +56,6 @@
   overflow: visible;
 }
 
-.mousehuntHud-userStat .title-container span.label.hud_title {
-  overflow: hidden;
-}
-
 .mousehuntHud-userStat .title-container {
   position: relative;
   min-height: 15px;
