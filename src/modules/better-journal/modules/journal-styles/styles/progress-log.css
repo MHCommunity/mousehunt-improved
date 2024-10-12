@@ -199,3 +199,8 @@
   background-color: var(--d-green-dark);
 }
 /* stylelint-enable */
+
+.mh-dark .journal .content .log_summary table th,
+.mh-dark .journal .content .entry.log_summary .journaltext b {
+  border-color: var(--d-action);
+}

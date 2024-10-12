@@ -198,3 +198,10 @@
   background-color: var(--d-bg-alt);
   border-color: var(--d-border);
 }
+
+.mh-dark .item-data-wrapper-loading,
+.mh-dark .mouse-data-wrapper-loading,
+.mh-dark .friend-data-wrapper-loading {
+  background-color: var(--d);
+  background-blend-mode: multiply;
+}

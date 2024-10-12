@@ -31,3 +31,7 @@
 .mh-dark .itemViewContainer a {
   color: var(--d-link);
 }
+
+.mh-dark .itemView-obtainHint {
+  border-color: var(--d-border);
+}

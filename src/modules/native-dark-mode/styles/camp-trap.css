@@ -251,6 +251,10 @@
   background-color: #6a8b23;
 }
 
+.mh-dark .campPage-trap-itemBrowser-item-armButton.busy {
+  background-blend-mode: darken;
+}
+
 .mh-dark .armed a.campPage-trap-itemBrowser-item-armButton {
   background-color: var(--d-orange);
   box-shadow:

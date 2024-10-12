@@ -17,3 +17,9 @@
 .mh-dark #overlayPopup.hunting_summary .lootContainer a {
   color: var(--d-text);
 }
+
+.mh-dark #overlayPopup.hunting_summary .lootContainer a:hover,
+.mh-dark #overlayPopup.hunting_summary .baitContainer a:hover,
+.mh-dark #overlayPopup.hunting_summary .miceContainer a:hover {
+  background-color: var(--d-action);
+}
