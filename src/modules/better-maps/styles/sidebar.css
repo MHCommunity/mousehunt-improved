@@ -19,6 +19,9 @@
 
 .mh-improved-map-sidebar-title {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   padding: 5px;
   font-size: 11px;
   text-align: center;
@@ -27,6 +30,10 @@
 
 .mh-improved-map-sidebar-title:hover {
   cursor: pointer;
+}
+
+.mh-improved-map-sidebar-subtitle {
+  font-style: italic;
 }
 
 .mh-improved-map-sidebar-goals {
@@ -91,19 +98,6 @@
   .loading .mh-improved-map-sidebar-title::after {
     animation: none;
   }
-}
-
-/* TODO: implement this on the markup side */
-.mh-improved-map-sidebar-goal-has-hunter::after {
-  position: absolute;
-  top: 3px;
-  right: 4px;
-  width: 15px;
-  height: 15px;
-  content: "";
-  background-size: contain;
-  border: 1px solid #808080;
-  border-radius: 50%;
 }
 
 .poster .mh-ui-goals-sidebar-toggle {

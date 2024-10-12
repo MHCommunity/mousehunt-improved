@@ -1,6 +1,7 @@
 import {
   getData,
   makeElement,
+  onRequest,
   onTravel,
   onTurn,
   sessionGet,
@@ -8,6 +9,41 @@ import {
 } from '@utils';
 
 import { getCompletedGoals, refreshMap } from '../utils';
+
+const transformName = (name) => {
+  name = name.replaceAll('Treasure Map', '') // Remove 'Treasure Map' from name.
+    .replaceAll('Rare M1000 Team Research Expedition', 'Rare M1K Team Research'); // Shorten so it fits better.
+
+  // Move toxic spill rank to subtitle.
+  let subtitle = '';
+  if (name.includes('Toxic Spill')) {
+    const rankMatch = name.match(/\(([^)]+)\)/);
+    if (rankMatch) {
+      subtitle = `(${rankMatch[1]})`;
+      name = name.replace(` ${rankMatch[0]}`, '');
+    }
+  }
+
+  // Add 'Wanted Poster' to subtitle.
+  if (name.includes('Wanted Poster')) {
+    name = name.replace('Wanted Poster', '');
+    subtitle = 'Wanted Poster';
+  }
+
+  // Add a fun icon to the map if it contains a keyword.
+  const prefixIcons = {
+    Halloween: '🎃',
+    Birthday: '🎂',
+    Rainbow: '🌈'
+  };
+
+  let prefix = Object.keys(prefixIcons).find((key) => name.includes(key)) || '';
+  if (prefix) {
+    prefix = `${prefixIcons[prefix]} `;
+  }
+
+  return `${prefix}${subtitle ? `<span>${name}</span><span class="mh-improved-map-sidebar-subtitle">${subtitle}</span>` : name}`;
+};
 
 /**
  * Add the map to the sidebar.
@@ -29,7 +65,7 @@ const addMapToSidebar = async () => {
   }
 
   const mapSidebar = makeElement('div', 'mh-improved-map-sidebar');
-  const title = makeElement('h3', 'mh-improved-map-sidebar-title', mapData?.name?.replaceAll('Treasure Map', '') || 'Map');
+  const title = makeElement('h3', ['mh-improved-map-sidebar-title', mapData?.map_class], transformName(mapData?.name));
   title.addEventListener('click', async () => {
     mapSidebar.classList.remove('loading');
     mapSidebar.classList.add('loading');
@@ -147,4 +183,10 @@ export default async () => {
     refreshSidebar();
     refreshSidebarAfterTurn();
   }, 1000);
+
+  onRequest('users/treasuremap.php', (data, request) => {
+    if ('toggle_favourite_task' === request.action) {
+      refreshSidebar();
+    }
+  });
 };
