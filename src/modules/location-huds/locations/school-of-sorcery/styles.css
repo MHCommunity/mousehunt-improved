@@ -202,53 +202,12 @@
 }
 
 .headsUpDisplaySchoolOfSorceryView__fuelQuantity.quantity {
-  font-weight: 900;
   color: #fff;
   background-color: rgb(100 200 125 / 30%);
 }
 
 .schoolOfSorceryCourseView__spellforceAvatar {
   filter: drop-shadow(0 10px 1px #000);
-}
-
-/* Make the 'Loot per Catch' tooltip always visible and aligned to the number */
-.headsUpDisplaySchoolOfSorceryView__lootPerCatchItem .mousehuntTooltip {
-  inset: 0 -100px 0 64px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 0;
-  color: #fff;
-  vertical-align: middle;
-  background-color: #000;
-  border: none;
-  border-radius: 0 4px 4px 0;
-  box-shadow:
-    -1px 0 0 0 #000,
-    0 0 1px 0 #85d523;
-}
-
-.headsUpDisplaySchoolOfSorceryView__lootPerCatchItem .mousehuntTooltip .mousehuntTooltip-arrow {
-  display: none;
-}
-
-.headsUpDisplaySchoolOfSorceryView__lootPerCatchItem .mousehuntTooltip b {
-  max-width: 118px;
-  height: 13px;
-  overflow: hidden;
-  text-align: left;
-  text-overflow: ellipsis;
-  text-wrap: nowrap;
-}
-
-.headsUpDisplaySchoolOfSorceryView__lootPerCatchItemQuantity {
-  width: 40px;
-  font-weight: 900;
-}
-
-.headsUpDisplaySchoolOfSorceryView__lootPerCatchItem.mousehuntTooltipParent:hover > .mousehuntTooltip {
-  display: flex;
-  animation: none;
 }
 
 .headsUpDisplaySchoolOfSorceryView__lootPerCatchItemImage {
@@ -259,7 +218,6 @@
 }
 
 .headsUpDisplaySchoolOfSorceryView__lootPerCatchItemText {
-  margin-left: 55px;
   color: #90dd31;
   text-shadow: 1px 1px #000;
 }

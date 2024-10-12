@@ -6,6 +6,7 @@
 - Updated map sidebar title formatting and display to be more readable
 - Updated Bountiful Beanstalk Location HUD styles
 - Updated Draconic Depths Location HUD styles
+- Updated School of Sorcery Location HUD styles
 - Updated Dark Mode styles
 
 ## Version 0.68.3
