@@ -488,6 +488,11 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
   content: "Catch";
 }
 
+.bountifulBeanstalkCastleView__noiseMeter:hover .bountifulBeanstalkCastleView__noiseMeterBar.bountifulBeanstalkCastleView__noiseMeterBar--min[style="width: 10.6667%;"]::before,
+.bountifulBeanstalkCastleView__noiseMeter:hover .bountifulBeanstalkCastleView__noiseMeterBar.bountifulBeanstalkCastleView__noiseMeterBar--max[style="width: 10.6667%;"]::before {
+  display: none;
+}
+
 .headsUpDisplayBountifulBeanstalkView__castleNextRoomLevel.headsUpDisplayBountifulBeanstalkView__chevron {
   position: relative;
 }
@@ -535,4 +540,12 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 .bountifulBeanstalkPlantVineDialogView__embellishmentError,
 .bountifulBeanstalkPlantVineDialogView__embellishment.headsUpDisplayBountifulBeanstalkView__dialogOption--error .bountifulBeanstalkPlantVineDialogView__embellishmentCostQuantity {
   color: #950808;
+}
+
+.bountifulBeanstalkPlayHarpDialogView__volumeIcon {
+  transition: transform 0.2s ease;
+}
+
+.bountifulBeanstalkPlayHarpDialogView__volumeIcon:hover {
+  transform: scale(1.1);
 }

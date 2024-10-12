@@ -12,7 +12,6 @@
 .draconicDepthsCavernView__duplicatorChestQuantity {
   left: 52px;
   margin-bottom: -2px;
-  font-size: 13px;
 }
 
 .headsUpDisplayDraconicDepthsView__baitCraftableContainer .mousehuntTooltip {
@@ -80,7 +79,6 @@
 
 .draconicDepthsCavernView__tierThreshold {
   top: 1px;
-  font-size: 12px;
 }
 
 .draconicDepthsCavernView__droid {
@@ -89,6 +87,57 @@
 }
 
 .headsUpDisplayDraconicDepthsView:hover .draconicDepthsCavernView__droid {
-  /* transform: rotate(2deg); */
   animation: mh-improved-rotate-slightly 1s infinite;
+}
+
+.draconicDepthsReinforceCavernDialogView__reinforceHuntsInputContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+}
+
+.draconicDepthsReinforceCavernDialogView__decrementButton {
+  width: 25px;
+  height: 25px;
+  text-indent: -9999px;
+  cursor: pointer;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/harp_dialog_icons/volume_minus.png?asset_cache_version=3);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.draconicDepthsReinforceCavernDialogView__incrementButton {
+  width: 25px;
+  height: 25px;
+  text-indent: -9999px;
+  cursor: pointer;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/bountiful_beanstalk/harp_dialog_icons/volume_plus.png?asset_cache_version=3);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.draconicDepthsReinforceCavernDialogView__decrementButton,
+.draconicDepthsReinforceCavernDialogView__incrementButton {
+  transition: transform 0.2s ease;
+}
+
+.draconicDepthsReinforceCavernDialogView__decrementButton:hover,
+.draconicDepthsReinforceCavernDialogView__incrementButton:hover {
+  transform: scale(1.1);
+}
+
+#reinforceHunts {
+  font-size: 19px;
+  color: #fff;
+  text-align: center;
+  background-color: #192517;
+  border: 2.5px solid #85d523;
+  border-radius: 4px;
+}
+
+.draconicDepthsReinforceCavernDialogView__inputContainer {
+  color: transparent;
 }
