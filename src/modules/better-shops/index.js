@@ -131,7 +131,7 @@ const main = () => {
   const owned = document.querySelectorAll('.itemPurchaseView-action-purchaseHelper-owned');
   if (owned) {
     owned.forEach((ownedItem) => {
-      if (ownedItem.getAttribute('moved-to-title')) {
+      if (ownedItem.getAttribute('data-moved-to-title')) {
         return;
       }
 
@@ -139,8 +139,7 @@ const main = () => {
       const container = ownedItem.parentNode.parentNode.parentNode.parentNode.parentNode;
       const nameEl = container.querySelector('.itemPurchaseView-content-name');
 
-      // ownedItem.innerHTML = ownedItem.innerHTML.replace('You own:', 'You have');
-      ownedItem.setAttribute('moved-to-title', 'true');
+      ownedItem.setAttribute('data-moved-to-title', 'true');
 
       nameEl.append(ownedItem);
     });
