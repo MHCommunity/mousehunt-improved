@@ -1,0 +1,4 @@
+/* original is 'images/ui/friends/profile_borders/count.png' which gets blocked by uBlock Origin due to the name */
+.friendsPage-friendRow.count_countess .friendsPage-friendRow-image-border {
+  background-image: url(https://i.mouse.rip/profile-border-c.png);
+}
