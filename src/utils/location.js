@@ -1,5 +1,5 @@
+import { doRequest, sleep } from './utils';
 import { getHeaders, sessionGet, sessionSet } from './data';
-import { doRequest } from './utils';
 import { makeElement } from './elements';
 
 /**
