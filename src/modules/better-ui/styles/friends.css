@@ -110,3 +110,13 @@
 .campPage-trap-friendContainer-environment a.friends-hidden {
   display: none;
 }
+
+.friendsPage-friendRow-image {
+  transition: 0.2s ease-out;
+  transform-origin: center;
+}
+
+.friendsPage-friendRow-imageContainer:hover .friendsPage-friendRow-image,
+.friendsPage-friendRow-image:hover {
+  transform: scale(1.1);
+}
