@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Fixed travel fallback throwing an error
+- Updated map sidebar title formatting and display to be more readable
+- Updated Bountiful Beanstalk Location HUD styles
+- Updated Draconic Depths Location HUD styles
+- Updated Dark Mode styles
+
 ## Version 0.68.3
 
 - Fixed travel not correctly working and add fallback for when travel fails
