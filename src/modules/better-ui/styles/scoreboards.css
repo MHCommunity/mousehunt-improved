@@ -19,6 +19,10 @@
   white-space: nowrap;
 }
 
+.scoreboardRelativeRankingTableView-table td {
+  line-height: 16px;
+}
+
 .scoreboardRelativeRankingTableView tr {
   display: grid;
   grid-template-columns: 25px 20px auto 68px;
