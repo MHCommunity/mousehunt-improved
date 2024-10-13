@@ -1,13 +1,15 @@
 # Changelog
 
-## Unreleased
+## Version 0.68.4
 
 - Fixed travel fallback throwing an error
+- Fixed some mice silhouettes images being replaced with non-silhouettes
 - Updated map sidebar title formatting and display to be more readable
 - Updated Bountiful Beanstalk Location HUD styles
 - Updated Draconic Depths Location HUD styles
 - Updated School of Sorcery Location HUD styles
 - Updated Dark Mode styles
+- Updated miscellaneous colors to be accessible
 
 ## Version 0.68.3
 
