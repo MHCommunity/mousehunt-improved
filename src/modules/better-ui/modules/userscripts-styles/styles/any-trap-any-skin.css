@@ -12,7 +12,7 @@
   height: 25px;
   margin: 5px;
   line-height: 25px;
-  color: #926944;
+  color: #8e6642;
   background-color: #f6f3eb !important;
   border: 1px solid #d3cecb;
   border-radius: 4px;
@@ -20,7 +20,7 @@
 }
 
 .buttonstyle:hover {
-  color: #926944;
+  color: #8e6642;
   background-color: #fdfaf2 !important;
 }
 

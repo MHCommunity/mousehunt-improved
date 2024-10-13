@@ -19,7 +19,7 @@
 
 .campPage-trap-baitName,
 .campPage-trap-baitQuantity {
-  color: #926944;
+  color: #8e6642;
   text-shadow:
     0 0 1px #ae9b6d,
     1px 1px #fff;
@@ -271,7 +271,7 @@ span.campPage-trap-armedItem-skin-description-content br {
 }
 
 .campPage-trap-trapEffectiveness-header b {
-  color: #926944;
+  color: #8e6642;
 }
 
 .campPage-trap-trapEffectiveness-content {

@@ -34,7 +34,7 @@
   padding: 10px;
   color: #f6f3eb;
   cursor: grab;
-  background-color: #926944;
+  background-color: #8e6642;
   border-bottom: 1px solid #ceb7a6;
 }
 
@@ -48,7 +48,7 @@
 
 .mh-catch-stats-close:hover,
 .mh-catch-stats-close:focus {
-  color: #926944;
+  color: #8e6642;
   background-color: #eee;
   border-radius: 50%;
   outline: 1px solid #ccc;

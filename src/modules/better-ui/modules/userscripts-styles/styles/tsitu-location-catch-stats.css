@@ -20,7 +20,7 @@
   color: #f6f3eb;
   text-decoration: none !important;
   cursor: grab;
-  background-color: #926944;
+  background-color: #8e6642;
   border-bottom: 1px solid #ceb7a6;
 }
 
@@ -37,10 +37,10 @@
 }
 
 #tsitu-location-stats button[style="float: right; font-size: 8px;"]:hover {
-  color: #926944;
+  color: #8e6642;
   background-color: #eee;
   border-radius: 50%;
-  outline: 1px solid #926944;
+  outline: 1px solid #8e6642;
 }
 
 #tsitu-location-stats > div br {
@@ -116,7 +116,7 @@
 
 #tsitu-location-stats details[style="font-size: 16px;"] {
   margin: 0.25em 0;
-  border-top: 1px solid #926944;
+  border-top: 1px solid #8e6642;
 }
 
 #tsitu-complete-box,

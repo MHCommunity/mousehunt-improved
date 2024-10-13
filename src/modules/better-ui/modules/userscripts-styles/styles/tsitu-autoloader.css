@@ -26,7 +26,7 @@
 }
 
 #mht-bookmarklet-loader button:first-of-type:hover {
-  color: #926944;
+  color: #8e6642;
   background-color: #eee;
   border-radius: 50%;
   outline: 1px solid #ccc;
@@ -47,7 +47,7 @@
   font-weight: 400 !important;
   color: #f6f3eb;
   cursor: grab;
-  background-color: #926944;
+  background-color: #8e6642;
   border-bottom: 1px solid #ceb7a6;
 }
 
