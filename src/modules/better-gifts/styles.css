@@ -534,3 +534,41 @@ input[type="text"].giftSelectorView-friendRow-returnQuantity {
   padding: 2px;
   margin: 2px;
 }
+
+.giftSelectorView-confirmPopup-submitCloseButton {
+  position: absolute;
+  top: -16px;
+  right: -11px;
+  z-index: 15;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e03a3a;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #d1d0cf;
+  border-radius: 20px;
+  box-shadow: 1px 2px 6px -4px #3e3e3e;
+}
+
+.giftSelectorView-confirmPopup-submitCloseButton:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #e03a3a;
+}
+
+.mh-dark .giftSelectorView-confirmPopup-content a.giftSelectorView-confirmPopup-submitCloseButton {
+  color: var(--d-text-muted);
+  background-color: var(--d-blue);
+  border-color: var(--d-border);
+}
+
+.mh-dark .giftSelectorView-confirmPopup-content a.giftSelectorView-confirmPopup-submitCloseButton:hover {
+  background-color: var(--d-blue-dark);
+}

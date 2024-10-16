@@ -180,6 +180,24 @@ const fixTypo = () => {
   });
 };
 
+const addCloseButtonToConfirmPopup = (resp, req) => {
+  if ('claim_and_send' !== req.action) {
+    return;
+  }
+
+  const confirmTitle = document.querySelector('.giftSelectorView-confirmPopup-title');
+  if (! confirmTitle) {
+    return;
+  }
+
+  const closeButton = makeElement('a', 'giftSelectorView-confirmPopup-submitCloseButton', '✕');
+  closeButton.addEventListener('click', () => {
+    hg.views.GiftSelectorView.submitConfirm(closeButton);
+  });
+
+  confirmTitle.append(closeButton);
+};
+
 /**
  * Add a line break to the gift footer.
  */
@@ -521,6 +539,8 @@ const main = () => {
   addGiftSwitcher();
   fixTypo();
   lineBreakGiftFooter();
+
+  onRequest('users/socialGift.php', addCloseButtonToConfirmPopup);
 };
 
 /**
