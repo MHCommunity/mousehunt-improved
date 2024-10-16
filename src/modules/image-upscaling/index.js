@@ -305,6 +305,8 @@ const init = async () => {
   addExternalStyles('upscaled-images.css');
   addExternalStyles('upscaled-mice-images.css');
 
+  await getData('upscaled-images');
+
   imageUpscaler = new ImageUpscaler();
   imageUpscaler.handleUpscalingImages();
 
