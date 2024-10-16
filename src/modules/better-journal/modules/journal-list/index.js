@@ -228,6 +228,81 @@ const formatAsList = async (entry) => {
   }
 };
 
+const formatXasList = async (entry) => {
+  // the entry will have text that looks like this: <p class="mhi-x-entry"><span class="dot"> • </span>100 x Lavish Lapis Beans<br></p> that we want to turn into a list.
+  // We can query the items JSON to match the item name to the item type and then link to the item page.
+  const processed = entry.getAttribute('data-better-journal-processed-x-list');
+  if (processed) {
+    return;
+  }
+
+  const text = entry.querySelector('.journalbody .journaltext');
+  if (! text) {
+    return;
+  }
+
+  const xList = text.querySelectorAll('.mhi-x-entry');
+  if (! xList.length) {
+    return;
+  }
+
+  const items = await getData('items');
+
+  const list = makeElement('ul', 'better-journal-list');
+  let firstEl;
+
+  xList.forEach((x) => {
+    // Remove the dot.
+    const dot = x.querySelector('.dot');
+    if (dot) {
+      dot.remove();
+    }
+
+    // Split on the ' x ' to get the quantity and item name.
+    const splitxText = x.textContent.split(' x ');
+    if (splitxText.length < 2) {
+      return;
+    }
+
+    const quantity = splitxText[0];
+    const itemName = splitxText[1];
+
+    // Find the item type from the items JSON.
+    let item = items.find((i) => i.name === itemName.trim());
+    if (! item) {
+      // try removing the trailing s and try again.
+      item = items.find((i) => i.name === itemName.trim().replace(/s$/, ''));
+      if (! item) {
+        return;
+      }
+    }
+
+    const link = makeElement('a', 'loot', itemName);
+    link.href = `https://www.mousehuntgame.com/item.php?item_type=${item.type}`;
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      hg.views.ItemView.show(item.type);
+    });
+
+    const listItem = makeElement('li', 'better-journal-list-item');
+    listItem.append(`${Number.parseInt(quantity.trim(), 10).toLocaleString()} `);
+    listItem.append(link);
+
+    list.append(listItem);
+
+    // We replace the first element with the list, otherwise we remove the element.
+    if (firstEl) {
+      x.remove();
+    } else {
+      firstEl = x;
+    }
+  });
+
+  firstEl.replaceWith(list);
+
+  entry.setAttribute('data-better-journal-processed-x-list', 'true');
+};
+
 /**
  * Initialize the module.
  */
@@ -237,4 +312,5 @@ export default async () => {
   linkItems = getSetting('better-journal-list.link-all-items');
 
   onJournalEntry(formatAsList, 3000);
+  onJournalEntry(formatXasList, 3000);
 };
