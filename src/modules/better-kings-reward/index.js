@@ -1,4 +1,4 @@
-import { addStyles, onRequest } from '@utils';
+import { addStyles, onRequest, setMultipleTimeout } from '@utils';
 
 import styles from './styles.css';
 
@@ -19,14 +19,14 @@ const startKingsReward = () => {
   const rewardStart = document.querySelector('.huntersHornMessageView--puzzle .huntersHornMessageView__action');
   if (rewardStart) {
     rewardStart.click();
-  }
 
-  setTimeout(() => {
-    const puzzle = document.querySelector('.puzzleView__code');
-    if (puzzle) {
-      puzzle.focus();
-    }
-  }, 500);
+    setMultipleTimeout(() => {
+      const puzzle = document.querySelector('.puzzleView__code');
+      if (puzzle) {
+        puzzle.focus();
+      }
+    }, [100, 250, 500]);
+  }
 };
 
 /**
