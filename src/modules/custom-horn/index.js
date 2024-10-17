@@ -27,14 +27,21 @@ const addHornClass = (preview = false) => {
     return;
   }
 
-  horn.classList.add('huntersHornView__horn--default');
-
   let setting = getSetting('custom-horn-0', 'default');
   if (preview) {
     setting = preview;
   }
 
-  hornView.classList.add();
+  if ('default' !== setting) {
+    const classes = [...hornView.classList];
+    classes.forEach((className) => {
+      if (className.includes('--seasonalEvent-')) {
+        hornView.classList.remove(className);
+      }
+    });
+  }
+
+  horn.classList.add('huntersHornView__horn--default');
 
   if (addedClass) {
     hornView.classList.remove(addedClass);

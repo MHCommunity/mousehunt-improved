@@ -11,7 +11,7 @@ import gradients from '@data/backgrounds.json';
 import settings from './settings';
 import styles from './styles.css';
 
-let addedClass = '';
+let possibleClasses = [];
 
 /**
  * Add a class to the body.
@@ -29,20 +29,6 @@ const addBodyClass = (preview = false) => {
     setting = preview;
   }
 
-  // remove the old class
-  if (addedClass) {
-    // remove all the old classes
-    if (Array.isArray(addedClass)) {
-      addedClass.forEach((cls) => {
-        body.classList.remove(cls);
-      });
-    } else {
-      body.classList.remove(addedClass);
-    }
-
-    addedClass = '';
-  }
-
   // remove the old injected style
   const style = document.querySelector('#mh-improved-custom-background-style');
   if (style) {
@@ -52,6 +38,11 @@ const addBodyClass = (preview = false) => {
   if ('default' === setting) {
     return;
   }
+
+  // remove all classes that are in the options
+  possibleClasses.forEach((className) => {
+    body.classList.remove(className);
+  });
 
   const background = `mh-improved-bg-${setting}`;
 
@@ -150,6 +141,15 @@ const persistBackground = () => {
  */
 const init = async () => {
   addStyles(styles, 'custom-background');
+
+  const theSettings = await settings();
+  possibleClasses = theSettings[0].settings.options.reduce((acc, option) => {
+    if ('group' === option.value) {
+      return [...acc, ...option.options.map((subOption) => subOption.value)];
+    }
+
+    return [...acc, option.value];
+  }, []);
 
   persistBackground();
 };

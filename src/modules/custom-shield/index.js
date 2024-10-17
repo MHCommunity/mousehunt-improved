@@ -58,16 +58,6 @@ const addClass = (el, shieldClass) => {
   doClass(el, shieldClass, 'add');
 };
 
-/**
- * Remove a class from an element.
- *
- * @param {Element} el          The element to remove the class from.
- * @param {string}  shieldClass The class to remove.
- */
-const removeClass = (el, shieldClass) => {
-  doClass(el, shieldClass, 'remove');
-};
-
 let lastShield = '';
 
 /**
@@ -88,17 +78,13 @@ const changeShield = () => {
   }
 
   // Remove the old shield class.
-  if (lastShield) {
-    const remove = [
-      ...lastShield,
-      'mhui-custom-shield',
-    ];
-
-    remove.forEach((className) => {
-      removeClass(shieldEl, className);
-      timer.classList.remove(className);
-    });
-  }
+  const classesToKeep = new Set(['mousehuntHud-shield', 'golden']);
+  const classes = [...shieldEl.classList];
+  classes.forEach((className) => {
+    if (! classesToKeep.has(className)) {
+      shieldEl.classList.remove(className);
+    }
+  });
 
   // Get the new shield.
   let shield = getSetting('custom-shield-0', 'default');
