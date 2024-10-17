@@ -19,6 +19,8 @@ import {
   showLoadingError
 } from '@utils';
 
+import update from './updates/index.js';
+
 import * as imported from './modules/*/index.js'; // eslint-disable-line import/no-unresolved
 const modules = imported;
 
@@ -202,6 +204,12 @@ const init = async () => {
     });
   }
 
+  // If we're updating, do the update before loading the modules.
+  const previousVersion = getSetting('mh-improved-version', '0.0.0');
+  if (previousVersion !== mhImprovedVersion) {
+    await update(previousVersion, mhImprovedVersion);
+  }
+
   // Time to load the modules.
   try {
     await loadModules();
@@ -225,6 +233,7 @@ const init = async () => {
     );
 
     doEvent('mh-improved-init', mhImprovedVersion);
+
     // Add the settings for each module.
     onNavigation(async () => {
       for (const module of categories) {
