@@ -1,6 +1,6 @@
 import {
-  cacheGet,
-  cacheSetAsync,
+  dataGet,
+  dataSet,
   getCurrentPage,
   getUserItems,
   makeElement,
@@ -27,7 +27,7 @@ const getIdSelector = (itemId, bases) => {
 };
 
 const getQuantity = async (itemId) => {
-  return await cacheGet(`${itemId}-quantity`, 0);
+  return await dataGet(`${itemId}-quantity`, 0);
 };
 
 /**
@@ -174,7 +174,7 @@ const maybeClearCache = async () => {
   for (const itemId in details) {
     const qty = Number.parseInt(details[itemId]?.quantity) || 0;
 
-    await cacheSetAsync(`${details[itemId].type}-quantity`, qty);
+    dataSet(`${details[itemId].type}-quantity`, qty);
   }
 };
 

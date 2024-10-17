@@ -1,8 +1,8 @@
 import {
   addStyles,
-  cacheGet,
-  cacheSet,
   createPopup,
+  dataGet,
+  dataSet,
   debug,
   debuglog,
   doEvent,
@@ -70,7 +70,7 @@ const cacheLocationData = async () => {
   }
 
   // Get the current cached quests.
-  const questsCached = await cacheGet('quests', {});
+  const questsCached = await dataGet('quests', {});
 
   // Combine the cached quests with the current quests.
   const questsCombined = Object.assign({}, questsCached, user.quests);
@@ -87,9 +87,9 @@ const cacheLocationData = async () => {
 
   // Save the combined data to localStorage.
   try {
-    cacheSet('quests', questsCombined);
+    dataSet('quests', questsCombined);
   } catch (error) {
-    debug('Error saving location data to localStorage:', error);
+    debug('Error saving dashboard data.', error);
   }
 };
 
@@ -447,7 +447,7 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
  * @return {Element} The dashboard contents.
  */
 const getDashboardContents = async () => {
-  const quests = await cacheGet('quests', {});
+  const quests = await dataGet('quests', {});
 
   debuglog('location-dashboard', 'quests', quests);
 

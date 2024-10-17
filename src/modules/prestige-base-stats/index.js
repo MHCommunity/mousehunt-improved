@@ -1,6 +1,6 @@
 import {
-  cacheGet,
-  cacheSet,
+  dataGet,
+  dataSet,
   debuglog,
   getUserSetupDetails,
   onEvent,
@@ -64,7 +64,7 @@ const setPrestigeStats = async () => {
   }
 
   // update the stats display
-  const pbStats = await cacheGet('pb-stats', false);
+  const pbStats = await dataGet('pb-stats', false);
   if (! pbStats) {
     return;
   }
@@ -114,7 +114,7 @@ const modifyPB = async (opts) => {
 
   const { retryPrestige } = opts || {};
 
-  const savedStats = await cacheGet('pb-stats', false);
+  const savedStats = await dataGet('pb-stats', false);
   debuglog('prestige-base-stats', 'Saved Prestige Base stats:', savedStats);
   if (! savedStats) {
     isModifying = false;
@@ -230,7 +230,7 @@ const savePbStats = () => {
   }
 
   debuglog('prestige-base-stats', 'Prestige Base stats:', stats);
-  cacheSet('pb-stats', stats);
+  dataSet('pb-stats', stats);
 
   isSaving = false;
 };

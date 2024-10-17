@@ -190,7 +190,7 @@ const makeSortedPageWrapper = () => {
  */
 const makeSortedMiceList = async () => {
   // Get the current map data.
-  const currentMapData = getMapData(mapData().map_id);
+  const currentMapData = await getMapData(mapData().map_id);
   const { unsortedMice, categories, subcategories } = getMouseDataForMap(currentMapData);
 
   const target = document.querySelector('.sorted-page-content');

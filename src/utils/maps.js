@@ -1,5 +1,5 @@
 import { dbGet, dbSet } from './db';
-import { getData, getHeaders, sessionGet, sessionSet } from './data';
+import { cacheGet, cacheSet, getData, getHeaders } from './data';
 
 import { getCurrentLocation } from './location-current';
 import { getGlobal } from './global';
@@ -61,9 +61,9 @@ const mapModel = () => {
  *
  * @return {Object|boolean} Map data or false if not found.
  */
-const getMapData = (mapId = false, strict = false) => {
+const getMapData = async (mapId = false, strict = false) => {
   if (mapId !== false) {
-    const sessionMap = sessionGet(`mh-improved-map-cache-${mapId}`);
+    const sessionMap = await cacheGet(`map-${mapId}`);
     if (sessionMap) {
       return sessionMap;
     }
@@ -73,7 +73,7 @@ const getMapData = (mapId = false, strict = false) => {
     return false;
   }
 
-  const localStorageMap = sessionGet('map-cache-last-map');
+  const localStorageMap = await cacheGet('map-last');
   if (localStorageMap) {
     return localStorageMap;
   }
@@ -88,8 +88,8 @@ const getMapData = (mapId = false, strict = false) => {
  * @param {Object} theMapData Map data to set.
  */
 const setMapData = (mapId, theMapData) => {
-  sessionSet(`mh-improved-map-cache-${mapId}`, theMapData);
-  sessionSet('map-cache-last-map', theMapData);
+  cacheSet(`map-${mapId}`, theMapData);
+  cacheSet('map-last', theMapData);
 };
 
 /**
@@ -97,8 +97,8 @@ const setMapData = (mapId, theMapData) => {
  *
  * @return {string} Last maptain.
  */
-const getLastMaptain = () => {
-  return sessionGet('last-maptain');
+const getLastMaptain = async () => {
+  return await cacheGet('map-last-maptain') || '';
 };
 
 /**
@@ -107,7 +107,7 @@ const getLastMaptain = () => {
  * @param {string} id ID to set as the last maptain.
  */
 const setLastMaptain = (id) => {
-  sessionSet('last-maptain', id);
+  cacheSet('map-last-maptain', id);
 };
 
 /**
@@ -119,7 +119,7 @@ const cacheFinishedMap = async () => {
     return;
   }
 
-  const data = getMapData(completedMap.map_id);
+  const data = await getMapData(completedMap.map_id);
   if (! data) {
     return;
   }
@@ -314,7 +314,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
  * @return {any|boolean} Cached value or false if not found.
  */
 const getCachedValue = async (key) => {
-  const value = await dbGet('ar-cache', key);
+  const value = await dbGet('cache', key);
   if (! value?.data?.value) {
     return null;
   }
@@ -329,7 +329,7 @@ const getCachedValue = async (key) => {
  * @param {any}    value Value to cache.
  */
 const setCachedValue = async (key, value) => {
-  await dbSet('ar-cache', { id: key, value });
+  await dbSet('cache', { id: key, value });
 };
 
 /**

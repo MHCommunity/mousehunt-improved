@@ -1,4 +1,4 @@
-import { dbDelete, dbDeleteAll, dbGet, dbSet } from './db';
+import { dbDelete, dbGet, dbSet } from './db';
 import { debuglog } from './debug';
 import { getSetting } from './settings';
 
@@ -130,7 +130,7 @@ const getData = async (key, force = false) => {
   debuglog('utils-data', `Fetched data for ${key}`, data);
 
   if (data) {
-    dataCacheSet(key, data);
+    cacheSet(key, data);
     setCacheExpiration(key);
   }
 
@@ -141,8 +141,6 @@ const getData = async (key, force = false) => {
  * Clear all the caches.
  */
 const clearCaches = async () => {
-  dbDeleteAll('ar-cache');
-
   for (const key of Object.keys(localStorage)) {
     if (key.startsWith('mh-improved-cache')) {
       localStorage.removeItem(key);
@@ -276,27 +274,16 @@ const cacheSetAsync = async (key, value) => {
 };
 
 /**
- * Set a data cache value.
- *
- * @param {string} key   Key to set the value for.
- * @param {Object} value Value to set.
- */
-const dataCacheSet = (key, value) => {
-  dbSet('data', { id: key, value });
-};
-
-/**
  * Helper function to get a cache value.
  *
  * @template T
  * @param {string} key          Key to get the value for.
  * @param {T}      defaultValue Default value to return if the key doesn't exist.
- * @param {string} db           The database to get the value from.
  *
  * @return {Promise<T>} The cache value.
  */
-const cacheGetHelper = async (key, defaultValue = false, db = 'cache') => {
-  const cached = await dbGet(db, key);
+const cacheGetHelper = async (key, defaultValue = false) => {
+  const cached = await dbGet('cache', key);
   if (! cached?.data?.value) {
     return defaultValue;
   }
@@ -339,7 +326,36 @@ const cacheDelete = (key) => {
   dbDelete('cache', key);
 };
 
+/**
+ * Set a data value.
+ *
+ * @param {string} key   Key to set the value for.
+ * @param {Object} value Value to set.
+ */
+const dataSet = (key, value) => {
+  dbSet('data', { id: key, value });
+};
+
+/**
+ * Get a data value.
+ *
+ * @param {string} key          Key to get the value for.
+ * @param {Object} defaultValue Default value to return if the key doesn't exist.
+ *
+ * @return {Promise<Object>} The data value.
+ */
+const dataGet = async (key, defaultValue = false) => {
+  const cached = await dbGet('data', key);
+  if (! cached?.data?.value) {
+    return defaultValue;
+  }
+
+  return cached.data.value;
+};
+
 export {
+  dataSet,
+  dataGet,
   cacheDelete,
   cacheGet,
   cacheSet,

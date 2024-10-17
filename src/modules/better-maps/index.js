@@ -96,7 +96,7 @@ const addBlockClasses = () => {
  *
  * @return {boolean} If the map was intercepted.
  */
-const interceptMapRequest = (mapId) => {
+const interceptMapRequest = async (mapId) => {
   sessionSet('map-refreshed', Date.now());
 
   // If we don't have data, we're done.
@@ -121,7 +121,7 @@ const interceptMapRequest = (mapId) => {
     return data;
   };
 
-  const data = getMapData(mapId, true);
+  const data = await getMapData(mapId, true);
   if (data) {
     return init(data);
   }
@@ -198,10 +198,10 @@ const intercept = () => {
   }
 
   parentShowMap = hg.controllers.TreasureMapController.showMap;
-  hg.controllers.TreasureMapController.showMap = (id = false) => {
+  hg.controllers.TreasureMapController.showMap = async (id = false) => {
     parentShowMap(id);
 
-    const intercepted = interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
+    const intercepted = await interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
     setTimeout(() => {
       if (! intercepted) {
         interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);

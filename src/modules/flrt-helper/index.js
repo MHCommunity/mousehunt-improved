@@ -97,8 +97,8 @@ const sendItemsToMaptain = async (snuid, items) => {
  *
  * @param {Array} items The items to send.
  */
-const flrtPopup = (items) => {
-  const lastMaptain = getLastMaptain();
+const flrtPopup = async (items) => {
+  const lastMaptain = await getLastMaptain();
 
   let itemContent = '';
   items.forEach((item) => {

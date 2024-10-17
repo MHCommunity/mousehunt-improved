@@ -1,9 +1,9 @@
 import {
   addIconToMenu,
   addStyles,
-  cacheSet,
   clearCaches,
   createPopup,
+  dataSet,
   dbDeleteAll,
   getCurrentLocation,
   getCurrentPage,
@@ -313,7 +313,7 @@ const addAdvancedSettingsButtons = () => {
   resetDashboardLink.addEventListener('click', async (e) => {
     e.preventDefault();
     if (window.confirm('Are you sure you want to reset your dashboard data?')) { // eslint-disable-line no-alert
-      await cacheSet('quests', {});
+      await dataSet('quests', {});
       window.location.reload();
     }
   });
