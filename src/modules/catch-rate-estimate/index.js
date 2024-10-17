@@ -2,6 +2,7 @@ import {
   addStyles,
   doEvent,
   getCurrentPage,
+  getSetting,
   makeElement,
   onNavigation,
   onRequest
@@ -143,6 +144,44 @@ const updateMinLucks = async () => {
   minluckList.classList.remove('cre-refreshing');
 };
 
+const updateTrapView = (rows) => {
+  if (! getSetting('catch-rate-estimate.show-trap-highlight', false)) {
+    return;
+  }
+
+  const trapView = document.querySelector('.trapImageView');
+  if (! trapView) {
+    return;
+  }
+
+  // remove existing highlight bar
+  trapView.classList.remove(
+    'mh-improved-cre-highlight',
+    'mh-improved-cre-highlight-good',
+    'mh-improved-cre-highlight-bad',
+    'mh-improved-cre-highlight-minlucked',
+    'mh-improved-cre-highlight-ultimate'
+  );
+
+  // Add a highlight bar to the top of the trap view based on if we're minlucking all of the mice,
+  // the average catch rate, and if we're more likely to catch the mice than not.
+  // if our average is worse than 40%, add a bad class. if it's better than 60%, add a good class. Better than 75%, add a great class.
+  trapView.classList.add('mh-improved-cre-highlight');
+
+  if (1075 == user.trinket_item_id) { // eslint-disable-line eqeqeq
+    trapView.classList.add('mh-improved-cre-highlight-ultimate');
+  } else if (rows.every((row) => user.trap_luck >= row.minluck)) {
+    trapView.classList.add('mh-improved-cre-highlight-minlucked');
+  } else {
+    const averageCatchRate = rows.reduce((acc, row) => acc + row.catchRateValue, 0) / rows.length;
+    if (averageCatchRate >= 0.75) {
+      trapView.classList.add('mh-improved-cre-highlight-good');
+    } else if (averageCatchRate <= 0.4) {
+      trapView.classList.add('mh-improved-cre-highlight-bad');
+    }
+  }
+};
+
 /**
  * Render the minluck list.
  *
@@ -274,6 +313,8 @@ const renderList = async (list) => {
   });
 
   minluckList.append(table);
+
+  updateTrapView(rows);
 };
 
 /**

@@ -40,24 +40,59 @@
   text-align: center;
 }
 
+.mh-improved-cre-highlight::before {
+  position: absolute;
+  top: -2px;
+  right: 1px;
+  left: 1px;
+  height: 10px;
+  content: "";
+  background-color: #f7f7f7;
+  border-radius: 4px;
+}
+
 .mh-improved-cre-data-good {
   color: #118011;
+}
+
+.mh-improved-cre-highlight-good::before {
+  background-color: #118011;
 }
 
 .mh-dark-mode .mh-improved-cre-data-good {
   color: #4fe54f;
 }
 
+.mh-dark-mode .mh-improved-cre-highlight-good::before {
+  background-color: #4fe54f;
+}
+
 .mh-improved-cre-data-bad {
   color: #bb4646;
+}
+
+.mh-improved-cre-highlight-bad::before {
+  background-color: #bb4646;
 }
 
 .mh-dark-mode .mh-improved-cre-data-bad {
   color: #fb9b9b;
 }
 
+.mh-dark-mode .mh-improved-cre-highlight-bad::before {
+  background-color: #fb9b9b;
+}
+
 .mh-improved-cre-data-ultimate {
   color: #0fa4bd;
+}
+
+.mh-improved-cre-highlight-ultimate::before {
+  background-color: #0fa4bd;
+}
+
+.mh-improved-cre-highlight-minlucked::before {
+  background-color: #0f5cbd;
 }
 
 .mh-improved-cre-name {
