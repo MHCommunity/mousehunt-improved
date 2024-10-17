@@ -372,12 +372,6 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
   transition: 0.2s ease-in;
 }
 
-.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer.mousehuntTooltipParent::after {
-  position: absolute;
-  inset: -30px 20px 5px;
-  content: "";
-}
-
 .mh-crafting-popup.loading::after,
 .mh-crafting-popup.error::after,
 .mh-crafting-popup.success::after {
@@ -584,10 +578,6 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
   margin-top: -2px;
 }
 
-.mh-quick-harp-toggle.loading::after {
-  background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif) center no-repeat;
-}
-
 .mh-quick-harp-toggle.loading {
   color: transparent;
   text-indent: -9999px;
@@ -632,4 +622,28 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
   content: "";
   background: url(https://www.mousehuntgame.com/images/icons/bad_idea.png) center no-repeat;
   background-size: contain;
+}
+
+/* show the step count on the path when hovering */
+.bountifulBeanstalkCastleView__path .bountifulBeanstalkCastleView__step::after {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  text-align: center;
+  text-shadow:
+    -1px 0 1px #000,
+    1px 0 1px #000,
+    0 0 0 #000,
+    0 -1px 1px #000,
+    0 1px 1px #000,
+    0 0 0 #000;
+  content: attr(data-id);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.bountifulBeanstalkCastleView__path:hover .bountifulBeanstalkCastleView__step:not(.bountifulBeanstalkCastleView__step--chase_past)::after {
+  opacity: 0.7;
 }
