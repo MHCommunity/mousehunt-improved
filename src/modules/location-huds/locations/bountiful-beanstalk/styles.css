@@ -547,3 +547,89 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 .bountifulBeanstalkPlayHarpDialogView__volumeIcon:hover {
   transform: scale(1.1);
 }
+
+.mh-quick-harp-toggle {
+  position: absolute;
+  top: -16px;
+  left: 11px;
+  display: none;
+  width: 60px;
+  height: 15px;
+  font-size: 10px;
+  line-height: 15px;
+  text-align: center;
+  background-color: #f2832a;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 1px 2px #ef9e5c;
+}
+
+.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying .mh-quick-harp-toggle {
+  top: -10px;
+  left: 16px;
+}
+
+.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton:hover .mh-quick-harp-toggle {
+  display: block;
+}
+
+.mh-quick-harp-toggle:hover {
+  background-color: #f5a15c;
+}
+
+.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton {
+  filter: brightness(1); /* stupid hack to fix a chrome bug that causes the elements to move */
+}
+
+.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying {
+  margin-top: -2px;
+}
+
+.mh-quick-harp-toggle.loading::after {
+  background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif) center no-repeat;
+}
+
+.mh-quick-harp-toggle.loading {
+  color: transparent;
+  text-indent: -9999px;
+}
+
+.mh-quick-harp-toggle.loading::after {
+  position: absolute;
+  inset: 0 5px;
+  display: block;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif) center no-repeat;
+  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_green.gif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.mh-quick-harp-toggle.success,
+.mh-quick-harp-toggle.error {
+  color: inherit;
+}
+
+.mh-quick-harp-toggle.success::after {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  display: block;
+  width: 12px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png) center no-repeat;
+  background-size: contain;
+}
+
+.mh-quick-harp-toggle.error::after {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  bottom: 0;
+  display: block;
+  width: 12px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/icons/bad_idea.png) center no-repeat;
+  background-size: contain;
+}

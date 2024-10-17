@@ -4,6 +4,7 @@ import {
   getSetting,
   makeElement,
   makeMhButton,
+  onRequest,
   onTurn,
   saveSetting,
   setMultipleTimeout
@@ -332,6 +333,90 @@ const addCommaToNoiseMeterTimeout = async () => {
   setMultipleTimeout(addCommaToNoiseMeter, [0, 500, 1000]);
 };
 
+let isAutoharpToggleInitiatiedByUs = false;
+const addQuickHarpToggle = async () => {
+  addQuickHarpToggleButton();
+  onRequest('environment/bountiful_beanstalk.php', () => {
+    if (isAutoharpToggleInitiatiedByUs) {
+      return;
+    }
+
+    setTimeout(() => {
+      addQuickHarpToggleButton();
+    }, 100);
+  });
+};
+
+const addQuickHarpToggleButton = async () => {
+  const existingToggle = document.querySelector('.mh-quick-harp-toggle');
+  if (existingToggle) {
+    return;
+  }
+
+  const autoharp = document.querySelector('.headsUpDisplayBountifulBeanstalkView__playHarpDialogButton');
+  if (! autoharp) {
+    return;
+  }
+
+  const autoharpText = autoharp.querySelector('.headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText');
+  if (! autoharpText) {
+    return;
+  }
+
+  const noiseFrame = document.querySelector('.bountifulBeanstalkCastleView__autoHarpNoiseMeterFrame');
+  if (! noiseFrame) {
+    return;
+  }
+
+  const toggleElements = () => {
+    newToggleButton.classList.toggle('active');
+    autoharp.classList.toggle('headsUpDisplayBountifulBeanstalkView__playHarpDialogButton--autoPlaying');
+    autoharpText.innerText = autoharpText.innerText === 'Play' ? 'Auto Playing' : 'Play';
+    noiseFrame.classList.toggle('bountifulBeanstalkCastleView__autoHarpNoiseMeterFrame--active');
+  };
+
+  const newToggleButton = makeElement('div', 'mh-quick-harp-toggle', 'Auto-Harp');
+
+  if (user?.quests?.QuestBountifulBeanstalk?.castle?.auto_harp) {
+    toggleElements();
+  }
+
+  newToggleButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    newToggleButton.classList.add('loading');
+
+    isAutoharpToggleInitiatiedByUs = true;
+
+    const result = await doRequest('managers/ajax/environment/bountiful_beanstalk.php', {
+      action: 'toggle_auto_harp',
+    });
+
+    if (result && result.success) {
+      newToggleButton.classList.remove('loading');
+      newToggleButton.classList.add('hidden');
+
+      setTimeout(() => {
+        newToggleButton.classList.remove('hidden');
+      }, 1000);
+
+      toggleElements();
+    } else {
+      newToggleButton.classList.remove('loading');
+      newToggleButton.classList.add('error');
+
+      setTimeout(() => {
+        newToggleButton.classList.remove('error');
+      }, 1000);
+    }
+
+    isAutoharpToggleInitiatiedByUs = false;
+  });
+
+  autoharp.append(newToggleButton);
+};
+
 /**
  * Initialize the module.
  */
@@ -362,6 +447,7 @@ export default async () => {
   updateLootText();
   addCraftingButtons();
   addCommaToNoiseMeterTimeout();
+  addQuickHarpToggle();
 
   funTime();
 
