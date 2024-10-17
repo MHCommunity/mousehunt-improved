@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  font-size: 12px;
 }
 
 .headsUpDisplayBountifulBeanstalk__inventoryBlockQuantity.quantity {
@@ -12,7 +11,6 @@
 .bountifulBeanstalkCastleView__noiseLevel,
 .bountifulBeanstalkCastleView__maxNoiseLevel {
   padding: 0 2px;
-  font-size: 17px;
 }
 
 .bountifulBeanstalkCastleView__noiseMeterLabel {
