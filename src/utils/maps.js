@@ -1,5 +1,5 @@
-import { dbGet, dbSet } from './db';
 import { cacheGet, cacheSet, getData, getHeaders } from './data';
+import { dbGet, dbSet } from './db';
 
 import { getCurrentLocation } from './location-current';
 import { getGlobal } from './global';
