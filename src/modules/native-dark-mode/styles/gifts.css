@@ -33,6 +33,10 @@
     0 -20px 50px #434651 inset;
 }
 
+.mh-dark .giftSelectorView-claimableGift.expanded::after {
+  box-shadow: 0 -1px 1px #434651 inset;
+}
+
 .mh-dark .giftSelectorView-tabHeader:hover span,
 .mh-dark .giftSelectorView-tabHeader.active span {
   color: var(--d-text);
