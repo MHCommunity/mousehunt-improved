@@ -358,6 +358,11 @@ const addQuickHarpToggleButton = async () => {
     return;
   }
 
+  if (autoharp.classList.contains('disabled')) {
+    existingToggle?.remove();
+    return;
+  }
+
   const autoharpText = autoharp.querySelector('.headsUpDisplayBountifulBeanstalkView__playHarpDialogButtonPlayText');
   if (! autoharpText) {
     return;
