@@ -1,4 +1,4 @@
-import { doRequest, sessionGet, setMapData } from '@utils';
+import { doEvent, doRequest, sessionGet, setMapData } from '@utils';
 
 /**
  * Get the completed goals.
@@ -66,10 +66,10 @@ const refreshMap = async () => {
     const currentGoals = getCompletedGoals(currentMapData);
     const newGoals = getCompletedGoals(newMapData.treasure_map);
     if (currentGoals.length !== newGoals.length) {
-      await addMapToSidebar();
+      doEvent('mh-improved-map-refreshed');
     }
   } else {
-    await addMapToSidebar();
+    doEvent('mh-improved-map-refreshed');
   }
 
   mapData = newMapData.treasure_map;

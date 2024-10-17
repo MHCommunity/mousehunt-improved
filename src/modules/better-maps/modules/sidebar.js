@@ -1,6 +1,7 @@
 import {
   getData,
   makeElement,
+  onEvent,
   onRequest,
   onTravel,
   onTurn,
@@ -11,6 +12,10 @@ import {
 import { getCompletedGoals, refreshMap } from '../utils';
 
 const transformName = (name) => {
+  if (! name) {
+    return '';
+  }
+
   name = name.replaceAll('Treasure Map', '') // Remove 'Treasure Map' from name.
     .replaceAll('Rare M1000 Team Research Expedition', 'Rare M1K Team Research'); // Shorten so it fits better.
 
@@ -47,8 +52,10 @@ const transformName = (name) => {
 
 /**
  * Add the map to the sidebar.
+ *
+ * @param {boolean|number} retry The retry count.
  */
-const addMapToSidebar = async () => {
+const addMapToSidebar = async (retry = false) => {
   const sidebar = document.querySelector('.pageSidebarView .pageSidebarView-block');
   if (! sidebar) {
     return;
@@ -85,9 +92,13 @@ const addMapToSidebar = async () => {
 
   // make sure goals is iterable
   if (! goals || ! goals.length) {
+    if (retry > 3) {
+      return;
+    }
+
     await sleep(1000);
     mapSidebar.remove();
-    addMapToSidebar();
+    await addMapToSidebar(retry + 1);
     return;
   }
 
@@ -178,6 +189,8 @@ export default async () => {
 
   addMapToSidebar();
   onTravel(null, { callback: addMapToSidebar });
+
+  onEvent('mh-improved-map-refreshed', addMapToSidebar);
 
   onTurn(() => {
     refreshSidebar();

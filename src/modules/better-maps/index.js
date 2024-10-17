@@ -448,7 +448,7 @@ const init = async () => {
     community();
   }
 
-  if (! getSetting('no-sidebar') && getSetting('better-maps.show-sidebar-goals', true)) {
+  if (! (getSetting('no-sidebar', true) && getSetting('better-maps.show-sidebar-goals', true))) {
     sidebar();
   }
 
