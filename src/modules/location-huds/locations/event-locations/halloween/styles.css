@@ -1,14 +1,29 @@
 .halloweenBoilingCauldronHUD-bait-quantity {
-  top: 29px;
+  top: 31px;
   left: 40px;
-  font-size: 13px;
-  text-shadow: 1px 1px 1px #282828;
+  font-size: 11px;
 }
 
 .halloweenBoilingCauldronHUD-bait-ingredientQuantity {
-  top: 45px;
+  top: 47px;
   width: 38px;
-  font-size: 12px;
+  font-size: 11px;
+}
+
+.halloweenBoilingCauldronHUD-extract-quantity.quantity {
+  line-height: 22px;
+}
+
+.halloweenBoilingCauldronHUD-extract-mouseDrake-quantity.quantity {
+  line-height: 23px;
+}
+
+.halloweenBoilingCauldronHUD-bait-quantity,
+.halloweenBoilingCauldronHUD-bait-ingredientQuantity,
+.halloweenBoilingCauldronHUD-extract-quantity.quantity,
+.halloweenBoilingCauldronHUD-extract-mouseDrake-quantity.quantity,
+.halloweenBoilingCauldronHUD-instantFinish-quantity {
+  text-shadow: 1px 1px 1px #282828;
 }
 
 body .halloweenBoilingCauldronHUD-bait.basic_baits .halloweenBoilingCauldronHUD-bait-quantity {
@@ -222,13 +237,17 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
 }
 
 .halloweenBoilingCauldronHUD-cauldron-queue-brewTime {
-  padding-top: 4px;
+  margin-top: -1px;
   margin-left: 3px;
   font-size: 13px;
   text-shadow: 0 1px 1px #efd28e;
   background-color: #efd28e;
   background-position-y: bottom;
   border-radius: 10px;
+}
+
+.empty .halloweenBoilingCauldronHUD-cauldron-queue-brewTime {
+  background-color: transparent;
 }
 
 .halloweenBoilingCauldronRecipeView-cauldron-queueSlot.cauldron .halloweenBoilingCauldronHUD-cauldron-queue-brewTime {
@@ -256,7 +275,6 @@ a.halloweenBoilingCauldronRecipeView-cauldron-queueSlot-cancelButton {
   font-size: 12px;
 }
 
-.halloweenBoilingCauldronHUD-cauldron-imageContainer,
 .fuelActive .halloweenBoilingCauldronHUD-reward-progress-bar {
   transition: all 0.2s ease-in-out;
 }
@@ -290,4 +308,12 @@ a.halloweenBoilingCauldronRecipeView-cauldron-queueSlot-cancelButton {
 
 .halloweenBoilingCauldronHUD-dialog-state.item .halloweenBoilingCauldronHUD-dialog-title {
   margin-right: 20px;
+}
+
+.halloweenBoilingCauldronRecipeView-brewButton {
+  border-radius: 3px;
+}
+
+.halloweenBoilingCauldronRecipeView-recipeList {
+  height: 480px;
 }
