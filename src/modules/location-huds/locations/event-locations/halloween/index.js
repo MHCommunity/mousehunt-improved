@@ -1,5 +1,7 @@
 import { addHudStyles, onRequest } from '@utils';
 
+import { spookyShuffleTracker } from './spooky-shuffle-tracker';
+
 import styles from './styles.css';
 
 /**
@@ -25,7 +27,7 @@ const unDisableCheese = () => {
  * Always active.
  */
 const halloweenGlobal = async () => {
-  // no-op.
+  spookyShuffleTracker();
 };
 
 /**

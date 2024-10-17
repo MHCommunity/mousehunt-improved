@@ -1,0 +1,33 @@
+.halloweenMemoryGame-card-container {
+  position: relative;
+}
+
+.mh-spooky-shuffle-card-front {
+  opacity: 0.8;
+}
+
+.mh-spooky-shuffle-card-name {
+  position: absolute;
+  top: 80px;
+  right: 1px;
+  left: 3px;
+  padding: 4px 0;
+  text-align: center;
+  background-color: #ffde94;
+  border: 1px solid #b9923c;
+  border-radius: 5px;
+  box-shadow: 0 8px 4px -5px #b4b0aa;
+}
+
+.revealed .mh-spooky-shuffle-card-name {
+  background-color: #ffac14;
+}
+
+.halloweenMemoryGame-card-container.is_matched .mh-spooky-shuffle-card-name {
+  background-color: #d3f5c9;
+  border-color: #89b769;
+}
+
+.halloweenMemoryGame-card-container.mh-spooky-shuffle-card-match {
+  animation: spookyShuffleHappyDance 0.3s 0.2s 2;
+}
