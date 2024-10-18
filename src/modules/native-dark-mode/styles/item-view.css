@@ -35,3 +35,8 @@
 .mh-dark .itemView-obtainHint {
   border-color: var(--d-border);
 }
+
+.mh-dark ul.mh-improved-scroll-to-map-multiple-list,
+.mh-dark .mh-improved-scroll-to-map-multiple {
+  background-color: var(--d-bg-alt);
+}

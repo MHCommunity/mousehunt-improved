@@ -88,3 +88,7 @@
 .mh-dark a.adventureBookPopup-adventure-button {
   color: var(--d-text-dark);
 }
+
+.mh-dark .adventureBookBanner-goalName-padding a {
+  color: var(--d-link);
+}
