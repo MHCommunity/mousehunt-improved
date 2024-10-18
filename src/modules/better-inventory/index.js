@@ -224,6 +224,19 @@ const replaceInventoryView = () => {
       return _InventoryPageuseItem(element);
     }
 
+    const allowedTypes = [
+      'bait',
+      'collectible',
+      'crafting_item',
+      'message_item',
+      'recipe',
+      'stat',
+    ];
+
+    if (! allowedTypes.includes(itemClassification)) {
+      return _InventoryPageuseItem(target);
+    }
+
     const container = target.closest('.mousehuntHud-page-subTabContent');
     if (! container) {
       return _InventoryPageuseItem(target);
