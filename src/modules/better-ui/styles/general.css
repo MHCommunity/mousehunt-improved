@@ -223,8 +223,9 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 
 .trapImageView .trapImageView-trapAura {
   z-index: 1;
+  height: 43px;
   border-radius: 50%;
-  transition: 0.4s;
+  transition: opacity 0.4s ease-in-out;
 }
 
 .trapImageView .trapImageView-trapAura:hover {
