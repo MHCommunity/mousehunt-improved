@@ -20,3 +20,7 @@ ul.better-journal-list {
 .journal .content .entry.bountifulBeanstalk-defeatedGiant .journaltext li {
   margin-left: 20px;
 }
+
+.entry.gloomyGreenwood-incense .journaltext::after {
+  content: "";
+}

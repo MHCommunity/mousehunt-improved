@@ -142,6 +142,9 @@ const replacements = [
 
   // KGA.
   ['Prize Pack!<br><br><b>', 'Prize Pack!<b>'],
+
+  // halloween.
+  ['My Insidious Incense scared up an additional ', 'My Insidious Incense scared up an additional: '],
 ];
 
 /**
