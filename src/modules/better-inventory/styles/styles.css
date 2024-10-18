@@ -28,6 +28,7 @@
 }
 
 .inventoryPage-item-name {
+  max-width: calc(100% - 50px);
   padding: 10px;
   font-size: 1.3em;
   background-color: transparent;

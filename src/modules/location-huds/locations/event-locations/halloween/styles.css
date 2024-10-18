@@ -317,3 +317,7 @@ a.halloweenBoilingCauldronRecipeView-cauldron-queueSlot-cancelButton {
 .halloweenBoilingCauldronRecipeView-recipeList {
   height: 480px;
 }
+
+.halloweenBoilingCauldronHUD-overlay {
+  z-index: 90;
+}
