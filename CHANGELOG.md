@@ -1,5 +1,80 @@
 # Changelog
 
+## Version 0.69.0
+
+- Updated data and cache storage to be more organized
+- Optimized performance
+- Fixed miscellaneous bugs
+
+### Better Gifts
+
+- Added close button to gift confirmation popup
+
+### Better Inventory
+
+- Fixed item views showing when interacting with items
+- Fixed conflict with Qol userscript lock buttons
+
+### Better Journal
+
+- Added support for formatted quantity X item style journal entries as loot list
+- Updated styles and text replacements for some journal entries
+
+### Better King's Reward
+
+- Optimized performance
+- Fixed error being thrown in rare cases
+
+### Better Maps
+
+- Fixed sidebar list trying to load when sidebar is hidden
+
+### Better UI
+
+- Updated styles
+
+### Catch Rate Estimator & Minlucks
+
+- Added 'Show catch rate indicator above trap view' option
+
+### Custom Background
+
+- Fixed custom background not being applied during events
+
+### Custom Horn
+
+- Fixed custom horn not being applied during events
+
+### Custom Shield
+
+- Fixed custom shield not being applied during events
+
+### Favorite Setups
+
+- Updated equipping to disarm bait/charm if setup is saved without them
+
+### Location HUDs: Bountiful Beanstalk
+
+- Added 'Bountiful Beanstalk: Show quick Auto-Harp toggle' option
+- Updated styles
+
+### Location HUDs: Draconic Depths
+
+- Updated styles
+
+### Location HUDs: School Of Sorcery
+
+- Updated styles
+
+### Location HUDs: Event Locations
+
+- Updated Halloween HUD styles
+- Added Spooky Shuffle tracker
+
+### Native Dark Mode
+
+- Updated styles
+
 ## Version 0.68.4
 
 - Fixed travel fallback throwing an error
