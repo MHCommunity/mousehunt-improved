@@ -488,6 +488,16 @@ const makeImagePicker = async (setupId, type, currentId, callback) => {
 const armItem = async (items) => {
   return new Promise((resolve, reject) => {
     items.forEach(({ id, type }) => {
+      if (! id) {
+        if ('bait' === type) {
+          hg.utils.TrapControl.disarmBait();
+        } else if ('trinket' === type) {
+          hg.utils.TrapControl.disarmTrinket();
+        }
+
+        return;
+      }
+
       hg.utils.TrapControl.armItem(id, type);
     });
 
