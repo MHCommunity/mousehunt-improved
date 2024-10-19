@@ -452,7 +452,10 @@ export default async () => {
   updateLootText();
   addCraftingButtons();
   addCommaToNoiseMeterTimeout();
-  addQuickHarpToggle();
+
+  if (getSetting('location-huds.bountiful-beanstalk-quick-harp-toggle', false)) {
+    addQuickHarpToggle();
+  }
 
   funTime();
 

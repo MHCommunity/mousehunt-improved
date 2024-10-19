@@ -105,6 +105,10 @@ export default async () => {
       title: 'Bountiful Beanstalk: Mirror avatar (to face the other direction)',
     },
     {
+      id: 'location-huds.bountiful-beanstalk-quick-harp-toggle',
+      title: 'Bountiful Beanstalk: Show quick Auto-Harp toggle',
+    },
+    {
       id: 'location-huds.bountiful-beanstalk-inventory-in-one-row',
       title: 'Bountiful Beanstalk: Show Inventory box in one row',
       default: getSetting('location-huds.bountiful-beanstalk-inventory-in-one-row', false),
