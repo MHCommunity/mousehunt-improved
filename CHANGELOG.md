@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.69.1
+
+- Fixed error in Better Maps sidebar that was causing an infinite loop
+- Reverted Catch Rate Estimator & Minlucks data refreshing to previous behavior, re-added the 'catch-rate-estimate-more-refresh' flag to enable behavior
+
 ## Version 0.69.0
 
 - Updated data and cache storage to be more organized
