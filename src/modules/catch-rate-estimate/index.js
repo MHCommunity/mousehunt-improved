@@ -2,10 +2,12 @@ import {
   addStyles,
   doEvent,
   getCurrentPage,
+  getFlag,
   getSetting,
   makeElement,
   onNavigation,
-  onRequest
+  onRequest,
+  onTravel
 } from '@utils';
 
 import {
@@ -325,7 +327,12 @@ const main = async () => {
     page: 'camp',
   });
 
-  onRequest('*', updateMinLucks, true, ['users/getmiceeffectiveness.php']);
+  if (getFlag('catch-rate-estimate-more-refresh')) {
+    onRequest('*', updateMinLucks, true, ['users/getmiceeffectiveness.php']);
+  } else {
+    onRequest('users/changetrap.php', updateMinLucks);
+    onTravel(null, { callback: updateMinLucks });
+  }
 };
 
 /**

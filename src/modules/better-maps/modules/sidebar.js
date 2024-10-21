@@ -5,8 +5,7 @@ import {
   onRequest,
   onTravel,
   onTurn,
-  sessionGet,
-  sleep
+  sessionGet
 } from '@utils';
 
 import { getCompletedGoals, refreshMap } from '../utils';
@@ -50,12 +49,11 @@ const transformName = (name) => {
   return `${prefix}${subtitle ? `<span>${name}</span><span class="mh-improved-map-sidebar-subtitle">${subtitle}</span>` : name}`;
 };
 
+let doingAddMapToSidebar = false;
 /**
  * Add the map to the sidebar.
- *
- * @param {boolean|number} retry The retry count.
  */
-const addMapToSidebar = async (retry = false) => {
+const addMapToSidebar = async () => {
   const sidebar = document.querySelector('.pageSidebarView .pageSidebarView-block');
   if (! sidebar) {
     return;
@@ -66,9 +64,15 @@ const addMapToSidebar = async (retry = false) => {
     return;
   }
 
+  if (doingAddMapToSidebar) {
+    return;
+  }
+
   mapData = sessionGet(`mh-improved-map-cache-${mapId}`);
   if (! mapData) {
+    doingAddMapToSidebar = true;
     await refreshMap();
+    doingAddMapToSidebar = false;
   }
 
   const mapSidebar = makeElement('div', 'mh-improved-map-sidebar');
@@ -92,13 +96,7 @@ const addMapToSidebar = async (retry = false) => {
 
   // make sure goals is iterable
   if (! goals || ! goals.length) {
-    if (retry > 3) {
-      return;
-    }
-
-    await sleep(1000);
     mapSidebar.remove();
-    await addMapToSidebar(retry + 1);
     return;
   }
 
