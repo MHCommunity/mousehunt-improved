@@ -37,14 +37,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.25.7",
-    "@sentry/browser": "^8.33.1",
+    "@sentry/browser": "^8.35.0",
     "humanize-duration": "^3.32.1",
     "json2csv": "^6.0.0-alpha.2"
   },
   "devDependencies": {
     "@sentry/cli": "^2.37.0",
-    "@sprout2000/esbuild-copy-plugin": "^1.1.15",
-    "@wordpress/eslint-plugin": "^21.2.0",
+    "@sprout2000/esbuild-copy-plugin": "^1.1.16",
+    "@wordpress/eslint-plugin": "^21.3.0",
     "archiver": "^7.0.1",
     "chalk": "^5.3.0",
     "chrome-webstore-upload-cli": "^3.3.1",
