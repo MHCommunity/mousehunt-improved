@@ -540,3 +540,7 @@ input.itemView-action-convert-quantity {
 .hunterTitle .titles .title > .userLevel {
   border-radius: 6px;
 }
+
+.mousehuntPage-message-title {
+  margin: 4px 0;
+}
