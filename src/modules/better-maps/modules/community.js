@@ -161,5 +161,5 @@ const debug = async (response, data) => {
  * Initialize the module.
  */
 export default () => {
-  onRequest('users/treasuremap.php', debug);
+  onRequest('users/treasuremap_v2.php', debug);
 };

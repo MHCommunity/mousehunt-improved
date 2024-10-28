@@ -179,5 +179,5 @@ const updateFromRequest = (response, data) => {
  */
 export default async () => {
   updateFromClick();
-  onRequest('users/treasuremap.php', updateFromRequest);
+  onRequest('users/treasuremap_v2.php', updateFromRequest);
 };

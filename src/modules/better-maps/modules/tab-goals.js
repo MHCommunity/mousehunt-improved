@@ -421,7 +421,7 @@ const addQuickInvite = async (mapData) => {
 
     debuglog('better-maps', `Inviting hunter ${hunterId} with snuid ${snuid} to map ${mapId}`);
 
-    const invited = await doRequest('managers/ajax/users/treasuremap.php', {
+    const invited = await doRequest('managers/ajax/users/treasuremap_v2.php', {
       action: 'send_invites',
       map_id: mapId,
       'snuids[]': snuid,
