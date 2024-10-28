@@ -92,3 +92,8 @@
 .mh-dark .adventureBookBanner-goalName-padding a {
   color: var(--d-link);
 }
+
+.mh-dark .adventureBookPopup-adventure-details-block-step-checkmark {
+  background-color: var(--d);
+  border-color: var(--d-action);
+}

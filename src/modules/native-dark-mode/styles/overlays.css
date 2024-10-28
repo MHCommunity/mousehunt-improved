@@ -205,3 +205,12 @@
   background-color: var(--d);
   background-blend-mode: multiply;
 }
+
+.mh-dark .convertibleOpenView-auraContainer {
+  background-color: var(--d);
+}
+
+.mh-dark .convertibleOpenView-aura.QuestChromeAura {
+  background-color: var(--d-bg);
+  border-color: var(--d-red-darker);
+}
