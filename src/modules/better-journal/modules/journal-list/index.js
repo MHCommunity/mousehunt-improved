@@ -309,7 +309,7 @@ const formatXasList = async (entry) => {
 export default async () => {
   addStyles(styles, 'better-journal-list');
 
-  linkItems = getSetting('better-journal-list.link-all-items');
+  linkItems = getSetting('better-journal-list.link-all-items', true);
 
   onJournalEntry(formatAsList, 3000);
   onJournalEntry(formatXasList, 3000);
