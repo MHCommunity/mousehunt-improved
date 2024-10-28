@@ -209,7 +209,7 @@ const intercept = () => {
     }, 1000);
   };
 
-  onRequest('users/treasuremap.php', (data) => {
+  onRequest('users/treasuremap_v2.php', (data) => {
     if (data.treasure_map && data.treasure_map.map_id) {
       setMapData(data.treasure_map.map_id, data.treasure_map);
     }
@@ -460,7 +460,7 @@ const init = async () => {
     maybeShowInvitesTab(tab);
   });
 
-  onRequest('users/treasuremap.php', () => {
+  onRequest('users/treasuremap_v2.php', () => {
     addBlockClasses();
     updateMapClasses();
   });

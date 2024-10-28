@@ -195,7 +195,7 @@ export default async () => {
     refreshSidebarAfterTurn();
   }, 1000);
 
-  onRequest('users/treasuremap.php', (data, request) => {
+  onRequest('users/treasuremap_v2.php', (data, request) => {
     if ('toggle_favourite_task' === request.action) {
       refreshSidebar();
     }
