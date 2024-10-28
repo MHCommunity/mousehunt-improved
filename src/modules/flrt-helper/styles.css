@@ -18,6 +18,7 @@
 .mh-improved-flrt-helper-popup .flrt-friend-finder {
   display: flex;
   flex-direction: column;
+  min-width: 320px;
 }
 
 .mh-improved-flrt-helper-popup .friendsPage-friendRow.friendsPage-requestRow {
@@ -123,7 +124,7 @@
 }
 
 .mh-improved-flrt-helper-popup .flrt-items-to-send {
-  min-width: 80%;
+  min-width: 90%;
 }
 
 .mh-improved-flrt-helper-popup .flrt-item {
@@ -175,9 +176,9 @@
   background-color: #3fcd84;
 }
 
-.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent::after {
+.mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent-success::after {
   position: absolute;
-  right: 0;
+  right: 55px;
   display: inline-block;
   width: 25px;
   height: 25px;
@@ -188,4 +189,47 @@
   background-image: url(https://www.mousehuntgame.com/images/ui/events/winter_hunt_2013/checkmark.png);
   background-repeat: no-repeat;
   background-size: 100%;
+}
+
+.flrt-item-send.mousehuntActionButton {
+  margin-right: 3px;
+  margin-left: auto;
+}
+
+#overlayPopup.flrt-helper-popup .jsDialogContainer .suffix {
+  display: none;
+}
+
+.mh-dark .flrt-helper-popup .jsDialog.background .content {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+}
+
+.mh-dark .flrt-helper-popup h2.title {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-improved-flrt-helper-popup .flrt-item {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mh-improved-flrt-helper-popup .flrt-item.flrt-item-sending {
+  color: var(--d-text-dark);
+  background-color: var(--d-yellow);
+}
+
+.mh-dark .mh-improved-flrt-helper-popup .flrt-item.flrt-item-sent {
+  color: var(--d-text-dark);
+  background-color: var(--d-green);
+}
+
+.mh-dark .mh-improved-flrt-helper-popup .friendsPage-community-hunterResult .error {
+  color: var(--d-text);
+  background-color: var(--d);
+}
+
+.mh-dark .mh-improved-flrt-helper-popup .flrt-search-form {
+  background-color: var(--d-blue-dark);
+  border-color: var(--d-blue);
 }
