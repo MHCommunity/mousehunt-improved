@@ -119,33 +119,9 @@ const waitForTravel = async (environment) => {
 };
 
 /**
- * Disarm the bait.
- *
- * @return {Promise} A promise that resolves when the bait is disarmed.
- */
-const disarmBait = async () => {
-  return new Promise((resolve) => {
-    hg.utils.TrapControl.disarmBait().go(() => {
-      resolve();
-    }, () => {
-      reject();
-    });
-  });
-};
-
-/**
  * Refresh the location data.
  */
 const doLocationRefresh = async () => {
-  // Show a popup that shows the progress.
-  // Travel to each location.
-  // Cache the data.
-  // Travel back to the original location.
-  // Close the popup.
-  // Refresh the page.
-
-  sessionSet('doing-location-refresh', true);
-
   const locationProgress = [];
 
   const environmentsToUse = new Set([
@@ -195,17 +171,18 @@ const doLocationRefresh = async () => {
     <div class="locationImageWrapper">
       <img class="locationImage" src="${env.image}">
     </div>
-    <div class="locationName">
+    <div class="locationName" title="Travel to ${env.name}">
       <div class="name">${env.name}</div>
       <div class="progress"></div>
     </div>
     </div>`;
+
     locationProgress.push(env.id);
     debug(`Adding ${env.name} to the to-travel list.`);
   });
 
-  const popup = createPopup({
-    title: 'Refreshing Location Data',
+  createPopup({
+    title: 'Update Location Data',
     content: `<div class="mh-improved-location-refresh-popup">
     <div class="mh-improved-location-refresh-popup-progress">${locationProgressMarkup}</div>
     </div>`,
@@ -216,65 +193,42 @@ const doLocationRefresh = async () => {
   const originalLocation = user.environment_type;
   debug(`Original location: ${user.environment_type}.`);
 
-  const equippedBait = user.bait_item_id || 'disarmed';
-  debug(`Equipped bait: ${equippedBait}.`);
-
-  await disarmBait();
+  const originalLocationEl = document.querySelector(`.location-refresh-item[data-environment-type="${originalLocation}"]`);
+  if (originalLocationEl) {
+    originalLocationEl.classList.add('starting');
+  }
 
   for (const location of locationProgress) {
-    if (originalLocation === location) {
-      continue;
-    }
-
     const locationData = environments.find((env) => env.id === location);
     if (! locationData) {
       continue;
     }
-
-    debug(`Traveling to ${locationData.name}.`);
 
     const progressItem = document.querySelector(`.location-refresh-item[data-environment-type="${location}"]`);
     if (! progressItem) {
       continue;
     }
 
-    progressItem.classList.add('traveling');
+    const travelButton = makeElement('button', ['mousehuntActionButton', 'small', 'travel-button']);
+    makeElement('span', '', 'Travel', travelButton);
 
-    await waitForTravel(location);
-    await cacheLocationData();
+    travelButton.addEventListener('click', async () => {
+      sessionSet('doing-location-refresh', true);
 
-    progressItem.classList.remove('traveling');
-    progressItem.classList.add('done');
+      progressItem.classList.add('traveling');
 
-    debug(`Traveled to ${locationData.name}.`);
+      await waitForTravel(location);
+      await cacheLocationData();
+
+      progressItem.classList.remove('traveling');
+      progressItem.classList.add('done');
+
+      sessionSet('doing-location-refresh', false);
+    });
+
+    const item = progressItem.querySelector('.locationName');
+    item.append(travelButton);
   }
-
-  await waitForTravel(originalLocation);
-  debug(`Traveled back to ${user.environment_type}.`);
-
-  hg.utils.TrapControl.setBait(equippedBait).go();
-  debug(`Re-equipped bait: ${equippedBait}.`);
-
-  popup.hide();
-
-  const dashboardMenu = document.querySelector('.mousehuntHeaderView .menuItem.dropdown.dashboard');
-  if (dashboardMenu) {
-    // Make sure the dashboard is expanded.
-    dashboardMenu.classList.add('expanded');
-
-    const existing = document.querySelector('.dashboardContents');
-    if (existing) {
-      const refreshedContents = await getDashboardContents();
-      existing.replaceWith(refreshedContents);
-    }
-
-    const wrapper = document.querySelector('.dashboardWrapper');
-    if (wrapper) {
-      wrapper.scrollTop = 0;
-    }
-  }
-
-  sessionSet('doing-location-refresh', false);
 
   doEvent('travel_complete');
 };
@@ -321,37 +275,6 @@ const makeDashboardTab = () => {
   makeElement('span', '', 'Refresh', refreshButton);
 
   refreshButton.addEventListener('click', () => {
-    const confirmPopup = createPopup({
-      title: 'Refresh Location Data',
-      content: `<div class="mh-improved-location-refresh-confirm-popup">
-        <div class="mh-improved-location-refresh-confirm-popup-content">
-          <p>This will refresh the location data for all locations by traveling to each location and caching the data.</p>
-          <div class="mh-improved-location-refresh-confirm-popup-buttons">
-            <div class="mousehuntActionButton mh-improved-location-refresh-confirm-popup-button mh-improved-location-refresh-confirm-popup-button-cancel"><span>Cancel</span></div>
-            <div class="mousehuntActionButton mh-improved-location-refresh-confirm-popup-button mh-improved-location-refresh-confirm-popup-button-confirm"><span>Start Traveling</span></div>
-          </div>
-        </div>
-      </div>`,
-      className: 'mh-improved-location-refresh-confirm-popup',
-      hasCloseButton: false,
-      show: true,
-    });
-
-    const cancelButton = document.querySelector('.mh-improved-location-refresh-confirm-popup-button-cancel');
-    if (cancelButton) {
-      cancelButton.addEventListener('click', () => {
-        confirmPopup.hide();
-      });
-    }
-
-    const confirmButton = document.querySelector('.mh-improved-location-refresh-confirm-popup-button-confirm');
-    if (confirmButton) {
-      confirmButton.addEventListener('click', () => {
-        confirmPopup.hide();
-        doLocationRefresh();
-      });
-    }
-
     doLocationRefresh();
   });
 

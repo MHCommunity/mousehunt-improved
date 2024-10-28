@@ -209,11 +209,21 @@ img.locationImage {
   border-color: #adadad;
 }
 
+.location-refresh-item.starting {
+  background-color: #a3f4ff;
+}
+
 .location-refresh-item .locationName {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   overflow: hidden;
+}
+
+.location-refresh-item .locationName .travel-button {
+  padding: 3px 10px;
+  margin-right: 5px;
 }
 
 .location-refresh-item .locationName .name {
@@ -315,4 +325,9 @@ img.locationImage {
 .locationName:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.location-refresh-item .locationName:hover {
+  text-decoration: none;
+  cursor: default;
 }

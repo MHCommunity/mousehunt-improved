@@ -18,7 +18,7 @@ import styles from './styles.css';
  * @param {Object} response The response from the request.
  */
 const addFlrtButtonToConvertible = async (response) => {
-  if (! (response.convertible_open && response.convertible_open.name && response.convertible_open.items)) {
+  if (! response?.convertible_open?.name || ! response?.convertible_open?.items) {
     return;
   }
 
@@ -34,6 +34,13 @@ const addFlrtButtonToConvertible = async (response) => {
       image: element.thumb,
       quantity: element.quantity,
     };
+
+    // If it's Magic essence, then transform it into SB.
+    if (element.type === 'magic_essence_craft_item') {
+      itemData.type = 'super_brie_cheese';
+      itemData.name = 'SUPER|brie+';
+      itemData.image = 'https://www.mousehuntgame.com/images/items/bait/large/32b20c3984d2f03b132c295ea3b99e7e.png';
+    }
 
     // Skip items that are not tradable.
     if (tradableItems) {
@@ -67,32 +74,6 @@ const addFlrtButtonToConvertible = async (response) => {
 };
 
 /**
- * Send the items to the Maptain.
- *
- * @param {string} snuid The SN User ID of the Maptain.
- * @param {Array}  items The items to send.
- */
-const sendItemsToMaptain = async (snuid, items) => {
-  for (const item of items) {
-    item.element.classList.add('flrt-item-sending');
-
-    await doRequest('managers/ajax/users/supplytransfer.php', {
-      item: item.type,
-      item_quantity: item.quantity,
-      receiver: snuid,
-    });
-
-    item.element.classList.remove('flrt-item-sending');
-    item.element.classList.add('flrt-item-sent');
-  }
-
-  const sendButton = document.querySelector('.flrt-send-items');
-  if (sendButton) {
-    sendButton.outerHTML = '<input type="submit" value="Continue" class="jsDialogClose button">';
-  }
-};
-
-/**
  * Show the popup to send the items to the Maptain.
  *
  * @param {Array} items The items to send.
@@ -108,14 +89,17 @@ const flrtPopup = async (items) => {
         <div class="quantity">${item.quantity}</div>
       </div>
       <div class="flrt-item-info">
-        <input type="checkbox" checked data-item-type="${item.type}">
         <span class="flrt-item-name">${item.name}</span>
       </div>
+      <button class="flrt-item-send mousehuntActionButton small disabled" data-item-type="${item.type}" data-item-quantity="${item.quantity}" disabled>
+        <span>Send</span>
+      </button>
     </div>`;
   });
 
   const popup = createPopup({
     template: 'ajax',
+    className: 'flrt-helper-popup',
     title: 'Send tradables to Maptain',
     content: `<div class="mh-improved-flrt-helper-popup">
       <div class="flrt-friend-finder">
@@ -124,9 +108,6 @@ const flrtPopup = async (items) => {
             <a class="mousehuntActionButton small search-for-hunter" href="#" onclick="app.pages.FriendsPage.triggerHunterForm(this); return false;"><span>Search</span></a>
           </form>
         <div class="friendsPage-community-hunterResult"></div>
-        <div class="instructions">
-          Select the tradable items you want to send.
-        </div>
       </div>
       <div class="flrt-items-to-send">
         ${itemContent}
@@ -135,75 +116,92 @@ const flrtPopup = async (items) => {
   });
 
   popup.addToken('{*prefix*}', '<h2 class="title">Send tradable items</h2>');
-  popup.addToken('{*suffix*}', '<div class="mousehuntActionButton flrt-send-items"><span>Send items to Maptain</span></div>');
+  popup.addToken('{*suffix*}', '');
   popup.show();
 
-  const flrtItems = document.querySelectorAll('.flrt-item');
-  flrtItems.forEach((item) => {
-    const checkbox = item.querySelector('input[type="checkbox"]');
-
-    /**
-     * Toggle the checkbox and item.
-     */
-    const toggle = () => {
-      checkbox.checked = ! checkbox.checked;
-      item.classList.toggle('flrt-item-disabled', ! checkbox.checked);
-    };
-
-    item.addEventListener('click', toggle);
-  });
-
-  if (lastMaptain) {
-    const search = document.querySelector('.search-for-hunter');
-    if (search) {
-      app.pages.FriendsPage.triggerHunterForm(search);
-    }
-  }
-
-  const sendBtn = document.querySelector('.flrt-send-items');
-  if (! sendBtn) {
+  const search = document.querySelector('.search-for-hunter');
+  if (! search) {
     return;
   }
 
-  sendBtn.addEventListener('click', () => {
-    sendBtn.disabled = true;
-    sendBtn.classList.add('disabled');
+  hasFoundMaptain = !! lastMaptain;
 
+  if (lastMaptain) {
+    app.pages.FriendsPage.triggerHunterForm(search);
+  }
+
+  const flrtItems = document.querySelectorAll('.flrt-item');
+
+  search.addEventListener('click', () => {
     const id = document.querySelector('.friendsPage-community-hunterIdForm-input');
     if (! id) {
       return;
     }
 
-    const sendingItems = document.querySelectorAll('.flrt-item');
-    const itemsToSend = [];
+    app.pages.FriendsPage.submitHunterIdForm(id);
+  });
 
-    sendingItems.forEach((item) => {
-      const checkbox = item.querySelector('input[type="checkbox"]');
-      if (! checkbox) {
-        return;
-      }
-
-      if (checkbox.checked) {
-        const itemData = {
-          type: item.getAttribute('data-item-type'),
-          quantity: Number.parseInt(item.getAttribute('data-item-quantity'), 10),
-          element: item,
-        };
-
-        itemsToSend.push(itemData);
-      }
-
-      checkbox.disabled = true;
-    });
-
-    const row = document.querySelector('.friendsPage-friendRow.friendsPage-requestRow');
-    if (! row) {
+  flrtItems.forEach((item) => {
+    const sendButton = item.querySelector('.flrt-item-send');
+    if (! sendButton) {
       return;
     }
 
-    const snuid = row.getAttribute('data-snuid') || id.value;
+    sendButton.addEventListener('click', async () => {
+      if (! hasFoundMaptain) {
+        return;
+      }
 
-    sendItemsToMaptain(snuid, itemsToSend);
+      const type = item.getAttribute('data-item-type');
+      const quantity = item.getAttribute('data-item-quantity');
+
+      if (! type || ! quantity) {
+        return;
+      }
+
+      item.classList.add('flrt-item-sending');
+
+      await doRequest('managers/ajax/users/supplytransfer.php', {
+        item: type,
+        item_quantity: quantity,
+        receiver: lastMaptain,
+      });
+
+      item.classList.remove('flrt-item-sending');
+      item.classList.add('flrt-item-sent');
+      item.classList.add('flrt-item-sent-success');
+      setTimeout(() => {
+        item.classList.remove('flrt-item-sent-success');
+      }, 1500);
+
+      sendButton.disabled = true;
+      sendButton.classList.add('disabled');
+      sendButton.setAttribute('data-item-sent', 'true');
+    });
+  });
+};
+
+let hasFoundMaptain = false;
+const updateSendButtons = async (resp) => {
+  hasFoundMaptain = resp.friend && resp.friend.sn_user_id ? true : false;
+
+  const overlay = document.querySelector('#overlayPopup.flrt-helper-popup');
+  if (! overlay) {
+    return;
+  }
+
+  const flrtSendButtons = document.querySelectorAll('.flrt-item-send');
+  if (! flrtSendButtons) {
+    return;
+  }
+
+  flrtSendButtons.forEach((button) => {
+    if (button.getAttribute('data-item-sent') === 'true') {
+      return;
+    }
+
+    button.disabled = ! hasFoundMaptain;
+    button.classList.toggle('disabled', ! hasFoundMaptain);
   });
 };
 
@@ -216,6 +214,7 @@ const init = async () => {
   onDialogShow('treasureMapPopup', cacheFinishedMap);
 
   onRequest('users/useconvertible.php', addFlrtButtonToConvertible);
+  onRequest('pages/friends.php', updateSendButtons);
 };
 
 /**
