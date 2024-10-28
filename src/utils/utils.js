@@ -279,27 +279,18 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
   // Convert the form to a URL encoded string for the body.
   const requestBody = new URLSearchParams(form).toString();
 
-  // Send the request.
-  let response;
-  let attempts = 0;
+  try {
+    response = await fetch(callbackurl ? `${callbackurl}${url}` : `https://www.mousehuntgame.com/${url}`, {
+      method: 'POST',
+      body: requestBody,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+  } catch (error) {
+    console.error(`Error fetching ${url}:`, error); // eslint-disable-line no-console
 
-  while (! response && attempts < 3) {
-    try {
-      response = await fetch(callbackurl ? `${callbackurl}${url}` : `https://www.mousehuntgame.com/${url}`, {
-        method: 'POST',
-        body: requestBody,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
-    } catch (error) {
-      attempts++;
-      console.error(`Attempt ${attempts} failed. Retrying...`, error); // eslint-disable-line no-console
-    }
-  }
-
-  if (attempts >= 3) {
-    console.error('Failed to fetch after maximum attempts'); // eslint-disable-line no-console
+    return false;
   }
 
   // Wait for the response and return it.
