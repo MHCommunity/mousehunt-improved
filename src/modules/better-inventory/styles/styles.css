@@ -650,3 +650,7 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
   border-color: #ff8585;
   box-shadow: 0 0 5px #ffeaea;
 }
+
+.mh-dark .inventoryPage-item-name abbr {
+  color: var(--d-text);
+}

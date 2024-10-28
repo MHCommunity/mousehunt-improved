@@ -198,6 +198,15 @@ a.adventureBookPopup-title {
   padding: 3px 15px;
 }
 
+.mh-dark .adventureBookPopup-title-margin {
+  color: var(--d-text);
+}
+
+.mh-dark .adventureBookPopup-adventure-header-title,
+.mh-dark .adventureBookPopup-adventure-header-duration {
+  color: var(--d-black);
+}
+
 img.adventureBookPopup-title-icon {
   left: 5px;
   height: 20px;
