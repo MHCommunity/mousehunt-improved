@@ -28,7 +28,7 @@ import mouseGroups from '@data/map-groups.json';
 const getMouseDataForMap = (currentMapData, type = 'mouse') => {
   // Get the unsorted mice.
   let unsortedMice = [];
-  if (currentMapData.goals[type]) {
+  if (currentMapData.goals && currentMapData.goals[type]) {
     unsortedMice = currentMapData.goals[type];
   }
 
@@ -622,7 +622,7 @@ const makeGenericSortedPage = async (isNormal, sortedPage) => {
     return;
   }
 
-  const currentMapData = getMapData(mapData().map_id);
+  const currentMapData = await getMapData(mapData().map_id);
 
   const type = isNormal ? 'mouse' : 'item';
   target.classList.add('treasureMapView-block-content', 'scavenger-sorted-page');
