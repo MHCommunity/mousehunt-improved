@@ -126,6 +126,10 @@ input.mh-improved-travel-window-search-input[type="text"] {
   border: 1px solid #333;
 }
 
-.greatWinterHuntGolemDestinationView__environment.greatWinterHuntGolemDestinationView__environment--active {
+.mh-improved-travel-window-popup .greatWinterHuntGolemDestinationView__environment.greatWinterHuntGolemDestinationView__environment--active {
   opacity: 0.4;
+}
+
+.mh-dark #overlayPopup.mh-improved-travel-window-popup .content {
+  background-color: var(--d-bg);
 }
