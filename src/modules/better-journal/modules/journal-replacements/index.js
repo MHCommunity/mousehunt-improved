@@ -121,6 +121,7 @@ const replacements = [
   ['I used a Master Magus Wand to DOUBLE my Spell Force which caused it to shatter brilliantly!', 'I used a Master Magus Wand to double my Spell Force! It shattered in a brilliant explosion of light!'],
   ['times.I can', 'times. I can'],
   ['Here is the summary of loot that I earned during my studies:<br><br>', 'I earned the following loot during my studies:'],
+  ['The aura will last until', 'The aura expires on'],
 
   // Event stuff
   // SEH
@@ -248,19 +249,31 @@ const updateItemLinks = (entry) => {
   }
 
   const itemLinks = entry.querySelectorAll('.journaltext a[href*="item.php"]');
-  if (! itemLinks) {
-    return;
+  if (itemLinks) {
+    itemLinks.forEach((link) => {
+      const itemType = link.href.match(/item\.php\?item_type=(\w+)/);
+      if (itemType && itemType.length === 2) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          hg.views.ItemView.show(itemType[1]);
+        });
+      }
+    });
   }
 
-  itemLinks.forEach((link) => {
-    const itemType = link.href.match(/item\.php\?item_type=(\w+)/);
-    if (itemType && itemType.length === 2) {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        hg.views.ItemView.show(itemType[1]);
-      });
-    }
-  });
+  const itemLinksNoHref = entry.querySelectorAll('.journaltext a[onclick]');
+  if (itemLinksNoHref) {
+    itemLinksNoHref.forEach((link) => {
+      if ('#' !== link.getAttribute('href')) {
+        return;
+      }
+
+      const itemType = link.getAttribute('onclick').match(/hg\.views\.ItemView\.show\('(\w+)'\)/);
+      if (itemType && itemType.length === 2) {
+        link.setAttribute('href', `https://www.mousehuntgame.com/item.php?item_type=${itemType[1]}`);
+      }
+    });
+  }
 };
 
 /**
