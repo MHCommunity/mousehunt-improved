@@ -58,12 +58,11 @@
 }
 
 .mh-dark .adventureBookPopup-title-margin {
-  color: var(--d-text);
+  color: var(--d-text-dark);
 }
 
 .mh-dark .adventureBookPopup-adventure-header-title,
 .mh-dark .adventureBookPopup-adventure-header-duration {
-  color: var(--d-black);
   text-shadow: none;
 }
 

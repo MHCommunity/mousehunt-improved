@@ -17,10 +17,6 @@
   border-color: var(--d-border);
 }
 
-.mh-dark .inventoryPage-item-name abbr {
-  color: var(--d-text);
-}
-
 .mh-dark .inventoryPage-tagDirectory {
   border-color: var(--d-border);
 }
