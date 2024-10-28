@@ -33,8 +33,13 @@ const renderSavedCard = (card) => {
 
   cardFront.style.background = 'url(https://www.mousehuntgame.com/images/ui/events/spooky_shuffle/game/shuffle_cards.png) 0 100% no-repeat';
   cardFront.classList.add('mh-spooky-shuffle-card-front');
-  if (! card.is_matched) {
-    flipper.style.background = `url(${card.thumb}) 5px 0 no-repeat / cover`;
+  if (card.is_revealed) {
+    flipper.style.background = `url(${card.thumb})  5px 5px / 74px no-repeat`;
+    flipper.style.transition = 'background-position none';
+  }
+
+  if (card.is_matched) {
+    flipper.style.background = 'none';
   }
 
   makeElement('div', ['mh-spooky-shuffle-card-name', `mh-spooky-shuffle-card-name-${card.id}`], card.name, cardElement);
@@ -78,6 +83,7 @@ const processRequest = (req) => {
 
   // Get the saved cards.
   const savedCards = getSavedCards();
+  console.log(savedCards);
 
   // Merge in all the new cards.
   const revealedCards = req.memory_game.cards.filter((card) => card.is_revealed);
