@@ -21,6 +21,8 @@
   padding-left: unset;
 }
 
+.journaltext a[href*="https://www.mousehuntgame.com/item.php?item_type=cauldron_potion_ingredient_stat_item"]::before,
+.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item"]::before,
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=fulminas_gift_convertible"]::before,
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=storm_egg_convertible"]::before,
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=prize_credit_stat_item"]::before {
@@ -34,10 +36,6 @@
 .journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item"] {
   position: relative;
   padding-left: 15px;
-}
-
-.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=amber_queso_stat_item"]::before {
-  left: 0;
 }
 
 /* stylelint-enable prettier/prettier */
