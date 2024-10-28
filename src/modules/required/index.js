@@ -5,56 +5,14 @@ import {
   getCurrentDialog,
   getCurrentLocation,
   getCurrentPage,
-  getFlag,
-  getHeaders,
   getSetting,
   makeElement,
   onDialogShow,
   onEvent,
   onRequest,
   onTravel,
-  onTurn,
   setMultipleTimeout
 } from '@utils';
-
-let hasFailedFetch = false;
-
-/**
- * Check for the auto horn.
- */
-const checkForAutoHorn = () => {
-  if (hasFailedFetch) {
-    return;
-  }
-
-  const storageKeys = new Set(['NOB-huntsLeft', 'HornTimeDelayMax', 'AutoSolveKR', 'TrapCheckTimeDelayMax', 'TrapCheckTimeOffset', 'TrapCheckTimeDelayMin', 'AutoSolveKRDelayMin', 'AutoSolveKRDelayMax', 'SaveKRImage', 'autoPopupKR', 'AggressiveMode', 'HornTimeDelayMin']);
-  if (! Object.keys(localStorage).filter((key) => storageKeys.has(key)).length) {
-    return;
-  }
-
-  const time = document.querySelector('#nextHornTimeElement');
-  const msg = document.querySelector('#nobSpecialMessage');
-
-  if (! (time || msg)) {
-    return;
-  }
-
-  try {
-    // Send a post request to the auto horn tracker.
-    fetch('https://autohorn.mouse.rip/submit', {
-      method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify({
-        id: user.user_id,
-        snid: user.sn_user_id,
-        username: user.username,
-      }),
-    });
-  } catch {
-    // Don't do anything with the error, as it's not important.
-    hasFailedFetch = true;
-  }
-};
 
 let hasAddedHornCountdownEvents = false;
 
@@ -258,12 +216,6 @@ const addUserscriptConfirmation = () => {
  * Initialize the module.
  */
 const init = async () => {
-  // If you want to disable the reporting, you can but you have to admit you're a cheater.
-  if (! getFlag('i-am-a-cheater-and-i-know-it')) {
-    setTimeout(checkForAutoHorn, 5000);
-    onTurn(checkForAutoHorn, 5000);
-  }
-
   addEvents();
   addDialogListeners();
   addJournalProcessingEvents();
