@@ -191,3 +191,7 @@ body.mh-dark {
 .mh-dark .inventoryPage-confirmPopup-suffix-quantityContainer-setMax {
   color: var(--d-link);
 }
+
+.mh-dark .mousehuntPage-message {
+  color: var(--d-text-dark);
+}
