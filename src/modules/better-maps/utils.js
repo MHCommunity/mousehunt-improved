@@ -46,7 +46,7 @@ const refreshMap = async () => {
 
   let newMapData;
   try {
-    newMapData = await doRequest('managers/ajax/users/treasuremap.php', {
+    newMapData = await doRequest('managers/ajax/users/treasuremap_v2.php', {
       action: 'map_info',
       map_id: mapId,
     });
