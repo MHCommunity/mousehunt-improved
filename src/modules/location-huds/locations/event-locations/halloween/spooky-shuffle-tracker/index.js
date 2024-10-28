@@ -83,7 +83,6 @@ const processRequest = (req) => {
 
   // Get the saved cards.
   const savedCards = getSavedCards();
-  console.log(savedCards);
 
   // Merge in all the new cards.
   const revealedCards = req.memory_game.cards.filter((card) => card.is_revealed);
