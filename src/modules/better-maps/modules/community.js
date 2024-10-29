@@ -26,34 +26,8 @@ const getMapData = async (mapId, forceUpdate = false) => {
   });
 };
 
-/**
- * Update a map listing.
- *
- * @param {number} mapId The map ID.
- */
-const updateListing = async (mapId) => {
-  let mapData;
-
-  const mapEl = document.querySelector(`.treasureMapListingsTableView-row[data-map-id="${mapId}"]`);
-  if (! mapEl) {
-    return;
-  }
-
-  mapEl.classList.add('mh-improved-map-listing-highlight');
-
-  await sleep(500);
-  const mapsData = await getData('community-map-data');
-  let oldIds = new Set();
-
-  if (mapsData && mapsData.old) {
-    oldIds = new Set(mapsData.old);
-  }
-
-  if (oldIds.has(mapId)) {
-    mapEl.remove();
-    return;
-  }
-
+const addInfoToListing = async (mapId, mapEl) => {
+  // TODO: update this to add a 'get info' button and then load the info on click.
   if (mapEl.innerText.includes('Loading')) {
     // add an observer to wait for the map data to load
     const observer = new MutationObserver(async () => {
@@ -128,6 +102,34 @@ const updateListing = async (mapId) => {
   }
 
   mapEl.classList.remove('mh-improved-map-listing-highlight');
+};
+
+/**
+ * Update a map listing.
+ *
+ * @param {number} mapId The map ID.
+ */
+const updateListing = async (mapId) => {
+  const mapEl = document.querySelector(`.treasureMapListingsTableView-row[data-map-id="${mapId}"]`);
+  if (! mapEl) {
+    return;
+  }
+
+  mapEl.classList.add('mh-improved-map-listing-highlight');
+
+  await sleep(500);
+  const mapsData = await getData('community-map-data');
+  let oldIds = new Set();
+
+  if (mapsData && mapsData.old) {
+    oldIds = new Set(mapsData.old);
+  }
+
+  if (oldIds.has(mapId)) {
+    mapEl.remove();
+  } else {
+    // addInfoToListing(mapId, mapEl);
+  }
 };
 
 /**
