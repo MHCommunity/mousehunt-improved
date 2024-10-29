@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 0.70.0
+
+- Added 'disable-requests' flag to disable requests to MouseHunt servers
+- Added 'Gift button opens gift selector' experimental feature
+- Fixed Better Maps Sorted tab and other functionality not working
+- Fixed Spooky Shuffle images not showing for revealed cards
+- Removed 'Return Raffles' experimental feature
+- Updated Better Maps Community Map information to only hide old & inactive community maps
+- Updated Dark Mode styles
+- Updated FLTR Helper to simplify the sending process by switching from checkboxes to individual send buttons
+- Updated Location Dashboard refresh window to be manually triggered for each location
+- Updated miscellaneous styles
+- Miscellaneous bug fixes and optimizations
+
 ## Version 0.69.1
 
 - Fixed error in Better Maps sidebar that was causing an infinite loop
