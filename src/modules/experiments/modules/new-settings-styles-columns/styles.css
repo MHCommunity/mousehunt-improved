@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  padding-bottom: 15px;
 }
 
 .two-column.mousehunt-improved-settings .mh-improved-custom-bg-preview,
@@ -24,6 +25,18 @@
   top: 20px;
   left: 10px;
   font-size: 11px;
+}
+
+.two-column.mousehunt-improved-settings .mh-improved-custom-bg-preview,
+.two-column.mousehunt-improved-settings .mh-improved-custom-camp-bg-preview,
+.two-column.mousehunt-improved-settings .mh-improved-custom-hud-preview,
+.two-column.mousehunt-improved-settings .mh-improved-custom-horn-preview,
+.two-column.mousehunt-improved-settings .mh-improved-custom-horn-show-horn,
+.two-column.mousehunt-improved-settings .mh-improved-custom-horn-links,
+.two-column.mousehunt-improved-settings .mh-improved-custom-shield-preview {
+  top: 30px;
+  right: unset;
+  left: 10px;
 }
 
 .two-column #mousehunt-improved-settings-design .PagePreferences__settingAction {
@@ -51,7 +64,6 @@
 .two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting {
   padding: 0 5px;
   background-color: transparent;
-  border-right: 1px solid #e0cfb4;
   border-radius: 0;
 }
 
@@ -100,11 +112,6 @@
   grid-template-columns: 1fr 1fr;
   padding: 10px 0 0;
   margin: -10px -11px 0;
-  border-left: 1px solid #e0cfb4;
-}
-
-.two-column #mousehunt-improved-settings-location-hud .PagePreferences__title {
-  border-bottom: 1px solid #f2ebde;
 }
 
 .two-column.mousehunt-improved-settings .PagePreferences .mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings .mhui-setting-toggle,
@@ -128,7 +135,11 @@
 }
 
 .two-column .PagePreferences__settingsList .PagePreferences__subSetting {
-  opacity: 0.4;
+  opacity: 0.6;
+}
+
+.two-column .PagePreferences__settingsList.PagePreferences__settingsList-mousehunt-improved-settings-beta .PagePreferences__subSetting {
+  opacity: 1;
 }
 
 .two-column .PagePreferences__settingsList:hover .PagePreferences__subSetting {
@@ -183,11 +194,6 @@
 .two-column #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-enabled-region-seperator,
 .two-column #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle {
   grid-column: 1 / 3;
-}
-
-.two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting:nth-child(4n + 3),
-.two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting:nth-child(4n + 4) {
-  background-color: #eee;
 }
 
 .two-column #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingNameText {

@@ -10,13 +10,14 @@ const init = async () => {
   const onlySettings = [
     {
       id: 'better-marketplace.show-chart-images',
-      name: 'Better Marketplace: Show sales price history charts on category pages',
-      description: '',
+      name: 'Better Marketplace: Price History Charts',
+      description: 'Show sales price history charts on category pages',
       load: () => {}
     },
     {
       id: 'better-journal-list.link-all-items',
       name: 'Better Journal List: Link all items',
+      description: 'Adds links to items in journal entries that are not linked.',
       load: () => {}
     }
   ];
@@ -51,7 +52,7 @@ const init = async () => {
  */
 export default {
   id: 'experiments',
-  name: 'Experiments',
+  name: 'Experiments / Beta Features',
   description: '',
   type: 'beta',
   default: true,

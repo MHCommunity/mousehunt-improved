@@ -80,6 +80,5 @@ const init = async () => {
 export default {
   id: 'experiments.lol-gottem',
   name: 'Troll mode',
-  description: 'lol',
   load: init,
 };
