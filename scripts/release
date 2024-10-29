@@ -19,7 +19,7 @@ check_for_review_error() {
 }
 
 # If we get a 'publish' argument, try to publish the extension rather than building it.
-if [ "$1" == "publish" ]; then
+if [ "$1" == "publish" ] || [ "$1" == "--publish" ]; then
     chromeStatus=$(publish_chrome_extension)
 
   retry_count=0
