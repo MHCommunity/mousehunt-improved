@@ -15,8 +15,7 @@ export default async () => {
     },
     {
       id: 'better-maps.community',
-      title: 'Show Community Maps information',
-      description: 'Hide old and inactive maps from the community maps list.',
+      title: 'Hide old & inactive Community Maps',
       default: false,
     }
   ];
