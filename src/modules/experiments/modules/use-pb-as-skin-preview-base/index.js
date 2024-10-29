@@ -12,6 +12,7 @@ const init = async () => {
 
 export default {
   id: 'experiments.use-pb-as-skin-preview-base',
-  name: 'Use Prestige Base in skin previews',
+  name: 'Prestige Base in skin previews',
+  description: 'Use the Prestige Base when previewing skins',
   load: init,
 };

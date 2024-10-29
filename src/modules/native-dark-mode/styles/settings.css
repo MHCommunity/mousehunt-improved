@@ -54,9 +54,26 @@
 .mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 1),
 .mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 2),
 .mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 3),
-.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 4),
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 4) {
+  background-color: var(--d);
+}
+
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:last-child {
+  background-color: transparent;
+}
+
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle.PagePreferences__settingsList,
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-quick-harp-toggle.PagePreferences__settingsList,
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-fi-draggable-airship.PagePreferences__settingsList,
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-school-of-sorcery-clean-chalkboard.PagePreferences__settingsList {
+  background-color: transparent;
+}
+
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:last-child,
 .mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-flip-avatar.PagePreferences__settingsList,
-.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-fi-draggable-airship.PagePreferences__settingsList {
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-inventory-in-one-row.PagePreferences__settingsList,
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-prologue-pond-wood-boat.PagePreferences__settingsList,
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-valour-rift-flip-avatar.PagePreferences__settingsList {
   background-color: var(--d);
 }
 
