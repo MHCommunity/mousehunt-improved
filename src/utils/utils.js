@@ -191,6 +191,10 @@ let lastRequest = 0;
  * @return {Promise} The response.
  */
 const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) => {
+  if (getFlag('disable-requests')) {
+    return;
+  }
+
   if (! isLoggedIn()) {
     return;
   }
