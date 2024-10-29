@@ -17,7 +17,7 @@ const init = async () => {
     {
       id: 'better-journal-list.link-all-items',
       name: 'Better Journal List: Link all items',
-      description: 'Adds links to items in journal entries that are not linked.',
+      description: 'Add links to items in journal entries that are not linked.',
       load: () => {}
     }
   ];
