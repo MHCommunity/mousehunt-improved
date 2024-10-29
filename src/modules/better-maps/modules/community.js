@@ -26,7 +26,7 @@ const getMapData = async (mapId, forceUpdate = false) => {
   });
 };
 
-const addInfoToListing = async (mapId, mapEl) => {
+const addInfoToListing = async (mapId, mapEl) => { // eslint-disable-line no-unused-vars
   // TODO: update this to add a 'get info' button and then load the info on click.
   if (mapEl.innerText.includes('Loading')) {
     // add an observer to wait for the map data to load
