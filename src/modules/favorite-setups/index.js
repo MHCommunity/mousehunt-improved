@@ -2,6 +2,8 @@ import {
   addIconToMenu,
   addStyles,
   createPopup,
+  dataGet,
+  dataSet,
   debuglog,
   doRequest,
   getCurrentLocation,
@@ -39,15 +41,23 @@ import settings from './settings';
 /**
  * Get the favorite setups.
  *
+ * @param {boolean} makeRequest Whether to make a request to get the favorite setups.
+ *
  * @return {Promise<FavoriteSetup[]>} The favorite setups.
  */
-const getFavoriteSetups = async () => {
+const getFavoriteSetups = async (makeRequest = false) => {
   /** @type {FavoriteSetup[]} */
   let faves = getSetting('favorite-setups.setups', []);
 
   if (getSetting('favorite-setups.show-mobile-favorites', false)) {
-    const userData = await getUserData(['trap_favourite']);
-    const mobileFavorites = userData?.trap_favourite?.favourite_traps || [];
+    let mobileFavorites = await dataGet('mobile-trap-favorites');
+    if (! mobileFavorites && makeRequest) {
+      const userData = await getUserData(['trap_favourite']);
+      mobileFavorites = userData?.trap_favourite?.favourite_traps || [];
+
+      dataSet('mobile-trap-favorites', mobileFavorites);
+    }
+
     if (mobileFavorites?.length) {
       /** @type {FavoriteSetup[]} */
       const newFaves = [];
@@ -1039,7 +1049,7 @@ const makeBlueprintContainer = async () => {
   const currentSetupRow = await makeBlueprintRow(getCurrentSetup(), true);
   body.append(currentSetupRow);
 
-  const setups = await getFavoriteSetups();
+  const setups = await getFavoriteSetups(true);
   if (setups.length) {
     const locationFavorites = [];
 
