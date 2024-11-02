@@ -40,12 +40,12 @@ const saveWisdomSetting = (key, value) => {
 const getWisdom = async () => {
   let wisdom = 0;
 
-  console.log('useCachedWisdom', useCachedWisdom);
   if (useCachedWisdom) {
     const cachedWisdom = await getWisdomSetting('value');
-    console.log('cachedWisdom', cachedWisdom);
     const lastUpdated = await getWisdomSetting('last-updated');
-    if (cachedWisdom) {
+
+    // Make sure our cached data isn't more than 2 days old.
+    if (cachedWisdom && lastUpdated && Date.now() - lastUpdated < 2 * 24 * 60 * 60 * 1000) {
       return cachedWisdom;
     }
   }
