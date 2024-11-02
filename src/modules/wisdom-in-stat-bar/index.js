@@ -1,6 +1,6 @@
 import {
-  cacheGet,
-  cacheSet,
+  dataGet,
+  dataSet,
   getSetting,
   getUserItems,
   isLegacyHUD,
@@ -19,7 +19,7 @@ import settings from './settings';
  * @return {any} The setting.
  */
 const getWisdomSetting = async (key) => {
-  return await cacheGet(`wisdom-stat-${key}`);
+  return await dataGet(`wisdom-stat-${key}`);
 };
 
 /**
@@ -29,7 +29,7 @@ const getWisdomSetting = async (key) => {
  * @param {any}    value Value to save.
  */
 const saveWisdomSetting = (key, value) => {
-  cacheSet(`wisdom-stat-${key}`, value);
+  dataSet(`wisdom-stat-${key}`, value);
 };
 
 /**
@@ -40,8 +40,11 @@ const saveWisdomSetting = (key, value) => {
 const getWisdom = async () => {
   let wisdom = 0;
 
+  console.log('useCachedWisdom', useCachedWisdom);
   if (useCachedWisdom) {
     const cachedWisdom = await getWisdomSetting('value');
+    console.log('cachedWisdom', cachedWisdom);
+    const lastUpdated = await getWisdomSetting('last-updated');
     if (cachedWisdom) {
       return cachedWisdom;
     }
@@ -123,14 +126,13 @@ const addRefreshListener = () => {
   });
 };
 
-let useCachedWisdom = false;
+let useCachedWisdom = true;
 let legacyHudMenu = false;
 /**
  * Initialize the module.
  */
 const init = async () => {
   if (getSetting('wisdom-in-stat-bar.auto-refresh', true)) {
-    useCachedWisdom = false;
     onTurn(updateWisdom);
   }
 
