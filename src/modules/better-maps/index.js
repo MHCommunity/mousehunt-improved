@@ -256,8 +256,22 @@ const updateRelicHunterHint = async () => {
   }
 
   const relicHunterLocation = await getRelicHunterLocation();
-  if (! relicHunterLocation || ! relicHunterLocation.id) {
-    return false;
+  if (! relicHunterLocation || ! relicHunterLocation.id || 'unknown' === relicHunterLocation.id) {
+    const hint = relicHunter.innerText.trim();
+    const relicHunterHints = await getData('relic-hunter-hints');
+
+    let key = false;
+    Object.keys(relicHunterHints).forEach((k) => {
+      if (relicHunterHints[k].includes(hint)) {
+        key = k;
+      }
+    });
+
+    if (! key) {
+      return false;
+    }
+
+    relicHunterLocation.id = key;
   }
 
   relicHunter.setAttribute('data-travel-button-added', true);
