@@ -1,7 +1,6 @@
 import { addStyles } from '@utils';
 
 import adventurebook from './modules/adventure-book';
-import dailyDraw from './modules/daily-draw';
 import friends from './modules/friends';
 import hud from './modules/hud';
 import kingsPromo from './modules/kings-promo';
@@ -19,7 +18,6 @@ const init = async () => {
   addStyles(styles, 'better-ui');
 
   adventurebook();
-  dailyDraw();
   friends();
   hud();
   kingsPromo();
