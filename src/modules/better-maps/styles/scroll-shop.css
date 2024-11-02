@@ -52,3 +52,152 @@ b[style="color:red; font-size: 14px;"],
 b[style="color:red; font-size: 14px;"] + br {
   display: none;
 }
+
+.mh-dark-mode .pageFrameView .treasureMapPopup-shop-environment.active::before {
+  background-color: transparent;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_valour"] {
+  background-color: #e5daed;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_bristle_woods"] {
+  background-color: #bda39e;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_furoma"] {
+  background-color: #ffdca4;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_whisker_woods"] {
+  background-color: #cfe07e;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_burroughs"] {
+  background-color: #c6c6c6;
+}
+
+.treasureMapPopup-shop[data-environment-type="rift_gnawnia"] {
+  background-color: #ffdaf4;
+}
+
+.treasureMapPopup-shop[data-environment-type="table_of_contents"] {
+  background-color: #dfffd4;
+}
+
+.treasureMapPopup-shop[data-environment-type="prologue_pond"] {
+  background-color: #d3ffff;
+}
+
+.treasureMapPopup-shop[data-environment-type="foreword_farm"] {
+  background-color: #faedcd;
+}
+
+.treasureMapPopup-shop[data-environment-type="floating_islands"] {
+  background-color: #fce0d7;
+}
+
+.treasureMapPopup-shop[data-environment-type="moussu_picchu"] {
+  background-color: #fed3ff;
+}
+
+.treasureMapPopup-shop[data-environment-type="ancient_city"] {
+  background-color: #ccc;
+}
+
+.treasureMapPopup-shop[data-environment-type="fungal_cavern"] {
+  background-color: #c3f3de;
+}
+
+.treasureMapPopup-shop[data-environment-type="sunken_city"] {
+  background-color: #c8f9ff;
+}
+
+.treasureMapPopup-shop[data-environment-type="queso_geyser"] {
+  background-color: #f8f3ae;
+}
+
+.treasureMapPopup-shop[data-environment-type="queso_quarry"] {
+  background-color: #f8f3ae;
+}
+
+.treasureMapPopup-shop[data-environment-type="queso_plains"] {
+  background-color: #f8f3ae;
+}
+
+.treasureMapPopup-shop[data-environment-type="queso_river"] {
+  background-color: #f8f3ae;
+}
+
+.treasureMapPopup-shop[data-environment-type="fort_rox"] {
+  background-color: #f2d5c9;
+}
+
+.treasureMapPopup-shop[data-environment-type="desert_oasis"] {
+  background-color: #d1e7bf;
+}
+
+.treasureMapPopup-shop[data-environment-type="desert_city"] {
+  background-color: #e48f89;
+}
+
+.treasureMapPopup-shop[data-environment-type="desert_warpath"] {
+  background-color: #ffb280;
+}
+
+.treasureMapPopup-shop[data-environment-type="slushy_shoreline"] {
+  background-color: #a0d3ee;
+}
+
+.treasureMapPopup-shop[data-environment-type="seasonal_garden"] {
+  background-color: #e8e8e9;
+}
+
+.treasureMapPopup-shop[data-environment-type="pollution_outbreak"] {
+  background-color: #cde691;
+}
+
+.treasureMapPopup-shop[data-environment-type="kings_gauntlet"] {
+  background-color: #ccc;
+}
+
+.treasureMapPopup-shop[data-environment-type="cape_clawed"] {
+  background-color: #b8d3dc;
+}
+
+.treasureMapPopup-shop[data-environment-type="catacombs"] {
+  background-color: #a88ca4;
+}
+
+.treasureMapPopup-shop[data-environment-type="great_gnarled_tree"] {
+  background-color: #abd59b;
+}
+
+.treasureMapPopup-shop[data-environment-type="town_of_digby"] {
+  background-color: #e5e6d8;
+}
+
+.treasureMapPopup-shop[data-environment-type="mousoleum"] {
+  background-color: #d6c8a2;
+}
+
+.treasureMapPopup-shop[data-environment-type="harbour"] {
+  background-color: #fffcb6;
+}
+
+.treasureMapPopup-shop[data-environment-type="bountiful_beanstalk"] {
+  background-color: #94f05a;
+}
+
+.treasureMapPopup-shop[data-environment-type="school_of_sorcery"] {
+  background-color: #8fbef1;
+}
+
+.treasureMapPopup-shop[data-environment-type="queso_quarry"],
+.treasureMapPopup-shop[data-environment-type="queso_plains"] {
+  display: none;
+}
+
+.treasureMapPopup-shop[data-environment-type="halloween_event_location"] {
+  background-color: #b8c6aa;
+}
