@@ -321,3 +321,127 @@ a.halloweenBoilingCauldronRecipeView-cauldron-queueSlot-cancelButton {
 .halloweenBoilingCauldronHUD-overlay {
   z-index: 90;
 }
+
+.halloweenBoilingCauldronHUD-ingredientInformationTitle {
+  text-shadow: -2px 2px #182a15;
+}
+
+.halloweenBoilingCauldronHUD-dialog-state.auto_brew .halloweenBoilingCauldronHUD-dialog-title {
+  color: #d1dac8;
+  border-bottom: none;
+}
+
+.halloweenBoilingCauldronHUD-dialog-subTitle {
+  font-family: inherit;
+  color: #d1dac8;
+}
+
+.halloweenBoilingCauldronHUD-autoBrew-top .halloweenBoilingCauldronHUD-ingredientInformationContainer.ingredients > span {
+  padding-bottom: 3px;
+  margin-top: -3px;
+}
+
+.halloweenBoilingCauldronHUD-ingredientInformation.cauldron_potion_ingredient_stat_item,
+.halloweenBoilingCauldronHUD-ingredientInformation.cauldron_instant_finish_stat_item {
+  font-size: 18px;
+}
+
+.halloweenBoilingCauldronHUD-autoBrew-receivedExtract {
+  width: 95px;
+  padding: 4px;
+  margin-top: 6px;
+  margin-bottom: -10px;
+  font-size: 16px;
+}
+
+.halloweenBoilingCauldronHUD-autoBrew-bottomContainer.conversion .halloweenBoilingCauldronHUD-itemThumbnail {
+  width: 45px;
+  height: 45px;
+}
+
+.halloweenBoilingCauldronHUD-autoBrew-bottomContainer.conversion > div:first-child {
+  font-size: 11px;
+  color: #bbc4b2;
+}
+
+.halloweenBoilingCauldronHUD-autoBrew-top .halloweenBoilingCauldronHUD-ingredientInformationContents {
+  align-items: center;
+}
+
+.halloweenBoilingCauldronHUD-ingredientInformation.cauldron_potion_ingredient_stat_item .halloweenBoilingCauldronHUD-itemThumbnail,
+.halloweenBoilingCauldronHUD-ingredientInformation.cauldron_instant_finish_stat_item .halloweenBoilingCauldronHUD-itemThumbnail {
+  top: 0;
+  left: 0;
+  width: 45px;
+  height: 45px;
+}
+
+.halloweenBoilingCauldronHUD-ingredientInformationContainer.result::before,
+.halloweenBoilingCauldronHUD-ingredientInformationContainer.ingredients::before {
+  filter: drop-shadow(3px 5px 1px #000);
+}
+
+.halloweenBoilingCauldronHUD-ingredientInformationContainer.ingredients::after {
+  filter: drop-shadow(-3px 5px 1px #000);
+}
+
+.halloweenBoilingCauldronHUD-autoBrew-middle .halloweenBoilingCauldronHUD-bulkConversion-button {
+  filter: drop-shadow(3px 5px 1px #000);
+}
+
+.halloweenBoilingCauldronHUD.auto_brew .halloweenBoilingCauldronHUD-dialog-closeButton {
+  top: -1px;
+  right: 5px;
+}
+
+.halloweenBoilingCauldronHUD-autoBrew-footer .halloweenBoilingCauldronHUD-bait .halloweenBoilingCauldronHUD-bait-ingredientQuantity {
+  font-size: 13px;
+}
+
+.halloweenBoilingCauldronRecipeView-recipeRow:hover {
+  background-color: #fefbee;
+}
+
+.halloweenBoilingCauldronRecipeView-recipeRow.sticky::after,
+.halloweenBoilingCauldronRecipeView-recipeRow:hover::after {
+  border-color: #f6dea0;
+}
+
+.halloweenBoilingCauldronRecipeView-recipeRow.sticky {
+  background-color: #96ea86;
+}
+
+.halloweenBoilingCauldronRecipeView-cauldron .halloweenBoilingCauldronRecipeView-cauldron-frame {
+  background-color: rgb(251 146 255 / 50%);
+}
+
+.halloweenBoilingCauldronHUD-instantFinish-image:hover,
+.halloweenBoilingCauldronHUD-extract-image:hover,
+.halloweenBoilingCauldronHUD-extract-mouseDrake-image:hover {
+  background-size: 100%;
+  transform: scale(1.1);
+}
+
+.halloweenBoilingCauldronRecipeView-cauldron.selected .halloweenBoilingCauldronRecipeView-cauldron-frame {
+  background-color: #fb92ff;
+}
+
+.halloweenBoilingCauldronRecipeView-recipe-action {
+  padding-bottom: 10px;
+}
+
+.halloweenBoilingCauldronRecipeView-recipeRow {
+  border-bottom: 1px solid #dcbd70;
+}
+
+.halloweenBoilingCauldronRecipeView-recipeRow.greater_radioactive_blue_cheese_potion::before {
+  top: -30px;
+}
+
+.halloweenBoilingCauldronRecipeView-recipeRow.halloween_extract_cauldron_recipe::before {
+  top: -25px;
+}
+
+.halloweenBoilingCauldronRecipeView-recipeRow-skulls {
+  opacity: 0.3;
+}
