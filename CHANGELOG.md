@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.71.0
+
+- Added 'X-Requested-By' header to requests to MouseHunt servers
+- Fixed Wisdom in Stat Bar not using cached data
+- Removed Better UI Daily Draw page form submission changes
+- Updated Better Maps Relic Hunter travel button not working immediately after location changes
+- Updated Better Maps Styles
+- Updated Dark Mode Styles
+- Updated Favorite setups to query mobile favorites less often
+- Updated Halloween Location HUD styles of upcoming Auto-brew dialog
+
 ## Version 0.70.0
 
 - Added 'disable-requests' flag to disable requests to MouseHunt servers
