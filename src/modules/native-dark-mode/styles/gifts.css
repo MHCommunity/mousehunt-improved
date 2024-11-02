@@ -201,3 +201,7 @@
   color: var(--d-text-dark);
   background-color: var(--d-yellow);
 }
+
+.mh-dark .giftSelectorView-friend.paidgift .giftSelectorView-friend-name {
+  color: var(--d-link);
+}

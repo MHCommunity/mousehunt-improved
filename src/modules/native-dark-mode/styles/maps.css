@@ -210,10 +210,6 @@
   border-color: var(--d-border);
 }
 
-.mh-dark .treasureMapView-block-content-heading-count {
-  color: var(--d-text-muted);
-}
-
 .mh-dark .mh-ui-quick-invite-wrapper,
 .mh-dark .treasureMapView-leftBlock .treasureMapView-block {
   background-color: var(--d-alt);
@@ -387,6 +383,10 @@
 
 .mh-dark .treasureMapView-hunter.captain .treasureMapView-hunter-image {
   box-shadow: 0 0 3px 4px var(--d-bg);
+}
+
+.mh-dark .treasureMapView-hunter.upgrader .treasureMapView-hunter-image {
+  box-shadow: 0 0 1px 3px #ffb40c;
 }
 
 .mh-dark #sorted-mice-container .mouse-container-selected,
