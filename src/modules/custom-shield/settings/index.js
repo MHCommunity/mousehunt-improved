@@ -85,15 +85,26 @@ export default async () => {
       ],
     },
     {
+      name: 'Mice',
+      value: 'group',
+      options: [
+        { name: 'Glazy', value: 'glazy' },
+        { name: 'Romeno', value: 'romeno' },
+        { name: 'Leprechaun', value: 'leprechaun' },
+        { name: 'Moustachio', value: 'moustachio' },
+        { name: 'Mythweaver', value: 'mythweaver' },
+        { name: 'Romeo', value: 'romeo' },
+      ],
+    },
+    {
       name: 'Silly',
       value: 'group',
       options: [
         { name: 'Drawing', value: 'drawing' },
         { name: 'Droid', value: 'droid' },
-        { name: 'Glazy', value: 'glazy' },
-        { name: 'Scrambles ', value: 'scrambles' },
-        { name: 'Jerry ', value: 'jerry' },
-        { name: 'Romeno ', value: 'romeno' },
+        { name: 'Scrambles', value: 'scrambles' },
+        { name: 'Moustachio', value: 'moustachio' },
+        { name: 'Jerry', value: 'jerry' },
       ],
     },
   ];

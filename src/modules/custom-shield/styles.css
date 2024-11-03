@@ -38,6 +38,10 @@
   opacity: 0.9;
 }
 
+.mousehuntHud-shield.romeo,
+.mousehuntHud-shield.mythweaver,
+.mousehuntHud-shield.moustachio,
+.mousehuntHud-shield.leprechaun,
 .mousehuntHud-shield.plain,
 .mousehuntHud-shield.droid,
 .mousehuntHud-shield.starry,
@@ -59,6 +63,22 @@
 
 .mousehuntHud-shield.droid {
   background-image: url(https://i.mouse.rip/shield-droid.png);
+}
+
+.mousehuntHud-shield.romeo {
+  background-image: url(https://i.mouse.rip/shield-romeo.png);
+}
+
+.mousehuntHud-shield.mythweaver {
+  background-image: url(https://i.mouse.rip/shield-mythweaver.png);
+}
+
+.mousehuntHud-shield.moustachio {
+  background-image: url(https://i.mouse.rip/shield-moustachio.png);
+}
+
+.mousehuntHud-shield.leprechaun {
+  background-image: url(https://i.mouse.rip/shield-leprechaun.png);
 }
 
 .mousehuntHud-shield.halloween-text {
