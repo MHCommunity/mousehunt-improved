@@ -3,7 +3,17 @@
 ## Version 0.71.0
 
 - Added 'X-Requested-By' header to requests to MouseHunt servers
-- Added multiple new Custom Shield options
+- Added 'Spring Bricks' as an option for Custom Background, Custom Camp Background, and Custom HUD Background
+- Added new Custom Shield options
+  - Drawing
+  - Droid
+  - Leprechaun
+  - Moustachio
+  - Moustachio
+  - Mythweaver
+  - Romeo
+  - Simple Golden
+  - Starry
 - Fixed Wisdom in Stat Bar not using cached data
 - Removed Better UI Daily Draw page form submission changes
 - Updated Better Maps Relic Hunter travel button not working immediately after location changes
