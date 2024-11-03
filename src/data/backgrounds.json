@@ -39,6 +39,7 @@
   { "id": "rainbows-embrace", "name": "Rainbow's Embrace", "css": "radial-gradient(50% 100% at left -10% top 80%, #db0072, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 25% top 60%, #ffe53e, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 55% top 40%, #00ffe4, rgba(0, 0, 0, 0)), radial-gradient(50% 100% at left 90% top 20%, #d150ff, rgba(0, 0, 0, 0))" },
   { "id": "sangria-solstice", "name": "Sangria Solstice", "css": "linear-gradient(181deg, #770738, #ddbb90)" },
   { "id": "sea-sky", "name": "Sea Sky", "css": "linear-gradient(to top, #38bdf8, #312e81)" },
+  { "id": "spring-bricks", "name": "Spring Bricks", "css": "url(https://www.mousehuntgame.com/images/ui/journal/spring_hunt/spring_brick_pattern.jpg) repeat bottom center"},
   { "id": "skyline-whisper", "name": "Skyline Whisper", "css": "linear-gradient(#53a5df, #a9d2ef)" },
   { "id": "soft-metal", "name": "Soft Metal", "css": "conic-gradient(at right top, rgb(199, 210, 254), rgb(71, 85, 105), rgb(199, 210, 254))" },
   { "id": "spectral-summer", "name": "Spectral Summer", "css": "linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%)" },
