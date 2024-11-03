@@ -91,13 +91,12 @@ export default async () => {
         { name: 'Glazy', value: 'glazy' },
         { name: 'Romeno', value: 'romeno' },
         { name: 'Leprechaun', value: 'leprechaun' },
-        { name: 'Moustachio', value: 'moustachio' },
         { name: 'Mythweaver', value: 'mythweaver' },
         { name: 'Romeo', value: 'romeo' },
       ],
     },
     {
-      name: 'Silly',
+      name: 'Other',
       value: 'group',
       options: [
         { name: 'Drawing', value: 'drawing' },

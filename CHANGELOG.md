@@ -9,7 +9,6 @@
   - Droid
   - Leprechaun
   - Moustachio
-  - Moustachio
   - Mythweaver
   - Romeo
   - Simple Golden
