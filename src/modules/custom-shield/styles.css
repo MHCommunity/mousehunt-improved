@@ -38,12 +38,27 @@
   opacity: 0.9;
 }
 
+.mousehuntHud-shield.plain,
+.mousehuntHud-shield.droid,
+.mousehuntHud-shield.starry,
 .mousehuntHud-shield.glazy {
   top: 2px;
   left: 10px;
   background-image: url(https://i.mouse.rip/shield-glazy.png);
   filter: drop-shadow(0 0 5px #e8dbb8);
   background-size: contain;
+}
+
+.mousehuntHud-shield.plain {
+  background-image: url(https://i.mouse.rip/shield-plain.png);
+}
+
+.mousehuntHud-shield.starry {
+  background-image: url(https://i.mouse.rip/shield-starry.png);
+}
+
+.mousehuntHud-shield.droid {
+  background-image: url(https://i.mouse.rip/shield-droid.png);
 }
 
 .mousehuntHud-shield.halloween-text {
@@ -94,6 +109,14 @@
   background-image: url(https://i.mouse.rip/shield-romeno.png);
   filter: drop-shadow(6px 0 14px #fff);
   background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.mousehuntHud-shield.drawing {
+  top: -33px;
+  left: 0;
+  height: 170px;
+  background-image: url(https://i.mouse.rip/shield-drawing.png?1);
   background-size: contain;
 }
 

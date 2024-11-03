@@ -8,6 +8,8 @@ export default async () => {
     { name: 'Default', value: 'default' },
     { name: 'Default (normal resolution)', value: 'default-normal' },
     { name: 'Default (no LGS)', value: 'default-no-lgs' },
+    { name: 'Simple Golden', value: 'plain' },
+    { name: 'Starry', value: 'starry' },
     {
       name: 'Events',
       value: 'group',
@@ -86,6 +88,8 @@ export default async () => {
       name: 'Silly',
       value: 'group',
       options: [
+        { name: 'Drawing', value: 'drawing' },
+        { name: 'Droid', value: 'droid' },
         { name: 'Glazy', value: 'glazy' },
         { name: 'Scrambles ', value: 'scrambles' },
         { name: 'Jerry ', value: 'jerry' },
