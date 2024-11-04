@@ -36,19 +36,19 @@
     "release": "./scripts/release"
   },
   "dependencies": {
-    "@babel/runtime": "^7.25.7",
-    "@sentry/browser": "^8.35.0",
+    "@babel/runtime": "^7.26.0",
+    "@sentry/browser": "^8.36.0",
     "humanize-duration": "^3.32.1",
     "json2csv": "^6.0.0-alpha.2"
   },
   "devDependencies": {
-    "@sentry/cli": "^2.37.0",
+    "@sentry/cli": "^2.38.2",
     "@sprout2000/esbuild-copy-plugin": "^1.1.16",
-    "@wordpress/eslint-plugin": "^21.3.0",
+    "@wordpress/eslint-plugin": "^21.4.0",
     "archiver": "^7.0.1",
     "chalk": "^5.3.0",
     "chrome-webstore-upload-cli": "^3.3.1",
-    "concurrently": "^9.0.1",
+    "concurrently": "^9.1.0",
     "del-cli": "^6.0.0",
     "esbuild": "^0.24.0",
     "eslint": "8.57.0",
@@ -67,7 +67,7 @@
     "json-minify": "^1.0.0",
     "jsonc-eslint-parser": "^2.4.0",
     "node-fetch": "^3.3.2",
-    "ora": "^8.1.0",
+    "ora": "^8.1.1",
     "prettier": "^3.3.3",
     "pretty-ms": "^9.1.0",
     "sentry-cli": "^0.0.0",
