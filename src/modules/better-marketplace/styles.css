@@ -137,10 +137,11 @@ tr.open td.marketplaceView-table-name {
   right: -30px;
   bottom: 0;
   height: 49px;
+  pointer-events: none;
   opacity: 0.5;
 }
 
-.marketplaceView-table-name:hover .marketplaceView-table-chartImage {
+tr:hover .marketplaceView-table-chartImage {
   opacity: 1;
 }
 
