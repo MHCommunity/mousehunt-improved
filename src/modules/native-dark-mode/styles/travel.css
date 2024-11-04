@@ -79,3 +79,7 @@
   background-color: var(--d-action);
   border-color: var(--d-border);
 }
+
+.mh-dark .travelPage-map-environment-detail-wiki-link {
+  color: var(--d-link);
+}

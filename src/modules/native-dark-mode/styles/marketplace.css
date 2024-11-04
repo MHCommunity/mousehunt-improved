@@ -255,3 +255,7 @@
 .mh-dark tr[style="background-color: rgb(214, 235, 161);"] {
   background-color: var(--d-green-dark) !important;
 }
+
+.mh-dark .marketplaceView-table-filterReminder {
+  background-color: var(--d-bg);
+}
