@@ -12,6 +12,7 @@ import {
   onEvent,
   onRequest,
   sessionSet,
+  sleep,
   travelTo
 } from '@utils';
 
@@ -216,10 +217,13 @@ const doLocationRefresh = async () => {
       sessionSet('doing-location-refresh', true);
 
       progressItem.classList.add('traveling');
+      travelButton.classList.add('busy');
 
       await waitForTravel(location);
+      await sleep(1000);
       await cacheLocationData();
 
+      travelButton.classList.remove('busy');
       progressItem.classList.remove('traveling');
       progressItem.classList.add('done');
 
