@@ -30,6 +30,13 @@ const getBaseShortcuts = () => {
       category: 'hidden',
     },
     {
+      id: 'horn',
+      key: 'h',
+      description: 'Sound the Hunter\'s Horn',
+      action: () => {},
+      category: 'misc',
+    },
+    {
       id: 'close-popup',
       key: 'Escape',
       description: 'Close the current popup',
@@ -271,9 +278,7 @@ const showHelpPopup = () => {
       innerContent += `<div class="mh-ui-keyboard-shortcut" data-shortcut-id="${shortcut.id}">
       <div class="description">${shortcut.description}</div>
       <div class="edit-controls">
-        <a class="clear">Clear</a>
-        <a class="reset">Reset</a>
-        <a class="edit">Edit</a>
+        ${'horn' === shortcut.id ? '' : '<a class="clear">Clear</a><a class="reset">Reset</a><a class="edit">Edit</a>'}
       </div>
       <kbd>${getKeyForDisplay(shortcut)}</kbd>
       </div>`;
@@ -391,32 +396,38 @@ const showHelpPopup = () => {
       finishEditing(shortcutId, event);
     };
 
-    editButton.addEventListener('click', () => {
-      if (isEditing) {
-        finishEditing();
-      } else {
-        startEditing();
-      }
-    });
-
-    resetButton.addEventListener('click', () => {
-      const defaultShortcut = getBaseShortcuts().find((s) => s.id === shortcutId);
-      if (! defaultShortcut) {
-        return;
-      }
-
-      finishEditing(shortcutId, defaultShortcut);
-    });
-
-    clearButton.addEventListener('click', () => {
-      finishEditing(shortcutId, {
-        key: '',
-        ctrlKey: false,
-        metaKey: false,
-        altKey: false,
-        shiftKey: false,
+    if (editButton) {
+      editButton.addEventListener('click', () => {
+        if (isEditing) {
+          finishEditing();
+        } else {
+          startEditing();
+        }
       });
-    });
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener('click', () => {
+        const defaultShortcut = getBaseShortcuts().find((s) => s.id === shortcutId);
+        if (! defaultShortcut) {
+          return;
+        }
+
+        finishEditing(shortcutId, defaultShortcut);
+      });
+    }
+
+    if (clearButton) {
+      clearButton.addEventListener('click', () => {
+        finishEditing(shortcutId, {
+          key: '',
+          ctrlKey: false,
+          metaKey: false,
+          altKey: false,
+          shiftKey: false,
+        });
+      });
+    }
   });
 };
 
