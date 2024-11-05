@@ -88,5 +88,5 @@
 
 .mh-dark .journal.jsingle .close a:hover::after {
   color: var(--d-red);
-  background-color: var(--d-bg);
+  background-color: var(--d-action);
 }

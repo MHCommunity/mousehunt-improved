@@ -214,3 +214,14 @@
   background-color: var(--d-bg);
   border-color: var(--d-red-darker);
 }
+
+.mh-dark .itemView-largeImageContainer {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.mh-dark .itemViewContainer.base .itemView-largeImage-image,
+.mh-dark .itemViewContainer.weapon .itemView-largeImage-image,
+.mh-dark .itemViewContainer.skin .itemView-largeImage-image {
+  border-color: var(--d-border);
+}

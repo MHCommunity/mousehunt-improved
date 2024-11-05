@@ -18,6 +18,9 @@
 
 .journal .content .entry {
   position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 48px;
   padding: 6px 3px 6px 0;
   border: 1px solid #5b5b5b;
   border-bottom: none;

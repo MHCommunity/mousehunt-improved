@@ -213,3 +213,35 @@
 .mh-dark .inventoryPage-item.small.message_item .inventoryPage-item-content-name {
   color: var(--d-green);
 }
+
+.mh-dark .inventoryPage-item.recipe.disabled {
+  background-color: var(--d-transparent-20);
+}
+
+.mh-dark .inventoryPage-item.selected {
+  box-shadow: none;
+}
+
+.mh-dark .inventoryPage-item.crafting_item.selected .inventoryPage-item-margin {
+  background-color: var(--d-yellow-dark);
+}
+
+.mh-dark .inventoryPage-craftingTable-slot-item-remove {
+  box-sizing: border-box;
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  font-size: 15px;
+  color: var(--d-red);
+  text-align: center;
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.mh-dark .inventoryPage-craftingTable-slot-item-remove:hover {
+  color: var(--d-red);
+  background-color: var(--d-action);
+}

@@ -149,9 +149,14 @@
 }
 
 .mh-dark a.giftSelectorView-inboxHeader-closeButton {
-  color: var(--d-text-muted);
-  background-color: var(--d-action);
+  color: var(--d-red);
+  background-color: var(--d-alt);
   border-color: var(--d-border);
+  box-shadow: none;
+}
+
+.mh-dark a.giftSelectorView-inboxHeader-closeButton:hover {
+  background-color: var(--d-action);
 }
 
 .mh-dark .giftSelectorView-inboxHeader {

@@ -268,3 +268,7 @@ span.kingsGiveawayCalibratorPopup-upgrade-action-cost {
 .MHCheckout-title {
   padding-bottom: 10px;
 }
+
+.itemViewContainer.skin .itemView-largeImage-image {
+  border-radius: 0;
+}
