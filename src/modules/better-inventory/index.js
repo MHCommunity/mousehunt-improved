@@ -184,7 +184,7 @@ const addSkinPreview = (item) => {
   }
 
   const description = item.querySelector('.inventoryPage-item-content-description-text');
-  if (!description) {
+  if (! description) {
     return;
   }
 
