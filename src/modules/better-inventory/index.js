@@ -1,8 +1,10 @@
 import {
   addStyles,
+  createPopup,
   getCurrentPage,
   getCurrentSubtab,
   getCurrentTab,
+  getData,
   getSetting,
   makeElement,
   onEvent,
@@ -174,6 +176,41 @@ const sortInventoryItemsByName = (items) => {
   });
 };
 
+const addSkinPreview = (item) => {
+  const type = item.getAttribute('data-item-type');
+  const itemData = items.find((i) => i.type === type);
+  if (! itemData || ! itemData?.images?.trap) {
+    return;
+  }
+
+  const description = item.querySelector('.inventoryPage-item-content-description-text');
+  if (!description) {
+    return;
+  }
+
+  const preview = makeElement('div', 'mh-improved-skin-preview');
+  const previewLink = makeElement('a', 'mh-improved-skin-preview-link');
+  previewLink.href = '#';
+  previewLink.innerText = 'View Image';
+  previewLink.setAttribute('data-image', itemData.images.trap);
+  previewLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    const popup = createPopup({
+      title: itemData.name,
+      template: 'largerImage',
+      className: 'largerImage',
+      show: false,
+    });
+
+    popup.addToken('{*image*}', itemData.images.trap);
+    popup.show();
+  });
+
+  preview.append(previewLink);
+
+  description.append(preview);
+};
+
 const resortInventory = () => {
   const lists = document.querySelectorAll('.mousehuntHud-page-tabContent.active .inventoryPage-tagContent-listing');
 
@@ -188,6 +225,8 @@ const resortInventory = () => {
       if (name && nameEl) {
         nameEl.innerText = name;
       }
+
+      addSkinPreview(item);
 
       list.append(item);
     });
@@ -287,14 +326,18 @@ const replaceInventoryView = () => {
   };
 };
 
+let items;
+
 /**
  * Main function.
  */
-const main = () => {
+const main = async () => {
   onOverlayChange({ item: { show: setOpenQuantityOnClick } });
   if ('item' === getCurrentPage()) {
     setOpenQuantityOnClick();
   }
+
+  items = await getData('items');
 
   const go = () => {
     addOpenAllToConvertible();

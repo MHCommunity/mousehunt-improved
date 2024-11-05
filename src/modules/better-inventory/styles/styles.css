@@ -213,6 +213,10 @@ a.inventoryPage-item-larryLexicon {
   border-radius: 7px;
 }
 
+.mh-dark .inventoryPage-item-content-description-consumedItem.error {
+  color: var(--d-red);
+}
+
 /* search bar */
 input.inventoryPage-tagDirectory-searchBar-input {
   width: auto;
@@ -222,6 +226,7 @@ input.inventoryPage-tagDirectory-searchBar-input {
 
 .mousehuntHud-page-subTabContent-prefix.clear-block {
   height: 25px;
+  overflow: hidden;
   color: transparent;
 }
 
@@ -653,4 +658,34 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 
 .mh-dark .inventoryPage-item-name abbr {
   color: var(--d-text);
+}
+
+.inventoryPage-item.recipe.disabled {
+  opacity: 0.5;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.inventoryPage-item.recipe.disabled .mousehuntActionButton.disabled {
+  opacity: 0.5;
+}
+
+.inventoryPage-item.recipe.disabled:hover {
+  opacity: 1;
+}
+
+.inventoryPage-item.recipe.disabled:hover .mousehuntActionButton.disabled {
+  opacity: 1;
+}
+
+.inventoryPage-craftingTable-slot.empty {
+  display: none;
+}
+
+.inventoryPage-craftingTable-slot:last-child,
+.inventoryPage-craftingTable-slot:nth-last-child(2) {
+  display: block;
+}
+
+.mh-improved-skin-preview {
+  margin-top: 10px;
 }
