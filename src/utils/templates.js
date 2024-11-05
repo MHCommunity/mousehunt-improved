@@ -18,6 +18,16 @@ let _templateRenderFromFile;
 let hasExtendedRenderFromFile = false;
 const onRenderCallbacks = {};
 
+/**
+ * Watch for a template to be rendered and run a callback before or after.
+ *
+ * @param {Object}   options          The options for the template and callback.
+ * @param {string}   options.group    The group of the template to watch.
+ * @param {string}   options.layout   The layout of the template to watch.
+ * @param {Function} options.callback The callback to run.
+ * @param {boolean}  options.before   Whether to run the callback before the template is rendered.
+ * @param {boolean}  options.after    Whether to run the callback after the template is rendered.
+ */
 const onRender = ({ group, layout = 'layout', callback, before = false, after = false }) => {
   if (! hasExtendedRenderFromFile) {
     extenderRenderFromFile();

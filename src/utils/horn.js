@@ -18,6 +18,18 @@ import { makeElement } from './elements';
  * @param {string}   options.image         URL of the image to display.
  * @param {string}   options.imageLink     URL for the image link.
  * @param {Function} options.imageCallback Callback for the image click.
+ *
+ * @example
+ * ```js
+ * showHornMessage({
+ *  title: 'This is a reminder',
+ *  text: 'Maybe it tells you to do something',
+ *  button: 'Got it!',
+ *  action: () => { doSomething(); },
+ *  dismiss: 5000,
+ *  color: 'pink',
+ * });
+ * ```
  */
 const showHornMessage = (options) => {
   const huntersHornView = document.querySelector('.huntersHornView__messageContainer');

@@ -8,6 +8,18 @@ import { getSetting, saveSetting } from './settings';
  * @param {string}      text     The text of the element to create.
  * @param {HTMLElement} appendTo The element to append the created element to.
  *
+ * @example
+ * ```js
+ * makeElement('div', 'my-class', 'Hello, world!', document.body);
+ * ```
+ *
+ * @example
+ * ```js
+ * const myElement = makeElement('div', 'my-class', 'Hello, world!');
+ * myElement.addEventListener('click', () => console.log('Element clicked!'));
+ * document.body.append(myElement);
+ * ```
+ *
  * @return {HTMLElement} The created element.
  */
 const makeElement = (tag, classes = '', text = '', appendTo = null) => {
@@ -238,6 +250,14 @@ const makeFavoriteButton = async (options) => {
  * @param {string}  options.className      The class name to add to the popup.
  *
  * @return {boolean|Object} The popup object or false if we can't create it.
+ *
+ * @example
+ * ```js
+ * createPopup({
+ *  title: 'Popup Title',
+ *  content: 'This is the content of the popup.',
+ * });
+ * ```
  */
 const createPopup = (options) => {
   // If we don't have jsDialog, bail.

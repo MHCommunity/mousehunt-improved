@@ -1,3 +1,8 @@
+/**
+ * Get the current wave of the Fiery Warpath.
+ *
+ * @return {number} The current wave.
+ */
 const getFieryWarpathWave = () => {
   let wave = 0;
 
@@ -11,6 +16,11 @@ const getFieryWarpathWave = () => {
   return wave;
 };
 
+/**
+ * Get the current streak of the Fiery Warpath.
+ *
+ * @return {number} The current streak.
+ */
 const getFieryWarpathStreak = () => {
   let streak = 0;
 
@@ -43,6 +53,11 @@ const getFieryWarpathRemainingInWave = (wave) => {
   return remaining;
 };
 
+/**
+ * Get the current percentage of the Fiery Warpath.
+ *
+ * @return {number} The current percentage.
+ */
 const getFieryWarpathPercent = () => {
   let percent = 0;
 

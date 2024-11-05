@@ -29,6 +29,14 @@ const humanizer = (time, options) => {
   return thehumanizer(time);
 };
 
+/**
+ * Helper to humanize a duration.
+ *
+ * @param {number} time    The time in milliseconds.
+ * @param {Object} options The humanize duration options.
+ *
+ * @return {string} The humanized duration.
+ */
 const plainHumanizer = (time, options) => {
   const thehumanizer = humanizeDuration.humanizer(options);
 

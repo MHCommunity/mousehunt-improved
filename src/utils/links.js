@@ -71,7 +71,7 @@ const getCleanSubmenuLabel = (label) => {
 /**
  * Add a submenu item to a menu.
  *
- * Custom icons are available via https://i.mouse.rip/icons/<icon>.png:
+ * Custom icons are available via https://i.mouse.rip/icons/{icon}.png:
  * airplane, atom, back, bolt, bookmark, book, briefcase, calendar, card,
  * chart, clock, cloud, compass, deal, diamond, down, envelope, file, film,
  * flag, folder, game, gift, help, hourglass, left, light-bulb, list, lock,
@@ -288,6 +288,11 @@ const replaceIconInMenu = (id, opts) => {
   addIconToMenu(opts);
 };
 
+/**
+ * Get the link to the extension.
+ *
+ * @return {string} The link to the extension.
+ */
 const getExtensionLink = () => {
   if ('chrome' === mhImprovedPlatform) {
     return 'https://chromewebstore.google.com/detail/mousehunt-improved/fgjkidgknmkhnbeobehlfabjbignhkhm';
@@ -304,6 +309,11 @@ const getExtensionLink = () => {
   return github;
 };
 
+/**
+ * Get the text for the extension link.
+ *
+ * @return {string} The text for the extension link.
+ */
 const getExtensionLinkText = () => {
   if ('chrome' === mhImprovedPlatform) {
     return 'View on Chrome Web Store';

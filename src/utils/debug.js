@@ -23,6 +23,11 @@ const shouldLogDebug = (context) => {
  *
  * @param {string} message Message to log.
  * @param {any}    args    Additional arguments to log.
+ *
+ * @example
+ * ```js
+ * debug('This is a debug message');
+ * ```
  */
 const debug = (message, ...args) => {
   if (shouldLogDebug('module')) {
@@ -42,6 +47,11 @@ const debug = (message, ...args) => {
  * @param {string} module  Module name.
  * @param {string} message Message to log.
  * @param {any}    args    Additional arguments to log.
+ *
+ * @example
+ * ```js
+ * debuglog('module', 'This is a debug message');
+ * ```
  */
 const debuglog = (module, message, ...args) => {
   if (shouldLogDebug(module)) {
