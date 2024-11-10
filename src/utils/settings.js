@@ -1,5 +1,12 @@
 let inSafeMode = null;
 
+/**
+ * Check if the extension is in safe mode.
+ *
+ * Safe mode changes settings to defaults. To enable safe mode, add `?safe-mode` to the URL.
+ *
+ * @return {boolean} Whether the extension is in safe mode or not.
+ */
 const isSafeMode = () => {
   if (null === inSafeMode) {
     inSafeMode = window.location.search.includes('safe-mode');

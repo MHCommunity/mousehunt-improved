@@ -122,16 +122,6 @@ const makeLink = (text, href, encodeAsSpace = false) => {
 /**
  * Creates a favorite button that can toggle.
  *
- * @async
- *
- * @example <caption>Creating a favorite button</caption>
- * createFavoriteButton({
- *   id: 'testing_favorite',
- *   target: infobar,
- *   size: 'small',
- *   defaultState: false,
- * });
- *
  * @param {Object} options              The options for the button.
  * @param {string} options.selector     The selector for the button.
  * @param {string} options.size         Whether or not to use the small version of the button.
@@ -139,6 +129,16 @@ const makeLink = (text, href, encodeAsSpace = false) => {
  * @param {string} options.onChange     The function to run when the button is toggled.
  * @param {string} options.onActivate   The function to run when the button is activated.
  * @param {string} options.onDeactivate The function to run when the button is deactivated.
+ *
+ * @example
+ * ```js
+ * createFavoriteButton({
+ *   id: 'testing_favorite',
+ *   target: infobar,
+ *   size: 'small',
+ *   defaultState: false,
+ * });
+ * ```
  *
  * @return {HTMLElement} The created button.
  */
@@ -226,20 +226,16 @@ const makeFavoriteButton = async (options) => {
 /**
  * Build a popup.
  *
- * @example
- * ```
- *
- * Template options:
- * ajax: no close button in lower right, 'prefix' instead of title. 'suffix' for close button area.
- * default: {*title*} {*content*}
- * error: in red, with error icon{*title*} {*content*}
- * largerImage: full width image {*title*} {*image*}
- * largerImageWithClass: smaller than larger image, with caption {*title*} {*image*} {*imageCaption*} {*imageClass*} (goes on the img tag)
- * loading: Just says loading
- * multipleItems: {*title*} {*content*} {*items*}
- * singleItemLeft: {*title*} {*content*} {*items*}
- * singleItemRight: {*title*} {*content*} {*items*}
- * ```
+ * Available templates are
+ * - `ajax`: `{*prefix*}` (title) `{*suffix*}` (close button area) no close button in lower right.
+ * - `default`: `{*title*}` `{*content*}`.
+ * - `error`: in red, with error icon`{*title*}` `{*content*}`.
+ * - `largerImage`: full width image `{*title*}` `{*image*}`.
+ * - `largerImageWithClass`: smaller than larger image, with caption `{*title*}` `{*image*}` `{*imageCaption*}` `{*imageClass*}` (goes on the img tag).
+ * - `loading`: Just says loading.
+ * - `multipleItems`: `{*title*}` `{*content*}` `{*items*}`.
+ * - `singleItemLeft`: `{*title*}` `{*content*}` `{*items*}`.
+ * - `singleItemRight`: `{*title*}` `{*content*}` `{*items*}`.
  *
  * @param {Object}  options                The popup options.
  * @param {string}  options.title          The title of the popup.
@@ -249,8 +245,6 @@ const makeFavoriteButton = async (options) => {
  * @param {boolean} options.show           Whether or not to show the popup.
  * @param {string}  options.className      The class name to add to the popup.
  *
- * @return {boolean|Object} The popup object or false if we can't create it.
- *
  * @example
  * ```js
  * createPopup({
@@ -258,6 +252,8 @@ const makeFavoriteButton = async (options) => {
  *  content: 'This is the content of the popup.',
  * });
  * ```
+ *
+ * @return {boolean|Object} The popup object or false if we can't create it.
  */
 const createPopup = (options) => {
   // If we don't have jsDialog, bail.
@@ -517,7 +513,9 @@ const makeProgressLogLink = (opts = {}) => {
 };
 
 /**
- * This function waits for an element to appear in the DOM. If the element is found within the maximum number of attempts,
+ * Wait for an element to appear in the DOM.
+ *
+ * If the element is found within the maximum number of attempts,
  * it returns a Promise that resolves with the found element(s). If the element is not found within the maximum number of attempts,
  * the function will return `undefined`.
  *

@@ -9,25 +9,26 @@ let onRequestHolder = false;
 /**
  * Do something when ajax requests are completed.
  *
- * @author bradp
  * @since 1.0.0
  *
- * @example <caption>Basic usage</caption>
+ * @example
+ * ```js
+ * // Run on spcific urls.
  * onRequest((response) => {
  *  console.log(response);
- * }, 'managers/ajax/turns/activeturn.php');
+ * }, 'turns/activeturn.php');
+ * ```
  *
- * @example <caption>Basic usage, but skip the success check</caption>
- * onRequest((response) => {
- * console.log(response);
- * }, 'managers/ajax/turns/activeturn.php', true);
  *
- * @example <caption>Basic usage, running for all ajax requests</caption>
+ * @example
+ * ```js
+ * // Run on all urls.
  * onRequest((response) => {
- * console.log(response);
+ *   console.log(response);
  * });
+ * ```
  *
- * @param {string}   url         The url to match. If not provided, all ajax requests will be matched.
+ * @param {string}   url         The url to match. If not provided, all ajax requests will be matched. /managers/ajax/ is already prepended.
  * @param {Function} callback    The callback to call when an ajax request is completed.
  * @param {boolean}  skipSuccess Skip the success check.
  * @param {Array}    ignore      The urls to ignore.
@@ -102,7 +103,6 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
 /**
  * Run the callbacks depending on visibility.
  *
- * @author bradp
  * @since 1.0.0
  *
  * @ignore
@@ -430,6 +430,15 @@ let hasAddedNavigationListener = false;
 /**
  * Do something when the user navigates to a page, optionally checking the tab and subtab.
  *
+ * @param {Function} callback          The callback to run when the user navigates to the page.
+ * @param {Object}   options           The options.
+ * @param {string}   options.page      The page to watch for.
+ * @param {string}   options.tab       The tab to watch for.
+ * @param {string}   options.subtab    The subtab to watch for.
+ * @param {boolean}  options.anyTab    Whether or not to run the callback on any tab.
+ * @param {boolean}  options.anySubtab Whether or not to run the callback on any subtab.
+ * @param {boolean}  options.onLoad    Whether or not to run the callback on load.
+ *
  * @example
  * ```
  * onNavigation(() => console.log('mouse stats by location'), {
@@ -448,15 +457,6 @@ let hasAddedNavigationListener = false;
  *   onLoad: true
  * });
  *```
- *
- * @param {Function} callback          The callback to run when the user navigates to the page.
- * @param {Object}   options           The options.
- * @param {string}   options.page      The page to watch for.
- * @param {string}   options.tab       The tab to watch for.
- * @param {string}   options.subtab    The subtab to watch for.
- * @param {boolean}  options.anyTab    Whether or not to run the callback on any tab.
- * @param {boolean}  options.anySubtab Whether or not to run the callback on any subtab.
- * @param {boolean}  options.onLoad    Whether or not to run the callback on load.
  */
 const onNavigation = (callback, options = {}) => {
   const defaults = {

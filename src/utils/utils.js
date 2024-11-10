@@ -331,7 +331,9 @@ const sleep = async (ms, elapsed = 0) => {
 };
 
 /**
- * Return true if platform is MacOS. Props @wordpress/keycodes, thanks!
+ * Return true if platform is MacOS.
+ *
+ * Props @wordpress/keycodes.
  *
  * @param {Window?} _window Window object by default; used for DI testing.
  *
