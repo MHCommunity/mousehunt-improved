@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.26.0",
-    "@sentry/browser": "^8.36.0",
+    "@sentry/browser": "^8.37.1",
     "humanize-duration": "^3.32.1",
     "json2csv": "^6.0.0-alpha.2"
   },
