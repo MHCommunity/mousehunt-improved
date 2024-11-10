@@ -188,6 +188,12 @@ const addSkinPreview = (item) => {
     return;
   }
 
+  if (item.getAttribute('data-added-preview')) {
+    return;
+  }
+
+  item.setAttribute('data-added-preview', true);
+
   const preview = makeElement('div', 'mh-improved-skin-preview');
   const previewLink = makeElement('a', 'mh-improved-skin-preview-link');
   previewLink.href = '#';
@@ -218,7 +224,7 @@ const resortInventory = () => {
     const items = list.querySelectorAll('.inventoryPage-item');
     sortedItems = sortInventoryItemsByName(items);
 
-    sortedItems.forEach((item) => {
+    for (const item of items) {
       // While we're here, update the name so its not truncated.
       const name = item.getAttribute('data-name');
       const nameEl = item.querySelector('.inventoryPage-item-content-name span');
@@ -229,7 +235,7 @@ const resortInventory = () => {
       addSkinPreview(item);
 
       list.append(item);
-    });
+    }
   });
 };
 
