@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 0.71.1
+
+- Updated Dark Mode styles
+- Updated Better Journal styles
+- Updated Better Inventory styles
+- Updated Better Marketplace styles
+- Added skin preview link to Better Inventory
+- Added Hunter's Horn to Keyboard Shortcuts list
+
 ## Version 0.71.0
 
 - Added 'X-Requested-By' header to requests to MouseHunt servers
