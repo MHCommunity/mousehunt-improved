@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.71.2
+
+- Added support for new journal date & environment markup
+
 ## Version 0.71.1
 
 - Updated Dark Mode styles

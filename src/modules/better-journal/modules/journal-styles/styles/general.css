@@ -81,8 +81,7 @@
 }
 
 /* Date */
-.journal .content .entry .journalbody .journaldate {
-  display: inline-block;
+.journal .content .entry .journalbody .journalenvdate {
   width: calc(100% - 10px);
   padding-top: 5px;
   padding-bottom: 3px;
