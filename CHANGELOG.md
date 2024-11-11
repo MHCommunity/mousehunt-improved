@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.71.3
+
+- Fixed width of journal entries
+
 ## Version 0.71.2
 
 - Added support for new journal date & environment markup
