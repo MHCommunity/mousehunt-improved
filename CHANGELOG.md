@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.71.5
+
+- Re-added headers to remote requests (may re-break remote requests)
+
 ## Version 0.71.4
 
 - Fixed remote requests failing
