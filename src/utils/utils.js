@@ -289,7 +289,6 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
       body: requestBody,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}`,
       },
     });
   } catch (error) {

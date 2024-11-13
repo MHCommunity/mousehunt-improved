@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.71.4
+
+- Fixed remote requests failing
+
 ## Version 0.71.3
 
 - Fixed width of journal entries
