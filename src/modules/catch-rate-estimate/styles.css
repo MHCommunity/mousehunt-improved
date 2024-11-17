@@ -16,6 +16,30 @@
   box-shadow: 0 -1px 0 0 #5c5c5c inset;
 }
 
+#mh-improved-cre thead:hover th.name {
+  position: relative;
+}
+
+#mh-improved-cre thead:hover th.name::after {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  box-sizing: border-box;
+  display: block;
+  width: 17px;
+  height: 17px;
+  padding: 9px;
+  margin: 1px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/puzzle/refresh.png) no-repeat center center / contain;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.mh-dark #mh-improved-cre thead:hover th.name::after {
+  filter: invert(1);
+}
+
 #mh-improved-cre table th {
   font-weight: 700;
   text-align: center;
@@ -130,6 +154,10 @@
   padding: 20px 0;
 }
 
+#mh-improved-cre.cre-loading-refresh {
+  padding: 0;
+}
+
 #mh-improved-cre.cre-loading::after {
   position: absolute;
   right: 0;
@@ -141,6 +169,11 @@
   content: "Loading Catch Rate Estimator…";
 }
 
+#mh-improved-cre.cre-loading-refresh::after {
+  display: none;
+}
+
+#mh-improved-cre.cre-loading-refresh #mh-improved-cre-table,
 #mh-improved-cre.cre-refreshing #mh-improved-cre-table {
   opacity: 0.5;
 }

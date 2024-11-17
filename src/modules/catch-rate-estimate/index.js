@@ -1,6 +1,10 @@
 import {
   addStyles,
+  cacheGet,
+  cacheSet,
+  debuglog,
   doEvent,
+  getCurrentLocation,
   getCurrentPage,
   getFlag,
   getSetting,
@@ -68,9 +72,26 @@ const updateStats = () => {
 };
 
 /**
- * Update the minluck list.
+ * Update the mice effectiveness and cache the results.
+ *
+ * @param {string} location The current location.
+ *
+ * @return {Promise<Object>} The mice effectiveness.
  */
-const updateMinLucks = async () => {
+const updateMiceEffectiveness = async (location) => {
+  effectiveness = await getMiceEffectiveness();
+  cacheSet('cre-location', location);
+  cacheSet('cre-effectiveness', effectiveness);
+
+  return effectiveness;
+};
+
+/**
+ * Update the minluck list.
+ *
+ * @param {boolean} useCachedData Whether to use cached data.
+ */
+const updateMinLucks = async (useCachedData = false) => {
   if ('camp' !== getCurrentPage()) {
     return;
   }
@@ -93,10 +114,6 @@ const updateMinLucks = async () => {
 
     minluckList = makeElement('div', ['mh-cre-table', 'campPage-trap-trapEffectiveness', 'cre-loading']);
     minluckList.id = 'mh-improved-cre';
-    minluckList.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-    });
 
     statsContainer.append(minluckList);
   }
@@ -120,7 +137,17 @@ const updateMinLucks = async () => {
   `;
 
   if (currentStats !== lastStats) {
-    effectiveness = await getMiceEffectiveness();
+    const location = getCurrentLocation();
+    if (useCachedData) {
+      debuglog('cre', 'Using cached data for mice effectiveness');
+      const cachedLocation = await cacheGet('cre-location');
+      debuglog('cre', 'Cached location:', cachedLocation, 'Current location:', location);
+      effectiveness = cachedLocation === location ? await cacheGet('cre-effectiveness') : await updateMiceEffectiveness(location);
+    } else {
+      debuglog('cre', 'Fetching new data for mice effectiveness');
+      effectiveness = await updateMiceEffectiveness(location);
+    }
+
     lastStats = currentStats;
 
     updateStats();
@@ -219,7 +246,17 @@ const renderList = async (list) => {
   makeElement('th', '', 'Minluck', tableheader);
   makeElement('th', '', 'Catch Rate', tableheader);
 
-  tableheader.addEventListener('click', updateMinLucks);
+  tableheader.addEventListener('click', async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    minluckList.classList.add('cre-loading-refresh');
+    minluckList.classList.add('cre-loading');
+    await updateMinLucks(false);
+    minluckList.classList.remove('cre-loading');
+    minluckList.classList.remove('cre-loading-refresh');
+  });
+
   table.append(tableheader);
 
   const rows = [];
@@ -323,7 +360,9 @@ const renderList = async (list) => {
  * Main function.
  */
 const main = async () => {
-  onNavigation(updateMinLucks, {
+  onNavigation(() => {
+    updateMinLucks(true);
+  }, {
     page: 'camp',
   });
 
