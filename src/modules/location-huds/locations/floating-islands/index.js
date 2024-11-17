@@ -175,11 +175,6 @@ const getNextOcUpgradeCost = (ocLevel) => {
  * Make the elements for the glore progress.
  */
 const showGloreProgress = async () => {
-  const items = await getUserItems(['floating_islands_cloud_gem_stat_item', 'floating_islands_sky_ore_stat_item']);
-  if (! (items && items.length)) {
-    return;
-  }
-
   const glass = document.querySelector('.floatingIslandsHUD-craftingItem.floating_islands_cloud_gem_stat_item');
   const ore = document.querySelector('.floatingIslandsHUD-craftingItem.floating_islands_sky_ore_stat_item');
 
