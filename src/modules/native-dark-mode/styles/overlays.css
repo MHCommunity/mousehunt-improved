@@ -225,3 +225,7 @@
 .mh-dark .itemViewContainer.skin .itemView-largeImage-image {
   border-color: var(--d-border);
 }
+
+.mh-dark .convertibleOpenView-aura {
+  color: var(--d-text-dark);
+}

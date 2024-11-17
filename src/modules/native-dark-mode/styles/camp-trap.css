@@ -336,6 +336,7 @@
 
 .mh-dark .mh-improved-cre-row:hover {
   background-color: var(--d-bg);
+  box-shadow: none;
 }
 
 .mh-dark .campPage-trap-baitName {
