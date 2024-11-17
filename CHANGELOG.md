@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.71.6
+
+- Added caching to Catch Rate Estimator & Minlucks data fetching
+- Updated dark mode styles
+
 ## Version 0.71.5
 
 - Re-added headers to remote requests (may re-break remote requests)
