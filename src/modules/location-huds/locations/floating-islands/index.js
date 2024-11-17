@@ -2,7 +2,6 @@ import {
   addHudStyles,
   getCurrentPage,
   getSetting,
-  getUserItems,
   makeElement,
   onDialogShow,
   onEvent,
