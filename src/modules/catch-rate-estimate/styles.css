@@ -22,7 +22,7 @@
 
 #mh-improved-cre thead:hover th.name::after {
   position: absolute;
-  top: 4px;
+  top: 5px;
   right: 0;
   box-sizing: border-box;
   display: block;

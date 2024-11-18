@@ -81,6 +81,7 @@ const updateStats = () => {
 const updateMiceEffectiveness = async (location) => {
   effectiveness = await getMiceEffectiveness();
   cacheSet('cre-location', location);
+  cacheSet('cre-stats', lastStats);
   cacheSet('cre-effectiveness', effectiveness);
 
   return effectiveness;
@@ -136,18 +137,24 @@ const updateMinLucks = async (useCachedData = false) => {
     ${user.environment_id}
   `;
 
-  if (currentStats !== lastStats) {
-    const location = getCurrentLocation();
-    if (useCachedData) {
-      debuglog('cre', 'Using cached data for mice effectiveness');
-      const cachedLocation = await cacheGet('cre-location');
-      debuglog('cre', 'Cached location:', cachedLocation, 'Current location:', location);
-      effectiveness = cachedLocation === location ? await cacheGet('cre-effectiveness') : await updateMiceEffectiveness(location);
+  const location = getCurrentLocation();
+  if (useCachedData) {
+    debuglog('cre', 'Using cached data for mice effectiveness');
+    const cachedLocation = await cacheGet('cre-location');
+    const cachedStats = await cacheGet('cre-stats');
+    if (cachedLocation !== location || cachedStats !== currentStats) {
+      debuglog('cre', 'Cached data is outdated');
+      effectiveness = await updateMiceEffectiveness(location, currentStats);
     } else {
-      debuglog('cre', 'Fetching new data for mice effectiveness');
-      effectiveness = await updateMiceEffectiveness(location);
+      debuglog('cre', 'Using cached data');
+      effectiveness = await cacheGet('cre-effectiveness');
     }
+  } else {
+    debuglog('cre', 'Fetching new data for mice effectiveness');
+    effectiveness = await updateMiceEffectiveness(location, currentStats);
+  }
 
+  if (currentStats !== lastStats) {
     lastStats = currentStats;
 
     updateStats();

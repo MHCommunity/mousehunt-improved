@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.71.7
+
+- Fixed Catch Rate Estimator not updating when refreshing
+
 ## Version 0.71.6
 
 - Added caching to Catch Rate Estimator & Minlucks data fetching
