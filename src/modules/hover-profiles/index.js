@@ -77,6 +77,8 @@ const getFriendId = async (target) => {
 };
 
 let friendDataWrapper;
+let friendDataWrapperListener;
+let friendDataWrapperLeaveListener;
 
 /**
  * Create the friend markup.
@@ -133,8 +135,11 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
 
   let timeoutId;
 
+  friendDataWrapperListener?.remove();
+  friendDataWrapperLeaveListener?.remove();
+
   // add a mouseleave event to remove it
-  friendDataWrapper.addEventListener('mouseleave', () => {
+  friendDataWrapperListener = friendDataWrapper.addEventListener('mouseleave', () => {
     timeoutId = setTimeout(() => {
       if (! debugPopup) {
         friendDataWrapper.remove();
@@ -142,16 +147,8 @@ const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
     }, 350); // delay in milliseconds
   });
 
-  e.target.addEventListener('mouseleave', () => {
-    timeoutId = setTimeout(() => {
-      if (! debugPopup) {
-        friendDataWrapper.remove();
-      }
-    }, 1000);
-  });
-
   // cancel the removal if the mouse enters the tooltip
-  friendDataWrapper.addEventListener('mouseenter', () => {
+  friendDataWrapperLeaveListener = friendDataWrapper.addEventListener('mouseenter', () => {
     clearTimeout(timeoutId);
   });
 
@@ -217,11 +214,12 @@ const addFriendLinkEventListener = (selector) => {
   }
 
   friendLinks.forEach((friendLink) => {
-    if (friendLink.classList.contains('friendsPage-friendRow-image')) {
-      return;
-    }
-
-    if (friendLink.getAttribute('data-friend-hover')) {
+    if (
+      friendLink.classList.contains('friendsPage-friendRow-image') ||
+      friendLink.classList.contains('mousehuntHud-shield') ||
+      friendLink.classList.contains('campPage-tabs-tabContent-larryTip-byLine') ||
+      friendLink.getAttribute('data-friend-hover')
+    ) {
       return;
     }
 
@@ -233,8 +231,12 @@ const addFriendLinkEventListener = (selector) => {
       timer = setTimeout(() => onFriendLinkHover(e), 200);
     });
 
-    friendLink.addEventListener('mouseout', () => {
-      clearTimeout(timer);
+    friendLink.addEventListener('mouseleave', () => {
+      timer = setTimeout(() => {
+        if (friendDataWrapper && ! friendDataWrapper.matches(':hover')) {
+          friendDataWrapper.remove();
+        }
+      }, 350); // delay in milliseconds
     });
   });
 };
