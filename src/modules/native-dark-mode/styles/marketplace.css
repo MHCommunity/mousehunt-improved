@@ -259,3 +259,8 @@
 .mh-dark .marketplaceView-table-filterReminder {
   background-color: var(--d-bg);
 }
+
+.mh-dark .marketplaceView-table tr.buy.canceled,
+.mh-dark .marketplaceView-table tr.buy.canceled .marketplaceView-goldValue {
+  color: var(--d-text-dark);
+}

@@ -24,8 +24,12 @@
 .mh-dark .journal .content .entry.kings_giveaway_vault_prize_entry,
 .mh-dark .journal .content .entry.kings_giveaway_vault_prize_entry .journaldate,
 .mh-dark .journal .content .entry.badge,
-.mh-dark .journal .content .entry.badge .journalbody .journaldate {
+.mh-dark .journal .content .entry.badge .journalbody .journalenvdate {
   color: var(--d-text-dark) !important;
+}
+
+.mh-dark .journal .content .entry.badge .journalbody .journalenvdate {
+  border-bottom-color: var(--d-transparent-30);
 }
 
 .mh-dark .pagerView-container {

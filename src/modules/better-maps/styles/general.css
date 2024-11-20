@@ -638,7 +638,6 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapTooltipView.active {
-  top: 0 !important;
   display: flex;
   flex-direction: column;
   place-content: flex-start space-around;
