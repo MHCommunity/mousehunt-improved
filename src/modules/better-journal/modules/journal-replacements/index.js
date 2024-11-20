@@ -122,6 +122,8 @@ const replacements = [
   ['times.I can', 'times. I can'],
   ['Here is the summary of loot that I earned during my studies:<br><br>', 'I earned the following loot during my studies:'],
   ['The aura will last until', 'The aura expires on'],
+  ['pm .', 'pm.'], // aura expiration fix.
+  ['am .', 'am.'],
 
   // Event stuff
   // SEH
