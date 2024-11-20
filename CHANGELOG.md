@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.71.8
+
+- Fixed Hover Profile flickering and disappearing
+- Updated Better Journal styles
+- Updated Better Maps styles
+- Updated Dark Mode styles
+
 ## Version 0.71.7
 
 - Fixed Catch Rate Estimator not updating when refreshing
