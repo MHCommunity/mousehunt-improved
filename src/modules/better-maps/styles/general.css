@@ -1018,3 +1018,7 @@ input.treasureMapView-block-search-text {
 .tsitu-rh-helper {
   display: none;
 }
+
+.treasureMapView-mapMenu-group.allies {
+  z-index: 1;
+}
