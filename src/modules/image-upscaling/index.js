@@ -1,6 +1,7 @@
 import {
   addExternalStyles,
   addStyles,
+  doInternalEvent,
   getData,
   getFlag,
   onDialogShow,
@@ -158,6 +159,8 @@ class ImageUpscaler {
     images.forEach((image) => {
       const originalUrl = image.getAttribute('src');
       const strippedUrl = this.stripUrl(originalUrl);
+
+      doInternalEvent('image-upscaling-image', { image, originalUrl, strippedUrl });
 
       if (this.shouldSkipUrl(strippedUrl)) {
         return;
