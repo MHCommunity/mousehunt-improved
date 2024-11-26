@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.71.9
+
+- Added Facebook image proxy experiment
+- Updated Better Maps styles
+- Updated UI styles
+- Updated upscaled mice images
+
 ## Version 0.71.8
 
 - Fixed Hover Profile flickering and disappearing
