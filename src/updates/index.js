@@ -58,6 +58,13 @@ const getVersionUpdates = () => {
 const doVersionUpdates = async (updates) => {
   for (const version of Object.keys(updates)) {
     const update = versionUpdates[version];
+    const updateCompleted = getSetting('mh-improved-updates-completed', []).includes(update.version);
+
+    if (updateCompleted) {
+      debuglog('update-migration', `Update ${update.version} has already been completed`);
+      continue;
+    }
+
     try {
       debuglog('update-migration', `Running update for ${update.version}`);
 
