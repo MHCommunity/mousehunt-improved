@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.71.10
+
+- Fixed Location Dashboard data being deleted on update
+- Updated Better UI styles
+- Updated Better Journal styles
+- Updated Catch Rate Estimator styles
+- Updated Show Auras styles
+
 ## Version 0.71.9
 
 - Added Facebook image proxy experiment
