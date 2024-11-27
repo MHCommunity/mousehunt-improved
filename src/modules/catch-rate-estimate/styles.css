@@ -186,3 +186,8 @@ span.mh-improved-cre-no-mice {
   background-color: #eee7e2;
   box-shadow: -1px 1px 3px #d3cecb inset;
 }
+
+.mh-improved-cre-no-mice {
+  padding: 10px;
+  font-size: 13px;
+}

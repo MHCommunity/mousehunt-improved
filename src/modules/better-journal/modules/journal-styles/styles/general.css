@@ -272,11 +272,3 @@ p.mhi-x-entry {
   display: flex;
   padding: 10px;
 }
-
-.journal .entry.badge.highlight .journalhighlightbadge {
-  width: 97px;
-}
-
-.journal .entry.highlight .journalhighlightbadge .jounalhighlightbadgeimage::after {
-  line-height: 14px;
-}

@@ -25,7 +25,7 @@
 }
 
 .journal .content .entry.badge .journalimage img {
-  width: 65px;
+  width: 55px;
   transition: 0.3s ease-in-out;
 }
 
@@ -59,4 +59,23 @@
 
 .entry.short.badge.better-journal-styles-badge-diamond {
   background: linear-gradient(135deg, #eee, #8bdae9 80%);
+}
+
+.journal .entry.badge.highlight .journalhighlightbadge {
+  top: 0;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  width: 98px;
+  height: 18px;
+  border-bottom-right-radius: 3px;
+}
+
+.journal .entry.badge.highlight .journalhighlightbadge .jounalhighlightbadgeimage {
+  margin-top: 0;
+  filter: grayscale(1);
+}
+
+.journal .entry.highlight .journalhighlightbadge .jounalhighlightbadgeimage::after {
+  line-height: 14px;
 }

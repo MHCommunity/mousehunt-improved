@@ -104,3 +104,12 @@
 .campPage-trap-itemBrowser-item.codex.unowned .trapSelectorView__obtainHint {
   display: block;
 }
+
+.campPage-trap-itemBrowser-armed-item.trinket .campPage-trap-itemBrowser-item-statContainer {
+  display: flex;
+  width: auto;
+}
+
+.campPage-trap-itemBrowser-armed-item.trinket .campPage-trap-itemBrowser-item-disarmButton {
+  margin-right: 10px;
+}
