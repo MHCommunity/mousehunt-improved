@@ -14,6 +14,7 @@
 }
 
 .journal .content .entry .journaltext > br + br:last-of-type,
+.journal .content .entry.world_aspect_corrupted .journaltext br,
 .journal .content .entry.floatingIslands.fullyExplored .journaltext br,
 .journal .content .entry.floatingIslands.defeatedEnemy .journaltext br,
 .journal .content .entry.folkloreForest-plantClaimed .journaltext br,
@@ -59,7 +60,7 @@
 .entry.workshopPartProduced .journaltext a::after,
 .entry.birthday_factory.enter_room b::after,
 .entry.potionuse .journaltext span:last-of-type::after,
-.entry.labyrinth-clue.labyrinth-clue-good .journaltext::after,
+.entry.labyrinth-clue.labyrinth-clue-good .journaltext b:first-of-type::after,
 .entry.donationComplete .journaltext a:last-of-type::after {
   display: inline;
   content: ".";

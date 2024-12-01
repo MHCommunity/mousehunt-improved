@@ -97,6 +97,10 @@
   font-weight: 400;
 }
 
+.journal .content .entry.labyrinth-clue .journaltext b {
+  font-weight: 700;
+}
+
 .journal .content .entry .journaltext p:first-of-type {
   margin-top: 0;
 }
