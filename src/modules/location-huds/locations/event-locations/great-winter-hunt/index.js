@@ -329,7 +329,7 @@ const maybeHideAdventCalendarInMenu = () => {
  * Always active.
  */
 const greatWinterHuntGlobal = () => {
-  addStyles([stylesGlobal, maybeHideAdventCalendarInMenu], 'location-hud-events-great-winter-hunt');
+  addStyles([stylesGlobal, maybeHideAdventCalendarInMenu()], 'location-hud-events-great-winter-hunt');
   onDialogShow('adventCalendarPopup', adventCalendarPopup);
 };
 
