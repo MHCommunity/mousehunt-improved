@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.72.9
+
+- Added more data caching
+- Updated Better UI styles
+- Updated Better Journal styles
+- Updated Better Items styles
+- Updated Location HUD: Event Locations styles
+- Updated Location HUD: Living Garden Region styles
+- Miscellaneous bug fixes and optimizations
+
 ## Version 0.71.10
 
 - Fixed Location Dashboard data being deleted on update
