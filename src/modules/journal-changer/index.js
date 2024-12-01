@@ -1,5 +1,7 @@
 import {
   addStyles,
+  cacheGet,
+  cacheSet,
   doRequest,
   getCurrentLocation,
   getCurrentPage,
@@ -24,6 +26,11 @@ let themes = [];
  * @return {Promise<Array>} The journal themes.
  */
 const getJournalThemes = async () => {
+  const cachedThemes = await cacheGet('journal-themes', []);
+  if (cachedThemes.length > 0) {
+    return cachedThemes;
+  }
+
   const req = await doRequest('managers/ajax/users/journal_theme.php', {
     action: 'get_themes',
   });
@@ -32,7 +39,11 @@ const getJournalThemes = async () => {
     return [];
   }
 
-  return req.journal_themes.theme_list.filter((theme) => theme.can_equip === true);
+  const gotThemes = req.journal_themes.theme_list.filter((theme) => theme.can_equip === true);
+
+  cacheSet('journal-themes', gotThemes);
+
+  return gotThemes;
 };
 
 /**
@@ -109,7 +120,9 @@ const getJournalThemeForLocation = () => {
  */
 const revertToSavedTheme = () => {
   const chosenTheme = getSetting('journal-changer.chosen-theme', false);
-  if (getCurrentJournalTheme() !== chosenTheme) {
+  const lastTheme = getSetting('journal-changer.last-theme', false);
+  const currentTheme = getCurrentJournalTheme();
+  if (currentTheme !== chosenTheme && currentTheme !== lastTheme) {
     updateJournalTheme(chosenTheme);
   }
 };
@@ -186,6 +199,7 @@ const randomizeTheme = async (skip = false) => {
   }
 
   updateJournalTheme(theme.type);
+  saveSetting('journal-changer.last-theme', theme.type);
 
   return theme.type;
 };
@@ -256,6 +270,8 @@ const onThemeSelectorChange = () => {
         saveSetting('journal-changer.last-theme', data.theme);
         saveSetting('journal-changer.chosen-theme', data.theme);
       }
+
+      cacheSet('journal-themes', req.journal_themes.theme_list.filter((theme) => theme.can_equip === true));
     });
   };
 };
