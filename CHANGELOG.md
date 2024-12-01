@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 0.72.9
+## Version 0.71.11
 
 - Added more data caching
 - Updated Better UI styles
