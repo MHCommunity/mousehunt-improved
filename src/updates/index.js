@@ -95,27 +95,42 @@ const update = async (previousVersion, newVersion) => {
   const updates = getVersionUpdates();
   const needsToRunUpdate = Object.keys(updates).length > 0;
 
+  const isFreshInstall = '0.0.0' === previousVersion;
+
   // If we dont' have settings to migrate, just save the new version and return.
   if (! needsToRunUpdate) {
     saveSetting('mh-improved-version', newVersion);
     updateCaches();
+    if (isFreshInstall) {
+      return;
+    }
+
     doEvent('mh-improved-updated', previousVersion);
     return;
   }
 
-  let popup = showLoadingPopup('0.0.0' === previousVersion ? 'Installing MouseHunt Improved …' : `Updating MouseHunt Improved to v${newVersion}…`);
+  let popup = showLoadingPopup(isFreshInstall ? 'Installing MouseHunt Improved …' : `Updating MouseHunt Improved to v${newVersion}…`);
 
   addBodyClass('mh-improved-updating');
   setGlobal('mh-improved-updating', true);
 
   // Backup the settings before we start updating in case something goes wrong.
-  saveSettingsBackup();
+  if (! isFreshInstall) {
+    saveSettingsBackup();
+  }
 
   try {
-    await doVersionUpdates(updates);
+    if (! isFreshInstall) {
+      await doVersionUpdates(updates);
+    }
     saveSetting('mh-improved-version', newVersion);
 
-    // await updateCaches();
+    await updateCaches();
+
+    if (isFreshInstall) {
+      popup.hide();
+      return;
+    }
 
     popup = showLoadingPopup(`MouseHunt Improved has been updated to v${newVersion}!`);
 
