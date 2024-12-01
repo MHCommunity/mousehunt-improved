@@ -13,8 +13,19 @@
   font-size: 12px;
 }
 
-.advent-calendar-spoilers .adventCalendarView-content {
+.adventCalendarView-content {
   background: url(https://i.mouse.rip/calendar_bg.jpg);
+  background-position-x: -1px;
+  background-position-y: -1px;
+}
+
+.advent-calendar-spoilers .adventCalendarView-gift-image {
+  background: transparent !important;
+}
+
+.advent-calendar-spoilers .adventCalendarView-gift-label,
+.advent-calendar-spoilers .adventCalendarView-gift {
+  background: transparent;
 }
 
 .adventCalendarView-subtitle {
