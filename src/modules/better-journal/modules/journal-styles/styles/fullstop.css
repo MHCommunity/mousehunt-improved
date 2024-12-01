@@ -33,13 +33,6 @@
   display: none;
 }
 
-.journal .entry.catchsuccessloot .journaltext br,
-.journal .entry.luckycatchsuccess .journaltext br,
-.journal .entry.relicHunter_catch .journaltext br::after,
-.journal .entry.relicHunter_complete .journaltext br::after {
-  content: "";
-}
-
 .journal .content .entry.catchsuccessloot .journaltext > br:last-of-type,
 .journal .content .entry.luckycatchsuccess .journaltext > br:last-of-type {
   display: block;

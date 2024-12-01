@@ -13,6 +13,10 @@
   font-size: 12px;
 }
 
+.advent-calendar-spoilers .adventCalendarView-content {
+  background: url(https://i.mouse.rip/calendar_bg.jpg);
+}
+
 .adventCalendarView-subtitle {
   padding: 10px;
   font-size: 12px;
@@ -21,7 +25,7 @@
 }
 
 .adventCalendarView-gift.canClaim {
-  filter: brightness(1.75);
+  filter: brightness(1.5);
 }
 
 .adventCalendarView-gift-rewardContainer {

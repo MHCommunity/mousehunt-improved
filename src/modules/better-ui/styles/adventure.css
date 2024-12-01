@@ -353,3 +353,7 @@ a.adventureBookPopup-title.active {
 .adventureBookPopup-adventure-footer-claim-reward-image {
   filter: drop-shadow(0 1px 0 #478b2a);
 }
+
+.adventureBookBanner-goalName-padding span a {
+  color: inherit;
+}

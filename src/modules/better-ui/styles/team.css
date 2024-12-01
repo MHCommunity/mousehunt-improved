@@ -160,8 +160,12 @@
   content: attr(title) "    ";
 }
 
-.teamPage-memberRow:nth-child(odd) {
+.teamPage-memberRow:nth-child(odd):not(.teamPage-memberGroupTitle) {
   background-color: #eee;
+}
+
+.teamPage-memberGroupTitle td {
+  padding-top: 5px;
 }
 
 .teamPage-memberRow.self {

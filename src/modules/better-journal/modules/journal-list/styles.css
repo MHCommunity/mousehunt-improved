@@ -21,6 +21,9 @@ ul.better-journal-list {
   margin-left: 20px;
 }
 
+.journaltext .loot:last-of-type::after,
+.journaltext .lucky:last-of-type::after,
+.journaltext .item:last-of-type::after,
 .entry.gloomyGreenwood-incense .journaltext::after {
   content: "";
 }

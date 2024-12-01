@@ -8,7 +8,6 @@
 
 .journal .content .entry.badge:hover {
   z-index: 99;
-  border: 1px solid #5b5b5b;
   box-shadow: 0 5px 5px -5px #000;
   transform: scale(1.1);
 }
@@ -68,14 +67,11 @@
   align-items: center;
   width: 98px;
   height: 18px;
+  background: linear-gradient(90deg, #a32fef 0%, #9612e8 100%);
   border-bottom-right-radius: 3px;
 }
 
 .journal .entry.badge.highlight .journalhighlightbadge .jounalhighlightbadgeimage {
   margin-top: 0;
   filter: grayscale(1);
-}
-
-.journal .entry.highlight .journalhighlightbadge .jounalhighlightbadgeimage::after {
-  line-height: 14px;
 }

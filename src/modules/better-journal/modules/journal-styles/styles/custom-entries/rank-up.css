@@ -21,11 +21,7 @@
 }
 
 .journal .entry.titlechange:hover {
-  z-index: 99;
   background-blend-mode: luminosity;
-  border: 1px solid #5b5b5b;
-  box-shadow: 0 5px 5px -5px #000;
-  transform: scale(1.1);
 }
 
 .journal .entry.titlechange::after {
