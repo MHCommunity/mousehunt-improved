@@ -60,7 +60,7 @@
   background: linear-gradient(135deg, #eee, #8bdae9 80%);
 }
 
-.journal .entry.badge.highlight .journalhighlightbadge {
+.journal .entry.highlight .journalhighlightbadge {
   top: 0;
   right: 5px;
   display: flex;

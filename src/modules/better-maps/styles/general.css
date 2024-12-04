@@ -644,10 +644,6 @@ input.treasureMapView-block-search-text {
   align-items: center;
 }
 
-.mh-ui-multiple-maps .treasureMapTooltipView.active {
-  top: 35px !important;
-}
-
 .treasureMapView-mapWarning.treasureMapRootView-padding {
   padding-left: 5px;
   margin-bottom: 10px;
