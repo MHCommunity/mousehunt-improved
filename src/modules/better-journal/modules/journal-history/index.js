@@ -74,7 +74,11 @@ const makeEntriesMarkup = (entries) => {
 
     html += `<div class="journalbody">
         <div class="journalactions"></div>
-        <div class="journaldate">${entry.date} - ${entry.location}<span class="history-timestamp">${timestamp}</span></div>
+        <div class="journalenvdate">
+          <div class="journaldate">${entry.date}</div>
+          <div class="journalenvironment">${entry.location}</div>
+          <span class="history-timestamp">${timestamp}</span>
+        </div>
         <div class="journaltext">${entry.text}</div>
       </div>
     </div>`;
@@ -175,13 +179,15 @@ const saveToDatabase = async (entry) => {
 
   date = date.split('-');
 
+  const location = entry.querySelector('.journalenvironment');
+
   const entryImage = entry.querySelector('.journalimage');
 
   const journalData = {
     id: entryId,
     timestamp: Date.now(),
     date: date[0] ? date[0].trim() : '0:00',
-    location: date[1] ? date[1].trim() : 'Unknown',
+    location: location ? location.innerText : '',
     text: entryText.innerHTML,
     type: [...entry.classList].filter((cls) => ! ['newEntry', 'animate'].includes(cls)),
     mouse: entry.getAttribute('data-mouse-type') || null,
