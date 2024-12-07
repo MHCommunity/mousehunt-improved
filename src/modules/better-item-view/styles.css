@@ -400,3 +400,7 @@ ul.mh-improved-scroll-to-map-multiple-list {
 .mh-improved-scroll-to-map-multiple-list li {
   line-height: 1.5;
 }
+
+.inventoryPage-item-content-nameContainer .tooltip .description {
+  overflow: scroll;
+}

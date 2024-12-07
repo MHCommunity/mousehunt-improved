@@ -485,8 +485,16 @@ a.friendsProfileView-randomFriend {
   opacity: 0.5;
 }
 
+.mh-dark .hunterProfileItemsView-categoryContent-item.uncollected .itemImage {
+  mix-blend-mode: initial;
+}
+
 .hunterProfileItemsView-categoryContent-item.uncollected .hunterProfileItemsView-categoryContent-item-padding {
   background-color: #eee;
+}
+
+.mh-dark .hunterProfileItemsView-categoryContent-item.uncollected .hunterProfileItemsView-categoryContent-item-padding {
+  background-color: var(--d-bg-alt);
 }
 
 .hunterInfoView-wrapper .hunterInfoView-idCardBlock-teamName {

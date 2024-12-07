@@ -81,6 +81,10 @@ body.mh-dark {
   background-color: var(--d-alt);
 }
 
+.mh-dark .mousehunt-improved-settings-export-popup code {
+  color: var(--d-text);
+}
+
 .mh-dark #overlayPopup.mh-improved-update-summary .jsDialogContainer .content {
   color: #000;
   background-color: transparent;

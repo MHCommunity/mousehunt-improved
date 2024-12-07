@@ -129,6 +129,7 @@
 }
 
 .mh-dark .inventoryPage-confirmPopup-itemContainer.received {
+  color: var(--d-text);
   background-color: var(--d-bg-alt);
 }
 

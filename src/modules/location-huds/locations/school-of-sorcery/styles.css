@@ -115,7 +115,7 @@
 .schoolOfSorceryCourseView__dropOutButton,
 .headsUpDisplaySchoolOfSorceryView__disarmPreferenceButton,
 .headsUpDisplaySchoolOfSorceryView__viewTranscriptButton {
-  opacity: 0.7;
+  opacity: 0.9;
   transition: opacity 0.2s;
 }
 
@@ -132,10 +132,13 @@
   border-color: #008cf3;
 }
 
-.headsUpDisplaySchoolOfSorceryView__disarmPreferenceButton,
-.headsUpDisplaySchoolOfSorceryView__viewTranscriptButton,
 .headsUpDisplaySchoolOfSorceryView__baitCraftableContainer {
   filter: hue-rotate(125deg);
+}
+
+.headsUpDisplaySchoolOfSorceryView__disarmPreferenceButton,
+.headsUpDisplaySchoolOfSorceryView__viewTranscriptButton {
+  filter: hue-rotate(100deg);
 }
 
 .headsUpDisplaySchoolOfSorceryView__baitImage,
