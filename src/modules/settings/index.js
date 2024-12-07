@@ -12,6 +12,7 @@ import {
   getSettings,
   makeElement,
   onEvent,
+  parseEncodedValue,
   saveSetting,
   setPage,
   showErrorMessage,
@@ -43,7 +44,19 @@ const addExportSettings = (append) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const settings = JSON.stringify(JSON.parse(localStorage.getItem('mousehunt-improved-settings')), null, 2);
+    const settingValues = JSON.parse(localStorage.getItem('mousehunt-improved-settings'));
+
+    // Since 0.72.0, we've been storing the override-styles as a base64 encoded string.
+    if (
+      settingValues &&
+      settingValues['override-styles'] &&
+      'string' === typeof settingValues['override-styles'] &&
+      ! settingValues['override-styles'].startsWith('data:')
+    ) {
+      settingValues['override-styles'] = `data:text/css;base64,${btoa(settingValues['override-styles'])}`;
+    }
+
+    const settings = JSON.stringify(settingValues, null, 2);
     const content = `<div class="mousehunt-improved-settings-export-popup-content">
     <div class="mousehunt-improved-settings-export-popup-tip">
       To import settings, drag and drop the file into the box below, or paste the text in the box.
@@ -193,6 +206,11 @@ const addExportSettings = (append) => {
 
       // Verify that the settings are valid JSON
       try {
+        // Since 0.72.0, we've been storing the override-styles as a base64 encoded string.
+        if (newSettings && newSettings['override-styles'] && newSettings['override-styles'].startsWith('data:')) {
+          newSettings['override-styles'] = parseEncodedValue(newSettings['override-styles']);
+        }
+
         JSON.parse(newSettings);
       } catch (error) {
         showErrorMessage({

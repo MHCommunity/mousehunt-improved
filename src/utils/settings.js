@@ -16,6 +16,29 @@ const isSafeMode = () => {
 };
 
 /**
+ * Parse an encoded value.
+ *
+ * @param {string} value The value to parse.
+ *
+ * @return {string} The parsed value.
+ */
+const parseEncodedValue = (value) => {
+  if ('string' !== typeof value) {
+    return value;
+  }
+
+  if (value.startsWith('data:text/css;base64,')) {
+    return atob(value.replace('data:text/css;base64,', ''));
+  }
+
+  if (value.startsWith('data:text/plain;base64,')) {
+    return atob(value.replace('data:text/plain;base64,', ''));
+  }
+
+  return value;
+};
+
+/**
  * Get the saved settings.
  *
  * @param {string}  key          The key to get.
@@ -43,7 +66,7 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
       return defaultValue;
     }
 
-    return settings[key];
+    return parseEncodedValue(settings[key]);
   }
 
   const groupAndKey = getGroupAndKey(key);
@@ -53,7 +76,7 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
       return defaultValue;
     }
 
-    return settings[groupAndKey.key];
+    return parseEncodedValue(settings[groupAndKey.key]);
   }
 
   const groupSettings = settings[groupAndKey.group] || {};
@@ -62,7 +85,7 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
     return defaultValue;
   }
 
-  return groupSettings[groupAndKey.key];
+  return parseEncodedValue(groupSettings[groupAndKey.key]);
 };
 
 /**
@@ -198,6 +221,7 @@ const saveSetting = (key, value) => {
 };
 
 export {
+  parseEncodedValue,
   getSettingDirect,
   saveSettingDirect,
   getSetting,
