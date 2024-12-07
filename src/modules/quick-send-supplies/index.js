@@ -17,12 +17,13 @@ import styles from './styles.css';
 /**
  * Make the markup for an item.
  *
- * @param {string}      name     The name of the item.
- * @param {string}      type     The type of the item.
- * @param {string}      image    The image of the item.
- * @param {HTMLElement} appendTo The element to append to.
+ * @param {string}      name                 The name of the item.
+ * @param {string}      type                 The type of the item.
+ * @param {string}      image                The image of the item.
+ * @param {HTMLElement} appendTo             The element to append to.
+ * @param {HTMLElement} quickSendLinkWrapper The quick send link wrapper.
  */
-const makeItem = (name, type, image, appendTo) => {
+const makeItem = (name, type, image, appendTo, quickSendLinkWrapper) => {
   const item = makeElement('div', 'quickSendItem');
   item.title = name;
 
@@ -38,6 +39,9 @@ const makeItem = (name, type, image, appendTo) => {
 
   item.addEventListener('click', () => {
     selected.checked = true;
+
+    quickSendLinkWrapper.classList.add('sticky');
+    quickSendLinkWrapper.setAttribute('data-selected', type);
 
     const items = document.querySelectorAll('.quickSendItem');
     items.forEach((i) => {
@@ -68,7 +72,26 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
   btn.setAttribute('data-quick-send', 'true');
 
+  const existing = document.querySelectorAll('.quickSendWrapper');
+  let found = false;
+  if (existing && existing.length) {
+    existing.forEach((el) => {
+      if (el.getAttribute('data-snuid') === snuid) {
+        found = true;
+        el.classList.remove('hidden');
+      } else {
+        el.remove();
+      }
+    });
+  }
+
+  if (found) {
+    return;
+  }
+
   const quickSendLinkWrapper = makeElement('form', ['quickSendWrapper', 'hidden']);
+  quickSendLinkWrapper.setAttribute('data-snuid', snuid);
+
   const itemsWrapper = makeElement('div', 'itemsWrapper');
 
   const itemOptions = [
@@ -82,7 +105,7 @@ const makeSendSuppliesButton = async (btn, snuid) => {
   for (const item of itemOptions) {
     const tradableItem = allTradableItems.find((i) => i.type === item);
     if (tradableItem) {
-      makeItem(tradableItem.name, tradableItem.type, tradableItem.image, itemsWrapper);
+      makeItem(tradableItem.name, tradableItem.type, tradableItem.image, itemsWrapper, quickSendLinkWrapper);
     }
   }
 
@@ -141,7 +164,7 @@ const makeSendSuppliesButton = async (btn, snuid) => {
     await fetch(url, {
       method: 'POST',
     }).then((response) => {
-      if (response.status === 200) {
+      if (response.status === 200 && response.success) {
         quickSendInput.value = '';
 
         quickSendButton.classList.remove('disabled');
@@ -183,6 +206,47 @@ const makeSendSuppliesButton = async (btn, snuid) => {
   quickSendGoWrapper.append(quickSendButton);
   quickSendLinkWrapper.append(quickSendGoWrapper);
 
+  // Add a close button
+  const close = makeElement('div', ['quickSendClose'], '✕');
+  close.addEventListener('click', () => {
+    quickSendLinkWrapper.remove();
+  });
+  quickSendLinkWrapper.append(close);
+
+  document.body.append(quickSendLinkWrapper);
+
+  setTimeout(() => {
+    quickSendLinkWrapper.classList.remove('hidden');
+  }, 100);
+
+  // position the quick send supplies popup, centered under the button.
+  const rect = btn.getBoundingClientRect();
+
+  quickSendLinkWrapper.style.top = `${rect.top + window.scrollY + rect.height - 20}px`;
+  quickSendLinkWrapper.style.left = `${rect.left + window.scrollX + (rect.width / 2) - (quickSendLinkWrapper.offsetWidth / 2)}px`;
+
+  // if the user leaves the popup, remove it.
+  quickSendLinkWrapper.addEventListener('mouseleave', () => {
+    if (! quickSendLinkWrapper.classList.contains('sticky')) {
+      setTimeout(() => {
+        quickSendLinkWrapper.remove();
+      }, 350);
+    }
+  });
+
+  let buttonTimeout;
+  btn.addEventListener('mouseleave', () => {
+    if (! quickSendLinkWrapper.classList.contains('sticky')) {
+      buttonTimeout = setTimeout(() => {
+        quickSendLinkWrapper.remove();
+      }, 350);
+    }
+  });
+
+  quickSendLinkWrapper.addEventListener('mouseenter', () => {
+    clearTimeout(buttonTimeout);
+  });
+
   return quickSendLinkWrapper;
 };
 
@@ -211,18 +275,10 @@ const main = async () => {
       return;
     }
 
-    const quickSendLinkWrapper = await makeSendSuppliesButton(btn, snuid);
-    if (quickSendLinkWrapper) {
-      if (btn.parentNode) {
-        if (btn.nextSibling) {
-          btn.parentNode.insertBefore(quickSendLinkWrapper, btn.nextSibling);
-        } else {
-          btn.parentNode.append(quickSendLinkWrapper);
-        }
-      } else {
-        btn.append(quickSendLinkWrapper);
-      }
-    }
+    // if the user hovers over the button, show the quick send supplies popup
+    btn.addEventListener('mouseenter', async () => {
+      await makeSendSuppliesButton(btn, snuid);
+    });
   }
 };
 
@@ -255,10 +311,10 @@ const addToMapUsers = async (attempts = 0) => {
       return;
     }
 
-    const quickSendLinkWrapper = await makeSendSuppliesButton(btn, snuid);
-    if (quickSendLinkWrapper) {
-      btn.append(quickSendLinkWrapper);
-    }
+    // if the user hovers over the button, show the quick send supplies popup
+    btn.addEventListener('mouseenter', async () => {
+      await makeSendSuppliesButton(btn, snuid);
+    });
   });
 };
 

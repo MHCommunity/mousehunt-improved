@@ -6,8 +6,8 @@
   position: absolute;
   top: -50px;
   left: 60px;
-  z-index: 10;
-  display: none;
+  z-index: 9999999;
+  display: block;
   min-width: 130px;
   padding: 7px 4px;
   font-size: 10px;
@@ -17,13 +17,17 @@
   border: 2px solid #000;
   border-radius: 10px;
   box-shadow: 2px 3px 4px #666;
-  transform: translate(-50%);
+}
+
+.quickSendWrapper.hidden {
+  display: none;
 }
 
 .treasureMapView-hunter-wrapper .quickSendWrapper {
   top: 60px !important;
 }
 
+.quickSendWrapper.sticky,
 .userInteractionButtonsView-buttonGroup:hover .quickSendWrapper,
 .quickSendWrapper:hover {
   display: block;
@@ -38,9 +42,13 @@
 .mousehuntPage-content input.quickSendInput,
 .quickSendInput {
   width: 65px;
-  padding: 1px;
+  padding: 2px;
   font-size: 12px;
   border: 1px solid #000;
+}
+
+.mh-dark .quickSendInput::placeholder {
+  color: var(--d-text-muted);
 }
 
 .quickSendButton {
@@ -78,11 +86,17 @@
 }
 
 .quickSendItem.selected {
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow:
     0 0 0 2px #fff,
     0 0 2px 4px #7dea7d;
   opacity: 1;
+}
+
+.mh-dark .quickSendItem.selected {
+  box-shadow:
+    0 0 0 2px var(--d-green-dark),
+    0 0 2px 4px #7dea7d;
 }
 
 .quickSendItem:hover,
@@ -129,4 +143,43 @@
 .friendsPage-community-hunterResult .quickSendWrapper {
   top: -55px;
   left: 35px;
+}
+
+.quickSendClose {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  z-index: 15;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #e03a3a;
+  text-align: center;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #d1d0cf;
+  border-radius: 50%;
+  box-shadow: 1px 2px 6px -4px #3e3e3e;
+}
+
+.quickSendClose:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #e03a3a;
+}
+
+.mh-dark .quickSendClose {
+  color: var(--d-text-muted);
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
+.mh-dark .quickSendClose:hover {
+  background-color: var(--d-bg-alt);
 }
