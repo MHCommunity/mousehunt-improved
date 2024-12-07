@@ -96,37 +96,109 @@
   "mountain": [],
   "kings_arms": [],
   "tournament_hall": [],
-  "kings_gauntlet": ["ancient_gauntlet_weapon"],
+  "kings_gauntlet": [
+    "ancient_gauntlet_weapon"
+  ],
   "calm_clearing": [],
   "great_gnarled_tree": [],
   "lagoon": [],
   "laboratory": [],
-  "mousoleum": ["creepy_coffin_weapon"],
+  "mousoleum": [
+    "creepy_coffin_weapon"
+  ],
   "town_of_digby": [],
   "bazaar": [],
-  "pollution_outbreak": ["washboard_base", "super_scum_scrubber_weapon"],
+  "pollution_outbreak": [
+    "washboard_base",
+    "super_scum_scrubber_weapon"
+  ],
   "training_grounds": [],
-  "dojo": ["furoma_base"],
+  "dojo": [
+    "furoma_base"
+  ],
   "meditation_room": [],
   "pinnacle_chamber": [],
   "catacombs": [],
-  "forbidden_grove": ["runic_base"],
-  "acolyte_realm": ["runic_base"],
-  "cape_clawed": ["tribal_kaboom_base"],
-  "elub_shore": ["tiki_base", "tribal_base", "vegetation_base", "tribal_kaboom_base"],
-  "nerg_plains": ["tiki_base", "tribal_base", "vegetation_base", "tribal_kaboom_base"],
-  "derr_dunes": ["tiki_base", "tribal_base", "vegetation_base", "tribal_kaboom_base"],
-  "jungle_of_dread": ["tribal_kaboom_base", "cackle_lantern_weapon", "dreaded_totem_weapon"],
-  "dracano": ["tribal_kaboom_base"],
-  "balacks_cove": ["nutcracker_winter_weapon"],
-  "claw_shot_city": ["claw_shot_base", "slac_spring_weapon", "slac_ii_sling_weapon"],
-  "train_station": ["supply_grabber_weapon", "bandit_deflector_weapon", "engine_doubler_weapon"],
-  "fort_rox": ["electromagnet_meteorite_base", "battering_ram_buster_weapon"],
-  "desert_warpath": ["desert_heater_base", "warpath_thrasher_weapon", "warden_slayer_weapon"],
-  "desert_city": ["desert_heater_base"],
-  "desert_oasis": ["aurora_base", "hothouse_base", "living_base", "desert_heater_base"],
-  "lost_city": ["aurora_base", "curse_breaker_base", "hothouse_base", "living_base", "desert_heater_base"],
-  "sand_dunes": ["aurora_base", "hothouse_base", "living_base", "smelly_sodium_base", "desert_heater_base"],
+  "forbidden_grove": [
+    "runic_base"
+  ],
+  "acolyte_realm": [
+    "runic_base"
+  ],
+  "cape_clawed": [
+    "tribal_kaboom_base"
+  ],
+  "elub_shore": [
+    "tiki_base",
+    "tribal_base",
+    "vegetation_base",
+    "tribal_kaboom_base"
+  ],
+  "nerg_plains": [
+    "tiki_base",
+    "tribal_base",
+    "vegetation_base",
+    "tribal_kaboom_base"
+  ],
+  "derr_dunes": [
+    "tiki_base",
+    "tribal_base",
+    "vegetation_base",
+    "tribal_kaboom_base"
+  ],
+  "jungle_of_dread": [
+    "tribal_kaboom_base",
+    "cackle_lantern_weapon",
+    "dreaded_totem_weapon"
+  ],
+  "dracano": [
+    "tribal_kaboom_base"
+  ],
+  "balacks_cove": [
+    "nutcracker_winter_weapon"
+  ],
+  "claw_shot_city": [
+    "claw_shot_base",
+    "slac_spring_weapon",
+    "slac_ii_sling_weapon"
+  ],
+  "train_station": [
+    "supply_grabber_weapon",
+    "bandit_deflector_weapon",
+    "engine_doubler_weapon"
+  ],
+  "fort_rox": [
+    "electromagnet_meteorite_base",
+    "battering_ram_buster_weapon"
+  ],
+  "desert_warpath": [
+    "desert_heater_base",
+    "warpath_thrasher_weapon",
+    "warden_slayer_weapon"
+  ],
+  "desert_city": [
+    "desert_heater_base"
+  ],
+  "desert_oasis": [
+    "aurora_base",
+    "hothouse_base",
+    "living_base",
+    "desert_heater_base"
+  ],
+  "lost_city": [
+    "aurora_base",
+    "curse_breaker_base",
+    "hothouse_base",
+    "living_base",
+    "desert_heater_base"
+  ],
+  "sand_dunes": [
+    "aurora_base",
+    "hothouse_base",
+    "living_base",
+    "smelly_sodium_base",
+    "desert_heater_base"
+  ],
   "ss_huntington_ii": [],
   "seasonal_garden": [
     "seasonal_base",
@@ -142,7 +214,11 @@
     "zugzwang_ultimate_move_weapon"
   ],
   "zugzwang_library": [],
-  "slushy_shoreline": ["steam_laser_mk_i_weapon", "steam_laser_mk_ii_weapon", "steam_laser_mk_iii_weapon"],
+  "slushy_shoreline": [
+    "steam_laser_mk_i_weapon",
+    "steam_laser_mk_ii_weapon",
+    "steam_laser_mk_iii_weapon"
+  ],
   "iceberg": [
     "deep_freeze_base",
     "hearthstone_base",
@@ -155,29 +231,82 @@
     "steam_laser_mk_ii_weapon",
     "steam_laser_mk_iii_weapon"
   ],
-  "sunken_city": ["depth_charge_base", "bubbles_party_crasher_weapon"],
-  "queso_river": ["queso_canyon_base", "queso_factory_weapon"],
-  "queso_plains": ["queso_cannonstorm_base"],
-  "queso_quarry": ["queso_cannonstorm_base"],
-  "queso_geyser": ["queso_cannonstorm_base"],
-  "fungal_cavern": ["gemology_base", "living_grove_base", "crystal_mineral_crusher_weapon"],
-  "labyrinth": ["compass_magnet_base", "labyrinth_base", "minotaur_base", "treasure_gwh_base"],
-  "ancient_city": ["thief_base"],
+  "sunken_city": [
+    "depth_charge_base",
+    "bubbles_party_crasher_weapon"
+  ],
+  "queso_river": [
+    "queso_canyon_base",
+    "queso_factory_weapon"
+  ],
+  "queso_plains": [
+    "queso_cannonstorm_base"
+  ],
+  "queso_quarry": [
+    "queso_cannonstorm_base"
+  ],
+  "queso_geyser": [
+    "queso_cannonstorm_base"
+  ],
+  "fungal_cavern": [
+    "gemology_base",
+    "living_grove_base",
+    "crystal_mineral_crusher_weapon"
+  ],
+  "labyrinth": [
+    "compass_magnet_base",
+    "labyrinth_base",
+    "minotaur_base",
+    "treasure_gwh_base"
+  ],
+  "ancient_city": [
+    "thief_base"
+  ],
   "moussu_picchu": [
     "forecaster_base",
     "storm_wrought_ballista_weapon",
     "chrome_storm_wrought_ballista_weapon",
     "geyser_draconic_weapon"
   ],
-  "foreword_farm": ["folklore_printing_press_base", "naughty_list_printing_press_base"],
-  "prologue_pond": ["folklore_printing_press_base", "naughty_list_printing_press_base"],
-  "table_of_contents": ["folklore_printing_press_base", "naughty_list_printing_press_base"],
-  "bountiful_beanstalk": ["folklore_printing_press_base", "naughty_list_printing_press_base"],
-  "school_of_sorcery": ["folklore_printing_press_base", "naughty_list_printing_press_base"],
-  "rift_burroughs": ["mist_meter_regulator_base", "christmas_crystalabra_weapon"],
-  "rift_whisker_woods": ["dark_chocolate_bunny_weapon", "christmas_crystalabra_weapon"],
-  "rift_furoma": ["furoma_base", "christmas_crystalabra_weapon"],
-  "rift_gnawnia": ["christmas_crystalabra_weapon"],
-  "rift_bristle_woods": ["christmas_crystalabra_weapon"],
-  "rift_valour": ["christmas_crystalabra_weapon"]
+  "foreword_farm": [
+    "folklore_printing_press_base",
+    "naughty_list_printing_press_base"
+  ],
+  "prologue_pond": [
+    "folklore_printing_press_base",
+    "naughty_list_printing_press_base"
+  ],
+  "table_of_contents": [
+    "folklore_printing_press_base",
+    "naughty_list_printing_press_base"
+  ],
+  "bountiful_beanstalk": [
+    "folklore_printing_press_base",
+    "naughty_list_printing_press_base"
+  ],
+  "school_of_sorcery": [
+    "folklore_printing_press_base",
+    "naughty_list_printing_press_base"
+  ],
+  "rift_burroughs": [
+    "mist_meter_regulator_base",
+    "christmas_crystalabra_weapon"
+  ],
+  "rift_whisker_woods": [
+    "dark_chocolate_bunny_weapon",
+    "christmas_crystalabra_weapon"
+  ],
+  "rift_furoma": [
+    "furoma_base",
+    "christmas_crystalabra_weapon"
+  ],
+  "rift_gnawnia": [
+    "christmas_crystalabra_weapon"
+  ],
+  "rift_bristle_woods": [
+    "christmas_crystalabra_weapon"
+  ],
+  "rift_valour": [
+    "christmas_crystalabra_weapon"
+  ]
 }
