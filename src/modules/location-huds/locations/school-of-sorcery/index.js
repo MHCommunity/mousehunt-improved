@@ -87,7 +87,7 @@ const showPowerTypeReminder = () => {
         trapSelector.click();
       }
     },
-    dismiss: 600090,
+    dismiss: 6000,
   });
 };
 
