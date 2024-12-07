@@ -4,15 +4,16 @@
     {
       "title": "",
       "items": [
-        "Added 'Spring Bricks' as an option for Custom Background, Custom Camp Background, and Custom HUD Background",
-        "Added new Custom Shield options:<ul><li>Drawing</li><li>Droid</li><li>Leprechaun</li><li>Moustachio</li><li>Mythweaver</li><li>Romeo</li><li>Simple Golden</li><li>Starry</li></ul>",
-        "Fixed Wisdom in Stat Bar not using cached data",
-        "Removed Better UI Daily Draw page form submission changes",
-        "Updated Better Maps Relic Hunter travel button not working immediately after location changes",
-        "Updated Better Maps Styles",
-        "Updated Dark Mode Styles",
-        "Updated Favorite setups to query mobile favorites less often",
-        "Updated Halloween Location HUD styles of upcoming Auto-brew dialog"
+        "Updated Better Inventory styles",
+        "Updated Better Items styles",
+        "Updated Better Journal styles",
+        "Updated Better Maps styles",
+        "Updated Better UI styles",
+        "Updated School of Sorcery Location HUD styles",
+        "Updated Dark Mode styles",
+        "Added sticky functionality & close button to Quick Send Supplies",
+        "Fixed Quick Send Supplies closing too quickly",
+        "Updated settings export to encode Custom Styles for better compatibility"
       ]
     }
   ]

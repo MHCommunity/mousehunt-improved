@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 0.72.0
+
+- Updated Better Inventory styles
+- Updated Better Items styles
+- Updated Better Journal styles
+- Updated Better Maps styles
+- Updated Better UI styles
+- Updated School of Sorcery Location HUD styles
+- Updated Dark Mode styles
+- Added sticky functionality & close button to Quick Send Supplies
+- Fixed Quick Send Supplies closing too quickly
+- Updated settings export to encode Custom Styles for better compatibility
+
 ## Version 0.71.11
 
 - Added more data caching
