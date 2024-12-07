@@ -132,6 +132,7 @@ const areaHighlightingSchoolOfSorcery = () => {
 
   const baitIds = {
     114: 'sb',
+    1967: 'sb', // empowered sb.
     3703: 'aac',
     3704: 'mmc',
   };
