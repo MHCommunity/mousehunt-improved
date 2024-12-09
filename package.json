@@ -52,14 +52,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.26.0",
-    "@sentry/browser": "^8.37.1",
+    "@sentry/browser": "^8.42.0",
     "humanize-duration": "^3.32.1",
     "json2csv": "^6.0.0-alpha.2"
   },
   "devDependencies": {
-    "@sentry/cli": "^2.38.2",
+    "@sentry/cli": "^2.39.1",
     "@sprout2000/esbuild-copy-plugin": "^1.1.16",
-    "@wordpress/eslint-plugin": "^21.4.0",
+    "@wordpress/eslint-plugin": "^21.6.0",
     "archiver": "^7.0.1",
     "chalk": "^5.3.0",
     "chrome-webstore-upload-cli": "^3.3.1",
@@ -83,8 +83,8 @@
     "jsonc-eslint-parser": "^2.4.0",
     "node-fetch": "^3.3.2",
     "ora": "^8.1.1",
-    "prettier": "^3.3.3",
-    "pretty-ms": "^9.1.0",
+    "prettier": "^3.4.2",
+    "pretty-ms": "^9.2.0",
     "sentry-cli": "^0.0.0",
     "stylelint": "15.11.0",
     "stylelint-config-recess-order": "^4.6.0",
