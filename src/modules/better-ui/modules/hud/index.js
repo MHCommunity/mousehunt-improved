@@ -1,5 +1,8 @@
 import { getFlag, onNavigation, onTurn } from '@utils';
 
+let shortPercent = 0;
+let fullPercent = 0;
+
 /**
  * Show the full title percent on hover.
  */
@@ -9,9 +12,9 @@ const showFullTitlePercent = async () => {
     return;
   }
 
-  const percent = title.getAttribute('title');
+  let percent = title.getAttribute('title');
   if (! percent) {
-    return;
+    percent = `${user?.title_percent_accurate}% ${user?.title_name}`;
   }
 
   const target = title.querySelector('.hud_titlePercentage');
@@ -19,14 +22,14 @@ const showFullTitlePercent = async () => {
     return;
   }
 
-  const originalText = target.innerText;
-
   title.addEventListener('mouseover', () => {
-    target.innerText = percent.includes('%') ? percent.split('%')[0] : percent;
+    fullPercent = percent.includes('%') ? percent.split('%')[0] : percent;
+    shortPercent = fullPercent.includes('.') ? fullPercent.split('.')[0] : fullPercent;
+    target.innerText = fullPercent;
   });
 
   title.addEventListener('mouseout', () => {
-    target.innerText = originalText;
+    target.innerText = shortPercent;
   });
 };
 
