@@ -130,6 +130,8 @@ button.campHudSnowballShowdownView__buyButton {
 }
 
 .snowballShowdownView-rewardsContainer {
+  display: flex;
+  align-items: stretch;
   overflow: hidden;
   border-radius: 10px;
 }

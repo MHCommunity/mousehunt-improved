@@ -206,7 +206,6 @@
   overflow: visible;
   pointer-events: none;
   filter: drop-shadow(0 0 4px #18536d);
-  transform: translateY(-8px);
 }
 
 .winterHuntGolemView__head,
@@ -660,6 +659,7 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 /* make the tooltip closer */
 .headsUpDisplayWinterHuntGolemWorkshopView__droidButton .mousehuntTooltip {
   bottom: 30%;
+  z-index: 11;
 }
 
 /* Stops the blurring that happens for a split second when you hover over the button on the new year's popup */
@@ -799,4 +799,87 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 /* makes it look nicer? */
 .headsUpDisplayWinterHuntRegionView {
   filter: drop-shadow(0 1px 5px #1b202b);
+}
+
+.greatWinterHuntGolemManagerDialogView__environmentPreviewContainer.greatWinterHuntGolemManagerDialogView__environmentPreviewContainer--active {
+  z-index: 12;
+}
+
+.greatWinterHuntEnvironmentPreviewView__rewardsContainer {
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  padding: 6px 5px 22px;
+}
+
+.greatWinterHuntEnvironmentPreviewView__panel {
+  border-radius: 20px;
+}
+
+.greatWinterHuntEnvironmentPreviewView__header {
+  height: 70px;
+  background-position: -220px 0;
+  background-size: 1020px;
+}
+
+.greatWinterHuntGolemManagerDialogView__environmentPreviewContainer.greatWinterHuntGolemManagerDialogView__environmentPreviewContainer--active .greatWinterHuntClaimRewardDialogView__golem {
+  display: none;
+}
+
+.greatWinterHuntClaimRewardDialogView__item--hat::after {
+  border-bottom-left-radius: 30px;
+}
+
+.greatWinterHuntEnvironmentPreviewView__title {
+  top: -2px;
+}
+
+/* gwh calendar */
+#overlayPopup.greatWinterHuntDialog[style="top: 11px;"] {
+  margin-top: 80px;
+}
+
+.greatWinterHuntCalendarDialogView__day--winter_hunt {
+  border: 1px solid #16bae3;
+  border-right: none;
+}
+
+.greatWinterHuntCalendarDialogView__day--winter_hunt:nth-child(7n) {
+  border-right: 1px solid #16bae3;
+}
+
+.greatWinterHuntCalendarDialogView__day--new_years {
+  border: 1px solid #eda826;
+  border-right: none;
+}
+
+.greatWinterHuntCalendarDialogView__day--new_years:nth-child(7n) {
+  border-right: 1px solid #eda826;
+}
+
+.greatWinterHuntCalendarDialogView__day--shutdown {
+  border: 1px solid #a4a0a7;
+  border-right: none;
+}
+
+.greatWinterHuntCalendarDialogView__day--shutdown:nth-child(7n) {
+  border-right: 1px solid #a4a0a7;
+}
+
+.greatWinterHuntCalendarDialogView__day--animated_snow_storm {
+  background-color: #88f0ff;
+}
+
+.greatWinterHuntCalendarDialogView__day[data-is-past="true"] {
+  opacity: 0.7;
+}
+
+.greatWinterHuntCalendarDialogView__icon {
+  left: 5px;
+}
+
+.greatWinterHuntCalendarDialogView__day:hover .greatWinterHuntCalendarDialogView__icon:not([data-day="18"], [data-event="animated_snow_storm"][data-day="19"]) {
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 77px;
+  background-size: cover;
 }

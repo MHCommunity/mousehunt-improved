@@ -12,6 +12,6 @@ export default async () => {
     return;
   }
 
-  addStyles([styles, minimalStyles], 'better-journal-icons');
   addExternalStyles('journal-icons.css');
+  addStyles([styles, minimalStyles], 'better-journal-icons');
 };

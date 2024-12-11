@@ -34,6 +34,8 @@
   display: none;
 }
 
+.journal .content .entry.festiveSpiritLootBoost .journaltext > br,
+.journal .content .entry.workshopPartProduced .journaltext > br,
 .journal .content .entry.catchsuccessloot .journaltext > br:last-of-type,
 .journal .content .entry.luckycatchsuccess .journaltext > br:last-of-type {
   display: block;
@@ -55,9 +57,6 @@
 .entry.halloween_boiling_cauldron.brew_removed a:last-of-type::after,
 .entry.folkloreForest-farmToTable .journaltext a:last-of-type::after,
 .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
-.entry.festiveSpiritLootBoost .journaltext a::after,
-.entry.golemUpgraded .journaltext a::after,
-.entry.workshopPartProduced .journaltext a::after,
 .entry.birthday_factory.enter_room b::after,
 .entry.potionuse .journaltext span:last-of-type::after,
 .entry.labyrinth-clue.labyrinth-clue-good .journaltext b:first-of-type::after,

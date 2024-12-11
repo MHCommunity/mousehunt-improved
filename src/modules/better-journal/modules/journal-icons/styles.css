@@ -38,4 +38,9 @@
   padding-left: 15px;
 }
 
+.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=2014_throwable_snowball_stat_item"]::before {
+  top: -1px;
+  left: -1px;
+}
+
 /* stylelint-enable prettier/prettier */
