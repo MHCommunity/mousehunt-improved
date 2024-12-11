@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.73.0
+
+- Updated Better UI styles
+- Updated Better Journal for GWH
+- Updated GWH styles
+- Fixed title percent breaking in HUD after hover
+
 ## Version 0.72.0
 
 - Updated Better Inventory styles

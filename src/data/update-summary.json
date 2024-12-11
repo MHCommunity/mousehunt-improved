@@ -4,16 +4,10 @@
     {
       "title": "",
       "items": [
-        "Updated Better Inventory styles",
-        "Updated Better Items styles",
-        "Updated Better Journal styles",
-        "Updated Better Maps styles",
         "Updated Better UI styles",
-        "Updated School of Sorcery Location HUD styles",
-        "Updated Dark Mode styles",
-        "Added sticky functionality & close button to Quick Send Supplies",
-        "Fixed Quick Send Supplies closing too quickly",
-        "Updated settings export to encode Custom Styles for better compatibility"
+        "Updated Better Journal for GWH",
+        "Updated GWH styles",
+        "Fixed title percent breaking in HUD after hover"
       ]
     }
   ]
