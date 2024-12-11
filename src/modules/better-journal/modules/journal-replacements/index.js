@@ -55,9 +55,6 @@ const replacements = [
   ['me:<br>', 'me '],
   [/i should tell my friends to check .+? during the next .+? to catch one!/i, ''],
   [/i can go to my .+? to open it/i, ''],
-  ['Luckily she was not interested in my cheese or charms!', ''],
-  ['while she was in my trap, but', 'and'],
-  [' while scampering off!', ''],
   ['The mouse stole', ' The mouse stole'],
   ['Chest, I can', 'Chest, '],
   ['<br>I should ', 'I can '],
@@ -92,10 +89,11 @@ const replacements = [
   ['Aura helped me find', 'Aura found'],
   ['processed  added', 'processed and added'],
   ['I have started a', 'I started a'],
-  [/an additional:<br>/i, 'an additional '],
+  [/an additional:<br>/i, 'an additional ', '!festiveSpiritLootBoost'],
   ['<br></p><p>', '<p>'],
   ['<br><p>', '<p>'],
   [/<p class="mhi-x-entry"><span class="dot"> • <\/span>/g, '', '!shop_purchase'],
+  [/<p class="mhi-x-entry"><span class="dot"> •&nbsp;<\/span>/g, '', '!shop_purchase'],
   [/(\d+?) x /gi, '<p class="mhi-x-entry"><span class="dot"> • </span>$1 x ', '!shop_purchase'],
   ['My Condensed Creativity created an additional ', 'My Condensed Creativity created an additional: '],
   [/<p><\/p>/g, ''],
@@ -148,6 +146,12 @@ const replacements = [
 
   // halloween.
   ['My Insidious Incense scared up an additional ', 'My Insidious Incense scared up an additional: '],
+
+  // GWH.
+  [
+    'Hunting with Festive Spirit conjured 1 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=2014_throwable_snowball_stat_item" onclick="hg.views.ItemView.show(\'2014_throwable_snowball_stat_item\'); return false;">Throwable Snowball</a>',
+    'My Festive Spirit made 1 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=2014_throwable_snowball_stat_item" onclick="hg.views.ItemView.show(\'2014_throwable_snowball_stat_item\'); return false;">Throwable Snowball</a>.',
+  ],
 ];
 
 /**
