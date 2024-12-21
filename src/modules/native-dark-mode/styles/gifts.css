@@ -210,3 +210,7 @@
 .mh-dark .giftSelectorView-friend.paidgift .giftSelectorView-friend-name {
   color: var(--d-link);
 }
+
+.mh-dark .winterHuntProfileInteractionView-giftCeremony {
+  color: var(--d-text-dark);
+}

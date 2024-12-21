@@ -214,10 +214,6 @@ button.campHudSnowballShowdownView__buyButton {
   box-shadow: inset 0 0 0 3px #b8ffe3;
 }
 
-.winter_hunt_profile_tree_possible_gifts .gift {
-  width: 20%;
-}
-
 .campHudSnowballShowdownView__quantityContainer.possibleAmount {
   display: none;
   margin-top: 7px;
@@ -231,4 +227,25 @@ button.campHudSnowballShowdownView__buyButton {
 .possibleAmount .campHudSnowballShowdownView__quantity {
   background-color: #d2e8ef;
   box-shadow: inset 0 0 0 1px #7ebde7;
+}
+
+.winter_hunt_profile_tree_possible_gifts .gift img {
+  max-width: 50px;
+}
+
+.winter_hunt_profile_tree_possible_gifts .gift .itemImage {
+  width: 50px;
+  height: 50px;
+}
+
+.winter_hunt_profile_tree_possible_gifts .gift {
+  width: calc(100% / 7);
+}
+
+.giftCostContainer .mhui-supply-quick-quantity-wrapper {
+  justify-content: flex-start;
+}
+
+.winter_hunt_profile_tree_possible_gifts .giftContainer {
+  max-height: 550px;
 }

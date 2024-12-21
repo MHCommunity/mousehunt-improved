@@ -659,7 +659,7 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
 /* make the tooltip closer */
 .headsUpDisplayWinterHuntGolemWorkshopView__droidButton .mousehuntTooltip {
   bottom: 30%;
-  z-index: 11;
+  z-index: 12;
 }
 
 /* Stops the blurring that happens for a split second when you hover over the button on the new year's popup */
@@ -882,4 +882,10 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
   width: 90px;
   height: 77px;
   background-size: cover;
+}
+
+.headsUpDisplayWinterHuntRegionView__cinnamon .headsUpDisplayWinterHuntRegionView__resourceCost {
+  padding: 1px;
+  margin: -1px;
+  background: radial-gradient(circle, #f0aa75 0%, #cf8656 85%, #693116 100%);
 }

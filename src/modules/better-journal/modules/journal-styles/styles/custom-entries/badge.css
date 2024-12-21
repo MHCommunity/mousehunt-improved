@@ -79,3 +79,7 @@
   margin-top: 0;
   filter: grayscale(1);
 }
+
+.journal .entry.badge.highlight .journalhighlightbadge {
+  width: 100px;
+}
