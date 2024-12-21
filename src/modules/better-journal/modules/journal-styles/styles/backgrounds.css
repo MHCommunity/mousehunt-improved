@@ -64,3 +64,8 @@
   background-position: 15px center !important;
   background-size: 40px !important;
 }
+
+.journal .content .entry.gift_wrapped_charm_trigger {
+  background-position: top center;
+  background-size: cover;
+}

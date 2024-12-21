@@ -42,6 +42,7 @@
 }
 
 .entry.queso_cannonstorm_base_trigger a:nth-of-type(2)::after,
+.entry.gift_wrapped_charm_trigger .journaltext a:last-of-type::after,
 .entry.socialGift-send .journaltext a:last-of-type::after,
 .entry.queso_geyser.eruption_started .journaltext b::after,
 .entry.torch_charm_event .journaltext a:last-of-type::after,
