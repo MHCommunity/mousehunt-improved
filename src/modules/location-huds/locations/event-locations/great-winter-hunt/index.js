@@ -4,6 +4,7 @@ import {
   getCurrentLocation,
   getData,
   makeElement,
+  makeMathButtons,
   onDialogShow,
   onEvent,
   onRequest
@@ -325,12 +326,67 @@ const maybeHideAdventCalendarInMenu = () => {
   return '';
 };
 
+const giftingPopup = () => {
+  const giftContainer = document.querySelector('.giftContainer');
+  if (! giftContainer) {
+    return;
+  }
+
+  const gifts = giftContainer.querySelectorAll('.gift');
+  if (! gifts) {
+    return;
+  }
+
+  // Reorder the gifts alphabetically.
+  const sorted = [...gifts].sort((a, b) => {
+    const aName = a.querySelector('.name span')?.textContent || '';
+    const bName = b.querySelector('.name span')?.textContent || '';
+
+    return aName.localeCompare(bName);
+  });
+
+  // If the name has 'Skin' in it, then move it to the end.
+  const skinGifts = sorted.filter((gift) => {
+    const name = gift.querySelector('.name span')?.textContent || '';
+    return name.includes('Skin') || name.includes('Chrome Celestial Jubokko Tree');
+  });
+
+  skinGifts.forEach((gift) => {
+    const index = sorted.indexOf(gift);
+    sorted.splice(index, 1);
+    sorted.push(gift);
+  });
+
+  sorted.forEach((gift) => {
+    giftContainer.append(gift);
+
+    gift.addEventListener('click', () => {
+      const maxQty = document.querySelector('.giftConfirmContainer .quantity')?.textContent || 1_000_000;
+      const input = document.querySelector('#sendQuantity');
+      if (input) {
+        const inputWrapper = makeElement('div', 'mhui-supply-quick-quantity-wrapper');
+        input.after(inputWrapper);
+
+        input.value = 0;
+
+        makeMathButtons([1, 5, 10, 50, 100], {
+          appendTo: inputWrapper,
+          input,
+          maxQty,
+          classNames: ['mhui-supply-quick-quantity', 'small'],
+        });
+      }
+    });
+  });
+};
+
 /**
  * Always active.
  */
 const greatWinterHuntGlobal = () => {
   addStyles([stylesGlobal, maybeHideAdventCalendarInMenu()], 'location-hud-events-great-winter-hunt');
   onDialogShow('adventCalendarPopup', adventCalendarPopup);
+  onDialogShow('winter_hunt_profile_tree_possible_gifts', giftingPopup);
 };
 
 /**
