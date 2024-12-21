@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.74.0
+
+- Updated Great Winter Hunt styles
+- Updated Better Journal styles
+- Miscellaneous bug fixes
+
 ## Version 0.73.0
 
 - Updated Better UI styles

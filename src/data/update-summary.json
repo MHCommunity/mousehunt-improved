@@ -4,10 +4,9 @@
     {
       "title": "",
       "items": [
-        "Updated Better UI styles",
-        "Updated Better Journal for GWH",
-        "Updated GWH styles",
-        "Fixed title percent breaking in HUD after hover"
+        "Updated Great Winter Hunt styles",
+        "Updated Better Journal styles",
+        "Miscellaneous bug fixes"
       ]
     }
   ]
