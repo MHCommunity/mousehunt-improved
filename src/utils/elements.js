@@ -399,7 +399,7 @@ const makeMathButton = (amount, opts) => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
 
-    let current = Number.parseInt(input.value, 10);
+    let current = Number.parseInt(input?.value, 10);
     if (Number.isNaN(current)) {
       current = 0;
     }
