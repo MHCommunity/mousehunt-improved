@@ -432,6 +432,8 @@ const getCurrentTabContainer = () => {
     currentTab = 'cheese';
   }
 
+  currentTab = currentTab.split('?')[0];
+
   return document.querySelector(`.mousehuntHud-page-tabContent.${currentTab} .mousehuntHud-page-subTabContent.active`);
 };
 

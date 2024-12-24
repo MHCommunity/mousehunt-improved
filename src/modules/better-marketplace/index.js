@@ -82,7 +82,7 @@ const modifySearch = async (opts) => {
   const itemsToRemove = await getData('marketplace-hidden-items');
 
   opts.forEach((opt) => {
-    if (! opt.value || opt.value === '' || itemsToRemove.some((item) => item.id === opt.value || item.name === opt.text)) {
+    if (! opt.value || opt.value === '' || (itemsToRemove && itemsToRemove.some((item) => item.id === opt.value || item.name === opt.text))) {
       opt.remove();
     }
   });
