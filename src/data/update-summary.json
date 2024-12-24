@@ -4,9 +4,9 @@
     {
       "title": "",
       "items": [
-        "Updated Great Winter Hunt styles",
-        "Updated Better Journal styles",
-        "Miscellaneous bug fixes"
+        "Better Marketplace: Added text field to category views to filter items shown",
+        "Better Marketplace: Added exact percentage change text to trend icons",
+        "Better Marketplace: Added 'Relist' button to cancelled listings"
       ]
     }
   ]

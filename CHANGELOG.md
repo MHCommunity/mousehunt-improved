@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.75.0
+
+- Better Marketplace: Added text field to category views to filter items shown
+- Better Marketplace: Added exact percentage change text to trend icons
+- Better Marketplace: Added 'Relist' button to cancelled listings
+
 ## Version 0.74.0
 
 - Updated Great Winter Hunt styles
