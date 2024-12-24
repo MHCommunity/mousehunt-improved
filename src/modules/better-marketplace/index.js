@@ -10,8 +10,8 @@ import {
 
 import settings from './settings';
 
-import smallImages from './small-images.css';
-import styles from './styles.css';
+import smallImages from './styles/small-images.css';
+import styles from './styles/styles.css';
 
 /**
  * Update the quantity buttons.
