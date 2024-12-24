@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.75.1
+
+- Fixed Senty debug artifacts
+- Minor bug fixes and improvements
+
 ## Version 0.75.0
 
 - Better Marketplace: Added text field to category views to filter items shown

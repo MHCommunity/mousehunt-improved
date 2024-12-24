@@ -2,11 +2,17 @@
   "summary": "",
   "details": [
     {
+      "title": "Better Marketplace",
+      "items": [
+        "Added text field to category views to filter items shown",
+        "Added exact percentage change text to trend icons",
+        "Added 'Relist' button to cancelled listings"
+      ]
+    },
+    {
       "title": "",
       "items": [
-        "Better Marketplace: Added text field to category views to filter items shown",
-        "Better Marketplace: Added exact percentage change text to trend icons",
-        "Better Marketplace: Added 'Relist' button to cancelled listings"
+        "Minor bug fixes and improvements"
       ]
     }
   ]
