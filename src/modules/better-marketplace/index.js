@@ -1,9 +1,11 @@
 import {
   addStyles,
+  debounce,
   getData,
   getSetting,
   makeElement,
   makeLink,
+  makeMhButton,
   onOverlayChange,
   onRequest
 } from '@utils';
@@ -12,6 +14,7 @@ import settings from './settings';
 
 import smallImages from './styles/small-images.css';
 import styles from './styles/styles.css';
+import trendNumbers from './styles/trend-numbers.css';
 
 /**
  * Update the quantity buttons.
@@ -51,6 +54,9 @@ const initSearch = (searchInputDOM) => {
       }
     });
 };
+
+let originalSelect = null;
+let newSelect = null;
 
 /**
  * Modify the search options.
@@ -337,7 +343,12 @@ const replaceShowBrowseCategory = () => {
    */
   hg.views.MarketplaceView.showBrowseCategory = (category) => {
     _showBrowseCategory(category);
-    addChartToCategories();
+
+    if (getSetting('better-marketplace.show-chart-images')) {
+      addChartToCategories();
+    }
+
+    filterListings();
   };
 
   _showBrowser = hg.views.MarketplaceView.showBrowser;
@@ -349,12 +360,138 @@ const replaceShowBrowseCategory = () => {
    */
   hg.views.MarketplaceView.showBrowser = (category) => {
     _showBrowser(category);
-    addChartToCategories();
+
+    if (getSetting('better-marketplace.show-chart-images')) {
+      addChartToCategories();
+    }
+
+    if (getSetting('better-marketplace.filter-listings', true)) {
+      filterListings();
+    }
   };
 };
 
-let originalSelect = null;
-let newSelect = null;
+const filterListings = async () => {
+  const filterContainer = document.querySelector('.marketplaceView-browse-filterContainer');
+  if (! filterContainer) {
+    return;
+  }
+
+  const existing = document.querySelector('.mhui-marketplace-filter');
+  if (existing) {
+    return;
+  }
+
+  const filter = makeElement('input', 'mhui-marketplace-filter');
+  filter.setAttribute('type', 'text');
+  filter.setAttribute('placeholder', 'Filter listings…');
+
+  filter.addEventListener('input', debounce(() => {
+    const filterValue = filter.value.toLowerCase();
+    const filterItems = document.querySelectorAll('.marketplaceView-table tr');
+    filterItems.forEach((item) => {
+      const itemId = item.getAttribute('data-item-id');
+      if (! itemId) {
+        return;
+      }
+
+      const name = item.querySelector('.marketplaceView-table-name');
+      if (! name) {
+        return;
+      }
+
+      const nameText = name.textContent.replace('SUPER|brie+', 'sb SUPER|brie+').toLowerCase();
+
+      if (nameText.includes(filterValue)) {
+        item.classList.remove('hidden');
+        item.classList.add('filter-visible');
+      } else {
+        item.classList.add('hidden');
+        item.classList.remove('filter-visible');
+      }
+    });
+  }, 300));
+
+  filterContainer.prepend(filter);
+};
+
+let _showMyListings = null;
+
+/**
+ * Replace the My Listings function to add additional functionality.
+ */
+const replaceShowMyListings = () => {
+  if (_showMyListings) {
+    return;
+  }
+
+  _showMyListings = hg.views.MarketplaceView.showMyListings;
+
+  hg.views.MarketplaceView.showMyListings = (...args) => {
+    _showMyListings(...args);
+
+    addRelistButtonToCancelled();
+  };
+};
+
+const addRelistButtonToCancelled = async () => {
+  const listings = document.querySelectorAll('.marketplaceView-table tr');
+  if (! listings || listings.length === 0) {
+    return;
+  }
+
+  listings.forEach((listing) => {
+    const listingId = listing.getAttribute('data-listing-id');
+    if (! listingId) {
+      return;
+    }
+
+    const listingData = marketplaceData?.marketplace_my_listings?.find((listingListingData) => listingListingData.listing_id == listingId); // eslint-disable-line eqeqeq
+    if (! listingData) {
+      return;
+    }
+
+    // Bail if the listing is active.
+    if (listingData.is_active) {
+      return;
+    }
+
+    // add a relist button
+    const actions = listing.querySelector('.marketplaceView-table-actions');
+    if (! actions) {
+      return;
+    }
+
+    const existing = listing.querySelector('.mhui-marketplace-relist');
+    if (existing) {
+      return;
+    }
+
+    actions.classList.add('mhui-marketplace-relist-actions');
+
+    makeMhButton({
+      text: 'Relist',
+      className: 'mhui-marketplace-relist',
+      callback: () => {
+        hg.utils.Marketplace.createListing(
+          listingData.item_id,
+          listingData.unit_price,
+          listingData.remaining_quantity,
+          listingData.listing_type,
+          (data) => {
+            hg.views.MarketplaceView.showMyListings(data.marketplace_new_listing.listing_id);
+          },
+          (err) => {
+            console.log('Error creating listing', err); // eslint-disable-line no-console
+          }
+        );
+      },
+      appendTo: actions,
+    });
+  });
+};
+
+let marketplaceData;
 
 /**
  * Initialize the module.
@@ -363,6 +500,7 @@ const init = async () => {
   addStyles([
     styles,
     getSetting('better-marketplace.small-images') ? smallImages : '',
+    getSetting('better-marketplace.trend-numbers', true) ? trendNumbers : '',
   ], 'better-marketplace');
 
   onOverlayChange({
@@ -374,13 +512,17 @@ const init = async () => {
         waitForSearchReady();
         overloadShowItem();
 
-        if (getSetting('better-marketplace.show-chart-images')) {
-          replaceShowBrowseCategory();
-        }
+        replaceShowBrowseCategory();
+        replaceShowMyListings();
       },
     },
   });
 
+  onRequest('users/marketplace.php', (resp, data) => {
+    if ('marketplace_info' === data.action) {
+      marketplaceData = resp;
+    }
+  });
   onRequest('users/marketplace.php', autocloseClaim);
   onRequest('users/marketplace.php', waitForFooterReady, true);
 };

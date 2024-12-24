@@ -235,3 +235,23 @@ td.marketplaceView-table-name {
 .marketplaceView-header-search-dropdown .select2-result-unselectable.select2-disabled {
   display: none;
 }
+
+.marketplaceView-table-name-skin-hidden {
+  display: none;
+}
+
+.marketplaceView-table-name-skin-hidden + .marketplaceView-table-name-skin {
+  display: none;
+}
+
+.marketplaceView-table tr.filter-visible:nth-child(odd) {
+  background-color: inherit;
+}
+
+.mhui-marketplace-relist-actions .mousehuntActionButton {
+  padding: 3px 5px;
+  margin-left: 3px;
+  font-size: 10px;
+  font-weight: 100;
+  line-height: initial;
+}

@@ -1,0 +1,28 @@
+.marketplaceView-trendIcon::after {
+  position: absolute;
+  top: 0;
+  right: -27px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  content: attr(title);
+}
+
+.marketplaceView-trendIcon.none::after,
+.marketplaceView-trendIcon[title="null"]::after {
+  content: "";
+}
+
+.marketplaceView-trendIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.marketplaceView-trendIcon.none,
+.marketplaceView-trendIcon[title="null"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+}

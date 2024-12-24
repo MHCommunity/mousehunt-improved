@@ -14,6 +14,16 @@ export default async () => {
       id: 'better-marketplace.small-images',
       title: 'Smaller images',
       default: false,
+    },
+    {
+      id: 'better-marketplace.filter-listings',
+      title: 'Add filter to listings',
+      default: true,
+    },
+    {
+      id: 'better-marketplace.trend-numbers',
+      title: 'Show change percentage next to trend icons',
+      default: true,
     }
   ];
 };
