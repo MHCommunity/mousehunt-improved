@@ -161,29 +161,40 @@ const makeSendSuppliesButton = async (btn, snuid) => {
     const itemName = item.getAttribute('data-name');
     const url = `https://www.mousehuntgame.com/managers/ajax/users/supplytransfer.php?sn=Hitgrab&hg_is_ajax=1&receiver=${snuid}&uh=${user.unique_hash}&item=${itemType}&item_quantity=${qty}`;
 
-    await fetch(url, {
-      method: 'POST',
-    }).then((response) => {
-      if (response.status === 200 && response.success) {
-        quickSendInput.value = '';
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}`,
+        },
+      });
 
-        quickSendButton.classList.remove('disabled');
-
-        showSuccessMessage({
-          message: `Sent ${qty} ${itemName}!`,
-          append: quickSendGoWrapper,
-          classname: 'mh-ui-quick-send-success',
-        });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          quickSendInput.value = '';
+          quickSendButton.classList.remove('disabled');
+          showSuccessMessage({
+            message: `Sent ${qty} ${itemName}!`,
+            append: quickSendGoWrapper,
+            classname: 'mh-ui-quick-send-success',
+          });
+        } else {
+          throw new Error('Response not successful');
+        }
+      } else {
+        throw new Error('Network response was not ok');
       }
-    }).catch(() => {
+    } catch (error) {
+      console.error('Fetch error:', error);
       quickSendButton.classList.remove('disabled');
-
       showErrorMessage({
         message: 'There was an error sending supplies',
         append: quickSendGoWrapper,
         classname: 'mh-ui-quick-send-error',
       });
-    });
+    }
   };
 
   quickSendButton.addEventListener('click', sendIt);
