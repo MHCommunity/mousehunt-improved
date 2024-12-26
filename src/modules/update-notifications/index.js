@@ -30,7 +30,7 @@ const makeDetailsList = (modules) => {
  * @param {string}  from  The version we're updating from.
  * @param {boolean} force Whether to force the popup to show.
  */
-const showUpdateSummary = async (from, force = false) => {
+const showUpdateSummary = async (from = '0.0.0', force = false) => {
   const isMinor = from.split('.').slice(0, 2).join('.') === mhImprovedVersion.split('.').slice(0, 2).join('.');
   const missingSummaryOrDetails = ! (updateSummary.summary.length || updateSummary.details.length);
   if ((isMinor || missingSummaryOrDetails) && ! force) {
@@ -80,7 +80,7 @@ const showUpdateSummary = async (from, force = false) => {
 const init = async () => {
   addStyles(styles, 'update-notifications');
 
-  onEvent('mh-improved-updated', () => showUpdateSummary(mhImprovedVersion, true));
+  onEvent('mh-improved-updated', showUpdateSummary);
   onEvent('mh-improved-update-summary', () => showUpdateSummary('0.0.0', true));
 };
 
