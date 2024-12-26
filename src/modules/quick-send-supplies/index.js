@@ -187,7 +187,7 @@ const makeSendSuppliesButton = async (btn, snuid) => {
         throw new Error('Network response was not ok');
       }
     } catch (error) {
-      console.error('Fetch error:', error);
+      console.error('Fetch error:', error); // eslint-disable-line no-console
       quickSendButton.classList.remove('disabled');
       showErrorMessage({
         message: 'There was an error sending supplies',
