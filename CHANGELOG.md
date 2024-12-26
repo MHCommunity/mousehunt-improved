@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.76.0
+
+- Added Golem Loot to Better Journal Loot List
+- Fixed Better Send Supplies not showing success or failure messages
+- Updated Better Marketplace styles
+- Updated Great Winter Hunt styles
+
 ## Version 0.75.1
 
 - Fixed Senty debug artifacts

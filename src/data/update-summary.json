@@ -2,17 +2,12 @@
   "summary": "",
   "details": [
     {
-      "title": "Better Marketplace",
-      "items": [
-        "Added text field to category views to filter items shown",
-        "Added exact percentage change text to trend icons",
-        "Added 'Relist' button to cancelled listings"
-      ]
-    },
-    {
       "title": "",
       "items": [
-        "Minor bug fixes and improvements"
+        "Updated Great Winter Hunt styles",
+        "Added Golem Loot to Better Journal Loot List",
+        "Updated Better Marketplace styles",
+        "Fixed Better Send Supplies not showing success or failure messages"
       ]
     }
   ]
