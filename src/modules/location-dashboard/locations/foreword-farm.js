@@ -31,7 +31,7 @@ export default (quests) => {
 
   Object.entries(plants).forEach(([type, count]) => {
     if (count > 0) {
-      const recipeName = recipes.find(recipe => recipe.type === type)?.name;
+      const recipeName = recipes.find((recipe) => recipe.type === type)?.name;
       if (recipeName) {
         returnText += `${count} ${recipeName}, `;
       }
