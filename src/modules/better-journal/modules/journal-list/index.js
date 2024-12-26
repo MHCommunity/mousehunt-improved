@@ -23,6 +23,7 @@ const classesToCheck = {
   other: [
     'iceberg_defeated',
     'dailyreward',
+    'claimGolemReward',
   ],
   hasListNeedsClasses: [
     'folkloreForest-bookClaimed',
@@ -42,6 +43,7 @@ const otherStrings = [
   'I sifted through my Dragon Nest and found</b>',
   'my Skyfarer\'s Oculus and discovered the following loot:',
   'my Skyfarer\'s Oculus and discovered:',
+  'My golem returned from |*| with',
 ];
 
 const classesToSkip = [
@@ -161,6 +163,21 @@ const getItemsFromText = async (type, text) => {
         list = await splitText(items[1]);
         newText = `${items[0]} ${string}: `.replace('::', ':');
         break;
+      }
+
+      if (string.includes('|*|')) {
+        const splitCheck = string.split('|*|');
+        if (splitCheck[0] && innerHTML.includes(splitCheck[0])) {
+          const splitString = string.replace('|*|', '(.*)');
+          const regex = new RegExp(splitString);
+          const match = innerHTML.match(regex);
+          if (match) {
+            items = innerHTML.split(match[0]);
+            list = await splitText(items[1]);
+            newText = `${items[0]} ${match[0]}`;
+            break;
+          }
+        }
       }
     }
   }
