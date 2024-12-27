@@ -385,8 +385,13 @@ const addToTravelDropdown = async () => {
   }
 
   // add the custom submenu items
-  otherRegions.forEach((region) => {
+  for (const region of otherRegions) {
     if (region.id === currentLocation) {
+      return;
+    }
+
+    // only add the region if it's not there already.
+    if (document.querySelector(`#custom-submenu-item-better-travel-${region.id}`)) {
       return;
     }
 
@@ -398,7 +403,7 @@ const addToTravelDropdown = async () => {
       callback: () => travelTo(region.id),
       class: 'mh-improved-better-travel-menu-item mh-improved-better-travel-region-location',
     });
-  });
+  }
 
   const favorites = getLocationFavorites();
   if (favorites && favorites.length > 0) {
