@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.76.1
+
+- Fixed event locations being duplicated in Travel dropdown
+
 ## Version 0.76.0
 
 - Added Golem Loot to Better Journal Loot List

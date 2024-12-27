@@ -7,7 +7,8 @@
         "Updated Great Winter Hunt styles",
         "Added Golem Loot to Better Journal Loot List",
         "Updated Better Marketplace styles",
-        "Fixed Better Send Supplies not showing success or failure messages"
+        "Fixed Better Send Supplies not showing success or failure messages",
+        "Fixed event locations being duplicated in Travel dropdown"
       ]
     }
   ]
