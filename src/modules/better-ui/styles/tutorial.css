@@ -62,3 +62,8 @@ a.mousehuntHud-userStat.trap.weapon.hidden {
 .onboarding.hide_favorites .campPage-trap-itemBrowser-quickLinks.campPage-trap-itemBrowser-quickLinks-power {
   display: none;
 }
+
+#OnboardArrow.larryCircle .content {
+  width: max-content !important;
+  max-width: 400px;
+}

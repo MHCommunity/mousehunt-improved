@@ -759,3 +759,10 @@ tr.scoreboardTableView-row.highlight {
 .tournamentStatusHud .rank:hover::after {
   background-color: rgb(200 0 255 / 50%);
 }
+
+.scoreboardTableView-tournament {
+  background-color: #f6f3eb;
+  border: 1px solid #cbc6bb;
+  border-radius: 5px;
+  box-shadow: inset -1px -1px 1px #d3cecb;
+}

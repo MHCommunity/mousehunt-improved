@@ -204,3 +204,14 @@
 .mh-dark .journal .content .entry.log_summary .journaltext b {
   border-color: var(--d-action);
 }
+
+#overlayPopup.hunting_summary .lootContainer a:hover .wrapper {
+  position: absolute;
+  width: fit-content;
+  overflow: visible;
+  background-color: #eee;
+}
+
+.mh-dark #overlayPopup.hunting_summary .lootContainer a:hover .wrapper {
+  background-color: var(--d-action);
+}

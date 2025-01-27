@@ -61,8 +61,21 @@
 }
 
 /* Fixes for top of page gap */
+body,
 body .pageFrameView-contentContainer {
   background-color: #bad4ed;
+}
+
+@media only screen and (max-width: 810px) {
+  body.hasSidebar .pageFrameView {
+    background-color: #bad4ed !important;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  body.hasSidebar .pageFrameView {
+    background-color: #bad4ed !important;
+  }
 }
 
 body.mh-improved-custom-background .pageFrameView-contentContainer {

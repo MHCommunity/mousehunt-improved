@@ -23,7 +23,7 @@
 
 .pageFrameView-footer a:nth-child(4) img {
   filter: sepia(1);
-  opacity: 0.7;
+  opacity: 0.2;
 }
 
 .pageFrameView-footer:hover a img,

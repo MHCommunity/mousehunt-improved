@@ -1,8 +1,6 @@
 .loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .backButton {
-  position: absolute;
-  top: 145px;
-  left: 30px;
-  filter: hue-rotate(321deg);
+  width: auto;
+  background: none;
 }
 
 .PageLogin .loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer {
@@ -17,4 +15,37 @@
 .loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .fb-login-button div {
   margin-top: 10px;
   margin-left: 50px;
+}
+
+.loginPageFooter {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  padding: 10px 15px;
+}
+
+.loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .recoverAccount {
+  margin-top: 60px;
+  text-decoration: none;
+}
+
+.loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .recoverAccount::after {
+  content: " / Forgot Password?";
+}
+
+.loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .backButton::after {
+  display: flex;
+  font-size: 12px;
+  color: #3479ea;
+  cursor: pointer;
+  content: "← Back";
+}
+
+.loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .recoverAccount:hover,
+.loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .backButton:hover::after {
+  text-decoration: underline;
+}
+
+.loginPageContainer .loginFormContainer .scrollContainer .scrollingContainer .actionButton {
+  margin-top: 10px;
 }

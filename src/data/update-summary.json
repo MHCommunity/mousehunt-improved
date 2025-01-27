@@ -4,11 +4,14 @@
     {
       "title": "",
       "items": [
-        "Updated Great Winter Hunt styles",
-        "Added Golem Loot to Better Journal Loot List",
-        "Updated Better Marketplace styles",
-        "Fixed Better Send Supplies not showing success or failure messages",
-        "Fixed event locations being duplicated in Travel dropdown"
+        "Better Gifts: Updated styles",
+        "Better Journal: Fixed issues with Relic Hunter, updated loot list parsing, updated styles",
+        "Catch Rate Estimator: Added better failure state and loading state styles.",
+        "Better Marketplace: Fixed parsing of quantities, updated styles",
+        "Better Tournaments: Updated styles",
+        "Better UI: Updated styles",
+        "Custom Shield: Fixed shield alignment issues in the HUD.",
+        "Updated Location HUD: Bountiful Beanstalk styles"
       ]
     }
   ]

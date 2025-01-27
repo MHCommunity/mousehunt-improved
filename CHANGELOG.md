@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.77.0
+
+- Better Gifts: Updated styles
+- Better Journal: Fixed issues with Relic Hunter, updated loot list parsing, updated styles
+- Catch Rate Estimator: Added better failure state and loading state styles.
+- Better Marketplace: Fixed parsing of quantities, updated styles
+- Better Tournaments: Updated styles
+- Better UI: Updated styles
+- Custom Shield: Fixed shield alignment issues in the HUD.
+- Updated Location HUD: Bountiful Beanstalk styles
+
 ## Version 0.76.1
 
 - Fixed event locations being duplicated in Travel dropdown

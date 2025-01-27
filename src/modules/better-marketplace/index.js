@@ -285,7 +285,8 @@ const waitForFooterReady = (attempts = 0) => {
 
         // Marketplace tweaks adds content to the element so we need to remove it.
         const brIndex = quantity.indexOf('<br>');
-        quantity = Number.parseInt(brIndex === -1 ? quantity.trim() : quantity.slice(0, Math.max(0, brIndex)).trim(), 10);
+        quantity = brIndex === -1 ? quantity.trim() : quantity.slice(0, Math.max(0, brIndex)).trim();
+        quantity = Number.parseInt(quantity.replaceAll(',', ''), 10);
         if (! quantity || Number.isNaN(quantity)) {
           return;
         }

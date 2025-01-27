@@ -16,6 +16,7 @@ const classesToCheck = {
     'catchsuccessloot',
     'luckycatchsuccess',
     'catchsuccessprize',
+    'relicHunter_catch',
   ],
   convertible: [
     'convertible_open',
@@ -116,15 +117,23 @@ const getItemsFromText = async (type, text) => {
 
   // If it's a loot list, the items are after "that dropped".
   if ('loot' === type) {
-    items = innerHTML.split(' that dropped ');
-    if (items.length >= 2) {
-      list = await splitText(items[1]);
-      newText = `${items[0]} that dropped:`;
-    } else {
-      items = innerHTML.split('<b>that dropped</b> ');
+    if (innerHTML.includes(' that dropped ')) {
+      items = innerHTML.split(' that dropped ');
       if (items.length >= 2) {
         list = await splitText(items[1]);
         newText = `${items[0]} that dropped:`;
+      } else {
+        items = innerHTML.split('<b>that dropped</b> ');
+        if (items.length >= 2) {
+          list = await splitText(items[1]);
+          newText = `${items[0]} that dropped:`;
+        }
+      }
+    } else if (innerHTML.includes('She dropped ')) {
+      items = innerHTML.split('She dropped ');
+      if (items.length >= 2) {
+        list = await splitText(items[1]);
+        newText = `${items[0]}She dropped:`;
       }
     }
   } else if ('convertible' === type) {
