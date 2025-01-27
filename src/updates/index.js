@@ -109,13 +109,15 @@ const update = async (previousVersion, newVersion) => {
     return;
   }
 
-  let popup = showLoadingPopup(isFreshInstall ? 'Installing MouseHunt Improved …' : `Updating MouseHunt Improved to v${newVersion}…`);
-
-  addBodyClass('mh-improved-updating');
-  setGlobal('mh-improved-updating', true);
+  let popup;
 
   // Backup the settings before we start updating in case something goes wrong.
   if (! isFreshInstall) {
+    popup = showLoadingPopup(`Updating MouseHunt Improved to v${newVersion}…`);
+
+    addBodyClass('mh-improved-updating');
+    setGlobal('mh-improved-updating', true);
+
     saveSettingsBackup();
   }
 
@@ -128,7 +130,6 @@ const update = async (previousVersion, newVersion) => {
     await updateCaches();
 
     if (isFreshInstall) {
-      popup.hide();
       return;
     }
 

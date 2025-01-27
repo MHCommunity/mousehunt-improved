@@ -212,6 +212,14 @@ const addUserscriptConfirmation = () => {
   });
 };
 
+const refreshOnLogin = (response, request) => {
+  if ('loginHitGrab' !== request?.action) {
+    return;
+  }
+
+  window.location.reload();
+};
+
 /**
  * Initialize the module.
  */
@@ -224,6 +232,8 @@ const init = async () => {
   onEvent('dialog-show-support', addSupportLink);
 
   onTravel(null, { callback: addEvents });
+
+  onRequest('users/session.php', refreshOnLogin);
 };
 
 /**

@@ -43,3 +43,8 @@
   margin-bottom: 15px;
   border: 1px solid #ddedff;
 }
+
+.scoreboardTableView-content {
+  border-width: 1px;
+  border-radius: 5px;
+}

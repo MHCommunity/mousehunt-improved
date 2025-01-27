@@ -119,65 +119,71 @@ const updateMinLucks = async (useCachedData = false) => {
     statsContainer.append(minluckList);
   }
 
-  const currentStats = `
-    ${user.trap_power}
-    ${user.trap_luck}
-    ${user.trap_attraction_bonus}
-    ${user.trap_cheese_effect}
-    ${user.trap_luck}
-    ${user.trap_power}
-    ${user.trap_power_bonus}
-    ${user.trap_power_type_name}
-    ${user.trinket_item_id}
-    ${user.trinket_quantity}
-    ${user.base_item_id}
-    ${user.weapon_item_id}
-    ${user.bait_item_id}
-    ${user.bait_quantity}
-    ${user.environment_id}
-  `;
+  try {
+    const currentStats = `
+      ${user.trap_power}
+      ${user.trap_luck}
+      ${user.trap_attraction_bonus}
+      ${user.trap_cheese_effect}
+      ${user.trap_luck}
+      ${user.trap_power}
+      ${user.trap_power_bonus}
+      ${user.trap_power_type_name}
+      ${user.trinket_item_id}
+      ${user.trinket_quantity}
+      ${user.base_item_id}
+      ${user.weapon_item_id}
+      ${user.bait_item_id}
+      ${user.bait_quantity}
+      ${user.environment_id}
+    `;
 
-  const location = getCurrentLocation();
-  if (useCachedData) {
-    debuglog('cre', 'Using cached data for mice effectiveness');
-    const cachedLocation = await cacheGet('cre-location');
-    const cachedStats = await cacheGet('cre-stats');
-    if (cachedLocation !== location || cachedStats !== currentStats) {
-      debuglog('cre', 'Cached data is outdated');
-      effectiveness = await updateMiceEffectiveness(location, currentStats);
+    const location = getCurrentLocation();
+    if (useCachedData) {
+      debuglog('cre', 'Using cached data for mice effectiveness');
+      const cachedLocation = await cacheGet('cre-location');
+      const cachedStats = await cacheGet('cre-stats');
+      if (cachedLocation !== location || cachedStats !== currentStats) {
+        debuglog('cre', 'Cached data is outdated');
+        effectiveness = await updateMiceEffectiveness(location, currentStats);
+      } else {
+        debuglog('cre', 'Using cached data');
+        effectiveness = await cacheGet('cre-effectiveness');
+      }
     } else {
-      debuglog('cre', 'Using cached data');
-      effectiveness = await cacheGet('cre-effectiveness');
+      debuglog('cre', 'Fetching new data for mice effectiveness');
+      effectiveness = await updateMiceEffectiveness(location, currentStats);
     }
-  } else {
-    debuglog('cre', 'Fetching new data for mice effectiveness');
-    effectiveness = await updateMiceEffectiveness(location, currentStats);
-  }
 
-  if (currentStats !== lastStats) {
-    lastStats = currentStats;
+    if (currentStats !== lastStats) {
+      lastStats = currentStats;
 
-    updateStats();
-  }
+      updateStats();
+    }
 
-  if (! effectiveness) {
+    if (! effectiveness) {
+      throw new Error('Failed to fetch effectiveness data');
+    }
+
+    const miceIds = Object.values(effectiveness)
+      .flatMap(({ mice }) => mice)
+      .map((mouse) => {
+        return {
+          name: mouse.name,
+          type: mouse.type,
+        };
+      });
+
+    await renderList(miceIds);
+  } catch (error) {
+    debuglog('cre', 'Error updating minluck list', error);
+    minluckList.classList.add('cre-loading-failed');
+  } finally {
     isUpdating = false;
-    return;
+    if (minluckList) {
+      minluckList.classList.remove('cre-refreshing');
+    }
   }
-
-  const miceIds = Object.values(effectiveness)
-    .flatMap(({ mice }) => mice)
-    .map((mouse) => {
-      return {
-        name: mouse.name,
-        type: mouse.type,
-      };
-    });
-
-  await renderList(miceIds);
-
-  isUpdating = false;
-  minluckList.classList.remove('cre-refreshing');
 };
 
 const updateTrapView = (rows) => {

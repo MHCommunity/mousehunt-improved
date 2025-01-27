@@ -120,9 +120,6 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
   const quickSendButton = makeElement('div', ['quickSendButton', 'mousehuntActionButton', 'tiny'], '<span>Send</span>');
 
-  /**
-   * Send the supplies.
-   */
   const sendIt = async () => {
     if (quickSendButton.classList.contains('disabled')) {
       return;
@@ -199,14 +196,6 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
   quickSendButton.addEventListener('click', sendIt);
 
-  // Add event listener for 'Enter' key on input
-  quickSendInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      sendIt();
-    }
-  });
-
-  // Add event listener for 'Enter' key on submit button
   quickSendInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       sendIt();
@@ -217,7 +206,6 @@ const makeSendSuppliesButton = async (btn, snuid) => {
   quickSendGoWrapper.append(quickSendButton);
   quickSendLinkWrapper.append(quickSendGoWrapper);
 
-  // Add a close button
   const close = makeElement('div', ['quickSendClose'], '✕');
   close.addEventListener('click', () => {
     quickSendLinkWrapper.remove();
@@ -230,13 +218,11 @@ const makeSendSuppliesButton = async (btn, snuid) => {
     quickSendLinkWrapper.classList.remove('hidden');
   }, 100);
 
-  // position the quick send supplies popup, centered under the button.
   const rect = btn.getBoundingClientRect();
 
   quickSendLinkWrapper.style.top = `${rect.top + window.scrollY + rect.height - 20}px`;
   quickSendLinkWrapper.style.left = `${rect.left + window.scrollX + (rect.width / 2) - (quickSendLinkWrapper.offsetWidth / 2)}px`;
 
-  // if the user leaves the popup, remove it.
   quickSendLinkWrapper.addEventListener('mouseleave', () => {
     if (! quickSendLinkWrapper.classList.contains('sticky')) {
       setTimeout(() => {
@@ -256,6 +242,15 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
   quickSendLinkWrapper.addEventListener('mouseenter', () => {
     clearTimeout(buttonTimeout);
+  });
+
+  document.addEventListener('click', (event) => {
+    if (! quickSendLinkWrapper.contains(event.target) && ! btn.contains(event.target)) {
+      quickSendLinkWrapper.classList.remove('sticky');
+      setTimeout(() => {
+        quickSendLinkWrapper.remove();
+      }, 350);
+    }
   });
 
   return quickSendLinkWrapper;

@@ -2,8 +2,8 @@
 .mousehuntHud-shield.default,
 .mousehuntHud-shield.golden.default-no-lgs,
 .mousehuntHud-shield.default.golden.default-no-lgs {
-  top: 2px;
-  left: 10px;
+  top: 4px;
+  left: 14px;
   background-image: url(https://i.mouse.rip/shield-no-lgs.png);
   filter: drop-shadow(0 0 5px #e8dbb8);
   background-size: contain;

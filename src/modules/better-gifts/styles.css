@@ -256,7 +256,11 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 
 .giftSelectorView-inbox-giftRow.paidgift {
   background-color: #fff08c;
-  border: none;
+  border-bottom: 1px solid #f0bb05;
+}
+
+.giftSelectorView-inbox-giftRow.paidgift.complete:last-child {
+  border-bottom: none;
 }
 
 .giftSelectorView-inbox-gift-details .giftSelectorView-inbox-gift-sent {

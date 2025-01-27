@@ -291,10 +291,6 @@
   filter: drop-shadow(0 1px 2px #333);
 }
 
-.headsUpDisplayBountifulBeanstalkView__multiplier div:nth-child(2) {
-  font-size: 13px;
-}
-
 .headsUpDisplayBountifulBeanstalkView__lootMultiplierDetailsContainer > div {
   align-items: center;
   margin: 2px;
@@ -646,4 +642,9 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 
 .bountifulBeanstalkCastleView__path:hover .bountifulBeanstalkCastleView__step:not(.bountifulBeanstalkCastleView__step--chase_past)::after {
   opacity: 0.7;
+}
+
+.headsUpDisplayBountifulBeanstalkView__lootMultiplierDetailsContainer::before {
+  margin-bottom: 5px;
+  border-color: #376137;
 }
