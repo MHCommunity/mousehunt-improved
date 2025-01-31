@@ -3,13 +3,13 @@ import {
   doRequest,
   getSetting,
   makeElement,
-  makeMhButton,
   onRequest,
   onTurn,
   saveSetting,
   setMultipleTimeout
 } from '@utils';
 
+import addCraftingButtons from '../../shared/crafting-buttons';
 import keepInventoryToggled from '../../shared/folklore-forest/keep-inventory-open';
 
 import regionStyles from '../../shared/folklore-forest/styles.css';
@@ -146,182 +146,6 @@ const updateLootText = async () => {
   }
 };
 
-const baitAmounts = {
-  beanster_cheese: {
-    amounts: ['160-normal', 160],
-    shop: 'beanster_pack_small_convertible',
-    shopNormal: 'beanster_cheese',
-  },
-  lavish_beanster_cheese: {
-    amounts: [4, 8, 80],
-    shop: 'lavish_beanster_pack_small_convertible',
-  },
-  leaping_lavish_beanster_cheese: {
-    amounts: [2, 4, 8],
-    shop: 'leaping_lavish_beanster_pack_small_convertible',
-  },
-  royal_beanster_cheese: {
-    amounts: [2, 18, 20],
-    shop: 'royal_beanster_pack_small_convertible',
-  }
-};
-
-/**
- * Add crafting buttons to the baits.
- */
-const addCraftingButtons = async () => {
-  const baits = document.querySelectorAll('.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer');
-  if (! baits) {
-    return;
-  }
-
-  /**
-   * Purchase bait from the shop.
-   *
-   * @param {string}  shopItem The shop item to purchase.
-   * @param {number}  quantity The quantity to purchase.
-   * @param {Element} popup    The popup element.
-   *
-   * @return {boolean} True if the purchase was successful.
-   */
-  const purchaseBait = async (shopItem, quantity, popup) => {
-    popup.classList.add('loading');
-
-    const results = await doRequest('managers/ajax/purchases/itempurchase.php', {
-      type: shopItem,
-      quantity,
-      buy: 1,
-      is_kings_cart_item: 0,
-    });
-
-    if (! results || ! results.success) {
-      popup.classList.remove('loading');
-      popup.classList.add('error');
-
-      setTimeout(() => {
-        popup.classList.remove('error');
-      }, 1000);
-
-      return false;
-    }
-
-    if (! results.inventory || ! results.items) {
-      return false;
-    }
-
-    results.inventory = results?.inventory || {};
-    results.items = results?.items || {};
-
-    const newInventoryQuantities = Object.keys(results.inventory).reduce((acc, key) => {
-      acc[key] = results.inventory[key].quantity;
-      return acc;
-    }, {});
-
-    const newItemsQuantities = Object.keys(results.items).reduce((acc, key) => {
-      acc[key] = results.items[key].num_owned;
-      return acc;
-    }, {});
-
-    const newQuantities = {
-      ...newInventoryQuantities,
-      ...newItemsQuantities,
-    };
-
-    baits.forEach((bait) => {
-      const baitQuantity = bait.querySelector('.headsUpDisplayBountifulBeanstalkView__baitQuantity');
-      if (! baitQuantity) {
-        return;
-      }
-
-      const baitQuantityType = baitQuantity.getAttribute('data-item-type');
-      if (baitQuantityType && newQuantities[baitQuantityType]) {
-        baitQuantity.innerText = newQuantities[baitQuantityType].toLocaleString();
-      }
-
-      const baitCraftQty = bait.querySelector('.headsUpDisplayBountifulBeanstalkView__ingredientQuantity');
-      if (! baitCraftQty) {
-        return;
-      }
-
-      const baitIngredientType = baitCraftQty.getAttribute('data-item-type');
-      if (baitIngredientType && newQuantities[baitIngredientType]) {
-        baitCraftQty.innerText = newQuantities[baitIngredientType].toLocaleString();
-      }
-    });
-
-    popup.classList.remove('loading');
-    popup.classList.add('success');
-
-    setTimeout(() => {
-      popup.classList.remove('success');
-    }, 1000);
-
-    return (results && results.success);
-  };
-
-  baits.forEach((bait) => {
-    const quantity = bait.querySelector('.headsUpDisplayBountifulBeanstalkView__baitQuantity');
-    if (! quantity) {
-      return;
-    }
-
-    const existingCraftingPopup = bait.querySelector('.mh-crafting-popup');
-    if (existingCraftingPopup) {
-      return;
-    }
-
-    quantity.classList.add('mousehuntTooltipParent');
-
-    const popup = makeElement('div', ['mh-crafting-popup']);
-
-    const existingPopup = bait.querySelector('.mousehuntTooltip');
-    if (existingPopup) {
-      existingPopup.classList.remove('noEvents');
-    } else {
-      popup.classList.add('mousehuntTooltip', 'tight', 'top');
-    }
-
-    const actions = makeElement('div', 'mh-crafting-actions');
-    const baitType = bait.getAttribute('data-item-type');
-
-    const amounts = baitAmounts[baitType].amounts;
-    for (const amount of amounts) {
-      const isNormal = amount.toString().includes('-normal');
-
-      let qty = isNormal ? amount.toString().replace('-normal', '') : amount;
-      if (! isNormal) {
-        qty = qty / 2;
-      }
-
-      const className = isNormal ? 'mh-crafting-action' : 'mh-crafting-action lightBlue';
-      const title = isNormal ? `Craft ${amount.toString().replace('-normal', '')}` : `Craft ${amount} using Magic Essence`;
-      const type = isNormal ? baitAmounts[baitType].shopNormal : baitAmounts[baitType].shop;
-
-      makeMhButton({
-        text: `Craft ${amount.toString().replace('-normal', '')}`,
-        className,
-        title,
-        size: 'tiny',
-        /**
-         * Button action.
-         */
-        callback: () => {
-          purchaseBait(type, qty, popup);
-        },
-        appendTo: actions,
-      });
-    }
-
-    popup.append(actions);
-
-    if (existingPopup) {
-      existingPopup.insertBefore(popup, existingPopup.lastChild);
-    } else {
-      bait.append(popup);
-    }
-  });
-};
-
 const addCommaToNoiseMeter = async () => {
   const noise = document.querySelector('.bountifulBeanstalkCastleView__noiseLevel');
   if (noise && noise.innerText && Number.parseInt(noise.innerText) > 999) {
@@ -450,7 +274,32 @@ export default async () => {
   makeGiantMoreVisible();
   toggleFuelWithIcon();
   updateLootText();
-  addCraftingButtons();
+  addCraftingButtons({
+    baits: {
+      beanster_cheese: {
+        amounts: ['160-normal', 160],
+        shop: 'beanster_pack_small_convertible',
+        shopNormal: 'beanster_cheese',
+      },
+      lavish_beanster_cheese: {
+        amounts: [4, 8, 80],
+        shop: 'lavish_beanster_pack_small_convertible',
+      },
+      leaping_lavish_beanster_cheese: {
+        amounts: [2, 4, 8],
+        shop: 'leaping_lavish_beanster_pack_small_convertible',
+      },
+      royal_beanster_cheese: {
+        amounts: [2, 18, 20],
+        shop: 'royal_beanster_pack_small_convertible',
+      }
+    },
+    selectors: {
+      baits: '.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer',
+      baitQuantity: '.headsUpDisplayBountifulBeanstalkView__baitQuantity',
+      baitCraftQty: '.headsUpDisplayBountifulBeanstalkView__ingredientQuantity',
+    },
+  });
   addCommaToNoiseMeterTimeout();
 
   if (getSetting('location-huds.bountiful-beanstalk-quick-harp-toggle', false)) {
