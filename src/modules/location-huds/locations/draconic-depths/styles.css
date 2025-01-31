@@ -14,10 +14,6 @@
   margin-bottom: -2px;
 }
 
-.headsUpDisplayDraconicDepthsView__baitCraftableContainer .mousehuntTooltip {
-  text-align: center;
-}
-
 .draconicDepthsCavernView__titleRod {
   width: 10px;
   height: 12px;
@@ -78,7 +74,11 @@
 }
 
 .draconicDepthsCavernView__tierThreshold {
-  top: 1px;
+  top: 0;
+  height: 18px;
+  padding-top: 1px;
+  padding-left: 2px;
+  border-left: 1px solid #000;
 }
 
 .draconicDepthsCavernView__droid {
@@ -140,4 +140,64 @@
 
 .draconicDepthsReinforceCavernDialogView__inputContainer {
   color: transparent;
+}
+
+.headsUpDisplayDraconicDepthsView__baitCraftableContainer .mousehuntTooltip {
+  right: -20px;
+  left: -20px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.headsUpDisplayDraconicDepthsView__baitCraftableContainer[data-item-type="poisonous_provolone_cheese"] .mousehuntTooltip,
+.headsUpDisplayDraconicDepthsView__baitCraftableContainer[data-item-type="elemental_emmental_cheese"] .mousehuntTooltip {
+  right: -30px;
+  left: -30px;
+}
+
+.draconicDepthsPopupView #maxButton {
+  color: #000;
+  text-shadow: 0 0 1px #fff;
+  background-color: #f4e830;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: 0 -5px 8px -2px #ffae00 inset;
+}
+
+.draconicDepthsPopupView #maxButton:hover,
+.draconicDepthsPopupView #maxButton:focus {
+  cursor: pointer;
+  background-color: #fff600;
+  box-shadow: inset 0 0 16px 2px #fffaab;
+}
+
+.draconicDepthsReinforceCavernDialogView__inputContainer--disabled {
+  pointer-events: unset;
+  filter: none;
+}
+
+.draconicDepthsCavernView[data-cavern-type*="ice"] .draconicDepthsCavernView__cartNeedle {
+  background: linear-gradient(90deg, rgb(24 247 233 / 30%) 0%, rgb(24 247 233 / 70%) 100%);
+}
+
+.draconicDepthsCavernView[data-cavern-type*="flame"] .draconicDepthsCavernView__cartNeedle {
+  background: linear-gradient(90deg, rgb(255 138 29 / 30%) 0%, rgb(255 138 29 / 70%) 100%);
+}
+
+.draconicDepthsCavernView[data-cavern-type*="toxic"] .draconicDepthsCavernView__cartNeedle {
+  background: linear-gradient(90deg, rgb(170 230 0 / 30%) 0%, rgb(170 230 0 / 70%) 100%);
+}
+
+.draconicDepthsCavernView[data-cavern-type*="elemental"] .draconicDepthsCavernView__cartNeedle {
+  background: linear-gradient(90deg, rgb(189 100 220 / 30%) 0%, rgb(189 100 220 / 70%) 100%);
+}
+
+.draconicDepthsCavernView__cavernLootMeterContainer {
+  padding-right: 1px;
+  padding-left: 1px;
+}
+
+.draconicDepthsCavernView__cavernProgressContainer:hover .draconicDepthsCavernView__cartBossPip {
+  filter: brightness(1.1);
+  transition: filter 0.2s;
 }

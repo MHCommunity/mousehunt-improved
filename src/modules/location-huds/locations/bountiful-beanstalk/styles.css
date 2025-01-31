@@ -206,11 +206,6 @@
   text-align: center;
 }
 
-.headsUpDisplayBountifulBeanstalkView__baitCraftableContainer[data-item-type="leaping_lavish_beanster_cheese"] .mousehuntTooltip {
-  right: -40px;
-  left: -40px;
-}
-
 .headsUpDisplayBountifulBeanstalkView__castleChevronContainer .mousehuntTooltip {
   line-height: 1.4;
 }
@@ -358,43 +353,6 @@ button.headsUpDisplayBountifulBeanstalkView__baitBuyButton {
 
 .bountifulBeanstalkCastleView__playerMarker--player_marker_chase .bountifulBeanstalkCastleView__playerMarkerUserThumb {
   border: 1px solid #d7440d;
-}
-
-.mh-crafting-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 5px;
-  transition: 0.2s ease-in;
-}
-
-.mh-crafting-popup.loading::after,
-.mh-crafting-popup.error::after,
-.mh-crafting-popup.success::after {
-  position: absolute;
-  right: 0;
-  bottom: 7px;
-  left: 0;
-  display: block;
-  height: 20px;
-  content: "";
-  background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif) center no-repeat;
-}
-
-.mh-crafting-popup.error::after {
-  background: url(https://www.mousehuntgame.com/images/icons/bad_idea.png) center no-repeat;
-  background-size: contain;
-}
-
-.mh-crafting-popup.success::after {
-  background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png) center no-repeat;
-  background-size: contain;
-}
-
-.loading .mh-crafting-actions,
-.error .mh-crafting-actions,
-.success .mh-crafting-actions {
-  opacity: 0.1;
 }
 
 .folkloreForestRegionView-trapWarningContainer.active {
