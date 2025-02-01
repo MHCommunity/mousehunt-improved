@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.77.1
+
+- Updated Event Locations HUD: Set Lunar New Year as occurring in January
+- Updated Location HUD: Draconic Depths styles
+
 ## Version 0.77.0
 
 - Better Gifts: Updated styles
@@ -10,7 +15,6 @@
 - Better UI: Updated styles
 - Custom Shield: Fixed shield alignment issues in the HUD.
 - Updated Location HUD: Bountiful Beanstalk styles
-- Updated Location HUD: Draconic Depths styles
 
 ## Version 0.76.1
 
