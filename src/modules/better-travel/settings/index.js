@@ -16,6 +16,11 @@ export default async () => {
       default: false,
     },
     {
+      id: 'better-travel.show-friends-on-map',
+      title: 'Show friend and hunter counts on map',
+      default: true,
+    },
+    {
       id: 'better-travel.show-reminders',
       title: 'Show Travel Reminders',
       default: true,
