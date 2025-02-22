@@ -17,7 +17,7 @@ const main = async (onlyIfMissing = false) => {
       continue;
     }
 
-    const res = await fetch(`https://api.mouse.rip/${file}?cache=${Date.now() + Math.random()}`);
+    const res = await fetch(`https://static.mouse.rip/${file}?cache=${Date.now() + Math.random()}`);
     const text = await res.text();
 
     fs.writeFileSync(path.join(process.cwd(), 'src/extension/static', file), text);
