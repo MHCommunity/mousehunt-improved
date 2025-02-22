@@ -4,15 +4,11 @@
     {
       "title": "",
       "items": [
-        "Better Gifts: Updated styles",
-        "Better Journal: Fixed issues with Relic Hunter, updated loot list parsing, updated styles",
-        "Catch Rate Estimator: Added better failure state and loading state styles.",
-        "Better Marketplace: Fixed parsing of quantities, updated styles",
-        "Better Tournaments: Updated styles",
-        "Better UI: Updated styles",
-        "Custom Shield: Fixed shield alignment issues in the HUD.",
-        "Updated Location HUD: Bountiful Beanstalk styles",
-        "Updated Location HUD: Draconic Depths styles"
+        "Better Journal: Updated styles",
+        "Better UI: Added ability to unfavorite completed adventures, updated styles",
+        "Better Travel: Added 'Show friend and hunter counts on map' option",
+        "Updated Location HUD: Draconic Depths styles",
+        "Miscellaneous bug fixes and improvements"
       ]
     }
   ]

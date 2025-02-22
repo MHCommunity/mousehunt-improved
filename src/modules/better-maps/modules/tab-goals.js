@@ -253,7 +253,9 @@ const addClassesToGroups = (mapData) => {
       replacementTitle.append(count);
     }
 
-    title.replaceWith(replacementTitle);
+    if (title) {
+      title.replaceWith(replacementTitle);
+    }
   });
 };
 

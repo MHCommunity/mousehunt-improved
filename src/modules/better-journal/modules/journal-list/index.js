@@ -325,7 +325,9 @@ const formatXasList = async (entry) => {
     }
   });
 
-  firstEl.replaceWith(list);
+  if (firstEl) {
+    firstEl.replaceWith(list);
+  }
 
   entry.setAttribute('data-better-journal-processed-x-list', 'true');
 };

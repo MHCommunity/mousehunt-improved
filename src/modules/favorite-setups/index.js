@@ -659,7 +659,10 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
 
         const currentSetupRow = document.querySelector('.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="current"]');
         if (currentSetupRow) {
-          currentSetupRow.replaceWith(await makeBlueprintRow(getCurrentSetup(), true));
+          const newRow = await makeBlueprintRow(getCurrentSetup(), true);
+          if (newRow) {
+            currentSetupRow.replaceWith(newRow);
+          }
         }
 
         armButton.classList.remove('loading');

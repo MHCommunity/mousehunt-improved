@@ -246,7 +246,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   header.append(mhctLink);
   mhctDiv.append(header);
 
-  if (! mhctJson.slice) {
+  if (! mhctJson || mhctJson.length === 0) {
     return;
   }
 

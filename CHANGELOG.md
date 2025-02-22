@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.78.0
+
+- Better Journal: Updated styles
+- Better UI: Added ability to unfavorite completed adventures, updated styles
+- Better Travel: Added 'Show friend and hunter counts on map' option
+- Updated Location HUD: Draconic Depths styles
+- Miscellaneous bug fixes and improvements
+
 ## Version 0.77.1
 
 - Updated Event Locations HUD: Set Lunar New Year as occurring in January

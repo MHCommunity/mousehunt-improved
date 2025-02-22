@@ -381,6 +381,7 @@ const hasMiniCRE = () => {
  * @return {string} The string with the first letter uppercased.
  */
 const uppercaseFirstLetter = (string) => {
+  string = string.length ? string : ' ';
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 

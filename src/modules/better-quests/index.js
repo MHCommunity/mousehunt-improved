@@ -284,7 +284,9 @@ const updateAssignmentList = async () => {
       makeElement('span', 'mh-ui-m400-content', 'This envelope contains a Research Assignment that will have you looking for the elusive M400 prototype.', m400Wrapper);
 
       // replace the .content with our new content.
-      content.replaceWith(m400Wrapper);
+      if (content) {
+        content.replaceWith(m400Wrapper);
+      }
     }
 
     if (assignment.assignments) {
