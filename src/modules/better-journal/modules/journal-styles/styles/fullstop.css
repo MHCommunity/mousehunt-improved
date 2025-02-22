@@ -21,6 +21,8 @@
 .journal .content .entry.folkloreForest-lootFuelBoost .journaltext br,
 .journal .content .entry.relicHunter_complete .journaltext br:first-of-type,
 .journal .content .entry.wanted_poster-complete .journaltext br:first-of-type,
+.journal .content .entry.draconicDepths-claimReplicartLoot .journaltext br:first-of-type,
+.journal .content .entry.draconicDepths-claimReplicartLoot .journaltext br:last-of-type,
 .journal .content .entry.folkloreForest-bookClaimed .journaltext br:first-of-type,
 .journal .content .entry.folkloreForest-bookClaimed .journaltext br:last-of-type,
 .journal .content .entry.harbour br {

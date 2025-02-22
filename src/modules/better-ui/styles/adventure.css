@@ -330,6 +330,11 @@ a.adventureBookPopup-title.active {
   background-color: #fff0c2;
 }
 
+.highlight.claimed .adventureBookPopup-adventure-header,
+.highlight.claimed .adventureBookPopup-adventure-footer {
+  background-color: #62aa42;
+}
+
 .adventureBookPopup-adventure-button.disabled {
   opacity: 0.6;
 }
@@ -356,4 +361,9 @@ a.adventureBookPopup-title.active {
 
 .adventureBookBanner-goalName-padding span a {
   color: inherit;
+}
+
+.adventureBookPopup-adventureContainer.claimed.highlight .adventureBookPopup-adventure-favorite {
+  top: 6px;
+  display: block;
 }
