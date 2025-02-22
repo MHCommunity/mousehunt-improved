@@ -236,6 +236,10 @@ a.itemPurchaseView-content-skin-link {
   display: none;
 }
 
+.itemPurchaseView-container.kingsCartItem .itemPurchaseView-content-details:hover {
+  overflow: visible;
+}
+
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-confirm-button-row a,
 .itemPurchaseView-container.kingsCartItem .itemPurchaseView-action-complete-title {
   color: #3b5998;
