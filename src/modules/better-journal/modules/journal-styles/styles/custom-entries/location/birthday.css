@@ -29,7 +29,7 @@
 }
 
 .journal .content .entry.vending_machine_purchase .journaltext {
-  margin-top: 16px;
+  margin-top: -5px;
   font-size: 10px;
   font-weight: 900;
   line-height: 12px;
