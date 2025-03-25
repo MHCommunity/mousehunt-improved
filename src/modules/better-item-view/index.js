@@ -128,7 +128,7 @@ const addQuantityButtons = (itemView) => {
       input.value = 0;
       openMaxButtonText.innerText = 'Max';
     } else {
-      input.value = maxQty;
+      input.value = maxQty <= 200 ? maxQty : 200;
       openMaxButtonText.innerText = 'Reset';
     }
 
