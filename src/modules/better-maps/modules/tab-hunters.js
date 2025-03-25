@@ -31,8 +31,9 @@ const makeUserTableLoading = (id, title, appendTo) => {
  * @param {string}      id       The ID of the hunters.
  * @param {string}      title    The title of the hunters.
  * @param {HTMLElement} appendTo The element to append to.
+ * @param {Object}      mapData  The map data.
  */
-const makeUserTable = async (hunters, id, title, appendTo) => {
+const makeUserTable = async (hunters, id, title, appendTo, mapData = {}) => {
   const loadingTitle = document.querySelector(`#hunters-loading-${id}-title`);
   const loadingBlock = document.querySelector(`#hunters-loading-${id}-block`);
   if (loadingTitle) {
@@ -59,7 +60,7 @@ const makeUserTable = async (hunters, id, title, appendTo) => {
 
   hunters.forEach((hunter) => {
     let actions = `<a href="supplytransfer.php?fid=${hunter.sn_user_id}"class="mousehuntActionButton tiny lightBlue"><span>Send<br>Supplies</span></a>`;
-    if ('requests' === id) {
+    if ('requests' === id && mapData.is_owner) {
       const declineAction = `<a class="treasureMapDialogView-deleteInviteRequest reject-invite-request mh-mapper-invite-request-action" data-snuid="${hunter.sn_user_id}" data-snuid="100000830940163">X</a>`;
       const acceptAction = `<a href="#" class="treasureMapDialogView-continueButton mousehuntActionButton accept-invite-request mh-mapper-invite-request-action" data-snuid="${hunter.sn_user_id}"><span>Accept</span></a>`;
       actions = `${declineAction}${acceptAction}`;
@@ -294,9 +295,9 @@ const showHuntersTab = async (mapData) => {
   }
 
   if (mapData.invite_requests?.length > 0) {
-    makeUserTableLoading('requests', `Invite Requests (${mapData.invite_requests.length || 0})`, leftBlock);
+    makeUserTableLoading('requests', `Invite Requests (${mapData.invite_requests.length || 0})`, leftBlock, mapData);
     const requestData = await getInvitedHunterData(mapData.invite_requests);
-    makeUserTable(requestData, 'requests', 'Invite Requests (#count)', leftBlock);
+    makeUserTable(requestData, 'requests', `Invite Requests (${mapData.invite_requests.length || 0})`, leftBlock, mapData);
   }
 };
 
