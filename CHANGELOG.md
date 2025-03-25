@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.79.0
+
+- Better Maps: Fixed invited hunters number display
+- Better Items: Updated 'Max' button to only go up to 200
+- Location HUDs - Events: Updated Birthday event styles
+
 ## Version 0.78.0
 
 - Better Journal: Updated styles

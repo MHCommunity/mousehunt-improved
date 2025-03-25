@@ -4,11 +4,9 @@
     {
       "title": "",
       "items": [
-        "Better Journal: Updated styles",
-        "Better UI: Added ability to unfavorite completed adventures, updated styles",
-        "Better Travel: Added 'Show friend and hunter counts on map' option",
-        "Updated Location HUD: Draconic Depths styles",
-        "Miscellaneous bug fixes and improvements"
+        "Better Maps: Fixed invited hunters number display",
+        "Better Items: Updated 'Max' button to only go up to 200",
+        "Location HUDs - Events: Updated Birthday event styles"
       ]
     }
   ]
