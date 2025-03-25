@@ -331,11 +331,11 @@
 }
 
 .MiniEventCheesyPipePartyCampHUD-gameSummaryContainer.premium .MiniEventCheesyPipePartyCampHUD-prize {
-  height: 55px;
   width: 55px;
+  height: 55px;
 }
 
 .MiniEventCheesyPipePartyCampHUD-gameSummaryContainerPrizeArray .MiniEventCheesyPipePartyCampHUD-prizeQuantity {
-  border-width: 1px;
   background: #fff;
+  border-width: 1px;
 }
