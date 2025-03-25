@@ -13,8 +13,10 @@
   right: 0;
   bottom: 7px;
   left: 0;
+  z-index: 31;
   display: block;
   height: 20px;
+  pointer-events: none;
   content: "";
   background: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif) center no-repeat;
 }
@@ -38,8 +40,6 @@
 .mh-crafting-popup::after {
   position: absolute;
   top: 100%;
-  right: 0;
-  left: 0;
   height: 30px;
   content: "";
 }
