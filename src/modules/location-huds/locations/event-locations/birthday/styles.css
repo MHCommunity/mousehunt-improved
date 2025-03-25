@@ -94,7 +94,6 @@
 }
 
 .superBrieFactoryHUD-room-name {
-  margin-top: 5px;
   font-size: 12px;
 }
 
@@ -103,20 +102,12 @@
   font-size: 10px;
 }
 
-.superBrieFactoryHUD-room-costLevel.level_max {
-  margin-top: 5px;
-}
-
 .level_5 .superBrieFactoryHUD-room-cost-levelNumber {
   display: none;
 }
 
 .level_5 .superBrieFactoryHUD-room-cost-effect {
   margin-left: -6px;
-}
-
-.superBrieFactoryHUD-room-costLevel {
-  margin-top: 5px;
 }
 
 .superBrieFactoryHUD-factoryRoom-level {
@@ -333,4 +324,18 @@
 
 .superBrieFactoryClaimReward-item .itemImage {
   border: none;
+}
+
+.MiniEventCheesyPipePartyCampHUD-gameSummaryContainerPrizeArray {
+  border: none;
+}
+
+.MiniEventCheesyPipePartyCampHUD-gameSummaryContainer.premium .MiniEventCheesyPipePartyCampHUD-prize {
+  height: 55px;
+  width: 55px;
+}
+
+.MiniEventCheesyPipePartyCampHUD-gameSummaryContainerPrizeArray .MiniEventCheesyPipePartyCampHUD-prizeQuantity {
+  border-width: 1px;
+  background: #fff;
 }
