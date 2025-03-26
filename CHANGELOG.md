@@ -1,10 +1,14 @@
 # Changelog
 
+## Version 0.79.1
+
+- Updated Better Journal: Zokor stealth entry styles
+
 ## Version 0.79.0
 
-- Better Maps: Fixed invited hunters number display
-- Better Items: Updated 'Max' button to only go up to 200
-- Location HUDs - Events: Updated Birthday event styles
+- Fixed Better Maps: invited hunters number display
+- Updated Better Items: 'Max' button to only go up to 200
+- Updated Location HUDs - Events: Birthday event styles
 
 ## Version 0.78.0
 

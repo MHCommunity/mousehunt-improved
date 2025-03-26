@@ -1,4 +1,5 @@
 /* hiding date for entries that come with a hunt */
+.journal .content .entry.minimalJournal.ancient-stealth .journalbody .journalenvdate,
 .journal .content .entry.refractorBaseEffect-empyrean_jewel_base .journalbody .journalenvdate,
 .journal .content .entry.refractorBaseEffect-royal_ruby_refractor_base .journalbody .journalenvdate,
 .journal .content .entry.refractorBaseEffect-sorcerers_sapphire_refractor_base .journalbody .journalenvdate,
