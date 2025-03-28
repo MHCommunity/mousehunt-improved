@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.79.2
+
+- Fixed progress log unique count only applying to first environment
+
 ## Version 0.79.1
 
 - Updated Better Journal: Zokor stealth entry styles

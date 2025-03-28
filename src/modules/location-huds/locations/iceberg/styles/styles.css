@@ -323,3 +323,7 @@ span.user_progress_container .user_progress {
   padding: 5px;
   background-color: #e4f6fe;
 }
+
+.icebergHud.bonus .bonus_timeline:hover .help {
+  display: block;
+}

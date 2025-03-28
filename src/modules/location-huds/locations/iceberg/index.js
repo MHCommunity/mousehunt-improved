@@ -358,9 +358,11 @@ const hud = async () => {
         feet = feet - 100;
       }
 
-      remainingStageDistance.innerHTML = `<strong>${feet}</strong> feet until ${destination}`;
-      if (quest.stageHunts > 0) {
-        remainingStageDistance.innerHTML += ` (~${quest.stageHunts} hunts)`;
+      if (! quest.isDeep) {
+        remainingStageDistance.innerHTML = `<strong>${feet}</strong> feet until ${destination}`;
+        if (quest.stageHunts > 0) {
+          remainingStageDistance.innerHTML += ` (~${quest.stageHunts} hunts)`;
+        }
       }
     }
 

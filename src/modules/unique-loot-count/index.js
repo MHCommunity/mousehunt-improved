@@ -8,21 +8,23 @@ import styles from './styles.css';
  * @param {string} selector The selector for the section.
  */
 const updateSection = async (selector) => {
-  const section = document.querySelector(`#overlayPopup.hunting_summary .${selector}`);
+  const section = document.querySelectorAll(`#overlayPopup.hunting_summary .${selector}`);
   if (! section) {
     return;
   }
 
-  const existing = section.querySelector('.uniqueLootCount');
-  if (existing) {
-    return;
-  }
+  section.forEach((sec) => {
+    const existing = sec.querySelector('.uniqueLootCount');
+    if (existing) {
+      return;
+    }
 
-  const loots = section.querySelectorAll('a');
-  const count = makeElement('span', 'uniqueLootCount', `(${loots.length} unique)`);
+    const loots = sec.querySelectorAll('a');
+    const count = makeElement('span', 'uniqueLootCount', `(${loots.length} unique)`);
 
-  const header = section.querySelector('.label');
-  header.append(count);
+    const header = sec.querySelector('.label');
+    header.append(count);
+  });
 };
 
 /**
