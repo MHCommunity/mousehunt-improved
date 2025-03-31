@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.79.3
+
+- Fixed quantity buttons not correctly parsing numbers with commas
+
 ## Version 0.79.2
 
 - Fixed progress log unique count only applying to first environment
