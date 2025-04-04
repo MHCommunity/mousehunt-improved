@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.79.4
+
+- Fixed Better Journal list issue with SEH journal entries
+
 ## Version 0.79.3
 
 - Fixed quantity buttons not correctly parsing numbers with commas

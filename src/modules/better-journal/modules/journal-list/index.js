@@ -51,6 +51,7 @@ const classesToSkip = [
   'mountain-boulderLooted',
   'labyrinth-exitMaze',
   'festiveSpiritLootBoost',
+  'spring_hunt_charge_trinket_effect',
 ];
 
 /**
