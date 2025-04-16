@@ -26,9 +26,13 @@ const updateHudImages = () => {
       .replace('?cv=1', '')
       .replace('?cv=2', '')
       .replace('?cv=3', '')
+      .replace('?cv=4', '')
+      .replace('?cv=5', '')
       .replace('?v=1', '')
       .replace('?v=2', '')
-      .replace('?v=3', '');
+      .replace('?v=3', '')
+      .replace('?v=4', '')
+      .replace('?v=5', '');
 
     if (upscaleMapping[normalizedImage]) {
       image.src = `https://www.mousehuntgame.com/images/items/${upscaleMapping[normalizedImage]}`;
