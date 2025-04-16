@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.79.5
+
+- Fixed Better UI trap image alignment
+- Updated upscaled images
+
 ## Version 0.79.4
 
 - Fixed Better Journal list issue with SEH journal entries
