@@ -544,9 +544,9 @@ const waitForElement = async (selector, { single = true, maxAttempts = 10, delay
  * Helper function to update a stat element.
  *
  * @param {Element} statsContainer The container element for stats.
- * @param {string} statClass The class name of the stat to update.
- * @param {number} newValue The new value for the stat.
- * @param {number} currentValue The current value of the stat in the setup.
+ * @param {string}  statClass      The class name of the stat to update.
+ * @param {number}  newValue       The new value for the stat.
+ * @param {number}  currentValue   The current value of the stat in the setup.
  */
 const updateTrapStat = (statsContainer, statClass, newValue, currentValue) => {
   const statElement = statsContainer.querySelector(`.campPage-trap-itemBrowser-item-stat.${statClass}`);
@@ -577,7 +577,6 @@ const updateTrapStat = (statsContainer, statClass, newValue, currentValue) => {
  */
 const updateTrapStatsDisplay = (selector, pbStats) => {
   const stats = selector.querySelector('.campPage-trap-itemBrowser-item-statContainer');
-  console.log('stats', stats);
   if (! stats) {
     return;
   }
