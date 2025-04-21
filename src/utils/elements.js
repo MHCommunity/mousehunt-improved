@@ -1,4 +1,5 @@
 import { getSetting, saveSetting } from './settings';
+import { getUserSetupDetails } from './user';
 
 /**
  * Creates an element with the given tag, class name, text, and appends it to the given element.
@@ -539,6 +540,74 @@ const waitForElement = async (selector, { single = true, maxAttempts = 10, delay
   return false;
 };
 
+/**
+ * Helper function to update a stat element.
+ *
+ * @param {Element} statsContainer The container element for stats.
+ * @param {string} statClass The class name of the stat to update.
+ * @param {number} newValue The new value for the stat.
+ * @param {number} currentValue The current value of the stat in the setup.
+ */
+const updateTrapStat = (statsContainer, statClass, newValue, currentValue) => {
+  const statElement = statsContainer.querySelector(`.campPage-trap-itemBrowser-item-stat.${statClass}`);
+  if (statElement) {
+    const valueElement = statElement.querySelector('.value span');
+    if (valueElement) {
+      if (typeof newValue === 'number') {
+        newValue = newValue.toLocaleString();
+      }
+
+      valueElement.innerText = newValue;
+
+      statElement.classList.remove('better', 'worse');
+      if (currentValue < newValue) {
+        statElement.classList.add('better');
+      } else if (currentValue > newValue) {
+        statElement.classList.add('worse');
+      }
+    }
+  }
+};
+
+/**
+ * Update the stats display.
+ *
+ * @param {Element} selector The element to update.
+ * @param {Object}  pbStats  The stats to update with.
+ */
+const updateTrapStatsDisplay = (selector, pbStats) => {
+  const stats = selector.querySelector('.campPage-trap-itemBrowser-item-statContainer');
+  console.log('stats', stats);
+  if (! stats) {
+    return;
+  }
+
+  const currentSetup = getUserSetupDetails();
+  if (! currentSetup) {
+    return;
+  }
+
+  if (pbStats.power !== undefined) {
+    updateTrapStat(stats, 'power', pbStats.power, currentSetup.base.power);
+  }
+
+  if (pbStats.luck !== undefined) {
+    updateTrapStat(stats, 'luck', pbStats.luck, currentSetup.base.luck);
+  }
+
+  if (pbStats.powerBonus !== undefined) {
+    updateTrapStat(stats, 'powerBonus', pbStats.powerBonus, currentSetup.base.powerBonus);
+  }
+
+  if (pbStats.attractionBonus !== undefined) {
+    updateTrapStat(stats, 'attraction_bonus', pbStats.attractionBonus, currentSetup.base.attractionBonus);
+  }
+
+  if (pbStats.cheeseEffect !== undefined) {
+    updateTrapStat(stats, 'cheese_effect', pbStats.cheeseEffect, currentSetup.base.cheeseEffect);
+  }
+};
+
 export {
   createPopup,
   makeButton,
@@ -552,5 +621,6 @@ export {
   makeMathButtons,
   toEscapedJSON,
   makeProgressLogLink,
-  waitForElement
+  waitForElement,
+  updateTrapStatsDisplay
 };

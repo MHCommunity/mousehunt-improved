@@ -4,55 +4,9 @@ import {
   debuglog,
   getUserSetupDetails,
   onEvent,
-  onRequest
+  onRequest,
+  updateTrapStatsDisplay
 } from '@utils';
-
-/**
- * Update the stats display.
- *
- * @param {Element} selector The element to update.
- * @param {Object}  pbStats  The stats to update with.
- */
-const updateStats = (selector, pbStats) => {
-  const stats = selector.querySelector('.campPage-trap-itemBrowser-item-statContainer');
-  if (! stats) {
-    return;
-  }
-
-  const currentSetup = getUserSetupDetails();
-
-  const power = stats.querySelector('.campPage-trap-itemBrowser-item-stat.power');
-  if (power) {
-    const powerValue = power.querySelector('.value span');
-    if (powerValue) {
-      powerValue.innerText = pbStats.power;
-
-      power.classList.remove('better', 'worse');
-      // if the power is higher than the current setup, then add a class to it
-      if (currentSetup.base.power < pbStats.power) {
-        power.classList.add('better');
-      } else if (currentSetup.base.power > pbStats.power) {
-        power.classList.add('worse');
-      }
-    }
-  }
-
-  const luck = stats.querySelector('.campPage-trap-itemBrowser-item-stat.luck');
-  if (luck) {
-    const luckValue = luck.querySelector('.value span');
-    if (luckValue) {
-      luckValue.innerText = pbStats.luck;
-
-      luck.classList.remove('better', 'worse');
-
-      if (currentSetup.base.luck < pbStats.luck) {
-        luck.classList.add('better');
-      } else if (currentSetup.base.luck > pbStats.luck) {
-        luck.classList.add('worse');
-      }
-    }
-  }
-};
 
 /**
  * Update the Prestige Base stats display.
@@ -69,7 +23,7 @@ const setPrestigeStats = async () => {
     return;
   }
 
-  updateStats(prestige, pbStats);
+  updateTrapStatsDisplay(prestige, pbStats);
 
   const armed = document.querySelector('.campPage-trap-itemBrowser-armed-item.base');
   if (! armed) {
@@ -82,7 +36,7 @@ const setPrestigeStats = async () => {
   }
 
   if (name.innerText.includes('Prestige Base')) {
-    updateStats(armed, pbStats);
+    updateTrapStatsDisplay(armed, pbStats);
   }
 };
 
