@@ -1,4 +1,4 @@
-import { addModuleStyles, getCurrentLocation, onEvent, onTravel } from '@utils';
+import { addStyles, getCurrentLocation, onEvent, onTravel } from '@utils';
 
 import specialEffects from '@data/trap-special-effects.json';
 
@@ -17,18 +17,21 @@ const addSpecialEffectsStyles = async () => {
     });
   }
 
-  addModuleStyles(`${styles.join(' .campPage-trap-itemBrowser-item-name::after,')}
-.mh-improved-special-effects-highlight {
-  position: absolute;
-  top: 4px;
-  right: 3px;
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  content: "";
-  background-color: #48b0a9;
-  border-radius: 50%;
-}`, 'mh-improved-trap-selector-special-effects', true);
+  styles.push('.mh-improved-special-effects-highlight');
+
+  const stylesText = styles.join(' .campPage-trap-itemBrowser-item-name::after,');
+
+  addStyles(`${stylesText} .mh-improved-special-effects-highlight {
+    position: absolute;
+    top: 4px;
+    right: 3px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    content: "";
+    background-color: #48b0a9;
+    border-radius: 50%;
+  }`, 'mh-improved-trap-selector-special-effects', true);
 };
 
 hasAddedSpecialEffectsStyles = false;
