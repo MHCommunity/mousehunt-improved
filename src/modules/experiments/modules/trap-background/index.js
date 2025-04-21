@@ -6,12 +6,14 @@ import styles from './styles.css';
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles, 'trap-background');
+  if (! getSetting('experiments.trap-background', false)) {
+    addStyles(styles, 'trap-background');
+  }
 };
 
 export default {
   id: 'experiments.trap-background',
-  name: 'Trap Background',
+  name: 'Trap Gradient Background',
   description: 'Add background gradient to trap',
   load: init,
 };
