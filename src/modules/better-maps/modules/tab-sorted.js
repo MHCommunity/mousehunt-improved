@@ -510,7 +510,7 @@ const makeScavengerSortedPage = async (isNormal, target) => {
         }
 
         if (environment.name) {
-          const envLink = makeElement('a', 'scavenger-location-name', environment.name);
+          const envLink = makeElement('span', 'scavenger-location-name', environment.name);
           envLink.title = `Travel to ${environment.name}`;
           envLink.setAttribute('data-environment-id', location);
           envLink.addEventListener('click', () => {
