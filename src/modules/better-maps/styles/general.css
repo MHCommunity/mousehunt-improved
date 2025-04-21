@@ -698,6 +698,10 @@ input.treasureMapView-block-search-text {
 }
 
 .full-width .treasureMapView-goals-group-goal {
+  width: calc(20% - 5px);
+}
+
+.full-width .treasureMapView-goals-group-goal.item {
   width: calc(14% - 5px);
 }
 
