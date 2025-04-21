@@ -20,19 +20,14 @@
     "icy_melty_base",
     "living_grove_base",
     "new_years_2024_base",
-    "physical_enhancement_base",
     "polluted_base",
     "refined_pollutinum_base",
-    "rift_mist_diffuser_base",
     "skelloton_base",
     "snow_golem_base",
     "soiled_base",
     "spellbook_base",
     "upgraded_denture_base",
     "valour_rift_prestige_base",
-    "empyrean_jewel_base",
-    "royal_ruby_refractor_base",
-    "sorcerers_sapphire_refractor_base",
     "admirals_galleon_weapon",
     "anniversary_acronym_weapon",
     "anniversary_ambush_weapon",
@@ -42,7 +37,6 @@
     "biomolecular_reatomizer_weapon",
     "boiling_cauldron_weapon",
     "chrome_drillbot_weapon",
-    "chrono_gwh_weapon",
     "digby_drillbot_weapon",
     "glacier_gatler_weapon",
     "haunting_house_weapon",
@@ -87,30 +81,80 @@
     "winter_hunt_2012_weapon",
     "xmas_2016_forgotten_weapon",
     "xmas_2016_hydro_weapon_weapon",
-    "derelict_airship_weapon"
+    "derelict_airship_weapon",
+    "super_nightshade_farming_trinket",
+    "remote_pumping_trinket",
+    "wild_tonic_remote_pumping_trinket",
+    "extreme_wild_tonic_remote_pumping_trinket",
+    "rift_furoma_energy_trinket",
+    "rift_super_furoma_energy_trinket",
+    "unstable_trinket",
+    "gilded_trinket",
+    "party_trinket",
+    "super_party_trinket",
+    "extreme_party_trinket",
+    "snowball_trinket",
+    "super_snowball_trinket",
+    "extreme_snowball_trinket",
+    "rift_snowball_trinket",
+    "rift_super_snowball_trinket",
+    "rift_extreme_snowball_trinket",
+    "spooky_trinket",
+    "extra_spooky_trinket",
+    "extreme_spooky_trinket",
+    "gift_wrapped_trinket",
+    "athlete_torch_trinket",
+    "tarnished_trinket",
+    "rift_tarnished_trinket"
   ],
   "meadow": [],
-  "town_of_gnawnia": [],
+  "town_of_gnawnia": [
+    "brain_trinket",
+    "super_brain_trinket"
+  ],
   "windmill": [],
   "harbour": [],
-  "mountain": [],
+  "mountain": [
+    "power_trinket",
+    "super_power_trinket",
+    "weak_power_trinket",
+    "mining_trinket",
+    "brain_trinket",
+    "super_brain_trinket"
+  ],
   "kings_arms": [],
   "tournament_hall": [],
   "kings_gauntlet": [
-    "ancient_gauntlet_weapon"
+    "ancient_gauntlet_weapon",
+    "festive_gauntlet_crusher_weapon"
   ],
   "calm_clearing": [],
   "great_gnarled_tree": [],
   "lagoon": [],
-  "laboratory": [],
+  "laboratory": [
+    "lab_trinket",
+    "brain_trinket",
+    "super_brain_trinket"
+  ],
   "mousoleum": [
     "creepy_coffin_weapon"
   ],
-  "town_of_digby": [],
-  "bazaar": [],
+  "town_of_digby": [
+    "drilling_trinket",
+    "brain_trinket",
+    "super_brain_trinket"
+  ],
+  "bazaar": [
+    "brain_trinket",
+    "super_brain_trinket"
+  ],
   "pollution_outbreak": [
     "washboard_base",
-    "super_scum_scrubber_weapon"
+    "super_scum_scrubber_weapon",
+    "staling_trinket",
+    "super_staling_trinket",
+    "soap_trinket",
+    "super_soap_trinket"
   ],
   "training_grounds": [],
   "dojo": [
@@ -118,11 +162,16 @@
   ],
   "meditation_room": [],
   "pinnacle_chamber": [],
-  "catacombs": [],
+  "catacombs": [
+    "creepy_coffin_weapon",
+    "anti_skele_trinket"
+  ],
   "forbidden_grove": [
+    "chamber_cleaver_trinket",
     "runic_base"
   ],
   "acolyte_realm": [
+    "chrono_gwh_weapon",
     "runic_base"
   ],
   "cape_clawed": [
@@ -132,44 +181,67 @@
     "tiki_base",
     "tribal_base",
     "vegetation_base",
-    "tribal_kaboom_base"
+    "tribal_kaboom_base",
+    "elub_power_trinket"
   ],
   "nerg_plains": [
     "tiki_base",
     "tribal_base",
     "vegetation_base",
-    "tribal_kaboom_base"
+    "tribal_kaboom_base",
+    "nerg_power_trinket"
   ],
   "derr_dunes": [
     "tiki_base",
     "tribal_base",
     "vegetation_base",
-    "tribal_kaboom_base"
+    "tribal_kaboom_base",
+    "derr_power_trinket"
   ],
   "jungle_of_dread": [
     "tribal_kaboom_base",
     "cackle_lantern_weapon",
-    "dreaded_totem_weapon"
+    "dreaded_totem_weapon",
+    "cackle_trinket",
+    "dreaded_trinket"
   ],
   "dracano": [
-    "tribal_kaboom_base"
+    "tribal_kaboom_base",
+    "dragonbane_trinket",
+    "super_dragonbane_trinket",
+    "extrme_dragonbane_trinket",
+    "ultimate_dragonbane_trinket"
   ],
   "balacks_cove": [
-    "nutcracker_winter_weapon"
+    "nutcracker_winter_weapon",
+    "anchor_trinket",
+    "golden_anchor_trinket",
+    "spiked_anchor_trinket",
+    "festive_anchor_trinket"
   ],
   "claw_shot_city": [
     "claw_shot_base",
     "slac_spring_weapon",
-    "slac_ii_sling_weapon"
+    "slac_ii_sling_weapon",
+    "mining_trinket",
+    "sheriff_badge_trinket"
   ],
   "train_station": [
     "supply_grabber_weapon",
     "bandit_deflector_weapon",
-    "engine_doubler_weapon"
+    "engine_doubler_weapon",
+    "book_warmer_trinket",
+    "train_black_powder_trinket",
+    "train_coal_trinket",
+    "train_magmatic_crystal_trinket",
+    "trouble_area_door_trinket",
+    "trouble_area_rails_trinket",
+    "trouble_area_roof_trinket"
   ],
   "fort_rox": [
     "electromagnet_meteorite_base",
-    "battering_ram_buster_weapon"
+    "battering_ram_buster_weapon",
+    "nightlight_trinket"
   ],
   "desert_warpath": [
     "desert_heater_base",
@@ -183,41 +255,69 @@
     "aurora_base",
     "hothouse_base",
     "living_base",
-    "desert_heater_base"
+    "desert_heater_base",
+    "growth_trinket",
+    "red_sponge_trinket",
+    "sponge_trinket",
+    "wild_growth_trinket",
+    "yellow_sponge_trinket",
+    "shattering_trinket",
+    "double_sponge_trinket",
+    "red_double_sponge_trinket",
+    "yellow_double_sponge_trinket"
   ],
   "lost_city": [
     "aurora_base",
     "curse_breaker_base",
     "hothouse_base",
     "living_base",
-    "desert_heater_base"
+    "desert_heater_base",
+    "bravery_trinket",
+    "clarity_trinket",
+    "searcher_trinket",
+    "shine_trinket",
+    "shattering_trinket",
+    "safeguard_trinket"
   ],
   "sand_dunes": [
     "aurora_base",
     "hothouse_base",
     "living_base",
     "smelly_sodium_base",
-    "desert_heater_base"
+    "desert_heater_base",
+    "grubling_chow_trinket",
+    "grub_scent_trinket",
+    "grub_salt_trinket",
+    "shattering_trinket",
+    "grubling_bonanza_trinket",
+    "super_salt_trinket"
   ],
   "ss_huntington_ii": [],
   "seasonal_garden": [
     "seasonal_base",
     "sandcastle_shard_weapon",
     "zugzwang_ultimate_move_weapon",
-    "cheslas_revenge_weapon"
+    "cheslas_revenge_weapon",
+    "amplifier_trinket"
   ],
   "zugzwang_tower": [
     "blackstone_pass_weapon",
     "mystic_low_weapon",
     "obvious_ambush_weapon",
     "technic_low_weapon",
-    "zugzwang_ultimate_move_weapon"
+    "zugzwang_ultimate_move_weapon",
+    "rook_crumble_trinket",
+    "library_boss_uncharged_trinket",
+    "stalemate_trinket"
   ],
-  "zugzwang_library": [],
+  "zugzwang_library": [
+    "library_boss_trinket"
+  ],
   "slushy_shoreline": [
     "steam_laser_mk_i_weapon",
     "steam_laser_mk_ii_weapon",
-    "steam_laser_mk_iii_weapon"
+    "steam_laser_mk_iii_weapon",
+    "softserve_trinket"
   ],
   "iceberg": [
     "deep_freeze_base",
@@ -229,15 +329,31 @@
     "ultimate_iceberg_base",
     "steam_laser_mk_i_weapon",
     "steam_laser_mk_ii_weapon",
-    "steam_laser_mk_iii_weapon"
+    "steam_laser_mk_iii_weapon",
+    "winter_hunt_iceberg_weapon",
+    "sticky_trinket",
+    "wax_trinket",
+    "super_wax_trinket"
   ],
   "sunken_city": [
     "depth_charge_base",
-    "bubbles_party_crasher_weapon"
+    "bubbles_party_crasher_weapon",
+    "chrome_school_of_sharks_weapon",
+    "anchor_trinket",
+    "golden_anchor_trinket",
+    "spiked_anchor_trinket",
+    "festive_anchor_trinket",
+    "water_jet_trinket",
+    "oxygen_burst_trinket",
+    "smart_water_jet_trinket",
+    "treasure_trawling_trinket",
+    "ultimate_anchoring_trinket",
+    "brilliant_water_jet_trinket"
   ],
   "queso_river": [
     "queso_canyon_base",
-    "queso_factory_weapon"
+    "queso_factory_weapon",
+    "remote_pumping_trinket"
   ],
   "queso_plains": [
     "queso_cannonstorm_base"
@@ -246,27 +362,53 @@
     "queso_cannonstorm_base"
   ],
   "queso_geyser": [
-    "queso_cannonstorm_base"
+    "queso_cannonstorm_base",
+    "dragonbane_trinket",
+    "super_dragonbane_trinket",
+    "extrme_dragonbane_trinket",
+    "ultimate_dragonbane_trinket"
   ],
   "fungal_cavern": [
     "gemology_base",
     "living_grove_base",
-    "crystal_mineral_crusher_weapon"
+    "crystal_mineral_crusher_weapon",
+    "nightshade_boost_trinket",
+    "crucible_boost_trinket",
+    "gemstone_boost_trinket",
+    "diamond_boost_trinket"
   ],
   "labyrinth": [
     "compass_magnet_base",
     "labyrinth_base",
     "minotaur_base",
-    "treasure_gwh_base"
+    "treasure_gwh_base",
+    "glowing_gourd_trinket",
+    "compass_magnet_trinket",
+    "lantern_oil_trinket",
+    "super_lantern_oil_trinket"
   ],
   "ancient_city": [
-    "thief_base"
+    "thief_base",
+    "nightshade_boost_trinket"
   ],
   "moussu_picchu": [
     "forecaster_base",
     "storm_wrought_ballista_weapon",
     "chrome_storm_wrought_ballista_weapon",
-    "geyser_draconic_weapon"
+    "geyser_draconic_weapon",
+    "picchu_freeze_base",
+    "chrome_dragon_slayer_cannon_weapon",
+    "dragon_devastator_multicannon_weapon",
+    "dragonbane_trinket",
+    "super_dragonbane_trinket",
+    "extrme_dragonbane_trinket",
+    "ultimate_dragonbane_trinket"
+  ],
+  "floating_islands": [
+    "empyrean_jewel_base",
+    "royal_ruby_refractor_base",
+    "sorcerers_sapphire_refractor_base",
+    "dragons_breath_opal_refractor_base"
   ],
   "foreword_farm": [
     "folklore_printing_press_base",
@@ -282,31 +424,70 @@
   ],
   "bountiful_beanstalk": [
     "folklore_printing_press_base",
-    "naughty_list_printing_press_base"
+    "naughty_list_printing_press_base",
+    "royal_ruby_refractor_base",
+    "sorcerers_sapphire_refractor_base",
+    "dragons_breath_opal_refractor_base"
   ],
   "school_of_sorcery": [
     "folklore_printing_press_base",
-    "naughty_list_printing_press_base"
+    "naughty_list_printing_press_base",
+    "sorcerers_sapphire_refractor_base",
+    "dragons_breath_opal_refractor_base"
+  ],
+  "draconic_depths": [
+    "folklore_printing_press_base",
+    "naughty_list_printing_press_base",
+    "dragons_breath_opal_refractor_base",
+    "dragonbane_trinket",
+    "super_dragonbane_trinket",
+    "extrme_dragonbane_trinket",
+    "ultimate_dragonbane_trinket"
   ],
   "rift_burroughs": [
     "mist_meter_regulator_base",
-    "christmas_crystalabra_weapon"
+    "christmas_crystalabra_weapon",
+    "rift_mist_diffuser_base",
+    "rift_vacuum_trinket",
+    "super_rift_vacuum_trinket"
   ],
   "rift_whisker_woods": [
     "dark_chocolate_bunny_weapon",
-    "christmas_crystalabra_weapon"
+    "christmas_crystalabra_weapon",
+    "rift_mist_diffuser_base",
+    "calming_trinket",
+    "cherry_trinket",
+    "gnarled_trinket",
+    "wicked_gnarly_trinket",
+    "rift_vacuum_trinket",
+    "super_rift_vacuum_trinket"
   ],
   "rift_furoma": [
     "furoma_base",
-    "christmas_crystalabra_weapon"
+    "christmas_crystalabra_weapon",
+    "rift_mist_diffuser_base",
+    "rift_furoma_energy_trinket",
+    "rift_super_furoma_energy_trinket",
+    "rift_vacuum_trinket",
+    "super_rift_vacuum_trinket"
   ],
   "rift_gnawnia": [
-    "christmas_crystalabra_weapon"
+    "christmas_crystalabra_weapon",
+    "rift_mist_diffuser_base",
+    "rift_vacuum_trinket",
+    "super_rift_vacuum_trinket"
   ],
   "rift_bristle_woods": [
-    "christmas_crystalabra_weapon"
+    "christmas_crystalabra_weapon",
+    "rift_mist_diffuser_base",
+    "rift_vacuum_trinket",
+    "super_rift_vacuum_trinket",
+    "rift_anti_skele_trinket"
   ],
   "rift_valour": [
-    "christmas_crystalabra_weapon"
+    "christmas_crystalabra_weapon",
+    "rift_mist_diffuser_base",
+    "rift_vacuum_trinket",
+    "super_rift_vacuum_trinket"
   ]
 }
