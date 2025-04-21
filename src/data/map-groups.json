@@ -2658,6 +2658,7 @@
       {
         "name": "Dracano",
         "id": "dracano",
+        "icon": "/environments/eefec52373c6cb93bcd55909cb477e47.jpg",
         "color": "#ff3c3c",
         "mice": [
           "dragon",
