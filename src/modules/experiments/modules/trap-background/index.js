@@ -1,4 +1,4 @@
-import { addStyles } from '@utils';
+import { addStyles, getSetting } from '@utils';
 
 import styles from './styles.css';
 
