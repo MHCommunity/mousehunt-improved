@@ -23,9 +23,9 @@ const init = async () => {
 
   const enabled = {
     styles: getSetting('better-journal.styles', true),
-    list: getSetting('better-journal.list', false),
-    icons: getSetting('better-journal.icons'),
-    iconsMinimal: getSetting('better-journal.icons-minimal'),
+    list: getSetting('better-journal.list', true),
+    icons: getSetting('better-journal.icons', true),
+    iconsMinimal: getSetting('better-journal.icons-minimal', false),
     replacements: getSetting('better-journal.replacements', true),
     goldAndPoints: getSetting('better-journal.gold-and-points', true),
     itemColors: getSetting('better-journal.item-colors', true),
