@@ -22,6 +22,8 @@ Thank you for your interest in contributing to MouseHunt Improved! We welcome co
   - [Testing](#testing)
   - [Data files](#data-files)
   - [Adding a map to the map sorter/categorizer](#adding-a-map-to-the-map-sortercategorizer)
+  - [Building an extension or userscript that interacts with MouseHunt Improved](#building-an-extension-or-userscript-that-interacts-with-mousehunt-improved)
+    - [Example Userscript](#example-userscript)
 
 ## Getting Started
 
@@ -262,3 +264,54 @@ The `subcategories` array is only needed if you have mice that should be sorted 
 
 > [!TIP]
 > Running `bun run fix-map-groups` will go through the mice in the map groups file and replace any mouse names with their mouse types, so you can use the full names like "Mutated Behemoth Mouse" in the file and then run this command to replace them with the mouse types like "mutated_behemoth".
+
+## Building an extension or userscript that interacts with MouseHunt Improved
+
+If you want to build an extension or userscript that is compatible with or interacts with MouseHunt Improved, it is pretty simple to do so. The extension adds `mhui` (containing information about what modules are loaded) and `mhutils` (a collection of utility functions) to the `app` object in the global scope. You can access these from your extension or userscript.
+
+This is how you can check if MouseHunt Improved is loaded and use the utilities:
+
+```javascript
+// Listen for the extension to load.
+document.addEventListener('mh-improved-loaded', () => {
+  // `app.mhui` contains information about what modules are loaded.
+  // `window.app.mhutils` contains utility functions that you can use.
+
+  // For example, to do something only if the "Better Maps" module is loaded:
+  if (app.mhui.modules.includes('better-maps')) {
+    console.log('Better Maps module is loaded!');
+  }
+
+  // You can also leverage the utility functions provided by MouseHunt Improved.
+  const currentLocation = app.mhutils.getCurrentLocation();
+  console.log('Current location:', currentLocation);
+});
+```
+
+### Example Userscript
+
+```javascript
+// ==UserScript==
+// @name         My MouseHunt Userscript
+// @match        https://www.mousehuntgame.com/*
+// ==/UserScript==
+
+(function() {
+  'use strict';
+
+  // When the user navigates to the scoreboards page, show a message.
+  // This is just an example of how to use the mhutils functions.
+  // You can use any of the functions available in mhutils.
+  document.addEventListener('mh-improved-loaded', () => {
+    app.mhutils.onNavigation(() => {
+      app.mhutils.showHornMessage({
+        title: "Don't forget!",
+        text: "You're always #1!",
+        button: 'Got it!',
+        dismiss: 5000,
+        color: 'pink',
+      });
+    }, { page: 'scoreboards' });
+  });
+})();
+```
