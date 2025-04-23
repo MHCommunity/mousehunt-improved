@@ -61,7 +61,6 @@ const doVersionUpdates = async (updates) => {
     const updateCompleted = getSetting('mh-improved-updates-completed', []).includes(update.version);
 
     if (updateCompleted) {
-      debuglog('update-migration', `Update ${update.version} has already been completed`);
       continue;
     }
 
