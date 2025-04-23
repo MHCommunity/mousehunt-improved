@@ -179,7 +179,7 @@ const makeKingsCrownsTabContent = async () => {
       return;
     }
     sessionSet('kings-crowns', crowns);
-    sessionSet('kings-crownsTime', Date.now());
+    sessionSet('kings-crowns-time', Date.now());
   }
 
   const tabInnerContent = document.querySelector('.mousehuntHud-page-tabContent.kings_crowns');
@@ -536,6 +536,8 @@ export default async () => {
 
   onNavigation(addKingsCrownsToMicePage, {
     page: 'adversaries',
+    anyTab: true,
+    anySubtab: true,
   });
 
   onNavigation(addSortingToStatsPage, {
