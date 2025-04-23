@@ -13,6 +13,10 @@ import regionStyles from '../../shared/folklore-forest/styles.css';
 import styles from './styles.css';
 
 const addQuickReinforce = () => {
+  setTimeout(addQuickReinforceReal, 300);
+};
+
+const addQuickReinforceReal = () => {
   const wrapper = document.querySelector('.draconicDepthsCavernView__reinforceCavernContainer');
   if (! wrapper) {
     return;
@@ -148,6 +152,6 @@ export default async () => {
   });
 
   addQuickReinforce();
-  onTurn(addQuickReinforce, 1000);
+  onTurn(addQuickReinforce);
   onRequest('environment/draconic_depths.php', addQuickReinforce);
 };
