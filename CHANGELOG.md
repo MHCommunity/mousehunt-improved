@@ -1,5 +1,22 @@
 # Changelog
 
+## Version 0.80.0
+
+- Added 'Highlight Special Effects in Trap Selector' feature (moved from experimental)
+- Added 'Real Base Stats' experimental feature to display correct stats (using toothlet or paper) for Denture and Printing bases
+- Updated Draconic Depths Location HUD to include a new quick max reinforce button
+- Updated Better Journal default enabled settings
+- Updated Better Journal loot colors to include Mythical Dragon Heart
+- Updated Better Maps full-width widths
+- Updated Catch Rate Estimator & Minlucks to highlight higher than 85% catch rate in green
+- Updated extension to always add `mhutils` to the window object, not just when the Debug module is enabled
+- Updated extension to fire `mh-improved-loaded` event on the document when the extension is loaded
+- Fixed issue with King's Crown data caching
+- Fixed quick bait buttons showing incorrect quantity for ME cheeses
+- Fixed Location HUD inventory toggles requiring two clicks for the first toggle
+- Fixed the 'Prestige Base in skin previews' not correctly working
+- Fixed wooden base alignment in skin previews
+
 ## Version 0.79.5
 
 - Fixed Better UI trap image alignment
