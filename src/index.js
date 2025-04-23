@@ -6,6 +6,7 @@ import {
   debug,
   debuglog,
   doEvent,
+  doInternalEvent,
   getAnonymousUserHash,
   getFlag,
   getGlobal,
@@ -220,6 +221,11 @@ const init = async () => {
 
     // Fire the events to signal that the script has been loaded.
     doEvent('mh-improved-loaded', {
+      version: mhImprovedVersion,
+      modules: getGlobal('modules'),
+    });
+
+    doInternalEvent('mh-improved-loaded', {
       version: mhImprovedVersion,
       modules: getGlobal('modules'),
     });
