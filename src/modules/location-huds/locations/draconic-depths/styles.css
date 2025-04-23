@@ -206,3 +206,15 @@
 .draconicDepthsClaimDuplicatorChestDialogView:has(input:checked) .itemImage {
   background-image: url(https://i.mouse.rip/upscaled/e82a47642a8157fdaa9a017d0a02889f.png) !important;
 }
+
+.mh-improved-quick-reinforce.draconicDepthsCavernView__reinforceCavernButton {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  z-index: 3;
+}
+
+.headsUpDisplayDraconicDepthsView__baitCraftableContainer[data-item-type="elemental_emmental_cheese"] .mousehuntTooltip {
+  right: -50px;
+  left: -50px;
+}
