@@ -307,9 +307,12 @@ const renderList = async (list) => {
       catchRate.rate = 1;
       catchRate.percent = '100%';
     } else {
-      if (catchRate.rate * 100 >= 85) {
+      if (catchRate.rate * 100 >= 100) {
         crClass.push('mh-improved-cre-data-good');
         minluckClass.push('mh-improved-cre-data-good');
+      } else if (catchRate.rate * 100 >= 85) {
+        crClass.push('mh-improved-cre-data-goodish');
+        minluckClass.push('mh-improved-cre-data-goodish');
       } else if (catchRate.rate * 100 <= 60) {
         crClass.push('mh-improved-cre-data-bad');
         minluckClass.push('mh-improved-cre-data-bad');
