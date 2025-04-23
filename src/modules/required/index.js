@@ -14,6 +14,8 @@ import {
   setMultipleTimeout
 } from '@utils';
 
+import globalUtils from './global-utils';
+
 let hasAddedHornCountdownEvents = false;
 
 /**
@@ -224,6 +226,9 @@ const refreshOnLogin = (response, request) => {
  * Initialize the module.
  */
 const init = async () => {
+  // Add the global utils to the window object.
+  globalUtils();
+
   addEvents();
   addDialogListeners();
   addJournalProcessingEvents();

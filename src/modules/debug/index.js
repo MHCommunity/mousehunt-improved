@@ -1,5 +1,20 @@
-import * as Utils from '@utils';
-
+import {
+  getCurrentDialog,
+  getCurrentLocation,
+  getCurrentPage,
+  getCurrentSubtab,
+  getCurrentTab,
+  getFlags,
+  getSetting,
+  onActivation,
+  onDeactivation,
+  onDialogHide,
+  onDialogShow,
+  onEvent,
+  onNavigation,
+  onRequest,
+  onTravel
+} from '@utils';
 import settings from './settings';
 
 /**
@@ -34,50 +49,46 @@ const debug = (message, ...args) => {
  * Main function.
  */
 const main = () => {
-  // Add all the stuff from Utils to be accessible in the console as 'app.mhutils'
-  window.app = window.app || {};
-  window.app.mhutils = Utils;
-
   // If debug is not enabled, return.
-  if (! Utils.getSetting('debug', false)) {
+  if (! getSetting('debug', false)) {
     return;
   }
 
   // To enable, either add `debug-all` or one of the following: debug-dialog, debug-navigation, debug-request, debug-events.
-  if (Utils.getSetting('debug.dialog', false)) {
+  if (getSetting('debug.dialog', false)) {
     let currentDialog = null;
-    Utils.onDialogHide(() => {
+    onDialogHide(() => {
       debug(`Dialog hidden: ${currentDialog}`);
     });
 
-    Utils.onDialogShow('all', () => {
-      currentDialog = Utils.getCurrentDialog();
+    onDialogShow('all', () => {
+      currentDialog = getCurrentDialog();
       debug(`Dialog shown: ${currentDialog}`);
     });
   }
 
-  if (Utils.getSetting('debug.navigation', false)) {
-    Utils.onNavigation(() => {
+  if (getSetting('debug.navigation', false)) {
+    onNavigation(() => {
       debug('onNavigation', {
-        page: Utils.getCurrentPage(),
-        tab: Utils.getCurrentTab(),
-        subtab: Utils.getCurrentSubtab(),
+        page: getCurrentPage(),
+        tab: getCurrentTab(),
+        subtab: getCurrentSubtab(),
       });
     });
 
-    Utils.onTravel(null, () => {
-      debug('onTravel', Utils.getCurrentLocation());
+    onTravel(null, () => {
+      debug('onTravel', getCurrentLocation());
     });
   }
 
-  if (Utils.getSetting('debug.request', false)) {
-    Utils.onRequest('*', (response) => {
+  if (getSetting('debug.request', false)) {
+    onRequest('*', (response) => {
       debug('onRequest', response);
     });
   }
 
-  const debugAllEvents = Utils.getSetting('debug.all-events', false);
-  const debugEvents = Utils.getSetting('debug.events', false);
+  const debugAllEvents = getSetting('debug.all-events', false);
+  const debugEvents = getSetting('debug.events', false);
 
   if (debugEvents && ! debugAllEvents) {
     let events = [
@@ -104,8 +115,8 @@ const main = () => {
     let hasSingleEvent = false;
     const ignoredEvents = [];
 
-    // If Utils.getFlags() contains debug-events-<event-name>, also log that event.
-    for (const flag in Utils.getFlags()) {
+    // If getFlags() contains debug-events-<event-name>, also log that event.
+    for (const flag in getFlags()) {
       if (flag.startsWith('debug-events-only-')) {
         const event = flag.replace('debug-events-only-', '');
         hasSingleEvent = event;
@@ -127,7 +138,7 @@ const main = () => {
     }
 
     events.forEach((event) => {
-      Utils.onEvent(event, (...data) => {
+      onEvent(event, (...data) => {
         debug(`onEvent: ${event}`, data);
       });
     });
@@ -140,8 +151,8 @@ const main = () => {
 const init = () => {
   main();
 
-  Utils.onActivation('dev', main);
-  Utils.onDeactivation('dev', () => {
+  onActivation('dev', main);
+  onDeactivation('dev', () => {
     window.location.reload();
   });
 };
