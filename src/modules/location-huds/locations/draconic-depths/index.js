@@ -1,10 +1,4 @@
-import {
-  addHudStyles,
-  makeElement,
-  onRequest,
-  onTurn,
-  waitForElement
-} from '@utils';
+import { addHudStyles, makeElement, onTurn, waitForElement } from '@utils';
 
 import addCraftingButtons from '../../shared/crafting-buttons';
 import keepInventoryToggled from '../../shared/folklore-forest/keep-inventory-open';
@@ -24,10 +18,6 @@ const addQuickReinforceReal = () => {
 
   const reinforceButton = wrapper.querySelector('.draconicDepthsCavernView__reinforceCavernButton');
   if (! reinforceButton) {
-    return;
-  }
-
-  if (reinforceButton.classList.contains('draconicDepthsCavernView__reinforceCavernButton--quick-reinforce')) {
     return;
   }
 
@@ -78,7 +68,7 @@ const addQuickReinforceReal = () => {
       return;
     }
 
-    reinforceInput.value = Math.min(canAffordReinforces, 1);
+    reinforceInput.value = canAffordReinforces;
     const event = new Event('input', {
       bubbles: true,
       cancelable: true,
@@ -94,12 +84,10 @@ const addQuickReinforceReal = () => {
     }
     setTimeout(() => {
       reinforceDialogButton.click();
+      addQuickReinforce();
     }, 300);
-
-    button.innerText = `Max (+${canAffordReinforces})`;
   });
 
-  reinforceButton.classList.add('draconicDepthsCavernView__reinforceCavernButton--quick-reinforce');
   wrapper.append(button);
 };
 
@@ -153,5 +141,4 @@ export default async () => {
 
   addQuickReinforce();
   onTurn(addQuickReinforce);
-  onRequest('environment/draconic_depths.php', addQuickReinforce);
 };
