@@ -26,17 +26,19 @@ const getCurrentPage = () => {
  *
  * @param {string} page The page to go to.
  * @param {...any} args The arguments to pass to the page.
+ *
+ * @return {boolean} True if the page was set successfully, false otherwise.
  */
 const setPage = (page, ...args) => {
   if ('wiki' === page.toLowerCase()) {
     doEvent('mh-improved-open-wiki');
-    return;
+    return true;
   }
 
   // Uppercase the first letter of the page.
   page = page.charAt(0).toUpperCase() + page.slice(1);
 
-  hg?.utils?.PageUtil?.setPage?.(page, ...args);
+  return hg?.utils?.PageUtil?.setPage?.(page, ...args);
 };
 
 /**
@@ -44,9 +46,11 @@ const setPage = (page, ...args) => {
  *
  * @param {string} tab  The tab to set.
  * @param {...any} args The arguments to pass to the tab.
+ *
+ * @return {boolean} True if the tab was set successfully, false otherwise.
  */
 const setTab = (tab, ...args) => {
-  hg?.utils?.PageUtil?.setPageTab?.(tab, ...args);
+  return hg?.utils?.PageUtil?.setPageTab?.(tab, ...args);
 };
 
 /**
