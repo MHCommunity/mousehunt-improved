@@ -306,6 +306,16 @@
   background-color: transparent;
 }
 
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .journalEntries {
+  overflow: hidden;
+  border: 1px solid #de72ba;
+  border-radius: 5px;
+}
+
+.PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .journalEntries .entry:not(.highlight) {
+  outline: 1px solid #de72ba;
+}
+
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-trapBlock-header-title,
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound-label,
 .PageHunterProfile .pageFrameView .mh-improved-fancy-profile .hunterInfoView-wrapper .hunterInfoView-treasureMaps-right-cluesFound,

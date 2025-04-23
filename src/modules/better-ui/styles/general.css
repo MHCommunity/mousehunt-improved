@@ -229,7 +229,7 @@ a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--re
 }
 
 .trapImageView .trapImageView-trapAura:hover {
-  z-index: 2;
+  z-index: 26;
   outline: 2px solid #aaa;
   transition: none;
 }
