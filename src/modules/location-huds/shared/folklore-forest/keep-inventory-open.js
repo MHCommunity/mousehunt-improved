@@ -1,22 +1,31 @@
 import { getSetting, saveSetting } from '@utils';
 
+const setToggleInventory = (setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass) => {
+  const isSetOpen = getSetting(setting, false);
+  if (isSetOpen) {
+    inventory.classList.add(inventoryOpenClass);
+    toggleButton.classList.add(buttonOpenClass);
+  } else {
+    inventory.classList.remove(inventoryOpenClass);
+    toggleButton.classList.remove(buttonOpenClass);
+  }
+  return isSetOpen;
+};
+
 const createToggleInventory = (setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass) => {
+  // maybe toggle it once to set the initial state
+  let isSetOpen = getSetting(setting, false);
+  if (isSetOpen) {
+    setToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass);
+  }
+
   return (e) => {
     e.preventDefault();
+    e.stopPropagation();
 
-    let isSetOpen = getSetting(setting, false);
-
-    if (isSetOpen) {
-      isSetOpen = false;
-      inventory.classList.remove(inventoryOpenClass);
-      toggleButton.classList.remove(buttonOpenClass);
-    } else {
-      isSetOpen = true;
-      inventory.classList.add(inventoryOpenClass);
-      toggleButton.classList.add(buttonOpenClass);
-    }
-
-    saveSetting(setting, isSetOpen);
+    isSetOpen = getSetting(setting, false);
+    saveSetting(setting, ! isSetOpen);
+    setToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass);
   };
 };
 
@@ -55,8 +64,7 @@ const keepInventoryToggled = (opts) => {
     toggleButton.removeEventListener('click', toggleInventory);
   }
 
-  toggleInventory = createToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass);
-  toggleButton.addEventListener('click', toggleInventory);
+  toggleButton.addEventListener('click', createToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass));
 };
 
 export default keepInventoryToggled;
