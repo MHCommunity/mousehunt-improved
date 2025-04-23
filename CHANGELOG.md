@@ -12,6 +12,7 @@
 - Updated extension to always add `mhutils` to the window object, not just when the Debug module is enabled
 - Updated extension to fire `mh-improved-loaded` event on the document when the extension is loaded
 - Fixed issue with King's Crown data caching
+- Fixed trailing comma on items in Better Journal lists
 - Fixed quick bait buttons showing incorrect quantity for ME cheeses
 - Fixed Location HUD inventory toggles requiring two clicks for the first toggle
 - Fixed the 'Prestige Base in skin previews' not correctly working

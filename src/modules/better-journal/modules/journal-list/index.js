@@ -90,7 +90,7 @@ const splitText = async (text) => {
     allItems = await getData('items');
   }
 
-  return items.map((item) => {
+  const processedItems = items.map((item) => {
     if (linkItems) {
       const itemData = allItems.find((i) => i.name === item.trim().replace(/^\d+ /, ''));
       if (itemData) {
@@ -98,8 +98,15 @@ const splitText = async (text) => {
       }
     }
 
+    // if the last character is a comma, remove it.
+    if (item.endsWith(',')) {
+      item = item.slice(0, -1);
+    }
+
     return item.trim();
   }).filter(Boolean);
+
+  return processedItems;
 };
 
 /**
