@@ -10,7 +10,6 @@
         "Updated Better Journal default enabled settings.",
         "Updated Better Journal loot colors to include Mythical Dragon Heart.",
         "Updated Better Maps full-width widths.",
-        "Updated Catch Rate Estimator & Minlucks to highlight higher than 85% catch rate in green.",
         "Updated extension to always add <code>mhutils</code> to the window object, not just when the Debug module is enabled.",
         "Updated extension to fire <code>mh-improved-loaded</code> event on the document when the extension is loaded.",
         "Fixed issue with King's Crown data caching.",
