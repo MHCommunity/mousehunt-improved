@@ -91,18 +91,6 @@
   background-color: #4fe54f;
 }
 
-.mh-improved-cre-data-goodish {
-  color: #77ab1c;
-}
-
-.mh-improved-cre-highlight-goodish::before {
-  background-color: #77ab1c;
-}
-
-.mh-dark-mode .mh-improved-cre-data-goodish {
-  color: #b3d88b;
-}
-
 .mh-dark-mode .mh-improved-cre-highlight-goodish::before {
   background-color: #b3d88b;
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.80.1
+
+- Reverted Catch Rate Estimator & Minlucks color to previous behavior
+
 ## Version 0.80.0
 
 - Added 'Highlight Special Effects in Trap Selector' feature (moved from experimental)
