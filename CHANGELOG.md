@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.80.2
+
+- Fixed Location Catch Stats not correctly parsing numbers with commas
+
 ## Version 0.80.1
 
 - Reverted Catch Rate Estimator & Minlucks color to previous behavior

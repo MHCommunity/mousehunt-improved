@@ -11,6 +11,10 @@ import styles from './styles.css';
 
 import settings from './settings';
 
+const normalize = (value) => {
+  return Number.parseInt(value.toString().replaceAll(',', ''), 10);
+};
+
 /**
  * Get the mouse stats.
  *
@@ -34,7 +38,7 @@ const getMouseStats = async () => {
 
   // Reorder by the num_catches key.
   mouseData.sort((a, b) => {
-    return b.num_catches - a.num_catches;
+    return normalize(b.num_catches) - normalize(a.num_catches);
   });
 
   // Return the data.
