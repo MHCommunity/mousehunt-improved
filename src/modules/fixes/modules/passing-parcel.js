@@ -1,5 +1,8 @@
 import { onNavigation } from '@utils';
 
+let passingParcelAction = null;
+let handleParcelClick = null;
+
 /**
  * Fix the passing parcel message item markup.
  */
@@ -15,8 +18,8 @@ const fixPassingParcel = () => {
   }
 
   const newMarkup = `<div class="inventoryPage-item full convertible " onclick="app.pages.InventoryPage.useItem(this); return false;" data-item-id="1281" data-item-type="passing_parcel_message_item" data-item-classification="convertible" data-name="Passing Parcel" data-display-order="0">
-	<div class="inventoryPage-item-margin clear-block">
-		<div class="inventoryPage-item-name">
+    <div class="inventoryPage-item-margin clear-block">
+        <div class="inventoryPage-item-name">
       <a href="#" class="" onclick="hg.views.ItemView.show('passing_parcel_message_item'); return false;">
         <abbr title="Passing Parcel">Passing Parcel (collectible)</abbr>
       </a>
@@ -42,17 +45,34 @@ const fixPassingParcel = () => {
 
   passingParcel.outerHTML = newMarkup;
 
-  const passingParcelAction = document.querySelector('#passing-parcel-action');
-  passingParcelAction.addEventListener('click', () => {
+  passingParcelAction = document.querySelector('#passing-parcel-action');
+  handleParcelClick = () => {
     window.location.href = 'https://www.mousehuntgame.com/supplytransfer.php?item_type=passing_parcel_message_item';
-  });
+  };
+  if (passingParcelAction) {
+    passingParcelAction.addEventListener('click', handleParcelClick);
+  }
+};
+
+/**
+ * Cleanup function to remove event listeners.
+ */
+const cleanupPassingParcel = () => {
+  if (passingParcelAction && handleParcelClick) {
+    passingParcelAction.removeEventListener('click', handleParcelClick);
+  }
+  passingParcelAction = null;
+  handleParcelClick = null;
 };
 
 /**
  * Initialize the passing parcel fix.
  */
 export default async () => {
-  onNavigation(fixPassingParcel, {
+  onNavigation(() => {
+    cleanupPassingParcel();
+    fixPassingParcel();
+  }, {
     page: 'inventory',
     tab: 'special',
     onLoad: true,
