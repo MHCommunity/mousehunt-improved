@@ -1,5 +1,6 @@
 import {
   addStyles,
+  debounce,
   getSetting,
   getTradableItems,
   makeElement,
@@ -265,6 +266,8 @@ const main = async () => {
     return;
   }
 
+  const debouncedMakeSendSuppliesButton = debounce(makeSendSuppliesButton, 200); // eslint-disable-line @wordpress/no-unused-vars-before-return
+
   for (const btn of sendSupplies) {
     if (btn.classList.contains('disabled')) {
       return;
@@ -283,7 +286,7 @@ const main = async () => {
 
     // if the user hovers over the button, show the quick send supplies popup
     btn.addEventListener('mouseenter', async () => {
-      await makeSendSuppliesButton(btn, snuid);
+      await debouncedMakeSendSuppliesButton(btn, snuid);
     });
   }
 };
@@ -305,6 +308,8 @@ const addToMapUsers = async (attempts = 0) => {
     return;
   }
 
+  const debouncedMakeSendSuppliesButton = debounce(makeSendSuppliesButton, 200); // eslint-disable-line @wordpress/no-unused-vars-before-return
+
   mapUsers.forEach(async (btn) => {
     const existing = btn.getAttribute('data-quick-send');
     if (existing) {
@@ -319,7 +324,7 @@ const addToMapUsers = async (attempts = 0) => {
 
     // if the user hovers over the button, show the quick send supplies popup
     btn.addEventListener('mouseenter', async () => {
-      await makeSendSuppliesButton(btn, snuid);
+      await debouncedMakeSendSuppliesButton(btn, snuid);
     });
   });
 };
