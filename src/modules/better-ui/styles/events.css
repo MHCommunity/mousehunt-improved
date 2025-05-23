@@ -198,3 +198,11 @@
     animation: none;
   }
 }
+
+.QuestKingsGiveawayCampHUD__scoreboard thead th:nth-of-type(2),
+.QuestKingsGiveawayCampHUD__scoreboard thead th:nth-of-type(3),
+.QuestKingsGiveawayCampHUD__scoreboard thead th:nth-of-type(4),
+.QuestKingsGiveawayCampHUD__scoreboard thead th:nth-of-type(5),
+.QuestKingsGiveawayCampHUD__scoreboard thead th:nth-of-type(6) {
+  vertical-align: top;
+}
