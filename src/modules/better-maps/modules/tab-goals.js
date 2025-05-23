@@ -2,6 +2,7 @@ import {
   addMHCTData,
   debuglog,
   doRequest,
+  isAppleOS,
   makeElement,
   makeLink,
   sessionGet,
@@ -253,6 +254,67 @@ const addClassesToGroups = (mapData) => {
       replacementTitle.append(count);
     }
 
+    const toggleGroup = makeElement('div', 'mh-ui-goals-group-toggle');
+    const isStartingToggled = sessionGet('better-maps-groups-toggled', []);
+
+    const expand = () => {
+      toggleGroup.setAttribute('data-toggled', 'false');
+      toggleGroup.setAttribute('title', `Collapse (Hold ${isAppleOS() ? '⌘ Command' : 'Ctrl'} to toggle all)`);
+      toggleGroup.classList.remove('collapsed');
+      toggleGroup.classList.add('expanded');
+      group.classList.remove('mh-ui-goals-group-collapsed');
+      group.classList.add('mh-ui-goals-group-expanded');
+    };
+
+    const collapse = () => {
+      toggleGroup.setAttribute('data-toggled', 'true');
+      toggleGroup.setAttribute('title', `Expand (Hold ${isAppleOS() ? '⌘ Command' : 'Ctrl'} to toggle all)`);
+      toggleGroup.classList.remove('expanded');
+      toggleGroup.classList.add('collapsed');
+      group.classList.remove('mh-ui-goals-group-expanded');
+      group.classList.add('mh-ui-goals-group-collapsed');
+    };
+
+    if (isStartingToggled.includes(hunter.sn_user_id)) {
+      collapse();
+    } else {
+      expand();
+    }
+
+    toggleGroup.addEventListener('click', (event) => {
+      const toggled = toggleGroup.getAttribute('data-toggled');
+      const currentSessionToggled = sessionGet('better-maps-groups-toggled', []);
+      if (currentSessionToggled.includes(hunter.sn_user_id)) {
+        currentSessionToggled.splice(currentSessionToggled.indexOf(hunter.sn_user_id), 1);
+      } else {
+        currentSessionToggled.push(hunter.sn_user_id);
+      }
+      sessionSet('better-maps-groups-toggled', currentSessionToggled);
+
+      if ('true' === toggled) {
+        expand();
+      } else {
+        collapse();
+      }
+
+      // if the user is holding down command/ctrl, toggle all groups.
+      if (event.ctrlKey || event.metaKey) {
+        const allGroups = document.querySelectorAll('.treasureMapView-goals-groups');
+        allGroups.forEach((g) => {
+          // find the toggle and if its not the same as the current one, click it.
+          const toggle = g.querySelector('.mh-ui-goals-group-toggle');
+          if (toggle && toggle !== toggleGroup) {
+            const isThisOneToggled = toggle.getAttribute('data-toggled');
+            if (isThisOneToggled === toggled) {
+              toggle.click();
+            }
+          }
+        });
+      }
+    });
+
+    replacementTitle.append(toggleGroup);
+
     if (title) {
       title.replaceWith(replacementTitle);
     }
@@ -489,17 +551,7 @@ const addSidebarToggle = async () => {
 
   const toggle = makeElement('a', 'mh-ui-goals-sidebar-toggle');
 
-  const isStartingToggled = sessionGet('better-maps-sidebar-toggled', false);
-  if ('open' === isStartingToggled) {
-    toggle.classList.remove('open');
-    toggle.classList.add('closed');
-    toggle.setAttribute('data-state', 'closed');
-    toggle.setAttribute('title', 'Show Sidebar');
-
-    mapView.classList.add('mh-ui-goals-sidebar-toggled');
-    rightBlock.classList.add('hidden');
-    leftBlock.classList.add('full-width');
-  } else {
+  const open = () => {
     toggle.classList.remove('closed');
     toggle.classList.add('open');
     toggle.setAttribute('data-state', 'open');
@@ -508,6 +560,24 @@ const addSidebarToggle = async () => {
     mapView.classList.remove('mh-ui-goals-sidebar-toggled');
     rightBlock.classList.remove('hidden');
     leftBlock.classList.remove('full-width');
+  };
+
+  const close = () => {
+    toggle.classList.remove('open');
+    toggle.classList.add('closed');
+    toggle.setAttribute('data-state', 'closed');
+    toggle.setAttribute('title', 'Show Sidebar');
+
+    mapView.classList.add('mh-ui-goals-sidebar-toggled');
+    rightBlock.classList.add('hidden');
+    leftBlock.classList.add('full-width');
+  };
+
+  const isStartingToggled = sessionGet('better-maps-sidebar-toggled', false);
+  if ('open' === isStartingToggled) {
+    close();
+  } else {
+    open();
   }
 
   toggle.addEventListener('click', () => {
@@ -516,23 +586,9 @@ const addSidebarToggle = async () => {
     sessionSet('better-maps-sidebar-toggled', isToggled);
 
     if ('open' === isToggled) {
-      toggle.setAttribute('data-state', 'closed');
-      toggle.setAttribute('title', 'Show Sidebar');
-      toggle.classList.remove('open');
-      toggle.classList.add('closed');
-
-      mapView.classList.add('mh-ui-goals-sidebar-toggled');
-      rightBlock.classList.add('hidden');
-      leftBlock.classList.add('full-width');
+      close();
     } else {
-      toggle.setAttribute('data-state', 'open');
-      toggle.setAttribute('title', 'Hide Sidebar');
-      toggle.classList.remove('closed');
-      toggle.classList.add('open');
-
-      mapView.classList.remove('mh-ui-goals-sidebar-toggled');
-      rightBlock.classList.remove('hidden');
-      leftBlock.classList.remove('full-width');
+      open();
     }
   });
 

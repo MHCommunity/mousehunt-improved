@@ -277,10 +277,38 @@
 }
 
 .mh-ui-goals-sidebar-toggle.closed {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="28" fill="currentColor"><path d="M4 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm0-2h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4z"></path><path d="M8.414 9H14a1 1 0 1 1 0 2H8.414l2.536 2.536a1 1 0 0 1-1.414 1.414l-4.243-4.243a.997.997 0 0 1 0-1.414L9.536 5.05a1 1 0 1 1 1.414 1.414L8.414 9z"></path></svg>'); /* stylelint-disable-line */
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="28" fill="currentColor" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" transform="matrix(-1,1.2246467991473532e-16,-1.2246467991473532e-16,-1,0,0)"><path d="M4 0h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm7.828 8L8.293 6.464A1 1 0 0 1 9.707 5.05l4.243 4.243a1 1 0 0 1 0 1.414L9.707 14.95a1 1 0 1 1-1.414-1.414L11.828 10z"></path></svg>'); /* stylelint-disable-line */
 }
 
 .mh-ui-goals-sidebar-toggle:hover {
+  opacity: 1;
+}
+
+.mh-ui-goals-group-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  width: 15px;
+  height: 15px;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" transform="rotate(-90)" viewBox="-2 -2 24 24"><path d="M4 0h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm8 8L8 6a1 1 0 0 1 2-1l4 4a1 1 0 0 1 0 2l-4 4a1 1 0 1 1-2-1l4-4z"/></svg>'); /* stylelint-disable-line */
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 0.5;
+}
+
+.mh-ui-goals-group-toggle.collapsed {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" transform="rotate(90)" viewBox="-2 -2 24 24"><path d="M4 0h12a4 4 0 0 1 4 4v12a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm8 8L8 6a1 1 0 0 1 2-1l4 4a1 1 0 0 1 0 2l-4 4a1 1 0 1 1-2-1l4-4z"/></svg>'); /* stylelint-disable-line */
+}
+
+.mh-ui-goals-group.completed.mh-ui-goals-group-collapsed > div {
+  display: none;
+}
+
+.mh-ui-goals-group.completed.mh-ui-goals-group-collapsed > div.treasureMapView-block-content-heading {
+  display: block;
+}
+
+.mh-ui-goals-group-toggle:hover {
   opacity: 1;
 }
 
