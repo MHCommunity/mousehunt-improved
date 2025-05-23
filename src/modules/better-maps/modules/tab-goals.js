@@ -595,6 +595,50 @@ const addSidebarToggle = async () => {
   leftBlock.append(toggle);
 };
 
+const addPreviewClass = async () => {
+  const mapView = document.querySelector('.treasureMapView');
+  if (! mapView) {
+    return;
+  }
+
+  const previewClass = mapView.querySelector('.treasureMapView-previewBar');
+  if (! previewClass) {
+    return;
+  }
+
+  mapView.classList.add('mh-ui-map-preview');
+};
+
+const moveAuras = async () => {
+  const mapView = document.querySelector('.treasureMapView');
+  if (! mapView) {
+    return;
+  }
+
+  const mapName = mapView.querySelector('.treasureMapView-mapName');
+  if (! mapName) {
+    return;
+  }
+
+  const auras = mapView.querySelectorAll('.treasureMapView-mapMenu-auraIconContainer');
+  if (! auras) {
+    return;
+  }
+
+  // wrap the mapname text in a span and append the auras to it inside of a different div
+  const mapNameText = mapName.innerText;
+  mapName.innerHTML = '';
+  const mapNameWrapper = makeElement('span', 'mh-ui-map-name');
+  mapNameWrapper.innerText = mapNameText;
+  mapName.append(mapNameWrapper);
+  const aurasWrapper = makeElement('div', 'mh-ui-map-name-auras');
+  for (const aura of auras) {
+    aurasWrapper.append(aura);
+  }
+
+  mapName.append(aurasWrapper);
+};
+
 /**
  * Fire the actions when the goals tab is shown.
  *
@@ -608,6 +652,8 @@ const showGoalsTab = async (mapData) => {
   moveLeaveButton();
   addQuickInvite(mapData);
   addSidebarToggle();
+  addPreviewClass();
+  moveAuras();
 };
 
 /**

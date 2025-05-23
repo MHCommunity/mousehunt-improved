@@ -17,3 +17,74 @@
 .treasureMapDialogView-chest-item.extremely_rare:hover .treasureMapDialogView-chest-item-padding::before {
   display: block;
 }
+
+.treasureMapView-mapMenu-subgroup.chest {
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+
+.treasureMapDialogView-overlay .treasureMapView-mapMenu-subgroup.chest {
+  top: 5px;
+}
+
+.mh-ui-map-preview .treasureMapView-mapMenu-subgroup.chest {
+  top: 45px;
+}
+
+.rewards .treasureMapView-mapMenu-rewardName {
+  display: none;
+}
+
+.treasureMapView-mapMenu-subgroup.chest:hover .treasureMapView-mapMenu-rewardName {
+  position: absolute;
+  top: 32px;
+  left: 55px;
+  display: block;
+  width: 260px;
+}
+
+.treasureMapView-mapMenu-group-content {
+  position: inherit;
+}
+
+.treasureMapView-mapMenu-group.rewards {
+  position: inherit;
+}
+
+.treasureMapView-mapName {
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px;
+  margin-left: 50px;
+}
+
+.mh-ui-user-on-map .treasureMapView-mapName {
+  padding-top: 10px;
+  margin-left: 10px;
+}
+
+.treasureMapView-mapMenu-group:first-child .treasureMapView-mapMenu-group-title {
+  margin: 5px 0;
+}
+
+.mh-ui-map-name-auras {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.mh-ui-map-name-auras .treasureMapView-mapMenu-auraIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.treasureMapView-mapMenu-group-content .treasureMapView-mapMenu-group-actions {
+  position: absolute;
+  top: 0;
+}
+
+.mh-ui-map-preview .treasureMapView-mapMenu-group-content .treasureMapView-mapMenu-group-actions {
+  top: 50px;
+}

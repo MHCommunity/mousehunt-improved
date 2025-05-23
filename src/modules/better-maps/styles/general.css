@@ -45,12 +45,6 @@ input.treasureMapView-shareLinkInput {
   margin-right: -5px;
 }
 
-.rewards .treasureMapView-mapMenu-rewardName {
-  max-width: unset;
-  margin-right: 3px;
-  font-size: 12px;
-}
-
 .rewards .treasureMapView-mapMenu-subgroup.chest.mousehuntTooltipParent {
   display: flex;
   flex-direction: row-reverse;
@@ -778,10 +772,6 @@ input.treasureMapView-block-search-text {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.treasureMapView-mapMenu-group:first-child .treasureMapView-mapMenu-group-title {
-  margin-bottom: 15px;
 }
 
 .mh-improved-map-listing-last-active-wrapper {
