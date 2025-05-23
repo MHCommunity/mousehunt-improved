@@ -15,19 +15,16 @@ import {
 import styles from './styles.css';
 
 let items;
+let itemsById = null;
 let itemSettings = {};
 
 const getType = async (itemsToType) => {
-  if (! items) {
+  if (! itemsById) {
     items = await getData('items');
+    itemsById = Object.fromEntries(items.map((i) => [i.id, i]));
   }
 
-  const types = itemsToType.map((item) => {
-    const foundItem = items.find((i) => i.id === item);
-    return foundItem ? foundItem.type : undefined;
-  }).filter(Boolean);
-
-  return types;
+  return itemsToType.map((id) => itemsById[id]?.type).filter(Boolean);
 };
 
 /**
