@@ -441,11 +441,6 @@ const addQuickInvite = async (mapData) => {
       return inviteError('Invalid hunter ID');
     }
 
-    // Check if the hunter is already on the map.
-    if (mapData?.hunters?.find((h) => (h.sn_user_id === hunterId) && h.is_active)) {
-      return inviteError('Hunter is already on the map');
-    }
-
     debuglog('better-maps', `Inviting hunter ${hunterId} to map ${mapId}`);
 
     let snuid;
