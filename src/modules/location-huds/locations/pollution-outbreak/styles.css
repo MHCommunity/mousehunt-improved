@@ -21,7 +21,7 @@
 
 /* move the countdown to the top left */
 .pollutionOutbreakHUD-timer {
-  top: 2px;
+  top: 4px;
   bottom: unset;
   left: 18px;
   z-index: 29;
@@ -501,4 +501,21 @@ a.pollutionOutbreakHUD-refineButton:hover {
   height: 5px;
   content: "";
   background-color: #418132;
+}
+
+.pollutionOutbreakHUD-layer.level_1 .pollutionOutbreakHUD-layer-water,
+.pollutionOutbreakHUD-layer.level_2 .pollutionOutbreakHUD-layer-water,
+.pollutionOutbreakHUD-layer.level_3 .pollutionOutbreakHUD-layer-water,
+.pollutionOutbreakHUD-layer.level_4 .pollutionOutbreakHUD-layer-water,
+.pollutionOutbreakHUD-layer.level_5 .pollutionOutbreakHUD-layer-water {
+  opacity: 0.8;
+}
+
+.pollutionOutbreakHUD-layer-island {
+  transform: translateY(-20px);
+}
+
+.pollutionOutbreakHUD-timer,
+.pollutionOutbreakHUD-hunters {
+  opacity: 0.7;
 }
