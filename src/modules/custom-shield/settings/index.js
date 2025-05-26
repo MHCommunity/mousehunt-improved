@@ -22,6 +22,7 @@ export default async () => {
         { name: 'Birthday (Year 14)', value: 'birthday.year14' },
         { name: 'Birthday (Year 15)', value: 'birthday.year15' },
         { name: 'Birthday (Year 16)', value: 'birthday.year16' },
+        { name: 'Birthday (Year 17)', value: 'birthday.year17' },
         { name: 'Great Winter Hunt', value: 'winter_hunt' },
         { name: 'Halloween', value: 'halloween' },
         { name: 'Halloween (Pumpkins)', value: 'halloween-text' },
