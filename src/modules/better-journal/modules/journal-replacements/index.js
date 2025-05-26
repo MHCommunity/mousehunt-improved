@@ -124,6 +124,7 @@ const replacements = [
   ['The aura will last until', 'The aura expires on'],
   ['pm .', 'pm.'], // aura expiration fix.
   ['am .', 'am.'],
+  ['The last of the mist dissipated from the atmosphere.I can obtain more Mist Canisters and begin misting again.', 'The last of the mist dissipated.'],
 
   // Event stuff
   // SEH
