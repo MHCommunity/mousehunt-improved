@@ -185,6 +185,14 @@
   content: "";
 }
 
+.locked.mist-display::after {
+  content: "";
+}
+
+.riftBurroughsHud.is_misting .mistMeter .mistRegulating.is_regulating.tier_2 {
+  background-image: url(https://i.mouse.rip/lock.png);
+}
+
 .riftBurroughsHud .mistQuantity {
   left: -7px;
   font-size: 11px;

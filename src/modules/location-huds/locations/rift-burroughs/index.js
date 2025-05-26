@@ -97,6 +97,9 @@ const hud = () => {
   const wrapper = makeElement('div', ['brift-ui']);
 
   const mist = makeElement('div', ['mist-display', `state-${color}`], `${mistLevel} / 20 `);
+  if (user?.quests?.QuestRiftBurroughs?.has_regulator_base_armed) {
+    mist.classList.add('locked');
+  }
 
   mist.addEventListener('click', (e) => {
     hg.views.HeadsUpDisplayRiftBurroughsView.toggleMist(e.target);
