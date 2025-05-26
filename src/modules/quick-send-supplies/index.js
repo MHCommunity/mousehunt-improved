@@ -4,6 +4,7 @@ import {
   getSetting,
   getTradableItems,
   makeElement,
+  onDialogHide,
   onDialogShow,
   onEvent,
   onNavigation,
@@ -291,6 +292,15 @@ const main = async () => {
   }
 };
 
+const hideQuickSendSupplies = () => {
+  const quickSendLinkWrappers = document.querySelectorAll('.quickSendWrapper');
+  if (quickSendLinkWrappers && quickSendLinkWrappers.length) {
+    quickSendLinkWrappers.forEach((el) => {
+      el.remove();
+    });
+  }
+};
+
 /**
  * Add the quick send supplies popup to the users on a map.
  *
@@ -345,6 +355,7 @@ const init = async () => {
   onEvent('profile_hover', main);
 
   onDialogShow('map', addToMapUsers);
+  onDialogHide(hideQuickSendSupplies, 'map');
 
   onEvent('map_show_goals_tab_click', addToMapUsers);
   onEvent('map_tab_click', addToMapUsers);
