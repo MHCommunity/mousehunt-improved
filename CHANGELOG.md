@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 0.81.0
+
+- Better Maps: Added toggle buttons to completed Maps Goals sections, Ctrl/Cmd-click to toggle all
+- Better Maps: Fixed sidebar toggle functionality not working correctly sometimes
+- Better Maps: Updated display of chest and aura icons, moved them to near the map name
+- Better Maps: Fixed issue with hunters who have left the map not being able to be invited again
+- Better Maps: Fixed fallback to Relic Hunter hints when API does not return location
+- Quick Send Supplies: Fixed issues where multiple popups would show and not correctly close
+- Location HUDs: Burroughs Rift: Updated styles
+- Location HUDs: Toxic Spill: Updated styles
+- Custom Shield: Added 17th Birthday shield
+- Better Journal: Updated text replacements and styles
+- Miscellaneous performance improvements and bug fixes
+
 ## Version 0.80.2
 
 - Fixed Location Catch Stats not correctly parsing numbers with commas
