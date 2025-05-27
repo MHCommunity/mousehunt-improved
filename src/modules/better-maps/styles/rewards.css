@@ -88,3 +88,15 @@
 .mh-ui-map-preview .treasureMapView-mapMenu-group-content .treasureMapView-mapMenu-group-actions {
   top: 50px;
 }
+
+.treasureMapView-mapMenu-aura-name {
+  display: none;
+}
+
+.treasureMapView-mapMenu-auraIcon:hover + .treasureMapView-mapMenu-aura-name {
+  position: absolute;
+  top: 30px;
+  left: 55px;
+  display: block;
+  width: 260px;
+}

@@ -628,7 +628,7 @@ const moveAuras = async () => {
   mapName.append(mapNameWrapper);
   const aurasWrapper = makeElement('div', 'mh-ui-map-name-auras');
   for (const aura of auras) {
-    aurasWrapper.append(aura);
+    aurasWrapper.append(aura.parentNode);
   }
 
   mapName.append(aurasWrapper);
