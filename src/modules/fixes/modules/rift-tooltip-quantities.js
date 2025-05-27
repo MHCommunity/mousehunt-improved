@@ -8,19 +8,14 @@ const fixRiftTooltipQuantities = async () => {
     return;
   }
 
-  const cheeseQtys = await getUserItems(['gnawnia_boss_cheese', 'riftiago_cheese']);
-  if (! cheeseQtys || ! cheeseQtys.length) {
-    return;
-  }
-
   const craft = document.querySelector('.riftGnawniaHud-craftingBait .riftGnawniaHud-tooltip-quantity');
   if (craft) {
-    craft.textContent = cheeseQtys[0]?.quantity || 0;
+    craft.textContent = user?.enviroment_atts?.items?.gnawnia_boss_cheese?.quantity || 0;
   }
 
   const potion = document.querySelector('.riftGnawniaHud-potion .riftGnawniaHud-tooltip-quantity');
   if (potion) {
-    craft.textContent = cheeseQtys[1]?.quantity || 0;
+    potion.textContent = user?.enviroment_atts?.items?.riftiago_cheese?.quantity || 0;
   }
 };
 
