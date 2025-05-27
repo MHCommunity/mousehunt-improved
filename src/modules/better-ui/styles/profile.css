@@ -425,13 +425,35 @@ a.friendsProfileView-randomFriend {
 
 .eggMasterIcon {
   position: absolute;
-  top: 15px;
-  right: -12px;
+  top: -9px;
+  right: -15px;
   float: none !important;
   width: 30px !important;
   height: 30px !important;
   background-size: cover !important;
 }
+
+.eggMasterIcon.mh-improved-egg-master-icon {
+  top: 17px;
+  right: -8px;
+  z-index: 1;
+  background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/f28a4a667993ce8ffa65356b69d768d2.png);
+  background-size: 25px 25px;
+}
+
+.mh-improved-fancy-profile .eggMasterIcon {
+  margin-top: 18px;
+  margin-right: -6px;
+  background-image: url(https://www.mousehuntgame.com/images/items/convertibles/large/a6c4f3f31d71dffec00210da0e1dd13a.png);
+}
+
+.mh-improved-egg-master-icon .mousehuntTooltip {
+  top: 40px;
+  left: -30px;
+  width: 90px;
+  text-align: center;
+}
+
 
 .mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group-mouse.highlight .mouseCrownsView-group-mouse-name,
 .mh-dark-mode.PageHunterProfile .pageFrameView .mouseCrownsView-group-mouse:not(.favourite) .mouseCrownsView-group-mouse-name,
@@ -770,4 +792,5 @@ a.friendsProfileView-randomFriend {
 
 .hunterInfoView-wrapper .hunterInfoView-idCardTooltipBox-content {
   min-width: 85px;
+  text-align: center !important;
 }
