@@ -256,22 +256,18 @@ const updateRelicHunterHint = async () => {
   }
 
   const relicHunterLocation = await getRelicHunterLocation();
-  if (! relicHunterLocation || ! relicHunterLocation.id || 'unknown' === relicHunterLocation.id) {
-    const hint = relicHunter.innerText.trim();
+  if (! relicHunterLocation || ! relicHunterLocation.id || ! relicHunterLocation.name || 'Unknown' === relicHunterLocation.name) {
     const relicHunterHints = await getData('relic-hunter-hints');
 
-    let key = false;
-    Object.keys(relicHunterHints).forEach((k) => {
-      if (relicHunterHints[k].includes(hint)) {
-        key = k;
-      }
+    const foundLocation = Object.keys(relicHunterHints).find((key) => {
+      return relicHunterHints[key].includes(relicHunter.textContent.trim())
     });
 
-    if (! key) {
-      return false;
-    }
+    relicHunterLocation.id = foundLocation;
+  }
 
-    relicHunterLocation.id = key;
+  if (! relicHunterLocation.id || 'unknown' === relicHunterLocation.id) {
+    return false;
   }
 
   relicHunter.setAttribute('data-travel-button-added', true);
