@@ -1,6 +1,6 @@
-/* bigger ftc image */
+/* red tint on background */
+.journal .content .entry.attractionfailure,
 .journal .content .entry.catchfailure {
-  background-color: #f2f2f2;
-  background-position: 0;
-  background-size: 75px;
+  background-color: #ffd9d9;
+  background-image: url(https://i.mouse.rip/steal2.png);
 }

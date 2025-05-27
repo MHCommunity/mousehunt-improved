@@ -8,3 +8,11 @@
 .journal .entry.pollutinum_stolen {
   background: #ffbfbf;
 }
+
+.journal .entry.travel {
+  background-color: #f4eed0;
+}
+
+.journal .content .captchasolved {
+  background-image: url(https://i.mouse.rip/puzzlenew.png);
+}
