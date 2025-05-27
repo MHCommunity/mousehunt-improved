@@ -1,5 +1,5 @@
 .mh-dark .entry.short.misc.custom.unstable_charm_trigger {
-  background-color: var(--d-blue-dark);
+  background-color: var(--d-blue-darker);
 }
 
 .mh-dark .journal .content .entry.catchsuccessloot,
@@ -53,7 +53,7 @@
 
 .mh-dark .journal .content .captchasolved {
   background-color: var(--d-blue-dark);
-  background-image: url(https://i.mouse.rip/journal_puzzle_reward.png);
+  background-image: url(https://i.mouse.rip/puzzlenew.png);
   background-blend-mode: normal;
 }
 
@@ -104,4 +104,8 @@
 
 .mh-dark .journal .content .entry.kings_giveaway_bonus_prize_entry {
   background-color: var(--d-purple-dark);
+}
+
+.mh-dark .journal .content .entry .journaltext .luckyCatch {
+  color: var(--d-green);
 }

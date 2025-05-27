@@ -245,3 +245,16 @@
   color: var(--d-red);
   background-color: var(--d-action);
 }
+
+.mh-dark .inventoryPage-item .tooltip {
+  color: var(--d-text);
+  background-color: var(--d);
+}
+
+.mh-dark .inventoryPage-item .tooltip .arrow {
+  border-top-color: var(--d-border);
+}
+
+.mh-dark .inventoryPage-item .tooltip .arrow span {
+  border-top-color: var(--d);
+}
