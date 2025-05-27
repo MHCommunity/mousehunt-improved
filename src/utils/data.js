@@ -22,6 +22,7 @@ const validDataFiles = new Set([
   'upscaled-images',
   'wisdom',
   'items',
+  'titles',
 ]);
 
 /**

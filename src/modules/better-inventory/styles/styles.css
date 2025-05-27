@@ -689,3 +689,11 @@ a.inventoryPage-item-larryLexicon.tsitu-lock-convertible:hover {
 .mh-improved-skin-preview {
   margin-top: 10px;
 }
+
+.mh-inventory-sort-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
