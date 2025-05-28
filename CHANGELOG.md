@@ -2,16 +2,22 @@
 
 ## Version 0.81.0
 
+- Better Inventory: Add Trap Sorting option under Experimental Settings
+- Better Journal: Updated text replacements and styles
 - Better Maps: Added toggle buttons to completed Maps Goals sections, Ctrl/Cmd-click to toggle all
+- Better Maps: Fixed fallback to Relic Hunter hints when API does not return location
+- Better Maps: Fixed issue with hunters who have left the map not being able to be invited again
 - Better Maps: Fixed sidebar toggle functionality not working correctly sometimes
 - Better Maps: Updated display of chest and aura icons, moved them to near the map name
-- Better Maps: Fixed issue with hunters who have left the map not being able to be invited again
-- Better Maps: Fixed fallback to Relic Hunter hints when API does not return location
-- Quick Send Supplies: Fixed issues where multiple popups would show and not correctly close
+- Better UI: Added Egg Master icon display to profile pages
+- Custom Shield: Added 17th Birthday shield
+- Dark Mode: Updated styles
+- Fixes: Updated Passing Parcel fixes to be more performant
+- Fixes: Updated Burroughs Rift Location cheese quantities to be more performant and fix issues with cheese quantities not showing correctly
 - Location HUDs: Burroughs Rift: Updated styles
 - Location HUDs: Toxic Spill: Updated styles
-- Custom Shield: Added 17th Birthday shield
-- Better Journal: Updated text replacements and styles
+- Quick Send Supplies: Fixed issues where multiple popups would show and not correctly close
+- Ultimate Checkmark: Added Relic Hunter chests
 - Miscellaneous performance improvements and bug fixes
 
 ## Version 0.80.2
