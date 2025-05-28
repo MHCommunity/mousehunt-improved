@@ -144,7 +144,19 @@
       "rare_zugzwang_treasure_chest_convertible",
       "light_floating_loot_cache_convertible",
       "heavy_floating_loot_cache_convertible",
-      "empyrean_floating_loot_cache_convertible"
+      "empyrean_floating_loot_cache_convertible",
+      "easy_rh_treasure_chest_convertible",
+      "hard_rh_treasure_chest_convertible",
+      "medium_rh_treasure_chest_convertible",
+      "elaborate_rh_treasure_chest_convertible",
+      "arduous_rh_treasure_chest_convertible",
+      "elite_rh_treasure_chest_convertible",
+      "rare_easy_rh_treasure_chest_convertible",
+      "rare_medium_rh_treasure_chest_convertible",
+      "rare_hard_rh_treasure_chest_convertible",
+      "rare_elaborate_rh_treasure_chest_convertible",
+      "rare_arduous_rh_treasure_chest_convertible",
+      "rare_elite_rh_treasure_chest_convertible"
     ]
   },
   {
