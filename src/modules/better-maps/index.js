@@ -260,7 +260,7 @@ const updateRelicHunterHint = async () => {
     const relicHunterHints = await getData('relic-hunter-hints');
 
     const foundLocation = Object.keys(relicHunterHints).find((key) => {
-      return relicHunterHints[key].includes(relicHunter.textContent.trim())
+      return relicHunterHints[key].includes(relicHunter.textContent.trim());
     });
 
     relicHunterLocation.id = foundLocation;
