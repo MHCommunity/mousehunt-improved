@@ -1,4 +1,4 @@
-import { getCurrentLocation, getUserItems, onTravel } from '@utils';
+import { getCurrentLocation, onTravel } from '@utils';
 
 /**
  * Fix the tooltip quantities for Gnawnia Rift.
