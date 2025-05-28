@@ -1,28 +1,31 @@
 {
   "birthday": [
-    "theme_birthday_ten",
-    "theme_birthday_fifteen",
-    "theme_birthday_fourteen",
+    "theme_birthday_six",
     "theme_birthday_seven",
     "theme_birthday_eight",
     "theme_birthday_nine",
-    "theme_birthday_six",
+    "theme_birthday_ten",
+    "theme_birthday_thirteen",
+    "theme_birthday_fourteen",
+    "theme_birthday_fifteen",
+    "theme_birthday_sixteen",
+    "theme_birthday_seventeen",
     "theme_party_charm",
-    "theme_super_brie_factory",
-    "theme_birthday_thirteen"
+    "theme_super_brie_factory"
   ],
   "great_winter_hunt": [
-    "theme_winter_hunt_2018",
-    "theme_winter_hunt_2021",
-    "theme_winter_hunt_2014",
-    "theme_winter_hunt_2016",
-    "theme_winter_hunt_2020",
-    "theme_winter_hunt_2022",
     "theme_snow_golem",
+    "theme_winter_hunt_2012",
     "theme_winter_hunt_2013",
-    "theme_winter_hunt_2019",
+    "theme_winter_hunt_2014",
     "theme_winter_hunt_2015",
-    "theme_winter_hunt_2012"
+    "theme_winter_hunt_2016",
+    "theme_winter_hunt_2018",
+    "theme_winter_hunt_2019",
+    "theme_winter_hunt_2020",
+    "theme_winter_hunt_2021",
+    "theme_winter_hunt_2022",
+    "theme_winter_hunt_2024"
   ],
   "halloween": [
     "theme_admirals_ship",
@@ -37,11 +40,12 @@
     "theme_halloween_2013"
   ],
   "lunar_new_year": [
-    "theme_lny_2021",
     "theme_lny_2019",
-    "theme_lny_2023",
     "theme_lny_2020",
-    "theme_lny_2022"
+    "theme_lny_2021",
+    "theme_lny_2022",
+    "theme_lny_2023",
+    "theme_lny_2024"
   ],
   "spring_egg_hunt": [
     "theme_spring_hunt_2021"
