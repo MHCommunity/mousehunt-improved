@@ -26,7 +26,7 @@ const checkForEggMaster = async () => {
     snuid = user.sn_user_id;
   }
 
-  const isCachedEggMaster = await cacheGet(`eggmaster-${snuid}`, false);
+  const isCachedEggMaster = await cacheGet(`eggmaster-2025-${snuid}`, false);
   if (isCachedEggMaster) {
     addEggMasterIcon();
   } else {
@@ -36,7 +36,7 @@ const checkForEggMaster = async () => {
         addEggMasterIcon();
       }
 
-      cacheSet(`eggmaster-${snuid}`, isEggMaster);
+      cacheSet(`eggmaster-2025-${snuid}`, isEggMaster);
     });
   }
 };
