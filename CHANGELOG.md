@@ -4,6 +4,7 @@
 
 - Better Inventory: Add Trap Sorting option under Experimental Settings
 - Better Journal: Updated text replacements and styles
+- Better Maps: Added ability to pin environments in the Scroll Shop
 - Better Maps: Added toggle buttons to completed Maps Goals sections, Ctrl/Cmd-click to toggle all
 - Better Maps: Fixed fallback to Relic Hunter hints when API does not return location
 - Better Maps: Fixed issue with hunters who have left the map not being able to be invited again

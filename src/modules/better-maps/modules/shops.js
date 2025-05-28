@@ -1,4 +1,11 @@
-import { debug, getCurrentLocation, onRequest } from '@utils';
+import {
+  debug,
+  getCurrentLocation,
+  getSetting,
+  makeElement,
+  onRequest,
+  saveSetting
+} from '@utils';
 
 /**
  * Update the shops markup.
@@ -11,9 +18,35 @@ const updateShopsMarkup = async () => {
 
   let shops = [...shopsNodeList];
 
-  shops.sort((a, b) => {
-    const aName = a.querySelector('.treasureMapPopup-shop-environment').textContent.trim().toLowerCase();
-    const bName = b.querySelector('.treasureMapPopup-shop-environment').textContent.trim().toLowerCase();
+  const getPinnedShops = getSetting('better-maps.pinned-shops', []);
+
+  shops.sort((aEl, bEl) => {
+    const a = aEl.querySelector('.treasureMapPopup-shop-environment');
+    if (! a) {
+      return 1;
+    }
+
+    const b = bEl.querySelector('.treasureMapPopup-shop-environment');
+    if (! b) {
+      return -1;
+    }
+
+    const aEnv = a.getAttribute('data-environment-type') || '';
+    const bEnv = b.getAttribute('data-environment-type') || '';
+
+    const aPinned = getPinnedShops.includes(aEnv);
+    const bPinned = getPinnedShops.includes(bEnv);
+
+    if (aPinned && ! bPinned) {
+      return -1; // a is pinned, b is not
+    }
+
+    if (! aPinned && bPinned) {
+      return 1; // b is pinned, a is not
+    }
+
+    const aName = a.textContent.trim().toLowerCase();
+    const bName = b.textContent.trim().toLowerCase();
     return aName.localeCompare(bName);
   });
 
@@ -54,30 +87,44 @@ const updateShopsMarkup = async () => {
       container.classList.toggle('hidden');
     });
 
-    const scrolls = container.querySelectorAll('.treasureMapInventoryView-scrollCase');
-    if (! scrolls.length) {
-      return;
+    const pinIconWrapper = makeElement('div', ['treasureMapPopup-shop-pinIcon', 'mousehuntTooltipParent']);
+    pinIconWrapper.title = 'Pin this shop';
+    const environmentType = environmentEl.getAttribute('data-environment-type') || '';
+
+    if (getPinnedShops.includes(environmentType)) {
+      pinIconWrapper.classList.add('pinned');
+      shop.classList.add('pinned');
+      pinIconWrapper.title = 'Unpin this shop';
     }
 
-    scrolls.forEach((scroll) => {
-      const action = scroll.querySelector('.treasureMapInventoryView-scrollCase-action');
-      if (! action) {
-        return;
+    pinIconWrapper.addEventListener('click', () => {
+      const pinnedShops = getSetting('better-maps.pinned-shops', []);
+      if (pinnedShops.includes(environmentType)) {
+        pinIconWrapper.classList.remove('pinned');
+        shop.classList.remove('pinned');
+        const index = pinnedShops.indexOf(environmentType);
+        if (index > -1) {
+          pinnedShops.splice(index, 1);
+        }
+      } else {
+        pinIconWrapper.classList.add('pinned');
+        shop.classList.add('pinned');
+        pinnedShops.push(environmentType);
       }
-
-      const button = action.querySelector('.mousehuntActionButton');
-      if (! button) {
-        return;
-      }
-
-      const mapType = button.getAttribute('data-item-type');
-      if (! mapType) {
-        return;
-      }
-
-      debug('mapType', mapType); // todo: do something with the scrolls here.
+      debug('Toggle pin for shop', environmentType, pinnedShops);
+      saveSetting('better-maps.pinned-shops', pinnedShops);
+      hg.controllers.TreasureMapController.showShops();
     });
+
+    heading.append(pinIconWrapper);
   });
+
+  const lastPinned = document.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop.pinned');
+  if (lastPinned.length) {
+    const lastPinnedEl = lastPinned[lastPinned.length - 1];
+    lastPinnedEl.classList.add('last-pinned');
+  }
+
 };
 
 /**
