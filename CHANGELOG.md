@@ -5,6 +5,7 @@
 - Better Inventory: Add Trap Sorting option under Experimental Settings
 - Better Journal: Updated text replacements and styles
 - Better Maps: Added ability to pin environments in the Scroll Shop
+- Better Maps: Added links to MHCT and Tsitu's map solvers in the footer
 - Better Maps: Added toggle buttons to completed Maps Goals sections, Ctrl/Cmd-click to toggle all
 - Better Maps: Fixed fallback to Relic Hunter hints when API does not return location
 - Better Maps: Fixed issue with hunters who have left the map not being able to be invited again
@@ -12,6 +13,7 @@
 - Better Maps: Updated display of chest and aura icons, moved them to near the map name
 - Better Mice: Updated King's Crowns caching
 - Better Mice: Updated styles
+- Better Travel: Removed 'Show friend and hunter counts on map' option
 - Better UI: Added Egg Master icon display to profile pages
 - Custom Shield: Added 17th Birthday shield
 - Dark Mode: Updated styles

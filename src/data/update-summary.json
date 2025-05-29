@@ -2,31 +2,75 @@
   "summary": "",
   "details": [
     {
-      "title": "",
+      "title": "Better Inventory",
+      "items": ["Add Trap Sorting option under Experimental Settings"]
+    },
+    {
+      "title": "Better Journal",
+      "items": ["Updated text replacements and styles"]
+    },
+    {
+      "title": "Better Maps",
       "items": [
-        "Better Inventory: Add Trap Sorting option under Experimental Settings",
-        "Better Journal: Updated text replacements and styles",
-        "Better Maps: Added ability to pin environments in the Scroll Shop",
-        "Better Maps: Added toggle buttons to completed Maps Goals sections, Ctrl/Cmd-click to toggle all",
-        "Better Maps: Fixed fallback to Relic Hunter hints when API does not return location",
-        "Better Maps: Fixed issue with hunters who have left the map not being able to be invited again",
-        "Better Maps: Fixed sidebar toggle functionality not working correctly sometimes",
-        "Better Maps: Updated display of chest and aura icons, moved them to near the map name",
-        "Better Mice: Updated King's Crowns caching",
-        "Better Mice: Updated styles",
-        "Better Travel: Removed 'Show friend and hunter counts on map' option",
-        "Better UI: Added Egg Master icon display to profile pages",
-        "Custom Shield: Added 17th Birthday shield",
-        "Dark Mode: Updated styles",
-        "Fixes: Updated Passing Parcel fixes to be more performant",
-        "Fixes: Fixed Burroughs Rift Location riftiago quantities not showing correctly",
-        "Journal Changer: Add Draconic Depths to the environment list",
-        "Location HUDs: Burroughs Rift: Updated styles",
-        "Location HUDs: Toxic Spill: Updated styles",
-        "Quick Send Supplies: Fixed issues where multiple popups would show and not correctly close",
-        "Ultimate Checkmark: Added Relic Hunter chests",
-        "Miscellaneous performance improvements and bug fixes"
+        "Added ability to pin environments in the Scroll Shop",
+        "Added links to MHCT and Tsitu's map solvers in the footer",
+        "Added toggle buttons to completed Maps Goals sections, Ctrl/Cmd-click to toggle all",
+        "Fixed fallback to Relic Hunter hints when API does not return location",
+        "Fixed issue with hunters who have left the map not being able to be invited again",
+        "Fixed sidebar toggle functionality not working correctly sometimes",
+        "Updated display of chest and aura icons, moved them to near the map name"
       ]
+    },
+    {
+      "title": "Better Mice",
+      "items": ["Updated King's Crowns caching", "Updated styles"]
+    },
+    {
+      "title": "Better Travel",
+      "items": ["Removed 'Show friend and hunter counts on map' option"]
+    },
+    {
+      "title": "Better UI",
+      "items": ["Added Egg Master icon display to profile pages"]
+    },
+    {
+      "title": "Custom Shield",
+      "items": ["Added 17th Birthday shield"]
+    },
+    {
+      "title": "Dark Mode",
+      "items": ["Updated styles"]
+    },
+    {
+      "title": "Fixes",
+      "items": [
+        "Updated Passing Parcel fixes to be more performant",
+        "Fixed Burroughs Rift Location riftiago quantities not showing correctly"
+      ]
+    },
+    {
+      "title": "Journal Changer",
+      "items": ["Add Draconic Depths to the environment list"]
+    },
+    {
+      "title": "Location HUD: Burroughs Rift",
+      "items": ["Updated styles"]
+    },
+    {
+      "title": "Location HUD: Toxic Spill",
+      "items": ["Updated styles"]
+    },
+    {
+      "title": "Quick Send Supplies",
+      "items": ["Fixed issues where multiple popups would show and not correctly close"]
+    },
+    {
+      "title": "Ultimate Checkmark",
+      "items": ["Added Relic Hunter chests"]
+    },
+    {
+      "title": "Miscellaneous",
+      "items": ["Miscellaneous performance improvements and bug fixes"]
     }
   ]
 }
