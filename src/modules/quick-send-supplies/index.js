@@ -16,6 +16,8 @@ import {
 import settings from './settings';
 import styles from './styles.css';
 
+const activeHoverDebounces = new WeakMap();
+
 /**
  * Make the markup for an item.
  *
@@ -267,8 +269,6 @@ const main = async () => {
     return;
   }
 
-  const debouncedMakeSendSuppliesButton = debounce(makeSendSuppliesButton, 200); // eslint-disable-line @wordpress/no-unused-vars-before-return
-
   for (const btn of sendSupplies) {
     if (btn.classList.contains('disabled')) {
       return;
@@ -279,64 +279,82 @@ const main = async () => {
       return;
     }
 
-    // get the parent parent
-    const snuid = btn.parentNode.parentNode.getAttribute('data-recipient-snuid');
+    const snuid = btn.parentNode?.parentNode?.getAttribute('data-recipient-snuid');
     if (! snuid) {
       return;
     }
 
-    // if the user hovers over the button, show the quick send supplies popup
-    btn.addEventListener('mouseenter', async () => {
-      await debouncedMakeSendSuppliesButton(btn, snuid);
-    });
+    let debounceTimeout;
+
+    const onMouseEnter = () => {
+      debounceTimeout = setTimeout(() => {
+        makeSendSuppliesButton(btn, snuid);
+        activeHoverDebounces.delete(btn);
+      }, 400);
+      activeHoverDebounces.set(btn, debounceTimeout);
+    };
+
+    const onMouseLeave = () => {
+      const timeout = activeHoverDebounces.get(btn);
+      if (timeout) {
+        clearTimeout(timeout);
+        activeHoverDebounces.delete(btn);
+      }
+    };
+
+    btn.addEventListener('mouseenter', onMouseEnter);
+    btn.addEventListener('mouseleave', onMouseLeave);
   }
 };
 
-const hideQuickSendSupplies = () => {
-  const quickSendLinkWrappers = document.querySelectorAll('.quickSendWrapper');
-  if (quickSendLinkWrappers && quickSendLinkWrappers.length) {
-    quickSendLinkWrappers.forEach((el) => {
-      el.remove();
-    });
-  }
-};
-
-/**
- * Add the quick send supplies popup to the users on a map.
- *
- * @param {number} attempts The number of attempts.
- */
 const addToMapUsers = async (attempts = 0) => {
   const mapUsers = document.querySelectorAll('.treasureMapView-hunter-wrapper.mousehuntTooltipParent');
-  if (! mapUsers || ! mapUsers.length) {
+  if (! mapUsers?.length) {
     if (attempts < 10) {
-      setTimeout(() => {
-        addToMapUsers(attempts + 1);
-      }, 500 * (attempts + 1));
+      setTimeout(() => addToMapUsers(attempts + 1), 500 * (attempts + 1));
     }
-
     return;
   }
 
-  const debouncedMakeSendSuppliesButton = debounce(makeSendSuppliesButton, 200); // eslint-disable-line @wordpress/no-unused-vars-before-return
-
-  mapUsers.forEach(async (btn) => {
+  mapUsers.forEach((btn) => {
     const existing = btn.getAttribute('data-quick-send');
     if (existing) {
       return;
     }
 
-    // get the parent parent
     const snuid = btn.getAttribute('data-snuid');
     if (! snuid) {
       return;
     }
 
-    // if the user hovers over the button, show the quick send supplies popup
-    btn.addEventListener('mouseenter', async () => {
-      await debouncedMakeSendSuppliesButton(btn, snuid);
-    });
+    let debounceTimeout;
+
+    const onMouseEnter = () => {
+      debounceTimeout = setTimeout(() => {
+        makeSendSuppliesButton(btn, snuid);
+        activeHoverDebounces.delete(btn);
+      }, 400);
+      activeHoverDebounces.set(btn, debounceTimeout);
+    };
+
+    const onMouseLeave = () => {
+      const timeout = activeHoverDebounces.get(btn);
+      if (timeout) {
+        clearTimeout(timeout);
+        activeHoverDebounces.delete(btn);
+      }
+    };
+
+    btn.addEventListener('mouseenter', onMouseEnter);
+    btn.addEventListener('mouseleave', onMouseLeave);
   });
+};
+
+const hideQuickSendSupplies = () => {
+  const quickSendLinkWrappers = document.querySelectorAll('.quickSendWrapper');
+  if (quickSendLinkWrappers.length) {
+    quickSendLinkWrappers.forEach((el) => el.remove());
+  }
 };
 
 /**
