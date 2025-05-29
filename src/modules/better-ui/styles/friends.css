@@ -120,3 +120,28 @@
 .friendsPage-friendRow-image:hover {
   transform: scale(1.1);
 }
+
+.friendsPage-friendRow-stat.map .friendsPage-friendRow-stat-icon {
+  height: 18px;
+  opacity: 0.8;
+}
+
+.friendsPage-friendRow-stat.map.hasHover .friendsPage-friendRow-stat-icon {
+  opacity: 1;
+}
+
+.friendsPage-friendRow-stat.map.hasHover:hover .friendsPage-friendRow-stat-fullValue {
+  right: -1px;
+  left: -1px;
+}
+
+.friendsPage-friendRow-stat.map.hasHover:hover {
+  margin-right: -1px;
+  margin-left: -1px;
+  border-right: 1px solid #631e0c;
+  border-left: 1px solid #631e0c;
+}
+
+.mh-dark .friendsPage-friendRow-stat.map.hasHover:hover {
+  border-color: var(--d-border);
+}
