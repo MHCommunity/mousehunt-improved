@@ -1,3 +1,4 @@
+.treasureMapDialogView-chest-item.guaranteed .treasureMapDialogView-chest-item-padding::before,
 .treasureMapDialogView-chestPreview.rare .treasureMapDialogView-chest-item.doubled .treasureMapDialogView-chest-item-padding::before,
 .treasureMapDialogView-chest-item.very_likely .treasureMapDialogView-chest-item-padding::before,
 .treasureMapDialogView-chest-item.common .treasureMapDialogView-chest-item-padding::before,
@@ -8,6 +9,7 @@
   display: none;
 }
 
+.treasureMapDialogView-chest-item.guaranteed:hover .treasureMapDialogView-chest-item-padding::before,
 .treasureMapDialogView-chestPreview.rare .treasureMapDialogView-chest-item.doubled:hover .treasureMapDialogView-chest-item-padding::before,
 .treasureMapDialogView-chest-item.very_likely:hover .treasureMapDialogView-chest-item-padding::before,
 .treasureMapDialogView-chest-item.common:hover .treasureMapDialogView-chest-item-padding::before,
@@ -16,6 +18,53 @@
 .treasureMapDialogView-chest-item.very_rare:hover .treasureMapDialogView-chest-item-padding::before,
 .treasureMapDialogView-chest-item.extremely_rare:hover .treasureMapDialogView-chest-item-padding::before {
   display: block;
+}
+
+.treasureMapDialogView-chest-item-padding::before {
+  border-radius: 0 0 0 5px;
+}
+
+.treasureMapDialogView-chest-item.guaranteed .treasureMapDialogView-chest-item-padding::before {
+  content: "Guaranteed";
+  background-color: #ccc;
+}
+
+.treasureMapDialogView-chestPreview.guaranteed .treasureMapDialogView-chest-item-padding::before {
+  background-color: #ccc;
+}
+
+.treasureMapDialogView-chestPreview.rare .treasureMapDialogView-chest-item.doubled .treasureMapDialogView-chest-item-padding::before {
+  background-color: #accde6;
+}
+
+.treasureMapDialogView-chest-item.very_likely .treasureMapDialogView-chest-item-padding::before {
+  background-color: #98fffb;
+}
+
+.treasureMapDialogView-chest-item.common .treasureMapDialogView-chest-item-padding::before {
+  color: #fff;
+  background-color: #51a6e7;
+}
+
+.treasureMapDialogView-chest-item.uncommon .treasureMapDialogView-chest-item-padding::before {
+  background-color: #51e2bb;
+}
+
+.treasureMapDialogView-chest-item.rare .treasureMapDialogView-chest-item-padding::before {
+  background-color: #12ff00;
+}
+
+.treasureMapDialogView-chest-item.very_rare .treasureMapDialogView-chest-item-padding::before {
+  background-color: #c0ff00;
+}
+
+.treasureMapDialogView-chest-item.extremely_rare .treasureMapDialogView-chest-item-padding::before {
+  background-color: #ffde00;
+}
+
+.treasureMapDialogView-chest-item-padding:before {
+  right: 0;
+  left: unset;
 }
 
 .treasureMapView-mapMenu-subgroup.chest {
@@ -112,6 +161,7 @@
   top: 0;
   left: 0;
   padding: 3px;
+  font-size: 9px;
   border-radius: 0 0 5px;
 }
 

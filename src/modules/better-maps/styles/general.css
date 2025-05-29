@@ -896,10 +896,6 @@ input.treasureMapView-block-search-text {
   margin-bottom: 0;
 }
 
-.treasureMapDialogView-chest-item-padding::before {
-  box-shadow: 1px 1px 2px -1px #333;
-}
-
 .mh-ui-environments-block .treasureMapView-block-content:first-child {
   display: none;
 }
