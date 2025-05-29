@@ -21,6 +21,8 @@
 }
 
 .treasureMapDialogView-chest-item-padding::before {
+  right: 0;
+  left: unset;
   border-radius: 0 0 0 5px;
 }
 
@@ -60,11 +62,6 @@
 
 .treasureMapDialogView-chest-item.extremely_rare .treasureMapDialogView-chest-item-padding::before {
   background-color: #ffde00;
-}
-
-.treasureMapDialogView-chest-item-padding:before {
-  right: 0;
-  left: unset;
 }
 
 .treasureMapView-mapMenu-subgroup.chest {
