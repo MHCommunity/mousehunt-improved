@@ -635,6 +635,11 @@ const moveAuras = async () => {
 };
 
 const addMapSolverLinks = async (mapData) => {
+  const existing = document.querySelector('.mh-ui-map-solver-links-container');
+  if (existing) {
+    return;
+  }
+
   const mapFooter = document.querySelector('.treasureMapView-mapLeaveContainer');
   const mice = mapData?.goals?.mouse;
 
