@@ -12,6 +12,8 @@
         "Better Maps: Fixed issue with hunters who have left the map not being able to be invited again",
         "Better Maps: Fixed sidebar toggle functionality not working correctly sometimes",
         "Better Maps: Updated display of chest and aura icons, moved them to near the map name",
+        "Better Mice: Updated King's Crowns caching",
+        "Better Mice: Updated styles",
         "Better UI: Added Egg Master icon display to profile pages",
         "Custom Shield: Added 17th Birthday shield",
         "Dark Mode: Updated styles",
