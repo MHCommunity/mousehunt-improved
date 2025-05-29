@@ -14,7 +14,6 @@ import {
   onEvent,
   onNavigation,
   onPageChange,
-  onRequest,
   removeSubmenuItem,
   sessionGet,
   setTab,
@@ -692,19 +691,6 @@ const addFavoriteButtonsToTravelPage = async () => {
   });
 };
 
-let travelPageData;
-
-const getTravelPageData = () => {
-  return travelPageData || sessionGet('better-travel-page-data', []);
-};
-
-const saveTravelPageData = (data) => {
-  if (Array.isArray(data?.page?.tabs) && data.page.tabs.length >= 1 && data.page.tabs[0]?.type === 'map' && data.page.tabs[0]?.regions) {
-    travelPageData = data.page.tabs[0].regions;
-    sessionGet('better-travel-page-data', travelPageData);
-  }
-};
-
 /**
  * Main function.
  */
@@ -723,10 +709,6 @@ const main = () => {
 
   onPageChange({
     travel: { show: maybeSetTab },
-  });
-
-  onRequest('pages/page.php', (resp) => {
-    saveTravelPageData(resp);
   });
 
   listenTabChange();

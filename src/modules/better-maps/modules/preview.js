@@ -29,8 +29,6 @@ export default () => {
 
     const rewardData = mhctConvertibles.find((item) => item.type === rewardType);
 
-    console.log('Preview Rewards Button Clicked', rewardType, rewardData, rewardContents, rewardData?.convertibles);
-
     const previeItems = document.querySelectorAll('.treasureMapDialogView-chest-item');
     previeItems.forEach((item) => {
       const itemNameEl = item.querySelector('.treasureMapDialogView-chest-item-name span');
@@ -46,7 +44,6 @@ export default () => {
       }
 
       const itemData = rewardData?.convertibles?.find((convertible) => convertible.item === itemType.type);
-      console.log('Item Data', itemName, itemData);
       if (itemData) {
         const itemPadding = item.querySelector('.treasureMapDialogView-chest-item-padding');
         if (! itemPadding) {
