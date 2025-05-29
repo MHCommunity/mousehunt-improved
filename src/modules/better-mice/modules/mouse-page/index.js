@@ -159,7 +159,7 @@ const makeKingsCrownsTabContent = async () => {
   makeKingsCrownsTabContentContent();
 
   let crowns = [];
-  const cachedCrowns = sessionGet('kings-crowns');
+  const cachedCrowns = sessionGet('kings-crowns-data');
   const cachedCrownsTime = sessionGet('kings-crowns-time');
   if (
     cachedCrowns &&
@@ -178,7 +178,7 @@ const makeKingsCrownsTabContent = async () => {
     if (crowns.length <= 0) {
       return;
     }
-    sessionSet('kings-crowns', crowns);
+    sessionSet('kings-crowns-data', JSON.stringify(crowns));
     sessionSet('kings-crowns-time', Date.now());
   }
 

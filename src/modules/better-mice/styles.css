@@ -247,6 +247,14 @@ a.mouseListView-categoryContent-subgroup-mouse-thumb {
   transition: none;
 }
 
+.mouseListView-categoryContent-subgroup-mouse.stats.header:hover .mouseListView-categoryContent-subgroup-mouse-margin {
+  border-color: transparent;
+}
+
+.mouseListView-categoryContent-subgroup-mouse.stats.uncaught .mouseListView-categoryContent-subgroup-mouse-thumb {
+  filter: grayscale(1);
+}
+
 .mouseViewPopup .mouseView-image:hover {
   box-shadow: none;
   transform: scale(0.95);
