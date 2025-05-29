@@ -1012,3 +1012,18 @@ input.treasureMapView-block-search-text {
 .treasureMapView-mapMenu-group.allies {
   z-index: 1;
 }
+
+.mh-ui-map-name {
+  margin-left: 40px;
+}
+
+.mh-ui-map-solver-links-container.treasureMapRootView-padding {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.mh-ui-map-solver-links {
+  display: flex;
+  gap: 10px;
+}

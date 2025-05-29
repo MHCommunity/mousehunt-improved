@@ -634,6 +634,55 @@ const moveAuras = async () => {
   mapName.append(aurasWrapper);
 };
 
+const addMapSolverLinks = async (mapData) => {
+  const mapFooter = document.querySelector('.treasureMapView-mapLeaveContainer');
+  const mice = mapData?.goals?.mouse;
+
+  if (! mapFooter || ! Array.isArray(mice) || ! mice.length) {
+    return;
+  }
+
+  const mouseNames = mice.map((mouse) => mouse.name).join('/');
+  const newlineMouseNames = mouseNames.replaceAll('/', '\n');
+
+  const wrapper = makeElement('div', 'mh-ui-map-solver-links');
+
+  const createSolverButton = (text, className, onClick) => {
+    const button = makeElement('button', [className, 'mousehuntActionButton', 'tiny']);
+    makeElement('span', `${className}-text`, text, button);
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      onClick();
+    });
+    return button;
+  };
+
+  const mhctButton = createSolverButton('MHCT Map Solver', 'mh-ui-map-solver-mhct-link', () => {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://mhct.win/maphelper.php';
+    form.target = '_mhct-map-solver';
+
+    const textarea = document.createElement('textarea');
+    textarea.name = 'mice';
+    textarea.value = newlineMouseNames;
+    form.append(textarea);
+
+    document.body.append(form);
+    form.submit();
+    form.remove();
+  });
+
+  const tsituButton = createSolverButton('Tsitu\'s Map Solver', 'mh-ui-map-solver-tsitu-link', () => {
+    const url = `https://tsitu.github.io/MH-Tools/map.html?mice=${encodeURIComponent(mouseNames)}`;
+    window.open(url, '_tsitu-map-solver');
+  });
+
+  wrapper.append(mhctButton, tsituButton);
+  mapFooter.append(wrapper);
+  mapFooter.classList.add('mh-ui-map-solver-links-container');
+};
+
 /**
  * Fire the actions when the goals tab is shown.
  *
@@ -649,6 +698,7 @@ const showGoalsTab = async (mapData) => {
   addSidebarToggle();
   addPreviewClass();
   moveAuras();
+  addMapSolverLinks(mapData);
 };
 
 /**
