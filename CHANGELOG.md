@@ -7,6 +7,7 @@
 - Better Maps: Added ability to pin environments in the Scroll Shop
 - Better Maps: Added links to MHCT and Tsitu's map solvers in the footer
 - Better Maps: Added toggle buttons to completed Maps Goals sections, Ctrl/Cmd-click to toggle all
+- Better Maps: Added quantity and chance percent to items in the Preview
 - Better Maps: Fixed fallback to Relic Hunter hints when API does not return location
 - Better Maps: Fixed issue with hunters who have left the map not being able to be invited again
 - Better Maps: Fixed sidebar toggle functionality not working correctly sometimes

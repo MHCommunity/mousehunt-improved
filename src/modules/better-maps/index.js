@@ -22,6 +22,7 @@ import { maybeShowInvitesTab } from './modules/tab-invites';
 import { showHuntersTab } from './modules/tab-hunters';
 
 import community from './modules/community';
+import enhancePreviewButton from './modules/preview';
 import floatingIslands from './modules/floating-islands';
 import scrolls from './modules/scrolls';
 import shops from './modules/shops';
@@ -468,11 +469,13 @@ const init = async () => {
     addBlockClasses();
     updateMapClasses();
     maybeShowInvitesTab(tab);
+    enhancePreviewButton();
   });
 
   onRequest('users/treasuremap_v2.php', () => {
     addBlockClasses();
     updateMapClasses();
+    enhancePreviewButton();
   });
 
   floatingIslands();

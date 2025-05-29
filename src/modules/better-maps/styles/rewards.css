@@ -39,9 +39,10 @@
 .treasureMapView-mapMenu-subgroup.chest:hover .treasureMapView-mapMenu-rewardName {
   position: absolute;
   top: 32px;
-  left: 55px;
+  left: 50px;
   display: block;
   width: 260px;
+  max-width: unset;
 }
 
 .treasureMapView-mapMenu-group-content {
@@ -56,7 +57,7 @@
   display: flex;
   flex-direction: row;
   padding-top: 15px;
-  margin-left: 50px;
+  margin-left: 10px;
 }
 
 .mh-ui-user-on-map .treasureMapView-mapName {
@@ -99,4 +100,46 @@
   left: 55px;
   display: block;
   width: 260px;
+}
+
+.mh-improved-reward-quantity {
+  padding-bottom: 3px;
+  font-style: italic;
+}
+
+.mh-improved-reward-chance {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px;
+  border-radius: 0 0 5px;
+}
+
+.treasureMapDialogView-chest-item.guaranteed .mh-improved-reward-chance {
+  background-color: #ccc;
+}
+
+.treasureMapDialogView-chest-item.very_likely .mh-improved-reward-chance {
+  background-color: #98fffb;
+}
+
+.treasureMapDialogView-chest-item.common .mh-improved-reward-chance {
+  color: #fff;
+  background-color: #51a6e7;
+}
+
+.treasureMapDialogView-chest-item.uncommon .mh-improved-reward-chance {
+  background-color: #51e2bb;
+}
+
+.treasureMapDialogView-chest-item.rare .mh-improved-reward-chance {
+  background-color: #12ff00;
+}
+
+.treasureMapDialogView-chest-item.very_rare .mh-improved-reward-chance {
+  background-color: #c0ff00;
+}
+
+.treasureMapDialogView-chest-item.extremely_rare .mh-improved-reward-chance {
+  background-color: #ffde00;
 }

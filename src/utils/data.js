@@ -23,6 +23,7 @@ const validDataFiles = new Set([
   'wisdom',
   'items',
   'titles',
+  'mhct-convertibles',
 ]);
 
 /**

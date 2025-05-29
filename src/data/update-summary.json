@@ -14,6 +14,7 @@
       "items": [
         "Added ability to pin environments in the Scroll Shop",
         "Added links to MHCT and Tsitu's map solvers in the footer",
+        "Added quantity and chance percent to items in the Preview",
         "Added toggle buttons to completed Maps Goals sections, Ctrl/Cmd-click to toggle all",
         "Fixed fallback to Relic Hunter hints when API does not return location",
         "Fixed issue with hunters who have left the map not being able to be invited again",
