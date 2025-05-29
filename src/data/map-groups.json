@@ -3082,5 +3082,51 @@
         "name": "Cavern 750+ Loot"
       }
     ]
+  },
+  "town_of_digby": {
+    "categories": [
+      {
+        "name": "Limelight",
+        "id": "limelight",
+        "icon": "https://i.mouse.rip/upscaled/e3be5f83d06c5ff4ca7322273cc52f10.png",
+        "color": "#e1e3a1",
+        "mice": [
+          "core_sample",
+          "demolitions",
+          "industrious_digger",
+          "miner",
+          "rock_muncher",
+          "stone_cutter",
+          "subterranean"
+        ]
+      },
+      {
+        "name": "Limelight & Mining Charm",
+        "id": "limelight-mining-charm",
+        "icon": "https://i.mouse.rip/upscaled/531ca3dc8e0beb5939e609319f2ede13.png",
+        "color": "#e7d3ba",
+        "mice": [
+          "big_bad_burroughs",
+          "itty_bitty_burroughs"
+        ]
+      },
+      {
+        "name": "Other",
+        "id": "other",
+        "icon": "/items/bait/large/180edb7cd522099432ec5c1fb591f633.png",
+        "color": "#bcd0eb",
+        "mice": [
+          "bat",
+          "bionic",
+          "diamond",
+          "dwarf",
+          "gold",
+          "granite",
+          "lambent_crystal",
+          "mole",
+          "steel"
+        ]
+      }
+    ]
   }
 }
