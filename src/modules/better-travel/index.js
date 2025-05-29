@@ -520,54 +520,6 @@ const addRhToMap = async () => {
   mapLocation.append(rh);
 };
 
-const addFriendsToMap = () => {
-  const travelData = getTravelPageData();
-  if (! travelData) {
-    return;
-  }
-
-  const environments = document.querySelectorAll('.travelPage-map-image-environment');
-  if (! environments) {
-    return;
-  }
-
-  // travelpageData is an array, but we want to flatten the environments property of each object into a single array
-  // so we can easily check if the current environment is in the list of friends
-  const envData = {};
-  travelData.forEach((region) => {
-    region.environments.forEach((environment) => {
-      if (environment?.type) {
-        envData[environment.type] = {
-          friends: Number.parseInt(environment.num_friends.replaceAll(',', ''), 10) || 0,
-          hunters: Number.parseInt(environment.num_hunters.replaceAll(',', ''), 10) || 0,
-        };
-      }
-    });
-  });
-
-  environments.forEach((environment) => {
-    const environmentType = environment.getAttribute('data-environment-type');
-    if (! environmentType) {
-      return;
-    }
-
-    const existingWrapper = environment.querySelector('.map-environment-friends-hunters');
-    if (existingWrapper) {
-      existingWrapper.remove();
-    }
-
-    const wrapper = makeElement('div', 'map-environment-friends-hunters', '');
-
-    const friends = envData[environmentType]?.friends || 0;
-    const hunters = envData[environmentType]?.hunters || 0;
-
-    makeElement('div', 'map-environment-friends', `${friends.toLocaleString()} friend${friends > 1 || friends === 0 ? 's' : ''}`, wrapper);
-    makeElement('div', 'map-environment-hunters', `${hunters.toLocaleString()} hunter${hunters > 1 || hunters === 0 ? 's' : ''}`, wrapper);
-
-    environment.append(wrapper);
-  });
-};
-
 /**
  * Update the map view of the travel page.
  */
@@ -582,9 +534,6 @@ const maybeDoMapView = () => {
 
   expandTravelRegions();
   addRhToMap();
-  if (getSetting('better-travel.show-friends-on-map', true)) {
-    addFriendsToMap();
-  }
 };
 
 let _tabHandler = null;
