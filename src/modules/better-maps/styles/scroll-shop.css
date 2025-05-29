@@ -235,6 +235,7 @@ b[style="color:red; font-size: 14px;"] + br {
   background-image: url(https://i.mouse.rip/scroll-pinned.png);
 }
 
+.treasureMapPopup-shop.current-location,
 .treasureMapPopup-shop.pinned.last-pinned {
   margin-bottom: 30px;
 }

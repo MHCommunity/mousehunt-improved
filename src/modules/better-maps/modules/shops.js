@@ -53,6 +53,10 @@ const updateShopsMarkup = async () => {
   const currentLocation = getCurrentLocation();
   shops = shops.sort((shop) => {
     const environmentType = shop.querySelector('.treasureMapPopup-shop-environment').getAttribute('data-environment-type') || '';
+    if (environmentType === currentLocation) {
+      shop.classList.add('current-location');
+      return -1;
+    }
     return environmentType === currentLocation ? -1 : 0;
   });
 
@@ -121,10 +125,9 @@ const updateShopsMarkup = async () => {
 
   const lastPinned = document.querySelectorAll('.treasureMapShopsView-shopItems .treasureMapPopup-shop.pinned');
   if (lastPinned.length) {
-    const lastPinnedEl = lastPinned[lastPinned.length - 1];
+    const lastPinnedEl = lastPinned[lastPinned.length - 1]; // eslint-disable-line unicorn/prefer-at
     lastPinnedEl.classList.add('last-pinned');
   }
-
 };
 
 /**
