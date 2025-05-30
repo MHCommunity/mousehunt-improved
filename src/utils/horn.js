@@ -30,11 +30,13 @@ import { makeElement } from './elements';
  *  color: 'pink',
  * });
  * ```
+ *
+ * @return {HTMLElement|false} The message element if successful, false if the horn dialog is not available.
  */
 const showHornMessage = (options) => {
   const huntersHornView = document.querySelector('.huntersHornView__messageContainer');
   if (! huntersHornView) {
-    return;
+    return false;
   }
 
   const settings = {
@@ -176,6 +178,8 @@ const showHornMessage = (options) => {
       gameInfo.classList.remove('blur');
     }, settings.dismiss);
   }
+
+  return messageWrapper;
 };
 
 export {
