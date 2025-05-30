@@ -4,7 +4,9 @@ import {
   getFlag,
   makeElement,
   onRequest,
-  onTurn
+  onTrapChange,
+  onTurn,
+  showHornMessage
 } from '@utils';
 
 import styles from './styles.css';
@@ -131,6 +133,75 @@ const updateCommandBar = () => {
   }
 };
 
+const powerTypesToTrinkets = {
+  physical: [
+    534, // Warpath Archer Charm
+    538, // Warpath Scout Charm
+    539, // Warpath Warrior Charm
+    540, // Super Warpath Archer Charm
+    543, // Super Warpath Scout Charm
+    544, // Super Warpath Warrior Charm
+  ],
+  tactical: [
+    535, // Warpath Cavalry Charm
+    541, // Super Warpath Cavalry Charm
+  ],
+  hydro: [
+    537, // Warpath Mage Charm
+    542, // Super Warpath Mage Charm
+  ],
+  draconic: [
+    1835, // Gargantua Charm
+  ],
+};
+
+let reminder;
+const addPowerTypeReminders = () => {
+  const currentPowerType = user?.trap_power_type_name.toLowerCase() || '';
+  const currentTrinket = user?.trinket_item_id || 0;
+
+  if (! currentPowerType || ! currentTrinket) {
+    return;
+  }
+
+  let needsReminder = false;
+  let powerTypeToRemind = '';
+  Object.keys(powerTypesToTrinkets).forEach((powerType) => {
+    if (powerTypesToTrinkets[powerType].includes(currentTrinket) && currentPowerType !== powerType) {
+      needsReminder = true;
+      powerTypeToRemind = powerType;
+    }
+  });
+
+  // Close any existing reminder.
+  if (reminder) {
+    const reminderClose = reminder.querySelector('.huntersHornMessageView__countdown');
+    if (reminderClose) {
+      reminderClose.click();
+    }
+  }
+
+  if (needsReminder) {
+    reminder = showHornMessage({
+      title: 'Power Type Reminder',
+      text: `The power type for these mice is ${powerTypeToRemind.charAt(0).toUpperCase() + powerTypeToRemind.slice(1)}.`,
+      image: `https://www.mousehuntgame.com/images/powertypes/${powerTypeToRemind}.png`,
+      type: 'error',
+      button: 'Switch',
+      action: () => {
+        const trapSelector = document.querySelector('.campPage-trap-armedItem.weapon');
+        if (trapSelector) {
+          trapSelector.click();
+        }
+      },
+      dismiss: 6000,
+    });
+
+    needsReminder = false;
+    powerTypeToRemind = '';
+  }
+};
+
 /**
  * Initialize the module.
  */
@@ -139,6 +210,8 @@ export default async () => {
 
   addMissiles();
   onRequest('environment/desert_warpath.php', addMissiles);
+
+  onTrapChange(addPowerTypeReminders);
 
   if (! getFlag('location-hud-fiery-warpath-no-command-bar-stats')) {
     updateCommandBar();
