@@ -151,6 +151,27 @@ const areaHighlightingSchoolOfSorcery = () => {
   return true;
 };
 
+const areaHighlightingWarpath = () => {
+  if ('desert_warpath' !== getCurrentLocation()) {
+    return false;
+  }
+
+  const wave = Number.parseInt(user?.quests?.QuestFieryWarpath?.wave, 10) || 0;
+
+  if (! wave) {
+    return false;
+  }
+
+  const waveCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-warpath-wave-${wave}`);
+  if (! waveCategory) {
+    return false;
+  }
+
+  waveCategory.classList.add('mouse-category-current-floor');
+
+  return true;
+};
+
 /**
  * Get the user's profile picture.
  *
@@ -213,6 +234,9 @@ export default () => {
     break;
   case 'school_of_sorcery':
     added = areaHighlightingSchoolOfSorcery();
+    break;
+  case 'warpath':
+    added = areaHighlightingWarpath();
     break;
   default:
     break;
