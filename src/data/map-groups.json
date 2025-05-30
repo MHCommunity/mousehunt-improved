@@ -214,6 +214,7 @@
       },
       {
         "name": "Other",
+        "id": "esp-other",
         "icon": "/items/stats/large/66b6a6a48a0c83cec5a15a286bd17749.png",
         "color": "#",
         "mice": [
@@ -303,6 +304,7 @@
       },
       {
         "name": "Prologue Pond",
+        "id": "fofo-pond-grubbeen",
         "subtitle": "Grubbeen",
         "icon": "/items/bait/large/90d54a45bde5a369b22d53ee5362e701.png",
         "color": "#fbc3fa",
@@ -314,6 +316,7 @@
       },
       {
         "name": "Prologue Pond",
+        "id": "fofo-pond-clamembert",
         "subtitle": "Clamembert",
         "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
         "color": "#f3e0ff",
@@ -404,6 +407,7 @@
       },
       {
         "name": "Prologue Pond",
+        "id": "fofo-pond-clamembert",
         "subtitle": "Clamembert",
         "icon": "/items/bait/large/bdef6fb2ed84af400a941e2fd1b0ec03.png",
         "color": "#f3e0ff",
@@ -609,6 +613,7 @@
     "categories": [
       {
         "name": "Gnawnia Rift",
+        "id": "gnawnia-rift",
         "color": "#f7e8f9",
         "mice": [
           "rift_white",
@@ -619,6 +624,7 @@
       },
       {
         "name": "Furoma Rift",
+        "id": "furoma-rift-outside",
         "subtitle": "Training Grounds",
         "color": "#e5a571",
         "mice": [
@@ -632,6 +638,7 @@
       },
       {
         "name": "Furoma Rift",
+        "id": "furoma-rift-inside",
         "subtitle": "Pagoda",
         "color": "#cb7136",
         "mice": [
@@ -649,6 +656,7 @@
       },
       {
         "name": "Bristle Woods Rift",
+        "id": "bristle-woods-rift",
         "mice": [
           "rift_acolyte",
           "rift_chrono",
@@ -675,6 +683,7 @@
     "categories": [
       {
         "name": "Gnawnia Rift",
+        "id": "gnawnia-rift",
         "color": "#f7e8f9",
         "mice": [
           "rift_field",
@@ -948,6 +957,7 @@
     "categories": [
       {
         "name": "Wave 1",
+        "id": "warpath-wave-1",
         "color": "#f1d16f",
         "mice": [
           "desert_scout_weak",
@@ -957,6 +967,7 @@
       },
       {
         "name": "Wave 2",
+        "id": "warpath-wave-2",
         "color": "#ea947b",
         "mice": [
           "desert_mage",
@@ -968,7 +979,8 @@
       },
       {
         "name": "Wave 3",
-        "color": "#ff7249",
+        "id": "warpath-wave-3",
+        "color": "#ff835f",
         "mice": [
           "desert_artillery",
           "desert_mage_strong",
@@ -980,7 +992,8 @@
       },
       {
         "name": "Wave 4",
-        "color": "#ffad49",
+        "id": "warpath-wave-4",
+        "color": "#ffc8c8",
         "mice": [
           "desert_elite_gaurd",
           "desert_boss"
@@ -988,7 +1001,8 @@
       },
       {
         "name": "Any wave",
-        "color": "#fffcb2",
+        "id": "any-wave",
+        "color": "#e9e0e0",
         "mice": [
           "desert_beast",
           "desert_supply",
