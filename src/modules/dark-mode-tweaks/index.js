@@ -44,7 +44,7 @@ const addDarkModeBodyClass = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   if (getSetting('native-dark-mode', false)) {
     return;
   }

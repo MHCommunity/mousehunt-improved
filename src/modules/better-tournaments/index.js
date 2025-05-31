@@ -252,7 +252,7 @@ const updateScoreboard = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'better-tournaments');
   setTimeout(updateTournamentHud, 1000);
 

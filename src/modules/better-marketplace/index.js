@@ -497,7 +497,7 @@ let marketplaceData;
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles([
     styles,
     getSetting('better-marketplace.small-images') ? smallImages : '',
@@ -536,7 +536,7 @@ export default {
   name: 'Better Marketplace',
   type: 'better',
   default: true,
-  description: 'Update the styles, and add small features like toggling between “Buying” and “Selling” by clicking the text.',
+  description: 'Update the styles, and add small features like toggling between "Buying" and "Selling" by clicking the text.',
   load: init,
   settings,
 };

@@ -46,7 +46,7 @@ const continueOnKingsReward = (req) => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'better-kings-reward');
 
   onRequest('turns/activeturn.php', initiateKingsReward, true);
@@ -64,6 +64,6 @@ export default {
   name: 'Better King\'s Reward',
   type: 'better',
   default: true,
-  description: 'Update the style of the King’s Reward and automatically close the success message.',
+  description: 'Update the style of the King\'s Reward and automatically close the success message.',
   load: init,
 };

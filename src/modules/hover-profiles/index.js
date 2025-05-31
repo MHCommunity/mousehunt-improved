@@ -316,7 +316,7 @@ let debugPopup = false;
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'hover-profiles');
 
   debugPopup = getSetting('debug.hover-popups', false);
@@ -337,6 +337,6 @@ export default {
   name: 'Hover Profiles',
   type: 'feature',
   default: true,
-  description: 'Hover over a friend’s name in your journal, inbox, or elsewhere to get a mini-profile popup.',
+  description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere to get a mini-profile popup.',
   load: init,
 };

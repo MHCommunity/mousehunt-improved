@@ -175,25 +175,28 @@ const getHornSettingsValues = async () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'custom-horn');
 
   persistHornClass();
 
-  onNavigation(async () => {
+  onNavigation(() => {
     setMultipleTimeout(() => {
       listenForPreferenceChanges();
       addShowHorn();
     }, [250, 500, 1000, 2000, 5000]);
 
-    const horns = await getHornSettingsValues();
-    addSettingPreview({
-      id: 'custom-horn',
-      selector: '.mh-improved-custom-horn-preview',
-      inputSelector: '#mousehunt-improved-settings-design-custom-horn select',
-      preview: false,
-      items: horns,
-      itemPreviewCallback: hornPreview,
+    getHornSettingsValues().then((horns) => {
+      addSettingPreview({
+        id: 'custom-horn',
+        selector: '.mh-improved-custom-horn-preview',
+        inputSelector: '#mousehunt-improved-settings-design-custom-horn select',
+        preview: false,
+        items: horns,
+        itemPreviewCallback: hornPreview,
+      });
+    }).catch(() => {
+      /* Failed to load horn settings values */
     });
   }, {
     page: 'preferences',

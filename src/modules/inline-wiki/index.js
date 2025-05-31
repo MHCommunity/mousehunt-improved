@@ -82,7 +82,7 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'inline-wiki');
   main();
 
@@ -98,6 +98,6 @@ export default {
   name: 'Inline Wiki',
   type: 'feature',
   default: true,
-  description: 'Clicking “Wiki” in the menu loads it right on the page, rather than opening a new tab.',
+  description: 'Clicking "Wiki" in the menu loads it right on the page, rather than opening a new tab.',
   load: init,
 };

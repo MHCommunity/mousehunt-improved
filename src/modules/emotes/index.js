@@ -21,7 +21,7 @@ const replaceInText = (text) => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles('.emote { vertical-align: bottom; }', 'emotes');
 
   onRender({

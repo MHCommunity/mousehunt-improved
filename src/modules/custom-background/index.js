@@ -139,19 +139,22 @@ const persistBackground = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'custom-background');
 
-  const theSettings = await settings();
-  possibleClasses = theSettings[0].settings.options.reduce((acc, option) => {
-    if ('group' === option.value) {
-      return [...acc, ...option.options.map((subOption) => subOption.value)];
-    }
+  settings().then((theSettings) => {
+    possibleClasses = theSettings[0].settings.options.reduce((acc, option) => {
+      if ('group' === option.value) {
+        return [...acc, ...option.options.map((subOption) => subOption.value)];
+      }
 
-    return [...acc, option.value];
-  }, []);
+      return [...acc, option.value];
+    }, []);
 
-  persistBackground();
+    persistBackground();
+  }).catch(() => {
+    /* Failed to load settings for custom-background */
+  });
 };
 
 /**

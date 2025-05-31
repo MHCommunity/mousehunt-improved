@@ -16,7 +16,7 @@ const moveCodex = async () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'codex-at-bottom');
   moveCodex();
   onNavigation(moveCodex, {

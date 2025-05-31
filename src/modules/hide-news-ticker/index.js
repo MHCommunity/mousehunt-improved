@@ -4,7 +4,7 @@ import styles from './styles.css';
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'hide-news-ticker');
 };
 

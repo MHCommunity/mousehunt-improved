@@ -330,7 +330,7 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'better-send-supplies');
   onNavigation(main, {
     page: 'supplytransfer',

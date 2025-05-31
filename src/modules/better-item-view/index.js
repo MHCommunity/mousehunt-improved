@@ -417,7 +417,7 @@ const shortenRecipeGoldHint = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'better-item-view');
 
   if (getSetting('better-item-view.show-item-hover', true)) {

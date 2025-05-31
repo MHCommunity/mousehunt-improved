@@ -730,7 +730,7 @@ let eventEnvironments = [];
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   const stylesJoined = [styles];
 
   if (! getFlag('no-travel-menu-hiding')) {
@@ -739,10 +739,16 @@ const init = async () => {
 
   addStyles(stylesJoined, 'better-travel');
 
-  environments = await getData('environments');
-  eventEnvironments = await getData('environments-events');
-
-  main();
+  Promise.all([
+    getData('environments'),
+    getData('environments-events')
+  ]).then(([envs, eventEnvs]) => {
+    environments = envs;
+    eventEnvironments = eventEnvs;
+    main();
+  }).catch(() => {
+    /* Failed to load environments data for better-travel */
+  });
 };
 
 /**
@@ -753,7 +759,7 @@ export default {
   name: 'Better Travel',
   type: 'better',
   default: true,
-  description: 'Add locations in the current region to the Travel dropdown menu, include a “Simple Travel” tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.',
+  description: 'Add locations in the current region to the Travel dropdown menu, include a "Simple Travel" tab with a grid of locations, offer an optional alphabetized list, and indicate where the Relic Hunter is.',
   load: init,
   settings,
 };

@@ -101,7 +101,7 @@ const persistBackground = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   persistBackground();
 };
 

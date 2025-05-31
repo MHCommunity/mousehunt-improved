@@ -607,7 +607,7 @@ const main = async () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'inventory-lock-and-hide');
 
   itemSettings = getSettings();

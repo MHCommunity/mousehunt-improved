@@ -18,7 +18,7 @@ import settings from './settings';
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'better-journal');
 
   const enabled = {

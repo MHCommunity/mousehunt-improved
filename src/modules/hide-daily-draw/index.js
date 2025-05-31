@@ -121,7 +121,7 @@ const removeDailyDrawNotifications = async (data) => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'hide-daily-draw');
 
   if ('undefined' !== typeof messenger) {

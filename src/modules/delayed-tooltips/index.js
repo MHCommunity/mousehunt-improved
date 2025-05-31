@@ -5,7 +5,7 @@ import styles from './styles.css';
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'delayed-tooltips');
 
   // While the shift key is pressed, add 'no-delayed-tooltips' to the body, which will have the effect of disabling the delayed tooltips.

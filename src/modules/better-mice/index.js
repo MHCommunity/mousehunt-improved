@@ -565,7 +565,7 @@ let minlucks;
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'better-mice');
   main();
   mousePage();
@@ -591,7 +591,7 @@ export default {
   name: 'Better Mice',
   type: 'better',
   default: true,
-  description: 'Add attraction rate stats and links to MH Wiki and MHCT to mouse dialogs. Sort the mouse stats pages and add the King’s Crown tab to the mouse pages.',
+  description: 'Add attraction rate stats and links to MH Wiki and MHCT to mouse dialogs. Sort the mouse stats pages and add the King\'s Crown tab to the mouse pages.',
   load: init,
   settings,
 };

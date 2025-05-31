@@ -22,7 +22,7 @@ const toggleBigTimer = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles([
     styles,
     isLegacyHUD() ? legacyStyles : '',

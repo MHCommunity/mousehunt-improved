@@ -538,7 +538,7 @@ const main = async () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles([
     styles,
     getSetting('better-inventory.one-item-per-row', true) ? fullWidthStyles : doubleWidthStyles,

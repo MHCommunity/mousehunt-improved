@@ -42,7 +42,7 @@ const addHelpLinks = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addHelpLinks();
 
   addSubmenuItem({

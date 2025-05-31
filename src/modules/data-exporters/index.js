@@ -114,7 +114,7 @@ const exportDataPopup = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'data-exporters');
 
   onEvent('show-export-data', exportDataPopup);

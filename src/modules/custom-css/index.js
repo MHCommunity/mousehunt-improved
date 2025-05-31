@@ -5,7 +5,7 @@ import settings from './settings';
 /**
  * Load the custom CSS.
  */
-const init = async () => {
+const init = () => {
   onEvent('mh-improved-loaded', () => {
     if (window.location.search.includes('no-custom-styles')) {
       return;

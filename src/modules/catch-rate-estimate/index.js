@@ -393,7 +393,7 @@ const main = async () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'catch-rate-estimate');
 
   setTimeout(main, 240);

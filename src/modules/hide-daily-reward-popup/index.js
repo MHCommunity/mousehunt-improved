@@ -15,7 +15,7 @@ const hidePopup = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   onDialogShow('dailyRewardPopup', () => {
     setTimeout(() => {
       if (activejsDialog) {

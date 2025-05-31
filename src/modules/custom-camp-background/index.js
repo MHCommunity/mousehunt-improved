@@ -34,7 +34,7 @@ const addCampBackground = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'custom-camp-background');
 
   onNavigation(addCampBackground, { page: 'camp' });

@@ -191,7 +191,7 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   const stylesToAdd = [...styles];
 
   if (getSetting('better-shops.hide-max-owned', false)) {

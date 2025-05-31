@@ -6,7 +6,7 @@ const modules = imported;
 /**
  * Load the experiments.
  */
-const init = async () => {
+const init = () => {
   const onlySettings = [
     {
       id: 'better-marketplace.show-chart-images',

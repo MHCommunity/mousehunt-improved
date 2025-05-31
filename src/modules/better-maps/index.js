@@ -422,7 +422,7 @@ const addInfoClasses = (mapData) => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'better-maps');
 
   // Fire the different tab clicks.

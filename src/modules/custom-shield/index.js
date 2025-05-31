@@ -199,24 +199,27 @@ const getShieldSettingsValues = async () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'custom-shield');
 
   lastShield = getSetting('custom-shield-0', 'default');
 
   changeShield();
 
-  onNavigation(async () => {
+  onNavigation(() => {
     setMultipleTimeout(watchForPreferenceChanges, [100, 1000, 2000, 5000]);
 
-    const shields = await getShieldSettingsValues();
-    addSettingPreview({
-      id: 'custom-shield',
-      selector: '.mh-improved-custom-shield-preview',
-      inputSelector: '#mousehunt-improved-settings-design-custom-shield select',
-      preview: false,
-      items: shields,
-      itemPreviewCallback: shieldPreview,
+    getShieldSettingsValues().then((shields) => {
+      addSettingPreview({
+        id: 'custom-shield',
+        selector: '.mh-improved-custom-shield-preview',
+        inputSelector: '#mousehunt-improved-settings-design-custom-shield select',
+        preview: false,
+        items: shields,
+        itemPreviewCallback: shieldPreview,
+      });
+    }).catch(() => {
+      /* Failed to load shield settings values */
     });
   }, {
     page: 'preferences',

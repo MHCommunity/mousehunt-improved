@@ -499,7 +499,7 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'better-quests');
   main();
 };

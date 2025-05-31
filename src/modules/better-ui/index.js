@@ -17,7 +17,7 @@ const styles = imported;
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'better-ui');
 
   adventurebook();

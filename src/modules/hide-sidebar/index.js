@@ -70,7 +70,7 @@ const moveSidebar = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   addStyles(styles, 'no-sidebar');
   addBodyClass('no-sidebar');
   moveSidebar();
@@ -93,6 +93,6 @@ export default {
   name: 'Hide Sidebar',
   type: 'element-hiding',
   default: true,
-  description: 'Hide the sidebar and add a “Sidebar” dropdown in the top menu.',
+  description: 'Hide the sidebar and add a "Sidebar" dropdown in the top menu.',
   load: init,
 };

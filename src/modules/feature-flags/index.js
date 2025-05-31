@@ -8,7 +8,7 @@ import settings from './settings';
 /**
  * Initialize the module.
  */
-const init = async () => {
+const init = () => {
   if (getFlag('social-noop') || getFlag('twitter')) {
     socialNoop();
   }
