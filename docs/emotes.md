@@ -1,8 +1,8 @@
 # [Emotes](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-emotes)
 
-Replaces Discord-style emotes on corkboards like :jerry: with the actual image in map and profile corkboard messages.
+Replaces Discord-style emotes on corkboards like (like :jerry:) with the actual image in map and profile corkboard messages.
 
-## Available emotes
+## Available Emotes
 
 - <img src="https://i.mouse.rip/emotes/confused_cat.png" width="25" height="25" alt="confused_cat emote" title=":confused_cat:"> `:confused_cat:`
 - <img src="https://i.mouse.rip/emotes/facepalm.png" width="25" height="25" alt="facepalm emote" title=":facepalm:"> `:facepalm:`

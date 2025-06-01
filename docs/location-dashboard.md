@@ -40,7 +40,8 @@ Adds a "Dashboard" menu to the top menu bar that will show you the important det
   - Hallway
   - Number of clues
 - Living Garden
-  - Whether your are Twisted or not
+  - Twisted or normal state
+  - Current pouring progress
 - Lost City
   - Curses
 - Mousoleum
@@ -55,12 +56,19 @@ Adds a "Dashboard" menu to the top menu bar that will show you the important det
   - Hunts remaining
 - Sand Dunes
   - Whether or not you have a Stampede
+- School of Sorcery
+  - Current course power type
+  - Hunts remaining
 - Seasonal Garden
   - Amplifier percentage
 - Sunken City
   - Zone
   - Depth
   - Oxygen remaining
+- Table of Contents
+  - Current book type
+  - Current words written
+  - Hunts remaining
 - Toxic Spill
   - Crude Polluntium
   - Max Polluntium capacity

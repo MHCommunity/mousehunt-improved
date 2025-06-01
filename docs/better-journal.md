@@ -1,21 +1,25 @@
 # [Better Journal](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-journal)
 
-- Updates the journal UI to look more modern, sleek, and streamlined.
-- Removes the date & time from entries like tournament points, unstable charm procs, etc. to be smaller and coupled to the hunt.
-- Updates the gift claim & return entries to be scrollable with a maximum height so they don't take up the entire page.
-- Modifies colors slightly for a variety of miscellaneous entries.
-- Updates the progress log to be more condensed.
-- Rewrites the journal to use simpler entries and clearer information.
-- Modifies the mouse image to open the mouse view, rather than just an image.
+Gives your journal a modern, streamlined look and adds powerful options to make it easier to read, browse, and understand your hunting history.
+
+## Features
+
+- **Modern Journal UI**: Transforms the journal into a cleaner, more visually appealing timeline of your hunts and events.
+- **Condensed Date & Time**: Makes date and time smaller and attaches them to relevant entries (like tournament points, unstable charm procs, etc.) for a less cluttered look.
+- **Scrollable Gift Entries**: Gift claim and return entries are now scrollable with a maximum height, so they never take over your whole journal.
+- **Improved Colors**: Refines the colors for various journal entries to make important information stand out.
+- **Condensed Progress Log**: Progress logs are displayed in a more compact, readable format.
+- **Simplified Entries**: Rewrites and simplifies many journal entries for clarity and ease of reading.
+- **Clickable Mouse Images**: Clicking a mouse image in the journal now opens the full mouse view, not just the image.
 
 ## Options
 
-- **Journal styles**: Updates the journal UI and entry styles and display.
-- **Journal text replacements**: Updates the journal text to be more clear and concise.
-- **Show loot icons**: Shows a small icon next to loot entries.
-- **Show loot icons (minimal)**: Shows a small icon next to loot entries, but only for some items.
-- **Show loot as list**: Displays loot entries as a list rather than in the text.
-- **Show gold and points icons**: Shows a small icon next to the gold and points in the journal.
-- **Unique item colors (Map clues, Ful'Mina's gifts, etc.)**: Colors unique items differently in the journal.
-- **Show hunt type on hover**: Adds a little indicator to show the hunt type when hovering over the entry.
-- **Journal History**: Saves your journal history and lets you browse entries past page 6.
+- **Journal styles**: Choose from different journal UI and entry styles for a personalized look.
+- **Journal text replacements**: Make journal text clearer and more concise with smart replacements.
+- **Show loot icons**: Display small icons next to loot entries for quick visual reference.
+- **Show loot icons (minimal)**: Show icons only for select loot items, for a cleaner look.
+- **Show loot as list**: Display loot as a list instead of inline text for easier reading.
+- **Show gold and points icons**: Add icons next to gold and points amounts in the journal.
+- **Unique item colors (Map clues, Ful'Mina's gifts, etc.)**: Highlight special items with unique colors in the journal.
+- **Show hunt type on hover**: Hover over an entry to see the hunt type (e.g., trap, map, event).
+- **Journal History**: Save and browse your journal history beyond the default page limit, letting you look back further than the standard game allows.

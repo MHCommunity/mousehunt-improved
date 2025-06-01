@@ -1,6 +1,6 @@
 # [Custom Shield](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-design-custom-shield)
 
-Change the shield to an event shield, a color, a title shield, or a silly shield.
+Change your shield to match events, your title, your favorite color, or just for fun!
 
 ## Options
 
@@ -17,6 +17,7 @@ Change the shield to an event shield, a color, a title shield, or a silly shield
 - Birthday (Year 14)
 - Birthday (Year 15)
 - Birthday (Year 16)
+- Birthday (Year 17)
 - Great Winter Hunt
 - Halloween
 - Larry's Football Challenge

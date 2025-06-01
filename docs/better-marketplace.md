@@ -1,11 +1,15 @@
 # [Better Marketplace](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-marketplace)
 
-- Allows you to open the search without typing anything to see all items.
-- Removes useless items (old event items, baskets with no sales activity, etc) from the search unless the 'Search all items' checkbox is checked.
-- Auto-close the "I claimed…" popup when claiming or closing a listing.
-- When on the buy or sell screen, clicking on 'Buying' or 'Selling' will toggle to the other.
+Makes the Marketplace easier to use and more efficient for buying and selling items.
+
+## Features
+
+- **Show All Items**: Lets you open the search without typing anything to see all available items.
+- **Hide Useless Items**: Removes old event items and inactive listings from search results (unless 'Search all items' is checked).
+- **Auto-Close Popups**: Automatically closes the "I claimed…" popup after claiming or closing a listing.
+- **Quick Toggle Buy/Sell**: Easily switch between buying and selling by clicking the tab labels.
 
 ## Options
 
-- **Default to showing all items in search**: Automatically selects the 'Search all items' checkbox when opening the search.
-- **Smaller images**: Makes the images in the Browse tab smaller to match the other tabs.
+- **Default to showing all items in search**: Automatically checks 'Search all items' when opening the search.
+- **Smaller images**: Makes item images smaller in the Browse tab for a more compact view.

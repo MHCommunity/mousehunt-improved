@@ -1,9 +1,13 @@
 # [Better Tournaments](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-tournaments)
 
-- Adds a dropdown to the Score display to quickly see a listing of the team rankings directly.
-- Adds a dropdown to the Points display to quickly see a listing of all the mice and their points directly.
-- Updates the tournament page UI.
+Improves the tournaments page with more accessible information and a cleaner layout.
+
+## Features
+
+- **Quick Team Rankings**: Adds a dropdown to the Score display for instant access to team rankings.
+- **Points Breakdown**: Adds a dropdown to the Points display to see all mice and their points at a glance.
+- **Modernized UI**: Updates the tournament page for a more streamlined and readable experience.
 
 ## Options
 
-- **Display localized times inline**: Display localized times inline, rather than on hover.
+- **Display localized times inline**: Show local times directly in the tournament listings, instead of only on hover.

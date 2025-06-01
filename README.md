@@ -17,7 +17,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Better Inventory](docs/better-inventory.md)**: Modernized inventory with quick set max quantities and previews.
 - **[Better Items](docs/better-items.md)**: Adds drop rates, links to MHCT and MH Wiki, and more to item views.
 - **[Better Journal](docs/better-journal.md)**: Streamlined and modernized journal interface.
-- **[Better King's Reward](docs/better-kings-teward.md)**: Improved King's Reward UI with auto-close for success messages.
+- **[Better King's Reward](docs/better-kings-reward.md)**: Improved King's Reward UI with auto-close for success messages.
 - **[Better Maps](docs/better-maps.md)**: Added features for an enhanced mapping experience.
 - **[Better Marketplace](docs/better-marketplace.md)**: Streamlined marketplace browsing and operations.
 - **[Better Mice](docs/better-mice.md)**: Enhanced mouse view with sorting and additional information.
@@ -30,6 +30,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Catch Rate Estimator & Minlucks](docs/catch-rate-estimator-and-minlucks.md)**: Display estimated catch rates and minluck on the Camp page.
 - **[Codex at Bottom](docs/codex-at-bottom.md)**: Move the codex to the bottom of the trap selector.
 - **[Copy ID Button](docs/copy-id-button.md)**: Hover over your profile picture and copy your user ID with one click.
+- **[Dark Mode](docs/dark-mode.md)**: Enable dark mode for the game.
 - **[Dark Mode Updates & Tweaks](docs/dark-mode-updates-and-tweaks.md)**: Adjustments for a better dark mode experience. Requires Dark Mode to be enabled in [MHCT](https://mhct.win/).
 - **[Data Exporters](docs/data-exporters.md)**: Export game data to JSON or CSV files.
 - **[Delayed Menus](docs/delayed-menus.md)**: Adds a short delay to the menu dropdowns to prevent accidental clicks.
@@ -67,6 +68,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Taller Windows](docs/taller-windows.md)**: Increase the height of various windows for better readability.
 - **[TEM Crowns](docs/tem-crowns.md)**: Easily see your mouse crowns and number of catches in the Trap Effectiveness view.
 - **[Ultimate Checkmark](docs/ultimate-checkmark.md)**: Adds more things to be collected on the items view of your Hunter profile.
+- **[Unique Loot Count](docs/unique-loot-count.md)**: Track the count of unique loot obtained.
 - **[Wisdom in Stat Bar](docs/wisdom-in-stat-bar.md)**: Shows your wisdom in the stat bar.
 
 ### 🎨 Customization
@@ -75,6 +77,7 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 - **[Custom Horn](docs/custom-horn.md)**: Change the horn to any event horn or a one of a variety of colors.
 - **[Custom HUD](docs/custom-hud.md)**: Change the marble background to a variety of colors.
 - **[Custom Shield](docs/custom-shield.md)**: Change the shield to any event shield, a fun meme shield, or a color with optional matching timer.
+- **[Custom Styles](docs/custom-styles.md)**: Apply custom CSS to the game.
 
 ### 🛑 Element Hiding
 

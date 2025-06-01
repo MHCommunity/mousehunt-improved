@@ -4,4 +4,4 @@ Hover over your profile picture in the HUD for a quick "Copy ID to clipboard" bu
 
 ## Options
 
-- **Hide button**: Hides the "Copy ID" button from the HUD and allows you to copy your ID by clicking on your profile picture.
+- **Hide button**: Hide the "Copy ID" button and instead copy your ID by clicking directly on your profile picture.

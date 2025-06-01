@@ -1,6 +1,6 @@
 # [Custom Background](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-design-custom-background)
 
-Change the page background to an event background, a color, or a gradient.
+Personalize your game by changing the page background to a festive event, a solid color, or a beautiful gradient.
 
 ## Options
 

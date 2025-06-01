@@ -1,8 +1,8 @@
 # [Keyboard Shortcuts](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-keyboard-shortcuts)
 
-Adds a variety of keyboard shortcuts to the game. You can remap the keys or disable them individually.
+Speed up your gameplay with handy keyboard shortcuts for common actions and pages. Easily customize or disable shortcuts to fit your play style.
 
-Press `?` to see the list of available shortcuts.
+Press `?` at any time to see the full list of available shortcuts.
 
 ## Available Shortcuts
 

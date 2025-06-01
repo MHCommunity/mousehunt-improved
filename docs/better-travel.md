@@ -1,16 +1,20 @@
 # [Better Travel](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-travel)
 
-- Automatically zooms the map out slightly to show more of the map.
-- Adds a 'Simple Travel' tab that shows a listing of all locations without the map to make it easier to travel and can be set as the default tab.
-- Adds an optional alphabetical list of locations to the 'Simple Travel' tab.
-- Adds a list of other locations in the same region to the Travel dropdown menu to quickly travel to them.
-- When traveling to Valour Rift, Floating Islands, Queso Canyon, or Folklore Forest, show a small reminder message to warn or remind about active Champion's Fire, Wild Tonic, Bottled Wind, and Condensed Creativity.
-- Highlights the location of the Relic Hunter on the map and Simple Travel page.
+Makes the Travel page more useful.
+
+## Features
+
+- **Auto-Zoom Map**: Automatically zooms the map out to show more locations at once.
+- **Simple Travel Tab**: Adds a tab with a full list of locations (no map) for quick travel—can be set as your default.
+- **Alphabetical Location List**: Optionally show an alphabetical list of locations in the Simple Travel tab.
+- **Region Quick Travel**: Adds a list of other locations in the same region to the Travel dropdown for fast switching.
+- **Travel Reminders**: When traveling to certain locations (like Valour Rift, Floating Islands, Queso Canyon, or Folklore Forest), shows reminders about active effects (Champion's Fire, Wild Tonic, Bottled Wind, Condensed Creativity).
+- **Relic Hunter Highlight**: Highlights the Relic Hunter's location on the map and Simple Travel page.
 
 ## Options
 
-- **Show Simple Travel tab by default**: If enabled, the Simple Travel tab will be shown by default when going to the Travel page.
-- **Show alphabetized list on Simple Travel tab**: If enabled, an alphabetized list of locations will be shown at the top of the Simple Travel tab.
-- **Show Travel Reminders**: If enabled, when traveling to certain locations, you will be show a reminder. For example, if you travel to Foreword Farm and Condensed Creativity is active, you will be shown a reminder to deactivate it.
-- **Travel Window**: If enabled, adds a "Travel Window" option to the Travel dropdown menu. This lets you quickly travel to a location. You can edit the list of locations in the Travel Window by clicking the "Edit" button.
-- **Environment icon opens Travel Window**: If enabled, clicking the environment icon on the HUD will open the Travel Window.
+- **Show Simple Travel tab by default**: Open the Simple Travel tab automatically when visiting the Travel page.
+- **Show alphabetized list on Simple Travel tab**: Display an alphabetical list of locations at the top of the Simple Travel tab.
+- **Show Travel Reminders**: Show reminders when traveling to certain locations if you have relevant effects active.
+- **Travel Window**: Adds a "Travel Window" to the Travel dropdown for quick travel to favorite locations (customizable list).
+- **Environment icon opens Travel Window**: Clicking the environment icon on the HUD opens the Travel Window for even faster travel.

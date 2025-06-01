@@ -1,15 +1,16 @@
-# [Experiments](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-beta-experiments)
+# [Experiments / Beta Features](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-beta-experiments)
 
-Beta features and other features that may not be fully tested or supported.
+Try out beta features and experimental options that may not be fully tested or fully supported. These features are still in development and may change or be removed in future updates.
 
-## Experiments
+## Available Experiments
 
-- **Better Journal List: Link all items:** Adds links to items in journal entries that are not linked.
+- **Better Journal List: Link all items:** Adds links to items in journal entries that are not linked
 - **Better Marketplace: Price History Charts**: Show sales price history charts on category pages
-- **Gift button opens gift selector**
-- **Prestige Base in skin previews**: Use the Prestige Base when previewing skins
+- **Better Inventory: Add Trap Sorting**: Adds sorting options to the trap inventory pages (base, charms, and weapons)
+- **Gift button opens gift selector**: Clicking the gift button will directly open the gift selector instead of the normal gift dialog
+- **Prestige Base in skin previews**: Uses the Prestige Base when previewing skins
+- **Real Base Stats**: Shows the upgraded stats for the Denture and Printing bases when in the trap selector
 - **Settings: Columns**: Changes the settings page to have two columns.
 - **Square Profile Pics**: Makes profile pictures square in more places for consistency
-- **Trap Background**: Add background gradient to trap
-- **Trap Selector Special Effects**: Add an indicator to items in the trap selector that have special effects
+- **Trap Background**: Adds background gradient to trap
 - **Troll mode**: lol

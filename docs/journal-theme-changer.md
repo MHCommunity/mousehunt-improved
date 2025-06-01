@@ -1,8 +1,13 @@
 # [Journal Theme Changer](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-journal-changer)
 
-Adds a "Randomize" button next to the "Set Theme" button on the top of the journal. Can also change the theme based on location or once per day.
+Change your journal theme to a random one or based on your location.
+
+## Features
+
+- Adds a "Randomize" button next to the "Set Theme" button at the top of your journal.
+- Lets you change your journal theme based on your location or once per day for variety.
 
 ## Options
 
-- **Randomize daily**: Once per day, the theme will change to a random theme.
-- **Change based on location**: When traveling to a location, the theme will change to the theme for that location if it exists and is unlocked.
+- **Randomize daily**: Automatically changes your journal theme to a random one each day.
+- **Change based on location**: Automatically updates your journal theme to match your current location (if a theme is available and unlocked).

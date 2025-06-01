@@ -1,5 +1,8 @@
 # [FLRT Helper](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-feature-flrt-helper)
 
-Free Leech Return Tradables helper.
+Return Tradables to a Maptain more easily
 
-When opening a chest from a map, adds a "Return to Maptain" button that will let you choose which tradable items to send directly to the Maptain.
+## Features
+
+- When you open a chest from a map, a "Return to Maptain" button appears.
+- Choose which tradable items to send directly to the Maptain

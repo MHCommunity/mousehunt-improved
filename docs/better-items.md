@@ -1,9 +1,13 @@
 # [Better Items](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-item-view)
 
-- Adds links to [MHCT](https://mhct-win) and [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php) to the popup.
-- Adds drop rates from MHCT directly to the item view.
+Enhances the item view popup with more information and helpful links, making it easier to research and understand your items.
+
+## Features
+
+- **Quick Links**: Adds direct links to [MHCT](https://mhct-win) and [MHWiki](https://mhwiki.hitgrab.com/wiki/index.php) from the item popup, so you can quickly look up item details and drop information.
+- **Drop Rates**: Shows drop rates from MHCT directly in the item view, helping you see where and how often items drop.
 
 ## Options
 
-- **Show drop rates**: Whether to show drop rates from MHCT directly in the item view.
-- **Show item details on hover (in journal)**: Hovering over an item in the journal will show a small popup with the item's name, image, and quantity owned.
+- **Show drop rates**: Toggle whether drop rates from MHCT are shown in the item view popup.
+- **Show item details on hover (in journal)**: When hovering over an item in the journal, a small popup will show the item's name, image, and how many you own.

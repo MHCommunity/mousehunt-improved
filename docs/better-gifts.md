@@ -1,10 +1,15 @@
 # [Better Gifts](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-gifts)
 
-- Adds "Accept & Return All" and "Accept All" buttons to the gifts dropdown.
-- Adds "Select Random Friends" and "Select Frequent Gifters" to the Send Free Gifts tab.
-- Updates the styles of the gifts popup.
+Streamlines the gifts system, making it faster and easier to accept, return, and send gifts to friends.
+
+## Features
+
+- **Accept & Return All**: Adds a button to accept and return all gifts in one click.
+- **Accept All**: Adds a button to accept all gifts at once.
+- **Select Random/Frequent Friends**: Adds options to select random friends or your most frequent gifters when sending gifts.
+- **Improved Styles**: Updates the look and feel of the gift popups for better readability and usability.
 
 ## Options
 
-- **Order to accept/send**: Allows you to choose the order, either "Oldest to Newest" or "Newest to Oldest", in which to accept and send gifts.
-- **Ignore gifts that aren't the Gift of the Day**: Allows you to skip gifts that aren't the Gift of the Day when accepting/returning gifts. Options are "Skip all non-GOTD gifts", "Don't skip any gifts", "Skip Mozzarella Cheese only", "Skip Stale Cheese only", "Skip Radioactive Sludge only","Skip Mozz. Cheese & Stale Cheese", "Skip Mozz. Cheese & Radioactive Sludge", or "Skip Stale Cheese & Radioactive Sludge".
+- **Order to accept/send**: Choose the order in which to accept or send gifts: "Oldest to Newest" or "Newest to Oldest".
+- **Ignore gifts that aren't the Gift of the Day**: Skip non-Gift of the Day gifts when accepting/returning. Options include skipping all, none, or specific items (Mozzarella Cheese, Stale Cheese, Radioactive Sludge, or combinations).

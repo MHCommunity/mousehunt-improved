@@ -1,24 +1,19 @@
 # [Better UI](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-better-better-ui)
 
-- Updates the MouseHunt interface with a variety of UI and style changes.
-- Updates the Prestige Base to have the correct stats.
-- Autofocuses the Hunter ID search box on the Find Friends page.
-- Modifies the Hunter ID search box to be a bit bigger and moves it to the top.
-- Shows your exact rank percentage immediately when you hover over the value.
-- Upscales the lucky catch icon to be higher resolution.
-- Updates the footer display to look much nicer and align the links better.
-- Increases the size of the icons in the menu dropdowns.
-- Hides the LE badge and any active auras until you hover over your trap image.
-- Updates buttons in popups to match other buttons.
-- Hovering over your Cheese, Charm, or Map name will show the full name.
-- Updates the current adventure book task to look nicer.
-- Updates the styling of various userscripts
-- Updates the styles and readability of many items.
-  - Search & filter dropdowns and results
-  - Send Supplies page
-  - Journal Tabs
-  - Daily Draw, Larry's Tips, and King's Calibrator
-  - Crafting, Recipe, and other pages with tabs or subtabs
-  - Trap, Base, Charm, and Cheese selectors
-  - Hunter Profile blocks and corkboard
-  - Team member listing and team page
+Refreshes the MouseHunt interface with a wide range of visual and usability improvements for a more enjoyable experience.
+
+## Features
+
+- **Modernized Interface**: Updates many parts of the UI for a cleaner, more consistent look.
+- **Prestige Base Stats**: Shows the correct stats for the Prestige Base in the trap selector.
+- **Hunter ID Search Improvements**: Autofocuses and enlarges the Hunter ID search box on the Find Friends page, moving it to the top for easier access.
+- **Rank Percentage Tooltip**: Instantly shows your exact rank percentage when you hover over the value.
+- **High-Res Lucky Catch Icon**: Upscales the lucky catch icon for better clarity.
+- **Footer Redesign**: Makes the footer look nicer and aligns links more neatly.
+- **Larger Menu Icons**: Increases the size of icons in dropdown menus for better visibility.
+- **LE Badge & Aura Hiding**: Hides Limited Edition badges and active auras until you hover over your trap image.
+- **Consistent Popup Buttons**: Updates popup buttons to match the rest of the UI.
+- **Full Name on Hover**: Hovering over your Cheese, Charm, or Map name shows the full name.
+- **Adventure Book Task Styling**: Makes the current adventure book task look nicer.
+- **Userscript Styling**: Updates the look and readability of many popular userscripts.
+- **Improved Styles**: Refines the appearance of search/filter dropdowns, Send Supplies, Journal Tabs, Daily Draw, Larry's Tips, King's Calibrator, crafting/recipe pages, trap/base/charm/cheese selectors, hunter profile, corkboard, and team pages.
