@@ -2,6 +2,7 @@ import {
   addMHCTData,
   debuglog,
   doRequest,
+  getSetting,
   isAppleOS,
   makeElement,
   makeLink,
@@ -662,7 +663,7 @@ const addMapSolverLinks = async (mapData) => {
     return button;
   };
 
-  const mhctButton = createSolverButton('MHCT Map Solver', 'mh-ui-map-solver-mhct-link', () => {
+  const mhctButton = createSolverButton('MHCT Map Helper', 'mh-ui-map-solver-mhct-link', () => {
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = 'https://mhct.win/maphelper.php';
@@ -703,7 +704,10 @@ const showGoalsTab = async (mapData) => {
   addSidebarToggle();
   addPreviewClass();
   moveAuras();
-  addMapSolverLinks(mapData);
+
+  if (getSetting('better-maps.show-map-solver-links')) {
+    addMapSolverLinks(mapData);
+  }
 };
 
 /**

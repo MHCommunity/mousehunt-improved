@@ -16,7 +16,12 @@ export default async () => {
     {
       id: 'better-maps.community',
       title: 'Hide old & inactive Community Maps',
-      default: false,
-    }
+      default: true,
+    },
+    {
+      id: 'better-maps.show-map-solver-links',
+      title: 'Show map solver links',
+      default: true,
+    },
   ];
 };
