@@ -48,7 +48,7 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
           }
 
           Object.keys(requestCallbacks).forEach((key) => {
-            if ('*' === key || this.responseURL.includes(key)) {
+            if (('*' === key || this.responseURL.includes(key)) && ! ignore.includes(this.responseURL)) {
               requestCallbacks[key].forEach((item) => {
                 if (item.callback && typeof item.callback === 'function' && (item.skipSuccess || response?.success)) {
                   item.callback(response, this._data);
@@ -75,6 +75,7 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
 
   url = '*' === url ? '*' : `managers/ajax/${url}`;
 
+  // this ignore check doesn't work when the url is *, but we check earlier for ignore so this is just here to catch other cases.
   if (ignore.includes(url)) {
     return;
   }
