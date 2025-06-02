@@ -52,6 +52,7 @@ const classesToSkip = [
   'labyrinth-exitMaze',
   'festiveSpiritLootBoost',
   'spring_hunt_charge_trinket_effect',
+  'harbour',
 ];
 
 /**

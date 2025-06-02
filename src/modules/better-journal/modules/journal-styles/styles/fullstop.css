@@ -24,15 +24,15 @@
 .journal .content .entry.draconicDepths-claimReplicartLoot .journaltext br:first-of-type,
 .journal .content .entry.draconicDepths-claimReplicartLoot .journaltext br:last-of-type,
 .journal .content .entry.folkloreForest-bookClaimed .journaltext br:first-of-type,
-.journal .content .entry.folkloreForest-bookClaimed .journaltext br:last-of-type,
-.journal .content .entry.harbour br {
+.journal .content .entry.folkloreForest-bookClaimed .journaltext br:last-of-type {
   display: block;
 }
 
 .journal .content .entry.kings_giveaway_bonus_prize_entry .journaltext > br + br:last-of-type,
 .journal .content .entry.floatingIslands.discoveredMod .journaltext br:last-of-type,
 .journal .content .entry.wanted_poster-complete .journaltext br:last-of-type,
-.journal .content .entry.floatingIslands.fullyExplored .journaltext br:first-of-type {
+.journal .content .entry.floatingIslands.fullyExplored .journaltext br:first-of-type,
+.journal .content .entry.harbour br  {
   display: none;
 }
 
