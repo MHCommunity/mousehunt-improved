@@ -53,6 +53,20 @@ fi
 
 version=$(jq -r .version package.json)
 
+# Update static.mouse.rip if the _update_static_mouse_rip command is available.
+if [ -n "$UPDATE_STATIC_MOUSE_RIP" ]; then
+  staticMouseRip=$($UPDATE_STATIC_MOUSE_RIP 2>&1)
+  if [ $? -ne 0 ]; then
+    echo "Failed to update static.mouse.rip"
+  else
+    echo "Updated static.mouse.rip"
+    echo "$staticMouseRip"
+  fi
+else
+  echo "No command available to update static.mouse.rip, export UPDATE_STATIC_MOUSE_RIP to enable"
+fi
+
+
 git tag -a "v$version" -m "Release v$version" || exit 1
 
 # Build the extension.
@@ -113,16 +127,3 @@ git add dist/mousehunt-improved.user.js
 git commit -m "Userscript v$version"
 git push origin userscript-build
 git checkout main
-
-# Update static.mouse.rip if the _update_static_mouse_rip command is available.
-if [ -n "$UPDATE_STATIC_MOUSE_RIP" ]; then
-  staticMouseRip=$($UPDATE_STATIC_MOUSE_RIP 2>&1)
-  if [ $? -ne 0 ]; then
-    echo "Failed to update static.mouse.rip"
-  else
-    echo "Updated static.mouse.rip"
-    echo "$staticMouseRip"
-  fi
-else
-  echo "No command available to update static.mouse.rip, export UPDATE_STATIC_MOUSE_RIP to enable"
-fi
