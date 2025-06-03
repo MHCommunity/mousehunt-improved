@@ -19,7 +19,9 @@
         "Fixed fallback to Relic Hunter hints when API does not return location",
         "Fixed issue with hunters who have left the map not being able to be invited again",
         "Fixed sidebar toggle functionality not working correctly sometimes",
-        "Updated display of chest and aura icons, moved them to near the map name"
+        "Updated display of chest and aura icons, moved them to near the map name",
+        "Added 'Show map solver links' option",
+        "Added area highlighting to Warpath maps"
       ]
     },
     {
@@ -56,6 +58,10 @@
     {
       "title": "Location HUD: Burroughs Rift",
       "items": ["Updated styles"]
+    },
+    {
+      "title": "Location HUD: Fiery Warpath",
+      "items": ["Added reminders when trap power type does not match charm"]
     },
     {
       "title": "Location HUD: Toxic Spill",

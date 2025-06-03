@@ -1,8 +1,17 @@
 # Changelog
 
+## Version 0.81.1
+
+- Better Maps: Added 'Show map solver links' option
+- Better Maps: Added area highlighting to Warpath maps
+- Better Mice: Updated styles
+- Better Journal: Updated styles
+- Location HUDs: Fiery Warpath: Added reminders when trap power type does not match charm
+- Removed 'Proxy Facebook images' experimental feature
+
 ## Version 0.81.0
 
-- Better Inventory: Add Trap Sorting option under Experimental Settings
+- Better Inventory: Added Trap Sorting option under Experimental Settings
 - Better Journal: Updated text replacements and styles
 - Better Maps: Added ability to pin environments in the Scroll Shop
 - Better Maps: Added links to MHCT and Tsitu's map solvers in the footer
