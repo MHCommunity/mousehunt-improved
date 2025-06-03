@@ -2,6 +2,10 @@
 
 ## Version 0.81.2
 
+- Better UI: Updated Big Jaq styles
+
+## Version 0.81.2
+
 - Updated data files & force cache refresh
 
 ## Version 0.81.1

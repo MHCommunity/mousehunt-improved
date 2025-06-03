@@ -206,3 +206,20 @@
 .QuestKingsGiveawayCampHUD__scoreboard thead th:nth-of-type(6) {
   vertical-align: top;
 }
+
+.QuestBigJaqLilJillPopup-block-item-image {
+  background-color: transparent;
+}
+
+.QuestBigJaqLilJillPopup-block-item-content b {
+  padding: 2px 0;
+}
+
+.QuestBigJaqLilJillPopup-title {
+  width: 75%;
+  margin-left: 12%;
+}
+
+.QuestBigJaqLilJillPopup-dateCountdownContainer .dateCountdown__progressBar__icon {
+  background-image: url(https://www.mousehuntgame.com/images/ui/events/big_jack/big_jaq_popup_portrait.png);
+}
