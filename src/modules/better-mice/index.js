@@ -547,9 +547,16 @@ const main = async () => {
 
   addSubmenuItem({
     menu: 'mice',
-    label: 'Your Stats',
-    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/special.png',
-    href: 'https://www.mousehuntgame.com/adversaries.php?tab=your_stats',
+    label: 'Your Stats (Groups)',
+    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/mice.png',
+    href: 'https://www.mousehuntgame.com/adversaries.php?tab=your_stats&sub_tab=group',
+  });
+
+  addSubmenuItem({
+    menu: 'mice',
+    label: 'Your Stats (Locations)',
+    icon: 'https://www.mousehuntgame.com/images/ui/hud/menu/travel.png',
+    href: 'https://www.mousehuntgame.com/adversaries.php?tab=your_stats&sub_tab=location',
   });
 
   addSubmenuItem({

@@ -1,6 +1,12 @@
 # Changelog
 
-## Version 0.81.2
+## Version 0.81.4
+
+- Better Shops: Updated styles for Big Jaq
+- Better Mice: Updated Mice submenu 'Your Stats' to be 'Your Stats (Groups)' and 'Your Stats (Locations)'
+- Minor performance improvements
+
+## Version 0.81.3
 
 - Better UI: Updated Big Jaq styles
 

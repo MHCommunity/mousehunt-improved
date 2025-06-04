@@ -641,3 +641,40 @@ a.itemPurchaseView-action-buySuperBrie {
 .itemPurchaseView-action-buySuperBrie {
   border-radius: 7px;
 }
+
+.itemPurchaseView-container.lil_jill .itemPurchaseView-action-itemCost-table {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.itemPurchaseView-container.big_jack .itemPurchaseView-action-itemCost-table-cell.owned,
+.itemPurchaseView-container.lil_jill .itemPurchaseView-action-itemCost-table-cell.owned {
+  width: 70px;
+  padding: 0;
+}
+
+.itemPurchaseView-container.lil_jill.no_gold_cost .itemPurchaseView-action-goldGost,
+.itemPurchaseView-container.lil_jill .itemPurchaseView-action-goldGost {
+  display: none;
+}
+
+.itemPurchaseView-container.big_jack .itemPurchaseView-action-container,
+.itemPurchaseView-container.lil_jill .itemPurchaseView-action-container {
+  height: 144px;
+  background: url(https://www.mousehuntgame.com/images/ui/events/big_jack/popup.jpg);
+  border: none;
+}
+
+.itemPurchaseView-container.big_jack .itemPurchaseView-image-container,
+.itemPurchaseView-container.lil_jill .itemPurchaseView-image-container {
+  background-color: transparent;
+}
+
+.itemPurchaseView-container.lil_jill .itemPurchaseView-image {
+  display: block;
+}
+
+.itemPurchaseView-container.big_jack .itemPurchaseView-content-container,
+.itemPurchaseView-container.lil_jill .itemPurchaseView-content-container {
+  background: transparent;
+}

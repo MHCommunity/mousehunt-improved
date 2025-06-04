@@ -1,6 +1,7 @@
 import {
   addExternalStyles,
   addStyles,
+  debounce,
   doInternalEvent,
   getData,
   getFlag,
@@ -222,7 +223,7 @@ class ImageUpscaler {
       return;
     }
 
-    this.observer = new MutationObserver(async (mutations) => {
+    const debounced = debounce(async (mutations) => {
       const skipClasses = new Set([
         'huntersHornView__timerState',
         'mousehuntHud-gameInfo',
@@ -272,8 +273,9 @@ class ImageUpscaler {
           console.error('Failed to upscale images:', error); // eslint-disable-line no-console
         }
       }
-    });
+    }, 50);
 
+    this.observer = new MutationObserver(debounced);
     this.observer.observe(document, this.observerOptions);
   }
 

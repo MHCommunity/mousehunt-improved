@@ -66,6 +66,10 @@ const updateInputField = async () => {
     }
 
     if (addQuantityButtons) {
+      const container = block.closest('.itemPurchaseView-container');
+      if (! container || container.classList.contains('lil_jill')) {
+        return;
+      }
       qtyButtons(block, input, maxQty);
     }
   });

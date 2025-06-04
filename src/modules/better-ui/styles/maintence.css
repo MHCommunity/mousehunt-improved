@@ -34,3 +34,16 @@
   color: #fff;
   background-color: #e03a3a;
 }
+
+#noscript .pEntry {
+  margin: 10px auto;
+}
+
+#noscript > .controls {
+  background-color: #eee;
+  margin: 0 10px;
+}
+
+#noscript {
+  padding: 0;
+}
