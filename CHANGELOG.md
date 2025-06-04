@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.81.5
+
+- Fixed Better Maps 'Show map solver links' option not working correctly
+
 ## Version 0.81.4
 
 - Better Shops: Updated styles for Big Jaq

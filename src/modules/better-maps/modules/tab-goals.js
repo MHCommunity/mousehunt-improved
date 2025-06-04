@@ -705,7 +705,7 @@ const showGoalsTab = async (mapData) => {
   addPreviewClass();
   moveAuras();
 
-  if (getSetting('better-maps.show-map-solver-links')) {
+  if (getSetting('better-maps.show-map-solver-links', true)) {
     addMapSolverLinks(mapData);
   }
 };
