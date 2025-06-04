@@ -4,6 +4,7 @@
 
 - Better Shops: Updated styles for Big Jaq
 - Better Mice: Updated Mice submenu 'Your Stats' to be 'Your Stats (Groups)' and 'Your Stats (Locations)'
+- Location HUDs: Draconic Depths: Fixed issue with 'Keep' cart items being shown as Embers
 - Minor performance improvements
 
 ## Version 0.81.3
