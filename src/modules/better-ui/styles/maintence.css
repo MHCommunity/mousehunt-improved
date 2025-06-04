@@ -40,8 +40,8 @@
 }
 
 #noscript > .controls {
-  background-color: #eee;
   margin: 0 10px;
+  background-color: #eee;
 }
 
 #noscript {
