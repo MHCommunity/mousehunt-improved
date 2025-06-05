@@ -1,0 +1,194 @@
+name: Release New Version
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    name: Build Extension
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      changelog: ${{ steps.changelog.outputs.changelog }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Get version
+        id: version
+        run: echo "version=$(bun run scripts/get-version.mjs)" >> "$GITHUB_OUTPUT"
+
+      - name: Get changelog
+        id: changelog
+        run: |
+          changelog=$(bun run get-changelog)
+          {
+            echo "changelog<<EOF"
+            echo "$changelog"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Build extension
+        run: |
+          # Make sure we pass linting before building.
+          bun run lint || exit 1
+
+          # Fetch external CSS files.
+          bun run build:css
+
+          bun run build:extension:chrome --release
+          bun run build:extension:firefox --release
+          bun run build:userscript
+
+      - name: Inject Sentry
+        run: |
+          # Create a new Sentry release, inject information, and upload source maps.
+          bun run sentry-cli releases new "mousehunt-improved@${{ steps.version.outputs.version }}" \
+            --org mousehunt \
+            --project mh-improved \
+            --auth-token ${{ secrets.SENTRY_AUTH_TOKEN }}
+          bun run sentry-cli sourcemaps inject ./dist/chrome \
+            --org mousehunt \
+            --project mh-improved \
+            --release "mousehunt-improved@${{ steps.version.outputs.version }}" \
+            --auth-token ${{ secrets.SENTRY_AUTH_TOKEN }}
+          bun run sentry-cli sourcemaps upload ./dist/chrome \
+            --org mousehunt \
+            --project mh-improved \
+            --release "mousehunt-improved@${{ steps.version.outputs.version }}" \
+            --auth-token ${{ secrets.SENTRY_AUTH_TOKEN }}
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+      - name: Zip and archive files
+        run: |
+          bun run build:zips
+          bun run build:archive
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: |
+            dist/mousehunt-improved-chrome.zip
+            dist/mousehunt-improved-firefox.zip
+            dist/firefox
+            dist/mousehunt-improved.user.js
+            dist/archive.zip
+
+
+  create-github-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+
+  chrome-upload:
+    name: Upload Chrome Extension
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Upload Chrome Extension
+        run: |
+          bun run chrome-webstore-upload upload \
+            --source dist/mousehunt-improved-chrome.zip \
+            --auto-publish \
+            --extension-id fgjkidgknmkhnbeobehlfabjbignhkhm \
+            --client-id "$CHROME_CLIENT_ID" \
+            --client-secret "$CHROME_CLIENT_SECRET" \
+            --refresh-token "$CHROME_REFRESH_TOKEN"
+        env:
+          CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+          CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+          CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+  firefox-upload:
+    name: Upload Firefox Extension
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Upload Firefox Extension
+        run: |
+          bun run web-ext sign \
+            --source-dir dist/firefox \
+            --upload-source-code dist/archive.zip \
+            --api-key "$FIREFOX_API_KEY" \
+            --api-secret "$FIREFOX_API_SECRET" \
+            --channel listed
+        env:
+          FIREFOX_API_KEY: ${{ secrets.FIREFOX_API_KEY }}
+          FIREFOX_API_SECRET: ${{ secrets.FIREFOX_API_SECRET }}
+
+  userscript-upload:
+    name: Upload Userscript
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: 'userscript-build'
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Commit changes
+        run: |
+          # Commit the files to the userscript-build branch.
+          git config --local user.name "Mousebot"
+          git config --local user.email "mousebot@mouse.rip"
+          git add dist/mousehunt-improved.user.js
+          git commit -m "User script v${{ needs.build.outputs.version }}" || exit 0
+          git push origin userscript-build

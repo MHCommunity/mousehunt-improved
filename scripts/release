@@ -5,6 +5,12 @@ if [ -f .env ]; then
   source .env
 fi
 
+# Check for bun, as it is required for the build process.
+if ! command -v bun &> /dev/null; then
+  echo "bun is not installed. Please install bun to continue."
+  exit 1
+fi
+
 publish_chrome_extension() {
   bun run chrome-webstore-upload publish \
     --source dist/chrome.zip \
@@ -40,20 +46,7 @@ if [ "$1" == "publish" ] || [ "$1" == "--publish" ]; then
   exit 0
 fi
 
-# Make sure the working directory is clean.
-if [ -n "$(git status --porcelain)" ]; then
-  echo "Working directory is not clean, commit the changes first."
-  exit 1
-fi
-
-# If we pass in the --no-lint flag, skip the linting step.
-if [ "$1" != "--no-lint" ]; then
-  bun run lint || exit 1
-fi
-
-version=$(jq -r .version package.json)
-
-# Update static.mouse.rip if the _update_static_mouse_rip command is available.
+# Update static.mouse.rip if the UPDATE_STATIC_MOUSE_RIP command is available.
 if [ -n "$UPDATE_STATIC_MOUSE_RIP" ]; then
   staticMouseRip=$($UPDATE_STATIC_MOUSE_RIP 2>&1)
   if [ $? -ne 0 ]; then
@@ -67,63 +60,9 @@ else
 fi
 
 
+# Tag and push the current version to the repository, the publish workflow will handle the rest.
+version=$(bun run get-version)
+
+git push origin main || exit 1
 git tag -a "v$version" -m "Release v$version" || exit 1
-
-# Build the extension.
-bun run clean
-
-# Pull down the external CSS files and add them to the extension folder.
-bun run build:css
-
-bun run build:extension:chrome --release
-bun run build:extension:firefox --release
-
-# Upload debug symbols to Sentry.
-bun run sentry-cli releases new --org mousehunt --project mh-improved "mousehunt-improved@$version"
-bun run sentry-cli sourcemaps inject --org mousehunt --project mh-improved ./dist/chrome --release "mousehunt-improved@$version"
-bun run sentry-cli sourcemaps upload --org mousehunt --project mh-improved ./dist/chrome --release "mousehunt-improved@$version"
-
-# Build the extra files.
-bun run build:zips
-bun run build:archive
-
-bun run build:userscript
-
-# Get the changelog for the release.
-changelog=$(awk "/## Version/{flag++; if(flag==2) exit} flag" CHANGELOG.md | sed '1,2d')
-
-git push origin main
 git push origin "v$version"
-
-# Create a GitHub release.
-gh release create "v$version" dist/chrome.zip dist/firefox.zip dist/mousehunt-improved.user.js dist/archive.zip \
-  --title "MouseHunt Improved $version" \
-  --notes "$changelog"
-
-# Upload to Chrome Web Store.
-bun run chrome-webstore-upload upload \
-  --source dist/chrome.zip \
-  --auto-publish \
-  --extension-id "$CHROME_EXTENSION_ID" \
-  --client-id "$CHROME_CLIENT_ID" \
-  --client-secret "$CHROME_CLIENT_SECRET" \
-  --refresh-token "$CHROME_REFRESH_TOKEN"
-
-# Upload to Firefox Add-ons.
-bun run web-ext sign \
-  --source-dir dist/firefox \
-  --upload-source-code dist/archive.zip \
-  --api-key "$FIREFOX_JWT_ISSUER" \
-  --api-secret "$FIREFOX_JWT_SECRET" \
-  --channel "listed" > /dev/null 2>&1 && rm web-ext-artifacts/*.xpi > /dev/null 2>&1 && rmdir web-ext-artifacts > /dev/null 2>&1 &
-
-# Build the userscript and push to a branch.
-cp dist/mousehunt-improved.user.js /tmp
-git checkout userscript-build || exit 1
-git rm -rf .
-mkdir -p dist
-mv /tmp/mousehunt-improved.user.js dist/
-git add dist/mousehunt-improved.user.js
-git commit -m "Userscript v$version"
-git push origin userscript-build
-git checkout main
