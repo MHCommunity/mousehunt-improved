@@ -125,6 +125,7 @@ const replacements = [
   ['pm .', 'pm.'], // aura expiration fix.
   ['am .', 'am.'],
   ['The last of the mist dissipated from the atmosphere.I can obtain more Mist Canisters and begin misting again.', 'The last of the mist dissipated.'],
+  ['My Printing Press Base printed through a roll of', 'My Printing Press Base used a roll of'],
 
   // Event stuff
   // SEH

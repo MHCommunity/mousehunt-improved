@@ -43,4 +43,8 @@
   left: -1px;
 }
 
+.journaltext a[href="https://www.mousehuntgame.com/item.php?item_type=printing_press_charge_stat_item"]::before {
+  left: 1px;
+}
+
 /* stylelint-enable prettier/prettier */
