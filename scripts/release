@@ -48,12 +48,10 @@ fi
 
 # Update static.mouse.rip if the UPDATE_STATIC_MOUSE_RIP command is available.
 if [ -n "$UPDATE_STATIC_MOUSE_RIP" ]; then
-  staticMouseRip=$($UPDATE_STATIC_MOUSE_RIP 2>&1)
-  if [ $? -ne 0 ]; then
+  if ! $UPDATE_STATIC_MOUSE_RIP > /dev/null 2>&1; then
     echo "Failed to update static.mouse.rip"
   else
     echo "Updated static.mouse.rip"
-    echo "$staticMouseRip"
   fi
 else
   echo "No command available to update static.mouse.rip, export UPDATE_STATIC_MOUSE_RIP to enable"
