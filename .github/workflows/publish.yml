@@ -100,6 +100,19 @@ jobs:
           path: dist
           merge-multiple: true
 
+      - name: Create GitHub Release
+        run: |
+          version="${{ needs.build.outputs.version }}"
+          changelog="${{ needs.build.outputs.changelog }}"
+
+          # Create a GitHub release with the version and changelog.
+          gh release create "v$version" \
+            dist/mousehunt-improved-chrome.zip \
+            dist/mousehunt-improved-firefox.zip \
+            dist/mousehunt-improved.user.js \
+            --title "Mousehunt Improved v$version" \
+            --notes "$changelog"
+
 
   chrome-upload:
     name: Upload Chrome Extension
