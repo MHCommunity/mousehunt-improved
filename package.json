@@ -35,6 +35,8 @@
     "dev:chrome": "bun run scripts/build-extension.mjs --platform=chrome --watch",
     "dev:firefox": "bun run scripts/build-extension.mjs --platform=firefox --watch",
     "dev": "bun run scripts/build-extension.mjs --platform=chrome --watch",
+    "get-version": "bun run scripts/get-version.mjs",
+    "get-changelog": "bun run scripts/get-changelog.mjs",
     "fix-map-groups": "bun run scripts/fix-map-groups.mjs",
     "lint:css:fix": "stylelint 'src/**/*.css' --fix",
     "lint:css": "stylelint 'src/**/*.css'",
@@ -48,6 +50,7 @@
     "lint:scripts:fix": "eslint scripts/**/*.mjs --fix",
     "lint:scripts": "eslint scripts/**/*.mjs",
     "lint": "concurrently \"bun:lint:*(!fix)\"",
+    "release:publish": "./scripts/release --publish",
     "release": "./scripts/release"
   },
   "dependencies": {

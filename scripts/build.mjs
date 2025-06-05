@@ -39,7 +39,7 @@ const buildUserscript = async () => {
 };
 
 const buildZip = async (platform) => {
-  const output = fs.createWriteStream(path.join(process.cwd(), `dist/${platform}.zip`));
+  const output = fs.createWriteStream(path.join(process.cwd(), `dist/mousehunt-improved-${platform}.zip`));
   const archive = archiver('zip', {
     zlib: { level: 9 }
   });
