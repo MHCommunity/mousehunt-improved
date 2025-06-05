@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.81.6
+
+- Updated Better Journal with Printing Press styles
+- Updated Better UI styles
+
 ## Version 0.81.5
 
 - Fixed Better Maps 'Show map solver links' option not working correctly
