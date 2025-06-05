@@ -145,3 +145,72 @@
 .mh-dark .friendsPage-friendRow-stat.map.hasHover:hover {
   border-color: var(--d-border);
 }
+
+/* stylelint-disable selector-pseudo-element-no-unknown, selector-pseudo-class-no-unknown */
+select.friendsPage-list-filter-select.friendsPage-list-sortBy,
+select.friendsPage-list-filter-select.friendsPage-list-sortBy::picker(select) {
+  appearance: base-select;
+}
+
+select.friendsPage-list-filter-select.friendsPage-list-sortBy {
+  align-items: center;
+  padding: 0 0 0 10px;
+  cursor: pointer;
+  background: linear-gradient(to top, #eee 0%, #fff 50%);
+  border: 1px solid #aaa;
+  transition: 0.4s;
+}
+
+select.friendsPage-list-filter-select.friendsPage-list-sortBy::picker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 100%;
+  font-size: 10px;
+  color: #999;
+  background: linear-gradient(to top, #ccc 0%, #eee 60%);
+  border-left: 1px solid #aaa;
+  transition: 0.4s rotate;
+}
+
+select.friendsPage-list-filter-select.friendsPage-list-sortBy:open::picker-icon {
+  background: linear-gradient(to bottom, #ccc 0%, #eee 60%);
+  border-right: 1px solid #aaa;
+  border-left: none;
+  transform: rotate(180deg);
+}
+/* stylelint-enable selector-pseudo-element-no-unknown, selector-pseudo-class-no-unknown */
+
+select.friendsPage-list-filter-select.friendsPage-list-sortBy option {
+  align-items: center;
+  padding: 3px 7px 4px;
+  cursor: pointer;
+}
+
+select.friendsPage-list-filter-select.friendsPage-list-sortBy option[value="wisdom"]::before {
+  width: 20px;
+  height: 18px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/titles/84bc1109b5cd7aa8c24d195bc8207c38.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+select.friendsPage-list-filter-select.friendsPage-list-sortBy option[value="gold"]::before {
+  width: 20px;
+  height: 18px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/items/stats/large/f659a8a07d3877df4165b188f13bb0db.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+select.friendsPage-list-filter-select.friendsPage-list-sortBy option[value="points"]::before {
+  width: 20px;
+  height: 18px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/items/stats/large/7484e1b263f7b0c3f4fc933cc153fb06.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
