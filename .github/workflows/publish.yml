@@ -162,7 +162,8 @@ jobs:
             --upload-source-code dist/archive.zip \
             --api-key "$FIREFOX_API_KEY" \
             --api-secret "$FIREFOX_API_SECRET" \
-            --channel listed
+            --channel "listed"
+            --timeout 0
         env:
           FIREFOX_API_KEY: ${{ secrets.FIREFOX_API_KEY }}
           FIREFOX_API_SECRET: ${{ secrets.FIREFOX_API_SECRET }}
