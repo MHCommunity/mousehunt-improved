@@ -13,6 +13,10 @@ await esbuild.build({
   format: 'iife',
   globalName: 'mhui',
   bundle: true,
+  minify: false,
+  minifySyntax: true,
+  sourcemap: false,
+  sourcesContent: false,
   target: [
     'es6',
     'chrome58',
@@ -24,10 +28,6 @@ await esbuild.build({
     JSONMinifyPlugin
   ],
   outfile: 'dist/mousehunt-improved.user.js',
-  minify: false,
-  minifySyntax: true,
-  sourcemap: false,
-  sourcesContent: false,
   alias: {
     '@data': path.resolve(process.cwd(), 'dist/data'),
   },
