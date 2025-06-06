@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.81.7
+
+- Better Shops: Updated styles for Big Jaq
+- Show Auras: Updated styles
+
 ## Version 0.81.6
 
 - Updated Better Journal with Printing Press styles

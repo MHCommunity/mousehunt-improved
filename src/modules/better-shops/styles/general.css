@@ -678,3 +678,24 @@ a.itemPurchaseView-action-buySuperBrie {
 .itemPurchaseView-container.lil_jill .itemPurchaseView-content-container {
   background: transparent;
 }
+
+.big_jack.itemPurchaseView-container.no_gold_cost .itemPurchaseView-action-goldGost {
+  display: none;
+}
+
+.itemPurchaseView-container.big_jack {
+  width: 32%;
+}
+
+.itemPurchaseView-container.big_jack .itemPurchaseView-action-itemCost-table {
+  width: auto;
+  margin-top: 0;
+}
+
+.itemPurchaseView-container.big_jack .itemPurchaseView-action-container,
+.itemPurchaseView-container.big_jack.bloom_spice_small_convertible .itemPurchaseView-action-container,
+.itemPurchaseView-container.big_jack.bloom_spice_medium_convertible .itemPurchaseView-action-container,
+.itemPurchaseView-container.big_jack.bloom_spice_large_convertible .itemPurchaseView-action-container,
+.itemPurchaseView-container.big_jack.bloom_rubber_plant_convertible .itemPurchaseView-action-container {
+  height: auto;
+}

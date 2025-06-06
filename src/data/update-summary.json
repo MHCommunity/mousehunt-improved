@@ -33,6 +33,10 @@
       "items": ["Removed 'Show friend and hunter counts on map' option"]
     },
     {
+      "title": "Better Shops",
+      "items": ["Updated styles for Big Jaq"]
+    },
+    {
       "title": "Better UI",
       "items": ["Added Egg Master icon display to profile pages"]
     },
@@ -54,6 +58,10 @@
     {
       "title": "Journal Changer",
       "items": ["Add Draconic Depths to the environment list"]
+    },
+    {
+      "title": "Show Auras",
+      "items": ["Updated styles"]
     },
     {
       "title": "Location HUD: Burroughs Rift",

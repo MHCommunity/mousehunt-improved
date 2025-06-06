@@ -67,7 +67,7 @@ const updateInputField = async () => {
 
     if (addQuantityButtons) {
       const container = block.closest('.itemPurchaseView-container');
-      if (! container || container.classList.contains('lil_jill')) {
+      if (! container || container.classList.contains('lil_jill') || container.classList.contains('big_jack')) {
         return;
       }
       qtyButtons(block, input, maxQty);
