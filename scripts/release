@@ -63,5 +63,5 @@ bun run lint || exit 1
 version=$(bun run get-version)
 
 git push origin main || exit 1
-git tag -a "v$version" -m "Release v$version" || exit 1
-git push origin "v$version"
+git tag -a "v$version" -m "Release v$version" --force || exit 1
+git push origin "v$version" --force || exit 1
