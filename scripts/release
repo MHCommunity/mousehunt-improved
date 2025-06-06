@@ -57,6 +57,7 @@ else
   echo "No command available to update static.mouse.rip, export UPDATE_STATIC_MOUSE_RIP to enable"
 fi
 
+bun run lint || exit 1
 
 # Tag and push the current version to the repository, the publish workflow will handle the rest.
 version=$(bun run get-version)
