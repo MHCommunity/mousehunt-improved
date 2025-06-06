@@ -46,7 +46,7 @@ const buildExtension = async (platform, watch = false) => {
     globalName: 'mhui',
     bundle: true,
     minify: true,
-    metafile: false,
+    metafile: true,
     sourcemap: true,
     target: [
       'es6',
