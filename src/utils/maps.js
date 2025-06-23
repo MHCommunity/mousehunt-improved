@@ -172,7 +172,7 @@ const showTravelConfirmationForMice = ({ title, description, environment, templa
   dialog.setContent(hg.utils.TemplateUtil.renderFromFile('TreasureMapDialogView', 'travel', templateData));
   dialog.setCssClass('confirm');
   dialog.setContinueAction('Travel', () => {
-    app.pages.TravelPage.travel(environment);
+    app.pages.TravelPage.travel(environment || templateData.environment.id);
     setTimeout(() => {
       jsDialog().hide();
     }, 250);
@@ -193,7 +193,7 @@ const showTravelConfirmationNoDetails = async (environment) => {
       id: environment.id,
       type: environment.id,
       thumb: environment.image || environment.thumb,
-      header: environment.header || environment.image || environment.thumb,
+      header: environment.header || environment.headerImage || environment.thumb,
       goals: environment.goals || [],
       num_completed_goals: 0,
       num_total_goals: 0,
@@ -257,7 +257,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     const mhctRow = makeElement('div', 'mhct-row');
     const location = makeElement('div', 'mhct-location');
 
-    makeElement('span', 'mhct-location-text', mhct.location, location);
+    const locationEl = makeElement('span', 'mhct-location-text', mhct.location, location);
 
     if (mhct.stage) {
       makeElement('span', 'mhct-stage', mhct.stage, location);
@@ -278,20 +278,33 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     const mhctRate = (Math.round(('item' === type ? mhct.drop_pct : mhct.rate / 100) * 100) / 100).toFixed(1);
     makeElement('div', 'mhct-rate', `${mhctRate}%`, mhctRow);
 
-    mhctRow.addEventListener('click', () => {
-      // if we're in the right location, then equip the right cheese, otherwise show the travel dialog)
-      if (environment && environment.id === getCurrentLocation() && app?.pages?.CampPage?.showTrapSelector) {
+    if (environment && (environment.id === getCurrentLocation()) && app?.pages?.CampPage?.showTrapSelector) {
+      locationEl.setAttribute('title', 'Click to open the trap selector to change bait');
+
+      mhctRow.addEventListener('click', () => {
         app.pages.CampPage.showTrapSelector('bait');
         jsDialog().hide();
-        return;
-      }
-
+      });
+    } else {
       const travelEnvironment = mapper('mapData').environments.find((env) => {
         return env.type === environment.id;
       });
 
-      showTravelConfirmation(travelEnvironment, mapModel());
-    });
+      mhctRow.setAttribute('data-environment', travelEnvironment?.id || environment.id);
+      mhctRow.addEventListener('click', () => {
+        if (travelEnvironment) {
+          // If the environment is the current location, then just close the dialog.
+          if (travelEnvironment.id === getCurrentLocation()) {
+            jsDialog().hide();
+            return;
+          }
+
+          showTravelConfirmation(travelEnvironment, mapModel());
+        } else {
+          showTravelConfirmationNoDetails(environment);
+        }
+      });
+    }
 
     mhctDiv.append(mhctRow);
   });
