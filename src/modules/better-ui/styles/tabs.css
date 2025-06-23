@@ -199,8 +199,7 @@ div#dailyRewardTimer::before {
   margin-top: 15px;
 }
 
-.campPage-tabs-tabContent-larryTip-container a.campPage-tabs-tabContent-larryTip-byLine,
-img.campPage-larryTip-external-link-icon {
+.campPage-tabs-tabContent-larryTip-container a.campPage-tabs-tabContent-larryTip-byLine {
   display: none;
 }
 
