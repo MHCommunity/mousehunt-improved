@@ -20,6 +20,10 @@
   max-height: 55vh;
 }
 
+.treasureMapView-block-content.scavenger-sorted-page {
+  max-height: unset;
+}
+
 #supplytransfer .drawer {
   padding-bottom: 75px;
 }

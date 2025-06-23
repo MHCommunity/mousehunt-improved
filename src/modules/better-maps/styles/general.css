@@ -707,6 +707,20 @@ input.treasureMapView-block-search-text {
   width: calc(10% - 5px);
 }
 
+.treasureMapView-goals-group-goal.item.complete::after {
+  top: 15px;
+  right: 20px;
+}
+
+.treasureMapView-goals-group-goal.complete .treasureMapView-goals-group-goal-image {
+  height: 40px;
+  background-size: contain;
+}
+
+.complete.treasureMapView-goals-group-goal.item .treasureMapView-goals-group-goal-name {
+  height: 20px;
+}
+
 .treasureMapView-goals-group-goal:hover::before {
   background-color: #ececec;
 }
@@ -995,10 +1009,6 @@ input.treasureMapView-block-search-text {
 .treasureMapRootView-subTab.active,
 .treasureMapRootView-subTabContainer:hover .treasureMapRootView-subTab:hover {
   padding: 0 16px;
-}
-
-.treasureMapView-goals-group-goal.complete .treasureMapView-goals-group-goal-image {
-  background-size: cover;
 }
 
 .tsitu-rh-helper {
