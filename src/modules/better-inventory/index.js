@@ -293,9 +293,9 @@ const replaceInventoryView = () => {
 
     if ('recipe' === itemClassification) {
       const element = document.elementFromPoint(window.event.clientX, window.event.clientY);
-      const closest = element.closest('[data-item-type]');
+      const closest = element.closest('[data-produced-item]');
       if (closest) {
-        hg.views.ItemView.show(closest.getAttribute('data-item-type'));
+        app.pages.InventoryPage.showConfirmPopup(closest, 'recipe');
       }
 
       return;
