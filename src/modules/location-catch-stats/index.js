@@ -75,6 +75,10 @@ const buildMouseMarkup = (mouseData) => {
   // Create the image element.
   const image = document.createElement('div');
   image.classList.add('mh-catch-stats-image');
+  if (mouse.num_catches <= 0) {
+    image.classList.add('mh-catch-stats-no-catches');
+  }
+
   image.style.backgroundImage = `url('${mouse.image}')`;
 
   // If the mouse has a crown, add it.

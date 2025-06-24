@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 5px;
   color: #000;
 }
 
@@ -115,4 +115,8 @@
 
 .mh-catch-stats-catches {
   padding-right: 5px;
+}
+
+.mh-catch-stats-no-catches {
+  filter: grayscale(1) opacity(0.5);
 }
