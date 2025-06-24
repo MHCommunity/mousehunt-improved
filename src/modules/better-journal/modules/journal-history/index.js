@@ -75,7 +75,7 @@ const makeEntriesMarkup = (entries) => {
     html += `<div class="journalbody">
         <div class="journalactions"></div>
         <div class="journalenvdate">
-          <div class="journaldate">${entry.date}</div>
+          <div class="journaldate">${entry.date} - </div>
           <div class="journalenvironment">${entry.location}</div>
           <span class="history-timestamp">${timestamp}</span>
         </div>
