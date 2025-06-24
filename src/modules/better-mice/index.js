@@ -340,7 +340,7 @@ const updateMouseView = async () => {
 
   makeTooltip({
     appendTo: titleText,
-    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noopener noreferrer">MHCT</a>.',
+    text: 'The best location and bait, according to data gathered by <a href="https://mhct.win/" target="_blank" rel="noreferrer">MHCT</a>.',
   });
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');

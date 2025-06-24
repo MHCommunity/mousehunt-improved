@@ -272,7 +272,7 @@ const updateAssignmentList = async () => {
     const wiki = makeElement('a', 'mh-ui-assignment-wiki-button', 'View on Wiki →');
     wiki.href = `https://mhwiki.hitgrab.com/wiki/index.php/Library_Assignment#${assignment.name.replaceAll(' ', '_')}`;
     wiki.target = '_blank';
-    wiki.rel = 'noopener noreferrer';
+    wiki.rel = 'noreferrer';
     metaWrapper.append(wiki);
 
     // Insert it after the content.

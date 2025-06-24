@@ -33,7 +33,7 @@ const addHelpLinks = () => {
 
     link.setAttribute('href', helpLink.href);
     link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
+    link.setAttribute('rel', 'noreferrer');
 
     supportDropdown.append(link);
   });
