@@ -98,6 +98,6 @@
     "stylelint-prettier": "4.1.0",
     "stylelint-stylistic": "^0.4.5",
     "web-ext": "^8.8.0",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   }
 }
