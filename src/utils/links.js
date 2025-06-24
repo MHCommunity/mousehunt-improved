@@ -160,7 +160,7 @@ const addSubmenuItem = (options) => {
 
     // Set the target to _blank so it opens in a new tab.
     link.target = '_blank';
-    link.rel = 'noopener noreferrer';
+    link.rel = 'noreferrer';
   }
 
   // Add the link to the item.
