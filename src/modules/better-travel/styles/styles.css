@@ -59,7 +59,12 @@
 }
 
 .travelPage-map-image-environment.locked .travelPage-map-image-environment-status {
+  top: 15px;
+  left: 38px;
   z-index: 1;
+  width: 65px;
+  height: 65px;
+  background-size: cover;
   opacity: 0.5;
 }
 
@@ -358,10 +363,10 @@
 }
 
 .travelPage-map-image-environment-pointer-image {
-  top: 10px;
-  left: 6px;
-  width: 70px;
-  height: 70px;
+  top: 7px;
+  left: 7px;
+  width: 68px;
+  height: 68px;
 }
 
 .huntersHornView__message.huntersHornView__message--active.travel-reminder .huntersHornMessageView--unknown_error .huntersHornMessageView__content::before {
