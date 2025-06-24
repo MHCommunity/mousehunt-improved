@@ -133,6 +133,10 @@
 .friendsPage-friendRow-stat.map.hasHover:hover .friendsPage-friendRow-stat-fullValue {
   right: -1px;
   left: -1px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  line-height: 16px;
+  white-space: normal;
 }
 
 .friendsPage-friendRow-stat.map.hasHover:hover {
@@ -213,4 +217,16 @@ select.friendsPage-list-filter-select.friendsPage-list-sortBy option[value="poin
   background: url(https://www.mousehuntgame.com/images/items/stats/large/7484e1b263f7b0c3f4fc933cc153fb06.png);
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.friendsPage-friendRow-imageContainer.friendsPage-friendRow--banned::after {
+  position: absolute;
+  inset: 0;
+  width: 100px;
+  height: 100px;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/profile/banished.png) no-repeat center;
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(1px 1px 0 #000);
+  background-size: contain;
+  transform: rotate(15deg);
 }
