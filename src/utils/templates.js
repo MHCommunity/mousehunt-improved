@@ -1,3 +1,4 @@
+import { debug } from './debug';
 /**
  * Find and replace strings in a template file.
  *

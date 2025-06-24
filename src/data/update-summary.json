@@ -28,10 +28,7 @@
     },
     {
       "title": "Better UI",
-      "items": [
-        "Added banished user visual indicator on friend list",
-        "Updated styles"
-      ]
+      "items": ["Updated styles"]
     },
     {
       "title": "Experiments",
