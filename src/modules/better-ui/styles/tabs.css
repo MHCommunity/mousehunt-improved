@@ -195,6 +195,10 @@ div#dailyRewardTimer::before {
   padding-top: 10px;
 }
 
+.campPage-larryTip-external-link-icon {
+  display: none;
+}
+
 .campPage-daily-container.daily .campPage-daily-content {
   margin-top: 15px;
 }
@@ -203,8 +207,12 @@ div#dailyRewardTimer::before {
   display: none;
 }
 
+.campPage-tabs-tabContent-larryTip-container a.campPage-tabs-tabContent-larryTip-byLine:first-of-type {
+  display: block;
+}
+
 .campPage-tabs-tabContent-larryTip-environment {
-  padding-bottom: 1em;
+  padding: 0 1em;
 }
 
 .campPage-tabs-tabContent-larryTip-container p:last-of-type a {
