@@ -24,6 +24,7 @@ const validDataFiles = new Set([
   'items',
   'titles',
   'mhct-convertibles',
+  'mice',
 ]);
 
 /**
