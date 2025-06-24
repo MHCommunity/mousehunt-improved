@@ -4,7 +4,6 @@ import {
   addSettingForModule,
   addSettingsTab,
   debug,
-  debuglog,
   doEvent,
   doInternalEvent,
   getAnonymousUserHash,
@@ -27,7 +26,7 @@ const modules = imported;
 
 const categories = [
   { id: 'required', name: 'Always Loaded' },
-  { id: 'better', name: `MouseHunt Improved <a title="View release notes" href="https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}" target="_blank" rel="noopener noreferrer">v${mhImprovedVersion}</a>` },
+  { id: 'better', name: `MouseHunt Improved <a title="View release notes" href="https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}" target="_blank" rel="noreferrer">v${mhImprovedVersion}</a>` },
   { id: 'feature', name: 'Features' },
   { id: 'design', name: 'Design' },
   { id: 'element-hiding', name: 'Hide Page Elements' },
@@ -115,9 +114,6 @@ const loadModules = async () => {
     }
 
     allLoadedModules.push(...loadedModules);
-
-    // Log the loaded modules for the category.
-    debuglog('module-loading', `Loaded ${category.modules.length} ${category.id} modules`, loadedModules);
   }
 
   // Wait for all modules to load.

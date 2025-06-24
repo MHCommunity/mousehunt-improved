@@ -140,18 +140,10 @@ const updateMinLucks = async (useCachedData = false) => {
 
     const location = getCurrentLocation();
     if (useCachedData) {
-      debuglog('cre', 'Using cached data for mice effectiveness');
       const cachedLocation = await cacheGet('cre-location');
       const cachedStats = await cacheGet('cre-stats');
-      if (cachedLocation !== location || cachedStats !== currentStats) {
-        debuglog('cre', 'Cached data is outdated');
-        effectiveness = await updateMiceEffectiveness(location, currentStats);
-      } else {
-        debuglog('cre', 'Using cached data');
-        effectiveness = await cacheGet('cre-effectiveness');
-      }
+      effectiveness = await (cachedLocation !== location || cachedStats !== currentStats ? updateMiceEffectiveness(location, currentStats) : cacheGet('cre-effectiveness'));
     } else {
-      debuglog('cre', 'Fetching new data for mice effectiveness');
       effectiveness = await updateMiceEffectiveness(location, currentStats);
     }
 

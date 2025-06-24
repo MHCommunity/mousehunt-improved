@@ -129,8 +129,6 @@ const main = () => {
   const currentLocation = getCurrentLocation();
   const location = normalizeCurrentLocation(currentLocation);
 
-  debuglog('location-huds', `Location: ${location}`);
-
   if (getSetting('location-huds-enabled.event-locations', true)) {
     eventLocations(currentLocation);
   }
