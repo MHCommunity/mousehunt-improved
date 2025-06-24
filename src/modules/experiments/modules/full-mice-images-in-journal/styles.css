@@ -1,0 +1,32 @@
+.journal .content .entry.catchsuccess .journalimage a,
+.journal .content .entry.catchsuccessloot .journalimage a,
+.journal .content .entry.catchsuccessprize .journalimage a {
+  width: auto;
+  height: auto;
+}
+
+.entry.catchsuccess .journalimage img,
+.entry.catchsuccessloot .journalimage img,
+.entry.catchsuccessprize .journalimage img {
+  width: 90px; /* reset to 60 if the image sizes are too big */
+  border: 1px solid #000;
+}
+
+.journal .content .entry.short.catchsuccess,
+.journal .content .entry.short.catchsuccessloot,
+.journal .content .entry.short.catchsuccessprize {
+  min-height: 100px;
+}
+
+.journal .content .entry.catchsuccess .journalimage,
+.journal .content .entry.catchsuccessloot .journalimage,
+.journal .content .entry.catchsuccessprize .journalimage {
+  width: 95px; /* remove if image sizes are too big */
+  margin: 0 10px;
+}
+
+.journal .content .entry.catchsuccess .journalbody,
+.journal .content .entry.catchsuccessloot .journalbody,
+.journal .content .entry.catchsuccessprize .journalbody {
+  margin-left: 115px; /* remove if image sizes are too big */
+}
