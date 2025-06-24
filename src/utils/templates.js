@@ -15,8 +15,25 @@ const replaceInTemplate = (templateId, replacements) => {
 };
 
 let _templateRenderFromFile;
+let _templateRender;
 let hasExtendedRenderFromFile = false;
+let hasExtendedRender = false;
 const onRenderCallbacks = {};
+
+/**
+ * Initialize template extensions immediately when module loads.
+ */
+const initializeTemplateExtensions = () => {
+  if (! hasExtendedRenderFromFile) {
+    extenderRenderFromFile();
+    hasExtendedRenderFromFile = true;
+  }
+
+  if (! hasExtendedRender) {
+    extendRender();
+    hasExtendedRender = true;
+  }
+};
 
 /**
  * Watch for a template to be rendered and run a callback before or after.
@@ -32,6 +49,11 @@ const onRender = ({ group, layout = 'layout', callback, before = false, after = 
   if (! hasExtendedRenderFromFile) {
     extenderRenderFromFile();
     hasExtendedRenderFromFile = true;
+  }
+
+  if (! hasExtendedRender) {
+    extendRender();
+    hasExtendedRender = true;
   }
 
   if (! onRenderCallbacks[group]) {
@@ -62,24 +84,84 @@ const extenderRenderFromFile = () => {
   _templateRenderFromFile = hg.utils.TemplateUtil.renderFromFile;
   hg.utils.TemplateUtil.renderFromFile = (group, type, data) => {
     // Call the before callbacks if they exist
-    if (onRenderCallbacks[group] && onRenderCallbacks[group][type] && onRenderCallbacks[group][type].before) {
+    if (
+      onRenderCallbacks[group] &&
+      onRenderCallbacks[group][type] &&
+      onRenderCallbacks[group][type].before
+    ) {
       onRenderCallbacks[group][type].before.forEach((callback) => {
-        callback(data);
+        try {
+          callback(data);
+        } catch (error) {
+          debug(`utils-extendRenderFromFile: Error in before callback for template ${group}/${type}:`, error);
+        }
       });
     }
 
     let results = _templateRenderFromFile(group, type, data);
 
     // Call the after callbacks if they exist
-    if (onRenderCallbacks[group] && onRenderCallbacks[group][type] && onRenderCallbacks[group][type].after) {
+    if (
+      onRenderCallbacks[group] &&
+      onRenderCallbacks[group][type] &&
+      onRenderCallbacks[group][type].after
+    ) {
       onRenderCallbacks[group][type].after.forEach((callback) => {
-        results = callback(data, results);
+        try {
+          results = callback(data, results);
+        } catch (error) {
+          debug(`utils-extendRenderFromFile: Error in after callback for template ${group}/${type}:`, error);
+        }
       });
     }
 
     return results;
   };
 };
+
+const extendRender = () => {
+  if (_templateRender) {
+    return;
+  }
+
+  _templateRender = hg.utils.TemplateUtil.render;
+  hg.utils.TemplateUtil.render = (templateType, templateData) => {
+    if (
+      onRenderCallbacks[templateType] &&
+      onRenderCallbacks[templateType].layout &&
+    onRenderCallbacks[templateType].layout.before
+    ) {
+      onRenderCallbacks[templateType].layout.before.forEach((callback) => {
+        try {
+          callback(templateData);
+        } catch (error) {
+          debug(`utils-extendRender: Error in before callback for template ${templateType}:`, error);
+        }
+      });
+    }
+
+    let results = _templateRender(templateType, templateData);
+
+    if (
+      onRenderCallbacks[templateType] &&
+      onRenderCallbacks[templateType].layout &&
+      onRenderCallbacks[templateType].layout.after
+    ) {
+      onRenderCallbacks[templateType].layout.after.forEach((callback) => {
+        try {
+          results = callback(templateData, results);
+        } catch (error) {
+          debug(`utils-extendRender: Error in after callback for template ${templateType}:`, error);
+        }
+      });
+    }
+
+    return results;
+  };
+};
+
+// Initialize the template extensions immediately
+initializeTemplateExtensions();
 
 export {
   replaceInTemplate,
