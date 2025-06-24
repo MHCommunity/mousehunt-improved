@@ -110,12 +110,14 @@ const getGeneratedName = async (setup) => {
   const response = await fetch('https://setup-namer.mouse.rip', {
     method: 'POST',
     headers: getHeaders(),
-    body: JSON.stringify([
-      setup.bait_id,
-      setup.base_id,
-      setup.weapon_id,
-      setup.trinket_id,
-    ]),
+    body: JSON.stringify({
+      location: setup.location || getCurrentLocation(),
+      power_type: getPowerTypeId(setup.power_type || user.trap_power_type_name.toLowerCase()),
+      bait: setup.bait_id,
+      base: setup.base_id,
+      weapon: setup.weapon_id,
+      trinket: setup.trinket_id,
+    }),
   });
 
   return await response.json();
