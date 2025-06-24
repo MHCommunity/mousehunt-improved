@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 0.81.8
+
+- Better Inventory: Fixed 'Larry hasn't heard of this item' message when clicking on crafting recipes
+- Better Journal: Updated styles
+- Better Maps: Fixed issues with traveling from MHCT list on scavenger maps
+- Better Maps: Updated styles
+- Better Mice: Adjusted power type image sizing in mouse view for better layout
+- Better Travel: Updated styles
+- Better UI: Added banished user visual indicator on friend list
+- Better UI: Updated styles
+- Experiments: Added 'Full Mice Images in Journal' beta feature
+- Location Catch Stats: Updated uncaught mice images to be grayscale
+- Location Catch Stats: Updated styles
+- Taller Windows: Fixed max height for scavenger sorted pages
+
 ## Version 0.81.7
 
 - Better Shops: Updated styles for Big Jaq

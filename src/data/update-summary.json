@@ -3,89 +3,50 @@
   "details": [
     {
       "title": "Better Inventory",
-      "items": ["Add Trap Sorting option under Experimental Settings"]
+      "items": ["Fixed 'Larry hasn't heard of this item' message when clicking on crafting recipes"]
     },
     {
       "title": "Better Journal",
-      "items": ["Updated text replacements and styles"]
+      "items": [
+        "Updated styles"
+      ]
     },
     {
       "title": "Better Maps",
       "items": [
-        "Added ability to pin environments in the Scroll Shop",
-        "Added links to MHCT and Tsitu's map solvers in the footer",
-        "Added quantity and chance percent to items in the Preview",
-        "Added toggle buttons to completed Maps Goals sections, Ctrl/Cmd-click to toggle all",
-        "Fixed fallback to Relic Hunter hints when API does not return location",
-        "Fixed issue with hunters who have left the map not being able to be invited again",
-        "Fixed sidebar toggle functionality not working correctly sometimes",
-        "Updated display of chest and aura icons, moved them to near the map name",
-        "Added 'Show map solver links' option",
-        "Added area highlighting to Warpath maps"
+        "Fixed issues with traveling from MHCT list on scavenger maps",
+        "Updated styles"
       ]
     },
     {
       "title": "Better Mice",
-      "items": ["Updated King's Crowns caching", "Updated styles"]
+      "items": ["Adjusted power type image sizing in mouse view for better layout"]
     },
     {
       "title": "Better Travel",
-      "items": ["Removed 'Show friend and hunter counts on map' option"]
-    },
-    {
-      "title": "Better Shops",
-      "items": ["Updated styles for Big Jaq"]
+      "items": ["Updated styles"]
     },
     {
       "title": "Better UI",
-      "items": ["Added Egg Master icon display to profile pages"]
-    },
-    {
-      "title": "Custom Shield",
-      "items": ["Added 17th Birthday shield"]
-    },
-    {
-      "title": "Dark Mode",
-      "items": ["Updated styles"]
-    },
-    {
-      "title": "Fixes",
       "items": [
-        "Updated Passing Parcel fixes to be more performant",
-        "Fixed Burroughs Rift Location riftiago quantities not showing correctly"
+        "Added banished user visual indicator on friend list",
+        "Updated styles"
       ]
     },
     {
-      "title": "Journal Changer",
-      "items": ["Add Draconic Depths to the environment list"]
+      "title": "Experiments",
+      "items": ["Added 'Full Mice Images in Journal' beta feature"]
     },
     {
-      "title": "Show Auras",
-      "items": ["Updated styles"]
+      "title": "Location Catch Stats",
+      "items": [
+        "Updated uncaught mice images to be grayscale",
+        "Updated styles"
+      ]
     },
     {
-      "title": "Location HUD: Burroughs Rift",
-      "items": ["Updated styles"]
-    },
-    {
-      "title": "Location HUD: Fiery Warpath",
-      "items": ["Added reminders when trap power type does not match charm"]
-    },
-    {
-      "title": "Location HUD: Toxic Spill",
-      "items": ["Updated styles"]
-    },
-    {
-      "title": "Quick Send Supplies",
-      "items": ["Fixed issues where multiple popups would show and not correctly close"]
-    },
-    {
-      "title": "Ultimate Checkmark",
-      "items": ["Added Relic Hunter chests"]
-    },
-    {
-      "title": "Miscellaneous",
-      "items": ["Miscellaneous performance improvements and bug fixes"]
+      "title": "Taller Windows",
+      "items": ["Fixed max height for scavenger sorted pages"]
     }
   ]
 }
