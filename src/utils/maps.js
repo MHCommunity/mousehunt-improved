@@ -264,7 +264,10 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     }
 
     const environment = environments.find((env) => {
-      return env.name === mhct.location;
+      return env.name === mhct.location
+        .replace('Cursed City', 'Lost City')
+        .replace('Twisted Garden', 'Living Garden')
+        .replace('Sand Crypts', 'Sand Dunes');
     });
 
     if (! environment) {
@@ -287,9 +290,10 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
       });
     } else {
       const travelEnvironment = mapper('mapData').environments.find((env) => {
-        return env.type === environment.id;
+        return environment?.id && env.type === environment.id;
       });
 
+      mhctRow.setAttribute('title', `Travel to ${environment.name}`);
       mhctRow.setAttribute('data-environment', travelEnvironment?.id || environment.id);
       mhctRow.addEventListener('click', () => {
         if (travelEnvironment) {

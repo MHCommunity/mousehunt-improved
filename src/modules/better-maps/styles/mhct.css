@@ -33,6 +33,12 @@
   background-color: #e2e2e2;
 }
 
+.mh-ui-mouse-links-map-ars .mhct-row[data-environment]:hover {
+  cursor: pointer;
+  background-color: #eee7e2;
+  box-shadow: 0 0 4px #d3cecb inset;
+}
+
 .mhct-location {
   display: flex;
   flex-direction: column;
