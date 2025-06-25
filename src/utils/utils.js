@@ -219,6 +219,8 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
 
   const requestKey = Object.keys(formData).length ? `${url}-${JSON.stringify(formData)}` : url;
   const timeRequested = Date.now();
+  debuglog('utils-data', `Making request: ${requestKey} at ${timeRequested}`);
+
   if (requests[requestKey] && ! skipChecks) {
     debuglog('utils-data', `Request already in progress: ${requestKey}`);
 

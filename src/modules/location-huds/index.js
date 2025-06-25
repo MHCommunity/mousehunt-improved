@@ -205,6 +205,7 @@ const main = () => {
 
   if (locationHandlers[location]) {
     locationHandlers[location]();
+    debuglog('module-loading', `Loaded Location HUD: "${location}"`);
   }
 };
 
