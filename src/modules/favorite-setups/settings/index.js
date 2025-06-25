@@ -10,5 +10,10 @@ export default async () => {
       title: 'Include mobile favorites',
       default: false,
     },
+    {
+      id: 'favorite-setups.show-location-favorites',
+      title: 'Highlight setups for current location at the top',
+      default: true,
+    }
   ];
 };
