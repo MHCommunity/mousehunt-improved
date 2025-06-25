@@ -81,8 +81,8 @@
 }
 
 .giftSelectorView-friend.complete .giftSelectorView-friend-padding::before {
-  bottom: 9px;
-  left: 10px;
+  bottom: 10px;
+  left: 12px;
   z-index: 1;
   filter: drop-shadow(0 0 3px #b9ff5d) drop-shadow(1px 1px 4px #b9ff5d) drop-shadow(-1px -1px 3px #b9ff5d);
 }
