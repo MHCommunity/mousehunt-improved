@@ -109,6 +109,7 @@ const addJournalProcessingEvents = async () => {
     'better-journal.list',
     'better-journal.gold-and-points',
     'better-journal.journal-history',
+    'experiments.full-mice-images-in-journal',
   ];
 
   // If any of the settings are enabled, then we'll process the journal entries, otherwise we can skip it.
