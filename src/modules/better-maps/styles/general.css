@@ -1019,10 +1019,6 @@ input.treasureMapView-block-search-text {
   z-index: 1;
 }
 
-.mh-ui-map-name {
-  margin-left: 40px;
-}
-
 .mh-ui-map-solver-links-container.treasureMapRootView-padding {
   display: flex;
   flex-direction: row-reverse;
@@ -1032,4 +1028,12 @@ input.treasureMapView-block-search-text {
 .mh-ui-map-solver-links {
   display: flex;
   gap: 10px;
+}
+
+.treasureMapView-highlight.goal.active.item {
+  display: none;
+}
+
+.treasureMapView-highlight.goal.active.item.sticky {
+  display: block;
 }
