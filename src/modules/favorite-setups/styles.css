@@ -73,7 +73,6 @@
 }
 
 .mh-improved-favorite-setups-blueprint-container .row.location-favorite {
-  position: relative;
   background-color: #fdfacf;
 }
 
@@ -235,21 +234,16 @@
 a.random-title::after {
   position: absolute;
   top: 2px;
-  right: 2px;
-  z-index: 1;
+  right: -18px;
   box-sizing: border-box;
   display: block;
   width: 17px;
   height: 17px;
-  padding: 10px 9px;
+  padding: 9px;
   margin: 1px;
   content: "";
-  background-color: #ccc;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path fill-rule="evenodd" d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z" clip-rule="evenodd" /></svg>'); /* stylelint-disable-line */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 15px;
-  border-radius: 20%;
+  background: url(https://www.mousehuntgame.com/images/ui/puzzle/refresh.png) no-repeat center center / contain;
+  border-radius: 50%;
 }
 
 a.random-title:hover::after {
@@ -257,7 +251,7 @@ a.random-title:hover::after {
 }
 
 a.random-title.loading::after {
-  animation: mh-improved-glow 1s linear infinite;
+  animation: mh-improved-spin 1s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -304,8 +298,6 @@ a.random-title.loading::after {
 
 .mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType::before {
   box-sizing: border-box;
-  width: 20px;
-  height: 20px;
   background-color: transparent;
   border: none;
 }
@@ -316,6 +308,19 @@ a.random-title.loading::after {
 
 .mh-improved-favorite-setups-blueprint-container .row.editing .campPage-trap-itemBrowser-favorite-item-image {
   height: 40px;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row.editing .move-buttons {
+  display: flex;
+}
+
+.mh-improved-favorite-setups-blueprint-container .row .move-buttons {
+  position: absolute;
+  bottom: 20px;
+  left: 28px;
+  display: none;
+  flex-direction: row;
+  align-items: center;
 }
 
 .mh-improved-favorite-setups-blueprint-container .row.editing a.move-down::after,
@@ -421,54 +426,4 @@ a.random-title.loading::after {
 
 .row.mobile-setup {
   background-color: #d1ebed;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.draggable {
-  position: relative;
-  cursor: move;
-}
-
-.mh-improved-favorite-setups-blueprint-container .campPage-trap-itemBrowser-item-powerType::after {
-  font-size: 9px;
-}
-
-.mh-improved-favorite-setups-blueprint-container .row.dragging {
-  opacity: 0.5;
-  transform: scale(0.95);
-}
-
-.mh-improved-favorite-setups-blueprint-container .drag-handle {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  padding: 5px;
-  font-size: 14px;
-  color: #666;
-  cursor: grab;
-  user-select: none;
-  transform: translateY(-50%);
-}
-
-.mh-improved-favorite-setups-blueprint-container .drag-handle:active {
-  cursor: grabbing;
-}
-
-.mh-improved-favorite-setups-blueprint-container .placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  margin: 5px 0;
-  background:
-    linear-gradient(45deg, #f0f0f0 25%, transparent 25%) center,
-    linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
-    linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
-  background-size: 10px 10px;
-  border: 2px dashed #ccc;
-}
-
-.mh-improved-favorite-setups-blueprint-container .placeholder-text {
-  font-style: italic;
-  color: #999;
 }
