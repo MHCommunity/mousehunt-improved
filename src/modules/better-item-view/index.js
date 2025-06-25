@@ -182,7 +182,7 @@ const showDropRates = async (itemId, itemView) => {
 
   const link = makeElement('a', 'ar-link', 'View on MHCT →');
   link.href = `https://api.mouse.rip/mhct-redirect-item/${itemId}`;
-  link.target = '_mhct';
+  link.target = '_blank';
   title.append(link);
 
   arWrapper.append(title);
@@ -283,7 +283,7 @@ const maybeShowMiceOnMapLink = async (itemId, itemView) => {
     const listItem = makeElement('li', 'mh-improved-scroll-to-map-multiple-list-item');
     const link = makeElement('a', 'mh-improved-scroll-to-map-link', map.name);
     link.href = `https://www.mhct.win/mapper.php?item=${map.mhctId}`;
-    link.target = '_mhct';
+    link.target = '_blank';
     listItem.append(link);
     mapList.append(listItem);
   });

@@ -234,7 +234,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   const header = makeElement('div', 'mhct-title');
   makeElement('span', 'mhct-title-text', 'item' === type ? 'Drop Rates' : 'Attraction Rates', header);
   const mhctLink = makeElement('a', 'mhct-link', 'View on MHCT →');
-  mhctLink.target = '_mhct';
+  mhctLink.target = '_blank';
 
   if (! mouse.name) {
     const nameEl = document.querySelector('.treasureMapView-highlight-name');
