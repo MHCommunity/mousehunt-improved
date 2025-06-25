@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.82.1
+
+- Fixed 'Full Mice Images in Journal' beta feature not working correctly if Better Journal features were not enabled
+- Updated miscellaneous styles
+
 ## Version 0.82.0
 
 - Better Inventory: Fixed 'Larry hasn't heard of this item' message when clicking on crafting recipes
