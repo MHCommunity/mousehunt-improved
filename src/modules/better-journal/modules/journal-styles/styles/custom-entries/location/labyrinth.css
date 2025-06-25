@@ -28,3 +28,7 @@
 .entry.short.misc.custom.labyrinth.labyrinth-exitMaze br {
   display: block;
 }
+
+.journal .content .entry.labyrinth-chooseDoor {
+  min-height: 50px;
+}
