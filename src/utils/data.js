@@ -1,4 +1,4 @@
-import { dbDelete, dbGet, dbSet } from './db';
+import { dbDelete, dbDeleteAll, dbGet, dbSet } from './db';
 import { debuglog } from './debug';
 import { getSetting } from './settings';
 
@@ -156,7 +156,19 @@ const clearCaches = async () => {
     }
   }
 
-  await dbDelete('cache', 'expirations');
+  // delete all the entries in the IndexedDB databases
+  await dbDeleteAll('cache');
+
+  // Clear all cache entries
+  for (const file of validDataFiles) {
+    await dbDelete('cache', file);
+    await dbDelete('cache', `expiration-${file}`);
+  }
+
+  // Clear data cache
+  for (const file of validDataFiles) {
+    await dbDelete('data', file);
+  }
 
   await updateCaches();
 };
