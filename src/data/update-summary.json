@@ -2,48 +2,32 @@
   "summary": "",
   "details": [
     {
-      "title": "Better Inventory",
-      "items": ["Fixed 'Larry hasn't heard of this item' message when clicking on crafting recipes"]
-    },
-    {
       "title": "Better Journal",
       "items": [
-        "Updated styles"
+        "Added 'Show Full Mice Images in Journal' setting"
       ]
     },
     {
       "title": "Better Maps",
       "items": [
-        "Fixed issues with traveling from MHCT list on scavenger maps",
+        "Updated Drop Rate displays to not show low rates with low catches and exclude Fusion Fondue catches",
         "Updated styles"
       ]
     },
     {
-      "title": "Better Mice",
-      "items": ["Adjusted power type image sizing in mouse view for better layout"]
-    },
-    {
-      "title": "Better Travel",
-      "items": ["Updated styles"]
-    },
-    {
-      "title": "Better UI",
-      "items": ["Updated styles"]
-    },
-    {
-      "title": "Experiments",
-      "items": ["Added 'Full Mice Images in Journal' beta feature"]
-    },
-    {
-      "title": "Location Catch Stats",
+      "title": "Favorite Setups",
       "items": [
-        "Updated uncaught mice images to be grayscale",
-        "Updated styles"
+        "Updated layout to allow for dragging and dropping setups to reorder them",
+        "Enhanced setup naming on creation"
       ]
     },
     {
-      "title": "Taller Windows",
-      "items": ["Fixed max height for scavenger sorted pages"]
+      "title": "Ultimate Checkmark",
+      "items": ["Updated Treasure Chest and Currency lists"]
+    },
+    {
+      "title": "Data Caching",
+      "items": ["Fixed issue with data caches not being fully refreshed on version updates"]
     }
   ]
 }

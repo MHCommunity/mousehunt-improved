@@ -1,8 +1,19 @@
 # Changelog
 
+## Version 0.83.0
+
+- Better Journal: Added 'Show Full Mice Images in Journal' setting
+- Better Maps: Updated Drop Rate displays to not show low rates with low catches and exclude Fusion Fondue catches
+- Better Maps: Updated styles
+- Favorite Setups: Updated layout to allow for dragging and dropping setups to reorder them
+- Favorite Setups: Enhanced setup naming on creation
+- Ultimate Checkmark: Updated Treasure Chest and Currency lists
+- Fixed issue with data caches not being fully refreshed on version updates
+
+
 ## Version 0.82.3
 
-- Update Better Maps styles
+- Updated Better Maps styles
 
 ## Version 0.82.2
 
