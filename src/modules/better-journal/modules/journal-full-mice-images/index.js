@@ -38,15 +38,9 @@ const main = () => {
 /**
  * Initialize the module.
  */
-const init = async () => {
-  addStyles(styles, 'full-mice-images-in-journal');
+export default async () => {
+  addStyles(styles, 'journal-full-mice-images');
 
   mice = await getData('mice');
   main();
-};
-
-export default {
-  id: 'experiments.full-mice-images-in-journal',
-  name: 'Full Mice Images in Journal',
-  load: init,
 };

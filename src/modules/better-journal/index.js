@@ -1,5 +1,6 @@
 import { addStyles, getSetting } from '@utils';
 
+import journalFullMiceImages from './modules/journal-full-mice-images';
 import journalGoldAndPoints from './modules/journal-gold-and-points';
 import journalHistory from './modules/journal-history';
 import journalIcons from './modules/journal-icons';
@@ -31,6 +32,7 @@ const init = () => {
     itemColors: getSetting('better-journal.item-colors', true),
     history: getSetting('better-journal.journal-history', true),
     tags: getSetting('better-journal.journal-tags', false),
+    fullMiceImages: getSetting('better-journal.full-mice-images', false),
   };
 
   const modules = [
@@ -55,6 +57,7 @@ const init = () => {
     { enabled: enabled.itemColors, load: journalItemColors },
     { enabled: enabled.history, load: journalHistory },
     { enabled: enabled.tags, load: journalTags },
+    { enabled: enabled.fullMiceImages, load: journalFullMiceImages },
   ];
 
   for (const module of modules) {
