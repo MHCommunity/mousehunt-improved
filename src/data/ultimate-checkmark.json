@@ -156,7 +156,11 @@
       "rare_hard_rh_treasure_chest_convertible",
       "rare_elaborate_rh_treasure_chest_convertible",
       "rare_arduous_rh_treasure_chest_convertible",
-      "rare_elite_rh_treasure_chest_convertible"
+      "rare_elite_rh_treasure_chest_convertible",
+      "draconic_depths_treasure_chest_convertible",
+      "rare_draconic_depths_treasure_chest_convertible",
+      "origin_of_dragons_treasure_chest_convertible",
+      "rare_origin_of_dragons_treasure_chest_convertible"
     ]
   },
   {
@@ -355,7 +359,8 @@
       "total_eclipse_resource_stat_item",
       "tournament_token_mega_stat_item",
       "tournament_token_stat_item",
-      "war_scrap_stat_item"
+      "war_scrap_stat_item",
+      "dragon_ashes_stat_item"
     ]
   },
   {
