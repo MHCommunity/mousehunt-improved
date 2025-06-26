@@ -33,7 +33,7 @@
 }
 
 .treasureMapDialogView.limitHeight .treasureMapView-block-content {
-  max-height: 75vh;
+  max-height: 35vh;
 }
 
 .treasureMapDialogView.wide.limitHeight.confirm .treasureMapView,

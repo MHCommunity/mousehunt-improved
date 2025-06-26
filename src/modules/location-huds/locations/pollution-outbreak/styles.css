@@ -50,7 +50,7 @@
 .pollutionOutbreakHUD-timer,
 .pollutionOutbreakHUD-hunters,
 .pollutionOutbreakHUD-totalPollution-direction .mousehuntTooltip {
-  background: rgb(244 244 244 / 80%);
+  background: rgb(244 244 244 / 90%);
 }
 
 /* stylelint-disable prettier/prettier */
@@ -513,9 +513,4 @@ a.pollutionOutbreakHUD-refineButton:hover {
 
 .pollutionOutbreakHUD-layer-island {
   transform: translateY(-20px);
-}
-
-.pollutionOutbreakHUD-timer,
-.pollutionOutbreakHUD-hunters {
-  opacity: 0.7;
 }

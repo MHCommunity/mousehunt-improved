@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.82.3
+
+- Update Better Maps styles
+
 ## Version 0.82.2
 
 - Fixed MHCT links not opening in new tab

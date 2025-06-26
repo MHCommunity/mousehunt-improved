@@ -111,6 +111,10 @@
   margin-left: 10px;
 }
 
+.mh-ui-map-claimable.mh-ui-user-on-map .treasureMapView-mapName {
+  margin-left: 50px;
+}
+
 .treasureMapView-mapMenu-group:first-child .treasureMapView-mapMenu-group-title {
   margin: 5px 0;
 }
