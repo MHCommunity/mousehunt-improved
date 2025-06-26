@@ -47,5 +47,10 @@ export default async () => {
       title: 'Journal History',
       default: true,
     },
+    {
+      id: 'better-journal.full-mice-images',
+      title: 'Full Mice Images in Journal',
+      default: false,
+    }
   ];
 };
