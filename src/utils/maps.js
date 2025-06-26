@@ -477,11 +477,24 @@ const getArForMouse = async (id, type = 'mouse') => {
   }
 
   if (isItem) {
+    mhctJson = mhctJson.filter((rate) => {
+      return (
+        rate.drop_pct > 0 && // No zero drop rates.
+        rate.cheese !== 'Fusion Fondue' && // Exclude Fusion Fondue cheese.
+        rate.total_catches >= 50 // Exclude items with less than 50 catches.
+      );
+    });
+
     // change the 'drop_ct' to 'rate'
     for (const rate of mhctJson) {
       // convert from a '13.53' to 1353
       rate.rate = Number.parseInt(rate.drop_pct * 100);
       delete rate.drop_ct;
+
+      // if its 9999, then set it to 10000
+      if (rate.rate === 9999) {
+        rate.rate = 10000;
+      }
     }
   }
 
