@@ -7,11 +7,11 @@ export default async () => {
   return [
     {
       id: 'lgs-reminder.new-style',
-      title: 'Use "new" style',
+      title: 'Use new layout style',
     },
     {
       id: 'lgs-reminder.days-and-lower',
-      title: 'Convert weeks and months to days',
+      title: 'Display time in days only',
     }
   ];
 };

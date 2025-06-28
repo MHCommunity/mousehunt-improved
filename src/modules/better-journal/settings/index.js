@@ -25,7 +25,7 @@ export default async () => {
     },
     {
       id: 'better-journal.list',
-      title: 'Show loot as list',
+      title: 'Show loot as a list',
     },
     {
       id: 'better-journal.gold-and-points',
@@ -49,7 +49,7 @@ export default async () => {
     },
     {
       id: 'better-journal.full-mice-images',
-      title: 'Full Mice Images in Journal',
+      title: 'Show full mouse images',
       default: false,
     }
   ];

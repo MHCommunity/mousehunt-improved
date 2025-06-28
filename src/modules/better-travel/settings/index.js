@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'better-travel.default-to-simple-travel',
-      title: 'Show Simple Travel tab by default',
+      title: 'Always open Simple Travel tab',
       default: false,
     },
     {

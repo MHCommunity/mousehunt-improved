@@ -12,7 +12,7 @@ export default async () => {
     },
     {
       id: 'show-auras.icons',
-      title: 'Only show icons',
+      title: 'Show auras as icons',
       default: false,
     },
   ];

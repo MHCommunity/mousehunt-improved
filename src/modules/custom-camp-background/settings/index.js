@@ -41,7 +41,7 @@ export default async () => {
     id: 'custom-camp-background',
     title: 'Custom Camp Background <a class="mh-improved-custom-camp-bg-preview hidden">Preview choices</a>',
     default: [options[1]],
-    description: 'Change the background of the Camp page.',
+    description: 'Set a custom background for the Camp page.',
     settings: {
       type: 'multi-select',
       number: 1,

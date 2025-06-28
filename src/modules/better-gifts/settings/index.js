@@ -40,11 +40,11 @@ export default async () => {
       value: 'sludge',
     },
     {
-      name: 'Skip Mozz. Cheese & Stale Cheese',
+      name: 'Skip Mozzarella & Stale Cheese',
       value: 'mozzarella-stale',
     },
     {
-      name: 'Skip Mozz. Cheese & Radioactive Sludge',
+      name: 'Skip Mozzarella & Radioactive Sludge',
       value: 'mozzarella-sludge',
     },
     {

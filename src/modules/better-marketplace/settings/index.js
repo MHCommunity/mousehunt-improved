@@ -22,7 +22,7 @@ export default async () => {
     },
     {
       id: 'better-marketplace.trend-numbers',
-      title: 'Show change percentage next to trend icons',
+      title: 'Show price change percentages next to trend icons',
       default: true,
     }
   ];

@@ -7,7 +7,7 @@ export default async () => {
   return [
     {
       id: 'debug.utils-data',
-      title: 'Log data caching and retrieval'
+      title: 'Log data caching activity'
     },
     {
       id: 'debug.events',
@@ -43,7 +43,7 @@ export default async () => {
     },
     {
       id: 'debug.hover-popups',
-      title: 'Don\'t close hover popups on mouseout'
+      title: 'Prevent hover popups from closing'
     },
     {
       id: 'debug.disable-cache',

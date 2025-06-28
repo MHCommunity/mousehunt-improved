@@ -59,15 +59,15 @@ const addExportSettings = (append) => {
     const settings = JSON.stringify(settingValues, null, 2);
     const content = `<div class="mousehunt-improved-settings-export-popup-content">
     <div class="mousehunt-improved-settings-export-popup-tip">
-      To import settings, drag and drop the file into the box below, or paste the text in the box.
+      Import settings by dragging a file here or pasting text into the box.
     </div>
     <textarea id="mousehunt-improved-settings-text" spellcheck="false">${settings}</textarea>
     <div class="mousehunt-improved-settings-export-popup-buttons">
       <div class="mousehunt-improved-settings-export-details">
         <a href="#" class="export-copy">Copy to clipboard</a>
-        <a href="#" class="export-download">Download file</a>
+        <a href="#" class="export-download">Download JSON file</a>
         <hr>
-        <a href="#" class="export-upload">Upload file</a>
+        <a href="#" class="export-upload">Import from file</a>
         <a href="#" class="export-format">Format</a>
         <a href="#" class="export-reset">Reset to default</a>
       </div>
