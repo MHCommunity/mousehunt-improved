@@ -37,7 +37,7 @@ export default (quests) => {
 
   const isLaunchPad = quest.island_power_type === 'launch_pad_island';
   if (isLaunchPad) {
-    return `Launch Pad · <p>${quest.wardens_caught} wardens caught`;
+    return `Launch Pad <p>${quest.wardens_caught} wardens caught`;
   }
 
   let type = 'LAI';
@@ -49,10 +49,7 @@ export default (quests) => {
 
   let tileText = '';
   quest.island_mod_panels.forEach((panel) => {
-    const panelType = panel.type
-      .toLowerCase()
-      .replaceAll('loot_cache', 'key')
-      .replaceAll('charm_bonus', 'J');
+    const panelType = panel.type.toLowerCase().replaceAll('loot_cache', 'key');
     // todo: add in other tiles here.
 
     const complete = panel.is_complete ? 'complete' : 'incomplete';

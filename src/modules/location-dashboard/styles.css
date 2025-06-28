@@ -88,7 +88,6 @@ img.locationImage {
   font-size: 11px;
   line-height: 17px;
   text-align: right;
-  white-space: pre-line;
 }
 
 .locationProgress .stats {
@@ -102,92 +101,90 @@ img.locationImage {
 
 .dashboard-fi-tiles span {
   display: inline-block;
-  width: 18px;
-  height: 24px;
+  width: 20px;
+  height: 22px;
   color: transparent;
-  background-image: url(https://www.mousehuntgame.com/images/ui/hud/floating_islands/mods.png);
-  background-position-x: 354px;
-  background-size: 354px;
+  background-size: cover;
 }
 
 .dashboard-fi-tiles .glass,
 .dashboard-fi-tiles .gem_bonus {
-  background-position-x: 0;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/glass.png);
 }
 
 .dashboard-fi-tiles .ore,
 .dashboard-fi-tiles .ore_bonus {
-  background-position-x: 6.6%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/ore.png);
 }
 
 .dashboard-fi-tiles .curd,
 .dashboard-fi-tiles .sky_cheese {
-  background-position-x: 13.3%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/curd.png);
 }
 
 .dashboard-fi-tiles .pirate,
 .dashboard-fi-tiles .sky_pirates {
-  background-position-x: 20%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/pirate.png);
 }
 
 .dashboard-fi-tiles .key,
 .dashboard-fi-tiles .loot_cache {
-  background-position-x: 26.6%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/key.png);
 }
 
 .dashboard-fi-tiles .warden-wind,
 .dashboard-fi-tiles .wind_shrine {
-  background-position-x: 33.3%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/wind.png);
 }
 
 .dashboard-fi-tiles .warden-rain,
 .dashboard-fi-tiles .rain_shrine {
-  background-position-x: 40%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/rain.png);
 }
 
 .dashboard-fi-tiles .warden-frost,
 .dashboard-fi-tiles .frost_shrine {
-  background-position-x: 46.6%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/frost.png);
 }
 
 .dashboard-fi-tiles .warden-fog,
 .dashboard-fi-tiles .fog_shrine {
-  background-position-x: 53.3%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/fog.png);
 }
 
 .dashboard-fi-tiles .sprocket,
 .dashboard-fi-tiles .paragon_cache_a {
-  background-position-x: 60%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/sprocket.png);
 }
 
 .dashboard-fi-tiles .bangle,
 .dashboard-fi-tiles .paragon_cache_d {
-  background-position-x: 66.6%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/bangle.png);
 }
 
 .dashboard-fi-tiles .wing,
 .dashboard-fi-tiles .paragon_cache_c {
-  background-position-x: 73.3%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/wing.png);
 }
 
 .dashboard-fi-tiles .silk,
 .dashboard-fi-tiles .paragon_cache_b {
-  background-position-x: 80%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/silk.png);
 }
 
 .dashboard-fi-tiles .glore,
 .dashboard-fi-tiles .ore_gem_bonus {
-  background-position-x: 86.6%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/glore.png);
 }
 
 .dashboard-fi-tiles .seal,
 .dashboard-fi-tiles .cloudstone_bonus {
-  background-position-x: 93.3%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/seal.png);
 }
 
 .dashboard-fi-tiles .jade,
 .dashboard-fi-tiles .charm_bonus {
-  background-position-x: 100%;
+  background-image: url(https://i.mouse.rip/fi-tile-icons/jade.png);
 }
 
 .location-refresh-item {
@@ -266,6 +263,7 @@ img.locationImage {
   display: flex;
   flex-direction: row;
   gap: 5px;
+  align-items: center;
   justify-content: flex-end;
   margin-bottom: -5px;
 }
