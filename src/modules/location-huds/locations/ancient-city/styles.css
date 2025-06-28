@@ -140,8 +140,9 @@ span.ancientCityHUD-alertLevel {
 }
 
 .ancientCityHUD-bossNameDefeated {
+  margin-left: 5px;
   font-size: 11px;
-  line-height: 1.5;
+  color: #c6c6c6;
 }
 
 .ancientCityHUD-bossContainer.defeated .ancientCityHUD-bossLabel.defeated.stealth-view {
