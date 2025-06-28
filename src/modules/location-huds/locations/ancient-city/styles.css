@@ -138,3 +138,18 @@ span.ancientCityHUD-alertLevel {
 .huntersHornView__message.huntersHornView__message--active.oil-charm-warning .huntersHornMessageView--unknown_error {
   border-image-source: url(https://i.mouse.rip/horn-message-blank-pink.png);
 }
+
+.ancientCityHUD-bossNameDefeated {
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.ancientCityHUD-bossContainer.defeated .ancientCityHUD-bossLabel.defeated.stealth-view {
+  inset: 12px 0 0 30px;
+  width: auto;
+  line-height: 1.2;
+}
+
+.ancientCityHUD-bossContainer.defeated .ancientCityHUD-bossLabel.defeated.stealth-view .stealth-remaining {
+  font-size: 26px;
+}

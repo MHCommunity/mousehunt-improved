@@ -1,4 +1,10 @@
-import { addHudStyles, makeElement, onRequest, showHornMessage } from '@utils';
+import {
+  addHudStyles,
+  makeElement,
+  onRequest,
+  onTurn,
+  showHornMessage
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -36,6 +42,53 @@ const addBossName = () => {
   makeElement('div', 'ancientCityHUD-bossName', types[type], hudText);
 };
 
+const addDefeatedLabel = () => {
+  const hudText = document.querySelector('.ancientCityHUD-bossName');
+  if (! hudText) {
+    return;
+  }
+
+  if ('defeated' !== user?.quests?.QuestAncientCity?.boss) {
+    return;
+  }
+
+  const existing = document.querySelector('.ancientCityHUD-bossNameDefeated');
+  if (existing) {
+    return;
+  }
+
+  makeElement('span', 'ancientCityHUD-bossNameDefeated', '(defeated)', hudText);
+};
+
+const updateLeaderBeaten = () => {
+  const leaderBeaten = document.querySelector('.ancientCityHUD-bossLabel.defeated');
+  if (! leaderBeaten) {
+    return;
+  }
+
+  const stealth = user?.quests?.QuestAncientCity?.remaining;
+  if (! stealth) {
+    return;
+  }
+
+  if (! leaderBeaten.classList.contains('stealth-view')) {
+    leaderBeaten.classList.add('stealth-view');
+    leaderBeaten.innerHTML = '';
+  }
+
+  const existing = document.querySelector('.stealth-remaining');
+  if (existing) {
+    existing.innerText = stealth;
+    if ('undefined' !== typeof blinkText) {
+      blinkText(existing, '#59f659', '#fff', 0.7);
+    }
+    return;
+  }
+
+  makeElement('div', 'stealth-remaining', stealth, leaderBeaten);
+  makeElement('div', 'stealth-text', ' Stealth', leaderBeaten);
+};
+
 const warnForOilCharms = () => {
   // Lantern Oil Charm and Super Lantern Oil Charm.
   if (2142 != user.trinket_item_id && 2652 != user.trinket_item_id) { // eslint-disable-line eqeqeq
@@ -68,6 +121,13 @@ export default async () => {
   addHudStyles(styles);
 
   addBossName();
+
+  addDefeatedLabel();
+  updateLeaderBeaten();
+  onTurn(() => {
+    addDefeatedLabel();
+    updateLeaderBeaten();
+  }, 500);
 
   warnForOilCharms();
   onRequest('users/changetrap.php', warnForOilCharms);
