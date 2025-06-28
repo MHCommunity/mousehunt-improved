@@ -319,7 +319,7 @@ const addChartToCategories = async () => {
     }
 
     const chartImage = makeElement('img', 'marketplaceView-table-chartImage');
-    chartImage.src = `https://markethunt-chart.mouse.rip/${itemId}.png?small`;
+    chartImage.src = `https://markethunt-chart.mouse.rip/${itemId}-small.png`;
     name.append(chartImage);
   });
 };
