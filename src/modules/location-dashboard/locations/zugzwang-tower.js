@@ -47,10 +47,10 @@ const getZugzwangTowerText = (quests) => {
   const mythProgress = quests.QuestZugzwangTower.myth_progress || 0;
 
   if (techProgress >= 16 && mythProgress >= 16) {
-    return `${returnText} Amp, Chessmaster`;
+    return `Amp: ${returnText}<div class="statss">Chessmaster</div>`;
   }
 
-  return `${returnText} Amp, Technic: ${getChessProgress(techProgress)}, Mystic: ${getChessProgress(mythProgress)}`;
+  return `Amp: ${returnText}<div class="stats">Technic: ${getChessProgress(techProgress)} · Mystic: ${getChessProgress(mythProgress)}</div>`;
 };
 
 /**
