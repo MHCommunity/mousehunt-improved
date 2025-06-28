@@ -24,11 +24,6 @@ export default async () => {
       id: 'better-marketplace.trend-numbers',
       title: 'Show change percentage next to trend icons',
       default: true,
-    },
-    {
-      id: 'better-marketplace.show-chart-images',
-      title: 'Show Markethunt chart images in item listings',
-      default: true,
     }
   ];
 };
