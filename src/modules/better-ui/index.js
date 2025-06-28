@@ -7,6 +7,7 @@ import kingsPromo from './modules/kings-promo';
 import legacyStyles from './modules/legacy-styles';
 import maintenance from './modules/maintenance';
 import profile from './modules/profile';
+import skinPreviewBase from './modules/skin-preview-base';
 import userscriptStyles from './modules/userscripts-styles';
 
 import settings from './settings';
@@ -25,6 +26,7 @@ const init = () => {
   kingsPromo();
   maintenance();
   userscriptStyles();
+  skinPreviewBase();
 
   if (getSetting('better-ui.hud-changes', true)) {
     hud();
