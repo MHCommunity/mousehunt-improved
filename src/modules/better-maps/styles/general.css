@@ -135,12 +135,8 @@ img.treasureMapView-reward-chestIcon {
   line-height: 15px;
 }
 
-.treasureMapInventoryView-scrollCase-aura br::after {
-  content: " ";
-}
-
 .treasureMapInventoryView-scrollCase-aura br {
-  content: "";
+  display: none;
 }
 
 .treasureMapInventoryView-scrollCase-aura b:first-of-type {
