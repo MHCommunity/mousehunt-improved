@@ -12,7 +12,7 @@ export default async () => {
     },
     {
       id: 'better-ui.profile-changes',
-      title: 'Profile: Adds Egg Master icon',
+      title: 'Profile: Add Egg Master icon',
       default: true,
     }
   ];
