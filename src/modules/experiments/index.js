@@ -15,12 +15,6 @@ const init = () => {
       load: () => {}
     },
     {
-      id: 'better-journal-list.link-all-items',
-      name: 'Better Journal List: Link all items',
-      description: 'Add links to items in journal entries that are not linked.',
-      load: () => {}
-    },
-    {
       id: 'better-inventory.add-trap-sorting',
       name: 'Better Inventory: Add Trap Sorting',
       description: 'Add sorting options for traps in the inventory.',

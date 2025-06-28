@@ -76,7 +76,6 @@ const makeListItems = (itemList) => {
 };
 
 let allItems = null;
-let linkItems = null;
 /**
  * Split the text into items.
  *
@@ -92,11 +91,9 @@ const splitText = async (text) => {
   }
 
   const processedItems = items.map((item) => {
-    if (linkItems) {
-      const itemData = allItems.find((i) => i.name === item.trim().replace(/^\d+ /, ''));
-      if (itemData) {
-        return `<a class="loot" title="" href="https://www.mousehuntgame.com/item.php?item_type=${itemData.type}" onclick="hg.views.ItemView.show('${itemData.type}'); return false;">${item}</a>`;
-      }
+    const itemData = allItems.find((i) => i.name === item.trim().replace(/^\d+ /, ''));
+    if (itemData) {
+      return `<a class="loot" title="" href="https://www.mousehuntgame.com/item.php?item_type=${itemData.type}" onclick="hg.views.ItemView.show('${itemData.type}'); return false;">${item}</a>`;
     }
 
     // if the last character is a comma, remove it.
@@ -346,8 +343,6 @@ const formatXasList = async (entry) => {
  */
 export default async () => {
   addStyles(styles, 'better-journal-list');
-
-  linkItems = getSetting('better-journal-list.link-all-items', true);
 
   onJournalEntry(formatAsList, 3000);
   onJournalEntry(formatXasList, 3000);
