@@ -24,6 +24,7 @@ import { getZugzwangTowerText, setZugzwangTowerData } from './locations/zugzwang
 import getBountifulBeanstalkText from './locations/bountiful-beanstalk';
 import getBristleWoodsRiftText from './locations/rift-bristle-woods';
 import getBurroughsRiftText from './locations/rift-burroughs';
+import getDraconicDepthsText from './locations/draconic-depths';
 import getFloatingIslandsText from './locations/floating-islands';
 import getForewordFarmText from './locations/foreword-farm';
 import getFortRoxText from './locations/fort-rox';
@@ -48,6 +49,7 @@ import getZokorText from './locations/ancient-city';
  * Cache the location data for the current location.
  */
 const cacheLocationData = async () => {
+  await sleep(300);
   if (! user.environment_type || ! user.quests) {
     return;
   }
@@ -129,6 +131,7 @@ const doLocationRefresh = async () => {
     'ancient_city',
     'bountiful_beanstalk',
     'desert_warpath',
+    'draconic_depths',
     'floating_islands',
     'foreword_farm',
     'fort_rox',
@@ -247,19 +250,52 @@ const makeDashboardTab = () => {
   }
 
   // Create menu tab.
-  const menuTab = document.createElement('div');
-  menuTab.classList.add('menuItem');
-  menuTab.classList.add('dropdown');
-  menuTab.classList.add('dashboard');
+  const menuTab = makeElement('div', ['menuItem', 'dropdown', 'dashboard']);
 
   // Register click event listener.
   menuTab.addEventListener('click', async () => {
     menuTab.classList.toggle('expanded');
 
-    const existing = document.querySelector('.dashboardContents');
-    if (existing) {
-      const refreshedContents = await getDashboardContents();
-      existing.replaceWith(refreshedContents);
+    // When opening dashboard
+    if (menuTab.classList.contains('expanded')) {
+      const dashboardWrapper = document.querySelector('.dashboardWrapper');
+      if (! dashboardWrapper) {
+        return;
+      }
+
+      const existing = document.querySelector('.dashboardContents');
+      if (existing) {
+        const refreshedContents = await getDashboardContents();
+        existing.replaceWith(refreshedContents);
+
+        // Use existing cached data immediately
+        // Then update in background
+        setTimeout(async () => {
+          await cacheLocationData();
+          const newRefreshedContents = await getDashboardContents();
+          existing.replaceWith(newRefreshedContents);
+        }, 0);
+      } else {
+        // First time opening - show cached data immediately
+        const dashboardContents = await getDashboardContents();
+        const refreshWrapper = dashboardWrapper.querySelector('.refreshWrapper');
+        if (refreshWrapper) {
+          refreshWrapper.before(dashboardContents);
+          refreshWrapper.classList.remove('hidden');
+        } else {
+          dashboardWrapper.append(dashboardContents);
+        }
+
+        // Then update with current location data in background
+        setTimeout(async () => {
+          await cacheLocationData();
+          const refreshedContents = await getDashboardContents();
+          const currentContents = document.querySelector('.dashboardContents');
+          if (currentContents) {
+            currentContents.replaceWith(refreshedContents);
+          }
+        }, 100);
+      }
     }
 
     sessionSet('doing-location-refresh', false);
@@ -270,10 +306,9 @@ const makeDashboardTab = () => {
 
   const dropdownContent = makeElement('div', 'dropdownContent');
   const dashboardWrapper = makeElement('div', 'dashboardWrapper');
-  makeElement('div', 'dashboardContents', '', dashboardWrapper);
 
   // Refresh button.
-  const refreshWrapper = makeElement('div', 'refreshWrapper');
+  const refreshWrapper = makeElement('div', ['refreshWrapper', 'hidden']);
 
   const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh']);
   makeElement('span', '', 'Refresh', refreshButton);
@@ -398,8 +433,11 @@ const getDashboardContents = async () => {
   makeRegionMarkup('Sandtail Desert', sandtailDesert, contentsWrapper);
 
   const rodentia = document.createElement('div');
-  makeLocationMarkup('seasonal_garden', 'Seasonal Garden', getSeasonalGardenText, rodentia, quests);
-  makeLocationMarkup('zugzwang_tower', 'Zugzwang\'s Tower', getZugzwangTowerText, rodentia, quests);
+  if (quests?.QuestZugzwangTower?.amp && quests?.QuestZugzwangTower?.amp >= 1) {
+    makeLocationMarkup('zugzwang_tower', 'Zugzwang\'s Tower', getZugzwangTowerText, rodentia, quests);
+  } else {
+    makeLocationMarkup('seasonal_garden', 'Seasonal Garden', getSeasonalGardenText, rodentia, quests);
+  }
   makeLocationMarkup('iceberg', 'Iceberg', getIcebergText, rodentia, quests);
   makeLocationMarkup('sunken_city', 'Sunken City', getSunkenCityText, rodentia, quests);
   makeRegionMarkup('Rodentia', rodentia, contentsWrapper);
@@ -420,6 +458,7 @@ const getDashboardContents = async () => {
   makeLocationMarkup('foreword_farm', 'Foreword Farm', getForewordFarmText, folkloreForest, quests);
   makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest, quests);
   makeLocationMarkup('school_of_sorcery', 'School of Sorcery', getSchoolOfSorceryText, folkloreForest, quests);
+  makeLocationMarkup('draconic_depths', 'Draconic Depths', getDraconicDepthsText, folkloreForest, quests);
   makeRegionMarkup('Folklore Forest', folkloreForest, contentsWrapper);
 
   const rift = document.createElement('div');

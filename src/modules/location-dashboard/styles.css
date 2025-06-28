@@ -329,3 +329,56 @@ img.locationImage {
   text-decoration: none;
   cursor: default;
 }
+
+.dashboard-crucible-stats {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.dashboard-crucible {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  padding: 2px 5px;
+  background-color: #f4f7fc;
+  border-radius: 3px;
+}
+
+.dashboard-crucible-type {
+  display: inline-block;
+  width: 10px;
+  height: 12px;
+  vertical-align: middle;
+}
+
+.dashboard-crucible-fire {
+  background-image: url(https://i.mouse.rip/dd-crucibles/fire.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.dashboard-crucible-ice {
+  background-image: url(https://i.mouse.rip/dd-crucibles/ice.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.dashboard-crucible-poison {
+  background-image: url(https://i.mouse.rip/dd-crucibles/poison.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.dashboard-cavern-header {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.dashboard-crucible-icons {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
