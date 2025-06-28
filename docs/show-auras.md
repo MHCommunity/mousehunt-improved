@@ -10,4 +10,4 @@ See all your active auras and their expiry times right below your trap stats.
 ## Options
 
 - **Show Auras as a List**: Displays auras in a vertical list format.
-- **Only Show Icons**: Only displays the aura icons without text.
+- **Show auras as icons**: Only displays the aura icons without text.

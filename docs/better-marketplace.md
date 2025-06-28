@@ -13,3 +13,4 @@ Makes the Marketplace easier to use and more efficient for buying and selling it
 
 - **Default to showing all items in search**: Automatically checks 'Search all items' when opening the search.
 - **Smaller images**: Makes item images smaller in the Browse tab for a more compact view.
+- **Show price change percentages next to trend icons**: Display the exact percentage change next to the trend arrows for better price tracking.

@@ -1,6 +1,6 @@
 # [Custom Horn](https://www.mousehuntgame.com/preferences.php?tab=mousehunt-improved-settings#mousehunt-improved-settings-design-custom-horn)
 
-Change the look of your Hunter's Horn to match your favorite event or color.
+Customize the look of your Hunter's Horn to match your favorite event or color.
 
 ## Options
 

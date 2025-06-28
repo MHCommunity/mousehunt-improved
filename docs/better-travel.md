@@ -13,7 +13,7 @@ Makes the Travel page more useful.
 
 ## Options
 
-- **Show Simple Travel tab by default**: Open the Simple Travel tab automatically when visiting the Travel page.
+- **Always open Simple Travel tab**: Open the Simple Travel tab automatically when visiting the Travel page.
 - **Show alphabetized list on Simple Travel tab**: Display an alphabetical list of locations at the top of the Simple Travel tab.
 - **Show Travel Reminders**: Show reminders when traveling to certain locations if you have relevant effects active.
 - **Travel Window**: Adds a "Travel Window" to the Travel dropdown for quick travel to favorite locations (customizable list).

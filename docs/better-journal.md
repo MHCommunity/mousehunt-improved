@@ -18,8 +18,9 @@ Gives your journal a modern, streamlined look and adds powerful options to make 
 - **Journal text replacements**: Make journal text clearer and more concise with smart replacements.
 - **Show loot icons**: Display small icons next to loot entries for quick visual reference.
 - **Show loot icons (minimal)**: Show icons only for select loot items, for a cleaner look.
-- **Show loot as list**: Display loot as a list instead of inline text for easier reading.
+- **Show loot as a list**: Display loot as a list instead of inline text for easier reading.
 - **Show gold and points icons**: Add icons next to gold and points amounts in the journal.
 - **Unique item colors (Map clues, Ful'Mina's gifts, etc.)**: Highlight special items with unique colors in the journal.
 - **Show hunt type on hover**: Hover over an entry to see the hunt type (e.g., trap, map, event).
 - **Journal History**: Save and browse your journal history beyond the default page limit, letting you look back further than the standard game allows.
+- **Show full mouse images**: Display full mouse images in journal entries instead of smaller thumbnails.

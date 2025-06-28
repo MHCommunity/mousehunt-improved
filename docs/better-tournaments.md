@@ -10,4 +10,4 @@ Improves the tournaments page with more accessible information and a cleaner lay
 
 ## Options
 
-- **Display localized times inline**: Show local times directly in the tournament listings, instead of only on hover.
+- **Show localized times inline (instead of on hover)**: Show local times directly in the tournament listings, instead of only on hover.

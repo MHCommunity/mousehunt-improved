@@ -4,11 +4,10 @@ Try out beta features and experimental options that may not be fully tested or f
 
 ## Available Experiments
 
-- **Better Journal List: Link all items:** Adds links to items in journal entries that are not linked
+
 - **Better Marketplace: Price History Charts**: Show sales price history charts on category pages
 - **Better Inventory: Add Trap Sorting**: Adds sorting options to the trap inventory pages (base, charms, and weapons)
 - **Gift button opens gift selector**: Clicking the gift button will directly open the gift selector instead of the normal gift dialog
-- **Prestige Base in skin previews**: Uses the Prestige Base when previewing skins
 - **Real Base Stats**: Shows the upgraded stats for the Denture and Printing bases when in the trap selector
 - **Settings: Columns**: Changes the settings page to have two columns.
 - **Square Profile Pics**: Makes profile pictures square in more places for consistency

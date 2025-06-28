@@ -10,7 +10,7 @@ Refreshes the MouseHunt interface with a wide range of visual and usability impr
 - **Rank Percentage Tooltip**: Instantly shows your exact rank percentage when you hover over the value.
 - **High-Res Lucky Catch Icon**: Upscales the lucky catch icon for better clarity.
 - **Footer Redesign**: Makes the footer look nicer and aligns links more neatly.
-- **Larger Menu Icons**: Increases the size of icons in dropdown menus for better visibility.
+- **Equipped Base in Skin Previews**: Shows the equipped base when previewing skins.
 - **LE Badge & Aura Hiding**: Hides Limited Edition badges and active auras until you hover over your trap image.
 - **Consistent Popup Buttons**: Updates popup buttons to match the rest of the UI.
 - **Full Name on Hover**: Hovering over your Cheese, Charm, or Map name shows the full name.
