@@ -107,7 +107,6 @@ const openTravelWindow = async () => {
   environments = [...environments, ...eventEnvironments];
 
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());
-
   const locationsToRemove = ['acolyte_realm'];
 
   environments = environments.map((env) => {
@@ -123,19 +122,16 @@ const openTravelWindow = async () => {
   // Wrapper start.
   let content = '<div class="mh-improved-travel-window greatWinterHuntGolemDestinationView"><div class="greatWinterHuntGolemDestinationView__content">';
 
-  content += '<div class="mh-improved-travel-window-search-input-wrapper"><input type="text" class="mh-improved-travel-window-search-input" placeholder="Search locations"></div>';
-
-  // Region menu.
-  content += '<div class="greatWinterHuntGolemDestinationView__regionsContainer">';
-  for (const region of regions) {
-    let buttonClass = 'greatWinterHuntGolemDestinationView__regionButton';
-    if (currentEnvironment?.region === region?.type) {
-      buttonClass += ' greatWinterHuntGolemDestinationView__regionButton--active';
-    }
-
-    content += `<button class="${buttonClass}" data-region-type="${region.type}">${region.name}</button>`;
-  }
-  content += '</div>';
+  content += `<div class="mh-improved-travel-window-search-input-wrapper">
+    <label for="mh-improved-travel-window-search-input" class="mh-improved-travel-window-search-label">Search:</label>
+      <input type="text" id="mh-improved-travel-window-search-input" class="mh-improved-travel-window-search-input" placeholder="Search locations">
+    </label>
+    <div class="mh-improved-travel-window-sort">
+      <button class="mousehuntActionButton mh-improved-travel-window-sort-name small" data-sorted-by-name="false">
+        <span>Sort by Name</span>
+      </button>
+    </div>
+  </div>`;
 
   const hasTitles = false;
 
@@ -169,12 +165,12 @@ const openTravelWindow = async () => {
         envButtonClass += ' greatWinterHuntGolemDestinationView__environment--current';
       }
 
-      content += `<button class="${envButtonClass}" data-environment-type="${environment.id}">
+      content += `<a class="${envButtonClass}" data-environment-type="${environment.id}" order="${environment.order}">
         <div class="greatWinterHuntGolemDestinationView__environmentName">
             <span>${environment.name}</span>
         </div>
         <div class="greatWinterHuntGolemDestinationView__environmentImage" style="background-image:url(${environment.headerImage});" data-environment-type="${environment.id}"></div>
-      </button>`;
+      </a>`;
     });
 
     if (hasTitles) {
@@ -192,8 +188,12 @@ const openTravelWindow = async () => {
   content += '</div>';
 
   content += `<div class="mh-improved-travel-window-footer">
-    <div class="mh-improved-travel-window-edit mousehuntActionButton"><span>Edit</span></div>
-    <div class="mh-improved-travel-window-description">Click on a location to toggle the visibility.</div>
+    <div class="mh-improved-travel-window-edit mousehuntActionButton">
+      <span>Edit</span>
+    </div>
+    <div class="mh-improved-travel-window-description">
+      Click on a location to toggle the visibility.
+    </div>
   </div>`;
 
   content += '</div>';
@@ -229,6 +229,43 @@ const openTravelWindow = async () => {
   const environmentButtons = document.querySelectorAll('.greatWinterHuntGolemDestinationView__environment');
   if (! environmentButtons) {
     return;
+  }
+
+  const sortNameButton = document.querySelector('.mh-improved-travel-window-sort-name');
+  const sortNameButtonText = document.querySelector('.mh-improved-travel-window-sort-name span');
+  if (sortNameButton && sortNameButtonText) {
+    sortNameButton.addEventListener('click', () => {
+      const isSortedByName = sortNameButton.getAttribute('data-sorted-by-name') === 'true';
+      if (isSortedByName) {
+        debug('Already sorted by name, toggling back to default order');
+        sortNameButton.setAttribute('data-sorted-by-name', 'false');
+        sortNameButtonText.textContent = 'Sort by Name';
+
+        // Sort by original order
+        const sortedButtons = [...environmentButtons].sort((a, b) => {
+          const envA = environments.find((e) => e.id === a.getAttribute('data-environment-type'));
+          const envB = environments.find((e) => e.id === b.getAttribute('data-environment-type'));
+          return (envA?.order || 0) - (envB?.order || 0);
+        });
+
+        const container = environmentButtons[0].parentElement;
+        sortedButtons.forEach((button) => container.append(button));
+      } else {
+        debug('Sorting environments by name');
+        sortNameButton.setAttribute('data-sorted-by-name', 'true');
+        sortNameButtonText.textContent = 'Sort by Default Order';
+
+        // Sort alphabetically by name
+        const sortedButtons = [...environmentButtons].sort((a, b) => {
+          const envA = environments.find((e) => e.id === a.getAttribute('data-environment-type'));
+          const envB = environments.find((e) => e.id === b.getAttribute('data-environment-type'));
+          return (envA?.name || '').localeCompare(envB?.name || '');
+        });
+
+        const container = environmentButtons[0].parentElement;
+        sortedButtons.forEach((button) => container.append(button));
+      }
+    });
   }
 
   editButton.addEventListener('click', () => {

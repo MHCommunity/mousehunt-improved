@@ -114,6 +114,9 @@
 }
 
 .mh-improved-travel-window-search-input-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
   margin-bottom: 15px;
 }
 
@@ -132,4 +135,8 @@ input.mh-improved-travel-window-search-input[type="text"] {
 
 .mh-dark #overlayPopup.mh-improved-travel-window-popup .content {
   background-color: var(--d-bg);
+}
+
+.mh-improved-travel-window-sort-name {
+  width: 150px;
 }
