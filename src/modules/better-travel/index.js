@@ -77,10 +77,12 @@ const expandTravelRegions = () => {
     });
   }
 
-  if (app?.pages?.TravelPage?.zoomOut) {
+  if (app?.pages?.TravelPage?.zoomOut && app.pages.TravelPage.showEnvironment) {
     setTimeout(() => {
+      app.pages.TravelPage.showEnvironment(getCurrentLocation());
       app.pages.TravelPage.zoomOut();
-    }, 500);
+      app.pages.TravelPage.zoomOut();
+    }, 200);
   }
 };
 
