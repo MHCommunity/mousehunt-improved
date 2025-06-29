@@ -49,10 +49,6 @@
   background: radial-gradient(circle, #dac8ab 14%, #efe2cd 76%, transparent 100%);
 }
 
-a.zugzwangsTowerHUD-retreatButton.mousehuntTooltipParent {
-  top: 95px;
-}
-
 .zugzwangsTowerHUD-retreatButton:hover {
   background-color: #7d2b2b;
 }
