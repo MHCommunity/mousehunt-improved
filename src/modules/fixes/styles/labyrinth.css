@@ -2,3 +2,9 @@
 .labyrinthHUD.exit.secret {
   background-position-y: -184px;
 }
+
+/* Fix the mino horn showing in normal zokor */
+.ancientCityHUD {
+  height: 111px;
+  margin-bottom: 10px;
+}
