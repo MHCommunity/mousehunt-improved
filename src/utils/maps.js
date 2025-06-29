@@ -1,5 +1,4 @@
 import { cacheGet, cacheSet, getData, getHeaders } from './data';
-import { dbGet, dbSet } from './db';
 
 import { getCurrentLocation } from './location-current';
 import { getGlobal } from './global';
@@ -324,32 +323,6 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
 };
 
 /**
- * Get the cached value for the given key.
- *
- * @param {string} key Key to get the cached value for.
- *
- * @return {any|boolean} Cached value or false if not found.
- */
-const getCachedValue = async (key) => {
-  const value = await dbGet('cache', key);
-  if (! value?.data?.value) {
-    return null;
-  }
-
-  return value.data.value;
-};
-
-/**
- * Set the cached value for the given key.
- *
- * @param {string} key   Key to set the cached value for.
- * @param {any}    value Value to cache.
- */
-const setCachedValue = async (key, value) => {
-  await dbSet('cache', { id: key, value });
-};
-
-/**
  * Get the attraction rate element for the given mouse or item.
  *
  * @param {string} id   ID to get the attraction rate for, either mouse or item ID.
@@ -429,7 +402,7 @@ const getArForMouse = async (id, type = 'mouse') => {
   const cacheKey = `${type}-${id}`;
 
   // check if the attraction rates are cached
-  const cachedAr = await getCachedValue(cacheKey);
+  const cachedAr = await cacheGet(cacheKey);
   if (cachedAr) {
     return cachedAr;
   }
@@ -516,7 +489,7 @@ const getArForMouse = async (id, type = 'mouse') => {
     return true;
   });
 
-  await setCachedValue(cacheKey, mhctJson);
+  await cacheSet(cacheKey, mhctJson);
 
   return mhctJson;
 };
