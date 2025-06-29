@@ -271,7 +271,11 @@ const onThemeSelectorChange = () => {
         saveSetting('journal-changer.chosen-theme', data.theme);
       }
 
-      cacheSet('journal-themes', req.journal_themes.theme_list.filter((theme) => theme.can_equip === true));
+      cacheSet(
+        'journal-themes',
+        req.journal_themes.theme_list.filter((theme) => theme.can_equip === true),
+        30 * 24 * 60 * 60 * 1000 // Cache for 30 days.
+      );
     });
   };
 };

@@ -80,9 +80,9 @@ const updateStats = () => {
  */
 const updateMiceEffectiveness = async (location) => {
   effectiveness = await getMiceEffectiveness();
-  cacheSet('cre-location', location);
-  cacheSet('cre-stats', lastStats);
-  cacheSet('cre-effectiveness', effectiveness);
+  cacheSet('cre-location', location, 24 * 60 * 60 * 1000); // Cache for 24 hours.
+  cacheSet('cre-stats', lastStats, 24 * 60 * 60 * 1000); // Cache for 24 hours.
+  cacheSet('cre-effectiveness', effectiveness, 24 * 60 * 60 * 1000); // Cache for 24 hours.
 
   return effectiveness;
 };

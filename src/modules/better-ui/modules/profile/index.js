@@ -36,7 +36,7 @@ const checkForEggMaster = async () => {
         addEggMasterIcon();
       }
 
-      cacheSet(`eggmaster-2025-${snuid}`, isEggMaster);
+      cacheSet(`eggmaster-2025-${snuid}`, isEggMaster, 3 * 30 * 24 * 60 * 60 * 1000); // Cache for 3 months.
     });
   }
 };
