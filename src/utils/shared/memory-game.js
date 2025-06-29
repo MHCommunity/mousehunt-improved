@@ -1,0 +1,140 @@
+import { addStyles, makeElement, makeElementDraggable } from '@utils';
+import styles from '../styles/memory-game.css';
+
+let hasInitialized = false;
+
+const startMemoryGame = ({ items = [], title = 'Memory Matching Challenge' }) => {
+  if (! hasInitialized) {
+    addStyles(styles, 'mh-improved-memory-game');
+    hasInitialized = true;
+  }
+
+  if (! items.length) {
+    return;
+  }
+
+  const createGameOverlay = () => {
+    return makeElement('div', 'mh-improved-memory-game',
+      `<div class="mh-improved-memory-game-header">
+        <h1>${title}</h1>
+        <svg class="mh-improved-memory-close" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+      </div>
+      <div class="mh-improved-memory-grid"></div>
+      <div class="mh-improved-memory-message">
+        Find all matching pairs!
+      </div>`
+    );
+  };
+
+  const resetGame = () => {
+    let itemsToUse = items;
+    // If we have more than 8 items, randomly select 8
+    if (itemsToUse.length > 8) {
+      itemsToUse = itemsToUse.sort(() => Math.random() - 0.5).slice(0, 8);
+    }
+
+    // Shuffle cards and reset game state
+    const cards = [...itemsToUse, ...itemsToUse].sort(() => Math.random() - 0.5);
+    flippedCards = [];
+    matchedPairs = 0;
+    moves = 0;
+
+    // Clear and repopulate the grid
+    grid.innerHTML = '';
+    cards.forEach((item, index) => {
+      const card = makeElement('div', 'mh-improved-memory-card',
+        `<div class="mh-improved-card-front">?</div>
+        <div class="mh-improved-card-back">
+          <img src="${item.image || item.images.best}" alt="${item.name}" title="${item.name}" />
+          <span class="mh-improved-card-name">${item.name}</span>
+        </div>`
+      );
+
+      card.setAttribute('data-index', index);
+      card.setAttribute('data-symbol', item.id);
+
+      card.addEventListener('click', () => flipCard(card));
+      grid.append(card);
+    });
+
+    // Reset message
+    const message = gameOverlay.querySelector('.mh-improved-memory-message');
+    message.innerHTML = 'Find all matching pairs!';
+    gameOverlay.classList.remove('victory');
+  };
+
+  let flippedCards = [];
+  let matchedPairs = 0;
+  let moves = 0;
+
+  // Create or reuse the game overlay
+  let gameOverlay = document.querySelector('.mh-improved-memory-game');
+  if (! gameOverlay) {
+    gameOverlay = createGameOverlay();
+    document.body.append(gameOverlay);
+    makeElementDraggable('.mh-improved-memory-game', '.mh-improved-memory-game-header', 200, 100);
+  }
+
+  const grid = gameOverlay.querySelector('.mh-improved-memory-grid');
+  resetGame();
+
+  const flipCard = (card) => {
+    if (card.classList.contains('flipped') || card.classList.contains('matched')) {
+      return;
+    }
+    if (flippedCards.length >= 2) {
+      return;
+    }
+
+    card.classList.add('flipped');
+    flippedCards.push(card);
+
+    if (flippedCards.length === 2) {
+      moves++;
+      setTimeout(() => checkMatch(), 800);
+    }
+  };
+
+  const checkMatch = () => {
+    const [card1, card2] = flippedCards;
+
+    if (card1.dataset.symbol === card2.dataset.symbol) {
+      card1.classList.add('matched');
+      card2.classList.add('matched');
+      matchedPairs++;
+
+      if (matchedPairs === 8) {
+        setTimeout(() => {
+          const message = gameOverlay.querySelector('.mh-improved-memory-message');
+          gameOverlay.classList.add('victory');
+          message.innerHTML = `
+            <span class="mh-improved-message-text">
+              🎉 Completed in ${moves} moves.
+            </span>
+            <a class="mh-improved-memory-play-again" href="#">Play Again</a>`;
+
+          const playAgain = message.querySelector('.mh-improved-memory-play-again');
+          if (playAgain) {
+            playAgain.addEventListener('click', (e) => {
+              e.preventDefault();
+              resetGame();
+            });
+          }
+        }, 500);
+      }
+    } else {
+      card1.classList.remove('flipped');
+      card2.classList.remove('flipped');
+    }
+
+    flippedCards = [];
+  };
+
+  gameOverlay.querySelector('.mh-improved-memory-close').addEventListener('click', () => {
+    gameOverlay.remove();
+  });
+};
+
+export { startMemoryGame };
