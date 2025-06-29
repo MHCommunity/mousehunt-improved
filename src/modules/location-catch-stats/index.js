@@ -192,7 +192,7 @@ const showModal = async () => {
   document.body.append(modalWrapper);
 
   // Make the modal draggable.
-  makeElementDraggable('#mh-catch-stats', '.mh-catch-stats-header', 25, 25, 'mh-catch-stats-position');
+  makeElementDraggable('#mh-catch-stats', '.mh-catch-stats-header', 25, 25);
 };
 
 let showMisses = false;
