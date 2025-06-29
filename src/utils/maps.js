@@ -396,7 +396,7 @@ const getArEl = async (id, type = 'mouse') => {
 
   const arEl = makeElement('div', ['mh-ui-ar', `mh-ui-ar-${arType}`, `mh-ui-ar-${arDifficulty}`], `${ar}%`);
 
-  arEl.title = `Attraction rate: ${ar}%`;
+  arEl.title = type === 'mouse' ? `Attraction rate: ${ar}%` : `Drop rate: ${ar}%`;
   arEl.setAttribute('data-ar', ar);
 
   return arEl;
@@ -492,7 +492,7 @@ const getArForMouse = async (id, type = 'mouse') => {
       delete rate.drop_ct;
 
       // if its 9999, then set it to 10000
-      if (rate.rate === 9999) {
+      if (rate.rate >= 9990) {
         rate.rate = 10000;
       }
     }
