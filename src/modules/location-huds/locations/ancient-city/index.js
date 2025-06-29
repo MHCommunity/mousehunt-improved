@@ -3,21 +3,44 @@ import {
   makeElement,
   onRequest,
   onTurn,
-  showHornMessage
+  showHornMessage,
+  startMemoryGame
 } from '@utils';
 
 import styles from './styles.css';
 
-const addBossName = () => {
-  const types = {
-    y: 'Paladin Weapon Master', // Fealty
-    h: 'Manaforge Smith', // Tech
-    s: 'Soul Binder', // Scholar
-    t: 'Molten Midas', // Treasury
-    f: '', // Farming
-  };
+const types = {
+  y: 'Paladin Weapon Master', // Fealty
+  h: 'Manaforge Smith', // Tech
+  s: 'Soul Binder', // Scholar
+  t: 'Molten Midas', // Treasury
+  f: '', // Farming
+};
 
-  const type = user?.quests?.QuestAncientCity?.district_type;
+const getBossType = () => {
+  return user?.quests?.QuestAncientCity?.district_type || '';
+};
+
+const addBossClass = () => {
+  const type = getBossType();
+  if (! type || ! types[type]) {
+    return;
+  }
+
+  const hud = document.querySelector('.ancientCityHUD');
+  if (! hud) {
+    return;
+  }
+
+  if (hud.classList.contains(`ancientCityHUD-${type}`)) {
+    return;
+  }
+
+  hud.classList.add(`ancientCityHUD-${type}`);
+};
+
+const addBossName = () => {
+  const type = getBossType();
   if (! type || ! types[type]) {
     return;
   }
@@ -114,6 +137,30 @@ const warnForOilCharms = () => {
   });
 };
 
+const addMinigame = () => {
+  const baitWarning = document.querySelector('.ancientCityHUD-baitWarning');
+  if (! baitWarning) {
+    return;
+  }
+
+  const startGame = makeElement('div', 'ancientCityHUD-startGame');
+  startGame.title = 'Play Zokor Memory Challenge';
+  baitWarning.parentNode.insertBefore(startGame, baitWarning);
+
+  startGame.addEventListener('click', () => {
+    startMemoryGame({ title: 'Zokor Memory Challenge', items: [
+      { id: 'plate_of_fealty_crafting_item', name: 'Plate of Fealty', image: 'https://www.mousehuntgame.com/images/items/crafting_items/large/c431568f0a90e77fcabc4de14009555f.png' },
+      { id: 'tech_power_core_crafting_item', name: 'Tech Power Core', image: 'https://www.mousehuntgame.com/images/items/crafting_items/large/b52aff1549b63c0b00983f0a78aa8363.png' },
+      { id: 'ancient_scholar_scroll_crafting_item', name: 'Scholar Scroll', image: 'https://www.mousehuntgame.com/images/items/crafting_items/large/600254a937f618200c8e8fb9b3aeaefe.png' },
+      { id: 'infused_plate_crafting_item', name: 'Infused Plate', image: 'https://www.mousehuntgame.com/images/items/crafting_items/large/c73481596bdd805a1cdfcabc2526ba02.png' },
+      { id: 'powercore_hammer_crafting_item', name: 'Powercore Hammer', image: 'https://www.mousehuntgame.com/images/items/crafting_items/large/3380b02f1c2bd1a6e2d963b1cee4b41a.png' },
+      { id: 'sacred_scroll_crafting_item', name: 'Sacred Script', image: 'https://www.mousehuntgame.com/images/items/crafting_items/large/ce2feadbf81fca6f98e9931099d69d7a.png' },
+      { id: 'labyrinth_hidden_chamber_key_stat_item', name: 'Minotaur Key', image: 'https://www.mousehuntgame.com/images/items/stats/large/6422e444c028ca5f6ea5230e568dc4b1.png' },
+      { id: 'cave_nightshade_crafting_item', name: 'Nightshade', image: 'https://www.mousehuntgame.com/images/items/crafting_items/large/075a2bbef9d263b41822be1c318e9ee0.png' }
+    ] });
+  });
+};
+
 /**
  * Initialize the module.
  */
@@ -121,10 +168,13 @@ export default async () => {
   addHudStyles(styles);
 
   addBossName();
+  addBossClass();
+  addMinigame();
 
   addDefeatedLabel();
   updateLeaderBeaten();
   onTurn(() => {
+    addBossClass();
     addDefeatedLabel();
     updateLeaderBeaten();
   }, 500);

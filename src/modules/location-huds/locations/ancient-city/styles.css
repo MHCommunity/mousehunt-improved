@@ -1,10 +1,15 @@
 .ancientCityHUD-total.mousehuntTooltipParent {
-  top: 35px;
-  left: 550px;
+  top: 34px;
+  left: 552px;
   padding: 11px 5px;
-  font-size: 13px;
-  background: linear-gradient(180deg, #785c3c 0%, #422b14 100%);
-  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 900;
+  text-shadow: 0 0 1px #000;
+}
+
+.ancientCityHUD-total.mousehuntTooltipParent .mousehuntTooltip {
+  font-weight: 400;
+  text-shadow: none;
 }
 
 .ancientCityHUD-countDown {
@@ -19,6 +24,8 @@
 }
 
 .ancientCityHUD-tier-number {
+  margin-top: 4px;
+  margin-right: -4px;
   text-shadow: 1px 1px 2px #171717;
 }
 
@@ -30,8 +37,10 @@
 
 span.ancientCityHUD-alertLevel {
   position: absolute;
-  bottom: 1px;
-  left: 3px;
+  right: 3px;
+  bottom: 2px;
+  left: 1px;
+  text-align: center;
   text-shadow: 1px 1px 2px #171717;
 }
 
@@ -66,7 +75,6 @@ span.ancientCityHUD-alertLevel {
   font-weight: 900;
   text-align: center;
   text-shadow: 0 0 1px #000;
-  background: linear-gradient(180deg, rgb(112 112 112 / 0%) 0%, rgb(168 168 168 / 100%) 50%, rgb(112 112 112 / 0%) 100%);
   border-radius: 20px;
 }
 
@@ -99,7 +107,12 @@ span.ancientCityHUD-alertLevel {
 }
 
 .ancientCityHUD {
+  background-image: url(https://i.mouse.rip/hud-zokor-updated.png);
   filter: drop-shadow(0 3px 5px #0a0803);
+}
+
+.ancientCityHUD-tier {
+  background-image: url(https://i.mouse.rip/hud-zokor-alert.png);
 }
 
 .ancientCityHUD-bossContainer.active .ancientCityHUD-bossLabel.active,
@@ -153,4 +166,77 @@ span.ancientCityHUD-alertLevel {
 
 .ancientCityHUD-bossContainer.defeated .ancientCityHUD-bossLabel.defeated.stealth-view .stealth-remaining {
   font-size: 26px;
+}
+
+.ancientCityHUD-bossContainer {
+  background-image: url(https://i.mouse.rip/hud-zokor-doors.png);
+}
+
+.ancientCityHUD-f .ancientCityHUD-progress {
+  background-color: #11f400;
+  box-shadow: 0 -5px 5px #0a8f00 inset;
+}
+
+.ancientCityHUD-h .ancientCityHUD-progress {
+  background-color: #21e2ff;
+  box-shadow: 0 -5px 5px #009fb8 inset;
+}
+
+.ancientCityHUD-s .ancientCityHUD-progress {
+  background-color: #e96300;
+  box-shadow: 0 -5px 5px #853700 inset;
+}
+
+.ancientCityHUD-y .ancientCityHUD-progress {
+  background-color: #d851ff;
+  box-shadow: 0 -5px 5px #b800eb inset;
+}
+
+.ancientCityHUD-t .ancientCityHUD-progress {
+  background-color: #ffe400;
+  box-shadow: 0 -5px 5px #998a00 inset;
+}
+
+.ancientCityHUD-item.active::after {
+  display: none;
+}
+
+.ancientCityHUD-f .ancientCityHUD-item.active .ancientCityHUD-item-quantity.quantity {
+  background-color: #004d00;
+}
+
+.ancientCityHUD-h .ancientCityHUD-item.active .ancientCityHUD-item-quantity.quantity {
+  background-color: #004651;
+}
+
+.ancientCityHUD-s .ancientCityHUD-item.active .ancientCityHUD-item-quantity.quantity {
+  background-color: #4d2a00;
+}
+
+.ancientCityHUD-y .ancientCityHUD-item.active .ancientCityHUD-item-quantity.quantity {
+  background-color: #4d004d;
+}
+
+.ancientCityHUD-t .ancientCityHUD-item.active .ancientCityHUD-item-quantity.quantity {
+  background-color: #4d4d00;
+}
+
+.ancientCityHUD-startGame {
+  position: absolute;
+  top: 12px;
+  left: 440px;
+}
+
+.ancientCityHUD-startGame:hover {
+  cursor: pointer;
+  filter: brightness(1.4);
+}
+
+.ancientCityHUD-startGame::after {
+  display: block;
+  width: 20px;
+  height: 20px;
+  content: "";
+  background-image: url(https://i.mouse.rip/memory-game-icon.png);
+  background-size: contain;
 }
