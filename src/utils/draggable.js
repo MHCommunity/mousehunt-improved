@@ -1,3 +1,5 @@
+import { dataGet, dataSet } from './data';
+
 /**
  * Make an element draggable. Saves the position to local storage.
  *
@@ -8,7 +10,7 @@
  * @param {string}  storageKey   The key to use for local storage.
  * @param {boolean} savePosition Whether or not to save the position to local storage.
  */
-const makeElementDraggable = (dragTarget, dragHandle, defaultX = null, defaultY = null, storageKey = null, savePosition = true) => {
+const makeElementDraggable = async (dragTarget, dragHandle, defaultX = null, defaultY = null, storageKey = null, savePosition = true) => {
   const modal = document.querySelector(dragTarget);
   if (! modal) {
     return;
@@ -74,8 +76,8 @@ const makeElementDraggable = (dragTarget, dragHandle, defaultX = null, defaultY 
     // Remove the class from the element.
     modal.classList.remove('mh-is-dragging');
 
-    if (storageKey) {
-      localStorage.setItem(storageKey, JSON.stringify({ x: modal.offsetLeft, y: modal.offsetTop }));
+    if (storageKey && savePosition) {
+      dataSet(storageKey, { x: modal.offsetLeft, y: modal.offsetTop });
     }
   };
 
@@ -108,14 +110,12 @@ const makeElementDraggable = (dragTarget, dragHandle, defaultX = null, defaultY 
 
   // If the storageKey was passed in, get the position from local storage.
   if (! storageKey) {
-    storageKey = `mh-draggable-${dragTarget}-${dragHandle}`;
+    storageKey = `mh-draggable-${dragTarget.replaceAll(/[^\da-z]/gi, '-')}`;
   }
 
   if (savePosition) {
-    const storedPosition = localStorage.getItem(storageKey);
-    if (storedPosition) {
-      const position = JSON.parse(storedPosition);
-
+    const position = await dataGet(storageKey);
+    if (position) {
       // Make sure the position is within the bounds of the window.
       startX = keepWithinLimits('left', position.x);
       startY = keepWithinLimits('top', position.y);
