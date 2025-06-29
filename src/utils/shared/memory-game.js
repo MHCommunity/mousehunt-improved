@@ -38,6 +38,11 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Challenge', mode
     );
   };
 
+  let flippedCards = [];
+  let matchedPairs = 0;
+  let moves = 0;
+  let hintClickCount = 0;
+
   const resetGame = () => {
     let itemsToUse = items;
     if (itemsToUse.length > cardCount) {
@@ -49,6 +54,7 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Challenge', mode
     flippedCards = [];
     matchedPairs = 0;
     moves = 0;
+    hintClickCount = 0; // Reset hint counter
 
     // Clear and repopulate the grid
     grid.innerHTML = '';
@@ -74,10 +80,6 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Challenge', mode
     gameOverlay.classList.remove('victory');
   };
 
-  let flippedCards = [];
-  let matchedPairs = 0;
-  let moves = 0;
-
   // Create or reuse the game overlay
   let gameOverlay = document.querySelector('.mh-improved-memory-game');
   if (! gameOverlay) {
@@ -92,7 +94,76 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Challenge', mode
   }
 
   const grid = gameOverlay.querySelector('.mh-improved-memory-grid');
+  const message = gameOverlay.querySelector('.mh-improved-memory-message');
+
+  // Add hint click listener to message
+  message.addEventListener('click', () => {
+    if (gameOverlay.classList.contains('victory')) {
+      return; // Don't give hints when game is won
+    }
+
+    hintClickCount++;
+    if (hintClickCount >= 3) {
+      giveHint();
+      hintClickCount = 0; // Reset counter after giving hint
+    }
+  });
+
   resetGame();
+
+  const giveHint = () => {
+    if (flippedCards.length >= 2 || matchedPairs === cardCount) {
+      return;
+    }
+
+    // Find all unmatched cards
+    const unmatchedCards = [...grid.querySelectorAll('.mh-improved-memory-card:not(.matched)')];
+
+    if (unmatchedCards.length === 0) {
+      return;
+    }
+
+    // If one card is flipped, find its match
+    if (flippedCards.length === 1) {
+      const symbol = flippedCards[0].dataset.symbol;
+      const matchingCard = grid.querySelector(`.mh-improved-memory-card[data-symbol="${symbol}"]:not(.flipped):not(.matched)`);
+      if (matchingCard) {
+        matchingCard.classList.add('hint');
+        setTimeout(() => {
+          matchingCard.classList.remove('hint');
+        }, 1000);
+        return;
+      }
+    }
+
+    // Otherwise, highlight a random pair
+    const symbols = new Set();
+    const availableCards = [];
+
+    unmatchedCards.forEach((card) => {
+      const symbol = card.dataset.symbol;
+      if (! symbols.has(symbol)) {
+        symbols.add(symbol);
+        const pair = unmatchedCards.filter((c) => c.dataset.symbol === symbol);
+        if (pair.length === 2) {
+          availableCards.push(pair);
+        }
+      }
+    });
+
+    if (availableCards.length > 0) {
+      const randomPair = availableCards[Math.floor(Math.random() * availableCards.length)];
+      randomPair.forEach((card) => {
+        card.classList.add('hint');
+      });
+
+      setTimeout(() => {
+        randomPair.forEach((card) => {
+          card.classList.remove('hint');
+        });
+      }, 1000);
+    }
+  };
 
   const flipCard = (card) => {
     if (card.classList.contains('flipped') || card.classList.contains('matched')) {
@@ -121,7 +192,7 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Challenge', mode
 
       if (matchedPairs === cardCount) {
         setTimeout(() => {
-          const message = gameOverlay.querySelector('.mh-improved-memory-message');
+          const messageEl = gameOverlay.querySelector('.mh-improved-memory-message');
           gameOverlay.classList.add('victory');
           message.innerHTML = `
             <span class="mh-improved-message-text">
@@ -129,7 +200,7 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Challenge', mode
             </span>
             <a class="mh-improved-memory-play-again" href="#">Play Again</a>`;
 
-          const playAgain = message.querySelector('.mh-improved-memory-play-again');
+          const playAgain = messageEl.querySelector('.mh-improved-memory-play-again');
           if (playAgain) {
             playAgain.addEventListener('click', (e) => {
               e.preventDefault();
