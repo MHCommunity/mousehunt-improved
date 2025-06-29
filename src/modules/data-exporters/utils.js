@@ -36,6 +36,10 @@ const addDownloadToButton = (opts, callback) => {
   let { buttonSelector, results, filename, beforeDownload } = opts;
 
   const exportButton = document.querySelector(buttonSelector);
+  if (! exportButton) {
+    return;
+  }
+
   exportButton.classList.remove('disabled');
 
   // download the file when the export button is clicked
@@ -159,6 +163,39 @@ const addDownloadButtons = (opts) => {
   });
 };
 
+const addCopyButton = ({ type, results }) => {
+  const copyButton = document.querySelector(`#copy-${type}`);
+  if (! copyButton) {
+    return;
+  }
+
+  const copyText = copyButton.querySelector('span');
+  if (! copyText) {
+    return;
+  }
+
+  copyButton.classList.remove('disabled');
+
+  copyButton.addEventListener('click', () => {
+    copyButton.classList.add('disabled');
+    const formattedResults = results.join('\n');
+
+    navigator.clipboard.writeText(formattedResults).then(() => {
+      copyButton.classList.remove('disabled');
+      copyText.textContent = 'Copied!';
+      setTimeout(() => {
+        copyText.textContent = 'Copy Data';
+      }, 2000);
+    }).catch(() => {
+      copyButton.classList.remove('disabled');
+      copyText.textContent = 'Copy Failed';
+      setTimeout(() => {
+        copyText.textContent = 'Copy Data';
+      }, 2000);
+    });
+  });
+};
+
 /**
  * Reduce the results.
  *
@@ -201,34 +238,37 @@ const updateSingleTotalEl = (results) => {
 /**
  * Show the export popup.
  *
- * @param {Object}   opts                   The options object.
- * @param {string}   opts.type              The type of data.
- * @param {string}   opts.text              The text to display.
- * @param {string}   opts.headerMarkup      The header markup.
- * @param {string}   opts.itemsMarkup       The items markup.
- * @param {string}   opts.footerMarkup      The footer markup.
- * @param {Function} opts.fetch             The fetch function.
- * @param {Function} opts.afterFetch        Function to run after fetching.
- * @param {Function} opts.download          Function to download the data.
- * @param {Function} opts.updateSingleTotal The update single total function.
- * @param {boolean}  opts.dataIsAvailable   If the data is available.
+ * @param {Object}   opts                       The options object.
+ * @param {string}   opts.type                  The type of data.
+ * @param {string}   opts.text                  The text to display.
+ * @param {string}   opts.headerMarkup          The header markup.
+ * @param {string}   opts.itemsMarkup           The items markup.
+ * @param {string}   opts.footerMarkup          The footer markup.
+ * @param {Function} opts.fetch                 The fetch function.
+ * @param {Function} opts.afterFetch            Function to run after fetching.
+ * @param {Function} opts.download              Function to download the data.
+ * @param {Function} opts.updateSingleTotal     The update single total function.
+ * @param {boolean}  opts.dataIsAvailable       If the data is available.
+ * @param {boolean}  opts.copyInsteadOfDownload Shows a copy button instead of download buttons.
+ * @param {string}   opts.extraText             Extra text to display below the buttons.
  */
-const exportPopup = (opts) => {
-  const {
-    type,
-    text,
-    headerMarkup,
-    itemsMarkup,
-    footerMarkup,
-    fetch,
-    afterFetch,
-    download,
-    updateSingleTotal,
-    dataIsAvailable,
-  } = opts;
-
+const exportPopup = ({
+  type,
+  text,
+  headerMarkup,
+  itemsMarkup,
+  footerMarkup,
+  fetch,
+  afterFetch,
+  download,
+  updateSingleTotal,
+  dataIsAvailable,
+  copyInsteadOfDownload = false,
+  extraText = '',
+}) => {
   createPopup({
     title: `Export ${text}`,
+    className: 'mh-improved-export-data',
     content: `
     <div class="export-wrapper ${type}">
       <div class="export-items-header item-wrapper ${headerMarkup ? '' : 'hidden'}">
@@ -247,14 +287,18 @@ const exportPopup = (opts) => {
         <div class="mousehuntActionButton tiny fetch-data ${dataIsAvailable ? 'hidden' : ''}" id="fetch-${type}">
           <span>Fetch ${text}</span>
         </div>
-        <div class="mousehuntActionButton tiny ${dataIsAvailable ? '' : 'disabled'} export-json" id="export-${type}">
+        <div class="mousehuntActionButton copy-data ${dataIsAvailable ? '' : 'disabled'} ${copyInsteadOfDownload ? '' : 'hidden'}" id="copy-${type}">
+          <span>Copy Data</span>
+        </div>
+        <div class="mousehuntActionButton tiny ${dataIsAvailable ? '' : 'disabled'} ${copyInsteadOfDownload ? 'hidden' : ''} export-json" id="export-${type}">
           <span>Export as JSON</span>
         </div>
-        <div class="mousehuntActionButton tiny ${dataIsAvailable ? '' : 'disabled'} export-csv" id="export-${type}-csv">
+        <div class="mousehuntActionButton tiny ${dataIsAvailable ? '' : 'disabled'} ${copyInsteadOfDownload ? 'hidden' : ''} export-csv" id="export-${type}-csv">
           <span>Export as CSV</span>
         </div>
       </div>
-    </div>`
+    </div>
+    ${extraText ? `<div class="extra-text">${extraText}</div>` : ''}`
   });
 
   const exportBackButton = document.querySelector('#export-back');
@@ -288,6 +332,11 @@ const exportPopup = (opts) => {
         results,
         type,
         ...download,
+      });
+
+      addCopyButton({
+        type,
+        results,
       });
 
       fetchButton.classList.remove('disabled');

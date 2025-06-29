@@ -3,6 +3,7 @@ import { addStyles, addSubmenuItem, createPopup, onEvent } from '@utils';
 import { exportFavoriteSetupsUserscript, hasFavoriteSetupsUserscript } from './exporters/export-favorite-setups-userscript';
 import { exportRankupForecaster, hasRankupForecaster } from './exporters/export-rankup-forecaster';
 
+import exportCrowns from './exporters/export-kings-crowns';
 import exportFavoriteSetups from './exporters/export-favorite-setups';
 import exportInventory from './exporters/export-inventory';
 import exportJournalEntries from './exporters/export-journal-entries';
@@ -33,6 +34,11 @@ const exportDataPopup = () => {
       callback: () => exportMice('location'),
     },
     {
+      id: 'kings-crowns',
+      name: 'Mouse Stats by Crowns',
+      callback: exportCrowns,
+    },
+    {
       id: 'inventory',
       name: 'Inventory',
       callback: exportInventory,
@@ -45,7 +51,7 @@ const exportDataPopup = () => {
     {
       id: 'scoreboard-rankings',
       name: 'Scoreboard Rankings',
-      callback: () => exportScoreboards(),
+      callback: exportScoreboards,
     },
     {
       id: 'scoreboard-rankings-weekly',

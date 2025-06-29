@@ -11,6 +11,7 @@ import {
   makeFavoriteButton,
   makeLink,
   makeTooltip,
+  onNavigation,
   onOverlayChange,
   onTurn,
   setPage
@@ -522,6 +523,73 @@ const addShowMouseToNewJournalEntries = () => {
   });
 };
 
+let copyListener;
+const copyKingsCrowns = () => {
+  copyListener?.remove();
+  copyListener = document.addEventListener('copy', (e) => {
+    // eslint-disable-next-line @wordpress/no-global-get-selection
+    if (window.getSelection && window.getSelection().toString().length > 0) {
+      return;
+    }
+
+    const mice = document.querySelectorAll('.mouseCrownsView-group-mouse-padding');
+    if (! mice || ! mice.length) {
+      return;
+    }
+
+    // Define the crown types and their thresholds
+    const crowns = [
+      { name: 'Diamond Crown', min: 2500, max: Number.POSITIVE_INFINITY },
+      { name: 'Platinum Crown', min: 1000, max: 2499 },
+      { name: 'Gold Crown', min: 500, max: 999 },
+      { name: 'Silver Crown', min: 100, max: 499 },
+      { name: 'Bronze Crown', min: 10, max: 99 },
+      { name: 'No Crown', min: 0, max: 9 }
+    ];
+
+    // Prepare a map for each crown group
+    const grouped = crowns.map((crown) => ({
+      ...crown,
+      mice: []
+    }));
+
+    // Collect mouse data and group by crown
+    mice.forEach((mouse) => {
+      const catches = Number.parseInt(mouse.querySelector('.mouseCrownsView-group-mouse-catches').innerText.replaceAll(',', ''), 10);
+      const name = mouse.querySelector('.mouseCrownsView-group-mouse-name').innerText.trim();
+
+      const group = grouped.find((crown) => catches >= crown.min && catches <= crown.max);
+      if (group) {
+        group.mice.push({ catches, name });
+      }
+    });
+
+    // Sort each group by catches descending
+    grouped.forEach((group) => {
+      group.mice.sort((a, b) => b.catches - a.catches);
+    });
+
+    // Output format
+    const lines = [];
+    grouped.forEach((group) => {
+      if (group.mice.length === 0) {
+        return;
+      }
+      lines.push(`${group.name} (${group.mice.length})`, `Earned at ${group.min.toLocaleString()} catches`);
+      group.mice.forEach((mouse) => {
+        lines.push(`${mouse.catches}`, `${mouse.name}`);
+      });
+    });
+
+    if (! lines.length) {
+      return;
+    }
+
+    e.clipboardData.setData('text/plain', lines.join('\n'));
+    e.preventDefault();
+  });
+};
+
 /**
  * Run the module.
  */
@@ -586,6 +654,18 @@ const init = () => {
   }
 
   replaceShowMouseImage();
+
+  onNavigation(copyKingsCrowns, {
+    page: 'hunterprofile',
+    subtab: 'kings_crowns',
+    tab: 'kings_crowns'
+  });
+
+  onNavigation(copyKingsCrowns, {
+    page: 'adversaries',
+    subtab: 'kings_crowns',
+    tab: 'kings_crowns'
+  });
 
   onTurn(addShowMouseToNewJournalEntries, 100);
 };

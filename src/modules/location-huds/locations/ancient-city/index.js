@@ -1,6 +1,7 @@
 import {
   addHudStyles,
   makeElement,
+  onNavigation,
   onRequest,
   onTurn,
   showHornMessage,
@@ -178,6 +179,13 @@ export default async () => {
     addDefeatedLabel();
     updateLeaderBeaten();
   }, 500);
+
+  onNavigation(() => {
+    addBossName();
+    addBossClass();
+    addDefeatedLabel();
+    updateLeaderBeaten();
+  });
 
   warnForOilCharms();
   onRequest('users/changetrap.php', warnForOilCharms);
