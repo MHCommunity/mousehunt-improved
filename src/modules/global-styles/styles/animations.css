@@ -74,6 +74,13 @@
   100% { transform: rotate(0deg); }
 }
 
+@keyframes mh-improved-shake-tiny {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(1deg); }
+  75%  { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
 @keyframes mh-improved-spin {
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
