@@ -50,12 +50,42 @@
   background: #f6f3eb;
 }
 
+.mh-improved-memory-game-hard .mh-improved-memory-grid,
+.mh-improved-memory-game-extreme .mh-improved-memory-grid {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.mh-improved-memory-game-nope .mh-improved-memory-grid {
+  grid-template-columns: repeat(14, 1fr);
+}
+
 .mh-improved-memory-card {
   position: relative;
   width: 80px;
   height: 80px;
   cursor: pointer;
   perspective: 1000px;
+  z-index: 1;
+}
+
+.mh-improved-memory-game-nope .mh-improved-memory-card {
+  width: 45px;
+  height: 60px;
+}
+
+.mh-improved-memory-game-nope .mh-improved-card-name {
+  display: block;
+  background: #f6f3eb;
+  position: absolute;
+  top: 87%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 4px;
+  border: 1px solid #534022;
+  border-radius: 2px;
+  font-size: 8px;
+  white-space: nowrap;
+  z-index: 15;
 }
 
 .mh-improved-card-front,
@@ -78,6 +108,7 @@
   font-weight: bold;
   font-size: 20px;
   border: 1px solid #ceb7a6;
+  user-select: none;
 }
 
 .mh-improved-card-back {
@@ -87,6 +118,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  overflow: visible;
 }
 
 .mh-improved-card-name {
@@ -96,6 +128,10 @@
 .mh-improved-memory-card:hover .mh-improved-card-front {
   background: #eee;
   outline: 1px solid #ccc;
+}
+
+.mh-improved-memory-card.flipped {
+  z-index: 10;
 }
 
 .mh-improved-memory-card.flipped .mh-improved-card-front {
@@ -109,6 +145,7 @@
 .mh-improved-memory-card.matched {
   opacity: 0.7;
   transform: scale(0.95);
+  z-index: 5;
 }
 
 .mh-improved-memory-card.matched .mh-improved-card-back {
@@ -124,6 +161,8 @@
 }
 
 .mh-improved-memory-message {
+  height: 35px;
+  box-sizing: border-box;
   padding: 10px 15px;
   text-align: center;
   font-size: 14px;
@@ -144,12 +183,19 @@
 
 .mh-improved-memory-play-again {
   display: inline-block;
-  margin-top: 10px;
   padding: 5px 10px;
   background: #8e6642;
   color: #f6f3eb;
   text-decoration: none;
   border-radius: 4px;
+}
+
+.mh-improved-memory-play-again:hover,
+.mh-improved-memory-play-again:focus {
+  background: #6f4b2c;
+  color: #f6f3eb;
+  outline: 1px solid #ccc;
+  text-decoration: none;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
