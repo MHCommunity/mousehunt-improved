@@ -1,6 +1,8 @@
 .ancientCityHUD-total.mousehuntTooltipParent {
   top: 34px;
+  right: 135px;
   left: 552px;
+  width: unset;
   padding: 11px 5px;
   font-size: 12px;
   font-weight: 900;
