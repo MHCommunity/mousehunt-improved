@@ -46,18 +46,29 @@ const isValidDataFile = (file) => {
  * @return {Promise<number>} The cache expiration in milliseconds since epoch.
  */
 const getCacheExpiration = async (key = null) => {
-  return await cacheGet(`expiration-${key}`, 0);
+  const expiration = await dbGet('cache', `expiration-${key}`);
+  if (! expiration || ! expiration.data || ! expiration.data.value) {
+    return null;
+  }
+
+  return expiration.data.value;
 };
 
 /**
  * Set the cache expiration for the given key.
  *
- * @param {string} key Key to set the expiration for.
+ * @param {string} key         Key to set the expiration for.
+ * @param {number} [time=null] Time in milliseconds since epoch. If null, defaults to 7 days from now.
+ *
+ * @return {Promise<void>} Resolves when the expiration is set.
  */
-const setCacheExpiration = async (key) => {
-  debuglog('utils-data', `Setting cache expiration for ${key}`);
+const setCacheExpiration = async (key, time = null) => {
+  if (time) {
+    return await dbSet('cache', { id: `expiration-${key}`, value: time });
+  }
 
-  cacheSet(`expiration-${key}`, Date.now() + ((Math.floor(Math.random() * 7) + 7) * 24 * 60 * 60 * 1000));
+  const expirationTime = Date.now() + ((Math.floor(Math.random() * 7) + 7) * 24 * 60 * 60 * 1000);
+  return await dbSet('cache', { id: `expiration-${key}`, value: expirationTime });
 };
 
 /**
@@ -116,13 +127,11 @@ const fetchData = async (key, retries = 0) => {
  */
 const getData = async (key, force = false) => {
   if (! isValidDataFile(key)) {
-    debuglog('utils-data', `Cannot get data for ${key}, invalid key`);
     return false;
   }
 
-  const isExpired = await isCacheExpired(key);
-  if (! isExpired && ! force) {
-    const cachedData = await dataCacheGet(key, false);
+  if (! force) {
+    const cachedData = await cacheGet(key, false);
     if (cachedData) {
       return cachedData;
     }
@@ -133,13 +142,11 @@ const getData = async (key, force = false) => {
   debuglog('utils-data', `Fetched data for ${key}`, data);
 
   if (data) {
-    cacheSet(key, data);
-    setCacheExpiration(key);
+    await cacheSet(key, data);
   }
 
   return data;
 };
-
 /**
  * Clear all the caches.
  */
@@ -271,11 +278,17 @@ const sessionsDelete = (prefix) => {
 /**
  * Set a cache value.
  *
- * @param {string} key   Key to set the value for.
- * @param {Object} value Value to set.
+ * @param {string} key               Key to set the value for.
+ * @param {Object} value             Value to set.
+ * @param {number} [expiration=null] Expiration time in milliseconds since epoch. If null, defaults to 7 days.
  */
-const cacheSet = (key, value) => {
-  dbSet('cache', { id: key, value });
+const cacheSet = async (key, value, expiration = null) => {
+  await Promise.all([
+    dbSet('cache', { id: key, value }),
+    setCacheExpiration(key, expiration),
+  ]);
+
+  return value;
 };
 
 /**
@@ -298,7 +311,17 @@ const cacheSetAsync = async (key, value) => {
  * @return {Promise<T>} The cache value.
  */
 const cacheGetHelper = async (key, defaultValue = false) => {
+  // Check if cache is expired first
+  const isExpired = await isCacheExpired(key);
+
+  if (isExpired) {
+    // Delete expired cache entry
+    await cacheDelete(key);
+    return defaultValue;
+  }
+
   const cached = await dbGet('cache', key);
+
   if (! cached?.data?.value) {
     return defaultValue;
   }
@@ -316,20 +339,7 @@ const cacheGetHelper = async (key, defaultValue = false) => {
  * @return {Promise<T>} The cache value.
  */
 const cacheGet = async (key, defaultValue = false) => {
-  return await cacheGetHelper(key, defaultValue, 'cache');
-};
-
-/**
- * Get a data cache value.
- *
- * @template T
- * @param {string} key          Key to get the value for.
- * @param {T}      defaultValue Default value to return if the key doesn't exist.
- *
- * @return {Promise<T>} The cache value.
- */
-const dataCacheGet = async (key, defaultValue = false) => {
-  return await cacheGetHelper(key, defaultValue, 'data');
+  return await cacheGetHelper(key, defaultValue);
 };
 
 /**
@@ -337,8 +347,11 @@ const dataCacheGet = async (key, defaultValue = false) => {
  *
  * @param {string} key Key to delete the value for.
  */
-const cacheDelete = (key) => {
-  dbDelete('cache', key);
+const cacheDelete = async (key) => {
+  await Promise.all([
+    dbGet('cache', key),
+    dbGet('cache', `expiration-${key}`),
+  ]);
 };
 
 /**
@@ -347,8 +360,8 @@ const cacheDelete = (key) => {
  * @param {string} key   Key to set the value for.
  * @param {Object} value Value to set.
  */
-const dataSet = (key, value) => {
-  dbSet('data', { id: key, value });
+const dataSet = async (key, value) => {
+  await dbSet('data', { id: key, value });
 };
 
 /**
