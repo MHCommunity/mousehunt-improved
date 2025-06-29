@@ -33,9 +33,16 @@
   justify-content: space-between;
   padding: 10px;
   color: #f6f3eb;
-  cursor: grab;
   background-color: #8e6642;
   border-bottom: 1px solid #ceb7a6;
+}
+
+.mh-catch-stats-header:hover {
+  cursor: grab;
+}
+
+.mh-catch-stats-header:active {
+  cursor: grabbing;
 }
 
 .mh-catch-stats-header h1 {
