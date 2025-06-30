@@ -28,7 +28,7 @@ const addBossClass = () => {
     return;
   }
 
-  const hud = document.querySelector('.ancientCityHUD');
+  const hud = document.querySelector('.ancientCityHUD-progressContainer');
   if (! hud) {
     return;
   }
@@ -141,6 +141,11 @@ const warnForOilCharms = () => {
 const addMinigame = () => {
   const baitWarning = document.querySelector('.ancientCityHUD-baitWarning');
   if (! baitWarning) {
+    return;
+  }
+
+  const existing = document.querySelector('.ancientCityHUD-startGame');
+  if (existing) {
     return;
   }
 
