@@ -1240,8 +1240,6 @@ const makeBlueprintContainer = async () => {
   return container;
 };
 
-// ...rest of the existing code remains the same...
-
 /**
  * Get the name of the current setup.
  *

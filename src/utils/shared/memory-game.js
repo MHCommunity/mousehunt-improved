@@ -3,7 +3,7 @@ import styles from '../styles/memory-game.css';
 
 let hasInitialized = false;
 
-const startMemoryGame = ({ items = [], title = 'Memory Matching Challenge', mode = 'easy' }) => {
+const startMemoryGame = ({ items = [], title = 'Memory Matching Game', mode = 'easy' }) => {
   if (! hasInitialized) {
     addStyles(styles, 'mh-improved-memory-game');
     hasInitialized = true;

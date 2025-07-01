@@ -35,7 +35,10 @@ const init = async () => {
     icon: 'https://i.mouse.rip/icons/game.png',
     callback: async () => {
       const items = await getData('items');
-      startMemoryGame({ items: items.filter((element) => isValidItem(element)), mode: 'easy' });
+      startMemoryGame({
+        items: items.filter((element) => isValidItem(element)),
+        mode: 'easy'
+      });
     }
   });
 
@@ -45,7 +48,10 @@ const init = async () => {
     icon: 'https://i.mouse.rip/icons/game.png',
     callback: async () => {
       const items = await getData('items');
-      startMemoryGame({ items: items.filter((element) => isValidItem(element)), mode: 'hard' });
+      startMemoryGame({
+        items: items.filter((element) => isValidItem(element)),
+        mode: 'hard'
+      });
     }
   });
 
@@ -55,7 +61,11 @@ const init = async () => {
     icon: 'https://i.mouse.rip/icons/game.png',
     callback: async () => {
       const items = await getData('items');
-      startMemoryGame({ items: items.filter((element) => isValidItem(element)), mode: 'nope' });
+      startMemoryGame({
+        title: 'Memory Matching Game (150 items)',
+        items: items.filter((element) => isValidItem(element)),
+        mode: 'nope'
+      });
     }
   });
 };
