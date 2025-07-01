@@ -281,6 +281,8 @@ const sessionsDelete = (prefix) => {
  * @param {string} key               Key to set the value for.
  * @param {Object} value             Value to set.
  * @param {number} [expiration=null] Expiration time in milliseconds since epoch. If null, defaults to 7 days.
+ *
+ * @return {Promise<Object>} The value that was set.
  */
 const cacheSet = async (key, value, expiration = null) => {
   await Promise.all([

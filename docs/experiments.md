@@ -4,7 +4,6 @@ Try out beta features and experimental options that may not be fully tested or f
 
 ## Available Experiments
 
-
 - **Better Marketplace: Price History Charts**: Show sales price history charts on category pages
 - **Better Inventory: Add Trap Sorting**: Adds sorting options to the trap inventory pages (base, charms, and weapons)
 - **Gift button opens gift selector**: Clicking the gift button will directly open the gift selector instead of the normal gift dialog

@@ -1,7 +1,6 @@
 import {
   addStyles,
   getData,
-  getSetting,
   makeElement,
   onJournalEntry
 } from '@utils';
