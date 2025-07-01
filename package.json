@@ -55,15 +55,15 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.27.6",
-    "@sentry/browser": "^9.31.0",
-    "caniuse-lite": "^1.0.30001724",
+    "@sentry/browser": "^9.33.0",
+    "caniuse-lite": "^1.0.30001726",
     "humanize-duration": "^3.33.0",
     "json2csv": "^6.0.0-alpha.2"
   },
   "devDependencies": {
     "@sentry/cli": "^2.46.0",
     "@sprout2000/esbuild-copy-plugin": "^1.1.17",
-    "@wordpress/eslint-plugin": "^22.11.0",
+    "@wordpress/eslint-plugin": "^22.12.0",
     "archiver": "^7.0.1",
     "chalk": "^5.4.1",
     "chrome-webstore-upload-cli": "^3.3.2",
@@ -87,7 +87,7 @@
     "jsonc-eslint-parser": "^2.4.0",
     "node-fetch": "^3.3.2",
     "ora": "^8.2.0",
-    "prettier": "^3.6.0",
+    "prettier": "^3.6.2",
     "pretty-ms": "^9.2.0",
     "sentry-cli": "^0.0.0",
     "stylelint": "15.11.0",
@@ -98,6 +98,6 @@
     "stylelint-prettier": "4.1.0",
     "stylelint-stylistic": "^0.4.5",
     "web-ext": "^8.8.0",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   }
 }
