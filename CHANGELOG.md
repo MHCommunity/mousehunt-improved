@@ -2,13 +2,88 @@
 
 ## Version 0.83.0
 
-- Better Journal: Added 'Show Full Mice Images in Journal' setting
-- Better Maps: Updated Drop Rate displays to not show low rates with low catches and exclude Fusion Fondue catches
-- Better Maps: Updated styles
-- Favorite Setups: Updated layout to allow for dragging and dropping setups to reorder them
-- Favorite Setups: Enhanced setup naming on creation
-- Ultimate Checkmark: Updated Treasure Chest and Currency lists
-- Fixed issue with data caches not being fully refreshed on version updates
+### Better UI
+
+- Updated skin previews in the trap selector to always use the currently equipped base (previously a beta feature)
+
+### Better Journal
+
+- Added 'Show Full Mice Images in Journal' option (previously a beta feature)
+
+### Better Maps
+
+- Updated styles
+
+### Better Mice
+
+- Added ability to use Cmd/Ctrl+C on King's Crowns pages to copy mouse crown data in Crown Tracker Spreadsheet format
+
+### Better Travel
+
+- Added toggle to sort locations by name in the Travel Window
+
+### Data Exporters
+
+- Added 'Mouse Stats by Crowns' exporter to export your crown data to the Crown Tracker Spreadsheet
+
+### Experiments / Beta Features
+
+- Added 'Memory Matching Game' experiment – find it in the 'Camp' menu dropdown once enabled
+- Removed 'Better Journal List: Link all items' experiment – now integrated into Better Journal
+- Removed 'Full Mice Images in Journal' experiment – now a regular Better Journal option
+- Removed 'Prestige Base in Skin Previews' experiment – now a core Better UI feature with full base support
+
+### Favorite Setups
+
+- Added ability to drag and drop setups to reorder them
+- Updated setup name generation to create names automatically based on selected components
+- Updated highlighted setups (that match the current location) to be limited 3 for clarity
+- Updated sidebar placement to consistently show in the same location
+- Updated styles
+
+### Fixes
+
+- Fixed issue where the Minotaur's horn was incorrectly visible in all Zokor districts
+
+### Location Dashboard
+
+- Added Draconic Depths dashboard
+- Fixed Floating Islands dashboard occasionally showing the wrong loot type
+- Fixed Seasonal Garden showing 0% Amp when entering Zugzwang Tower
+- Fixed dashboard data display for your current location
+
+### Location HUD: Labyrinth
+
+- Fixed suggested door functionality suggesting doors that do not match the clue type
+
+### Location HUD: Seasonal Garden
+
+- Fixed tooltip display issues
+- Updated styles
+
+### Location HUD: Zokor
+
+- Added Memory Matching minigame to the Zokor HUD
+- Updated HUD to show current stealth after boss defeat instead of 'Leader Beaten'
+- Updated styles
+
+### Location HUD: Zugzwang Tower
+
+- Updated styles
+
+### Location HUD: Folklore Forest Region
+
+- Fixed double-crafting bug for some ME items when using the quick-craft button
+
+### Ultimate Checkmark
+
+- Added new Draconic Depths items to the required item list
+
+### Other
+
+- Improved data caching and expiration handling
+- Fixed issue where some data was cached indefinitely
+- Minor performance improvements
 
 ## Version 0.82.3
 
