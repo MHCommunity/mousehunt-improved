@@ -1,4 +1,4 @@
-import { doRequest } from '@utils';
+import { doRequest, isAppleOS } from '@utils';
 import { exportPopup } from '../utils';
 
 let crowns = 0;
@@ -63,7 +63,8 @@ const exportKingsCrowns = () => {
     afterFetch,
     footerMarkup: '<div class="region-name">Total Crowns</div><div class="total-items">-</div>',
     copyInsteadOfDownload: true,
-    extraText: 'This data is formatted for use in the <a href="https://docs.google.com/spreadsheets/d/16s24Y4UdkCMt1JBHvVrI6a8N3gbVF6uSkz8SJJ88SP4/edit?gid=577298820#gid=577298820" target="_blank">MouseHunt Crown Tracker</a> spreadsheet.',
+    extraText: `<p>This data is formatted for use in the <a href="https://docs.google.com/spreadsheets/d/16s24Y4UdkCMt1JBHvVrI6a8N3gbVF6uSkz8SJJ88SP4/edit?gid=577298820#gid=577298820" target="_blank">MouseHunt Crown Tracker</a> spreadsheet.
+    <p>You can also hit <code>${isAppleOS ? 'CMD' : 'Ctrl'} + C</code> on the King's Crowns page to copy the data to your clipboard in the same format.</p>`,
   });
 };
 
