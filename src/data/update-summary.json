@@ -2,32 +2,115 @@
   "summary": "",
   "details": [
     {
+      "title": "Better UI",
+      "items": [
+        "Updated Skin previews in trap selector to always use the currently equipped base"
+      ]
+    },
+    {
       "title": "Better Journal",
       "items": [
-        "Added 'Show Full Mice Images in Journal' setting"
+        "Added 'Show Full Mice Images in Journal' option (was a beta feature)"
       ]
     },
     {
       "title": "Better Maps",
       "items": [
-        "Updated Drop Rate displays to not show low rates with low catches and exclude Fusion Fondue catches",
         "Updated styles"
+      ]
+    },
+    {
+      "title": "Better Mice",
+      "items": [
+        "Added ability to hit 'Cmd/Ctrl + C' on King's Crowns pages to copy data in the Crown Tracker Spreadsheet expected format"
+      ]
+    },
+    {
+      "title": "Better Travel",
+      "items": [
+        "Added ability to toggle sorting by name in the Travel Window"
+      ]
+    },
+    {
+      "title": "Data Exporters",
+      "items": [
+        "Added 'Mouse Stats by Crowns' exporter to export your mouse stats to the Crown Tracker Spreadsheet"
+      ]
+    },
+    {
+      "title": "Experiments / Beta Features",
+      "items": [
+        "Added 'Memory Matching Game' experiment. You can enable it and find it in the 'Camp' menu dropdown.",
+        "Removed 'Better Journal List: Link all items' experiment, as it is now added to Better Journal",
+        "Removed 'Full Mice Images in Journal' experiment, as it is now an option in Better Journal",
+        "Removed 'Prestige Base in skin previews' experiment, as it is now added to Better UI with support for all bases"
       ]
     },
     {
       "title": "Favorite Setups",
       "items": [
-        "Updated layout to allow for dragging and dropping setups to reorder them",
-        "Enhanced setup naming on creation"
+        "Added ability to drag and drop setups to reorder them",
+        "Updated setup name generation to automatically create a name based on the selected setup",
+        "Updated highlighted setups that match the current location to be limited to 3",
+        "Updated placement in sidebar to consistently show in the same place",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Fixes",
+      "items": [
+        "Fixed default MouseHunt behavior that shows a portion of the Minotaur's horn when in any district in Zokor"
+      ]
+    },
+    {
+      "title": "Location Dashboard",
+      "items": [
+        "Added Draconic Depths to the location dashboard",
+        "Fixed images in Floating Islands dashboard sometimes showing the wrong type",
+        "Fixed Seasonal Garden showing 0% Amp when going to Zugzwang Tower, rather than hiding it",
+        "Fixed data being incorrect for your current location"
+      ]
+    },
+    {
+      "title": "Location HUD: Zokor",
+      "items": [
+        "Added Memory Matching minigame to Zokor HUD",
+        "Updated HUD to show current stealth instead of 'Leader Beaten' after catching the boss",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Location HUD: Seasonal Garden",
+      "items": [
+        "Fixed tooltip display issues",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Location HUD: Zugzwang Tower",
+      "items": [
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Location HUD: Folklore Forest Region",
+      "items": [
+        "Fixed double-crafting issue for certain ME items when using the quick-craft button"
       ]
     },
     {
       "title": "Ultimate Checkmark",
-      "items": ["Updated Treasure Chest and Currency lists"]
+      "items": [
+        "Updated required items to include the new Draconic Depths items"
+      ]
     },
     {
-      "title": "Data Caching",
-      "items": ["Fixed issue with data caches not being fully refreshed on version updates"]
+      "title": "Other",
+      "items": [
+        "Improved data caching and expiration handling",
+        "Fixed issue where data was cached indefinitely",
+        "Minor performance improvements"
+      ]
     }
   ]
 }

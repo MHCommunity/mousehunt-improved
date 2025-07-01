@@ -22,22 +22,24 @@ const highlightDoors = () => {
   }
 
   const clues = user.quests.QuestLabyrinth.clues || [];
-  const clue = clues.reduce((a, b) => (a.quantity > b.quantity ? a : b));
+  const clue = clues.reduce((a, b) => (a.quantity > b.quantity ? a : b), {});
 
-  if (clue) {
+  if (clue && clue.type) {
     const doors = user.quests.QuestLabyrinth.doors || [];
     const matchingDoors = doors.filter((door) => {
-      if (door.choice && door.choice.length) {
-        return door.choice.includes(clue.type);
-      }
-      return false;
+      return door?.choice?.length && door?.choice?.charAt(0).toLowerCase() === clue.type.toLowerCase();
     });
 
     if (! matchingDoors.length) {
       return;
     }
 
-    const bestDoor = matchingDoors.reduce((a, b) => a.choice.length > b.choice.length ? a : b);
+    const lengths = ['s', 'm', 'l', 'e'];
+    const bestDoor = matchingDoors.reduce((a, b) => {
+      const aLength = lengths.indexOf(a.choice.charAt(1).toLowerCase());
+      const bLength = lengths.indexOf(b.choice.charAt(1).toLowerCase());
+      return aLength > bLength ? a : b;
+    });
 
     if (bestDoor) {
       const highlight = document.querySelector(`.labyrinthHUD-door.${bestDoor.css_class.replaceAll(' ', '.')}`);

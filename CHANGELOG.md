@@ -10,7 +10,6 @@
 - Ultimate Checkmark: Updated Treasure Chest and Currency lists
 - Fixed issue with data caches not being fully refreshed on version updates
 
-
 ## Version 0.82.3
 
 - Updated Better Maps styles
