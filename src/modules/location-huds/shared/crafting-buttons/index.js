@@ -95,7 +95,7 @@ const addCraftingButtons = async ({ baits, selectors }) => {
       const { amounts, shop, shopNormal } = baits[baitType];
       amounts.forEach((amount) => {
         const isNormal = amount.toString().includes('-normal');
-        const qty = isNormal ? Number.parseInt(amount.replace('-normal', ''), 10) : amount;
+        const qty = isNormal ? Number.parseInt(amount.replace('-normal', ''), 10) : amount / 2;
         const className = isNormal ? 'mh-crafting-action' : 'mh-crafting-action lightBlue';
         const title = `Craft ${qty}${isNormal ? '' : ' using Magic Essence'}`;
         const shopItem = isNormal ? shopNormal : shop;
