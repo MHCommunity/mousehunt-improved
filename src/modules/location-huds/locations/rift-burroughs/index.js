@@ -2,7 +2,7 @@ import { addHudStyles, makeElement, onRequest, onTurn } from '@utils';
 
 import styles from './styles.css';
 
-import areaMice from '@data/brift-mice-per-mist-level.json';
+import areaMice from './brift-mice-per-mist-level.json';
 
 /**
  * Create a list of mice.

@@ -10,10 +10,33 @@ import {
   onRequest
 } from '@utils';
 
-import pathsToSkip from '@data/image-upscaling-paths-to-skip.json';
-
 import styles from './styles.css';
 import viewsStyles from './views.css';
+
+const pathsToSkip = [
+  'mice/*',
+  'ui/auras/*',
+  'ui/hud/menu/*',
+  'ui/crowns/*',
+  'ui/camp/*',
+  'ui/hunters_horn/*',
+  'items/skins/*',
+  'items/weapons/*',
+  'powertypes/*',
+  'teams/*',
+  'environments/*',
+  'folklore_forest_upgrades/*',
+  'promo/page_banners/*',
+  'grouplogos/*',
+  'ui/adventure_book/*',
+  'map/dynamic/*',
+  'io_appstore_button.png',
+  'google-play-badge.png',
+  'icons/externalLink.png',
+  'buttons/discord.png',
+  'hg_logo.png',
+  'payment/thumb/logo_paypal.png',
+];
 
 /**
  * The ImageUpscaler class.

@@ -1,6 +1,6 @@
 import { addStyles, onNavigation, onRender } from '@utils';
 
-import emotes from '@data/emotes.json';
+import emotes from './emotes.json';
 
 /**
  * Replace emotes with images in the text.
