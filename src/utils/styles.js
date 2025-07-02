@@ -176,6 +176,7 @@ const getExtensionBaseUrl = () => {
  */
 const addExternalStyles = async (filename) => {
   const identifier = filename.split('.').shift();
+  filename = `${filename}?v=${mhImprovedVersion}`;
 
   const existingStyles = document.querySelector(`#${identifier}-external`);
 
