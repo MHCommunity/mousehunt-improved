@@ -35,15 +35,21 @@ const highlightDoors = () => {
     }
 
     const lengths = [
-      's', // short
-      'm', // medium
-      'l', // long
-      '2m' // superior
+      's', // plain short
+      'm', // plain medium
+      'l', // plain long
+      '2s', // superior short
+      '2m', // superior medium
+      '2l', // superior long
+      '3s', // epic short
+      '3m', // epic medium
+      '3l', // epic long
     ];
+
     const bestDoor = matchingDoors.reduce((a, b) => {
-      const aLength = lengths.indexOf(a.choice.slice(1).toLowerCase());
-      const bLength = lengths.indexOf(b.choice.slice(1).toLowerCase());
-      return aLength > bLength ? a : b;
+      const aGrade = lengths.indexOf(a.choice.slice(1).toLowerCase());
+      const bGrade = lengths.indexOf(b.choice.slice(1).toLowerCase());
+      return aGrade > bGrade ? a : b;
     });
 
     if (bestDoor) {
