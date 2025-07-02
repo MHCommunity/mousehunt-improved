@@ -34,10 +34,15 @@ const highlightDoors = () => {
       return;
     }
 
-    const lengths = ['s', 'm', 'l', 'e'];
+    const lengths = [
+      's', // short
+      'm', // medium
+      'l', // long
+      '2m' // superior
+    ];
     const bestDoor = matchingDoors.reduce((a, b) => {
-      const aLength = lengths.indexOf(a.choice.charAt(1).toLowerCase());
-      const bLength = lengths.indexOf(b.choice.charAt(1).toLowerCase());
+      const aLength = lengths.indexOf(a.choice.slice(1).toLowerCase());
+      const bLength = lengths.indexOf(b.choice.slice(1).toLowerCase());
       return aLength > bLength ? a : b;
     });
 
