@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.83.1
+
+- Fixed issue with update erroring out
+- Added setting to disable Favorite setups generated names
+
 ## Version 0.83.0
 
 ### Better UI

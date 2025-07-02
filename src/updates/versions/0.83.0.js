@@ -1,4 +1,4 @@
-import { clearCaches, dataSet, saveSetting } from '@utils';
+import { clearCaches, dataSet, getSetting, saveSetting } from '@utils';
 
 export default {
   version: '0.83.0',

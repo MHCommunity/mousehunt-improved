@@ -107,6 +107,12 @@ const getFavoriteSetups = async (makeRequest = false) => {
  * @return {Promise<string>} The generated name.
  */
 const getGeneratedName = async (setup) => {
+  if (! getSetting('favorite-setups.use-generated-names', true)) {
+    return {
+      name: user.environment_name || 'Unnamed Setup',
+    };
+  }
+
   const response = await fetch('https://setup-namer.mouse.rip', {
     method: 'POST',
     headers: getHeaders(),
@@ -142,7 +148,11 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
   const normalizedSetup = normalizeSetup(setup);
 
   // Set a temporary name first
-  normalizedSetup.name = useGeneratedName ? 'Generating name...' : user.environment_name;
+  if (getSetting('favorite-setups.use-generated-names', true) && useGeneratedName) {
+    normalizedSetup.name = useGeneratedName ? 'Generating name...' : user.environment_name;
+  } else {
+    normalizedSetup.name = user.environment_name;
+  }
 
   if (setup.id) {
     normalizedSetup.id = setup.id;

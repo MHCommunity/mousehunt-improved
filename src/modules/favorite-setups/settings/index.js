@@ -14,6 +14,12 @@ export default async () => {
       id: 'favorite-setups.show-location-favorites',
       title: 'Highlight setups for current location at the top',
       default: true,
+    },
+    {
+      id: 'favorite-setups.use-generated-names',
+      title: 'Use generated names for setups',
+      description: 'If enabled, setups will be named based on their components and location via an AI model.',
+      default: true,
     }
   ];
 };
