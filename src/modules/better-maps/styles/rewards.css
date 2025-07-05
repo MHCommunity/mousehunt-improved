@@ -108,14 +108,19 @@
 
 .mh-ui-user-on-map .treasureMapView-mapName {
   padding-top: 10px;
+  margin-bottom: 30px;
+}
+
+.mh-ui-map-preview .treasureMapView-mapName {
+  margin-bottom: 30px;
 }
 
 .mh-ui-map-claimable.mh-ui-user-on-map .treasureMapView-mapName {
   margin-left: 50px;
 }
 
-.treasureMapView-mapMenu-group:first-child .treasureMapView-mapMenu-group-title {
-  margin: 5px 0;
+.treasureMapView-mapMenu-group.allies:first-child .treasureMapView-mapMenu-group-title {
+  display: none;
 }
 
 .mh-ui-map-name-auras {

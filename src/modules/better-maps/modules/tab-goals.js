@@ -597,12 +597,22 @@ const addPreviewClass = async () => {
     return;
   }
 
+  const tooltip = document.querySelector('.treasureMapTooltipView');
+  if (tooltip) {
+    tooltip.classList.remove('mh-ui-map-preview-tooltip');
+    tooltip.classList.remove('mh-ui-map-preview-previewbar-tooltip');
+  }
+
   const previewClass = mapView.querySelector('.treasureMapView-previewBar');
   if (! previewClass) {
     return;
   }
 
   mapView.classList.add('mh-ui-map-preview');
+
+  if (tooltip) {
+    tooltip.classList.add('mh-ui-map-preview-previewbar-tooltip');
+  }
 };
 
 const moveAuras = async () => {

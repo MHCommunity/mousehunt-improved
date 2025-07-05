@@ -627,6 +627,10 @@ input.treasureMapView-block-search-text {
   top: -9px;
 }
 
+.treasureMapDialogView-overlay.active .treasureMapView-hunter-icon {
+  left: 22px;
+}
+
 .treasureMapTooltipView.active {
   display: flex;
   flex-direction: column;
@@ -653,6 +657,11 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapDialogView-title {
+  margin-bottom: 5px;
+}
+
+.mh-improved-preview.treasureMapDialogView-title {
+  margin-top: -10px;
   margin-bottom: 5px;
 }
 
@@ -743,6 +752,7 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapView-previewBar {
+  display: flex;
   height: 20px;
   padding-left: 15px;
   margin: 0;
@@ -895,7 +905,7 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapTooltipView {
-  height: 40px;
+  min-height: 40px;
 }
 
 .treasureMapDialogView.wide.limitHeight.confirm .treasureMapDialogView-description {
@@ -946,14 +956,6 @@ input.treasureMapView-block-search-text {
 
 #overlayPopup.treasureMapPopup #jsDialogClose {
   z-index: 12;
-}
-
-.treasureMapTooltipView.active::after {
-  bottom: -19px;
-}
-
-.treasureMapTooltipView.active::before {
-  bottom: -20px;
 }
 
 .treasureMapView-consolationPrizeButton {
@@ -1032,4 +1034,21 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-highlight.goal.active.item.sticky {
   display: block;
+}
+
+.treasureMapTooltipView.mh-ui-map-preview-tooltip {
+  margin-top: -85px;
+  margin-left: -7px;
+}
+
+.treasureMapTooltipView.mh-ui-map-preview-previewbar-tooltip {
+  margin-top: -25px;
+}
+
+.treasureMapTooltipView.mh-ui-map-preview-previewbar-tooltip.mh-ui-map-preview-tooltip {
+  margin-top: -75px;
+}
+
+.treasureMapDialogView-overlay.active .treasureMapView-mapName {
+  padding-bottom: 20px;
 }

@@ -1,5 +1,5 @@
 import { cacheGet, cacheSet, getData, getHeaders } from './data';
-
+import { doEvent } from './event-registry';
 import { getCurrentLocation } from './location-current';
 import { getGlobal } from './global';
 import { makeElement } from './elements';
@@ -607,6 +607,39 @@ const getLocationForMouse = async (mouse, type = 'mouse') => {
   return environment;
 };
 
+let _showMapPreviewDialog;
+const replaceShowMapPreviewDialog = () => {
+  if (_showMapPreviewDialog) {
+    return;
+  }
+
+  _showMapPreviewDialog = hg.controllers.TreasureMapController.showMapPreviewDialog;
+
+  hg.controllers.TreasureMapController.showMapPreviewDialog = function (map, data) {
+    _showMapPreviewDialog.call(this, map, data);
+    doEvent('map_show_map_preview', { map, data });
+  };
+};
+
+let _hideDialog;
+const replaceShowMapPreviewDialogClose = () => {
+  if (_hideDialog) {
+    return;
+  }
+
+  _hideDialog = hg.controllers.TreasureMapController.hideDialog;
+
+  hg.controllers.TreasureMapController.hideDialog = function () {
+    _hideDialog.call(this);
+    doEvent('map_hide_map_preview');
+  };
+};
+
+const addMapPreviewListeners = () => {
+  replaceShowMapPreviewDialog();
+  replaceShowMapPreviewDialogClose();
+};
+
 export {
   mapper,
   mapData,
@@ -622,5 +655,6 @@ export {
   setLastMaptain,
   cacheFinishedMap,
   getLocationForMouse,
-  showTravelConfirmationNoDetails
+  showTravelConfirmationNoDetails,
+  addMapPreviewListeners
 };

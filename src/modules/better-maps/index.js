@@ -1,4 +1,5 @@
 import {
+  addMapPreviewListeners,
   addStyles,
   doEvent,
   getData,
@@ -42,6 +43,25 @@ const updateMapClasses = () => {
     } else {
       map.classList.remove('mh-ui-multiple-maps');
     }
+  }
+};
+
+const addMapClassesToPreview = () => {
+  const preview = document.querySelector('.treasureMapDialogView-overlay .treasureMapDialogView');
+  if (preview) {
+    preview.classList.add('mh-ui-map-preview');
+  }
+
+  const tooltip = document.querySelector('.treasureMapTooltipView');
+  if (tooltip) {
+    tooltip.classList.add('mh-ui-map-preview-tooltip');
+  }
+};
+
+const removeMapClassesFromPreview = () => {
+  const tooltip = document.querySelector('.treasureMapTooltipView.mh-ui-map-preview-tooltip');
+  if (tooltip) {
+    tooltip.classList.remove('mh-ui-map-preview-tooltip');
   }
 };
 
@@ -471,6 +491,10 @@ const init = () => {
     maybeShowInvitesTab(tab);
     enhancePreviewButton();
   });
+
+  addMapPreviewListeners();
+  onEvent('map_show_map_preview', addMapClassesToPreview);
+  onEvent('map_hide_map_preview', removeMapClassesFromPreview);
 
   onRequest('users/treasuremap_v2.php', () => {
     addBlockClasses();
