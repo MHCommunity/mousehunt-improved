@@ -32,6 +32,12 @@
       ]
     },
     {
+      "title": "Catch Rate Estimator & Minlucks",
+      "items": [
+        "Updated calculations to account for Dragon's Might aura"
+      ]
+    },
+    {
       "title": "Data Exporters",
       "items": [
         "Added 'Mouse Stats by Crowns' exporter to export your crown data to the Crown Tracker Spreadsheet"
@@ -51,7 +57,6 @@
       "items": [
         "Added ability to drag and drop setups to reorder them",
         "Updated setup name generation to create names automatically based on selected components",
-        "Updated highlighted setups (that match the current location) to be limited 3 for clarity",
         "Updated sidebar placement to consistently show in the same location",
         "Updated styles"
       ]

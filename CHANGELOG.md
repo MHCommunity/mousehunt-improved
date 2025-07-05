@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.83.2
+
+- Updated Catch Rate Estimator calculations to account for Dragon's Might aura
+- Reverted Favorite Setups location highlighting to be not be limited unless the `favorite-setups-limit-location-favorites` flag is set
+- Fixed 'Trap Gradient Background' beta feature not correctly applying
+- Fixed issue with some mice not showing AR rates on maps when one is an event location
+
 ## Version 0.83.1
 
 - Fixed issue with update erroring out
