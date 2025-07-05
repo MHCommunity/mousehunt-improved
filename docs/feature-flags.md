@@ -48,6 +48,12 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 
 See [Debug Logging](./debug-logging.md) for configuration options.
 
+### Favorite Setups
+
+|Flag|Description|
+|---|---|
+|`favorite-setups-limit-location-favorites`|Limits the number of location favorites to 3 per location.|
+
 #### Location HUDs
 
 |Flag|Description|

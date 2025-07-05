@@ -9,6 +9,7 @@ import {
   getCurrentLocation,
   getCurrentPage,
   getData,
+  getFlag,
   getHeaders,
   getSetting,
   getUserData,
@@ -1203,7 +1204,11 @@ const makeBlueprintContainer = async () => {
       // Get the current location from the user data
       locationFavorites = setups.filter((setup) =>
         setup && setup.id && setup.location && setup.location === getCurrentLocation()
-      ).slice(0, 3); // Limit to 3
+      );
+
+      if (getFlag('favorite-setups-limit-location-favorites')) {
+        locationFavorites = locationFavorites.slice(0, 3);
+      }
     }
 
     if (locationFavorites.length) {
