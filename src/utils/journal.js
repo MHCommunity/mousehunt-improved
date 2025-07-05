@@ -34,7 +34,7 @@ const replaceJournalEntry = (entry, opts = {}) => {
   }
 
   entry.outerHTML = `<div class="entry ${classes.join(' ')}" data-entry-id="journal-entry-${opts.id}">
-    ${image ? `<div class="journalimage"><img src="${image}" border="0"></div>` : ''}
+    ${image ? `<div class="journalimage"><img src="${image}" alt="" /></div>` : ''}
     <div class="journalbody">
       ${date ? `<div class="journaldate">${date}</div>` : ''}
       <div class="journaltext">${text}</div>

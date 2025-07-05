@@ -59,7 +59,7 @@ const makeEntriesMarkup = (entries) => {
     if (entry.mouse) {
       const mouseImages = miceThumbs.find((mouse) => mouse.type === entry.mouse);
       if (mouseImages) {
-        html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" border="0"></a></div>`;
+        html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" alt="${mouseImages.name}" title="${mouseImages.name}" /></a></div>`;
       }
     }
 

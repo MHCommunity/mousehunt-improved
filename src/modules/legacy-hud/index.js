@@ -75,7 +75,7 @@ const getLegacyHudHtml = () => {
     <div class="shieldped">
       <div class="titleicon">
         <a href="#" onclick="hg.utils.PageUtil.setPage('Title'); return false;">
-          <img src="${user?.title_icon}" width="12" height="14" border="0" class="hud_titleIcon">
+          <img src="${user?.title_icon}" width="12" height="14" class="hud_titleIcon" alt="${user?.title_name}" title="${user?.title_name}">
         </a>
       </div>
     </div>

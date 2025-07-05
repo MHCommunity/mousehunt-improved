@@ -85,7 +85,7 @@ const flrtPopup = async (items) => {
   items.forEach((item) => {
     itemContent += `<div class="flrt-item" data-item-type="${item.type}" data-item-quantity="${item.quantity}">
       <div class="itemImage">
-        <img src="${item.image}">
+        <img src="${item.image}" alt="${item.name}" title="${item.name}" />
         <div class="quantity">${item.quantity}</div>
       </div>
       <div class="flrt-item-info">

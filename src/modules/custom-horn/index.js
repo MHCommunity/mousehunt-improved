@@ -138,7 +138,7 @@ const hornPreview = (horn) => {
       <div class="huntersHornView__hornForeground"></div>
       <div class="huntersHornView__hornGlint">
         <div class="huntersHornView__hornGlintImage"></div>
-        <img class="huntersHornView__hornGlintAnimatedGif">
+        <img class="huntersHornView__hornGlintAnimatedGif" alt="" />
       </div>
     </div>
     <div class="huntersHornView__hornBanner">

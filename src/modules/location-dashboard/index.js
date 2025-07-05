@@ -173,7 +173,7 @@ const doLocationRefresh = async () => {
   environmentsToTravel.forEach((env) => {
     locationProgressMarkup += `<div class="location-refresh-item" data-environment-type="${env.id}">
     <div class="locationImageWrapper">
-      <img class="locationImage" src="${env.image}">
+      <img class="locationImage" src="${env.image}" alt="${env.name}" title="${env.name}" />
     </div>
     <div class="locationName" title="Travel to ${env.name}">
       <div class="name">${env.name}</div>

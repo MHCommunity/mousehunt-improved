@@ -209,7 +209,7 @@ const modifySmashableTooltip = async () => {
         makeElement('div', ['new-tooltip-item', 'inventoryPage-item'], `
         <div class="inventoryPage-item-margin clear-block hidden">
           <div class="inventoryPage-item-imageContainer">
-            <div class="itemImage"><img src="${thumb}">
+            <div class="itemImage"><img src="${thumb}" alt="${name}" title="${name}" /></div>
               <div class="quantity">${quantity}</div>
             </div>
           </div>

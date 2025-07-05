@@ -64,7 +64,7 @@ const main = async () => {
   // Make a placeholder option.
   const startingOpt = makeElement('option', '', 'Select a scoreboard');
   startingOpt.value = 'placeholder';
-  startingOpt.setAttribute('disabled', true);
+  startingOpt.setAttribute('disabled', 'disabled');
   startingOpt.setAttribute('selected', true);
   scoreboardDropdown.append(startingOpt);
 

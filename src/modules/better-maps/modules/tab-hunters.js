@@ -70,7 +70,7 @@ const makeUserTable = async (hunters, id, title, appendTo, mapData = {}) => {
       <div class="treasureMapView-allyCell image" data-snuid="${hunter.sn_user_id}">
         <div class="treasureMapView-hunter" data-snuid="${hunter.sn_user_id}">
           <div class="treasureMapView-hunter-image-wrapper">
-            <img src="${hunter.profile_pic}" class="treasureMapView-hunter-image">
+            <img src="${hunter.profile_pic}" class="treasureMapView-hunter-image" alt="${hunter.name}" title="${hunter.name}" />
           </div>
         </div>
       </div>

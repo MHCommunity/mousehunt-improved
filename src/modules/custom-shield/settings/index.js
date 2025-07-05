@@ -126,13 +126,13 @@ export default async () => {
         // If the option is a group, check if the name or value is in the toDisable array.
         const disabledParent = toDisable.has(option.name) || toDisable.has(option.value);
         if (disabledParent) {
-          option.disabled = true;
+          option.disabled = 'disabled';
         }
 
         option.options = option.options.map((groupOption) => {
           // If the option is in the toDisable array, disable it.
           if (toDisable.has(groupOption.value) || disabledParent) {
-            groupOption.disabled = true;
+            groupOption.disabled = 'disabled';
           }
 
           return groupOption;
