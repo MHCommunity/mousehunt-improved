@@ -205,7 +205,7 @@ const showTravelConfirmationNoDetails = async (environment) => {
   };
 
   showTravelConfirmationForMice({
-    title: `Travel to ${environment.name}?`,
+    title: environment?.name ? `Travel to ${environment.name}?` : 'Travel to Environment',
     description: '',
     environment: environment.type,
     templateData
@@ -250,6 +250,7 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
   }
 
   const environments = await getData('environments');
+  const environmentsEvent = await getData('environments-events');
 
   const amountOfLocationsToShow = 5; // TODO: maybe modify this for some mice or make it an option?
   mhctJson.slice(0, amountOfLocationsToShow).forEach((mhct) => {
@@ -262,12 +263,18 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
       makeElement('span', 'mhct-stage', mhct.stage, location);
     }
 
-    const environment = environments.find((env) => {
+    let environment = environments.find((env) => {
       return env.name === mhct.location
         .replace('Cursed City', 'Lost City')
         .replace('Twisted Garden', 'Living Garden')
         .replace('Sand Crypts', 'Sand Dunes');
     });
+
+    if (! environment) {
+      environment = environmentsEvent.find((env) => {
+        return env.name === mhct.location;
+      });
+    }
 
     if (! environment) {
       mhctRow.classList.add('mhct-row-no-env');
@@ -292,8 +299,8 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
         return environment?.id && env.type === environment.id;
       });
 
-      mhctRow.setAttribute('title', `Travel to ${environment.name}`);
-      mhctRow.setAttribute('data-environment', travelEnvironment?.id || environment.id);
+      mhctRow.setAttribute('title', environment?.name ? `Travel to ${environment.name}` : 'Travel to Environment');
+      mhctRow.setAttribute('data-environment', travelEnvironment?.id || environment?.id);
       mhctRow.addEventListener('click', () => {
         if (travelEnvironment) {
           // If the environment is the current location, then just close the dialog.
