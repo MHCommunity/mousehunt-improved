@@ -199,6 +199,7 @@ const getAmplifier = () => {
  * @param {number} options.trapPowerBoost The trap power boost.
  * @param {number} options.trapLuck       The trap luck.
  * @param {number} options.trapPowerBonus The trap power bonus.
+ * @param {Array}  options.trapAuras      The trap auras.
  *
  * @return {Promise<number>} The catch rate.
  */
@@ -215,6 +216,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
     trapPowerBoost,
     trapLuck,
     trapPowerBonus,
+    trapAuras,
   } = options;
 
   const charm = items.find((item) => item.id === Number.parseInt(user?.trinket_item_id))?.type;
@@ -346,7 +348,7 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
 
   // Dragon bane trinkets.
   if (miceGroups.dragon.includes(mouseType)) {
-    if ('dragonbane_trinket' === charm) {
+    if ('dragonbane_trinket' === charm || trapAuras.includes('QuestDragonsMightAura')) {
       trapPowerBonus += 300;
     } else if ('super_dragonbane_trinket' === charm) {
       trapPowerBonus += 600;
@@ -430,6 +432,7 @@ const calculateCatchRate = (mousePower, effectiveness, power, luck) => {
  * @param {number} options.trapPowerBoost The trap power boost.
  * @param {number} options.trapLuck       The trap luck.
  * @param {number} options.trapPowerBonus The trap power bonus.
+ * @param {Array}  options.trapAuras      The trap auras.
  *
  * @return {Promise<Object>} The catch rate.
  */

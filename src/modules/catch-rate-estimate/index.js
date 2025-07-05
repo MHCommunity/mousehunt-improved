@@ -32,6 +32,7 @@ let trapPower;
 let trapPowerBoost;
 let trapPowerBonus;
 let trapLuck;
+let trapAuras = [];
 
 const updateStats = () => {
   trapPower = 0;
@@ -69,6 +70,11 @@ const updateStats = () => {
       trapPower += value;
     }
   });
+
+  const trapAurasList = document.querySelectorAll('.trapImageView-trapAura.mousehuntTooltipParent.active');
+  if (trapAurasList && trapAurasList.length > 0) {
+    trapAuras = [...trapAurasList].map((aura) => [...aura.classList].find((cls) => cls.startsWith('Quest')));
+  }
 };
 
 /**
@@ -278,6 +284,7 @@ const renderList = async (list) => {
       trapPowerBoost,
       trapLuck,
       trapPowerBonus,
+      trapAuras,
     };
 
     const minluck = await getMinluck(options);
