@@ -6,7 +6,7 @@ import styles from './styles.css';
  * Initialize the module.
  */
 const init = async () => {
-  if (! getSetting('experiments.trap-background', false)) {
+  if (getSetting('experiments.trap-background', false)) {
     addStyles(styles, 'trap-background');
   }
 };
