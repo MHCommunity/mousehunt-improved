@@ -30,3 +30,25 @@
 .journal .content .entry.catchsuccessprize .journalbody {
   margin-left: 115px; /* remove if image sizes are too big */
 }
+
+/**
+ * Fixes for some mice. might break depending on other module enabled.
+ * When adding, also undo it in experiments/modules/full-mice-images-no-border.
+ */
+.entry.catchsuccess[data-mouse-type="pirate"] .journalimage img,
+.entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage img {
+  position: relative;
+  margin-left: -20px;
+}
+
+.entry.catchsuccess[data-mouse-type="pirate"] .journalimage::after,
+.entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage::after {
+  position: absolute;
+  top: calc(50% - 47px);
+  left: 10px;
+  display: block;
+  width: 0;
+  height: 92px;
+  content: "";
+  border-left: 1px solid #000;
+}
