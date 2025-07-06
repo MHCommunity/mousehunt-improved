@@ -1,0 +1,10 @@
+.entry.catchsuccess .journalimage img,
+.entry.catchsuccessloot .journalimage img,
+.entry.catchsuccessprize .journalimage img {
+  border: none;
+  mix-blend-mode: darken;
+}
+
+.entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage::after {
+  border-left: none;
+}
