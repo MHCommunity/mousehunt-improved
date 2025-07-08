@@ -55,8 +55,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.27.6",
-    "@sentry/browser": "^9.33.0",
-    "caniuse-lite": "^1.0.30001726",
+    "@sentry/browser": "^9.35.0",
+    "caniuse-lite": "^1.0.30001727",
     "humanize-duration": "^3.33.0",
     "json2csv": "^6.0.0-alpha.2"
   },
@@ -69,7 +69,7 @@
     "chrome-webstore-upload-cli": "^3.3.2",
     "concurrently": "^9.2.0",
     "del-cli": "^6.0.0",
-    "esbuild": "^0.25.5",
+    "esbuild": "^0.25.6",
     "eslint": "8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
@@ -97,6 +97,6 @@
     "stylelint-prettier": "4.1.0",
     "stylelint-stylistic": "^0.4.5",
     "web-ext": "^8.8.0",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   }
 }
