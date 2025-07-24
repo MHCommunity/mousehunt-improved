@@ -1,0 +1,51 @@
+/* speed up horn transition and make it bigger and stuff */
+a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready {
+  transition: all 0.2s;
+  transform-origin: left;
+  will-change: transform;
+}
+
+/* Speed up the horn glint animation delay between loops from 30s to 3s */
+.huntersHornView__hornGlintImage {
+  position: absolute;
+  inset: 0;
+  background-image: url(https://i.mouse.rip/hornGlint.gif);
+}
+
+/* show the notes when hovering over the horn */
+a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready:hover {
+  transform: scale(1.1) rotate(-1deg);
+}
+
+a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready .huntersHornView__hornBannerImage {
+  transition: all 0.6s;
+}
+
+a.huntersHornView__horn.huntersHornView__horn--default.huntersHornView__horn--ready:hover .huntersHornView__hornBannerImage {
+  filter: saturate(1.8);
+}
+
+.huntersHornView__hornImage {
+  filter: drop-shadow(1px 1px 0 #fff) drop-shadow(-1px 1px 0 #fff) drop-shadow(1px -1px 0 #fff) drop-shadow(-1px -1px 0 #fff) drop-shadow(1px 4px 3px #6b6b6b);
+}
+
+.huntersHornView__horn:hover .huntersHornView__musicNote {
+  filter: opacity(0.5);
+  animation-name: hornNoteFade;
+}
+
+.huntersHornView__horn:hover .huntersHornView__musicNote:nth-child(1)::before {
+  animation-name: hornNoteOne;
+}
+
+.huntersHornView__horn:hover .huntersHornView__musicNote:nth-child(2)::before {
+  animation-name: hornNoteTwo;
+}
+
+.huntersHornView__horn:hover .huntersHornView__musicNote:nth-child(3)::before {
+  animation-name: hornNoteThree;
+}
+
+.huntersHornView__horn:hover .huntersHornView__musicNote:nth-child(4)::before {
+  animation-name: hornNoteFour;
+}
