@@ -65,6 +65,7 @@
 .entry.potionuse .journaltext span:last-of-type::after,
 .entry.labyrinth-clue.labyrinth-clue-good .journaltext b:first-of-type::after,
 .entry.custom.printing_press_base_journal_entry a::after,
+.entry.folkloreForest-forewordFarm.folkloreForest-plantCancelled a:last-of-type::after,
 .entry.donationComplete .journaltext a:last-of-type::after {
   display: inline;
   content: ".";
