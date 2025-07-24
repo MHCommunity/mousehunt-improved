@@ -30,10 +30,11 @@ span.forewordFarmPlotView-plot-progress-catchText {
   margin-left: 2px;
   font-size: 11px;
   font-variant: all-small-caps;
+  color: #8fc34f;
 }
 
 .forewordFarmView-harvestBin-quantity {
-  top: -12px;
+  top: -10px;
   padding: 2px;
   font-size: 20px;
 }
@@ -51,6 +52,9 @@ span.forewordFarmPlotView-plot-progress-catchText {
 }
 
 .forewordFarmPlotView-plot-queue-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 40px;
 }
 
@@ -59,15 +63,25 @@ span.forewordFarmPlotView-plot-progress-catchText {
 }
 
 a.forewordFarmPlotView-plot-queue-cancelButton {
-  top: -12px;
-  right: -4px;
+  top: -5px;
+  right: -5px;
+  z-index: 1;
   padding: 2px;
   background-color: #ffbfbf;
   box-shadow: 0 0 3px -1px #000 inset;
 }
 
+.forewordFarmPlotView-plot-queue-list {
+  margin-right: -8px;
+  margin-left: -8px;
+}
+
 .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip {
   border-width: 1px;
+}
+
+.forewordFarmPlotView-plot-queue-item:hover {
+  background-color: transparent;
 }
 
 .forewordFarmPlotView-plot-queue-item:hover .forewordFarmPlotView-plot-queue-cancelButton:hover {
@@ -210,7 +224,7 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 }
 
 .folkloreForestRegionView-button.disabled {
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .forewordFarmPlantDialogView-plant:hover .folkloreForestRegionView-button.disabled {
@@ -224,4 +238,20 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 
 .forewordFarmHarvestBin {
   filter: drop-shadow(0 3px 5px #161616);
+}
+
+.forewordFarmView-harvestBin-claimButton:hover .forewordFarmView-harvestBin-claimButton-image-lid {
+  transition: 0.2s ease-out;
+  transform: translateY(-15px);
+  animation: none;
+}
+
+.forewordFarmPlotView-plot-progress-plantIcon.ordinary_magic_farm_plant::before,
+.forewordFarmPlotView-plot-progress-plantIcon.legendary_magic_farm_plant::before,
+.forewordFarmPlotView-plot-progress-plantIcon.twisted_legendary_magic_farm_plant::before {
+  outline: 4px solid #4e6da8;
+}
+
+.forewordFarmView-pest-state.three_papyrus {
+  color: #90c54f;
 }
