@@ -559,7 +559,11 @@ const copyKingsCrowns = () => {
       const name = mouse.querySelector('.mouseCrownsView-group-mouse-name').innerText.trim();
 
       const group = grouped.find((crown) => catches >= crown.min && catches <= crown.max);
-      if (group) {
+      if (
+        group &&
+        group.mice &&
+        ! group.mice.some((m) => m.name === name && m.catches === catches)
+      ) {
         group.mice.push({ catches, name });
       }
     });
