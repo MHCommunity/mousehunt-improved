@@ -107,7 +107,7 @@ const addQuantityButtons = (itemView) => {
     return;
   }
 
-  const maxQty = Number.parseInt(quantity[1].trim(), 10);
+  const maxQty = Number.parseInt(quantity[1].trim().replaceAll(',', ''), 10);
 
   const openControls = makeElement('div', ['mh-improved-item-open-controls']);
 
