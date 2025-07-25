@@ -348,7 +348,11 @@ const applySpecialEffectsAndGetCatchRate = async (options) => {
 
   // Dragon bane trinkets.
   if (miceGroups.dragon.includes(mouseType)) {
-    if ('dragonbane_trinket' === charm || trapAuras.includes('QuestDragonsMightAura')) {
+    if (trapAuras.includes('QuestDragonsMightAura')) {
+      trapPowerBonus += 300;
+    }
+
+    if ('dragonbane_trinket' === charm) {
       trapPowerBonus += 300;
     } else if ('super_dragonbane_trinket' === charm) {
       trapPowerBonus += 600;
