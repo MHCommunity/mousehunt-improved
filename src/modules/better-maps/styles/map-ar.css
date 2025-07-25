@@ -12,6 +12,7 @@
   padding: 3px;
   font-size: 10px;
   color: #000;
+  user-select: none;
   border: 1px solid #000;
   border-radius: 4px;
 }
