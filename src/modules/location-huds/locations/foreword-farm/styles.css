@@ -255,3 +255,7 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 .forewordFarmView-pest-state.three_papyrus {
   color: #90c54f;
 }
+
+.forewordFarmPlotView-plot-image-plant {
+  filter: drop-shadow(0 0 6px #000) saturate(1.3);
+}
