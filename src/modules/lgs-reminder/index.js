@@ -1,7 +1,7 @@
 import {
   addStyles,
   getSetting,
-  humanizer,
+  humanizeTime,
   makeElement,
   onActivation,
   onDeactivation,
@@ -74,12 +74,7 @@ const getShieldTimeFormatted = () => {
     units.push('s');
   }
 
-  const duration = humanizer(time, {
-    round: true,
-    units,
-    spacer: '',
-    delimiter: ' ',
-  });
+  const duration = humanizeTime(time, { units });
 
   return duration;
 };

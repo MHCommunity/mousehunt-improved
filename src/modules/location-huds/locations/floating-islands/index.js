@@ -2,12 +2,12 @@ import {
   addHudStyles,
   getCurrentPage,
   getSetting,
+  humanizeTime,
   makeElement,
   onDialogShow,
   onEvent,
   onRequest,
   onTravel,
-  plainHumanizer,
   saveSetting,
   setMultipleTimeout,
   showHornMessage
@@ -317,11 +317,8 @@ const updateJetstreamTime = async () => {
   const now = new Date();
   const timeRemaining = expiryDate - now;
 
-  const duration = plainHumanizer(timeRemaining, {
-    round: true,
+  const duration = humanizeTime(timeRemaining, {
     units: ['d', 'h', 'm'],
-    spacer: ' ',
-    delimiter: ' ',
   });
 
   if (container.innerText === duration) {

@@ -2,9 +2,9 @@ import {
   addStyles,
   getCurrentPage,
   getSetting,
+  humanizeTime,
   makeElement,
-  onNavigation,
-  plainHumanizer
+  onNavigation
 } from '@utils';
 
 import settings from './settings';
@@ -37,10 +37,8 @@ const getExpiryFormatted = (time) => {
  * @return {string} The formatted expiry remaining.
  */
 const getExpiryRemainingFormatted = (time) => {
-  const duration = plainHumanizer(time, {
-    round: true,
+  const duration = humanizeTime(time, {
     units: ['d', 'h'],
-    spacer: ' ',
     delimiter: '<br>',
   });
 
