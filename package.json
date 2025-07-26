@@ -56,9 +56,7 @@
   "dependencies": {
     "@babel/runtime": "^7.28.2",
     "@sentry/browser": "^9.42.0",
-    "caniuse-lite": "^1.0.30001727",
-    "humanize-duration": "^3.33.0",
-    "json2csv": "^6.0.0-alpha.2"
+    "caniuse-lite": "^1.0.30001727"
   },
   "devDependencies": {
     "@sentry/cli": "^2.50.2",
