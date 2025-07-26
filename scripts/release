@@ -6,62 +6,21 @@ if [ -f .env ]; then
 fi
 
 # Check for bun, as it is required for the build process.
-if ! command -v bun &> /dev/null; then
+command -v bun &> /dev/null || {
   echo "bun is not installed. Please install bun to continue."
   exit 1
-fi
-
-publish_chrome_extension() {
-  bun run chrome-webstore-upload publish \
-    --source dist/chrome.zip \
-    --extension-id "$CHROME_EXTENSION_ID" \
-    --client-id "$CHROME_CLIENT_ID" \
-    --client-secret "$CHROME_CLIENT_SECRET" \
-    --refresh-token "$CHROME_REFRESH_TOKEN"
 }
 
-check_for_review_error() {
-  echo "$1" | grep -q "You may not edit or publish an item that is in review"
-}
-
-# If we get a 'publish' argument, try to publish the extension rather than building it.
-if [ "$1" == "publish" ] || [ "$1" == "--publish" ]; then
-    chromeStatus=$(publish_chrome_extension)
-
-  retry_count=0
-
-  while check_for_review_error "$chromeStatus" && [ $retry_count -lt 12 ]; do
-    echo "Extension is in review. Retrying in 5 minutes..."
-    sleep 300
-    chromeStatus=$(publish_chrome_extension)
-    ((retry_count++))
-  done
-
-  if check_for_review_error "$chromeStatus"; then
-    echo "Failed to publish extension after multiple attempts. Extension is still in review."
-  else
-    echo "Extension published successfully."
-  fi
-
-  exit 0
-fi
+# Exit if linting fails.
+bun run lint || exit 1
 
 # Update static.mouse.rip if the UPDATE_STATIC_MOUSE_RIP command is available.
 if [ -n "$UPDATE_STATIC_MOUSE_RIP" ]; then
-  if ! $UPDATE_STATIC_MOUSE_RIP > /dev/null 2>&1; then
-    echo "Failed to update static.mouse.rip"
-  else
-    echo "Updated static.mouse.rip"
-  fi
-else
-  echo "No command available to update static.mouse.rip, export UPDATE_STATIC_MOUSE_RIP to enable"
+  $UPDATE_STATIC_MOUSE_RIP > /dev/null 2>&1
 fi
 
-bun run lint || exit 1
-
-# Tag and push the current version to the repository, the publish workflow will handle the rest.
+# Tag the version, the publish workflow will handle the actual release.
 version=$(bun run get-version)
-
-git push origin main || exit 1
 git tag -a "v$version" -m "Release v$version" --force || exit 1
+git push origin main || exit 1
 git push origin "v$version" --force || exit 1
