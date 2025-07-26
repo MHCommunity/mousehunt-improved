@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 0.84.0
+
+- Added Highlight Rare Mice experiment/beta feature
+- Added Full Mice Images No Border experiment/beta feature
+- Better Item View: Fixed item quantity buttons not correctly parsing numbers with commas
+- Better Journal: Updated styles
+- Better Maps: Updated styles
+- Better Mice: Fixed duplicated favorites in King’s Crown export via copy
+- Better UI: Updated styles
+- Better UI: Improved horn hover animation and glint loop timing
+- Catch Rate Estimate: Fixed logic to correctly apply Dragon’s Might aura and dragonbane charms, not just one
+- Location HUDs – Foreword Farm: Updated styles
+- Native Dark Mode: Updated styles
+
 ## Version 0.83.2
 
 - Updated Catch Rate Estimator calculations to account for Dragon's Might aura

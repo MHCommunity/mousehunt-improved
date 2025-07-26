@@ -2,125 +2,19 @@
   "summary": "",
   "details": [
     {
-      "title": "Better UI",
+      "title": "",
       "items": [
-        "Updated skin previews in the trap selector to always use the currently equipped base (previously a beta feature)"
-      ]
-    },
-    {
-      "title": "Better Journal",
-      "items": [
-        "Added 'Show Full Mice Images in Journal' option (previously a beta feature)"
-      ]
-    },
-    {
-      "title": "Better Maps",
-      "items": [
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Better Mice",
-      "items": [
-        "Added ability to use Cmd/Ctrl+C on King's Crowns pages to copy mouse crown data in Crown Tracker Spreadsheet format"
-      ]
-    },
-    {
-      "title": "Better Travel",
-      "items": [
-        "Added toggle to sort locations by name in the Travel Window"
-      ]
-    },
-    {
-      "title": "Catch Rate Estimator & Minlucks",
-      "items": [
-        "Updated calculations to account for Dragon's Might aura"
-      ]
-    },
-    {
-      "title": "Data Exporters",
-      "items": [
-        "Added 'Mouse Stats by Crowns' exporter to export your crown data to the Crown Tracker Spreadsheet"
-      ]
-    },
-    {
-      "title": "Experiments / Beta Features",
-      "items": [
-        "Added 'Memory Matching Game' experiment – find it in the 'Camp' menu dropdown once enabled",
-        "Removed 'Better Journal List: Link all items' experiment – now integrated into Better Journal",
-        "Removed 'Full Mice Images in Journal' experiment – now a regular Better Journal option",
-        "Removed 'Prestige Base in Skin Previews' experiment – now a core Better UI feature with full base support"
-      ]
-    },
-    {
-      "title": "Favorite Setups",
-      "items": [
-        "Added ability to drag and drop setups to reorder them",
-        "Updated setup name generation to create names automatically based on selected components",
-        "Updated sidebar placement to consistently show in the same location",
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Fixes",
-      "items": [
-        "Fixed issue where the Minotaur's horn was incorrectly visible in all Zokor districts"
-      ]
-    },
-    {
-      "title": "Location Dashboard",
-      "items": [
-        "Added Draconic Depths dashboard",
-        "Fixed Floating Islands dashboard occasionally showing the wrong loot type",
-        "Fixed Seasonal Garden showing 0% Amp when entering Zugzwang Tower",
-        "Fixed dashboard data display for your current location"
-      ]
-    },
-    {
-      "title": "Location HUD: Labyrinth",
-      "items": [
-        "Fixed suggested door functionality suggesting doors that do not match the clue type"
-      ]
-    },
-    {
-      "title": "Location HUD: Seasonal Garden",
-      "items": [
-        "Fixed tooltip display issues",
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Location HUD: Zokor",
-      "items": [
-        "Added Memory Matching minigame to the Zokor HUD",
-        "Updated HUD to show current stealth after boss defeat instead of 'Leader Beaten'",
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Location HUD: Zugzwang Tower",
-      "items": [
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Location HUD: Folklore Forest Region",
-      "items": [
-        "Fixed double-crafting bug for some ME items when using the quick-craft button"
-      ]
-    },
-    {
-      "title": "Ultimate Checkmark",
-      "items": [
-        "Added new Draconic Depths items to the required item list"
-      ]
-    },
-    {
-      "title": "Other",
-      "items": [
-        "Improved data caching and expiration handling",
-        "Fixed issue where some data was cached indefinitely",
-        "Minor performance improvements"
+        "Added Highlight Rare Mice experiment/beta feature",
+        "Added Full Mice Images No Border experiment/beta feature",
+        "Better Item View: Fixed item quantity buttons not correctly parsing numbers with commas",
+        "Better Journal: Updated styles",
+        "Better Maps: Updated styles",
+        "Better Mice: Fixed duplicated favorites in King’s Crown export via copy",
+        "Better UI: Updated styles",
+        "Better UI: Improved horn hover animation and glint loop timing",
+        "Catch Rate Estimate: Fixed logic to correctly apply Dragon’s Might aura and dragonbane charms, not just one",
+        "Location HUDs – Foreword Farm: Updated styles",
+        "Native Dark Mode: Updated styles"
       ]
     }
   ]
