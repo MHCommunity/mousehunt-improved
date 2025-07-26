@@ -10,11 +10,20 @@ const main = () => {
       entry.classList.contains('catchsuccess') ||
       entry.classList.contains('catchsuccessprize');
 
+    let mouseType = null;
     if (! isCatchEntry) {
+      const isRh = entry.classList.contains('relicHunter_catch');
+      if (isRh) {
+        const journalImage = entry.querySelector('.journalimage img');
+        if (journalImage) {
+          journalImage.src = 'https://i.mouse.rip/rh-transparent.png';
+          return;
+        }
+      }
       return;
     }
 
-    const mouseType = entry.getAttribute('data-mouse-type');
+    mouseType = entry.getAttribute('data-mouse-type');
     if (! mouseType) {
       return;
     }

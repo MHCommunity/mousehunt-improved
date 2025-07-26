@@ -1,3 +1,4 @@
+.journal .content .entry.relicHunter_catch .journalimage a,
 .journal .content .entry.catchsuccess .journalimage a,
 .journal .content .entry.catchsuccessloot .journalimage a,
 .journal .content .entry.catchsuccessprize .journalimage a {
@@ -12,12 +13,14 @@
   border: 1px solid #000;
 }
 
+.journal .content .entry.short.relicHunter_catch,
 .journal .content .entry.short.catchsuccess,
 .journal .content .entry.short.catchsuccessloot,
 .journal .content .entry.short.catchsuccessprize {
   min-height: 100px;
 }
 
+.journal .content .entry.relicHunter_catch .journalimage,
 .journal .content .entry.catchsuccess .journalimage,
 .journal .content .entry.catchsuccessloot .journalimage,
 .journal .content .entry.catchsuccessprize .journalimage {
@@ -25,6 +28,7 @@
   margin: 0 10px;
 }
 
+.journal .content .entry.relicHunter_catch .journalbody,
 .journal .content .entry.catchsuccess .journalbody,
 .journal .content .entry.catchsuccessloot .journalbody,
 .journal .content .entry.catchsuccessprize .journalbody {
@@ -51,4 +55,13 @@
   height: 92px;
   content: "";
   border-left: 1px solid #000;
+}
+
+/* Relic Hunter */
+.journal .content .entry.relicHunter_catch .journalimage {
+  width: 75px;
+}
+
+.journal .content .entry.relicHunter_catch .journalimage img {
+  width: 80px;
 }
