@@ -11,6 +11,9 @@ command -v bun &> /dev/null || {
   exit 1
 }
 
+# Exit if building fails.
+bun run build || exit 1
+
 # Exit if linting fails.
 bun run lint || exit 1
 
