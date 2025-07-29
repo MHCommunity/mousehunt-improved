@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.28.2",
-    "@sentry/browser": "^9.42.0",
+    "@sentry/browser": "^9.42.1",
     "caniuse-lite": "^1.0.30001727"
   },
   "devDependencies": {
@@ -95,6 +95,6 @@
     "stylelint-prettier": "4.1.0",
     "stylelint-stylistic": "^0.4.5",
     "web-ext": "^8.9.0",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   }
 }
