@@ -34,7 +34,11 @@ span.forewordFarmPlotView-plot-progress-catchText {
 }
 
 .forewordFarmView-harvestBin-quantity {
-  top: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
   padding: 2px;
   font-size: 20px;
 }
@@ -153,6 +157,7 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 }
 
 .forewordFarmPlantDialogView-plant {
+  background-color: #d9faca;
   border: none;
 }
 
@@ -258,4 +263,12 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 
 .forewordFarmPlotView-plot-image-plant {
   filter: drop-shadow(0 0 6px #000) saturate(1.3);
+}
+
+.forewordFarmPlantDialogView-plant-header div:nth-child(3) {
+  display: flex;
+}
+
+.folkloreForestRegionView-button.big.foreword_farm.forewordFarmPlantDialogView-plantMultipleButton {
+  width: 30px;
 }

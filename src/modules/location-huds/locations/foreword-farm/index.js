@@ -1,9 +1,37 @@
-import { addHudStyles } from '@utils';
+import { addHudStyles, onDialogShow, waitForElement } from '@utils';
 import folkloreForest from '../../shared/folklore-forest';
 import keepInventoryToggled from '../../shared/folklore-forest/keep-inventory-open';
 
 import regionStyles from '../../shared/folklore-forest/styles.css';
 import styles from './styles.css';
+
+const addMultiplePlantButtons = async () => {
+  await waitForElement('.forewordFarmPlantDialogView-plant .folkloreForestRegionView-button.big');
+  const plantButtons = document.querySelectorAll('.forewordFarmPlantDialogView-plant .folkloreForestRegionView-button.big');
+  plantButtons.forEach((button) => {
+    const newButton = button.cloneNode(true);
+    newButton.classList.add('forewordFarmPlantDialogView-plantMultipleButton');
+    newButton.textContent = 'x3';
+    newButton.addEventListener('click', async (event) => {
+      if (button.classList.contains('disabled') || button.classList.contains('busy')) {
+        return;
+      }
+
+      event.stopPropagation();
+      event.preventDefault();
+
+      for (let i = 0; i < 3; i++) {
+        button.click();
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (button.classList.contains('disabled') || button.classList.contains('busy')) {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          continue;
+        }
+      }
+    });
+    button.parentNode.insertBefore(newButton, button.nextSibling);
+  });
+};
 
 /**
  * Initialize the module.
@@ -20,4 +48,6 @@ export default async () => {
     inventoryOpenClass: 'expanded',
     buttonOpenClass: 'expanded',
   });
+
+  onDialogShow('fabledForestDialog.forewordFarmPlantDialogPopup', addMultiplePlantButtons);
 };
