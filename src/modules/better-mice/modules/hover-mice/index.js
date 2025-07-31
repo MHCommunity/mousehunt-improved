@@ -35,6 +35,9 @@ const makeMouseMarkup = (mouse) => {
   }
 
   const mouseImage = makeElement('img', 'mouse-image');
+  mouseImage.alt = mouse.name;
+  mouseImage.width = '82';
+  mouseImage.height = '82';
   if (mouse.square) {
     mouseImage.src = mouse.square;
   }
