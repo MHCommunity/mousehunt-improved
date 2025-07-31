@@ -108,6 +108,7 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 
 .folkloreForestRegionView-fuel-quantity.quantity {
   font-size: 13px;
+  background-color: #d9faca;
 }
 
 .forewordFarmPlantDialogView-plant-yieldContainer table {
@@ -269,6 +270,36 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
   display: flex;
 }
 
-.folkloreForestRegionView-button.big.foreword_farm.forewordFarmPlantDialogView-plantMultipleButton {
+.forewordFarmPlantDialogView-plantMultipleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 30px;
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 100;
+  color: #2c4e26;
+  text-align: center;
+  text-shadow: 1px 1px 1px #d1d1d1;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/big_button.png);
+  background-position: 0 0;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px #585a4b;
+}
+
+.forewordFarmPlantDialogView-plantMultipleButton:hover {
+  background-position-y: 33.3%;
+}
+
+.forewordFarmPlantDialogView-plantMultipleButton:active {
+  background-position-y: 66.6%;
+}
+
+.forewordFarmPlantDialogView-plantMultipleButton.disabled {
+  cursor: default;
+  background-position-y: 100%;
+}
+
+.forewordFarmPlantDialogView-plantMultipleButton.disabled:hover {
+  filter: brightness(1.1);
 }
