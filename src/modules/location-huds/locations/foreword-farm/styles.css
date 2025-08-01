@@ -108,7 +108,8 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 
 .folkloreForestRegionView-fuel-quantity.quantity {
   font-size: 13px;
-  background-color: #d9faca;
+  color: #d9faca;
+  background-color: transparent;
 }
 
 .forewordFarmPlantDialogView-plant-yieldContainer table {
@@ -153,8 +154,9 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 }
 
 .forewordFarmPlantDialogView-row {
+  overflow: hidden;
   border: 1px solid #897225;
-  border-radius: 0;
+  border-radius: 5px 5px 10px 10px;
 }
 
 .forewordFarmPlantDialogView-plant {
@@ -163,7 +165,9 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 }
 
 .forewordFarmPlantDialogView-plant-header {
+  margin-left: -1px;
   border-bottom: 1px solid #897225;
+  border-left: 1px solid #897225;
   box-shadow: 0 0 6px 0 #134220 inset;
 }
 
@@ -258,7 +262,7 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
   outline: 4px solid #4e6da8;
 }
 
-.forewordFarmView-pest-state.three_papyrus {
+.forewordFarmView-pest-label .forewordFarmView-pest-state {
   color: #90c54f;
 }
 
@@ -356,4 +360,23 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 
 .forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-item:nth-child(3) {
   background-color: #dcdcdc;
+}
+
+.forewordFarmPlantDialogView-plant-content {
+  align-items: center;
+}
+
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.ordinary_farm_plant .forewordFarmPlantDialogView-plant-content,
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.ordinary_magic_farm_plant .forewordFarmPlantDialogView-plant-content {
+  height: 95px;
+}
+
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.legendary_farm_plant .forewordFarmPlantDialogView-plant-content,
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.legendary_magic_farm_plant .forewordFarmPlantDialogView-plant-content {
+  height: 140px;
+}
+
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.twisted_legendary_farm_plant .forewordFarmPlantDialogView-plant-content,
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.twisted_legendary_magic_farm_plant .forewordFarmPlantDialogView-plant-content {
+  height: 140px;
 }
