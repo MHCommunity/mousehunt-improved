@@ -303,3 +303,57 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 .forewordFarmPlantDialogView-plantMultipleButton.disabled:hover {
   filter: brightness(1.1);
 }
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip {
+  bottom: 37px;
+  display: block;
+  height: 100px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  animation: none;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-list {
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip::before,
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-item-spacer,
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .mousehuntTooltip-arrow {
+  display: none;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-item {
+  width: 155px;
+  height: 23px;
+  margin-bottom: 4px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-right: none;
+  border-radius: 6px;
+  box-shadow: 2px 3px 4px #666;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-name {
+  height: unset;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip a.forewordFarmPlotView-plot-queue-cancelButton {
+  top: 1px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+}
+
+.forewordFarmPlantDialogView-arrow {
+  top: 100px;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-item:nth-child(3) {
+  background-color: #dcdcdc;
+}
