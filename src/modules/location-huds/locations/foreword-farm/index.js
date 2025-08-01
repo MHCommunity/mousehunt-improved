@@ -7,8 +7,18 @@ import styles from './styles.css';
 
 const addMultiplePlantButtons = async () => {
   await waitForElement('.forewordFarmPlantDialogView-plant .folkloreForestRegionView-button.big');
+
+  if (! (user?.quests?.QuestForewordFarm?.plots && user?.quests?.QuestForewordFarm?.plots.length >= 3)) {
+    return; // only add x3 button if we have 3 plots.
+  }
+
   const plantButtons = document.querySelectorAll('.forewordFarmPlantDialogView-plant .folkloreForestRegionView-button.big');
+
   plantButtons.forEach((button) => {
+    if (button.parentNode.querySelector('.forewordFarmPlantDialogView-plantMultipleButton')) {
+      return; // Skip if the button already exists
+    }
+
     const newButton = makeElement('a', 'forewordFarmPlantDialogView-plantMultipleButton', 'x3');
     if (button.classList.contains('disabled') || button.classList.contains('busy')) {
       newButton.classList.add('disabled');
@@ -28,8 +38,24 @@ const addMultiplePlantButtons = async () => {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         if (button.classList.contains('disabled') || button.classList.contains('busy')) {
           await new Promise((resolve) => setTimeout(resolve, 1000));
-          continue;
         }
+      }
+
+      let shouldDisableButton = false;
+      // if we can't plant anything in any of the plots, disable the button.
+      const allPlotsFull = user?.quests?.QuestForewordFarm?.plots.every((plot) => ! plot.can_plant_anything && plot.is_queue_full);
+      if (allPlotsFull) {
+        shouldDisableButton = true;
+      }
+
+      if (button.classList.contains('disabled')) {
+        shouldDisableButton = true;
+      }
+
+      if (shouldDisableButton) {
+        newButton.classList.add('disabled');
+      } else {
+        newButton.classList.remove('disabled');
       }
     });
     button.parentNode.insertBefore(newButton, button.nextSibling);
