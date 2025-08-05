@@ -52,11 +52,13 @@ const addMultiplePlantButtons = async () => {
         shouldDisableButton = true;
       }
 
-      if (shouldDisableButton) {
-        newButton.classList.add('disabled');
-      } else {
-        newButton.classList.remove('disabled');
-      }
+      plantButtons.forEach((btn) => {
+        if (shouldDisableButton) {
+          btn.classList.add('disabled');
+        } else {
+          btn.classList.remove('disabled');
+        }
+      });
     });
     button.parentNode.insertBefore(newButton, button.nextSibling);
   });
