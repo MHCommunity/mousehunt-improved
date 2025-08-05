@@ -288,3 +288,9 @@ a.folkloreForestRegionView-travelButton:hover {
   background-position-y: 50%;
   opacity: 0.9;
 }
+
+.folkloreForestRegionView-fuel-quantity.quantity {
+  font-size: 13px;
+  color: #d9faca;
+  background-color: transparent;
+}
