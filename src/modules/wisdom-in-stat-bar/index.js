@@ -1,4 +1,5 @@
 import {
+  addStyles,
   dataGet,
   dataSet,
   getSetting,
@@ -10,6 +11,7 @@ import {
 } from '@utils';
 
 import settings from './settings';
+import styles from './styles.css';
 
 /**
  * Get the wisdom setting.
@@ -132,6 +134,8 @@ let legacyHudMenu = false;
  * Initialize the module.
  */
 const init = async () => {
+  addStyles(styles, 'wisdom-in-stat-bar');
+
   if (getSetting('wisdom-in-stat-bar.auto-refresh', true)) {
     onTurn(updateWisdom);
   }
