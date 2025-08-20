@@ -1,4 +1,11 @@
-import { addStyles, getData, makeElement, onJournalEntry } from '@utils';
+import {
+  addStyles,
+  doEvent,
+  getData,
+  makeElement,
+  onJournalEntry,
+  unpluralize
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -275,10 +282,9 @@ const formatXasList = async (entry) => {
 
   const items = await getData('items');
 
-  const list = makeElement('ul', 'better-journal-list');
   let firstEl;
-
-  xList.forEach((x) => {
+  const list = makeElement('ul', 'better-journal-list');
+  for (const x of xList) {
     // Remove the dot.
     const dot = x.querySelector('.dot');
     if (dot) {
@@ -288,24 +294,25 @@ const formatXasList = async (entry) => {
     // Split on the ' x ' to get the quantity and item name.
     const splitxText = x.textContent.split(' x ');
     if (splitxText.length < 2) {
-      return;
+      continue;
     }
 
     const quantity = splitxText[0];
     const itemName = splitxText[1];
 
     // Find the item type from the items JSON.
-    let item = items.find((i) => i.name === itemName.trim());
+    let item = items.find((i) => i.name === unpluralize(itemName).trim());
     if (! item) {
       // try removing the trailing s and try again.
-      item = items.find((i) => i.name === itemName.trim().replace(/s$/, ''));
+      item = items.find((i) => i.name === unpluralize(itemName).trim().replace(/s$/, ''));
       if (! item) {
-        return;
+        continue; // If we still can't find it, skip this item.
       }
     }
 
     const link = makeElement('a', 'loot', itemName);
     link.href = `https://www.mousehuntgame.com/item.php?item_type=${item.type}`;
+    link.setAttribute('onclick', `hg.views.ItemView.show('${item.type}'); return false;`);
     link.addEventListener('click', (e) => {
       e.preventDefault();
       hg.views.ItemView.show(item.type);
@@ -323,13 +330,14 @@ const formatXasList = async (entry) => {
     } else {
       firstEl = x;
     }
-  });
+  }
 
   if (firstEl) {
     firstEl.replaceWith(list);
-  }
+    entry.setAttribute('data-better-journal-processed-x-list', 'true');
 
-  entry.setAttribute('data-better-journal-processed-x-list', 'true');
+    doEvent('journal-item-link-modified', entry);
+  }
 };
 
 /**
@@ -339,5 +347,5 @@ export default async () => {
   addStyles(styles, 'better-journal-list');
 
   onJournalEntry(formatAsList, 3000);
-  onJournalEntry(formatXasList, 3000);
+  onJournalEntry(formatXasList, 4000);
 };
