@@ -17,7 +17,7 @@
 
 .mh-toc-sim-results {
   display: grid;
-  grid-template-columns: 40% 45%;
+  grid-template-columns: 40% 50%;
   justify-content: space-evenly;
   justify-items: stretch;
   margin: 0 1em;
@@ -35,6 +35,14 @@
 .mh-toc-sim-results .stats .group {
   display: grid;
   gap: 1em;
+}
+
+.mh-toc-sim-results .stats .group .processors {
+  visibility: hidden;
+}
+
+.mh-toc-sim-results.m1k .stats .group .processors {
+  visibility: visible;
 }
 
 .mh-toc-sim-results .result {
@@ -98,6 +106,18 @@
   text-align: right;
 }
 
+.mh-toc-sim-results .processors {
+  visibility: hidden;
+}
+
+.mh-toc-sim-results.m1k .processors {
+  visibility: visible;
+}
+
+.mh-toc-sim-results.m1k .percents li {
+  grid-template-columns: repeat(5, 1fr);
+}
+
 .mh-toc-sim-results .percents h3 {
   padding-bottom: 11px;
   font-size: 16px;
@@ -152,7 +172,8 @@
 }
 
 .mh-toc-sim-results .percents .words,
-.mh-toc-sim-results .percents .gnawbels {
+.mh-toc-sim-results .percents .gnawbels,
+.mh-toc-sim-results .percents .processors {
   font-size: 12px;
 }
 

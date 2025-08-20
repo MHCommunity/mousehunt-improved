@@ -24,6 +24,11 @@ const MouseStats = {
     Power: 200_000,
     Eff: 7,
     Points: 1_000_000,
+  },
+  M1000: {
+    Power: 236_000,
+    Eff: 4,
+    Points: 1_066_000,
   }
 };
 
@@ -42,19 +47,21 @@ const simulate = (options) => {
 
   /** @type {Object<number, number>} */
   const volumeCountByVolume = {};
-  const huntsByVolume = {};
+  const processorsByVolume = {};
   for (let i = 0; i < options.TotalSimulations; i++) {
     let wordCount = options.WritingSession.WordsWritten;
     let huntsRemaining = options.WritingSession.HuntsRemaining;
+    let processors = 0;
 
     while (huntsRemaining > 0) {
       const stage = wordCount < 4000 ? 'PreEncyclopedia' : 'Encyclopedia';
-      const mouse = getEncounteredMouse(stage);
+      const mouse = getEncounteredMouse(options, stage);
       const mouseStats = MouseStats[mouse];
 
       const catchRoll = Math.random();
       if (catchRoll <= mouseStats.CatchRate) {
         wordCount += mouseStats.Words * (options.WritingSession.FuelEnabled ? 2 : 1);
+        processors += Math.floor(wordCount / 4000);
 
         if (mouse === 'Mythweaver') {
           huntsRemaining += 2;
@@ -67,13 +74,11 @@ const simulate = (options) => {
     const totalVolumes = Math.floor(wordCount / 4000);
     if (! volumeCountByVolume[totalVolumes]) {
       volumeCountByVolume[totalVolumes] = 0;
+      processorsByVolume[totalVolumes] = 0;
     }
 
     volumeCountByVolume[totalVolumes] += 1;
-
-    if (! huntsByVolume[totalVolumes]) {
-      huntsByVolume[totalVolumes] = 0;
-    }
+    processorsByVolume[totalVolumes] += processors;
 
     if (! debug[totalVolumes]) {
       debug[totalVolumes] = [];
@@ -94,7 +99,12 @@ const simulate = (options) => {
   /** @type {EncySimResults} */
   const results = {
     chances: [],
-    mostLikely: {},
+    mostLikely: {
+      volume: 0,
+      gnawbels: 0,
+      words: 0,
+      processors: 0
+    },
   };
 
   let cumulativeChance = 1;
@@ -105,12 +115,14 @@ const simulate = (options) => {
     }
 
     const chance = volumeCountByVolume[volume] / options.TotalSimulations;
+    const processors = Math.floor(processorsByVolume[volume] / volumeCountByVolume[volume]);
     cumulativeChance -= chance;
 
     results.chances.push({
       volume,
       gnawbels: volume * 54,
       words: volume * 4000,
+      processors,
       chance,
       cumulativeChance,
     });
@@ -122,6 +134,7 @@ const simulate = (options) => {
     volume: mostLikelyVolume,
     gnawbels: mostLikelyVolume * 54,
     words: mostLikelyVolume * 4000,
+    processors: Math.floor(processorsByVolume[mostLikelyVolume] / volumeCountByVolume[mostLikelyVolume]),
   };
 
   debuglog('location-huds-table-of-contents', `Simulated ${options.TotalSimulations} ToC runs.`, results);
@@ -184,14 +197,19 @@ const getCatchRate = (mousePower, effectiveness, power, luck) => {
 
 /**
  * Get the encountered mouse.
- *
- * @param {string} stage The stage of the simulation.
+ * @param {EncySimOptions} options The simulation options.
+ * @param {string}         stage   The stage of the simulation.
  *
  * @return {string} The encountered mouse.
  */
-const getEncounteredMouse = (stage) => {
+const getEncounteredMouse = (options, stage) => {
   let totalWeight = 0;
   let selected = '';
+
+  if (options.WritingSession.M1KMode) {
+    return 'M1000';
+  }
+
   for (const [mouse, weight] of Object.entries(MousePool[stage])) {
     const r = Math.random();
     if (r >= totalWeight) {
@@ -217,6 +235,7 @@ export default simulate;
  * @typedef {Object} WritingSession
  * @property {number}  HuntsRemaining Number of hunts left in session.
  * @property {number}  WordsWritten   Number of words written in session.
+ * @property {boolean} M1KMode        The bait used in the session.
  * @property {boolean} FuelEnabled    User has CC enabled.
  */
 
@@ -231,14 +250,17 @@ export default simulate;
 
 /**
  * @typedef {Object} EncySimResult
- * @property {number} volume   Expected result volume.
- * @property {number} gnawbels Expected GPLs for given volume.
+ * @property {number} volume     Expected result volume.
+ * @property {number} gnawbels   Expected GPLs for given volume.
+ * @property {number} words      Expected words for given volume.
+ * @property {number} processors Expected processors for given run.
  */
 
 /**
  * @typedef {Object} EncySimResults
- * @property {EncySimResult} mean    The mean result from simulations.
- * @property {EncySimResult} unlucky The lower quartile result from median.
- * @property {EncySimResult} median  The average result.
- * @property {EncySimResult} lucky   The upper quartile result from median.
+ * @property {(EncySimResult & {
+ * chance: number,
+ * cumulativeChance: number,
+ * })[]}                               chances    The chances of each volume.
+ * @property {EncySimResult}           mostLikely The upper quartile result from median.
  */

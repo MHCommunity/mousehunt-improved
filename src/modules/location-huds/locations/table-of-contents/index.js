@@ -26,13 +26,14 @@ import styles from './styles.css';
  * @return {string} Results as HTML.
  */
 const displayResults = (results, timeTaken) => {
+  const options = getOptions();
   const currentVolume = user?.quests?.QuestTableOfContents?.current_book?.volume || 0;
   const currentWordCount = user?.quests?.QuestTableOfContents?.current_book?.word_count || 0;
 
   const expectedVolume = results?.mostLikely?.volume < currentVolume ? currentVolume : results?.mostLikely?.volume;
   const expectedWords = results?.mostLikely?.words < currentWordCount ? currentWordCount : results?.mostLikely?.words;
 
-  let text = `<div class="mh-toc-sim-results">
+  let text = `<div class="mh-toc-sim-results ${options.WritingSession.M1KMode ? 'm1k' : ''}">
   <div class="stats">
     <div class="group current">
       <div class="result">
@@ -54,10 +55,14 @@ const displayResults = (results, timeTaken) => {
         <div class="value">${expectedWords?.toLocaleString()}</div>
       </div>
     </div>
-    <div class="group gnawbels">
+    <div class="group items">
       <div class="result">
         <div class="label">Expected Gnawbels</div>
         <div class="value">${results?.mostLikely?.gnawbels?.toLocaleString()}</div>
+      </div>
+      <div class="result processors">
+        <div class="label">Expected Processors</div>
+        <div class="value">${results?.mostLikely?.processors?.toLocaleString()}</div>
       </div>
     </div>
   </div>
@@ -68,7 +73,8 @@ const displayResults = (results, timeTaken) => {
         <span class="percent">Volume</span>
         <span class="number">Chance</span>
         <span class="words">Words Remaining</span>
-        <span class="gnabels">Gnawbels</span>
+        <span class="gnawbels">Gnawbels</span>
+        <span class="processors">Processors</span>
       </li>`;
 
   for (const chance of results?.chances || []) {
@@ -119,11 +125,13 @@ const displayResults = (results, timeTaken) => {
       <span class="number">${chancePercent.toFixed(1)}%</span>
       <span class="words">${wordsToGo?.toLocaleString()}</span>
       <span class="gnawbels">${chance.gnawbels?.toLocaleString()}</span>
+      <span class="processors">${chance.processors?.toLocaleString()}</span>
     </li>`;
   }
 
+  const bait = `${options.WritingSession.M1KMode ? 'Thousandth' : 'Final'} Draft Derby`;
   text += '</ol></div></div>';
-  text += `<div class="info">Simulated ${getOptions().TotalSimulations.toLocaleString()} writing sessions with Final Draft Derby equipped in ${(timeTaken / 1000).toFixed(3)}s.</div>`;
+  text += `<div class="info">Simulated ${options.TotalSimulations.toLocaleString()} writing sessions with ${bait} equipped in ${(timeTaken / 1000).toFixed(3)}s.</div>`;
 
   return text;
 };
@@ -148,6 +156,7 @@ const getOptions = () => {
       HuntsRemaining: user?.quests?.QuestTableOfContents?.current_book.hunts_remaining || 0,
       WordsWritten: user?.quests?.QuestTableOfContents?.current_book.word_count || 0,
       FuelEnabled: user?.quests?.QuestTableOfContents?.is_fuel_enabled || false,
+      M1KMode: user?.bait_name === 'Thousandth Draft Derby Cheese' || false,
     }
   };
 };
