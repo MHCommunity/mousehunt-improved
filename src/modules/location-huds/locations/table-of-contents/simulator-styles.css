@@ -109,9 +109,9 @@
   top: 0;
   padding: 3px 0;
   font-size: 13px;
-  color: #c4c4c4;
+  color: #f4f4f4;
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgb(150 150 150 / 35%);
+  border-bottom: 1px solid rgb(150 150 150 / 40%);
 }
 
 .mh-toc-sim-results .percents li:nth-child(odd) {

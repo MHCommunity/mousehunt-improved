@@ -114,7 +114,7 @@ const displayResults = (results, timeTaken) => {
       wordsToGo = 0;
     }
 
-    text += `<li class="result ${classname}">
+    text += `<li class="result ${classname}" id="mh-toc-sim-volume-${chance.volume}">
       <span class="volume">${chance.volume}</span>
       <span class="number">${chancePercent.toFixed(1)}%</span>
       <span class="words">${wordsToGo?.toLocaleString()}</span>
@@ -125,7 +125,10 @@ const displayResults = (results, timeTaken) => {
   text += '</ol></div></div>';
   text += `<div class="info">Simulated ${getOptions().TotalSimulations.toLocaleString()} writing sessions with Final Draft Derby equipped in ${(timeTaken / 1000).toFixed(3)}s.</div>`;
 
-  return text;
+  return {
+    text,
+    expectedVolume,
+  };
 };
 
 /**
@@ -162,14 +165,20 @@ const triggerSimPopup = () => {
 
   const timeTaken = endTimestamp - startTimestamp;
 
+  const { text, expectedVolume } = displayResults(data, timeTaken);
   const popup = createPopup({
     title: 'Encyclopedia Simulation',
-    content: displayResults(data, timeTaken),
+    content: text,
     show: false,
   });
 
   popup.setAttributes({ className: 'mh-toc-popup' });
   popup.show();
+
+  const expectedVolumeElement = document.querySelector(`#mh-toc-sim-volume-${expectedVolume}`);
+  if (expectedVolumeElement) {
+    expectedVolumeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 };
 
 /**
