@@ -189,10 +189,15 @@ a.tableOfContentsProgressView-claimButton.reveal {
 .tableOfContentsProgressView-cancelButton.active {
   top: -31px;
   left: 338px;
+  filter: opacity(0.9) grayscale(0.5);
   border-radius: 50%;
   box-shadow:
     0 0 0 4px #48762a,
     inset 0 -1px 3px 1px #d7a086;
+}
+
+.tableOfContentsProgressView-cancelButton.active:hover {
+  filter: opacity(1) grayscale(0);
 }
 
 .tableOfContentsView-wordMeterContainer {
@@ -250,10 +255,6 @@ a.folkloreForestRegionView-bait-image {
 
 .expanded .folkloreForestRegionView-environmentInventory-blockContainer {
   width: 110px;
-}
-
-.folkloreForestRegionView.table_of_contents .folkloreForestRegionView-environmentInventory.table_of_contents {
-  width: 80px;
 }
 
 .folkloreForestRegionView.table_of_contents .expanded .folkloreForestRegionView-environmentInventory.table_of_contents {
