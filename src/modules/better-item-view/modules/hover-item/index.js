@@ -1,5 +1,15 @@
-import { addStyles, doRequest, makeElement, onRequest } from '@utils';
+import {
+  addStyles,
+  doRequest,
+  makeElement,
+  onEvent,
+  onJournalEntry
+} from '@utils';
 import styles from './styles.css';
+
+let lastFetchedItem = null;
+let lastFetchedTime = 0;
+let lastFetchedData = null;
 
 /**
  * Fetch the item data.
@@ -9,12 +19,27 @@ import styles from './styles.css';
  * @return {Promise<Object>} The item data.
  */
 const fetchItemData = async (itemId) => {
+  // cache the data if its been less than 30 seconds
+  const now = Date.now();
+  if (lastFetchedItem === itemId && now - lastFetchedTime < 30000 && lastFetchedData) {
+    return lastFetchedData;
+  }
+
   const itemDataRequest = await doRequest('managers/ajax/users/userInventory.php', {
     action: 'get_items',
     'item_types[]': itemId,
   });
 
-  return itemDataRequest?.items?.[0];
+  const itemData = itemDataRequest?.items?.[0];
+  if (! itemData) {
+    return null;
+  }
+
+  lastFetchedItem = itemId;
+  lastFetchedTime = now;
+  lastFetchedData = itemData;
+
+  return itemData;
 };
 
 /**
@@ -92,11 +117,74 @@ const makeLoadingMarkup = (e) => {
 
 let itemDataWrapper;
 
+const listeners = {};
+
+const addHoverListener = (link) => {
+  let timeoutId = null;
+  let isMouseOver = false;
+
+  if (listeners[link]) {
+    link.removeEventListener('mouseenter', listeners[link].mouseenter);
+    link.removeEventListener('mouseleave', listeners[link].mouseleave);
+  }
+
+  const enter = link.addEventListener('mouseenter', async (e) => {
+    isMouseOver = true;
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(async () => {
+      if (! isMouseOver) {
+        return;
+      }
+
+      makeLoadingMarkup(e);
+      let match;
+      if (link.getAttribute('onclick')) {
+        match = link.getAttribute('onclick').match(/'([^']+)'/);
+      } else if (link.getAttribute('href')) {
+        match = link.getAttribute('href').match(/item_type=([^&]+)/);
+      }
+
+      if (! match || match.length < 2) {
+        return;
+      }
+
+      const itemType = match[1];
+
+      const itemData = await fetchItemData(itemType);
+      if (itemData && itemDataWrapper && isMouseOver) {
+        const markup = makeItemMarkup(itemData);
+        itemDataWrapper.innerHTML = markup.outerHTML;
+      }
+    }, 500);
+  });
+
+  const leave = link.addEventListener('mouseleave', () => {
+    isMouseOver = false;
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    if (itemDataWrapper) {
+      itemDataWrapper.remove();
+    }
+  });
+
+  listeners[link] = { mouseenter: enter, mouseleave: leave };
+};
+
 /**
  * The main function.
+ *
+ * @param {HTMLElement|null} element The parent element to search for item links.
  */
-const main = () => {
-  const itemLinks = document.querySelectorAll('.journal .content .entry .journaltext a[onclick*="ItemView.show"]');
+const main = (element = null) => {
+  const parentElement = element || document;
+  const itemLinks = parentElement.querySelectorAll('.journal .content .entry .journaltext a[onclick*="ItemView.show"]');
   if (! itemLinks) {
     return;
   }
@@ -105,41 +193,7 @@ const main = () => {
     const itemType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.ItemView.show('${itemType}'); return false;`);
 
-    let timeoutId = null;
-    let isMouseOver = false;
-
-    link.addEventListener('mouseenter', async (e) => {
-      isMouseOver = true;
-
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-
-      timeoutId = setTimeout(async () => {
-        if (! isMouseOver) {
-          return;
-        }
-
-        makeLoadingMarkup(e);
-        const itemData = await fetchItemData(itemType);
-        if (itemData && itemDataWrapper && isMouseOver) {
-          const markup = makeItemMarkup(itemData);
-          itemDataWrapper.innerHTML = markup.outerHTML;
-        }
-      }, 500);
-    });
-
-    link.addEventListener('mouseleave', () => {
-      isMouseOver = false;
-
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-
-      if (itemDataWrapper) {
-        itemDataWrapper.remove();
-      }
-    });
+    addHoverListener(link);
   });
 };
 
@@ -149,8 +203,6 @@ const main = () => {
 export default () => {
   addStyles(styles, 'better-item-view-hover-item');
 
-  setTimeout(main, 500);
-  onRequest('*', () => {
-    setTimeout(main, 1000);
-  });
+  onEvent('journal-item-link-modified', main);
+  onJournalEntry(main);
 };
