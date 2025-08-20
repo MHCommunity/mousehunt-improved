@@ -81,6 +81,7 @@
 .entry.short.craft.convertible_open .journaltext .item:last-of-type::after,
 .entry.short.supplytransferitem .journaltext #friend-data-wrapper a::after,
 .entry.folkloreForest-plantClaimed .journaltext a:last-of-type::after,
+.entry.folkloreForest-farmToTable .journaltext .mhi-x-entry a:last-of-type::after,
 .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
 .entry.mountain-boulderLooted a:last-of-type::after,
 .entry.short.craft.convertible_open a.item::after {
