@@ -1,4 +1,4 @@
-import { addHudStyles, getCurrentLocation, onEvent } from '@utils';
+import { addHudStyles, getCurrentLocation } from '@utils';
 
 import styles from './styles.css';
 
@@ -46,20 +46,14 @@ const hud = () => {
     return;
   }
 
-  const existing = document.querySelector('.forbiddenGroveHUD-grovebar-timeLeft');
-  if (existing) {
-    existing.remove();
-  }
-
   const timeLeftEl = updateClosingTime();
 
-  hudBar.append(timeLeftEl);
-
-  // add a timer to update the time left
-  const timer = setInterval(updateClosingTime, 60 * 1000);
-  onEvent('travel_complete', () => {
-    clearInterval(timer);
-  });
+  const existing = document.querySelector('.forbiddenGroveHUD-grovebar-timeLeft');
+  if (existing) {
+    existing.replaceWith(timeLeftEl);
+  } else {
+    hudBar.append(timeLeftEl);
+  }
 };
 
 /**
@@ -74,5 +68,8 @@ export default async () => {
     'moon_cheese',
     'crescent_cheese',
   ]);
+
   hud();
+
+  document.addEventListener('horn-countdown-tick-minute', hud);
 };
