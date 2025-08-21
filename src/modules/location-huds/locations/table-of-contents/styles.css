@@ -185,21 +185,6 @@ a.tableOfContentsProgressView-claimButton.reveal {
   box-shadow: none;
 }
 
-/* move the X cancel writing button slightly */
-.tableOfContentsProgressView-cancelButton.active {
-  top: -31px;
-  left: 338px;
-  filter: opacity(0.9) grayscale(0.5);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 4px #48762a,
-    inset 0 -1px 3px 1px #d7a086;
-}
-
-.tableOfContentsProgressView-cancelButton.active:hover {
-  filter: opacity(1) grayscale(0);
-}
-
 .tableOfContentsView-wordMeterContainer {
   margin-right: -15px;
 }
