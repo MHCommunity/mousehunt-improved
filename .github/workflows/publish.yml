@@ -56,15 +56,21 @@ jobs:
             --org mousehunt \
             --project mh-improved \
             --auth-token ${{ secrets.SENTRY_AUTH_TOKEN }}
-          bun run sentry-cli sourcemaps inject ./dist/chrome \
+
+          bun run sentry-cli sourcemaps inject dist/chrome \
             --org mousehunt \
             --project mh-improved \
             --release "mousehunt-improved@${{ steps.version.outputs.version }}" \
             --auth-token ${{ secrets.SENTRY_AUTH_TOKEN }}
-          bun run sentry-cli sourcemaps upload ./dist/chrome \
+
+          bun run sentry-cli sourcemaps upload dist/chrome \
             --org mousehunt \
             --project mh-improved \
             --release "mousehunt-improved@${{ steps.version.outputs.version }}" \
+            --rewrite \
+            --auth-token ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+          bun run sentry-cli releases finalize "mousehunt-improved@${{ steps.version.outputs.version }}" \
             --auth-token ${{ secrets.SENTRY_AUTH_TOKEN }}
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
