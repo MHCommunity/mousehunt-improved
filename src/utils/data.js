@@ -62,7 +62,7 @@ const getCacheExpiration = async (key = null) => {
  *
  * @return {Promise<void>} Resolves when the expiration is set.
  */
-const setCacheExpiration = async (key, time = null) => {
+const cacheSetExpiration = async (key, time = null) => {
   if (time) {
     return await dbSet('cache', { id: `expiration-${key}`, value: time });
   }
@@ -190,6 +190,15 @@ const updateCaches = async () => {
 };
 
 /**
+ * Mark all caches as expired.
+ */
+const markCachesAsExpired = async () => {
+  for (const file of validDataFiles) {
+    await cacheSetExpiration(file, Date.now() - 1000);
+  }
+};
+
+/**
  * Get the headers for the fetch request.
  *
  * @return {Object} The headers.
@@ -287,7 +296,7 @@ const sessionsDelete = (prefix) => {
 const cacheSet = async (key, value, expiration = null) => {
   await Promise.all([
     dbSet('cache', { id: key, value }),
-    setCacheExpiration(key, expiration),
+    cacheSetExpiration(key, expiration),
   ]);
 
   return value;
@@ -390,10 +399,12 @@ export {
   cacheGet,
   cacheSet,
   cacheSetAsync,
+  cacheSetExpiration,
   clearCaches,
   getData,
   getHeaders,
   updateCaches,
+  markCachesAsExpired,
   sessionGet,
   sessionSet,
   sessionDelete,

@@ -110,7 +110,7 @@ class ImageUpscaler {
     }
 
     try {
-      this.mapping = (await getData('upscaled-images')) || {};
+      this.mapping = upscaledImagesMapping;
     } catch {
       this.mapping = {};
     }
@@ -241,6 +241,7 @@ class ImageUpscaler {
       return;
     }
 
+    await getData('upscaled-images');
     await this.fetchMapping();
 
     this.observer = new MutationObserver(this.debouncedMutationHandler);
