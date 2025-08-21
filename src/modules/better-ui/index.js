@@ -7,6 +7,7 @@ import kingsPromo from './modules/kings-promo';
 import legacyStyles from './modules/legacy-styles';
 import maintenance from './modules/maintenance';
 import profile from './modules/profile';
+import randomSkinButton from './modules/random-skin-button';
 import skinPreviewBase from './modules/skin-preview-base';
 import userscriptStyles from './modules/userscripts-styles';
 
@@ -19,13 +20,16 @@ const styles = imported;
  * Initialize the module.
  */
 const init = () => {
-  addStyles(styles, 'better-ui');
+  if (getSetting('better-ui.styles', true)) {
+    addStyles(styles, 'better-ui');
+  }
 
   adventurebook();
   friends();
   kingsPromo();
   maintenance();
   userscriptStyles();
+  randomSkinButton();
   skinPreviewBase();
 
   if (getSetting('better-ui.hud-changes', true)) {
