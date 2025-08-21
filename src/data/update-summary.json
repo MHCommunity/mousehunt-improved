@@ -28,6 +28,7 @@
         "Added Highlight rare mice feature, currently only highlights Black Widow",
         "Improved Journal History performance",
         "Improved Journal loot list parsing and added more supported entries",
+        "Updated Full mice images in journal to not use the cropped square image",
         "Updated setting names and order",
         "Updated styles"
       ]
@@ -55,7 +56,9 @@
     {
       "title": "Location HUDs - Table of Contents",
       "items": [
+        "Added expected number of processors to simulation when Thousand Draft Derby is equipped",
         "Updated sim to scroll to expected volume",
+        "Fixed not being able to cancel writing",
         "Updated styles"
       ]
     },

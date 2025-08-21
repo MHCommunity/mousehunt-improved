@@ -38,8 +38,8 @@ const main = () => {
       return;
     }
 
-    if (mouse?.images?.square) {
-      image.src = mouse.images.square;
+    if (mouse?.images?.large) {
+      image.src = mouse.images.large;
     }
   });
 };

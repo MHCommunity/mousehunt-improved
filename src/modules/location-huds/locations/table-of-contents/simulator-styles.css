@@ -17,11 +17,15 @@
 
 .mh-toc-sim-results {
   display: grid;
-  grid-template-columns: 40% 50%;
+  grid-template-columns: 40% 45%;
   justify-content: space-evenly;
   justify-items: stretch;
   margin: 0 1em;
   color: #fff;
+}
+
+.mh-toc-sim-results.m1k {
+  grid-template-columns: 40% 55%;
 }
 
 .mh-toc-sim-results .stats {
@@ -101,17 +105,18 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
+  align-items: end;
   padding: 3px;
   margin-bottom: 0.25em;
   text-align: right;
 }
 
 .mh-toc-sim-results .processors {
-  visibility: hidden;
+  display: none;
 }
 
 .mh-toc-sim-results.m1k .processors {
-  visibility: visible;
+  display: inline;
 }
 
 .mh-toc-sim-results.m1k .percents li {

@@ -62,8 +62,10 @@ const displayResults = (results, timeTaken) => {
         <div class="value">${results?.mostLikely?.gnawbels?.toLocaleString()}</div>
       </div>
       <div class="result processors">
-        <div class="label">Expected Processors</div>
-        <div class="value">${results?.mostLikely?.processors?.toLocaleString()}</div>
+        <div class="result">
+          <div class="label">Expected Processors</div>
+          <div class="value">${results?.mostLikely?.processors?.toLocaleString()}</div>
+        </div>
       </div>
     </div>
   </div>

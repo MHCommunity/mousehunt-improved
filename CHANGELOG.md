@@ -1,9 +1,15 @@
 # Changelog
 
+## Version 0.85.4
+
+- Added expected number of processors to simulation when Thousand Draft Derby is equipped
+- Fixed not being able to cancel writing in Table of Contents
+- Updated Full mice images in journal to not use the cropped square image
+
 ## Version 0.85.3
 
 - Fixed not being able to cancel writing in Table of Contents
-  
+
 ## Version 0.85.2
 
 - Fixed issue with data not being cached after fetching
