@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.85.3
+
+- Fixed not being able to cancel writing in Table of Contents
+  
 ## Version 0.85.2
 
 - Fixed issue with data not being cached after fetching
