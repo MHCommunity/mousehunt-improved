@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.85.2
+
+- Fixed issue with data not being cached after fetching
+
 ## Version 0.85.1
 
 - Location HUDs: Fixed 'Add toggle button to top menu' setting not working

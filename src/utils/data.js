@@ -141,7 +141,7 @@ const getData = async (key, force = false) => {
   const data = await fetchData(key);
   debuglog('utils-data', `Fetched data for ${key}`, data);
 
-  if (data && data.length > 0) {
+  if (data) {
     await cacheSet(key, data);
   }
 

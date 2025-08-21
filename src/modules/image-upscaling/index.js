@@ -109,12 +109,15 @@ class ImageUpscaler {
       return this.mapping;
     }
 
-    try {
-      this.mapping = upscaledImagesMapping;
-    } catch {
-      this.mapping = {};
+    if (! upscaledImagesMapping || Object.keys(upscaledImagesMapping).length === 0) {
+      try {
+        upscaledImagesMapping = await getData('upscaled-images', true) || {};
+      } catch {
+        upscaledImagesMapping = {};
+      }
     }
 
+    this.mapping = upscaledImagesMapping;
     return this.mapping;
   }
 
@@ -241,7 +244,6 @@ class ImageUpscaler {
       return;
     }
 
-    await getData('upscaled-images');
     await this.fetchMapping();
 
     this.observer = new MutationObserver(this.debouncedMutationHandler);
@@ -339,6 +341,8 @@ class ImageUpscaler {
   }
 }
 
+let upscaledImagesMapping = {};
+
 /**
  * The ImageUpscaler instance.
  */
@@ -352,6 +356,7 @@ const init = async () => {
   addExternalStyles('upscaled-images.css');
   addExternalStyles('upscaled-mice-images.css');
 
+  upscaledImagesMapping = await getData('upscaled-images');
   const imageUpscaler = new ImageUpscaler();
   await imageUpscaler.fetchMapping();
   imageUpscaler.handleUpscalingImages();

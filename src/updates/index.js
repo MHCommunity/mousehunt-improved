@@ -134,6 +134,7 @@ const update = async (previousVersion, newVersion) => {
     // Get fresh data for items and mice.
     await getData('items', true);
     await getData('mice', true);
+    await getData('upscaled-images', true);
 
     if (isFreshInstall) {
       return;
