@@ -27,7 +27,7 @@
       "items": [
         "Added Highlight rare mice feature, currently only highlights Black Widow",
         "Improved Journal History performance",
-        "Improved Journal Loot List parsing and added more supported entries",
+        "Improved Journal loot list parsing and added more supported entries",
         "Updated setting names and order",
         "Updated styles"
       ]
