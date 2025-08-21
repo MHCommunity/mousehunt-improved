@@ -1,4 +1,5 @@
 import {
+  addSettingsTab,
   createPopup,
   doEvent,
   doInternalEvent,
@@ -9,6 +10,7 @@ import {
   makeElement,
   onDialogShow,
   onEvent,
+  onNavigation,
   onRequest,
   onTravel,
   setMultipleTimeout
@@ -240,6 +242,10 @@ const init = async () => {
   onTravel(null, { callback: addEvents });
 
   onRequest('users/session.php', refreshOnLogin);
+
+  onNavigation(addSettingsTab, {
+    page: 'preferences',
+  });
 };
 
 /**

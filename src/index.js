@@ -2,7 +2,6 @@ import * as Sentry from '@sentry/browser'; // eslint-disable-line import/no-extr
 
 import {
   addSettingForModule,
-  addSettingsTab,
   debug,
   debuglog,
   doEvent,
@@ -46,10 +45,6 @@ const loadModules = async () => {
     return;
   }
 
-  // Initialize the settings tab.
-  await addSettingsTab('mousehunt-improved-settings', 'MH Improved');
-
-  // Add the settings for each module.
   modules.forEach((m) => {
     const category = categories.find((c) => c.id === m.type);
     if (! category) {
@@ -168,7 +163,7 @@ const init = async () => {
     Sentry.init({
       dsn: 'https://850af0a4f96b32d673a133c9353a3622@o4506583858348032.ingest.us.sentry.io/4506781071835136',
       maxBreadcrumbs: 50,
-      debug: ! getSetting('debug.sentry'),
+      debug: getSetting('debug.sentry', false),
       release: `mousehunt-improved@${mhImprovedVersion}`,
       environment: mhImprovedPlatform,
       initialScope: {
