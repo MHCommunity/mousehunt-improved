@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 0.85.0
+
+- Better UI: Added setting to disable styles
+- Better UI: Added 'Random' button to skin browser
+- Better UI: Updated styles
+- Better Inventory: Updated styles
+- Better Items: Improved performance of hover item views, added support for more journal entry types
+- Better Journal: Added Highlight rare mice feature, currently only highlights Black Widow
+- Better Journal: Improved Journal History performance
+- Better Journal: Improved Journal Loot List parsing and added more supported entries
+- Better Journal: Updated setting names and order
+- Better Journal: Updated styles
+- Better Mice: Improved performance of hover mouse views, added support for more journal entry types
+- Location HUDs - Foreword Farm: Added "x3" plant button, updated styles
+- Location HUDs - Table of Contents: Updated sim to scroll to expected volume, updated styles
+- Image Upscaling & Transparency: Performance improvements
+- Miscellaneous bug fixes and performance improvements
+
 ## Version 0.84.0
 
 - Added Highlight Rare Mice experiment/beta feature
