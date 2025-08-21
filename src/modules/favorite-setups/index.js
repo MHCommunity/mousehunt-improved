@@ -76,7 +76,7 @@ const getFavoriteSetups = async (makeRequest = false) => {
         };
 
         // Remove any existing mobile setups.
-        faves = faves.filter((s) => ! s.is_mobile || (s.is_mobile && ! s.id.startsWith('mobile-')));
+        faves = faves.filter((s) => ! s?.is_mobile || (s?.is_mobile && ! s.id.startsWith('mobile-')));
 
         // Check if the setup already exists.
         const existingSetup = faves.find((s) => {
@@ -241,8 +241,8 @@ const saveFavoriteSetup = async (setup, useGeneratedName = true) => {
  */
 const removeMobileSetups = (setups) => {
   return setups.filter((s) => ! s ||
-    ! s.is_mobile ||
-   (s.is_mobile && ! s.id.startsWith('mobile-')));
+    ! s?.is_mobile ||
+   (s?.is_mobile && ! s.id.startsWith('mobile-')));
 };
 
 /**
@@ -730,8 +730,8 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   // Add drag handle for non-current and non-location-favorite setups
   if (! (
     isCurrent ||
-    setup.isLocationFavorite ||
-    setup.is_mobile
+    setup?.isLocationFavorite ||
+    setup?.is_mobile
   )) {
     const dragHandle = makeElement('div', ['drag-handle']);
     dragHandle.innerHTML = '⋮⋮';

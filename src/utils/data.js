@@ -108,7 +108,7 @@ const fetchData = async (key, retries = 0) => {
     console.error(`Error fetching data for ${key}:`, error); // eslint-disable-line no-console
 
     if (retries >= 3) {
-      return false;
+      return {};
     }
 
     await new Promise((resolve) => setTimeout(resolve, 500 * retries));
@@ -141,7 +141,7 @@ const getData = async (key, force = false) => {
   const data = await fetchData(key);
   debuglog('utils-data', `Fetched data for ${key}`, data);
 
-  if (data) {
+  if (data && data.length > 0) {
     await cacheSet(key, data);
   }
 
