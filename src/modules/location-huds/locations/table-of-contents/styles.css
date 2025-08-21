@@ -265,3 +265,55 @@ a.folkloreForestRegionView-bait-image {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.tableOfContentsClaimDialogView-bestStats {
+  left: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 170px;
+  place-items: center;
+  align-content: stretch;
+  width: calc(100% - 60px);
+  text-align: center;
+  text-shadow: 1px 1px 1px #333;
+}
+
+.mh-best-stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.mh-best-stats-content {
+  font-size: 1.25em;
+}
+
+.tableOfContentsClaimDialogView-bookStats {
+  top: 240px;
+  left: 90px;
+  display: grid;
+  justify-content: normal;
+  justify-items: stretch;
+  width: 160px;
+  font-size: 15px;
+  line-height: 22px;
+  color: #574228;
+  text-shadow: 1px 1px 1px #c8aa85;
+}
+
+.mh-book-stats-wrapper {
+  display: flex;
+}
+
+.mh-book-stats-header {
+  margin-right: auto;
+  font-size: 13px;
+}
+
+.folkloreForestRegionView-libraryBestBook-words {
+  font-size: 13px;
+}
+
+.tableOfContentsClaimDialogView .tableOfContentsClaimDialogView-wordCount span {
+  font-size: 15px;
+}

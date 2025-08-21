@@ -2,6 +2,7 @@ import {
   addHudStyles,
   createPopup,
   makeElement,
+  onDialogShow,
   onRequest,
   onTurn
 } from '@utils';
@@ -260,6 +261,65 @@ const updateNextWordCount = () => {
   wordsRequired.innerText = wordsRequired.getAttribute('title').replace(' words', '');
 };
 
+const splitLine = (line) => {
+  const parts = line.split(':');
+  if (parts.length > 1) {
+    const header = `${parts.shift().trim()}:`;
+    const content = parts.join(':').trim();
+    return { header, content };
+  }
+  return { header: '', content: line };
+};
+
+const updateClaimDialog = () => {
+  const stats = document.querySelector('.tableOfContentsClaimDialogView-bestStats');
+  if (stats && ! stats.querySelector('.mh-best-stats-wrapper')) {
+    const text = stats.innerHTML.replaceAll(/<br\s*\/?>/gi, '\n');
+    const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
+
+    const longestLine = lines.find((l) => /longest book/i.test(l)) || lines[0] || '';
+    const numWordsLine = lines.find((l) => /num words/i.test(l)) || lines[1] || '';
+
+    const longestParts = splitLine(longestLine);
+    const numWordsParts = splitLine(numWordsLine);
+
+    // Replace content with two divs (header + content).
+    const wrapper = makeElement('div', 'tableOfContentsClaimDialogView-bestStats');
+
+    const longestDiv = makeElement('div', 'mh-best-stats-wrapper');
+    const longestHeader = makeElement('div', 'mh-best-stats-header', longestParts.header);
+    const longestContent = makeElement('div', 'mh-best-stats-content', longestParts.content);
+    longestDiv.append(longestHeader, longestContent);
+
+    const numWordsDiv = makeElement('div', 'mh-best-stats-wrapper');
+    const numWordsHeader = makeElement('div', 'mh-best-stats-header', numWordsParts.header);
+    const numWordsContent = makeElement('div', 'mh-best-stats-content', numWordsParts.content);
+    numWordsDiv.append(numWordsHeader, numWordsContent);
+
+    wrapper.append(longestDiv, numWordsDiv);
+    stats.replaceWith(wrapper);
+  }
+
+  const bookStats = document.querySelector('.tableOfContentsClaimDialogView-bookStats');
+  if (bookStats && ! bookStats.querySelector('.mh-book-stats-wrapper')) {
+    const text = bookStats.innerHTML.replaceAll(/<br\s*\/?>/gi, '\n');
+    const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
+
+    const bookWrapper = makeElement('div', 'tableOfContentsClaimDialogView-bookStats');
+
+    for (const line of lines) {
+      const parts = splitLine(line);
+      const row = makeElement('div', 'mh-book-stats-wrapper');
+      const header = makeElement('div', 'mh-book-stats-header', parts.header);
+      const content = makeElement('div', 'mh-book-stats-content', parts.content);
+      row.append(header, content);
+      bookWrapper.append(row);
+    }
+
+    bookStats.replaceWith(bookWrapper);
+  }
+};
+
 /**
  * Initialize the module.
  */
@@ -272,6 +332,7 @@ export default async () => {
 
   updateWordLootQuantity();
   onRequest('environment/table_of_contents.php', updateWordLootQuantity);
+  onDialogShow('tableOfContentsClaimDialogPopup', updateClaimDialog);
 
   updateNextWordCount();
   onTurn(() => {
