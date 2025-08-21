@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.85.1
+
+- Location HUDs: Fixed 'Add toggle button to top menu' setting not working
+- Miscellaneous bug fixes and cleanup
+
 ## Version 0.85.0
 
 - Better UI: Added setting to disable styles

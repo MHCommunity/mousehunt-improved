@@ -40,6 +40,12 @@
       ]
     },
     {
+      "title": "Location HUDs",
+      "items": [
+        "Fixed 'Add toggle button to top menu' setting not working"
+      ]
+    },
+    {
       "title": "Location HUDs - Foreword Farm",
       "items": [
         "Added 'x3' plant button",
