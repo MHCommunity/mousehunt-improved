@@ -1,4 +1,4 @@
-import { addStyles, getSetting } from '@utils';
+import { addStyles } from '@utils';
 
 import styles from './styles.css';
 
@@ -6,9 +6,7 @@ import styles from './styles.css';
  * Initialize the module.
  */
 const init = async () => {
-  if (getSetting('better-journal.highlight-rare-mice', false)) {
-    addStyles(styles, 'highlight-rare-mice');
-  }
+  addStyles(styles, 'highlight-rare-mice');
 };
 
 export default {
