@@ -307,7 +307,3 @@ a.folkloreForestRegionView-travelButton:hover {
   color: #d9faca;
   background-color: transparent;
 }
-
-.folkloreForestRegionView-overlay.active {
-  display: none;
-}
