@@ -45,7 +45,7 @@ const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-util
  *
  * @return {string} The identifier.
  */
-const addSettingsTab = (identifier = 'userscript-settings', name = 'Userscript Settings') => {
+const addSettingsTab = (identifier = 'mousehunt-improved-settings', name = 'MH Improved') => {
   addSettingsTabOnce(identifier, name);
   onNavigation(() => addSettingsTabOnce(identifier, name), {
     page: 'preferences',

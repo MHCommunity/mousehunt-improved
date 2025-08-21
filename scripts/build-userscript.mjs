@@ -55,9 +55,20 @@ await esbuild.build({
 const file = fs.readFileSync(path.resolve(process.cwd(), 'dist/mousehunt-improved.user.js'), 'utf8');
 
 // Remove any comment lines that start with `// node_modules` or `// src` (they may start with a space or tab).
-const cleaned = file
+let cleaned = file
   .replaceAll(/\s*\/\/\s*(node_modules|src).*/g, '')
   .replaceAll(/^\s+/gm, '');
+
+// remove any lines that start with '// ' except for the banner
+cleaned = cleaned
+  .split('\n')
+  .filter((line, index) => {
+    if (index < 12) {
+      return true;
+    } // keep the banner
+    return ! line.trim().startsWith('//');
+  })
+  .join('\n');
 
 // write the cleaned file back to disk
 fs.writeFileSync(path.resolve(process.cwd(), 'dist/mousehunt-improved.user.js'), cleaned);

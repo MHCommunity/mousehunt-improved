@@ -1,20 +1,74 @@
 {
-  "summary": "",
+  "summary": "Lots of minor changes, bug fixes, and performance enhancements in this update! There are a few new features, settings, and other changes as well. See below for details.",
   "details": [
     {
-      "title": "",
+      "title": "Better UI",
       "items": [
-        "Added Highlight Rare Mice experiment/beta feature",
-        "Added Full Mice Images No Border experiment/beta feature",
-        "Better Item View: Fixed item quantity buttons not correctly parsing numbers with commas",
-        "Better Journal: Updated styles",
-        "Better Maps: Updated styles",
-        "Better Mice: Fixed duplicated favorites in King’s Crown export via copy",
-        "Better UI: Updated styles",
-        "Better UI: Improved horn hover animation and glint loop timing",
-        "Catch Rate Estimate: Fixed logic to correctly apply Dragon’s Might aura and dragonbane charms, not just one",
-        "Location HUDs – Foreword Farm: Updated styles",
-        "Native Dark Mode: Updated styles"
+        "Added setting to disable styles",
+        "Added 'Random' button to skin browser",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Better Inventory",
+      "items": [
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Better Items",
+      "items": [
+        "Improved performance of hover item views",
+        "Added support for more journal entry types"
+      ]
+    },
+    {
+      "title": "Better Journal",
+      "items": [
+        "Added Highlight rare mice feature, currently only highlights Black Widow",
+        "Improved Journal History performance",
+        "Improved Journal loot list parsing and added more supported entries",
+        "Updated setting names and order",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Better Mice",
+      "items": [
+        "Improved performance of hover mouse views",
+        "Added support for more journal entry types"
+      ]
+    },
+    {
+      "title": "Location HUDs",
+      "items": [
+        "Fixed 'Add toggle button to top menu' setting not working"
+      ]
+    },
+    {
+      "title": "Location HUDs - Foreword Farm",
+      "items": [
+        "Added 'x3' plant button",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Location HUDs - Table of Contents",
+      "items": [
+        "Updated sim to scroll to expected volume",
+        "Updated styles"
+      ]
+    },
+    {
+      "title": "Image Upscaling & Transparency",
+      "items": [
+        "Performance improvements"
+      ]
+    },
+    {
+      "title": "Miscellaneous",
+      "items": [
+        "Bug fixes and performance improvements"
       ]
     }
   ]

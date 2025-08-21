@@ -1,5 +1,15 @@
-import { addStyles, doRequest, makeElement, onRequest } from '@utils';
+import {
+  addStyles,
+  doRequest,
+  makeElement,
+  onEvent,
+  onJournalEntry
+} from '@utils';
 import styles from './styles.css';
+
+let lastFetchedMouse = null;
+let lastFetchedTime = 0;
+let lastFetchedData = null;
 
 /**
  * Fetch the mouse data.
@@ -9,12 +19,27 @@ import styles from './styles.css';
  * @return {Promise<Object>} The mouse data.
  */
 const fetchMouseData = async (mouseId) => {
+  // Cache the data if it's been less than 30 seconds
+  const now = Date.now();
+  if (lastFetchedMouse === mouseId && now - lastFetchedTime < 30000 && lastFetchedData) {
+    return lastFetchedData;
+  }
+
   const mouseDataRequest = await doRequest('managers/ajax/mice/getstat.php', {
     action: 'get_mice',
     'mouse_types[]': mouseId,
   });
 
-  return mouseDataRequest?.mice?.[0];
+  const mouseData = mouseDataRequest?.mice?.[0];
+  if (! mouseData) {
+    return null;
+  }
+
+  lastFetchedMouse = mouseId;
+  lastFetchedTime = now;
+  lastFetchedData = mouseData;
+
+  return mouseData;
 };
 
 /**
@@ -35,6 +60,9 @@ const makeMouseMarkup = (mouse) => {
   }
 
   const mouseImage = makeElement('img', 'mouse-image');
+  mouseImage.alt = mouse.name;
+  mouseImage.width = '82';
+  mouseImage.height = '82';
   if (mouse.square) {
     mouseImage.src = mouse.square;
   }
@@ -109,11 +137,74 @@ const makeLoadingMarkup = (e) => {
 
 let mouseDataWrapper;
 
+const listeners = {};
+
+const addHoverListener = (link) => {
+  let timeoutId = null;
+  let isMouseOver = false;
+
+  if (listeners[link]) {
+    link.removeEventListener('mouseenter', listeners[link].mouseenter);
+    link.removeEventListener('mouseleave', listeners[link].mouseleave);
+  }
+
+  const enter = link.addEventListener('mouseenter', async (e) => {
+    isMouseOver = true;
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(async () => {
+      if (! isMouseOver) {
+        return;
+      }
+
+      makeLoadingMarkup(e);
+      let match;
+      if (link.getAttribute('onclick')) {
+        match = link.getAttribute('onclick').match(/'([^']+)'/);
+      } else if (link.getAttribute('href')) {
+        match = link.getAttribute('href').match(/mouse_type=([^&]+)/);
+      }
+
+      if (! match || match.length < 2) {
+        return;
+      }
+
+      const mouseType = match[1];
+
+      const mouseData = await fetchMouseData(mouseType);
+      if (mouseData && mouseDataWrapper && isMouseOver) {
+        const markup = makeMouseMarkup(mouseData);
+        mouseDataWrapper.innerHTML = markup.outerHTML;
+      }
+    }, 500);
+  });
+
+  const leave = link.addEventListener('mouseleave', () => {
+    isMouseOver = false;
+
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    if (mouseDataWrapper) {
+      mouseDataWrapper.remove();
+    }
+  });
+
+  listeners[link] = { mouseenter: enter, mouseleave: leave };
+};
+
 /**
  * The main function.
+ *
+ * @param {HTMLElement|null} element The parent element to search for mouse links.
  */
-const main = () => {
-  const miceLinks = document.querySelectorAll('.journal .content .entry .journaltext a[onclick*="MouseView.show"]');
+const main = (element = null) => {
+  const parentElement = element || document;
+  const miceLinks = parentElement.querySelectorAll('.journal .content .entry .journaltext a[onclick*="MouseView.show"]');
   if (! miceLinks) {
     return;
   }
@@ -122,41 +213,7 @@ const main = () => {
     const mouseType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
 
-    let timeoutId = null;
-    let isMouseOver = false;
-
-    link.addEventListener('mouseenter', async (e) => {
-      isMouseOver = true;
-
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-
-      timeoutId = setTimeout(async () => {
-        if (! isMouseOver) {
-          return;
-        }
-
-        makeLoadingMarkup(e);
-        const mouseData = await fetchMouseData(mouseType);
-        if (mouseData && mouseDataWrapper && isMouseOver) {
-          const markup = makeMouseMarkup(mouseData);
-          mouseDataWrapper.innerHTML = markup.outerHTML;
-        }
-      }, 500);
-    });
-
-    link.addEventListener('mouseleave', () => {
-      isMouseOver = false;
-
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-
-      if (mouseDataWrapper) {
-        mouseDataWrapper.remove();
-      }
-    });
+    addHoverListener(link);
   });
 };
 
@@ -166,8 +223,6 @@ const main = () => {
 export default () => {
   addStyles(styles, 'better-mice-hover-mice');
 
-  setTimeout(main, 500);
-  onRequest('*', () => {
-    setTimeout(main, 1000);
-  });
+  onEvent('journal-mouse-link-modified', main);
+  onJournalEntry(main);
 };

@@ -29,6 +29,10 @@
   display: block;
 }
 
+.journal .content .entry.folkloreForest-bookClaimed .journaltext br + br {
+  display: none;
+}
+
 .journal .content .entry.kings_giveaway_bonus_prize_entry .journaltext > br + br:last-of-type,
 .journal .content .entry.floatingIslands.discoveredMod .journaltext br:last-of-type,
 .journal .content .entry.wanted_poster-complete .journaltext br:last-of-type,
@@ -59,7 +63,6 @@
 .journal .entry.wanted_poster-complete .journaltext b:last-of-type::after,
 .entry.halloween_boiling_cauldron.brew_finished a:last-of-type::after,
 .entry.halloween_boiling_cauldron.brew_removed a:last-of-type::after,
-.entry.folkloreForest-farmToTable .journaltext a:last-of-type::after,
 .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
 .entry.birthday_factory.enter_room b::after,
 .entry.potionuse .journaltext span:last-of-type::after,
@@ -81,6 +84,7 @@
 .entry.short.craft.convertible_open .journaltext .item:last-of-type::after,
 .entry.short.supplytransferitem .journaltext #friend-data-wrapper a::after,
 .entry.folkloreForest-plantClaimed .journaltext a:last-of-type::after,
+.entry.folkloreForest-farmToTable .journaltext .mhi-x-entry a:last-of-type::after,
 .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
 .entry.mountain-boulderLooted a:last-of-type::after,
 .entry.short.craft.convertible_open a.item::after {

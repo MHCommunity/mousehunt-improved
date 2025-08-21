@@ -108,6 +108,7 @@
   width: auto;
   min-width: 100px;
   padding: 0;
+  text-align: center;
   border: none;
   transform: translateX(-50%);
 }
@@ -142,6 +143,10 @@
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip .inventoryPage-item-content-nameContainer,
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip .inventoryPage-item-content-name {
   height: auto;
+}
+
+.mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip .inventoryPage-item-content-name {
+  text-align: center;
 }
 
 .mousehuntHud-page-subTabContent.hammer .inventoryPage-item:hover .newTooltip .inventoryPage-item-content-name span {

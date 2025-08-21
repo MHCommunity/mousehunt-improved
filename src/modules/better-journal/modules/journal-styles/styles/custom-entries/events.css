@@ -35,3 +35,7 @@
 .journal .entry.chocolateshop_item_purchased {
   background-repeat: repeat;
 }
+
+.journal .entry.folkloreForest-farmToTable {
+  background-color: #b2eaf0;
+}

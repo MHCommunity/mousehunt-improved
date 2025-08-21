@@ -422,7 +422,7 @@ const addGiftSwitcher = () => {
    * @param {boolean} preserveActions   Whether to preserve the actions.
    */
   hg.views.GiftSelectorView.showTab = (tabType, viewState, preserveVariables, preserveActions) => {
-    _showTab(tabType, viewState, preserveVariables, preserveActions);
+    _showTab.call(hg.views.GiftSelectorView, tabType, viewState, preserveVariables, preserveActions);
 
     /**
      * Update the gift multiplier quantity.
@@ -437,7 +437,7 @@ const addGiftSwitcher = () => {
         input.removeAttribute('maxlength');
       }
 
-      return _updateGiftMultiplierQuantity(input);
+      return _updateGiftMultiplierQuantity.call(hg.views.GiftSelectorView, input);
     };
 
     /**
@@ -449,7 +449,7 @@ const addGiftSwitcher = () => {
      * @return {boolean} Returns true if the gift was selected, false otherwise.
      */
     hg.views.GiftSelectorView.selectGift = (gift) => {
-      _selectGift(gift);
+      _selectGift.call(hg.views.GiftSelectorView, gift);
 
       const giftContainer = document.querySelector('.giftSelectorView-tabContent.active.selectFriends .giftSelectorView-content-leftBar');
       if (! giftContainer) {

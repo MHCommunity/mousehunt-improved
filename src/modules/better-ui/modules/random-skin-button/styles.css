@@ -1,0 +1,16 @@
+.campPage-trap-itemBrowser.skin .campPage-trap-itemBrowser-filter input[data-filter="search"] {
+  width: 100%;
+}
+
+.campPage-trap-itemBrowser.skin .campPage-trap-itemBrowser-filter {
+  max-width: 250px;
+}
+
+.campPage-trap-itemBrowser.skin .campPage-trap-itemBrowser-filterContainer {
+  justify-content: space-between;
+}
+
+.mousehuntActionButton.random-skin-button {
+  padding: 5px;
+  margin: 0 3px 5px 0;
+}

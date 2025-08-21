@@ -98,6 +98,7 @@ const replacements = [
   [/<p class="mhi-x-entry"><span class="dot"> •&nbsp;<\/span>/g, '', '!shop_purchase'],
   [/(\d+?) x /gi, '<p class="mhi-x-entry"><span class="dot"> • </span>$1 x ', '!shop_purchase'],
   ['My Condensed Creativity created an additional ', 'My Condensed Creativity created an additional: '],
+  ['My Farm to Table Bonus harvested an additional ', 'My Farm to Table Bonus harvested an additional: '],
   [/<p><\/p>/g, ''],
   ['I can view other recipe', '<p class="double">I can view other recipe'],
   ['Here is the loot summary from my infiltration of', 'I looted the following from'],
@@ -254,7 +255,7 @@ const updateMouseImageLinks = (entry) => {
  * @param {HTMLElement} entry The journal entry.
  */
 const updateItemLinks = (entry) => {
-  if (! entry.classList.contains('iceberg_defeated')) {
+  if (entry.classList.contains('iceberg_defeated')) {
     return;
   }
 

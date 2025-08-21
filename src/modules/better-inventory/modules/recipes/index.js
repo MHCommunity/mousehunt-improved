@@ -174,7 +174,7 @@ const modifySmashableTooltip = async () => {
       let itemData = await cacheGet(`smashable-${producedItem.join('-')}`);
       if (! itemData) {
         itemData = await getUserItems(producedItem);
-        cacheSet(`smashable-${producedItem.join('-')}`, itemData, 6 * 30 * 24 * 60 * 60 * 1000); // Cache for 6 months.
+        cacheSet(`smashable-${producedItem.join('-')}`, itemData, Date.now() + (6 * 30 * 24 * 60 * 60 * 1000)); // Cache for 6 months.
       }
 
       if (! itemData || ! itemData[0]) {

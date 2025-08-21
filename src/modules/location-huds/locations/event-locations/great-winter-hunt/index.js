@@ -393,7 +393,7 @@ const greatWinterHuntGlobal = () => {
  * Only active at the event location.
  */
 const greatWinterHuntLocation = () => {
-  addHudStyles(styles);
+  excludeFromUserscript: addHudStyles(styles); // TODO: remove this, temporary commented out to fit in greasyfork space limits.
   onDialogShow('greatWinterHuntDialog', updateGolemPopup);
 
   golemDance();

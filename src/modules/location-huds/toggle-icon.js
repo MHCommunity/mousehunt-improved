@@ -17,8 +17,7 @@ const getCurrentLocationForSettings = async () => {
   const eventEnvironments = await getData('environments-events');
 
   // check if we are in an event location
-  const eventLocation = eventEnvironments.find((event) => event.id === currentLocation);
-  if (eventLocation) {
+  if (eventEnvironments && eventEnvironments.some((event) => event.id === currentLocation)) {
     return 'event-locations';
   }
 

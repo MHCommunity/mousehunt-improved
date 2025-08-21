@@ -330,7 +330,9 @@ const addToTravelDropdown = async () => {
 
   // merge the event environments into the environments array
   const eventEnvironments = await getData('environments-events');
-  environments.push(...eventEnvironments);
+  if (eventEnvironments && eventEnvironments.length > 0) {
+    environments.push(...eventEnvironments);
+  }
 
   // get the object that matches the current location
   let currentRegion = environments.find((environment) => {

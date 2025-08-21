@@ -445,6 +445,56 @@ function isVersionHigher(version1, version2) {
   return false;
 }
 
+/**
+ * Unpluralize a string.
+ *
+ * @param {string} text The text to unpluralize.
+ *
+ * @return {string} The unpluralized text.
+ */
+const unpluralize = (text) => {
+  const mapping = {
+    batteries: 'battery',
+    boxes: 'box',
+    branches: 'branch',
+    cacti: 'cactus',
+    candies: 'candy',
+    catches: 'catch',
+    children: 'child',
+    flies: 'fly',
+    fungi: 'fungus',
+    geese: 'goose',
+    leaves: 'leaf',
+    mice: 'mouse',
+    patches: 'patch',
+    pennies: 'penny',
+    pinches: 'pinch',
+    statuses: 'status',
+    stories: 'story',
+    'SUPER|tokens+': 'super|token+',
+    trenches: 'trench',
+  };
+
+  let result = text;
+
+  for (const [plural, singular] of Object.entries(mapping)) {
+    const regex = new RegExp(plural, 'gi');
+    result = result.replace(regex, (match) => {
+      if (match === match.toUpperCase()) {
+        return singular.toUpperCase();
+      }
+
+      if (match[0] === match[0].toUpperCase()) {
+        return singular.charAt(0).toUpperCase() + singular.slice(1);
+      }
+
+      return singular;
+    });
+  }
+
+  return result;
+};
+
 export {
   doRequest,
   getTradableItems,
@@ -466,5 +516,6 @@ export {
   setMultipleTimeout,
   refreshPage,
   debounce,
-  isVersionHigher
+  isVersionHigher,
+  unpluralize
 };

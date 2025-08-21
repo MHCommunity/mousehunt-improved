@@ -1,4 +1,11 @@
-import { addStyles, getData, makeElement, onJournalEntry } from '@utils';
+import {
+  addStyles,
+  doEvent,
+  getData,
+  makeElement,
+  onJournalEntry,
+  unpluralize
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -19,9 +26,9 @@ const classesToCheck = {
     'iceberg_defeated',
     'dailyreward',
     'claimGolemReward',
+    'folkloreForest-bookClaimed',
   ],
   hasListNeedsClasses: [
-    'folkloreForest-bookClaimed',
     'schoolOfSorcery-completed',
     'schoolOfSorcery-droppedOut',
   ],
@@ -101,6 +108,79 @@ const splitText = async (text) => {
   return processedItems;
 };
 
+// Handle folkloreForest-bookClaimed journal entries.
+// Works with rewards-only, loot-only, or both.
+const handleFolkloreBookClaim = (text) => {
+  const marker = 'earned me the following rewards:';
+  const afterMarker = '<br><br>I looted the following items while writing:<br><br>';
+  const html = text.innerHTML;
+
+  let prefix = html;
+  let rewardsBlockRaw = '';
+  let postLootRaw = '';
+
+  // Try to split out rewards section
+  if (html.includes(marker)) {
+    const parts = html.split(marker);
+    prefix = parts[0];
+    const restRaw = parts[1] || '';
+
+    if (restRaw.includes(afterMarker)) {
+      [rewardsBlockRaw, postLootRaw] = restRaw.split(afterMarker);
+    } else {
+      rewardsBlockRaw = restRaw;
+      postLootRaw = ''; // no loot segment
+    }
+  } else if (html.includes(afterMarker)) {
+    // No rewards section, only loot section
+    const parts = html.split(afterMarker);
+    prefix = parts[0];
+    postLootRaw = parts[1] || '';
+  } else {
+    // Nothing to do
+    return false;
+  }
+
+  // Build rewards UL if we had a rewards block
+  let rewardsHTML = '';
+  if (rewardsBlockRaw) {
+    const rewardsBlock = rewardsBlockRaw.replace(/^<br><br>/, '').replace(/<br><br>$/, '');
+    const rewardLines = rewardsBlock.split('<br>').map((s) => s.trim()).filter(Boolean);
+    if (rewardLines.length) {
+      const rewardsList = makeElement('ul', 'better-journal-list');
+      rewardLines.forEach((line) => {
+        const cleaned = line.replace(/^•&nbsp;?/, '').trim();
+        if (! cleaned) {
+          return;
+        }
+        const li = makeElement('li', 'better-journal-list-item');
+        li.innerHTML = cleaned.replaceAll('class="item"', 'class="loot"');
+        rewardsList.append(li);
+      });
+      rewardsHTML = `${marker} ${rewardsList.outerHTML}`;
+    } else {
+      // If no lines, keep original marker text to avoid dropping content
+      rewardsHTML = marker;
+    }
+  }
+
+  // Rebuild HTML
+  let newHTML = prefix;
+  if (rewardsHTML) {
+    newHTML += rewardsHTML;
+  }
+  if (postLootRaw) {
+    // restore the loot heading and its block
+    newHTML += `${rewardsHTML ? '' : ''}${rewardsHTML ? '' : ''}${afterMarker}${postLootRaw}`;
+  }
+
+  text.innerHTML = newHTML;
+
+  // Ensure any existing ULs get classes, including the built-in loot list
+  addClassesToLiAndUl(text);
+  return true;
+};
+
 /**
  * Get the items from the text.
  *
@@ -157,12 +237,12 @@ const getItemsFromText = async (type, text) => {
       }
     }
   } else if ('hasListNeedsClasses' === type) {
-    // It's a <ul> list. split it by <li> and dont remove any items.
-    const ul = text.querySelector('ul');
-    ul.classList.add('better-journal-list');
-
-    ul.querySelectorAll('li').forEach((li) => {
-      li.classList.add('better-journal-list-item');
+    // Ensure every UL gets our classes
+    text.querySelectorAll('ul').forEach((ul) => {
+      ul.classList.add('better-journal-list');
+      ul.querySelectorAll(':scope > li').forEach((li) => {
+        li.classList.add('better-journal-list-item');
+      });
     });
   } else {
     for (const string of otherStrings) {
@@ -198,13 +278,12 @@ const getItemsFromText = async (type, text) => {
 };
 
 const addClassesToLiAndUl = (text) => {
-  const list = text.querySelector('ul');
-  if (list) {
-    list.classList.add('better-journal-list');
-    list.querySelectorAll('li').forEach((li) => {
+  text.querySelectorAll('ul').forEach((ul) => {
+    ul.classList.add('better-journal-list');
+    ul.querySelectorAll(':scope > li').forEach((li) => {
       li.classList.add('better-journal-list-item');
     });
-  }
+  });
 };
 
 /**
@@ -219,9 +298,6 @@ const formatAsList = async (entry) => {
   }
 
   const classes = new Set(entry.classList);
-
-  let type;
-
   entry.setAttribute('data-better-journal-processed', 'true');
 
   if (classesToSkip.some((c) => classes.has(c))) {
@@ -233,7 +309,13 @@ const formatAsList = async (entry) => {
     return;
   }
 
-  // Determine the type of journal entry and compare it to the classes we have.
+  // Folklore fast-path
+  if (classes.has('folkloreForest-bookClaimed') && handleFolkloreBookClaim(text)) {
+    return;
+  }
+
+  // Determine the type as before
+  let type;
   for (const [key, value] of Object.entries(classesToCheck)) {
     if (value.some((c) => classes.has(c))) {
       type = key;
@@ -275,10 +357,9 @@ const formatXasList = async (entry) => {
 
   const items = await getData('items');
 
-  const list = makeElement('ul', 'better-journal-list');
   let firstEl;
-
-  xList.forEach((x) => {
+  const list = makeElement('ul', 'better-journal-list');
+  for (const x of xList) {
     // Remove the dot.
     const dot = x.querySelector('.dot');
     if (dot) {
@@ -288,24 +369,25 @@ const formatXasList = async (entry) => {
     // Split on the ' x ' to get the quantity and item name.
     const splitxText = x.textContent.split(' x ');
     if (splitxText.length < 2) {
-      return;
+      continue;
     }
 
     const quantity = splitxText[0];
     const itemName = splitxText[1];
 
     // Find the item type from the items JSON.
-    let item = items.find((i) => i.name === itemName.trim());
+    let item = items.find((i) => i.name === unpluralize(itemName).trim());
     if (! item) {
       // try removing the trailing s and try again.
-      item = items.find((i) => i.name === itemName.trim().replace(/s$/, ''));
+      item = items.find((i) => i.name === unpluralize(itemName).trim().replace(/s$/, ''));
       if (! item) {
-        return;
+        continue; // If we still can't find it, skip this item.
       }
     }
 
     const link = makeElement('a', 'loot', itemName);
     link.href = `https://www.mousehuntgame.com/item.php?item_type=${item.type}`;
+    link.setAttribute('onclick', `hg.views.ItemView.show('${item.type}'); return false;`);
     link.addEventListener('click', (e) => {
       e.preventDefault();
       hg.views.ItemView.show(item.type);
@@ -323,13 +405,14 @@ const formatXasList = async (entry) => {
     } else {
       firstEl = x;
     }
-  });
+  }
 
   if (firstEl) {
     firstEl.replaceWith(list);
-  }
+    entry.setAttribute('data-better-journal-processed-x-list', 'true');
 
-  entry.setAttribute('data-better-journal-processed-x-list', 'true');
+    doEvent('journal-item-link-modified', entry);
+  }
 };
 
 /**
@@ -339,5 +422,5 @@ export default async () => {
   addStyles(styles, 'better-journal-list');
 
   onJournalEntry(formatAsList, 3000);
-  onJournalEntry(formatXasList, 3000);
+  onJournalEntry(formatXasList, 4000);
 };

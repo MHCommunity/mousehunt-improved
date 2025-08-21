@@ -6,6 +6,11 @@
 export default async () => {
   return [
     {
+      id: 'better-ui.styles',
+      title: 'Styles: Various UI improvements and fixes',
+      default: true,
+    },
+    {
       id: 'better-ui.hud-changes',
       title: 'Menu & HUD: Kingdom link goes to News, shows full title percent on hover, etc.',
       default: true,

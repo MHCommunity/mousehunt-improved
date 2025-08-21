@@ -62,7 +62,7 @@ const getCacheExpiration = async (key = null) => {
  *
  * @return {Promise<void>} Resolves when the expiration is set.
  */
-const setCacheExpiration = async (key, time = null) => {
+const cacheSetExpiration = async (key, time = null) => {
   if (time) {
     return await dbSet('cache', { id: `expiration-${key}`, value: time });
   }
@@ -108,7 +108,7 @@ const fetchData = async (key, retries = 0) => {
     console.error(`Error fetching data for ${key}:`, error); // eslint-disable-line no-console
 
     if (retries >= 3) {
-      return false;
+      return {};
     }
 
     await new Promise((resolve) => setTimeout(resolve, 500 * retries));
@@ -186,6 +186,15 @@ const clearCaches = async () => {
 const updateCaches = async () => {
   for (const file of validDataFiles) {
     await getData(file, true);
+  }
+};
+
+/**
+ * Mark all caches as expired.
+ */
+const markCachesAsExpired = async () => {
+  for (const file of validDataFiles) {
+    await cacheSetExpiration(file, Date.now() - 1000);
   }
 };
 
@@ -287,7 +296,7 @@ const sessionsDelete = (prefix) => {
 const cacheSet = async (key, value, expiration = null) => {
   await Promise.all([
     dbSet('cache', { id: key, value }),
-    setCacheExpiration(key, expiration),
+    cacheSetExpiration(key, expiration),
   ]);
 
   return value;
@@ -390,10 +399,12 @@ export {
   cacheGet,
   cacheSet,
   cacheSetAsync,
+  cacheSetExpiration,
   clearCaches,
   getData,
   getHeaders,
   updateCaches,
+  markCachesAsExpired,
   sessionGet,
   sessionSet,
   sessionDelete,

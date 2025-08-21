@@ -89,9 +89,9 @@ const showLoadingError = (e) => {
   makeElement('h1', 'mousehunt-improved-error-title', 'Error loading MouseHunt Improved', errorElement);
 
   if (e && e.message && e.stack) {
-    const errorText = makeElement('textarea', 'mousehunt-improved-error-message');
-    errorText.value = `${e.message}\n\n${e.stack}`;
-    errorElement.append(errorText);
+    const errorText = makeElement('textarea', 'mousehunt-improved-error-message', `${e.message}\n\n${e.stack}`, errorElement);
+    errorText.setAttribute('readonly', 'readonly');
+    errorText.setAttribute('rows', '10');
   }
 
   makeElement('p', 'mousehunt-improved-error-message', 'There was an error loading MouseHunt Improved. Try refreshing the page. If the error persists, please add an issue to the <a href="https://github.com/MHCommunity/mousehunt-improved">GitHub repo</a>.', errorElement);

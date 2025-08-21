@@ -3,6 +3,7 @@ import {
   addStyles,
   dbGet,
   dbGetAll,
+  dbGetCount,
   dbSet,
   doEvent,
   getCurrentPage,
@@ -93,7 +94,7 @@ const makeEntriesMarkup = (entries) => {
  * @param {number} page  The page number to handle.
  * @param {Event}  event The event that triggered the function, if any.
  */
-const doPageStuff = (page, event = null) => {
+const doPageStuff = async (page, event = null) => {
   if (page <= 6 || page > totalPages) {
     return;
   }
@@ -101,6 +102,10 @@ const doPageStuff = (page, event = null) => {
   if (event) {
     event.preventDefault();
     event.stopPropagation();
+  }
+
+  if (! journalEntries.length) {
+    await getAllEntries();
   }
 
   const journalEntriesForPage = journalEntries.slice((page - 1) * 12, page * 12);
@@ -302,9 +307,9 @@ const doJournalHistory = async () => {
     return;
   }
 
-  journalEntries = journalEntries.length ? journalEntries : await getAllEntries();
+  journalEntries = journalEntries.length || (await dbGetCount('journal'));
 
-  totalPages = Math.ceil(journalEntries.length / perPage);
+  totalPages = Math.ceil(journalEntries / perPage);
   totalPages = totalPages <= defaultPages ? defaultPages : totalPages;
   if (totalPages < 6) {
     return;
@@ -324,7 +329,7 @@ const doJournalHistory = async () => {
 /**
  * Wrapper for doPageStuff to use with events.
  */
-const doJournalHistoryRequest = () => {
+const doJournalHistoryRequest = async () => {
   doJournalHistory();
 
   if (! pager) {
@@ -336,7 +341,7 @@ const doJournalHistoryRequest = () => {
   }
 
   if (pager.getCurrentPage() > 6) {
-    doPageStuff(pager.getCurrentPage());
+    await doPageStuff(pager.getCurrentPage());
   }
 };
 

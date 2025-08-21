@@ -53,7 +53,16 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
   }
 
   // Grab the local storage data.
-  const settings = JSON.parse(localStorage.getItem(identifier)) || {};
+  let settings = {};
+  try {
+    settings = JSON.parse(localStorage.getItem(identifier)) || {};
+  } catch (error) {
+    console.error('Error parsing settings:', error); // eslint-disable-line no-console
+    const backup = localStorage.getItem('mousehunt-improved-settings-backup');
+    if (backup) {
+      settings = JSON.parse(backup) || {};
+    }
+  }
 
   // If we didn't get a key passed in, we want all the settings.
   if (! key) {

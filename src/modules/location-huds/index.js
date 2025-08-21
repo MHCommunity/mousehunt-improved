@@ -215,7 +215,7 @@ const main = () => {
 const init = async () => {
   addStyles(styles, 'location-huds');
 
-  if (getSetting('experiments.location-hud-toggle')) {
+  if (getSetting('location-huds.location-hud-toggle')) {
     addToggleIcon();
   }
 

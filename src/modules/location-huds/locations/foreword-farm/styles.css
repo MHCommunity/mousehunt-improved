@@ -34,7 +34,11 @@ span.forewordFarmPlotView-plot-progress-catchText {
 }
 
 .forewordFarmView-harvestBin-quantity {
-  top: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
   padding: 2px;
   font-size: 20px;
 }
@@ -102,10 +106,6 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
   background-color: #ffbfbf;
 }
 
-.folkloreForestRegionView-fuel-quantity.quantity {
-  font-size: 13px;
-}
-
 .forewordFarmPlantDialogView-plant-yieldContainer table {
   margin-top: 5px;
 }
@@ -148,16 +148,20 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
 }
 
 .forewordFarmPlantDialogView-row {
+  overflow: hidden;
   border: 1px solid #897225;
-  border-radius: 0;
+  border-radius: 5px 5px 10px 10px;
 }
 
 .forewordFarmPlantDialogView-plant {
+  background-color: #d9faca;
   border: none;
 }
 
 .forewordFarmPlantDialogView-plant-header {
+  margin-left: -1px;
   border-bottom: 1px solid #897225;
+  border-left: 1px solid #897225;
   box-shadow: 0 0 6px 0 #134220 inset;
 }
 
@@ -252,10 +256,121 @@ a.forewordFarmPlotView-plot-queue-cancelButton {
   outline: 4px solid #4e6da8;
 }
 
-.forewordFarmView-pest-state.three_papyrus {
+.forewordFarmView-pest-label .forewordFarmView-pest-state {
   color: #90c54f;
 }
 
 .forewordFarmPlotView-plot-image-plant {
   filter: drop-shadow(0 0 6px #000) saturate(1.3);
+}
+
+.forewordFarmPlantDialogView-plant-header div:nth-child(3) {
+  display: flex;
+}
+
+.forewordFarmPlantDialogView-plantMultipleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 100;
+  color: #2c4e26;
+  text-align: center;
+  text-shadow: 1px 1px 1px #d1d1d1;
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/folklore_forest_region/big_button.png);
+  background-position: 0 0;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px #585a4b;
+}
+
+.forewordFarmPlantDialogView-plantMultipleButton:hover {
+  background-position-y: 33.3%;
+}
+
+.forewordFarmPlantDialogView-plantMultipleButton:active {
+  background-position-y: 66.6%;
+}
+
+.forewordFarmPlantDialogView-plantMultipleButton.disabled {
+  cursor: default;
+  background-position-y: 100%;
+}
+
+.forewordFarmPlantDialogView-plantMultipleButton.disabled:hover {
+  filter: brightness(1.1);
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip {
+  bottom: 37px;
+  display: block;
+  height: 100px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  animation: none;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-list {
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip::before,
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-item-spacer,
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .mousehuntTooltip-arrow {
+  display: none;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-item {
+  width: 155px;
+  height: 23px;
+  margin-bottom: 4px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-right: none;
+  border-radius: 6px;
+  box-shadow: 2px 3px 4px #666;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-name {
+  height: unset;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip a.forewordFarmPlotView-plot-queue-cancelButton {
+  top: 1px;
+  right: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+}
+
+.forewordFarmPlantDialogView-arrow {
+  top: 100px;
+}
+
+.forewordFarmPlantDialogView .forewordFarmPlotView-plot-progressContainer .mousehuntTooltip .forewordFarmPlotView-plot-queue-item:nth-child(3) {
+  background-color: #dcdcdc;
+}
+
+.forewordFarmPlantDialogView-plant-content {
+  align-items: center;
+}
+
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.ordinary_farm_plant .forewordFarmPlantDialogView-plant-content,
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.ordinary_magic_farm_plant .forewordFarmPlantDialogView-plant-content {
+  height: 95px;
+}
+
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.legendary_farm_plant .forewordFarmPlantDialogView-plant-content,
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.legendary_magic_farm_plant .forewordFarmPlantDialogView-plant-content {
+  height: 140px;
+}
+
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.twisted_legendary_farm_plant .forewordFarmPlantDialogView-plant-content,
+.forewordFarmPlantDialogView-row .forewordFarmPlantDialogView-plant.twisted_legendary_magic_farm_plant .forewordFarmPlantDialogView-plant-content {
+  height: 140px;
 }
