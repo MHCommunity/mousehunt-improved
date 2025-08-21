@@ -4,7 +4,7 @@
 
 .mh-improved-aura-view.campPage-trap-trapEffectiveness {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-evenly;
   max-width: 325px;
   padding: 10px 0 0;
