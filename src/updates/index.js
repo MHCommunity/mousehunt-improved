@@ -2,12 +2,13 @@ import {
   addBodyClass,
   debuglog,
   doEvent,
+  getData,
   getSetting,
+  markCachesAsExpired,
   onEvent,
   saveSetting,
   setGlobal,
-  showLoadingPopup,
-  updateCaches
+  showLoadingPopup
 } from '@utils';
 
 import * as imported from './versions/*.js'; // eslint-disable-line import/no-unresolved
@@ -67,9 +68,11 @@ const doVersionUpdates = async (updates) => {
     try {
       debuglog('update-migration', `Running update for ${update.version}`);
 
-      const didUpdate = await update.update();
-      if (! didUpdate) {
-        throw new Error(`Error updating to ${update.version}`);
+      try {
+        await update.update();
+      } catch (error) {
+        debuglog('update-migration', `Error running update for ${update.version}`, error);
+        throw new Error(`Error running update for ${update.version}: ${error.message}`);
       }
 
       const updatesCompleted = getSetting('mh-improved-updates-completed', []);
@@ -126,7 +129,11 @@ const update = async (previousVersion, newVersion) => {
     }
     saveSetting('mh-improved-version', newVersion);
 
-    await updateCaches();
+    await markCachesAsExpired();
+
+    // Get fresh data for items and mice.
+    await getData('items', true);
+    await getData('mice', true);
 
     if (isFreshInstall) {
       return;
@@ -149,7 +156,7 @@ const update = async (previousVersion, newVersion) => {
     throw error;
   }
 
-  console.log('Updated MouseHunt Improved to v', newVersion); // eslint-disable-line no-console
+  console.log(`Updated MouseHunt Improved to v${newVersion}`); // eslint-disable-line no-console
 };
 
 /**
