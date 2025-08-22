@@ -360,8 +360,8 @@ const cacheGet = async (key, defaultValue = false) => {
  */
 const cacheDelete = async (key) => {
   await Promise.all([
-    dbGet('cache', key),
-    dbGet('cache', `expiration-${key}`),
+    dbDelete('cache', key),
+    dbDelete('cache', `expiration-${key}`),
   ]);
 };
 
