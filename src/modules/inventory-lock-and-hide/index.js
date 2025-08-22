@@ -6,6 +6,7 @@ import {
   getData,
   getSetting,
   makeElement,
+  makeMhButton,
   onEvent,
   onNavigation,
   onRequest,
@@ -107,10 +108,6 @@ const addControlsToItems = async () => {
     const controls = makeElement('div', 'mhui-inventory-lock-and-hide-item-controls');
 
     if (shouldAddLocks(currentTab)) {
-      const lock = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-inventory-lock-and-hide-controls-lock']);
-      const lockText = makeElement('span', '', isLocked ? 'Unlock' : 'Lock');
-      lock.append(lockText);
-
       /**
        * When the lock button is clicked.
        *
@@ -120,6 +117,7 @@ const addControlsToItems = async () => {
         e.preventDefault();
         e.stopPropagation();
 
+        const lockText = lock.querySelector('span');
         if (isLocked) {
           itemSettings.locked = itemSettings.locked.filter((i) => i !== id);
           lockText.innerText = 'Lock';
@@ -135,20 +133,19 @@ const addControlsToItems = async () => {
         saveSettings();
       };
 
-      lock.addEventListener('click', clickLock);
+      const lock = makeMhButton({
+        text: isLocked ? 'Unlock' : 'Lock',
+        className: ['mhui-inventory-lock-and-hide-controls-lock'],
+        callback: clickLock,
+        appendTo: controls,
+      });
 
       controls.addEventListener('click', (e) => {
         if ((e.altKey && e.shiftKey) || e.metaKey) {
           clickLock(e);
         }
       });
-
-      controls.append(lock);
     }
-
-    const hide = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-inventory-lock-and-hide-controls-hide']);
-    const hideText = makeElement('span', '', isHidden ? 'Show' : 'Hide');
-    hide.append(hideText);
 
     /**
      * When the hide button is clicked.
@@ -159,6 +156,7 @@ const addControlsToItems = async () => {
       e.preventDefault();
       e.stopPropagation();
 
+      const hideText = hide.querySelector('span');
       if (isHidden) {
         itemSettings.hidden = itemSettings.hidden.filter((i) => i !== id);
         hideText.innerText = 'Hide';
@@ -174,7 +172,12 @@ const addControlsToItems = async () => {
       saveSettings();
     };
 
-    hide.addEventListener('click', clickHide);
+    const hide = makeMhButton({
+      text: isLocked ? 'Unhide' : 'Hide',
+      className: ['mhui-inventory-lock-and-hide-controls-hide'],
+      callback: clickHide,
+      appendTo: controls,
+    });
 
     controls.addEventListener('click', (e) => {
       e.preventDefault();
@@ -184,8 +187,6 @@ const addControlsToItems = async () => {
         clickHide(e);
       }
     });
-
-    controls.append(hide);
 
     item.append(controls);
   });

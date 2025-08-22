@@ -1,4 +1,4 @@
-import { getArEl, makeElement, mapper } from '@utils';
+import { getArEl, makeMhButton, mapper } from '@utils';
 
 /**
  * Add AR data to the map.
@@ -84,7 +84,7 @@ const toggleAr = async () => {
   // Disable until we're done.
   toggle.classList.add('disabled');
 
-  const text = toggle.querySelector('.toggle-ar-text');
+  const text = toggle.querySelector('span');
   if (! text) {
     return;
   }
@@ -148,7 +148,7 @@ const maybeClickArToggle = () => {
 
   const showing = mapView.classList.contains('mh-ui-ar-showing');
   const currentButtonState = toggle
-    .querySelector('.toggle-ar-text')
+    .querySelector('span')
     .innerText.replace('AR', '')
     .replace('DR', '')
     .trim();
@@ -197,8 +197,6 @@ const addArToggle = async (tab = 'goals') => {
     return;
   }
 
-  const toggle = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-ui-toggle-ar-button']);
-
   let arText = 'AR';
   let arTitle = 'Attraction Rates';
   if (mapper('mapData').is_scavenger_hunt) {
@@ -206,12 +204,14 @@ const addArToggle = async (tab = 'goals') => {
     arTitle = 'Drop Rates';
   }
 
-  makeElement('span', 'toggle-ar-text', `Show ${arText}`, toggle);
-  toggle.title = `Show ${arTitle}`;
-
-  toggle.addEventListener('click', toggleAr);
-
-  wrapper.append(toggle);
+  makeMhButton({
+    element: 'button',
+    text: `Show ${arText}`,
+    title: `Show ${arTitle}`,
+    className: 'mh-ui-toggle-ar-button',
+    callback: toggleAr,
+    appendTo: wrapper
+  });
 
   await toggleAr();
 

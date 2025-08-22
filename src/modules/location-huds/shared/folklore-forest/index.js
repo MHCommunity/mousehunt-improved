@@ -1,6 +1,6 @@
 import {
   getSetting,
-  makeElement,
+  makeMhButton,
   onDialogHide,
   onDialogShow,
   onRequest,
@@ -175,26 +175,27 @@ const addToggle = (upgradeBlock) => {
     .trim();
   let isBlockToggled = isHidden(blockId);
 
-  const toggle = makeElement('div', ['mhui-folklore-forest-upgrade-toggle', 'mousehuntActionButton', 'tiny', 'lightBlue']);
-  const toggleText = makeElement('span', 'upgrade-toggle-text', isBlockToggled ? 'Show' : 'Hide');
-  toggle.append(toggleText);
+  const action = upgradeBlock.querySelector('.folkloreForestRegionView-dialog-block-action');
+
+  const togglebutton = makeMhButton({
+    text: isBlockToggled ? 'Show' : 'Hide',
+    className: ['mhui-folklore-forest-upgrade-toggle', 'lightBlue'],
+    appendTo: action || upgradeBlock,
+  });
 
   toggle.addEventListener('click', () => {
     isBlockToggled = ! isBlockToggled;
     saveHidden(blockId, isBlockToggled);
-    toggleText.innerText = isBlockToggled ? 'Show' : 'Hide';
+
+    const toggleText = togglebutton.querySelector('span');
+    if (toggleText) {
+      toggleText.innerText = isBlockToggled ? 'Show' : 'Hide';
+    }
 
     hideOrShowBlock(blockId, isBlockToggled);
 
     upgradeBlock.classList.toggle('toggle-is-hidden', isBlockToggled);
   });
-
-  const action = upgradeBlock.querySelector('.folkloreForestRegionView-dialog-block-action');
-  if (action) {
-    action.append(toggle);
-  } else {
-    upgradeBlock.append(toggle);
-  }
 
   upgradeBlock.classList.add('toggle-added');
   upgradeBlock.classList.add(isBlockToggled ? 'toggle-is-hidden' : 'toggle-is-visible');

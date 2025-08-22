@@ -1,4 +1,4 @@
-import { createPopup, makeElement } from './elements';
+import { createPopup, makeElement, makeMhButton } from './elements';
 import { doEvent, onEvent } from './event-registry';
 import { getCurrentPage, getCurrentTab } from './page';
 import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
@@ -359,8 +359,10 @@ const makeSettingInput = ({ key, tab, defaultValue }) => {
   const settingRowInputText = makeElement('input', 'inputBox');
   settingRowInputText.value = getSettingDirect(key, defaultValue, tab);
 
-  const inputSaveButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'inputSaveButton']);
-  makeElement('span', '', 'Save', inputSaveButton);
+  const inputSaveButton = makeMhButton({
+    text: 'Save',
+    className: 'inputSaveButton',
+  });
 
   let timeout = null;
   inputSaveButton.addEventListener('click', (event) => {
@@ -412,8 +414,10 @@ const makeSettingTextArea = ({ key, tab, defaultValue }) => {
   const settingRowInputText = makeElement('textarea', 'inputBox');
   settingRowInputText.value = getSetting(key, defaultValue);
 
-  const inputSaveButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'inputSaveButton']);
-  makeElement('span', '', 'Save', inputSaveButton);
+  const inputSaveButton = makeMhButton({
+    text: 'Save',
+    className: 'inputSaveButton',
+  });
 
   // Event listener for when the setting is clicked.
   let timeout = null;

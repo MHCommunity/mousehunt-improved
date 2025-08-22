@@ -7,6 +7,7 @@ import {
   getRelicHunterLocation,
   getSetting,
   makeElement,
+  makeMhButton,
   onDialogShow,
   onEvent,
   onRequest,
@@ -307,14 +308,14 @@ const updateRelicHunterHint = async () => {
 
   makeElement('div', 'treasureMapInventoryView-relicHunter-hintSuffix', `... in ${environment.article}.`, hintWrapper);
 
-  const travelButton = makeElement('div', ['mousehuntActionButton', 'small']);
-  makeElement('span', '', 'Travel', travelButton);
-
-  travelButton.addEventListener('click', () => {
-    hg.utils.User.travel(environment.id);
+  makeMhButton({
+    text: 'Travel',
+    size: 'small',
+    callback: () => {
+      hg.utils.User.travel(environment.id);
+    },
+    appendTo: hintWrapper,
   });
-
-  hintWrapper.append(travelButton);
 
   return true;
 };

@@ -1,4 +1,4 @@
-import { makeElement, makeMathButtons } from '@utils';
+import { makeElement, makeMathButtons, makeMhButton } from '@utils';
 
 /**
  * Add quantity buttons to the shop.
@@ -25,9 +25,12 @@ export default async (block, input, maxQty) => {
     classNames: ['mh-improved-shop-qty', 'tiny', 'lightBlue'],
   });
 
-  const buyMaxButton = makeElement('a', ['mousehuntActionButton', 'lightBlue', 'tiny', 'mh-improved-shop-buy-max']);
-  const buyMaxButtonText = makeElement('span', '', 'Max');
-  buyMaxButton.append(buyMaxButtonText);
+  const buyMaxButton = makeMhButton({
+    text: 'Max',
+    size: 'tiny',
+    className: ['mh-improved-shop-buy-max', 'lightBlue'],
+    appendTo: buyControls,
+  });
 
   let hasMaxed = false;
   buyMaxButton.addEventListener('click', () => {
@@ -41,8 +44,6 @@ export default async (block, input, maxQty) => {
 
     hasMaxed = ! hasMaxed;
   });
-
-  buyControls.append(buyMaxButton);
 
   // Find the closest parent element with the class 'itemPurchaseView-action-form' and append the buyControls to it.
   const form = block.querySelector('.itemPurchaseView-action-form');

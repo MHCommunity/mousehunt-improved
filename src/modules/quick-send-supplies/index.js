@@ -3,6 +3,7 @@ import {
   getSetting,
   getTradableItems,
   makeElement,
+  makeMhButton,
   onDialogHide,
   onDialogShow,
   onEvent,
@@ -121,7 +122,10 @@ const makeSendSuppliesButton = async (btn, snuid) => {
   quickSendInput.setAttribute('placeholder', 'Quantity');
   quickSendInput.setAttribute('min', 0);
 
-  const quickSendButton = makeElement('div', ['quickSendButton', 'mousehuntActionButton', 'tiny'], '<span>Send</span>');
+  const quickSendButton = makeMhButton({
+    text: 'Send',
+    className: ['quickSendButton'],
+  });
 
   const sendIt = async () => {
     if (quickSendButton.classList.contains('disabled')) {

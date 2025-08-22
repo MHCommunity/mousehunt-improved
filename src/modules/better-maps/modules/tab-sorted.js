@@ -6,6 +6,7 @@ import {
   getLocationForMouse,
   getMapData,
   makeElement,
+  makeMhButton,
   mapData,
   mapModel,
   showTravelConfirmation,
@@ -573,28 +574,31 @@ const makeScavengerSortedPage = async (isNormal, target) => {
   // make buttons to toggle between drop rate sorting or by location
   const toggleWrapper = makeElement('div', 'scavenger-toggle-wrapper');
 
-  const toggleByLocation = makeElement('button', ['scavenger-toggle-button', 'mousehuntActionButton', 'tiny']);
-  makeElement('span', 'scavenger-toggle-text', 'Sort by Location', toggleByLocation);
-
-  toggleByLocation.addEventListener('click', async () => {
-    toggleByLocation.classList.add('disabled');
-    await toggleSortType();
-    toggleByLocation.classList.remove('disabled');
+  makeMhButton({
+    element: 'button',
+    text: 'Sort by Location',
+    className: 'scavenger-toggle-button',
+    callback: async (event) => {
+      const button = event.currentTarget;
+      button.classList.add('disabled');
+      await toggleSortType();
+      button.classList.remove('disabled');
+    },
+    appendTo: toggleWrapper
   });
 
-  toggleWrapper.append(toggleByLocation);
-
-  const toggleByDropRate = makeElement('button', ['scavenger-toggle-button', 'mousehuntActionButton', 'tiny']);
-  const text = isNormal ? 'Sort by Attraction Rate' : 'Sort by Drop Rate';
-  makeElement('span', 'scavenger-toggle-text', text, toggleByDropRate);
-
-  toggleByDropRate.addEventListener('click', async () => {
-    toggleByDropRate.classList.add('disabled');
-    await toggleSortDirection();
-    toggleByDropRate.classList.remove('disabled');
+  makeMhButton({
+    element: 'button',
+    text: isNormal ? 'Sort by Attraction Rate' : 'Sort by Drop Rate',
+    className: 'scavenger-toggle-button',
+    callback: async (event) => {
+      const button = event.currentTarget;
+      button.classList.add('disabled');
+      await toggleSortDirection();
+      button.classList.remove('disabled');
+    },
+    appendTo: toggleWrapper
   });
-
-  toggleWrapper.append(toggleByDropRate);
 
   const sortedContainer = document.querySelector('#sorted-mice-container');
   if (sortedContainer) {

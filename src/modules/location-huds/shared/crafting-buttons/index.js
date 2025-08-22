@@ -104,7 +104,6 @@ const addCraftingButtons = async ({ baits, selectors }) => {
           text: `Craft ${qty}`,
           className,
           title,
-          size: 'tiny',
           callback: () => purchaseBait(shopItem, qty, popup),
           appendTo: actions,
         });

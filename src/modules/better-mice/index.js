@@ -10,6 +10,7 @@ import {
   makeElement,
   makeFavoriteButton,
   makeLink,
+  makeMhButton,
   makeTooltip,
   onNavigation,
   onOverlayChange,
@@ -315,14 +316,16 @@ const updateMouseView = async () => {
       if (location && location.name) {
         const relicHunterBox = makeElement('div', ['mouseview-relicHunter', 'mouseview-relicHunter']);
         makeElement('div', 'hint', location.name, relicHunterBox);
-        const button = makeElement('div', ['mousehuntActionButton', 'small']);
-        makeElement('span', '', 'Travel', button);
-        button.addEventListener('click', () => {
-          app.pages.TravelPage.travel(location.id);
-          setPage('Camp');
-        });
 
-        relicHunterBox.append(button);
+        makeMhButton({
+          text: 'Travel',
+          size: 'small',
+          callback: () => {
+            hg.utils.User.travel(location.id);
+            setPage('Camp');
+          },
+          appendTo: relicHunterBox,
+        });
 
         movedContainer.append(relicHunterBox);
       }

@@ -5,6 +5,7 @@ import {
   getData,
   makeElement,
   makeMathButtons,
+  makeMhButton,
   onDialogShow,
   onEvent,
   onRequest
@@ -284,10 +285,13 @@ const adventCalendarPopup = () => {
     return;
   }
 
-  const toggleBtn = makeElement('button', ['mousehuntActionButton', 'tiny', 'toggle-advent-calendar-spoilers']);
-  makeElement('span', '', 'View unblurred calendar', toggleBtn);
-  toggleBtn.setAttribute('data-enabled', 'false');
+  const toggleBtn = makeMhButton({
+    text: 'View unblurred calendar',
+    className: ['toggle-advent-calendar-spoilers'],
+    appendTo: suffix,
+  });
 
+  toggleBtn.setAttribute('data-enabled', 'false');
   toggleBtn.addEventListener('click', () => {
     const popup = document.querySelector('#overlayPopup');
     if (! popup) {
@@ -305,8 +309,6 @@ const adventCalendarPopup = () => {
       toggleBtn.querySelector('span').innerText = 'Hide unblurred calendar';
     }
   });
-
-  suffix.append(toggleBtn);
 };
 
 /**

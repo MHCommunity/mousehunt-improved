@@ -1,7 +1,7 @@
 import {
   getCurrentLocation,
   getData,
-  makeElement,
+  makeMhButton,
   onNavigation,
   travelTo
 } from '@utils';
@@ -22,15 +22,17 @@ const renderButton = (location) => {
     existingButton.remove();
   }
 
-  const button = makeElement('div', ['mousehuntActionButton', 'tiny', 'mh-m400-travel', `mh-m400-travel-${location}`]);
-  button.id = 'mh-improved-m400-travel';
+  const button = makeMhButton({
+    id: 'mh-improved-m400-travel',
+    text: 'Travel to next step',
+    className: ['mh-m400-travel', `mh-m400-travel-${location}`],
+  });
+
+  button.setAttribute('data-location', location);
 
   if (location === getCurrentLocation()) {
     button.classList.add('disabled');
   }
-
-  makeElement('span', 'mousehuntActionButton-text', 'Travel to next step', button);
-  button.setAttribute('data-location', location);
 
   button.addEventListener('click', (e) => {
     let clickedLocation = e.target.getAttribute('data-location');

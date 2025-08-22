@@ -9,6 +9,7 @@ import {
   getData,
   isUserTitleAtLeast,
   makeElement,
+  makeMhButton,
   onEvent,
   onRequest,
   sessionSet,
@@ -310,14 +311,12 @@ const makeDashboardTab = () => {
   // Refresh button.
   const refreshWrapper = makeElement('div', ['refreshWrapper', 'hidden']);
 
-  const refreshButton = makeElement('button', ['mousehuntActionButton', 'dashboardRefresh']);
-  makeElement('span', '', 'Refresh', refreshButton);
-
-  refreshButton.addEventListener('click', () => {
-    doLocationRefresh();
+  makeMhButton({
+    text: 'Refresh',
+    className: ['dashboardRefresh'],
+    callback: doLocationRefresh,
+    appendTo: refreshWrapper,
   });
-
-  refreshWrapper.append(refreshButton);
 
   dashboardWrapper.append(refreshWrapper);
   dropdownContent.append(dashboardWrapper);

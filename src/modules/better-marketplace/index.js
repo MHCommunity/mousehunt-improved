@@ -471,6 +471,7 @@ const addRelistButtonToCancelled = async () => {
     makeMhButton({
       text: 'Relist',
       className: 'mhui-marketplace-relist',
+      size: 'small',
       callback: () => {
         hg.utils.Marketplace.createListing(
           listingData.item_id,

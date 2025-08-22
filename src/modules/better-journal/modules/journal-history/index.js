@@ -264,7 +264,6 @@ const addPageSelector = () => {
 
     const pageSubmit = makeMhButton({
       text: 'Go',
-      size: 'tiny',
       className: 'page-submit',
       callback: showPage,
       appendTo: pageSelector,

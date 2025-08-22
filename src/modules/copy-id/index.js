@@ -1,4 +1,4 @@
-import { addStyles, getSetting, makeElement } from '@utils';
+import { addStyles, getSetting, makeElement, makeMhButton } from '@utils';
 
 import settings from './settings';
 
@@ -13,14 +13,13 @@ const main = () => {
     return;
   }
 
-  const copyIdButton = makeElement('div', ['mh-copy-id-button', 'mousehuntActionButton', 'tiny']);
-
   const hidebutton = getSetting('copy-id-button.hide-button');
-  if (hidebutton) {
-    copyIdButton.classList.add('hidden');
-  }
 
-  makeElement('span', 'mh-copy-id-button-text', 'Copy ID', copyIdButton);
+  const copyIdButton = makeMhButton({
+    text: 'Copy ID',
+    className: ['mh-copy-id-button', hidebutton ? 'hidden' : ''],
+  });
+
   profilePic.parentNode.insertBefore(copyIdButton, profilePic.nextSibling);
 
   const successMessage = makeElement('div', 'mh-copy-id-success-message', 'Copied!');
