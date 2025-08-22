@@ -70,20 +70,26 @@ const makeButton = (text, href, tiny = true, extraClasses = [], encodeAsSpace = 
 /**
  * Create a MouseHunt button.
  *
- * @param {Object}      opts             The options for the button.
- * @param {string}      opts.text        The text for the button.
- * @param {string}      [opts.size]      The size of the button. 'small', 'tiny', 'large', or ''.
- * @param {Array}       [opts.className] The class name(s) to add to the button.
- * @param {Function}    [opts.callback]  The callback for the button.
- * @param {HTMLElement} [opts.appendTo]  The element to append the button to.
+ * @param {Object}       opts             The options for the button.
+ * @param {string}       opts.text        The text for the button.
+ * @param {string}       [opts.size]      The size of the button. 'small', 'tiny', 'large', or ''. Default is 'tiny'.
+ * @param {string}       [opts.element]   The element to create. Default is 'a'.
+ * @param {string}       [opts.id]        The id to use for the button.
+ * @param {Array|string} [opts.className] The class name(s) to add to the button.
+ * @param {string}       [opts.title]     The title for the button.
+ * @param {Function}     [opts.callback]  The callback for the button.
+ * @param {HTMLElement}  [opts.appendTo]  The element to append the button to.
  *
  * @return {HTMLElement} The created button.
  */
 const makeMhButton = (opts) => {
   const {
     text = '',
-    size = 'small',
+    size = 'tiny',
+    element = 'a',
+    id = null,
     className = [],
+    title = null,
     callback = null,
     appendTo = null,
   } = opts;
@@ -100,7 +106,16 @@ const makeMhButton = (opts) => {
     classes.push(...className.split(' '));
   }
 
-  const button = makeElement('a', classes);
+  const button = makeElement(element, classes);
+
+  if (id) {
+    button.id = id;
+  }
+
+  if (title) {
+    button.title = title;
+  }
+
   makeElement('span', '', text, button);
 
   if (callback && callback instanceof Function) {
