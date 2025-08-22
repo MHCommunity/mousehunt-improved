@@ -119,8 +119,8 @@ const makeMhButton = (opts) => {
   makeElement('span', '', text, button);
 
   if (callback && callback instanceof Function) {
-    button.addEventListener('click', () => {
-      callback(button);
+    button.addEventListener('click', (event) => {
+      callback(event);
     });
   }
 

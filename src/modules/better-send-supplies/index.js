@@ -3,6 +3,7 @@ import {
   getSetting,
   makeElement,
   makeMathButtons,
+  makeMhButton,
   onNavigation
 } from '@utils';
 
@@ -153,22 +154,23 @@ const addSortButtons = () => {
   const sortWrapper = makeElement('div', 'mhui-supply-sort-wrapper');
   makeElement('span', 'mhui-supply-sort-label', 'Sort by:', sortWrapper);
 
-  const alphaSortButton = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-alphabetic']);
-  makeElement('span', 'mousehuntActionButton-text', 'Name', alphaSortButton);
-
-  alphaSortButton.addEventListener('click', () => {
-    resortItems(currentSort === 'alpha' ? 'alpha-reverse' : 'alpha');
+  makeMhButton({
+    text: 'Name',
+    className: ['mhui-supply-sort-alphabetic', 'lightBlue'],
+    callback: () => {
+      resortItems(currentSort === 'alpha' ? 'alpha-reverse' : 'alpha');
+    },
+    appendTo: sortWrapper,
   });
 
-  sortWrapper.append(alphaSortButton);
-
-  const sortQtyButton = makeElement('div', ['mousehuntActionButton', 'tiny', 'mhui-supply-sort-quantity']);
-  makeElement('span', 'mousehuntActionButton-text', 'Quantity', sortQtyButton);
-  sortQtyButton.addEventListener('click', () => {
-    resortItems(currentSort === 'qty' ? 'qty-reverse' : 'qty');
+  makeMhButton({
+    text: 'Quantity',
+    className: ['mhui-supply-sort-quantity', 'lightBlue'],
+    callback: () => {
+      resortItems(currentSort === 'qty' ? 'qty-reverse' : 'qty');
+    },
+    appendTo: sortWrapper,
   });
-
-  sortWrapper.append(sortQtyButton);
 
   // append as the 2nd child so it's after the title
   container.insertBefore(sortWrapper, container.childNodes[1]);
@@ -226,20 +228,24 @@ const addQuickQuantityButtons = () => {
     classNames: ['mhui-supply-quick-quantity', 'small'],
   });
 
-  const max = makeElement('button', ['mousehuntActionButton', 'lightBlue', 'small', 'mhui-supply-quick-quantity', 'mhui-supply-quick-quantity-max']);
-  const maxText = makeElement('span', '', 'Max');
+  makeMhButton({
+    text: 'Max',
+    size: 'small',
+    className: ['mhui-supply-quick-quantity'],
+    callback: (event) => {
+      const button = event.currentTarget;
+      const maxText = button.querySelector('span');
 
-  max.addEventListener('click', () => {
-    if (maxText.textContent === 'Reset') {
-      input.value = 0;
-      maxText.textContent = 'Max';
-    } else {
-      input.value = maxQty;
-      maxText.textContent = 'Reset';
-    }
+      if (input.value === String(maxQty)) {
+        input.value = 0;
+        maxText.textContent = 'Max';
+      } else {
+        input.value = maxQty;
+        maxText.textContent = 'Reset';
+      }
+    },
+    appendTo: wrapper,
   });
-
-  max.append(maxText);
 
   wrapper.append(max);
 

@@ -6,6 +6,7 @@ import {
   getData,
   getLastMaptain,
   makeElement,
+  makeMhButton,
   onDialogShow,
   onRequest
 } from '@utils';
@@ -63,14 +64,16 @@ const addFlrtButtonToConvertible = async (response) => {
   }
 
   // Make the button and add it to the dialog.
-  const flrtBtn = makeElement('button', ['mousehuntActionButton', 'small', 'button']);
-  makeElement('span', [], 'Return to Maptain', flrtBtn);
-
-  flrtBtn.addEventListener('click', () => {
-    flrtPopup(items);
+  makeMhButton({
+    element: 'button',
+    text: 'Return to Maptain',
+    size: 'small',
+    className: ['button'],
+    callback: () => {
+      flrtPopup(items);
+    },
+    prependTo: buttons,
   });
-
-  buttons.prepend(flrtBtn);
 };
 
 /**

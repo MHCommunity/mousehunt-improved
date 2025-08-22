@@ -2,6 +2,7 @@ import {
   addStyles,
   getSetting,
   makeElement,
+  makeMhButton,
   onDeactivation,
   onDialogShow,
   onRender,
@@ -113,15 +114,15 @@ const claimGifts = async (send = false, retries = 0) => {
  * @param {boolean}     isTiny          Whether the buttons are tiny or not.
  */
 const makeAcceptButton = (buttonContainer, isTiny = false) => {
-  const acceptButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-accept', 'mousehuntActionButton', 'small']);
-  makeElement('span', 'mousehuntActionButton-text', 'Accept All', acceptButton);
-
-  if (isTiny) {
-    acceptButton.classList.add('tiny');
-  }
+  const acceptButton = makeMhButton({
+    element: 'button',
+    text: 'Accept All',
+    size: isTiny ? 'tiny' : 'small',
+    className: ['mh-gift-button', 'mh-gift-buttons-accept'],
+    appendTo: buttonContainer,
+  });
 
   const acceptLimit = document.querySelector('.giftSelectorView-numClaimActionsRemaining');
-
   if (acceptLimit && acceptLimit.innerText === '0') {
     acceptButton.classList.add('disabled');
   } else {
@@ -129,8 +130,6 @@ const makeAcceptButton = (buttonContainer, isTiny = false) => {
       claimGifts();
     });
   }
-
-  buttonContainer.append(acceptButton);
 };
 
 /**
@@ -140,14 +139,14 @@ const makeAcceptButton = (buttonContainer, isTiny = false) => {
  * @param {boolean}     isTiny          Whether the buttons are tiny or not.
  */
 const makeReturnButton = (buttonContainer, isTiny = false) => {
-  // Return button.
   const returnWrapper = makeElement('div', 'mh-gift-buttons-return-wrapper');
-  const returnButton = makeElement('button', ['mh-gift-button', 'mh-gift-buttons-return', 'mousehuntActionButton', 'small']);
-  makeElement('span', 'mousehuntActionButton-text', 'Accept & Return All', returnButton);
-
-  if (isTiny) {
-    returnButton.classList.add('tiny');
-  }
+  const returnButton = makeMhButton({
+    element: 'button',
+    text: 'Accept & Return All',
+    size: isTiny ? 'tiny' : 'small',
+    className: ['mh-gift-button', 'mh-gift-buttons-return'],
+    appendTo: returnWrapper,
+  });
 
   const returnLimit = document.querySelector('.giftSelectorView-numSendActionsRemaining');
   if (returnLimit && returnLimit.innerText === '0') {
@@ -158,7 +157,6 @@ const makeReturnButton = (buttonContainer, isTiny = false) => {
     });
   }
 
-  returnWrapper.append(returnButton);
   buttonContainer.append(returnWrapper);
 };
 
@@ -328,20 +326,24 @@ const addSendButton = (className, text, selector, buttonContainer) => {
     existing.remove();
   }
 
-  const sendButton = makeElement('button', ['mousehuntActionButton', 'tiny', 'mh-gift-buttons', `mh-gift-buttons-send-${className}`]);
-  makeElement('span', 'mousehuntActionButton-text', text, sendButton);
+  const sendButton = makeMhButton({
+    element: 'button',
+    text,
+    className: ['mh-gift-buttons', `mh-gift-buttons-send-${className}`],
+    appendTo: buttonContainer,
+  });
 
   if (getLimit() < 1) {
     sendButton.classList.add('disabled');
   }
 
-  sendButton.addEventListener('click', () => {
+  sendButton.addEventListener('click', (event) => {
     const friends = document.querySelectorAll(selector);
     if (! friends.length) {
       return;
     }
 
-    if (sendButton.classList.contains('disabled')) {
+    if (event.classList.contains('disabled')) {
       const selectedFriends = document.querySelectorAll('.giftSelectorView-friend.selected');
       selectedFriends.forEach((friend) => {
         friend.click();
@@ -361,8 +363,6 @@ const addSendButton = (className, text, selector, buttonContainer) => {
       pickFriends(friends);
     }
   });
-
-  buttonContainer.append(sendButton);
 };
 
 /**

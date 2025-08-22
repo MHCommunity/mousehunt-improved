@@ -6,6 +6,7 @@ import {
   makeElement,
   makeLink,
   makeMathButtons,
+  makeMhButton,
   makeTooltip,
   onNavigation,
   onOverlayChange,
@@ -118,12 +119,15 @@ const addQuantityButtons = (itemView) => {
     classNames: ['mh-improved-item-qty', 'tiny', 'lightBlue'],
   });
 
-  const openMaxButton = makeElement('a', ['mousehuntActionButton', 'lightBlue', 'tiny', 'mh-improved-shop-buy-max']);
-  const openMaxButtonText = makeElement('span', '', 'Max');
-  openMaxButton.append(openMaxButtonText);
+  const openMaxButton = makeMhButton({
+    text: 'Max',
+    className: ['mh-improved-shop-buy-max', 'lightBlue'],
+    appendTo: openControls,
+  });
 
   let hasMaxed = false;
   openMaxButton.addEventListener('click', () => {
+    const openMaxButtonText = openMaxButton.querySelector('span');
     if (hasMaxed) {
       input.value = 0;
       openMaxButtonText.innerText = 'Max';
@@ -134,8 +138,6 @@ const addQuantityButtons = (itemView) => {
 
     hasMaxed = ! hasMaxed;
   });
-
-  openControls.append(openMaxButton);
 
   quantityForm.append(openControls);
 };

@@ -7,6 +7,7 @@ import {
   getData,
   getSetting,
   makeElement,
+  makeMhButton,
   onEvent,
   onNavigation,
   onOverlayChange,
@@ -393,8 +394,12 @@ const addTrapSorting = async () => {
       continue;
     }
 
-    const sortButton = makeElement('button', ['mh-inventory-sort-button', 'mousehuntActionButton', 'tiny', type.type]);
-    makeElement('span', 'mh-inventory-sort-button-text', type.name, sortButton);
+    const sortButton = makeMhButton({
+      text: type.name,
+      className: ['mh-inventory-sort-button', 'lightBlue'],
+      appendTo: sortRow,
+    });
+
     sortButton.setAttribute('data-sort-type', type.type);
     sortButton.setAttribute('data-sort-order', 'desc');
 
@@ -483,8 +488,6 @@ const addTrapSorting = async () => {
         }
       });
     });
-
-    sortRow.append(sortButton);
   }
 
   header.append(sortRow);

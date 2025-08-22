@@ -1,4 +1,4 @@
-import { addStyles, makeElement, onEvent, onRequest } from '@utils';
+import { addStyles, makeMhButton, onEvent, onRequest } from '@utils';
 
 import styles from './styles.css';
 
@@ -12,38 +12,39 @@ const addRandomSkinButton = () => {
     return;
   }
 
-  const randomButton = makeElement('button', ['mousehuntActionButton', 'lightBlue', 'tiny', 'random-skin-button']);
-  makeElement('span', '', 'Random', randomButton);
-  randomButton.onclick = () => {
-    const skins = document.querySelectorAll('.trapSelectorView__blueprint--active .campPage-trap-itemBrowser-item.skin.canArm a.campPage-trap-itemBrowser-item-armButton');
-    if (skins.length === 0) {
-      return;
-    }
+  makeMhButton({
+    text: 'Random',
+    className: ['random-skin-button', 'lightBlue'],
+    callback: () => {
+      const skins = document.querySelectorAll('.trapSelectorView__blueprint--active .campPage-trap-itemBrowser-item.skin.canArm a.campPage-trap-itemBrowser-item-armButton');
+      if (skins.length === 0) {
+        return;
+      }
 
-    const randomIndex = Math.floor(Math.random() * skins.length);
-    const skin = skins[randomIndex];
-    if (! skin) {
-      return;
-    }
+      const randomIndex = Math.floor(Math.random() * skins.length);
+      const skin = skins[randomIndex];
+      if (! skin) {
+        return;
+      }
 
-    randomButton.classList.add('disabled');
-    randomButton.disabled = 'disabled';
+      randomButton.classList.add('disabled');
+      randomButton.disabled = 'disabled';
 
-    skin.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      container: 'nearest'
-    });
+      skin.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        container: 'nearest'
+      });
 
-    skin.click();
+      skin.click();
 
-    setTimeout(() => {
-      randomButton.classList.remove('disabled');
-      randomButton.disabled = '';
-    }, 1000);
-  };
-
-  header.append(randomButton);
+      setTimeout(() => {
+        randomButton.classList.remove('disabled');
+        randomButton.disabled = '';
+      }, 1000);
+    },
+    appendTo: header,
+  });
 };
 
 /**

@@ -214,28 +214,35 @@ const doLocationRefresh = async () => {
       continue;
     }
 
-    const travelButton = makeElement('button', ['mousehuntActionButton', 'small', 'travel-button']);
-    makeElement('span', '', 'Travel', travelButton);
-
-    travelButton.addEventListener('click', async () => {
-      sessionSet('doing-location-refresh', true);
-
-      progressItem.classList.add('traveling');
-      travelButton.classList.add('busy');
-
-      await waitForTravel(location);
-      await sleep(1000);
-      await cacheLocationData();
-
-      travelButton.classList.remove('busy');
-      progressItem.classList.remove('traveling');
-      progressItem.classList.add('done');
-
-      sessionSet('doing-location-refresh', false);
-    });
-
     const item = progressItem.querySelector('.locationName');
-    item.append(travelButton);
+    if (! item) {
+      return;
+    }
+
+    makeMhButton({
+      text: 'Travel',
+      size: 'small',
+      className: ['travel-button', 'lightBlue'],
+      callback: async (event) => {
+        const button = event.currentTarget;
+
+        sessionSet('doing-location-refresh', true);
+
+        progressItem.classList.add('traveling');
+        button.classList.add('busy');
+
+        await waitForTravel(location);
+        await sleep(1000);
+        await cacheLocationData();
+
+        button.classList.remove('busy');
+        progressItem.classList.remove('traveling');
+        progressItem.classList.add('done');
+
+        sessionSet('doing-location-refresh', false);
+      },
+      appendTo: item,
+    });
   }
 
   doEvent('travel_complete');

@@ -6,6 +6,7 @@ import {
   isAppleOS,
   makeElement,
   makeLink,
+  makeMhButton,
   sessionGet,
   sessionSet,
   showErrorMessage
@@ -386,9 +387,6 @@ const addQuickInvite = async (mapData) => {
   inviteInput.placeholder = 'Hunter ID';
   inviteWrapper.append(inviteInput);
 
-  const inviteButton = makeElement('div', ['mousehuntActionButton', 'tiny', 'mh-ui-quick-invite']);
-  makeElement('span', '', 'Invite', inviteButton);
-
   const indicators = makeElement('div', 'mh-ui-quick-invite-indicators');
   const spinner = makeElement('div', ['mh-ui-quick-invite-indicator', 'mh-ui-quick-invite-spinner', 'hidden']);
   const success = makeElement('div', ['mh-ui-quick-invite-indicator', 'mh-ui-quick-invite-success', 'hidden']);
@@ -506,14 +504,18 @@ const addQuickInvite = async (mapData) => {
     debuglog('better-maps', '.');
   };
 
-  inviteButton.addEventListener('click', inviteAction);
+  const inviteButton = makeMhButton({
+    text: 'Invite',
+    className: ['mh-ui-quick-invite', 'lightBlue'],
+    callback: inviteAction,
+    appendTo: inviteWrapper,
+  });
+
   inviteInput.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') {
       inviteAction();
     }
   });
-
-  inviteWrapper.append(inviteButton);
 
   // append as first child
   sidebar.insertBefore(inviteWrapper, sidebar.firstChild);
@@ -662,13 +664,16 @@ const addMapSolverLinks = async (mapData) => {
   const wrapper = makeElement('div', 'mh-ui-map-solver-links');
 
   const createSolverButton = (text, className, onClick) => {
-    const button = makeElement('button', [className, 'mousehuntActionButton', 'tiny']);
-    makeElement('span', `${className}-text`, text, button);
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      onClick();
+    return makeMhButton({
+      element: 'button',
+      text,
+      className: [className, 'lightBlue'],
+      callback: (e) => {
+        e.preventDefault();
+        onClick(e);
+      },
+      appendTo: wrapper,
     });
-    return button;
   };
 
   const mhctButton = createSolverButton('MHCT Map Helper', 'mh-ui-map-solver-mhct-link', () => {
