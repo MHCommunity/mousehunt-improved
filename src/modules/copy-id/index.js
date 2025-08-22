@@ -50,7 +50,7 @@ const main = () => {
     profilePic.setAttribute('onclick', '');
     profilePic.addEventListener('click', clickAction);
   } else {
-    // When hovering over the profile pic, show the copy button and hide it if they're not hovering the profile pic or teh button.
+    // When hovering over the profile pic, show the copy button and hide it if they're not hovering the profile pic or the button.
     profilePic.addEventListener('mouseenter', () => {
       copyIdButton.style.display = 'block';
     });
