@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column wrap;
   gap: 10px;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 5px;
   margin: 5px 0;
   cursor: default;
