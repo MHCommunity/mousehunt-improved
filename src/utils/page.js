@@ -123,12 +123,12 @@ const getCurrentDialog = () => {
 /**
  * Check if the page matches the target page, optionally checking the tab and subtab.
  *
- * @param {string} targetPage         The target page.
- * @param {string} targetTab          The target tab.
- * @param {string} targetSubtab       The target subtab.
- * @param {string} forceCurrentPage   The current page.
- * @param {string} forceCurrentTab    The current tab.
- * @param {string} forceCurrentSubtab The current subtab.
+ * @param {string} [targetPage]         The target page.
+ * @param {string} [targetTab]          The target tab.
+ * @param {string} [targetSubtab]       The target subtab.
+ * @param {string} [forceCurrentPage]   The current page.
+ * @param {string} [forceCurrentTab]    The current tab.
+ * @param {string} [forceCurrentSubtab] The current subtab.
  *
  * @return {boolean} True if the page matches, false otherwise.
  */

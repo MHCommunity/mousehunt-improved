@@ -3,12 +3,12 @@ import { makeElement } from './elements';
 /**
  * Add an item to the top 'Hunters Online' menu.
  *
- * @param {Object}   options          The options for the menu item.
- * @param {string}   options.label    The label for the menu item.
- * @param {string}   options.href     The href for the menu item.
- * @param {string}   options.class    The class for the menu item.
- * @param {Function} options.callback The callback for the menu item.
- * @param {boolean}  options.external Whether the link is external or not.
+ * @param {Object}   options           The options for the menu item.
+ * @param {string}   [options.label]   The label for the menu item.
+ * @param {string}   [options.href]    The href for the menu item.
+ * @param {string}   [options.class]   The class for the menu item.
+ * @param {Function} [options.callback] The callback for the menu item.
+ * @param {boolean}  [options.external] Whether the link is external or not.
  */
 const addItemToGameInfoBar = (options) => {
   const settings = Object.assign({}, {
@@ -78,14 +78,14 @@ const getCleanSubmenuLabel = (label) => {
  * moon, music, page, paint, phone, puzzle, return, right, sun, tablet, tag,
  * target, ticket, tiles4, tiles, todo, trash, tv, up.
  *
- * @param {Object}   options          The options for the submenu item.
- * @param {string}   options.menu     The menu to add the submenu item to.
- * @param {string}   options.label    The label for the submenu item.
- * @param {string}   options.icon     The icon for the submenu item.
- * @param {string}   options.href     The href for the submenu item.
- * @param {string}   options.class    The class for the submenu item.
- * @param {Function} options.callback The callback for the submenu item.
- * @param {boolean}  options.external Whether the submenu item is external or not.
+ * @param {Object}   options           The options for the submenu item.
+ * @param {string}   [options.menu]    The menu to add the submenu item to.
+ * @param {string}   [options.label]   The label for the submenu item.
+ * @param {string}   [options.icon]    The icon for the submenu item.
+ * @param {string}   [options.href]    The href for the submenu item.
+ * @param {string}   [options.class]   The class for the submenu item.
+ * @param {Function} [options.callback] The callback for the submenu item.
+ * @param {boolean}  [options.external] Whether the submenu item is external or not.
  */
 const addSubmenuItem = (options) => {
   // Default to sensible values.
@@ -189,8 +189,8 @@ const removeSubmenuItem = (id) => {
 /**
  * Add a divider to a submenu.
  *
- * @param {string} menu      The menu to add the divider to.
- * @param {string} className The class for the divider.
+ * @param {string} menu           The menu to add the divider to.
+ * @param {string} [className]    The class for the divider.
  */
 const addSubmenuDivider = (menu, className = '') => {
   addSubmenuItem({
@@ -206,14 +206,14 @@ const addSubmenuDivider = (menu, className = '') => {
 /**
  * Add the icon to the menu.
  *
- * @param {Object}   opts           The options for the menu item.
- * @param {string}   opts.id        The id for the menu item.
- * @param {string}   opts.classname The class for the menu item.
- * @param {string}   opts.href      The href for the menu item.
- * @param {string}   opts.title     The title for the menu item.
- * @param {string}   opts.text      The text for the menu item.
- * @param {Function} opts.action    The action for the menu item.
- * @param {string}   opts.position  The position for the menu item.
+ * @param {Object}   opts            The options for the menu item.
+ * @param {string}   [opts.id]       The id for the menu item.
+ * @param {string}   [opts.classname] The class for the menu item.
+ * @param {string}   [opts.href]     The href for the menu item.
+ * @param {string}   [opts.title]    The title for the menu item.
+ * @param {string}   [opts.text]     The text for the menu item.
+ * @param {Function} [opts.action]   The action for the menu item.
+ * @param {string}   [opts.position] The position for the menu item.
  */
 const addIconToMenu = (opts) => {
   const menu = document.querySelector('.mousehuntHeaderView-gameTabs .mousehuntHeaderView-dropdownContainer');

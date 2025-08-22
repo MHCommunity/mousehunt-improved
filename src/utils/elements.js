@@ -4,10 +4,10 @@ import { getUserSetupDetails } from './user';
 /**
  * Creates an element with the given tag, class name, text, and appends it to the given element.
  *
- * @param {string}      tag      The tag of the element to create.
- * @param {string}      classes  The classes of the element to create.
- * @param {string}      text     The text of the element to create.
- * @param {HTMLElement} appendTo The element to append the created element to.
+ * @param {string}      tag        The tag of the element to create.
+ * @param {string}      [classes]  The classes of the element to create.
+ * @param {string}      [text]     The text of the element to create.
+ * @param {HTMLElement} [appendTo] The element to append the created element to.
  *
  * @example
  * ```js
@@ -48,33 +48,34 @@ const makeElement = (tag, classes = '', text = '', appendTo = null) => {
 /**
  * Return an anchor element with the given text and href.
  *
- * @param {string}  text          Text to use for link.
- * @param {string}  href          URL to link to.
- * @param {boolean} tiny          Use the tiny button style.
- * @param {Array}   extraClasses  Extra classes to add to the link.
- * @param {boolean} encodeAsSpace Encode spaces as %20 instead of _.
+ * @param {string}  text            Text to use for link.
+ * @param {string}  href            URL to link to.
+ * @param {boolean} [tiny]          Use the tiny button style.
+ * @param {Array}   [extraClasses]  Extra classes to add to the link.
+ * @param {boolean} [encodeAsSpace] Encode spaces as %20.
  *
  * @return {string} HTML for link.
  */
 const makeButton = (text, href, tiny = true, extraClasses = [], encodeAsSpace = false) => {
-  href = href.replaceAll(/\s/g, '_');
-
+  href = href.replaceAll(/\s/g, '_').replaceAll('$', '_');
   href = encodeAsSpace ? href.replaceAll('_', '%20') : href.replaceAll(/\s/g, '_');
 
-  href = href.replaceAll('$', '_');
-
-  return `<a href="${href}" class="mousehuntActionButton ${tiny ? 'tiny' : ''} ${extraClasses.join(' ')}"><span>${text}</span></a>`;
+  return makeMhButton({
+    text,
+    size: tiny ? 'tiny' : 'small',
+    className: extraClasses,
+  });
 };
 
 /**
  * Create a MouseHunt button.
  *
- * @param {Object}      opts           The options for the button.
- * @param {string}      opts.text      The text for the button.
- * @param {string}      opts.size      The size of the button.
- * @param {string}      opts.className The class name for the button.
- * @param {Function}    opts.callback  The callback for the button.
- * @param {HTMLElement} opts.appendTo  The element to append the button to.
+ * @param {Object}      opts             The options for the button.
+ * @param {string}      opts.text        The text for the button.
+ * @param {string}      [opts.size]      The size of the button. 'small', 'tiny', 'large', or ''.
+ * @param {Array}       [opts.className] The class name(s) to add to the button.
+ * @param {Function}    [opts.callback]  The callback for the button.
+ * @param {HTMLElement} [opts.appendTo]  The element to append the button to.
  *
  * @return {HTMLElement} The created button.
  */
@@ -106,9 +107,9 @@ const makeMhButton = (opts) => {
 /**
  * Return an anchor element with the given text and href.
  *
- * @param {string}  text          Text to use for link.
- * @param {string}  href          URL to link to.
- * @param {boolean} encodeAsSpace Encode spaces as %20.
+ * @param {string}  text            Text to use for link.
+ * @param {string}  href            URL to link to.
+ * @param {boolean} [encodeAsSpace] Encode spaces as %20.
  *
  * @return {string} HTML for link.
  */
@@ -123,13 +124,13 @@ const makeLink = (text, href, encodeAsSpace = false) => {
 /**
  * Creates a favorite button that can toggle.
  *
- * @param {Object} options              The options for the button.
- * @param {string} options.selector     The selector for the button.
- * @param {string} options.size         Whether or not to use the small version of the button.
- * @param {string} options.active       Whether or not the button should be active by default.
- * @param {string} options.onChange     The function to run when the button is toggled.
- * @param {string} options.onActivate   The function to run when the button is activated.
- * @param {string} options.onDeactivate The function to run when the button is deactivated.
+ * @param {Object} options                The options for the button.
+ * @param {string} [options.selector]     The selector for the button.
+ * @param {string} [options.size]         Whether or not to use the small version of the button.
+ * @param {string} [options.active]       Whether or not the button should be active by default.
+ * @param {string} [options.onChange]     The function to run when the button is toggled.
+ * @param {string} [options.onActivate]   The function to run when the button is activated.
+ * @param {string} [options.onDeactivate] The function to run when the button is deactivated.
  *
  * @example
  * ```js
@@ -236,13 +237,13 @@ const makeFavoriteButton = async (options) => {
  * - `singleItemLeft`: `{*title*}` `{*content*}` `{*items*}`.
  * - `singleItemRight`: `{*title*}` `{*content*}` `{*items*}`.
  *
- * @param {Object}  options                The popup options.
- * @param {string}  options.title          The title of the popup.
- * @param {string}  options.content        The content of the popup.
- * @param {boolean} options.hasCloseButton Whether or not the popup has a close button.
- * @param {string}  options.template       The template to use for the popup.
- * @param {boolean} options.show           Whether or not to show the popup.
- * @param {string}  options.className      The class name to add to the popup.
+ * @param {Object}  options                  The popup options.
+ * @param {string}  [options.title]          The title of the popup.
+ * @param {string}  [options.content]        The content of the popup.
+ * @param {boolean} [options.hasCloseButton] Whether or not the popup has a close button.
+ * @param {string}  [options.template]       The template to use for the popup.
+ * @param {boolean} [options.show]           Whether or not to show the popup.
+ * @param {string}  [options.className]      The class name to add to the popup.
  *
  * @example
  * ```js
@@ -351,12 +352,12 @@ const makePage = (content) => {
 /**
  * Create a math button to add or subtract from an input.
  *
- * @param {number}      amount          The amount to add or subtract.
- * @param {Object}      opts            The options for the button.
- * @param {HTMLElement} opts.appendTo   The element to append the button to.
- * @param {HTMLElement} opts.input      The input to update.
- * @param {number}      opts.maxQty     The maximum quantity for the input.
- * @param {Array}       opts.classNames The class names to add to the button.
+ * @param {number}      amount            The amount to add or subtract.
+ * @param {Object}      opts              The options for the button.
+ * @param {HTMLElement} [opts.appendTo]   The element to append the button to.
+ * @param {HTMLElement} [opts.input]      The input to update.
+ * @param {number}      [opts.maxQty]     The maximum quantity for the input.
+ * @param {Array}       [opts.classNames] The class names to add to the button.
  *
  * @return {HTMLElement} The created button.
  */
@@ -427,12 +428,12 @@ const makeMathButton = (amount, opts) => {
 /**
  * Create a series of math buttons.
  *
- * @param {Array}       amounts         The amounts to add or subtract.
- * @param {Object}      opts            The options for the buttons.
- * @param {HTMLElement} opts.appendTo   The element to append the button to.
- * @param {HTMLElement} opts.input      The input to update.
- * @param {number}      opts.maxQty     The maximum quantity for the input.
- * @param {Array}       opts.classNames The class names to add to the button.
+ * @param {Array}       amounts           The amounts to add or subtract.
+ * @param {Object}      opts              The options for the buttons.
+ * @param {HTMLElement} [opts.appendTo]   The element to append the button to.
+ * @param {HTMLElement} [opts.input]      The input to update.
+ * @param {number}      [opts.maxQty]     The maximum quantity for the input.
+ * @param {Array}       [opts.classNames] The class names to add to the button.
  *
  * @return {Array} The created buttons.
  */
@@ -518,11 +519,11 @@ const makeProgressLogLink = (opts = {}) => {
  * it returns a Promise that resolves with the found element(s). If the element is not found within the maximum number of attempts,
  * the function will return `undefined`.
  *
- * @param {string}  selector            The CSS selector of the element to wait for.
- * @param {Object}  options             The options for the function.
- * @param {number}  options.maxAttempts The maximum number of attempts to wait for the element.
- * @param {number}  options.delay       The delay between attempts.
- * @param {boolean} options.single      Whether or not to return a single element or an array of elements.
+ * @param {string}  selector              The CSS selector of the element to wait for.
+ * @param {Object}  [options]             The options for the function.
+ * @param {number}  [options.maxAttempts] The maximum number of attempts to wait for the element.
+ * @param {number}  [options.delay]       The delay between attempts.
+ * @param {boolean} [options.single]      Whether or not to return a single element or an array of elements.
  * @return {Promise<HTMLElement|false>} The found element(s) or `false` if the element was not found.
  */
 const waitForElement = async (selector, { single = true, maxAttempts = 10, delay = 300 } = {}) => {

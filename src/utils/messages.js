@@ -8,13 +8,13 @@ import maintenanceStyles from './styles/page-maintenance.css';
 /**
  * Show an error message appended to the given element.
  *
- * @param {Object}      options           Options for the message.
- * @param {string}      options.message   Message to show.
- * @param {HTMLElement} options.append    Element to append the error to.
- * @param {boolean}     options.before    Whether to append the message before the element.
- * @param {boolean}     options.after     Whether to append the message after the element.
- * @param {string}      options.classname Classes to add to the error element.
- * @param {string}      options.type      Type of message to show (error or success).
+ * @param {Object}      options            Options for the message.
+ * @param {string}      options.message    Message to show.
+ * @param {HTMLElement} options.append     Element to append the error to.
+ * @param {boolean}     [options.before]   Whether to append the message before the element.
+ * @param {boolean}     [options.after]    Whether to append the message after the element.
+ * @param {string}      [options.classname] Classes to add to the error element.
+ * @param {string}      [options.type]     Type of message to show (error or success).
  */
 const showErrorMessage = (options) => {
   const {
@@ -55,12 +55,12 @@ const showErrorMessage = (options) => {
  *
  * @see showErrorMessage
  *
- * @param {Object}      opts         Options for the message.
- * @param {string}      opts.message Message to show.
- * @param {HTMLElement} opts.append  Element to append the error to.
- * @param {boolean}     opts.before  Whether to append the message before the element.
- * @param {boolean}     opts.after   Whether to append the message after the element.
- * @param {string}      opts.classes Classes to add to the error element.
+ * @param {Object}      opts          Options for the message.
+ * @param {string}      opts.message  Message to show.
+ * @param {HTMLElement} opts.append   Element to append the error to.
+ * @param {boolean}     [opts.before] Whether to append the message before the element.
+ * @param {boolean}     [opts.after]  Whether to append the message after the element.
+ * @param {string}      [opts.classes] Classes to add to the error element.
  */
 const showSuccessMessage = (opts) => {
   opts.type = 'success';
@@ -145,8 +145,8 @@ const maybeDoMaintenance = () => {
  * Show an error message in a popup.
  *
  * @param {Object} options         Options for the message.
- * @param {string} options.title   Title of the message.
- * @param {string} options.content Content of the message.
+ * @param {string} options.title    Title of the message.
+ * @param {string} [options.content] Content of the message.
  */
 const showLoadingPopupError = (options) => {
   const popup = new jsDialog();
