@@ -93,66 +93,64 @@ Enhance your [MouseHunt](https://mousehuntgame.com) experience with a variety of
 
 ### 📍 Location HUDs
 
-See [Location HUDs](docs/location-huds/README.md) for a list of changes and features for each location.
-
-- **[Event Locations](docs/location-huds/event-locations.md)**
-- **[Acolyte Realm](docs/location-huds/acolyte-realm.md)**
-- **[Balack's Cove](docs/location-huds/balacks-cove.md)**
-- **[Bazaar](docs/location-huds/bazaar.md)**
-- **[Bountiful Beanstalk](docs/location-huds/bountiful-beanstalk.md)**
-- **[Bristle Woods Rift](docs/location-huds/bristle-woods-rift.md)**
-- **[Burroughs Rift](docs/location-huds/burroughs-rift.md)**
-- **[Calm Clearing](docs/location-huds/calm-clearing.md)**
-- **[Cape Clawed](docs/location-huds/cape-clawed.md)**
-- **[Catacombs](docs/location-huds/catacombs.md)**
-- **[Claw Shot City](docs/location-huds/claw-shot-city.md)**
-- **[Derr Dunes](docs/location-huds/derr-dunes.md)**
-- **[Dojo](docs/location-huds/dojo.md)**
-- **[Dracano](docs/location-huds/dracano.md)**
-- **[Elub Shore](docs/location-huds/elub-shore.md)**
-- **[Fiery Warpath](docs/location-huds/fiery-warpath.md)**
-- **[Floating Islands](docs/location-huds/floating-islands.md)**
-- **[Forbidden Grove](docs/location-huds/forbidden-grove.md)**
-- **[Foreword Farm](docs/location-huds/foreword-farm.md)**
-- **[Fort Rox](docs/location-huds/fort-rox.md)**
-- **[Fungal Cavern](docs/location-huds/fungal-cavern.md)**
-- **[Furoma Rift](docs/location-huds/furoma-rift.md)**
-- **[Gnawnia Express Station](docs/location-huds/gnawnia-express-station.md)**
-- **[Gnawnia Rift](docs/location-huds/gnawnia-rift.md)**
-- **[Great Gnarled Tree](docs/location-huds/great-gnarled-tree.md)**
-- **[Harbour](docs/location-huds/harbour.md)**
-- **[Iceberg](docs/location-huds/iceberg.md)**
-- **[Jungle of Dread](docs/location-huds/jungle-of-dread.md)**
-- **[King's Arms](docs/location-huds/kings-arms.md)**
-- **[King's Gauntlet](docs/location-huds/kings-gauntlet.md)**
-- **[Laboratory](docs/location-huds/laboratory.md)**
-- **[Labyrinth](docs/location-huds/labyrinth.md)**
-- **[Lagoon](docs/location-huds/lagoon.md)**
-- **[Meditation Room](docs/location-huds/meditation-room.md)**
-- **[Mountain](docs/location-huds/mountain.md)**
-- **[Mousoleum](docs/location-huds/mousoleum.md)**
-- **[Moussu Picchu](docs/location-huds/moussu-picchu.md)**
-- **[Muridae Market](docs/location-huds/muridae-market.md)**
-- **[Nerg Plains](docs/location-huds/nerg-plains.md)**
-- **[Pinnacle Chamber](docs/location-huds/pinnacle-chamber.md)**
-- **[Prologue Pond](docs/location-huds/prologue-pond.md)**
-- **[Region: Living Garden](docs/location-huds/region-living-garden.md)**
-- **[Region: Queso Canyon](docs/location-huds/queso-canyon.md)**
-- **[School of Sorcery](docs/location-huds/school-of-sorcery.md)**
-- **[Seasonal Garden](docs/location-huds/seasonal-garden.md)**
-- **[Slushy Shoreline](docs/location-huds/slushy-shoreline.md)**
-- **[S.S. Huntington IV](docs/location-huds/ss-huntington-iv.md)**
-- **[Sunken City](docs/location-huds/sunken-city.md)**
-- **[Table of Contents](docs/location-huds/table-of-contents.md)**
-- **[Tournament Hall](docs/location-huds/tournament-hall.md)**
-- **[Town of Digby](docs/location-huds/town-of-digby.md)**
-- **[Town of Gnawnia](docs/location-huds/town-of-gnawnia.md)**
-- **[Toxic Spill](docs/location-huds/toxic-spill.md)**
-- **[Valour Rift](docs/location-huds/valour-rift.md)**
-- **[Whisker Woods Rift](docs/location-huds/whisker-woods-rift.md)**
-- **[Windmill](docs/location-huds/windmill.md)**
-- **[Zokor](docs/location-huds/zokor.md)**
-- **[Zugzwang's Tower](docs/location-huds/zugzwangs-tower.md)**
+- Event Locations
+- Acolyte Realm
+- Balack's Cove
+- Bazaar
+- Bountiful Beanstalk
+- Bristle Woods Rift
+- Burroughs Rift
+- Calm Clearing
+- Cape Clawed
+- Catacombs
+- Claw Shot City
+- Derr Dunes
+- Dojo
+- Dracano
+- Elub Shore
+- Fiery Warpath
+- Floating Islands
+- Forbidden Grove
+- Foreword Farm
+- Fort Rox
+- Fungal Cavern
+- Furoma Rift
+- Gnawnia Express Station
+- Gnawnia Rift
+- Great Gnarled Tree
+- Harbour
+- Iceberg
+- Jungle of Dread
+- King's Arms
+- King's Gauntlet
+- Laboratory
+- Labyrinth
+- Lagoon
+- Meditation Room
+- Mountain
+- Mousoleum
+- Moussu Picchu
+- Muridae Market
+- Nerg Plains
+- Pinnacle Chamber
+- Prologue Pond
+- Region: Living Garden
+- Region: Queso Canyon
+- School of Sorcery
+- Seasonal Garden
+- Slushy Shoreline
+- S.S. Huntington IV
+- Sunken City
+- Table of Contents
+- Tournament Hall
+- Town of Digby
+- Town of Gnawnia
+- Toxic Spill
+- Valour Rift
+- Whisker Woods Rift
+- Windmill
+- Zokor
+- Zugzwang's Tower
 
 ## 🗑️ Uninstalling Userscripts
 
