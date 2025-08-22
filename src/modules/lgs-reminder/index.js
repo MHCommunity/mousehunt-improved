@@ -104,8 +104,6 @@ const updateLgsReminder = (el) => {
  * Main function.
  */
 const main = () => {
-  startingTime = getShieldTime();
-
   const shieldEl = document.querySelector('.mousehuntHud-shield.golden');
   if (! shieldEl) {
     return;

@@ -367,6 +367,7 @@ const maybeDoJournalHistory = () => {
 
 let pager;
 let journalEntries = [];
+let totalPages = 0;
 let miceThumbs = [];
 
 /**

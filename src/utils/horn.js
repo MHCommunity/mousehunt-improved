@@ -54,7 +54,7 @@ const showHornMessage = (options) => {
   };
 
   if ('info' === settings.type) {
-    type = 'bait_disarmed';
+    settings.type = 'bait_disarmed';
   } else if ('error' === settings.type) {
     settings.type = 'bait_disarmed';
     settings.color = 'red';
@@ -62,7 +62,7 @@ const showHornMessage = (options) => {
     settings.type = 'bait_disarmed';
     settings.color = 'yellow';
   } else if ('success' === settings.type) {
-    type = 'bait_disarmed';
+    settings.type = 'bait_disarmed';
     settings.color = 'green';
   }
 

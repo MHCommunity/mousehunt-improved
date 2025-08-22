@@ -67,7 +67,7 @@ const showSuccessMessage = (opts) => {
   showErrorMessage(opts);
 };
 
-hadAddedErrorStyles = false;
+let hadAddedErrorStyles = false;
 /**
  * Show an error message when the script fails to load.
  *

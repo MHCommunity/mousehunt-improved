@@ -2,6 +2,8 @@ import { addStyles, doRequest, makeElement, onEvent } from '@utils';
 
 import styles from './styles.css';
 
+let huntingStats = [];
+
 /**
  * Get the crown type.
  *

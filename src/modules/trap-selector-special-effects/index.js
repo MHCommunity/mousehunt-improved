@@ -34,7 +34,7 @@ const addSpecialEffectsStyles = async () => {
   }`, 'mh-improved-trap-selector-special-effects', true);
 };
 
-hasAddedSpecialEffectsStyles = false;
+let hasAddedSpecialEffectsStyles = false;
 /**
  * Initialize the module.
  */
