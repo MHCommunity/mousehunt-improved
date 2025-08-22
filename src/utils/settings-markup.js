@@ -385,7 +385,7 @@ const makeSettingInput = ({ key, tab, defaultValue }) => {
     parent.classList.add('completed');
 
     clearTimeout(timeout);
-    timeout = setTimeout(parent.classList.remove, 1000'completed');
+    timeout = setTimeout(parent.classList.remove, 1000, 'completed');
   });
 
   settingRowInput.classList.add('inputText');
