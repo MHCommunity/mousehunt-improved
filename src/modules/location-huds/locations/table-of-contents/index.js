@@ -152,6 +152,7 @@ const getOptions = () => {
     TotalSimulations: 100_000,
     TrapPower: user?.trap_power || 0,
     TrapLuck: user?.trap_luck || 0,
+    TrapCharmId: user?.trinket_item_id || 0,
     Upgrades: {
       HasEdgeGilding: user?.quests?.QuestTableOfContents?.has_improved_paper || false,
       HasGoldFoilPrinting: user?.quests?.QuestTableOfContents?.has_gold_foil || false,

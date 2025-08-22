@@ -41,7 +41,7 @@ const MouseStats = {
  */
 const simulate = (options) => {
   updateWords(options.Upgrades);
-  updateCR(options.TrapPower, options.TrapLuck);
+  updateCR(options.TrapPower, options.TrapLuck, options.TrapCharmId);
 
   const debug = {};
 
@@ -166,12 +166,16 @@ const updateWords = (/** @type {Upgrades} */ upgrades) => {
 /**
  * Update the catch rate of the mice.
  *
- * @param {number} power Total trap power.
- * @param {number} luck  Total trap luck.
+ * @param {number} power   Total trap power.
+ * @param {number} luck    Total trap luck.
+ * @param {number} charmId Current trap charm ID.
  */
-const updateCR = (/** @type {number} */ power, /** @type {number} */ luck) => {
+const updateCR = (power, luck, charmId) => {
   Object.entries(MouseStats).forEach(([key, mouseStats]) => {
-    MouseStats[key].CatchRate = getCatchRate(mouseStats.Power, mouseStats.Eff, power, luck);
+    // 1075: Ultimate Charm
+    MouseStats[key].CatchRate = 1075 === charmId
+      ? 1
+      : getCatchRate(mouseStats.Power, mouseStats.Eff, power, luck);
   });
 };
 
@@ -244,6 +248,7 @@ export default simulate;
  * @property {number}         TotalSimulations The amount of ToC runs to simulate.
  * @property {number}         TrapPower        Total trap power.
  * @property {number}         TrapLuck         Total trap luck.
+ * @property {number}         TrapCharmId      Current trap charm ID.
  * @property {WritingSession} WritingSession   Current writing session.
  * @property {Upgrades}       Upgrades         User ToC upgrades.
  */
