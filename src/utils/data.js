@@ -64,7 +64,7 @@ const getCacheExpiration = async (key = null) => {
  */
 const cacheSetExpiration = async (key, time = null) => {
   if (time) {
-    return await dbSet('cache', { id: `expiration-${key}`, value: time });
+    return await dbSet('cache', { id: `expiration-${key}`, value: Date.now() + time });
   }
 
   const expirationTime = Date.now() + ((Math.floor(Math.random() * 7) + 7) * 24 * 60 * 60 * 1000);
