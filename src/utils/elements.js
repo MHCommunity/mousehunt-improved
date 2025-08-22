@@ -83,19 +83,31 @@ const makeMhButton = (opts) => {
   const {
     text = '',
     size = 'small',
-    className = '',
-    callback = () => {},
+    className = [],
+    callback = null,
     appendTo = null,
   } = opts;
 
-  const button = makeElement('a', ['mousehuntActionButton', size, className]);
+  const classes = ['mousehuntActionButton'];
+
+  if (size) {
+    classes.push(size);
+  }
+
+  if (Array.isArray(className)) {
+    classes.push(...className);
+  } else if (typeof className === 'string' && className.length) {
+    classes.push(...className.split(' '));
+  }
+
+  const button = makeElement('a', classes);
   makeElement('span', '', text, button);
 
-  button.title = opts.title || text;
-
-  button.addEventListener('click', () => {
-    callback(button);
-  });
+  if (callback && callback instanceof Function) {
+    button.addEventListener('click', () => {
+      callback(button);
+    });
+  }
 
   if (appendTo) {
     appendTo.append(button);
@@ -295,23 +307,22 @@ const createPopup = (options) => {
 /**
  * Make a tooltip.
  *
- * @param {Object}      options           The options for the tooltip.
- * @param {HTMLElement} options.appendTo  The element to append the tooltip to.
- * @param {string}      options.className The class name to add to the tooltip.
- * @param {string}      options.text      The text for the tooltip.
+ * @param {Object}      options             The options for the tooltip.
+ * @param {HTMLElement} [options.appendTo]  The element to append the tooltip to.
+ * @param {string}      [options.className] The class name to add to the tooltip.
+ * @param {string}      [options.text]      The text for the tooltip.
  *
  * @return {HTMLElement|boolean} The tooltip or false if we can't create it.
  */
 const makeTooltip = (options) => {
-  if (! options.appendTo) {
-    return false;
-  }
-
-  const { appendTo, className = '', text = '' } = options;
+  const { appendTo = null, className = '', text = '' } = options;
 
   const tooltip = makeElement('div', ['PreferencesPage__blackTooltip', 'mh-improved-tooltip', className]);
   makeElement('span', 'PreferencesPage__blackTooltipText', text, tooltip);
-  appendTo.append(tooltip);
+
+  if (appendTo) {
+    appendTo.append(tooltip);
+  }
 
   return tooltip;
 };
