@@ -21,7 +21,7 @@ import { getUserSetupDetails } from './user';
  * document.body.append(myElement);
  * ```
  *
- * @return {HTMLElement} The created element.
+ * @return {HTMLElement} The created element or the element it was appended to if appendTo is provided.
  */
 const makeElement = (tag, classes = '', text = '', appendTo = null) => {
   const element = document.createElement(tag);
