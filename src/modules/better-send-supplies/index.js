@@ -72,7 +72,7 @@ const addSearch = () => {
 
   container.insertBefore(titleWrapper, container.firstChild);
 
-  setTimeout(input.focus, 100);
+  setTimeout(() => input.focus(), 100);
 };
 
 /**

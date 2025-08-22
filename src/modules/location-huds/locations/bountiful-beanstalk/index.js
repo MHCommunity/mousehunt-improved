@@ -224,14 +224,14 @@ const addQuickHarpToggleButton = async () => {
       newToggleButton.classList.remove('loading');
       newToggleButton.classList.add('hidden');
 
-      setTimeout(newToggleButton.classList.remove, 1000, 'hidden');
+      setTimeout(() => newToggleButton.classList.remove('hidden'), 1000);
 
       toggleElements();
     } else {
       newToggleButton.classList.remove('loading');
       newToggleButton.classList.add('error');
 
-      setTimeout(newToggleButton.classList.remove, 1000, 'error');
+      setTimeout(() => newToggleButton.classList.remove('error'), 1000);
     }
 
     isAutoharpToggleInitiatiedByUs = false;

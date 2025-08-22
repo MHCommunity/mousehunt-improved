@@ -137,7 +137,7 @@ const startMemoryGame = ({ items = [], title = 'Memory Matching Game', mode = 'e
       const matchingCard = grid.querySelector(`.mh-improved-memory-card[data-symbol="${symbol}"]:not(.flipped):not(.matched)`);
       if (matchingCard) {
         matchingCard.classList.add('hint');
-        setTimeout(matchingCard.classList.remove, 1000, 'hint');
+        setTimeout(() => matchingCard.classList.remove('hint'), 1000);
         return;
       }
     }

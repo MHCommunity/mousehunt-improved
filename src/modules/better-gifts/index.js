@@ -102,7 +102,7 @@ const claimGifts = async (send = false, retries = 0) => {
     // hit the confirm button.
     const confirm = document.querySelector('.mousehuntActionButton.giftSelectorView-action-confirm.small');
     if (confirm) {
-      setTimeout(hg.views.GiftSelectorView.submitConfirm, 250, confirm);
+      setTimeout(() => hg.views.GiftSelectorView.submitConfirm(), 250, confirm);
     }
   }, 500);
 };

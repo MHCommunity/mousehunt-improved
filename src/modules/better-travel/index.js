@@ -70,15 +70,15 @@ const expandTravelRegions = () => {
       });
 
       location.addEventListener('mouseout', () => {
-        setTimeout(location.classList.remove, 1000, 'highlight');
+        setTimeout(() => location.classList.remove('highlight'), 1000);
       });
     });
   }
 
   if (app?.pages?.TravelPage?.zoomOut && app.pages.TravelPage.showEnvironment) {
-    setTimeout(app.pages.TravelPage.showEnvironment, 200, getCurrentLocation());
-    setTimeout(app.pages.TravelPage.zoomOut, 300);
-    setTimeout(app.pages.TravelPage.zoomOut, 400);
+    setTimeout(() => app.pages.TravelPage.showEnvironment(getCurrentLocation()), 200);
+    setTimeout(() => app.pages.TravelPage.zoomOut(), 300);
+    setTimeout(() => app.pages.TravelPage.zoomOut(), 400);
   }
 };
 

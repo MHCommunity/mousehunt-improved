@@ -168,7 +168,7 @@ const modifyPlayerIcon = () => {
     playerIcon.classList.add('mh-improved-player-spin');
 
     clearTimeout(timeout);
-    timeout = setTimeout(playerIcon.classList.remove, 700, 'mh-improved-player-spin');
+    timeout = setTimeout(() => playerIcon.classList.remove('mh-improved-player-spin'), 700);
   });
 };
 

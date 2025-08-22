@@ -172,7 +172,7 @@ const flrtPopup = async (items) => {
       item.classList.remove('flrt-item-sending');
       item.classList.add('flrt-item-sent');
       item.classList.add('flrt-item-sent-success');
-      setTimeout(item.classList.remove, 1500, 'flrt-item-sent-success');
+      setTimeout(() => item.classList.remove(), 1500, 'flrt-item-sent-success');
 
       sendButton.disabled = true;
       sendButton.classList.add('disabled');

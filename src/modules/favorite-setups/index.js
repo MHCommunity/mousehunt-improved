@@ -755,7 +755,7 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
             const rows = document.querySelectorAll(`.mh-improved-favorite-setups-blueprint-container .row[data-setup-id="${existingSetup.id}"]`);
             rows.forEach((row) => {
               row.classList.add('flash');
-              setTimeout(row.classList.remove, 1000, 'flash');
+              setTimeout(() => row.classList.remove('flash'), 1000);
             });
 
             hasHighlighted = true;

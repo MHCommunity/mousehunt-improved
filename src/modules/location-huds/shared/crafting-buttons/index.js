@@ -37,7 +37,7 @@ const addCraftingButtons = async ({ baits, selectors }) => {
     popup.classList.remove('loading');
     if (! results?.success) {
       popup.classList.add('error');
-      setTimeout(popup.classList.remove, 1000, 'error');
+      setTimeout(() => popup.classList.remove('error'), 1000);
       return false;
     }
 
@@ -76,7 +76,7 @@ const addCraftingButtons = async ({ baits, selectors }) => {
     });
 
     popup.classList.add('success');
-    setTimeout(popup.classList.remove, 1000, 'success');
+    setTimeout(() => popup.classList.remove('success'), 1000);
     return true;
   };
 

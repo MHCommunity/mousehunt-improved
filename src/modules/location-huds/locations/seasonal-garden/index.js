@@ -25,7 +25,7 @@ const makeProgressDraggable = () => {
     const percent = Math.round((x / width) * 100);
 
     progressBarMarker.style.width = `${percent}%`;
-    setTimeout(progressBarMarker.classList.add, 50, 'seasonalGardenHUD-amplifierProgress-bar--animating');
+    setTimeout(() => progressBarMarker.classList.add('seasonalGardenHUD-amplifierProgress-bar--animating'), 50);
 
     if (timeout) {
       clearTimeout(timeout);
@@ -34,7 +34,7 @@ const makeProgressDraggable = () => {
     timeout = setTimeout(() => {
       progressBarMarker.style.width = originalWidth;
 
-      setTimeout(progressBarMarker.classList.remove, 300, 'seasonalGardenHUD-amplifierProgress-bar--animating');
+      setTimeout(() => progressBarMarker.classList.remove('seasonalGardenHUD-amplifierProgress-bar--animating'), 300);
     }, 600);
   });
 };

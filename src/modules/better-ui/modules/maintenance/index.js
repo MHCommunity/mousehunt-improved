@@ -34,8 +34,8 @@ const addMaintenanceClasses = () => {
   close.addEventListener('click', () => {
     banner.classList.add('mh-ui-fade-out');
 
-    setTimeout(banner.classList.add, 350, 'hidden');
-    setTimeout(sessionSet, 350, 'maintenance-banner-hidden', true);
+    setTimeout(() => banner.classList.add('hidden'), 350);
+    setTimeout(() => sessionSet('maintenance-banner-hidden', true), 350);
   });
 
   banner.append(close);

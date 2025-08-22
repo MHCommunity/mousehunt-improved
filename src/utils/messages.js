@@ -44,10 +44,12 @@ const showErrorMessage = (options) => {
     }
   }
 
-  setTimeout(error.classList.add, 10, 'mh-ui-fade-in');
-  setTimeout(error.classList.remove, 2000, 'mh-ui-fade-in');
-  setTimeout(error.classList.remove, 2000, 'mh-ui-fade-out');
-  setTimeout(error.remove, 2500);
+  setTimeout(() => error.classList.add('mh-ui-fade-in'), 10);
+  setTimeout(() => {
+    error.classList.remove('mh-ui-fade-in');
+    error.classList.add('mh-ui-fade-out');
+  }, 2000);
+  setTimeout(() => error.remove(), 2500);
 };
 
 /**

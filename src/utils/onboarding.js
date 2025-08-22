@@ -91,7 +91,7 @@ const addOnboardingMessage = async (options) => {
     },
   });
 
-  setTimeout(hg.views.MessengerView.go, delay);
+  setTimeout(() => hg.views.MessengerView.go(), delay);
 };
 
 export {

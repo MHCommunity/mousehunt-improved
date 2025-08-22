@@ -240,7 +240,7 @@ const makeFavoriteButton = async (options) => {
     }
 
     /* Wait a tiny bit so that the user can see it did something. */
-    setTimeout(currentStar.classList.remove, 300, 'busy');
+    setTimeout(() => currentStar.classList.remove('busy'), 300);
   });
 
   if (target) {
