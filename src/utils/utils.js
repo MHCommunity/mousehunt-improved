@@ -33,7 +33,7 @@ const isUnsupportedFile = (path = false) => {
     return true;
   }
 
-  return path.match(/\.(jpeg|jpg|gif|png|svg|json|css|js)$/i);
+  return /\.(jpeg|jpg|gif|png|svg|json|css|js)$/i.test(path);
 };
 
 /**
