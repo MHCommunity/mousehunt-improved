@@ -1,9 +1,9 @@
 import {
   addIconToMenu,
   addStyles,
+  cacheGet,
+  cacheSet,
   createPopup,
-  dataGet,
-  dataSet,
   debuglog,
   doRequest,
   getCurrentLocation,
@@ -14,6 +14,7 @@ import {
   getSetting,
   getUserData,
   makeElement,
+  makeMhButton,
   onEvent,
   onNavigation,
   saveSetting,
@@ -46,17 +47,17 @@ import settings from './settings';
  *
  * @return {Promise<FavoriteSetup[]>} The favorite setups.
  */
-const getFavoriteSetups = async (makeRequest = false) => {
+const getFavoriteSetups = async (makeRequest = true) => {
   /** @type {FavoriteSetup[]} */
   let faves = getSetting('favorite-setups.setups', []);
 
   if (getSetting('favorite-setups.show-mobile-favorites', false)) {
-    let mobileFavorites = await dataGet('mobile-trap-favorites');
+    let mobileFavorites = await cacheGet('mobile-trap-favorites');
     if (! mobileFavorites && makeRequest) {
       const userData = await getUserData(['trap_favourite']);
       mobileFavorites = userData?.trap_favourite?.favourite_traps || [];
 
-      dataSet('mobile-trap-favorites', mobileFavorites);
+      await cacheSet('mobile-trap-favorites', mobileFavorites, 24 * 60 * 60 * 1000); // Cache for 1 day.
     }
 
     if (mobileFavorites?.length) {
@@ -305,25 +306,6 @@ const addImage = async (type, id, appendTo) => {
 
   wrapper.append(item);
   appendTo.append(wrapper);
-};
-
-/**
- * Make a button.
- *
- * @param {Object}   button           The button to make.
- * @param {string}   button.text      The text of the button.
- * @param {Array}    button.className The class names to add to the button.
- * @param {Function} button.callback  The callback to run when the button is clicked.
- *
- * @return {Element} The button element.
- */
-const makeButton = (button) => {
-  const buttonElement = makeElement('a', ['mousehuntActionButton', 'action', ...button.className]);
-  makeElement('span', '', button.text, buttonElement);
-
-  buttonElement.addEventListener('click', button.callback);
-
-  return buttonElement;
 };
 
 /**
@@ -745,9 +727,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
   let hasHighlighted = false;
   const buttonWrapper = makeElement('div', ['button-wrapper']);
   if (isCurrent) {
-    buttonWrapper.append(makeButton({
+    buttonWrapper.append(makeMhButton({
       text: 'Save',
-      className: ['save', 'lightBlue'],
+      className: ['action', 'save', 'lightBlue'],
       /**
        * Save the current setup as a favorite setup.
        */
@@ -807,9 +789,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       }
     }));
   } else {
-    const armButton = makeButton({
+    const armButton = makeMhButton({
       text: 'Arm',
-      className: ['arm'],
+      className: ['action', 'arm'],
       /**
        * Arm the setup.
        */
@@ -880,9 +862,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
     buttonWrapper.append(armButton);
 
     let editClickables = [];
-    buttonWrapper.append(makeButton({
+    buttonWrapper.append(makeMhButton({
       text: 'Edit',
-      className: ['edit-setup'],
+      className: ['action', 'edit-setup'],
       /**
        * Edit the setup.
        */
@@ -979,9 +961,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       editClickables = [];
     };
 
-    buttonWrapper.append(makeButton({
+    buttonWrapper.append(makeMhButton({
       text: 'Save',
-      className: ['save-setup'],
+      className: ['action', 'save-setup'],
       /**
        * Save the edited setup.
        */
@@ -1063,9 +1045,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       }
     }));
 
-    buttonWrapper.append(makeButton({
+    buttonWrapper.append(makeMhButton({
       text: 'Cancel',
-      className: ['cancel-setup'],
+      className: ['action', 'cancel-setup'],
       /**
        * Cancel editing the setup.
        */
@@ -1101,9 +1083,9 @@ const makeBlueprintRow = async (setup, isCurrent = false) => {
       }
     }));
 
-    buttonWrapper.append(makeButton({
+    buttonWrapper.append(makeMhButton({
       text: 'Delete',
-      className: ['delete', 'danger'],
+      className: ['action', 'delete', 'danger'],
       /**
        * Delete the setup.
        */
@@ -1193,7 +1175,7 @@ const makeBlueprintContainer = async () => {
   const currentSetupRow = await makeBlueprintRow(getCurrentSetup(), true);
   body.append(currentSetupRow);
 
-  const setups = await getFavoriteSetups(true);
+  const setups = await getFavoriteSetups();
   if (setups.length) {
     // Find location favorites and display them as shortcuts at the top
     let locationFavorites = [];
@@ -1259,7 +1241,7 @@ const makeBlueprintContainer = async () => {
  * @return {Promise<string>} The name of the current setup.
  */
 const getNameOfCurrentSetup = async () => {
-  const setups = await getFavoriteSetups();
+  const setups = await getFavoriteSetups(false);
 
   if (! setups.length) {
     return '';
