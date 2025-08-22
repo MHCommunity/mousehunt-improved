@@ -2959,7 +2959,7 @@
 - Adds a 'Delayed Tooltips' feature to delay the display of tooltips.
 - Adds a 'Show Spoiler' button to the Advent Calendar.
 - Adds Bountiful Beanstalk HUD styles.
-- Adds Foreward Farm HUD styles.
+- Adds Foreword Farm HUD styles.
 - Adds Table of Contents HUD styles.
 - Adds Prologue Pond HUD styles, including animations for the boat and scattered chum.
 - Adds options to hide/show boat upgrades in Prologue Pond.

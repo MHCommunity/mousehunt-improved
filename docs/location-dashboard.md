@@ -23,7 +23,7 @@ Adds a "Dashboard" menu to the top menu bar that will show you the important det
   - Current island
   - Current island tiles
   - Hunts remaining
-- Foreward Farm
+- Foreword Farm
   - Plants growing
 - Fort Rox
   - Phase of night
@@ -47,7 +47,7 @@ Adds a "Dashboard" menu to the top menu bar that will show you the important det
 - Mousoleum
   - Whether you have a wall or not
   - Wall HP
-- Moussu Pichu
+- Moussu Picchu
   - Storm level
   - Rain level and percentage
   - Wind level and percentage
@@ -70,9 +70,9 @@ Adds a "Dashboard" menu to the top menu bar that will show you the important det
   - Current words written
   - Hunts remaining
 - Toxic Spill
-  - Crude Polluntium
-  - Max Polluntium capacity
-  - Refined Polluntium
+  - Crude Pollutinum capacity
+  - Max Pollutinum capacity
+  - Refined Pollutinum
 - Valour Rift
   - Floor number and name
   - Hunts Remaining

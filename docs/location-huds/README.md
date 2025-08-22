@@ -19,7 +19,7 @@
 - **[Fiery Warpath](fiery-warpath.md)**
 - **[Floating Islands](floating-islands.md)**
 - **[Forbidden Grove](forbidden-grove.md)**
-- **[Foreward Farm](foreward-farm.md)**
+- **[Foreword Farm](foreword-farm.md)**
 - **[Fort Rox](fort-rox.md)**
 - **[Fungal Cavern](fungal-cavern.md)**
 - **[Furoma Rift](furoma-rift.md)**
@@ -56,7 +56,7 @@
 - **[Whisker Woods Rift](whisker-woods-rift.md)**
 - **[Windmill](windmill.md)**
 - **[Zokor](zokor.md)**
-- **[Zuzwang's Tower](zuzwangs-tower.md)**
+- **[Zugzwang's Tower](zugzwangs-tower.md)**
 
 ### Regions
 

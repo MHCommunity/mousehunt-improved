@@ -113,7 +113,7 @@ See [Location HUDs](docs/location-huds/README.md) for a list of changes and feat
 - **[Fiery Warpath](docs/location-huds/fiery-warpath.md)**
 - **[Floating Islands](docs/location-huds/floating-islands.md)**
 - **[Forbidden Grove](docs/location-huds/forbidden-grove.md)**
-- **[Foreward Farm](docs/location-huds/foreward-farm.md)**
+- **[Foreword Farm](docs/location-huds/foreword-farm.md)**
 - **[Fort Rox](docs/location-huds/fort-rox.md)**
 - **[Fungal Cavern](docs/location-huds/fungal-cavern.md)**
 - **[Furoma Rift](docs/location-huds/furoma-rift.md)**
@@ -152,7 +152,7 @@ See [Location HUDs](docs/location-huds/README.md) for a list of changes and feat
 - **[Whisker Woods Rift](docs/location-huds/whisker-woods-rift.md)**
 - **[Windmill](docs/location-huds/windmill.md)**
 - **[Zokor](docs/location-huds/zokor.md)**
-- **[Zuzwang's Tower](docs/location-huds/zuzwangs-tower.md)**
+- **[Zugzwang's Tower](docs/location-huds/zugzwangs-tower.md)**
 
 ## 🗑️ Uninstalling Userscripts
 

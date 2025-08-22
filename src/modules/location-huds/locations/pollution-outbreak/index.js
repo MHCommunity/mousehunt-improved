@@ -2,7 +2,7 @@ import { addHudStyles, onTurn, setMultipleTimeout } from '@utils';
 
 import styles from './styles.css';
 
-const addWidthToPolluntiumBar = () => {
+const addWidthToPollutinumBar = () => {
   const gauge = document.querySelector('.pollutionOutbreakHUD-scumContainer');
   if (! gauge) {
     return;
@@ -27,6 +27,6 @@ const addWidthToPolluntiumBar = () => {
 export default async () => {
   addHudStyles(styles);
 
-  setMultipleTimeout(addWidthToPolluntiumBar, [0, 100, 500]);
-  onTurn(addWidthToPolluntiumBar, 500);
+  setMultipleTimeout(addWidthToPollutinumBar, [0, 100, 500]);
+  onTurn(addWidthToPollutinumBar, 500);
 };

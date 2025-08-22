@@ -178,7 +178,7 @@ const calculatePowerWhenSalted = (power, salt, mousetype) => {
 };
 
 /**
- * Get the amplifier value for seasonal garden or zuzwangs tower.
+ * Get the amplifier value for seasonal garden or zugzwang's tower.
  *
  * @return {number} The amplifier value.
  */
