@@ -78,9 +78,7 @@ const modifyPB = async (opts) => {
   const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
   if (! prestige) {
     if (! retryPrestige) {
-      setTimeout(() => {
-        modifyPB({ retryPrestige: true });
-      }, 500);
+      setTimeout(modifyPB, 500, { retryPrestige: true });
     }
 
     isModifying = false;

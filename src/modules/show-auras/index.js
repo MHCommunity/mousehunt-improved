@@ -232,11 +232,9 @@ const init = async () => {
   addStyles(stylesToUse, 'show-auras');
 
   onNavigation(() => {
-    setTimeout(() => {
-      getAuras();
-      addExpiryWarning();
-      addTrapBlock();
-    }, 1000);
+    setTimeout(getAuras, 1000);
+    setTimeout(addExpiryWarning, 1100);
+    setTimeout(addTrapBlock, 1200);
   }, { page: 'camp' });
 };
 

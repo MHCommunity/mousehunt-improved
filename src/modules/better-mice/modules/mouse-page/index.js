@@ -423,7 +423,7 @@ const addSortingToCat = async (cat, retries = 0) => {
       return;
     }
 
-    setTimeout(() => addSortingToCat(cat, retries + 1), 300);
+    setTimeout(addSortingToCat, 300, cat, retries + 1);
     return;
   }
 

@@ -25,7 +25,5 @@ const maybeAddUserscriptStyles = () => {
 export default () => {
   addHudStyles(styles);
 
-  setTimeout(() => {
-    maybeAddUserscriptStyles();
-  }, 1000);
+  setTimeout(maybeAddUserscriptStyles, 1000);
 };

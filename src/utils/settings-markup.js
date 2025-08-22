@@ -32,9 +32,7 @@ const saveSettingDirectAndToggleClass = (node, key, value, identifier = 'mh-util
   // Add the completed class & remove it in a second.
   node.parentNode.parentNode.classList.remove('busy');
   node.parentNode.parentNode.classList.add('completed');
-  setTimeout(() => {
-    node.parentNode.parentNode.classList.remove('completed');
-  }, 1000);
+  setTimeout(node.parentNode.parentNode.classList.remove, 1000, 'completed');
 };
 
 /**
@@ -334,9 +332,7 @@ const makeSettingRowSelect = ({ key, tab, defaultValue, settingSettings }) => {
       parent.classList.add('completed');
 
       clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        parent.classList.remove('completed');
-      }, 1000);
+      timeout = setTimeout(parent.classList.remove, 1000, 'completed');
     };
 
     settingRowInput.append(settingRowInputDropdown);
@@ -389,9 +385,7 @@ const makeSettingInput = ({ key, tab, defaultValue }) => {
     parent.classList.add('completed');
 
     clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      parent.classList.remove('completed');
-    }, 1000);
+    timeout = setTimeout(parent.classList.remove, 1000'completed');
   });
 
   settingRowInput.classList.add('inputText');
@@ -444,9 +438,7 @@ const makeSettingTextArea = ({ key, tab, defaultValue }) => {
     parent.classList.add('completed');
 
     clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      parent.classList.remove('completed');
-    }, 1000);
+    timeout = setTimeout(parent.classList.remove, 1000, 'completed');
 
     addSettingRefreshReminder(key);
   });
@@ -753,18 +745,10 @@ const addSettingRefreshReminder = () => {
   clearTimeout(fadeOutTimeout);
   clearTimeout(removeTimeout);
 
-  fadeInTimeout = setTimeout(() => {
-    refreshMessage.classList.add('mh-ui-fade-in');
-  }, 250);
-
-  fadeOutTimeout = setTimeout(() => {
-    refreshMessage.classList.remove('mh-ui-fade-in');
-    refreshMessage.classList.add('mh-ui-fade-out');
-  }, 3000);
-
-  removeTimeout = setTimeout(() => {
-    refreshMessage.remove();
-  }, 5000);
+  fadeInTimeout = setTimeout(refreshMessage.classList.add, 250, 'mh-ui-fade-in');
+  fadeOutTimeout = setTimeout(refreshMessage.classList.remove, 3000, 'mh-ui-fade-in');
+  fadeOutTimeout = setTimeout(refreshMessage.classList.remove, 3000, 'mh-ui-fade-out');
+  removeTimeout = setTimeout(refreshMessage.remove, 5000);
 };
 
 onEvent('mh-improved-settings-changed', addSettingRefreshReminder);

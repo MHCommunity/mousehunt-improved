@@ -213,10 +213,8 @@ const onSkyMapShow = () => {
     // set as disabled for half a second to prevent double clicking
     roll.classList.add('disabled');
     roll.classList.add('no-click');
-    setTimeout(() => {
-      roll.classList.remove('disabled');
-      roll.classList.remove('no-click');
-    }, 300);
+    setTimeout(roll.classList.remove, 300, 'disabled');
+    setTimeout(roll.classList.remove, 300, 'no-click');
   });
 };
 

@@ -33,9 +33,7 @@ const addDarkModeBodyClass = () => {
     setTimeout(() => {
       added = checkForDarkModeAndAddBodyClass();
       if (! added) {
-        setTimeout(() => {
-          checkForDarkModeAndAddBodyClass();
-        }, 1000);
+        setTimeout(checkForDarkModeAndAddBodyClass, 1000);
       }
     }, 500);
   }

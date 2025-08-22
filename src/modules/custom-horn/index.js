@@ -100,13 +100,8 @@ const addShowHorn = () => {
 
       horn.classList.add('huntersHornView__horn--reveal');
       horn.classList.remove('huntersHornView__horn--ready');
-      setTimeout(() => {
-        backdrop.classList.remove('huntersHornView__backdrop--active');
-      }, 400);
-
-      timeout = setTimeout(() => {
-        horn.classList.remove('huntersHornView__horn--reveal');
-      }, 1000);
+      setTimeout(backdrop.classList.remove, 400, 'huntersHornView__backdrop--active');
+      timeout = setTimeout(horn.classList.remove, 1000, 'huntersHornView__horn--reveal');
 
       return;
     }

@@ -277,9 +277,7 @@ const minigame = async () => {
       tile.addEventListener('click', () => {
         let delay = 0;
         tiles.forEach((t) => {
-          setTimeout(() => {
-            highlightTileForMinigame(t);
-          }, delay);
+          setTimeout(highlightTileForMinigame, delay, t);
           delay += 50;
         });
       });

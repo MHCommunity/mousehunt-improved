@@ -34,9 +34,7 @@ const setOpenQuantityOnClick = (attempts = 0) => {
       return;
     }
 
-    setTimeout(() => {
-      setOpenQuantityOnClick(attempts + 1);
-    }, 200);
+    setTimeout(setOpenQuantityOnClick, 200, attempts + 1);
     return;
   }
 

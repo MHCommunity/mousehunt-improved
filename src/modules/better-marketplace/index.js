@@ -163,9 +163,7 @@ const waitForSearchReady = (attempts = 0) => {
   }
 
   // wait another 300ms to make sure it's ready
-  setTimeout(() => {
-    modifySearch(opts);
-  }, 300);
+  setTimeout(modifySearch, 300, opts);
 };
 
 /**

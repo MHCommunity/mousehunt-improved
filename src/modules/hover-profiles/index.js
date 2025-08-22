@@ -254,9 +254,7 @@ const onTabChangeCallback = (callback, attempts = 0) => {
       return;
     }
 
-    setTimeout(() => {
-      onTabChangeCallback(callback, attempts + 1);
-    }, 250);
+    setTimeout(onTabChangeCallback, 250, callback, attempts + 1);
     return;
   }
 

@@ -217,9 +217,7 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
   document.body.append(quickSendLinkWrapper);
 
-  setTimeout(() => {
-    quickSendLinkWrapper.classList.remove('hidden');
-  }, 100);
+  setTimeout(quickSendLinkWrapper.classList.remove, 100, 'hidden');
 
   const rect = btn.getBoundingClientRect();
 
@@ -228,18 +226,14 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
   quickSendLinkWrapper.addEventListener('mouseleave', () => {
     if (! quickSendLinkWrapper.classList.contains('sticky')) {
-      setTimeout(() => {
-        quickSendLinkWrapper.remove();
-      }, 350);
+      setTimeout(quickSendLinkWrapper.remove, 350);
     }
   });
 
   let buttonTimeout;
   btn.addEventListener('mouseleave', () => {
     if (! quickSendLinkWrapper.classList.contains('sticky')) {
-      buttonTimeout = setTimeout(() => {
-        quickSendLinkWrapper.remove();
-      }, 350);
+      buttonTimeout = setTimeout(quickSendLinkWrapper.remove, 350);
     }
   });
 
@@ -250,9 +244,7 @@ const makeSendSuppliesButton = async (btn, snuid) => {
   document.addEventListener('click', (event) => {
     if (! quickSendLinkWrapper.contains(event.target) && ! btn.contains(event.target)) {
       quickSendLinkWrapper.classList.remove('sticky');
-      setTimeout(() => {
-        quickSendLinkWrapper.remove();
-      }, 350);
+      setTimeout(quickSendLinkWrapper.remove, 350);
     }
   });
 

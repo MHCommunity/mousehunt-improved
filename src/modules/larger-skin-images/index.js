@@ -128,9 +128,7 @@ const init = () => {
 
   onRequest('users/gettrapcomponents.php', (data) => {
     if (data?.components && 'skin' === data?.components[0]?.classification) {
-      setTimeout(() => {
-        addSkinImages('item_browser');
-      }, 250);
+      setTimeout(addSkinImages, 250, 'item_browser');
     }
   });
 

@@ -50,9 +50,7 @@ const trollem2 = () => {
   bannerLink.addEventListener('click', () => {
     addStyles(styles, 'troll-mode');
     banner.classList.add('lolspin');
-    setTimeout(() => {
-      banner.classList.remove('lolspin');
-    }, 1000);
+    setTimeout(banner.classList.remove, 1000, 'lolspin');
 
     const elements = document.querySelectorAll('body * *');
     const randomElement = elements[Math.floor(Math.random() * elements.length)];

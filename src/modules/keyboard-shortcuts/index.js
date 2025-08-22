@@ -127,9 +127,7 @@ const saveShortcut = (shortcutId, shortcutKey) => {
   const savedElement = document.querySelector(`.mh-ui-keyboard-shortcut[data-shortcut-id="${shortcutId}"]`);
   if (savedElement) {
     savedElement.classList.add('saved');
-    setTimeout(() => {
-      savedElement.classList.remove('saved');
-    }, 300);
+    setTimeout(savedElement.classList.remove, 300, 'saved');
   }
 };
 
@@ -385,10 +383,8 @@ const showHelpPopup = () => {
         matchingShortcut.classList.add('error');
         shortcut.classList.add('error');
 
-        setTimeout(() => {
-          matchingShortcut.classList.remove('error');
-          shortcut.classList.remove('error');
-        }, 300);
+        setTimeout(matchingShortcut.classList.remove, 300, 'error');
+        setTimeout(shortcut.classList.remove, 300, 'error');
 
         return;
       }

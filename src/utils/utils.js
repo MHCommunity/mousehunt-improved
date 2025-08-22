@@ -401,9 +401,7 @@ const setMultipleTimeout = (fn, ms) => {
  * @param {number} delay The delay before refreshing the page.
  */
 const refreshPage = (delay = 0) => {
-  setTimeout(() => {
-    window.location.reload();
-  }, delay);
+  setTimeout(window.location.reload, delay);
 };
 
 /**

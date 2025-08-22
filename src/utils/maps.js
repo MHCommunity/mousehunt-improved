@@ -172,9 +172,7 @@ const showTravelConfirmationForMice = ({ title, description, environment, templa
   dialog.setCssClass('confirm');
   dialog.setContinueAction('Travel', () => {
     app.pages.TravelPage.travel(environment || templateData.environment.id);
-    setTimeout(() => {
-      jsDialog().hide();
-    }, 250);
+    setTimeout(jsDialog().hide, 250);
   });
 
   hg.controllers.TreasureMapController.showDialog(dialog);

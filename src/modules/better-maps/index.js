@@ -398,9 +398,7 @@ const clearMapCache = () => {
 
     // Clear the map cache after 10 seconds so that we always fetch the latest map data when opening the map.
     clearTimeout(clearCacheTimeout);
-    clearCacheTimeout = setTimeout(() => {
-      hg.controllers.TreasureMapController.clearMapCache();
-    }, 30 * 1000); // 10 seconds.
+    clearCacheTimeout = setTimeout(hg.controllers.TreasureMapController.clearMapCache, 30 * 1000); // 10 seconds.
   });
 };
 

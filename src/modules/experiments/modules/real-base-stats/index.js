@@ -70,9 +70,7 @@ const modifyBases = async () => {
  */
 const run = async () => {
   modifyBases();
-  setTimeout(() => {
-    modifyBases();
-  }, 500);
+  setTimeout(modifyBases, 500);
 };
 
 /**

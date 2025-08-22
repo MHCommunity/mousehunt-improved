@@ -498,9 +498,7 @@ const addQuickInvite = async (mapData) => {
       spinner.classList.add('hidden');
       success.classList.remove('hidden');
 
-      setTimeout(() => {
-        success.classList.add('hidden');
-      }, 2000);
+      setTimeout(success.classList.add, 2000, 'hidden');
     } else {
       return inviteError('Error inviting hunter');
     }

@@ -49,9 +49,7 @@ const claimGifts = async (send = false, retries = 0) => {
   const isLoaded = document.querySelector('.giftSelectorView-tabContent.active .giftSelectorView-friendRow');
   if (! isLoaded) {
     if (retries <= 10) {
-      setTimeout(() => {
-        claimGifts(send, retries + 1);
-      }, 250);
+      setTimeout(claimGifts, 250, send, retries + 1);
     }
 
     return;
@@ -103,9 +101,7 @@ const claimGifts = async (send = false, retries = 0) => {
     // hit the confirm button.
     const confirm = document.querySelector('.mousehuntActionButton.giftSelectorView-action-confirm.small');
     if (confirm) {
-      setTimeout(() => {
-        hg.views.GiftSelectorView.submitConfirm(confirm);
-      }, 250);
+      setTimeout(hg.views.GiftSelectorView.submitConfirm, 250, confirm);
     }
   }, 500);
 };

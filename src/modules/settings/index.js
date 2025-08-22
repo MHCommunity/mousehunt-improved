@@ -235,9 +235,7 @@ const addExportSettings = (append) => {
         classname: 'settings-export-save-success',
       });
 
-      setTimeout(() => {
-        window.location.reload();
-      });
+      setTimeout(window.location.reload, 0);
     });
 
     const copyButton = popupElement.querySelector('.export-copy');

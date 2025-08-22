@@ -78,9 +78,7 @@ const warnOnBadCrafts = (limit = 0) => {
   const confirm = document.querySelector('.mousehuntActionButton.inventoryPage-confirmPopup-suffix-button.confirm');
   if (! confirm) {
     if (limit <= 3) {
-      setTimeout(() => {
-        warnOnBadCrafts(limit + 1);
-      }, 250);
+      setTimeout(warnOnBadCrafts, 250, limit + 1);
     }
 
     return;

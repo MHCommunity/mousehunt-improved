@@ -177,9 +177,7 @@ const golemDance = () => {
     // Off set the animations so they don't all start at the same time.
     count = 0;
     golems.forEach((golem) => {
-      setTimeout(() => {
-        golem.classList.add('winterHuntGolemView--idleAnimation');
-      }, 100 * count);
+      setTimeout(golem.classList.add, 100 * count, 'winterHuntGolemView--idleAnimation');
       count++;
     });
   });

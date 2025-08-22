@@ -74,17 +74,9 @@ const addMissiles = () => {
       }
 
       missile.forEach((m) => {
-        setTimeout(() => {
-          m.classList.add('mh-ui-fade');
-        }, 50);
-
-        setTimeout(() => {
-          m.classList.add('mh-ui-fade-out');
-        }, 100);
-
-        setTimeout(() => {
-          m.remove();
-        }, 500);
+        setTimeout(m.classList.add, 50, 'mh-ui-fade-in');
+        setTimeout(m.classList.add, 100, 'mh-ui-fade-out');
+        setTimeout(m.remove, 500);
       });
     }, 700);
   };
