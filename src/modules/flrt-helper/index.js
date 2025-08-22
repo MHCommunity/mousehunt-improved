@@ -5,7 +5,6 @@ import {
   doRequest,
   getData,
   getLastMaptain,
-  makeElement,
   makeMhButton,
   onDialogShow,
   onRequest

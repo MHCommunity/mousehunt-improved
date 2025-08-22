@@ -380,14 +380,14 @@ const onPageChange = (callbacks) => {
 /**
  * Do something when the user travels to a location.
  *
- * @param {string} location                      The location traveled to.
- * @param {Object} [options]                     The options.
- * @param {boolean} [options.shouldAddReminder] Whether or not to add a reminder.
- * @param {string}  [options.title]             The title of the reminder.
- * @param {string}  [options.text]              The text of the reminder.
- * @param {string}  [options.button]            The button text of the reminder.
- * @param {string}  [options.action]            The action to take when the button is clicked.
- * @param {Function} [options.callback]         The callback to run when the user is at the location.
+ * @param {string}   location                    The location traveled to.
+ * @param {Object}   [options]                   The options.
+ * @param {boolean}  [options.shouldAddReminder] Whether or not to add a reminder.
+ * @param {string}   [options.title]             The title of the reminder.
+ * @param {string}   [options.text]              The text of the reminder.
+ * @param {string}   [options.button]            The button text of the reminder.
+ * @param {string}   [options.action]            The action to take when the button is clicked.
+ * @param {Function} [options.callback]          The callback to run when the user is at the location.
  */
 const onTravel = (location, options) => {
   eventRegistry.addEventListener('travel_complete', () => onTravelCallback(location, options));
@@ -397,14 +397,14 @@ const onTravel = (location, options) => {
  * Do something when the user travels to a location.
  * This is a callback for the onTravel function.
  *
- * @param {string}  location                     The location traveled to.
- * @param {Object} [options]                     The options.
- * @param {boolean} [options.shouldAddReminder] Whether or not to add a reminder.
- * @param {string}  [options.title]             The title of the reminder.
- * @param {string}  [options.text]              The text of the reminder.
- * @param {string}  [options.button]            The button text of the reminder.
- * @param {string}  [options.action]            The action to take when the button is clicked.
- * @param {Function} [options.callback]         The callback to run when the user is at the location.
+ * @param {string}   location                    The location traveled to.
+ * @param {Object}   [options]                   The options.
+ * @param {boolean}  [options.shouldAddReminder] Whether or not to add a reminder.
+ * @param {string}   [options.title]             The title of the reminder.
+ * @param {string}   [options.text]              The text of the reminder.
+ * @param {string}   [options.button]            The button text of the reminder.
+ * @param {string}   [options.action]            The action to take when the button is clicked.
+ * @param {Function} [options.callback]          The callback to run when the user is at the location.
  */
 const onTravelCallback = (location, options) => {
   if (location && location !== getCurrentLocation()) {
@@ -431,14 +431,14 @@ let hasAddedNavigationListener = false;
 /**
  * Do something when the user navigates to a page, optionally checking the tab and subtab.
  *
- * @param {Function} callback               The callback to run when the user navigates to the page.
- * @param {Object}   [options]              The options.
- * @param {string}   [options.page]         The page to watch for.
- * @param {string}   [options.tab]          The tab to watch for.
- * @param {string}   [options.subtab]       The subtab to watch for.
- * @param {boolean}  [options.anyTab]       Whether or not to run the callback on any tab.
- * @param {boolean}  [options.anySubtab]    Whether or not to run the callback on any subtab.
- * @param {boolean}  [options.onLoad]       Whether or not to run the callback on load.
+ * @param {Function} callback            The callback to run when the user navigates to the page.
+ * @param {Object}   [options]           The options.
+ * @param {string}   [options.page]      The page to watch for.
+ * @param {string}   [options.tab]       The tab to watch for.
+ * @param {string}   [options.subtab]    The subtab to watch for.
+ * @param {boolean}  [options.anyTab]    Whether or not to run the callback on any tab.
+ * @param {boolean}  [options.anySubtab] Whether or not to run the callback on any subtab.
+ * @param {boolean}  [options.onLoad]    Whether or not to run the callback on load.
  *
  * @example
  * ```
