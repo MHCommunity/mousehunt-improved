@@ -1,3 +1,14 @@
+/**
+ * Convert a time duration to a human readable string.
+ *
+ * @param {number}   time                              The duration in milliseconds.
+ * @param {Object}   [options]                         Formatting options.
+ * @param {string[]} [options.units=['d','h','m','s']] The units to include in the result.
+ * @param {string}   [options.spacer=' ']              Separator between value and unit.
+ * @param {string}   [options.delimiter=' ']           Delimiter between each unit.
+ *
+ * @return {string} The formatted duration.
+ */
 function humanizeTime(time, options = {}) {
   const {
     units = ['d', 'h', 'm', 's'],

@@ -32,6 +32,13 @@ const getFieryWarpathStreak = () => {
   return streak;
 };
 
+/**
+ * Get the remaining mouse population in the specified wave.
+ *
+ * @param {number} [wave] The wave number. Defaults to the current wave.
+ *
+ * @return {number} The number of mice remaining.
+ */
 const getFieryWarpathRemainingInWave = (wave) => {
   if (! wave) {
     wave = getFieryWarpathWave();

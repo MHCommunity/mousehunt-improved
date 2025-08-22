@@ -3,6 +3,14 @@ import styles from '../styles/memory-game.css';
 
 let hasInitialized = false;
 
+/**
+ * Launch an in-page memory matching game.
+ *
+ * @param {Object} options         Configuration options.
+ * @param {Array}  options.items   Array of item objects to use for cards.
+ * @param {string} [options.title] Title displayed on the game overlay.
+ * @param {string} [options.mode]  Difficulty mode (`easy`, `hard`, `extreme`, `nope`).
+ */
 const startMemoryGame = ({ items = [], title = 'Memory Matching Game', mode = 'easy' }) => {
   if (! hasInitialized) {
     addStyles(styles, 'mh-improved-memory-game');
