@@ -283,6 +283,8 @@ const doRequest = async (url, formData = {}, skipChecks = false, skipOpts = {}) 
   // Convert the form to a URL encoded string for the body.
   const requestBody = new URLSearchParams(form).toString();
 
+  let response;
+
   try {
     response = await fetch(callbackurl ? `${callbackurl}${url}` : `https://www.mousehuntgame.com/${url}`, {
       method: 'POST',
