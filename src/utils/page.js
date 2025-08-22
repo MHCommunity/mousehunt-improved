@@ -115,7 +115,7 @@ const getCurrentDialog = () => {
     MHCheckout: 'premiumShop',
   };
 
-  overlayType = overlay.classList.value.split(' ').map((cls) => replaceMap[cls] || cls).join(' ').trim();
+  const overlayType = overlay.classList.value.split(' ').map((cls) => replaceMap[cls] || cls).join(' ').trim();
 
   return 'Popup' === overlayType ? '' : overlayType;
 };
