@@ -62,7 +62,8 @@ export default {
   id: 'dark-mode',
   name: 'Dark Mode Updates & Tweaks (MHCT/Dark Mode Extension)',
   type: 'feature',
-  default: true,
+  default: false,
+  hiddenUnlessEnabled: true,
   description: 'Updates and tweaks to the MHCT/Dark Mode Extension dark mode.',
   load: init,
 };
