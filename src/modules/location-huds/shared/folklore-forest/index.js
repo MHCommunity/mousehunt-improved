@@ -183,7 +183,7 @@ const addToggle = (upgradeBlock) => {
     appendTo: action || upgradeBlock,
   });
 
-  toggle.addEventListener('click', () => {
+  togglebutton.addEventListener('click', () => {
     isBlockToggled = ! isBlockToggled;
     saveHidden(blockId, isBlockToggled);
 
