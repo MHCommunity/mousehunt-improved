@@ -2,6 +2,7 @@ import {
   addMHCTData,
   debuglog,
   doRequest,
+  getData,
   getSetting,
   isAppleOS,
   makeElement,
@@ -15,6 +16,8 @@ import {
 import { addArToggle, removeArToggle } from './toggle-ar';
 import addConsolationPrizes from './consolation-prizes';
 
+let allMiceData;
+
 /**
  * Get the link markup for a mouse.
  *
@@ -24,12 +27,18 @@ import addConsolationPrizes from './consolation-prizes';
  * @return {string} The link markup.
  */
 const getLinkMarkup = (name, mouseType) => {
-  name = name.replaceAll(' ', '_');
-
-  const nameMouse = `${name}_Mouse`.replaceAll('_Mouse_Mouse', '_Mouse');
+  const mouse = allMiceData.find((m) => m.type === mouseType);
+  if (mouse) {
+    name = mouse.name
+      .replaceAll(' ', '_')
+      .replaceAll('\'', '%27')
+      .replaceAll('"', '%22')
+      .replaceAll(/(^\w|\s\w)/g, (m) => m.toUpperCase())
+      .replaceAll(' ', '_');
+  }
 
   return makeLink('MHCT AR', `https://api.mouse.rip/mhct-redirect/${mouseType}`) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(nameMouse.replaceAll(' ', '_'))}`, true);
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name}`);
 };
 
 /**
@@ -42,7 +51,7 @@ const getLinkMarkup = (name, mouseType) => {
 const getItemLinkMarkup = (name) => {
   name = name.replace(' ', '_');
   return makeLink('MHCT DR', `https://api.mouse.rip/mhct-redirect-item/${name}`, true) +
-    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${encodeURIComponent(name.replaceAll(' ', '_'))}`, true);
+    makeLink('Wiki', `https://mhwiki.hitgrab.com/wiki/index.php/${name.replaceAll(' ', '_')}`, true);
 };
 
 /**
@@ -154,8 +163,36 @@ const addMouseLinksToMap = async () => {
       container.classList.add('has-mhct-ars');
 
       container.append(arsEl);
+
+      makeStickyHighlightSticky();
     });
   });
+};
+
+const makeStickyHighlightSticky = async () => {
+  const highlight = document.querySelector('.treasureMapView-highlight.active');
+  console.log(highlight);
+  if (! highlight) {
+    return;
+  }
+
+  // get the current position of the highlight box and then set it to fixed with the same position.
+  const rect = highlight.getBoundingClientRect();
+  console.log(`Current position: top ${rect.top}, left ${rect.left}, width ${rect.width}, height ${rect.height}`);
+  highlight.classList.add('mh-ui-sticky-highlight');
+  highlight.style.position = 'fixed';
+  highlight.style.top = `${rect.top}px`;
+  highlight.style.left = `${rect.left}px`;
+  highlight.style.right = `${window.innerWidth - rect.right}px`;
+  highlight.style.width = `${rect.width}px`;
+  highlight.style.zIndex = '1000';
+  // highlight.style.position = 'fixed';
+  // highlight.style.top = `${rect.top}px`;
+  // highlight.style.left = `${rect.left}px`;
+  // highlight.style.zIndex = '1000';
+  // highlight.classList.add('mh-ui-sticky-highlight');
+
+  // highlight.width = `${rect.width}px`;
 };
 
 /**
@@ -720,6 +757,10 @@ const showGoalsTab = async (mapData) => {
 
   if (getSetting('better-maps.show-map-solver-links', true)) {
     addMapSolverLinks(mapData);
+  }
+
+  if (! allMiceData) {
+    allMiceData = await getData('mice');
   }
 };
 

@@ -23,6 +23,7 @@ import { hideGoalsTab, showGoalsTab } from './modules/tab-goals';
 import { maybeShowInvitesTab } from './modules/tab-invites';
 import { showHuntersTab } from './modules/tab-hunters';
 
+import catchDates from './modules/catch-dates';
 import community from './modules/community';
 import enhancePreviewButton from './modules/preview';
 import floatingIslands from './modules/floating-islands';
@@ -231,15 +232,15 @@ const intercept = () => {
     }, 1000);
   };
 
-  onRequest('users/treasuremap_v2.php', (data) => {
+  onRequest('users/treasuremap_v2.php', async (data) => {
     if (data.treasure_map && data.treasure_map.map_id) {
-      setMapData(data.treasure_map.map_id, data.treasure_map);
+      await setMapData(data.treasure_map.map_id, data.treasure_map);
     }
   }, true);
 
-  onRequest('board/board.php', (data) => {
+  onRequest('board/board.php', async (data) => {
     if (data.treasure_map && data.treasure_map.map_id) {
-      setMapData(data.treasure_map.map_id, data.treasure_map);
+      await setMapData(data.treasure_map.map_id, data.treasure_map);
     }
   }, true);
 };
@@ -480,6 +481,10 @@ const init = () => {
 
   if (! (getSetting('no-sidebar', true) && getSetting('better-maps.show-sidebar-goals', true))) {
     sidebar();
+  }
+
+  if (getSetting('better-maps.catch-dates')) {
+    catchDates();
   }
 
   clearMapCache();

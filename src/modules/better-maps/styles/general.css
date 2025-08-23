@@ -367,6 +367,7 @@ input.treasureMapView-block-search-text {
   padding: 6px 0;
 }
 
+.treasureMapView-highlight.goal.active.mouse,
 .treasureMapView-highlight.goal.active.sticky.mouse.has-mhct-ars {
   width: 40%;
 }

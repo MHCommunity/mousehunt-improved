@@ -1,0 +1,21 @@
+.treasureMapView-mapName {
+  flex-wrap: wrap;
+}
+
+.treasureMapView-goals-group-goal .mh-improved-catch-date {
+  margin-top: 2px;
+  font-size: 9px;
+  color: #666;
+}
+
+.treasureMapView-mapName .mh-improved-map-start {
+  width: 100%;
+  margin-top: 4px;
+  font-size: 11px;
+  color: #666;
+}
+
+.complete .treasureMapView-goals-group-goal-name {
+  display: flex;
+  flex-direction: column;
+}

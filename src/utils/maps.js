@@ -1,7 +1,9 @@
 import { cacheGet, cacheSet, getData, getHeaders } from './data';
+import { dbGet } from './db';
 import { doEvent } from './event-registry';
 import { getCurrentLocation } from './location-current';
 import { getGlobal } from './global';
+import { getSetting } from './settings';
 import { makeElement } from './elements';
 
 /**
@@ -86,9 +88,39 @@ const getMapData = async (mapId = false, strict = false) => {
  * @param {string} mapId      Map ID to set the data for.
  * @param {Object} theMapData Map data to set.
  */
-const setMapData = (mapId, theMapData) => {
-  cacheSet(`map-${mapId}`, theMapData);
-  cacheSet('map-last', theMapData);
+const setMapData = async (mapId, theMapData) => {
+  await cacheSet(`map-${mapId}`, theMapData);
+  await cacheSet('map-last', theMapData);
+
+  if (getSetting('better-maps.catch-dates')) {
+    await setExtraMapData(mapId, theMapData);
+  }
+};
+
+const setExtraMapData = async (mapId, theMapData) => {
+  const catchDates = await dbGet('cache', `map-catches-${mapId}`);
+  const newCatchDates = catchDates || {};
+
+  const goalTypes = theMapData.is_scavenger_hunt ? 'item' : 'mouse';
+  theMapData.hunters.forEach((hunter) => {
+    if (hunter.completed_goal_ids && hunter.completed_goal_ids[goalTypes]) {
+      hunter.completed_goal_ids[goalTypes].forEach((goalId) => {
+        if (! catchDates[goalId]) {
+          newCatchDates[goalId] = new Date().toISOString();
+        }
+      });
+    }
+  });
+
+  if (newCatchDates !== catchDates) {
+    await cacheSet(`map-catches-${mapId}`, newCatchDates);
+    await cacheSet(`map-catches-last-update-${mapId}`, Date.now());
+  }
+
+  const start = await dbGet('dbGet', `map-start-${mapId}`);
+  if (! start) {
+    await cacheSet(`map-start-${mapId}`, new Date().toISOString());
+  }
 };
 
 /**
@@ -172,7 +204,7 @@ const showTravelConfirmationForMice = ({ title, description, environment, templa
   dialog.setCssClass('confirm');
   dialog.setContinueAction('Travel', () => {
     app.pages.TravelPage.travel(environment || templateData.environment.id);
-    setTimeout(jsDialog().hide, 250);
+    setTimeout(() => jsDialog().hide(), 250);
   });
 
   hg.controllers.TreasureMapController.showDialog(dialog);
