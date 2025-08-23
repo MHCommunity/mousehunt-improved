@@ -4,6 +4,8 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    assignees:
+      - "bradp"
     versioning-strategy: increase
     groups:
       dev-dependencies:
