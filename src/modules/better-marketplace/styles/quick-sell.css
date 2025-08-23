@@ -1,0 +1,27 @@
+.mhui-marketplace-quick-sell-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  max-width: 200px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #e9e1c6;
+  border: 1px solid #b0a97a;
+  border-radius: 5px;
+}
+
+input.mhui-marketplace-quick-sell-quantity {
+  width: 50px;
+  text-align: center;
+}
+
+.marketplaceView-item.view .marketplaceView-item-table td .mousehuntActionButton.mhui-marketplace-quick-sell {
+  padding: 5px !important;
+}
+
+.mhui-marketplace-quick-sell-info {
+  font-size: 10px;
+}

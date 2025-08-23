@@ -7,11 +7,13 @@ import {
   makeLink,
   makeMhButton,
   onOverlayChange,
-  onRequest
+  onRequest,
+  waitForElement
 } from '@utils';
 
 import settings from './settings';
 
+import quickSellStyles from './styles/quick-sell.css';
 import smallImages from './styles/small-images.css';
 import styles from './styles/styles.css';
 import trendNumbers from './styles/trend-numbers.css';
@@ -250,6 +252,8 @@ const overloadShowItem = () => {
 
     const buttons = makeElement('div', 'mh-improved-marketplace-item-title-actions', getLinkMarkup(itemName, itemId));
     actions.insertBefore(buttons, actions.firstChild);
+
+    addQuickSellButton(itemId);
   };
 };
 
@@ -433,6 +437,115 @@ const replaceShowMyListings = () => {
   };
 };
 
+const getBestSellPrice = () => {
+  const buyRow = document.querySelector('.marketplaceView-item-quickListings.buy .bestPrice');
+  if (! buyRow) {
+    return 0;
+  }
+
+  const priceEl = buyRow.querySelector('.marketplaceView-table-numeric.marketplaceView-table-listing-unitPrice a');
+  if (! priceEl) {
+    return 0;
+  }
+
+  return priceEl ? Number.parseInt(priceEl.textContent.replaceAll(',', '')) : 0;
+};
+
+const getBestSellQuantity = () => {
+  const buyRow = document.querySelector('.marketplaceView-item-quickListings.buy .bestPrice');
+  if (! buyRow) {
+    return 0;
+  }
+
+  const quantityEl = buyRow.querySelector('.marketplaceView-table-numeric.marketplaceView-table-listing-quantity');
+  if (! quantityEl) {
+    return 0;
+  }
+
+  return quantityEl ? Number.parseInt(quantityEl.textContent.replaceAll(',', '')) : 0;
+};
+
+const addQuickSellButton = async (itemId) => {
+  const actions = document.querySelector('.marketplaceView-item-table .marketplaceView-item-viewActions');
+  if (! actions) {
+    return;
+  }
+
+  const existing = actions.querySelector('.mhui-marketplace-quick-sell');
+  if (existing) {
+    existing.remove();
+  }
+
+  await waitForElement('.marketplaceView-table .bestPrice');
+
+  const maxQuantityEl = document.querySelector('.marketplaceView-item-leftBlock .marketplaceView-item-averagePrice:nth-of-type(3) span');
+  if (! maxQuantityEl) {
+    return;
+  }
+
+  const bestSellQuantity = getBestSellQuantity();
+  const bestSellPrice = getBestSellPrice();
+
+  const maxQuantity = Math.min(
+    maxQuantityEl ? Number.parseInt(maxQuantityEl.textContent.replaceAll(',', ''), 10) : 0,
+    bestSellQuantity
+  );
+
+  const quickSellWrapper = makeElement('div', 'mhui-marketplace-quick-sell-wrapper');
+
+  const quickSellInput = makeElement('input', 'mhui-marketplace-quick-sell-quantity');
+  quickSellInput.setAttribute('id', 'mhui-marketplace-quick-sell-quantity');
+  quickSellInput.setAttribute('type', 'number');
+  quickSellInput.setAttribute('min', '1');
+  quickSellInput.setAttribute('max', String(maxQuantity));
+  quickSellInput.setAttribute('value', String(maxQuantity));
+
+  quickSellWrapper.append(quickSellInput);
+
+  makeMhButton({
+    text: 'Quick Sell',
+    className: 'mhui-marketplace-quick-sell',
+    appendTo: quickSellWrapper,
+    callback: async (event) => {
+      const button = event.currentTarget;
+      button.classList.add('disabled');
+
+      const quantity = Math.min(Number.parseInt(quickSellInput.value, 10) || 0, bestSellQuantity);
+      if (quantity <= 0) {
+        return;
+      }
+
+      const price = getBestSellPrice();
+      if (price <= 0) {
+        return;
+      }
+
+      hg.utils.Marketplace.createListing(itemId, price, quantity, 'sell',
+        (data) => {
+          hg.views.MarketplaceView.showMyListings(data.marketplace_new_listing.listing_id);
+        },
+        (err) => {
+          console.log('Error quick selling item', err); // eslint-disable-line no-console
+        }
+      );
+
+      button.classList.remove('disabled');
+    },
+  });
+
+  const infoRow = makeElement('div', 'mhui-marketplace-quick-sell-info');
+  infoRow.textContent = `${maxQuantity.toLocaleString()} at ${bestSellPrice.toLocaleString()} gold, ${(bestSellPrice * maxQuantity).toLocaleString()} total`;
+  quickSellWrapper.append(infoRow);
+
+  quickSellInput.addEventListener('input', () => {
+    const quantity = Math.min(Number.parseInt(quickSellInput.value, 10) || 0, bestSellQuantity);
+
+    infoRow.textContent = `${quantity.toLocaleString()} at ${bestSellPrice.toLocaleString()} gold, ${(bestSellPrice * quantity).toLocaleString()} total`;
+  });
+
+  actions.append(quickSellWrapper);
+};
+
 const addRelistButtonToCancelled = async () => {
   const listings = document.querySelectorAll('.marketplaceView-table tr');
   if (! listings || listings.length === 0) {
@@ -501,6 +614,7 @@ const init = () => {
     styles,
     getSetting('better-marketplace.small-images') ? smallImages : '',
     getSetting('better-marketplace.trend-numbers', true) ? trendNumbers : '',
+    getSetting('better-marketplace.quick-sell') ? quickSellStyles : '',
   ], 'better-marketplace');
 
   onOverlayChange({
