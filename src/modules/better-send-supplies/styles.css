@@ -108,10 +108,13 @@
   display: none;
 }
 
-.mhui-supply-sort-wrapper a,
 .mhui-supply-sort-wrapper img {
   width: 35px;
   height: 20px;
+}
+
+#supplytransfer .tabs .tab.item .itemImage {
+  margin-top: 0;
 }
 
 .mhui-supply-sort-wrapper {

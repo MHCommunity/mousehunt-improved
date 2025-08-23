@@ -247,8 +247,6 @@ const addQuickQuantityButtons = () => {
     appendTo: wrapper,
   });
 
-  wrapper.append(max);
-
   // append the wrapper after the input
   input.parentNode.insertBefore(wrapper, input.nextSibling);
 };
