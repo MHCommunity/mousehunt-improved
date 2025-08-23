@@ -302,6 +302,10 @@ const cacheSet = async (key, value, expiration = null) => {
   return value;
 };
 
+const cacheSetNoExpiration = async (key, value) => {
+  return await dbSet('cache', { id: key, value });
+};
+
 /**
  * Set a cache value.
  *
@@ -353,6 +357,15 @@ const cacheGet = async (key, defaultValue = false) => {
   return await cacheGetHelper(key, defaultValue);
 };
 
+const cacheGetNoExpiration = async (key, defaultValue = false) => {
+  const cached = await dbGet('cache', key);
+  if (! cached?.data?.value) {
+    return defaultValue;
+  }
+
+  return cached.data.value;
+};
+
 /**
  * Delete a cache value.
  *
@@ -397,9 +410,11 @@ export {
   dataGet,
   cacheDelete,
   cacheGet,
+  cacheGetNoExpiration,
   cacheSet,
   cacheSetAsync,
   cacheSetExpiration,
+  cacheSetNoExpiration,
   clearCaches,
   getData,
   getHeaders,

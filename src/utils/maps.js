@@ -1,5 +1,11 @@
-import { cacheGet, cacheSet, getData, getHeaders } from './data';
-import { dbGet } from './db';
+import {
+  cacheGet,
+  cacheGetNoExpiration,
+  cacheSet,
+  cacheSetNoExpiration,
+  getData,
+  getHeaders
+} from './data';
 import { doEvent } from './event-registry';
 import { getCurrentLocation } from './location-current';
 import { getGlobal } from './global';
@@ -98,7 +104,7 @@ const setMapData = async (mapId, theMapData) => {
 };
 
 const setExtraMapData = async (mapId, theMapData) => {
-  const catchDates = await dbGet('cache', `map-catches-${mapId}`);
+  const catchDates = await cacheGetNoExpiration(`map-catches-${mapId}`);
   const newCatchDates = catchDates || {};
 
   const goalTypes = theMapData.is_scavenger_hunt ? 'item' : 'mouse';
@@ -113,13 +119,15 @@ const setExtraMapData = async (mapId, theMapData) => {
   });
 
   if (newCatchDates !== catchDates) {
-    await cacheSet(`map-catches-${mapId}`, newCatchDates);
-    await cacheSet(`map-catches-last-update-${mapId}`, Date.now());
+    await Promise.all([
+      cacheSetNoExpiration(`map-catches-${mapId}`, newCatchDates),
+      cacheSetNoExpiration(`map-catches-last-update-${mapId}`, Date.now())
+    ]);
   }
 
-  const start = await dbGet('dbGet', `map-start-${mapId}`);
+  const start = await cacheGetNoExpiration(`map-start-${mapId}`);
   if (! start) {
-    await cacheSet(`map-start-${mapId}`, new Date().toISOString());
+    await cacheSetNoExpiration(`map-start-${mapId}`, Date.now());
   }
 };
 

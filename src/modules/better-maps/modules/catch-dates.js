@@ -1,5 +1,5 @@
 import {
-  cacheGet,
+  cacheGetNoExpiration,
   dbGet,
   getMapData,
   makeElement,
@@ -12,8 +12,7 @@ const addCatchDates = async () => {
     return;
   }
 
-  const catchDatesData = await dbGet('cache', `map-catches-${mapId}`);
-  const catchDates = catchDatesData?.data?.value || {};
+  const catchDates = await cacheGetNoExpiration(`map-catches-${mapId}`);
   const goals = document.querySelectorAll('.treasureMapView-goals-group-goal.complete');
   goals.forEach((goal) => {
     const goalId = goal.getAttribute('data-unique-id') || goal.getAttribute('data-mouse-type');
@@ -41,19 +40,19 @@ const addMapStartDate = async () => {
     return;
   }
 
-  const mapName = document.querySelector('.treasureMapView-mapName');
-  if (! mapName) {
+  const mapActions = document.querySelector('.treasureMapView-mapMenu-group-actions');
+  if (! mapActions) {
     return;
   }
 
-  const start = await cacheGet(`map-start-${mapId}`);
+  const existing = document.querySelector('.mh-improved-map-start');
+  if (existing) {
+    return;
+  }
+
+  const start = await cacheGetNoExpiration(`map-start-${mapId}`);
   if (! start) {
     return;
-  }
-
-  let existing = mapName.querySelector('.mh-improved-map-start');
-  if (existing) {
-    existing.remove();
   }
 
   const mapData = await getMapData(mapId);
@@ -65,8 +64,7 @@ const addMapStartDate = async () => {
 
   const started = new Date(start);
   const startText = `${didOpenMap ? 'Started' : 'Joined'}: ${started.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`;
-
-  existing = makeElement('div', 'mh-improved-map-start', startText, mapName);
+  makeElement('div', 'mh-improved-map-start', startText, mapActions);
 };
 
 export default () => {

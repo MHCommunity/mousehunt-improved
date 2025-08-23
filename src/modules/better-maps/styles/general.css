@@ -83,7 +83,7 @@ input.treasureMapView-shareLinkInput {
 
 .rewards .treasureMapView-mapMenu-group-actions {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: flex-end;
   width: auto;
 }
