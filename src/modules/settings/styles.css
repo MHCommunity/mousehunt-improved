@@ -89,9 +89,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 25px;
-  opacity: 0.6;
-  transition: opacity 0.1s ease-out;
-  will-change: transform;
+  opacity: 0.4;
 }
 
 .mousehunt-improved-settings .PagePreferences__setting {
@@ -505,47 +503,42 @@ a.reset-link {
   display: none;
 }
 
-#mousehunt-improved-settings-beta-experiments {
-  padding-left: 0;
-  border-top: none;
-}
-
-#mousehunt-improved-settings-beta-experiments > .PagePreferences__setting,
-#mousehunt-improved-settings-beta-experiments > .PagePreferences__setting .PagePreferences__settingAction {
+#mousehunt-improved-settings-beta > .PagePreferences__setting,
+#mousehunt-improved-settings-beta > .PagePreferences__setting .PagePreferences__settingAction {
   display: none;
 }
 
-#mousehunt-improved-settings-beta-experiments .PagePreferences__settingsList {
+#mousehunt-improved-settings-beta .PagePreferences__settingsList {
   border-top: none;
 }
 
-#mousehunt-improved-settings-beta-experiments .PagePreferences__subSetting {
-  padding-left: 0;
+#mousehunt-improved-settings-beta .PagePreferences__subSetting {
+  padding-left: 5px;
   background-color: transparent;
   border-top: 1px solid #f2ebde;
   border-left: none;
 }
 
-#mousehunt-improved-settings-beta-experiments .PagePreferences__subSetting .PagePreferences__settingName {
+#mousehunt-improved-settings-beta .PagePreferences__subSetting .PagePreferences__settingName {
   font-size: 15px;
   line-height: 1.375;
 }
 
-#mousehunt-improved-settings-beta-experiments .PagePreferences__settingDescription {
+#mousehunt-improved-settings-beta .PagePreferences__settingDescription {
   padding: 5px 0;
 }
 
-#mousehunt-improved-settings-beta-experiments .mousehuntSettingSlider {
+#mousehunt-improved-settings-beta .mousehuntSettingSlider {
   display: block;
   width: 50px;
   height: 20px;
 }
 
-#mousehunt-improved-settings-beta-experiments .mousehuntSettingSlider::after {
+#mousehunt-improved-settings-beta .mousehuntSettingSlider::after {
   width: 18px;
   height: 18px;
 }
 
-#mousehunt-improved-settings-beta-experiments .mousehuntSettingSlider.active::after {
+#mousehunt-improved-settings-beta .mousehuntSettingSlider.active::after {
   left: calc(100% - 20px);
 }
