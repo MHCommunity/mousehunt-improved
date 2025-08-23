@@ -60,7 +60,7 @@ const addSettingsTab = (identifier = 'mousehunt-improved-settings', name = 'MH I
  * @param {string} identifier The identifier for the settings.
  * @param {string} name       The name of the settings tab.
  */
-const addSettingsTabOnce = (identifier = 'userscript-settings', name = 'Userscript Settings') => {
+const addSettingsTabOnce = (identifier = 'mousehunt-improved-settings', name = 'MH Improved') => {
   if ('preferences' !== getCurrentPage()) {
     return;
   }
@@ -765,7 +765,11 @@ onEvent('mh-improved-settings-changed', addSettingRefreshReminder);
 const addSettingForModule = async (module) => {
   for (const submodule of module.modules) {
     let moduleSettingRow = null;
-    if (! submodule.alwaysLoad && ! submodule.beta) {
+    if (
+      ! submodule.alwaysLoad &&
+      ! submodule.beta &&
+      ! (submodule.hiddenUnlessEnabled && ! getSetting(submodule.id, false))
+    ) {
       moduleSettingRow = await addSetting({
         moduleType: module.id,
         name: submodule.name,
