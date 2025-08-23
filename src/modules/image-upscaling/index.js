@@ -38,16 +38,6 @@ const pathsToSkip = [
   'payment/thumb/logo_paypal.png',
 ];
 
-const skipPrefixes = new Set();
-const skipExact = new Set();
-for (const p of pathsToSkip) {
-  if (p.endsWith('*')) {
-    skipPrefixes.add(p.slice(0, -1));
-  } else {
-    skipExact.add(p);
-  }
-}
-
 /**
  * The ImageUpscaler class.
  */
@@ -56,15 +46,17 @@ class ImageUpscaler {
    * Create a new ImageUpscaler.
    */
   constructor() {
-    this.mapping = null;
+    this.mapping = [];
     this.unupscaledImages = new Set();
     this.upscaledImages = new Set();
+    this.lastCheck = '';
     this.isUpscaling = false;
+    this.observerOptions = {
+      childList: true,
+      subtree: true,
+    };
     this.observer = null;
-    this.elementSrcCache = new WeakMap();
-    this.mappedCache = new Map();
     this.handleUpscalingImages = this.handleUpscalingImages.bind(this);
-    this.debouncedMutationHandler = debounce(this._onMutations.bind(this), 50);
   }
 
   /**
@@ -100,190 +92,162 @@ class ImageUpscaler {
   }
 
   /**
-   * Fetch the mapping of images to their upscaled versions.
-   *
-   * @return {Promise<Object>} The mapping of images.
-   */
-  async fetchMapping() {
-    if (this.mapping) {
-      return this.mapping;
-    }
-
-    if (! upscaledImagesMapping || Object.keys(upscaledImagesMapping).length === 0) {
-      try {
-        upscaledImagesMapping = await getData('upscaled-images', true) || {};
-      } catch {
-        upscaledImagesMapping = {};
-      }
-    }
-
-    this.mapping = upscaledImagesMapping;
-    return this.mapping;
-  }
-
-  /**
-   * Get the mapped URL for a stripped URL.
+   * Get the mapped URL for an image.
    *
    * @param {string} strippedUrl The stripped URL.
    *
-   * @return {string} The mapped URL, or an empty string if not found.
+   * @return {string} The mapped URL.
    */
   getMappedUrl(strippedUrl) {
     if (! strippedUrl) {
       return '';
     }
 
-    if (this.mappedCache.has(strippedUrl)) {
-      return this.mappedCache.get(strippedUrl);
-    }
-
-    const map = this.mapping || {};
-    const mapped = map[strippedUrl];
-    if (! mapped) {
-      this.mappedCache.set(strippedUrl, '');
+    const mappedUrl = this.mapping[strippedUrl];
+    if (! mappedUrl) {
       return '';
     }
 
-    const final = mapped.includes('https://') ? mapped : `https://www.mousehuntgame.com/images/${mapped}`;
+    if (mappedUrl.includes('https://')) {
+      return mappedUrl;
+    }
 
-    this.upscaledImages.add(final);
-    this.mappedCache.set(strippedUrl, final);
-    return final;
+    if (mappedUrl) {
+      this.upscaledImages.add(mappedUrl);
+    }
+
+    return `https://www.mousehuntgame.com/images/${mappedUrl}`;
   }
 
   /**
-   * Determine if a URL should be skipped.
+   * Check if the image elements should be skipped.
+   *
+   * @param {NodeList} items The image elements.
+   *
+   * @return {boolean} If the update should be skipped.
+   */
+  shouldSkipUpdate(items) {
+    const itemHash = [...items]
+      .map((item) => item.getAttribute('src') || '')
+      .join(',');
+
+    const shouldSkip = this.lastCheck === itemHash;
+    this.lastCheck = itemHash;
+
+    return shouldSkip;
+  }
+
+  /**
+   * Check if the URL should be skipped.
    *
    * @param {string} url The URL to check.
    *
-   * @return {boolean} True if the URL should be skipped, false otherwise.
+   * @return {boolean} If the URL should be skipped.
    */
   shouldSkipUrl(url) {
-    if (! url) {
+    if (
+      this.unupscaledImages.has(url) || // Don't re-upscale images that have already been upscaled.
+      this.upscaledImages.has(url) ||
+      url.startsWith('https://www.gravatar.com') || // Skip some external images.
+      url.startsWith('https://graph.facebook.com') ||
+      url.startsWith('https://i.mouse.rip')
+    ) {
       return true;
     }
 
-    if (this.unupscaledImages.has(url) || this.upscaledImages.has(url)) {
-      return true;
-    }
-
-    if (url.startsWith('https://www.gravatar.com') ||
-        url.startsWith('https://graph.facebook.com') ||
-        url.startsWith('https://i.mouse.rip')) {
-      return true;
-    }
-
-    const clean = url.replace(/^\/+/, '');
-    if (skipExact.has(clean)) {
-      return true;
-    }
-
-    for (const prefix of skipPrefixes) {
-      if (clean.startsWith(prefix)) {
-        return true;
+    // Check if the image is in the list of images to skip.
+    // if the list has a path with a wildcard, check if the image path starts with the path.
+    // if the list has a path without a wildcard, check if the image path is equal to the path.
+    return pathsToSkip.some((path) => {
+      if (path.includes('*')) {
+        return url.startsWith(path.replace('*', ''));
       }
-    }
 
-    return false;
+      return url === path;
+    });
   }
 
   /**
-   * Upscale image elements within a root element.
-   *
-   * @param {Element|Document} [root=document] The root element to search within.
-   *
-   * @return {Promise<void>} A promise that resolves when done.
+   * Upscale the image elements.
    */
-  async upscaleImageElements(root = document) {
-    const images = (root === document ? document.querySelectorAll('img') : root.querySelectorAll?.('img')) || [];
-    if (! images.length) {
+  upscaleImageElements() {
+    const images = document.querySelectorAll('img');
+    if (! images) {
       return;
     }
 
-    for (const image of images) {
-      try {
-        const originalUrl = image.getAttribute('src');
-        if (! originalUrl) {
-          continue;
-        }
-
-        const strippedUrl = this.stripUrl(originalUrl);
-        doInternalEvent('image-upscaling-image', { image, originalUrl, strippedUrl });
-
-        if (this.shouldSkipUrl(strippedUrl)) {
-          this.unupscaledImages.add(strippedUrl);
-          continue;
-        }
-
-        const mapped = this.getMappedUrl(strippedUrl);
-        if (mapped && originalUrl !== mapped) {
-          const lastSet = this.elementSrcCache.get(image);
-          if (lastSet === mapped) {
-            continue;
-          }
-
-          image.setAttribute('src', mapped);
-          this.elementSrcCache.set(image, mapped);
-        } else if (! mapped) {
-          this.unupscaledImages.add(strippedUrl);
-        }
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log('Error upscaling image:', error);
-      }
+    if (this.shouldSkipUpdate(images)) {
+      return;
     }
+
+    images.forEach((image) => {
+      const originalUrl = image.getAttribute('src');
+      const strippedUrl = this.stripUrl(originalUrl);
+
+      doInternalEvent('image-upscaling-image', { image, originalUrl, strippedUrl });
+
+      if (this.shouldSkipUrl(strippedUrl)) {
+        return;
+      }
+
+      const mappedUrl = this.getMappedUrl(strippedUrl);
+      if (mappedUrl && originalUrl !== mappedUrl) {
+        image.setAttribute('src', mappedUrl);
+      }
+    });
   }
 
   /**
-   * Start observing the document for changes.
-   *
-   * @return {Promise<void>} A promise that resolves when done.
+   * Start the observer.
+   */
+  startObserver() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+
+    this.observer = new MutationObserver(() => {
+      this.upscaleImageElements();
+    });
+
+    this.observer.observe(document.body, this.observerOptions);
+  }
+
+  /**
+   * Upscale the images.
+   */
+  async upscaleImages() {
+    if (this.isUpscaling) {
+      return;
+    }
+
+    this.isUpscaling = true;
+
+    await this.fetchMapping();
+
+    this.upscaleImageElements();
+
+    this.startObserver();
+
+    this.isUpscaling = false;
+  }
+
+  /**
+   * Fetch the mapping for the upscaled images.
+   */
+  async fetchMapping() {
+    this.mapping = await getData('upscaled-images');
+  }
+
+  /**
+   * Start the image upscaler observer.
    */
   async start() {
     if (this.observer) {
       return;
     }
 
-    await this.fetchMapping();
-
-    this.observer = new MutationObserver(this.debouncedMutationHandler);
-    this.observer.observe(document, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-      attributeFilter: ['src', 'class', 'id'],
-    });
-
-    await this.upscaleImageElements(document);
-  }
-
-  /**
-   * Handle mutations observed in the document.
-   *
-   * @param {MutationRecord[]} mutations The mutations observed.
-   *
-   * @return {Promise<void>} A promise that resolves when done.
-   */
-  async _onMutations(mutations) {
-    const roots = new Set();
-    for (const m of mutations) {
-      if (! m.target) {
-        continue;
-      }
-
-      const nodeName = m.target.nodeName && m.target.nodeName.toLowerCase();
-      if (nodeName && (nodeName === 'head' || nodeName === 'title' || nodeName === 'optgroup' || nodeName === 'option')) {
-        continue;
-      }
-
-      const targetId = m.target.id;
-      if (targetId && (targetId === 'mh-improved-cre' || targetId === 'mhhh_flast_message_div')) {
-        continue;
-      }
-
-      const classList = m.target.classList ? [...m.target.classList] : [];
-
-      const heavyClasses = new Set([
+    const debounced = debounce(async (mutations) => {
+      const skipClasses = new Set([
         'huntersHornView__timerState',
         'mousehuntHud-gameInfo',
         'campPage-daily-tomorrow-countDown',
@@ -291,57 +255,70 @@ class ImageUpscaler {
         'mousehuntHeaderView-menu-notification',
         'mousehunt-improved-lgs-reminder-new',
         'mousehunt-improved-lgs-reminder',
+        // Select2, search boxes on marketplace and friends list..
         'select2-chosen',
         'select2-offscreen',
         'select2-container',
         'select2-search',
         'select2-drop',
         'marketplaceView-header-searchContainer',
+        // Markethunt.
         'highcharts-tracker',
         'highcharts-grid',
         'highcharts-axis',
         'highcharts-axis-labels',
       ]);
 
-      if (classList.some((c) => heavyClasses.has(c))) {
-        continue;
-      }
+      const skipIds = new Set([
+        'mh-improved-cre',
+        'mhhh_flast_message_div',
+      ]);
 
-      roots.add(m.target);
-      if (m.target.nodeName && m.target.nodeName.toLowerCase() === 'img') {
-        roots.add(m.target);
-      }
-    }
+      const skipElements = new Set([
+        'head',
+        'title',
+        'optgroup',
+        'option',
+      ]);
 
-    for (const root of roots) {
-      try {
-        await this.upscaleImageElements(root);
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log('Error upscaling image elements:', error);
+      for (const mutation of mutations) {
+        if ((mutation.type === 'childList' || mutation.type === 'attributes') && (
+          (mutation.target.classList && [...mutation.target.classList].some((c) => skipClasses.has(c))) ||
+          (mutation.target.id && skipIds.has(mutation.target.id)) ||
+          (mutation.target.nodeName && skipElements.has(mutation.target.nodeName.toLowerCase()))
+        )) {
+          continue;
+        }
+
+        try {
+          await this.upscaleImages(mutation.target);
+        } catch (error) {
+          console.error('Failed to upscale images:', error); // eslint-disable-line no-console
+        }
       }
-    }
+    }, 50);
+
+    this.observer = new MutationObserver(debounced);
+    this.observer.observe(document, this.observerOptions);
   }
 
   /**
    * Handle upscaling images.
    */
   async handleUpscalingImages() {
-    if (this.isUpscaling) {
-      return;
-    }
-
-    this.isUpscaling = true;
-
     try {
-      await this.start();
-    } finally {
-      this.isUpscaling = false;
+      if (! this.observer) {
+        await this.start();
+      }
+
+      if (! this.isUpscaling) {
+        await this.upscaleImages(document.querySelector('body'));
+      }
+    } catch (error) {
+      console.error('Failed to handle upscaling images:', error); // eslint-disable-line no-console
     }
   }
 }
-
-let upscaledImagesMapping = {};
 
 /**
  * The ImageUpscaler instance.
@@ -356,9 +333,9 @@ const init = async () => {
   addExternalStyles('upscaled-images.css');
   addExternalStyles('upscaled-mice-images.css');
 
-  upscaledImagesMapping = await getData('upscaled-images');
-  const imageUpscaler = new ImageUpscaler();
-  await imageUpscaler.fetchMapping();
+  await getData('upscaled-images');
+
+  imageUpscaler = new ImageUpscaler();
   imageUpscaler.handleUpscalingImages();
 
   onRequest('*', imageUpscaler.handleUpscalingImages, true, [], true);
