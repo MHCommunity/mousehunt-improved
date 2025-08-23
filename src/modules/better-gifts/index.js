@@ -343,7 +343,7 @@ const addSendButton = (className, text, selector, buttonContainer) => {
       return;
     }
 
-    if (event.classList.contains('disabled')) {
+    if (event.target.classList.contains('disabled')) {
       const selectedFriends = document.querySelectorAll('.giftSelectorView-friend.selected');
       selectedFriends.forEach((friend) => {
         friend.click();
