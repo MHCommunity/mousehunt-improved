@@ -13,7 +13,7 @@ const init = async () => {
 
 export default {
   id: 'experiments.trap-background',
-  name: 'Trap Gradient Background',
-  description: 'Add background gradient to trap',
+  name: 'Better UI: Add background gradient to trap',
+  description: 'Add background gradient to your trap.',
   load: init,
 };

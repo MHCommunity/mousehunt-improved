@@ -11,7 +11,7 @@ const init = async () => {
 
 export default {
   id: 'experiments.consistent-profile-pics',
-  name: 'Square Profile Pics',
-  description: 'Make profile pictures square in more places for consistency',
+  name: 'Better UI: Square profile pics',
+  description: 'Make profile pictures square in more places for consistency.',
   load: init,
 };

@@ -164,6 +164,7 @@ export default {
   id: 'debug',
   name: 'Debug',
   type: 'advanced',
+  description: 'Various <a href="https://github.com/MHCommunity/mousehunt-improved/blob/main/docs/debug.md" target="_blank" rel="noreferrer">debugging</a> tools for developers and advanced users.',
   default: false,
   order: 900,
   load: init,

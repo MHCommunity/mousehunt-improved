@@ -1,4 +1,4 @@
-import { getData, getSetting } from '@utils';
+import { getData } from '@utils';
 
 /**
  * Add settings for the module.
@@ -21,13 +21,6 @@ export default async () => {
   ]);
 
   const locationsToAdd = [
-    {
-      name: '',
-      id: 'region-seperator',
-      settings: {
-        type: 'blank',
-      }
-    },
     {
       name: 'Living Garden Region',
       id: 'region-living-garden',
@@ -90,48 +83,28 @@ export default async () => {
 
   optionsToReturn.push(
     {
-      name: '',
-      id: 'option-seperator',
-      settings: {
-        type: 'blank',
-      }
-    },
-    {
       id: 'location-huds.location-hud-toggle',
-      title: 'Add toggle button to top menu',
+      title: 'Enable quick toggle (top menu bar)',
     },
     {
-      id: 'location-huds.bountiful-beanstalk-flip-avatar',
-      title: 'Bountiful Beanstalk: Mirror avatar (to face the other direction)',
+      id: 'location-huds.flip-avatar-images',
+      title: 'Flip avatar images in Bountiful Beanstalk and Valour Rift',
     },
     {
       id: 'location-huds.bountiful-beanstalk-quick-harp-toggle',
-      title: 'Bountiful Beanstalk: Show quick Auto-Harp toggle',
+      title: 'Bountiful Beanstalk: Enable Auto-Harp toggle',
     },
     {
       id: 'location-huds.bountiful-beanstalk-inventory-in-one-row',
-      title: 'Bountiful Beanstalk: Show Inventory box in one row',
-      default: getSetting('location-huds.bountiful-beanstalk-inventory-in-one-row', false),
+      title: 'Bountiful Beanstalk: Inventory in one row',
     },
     {
       id: 'location-huds.fi-draggable-airship',
-      title: 'Floating Islands: Make airship draggable',
-      default: getSetting('experiments.fi-draggable-airship', false),
-    },
-    {
-      id: 'location-huds.prologue-pond-wood-boat',
-      title: 'Prologue Pond: Normal boat color',
-      default: getSetting('experiments.prologue-pond-wood-boat', false),
+      title: 'Floating Islands: Draggable Airship',
     },
     {
       id: 'location-huds.school-of-sorcery-clean-chalkboard',
       title: 'School of Sorcery: Clean chalkboard',
-      default: false,
-    },
-    {
-      id: 'location-huds.valour-rift-flip-avatar',
-      title: 'Valour Rift: Mirror avatar (to face the other direction)',
-      default: getSetting('location-huds.valour-rift-flip-avatar', false),
     }
   );
 

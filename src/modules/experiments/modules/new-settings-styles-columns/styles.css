@@ -62,9 +62,8 @@
 }
 
 .two-column.mousehunt-improved-settings #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.PagePreferences__subSetting {
-  padding: 0 5px;
+  padding: 0 0 0 10px;
   background-color: transparent;
-  border-radius: 0;
 }
 
 .two-column.mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,
@@ -198,4 +197,19 @@
 
 .two-column #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingNameText {
   line-height: 1.5;
+}
+
+#mousehunt-improved-settings-advanced-override-flags .PagePreferences__settingDescription,
+#mousehunt-improved-settings-advanced-override-styles .PagePreferences__settingDescription {
+  padding: 0 0 5px;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle.PagePreferences__settingsList,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-flip-avatar.PagePreferences__settingsList,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-quick-harp-toggle.PagePreferences__settingsList,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-inventory-in-one-row.PagePreferences__settingsList,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-fi-draggable-airship.PagePreferences__settingsList,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-prologue-pond-wood-boat.PagePreferences__settingsList,
+#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-school-of-sorcery-clean-chalkboard.PagePreferences__settingsList {
+  padding: 0;
 }

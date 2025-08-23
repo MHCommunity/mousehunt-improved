@@ -52,7 +52,7 @@
 .settingRow-action-inputContainer.inputText {
   display: flex;
   gap: 5px;
-  align-items: stretch;
+  align-items: center;
 }
 
 .mh-utils-settings-refresh-message {

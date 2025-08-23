@@ -114,6 +114,10 @@
   background-image: url(https://i.mouse.rip/s/flrt-helper.svg);
 }
 
+#mousehunt-improved-settings-feature-trap-selector-special-effects::before {
+  background-image: url(https://i.mouse.rip/s/selector-special-effects.svg);
+}
+
 #mousehunt-improved-settings-feature-hover-profiles::before {
   background-image: url(https://i.mouse.rip/s/hover-profiles.svg);
 }
@@ -127,7 +131,7 @@
 }
 
 #mousehunt-improved-settings-feature-inventory-lock-and-hide::before {
-  background-image: url(https://i.mouse.rip/s/inventory-lock-and-hide.svg);
+  background-image: url(https://i.mouse.rip/s/lock-alt.svg);
 }
 
 #mousehunt-improved-settings-feature-journal-changer::before {
@@ -167,7 +171,7 @@
 }
 
 #mousehunt-improved-settings-feature-only-open-multiple::before {
-  background-image: url(https://i.mouse.rip/s/only-open-multiple.svg);
+  background-image: url(https://i.mouse.rip/s/lock-pound.svg);
 }
 
 #mousehunt-improved-settings-feature-open-all::before {
@@ -211,7 +215,7 @@
 }
 
 #mousehunt-improved-settings-feature-show-auras::before {
-  background-image: url(https://i.mouse.rip/s/show-auras.svg);
+  background-image: url(https://i.mouse.rip/s/target.svg);
 }
 
 #mousehunt-improved-settings-feature-ssdb-teeth-counter::before {
@@ -244,8 +248,4 @@
 
 #mousehunt-improved-settings-feature-emotes::before {
   background-image: url(https://i.mouse.rip/s/emotes.svg);
-}
-
-#mousehunt-improved-settings-beta-experiments::before {
-  background-image: url(https://i.mouse.rip/s/experiments.svg);
 }

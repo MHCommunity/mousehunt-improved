@@ -20,5 +20,6 @@ const init = async () => {
 export default {
   id: 'experiments.gift-button-opens-gift-selector',
   name: 'Gift button opens gift selector',
+  description: 'Clicking the "Gifts" button in the top menu will directly open the gift selector.',
   load: init,
 };
