@@ -159,6 +159,10 @@ const updateWords = (/** @type {Upgrades} */ upgrades) => {
       words = Math.ceil(words * 1.5);
     }
 
+    if (upgrades.HasRainbowQuill) {
+      words = Math.ceil(words * 1.75);
+    }
+
     MouseStats[key].Words = words;
   });
 };
@@ -233,6 +237,7 @@ export default simulate;
  * @property {boolean} HasEdgeGilding      User has Edge Gilding upgrade.
  * @property {boolean} HasSilverQuill      User has Silver Quill upgrade.
  * @property {boolean} HasGoldenQuill      User has Golden Quill upgrade.
+ * @property {boolean} HasRainbowQuill     User has Rainbow Quill upgrade.
  */
 
 /**

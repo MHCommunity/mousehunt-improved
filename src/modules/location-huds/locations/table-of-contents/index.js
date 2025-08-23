@@ -158,6 +158,7 @@ const getOptions = () => {
       HasGoldFoilPrinting: user?.quests?.QuestTableOfContents?.has_gold_foil || false,
       HasSilverQuill: user?.quests?.QuestTableOfContents?.has_silver_quill || false,
       HasGoldenQuill: user?.quests?.QuestTableOfContents?.has_golden_quill || false,
+      HasRainbowQuill: user?.quests?.QuestTableOfContents?.has_rainbow_quill || false,
     },
     WritingSession: {
       HuntsRemaining: user?.quests?.QuestTableOfContents?.current_book.hunts_remaining || 0,
