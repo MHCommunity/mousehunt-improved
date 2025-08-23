@@ -253,7 +253,9 @@ const overloadShowItem = () => {
     const buttons = makeElement('div', 'mh-improved-marketplace-item-title-actions', getLinkMarkup(itemName, itemId));
     actions.insertBefore(buttons, actions.firstChild);
 
-    addQuickSellButton(itemId);
+    if (getSetting('better-marketplace.quick-sell')) {
+      addQuickSellButton(itemId);
+    }
   };
 };
 
