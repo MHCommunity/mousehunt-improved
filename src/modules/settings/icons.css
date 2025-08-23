@@ -1,251 +1,240 @@
+#mousehunt-improved-settings-better-better-ui::before {
+  background-image: url(https://i.mouse.rip/settings/heart.svg);
+}
+
 #mousehunt-improved-settings-better-better-gifts::before {
-  background-image: url(https://i.mouse.rip/s/better-gifts.svg);
+  background-image: url(https://i.mouse.rip/settings/gifts.svg);
 }
 
 #mousehunt-improved-settings-better-better-inventory::before {
-  background-image: url(https://i.mouse.rip/s/better-inventory.svg);
+  background-image: url(https://i.mouse.rip/settings/box.svg);
 }
 
 #mousehunt-improved-settings-better-better-item-view::before {
-  background-image: url(https://i.mouse.rip/s/better-item-view.svg);
+  background-image: url(https://i.mouse.rip/settings/search.svg);
 }
 
 #mousehunt-improved-settings-better-better-journal::before {
-  background-image: url(https://i.mouse.rip/s/better-journal.svg);
+  background-image: url(https://i.mouse.rip/settings/book-open.svg);
 }
 
 #mousehunt-improved-settings-better-better-kings-reward::before {
-  background-image: url(https://i.mouse.rip/s/better-kings-reward.svg);
+  background-image: url(https://i.mouse.rip/settings/crown.svg);
 }
 
 #mousehunt-improved-settings-better-better-maps::before {
-  background-image: url(https://i.mouse.rip/s/better-maps.svg);
+  background-image: url(https://i.mouse.rip/settings/map.svg);
 }
 
 #mousehunt-improved-settings-better-better-marketplace::before {
-  background-image: url(https://i.mouse.rip/s/better-marketplace.svg);
+  background-image: url(https://i.mouse.rip/settings/marketplace.svg);
 }
 
 #mousehunt-improved-settings-better-better-mice::before {
-  background-image: url(https://i.mouse.rip/s/better-mice.svg);
+  background-image: url(https://i.mouse.rip/settings/mouse.svg);
 }
 
 #mousehunt-improved-settings-better-better-quests::before {
-  background-image: url(https://i.mouse.rip/s/better-quests.svg);
+  background-image: url(https://i.mouse.rip/settings/quests.svg);
 }
 
 #mousehunt-improved-settings-better-better-send-supplies::before {
-  background-image: url(https://i.mouse.rip/s/better-send-supplies.svg);
+  background-image: url(https://i.mouse.rip/settings/truck.svg);
 }
 
 #mousehunt-improved-settings-better-better-shops::before {
-  background-image: url(https://i.mouse.rip/s/better-shops.svg);
+  background-image: url(https://i.mouse.rip/settings/shop.svg);
 }
 
 #mousehunt-improved-settings-better-better-tournaments::before {
-  background-image: url(https://i.mouse.rip/s/better-tournaments.svg);
+  background-image: url(https://i.mouse.rip/settings/trophy.svg);
 }
 
 #mousehunt-improved-settings-better-better-travel::before {
-  background-image: url(https://i.mouse.rip/s/better-travel.svg);
-}
-
-#mousehunt-improved-settings-better-better-ui::before {
-  background-image: url(https://i.mouse.rip/s/better-ui.svg?2);
-}
-
-#mousehunt-improved-settings-design-custom-background::before {
-  background-image: url(https://i.mouse.rip/s/custom-background.svg);
-}
-
-#mousehunt-improved-settings-design-custom-horn::before {
-  background-image: url(https://i.mouse.rip/s/custom-horn.svg);
-}
-
-#mousehunt-improved-settings-design-custom-hud::before {
-  background-image: url(https://i.mouse.rip/s/custom-hud.svg);
-}
-
-#mousehunt-improved-settings-design-custom-shield::before {
-  background-image: url(https://i.mouse.rip/s/custom-shield.svg);
+  background-image: url(https://i.mouse.rip/settings/map-pinned.svg);
 }
 
 #mousehunt-improved-settings-feature-big-timer::before {
-  background-image: url(https://i.mouse.rip/s/big-timer.svg);
+  background-image: url(https://i.mouse.rip/settings/clock.svg);
 }
 
 #mousehunt-improved-settings-feature-catch-rate-estimate::before {
-  background-image: url(https://i.mouse.rip/s/catch-rate-estimate.svg);
+  background-image: url(https://i.mouse.rip/settings/calc.svg);
 }
 
 #mousehunt-improved-settings-feature-codex-at-bottom::before {
-  background-image: url(https://i.mouse.rip/s/codex-at-bottom.svg);
+  background-image: url(https://i.mouse.rip/settings/bottom.svg);
 }
 
 #mousehunt-improved-settings-feature-copy-id::before {
-  background-image: url(https://i.mouse.rip/s/copy-id.svg);
+  background-image: url(https://i.mouse.rip/settings/clipboard.svg);
 }
 
 #mousehunt-improved-settings-feature-dark-mode::before {
-  background-image: url(https://i.mouse.rip/s/dark-mode.svg);
-}
-
-#mousehunt-improved-settings-feature-data-exporters::before {
-  background-image: url(https://i.mouse.rip/s/data-exporters.svg);
-}
-
-#mousehunt-improved-settings-feature-delayed-menus::before {
-  background-image: url(https://i.mouse.rip/s/delayed-menus.svg);
-}
-
-#mousehunt-improved-settings-feature-delayed-tooltips::before {
-  background-image: url(https://i.mouse.rip/s/delayed-tooltips.svg);
-}
-
-#mousehunt-improved-settings-feature-favorite-setups::before {
-  background-image: url(https://i.mouse.rip/s/favorite-setups.svg);
-}
-
-#mousehunt-improved-settings-feature-fixes::before {
-  background-image: url(https://i.mouse.rip/s/fixes.svg);
-}
-
-#mousehunt-improved-settings-feature-flrt-helper::before {
-  background-image: url(https://i.mouse.rip/s/flrt-helper.svg);
-}
-
-#mousehunt-improved-settings-feature-trap-selector-special-effects::before {
-  background-image: url(https://i.mouse.rip/s/selector-special-effects.svg);
-}
-
-#mousehunt-improved-settings-feature-hover-profiles::before {
-  background-image: url(https://i.mouse.rip/s/hover-profiles.svg);
-}
-
-#mousehunt-improved-settings-feature-image-upscaling::before {
-  background-image: url(https://i.mouse.rip/s/image-upscaling.svg);
-}
-
-#mousehunt-improved-settings-feature-inline-wiki::before {
-  background-image: url(https://i.mouse.rip/s/inline-wiki.svg);
-}
-
-#mousehunt-improved-settings-feature-inventory-lock-and-hide::before {
-  background-image: url(https://i.mouse.rip/s/lock-alt.svg);
-}
-
-#mousehunt-improved-settings-feature-journal-changer::before {
-  background-image: url(https://i.mouse.rip/s/journal-changer.svg);
-}
-
-#mousehunt-improved-settings-feature-keyboard-shortcuts::before {
-  background-image: url(https://i.mouse.rip/s/keyboard-shortcuts.svg);
-}
-
-#mousehunt-improved-settings-feature-larger-codices::before {
-  background-image: url(https://i.mouse.rip/s/larger-codices.svg);
-}
-
-#mousehunt-improved-settings-feature-larger-skin-images::before {
-  background-image: url(https://i.mouse.rip/s/larger-skin-images.svg);
-}
-
-#mousehunt-improved-settings-feature-legacy-hud::before {
-  background-image: url(https://i.mouse.rip/s/legacy-hud.svg?2);
-}
-
-#mousehunt-improved-settings-feature-lgs-reminder::before {
-  background-image: url(https://i.mouse.rip/s/lgs-reminder.svg);
-}
-
-#mousehunt-improved-settings-feature-location-catch-stats::before {
-  background-image: url(https://i.mouse.rip/s/location-catch-stats.svg);
-}
-
-#mousehunt-improved-settings-feature-location-dashboard::before {
-  background-image: url(https://i.mouse.rip/s/location-dashboard.svg);
-}
-
-#mousehunt-improved-settings-feature-metric::before {
-  background-image: url(https://i.mouse.rip/s/metric.svg);
-}
-
-#mousehunt-improved-settings-feature-only-open-multiple::before {
-  background-image: url(https://i.mouse.rip/s/lock-pound.svg);
-}
-
-#mousehunt-improved-settings-feature-open-all::before {
-  background-image: url(https://i.mouse.rip/s/open-all-but-one.svg);
-}
-
-#mousehunt-improved-settings-feature-open-all-but-one::before {
-  background-image: url(https://i.mouse.rip/s/open-all-but-one.svg);
-}
-
-#mousehunt-improved-settings-feature-paste-hunter-id::before {
-  background-image: url(https://i.mouse.rip/s/paste-hunter-id.svg);
-}
-
-#mousehunt-improved-settings-feature-prestige-base-stats::before {
-  background-image: url(https://i.mouse.rip/s/prestige-base-stats.svg);
-}
-
-#mousehunt-improved-settings-feature-printing-press-paper-counter::before {
-  background-image: url(https://i.mouse.rip/s/printing-press-paper-counter.svg);
-}
-
-#mousehunt-improved-settings-feature-profile-scoreboard-search::before {
-  background-image: url(https://i.mouse.rip/s/profile-scoreboard-search.svg);
-}
-
-#mousehunt-improved-settings-feature-quick-filters-and-sort::before {
-  background-image: url(https://i.mouse.rip/s/quick-filters-and-sort.svg);
-}
-
-#mousehunt-improved-settings-feature-quick-send-supplies::before {
-  background-image: url(https://i.mouse.rip/s/quick-send-supplies.svg);
-}
-
-#mousehunt-improved-settings-feature-replace-favicon::before {
-  background-image: url(https://i.mouse.rip/s/replace-favicon.svg);
-}
-
-#mousehunt-improved-settings-feature-shield-goes-to-camp::before {
-  background-image: url(https://i.mouse.rip/s/shield-goes-to-camp.svg);
-}
-
-#mousehunt-improved-settings-feature-show-auras::before {
-  background-image: url(https://i.mouse.rip/s/target.svg);
-}
-
-#mousehunt-improved-settings-feature-ssdb-teeth-counter::before {
-  background-image: url(https://i.mouse.rip/s/ssdb-teeth-counter.svg);
-}
-
-#mousehunt-improved-settings-feature-taller-windows::before {
-  background-image: url(https://i.mouse.rip/s/taller-windows.svg);
-}
-
-#mousehunt-improved-settings-feature-tem-crowns::before {
-  background-image: url(https://i.mouse.rip/s/tem-crowns.svg);
-}
-
-#mousehunt-improved-settings-feature-ultimate-checkmark-show::before {
-  background-image: url(https://i.mouse.rip/s/ultimate-checkmark-show.svg);
-}
-
-#mousehunt-improved-settings-feature-wisdom-in-stat-bar::before {
-  background-image: url(https://i.mouse.rip/s/wisdom-in-stat-bar.svg?2);
+  background-image: url(https://i.mouse.rip/settings/moon.svg);
 }
 
 #mousehunt-improved-settings-feature-native-dark-mode::before {
-  background-image: url(https://i.mouse.rip/s/native-dark-mode.svg);
+  background-image: url(https://i.mouse.rip/settings/contrast.svg);
 }
 
-#mousehunt-improved-settings-feature-unique-loot-count::before {
-  background-image: url(https://i.mouse.rip/s/unique-loot-count.svg);
+#mousehunt-improved-settings-feature-data-exporters::before {
+  background-image: url(https://i.mouse.rip/settings/data.svg);
+}
+
+#mousehunt-improved-settings-feature-delayed-menus::before {
+  background-image: url(https://i.mouse.rip/settings/menu.svg);
+}
+
+#mousehunt-improved-settings-feature-delayed-tooltips::before {
+  background-image: url(https://i.mouse.rip/settings/mouse-pointer-click.svg);
 }
 
 #mousehunt-improved-settings-feature-emotes::before {
-  background-image: url(https://i.mouse.rip/s/emotes.svg);
+  background-image: url(https://i.mouse.rip/settings/smile.svg);
+}
+
+#mousehunt-improved-settings-feature-favorite-setups::before {
+  background-image: url(https://i.mouse.rip/settings/star.svg);
+}
+
+#mousehunt-improved-settings-feature-fixes::before {
+  background-image: url(https://i.mouse.rip/settings/wrench.svg);
+}
+
+#mousehunt-improved-settings-feature-flrt-helper::before {
+  background-image: url(https://i.mouse.rip/settings/corner-up-right.svg);
+}
+
+#mousehunt-improved-settings-feature-trap-selector-special-effects::before {
+  background-image: url(https://i.mouse.rip/settings/highlighter.svg);
+}
+
+#mousehunt-improved-settings-feature-hover-profiles::before {
+  background-image: url(https://i.mouse.rip/settings/mouse-pointer-2.svg);
+}
+
+#mousehunt-improved-settings-feature-image-upscaling::before {
+  background-image: url(https://i.mouse.rip/settings/sparkles.svg);
+}
+
+#mousehunt-improved-settings-feature-inline-wiki::before {
+  background-image: url(https://i.mouse.rip/settings/graduation-cap.svg);
+}
+
+#mousehunt-improved-settings-feature-inventory-lock-and-hide::before {
+  background-image: url(https://i.mouse.rip/settings/key-round.svg);
+}
+
+#mousehunt-improved-settings-feature-only-open-multiple::before {
+  background-image: url(https://i.mouse.rip/settings/copy-x.svg);
+}
+
+#mousehunt-improved-settings-feature-open-all::before {
+  background-image: url(https://i.mouse.rip/settings/copy.svg);
+}
+
+#mousehunt-improved-settings-feature-open-all-but-one::before {
+  background-image: url(https://i.mouse.rip/settings/copy-plus.svg);
+}
+
+#mousehunt-improved-settings-feature-journal-changer::before {
+  background-image: url(https://i.mouse.rip/settings/notebook-pen.svg);
+}
+
+#mousehunt-improved-settings-feature-keyboard-shortcuts::before {
+  background-image: url(https://i.mouse.rip/settings/keyboard.svg);
+}
+
+#mousehunt-improved-settings-feature-larger-codices::before {
+  background-image: url(https://i.mouse.rip/settings/expand.svg);
+}
+
+#mousehunt-improved-settings-feature-larger-skin-images::before {
+  background-image: url(https://i.mouse.rip/settings/image.svg);
+}
+
+#mousehunt-improved-settings-feature-legacy-hud::before {
+  background-image: url(https://i.mouse.rip/settings/chart-no-axes-gantt.svg);
+}
+
+#mousehunt-improved-settings-feature-location-catch-stats::before {
+  background-image: url(https://i.mouse.rip/settings/cheese.svg);
+}
+
+#mousehunt-improved-settings-feature-location-dashboard::before {
+  background-image: url(https://i.mouse.rip/settings/gauge.svg);
+}
+
+#mousehunt-improved-settings-feature-lgs-reminder::before {
+  background-image: url(https://i.mouse.rip/settings/shield.svg);
+}
+
+#mousehunt-improved-settings-feature-metric::before {
+  background-image: url(https://i.mouse.rip/settings/scale.svg);
+}
+
+#mousehunt-improved-settings-feature-paste-hunter-id::before {
+  background-image: url(https://i.mouse.rip/settings/id-card.svg);
+}
+
+#mousehunt-improved-settings-feature-prestige-base-stats::before {
+  background-image: url(https://i.mouse.rip/settings/sword.svg);
+}
+
+/* still in beta */
+#mousehunt-improved-settings-feature-real-base-stats::before {
+  background-image: url(https://i.mouse.rip/settings/swords.svg);
+}
+
+#mousehunt-improved-settings-feature-printing-press-paper-counter::before {
+  background-image: url(https://i.mouse.rip/settings/sticky-note.svg);
+}
+
+#mousehunt-improved-settings-feature-quick-filters-and-sort::before {
+  background-image: url(https://i.mouse.rip/settings/arrow-up-a-z.svg);
+}
+
+#mousehunt-improved-settings-feature-quick-send-supplies::before {
+  background-image: url(https://i.mouse.rip/settings/send-horizontal.svg);
+}
+
+#mousehunt-improved-settings-feature-replace-favicon::before {
+  background-image: url(https://i.mouse.rip/settings/dock.svg);
+}
+
+#mousehunt-improved-settings-feature-profile-scoreboard-search::before {
+  background-image: url(https://i.mouse.rip/settings/award.svg);
+}
+
+#mousehunt-improved-settings-feature-shield-goes-to-camp::before {
+  background-image: url(https://i.mouse.rip/settings/tent.svg);
+}
+
+#mousehunt-improved-settings-feature-show-auras::before {
+  background-image: url(https://i.mouse.rip/settings/target.svg);
+}
+
+#mousehunt-improved-settings-feature-ssdb-teeth-counter::before {
+  background-image: url(https://i.mouse.rip/settings/hash.svg);
+}
+
+#mousehunt-improved-settings-feature-taller-windows::before {
+  background-image: url(https://i.mouse.rip/settings/app-window.svg);
+}
+
+#mousehunt-improved-settings-feature-tem-crowns::before {
+  background-image: url(https://i.mouse.rip/settings/gem.svg);
+}
+
+#mousehunt-improved-settings-feature-ultimate-checkmark-show::before {
+  background-image: url(https://i.mouse.rip/settings/circle-check-big.svg);
+}
+
+#mousehunt-improved-settings-feature-unique-loot-count::before {
+  background-image: url(https://i.mouse.rip/settings/scroll-text.svg);
+}
+
+#mousehunt-improved-settings-feature-wisdom-in-stat-bar::before {
+  background-image: url(https://i.mouse.rip/settings/flask-conical.svg);
 }
