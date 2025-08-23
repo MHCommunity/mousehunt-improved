@@ -15,6 +15,7 @@
   gap: 10px;
   justify-content: flex-start;
   font-family: system-ui, sans-serif;
+  font-size: 22px;
   font-weight: 200;
 }
 
@@ -73,7 +74,7 @@
 #mousehunt-improved-settings-advanced .PagePreferences__settingsList,
 #mousehunt-improved-settings-design .PagePreferences__settingsList,
 #mousehunt-improved-settings-element-hiding .PagePreferences__settingsList {
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList:not(.PagePreferences__subSetting)::before,
@@ -88,7 +89,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 25px;
-  opacity: 0.4;
+  opacity: 0.6;
   transition: opacity 0.1s ease-out;
   will-change: transform;
 }
@@ -105,7 +106,6 @@
 }
 
 .mousehunt-improved-settings .PagePreferences__settingDefault,
-#mousehunt-improved-settings-beta-experiments > .PagePreferences__setting .PagePreferences__settingAction,
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingDescription,
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList .PagePreferences__settingDefault {
   display: none;
@@ -231,16 +231,14 @@
 .mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider {
   display: block;
   width: 40px;
-  height: 16px;
 }
 
 .mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider::after {
-  width: 14px;
-  height: 14px;
+  width: 16px;
 }
 
 .mousehunt-improved-settings .PagePreferences__subSetting .mousehuntSettingSlider.active::after {
-  left: calc(100% - 14px);
+  left: calc(100% - 18px);
 }
 
 .mousehunt-improved-settings .PagePreferences__settingsList-textarea .PagePreferences__setting,
@@ -284,62 +282,47 @@
 /* Location HUD */
 #mousehunt-improved-settings-location-hud-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(12, 1fr);
   justify-content: center;
   justify-items: stretch;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList {
-  grid-column: span 4;
-  padding: 0 5px 0 10px;
+  grid-column: span 6;
+  padding: 0 5px;
+  margin-right: 5px;
   margin-left: 0;
-  background-color: inherit;
+  background-color: #eee;
   border: none;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList[id*="mousehunt-improved-settings-location-hud-location-huds-enabled"] {
-  grid-column: span 1;
+  grid-column: span 3;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-enabled-region-seperator,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle {
-  grid-column: 1 / 5;
-  background-color: transparent;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-option-seperator {
-  height: 10px;
-  background-color: transparent;
-  border-bottom: 1px solid #f2ebde;
+#mousehunt-improved-settings-location-hud-location-huds-enabled-train_station .PagePreferences__settingName {
+  max-width: 124px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 1),
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 2),
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 3),
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 4),
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-flip-avatar.PagePreferences__settingsList,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-inventory-in-one-row.PagePreferences__settingsList,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-prologue-pond-wood-boat.PagePreferences__settingsList {
-  background-color: #eee;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 1),
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 2),
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 3),
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 4),
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-location-hud-toggle.PagePreferences__settingsList,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-quick-harp-toggle.PagePreferences__settingsList,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-fi-draggable-airship.PagePreferences__settingsList,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-school-of-sorcery-clean-chalkboard.PagePreferences__settingsList {
-  background-color: #eee;
-}
-
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:last-child,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-flip-avatar.PagePreferences__settingsList,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-bountiful-beanstalk-inventory-in-one-row.PagePreferences__settingsList,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-prologue-pond-wood-boat.PagePreferences__settingsList,
-#mousehunt-improved-settings-location-hud-wrapper #mousehunt-improved-settings-location-hud-location-huds-valour-rift-flip-avatar.PagePreferences__settingsList {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(8n + 4) {
   background-color: transparent;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(n + 60) {
+  background-color: transparent;
+}
+
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(60n),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(61n),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(64n),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(65n) {
+  background-color: #eee;
 }
 
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList.highlight {
@@ -520,4 +503,49 @@ a.reset-link {
 
 .PagePreferences__settingNameText[data-setting="experiments"] {
   display: none;
+}
+
+#mousehunt-improved-settings-beta-experiments {
+  padding-left: 0;
+  border-top: none;
+}
+
+#mousehunt-improved-settings-beta-experiments > .PagePreferences__setting,
+#mousehunt-improved-settings-beta-experiments > .PagePreferences__setting .PagePreferences__settingAction {
+  display: none;
+}
+
+#mousehunt-improved-settings-beta-experiments .PagePreferences__settingsList {
+  border-top: none;
+}
+
+#mousehunt-improved-settings-beta-experiments .PagePreferences__subSetting {
+  padding-left: 0;
+  background-color: transparent;
+  border-top: 1px solid #f2ebde;
+  border-left: none;
+}
+
+#mousehunt-improved-settings-beta-experiments .PagePreferences__subSetting .PagePreferences__settingName {
+  font-size: 15px;
+  line-height: 1.375;
+}
+
+#mousehunt-improved-settings-beta-experiments .PagePreferences__settingDescription {
+  padding: 5px 0;
+}
+
+#mousehunt-improved-settings-beta-experiments .mousehuntSettingSlider {
+  display: block;
+  width: 50px;
+  height: 20px;
+}
+
+#mousehunt-improved-settings-beta-experiments .mousehuntSettingSlider::after {
+  width: 18px;
+  height: 18px;
+}
+
+#mousehunt-improved-settings-beta-experiments .mousehuntSettingSlider.active::after {
+  left: calc(100% - 20px);
 }
