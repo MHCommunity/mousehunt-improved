@@ -31,7 +31,7 @@ const categories = [
   { id: 'design', name: 'Design' },
   { id: 'element-hiding', name: 'Hide Page Elements' },
   { id: 'location-hud', name: 'Location HUDs' },
-  { id: 'beta', name: 'Experiment / Beta Features' },
+  { id: 'beta', name: 'Beta Features / Experiments' },
   { id: 'advanced', name: 'Advanced' },
 ];
 
