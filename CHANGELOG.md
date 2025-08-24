@@ -1,5 +1,22 @@
 # Changelog
 
+## Version 0.86.0
+
+- Updated all settings icons for consistency
+- Updated settings page styles
+- Better Journal: Updated styles
+- Better Marketplace: Added 'Quick Sell' beta feature
+- Better Maps: Added 'Catch Dates' beta feature
+- Better Maps: Added 'Draggable Highlight' beta feature
+- Better Maps: Made mouse highlight info popup static, so it can be visible
+- Location HUDs: Table of Contents: Added Rainbow Quill support to simulator
+- Location HUDs: Table of Contents: Added random Scrambles quote to blank page when starting writing
+- Show Auras: Updated styles
+- Removed 'Settings: Column' beta/experimental feature
+- Removed 'Troll Mode' beta/experimental feature
+- Removed 'Prologue Pond: Normal boat color' Location HUD option
+- Deprecated 'Dark Mode Updates & Tweaks (MHCT/Dark Mode Extension)' module. If you have it enabled, it will continue to work, otherwise it won't be shown in the settings page.
+
 ## Version 0.85.4
 
 - Added expected number of processors to simulation when Thousand Draft Derby is equipped
