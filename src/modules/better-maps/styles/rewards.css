@@ -171,10 +171,12 @@
 }
 
 .treasureMapDialogView-chest-item.guaranteed .mh-improved-reward-chance {
+  color: #000;
   background-color: #ccc;
 }
 
 .treasureMapDialogView-chest-item.very_likely .mh-improved-reward-chance {
+  color: #000;
   background-color: #98fffb;
 }
 
@@ -184,17 +186,21 @@
 }
 
 .treasureMapDialogView-chest-item.uncommon .mh-improved-reward-chance {
+  color: #000;
   background-color: #51e2bb;
 }
 
 .treasureMapDialogView-chest-item.rare .mh-improved-reward-chance {
+  color: #000;
   background-color: #12ff00;
 }
 
 .treasureMapDialogView-chest-item.very_rare .mh-improved-reward-chance {
+  color: #000;
   background-color: #c0ff00;
 }
 
 .treasureMapDialogView-chest-item.extremely_rare .mh-improved-reward-chance {
+  color: #000;
   background-color: #ffde00;
 }
