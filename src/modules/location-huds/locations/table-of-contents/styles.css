@@ -132,7 +132,7 @@
 .tableOfContentsProgressView-nextBookContainer {
   position: absolute;
   bottom: -33px;
-  padding: 3px;
+  padding: 3px 10px;
   font-size: 11px;
   white-space: nowrap;
   background-color: #fdebab;
@@ -155,7 +155,7 @@
 }
 
 .tableOfContentsProgressView-book-wordCount {
-  margin: 10px 0 5px;
+  margin: 15px 0 5px;
 }
 
 a.tableOfContentsProgressView-claimButton.reveal {
@@ -358,4 +358,17 @@ a.folkloreForestRegionView-bait-image {
 .tableOfContentsView-bookContainer.encyclopedia .tableOfContentsProgressView-rowContainer.num_rows_9 .tableOfContentsProgressView-progressBar:nth-child(2) {
   width: 125px;
   margin-left: 0;
+}
+
+.tableOfContentsProgressView.active:hover .tableOfContentsProgressView-progressBar.active .tableOfContentsProgressView-progressBar-quill::after {
+  transform-origin: bottom left;
+  animation: mh-improved-shake 3s infinite;
+}
+
+.tableOfContentsView-bookContainer.encyclopedia .tableOfContentsProgressView-book-name {
+  line-height: 22px;
+}
+
+.tableOfContentsProgressView-bookRuler-book.active {
+  filter: invert(1);
 }
