@@ -2,6 +2,7 @@ import { createPopup, makeElement, makeMhButton } from './elements';
 import { doEvent, onEvent } from './event-registry';
 import { getCurrentPage, getCurrentTab } from './page';
 import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
+import { getFlag } from './flags';
 import { onNavigation } from './events';
 import { setMultipleTimeout } from './utils';
 import { showSuccessMessage } from './messages';
@@ -768,7 +769,7 @@ const addSettingForModule = async (module) => {
     if (
       ! submodule.alwaysLoad &&
       ! submodule.beta &&
-      ! (submodule.hiddenUnlessEnabled && ! getSetting(submodule.id, false))
+      ! (submodule.hiddenUnlessEnabled && ! getSetting(submodule.id, false) && ! getFlag('show-deprecated-modules'))
     ) {
       moduleSettingRow = await addSetting({
         moduleType: module.id,

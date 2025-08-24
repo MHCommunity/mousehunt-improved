@@ -71,3 +71,7 @@ You can force-disable modules using the `no-<module-id>` feature flag. This is t
 |`no-links`|Disables the added links to the Support and Kingdom menus.|
 |`no-update-migration`|Disables migrating settings from old options to new options on update. _Warning: This may cause issues with other modules._|
 |`no-update-notifications`|Disables update notifications.|
+
+### Enable Deprecated Modules
+
+Some modules have been deprecated and are no longer available in the settings unless they are already enabled. You can show them in the settings by enabling the `show-deprecated-modules` feature flag.
