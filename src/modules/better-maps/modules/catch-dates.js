@@ -1,10 +1,4 @@
-import {
-  cacheGetNoExpiration,
-  dbGet,
-  getMapData,
-  makeElement,
-  onEvent
-} from '@utils';
+import { cacheGetNoExpiration, getMapData, makeElement, onEvent } from '@utils';
 
 const addCatchDates = async () => {
   const mapId = user?.quests?.QuestRelicHunter?.default_map_id || false;
