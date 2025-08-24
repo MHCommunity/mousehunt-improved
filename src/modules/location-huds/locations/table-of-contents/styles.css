@@ -317,3 +317,27 @@ a.folkloreForestRegionView-bait-image {
 .tableOfContentsClaimDialogView .tableOfContentsClaimDialogView-wordCount span {
   font-size: 15px;
 }
+
+.blank_page .tableOfContentsProgressView-rowContainer::before {
+  position: absolute;
+  top: 45px;
+  right: 8px;
+  width: 140px;
+  font-size: 11px;
+  font-weight: 900;
+  color: #d2815f;
+  content: attr(data-blank-page-text);
+}
+
+.blank_page .tableOfContentsProgressView-rowContainer::after {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  content: "";
+  background-image: url(https://i.mouse.rip/upscaled/81389af6f5cbe78d73c2bcdba6dfdc85.png);
+  background-size: contain;
+  opacity: 0.7;
+  transform: rotate(-25deg);
+}

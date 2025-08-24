@@ -333,6 +333,24 @@ const updateClaimDialog = () => {
   }
 };
 
+const updateBlankPage = async () => {
+  if (user?.quests?.QuestTableOfContents?.current_book?.percent !== 0) {
+    return;
+  }
+
+  const blankPage = document.querySelector('.blank_page .tableOfContentsProgressView-rowContainer');
+  if (! blankPage) {
+    return;
+  }
+
+  const scramblesQuote = await fetch(`https://api.mouse.rip/consult-scrambles?t=${Date.now()}`).then((res) => res.text()).catch(() => '');
+  if (! scramblesQuote) {
+    return;
+  }
+
+  blankPage.setAttribute('data-blank-page-text', scramblesQuote);
+};
+
 /**
  * Initialize the module.
  */
@@ -361,4 +379,7 @@ export default async () => {
     inventoryOpenClass: 'expanded',
     buttonOpenClass: 'expanded',
   });
+
+  updateBlankPage();
+  onRequest('environment/table_of_contents.php', updateBlankPage);
 };
