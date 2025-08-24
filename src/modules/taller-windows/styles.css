@@ -126,11 +126,6 @@ body #overlayPopup .giftSelectorView-scroller.giftSelectorView-giftContainer {
   max-height: unset;
 }
 
-.mh-ui-environments-block {
-  max-height: unset;
-  overflow-y: auto;
-}
-
 .treasureMapView-block-content {
   height: unset;
 }

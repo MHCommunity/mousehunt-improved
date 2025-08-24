@@ -382,8 +382,10 @@ input.treasureMapView-block-search-text {
 }
 
 .mh-ui-environments-block {
+  max-height: 490px;
   padding: 6px;
   margin: -1px;
+  overflow-y: auto;
 }
 
 .mh-ui-environments-block .treasureMapView-block-content.halfHeight {
