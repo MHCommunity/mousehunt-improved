@@ -341,3 +341,21 @@ a.folkloreForestRegionView-bait-image {
   opacity: 0.7;
   transform: rotate(-25deg);
 }
+
+.tableOfContentsProgressView-progressBar-diff {
+  mix-blend-mode: saturation;
+}
+
+.tableOfContentsView-bookContainer.encyclopedia .tableOfContentsProgressView-rowContainer.num_rows_7 .tableOfContentsProgressView-progressBar:first-child,
+.tableOfContentsView-bookContainer.encyclopedia .tableOfContentsProgressView-rowContainer.num_rows_8 .tableOfContentsProgressView-progressBar:first-child,
+.tableOfContentsView-bookContainer.encyclopedia .tableOfContentsProgressView-rowContainer.num_rows_9 .tableOfContentsProgressView-progressBar:first-child {
+  width: 120px;
+  margin-left: 0;
+}
+
+.tableOfContentsView-bookContainer.encyclopedia .tableOfContentsProgressView-rowContainer.num_rows_7 .tableOfContentsProgressView-progressBar:nth-child(2),
+.tableOfContentsView-bookContainer.encyclopedia .tableOfContentsProgressView-rowContainer.num_rows_8 .tableOfContentsProgressView-progressBar:nth-child(2),
+.tableOfContentsView-bookContainer.encyclopedia .tableOfContentsProgressView-rowContainer.num_rows_9 .tableOfContentsProgressView-progressBar:nth-child(2) {
+  width: 125px;
+  margin-left: 0;
+}
