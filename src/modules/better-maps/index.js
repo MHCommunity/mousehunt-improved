@@ -25,6 +25,7 @@ import { showHuntersTab } from './modules/tab-hunters';
 
 import catchDates from './modules/catch-dates';
 import community from './modules/community';
+import draggableHighlight from './modules/draggable-highlight';
 import enhancePreviewButton from './modules/preview';
 import floatingIslands from './modules/floating-islands';
 import scrolls from './modules/scrolls';
@@ -485,6 +486,10 @@ const init = () => {
 
   if (getSetting('better-maps.catch-dates')) {
     catchDates();
+  }
+
+  if (getSetting('better-maps.draggable-highlight')) {
+    draggableHighlight();
   }
 
   clearMapCache();

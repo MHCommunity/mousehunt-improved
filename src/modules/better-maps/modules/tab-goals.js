@@ -94,7 +94,12 @@ const addMouseLinksToMap = async () => {
     }
 
     mouse.addEventListener('click', async () => {
-      const title = document.querySelector('.treasureMapView-highlight-name');
+      const highlight = document.querySelector('.treasureMapView-highlight.active');
+      if (! highlight) {
+        return;
+      }
+
+      const title = highlight.querySelector('.treasureMapView-highlight-name');
       if (! title) {
         return;
       }
@@ -146,11 +151,6 @@ const addMouseLinksToMap = async () => {
         existingArs.forEach((ar) => ar.remove());
       }
 
-      const container = document.querySelector('.treasureMapView-highlight.goal.active');
-      if (! container) {
-        return;
-      }
-
       const arsEl = makeElement('div', 'mh-ui-mouse-links-map-ars');
       arsEl.id = `mh-ui-mouse-links-map-ars-${mouseType}-${type}`;
       await addMHCTData({ unique_id: mouseType }, arsEl, type);
@@ -160,39 +160,11 @@ const addMouseLinksToMap = async () => {
         return;
       }
 
-      container.classList.add('has-mhct-ars');
+      highlight.classList.add('has-mhct-ars');
 
-      container.append(arsEl);
-
-      makeStickyHighlightSticky();
+      highlight.append(arsEl);
     });
   });
-};
-
-const makeStickyHighlightSticky = async () => {
-  const highlight = document.querySelector('.treasureMapView-highlight.active');
-  console.log(highlight);
-  if (! highlight) {
-    return;
-  }
-
-  // get the current position of the highlight box and then set it to fixed with the same position.
-  const rect = highlight.getBoundingClientRect();
-  console.log(`Current position: top ${rect.top}, left ${rect.left}, width ${rect.width}, height ${rect.height}`);
-  highlight.classList.add('mh-ui-sticky-highlight');
-  highlight.style.position = 'fixed';
-  highlight.style.top = `${rect.top}px`;
-  highlight.style.left = `${rect.left}px`;
-  highlight.style.right = `${window.innerWidth - rect.right}px`;
-  highlight.style.width = `${rect.width}px`;
-  highlight.style.zIndex = '1000';
-  // highlight.style.position = 'fixed';
-  // highlight.style.top = `${rect.top}px`;
-  // highlight.style.left = `${rect.left}px`;
-  // highlight.style.zIndex = '1000';
-  // highlight.classList.add('mh-ui-sticky-highlight');
-
-  // highlight.width = `${rect.width}px`;
 };
 
 /**

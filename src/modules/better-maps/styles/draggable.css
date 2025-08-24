@@ -1,0 +1,12 @@
+.mh-ui-sticky-highlight {
+  cursor: grab;
+}
+
+.mh-ui-sticky-highlight a,
+.mh-ui-sticky-highlight button {
+  cursor: pointer;
+}
+
+.mh-ui-sticky-highlight.dragging {
+  cursor: grabbing;
+}

@@ -15,6 +15,12 @@ const init = () => {
       load: () => {}
     },
     {
+      id: 'better-maps.draggable-highlight',
+      name: 'Better Maps: Draggable highlight',
+      description: 'Allows you to drag and reposition the sticky highlight',
+      load: () => {}
+    },
+    {
       id: 'better-marketplace.show-chart-images',
       name: 'Better Marketplace: Price history charts',
       description: 'Show sales price history charts on category pages.',
