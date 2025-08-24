@@ -105,9 +105,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
-  align-items: end;
+  align-items: center;
   padding: 3px;
-  margin-bottom: 0.25em;
   text-align: right;
 }
 

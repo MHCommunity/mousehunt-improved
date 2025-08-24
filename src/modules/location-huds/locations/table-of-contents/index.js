@@ -184,6 +184,7 @@ const triggerSimPopup = () => {
     title: 'Encyclopedia Simulation',
     content: text,
     show: false,
+    className: 'jsDialogFixed mh-toc-sim-popup',
   });
 
   popup.setAttributes({ className: 'mh-toc-popup' });
@@ -191,7 +192,7 @@ const triggerSimPopup = () => {
 
   const expectedVolumeElement = document.querySelector(`#mh-toc-sim-volume-${expectedVolume}`);
   if (expectedVolumeElement) {
-    expectedVolumeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    expectedVolumeElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }
 };
 
