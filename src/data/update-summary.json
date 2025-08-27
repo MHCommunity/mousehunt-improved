@@ -1,77 +1,54 @@
 {
-  "summary": "Lots of minor changes, bug fixes, and performance enhancements in this update! There are a few new features, settings, and other changes as well. See below for details.",
+  "summary": "",
   "details": [
-    {
-      "title": "Better UI",
-      "items": [
-        "Added setting to disable styles",
-        "Added 'Random' button to skin browser",
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Better Inventory",
-      "items": [
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Better Items",
-      "items": [
-        "Improved performance of hover item views",
-        "Added support for more journal entry types"
-      ]
-    },
     {
       "title": "Better Journal",
       "items": [
-        "Added Highlight rare mice feature, currently only highlights Black Widow",
-        "Improved Journal History performance",
-        "Improved Journal loot list parsing and added more supported entries",
-        "Updated Full mice images in journal to not use the cropped square image",
-        "Updated setting names and order",
         "Updated styles"
       ]
     },
     {
-      "title": "Better Mice",
+      "title": "Better Marketplace",
       "items": [
-        "Improved performance of hover mouse views",
-        "Added support for more journal entry types"
+        "Added 'Quick Sell' beta feature"
       ]
     },
     {
-      "title": "Location HUDs",
+      "title": "Better Maps",
       "items": [
-        "Fixed 'Add toggle button to top menu' setting not working"
+        "Added 'Catch Dates' beta feature",
+        "Added 'Draggable Highlight' beta feature",
+        "Made mouse highlight info popup static, so it can be visible"
       ]
     },
     {
-      "title": "Location HUDs - Foreword Farm",
+      "title": "Location HUDs: Table of Contents",
       "items": [
-        "Added 'x3' plant button",
+        "Added Rainbow Quill support to simulator",
+        "Added random Scrambles quote to blank page when starting writing",
         "Updated styles"
       ]
     },
     {
-      "title": "Location HUDs - Table of Contents",
+      "title": "Show Auras",
       "items": [
-        "Added expected number of processors to simulation when Thousand Draft Derby is equipped",
-        "Updated sim to scroll to expected volume",
-        "Fixed not being able to cancel writing",
         "Updated styles"
       ]
     },
     {
-      "title": "Image Upscaling & Transparency",
+      "title": "Settings",
       "items": [
-        "Performance improvements"
+        "Updated all settings icons for consistency",
+        "Updated settings page styles"
       ]
     },
     {
-      "title": "Miscellaneous",
+      "title": "Other",
       "items": [
-        "Bug fixes and performance improvements"
+        "Removed 'Removed Settings: Column' beta/experimental feature",
+        "Removed 'Removed Troll Mode' beta/experimental feature",
+        "Removed 'Removed Prologue Pond: Normal boat color' Location HUD option",
+        "Deprecated 'Dark Mode Updates & Tweaks (MHCT/Dark Mode Extension)' module. If you have it enabled, it will continue to work, otherwise it won't be shown in the settings page"
       ]
     }
   ]
