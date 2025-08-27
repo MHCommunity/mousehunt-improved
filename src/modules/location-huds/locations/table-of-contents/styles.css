@@ -372,3 +372,28 @@ a.folkloreForestRegionView-bait-image {
 .tableOfContentsProgressView-bookRuler-book.active {
   filter: invert(1);
 }
+
+.tableOfContentsProgressView-book-huntsRemaining {
+  margin-top: 13px;
+}
+
+.tableOfContentsView-bookContainer.encyclopedia .tableOfContentsView-bookImage-stain {
+  background-image: url(https://i.mouse.rip/app/toc_book_writing_flash_overlay.png);
+  background-size: cover;
+}
+
+..tableOfContentsView-bookContainer.encyclopedia .tableOfContentsView-bookImage-goldFoil.active {
+  background-image: url(https://i.mouse.rip/app/toc_book_writing_gold_foil.png);
+  background-size: 340px;
+}
+
+/* stylelint-disable-next-line no-duplicate-selectors */
+.tableOfContentsProgressView-progressBar-value {
+  background-image: url(https://i.mouse.rip/app/toc_text_progress_bar.png);
+  background-size: 133px;
+}
+
+.tableOfContentsProgressView.active .tableOfContentsProgressView-progressBar.active .tableOfContentsProgressView-progressBar-quill::after {
+  background-image: url(https://i.mouse.rip/app/toc_quill_sheet.png);
+  background-size: 72px;
+}
