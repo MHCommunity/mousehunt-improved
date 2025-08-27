@@ -1,0 +1,31 @@
+.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__subSetting {
+  display: none;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.active:hover .PagePreferences__subSetting {
+  display: block;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__setting + .PagePreferences__subSetting {
+  display: block;
+  max-height: 28.5px;
+  overflow: hidden;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.active:hover .PagePreferences__setting + .PagePreferences__subSetting {
+  max-height: 100%;
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.active .PagePreferences__setting + .PagePreferences__subSetting::before {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: block;
+  height: 33px;
+  content: "";
+  background: linear-gradient(180deg, transparent 0, #fff 100%);
+}
+
+.mousehunt-improved-settings .PagePreferences__settingsList.active:hover .PagePreferences__setting + .PagePreferences__subSetting::before {
+  background: transparent;
+}
