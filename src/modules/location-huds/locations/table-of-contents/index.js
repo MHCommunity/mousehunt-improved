@@ -1,6 +1,7 @@
 import {
   addHudStyles,
   createPopup,
+  getSetting,
   makeElement,
   onDialogShow,
   onRequest,
@@ -381,6 +382,8 @@ export default async () => {
     buttonOpenClass: 'expanded',
   });
 
-  updateBlankPage();
-  onRequest('environment/table_of_contents.php', updateBlankPage);
+  if (getSetting('location-huds.table-of-contents-scrambles', true)) {
+    updateBlankPage();
+    onRequest('environment/table_of_contents.php', updateBlankPage);
+  }
 };

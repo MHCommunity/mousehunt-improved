@@ -105,6 +105,11 @@ export default async () => {
     {
       id: 'location-huds.school-of-sorcery-clean-chalkboard',
       title: 'School of Sorcery: Clean chalkboard',
+    },
+    {
+      id: 'location-huds.table-of-contents-scrambles',
+      title: 'Table of Contents: Show Scrambles quote on blank page',
+      default: true,
     }
   );
 
