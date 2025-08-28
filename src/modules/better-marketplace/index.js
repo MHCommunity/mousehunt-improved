@@ -480,8 +480,20 @@ const addQuickSellButton = async (itemId) => {
 
   await waitForElement('.marketplaceView-table .bestPrice');
 
-  const maxQuantityEl = document.querySelector('.marketplaceView-item-leftBlock .marketplaceView-item-averagePrice:nth-of-type(3) span');
+  // if (#infoboxPrice)
+
+  let quantitySelector = '.marketplaceView-item-leftBlock .marketplaceView-item-averagePrice:nth-of-type(3) span';
+  const hasMarkethuntScript = document.querySelector('#chartArea');
+  if (hasMarkethuntScript) {
+    quantitySelector = '.marketplaceView-item-leftBlock .marketplaceView-item-averagePrice:nth-of-type(2) span';
+  }
+
+  const maxQuantityEl = document.querySelector(quantitySelector);
   if (! maxQuantityEl) {
+    return;
+  }
+
+  if (maxQuantityEl.textContent === '-') {
     return;
   }
 
