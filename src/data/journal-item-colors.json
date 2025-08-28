@@ -101,5 +101,10 @@
   "ggg_theme_scrap_2_crafting_item": "#0060ff",
   "ggg_theme_scrap_3_crafting_item": "#0060ff",
   "ggg_theme_scrap_1_crafting_item": "#0060ff",
-  "regal_codex_page_stat_item": "#6b0b6b"
+  "regal_codex_page_stat_item": "#6b0b6b",
+  "warpath_portal_console_stat_item": "#6b0b12",
+  "warpath_portal_core_stat_item": "#6b0b12",
+  "fort_rox_portal_console_stat_item": "#6b0b12",
+  "fort_rox_portal_core_stat_item": "#6b0b12",
+  "spooky_shuffle_upgrade_stat_item": "#6b0b12"
 }
