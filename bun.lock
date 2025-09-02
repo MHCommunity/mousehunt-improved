@@ -6,10 +6,10 @@
       "dependencies": {
         "@babel/runtime": "^7.28.3",
         "@sentry/browser": "^9.46.0",
-        "caniuse-lite": "^1.0.30001737",
+        "caniuse-lite": "^1.0.30001739",
       },
       "devDependencies": {
-        "@sentry/cli": "^2.52.0",
+        "@sentry/cli": "^2.53.0",
         "@sprout2000/esbuild-copy-plugin": "^1.1.19",
         "@wordpress/eslint-plugin": "^22.15.0",
         "archiver": "^7.0.1",
@@ -398,23 +398,23 @@
 
     "@sentry/browser": ["@sentry/browser@9.46.0", "", { "dependencies": { "@sentry-internal/browser-utils": "9.46.0", "@sentry-internal/feedback": "9.46.0", "@sentry-internal/replay": "9.46.0", "@sentry-internal/replay-canvas": "9.46.0", "@sentry/core": "9.46.0" } }, "sha512-NOnCTQCM0NFuwbyt4DYWDNO2zOTj1mCf43hJqGDFb1XM9F++7zAmSNnCx4UrEoBTiFOy40McJwBBk9D1blSktA=="],
 
-    "@sentry/cli": ["@sentry/cli@2.52.0", "", { "dependencies": { "https-proxy-agent": "^5.0.0", "node-fetch": "^2.6.7", "progress": "^2.0.3", "proxy-from-env": "^1.1.0", "which": "^2.0.2" }, "optionalDependencies": { "@sentry/cli-darwin": "2.52.0", "@sentry/cli-linux-arm": "2.52.0", "@sentry/cli-linux-arm64": "2.52.0", "@sentry/cli-linux-i686": "2.52.0", "@sentry/cli-linux-x64": "2.52.0", "@sentry/cli-win32-arm64": "2.52.0", "@sentry/cli-win32-i686": "2.52.0", "@sentry/cli-win32-x64": "2.52.0" }, "bin": { "sentry-cli": "bin/sentry-cli" } }, "sha512-PXyo7Yv7+rVMSBGZfI/eFEzzhiKedTs25sDCjz4a3goAZ/F5R5tn3MKq30pnze5wNnoQmLujAa0uUjfNcWP+uQ=="],
+    "@sentry/cli": ["@sentry/cli@2.53.0", "", { "dependencies": { "https-proxy-agent": "^5.0.0", "node-fetch": "^2.6.7", "progress": "^2.0.3", "proxy-from-env": "^1.1.0", "which": "^2.0.2" }, "optionalDependencies": { "@sentry/cli-darwin": "2.53.0", "@sentry/cli-linux-arm": "2.53.0", "@sentry/cli-linux-arm64": "2.53.0", "@sentry/cli-linux-i686": "2.53.0", "@sentry/cli-linux-x64": "2.53.0", "@sentry/cli-win32-arm64": "2.53.0", "@sentry/cli-win32-i686": "2.53.0", "@sentry/cli-win32-x64": "2.53.0" }, "bin": { "sentry-cli": "bin/sentry-cli" } }, "sha512-n2ZNb+5Z6AZKQSI0SusQ7ZzFL637mfw3Xh4C3PEyVSn9LiF683fX0TTq8OeGmNZQS4maYfS95IFD+XpydU0dEA=="],
 
-    "@sentry/cli-darwin": ["@sentry/cli-darwin@2.52.0", "", { "os": "darwin" }, "sha512-ieQs/p4yTHT27nBzy0wtAb8BSISfWlpXdgsACcwXimYa36NJRwyCqgOXUaH/BYiTdwWSHpuANbUHGJW6zljzxw=="],
+    "@sentry/cli-darwin": ["@sentry/cli-darwin@2.53.0", "", { "os": "darwin" }, "sha512-NNPfpILMwKgpHiyJubHHuauMKltkrgLQ5tvMdxNpxY60jBNdo5VJtpESp4XmXlnidzV4j1z61V4ozU6ttDgt5Q=="],
 
-    "@sentry/cli-linux-arm": ["@sentry/cli-linux-arm@2.52.0", "", { "os": [ "linux", "android", "freebsd", ], "cpu": "arm" }, "sha512-tWMLU+hj+iip5Akx+S76biAOE1eMMWTDq8c0MqMv/ahHgb6/HiVngMcUsp59Oz3EczJGbTkcnS3vRTDodEcMDw=="],
+    "@sentry/cli-linux-arm": ["@sentry/cli-linux-arm@2.53.0", "", { "os": [ "linux", "android", "freebsd", ], "cpu": "arm" }, "sha512-NdRzQ15Ht83qG0/Lyu11ciy/Hu/oXbbtJUgwzACc7bWvHQA8xEwTsehWexqn1529Kfc5EjuZ0Wmj3MHmp+jOWw=="],
 
-    "@sentry/cli-linux-arm64": ["@sentry/cli-linux-arm64@2.52.0", "", { "os": [ "linux", "android", "freebsd", ], "cpu": "arm64" }, "sha512-RxT5uzxjCkcvplmx0bavJIEYerRex2Rg/2RAVBdVvWLKFOcmeerTn/VVxPZVuDIVMVyjlZsteWPYwfUm+Ia3wQ=="],
+    "@sentry/cli-linux-arm64": ["@sentry/cli-linux-arm64@2.53.0", "", { "os": [ "linux", "android", "freebsd", ], "cpu": "arm64" }, "sha512-xY/CZ1dVazsSCvTXzKpAgXaRqfljVfdrFaYZRUaRPf1ZJRGa3dcrivoOhSIeG/p5NdYtMvslMPY9Gm2MT0M83A=="],
 
-    "@sentry/cli-linux-i686": ["@sentry/cli-linux-i686@2.52.0", "", { "os": [ "linux", "android", "freebsd", ], "cpu": "ia32" }, "sha512-sKcJmIg7QWFtlNU5Bs5OZprwdIzzyYMRpFkWioPZ4TE82yvP1+2SAX31VPUlTx+7NLU6YVEWNwvSxh8LWb7iOw=="],
+    "@sentry/cli-linux-i686": ["@sentry/cli-linux-i686@2.53.0", "", { "os": [ "linux", "android", "freebsd", ], "cpu": "ia32" }, "sha512-0REmBibGAB4jtqt9S6JEsFF4QybzcXHPcHtJjgMi5T0ueh952uG9wLzjSxQErCsxTKF+fL8oG0Oz5yKBuCwCCQ=="],
 
-    "@sentry/cli-linux-x64": ["@sentry/cli-linux-x64@2.52.0", "", { "os": [ "linux", "android", "freebsd", ], "cpu": "x64" }, "sha512-aPZ7bP02zGkuEqTiOAm4np/ggfgtzrq4ti1Xze96Csi/DV3820SCfLrPlsvcvnqq7x69IL9cI3kXjdEpgrfGxw=="],
+    "@sentry/cli-linux-x64": ["@sentry/cli-linux-x64@2.53.0", "", { "os": [ "linux", "android", "freebsd", ], "cpu": "x64" }, "sha512-9UGJL+Vy5N/YL1EWPZ/dyXLkShlNaDNrzxx4G7mTS9ywjg+BIuemo6rnN7w43K1NOjObTVO6zY0FwumJ1pCyLg=="],
 
-    "@sentry/cli-win32-arm64": ["@sentry/cli-win32-arm64@2.52.0", "", { "os": "win32", "cpu": "arm64" }, "sha512-90hrB5XdwJVhRpCmVrEcYoKW8nl5/V9OfVvOGeKUPvUkApLzvsInK74FYBZEVyAn1i/NdUv+Xk9q2zqUGK1aLQ=="],
+    "@sentry/cli-win32-arm64": ["@sentry/cli-win32-arm64@2.53.0", "", { "os": "win32", "cpu": "arm64" }, "sha512-G1kjOjrjMBY20rQcJV2GA8KQE74ufmROCDb2GXYRfjvb1fKAsm4Oh8N5+Tqi7xEHdjQoLPkE4CNW0aH68JSUDQ=="],
 
-    "@sentry/cli-win32-i686": ["@sentry/cli-win32-i686@2.52.0", "", { "os": "win32", "cpu": "ia32" }, "sha512-HXlSE4CaLylNrELx4KVmOQjV5bURCNuky6sjCWiTH7HyDqHEak2Rk8iLE0JNLj5RETWMvmaZnZZFfmyGlY1opg=="],
+    "@sentry/cli-win32-i686": ["@sentry/cli-win32-i686@2.53.0", "", { "os": "win32", "cpu": "ia32" }, "sha512-qbGTZUzesuUaPtY9rPXdNfwLqOZKXrJRC1zUFn52hdo6B+Dmv0m/AHwRVFHZP53Tg1NCa8bDei2K/uzRN0dUZw=="],
 
-    "@sentry/cli-win32-x64": ["@sentry/cli-win32-x64@2.52.0", "", { "os": "win32", "cpu": "x64" }, "sha512-hJT0C3FwHk1Mt9oFqcci88wbO1D+yAWUL8J29HEGM5ZAqlhdh7sAtPDIC3P2LceUJOjnXihow47Bkj62juatIQ=="],
+    "@sentry/cli-win32-x64": ["@sentry/cli-win32-x64@2.53.0", "", { "os": "win32", "cpu": "x64" }, "sha512-1TXYxYHtwgUq5KAJt3erRzzUtPqg7BlH9T7MdSPHjJatkrr/kwZqnVe2H6Arr/5NH891vOlIeSPHBdgJUAD69g=="],
 
     "@sentry/core": ["@sentry/core@9.46.0", "", {}, "sha512-it7JMFqxVproAgEtbLgCVBYtQ9fIb+Bu0JD+cEplTN/Ukpe6GaolyYib5geZqslVxhp2sQgT+58aGvfd/k0N8Q=="],
 
@@ -592,7 +592,7 @@
 
     "camelcase-keys": ["camelcase-keys@7.0.2", "", { "dependencies": { "camelcase": "^6.3.0", "map-obj": "^4.1.0", "quick-lru": "^5.1.1", "type-fest": "^1.2.1" } }, "sha512-Rjs1H+A9R+Ig+4E/9oyB66UC5Mj9Xq3N//vcLf2WzgdTi/3gUu3Z9KoqmlrEG4VuuLK8wJHofxzdQXz/knhiYg=="],
 
-    "caniuse-lite": ["caniuse-lite@1.0.30001737", "", {}, "sha512-BiloLiXtQNrY5UyF0+1nSJLXUENuhka2pzy2Fx5pGxqavdrxSCW4U6Pn/PoG3Efspi2frRbHpBV2XsrPE6EDlw=="],
+    "caniuse-lite": ["caniuse-lite@1.0.30001739", "", {}, "sha512-y+j60d6ulelrNSwpPyrHdl+9mJnQzHBr08xm48Qno0nSk4h3Qojh+ziv2qE6rXf4k3tadF4o1J/1tAbVm1NtnA=="],
 
     "chalk": ["chalk@5.6.0", "", {}, "sha512-46QrSQFyVSEyYAgQ22hQ+zDa60YHA4fBstHmtSApj1Y5vKtG27fWowW03jCk5KcbXEWPZUIR894aARCA/G1kfQ=="],
 
