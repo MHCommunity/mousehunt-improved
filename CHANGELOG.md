@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.86.1
+
+- Updated data for new areas
+
 ## Version 0.86.0
 
 - Better Journal: Updated styles

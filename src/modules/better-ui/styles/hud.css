@@ -77,7 +77,7 @@
 }
 
 .mousehuntHud-userStat .miceWarning {
-  top: -1px;
+  top: -4px;
   left: 11px;
   z-index: 0;
   width: 21px;

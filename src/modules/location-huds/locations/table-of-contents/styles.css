@@ -397,3 +397,7 @@ a.folkloreForestRegionView-bait-image {
   background-image: url(https://i.mouse.rip/app/toc_quill_sheet.png);
   background-size: 72px;
 }
+
+.folkloreForestRegionView-environmentInventory.table_of_contents .folkloreForestRegionView-environmentInventory-label {
+  letter-spacing: -0.3px;
+}
