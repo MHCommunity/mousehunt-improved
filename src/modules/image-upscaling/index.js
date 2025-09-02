@@ -75,6 +75,7 @@ class ImageUpscaler {
       ['cv=3', ''],
       ['cv=4', ''],
       ['cv=5', ''],
+      ['cv=6', ''],
       ['asset_cache_version=1', ''],
       ['asset_cache_version=2', ''],
       ['asset_cache_version=3', ''],
