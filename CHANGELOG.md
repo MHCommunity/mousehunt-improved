@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.87.0
+
+- Added Afterword Acres Location HUD module
+- Added Epilogue Falls Location HUD module
+- Updated data for new areas
+
 ## Version 0.86.1
 
 - Updated data for new areas

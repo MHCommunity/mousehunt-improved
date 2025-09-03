@@ -8,7 +8,8 @@ import {
   onEvent,
   saveSetting,
   setGlobal,
-  showLoadingPopup
+  showLoadingPopup,
+  updateCaches
 } from '@utils';
 
 import * as imported from './versions/*.js'; // eslint-disable-line import/no-unresolved
@@ -40,9 +41,10 @@ const getVersionUpdates = () => {
   const neededUpdates = [];
 
   const updatesCompleted = getSetting('mh-improved-updates-completed', []);
-  for (const versionUpdate in versionUpdates) {
-    if (! updatesCompleted.includes(versionUpdate.version)) {
-      neededUpdates.push(versionUpdate);
+  for (const versionUpdate in Object.values(versionUpdates)) {
+    const version = versionUpdates[versionUpdate].version;
+    if (! updatesCompleted.includes(version)) {
+      neededUpdates.push(versionUpdates[versionUpdate]);
     }
   }
 
@@ -95,7 +97,7 @@ const update = async (previousVersion, newVersion) => {
   debuglog('update-migration', `Updating from ${previousVersion} to ${newVersion}`);
 
   const updates = getVersionUpdates();
-  const needsToRunUpdate = Object.keys(updates).length > 0;
+  const needsToRunUpdate = updates.length > 0;
 
   const isFreshInstall = '0.0.0' === previousVersion;
 

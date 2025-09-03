@@ -98,7 +98,7 @@ const isCacheExpired = async (key) => {
  */
 const fetchData = async (key, retries = 0) => {
   try {
-    const data = await fetch(`https://api.mouse.rip/${key}`, {
+    const data = await fetch(`https://api.mouse.rip/${key}?v=${mhImprovedVersion || 'unknown'}`, {
       method: 'GET',
       headers: getHeaders(),
     });

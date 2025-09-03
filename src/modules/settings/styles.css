@@ -316,10 +316,10 @@
   background-color: transparent;
 }
 
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(60n),
 #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(61n),
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(64n),
-#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(65n) {
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(65n),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(66n),
+#mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(69n) {
   background-color: #eee;
 }
 

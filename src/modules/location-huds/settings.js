@@ -83,6 +83,13 @@ export default async () => {
 
   optionsToReturn.push(
     {
+      name: '',
+      id: 'option-seperator',
+      settings: {
+        type: 'blank',
+      }
+    },
+    {
       id: 'location-huds.location-hud-toggle',
       title: 'Enable quick toggle (top menu bar)',
     },

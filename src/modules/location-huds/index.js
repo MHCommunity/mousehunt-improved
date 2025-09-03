@@ -20,6 +20,7 @@ import styles from './styles.css';
 // Locations
 /* eslint-disable camelcase */
 import acolyte_realm from './locations/acolyte-realm';
+import afterword_acres from './locations/afterword-acres';
 import ancient_city from './locations/ancient-city';
 import balacks_cove from './locations/balacks-cove';
 import bazaar from './locations/bazaar';
@@ -35,6 +36,7 @@ import dojo from './locations/dojo';
 import dracano from './locations/dracano';
 import draconic_depths from './locations/draconic-depths';
 import elub_shore from './locations/elub-shore';
+import epilogue_falls from './locations/epilogue-falls';
 import floating_islands from './locations/floating-islands';
 import forbidden_grove from './locations/forbidden-grove';
 import foreword_farm from './locations/foreword-farm';
@@ -143,6 +145,7 @@ const main = () => {
   /* eslint-disable camelcase */
   const locationHandlers = {
     acolyte_realm,
+    afterword_acres,
     ancient_city,
     balacks_cove,
     bazaar,
@@ -158,6 +161,7 @@ const main = () => {
     draconic_depths,
     dracano,
     elub_shore,
+    epilogue_falls,
     floating_islands,
     forbidden_grove,
     foreword_farm,

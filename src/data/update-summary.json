@@ -2,53 +2,11 @@
   "summary": "",
   "details": [
     {
-      "title": "Better Journal",
+      "title": "",
       "items": [
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Better Marketplace",
-      "items": [
-        "Added 'Quick Sell' beta feature"
-      ]
-    },
-    {
-      "title": "Better Maps",
-      "items": [
-        "Added 'Catch Dates' beta feature",
-        "Added 'Draggable Highlight' beta feature",
-        "Made mouse highlight info popup static, so it can be visible"
-      ]
-    },
-    {
-      "title": "Location HUDs: Table of Contents",
-      "items": [
-        "Added Rainbow Quill support to simulator",
-        "Added random Scrambles quote to blank page when starting writing",
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Show Auras",
-      "items": [
-        "Updated styles"
-      ]
-    },
-    {
-      "title": "Settings",
-      "items": [
-        "Updated all settings icons for consistency",
-        "Updated settings page styles"
-      ]
-    },
-    {
-      "title": "Other",
-      "items": [
-        "Removed 'Removed Settings: Column' beta/experimental feature",
-        "Removed 'Removed Troll Mode' beta/experimental feature",
-        "Removed 'Removed Prologue Pond: Normal boat color' Location HUD option",
-        "Deprecated 'Dark Mode Updates & Tweaks (MHCT/Dark Mode Extension)' module. If you have it enabled, it will continue to work, otherwise it won't be shown in the settings page"
+        "Added Afterword Acres Location HUD module",
+        "Added Epilogue Falls Location HUD module",
+        "Updated data for new areas"
       ]
     }
   ]
