@@ -6,7 +6,10 @@
       "items": [
         "Added Afterword Acres Location HUD module",
         "Added Epilogue Falls Location HUD module",
-        "Updated data for new areas"
+        "Updated data for new areas",
+        "Fixed Catch Rate Estimator & Minlucks not showing correct minluck values for new mice",
+        "Fixed Epilogue Falls Location HUD not applying styles correctly",
+        "Updated styles for Better Journal"
       ]
     }
   ]

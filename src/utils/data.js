@@ -187,6 +187,11 @@ const updateCaches = async () => {
   for (const file of validDataFiles) {
     await getData(file, true);
   }
+
+  // Clear CRE caches to force refresh.
+  cacheDelete('cre-location');
+  cacheDelete('cre-stats');
+  cacheDelete('cre-effectiveness');
 };
 
 /**
@@ -302,6 +307,14 @@ const cacheSet = async (key, value, expiration = null) => {
   return value;
 };
 
+/**
+ * Set a cache value without expiration.
+ *
+ * @param {string} key   Key to set the value for.
+ * @param {Object} value Value to set.
+ *
+ * @return {Promise<Object>} The value that was set.
+ */
 const cacheSetNoExpiration = async (key, value) => {
   return await dbSet('cache', { id: key, value });
 };
@@ -357,6 +370,14 @@ const cacheGet = async (key, defaultValue = false) => {
   return await cacheGetHelper(key, defaultValue);
 };
 
+/**
+ * Get a cache value without checking expiration.
+ *
+ * @param {string} key          Key to get the value for.
+ * @param {Object} defaultValue Default value to return if the key doesn't exist.
+ *
+ * @return {Promise<Object>} The cache value.
+ */
 const cacheGetNoExpiration = async (key, defaultValue = false) => {
   const cached = await dbGet('cache', key);
   if (! cached?.data?.value) {

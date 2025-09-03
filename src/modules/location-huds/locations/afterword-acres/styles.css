@@ -1,0 +1,15 @@
+.headsUpDisplayAfterwordAcresView__blightLevel {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #ddc4ee;
+  border-radius: 5px;
+}
+
+.headsUpDisplayAfterwordAcresView__productivityRateTooltipIcon {
+  opacity: 0.5;
+}
+
+.headsUpDisplayAfterwordAcresView__productivityRateTooltipIcon:hover {
+  opacity: 1;
+}

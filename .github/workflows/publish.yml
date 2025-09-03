@@ -109,12 +109,16 @@ jobs:
       - name: Create GitHub Release
         run: |
           # Create a GitHub release with the version and changelog.
+          VERSION_TAG="v${{ needs.build.outputs.version }}"
+          CHANGELOG="${{ needs.build.outputs.changelog }}"
+
+
           gh release create "v"${{ needs.build.outputs.version }}" \
             dist/mousehunt-improved-chrome.zip \
             dist/mousehunt-improved-firefox.zip \
             dist/mousehunt-improved.user.js \
-            --title "MouseHunt Improved v${{ needs.build.outputs.version }}" \
-            --notes "${{ needs.build.outputs.changelog }}"
+            --title "MouseHunt Improved v$VERSION_TAG" \
+            --notes "$CHANGELOG"
         env:
           GH_TOKEN: ${{ github.token }}
 

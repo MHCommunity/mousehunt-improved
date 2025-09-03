@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.87.1
+
+- Fixed Catch Rate Estimator & Minlucks not showing correct minluck values for new mice
+
 ## Version 0.87.0
 
 - Added Afterword Acres Location HUD module

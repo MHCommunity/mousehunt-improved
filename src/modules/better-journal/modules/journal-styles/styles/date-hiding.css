@@ -33,6 +33,7 @@
 .journal .content .entry.short.desertstreak .journalbody .journalenvdate,
 .journal .content .entry.schoolOfSorcery-wandUsed .journalbody .journalenvdate,
 .journal .content .entry.short.gift_wrapped_charm_trigger .journalbody .journalenvdate,
+.journal .content .entry.short.afterwordAcres-droidActivity .journalbody .journalenvdate,
 .journal .content .entry.short.rift-whisker-woods-increase .journalbody .journalenvdate {
   display: none;
 }

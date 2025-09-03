@@ -36,3 +36,7 @@
   background-size: cover;
   mix-blend-mode: luminosity;
 }
+
+.journal .content .entry.afterwordAcres-droidActivity .journalbody .journaltext {
+  font-size: 10px;
+}
