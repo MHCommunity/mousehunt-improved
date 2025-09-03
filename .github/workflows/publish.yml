@@ -112,16 +112,16 @@ jobs:
           VERSION_TAG="v${{ needs.build.outputs.version }}"
           CHANGELOG="${{ needs.build.outputs.changelog }}"
 
-
-          gh release create "v"${{ needs.build.outputs.version }}" \
+          gh release create "$VERSION_TAG" \
             dist/mousehunt-improved-chrome.zip \
             dist/mousehunt-improved-firefox.zip \
             dist/mousehunt-improved.user.js \
-            --title "MouseHunt Improved v$VERSION_TAG" \
-            --notes "$CHANGELOG"
+            --title "MouseHunt Improved $VERSION_TAG" \
+            --notes <<EOF
+            $CHANGELOG
+            EOF
         env:
           GH_TOKEN: ${{ github.token }}
-
 
   chrome-upload:
     name: Upload Chrome Extension
