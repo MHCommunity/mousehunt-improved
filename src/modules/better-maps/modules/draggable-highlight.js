@@ -1,3 +1,4 @@
+import { onEvent } from '@utils';
 
 const modifyStickyHighlights = async () => {
   const goals = document.querySelectorAll('.treasureMapView-goals-group-goal');
