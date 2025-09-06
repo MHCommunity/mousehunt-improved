@@ -117,9 +117,7 @@ jobs:
             dist/mousehunt-improved-firefox.zip \
             dist/mousehunt-improved.user.js \
             --title "MouseHunt Improved $VERSION_TAG" \
-            --notes <<EOF
-            $CHANGELOG
-            EOF
+            --notes "$CHANGELOG"
         env:
           GH_TOKEN: ${{ github.token }}
 
