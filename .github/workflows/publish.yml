@@ -77,8 +77,8 @@ jobs:
 
       - name: Zip and archive files
         run: |
-          bun run build:zips
-          bun run build:archive
+          bun run scripts/build.mjs archive
+          bun run scripts/build.mjs zips
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

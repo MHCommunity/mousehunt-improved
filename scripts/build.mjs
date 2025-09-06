@@ -71,6 +71,7 @@ const isRelease = process.argv[3] === '--release';
 
 if (type === 'archive') {
   await buildArchive();
+  process.exit(0); // eslint-disable-line unicorn/no-process-exit
 } else if (type === 'css') {
   await builCss();
 } if (type === 'extension') {
@@ -86,6 +87,7 @@ if (type === 'archive') {
   await buildUserscript();
 } else if (type === 'zips') {
   await buildZips();
+  process.exit(0); // eslint-disable-line unicorn/no-process-exit
 } else {
   await builCss();
 
