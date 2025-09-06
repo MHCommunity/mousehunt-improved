@@ -1,10 +1,14 @@
 # Changelog
 
+## Version 0.87.2
+
+- Updated Better Journal styles
+
 ## Version 0.87.1
 
 - Fixed Catch Rate Estimator & Minlucks not showing correct minluck values for new mice
 - Fixed Epilogue Falls Location HUD not applying styles correctly
-- Updated styles for Better Journal
+- Updated Better Journal styles
 
 ## Version 0.87.0
 

@@ -40,3 +40,8 @@
 .journal .content .entry.afterwordAcres-droidActivity .journalbody .journaltext {
   font-size: 10px;
 }
+
+.journal .entry.rainbowQuillSpecialEffect {
+  background-position: left center;
+  background-size: inherit;
+}
