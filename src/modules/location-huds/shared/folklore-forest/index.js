@@ -1,5 +1,6 @@
 import {
   getSetting,
+  makeElement,
   makeMhButton,
   onDialogHide,
   onDialogShow,
@@ -227,6 +228,22 @@ const addUpgradeVisibilityToggles = () => {
   }
 };
 
+const addCloseToWarning = () => {
+  const warning = document.querySelector('.folkloreForestRegionView-trapWarningContainer.active');
+  if (! warning) {
+    return;
+  }
+
+  if (warning.querySelector('.mhui-close-button')) {
+    return;
+  }
+
+  const closeButton = makeElement('div', 'mhui-close-button', '×', warning);
+  closeButton.addEventListener('click', () => {
+    warning.classList.remove('active');
+  });
+};
+
 let hasAddedUpgradeVisibilityToggles = false;
 
 /**
@@ -238,4 +255,6 @@ export default async () => {
   onDialogHide(() => (hasAddedUpgradeVisibilityToggles = false));
   onTurn(toggleAllVisibility, 500);
   onRequest('*', toggleAllVisibility);
+
+  addCloseToWarning();
 };
