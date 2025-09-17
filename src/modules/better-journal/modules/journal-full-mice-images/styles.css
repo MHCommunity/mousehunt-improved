@@ -17,7 +17,7 @@
 .journal .content .entry.short.catchsuccess,
 .journal .content .entry.short.catchsuccessloot,
 .journal .content .entry.short.catchsuccessprize {
-  min-height: 100px;
+  min-height: 140px;
 }
 
 .journal .content .entry.relicHunter_catch .journalimage,
