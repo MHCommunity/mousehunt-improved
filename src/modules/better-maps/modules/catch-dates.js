@@ -24,7 +24,7 @@ const addCatchDates = async () => {
     }
 
     const caught = new Date(catchDates[goalId]);
-    dateEl.textContent = caught.toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    dateEl.textContent = caught.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
   });
 };
 
