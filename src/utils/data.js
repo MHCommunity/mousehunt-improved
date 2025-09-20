@@ -186,6 +186,8 @@ const clearCaches = async () => {
 const updateCaches = async () => {
   for (const file of validDataFiles) {
     await getData(file, true);
+
+    await new Promise((resolve) => setTimeout(resolve, 250));
   }
 
   // Clear CRE caches to force refresh.
