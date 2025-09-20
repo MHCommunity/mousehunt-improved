@@ -69,12 +69,17 @@ const highlightUsers = async () => {
 
   let data = sessionGet(`mh-improved-user-highlighting-${userId}`);
   if (! data) {
-    const userHighlighting = await fetch(`https://api.mouse.rip/highlight-user/${userId}`);
-    data = await userHighlighting.json();
+    try {
+      const userHighlighting = await fetch(`https://api.mouse.rip/highlight-user/${userId}`);
+      data = await userHighlighting.json();
 
-    debug(`Retrieved user highlighting data for ${userId}`, data);
+      debug(`Retrieved user highlighting data for ${userId}`, data);
 
-    sessionSet(`mh-improved-user-highlighting-${userId}`, data);
+      sessionSet(`mh-improved-user-highlighting-${userId}`, data);
+    } catch (error) {
+      console.error('Error fetching user highlighting data', error); // eslint-disable-line no-console
+      return;
+    }
   }
 
   if (! data || ! data?.highlighted) {
