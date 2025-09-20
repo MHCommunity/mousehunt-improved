@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.88.1
+
+- Fixed Image Upscaling & Transparency not correctly stripping `?cv=` and `?asset_cache_version=` query parameters from URLs
+
 ## Version 0.88.0
 
 - Added close button to power type warning in Folklore Forest Location HUDs

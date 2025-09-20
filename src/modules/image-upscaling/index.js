@@ -71,15 +71,17 @@ class ImageUpscaler {
       return '';
     }
 
-    return url
+    url = url
       .replaceAll('//images', '/images')
       .replaceAll('https://www.mousehuntgame.com/images/', '')
-      .replaceAll(/cv=\d+/g, '')
-      .replaceAll(/asset_cache_version=\d+/g, '')
+      .replaceAll(/\?cv=\d+/g, '')
+      .replaceAll(/\?asset_cache_version=\d+/g, '')
       .replaceAll(/\?.+/g, '') // Remove query parameters.
       .replaceAll('#.+', '') // Remove fragments.
       .replaceAll('//', '/')
       .trim();
+
+    return url;
   }
 
   /**
@@ -196,7 +198,28 @@ class ImageUpscaler {
       this.observer.disconnect();
     }
 
-    this.observer = new MutationObserver(() => {
+    this.observer = new MutationObserver((mutations) => {
+      let shouldUpscale = true;
+      for (const mutation of mutations) {
+        // Don't trigger upscaling when the hunters horn timer changes.
+        if (
+          mutation.target &&
+          mutation.target.classList &&
+          (
+            mutation.target.classList.contains('huntersHornView__timerState') || // Horn countdown.
+            mutation.target.classList.contains('huntersHornView__timer') || // Legacy horn countdown.
+            mutation.target.classList.contains('mousehuntHeaderView-newsTicker') // News ticker.
+          )
+        ) {
+          shouldUpscale = false;
+          break;
+        }
+      }
+
+      if (! shouldUpscale) {
+        return;
+      }
+
       this.upscaleImageElements();
     });
 
