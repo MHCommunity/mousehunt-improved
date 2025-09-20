@@ -81,15 +81,21 @@ class ImageUpscaler {
       ['asset_cache_version=3', ''],
       ['asset_cache_version=4', ''],
       ['asset_cache_version=5', ''],
-      ['?', ''],
-      ['&', ''],
     ];
 
     if (! url) {
       return '';
     }
 
-    return replacements.reduce((replacedUrl, [from, to]) => replacedUrl.replaceAll(from, to), url);
+    return url
+      .replaceAll('//images', '/images')
+      .replaceAll('https://www.mousehuntgame.com/images/', '')
+      .replaceAll(/cv=\d+/g, '')
+      .replaceAll(/asset_cache_version=\d+/g, '')
+      .replaceAll(/\?.+/g, '') // Remove query parameters.
+      .replaceAll('#.+', '') // Remove fragments.
+      .replaceAll('//', '/')
+      .trim();
   }
 
   /**
