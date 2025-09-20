@@ -31,6 +31,7 @@ const classesToCheck = {
   hasListNeedsClasses: [
     'schoolOfSorcery-completed',
     'schoolOfSorcery-droppedOut',
+    'epilogueFalls-finishRiverRun',
   ],
 };
 
