@@ -183,8 +183,9 @@ const init = async () => {
        *
        * @return {Event|null} The event to send, or null to skip.
        */
-      beforeSend(event) {
+      beforeSend: (event) => {
         const file = event.exception?.values?.[0]?.stacktrace?.frames?.[0]?.filename;
+
         if (
           file && (
             file.includes('hknhadpnfdnkinmompmkclpfkngdcdph') ||
@@ -196,7 +197,7 @@ const init = async () => {
         }
 
         return null;
-      }
+      },
     });
   }
 
