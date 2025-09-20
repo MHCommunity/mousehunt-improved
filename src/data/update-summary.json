@@ -4,12 +4,11 @@
     {
       "title": "",
       "items": [
-        "Added Afterword Acres Location HUD module",
-        "Added Epilogue Falls Location HUD module",
-        "Updated data for new areas",
-        "Fixed Catch Rate Estimator & Minlucks not showing correct minluck values for new mice",
-        "Fixed Epilogue Falls Location HUD not applying styles correctly",
-        "Updated styles for Better Journal"
+        "Added close button to power type warning in Folklore Forest Location HUDs",
+        "Added 'Daily Draw: Reverse Order' beta feature",
+        "Updated Dark Mode styles",
+        "Minor style updates",
+        "Miscellaneous bug fixes and performance improvements"
       ]
     }
   ]

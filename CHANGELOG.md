@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.88.0
+
+- Added close button to power type warning in Folklore Forest Location HUDs
+- Added 'Daily Draw: Reverse Order' beta feature
+- Updated Dark Mode styles
+- Minor style updates
+- Miscellaneous bug fixes and performance improvements
+
 ## Version 0.87.2
 
 - Updated Better Journal styles
