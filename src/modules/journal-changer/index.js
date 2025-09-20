@@ -93,7 +93,12 @@ const getCurrentJournalTheme = () => {
     return false;
   }
 
-  return [...journal.classList].find((cls) => cls.startsWith('theme_'));
+  const classlist = [...journal.classList];
+  if (classlist.length === 0) {
+    return false;
+  }
+
+  return classlist.find((cls) => cls.startsWith('theme_'));
 };
 
 /**
