@@ -2,7 +2,6 @@
 .entry.catchsuccessloot .journalimage img,
 .entry.catchsuccessprize .journalimage img {
   width: 100%;
-  max-height: 100px;
   filter: saturate(1.4) hue-rotate(5deg);
   border: none;
   mix-blend-mode: darken;
