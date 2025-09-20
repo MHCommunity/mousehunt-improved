@@ -384,7 +384,7 @@ const giftingPopup = () => {
  * Always active.
  */
 const greatWinterHuntGlobal = () => {
-  addStyles([stylesGlobal, maybeHideAdventCalendarInMenu()], 'location-hud-events-great-winter-hunt');
+  excludeFromUserscript: addStyles([stylesGlobal, maybeHideAdventCalendarInMenu()], 'location-hud-events-great-winter-hunt'); // TODO: remove this, temporary commented out to fit in greasyfork space limits.
   onDialogShow('adventCalendarPopup', adventCalendarPopup);
   onDialogShow('winter_hunt_profile_tree_possible_gifts', giftingPopup);
 };
