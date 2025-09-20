@@ -412,6 +412,10 @@ a.random-title.loading::after {
   background-color: #d1ebed;
 }
 
+.row.mobile-setup .edit-setup {
+  display: none;
+}
+
 .mh-improved-favorite-setups-blueprint-container .row.draggable {
   position: relative;
   cursor: move;
