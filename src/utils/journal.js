@@ -80,6 +80,9 @@ const makeJournalEntry = (opts = {}) => {
  */
 const getLatestJournalEntryId = () => {
   const entries = document.querySelectorAll('.journalEntries .entry');
+  if (! entries || entries.length === 0) {
+    return 0;
+  }
 
   const entry = [...entries].find((search) => search.getAttribute('data-entry-id'));
   return entry ? entry.getAttribute('data-entry-id') : 0;
