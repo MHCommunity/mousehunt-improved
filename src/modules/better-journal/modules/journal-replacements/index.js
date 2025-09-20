@@ -94,9 +94,6 @@ const replacements = [
   [/an additional:<br>/i, 'an additional ', '!festiveSpiritLootBoost'],
   ['<br></p><p>', '<p>'],
   ['<br><p>', '<p>'],
-  [/<p class="mhi-x-entry"><span class="dot"> • <\/span>/g, '', '!shop_purchase'],
-  [/<p class="mhi-x-entry"><span class="dot"> •&nbsp;<\/span>/g, '', '!shop_purchase'],
-  [/(\d+?) x /gi, '<p class="mhi-x-entry"><span class="dot"> • </span>$1 x ', '!shop_purchase'],
   ['My Condensed Creativity created an additional ', 'My Condensed Creativity created an additional: '],
   ['My Farm to Table Bonus harvested an additional ', 'My Farm to Table Bonus harvested an additional: '],
   [/<p><\/p>/g, ''],
@@ -312,6 +309,16 @@ const shouldSkip = (entry) => {
   return (classList.some((c) => keepOriginalClasses.has(c)));
 };
 
+const fixAnWording = (entry) => {
+  const element = entry.querySelector('.journalbody .journaltext');
+
+  const regex = / and caught an ([b-df-hj-np-tv-z])/gi;
+  const newText = element.textContent.replaceAll(regex, ' and caught a $1');
+  if (element.textContent !== newText) {
+    element.innerHTML = element.innerHTML.replaceAll(' and caught an ', ' and caught a ');
+  }
+};
+
 /**
  * Process a journal entry.
  *
@@ -326,6 +333,7 @@ const processEntry = async (entry) => {
   updateLog(entry);
   updateMouseImageLinks(entry);
   updateItemLinks(entry);
+  fixAnWording(entry);
 };
 
 /**
