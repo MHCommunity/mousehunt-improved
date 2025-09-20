@@ -14,7 +14,7 @@
         "@wordpress/eslint-plugin": "^22.17.0",
         "archiver": "^7.0.1",
         "chalk": "^5.6.2",
-        "chrome-webstore-upload-cli": "^3.4.0",
+        "chrome-webstore-upload-cli": "3.3.2",
         "concurrently": "^9.2.1",
         "del-cli": "^6.0.0",
         "esbuild": "^0.25.10",
@@ -604,7 +604,7 @@
 
     "chrome-webstore-upload": ["chrome-webstore-upload@3.2.0", "", {}, "sha512-ghFzqGFpPzEvDfam7qzokj07KsPn39fOdoj9KwqgQdjcHpFCJ1/wnKi2IHP6zCcHKWEBv9vI7VVbllbDRnypXw=="],
 
-    "chrome-webstore-upload-cli": ["chrome-webstore-upload-cli@3.4.0", "", { "dependencies": { "chrome-webstore-upload": "^3.2.0", "junk": "^4.0.1", "meow": "^12.1.1", "recursive-readdir": "^2.2.3", "yazl": "^2.5.1" }, "bin": { "chrome-webstore-upload": "cli.js" } }, "sha512-cLvOqdbaZDcfVSF+104sOYVxQIFfmDcVseH8RY6wqPIYw3chx4jGIh8JHOLntCHFUlxHmYYkGQOAr4YqSV5uJg=="],
+    "chrome-webstore-upload-cli": ["chrome-webstore-upload-cli@3.3.2", "", { "dependencies": { "chrome-webstore-upload": "^3.1.0", "junk": "^4.0.1", "meow": "^12.1.1", "recursive-readdir": "^2.2.3", "yazl": "^2.5.1" }, "bin": { "chrome-webstore-upload": "cli.js" } }, "sha512-SitIJt3dO1wQEfcTBBj0yRh38+Thq+JJ/uVK0GT8t0bfvk0x8zk3Ar4U5zqmou1pjcR+exGOhdRoLwGLLQItkw=="],
 
     "ci-info": ["ci-info@4.2.0", "", {}, "sha512-cYY9mypksY8NRqgDB1XD1RiJL338v/551niynFTGkZOO2LHuB2OmOYxDIe/ttN9AHwrqdum1360G3ald0W9kCg=="],
 
