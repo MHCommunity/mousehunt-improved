@@ -184,16 +184,18 @@ const init = async () => {
        * @return {Event|null} The event to send, or null to skip.
        */
       beforeSend: (event) => {
-        const file = event.exception?.values?.[0]?.stacktrace?.frames?.[0]?.filename;
-
-        if (
-          file && (
-            file.includes('hknhadpnfdnkinmompmkclpfkngdcdph') ||
-            file.includes('fgjkidgknmkhnbeobehlfabjbignhkhm') ||
-            file.includes('mousehunt-improved')
-          )
-        ) {
-          return event;
+        const frames = event?.exception?.values?.[0]?.stacktrace?.frames;
+        if (Array.isArray(frames)) {
+          const file = frames[0]?.filename;
+          if (
+            file && (
+              file.includes('hknhadpnfdnkinmompmkclpfkngdcdph') ||
+              file.includes('fgjkidgknmkhnbeobehlfabjbignhkhm') ||
+              file.includes('mousehunt-improved')
+            )
+          ) {
+            return event;
+          }
         }
 
         return null;
