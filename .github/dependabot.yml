@@ -15,3 +15,4 @@ updates:
     ignore:
       - dependency-name: "stylelint*"
       - dependency-name: "eslint*"
+      - dependency-name: "yargs*"
