@@ -57,7 +57,7 @@ const addMapStartDate = async () => {
   const didOpenMap = mapData.hunters[0].sn_user_id === user.sn_user_id;
 
   const started = new Date(start);
-  const startText = `${didOpenMap ? 'Started' : 'Joined'}: ${started.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`;
+  const startText = `${didOpenMap ? 'Started' : 'Joined'} ${started.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`;
   makeElement('div', 'mh-improved-map-start', startText, mapActions);
 };
 
