@@ -435,6 +435,7 @@ const getCurrentTabContainer = () => {
   return document.querySelector(`.mousehuntHud-page-tabContent.${currentTab} .mousehuntHud-page-subTabContent.active`);
 };
 
+let isEditing = false;
 /**
  * Add the lock and hide controls to the inventory.
  */

@@ -204,6 +204,8 @@ const isHelpPopupOpen = () => {
   return 'mh-ui-keyboard-shortcuts-popup' === getCurrentDialog();
 };
 
+let isEditing = false;
+
 /**
  * Show the help popup.
  */
@@ -428,8 +430,6 @@ const showHelpPopup = () => {
     }
   });
 };
-
-let isEditing = false;
 
 /**
  * Listen for keypresses and check if they match a shortcut.

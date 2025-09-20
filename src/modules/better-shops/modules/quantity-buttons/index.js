@@ -33,6 +33,7 @@ export default async (block, input, maxQty) => {
   });
 
   let hasMaxed = false;
+  const buyMaxButtonText = buyMaxButton.querySelector('span') || buyMaxButton;
   buyMaxButton.addEventListener('click', () => {
     if (hasMaxed) {
       input.value = 0;
