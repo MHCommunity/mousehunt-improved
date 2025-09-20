@@ -67,22 +67,6 @@ class ImageUpscaler {
    * @return {string} The stripped URL.
    */
   stripUrl(url) {
-    const replacements = [
-      ['//images', '/images'],
-      ['https://www.mousehuntgame.com/images/', ''],
-      ['cv=1', ''],
-      ['cv=2', ''],
-      ['cv=3', ''],
-      ['cv=4', ''],
-      ['cv=5', ''],
-      ['cv=6', ''],
-      ['asset_cache_version=1', ''],
-      ['asset_cache_version=2', ''],
-      ['asset_cache_version=3', ''],
-      ['asset_cache_version=4', ''],
-      ['asset_cache_version=5', ''],
-    ];
-
     if (! url) {
       return '';
     }
