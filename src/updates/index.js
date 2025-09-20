@@ -2,7 +2,6 @@ import {
   addBodyClass,
   debuglog,
   doEvent,
-  getData,
   getSetting,
   markCachesAsExpired,
   onEvent,
