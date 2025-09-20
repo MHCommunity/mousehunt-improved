@@ -19,7 +19,12 @@ const versionUpdates = imported;
  * Save the settings backup.
  */
 const saveSettingsBackup = () => {
-  localStorage.setItem('mousehunt-improved-settings-backup', localStorage.getItem('mousehunt-improved-settings'));
+  const settings = localStorage.getItem('mousehunt-improved-settings');
+  if (! settings) {
+    return;
+  }
+
+  localStorage.setItem('mousehunt-improved-settings-backup', settings);
 };
 
 /**
@@ -101,18 +106,6 @@ const update = async (previousVersion, newVersion) => {
 
   const isFreshInstall = '0.0.0' === previousVersion;
 
-  // If we dont' have settings to migrate, just save the new version and return.
-  if (! needsToRunUpdate) {
-    saveSetting('mh-improved-version', newVersion);
-    updateCaches();
-    if (isFreshInstall) {
-      return;
-    }
-
-    doEvent('mh-improved-updated', previousVersion);
-    return;
-  }
-
   let popup;
 
   // Backup the settings before we start updating in case something goes wrong.
@@ -126,17 +119,14 @@ const update = async (previousVersion, newVersion) => {
   }
 
   try {
-    if (! isFreshInstall) {
+    if (! isFreshInstall && needsToRunUpdate) {
       await doVersionUpdates(updates);
     }
+
     saveSetting('mh-improved-version', newVersion);
 
     await markCachesAsExpired();
-
-    // Get fresh data for items and mice.
-    await getData('items', true);
-    await getData('mice', true);
-    await getData('upscaled-images', true);
+    await updateCaches();
 
     if (isFreshInstall) {
       return;
@@ -159,6 +149,7 @@ const update = async (previousVersion, newVersion) => {
     throw error;
   }
 
+  setGlobal('mh-improved-updating', false);
   console.log(`Updated MouseHunt Improved to v${newVersion}`); // eslint-disable-line no-console
 };
 
