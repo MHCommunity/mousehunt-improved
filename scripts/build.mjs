@@ -50,7 +50,7 @@ const buildZip = async (platform) => {
 
   archive.pipe(output);
 
-  archive.directory(path.join(process.cwd(), `dist/${platform}`), false);
+  archive.directory(path.join(process.cwd(), `dist/${platform}/`), false);
 
   await archive.finalize();
 };
@@ -58,10 +58,8 @@ const buildZip = async (platform) => {
 const buildZips = async () => {
   console.log('Zipping extensions...'); // eslint-disable-line no-console
 
-  await Promise.all([
-    buildZip('chrome'),
-    buildZip('firefox'),
-  ]);
+  await buildZip('chrome');
+  await buildZip('firefox');
 
   console.log(`${check} Extensions zipped`); // eslint-disable-line no-console
 };
