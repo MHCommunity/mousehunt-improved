@@ -26,5 +26,4 @@ export * from './user';
 export * from './utils';
 export * from './shared/fiery-warpath';
 export * from './shared/memory-game';
-export * from './shared/open-all';
 export * from './shared/trap-quantity';

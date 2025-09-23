@@ -126,15 +126,7 @@
   background-image: url(https://i.mouse.rip/settings/key-round.svg);
 }
 
-#mousehunt-improved-settings-feature-only-open-multiple::before {
-  background-image: url(https://i.mouse.rip/settings/copy-x.svg);
-}
-
-#mousehunt-improved-settings-feature-open-all::before {
-  background-image: url(https://i.mouse.rip/settings/copy.svg);
-}
-
-#mousehunt-improved-settings-feature-open-all-but-one::before {
+#mousehunt-improved-settings-feature-inventory-buttons::before {
   background-image: url(https://i.mouse.rip/settings/copy-plus.svg);
 }
 

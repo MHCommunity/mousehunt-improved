@@ -8,7 +8,6 @@ import {
   getSetting,
   makeElement,
   makeMhButton,
-  onEvent,
   onNavigation,
   onOverlayChange,
   onRequest
@@ -50,50 +49,6 @@ const setOpenQuantityOnClick = (attempts = 0) => {
       const input = document.querySelector('.itemView-action-convert-quantity');
       input.value = maxNum;
     }
-  });
-};
-
-/**
- * Add the open all button to the convertible items.
- */
-const addOpenAllToConvertible = () => {
-  const form = document.querySelector('.convertible .itemView-action-convertForm');
-  if (! form) {
-    return;
-  }
-
-  if (form.getAttribute('data-open-all-added')) {
-    return;
-  }
-
-  form.setAttribute('data-open-all-added', true);
-
-  // get the innerHTML and split it on the input tag. then wrap the second match in a span so we can target it
-  const formHTML = form.innerHTML;
-  const formHTMLArray = formHTML.split(' /');
-  // if we don't have a second match, just return
-  if (! formHTMLArray[1]) {
-    return;
-  }
-
-  const formHTMLArray2 = formHTMLArray[1].split('<a');
-  if (! formHTMLArray2[1]) {
-    return;
-  }
-
-  const quantity = formHTMLArray2[0].trim();
-
-  const newFormHTML = `${formHTMLArray[0]}/ <span class="open-all">${quantity}</span><a${formHTMLArray2[1]}`;
-  form.innerHTML = newFormHTML;
-
-  const openAll = document.querySelector('.open-all');
-  openAll.addEventListener('click', () => {
-    const input = form.querySelector('.itemView-action-convert-quantity');
-    if (! input) {
-      return;
-    }
-
-    input.value = Number.parseInt(input.value, 10) > 200 ? 200 : Number.parseInt(input.value, 10);
   });
 };
 
@@ -493,6 +448,12 @@ const addTrapSorting = async () => {
   header.append(sortRow);
 };
 
+const go = () => {
+  updateCollectibles();
+  addArmButtonToCharms();
+  replaceInventoryView();
+};
+
 let items;
 
 /**
@@ -505,13 +466,6 @@ const main = async () => {
   }
 
   items = await getData('items');
-
-  const go = () => {
-    addOpenAllToConvertible();
-    updateCollectibles();
-    addArmButtonToCharms();
-    replaceInventoryView();
-  };
 
   go();
 
@@ -530,8 +484,6 @@ const main = async () => {
   if (getSetting('better-inventory.sort-inventory', true)) {
     addResortInventory();
   }
-
-  onEvent('js_dialog_show', addOpenAllToConvertible);
 
   recipes();
 };
