@@ -10,7 +10,7 @@ import { makeElement, makeMathButtons, makeMhButton } from '@utils';
 export default async (block, input, maxQty) => {
   const existingButtons = block.querySelector('.mh-improved-shop-buy-controls');
   if (existingButtons) {
-    return;
+    existingButtons.remove();
   }
 
   // if max qty has a comma, remove it
