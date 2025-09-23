@@ -161,7 +161,7 @@ span.ancientCityHUD-alertLevel {
 }
 
 .ancientCityHUD-bossContainer.defeated .ancientCityHUD-bossLabel.defeated.stealth-view {
-  inset: 12px 0 0 30px;
+  inset: 12px 0 0 40px;
   width: auto;
   line-height: 1.2;
 }
