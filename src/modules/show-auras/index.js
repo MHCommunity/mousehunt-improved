@@ -38,7 +38,7 @@ const getExpiryFormatted = (time) => {
  */
 const getExpiryRemainingFormatted = (time) => {
   const duration = humanizeTime(time, {
-    units: ['d', 'h'],
+    units: time < 1000 * 60 * 60 * 24 ? ['h', 'm'] : ['d', 'h'], // Show days and hours if over a day, otherwise hours and minutes.
     delimiter: '<br>',
   });
 
