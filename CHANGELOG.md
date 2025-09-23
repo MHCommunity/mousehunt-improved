@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 0.89.0
+
+- Added 'Inventory - Open Buttons' feature with settings to enable 'One', 'All', 'All but One', and 'Only Open Extras' buttons
+- Better Shops: Fixed buttons not updating when purchasing items
+- Location HUDs: Increased hover-able area for quick craft buttons
+- Show Auras: Updated display to show hours and minutes when less than 1 day remains
+- Show Auras: Updated option names for clarity
+- Removed 'Inventory - Only Open Extras' (now part of 'Inventory - Open Buttons')
+- Removed 'Inventory - Open All but One' (now part of 'Inventory - Open Buttons')
+- Removed 'Inventory - Open All' (now part of 'Inventory - Open Buttons')
+
 ## Version 0.88.1
 
 - Fixed Image Upscaling & Transparency not correctly stripping `?cv=` and `?asset_cache_version=` query parameters from URLs

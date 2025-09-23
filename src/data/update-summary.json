@@ -4,11 +4,14 @@
     {
       "title": "",
       "items": [
-        "Added close button to power type warning in Folklore Forest Location HUDs",
-        "Added 'Daily Draw: Reverse Order' beta feature",
-        "Updated Dark Mode styles",
-        "Minor style updates",
-        "Miscellaneous bug fixes and performance improvements"
+        "- Added 'Inventory - Open Buttons' feature with settings to enable 'One', 'All', 'All but One', and 'Only Open Extras' buttons",
+        "- Better Shops: Fixed buttons not updating when purchasing items",
+        "- Location HUDs: Increased hover-able area for quick craft buttons",
+        "- Show Auras: Updated display to show hours and minutes when less than 1 day remains",
+        "- Show Auras: Updated option names for clarity",
+        "- Removed 'Inventory - Only Open Extras' (now part of 'Inventory - Open Buttons')",
+        "- Removed 'Inventory - Open All but One' (now part of 'Inventory - Open Buttons')",
+        "- Removed 'Inventory - Open All' (now part of 'Inventory - Open Buttons')"
       ]
     }
   ]
