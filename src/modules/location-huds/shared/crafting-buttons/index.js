@@ -86,7 +86,7 @@ const addCraftingButtons = async ({ baits, selectors }) => {
       return;
     }
 
-    quantityElement.classList.add('mousehuntTooltipParent');
+    quantityElement.classList.add('mousehuntTooltipParent', 'mh-crafting-popup-parent');
     const popup = makeElement('div', ['mh-crafting-popup']);
     const actions = makeElement('div', 'mh-crafting-actions');
     const baitType = container.getAttribute('data-item-type');
