@@ -302,6 +302,7 @@ a.folkloreForestRegionView-travelButton:hover {
   opacity: 0.9;
 }
 
+.headsUpDisplayDraconicDepthsView__fuelQuantity,
 .folkloreForestRegionView-fuel-quantity.quantity {
   font-size: 13px;
   color: #d9faca;
