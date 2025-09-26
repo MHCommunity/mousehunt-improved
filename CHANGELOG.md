@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.89.1
+
+- Update Folklore Forest styles
+- Fix Folklore Forest toggle inventory not saving correctly
+
 ## Version 0.89.0
 
 - Added 'Inventory - Open Buttons' feature with settings to enable 'One', 'All', 'All but One', and 'Only Open Extras' buttons
