@@ -1,4 +1,4 @@
-import { getSetting, saveSetting } from '@utils';
+import { getSetting, saveSetting, waitForElement } from '@utils';
 
 const setToggleInventory = (setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass) => {
   const isSetOpen = getSetting(setting, false);
@@ -41,7 +41,7 @@ let toggleInventory;
  * @param {string} opts.inventoryOpenClass The class to add to the inventory when open.
  * @param {string} opts.buttonOpenClass    The class to add to the button when open.
  */
-const keepInventoryToggled = (opts) => {
+const keepInventoryToggled = async (opts) => {
   const {
     setting,
     buttonSelector,
@@ -49,6 +49,8 @@ const keepInventoryToggled = (opts) => {
     inventoryOpenClass,
     buttonOpenClass,
   } = opts;
+
+  await waitForElement(buttonSelector);
 
   const toggleButton = document.querySelector(buttonSelector);
   if (! toggleButton) {
@@ -58,6 +60,11 @@ const keepInventoryToggled = (opts) => {
   const inventory = document.querySelector(inventorySelector);
   if (! inventory) {
     return;
+  }
+
+  const isSetOpen = setToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass);
+  if (isSetOpen) {
+    toggleButton.click();
   }
 
   if (toggleInventory) {
