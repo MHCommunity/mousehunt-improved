@@ -384,7 +384,7 @@ const giftingPopup = () => {
  * Always active.
  */
 const greatWinterHuntGlobal = () => {
-  excludeFromUserscript: addStyles([stylesGlobal, maybeHideAdventCalendarInMenu()], 'location-hud-events-great-winter-hunt'); // TODO: remove this, temporary commented out to fit in greasyfork space limits.
+  addStyles([stylesGlobal, maybeHideAdventCalendarInMenu()], 'location-hud-events-great-winter-hunt');
   onDialogShow('adventCalendarPopup', adventCalendarPopup);
   onDialogShow('winter_hunt_profile_tree_possible_gifts', giftingPopup);
 };
@@ -393,7 +393,7 @@ const greatWinterHuntGlobal = () => {
  * Only active at the event location.
  */
 const greatWinterHuntLocation = () => {
-  excludeFromUserscript: addHudStyles(styles); // TODO: remove this, temporary commented out to fit in greasyfork space limits.
+  addHudStyles(styles);
   onDialogShow('greatWinterHuntDialog', updateGolemPopup);
 
   golemDance();
