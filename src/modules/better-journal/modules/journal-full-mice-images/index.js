@@ -4,43 +4,48 @@ import styles from './styles.css';
 
 let mice;
 
-const main = () => {
-  onJournalEntry(async (entry) => {
-    const isCatchEntry = entry.classList.contains('catchsuccessloot') ||
-      entry.classList.contains('catchsuccess') ||
-      entry.classList.contains('catchsuccessprize');
+const makeFullMouseImage = async (entry) => {
+  const isCatchEntry = entry.classList.contains('catchsuccessloot') ||
+    entry.classList.contains('catchsuccess') ||
+    entry.classList.contains('catchsuccessprize');
 
-    let mouseType = null;
-    if (! isCatchEntry) {
-      const isRh = entry.classList.contains('relicHunter_catch');
-      if (isRh) {
-        const journalImage = entry.querySelector('.journalimage img');
-        if (journalImage) {
-          journalImage.src = 'https://i.mouse.rip/rh-transparent.png';
-          return;
-        }
+  let mouseType = null;
+  if (! isCatchEntry) {
+    const isRh = entry.classList.contains('relicHunter_catch');
+    if (isRh) {
+      const journalImage = entry.querySelector('.journalimage img');
+      if (journalImage) {
+        journalImage.src = 'https://i.mouse.rip/rh-transparent.png';
+        return;
       }
-      return;
     }
+    return;
+  }
 
-    mouseType = entry.getAttribute('data-mouse-type');
-    if (! mouseType) {
-      return;
-    }
+  mouseType = entry.getAttribute('data-mouse-type');
+  if (! mouseType) {
+    return;
+  }
 
-    const image = entry.querySelector('.journalimage img');
-    if (! image) {
-      return;
-    }
+  const image = entry.querySelector('.journalimage img');
+  if (! image) {
+    return;
+  }
 
-    const mouse = mice.find((m) => m.type === mouseType);
-    if (! mouse) {
-      return;
-    }
+  const mouse = mice.find((m) => m.type === mouseType);
+  if (! mouse) {
+    return;
+  }
 
-    if (mouse?.images?.large) {
-      image.src = mouse.images.large;
-    }
+  if (mouse?.images?.large) {
+    image.src = mouse.images.large;
+  }
+};
+
+const main = () => {
+  onJournalEntry(makeFullMouseImage, {
+    id: 'journal-full-mice-images',
+    weight: 10000,
   });
 };
 

@@ -381,5 +381,8 @@ export default async () => {
   onRequest('pages/journal.php', doJournalHistoryRequest);
   onNavigation(maybeDoJournalHistory);
 
-  onJournalEntry(saveToDatabase, 1);
+  onJournalEntry(saveToDatabase, {
+    id: 'better-journal-journal-history-save',
+    weight: 10,
+  });
 };

@@ -12,6 +12,7 @@ const replacements = [
   [/from (\d+?) x/i, 'from $1'],
   [/purchased (\d+?) x/i, 'purchased $1'],
   ['<br><b>The mouse also dropped the following loot:</b>', '==DROPREPLACE=='],
+  ['<b>The mouse also dropped the following loot:</b>', '==DROPREPLACE=='],
   ['.<br>==DROPREPLACE==<br>', ' that dropped '],
   ['<br>==DROPREPLACE==<br>', ' that dropped '],
   ['I caught a', '<p>I caught a'],
@@ -162,6 +163,10 @@ const replacements = [
  * @param {HTMLElement} entry The journal entry.
  */
 const replaceInEntry = (entry) => {
+  if (shouldSkip(entry)) {
+    return;
+  }
+
   if (entry.getAttribute('data-replaced')) {
     return;
   }
@@ -204,6 +209,10 @@ const replaceInEntry = (entry) => {
  * @param {HTMLElement} entry The journal entry.
  */
 const updateLog = (entry) => {
+  if (shouldSkip(entry)) {
+    return;
+  }
+
   if (! entry.classList.contains('log_summary')) {
     return;
   }
@@ -227,6 +236,10 @@ const updateLog = (entry) => {
  * @param {HTMLElement} entry The journal entry.
  */
 const updateMouseImageLinks = (entry) => {
+  if (shouldSkip(entry)) {
+    return;
+  }
+
   const mouseType = entry.getAttribute('data-mouse-type');
   if (! mouseType) {
     return;
@@ -252,6 +265,10 @@ const updateMouseImageLinks = (entry) => {
  * @param {HTMLElement} entry The journal entry.
  */
 const updateItemLinks = (entry) => {
+  if (shouldSkip(entry)) {
+    return;
+  }
+
   if (entry.classList.contains('iceberg_defeated')) {
     return;
   }
@@ -310,6 +327,10 @@ const shouldSkip = (entry) => {
 };
 
 const fixAnWording = (entry) => {
+  if (shouldSkip(entry)) {
+    return;
+  }
+
   const element = entry.querySelector('.journalbody .journaltext');
 
   const regex = / and caught an ([b-df-hj-np-tv-z])/gi;
@@ -320,27 +341,33 @@ const fixAnWording = (entry) => {
 };
 
 /**
- * Process a journal entry.
- *
- * @param {HTMLElement} entry The journal entry.
- */
-const processEntry = async (entry) => {
-  if (shouldSkip(entry)) {
-    return;
-  }
-
-  replaceInEntry(entry);
-  updateLog(entry);
-  updateMouseImageLinks(entry);
-  updateItemLinks(entry);
-  fixAnWording(entry);
-};
-
-/**
  * Initialize the module.
  */
 export default async () => {
   addStyles(styles, 'better-journal-replacements');
 
-  onJournalEntry(processEntry, 500);
+  onJournalEntry(replaceInEntry, {
+    id: 'better-journal-replacements',
+    weight: 1000,
+  });
+
+  onJournalEntry(fixAnWording, {
+    id: 'better-journal-replacements-fix-an',
+    weight: 7600,
+  });
+
+  onJournalEntry(updateItemLinks, {
+    id: 'better-journal-replacements-item-links',
+    weight: 7700,
+  });
+
+  onJournalEntry(updateMouseImageLinks, {
+    id: 'better-journal-replacements-mouse-image-links',
+    weight: 7800,
+  });
+
+  onJournalEntry(updateLog, {
+    id: 'better-journal-replacements-log',
+    weight: 7900,
+  });
 };

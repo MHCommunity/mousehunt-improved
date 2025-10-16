@@ -1,6 +1,5 @@
 import {
   addStyles,
-  doEvent,
   getData,
   makeElement,
   onJournalEntry,
@@ -27,6 +26,7 @@ const classesToCheck = {
     'dailyreward',
     'claimGolemReward',
     'folkloreForest-bookClaimed',
+    'gloomyGreenwood-incense',
   ],
   hasListNeedsClasses: [
     'schoolOfSorcery-completed',
@@ -47,6 +47,7 @@ const otherStrings = [
   'my Skyfarer\'s Oculus and discovered the following loot:',
   'my Skyfarer\'s Oculus and discovered:',
   'My golem returned from |*| with',
+  'scared up an additional:',
 ];
 
 const classesToSkip = [
@@ -64,15 +65,23 @@ const classesToSkip = [
  *
  * @return {HTMLElement} The list.
  */
-const makeListItems = (itemList) => {
+const makeListItems = async (itemList) => {
   const list = makeElement('ul', 'better-journal-list');
   if (0 === itemList.length) {
     return list;
   }
 
-  itemList.forEach((item) => {
-    makeElement('li', 'better-journal-list-item', item, list);
-  });
+  for (const item of itemList) {
+    const itemEl = makeElement('li', 'better-journal-list-item', item);
+    const itemLinkData = await convertTextToItemLink(itemEl);
+    if (itemLinkData) {
+      const { quantity, link } = itemLinkData;
+      itemEl.append(link);
+      itemEl.innerHTML = `${quantity} ${link.outerHTML}`;
+    }
+
+    list.append(itemEl);
+  }
 
   return list;
 };
@@ -87,10 +96,6 @@ let allItems = null;
  */
 const splitText = async (text) => {
   const items = text.split(/<br>|, (?=\d)| and (?=\d)/);
-
-  if (! allItems) {
-    allItems = await getData('items');
-  }
 
   const processedItems = items.map((item) => {
     const itemData = allItems.find((i) => i.name === item.trim().replace(/^\d+ /, ''));
@@ -198,7 +203,25 @@ const getItemsFromText = async (type, text) => {
 
   // If it's a loot list, the items are after "that dropped".
   if ('loot' === type) {
-    if (innerHTML.includes(' that dropped ')) {
+    if (innerHTML.includes(' dropped the following loot:</b>')) {
+      items = innerHTML.split(' dropped the following loot:</b>');
+      if (items.length >= 2) {
+        list = await splitText(items[1]);
+        newText = `${items[0]} dropped the following loot:`;
+      }
+    } else if (innerHTML.includes(' dropped the following loot')) {
+      items = innerHTML.split(' dropped the following loot:');
+      if (items.length >= 2) {
+        list = await splitText(items[1]);
+        newText = `${items[0]} dropped the following loot:`;
+      }
+    } else if (innerHTML.includes('She dropped ')) {
+      items = innerHTML.split('She dropped ');
+      if (items.length >= 2) {
+        list = await splitText(items[1]);
+        newText = `${items[0]}She dropped:`;
+      }
+    } else if (innerHTML.includes(' that dropped ')) {
       items = innerHTML.split(' that dropped ');
       if (items.length >= 2) {
         list = await splitText(items[1]);
@@ -209,12 +232,6 @@ const getItemsFromText = async (type, text) => {
           list = await splitText(items[1]);
           newText = `${items[0]} that dropped:`;
         }
-      }
-    } else if (innerHTML.includes('She dropped ')) {
-      items = innerHTML.split('She dropped ');
-      if (items.length >= 2) {
-        list = await splitText(items[1]);
-        newText = `${items[0]}She dropped:`;
       }
     }
   } else if ('convertible' === type) {
@@ -278,6 +295,39 @@ const getItemsFromText = async (type, text) => {
   };
 };
 
+const convertTextToItemLink = async (text) => {
+  const splitxText = text.textContent.split(' x ');
+  if (splitxText.length < 2) {
+    return false;
+  }
+
+  const quantity = splitxText[0];
+  const itemName = splitxText[1];
+
+  // Find the item type from the items JSON.
+  let item = allItems.find((i) => i.name === unpluralize(itemName).trim());
+  if (! item) {
+    // try removing the trailing s and try again.
+    item = allItems.find((i) => i.name === unpluralize(itemName).trim().replace(/s$/, ''));
+    if (! item) {
+      return false;
+    }
+  }
+
+  const link = makeElement('a', 'loot', itemName);
+  link.href = `https://www.mousehuntgame.com/item.php?item_type=${item.type}`;
+  link.setAttribute('onclick', `hg.views.ItemView.show('${item.type}'); return false;`);
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    hg.views.ItemView.show(item.type);
+  });
+
+  return {
+    quantity: Number.parseInt(quantity, 10).toLocaleString(),
+    link,
+  };
+};
+
 const addClassesToLiAndUl = (text) => {
   text.querySelectorAll('ul').forEach((ul) => {
     ul.classList.add('better-journal-list');
@@ -333,86 +383,9 @@ const formatAsList = async (entry) => {
   if (list.length > 0 && newText !== text.innerHTML) {
     text.innerHTML = newText;
     if ('hasListNeedsClasses' !== type) {
-      text.append(makeListItems(list));
+      const listItems = await makeListItems(list);
+      text.append(listItems);
     }
-  }
-};
-
-const formatXasList = async (entry) => {
-  // the entry will have text that looks like this: <p class="mhi-x-entry"><span class="dot"> • </span>100 x Lavish Lapis Beans<br></p> that we want to turn into a list.
-  // We can query the items JSON to match the item name to the item type and then link to the item page.
-  const processed = entry.getAttribute('data-better-journal-processed-x-list');
-  if (processed) {
-    return;
-  }
-
-  const text = entry.querySelector('.journalbody .journaltext');
-  if (! text) {
-    return;
-  }
-
-  const xList = text.querySelectorAll('.mhi-x-entry');
-  if (! xList.length) {
-    return;
-  }
-
-  const items = await getData('items');
-
-  let firstEl;
-  const list = makeElement('ul', 'better-journal-list');
-  for (const x of xList) {
-    // Remove the dot.
-    const dot = x.querySelector('.dot');
-    if (dot) {
-      dot.remove();
-    }
-
-    // Split on the ' x ' to get the quantity and item name.
-    const splitxText = x.textContent.split(' x ');
-    if (splitxText.length < 2) {
-      continue;
-    }
-
-    const quantity = splitxText[0];
-    const itemName = splitxText[1];
-
-    // Find the item type from the items JSON.
-    let item = items.find((i) => i.name === unpluralize(itemName).trim());
-    if (! item) {
-      // try removing the trailing s and try again.
-      item = items.find((i) => i.name === unpluralize(itemName).trim().replace(/s$/, ''));
-      if (! item) {
-        continue; // If we still can't find it, skip this item.
-      }
-    }
-
-    const link = makeElement('a', 'loot', itemName);
-    link.href = `https://www.mousehuntgame.com/item.php?item_type=${item.type}`;
-    link.setAttribute('onclick', `hg.views.ItemView.show('${item.type}'); return false;`);
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      hg.views.ItemView.show(item.type);
-    });
-
-    const listItem = makeElement('li', 'better-journal-list-item');
-    listItem.append(`${Number.parseInt(quantity.trim(), 10).toLocaleString()} `);
-    listItem.append(link);
-
-    list.append(listItem);
-
-    // We replace the first element with the list, otherwise we remove the element.
-    if (firstEl) {
-      x.remove();
-    } else {
-      firstEl = x;
-    }
-  }
-
-  if (firstEl) {
-    firstEl.replaceWith(list);
-    entry.setAttribute('data-better-journal-processed-x-list', 'true');
-
-    doEvent('journal-item-link-modified', entry);
   }
 };
 
@@ -422,6 +395,10 @@ const formatXasList = async (entry) => {
 export default async () => {
   addStyles(styles, 'better-journal-list');
 
-  onJournalEntry(formatAsList, 3000);
-  onJournalEntry(formatXasList, 4000);
+  allItems = await getData('items');
+
+  onJournalEntry(formatAsList, {
+    id: 'better-journal-list-format',
+    weight: 3000,
+  });
 };

@@ -151,9 +151,16 @@ let hasAddedJournalEventListener = false;
  * Add the event listener for journal entries.
  */
 const addJournalEventListener = () => {
-  document.addEventListener('journal-entry', (e) => {
+  document.addEventListener('journal-entry', async (e) => {
+    const entryId = e.detail ? e.detail.getAttribute('data-entry-id') : null;
+
     for (const { callback } of callbacks) {
-      callback(e.detail);
+      try {
+        const entry = document.querySelector(`.journalEntries .entry[data-entry-id="${entryId}"]`);
+        await callback(entry);
+      } catch (error) {
+        console.error('Error in journal callback:', error); // eslint-disable-line no-console
+      }
     }
   });
 };
@@ -161,16 +168,20 @@ const addJournalEventListener = () => {
 /**
  * Helper function to add a callback to the journal entry event with a weight.
  *
- * @param {Function} callback   The callback to run when the event is fired.
- * @param {number}   [weight=0] The weight of the callback.
+ * @param {Function}      callback  The callback to run when the event is fired.
+ * @param {Object|number} [options] The options for the callback or a number representing the weight.
  */
-const onJournalEntry = (callback, weight = 0) => {
+const onJournalEntry = (callback, options = {}) => {
+  // if a number is passed as the second argument, treat it as weight for backwards compatibility
+  const weight = typeof options === 'number' ? options : (options.weight || 0);
+  const id = options.id || (callback.name ? `journal-callback-${callback.name}` : `journal-callback-${Math.random().toString(36).slice(2, 15)}`);
+
   if (! hasAddedJournalEventListener) {
     addJournalEventListener();
     hasAddedJournalEventListener = true;
   }
 
-  callbacks.push({ callback, weight });
+  callbacks.push({ callback, id, weight });
 
   callbacks.sort((a, b) => a.weight - b.weight);
 };

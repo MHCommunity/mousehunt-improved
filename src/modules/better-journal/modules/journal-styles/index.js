@@ -72,6 +72,13 @@ const updateRankUpIcon = (entry) => {
 export default async () => {
   addStyles(styles, 'better-journal-styles');
 
-  onJournalEntry(addBadgeClass, 4000);
-  onJournalEntry(updateRankUpIcon, 4000);
+  onJournalEntry(addBadgeClass, {
+    id: 'better-journal-styles-badges',
+    weight: 5000,
+  });
+
+  onJournalEntry(updateRankUpIcon, {
+    id: 'better-journal-styles-rankup',
+    weight: 6000,
+  });
 };

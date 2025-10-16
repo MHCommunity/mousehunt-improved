@@ -39,7 +39,10 @@ const wrapGoldAndPoints = (entry) => {
 const main = async () => {
   addStyles(styles, 'better-journal-gold-and-points');
 
-  onJournalEntry(wrapGoldAndPoints, 2000);
+  onJournalEntry(wrapGoldAndPoints, {
+    id: 'better-journal-gold-and-points',
+    weight: 2000,
+  });
 };
 
 export default main;
