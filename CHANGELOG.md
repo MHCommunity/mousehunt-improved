@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 0.90.0
+
+- Better Journal: Updated Lists and Replacement features to be more consistent and reliable
+- Better Journal: Updated styles
+- Quick Send Supplies: Updated to be more robust and reliable
+- Miscellaneous bug fixes and performance improvements
+
 ## Version 0.89.1
 
 - Update Folklore Forest styles
