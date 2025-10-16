@@ -9,3 +9,7 @@
 .entry.short.relicHunter_catch br {
   display: none;
 }
+
+.unstable_charm_trigger .journaltext a:last-of-type::after {
+  content: ".";
+}
