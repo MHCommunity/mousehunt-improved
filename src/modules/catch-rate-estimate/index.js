@@ -80,14 +80,15 @@ const updateStats = () => {
 /**
  * Update the mice effectiveness and cache the results.
  *
- * @param {string} location The current location.
+ * @param {string}         location     The current location.
+ * @param {string|boolean} currentStats The current stats string or false to skip caching.
  *
  * @return {Promise<Object>} The mice effectiveness.
  */
-const updateMiceEffectiveness = async (location) => {
+const updateMiceEffectiveness = async (location, currentStats = false) => {
   effectiveness = await getMiceEffectiveness();
   cacheSet('cre-location', location, 24 * 60 * 60 * 1000); // Cache for 24 hours.
-  cacheSet('cre-stats', lastStats, 24 * 60 * 60 * 1000); // Cache for 24 hours.
+  cacheSet('cre-stats', currentStats, 24 * 60 * 60 * 1000); // Cache for 24 hours.
   cacheSet('cre-effectiveness', effectiveness, 24 * 60 * 60 * 1000); // Cache for 24 hours.
 
   return effectiveness;
