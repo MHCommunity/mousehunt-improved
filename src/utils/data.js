@@ -9,22 +9,23 @@ const validDataFiles = new Set([
   'environments',
   'item-thumbnails',
   'items-tradable',
+  'items',
+  'library-assignments',
   'm400-locations',
   'marketplace-hidden-items',
+  'mhct-convertibles',
   'mice-groups',
   'mice-regions',
   'mice-thumbnails',
+  'mice',
   'minlucks',
   'relic-hunter-hints',
   'scoreboards',
   'scrolls-to-maps',
+  'titles',
   'ultimate-checkmark',
   'upscaled-images',
   'wisdom',
-  'items',
-  'titles',
-  'mhct-convertibles',
-  'mice',
 ]);
 
 /**
@@ -127,7 +128,8 @@ const fetchData = async (key, retries = 0) => {
  */
 const getData = async (key, force = false) => {
   if (! isValidDataFile(key)) {
-    return false;
+    console.error(`Invalid data file requested: ${key}`); // eslint-disable-line no-console
+    return {};
   }
 
   if (! force) {
