@@ -18,6 +18,8 @@ import styles from './styles.css';
 
 const activeHoverDebounces = new WeakMap();
 
+let quickSendSuppliesPopup;
+
 /**
  * Make the markup for an item.
  *
@@ -76,183 +78,197 @@ const makeSendSuppliesButton = async (btn, snuid) => {
 
   btn.setAttribute('data-quick-send', 'true');
 
-  const existing = document.querySelectorAll('.quickSendWrapper');
-  let found = false;
-  if (existing && existing.length) {
-    existing.forEach((el) => {
-      if (el.getAttribute('data-snuid') === snuid) {
-        found = true;
-        el.classList.remove('hidden');
-      } else {
-        el.remove();
+  if (quickSendSuppliesPopup && quickSendSuppliesPopup.getAttribute('data-snuid') === snuid) {
+    return quickSendSuppliesPopup;
+  }
+
+  if (quickSendSuppliesPopup) {
+    quickSendSuppliesPopup.setAttribute('data-snuid', snuid);
+    quickSendSuppliesPopup.setAttribute('data-selected', '');
+    quickSendSuppliesPopup.classList.add('hidden');
+  } else {
+    const quickSendLinkWrapper = makeElement('form', ['quickSendWrapper', 'hidden']);
+    quickSendLinkWrapper.setAttribute('data-snuid', snuid);
+
+    const itemsWrapper = makeElement('div', 'itemsWrapper');
+
+    const itemOptions = [
+      getSetting('quick-send-supplies.items-0', 'super_brie_cheese'),
+      getSetting('quick-send-supplies.items-1', 'rare_map_dust_stat_item'),
+      getSetting('quick-send-supplies.items-2', 'floating_trap_upgrade_stat_item'),
+      getSetting('quick-send-supplies.items-3', 'rift_torn_roots_crafting_item'),
+    ];
+
+    const allTradableItems = await getTradableItems('all');
+    for (const item of itemOptions) {
+      const tradableItem = allTradableItems.find((i) => i.type === item);
+      if (tradableItem) {
+        makeItem(tradableItem.name, tradableItem.type, tradableItem.image, itemsWrapper, quickSendLinkWrapper);
+      }
+    }
+
+    quickSendLinkWrapper.append(itemsWrapper);
+
+    const quickSendGoWrapper = makeElement('div', 'quickSendGoWrapper');
+
+    const quickSendInput = makeElement('input', 'quickSendInput');
+    quickSendInput.setAttribute('type', 'number');
+    quickSendInput.setAttribute('placeholder', 'Quantity');
+    quickSendInput.setAttribute('min', 0);
+
+    const quickSendButton = makeMhButton({
+      text: 'Send',
+      className: ['quickSendButton'],
+    });
+
+    const sendIt = async () => {
+      const wrapper = document.querySelector('.quickSendWrapper');
+      if (! wrapper) {
+        return;
+      }
+
+      if (quickSendButton.classList.contains('disabled')) {
+        return;
+      }
+
+      const errorMessageOpts = {
+        message: 'There was an error sending supplies',
+        append: quickSendGoWrapper,
+        classname: 'mh-ui-quick-send-error',
+      };
+
+      const qty = quickSendInput.value;
+      if (! qty) {
+        errorMessageOpts.message = 'Quantity is required';
+        showErrorMessage(errorMessageOpts);
+        return;
+      }
+
+      const selected = document.querySelector('.quickSendItem.selected');
+      if (! selected) {
+        errorMessageOpts.message = 'Item is required';
+        showErrorMessage(errorMessageOpts);
+        return;
+      }
+
+      const item = selected.querySelector('.quickSendItemRadio');
+      if (! item) {
+        errorMessageOpts.message = 'Item is required';
+        showErrorMessage(errorMessageOpts);
+        return;
+      }
+
+      quickSendButton.classList.add('disabled');
+
+      const itemType = item.getAttribute('value');
+      const itemName = item.getAttribute('data-name');
+      const snuidToSend = wrapper.getAttribute('data-snuid');
+
+      if (! itemType || ! itemName || ! snuidToSend) {
+        showErrorMessage(errorMessageOpts);
+        quickSendButton.classList.remove('disabled');
+        return;
+      }
+
+      const url = `https://www.mousehuntgame.com/managers/ajax/users/supplytransfer.php?sn=Hitgrab&hg_is_ajax=1&receiver=${snuidToSend}&uh=${user.unique_hash}&item=${itemType}&item_quantity=${qty}`;
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            quickSendInput.value = '';
+            quickSendButton.classList.remove('disabled');
+            showSuccessMessage({
+              message: `Sent ${qty} ${itemName}!`,
+              append: quickSendGoWrapper,
+              classname: 'mh-ui-quick-send-success',
+            });
+          } else {
+            throw new Error('Response not successful');
+          }
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (error) {
+        console.error('Fetch error:', error); // eslint-disable-line no-console
+        quickSendButton.classList.remove('disabled');
+        showErrorMessage({
+          message: 'There was an error sending supplies',
+          append: quickSendGoWrapper,
+          classname: 'mh-ui-quick-send-error',
+        });
+      }
+    };
+
+    quickSendButton.addEventListener('click', sendIt);
+
+    quickSendInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        if (
+          quickSendButton.classList.contains('disabled') ||
+          quickSendLinkWrapper.classList.contains('hidden')
+        ) {
+          return;
+        }
+        sendIt();
+      }
+    });
+
+    quickSendGoWrapper.append(quickSendInput);
+    quickSendGoWrapper.append(quickSendButton);
+    quickSendLinkWrapper.append(quickSendGoWrapper);
+
+    const close = makeElement('div', ['quickSendClose'], '✕');
+    close.addEventListener('click', () => {
+      quickSendLinkWrapper.remove();
+    });
+    quickSendLinkWrapper.append(close);
+
+    document.body.append(quickSendLinkWrapper);
+
+    quickSendSuppliesPopup = quickSendLinkWrapper;
+
+    quickSendLinkWrapper.addEventListener('mouseleave', () => {
+      if (! quickSendLinkWrapper.classList.contains('sticky')) {
+        setTimeout(() => quickSendLinkWrapper.classList.add('hidden'), 350);
+      }
+    });
+
+    let buttonTimeout;
+    btn.addEventListener('mouseleave', () => {
+      if (! quickSendLinkWrapper.classList.contains('sticky')) {
+        buttonTimeout = setTimeout(() => quickSendLinkWrapper.classList.add('hidden'), 350);
+      }
+    });
+
+    quickSendLinkWrapper.addEventListener('mouseenter', () => {
+      clearTimeout(buttonTimeout);
+    });
+
+    document.addEventListener('click', (event) => {
+      if (! quickSendLinkWrapper.contains(event.target) && ! btn.contains(event.target)) {
+        quickSendLinkWrapper.classList.remove('sticky');
+        setTimeout(() => quickSendLinkWrapper.classList.add('hidden'), 350);
       }
     });
   }
 
-  if (found) {
-    return;
-  }
-
-  const quickSendLinkWrapper = makeElement('form', ['quickSendWrapper', 'hidden']);
-  quickSendLinkWrapper.setAttribute('data-snuid', snuid);
-
-  const itemsWrapper = makeElement('div', 'itemsWrapper');
-
-  const itemOptions = [
-    getSetting('quick-send-supplies.items-0', 'super_brie_cheese'),
-    getSetting('quick-send-supplies.items-1', 'rare_map_dust_stat_item'),
-    getSetting('quick-send-supplies.items-2', 'floating_trap_upgrade_stat_item'),
-    getSetting('quick-send-supplies.items-3', 'rift_torn_roots_crafting_item'),
-  ];
-
-  const allTradableItems = await getTradableItems('all');
-  for (const item of itemOptions) {
-    const tradableItem = allTradableItems.find((i) => i.type === item);
-    if (tradableItem) {
-      makeItem(tradableItem.name, tradableItem.type, tradableItem.image, itemsWrapper, quickSendLinkWrapper);
-    }
-  }
-
-  quickSendLinkWrapper.append(itemsWrapper);
-
-  const quickSendGoWrapper = makeElement('div', 'quickSendGoWrapper');
-
-  const quickSendInput = makeElement('input', 'quickSendInput');
-  quickSendInput.setAttribute('type', 'number');
-  quickSendInput.setAttribute('placeholder', 'Quantity');
-  quickSendInput.setAttribute('min', 0);
-
-  const quickSendButton = makeMhButton({
-    text: 'Send',
-    className: ['quickSendButton'],
-  });
-
-  const sendIt = async () => {
-    if (quickSendButton.classList.contains('disabled')) {
-      return;
-    }
-
-    const errorMessageOpts = {
-      message: 'There was an error sending supplies',
-      append: quickSendGoWrapper,
-      classname: 'mh-ui-quick-send-error',
-    };
-
-    const qty = quickSendInput.value;
-    if (! qty) {
-      errorMessageOpts.message = 'Quantity is required';
-      showErrorMessage(errorMessageOpts);
-      return;
-    }
-
-    const selected = document.querySelector('.quickSendItem.selected');
-    if (! selected) {
-      errorMessageOpts.message = 'Item is required';
-      showErrorMessage(errorMessageOpts);
-      return;
-    }
-
-    const item = selected.querySelector('.quickSendItemRadio');
-    if (! item) {
-      errorMessageOpts.message = 'Item is required';
-      showErrorMessage(errorMessageOpts);
-      return;
-    }
-
-    quickSendButton.classList.add('disabled');
-
-    const itemType = item.getAttribute('value');
-    const itemName = item.getAttribute('data-name');
-    const url = `https://www.mousehuntgame.com/managers/ajax/users/supplytransfer.php?sn=Hitgrab&hg_is_ajax=1&receiver=${snuid}&uh=${user.unique_hash}&item=${itemType}&item_quantity=${qty}`;
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'X-Requested-By': `MouseHunt-Improved/${mhImprovedVersion}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        if (data.success) {
-          quickSendInput.value = '';
-          quickSendButton.classList.remove('disabled');
-          showSuccessMessage({
-            message: `Sent ${qty} ${itemName}!`,
-            append: quickSendGoWrapper,
-            classname: 'mh-ui-quick-send-success',
-          });
-        } else {
-          throw new Error('Response not successful');
-        }
-      } else {
-        throw new Error('Network response was not ok');
-      }
-    } catch (error) {
-      console.error('Fetch error:', error); // eslint-disable-line no-console
-      quickSendButton.classList.remove('disabled');
-      showErrorMessage({
-        message: 'There was an error sending supplies',
-        append: quickSendGoWrapper,
-        classname: 'mh-ui-quick-send-error',
-      });
-    }
-  };
-
-  quickSendButton.addEventListener('click', sendIt);
-
-  quickSendInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      sendIt();
-    }
-  });
-
-  quickSendGoWrapper.append(quickSendInput);
-  quickSendGoWrapper.append(quickSendButton);
-  quickSendLinkWrapper.append(quickSendGoWrapper);
-
-  const close = makeElement('div', ['quickSendClose'], '✕');
-  close.addEventListener('click', () => {
-    quickSendLinkWrapper.remove();
-  });
-  quickSendLinkWrapper.append(close);
-
-  document.body.append(quickSendLinkWrapper);
-
-  setTimeout(() => quickSendLinkWrapper.classList.remove('hidden'), 100);
+  setTimeout(() => quickSendSuppliesPopup.classList.remove('hidden'), 100);
 
   const rect = btn.getBoundingClientRect();
 
-  quickSendLinkWrapper.style.top = `${rect.top + window.scrollY + rect.height - 20}px`;
-  quickSendLinkWrapper.style.left = `${rect.left + window.scrollX + (rect.width / 2) - (quickSendLinkWrapper.offsetWidth / 2)}px`;
+  quickSendSuppliesPopup.style.top = `${rect.top + window.scrollY + rect.height - 10}px`;
+  quickSendSuppliesPopup.style.left = `${rect.left + window.scrollX - (rect.width / 2)}px`;
 
-  quickSendLinkWrapper.addEventListener('mouseleave', () => {
-    if (! quickSendLinkWrapper.classList.contains('sticky')) {
-      setTimeout(quickSendLinkWrapper.remove, 350);
-    }
-  });
-
-  let buttonTimeout;
-  btn.addEventListener('mouseleave', () => {
-    if (! quickSendLinkWrapper.classList.contains('sticky')) {
-      buttonTimeout = setTimeout(() => quickSendLinkWrapper.remove(), 350);
-    }
-  });
-
-  quickSendLinkWrapper.addEventListener('mouseenter', () => {
-    clearTimeout(buttonTimeout);
-  });
-
-  document.addEventListener('click', (event) => {
-    if (! quickSendLinkWrapper.contains(event.target) && ! btn.contains(event.target)) {
-      quickSendLinkWrapper.classList.remove('sticky');
-      setTimeout(() => quickSendLinkWrapper.remove(), 350);
-    }
-  });
-
-  return quickSendLinkWrapper;
+  return quickSendSuppliesPopup;
 };
 
 /**
@@ -319,6 +335,13 @@ const addToMapUsers = async (attempts = 0) => {
 
     const snuid = btn.getAttribute('data-snuid');
     if (! snuid) {
+      return;
+    }
+
+    if (snuid === user.sn_user_id) {
+      if (quickSendSuppliesPopup) {
+        quickSendSuppliesPopup.classList.add('hidden');
+      }
       return;
     }
 
