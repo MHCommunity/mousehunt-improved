@@ -73,7 +73,7 @@ const getFavoriteSetups = async (makeRequest = true) => {
           weapon_id: favorite?.weapon_id,
           trinket_id: favorite?.trinket_id,
           power_type: null, // TODO: add this.
-          is_mobile: true, // TODO: add a check for this when editing.
+          is_mobile: true,
         };
 
         // Remove any existing mobile setups.
