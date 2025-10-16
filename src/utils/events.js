@@ -580,9 +580,11 @@ const onDeactivation = (module, callback) => {
  * @param {number}   delay    The delay to wait before running the callback.
  */
 const onTurn = (callback, delay = null) => {
-  onRequest('turns/activeturn.php', () => {
+  onRequest('turns/activeturn.php', (response, request) => {
     delay = delay || Math.floor(Math.random() * 1000) + 1000;
-    setTimeout(callback, delay);
+    setTimeout(() => {
+      callback(response, request);
+    }, delay);
   }, true);
 };
 

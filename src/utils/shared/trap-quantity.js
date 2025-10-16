@@ -153,7 +153,7 @@ const onChangeTrap = async () => {
 };
 
 let allItems = [];
-const maybeClearCache = async () => {
+const maybeClearCache = async (response) => {
   sleep(250);
 
   const currentBase = Number.parseInt(user.base_item_id, 10);
@@ -170,7 +170,10 @@ const maybeClearCache = async () => {
     return;
   }
 
-  const details = await getUserItems(allItems, true);
+  const hasItemsInResponse = allItems.every((itemId) => Object.prototype.hasOwnProperty.call(response?.inventory ?? {}, itemId));
+  const details = hasItemsInResponse
+    ? response.inventory
+    : await getUserItems(allItems, true);
   for (const itemId in details) {
     const qty = Number.parseInt(details[itemId]?.quantity) || 0;
 
@@ -195,8 +198,8 @@ const addEvents = () => {
     await addQtyToTrapBrowser(tab);
   });
 
-  onTurn(async () => {
-    await maybeClearCache();
+  onTurn(async (response) => {
+    await maybeClearCache(response);
     setTimeout(addQuantityToDisplay, 250);
   }, 250);
 };
