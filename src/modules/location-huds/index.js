@@ -209,7 +209,9 @@ const main = () => {
 
   if (locationHandlers[location]) {
     locationHandlers[location]();
-    debuglog('module-loading', `Loaded Location HUD: "${location}"`);
+    if (getSetting('debug.module-loading', false)) {
+      debuglog('module-loading', `Loaded Location HUD: "${location}"`);
+    }
   }
 };
 

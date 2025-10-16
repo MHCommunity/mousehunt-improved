@@ -112,7 +112,9 @@ const loadModules = async () => {
     allLoadedModules.push(...loadedModules);
 
     // Log the loaded modules for the category.
-    debuglog('module-loading', `Loaded ${category.modules.length} ${category.id} modules`, loadedModules);
+    if (getSetting('debug.module-loading', false)) {
+      debuglog('module-loading', `Loaded ${category.modules.length} ${category.id} modules`, loadedModules);
+    }
   }
 
   // Wait for all modules to load.
