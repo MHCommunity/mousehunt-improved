@@ -30,3 +30,21 @@ a.mh-ui-invite-refresh-button.loading::after {
     animation: none;
   }
 }
+
+.treasureMapInvitesView-inviteList .treasureMapInventoryView-scrollCase-content {
+  line-height: inherit;
+}
+
+.treasureMapInvitesView-inviteList .treasureMapInvitesView-mapHunters {
+  margin: 0;
+  overflow: visible;
+}
+
+.treasureMapInvitesView-inviteList .treasureMapView-hunter-wrapper.mousehuntTooltipParent {
+  height: 65px;
+  margin-top: 0;
+}
+
+.treasureMapPopup-mapInvite .treasureMapView-hunter {
+  height: 42px;
+}
