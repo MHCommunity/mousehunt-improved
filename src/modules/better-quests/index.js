@@ -2,6 +2,7 @@ import {
   addStyles,
   getCurrentSubtab,
   getCurrentTab,
+  getData,
   getSetting,
   getUserItems,
   isUserTitleAtLeast,
@@ -15,8 +16,6 @@ import settings from './settings';
 
 import m400 from './modules/m400';
 import styles from './styles.css';
-
-import assignmentDetails from './library-assignments.json';
 
 const questAssignments = new Set([
   'charming_study_hween2014_assignment_quest_item',
@@ -214,6 +213,8 @@ const updateAssignmentList = async () => {
   if (! assignmentList) {
     return;
   }
+
+  const assignmentDetails = await getData('library-assignments');
 
   assignmentList.forEach((questLink) => {
     let type = questLink.getAttribute('data-quest-type');
