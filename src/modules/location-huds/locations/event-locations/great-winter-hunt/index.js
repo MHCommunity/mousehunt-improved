@@ -1,4 +1,5 @@
 import {
+  addExternalStyles,
   addHudStyles,
   addStyles,
   getCurrentLocation,
@@ -12,7 +13,6 @@ import {
 } from '@utils';
 
 import styles from './styles.css';
-import stylesGlobal from './global.css';
 
 /**
  * Update the footer with the possible golems that can be made.
@@ -384,7 +384,8 @@ const giftingPopup = () => {
  * Always active.
  */
 const greatWinterHuntGlobal = () => {
-  addStyles([stylesGlobal, maybeHideAdventCalendarInMenu()], 'location-hud-events-great-winter-hunt');
+  addExternalStyles('great-winter-hunt-global.css');
+  addStyles(maybeHideAdventCalendarInMenu(), 'location-hud-events-great-winter-hunt');
   onDialogShow('adventCalendarPopup', adventCalendarPopup);
   onDialogShow('winter_hunt_profile_tree_possible_gifts', giftingPopup);
 };

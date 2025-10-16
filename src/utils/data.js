@@ -3,6 +3,7 @@ import { debuglog } from './debug';
 import { getSetting } from './settings';
 
 const validDataFiles = new Set([
+  'brift-mice-per-mist-level',
   'community-map-data',
   'effs',
   'environments-events',
@@ -23,6 +24,7 @@ const validDataFiles = new Set([
   'scoreboards',
   'scrolls-to-maps',
   'titles',
+  'trap-special-effects',
   'ultimate-checkmark',
   'upscaled-images',
   'wisdom',

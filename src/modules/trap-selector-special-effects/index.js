@@ -1,9 +1,13 @@
 import { addStyles, getCurrentLocation, onEvent, onTravel } from '@utils';
 
-import specialEffects from '@data/trap-special-effects.json';
+let specialEffects;
 
 const addSpecialEffectsStyles = async () => {
   const styles = [];
+
+  if (! specialEffects) {
+    specialEffects = await getData('trap-special-effects');
+  }
 
   specialEffects.all.forEach((item) => {
     styles.push(`.campPage-trap-itemBrowser-item.${item}`);

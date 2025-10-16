@@ -1,8 +1,8 @@
-import { addHudStyles, makeElement, onRequest, onTurn } from '@utils';
+import { addHudStyles, getData, makeElement, onRequest, onTurn } from '@utils';
 
 import styles from './styles.css';
 
-import areaMice from './brift-mice-per-mist-level.json';
+let areaMice;
 
 /**
  * Create a list of mice.
@@ -140,6 +140,11 @@ const hud = () => {
  */
 export default async () => {
   addHudStyles(styles);
+
+  if (! areaMice) {
+    areaMice = await getData('brift-mice-per-mist-level');
+  }
+
   hud();
   onRequest('*', hud);
   onTurn(hud, 300);
