@@ -6,10 +6,10 @@
       "dependencies": {
         "@babel/runtime": "^7.28.4",
         "@sentry/browser": "^9.46.0",
-        "caniuse-lite": "^1.0.30001743",
+        "caniuse-lite": "^1.0.30001745",
       },
       "devDependencies": {
-        "@sentry/cli": "^2.54.0",
+        "@sentry/cli": "^2.55.0",
         "@sprout2000/esbuild-copy-plugin": "^1.1.19",
         "@wordpress/eslint-plugin": "^22.17.0",
         "archiver": "^7.0.1",
@@ -32,7 +32,7 @@
         "eslint-plugin-unicorn": "^51.0.1",
         "fast-glob": "^3.3.3",
         "json-minify": "^1.0.0",
-        "jsonc-eslint-parser": "^2.4.0",
+        "jsonc-eslint-parser": "^2.4.1",
         "node-fetch": "^3.3.2",
         "ora": "^8.2.0",
         "prettier": "^3.6.2",

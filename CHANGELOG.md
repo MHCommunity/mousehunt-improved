@@ -1,8 +1,17 @@
 # Changelog
 
+## Version 0.91.0
+
+- Added search box to settings page
+- Updated Halloween Location HUD styles
+- Updated Halloween Better Journal replacements and styles
+- Fixed Custom Shield not using event shield when set to Default
+- Fixed Custom Background not using event background when set to Default
+- Miscellaneous bug fixes and performance improvements
+
 ## Version 0.90.0
 
-- Better Journal: Updated Lists and Replacement features to be more consistent and reliable
+- Better Journal: Updated list and replacement features to be more consistent and reliable
 - Better Journal: Updated styles
 - Quick Send Supplies: Updated to be more robust and reliable
 - Miscellaneous bug fixes and performance improvements
