@@ -186,6 +186,8 @@ const initMapper = (map) => {
       childList: true,
       subtree: true,
     });
+
+    return;
   }
 
   // Add the sorted tab.
