@@ -306,7 +306,7 @@ const getExtensionLink = () => {
     return 'https://greasyfork.org/en/scripts/465139-mousehunt-improved';
   }
 
-  return github;
+  return 'https://github.com/MHCommunity/mousehunt-improved';
 };
 
 /**

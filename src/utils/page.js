@@ -1,3 +1,5 @@
+import { doEvent } from '@utils/event-registry';
+
 /**
  * Get the current page slug.
  *

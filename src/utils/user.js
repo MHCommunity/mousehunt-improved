@@ -134,9 +134,7 @@ const getUserSetupDetails = () => {
       // Because attraction_bonus is silly.
       tempType = tempType.replace('_bonusBonus', 'Bonus');
 
-      value = value.replace('%', '');
-      value = value.replace(',', '');
-      value = Number.parseInt(value * 100) / 100;
+      value = Number.parseInt(value.replace('%', '').replaceAll(',', ''), 10);
 
       if (tempType === 'attractionBonus') {
         value = value / 100;
@@ -152,21 +150,24 @@ const getUserSetupDetails = () => {
       } else if (setup.bait.name === name) {
         setup.bait[tempType] = value;
       } else if ('Your trap has no cheese effect bonus.' === name) {
-        setup.cheeseEffect = 'No Effect';
+        setup.stats.cheeseEffect = 'No Effect';
       } else {
         let auraType = name.replace(' Aura', '');
         if (! auraType) {
           return;
         }
 
-        auraType = auraType.toLowerCase();
-        auraType = auraType.replaceAll(' ', '_');
-        // remove any non alphanumeric characters
-        auraType = auraType.replaceAll(/\W/gi, '');
-        auraType = auraType.replace('golden_luck_boost', 'lgs');
-        auraType = auraType.replace('2023_lucky_codex', 'luckycodex');
-        auraType = auraType.replace('_set_bonus_2_pieces', '');
-        auraType = auraType.replace('_set_bonus_3_pieces', '');
+        auraType = auraType
+          .toLowerCase()
+          .replaceAll(' ', '_')
+          .replaceAll(/\W/gi, '') // remove any non alphanumeric characters.
+          .replace('golden_luck_boost', 'lgs')
+          .replace('2023_lucky_codex', 'luckycodex')
+          .replace('2024_lucky_codex', 'luckycodex')
+          .replace('2025_lucky_codex', 'luckycodex')
+          .replace('2026_lucky_codex', 'luckycodex')
+          .replace('_set_bonus_2_pieces', '')
+          .replace('_set_bonus_3_pieces', '');
 
         if (setup.aura[auraType]) {
           setup.aura[auraType].active = true;

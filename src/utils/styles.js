@@ -62,9 +62,9 @@ const addStylesDirect = (styles, identifier = 'mh-utils-custom-styles', once = f
  *
  * @return {Element} The style element.
  */
-const addStyles = (styles, module = false, identifier = 'mh-improved-styles') => {
+const addStyles = (styles, module = '', identifier = 'mh-improved-styles') => {
   if (! module) {
-    throw new Error('Module ID is required for adding module styles.', module);
+    throw new Error('Module ID is required for adding module styles.');
   }
 
   const key = `${identifier}-${module}`;
@@ -119,7 +119,7 @@ const addModuleStyles = (styles, identifier = 'mh-improved-styles', replace = fa
  */
 const removeStyles = (module = false, identifier = 'mh-improved-styles') => {
   if (! module) {
-    throw new Error('Module ID is required for adding module styles.', module);
+    throw new Error('Module ID is required for adding module styles.');
   }
 
   const key = `${identifier}-${module}`;
