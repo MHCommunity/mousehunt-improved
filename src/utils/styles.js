@@ -1,5 +1,5 @@
-import { getSetting } from '@utils/settings';
-import { onEvent } from '@utils/event-registry';
+import { getSetting } from './settings';
+import { onEvent } from './event-registry';
 
 /**
  * Add styles to the page.

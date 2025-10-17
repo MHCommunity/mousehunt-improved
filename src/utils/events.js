@@ -1,7 +1,7 @@
-import { getCurrentPage, getCurrentSubtab, getCurrentTab, isCurrentPage } from '@utils/page';
-import { getCurrentLocation } from '@utils/location-current';
-import { onEvent } from '@utils/event-registry';
-import { showHornMessage } from '@utils/horn';
+import { getCurrentPage, getCurrentSubtab, getCurrentTab, isCurrentPage } from './page';
+import { getCurrentLocation } from './location-current';
+import { onEvent } from './event-registry';
+import { showHornMessage } from './horn';
 
 const requestCallbacks = {};
 let onRequestHolder = false;

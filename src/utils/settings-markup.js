@@ -1,11 +1,11 @@
-import { createPopup, makeElement, makeMhButton } from '@utils/elements';
-import { doEvent, onEvent } from '@utils/event-registry';
-import { getCurrentPage, getCurrentTab } from '@utils/page';
-import { getSetting, getSettingDirect, saveSettingDirect } from '@utils/settings';
-import { getFlag } from '@utils/flags';
-import { onNavigation } from '@utils/events';
-import { setMultipleTimeout } from '@utils/utils';
-import { showSuccessMessage } from '@utils/messages';
+import { createPopup, makeElement, makeMhButton } from './elements';
+import { doEvent, onEvent } from './event-registry';
+import { getCurrentPage, getCurrentTab } from './page';
+import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
+import { getFlag } from './flags';
+import { onNavigation } from './events';
+import { setMultipleTimeout } from './utils';
+import { showSuccessMessage } from './messages';
 
 /**
  * Save a setting and toggle the class in the settings UI.

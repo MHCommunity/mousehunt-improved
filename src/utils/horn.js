@@ -1,4 +1,4 @@
-import { makeElement } from '@utils/elements';
+import { makeElement } from './elements';
 
 /**
  * Show a message in the horn dialog.

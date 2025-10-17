@@ -1,9 +1,9 @@
-import { debug } from '@utils/debug';
-import { makeElement } from '@utils/elements';
+import { debug } from './debug';
+import { makeElement } from './elements';
 
-import errorPageStyles from '@utils/styles/page-error.css';
-import errorStyles from '@utils/styles/errors.css';
-import maintenanceStyles from '@utils/styles/page-maintenance.css';
+import errorPageStyles from './styles/page-error.css';
+import errorStyles from './styles/errors.css';
+import maintenanceStyles from './styles/page-maintenance.css';
 
 /**
  * Show an error message appended to the given element.

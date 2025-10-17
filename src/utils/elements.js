@@ -1,5 +1,5 @@
-import { getSetting, saveSetting } from '@utils/settings';
-import { getUserSetupDetails } from '@utils/user';
+import { getSetting, saveSetting } from './settings';
+import { getUserSetupDetails } from './user';
 
 /**
  * Creates an element with the given tag, class name, text, and appends it to the given element.

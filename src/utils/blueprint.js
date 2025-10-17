@@ -1,5 +1,5 @@
-import { makeElement } from '@utils/elements';
-import { onEvent } from '@utils/event-registry';
+import { makeElement } from './elements';
+import { onEvent } from './event-registry';
 
 let activeBlueprint = null;
 let addedEvent = false;

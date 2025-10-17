@@ -1,4 +1,4 @@
-import { getCurrentPage } from '@utils/page';
+import { getCurrentPage } from './page';
 
 /**
  * Check if an item is in the inventory.

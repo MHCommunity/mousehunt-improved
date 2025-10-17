@@ -5,12 +5,12 @@ import {
   cacheSetNoExpiration,
   getData,
   getHeaders
-} from '@utils/data';
-import { doEvent } from '@utils/event-registry';
-import { getCurrentLocation } from '@utils/location-current';
-import { getGlobal } from '@utils/global';
-import { getSetting } from '@utils/settings';
-import { makeElement } from '@utils/elements';
+} from './data';
+import { doEvent } from './event-registry';
+import { getCurrentLocation } from './location-current';
+import { getGlobal } from './global';
+import { getSetting } from './settings';
+import { makeElement } from './elements';
 
 /**
  * Helper function to get the mapper object from the global object.

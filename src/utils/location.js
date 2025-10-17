@@ -1,5 +1,5 @@
-import { getHeaders, sessionGet, sessionSet } from '@utils/data';
-import { makeElement } from '@utils/elements';
+import { getHeaders, sessionGet, sessionSet } from './data';
+import { makeElement } from './elements';
 
 /**
  * Ping https://rh-api.mouse.rip/ to get the current location of the Relic Hunter.

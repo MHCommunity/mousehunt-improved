@@ -1,4 +1,4 @@
-import { getSetting } from '@utils/settings';
+import { getSetting } from './settings';
 
 let flags = null;
 const settings = {};

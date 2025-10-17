@@ -1,6 +1,6 @@
-import { dbDelete, dbDeleteAll, dbGet, dbSet } from '@utils/db';
-import { debuglog } from '@utils/debug';
-import { getSetting } from '@utils/settings';
+import { dbDelete, dbDeleteAll, dbGet, dbSet } from './db';
+import { debuglog } from './debug';
+import { getSetting } from './settings';
 
 const validDataFiles = new Set([
   'brift-mice-per-mist-level',

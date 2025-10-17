@@ -1,4 +1,4 @@
-import { dataGet, dataSet } from '@utils/data';
+import { dataGet, dataSet } from './data';
 
 /**
  * Make an element draggable. Saves the position to local storage.
