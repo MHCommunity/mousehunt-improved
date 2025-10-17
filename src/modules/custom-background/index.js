@@ -142,6 +142,11 @@ const persistBackground = () => {
 const init = () => {
   addStyles(styles, 'custom-background');
 
+  const backgroundSetting = getSetting('custom-background-0', 'default');
+  if ('default' === backgroundSetting) {
+    return;
+  }
+
   settings().then((theSettings) => {
     possibleClasses = theSettings[0].settings.options.reduce((acc, option) => {
       if ('group' === option.value) {

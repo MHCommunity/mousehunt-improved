@@ -204,6 +204,10 @@ const init = () => {
 
   lastShield = getSetting('custom-shield-0', 'default');
 
+  if ('default' === lastShield) {
+    return;
+  }
+
   changeShield();
 
   onNavigation(() => {
