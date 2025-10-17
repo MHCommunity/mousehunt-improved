@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.91.1
+
+- Fixed Highlight Special Effects in Trap Selector not applying
+- Updated Better Journal styles
+
 ## Version 0.91.0
 
 - Added search box to settings page

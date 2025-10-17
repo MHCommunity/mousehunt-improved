@@ -5,10 +5,12 @@
       "title": "",
       "items": [
         "Added search box to settings page",
+        "Updated Better Journal styles",
         "Updated Halloween Location HUD styles",
         "Updated Halloween Better Journal replacements and styles",
         "Fixed Custom Shield not using event shield when set to Default",
         "Fixed Custom Background not using event background when set to Default",
+        "Fixed Highlight Special Effects in Trap Selector not applying",
         "Miscellaneous bug fixes and performance improvements"
       ]
     }
