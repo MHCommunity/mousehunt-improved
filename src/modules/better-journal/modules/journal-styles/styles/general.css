@@ -82,11 +82,6 @@
   overflow: hidden;
 }
 
-.journal .content .entry a:hover img,
-.journal .content .entry a:focus img {
-  filter: brightness(1.1);
-}
-
 /* Text */
 .journal .content .entry .journalbody .journaltext {
   margin-right: 5px;
@@ -151,8 +146,10 @@ a.journal-detailLink.full::after {
   border-left: none;
 }
 
+.journal .content .entry a:focus img,
 .journal .content .entry a:hover img {
-  padding: 1px;
+  margin: 1px;
+  filter: brightness(1.1);
   border: none;
   outline: 1px solid #90d3e4;
 }
