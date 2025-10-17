@@ -334,6 +334,32 @@ const shouldSkip = (entry) => {
   return (classList.some((c) => keepOriginalClasses.has(c)));
 };
 
+const updateKingsReward = (entry) => {
+  if (shouldSkip(entry)) {
+    return;
+  }
+
+  if (! entry.classList.contains('captchasolved')) {
+    return;
+  }
+
+  const element = entry.querySelector('.journalbody .journaltext');
+  if (! element) {
+    return;
+  }
+
+  const regex = /i claimed a king's reward worth (\d+(,\d{3})*) gold\./i;
+  const match = element.textContent.match(regex);
+  if (! match || match.length < 2) {
+    return;
+  }
+
+  const goldAmount = match[1].replaceAll(',', '');
+  const formattedGoldAmount = Number.parseInt(goldAmount, 10).toLocaleString();
+  const newText = `I claimed a King's Reward worth <span class="mh-ui-gold">${formattedGoldAmount}</span> gold.`;
+  element.innerHTML = element.innerHTML.replace(regex, newText);
+};
+
 const fixAnWording = (entry) => {
   if (shouldSkip(entry)) {
     return;
@@ -357,6 +383,11 @@ export default async () => {
   onJournalEntry(replaceInEntry, {
     id: 'better-journal-replacements',
     weight: 1000,
+  });
+
+  onJournalEntry(updateKingsReward, {
+    id: 'better-journal-replacements-kings-reward',
+    weight: 7500,
   });
 
   onJournalEntry(fixAnWording, {
