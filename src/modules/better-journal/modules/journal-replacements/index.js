@@ -151,6 +151,12 @@ const replacements = [
   ['My Insidious Incense scared up an additional ', 'My Insidious Incense scared up an additional: '],
   ['I added a batch of ', 'I added '],
   ['into my brew queue for Cauldron', 'to the queue for Cauldron'],
+  ['I finished brewing ', 'I brewed '],
+  ['I also finished brewing ', 'I brewed '],
+  [
+    'My Boiling Cauldron Trap summoned additional arcane energy from my Alchemist\'s Cookbook Base and brewed',
+    'My Boiling Cauldron Trap with my Alchemist\'s Cookbook Base brewed ',
+  ],
 
   // GWH.
   [

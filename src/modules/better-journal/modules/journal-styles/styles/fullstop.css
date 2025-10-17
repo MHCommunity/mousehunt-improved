@@ -60,7 +60,7 @@
 .entry.gloomyGreenwood-incense .journaltext::after,
 .journal .entry.relicHunter_complete .journaltext b:last-of-type::after,
 .journal .entry.wanted_poster-complete .journaltext b:last-of-type::after,
-.entry.halloween_boiling_cauldron.brew_finished a:last-of-type::after,
+.entry.halloween_boiling_cauldron.brew_finished a:first-of-type::after,
 .entry.halloween_boiling_cauldron.brew_removed a:last-of-type::after,
 .entry.folkloreForest-forewordFarm.folkloreForest-plantStarted .journaltext a::after,
 .entry.birthday_factory.enter_room b::after,
