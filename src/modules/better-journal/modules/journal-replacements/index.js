@@ -149,6 +149,8 @@ const replacements = [
 
   // halloween.
   ['My Insidious Incense scared up an additional ', 'My Insidious Incense scared up an additional: '],
+  ['I added a batch of ', 'I added '],
+  ['into my brew queue for Cauldron', 'to the queue for Cauldron'],
 
   // GWH.
   [
