@@ -1,4 +1,4 @@
-import { makeElement } from './elements';
+import { makeElement } from '@utils/elements';
 
 /**
  * Add an item to the top 'Hunters Online' menu.

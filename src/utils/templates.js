@@ -1,4 +1,4 @@
-import { debug } from './debug';
+import { debug } from '@utils/debug';
 /**
  * Find and replace strings in a template file.
  *

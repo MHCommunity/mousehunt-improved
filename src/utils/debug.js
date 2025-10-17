@@ -1,5 +1,5 @@
-import { getGlobal } from './global';
-import { getSetting } from './settings';
+import { getGlobal } from '@utils/global';
+import { getSetting } from '@utils/settings';
 
 /**
  * Helper function to determine if debug logs should be displayed.

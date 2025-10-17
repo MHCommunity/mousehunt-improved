@@ -1,6 +1,6 @@
-import { getCurrentPage, getCurrentTab } from './page';
-import { getSetting, saveSetting } from './settings';
-import { waitForElement } from './elements';
+import { getCurrentPage, getCurrentTab } from '@utils/page';
+import { getSetting, saveSetting } from '@utils/settings';
+import { waitForElement } from '@utils/elements';
 
 /**
  * Check if an onboarding step has been seen.
