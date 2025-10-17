@@ -6,10 +6,12 @@
   height: auto;
 }
 
+.entry.relicHunter_catch .journalimage img,
 .entry.catchsuccess .journalimage img,
 .entry.catchsuccessloot .journalimage img,
 .entry.catchsuccessprize .journalimage img {
-  width: 90px; /* reset to 60 if the image sizes are too big */
+  width: 95px; /* reset to 60 if the image sizes are too big */
+  background-color: #fff;
   border: 1px solid #000;
 }
 
