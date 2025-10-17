@@ -8,9 +8,11 @@ import {
   getCurrentLocation,
   getCurrentPage,
   getCurrentTab,
+  getFlag,
   getSetting,
   getSettings,
   makeElement,
+  makeMhButton,
   onEvent,
   parseEncodedValue,
   saveSetting,
@@ -430,6 +432,123 @@ const moveTabToEnd = () => {
   userscriptTab.after(mhImprovedTab);
 };
 
+const addHeaderToSettings = () => {
+  const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
+  if (! settingsPage) {
+    return;
+  }
+
+  const existingHeader = document.querySelector('.mhui-settings-header');
+  if (existingHeader) {
+    return;
+  }
+
+  const header = makeElement('div', 'mhui-settings-header');
+  const title = makeElement('div', 'mhui-settings-header-title', `MouseHunt Improved <a title="View release notes" href="https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}" target="_blank" rel="noopener noreferrer">v${mhImprovedVersion}</a>`);
+  header.append(title);
+
+  const searchWrapper = makeElement('div', 'mhui-settings-header-wrapper');
+
+  const searchLabel = makeElement('label', 'mhui-settings-header-search-label', 'Search:');
+  searchWrapper.append(searchLabel);
+
+  const searchField = makeElement('input', 'mhui-settings-header-search');
+  searchField.type = 'text';
+  searchField.placeholder = 'Search settings…';
+  searchField.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+
+    if (searchTerm) {
+      settingsPage.classList.add('mhui-settings-search-active');
+    } else {
+      settingsPage.classList.remove('mhui-settings-search-active');
+    }
+
+    const settingSections = settingsPage.querySelectorAll('.PagePreferences__section');
+    settingSections.forEach((section) => {
+      const sectionTitle = section.querySelector('.PagePreferences__titleText').textContent.toLowerCase();
+      let sectionMatches = sectionTitle.includes(searchTerm);
+
+      const settings = section.querySelectorAll('.PagePreferences__sectionWrapper > .PagePreferences__settingsList');
+      settings.forEach((setting) => {
+        let settingText = setting.textContent.toLowerCase();
+        const settingTextInInput = setting.querySelectorAll('.multiSelect');
+        if (settingTextInInput && settingTextInInput.length) {
+          settingTextInInput.forEach((inputEl) => {
+            settingText = settingText.replace(inputEl.textContent.toLowerCase(), '');
+          });
+        }
+        const settingMatches = settingText.includes(searchTerm);
+
+        if (settingMatches) {
+          setting.style.display = '';
+          sectionMatches = true;
+        } else {
+          setting.style.display = 'none';
+        }
+      });
+
+      section.style.display = sectionMatches ? '' : 'none';
+    });
+  });
+  searchWrapper.append(searchField);
+  header.append(searchWrapper);
+
+  settingsPage.prepend(header);
+};
+
+const addTableOfContents = () => {
+  const settingsPage = document.querySelector('.mousehuntHud-page-tabContent.game_settings.mousehunt-improved-settings.active');
+  if (! settingsPage) {
+    return;
+  }
+
+  const existingToc = document.querySelector('.mhui-settings-toc-wrapper');
+  if (existingToc) {
+    return;
+  }
+
+  const tocWrapper = makeElement('div', 'mhui-settings-toc-wrapper');
+
+  const tocText = makeElement('div', 'mhui-settings-toc-text', 'Jump to:');
+  tocWrapper.append(tocText);
+
+  const tocList = makeElement('ul', 'mhui-settings-toc-list');
+
+  const sections = settingsPage.querySelectorAll('.PagePreferences__section');
+  sections.forEach((section) => {
+    const sectionId = section.id;
+    const sectionTitleEl = section.querySelector('.PagePreferences__titleText');
+    if (sectionId && sectionTitleEl) {
+      const sectionTitle = sectionTitleEl.textContent.trim();
+      const tocItem = makeElement('li', 'mhui-settings-toc-item');
+      makeMhButton({
+        text: sectionTitle,
+        className: 'mhui-settings-toc-link',
+        href: `#${sectionId}`,
+        callback: (e) => {
+          const targetSection = document.querySelector(`#${sectionId}`);
+          if (targetSection) {
+            e.preventDefault();
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        },
+        appendTo: tocItem,
+      });
+      tocList.append(tocItem);
+    }
+  });
+
+  tocWrapper.append(tocList);
+
+  const header = document.querySelector('.mhui-settings-header');
+  if (header) {
+    header.after(tocWrapper);
+  } else {
+    settingsPage.prepend(tocWrapper);
+  }
+};
+
 /**
  * Add the icon to the menu.
  */
@@ -464,15 +583,20 @@ const init = async () => {
   ], 'mousehunt-improved-settings');
 
   addMhImprovedIconToMenu();
+
+  moveTabToEnd();
+  addHeaderToSettings();
+
   onEvent('mh-improved-setting-added-to-page', (module) => {
+    // this is the last setting added, so we can run our final setup.
     if (module?.key === 'error-reporting') {
-      moveTabToEnd();
+      if (getFlag('settings-table-of-contents')) {
+        addTableOfContents();
+      }
+
       highlightLocationHud();
       addAdvancedSettingsButtons();
-
-      if (! getSetting('experiments.new-settings-styles-columns', false)) {
-        addTogglesToSettings();
-      }
+      addTogglesToSettings();
     }
   });
 };

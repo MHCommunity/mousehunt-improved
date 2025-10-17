@@ -1,3 +1,5 @@
+.mhui-settings-header,
+.mhui-settings-toc-wrapper,
 .mousehunt-improved-settings .PagePreferences__section {
   padding: 10px;
   margin: 10px 0;
@@ -9,14 +11,19 @@
   margin: 0;
 }
 
+.mhui-settings-header-title,
 .mousehunt-improved-settings .PagePreferences__titleText {
   position: relative;
   display: flex;
   gap: 10px;
   justify-content: flex-start;
   font-family: system-ui, sans-serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 200;
+}
+
+.mhui-settings-header-title {
+  font-size: 24px;
 }
 
 .mousehunt-improved-settings .PagePreferences__settingNameText {
@@ -40,18 +47,18 @@
   transition: transform 0.15s;
 }
 
-.mousehunt-improved-settings .mhui-setting-toggle.toggled {
+.mousehunt-improved-settings:not(.mhui-settings-search-active) .mhui-setting-toggle.toggled {
   transform: rotate(-180deg);
 }
 
-.mousehunt-improved-settings .toggled .PagePreferences__titleText,
-.mousehunt-improved-settings .toggled .PagePreferences__title {
+.mousehunt-improved-settings:not(.mhui-settings-search-active) .toggled .PagePreferences__titleText,
+.mousehunt-improved-settings:not(.mhui-settings-search-active) .toggled .PagePreferences__title {
   padding: 0;
 }
 
-.mousehunt-improved-settings .toggled .PagePreferences__separator,
-.mousehunt-improved-settings .toggled .PagePreferences__sectionWrapper,
-.mousehunt-improved-settings .toggled #mousehunt-improved-settings-location-hud-wrapper {
+.mousehunt-improved-settings:not(.mhui-settings-search-active) .toggled .PagePreferences__separator,
+.mousehunt-improved-settings:not(.mhui-settings-search-active) .toggled .PagePreferences__sectionWrapper,
+.mousehunt-improved-settings:not(.mhui-settings-search-active) .toggled #mousehunt-improved-settings-location-hud-wrapper {
   height: 0;
   overflow: hidden;
   visibility: hidden;
@@ -541,4 +548,44 @@ a.reset-link {
 
 #mousehunt-improved-settings-beta .mousehuntSettingSlider.active::after {
   left: calc(100% - 20px);
+}
+
+.mhui-settings-toc-list {
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+.mhui-settings-header-search {
+  max-width: 200px;
+  margin-left: auto;
+}
+
+.mhui-settings-header {
+  display: flex;
+  align-items: center;
+}
+
+.mhui-settings-header-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: auto;
+}
+
+ul.mhui-settings-toc-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.mhui-settings-toc-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.mhui-settings-toc-text {
+  width: auto;
+  min-width: 85px;
+  font-size: 12px;
 }

@@ -26,7 +26,7 @@ const modules = imported;
 
 const categories = [
   { id: 'required', name: 'Always Loaded' },
-  { id: 'better', name: `MouseHunt Improved <a title="View release notes" href="https://github.com/MHCommunity/mousehunt-improved/releases/tag/v${mhImprovedVersion}" target="_blank" rel="noopener noreferrer">v${mhImprovedVersion}</a>` },
+  { id: 'better', name: 'Better MouseHunt' },
   { id: 'feature', name: 'Features' },
   { id: 'design', name: 'Design' },
   { id: 'element-hiding', name: 'Hide Page Elements' },
