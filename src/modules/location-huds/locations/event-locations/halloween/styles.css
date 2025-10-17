@@ -530,8 +530,6 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
   font-size: 11px;
 }
 
-.halloweenBoilingCauldronRecipeView-cauldronPointer.active[style*="top: 3px; left: 81px;"] {
-  top: 25px !important;
-  left: 357px !important;
-  opacity: 0.9;
+.halloweenBoilingCauldronRecipeView-recipe-ingredientContainer .error {
+  color: #bd0000;
 }
