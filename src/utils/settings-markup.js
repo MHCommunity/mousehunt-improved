@@ -733,7 +733,7 @@ let removeTimeout = null;
 const addSettingRefreshReminder = () => {
   let refreshMessage = document.querySelector('#mh-utils-settings-refresh-message');
   if (! refreshMessage) {
-    const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'Refresh the page to apply your changes.');
+    const newMessageEl = makeElement('div', ['mh-utils-settings-refresh-message', 'mh-ui-fade'], 'Settings updated! You may need to refresh the page for changes to take effect.');
     newMessageEl.id = 'mh-utils-settings-refresh-message';
 
     newMessageEl.addEventListener('click', () => {
@@ -751,9 +751,11 @@ const addSettingRefreshReminder = () => {
   clearTimeout(removeTimeout);
 
   fadeInTimeout = setTimeout(() => refreshMessage.classList.add('mh-ui-fade-in'), 250);
-  fadeOutTimeout = setTimeout(() => refreshMessage.classList.remove('mh-ui-fade-in'), 3000);
-  fadeOutTimeout = setTimeout(() => refreshMessage.classList.remove('mh-ui-fade-out'), 3000);
-  removeTimeout = setTimeout(() => refreshMessage.remove, 5000);
+  fadeOutTimeout = setTimeout(() => {
+    refreshMessage.classList.remove('mh-ui-fade-in');
+    refreshMessage.classList.add('mh-ui-fade-out');
+  }, 3000);
+  removeTimeout = setTimeout(() => refreshMessage.remove(), 5000);
 };
 
 onEvent('mh-improved-settings-changed', addSettingRefreshReminder);
