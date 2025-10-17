@@ -55,19 +55,19 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
-    "@sentry/browser": "^9.46.0",
-    "caniuse-lite": "^1.0.30001745"
+    "@sentry/browser": "^10.20.0",
+    "caniuse-lite": "^1.0.30001751"
   },
   "devDependencies": {
-    "@sentry/cli": "^2.55.0",
+    "@sentry/cli": "^2.56.1",
     "@sprout2000/esbuild-copy-plugin": "^1.1.19",
-    "@wordpress/eslint-plugin": "^22.17.0",
+    "@wordpress/eslint-plugin": "^22.18.0",
     "archiver": "^7.0.1",
     "chalk": "^5.6.2",
-    "chrome-webstore-upload-cli": "3.3.2",
+    "chrome-webstore-upload-cli": "3.5.0",
     "concurrently": "^9.2.1",
-    "del-cli": "^6.0.0",
-    "esbuild": "^0.25.10",
+    "del-cli": "^7.0.0",
+    "esbuild": "^0.25.11",
     "eslint": "8.57.0",
     "eslint-config-prettier": "^9.1.2",
     "eslint-plugin-eslint-comments": "^3.2.0",
@@ -84,7 +84,7 @@
     "json-minify": "^1.0.0",
     "jsonc-eslint-parser": "^2.4.1",
     "node-fetch": "^3.3.2",
-    "ora": "^8.2.0",
+    "ora": "^9.0.0",
     "prettier": "^3.6.2",
     "pretty-ms": "^9.3.0",
     "stylelint": "15.11.0",
@@ -94,7 +94,7 @@
     "stylelint-order": "6.0.3",
     "stylelint-prettier": "4.1.0",
     "stylelint-stylistic": "^0.4.5",
-    "web-ext": "^8.10.0",
+    "web-ext": "^9.0.0",
     "yargs": "17.7.2"
   }
 }
