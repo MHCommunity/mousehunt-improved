@@ -1,31 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2024",
     "module": "es6",
-    "declaration": false,
     "allowSyntheticDefaultImports": true,
-    "jsx": "preserve",
-    "lib": [
-      "DOM",
-      "ES6",
-      "DOM.Iterable",
-      "ScriptHost",
-      "ESNext"
-    ],
-    "baseUrl": "src",
+    "lib": ["DOM", "ESNext"],
     "paths": {
-      "@/*": ["./modules/*"],
-      "@utils/*": ["./utils/"],
-      "@utils": ["./utils/index.js"],
-      "@data/*": ["./data/*"]
+      "@/*": ["./src/modules/*"],
+      "@utils/*": ["./src/utils/"],
+      "@utils": ["./src/utils/index.js"],
+      "@data/*": ["./src/data/*"]
     }
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "scripts",
-    "dist"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
