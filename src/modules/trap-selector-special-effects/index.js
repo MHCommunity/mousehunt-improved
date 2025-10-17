@@ -1,4 +1,10 @@
-import { addStyles, getCurrentLocation, onEvent, onTravel } from '@utils';
+import {
+  addStyles,
+  getCurrentLocation,
+  getData,
+  onEvent,
+  onTravel
+} from '@utils';
 
 let specialEffects;
 
