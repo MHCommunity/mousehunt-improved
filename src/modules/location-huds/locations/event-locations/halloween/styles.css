@@ -533,3 +533,18 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
 .halloweenBoilingCauldronRecipeView-recipe-ingredientContainer .error {
   color: #bd0000;
 }
+.halloweenBoilingCauldronHUD-cauldron-queue-brewTime {
+  display: none;
+}
+
+.cauldron .halloweenBoilingCauldronHUD-cauldron-queue-brewTime {
+  display: block;
+}
+
+.cauldron.halloweenBoilingCauldronRecipeView-cauldron-queueSlot .halloweenBoilingCauldronHUD-yield-image {
+  margin-top: 0;
+}
+
+.halloweenBoilingCauldronRecipeView-cauldron-queueSlot .halloweenBoilingCauldronHUD-yield-image {
+  margin-top: 6px;
+}
