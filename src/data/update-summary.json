@@ -11,6 +11,7 @@
         "Fixed Custom Shield not using event shield when set to Default",
         "Fixed Custom Background not using event background when set to Default",
         "Fixed Highlight Special Effects in Trap Selector not applying",
+        "Fixed map not showing reward dialog when 'Default to Sorted Tab' setting is enabled",
         "Miscellaneous bug fixes and performance improvements"
       ]
     }

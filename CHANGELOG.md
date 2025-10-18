@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.91.2
+
+- Updated Halloween Location HUD styles
+- Fixed map not showing reward dialog when 'Default to Sorted Tab' setting is enabled
+
 ## Version 0.91.1
 
 - Fixed Highlight Special Effects in Trap Selector not applying
