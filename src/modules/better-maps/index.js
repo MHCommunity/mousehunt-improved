@@ -206,7 +206,11 @@ const initMapper = (map) => {
 
   doEvent('map_show_goals_tab_click', map);
 
-  if (getSetting('better-maps.default-to-sorted', false) && ! map.is_complete) {
+  if (
+    getSetting('better-maps.default-to-sorted', false) &&
+    ! map.is_complete &&
+    ! map.can_claim_reward
+  ) {
     doEvent('map_sorted_tab_click', map);
   }
 
