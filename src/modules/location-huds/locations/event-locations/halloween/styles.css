@@ -145,6 +145,7 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
 
 .itemPurchaseView-container.apothecary .itemPurchaseView-action-container {
   height: 130px;
+  padding-bottom: 18px;
 }
 
 .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table-cell a {
@@ -159,6 +160,10 @@ a.halloweenBoilingCauldronHUD-cauldron-boundingBox {
   font-size: 17px;
   font-weight: 400;
   text-shadow: 1px 1px 1px #788c59;
+}
+
+.mh-dark .itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-cell.cost {
+  text-shadow: 1px 1px 1px #000;
 }
 
 .itemPurchaseView-container.apothecary .itemPurchaseView-content-container {
@@ -315,7 +320,7 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
 }
 
 .halloweenBoilingCauldronHUD-overlay {
-  z-index: 90;
+  z-index: 99;
 }
 
 .halloweenBoilingCauldronHUD-ingredientInformationTitle {
@@ -541,4 +546,17 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
 
 .cauldron .halloweenBoilingCauldronHUD-cauldron-queue-brewTime {
   display: block;
+}
+
+.itemPurchaseView-container.apothecary .itemPurchaseView-action-form .mh-improved-math-button-100,
+.itemPurchaseView-container.apothecary .itemPurchaseView-action-form .mh-improved-math-button-1000 {
+  display: none;
+}
+
+.itemPurchaseView-container.apothecary .mh-improved-shop-buy-controls {
+  margin-top: 5px;
+}
+
+.itemPurchaseView-container.apothecary .itemPurchaseView-action-state.view {
+  padding-bottom: 20px;
 }

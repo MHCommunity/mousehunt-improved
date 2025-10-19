@@ -395,7 +395,7 @@ const makeMathButton = (amount, opts) => {
     classNames = [],
   } = opts;
 
-  const button = makeElement('a', ['mousehuntActionButton', 'mh-improved-math-button', ...classNames]);
+  const button = makeElement('a', ['mousehuntActionButton', 'mh-improved-math-button', `mh-improved-math-button-${amount}`, ...classNames]);
 
   const plusText = amount > 0 ? `+${amount}` : amount;
   const minusText = amount > 0 ? `-${amount}` : amount;
