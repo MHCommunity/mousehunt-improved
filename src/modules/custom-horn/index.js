@@ -173,6 +173,10 @@ const getHornSettingsValues = async () => {
 const init = () => {
   addStyles(styles, 'custom-horn');
 
+  if ('default' === getSetting('custom-horn-0', 'default')) {
+    return;
+  }
+
   persistHornClass();
 
   onNavigation(() => {
