@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.91.3
+
+- Fixed map UI not updating when first opening or joining
+
 ## Version 0.91.2
 
 - Updated Halloween Location HUD styles

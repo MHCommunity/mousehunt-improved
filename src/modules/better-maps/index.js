@@ -517,6 +517,12 @@ const init = () => {
     enhancePreviewButton();
   });
 
+  onRequest('board/board.php', () => {
+    addBlockClasses();
+    updateMapClasses();
+    enhancePreviewButton();
+  });
+
   floatingIslands();
 };
 
