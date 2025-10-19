@@ -258,3 +258,9 @@
 .mh-dark .inventoryPage-item .tooltip .arrow span {
   border-top-color: var(--d);
 }
+
+.mh-dark .itemView-action-journalPage {
+  margin-right: 5px;
+  background-color: #fff;
+  border-color: var(--d-border);
+}

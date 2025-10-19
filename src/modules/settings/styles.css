@@ -526,6 +526,10 @@ a.reset-link {
   border-left: none;
 }
 
+.mh-dark #mousehunt-improved-settings-beta .PagePreferences__subSetting {
+  border-color: var(--d-border);
+}
+
 #mousehunt-improved-settings-beta .PagePreferences__subSetting .PagePreferences__settingName {
   font-size: 15px;
   line-height: 1.375;

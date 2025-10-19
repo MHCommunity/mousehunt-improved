@@ -1,6 +1,8 @@
 .mh-dark .PagePreferences__title,
 .mh-dark .mousehunt-improved-settings .PagePreferences__title,
 .mh-dark .PagePreferences__section,
+.mh-dark .mhui-settings-header,
+.mh-dark .mhui-settings-toc-wrapper,
 .mh-dark .mousehunt-improved-settings .PagePreferences__section,
 .mh-dark #mousehunt-improved-settings-location-hud .PagePreferences__title {
   background-color: var(--d-alt);
@@ -120,9 +122,33 @@
 }
 
 .mh-dark .mousehuntHud-page-tabContent.game_settings a.reset-link {
-  color: var(--d-red);
+  color: var(--d-red-light);
 }
 
 .mh-dark .mh-utils-settings-refresh-message {
   color: var(--d-text-dark);
+}
+
+.mh-dark .mhui-settings-header-wrapper label {
+  color: var(--d-text);
+}
+
+.mousehunt-improved-settings-export-popup-content textarea {
+  color: var(--d-text);
+  background-color: var(--d);
+  border-color: var(--d-border);
+}
+
+.mousehunt-improved-settings-export-popup .jsDialogContainer {
+  background-color: var(--d-bg);
+}
+
+.mousehunt-improved-settings-export-popup .title,
+.mousehunt-improved-settings-export-popup .content {
+  color: var(--d-text);
+}
+
+#overlayPopup.mousehunt-improved-settings-export-popup .jsDialog.background {
+  padding-right: 12px;
+  padding-left: 12px;
 }

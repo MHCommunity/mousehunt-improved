@@ -108,6 +108,11 @@ div#messengerUINotification {
   box-shadow: inset 0 0 5px 1px #a90000;
 }
 
+.mh-dark #messengerUINotification .tabs a .counter {
+  background-color: var(--d-red);
+  box-shadow: inset 0 0 5px 1px var(--d-red-dark);
+}
+
 #messengerUINotification .messengerUINotificationClose {
   top: -14px;
   right: -5px;

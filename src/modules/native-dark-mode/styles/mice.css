@@ -192,3 +192,71 @@
   padding: 8px 5px;
   margin: 0;
 }
+
+.mh-dark .mouseCrownsView-group-mouse .mouseCrownsView-group-mouse-padding {
+  color: var(--d-text);
+  background: var(--d-bg-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mouseCrownsView-group-mouse .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mouseCrownsView-group-mouse.favourite .mouseCrownsView-group-mouse-padding {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .mouseCrownsView-group-mouse.favourite .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
+  background-color: var(--d-action);
+}
+
+.mh-dark .mouseCrownsView-group.diamond .mouseCrownsView-group-mouse-padding {
+  background-color: var(--d-cyan-dark);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mouseCrownsView-group.diamond .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
+  background-color: var(--d-cyan);
+  border-color: var(--d-blue-darker);
+}
+
+.mh-dark .mouseCrownsView-group.platinum .mouseCrownsView-group-mouse-padding {
+  background-color: var(--d-purple);
+}
+
+.mh-dark .mouseCrownsView-group.platinum .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
+  background-color: var(--d-purple);
+}
+
+.mh-dark .mouseCrownsView-group.gold .mouseCrownsView-group-mouse-padding {
+  background-color: var(--d-yellow-darker);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mouseCrownsView-group.gold .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
+  color: var(--d-text-dark);
+  background-color: var(--d-yellow-dark-alt);
+}
+
+.mh-dark .mouseCrownsView-group.silver .mouseCrownsView-group-mouse-padding {
+  background-color: var(--d-blue-darker);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mouseCrownsView-group.silver .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .mouseCrownsView-group.bronze .mouseCrownsView-group-mouse-padding {
+  background-color: var(--d-orange-darker);
+  border-color: var(--d-border);
+}
+
+.mh-dark .mouseCrownsView-group.bronze .mouseCrownsView-group-mouse-padding .mouseCrownsView-group-mouse-catches {
+  color: var(--d-text-dark);
+  background-color: var(--d-orange-dark);
+  border-color: var(--d-border);
+}

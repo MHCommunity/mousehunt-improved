@@ -118,3 +118,7 @@
 #hudLocationContent {
   filter: drop-shadow(0 1px 1px rgb(0 0 0 / 50%));
 }
+
+.mh-dark #hudLocationContent {
+  filter: none;
+}

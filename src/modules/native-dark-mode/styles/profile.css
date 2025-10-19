@@ -208,3 +208,36 @@
 .mh-dark .hunterInfoView-treasureMaps-left-currentMap-content-title {
   color: var(--d-text-muted);
 }
+
+.mh-dark .hunterProfileItemsView-category {
+  padding-bottom: 5px;
+}
+
+.mh-dark .hunterProfileItemsView-category,
+.mh-dark .hunterProfileItemsView-category:hover {
+  background: none;
+}
+
+.mh-dark .hunterProfileItemsView-category-margin {
+  padding-bottom: 5px;
+  color: var(--d-text-muted);
+  background: var(--d-bg);
+  border: 1px solid var(--d-border);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.mh-dark .hunterProfileItemsView-category:hover .hunterProfileItemsView-category-margin,
+.mh-dark .hunterProfileItemsView-category.active .hunterProfileItemsView-category-margin {
+  color: var(--d-text-muted);
+  background-color: var(--d-blue-darker);
+}
+
+.mh-dark .hunterProfileItemsView-category-name {
+  padding-left: 10px;
+}
+
+.mh-dark .hunterProfileItemsView-category.complete .hunterProfileItemsView-category-status {
+  background-image: url(https://www.mousehuntgame.com/images/ui/hud/camp/re_engagement/popup/check.png);
+  background-size: contain;
+}

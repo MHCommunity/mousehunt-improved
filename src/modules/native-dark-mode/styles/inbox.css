@@ -58,14 +58,11 @@
 }
 
 .mh-dark .notificationMessageList .tab[data-tab="news"] .message {
-  background-color: var(--d-yellow);
+  background-color: var(--d-yellow-dark);
 }
 
+.mh-dark .notificationMessageList .tab[data-tab="news"] .message .date,
 .mh-dark .notificationMessageList .tab[data-tab="news"] .message .clear-block {
-  color: var(--d-text-dark);
-}
-
-.mh-dark .notificationMessageList .tab[data-tab="news"] .message .date {
   color: var(--d-text-dark);
 }
 

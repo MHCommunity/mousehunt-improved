@@ -110,7 +110,8 @@
   border-color: var(--d-border);
 }
 
-.mh-dark .mh-ui-goals-sidebar-toggle {
+.mh-dark .mh-ui-goals-sidebar-toggle,
+.mh-dark .mh-ui-goals-group-toggle {
   filter: invert(1);
 }
 

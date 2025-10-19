@@ -1,0 +1,7 @@
+.itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table-cell a {
+  color: var(--d-text-dark);
+}
+
+.itemPurchaseView-container.apothecary .itemPurchaseView-action-itemCost-table .itemPurchaseView-action-itemCost-table-cell.owned {
+  color: var(--d-text-dark);
+}

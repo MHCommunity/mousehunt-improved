@@ -5,3 +5,54 @@
 .mh-dark .scoreboardTableView-tournament-property b {
   color: var(--d-yellow-dark);
 }
+
+.mh-dark .teamPage-profile-awardContainer-awardList {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .teamPage-memberRow:nth-child(odd):not(.teamPage-memberGroupTitle) {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .teamPage-memberRow:not(.teamPage-memberGroupTitle) {
+  color: var(--d-text);
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .teamPage-member-image {
+  border-color: var(--d-border);
+}
+
+.mh-dark .teamPage-member-name a {
+  color: var(--d-text);
+}
+
+.mh-dark .teamPage-member-environment,
+.mh-dark .teamPage-member-name.empty,
+.mh-dark .tournamentPage-tournament-column,
+.mh-dark .tournamentPage-tournament-column.label {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .teamPage-memberRow.self {
+  box-shadow: 0 0 1px var(--d-yellow) inset;
+}
+
+.mh-dark .tournamentPage-tournamentRow.complete::before,
+.mh-dark .tournamentPage-tournamentRow.deleted::before {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .teamPage-memberJournal-empty {
+  color: var(--d-text-muted);
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .teamPage-memberJournal-padding {
+  background-color: var(--d-bg-alt);
+}
+
+.mh-dark .teamPage-memberJournal-trapSetup,
+.mh-dark .teamPage-memberJournal-list {
+  border-color: var(--d-border);
+}

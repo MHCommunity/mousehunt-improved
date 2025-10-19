@@ -284,6 +284,11 @@
   opacity: 1;
 }
 
+.mh-dark .mh-ui-goals-sidebar-toggle,
+.mh-dark .mh-ui-goals-group-toggle {
+  filter: invert(1);
+}
+
 .mh-ui-goals-group-toggle {
   position: absolute;
   top: 10px;

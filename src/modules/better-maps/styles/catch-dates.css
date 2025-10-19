@@ -12,6 +12,11 @@
   text-align: right;
 }
 
+.mh-dark .treasureMapView-goals-group-goal .mh-improved-catch-date,
+.mh-dark .mh-improved-map-start {
+  color: var(--d-text-dark);
+}
+
 .complete .treasureMapView-goals-group-goal-name {
   display: flex;
   flex-direction: column;

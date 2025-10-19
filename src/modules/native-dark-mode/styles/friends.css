@@ -46,6 +46,11 @@
 
 .mh-dark .hunterProfileItemsView-category {
   color: var(--d-text);
+  background-image: url(https://i.mouse.rip/tab-inactive.png);
+}
+
+.mh-dark .hunterProfileItemsView-category .hunterProfileItemsView-category-margin {
+  color: var(--d-text-muted);
 }
 
 .mh-dark .hunterProfileItemsView-category.active .hunterProfileItemsView-category-margin {
