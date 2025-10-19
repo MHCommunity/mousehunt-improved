@@ -13,8 +13,9 @@ export default async () => {
 
   const options = [
     { name: 'Default', value: 'default' },
-    { name: 'Wood', value: 'background-wood' },
+    { name: 'Blueprint', value: 'background-blueprint' },
     { name: 'Marble', value: 'background-marble' },
+    { name: 'Wood', value: 'background-wood' },
     {
       name: 'Color',
       value: 'group',

@@ -4,3 +4,10 @@ body .mousehuntHud-marbleDrawer {
     url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat,
     url(https://i.mouse.rip/mh-improved/custom-hud/hud-blueprint.png) repeat-y top center;
 }
+
+body .PageCamp.background-blueprint .mousehuntHud-marbleDrawer {
+  background:
+    url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat,
+    url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat;
+  box-shadow: none;
+}
