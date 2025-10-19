@@ -81,6 +81,7 @@
   display: block;
   color: #9e9e9e;
   pointer-events: none;
+  opacity: 0.6;
 }
 
 .travelPage-regionMenu-item[data-region="riftopia"] {
@@ -271,10 +272,26 @@
   border-bottom: 1px solid #4e6081;
 }
 
+.mh-dark #mh-simple-travel-page .travelPage-alpha-wrapper:hover .first-letter::first-letter {
+  border-bottom: 1px solid var(--d-link);
+}
+
 #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location,
 #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.current.highlight.event-location,
 #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location {
   color: #c01dff;
+}
+
+.mh-dark #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.event-location {
+  color: var(--d-orange);
+}
+
+.mh-dark #mh-simple-travel-page .travelPage-alpha-wrapper:hover .event-location.first-letter::first-letter {
+  border-bottom: 1px solid var(--d-orange);
+}
+
+.mh-dark #mh-simple-travel-page .travelPage-alpha-wrapper:hover .event-location.first-letter.current::first-letter {
+  border-bottom: 1px solid var(--d-text-muted);
 }
 
 #mh-simple-travel-page .travelPage-regionMenu .travelPage-regionMenu-environmentLink.active.highlight.event-location::after,
@@ -390,5 +407,10 @@
 .travelPage-map-environment-detail.current .travelPage-map-environment-detail-description-current-location {
   position: absolute;
   top: 3px;
-  right: 80px;
+  right: 195px;
+}
+
+.travelPage-map-environment-detail-shop:hover .travelPage-map-environment-detail-shop-name {
+  left: unset;
+  margin-left: -10px;
 }

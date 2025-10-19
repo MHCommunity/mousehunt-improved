@@ -133,22 +133,31 @@
   color: var(--d-text);
 }
 
-.mousehunt-improved-settings-export-popup-content textarea {
+.mh-dark .mousehunt-improved-settings-export-popup-content textarea {
   color: var(--d-text);
   background-color: var(--d);
   border-color: var(--d-border);
 }
 
-.mousehunt-improved-settings-export-popup .jsDialogContainer {
+.mh-dark .mousehunt-improved-settings-export-popup .jsDialogContainer {
   background-color: var(--d-bg);
 }
 
-.mousehunt-improved-settings-export-popup .title,
-.mousehunt-improved-settings-export-popup .content {
+.mh-dark .mousehunt-improved-settings-export-popup .title,
+.mh-dark .mousehunt-improved-settings-export-popup .content {
   color: var(--d-text);
 }
 
-#overlayPopup.mousehunt-improved-settings-export-popup .jsDialog.background {
+.mh-dark #overlayPopup.mousehunt-improved-settings-export-popup .jsDialog.background {
   padding-right: 12px;
   padding-left: 12px;
+}
+
+.mh-dark .accountVerificationRewardsView__title {
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
+.mh-dark .accountVerificationRewardsView__stepsContainer {
+  border-color: var(--d-border);
 }
