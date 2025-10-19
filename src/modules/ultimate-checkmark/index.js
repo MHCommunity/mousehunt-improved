@@ -175,7 +175,8 @@ const makeCategory = (category, name, progress) => {
   catSidebarCategory.title = name;
   catSidebarCategory.href = '#';
   catSidebarCategory.setAttribute('data-category', category);
-  catSidebarCategory.addEventListener('click', () => {
+  catSidebarCategory.addEventListener('click', (e) => {
+    e.preventDefault();
     hg.views.HunterProfileItemsView.showCategory(category);
     return false;
   });
@@ -335,11 +336,11 @@ const isOwnProfile = () => {
   }
 
   const params = hg.utils.PageUtil.getQueryParams();
-  if (! params || ! params.snuid) {
+  if (params && params.snuid && params.snuid !== user.sn_user_id) {
     return false;
   }
 
-  return params.snuid === user.sn_user_id;
+  return true;
 };
 
 let items;
@@ -374,7 +375,7 @@ const init = async () => {
   onNavigation(run, {
     page: 'hunterprofile',
     tab: 'items',
-    onLoad: true,
+    anySubtab: true,
   });
 };
 
