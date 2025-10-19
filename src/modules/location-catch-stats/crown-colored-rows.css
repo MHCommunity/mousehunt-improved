@@ -1,0 +1,47 @@
+.mh-catch-stats.mh-catch-stats-crown-none {
+  background-color: #e0e0e0;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-none:nth-child(odd) {
+  background-color: #d0d0d0;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-bronze {
+  background-color: #f7c8a6;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-bronze:nth-child(odd) {
+  background-color: #f4b385;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-silver {
+  background-color: #bcc7d2;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-silver:nth-child(odd) {
+  background-color: #acbac8;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-gold {
+  background-color: #ebdda2;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-gold:nth-child(odd) {
+  background-color: #f0e5b8;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-platinum {
+  background-color: #d7f0f0;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-platinum:nth-child(odd) {
+  background-color: #c1e8e8;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-diamond {
+  background-color: #f0d7f0;
+}
+
+.mh-catch-stats.mh-catch-stats-crown-diamond:nth-child(odd) {
+  background-color: #e8bfe8;
+}

@@ -7,6 +7,7 @@ import {
   makeElementDraggable
 } from '@utils';
 
+import crownColoredRowsStyles from './crown-colored-rows.css';
 import styles from './styles.css';
 
 import settings from './settings';
@@ -87,6 +88,10 @@ const buildMouseMarkup = (mouseData) => {
     crown.classList.add('mh-catch-stats-crown');
     crown.style.backgroundImage = `url('https://www.mousehuntgame.com/images/ui/crowns/crown_${mouse.crown}.png')`;
     image.append(crown);
+
+    mouseEl.classList.add(`mh-catch-stats-crown-${mouse.crown}`);
+  } else {
+    mouseEl.classList.add('mh-catch-stats-crown-none');
   }
 
   // Create the name element.
@@ -201,7 +206,11 @@ let showMisses = false;
  * Initialize the module.
  */
 const init = async () => {
-  addStyles(styles, 'location-catch-stats');
+  addStyles([
+    styles,
+    getSetting('location-catch-stats.crown-colored-rows', false) ? crownColoredRowsStyles : null
+  ]
+  , 'location-catch-stats');
 
   addSubmenuItem({
     menu: 'mice',
