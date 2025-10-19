@@ -561,6 +561,11 @@ img.pointsMouseIcon {
   min-height: 25px;
 }
 
+.mousehuntTabContent .tournamentPage-tournamentRow.tournamentPage-tournamentData .tournamentPage-tournament-column.value:nth-child(3),
+.mousehuntTabContent .tournamentPage-tournamentRow.tournamentPage-tournamentData .tournamentPage-tournament-column.value:nth-child(4) {
+  min-height: 0;
+}
+
 .tournament-normal-time.tournament-time-display-inline {
   margin-top: 4px;
 }
@@ -627,7 +632,7 @@ img.pointsMouseIcon {
 
 /* make the screboard color for everyone be a happy green */
 .tournament-team-rank {
-  background-color: #0d7d3a;
+  background: url(https://i.mouse.rip/tournament_place_unranked.png) 0 -25px repeat-x #0d7d3a;
 }
 
 /* make the text for the 1st place black to be readable */

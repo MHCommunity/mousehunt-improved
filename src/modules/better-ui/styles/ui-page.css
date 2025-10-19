@@ -66,6 +66,26 @@ body .pageFrameView-contentContainer {
   background-color: #bad4ed;
 }
 
+body.halloween,
+body.halloween .pageFrameView-contentContainer {
+  background-color: #e87e33;
+}
+
+body.lunar_new_year,
+body.lunar_new_year .pageFrameView-contentContainer {
+  background-color: #7f051b;
+}
+
+body.kings_giveaway,
+body.kings_giveaway .pageFrameView-contentContainer {
+  background-color: #7b67aa;
+}
+
+body.spring_hunt,
+body.spring_hunt .pageFrameView-contentContainer {
+  background-color: #86ce5c;
+}
+
 @media only screen and (max-width: 810px) {
   body.hasSidebar .pageFrameView {
     background-color: #bad4ed !important;

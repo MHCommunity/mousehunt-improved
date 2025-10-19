@@ -382,3 +382,13 @@
   left: -70px;
   width: 310px;
 }
+
+.travelPage-map-environment-detail-description {
+  position: inherit;
+}
+
+.travelPage-map-environment-detail.current .travelPage-map-environment-detail-description-current-location {
+  position: absolute;
+  top: 3px;
+  right: 80px;
+}
