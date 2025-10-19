@@ -142,8 +142,7 @@ const persistBackground = () => {
 const init = () => {
   addStyles(styles, 'custom-background');
 
-  const backgroundSetting = getSetting('custom-background-0', 'default');
-  if ('default' === backgroundSetting) {
+  if ('default' === getSetting('custom-background-0', 'default')) {
     return;
   }
 
