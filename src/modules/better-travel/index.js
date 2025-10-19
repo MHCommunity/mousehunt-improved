@@ -199,7 +199,7 @@ const addAlphabetizedList = (regionMenu) => {
   const alphaList = makeElement('div', 'travelPage-regionMenu-item-contents');
   const alphaListContent = makeElement('div', 'travelPage-regionMenu-environments');
 
-  const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink');
+  const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink:not(.mystery)');
 
   // Clone the links, sort them by name, and add them to the alpha list.
   const sortedLinks = [...links].sort((a, b) => {
@@ -253,6 +253,12 @@ const addAlphabetizedList = (regionMenu) => {
   alphaContent.append(alphaHeader);
 
   alphaWrapper.append(alphaContent);
+
+  const itemCount = sortedLinks.length;
+  const rows = Math.ceil(itemCount / 5);
+  const height = 8 + (rows * 29);
+
+  alphaListContent.style.height = `${height}px`;
 
   return alphaWrapper;
 };
