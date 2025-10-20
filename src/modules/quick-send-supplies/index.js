@@ -328,7 +328,9 @@ const hideAllPanels = () => {
   }
 };
 
-const main = () => attachToButtons(document);
+const main = () => {
+  attachToButtons(document);
+};
 
 const init = () => {
   addStyles(styles, 'quick-send-supplies');

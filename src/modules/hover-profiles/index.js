@@ -1,5 +1,6 @@
 import {
   addStyles,
+  doEvent,
   doRequest,
   getSetting,
   makeElement,
@@ -151,6 +152,7 @@ const ensurePanel = () => {
     }
     hide();
   });
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       hide();
@@ -293,6 +295,8 @@ const showForAnchor = async (a) => {
     p.innerHTML = renderFriend(cached);
     wireSendButtonHover();
     reposition();
+
+    doEvent('profile_hover');
     return;
   }
 
@@ -300,12 +304,15 @@ const showForAnchor = async (a) => {
   if (! anchor || ! anchor.isConnected) {
     return;
   }
+
   if (data && data.length) {
     sessionSet(`mh-improved-mh-improved-cache-friend-${snuid}`, data);
   }
+
   p.innerHTML = renderFriend(data);
   wireSendButtonHover();
   reposition();
+  doEvent('profile_hover');
 };
 
 // Ensure we hold the panel open when hovering the Send Supplies button in the panel
