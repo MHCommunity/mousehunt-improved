@@ -77,9 +77,14 @@ const processEntries = async () => {
   isJournalProcessing = true;
 
   const entries = document.querySelectorAll('.journal .entry');
+
+  doInternalEvent('journal-entries-processing', entries);
+
   for (const entry of entries) {
     doInternalEvent('journal-entry', entry);
   }
+
+  doInternalEvent('journal-entries-processed', entries);
 
   isJournalProcessing = false;
 };
@@ -105,24 +110,10 @@ const processSingleEntries = async () => {
  * Add journal processing events.
  */
 const addJournalProcessingEvents = async () => {
-  const settings = [
-    'better-journal.styles',
-    'better-journal.replacements',
-    'better-journal.list',
-    'better-journal.gold-and-points',
-    'better-journal.journal-history',
-    'experiments.full-mice-images-in-journal',
-  ];
-
-  // If any of the settings are enabled, then we'll process the journal entries, otherwise we can skip it.
-  if (! settings.some((setting) => getSetting(setting))) {
-    return;
-  }
-
   setMultipleTimeout(processEntries, [100, 500, 1000]);
 
   onRequest('*', (data) => {
-    setMultipleTimeout(processEntries, [100, 500, 1000, 2500]);
+    setMultipleTimeout(processEntries, [100, 500, 1000]);
 
     if (data.journal_markup && data.journal_markup.length > 0) {
       processSingleEntries(data.journal_markup);

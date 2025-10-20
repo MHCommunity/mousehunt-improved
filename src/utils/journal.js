@@ -147,6 +147,10 @@ const addJournalEntry = async (opts = {}) => {
 const callbacks = [];
 let hasAddedJournalEventListener = false;
 
+let numberOfEntries = 0;
+let numberOfProcessedEntries = 0;
+const finishedProcessingCallbacks = [];
+
 /**
  * Add the event listener for journal entries.
  */
@@ -161,6 +165,21 @@ const addJournalEventListener = () => {
       } catch (error) {
         console.error('Error in journal callback:', error); // eslint-disable-line no-console
       }
+    }
+
+    numberOfProcessedEntries = numberOfProcessedEntries + 1;
+    if (numberOfProcessedEntries >= numberOfEntries) {
+      for (const finishedCallback of finishedProcessingCallbacks) {
+        try {
+          await finishedCallback();
+        } catch (error) {
+          console.error('Error in journal finished processing callback:', error); // eslint-disable-line no-console
+        }
+      }
+
+      // reset counts
+      numberOfEntries = 0;
+      numberOfProcessedEntries = 0;
     }
   });
 };
@@ -186,9 +205,18 @@ const onJournalEntry = (callback, options = {}) => {
   callbacks.sort((a, b) => a.weight - b.weight);
 };
 
+const onJournalEntriesProcessed = (callback) => {
+  document.addEventListener('journal-entries-processing', (data) => {
+    numberOfEntries = data.detail.length * 3; // We run the processing 3 times.
+  });
+
+  finishedProcessingCallbacks.push(callback);
+};
+
 export {
   replaceJournalEntry,
   makeJournalEntry,
   addJournalEntry,
-  onJournalEntry
+  onJournalEntry,
+  onJournalEntriesProcessed
 };
