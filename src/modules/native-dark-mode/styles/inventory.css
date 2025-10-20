@@ -102,7 +102,7 @@
 }
 
 .mh-dark .mousehuntHud-page-tabContent-loading {
-  background: url(https://www.mousehuntgame.com/images/ui/loaders/mouse_loading_large.gif?asset_cache_version=3) 50% 50% no-repeat;
+  background: url(https://www.mousehuntgame.com/images/ui/loaders/mouse_loading_large.gif) 50% 50% no-repeat;
 }
 
 .mh-dark .inventoryPage-item-recipeOptions li {
