@@ -455,6 +455,8 @@ const addHeaderToSettings = () => {
   const searchField = makeElement('input', 'mhui-settings-header-search');
   searchField.type = 'text';
   searchField.placeholder = 'Search settings…';
+  searchField.autocomplete = 'off';
+  searchField.autofocus = true;
   searchField.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
 
