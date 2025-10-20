@@ -4,14 +4,15 @@
     {
       "title": "",
       "items": [
-        "Added search box to settings page",
-        "Updated Better Journal styles",
-        "Updated Halloween Location HUD styles",
-        "Updated Halloween Better Journal replacements and styles",
-        "Fixed Custom Shield not using event shield when set to Default",
-        "Fixed Custom Background not using event background when set to Default",
-        "Fixed Highlight Special Effects in Trap Selector not applying",
-        "Fixed map not showing reward dialog when 'Default to Sorted Tab' setting is enabled",
+        "Better UI: Updated styles",
+        "Better Maps: Fixed map enhancements not applying on first open",
+        "Better Maps: Updated styles",
+        "Better Travel: Updated styles",
+        "Custom Camp Background: Added 'Blueprint' background option",
+        "Custom Horn: Fixed horn not using event horn when set to Default",
+        "Dark Mode: Updated styles",
+        "Location Catch Stats: Added 'Color rows based on crown' option",
+        "Location HUDs - Event Locations: Updated Halloween HUD styles",
         "Miscellaneous bug fixes and performance improvements"
       ]
     }

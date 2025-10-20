@@ -1,6 +1,6 @@
 {
   "name": "mousehunt-improved",
-  "version": "0.91.3",
+  "version": "0.92.0",
   "description": "Improve your MouseHunt experience.",
   "author": "Brad Parbs <brad@bradparbs.com> (https://bradparbs.com/)",
   "license": "MIT",
@@ -56,18 +56,18 @@
   "dependencies": {
     "@babel/runtime": "^7.28.4",
     "@sentry/browser": "^9.46.0",
-    "caniuse-lite": "^1.0.30001745"
+    "caniuse-lite": "^1.0.30001751"
   },
   "devDependencies": {
-    "@sentry/cli": "^2.55.0",
+    "@sentry/cli": "^2.56.1",
     "@sprout2000/esbuild-copy-plugin": "^1.1.19",
-    "@wordpress/eslint-plugin": "^22.17.0",
+    "@wordpress/eslint-plugin": "^22.19.0",
     "archiver": "^7.0.1",
     "chalk": "^5.6.2",
     "chrome-webstore-upload-cli": "3.3.2",
     "concurrently": "^9.2.1",
     "del-cli": "^6.0.0",
-    "esbuild": "^0.25.10",
+    "esbuild": "^0.25.11",
     "eslint": "8.57.0",
     "eslint-config-prettier": "^9.1.2",
     "eslint-plugin-eslint-comments": "^3.2.0",

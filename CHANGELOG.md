@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 0.92.0
+
+- Better UI: Updated styles
+- Better Maps: Fixed map enhancements not applying on first open
+- Better Maps: Updated styles
+- Better Travel: Updated styles
+- Custom Camp Background: Added 'Blueprint' background option
+- Custom Horn: Fixed horn not using event horn when set to Default
+- Dark Mode: Updated styles
+- Location Catch Stats: Added 'Color rows based on crown' option
+- Location HUDs - Event Locations: Updated Halloween HUD styles
+- Miscellaneous bug fixes and performance improvements
+
 ## Version 0.91.3
 
 - Fixed map UI not updating when first opening or joining
