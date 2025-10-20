@@ -1,340 +1,395 @@
 import {
   addStyles,
-  doEvent,
   doRequest,
   getSetting,
   makeElement,
-  onEvent,
-  onRequest,
+  onJournalEntriesProcessed,
   sessionGet,
   sessionSet
 } from '@utils';
 
 import styles from './styles.css';
 
-/**
- * Clean the ID string.
- *
- * @param {string} id The ID to clean.
- *
- * @return {string} The cleaned ID.
- */
-const cleanId = (id) => {
-  return id.replaceAll('#', '');
-};
+const SHOW_DELAY_MS = 160;
+const HIDE_DELAY_MS = 240;
 
-/**
- * Get the friend ID from the target.
- *
- * @param {HTMLElement} target The target element.
- *
- * @return {string|boolean} The friend ID or false.
- */
-const getFriendId = async (target) => {
-  // if there is a data-snuid attribute, use that
-  if (target.getAttribute('data-snuid')) {
-    return cleanId(target.getAttribute('data-snuid'));
+const isString = (v) => typeof v === 'string' && v.length > 0;
+
+const clean = (s) => String(s || '').trim().replace(/^#+/, '');
+
+const parseSnuidFromHref = (href) => {
+  if (! href) {
+    return null;
   }
 
-  if (target.href) {
-    let href = target.href;
-
-    // remove everything after the & in the href
-    const hrefMatch = target.href.match(/(.+?)&/);
-    if (hrefMatch && hrefMatch.length) {
-      href = hrefMatch[1];
+  const u = new URL(href, location.origin);
+  const snuid = u.searchParams.get('snuid');
+  if (snuid) {
+    return clean(snuid);
+  }
+  if (u.pathname.endsWith('/p.php')) {
+    const pid = u.searchParams.get('id');
+    if (pid) {
+      return { pid: clean(pid) };
     }
+  }
 
-    // if the href is a profile link, use that
-    const urlMatch = href
-      .replace('https://www.mousehuntgame.com/hunterprofile.php?snuid=', '')
-      .replace('https://www.mousehuntgame.com/profile.php?snuid=', '');
-    if (urlMatch && urlMatch !== href) {
-      return cleanId(urlMatch);
+  return null;
+};
+
+const parseSnuidFromOnclick = (el) => {
+  const h = String(el?.getAttribute?.('onclick') || '');
+  const m = h.match(/show\(["']([\w:-]+)["']\)/);
+  return m && m[1] ? clean(m[1]) : null;
+};
+
+const resolveSnuid = async (el) => {
+  const d = el.getAttribute('data-snuid');
+  if (isString(d)) {
+    return clean(d);
+  }
+
+  if (el.href) {
+    const parsed = parseSnuidFromHref(el.href);
+    if (isString(parsed)) {
+      return parsed;
     }
-
-    const pMatch = href.replace('https://www.mousehuntgame.com/p.php?id=', '');
-    if (pMatch && pMatch !== href) {
-      const snuid = await doRequest('managers/ajax/pages/friends.php', {
-        action: 'community_search_by_id',
-        user_id: pMatch,
-      });
-
-      if (snuid?.friend?.sn_user_id) {
-        return cleanId(snuid.friend.sn_user_id);
+    if (parsed && parsed.pid) {
+      try {
+        const res = await doRequest('managers/ajax/pages/friends.php', {
+          action: 'community_search_by_id',
+          user_id: parsed.pid
+        });
+        const sn = res?.friend?.sn_user_id;
+        if (isString(sn)) {
+          return clean(sn);
+        }
+      } catch {
+        debug('hover-profiles', 'Failed to resolve snuid');
       }
     }
   }
 
-  if (target.onclick) {
-    const giftMatch = target.onclick.toString().match(/show\('(.+)'\)/);
-    if (giftMatch && giftMatch.length) {
-      return cleanId(giftMatch[1]);
-    }
+  const fromOnclick = parseSnuidFromOnclick(el);
+  if (isString(fromOnclick)) {
+    return clean(fromOnclick);
   }
 
-  return false;
+  return null;
 };
 
-let friendDataWrapper;
-let friendDataWrapperListener;
-let friendDataWrapperLeaveListener;
+const getFriendDataBySnuids = (snuids) =>
+  new Promise((resolve) => {
+    try {
+      app.pages.FriendsPage.getFriendDataBySnuids(snuids, (data) => resolve(data || []));
+    } catch {
+      resolve([]);
+    }
+  });
 
-/**
- * Create the friend markup.
- *
- * @param {string}  friendId  The friend ID.
- * @param {Object}  data      The friend data.
- * @param {boolean} skipCache Skip the cache.
- * @param {Event}   e         The event.
- */
-const makeFriendMarkup = (friendId, data = null, skipCache = false, e) => {
-  if (! skipCache) {
-    sessionSet(`mh-improved-cache-friend-${friendId}`, data);
-    sessionSet(`mh-improved-cache-friend-${friendId}-timestamp`, Date.now());
+const renderFriend = (payload) => {
+  try {
+    if (payload && payload.length) {
+      const isStranger = !! payload[0]?.user_interactions?.relationship?.is_stranger;
+      const tpl = isStranger ? 'PageFriends_request_row' : 'PageFriends_view_friend_row';
+      return hg.utils.TemplateUtil.render(tpl, payload[0]);
+    }
+    const placeholder = hg.pages.FriendsPage().getPlaceholderData();
+    return hg.utils.TemplateUtil.render('PageFriends_view_friend_row', placeholder);
+  } catch {
+    return '<div class="friend-data-wrapper-loading">Unable to render profile.</div>';
+  }
+};
+
+// Single reusable panel with original classes
+let panel = null;
+let anchor = null;
+let showTimer = 0;
+let hideTimer = 0;
+
+// Hover state flags
+let overAnchor = false; // pointer over anchor link
+let overPanel = false; // pointer over .friend-data-wrapper
+let overSendBtn = false; // pointer over Send Supplies button inside panel
+let overQuickSend = false; // pointer over .quickSendWrapper
+
+const ensurePanel = () => {
+  if (panel && panel.isConnected) {
+    return panel;
   }
 
-  friendDataWrapper?.remove();
+  const p = makeElement('div', 'friend-data-wrapper');
+  p.id = 'friend-data-wrapper';
+  p.setAttribute('role', 'dialog');
+  p.setAttribute('aria-live', 'polite');
+  p.tabIndex = -1;
+  p.innerHTML = '<div class="friend-data-wrapper-loading">Loading...</div>';
 
-  let content;
+  // Track pointer state over the panel
+  p.addEventListener('mouseenter', () => {
+    overPanel = true;
+    clearTimeout(hideTimer);
+  });
+  p.addEventListener('mouseleave', () => {
+    overPanel = false;
+    scheduleHide();
+  });
+
+  document.body.append(p);
+  panel = p;
+
+  // Dismiss on outside click or Escape
+  document.addEventListener('click', (e) => {
+    if (! panel) {
+      return;
+    }
+    if (panel.contains(e.target)) {
+      return;
+    }
+    if (anchor && anchor.contains && anchor.contains(e.target)) {
+      return;
+    }
+    hide();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      hide();
+    }
+  });
+
+  // Reposition on scroll or resize
+  window.addEventListener('scroll', reposition, true);
+  window.addEventListener('resize', reposition, true);
+
+  // Global delegated listeners to track Quick Send hover
+  // Use capture so we see events even if stopped elsewhere
+  document.addEventListener('mouseover', (ev) => {
+    const el = ev.target instanceof Element ? ev.target : null;
+    if (! el) {
+      return;
+    }
+
+    // If pointer moves into any Quick Send wrapper, hold the profile open
+    if (el.closest('.quickSendWrapper')) {
+      overQuickSend = true;
+      clearTimeout(hideTimer);
+    }
+
+    // If pointer moves into the Send Supplies button inside the profile panel
+    if (panel && panel.contains(el) && el.closest('.userInteractionButtonsView-button.sendSupplies')) {
+      overSendBtn = true;
+      clearTimeout(hideTimer);
+    }
+  }, true);
+
+  document.addEventListener('mouseout', (ev) => {
+    const el = ev.target instanceof Element ? ev.target : null;
+    if (! el) {
+      return;
+    }
+    const to = ev.relatedTarget instanceof Element ? ev.relatedTarget : null;
+
+    if (el.closest('.quickSendWrapper') && ! (to && to.closest('.quickSendWrapper'))) {
+      overQuickSend = false;
+      scheduleHide();
+    }
+    if (panel && panel.contains(el) && el.closest('.userInteractionButtonsView-button.sendSupplies')) {
+      const stillInsideBtn = !! (to && panel.contains(to) && to.closest('.userInteractionButtonsView-button.sendSupplies'));
+      if (! stillInsideBtn) {
+        overSendBtn = false;
+        scheduleHide();
+      }
+    }
+  }, true);
+
+  return p;
+};
+
+const scheduleShow = (fn) => {
+  clearTimeout(showTimer);
+  showTimer = setTimeout(fn, SHOW_DELAY_MS);
+};
+
+const scheduleHide = () => {
+  if (getSetting('debug.hover-profiles', false)) {
+    return;
+  }
+
+  clearTimeout(hideTimer);
+  hideTimer = setTimeout(() => {
+    // Keep open if any related hover is active
+    if (! overAnchor && ! overPanel && ! overSendBtn && ! overQuickSend) {
+      hide();
+    }
+  }, HIDE_DELAY_MS);
+};
+
+const hide = () => {
+  clearTimeout(showTimer);
+  clearTimeout(hideTimer);
+  overSendBtn = false;
+  overQuickSend = false;
+  if (panel) {
+    panel.style.opacity = '0';
+    panel.style.pointerEvents = 'none';
+    panel.innerHTML = '';
+  }
+  anchor = null;
+};
+
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+const reposition = () => {
+  if (! panel || ! anchor) {
+    return;
+  }
+
+  panel.style.top = '0px';
+  panel.style.left = '-9999px';
+  panel.style.pointerEvents = 'auto';
+
+  const rect = anchor.getBoundingClientRect();
+  const ph = panel.offsetHeight || 280;
+  const pw = panel.offsetWidth || 360;
+
+  const viewportH = document.documentElement.clientHeight;
+  const viewportW = document.documentElement.clientWidth;
+
+  const aboveTop = rect.top + window.scrollY - ph - 10;
+  const belowTop = rect.bottom + window.scrollY + 10;
+  const preferAbove = rect.top > ph + 20;
+  const top = preferAbove ? aboveTop : belowTop;
+
+  let left = rect.left + window.scrollX + (rect.width / 2) - (pw / 2);
+  left = clamp(left, window.scrollX + 8, window.scrollX + viewportW - pw - 8);
+
+  panel.style.top = `${top}px`;
+  panel.style.left = `${left}px`;
+
+  const r = panel.getBoundingClientRect();
+  if (! preferAbove && r.bottom > viewportH - 8) {
+    panel.style.top = `${aboveTop}px`;
+  }
+
+  panel.style.opacity = '1';
+};
+
+const showForAnchor = async (a) => {
+  anchor = a;
+  const p = ensurePanel();
+  p.innerHTML = '<div class="friend-data-wrapper-loading">Loading...</div>';
+  p.style.pointerEvents = 'auto';
+  reposition();
+  p.focus({ preventScroll: true });
+
+  const snuid = await resolveSnuid(a);
+  if (! snuid || snuid === user.sn_user_id) {
+    hide();
+    return;
+  }
+
+  const cached = sessionGet(`mh-improved-mh-improved-cache-friend-${snuid}`);
+  if (cached) {
+    p.innerHTML = renderFriend(cached);
+    wireSendButtonHover();
+    reposition();
+    return;
+  }
+
+  const data = await getFriendDataBySnuids([snuid]);
+  if (! anchor || ! anchor.isConnected) {
+    return;
+  }
   if (data && data.length) {
-    const templateType = ! data[0].user_interactions?.relationship?.is_stranger ? 'PageFriends_view_friend_row' : 'PageFriends_request_row'; // eslint-disable-line unicorn/no-negated-condition
-    content = hg.utils.TemplateUtil.render(templateType, data[0]);
-  } else {
-    content = hg.utils.TemplateUtil.render('PageFriends_view_friend_row', hg.pages.FriendsPage().getPlaceholderData());
+    sessionSet(`mh-improved-mh-improved-cache-friend-${snuid}`, data);
   }
-
-  const existing = document.querySelectorAll('#friend-data-wrapper');
-  if (existing && existing.length) {
-    existing.forEach((el) => {
-      el.remove();
-    });
-  }
-
-  friendDataWrapper = makeElement('div', 'friend-data-wrapper');
-  friendDataWrapper.id = 'friend-data-wrapper';
-  friendDataWrapper.innerHTML = content || '<span class="friend-data-wrapper-loading">Loading…</span>';
-
-  // append to the body and position it
-  document.body.append(friendDataWrapper);
-  const rect = e.target.getBoundingClientRect();
-  const top = rect.top + window.scrollY;
-  const left = rect.left + window.scrollX;
-
-  // Calculate the desired top position for the tooltip
-  let tooltipTop = top - friendDataWrapper.offsetHeight - 10;
-
-  // Check if the tooltip would end up off the screen
-  if (tooltipTop < 0) {
-    // If it would, position it below the target element instead
-    tooltipTop = top + rect.height + 10;
-  }
-
-  friendDataWrapper.style.top = `${tooltipTop}px`;
-  friendDataWrapper.style.left = `${left - (friendDataWrapper.offsetWidth / 2) + (rect.width / 2)}px`;
-
-  let timeoutId;
-
-  friendDataWrapperListener?.remove();
-  friendDataWrapperLeaveListener?.remove();
-
-  // add a mouseleave event to remove it
-  friendDataWrapperListener = friendDataWrapper.addEventListener('mouseleave', () => {
-    timeoutId = setTimeout(() => {
-      if (! debugPopup) {
-        friendDataWrapper.remove();
-      }
-    }, 350); // delay in milliseconds
-  });
-
-  // cancel the removal if the mouse enters the tooltip
-  friendDataWrapperLeaveListener = friendDataWrapper.addEventListener('mouseenter', () => {
-    clearTimeout(timeoutId);
-  });
-
-  doEvent('profile_hover');
+  p.innerHTML = renderFriend(data);
+  wireSendButtonHover();
+  reposition();
 };
 
-/**
- * Handle the friend link hover.
- *
- * @param {Event} e The event.
- */
-const onFriendLinkHover = async (e) => {
-  const friendId = await getFriendId(e.target);
-  if (! friendId || friendId == user.sn_user_id) { // eslint-disable-line eqeqeq
+// Ensure we hold the panel open when hovering the Send Supplies button in the panel
+const wireSendButtonHover = () => {
+  if (! panel) {
+    return;
+  }
+  const sendBtn = panel.querySelector('.userInteractionButtonsView-button.sendSupplies');
+  if (! sendBtn) {
     return;
   }
 
-  e.target.setAttribute('data-snuid', friendId);
-
-  // get the parent element
-  const parent = e.target.parentElement;
-  if (! parent) {
-    return;
-  }
-
-  parent.setAttribute('data-friend-hover', true);
-
-  const existing = document.querySelectorAll('#friend-data-wrapper');
-  if (existing && existing.length) {
-    existing.forEach((el) => {
-      el.remove();
-    });
-  }
-
-  // See if there is a cached value in sessionStorage
-  const cached = sessionGet(`mh-improved-cache-friend-${friendId}`);
-  const cachedTimestamp = sessionGet(`mh-improved-cache-friend-${friendId}-timestamp`);
-
-  if (cached && cachedTimestamp && (Date.now() - cachedTimestamp) < 150000) {
-    makeFriendMarkup(friendId, cached, true, e);
-  } else {
-    makeFriendMarkup(null, null, true, e);
-
-    app.pages.FriendsPage.getFriendDataBySnuids([friendId], (data) => {
-      if (! data || ! data.length) {
-        return;
-      }
-
-      makeFriendMarkup(friendId, data, false, e);
-    });
-  }
+  sendBtn.addEventListener('mouseenter', () => {
+    overSendBtn = true;
+    clearTimeout(hideTimer);
+  });
+  sendBtn.addEventListener('mouseleave', () => {
+    overSendBtn = false;
+    scheduleHide();
+  });
 };
 
-/**
- * Add click event listeners to friend links.
- *
- * @param {string} selector The selector to use.
- */
-const addFriendLinkEventListener = (selector) => {
-  const friendLinks = document.querySelectorAll(selector);
-  if (! friendLinks || ! friendLinks.length) {
-    return;
-  }
+// Selectors consistent with original usage
+const SELECTORS = [
+  'a[href*="/hunterprofile.php"]',
+  'a[href*="/profile.php"]',
+  'a[href*="/p.php?id="]',
+  '.notificationMessageList .messageText a[href*="/p.php"]',
+  '.treasureMapView-scoreboard-table a[href*="/profile.php"]',
+  'tr.teamPage-memberRow-identity a[href*="/profile.php"]'
+];
 
-  friendLinks.forEach((friendLink) => {
+const seen = new WeakSet();
+
+const bindListeners = () => {
+  document.querySelectorAll(SELECTORS.join(',')).forEach((link) => {
+    // console.log('hover-profiles', 'Binding to link', link);
+    if (seen.has(link)) {
+      return;
+    }
+
+    seen.add(link);
+
     if (
-      friendLink.classList.contains('friendsPage-friendRow-image') ||
-      friendLink.classList.contains('mousehuntHud-shield') ||
-      friendLink.classList.contains('campPage-tabs-tabContent-larryTip-byLine') ||
-      friendLink.getAttribute('data-friend-hover')
+      link.classList.contains('friendsPage-friendRow-image') ||
+      link.classList.contains('mousehuntHud-shield')
     ) {
       return;
     }
 
-    friendLink.setAttribute('data-friend-hover', true);
-
-    let timer;
-    friendLink.addEventListener('mouseover', (e) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => onFriendLinkHover(e), 200);
+    link.addEventListener('mouseenter', () => {
+      overAnchor = true;
+      scheduleShow(() => showForAnchor(link));
     });
 
-    friendLink.addEventListener('mouseleave', () => {
-      timer = setTimeout(() => {
-        if (friendDataWrapper && ! friendDataWrapper.matches(':hover')) {
-          friendDataWrapper.remove();
-        }
-      }, 350); // delay in milliseconds
+    link.addEventListener('mouseleave', () => {
+      overAnchor = false;
+      scheduleHide();
     });
-  });
-};
 
-/**
- * Function to handle tab changes.
- *
- * @param {Function} callback The callback function.
- * @param {number}   attempts The number of attempts.
- */
-const onTabChangeCallback = (callback, attempts = 0) => {
-  const tabs = document.querySelectorAll('.notificationHeader .tabs a');
-  if (! tabs || tabs.length === 0) {
-    if (attempts > 2) {
-      return;
-    }
+    link.addEventListener('focus', () => {
+      overAnchor = true;
+      scheduleShow(() => showForAnchor(link));
+    });
 
-    setTimeout(onTabChangeCallback, 250, callback, attempts + 1);
-    return;
-  }
-
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      callback();
+    link.addEventListener('blur', () => {
+      overAnchor = false;
+      scheduleHide();
     });
   });
 };
 
-/**
- * When the tab changes, wait for the ajax call and then run the callback.
- *
- * @param {Function} callback The callback function.
- */
-const onTabChange = (callback) => {
-  onEvent('ajax_response', () => {
-    onTabChangeCallback(callback);
-  });
-};
-
-/**
- * Call the callback when the inbox is opened.
- *
- * @param {Function} callback The callback function.
- */
-const onInboxOpen = (callback) => {
-  const inboxBtn = document.querySelector('#hgbar_messages');
-  if (! inboxBtn) {
-    return;
-  }
-
-  inboxBtn.addEventListener('click', () => {
-    onTabChange(callback);
-  });
-};
-
-/**
- * The main function.
- */
-const main = () => {
-  const selectors = [
-    'a[href*="https://www.mousehuntgame.com/hunterprofile.php"]',
-    'a[href*="https://www.mousehuntgame.com/profile.php"]',
-    '.entry.socialGift .journaltext a',
-    '.notificationMessageList .messageText a[href*="https://www.mousehuntgame.com/p"]',
-    'tr.teamPage-memberRow-identity a[href*="https://www.mousehuntgame.com/profile.php"]',
-    '.treasureMapView-scoreboard-table a[href*="https://www.mousehuntgame.com/profile.php"]',
-  ];
-
-  selectors.forEach((selector) => {
-    addFriendLinkEventListener(selector);
-  });
-};
-
-let debugPopup = false;
-/**
- * Initialize the module.
- */
 const init = () => {
   addStyles(styles, 'hover-profiles');
 
-  debugPopup = getSetting('debug.hover-popups', false);
-
-  setTimeout(main, 500);
-  onRequest('*', () => {
-    setTimeout(main, 1000);
-  });
-
-  onInboxOpen(main);
+  // onRequest('*', () => setTimeout(bindListeners, 250));
+  onJournalEntriesProcessed(bindListeners);
 };
 
-/**
- * Initialize the module.
- */
 export default {
   id: 'hover-profiles',
   name: 'Hover Profiles',
   type: 'feature',
   default: true,
-  description: 'Hover over a friend\'s name in your journal, inbox, or elsewhere to get a mini-profile popup.',
-  load: init,
+  description: 'Hover over a name to see a mini profile popup.',
+  load: init
 };
