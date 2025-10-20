@@ -50,7 +50,7 @@ const onInvitesTab = () => {
       if (inviteTab) {
         inviteTab.click();
       }
-      https:// www.mousehuntgame.com/camp.php#
+
       refreshButton.classList.remove('loading');
       maybeShowInvitesTab();
     }, () => {

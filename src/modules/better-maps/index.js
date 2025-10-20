@@ -446,6 +446,13 @@ const addInfoClasses = (mapData) => {
   }
 };
 
+const runMapEnhancements = () => {
+  addBlockClasses();
+  updateMapClasses();
+  enhancePreviewButton();
+  maybeShowInvitesTab();
+};
+
 /**
  * Initialize the module.
  */
@@ -500,28 +507,15 @@ const init = () => {
 
   clearMapCache();
 
-  onEvent('map_navigation_tab_click', (tab) => {
-    addBlockClasses();
-    updateMapClasses();
-    maybeShowInvitesTab(tab);
-    enhancePreviewButton();
-  });
+  onEvent('map_navigation_tab_click', runMapEnhancements);
 
   addMapPreviewListeners();
   onEvent('map_show_map_preview', addMapClassesToPreview);
   onEvent('map_hide_map_preview', removeMapClassesFromPreview);
 
-  onRequest('users/treasuremap_v2.php', () => {
-    addBlockClasses();
-    updateMapClasses();
-    enhancePreviewButton();
-  });
-
-  onRequest('board/board.php', () => {
-    addBlockClasses();
-    updateMapClasses();
-    enhancePreviewButton();
-  });
+  onRequest('users/treasuremap_v2.php', runMapEnhancements);
+  onRequest('board/board.php', runMapEnhancements);
+  onDialogShow('map', runMapEnhancements);
 
   floatingIslands();
 };
