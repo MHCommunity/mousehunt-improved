@@ -93,6 +93,17 @@ const cacheSetExpiration = async (key, time = null) => {
 };
 
 /**
+ * Expire the cache for the given key.
+ *
+ * @param {string} key Key to expire.
+ *
+ * @return {Promise<void>} Resolves when the cache is expired.
+ */
+const cacheExpire = async (key) => {
+  return await dbSet('cache', { id: `expiration-${key}`, value: Date.now() - 1000 });
+};
+
+/**
  * Check if the cache is expired for the given key.
  *
  * @param {string} key Key to check.
@@ -465,6 +476,7 @@ export {
   cacheSet,
   cacheSetAsync,
   cacheSetExpiration,
+  cacheExpire,
   cacheSetNoExpiration,
   clearCaches,
   getData,
