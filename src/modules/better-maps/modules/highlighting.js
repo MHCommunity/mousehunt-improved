@@ -172,6 +172,29 @@ const areaHighlightingWarpath = () => {
   return true;
 };
 
+const areaHighlightingHalloween = () => {
+  if ('halloween_event_location' !== getCurrentLocation()) {
+    return false;
+  }
+
+  const equippedBaitId = user.bait_item_id || 0;
+
+  const idToCategory = {
+    3305: 'monterey-Jack',
+    3306: 'bonefort',
+    3307: 'polter-geitost',
+    3308: 'scream',
+  };
+
+  const mapCategory = document.querySelector(`.mouse-category-wrapper.mouse-category-${idToCategory[equippedBaitId] || 'standard'}`);
+  if (mapCategory) {
+    mapCategory.classList.add('mouse-category-current-floor');
+    return true;
+  }
+
+  return true;
+};
+
 /**
  * Get the user's profile picture.
  *
@@ -237,6 +260,12 @@ export default () => {
     break;
   case 'warpath':
     added = areaHighlightingWarpath();
+    break;
+  case 'halloween_trick_2021':
+    added = areaHighlightingHalloween();
+    break;
+  case 'halloween_treat_2021':
+    added = areaHighlightingHalloween();
     break;
   default:
     break;

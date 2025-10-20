@@ -16,7 +16,7 @@ import {
 import { addArToggle, removeArToggle } from './toggle-ar';
 import doHighlighting from './highlighting';
 
-import mouseGroups from '@data/map-groups.json';
+let mouseGroups;
 
 /**
  * Get the mouse data for the map.
@@ -742,6 +742,10 @@ const processSortedTabClick = async () => {
   sortedMiceContainer.append(sortedPage);
   mapContainer.append(sortedMiceContainer);
 
+  if (! mouseGroups) {
+    mouseGroups = await getData('map-groups');
+  }
+
   if (mouseGroups[currentMapData.map_type]) {
     await makeSortedMiceList();
   } else if (currentMapData.is_scavenger_hunt) {
@@ -764,7 +768,11 @@ const processSortedTabClick = async () => {
  *
  * @return {boolean} Whether the tab was added.
  */
-const addSortedMapTab = () => {
+const addSortedMapTab = async () => {
+  if (! mouseGroups) {
+    mouseGroups = await getData('map-groups');
+  }
+
   const mapTabs = document.querySelector('.treasureMapRootView-subTabContainer');
   if (! mapTabs || mapTabs.length <= 0) {
     return false;

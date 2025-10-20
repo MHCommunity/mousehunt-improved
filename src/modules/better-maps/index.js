@@ -211,7 +211,9 @@ const initMapper = (map) => {
     ! map.is_complete &&
     ! map.can_claim_reward
   ) {
-    doEvent('map_sorted_tab_click', map);
+    setTimeout(() => {
+      showSortedTab(map);
+    }, 250);
   }
 
   // Add the block classes.
@@ -513,8 +515,14 @@ const init = () => {
   onEvent('map_show_map_preview', addMapClassesToPreview);
   onEvent('map_hide_map_preview', removeMapClassesFromPreview);
 
-  onRequest('users/treasuremap_v2.php', runMapEnhancements);
-  onRequest('board/board.php', runMapEnhancements);
+  onRequest('users/treasuremap_v2.php', () => {
+    runMapEnhancements();
+    setTimeout(runMapEnhancements, 750);
+  });
+  onRequest('board/board.php', () => {
+    runMapEnhancements();
+    setTimeout(runMapEnhancements, 750);
+  });
   onDialogShow('map', runMapEnhancements);
 
   floatingIslands();
