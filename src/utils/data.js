@@ -12,6 +12,7 @@ const validDataFiles = new Set([
   'items-tradable',
   'items',
   'library-assignments',
+  'map-groups',
   'm400-locations',
   'marketplace-hidden-items',
   'mhct-convertibles',
@@ -29,6 +30,23 @@ const validDataFiles = new Set([
   'upscaled-images',
   'wisdom',
 ]);
+
+const dataFilesToPreload = [
+  'effs',
+  'environments-events',
+  'environments',
+  'item-thumbnails',
+  'items-tradable',
+  'items',
+  'map-groups',
+  'mice-groups',
+  'mice-regions',
+  'mice-thumbnails',
+  'mice',
+  'minlucks',
+  'upscaled-images',
+  'wisdom',
+];
 
 /**
  * Check if the given file is a valid data file available from the API.
@@ -186,9 +204,15 @@ const clearCaches = async () => {
 
 /**
  * Prime the caches.
+ *
+ * @param {boolean} all Whether to update all data files.
+ *
+ * @return {Promise<void>} Resolves when the caches are updated.
  */
-const updateCaches = async () => {
-  for (const file of validDataFiles) {
+const updateCaches = async (all = false) => {
+  const filesToUpdate = all ? validDataFiles : dataFilesToPreload;
+
+  for (const file of filesToUpdate) {
     await getData(file, true);
 
     await new Promise((resolve) => setTimeout(resolve, 250));
