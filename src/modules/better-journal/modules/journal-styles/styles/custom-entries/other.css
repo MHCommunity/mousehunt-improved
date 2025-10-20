@@ -16,3 +16,19 @@
 .journal .content .captchasolved {
   background-image: url(https://i.mouse.rip/puzzlenew.png);
 }
+
+.journal .entry.adventureBook-journal li {
+  margin-left: 15px;
+}
+
+.journal .entry.adventureBook-journal.goal {
+  background-color: #89defe;
+}
+
+.journal .entry.adventureBook-journal .journaltext b {
+  font-weight: 900;
+}
+
+.journal .entry.adventureBook-journal .journaltext b:first-of-type {
+  font-weight: 400;
+}
