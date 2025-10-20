@@ -77,7 +77,8 @@
 .mh-dark .claimed .adventureBookPopup-adventure-header,
 .mh-dark .adventureBookPopup-adventureContainer.canClaim .adventureBookPopup-adventure-footer,
 .mh-dark .adventureBookPopup-adventureContainer.claimed .adventureBookPopup-adventure-footer {
-  background-color: var(--d-green);
+  color: var(--d-text);
+  background-color: var(--d-green-dark);
 }
 
 .mh-dark a.adventureBookPopup-adventure-button {

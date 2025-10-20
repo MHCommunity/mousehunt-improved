@@ -499,15 +499,15 @@
 
 .mh-dark .treasureMapDialogView .userSelectorView-header,
 .mh-dark .treasureMapDialogView .userSelector-table th {
-  background-color: var(--d-bg);
   color: var(--d-text);
+  background-color: var(--d-bg);
 }
 
 .mh-dark .treasureMapDialogView .treasureMapUserSelectorView-toggleFavouritesContainer.treasureMapView-block-title label {
   color: var(--d-text);
 }
 
-.mh-dark .treasureMapDialogView .userSelector-table th.userSelectorView-sortByLink:after {
+.mh-dark .treasureMapDialogView .userSelector-table th.userSelectorView-sortByLink::after {
   filter: invert(1) opacity(0.5);
 }
 
@@ -523,8 +523,8 @@
 
 .mh-dark .treasureMapDialogView .userSelectorView-category.active,
 .mh-dark .treasureMapDialogView .userSelectorView-categoryContainer:hover .userSelectorView-category:hover {
-  border-radius: 0;
   background-color: var(--d);
+  border-radius: 0;
 }
 
 .mh-dark .treasureMapDialogView .userSelectorView-categoryContainer {
@@ -537,15 +537,15 @@
 }
 
 .mh-dark .treasureMapDialogView .userSelector-table th.userSelectorView-sortByLink.active {
-  background-color: var(--d-blue-dark);
   color: var(--d-text);
+  background-color: var(--d-blue-dark);
 }
 
 .mh-dark .treasureMapDialogView .treasureMapDialogView-userSelector .userSelectorView-content {
   border-color: var(--d-border);
 }
 
-.mh-dark .treasureMapView-favouriteButton.disabled:hover:after {
+.mh-dark .treasureMapView-favouriteButton.disabled:hover::after {
   background-color: var(--d-action);
   border-right: none;
 }
@@ -569,4 +569,8 @@
 
 .mh-dark .treasureMapDialogView-footer {
   background-color: var(--d-bg);
+}
+
+.mh-dark .treasureMapView-block-content-heading-count {
+  color: var(--d-text-muted);
 }

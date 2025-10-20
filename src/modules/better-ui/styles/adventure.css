@@ -198,13 +198,10 @@ a.adventureBookPopup-title {
   padding: 3px 15px;
 }
 
+.mh-dark .adventureBookPopup-adventure-header-title,
+.mh-dark .adventureBookPopup-adventure-header-duration,
 .mh-dark .adventureBookPopup-title-margin {
   color: var(--d-text);
-}
-
-.mh-dark .adventureBookPopup-adventure-header-title,
-.mh-dark .adventureBookPopup-adventure-header-duration {
-  color: var(--d-black);
 }
 
 img.adventureBookPopup-title-icon {
@@ -214,14 +211,18 @@ img.adventureBookPopup-title-icon {
 
 .adventureBookPopup-title.complete .adventureBookPopup-title-status {
   top: 3px;
-  left: 3px;
+  left: 10px;
   width: 20px;
   height: 20px;
   padding: 2px;
   background: url(https://www.mousehuntgame.com/images/ui/hud/meadow_checkmark.png) 0 0 no-repeat;
-  background-color: rgb(238 238 238 / 50%);
   background-size: cover;
   border-radius: 50px;
+  opacity: 0.9;
+}
+
+.adventureBookPopup-title.complete img.adventureBookPopup-title-icon {
+  opacity: 0.3;
 }
 
 .adventureBookPopup-title-name {
@@ -330,6 +331,11 @@ a.adventureBookPopup-title.active {
   background-color: #fff0c2;
 }
 
+.mh-dark .highlight .adventureBookPopup-adventure-header,
+.mh-dark .highlight .adventureBookPopup-adventure-footer {
+  background-color: var(--d);
+}
+
 .highlight.claimed .adventureBookPopup-adventure-header,
 .highlight.claimed .adventureBookPopup-adventure-footer {
   background-color: #62aa42;
@@ -366,4 +372,9 @@ a.adventureBookPopup-title.active {
 .adventureBookPopup-adventureContainer.claimed.highlight .adventureBookPopup-adventure-favorite {
   top: 6px;
   display: block;
+}
+
+.mh-dark a.adventureBookPopup-title.active,
+.mh-dark a.adventureBookPopup-title:hover {
+  background-color: var(--d-blue-darker);
 }

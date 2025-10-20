@@ -403,3 +403,7 @@
 .mh-dark .mh-improved-aura-view .time {
   color: var(--d-text-muted);
 }
+
+.mh-dark .trapImageView-zoomButton {
+  filter: grayscale(1);
+}
