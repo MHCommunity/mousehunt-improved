@@ -295,8 +295,8 @@ const attachToButtons = (root = document) => {
       }
     };
 
-    if (! btn.classList.contains('mhim-quick-send-attached')) {
-      btn.classList.add('mhim-quick-send-attached');
+    if (! btn.classList.contains('mhui-quick-send-attached')) {
+      btn.classList.add('mhui-quick-send-attached');
       btn.addEventListener('mouseenter', onEnter);
       btn.addEventListener('mouseleave', onLeave);
 
