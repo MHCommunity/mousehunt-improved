@@ -44,7 +44,7 @@ const restoreSettingsBackup = () => {
 const getVersionUpdates = () => {
   const neededUpdates = [];
 
-  const updatesCompleted = getSetting('mh-improved-updates-completed', []);
+  const updatesCompleted = getSetting('updates-completed', []);
   for (const versionUpdate in Object.values(versionUpdates)) {
     const version = versionUpdates[versionUpdate].version;
     if (! updatesCompleted.includes(version)) {
@@ -65,8 +65,7 @@ const getVersionUpdates = () => {
 const doVersionUpdates = async (updates) => {
   for (const version of Object.keys(updates)) {
     const update = versionUpdates[version];
-    const updateCompleted = getSetting('mh-improved-updates-completed', []).includes(update.version);
-
+    const updateCompleted = getSetting('updates-completed', []).includes(update.version);
     if (updateCompleted) {
       continue;
     }
@@ -76,14 +75,15 @@ const doVersionUpdates = async (updates) => {
 
       try {
         await update.update();
+
+        const updatesCompleted = getSetting('updates-completed', []);
+        updatesCompleted.push(update.version);
+        saveSetting('updates-completed', updatesCompleted);
+        debuglog('update-migration', `Completed update for ${update.version}`);
       } catch (error) {
         debuglog('update-migration', `Error running update for ${update.version}`, error);
         throw new Error(`Error running update for ${update.version}: ${error.message}`);
       }
-
-      const updatesCompleted = getSetting('mh-improved-updates-completed', []);
-      updatesCompleted.push(update.version);
-      saveSetting('mh-improved-updates-completed', updatesCompleted);
     } catch (error) {
       debuglog('update-migration', `Error updating to ${update.version}`, error);
       throw error;
@@ -119,6 +119,7 @@ const update = async (previousVersion, newVersion) => {
 
   try {
     if (! isFreshInstall && needsToRunUpdate) {
+      debuglog('update-migration', 'Running version updates:', updates);
       await doVersionUpdates(updates);
     }
 
