@@ -634,7 +634,7 @@ input.treasureMapView-block-search-text {
   left: 22px;
 }
 
-.treasureMapTooltipView.active {
+.mh-ui-user-on-map .treasureMapTooltipView.active {
   display: flex;
   flex-direction: column;
   place-content: flex-start space-around;
@@ -867,8 +867,8 @@ input.treasureMapView-block-search-text {
 
 .treasureMapTooltipView-hunterText-state.captain {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 3px;
+  left: 3px;
   visibility: hidden;
 }
 
@@ -876,8 +876,8 @@ input.treasureMapView-block-search-text {
   position: absolute;
   top: 0;
   left: 0;
-  width: 18px;
-  height: 16px;
+  width: 15px;
+  height: 10px;
   visibility: visible;
   content: "";
   background: url(https://www.mousehuntgame.com/images/ui/tournaments/captain_icon.png?asset_cache_version=3) no-repeat 50% 50% / contain;
@@ -885,8 +885,8 @@ input.treasureMapView-block-search-text {
 
 .treasureMapTooltipView-hunterText-state.upgrader {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 2px;
+  right: 2px;
   visibility: hidden;
 }
 
@@ -894,8 +894,8 @@ input.treasureMapView-block-search-text {
   position: absolute;
   top: 0;
   right: 0;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   visibility: visible;
   content: "";
   background: #ffb615;
@@ -907,7 +907,7 @@ input.treasureMapView-block-search-text {
   left: 30px;
 }
 
-.treasureMapTooltipView {
+.mh-ui-user-on-map .treasureMapTooltipView {
   min-height: 40px;
 }
 
@@ -1039,17 +1039,13 @@ input.treasureMapView-block-search-text {
   display: block;
 }
 
+.mh-ui-multiple-maps .treasureMapTooltipView {
+  margin-top: 5px;
+}
+
 .treasureMapTooltipView.mh-ui-map-preview-tooltip {
-  margin-top: -85px;
+  margin-top: -90px;
   margin-left: -7px;
-}
-
-.treasureMapTooltipView.mh-ui-map-preview-previewbar-tooltip {
-  margin-top: -25px;
-}
-
-.treasureMapTooltipView.mh-ui-map-preview-previewbar-tooltip.mh-ui-map-preview-tooltip {
-  margin-top: -75px;
 }
 
 .treasureMapDialogView-overlay.active .treasureMapView-mapName {

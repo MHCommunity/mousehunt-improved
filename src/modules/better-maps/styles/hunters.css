@@ -144,7 +144,7 @@ input.mh-ui-quick-invite-input {
 }
 
 .mh-ui-quick-invite-indicator.mh-ui-quick-invite-spinner {
-  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/small_spinner.gif);
+  background-image: url(https://www.mousehuntgame.com/images//ui/loaders/drip_spinner.gif);
   background-repeat: no-repeat;
   background-size: 16px;
 }
@@ -183,4 +183,9 @@ span.treasureMapView-shareLinkInputStatus {
 
 .mh-mapper-invite-request-action {
   padding: 0 10px;
+}
+
+/* hunters box in previews */
+.mh-ui-map-preview .treasureMapView-blockWrapper > .treasureMapView-leftBlock > .treasureMapView-block {
+  margin-right: -5px;
 }
