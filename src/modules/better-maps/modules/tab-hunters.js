@@ -187,21 +187,38 @@ const getUserData = async (userId) => {
 
 /**
  * Remove empty hunter slots from the list.
+ *
+ * @param {Object} mapData The map data.
  */
-const removeEmptyHunterSlotsFromList = async () => {
-  const emptySlots = document.querySelectorAll('.treasureMapView-allyCell.name');
-  if (emptySlots.length) {
-    let shouldRemove = false;
-    emptySlots.forEach((slot) => {
-      if ((slot.textContent === 'The map owner can invite more hunters.') || (slot.textContent === 'Click to invite a friend.')) {
-        if (shouldRemove) {
-          shouldRemove.parentNode.remove();
-        }
+const updateJoinedHuntersList = async (mapData) => {
+  const hunterSlots = document.querySelectorAll('.mh-ui-hunters--block .treasureMapView-allyCell.name');
+  if (! hunterSlots || hunterSlots.length === 0) {
+    return;
+  }
 
-        slot.parentNode.classList.add('hunters-last-slot');
-        shouldRemove = slot;
+  let shouldRemove = false;
+  for (const slot of hunterSlots) {
+    if ((slot.textContent === 'The map owner can invite more hunters.') || (slot.textContent === 'Click to invite a friend.')) {
+      if (shouldRemove) {
+        shouldRemove.parentNode.remove();
       }
-    });
+
+      slot.parentNode.classList.add('hunters-last-slot');
+      shouldRemove = slot;
+    }
+  }
+
+  for (const slot of hunterSlots) {
+    const nameEl = slot.querySelector('.treasureMapView-ally-name');
+    const name = nameEl ? nameEl.textContent.trim() : null;
+    if (! name) {
+      continue;
+    }
+
+    const hunter = mapData.hunters.find((h) => h.name.trim() === name);
+    if (hunter) {
+      nameEl.innerHTML = `<a href="https://www.mousehuntgame.com/profile.php?snuid=${hunter.sn_user_id}">${hunter.name}</a>`;
+    }
   }
 };
 
@@ -275,7 +292,7 @@ const fixPluralInvites = () => {
  */
 const showHuntersTab = async (mapData) => {
   modifyButtons();
-  removeEmptyHunterSlotsFromList();
+  updateJoinedHuntersList(mapData);
   fixPluralInvites();
 
   const leftBlock = document.querySelector('.treasureMapView-leftBlock');
