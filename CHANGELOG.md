@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 0.93.0
+
+- Better UI: Updated styles
+- Better Journal: Updated styles
+- Better Maps: Updated styles
+- Dark Mode: Updated styles
+- Hover Profiles: Improved performance and reliability of profile popups across the site
+- Quick Send Supplies: Improved hover interaction and item sending experience
+- Miscellaneous bug fixes and performance improvements
+
 ## Version 0.92.0
 
 - Better UI: Updated styles

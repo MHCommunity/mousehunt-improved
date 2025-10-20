@@ -5,14 +5,11 @@
       "title": "",
       "items": [
         "Better UI: Updated styles",
-        "Better Maps: Fixed map enhancements not applying on first open",
+        "Better Journal: Updated styles",
         "Better Maps: Updated styles",
-        "Better Travel: Updated styles",
-        "Custom Camp Background: Added 'Blueprint' background option",
-        "Custom Horn: Fixed horn not using event horn when set to Default",
         "Dark Mode: Updated styles",
-        "Location Catch Stats: Added 'Color rows based on crown' option",
-        "Location HUDs - Event Locations: Updated Halloween HUD styles",
+        "Hover Profiles: Improved performance and reliability of profile popups across the site",
+        "Quick Send Supplies: Improved hover interaction and item sending experience",
         "Miscellaneous bug fixes and performance improvements"
       ]
     }
