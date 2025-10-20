@@ -26,6 +26,8 @@ body.mh-dark {
 .mh-dark .mousehuntPage-content textarea,
 .mh-dark .mousehuntPage-content input,
 .mh-dark #mousehunt-improved-settings-advanced-override-flags input,
+.mh-dark .treasureMapView-shareLinkInput,
+.mh-dark .userSelectorView-filter-input,
 .mh-dark #mousehunt-improved-settings-advanced-override-styles textarea {
   color: var(--d-text);
   background-color: var(--d-action);

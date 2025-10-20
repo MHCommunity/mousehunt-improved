@@ -162,7 +162,7 @@
 }
 
 .mh-dark .treasureMapRootView-subTab-spacer {
-  width: 0;
+  width: 1px;
 }
 
 .mh-dark .treasureMapView-consolationPrize {
@@ -495,4 +495,78 @@
 
 .mh-dark .treasureMapView-previewBar-content {
   color: var(--d-text-dark);
+}
+
+.mh-dark .treasureMapDialogView .userSelectorView-header,
+.mh-dark .treasureMapDialogView .userSelector-table th {
+  background-color: var(--d-bg);
+  color: var(--d-text);
+}
+
+.mh-dark .treasureMapDialogView .treasureMapUserSelectorView-toggleFavouritesContainer.treasureMapView-block-title label {
+  color: var(--d-text);
+}
+
+.mh-dark .treasureMapDialogView .userSelector-table th.userSelectorView-sortByLink:after {
+  filter: invert(1) opacity(0.5);
+}
+
+.mh-dark .treasureMapDialogView .userSelectorView-category,
+.mh-dark .treasureMapDialogView .userSelectorView-categoryContainer:hover .userSelectorView-category.active {
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapDialogView .userSelectorView-category-spacer {
+  width: 1px;
+}
+
+.mh-dark .treasureMapDialogView .userSelectorView-category.active,
+.mh-dark .treasureMapDialogView .userSelectorView-categoryContainer:hover .userSelectorView-category:hover {
+  border-radius: 0;
+  background-color: var(--d);
+}
+
+.mh-dark .treasureMapDialogView .userSelectorView-categoryContainer {
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapDialogView .userSelectorView-category,
+.mh-dark .treasureMapDialogView .userSelectorView-category:hover {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .treasureMapDialogView .userSelector-table th.userSelectorView-sortByLink.active {
+  background-color: var(--d-blue-dark);
+  color: var(--d-text);
+}
+
+.mh-dark .treasureMapDialogView .treasureMapDialogView-userSelector .userSelectorView-content {
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapView-favouriteButton.disabled:hover:after {
+  background-color: var(--d-action);
+  border-right: none;
+}
+
+.mh-dark .treasureMapDialogView .userSelector-table tr.selected {
+  background-color: var(--d-green-dark);
+}
+
+.mh-dark .treasureMapDialogView .userSelector-table tr.empty .userSelectorView-userList-group-message {
+  background-color: var(--d-bg-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapDialogView .userSelectorView-user-image {
+  border-color: var(--d-border);
+}
+
+.mh-dark a.treasureMapView-showCancelInvitesButton {
+  color: var(--d-link);
+}
+
+.mh-dark .treasureMapDialogView-footer {
+  background-color: var(--d-bg);
 }

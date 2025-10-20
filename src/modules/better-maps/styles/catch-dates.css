@@ -14,7 +14,7 @@
 
 .mh-dark .treasureMapView-goals-group-goal .mh-improved-catch-date,
 .mh-dark .mh-improved-map-start {
-  color: var(--d-text-dark);
+  color: var(--d-text-muted);
 }
 
 .complete .treasureMapView-goals-group-goal-name {
