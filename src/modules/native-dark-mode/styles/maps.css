@@ -436,7 +436,7 @@
   background-color: var(--d-blue-dark);
 }
 
-.mh-dark a.mh-ui-invite-refresh-button:hover::after {
+.mh-dark a.mh-ui-invite-refresh-button::after {
   filter: invert(1);
 }
 
