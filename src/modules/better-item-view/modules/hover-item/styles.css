@@ -12,14 +12,14 @@
 }
 
 .item-data-wrapper-loading {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: 90%;
-  background-image: url(https://www.mousehuntgame.com/images/ui/loaders/drip_spinner.gif);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 55px;
+  color: transparent;
+}
+
+.item-data-wrapper-loading::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images//ui/loaders/drip_spinner.gif) no-repeat center center;
 }
 
 #item-data-wrapper .item-data {
