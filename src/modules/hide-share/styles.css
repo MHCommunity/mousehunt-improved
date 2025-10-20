@@ -16,6 +16,7 @@
 }
 
 #OnboardArrow.onboardPopup.canShare .closeButton {
+  top: 205px;
   right: 43px;
   left: unset;
   z-index: 2;
