@@ -527,6 +527,9 @@
   border-radius: 0;
 }
 
+.mh-dark .treasureMapDialogView-header,
+.mh-dark .treasureMapDialogView .userSelectorView-user-image,
+.mh-dark .treasureMapDialogView .treasureMapDialogView-userSelector .userSelectorView-content,
 .mh-dark .treasureMapDialogView .userSelectorView-categoryContainer {
   border-color: var(--d-border);
 }
@@ -541,10 +544,6 @@
   background-color: var(--d-blue-dark);
 }
 
-.mh-dark .treasureMapDialogView .treasureMapDialogView-userSelector .userSelectorView-content {
-  border-color: var(--d-border);
-}
-
 .mh-dark .treasureMapView-favouriteButton.disabled:hover::after {
   background-color: var(--d-action);
   border-right: none;
@@ -556,10 +555,6 @@
 
 .mh-dark .treasureMapDialogView .userSelector-table tr.empty .userSelectorView-userList-group-message {
   background-color: var(--d-bg-alt);
-  border-color: var(--d-border);
-}
-
-.mh-dark .treasureMapDialogView .userSelectorView-user-image {
   border-color: var(--d-border);
 }
 
