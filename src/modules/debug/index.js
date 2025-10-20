@@ -90,7 +90,7 @@ const main = () => {
   const debugAllEvents = getSetting('debug.all-events', false);
   const debugEvents = getSetting('debug.events', false);
 
-  if (debugEvents && ! debugAllEvents) {
+  if (debugEvents || debugAllEvents) {
     let events = [
       'camp_page_arm_item',
       'camp_page_toggle_blueprint',
