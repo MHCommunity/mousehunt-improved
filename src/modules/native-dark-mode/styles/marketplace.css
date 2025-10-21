@@ -264,3 +264,15 @@
 .mh-dark .marketplaceView-table tr.buy.canceled .marketplaceView-goldValue {
   color: var(--d-text-dark);
 }
+
+.mh-dark .marketplaceView-item-inputWrapper input,
+.mh-dark .marketplaceView-item-input input,
+.mh-dark .mhui-marketplace-quick-sell-wrapper {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  border-color: var(--d-border);
+}
+
+.mh-dark .marketplaceView-item-skinWeapon {
+  border-color: var(--d-border);
+}

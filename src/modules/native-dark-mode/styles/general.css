@@ -28,6 +28,7 @@ body.mh-dark {
 .mh-dark #mousehunt-improved-settings-advanced-override-flags input,
 .mh-dark .treasureMapView-shareLinkInput,
 .mh-dark .userSelectorView-filter-input,
+.mh-dark .mhui-marketplace-filter,
 .mh-dark #mousehunt-improved-settings-advanced-override-styles textarea {
   color: var(--d-text);
   background-color: var(--d-action);
@@ -199,5 +200,9 @@ body.mh-dark {
 }
 
 .mh-dark .mousehuntPage-message {
+  color: var(--d-text-dark);
+}
+
+.mh-dark .mhct-msg-display.mhct-toast {
   color: var(--d-text-dark);
 }
