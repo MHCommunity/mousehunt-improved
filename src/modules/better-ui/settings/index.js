@@ -22,13 +22,24 @@ export default async () => {
     },
     {
       id: 'better-ui.larger-skin-images',
-      title: 'Larger Skin Images: Show larger skin images in the trap selector',
+      title: 'Trap Selector: Show larger skin images in the trap selector',
       default: true,
     },
     {
       id: 'better-ui.show-unowned-skins',
-      title: 'Show Unowned Skins: Show unowned skins in the trap selector',
+      title: 'Trap Selector: Show unowned trap skins in the trap selector',
       default: true,
+    },
+    {
+      id: 'better-ui.larger-codices',
+      title: 'Trap Selector: Show larger codex images in the trap selector',
+      default: true,
+    },
+    {
+      id: 'better-ui.codex-at-bottom',
+      title: 'Trap Selector: Move the codex to the bottom of the trap view',
+      default: true,
+
     }
   ];
 };

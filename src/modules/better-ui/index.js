@@ -1,9 +1,11 @@
 import { addStyles, getSetting } from '@utils';
 
 import adventurebook from './modules/adventure-book';
+import codexAtBottom from './modules/codex-at-bottom';
 import friends from './modules/friends';
 import hud from './modules/hud';
 import kingsPromo from './modules/kings-promo';
+import largerCodices from './modules/larger-codices';
 import largerSkinImages from './modules/larger-skin-images';
 import legacyStyles from './modules/legacy-styles';
 import maintenance from './modules/maintenance';
@@ -34,20 +36,19 @@ const init = () => {
   randomSkinButton();
   skinPreviewBase();
 
-  if (getSetting('better-ui.hud-changes', true)) {
-    hud();
-  }
+  const modules = [
+    { enabled: getSetting('better-ui.hud-changes', true), load: hud },
+    { enabled: getSetting('better-ui.profile-changes', true), load: profile },
+    { enabled: getSetting('better-ui.larger-codices', true), load: largerCodices },
+    { enabled: getSetting('better-ui.larger-skin-images', true), load: largerSkinImages },
+    { enabled: getSetting('better-ui.show-unowned-skins', true), load: showUnownedSkins },
+    { enabled: getSetting('better-ui.codex-at-bottom', true), load: codexAtBottom },
+  ];
 
-  if (getSetting('better-ui.profile-changes', true)) {
-    profile();
-  }
-
-  if (getSetting('better-ui.larger-skin-images', true)) {
-    largerSkinImages();
-  }
-
-  if (getSetting('better-ui.show-unowned-skins', true)) {
-    showUnownedSkins();
+  for (const module of modules) {
+    if (module.enabled) {
+      module.load();
+    }
   }
 
   legacyStyles();
