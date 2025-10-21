@@ -1,0 +1,7 @@
+.canBuy .campPage-trap-itemBrowser-item-armButton {
+  text-shadow: none;
+  box-shadow:
+    0 0 1px #e4e3b8 inset,
+    0 -13px 1px #b2a622 inset,
+    0 0 1px #000;
+}

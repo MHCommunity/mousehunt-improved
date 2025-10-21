@@ -4,10 +4,12 @@ import adventurebook from './modules/adventure-book';
 import friends from './modules/friends';
 import hud from './modules/hud';
 import kingsPromo from './modules/kings-promo';
+import largerSkinImages from './modules/larger-skin-images';
 import legacyStyles from './modules/legacy-styles';
 import maintenance from './modules/maintenance';
 import profile from './modules/profile';
 import randomSkinButton from './modules/random-skin-button';
+import showUnownedSkins from './modules/show-unowned-skins';
 import skinPreviewBase from './modules/skin-preview-base';
 import userscriptStyles from './modules/userscripts-styles';
 
@@ -38,6 +40,14 @@ const init = () => {
 
   if (getSetting('better-ui.profile-changes', true)) {
     profile();
+  }
+
+  if (getSetting('better-ui.larger-skin-images', true)) {
+    largerSkinImages();
+  }
+
+  if (getSetting('better-ui.show-unowned-skins', true)) {
+    showUnownedSkins();
   }
 
   legacyStyles();

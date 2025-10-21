@@ -52,9 +52,13 @@ const addSkinImages = async (panel, force = false) => {
   }
 
   for (const item of items) {
+    if (item.classList.contains('mh-unowned-skin-item')) {
+      continue;
+    }
+
     const id = item.getAttribute('data-item-id');
     if (! id) {
-      return;
+      continue;
     }
 
     let skin;
@@ -121,7 +125,7 @@ const triggerFromClick = () => {
 /**
  * Initialize the module.
  */
-const init = () => {
+export default () => {
   addStyles(styles, 'larger-skin-images');
 
   onEvent('camp_page_toggle_blueprint', addSkinImages);
@@ -141,16 +145,4 @@ const init = () => {
   onNavigation(triggerFromClick, {
     page: 'camp',
   });
-};
-
-/**
- * Initialize the module.
- */
-export default {
-  id: 'larger-skin-images',
-  name: 'Larger Skin Images',
-  type: 'feature',
-  default: true,
-  description: 'Show larger images for skins in the trap selector.',
-  load: init,
 };

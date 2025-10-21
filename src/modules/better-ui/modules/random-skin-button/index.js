@@ -1,4 +1,4 @@
-import { addStyles, makeMhButton, onEvent, onRequest } from '@utils';
+import { addStyles, makeMhButton, onEvent } from '@utils';
 
 import styles from './styles.css';
 
@@ -15,6 +15,7 @@ const addRandomSkinButton = () => {
   const randomButton = makeMhButton({
     text: 'Random',
     className: ['random-skin-button', 'lightBlue'],
+    size: 'small',
     appendTo: header,
   });
 
@@ -53,6 +54,5 @@ const addRandomSkinButton = () => {
  */
 export default async () => {
   addStyles(styles, 'better-ui.random-skin-button');
-  onRequest('users/gettrapcomponents.php', addRandomSkinButton);
   onEvent('camp_page_toggle_blueprint', addRandomSkinButton);
 };
