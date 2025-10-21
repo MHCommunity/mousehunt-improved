@@ -58,12 +58,12 @@
 }
 
 .mh-dark .notificationMessageList .tab[data-tab="news"] .message {
-  background-color: var(--d-yellow-dark);
+  background-color: var(--d-bg-alt);
 }
 
 .mh-dark .notificationMessageList .tab[data-tab="news"] .message .date,
 .mh-dark .notificationMessageList .tab[data-tab="news"] .message .clear-block {
-  color: var(--d-text-dark);
+  color: var(--d-text-muted);
 }
 
 .mh-dark #messengerUINotification .messengerUINotificationClose {
@@ -81,5 +81,5 @@
 }
 
 .mh-dark .notificationMessageList .news.message .messageText {
-  color: var(--d-text-dark);
+  color: var(--d-text);
 }

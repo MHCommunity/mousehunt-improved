@@ -428,7 +428,11 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
 
 .mh-dark .giftSelectorView-friendRow-action.claim,
 .mh-dark .giftSelectorView-friendRow-action.return {
+  background-color: var(--d-action);
   outline: 1px solid var(--d);
+  box-shadow:
+    0 0 1px var(--d-alt) inset,
+    0 3px 1px var(--d-transparent-20) inset;
 }
 
 .giftSelectorView-friendRow-action.claim:hover,
@@ -436,6 +440,13 @@ a.mousehuntActionButton.giftSelectorView-action-confirm span {
   box-shadow:
     0 0 1px #000 inset,
     0 -1px 1px #fff inset;
+}
+
+.mh-dark .giftSelectorView-friendRow-action.claim:hover,
+.mh-dark .giftSelectorView-friendRow-action.return:hover {
+  box-shadow:
+    0 0 1px var(--d-transparent-20) inset,
+    0 3px 1px var(--d-transparent-40) inset;
 }
 
 .giftSelectorView-friendRow.new .giftSelectorView-friend-image::after {

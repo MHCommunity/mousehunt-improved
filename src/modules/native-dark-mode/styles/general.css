@@ -206,3 +206,7 @@ body.mh-dark {
 .mh-dark .mhct-msg-display.mhct-toast {
   color: var(--d-text-dark);
 }
+
+.mh-dark #OnboardArrow .whiteboard {
+  color: var(--d-text-dark);
+}

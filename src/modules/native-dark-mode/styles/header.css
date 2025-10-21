@@ -14,8 +14,7 @@
 }
 
 .mh-dark .mousehuntHud-menu.default {
-  z-index: 90;
-  filter: brightness(0.9);
+  background-image: url(https://i.mouse.rip/mousehuntHud-dark.png);
 }
 
 .mh-dark .mousehuntHud-marbleDrawer {

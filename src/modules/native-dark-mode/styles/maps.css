@@ -503,6 +503,7 @@
   background-color: var(--d-bg);
 }
 
+.mh-dark .marketplaceView-item-input-label,
 .mh-dark .treasureMapDialogView .treasureMapUserSelectorView-toggleFavouritesContainer.treasureMapView-block-title label {
   color: var(--d-text);
 }

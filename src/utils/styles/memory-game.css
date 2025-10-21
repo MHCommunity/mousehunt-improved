@@ -134,6 +134,10 @@
   text-align: center;
 }
 
+.mh-dark .mh-improved-card-name {
+  color: var(--d-text-dark);
+}
+
 .mh-improved-memory-card:hover .mh-improved-card-front {
   background: #eee;
   outline: 1px solid #ccc;

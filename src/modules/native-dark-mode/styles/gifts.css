@@ -71,6 +71,7 @@
 }
 
 .mh-dark .giftSelectorView-friend.selected:hover .giftSelectorView-friend-padding {
+  color: var(--d-text);
   background-color: var(--d-blue-dark);
 }
 
@@ -213,4 +214,30 @@
 
 .mh-dark .winterHuntProfileInteractionView-giftCeremony {
   color: var(--d-text-dark);
+}
+
+.mh-dark .giftSelectorView-claimWarning,
+.mh-dark .giftSelectorView-friend-sent {
+  color: var(--d-text-muted);
+}
+
+.mh-dark .giftSelectorView-friend.selected .giftSelectorView-friend-padding {
+  background-color: var(--d-blue);
+}
+
+.mh-dark .giftSelectorView-friend-image {
+  border-color: var(--d-border);
+}
+
+.mh-dark .giftSelectorView-actionLimit.error::after {
+  color: var(--d-text);
+  background-color: var(--d-red);
+}
+
+.mh-dark .giftSelectorView-actionLimit::after {
+  background-color: var(--d-yellow);
+}
+
+.mh-dark .giftSelectorView-gift.gift_of_the_day .giftSelectorView-gift-padding::after {
+  background-color: var(--d-blue-dark);
 }

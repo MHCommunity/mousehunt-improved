@@ -44,3 +44,15 @@
 .treasureMapView-block-content.loading::after {
   background-color: transparent;
 }
+
+.mh-dark #messengerUINotification .loading {
+  background: none;
+}
+
+.mh-dark #messengerUINotification .loading::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: url(https://www.mousehuntgame.com/images/ui/loaders/round_bar_bubble.gif?asset_cache_version=6) 50% 43% no-repeat;
+  filter: invert(1);
+}
