@@ -222,6 +222,7 @@ const doLocationRefresh = async () => {
     makeMhButton({
       text: 'Travel',
       size: 'small',
+      element: 'button',
       className: ['travel-button', 'lightBlue'],
       callback: async (event) => {
         const button = event.currentTarget;
@@ -320,6 +321,7 @@ const makeDashboardTab = () => {
 
   makeMhButton({
     text: 'Refresh',
+    element: 'button',
     className: ['dashboardRefresh'],
     callback: doLocationRefresh,
     appendTo: refreshWrapper,
