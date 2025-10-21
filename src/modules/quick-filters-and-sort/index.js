@@ -1,4 +1,10 @@
-import { addStyles, makeElement, onEvent, onRequest } from '@utils';
+import {
+  addStyles,
+  getSetting,
+  makeElement,
+  onEvent,
+  onRequest
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -150,12 +156,12 @@ const addQuickLinksToTrap = async () => {
     {
       id: 'name',
       name: 'Name',
-      image: 'https://i.mouse.rip/sort-a-z-icon.png',
+      image: getSetting('native-dark-mode', false) ? 'https://i.mouse.rip/sort-a-z-icon-dark-mode.png' : 'https://i.mouse.rip/sort-a-z-icon.png',
     },
   ];
 
   if ('trinket' === type) {
-    links.push({ id: 'quantity', name: 'Quantity', image: 'https://i.mouse.rip/sort-qty-icon.png' });
+    links.push({ id: 'quantity', name: 'Quantity', image: getSetting('native-dark-mode', false) ? 'https://i.mouse.rip/sort-qty-icon-dark-mode.png' : 'https://i.mouse.rip/sort-qty-icon.png' });
   }
 
   const sortByInput = document.querySelector('.campPage-trap-itemBrowser-filter.sortBy select');
