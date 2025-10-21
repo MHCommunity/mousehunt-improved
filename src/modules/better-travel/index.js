@@ -76,9 +76,9 @@ const expandTravelRegions = () => {
   }
 
   if (app?.pages?.TravelPage?.zoomOut && app.pages.TravelPage.showEnvironment) {
-    setTimeout(() => app.pages.TravelPage.showEnvironment(getCurrentLocation()), 200);
-    setTimeout(() => app.pages.TravelPage.zoomOut(), 300);
-    setTimeout(() => app.pages.TravelPage.zoomOut(), 400);
+    app.pages.TravelPage.showEnvironment(getCurrentLocation(), true);
+    app.pages.TravelPage.zoomOut();
+    app.pages.TravelPage.zoomOut();
   }
 };
 
