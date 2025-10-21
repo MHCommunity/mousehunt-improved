@@ -571,3 +571,11 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
 .itemPurchaseView-container.apothecary .itemPurchaseView-action-state.view {
   padding-bottom: 20px;
 }
+
+.mousehuntHud-userStat.team {
+  z-index: 0;
+}
+
+#hudLocationContent {
+  filter: none;
+}
