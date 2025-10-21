@@ -77,7 +77,7 @@ const addOnboardingMessage = async (options) => {
     },
     highlight_dom: highlightSelector,
     highlight_padding: highlightPadding,
-    css_class: `larryCircle mh-improved-onboarding${classname ? ` ${classname}` : ''}`,
+    css_class: `larryCircle mh-improved-onboarding ${step} ${classname || ''}`,
     show_overlay: showOverlay,
     on_show_callback() {
       hg.views.OnboardingTutorialView().showBouncyArrow(highlightSelector, direction);
