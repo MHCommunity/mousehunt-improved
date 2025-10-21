@@ -32,12 +32,6 @@
   line-height: 20px;
 }
 
-/* buying bait onboard arrow, but it's actually targetting all top left ones */
-.guideArrowView.animated.show.topLeft {
-  margin-top: -30px;
-  margin-left: -100px;
-}
-
 /* Make the greyed out premium stuff not stand out as much */
 .onboarding .mousehuntHud-marketPlace.disabled,
 .onboarding .mousehuntHud-marketPlace.disabled:hover,
