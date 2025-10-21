@@ -74,6 +74,17 @@ const allowTrapMathToggle = async () => {
   }, 500);
 };
 
+const addCakePopupToLoyaltyBadge = async () => {
+  const loyaltyBadgeView = document.querySelector('.loyaltyBadgeView');
+  if (! loyaltyBadgeView) {
+    return;
+  }
+
+  loyaltyBadgeView.addEventListener('click', () => {
+    hg.views.HeadsUpDisplayView().showBirthdayCakePopup();
+  });
+};
+
 /**
  * Initialize the module.
  */
@@ -83,6 +94,10 @@ export default async () => {
 
   onNavigation(allowTrapMathToggle, {
     page: 'camp',
+  });
+
+  onNavigation(addCakePopupToLoyaltyBadge, {
+    page: 'hunterprofile',
   });
 
   if (! getFlag('no-kingdom-link-replacement')) {
