@@ -9,7 +9,7 @@ import largerCodices from './modules/larger-codices';
 import largerSkinImages from './modules/larger-skin-images';
 import legacyStyles from './modules/legacy-styles';
 import maintenance from './modules/maintenance';
-import profile from './modules/profile';
+import eggMaster from './modules/egg-master';
 import randomSkinButton from './modules/random-skin-button';
 import showUnownedSkins from './modules/show-unowned-skins';
 import skinPreviewBase from './modules/skin-preview-base';
@@ -38,7 +38,7 @@ const init = () => {
 
   const modules = [
     { enabled: getSetting('better-ui.hud-changes', true), load: hud },
-    { enabled: getSetting('better-ui.profile-changes', true), load: profile },
+    { enabled: getSetting('better-ui.profile-changes', true), load: eggMaster },
     { enabled: getSetting('better-ui.larger-codices', true), load: largerCodices },
     { enabled: getSetting('better-ui.larger-skin-images', true), load: largerSkinImages },
     { enabled: getSetting('better-ui.show-unowned-skins', true), load: showUnownedSkins },
