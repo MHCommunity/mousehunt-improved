@@ -292,7 +292,7 @@
 }
 
 .mh-dark .treasureMapView-reward-chestName {
-  color: var(--d-text-dark);
+  color: var(--d);
 }
 
 .mh-dark .treasureMapDialogView {

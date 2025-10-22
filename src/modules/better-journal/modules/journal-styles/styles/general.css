@@ -34,6 +34,7 @@
 }
 
 .journal .content .entry.highlight {
+  border-bottom-width: 2px;
   box-shadow:
     -1px 0 0 0 #5b5b5b,
     1px 0 0 0 #5b5b5b;

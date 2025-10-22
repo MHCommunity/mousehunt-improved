@@ -1,0 +1,4 @@
+/* force the height so that the page background doesn't show through when discord is blocked */
+.discordWidgetIframe {
+  min-height: 500px;
+}
