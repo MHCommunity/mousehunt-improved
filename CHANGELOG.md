@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 0.93.1
+
+- Minor updates, adjustments, and style improvements
+- Miscellaneous bug fixes and performance improvements
+
 ## Version 0.93.0
 
 - Better UI: Updated styles

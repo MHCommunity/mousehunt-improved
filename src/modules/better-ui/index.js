@@ -2,6 +2,7 @@ import { addStyles, getSetting } from '@utils';
 
 import adventurebook from './modules/adventure-book';
 import codexAtBottom from './modules/codex-at-bottom';
+import eggMaster from './modules/egg-master';
 import friends from './modules/friends';
 import hud from './modules/hud';
 import kingsPromo from './modules/kings-promo';
@@ -9,7 +10,6 @@ import largerCodices from './modules/larger-codices';
 import largerSkinImages from './modules/larger-skin-images';
 import legacyStyles from './modules/legacy-styles';
 import maintenance from './modules/maintenance';
-import eggMaster from './modules/egg-master';
 import randomSkinButton from './modules/random-skin-button';
 import showUnownedSkins from './modules/show-unowned-skins';
 import skinPreviewBase from './modules/skin-preview-base';
