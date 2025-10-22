@@ -191,7 +191,9 @@ const initMapper = (map) => {
   }
 
   // Add the sorted tab.
-  addSortedMapTab();
+  if (! map.is_complete && ! map.can_claim_reward) {
+    addSortedMapTab();
+  }
 
   // Add the tab click events.
   const tabs = document.querySelectorAll('.treasureMapRootView-subTab');
@@ -211,9 +213,12 @@ const initMapper = (map) => {
     ! map.is_complete &&
     ! map.can_claim_reward
   ) {
-    setTimeout(() => {
-      showSortedTab(map);
-    }, 250);
+    setTimeout(async () => {
+      const newMapData = await getMapData(map.map_id, true);
+      if (newMapData && ! newMapData.is_complete && ! newMapData.can_claim_reward) {
+        showSortedTab(map);
+      }
+    }, 400);
   }
 
   // Add the block classes.
@@ -519,10 +524,12 @@ const init = () => {
     runMapEnhancements();
     setTimeout(runMapEnhancements, 750);
   });
+
   onRequest('board/board.php', () => {
     runMapEnhancements();
     setTimeout(runMapEnhancements, 750);
   });
+
   onDialogShow('map', runMapEnhancements);
 
   floatingIslands();
