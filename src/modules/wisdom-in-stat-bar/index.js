@@ -80,9 +80,10 @@ const addWisdomToStatBar = (wisdom) => {
   const existingWisdom = document.querySelector('.mousehuntHud-userStat-row.wisdom .hud_wisdom');
 
   if (existingWisdom) {
-    existingWisdom.textContent = wisdom;
-    if ('undefined' !== typeof blinkText) {
-      blinkText(existingWisdom, '#59f659', '#fff', 0.7);
+    if ('undefined' === typeof walkValue) {
+      existingWisdom.textContent = wisdom;
+    } else {
+      walkValue(existingWisdom, existingWisdom.textContent, wisdom, 1, '#59f659', '#fff');
     }
 
     return;
