@@ -17,3 +17,7 @@
   right: -0.5px;
   border-top: 1px solid #ccc;
 }
+
+.mh-dark .mousehuntHeaderView .support .dropdownContent {
+  border-top-color: var(--d-border);
+}

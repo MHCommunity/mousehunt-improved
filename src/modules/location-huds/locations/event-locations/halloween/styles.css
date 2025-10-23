@@ -579,3 +579,10 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
 #hudLocationContent {
   filter: none;
 }
+
+.halloweenBoilingCauldronHUD-instantFinish-buyButton {
+  top: 27px;
+  left: 111px;
+  border-radius: 3px;
+  outline: 1px solid #96c1a1;
+}

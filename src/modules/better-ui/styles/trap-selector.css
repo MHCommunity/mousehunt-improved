@@ -117,3 +117,8 @@
 .campPage-trap-itemBrowser-armed-item.trinket .campPage-trap-itemBrowser-item-disarmButton {
   margin-right: 10px;
 }
+
+.campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-description {
+  padding: 15px;
+  margin-top: -10px;
+}

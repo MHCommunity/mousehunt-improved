@@ -273,11 +273,13 @@
 }
 
 .mh-dark .trapSelectorView__codexFilterButton {
+  color: var(--d-text);
   background-color: var(--d-bg);
+  border-color: var(--d-border);
 }
 
 .mh-dark .trapSelectorView__codexFilterButton.active {
-  border-color: var(--d-border);
+  background-color: var(--d-bg-alt);
 }
 
 .mh-dark .campPage-trap-itemBrowser-quickLinks .campPage-trap-itemBrowser-favorite-item-image:hover,
@@ -330,7 +332,6 @@
 }
 
 .mh-dark .trapSelectorView__innerBlock {
-  background-color: var(--d-bg);
   border-color: var(--d-border);
 }
 
@@ -406,4 +407,10 @@
 
 .mh-dark .trapImageView-zoomButton {
   filter: grayscale(1);
+}
+
+.mh-dark .campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-description {
+  padding: 15px;
+  margin-top: -10px;
+  background-color: var(--d-transparent-90);
 }

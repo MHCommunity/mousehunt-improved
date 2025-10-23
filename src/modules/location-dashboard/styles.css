@@ -346,6 +346,10 @@ img.locationImage {
   border-radius: 3px;
 }
 
+.mh-dark .dashboard-crucible {
+  background-color: var(--d-bg-alt);
+}
+
 .dashboard-crucible-type {
   display: inline-block;
   width: 10px;

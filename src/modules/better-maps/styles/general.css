@@ -605,7 +605,7 @@ input.treasureMapView-block-search-text {
 
 .treasureMapView-mapMenu-group-content.upgraded .treasureMapView-mapMenu-mapIcon,
 .treasureMapListingsTableView-mapThumbnail.rare {
-  filter: drop-shadow(0 0 2px #ffb40c) drop-shadow(0 0 5px #ffb40c);
+  filter: drop-shadow(0 0 1px #ffb40c) drop-shadow(0 0 1px #ffb40c);
   box-shadow: none;
 }
 
@@ -721,8 +721,10 @@ input.treasureMapView-block-search-text {
 }
 
 .treasureMapView-goals-group-goal.complete .treasureMapView-goals-group-goal-image {
-  height: 40px;
-  background-size: contain;
+  width: 34px;
+  height: 100%;
+  background-size: cover;
+  border-radius: 5px;
 }
 
 .complete.treasureMapView-goals-group-goal.item .treasureMapView-goals-group-goal-name {

@@ -94,3 +94,7 @@
 .mh-dark .huntersHornView__timerState {
   color: var(--d-black);
 }
+
+.mh-dark .mousehuntHeaderView .dropdownContent a span {
+  color: var(--d-text);
+}

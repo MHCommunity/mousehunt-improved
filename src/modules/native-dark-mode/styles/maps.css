@@ -531,8 +531,13 @@
 .mh-dark .treasureMapDialogView-header,
 .mh-dark .treasureMapDialogView .userSelectorView-user-image,
 .mh-dark .treasureMapDialogView .treasureMapDialogView-userSelector .userSelectorView-content,
+.mh-dark .treasureMapRootView .messageBoardView a.messageBoardView-message-image,
 .mh-dark .treasureMapDialogView .userSelectorView-categoryContainer {
   border-color: var(--d-border);
+}
+
+.mh-dark .treasureMapView-hunter-image {
+  box-shadow: 0 0 1px 1px var(--d-border);
 }
 
 .mh-dark .treasureMapDialogView .userSelectorView-category,
@@ -569,4 +574,11 @@
 
 .mh-dark .treasureMapView-block-content-heading-count {
   color: var(--d-text-muted);
+}
+
+.mh-dark .treasureMapView-hunter-miceCaught,
+.mh-dark .treasureMapRootView-quantity {
+  color: var(--d-text);
+  background-color: var(--d-action);
+  border-color: var(--d-bg-alt);
 }
