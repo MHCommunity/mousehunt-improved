@@ -157,6 +157,10 @@ let lastDate = '';
  * @param {HTMLElement} entry The journal entry element to save.
  */
 const saveToDatabase = async (entry) => {
+  if (! entry || ! entry.classList) {
+    return;
+  }
+
   if ('camp' !== getCurrentPage() && 'journal' !== getCurrentPage()) {
     return;
   }

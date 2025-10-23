@@ -9,7 +9,7 @@ const styles = imported;
  * @param {HTMLElement} entry The journal entry.
  */
 const addBadgeClass = (entry) => {
-  if (! entry) {
+  if (! entry || ! entry.classList) {
     return;
   }
 
@@ -49,6 +49,10 @@ const addBadgeClass = (entry) => {
  * @param {HTMLElement} entry The journal entry.
  */
 const updateRankUpIcon = (entry) => {
+  if (! entry || ! entry.classList) {
+    return;
+  }
+
   if (! entry.classList.contains('titlechange')) {
     return;
   }

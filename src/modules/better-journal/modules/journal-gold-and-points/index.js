@@ -8,6 +8,10 @@ import styles from './styles.css';
  * @param {HTMLElement} entry The journal entry.
  */
 const wrapGoldAndPoints = (entry) => {
+  if (! entry || ! entry.classList) {
+    return;
+  }
+
   // if it has the pointsGold attribute, it's already been wrapped
   if (entry.getAttribute('data-modified-points-gold')) {
     return;

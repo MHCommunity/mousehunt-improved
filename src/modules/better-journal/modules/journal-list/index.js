@@ -328,6 +328,10 @@ const getItemsFromText = (type, textEl) => {
  * @return {Promise<void>} Resolves when done.
  */
 const formatAsList = async (entry) => {
+  if (! entry || ! entry.classList) {
+    return;
+  }
+
   const processed = entry.getAttribute('data-better-journal-processed');
   if (processed) {
     return;

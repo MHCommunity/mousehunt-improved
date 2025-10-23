@@ -5,6 +5,10 @@ import styles from './styles.css';
 let mice;
 
 const makeFullMouseImage = async (entry) => {
+  if (! entry || ! entry.classList) {
+    return;
+  }
+
   const isCatchEntry = entry.classList.contains('catchsuccessloot') ||
     entry.classList.contains('catchsuccess') ||
     entry.classList.contains('catchsuccessprize');
