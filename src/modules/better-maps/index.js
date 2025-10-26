@@ -226,6 +226,7 @@ const initMapper = (map) => {
 };
 
 let parentShowMap;
+let defaultMapId;
 /**
  * Intercept the map request from the controller.
  */
@@ -238,21 +239,23 @@ const intercept = () => {
   hg.controllers.TreasureMapController.showMap = async (id = false) => {
     parentShowMap(id);
 
-    const intercepted = await interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
+    const intercepted = await interceptMapRequest(id || defaultMapId);
     setTimeout(() => {
       if (! intercepted) {
-        interceptMapRequest(id ?? user?.quests?.QuestRelicHunter?.default_map_id);
+        interceptMapRequest(id || defaultMapId);
       }
     }, 1000);
   };
 
   onRequest('users/treasuremap_v2.php', async (data) => {
+    hg.controllers.TreasureMapController.clearMapCache();
     if (data.treasure_map && data.treasure_map.map_id) {
       await setMapData(data.treasure_map.map_id, data.treasure_map);
     }
   }, true);
 
   onRequest('board/board.php', async (data) => {
+    hg.controllers.TreasureMapController.clearMapCache();
     if (data.treasure_map && data.treasure_map.map_id) {
       await setMapData(data.treasure_map.map_id, data.treasure_map);
     }
@@ -519,6 +522,11 @@ const init = () => {
   addMapPreviewListeners();
   onEvent('map_show_map_preview', addMapClassesToPreview);
   onEvent('map_hide_map_preview', removeMapClassesFromPreview);
+
+  defaultMapId = user?.quests?.QuestRelicHunter?.default_map_id;
+  onRequest('*', () => {
+    defaultMapId = user?.quests?.QuestRelicHunter?.default_map_id;
+  }, true);
 
   onRequest('users/treasuremap_v2.php', () => {
     runMapEnhancements();
