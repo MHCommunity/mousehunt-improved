@@ -190,9 +190,21 @@
 
 .mh-dark #friend-data-wrapper .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-icon,
 .mh-dark .friendsPage-friendRow-stat.team .friendsPage-friendRow-stat-icon {
-  filter: invert(1) grayscale(1) brightness(0.5);
+  filter: invert(1) grayscale(1) brightness(0.7);
 }
 
 .mh-dark .hunterInfoView-accountStatusWarning {
   color: var(--d-text-dark);
+}
+
+.mh-dark select.friendsPage-list-filter-select.friendsPage-list-sortBy {
+  background: var(--d-alt);
+  border-color: var(--d-border);
+  box-shadow: none;
+}
+
+/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+.mh-dark select.friendsPage-list-filter-select.friendsPage-list-sortBy::picker-icon {
+  background: var(--d-alt);
+  border-color: var(--d-border);
 }
