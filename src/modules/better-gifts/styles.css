@@ -93,6 +93,10 @@
   overflow-y: auto;
 }
 
+.mh-dark .mh-gift-buttons-clone-wrapper {
+  scrollbar-color: var(--d-text-muted) transparent;
+}
+
 .mh-gift-buttons-clone-wrapper .giftSelectorView-gift-description {
   display: flex;
   flex-direction: column-reverse;

@@ -586,3 +586,7 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
   border-radius: 3px;
   outline: 1px solid #96c1a1;
 }
+
+.halloweenBoilingCauldronRecipeView-cauldronPointer.active {
+  pointer-events: none;
+}
