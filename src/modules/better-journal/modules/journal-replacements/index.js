@@ -326,7 +326,7 @@ const shouldSkip = (entry) => {
     'claimBooty',
   ]);
 
-  if (! entry && entry.classList) {
+  if (! entry || ! entry.classList) {
     return true;
   }
 
