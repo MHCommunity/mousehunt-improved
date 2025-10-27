@@ -18,7 +18,6 @@ for (const file of cssFilesToFetch) {
     continue;
   }
 
-  console.log(`   ${file}...`); // eslint-disable-line no-console
   const res = await fetch(`https://api.mouse.rip/${file}?cache=${Date.now() + Math.random()}`);
   const text = await res.text();
 
