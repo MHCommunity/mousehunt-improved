@@ -55,11 +55,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
-    "@sentry/browser": "^10.20.0",
+    "@sentry/browser": "^10.22.0",
     "caniuse-lite": "^1.0.30001751"
   },
   "devDependencies": {
-    "@sentry/cli": "^2.56.1",
+    "@sentry/cli": "^2.57.0",
     "@sprout2000/esbuild-copy-plugin": "^1.1.19",
     "@wordpress/eslint-plugin": "^22.19.0",
     "archiver": "^7.0.1",
@@ -94,7 +94,7 @@
     "stylelint-order": "6.0.3",
     "stylelint-prettier": "4.1.0",
     "stylelint-stylistic": "^0.4.5",
-    "web-ext": "^9.0.0",
+    "web-ext": "^9.1.0",
     "yargs": "17.7.2"
   }
 }
