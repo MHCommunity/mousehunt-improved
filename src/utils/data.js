@@ -1,7 +1,6 @@
 import { dbDelete, dbDeleteAll, dbGet, dbSet } from './db';
 import { debuglog } from './debug';
 import { getSetting } from './settings';
-import { sleep } from './utils';
 
 const validDataFiles = new Set([
   'brift-mice-per-mist-level',
@@ -194,7 +193,7 @@ const getData = async (key, force = false) => {
   }
 
   // Fetch failed or is empty.
-  await sleep(1000);
+  await new Promise((resolve) => setTimeout(resolve, 1500));
 
   const retryData = await fetchData(key);
   if (
