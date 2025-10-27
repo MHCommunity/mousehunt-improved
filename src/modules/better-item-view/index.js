@@ -66,6 +66,10 @@ const updateForAirshipParts = async (itemId, itemView) => {
     items = await getData('items');
   }
 
+  if (! items) {
+    return;
+  }
+
   const item = items.find((i) => i.id === Number.parseInt(itemId, 10));
   if (! item || ! item.is_airship_part || ! item.airship_part_type) {
     return;

@@ -25,9 +25,9 @@ const itemCategories = [
  * @return {Object} The data for the classification.
  */
 const getData = async (classification) => {
-  const regionEl = document.querySelector(`.item-wrapper[data-region="${classification.id}"]`);
-  if (regionEl) {
-    const totalItemsEl = regionEl.querySelector('.total-items');
+  const totalItemsEl = document.querySelector(`.item-wrapper[data-region="${classification.id}"] .total-items`);
+
+  if (totalItemsEl) {
     totalItemsEl.textContent = '…';
     totalItemsEl.scrollIntoView({
       behavior: 'smooth',
@@ -57,7 +57,9 @@ const getData = async (classification) => {
     };
 
     items.push(itemData);
-    totalItemsEl.textContent = items.length.toLocaleString();
+    if (totalItemsEl) {
+      totalItemsEl.textContent = items.length.toLocaleString();
+    }
   });
 
   // resolve the promise with the data

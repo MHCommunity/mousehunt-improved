@@ -68,7 +68,7 @@ const updateJournalTheme = async (theme) => {
     skipLastReadJournalEntryId: true,
   });
 
-  if (req.success) {
+  if (req && req.success) {
     // remove the old theme and add the new one
     const journal = document.querySelector('#journalContainer');
     if (journal) {
@@ -272,13 +272,13 @@ const onThemeSelectorChange = () => {
 
     onRequest('users/journal_theme.php', (request, data) => {
       if ('set_theme' === data.action && shouldListen) {
-        saveSetting('journal-changer.last-theme', data.theme);
-        saveSetting('journal-changer.chosen-theme', data.theme);
+        saveSetting('journal-changer.last-theme', data?.theme);
+        saveSetting('journal-changer.chosen-theme', data?.theme);
       }
 
       cacheSet(
         'journal-themes',
-        req.journal_themes.theme_list.filter((theme) => theme.can_equip === true),
+        request?.journal_themes?.theme_list.filter((theme) => theme?.can_equip === true),
         30 * 24 * 60 * 60 * 1000 // Cache for 30 days.
       );
     });

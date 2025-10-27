@@ -766,6 +766,10 @@ onEvent('mh-improved-settings-changed', addSettingRefreshReminder);
  * @param {Object} module The module to add settings for.
  */
 const addSettingForModule = async (module) => {
+  if (! module || ! Array.isArray(module.modules)) {
+    return;
+  }
+
   for (const submodule of module.modules) {
     let moduleSettingRow = null;
     if (

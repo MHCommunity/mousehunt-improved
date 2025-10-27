@@ -1,6 +1,7 @@
 import { dbDelete, dbDeleteAll, dbGet, dbSet } from './db';
 import { debuglog } from './debug';
 import { getSetting } from './settings';
+import { sleep } from './utils';
 
 const validDataFiles = new Set([
   'brift-mice-per-mist-level',
@@ -165,7 +166,13 @@ const getData = async (key, force = false) => {
 
   if (! force) {
     const cachedData = await cacheGet(key, false);
-    if (cachedData) {
+    if (
+      cachedData &&
+      (
+        (typeof cachedData === 'object' && ! Array.isArray(cachedData) && Object.keys(cachedData).length > 0) ||
+        (Array.isArray(cachedData) && cachedData.length > 0)
+      )
+    ) {
       return cachedData;
     }
   }
@@ -174,11 +181,34 @@ const getData = async (key, force = false) => {
   const data = await fetchData(key);
   debuglog('utils-data', `Fetched data for ${key}`, data);
 
-  if (data) {
+  if (
+    data &&
+    (
+      (typeof data === 'object' && ! Array.isArray(data) && Object.keys(data).length > 0) ||
+      (Array.isArray(data) && data.length > 0)
+    )
+  ) {
     await cacheSet(key, data);
+
+    return data;
   }
 
-  return data;
+  // Fetch failed or is empty.
+  await sleep(1000);
+
+  const retryData = await fetchData(key);
+  if (
+    retryData &&
+    (
+      (typeof retryData === 'object' && ! Array.isArray(retryData) && Object.keys(retryData).length > 0) ||
+      (Array.isArray(retryData) && retryData.length > 0)
+    )
+  ) {
+    await cacheSet(key, retryData);
+    return retryData;
+  }
+
+  return {};
 };
 /**
  * Clear all the caches.

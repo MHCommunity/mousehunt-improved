@@ -57,7 +57,7 @@ const makeEntriesMarkup = (entries) => {
     }
 
     let html = `<div class="${entry.type.filter((cls) => ! ['newEntry', 'animate'].includes(cls)).join(' ')}" data-entry-id="${entry.id}" data-mouse-type="${entry.mouse || ''}">`;
-    if (entry.mouse) {
+    if (entry.mouse && miceThumbs.length) {
       const mouseImages = miceThumbs.find((mouse) => mouse.type === entry.mouse);
       if (mouseImages) {
         html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" alt="${mouseImages.name}" title="${mouseImages.name}" /></a></div>`;

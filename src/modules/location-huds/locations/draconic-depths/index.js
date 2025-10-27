@@ -83,7 +83,7 @@ const addQuickReinforceReal = () => {
       return;
     }
 
-    setTimeout(reinforceDialogButton.click, 300);
+    setTimeout(() => reinforceDialogButton.click(), 300);
     setTimeout(addQuickReinforce, 310);
   });
 

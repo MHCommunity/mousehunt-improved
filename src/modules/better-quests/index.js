@@ -262,12 +262,12 @@ const updateAssignmentList = async () => {
 
     const cost = makeElement('div', ['mh-ui-assignment-price', 'mh-ui-assignment-cost']);
     makeElement('span', 'mh-ui-assignment-price-label', 'Requires', cost);
-    makeElement('strong', 'mh-ui-assignment-price-value', assignment.cost, cost);
+    makeElement('strong', 'mh-ui-assignment-price-value', assignment?.cost || 0, cost);
     metaWrapper.append(cost);
 
     const reward = makeElement('div', ['mh-ui-assignment-price', 'mh-ui-assignment-reward']);
     makeElement('span', 'mh-ui-assignment-price-label', 'Reward', reward);
-    makeElement('strong', 'mh-ui-assignment-price-value', assignment.rewardPoints, reward);
+    makeElement('strong', 'mh-ui-assignment-price-value', assignment?.rewardPoints || 0, reward);
     metaWrapper.append(reward);
 
     const wiki = makeElement('a', 'mh-ui-assignment-wiki-button', 'View on Wiki →');

@@ -130,8 +130,12 @@ const sortInventoryItemsByName = (items) => {
   });
 };
 
-const addSkinPreview = (item) => {
+const addSkinPreview = async (item) => {
   const type = item.getAttribute('data-item-type');
+  if (! items) {
+    items = await getData('items');
+  }
+
   const itemData = items.find((i) => i.type === type);
   if (! itemData || ! itemData?.images?.trap) {
     return;
@@ -416,11 +420,13 @@ const addTrapSorting = async () => {
           let bValue = Number.parseFloat(b?.has_stats?.[sortType] || 0);
 
           if (! aValue || Number.isNaN(aValue)) {
-            aValue = Number.parseFloat(a?.has_stats?.[`${sortType}_formatted`].replace('%', '')) || 0;
+            const atext = a?.has_stats?.[`${sortType}_formatted`] || '0';
+            aValue = Number.parseFloat(atext.replace('%', '')) || 0;
           }
 
           if (! bValue || Number.isNaN(bValue)) {
-            bValue = Number.parseFloat(b?.has_stats?.[`${sortType}_formatted`].replace('%', '')) || 0;
+            const btext = b?.has_stats?.[`${sortType}_formatted`] || '0';
+            bValue = Number.parseFloat(btext.replace('%', '')) || 0;
           }
 
           aValue = aValue || 0;

@@ -63,12 +63,14 @@ const getWeightFormatted = (weight) => {
  * @return {Promise<object>} The data for the region.
  */
 const getDataForRegion = async (region) => {
-  const regionEl = document.querySelector(`.item-wrapper[data-region="${region.id}"]`);
+  let regionEl = document.querySelector(`.item-wrapper[data-region="${region.id}"]`);
   if (regionEl) {
     regionEl.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
     });
+  } else {
+    regionEl = document.querySelector('body');
   }
 
   const miceCaughtEl = regionEl.querySelector('.mice-caught');

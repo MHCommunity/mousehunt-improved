@@ -69,10 +69,15 @@ let itemLookup = null; // { lowerName: item, singularLowerName: item }
  *
  * @param {Array} items Array of item objects.
  *
- * @return {Object} Map of lower-cased item names and singular names to item objects.
+ * @return {Object} Map totalItemsElf lower-cased item names and singular names to item objects.
  */
 const buildItemLookup = (items) => {
   const map = Object.create(null);
+
+  if (! items || ! Array.isArray(items)) {
+    return map;
+  }
+
   for (const it of items) {
     const name = (it.name || '').trim();
     if (! name) {
@@ -86,7 +91,6 @@ const buildItemLookup = (items) => {
   }
   return map;
 };
-
 /**
  * Split raw text into item fragments.
  *
@@ -387,7 +391,7 @@ export default async () => {
   addStyles(styles, 'better-journal-list');
 
   allItems = await getData('items');
-  itemLookup = buildItemLookup(allItems || []);
+  itemLookup = buildItemLookup(allItems);
 
   onJournalEntry(formatAsList, {
     id: 'better-journal-list-format',

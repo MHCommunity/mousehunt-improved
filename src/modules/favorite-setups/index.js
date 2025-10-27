@@ -300,7 +300,9 @@ const addImage = async (type, id, appendTo) => {
     itemThumbs = await getData('item-thumbnails');
   }
 
-  item.style.backgroundImage = `url(${itemThumbs.find((thumb) => thumb.id == id)?.thumb || ''})`; // eslint-disable-line eqeqeq
+  if (itemThumbs) {
+    item.style.backgroundImage = `url(${itemThumbs.find((thumb) => thumb.id == id)?.thumb || ''})`; // eslint-disable-line eqeqeq
+  }
 
   makeElement('div', 'campPage-trap-itemBrowser-favorite-item-frame', '', item);
 

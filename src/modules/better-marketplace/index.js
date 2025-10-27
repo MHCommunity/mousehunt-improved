@@ -605,8 +605,8 @@ const addRelistButtonToCancelled = async () => {
           listingData.unit_price,
           listingData.remaining_quantity,
           listingData.listing_type,
-          (data) => {
-            hg.views.MarketplaceView.showMyListings(data.marketplace_new_listing.listing_id);
+          () => {
+            hg.views.MarketplaceView.showMyListings();
           },
           (err) => {
             console.log('Error creating listing', err); // eslint-disable-line no-console

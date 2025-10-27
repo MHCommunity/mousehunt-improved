@@ -165,6 +165,10 @@ const removeBodyClassByPrefix = (prefix) => {
  */
 const getTradableItems = async (valueKey = 'all') => {
   const tradableItems = await getData('items-tradable');
+  if (! tradableItems) {
+    return [];
+  }
+
   tradableItems.sort((a, b) => a.name.localeCompare(b.name));
 
   if ('all' === valueKey) {
