@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.93.3
+
+- Added more error checking, fallbacks, and minor improvements
+
 ## Version 0.93.2
 
 - Minor updates, adjustments, and style improvements
