@@ -11,16 +11,16 @@ command -v bun &> /dev/null || {
   exit 1
 }
 
+# Update static.mouse.rip if the UPDATE_STATIC_MOUSE_RIP command is available.
+if [ -n "$UPDATE_STATIC_MOUSE_RIP" ]; then
+  $UPDATE_STATIC_MOUSE_RIP > /dev/null 2>&1
+fi
+
 # Exit if building fails.
 bun run build || exit 1
 
 # Exit if linting fails.
 bun run lint || exit 1
-
-# Update static.mouse.rip if the UPDATE_STATIC_MOUSE_RIP command is available.
-if [ -n "$UPDATE_STATIC_MOUSE_RIP" ]; then
-  $UPDATE_STATIC_MOUSE_RIP > /dev/null 2>&1
-fi
 
 # Tag the version, the publish workflow will handle the actual release.
 version=$(bun run get-version)

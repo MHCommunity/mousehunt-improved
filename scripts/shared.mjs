@@ -123,9 +123,6 @@ const parseArgs = async (args) => {
     .option('watch', {
       type: 'boolean',
     })
-    .option('release', {
-      type: 'boolean',
-    })
     .parseAsync();
 };
 

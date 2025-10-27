@@ -13,22 +13,22 @@ const buildArchive = async () => {
   console.log(`${check} Archive built`); // eslint-disable-line no-console
 };
 
-const builCss = async (onlyIfMissing = false) => {
-  if (! onlyIfMissing) {
+const fetchExternalFiles = async (skipExternalFiles = false) => {
+  if (! skipExternalFiles) {
     console.log('Fetching external CSS...'); // eslint-disable-line no-console
   }
 
-  await $`bun run scripts/fetch-external-css.mjs ${onlyIfMissing ? '--only-if-missing' : ''}`;
+  await $`bun run scripts/fetch-external-files.mjs ${skipExternalFiles ? '--skip-external-files' : ''}`;
 
-  if (! onlyIfMissing) {
+  if (! skipExternalFiles) {
     console.log(`${check} External CSS fetched`); // eslint-disable-line no-console
   }
 };
 
 const buildExtension = async (platform) => {
-  await builCss(true);
-  console.log(`Building extension for ${platform} ${isRelease ? '(release)' : '...'}`); // eslint-disable-line no-console
-  await $`bun run scripts/build-extension.mjs --platform=${platform} ${isRelease ? '--release' : ''}`;
+  await fetchExternalFiles(true);
+  console.log(`Building extension for ${platform} ...`); // eslint-disable-line no-console
+  await $`bun run scripts/build-extension.mjs --platform=${platform}`;
   console.log(`${check} Extension for ${platform} built`); // eslint-disable-line no-console
 };
 
@@ -65,13 +65,12 @@ const buildZips = async () => {
 };
 
 const type = process.argv[2];
-const isRelease = process.argv[3] === '--release';
 
 if (type === 'archive') {
   await buildArchive();
   process.exit(0); // eslint-disable-line unicorn/no-process-exit
 } else if (type === 'css') {
-  await builCss();
+  await fetchExternalFiles();
 } if (type === 'extension') {
   await Promise.all([
     buildExtension('chrome'),
@@ -87,7 +86,7 @@ if (type === 'archive') {
   await buildZips();
   process.exit(0); // eslint-disable-line unicorn/no-process-exit
 } else {
-  await builCss();
+  await fetchExternalFiles(process.argv.includes('--skip-external-files'));
 
   await Promise.all([
     buildArchive(),

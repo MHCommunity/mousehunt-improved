@@ -1,5 +1,4 @@
 import * as esbuild from 'esbuild';
-import chalk from 'chalk';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -72,11 +71,3 @@ cleaned = cleaned
 
 // write the cleaned file back to disk
 fs.writeFileSync(path.resolve(process.cwd(), 'dist/mousehunt-improved.user.js'), cleaned);
-
-const greasyForkLimit = 2097152; // 2MB
-
-if (cleaned.length >= greasyForkLimit) { // GreasyFork limit.
-  console.warn(chalk.yellow(`⚠ The userscript is too large for GreasyFork. Reduce the size by ${cleaned.length - 2097152} bytes.`)); // eslint-disable-line no-console
-} else {
-  console.log(chalk.green(`✔ Userscript size is ${cleaned.length} bytes, ${greasyForkLimit - cleaned.length} bytes under the GreasyFork limit.`)); // eslint-disable-line no-console
-}
