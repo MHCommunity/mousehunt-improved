@@ -4,10 +4,13 @@ import chalk from 'chalk';
 import fs from 'node:fs';
 import path from 'node:path';
 
+import packageJson from '../package.json' with { type: 'json' };
+
 const check = chalk.green('✔');
+const dot = chalk.gray('●');
 
 const buildArchive = async () => {
-  console.log('Building archive...'); // eslint-disable-line no-console
+  console.log(`${dot} Building archive...`); // eslint-disable-line no-console
   await $`mkdir -p dist`;
   await $`git archive --format zip --output dist/archive.zip HEAD`;
   console.log(`${check} Archive built`); // eslint-disable-line no-console
@@ -15,7 +18,7 @@ const buildArchive = async () => {
 
 const fetchExternalFiles = async (skipExternalFiles = false) => {
   if (! skipExternalFiles) {
-    console.log('Fetching external CSS...'); // eslint-disable-line no-console
+    console.log(`${dot} Fetching external CSS...`); // eslint-disable-line no-console
   }
 
   await $`bun run scripts/fetch-external-files.mjs ${skipExternalFiles ? '--skip-external-files' : ''}`;
@@ -27,13 +30,13 @@ const fetchExternalFiles = async (skipExternalFiles = false) => {
 
 const buildExtension = async (platform) => {
   await fetchExternalFiles(true);
-  console.log(`Building extension for ${platform} ...`); // eslint-disable-line no-console
+  console.log(`${dot} Building extension for ${platform} ...`); // eslint-disable-line no-console
   await $`bun run scripts/build-extension.mjs --platform=${platform}`;
   console.log(`${check} Extension for ${platform} built`); // eslint-disable-line no-console
 };
 
 const buildUserscript = async () => {
-  console.log('Building userscript...'); // eslint-disable-line no-console
+  console.log(`${dot} Building userscript...`); // eslint-disable-line no-console
   await $`bun run scripts/build-userscript.mjs --platform=userscript`;
   console.log(`${check} Userscript built`); // eslint-disable-line no-console
 };
@@ -56,7 +59,7 @@ const buildZip = async (platform) => {
 };
 
 const buildZips = async () => {
-  console.log('Zipping extensions...'); // eslint-disable-line no-console
+  console.log(`${dot} Zipping extensions...`); // eslint-disable-line no-console
 
   await buildZip('chrome');
   await buildZip('firefox');
@@ -65,6 +68,8 @@ const buildZips = async () => {
 };
 
 const type = process.argv[2];
+
+console.log(chalk.bold(`Building MouseHunt Improved v${packageJson.version} (${type || 'all'})`)); // eslint-disable-line no-console
 
 if (type === 'archive') {
   await buildArchive();
@@ -97,3 +102,5 @@ if (type === 'archive') {
 
   await buildZips();
 }
+
+console.log(chalk.bold.green(`Built MouseHunt Improved v${packageJson.version}`)); // eslint-disable-line no-console
