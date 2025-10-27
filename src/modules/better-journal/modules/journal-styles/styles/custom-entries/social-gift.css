@@ -11,6 +11,12 @@
   box-shadow: inset 0 -20px 15px -16px #999;
 }
 
+.journal .entry.socialGift.socialGift-send:active .journalbody .journaltext,
+.journal .entry.socialGift.socialGift-send:focus .journalbody .journaltext {
+  max-height: unset;
+  box-shadow: none;
+}
+
 /* hide the friends popup for gifts as it nests and breaks the layout */
 .socialGift.socialGift-send .journaltext #friend-data-wrapper {
   display: none;

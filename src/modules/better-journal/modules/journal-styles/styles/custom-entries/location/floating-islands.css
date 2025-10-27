@@ -3,3 +3,10 @@
   max-height: 103px;
   overflow-y: auto;
 }
+
+.journal .entry.floatingIslands.skyPalaceTravel:active,
+.journal .entry.floatingIslands.skyPalaceTravel:focus,
+.journal .entry.floatingIslands.dirigibleTravel:active,
+.journal .entry.floatingIslands.dirigibleTravel:focus {
+  max-height: unset;
+}
