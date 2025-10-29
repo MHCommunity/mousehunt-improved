@@ -4,7 +4,7 @@
   box-sizing: border-box;
   display: block;
   width: 300px;
-  height: 100px;
+  height: 101px;
   background: linear-gradient(#decebb 5%, #f0eddf 50%);
   border: 1px solid #9a8872;
   border-radius: 10px;
@@ -27,7 +27,7 @@
   grid-template-columns: 90px 1fr;
   gap: 10px;
   align-items: center;
-  height: 95px;
+  height: 100px;
 }
 
 #item-data-wrapper .item-image {
@@ -50,4 +50,8 @@
   width: 160px;
   font-size: 12px;
   font-weight: 900;
+}
+
+.mh-dark #item-data-wrapper .item-image {
+  background-color: var(--d-bg);
 }

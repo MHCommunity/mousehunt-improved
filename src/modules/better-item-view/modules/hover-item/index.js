@@ -57,7 +57,7 @@ const makeItemMarkup = (item) => {
   const itemData = makeElement('div', 'item-data');
 
   const itemImage = makeElement('img', 'item-image');
-  itemImage.src = item.thumbnail;
+  itemImage.src = item?.large || item?.thumbnail || '';
   itemImage.alt = item.name;
   itemImage.width = '82';
   itemImage.height = '82';
