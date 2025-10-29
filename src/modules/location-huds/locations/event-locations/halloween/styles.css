@@ -590,3 +590,7 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
 .halloweenBoilingCauldronRecipeView-cauldronPointer.active {
   pointer-events: none;
 }
+
+.MiniEventSpookyShuffleCampHUD {
+  margin-top: 1px;
+}
