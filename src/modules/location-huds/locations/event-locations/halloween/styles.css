@@ -594,3 +594,8 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
 .MiniEventSpookyShuffleCampHUD {
   margin-top: 1px;
 }
+
+.shutdown .halloweenBoilingCauldronHUD-fuel-toggleButton:hover {
+  cursor: default;
+  background-position-y: -7px;
+}
