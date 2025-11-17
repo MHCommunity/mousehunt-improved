@@ -201,13 +201,20 @@ const addHoverListener = (link) => {
  * @param {HTMLElement|null} element The parent element to search for mouse links.
  */
 const main = (element = null) => {
+  let allMiceLinks = [];
+
   const parentElement = element || document;
   const miceLinks = parentElement.querySelectorAll('.journal .content .entry .journaltext a[onclick*="MouseView.show"]');
-  if (! miceLinks) {
-    return;
+  if (miceLinks) {
+    allMiceLinks = [...miceLinks];
   }
 
-  miceLinks.forEach((link) => {
+  const creMiceLinks = document.querySelectorAll('.mh-improved-cre-name a[onclick*="MouseView.show"]');
+  if (creMiceLinks) {
+    allMiceLinks = [...allMiceLinks, ...creMiceLinks];
+  }
+
+  allMiceLinks.forEach((link) => {
     const mouseType = link.getAttribute('onclick').match(/'([^']+)'/)[1];
     link.setAttribute('onclick', `hg.views.MouseView.show('${mouseType}'); return false;`);
 

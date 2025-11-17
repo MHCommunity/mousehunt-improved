@@ -353,6 +353,7 @@ const renderList = async (list) => {
     const row = makeElement('tr', 'mh-improved-cre-row');
     const name = makeElement('td', 'mh-improved-cre-name');
     const nameLink = makeElement('a', '', mouse);
+    nameLink.setAttribute('onclick', `return hg.views.MouseView.show('${type}');`);
     nameLink.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
