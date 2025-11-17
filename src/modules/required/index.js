@@ -4,9 +4,7 @@ import {
   doEvent,
   doInternalEvent,
   getCurrentDialog,
-  getCurrentLocation,
   getCurrentPage,
-  getSetting,
   makeElement,
   onDialogShow,
   onEvent,
@@ -24,12 +22,6 @@ let hasAddedHornCountdownEvents = false;
  * Add the horn countdown events.
  */
 const addHornCountdownEvents = () => {
-  // Only run the horn countdown events on certain locations and if a module needs it.
-  const locations = ['balacks_cove', 'floating_islands'];
-  if (! getSetting('lgs-reminder', false) && ! locations.includes(getCurrentLocation())) {
-    return;
-  }
-
   if (hasAddedHornCountdownEvents) {
     return;
   }
