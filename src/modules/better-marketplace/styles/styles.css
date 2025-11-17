@@ -255,3 +255,7 @@ td.marketplaceView-table-name {
   font-weight: 100;
   line-height: initial;
 }
+
+.marketplaceView-listingType {
+  line-height: 15px;
+}
