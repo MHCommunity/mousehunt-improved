@@ -18,7 +18,9 @@ const classTypeMap = Object.entries({
     'catchsuccessprize',
     'relicHunter_catch',
   ],
-  convertible: ['convertible_open'],
+  convertible: [
+    'convertible_open'
+  ],
   other: [
     'iceberg_defeated',
     'dailyreward',
@@ -298,6 +300,12 @@ const getItemsFromText = (type, textEl) => {
       ul.querySelectorAll(':scope > li').forEach((li) => li.classList.add('better-journal-list-item'));
     });
     return { list: [], newText: innerHTML };
+  } else if (innerHTML.includes('created an additional:')) {
+    const parts = innerHTML.split('created an additional:');
+    if (parts.length >= 2) {
+      list = splitText(parts[1]);
+      newText = `${parts[0]}created an additional:`;
+    }
   } else {
     for (const s of otherStrings) {
       if (s.includes('|*|')) {
