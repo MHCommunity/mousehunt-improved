@@ -135,6 +135,10 @@ const fetchData = async (key, retries = 0) => {
       headers: getHeaders(),
     });
 
+    if (! data.ok) {
+      throw new Error(`Failed to fetch data for ${key}: ${data.status} ${data.statusText}`);
+    }
+
     return await data.json();
   } catch (error) {
     console.error(`Error fetching data for ${key}:`, error); // eslint-disable-line no-console
