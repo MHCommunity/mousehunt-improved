@@ -1,0 +1,120 @@
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max {
+  display: inline-block;
+  width: auto;
+  height: 12px;
+  aspect-ratio: 1;
+  padding: 5px;
+  margin-left: 8px;
+  border-radius: 50%;
+  outline: 1px solid #eee;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max:hover {
+  background-color: #ccc;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max::after {
+  display: none;
+}
+
+.mh-dark .folkloreForestRegionView-dialog-block-description {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max {
+  outline-color: var(--d-action);
+}
+
+.mh-dark .upsellItemActionView-action-quantity {
+  color: var(--d-text);
+  background-color: var(--d-action);
+}
+
+.mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max:hover {
+  background-color: var(--d-bg-alt);
+}
+
+.headsUpDisplayEpilogueFallsView__scrollButtonLeft,
+.headsUpDisplayEpilogueFallsView__scrollButtonRight {
+  filter: drop-shadow(2px 2px 2px #000) drop-shadow(2px 2px 1px #fff);
+}
+
+.headsUpDisplayEpilogueFallsView__scrollButtonLeft:hover,
+.headsUpDisplayEpilogueFallsView__scrollButtonRight:hover {
+  filter: drop-shadow(2px 2px 2px #000) drop-shadow(2px 2px 1px #fff) brightness(1.6);
+}
+
+.headsUpDisplayEpilogueFallsView__position {
+  font-size: 13px;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelPosition {
+  padding: 3px 5px;
+}
+
+.headsUpDisplayEpilogueFallsView__zoneMeterContainer {
+  filter: drop-shadow(0 4px 6px #636363);
+}
+
+@keyframes mh-improved-bobbing {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, 6px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes mh-improved-bobbing-alt {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, -4px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(odd) {
+  animation: mh-improved-bobbing-alt 5s ease-in-out infinite;
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(even) {
+  animation: mh-improved-bobbing 6s ease-in-out infinite;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelContainer {
+  animation: mh-improved-bobbing 10s ease-in-out infinite;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(odd),
+  .headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(even),
+  .headsUpDisplayEpilogueFallsView__barrelContainer {
+    animation: none;
+  }
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsZone::after {
+  top: -65px;
+  width: auto;
+  height: 85px;
+  padding-right: 3px;
+  font-size: 11px;
+  line-height: 28px;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealthText {
+  font-size: 16px;
+}
