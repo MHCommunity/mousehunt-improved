@@ -25,11 +25,6 @@
   color: var(--d-purple-dark);
 }
 
-.mh-dark .journal .content .entry .journalbody .journalenvdate {
-  color: var(--d-text);
-  border-bottom: 1px solid var(--d-transparent-10);
-}
-
 .mh-dark .journal .content .entry.kings_giveaway_vault_prize_entry,
 .mh-dark .journal .content .entry.kings_giveaway_vault_prize_entry .journaldate,
 .mh-dark .journal .content .entry.badge,
@@ -102,4 +97,19 @@
 .mh-dark .journal.jsingle .close a:hover::after {
   color: var(--d-red);
   background-color: var(--d-action);
+}
+
+.mh-dark .journal .entry.adventureBook-journal.goal {
+  background-color: var(--d-blue-dark);
+  box-shadow: -10px 0 57px var(--d-blue) inset;
+}
+
+.mh-dark .journal .entry.adventureBook-journal.claim {
+  background-color: var(--d-yellow-darker);
+  box-shadow: -10px 0 57px var(--d-yellow-dark-alt) inset;
+}
+
+.mh-dark .journal .entry.adventureBook-journal.completed {
+  background-color: var(--d-green-dark);
+  box-shadow: -10px 0 57px var(--d-green-darker) inset;
 }

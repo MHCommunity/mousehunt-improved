@@ -1,6 +1,10 @@
 #OnboardArrow.onboardPopup.top .canShare .larryTip {
-  bottom: 48px;
+  bottom: 118px;
   display: flex;
-  flex-flow: column wrap;
-  height: 30px;
+  flex-flow: row wrap;
+  height: auto;
+}
+
+#OnboardArrow.onboardPopup.top .canShare .content {
+  padding-top: 20px;
 }

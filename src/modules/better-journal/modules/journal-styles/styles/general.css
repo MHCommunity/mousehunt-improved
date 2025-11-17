@@ -29,15 +29,25 @@
   outline: 1px solid #5b5b5b;
 }
 
+.mh-dark .journal .content .entry:not(.highlight) {
+  outline-color: var(--d-border);
+}
+
 .journal .content .entry:not(.highlight):last-child {
   margin-bottom: 0;
 }
 
 .journal .content .entry.highlight {
-  border-bottom-width: 2px;
   box-shadow:
     -1px 0 0 0 #5b5b5b,
     1px 0 0 0 #5b5b5b;
+}
+
+.mh-dark .journal .content .entry.highlight {
+  border-bottom-color: var(--d-border);
+  box-shadow:
+    -1px 0 0 0 var(--d-border),
+    1px 0 0 0 var(--d-border);
 }
 
 .journal .content .entry.short {
@@ -114,6 +124,10 @@
   font-size: 11px;
   font-weight: 400;
   border-bottom: 1px solid rgb(0 0 0 / 30%);
+}
+
+.mh-dark .journal .content .entry .journalbody .journalenvdate {
+  border-bottom-color: var(--d-transparent-30);
 }
 
 /* Hide set journal link and center detailed journal link */
