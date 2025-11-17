@@ -582,3 +582,12 @@
   background-color: var(--d-action);
   border-color: var(--d-bg-alt);
 }
+
+.mh-dark .treasureMapView-allyTable a.treasureMapDialogView-deleteInviteRequest.reject-invite-request {
+  color: var(--d-text);
+  background-color: var(--d-action);
+}
+
+.mh-dark .treasureMapView-allyTable a.treasureMapDialogView-deleteInviteRequest.reject-invite-request:hover {
+  background-color: var(--d);
+}

@@ -31,3 +31,11 @@
 .mh-dark .marketplaceContentContainer #chartArea #markethuntInfobox .marketplaceView-goldValue {
   color: var(--d-text-muted);
 }
+
+.mh-dark .marketplaceView-table tr .marketplaceView-listingType.buy {
+  transition: none;
+}
+
+.mh-dark .marketplaceView-table tr:hover .marketplaceView-listingType.buy {
+  background-color: var(--d-blue);
+}
