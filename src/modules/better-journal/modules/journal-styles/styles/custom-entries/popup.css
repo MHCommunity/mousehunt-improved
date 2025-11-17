@@ -1,4 +1,4 @@
-#OnboardArrow.onboardPopup.top .canShare .larryTip {
+#OnboardArrow.onboardPopup.top .canShare:not(.firstCatch, .titlechange) .larryTip {
   bottom: 118px;
   display: flex;
   flex-flow: row wrap;
