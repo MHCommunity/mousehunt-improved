@@ -57,7 +57,7 @@ const main = () => {
  * Initialize the module.
  */
 export default async () => {
-  addStyles(styles, 'journal-full-mice-images');
+  addStyles(styles, 'better-journal-full-mice-images');
 
   mice = await getData('mice');
   main();

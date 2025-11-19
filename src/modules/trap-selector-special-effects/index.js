@@ -41,7 +41,7 @@ const addSpecialEffectsStyles = async () => {
     content: "";
     background-color: #48b0a9;
     border-radius: 50%;
-  }`, 'mh-improved-trap-selector-special-effects', true);
+  }`, 'trap-selector-special-effects', true);
 };
 
 let hasAddedSpecialEffectsStyles = false;

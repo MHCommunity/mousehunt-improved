@@ -6,5 +6,5 @@ import styles from './styles.css';
  * Initialize the module.
  */
 export default async () => {
-  addStyles(styles, 'larger-codices');
+  addStyles(styles, 'better-ui-larger-codices');
 };

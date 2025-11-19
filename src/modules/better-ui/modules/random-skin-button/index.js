@@ -53,6 +53,6 @@ const addRandomSkinButton = () => {
  * Initialize the module.
  */
 export default async () => {
-  addStyles(styles, 'better-ui.random-skin-button');
+  addStyles(styles, 'better-ui-random-skin-button');
   onEvent('camp_page_toggle_blueprint', addRandomSkinButton);
 };

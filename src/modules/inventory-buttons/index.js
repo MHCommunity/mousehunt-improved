@@ -131,7 +131,7 @@ const addOpenButtons = () => {
  */
 const init = () => {
   if (getSetting('inventory-buttons.only-open-extras', false)) {
-    addStyles(onlyOpenMultipleStyles, 'only-open-multiple');
+    addStyles(onlyOpenMultipleStyles, 'inventory-buttons');
   }
 
   if (

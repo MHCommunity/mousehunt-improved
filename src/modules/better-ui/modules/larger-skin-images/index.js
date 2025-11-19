@@ -126,7 +126,7 @@ const triggerFromClick = () => {
  * Initialize the module.
  */
 export default () => {
-  addStyles(styles, 'larger-skin-images');
+  addStyles(styles, 'better-ui-larger-skin-images');
 
   onEvent('camp_page_toggle_blueprint', addSkinImages);
 
