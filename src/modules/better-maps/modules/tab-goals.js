@@ -711,6 +711,68 @@ const addMapSolverLinks = async (mapData) => {
   mapFooter.classList.add('mh-ui-map-solver-links-container');
 };
 
+const addInfoToCompletedMap = async (mapData) => {
+  if (! mapData?.is_complete) {
+    return;
+  }
+
+  const mapEl = document.querySelector('.treasureMapView-mapMenu-group.allies');
+  if (! mapEl) {
+    return;
+  }
+
+  const existing = document.querySelector('.mh-ui-completed-maptain-duster-wrapper');
+  if (existing) {
+    return;
+  }
+
+  const maptain = mapData.hunters.find((h) => h.captain);
+  if (! maptain) {
+    return;
+  }
+
+  let duster = false;
+  if (mapData?.is_upgraded) {
+    duster = mapData.hunters.find((h) => h.upgrader);
+  }
+
+  const maptainIsDuster = duster && (maptain.sn_user_id === duster.sn_user_id);
+  const maptainDusterWrapper = makeElement('div', 'mh-ui-completed-maptain-duster-wrapper');
+
+  const maptainWrapper = makeElement('div', ['mh-ui-completed-info-wrapper', 'mh-ui-completed-maptain-wrapper']);
+  makeElement('div', 'mh-ui-completed-info-label', `Maptain${maptainIsDuster ? '/Duster' : ''}:`, maptainWrapper);
+
+  const maptainImage = makeElement('a', 'mh-ui-completed-info-image');
+  maptainImage.href = `https://www.mousehuntgame.com/profile.php?snuid=${maptain.sn_user_id}`;
+  maptainImage.style.backgroundImage = `url(${maptain.profile_pic})`;
+  maptainWrapper.append(maptainImage);
+
+  const maptainText = makeElement('a', 'mh-ui-completed-info-text', maptain.name);
+  maptainText.href = `https://www.mousehuntgame.com/profile.php?snuid=${maptain.sn_user_id}`;
+  maptainWrapper.append(maptainText);
+
+  maptainDusterWrapper.append(maptainWrapper);
+
+  if (duster && ! maptainIsDuster) {
+    const dusterWrapper = makeElement('div', ['mh-ui-completed-info-wrapper', 'mh-ui-completed-duster-wrapper']);
+
+    makeElement('div', 'mh-ui-completed-info-label', 'Duster:', dusterWrapper);
+
+    const dusterImage = makeElement('a', 'mh-ui-completed-info-image');
+    dusterImage.href = `https://www.mousehuntgame.com/profile.php?snuid=${duster.sn_user_id}`;
+    dusterImage.style.backgroundImage = `url(${duster.profile_pic})`;
+    dusterWrapper.append(dusterImage);
+
+    const dusterText = makeElement('a', 'mh-ui-completed-info-text', duster.name);
+    dusterText.href = `https://www.mousehuntgame.com/profile.php?snuid=${duster.sn_user_id}`;
+    dusterWrapper.append(dusterText);
+
+    maptainDusterWrapper.append(dusterWrapper);
+  }
+
+  mapEl.prepend(maptainDusterWrapper);
+};
+
 /**
  * Fire the actions when the goals tab is shown.
  *
@@ -726,6 +788,7 @@ const showGoalsTab = async (mapData) => {
   addSidebarToggle();
   addPreviewClass();
   moveAuras();
+  addInfoToCompletedMap(mapData);
 
   if (getSetting('better-maps.show-map-solver-links', true)) {
     addMapSolverLinks(mapData);

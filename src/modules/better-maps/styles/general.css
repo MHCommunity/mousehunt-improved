@@ -1053,3 +1053,42 @@ input.treasureMapView-block-search-text {
 .treasureMapDialogView-overlay.active .treasureMapView-mapName {
   padding-bottom: 20px;
 }
+
+
+.mh-ui-completed-maptain-duster-wrapper {
+  position: absolute;
+  bottom: -32px;
+  left: 0;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.mh-ui-completed-info-image {
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.mh-ui-completed-info-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mh-dark .mh-ui-completed-info-wrapper {
+  color: var(--d-text);
+}
+
+.mh-dark .mh-ui-completed-info-wrapper .mh-ui-completed-info-text {
+  color: var(--d-link);
+}
+
+.mh-ui-completed-info-wrapper.mh-ui-completed-duster-wrapper {
+  margin-left: 20px;
+}
