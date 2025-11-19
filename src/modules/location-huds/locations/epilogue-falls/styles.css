@@ -116,5 +116,181 @@
 }
 
 .headsUpDisplayEpilogueFallsView__barrelHealthText {
-  font-size: 16px;
+  display: grid;
+  grid-template-columns: 60px auto 15px 20px;
+  grid-auto-columns: minmax(10px, auto);
+  place-items: center;
+  font-size: 13px;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealth,
+.headsUpDisplayEpilogueFallsView__barrelMaxHealth {
+  font-size: 14px;
+}
+
+.headsUpDisplayEpilogueFallsView__zoneTitle {
+  font-size: 13px;
+  text-shadow: 1px 1px 1px #f7e5a5;
+}
+
+.folkloreForestRegionView.epilogue_falls.rapids .headsUpDisplayEpilogueFallsView__zoneInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.headsUpDisplayEpilogueFallsView__zoneInfoContainer[data-zone-type="grotto_zone"] .headsUpDisplayEpilogueFallsView__zoneTitle {
+  font-size: 20px;
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsContainer.grotto .headsUpDisplayEpilogueFallsView__barrelHealthContainer {
+  border-color: #2c9ac1;
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsContainer.grotto .headsUpDisplayEpilogueFallsView__barrelHealthText {
+  color: #65cdce;
+}
+
+.headsUpDisplayEpilogueFallsView__perCatchItem:nth-child(2) .headsUpDisplayEpilogueFallsView__perCatchItemText {
+  align-items: center;
+}
+
+.mh-improved-high-health .headsUpDisplayEpilogueFallsView__barrelHealthProgressBar {
+  background-color: rgb(17 221 45 / 50%);
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-high-health {
+  border-color: #0f7d0a;
+}
+
+.mh-improved-very-low-health .headsUpDisplayEpilogueFallsView__barrelHealthProgressBar {
+  background-color: #c12c2c;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-low-health {
+  background-color: rgb(221 17 17 / 50%);
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsContainer.grotto .headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-last-hunt,
+.headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-last-hunt {
+  border-color: #8e4848;
+  animation: mh-improved-shake-light 0.45s 2;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-last-hunt .headsUpDisplayEpilogueFallsView__barrelHealthText {
+  color: #ffe9e9;
+}
+
+.epilogueFallsBarrelChoiceDialogView__durability {
+  font-size: 14px;
+}
+
+.epilogueFallsBarrelChoiceDialogView__costItemThumbnail.mh-improved-missing-ingredient::after {
+  position: absolute;
+  inset: -1px -5px -18px;
+  z-index: -1;
+  content: "";
+  background-color: #e65959;
+  border-radius: 3px;
+}
+
+.epilogueFallsBarrelChoiceDialogView__costItemQuantity {
+  position: relative;
+  right: unset;
+  left: unset;
+  display: inline-block;
+  width: auto;
+  padding: 2px;
+  margin-top: 10px;
+  text-align: center;
+  border: 1px solid rgb(0 0 0 / 20%);
+}
+
+.epilogueFallsBarrelChoiceDialogView__costItem {
+  display: block;
+  width: 100%;
+}
+
+.epilogueFallsBarrelChoiceDialogView__costItemThumbnail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.epilogueFallsBarrelChoiceDialogView__barrelsContainer {
+  height: auto;
+  margin: 15px 0;
+}
+
+.epilogueFallsBarrelChoiceDialogView__baitsContainer {
+  gap: 0;
+  padding: 0;
+  padding-top: 15px;
+}
+
+.epilogueFallsBarrelChoiceDialogView__baitContainer {
+  width: auto;
+  max-width: 100px;
+}
+
+.epilogueFallsBarrelChoiceDialogView__fuelContainer {
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.epilogueFallsBarrelChoiceDialogView__disarmSlider.round {
+  color: #000;
+  background-color: #c3b07a;
+}
+
+.epilogueFallsBarrelChoiceDialogView__disarmSliderBackGroundText {
+  color: rgb(255 255 255 / 90%);
+}
+
+.epilogueFallsBarrelChoiceDialogView__disarmSlider::before {
+  background-color: #c2db90;
+  box-shadow: none;
+}
+
+.epilogueFallsBarrelChoiceDialogView__disarmSlider::after {
+  top: 9px;
+  left: 8px;
+}
+
+#overlayPopup.fabledForestDialog.epilogueFallsBarrelChoiceDialogPopup {
+  top: 220px !important;
+}
+
+.epilogueFallsActivateBoostDialogView .headsUpDisplayEpilogueFallsView__inventoryBlock {
+  height: auto;
+  margin: 5px;
+}
+
+.epilogueFallsActivateBoostDialogView__costExplanationContainer {
+  margin-top: 10px;
+}
+
+.mh-improved-boost-cost-text {
+  position: absolute;
+  display: none;
+  align-items: center;
+  height: 24px;
+  padding: 0 6px;
+  margin-top: 22px;
+  font-size: 15px;
+  text-align: center;
+  background-color: #376638;
+  border: 1px solid #182f18;
+  border-radius: 30px;
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsSidePanelContainer:hover .mh-improved-boost-cost-text {
+  display: flex;
+}
+
+.headsUpDisplayEpilogueFallsView__jetBoostButton.EpilogueFallsView__orangeButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

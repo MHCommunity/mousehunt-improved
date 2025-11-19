@@ -94,6 +94,7 @@ a.folkloreForestRegionView-upgradeButton {
 
 .folkloreForestRegionView-environmentTitle .folkloreForestRegionView-environmentState {
   font-size: 21px;
+  text-shadow: 1px 1px 1px #f7e5a5;
 }
 
 /* bigger warning */
