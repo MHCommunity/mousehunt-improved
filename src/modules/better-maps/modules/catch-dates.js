@@ -62,7 +62,16 @@ const addMapStartDate = async () => {
 };
 
 export default () => {
-  onEvent('map_show_goals_tab_click', () => {
+  onEvent('map_show_goals_tab_click', (map) => {
+    let shouldShowDates = map.viewing_user_is_on_map;
+    if (! shouldShowDates) {
+      shouldShowDates = map.map_data?.hunters?.some((hunter) => hunter.sn_user_id === user.sn_user_id);
+    }
+
+    if (! shouldShowDates) {
+      return;
+    }
+
     addCatchDates();
     addMapStartDate();
   });
