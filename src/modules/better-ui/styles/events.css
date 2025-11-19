@@ -223,3 +223,11 @@
 .QuestBigJaqLilJillPopup-dateCountdownContainer .dateCountdown__progressBar__icon {
   background-image: url(https://www.mousehuntgame.com/images/ui/events/big_jack/big_jaq_popup_portrait.png);
 }
+
+.QuestTreasureMapMegaPartyCampHUD-moreInfoButton {
+  border-radius: 5px;
+}
+
+.QuestTreasureMapMegaPartyCampHUD-moreInfoButton:hover {
+  background-position-y: 99%;
+}
