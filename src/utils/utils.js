@@ -477,6 +477,7 @@ const unpluralize = (text) => {
     stories: 'story',
     'SUPER|tokens+': 'super|token+',
     trenches: 'trench',
+    pearls: 'pearl',
   };
 
   let result = text;
