@@ -174,7 +174,22 @@ body.mh-dark {
   border-style: solid;
 }
 
-.mh-dark .pagerView-link:hover {
+.mh-dark .pagerView-section.previous .pagerView-link,
+.mh-dark .pagerView-section.next .pagerView-link {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-action);
+}
+
+.mh-dark .pagerView-section.previous.active .pagerView-link,
+.mh-dark .pagerView-section.next.active .pagerView-link {
+  color: var(--d-text-muted);
+  background-color: var(--d-alt);
+  border-color: var(--d-border);
+}
+
+.mh-dark .pagerView-section.previous.active .pagerView-link:hover,
+.mh-dark .pagerView-section.next.active .pagerView-link:hover {
   background-color: var(--d);
 }
 
