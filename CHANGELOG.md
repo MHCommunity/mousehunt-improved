@@ -2,16 +2,17 @@
 
 ## Version 0.94.0
 
+- Better UI: Added 'Add background gradient to your trap' setting from beta/experimental features
 - Better Journal: Updated styles
 - Better Journal: Fixed issues with some entries not correctly linking items
 - Better Maps: Added Maptain & Duster info display to completed maps
-- Better Maps: Added 'Show map join & catch dates' option (was in beta).
+- Better Maps: Added 'Show map join & catch dates' option from beta/experimental features
 - Better Maps: Updated map catch dates to only show on own maps or maps you have been on
 - Better Maps: Updated styles
 - Better Mice: Updated hover mouse functionality to work with CRE list
 - Better Travel: Added Draconic Depths, Afterword Acres, and Epilogue Falls to Travel Reminders
 - Dark Mode: Updated styles
-- Location Dashboard: Added Afterword Acres & Epilogue Falls to dashboard
+- Location Dashboard: Added Afterword Acres and Epilogue Falls to dashboard
 - Location HUDs - Epilogue Falls: Enhanced UI and updated styles
 
 ## Version 0.93.3
