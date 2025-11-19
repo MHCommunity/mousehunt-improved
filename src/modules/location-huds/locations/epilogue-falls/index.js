@@ -73,7 +73,10 @@ const updateBoostButton = (response) => {
     return;
   }
 
-  makeElement('span', 'mh-improved-boost-cost-text', boostCost.toLocaleString(), boostButton);
+  const boostWrapper = makeElement('div', 'mh-improved-boost-cost-wrapper');
+  makeElement('span', 'mh-improved-boost-cost-text', boostCost.toLocaleString(), boostWrapper);
+  makeElement('span', 'mh-improved-boost-cost-label', 'Planks', boostWrapper);
+  boostButton.append(boostWrapper);
 };
 
 const run = () => {
