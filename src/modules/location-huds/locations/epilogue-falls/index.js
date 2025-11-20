@@ -97,5 +97,5 @@ export default async () => {
   onTurn(run, 250);
   onRequest('environment/epilogue_falls.php', (resp) => {
     setTimeout(updateBoostButton, 150, resp);
-  });
+  }, true);
 };
