@@ -64,7 +64,7 @@ const addMouseLinksToMap = async () => {
   }
 
   const mouseIcon = document.querySelectorAll('.treasureMapView-goals-group-goal');
-  if (! mouseIcon || mouseIcon.length === 0) {
+  if (! (mouseIcon && mouseIcon.length > 0)) {
     return;
   }
 
