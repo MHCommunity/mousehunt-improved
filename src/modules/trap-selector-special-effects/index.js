@@ -15,6 +15,10 @@ const addSpecialEffectsStyles = async () => {
     specialEffects = await getData('trap-special-effects');
   }
 
+  if (! specialEffects) {
+    return;
+  }
+
   specialEffects.all.forEach((item) => {
     styles.push(`.campPage-trap-itemBrowser-item.${item}`);
   });

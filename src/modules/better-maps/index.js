@@ -315,7 +315,7 @@ const updateRelicHunterHint = async () => {
   // Find the environment that matches the key.
   environments = await getData('environments');
   const environment = environments.find((e) => e.id === relicHunterLocation.id);
-  if (! environment) {
+  if (! (environment && environment.id)) {
     return true;
   }
 

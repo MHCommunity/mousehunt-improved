@@ -27,6 +27,10 @@ let allMiceData;
  * @return {string} The link markup.
  */
 const getLinkMarkup = (name, mouseType) => {
+  if (! allMiceData) {
+    return '';
+  }
+
   const mouse = allMiceData.find((m) => m.type === mouseType);
   if (mouse) {
     name = mouse.name

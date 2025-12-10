@@ -12,6 +12,12 @@ import styles from './styles.css';
  * Main function.
  */
 const main = async () => {
+  const scoreboards = await getData('scoreboards');
+
+  if (! scoreboards || scoreboards.length === 0) {
+    return;
+  }
+
   const achievementsBlock = document.querySelector('.hunterInfoView-achievementsBlock');
   if (! achievementsBlock) {
     return;
@@ -59,7 +65,6 @@ const main = async () => {
   const tabContent = makeElement('div', 'hunterInfoView-teamTab-content');
 
   const scoreboardDropdown = makeElement('select', 'mh-improved-scoreboard-dropdown');
-  const scoreboards = await getData('scoreboards');
 
   // Make a placeholder option.
   const startingOpt = makeElement('option', '', 'Select a scoreboard');
