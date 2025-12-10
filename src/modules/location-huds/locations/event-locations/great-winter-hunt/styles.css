@@ -611,11 +611,6 @@ button.greatWinterHuntGolemManagerDialogView__randomizeButton {
   border: none;
 }
 
-.headsUpDisplayWinterHuntRegionView__trapWarningContainer .greatWinterHuntDialogView {
-  top: 25%;
-  z-index: 11;
-}
-
 .headsUpDisplayWinterHuntRegionView__trapWarningContainer.headsUpDisplayWinterHuntRegionView__trapWarningContainer--active {
   filter: drop-shadow(0 0 7px #000);
 }

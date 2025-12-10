@@ -98,10 +98,15 @@
   animation: mh-improved-bobbing 10s ease-in-out infinite;
 }
 
+.headsUpDisplayEpilogueFallsView__waterFallZoneDroidBarrel {
+  animation: mh-improved-bobbing 8s ease-in-out infinite;
+}
+
 @media screen and (prefers-reduced-motion: reduce) {
   .headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(odd),
   .headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(even),
-  .headsUpDisplayEpilogueFallsView__barrelContainer {
+  .headsUpDisplayEpilogueFallsView__barrelContainer,
+  .headsUpDisplayEpilogueFallsView__waterFallZoneDroidBarrel {
     animation: none;
   }
 }

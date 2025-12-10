@@ -225,3 +225,7 @@ body.mh-dark {
 .mh-dark #OnboardArrow .whiteboard {
   color: var(--d-text-dark);
 }
+
+.mh-dark .mh-improved-travel-window-search-label {
+  color: var(--d-text-muted);
+}
