@@ -129,8 +129,6 @@ const replacements = [
   // Event stuff
   // SEH
   [/was.+chocolatonium.+trap!/i, ''],
-
-  // SEH.
   ['A chocoholic', 'I caught a bonus'],
   ['A chocolate-crazed', 'I caught a bonus'],
   ['A voracious', 'I caught a bonus'],
@@ -163,6 +161,7 @@ const replacements = [
     'Hunting with Festive Spirit conjured 1 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=2014_throwable_snowball_stat_item" onclick="hg.views.ItemView.show(\'2014_throwable_snowball_stat_item\'); return false;">Throwable Snowball</a>',
     'My Festive Spirit made 1 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=2014_throwable_snowball_stat_item" onclick="hg.views.ItemView.show(\'2014_throwable_snowball_stat_item\'); return false;">Throwable Snowball</a>.',
   ],
+  ['oz.!', 'oz.'],
 ];
 
 /**
