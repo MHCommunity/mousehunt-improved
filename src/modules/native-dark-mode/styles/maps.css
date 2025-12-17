@@ -591,3 +591,7 @@
 .mh-dark .treasureMapView-allyTable a.treasureMapDialogView-deleteInviteRequest.reject-invite-request:hover {
   background-color: var(--d);
 }
+
+.mh-dark .userSelector-table tr.disabled {
+  background-color: var(--d-bg-alt);
+}
