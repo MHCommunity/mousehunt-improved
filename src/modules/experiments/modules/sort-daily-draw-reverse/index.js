@@ -6,7 +6,7 @@ const init = async () => {
   }
 
   // Check if messenger exists (it should if loaded after page load, usually)
-  if (!messenger?.UI?.notification) {
+  if (! messenger?.UI?.notification) {
     return;
   }
 
@@ -21,7 +21,7 @@ const init = async () => {
       const dailyDraw = document.querySelector('.daily_draw');
       if (dailyDraw) {
         const container = dailyDraw.parentElement;
-        if (!container) {
+        if (! container) {
           return;
         }
 
