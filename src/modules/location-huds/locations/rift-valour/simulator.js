@@ -208,6 +208,8 @@ const mouseStats = [[3300, 1],
   [818250, 75],
   [1e30, 1]];
 
+const HAILSTONE_BASE_ID = 3954;
+
 function getCacheLoot(floor) {
   let idx = floor > 1 ? (floor - 1) : 0;
   if (idx >= cacheLoot.length) {
@@ -242,6 +244,7 @@ function simulate(shouldDisplay = true) {
   const sr = window.user.enviroment_atts.active_augmentations.sr;
   const bail = 999; // this is only here so I don't have to maintain two versions of this code :^)
 
+  const hasHailstoneBase = window.user.base_item_id === HAILSTONE_BASE_ID;
   let power = window.user.trap_power;
   let luck = (window.user.trinket_name == 'Ultimate Charm') ? 100000 : window.user.trap_luck;
 
@@ -304,7 +307,10 @@ function simulate(shouldDisplay = true) {
   }
   console.log(catchProfile);
 
-  const speed = torchState ? Number(lvSpeed) + 1 : lvSpeed;
+  let speed = torchState ? Number(lvSpeed) + 1 : lvSpeed;
+  if (hasHailstoneBase) {
+    speed += 1;
+  }
   siphon = superSiphon ? siphon * 2 : siphon;
 
   // Simulating Run ------------------------------------------------------------------------
