@@ -1,7 +1,8 @@
 import { createPopup, makeElement, makeMhButton } from './elements';
 import { doEvent, onEvent } from './event-registry';
-import { getCurrentPage, getCurrentTab } from './page';
 import { getSetting, getSettingDirect, saveSettingDirect } from './settings';
+import { getCurrentPage } from './page-current';
+import { getCurrentTab } from './page';
 import { getFlag } from './flags';
 import { onNavigation } from './events';
 import { setMultipleTimeout } from './utils';

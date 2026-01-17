@@ -1,5 +1,6 @@
-import { getCurrentPage, getCurrentTab } from './page';
 import { getSetting, saveSetting } from './settings';
+import { getCurrentPage } from './page-current';
+import { getCurrentTab } from './page';
 import { waitForElement } from './elements';
 
 /**

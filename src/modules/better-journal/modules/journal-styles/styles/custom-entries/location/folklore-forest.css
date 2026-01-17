@@ -45,3 +45,13 @@
   background-position: left center;
   background-size: inherit;
 }
+
+.journal .entry.conclusionCliffs-earnedNotoriety .journalenvdate {
+  display: none;
+}
+
+.content .entry.minimalJournal.conclusionCliffs-earnedNotoriety .journalbody {
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 75px;
+}

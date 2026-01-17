@@ -29,6 +29,7 @@ import calm_clearing from './locations/calm-clearing';
 import cape_clawed from './locations/cape-clawed';
 import catacombs from './locations/catacombs';
 import clawshot_city from './locations/claw-shot-city';
+import conclusion_cliffs from './locations/conclusion-cliffs';
 import derr_dunes from './locations/derr-dunes';
 import desert_city from './locations/desert-city'; // Muridae Market.
 import desert_warpath from './locations/desert-warpath'; // Fiery Warpath.
@@ -153,6 +154,7 @@ const main = () => {
     calm_clearing,
     cape_clawed,
     catacombs,
+    conclusion_cliffs,
     clawshot_city,
     derr_dunes,
     desert_city,

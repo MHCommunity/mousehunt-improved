@@ -1,7 +1,7 @@
 import { getData, sessionGet, sessionSet } from './data';
 import { onNavigation, onTravel } from './events';
 import { debuglog } from './debug';
-import { getCurrentPage } from './page';
+import { getCurrentPage } from './page-current';
 import { getFlag } from './flags';
 
 /**

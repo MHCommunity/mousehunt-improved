@@ -17,9 +17,13 @@
         "Location Dashboard: Added Afterword Acres and Epilogue Falls to dashboard",
         "Location HUDs - Bristle Woods Rift: Updated styles",
         "Location HUDs - Burroughs Rift: Updated styles",
+        "Location HUDs - Conclusion Cliffs: Added location",
+        "Location HUDs - Draconic Depths: Updated styles",
         "Location HUDs - Epilogue Falls: Enhanced UI and updated styles",
         "Location HUDs - Event Locations: Updated styles",
-        "Location HUDs - Zokor: Updated styles"
+        "Location HUDs - Valour Rift: Updated styles",
+        "Location HUDs - Zokor: Updated styles",
+        "Miscellaneous bug fixes and performance improvements"
       ]
     }
   ]

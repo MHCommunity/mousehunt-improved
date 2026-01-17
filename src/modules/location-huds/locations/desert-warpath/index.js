@@ -1,6 +1,5 @@
 import {
   addHudStyles,
-  getFieryWarpathWave,
   getFlag,
   makeElement,
   onRequest,
@@ -8,6 +7,7 @@ import {
   onTurn,
   showHornMessage
 } from '@utils';
+import { getFieryWarpathWave } from '@utils/shared/fiery-warpath';
 
 import styles from './styles.css';
 

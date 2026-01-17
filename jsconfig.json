@@ -7,6 +7,7 @@
     "paths": {
       "@/*": ["./src/modules/*"],
       "@utils/*": ["./src/utils/"],
+      "@utils/shared/*": ["./src/utils/shared/*"],
       "@utils": ["./src/utils/index.js"],
       "@data/*": ["./src/data/*"]
     }

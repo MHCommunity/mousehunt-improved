@@ -259,3 +259,7 @@ div.userSelectorView-userList.loading::after {
 .itemViewPopup .itemViewContainer.torn_page .itemView-thumbnail {
   background-image: url(https://i.mouse.rip/plankrun-upscaled.png) !important;
 }
+
+.draconicDepthsClaimDuplicatorChestDialogView:has(#burn:checked) .itemImage {
+  background-image: url(https://www.mousehuntgame.com/images/items/crafting_items/large/b153b90267ed411dee9a3a406e30170f.png) !important;
+}

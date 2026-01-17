@@ -120,10 +120,6 @@
   color: var(--d-text-muted);
 }
 
-.mh-dark .inventoryPage-confirmPopup-itemContainer {
-  background-color: var(--d-bg-alt);
-}
-
 .mh-dark .inventoryPage-confirmPopup-itemTable {
   background-color: var(--d-bg);
 }

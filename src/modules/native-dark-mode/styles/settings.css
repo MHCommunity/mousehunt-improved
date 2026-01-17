@@ -158,6 +158,15 @@
   border-color: var(--d-border);
 }
 
-.mh-dark .accountVerificationRewardsView__stepsContainer {
+.mh-dark .accountVerificationRewardsView__stepsContainer,
+.mh-dark #mousehunt-improved-settings-beta .PagePreferences__subSetting {
   border-color: var(--d-border);
+}
+
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList,
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(61n),
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(65n),
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(66n),
+.mh-dark #mousehunt-improved-settings-location-hud-wrapper .PagePreferences__settingsList:nth-child(69n) {
+  background-color: var(--d-bg-alt);
 }
