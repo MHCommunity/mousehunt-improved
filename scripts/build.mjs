@@ -1,4 +1,4 @@
-import { $ } from 'bun'; // eslint-disable-line import/no-unresolved
+import { $ } from 'bun'; // eslint-disable-line import/no-unresolved, unicorn/prefer-node-protocol
 import archiver from 'archiver';
 import chalk from 'chalk';
 import fs from 'node:fs';

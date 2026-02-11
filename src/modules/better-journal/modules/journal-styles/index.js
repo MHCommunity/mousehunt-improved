@@ -29,6 +29,7 @@ const addBadgeClass = (entry) => {
     .trim();
 
   entry.classList.add(`better-journal-styles-badge-${badgeTypeClass}`);
+  entry.setAttribute('data-badge-class-added', 'true');
 
   const content = entry.querySelector('.journaltext');
   if (! content) {

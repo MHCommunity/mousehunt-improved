@@ -104,12 +104,14 @@ const addOpenButtons = () => {
       newButton.textContent = `Open ${text}`;
       newButton.value = text;
       newButton.setAttribute('data-item-action', action);
-
-      newButton.addEventListener('click', (event) => {
-        useConvertible(event.target, action);
-      });
+      newButton.removeAttribute('onclick');
 
       button.after(newButton);
+
+      newButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        useConvertible(event.target, action);
+      });
     };
 
     if (getSetting('inventory-buttons.open-one', true)) {

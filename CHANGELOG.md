@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.95.0
+
+- Miscellaneous bug fixes, performance improvements, and style updates
+
 ## Version 0.94.0
 
 - Better Journal: Fixed issues with some entries not correctly linking items

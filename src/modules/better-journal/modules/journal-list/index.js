@@ -349,9 +349,14 @@ const formatAsList = async (entry) => {
     return;
   }
 
-  const classes = new Set(entry.classList);
-  if ([...classes].some((c) => classesToSkip.has(c))) {
-    return;
+  let type;
+  for (const cls of entry.classList) {
+    if (classesToSkip.has(cls)) {
+      return;
+    }
+    if (! type && classTypeMap[cls]) {
+      type = classTypeMap[cls];
+    }
   }
 
   const textEl = entry.querySelector('.journalbody .journaltext');
@@ -360,18 +365,9 @@ const formatAsList = async (entry) => {
   }
 
   // Folklore fast-path
-  if (classes.has('folkloreForest-bookClaimed') && handleFolkloreBookClaim(textEl)) {
+  if (entry.classList.contains('folkloreForest-bookClaimed') && handleFolkloreBookClaim(textEl)) {
     entry.setAttribute('data-better-journal-processed', 'true');
     return;
-  }
-
-  // Determine type via class map
-  let type;
-  for (const cls of entry.classList) {
-    if (classTypeMap[cls]) {
-      type = classTypeMap[cls];
-      break;
-    }
   }
 
   if (type === 'update') {
@@ -388,8 +384,9 @@ const formatAsList = async (entry) => {
       const listItems = makeListItems(list);
       textEl.append(listItems);
     }
-    entry.setAttribute('data-better-journal-processed', 'true');
   }
+
+  entry.setAttribute('data-better-journal-processed', 'true');
 };
 
 /**

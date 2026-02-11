@@ -37,10 +37,10 @@ export default async (block, input, maxQty) => {
   buyMaxButton.addEventListener('click', () => {
     if (hasMaxed) {
       input.value = 0;
-      buyMaxButtonText.innerText = 'Max';
+      buyMaxButtonText.textContent = 'Max';
     } else {
       input.value = maxQty;
-      buyMaxButtonText.innerText = 'Reset';
+      buyMaxButtonText.textContent = 'Reset';
     }
 
     hasMaxed = ! hasMaxed;

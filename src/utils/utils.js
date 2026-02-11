@@ -98,12 +98,15 @@ const bodyClasses = { added: [], removed: [] };
  * @param {boolean} force     Whether to force the class to be added.
  */
 const addBodyClass = (className, force = false) => {
-  if (
-    bodyClasses.removed.includes(className) ||
-    bodyClasses.added.includes(className)
-  ) {
+  const alreadyAdded = bodyClasses.added.includes(className);
+  const alreadyRemoved = bodyClasses.removed.includes(className);
+
+  if (alreadyRemoved || alreadyAdded) {
     if (force) {
-      bodyClasses.added.push(className);
+      if (! alreadyAdded) {
+        bodyClasses.added.push(className);
+      }
+
       document.body.classList.add(className);
     }
 
@@ -150,10 +153,12 @@ const removeBodyClass = (className) => {
 const removeBodyClassByPrefix = (prefix) => {
   bodyClasses.added = bodyClasses.added.filter((c) => ! c.startsWith(prefix));
   bodyClasses.removed.push(prefix);
-  document.body.className = document.body.className
-    .split(' ')
-    .filter((c) => ! c.startsWith(prefix))
-    .join(' ');
+
+  [...document.body.classList].forEach((className) => {
+    if (className.startsWith(prefix)) {
+      document.body.classList.remove(className);
+    }
+  });
 };
 
 /**
@@ -456,34 +461,37 @@ function isVersionHigher(version1, version2) {
  *
  * @return {string} The unpluralized text.
  */
-const unpluralize = (text) => {
-  const mapping = {
-    batteries: 'battery',
-    boxes: 'box',
-    branches: 'branch',
-    cacti: 'cactus',
-    candies: 'candy',
-    catches: 'catch',
-    children: 'child',
-    flies: 'fly',
-    fungi: 'fungus',
-    geese: 'goose',
-    leaves: 'leaf',
-    mice: 'mouse',
-    patches: 'patch',
-    pennies: 'penny',
-    pinches: 'pinch',
-    statuses: 'status',
-    stories: 'story',
-    'SUPER|tokens+': 'super|token+',
-    trenches: 'trench',
-    pearls: 'pearl',
-  };
+const unpluralizeMap = {
+  batteries: 'battery',
+  boxes: 'box',
+  branches: 'branch',
+  cacti: 'cactus',
+  candies: 'candy',
+  catches: 'catch',
+  children: 'child',
+  flies: 'fly',
+  fungi: 'fungus',
+  geese: 'goose',
+  leaves: 'leaf',
+  mice: 'mouse',
+  patches: 'patch',
+  pennies: 'penny',
+  pinches: 'pinch',
+  statuses: 'status',
+  stories: 'story',
+  'SUPER|tokens+': 'super|token+',
+  trenches: 'trench',
+  pearls: 'pearl',
+};
+const unpluralizeRules = Object.entries(unpluralizeMap).map(([plural, singular]) => ({
+  regex: new RegExp(plural, 'gi'),
+  singular,
+}));
 
+const unpluralize = (text) => {
   let result = text;
 
-  for (const [plural, singular] of Object.entries(mapping)) {
-    const regex = new RegExp(plural, 'gi');
+  for (const { regex, singular } of unpluralizeRules) {
     result = result.replace(regex, (match) => {
       if (match === match.toUpperCase()) {
         return singular.toUpperCase();

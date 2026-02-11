@@ -65,8 +65,12 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
 
     const send = XMLHttpRequest.prototype.send;
     XMLHttpRequest.prototype.send = function (data) {
-      const params = new URLSearchParams(data);
-      this._data = Object.fromEntries(params);
+      if (data) {
+        const params = new URLSearchParams(data);
+        this._data = Object.fromEntries(params);
+      } else {
+        this._data = {};
+      }
 
       return Reflect.apply(send, this, arguments);
     };

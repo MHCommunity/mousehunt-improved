@@ -200,6 +200,7 @@ const addAlphabetizedList = (regionMenu) => {
   const alphaListContent = makeElement('div', 'travelPage-regionMenu-environments');
 
   const links = regionMenu.querySelectorAll('.travelPage-regionMenu-environmentLink:not(.mystery)');
+  const environmentIds = new Set(environments.map((environment) => environment.id));
 
   // Clone the links, sort them by name, and add them to the alpha list.
   const sortedLinks = [...links].sort((a, b) => {
@@ -238,11 +239,7 @@ const addAlphabetizedList = (regionMenu) => {
     lastLetter = firstLetter;
 
     // Check if the link is in the list of environments, if it's not, then it's an event location.
-    const environment = environments.find((env) => {
-      return env.id === link.getAttribute('data-environment');
-    });
-
-    if (! environment) {
+    if (! environmentIds.has(link.getAttribute('data-environment'))) {
       linkClone.classList.add('event-location');
     }
   });
@@ -328,40 +325,37 @@ const goToPreviousLocation = () => {
  * Add the current region locations to the travel dropdown.
  */
 const addToTravelDropdown = async () => {
-  // merge the event environments into the environments array
-  const eventEnvironments = await getData('environments-events');
+  let combinedEnvironments = environments;
+
   if (eventEnvironments && eventEnvironments.length > 0) {
-    environments.push(...eventEnvironments);
+    combinedEnvironments = [...environments, ...eventEnvironments];
   }
 
-  if (! environments || environments.length === 0) {
+  if (! combinedEnvironments || combinedEnvironments.length === 0) {
     environments = await getData('environments');
+    eventEnvironments = await getData('environments-events');
+    combinedEnvironments = eventEnvironments?.length > 0
+      ? [...environments, ...eventEnvironments]
+      : environments;
   }
 
-  if (! environments || environments.length === 0) {
+  if (! combinedEnvironments || combinedEnvironments.length === 0) {
     return;
   }
 
   const currentLocation = getCurrentLocation();
 
   // get the object that matches the current location
-  let currentRegion = environments.find((environment) => {
+  const currentRegion = combinedEnvironments.find((environment) => {
     return environment.id === currentLocation;
   });
 
   if (! currentRegion) {
-    // See if it's an event location.
-    currentRegion = eventEnvironments.find((environment) => {
-      return environment.id === currentLocation;
-    });
-
-    if (! currentRegion) {
-      return;
-    }
+    return;
   }
 
   // get the other locations in the same region
-  const otherRegions = environments.filter((environment) => {
+  const otherRegions = combinedEnvironments.filter((environment) => {
     if (! environment?.region || ! currentRegion?.region) {
       return false;
     }
@@ -401,7 +395,7 @@ const addToTravelDropdown = async () => {
   // add the custom submenu items
   for (const region of otherRegions) {
     if (region.id === currentLocation) {
-      return;
+      continue;
     }
 
     // only add the region if it's not there already.
@@ -424,7 +418,7 @@ const addToTravelDropdown = async () => {
     addSubmenuDivider('travel', 'mh-improved-better-travel-favorites-divider');
 
     favorites.forEach((favorite) => {
-      const favoriteRegion = environments.find((environment) => {
+      const favoriteRegion = combinedEnvironments.find((environment) => {
         return environment.id === favorite;
       });
 
@@ -662,6 +656,7 @@ const addFavoriteButtonsToTravelPage = async () => {
     return;
   }
 
+  const eventEnvironmentIds = new Set(eventEnvironments.map((environment) => environment.id));
   const locationFavorites = getLocationFavorites();
 
   locations.forEach((location) => {
@@ -671,10 +666,7 @@ const addFavoriteButtonsToTravelPage = async () => {
     }
 
     // Don't add a favorite button to event locations.
-    const isEventLocation = eventEnvironments.find((environment) => {
-      return environment.id === type;
-    });
-    if (isEventLocation) {
+    if (eventEnvironmentIds.has(type)) {
       return;
     }
 

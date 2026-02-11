@@ -43,3 +43,15 @@
   border: none;
   box-shadow: none;
 }
+
+.campPage-trap-itemBrowser-item-description.shortDescription {
+  z-index: 2;
+}
+
+.trapSelectorView__browserStateParent--codex .trapSelectorView__browserState--codex .campPage-trap-itemBrowser-item-image.limitedEdition::before {
+  z-index: 1;
+}
+
+.trapSelectorView__browserStateParent--codex .trapSelectorView__browserState--codex .campPage-trap-itemBrowser-item.codex .campPage-trap-itemBrowser-item-description {
+  margin-top: 10px;
+}

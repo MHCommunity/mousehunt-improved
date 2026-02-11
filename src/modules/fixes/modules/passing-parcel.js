@@ -31,7 +31,7 @@ const fixPassingParcel = () => {
           <img src="https://www.mousehuntgame.com/images/items/message_items/5591e5c34f081715aaca4e95e97a3379.jpg" alt="Passing Parcel" title="Passing Parcel" />
         </a>
         <div class="quantity">
-          ${quantity.innerText}
+          ${quantity.textContent}
         </div>
         </div>
       </div>

@@ -58,7 +58,7 @@ const makeEntriesMarkup = (entries) => {
 
     let html = `<div class="${entry.type.filter((cls) => ! ['newEntry', 'animate'].includes(cls)).join(' ')}" data-entry-id="${entry.id}" data-mouse-type="${entry.mouse || ''}">`;
     if (entry.mouse && miceThumbs.length) {
-      const mouseImages = miceThumbs.find((mouse) => mouse.type === entry.mouse);
+      const mouseImages = miceThumbsMap ? miceThumbsMap.get(entry.mouse) : miceThumbs.find((mouse) => mouse.type === entry.mouse);
       if (mouseImages) {
         html += `<div class="journalimage"><a onclick="hg.views.MouseView.show('${entry.mouse}'); return false;"><img src="${mouseImages.thumb}" alt="${mouseImages.name}" title="${mouseImages.name}" /></a></div>`;
       }
@@ -372,6 +372,7 @@ let pager;
 let journalEntries = [];
 let totalPages = 0;
 let miceThumbs = [];
+let miceThumbsMap;
 
 /**
  * Initialize the module.
@@ -380,6 +381,9 @@ export default async () => {
   addStyles(styles, 'better-journal-journal-history');
 
   miceThumbs = await getData('mice-thumbnails');
+  if (Array.isArray(miceThumbs) && miceThumbs.length) {
+    miceThumbsMap = new Map(miceThumbs.map((mouse) => [mouse.type, mouse]));
+  }
 
   doDelayedJournalHistory();
   onRequest('pages/journal.php', doJournalHistoryRequest);

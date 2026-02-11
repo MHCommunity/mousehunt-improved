@@ -81,13 +81,19 @@
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .requirements b {
-  display: inline-block;
+  display: block;
   padding: 7px;
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .item img,
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink br {
   display: none;
+}
+
+#overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .requirements img {
+  display: inline-block;
+  width: auto;
+  height: 15px;
 }
 
 #overlayPopup.zugzwangsLibraryQuestShopPopup .questContainer {
@@ -107,6 +113,16 @@
 #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:focus,
 #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink:active {
   cursor: default;
+}
+
+.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer {
+  color: var(--d-text);
+  background: var(--d-bg);
+}
+
+.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup #jsDialogAjaxPrefix h2,
+.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup a.questLink {
+  color: var(--d-text);
 }
 
 .mh-m400-travel {

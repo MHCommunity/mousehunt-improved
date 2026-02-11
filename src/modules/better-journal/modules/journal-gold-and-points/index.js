@@ -23,17 +23,22 @@ const wrapGoldAndPoints = (entry) => {
     return;
   }
 
+  let html = entry.innerHTML;
   // Find the amount of points via a regex and wrap it in a span
-  const points = entry.innerHTML.match(/worth (.+?) points/i);
+  const points = html.match(/worth (.+?) points/i);
   // also match the 'and X,XXX gold' part
-  const gold = entry.innerHTML.match(/points and (.+?) gold/i);
+  const gold = html.match(/points and (.+?) gold/i);
 
   if (points) {
-    entry.innerHTML = entry.innerHTML.replace(points[0], `worth <span class="mh-ui-points">${points[1]}</span> points`);
+    html = html.replace(points[0], `worth <span class="mh-ui-points">${points[1]}</span> points`);
   }
 
   if (gold) {
-    entry.innerHTML = entry.innerHTML.replace(gold[0], `points and <span class="mh-ui-gold">${gold[1]}</span> gold`);
+    html = html.replace(gold[0], `points and <span class="mh-ui-gold">${gold[1]}</span> gold`);
+  }
+
+  if (html !== entry.innerHTML) {
+    entry.innerHTML = html;
   }
 };
 
