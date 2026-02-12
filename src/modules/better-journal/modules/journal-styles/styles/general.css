@@ -315,3 +315,7 @@ p.mhi-x-entry {
   display: flex;
   padding: 10px;
 }
+
+br:has(+ .better-journal-list) {
+  display: none;
+}

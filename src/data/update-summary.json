@@ -4,26 +4,10 @@
     {
       "title": "",
       "items": [
-        "Better Journal: Fixed issues with some entries not correctly linking items",
-        "Better Journal: Updated styles",
-        "Better Maps: Added 'Show map join & catch dates' option from beta/experimental features",
-        "Better Maps: Added Maptain & Duster info display to completed maps",
-        "Better Maps: Updated map catch dates to only show on own maps or maps you have been on",
-        "Better Maps: Updated styles",
-        "Better Mice: Updated hover mouse functionality to work with CRE list",
-        "Better Travel: Added Draconic Depths, Afterword Acres, and Epilogue Falls to Travel Reminders",
-        "Better UI: Added 'Add background gradient to your trap' setting from beta/experimental features",
-        "Dark Mode: Updated styles",
-        "Location Dashboard: Added Afterword Acres and Epilogue Falls to dashboard",
-        "Location HUDs - Bristle Woods Rift: Updated styles",
-        "Location HUDs - Burroughs Rift: Updated styles",
-        "Location HUDs - Conclusion Cliffs: Added location",
-        "Location HUDs - Draconic Depths: Updated styles",
-        "Location HUDs - Epilogue Falls: Enhanced UI and updated styles",
-        "Location HUDs - Event Locations: Updated styles",
-        "Location HUDs - Valour Rift: Updated styles",
-        "Location HUDs - Zokor: Updated styles",
-        "Miscellaneous bug fixes and performance improvements"
+        "Added Rift Hailstone Singularity Base to Prestige Base Stats so it shows the correct stats in the base selector",
+        "Added 'Show Adventure Book' feature to add an Adventure Book link to the Kingdom menu",
+        "Added an option to disable Native Dark Mode mice page image changes",
+        "Miscellaneous bug fixes and style updates"
       ]
     }
   ]

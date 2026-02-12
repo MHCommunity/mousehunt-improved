@@ -8,8 +8,3 @@
 .mh-dark.mh-dark .mouseListView[data-display-mode="images"] .landscape .mouseListView-categoryContent-subgroup-mouse-margin[style]::after {
   background-size: 275px 200px;
 }
-
-/* tweak the brightness a tiny bit */
-.mh-dark.mh-dark .mouseListView[data-display-mode="images"] .mouseListView-categoryContent-subgroup-mouse-margin[style]::after {
-  filter: brightness(0.78);
-}
