@@ -1,10 +1,14 @@
 # Changelog
 
+## Version 0.96.1
+
+- Fixed mice page image option not showing under Dark Mode
+
 ## Version 0.96.0
 
 - Added Rift Hailstone Singularity Base to Prestige Base Stats so it shows the correct stats in the base selector
 - Added 'Show Adventure Book' feature to add an Adventure Book link to the Kingdom menu
-- Added an option to disable Native Dark Mode mice page image changes
+- Added an option to disable Dark Mode mice page image changes
 - Miscellaneous bug fixes and style updates
 
 ## Version 0.95.0

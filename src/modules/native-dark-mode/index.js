@@ -10,6 +10,8 @@ import {
   saveSetting
 } from '@utils';
 
+import settings from './settings';
+
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
@@ -73,4 +75,5 @@ export default {
   type: 'feature',
   default: false,
   load: init,
+  settings,
 };
