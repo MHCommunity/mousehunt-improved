@@ -60,9 +60,9 @@
     "caniuse-lite": "^1.0.30001769"
   },
   "devDependencies": {
-    "@sentry/cli": "^2.58.4",
+    "@sentry/cli": "^3.2.0",
     "@sprout2000/esbuild-copy-plugin": "^1.1.19",
-    "@wordpress/eslint-plugin": "^22.22.0",
+    "@wordpress/eslint-plugin": "^24.1.0",
     "archiver": "^7.0.1",
     "chalk": "^5.6.2",
     "chrome-webstore-upload-cli": "^3.5.0",
