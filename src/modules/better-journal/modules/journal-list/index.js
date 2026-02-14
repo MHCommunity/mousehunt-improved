@@ -53,6 +53,7 @@ const otherStrings = [
   'my Skyfarer\'s Oculus and discovered:',
   'My golem returned from |*| with',
   'scared up an additional:',
+  'the following bonus loot:',
 ];
 
 const classesToSkip = new Set([
@@ -161,14 +162,15 @@ const makeListItems = (itemList) => {
   const frag = document.createDocumentFragment();
   for (const raw of itemList) {
     const li = makeElement('li', 'better-journal-list-item');
-    const conv = convertTextToItemLink(raw);
+    const cleaned = raw.replace(/^•\s*/, '');
+    const conv = convertTextToItemLink(cleaned);
     if (conv) {
       // build DOM safely: text node for quantity, then the anchor element
       li.append(document.createTextNode(`${conv.quantity} `));
       li.append(conv.link);
     } else {
-      // preserve original trimmed text
-      li.innerHTML = raw.replace(/,$/, '').trim();
+      // preserve original trimmed text, stripping "N x" quantity prefix
+      li.innerHTML = cleaned.replace(/,$/, '').replace(/^(\d+)\s+x\s+/, '$1 ').trim();
     }
     frag.append(li);
   }

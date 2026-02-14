@@ -337,3 +337,69 @@ a.folkloreForestRegionView-travelButton:hover {
   cursor: pointer;
   background: #ffc0c0;
 }
+
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max {
+  border-radius: 1px;
+  box-shadow: 0 0 1px 1px #eee inset;
+  padding: 2px;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+  display: flex;
+  margin-top: -5px;
+  height: 22px;
+  align-items: center;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max:after {
+  display: none;
+}
+
+.upsellItemActionView-action-quantityContainer {
+  display: flex;
+  align-items: baseline;
+  align-content: center;
+  justify-content: center;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max {
+  border-radius: 1px;
+  box-shadow: 0 0 1px 1px #eee inset;
+  padding: 2px 6px;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+  display: flex;
+  margin-top: -5px;
+  height: 22px;
+  align-items: center;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max:hover {
+  background-color: #faefbf;
+  box-shadow: none;
+  color: #000;
+}
+
+.upsellItemActionView-action-quantity {
+  display: block;
+  box-sizing: border-box;
+  height: 21px;
+}
+
+.mh-dark .folkloreForestRegionView-dialog-block-name {
+  background-color: var(--d-bg);
+}
+
+.mh-dark .folkloreForestRegionView-dialog-block-description {
+  background-color: var(--d-bg);
+  color: var(--d-text);
+  border-top-color: var(--d-bg);
+}
+
+.mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-recipe.upsell {
+  border-top-color: var(--d);
+}
+
+.mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max {
+  box-shadow: 0 0 1px 1px var(--d-bg-alt) inset;
+  border-color: var(--d);
+}
