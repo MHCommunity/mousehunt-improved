@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.96.2
+
+- Updated Dark Mode styles
+- Updated Better Journal list to support Lunar New Year entries
+- Fixed broken image
+
 ## Version 0.96.1
 
 - Fixed mice page image option not showing under Dark Mode
