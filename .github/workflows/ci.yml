@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 20.x
+          - 24.x
         os:
           - macos-latest
           - ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
     runs-on:
       ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - uses: oven-sh/setup-bun@v2
     - run: bun install
     - run: bun run build
