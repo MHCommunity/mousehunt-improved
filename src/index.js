@@ -162,6 +162,9 @@ const init = async () => {
   }
 
   excludeFromUserscript: if (getSetting('error-reporting', true)) {
+    const injectedScript = document.querySelector('#mousehunt-improved-script');
+    const extensionBaseUrl = new URL(injectedScript?.dataset.baseurl || injectedScript?.src);
+
     Sentry.init({
       dsn: 'https://850af0a4f96b32d673a133c9353a3622@o4506583858348032.ingest.us.sentry.io/4506781071835136',
       maxBreadcrumbs: 50,
@@ -177,31 +180,10 @@ const init = async () => {
           id: await getAnonymousUserHash()
         },
       },
-
-      /**
-       * Before sending the event to Sentry, check if it should be sent.
-       *
-       * @param {Event} event The event object.
-       *
-       * @return {Event|null} The event to send, or null to skip.
-       */
-      beforeSend: (event) => {
-        const frames = event?.exception?.values?.[0]?.stacktrace?.frames;
-        if (Array.isArray(frames)) {
-          const file = frames[0]?.filename;
-          if (
-            file && (
-              file.includes('hknhadpnfdnkinmompmkclpfkngdcdph') ||
-              file.includes('fgjkidgknmkhnbeobehlfabjbignhkhm') ||
-              file.includes('mousehunt-improved')
-            )
-          ) {
-            return event;
-          }
-        }
-
-        return null;
-      },
+      allowUrls: [
+        // (chrome-extension|moz-extension)://<extension-id> becomes <extension-id>
+        extensionBaseUrl.hostname,
+      ],
     });
   }
 
