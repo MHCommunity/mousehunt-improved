@@ -163,7 +163,7 @@ const init = async () => {
 
   excludeFromUserscript: if (getSetting('error-reporting', true)) {
     const injectedScript = document.querySelector('#mousehunt-improved-script');
-    const extensionBaseUrl = new URL(injectedScript?.dataset.baseurl || injectedScript?.src);
+    const extensionBaseUrl = new URL(injectedScript?.dataset.baseurl || injectedScript?.src || 'chrome-extension://fgjkidgknmkhnbeobehlfabjbignhkhm');
 
     Sentry.init({
       dsn: 'https://850af0a4f96b32d673a133c9353a3622@o4506583858348032.ingest.us.sentry.io/4506781071835136',
