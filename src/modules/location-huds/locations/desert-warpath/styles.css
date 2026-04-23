@@ -131,7 +131,7 @@
   top: -15px;
   left: -150px;
   cursor: pointer;
-  opacity: 0.4;
+  opacity: 0.6;
   transition: transform 0.3s;
   transform: rotate(270deg) scale(0.8);
   animation: none;

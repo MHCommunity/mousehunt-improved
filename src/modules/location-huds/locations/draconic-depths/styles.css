@@ -216,3 +216,7 @@
   right: -50px;
   left: -50px;
 }
+
+.headsUpDisplayDraconicDepths__inventoryContainer {
+  z-index: 31;
+}
