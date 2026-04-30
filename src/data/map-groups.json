@@ -3446,7 +3446,6 @@
         "name": "Draconic Depths",
         "id": "draconic-depths",
         "icon": "/items/crafting_items/transparent_thumb/e2e9b6dd72e59ffcfb6dad3b1d8c441a.png",
-        "color": "#ffffff",
         "mice": [
           { "mouse": "crematio_scorchworth", "subcategory": "fire-0-750" },
           { "mouse": "flamina_cinderbreath", "subcategory": "fire-0-750" },
@@ -3504,12 +3503,13 @@
           { "mouse": "killer_krill", "subcategory": "ssc" },
           { "mouse": "chaotic_chiton", "subcategory": "ssc" },
           { "mouse": "muscular_mussel", "subcategory": "ssc" },
-          { "mouse": "nyagarha_the_falls_guardian", "subcategory": "boss" },
-          { "mouse": "ancient_wisdom_keeper", "subcategory": "boss" }
+          { "mouse": "falls_guardian", "subcategory": "boss" },
+          { "mouse": "grotto_elder", "subcategory": "boss" }
         ]
       },
       {
         "name": "Conclusion Cliffs",
+        "color": "#aad23a",
         "subtitle": "Adventure",
         "id": "adventure",
         "mice": [
@@ -3523,6 +3523,7 @@
       },
       {
         "name": "Conclusion Cliffs",
+        "color": "#aad23a",
         "subtitle": "Comedy",
         "id": "comedy",
         "mice": [
@@ -3536,6 +3537,7 @@
       },
       {
         "name": "Conclusion Cliffs",
+        "color": "#aad23a",
         "subtitle": "Romance",
         "id": "romance",
         "mice": [
@@ -3549,6 +3551,7 @@
       },
       {
         "name": "Conclusion Cliffs",
+        "color": "#aad23a",
         "subtitle": "Suspense",
         "id": "suspense",
         "mice": [
@@ -3562,6 +3565,7 @@
       },
       {
         "name":"Conclusion Cliffs",
+        "color": "#aad23a",
        	"subtitle":"Tragedy",
        	"id":"tragedy",
        	"mice":[
@@ -3575,6 +3579,7 @@
       },
       {
         "name": "Conclusion Cliffs",
+        "color": "#aad23a",
         "subtitle": "Fantasy",
         "id": "fantasy",
         "mice": [
@@ -3588,16 +3593,17 @@
       },
       {
         "name": "Conclusion Cliffs",
+        "color": "#aad23a",
         "subtitle": "Boss",
         "id": "cc-boss",
         "mice": [
-          { "mouse": "adventure_weaver", "subcategory": "boss" },
-          { "mouse": "comedy_weaver", "subcategory": "boss" },
-          { "mouse": "romance_weaver", "subcategory": "boss" },
-          { "mouse": "suspense_weaver", "subcategory": "boss" },
-          { "mouse": "tragedy_weaver", "subcategory": "boss" },
-          { "mouse": "ultimate_mythweaver", "subcategory": "boss" }
-        ]
+          "adventure_weaver",
+          "comedy_weaver",
+          "romance_weaver",
+          "suspense_weaver",
+          "tragedy_weaver",
+          "ultimate_mythweaver"
+         ]
       }
     ],
     "subcategories": [
