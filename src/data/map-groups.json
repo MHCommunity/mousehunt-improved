@@ -3316,8 +3316,8 @@
           { "mouse": "killer_krill", "subcategory": "ssc" },
           { "mouse": "chaotic_chiton", "subcategory": "ssc" },
           { "mouse": "muscular_mussel", "subcategory": "ssc" },
-          { "mouse": "nyagarha_the_falls_guardian", "subcategory": "boss" },
-          { "mouse": "ancient_wisdom_keeper", "subcategory": "boss" }
+          { "mouse": "falls_guardian", "subcategory": "boss" },
+          { "mouse": "grotto_elder", "subcategory": "boss" }
         ]
       },
       {
