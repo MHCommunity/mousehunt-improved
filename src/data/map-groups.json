@@ -3333,140 +3333,181 @@
       },
       {
         "name": "School of Sorcery",
-        "subtitle": "Arcane SB",
-        "id": "sos-arcane-sb",
+        "subtitle": "Arcane Arts",
+        "id": "sos-arcane-arts",
+        "icon": "/items/stats/transparent_thumb/34bd29681766640ffc84bb189eb6d155.png",
+        "color:": "#fffc40",
+        "mice": [
+          {"mouse": "arcana_overachiever", "subcategory": "aac"},
+          {"mouse": "invisible_fashionista", "subcategory": "aac"},
+          {"mouse": "enchanted_chess_club_champion", "subcategory": "aac"},
+          {"mouse": "illustrious_illusionist", "subcategory": "mmc"},
+          {"mouse": "featherlight", "subcategory": "mmc"},
+          {"mouse": "constructively_critical_artist", "subcategory": "mmc"},
+          {"mouse": "arcane_sorcerer", "subcategory": "boss"}
+        ]
+      },
+      {
+        "name": "School of Sorcery",
+        "subtitle": "Shadow Sciences",
+        "id": "sos-shadow-arts",
+        "icon": "/items/stats/transparent_thumb/65a6982462bcd840c7e8ad1bb75a93b1.png",
+        "color:": "#7590fc",
+        "mice": [
+          {"mouse": "classroom_keener", "subcategory": "aac"},
+          {"mouse": "audacious_alchemist", "subcategory": "aac"},
+          {"mouse": "prestigious_prestidigitator", "subcategory": "aac"},
+          {"mouse": "classroom_disruptor", "subcategory": "mmc"},
+          {"mouse": "teleporting_truant", "subcategory": "mmc"},
+          {"mouse": "magical_multitasker", "subcategory": "mmc"},
+          {"mouse": "shadow_sorcerer", "subcategory": "boss"}
+        ]
+      },
+      {
+        "name": "School of Sorcery",
+        "subtitle": "Final Exam Arcane",
+        "id": "sos-final-exam-arcane",
         "icon": "/powertypes/arcane.png",
-        "color": "#16dfad",
-        "mice": [
-          "perpetual_detention",
-          "broomstick_bungler",
-          "misfortune_teller",
-          {
-            "mouse": "sleep_starved_scholar",
-            "subcategory": "final"
-          }
-        ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Arcane AAC",
-        "id": "sos-arcane-aac",
-        "icon": "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png",
-        "color": "#16dfad",
-        "mice": [
-          "arcana_overachiever",
-          "invisible_fashionista",
-          "enchanted_chess_club_champion",
-          {
-            "mouse": "class_clown",
-            "subcategory": "final"
-          }
-        ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Arcane MMC",
-        "id": "sos-arcane-mmc",
-        "icon": "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png",
-        "color": "#16dfad",
-        "mice": [
-          "illustrious_illusionist",
-          "featherlight",
-          "constructively_critical_artist",
-          {
-            "mouse": "tyrannical_thaumaturge",
-            "subcategory": "final"
-          }
-        ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Shadow SB",
-        "id": "sos-shadow-sb",
-        "icon": "/powertypes/shadow.png",
-        "color": "#c7abde",
-        "mice": [
-          "mixing_mishap",
-          "uncoordinated_cauldron_carrier",
-          "bookworm",
-          {
-            "mouse": "cheat_sheet_conjurer",
-            "subcategory": "final"
-          }
-        ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Shadow AAC",
-        "id": "sos-shadow-aac",
-        "icon": "/items/bait/large/9aaaf078b9706175e2cb9dac11a121a8.png",
-        "color": "#c7abde",
-        "mice": [
-          "classroom_keener",
-          "audacious_alchemist",
-          "prestigious_prestidigitator",
-          {
-            "mouse": "celestial_summoner",
-            "subcategory": "final"
-          }
-        ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Shadow MMC",
-        "id": "sos-shadow-mmc",
-        "icon": "/items/bait/large/a44cd2c22f720fd979d53d06d39a5f57.png",
-        "color": "#c7abde",
-        "mice": [
-          "classroom_disrupter",
-          "teleporting_truant",
-          "magical_multitasker",
-          {
-            "mouse": "data_devourer",
-            "subcategory": "final"
-          }
-        ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Boss",
-        "id": "sos-boss",
-        "icon": "/ui/hud/school_of_sorcery/exam_icon.png",
         "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
         "mice": [
-          "arcane_sorcerer",
-          "shadow_sorcerer",
+          {"mouse": "sleep_starved_scholar", "subcategory": "standard"},
+          {"mouse": "class_clown", "subcategory": "aac"},
+          {"mouse": "tyrannical_thaumaturge", "subcategory": "mmc"}
+        ]
+      },
+      {
+        "name": "School of Sorcery",
+        "subtitle": "Final Exam Shadow",
+        "id": "sos-final-exam-shadow",
+        "icon": "/powertypes/shadow.png",
+        "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
+        "mice": [
+          {"mouse": "cheat_sheet_conjurer", "subcategory": "standard"},
+          {"mouse": "celestial_summoner", "subcategory": "aac"},
+          {"mouse": "data_devourer", "subcategory": "mmc"}
+        ]
+      },
+      {
+        "name": "School of Sorcery",
+        "subtitle": "Final Exam Boss",
+        "id": "sos-final-exam-boss",
+        "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
+        "mice": ["mythical_master_sorcerer"]
+      },
+      {
+        "name": "Draconic Depths",
+        "subtitle": "Ice",
+        "id": "ice",
+        "icon": "/items/stats/transparent_thumb/22e16f7fc2b4612924f8fd24f70be595.png",
+        "color": "#49ffff",
+        "mice": [
           {
-            "mouse": "mythical_master_sorcerer",
-            "subcategory": "final"
+            "mouse": "rimeus_polarblast",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "frigidocius_coldshot",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "chillandria_permafrost",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "avalancheus_the_glacial",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "arcticus_the_biting_frost",
+            "subcategory": "cavern-750+-loot"
           }
         ]
       },
       {
         "name": "Draconic Depths",
-        "id": "draconic-depths",
-        "icon": "/items/crafting_items/transparent_thumb/e2e9b6dd72e59ffcfb6dad3b1d8c441a.png",
+        "subtitle": "Fire",
+        "id": "fire",
+        "icon": "/items/stats/transparent_thumb/fdd6e3aa9d1f5831fc397237db581d81.png",
+        "color": "#ffa920",
         "mice": [
-          { "mouse": "crematio_scorchworth", "subcategory": "fire-0-750" },
-          { "mouse": "flamina_cinderbreath", "subcategory": "fire-0-750" },
-          { "mouse": "combustius_furnaceheart", "subcategory": "fire-750" },
-          { "mouse": "incendarius_the_unquenchable", "subcategory": "fire-750" },
-          { "mouse": "sulfurious_the_raging_inferno", "subcategory": "fire-750" },
-          { "mouse": "rimeus_polarblast", "subcategory": "ice-0-750" },
-          { "mouse": "frigidocius_coldshot", "subcategory": "ice-0-750" },
-          { "mouse": "chillandria_permafrost", "subcategory": "ice-750" },
-          { "mouse": "avalancheus_the_glacial", "subcategory": "ice-750" },
-          { "mouse": "arcticus_the_biting_frost", "subcategory": "ice-750" },
-          { "mouse": "malignus_vilestrom", "subcategory": "poison-0-750" },
-          { "mouse": "venomona_festerbloom", "subcategory": "poison-0-750" },
-          { "mouse": "belchazar_banewright", "subcategory": "poison-750" },
-          { "mouse": "pestilentia_the_putrid", "subcategory": "poison-750" },
-          { "mouse": "corrupticus_the_blight_baron", "subcategory": "poison-750" },
-          { "mouse": "absolutia_harmonius", "subcategory": "elemental-0-750" },
-          { "mouse": "magnatius_majestica", "subcategory": "elemental-0-750" },
-          { "mouse": "supremia_magnificus", "subcategory": "elemental-750" },
-          { "mouse": "threeamat_the_mother_of_dragons", "subcategory": "elemental-750" },
-          { "mouse": "mythical_dragon_emperor", "subcategory": "elemental-750" }
+          {
+            "mouse": "crematio_scorchworth",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "flamina_cinderbreath",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "combustius_furnaceheart",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "incendarius_the_unquenchable",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "sulfurious_the_raging_inferno",
+            "subcategory": "cavern-750+-loot"
+          }
+        ]
+      },
+      {
+        "name": "Draconic Depths",
+        "subtitle": "Poison",
+        "id": "poison",
+        "icon": "/items/stats/transparent_thumb/521595717cfe3af1dee6253f2f553b7f.png",
+        "color": "#7fff3c",
+        "mice": [
+          {
+            "mouse": "malignus_vilestrom",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "venomona_festerbloom",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "belchazar_banewright",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "pestilentia_the_putrid",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "corrupticus_the_blight_baron",
+            "subcategory": "cavern-750+-loot"
+          }
+        ]
+      },
+      {
+        "name": "Draconic Depths",
+        "subtitle": "Elemental",
+        "id": "elemental",
+        "icon": "/items/bait/transparent_thumb/a0958278e0a2a22b4954051824d177d3.png",
+        "color": "#ff3cd7",
+        "mice": [
+          {
+            "mouse": "absolutia_harmonius",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "magnatius_majestica",
+            "subcategory": "cavern-0-750-loot"
+          },
+          {
+            "mouse": "supremia_magnificus",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "threeimat",
+            "subcategory": "cavern-100+-loot"
+          },
+          {
+            "mouse": "mythical_dragon_emperor",
+            "subcategory": "cavern-750+-loot"
+          }
         ]
       },
       {
@@ -3607,6 +3648,7 @@
       }
     ],
     "subcategories": [
+      { "id": "standard", "name": "Standard" },
       { "id": "sb", "name": "SB" },
       { "id": "boss", "name": "Boss" },
 
@@ -3627,16 +3669,9 @@
       {"id": "lavish", "name": "Lavish Beanster"},
       {"id": "royal", "name": "Royal Beanster"},
 
-      {"id": "final", "name": "Final Exam"},
-
-      { "id": "fire-0-750", "name": "Fire 0-750" },
-      { "id": "fire-750", "name": "Fire 750+" },
-      { "id": "ice-0-750", "name": "Ice 0-750" },
-      { "id": "ice-750", "name": "Ice 750+" },
-      { "id": "poison-0-750", "name": "Poison 0-750" },
-      { "id": "poison-750", "name": "Poison 750+" },
-      { "id": "elemental-0-750", "name": "Elemental 0-750" },
-      { "id": "elemental-750", "name": "Elemental 750+" },
+      {"id": "cavern-0-750-loot", "name": "Cavern 0-750 Loot"},
+      {"id": "cavern-100+-loot", "name": "Cavern 100+ Loot"},
+      {"id": "cavern-750+-loot", "name": "Cavern 750+ Loot"},
 
       { "id": "mmc", "name": "MMC" },
       { "id": "aac", "name": "AAC" },
