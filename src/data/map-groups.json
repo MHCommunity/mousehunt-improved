@@ -3151,9 +3151,9 @@
         "icon": "/folklore_forest_upgrades/farm_plot_2_thumb.png",
         "color": "#d7b18b",
         "mice": [
-          { "mouse": "angry_aphid", "subcategory": "planting" },
-          { "mouse": "wily_weevil", "subcategory": "planting" },
-          { "mouse": "mighty_mite", "subcategory": "planting" },
+          { "mouse": "angry_aphid", "subcategory": "pest" },
+          { "mouse": "wily_weevil", "subcategory": "pest" },
+          { "mouse": "mighty_mite", "subcategory": "pest" },
           { "mouse": "crazed_cultivator", "subcategory": "sb" },
           { "mouse": "loathsome_locust", "subcategory": "three-papyrus" },
           { "mouse": "monstrous_midge", "subcategory": "three-twisted" }
@@ -3197,202 +3197,62 @@
       },
       {
         "name": "Bountiful Beanstalk",
-        "subtitle": "Beanstalk",
-        "id": "beanstalk",
-        "icon": "",
+        "id": "bountiful-beanstalk",
+        "icon": "/items/stats/transparent_thumb/71d2265100257e1c8d7de308ea02bfd7.png",
         "color": "#45890e",
         "mice": [
-          "budrich_thornborn",
-          "leafton_beanwell",
-          "herbaceous_bravestalk",
-          {
-            "mouse": "vinneus_stalkhome",
-            "subcategory": "boss"
-          }
+          { "mouse": "vinneus_stalkhome", "subcategory": "boss" },
+          { "mouse": "cell_sweeper", "subcategory": "dungeon-beanster" },
+          { "mouse": "jovial_jailor", "subcategory": "dungeon-beanster" },
+          { "mouse": "lethargic_guard", "subcategory": "dungeon-beanster" },
+          { "mouse": "gate_keeper", "subcategory": "dungeon-lavish" },
+          { "mouse": "key_master", "subcategory": "dungeon-lavish" },
+          { "mouse": "wrathful_warden", "subcategory": "dungeon-royal" },
+          { "mouse": "dungeon_master", "subcategory": "boss" },
+          { "mouse": "obstinate_oboist", "subcategory": "ballroom-beanster" },
+          { "mouse": "peevish_piccoloist", "subcategory": "ballroom-beanster" },
+          { "mouse": "sultry_saxophonist", "subcategory": "ballroom-beanster" },
+          { "mouse": "violent_violinist", "subcategory": "ballroom-lavish" },
+          { "mouse": "chafed_cellist", "subcategory": "ballroom-lavish" },
+          { "mouse": "treacherous_tubaist", "subcategory": "ballroom-royal" },
+          { "mouse": "malevolent_maestro", "subcategory": "boss" },
+          { "mouse": "vindictive_viscount", "subcategory": "greathall-beanster" },
+          { "mouse": "baroness_von_bean", "subcategory": "greathall-beanster" },
+          { "mouse": "cagey_countess", "subcategory": "greathall-beanster" },
+          { "mouse": "dastardly_duchess", "subcategory": "greathall-lavish" },
+          { "mouse": "malicious_marquis", "subcategory": "greathall-lavish" },
+          { "mouse": "pernicious_prince", "subcategory": "greathall-royal" },
+          { "mouse": "mythical_giant_king", "subcategory": "boss" }
         ]
       },
-      {
-        "name": "Bountiful Beanstalk",
-        "subtitle": "Dungeon",
-        "id": "dungeon",
-        "icon": "",
-        "color": "#919ac7",
-        "mice": [
-          "peaceful_prisoner",
-          "diminutive_detainee",
-          "smug_smuggler",
-          {
-            "mouse": "cell_sweeper",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "jovial_jailor",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "lethargic_guard",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "gate_keeper",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "key_master",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "wrathful_warden",
-            "subcategory": "royal"
-          },
-          {
-            "mouse": "dungeon_master",
-            "subcategory": "boss"
-          }
-        ]
-      },
-      {
-        "name": "Bountiful Beanstalk",
-        "subtitle": "Ballroom",
-        "id": "ballroom",
-        "icon": "",
-        "color": "#e0b1b2",
-        "mice": [
-          "whimsical_waltzer",
-          "sassy_salsa_dancer",
-          "baroque_dancer",
-          {
-            "mouse": "obstinate_oboist",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "peevish_piccoloist",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "sultry_saxophonist",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "violent_violinist",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "chafed_cellist",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "treacherous_tubaist",
-            "subcategory": "royal"
-          },
-          {
-            "mouse": "malevolent_maestro",
-            "subcategory": "boss"
-          }
-        ]
-      },
-      {
-        "name": "Bountiful Beanstalk",
-        "subtitle": "Great Hall",
-        "id": "great-hall",
-        "icon": "",
-        "color": "#d68d0a",
-        "mice": [
-          "clumsy_cupbearer",
-          "plotting_page",
-          "scheming_squire",
-          {
-            "mouse": "vindictive_viscount",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "baroness_von_bean",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "cagey_countess",
-            "subcategory": "beanster"
-          },
-          {
-            "mouse": "dastardly_duchess",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "malicious_marquis",
-            "subcategory": "lavish"
-          },
-          {
-            "mouse": "pernicious_prince",
-            "subcategory": "royal"
-          },
-          {
-            "mouse": "mythical_giant_king",
-            "subcategory": "boss"
-          }
-        ]
-      },
-      {
+            {
         "name": "School of Sorcery",
-        "subtitle": "Arcane Arts",
-        "id": "sos-arcane-arts",
-        "icon": "/items/stats/transparent_thumb/34bd29681766640ffc84bb189eb6d155.png",
-        "color:": "#fffc40",
-        "mice": [
-          {"mouse": "arcana_overachiever", "subcategory": "aac"},
-          {"mouse": "invisible_fashionista", "subcategory": "aac"},
-          {"mouse": "enchanted_chess_club_champion", "subcategory": "aac"},
-          {"mouse": "illustrious_illusionist", "subcategory": "mmc"},
-          {"mouse": "featherlight", "subcategory": "mmc"},
-          {"mouse": "constructively_critical_artist", "subcategory": "mmc"},
-          {"mouse": "arcane_sorcerer", "subcategory": "boss"}
-        ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Shadow Sciences",
-        "id": "sos-shadow-arts",
-        "icon": "/items/stats/transparent_thumb/65a6982462bcd840c7e8ad1bb75a93b1.png",
-        "color:": "#7590fc",
-        "mice": [
-          {"mouse": "classroom_keener", "subcategory": "aac"},
-          {"mouse": "audacious_alchemist", "subcategory": "aac"},
-          {"mouse": "prestigious_prestidigitator", "subcategory": "aac"},
-          {"mouse": "classroom_disruptor", "subcategory": "mmc"},
-          {"mouse": "teleporting_truant", "subcategory": "mmc"},
-          {"mouse": "magical_multitasker", "subcategory": "mmc"},
-          {"mouse": "shadow_sorcerer", "subcategory": "boss"}
-        ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Final Exam Arcane",
-        "id": "sos-final-exam-arcane",
-        "icon": "/powertypes/arcane.png",
+        "id": "school-of-sorcery",
+        "icon": "/items/stats/transparent_thumb/759e4b2a686d90537c55c435f6a23c82.png",
         "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
         "mice": [
-          {"mouse": "sleep_starved_scholar", "subcategory": "standard"},
-          {"mouse": "class_clown", "subcategory": "aac"},
-          {"mouse": "tyrannical_thaumaturge", "subcategory": "mmc"}
+          { "mouse": "arcana_overachiever", "subcategory": "arcane-arts-aac" },
+          { "mouse": "invisible_fashionista", "subcategory": "arcane-arts-aac" },
+          { "mouse": "enchanted_chess_club_champion", "subcategory": "arcane-arts-aac" },
+          { "mouse": "illustrious_illusionist", "subcategory": "arcane-arts-mmc" },
+          { "mouse": "featherlight", "subcategory": "arcane-arts-mmc" },
+          { "mouse": "constructively_critical_artist", "subcategory": "arcane-arts-mmc" },
+          { "mouse": "arcane_sorcerer", "subcategory": "boss" },
+          { "mouse": "classroom_keener", "subcategory": "shadow-sciences-aac" },
+          { "mouse": "audacious_alchemist", "subcategory": "shadow-sciences-aac" },
+          { "mouse": "prestigious_prestidigitator", "subcategory": "shadow-sciences-aac" },
+          { "mouse": "classroom_disrupter", "subcategory": "shadow-sciences-mmc" },
+          { "mouse": "teleporting_truant", "subcategory": "shadow-sciences-mmc" },
+          { "mouse": "magical_multitasker", "subcategory": "shadow-sciences-mmc" },
+          { "mouse": "shadow_sorcerer", "subcategory": "boss" },
+          { "mouse": "sleep_starved_scholar", "subcategory": "final-exam-arcane-standard" },
+          { "mouse": "class_clown", "subcategory": "final-exam-arcane-aac" },
+          { "mouse": "tyrannical_thaumaturge", "subcategory": "final-exam-arcane-mmc" },
+          { "mouse": "cheat_sheet_conjurer", "subcategory": "final-exam-shadow-standard" },
+          { "mouse": "celestial_summoner", "subcategory": "final-exam-shadow-aac" },
+          { "mouse": "data_devourer", "subcategory": "final-exam-shadow-mmc" },
+          { "mouse": "mythical_master_sorcerer", "subcategory": "boss" }
         ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Final Exam Shadow",
-        "id": "sos-final-exam-shadow",
-        "icon": "/powertypes/shadow.png",
-        "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
-        "mice": [
-          {"mouse": "cheat_sheet_conjurer", "subcategory": "standard"},
-          {"mouse": "celestial_summoner", "subcategory": "aac"},
-          {"mouse": "data_devourer", "subcategory": "mmc"}
-        ]
-      },
-      {
-        "name": "School of Sorcery",
-        "subtitle": "Final Exam Boss",
-        "id": "sos-final-exam-boss",
-        "color": "linear-gradient(64deg, #c7abde 10%, #c7abde 50%, #16dfad 90%)",
-        "mice": ["mythical_master_sorcerer"]
       },
       {
         "name": "Draconic Depths",
@@ -3652,7 +3512,7 @@
       { "id": "sb", "name": "SB" },
       { "id": "boss", "name": "Boss" },
 
-      { "id": "planting", "name": "Planting" },
+      { "id": "pest", "name": "Pest" },
       { "id": "three-papyrus", "name": "3 Papyrus" },
       { "id": "three-twisted", "name": "3 Twisted" },
 
@@ -3665,9 +3525,26 @@
       { "id": "2dd", "name": "2DD" },
       { "id": "fdd", "name": "FDD" },
 
-      {"id": "beanster", "name": "Beanster"},
-      {"id": "lavish", "name": "Lavish Beanster"},
-      {"id": "royal", "name": "Royal Beanster"},
+      { "id": "dungeon-beanster", "name": "Dungeon Beanster" },
+      { "id": "dungeon-lavish", "name": "Dungeon Lavish" },
+      { "id": "dungeon-royal", "name": "Dungeon Royal" },
+      { "id": "ballroom-beanster", "name": "Ballroom Beanster" },
+      { "id": "ballroom-lavish", "name": "Ballroom Lavish" },
+      { "id": "ballroom-royal", "name": "Ballroom Royal" },
+      { "id": "greathall-beanster", "name": "Great Hall Beanster" },
+      { "id": "greathall-lavish", "name": "Great Hall Lavish" },
+      { "id": "greathall-royal", "name": "Great Hall Royal" },
+
+      { "id": "arcane-arts-aac", "name": "Arcane AAC" },
+      { "id": "arcane-arts-mmc", "name": "Arcane MMC" },
+      { "id": "shadow-sciences-aac", "name": "Shadow AAC" },
+      { "id": "shadow-sciences-mmc", "name": "Shadow MMC" },
+      { "id": "final-exam-arcane-standard", "name": "FE Arcane Standard" },
+      { "id": "final-exam-arcane-aac", "name": "FE Arcane AAC" },
+      { "id": "final-exam-arcane-mmc", "name": "FE Arcane MMC" },
+      { "id": "final-exam-shadow-standard", "name": "FE Shadow Standard" },
+      { "id": "final-exam-shadow-aac", "name": "FE Shadow AAC" },
+      { "id": "final-exam-shadow-mmc", "name": "FE Shadow MMC" },
 
       {"id": "cavern-0-750-loot", "name": "Cavern 0-750 Loot"},
       {"id": "cavern-100+-loot", "name": "Cavern 100+ Loot"},
