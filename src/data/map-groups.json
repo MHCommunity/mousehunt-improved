@@ -3143,7 +3143,7 @@
       }
     ]
   },
-    "folklore_forest_grand_tour": {
+"folklore_forest_grand_tour": {
     "categories": [
       {
         "name": "Foreword Farm",
@@ -3201,28 +3201,28 @@
         "icon": "!TODO",
         "color": "#ffffff",
         "mice": [
-          { "mouse": "vinneus_stalkhome", "subcategory": "bountiful-beanstalk-boss" },
+          { "mouse": "vinneus_stalkhome", "subcategory": "boss" },
           { "mouse": "cell_sweeper", "subcategory": "bountiful-beanstalk-dungeon-beanster" },
           { "mouse": "jovial_jailor", "subcategory": "bountiful-beanstalk-dungeon-beanster" },
           { "mouse": "lethargic_guard", "subcategory": "bountiful-beanstalk-dungeon-beanster" },
           { "mouse": "gate_keeper", "subcategory": "bountiful-beanstalk-dungeon-lavish" },
           { "mouse": "key_master", "subcategory": "bountiful-beanstalk-dungeon-lavish" },
           { "mouse": "wrathful_warden", "subcategory": "bountiful-beanstalk-dungeon-royal" },
-          { "mouse": "dungeon_master", "subcategory": "bountiful-beanstalk-dungeon-boss" },
+          { "mouse": "dungeon_master", "subcategory": "boss" },
           { "mouse": "obstinate_oboist", "subcategory": "bountiful-beanstalk-ballroom-beanster" },
           { "mouse": "peevish_piccoloist", "subcategory": "bountiful-beanstalk-ballroom-beanster" },
           { "mouse": "sultry_saxophonist", "subcategory": "bountiful-beanstalk-ballroom-beanster" },
           { "mouse": "violent_violinist", "subcategory": "bountiful-beanstalk-ballroom-lavish" },
           { "mouse": "chafed_cellist", "subcategory": "bountiful-beanstalk-ballroom-lavish" },
           { "mouse": "treacherous_tubaist", "subcategory": "bountiful-beanstalk-ballroom-royal" },
-          { "mouse": "malevolent_maestro", "subcategory": "bountiful-beanstalk-ballroom-boss" },
+          { "mouse": "malevolent_maestro", "subcategory": "boss" },
           { "mouse": "vindictive_viscount", "subcategory": "bountiful-beanstalk-greathall-beanster" },
           { "mouse": "baroness_von_bean", "subcategory": "bountiful-beanstalk-greathall-beanster" },
           { "mouse": "cagey_countess", "subcategory": "bountiful-beanstalk-greathall-beanster" },
           { "mouse": "dastardly_duchess", "subcategory": "bountiful-beanstalk-greathall-lavish" },
           { "mouse": "malicious_marquis", "subcategory": "bountiful-beanstalk-greathall-lavish" },
           { "mouse": "pernicious_prince", "subcategory": "bountiful-beanstalk-greathall-royal" },
-          { "mouse": "mythical_giant_king", "subcategory": "bountiful-beanstalk-greathall-boss" }
+          { "mouse": "mythical_giant_king", "subcategory": "boss" }
         ]
       },
       {
@@ -3237,21 +3237,21 @@
           { "mouse": "illustrious_illusionist", "subcategory": "school-of-sorcery-arcane-arts-mmc" },
           { "mouse": "featherlight", "subcategory": "school-of-sorcery-arcane-arts-mmc" },
           { "mouse": "constructively_critical_artist", "subcategory": "school-of-sorcery-arcane-arts-mmc" },
-          { "mouse": "arcane_master_sorcerer", "subcategory": "school-of-sorcery-arcane-arts-boss" },
+          { "mouse": "arcane_sorcerer", "subcategory": "boss" },
           { "mouse": "classroom_keener", "subcategory": "school-of-sorcery-shadow-sciences-aac" },
           { "mouse": "audacious_alchemist", "subcategory": "school-of-sorcery-shadow-sciences-aac" },
           { "mouse": "prestigious_prestidigitator", "subcategory": "school-of-sorcery-shadow-sciences-aac" },
           { "mouse": "classroom_disrupter", "subcategory": "school-of-sorcery-shadow-sciences-mmc" },
           { "mouse": "teleporting_truant", "subcategory": "school-of-sorcery-shadow-sciences-mmc" },
           { "mouse": "magical_multitasker", "subcategory": "school-of-sorcery-shadow-sciences-mmc" },
-          { "mouse": "shadow_master_sorcerer", "subcategory": "school-of-sorcery-shadow-sciences-boss" },
+          { "mouse": "shadow_sorcerer", "subcategory": "boss" },
           { "mouse": "sleep_starved_scholar", "subcategory": "school-of-sorcery-final-exam-arcane-standard" },
           { "mouse": "class_clown", "subcategory": "school-of-sorcery-final-exam-arcane-aac" },
           { "mouse": "tyrannical_thaumaturge", "subcategory": "school-of-sorcery-final-exam-arcane-mmc" },
           { "mouse": "cheat_sheet_conjurer", "subcategory": "school-of-sorcery-final-exam-shadow-standard" },
           { "mouse": "celestial_summoner", "subcategory": "school-of-sorcery-final-exam-shadow-aac" },
           { "mouse": "data_devourer", "subcategory": "school-of-sorcery-final-exam-shadow-mmc" },
-          { "mouse": "mythical_master_sorcerer", "subcategory": "school-of-sorcery-final-exam-boss" }
+          { "mouse": "mythical_master_sorcerer", "subcategory": "boss" }
         ]
       },
       {
@@ -3297,8 +3297,8 @@
           { "mouse": "furious_fir", "subcategory": "afterword-acres-ssc" },
           { "mouse": "heinous_hemlock", "subcategory": "afterword-acres-ssc" },
           { "mouse": "rampaging_redwood", "subcategory": "afterword-acres-ssc" },
-          { "mouse": "blight_incarnate", "subcategory": "afterword-acres-boss" },
-          { "mouse": "herbicidal_maniac", "subcategory": "afterword-acres-boss" }
+          { "mouse": "blight_incarnate", "subcategory": "boss" },
+          { "mouse": "herbicidal_maniac", "subcategory": "boss" }
         ]
       },
       {
@@ -3316,8 +3316,8 @@
           { "mouse": "killer_krill", "subcategory": "epilogue-falls-ssc" },
           { "mouse": "chaotic_chiton", "subcategory": "epilogue-falls-ssc" },
           { "mouse": "muscular_mussel", "subcategory": "epilogue-falls-ssc" },
-          { "mouse": "nyagarha_the_falls_guardian", "subcategory": "epilogue-falls-boss" },
-          { "mouse": "ancient_wisdom_keeper", "subcategory": "epilogue-falls-boss" }
+          { "mouse": "nyagarha_the_falls_guardian", "subcategory": "boss" },
+          { "mouse": "ancient_wisdom_keeper", "subcategory": "boss" }
         ]
       },
       {
@@ -3362,16 +3362,18 @@
           { "mouse": "grandolph_the_green", "subcategory": "conclusion-cliffs-fantasy-ss" },
           { "mouse": "rinsebreeze", "subcategory": "conclusion-cliffs-fantasy-ss" },
           { "mouse": "janis_the_grey_witch", "subcategory": "conclusion-cliffs-fantasy-dem" },
-          { "mouse": "adventure_weaver", "subcategory": "conclusion-cliffs-boss" },
-          { "mouse": "comedy_weaver", "subcategory": "conclusion-cliffs-boss" },
-          { "mouse": "romance_weaver", "subcategory": "conclusion-cliffs-boss" },
-          { "mouse": "suspense_weaver", "subcategory": "conclusion-cliffs-boss" },
-          { "mouse": "tragedy_weaver", "subcategory": "conclusion-cliffs-boss" },
-          { "mouse": "ultimate_mythweaver", "subcategory": "conclusion-cliffs-boss" }
+          { "mouse": "adventure_weaver", "subcategory": "boss" },
+          { "mouse": "comedy_weaver", "subcategory": "boss" },
+          { "mouse": "romance_weaver", "subcategory": "boss" },
+          { "mouse": "suspense_weaver", "subcategory": "boss" },
+          { "mouse": "tragedy_weaver", "subcategory": "boss" },
+          { "mouse": "ultimate_mythweaver", "subcategory": "boss" }
         ]
       }
     ],
     "subcategories": [
+      { "id": "boss", "name": "Boss" },
+
       { "id": "foreword-farm-planting", "name": "Planting" },
       { "id": "foreword-farm-sb", "name": "SB" },
       { "id": "foreword-farm-three-papyrus", "name": "3 Papyrus" },
@@ -3388,33 +3390,26 @@
       { "id": "table-of-contents-2dd", "name": "2DD" },
       { "id": "table-of-contents-fdd", "name": "FDD" },
 
-      { "id": "bountiful-beanstalk-boss", "name": "Boss" },
       { "id": "bountiful-beanstalk-dungeon-beanster", "name": "Dungeon Beanster" },
       { "id": "bountiful-beanstalk-dungeon-lavish", "name": "Dungeon Lavish" },
       { "id": "bountiful-beanstalk-dungeon-royal", "name": "Dungeon Royal" },
-      { "id": "bountiful-beanstalk-dungeon-boss", "name": "Dungeon Boss" },
       { "id": "bountiful-beanstalk-ballroom-beanster", "name": "Ballroom Beanster" },
       { "id": "bountiful-beanstalk-ballroom-lavish", "name": "Ballroom Lavish" },
       { "id": "bountiful-beanstalk-ballroom-royal", "name": "Ballroom Royal" },
-      { "id": "bountiful-beanstalk-ballroom-boss", "name": "Ballroom Boss" },
       { "id": "bountiful-beanstalk-greathall-beanster", "name": "Great Hall Beanster" },
       { "id": "bountiful-beanstalk-greathall-lavish", "name": "Great Hall Lavish" },
       { "id": "bountiful-beanstalk-greathall-royal", "name": "Great Hall Royal" },
-      { "id": "bountiful-beanstalk-greathall-boss", "name": "Great Hall Boss" },
 
       { "id": "school-of-sorcery-arcane-arts-aac", "name": "Arcane Arts AAC" },
       { "id": "school-of-sorcery-arcane-arts-mmc", "name": "Arcane Arts MMC" },
-      { "id": "school-of-sorcery-arcane-arts-boss", "name": "Arcane Arts Boss" },
       { "id": "school-of-sorcery-shadow-sciences-aac", "name": "Shadow Sciences AAC" },
       { "id": "school-of-sorcery-shadow-sciences-mmc", "name": "Shadow Sciences MMC" },
-      { "id": "school-of-sorcery-shadow-sciences-boss", "name": "Shadow Sciences Boss" },
       { "id": "school-of-sorcery-final-exam-arcane-standard", "name": "Final Exam Arcane Phase Standard" },
       { "id": "school-of-sorcery-final-exam-arcane-aac", "name": "Final Exam Arcane Phase AAC" },
       { "id": "school-of-sorcery-final-exam-arcane-mmc", "name": "Final Exam Arcane Phase MMC" },
       { "id": "school-of-sorcery-final-exam-shadow-standard", "name": "Final Exam Shadow Phase Standard" },
       { "id": "school-of-sorcery-final-exam-shadow-aac", "name": "Final Exam Shadow Phase AAC" },
       { "id": "school-of-sorcery-final-exam-shadow-mmc", "name": "Final Exam Shadow Phase MMC" },
-      { "id": "school-of-sorcery-final-exam-boss", "name": "Final Exam Boss" },
 
       { "id": "draconic-depths-fire-0-750", "name": "Fire 0-750" },
       { "id": "draconic-depths-fire-750", "name": "Fire 750+" },
@@ -3428,12 +3423,10 @@
       { "id": "afterword-acres-mmc", "name": "MMC" },
       { "id": "afterword-acres-aac", "name": "AAC" },
       { "id": "afterword-acres-ssc", "name": "SSC" },
-      { "id": "afterword-acres-boss", "name": "Boss" },
 
       { "id": "epilogue-falls-mmc", "name": "MMC" },
       { "id": "epilogue-falls-aac", "name": "AAC" },
       { "id": "epilogue-falls-ssc", "name": "SSC" },
-      { "id": "epilogue-falls-boss", "name": "Boss" },
 
       { "id": "conclusion-cliffs-adventure-pp", "name": "Adventure PP" },
       { "id": "conclusion-cliffs-adventure-ss", "name": "Adventure SS" },
@@ -3452,8 +3445,7 @@
       { "id": "conclusion-cliffs-tragedy-dem", "name": "Tragedy DEM" },
       { "id": "conclusion-cliffs-fantasy-pp", "name": "Fantasy PP" },
       { "id": "conclusion-cliffs-fantasy-ss", "name": "Fantasy SS" },
-      { "id": "conclusion-cliffs-fantasy-dem", "name": "Fantasy DEM" },
-      { "id": "conclusion-cliffs-boss", "name": "Boss" }
+      { "id": "conclusion-cliffs-fantasy-dem", "name": "Fantasy DEM" }
     ]
   }
 }
