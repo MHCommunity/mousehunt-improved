@@ -3198,7 +3198,7 @@
       {
         "name": "Bountiful Beanstalk",
         "id": "bountiful-beanstalk",
-        "icon": "!TODO",
+        "icon": "/items/stats/transparent_thumb/71d2265100257e1c8d7de308ea02bfd7.png",
         "color": "#45890e",
         "mice": [
           { "mouse": "vinneus_stalkhome", "subcategory": "boss" },
@@ -3228,7 +3228,7 @@
       {
         "name": "School of Sorcery",
         "id": "school-of-sorcery",
-        "icon": "!TODO",
+        "icon": "/items/stats/transparent_thumb/759e4b2a686d90537c55c435f6a23c82.png",
         "color": "#ffffff",
         "mice": [
           { "mouse": "arcana_overachiever", "subcategory": "arcane-arts-aac" },
@@ -3257,7 +3257,7 @@
       {
         "name": "Draconic Depths",
         "id": "draconic-depths",
-        "icon": "!TODO",
+        "icon": "/items/crafting_items/transparent_thumb/e2e9b6dd72e59ffcfb6dad3b1d8c441a.png",
         "color": "#ffffff",
         "mice": [
           { "mouse": "crematio_scorchworth", "subcategory": "fire-0-750" },
@@ -3285,8 +3285,8 @@
       {
         "name": "Afterword Acres",
         "id": "afterword-acres",
-        "icon": "!TODO",
-        "color": "#ffffff",
+        "icon": "/items/stats/transparent_thumb/de0e27996c34996321e8896dc58d0075.png",
+        "color": "#fda6fd",
         "mice": [
           { "mouse": "sardonic_sapling", "subcategory": "mmc" },
           { "mouse": "sour_sprout", "subcategory": "mmc" },
@@ -3304,8 +3304,8 @@
       {
         "name": "Epilogue Falls",
         "id": "epilogue-falls",
-        "icon": "!TODO",
-        "color": "#ffffff",
+        "icon": "/items/stats/transparent_thumb/82d40a70f38d00379ee5242e87b823d1.png",
+        "color": "#3ddad0",
         "mice": [
           { "mouse": "anguished_anemone", "subcategory": "mmc" },
           { "mouse": "menacing_medusozoa", "subcategory": "mmc" },
@@ -3323,8 +3323,8 @@
       {
         "name": "Conclusion Cliffs",
         "id": "conclusion-cliffs",
-        "icon": "!TODO",
-        "color": "#ffffff",
+        "icon": "/items/stats/transparent_thumb/fe41d1b9cf814d14f242181fdd022bd0.png",
+        "color": "#aad23a",
         "mice": [
           { "mouse": "indigo_montana", "subcategory": "adventure-pp" },
           { "mouse": "robbin_cloak", "subcategory": "adventure-pp" },
