@@ -3225,7 +3225,7 @@
           { "mouse": "mythical_giant_king", "subcategory": "boss" }
         ]
       },
-            {
+      {
         "name": "School of Sorcery",
         "id": "school-of-sorcery",
         "icon": "/items/stats/transparent_thumb/759e4b2a686d90537c55c435f6a23c82.png",
@@ -3456,26 +3456,26 @@
         "subtitle": "Suspense",
         "id": "suspense",
         "mice": [
-          { "mouse": "nancy_sketched", 	"subcategory":	"pp" },
-          {	"mouse":	"hardy_mice",		"subcategory":	"pp" },
-          {	"mouse":	"herbie_pirouette",	"subcategory":	"pp" },
-          {	"mouse":	"skillful_mr_cutley",	"subcategory":	"ss" },
-          {	"mouse":	"professor_morty_artie",	"subcategory":"ss"},
-          {	"mouse":"becca_de_frost","subcategory":"dem"}
+          { "mouse": "nancy_sketched", "subcategory": "pp" },
+          { "mouse": "hardy_mice", "subcategory": "pp" },
+          { "mouse": "herbie_pirouette", "subcategory": "pp" },
+          { "mouse": "skillful_mr_cutley", "subcategory": "ss" },
+          { "mouse": "professor_morty_artie", "subcategory": "ss" },
+          { "mouse": "becca_de_frost", "subcategory": "dem" }
         ]
       },
       {
-        "name":"Conclusion Cliffs",
+        "name": "Conclusion Cliffs",
         "color": "#aad23a",
-       	"subtitle":"Tragedy",
-       	"id":"tragedy",
-       	"mice":[
-          {"mouse":"billy_lowfellow","subcategory":"pp"},
-          {"mouse":"great_ratsby","subcategory":"pp"},
-          {"mouse":"madame_bogarty","subcategory":"pp"},
-          {"mouse":"lady_macbath","subcategory":"ss"},
-          {"mouse":"prince_hapless","subcategory":"ss"},
-          {"mouse":"aching_heels","subcategory":"dem"}
+        "subtitle": "Tragedy",
+        "id": "tragedy",
+        "mice": [
+          { "mouse": "billy_lowfellow", "subcategory": "pp" },
+          { "mouse": "great_ratsby", "subcategory": "pp" },
+          { "mouse": "madame_bogarty", "subcategory": "pp" },
+          { "mouse": "lady_macbath", "subcategory": "ss" },
+          { "mouse": "prince_hapless", "subcategory": "ss" },
+          { "mouse": "aching_heels", "subcategory": "dem" }
         ]
       },
       {
@@ -3504,7 +3504,7 @@
           "suspense_weaver",
           "tragedy_weaver",
           "ultimate_mythweaver"
-         ]
+        ]
       }
     ],
     "subcategories": [
@@ -3546,9 +3546,9 @@
       { "id": "final-exam-shadow-aac", "name": "FE Shadow AAC" },
       { "id": "final-exam-shadow-mmc", "name": "FE Shadow MMC" },
 
-      {"id": "cavern-0-750-loot", "name": "Cavern 0-750 Loot"},
-      {"id": "cavern-100+-loot", "name": "Cavern 100+ Loot"},
-      {"id": "cavern-750+-loot", "name": "Cavern 750+ Loot"},
+      { "id": "cavern-0-750-loot", "name": "Cavern 0-750 Loot" },
+      { "id": "cavern-100+-loot", "name": "Cavern 100+ Loot" },
+      { "id": "cavern-750+-loot", "name": "Cavern 750+ Loot" },
 
       { "id": "mmc", "name": "MMC" },
       { "id": "aac", "name": "AAC" },
