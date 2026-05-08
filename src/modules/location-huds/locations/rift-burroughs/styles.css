@@ -86,7 +86,6 @@
 .brift-ui .mouse-type-title:hover,
 .brift-ui .mouse-type-title:focus {
   color: #b1ed71;
-  cursor: pointer;
 }
 
 .brift-ui .mouse-type-mouse {

@@ -6,7 +6,7 @@ import { makeElement } from './elements';
  *
  * @return {Object} Relic Hunter location data.
  */
-const getRelicHunterLocation = () => {
+const getRelicHunterLocation = async () => {
   // Cache it in session storage for 5 minutes.
   const cacheExpiry = 5 * 60 * 1000;
   const cacheKey = 'mh-improved-relic-hunter-location';
@@ -20,17 +20,19 @@ const getRelicHunterLocation = () => {
     return cached.data;
   }
 
-  // Otherwise, fetch the data and cache it.
-  return fetch('https://api.mouse.rip/relic-hunter', { headers: getHeaders() })
-    .then((response) => response.json())
-    .then((data) => {
-      const expiry = Date.now() + cacheExpiry;
-      sessionSet(cacheKey, JSON.stringify({ expiry, data }));
-      return data;
-    })
-    .catch((error) => {
-      console.error(error); // eslint-disable-line no-console
-    });
+  try {
+    const data = await fetch('https://api.mouse.rip/relic-hunter', { headers: getHeaders() });
+    if (! data.ok) {
+      throw new Error(`Error fetching Relic Hunter location: ${data.statusText}`);
+    }
+
+    const jsonData = await data.json();
+    const expiry = Date.now() + cacheExpiry;
+    sessionSet(cacheKey, JSON.stringify({ expiry, data: jsonData }));
+    return jsonData;
+  } catch (error) {
+    console.error(error); // eslint-disable-line no-console
+  }
 };
 
 /**

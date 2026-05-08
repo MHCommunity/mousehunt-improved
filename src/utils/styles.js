@@ -40,14 +40,14 @@ const addStylesDirect = (styles, identifier = 'mh-utils-custom-styles', once = f
       return existingStyles;
     }
 
-    existingStyles.innerHTML += styles;
+    existingStyles.textContent += styles;
     return existingStyles;
   }
 
   // Otherwise, create a new element and append it to the head.
   const style = document.createElement('style');
   style.id = identifier;
-  style.innerHTML = styles;
+  style.textContent = styles;
   document.head.append(style);
 
   return style;
@@ -98,14 +98,14 @@ const addModuleStyles = (styles, identifier = 'mh-improved-styles', replace = fa
   styles = Array.isArray(styles) ? styles.join('\n') : styles;
 
   if (existingStyles) {
-    existingStyles.innerHTML = replace ? styles : existingStyles.innerHTML + styles;
+    existingStyles.textContent = replace ? styles : existingStyles.textContent + styles;
 
     return existingStyles;
   }
 
   const style = document.createElement('style');
   style.id = identifier;
-  style.innerHTML = styles;
+  style.textContent = styles;
   document.head.append(style);
 
   return style;

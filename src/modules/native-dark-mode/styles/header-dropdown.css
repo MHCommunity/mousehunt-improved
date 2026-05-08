@@ -17,6 +17,10 @@
   border-color: var(--d-border);
 }
 
+.mh-dark .mousehuntHeaderView .dropdownContent a:hover {
+  background-color: var(--d-bg);
+}
+
 .mh-dark .regionName {
   background-color: var(--d-bg);
   border-color: var(--d-border);

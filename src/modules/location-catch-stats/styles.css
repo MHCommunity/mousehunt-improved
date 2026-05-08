@@ -84,11 +84,6 @@
   outline: 1px solid #646464;
 }
 
-.mh-catch-stats:hover .mh-catch-stats-image,
-.mh-catch-stats:focus .mh-catch-stats-image {
-  transform: scale(1.1);
-}
-
 .mh-catch-stats-image {
   position: relative;
   display: inline-block;

@@ -17,3 +17,14 @@ Refreshes the MouseHunt interface with a wide range of visual and usability impr
 - **Adventure Book Task Styling**: Makes the current adventure book task look nicer.
 - **Userscript Styling**: Updates the look and readability of many popular userscripts.
 - **Improved Styles**: Refines the appearance of search/filter dropdowns, Send Supplies, Journal Tabs, Daily Draw, Larry's Tips, King's Calibrator, crafting/recipe pages, trap/base/charm/cheese selectors, hunter profile, corkboard, and team pages.
+
+## Options
+
+- **Styles: Various UI improvements and fixes**: Turns on the full Better UI visual polish package across menus, dialogs, tabs, selectors, and page layouts.
+- **Menu & HUD: Kingdom link goes to News, shows full title percent on hover, etc.**
+- **Profile: Add Egg Master icon**
+- **Trap Selector: Add background gradient to your trap**
+- **Trap Selector: Show larger skin images in the trap selector**
+- **Trap Selector: Show unowned trap skins in the trap selector**
+- **Trap Selector: Show larger codex images in the trap selector**
+- **Trap Selector: Move the codex to the bottom of the trap view**

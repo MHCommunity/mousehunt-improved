@@ -15,6 +15,10 @@
   box-shadow: none;
 }
 
+.mh-improved-location-forbidden_grove .mh-ui-cheese-selector .townOfGnawniaHUD-bait {
+  width: 110px;
+}
+
 .mh-ui-cheese-selector .townOfGnawniaHUD-bait-image {
   left: 2px;
   background-color: transparent;

@@ -38,31 +38,33 @@ const updateInputField = async () => {
       return;
     }
 
-    const maxQty = qty.innerText.replace(' (Inventory max)', '') || 0;
+    const maxQty = qty.textContent.replace(' (Inventory max)', '') || 0;
 
     input.setAttribute('placeholder', maxQty);
 
     // listen for the enter key when the input is focused
     const buyButton = block.querySelector('.itemPurchaseView-action-form-button.buy');
-    if (buyButton) {
-      input.addEventListener('focus', () => {
-        const enterEvt = input.addEventListener('keydown', (e) => {
-          if ('Enter' === e.key) {
-            buyButton.click();
+    if (buyButton && input.dataset.mhiShopEnter !== 'true') {
+      input.dataset.mhiShopEnter = 'true';
 
-            setTimeout(() => {
-              const confirmButton = document.querySelector('.itemPurchaseView-container.confirmPurchase .itemPurchaseView-action-confirm-button');
-              if (confirmButton) {
-                confirmButton.focus();
-              }
-            }, 200);
-          }
-        });
+      const onKeydown = (e) => {
+        if ('Enter' === e.key) {
+          buyButton.click();
 
-        input.addEventListener('blur', () => {
-          input.removeEventListener('keydown', enterEvt);
-        });
-      });
+          setTimeout(() => {
+            const confirmButton = document.querySelector('.itemPurchaseView-container.confirmPurchase .itemPurchaseView-action-confirm-button');
+            if (confirmButton) {
+              confirmButton.focus();
+            }
+          }, 200);
+        }
+      };
+
+      input.addEventListener('keydown', onKeydown);
+      input.addEventListener('blur', () => {
+        input.removeEventListener('keydown', onKeydown);
+        delete input.dataset.mhiShopEnter;
+      }, { once: true });
     }
 
     if (addQuantityButtons) {
@@ -95,17 +97,17 @@ const main = () => {
   const golds = document.querySelectorAll('.itemPurchaseView-action-goldGost');
   if (golds) {
     golds.forEach((gold) => {
-      if (gold.innerText.includes('Cost:')) {
-        gold.innerText = gold.innerText.replace('Cost:', '');
+      if (gold.textContent.includes('Cost:')) {
+        gold.textContent = gold.textContent.replace('Cost:', '');
       }
 
-      if (! gold.innerText.length) {
+      if (! gold.textContent.length) {
         // get the the nearest parent element with the class 'itemPurchaseView-container'
         const container = gold.closest('.itemPurchaseView-container');
         if (container) {
           const goldCost = container.getAttribute('data-gold-cost');
           if (goldCost) {
-            gold.innerText = `${Number.parseInt(goldCost).toLocaleString()} gold`;
+            gold.textContent = `${Number.parseInt(goldCost, 10).toLocaleString()} gold`;
           }
         }
       }
@@ -152,7 +154,10 @@ const main = () => {
   const kingsCart = document.querySelectorAll('.itemPurchaseView-container.kingsCartItem');
   if (kingsCart) {
     kingsCart.forEach((cart) => {
-      cart.querySelector('input').value = '';
+      const input = cart.querySelector('input');
+      if (input) {
+        input.value = '';
+      }
     });
   }
 

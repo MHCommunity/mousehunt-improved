@@ -150,7 +150,7 @@ const debug = async (response, data) => {
   const listingMapIds = response.treasure_map_listings.map((listing) => listing?.map_id);
 
   // hide the mhct thank you.
-  const hideMhct = addStyles('#mhhh_flash_message_div { display: none !important; }', 'hide-mhct');
+  const hideMhct = addStyles('#mhhh_flash_message_div { display: none !important; }', 'better-maps-temporary-hide-mhct');
 
   for (const mapId of listingMapIds) {
     await updateListing(mapId);

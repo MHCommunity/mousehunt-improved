@@ -4,7 +4,7 @@
   box-sizing: border-box;
   display: block;
   width: 300px;
-  height: 100px;
+  height: 101px;
   background: linear-gradient(#decebb 5%, #f0eddf 50%);
   border: 1px solid #9a8872;
   border-radius: 10px;
@@ -27,7 +27,7 @@
   grid-template-columns: 90px 1fr;
   gap: 10px;
   align-items: center;
-  height: 95px;
+  height: 100px;
 }
 
 #mouse-data-wrapper .mouse-image {
@@ -94,4 +94,8 @@
 
 #mouse-data-wrapper .mouse-data.crown.diamond::after {
   background-image: url(https://www.mousehuntgame.com/images/ui/crowns/crown_diamond.png);
+}
+
+.mh-dark #mouse-data-wrapper .mouse-image {
+  background-color: var(--d-bg);
 }

@@ -97,7 +97,7 @@ const buildMouseMarkup = (mouseData) => {
   // Create the name element.
   const name = document.createElement('div');
   name.classList.add('mh-catch-stats-name');
-  name.innerText = mouse.name;
+  name.textContent = mouse.name;
 
   // Create a wrapper for the name and image.
   const imageNameContainer = document.createElement('div');
@@ -109,7 +109,7 @@ const buildMouseMarkup = (mouseData) => {
   const catches = document.createElement('div');
   catches.classList.add('mh-catch-stats-catches');
 
-  catches.innerText = mouse.num_catches;
+  catches.textContent = mouse.num_catches;
   if (showMisses) {
     makeElement('span', 'mh-catch-stats-separator', '/', catches);
     makeElement('span', 'mh-catch-stats-misses', mouse.num_misses, catches);
@@ -146,7 +146,7 @@ const showModal = async () => {
 
   // Add the title;
   const title = document.createElement('h1');
-  title.innerText = 'Location Catch Stats';
+  title.textContent = 'Location Catch Stats';
   header.append(title);
 
   // Create a close button icon.

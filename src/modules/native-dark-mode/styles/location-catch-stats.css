@@ -21,6 +21,7 @@
 }
 
 .mh-catch-stats:hover,
+.mh-catch-stats-wrapper .mh-catch-stats:hover,
 .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):hover,
 .mh-catch-stats:focus,
 .mh-catch-stats-wrapper .mh-catch-stats:nth-child(odd):focus {

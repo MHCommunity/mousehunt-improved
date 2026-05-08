@@ -1,4 +1,4 @@
-import { addTrapQuantity } from '@utils';
+import { addTrapQuantity } from '@utils/shared/trap-quantity';
 
 /**
  * Add the trap quantity.

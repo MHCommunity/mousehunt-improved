@@ -18,7 +18,9 @@ const classTypeMap = Object.entries({
     'catchsuccessprize',
     'relicHunter_catch',
   ],
-  convertible: ['convertible_open'],
+  convertible: [
+    'convertible_open'
+  ],
   other: [
     'iceberg_defeated',
     'dailyreward',
@@ -51,6 +53,7 @@ const otherStrings = [
   'my Skyfarer\'s Oculus and discovered:',
   'My golem returned from |*| with',
   'scared up an additional:',
+  'the following bonus loot:',
 ];
 
 const classesToSkip = new Set([
@@ -159,14 +162,15 @@ const makeListItems = (itemList) => {
   const frag = document.createDocumentFragment();
   for (const raw of itemList) {
     const li = makeElement('li', 'better-journal-list-item');
-    const conv = convertTextToItemLink(raw);
+    const cleaned = raw.replace(/^•\s*/, '');
+    const conv = convertTextToItemLink(cleaned);
     if (conv) {
       // build DOM safely: text node for quantity, then the anchor element
       li.append(document.createTextNode(`${conv.quantity} `));
       li.append(conv.link);
     } else {
-      // preserve original trimmed text
-      li.innerHTML = raw.replace(/,$/, '').trim();
+      // preserve original trimmed text, stripping "N x" quantity prefix
+      li.innerHTML = cleaned.replace(/,$/, '').replace(/^(\d+)\s+x\s+/, '$1 ').trim();
     }
     frag.append(li);
   }
@@ -298,6 +302,12 @@ const getItemsFromText = (type, textEl) => {
       ul.querySelectorAll(':scope > li').forEach((li) => li.classList.add('better-journal-list-item'));
     });
     return { list: [], newText: innerHTML };
+  } else if (innerHTML.includes('created an additional:')) {
+    const parts = innerHTML.split('created an additional:');
+    if (parts.length >= 2) {
+      list = splitText(parts[1]);
+      newText = `${parts[0]}created an additional:`;
+    }
   } else {
     for (const s of otherStrings) {
       if (s.includes('|*|')) {
@@ -341,9 +351,14 @@ const formatAsList = async (entry) => {
     return;
   }
 
-  const classes = new Set(entry.classList);
-  if ([...classes].some((c) => classesToSkip.has(c))) {
-    return;
+  let type;
+  for (const cls of entry.classList) {
+    if (classesToSkip.has(cls)) {
+      return;
+    }
+    if (! type && classTypeMap[cls]) {
+      type = classTypeMap[cls];
+    }
   }
 
   const textEl = entry.querySelector('.journalbody .journaltext');
@@ -352,18 +367,9 @@ const formatAsList = async (entry) => {
   }
 
   // Folklore fast-path
-  if (classes.has('folkloreForest-bookClaimed') && handleFolkloreBookClaim(textEl)) {
+  if (entry.classList.contains('folkloreForest-bookClaimed') && handleFolkloreBookClaim(textEl)) {
     entry.setAttribute('data-better-journal-processed', 'true');
     return;
-  }
-
-  // Determine type via class map
-  let type;
-  for (const cls of entry.classList) {
-    if (classTypeMap[cls]) {
-      type = classTypeMap[cls];
-      break;
-    }
   }
 
   if (type === 'update') {
@@ -380,8 +386,9 @@ const formatAsList = async (entry) => {
       const listItems = makeListItems(list);
       textEl.append(listItems);
     }
-    entry.setAttribute('data-better-journal-processed', 'true');
   }
+
+  entry.setAttribute('data-better-journal-processed', 'true');
 };
 
 /**

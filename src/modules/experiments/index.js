@@ -9,12 +9,6 @@ const modules = imported;
 const init = () => {
   const onlySettings = [
     {
-      id: 'better-maps.catch-dates',
-      name: 'Better Maps: Show date caught for mice',
-      description: 'Shows the approximate date you started/joined a map and when each mouse was caught.',
-      load: () => {}
-    },
-    {
       id: 'better-maps.draggable-highlight',
       name: 'Better Maps: Draggable highlight',
       description: 'Allows you to drag and reposition the sticky highlight',

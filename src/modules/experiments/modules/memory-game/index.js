@@ -1,4 +1,5 @@
-import { addSubmenuItem, getData, startMemoryGame } from '@utils';
+import { addSubmenuItem, getData } from '@utils';
+import { startMemoryGame } from '@utils/shared/memory-game';
 
 const isValidItem = (item) => {
   const excludedImages = new Set([

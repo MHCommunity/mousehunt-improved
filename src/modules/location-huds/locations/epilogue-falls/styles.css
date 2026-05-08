@@ -1,0 +1,312 @@
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max {
+  display: inline-block;
+  width: auto;
+  height: 12px;
+  aspect-ratio: 1;
+  padding: 5px;
+  margin-left: 8px;
+  border-radius: 50%;
+  outline: 1px solid #eee;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max:hover {
+  background-color: #ccc;
+}
+
+.folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max::after {
+  display: none;
+}
+
+.mh-dark .folkloreForestRegionView-dialog-block-description {
+  color: var(--d-text);
+  background-color: var(--d-bg);
+  border-color: var(--d-border);
+}
+
+.mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max {
+  outline-color: var(--d-action);
+}
+
+.mh-dark .upsellItemActionView-action-quantity {
+  color: var(--d-text);
+  background-color: var(--d-action);
+}
+
+.mh-dark .folkloreForestRegionView-dialog-blockContainer.upsellRecipe .upsellItemActionView-action-max:hover {
+  background-color: var(--d-bg-alt);
+}
+
+.headsUpDisplayEpilogueFallsView__scrollButtonLeft,
+.headsUpDisplayEpilogueFallsView__scrollButtonRight {
+  filter: drop-shadow(2px 2px 2px #000) drop-shadow(2px 2px 1px #fff);
+}
+
+.headsUpDisplayEpilogueFallsView__scrollButtonLeft:hover,
+.headsUpDisplayEpilogueFallsView__scrollButtonRight:hover {
+  filter: drop-shadow(2px 2px 2px #000) drop-shadow(2px 2px 1px #fff) brightness(1.6);
+}
+
+.headsUpDisplayEpilogueFallsView__position {
+  font-size: 13px;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelPosition {
+  padding: 3px 5px;
+}
+
+.headsUpDisplayEpilogueFallsView__zoneMeterContainer {
+  filter: drop-shadow(0 4px 6px #636363);
+}
+
+@keyframes mh-improved-bobbing {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, 6px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes mh-improved-bobbing-alt {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, -4px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(odd) {
+  animation: mh-improved-bobbing-alt 5s ease-in-out infinite;
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(even) {
+  animation: mh-improved-bobbing 6s ease-in-out infinite;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelContainer {
+  animation: mh-improved-bobbing 10s ease-in-out infinite;
+}
+
+.headsUpDisplayEpilogueFallsView__waterFallZoneDroidBarrel {
+  animation: mh-improved-bobbing 8s ease-in-out infinite;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  .headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(odd),
+  .headsUpDisplayEpilogueFallsView__rapidsZoneLoot:nth-child(even),
+  .headsUpDisplayEpilogueFallsView__barrelContainer,
+  .headsUpDisplayEpilogueFallsView__waterFallZoneDroidBarrel {
+    animation: none;
+  }
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsZone::after {
+  top: -65px;
+  width: auto;
+  height: 85px;
+  padding-right: 3px;
+  font-size: 11px;
+  line-height: 28px;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealthText {
+  display: grid;
+  grid-template-columns: 60px auto 15px 20px;
+  grid-auto-columns: minmax(10px, auto);
+  place-items: center;
+  font-size: 13px;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealth,
+.headsUpDisplayEpilogueFallsView__barrelMaxHealth {
+  font-size: 14px;
+}
+
+.headsUpDisplayEpilogueFallsView__zoneTitle {
+  font-size: 13px;
+  text-shadow: 1px 1px 1px #f7e5a5;
+}
+
+.folkloreForestRegionView.epilogue_falls.rapids .headsUpDisplayEpilogueFallsView__zoneInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.headsUpDisplayEpilogueFallsView__zoneInfoContainer[data-zone-type="grotto_zone"] .headsUpDisplayEpilogueFallsView__zoneTitle {
+  font-size: 20px;
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsContainer.grotto .headsUpDisplayEpilogueFallsView__barrelHealthContainer {
+  border-color: #2c9ac1;
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsContainer.grotto .headsUpDisplayEpilogueFallsView__barrelHealthText {
+  color: #65cdce;
+}
+
+.headsUpDisplayEpilogueFallsView__perCatchItem:nth-child(2) .headsUpDisplayEpilogueFallsView__perCatchItemText {
+  align-items: center;
+}
+
+.mh-improved-high-health .headsUpDisplayEpilogueFallsView__barrelHealthProgressBar {
+  background-color: rgb(17 221 45 / 50%);
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-high-health {
+  border-color: #0f7d0a;
+}
+
+.mh-improved-very-low-health .headsUpDisplayEpilogueFallsView__barrelHealthProgressBar {
+  background-color: #c12c2c;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-low-health {
+  background-color: rgb(221 17 17 / 50%);
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsContainer.grotto .headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-last-hunt,
+.headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-last-hunt {
+  border-color: #8e4848;
+  animation: mh-improved-shake-light 0.45s 2;
+}
+
+.headsUpDisplayEpilogueFallsView__barrelHealthContainer.mh-improved-last-hunt .headsUpDisplayEpilogueFallsView__barrelHealthText {
+  color: #ffe9e9;
+}
+
+.epilogueFallsBarrelChoiceDialogView__durability {
+  font-size: 14px;
+}
+
+.epilogueFallsBarrelChoiceDialogView__costItemThumbnail.mh-improved-missing-ingredient::after {
+  position: absolute;
+  inset: -1px -5px -18px;
+  z-index: -1;
+  content: "";
+  background-color: #e65959;
+  border-radius: 3px;
+}
+
+.epilogueFallsBarrelChoiceDialogView__costItemQuantity {
+  position: relative;
+  right: unset;
+  left: unset;
+  display: inline-block;
+  width: auto;
+  padding: 2px;
+  margin-top: 10px;
+  text-align: center;
+  border: 1px solid rgb(0 0 0 / 20%);
+}
+
+.epilogueFallsBarrelChoiceDialogView__costItem {
+  display: block;
+  width: 100%;
+}
+
+.epilogueFallsBarrelChoiceDialogView__costItemThumbnail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.epilogueFallsBarrelChoiceDialogView__barrelsContainer {
+  height: auto;
+  margin: 15px 0;
+}
+
+.epilogueFallsBarrelChoiceDialogView__baitsContainer {
+  gap: 0;
+  padding: 0;
+  padding-top: 15px;
+}
+
+.epilogueFallsBarrelChoiceDialogView__baitContainer {
+  width: auto;
+  max-width: 100px;
+}
+
+.epilogueFallsBarrelChoiceDialogView__fuelContainer {
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.epilogueFallsBarrelChoiceDialogView__disarmSlider.round {
+  color: #000;
+  background-color: #c3b07a;
+}
+
+.epilogueFallsBarrelChoiceDialogView__disarmSliderBackGroundText {
+  color: rgb(255 255 255 / 90%);
+}
+
+.epilogueFallsBarrelChoiceDialogView__disarmSlider::before {
+  background-color: #c2db90;
+  box-shadow: none;
+}
+
+.epilogueFallsBarrelChoiceDialogView__disarmSlider::after {
+  top: 9px;
+  left: 8px;
+}
+
+#overlayPopup.fabledForestDialog.epilogueFallsBarrelChoiceDialogPopup {
+  top: 220px !important;
+}
+
+.epilogueFallsActivateBoostDialogView .headsUpDisplayEpilogueFallsView__inventoryBlock {
+  height: auto;
+  margin: 5px;
+}
+
+.epilogueFallsActivateBoostDialogView__costExplanationContainer {
+  margin-top: 10px;
+}
+
+.mh-improved-boost-cost-wrapper {
+  position: absolute;
+  display: none;
+  align-items: center;
+  height: 33px;
+  padding: 0 5px;
+  margin-top: -40px;
+  font-size: 15px;
+  line-height: 1.1;
+  text-align: center;
+  text-shadow:
+    0 -1px 2px #1b1b1b,
+    0 1px 2px #1b1b1b,
+    0 1px 2px #1b1b1b,
+    0 1px 2px #1b1b1b;
+  background-color: #6c3006;
+  border: 1px solid #182f18;
+  border-radius: 5px;
+}
+
+.headsUpDisplayEpilogueFallsView__rapidsSidePanelContainer:hover .mh-improved-boost-cost-wrapper {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.headsUpDisplayEpilogueFallsView__jetBoostButton.EpilogueFallsView__orangeButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mh-improved-boost-cost-label {
+  font-size: 10px;
+}

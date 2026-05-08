@@ -14,6 +14,7 @@
   border-color: var(--d-border);
 }
 
+.mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .jsDialogContainer .suffix,
 .mh-dark #overlayPopup.zugzwangsLibraryQuestShopPopup .questLink .content {
   background-color: var(--d-alt);
 }

@@ -22,10 +22,12 @@ import styles from './styles.css';
 import { getFieryWarpathText, setFieryWarpathData } from './locations/desert-warpath';
 import { getSeasonalGardenText, setSeasonalGardenData } from './locations/seasonal-garden';
 import { getZugzwangTowerText, setZugzwangTowerData } from './locations/zugzwang-tower';
+import getAfterwordAcresText from './locations/afterword-acres';
 import getBountifulBeanstalkText from './locations/bountiful-beanstalk';
 import getBristleWoodsRiftText from './locations/rift-bristle-woods';
 import getBurroughsRiftText from './locations/rift-burroughs';
 import getDraconicDepthsText from './locations/draconic-depths';
+import getEpilogueFallsText from './locations/epilogue-falls';
 import getFloatingIslandsText from './locations/floating-islands';
 import getForewordFarmText from './locations/foreword-farm';
 import getFortRoxText from './locations/fort-rox';
@@ -467,6 +469,8 @@ const getDashboardContents = async () => {
   makeLocationMarkup('table_of_contents', 'Table of Contents', getTableOfContentsText, folkloreForest, quests);
   makeLocationMarkup('school_of_sorcery', 'School of Sorcery', getSchoolOfSorceryText, folkloreForest, quests);
   makeLocationMarkup('draconic_depths', 'Draconic Depths', getDraconicDepthsText, folkloreForest, quests);
+  makeLocationMarkup('afterword_acres', 'Afterward Acres', getAfterwordAcresText, folkloreForest, quests);
+  makeLocationMarkup('epilogue_falls', 'Epilogue Falls', getEpilogueFallsText, folkloreForest, quests);
   makeRegionMarkup('Folklore Forest', folkloreForest, contentsWrapper);
 
   const rift = document.createElement('div');

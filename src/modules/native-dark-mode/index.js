@@ -10,6 +10,8 @@ import {
   saveSetting
 } from '@utils';
 
+import settings from './settings';
+
 import * as imported from './styles/*.css'; // eslint-disable-line import/no-unresolved
 const styles = imported;
 
@@ -49,7 +51,10 @@ const maybeShowDarkModeConflictWarning = () => {
  */
 const init = async () => {
   addStyles(styles, 'native-dark-mode');
-  addExternalStyles('dark-mode-mice-images.css');
+
+  if (getSetting('native-dark-mode.enable-mice-page-image-changes', true)) {
+    addExternalStyles('dark-mode-mice-images.css');
+  }
 
   addBodyClass('mh-dark');
 
@@ -70,4 +75,5 @@ export default {
   type: 'feature',
   default: false,
   load: init,
+  settings,
 };

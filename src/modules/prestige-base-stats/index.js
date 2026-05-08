@@ -8,23 +8,38 @@ import {
   updateTrapStatsDisplay
 } from '@utils';
 
+const supportedBases = [
+  {
+    slug: 'valour_rift_prestige_base',
+    name: 'Prestige Base',
+    id: 2904,
+  },
+  {
+    slug: 'hailstone_singularity_base',
+    name: 'Rift Hailstone Singularity Base',
+    id: 3954,
+  },
+];
+
 /**
  * Update the Prestige Base stats display.
  */
 const setPrestigeStats = async () => {
-  const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
-  if (! prestige) {
-    return;
-  }
-
   // update the stats display
   const pbStats = await dataGet('pb-stats', false);
   if (! pbStats) {
     return;
   }
 
-  updateTrapStatsDisplay(prestige, pbStats);
+  // 1. Update the stats in the item browser (trap selector)
+  supportedBases.forEach((base) => {
+    const baseElement = document.querySelector(`.campPage-trap-itemBrowser-item.base.${base.slug}`);
+    if (baseElement) {
+      updateTrapStatsDisplay(baseElement, pbStats);
+    }
+  });
 
+  // 2. Update the stats if the base is currently armed
   const armed = document.querySelector('.campPage-trap-itemBrowser-armed-item.base');
   if (! armed) {
     return;
@@ -35,7 +50,9 @@ const setPrestigeStats = async () => {
     return;
   }
 
-  if (name.innerText.includes('Prestige Base')) {
+  // Check if the armed item matches one of our supported bases
+  const isSupportedBase = supportedBases.some((base) => name.innerText.includes(base.name));
+  if (isSupportedBase) {
     updateTrapStatsDisplay(armed, pbStats);
   }
 };
@@ -75,33 +92,41 @@ const modifyPB = async (opts) => {
     return;
   }
 
-  const prestige = document.querySelector('.campPage-trap-itemBrowser-item.base.valour_rift_prestige_base');
-  if (! prestige) {
-    if (! retryPrestige) {
-      setTimeout(modifyPB, 500, { retryPrestige: true });
-    }
-
-    isModifying = false;
-    return;
-  }
-
-  if (prestige.getAttribute('data-pinned')) {
-    isModifying = false;
-    return;
-  }
-
   const recommended = document.querySelector('.trapSelectorView__browserStateParent--items[data-blueprint-type="base"] .recommended');
   if (! recommended) {
     isModifying = false;
     return;
   }
 
-  const header = recommended.querySelector('.campPage-trap-itemBrowser-tagGroup-name');
-  if (header) {
-    header.after(prestige);
+  // Loop through each supported base and pin it if found
+  let baseFound = false;
+
+  supportedBases.forEach((base) => {
+    const baseElement = document.querySelector(`.campPage-trap-itemBrowser-item.base.${base.slug}`);
+
+    // If the base exists and isn't already pinned
+    if (baseElement && ! baseElement.getAttribute('data-pinned')) {
+      baseFound = true;
+      const header = recommended.querySelector('.campPage-trap-itemBrowser-tagGroup-name');
+      if (header) {
+        header.after(baseElement);
+      }
+
+      baseElement.setAttribute('data-pinned', true);
+    }
+  });
+
+  // If we didn't find any base, try again later
+  if (! baseFound) {
+    if (! retryPrestige) {
+      debuglog('prestige-base-stats', 'Prestige base not found, retrying in 500 ms');
+      setTimeout(modifyPB, 500, { retryPrestige: true });
+    }
+    isModifying = false;
+    return;
   }
 
-  prestige.setAttribute('data-pinned', true);
+  // Update displays after moving them
   setPrestigeStats();
 
   isModifying = false;
@@ -121,7 +146,8 @@ const savePbStats = () => {
 
   // if we have pb equipped, then save the stats for it
   const setup = getUserSetupDetails();
-  if (setup.base.id !== 2904) {
+  const isEquipped = supportedBases.some((base) => setup.base.id === base.id);
+  if (! isEquipped) {
     isSaving = false;
     return;
   }
@@ -144,8 +170,8 @@ const savePbStats = () => {
       return;
     }
 
-    // if the name doesn't contain Prestige Base, then skip it
-    if (! stat.innerText.includes('Prestige Base')) {
+    const isTargetStat = supportedBases.some((base) => stat.innerText.includes(base.name));
+    if (! isTargetStat) {
       isSaving = false;
       return;
     }

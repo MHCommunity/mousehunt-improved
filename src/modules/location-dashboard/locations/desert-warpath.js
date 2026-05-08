@@ -1,10 +1,5 @@
-import {
-  getCurrentLocation,
-  getFieryWarpathPercent,
-  getFieryWarpathRemainingInWave,
-  getFieryWarpathStreak,
-  getFieryWarpathWave
-} from '@utils';
+import { getFieryWarpathPercent, getFieryWarpathRemainingInWave, getFieryWarpathStreak, getFieryWarpathWave } from '@utils/shared/fiery-warpath';
+import { getCurrentLocation } from '@utils';
 
 /**
  * Dashboard output.

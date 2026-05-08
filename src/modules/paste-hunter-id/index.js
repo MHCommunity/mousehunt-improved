@@ -39,7 +39,13 @@ const maybeRedirectToHunterProfile = (text) => {
 /**
  * Listen for the user hitting the paste shortcut and maybe redirect to the hunter's profile.
  */
+let hasPasteListener = false;
 const listenForIDPaste = () => {
+  if (hasPasteListener) {
+    return;
+  }
+
+  hasPasteListener = true;
   window.addEventListener('paste', (e) => {
     // if we're currently focused in an input, then don't do anything
     if (

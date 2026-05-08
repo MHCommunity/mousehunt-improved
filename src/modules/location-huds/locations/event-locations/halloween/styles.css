@@ -590,3 +590,16 @@ a.halloweenBoilingCauldronHUD-dialog-closeButton {
 .halloweenBoilingCauldronRecipeView-cauldronPointer.active {
   pointer-events: none;
 }
+
+.MiniEventSpookyShuffleCampHUD {
+  margin-top: 1px;
+}
+
+.shutdown .halloweenBoilingCauldronHUD-fuel-toggleButton:hover {
+  cursor: default;
+  background-position-y: -7px;
+}
+
+.halloweenBoilingCauldronHUD-cauldron-instantFinishButton-image {
+  margin-top: 3px;
+}

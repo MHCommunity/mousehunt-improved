@@ -105,6 +105,7 @@ const openTravelWindow = async () => {
   environments = await getData('environments');
   const eventEnvironments = await getData('environments-events');
   environments = [...environments, ...eventEnvironments];
+  const environmentById = new Map(environments.map((environment) => [environment.id, environment]));
 
   const currentEnvironment = environments.find((e) => e.id === getCurrentLocation());
   const locationsToRemove = ['acolyte_realm'];
@@ -243,8 +244,8 @@ const openTravelWindow = async () => {
 
         // Sort by original order
         const sortedButtons = [...environmentButtons].sort((a, b) => {
-          const envA = environments.find((e) => e.id === a.getAttribute('data-environment-type'));
-          const envB = environments.find((e) => e.id === b.getAttribute('data-environment-type'));
+          const envA = environmentById.get(a.getAttribute('data-environment-type'));
+          const envB = environmentById.get(b.getAttribute('data-environment-type'));
           return (envA?.order || 0) - (envB?.order || 0);
         });
 
@@ -257,8 +258,8 @@ const openTravelWindow = async () => {
 
         // Sort alphabetically by name
         const sortedButtons = [...environmentButtons].sort((a, b) => {
-          const envA = environments.find((e) => e.id === a.getAttribute('data-environment-type'));
-          const envB = environments.find((e) => e.id === b.getAttribute('data-environment-type'));
+          const envA = environmentById.get(a.getAttribute('data-environment-type'));
+          const envB = environmentById.get(b.getAttribute('data-environment-type'));
           return (envA?.name || '').localeCompare(envB?.name || '');
         });
 
@@ -312,7 +313,7 @@ const openTravelWindow = async () => {
 
     environmentButtons.forEach((button) => {
       const environmentType = button.getAttribute('data-environment-type');
-      const environment = environments.find((e) => e.id === environmentType);
+      const environment = environmentById.get(environmentType);
 
       button.style.display = environment.name.toLowerCase().includes(value) ? 'block' : 'none';
     });

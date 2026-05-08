@@ -242,3 +242,10 @@ span.ancientCityHUD-alertLevel {
   background-image: url(https://i.mouse.rip/memory-game-icon.png);
   background-size: contain;
 }
+
+.ancientCityHUD-powerTypeWarning {
+  top: 40px;
+  left: 90px;
+  max-width: 459px;
+  background-color: #ffbfbf;
+}

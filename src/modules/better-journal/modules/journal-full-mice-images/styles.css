@@ -10,9 +10,18 @@
 .entry.catchsuccess .journalimage img,
 .entry.catchsuccessloot .journalimage img,
 .entry.catchsuccessprize .journalimage img {
-  width: 95px; /* reset to 60 if the image sizes are too big */
+  width: auto; /* reset to 60 if the image sizes are too big */
+  max-width: 95px;
+  height: auto;
   background-color: #fff;
   border: 1px solid #000;
+}
+
+.mh-dark .entry.relicHunter_catch .journalimage img,
+.mh-dark .entry.catchsuccess .journalimage img,
+.mh-dark .entry.catchsuccessloot .journalimage img,
+.mh-dark .entry.catchsuccessprize .journalimage img {
+  background-color: var(--d);
 }
 
 .journal .content .entry.short.relicHunter_catch,
@@ -66,4 +75,25 @@
 
 .journal .content .entry.relicHunter_catch .journalimage img {
   width: 80px;
+}
+
+.PageHunterProfile .entry.relicHunter_catch .journalimage img,
+.PageHunterProfile .entry.catchsuccess .journalimage img,
+.PageHunterProfile .entry.catchsuccessloot .journalimage img,
+.PageHunterProfile .entry.catchsuccessprize .journalimage img {
+  width: auto;
+  max-width: 95px;
+  height: 100%;
+  max-height: 100px;
+}
+
+.PageHunterProfile .entry.catchsuccess[data-mouse-type="pirate"] .journalimage img,
+.PageHunterProfile .entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage img {
+  position: initial;
+  margin-left: initial;
+}
+
+.PageHunterProfile .entry.catchsuccess[data-mouse-type="pirate"] .journalimage::after,
+.PageHunterProfile .entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage::after {
+  display: none;
 }

@@ -264,3 +264,8 @@
   background-color: #fff;
   border-color: var(--d-border);
 }
+
+.mh-dark .inventoryPage-confirmPopup-itemRow-quantity,
+.mh-dark .inventoryPage-confirmPopup-itemRow-description {
+  color: var(--d-text);
+}

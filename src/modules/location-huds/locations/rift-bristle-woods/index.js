@@ -16,7 +16,7 @@ const maybeAddUserscriptStyles = () => {
     '.riftBristleWoodsHUD { margin-bottom: 30px; }',
   ].join('\n');
 
-  addStyles(userscriptStyles, 'riftBristleWoodsHUD', 'mh-improved-rift-bristle-woods-userscript-styles');
+  addStyles(userscriptStyles, 'mh-improved-styles-location-hud-extra', 'mh-improved-rift-bristle-woods-userscript-styles');
 };
 
 /**

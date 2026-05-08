@@ -75,3 +75,15 @@ You can force-disable modules using the `no-<module-id>` feature flag. This is t
 ### Enable Deprecated Modules
 
 Some modules have been deprecated and are no longer available in the settings unless they are already enabled. You can show them in the settings by enabling the `show-deprecated-modules` feature flag.
+
+## URL Query Parameters
+
+Add these query parameters to the MouseHunt URL to temporarily change behavior for that page load. These are not persisted and only apply to the current page.
+
+| Parameter | Description |
+|---|---|
+| `?safe-mode` | Loads with default settings. Useful for troubleshooting issues caused by settings. Your current settings are not overwritten and will be restored on the next normal page load. |
+| `?no-custom-styles` | Skips loading any custom CSS added via the [Custom Styles](./custom-styles.md) module. |
+| `?no-image-upscaling` | Disables [Image Upscaling & Transparency](./image-upscaling-and-transparency.md) for the current page load. |
+
+Multiple parameters can be combined, e.g., `https://www.mousehuntgame.com/?safe-mode&no-custom-styles`.

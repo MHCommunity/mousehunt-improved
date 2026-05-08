@@ -21,6 +21,11 @@ export default async () => {
       default: true,
     },
     {
+      id: 'better-ui.trap-gradient-background',
+      title: 'Trap Selector: Add background gradient to your trap',
+      default: false,
+    },
+    {
       id: 'better-ui.larger-skin-images',
       title: 'Trap Selector: Show larger skin images in the trap selector',
       default: true,

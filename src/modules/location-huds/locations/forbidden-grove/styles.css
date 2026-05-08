@@ -10,3 +10,7 @@
   border-top-right-radius: 10px;
   box-shadow: 0 -0.5px 1px 1px #e1d1b7;
 }
+
+.forbiddenGroveHUD-item {
+  height: 17px;
+}

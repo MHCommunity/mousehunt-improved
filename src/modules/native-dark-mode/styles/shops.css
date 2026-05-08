@@ -38,7 +38,7 @@
 }
 
 .mh-dark .itemPurchaseView-action-itemCost-table-cell.cost {
-  color: var(--d-green);
+  color: var(--d-text);
   text-shadow: none;
 }
 
@@ -107,4 +107,8 @@
 .mh-dark .itemPurchaseView-action-armed-title,
 .mh-dark span.itemPurchaseView-action-confirm-refund.noRefund::after {
   color: var(--d-text);
+}
+
+.mh-dark .itemPurchaseView-action-itemCost-table-row.error {
+  background-color: #f5c2c2;
 }

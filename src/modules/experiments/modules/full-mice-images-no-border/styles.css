@@ -24,9 +24,3 @@
   background-color: #fff;
   outline: 1px solid #90d3e4;
 }
-
-/* theres a special case for pirate mice */
-.entry.catchsuccess[data-mouse-type="pirate"] .journalimage::after,
-.entry.catchsuccessloot[data-mouse-type="pirate"] .journalimage::after {
-  border-left: none;
-}

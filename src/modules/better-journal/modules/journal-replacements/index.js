@@ -129,8 +129,6 @@ const replacements = [
   // Event stuff
   // SEH
   [/was.+chocolatonium.+trap!/i, ''],
-
-  // SEH.
   ['A chocoholic', 'I caught a bonus'],
   ['A chocolate-crazed', 'I caught a bonus'],
   ['A voracious', 'I caught a bonus'],
@@ -163,6 +161,7 @@ const replacements = [
     'Hunting with Festive Spirit conjured 1 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=2014_throwable_snowball_stat_item" onclick="hg.views.ItemView.show(\'2014_throwable_snowball_stat_item\'); return false;">Throwable Snowball</a>',
     'My Festive Spirit made 1 <a class="" title="" href="https://www.mousehuntgame.com/item.php?item_type=2014_throwable_snowball_stat_item" onclick="hg.views.ItemView.show(\'2014_throwable_snowball_stat_item\'); return false;">Throwable Snowball</a>.',
   ],
+  ['oz.!', 'oz.'],
 ];
 
 /**
@@ -183,10 +182,10 @@ const replaceInEntry = (entry) => {
   const startingText = element.innerHTML;
   let oldText = startingText;
 
-  replacements.forEach(async (replacement) => {
+  for (const replacement of replacements) {
     // If we have bad data, skip it.
     if (! Array.isArray(replacement) || replacement.length < 2) {
-      return;
+      continue;
     }
 
     // If the replacement has a length of 3, we have a class we either want to skip or match.
@@ -194,19 +193,22 @@ const replaceInEntry = (entry) => {
       // If it has a !, we want to skip it, otherwise we want to match it.
       if (replacement[2].includes('!')) {
         if (entry.classList.contains(replacement[2].replace('!', ''))) {
-          return;
+          continue;
         }
       } else if (! entry.classList.contains(replacement[2])) {
-        return;
+        continue;
       }
     }
 
     const newText = oldText.replace(replacement[0], replacement[1]);
     if (oldText !== newText) {
-      element.innerHTML = newText;
       oldText = newText;
     }
-  });
+  }
+
+  if (oldText !== startingText) {
+    element.innerHTML = oldText;
+  }
 
   entry.setAttribute('data-replaced', 'true');
 };
@@ -281,15 +283,24 @@ const updateItemLinks = (entry) => {
     return;
   }
 
+  if (entry.getAttribute('data-item-links-updated')) {
+    return;
+  }
+
   const itemLinks = entry.querySelectorAll('.journaltext a[href*="item.php"]');
   if (itemLinks) {
     itemLinks.forEach((link) => {
+      if (link.dataset.mhImprovedItemLink) {
+        return;
+      }
+
       const itemType = link.href.match(/item\.php\?item_type=(\w+)/);
       if (itemType && itemType.length === 2) {
         link.addEventListener('click', (e) => {
           e.preventDefault();
           hg.views.ItemView.show(itemType[1]);
         });
+        link.dataset.mhImprovedItemLink = 'true';
       }
     });
   }
@@ -297,6 +308,10 @@ const updateItemLinks = (entry) => {
   const itemLinksNoHref = entry.querySelectorAll('.journaltext a[onclick]');
   if (itemLinksNoHref) {
     itemLinksNoHref.forEach((link) => {
+      if (link.dataset.mhImprovedItemLink) {
+        return;
+      }
+
       if ('#' !== link.getAttribute('href')) {
         return;
       }
@@ -304,9 +319,12 @@ const updateItemLinks = (entry) => {
       const itemType = link.getAttribute('onclick').match(/hg\.views\.ItemView\.show\('(\w+)'\)/);
       if (itemType && itemType.length === 2) {
         link.setAttribute('href', `https://www.mousehuntgame.com/item.php?item_type=${itemType[1]}`);
+        link.dataset.mhImprovedItemLink = 'true';
       }
     });
   }
+
+  entry.setAttribute('data-item-links-updated', 'true');
 };
 
 /**

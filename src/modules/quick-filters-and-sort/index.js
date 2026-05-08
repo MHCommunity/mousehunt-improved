@@ -11,11 +11,14 @@ import styles from './styles.css';
 /**
  * Add an element to the quick links.
  *
- * @param {Object}  link     The link object.
- * @param {Element} appendTo The element to append to.
- * @param {string}  filter   The filter type.
+ * @param {Object}  link                 The link object.
+ * @param {Element} appendTo             The element to append to.
+ * @param {string}  filter               The filter type.
+ * @param {Object}  [inputs]             Optional cached inputs.
+ * @param {Element} [inputs.filterInput] Cached filter input element.
+ * @param {Element} [inputs.sortInput]   Cached sort input element.
  */
-const addItemToQuickLinks = (link, appendTo, filter) => {
+const addItemToQuickLinks = (link, appendTo, filter, inputs) => {
   const existing = document.querySelector(`.campPage-trap-itemBrowser-favorite-item.quicklinks-filter.quicklinks-filter-${filter}-${link.id}`);
   if (existing) {
     existing.remove();
@@ -42,8 +45,8 @@ const addItemToQuickLinks = (link, appendTo, filter) => {
   item.append(itemAnchor);
   item.append(hiddenInput);
 
-  const filterInput = document.querySelector('.campPage-trap-itemBrowser-filter.powerType select');
-  const sortInput = document.querySelector('.campPage-trap-itemBrowser-filter.sortBy select');
+  const filterInput = inputs?.filterInput || document.querySelector('.campPage-trap-itemBrowser-filter.powerType select');
+  const sortInput = inputs?.sortInput || document.querySelector('.campPage-trap-itemBrowser-filter.sortBy select');
 
   item.addEventListener('click', (e) => {
     e.preventDefault();
@@ -166,7 +169,7 @@ const addQuickLinksToTrap = async () => {
 
   const sortByInput = document.querySelector('.campPage-trap-itemBrowser-filter.sortBy select');
   links.forEach((link) => {
-    addItemToQuickLinks(link, quickLinks, 'sortBy', sortByInput);
+    addItemToQuickLinks(link, quickLinks, 'sortBy', { sortInput: sortByInput });
   });
 
   favorites.parentNode.insertBefore(quickLinks, favorites.nextSibling);
@@ -236,7 +239,7 @@ const addQuickLinksToTrap = async () => {
 
     const powerInput = document.querySelector('.campPage-trap-itemBrowser-filter.powerType select');
     powerLinks.forEach((link) => {
-      addItemToQuickLinks(link, powerQuickLinks, 'powerType', powerInput);
+      addItemToQuickLinks(link, powerQuickLinks, 'powerType', { filterInput: powerInput });
     });
 
     // append as a sibling below the quick links

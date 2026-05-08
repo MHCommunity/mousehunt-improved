@@ -1,0 +1,41 @@
+.conclusionCliffsView__catchesRemainingQuantity {
+  line-height: 23px;
+}
+
+.conclusionCliffsView__catchesRemainingText {
+  font-size: 10px;
+  color: #e4ccb9;
+}
+
+.conclusionCliffsView__currentGenre {
+  font-size: 10px;
+}
+
+.conclusionCliffsView__storyProgress {
+  box-shadow: 0 1px 6px 1px rgb(50 50 50 / 70%);
+}
+
+.conclusionCliffsView__chapter:hover {
+  transition: 0.2s ease-out;
+  transform: rotate(45deg) scale(1.5);
+}
+
+.conclusionCliffsView__nextChapterChoice:hover {
+  z-index: 6;
+  filter: drop-shadow(0 1px 1px #000);
+  transition: transform 0.2s ease-out;
+  transform: scale(1.3);
+  transform-origin: bottom;
+}
+
+.conclusionCliffsView__chapterReRollButtonContainer::before {
+  top: 4px;
+}
+
+.conclusionCliffsView__chapterProgressBarContainer {
+  background-image: linear-gradient(to bottom, transparent 0 80%, #3335 80%), linear-gradient(to right, var(--progress-color) 0 var(--progress-percent), #7a6554 var(--progress-percent));
+}
+
+.conclusionCliffsView__writeMoreCostThumbnail {
+  transform: translate(1px, 1px);
+}

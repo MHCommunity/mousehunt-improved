@@ -4,9 +4,9 @@ import {
   onNavigation,
   onRequest,
   onTurn,
-  showHornMessage,
-  startMemoryGame
+  showHornMessage
 } from '@utils';
+import { startMemoryGame } from '@utils/shared/memory-game';
 
 import styles from './styles.css';
 

@@ -13,6 +13,7 @@ import maintenance from './modules/maintenance';
 import randomSkinButton from './modules/random-skin-button';
 import showUnownedSkins from './modules/show-unowned-skins';
 import skinPreviewBase from './modules/skin-preview-base';
+import trapGradientBackground from './modules/trap-gradient-background';
 import userscriptStyles from './modules/userscripts-styles';
 
 import settings from './settings';
@@ -37,12 +38,13 @@ const init = () => {
   skinPreviewBase();
 
   const modules = [
+    { enabled: getSetting('better-ui.codex-at-bottom', true), load: codexAtBottom },
     { enabled: getSetting('better-ui.hud-changes', true), load: hud },
-    { enabled: getSetting('better-ui.profile-changes', true), load: eggMaster },
     { enabled: getSetting('better-ui.larger-codices', true), load: largerCodices },
     { enabled: getSetting('better-ui.larger-skin-images', true), load: largerSkinImages },
+    { enabled: getSetting('better-ui.profile-changes', true), load: eggMaster },
     { enabled: getSetting('better-ui.show-unowned-skins', true), load: showUnownedSkins },
-    { enabled: getSetting('better-ui.codex-at-bottom', true), load: codexAtBottom },
+    { enabled: getSetting('better-ui.trap-gradient-background', false), load: trapGradientBackground },
   ];
 
   for (const module of modules) {

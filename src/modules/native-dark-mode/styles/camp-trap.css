@@ -12,6 +12,10 @@
   border-color: var(--d-link) transparent transparent transparent;
 }
 
+.mh-dark .campPage-trap-friendContainer.full .campPage-trap-friendContainer-toggleFriendsButton-arrow {
+  border-color: transparent transparent var(--d-link) transparent;
+}
+
 .mh-dark .campPage-trap-friendContainer .label {
   color: var(--d-text);
 }

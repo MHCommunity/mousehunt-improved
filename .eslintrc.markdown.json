@@ -1,0 +1,11 @@
+{
+  "extends": ["./.eslintrc.json", "plugin:markdownlint/recommended"],
+  "parser": "eslint-plugin-markdownlint/parser",
+  "rules": {
+    "markdownlint/md013": "off",
+    "markdownlint/md024": "off",
+    "markdownlint/md029": "off",
+    "markdownlint/md033": "off",
+    "unicorn/filename-case": "off"
+  }
+}

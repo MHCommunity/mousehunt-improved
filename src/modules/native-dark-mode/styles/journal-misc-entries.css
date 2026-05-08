@@ -109,7 +109,10 @@
   color: var(--d-green);
 }
 
-.mh-dark .journal .content .entry.ultimate_pop,
 .mh-dark .journal .content .entry.ultimate_intact {
+  background-color: var(--d-blue-dark);
+}
+
+.mh-dark .journal .content .entry.ultimate_pop {
   background-color: var(--d-blue-darker);
 }

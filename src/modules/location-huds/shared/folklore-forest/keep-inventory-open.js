@@ -71,7 +71,7 @@ const keepInventoryToggled = async (opts) => {
     toggleButton.removeEventListener('click', toggleInventory);
   }
 
-  toggleButton.addEventListener('click', createToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass));
+  toggleButton.addEventListener('click', () => createToggleInventory(setting, inventory, inventoryOpenClass, toggleButton, buttonOpenClass));
 };
 
 export default keepInventoryToggled;

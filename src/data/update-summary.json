@@ -4,13 +4,10 @@
     {
       "title": "",
       "items": [
-        "Better UI: Updated styles",
-        "Better Journal: Updated styles",
-        "Better Maps: Updated styles",
-        "Dark Mode: Updated styles",
-        "Hover Profiles: Improved performance and reliability of profile popups across the site",
-        "Quick Send Supplies: Improved hover interaction and item sending experience",
-        "Miscellaneous bug fixes and performance improvements"
+        "Added Rift Hailstone Singularity Base to Prestige Base Stats so it shows the correct stats in the base selector",
+        "Added 'Show Adventure Book' feature to add an Adventure Book link to the Kingdom menu",
+        "Added an option to disable Native Dark Mode mice page image changes",
+        "Miscellaneous bug fixes and style updates"
       ]
     }
   ]

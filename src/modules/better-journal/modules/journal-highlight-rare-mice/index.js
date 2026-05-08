@@ -6,5 +6,5 @@ import styles from './styles.css';
  * Initialize the module.
  */
 export default async () => {
-  addStyles(styles, 'highlight-rare-mice');
+  addStyles(styles, 'better-journal-highlight-rare-mice');
 };

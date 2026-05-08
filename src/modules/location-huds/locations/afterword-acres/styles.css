@@ -13,3 +13,9 @@
 .headsUpDisplayAfterwordAcresView__productivityRateTooltipIcon:hover {
   opacity: 1;
 }
+
+.headsUpDisplayAfterwordAcresView__blightLevelQuantity {
+  display: inline-block;
+  min-width: 25px;
+  text-align: right;
+}
