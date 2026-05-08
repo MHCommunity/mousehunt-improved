@@ -1,6 +1,9 @@
 let originalTogglePopup;
 
-const init = async () => {
+/**
+ * Initialize the module.
+ */
+const init = () => {
   if (originalTogglePopup) {
     return;
   }
@@ -71,6 +74,9 @@ const init = async () => {
   };
 };
 
+/**
+ * Initialize the module.
+ */
 export default {
   id: 'reverse-daily-draw-order',
   name: 'Daily Draw: Reverse Order',
