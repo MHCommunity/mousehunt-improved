@@ -3485,7 +3485,7 @@
       },
       {
         "name": "Conclusion Cliffs",
-        "color": "linear-gradient(180deg,#FFC145 7.21%,#F97779 25%,#16AA7E 50.48%,#00CEE2 68.75%,#D973FF 91.35%),linear-gradient(0deg,rgba(255,255,255,.4),rgba(255,255,255,.4)",
+        "color": "linear-gradient(180deg,rgba(255, 193, 69, 0.5) 7.21%,rgba(249, 119, 121, 0.5) 25%,rgba(22, 170, 126, 0.5) 50.48%,rgba(0, 206, 226, 0.5) 68.75%, rgba(217, 115, 255, 0.5) 91.35%)",
         "subtitle": "Fantasy",
         "id": "fantasy",
         "icon": "/ui/hud/conclusion_cliffs/icons/Fantasy.png",
