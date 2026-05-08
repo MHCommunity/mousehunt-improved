@@ -3410,7 +3410,7 @@
       },
       {
         "name": "Conclusion Cliffs",
-        "color": "#FFC145",
+        "color": "#FFE1A4",
         "subtitle": "Adventure",
         "id": "adventure",
         "icon": "/ui/hud/conclusion_cliffs/icons/Adventure.png",
@@ -3425,7 +3425,7 @@
       },
       {
         "name": "Conclusion Cliffs",
-        "color": "#16AA7E",
+        "color": "#C6FFCC",
         "subtitle": "Comedy",
         "id": "comedy",
         "icon": "/ui/hud/conclusion_cliffs/icons/Comedy.png",
@@ -3440,7 +3440,7 @@
       },
       {
         "name": "Conclusion Cliffs",
-        "color": "#F97779",
+        "color": "#FFC7C8",
         "subtitle": "Romance",
         "id": "romance",
         "icon": "/ui/hud/conclusion_cliffs/icons/Romance.png",
@@ -3455,7 +3455,7 @@
       },
       {
         "name": "Conclusion Cliffs",
-        "color": "#D973FF",
+        "color": "#F4D5FF",
         "subtitle": "Suspense",
         "id": "suspense",
         "icon": "/ui/hud/conclusion_cliffs/icons/Suspense.png",
@@ -3470,7 +3470,7 @@
       },
       {
         "name": "Conclusion Cliffs",
-        "color": "#00CEE2",
+        "color": "#C9FAFF",
         "subtitle": "Tragedy",
         "id": "tragedy",
         "icon": "/ui/hud/conclusion_cliffs/icons/Tragedy.png",
