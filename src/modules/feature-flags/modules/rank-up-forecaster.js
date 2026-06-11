@@ -1,4 +1,4 @@
-import { addStyles, makeElement } from '@utils';
+import { addStyles, makeElement, showErrorMessage, showSuccessMessage } from '@utils';
 
 /**
  * Export the rank-up forecaster data.
@@ -30,11 +30,33 @@ const exportRankupForecasterData = () => {
 
 /**
  * Export the rank-up forecaster data as a CSV.
+ *
+ * @param {HTMLElement|null} append The element to append errors to.
  */
-const exportRankupForecasterDataAsCsv = () => {
+const exportRankupForecasterDataAsCsv = (append = null) => {
   const time = localStorage.getItem('Chro-forecaster-time');
+  if (! time) {
+    showErrorMessage({
+      message: 'No rank-up forecaster history was found to export.',
+      append,
+      after: true,
+      classname: 'mh-ui-forecaster-message',
+    });
+    return;
+  }
 
-  const data = JSON.parse(time);
+  let data = [];
+  try {
+    data = JSON.parse(time);
+  } catch {
+    showErrorMessage({
+      message: 'Unable to export rank-up forecaster history.',
+      append,
+      after: true,
+      classname: 'mh-ui-forecaster-message',
+    });
+    return;
+  }
 
   const csv = ['Time,Wisdom'];
 
@@ -56,7 +78,19 @@ const exportRankupForecasterDataAsCsv = () => {
 /**
  * Import the rank-up forecaster data.
  */
-const importRankupForecassterData = () => {
+const refreshRankupForecaster = () => {
+  const points = document.querySelector('.mousehuntHud-userStat-row.points');
+  if (points) {
+    points.click();
+  }
+};
+
+/**
+ * Import the rank-up forecaster data.
+ *
+ * @param {HTMLElement|null} append The element to append errors to.
+ */
+const importRankupForecasterData = (append = null) => {
   const input = document.createElement('input');
   input.type = 'file';
   input.accept = '.json';
@@ -75,24 +109,36 @@ const importRankupForecassterData = () => {
      * @param {Event} re The event.
      */
     reader.onload = (re) => {
-      const contents = re.target.result;
-      const data = JSON.parse(contents);
+      try {
+        const contents = re.target.result;
+        const data = JSON.parse(contents);
 
-      localStorage.setItem('Chro-forecaster-all-area', data.allArea);
-      localStorage.setItem('Chro-forecaster-current-area', data.currentArea);
-      localStorage.setItem('Chro-forecaster-time', data.time);
+        localStorage.setItem('Chro-forecaster-all-area', data.allArea);
+        localStorage.setItem('Chro-forecaster-current-area', data.currentArea);
+        localStorage.setItem('Chro-forecaster-time', data.time);
+
+        showSuccessMessage({
+          message: 'Rank-up forecaster data imported.',
+          append,
+          after: true,
+          classname: 'mh-ui-forecaster-message',
+        });
+
+        refreshRankupForecaster();
+      } catch {
+        showErrorMessage({
+          message: 'Invalid rank-up forecaster backup file.',
+          append,
+          after: true,
+          classname: 'mh-ui-forecaster-message',
+        });
+      }
     };
 
     reader.readAsText(file);
   });
 
   input.click();
-
-  // re-click the points button to refresh the data
-  const points = document.querySelector('.mousehuntHud-userStat-row.points');
-  if (points) {
-    points.click();
-  }
 };
 
 /**
@@ -123,11 +169,11 @@ const addRankupForecasterButtons = () => {
       wrapper.append(exportButton);
 
       const importButton = makeElement('button', 'mh-ui-import-forecaster-data', 'Import Data');
-      importButton.addEventListener('click', importRankupForecassterData);
+      importButton.addEventListener('click', () => importRankupForecasterData(importButton));
       wrapper.append(importButton);
 
       const exportCsvButton = makeElement('button', 'mh-ui-export-forecaster-csv', 'Export as CSV');
-      exportCsvButton.addEventListener('click', exportRankupForecasterDataAsCsv);
+      exportCsvButton.addEventListener('click', () => exportRankupForecasterDataAsCsv(exportCsvButton));
       wrapper.append(exportCsvButton);
 
       rankup.append(wrapper);
