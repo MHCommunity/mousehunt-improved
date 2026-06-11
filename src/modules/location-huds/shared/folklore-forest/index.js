@@ -82,12 +82,12 @@ const toggleAllVisibility = () => {
 const isUnlocked = (upgradeId) => {
   let userQuest;
 
-  if (user.quests?.QuestTableOfContents) {
-    userQuest = user.quests.QuestTableOfContents;
-  } else if (user.quests?.QuestProloguePond) {
-    userQuest = user.quests.QuestProloguePond;
-  } else if (user.quests?.QuestForewordFarm) {
-    userQuest = user.quests.QuestForewordFarm;
+  if (user?.quests?.QuestTableOfContents) {
+    userQuest = user?.quests?.QuestTableOfContents;
+  } else if (user?.quests?.QuestProloguePond) {
+    userQuest = user?.quests?.QuestProloguePond;
+  } else if (user?.quests?.QuestForewordFarm) {
+    userQuest = user?.quests?.QuestForewordFarm;
   } else {
     return false;
   }
@@ -238,7 +238,8 @@ const addCloseToWarning = () => {
     return;
   }
 
-  const closeButton = makeElement('div', 'mhui-close-button', '×', warning);
+  const closeButton = makeElement('div', 'mhui-close-button', '×');
+  warning.append(closeButton);
   closeButton.addEventListener('click', () => {
     warning.classList.remove('active');
   });

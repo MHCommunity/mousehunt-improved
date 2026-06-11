@@ -99,7 +99,7 @@ const addBossCountdown = async () => {
     return;
   }
 
-  // if we can't find the goal container, try again in 1 second up to 10 times until we find it
+  // if we can't find the goal container, try again every second up to 10 times
   let tries = 0;
   const maxTries = 10;
 
@@ -114,7 +114,7 @@ const addBossCountdown = async () => {
     if (tries >= maxTries) {
       clearInterval(interval);
     }
-  }, 1000 * tries);
+  }, 1000);
 };
 
 /**

@@ -132,7 +132,8 @@ const updateUpgradeTooltips = () => {
       upgradeText = '(Max Level)';
     }
 
-    const upgrade = makeElement('div', 'fortRoxHUD-fort-upgrade-level-info', upgradeText, name);
+    const upgrade = makeElement('div', 'fortRoxHUD-fort-upgrade-level-info', upgradeText);
+    name.append(upgrade);
     upgrade.classList.add('frox-upgrade-level-info');
   });
 };
@@ -151,7 +152,12 @@ const updateWallHP = () => {
     return;
   }
 
-  const wallPercent = user.quests.QuestFortRox.hp_percent.toFixed(0);
+  const wallHpPercent = user?.quests?.QuestFortRox?.hp_percent;
+  if (wallHpPercent === undefined) {
+    return;
+  }
+
+  const wallPercent = wallHpPercent.toFixed(0);
   const wrapper = makeElement('div', 'mh-frox-wall-hp');
   makeElement('div', 'mh-frox-wall-hp-text', `${wallPercent}%`, wrapper);
 
@@ -164,7 +170,7 @@ const updateWallHP = () => {
     'frox-wall-high',
     'frox-wall-perfect'
   );
-  const hp = Number.parseInt(user.quests.QuestFortRox.hp_percent, 10);
+  const hp = Number.parseInt(`${wallHpPercent}`, 10);
 
   if (hp === 100) {
     hpBox.classList.add('frox-wall-perfect');

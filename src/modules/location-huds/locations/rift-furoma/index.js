@@ -33,7 +33,7 @@ const addRecallCaclulation = () => {
     const existingRecall = document.querySelector('.mh-improved-recall');
     const afterRecallEl = makeElement('div', 'mh-improved-recall');
 
-    if ('---' === user.quests.QuestRiftFuroma.droid.remaining_energy) {
+    if ('---' === user?.quests?.QuestRiftFuroma?.droid?.remaining_energy) {
       if (existingRecall) {
         existingRecall.remove();
       }

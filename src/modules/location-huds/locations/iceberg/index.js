@@ -353,10 +353,11 @@ const hud = async () => {
     remainingStageDistance.classList.add('remaining-stage-distance');
     const destination = quest.isDeep ? 'Hidden Depths' : 'next stage';
     if (quest.stage !== quest.total) {
-      let feet = quest.stage.toLocaleString();
+      let feet = quest.stage;
       if (quest.isDeep) {
         feet = feet - 100;
       }
+      feet = feet.toLocaleString();
 
       if (! quest.isDeep) {
         remainingStageDistance.innerHTML = `<strong>${feet}</strong> feet until ${destination}`;
