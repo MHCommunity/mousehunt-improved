@@ -107,6 +107,13 @@
   height: 13px;
 }
 
+.mousehuntHud-userStat.title .mousehuntHud-userStat-maxTitle[contenteditable="true"] {
+  cursor: text;
+  user-select: text;
+  outline: 1px dashed #5b8ec7;
+  outline-offset: 1px;
+}
+
 .mousehuntHeaderView .menuItem.new,
 .mousehuntHud-userStat .notification,
 .marketplaceView-header-notification,
