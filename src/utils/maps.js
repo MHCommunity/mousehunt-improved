@@ -295,7 +295,8 @@ const addMHCTData = async (mouse, appendTo, type = 'mouse') => {
     const mhctRow = makeElement('div', 'mhct-row');
     const location = makeElement('div', 'mhct-location');
 
-    const locationEl = makeElement('span', 'mhct-location-text', mhct.location, location);
+    const locationEl = makeElement('span', 'mhct-location-text', mhct.location);
+    location.append(locationEl);
 
     if (mhct.stage) {
       makeElement('span', 'mhct-stage', mhct.stage, location);

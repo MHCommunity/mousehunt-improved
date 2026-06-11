@@ -8,6 +8,40 @@ const requestCallbacks = {};
 let onRequestHolder = false;
 
 /**
+ * Normalize a request URL for matching.
+ *
+ * @param {string|null} url The URL to normalize.
+ *
+ * @return {string} The normalized URL.
+ */
+const normalizeRequestUrl = (url = null) => {
+  if (! url || '*' === url) {
+    return '*';
+  }
+
+  if (url.startsWith('http') || url.startsWith('managers/ajax/')) {
+    return url;
+  }
+
+  return `managers/ajax/${url}`;
+};
+
+/**
+ * Check whether a request URL should be ignored.
+ *
+ * @param {string} responseUrl The response URL.
+ * @param {Array}  ignore      URLs to ignore.
+ *
+ * @return {boolean} Whether the request should be ignored.
+ */
+const shouldIgnoreRequest = (responseUrl, ignore = []) => {
+  return ignore.some((ignoredUrl) => {
+    const normalizedIgnoredUrl = normalizeRequestUrl(ignoredUrl);
+    return '*' === normalizedIgnoredUrl || responseUrl.includes(normalizedIgnoredUrl);
+  });
+};
+
+/**
  * Do something when ajax requests are completed.
  *
  * @since 1.0.0
@@ -49,8 +83,12 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
           }
 
           Object.keys(requestCallbacks).forEach((key) => {
-            if (('*' === key || this.responseURL.includes(key)) && ! ignore.includes(this.responseURL)) {
+            if ('*' === key || this.responseURL.includes(key)) {
               requestCallbacks[key].forEach((item) => {
+                if (shouldIgnoreRequest(this.responseURL, item.ignore)) {
+                  return;
+                }
+
                 if (item.callback && typeof item.callback === 'function' && (item.skipSuccess || response?.success)) {
                   item.callback(response, this._data);
                 }
@@ -78,12 +116,7 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
     onRequestHolder = true;
   }
 
-  url = '*' === url ? '*' : `managers/ajax/${url}`;
-
-  // this ignore check doesn't work when the url is *, but we check earlier for ignore so this is just here to catch other cases.
-  if (ignore.includes(url)) {
-    return;
-  }
+  url = normalizeRequestUrl(url);
 
   if (! callback) {
     return;
@@ -97,11 +130,13 @@ const onRequest = (url = null, callback = null, skipSuccess = false, ignore = []
     requestCallbacks[url].unshift({
       callback,
       skipSuccess,
+      ignore,
     });
   } else {
     requestCallbacks[url].push({
       callback,
       skipSuccess,
+      ignore,
     });
   }
 };
@@ -298,6 +333,28 @@ const onDialogShow = (overlay = null, callback = null, once = false) => {
 
 const dialogHideCallbacks = [];
 let lastDialog = null;
+let hasAddedDialogHideListener = false;
+
+/**
+ * Normalize a dialog overlay name for matching.
+ *
+ * @param {string|null} overlay The overlay to normalize.
+ *
+ * @return {string} The normalized overlay name.
+ */
+const normalizeDialogOverlay = (overlay = null) => {
+  if (! overlay || 'all' === overlay) {
+    return 'all';
+  }
+
+  const dialogMapping = getDialogMapping();
+
+  if (overlay in dialogMapping) {
+    return dialogMapping[overlay];
+  }
+
+  return overlay;
+};
 /**
  * When the dialog is hidden, run the callback.
  *
@@ -305,17 +362,17 @@ let lastDialog = null;
  * @param {string}   overlay  The overlay to check for.
  */
 const onDialogHide = (callback, overlay = null) => {
-  const dialogMapping = getDialogMapping();
-  if (overlay in dialogMapping && ! dialogHideCallbacks.some((item) => item.callback === callback)) {
+  const normalizedOverlay = normalizeDialogOverlay(overlay);
+
+  if (! dialogHideCallbacks.some((item) => item.callback === callback && item.overlay === normalizedOverlay)) {
     dialogHideCallbacks.push({
-      overlay: dialogMapping[overlay],
+      overlay: normalizedOverlay,
       callback,
     });
-  } else if (! dialogHideCallbacks.some((item) => item.callback === callback)) {
-    dialogHideCallbacks.push({
-      overlay: 'all',
-      callback,
-    });
+  }
+
+  if (hasAddedDialogHideListener) {
+    return;
   }
 
   eventRegistry.addEventListener('js_dialog_hide', () => {
@@ -328,7 +385,11 @@ const onDialogHide = (callback, overlay = null) => {
         item.callback();
       }
     });
+
+    lastDialog = null;
   });
+
+  hasAddedDialogHideListener = true;
 };
 
 const pageChangeCallbacks = [];

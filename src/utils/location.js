@@ -9,11 +9,8 @@ import { makeElement } from './elements';
 const getRelicHunterLocation = async () => {
   // Cache it in session storage for 5 minutes.
   const cacheExpiry = 5 * 60 * 1000;
-  const cacheKey = 'mh-improved-relic-hunter-location';
-  let cached = sessionGet(cacheKey);
-  if (cached) {
-    cached = JSON.parse(cached);
-  }
+  const cacheKey = 'relic-hunter-location';
+  const cached = sessionGet(cacheKey, null);
 
   // If we have a cached value and it's not expired, return it.
   if (cached && cached.expiry > Date.now()) {
@@ -28,7 +25,7 @@ const getRelicHunterLocation = async () => {
 
     const jsonData = await data.json();
     const expiry = Date.now() + cacheExpiry;
-    sessionSet(cacheKey, JSON.stringify({ expiry, data: jsonData }));
+    sessionSet(cacheKey, { expiry, data: jsonData });
     return jsonData;
   } catch (error) {
     console.error(error); // eslint-disable-line no-console

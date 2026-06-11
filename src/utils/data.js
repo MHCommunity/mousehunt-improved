@@ -1,6 +1,7 @@
 import { dbDelete, dbDeleteAll, dbGet, dbSet } from './db';
 import { debuglog } from './debug';
 import { getSetting } from './settings';
+import { safeJsonParse } from './json';
 
 const validDataFiles = new Set([
   'brift-mice-per-mist-level',
@@ -47,6 +48,32 @@ const dataFilesToPreload = [
   'upscaled-images',
   'wisdom',
 ];
+
+/**
+ * Build the normalized session storage key.
+ *
+ * @param {string} key The raw key.
+ *
+ * @return {string} The normalized key.
+ */
+const getSessionStorageKey = (key) => {
+  return key.startsWith('mh-improved-') ? key : `mh-improved-${key}`;
+};
+
+/**
+ * Build the legacy double-prefixed session storage key.
+ *
+ * @param {string} key The raw key.
+ *
+ * @return {string|null} The legacy key, if applicable.
+ */
+const getLegacySessionStorageKey = (key) => {
+  if (! key.startsWith('mh-improved-')) {
+    return null;
+  }
+
+  return `mh-improved-${key}`;
+};
 
 /**
  * Check if the given file is a valid data file available from the API.
@@ -303,17 +330,18 @@ const sessionSet = (key, value, retry = false) => {
     return;
   }
 
-  key = `mh-improved-${key}`;
+  const storageKey = getSessionStorageKey(key);
   const stringified = JSON.stringify(value);
 
   try {
-    sessionStorage.setItem(key, stringified);
+    sessionStorage.setItem(storageKey, stringified);
   } catch (error) {
     if ('QuotaExceededError' === error.name && ! retry) {
-      clearCaches();
-
-      // Try again.
-      sessionSet(key, value, true);
+      void clearCaches()
+        .catch(() => {})
+        .finally(() => {
+          sessionSet(key, value, true);
+        });
     }
   }
 };
@@ -331,13 +359,16 @@ const sessionGet = (key, defaultValue = false) => {
     return defaultValue;
   }
 
-  key = `mh-improved-${key}`;
-  const value = sessionStorage.getItem(key);
+  const storageKey = getSessionStorageKey(key);
+  const legacyKey = getLegacySessionStorageKey(key);
+  const value = sessionStorage.getItem(storageKey) ?? (legacyKey ? sessionStorage.getItem(legacyKey) : null);
   if (! value) {
     return defaultValue;
   }
 
-  return JSON.parse(value);
+  return safeJsonParse(value, defaultValue, (error) => {
+    console.error(`Error parsing session storage for ${storageKey}:`, error); // eslint-disable-line no-console
+  });
 };
 
 /**
@@ -346,8 +377,13 @@ const sessionGet = (key, defaultValue = false) => {
  * @param {string} key Key to delete the value for.
  */
 const sessionDelete = (key) => {
-  key = `mh-improved-${key}`;
-  sessionStorage.removeItem(key);
+  const storageKey = getSessionStorageKey(key);
+  const legacyKey = getLegacySessionStorageKey(key);
+
+  sessionStorage.removeItem(storageKey);
+  if (legacyKey) {
+    sessionStorage.removeItem(legacyKey);
+  }
 };
 
 /**

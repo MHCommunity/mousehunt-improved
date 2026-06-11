@@ -1,3 +1,5 @@
+import { safeJsonParse } from './json';
+
 let inSafeMode = null;
 
 /**
@@ -53,14 +55,24 @@ const getSettingDirect = (key = null, defaultValue = null, identifier = 'mousehu
   }
 
   // Grab the local storage data.
-  let settings = {};
-  try {
-    settings = JSON.parse(localStorage.getItem(identifier)) || {};
-  } catch (error) {
+  let settings = safeJsonParse(localStorage.getItem(identifier), {}, (error) => {
     console.error('Error parsing settings:', error); // eslint-disable-line no-console
+  });
+
+  if (! settings || 'object' !== typeof settings) {
+    settings = {};
+  }
+
+  if (0 === Object.keys(settings).length) {
     const backup = localStorage.getItem('mousehunt-improved-settings-backup');
     if (backup) {
-      settings = JSON.parse(backup) || {};
+      const parsedBackup = safeJsonParse(backup, {}, (error) => {
+        console.error('Error parsing settings backup:', error); // eslint-disable-line no-console
+      });
+
+      if (parsedBackup && 'object' === typeof parsedBackup) {
+        settings = parsedBackup;
+      }
     }
   }
 
@@ -215,12 +227,11 @@ const getSettings = () => {
     return {};
   }
 
-  try {
-    return JSON.parse(settings);
-  } catch (error) {
+  const parsedSettings = safeJsonParse(settings, {}, (error) => {
     console.error('Error parsing settings:', error); // eslint-disable-line no-console
-    return {};
-  }
+  });
+
+  return parsedSettings && 'object' === typeof parsedSettings ? parsedSettings : {};
 };
 
 /**
