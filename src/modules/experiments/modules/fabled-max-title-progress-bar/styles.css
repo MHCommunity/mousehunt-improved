@@ -1,0 +1,8 @@
+.mousehuntHud-userStat.title.maxTitle .mousehuntHud-userStat-maxTitle {
+  display: none;
+}
+
+.mousehuntHud-userStat.title.maxTitle .value,
+.mousehuntHud-userStat.title.maxTitle .mousehuntHud-titleProgressBar {
+  display: block;
+}

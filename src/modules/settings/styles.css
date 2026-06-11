@@ -593,3 +593,41 @@ ul.mhui-settings-toc-list {
   min-width: 85px;
   font-size: 12px;
 }
+
+#mousehunt-improved-settings-beta-experiments-fabled-custom-title,
+#mousehunt-improved-settings-beta-experiments-fabled-max-title-progress-bar {
+  margin-left: 45px;
+}
+
+#mousehunt-improved-settings-beta-experiments-fabled-custom-title::after,
+#mousehunt-improved-settings-beta-experiments-fabled-max-title-progress-bar::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40px;
+  width: 35px;
+  content: "";
+  background-image: url(https://www.mousehuntgame.com/images/titles/5daba92a8d609834aa8b789f37544e08.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30px;
+}
+
+#mousehunt-improved-settings-beta-experiments-fabled-custom-title.active > .PagePreferences__subSetting,
+#mousehunt-improved-settings-beta-experiments-fabled-custom-title.active:hover > .PagePreferences__subSetting {
+  display: block;
+  max-height: none;
+  overflow: visible;
+}
+
+#mousehunt-improved-settings-beta-experiments-fabled-custom-title.active > .PagePreferences__subSetting::before,
+#mousehunt-improved-settings-beta-experiments-fabled-custom-title.active:hover > .PagePreferences__subSetting::before {
+  display: none;
+}
+
+#mousehunt-improved-settings-beta-experiments-fabled-custom-title.active > .PagePreferences__subSetting .inputText input{
+  width: 125px;
+  font-size: 14px;
+  font-style: italic;
+  font-variant: small-caps;
+}
