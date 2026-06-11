@@ -16,6 +16,8 @@ import iconStyles from './styles/icon.css';
 import styles from './styles/styles.css';
 import stylesTransparent from './styles/transparent.css';
 
+const MODULE_ID = 'journal-privacy';
+
 /**
  * Apply a class to names in the journal.
  */
@@ -81,6 +83,7 @@ const removeClassFromNames = () => {
     const span = entry.querySelector('.mh-journal-privacy-name');
     if (span) {
       entry.innerHTML = entry.innerHTML.replace(span.outerHTML, span.textContent);
+      entry.removeAttribute('data-original');
       entry.removeAttribute('replaced');
     }
   });
@@ -131,9 +134,9 @@ const addIcon = () => {
       isPrivacyEnabled = ! isPrivacyEnabled;
 
       if (isPrivacyEnabled) {
-        disablePrivacy();
-      } else {
         enablePrivacy();
+      } else {
+        disablePrivacy();
       }
     },
   });
@@ -143,10 +146,6 @@ const addIcon = () => {
  * Remove the toggle icon from the menu.
  */
 const removeIcon = () => {
-  if (getSetting('journal-privacy.show-toggle-icon', false)) {
-    return;
-  }
-
   const icon = document.querySelector('#mousehunt-improved-journal-privacy');
   if (icon) {
     icon.style.display = 'none';
@@ -157,35 +156,52 @@ const removeIcon = () => {
 let isPrivacyEnabled = true;
 
 /**
+ * Sync the privacy state with current settings.
+ */
+const syncPrivacyState = () => {
+  if (! getSetting(MODULE_ID, false)) {
+    isPrivacyEnabled = false;
+    removeIcon();
+    disablePrivacy();
+    return;
+  }
+
+  if (getSetting('journal-privacy.show-toggle-icon', false)) {
+    addIcon();
+    isPrivacyEnabled = false;
+    disablePrivacy();
+    return;
+  }
+
+  removeIcon();
+  isPrivacyEnabled = true;
+  enablePrivacy();
+};
+
+/**
  * Initialize the module.
  */
 const init = async () => {
   addStyles([
     getSetting('journal-privacy.transparent', false) ? stylesTransparent : styles,
     iconStyles
-  ], 'journal-privacy');
+  ], MODULE_ID);
 
-  enablePrivacy();
-  if (getSetting('journal-privacy.show-toggle-icon', false)) {
-    addIcon();
-    disablePrivacy();
-  }
+  syncPrivacyState();
 
   onRequest('pages/journal.php', applyClassToNames);
 
-  onActivation(() => {
-    addIcon();
-    enablePrivacy();
-  });
+  onActivation(MODULE_ID, syncPrivacyState);
 
-  onDeactivation(() => {
+  onDeactivation(MODULE_ID, () => {
+    isPrivacyEnabled = false;
     removeIcon();
     disablePrivacy();
   });
 
   onSettingsChange('journal-privacy.show-toggle-icon', {
-    enable: addIcon,
-    disable: removeIcon,
+    enable: syncPrivacyState,
+    disable: syncPrivacyState,
   });
 };
 
