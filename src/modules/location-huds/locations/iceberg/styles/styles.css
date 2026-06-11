@@ -248,8 +248,8 @@
 
 .icebergHud .cutaway .drill .help {
   position: absolute;
-  top: 90px;
-  right: -55px;
+  top: 50px;
+  right: -5px;
   width: 400px;
 }
 
