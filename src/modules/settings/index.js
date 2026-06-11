@@ -27,6 +27,49 @@ import icons from './icons.css';
 import styles from './styles.css';
 
 /**
+ * Prepare settings for exporting.
+ *
+ * @param {Object} settingValues The settings to prepare.
+ *
+ * @return {Object} The prepared settings.
+ */
+const normalizeSettingsForExport = (settingValues = {}) => {
+  const exportableSettings = { ...settingValues };
+
+  if (
+    exportableSettings['override-styles'] &&
+    'string' === typeof exportableSettings['override-styles'] &&
+    ! exportableSettings['override-styles'].startsWith('data:')
+  ) {
+    exportableSettings['override-styles'] = `data:text/css;base64,${btoa(exportableSettings['override-styles'])}`;
+  }
+
+  return exportableSettings;
+};
+
+/**
+ * Parse settings text and normalize imported values.
+ *
+ * @param {string} settingText JSON settings text.
+ *
+ * @return {Object} The parsed settings object.
+ */
+const parseSettingsText = (settingText) => {
+  const parsedSettings = JSON.parse(settingText);
+
+  if (
+    parsedSettings &&
+    parsedSettings['override-styles'] &&
+    'string' === typeof parsedSettings['override-styles'] &&
+    parsedSettings['override-styles'].startsWith('data:')
+  ) {
+    parsedSettings['override-styles'] = parseEncodedValue(parsedSettings['override-styles']);
+  }
+
+  return parsedSettings;
+};
+
+/**
  * Add the export settings button.
  *
  * @param {HTMLElement} append The element to append to.
@@ -46,19 +89,7 @@ const addExportSettings = (append) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const settingValues = JSON.parse(localStorage.getItem('mousehunt-improved-settings'));
-
-    // Since 0.72.0, we've been storing the override-styles as a base64 encoded string.
-    if (
-      settingValues &&
-      settingValues['override-styles'] &&
-      'string' === typeof settingValues['override-styles'] &&
-      ! settingValues['override-styles'].startsWith('data:')
-    ) {
-      settingValues['override-styles'] = `data:text/css;base64,${btoa(settingValues['override-styles'])}`;
-    }
-
-    const settings = JSON.stringify(settingValues, null, 2);
+    const settings = JSON.stringify(normalizeSettingsForExport(getSettings()), null, 2);
     const content = `<div class="mousehunt-improved-settings-export-popup-content">
     <div class="mousehunt-improved-settings-export-popup-tip">
       Import settings by dragging a file here or pasting text into the box.
@@ -135,7 +166,7 @@ const addExportSettings = (append) => {
       reader.readAsText(file);
     });
 
-    const uploadButton = document.querySelector('.export-upload');
+    const uploadButton = popupElement.querySelector('.export-upload');
     uploadButton.addEventListener('click', (evt) => {
       evt.preventDefault();
 
@@ -166,7 +197,7 @@ const addExportSettings = (append) => {
       input.click();
     });
 
-    const resetButton = document.querySelector('.export-reset');
+    const resetButton = popupElement.querySelector('.export-reset');
     resetButton.addEventListener('click', (evt) => {
       evt.preventDefault();
       textarea.value = JSON.stringify({
@@ -175,11 +206,23 @@ const addExportSettings = (append) => {
       }, null, 2);
     });
 
-    const formatButton = document.querySelector('.export-format');
+    const formatButton = popupElement.querySelector('.export-format');
     formatButton.addEventListener('click', (evt) => {
       evt.preventDefault();
 
-      const currentSettings = JSON.parse(textarea.value);
+      let currentSettings = {};
+      try {
+        currentSettings = parseSettingsText(textarea.value);
+      } catch {
+        showErrorMessage({
+          message: 'Invalid JSON. Unable to format settings.',
+          append: formatButton,
+          after: true,
+          classname: 'settings-export-format-error',
+        });
+
+        return;
+      }
 
       // sort the keys alphabetically, with the mh-improved keys at the top
       const sorted = Object.keys(currentSettings).sort((a, b) => {
@@ -204,16 +247,11 @@ const addExportSettings = (append) => {
 
     const saveButton = popupElement.querySelector('.mousehuntActionButton.save');
     saveButton.addEventListener('click', () => {
-      const newSettings = textarea.value;
+      let newSettings = {};
 
       // Verify that the settings are valid JSON
       try {
-        // Since 0.72.0, we've been storing the override-styles as a base64 encoded string.
-        if (newSettings && newSettings['override-styles'] && newSettings['override-styles'].startsWith('data:')) {
-          newSettings['override-styles'] = parseEncodedValue(newSettings['override-styles']);
-        }
-
-        JSON.parse(newSettings);
+        newSettings = parseSettingsText(textarea.value);
       } catch (error) {
         showErrorMessage({
           message: 'Invalid JSON. Settings not saved.',
@@ -228,7 +266,7 @@ const addExportSettings = (append) => {
       }
 
       localStorage.setItem('mousehunt-improved-settings-backup', localStorage.getItem('mousehunt-improved-settings'));
-      localStorage.setItem('mousehunt-improved-settings', newSettings);
+      localStorage.setItem('mousehunt-improved-settings', JSON.stringify(newSettings));
 
       showSuccessMessage({
         message: 'Settings saved. Refreshing…',
@@ -257,7 +295,7 @@ const addExportSettings = (append) => {
       evt.preventDefault();
       const link = document.createElement('a');
       link.download = 'mousehunt-improved-settings.json';
-      link.href = `data:application/json;base64,${btoa(settings)}`;
+      link.href = `data:application/json;base64,${btoa(textarea.value)}`;
       link.click();
     });
 

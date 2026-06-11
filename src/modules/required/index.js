@@ -121,8 +121,13 @@ const addJournalProcessingEvents = async () => {
 const addDialogListeners = () => {
   let currentDialog = null;
   onEvent('js_dialog_hide', () => {
+    if (! currentDialog) {
+      return;
+    }
+
     doEvent('dialog-hide', currentDialog);
     doEvent(`dialog-hide-${currentDialog}`);
+    currentDialog = null;
   });
 
   onDialogShow('all', () => {
@@ -150,6 +155,7 @@ const addSupportLink = () => {
   const supportLink = makeElement('a', '', 'Visit the MouseHunt Improved GitHub page');
   supportLink.href = 'https://github.com/MHCommunity/mousehunt-improved/issues';
   supportLink.target = '_blank';
+  supportLink.rel = 'noopener noreferrer';
   supportWrap.append(supportLink);
 
   description.before(supportWrap);
@@ -178,26 +184,29 @@ const addUserscriptConfirmation = () => {
     title: 'Important MouseHunt Improved Userscript information',
     content: `<p>
       You are currently using MouseHunt Improved as a userscript. It is recommended to install the browser extension instead for a better, faster, and more stable experience.
+    </p>
       <div class="mh-improved-userscript-popup-actions">
         <a href="https://addons.mozilla.org/en-US/firefox/addon/mousehunt-improved/" title="View on Firefox Add-ons">
           <img src="https://i.mouse.rip/firefox.svg" alt="View on Firefox Add-ons" />
         </a>
-        <a href=https://chrome.google.com/webstore/detail/mousehunt-improved/mbkpejkkhmebmdjokdplhkljgkcfhjol" title="View on Chrome Web Store">
+        <a href="https://chrome.google.com/webstore/detail/mousehunt-improved/mbkpejkkhmebmdjokdplhkljgkcfhjol" title="View on Chrome Web Store">
           <img src="https://i.mouse.rip/chrome.svg" alt="View on Chrome Web Store" />
         </a>
       </div>
       <button class="mh-improved-userscript-popup-confirm mousehuntActionButton small gray"><span>
         I understand, don't show this again
       </span></button>
-    </p>`,
+    `,
     className: 'mh-improved-userscript-popup',
   });
 
   const confirmButton = document.querySelector('.mh-improved-userscript-popup-confirm');
-  confirmButton.addEventListener('click', () => {
-    localStorage.setItem('mousehunt-improved-userscript-confirmation', 'confirmed');
-    popup.hide();
-  });
+  if (confirmButton) {
+    confirmButton.addEventListener('click', () => {
+      localStorage.setItem('mousehunt-improved-userscript-confirmation', 'confirmed');
+      popup.hide();
+    });
+  }
 };
 
 const refreshOnLogin = (response, request) => {
