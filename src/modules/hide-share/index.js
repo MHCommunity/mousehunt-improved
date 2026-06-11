@@ -8,7 +8,9 @@ import styles from './styles.css';
 const init = () => {
   addStyles(styles, 'no-share');
 
-  SocialFramework.isFriendStreamPostsEnabled = () => false;
+  if (typeof SocialFramework !== 'undefined') {
+    SocialFramework.isFriendStreamPostsEnabled = () => false;
+  }
 };
 
 /**

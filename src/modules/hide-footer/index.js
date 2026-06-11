@@ -1,4 +1,10 @@
-import { addBodyClass, addStyles, onActivation, removeBodyClass } from '@utils';
+import {
+  addBodyClass,
+  addStyles,
+  onActivation,
+  onDeactivation,
+  removeBodyClass
+} from '@utils';
 
 import styles from './styles.css';
 
@@ -13,7 +19,7 @@ const init = () => {
     addBodyClass('no-footer');
   });
 
-  onActivation('no-footer', () => {
+  onDeactivation('no-footer', () => {
     removeBodyClass('no-footer');
   });
 };

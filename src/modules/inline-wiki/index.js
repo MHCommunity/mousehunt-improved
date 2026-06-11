@@ -43,20 +43,28 @@ const wikiListener = (e) => {
  */
 const addMenuListener = () => {
   const wikiLink = getLink();
-  if (wikiLink && ! listener) {
-    listener = wikiLink.addEventListener('click', wikiListener);
+  if (! wikiLink || wikiLink === listener) {
+    return;
   }
+
+  if (listener) {
+    listener.removeEventListener('click', wikiListener);
+  }
+
+  wikiLink.addEventListener('click', wikiListener);
+  listener = wikiLink;
 };
 
 /**
  * Remove the click listener from the wiki link in the menu.
  */
 const removeMenuListener = () => {
-  const wikiLink = getLink();
-  if (wikiLink && listener) {
-    wikiLink.removeEventListener('click', wikiListener);
-    listener = null;
+  if (! listener) {
+    return;
   }
+
+  listener.removeEventListener('click', wikiListener);
+  listener = null;
 };
 
 /**

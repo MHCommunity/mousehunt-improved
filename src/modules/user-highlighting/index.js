@@ -65,12 +65,20 @@ const highlightUsers = async () => {
   }
 
   const userId = Number.parseInt(id.textContent, 10);
+  if (Number.isNaN(userId)) {
+    return;
+  }
+
   // query api.mouse.rip/highlight-user/:id to get the user highlighting data
 
   let data = sessionGet(`mh-improved-user-highlighting-${userId}`);
   if (! data) {
     try {
       const userHighlighting = await fetch(`https://api.mouse.rip/highlight-user/${userId}`);
+      if (! userHighlighting.ok) {
+        throw new Error(`Unexpected user highlighting response: ${userHighlighting.status}`);
+      }
+
       data = await userHighlighting.json();
 
       debug(`Retrieved user highlighting data for ${userId}`, data);
@@ -87,6 +95,9 @@ const highlightUsers = async () => {
   }
 
   const type = data.type;
+  if (! ['developer', 'contributor', 'supporter'].includes(type)) {
+    return;
+  }
 
   profilePage.classList.add('mh-improved-highlight-user', `mh-improved-${type}`);
   idHeader.append(getUserHighlightingShield(type));

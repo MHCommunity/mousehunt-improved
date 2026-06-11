@@ -442,7 +442,7 @@ const listenForKeypresses = () => {
     }
 
     const tagName = event?.target?.tagName?.toLowerCase();
-    if ('input' === tagName || 'textarea' === tagName || 'select' === tagName) {
+    if ('input' === tagName || 'textarea' === tagName || 'select' === tagName || event?.target?.isContentEditable) {
       return;
     }
 

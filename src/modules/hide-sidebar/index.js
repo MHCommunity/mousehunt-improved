@@ -6,6 +6,10 @@ import styles from './styles.css';
  * Move sidebar into menu tab.
  */
 const moveSidebar = () => {
+  if (document.querySelector('.menuItem.sidebar')) {
+    return;
+  }
+
   // Create menu tab.
   const menuTab = document.createElement('div');
   menuTab.classList.add('menuItem');
@@ -79,6 +83,9 @@ const init = () => {
 
   onDeactivation('no-sidebar', () => {
     hg.views.PageFrameView.setShowSidebar(true);
+    removeBodyClass('no-sidebar');
+    addBodyClass('hasSidebar', true);
+
     const menuTab = document.querySelector('.menuItem.sidebar');
     if (menuTab) {
       menuTab.remove();

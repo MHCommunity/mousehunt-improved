@@ -27,13 +27,17 @@ const addHelpLinks = () => {
   ];
 
   helpLinks.forEach((helpLink) => {
+    if (supportDropdown.querySelector(`a.${helpLink.id}`)) {
+      return;
+    }
+
     const link = makeElement('a', [helpLink.id, helpLink.class]);
     makeElement('b', 'title', helpLink.title, link);
     makeElement('span', 'text', helpLink.text, link);
 
     link.setAttribute('href', helpLink.href);
     link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noreferrer');
+    link.setAttribute('rel', 'noopener noreferrer');
 
     supportDropdown.append(link);
   });

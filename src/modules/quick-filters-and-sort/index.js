@@ -109,7 +109,12 @@ const addQuickLinksToTrap = async () => {
     return;
   }
 
-  itemBrowser.parentNode.parentNode.setAttribute('data-blueprint-type', type);
+  const outerBlock = itemBrowser.parentNode?.parentNode;
+  if (! outerBlock) {
+    return;
+  }
+
+  outerBlock.setAttribute('data-blueprint-type', type);
 
   const favorites = document.querySelector('.campPage-trap-itemBrowser-favorites');
   if (! favorites) {

@@ -15,6 +15,10 @@ import styles from './styles.css';
  */
 const processSearch = () => {
   const currentValue = document.querySelector('#mhui-supply-search-input');
+  if (! currentValue) {
+    return;
+  }
+
   if (! currentValue.value) {
     // remove the hidden class from all items
     items.forEach((item) => {
@@ -289,7 +293,7 @@ const upgradeSendSupplies = (initial = false) => {
     }
     addSortButtons();
 
-    const itemSearch = document.querySelector('.mhui-supply-search-input');
+    const itemSearch = document.querySelector('#mhui-supply-search-input');
     if (itemSearch) {
       itemSearch.focus();
     }
@@ -310,13 +314,17 @@ const upgradeSendSupplies = (initial = false) => {
     }, { once: true });
   }
 
-  sendTo.addEventListener('click', () => {
-    upgradeSendSupplies();
-  }, { once: true });
+  if (sendTo) {
+    sendTo.addEventListener('click', () => {
+      upgradeSendSupplies();
+    }, { once: true });
+  }
 
-  sending.addEventListener('click', () => {
-    upgradeSendSupplies();
-  }, { once: true });
+  if (sending) {
+    sending.addEventListener('click', () => {
+      upgradeSendSupplies();
+    }, { once: true });
+  }
 };
 
 let hasSorted = false;

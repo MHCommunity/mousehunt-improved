@@ -44,7 +44,7 @@ const updateStats = () => {
 
   trapMath.forEach((mathRow) => {
     const row = mathRow.querySelector('.campPage-trap-trapStat-mathRow-value');
-    if (! row.textContent) {
+    if (! row?.textContent) {
       return;
     }
 

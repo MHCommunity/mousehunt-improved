@@ -166,7 +166,7 @@ const makeKingsCrownsTabContent = async () => {
     cachedCrownsTime &&
     (Date.now() - cachedCrownsTime) < 300000
   ) {
-    crowns = JSON.parse(cachedCrowns);
+    crowns = cachedCrowns;
   } else {
     const crownsReq = await doRequest('managers/ajax/pages/page.php', {
       page_class: 'HunterProfile',
@@ -178,7 +178,7 @@ const makeKingsCrownsTabContent = async () => {
     if (crowns.length <= 0) {
       return;
     }
-    sessionSet('kings-crowns-data', JSON.stringify(crowns));
+    sessionSet('kings-crowns-data', crowns);
     sessionSet('kings-crowns-time', Date.now());
   }
 

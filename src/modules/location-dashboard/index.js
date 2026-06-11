@@ -387,24 +387,28 @@ const makeLocationMarkup = (id, name, progress, appendTo, quests) => {
   const locationImageWrapper = makeElement('div', 'locationImageWrapper');
   // get the image for the location
   const environment = environments.find((env) => env.id === id);
-  if (environment.image) {
+  if (environment?.image) {
     const locationImage = makeElement('img', 'locationImage');
     locationImage.setAttribute('src', environment.image);
 
     locationImageWrapper.append(locationImage);
   }
 
-  locationImageWrapper.addEventListener('click', async () => {
-    travelTo(environment.id);
-  });
+  if (environment?.id) {
+    locationImageWrapper.addEventListener('click', async () => {
+      travelTo(environment.id);
+    });
+  }
 
   locationWrapper.append(locationImageWrapper);
 
   const nameEl = makeElement('div', 'locationName', name);
 
-  nameEl.addEventListener('click', async () => {
-    travelTo(environment.id);
-  });
+  if (environment?.id) {
+    nameEl.addEventListener('click', async () => {
+      travelTo(environment.id);
+    });
+  }
 
   locationWrapper.append(nameEl);
 

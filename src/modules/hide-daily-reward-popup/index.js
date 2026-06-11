@@ -1,14 +1,26 @@
 import { onDialogShow, onRequest } from '@utils';
 
 /**
+ * Get the active dialog if available.
+ *
+ * @return {Object|null} The active dialog.
+ */
+const getActiveDialog = () => {
+  return typeof activejsDialog === 'undefined' ? null : activejsDialog;
+};
+
+/**
  * Hide the daily reward popup.
  */
 const hidePopup = () => {
-  if (activejsDialog) {
-    const attrs = activejsDialog.getAttributes();
-    if (attrs && attrs.className && attrs.className === 'dailyRewardPopup') {
-      activejsDialog.hide();
-    }
+  const dialog = getActiveDialog();
+  if (! dialog?.hide || ! dialog?.getAttributes) {
+    return;
+  }
+
+  const attrs = dialog.getAttributes();
+  if (attrs?.className === 'dailyRewardPopup') {
+    dialog.hide();
   }
 };
 
@@ -18,8 +30,9 @@ const hidePopup = () => {
 const init = () => {
   onDialogShow('dailyRewardPopup', () => {
     setTimeout(() => {
-      if (activejsDialog) {
-        activejsDialog.hide();
+      const dialog = getActiveDialog();
+      if (dialog?.hide) {
+        dialog.hide();
       }
     }, 500);
   });

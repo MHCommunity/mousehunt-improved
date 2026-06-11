@@ -340,7 +340,8 @@ const updateMouseView = async () => {
 
   const arWrapper = makeElement('div', 'ar-wrapper');
   const title = makeElement('div', 'ar-header');
-  const titleText = makeElement('div', 'ar-title', 'Attraction Rates', title);
+  const titleText = makeElement('div', 'ar-title', 'Attraction Rates');
+  title.append(titleText);
 
   makeTooltip({
     appendTo: titleText,

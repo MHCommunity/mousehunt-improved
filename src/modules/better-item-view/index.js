@@ -179,7 +179,8 @@ const showDropRates = async (itemId, itemView) => {
 
   const arWrapper = makeElement('div', 'ar-wrapper');
   const title = makeElement('div', 'ar-header');
-  const titleText = makeElement('div', 'ar-title', 'Drop Rates', title);
+  const titleText = makeElement('div', 'ar-title', 'Drop Rates');
+  title.append(titleText);
 
   makeTooltip({
     appendTo: titleText,

@@ -224,7 +224,7 @@ const replaceInventoryView = () => {
   app.pages.InventoryPage.useItem = function (target) {
     const itemClassification = target.getAttribute('data-item-classification');
     if (! itemClassification) {
-      return _InventoryPageuseItem(element);
+      return _InventoryPageuseItem.call(this, target);
     }
 
     const allowedTypes = [
@@ -237,12 +237,12 @@ const replaceInventoryView = () => {
     ];
 
     if (! allowedTypes.includes(itemClassification)) {
-      return _InventoryPageuseItem(target);
+      return _InventoryPageuseItem.call(this, target);
     }
 
     const container = target.closest('.mousehuntHud-page-subTabContent');
     if (! container) {
-      return _InventoryPageuseItem(target);
+      return _InventoryPageuseItem.call(this, target);
     }
 
     if (container.classList.contains('hammer')) {

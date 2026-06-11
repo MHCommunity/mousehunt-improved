@@ -368,9 +368,12 @@ const addToTravelDropdown = async () => {
   });
 
   // remove the current location from the list
-  otherRegions.splice(otherRegions.findIndex((environment) => {
+  const currentLocationIndex = otherRegions.findIndex((environment) => {
     return environment.id === currentLocation;
-  }), 1);
+  });
+  if (currentLocationIndex !== -1) {
+    otherRegions.splice(currentLocationIndex, 1);
+  }
 
   // remove any existing custom submenu items that we've added
   const existingCustomSubmenuItems = document.querySelectorAll('.mh-improved-better-travel-menu-item');
