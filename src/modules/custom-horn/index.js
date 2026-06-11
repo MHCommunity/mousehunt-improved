@@ -10,6 +10,14 @@ import settings from './settings';
 import styles from './styles.css';
 
 let addedClass = '';
+let preferenceInput = null;
+let showHornLink = null;
+let isShowingHorn = false;
+let hornTimeout = null;
+
+const handlePreferenceChange = () => {
+  addHornClass();
+};
 
 /**
  * Add a class to the horn view.
@@ -45,6 +53,7 @@ const addHornClass = (preview = false) => {
 
   if (addedClass) {
     hornView.classList.remove(addedClass);
+    addedClass = '';
   }
 
   if ('default' !== setting) {
@@ -62,9 +71,58 @@ const listenForPreferenceChanges = () => {
     return;
   }
 
-  input.addEventListener('change', () => {
-    addHornClass();
-  });
+  if (preferenceInput && preferenceInput !== input) {
+    preferenceInput.removeEventListener('change', handlePreferenceChange);
+  }
+
+  if (preferenceInput === input) {
+    return;
+  }
+
+  preferenceInput = input;
+  preferenceInput.addEventListener('change', handlePreferenceChange);
+};
+
+/**
+ * Add a preview link to show the horn.
+ *
+ * @param {MouseEvent} e The click event.
+ */
+const toggleHornPreview = (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const horn = document.querySelector('.huntersHornView__horn');
+  if (! horn) {
+    return;
+  }
+
+  const backdrop = document.querySelector('.huntersHornView__backdrop');
+  if (! backdrop) {
+    return;
+  }
+
+  if (isShowingHorn) {
+    isShowingHorn = false;
+    showHornLink.textContent = 'Preview Horn';
+
+    clearTimeout(hornTimeout);
+
+    horn.classList.add('huntersHornView__horn--reveal');
+    horn.classList.remove('huntersHornView__horn--ready');
+    setTimeout(() => backdrop.classList.remove('huntersHornView__backdrop--active'), 400);
+    hornTimeout = setTimeout(() => horn.classList.remove('huntersHornView__horn--reveal'), 1000);
+
+    return;
+  }
+
+  isShowingHorn = true;
+  showHornLink.textContent = 'Hide Horn';
+
+  backdrop.classList.add('huntersHornView__backdrop--active');
+  horn.classList.add('huntersHornView__horn--ready', 'huntersHornView__horn--reveal');
+
+  clearTimeout(hornTimeout);
 };
 
 /**
@@ -76,44 +134,19 @@ const addShowHorn = () => {
     return;
   }
 
-  let isShowing = false;
-  let timeout = null;
-  previewLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  if (showHornLink && showHornLink !== previewLink) {
+    showHornLink.removeEventListener('click', toggleHornPreview);
+  }
 
-    const horn = document.querySelector('.huntersHornView__horn');
-    if (! horn) {
-      return;
-    }
+  if (showHornLink === previewLink) {
+    return;
+  }
 
-    const backdrop = document.querySelector('.huntersHornView__backdrop');
-    if (! backdrop) {
-      return;
-    }
-
-    if (isShowing) {
-      isShowing = false;
-      previewLink.textContent = 'Preview Horn';
-
-      clearTimeout(timeout);
-
-      horn.classList.add('huntersHornView__horn--reveal');
-      horn.classList.remove('huntersHornView__horn--ready');
-      setTimeout(() => backdrop.classList.remove('huntersHornView__backdrop--active'), 400);
-      timeout = setTimeout(() => horn.classList.remove('huntersHornView__horn--reveal'), 1000);
-
-      return;
-    }
-
-    isShowing = true;
-    previewLink.textContent = 'Hide Horn';
-
-    backdrop.classList.add('huntersHornView__backdrop--active');
-    horn.classList.add('huntersHornView__horn--ready', 'huntersHornView__horn--reveal');
-
-    clearTimeout(timeout);
-  });
+  showHornLink = previewLink;
+  isShowingHorn = false;
+  clearTimeout(hornTimeout);
+  showHornLink.textContent = 'Show Horn';
+  showHornLink.addEventListener('click', toggleHornPreview);
 };
 
 /**
@@ -172,10 +205,6 @@ const getHornSettingsValues = async () => {
  */
 const init = () => {
   addStyles(styles, 'custom-horn');
-
-  if ('default' === getSetting('custom-horn-0', 'default')) {
-    return;
-  }
 
   persistHornClass();
 

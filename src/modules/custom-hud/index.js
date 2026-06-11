@@ -9,6 +9,12 @@ import groovyGreen from './styles/groovy-green.css';
 import midnight from './styles/midnight.css';
 import suede from './styles/suede.css';
 
+let preferenceInput = null;
+
+const handlePreferenceChange = () => {
+  addStyleEl();
+};
+
 /**
  * Add the custom HUD style element.
  *
@@ -37,16 +43,16 @@ const addStyleEl = (selectedPreview = false) => {
   styleEl.id = 'mh-improved-custom-hud-style';
 
   if (mapping[setting]) {
-    styleEl.innerHTML = mapping[setting];
+    styleEl.textContent = mapping[setting];
   } else {
     const gradient = gradients.find((g) => g.id === setting);
     // eslint-disable-next-line unicorn/prefer-ternary
     if (gradient) {
-      styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
+      styleEl.textContent = `body .mousehuntHud-marbleDrawer {
         background: url(https://i.mouse.rip/mousehuntHudPedestal.png) -46px 0 no-repeat, url(https://i.mouse.rip/mousehuntHudPedestal.png) 731px 0 no-repeat, ${gradient.css};
       }`;
     } else {
-      styleEl.innerHTML = `body .mousehuntHud-marbleDrawer {
+      styleEl.textContent = `body .mousehuntHud-marbleDrawer {
         background: url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) -46px 0 no-repeat, url(https://www.mousehuntgame.com/images/ui/hud/mousehuntHudPedestal.gif) 731px 0 no-repeat, url(https://i.mouse.rip/mh-improved/marble-shadow.png) 6px 0 no-repeat, url(https://i.mouse.rip/mh-improved/custom-hud/${setting}.png) repeat-y top center;
       }
 
@@ -68,9 +74,16 @@ const listenForPreferenceChanges = () => {
     return;
   }
 
-  input.addEventListener('change', () => {
-    addStyleEl();
-  });
+  if (preferenceInput && preferenceInput !== input) {
+    preferenceInput.removeEventListener('change', handlePreferenceChange);
+  }
+
+  if (preferenceInput === input) {
+    return;
+  }
+
+  preferenceInput = input;
+  preferenceInput.addEventListener('change', handlePreferenceChange);
 };
 
 /**

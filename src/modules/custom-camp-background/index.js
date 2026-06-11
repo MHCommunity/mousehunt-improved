@@ -5,11 +5,29 @@ import gradients from '@data/backgrounds.json';
 import settings from './settings';
 import styles from './styles.css';
 
+const campBackgroundClasses = [
+  'background-black',
+  'background-blue',
+  'background-blueprint',
+  'background-cyan',
+  'background-faded',
+  'background-green',
+  'background-marble',
+  'background-pink',
+  'background-purple',
+  'background-red',
+  'background-white',
+  'background-wood',
+];
+
 const addCampBackground = () => {
   const camp = document.querySelector('#mousehuntContainer.PageCamp');
   if (! camp) {
     return;
   }
+
+  camp.classList.remove(...campBackgroundClasses);
+  camp.style.removeProperty('background');
 
   const background = getSetting('custom-camp-background-0', 'background-wood');
   if ('default' === background) {

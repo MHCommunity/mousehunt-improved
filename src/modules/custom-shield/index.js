@@ -13,6 +13,17 @@ import styles from './styles.css';
 
 import cottonCandyStyles from './cotton-candy.css';
 
+const timerColorClasses = [
+  'color-blue',
+  'color-cyan',
+  'color-faded',
+  'color-green',
+  'color-pink',
+  'color-purple',
+  'color-rainbow',
+  'color-red',
+];
+
 /**
  * Add or remove a class from an element.
  *
@@ -59,6 +70,19 @@ const addClass = (el, shieldClass) => {
 };
 
 let lastShield = '';
+let inputListener = null;
+let preferenceInput = null;
+
+const removeCottonCandyStyle = () => {
+  const cottonCandyStyle = document.querySelector('.mh-improved-cotton-candy-style');
+  if (cottonCandyStyle) {
+    cottonCandyStyle.remove();
+  }
+};
+
+const removeTimerClasses = (timer) => {
+  timer.classList.remove(...timerColorClasses);
+};
 
 /**
  * Change the shield based on the user's preference.
@@ -76,6 +100,9 @@ const changeShield = () => {
       return;
     }
   }
+
+  removeTimerClasses(timer);
+  removeCottonCandyStyle();
 
   // Remove the old shield class.
   const classesToKeep = new Set(['mousehuntHud-shield', 'golden']);
@@ -99,11 +126,6 @@ const changeShield = () => {
     makeElement('style', 'mh-improved-cotton-candy-style', cottonCandyStyles, document.head);
 
     shield = 'color-pink-timer';
-  } else {
-    const cottonCandyStyle = document.querySelector('.mh-improved-cotton-candy-style');
-    if (cottonCandyStyle) {
-      cottonCandyStyle.remove();
-    }
   }
 
   lastShield = [shield];
@@ -139,7 +161,6 @@ const changeShield = () => {
   addClass(shieldEl, shield);
 };
 
-let inputListener = null;
 /**
  * Listen for preference changes to update the shield.
  */
@@ -149,13 +170,19 @@ const watchForPreferenceChanges = () => {
     return;
   }
 
-  if (inputListener) {
-    input.removeEventListener('change', inputListener);
+  if (preferenceInput && preferenceInput !== input && inputListener) {
+    preferenceInput.removeEventListener('change', inputListener);
   }
 
-  inputListener = input.addEventListener('change', () => {
+  if (preferenceInput === input) {
+    return;
+  }
+
+  preferenceInput = input;
+  inputListener = () => {
     changeShield();
-  });
+  };
+  preferenceInput.addEventListener('change', inputListener);
 };
 
 const shieldPreview = (shield) => {
@@ -203,12 +230,9 @@ const init = () => {
   addStyles(styles, 'custom-shield');
 
   lastShield = getSetting('custom-shield-0', 'default');
-
-  if ('default' === lastShield) {
-    return;
+  if ('default' !== lastShield) {
+    changeShield();
   }
-
-  changeShield();
 
   onNavigation(() => {
     setMultipleTimeout(watchForPreferenceChanges, [100, 1000, 2000, 5000]);

@@ -12,6 +12,11 @@ import settings from './settings';
 import styles from './styles.css';
 
 let possibleClasses = [];
+let preferenceInput = null;
+
+const handlePreferenceChange = () => {
+  addBodyClass();
+};
 
 /**
  * Add a class to the body.
@@ -35,26 +40,20 @@ const addBodyClass = (preview = false) => {
     style.remove();
   }
 
+  body.classList.remove('mh-improved-custom-background');
+  possibleClasses.forEach((className) => {
+    body.classList.remove(className, `mh-improved-bg-${className}`);
+  });
+
   if ('default' === setting) {
     return;
   }
 
-  // remove all classes that are in the options
-  possibleClasses.forEach((className) => {
-    body.classList.remove(className);
-  });
-
   const background = `mh-improved-bg-${setting}`;
 
-  body.classList.remove('kings_giveaway');
-
-  body.classList.add(background, setting);
-  addedClass = [background, setting];
-
-  if (setting.startsWith('background-color-')) {
-    body.classList.remove(setting);
-    body.classList.add(background);
-    addedClass = background;
+  body.classList.add(background);
+  if (! setting.startsWith('background-color-')) {
+    body.classList.add(setting);
   }
 
   if (! gradients) {
@@ -70,7 +69,7 @@ const addBodyClass = (preview = false) => {
 
   const gradientStyle = document.createElement('style');
   gradientStyle.id = 'mh-improved-custom-background-style';
-  gradientStyle.innerHTML = `.mh-improved-custom-background-gradient-preview,
+  gradientStyle.textContent = `.mh-improved-custom-background-gradient-preview,
   body.${background} .pageFrameView-column.right.right,
   body.${background} .pageFrameView-column.left.left {
     background-color: transparent !important;
@@ -103,9 +102,16 @@ const listenForPreferenceChanges = () => {
     return;
   }
 
-  input.addEventListener('change', () => {
-    addBodyClass();
-  });
+  if (preferenceInput && preferenceInput !== input) {
+    preferenceInput.removeEventListener('change', handlePreferenceChange);
+  }
+
+  if (preferenceInput === input) {
+    return;
+  }
+
+  preferenceInput = input;
+  preferenceInput.addEventListener('change', handlePreferenceChange);
 };
 
 const addPreview = () => {
@@ -142,21 +148,21 @@ const persistBackground = () => {
 const init = () => {
   addStyles(styles, 'custom-background');
 
-  if ('default' === getSetting('custom-background-0', 'default')) {
-    return;
-  }
-
   settings().then((theSettings) => {
     possibleClasses = theSettings[0].settings.options.reduce((acc, option) => {
       if ('group' === option.value) {
         return [...acc, ...option.options.map((subOption) => subOption.value)];
       }
 
+      if ('default' === option.value) {
+        return acc;
+      }
+
       return [...acc, option.value];
     }, []);
-
     persistBackground();
   }).catch(() => {
+    persistBackground();
     /* Failed to load settings for custom-background */
   });
 };
