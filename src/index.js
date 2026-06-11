@@ -36,40 +36,65 @@ const categories = [
 ];
 
 /**
- * Load all the modules.
+ * Validate a module's metadata.
+ *
+ * @param {Object} module The module to validate.
  */
-const loadModules = async () => {
+const validateModuleMetadata = (module) => {
+  if (! module?.id || ! module?.type || 'function' !== typeof module?.load) {
+    throw new Error(`Invalid module definition: ${module?.id || 'unknown module'}`);
+  }
+};
+
+/**
+ * Group modules by category without mutating the category definitions.
+ *
+ * @return {Array} Categories with grouped modules.
+ */
+const getCategoriesWithModules = () => {
+  const categoriesWithModules = categories.map((category) => ({
+    ...category,
+    modules: [],
+  }));
+
+  modules.forEach((module) => {
+    validateModuleMetadata(module);
+
+    const category = categoriesWithModules.find((item) => item.id === module.type);
+    if (! category) {
+      debug(`Unknown module category: ${module.type}`);
+      return;
+    }
+
+    category.modules.push(module);
+  });
+
+  for (const category of categoriesWithModules) {
+    category.modules.sort((a, b) => {
+      const orderA = a.order ?? 1;
+      const orderB = b.order ?? 1;
+
+      if (orderA !== orderB) {
+        return orderA - orderB;
+      }
+
+      return (a.name || a.id).localeCompare(b.name || b.id);
+    });
+  }
+
+  return categoriesWithModules;
+};
+
+/**
+ * Load all the modules.
+ *
+ * @param {Array} categoriesWithModules Categories with modules to load.
+ */
+const loadModules = async (categoriesWithModules = getCategoriesWithModules()) => {
   // Don't load if already loaded.
   if (getGlobal('loaded')) {
     debug('Already loaded, exiting.');
     return;
-  }
-
-  modules.forEach((m) => {
-    const category = categories.find((c) => c.id === m.type);
-    if (! category) {
-      debug(`Unknown module category: ${m.type}`);
-      return;
-    }
-
-    category.modules = category.modules || [];
-
-    category.modules.push(m);
-  });
-
-  for (const category of categories) {
-    category.modules.sort((a, b) => {
-      a.order = a.order || 1;
-      b.order = b.order || 1;
-
-      // Sort by 'order' property
-      if (a.order !== b.order) {
-        return a.order - b.order;
-      }
-
-      // If order is the same, sort by name.
-      return (a.name || a.id).localeCompare(b.name || b.id);
-    });
   }
 
   // Track modules to load.
@@ -77,9 +102,10 @@ const loadModules = async () => {
 
   // Track loaded modules.
   const allLoadedModules = [];
+  const moduleErrors = [];
 
   // Loop through the categories and load the modules.
-  for (const category of categories) {
+  for (const category of categoriesWithModules) {
     const loadedModules = [];
 
     // Load the modules.
@@ -95,21 +121,20 @@ const loadModules = async () => {
         'required' === category.id ||
         getSetting(module.id, module.default)
       ) {
-        try {
-          // Add the module to the load queue.
-          load.push(module.load());
-
-          // Add the module to the loaded modules.
-          loadedModules.push(module.id);
-        } catch (error) {
-          // If the module fails to load, log the error.
-          debug(`Error loading "${module.id}"`, error);
-          throw error;
-        }
+        load.push(Promise.resolve()
+          .then(() => module.load())
+          .then(() => {
+            loadedModules.push(module.id);
+            allLoadedModules.push(module.id);
+            return module.id;
+          })
+          .catch((error) => {
+            moduleErrors.push({ module, error });
+            debug(`Error loading "${module.id}"`, error);
+            return null;
+          }));
       }
     }
-
-    allLoadedModules.push(...loadedModules);
 
     // Log the loaded modules for the category.
     if (getSetting('debug.module-loading', false)) {
@@ -118,14 +143,14 @@ const loadModules = async () => {
   }
 
   // Wait for all modules to load.
-  try {
-    await Promise.all(load);
-  } catch (error) {
+  await Promise.all(load);
+
+  if (moduleErrors.length > 0) {
     if (getSetting('error-reporting', true)) {
-      Sentry.captureException(error);
+      moduleErrors.forEach(({ error }) => Sentry.captureException(error));
     }
 
-    throw error;
+    throw moduleErrors[0].error;
   }
 
   // Add the loaded modules to the global scope.
@@ -195,7 +220,9 @@ const init = async () => {
 
   // Time to load the modules.
   try {
-    await loadModules();
+    const categoriesWithModules = getCategoriesWithModules();
+
+    await loadModules(categoriesWithModules);
 
     // Add the version and loaded flag to the global scope.
     setGlobal('version', mhImprovedVersion);
@@ -224,7 +251,7 @@ const init = async () => {
 
     // Add the settings for each module.
     onNavigation(async () => {
-      for (const module of categories) {
+      for (const module of categoriesWithModules) {
         await addSettingForModule(module);
       }
     }, {
