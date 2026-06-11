@@ -1,6 +1,8 @@
 import { addSubmenuItem, getData } from '@utils';
 import { startMemoryGame } from '@utils/shared/memory-game';
 
+let validItemsPromise = null;
+
 const isValidItem = (item) => {
   const excludedImages = new Set([
     'https://i.mouse.rip/upscaled/parts-new.png',
@@ -29,45 +31,64 @@ const isValidItem = (item) => {
     item.name.length < 25;
 };
 
+const getValidItems = async () => {
+  if (! validItemsPromise) {
+    validItemsPromise = getData('items').then((items) => {
+      if (! Array.isArray(items)) {
+        return [];
+      }
+
+      return items.filter((element) => isValidItem(element));
+    });
+  }
+
+  const validItems = await validItemsPromise;
+  if (validItems.length === 0) {
+    validItemsPromise = null;
+  }
+
+  return validItems;
+};
+
+const startGame = async (settings) => {
+  const items = await getValidItems();
+  if (items.length === 0) {
+    return;
+  }
+
+  startMemoryGame({
+    items,
+    ...settings,
+  });
+};
+
 const init = async () => {
   addSubmenuItem({
     menu: 'camp',
     label: 'Memory Matching Game',
     icon: 'https://i.mouse.rip/icons/game.png',
-    callback: async () => {
-      const items = await getData('items');
-      startMemoryGame({
-        items: items.filter((element) => isValidItem(element)),
-        mode: 'easy'
-      });
-    }
+    callback: () => startGame({
+      mode: 'easy'
+    })
   });
 
   addSubmenuItem({
     menu: 'camp',
     label: 'Memory Game (hard)',
     icon: 'https://i.mouse.rip/icons/game.png',
-    callback: async () => {
-      const items = await getData('items');
-      startMemoryGame({
-        items: items.filter((element) => isValidItem(element)),
-        mode: 'hard'
-      });
-    }
+    callback: () => startGame({
+      mode: 'hard'
+    })
   });
 
   addSubmenuItem({
     menu: 'camp',
     label: 'Memory Game (extreme)',
     icon: 'https://i.mouse.rip/icons/game.png',
-    callback: async () => {
-      const items = await getData('items');
-      startMemoryGame({
-        title: 'Memory Matching Game (150 items)',
-        items: items.filter((element) => isValidItem(element)),
-        mode: 'nope'
-      });
-    }
+    callback: () => startGame({
+      title: 'Memory Matching Game (150 items)',
+      mode: 'nope'
+    })
   });
 };
 

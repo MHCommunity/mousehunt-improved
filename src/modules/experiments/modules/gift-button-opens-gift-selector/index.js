@@ -11,9 +11,15 @@ const init = async () => {
   giftButton.setAttribute('data-gift-selector', true);
 
   giftButton.addEventListener('click', (e) => {
-    e.preventDefault();
+    const showGiftSelector = hg?.views?.GiftSelectorView?.show;
+    if (typeof showGiftSelector !== 'function') {
+      return;
+    }
 
-    hg.views.GiftSelectorView.show();
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    showGiftSelector.call(hg.views.GiftSelectorView);
   });
 };
 

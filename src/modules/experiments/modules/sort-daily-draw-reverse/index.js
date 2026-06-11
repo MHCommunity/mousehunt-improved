@@ -1,3 +1,5 @@
+const reversedContainers = new WeakMap();
+
 /**
  * Reverse daily_draw elements.
  */
@@ -8,7 +10,14 @@ const reverseDailyDrawElements = () => {
   }
 
   const dailyDrawDivs = [...container.querySelectorAll('.daily_draw')];
-  if (dailyDrawDivs.length === 0) {
+  if (dailyDrawDivs.length < 2) {
+    return;
+  }
+
+  const firstEntry = dailyDrawDivs[0];
+  const lastEntry = dailyDrawDivs.at(-1);
+  const reversedOrder = reversedContainers.get(container);
+  if (reversedOrder?.first === firstEntry && reversedOrder?.last === lastEntry) {
     return;
   }
 
@@ -20,6 +29,11 @@ const reverseDailyDrawElements = () => {
     } else {
       container.append(div);
     }
+  });
+
+  reversedContainers.set(container, {
+    first: lastEntry,
+    last: firstEntry
   });
 };
 

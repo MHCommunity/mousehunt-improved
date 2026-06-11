@@ -1,7 +1,26 @@
-import { getSetting } from '@utils';
+import { getSetting, onEvent } from '@utils';
 
 import * as imported from './modules/*/index.js'; // eslint-disable-line import/no-unresolved
 const modules = imported;
+const loadedExperimentModules = new Set();
+
+/**
+ * Load a single experiment module.
+ *
+ * @param {Object} module The experiment module to load.
+ */
+const loadExperimentModule = (module) => {
+  if (! module.load || loadedExperimentModules.has(module.id)) {
+    return;
+  }
+
+  if (module.showIf && ! module.showIf()) {
+    return;
+  }
+
+  module.load();
+  loadedExperimentModules.add(module.id);
+};
 
 /**
  * Load the experiments.
@@ -66,8 +85,19 @@ const init = () => {
   // checking for the setting in their respective modules. These ones aren't contained
   // in a module, so they need to be loaded here.
   modules.forEach((module) => {
-    if (module.load && getSetting(module.id, false)) {
-      module.load();
+    if (getSetting(module.id, false)) {
+      loadExperimentModule(module);
+    }
+  });
+
+  onEvent('mh-improved-settings-changed', ({ key, value }) => {
+    if (! value) {
+      return;
+    }
+
+    const module = modules.find((item) => item.id === key);
+    if (module) {
+      loadExperimentModule(module);
     }
   });
 };
@@ -83,12 +113,22 @@ export default {
   order: -1,
   alwaysLoad: true,
   load: init,
-  settings: () => {
-    return modules.map((module) => ({
-      id: module.id || module.name,
-      title: module.name || module.id,
-      description: module.description || '',
-      default: module.default || false,
-    }));
+  settings: async () => {
+    const moduleSettings = [];
+    const availableModules = modules.filter((module) => ! module.showIf || module.showIf());
+
+    for (const module of availableModules) {
+      const settings = module.settings ? await module.settings() : null;
+
+      moduleSettings.push({
+        id: module.id || module.name,
+        title: module.name || module.id,
+        description: module.description || '',
+        default: module.default || false,
+        children: settings || [],
+      });
+    }
+
+    return moduleSettings;
   },
 };
