@@ -1,0 +1,18 @@
+.travelPage-map-image-wrapper #ronza-airborne,
+.travelPage-map-image-wrapper #pirate-airborne {
+  animation-name: mh-improved-boat-floating;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.travelPage-map-image-wrapper #pirate-airborne {
+  animation-name: mh-improved-chum-floating;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .travelPage-map-image-wrapper #ronza-airborne,
+  .travelPage-map-image-wrapper #pirate-airborne {
+    animation: none;
+  }
+}

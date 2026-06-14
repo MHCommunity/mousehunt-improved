@@ -517,3 +517,9 @@ input.itemView-action-convert-quantity {
 .mousehuntPage-message-title {
   margin: 4px 0;
 }
+
+.travelPage-map-environment-detail-wiki-link img {
+  width: 8px;
+  margin: 0;
+  transform: none;
+}
