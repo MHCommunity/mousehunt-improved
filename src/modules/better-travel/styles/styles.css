@@ -7,7 +7,7 @@
 
 .travelPage-regionMenu {
   width: 22%;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .travelPage-map-environment-detailContainer {
@@ -413,4 +413,9 @@
 .travelPage-map-environment-detail-shop:hover .travelPage-map-environment-detail-shop-name {
   left: unset;
   margin-left: -10px;
+}
+
+.travelPage-map-zoomIn:hover,
+.travelPage-map-zoomOut:hover {
+  filter: brightness(0.5);
 }

@@ -11,6 +11,7 @@ import {
   getSetting,
   makeElement,
   makeFavoriteButton,
+  makeMhButton,
   onEvent,
   onNavigation,
   onPageChange,
@@ -25,6 +26,7 @@ import { getTravelSetting, saveTravelSetting } from './utils';
 import addReminders from './modules/reminders';
 import travelWindow from './modules/travel-window';
 
+import exploreMapStyles from './styles/explore-map.css';
 import settings from './settings';
 import styles from './styles/styles.css';
 import travelMenuHidingStyles from './styles/travel-menu-hiding.css';
@@ -293,6 +295,96 @@ const addSimpleTravel = () => {
 
   addTab('simple-travel', 'Simple Travel');
   addSimpleTravelPage();
+};
+
+/**
+ * Update the map exploration toggle button state.
+ *
+ * @param {boolean} enabled Whether or not map exploration is enabled.
+ */
+const updateMapExplorationToggle = (enabled = true) => {
+  const toggle = document.querySelector('.mh-improved-map-exploration-toggle');
+  if (! toggle) {
+    return;
+  }
+
+  const text = toggle.querySelector('span');
+
+  if (text) {
+    text.innerText = enabled ? 'Back to Normal Map' : 'Explore Map';
+  }
+
+  toggle.title = enabled ? 'Show location markers and travel details' : 'Hide location markers and travel details';
+  toggle.classList.toggle('active', enabled);
+};
+
+let isStarting;
+let isStartingClear;
+/**
+ * Apply the map exploration body class.
+ */
+const setMapExploration = () => {
+  if (document.body.classList.contains('mh-improved-map-exploration') || document.body.classList.contains('mh-improved-map-exploration-starting')) {
+    document.body.classList.add('mh-improved-map-exploration-starting');
+
+    clearTimeout(isStarting);
+    isStarting = setTimeout(() => {
+      document.body.classList.remove('mh-improved-map-exploration');
+    }, 100);
+
+    clearTimeout(isStartingClear);
+    isStartingClear = setTimeout(() => {
+      document.body.classList.remove('mh-improved-map-exploration-starting');
+    }, 500);
+
+    updateMapExplorationToggle(false);
+  } else {
+    document.body.classList.add('mh-improved-map-exploration-starting');
+
+    clearTimeout(isStarting);
+    isStarting = setTimeout(() => {
+      document.body.classList.add('mh-improved-map-exploration');
+    }, 100);
+
+    clearTimeout(isStartingClear);
+    isStartingClear = setTimeout(() => {
+      document.body.classList.remove('mh-improved-map-exploration-starting');
+    }, 500);
+
+    updateMapExplorationToggle(true);
+  }
+};
+
+/**
+ * Add the map exploration toggle button to the travel map.
+ */
+const addMapExplorationToggle = () => {
+  if ('travel' !== getCurrentPage()) {
+    return;
+  }
+
+  const exists = document.querySelector('.mh-improved-map-exploration-toggle');
+  if (exists) {
+    updateMapExplorationToggle(false);
+    return;
+  }
+
+  const mapContainer = document.querySelector('.travelPage-mapContainer.full');
+  if (! mapContainer) {
+    return;
+  }
+
+  const controls = makeElement('div', 'mh-improved-map-exploration-controls');
+  makeMhButton({
+    element: 'button',
+    text: 'Toggle Map Exploration',
+    className: 'mh-improved-map-exploration-toggle lightBlue',
+    callback: setMapExploration,
+    appendTo: controls,
+  });
+
+  mapContainer.after(controls);
+  updateMapExplorationToggle();
 };
 
 /**
@@ -712,6 +804,7 @@ const main = () => {
     addSimpleTravel();
     addRhToSimpleTravel();
     addFavoriteButtonsToTravelPage();
+    addMapExplorationToggle();
   }, {
     page: 'travel',
   });
@@ -725,6 +818,7 @@ const main = () => {
   initSimpleTab();
 
   maybeDoMapView();
+  addMapExplorationToggle();
   onTravelComplete();
 
   saveTravelLocation();
@@ -740,7 +834,7 @@ let eventEnvironments = [];
  * Initialize the module.
  */
 const init = () => {
-  const stylesJoined = [styles];
+  const stylesJoined = [styles, exploreMapStyles];
 
   if (! getFlag('no-travel-menu-hiding')) {
     stylesJoined.push(travelMenuHidingStyles);

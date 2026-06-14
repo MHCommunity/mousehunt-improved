@@ -1,0 +1,66 @@
+.mh-improved-map-exploration-controls {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 10px 6px;
+}
+
+.mh-improved-map-exploration .mh-improved-map-exploration-controls {
+  right: -10px;
+  bottom: -40px;
+  padding-bottom: 10px;
+}
+
+.mh-improved-map-exploration-toggle.active.mousehuntActionButton {
+  filter: brightness(1.08);
+}
+
+.mh-improved-map-exploration .travelPage-map-image-dynamic-layer:hover {
+  opacity: 1;
+}
+
+.mh-improved-map-exploration .travelPage-map-image-dynamic-layer {
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+.mh-improved-map-exploration .travelPage-map-image-environment {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.mh-improved-map-exploration .travelPage-regionMenu {
+  width: 0;
+}
+
+.mh-improved-map-exploration .travelPage-map-imageContainer {
+  width: 100%;
+}
+
+.mh-improved-map-exploration .travelPage-map-environment-detailContainer {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.mh-improved-map-exploration .travelPage-map-zoomContainer {
+  bottom: 15px;
+  opacity: 0.7;
+  transform: none;
+}
+
+.mh-improved-map-exploration .travelPage-map-zoomContainer:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.mh-improved-map-exploration-starting .travelPage-map-image-dynamic-layer,
+.mh-improved-map-exploration-starting .travelPage-map-image-environment,
+.mh-improved-map-exploration-starting .travelPage-regionMenu,
+.mh-improved-map-exploration-starting .travelPage-map-imageContainer,
+.mh-improved-map-exploration-starting .travelPage-map-environment-detailContainer,
+.mh-improved-map-exploration-starting .travelPage-map-zoomContainer {
+  transition: 0.4s ease;
+}
