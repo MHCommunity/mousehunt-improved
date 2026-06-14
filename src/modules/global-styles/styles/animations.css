@@ -176,6 +176,18 @@
   100% { transform: rotate(0deg); }
 }
 
+@keyframes mh-improved-boat-floating {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(0, 3px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes mh-improved-chum-floating {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(0, -5px); }
+  100% { transform: translate(0, 0); }
+}
+
 /* stylelint-enable rule-empty-line-before */
 /* stylelint-enable prettier/prettier */
 /* stylelint-enable stylistic/block-opening-brace-space-before */

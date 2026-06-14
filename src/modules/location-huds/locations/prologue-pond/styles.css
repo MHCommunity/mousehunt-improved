@@ -74,34 +74,6 @@
   left: -96px;
 }
 
-@keyframes mh-improved-boat-floating {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  50% {
-    transform: translate(0, 3px);
-  }
-
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes mh-improved-chum-floating {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  50% {
-    transform: translate(0, -5px);
-  }
-
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
 /* add bobbing animation so it looks like they're floating */
 .prologuePondView-chumDoober {
   filter: drop-shadow(-1px -1px 3px #526ba1) drop-shadow(-1px -1px 3px #526ba1) hue-rotate(94deg);
