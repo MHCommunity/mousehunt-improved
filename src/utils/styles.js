@@ -1,4 +1,3 @@
-import { getSetting } from './settings';
 import { onEvent } from './event-registry';
 
 /**
@@ -187,7 +186,7 @@ const addExternalStyles = async (filename) => {
   const style = document.createElement('link');
   style.rel = 'stylesheet';
   style.id = `${identifier}-external`;
-  style.href = getSetting('debug.disable-cache') ? `https://api.mouse.rip/${filename}` : `https://static.mouse.rip/${filename}`;
+  style.href = `https://api.mouse.rip/${filename}`;
 
   // If we're in an extension, then we can use the extension base URL.
   if ('userscript' !== mhImprovedPlatform) {
