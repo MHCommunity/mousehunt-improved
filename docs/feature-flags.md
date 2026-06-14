@@ -9,6 +9,7 @@ Add any of the following flags, comma-separated, to the feature flags option to 
 |Flag|Description|
 |---|---|
 |`disable-requests`|Disables sending requests to the MouseHunt servers.|
+|`fake-fabled`|Enables the modules locked to Fabled rank and replaces the progress bar with the Max Title text.|
 |`social-noop`|Replaces `hg.classes.SocialLink` and `twttr` objects with noops.|
 |`no-kingdom-link-replacement`|Makes the Kingdom link to go the forums, rather than the News page.|
 

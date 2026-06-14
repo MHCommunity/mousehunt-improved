@@ -1,4 +1,4 @@
-import { addStyles, isUserTitleAtLeast } from '@utils';
+import { addStyles, getFlag, isUserTitleAtLeast } from '@utils';
 
 import styles from './styles.css';
 
@@ -13,6 +13,6 @@ export default {
   id: 'experiments.fabled-max-title-progress-bar',
   name: 'HUD: Show progress bar at max title',
   description: 'Show the completed title progress bar instead of the max title text.',
-  showIf: () => isUserTitleAtLeast('fabled'),
+  showIf: () => isUserTitleAtLeast('fabled') || getFlag('fake-fabled'),
   load: init,
 };

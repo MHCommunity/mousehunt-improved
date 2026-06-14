@@ -1,6 +1,7 @@
 import { getFlag } from '@utils';
 
 import rankupForecaster from './modules/rank-up-forecaster';
+import showFabledProgressBarText from './modules/fake-fabled';
 import socialNoop from './modules/social';
 
 import settings from './settings';
@@ -15,6 +16,10 @@ const init = () => {
 
   if (! getFlag('rankup-forecaster')) {
     rankupForecaster();
+  }
+
+  if (getFlag('fake-fabled')) {
+    showFabledProgressBarText();
   }
 };
 

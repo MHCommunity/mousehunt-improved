@@ -1,12 +1,13 @@
 import {
   doEvent,
+  getFlag,
   getSetting,
+  isUserTitleAtLeast,
   makeElement,
   makeMhButton,
   onEvent,
   onNavigation,
-  saveSetting,
-  isUserTitleAtLeast,
+  saveSetting
 } from '@utils';
 
 const customTitleSettingKey = 'experiments.fabled-custom-title-text';
@@ -136,7 +137,7 @@ export default {
   id: 'experiments.fabled-custom-title',
   name: 'HUD: Show custom max title text',
   description: 'Show a custom max title text.',
-  showIf: () => isUserTitleAtLeast('fabled'),
+  showIf: () => isUserTitleAtLeast('fabled') || getFlag('fake-fabled'),
   load: init,
   settings,
 };

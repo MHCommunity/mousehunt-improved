@@ -595,12 +595,14 @@ ul.mhui-settings-toc-list {
 }
 
 #mousehunt-improved-settings-beta-experiments-fabled-custom-title,
-#mousehunt-improved-settings-beta-experiments-fabled-max-title-progress-bar {
+#mousehunt-improved-settings-beta-experiments-fabled-max-title-progress-bar,
+#mousehunt-improved-settings-beta-experiments-fabled-random-title {
   margin-left: 45px;
 }
 
 #mousehunt-improved-settings-beta-experiments-fabled-custom-title::after,
-#mousehunt-improved-settings-beta-experiments-fabled-max-title-progress-bar::after {
+#mousehunt-improved-settings-beta-experiments-fabled-max-title-progress-bar::after,
+#mousehunt-improved-settings-beta-experiments-fabled-random-title::after {
   position: absolute;
   top: 0;
   bottom: 0;
