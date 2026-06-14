@@ -160,7 +160,11 @@
       "draconic_depths_treasure_chest_convertible",
       "rare_draconic_depths_treasure_chest_convertible",
       "origin_of_dragons_treasure_chest_convertible",
-      "rare_origin_of_dragons_treasure_chest_convertible"
+      "rare_origin_of_dragons_treasure_chest_convertible",
+      "fofo_finale_treasure_chest_convertible",
+      "fofo_grand_tour_treasure_chest_convertible",
+      "rare_fofo_finale_treasure_chest_convertible",
+      "rare_fofo_grand_tour_treasure_chest_convertible"
     ]
   },
   {
@@ -272,6 +276,12 @@
       "folklore_motif_index_physical_power_stat_item",
       "folklore_motif_index_shadow_luck_stat_item",
       "folklore_motif_index_shadow_power_stat_item",
+      "folklore_motif_index_hydro_luck_stat_item",
+      "folklore_motif_index_hydro_power_stat_item",
+      "folklore_motif_index_law_luck_stat_item",
+      "folklore_motif_index_law_power_stat_item",
+      "folklore_motif_index_tactical_luck_stat_item",
+      "folklore_motif_index_tactical_power_stat_item",
       "regal_charm_codex_stat_item",
       "rift_luck_codex_stat_item"
     ]
@@ -360,7 +370,15 @@
       "tournament_token_mega_stat_item",
       "tournament_token_stat_item",
       "war_scrap_stat_item",
-      "dragon_ashes_stat_item"
+      "dragon_ashes_stat_item",
+      "fort_rox_portal_console_stat_item",
+      "fort_rox_portal_core_stat_item",
+      "dragons_eye_stat_item",
+      "idea_germ_stat_item",
+      "pearl_of_wisdom_stat_item",
+      "rainbow_nib_stat_item",
+      "warpath_portal_console_stat_item",
+      "warpath_portal_core_stat_item"
     ]
   },
   {
