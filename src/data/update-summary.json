@@ -1,13 +1,47 @@
 {
-  "summary": "",
+  "summary": "This update adds new Fabled HUD max title beta features, an Explore Map mode for Better Travel, expanded Folklore Forest map sorting and Ultimate Checkmark data, and a batch of UI improvements, bug fixes, and reliability updates.",
   "details": [
     {
-      "title": "",
+      "title": "Fabled HUD Max Title Beta Features",
       "items": [
-        "Added Rift Hailstone Singularity Base to Prestige Base Stats so it shows the correct stats in the base selector",
-        "Added 'Show Adventure Book' feature to add an Adventure Book link to the Kingdom menu",
-        "Added an option to disable Native Dark Mode mice page image changes",
-        "Miscellaneous bug fixes and style updates"
+        "Added a \"HUD: Show random max title text\" beta feature that cycles through a variety of fun and silly custom max title texts",
+        "Added a \"HUD: Show custom max title text\" beta feature that allows you to set your own custom max title text",
+        "Added a \"HUD: Show progress bar at max title\" beta feature that keeps the progress bar visible at max title instead of replacing it with the max title text",
+        "Added a \"fake-fabled\" feature flag that enables the Fabled HUD beta features and replaces the progress bar with max title text for all ranks"
+      ]
+    },
+    {
+      "title": "Better Travel",
+      "items": [
+        "Added an \"Explore Map\" beta feature that hides location markers and travel details, as well as resets certain areas to the base map until you hover over them",
+        "Added Folklore Forest Grand Tour and Folklore Forest Finale sorting data for maps",
+        "Fixed travel menu handling when the current location is not present in the menu"
+      ]
+    },
+    {
+      "title": "Ultimate Checkmark",
+      "items": [
+        "Added Folklore Forest Grand Tour and Folklore Forest Finale treasure chests",
+        "Added Folklore Motif-Index: Hydro, Law, and Tactical codexes",
+        "Added Dragon's Eye, Kalor'ignis Rib, Fort Rox Portal Console & Core, Idea Germ, Pearl of Wisdom, Rainbow Nib, Warpath Portal Console & Core to Currency",
+        "Good luck!"
+      ]
+    },
+    {
+      "title": "Location HUDs",
+      "items": [
+        "Updated Conclusion Cliffs styles",
+        "Updated Floating Islands styles",
+        "Updated Fort Rox styles",
+        "Updated Iceberg styles",
+        "Updated a few other Location HUD styles and edge cases"
+      ]
+    },
+    {
+      "title": "Other",
+      "items": [
+        "Improved performance, memory usage, and reliability across various modules and utilities",
+        "Miscellaneous UI improvements and bug fixes across various modules"
       ]
     }
   ]

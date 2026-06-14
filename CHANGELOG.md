@@ -1,5 +1,28 @@
 # Changelog
 
+## Version 0.97.0
+
+- Added "HUD: Show random max title text" beta feature that cycles through a variety of fun and silly custom max title texts
+- Added "HUD: Show custom max title text" beta feature that allows you to set your own custom max title text
+- Added "HUD: Show progress bar at max title" beta feature that keeps the progress bar visible at max title instead of replacing it with the max title text
+- Added `fake-fabled` feature flag that enables the Fabled HUD beta features and replaces the progress bar with max title text for all ranks
+- Better Travel: Added "Explore Map" beta feature that hides location markers and travel details, and resets certain areas to the base map until you hover over them
+- Better Maps: Added Folklore Forest Grand Tour and Folklore Forest Finale sorting data
+- Ultimate Checkmark: Added Folklore Forest Grand Tour Treasure Chest, Folklore Forest Finale Treasure Chest, their rare variants, Folklore Motif-Index: Hydro, Law, and Tactical codices, and several portal and Folklore Forest collectible items
+- Location HUDs - Conclusion Cliffs: Updated styles
+- Location HUDs - Floating Islands: Updated styles and fixed boss countdown retry timing
+- Location HUDs - Fort Rox: Updated styles and fixed upgrade and wall HP display edge cases
+- Location HUDs - Iceberg: Updated styles and fixed distance display and drill help tooltip positioning
+- Location HUDs: Updated Draconic Depths, Folklore Forest, Rift Furoma, Desert Warpath, and Location Dashboard styles and edge cases
+- Settings: Improved settings import, export, formatting, and invalid JSON handling
+- Custom CSS: Updated saved styles to refresh when settings change
+- Custom Background, Custom Camp Background, Custom Horn, Custom HUD, and Custom Shield: Fixed duplicated event listeners, stale classes, and preview behavior
+- Rank-Up Forecaster: Improved import/export error handling and refresh behavior
+- Journal Privacy: Fixed toggle behavior and cleanup
+- Improved performance, memory usage, and reliability across various modules and utilities
+- Updated CI workflow dependencies and publishing workflow behavior
+- Miscellaneous UI improvements and bug fixes across various modules
+
 ## Version 0.96.2
 
 - Updated Dark Mode styles
