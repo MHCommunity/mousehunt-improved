@@ -627,7 +627,7 @@ ul.mhui-settings-toc-list {
   display: none;
 }
 
-#mousehunt-improved-settings-beta-experiments-fabled-custom-title.active > .PagePreferences__subSetting .inputText input{
+#mousehunt-improved-settings-beta-experiments-fabled-custom-title.active > .PagePreferences__subSetting .inputText input {
   width: 125px;
   font-size: 14px;
   font-style: italic;
